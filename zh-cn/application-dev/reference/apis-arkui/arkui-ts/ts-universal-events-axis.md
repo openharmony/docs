@@ -66,7 +66,7 @@ getHorizontalAxisValue(): number
 
 | 类型              |说明       |
 | ------- | --------------------------------- | 
-| number | 水平轴值。 |
+| number | 水平轴值。<br>单位：vp |
 
 ### getVerticalAxisValue
 
@@ -82,7 +82,7 @@ getVerticalAxisValue(): number
 
 | 类型              |说明       |
 | ------- | --------------------------------- | 
-| number | 垂直轴值。 |
+| number | 垂直轴值。<br>单位：vp |
 
 ## 示例
 

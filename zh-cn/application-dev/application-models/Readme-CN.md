@@ -23,6 +23,7 @@
       <!--DelEnd-->
       - [UIServiceExtension](uiserviceextension.md)
       - [EmbeddedUIExtensionAbility](embeddeduiextensionability.md)
+      - [使用AppServiceExtensionAbility实现后台服务](app-service-extension-ability.md)
     - [AbilityStage组件容器](abilitystage.md)
     - [应用上下文Context](application-context-stage.md)
     - 信息传递载体Want<!--want-->
@@ -72,6 +73,7 @@
     - [设置任务快照的图标和名称](mission-set-icon-name-for-task-snapshot.md)
   <!--DelEnd-->
   - [Stage模型应用配置文件](config-file-stage.md)
+  - [标准意图接入规范](insight-intent-access-specifications.md)
 - FA模型开发指导<!--fa-model-development-->
   - [FA模型开发概述](fa-model-development-overview.md)
   - FA模型应用组件<!--fa-model-application-components-->
@@ -149,4 +151,6 @@
     - [window接口切换](window-switch.md)
     - [Storage接口切换](storage-switch.md)
 <!--DelEnd-->
-- [Native子进程开发指导（C/C++）](capi_nativechildprocess_development_guideline.md)
+- Native子进程开发指导<!--native-childprocess-development-->
+    - [创建Native子进程](capi_nativechildprocess_development_guideline.md)
+    - [获取Native子进程退出信息](capi-nativechildprocess-exit-info.md)

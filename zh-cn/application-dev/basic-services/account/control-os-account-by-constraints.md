@@ -4,7 +4,7 @@
 
 ## 约束列表
 
-预定义的账号约束条件，可以参考 ：[系统账号约束列表](../../reference/apis-basic-services-kit/js-apis-osAccount.md#系统账号约束列表)。
+预定义的账号约束条件，可以参考：[系统账号约束列表](../../reference/apis-basic-services-kit/js-apis-osAccount.md#系统账号约束列表)。
 
 ## 开发准备
 
@@ -42,7 +42,7 @@
      accountManager.setOsAccountConstraints(localId, constraint, true);
      console.log('setOsAccountConstraints successfully');
    } catch (err) {
-     console.log('setOsAccountConstraints failed, error: ' + JSON.stringify(err));
+     console.error('setOsAccountConstraints failed, error: ' + JSON.stringify(err));
    }
    ```
 
@@ -62,8 +62,9 @@
 2. 调用[isOsAccountConstraintEnabled](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#isosaccountconstraintenabled11)接口，判断指定约束是否使能。
 
    ```ts
-   let isEnabled: boolean = await accountManager.isOsAccountConstraintEnabled(localId, constraint);
-   if (isEnabled) {
-     // your business logic
-   }
+   accountManager.isOsAccountConstraintEnabled(localId, constraint).then((isEnabled: boolean) => {
+     if (isEnabled) {
+        // your business logic
+     }
+   });
    ```

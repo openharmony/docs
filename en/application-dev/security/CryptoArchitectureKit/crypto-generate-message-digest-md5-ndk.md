@@ -7,13 +7,11 @@ For details about the algorithm specifications, see [Supported Algorithms and Sp
 target_link_libraries(entry PUBLIC libohcrypto.so)
 ```
 
-
 ## How to Develop
 
 During the MD operation, you can [pass in all the data at a time](#generating-an-md-by-passing-in-full-data) or [pass in data by segment](#generating-an-md-by-passing-in-data-by-segment). For the same piece of data, the result will be the same no matter how the data is passed. Use the appropriate method based on the data size.
 
 The following provides examples of MD operations with different data passing methods.
-
 
 ### Generating an MD by Passing In Full Data
 

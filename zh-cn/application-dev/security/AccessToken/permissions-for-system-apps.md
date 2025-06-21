@@ -936,6 +936,18 @@
 
 **起始版本**：10
 
+## ohos.permission.UNLOCK_DEVELOPER_MODE
+
+允许应用解锁开发者模式。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：18
+
 ## ohos.permission.CAPTURE_VOICE_DOWNLINK_AUDIO
 
 允许应用采集语音下行音频。
@@ -1188,18 +1200,6 @@
 
 **起始版本**：10
 
-## ohos.permission.GET_WIFI_LOCAL_MAC
-
-允许应用获取本机的Wi-Fi设备的MAC地址。
-
-**权限级别**：system_basic
-
-**授权方式**：系统授权（system_grant）
-
-**ACL使能**：true
-
-**起始版本**：8
-
 ## ohos.permission.securityguard.REQUEST_SECURITY_EVENT_INFO
 
 允许应用获取风险详细数据。
@@ -1231,6 +1231,8 @@
 **权限级别**：system_basic
 
 **授权方式**：系统授权（system_grant）
+
+**支持设备**：General
 
 **ACL使能**：true
 
@@ -1449,6 +1451,8 @@
 **权限级别**：system_core
 
 **授权方式**：系统授权（system_grant）
+
+**支持设备**：General
 
 **ACL使能**：true
 
@@ -1701,6 +1705,8 @@
 **权限级别**：system_core
 
 **授权方式**：系统授权（system_grant）
+
+**支持设备**：General
 
 **ACL使能**：true
 
@@ -2666,7 +2672,7 @@
 
 **ACL使能**：true
 
-**起始版本**：18
+**起始版本**：19
 
 ## ohos.permission.ACCESS_ADVANCED_SECURITY_MODE
 
@@ -4324,23 +4330,6 @@
 
 **起始版本**：18
 
-## ohos.permission.ACCESS_DDK_DRIVERS
-
-允许扩展外设驱动客户端绑定到扩展外设驱动服务端。
-
-该权限针对扩展外设客户端绑定到扩展外设服务端权限校验，具体规则：
-
-1. 外设扩展驱动客户端权限声明中的value字段中描述的目标扩展驱动服务端已上架或一并上架。
-2. 被申请目标扩展驱动服务端对外提供能力与扩展外设驱动客户端业务诉求一致。
-
-**权限级别**：system_basic
-
-**授权方式**：系统授权（system_grant）
-
-**ACL使能**：true
-
-**起始版本**：18
-
 ## ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL
 
 允许扩展外设驱动访问SCSI DDK接口开发SCSI Peripheral扩展外设驱动。
@@ -4561,6 +4550,20 @@
 
 **起始版本**：19
 
+## ohos.permission.ENTERPRISE_ACCESS_DLP_FILE
+
+允许应用调用企业空间访问DLP文件的接口。
+
+**权限级别**：system_core
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：PC/2in1
+
+**起始版本**：20
+
 ## ohos.permission.UNINSTALL_PLUGIN_BUNDLE
 
 允许应用调用卸载插件的接口。
@@ -4661,7 +4664,7 @@
 
 **起始版本**：18
 
-### ohos.permission.UPDATE_FONT
+## ohos.permission.UPDATE_FONT
 
 允许应用安装和卸载字体。
 
@@ -4673,6 +4676,34 @@
 
 **起始版本**：19
 
+## ohos.permission.READ_PARENT_CONTROL_DATA
+
+允许应用读取家长管控网站的配置。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：Phone | Tablet | 2in1
+
+**起始版本**：19
+
+## ohos.permission.WRITE_PARENT_CONTROL_DATA
+
+允许应用写入家长管控网站的配置。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：Phone | Tablet | 2in1
+
+**起始版本**：19
+
 ## ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
 
 允许应用通过无障碍服务接口查询和操作界面上的组件。
@@ -4681,7 +4712,37 @@
 
 **授权方式**：系统授权（system_grant）
 
+**支持设备**：General
+
 **ACL使能**：true
+
+**起始版本**：20
+
+## ohos.permission.READ_SOUND_RECORD_IN_FILE_MANAGER
+
+允许应用从文件管理目录读取录音文件。
+
+**权限级别**：system_core
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：Phone | PC/2in1 | Tablet
+
+**起始版本**：20
+
+## ohos.permission.WRITE_SOUND_RECORD_IN_FILE_MANAGER
+
+允许应用向文件管理目录写入录音文件。
+
+**权限级别**：system_core
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：Phone | PC/2in1 | Tablet
 
 **起始版本**：20
 
@@ -4696,3 +4757,215 @@
 **ACL使能**：true
 
 **起始版本**：17
+
+## ohos.permission.REQUEST_DISABLE_NOTIFICATION
+
+允许应用运行的后台上传下载任务不在通知栏显示。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：General
+
+**起始版本**：20
+
+## ohos.permission.RESTORE_APP
+
+允许系统应用拉起恢复弹窗以恢复应用。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：Phone | PC/2in1 | Tablet
+
+**起始版本**：20
+
+## ohos.permission.ALLOW_IOURING
+
+允许系统应用调用io_uring相关系统调用实现异步IO操作。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：General
+
+**起始版本**：20
+
+## ohos.permission.NFC_NOTIFICATION
+
+允许应用发布NFC通知相关的公共事件。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：Phone
+
+**起始版本**：20
+
+## ohos.permission.kernel.ALLOW_APP_CODE_DECRYPT
+
+允许系统应用或系统服务调用内核接口进行代码解密。
+
+应用或服务拥有此权限后，可跨进程访问内核接口，针对已加密的代码内容请求解密，可避免非法访问，进一步保护应用代码资产。
+
+**权限级别**：system_core
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：General
+
+**起始版本**：20
+
+## ohos.permission.VIRUS_PROTECTION_SERVICE
+
+允许应用启动病毒查杀任务。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：Phone | PC/2in1 | Tablet
+
+**起始版本**：20
+
+## ohos.permission.UPLOAD_SAMPLE_FILE
+
+允许应用上传样本文件到云侧。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：Phone | PC/2in1 | Tablet
+
+**起始版本**：20
+
+## ohos.permission.DOWNLOAD_POLICY_FILE
+
+允许应用从云侧下载策略文件。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：Phone | PC/2in1 | Tablet
+
+**起始版本**：20
+
+## ohos.permission.NOTIFY_VIRUS_PROTECTION
+
+允许应用发送通知给病毒防护。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：Phone | PC/2in1 | Tablet
+
+**起始版本**：20
+
+## ohos.permission.ACCESS_VIRUS_PROTECTION
+
+允许应用跳转到病毒防护页面。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：Phone | PC/2in1 | Tablet
+
+**起始版本**：20
+
+## ohos.permission.ACCESS_TVCOOPERATION
+
+允许系统应用接入协同服务。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：TV
+
+**起始版本**：20
+
+## ohos.permission.GRANT_URI_PERMISSION_AS_CALLER
+
+允许应用以调用方的身份将URI访问权限授权给目标应用。
+
+**权限级别**：system_core
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：General
+
+**起始版本**：20
+
+## ohos.permission.ACCESS_DFX_LOG_DIR
+
+允许应用访问LOG群组的目录。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：General
+
+**起始版本**：20
+
+## ohos.permission.FILE_ACCESS_FOR_PRIVATE_SPACE
+
+允许隐私空间挂载主空间公共目录到应用沙箱。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：Phone | Tablet
+
+**起始版本**：20
+
+## ohos.permission.ACCESS_CAMERA_SCENARIOS_CARD
+
+允许应用访问遥控拍照场景卡片服务。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：Wearable
+
+**起始版本**：20

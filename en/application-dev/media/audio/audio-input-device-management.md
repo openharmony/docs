@@ -1,4 +1,4 @@
-# Managing Global Audio Input Devices
+# Global Audio Input Device Management
 
 If a device is connected to multiple audio input devices, you can use **AudioRoutingManager** to specify an audio input device to record audio. For details about the API reference, see [AudioRoutingManager](../../reference/apis-audio-kit/js-apis-audio.md#audioroutingmanager9).
 

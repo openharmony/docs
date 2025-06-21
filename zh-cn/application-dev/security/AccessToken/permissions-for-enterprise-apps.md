@@ -1,8 +1,14 @@
 # 企业类应用可用权限
 
-以下权限面向<!--Del-->系统应用和<!--DelEnd-->企业类应用开放，企业类应用包括企业普通应用和MDM（Mobile Device Management）设备管理应用。
+以下权限面向<!--Del-->系统应用和<!--DelEnd-->企业类应用开放。
 
-企业类应用的分发类型分别为enterprise_normal（企业普通应用）和enterprise_mdm（MDM应用），开发者可在<!--RP1-->[HarmonyAppProvision配置文件](../app-provision-structure.md)中查询字段`app-distribution-type`。<!--RP1End-->
+企业类应用包括企业普通应用和MDM（Mobile Device Management）设备管理应用。
+
+企业类应用有以下特征：
+
+- 仅在企业定制设备上运行，不会在普通消费者设备上运行。
+- 分发类型分别为enterprise_normal（企业普通应用）和enterprise_mdm（MDM应用）。
+<!--RP1--><!--RP1End-->
 
 企业类应用可参考[声明权限](declare-permissions.md)，申请以下权限。
 
@@ -29,6 +35,8 @@
 
 允许应用进行公共目录扫描及设置文件扩展属性。
 
+当前扩展属性包括文件密级、文件标签。
+
 **权限级别**：system_basic
 
 **授权方式**：系统授权（system_grant）
@@ -53,11 +61,13 @@
 
 **起始版本**：7
 
-**变更信息**：API 7-13该权限仅向系统应用开放；从API 14开始，开放范围变更为企业普通应用。
+**变更信息**：API 7-13该权限仅向系统应用开放；从API 14开始，开放范围从系统应用变更为企业普通应用。
 
 ## ohos.permission.GET_RUNNING_INFO
 
 允许应用获取运行态信息。
+
+可获取其他应用的运行态信息，包括Ability、Extension、Application的信息。
 
 **权限级别**：system_basic
 
@@ -89,6 +99,8 @@
 
 允许查询应用的基本信息和其他敏感信息。
 
+如应用包名，版本等信息。
+
 **权限级别**：system_basic
 
 **授权方式**：系统授权（system_grant）
@@ -104,22 +116,24 @@
 
 允许应用获取Wi-Fi的配置信息。
 
-当前仅PC/2in1设备应用可申请此权限。
-
 **权限级别**：system_basic
 
 **授权方式**：系统授权（system_grant）
+
+**支持设备**：PC/2in1
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
 
 **起始版本**：8
 
-**变更信息**：API 8-14该权限仅向系统应用开放；从API 15开始，开放范围变更为企业普通应用。
+**变更信息**：API 8-14该权限仅向系统应用开放；从API 15开始，开放范围从系统应用变更为企业普通应用。
 
 ## ohos.permission.SET_WIFI_CONFIG
 
 允许应用配置Wi-Fi信息。
+
+该权限允许应用添加、删除Wi-Fi，以及修改Wi-Fi的配置信息。
 
 **权限级别**：system_basic
 
@@ -149,7 +163,7 @@
 
 ## ohos.permission.QUERY_AUDIT_EVENT
 
-允许应用查询安全审计事件。
+允许企业安全类应用查询安全审计事件。
 
 **权限级别**：system_basic
 
@@ -160,11 +174,13 @@
 
 **起始版本**：12
 
-**变更信息**：API 12-13该权限仅面向MDM应用开放；从API 14开始，开放范围变更为企业普通应用。
+**变更信息**：API 12-13该权限仅面向MDM应用开放；从API 14开始，开放范围从MDM应用变为更为企业普通应用。
 
 ## ohos.permission.KILL_APP_PROCESSES
 
-允许系统应用杀掉其他应用。
+允许系统应用结束其他应用进程。
+
+获取权限后，可终止其他正在运行中的应用，允许它在必要时对系统中的进程进行管理和控制。
 
 **权限级别**：system_basic
 
@@ -177,7 +193,7 @@
 
 **变更信息**：API 7-13该权限仅向系统应用开放；从API 14开始，开放范围从系统应用变更为企业普通应用。
 
-### ohos.permission.SET_TELEPHONY_ESIM_STATE_OPEN
+## ohos.permission.SET_TELEPHONY_ESIM_STATE_OPEN
 
 允许系统应用和运营商应用设置eSIM昵称和激活eSIM。
 
@@ -190,11 +206,13 @@
 
 **起始版本**：14
 
-**变更信息**：从API 14开始，权限级别变更为system_basic，开发范围从所有应用变更为企业普通应用。
+**变更信息**：在API 13，权限等级为normal；从API 14开始，权限等级变更为system_basic。
 
 ## ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION
 
 允许应用管理Wi-Fi的连接。
+
+获取该权限后，可执行开启/关闭、连接、断开Wi-Fi等操作。
 
 **权限级别**：system_basic
 
@@ -311,9 +329,94 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
 <!--Del-->
 **ACL使能**：true<!--DelEnd-->
 
 **起始版本**：18
+
+## ohos.permission.kernel.AUTH_AUDIT_EVENT
+
+允许企业安全应用阻断安全审计事件。
+
+企业安全应用申请此权限后，可以阻断安全审计事件。这些事件包括文件创建，文件打开和文件删除等。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**支持设备**：PC/2in1
+
+**起始版本**：20
+
+## ohos.permission.SUPPORT_APP_SERVICE_EXTENSION
+
+允许应用作为AppServiceExtension被拉起。
+
+获取此权限后，应用可作为AppServiceExtension被同应用或同在"appidentifierAllowList"配置中的应用拉起或连接。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**支持设备**：PC/2in1
+
+**起始版本**：20
+
+## ohos.permission.ENTERPRISE_MANAGE_EAP
+
+允许企业网络安全软件在EAP报文中新增私有信息。
+
+获取此权限后，允许企业网络安全软件获取802.1x报文并新增信息，完成定制化认证需求。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**支持设备**：PC/2in1
+
+**起始版本**：20
+
+## ohos.permission.SUPPORT_INSTALL_ON_U1
+
+允许应用安装在1用户。
+
+1用户是支持三方应用单例运行的用户。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**支持设备**：PC/2in1
+
+**起始版本**：20
+
+## ohos.permission.SET_NET_EXT_ATTRIBUTE
+
+允许应用设置网络扩展属性。
+
+获取该权限后，应用可以通过API为网络设置扩展属性以标识网络是内部网络还是外部网络。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**支持设备**：PC/2in1
+
+**起始版本**：20

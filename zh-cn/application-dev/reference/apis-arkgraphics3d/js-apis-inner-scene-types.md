@@ -6,8 +6,7 @@
 
 ## 导入模块
 ```ts
-import { Vec2, Vec3, Vec4, Color, Rect, Quaternion, Aabb, Position3, Rotation3,
-  Scale3 } from '@kit.ArkGraphics3D';
+import { Vec2, Vec3, Vec4, Quaternion, Aabb, Color, Rect, GeometryType, PrimitiveTopology, CustomGeometry, CubeGeometry, PlaneGeometry, SphereGeometry, Position3, Rotation3, Scale3 } from '@kit.ArkGraphics3D';
 ```
 
 ## Vec2
@@ -77,11 +76,10 @@ import { Vec2, Vec3, Vec4, Color, Rect, Quaternion, Aabb, Position3, Rotation3,
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
-| x | number | 否 | 否 | 矩形左下角x轴分量，取值范围是实数。 |
-| y | number | 否 | 否 | 矩形左下角y轴分量，取值范围是实数。 |
-| width | number | 否 | 否 | 矩形宽度，有效取值范围大于0。 |
-| height | number | 否 | 否 | 矩形高度，有效取值范围大于0。 |
-
+| x | number | 否 | 否 | 矩形左下角x轴分量，单位为所属坐标系的单位长度，取值为任意实数，具体范围依赖场景坐标系设置。 |
+| y | number | 否 | 否 | 矩形左下角y轴分量，单位为所属坐标系的单位长度，取值为任意实数，具体范围依赖场景坐标系设置。 |
+| width | number | 否 | 否 | 矩形宽度，单位为所属坐标系的单位长度，有效取值范围大于0。 |
+| height | number | 否 | 否 | 矩形高度，单位为所属坐标系的单位长度，有效取值范围大于0。 |
 ## GeometryType<sup>18+</sup>
 几何类型枚举，用于指定不同的几何类型。
 
@@ -122,7 +120,7 @@ import { Vec2, Vec3, Vec4, Color, Rect, Quaternion, Aabb, Position3, Rotation3,
 | topology | [PrimitiveTopology](#primitivetopology18)| 否 | 是 | 三角形图元的解析方式，默认值为TRIANGLE_LIST。 |
 | vertices | [Vec3](#vec3)[] | 否 | 否 | 模型的顶点数组。 |
 | indices | number[] | 否 | 是 | 顶点索引数组，数组中元素的取值范围大于等于0，默认值为undefined。 |
-| normals| [Vec3](#vec3)[] | 否 | 是 | 顶点数组对应的法向量数组，默认值为undefined。 |
+| normals | [Vec3](#vec3)[] | 否 | 是 | 顶点数组对应的法向量数组，默认值为undefined。 |
 | uvs | [Vec2](#vec2)[] | 否 | 是 | 顶点数组对应的UV坐标数组，默认值为undefined。 |
 | colors | [Color](#color)[] | 否 | 是 | 顶点数组对应的颜色数组，默认值为undefined。 |
 
@@ -151,7 +149,7 @@ import { Vec2, Vec3, Vec4, Color, Rect, Quaternion, Aabb, Position3, Rotation3,
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
-| radius | number | 否 | 否 | 球体半径，取值范围大于0。 |
+| radius | number | 否 | 否 | 球体半径，单位为世界坐标系下的场景单位（比如cm、m、km等），取值范围大于0。 |
 | segmentCount | number | 否 | 否 | 在球体上以经纬度分割的段数，取值范围大于0。 |
 
 ## Position3

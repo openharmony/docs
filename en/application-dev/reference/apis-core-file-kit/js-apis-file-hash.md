@@ -59,8 +59,8 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 | ID| Error Message|
 | -------- | -------- |
-| 13900020 | Invalid argument |
-| 13900042 | Unknown error |
+| 13900020 | Invalid argument. |
+| 13900042 | Unknown error. |
 
 **Example**
 
@@ -98,8 +98,8 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 | ID| Error Message|
 | -------- | -------- |
-| 13900020 | Invalid argument |
-| 13900042 | Unknown error |
+| 13900020 | Invalid argument. |
+| 13900042 | Unknown error. |
 
 **Example**
 
@@ -136,7 +136,13 @@ Creates a **HashStream** instance, which can be used to generate a message diges
 
 **Error codes**
 
-For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md#universal-error-codes) and [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes).
+
+| ID                    | Error Message       |
+| ---------------------------- | ---------- |
+| 401 | Parameter error. |
+| 13900020 | Invalid argument. |
+| 13900042 | Unknown error. |
 
 **Example**
 
@@ -177,7 +183,12 @@ Updates the data for generating a message digest. This API can be called multipl
 
 **Error codes**
 
-For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md#universal-error-codes) and [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes).
+
+| ID                    | Error Message       |
+| ---------------------------- | ---------- |
+| 401 | Parameter error. |
+| 13900042 | Unknown error. |
 
 **Example**
 
@@ -201,7 +212,12 @@ Generates a message digest.
 
 **Error codes**
 
-For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md#universal-error-codes) and [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes).
+
+| ID                    | Error Message       |
+| ---------------------------- | ---------- |
+| 401 | Parameter error. |
+| 13900042 | Unknown error. |
 
 **Example**
 

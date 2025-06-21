@@ -1,14 +1,14 @@
 # 使用DevTools工具调试前端页面
 
 
-Web组件支持使用DevTools工具调试前端页面。DevTools是一个 Web前端开发调试工具，提供了电脑上调试移动设备前端页面的能力。开发者通过[setWebDebuggingAccess()](../reference/apis-arkweb/js-apis-webview.md#setwebdebuggingaccess)接口开启Web组件前端页面调试能力，利用DevTools工具可以在电脑上调试移动设备上的前端网页，设备需为4.1.0及以上版本。
+Web组件支持使用DevTools工具调试前端页面。DevTools是Web前端开发调试工具，支持在电脑上调试移动设备前端页面。开发者通过[setWebDebuggingAccess()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#setwebdebuggingaccess)接口开启Web组件前端页面调试能力，使用DevTools在电脑上调试移动前端网页，设备需为4.1.0及以上版本。
 
 
 ## 调试步骤
 
 ### 应用代码开启Web调试开关
 
-调试网页前，需要应用侧代码调用[setWebDebuggingAccess()](../reference/apis-arkweb/js-apis-webview.md#setwebdebuggingaccess)接口开启Web调试开关。  
+调试网页前，需要应用侧代码调用[setWebDebuggingAccess()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#setwebdebuggingaccess)接口开启Web调试开关。  
 如果没有开启Web调试开关，则DevTools无法发现被调试的网页。
 
 1. 在应用代码中开启Web调试开关，具体如下：
@@ -59,20 +59,20 @@ Web组件支持使用DevTools工具调试前端页面。DevTools是一个 Web前
    ```shell
    hdc list targets
    ```
-   - 如果命令有返回设备的ID，则说明hdc已连接上设备。  
+   - 如果命令返回设备的ID，表示hdc已连接上设备。  
    ![hdc_list_targets_success](figures/devtools_resources_hdc_list_targets_success.png)
    - 如果命令返回 `[Empty]`，则说明hdc还没有发现设备。  
    ![hdc_list_targets_empty](figures/devtools_resources_hdc_list_targets_empty.jpg)
 
 3. 进入hdc shell。   
-   当hdc命令连接上设备后，执行如下命令，进入hdc shell。
+   连接设备后，执行以下命令进入hdc shell。
    ```shell
    hdc shell
    ```
 
 ### 端口转发
-当应用代码调用setWebDebuggingAccess接口开启Web调试开关后，ArkWeb内核将启动一个domain socket的监听，以此实现DevTools对网页的调试功能。  
-但是Chrome浏览器无法直接访问到设备上的domain socket， 所以需要将设备上的domain socket转发到电脑上。
+当应用代码调用setWebDebuggingAccess接口开启Web调试开关后，ArkWeb内核将启动一个domain socket的监听，以此实现DevTools对网页的调试功能。也可以参考[自动映射WebView调试链接](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-run-debug-configurations#section2773943154118)。  
+Chrome浏览器无法直接访问到设备上的domain socket， 因此需要将设备上的domain socket转发到电脑上。
 
 1. 先在hdc shell里执行如下命令，查询ArkWeb在设备里创建的domain socket。  
    ```shell
@@ -96,8 +96,8 @@ Web组件支持使用DevTools工具调试前端页面。DevTools是一个 Web前
    ```
    > **说明：**
    >
-   > "webview_devtools_remote_" 后面的数字，代表ArkWeb所在应用的进程号， 该数字不是固定的。请将数字改为自己查询到的值。  
-   > 如果应用的进程号发生变化（例如，应用重新启动），则需要重新进行端口转发。
+   > "webview_devtools_remote_" 后面的数字，代表ArkWeb所在应用的进程号， 该数字不是固定的。请将”webview_devtools_remote_“后面的数字改为自己查询到的值。  
+   > 如果应用的进程号发生变化，例如，应用重新启动，则需要重新配置端口转发。
 
    命令执行成功示意图：  
    ![hdc_fport_38532_success](figures/devtools_resources_hdc_fport_38532_success.jpg)
@@ -126,7 +126,7 @@ Web组件支持使用DevTools工具调试前端页面。DevTools是一个 Web前
 
 ### 等待发现被调试页面
 
-  如果前面的步骤执行成功，稍后，Chrome的调试页面将显示待调试的网页。  
+  如果前面的步骤执行成功，Chrome的调试页面将显示待调试的网页。  
   ![chrome_inspect](figures/devtools_resources_chrome_inspect.jpg)
 
 ### 开始网页调试
@@ -273,6 +273,67 @@ Web组件支持使用DevTools工具调试前端页面。DevTools是一个 Web前
    hdc fport ls
    ```
 
+## 无线调试
+上述的[调试步骤](#调试步骤)中，由于[端口转发](#端口转发)这一步骤需频繁查询Domain Socket并转发端口，给页面调试造成不便。因此，从API version 20开始，可使用无线调试接口[setWebDebuggingAccess<sup>20+</sup>](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#setwebdebuggingaccess20)，来简化调试流程。
+
+1. 应用代码开启Web调试开关。
+
+   这此步骤中，应用需要调用[setWebDebuggingAccess<sup>20+</sup>](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#setwebdebuggingaccess20)接口，设置TCP Socket端口号并启用Web调试功能。
+   ```ts
+   // xxx.ets
+   import { webview } from '@kit.ArkWeb';
+   import { BusinessError } from '@kit.BasicServicesKit';
+
+   @Entry
+   @Component
+   struct WebComponent {
+     controller: webview.WebviewController = new webview.WebviewController();
+
+     aboutToAppear(): void {
+       try {
+         // 配置Web开启无线调试模式，指定TCP Socket的端口。
+         webview.WebviewController.setWebDebuggingAccess(true, 8888);
+       } catch (error) {
+         console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+       }
+     }
+
+     build() {
+       Column() {
+         Web({ src: 'www.example.com', controller: this.controller })
+       }
+     }
+   }
+   ```
+   > **说明：**
+   >
+   >  代码中使用的8888端口仅作为示例展示，开发者使用过程中，应保证端口号可以被应用使用。如果因为端口被占用或者应用无权限使用等因素导致端口无法被应用使用，会导致接口抛出异常或者ArkWeb无法开启调试模式。
+
+2. 将设备连接至电脑。
+
+   如果ArkWeb成功开启了无线调试模式，此步骤可省略。
+
+3. 端口转发。
+
+   如果ArkWeb成功开启了无线调试模式，此步骤可省略。
+
+4. 在Chrome浏览器上打开调试工具页面。
+
+   将[在Chrome浏览器上打开调试工具页面](#在chrome浏览器上打开调试工具页面)的第2步"修改Chrome调试工具的配置"的第(2)条，改为:  
+   在 "Target discovery settings" 中添加被调试设备的IP地址和[setWebDebuggingAccess<sup>20+</sup>](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#setwebdebuggingaccess20)接口中指定的port端口，比如：192.168.0.3:8888。
+
+   > **说明：**
+   >
+   >  调试工具和被调试设备要在同一局域网下，并且能够相互访问。如果被调试设备有多个IP地址，要使用与调试工具同一个网段的IP地址。
+
+5. 等待发现被调试页面。
+
+   无变化。
+
+6. 开始网页调试。
+
+   无变化。
+
 ## 常见问题与解决方法
 
 ### hdc无法发现设备
@@ -353,10 +414,25 @@ Web组件支持使用DevTools工具调试前端页面。DevTools是一个 Web前
     - 如果网页有内容， 说明端口转发成功，请在Chrome的调试页面[等待被调试页面的出现](#等待发现被调试页面)。  
     ![chrome_localhost](figures/devtools_resources_chrome_localhost.jpg)
 
-    - 如果展示的是错误网页， 说明端口转发失败， 解决方法见上面的[端口转发不成功](#端口转发不成功)。  
+    - 如果展示的是错误网页， 说明端口转发失败， 请参阅[端口转发不成功](#端口转发不成功)中的解决方法。  
     ![chrome_localhost_refused](figures/devtools_resources_chrome_localhost_refused.jpg)
 
   * 电脑端Chrome浏览器打开 http://localhost:9222/json 页面有内容，但是Chrome的调试工具界面还是无法发现调试目标。
     - 请确保Chrome调试工具界面的 "Configure" 中配置的端口号，与端口转发指定的TCP端口号一致。
     - 在本文档中，默认使用的TCP端口号为9222。   
       如果开发者使用了其他的TCP端口号(比如9223)，请同时修改[端口转发](#端口转发)中的TCP端口号和[Chrome调试工具界面"Configure"配置](#在chrome浏览器上打开调试工具页面)中的端口号。
+
+### 开启了无线调试模式后，电脑端Chrome无法发现被调试网页
+**问题现象**
+
+  ArkWeb开启了无线调试模式后，电脑端Chrome浏览器无法发现被调试网页。
+
+**问题原因**
+
+* 无线调试模式没有成功开启。
+* 调试工具和被调试设备之间网络不通。
+
+**解决方法**
+
+* 请确保使用的端口可以被应用使用。
+* 请确保调试工具和被调试设备在同一个局域网内，且它们之间网络通畅。

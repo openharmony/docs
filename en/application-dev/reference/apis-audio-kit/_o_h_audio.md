@@ -41,33 +41,39 @@ You can refer to the corresponding development guide and samples based on your d
 | struct  [OH_AudioDeviceDescriptorArray](_o_h___audio_device_descriptor_array.md) | Describes an array of audio device descriptors. | 
 | struct  [OH_AudioSession_Strategy](_o_h___audio_session___strategy.md) | Describes the audio session strategy. | 
 | struct  [OH_AudioSession_DeactivatedEvent](_o_h___audio_session___deactivated_event.md) | Describes the event indicating that an audio session is deactivated. | 
-| struct  [OH_AudioRenderer_Callbacks_Struct](_o_h___audio_renderer___callbacks___struct.md) | Describes a pointer to the callback functions related to an audio renderer. | 
-| struct  [OH_AudioCapturer_Callbacks_Struct](_o_h___audio_capturer___callbacks___struct.md) | Describes a pointer to the callback functions related to an audio capturer. | 
+| struct  [OH_AudioRenderer_Callbacks_Struct](_o_h___audio_renderer___callbacks___struct.md) | Describes a pointer to the callbacks related to an audio renderer. | 
+| struct  [OH_AudioCapturer_Callbacks_Struct](_o_h___audio_capturer___callbacks___struct.md) | Describes a pointer to the callbacks related to an audio capturer. | 
 
 
 ### Types
 
 | Name| Description| 
 | -------- | -------- |
+| typedef void(\* [OH_AudioCapturer_OnReadDataCallback](#oh_audiocapturer_onreaddatacallback)) ([OH_AudioCapturer](#oh_audiocapturer) \*capturer, void \*userData, void \*audioData, int32_t audioDataSize) | Defines the callback used to read audio data.| 
+| typedef void(\* [OH_AudioCapturer_OnDeviceChangeCallback](#oh_audiocapturer_ondevicechangecallback)) ([OH_AudioCapturer](#oh_audiocapturer) \*capturer, void \*userData, OH_AudioDeviceDescriptorArray \*deviceArray) | Defines the callback for audio capturer device change events.| 
+| typedef void(\* [OH_AudioCapturer_OnInterruptCallback](#oh_audiocapturer_oninterruptcallback)) ([OH_AudioCapturer](#oh_audiocapturer) \*capturer, void \*userData, [OH_AudioInterrupt_ForceType](#oh_audiointerrupt_forcetype) type, [OH_AudioInterrupt_Hint](#oh_audiointerrupt_hint) hint) | Defines the callback for interruption events of an audio capturer.| 
+| typedef void(\* [OH_AudioCapturer_OnErrorCallback](#oh_audiocapturer_onerrorcallback)) ([OH_AudioCapturer](#oh_audiocapturer) \*renderer, void \*userData, [OH_AudioStream_Result](#oh_audiostream_result) error) | Defines the callback for error events of an audio capturer.| 
+| typedef void(\* [OH_AudioRenderer_OnInterruptCallback](#oh_audiorenderer_oninterruptcallback)) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer, void \*userData, [OH_AudioInterrupt_ForceType](#oh_audiointerrupt_forcetype) type, [OH_AudioInterrupt_Hint](#oh_audiointerrupt_hint) hint) | Defines the callback for interruption events of an audio renderer.| 
+| typedef void(\* [OH_AudioRenderer_OnErrorCallback](#oh_audiorenderer_onerrorcallback)) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer, void \*userData, [OH_AudioStream_Result](#oh_audiostream_result) error) | Defines the callback for error events of an audio renderer.| 
 | typedef struct [OH_AudioDeviceDescriptor](#oh_audiodevicedescriptor) [OH_AudioDeviceDescriptor](#oh_audiodevicedescriptor) | Defines a struct for an audio device descriptor. It provides detailed attributes of an audio device. | 
 | typedef struct [OH_AudioDeviceDescriptorArray](_o_h___audio_device_descriptor_array.md) [OH_AudioDeviceDescriptorArray](#oh_audiodevicedescriptorarray) | Defines a struct for an array of audio device descriptors. | 
 | typedef struct [OH_AudioManager](#oh_audiomanager) [OH_AudioManager](#oh_audiomanager) | Defines a struct for an audio manager. | 
 | typedef struct [OH_AudioRoutingManager](#oh_audioroutingmanager) [OH_AudioRoutingManager](#oh_audioroutingmanager) | Defines a struct for an audio routing manager, which is used for routing and device-related functions. | 
-| typedef int32_t (\*[OH_AudioRoutingManager_OnDeviceChangedCallback](#oh_audioroutingmanager_ondevicechangedcallback))([OH_AudioDevice_ChangeType](#oh_audiodevice_changetype) type, [OH_AudioDeviceDescriptorArray](_o_h___audio_device_descriptor_array.md) \*audioDeviceDescriptorArray) | Defines a pointer to the callback function that returns the changed audio device descriptor (possibly multiple descriptors). | 
-| typedef void (\*[OH_AudioRoutingManager_OnDeviceBlockStatusCallback](#oh_audioroutingmanager_ondeviceblockstatuscallback)) ([OH_AudioDeviceDescriptorArray](_o_h___audio_device_descriptor_array.md) \*audioDeviceDescriptorArray, [OH_AudioDevice_BlockStatus](#oh_audiodevice_blockstatus) status, void \*userData) | Defines a pointer to the callback function that returns the blocked status of one or more audio devices. | 
+| typedef int32_t (\*[OH_AudioRoutingManager_OnDeviceChangedCallback](#oh_audioroutingmanager_ondevicechangedcallback))([OH_AudioDevice_ChangeType](#oh_audiodevice_changetype) type, [OH_AudioDeviceDescriptorArray](_o_h___audio_device_descriptor_array.md) \*audioDeviceDescriptorArray) | Defines a pointer to the callback that returns the changed audio device descriptor (possibly multiple descriptors). | 
+| typedef void (\*[OH_AudioRoutingManager_OnDeviceBlockStatusCallback](#oh_audioroutingmanager_ondeviceblockstatuscallback)) ([OH_AudioDeviceDescriptorArray](_o_h___audio_device_descriptor_array.md) \*audioDeviceDescriptorArray, [OH_AudioDevice_BlockStatus](#oh_audiodevice_blockstatus) status, void \*userData) | Defines a pointer to the callback that returns the blocked status of one or more audio devices. | 
 | typedef struct [OH_AudioSessionManager](#oh_audiosessionmanager) [OH_AudioSessionManager](#oh_audiosessionmanager) | Defines a struct for an audio session manager. | 
 | typedef struct [OH_AudioSession_Strategy](_o_h___audio_session___strategy.md) [OH_AudioSession_Strategy](#oh_audiosession_strategy) | Defines a struct for an audio session strategy. | 
 | typedef struct [OH_AudioSession_DeactivatedEvent](_o_h___audio_session___deactivated_event.md) [OH_AudioSession_DeactivatedEvent](#oh_audiosession_deactivatedevent) | Defines a struct for the event indicating that an audio session is deactivated. | 
-| typedef int32_t (\*[OH_AudioSession_DeactivatedCallback](#oh_audiosession_deactivatedcallback))([OH_AudioSession_DeactivatedEvent](_o_h___audio_session___deactivated_event.md) event) | Defines a function pointer to the callback function used to listen for audio session deactivation events. | 
+| typedef int32_t (\*[OH_AudioSession_DeactivatedCallback](#oh_audiosession_deactivatedcallback))([OH_AudioSession_DeactivatedEvent](_o_h___audio_session___deactivated_event.md) event) | Defines a function pointer to the callback used to listen for audio session deactivation events. | 
 | typedef struct OH_AudioStreamBuilderStruct [OH_AudioStreamBuilder](#oh_audiostreambuilder) | Defines a struct for an audio stream builder. | 
 | typedef struct OH_AudioRendererStruct [OH_AudioRenderer](#oh_audiorenderer) | Defines a struct for an audio renderer. | 
 | typedef struct OH_AudioCapturerStruct [OH_AudioCapturer](#oh_audiocapturer) | Defines a struct for an audio capturer. | 
-| typedef struct [OH_AudioRenderer_Callbacks_Struct](_o_h___audio_renderer___callbacks___struct.md) [OH_AudioRenderer_Callbacks](#oh_audiorenderer_callbacks) | Defines a pointer to the callback functions related to an audio renderer. | 
-| typedef struct [OH_AudioCapturer_Callbacks_Struct](_o_h___audio_capturer___callbacks___struct.md) [OH_AudioCapturer_Callbacks](#oh_audiocapturer_callbacks) | Defines a pointer to the callback functions related to an audio capturer. | 
+| typedef struct [OH_AudioRenderer_Callbacks_Struct](_o_h___audio_renderer___callbacks___struct.md) [OH_AudioRenderer_Callbacks](#oh_audiorenderer_callbacks) | Defines a pointer to the callbacks related to an audio renderer. | 
+| typedef struct [OH_AudioCapturer_Callbacks_Struct](_o_h___audio_capturer___callbacks___struct.md) [OH_AudioCapturer_Callbacks](#oh_audiocapturer_callbacks) | Defines a pointer to the callbacks related to an audio capturer. | 
 | typedef void (\*[OH_AudioRenderer_OutputDeviceChangeCallback](#oh_audiorenderer_outputdevicechangecallback))([OH_AudioRenderer](#oh_audiorenderer) \*renderer, void \*userData, [OH_AudioStream_DeviceChangeReason](#oh_audiostream_devicechangereason) reason) | Defines a pointer to the callback invoked when the audio stream device changes. | 
 | typedef void (\*[OH_AudioRenderer_OnMarkReachedCallback](#oh_audiorenderer_onmarkreachedcallback))([OH_AudioRenderer](#oh_audiorenderer) \*renderer, uint32_t samplePos, void \*userData) | Defines a pointer to the callback invoked when the mark position is reached. | 
-| typedef int32_t (\*[OH_AudioRenderer_WriteDataWithMetadataCallback](#oh_audiorenderer_writedatawithmetadatacallback))([OH_AudioRenderer](#oh_audiorenderer) \*renderer, void \*userData, void \*audioData, int32_t audioDataSize, void \*metadata, int32_t metadataSize) | Defines a function pointer to the callback function used to write audio data and metadata. | 
-| typedef [OH_AudioData_Callback_Result](#oh_audiodata_callback_result) (\*[OH_AudioRenderer_OnWriteDataCallback](#oh_audiorenderer_onwritedatacallback))([OH_AudioRenderer](#oh_audiorenderer) \*renderer, void \*userData, void \*audioData, int32_t audioDataSize) | Defines a function pointer to the callback function used to write audio data. | 
+| typedef int32_t (\*[OH_AudioRenderer_WriteDataWithMetadataCallback](#oh_audiorenderer_writedatawithmetadatacallback))([OH_AudioRenderer](#oh_audiorenderer) \*renderer, void \*userData, void \*audioData, int32_t audioDataSize, void \*metadata, int32_t metadataSize) | Defines a function pointer to the callback used to write audio data and metadata. | 
+| typedef [OH_AudioData_Callback_Result](#oh_audiodata_callback_result) (\*[OH_AudioRenderer_OnWriteDataCallback](#oh_audiorenderer_onwritedatacallback))([OH_AudioRenderer](#oh_audiorenderer) \*renderer, void \*userData, void \*audioData, int32_t audioDataSize) | Defines a function pointer to the callback used to write audio data. | 
 
 
 ### Enums
@@ -78,7 +84,7 @@ You can refer to the corresponding development guide and samples based on your d
 | [OH_AudioScene](#oh_audioscene) { <br>AUDIO_SCENE_DEFAULT = 0, <br>AUDIO_SCENE_RINGING = 1, <br>AUDIO_SCENE_PHONE_CALL = 2, <br>AUDIO_SCENE_VOICE_CHAT = 3 } | Enumerates the audio scenes. | 
 | [OH_AudioDevice_ChangeType](#oh_audiodevice_changetype) {<br>AUDIO_DEVICE_CHANGE_TYPE_CONNECT = 0,<br>AUDIO_DEVICE_CHANGE_TYPE_DISCONNECT = 1<br>} | Enumerates the types of audio device changes.| 
 | [OH_AudioDevice_Role](#oh_audiodevice_role) {<br>AUDIO_DEVICE_ROLE_INPUT = 1,<br>AUDIO_DEVICE_ROLE_OUTPUT = 2<br>} | Enumerates the roles of audio devices.| 
-| [OH_AudioDevice_Type](#oh_audiodevice_type) {<br>AUDIO_DEVICE_TYPE_INVALID = 0,<br>AUDIO_DEVICE_TYPE_EARPIECE = 1,<br>AUDIO_DEVICE_TYPE_SPEAKER = 2,<br>AUDIO_DEVICE_TYPE_WIRED_HEADSET = 3,<br>AUDIO_DEVICE_TYPE_WIRED_HEADPHONES = 4,<br>AUDIO_DEVICE_TYPE_BLUETOOTH_SCO = 7,<br>AUDIO_DEVICE_TYPE_BLUETOOTH_A2DP = 8,<br>AUDIO_DEVICE_TYPE_MIC = 15,<br>AUDIO_DEVICE_TYPE_USB_HEADSET = 22,<br>AUDIO_DEVICE_TYPE_DISPLAY_PORT = 23,<br>AUDIO_DEVICE_TYPE_REMOTE_CAST = 24,<br>AUDIO_DEVICE_TYPE_DEFAULT = 1000<br>} | Enumerates the types of audio devices.| 
+| [OH_AudioDevice_Type](#oh_audiodevice_type) {<br>AUDIO_DEVICE_TYPE_INVALID = 0,<br>AUDIO_DEVICE_TYPE_EARPIECE = 1,<br>AUDIO_DEVICE_TYPE_SPEAKER = 2,<br>AUDIO_DEVICE_TYPE_WIRED_HEADSET = 3,<br>AUDIO_DEVICE_TYPE_WIRED_HEADPHONES = 4,<br>AUDIO_DEVICE_TYPE_BLUETOOTH_SCO = 7,<br>AUDIO_DEVICE_TYPE_BLUETOOTH_A2DP = 8,<br>AUDIO_DEVICE_TYPE_MIC = 15,<br>AUDIO_DEVICE_TYPE_USB_HEADSET = 22,<br>AUDIO_DEVICE_TYPE_DISPLAY_PORT = 23,<br>AUDIO_DEVICE_TYPE_REMOTE_CAST = 24,<br>AUDIO_DEVICE_TYPE_HDMI = 27,<br>AUDIO_DEVICE_TYPE_LINE_DIGITAL = 28,<br>AUDIO_DEVICE_TYPE_DEFAULT = 1000<br>} | Enumerates the types of audio devices.| 
 | [OH_AudioDevice_Flag](#oh_audiodevice_flag) {<br>AUDIO_DEVICE_FLAG_NONE = 0,<br>AUDIO_DEVICE_FLAG_OUTPUT = 1,<br>AUDIO_DEVICE_FLAG_INPUT = 2,<br>AUDIO_DEVICE_FLAG_ALL = 3<br>} | Enumerates the flags of audio devices.| 
 | [OH_AudioDevice_Usage](#oh_audiodevice_usage) {<br>AUDIO_DEVICE_USAGE_MEDIA_OUTPUT = 1, <br>AUDIO_DEVICE_USAGE_MEDIA_INPUT = 2, <br>AUDIO_DEVICE_USAGE_MEDIA_ALL = 3, <br>AUDIO_DEVICE_USAGE_CALL_OUTPUT = 4,<br>AUDIO_DEVICE_USAGE_CALL_INPUT = 8, <br>AUDIO_DEVICE_USAGE_CALL_ALL = 12<br>} | Enumerates the usage scenarios of audio devices. | 
 | [OH_AudioDevice_BlockStatus](#oh_audiodevice_blockstatus) { <br>AUDIO_DEVICE_UNBLOCKED = 0, <br>AUDIO_DEVICE_BLOCKED = 1 } | Enumerates the blocked status of audio devices. By default, an audio device is not blocked.| 
@@ -166,8 +172,7 @@ You can refer to the corresponding development guide and samples based on your d
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_GetEncodingType](#oh_audiorenderer_getencodingtype)([OH_AudioRenderer](#oh_audiorenderer) \*renderer, [OH_AudioStream_EncodingType](#oh_audiostream_encodingtype) \*encodingType) | Obtains the encoding type of an audio renderer. | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_GetFramesWritten](#oh_audiorenderer_getframeswritten)([OH_AudioRenderer](#oh_audiorenderer) \*renderer, int64_t \*frames) | Obtains the number of frames that have been written since the stream was created. | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_GetTimestamp](#oh_audiorenderer_gettimestamp)([OH_AudioRenderer](#oh_audiorenderer) \*renderer, clockid_t clockId, int64_t \*framePosition, int64_t \*timestamp) | Obtains the timestamp and position information of an audio output stream. | 
-| [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_GetAudioTimestampInfo](#oh_audiorenderer_getaudiotimestampinfo) ([OH_AudioRenderer](#oh_audiorenderer)
- \*renderer, int64_t \*framePosition, int64_t \*timestamp) | Obtains the timestamp and position information of an output audio stream. It adapts to the speed adjustment interface.| 
+| [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_GetAudioTimestampInfo](#oh_audiorenderer_getaudiotimestampinfo) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer, int64_t \*framePosition, int64_t \*timestamp) | Obtains the timestamp and position information of an output audio stream. It adapts to the speed adjustment interface.| 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_GetFrameSizeInCallback](#oh_audiorenderer_getframesizeincallback)([OH_AudioRenderer](#oh_audiorenderer) \*renderer, int32_t \*frameSize) | Obtains the frame size in the callback. | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_GetSpeed](#oh_audiorenderer_getspeed)([OH_AudioRenderer](#oh_audiorenderer) \*renderer, float \*speed) | Obtains the audio renderer rate. | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_SetSpeed](#oh_audiorenderer_setspeed)([OH_AudioRenderer](#oh_audiorenderer) \*renderer, float speed) | Sets the audio renderer rate. | 
@@ -205,6 +210,12 @@ You can refer to the corresponding development guide and samples based on your d
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_SetFrameSizeInCallback](#oh_audiostreambuilder_setframesizeincallback)([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, int32_t frameSize) | Sets the frame size for each callback during playback. The frame size must be at least equal to the size of the data processed by the audio hardware at a time and less than half of the internal buffer capacity. | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_SetRendererInterruptMode](#oh_audiostreambuilder_setrendererinterruptmode)([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioInterrupt_Mode](#oh_audiointerrupt_mode) mode) | Sets the interrupt mode of the stream client.| 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_SetRendererWriteDataCallback](#oh_audiostreambuilder_setrendererwritedatacallback)([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioRenderer_OnWriteDataCallback](#oh_audiorenderer_onwritedatacallback) callback, void \*userData) | Sets the callback used to write audio data. | 
+| [OH_AudioStream_Result](#oh_audiostream_result)[OH_AudioStreamBuilder_SetRendererInterruptCallback](#oh_audiostreambuilder_setrendererinterruptcallback) ([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioRenderer_OnInterruptCallback](#oh_audiorenderer_oninterruptcallback) callback, void \*userData) | Sets the callback for interruption events of an audio renderer.| 
+| [OH_AudioStream_Result](#oh_audiostream_result)[OH_AudioStreamBuilder_SetRendererErrorCallback](#oh_audiostreambuilder_setrenderererrorcallback) ([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioRenderer_OnErrorCallback](#oh_audiorenderer_onerrorcallback) callback, void \*userData) | Sets the callback for error events of an audio renderer.| 
+| [OH_AudioStream_Result](#oh_audiostream_result)[OH_AudioStreamBuilder_SetCapturerReadDataCallback](#oh_audiostreambuilder_setcapturerreaddatacallback) ([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioCapturer_OnReadDataCallback](#oh_audiocapturer_onreaddatacallback) callback, void \*userData) | Sets the callback used to read data for an audio capturer.| 
+| [OH_AudioStream_Result](#oh_audiostream_result)[OH_AudioStreamBuilder_SetCapturerDeviceChangeCallback](#oh_audiostreambuilder_setcapturerdevicechangecallback) ([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioCapturer_OnDeviceChangeCallback](#oh_audiocapturer_ondevicechangecallback) callback, void \*userData) | Sets the callback for audio capturer device change events.| 
+| [OH_AudioStream_Result](#oh_audiostream_result)[OH_AudioStreamBuilder_SetCapturerInterruptCallback](#oh_audiostreambuilder_setcapturerinterruptcallback) ([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioCapturer_OnInterruptCallback](#oh_audiocapturer_oninterruptcallback) callback, void \*userData) | Sets the callback for interruption events of an audio capturer.| 
+| [OH_AudioStream_Result](#oh_audiostream_result)[OH_AudioStreamBuilder_SetCapturerErrorCallback](#oh_audiostreambuilder_setcapturererrorcallback) ([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioCapturer_OnErrorCallback](#oh_audiocapturer_onerrorcallback) callback, void \*userData) | Sets the callback for error events of an audio capturer.| 
 
 
 ## Type Description
@@ -235,11 +246,105 @@ typedef struct OH_AudioCapturer_Callbacks_Struct OH_AudioCapturer_Callbacks
 
 **Description**
 
-Defines a pointer to the callback functions related to an audio capturer.
+Defines a pointer to the callbacks related to an audio capturer.
 
 **System capability**: SystemCapability.Multimedia.Audio.Core
 
 **Since**: 10
+
+**Deprecated from**: 18
+
+**Substitute**: [OH_AudioCapturer_OnReadDataCallback](#oh_audiocapturer_onreaddatacallback), [OH_AudioCapturer_OnDeviceChangeCallback](#oh_audiocapturer_ondevicechangecallback), [OH_AudioCapturer_OnInterruptCallback](#oh_audiocapturer_oninterruptcallback), and [OH_AudioCapturer_OnErrorCallback](#oh_audiocapturer_onerrorcallback)
+
+
+### OH_AudioCapturer_OnDeviceChangeCallback
+
+```
+typedef void (*OH_AudioCapturer_OnDeviceChangeCallback)(OH_AudioCapturer* capturer, void* userData, OH_AudioDeviceDescriptorArray* deviceArray)
+```
+
+**Description**
+
+Defines the callback for audio capturer device change events.
+
+**Since**: 18
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| capturer | Pointer to an audio capturer instance created by [OH_AudioStreamBuilder_GenerateCapturer](#oh_audiostreambuilder_generatecapturer).| 
+| userData | Pointer to the data storage area customized by the application.| 
+| deviceArray | Pointer to the audio device descriptors in the array.| 
+
+
+### OH_AudioCapturer_OnErrorCallback
+
+```
+typedef void (*OH_AudioCapturer_OnErrorCallback)(OH_AudioCapturer* renderer, void* userData, OH_AudioStream_Result error)
+```
+
+**Description**
+
+Defines the callback for error events of an audio capturer.
+
+This function is similar to **OH_AudioCapturer_Callbacks_Struct.OH_AudioCapturer_OnError**.
+
+**Since**: 18
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| renderer | Pointer to an audio capturer instance created by [OH_AudioStreamBuilder_GenerateCapturer](#oh_audiostreambuilder_generatecapturer).| 
+| userData | Pointer to the data storage area customized by the application.| 
+| error | Audio capturer error.| 
+
+
+### OH_AudioCapturer_OnInterruptCallback
+
+```
+typedef void (*OH_AudioCapturer_OnInterruptCallback)(OH_AudioCapturer* capturer, void* userData, OH_AudioInterrupt_ForceType type, OH_AudioInterrupt_Hint hint)
+```
+
+**Description**
+
+Defines the callback for interruption events of an audio capturer.
+
+This function is similar to **OH_AudioCapturer_Callbacks_Struct.OH_AudioCapturer_OnInterruptEvent**.
+
+**Since**: 18
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| capturer | Pointer to an audio capturer instance created by [OH_AudioStreamBuilder_GenerateCapturer](#oh_audiostreambuilder_generatecapturer).| 
+| userData | Pointer to the data storage area customized by the application.| 
+| type | Type of force that causes audio interruption.| 
+| hint | Hint provided along with audio interruption.| 
+
+
+### OH_AudioCapturer_OnReadDataCallback
+
+```
+typedef void (*OH_AudioCapturer_OnReadDataCallback)(OH_AudioCapturer* capturer, void* userData, void* audioData, int32_t audioDataSize)
+```
+
+**Description**
+
+Defines the callback used to read audio data.
+
+**Since**: 18
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| capturer | Pointer to an audio capturer instance created by [OH_AudioStreamBuilder_GenerateCapturer](#oh_audiostreambuilder_generatecapturer).| 
+| userData | Pointer to the data storage area customized by the application.| 
+| audioData | Pointer to the captured data storage area, which is used by the application to fill in captured data.| 
+| audioDataSize | Length of the captured data.| 
 
 
 ### OH_AudioDeviceDescriptor
@@ -310,11 +415,62 @@ typedef struct OH_AudioRenderer_Callbacks_Struct OH_AudioRenderer_Callbacks
 
 **Description**
 
-Defines a pointer to the callback functions related to an audio renderer.
+Defines a pointer to the callbacks related to an audio renderer.
 
 **System capability**: SystemCapability.Multimedia.Audio.Core
 
 **Since**: 10
+
+**Deprecated from**: 18
+
+**Substitute**: [OH_AudioRenderer_OnWriteDataCallback](#oh_audiorenderer_onwritedatacallback), [OH_AudioRenderer_OutputDeviceChangeCallback](#oh_audiorenderer_outputdevicechangecallback), [OH_AudioRenderer_OnInterruptCallback](#oh_audiorenderer_oninterruptcallback), and [OH_AudioRenderer_OnErrorCallback](#oh_audiorenderer_onerrorcallback)
+
+
+### OH_AudioRenderer_OnErrorCallback
+
+```
+typedef void (*OH_AudioRenderer_OnErrorCallback)(OH_AudioRenderer* renderer, void* userData, OH_AudioStream_Result error)
+```
+
+**Description**
+
+Defines the callback for error events of an audio renderer.
+
+This function is similar to **OH_AudioRenderer_Callbacks_Struct.OH_AudioRenderer_OnError**.
+
+**Since**: 18
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| renderer | Pointer to an audio renderer instance, which is created by calling [OH_AudioStreamBuilder_GenerateRenderer](#oh_audiostreambuilder_generaterenderer).| 
+| userData | Pointer to the data storage area customized by the application.| 
+| error | Audio renderer error.| 
+
+
+### OH_AudioRenderer_OnInterruptCallback
+
+```
+typedef void (*OH_AudioRenderer_OnInterruptCallback)(OH_AudioRenderer* renderer, void* userData, OH_AudioInterrupt_ForceType type, OH_AudioInterrupt_Hint hint)
+```
+
+**Description**
+
+Defines the callback for interruption events of an audio renderer.
+
+This function is similar to **OH_AudioRenderer_Callbacks_Struct.OH_AudioRenderer_OnInterruptEvent**.
+
+**Since**: 18
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| renderer | Pointer to an audio renderer instance, which is created by calling [OH_AudioStreamBuilder_GenerateRenderer](#oh_audiostreambuilder_generaterenderer).| 
+| userData | Pointer to the data storage area customized by the application.| 
+| type | Type of force that causes audio interruption.| 
+| hint | Hint provided along with audio interruption.| 
 
 
 ### OH_AudioRenderer_OnMarkReachedCallback
@@ -335,7 +491,7 @@ Defines a pointer to the callback invoked when the mark position is reached.
 | -------- | -------- |
 | renderer | Pointer to an audio renderer instance, which is created by calling [OH_AudioStreamBuilder_GenerateRenderer](#oh_audiostreambuilder_generaterenderer). | 
 | samplePos | Mark position. | 
-| userData | Pointer to the application data passed through the callback functions. | 
+| userData | Pointer to the application data passed through the callbacks. | 
 
 
 ### OH_AudioRenderer_OnWriteDataCallback
@@ -346,11 +502,11 @@ typedef OH_AudioData_Callback_Result(* OH_AudioRenderer_OnWriteDataCallback)(OH_
 
 **Description**
 
-Defines a function pointer to the callback function used to write audio data.
+Defines a function pointer to the callback used to write audio data.
 
-The callback function is used only to write audio data. Do not call AudioRenderer APIs in it.
+The callback is used only to write audio data. Do not call AudioRenderer APIs in it.
 
-This function is similar to the function pointer [OH_AudioRenderer_Callbacks_Struct.OH_AudioRenderer_OnWriteData](_o_h___audio_renderer___callbacks___struct.md#oh_audiorenderer_onwritedata). However, this function has a return value to identify the audio data callback result. The return result indicates whether the data filled in the buffer is valid. If the data is invalid, the data entered by the user will not be played. Once the callback function finishes its execution, the audio service queues the data pointed to by **audioData** for playback. Therefore, do not change the data outside the callback. It is crucial to fill **audioData** with the exact length (specified by **audioDataSize**) of data designated for playback; otherwise, noises may occur during playback. The **audioDataSize** parameter can be set by using [OH_AudioStreamBuilder_SetFrameSizeInCallBack()](#oh_audiostreambuilder_setframesizeincallback).
+This function is similar to the function pointer [OH_AudioRenderer_Callbacks_Struct.OH_AudioRenderer_OnWriteData](_o_h___audio_renderer___callbacks___struct.md#oh_audiorenderer_onwritedata). However, this function has a return value to identify the audio data callback result. The return result indicates whether the data filled in the buffer is valid. If the data is invalid, the data entered by the user will not be played. Once the callback finishes its execution, the audio service queues the data pointed to by **audioData** for playback. Therefore, do not change the data outside the callback. It is crucial to fill **audioData** with the exact length (specified by **audioDataSize**) of data designated for playback; otherwise, noises may occur during playback. The **audioDataSize** parameter can be set by using [OH_AudioStreamBuilder_SetFrameSizeInCallBack()](#oh_audiostreambuilder_setframesizeincallback).
 
 **System capability**: SystemCapability.Multimedia.Audio.Core
 
@@ -361,7 +517,7 @@ This function is similar to the function pointer [OH_AudioRenderer_Callbacks_Str
 | Name| Description| 
 | -------- | -------- |
 | renderer | Pointer to an audio renderer instance, which is created by calling [OH_AudioStreamBuilder_GenerateRenderer](#oh_audiostreambuilder_generaterenderer). | 
-| userData | Pointer to the application data passed through the callback functions. | 
+| userData | Pointer to the application data passed through the callbacks. | 
 | audioData | Pointer to the audio data written by the user. | 
 | audioDataSize | Length of the audio data, in bytes. | 
 
@@ -397,7 +553,7 @@ Defines a pointer to the callback invoked when the audio stream device changes.
 | Name| Description| 
 | -------- | -------- |
 | renderer | Pointer to an audio renderer instance, which is created by calling [OH_AudioStreamBuilder_GenerateRenderer](#oh_audiostreambuilder_generaterenderer). | 
-| userData | Pointer to the application data passed through the callback functions. | 
+| userData | Pointer to the application data passed through the callbacks. | 
 | reason | Enumerates the reasons for audio stream device changes. | 
 
 
@@ -409,7 +565,7 @@ typedef int32_t (*OH_AudioRenderer_WriteDataWithMetadataCallback)(OH_AudioRender
 
 **Description**
 
-Defines a function pointer to the callback function used to write audio data and metadata.
+Defines a function pointer to the callback used to write audio data and metadata.
 
 **System capability**: SystemCapability.Multimedia.Audio.Core
 
@@ -420,7 +576,7 @@ Defines a function pointer to the callback function used to write audio data and
 | Name| Description| 
 | -------- | -------- |
 | renderer | Pointer to an audio renderer instance, which is created by calling [OH_AudioStreamBuilder_GenerateRenderer](#oh_audiostreambuilder_generaterenderer). | 
-| userData | Pointer to the application data passed through the callback functions. | 
+| userData | Pointer to the application data passed through the callbacks. | 
 | audioData | Pointer to the audio data written by the user. | 
 | audioDataSize | Length of the audio data, in bytes. | 
 | metadata | Pointer to the metadata written by the user. | 
@@ -428,7 +584,7 @@ Defines a function pointer to the callback function used to write audio data and
 
 **Returns**
 
-Error code of the callback function.
+Error code of the callback.
 
 
 ### OH_AudioRoutingManager
@@ -452,7 +608,7 @@ typedef void (*OH_AudioRoutingManager_OnDeviceBlockStatusCallback)(OH_AudioDevic
 
 **Description**
 
-Defines a pointer to the callback function that returns the blocked status of one or more audio devices.
+Defines a pointer to the callback that returns the blocked status of one or more audio devices.
 
 **Since**: 13
 
@@ -473,7 +629,7 @@ typedef int32_t (*OH_AudioRoutingManager_OnDeviceChangedCallback)(OH_AudioDevice
 
 **Description**
 
-Defines a pointer to the callback function that returns the changed audio device descriptor (possibly multiple descriptors).
+Defines a pointer to the callback that returns the changed audio device descriptor (possibly multiple descriptors).
 
 **Since**: 12
 
@@ -493,7 +649,7 @@ typedef int32_t (*OH_AudioSession_DeactivatedCallback)(OH_AudioSession_Deactivat
 
 **Description**
 
-Defines a function pointer to the callback function used to listen for audio session deactivation events.
+Defines a function pointer to the callback used to listen for audio session deactivation events.
 
 **Since**: 12
 
@@ -708,6 +864,8 @@ Enumerates the types of audio devices.
 | AUDIO_DEVICE_TYPE_USB_HEADSET | USB headset.| 
 | AUDIO_DEVICE_TYPE_DISPLAY_PORT | Display port device.| 
 | AUDIO_DEVICE_TYPE_REMOTE_CAST | Remote cast device.| 
+| AUDIO_DEVICE_TYPE_HDMI | HDMI device (such as HDMI, ARC, and eARC).<br>**Since**: 19| 
+| AUDIO_DEVICE_TYPE_LINE_DIGITAL | Wired digital device (such as S/PDIF)<br>**Since**: 19| 
 | AUDIO_DEVICE_TYPE_DEFAULT | Default device type.| 
 
 
@@ -941,6 +1099,10 @@ This enum is used to describe audio events.
 
 **Since**: 10
 
+**Deprecated from**: 18
+
+**Substitute**: [OH_AudioRenderer_OutputDeviceChangeCallback](#oh_audiorenderer_outputdevicechangecallback)
+
 | Value| Description| 
 | -------- | -------- |
 | AUDIOSTREAM_EVENT_ROUTING_CHANGED  | The audio route has been changed.  | 
@@ -1028,7 +1190,7 @@ Enumerates the sampling formats of audio streams.
 | AUDIOSTREAM_SAMPLE_S16LE  | Short 16-bit little-endian.  | 
 | AUDIOSTREAM_SAMPLE_S24LE  | Short 24-bit little-endian.  | 
 | AUDIOSTREAM_SAMPLE_S32LE  | Short 32-bit little-endian.  | 
-| AUDIOSTREAM_SAMPLE_F32LE  | Float 32-bit little-endian.<br>**Since**: 18  | 
+| AUDIOSTREAM_SAMPLE_F32LE  | Float 32-bit little-endian.<br>**Since**: 17  | 
 
 
 ### OH_AudioStream_SourceType
@@ -2786,7 +2948,7 @@ Sets the mark position for an audio renderer. When this function is called, the 
 | renderer | Pointer to an audio renderer instance, which is created by calling [OH_AudioStreamBuilder_GenerateRenderer](#oh_audiostreambuilder_generaterenderer). | 
 | samplePos | Mark position. | 
 | callback | When the target mark position is reached, [OH_AudioRenderer_OnMarkReachedCallback](#oh_audiorenderer_onmarkreachedcallback) is invoked. | 
-| userData | Pointer to the application data passed through the callback functions. | 
+| userData | Pointer to the application data passed through the callbacks. | 
 
 **Returns**
 
@@ -3590,6 +3752,10 @@ Sets callbacks for an audio capturer.
 
 **Since**: 10
 
+**Deprecated from**: 18
+
+**Substitute**: [OH_AudioStreamBuilder_SetCapturerReadDataCallback](#oh_audiostreambuilder_setcapturerreaddatacallback), [OH_AudioStreamBuilder_SetCapturerDeviceChangeCallback](#oh_audiostreambuilder_setcapturerdevicechangecallback), [OH_AudioStreamBuilder_SetCapturerInterruptCallback](#oh_audiostreambuilder_setcapturerinterruptcallback), and [OH_AudioStreamBuilder_SetCapturerErrorCallback](#oh_audiostreambuilder_setcapturererrorcallback)
+
 **System capability**: SystemCapability.Multimedia.Audio.Core
 
 **Parameters**
@@ -3598,7 +3764,7 @@ Sets callbacks for an audio capturer.
 | -------- | -------- |
 | builder | Pointer to an audio stream builder instance, which is created by calling **OH_AudioStreamBuilder_Create()**. | 
 | callbacks | Callback functions that will be used to process events related to audio input streams. | 
-| userData | Pointer to the application data passed through the callback functions. | 
+| userData | Pointer to the application data passed through the callbacks. | 
 
 **Returns**
 
@@ -3610,6 +3776,68 @@ Returns a result code defined in [OH_AudioStream_Result](#oh_audiostream_result)
 
   1. The **builder** parameter is set to a null pointer.
   2. The **StreamType** parameter is set to an invalid value.
+
+
+### OH_AudioStreamBuilder_SetCapturerDeviceChangeCallback()
+
+```
+OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerDeviceChangeCallback(OH_AudioStreamBuilder* builder, OH_AudioCapturer_OnDeviceChangeCallback callback, void* userData)
+```
+
+**Description**
+
+Sets the callback for audio capturer device change events.
+
+This function is similar to [OH_AudioStreamBuilder_SetCapturerCallback](#oh_audiostreambuilder_setcapturercallback). If both the functions are used, only the last callback takes effect.
+
+**Since**: 18
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| builder | Pointer to an audio stream builder instance, which is created by calling **OH_AudioStreamBuilder_Create()**.| 
+| callback | Callback used to receive device change events.| 
+| userData | Pointer to the application data struct that will be passed to the callback.| 
+
+**Returns**
+
+Returns a result code defined in [OH_AudioStream_Result](#oh_audiostream_result):
+
+**AUDIOSTREAM_SUCCESS**: The function is executed successfully.
+
+**AUDIOSTREAM_ERROR_INVALID_PARAM**: A parameter is invalid. For example, **builder** is a null pointer.
+
+
+### OH_AudioStreamBuilder_SetCapturerErrorCallback()
+
+```
+OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerErrorCallback(OH_AudioStreamBuilder* builder, OH_AudioCapturer_OnErrorCallback callback, void* userData)
+```
+
+**Description**
+
+Sets the callback for error events of an audio capturer.
+
+This function is similar to [OH_AudioStreamBuilder_SetCapturerCallback](#oh_audiostreambuilder_setcapturercallback). If both the functions are used, only the last callback takes effect.
+
+**Since**: 18
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| builder | Pointer to an audio stream builder instance, which is created by calling **OH_AudioStreamBuilder_Create()**.| 
+| callback | Callback used to receive error events.| 
+| userData | Pointer to the application data struct that will be passed to the callback.| 
+
+**Returns**
+
+Returns a result code defined in [OH_AudioStream_Result](#oh_audiostream_result):
+
+**AUDIOSTREAM_SUCCESS**: The function is executed successfully.
+
+**AUDIOSTREAM_ERROR_INVALID_PARAM**: A parameter is invalid. For example, **builder** is a null pointer.
 
 
 ### OH_AudioStreamBuilder_SetCapturerInfo()
@@ -3643,6 +3871,68 @@ Returns a result code defined in [OH_AudioStream_Result](#oh_audiostream_result)
 
   1. The **builder** parameter is set to a null pointer.
   2. The **sourceType** parameter is set to an invalid value.
+
+
+### OH_AudioStreamBuilder_SetCapturerInterruptCallback()
+
+```
+OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerInterruptCallback(OH_AudioStreamBuilder* builder, OH_AudioCapturer_OnInterruptCallback callback, void* userData)
+```
+
+**Description**
+
+Sets the callback for interruption events of an audio capturer.
+
+This function is similar to [OH_AudioStreamBuilder_SetCapturerCallback](#oh_audiostreambuilder_setcapturercallback). If both the functions are used, only the last callback takes effect.
+
+**Since**: 18
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| builder | Pointer to an audio stream builder instance, which is created by calling **OH_AudioStreamBuilder_Create()**.| 
+| callback | Callback used to receive interruption events.| 
+| userData | Pointer to the application data struct that will be passed to the callback.| 
+
+**Returns**
+
+Returns a result code defined in [OH_AudioStream_Result](#oh_audiostream_result):
+
+**AUDIOSTREAM_SUCCESS**: The function is executed successfully.
+
+**AUDIOSTREAM_ERROR_INVALID_PARAM**: A parameter is invalid. For example, **builder** is a null pointer.
+
+
+### OH_AudioStreamBuilder_SetCapturerReadDataCallback()
+
+```
+OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerReadDataCallback(OH_AudioStreamBuilder* builder, OH_AudioCapturer_OnReadDataCallback callback, void* userData)
+```
+
+**Description**
+
+Sets the callback used to read data for an audio capturer.
+
+This function is similar to [OH_AudioStreamBuilder_SetCapturerCallback](#oh_audiostreambuilder_setcapturercallback). If both the functions are used, only the last callback takes effect.
+
+**Since**: 18
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| builder | Pointer to an audio stream builder instance, which is created by calling **OH_AudioStreamBuilder_Create()**.| 
+| callback | Callback used to receive data read events.| 
+| userData | Pointer to the application data struct that will be passed to the callback.| 
+
+**Returns**
+
+Returns a result code defined in [OH_AudioStream_Result](#oh_audiostream_result):
+
+**AUDIOSTREAM_SUCCESS**: The function is executed successfully.
+
+**AUDIOSTREAM_ERROR_INVALID_PARAM**: A parameter is invalid. For example, **builder** is a null pointer.
 
 
 ### OH_AudioStreamBuilder_SetChannelCount()
@@ -3812,6 +4102,10 @@ Sets callbacks for an audio renderer.
 
 **Since**: 10
 
+**Deprecated from**: 18
+
+**Substitute**: [OH_AudioStreamBuilder_SetRendererWriteDataCallback](#oh_audiostreambuilder_setrendererwritedatacallback), [OH_AudioStreamBuilder_SetRendererInterruptCallback](#oh_audiostreambuilder_setrendererinterruptcallback), [OH_AudioStreamBuilder_SetRendererOutputDeviceChangeCallback](#oh_audiostreambuilder_setrendereroutputdevicechangecallback), and [OH_AudioStreamBuilder_SetRendererErrorCallback](#oh_audiostreambuilder_setrenderererrorcallback)
+
 **System capability**: SystemCapability.Multimedia.Audio.Core
 
 **Parameters**
@@ -3820,7 +4114,7 @@ Sets callbacks for an audio renderer.
 | -------- | -------- |
 | builder | Pointer to an audio stream builder instance, which is created by calling **OH_AudioStreamBuilder_Create()**. | 
 | callbacks | Callback functions that will be used to process events related to audio output streams. | 
-| userData | Pointer to the application data passed through the callback functions. | 
+| userData | Pointer to the application data passed through the callbacks. | 
 
 **Returns**
 
@@ -3832,6 +4126,37 @@ Returns a result code defined in [OH_AudioStream_Result](#oh_audiostream_result)
 
   1. The **builder** parameter is set to a null pointer.
   2. The **StreamType** parameter is set to an invalid value.
+
+
+### OH_AudioStreamBuilder_SetRendererErrorCallback()
+
+```
+OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererErrorCallback(OH_AudioStreamBuilder* builder, OH_AudioRenderer_OnErrorCallback callback, void* userData)
+```
+
+**Description**
+
+Sets the callback for error events of an audio renderer.
+
+This function is similar to [OH_AudioStreamBuilder_SetRendererCallback](#oh_audiostreambuilder_setrenderercallback). If both the functions are used, only the last callback takes effect.
+
+**Since**: 18
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| builder | Pointer to an audio stream builder instance, which is created by calling **OH_AudioStreamBuilder_Create()**.| 
+| callback | Callback used to receive error events.| 
+| userData | Pointer to the application data struct that will be passed to the callback.| 
+
+**Returns**
+
+Returns a result code defined in [OH_AudioStream_Result](#oh_audiostream_result):
+
+**AUDIOSTREAM_SUCCESS**: The function is executed successfully.
+
+**AUDIOSTREAM_ERROR_INVALID_PARAM**: A parameter is invalid. For example, **builder** is a null pointer.
 
 
 ### OH_AudioStreamBuilder_SetRendererInfo()
@@ -3901,6 +4226,37 @@ Returns a result code defined in [OH_AudioStream_Result](#oh_audiostream_result)
   3. The **StreamType** parameter is set to an invalid value.
 
 
+### OH_AudioStreamBuilder_SetRendererInterruptCallback()
+
+```
+OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererInterruptCallback(OH_AudioStreamBuilder* builder, OH_AudioRenderer_OnInterruptCallback callback, void* userData)
+```
+
+**Description**
+
+Sets the callback for interruption events of an audio renderer.
+
+This function is similar to [OH_AudioStreamBuilder_SetRendererCallback](#oh_audiostreambuilder_setrenderercallback). If both the functions are used, only the last callback takes effect.
+
+**Since**: 18
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| builder | Pointer to an audio stream builder instance, which is created by calling **OH_AudioStreamBuilder_Create()**.| 
+| callback | Callback used to receive interruption events.| 
+| userData | Pointer to the application data struct that will be passed to the callback.| 
+
+**Returns**
+
+Returns a result code defined in [OH_AudioStream_Result](#oh_audiostream_result):
+
+**AUDIOSTREAM_SUCCESS**: The function is executed successfully.
+
+**AUDIOSTREAM_ERROR_INVALID_PARAM**: A parameter is invalid. For example, **builder** is a null pointer.
+
+
 ### OH_AudioStreamBuilder_SetRendererOutputDeviceChangeCallback()
 
 ```
@@ -3921,7 +4277,7 @@ Sets the callback invoked when the audio stream device changes.
 | -------- | -------- |
 | builder | Pointer to an audio stream builder instance, which is created by calling **OH_AudioStreamBuilder_Create()**. | 
 | callbacks | Callback that will be used to process events related to audio stream device changes. | 
-| userData | Pointer to the application data passed through the callback functions. | 
+| userData | Pointer to the application data passed through the callbacks. | 
 
 **Returns**
 
@@ -3990,7 +4346,7 @@ This function is similar to [OH_AudioStreamBuilder_SetRendererCallback](#oh_audi
 | -------- | -------- |
 | builder | Pointer to an audio stream builder instance, which is created by calling **OH_AudioStreamBuilder_Create()**. | 
 | callback | Callback function to be used to write audio data. | 
-| userData | Pointer to the application data passed through the callback functions. | 
+| userData | Pointer to the application data passed through the callbacks. | 
 
 **Returns**
 
@@ -4120,7 +4476,7 @@ Sets the callback invoked to write both audio data and metadata.
 | -------- | -------- |
 | builder | Pointer to an audio stream builder instance, which is created by calling **OH_AudioStreamBuilder_Create()**. | 
 | callback | Callback used to write both audio data and metadata. | 
-| userData | Pointer to the application data passed through the callback functions. | 
+| userData | Pointer to the application data passed through the callbacks. | 
 
 **Returns**
 

@@ -56,7 +56,7 @@
 
 | 接口     | 功能描述                         |
 | -------- | -------------------------------- |
-| OH_AVCapability_GetName     | 获取能力实例对应编解码器的名称 |
+| OH_AVCapability_GetName     | 获取能力实例对应编解码器的名称。 |
 
 H.264软件解码器和H.264硬件解码器共存时，创建H.264软件解码器示例：
 ```c++
@@ -82,7 +82,7 @@ if (capability != nullptr) {
 
 | 接口     | 功能描述                         |
 | -------- | -------------------------------- |
-| OH_AVCapability_IsHardware  | 确认能力实例对应的编解码器是否是硬件的 |
+| OH_AVCapability_IsHardware  | 确认能力实例对应的编解码器是否是硬件的。 |
 
 视频编码，软硬件差异化配置帧率示例：
 
@@ -109,7 +109,7 @@ OH_AVFormat_Destroy(format);
 
 | 接口     | 功能描述                         |
 | -------- | -------------------------------- |
-| OH_AVCapability_GetMaxSupportedInstances  | 获取能力实例对应编解码器可同时运行的最大实例数，实际能成功创建的数目还受系统其他资源的约束 |
+| OH_AVCapability_GetMaxSupportedInstances  | 获取能力实例对应编解码器可同时运行的最大实例数，实际能成功创建的数目还受系统其他资源的约束。 |
 
 优先创建硬件解码器实例，不够时再创建软件解码器实例，示例如下：
 
@@ -142,13 +142,16 @@ if (createdVDecNum < NEEDED_VDEC_NUM) {
 
 ### 控制编码质量
 
-当前提供三种码控模式供开发者选用，分别是恒定码率（CBR）码控模式、动态码率（VBR）码控模式，以及恒定质量（CQ）码控模式。对于CBR和VBR码控模式，编码质量由码率参数决定。对于CQ码控模式，编码质量由质量参数决定。
+当前提供四种码控模式供开发者选用，分别是恒定码率（CBR）码控模式、动态码率（VBR）码控模式、恒定质量（CQ）码控模式以及质量稳定（SQR）码控模式。<br>
+- CBR和VBR码控模式：编码质量由码率参数决定。
+- CQ码控模式：编码质量由质量参数决定。
+- SQR码控模式：编码质量由质量稳定码率因子参数和最大码率参数决定，SQR码控模式仅支持H265（HEVC）编码。
 
 | 接口     | 功能描述                         |
 | -------- | ---------------------------- |
-| OH_AVCapability_IsEncoderBitrateModeSupported  | 确认当前编解码器是否支持给定的码控模式 |
-| OH_AVCapability_GetEncoderBitrateRange     | 获取当前编解码器支持的码率范围，在CBR和VBR码控模式下使用|
-| OH_AVCapability_GetEncoderQualityRange  | 获取当前编解码器支持的质量范围，在CQ码控模式下使用  |
+| OH_AVCapability_IsEncoderBitrateModeSupported  | 确认当前编解码器是否支持给定的码控模式。 |
+| OH_AVCapability_GetEncoderBitrateRange     | 获取当前编解码器支持的码率范围，在CBR、VBR和SQR码控模式下使用。 |
+| OH_AVCapability_GetEncoderQualityRange  | 获取当前编解码器支持的质量范围，在CQ码控模式下使用。  |
 
 CBR和VBR码控模式示例如下：
 
@@ -222,13 +225,53 @@ if (OH_VideoEncoder_Configure(videoEnc, format) != AV_ERR_OK) {
 OH_AVFormat_Destroy(format);
 ```
 
+SQR码控模式示例如下：
+
+```c++
+OH_BitrateMode bitrateMode = BITRATE_MODE_SQR;
+int32_t sqrFactor = 30; // 质量稳定码率因子。
+int32_t maxBitrate = 20000000; // 最大码率。
+OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_HEVC, true);
+if (capability == nullptr) {
+   // 异常处理。
+}
+// 1. 确认待配置码控模式是否支持。
+bool isSupported = OH_AVCapability_IsEncoderBitrateModeSupported(capability, bitrateMode);
+if (!isSupported) {
+   // 异常处理。
+}
+// 2. 获取码率范围，判断待配置最大码率参数是否在范围内。
+OH_AVRange bitrateRange = {-1, -1};
+ret = OH_AVCapability_GetEncoderBitrateRange(capability, &bitrateRange);
+if (ret != AV_ERR_OK || bitrateRange.maxVal <= 0) {
+   // 异常处理。
+}
+
+if (maxBitrate > bitrateRange.maxVal || maxBitrate < bitrateRange.minVal) {
+   // 3.（可选）调整待配置最大码率参数。
+}
+
+// 4. 配置编码参数。
+OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_HEVC);
+OH_AVFormat *format = OH_AVFormat_CreateVideoFormat(OH_AVCODEC_MIMETYPE_VIDEO_HEVC, 1920, 1080);
+if (OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE, bitrateMode) &&
+   OH_AVFormat_SetIntValue(format, OH_MD_KEY_SQR_FACTOR, sqrFactor) &&
+   OH_AVFormat_SetIntValue(format, OH_MD_KEY_MAX_BITRATE, maxBitrate) == false) {
+   // 异常处理。
+}
+if (OH_VideoEncoder_Configure(videoEnc, format) != AV_ERR_OK) {
+   // 异常处理。
+}
+OH_AVFormat_Destroy(format);
+```
+
 ### 查询编解码器支持复杂度范围
 
 复杂度等级决定了编解码器使用的工具的数目，仅部分编解码器支持。
 
 | 接口     | 功能描述                         |
 | -------- | ---------------------------- |
-| OH_AVCapability_GetEncoderComplexityRange | 获取当前编解码器支持的复杂度范围 | 
+| OH_AVCapability_GetEncoderComplexityRange | 获取当前编解码器支持的复杂度范围。 | 
 
 ```c++
 OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_AUDIO_AAC, true);
@@ -246,9 +289,9 @@ int32_t ret = OH_AVCapability_GetEncoderComplexityRange(capability, &complexityR
 
 | 接口     | 功能描述                         |
 | -------- | ---------------------------- |
-| OH_AVCapability_GetAudioSupportedSampleRates     | 获取当前音频编解码器支持的采样率范围 |
-| OH_AVCapability_GetAudioChannelCountRange  | 获取当前音频编解码器支持的通道数范围 |
-| OH_AVCapability_GetEncoderBitrateRange     | 获取当前编码器支持的码率范围 |
+| OH_AVCapability_GetAudioSupportedSampleRates     | 获取当前音频编解码器支持的采样率范围。 |
+| OH_AVCapability_GetAudioChannelCountRange  | 获取当前音频编解码器支持的通道数范围。 |
+| OH_AVCapability_GetEncoderBitrateRange     | 获取当前编码器支持的码率范围。 |
 
 音频编码场景，确认并设置正确的编码的参数，示例如下：
 
@@ -316,9 +359,9 @@ OH_AVFormat_Destroy(format);
 
 | 接口     | 功能描述                         |
 | -------- | ---------------------------- |
-| OH_AVCapability_GetSupportedProfiles                    | 获取当前编解码器支持的档次 |
-| OH_AVCapability_GetSupportedLevelsForProfile            | 获取当前编解码器在给定档次的情况下支持的等级信息 |
-| OH_AVCapability_AreProfileAndLevelSupported             | 确认当前编解码器是否支持特定的档次和等级组合 |
+| OH_AVCapability_GetSupportedProfiles                    | 获取当前编解码器支持的档次。 |
+| OH_AVCapability_GetSupportedLevelsForProfile            | 获取当前编解码器在给定档次的情况下支持的等级信息。 |
+| OH_AVCapability_AreProfileAndLevelSupported             | 确认当前编解码器是否支持特定的档次和等级组合。 |
 
 确认待配置档次是否支持，并查询能支持的级别，示例如下：
 
@@ -396,13 +439,13 @@ bool isSupported = OH_AVCapability_AreProfileAndLevelSupported(capability, AVC_P
 
 | 接口     | 功能描述                         |
 | -------- | ---------------------------- |
-| OH_AVCapability_GetVideoWidthAlignment     | 获取当前视频编解码器的宽对齐 |
-| OH_AVCapability_GetVideoHeightAlignment    | 确认当前视频编解码器的高对齐 |
-| OH_AVCapability_GetVideoWidthRange             | 获取当前视频编解码器支持的宽的范围 |
-| OH_AVCapability_GetVideoHeightRange            | 获取当前视频编解码器支持的高的范围 |
-| OH_AVCapability_GetVideoWidthRangeForHeight    | 获取当前视频编解码器在给定高情况下的宽的范围 |
-| OH_AVCapability_GetVideoHeightRangeForWidth    | 获取当前视频编解码器在给定宽情况下的高的范围 |
-| OH_AVCapability_IsVideoSizeSupported           | 确认当前视频编解码器是否支持给定的宽高组合 |
+| OH_AVCapability_GetVideoWidthAlignment     | 获取当前视频编解码器的宽对齐。 |
+| OH_AVCapability_GetVideoHeightAlignment    | 确认当前视频编解码器的高对齐。 |
+| OH_AVCapability_GetVideoWidthRange             | 获取当前视频编解码器支持的宽的范围。 |
+| OH_AVCapability_GetVideoHeightRange            | 获取当前视频编解码器支持的高的范围。 |
+| OH_AVCapability_GetVideoWidthRangeForHeight    | 获取当前视频编解码器在给定高情况下的宽的范围。 |
+| OH_AVCapability_GetVideoHeightRangeForWidth    | 获取当前视频编解码器在给定宽情况下的高的范围。 |
+| OH_AVCapability_IsVideoSizeSupported           | 确认当前视频编解码器是否支持给定的宽高组合。 |
 
 已知视频高和视频宽，校验是否支持，示例如下：
 
@@ -493,9 +536,9 @@ if (ret != AV_ERR_OK || widthRange.maxVal <= 0) {
 
 | 接口     | 功能描述                         |
 | -------- | ---------------------------- |
-| OH_AVCapability_GetVideoFrameRateRange             | 获取当前视频编解码器支持的帧率的范围 |
-| OH_AVCapability_GetVideoFrameRateRangeForSize      | 获取当前视频编解码器在给定图像尺寸情况下的帧率的范围 |
-| OH_AVCapability_AreVideoSizeAndFrameRateSupported  | 检查视频编解码器是否支持视频大小和帧率的特定组合 |
+| OH_AVCapability_GetVideoFrameRateRange             | 获取当前视频编解码器支持的帧率的范围。 |
+| OH_AVCapability_GetVideoFrameRateRangeForSize      | 获取当前视频编解码器在给定图像尺寸情况下的帧率的范围。 |
+| OH_AVCapability_AreVideoSizeAndFrameRateSupported  | 检查视频编解码器是否支持视频大小和帧率的特定组合。 |
 
 有需求的帧率目标，确认帧率是否在可选范围内，示例如下：
 
@@ -549,7 +592,7 @@ OH_AVFormat_Destroy(format);
 
 | 接口     | 功能描述                         |
 | -------- | ---------------------------- |
-| OH_AVCapability_GetVideoSupportedPixelFormats             | 获取当前视频编解码器支持的像素格式 |
+| OH_AVCapability_GetVideoSupportedPixelFormats             | 获取当前视频编解码器支持的像素格式。 |
 
 ```c++
 constexpr OH_AVPixelFormat DEFAULT_PIXELFORMAT = AV_PIXEL_FORMAT_NV12;
@@ -581,8 +624,8 @@ if (!isMatched) {
 编解码特性是指仅在特定编解码场景中使用的可选特性，参考[OH_AVCapabilityFeature](../../reference/apis-avcodec-kit/_a_v_capability.md#oh_avcapabilityfeature-1)。
 | 接口     | 功能描述                         |
 | -------- | ---------------------------- |
-| OH_AVCapability_IsFeatureSupported              | 确认当前编解码器是否支持给定的特性 |
-| OH_AVCapability_GetFeatureProperties            | 获取当前编码器支持的指定特性的属性，仅部分特性存在属性信息 |
+| OH_AVCapability_IsFeatureSupported              | 确认当前编解码器是否支持给定的特性。 |
+| OH_AVCapability_GetFeatureProperties            | 获取当前编码器支持的指定特性的属性，仅部分特性存在属性信息。 |
 
 查询H.264编码器是否支持长期参考帧特性示例如下：
 

@@ -11,7 +11,7 @@ You can use the APIs provided by the **wifiManager** module to:
 
 ## Available APIs
 
-For details about the JavaScript APIs and sample code, see [WLAN](../../reference/apis-connectivity-kit/js-apis-wifiManager.md).
+For details about the JavaScript APIs and sample code, see the [P2P API Reference](../../reference/apis-connectivity-kit/js-apis-wifiManager.md).
 
 The following table describes the APIs used in this topic.
 
@@ -37,15 +37,14 @@ The following table describes the APIs used in this topic.
 2. Enable Wi-Fi on the device.
 3. Check that the device has the SystemCapability.Communication.WiFi.P2P capability.
 4. Create or remove a P2P group.
-
-Example:
+5. Example:
 
 ```ts
 import { wifiManager } from '@kit.ConnectivityKit';
 
 // Create a P2P group. To use the current device as the group owner (GO), set:
-// netId: The value -1 means to create a temporary P2P group. When a device in the group is to be connected next time, GO negotiation and WPS session negotiation must be performed again.
-// The value -2 means to create a persistent group. The device in the group can be reconnected without GO negotiation or WPS session negotiation.
+// netId: The value -1 means to create a temporary P2P group. When a device in the group is to be connected next time, GO negotiation and WPS key negotiation must be performed again.
+// The value -2 means to create a persistent group. The device in the group can be reconnected without GO negotiation or WPS key negotiation.
 
 let recvP2pPersistentGroupChangeFunc = () => {
 	console.info("p2p persistent group change receive event");
@@ -76,7 +75,7 @@ try {
 }
 ```
 
-For details about error codes, see [Wi-Fi Error Codes](../../reference/apis-connectivity-kit/errorcode-wifi.md).
+6. For details about error codes, see [Wi-Fi Error Codes](../../reference/apis-connectivity-kit/errorcode-wifi.md).
 
 ### Creating a P2P Connection
 1. Import the **wifiManager** module.
@@ -84,8 +83,7 @@ For details about error codes, see [Wi-Fi Error Codes](../../reference/apis-conn
 3. Check that the device has the SystemCapability.Communication.WiFi.P2P capability.
 4. Register a callback for **p2pPeerDeviceChange** and set up a P2P connection in the callback implementation.
 5. Start P2P device discovery.
-
-Example:
+6. Example:
 
 ```ts
 import { wifiManager } from '@kit.ConnectivityKit';
@@ -94,7 +92,7 @@ let recvP2pConnectionChangeFunc = (result:wifiManager.WifiP2pLinkedInfo) => {
 	console.info("p2p connection change receive event: " + JSON.stringify(result));
 	wifiManager.getP2pLinkedInfo((err, data) => {
 		if (err) {
-			console.error('failed to get getP2pLinkedInfo: ' + JSON.stringify(err));
+			console.error("failed to get P2pLinkedInfo: " + JSON.stringify(err));
 			return;
 		}
 		console.info("get getP2pLinkedInfo: " + JSON.stringify(data));
@@ -108,7 +106,7 @@ let recvP2pPeerDeviceChangeFunc = (result:wifiManager.WifiP2pDevice[]) => {
 	console.info("p2p peer device change receive event: " + JSON.stringify(result));
 	wifiManager.getP2pPeerDevices((err, data) => {
 		if (err) {
-			console.error('failed to get peer devices: ' + JSON.stringify(err));
+			console.error("failed to get peer devices: " + JSON.stringify(err));
 			return;
 		}
 		console.info("get peer devices: " + JSON.stringify(data));
@@ -140,4 +138,4 @@ setTimeout(() =>  {wifiManager.off("p2pPeerDeviceChange", recvP2pPeerDeviceChang
 console.info("start discover devices -> " + wifiManager.startDiscoverDevices());
 ```
 
-For details about error codes, see [Wi-Fi Error Codes](../../reference/apis-connectivity-kit/errorcode-wifi.md).
+7. For details about error codes, see [Wi-Fi Error Codes](../../reference/apis-connectivity-kit/errorcode-wifi.md).

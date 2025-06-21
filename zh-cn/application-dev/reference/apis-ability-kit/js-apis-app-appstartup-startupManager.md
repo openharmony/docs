@@ -1,4 +1,4 @@
-# @ohos.app.appstartup.startupManager
+# @ohos.app.appstartup.startupManager (启动框架管理能力)
 
 本模块提供应用启动框架管理启动任务的能力，只能在主线程调用。
 
@@ -21,14 +21,18 @@ run(startupTasks: Array\<string\>, config?: StartupConfig): Promise\<void\>
 
 执行启动框架启动任务或加载so文件。
 
+> **说明：**
+>
+> 如果需要执行feature类型HAP中的启动任务，不支持使用该接口，需要使用[startupManager.run](#startupmanagerrun20)接口。
+
 **系统能力**：SystemCapability.Ability.AppStartup
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | startupTasks | Array\<string\> | 是 | 表明准备执行的启动任务所实现的[StartupTask](js-apis-app-appstartup-startupTask.md)接口类名称和预加载so名称的数组。 |
-  | config | [StartupConfig](./js-apis-app-appstartup-startupConfig.md) | 否 | 启动框架超时时间与启动任务监听器配置。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| startupTasks | Array\<string\> | 是 | 表示准备执行的启动任务[StartupTask](js-apis-app-appstartup-startupTask.md)的名称和预加载so名称的数组。 |
+| config | [StartupConfig](./js-apis-app-appstartup-startupConfig.md) | 否 | 启动框架超时时间与启动任务监听器配置。 |
 
 **返回值：**
 
@@ -74,6 +78,80 @@ export default class EntryAbility extends UIAbility {
       let errCode: number = error.code;
       console.log('Startup catch error , errCode= ' + errCode);
       console.log('Startup catch error ,error= ' + errMsg);
+    }
+  }
+  // ...
+}
+```
+
+## startupManager.run<sup>20+</sup>
+
+run(startupTasks: Array\<string\>, context: common.AbilityStageContext, config: StartupConfig): Promise\<void\>
+
+执行启动框架启动任务或加载so文件。支持指定[AbilityStageContext](js-apis-inner-application-abilityStageContext.md)用于启动任务的加载。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Ability.AppStartup
+
+**参数：**
+
+| 参数名       | 类型                                                         | 必填 | 说明                                                         |
+| ------------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| startupTasks | Array\<string\>                                              | 是   | 表示准备执行的启动任务[StartupTask](js-apis-app-appstartup-startupTask.md)的名称和预加载so名称的数组。 |
+| context      | [AbilityStageContext](js-apis-inner-application-abilityStageContext.md) | 是   | 表示执行启动任务[StartupTask](js-apis-app-appstartup-startupTask.md)的AbilityStage上下文，作为入参传给启动任务的[init](js-apis-app-appstartup-startupTask.md#init)。 |
+| config       | [StartupConfig](./js-apis-app-appstartup-startupConfig.md)   | 是   | 启动框架超时时间与启动任务监听器配置。                       |
+
+**返回值：**
+
+| 类型            | 说明                                   |
+| --------------- | -------------------------------------- |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID | 错误信息                                           |
+| -------- | -------------------------------------------------- |
+| 16000050 | Internal error.                                    |
+| 28800001 | Startup task or its dependency not found.          |
+| 28800002 | The startup tasks have circular dependencies.      |
+| 28800003 | An error occurred while running the startup tasks. |
+| 28800004 | Running startup tasks timeout.                     |
+
+**示例：**
+
+```ts
+import { AbilityStage, startupManager, StartupListener, StartupConfig } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class MyAbilityStage extends AbilityStage {
+  onCreate(): void {
+    hilog.info(0x0000, 'testTag', 'AbilityStage onCreate');
+    let onCompletedCallback = (error: BusinessError<void>) => {
+      if (error) {
+        hilog.error(0x0000, 'testTag', 'onCompletedCallback error: %{public}s', JSON.stringify(error));
+      } else {
+        hilog.info(0x0000, 'testTag', 'onCompletedCallback: success.');
+      }
+    };
+    let startupListener: StartupListener = {
+      'onCompleted': onCompletedCallback
+    };
+    let config: StartupConfig = {
+      'timeoutMs': 10000,
+      'startupListener': startupListener
+    };
+
+    try {
+      // 手动调用run方法
+      startupManager.run(["StartupTask_001", "libentry_001"], this.context, config).then(() => {
+        hilog.info(0x0000, 'testTag', '%{public}s', 'startupManager.run success');
+      }).catch((error: BusinessError<void>) => {
+        hilog.error(0x0000, 'testTag', 'startupManager.run promise catch error: %{public}s', JSON.stringify(error));
+      })
+    } catch (error) {
+      hilog.error(0x0000, 'testTag', 'startupManager.run catch error: %{public}s', JSON.stringify(error));
     }
   }
   // ...
@@ -266,7 +344,7 @@ removeStartupTaskResult(startupTask: string): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | startupTask | string | 是 | 启动任务所实现[StartupTask](js-apis-app-appstartup-startupTask.md)接口的类名称或so文件名。 |
-  
+
 **错误码：**
 
 以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。

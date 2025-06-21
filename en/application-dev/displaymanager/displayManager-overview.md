@@ -12,5 +12,5 @@ For details about how to obtain display properties and listen for status changes
 
 ## Constraints
 
-- The Display and Screen APIs must be used in the system that supports the SystemCapability.Window.SessionManager capability. <!--RP1-->For details, see [SystemCapability](../reference/syscap.md).<!--RP1End-->
+- The Display and Screen APIs must be used in the system that supports the SystemCapability.Window.SessionManager capability. For details, see <!--RP1-->[SystemCapability](../reference/syscap.md).<!--RP1End-->
 - In multi-display implementation, the Screen API is available only for system applications only, and certain APIs require the ohos.permission.CAPTURE_SCREEN permission.

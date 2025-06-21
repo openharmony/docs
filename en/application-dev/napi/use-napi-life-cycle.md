@@ -26,15 +26,11 @@ Understanding these concepts helps you securely and effectively manipulate ArkTS
 The following table lists the APIs for ArkTS object lifecycle management.  
 | API| Description|
 | -------- | -------- |
-| napi_open_handle_scope | Opens a scope.<br/>When processing ArkTS objects with Node-API, you need to create a temporary scope to store object references so that the objects can be correctly accessed during the execution and closed after the execution. |
-| napi_close_handle_scope | Closes a scope. |
-| napi_open_escapable_handle_scope | Opens a scope from which one object can be prompted to the outer scope. |
-| napi_close_escapable_handle_scope | Closes an escapable handle scope. |
+| napi_open_handle_scope<br>napi_close_handle_scope| Opens a scope and closes a scope respectively. When processing ArkTS objects with Node-API, you need to create a temporary scope to store object references so that the objects can be correctly accessed during the execution and closed after the execution.|
+| napi_open_escapable_handle_scope<br>napi_close_escapable_handle_scope| Opens a scope from which one object can be prompted to the outer scope and closes an escapable handle scope respectively.|
 | napi_escape_handle | Promotes the handle to an ArkTS object so that it is valid for the lifetime of its parent scope.|
-| napi_create_reference | Creates a reference to a value to extend the ArkTS object's lifespan. |
-| napi_delete_reference | Deletes a reference. |
-| napi_reference_ref | Increments the reference count. |
-| napi_reference_unref | Decrements the reference count. |
+| napi_create_reference<br>napi_delete_reference| Creates a reference to a value to extend the ArkTS object's lifespan and deletes a reference respectively.|
+| napi_reference_ref<br>napi_reference_unref| Increments the reference count and decrements the reference count respectively. |
 | napi_get_reference_value | Obtains the ArkTS object associated with the reference.|
 | napi_add_finalizer | Adds a **napi_finalize** callback, which will be called to clean up or release resources before the ArkTS object is garbage-collected.|
 
@@ -44,8 +40,7 @@ If you are just starting out with Node-API, see [Node-API Development Process](u
 
 ### napi_open_handle_scope and napi_close_handle_scope
 
-Use **napi_open_handle_scope** to open a scope, and use **napi_close_handle_scope** to close it. You can use these two APIs to manage the **napi_value** lifecycle of an ArkTS object, which prevents the object from being incorrectly garbage-collected.
-
+Use **napi_open_handle_scope** to open a scope, and use **napi_close_handle_scope** to close it. You can use these two APIs to manage the **napi_value** lifecycle of an ArkTS object, which prevents the object from being incorrectly garbage-collected. 
 Properly using these two APIs can minimize lifecycle and prevent memory leaks.
 
 For details about the code, see [Lifecycle Management](napi-guidelines.md#lifecycle-management).
@@ -108,8 +103,8 @@ export const handleScope: () => string;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 try {
   hilog.info(0x0000, 'testTag', 'Test Node-API handleScopeTest: %{public}s', testNapi.handleScopeTest());
   hilog.info(0x0000, 'testTag', 'Test Node-API handleScope: %{public}s', testNapi.handleScope());
@@ -166,8 +161,8 @@ export const escapableHandleScopeTest: () => string;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 try {
   hilog.info(0x0000, 'testTag', 'Test Node-API EscapableHandleScopeTest: %{public}s', testNapi.escapableHandleScopeTest());
 } catch (error) {
@@ -189,8 +184,11 @@ Use **napi_get_reference_value** to obtain the ArkTS object associated with the 
 
 > **NOTE**
 >
-> The release of a weak reference (**napi_ref** whose reference count is 0) and GC of a JS object do not occur at the same time. Consequently, the JS object may be garbage-collected before the weak reference is released. As a result, calling this API may yield a null pointer even if **napi_ref** is valid.
+> The release of a weak reference (**napi_ref** whose reference count is 0) and GC of a JS object do not occur at the same time.
 >
+> Consequently, the JS object may be garbage-collected before the weak reference is released.
+>
+> As a result, calling this API may yield a null pointer even if **napi_ref** is valid.
 
 ### napi_add_finalizer
 
@@ -219,12 +217,7 @@ static napi_value CreateReference(napi_env env, napi_callback_info info)
     napi_create_string_utf8(env, "CreateReference", NAPI_AUTO_LENGTH, &value);
     // Add a property to the object.
     napi_set_named_property(env, obj, "key", value);
-    // Create a reference to the ArkTS object.
-    napi_status status = napi_create_reference(env, obj, 1, &g_ref);
-    if (status != napi_ok) {
-        napi_throw_error(env, nullptr, "napi_create_reference fail");
-        return nullptr;
-    }
+
     // Add a terminator.
     void *data = {};
     napi_add_finalizer(env, obj, data, Finalizer, nullptr, &g_ref);
@@ -289,8 +282,8 @@ export const deleteReference: () => string | void;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 try {
   hilog.info(0x0000, 'testTag', 'Test Node-API createReference: %{public}s', JSON.stringify(testNapi.createReference()));
   hilog.info(0x0000, 'testTag', 'Test Node-API useReference: %{public}s', JSON.stringify(testNapi.useReference()));

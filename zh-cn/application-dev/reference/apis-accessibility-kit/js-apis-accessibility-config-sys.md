@@ -17,27 +17,27 @@ import { config } from '@kit.AccessibilityKit';
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.BarrierFree.Accessibility.Core
 
-| 名称                                 | 类型                                                                                         | 可读 | 可写 | 说明                                                        |
+| 名称                                 | 类型                                                                                     | 只读 | 可选 | 说明                         |
 |------------------------------------|--------------------------------------------------------------------------------------------| -------- | -------- |-----------------------------------------------------------|
-| highContrastText                   | [Config](#config)\<boolean>                                                                | 是 | 是 | 表示高对比度文字功能启用状态。true表示已启用高对比度文字功能，false表示未启用高对比度文字功能，默认值为false。                                           |
-| invertColor                        | [Config](#config)\<boolean>                                                                | 是 | 是 | 表示颜色反转功能启用状态。true表示已启用颜色反转功能，false表示未启用颜色反转功能，默认值为false。                                             |
-| daltonizationState<sup>11+</sup>   | [Config](#config)\<boolean>                                                                | 是 | 是 | 表示颜色滤镜功能启动状态。配合daltonizationColorFilter使用。true表示已启用颜色滤镜功能，false表示未启用颜色滤镜功能，默认值为false。                |
-| daltonizationColorFilter           | [Config](#config)&lt;[DaltonizationColorFilter](#daltonizationcolorfilter)&gt;             | 是 | 是 | 表示颜色滤镜功能配置。                                               |
-| contentTimeout                     | [Config](#config)\<number>                                                                 | 是 | 是 | 表示内容显示建议时长配置。取值范围为0~5000，单位为毫秒。默认值为0。                             |
-| animationOff                       | [Config](#config)\<boolean>                                                                | 是 | 是 | 表示关闭动画功能启用状态。true表示已启用关闭动画功能，false表示未启用关闭动画功能，默认值为false。                                             |
-| brightnessDiscount                 | [Config](#config)\<number>                                                                 | 是 | 是 | 表示亮度折扣系统配置。取值范围为0~1.0。默认值为0.0。                                      |
-| mouseKey                           | [Config](#config)\<boolean>                                                                | 是 | 是 | 表示鼠标键功能启用状态。true表示已启用鼠标键功能，false表示未启用鼠标键功能，默认值为false。                                              |
-| mouseAutoClick                     | [Config](#config)\<number>                                                                 | 是 | 是 | 表示鼠标自动点击操作的配置。取值范围0-5000，单位为毫秒，0表示不生效，其他值表示鼠标悬停相应的时长即触发自动点击操作，默认值为0，即默认不生效。                |
-| shortkey                           | [Config](#config)\<boolean>                                                                | 是 | 是 | 表示辅助扩展快捷键功能启用状态。true表示已启用辅助扩展快捷键功能，false表示未启用辅助扩展快捷键功能，默认值为false。                                          |
-| shortkeyTarget                     | [Config](#config)\<string>                                                                 | 是 | 是 | 表示辅助扩展快捷键的目标配置。取值为辅助应用的名称，格式为：'bundleName/abilityName'。   |
-| captions                           | [Config](#config)\<boolean>                                                                | 是 | 是 | 表示辅助字幕功能启用状态。true表示已启用辅助字幕功能，false表示未启用辅助字幕功能，默认值为false。                                             |
-| captionsStyle                      | [Config](#config)\<[accessibility.CaptionsStyle](js-apis-accessibility.md#captionsstyle8)> | 是 | 是 | 表示辅助字幕的配置。                                                |
-| audioMono<sup>10+</sup>            | [Config](#config)\<boolean>                                                                | 是 | 是 | 表示单声道音频的配置。true表示已启用单声道音频，false表示未启用单声道音频，默认值为false。                                            |
-| audioBalance<sup>10+</sup>         | [Config](#config)\<number>                                                                 | 是 | 是 | 表示左右声道音量平衡的配置。取值范围为-1.0~1.0。默认值为0.0。                                |
-| shortkeyMultiTargets<sup>11+</sup> | [Config](#config)&lt;Array\<string>&gt;                                                    | 是 | 是 | 表示辅助扩展快捷键的列表配置。取值为辅助应用的名称，格式为：['bundleName/abilityName']。 |
-| clickResponseTime<sup>11+</sup>    | [Config](#config)&lt;[ClickResponseTime](#clickresponsetime11)&gt;                         | 是 | 是 | 表示点击持续时间功能配置。                                             |
-| ignoreRepeatClick<sup>11+</sup>    | [Config](#config)\<boolean>                                                                | 是 | 是 | 表示忽略重复点击功能启用状态。配合repeatClickInterval使用。true表示已启用忽略重复点击功能，false表示未启用忽略重复点击功能，默认值为false。                   |
-| repeatClickInterval<sup>11+</sup>  | [Config](#config)&lt;[RepeatClickInterval](#repeatclickinterval11)&gt;                     | 是 | 是 | 表示忽略重复点击功能配置。                                             |
+| highContrastText                   | [Config](#config)\<boolean>                                                                | 否 | 否 | 表示高对比度文字功能启用状态。true表示已启用高对比度文字功能，false表示未启用高对比度文字功能，默认值为false。                                           |
+| invertColor                        | [Config](#config)\<boolean>                                                                | 否 | 否 | 表示颜色反转功能启用状态。true表示已启用颜色反转功能，false表示未启用颜色反转功能，默认值为false。                                             |
+| daltonizationState<sup>11+</sup>   | [Config](#config)\<boolean>                                                                | 否 | 否 | 表示颜色滤镜功能启动状态。配合daltonizationColorFilter使用。true表示已启用颜色滤镜功能，false表示未启用颜色滤镜功能，默认值为false。                |
+| daltonizationColorFilter           | [Config](#config)&lt;[DaltonizationColorFilter](#daltonizationcolorfilter)&gt;             | 否 | 否 | 表示颜色滤镜功能配置。                                               |
+| contentTimeout                     | [Config](#config)\<number>                                                                 | 否 | 否 | 表示内容显示建议时长配置。取值范围为0~5000，单位为毫秒。默认值为0。                             |
+| animationOff                       | [Config](#config)\<boolean>                                                                | 否 | 否 | 表示关闭动画功能启用状态。true表示已启用关闭动画功能，false表示未启用关闭动画功能，默认值为false。                                             |
+| brightnessDiscount                 | [Config](#config)\<number>                                                                 | 否 | 否 | 表示亮度折扣系统配置。取值范围为0~1.0。默认值为0.0。                                      |
+| mouseKey                           | [Config](#config)\<boolean>                                                                | 否 | 否 | 表示鼠标键功能启用状态。true表示已启用鼠标键功能，false表示未启用鼠标键功能，默认值为false。                                              |
+| mouseAutoClick                     | [Config](#config)\<number>                                                                 | 否 | 否 | 表示鼠标自动点击操作的配置。取值范围0-5000，单位为毫秒，0表示不生效，其他值表示鼠标悬停相应的时长即触发自动点击操作，默认值为0，即默认不生效。                |
+| shortkey                           | [Config](#config)\<boolean>                                                                | 否 | 否 | 表示辅助扩展快捷键功能启用状态。true表示已启用辅助扩展快捷键功能，false表示未启用辅助扩展快捷键功能，默认值为false。                                          |
+| shortkeyTarget                     | [Config](#config)\<string>                                                                 | 否 | 否 | 表示辅助扩展快捷键的目标配置。取值为辅助应用的名称，格式为：'bundleName/abilityName'。   |
+| captions                           | [Config](#config)\<boolean>                                                                | 否 | 否 | 表示辅助字幕功能启用状态。true表示已启用辅助字幕功能，false表示未启用辅助字幕功能，默认值为false。                                             |
+| captionsStyle                      | [Config](#config)\<[accessibility.CaptionsStyle](js-apis-accessibility.md#captionsstyle8)> | 否 | 否 | 表示辅助字幕的配置。                                                |
+| audioMono<sup>10+</sup>            | [Config](#config)\<boolean>                                                                | 否 | 否 | 表示单声道音频的配置。true表示已启用单声道音频，false表示未启用单声道音频，默认值为false。                                            |
+| audioBalance<sup>10+</sup>         | [Config](#config)\<number>                                                                 | 否 | 否 | 表示左右声道音量平衡的配置。取值范围为-1.0~1.0。默认值为0.0。                                |
+| shortkeyMultiTargets<sup>11+</sup> | [Config](#config)&lt;Array\<string>&gt;                                                    | 否 | 否 | 表示辅助扩展快捷键的列表配置。取值为辅助应用的名称，格式为：['bundleName/abilityName']。 |
+| clickResponseTime<sup>11+</sup>    | [Config](#config)&lt;[ClickResponseTime](#clickresponsetime11)&gt;                         | 否 | 否 | 表示点击持续时间功能配置。                                             |
+| ignoreRepeatClick<sup>11+</sup>    | [Config](#config)\<boolean>                                                                | 否 | 否 | 表示忽略重复点击功能启用状态。配合repeatClickInterval使用。true表示已启用忽略重复点击功能，false表示未启用忽略重复点击功能，默认值为false。                   |
+| repeatClickInterval<sup>11+</sup>  | [Config](#config)&lt;[RepeatClickInterval](#repeatclickinterval11)&gt;                     | 否 | 否 | 表示忽略重复点击功能配置。                                             |
 
 boolean返回值的含义：True表示开启，False表示关闭。
 []()

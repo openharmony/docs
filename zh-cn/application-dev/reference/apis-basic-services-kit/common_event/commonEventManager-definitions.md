@@ -234,7 +234,7 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**取值：** usual.event.SPLIT_SCREEN"
+**取值：** "usual.event.SPLIT_SCREEN"
 
 
 
@@ -893,6 +893,8 @@ Wi-Fi状态变化。
 
 
 **系统能力：** SystemCapability.Notification.CommonEvent
+
+**订阅方需要的权限：** 无
 
 **取值：** "usual.event.wifi.mplink.STATE_CHANGE"
 

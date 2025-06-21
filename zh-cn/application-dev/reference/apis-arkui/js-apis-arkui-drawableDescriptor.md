@@ -16,7 +16,7 @@ import { DrawableDescriptor, LayeredDrawableDescriptor } from '@kit.ArkUI';
 
 ## DrawableDescriptor
 
-支持传入png，jpg，bmp，svg，gif，webp，astc，sut格式的资源类型。
+支持传入png、jpg、bmp、svg、gif、webp、astc、sut格式的资源类型。
 
 ### getPixelMap
 
@@ -32,7 +32,7 @@ getPixelMap(): image.PixelMap
 
 | 类型                                       | 说明       |
 | ---------------------------------------- | -------- |
-| [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | PixelMap |
+| [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | PixelMap |
 
 **示例：**
   ```ts
@@ -63,7 +63,7 @@ PixelMapDrawableDescriptor的构造函数。
 
 | 参数名     | 类型              | 必填  | 说明                                       |
 | --------- | ---------------- | ---- | ------------------------------------------ |
-| src | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)  | 否 | PixelMap类型参数，存储 PixelMap 图片数据。 |
+| src | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)  | 否 | PixelMap类型参数，存储 PixelMap 图片数据。 |
 
 
 ## LayeredDrawableDescriptor
@@ -84,7 +84,7 @@ drawable.json位于项目工程entry/src/main/resources/base/media目录下。�
 
 **示例：**  
 
-1. 通过json文件创建LayeredDrawableDescriptor。
+1. 使用json文件创建LayeredDrawableDescriptor。
 
     ```ts
     // xxx.ets
@@ -106,7 +106,7 @@ drawable.json位于项目工程entry/src/main/resources/base/media目录下。�
       }
     }
     ```
-2. 通过PixelMapDrawableDescriptor创建LayeredDrawableDescriptor。
+2. 使用PixelMapDrawableDescriptor创建LayeredDrawableDescriptor。
    
     ```ts
     import { DrawableDescriptor, LayeredDrawableDescriptor, PixelMapDrawableDescriptor } from '@kit.ArkUI';
@@ -196,10 +196,40 @@ getForeground(): DrawableDescriptor
 **示例：**
   ```ts
 import { DrawableDescriptor, LayeredDrawableDescriptor } from '@kit.ArkUI';
-let resManager = this.getUIContext().getHostContext()?.resourceManager;
-let drawable: LayeredDrawableDescriptor = (resManager?.getDrawableDescriptor($r('app.media.drawable')
-    .id)) as LayeredDrawableDescriptor;
-let drawableNew: object = drawable.getForeground();
+
+@Entry
+@Component
+struct Index {
+  @State drawableDescriptor: DrawableDescriptor | undefined = undefined;
+
+  private getForeground(): DrawableDescriptor | undefined {
+    let resManager = this.getUIContext().getHostContext()?.resourceManager;
+    let drawable: DrawableDescriptor | undefined = resManager?.getDrawableDescriptor($r('app.media.drawable').id);
+    if (!drawable) {
+      return undefined;
+    }
+    let layeredDrawableDescriptor = (drawable as LayeredDrawableDescriptor).getForeground();
+    return layeredDrawableDescriptor;
+  }
+
+  aboutToAppear(): void {
+    this.drawableDescriptor = this.getForeground();
+  }
+
+  build() {
+    RelativeContainer() {
+      if (this.drawableDescriptor) {
+        Image(this.drawableDescriptor)
+          .width(100)
+          .height(100)
+          .borderWidth(1)
+          .backgroundColor(Color.Green);
+      }
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
   ```
 
 ### getBackground
@@ -221,10 +251,38 @@ getBackground(): DrawableDescriptor
 **示例：**
   ```ts
 import { DrawableDescriptor, LayeredDrawableDescriptor } from '@kit.ArkUI';
-let resManager = this.getUIContext().getHostContext()?.resourceManager;
-let drawable: LayeredDrawableDescriptor = (resManager?.getDrawableDescriptor($r('app.media.drawable')
-    .id)) as LayeredDrawableDescriptor;
-let drawableNew: object = drawable.getBackground();
+
+@Entry
+@Component
+struct Index {
+  @State drawableDescriptor: DrawableDescriptor | undefined = undefined;
+
+  private getBackground(): DrawableDescriptor | undefined {
+    let resManager = this.getUIContext().getHostContext()?.resourceManager;
+    let drawable: DrawableDescriptor | undefined = resManager?.getDrawableDescriptor($r('app.media.drawable').id);
+    if (!drawable) {
+      return undefined;
+    }
+    let layeredDrawableDescriptor = (drawable as LayeredDrawableDescriptor).getBackground();
+    return layeredDrawableDescriptor;
+  }
+
+  aboutToAppear(): void {
+    this.drawableDescriptor = this.getBackground();
+  }
+
+  build() {
+    RelativeContainer() {
+      if (this.drawableDescriptor) {
+        Image(this.drawableDescriptor)
+          .width(100)
+          .height(100)
+      }
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
   ```
 
 ### getMask
@@ -246,10 +304,38 @@ getMask(): DrawableDescriptor
 **示例：**
   ```ts
 import { DrawableDescriptor, LayeredDrawableDescriptor } from '@kit.ArkUI';
-let resManager = this.getUIContext().getHostContext()?.resourceManager;
-let drawable: LayeredDrawableDescriptor = (resManager?.getDrawableDescriptor($r('app.media.drawable')
-    .id)) as LayeredDrawableDescriptor;
-let drawableNew: object = drawable.getMask();
+
+@Entry
+@Component
+struct Index {
+  @State drawableDescriptor: DrawableDescriptor | undefined = undefined;
+
+  private getMask(): DrawableDescriptor | undefined {
+    let resManager = this.getUIContext().getHostContext()?.resourceManager;
+    let drawable: DrawableDescriptor | undefined = resManager?.getDrawableDescriptor($r('app.media.drawable').id);
+    if (!drawable) {
+      return undefined;
+    }
+    let layeredDrawableDescriptor = (drawable as LayeredDrawableDescriptor).getMask();
+    return layeredDrawableDescriptor;
+  }
+
+  aboutToAppear(): void {
+    this.drawableDescriptor = this.getMask();
+  }
+
+  build() {
+    RelativeContainer() {
+      if (this.drawableDescriptor) {
+        Image(this.drawableDescriptor)
+          .width(100)
+          .height(100)
+      }
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
   ```
 ### getMaskClipPath
 
@@ -294,7 +380,7 @@ struct Index {
 
 ## AnimationOptions<sup>12+</sup>
 
-PixelMap 数组通过Image组件显示时用来控制动画的播放。
+用于控制通过Image组件显示的PixelMap数组动画的播放行为。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -302,8 +388,8 @@ PixelMap 数组通过Image组件显示时用来控制动画的播放。
 
 | 名称      | 类型    | 必填  | 说明                                    |
 | ---------- | ------ | -----| --------------------------------------- |
-| duration   | number | 否   | 设置图片数组播放总时间。默认每张图片1秒。<br/> 取值范围：[0, +∞)      |
-| iterations | number | 否   | 设置图片数组播放次数。默认为1，为-1时无限播放，大于0时为播放次数。 |
+| duration   | number | 否   | 设置图片数组播放总时间。默认每张图片播放1秒。<br/> 取值范围：[0, +∞)      |
+| iterations | number | 否   | 设置图片数组播放次数。默认为1，值为-1时表示无限播放，值为0时表示不播放，值大于0时表示播放次数。 |
 
 **示例：**
 
@@ -320,7 +406,7 @@ struct Example {
 
 ## AnimatedDrawableDescriptor<sup>12+</sup>
 
-Image组件播放PixelMap数组时传入AnimatedDrawableDescriptor对象。继承自[DrawableDescriptor](#drawabledescriptor)。
+使用Image组件播放PixelMap数组时传入AnimatedDrawableDescriptor对象，该对象继承自[DrawableDescriptor](#drawabledescriptor)。
 
 ### constructor<sup>12+</sup>
 
@@ -336,7 +422,7 @@ AnimatedDrawableDescriptor的构造函数。
 
 | 参数名     | 类型              | 必填  | 说明                                       |
 | --------- | ---------------- | ---- | ------------------------------------------ |
-| pixelMaps | Array\<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)>  | 是   | PixelMap 数组类型参数，存储 PixelMap 图片数据。 |
+| pixelMaps | Array\<[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)>  | 是   | PixelMap 数组类型参数，存储 PixelMap 图片数据。 |
 | options   | [AnimationOptions](#animationoptions12) | 否   | 动画控制选项。                               |
 
 **示例：**

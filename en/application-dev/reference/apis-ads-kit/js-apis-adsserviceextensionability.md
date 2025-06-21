@@ -3,7 +3,7 @@
 The AdsServiceExtensionAbility module provides ExtensionAbilities for the ads service. Device vendors can implement the callbacks for ads requests.
 
 > **NOTE**
-> The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
@@ -13,7 +13,9 @@ import { RespCallback } from '@kit.AdsKit';
 
 ## RespCallback
 
-(respData: Map&lt;string, Array&lt;advertising.Advertisement&gt;&gt;): void;
+### (respData: Map&lt;string, Array&lt;advertising.Advertisement&gt;&gt;)
+
+(respData: Map&lt;string, Array&lt;advertising.Advertisement&gt;&gt;): void
 
 Ad request callback.
 
@@ -21,9 +23,9 @@ Ad request callback.
 
 **Parameters**
 
-| Name     | Type                                                                                               | Mandatory| Description       | 
-|----------|---------------------------------------------------------------------------------------------------|----|-----------|
-| respData | Map&lt;string, Array&lt;advertising.[Advertisement](js-apis-advertising.md#advertisement)&gt;&gt; | Yes | Data in the ad request callback.| 
+| Name  | Type                                                                                             | Mandatory| Description             |
+|----------|---------------------------------------------------------------------------------------------------|-----|-----------------|
+| respData | Map&lt;string, Array&lt;advertising.[Advertisement](js-apis-advertising.md#advertisement)&gt;&gt; | Yes  | Data in the ad request callback.|
 
 **Example**
 

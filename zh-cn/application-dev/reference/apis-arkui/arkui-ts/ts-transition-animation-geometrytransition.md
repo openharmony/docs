@@ -6,7 +6,7 @@
 >
 > 从API version 7开始支持，从API version 10开始生效。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
-> [geometryTransition](ts-transition-animation-geometrytransition.md)必须配合[animateTo](../js-apis-arkui-UIContext.md#animateto)使用才有动画效果，动效时长、曲线跟随[animateTo](../js-apis-arkui-UIContext.md#animateto)中的配置，不支持[animation](ts-animatorproperty.md)隐式动画。
+> [geometryTransition](ts-transition-animation-geometrytransition.md)必须配合[animateTo](../js-apis-arkui-UIContext.md#animateto)使用才有动画效果，动效时长、曲线跟随[animateTo](../js-apis-arkui-UIContext.md#animateto)中的配置，不支持[animation](ts-animatorproperty.md)动画。
 
 ## geometryTransition
 
@@ -60,7 +60,7 @@ geometryTransition(id: string, options?: GeometryTransitionOptions)
 @Entry
 @Component
 struct Index {
-  @State isShow: boolean = false
+  @State isShow: boolean = false;
 
   build() {
     Stack({ alignContent: Alignment.Center }) {
@@ -95,8 +95,8 @@ struct Index {
     }
     .onClick(() => {
       this.getUIContext().animateTo({ duration: 1000 }, () => {
-        this.isShow = !this.isShow
-      })
+        this.isShow = !this.isShow;
+      });
     })
   }
 }

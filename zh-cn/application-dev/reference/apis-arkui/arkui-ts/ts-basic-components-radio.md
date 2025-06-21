@@ -34,6 +34,8 @@ Radio(options: RadioOptions)
 
 ## RadioOptions对象说明
 
+单选框的信息。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 类型 | 必填 | 说明 |
@@ -44,6 +46,8 @@ Radio(options: RadioOptions)
 | indicatorBuilder<sup>12+</sup> | [CustomBuilder](ts-types.md#custombuilder8) | 否 | 配置单选框的选中样式为自定义组件。自定义组件与Radio组件为中心点对齐显示。indicatorBuilder设置为undefined时，按照RadioIndicatorType.TICK进行显示。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## RadioIndicatorType<sup>12+</sup>枚举说明
+
+单选框的样式。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -88,8 +92,7 @@ checked(isChecked: Optional\<boolean>)
 
 设置单选框的选中状态。与[checked](#checked)相比，isChecked参数新增了对undefined类型的支持。
 
-该属性支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。
-从API version 18开始，该属性支持[!!](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。
+该属性支持[$$](../../../ui/state-management/arkts-two-way-sync.md)、[!!](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。
 
 **卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
@@ -173,7 +176,7 @@ onChange(callback: (isChecked: boolean) => void)
 
 | 参数名    | 类型    | 必填 | 说明                             |
 | --------- | ------- | ---- | -------------------------------- |
-| isChecked | boolean | 是   | 单选框选中状态改变时触发该回调。 |
+| isChecked | boolean | 是   | 单选框选中状态改变时触发该回调。<br/>值为true时，表示从未选中变为选中。值为false时，表示从选中变为未选中。 |
 
 ### onChange<sup>18+</sup>
 
@@ -210,6 +213,8 @@ type OnRadioChangeCallback = (isChecked: boolean) => void
 | isChecked | boolean | 是   | 单选框的状态。<br/>值为true时，表示从未选中变为选中。值为false时，表示从选中变为未选中。 |
 
 ## RadioStyle<sup>10+</sup>对象说明
+
+单选框的颜色。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

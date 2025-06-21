@@ -14,6 +14,7 @@
     - [fdsan使用指导](fdsan.md)
   - 使用Node-API实现跨语言交互<!--using-napi-interaction-with-cpp-->
     - [Node-API简介](napi-introduction.md)
+    - [Node-API接口返回状态码介绍](napi_status_introduction.md)
     - [Node-API支持的数据类型和接口](napi-data-types-interfaces.md)
     - [Node-API开发规范](napi-guidelines.md)
     - [使用Node-API实现跨语言交互开发流程](use-napi-process.md)
@@ -48,6 +49,7 @@
       - [使用扩展的Node-API接口在异步线程中运行和停止事件循环](use-napi-event-loop.md)
       - [使用Node-API接口进行模块加载](use-napi-load-module-with-info.md)
       - [使用Node-API接口从异步线程向ArkTS线程投递指定优先级和入队方式的的任务](use-call-threadsafe-function-with-priority.md)
+      - [使用Node-API接口创建、切换和销毁上下文环境](use-napi-about-context.md)
       - [使用Node-API接口产生的异常日志/崩溃分析](use-napi-about-crash.md)
       - [使用Node-API调用返回值为promise的ArkTS方法](use-napi-method-promise.md)
     - [Node-API常见问题](use-napi-faqs.md)
@@ -69,6 +71,7 @@
       - [使用JSVM-API接口操作bigint类型值](use-jsvm-about-bigint.md)
       - [使用JSVM进行class相关开发](use-jsvm-about-class.md)
       - [使用JSVM-API接口进行Date相关开发](use-jsvm-about-date.md)
+      - [使用JSVM-API接口进行debug操作](use-jsvm-about-debug-option.md)
       - [使用JSVM-API接口进行object相关开发](use-jsvm-about-object.md)
       - [使用JSVM-API接口进行primitive类相关开发](use-jsvm-about-primitive.md)
       - [使用JSVM-API接口处理异步操作](use-jsvm-about-promise.md)
@@ -92,6 +95,8 @@
       - [JSVM-API调试&定位](jsvm-debugger-cpuprofiler-heapsnapshot.md)
       - [JSVM-API Tracing](use-jsvm-about-trace.md)
       - [JSVM 申请JIT权限指导](jsvm-apply-jit-profile.md)
+      - [JSVM 坚盾守护模式](jsvm-secure-shield-mode.md)
+      - [JSVM 定位内存泄漏问题指导](jsvm-locate-memory-leak.md)
       - JSVM-API调优&高性能使用示例<!--jsvm-usage-examples-->
         - [使用JSVM-API接口创建多个引擎执行JS代码并销毁](use-jsvm-runtime-task.md)
         - [使用 code cache 加速编译](use-jsvm-about-code-cache.md)

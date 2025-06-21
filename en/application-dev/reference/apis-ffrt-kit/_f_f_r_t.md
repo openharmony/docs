@@ -21,6 +21,7 @@ Function Flow Runtime (FFRT) is a software runtime library that works with the F
 | [loop.h](loop_8h.md) | Declares the loop interfaces in C. | 
 | [mutex.h](mutex_8h.md) | Declares the mutex interfaces in C. | 
 | [queue.h](queue_8h.md) | Declares the queue interfaces in C. | 
+| [shared_mutex.h](shared__mutex_8h.md) | Declares read-write lock interfaces in C. | 
 | [sleep.h](sleep_8h.md) | Declares the sleep and yield interfaces in C. | 
 | [task.h](task_8h.md) | Declares the task interfaces in C. | 
 | [timer.h](timer_8h.md) | Declares the timer interfaces in C. | 
@@ -38,7 +39,9 @@ Function Flow Runtime (FFRT) is a software runtime library that works with the F
 | struct&nbsp;&nbsp;[ffrt_queue_attr_t](ffrt__queue__attr__t.md) | Describes a queue attribute. | 
 | struct&nbsp;&nbsp;[ffrt_condattr_t](ffrt__condattr__t.md) | Describes a condition variable attribute. | 
 | struct&nbsp;&nbsp;[ffrt_mutexattr_t](ffrt__mutexattr__t.md) | Describes a mutex attribute. | 
+| struct&nbsp;&nbsp;[ffrt_rwlockattr_t](ffrt__rwlockattr__t.md) | Describes a read-write lock attribute. | 
 | struct&nbsp;&nbsp;[ffrt_mutex_t](ffrt__mutex__t.md) | Describes a mutex. | 
+| struct&nbsp;&nbsp;[ffrt_rwlock_t](ffrt__rwlock__t.md) | Describes a read-write lock. | 
 | struct&nbsp;&nbsp;[ffrt_cond_t](ffrt__cond__t.md) | Describes a condition variable. | 
 
 
@@ -60,14 +63,14 @@ Function Flow Runtime (FFRT) is a software runtime library that works with the F
 
 | Name| Description| 
 | -------- | -------- |
-| [ffrt_queue_type_t](#ffrt_queue_type_t) {<br>ffrt_queue_serial, <br>ffrt_queue_concurrent, <br>ffrt_queue_max <br>} | Enumerates the queue types. | 
-| [ffrt_queue_priority_t](#ffrt_queue_priority_t) { <br>ffrt_queue_priority_immediate = 0, <br>ffrt_queue_priority_high, <br>ffrt_queue_priority_low, <br>ffrt_queue_priority_idle <br>} | Enumerates the task priority types. | 
-| [ffrt_qos_default_t](#ffrt_qos_default_t) {<br>ffrt_qos_inherit = -1, <br>ffrt_qos_background, <br>ffrt_qos_utility, <br>ffrt_qos_default,<br>ffrt_qos_user_initiated<br>} | Enumerates the task QoS types. | 
-| [ffrt_storage_size_t](#ffrt_storage_size_t) {<br>ffrt_task_attr_storage_size = 128, <br>ffrt_auto_managed_function_storage_size = 64 + sizeof(ffrt_function_header_t), <br>ffrt_mutex_storage_size = 64, <br>ffrt_cond_storage_size = 64,<br>ffrt_queue_attr_storage_size = 128<br>} | Enumerates the storage sizes available for different types of structs. | 
-| [ffrt_function_kind_t](#ffrt_function_kind_t) { <br>ffrt_function_kind_general, <br>ffrt_function_kind_queue <br>} | Enumerates the task types. | 
-| [ffrt_dependence_type_t](#ffrt_dependence_type_t) { <br>ffrt_dependence_data, <br>ffrt_dependence_task<br> } | Enumerates the dependency types. | 
-| [ffrt_error_t](#ffrt_error_t) {<br>ffrt_error = -1, <br>ffrt_success = 0, <br>ffrt_error_nomem = ENOMEM, <br>ffrt_error_timedout = ETIMEDOUT,<br>ffrt_error_busy = EBUSY, <br>ffrt_error_inval = EINVAL<br>} | Enumerates the FFRT error codes. | 
-| [ffrt_mutex_type](#ffrt_mutex_type) { <br>ffrt_mutex_normal = 0, <br>ffrt_mutex_recursive = 2, <br>ffrt_mutex_default = ffrt_mutex_normal <br>} | Enumerates the mutex types. | 
+| [ffrt_queue_type_t](#ffrt_queue_type_t) { ffrt_queue_serial, ffrt_queue_concurrent, ffrt_queue_max } | Enumerates the queue types. | 
+| [ffrt_queue_priority_t](#ffrt_queue_priority_t) { ffrt_queue_priority_immediate = 0, ffrt_queue_priority_high, ffrt_queue_priority_low, ffrt_queue_priority_idle } | Enumerates the task priority types. | 
+| [ffrt_qos_default_t](#ffrt_qos_default_t) {<br>ffrt_qos_inherit = -1, ffrt_qos_background, ffrt_qos_utility, ffrt_qos_default,<br>ffrt_qos_user_initiated<br>} | Enumerates the task QoS types. | 
+| [ffrt_storage_size_t](#ffrt_storage_size_t) {<br>ffrt_task_attr_storage_size = 128, ffrt_auto_managed_function_storage_size = 64 + sizeof(ffrt_function_header_t), ffrt_mutex_storage_size = 64, ffrt_cond_storage_size = 64,<br>ffrt_queue_attr_storage_size = 128, ffrt_rwlock_storage_size = 64<br>} | Enumerates the storage sizes available for different types of structs. | 
+| [ffrt_function_kind_t](#ffrt_function_kind_t) { ffrt_function_kind_general, ffrt_function_kind_queue } | Enumerates the task types. | 
+| [ffrt_dependence_type_t](#ffrt_dependence_type_t) { ffrt_dependence_data, ffrt_dependence_task } | Enumerates the dependency types. | 
+| [ffrt_error_t](#ffrt_error_t) {<br>ffrt_error = -1, ffrt_success = 0, ffrt_error_nomem = ENOMEM, ffrt_error_timedout = ETIMEDOUT,<br>ffrt_error_busy = EBUSY, ffrt_error_inval = EINVAL<br>} | Enumerates the FFRT error codes. | 
+| [ffrt_mutex_type](#ffrt_mutex_type) { ffrt_mutex_normal = 0, ffrt_mutex_recursive = 2, ffrt_mutex_default = ffrt_mutex_normal } | Enumerates the mutex types. | 
 
 
 ### Functions
@@ -114,6 +117,13 @@ Function Flow Runtime (FFRT) is a software runtime library that works with the F
 | FFRT_C_API int [ffrt_queue_cancel](#ffrt_queue_cancel) ([ffrt_task_handle_t](#ffrt_task_handle_t) handle) | Cancels a task in the queue. | 
 | FFRT_C_API [ffrt_queue_t](#ffrt_queue_t) [ffrt_get_main_queue](#ffrt_get_main_queue) (void) | Obtains the main thread queue. | 
 | FFRT_C_API [ffrt_queue_t](#ffrt_queue_t) [ffrt_get_current_queue](#ffrt_get_current_queue) (void) | Obtains the ArkTS Worker thread queue. | 
+| FFRT_C_API int [ffrt_rwlock_init](#ffrt_rwlock_init) ([ffrt_rwlock_t](ffrt__rwlock__t.md) \*rwlock, const [ffrt_rwlockattr_t](ffrt__rwlockattr__t.md) \*attr) | Initializes a read-write lock. | 
+| FFRT_C_API int [ffrt_rwlock_wrlock](#ffrt_rwlock_wrlock) ([ffrt_rwlock_t](ffrt__rwlock__t.md) \*rwlock) | Obtains a write lock. | 
+| FFRT_C_API int [ffrt_rwlock_trywrlock](#ffrt_rwlock_trywrlock) ([ffrt_rwlock_t](ffrt__rwlock__t.md) \*rwlock) | Attempts to obtain a write lock; if it fails, the function returns immediately. | 
+| FFRT_C_API int [ffrt_rwlock_rdlock](#ffrt_rwlock_rdlock) ([ffrt_rwlock_t](ffrt__rwlock__t.md) \*rwlock) | Obtains a read lock. | 
+| FFRT_C_API int [ffrt_rwlock_tryrdlock](#ffrt_rwlock_tryrdlock) ([ffrt_rwlock_t](ffrt__rwlock__t.md) \*rwlock) | Attempts to obtain a read lock; if it fails, the function returns immediately. | 
+| FFRT_C_API int [ffrt_rwlock_unlock](#ffrt_rwlock_unlock) ([ffrt_rwlock_t](ffrt__rwlock__t.md) \*rwlock) | Releases the read-write lock. | 
+| FFRT_C_API int [ffrt_rwlock_destroy](#ffrt_rwlock_destroy) ([ffrt_rwlock_t](ffrt__rwlock__t.md) \*rwlock) | Destroys the read-write lock. | 
 | FFRT_C_API int [ffrt_usleep](#ffrt_usleep) (uint64_t usec) | Sets the fixed sleep time. | 
 | FFRT_C_API void [ffrt_yield](#ffrt_yield) (void) | Passes control to other tasks so that they can be executed. | 
 | FFRT_C_API int [ffrt_task_attr_init](#ffrt_task_attr_init) ([ffrt_task_attr_t](ffrt__task__attr__t.md) \*attr) | Initializes a task attribute. | 
@@ -545,9 +555,9 @@ FFRT_C_API ffrt_queue_t ffrt_get_current_queue (void )
 **Description**
 Obtains the ArkTS Worker thread queue.
 
-**Since**: 12
-
 **Deprecated version**: 18
+
+**Since**: 12
 
 **Returns**
 
@@ -690,7 +700,7 @@ Starts the timer on a loop.
 | Name| Description| 
 | -------- | -------- |
 | loop | Loop object. | 
-| timeout | Timeout duration of the timer. | 
+| timeout | Timeout period, in milliseconds. | 
 | data | Pointer to the input parameter in the callback function invoked upon event changes. | 
 | cb | Callback function invoked upon event changes. | 
 | repeat | Whether to repeat the timer. | 
@@ -846,7 +856,7 @@ Destroys the mutex attribute. This API needs to be called by users.
 
 **Returns**
 
-Returns **ffrt_success** if the mutex is destroyed; returns **ffrt_error_inval** otherwise.
+Returns **ffrt_success** if the mutex attribute is destroyed; returns **ffrt_error_inval** otherwise.
 
 
 ### ffrt_mutexattr_gettype()
@@ -889,7 +899,7 @@ Initializes the mutex attribute.
 
 **Returns**
 
-Returns **ffrt_success** if the mutex is initialized; returns **ffrt_error_inval** otherwise.
+Returns **ffrt_success** if the mutex attribute is initialized; returns **ffrt_error_inval** otherwise.
 
 
 ### ffrt_mutexattr_settype()
@@ -1105,7 +1115,7 @@ Sets the queue timeout.
 | Name| Description| 
 | -------- | -------- |
 | attr | Pointer to the queue attribute. | 
-| timeout_us | Timeout. | 
+| timeout_us | Queue timeout, in microseconds. | 
 
 
 ### ffrt_queue_cancel()
@@ -1226,6 +1236,154 @@ Waits until a task in the queue is complete.
 | Name| Description| 
 | -------- | -------- |
 | handle | Task handle. | 
+
+
+### ffrt_rwlock_destroy()
+
+```
+FFRT_C_API int ffrt_rwlock_destroy (ffrt_rwlock_t * rwlock)
+```
+**Description**
+Destroys the read-write lock.
+
+**Since**: 18
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| rwlock | Pointer to the read-write lock. | 
+
+**Returns**
+
+Returns **ffrt_success** if the read-write lock is successfully destroyed; returns **ffrt_error_inval** otherwise. For details, see [ffrt_error_t](#ffrt_error_t).
+
+
+### ffrt_rwlock_init()
+
+```
+FFRT_C_API int ffrt_rwlock_init (ffrt_rwlock_t * rwlock, const ffrt_rwlockattr_t * attr )
+```
+**Description**
+Initializes a read-write lock.
+
+**Since**: 18
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| rwlock | Pointer to the read-write lock. | 
+| attr | Pointer to the read-write attribute. | 
+
+**Returns**
+
+Returns **ffrt_success** if the read-write lock is successfully initialized; returns **ffrt_error_inval** otherwise. For details, see [ffrt_error_t](#ffrt_error_t).
+
+
+### ffrt_rwlock_rdlock()
+
+```
+FFRT_C_API int ffrt_rwlock_rdlock (ffrt_rwlock_t * rwlock)
+```
+**Description**
+Obtains a read lock.
+
+**Since**: 18
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| rwlock | Pointer to the read-write lock. | 
+
+**Returns**
+
+Returns **ffrt_success** if the read lock is successfully obtained; returns **ffrt_error_inval** otherwise or blocks the task. For details, see [ffrt_error_t](#ffrt_error_t).
+
+
+### ffrt_rwlock_tryrdlock()
+
+```
+FFRT_C_API int ffrt_rwlock_tryrdlock (ffrt_rwlock_t * rwlock)
+```
+**Description**
+Attempts to obtain a read lock; if it fails, the function returns immediately.
+
+**Since**: 18
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| rwlock | Pointer to the read-write lock. | 
+
+**Returns**
+
+Returns **ffrt_success** if the read lock is obtained successfully; returns **ffrt_error_inval** if the lock does not exist; returns **ffrt_error_busy** if the read lock fails to be obtained. For details, see [ffrt_error_t](#ffrt_error_t).
+
+
+### ffrt_rwlock_trywrlock()
+
+```
+FFRT_C_API int ffrt_rwlock_trywrlock (ffrt_rwlock_t * rwlock)
+```
+**Description**
+Attempts to obtain a write lock; if it fails, the function returns immediately.
+
+**Since**: 18
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| rwlock | Pointer to the read-write lock. | 
+
+**Returns**
+
+Returns **ffrt_success** if the write lock is obtained successfully; returns **ffrt_error_inval** if the lock does not exist; returns **ffrt_error_busy** if the write lock fails to be obtained. For details, see [ffrt_error_t](#ffrt_error_t).
+
+
+### ffrt_rwlock_unlock()
+
+```
+FFRT_C_API int ffrt_rwlock_unlock (ffrt_rwlock_t * rwlock)
+```
+**Description**
+Releases the read-write lock.
+
+**Since**: 18
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| rwlock | Pointer to the read-write lock. | 
+
+**Returns**
+
+Returns **ffrt_success** if the read-write lock is successfully released; returns **ffrt_error_inval** otherwise. For details, see [ffrt_error_t](#ffrt_error_t).
+
+
+### ffrt_rwlock_wrlock()
+
+```
+FFRT_C_API int ffrt_rwlock_wrlock (ffrt_rwlock_t * rwlock)
+```
+**Description**
+Obtains a write lock.
+
+**Since**: 18
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| rwlock | Pointer to the read-write lock. | 
+
+**Returns**
+
+Returns **ffrt_success** if the write lock is successfully obtained; returns **ffrt_error_inval** otherwise or blocks the task. For details, see [ffrt_error_t](#ffrt_error_t).
 
 
 ### ffrt_submit_base()
@@ -1630,7 +1788,7 @@ Starts the timer.
 | Name| Description| 
 | -------- | -------- |
 | qos | QoS. | 
-| timeout | Timeout duration of the timer. | 
+| timeout | Timeout period, in milliseconds. | 
 | data | Pointer to the input parameter in the callback function invoked upon a timeout. | 
 | cb | Callback function invoked upon a timeout. | 
 | repeat | Whether to repeat the timer (not supported yet). | 

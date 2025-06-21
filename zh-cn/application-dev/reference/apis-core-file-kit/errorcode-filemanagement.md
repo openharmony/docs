@@ -962,7 +962,7 @@ server端返回值检查。
 
 **错误信息**
 
-Failed to register Notify
+Failed to register notify
 
 **可能原因**
 
@@ -978,7 +978,7 @@ Failed to register Notify
 
 **错误信息**
 
-Failed to unregister Notify
+Failed to unregister notify
 
 **可能原因**
 
@@ -994,7 +994,7 @@ Failed to unregister Notify
 
 **错误信息**
 
-Failed to initialize the Notify agent
+Failed to initialize the notify agent
 
 **可能原因**
 
@@ -1067,3 +1067,65 @@ Low battery level
 **处理步骤**
 
 充电状态或电量恢复后再执行。
+
+### 22400004  入参请求超过最大限制
+
+**错误信息**
+
+Exceeded the maximum limit
+
+**可能原因**
+
+请求数量超过接口规格定义的上限。
+
+**处理步骤**
+
+检查入参，保证请求数量符合规格要求。
+
+### 22400005  内部错误
+
+**错误信息**
+
+Inner error
+
+**可能原因**
+
+1.系统内部数据库请求失败或者SQL执行失败。
+
+2.系统出现空指针等异常。
+
+3.系统内存不足或内存异常。
+
+4.JS框架异常。
+
+**处理步骤**
+
+系统基础能力问题，<!--RP1-->请向OpenHarmony团队反馈，获取支持。<!--RP1End-->
+
+### 22400006  已经有同类型任务正在运行
+
+**错误信息**
+
+The same task is already in progress
+
+**可能原因**
+
+有同类型任务正在运行。
+
+**处理步骤**
+
+等待现有同类型任务完成，或通过调用对应业务的stop接口终止现有任务后，再触发新任务。
+
+### 22400007  指定用于替换原始文件的历史版本文件不存在
+
+**错误信息**
+
+The version file specified to replace the original file does not exist
+
+**可能原因**
+
+历史版本文件未下载或已删除。
+
+**处理步骤**
+
+重新下载指定的历史版本文件，保证文件存在。

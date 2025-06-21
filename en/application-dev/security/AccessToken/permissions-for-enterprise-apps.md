@@ -6,6 +6,10 @@ The distribution type of enterprise applications can be **enterprise_normal** (n
 
 For details about how to request the permissions for enterprise applications, see [declaring permissions](declare-permissions.md).
 
+> **NOTE**
+> 
+> The following permissions do not support automatic code signing. You must [manually sign the code](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-signing#section297715173233) during the debugging and release phases.
+
 ## ohos.permission.SET_FILE_GUARD_POLICY
 
 Allows an application to update the file guard policy.
@@ -99,6 +103,8 @@ Allows an application to obtain basic information and sensitive information abou
 ## ohos.permission.GET_WIFI_CONFIG
 
 Allows an application to obtain the Wi-Fi configuration.
+
+Currently, this permission is available only to applications running on PCs and 2-in-1 devices.
 
 **Permission level**: system_basic
 
@@ -311,3 +317,88 @@ Allows an application to obtain visible window information of the current screen
 **Enable via ACL**: true<!--DelEnd-->
 
 **Valid since**: 18
+
+## ohos.permission.kernel.AUTH_AUDIT_EVENT
+
+Allows an enterprise security application to block security audit events.
+
+With this permission, the application can block security audit events, such as events of file creation, file opening, and file deletion.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Supported devices**: PC/2in1
+
+**Valid since**：20
+
+## ohos.permission.SUPPORT_APP_SERVICE_EXTENSION
+
+Allows an application to be launched as an AppServiceExtension.
+
+With this permission, the application can be launched or connected as an AppServiceExtension by the same application or applications in appidentifierAllowList.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Supported Devices**：PC/2in1
+
+**Valid since**：20
+
+## ohos.permission.ENTERPRISE_MANAGE_EAP
+
+Allows enterprise network security software to add private information to EAP packets.
+
+With this permission, the software can obtain 802.1x packets and add information to complete customized authentication.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Supported Devices**：PC/2in1
+
+**Valid since**：20
+
+## ohos.permission.SUPPORT_INSTALL_ON_U1
+
+Allows an application to install on user 1.
+
+User 1 is a user who supports third-party applications running in singleton mode.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Supported devices**: PC/2in1
+
+**Valid since**：20
+
+## ohos.permission.SET_NET_EXT_ATTRIBUTE
+
+Allows an application to set network-specific extended attributes.
+
+With this permission, the application can specify whether a network is identified as internal or external.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Supported devices**: PC/2in1
+
+**Valid since**：20

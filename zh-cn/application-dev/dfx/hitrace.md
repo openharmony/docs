@@ -5,7 +5,8 @@ HiTrace提供业务流程调用链跟踪的维测接口，帮助开发者迅速�
 ## 环境要求
 
 - 根据hdc命令行工具指导，完成[环境准备](hdc.md#环境准备)。
-- 确保设备已正常连接。
+
+- 确保设备已正常连接，并执行hdc shell。
 
 ## 命令行说明
 
@@ -25,7 +26,7 @@ HiTrace提供业务流程调用链跟踪的维测接口，帮助开发者迅速�
 | --start_bgsrv         | 开启快照模式trace捕获。                                       |
 | --dump_bgsrv          | 触发快照模式trace输出到文件。                                 |
 | --stop_bgsrv          | 关闭快照模式trace捕获。                                       |
-| --trace_level         | 设置trace输出级别阈值，输出级别可以是Debug、Info、Critical、Commercial或其对应缩写D、I、C、M。 |
+| --trace_level         | 设置trace输出级别阈值，输出级别可以是Debug、Info、Critical、Commercial或其对应缩写D、I、C、M。<br>**说明**：从API version 19开始，支持该命令。 |
 
 > **说明**
 >
@@ -206,7 +207,7 @@ $ hitrace --trace_dump
 #              | |           |       |   ||||      |         |
            <...>-21829   (  19280) [003] .... 3011033.731844: tracing_mark_write: trace_event_clock_sync: realtime_ts=1732002022239
            <...>-21829   (  19280) [003] .... 3011033.731865: tracing_mark_write: trace_event_clock_sync: parent_ts=3011033.750000
-#
+$
 ```
 添加输出路径，trace信息将导出到对应文件。
 
@@ -311,7 +312,7 @@ $ hitrace --trace_finish_nodump
 
 打点级别优先级从高到低分别为 `M`(commercial)、`C`（critical）、`I`（info）、`D`（debug），低于trace输出级别阈值的打点将不会生效。
 
-开发者可使用带trace级别的打点接口（参考[js-apis-hitracemeter](../reference/apis-performance-analysis-kit/js-apis-hitracemeter.md)和[_hitrace](../reference/apis-performance-analysis-kit/_hitrace.md)中的API version 18的trace打点接口），测试不同阈值下的trace输出是否符合预期。
+开发者可使用带trace级别的打点接口（参考[js-apis-hitracemeter](../reference/apis-performance-analysis-kit/js-apis-hitracemeter.md)和[_hitrace](../reference/apis-performance-analysis-kit/_hitrace.md)中的API version 19的trace打点接口），测试不同阈值下的trace输出是否符合预期。
 
 ```shell
 // 查看trace输出级别阈值，打印的为数值，0表示Debug，1表示Info，2表示Critical，3表示Commercial

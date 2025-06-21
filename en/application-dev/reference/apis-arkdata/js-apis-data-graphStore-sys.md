@@ -10,7 +10,7 @@ A graph database (GDB) is a data management system designed to efficiently store
 The **graphStore** module provides the following functionalities:
 
 - [GraphStore](#graphstore): provides APIs for manipulating a GDB.
-- [Result](#result): provides the result returned by **read()** or **write()**.
+- [Result](#result): provides the result returned by the **read()** or **write()** API.
 - [Transaction](#transaction): provides APIs for managing transaction objects.
 
 > **NOTE**
@@ -55,8 +55,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 31300000  | Inner error. |
 | 31300001  | Database corrupted. |
-| 31300014  | Invalid database path. |
-| 31300015  | Config changed. |
+| 31300014  | Failed to open or delete database with an invalid database path. |
+| 31300015  | StoreConfig, for example, securityLevel or encrypt, is changed. |
 
 **Example**
 
@@ -76,7 +76,7 @@ class EntryAbility extends UIAbility {
 
     graphStore.getStore(this.context, STORE_CONFIG).then(async (gdb: graphStore.GraphStore) => {
       store = gdb;
-      console.info('Get GraphStore successfully.')
+      console.info('Get GraphStore successfully.');
     }).catch((err: BusinessError) => {
       console.error(`Get GraphStore failed, code is ${err.code}, message is ${err.message}`);
     })
@@ -90,7 +90,7 @@ deleteStore(context: Context, config: StoreConfig): Promise&lt;void&gt;
 
 Deletes a graph store. This API uses a promise to return the result.
 
-Before calling this API, call [close](#close) to close the graph store to be deleted. After the deletion, the opened graph store handle becomes invalid. You are advised to set the graph store instance to null.
+Before calling this API, call [close](#close) to close the graph store to be deleted. After the deletion, you are advised to set the graph store instance to null.
 
 **System capability**: SystemCapability.DistributedDataManager.DataIntelligence.Core
 
@@ -116,7 +116,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 202  | Permission verification failed, application which is not a system application uses system API. |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 31300000  | Inner error. |
-| 31300014  | Invalid database path. |
+| 31300014  | Failed to open or delete database with an invalid database path. |
 
 **Example**
 
@@ -133,8 +133,8 @@ const STORE_CONFIG: graphStore.StoreConfig = {
 };
 
 class EntryAbility extends UIAbility {
-  onWindowStageCreate(windowStage: window.WindowStage){
-    graphStore.deleteStore(this.context, STORE_CONFIG).then(()=>{
+  onWindowStageDestroy() {
+    graphStore.deleteStore(this.context, STORE_CONFIG).then(() => {
       store = null;
       console.info('Delete GraphStore successfully.');
     }).catch((err: BusinessError) => {
@@ -154,7 +154,7 @@ Represents the configuration of a graph store.
 | ------------- | ------------- | ---- | --------------------------------------------------------- |
 | name          | string        | Yes  | Database file name, which is the unique identifier of the graph store.<br>**Constraints**<br>1. The file name cannot exceed 128 bytes.<br>2. The file name does not include the .db filename extension.|
 | securityLevel | [SecurityLevel](#securitylevel) | Yes  | Security level of the graph store.<br>**Constraints**<br>1. The security level cannot be downgraded. For example, you can change the security level from S2 to S3, but not from S3 to S2.<br>2. If the security level of a graph store needs to be changed, call [close](#close) to close the graph store instance, and then call [getStore](#graphstoregetstore) with **StoreConfig**.|
-| encrypt | boolean       | No  | Whether to encrypt the graph store.<br>The value **true** means to encrypt the graph store; the value **false** means the opposite.<br>**Constraints**<br>1. It is not allowed to change **encrypt** from **true** to **false**.<br>2. If you need to change **encrypt** from **false** to **true**, call [close](#close) to close the graph store instance, and then call [getStore](#graphstoregetstore) with **StoreConfig**. |
+| encrypt | boolean       | No  | Whether to encrypt the graph store.<br> The value **true** means to encrypt the graph store;<br> the value **false** means the opposite.<br>**Constraints**<br>1. It is not allowed to change **encrypt** from **true** to **false**.<br>2. If you need to change **encrypt** from **false** to **true**, call [close](#close) to close the graph store instance, and then call [getStore](#graphstoregetstore) with **StoreConfig**.|
 
 ## SecurityLevel
 
@@ -185,15 +185,15 @@ Represents the allowed value types. The value type varies, depending on its usag
 
 ## Vertex
 
-Represents information about a vertex. **Vertex** is used only as the type in the return value ([Result](#result)) and cannot be customized. You can use [read](#read) to obtain its value.
+Represents information about a vertex. Vertex is used only as the type in the return value ([Result](#result)) and cannot be customized. You can use [read](#read) to obtain its value.
 
 **System capability**: SystemCapability.DistributedDataManager.DataIntelligence.Core
 
 | Name         | Type                         | Mandatory | Description          |
 | ----------- | --------------------------- | --- | ------------ |
-| vid        | string | Yes  | Identifier of the vertex. The value cannot be customized. It is a globally unique identifier allocated by the system when a vertex is written by using [GraphStore.write](#write-1) or [Transaction.write](#write). |
+| vid        | string | Yes  | Identifier of the vertex. The value cannot be customized. It is a globally unique identifier allocated by the system when a vertex is written by [GraphStore.write](#write-1) or [Transaction.write](#write).|
 | labels     | Array&lt;string&gt; | Yes  | Labels of the vertex. The labels are specified in the GQL statement in [GraphStore.write](#write-1) or [Transaction.write](#write). Each label is case-insensitive, stored in uppercase format, and cannot exceed 128 bytes.|
-| properties | Record&lt;string, [ValueType](#valuetype)&gt; | Yes  | Properties of the vertex. The key has a maximum length of 128 bytes, with a limit of 1024 entries. It is specified in the GQL statement in [GraphStore.write](#write-1) or [Transaction.write](#write). If the value is a string, it cannot exceed 64 x 1024 bytes. |
+| properties | Record&lt;string, [ValueType](#valuetype)&gt; | Yes  | Properties of the vertex. The key has a maximum length of 128 bytes, with a limit of 1024 entries. It is specified in the GQL statement in [GraphStore.write](#write-1) or [Transaction.write](#write). If the value is a string, it cannot exceed 64 x 1024 bytes.|
 
 ## Edge
 
@@ -203,15 +203,15 @@ Represents information about an edge. **Edge** is used only as the type in the r
 
 | Name         | Type                         | Mandatory | Description          |
 | ----------- | --------------------------- | --- | ------------ |
-| eid        | string | Yes  | Identifier of the edge. The value cannot be customized. It is a globally unique identifier allocated by the system when an edge is written by [GraphStore.write](#write-1) or [Transaction.write](#write). |
-| type       | string | Yes  | Type of the edge. It is specified in the GQL statement in [GraphStore.write](#write-1) or [Transaction.write](#write). It is case-insensitive, stored in uppercase format, and cannot exceed 128 bytes. |
-| startVid   | string | Yes  | Identifier of the start vertex. The value cannot be customized. It is a globally unique identifier allocated by the system when a vertex is written by [GraphStore.write](#write-1) or [Transaction.write](#write). |
-| endVid     | string | Yes  | Identifier of the end vertex. The value cannot be customized. It is a globally unique identifier allocated by the system when a vertex is written by [GraphStore.write](#write-1) or [Transaction.write](#write). |
-| properties | Record&lt;string, [ValueType](#valuetype)&gt; | Yes  | Properties of the edge. The key has a maximum length of 128 bytes, with a limit of 1024 entries. It is specified in the GQL statement in [GraphStore.write](#write-1) or [Transaction.write](#write). If the value is a string, it cannot exceed 64 x 1024 bytes. |
+| eid        | string | Yes  | Identifier of the edge. The value cannot be customized. It is a globally unique identifier allocated by the system when an edge is written by [GraphStore.write](#write-1) or [Transaction.write](#write).|
+| type       | string | Yes  | Type of the edge. It is specified in the GQL statement in [GraphStore.write](#write-1) or [Transaction.write](#write). It is case-insensitive, stored in uppercase format, and cannot exceed 128 bytes.|
+| startVid   | string | Yes  | Identifier of the start vertex. The value cannot be customized. It is a globally unique identifier allocated by the system when a vertex is written by [GraphStore.write](#write-1) or [Transaction.write](#write).|
+| endVid     | string | Yes  | Identifier of the end vertex. The value cannot be customized. It is a globally unique identifier allocated by the system when a vertex is written by [GraphStore.write](#write-1) or [Transaction.write](#write).|
+| properties | Record&lt;string, [ValueType](#valuetype)&gt; | Yes  | Properties of the edge. The key has a maximum length of 128 bytes, with a limit of 1024 entries. It is specified in the GQL statement in [GraphStore.write](#write-1) or [Transaction.write](#write). If the value is a string, it cannot exceed 64 x 1024 bytes.|
 
 ## PathSegment
 
-Represents information about a path segment, including the edge along with the start and end vertexes. **PathSegment** is used only as the ([Path.segments](#path)) type and cannot be customized.
+Represents information about a path segment, including the edge along with the start and end vertexes. **PathSegment** is used only as the type of the return value ([Path.segments](#path)) and cannot be customized. You can use the [read](#read) API to obtain related information.
 
 **System capability**: SystemCapability.DistributedDataManager.DataIntelligence.Core
 
@@ -249,13 +249,9 @@ Represents the GQL statement execution result.
 
 Provides APIs for transaction management in a graph store.
 
-Operations on different transaction objects are isolated. The graph stores use database-level locks. 
+Operations on different transaction objects are isolated. The graph stores use database-level locks. If [commit](#commit) or [rollback](#rollback) is not called after a transaction is written using [write](#write), calling [read](#read) or [write](#write) for another transaction instance or calling [GraphStore.read](#read-1) or [GraphStore.write](#write-1) with the **GraphStore** instance will return error 31300003. If [commit](#commit) or [rollback](#rollback) is not called after [read](#read) is called for a transaction, calling [write](#write) for another transaction instance or calling [GraphStore.write](#write-1) with the **GraphStore** instance will return error 31300003.
 
-If [commit](#commit) or [rollback](#rollback) is not called after a transaction is written using [write](#write), calling [read](#read) or [write](#write) for another transaction instance or calling [GraphStore.read](#read-1) or [GraphStore.write](#write-1) with the **GraphStore** instance will return error 31300003. 
-
-If [commit](#commit) or [rollback](#rollback) is not called after [read](#read) is called for a transaction, calling [write](#write) for another transaction instance or calling [GraphStore.write](#write-1) with the **GraphStore** instance will return error 31300003.
-
-Before calling any **Transaction** API, you must create a transaction instance by using [createTransaction](#createtransaction).
+Before calling any **Transaction** API, you must create a transaction instance using [createTransaction](#createtransaction).
 
 ### read
 
@@ -302,7 +298,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const QUERY_PATH_GQL = "MATCH path=(a:Person {name : \'name_1\'})-[]->{2, 2}(b:Person {name : \'name_3\'}) RETURN path;"
+const QUERY_PATH_GQL = "MATCH path=(a:Person {name : \'name_1\'})-[]->{2, 2}(b:Person {name : \'name_3\'}) RETURN path;";
 if(transaction != undefined) {
   (transaction as graphStore.Transaction).read(QUERY_PATH_GQL).then((result: graphStore.Result) => {
     console.info('Read successfully');
@@ -324,7 +320,7 @@ if(transaction != undefined) {
 
 write(gql: string): Promise&lt;Result&gt;
 
-Writes data. You can use this API to add, delete, and modify data. Currently, it cannot be used to modify the table structure (types or properties of [Vertex](#vertex) and [Edge](#edge)), or create or delete graphs or indexes. This API cannot be used to execute transaction operation statements, including **START TRANSACTION**, **COMMIT**, and **ROLLBACK**.
+Writes data. You can use this API to add, delete, and modify data. Currently, it cannot be used to modify the table structure (types or properties of [Vertex](#vertex) and [Edge](#edge)), create or delete graphs or indexes. This API cannot be used to execute transaction operation statements, including **START TRANSACTION**, **COMMIT**, and **ROLLBACK**.
 
 **System capability**: SystemCapability.DistributedDataManager.DataIntelligence.Core
 
@@ -367,7 +363,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const INSERT_GQL = "INSERT (:Person {name: 'name_1', age: 11});"
+const INSERT_GQL = "INSERT (:Person {name: 'name_1', age: 11});";
 if(transaction != undefined) {
   (transaction as graphStore.Transaction).write(INSERT_GQL).then(() => {
     console.info('Write successfully');
@@ -513,7 +509,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const QUERY_PATH_GQL = "MATCH path=(a:Person {name : \'name_1\'})-[]->{2, 2}(b:Person {name : \'name_3\'}) RETURN path;"
+const QUERY_PATH_GQL = "MATCH path=(a:Person {name : \'name_1\'})-[]->{2, 2}(b:Person {name : \'name_3\'}) RETURN path;";
 if(store != null) {
   (store as graphStore.GraphStore).read(QUERY_PATH_GQL).then((result: graphStore.Result) => {
     console.info('Read successfully');
@@ -623,7 +619,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let transaction: graphStore.Transaction | undefined = undefined;
 
-if(store != undefined) {
+if(store != null) {
   (store as graphStore.GraphStore).createTransaction().then((trans: graphStore.Transaction) => {
     transaction = trans;
     console.info('createTransaction successfully');

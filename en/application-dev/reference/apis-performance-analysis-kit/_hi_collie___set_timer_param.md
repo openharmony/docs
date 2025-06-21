@@ -9,6 +9,7 @@ Defines the input parameters of the **OH_HiCollie_SetTimer** function.
 
 **Related module**: [HiCollie](_hi_collie.md)
 
+**Header file**: [hicollie.h](hicollie_8h.md)
 
 ## Summary
 

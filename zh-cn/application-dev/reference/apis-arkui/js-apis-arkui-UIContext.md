@@ -1,8 +1,8 @@
 # @ohos.arkui.UIContext (UIContext)
 
-在Stage模型中，WindowStage/Window可以通过[loadContent](js-apis-window.md#loadcontent9)接口加载页面并创建UI的实例，并将页面内容渲染到关联的窗口中，所以UI实例和窗口是一一关联的。一些全局的UI接口是和具体UI实例的执行上下文相关的，在当前接口调用时，通过追溯调用链跟踪到UI的上下文，来确定具体的UI实例。若在非UI页面中或者一些异步回调中调用这类接口，可能无法跟踪到当前UI的上下文，导致接口执行失败。
+在Stage模型中，WindowStage/Window可以通过[loadContent](arkts-apis-window-Window.md#loadcontent9)接口加载页面并创建UI的实例，并将页面内容渲染到关联的窗口中，所以UI实例和窗口是一一关联的。一些全局的UI接口是和具体UI实例的执行上下文相关的，在当前接口调用时，通过追溯调用链跟踪到UI的上下文，来确定具体的UI实例。若在非UI页面中或者一些异步回调中调用这类接口，可能无法跟踪到当前UI的上下文，导致接口执行失败。
 
-@ohos.window在API version 10 新增[getUIContext](js-apis-window.md#getuicontext10)接口，获取UI上下文实例UIContext对象，使用UIContext对象提供的替代方法，可以直接作用在对应的UI实例上。
+@ohos.window在API version 10 新增[getUIContext](arkts-apis-window-Window.md#getuicontext10)接口，获取UI上下文实例UIContext对象，使用UIContext对象提供的替代方法，可以直接作用在对应的UI实例上。
 
 > **说明：**
 >
@@ -10,10 +10,135 @@
 >
 > 示例效果请以真机运行为准，当前DevEco Studio预览器不支持。
 
+## 导入模块
+
+```ts
+import {
+  AtomicServiceBar, ComponentUtils, ContextMenuController, CursorController, DragController, Font, KeyboardAvoidMode, MediaQuery, OverlayManager,
+  PromptAction, Router, UIContext, UIInspector, UIObserver, PageInfo, SwiperDynamicSyncScene, SwiperDynamicSyncSceneType, MeasureUtils, FrameCallback,
+  OverlayManagerOptions, TargetInfo, MarqueeDynamicSyncScene, MarqueeDynamicSyncSceneType
+} from "@kit.ArkUI";
+```
+
 ## UIContext
 
-以下API需先使用ohos.window中的[getUIContext()](js-apis-window.md#getuicontext10)方法获取UIContext实例，再通过此实例调用对应方法。或者可以通过自定义组件内置方法[getUIContext()](arkui-ts/ts-custom-component-api.md#getuicontext)获取。本文中UIContext对象以uiContext表示。
+以下API需先使用ohos.window中的[getUIContext()](arkts-apis-window-Window.md#getuicontext10)方法获取UIContext实例，再通过此实例调用对应方法。或者可以通过自定义组件内置方法[getUIContext()](arkui-ts/ts-custom-component-api.md#getuicontext)获取。本文中UIContext对象以uiContext表示。
 
+**示例：**
+
+```ts
+//两种方法获取到的UIContext没有差异
+//index.ets
+import { UIContext } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct Index {
+  @build
+  build() {
+    Column() {
+      Button("Button")
+          .onClick(()=>{
+            //通过自定义组件内置方法获取
+            this.getUIContext()
+            //其他运行逻辑
+          })
+    }  
+  }
+}
+
+//EntryAbility.ets
+import { AbilityConstant, ConfigurationConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { window } from '@kit.ArkUI';
+
+const DOMAIN = 0x0000;
+
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    //通过ohos.window获取
+    windowStage.getMainWindowSync().getUIContext()
+    //其他运行逻辑
+  }
+}
+```
+
+### isAvailable<sup>20+</sup>
+
+isAvailable(): boolean
+
+判断UIContext对象对应的UI实例是否有效。使用getUIContext方法创建UIContext对象。后端UI实例存在时，该UI实例有效。通过new UIContext()创建的UIContext对应的UI实例无效；多次loadContent后，旧的UI实例以及多窗口应用关闭对应窗口后，该窗口的UI实例无效。即后端UI实例不存在时，UI实例无效。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型            | 说明          |
+| ------------- | ----------- |
+| boolean | 返回UIContext对象对应的UI实例是否有效。true表示有效，false表示无效。 |
+
+**示例：**
+
+```ts
+import { UIContext } from '@kit.ArkUI'
+
+@Entry
+@Component
+struct UIContextCompare {
+  @State result1: string = ""
+  @State result2: string = ""
+
+  build() {
+    Column() {
+      Text("getUIContext() 结果: " + this.result1)
+        .fontSize(20)
+        .margin(10)
+
+      Text("new UIContext() 结果: " + this.result2)
+        .fontSize(20)
+        .margin(10)
+
+      Divider().margin(20)
+
+      Button("getUIContext()")
+        .width("70%")
+        .height(50)
+        .margin(10)
+        .onClick(() => {
+          try {
+            const ctx: UIContext = this.getUIContext();
+            const available: boolean = ctx.isAvailable();
+            this.result1 = `可用状态: ${available} UI实例有效 `;
+            console.log("getUIContext测试:", available);
+          } catch (e) {
+            this.result1 = "错误: " + (e instanceof Error ? e.message : String(e));
+          }
+        })
+
+      Button("new UIContext()")
+        .width("70%")
+        .height(50)
+        .margin(10)
+        .onClick(() => {
+          try {
+            const ctx: UIContext = new UIContext();
+            const available: boolean = ctx.isAvailable();
+            this.result2 = `可用状态: ${available} UI实例无效`;
+            console.log("new UIContext测试:", available);
+          } catch (e) {
+            this.result2 = "错误: " + (e instanceof Error ? e.message : String(e));
+          }
+        })
+    }
+    .width("100%")
+    .height("100%")
+    .padding(20)
+  }
+}
+```
+![example](figures/uicontext_isavailable.gif)
 ### getFont
 
 getFont(): Font
@@ -217,7 +342,7 @@ setOverlayManagerOptions(options: OverlayManagerOptions): boolean
 
 | 类型    | 说明           |
 | ------- | -------------- |
-| boolean | 是否设置成功。<br/>返回true时，设置成功。返回false时，设置失败。 |
+| boolean | 是否设置成功。<br/>返回true表示设置成功。返回false表示设置失败。 |
 
 **示例：**
 
@@ -273,10 +398,10 @@ animateTo(value: AnimateParam, event: () => void): void
 @Entry
 @Component
 struct AnimateToExample {
-  @State widthSize: number = 250
-  @State heightSize: number = 100
-  @State rotateAngle: number = 0
-  private flag: boolean = true
+  @State widthSize: number = 250;
+  @State heightSize: number = 100;
+  @State rotateAngle: number = 0;
+  private flag: boolean = true;
   uiContext: UIContext | undefined = undefined;
 
   aboutToAppear() {
@@ -301,19 +426,19 @@ struct AnimateToExample {
               iterations: 3,
               playMode: PlayMode.Normal,
               onFinish: () => {
-                console.info('play end')
+                console.info('play end');
               }
             }, () => {
-              this.widthSize = 150
-              this.heightSize = 60
-            })
+              this.widthSize = 150;
+              this.heightSize = 60;
+            });
           } else {
             this.uiContext?.animateTo({}, () => {
-              this.widthSize = 250
-              this.heightSize = 100
-            })
+              this.widthSize = 250;
+              this.heightSize = 100;
+            });
           }
-          this.flag = !this.flag
+          this.flag = !this.flag;
         })
       Button('stop rotating')
         .margin(50)
@@ -333,13 +458,13 @@ struct AnimateToExample {
             }
           }, () => {
             this.rotateAngle = 90
-          })
+          });
         })
         .onClick(() => {
           this.uiContext?.animateTo({ duration: 0 }, () => {
             // this.rotateAngle之前为90，在duration为0的动画中修改属性，可以停止该属性之前的动画，按新设置的属性显示
-            this.rotateAngle = 0
-          })
+            this.rotateAngle = 0;
+          });
         })
     }.width('100%').margin({ top: 5 })
   }
@@ -476,7 +601,7 @@ getFrameNodeById(id: string): FrameNode | null
 
 <!--code_no_check-->
 ```ts
-uiContext.getFrameNodeById("TestNode")
+uiContext.getFrameNodeById("TestNode");
 ```
 
 ### getAttachedFrameNodeById<sup>12+</sup>
@@ -509,7 +634,7 @@ getAttachedFrameNodeById(id: string): FrameNode | null
 
 <!--code_no_check-->
 ```ts
-uiContext.getAttachedFrameNodeById("TestNode")
+uiContext.getAttachedFrameNodeById("TestNode");
 ```
 
 ### getFrameNodeByUniqueId<sup>12+</sup>
@@ -699,7 +824,7 @@ uiContext.showAlertDialog(
       console.info('Closed callbacks')
     }
   }
-)
+);
 ```
 
 ### showActionSheet
@@ -729,11 +854,11 @@ uiContext.showActionSheet({
   confirm: {
     value: 'Confirm button',
     action: () => {
-      console.info('Get Alert Dialog handled')
+      console.info('Get Alert Dialog handled');
     }
   },
   cancel: () => {
-    console.info('actionSheet canceled')
+    console.info('actionSheet canceled');
   },
   alignment: DialogAlignment.Bottom,
   offset: { dx: 0, dy: -10 },
@@ -741,23 +866,23 @@ uiContext.showActionSheet({
     {
       title: 'apples',
       action: () => {
-        console.info('apples')
+        console.info('apples');
       }
     },
     {
       title: 'bananas',
       action: () => {
-        console.info('bananas')
+        console.info('bananas');
       }
     },
     {
       title: 'pears',
       action: () => {
-        console.info('pears')
+        console.info('pears');
       }
     }
   ]
-})
+});
 ```
 
 ### showDatePickerDialog
@@ -780,23 +905,23 @@ showDatePickerDialog(options: DatePickerDialogOptions): void
 
 <!--code_no_check-->
 ```ts
-let selectedDate: Date = new Date("2010-1-1")
+let selectedDate: Date = new Date("2010-1-1");
 uiContext.showDatePickerDialog({
   start: new Date("2000-1-1"),
   end: new Date("2100-12-31"),
   selected: selectedDate,
   onAccept: (value: DatePickerResult) => {
     // 通过Date的setFullYear方法设置按下确定按钮时的日期，这样当弹窗再次弹出时显示选中的是上一次确定的日期
-    selectedDate.setFullYear(Number(value.year), Number(value.month), Number(value.day))
-    console.info("DatePickerDialog:onAccept()" + JSON.stringify(value))
+    selectedDate.setFullYear(Number(value.year), Number(value.month), Number(value.day));
+    console.info("DatePickerDialog:onAccept()" + JSON.stringify(value));
   },
   onCancel: () => {
-    console.info("DatePickerDialog:onCancel()")
+    console.info("DatePickerDialog:onCancel()");
   },
   onChange: (value: DatePickerResult) => {
-    console.info("DatePickerDialog:onChange()" + JSON.stringify(value))
+    console.info("DatePickerDialog:onChange()" + JSON.stringify(value));
   }
-})
+});
 ```
 
 ### showTimePickerDialog
@@ -821,9 +946,9 @@ showTimePickerDialog(options: TimePickerDialogOptions): void
 // xxx.ets
 
 class SelectTime{
-  selectTime: Date = new Date('2020-12-25T08:30:00')
+  selectTime: Date = new Date('2020-12-25T08:30:00');
   hours(h:number,m:number){
-    this.selectTime.setHours(h,m)
+    this.selectTime.setHours(h, m);
   }
 }
 
@@ -841,19 +966,19 @@ struct TimePickerDialogExample {
             selected: this.selectTime,
             onAccept: (value: TimePickerResult) => {
               // 设置selectTime为按下确定按钮时的时间，这样当弹窗再次弹出时显示选中的为上一次确定的时间
-              let time = new SelectTime()
-              if(value.hour&&value.minute){
-                time.hours(value.hour, value.minute)
+              let time = new SelectTime();
+              if(value.hour && value.minute){
+                time.hours(value.hour, value.minute);
               }
-              console.info("TimePickerDialog:onAccept()" + JSON.stringify(value))
+              console.info("TimePickerDialog:onAccept()" + JSON.stringify(value));
             },
             onCancel: () => {
-              console.info("TimePickerDialog:onCancel()")
+              console.info("TimePickerDialog:onCancel()");
             },
             onChange: (value: TimePickerResult) => {
-              console.info("TimePickerDialog:onChange()" + JSON.stringify(value))
+              console.info("TimePickerDialog:onChange()" + JSON.stringify(value));
             }
-          })
+          });
         })
     }.width('100%').margin({ top: 5 })
   }
@@ -882,23 +1007,23 @@ showTextPickerDialog(options: TextPickerDialogOptions): void
 // xxx.ets
 
 class SelectedValue{
-  select: number = 2
-  set(val:number){
-    this.select = val
+  select: number = 2;
+  set(val: number){
+    this.select = val;
   }
 }
 class SelectedArray{
-  select: number[] = []
-  set(val:number[]){
-    this.select = val
+  select: number[] = [];
+  set(val: number[]){
+    this.select = val;
   }
 }
 @Entry
 @Component
 struct TextPickerDialogExample {
   @State selectTime: Date = new Date('2023-12-25T08:30:00');
-  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4', 'banana5']
-  private select : number  = 0;
+  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4', 'banana5'];
+  private select: number  = 0;
   build() {
     Column() {
       Button('showTextPickerDialog')
@@ -909,20 +1034,20 @@ struct TextPickerDialogExample {
             selected: this.select,
             onAccept: (value: TextPickerResult) => {
               // 设置select为按下确定按钮时候的选中项index，这样当弹窗再次弹出时显示选中的是上一次确定的选项
-              let selectedVal = new SelectedValue()
-              let selectedArr = new SelectedArray()
-              if(value.index){
-                  value.index instanceof Array?selectedArr.set(value.index) : selectedVal.set(value.index)
+              let selectedVal = new SelectedValue();
+              let selectedArr = new SelectedArray();
+              if (value.index){
+                value.index instanceof Array?selectedArr.set(value.index) : selectedVal.set(value.index);
               }
-              console.info("TextPickerDialog:onAccept()" + JSON.stringify(value))
+              console.info("TextPickerDialog:onAccept()" + JSON.stringify(value));
             },
             onCancel: () => {
-              console.info("TextPickerDialog:onCancel()")
+              console.info("TextPickerDialog:onCancel()");
             },
             onChange: (value: TextPickerResult) => {
-              console.info("TextPickerDialog:onChange()" + JSON.stringify(value))
+              console.info("TextPickerDialog:onChange()" + JSON.stringify(value));
             }
-          })
+          });
         })
     }.width('100%').margin({ top: 5 })
   }
@@ -1101,7 +1226,7 @@ onWindowStageCreate(windowStage: window.WindowStage) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 
     windowStage.loadContent('pages/Index', (err, data) => {
-      let uiContext :UIContext = windowStage.getMainWindowSync().getUIContext();
+      let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
       uiContext.setKeyboardAvoidMode(KeyboardAvoidMode.RESIZE);
       if (err.code) {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
@@ -1140,7 +1265,7 @@ onWindowStageCreate(windowStage: window.WindowStage) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 
     windowStage.loadContent('pages/Index', (err, data) => {
-      let uiContext :UIContext = windowStage.getMainWindowSync().getUIContext();
+      let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
       let KeyboardAvoidMode = uiContext.getKeyboardAvoidMode();
       hilog.info(0x0000, "KeyboardAvoidMode:", JSON.stringify(KeyboardAvoidMode));
       if (err.code) {
@@ -1203,7 +1328,7 @@ getDragController(): DragController
 
 |类型|说明|
 |----|----|
-|[DragController](js-apis-arkui-dragController.md#dragController)| 获取DragController对象。|
+|[DragController](js-apis-arkui-dragController.md#ohosarkuidragcontroller-dragcontroller)| 获取DragController对象。|
 
 **示例：**
 
@@ -1266,7 +1391,7 @@ getFilteredInspectorTree(filters?: Array\<string\>): string
 
 | 参数名  | 类型            | 必填 | 说明                                                         |
 | ------- | --------------- | ---- | ------------------------------------------------------------ |
-| filters | Array\<string\> | 否   | 需要获取的组件属性的过滤列表。目前仅支持过滤字段：<br/>"id"：组件唯一标识。<br/>"src"：资源来源。 <br/>"content"：元素、组件或对象所包含的信息或数据。<br/>"editable"：是否可编辑。<br/>"scrollable"：是否可滚动。<br/>"selectable"：是否可选择。<br/>"focusable"：是否可聚焦。<br/>"focused"：是否已聚焦。<br/>"isLayoutInspector"：是否显示自定义组件的属性。<br/>其余字段仅供测试场景使用。 |
+| filters | Array\<string\> | 否   | 需要获取的组件属性的过滤列表。目前仅支持过滤字段：<br/>"id"：组件唯一标识。<br/>"src"：资源来源。 <br/>"content"：元素、组件或对象所包含的信息或数据。<br/>"editable"：是否可编辑。<br/>"scrollable"：是否可滚动。<br/>"selectable"：是否可选择。<br/>"focusable"：是否可聚焦。<br/>"focused"：是否已聚焦。<br/>如果在filters参数中包含以上一个或者多个字段，则未包含的字段会在组件属性查询结果中被过滤掉。如果用户未传入filters参数或者filters参数为空数组，则以上字段全部不会在组件属性查询结果中被过滤掉。<br/>从API version 20开始，支持该过滤字段：<br/>"isLayoutInspector"：是否显示自定义组件的属性。<br/>其余字段仅供测试场景使用。 |
 
 **返回值：** 
 
@@ -1297,11 +1422,11 @@ import { UIContext } from '@kit.ArkUI';
 @Component
 struct ComponentPage {
   loopConsole(inspectorStr: string, i: string) {
-    console.log(`InsTree ${i}| type: ${JSON.parse(inspectorStr).$type}, ID: ${JSON.parse(inspectorStr).$ID}`)
+    console.log(`InsTree ${i}| type: ${JSON.parse(inspectorStr).$type}, ID: ${JSON.parse(inspectorStr).$ID}`);
     if (JSON.parse(inspectorStr).$children) {
-      i += '-'
+      i += '-';
       for (let index = 0; index < JSON.parse(inspectorStr).$children.length; index++) {
-        this.loopConsole(JSON.stringify(JSON.parse(inspectorStr).$children[index]), i)
+        this.loopConsole(JSON.stringify(JSON.parse(inspectorStr).$children[index]), i);
       }
     }
   }
@@ -1311,16 +1436,16 @@ struct ComponentPage {
       Button('content').onClick(() => {
         const uiContext: UIContext = this.getUIContext();
         let inspectorStr = uiContext.getFilteredInspectorTree(['content']);
-        console.log(`InsTree : ${inspectorStr}`)
-        inspectorStr = JSON.stringify(JSON.parse(inspectorStr))
-        this.loopConsole(inspectorStr, '-')
+        console.log(`InsTree : ${inspectorStr}`);
+        inspectorStr = JSON.stringify(JSON.parse(inspectorStr));
+        this.loopConsole(inspectorStr, '-');
       })
       Button('isLayoutInspector').onClick(() => {
         const uiContext: UIContext = this.getUIContext();
         let inspectorStr = uiContext.getFilteredInspectorTree(['isLayoutInspector']);
-        console.log(`InsTree : ${inspectorStr}`)
-        inspectorStr = JSON.stringify(JSON.parse(inspectorStr).content)
-        this.loopConsole(inspectorStr, '-')
+        console.log(`InsTree : ${inspectorStr}`);
+        inspectorStr = JSON.stringify(JSON.parse(inspectorStr).content);
+        this.loopConsole(inspectorStr, '-');
       })
     }
     .width('100%')
@@ -1340,7 +1465,7 @@ InsTree ---| type: Button, ID: 16
 InsTree ---| type: Button, ID: 18
 ```
 
-当传入"isLayoutInspector"过滤字段时，返回的JSON字符串结构新增外层结构"type"与"content"，其中"content"包含未增加该字段时的原有JSON字符串结构；同时，返回值结构中增添自定义组件。返回的JSON字符串结构如下：
+从API version 20开始，当传入"isLayoutInspector"过滤字段时，返回的JSON字符串结构新增外层结构"type"与"content"，其中"content"包含未增加该字段时的原有JSON字符串结构；同时，返回值结构中增添自定义组件。返回的JSON字符串结构如下：
 
 <!--code_no_check-->
 ```ts
@@ -1466,6 +1591,8 @@ uiContext.getMeasureUtils();
 getComponentSnapshot(): ComponentSnapshot
 
 获取ComponentSnapshot对象，可通过该对象获取组件截图的能力。
+
+典型使用场景（如长截图）及最佳实践请参考[使用组件截图](../../ui/arkts-uicontext-component-snapshot.md)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1657,7 +1784,7 @@ px2lpx(value : number) : number
 
 将px单位的数值转换为以lpx为单位的数值。
 
-转换公式为：px值 = lpx值 ÷ 实际屏幕宽度与逻辑宽度（通过[designWidth](../../quick-start/module-configuration-file.md#pages标签)配置）的比值
+转换公式为：lpx值 = px值 ÷ 实际屏幕宽度与逻辑宽度（通过[designWidth](../../quick-start/module-configuration-file.md#pages标签)配置）的比值
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1706,7 +1833,7 @@ import { window } from '@kit.ArkUI';
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World'
+  @State message: string = 'Hello World';
 
   aboutToAppear() {
     const windowName = this.getUIContext().getWindowName();
@@ -1770,7 +1897,7 @@ struct Index {
           let uiContext: UIContext = this.getUIContext();
           let heightBp: HeightBreakpoint = uiContext.getWindowHeightBreakpoint();
           let widthBp: WidthBreakpoint = uiContext.getWindowWidthBreakpoint();
-          console.info(`Window heightBP: ${heightBp}, widthBp: ${widthBp}`)
+          console.info(`Window heightBP: ${heightBp}, widthBp: ${widthBp}`);
         })
       }
       .width('100%')
@@ -1820,7 +1947,7 @@ struct Index {
           let uiContext: UIContext = this.getUIContext();
           let heightBp: HeightBreakpoint = uiContext.getWindowHeightBreakpoint();
           let widthBp: WidthBreakpoint = uiContext.getWindowWidthBreakpoint();
-          console.info(`Window heightBP: ${heightBp}, widthBp: ${widthBp}`)
+          console.info(`Window heightBP: ${heightBp}, widthBp: ${widthBp}`);
         })
       }
       .width('100%')
@@ -1855,7 +1982,7 @@ class MyFrameCallback extends FrameCallback {
   private tag: string;
 
   constructor(tag: string) {
-    super()
+    super();
     this.tag = tag;
   }
 
@@ -1904,7 +2031,7 @@ class MyFrameCallback extends FrameCallback {
   private tag: string;
 
   constructor(tag: string) {
-    super()
+    super();
     this.tag = tag;
   }
 
@@ -1953,7 +2080,7 @@ requireDynamicSyncScene(id: string): Array&lt;DynamicSyncScene&gt;
 
 <!--code_no_check-->
 ```ts
-uiContext.DynamicSyncScene("dynamicSyncScene")
+uiContext.DynamicSyncScene("dynamicSyncScene");
 ```
 
 ### openBindSheet<sup>12+</sup>
@@ -1987,7 +2114,7 @@ openBindSheet\<T extends Object>(bindSheetContent: ComponentContent\<T>, sheetOp
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    异常返回Promise对象。 |
+|   Promise&lt;void&gt;           |    返回Promise对象。 |
 
 **错误码：**
 
@@ -2009,7 +2136,7 @@ import { FrameNode, ComponentContent } from "@kit.ArkUI";
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class Params {
-  text: string = ""
+  text: string = "";
 
   constructor(text: string) {
     this.text = text;
@@ -2118,7 +2245,7 @@ updateBindSheet\<T extends Object>(bindSheetContent: ComponentContent\<T>, sheet
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    异常返回Promise对象。 |
+|   Promise&lt;void&gt;           |    返回Promise对象。 |
 
 **错误码：**
 
@@ -2137,7 +2264,7 @@ import { FrameNode, ComponentContent } from "@kit.ArkUI";
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class Params {
-  text: string = ""
+  text: string = "";
 
   constructor(text: string) {
     this.text = text;
@@ -2244,7 +2371,7 @@ closeBindSheet\<T extends Object>(bindSheetContent: ComponentContent\<T>): Promi
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    异常返回Promise对象。 |
+|   Promise&lt;void&gt;           |    返回Promise对象。 |
 
 **错误码：**
 
@@ -2263,7 +2390,7 @@ import { FrameNode, ComponentContent } from "@kit.ArkUI";
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class Params {
-  text: string = ""
+  text: string = "";
 
   constructor(text: string) {
     this.text = text;
@@ -2365,7 +2492,7 @@ isFollowingSystemFontScale(): boolean
 
 <!--code_no_check-->
 ```ts
-uiContext.isFollowingSystemFontScale()
+uiContext.isFollowingSystemFontScale();
 ```
 
 ### getMaxFontScale<sup>13+</sup>
@@ -2388,12 +2515,12 @@ getMaxFontScale(): number
 
 <!--code_no_check-->
 ```ts
-uiContext.getMaxFontScale()
+uiContext.getMaxFontScale();
 ```
 
 ### bindTabsToScrollable<sup>13+</sup>
 
-bindTabsToScrollable(tabsController: TabsController, scroller: Scroller): void;
+bindTabsToScrollable(tabsController: TabsController, scroller: Scroller): void
 
 绑定Tabs组件和可滚动容器组件（支持[List](./arkui-ts/ts-container-list.md)、[Scroll](./arkui-ts/ts-container-scroll.md)、[Grid](./arkui-ts/ts-container-grid.md)、[WaterFlow](./arkui-ts/ts-container-waterflow.md)），当滑动可滚动容器组件时，会触发所有与其绑定的Tabs组件的TabBar的显示和隐藏动效，上滑隐藏，下滑显示。一个TabsController可与多个Scroller绑定，一个Scroller也可与多个TabsController绑定。
 
@@ -2418,28 +2545,28 @@ bindTabsToScrollable(tabsController: TabsController, scroller: Scroller): void;
 @Entry
 @Component
 struct TabsExample {
-  private arr: string[] = []
-  private parentTabsController: TabsController = new TabsController()
-  private childTabsController: TabsController = new TabsController()
-  private listScroller: Scroller = new Scroller()
-  private parentScroller: Scroller = new Scroller()
-  private childScroller: Scroller = new Scroller()
+  private arr: string[] = [];
+  private parentTabsController: TabsController = new TabsController();
+  private childTabsController: TabsController = new TabsController();
+  private listScroller: Scroller = new Scroller();
+  private parentScroller: Scroller = new Scroller();
+  private childScroller: Scroller = new Scroller();
 
   aboutToAppear(): void {
     for (let i = 0; i < 20; i++) {
-      this.arr.push(i.toString())
+      this.arr.push(i.toString());
     }
-    let context = this.getUIContext()
-    context.bindTabsToScrollable(this.parentTabsController, this.listScroller)
-    context.bindTabsToScrollable(this.childTabsController, this.listScroller)
-    context.bindTabsToNestedScrollable(this.parentTabsController, this.parentScroller, this.childScroller)
+    let context = this.getUIContext();
+    context.bindTabsToScrollable(this.parentTabsController, this.listScroller);
+    context.bindTabsToScrollable(this.childTabsController, this.listScroller);
+    context.bindTabsToNestedScrollable(this.parentTabsController, this.parentScroller, this.childScroller);
   }
 
   aboutToDisappear(): void {
-    let context = this.getUIContext()
-    context.unbindTabsFromScrollable(this.parentTabsController, this.listScroller)
-    context.unbindTabsFromScrollable(this.childTabsController, this.listScroller)
-    context.unbindTabsFromNestedScrollable(this.parentTabsController, this.parentScroller, this.childScroller)
+    let context = this.getUIContext();
+    context.unbindTabsFromScrollable(this.parentTabsController, this.listScroller);
+    context.unbindTabsFromScrollable(this.childTabsController, this.listScroller);
+    context.unbindTabsFromNestedScrollable(this.parentTabsController, this.parentScroller, this.childScroller);
   }
 
   build() {
@@ -2513,7 +2640,7 @@ struct TabsExample {
 
 ### unbindTabsFromScrollable<sup>13+</sup>
 
-unbindTabsFromScrollable(tabsController: TabsController, scroller: Scroller): void;
+unbindTabsFromScrollable(tabsController: TabsController, scroller: Scroller): void
 
 解除Tabs组件和可滚动容器组件的绑定。
 
@@ -2534,7 +2661,7 @@ unbindTabsFromScrollable(tabsController: TabsController, scroller: Scroller): vo
 
 ### bindTabsToNestedScrollable<sup>13+</sup>
 
-bindTabsToNestedScrollable(tabsController: TabsController, parentScroller: Scroller, childScroller: Scroller): void;
+bindTabsToNestedScrollable(tabsController: TabsController, parentScroller: Scroller, childScroller: Scroller): void
 
 绑定Tabs组件和嵌套的可滚动容器组件（支持[List](./arkui-ts/ts-container-list.md)、[Scroll](./arkui-ts/ts-container-scroll.md)、[Grid](./arkui-ts/ts-container-grid.md)、[WaterFlow](./arkui-ts/ts-container-waterflow.md)），当滑动父组件或子组件时，会触发所有与其绑定的Tabs组件的TabBar的显示和隐藏动效，上滑隐藏，下滑显示。一个TabsController可与多个嵌套的Scroller绑定，嵌套的Scroller也可与多个TabsController绑定。
 
@@ -2556,7 +2683,7 @@ bindTabsToNestedScrollable(tabsController: TabsController, parentScroller: Scrol
 
 ### unbindTabsFromNestedScrollable<sup>13+</sup>
 
-unbindTabsFromNestedScrollable(tabsController: TabsController, parentScroller: Scroller, childScroller: Scroller): void;
+unbindTabsFromNestedScrollable(tabsController: TabsController, parentScroller: Scroller, childScroller: Scroller): void
 
 解除Tabs组件和嵌套的可滚动容器组件的绑定。
 
@@ -2582,7 +2709,7 @@ enableSwipeBack(enabled: Optional\<boolean\>): void
 
 设置是否支持应用内横向滑动返回上一级。
 
-**原子化服务API:** 从API Version 18 开始，该接口支持在原子化服务中使用。
+**原子化服务API:** 从API version 18 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Circle
 
@@ -2590,7 +2717,7 @@ enableSwipeBack(enabled: Optional\<boolean\>): void
 
 | 参数名     | 类型    | 必填   | 说明      |
 | --- | --- | --- | --- |
-| enabled | boolean | 是 | 是否支持应用内横向滑动返回，默认值为true。|
+| enabled | Optional\<boolean> | 是 | 是否支持应用内横向滑动返回，默认值为true。<br>当值为true时，支持应用内横向滑动返回。<br>当值为false时，不支持应用内横向滑动返回。|
 
 **示例：**
 
@@ -2619,7 +2746,7 @@ getTextMenuController(): TextMenuController
 
 获取[TextMenuController](#textmenucontroller16)对象，可通过该对象控制文本选择菜单。
 
-**原子化服务API:** 从API Version 16 开始，该接口支持在原子化服务中使用。
+**原子化服务API:** 从API version 16 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2713,6 +2840,12 @@ dispatchKeyEvent(node: number | string, event: KeyEvent): boolean
 | node  | number \| string | 是   | 组件的id或者节点UniqueID。 |
 | event  |[KeyEvent](./arkui-ts/ts-universal-events-key.md#keyevent对象说明) | 是   | KeyEvent对象。 |
 
+**返回值：**
+
+| 类型      | 说明            |
+|---------|---------------|
+| boolean | 按键事件是否成功分发给指定的组件。<br/> true表示分发成功，false表示分发失败。 |
+
 **示例：**
 
 ```ts
@@ -2724,11 +2857,11 @@ struct Index {
       Row() {
         Button('Button1').id('Button1').onKeyEvent((event) => {
           console.log("Button1");
-          return true
+          return true;
         })
         Button('Button2').id('Button2').onKeyEvent((event) => {
           console.log("Button2");
-          return true
+          return true;
         })
       }
       .width('100%')
@@ -2753,6 +2886,83 @@ struct Index {
     })
   }
 }
+```
+### setPixelRoundMode<sup>18+</sup>
+
+setPixelRoundMode(mode: PixelRoundMode): void
+
+配置当前页面的像素取整模式。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名      | 类型         | 必填   | 说明   |
+| -------- | ---------- | ---- | ---- |
+| mode | [PixelRoundMode](./arkui-ts/ts-appendix-enums.md#pixelroundmode18)| 是    | 像素取整模式。<br />默认值：PixelRoundMode.PIXEL_ROUND_ON_LAYOUT_FINISH |
+
+**示例：**
+
+```ts
+// EntryAbility.ets
+import { UIContext } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+onWindowStageCreate(windowStage: window.WindowStage) {
+    // Main window is created, set main page for this ability
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+
+    windowStage.loadContent('pages/Index', (err, data) => {
+      let uiContext :UIContext = windowStage.getMainWindowSync().getUIContext();
+      uiContext.setPixelRoundMode(PixelRoundMode.PIXEL_ROUND_ON_LAYOUT_FINISH);
+      if (err.code) {
+        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        return;
+      }
+      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+    });
+  }
+```
+
+### getPixelRoundMode<sup>18+</sup>
+
+getPixelRoundMode(): PixelRoundMode
+
+获取当前页面的像素取整模式。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型         | 说明   |
+| ---------- | ---- |
+| [PixelRoundMode](./arkui-ts/ts-appendix-enums.md#pixelroundmode18)| 当前页面的像素取整模式。|
+
+**示例：**
+
+```ts
+// EntryAbility.ets
+import { UIContext } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+onWindowStageCreate(windowStage: window.WindowStage) {
+    // Main window is created, set main page for this ability
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+
+    windowStage.loadContent('pages/Index', (err, data) => {
+      let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
+      console.info("pixelRoundMode : " + uiContext.getPixelRoundMode().valueOf());
+      if (err.code) {
+        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        return;
+      }
+      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+    });
+  }
 ```
 ## Font
 
@@ -2812,9 +3022,9 @@ getSystemFontList(): Array\<string>
 ```ts
 import { Font } from '@kit.ArkUI';
 
-let font:Font|undefined = uiContext.getFont();
-if(font){
-  font.getSystemFontList()
+let font: Font | undefined = uiContext.getFont();
+if (font) {
+  font.getSystemFontList();
 }
 ```
 
@@ -2838,7 +3048,7 @@ getFontByName(fontName: string): font.FontInfo
 
 | 类型                                      | 说明           |
 | ----------------------------------------- | -------------- |
-| [font.FontInfo](js-apis-font.md#fontinfo) | 字体的详细信息 |
+| [font.FontInfo](js-apis-font.md#fontinfo10) | 字体的详细信息。 |
 
 **示例：** 
 
@@ -2846,9 +3056,9 @@ getFontByName(fontName: string): font.FontInfo
 ```ts
 import { Font } from '@kit.ArkUI';
 
-let font:Font|undefined = uiContext.getFont();
-if(font){
-  font.getFontByName('Sans Italic')
+let font: Font | undefined = uiContext.getFont();
+if (font) {
+  font.getFontByName('Sans Italic');
 }
 ```
 
@@ -2876,7 +3086,7 @@ type Context = common.Context
 
 getRectangleById(id: string): componentUtils.ComponentInfo
 
-获取组件大小、位置、平移缩放旋转及仿射矩阵属性信息。
+获取组件大小、位置、平移、缩放、旋转及仿射矩阵属性信息。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2896,7 +3106,7 @@ getRectangleById(id: string): componentUtils.ComponentInfo
 
 **错误码：** 
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                |
 | ------ | ------------------- |
@@ -2908,7 +3118,7 @@ getRectangleById(id: string): componentUtils.ComponentInfo
 ```ts
 import { ComponentUtils } from '@kit.ArkUI';
 
-let componentUtils:ComponentUtils = uiContext.getComponentUtils();
+let componentUtils: ComponentUtils = uiContext.getComponentUtils();
 let modePosition = componentUtils.getRectangleById("onClick");
 let localOffsetWidth = modePosition.size.width;
 let localOffsetHeight = modePosition.size.height;
@@ -2965,6 +3175,11 @@ Router和NavDestination等页面信息，若无对应的Router或NavDestination�
 ## UIObserver<sup>11+</sup>
 
 以下API需先使用UIContext中的[getUIObserver()](#getuiobserver11)方法获取到UIObserver对象，再通过该对象调用对应方法。
+
+> **说明：**
+>
+> UIObserver仅能监听到本进程内的相关信息，不支持获取<!--Del-->[UIExtensionComponent](../../reference/apis-arkui/arkui-ts/ts-container-ui-extension-component-sys.md)等<!--DelEnd-->跨进程场景的信息。
+>
 
 ### on('navDestinationUpdate')<sup>11+</sup>
 
@@ -3051,7 +3266,7 @@ off(type: 'navDestinationUpdate', callback?: Callback\<observer.NavDestinationIn
 | 参数名   | 类型                                                  | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                | 是   | 监听事件，固定为'navDestinationUpdate'，即NavDestination组件的状态变化。 |
-| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\> | 否   | 回调函数。返回当前的NavDestination组件状态。                 |
+| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\> | 否   | 需要取消的监听回调，不传参数时，取消所有的Navigation监听回调。                 |
 
 **示例：** 
 
@@ -3144,17 +3359,121 @@ off(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callba
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 监听事件，固定为'navDestinationUpdate'，即NavDestination组件的状态变化。 |
 | options  | { navigationId: [ResourceStr](arkui-ts/ts-types.md#resourcestr) } | 是   | 指定监听的Navigation的id。                                   |
-| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\>        | 否   | 回调函数。返回当前的NavDestination组件状态。                 |
+| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\>        | 否   |需要取消的监听回调，不传参数时，取消该Navigation上所有的监听回调。                 |
 
 **示例：**
 
 参考[uiObserver.on('navDestinationUpdate')](#onnavdestinationupdate11-1)示例。
 
+### on('navDestinationUpdateByUniqueId')<sup>20+</sup>
+
+on(type: 'navDestinationUpdateByUniqueId', navigationUniqueId: number, callback: Callback\<observer.NavDestinationInfo\>): void
+
+通过Navigation的uniqueId监听NavDestination组件的状态变化，uniqueId可通过[queryNavigationInfo](arkui-ts/ts-custom-component-api.md#querynavigationinfo12)获取。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                                 | 必填 | 说明                                                                     |
+| -------- | -------------------------------------------------------------------- | ---- | ------------------------------------------------------------------------ |
+| type     | string                                                               | 是   | 监听事件，固定为'navDestinationUpdateByUniqueId'，即NavDestination组件的状态变化。 |
+| navigationUniqueId  | number | 是   | 指定监听的Navigation的uniqueId，可以通过[queryNavigationInfo](arkui-ts/ts-custom-component-api.md#querynavigationinfo12)获取。                                               |
+| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\>                | 是   | 回调函数。返回当前的NavDestination组件状态。                             |
+
+**示例：**
+
+通过Navigation的uniqueId，可以触发NavDestination组件的状态变化。
+
+```ts
+// Index.ets
+// 演示 on('navDestinationUpdateByUniqueId', navigationUniqueId, callback)
+// off('navDestinationUpdateByUniqueId', navigationUniqueId, callback)
+@Component
+struct PageOne {
+  private text = '';
+  private uniqueid = -1;
+  aboutToAppear() {
+    let navigationuniqueid = this.queryNavigationInfo()?.uniqueId;
+    if (navigationuniqueid) {
+      this.uniqueid = navigationuniqueid.valueOf();
+    }
+    this.text = JSON.stringify(this.uniqueid);
+    this.getUIContext().getUIObserver().on('navDestinationUpdateByUniqueId', this.uniqueid, (info) => {
+      console.info('NavDestination state update navigationId', JSON.stringify(info));
+    });
+  }
+  aboutToDisappear() {
+    this.getUIContext().getUIObserver().off('navDestinationUpdateByUniqueId', this.uniqueid);
+  }
+  build() {
+    NavDestination() {
+      Text("pageOne")
+      Text('navigationuniqueid是:' + this.text)
+        .width('80%')
+        .height(50)
+        .margin(50)
+        .fontSize(20)
+    }.title("pageOne")
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private stack: NavPathStack = new NavPathStack();
+
+  @Builder
+  PageBuilder(name: string) {
+    PageOne()
+  }
+
+  build() {
+    Column() {
+      Navigation(this.stack) {
+        Button("push").onClick(() => {
+          this.stack.pushPath({ name: "pageOne" });
+        })
+      }
+      .id("testId")
+      .title("Navigation")
+      .navDestination(this.PageBuilder)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+### off('navDestinationUpdateByUniqueId')<sup>20+</sup>
+
+off(type: 'navDestinationUpdateByUniqueId', navigationUniqueId: number, callback?: Callback\<observer.NavDestinationInfo\>): void
+
+取消通过navigationUniqueId监听NavDestination组件的变化。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                                 | 必填 | 说明                                                                     |
+| -------- | -------------------------------------------------------------------- | ---- | ------------------------------------------------------------------------ |
+| type     | string                                                               | 是   | 监听事件，固定为'navDestinationUpdateByUniqueId'，即NavDestination组件的状态变化。 |
+| navigationUniqueId  | number | 是   | 指定监听的Navigation的uniqueId，可以通过[queryNavigationInfo](arkui-ts/ts-custom-component-api.md#querynavigationinfo12)获取。                                               |
+| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\>                | 否   | 需要取消的监听回调，不传参数时，取消该Navigation上所有的监听回调。                             |
+
+**示例：**
+
+参考[uiObserver.on('navDestinationUpdateByUniqueId')](#onnavdestinationupdatebyuniqueid20)示例。
+
 ### on('scrollEvent')<sup>12+</sup>
 
 on(type: 'scrollEvent', callback: Callback\<observer.ScrollEventInfo\>): void
 
-监听滚动事件的开始和结束。
+监听所有滚动组件滚动事件的开始和结束。滚动组件包括[List](./arkui-ts/ts-container-list.md)、[Grid](./arkui-ts/ts-container-grid.md)、[Scroll](./arkui-ts/ts-container-scroll.md)、[WaterFlow](./arkui-ts/ts-container-waterflow.md)、[ArcList](./arkui-ts/ts-container-arclist.md)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3175,7 +3494,7 @@ on(type: 'scrollEvent', callback: Callback\<observer.ScrollEventInfo\>): void
 
 off(type: 'scrollEvent', callback?: Callback\<observer.ScrollEventInfo\>): void
 
-取消监听滚动事件的开始和结束。
+取消监听所有滚动组件滚动事件的开始和结束。滚动组件包括[List](./arkui-ts/ts-container-list.md)、[Grid](./arkui-ts/ts-container-grid.md)、[Scroll](./arkui-ts/ts-container-scroll.md)、[WaterFlow](./arkui-ts/ts-container-waterflow.md)、[ArcList](./arkui-ts/ts-container-arclist.md)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3196,7 +3515,7 @@ off(type: 'scrollEvent', callback?: Callback\<observer.ScrollEventInfo\>): void
 
 on(type: 'scrollEvent', options: observer.ObserverOptions, callback: Callback\<observer.ScrollEventInfo\>): void
 
-监听滚动事件的开始和结束。
+监听指定id的滚动组件滚动事件的开始和结束。滚动组件包括[List](./arkui-ts/ts-container-list.md)、[Grid](./arkui-ts/ts-container-grid.md)、[Scroll](./arkui-ts/ts-container-scroll.md)、[WaterFlow](./arkui-ts/ts-container-waterflow.md)、[ArcList](./arkui-ts/ts-container-arclist.md)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3218,7 +3537,7 @@ on(type: 'scrollEvent', options: observer.ObserverOptions, callback: Callback\<o
 
 off(type: 'scrollEvent', options: observer.ObserverOptions, callback?: Callback\<observer.ScrollEventInfo\>): void
 
-取消监听滚动事件的开始和结束。
+取消监听指定id的滚动组件滚动事件的开始和结束。滚动组件包括[List](./arkui-ts/ts-container-list.md)、[Grid](./arkui-ts/ts-container-grid.md)、[Scroll](./arkui-ts/ts-container-scroll.md)、[WaterFlow](./arkui-ts/ts-container-waterflow.md)、[ArcList](./arkui-ts/ts-container-arclist.md)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3235,17 +3554,17 @@ off(type: 'scrollEvent', options: observer.ObserverOptions, callback?: Callback\
 **示例：**
 
 ```ts
-import { UIObserver } from '@kit.ArkUI'
+import { UIObserver } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct Index {
-  scroller: Scroller = new Scroller()
-  observer: UIObserver = new UIObserver()
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7]
+  scroller: Scroller = new Scroller();
+  observer: UIObserver = this.getUIContext().getUIObserver();
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7];
 
   build() {
-    Row() {
+    Column() {
       Column() {
         Scroll(this.scroller) {
           Column() {
@@ -3261,7 +3580,7 @@ struct Index {
             }, (item: string) => item)
           }.width('100%')
         }
-        .id("testId")
+        .id('testId')
         .height('80%')
       }
       .width('100%')
@@ -3282,13 +3601,13 @@ struct Index {
       Row() {
         Button('UIObserverWithId on')
           .onClick(() => {
-            this.observer.on('scrollEvent', { id:"testId" }, (info) => {
+            this.observer.on('scrollEvent', { id: 'testId' }, (info) => {
               console.info('scrollEventInfo', JSON.stringify(info));
             });
           })
         Button('UIObserverWithId off')
           .onClick(() => {
-            this.observer.off('scrollEvent', { id:"testId" });
+            this.observer.off('scrollEvent', { id: 'testId' });
           })
       }
     }
@@ -3377,7 +3696,7 @@ import { uiObserver } from '@kit.ArkUI';
 @Component
 struct Index {
   @State density: number = 0;
-  @State message: string = '未注册监听'
+  @State message: string = '未注册监听';
 
   densityUpdateCallback = (info: uiObserver.DensityInfo) => {
     this.density = info.density;
@@ -3391,7 +3710,7 @@ struct Index {
         .fontWeight(FontWeight.Bold)
       Button('注册屏幕像素密度变化监听')
         .onClick(() => {
-          this.message = '已注册监听'
+          this.message = '已注册监听';
           this.getUIContext().getUIObserver().on('densityUpdate', this.densityUpdateCallback);
         })
     }
@@ -3423,7 +3742,7 @@ import { uiObserver } from '@kit.ArkUI';
 @Component
 struct Index {
   @State density: number = 0;
-  @State message: string = '未注册监听'
+  @State message: string = '未注册监听';
 
   densityUpdateCallback = (info: uiObserver.DensityInfo) => {
     this.density = info.density;
@@ -3438,12 +3757,12 @@ struct Index {
       Button('注册屏幕像素密度变化监听')
         .margin({ bottom: 10 })
         .onClick(() => {
-          this.message = '已注册监听'
+          this.message = '已注册监听';
           this.getUIContext().getUIObserver().on('densityUpdate', this.densityUpdateCallback);
         })
       Button('解除注册屏幕像素密度变化监听')
         .onClick(() => {
-          this.message = '未注册监听'
+          this.message = '未注册监听';
           this.getUIContext().getUIObserver().off('densityUpdate', this.densityUpdateCallback);
         })
     }
@@ -3582,7 +3901,7 @@ off(type: 'didLayout', callback?: Callback\<void\>): void
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | 监听事件，固定为'didLayout'，即是否将要绘制。 |
+| type     | string                                                       | 是   | 监听事件，固定为'didLayout'，即是否布局完成。 |
 | callback | Callback\<void\>        | 否   | 需要被注销的回调函数。                  |
 
 ```ts
@@ -3592,7 +3911,7 @@ import { uiObserver } from '@kit.ArkUI';
 @Component
 struct Index {
   didLayoutCallback = () => {
-    console.info("layout布局完成")
+    console.info("layout布局完成");
   }
 
   build() {
@@ -3646,7 +3965,7 @@ struct PageOne {
 }
 
 function callBackFunc(info: uiObserver.NavDestinationSwitchInfo) {
-  console.info(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
+  console.info(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`);
 }
 
 @Entry
@@ -3740,7 +4059,7 @@ struct PageOne {
 }
 
 function callBackFunc(info: uiObserver.NavDestinationSwitchInfo) {
-  console.info(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
+  console.info(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`);
 }
 
 @Entry
@@ -3755,12 +4074,12 @@ struct Index {
 
   aboutToAppear() {
     let obs = this.getUIContext().getUIObserver();
-    obs.on('navDestinationSwitch', { navigationId: "myNavId" }, callBackFunc)
+    obs.on('navDestinationSwitch', { navigationId: "myNavId" }, callBackFunc);
   }
 
   aboutToDisappear() {
     let obs = this.getUIContext().getUIObserver();
-    obs.off('navDestinationSwitch', { navigationId: "myNavId" }, callBackFunc)
+    obs.off('navDestinationSwitch', { navigationId: "myNavId" }, callBackFunc);
   }
 
   build() {
@@ -3804,7 +4123,7 @@ off(type: 'navDestinationSwitch', observerOptions: observer.NavDestinationSwitch
 
 on(type: 'willClick', callback: GestureEventListenerCallback): void
 
-监听点击事件指令下发情况。暂不支持屏幕朗读触控模式。
+监听点击事件指令下发情况。从API version 20开始支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3833,7 +4152,7 @@ observer.on('willClick', callback);
 
 off(type: 'willClick', callback?: GestureEventListenerCallback): void
 
-取消监听点击事件指令下发情况。暂不支持屏幕朗读触控模式。
+取消监听点击事件指令下发情况。从API version 20开始支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3862,7 +4181,7 @@ observer.off('willClick', callback);
 
 on(type: 'didClick', callback: GestureEventListenerCallback): void
 
-监听点击事件指令下发情况。暂不支持屏幕朗读触控模式。
+监听点击事件指令下发情况。从API version 20开始支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3891,7 +4210,7 @@ observer.on('didClick', callback);
 
 off(type: 'didClick', callback?: GestureEventListenerCallback): void
 
-取消监听点击事件指令下发情况。暂不支持屏幕朗读触控模式。
+取消监听点击事件指令下发情况。从API version 20开始，支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3920,7 +4239,7 @@ observer.off('didClick', callback);
 
 on(type: 'willClick', callback: ClickEventListenerCallback): void
 
-监听点击事件指令下发情况。暂不支持屏幕朗读触控模式。
+监听点击事件指令下发情况。从API version 20开始支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3949,7 +4268,7 @@ observer.on('willClick', callback);
 
 off(type: 'willClick', callback?: ClickEventListenerCallback): void
 
-取消监听点击事件指令下发情况。暂不支持屏幕朗读触控模式。
+取消监听点击事件指令下发情况。从API version 20开始，支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3978,7 +4297,7 @@ observer.off('willClick', callback);
 
 on(type: 'didClick', callback: ClickEventListenerCallback): void
 
-监听点击事件指令下发情况。暂不支持屏幕朗读触控模式。
+监听点击事件指令下发情况。从API version 20开始支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4007,7 +4326,7 @@ observer.on('didClick', callback);
 
 off(type: 'didClick', callback?: ClickEventListenerCallback): void
 
-取消监听点击事件指令下发情况。暂不支持屏幕朗读触控模式。
+取消监听点击事件指令下发情况。从API version 20开始支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4212,13 +4531,13 @@ off(type: 'tabContentUpdate', options: observer.ObserverOptions, callback?: Call
 
 参考[on('tabContentUpdate')](#ontabcontentupdate12-1)接口示例。
 
-### on('beforePanStart')<sup>18+</sup>
+### on('beforePanStart')<sup>19+</sup>
 
 on(type: 'beforePanStart', callback: PanListenerCallback): void
 
 监听Pan手势[onActionStart](arkui-ts/ts-basic-gestures-pangesture.md#事件)事件，在onActionStart事件执行之前执行callback回调。支持手指滑动、鼠标滑动、鼠标滚轮和触摸板拖动，暂不支持屏幕朗读触控模式。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -4227,35 +4546,32 @@ on(type: 'beforePanStart', callback: PanListenerCallback): void
 | 参数名   | 类型                                                        | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                      | 是   | 监听事件，固定为'beforePanStart'，用于监听Pan手势onActionStart事件执行前的指令下发情况，所注册回调将于Pan手势onActionStart事件触发前触发。 |
-| callback | [PanListenerCallback](#panlistenercallback18) | 是   | 回调函数。可以获得Pan手势事件的GestureEvent，GestureRecognizer和组件的FrameNode。   |
+| callback | [PanListenerCallback](#panlistenercallback19) | 是   | 回调函数。可以获得Pan手势事件的GestureEvent，GestureRecognizer和组件的FrameNode。   |
 
 **示例：**
 
 ```ts
 // 在页面Component中使用
-import { uiObserver } from '@kit.ArkUI';
-import router from '@ohos.router';
-
-let TEST_TAG: string = 'node'
+let TEST_TAG: string = 'node';
 
 function callbackFunc() {
   console.info('on == beforePanStart');
 }
 
 function afterPanCallBack() {
-  console.info('on == afterPanStart')
+  console.info('on == afterPanStart');
 }
 
 function beforeEndCallBack() {
-  console.info('on == beforeEnd')
+  console.info('on == beforeEnd');
 }
 
 function afterEndCallBack() {
-  console.info('on == afterEnd')
+  console.info('on == afterEnd');
 }
 
 function beforeStartCallBack() {
-  console.info('bxq on == beforeStartCallBack')
+  console.info('on == beforeStartCallBack');
 }
 
 function panGestureCallBack(event: GestureEvent, current: GestureRecognizer, node?: FrameNode) {
@@ -4272,11 +4588,11 @@ function panGestureCallBack(event: GestureEvent, current: GestureRecognizer, nod
 @Entry
 @Component
 struct PanExample {
-  @State offsetX: number = 0
-  @State offsetY: number = 0
-  @State positionX: number = 0
-  @State positionY: number = 0
-  private panOption: PanGestureOptions = new PanGestureOptions({direction: PanDirection.All })
+  @State offsetX: number = 0;
+  @State offsetY: number = 0;
+  @State positionX: number = 0;
+  @State positionY: number = 0;
+  private panOption: PanGestureOptions = new PanGestureOptions({direction: PanDirection.All });
 
   aboutToAppear(): void {
     let observer = this.getUIContext().getUIObserver();
@@ -4285,7 +4601,7 @@ struct PanExample {
     observer.on('beforePanStart', beforeStartCallBack);
     observer.on('afterPanStart', afterPanCallBack);
     observer.on('beforePanEnd', beforeEndCallBack);
-    observer.on('afterPanEnd', afterEndCallBack)
+    observer.on('afterPanEnd', afterEndCallBack);
   }
 
   aboutToDisappear(): void {
@@ -4311,31 +4627,31 @@ struct PanExample {
       .gesture(
         PanGesture(this.panOption)
           .onActionStart((event: GestureEvent) => {
-            console.info('Pan start')
+            console.info('Pan start');
           })
           .onActionUpdate((event: GestureEvent) => {
             if (event) {
-              this.offsetX = this.positionX + event.offsetX
-              this.offsetY = this.positionY + event.offsetY
+              this.offsetX = this.positionX + event.offsetX;
+              this.offsetY = this.positionY + event.offsetY;
             }
           })
           .onActionEnd((event: GestureEvent) => {
-            this.positionX = this.offsetX
-            this.positionY = this.offsetY
-            console.info('Pan end')
+            this.positionX = this.offsetX;
+            this.positionY = this.offsetY;
+            console.info('Pan end');
             }))
           }
   }
 }
 ```
 
-### off('beforePanStart')<sup>18+</sup>
+### off('beforePanStart')<sup>19+</sup>
 
 off(type: 'beforePanStart', callback?: PanListenerCallback): void
 
-取消[on('beforePanStart')](#onbeforepanstart18)监听Pan手势[onActionStart](arkui-ts/ts-basic-gestures-pangesture.md#事件)事件执行前的callback回调。
+取消[on('beforePanStart')](#onbeforepanstart19)监听Pan手势[onActionStart](arkui-ts/ts-basic-gestures-pangesture.md#事件)事件执行前的callback回调。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -4344,7 +4660,7 @@ off(type: 'beforePanStart', callback?: PanListenerCallback): void
 | 参数名   | 类型                                                        | 必填 | 说明                                                 |
 | -------- | ----------------------------------------------------------- | ---- | ---------------------------------------------------- |
 | type     | string                                                      | 是   | 监听事件，固定为'beforePanStart'，即Pan手势onActionStart事件执行前的指令下发情况。 |
-| callback | [PanListenerCallback](#panlistenercallback18) | 否   | 需要被注销的回调函数。                               |
+| callback | [PanListenerCallback](#panlistenercallback19) | 否   | 需要被注销的回调函数。                               |
 
 **示例：**
 
@@ -4358,13 +4674,13 @@ let observer: UIObserver = this.getUIContext().getUIObserver();
 observer.off('beforePanStart', callback);
 ```
 
-### on('afterPanStart')<sup>18+</sup>
+### on('afterPanStart')<sup>19+</sup>
 
 on(type: 'afterPanStart', callback: PanListenerCallback): void
 
 监听Pan手势[onActionStart](arkui-ts/ts-basic-gestures-pangesture.md#事件)事件执行后的指令下发情况，在onActionStart事件执行之后执行callback回调。支持手指滑动、鼠标滑动、鼠标滚轮和触摸板拖动，暂不支持屏幕朗读触控模式。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -4373,19 +4689,19 @@ on(type: 'afterPanStart', callback: PanListenerCallback): void
 | 参数名   | 类型                                                        | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                      | 是   | 监听事件，固定为'afterPanStart'，用于监听Pan手势onActionStart事件执行后的指令下发情况，所注册回调将于Pan手势onActionStart事件触发后触发。 |
-| callback | [PanListenerCallback](#panlistenercallback18) | 是   | 回调函数。可以获得Pan手势事件的GestureEvent，GestureRecognizer和组件的FrameNode。   |
+| callback | [PanListenerCallback](#panlistenercallback19) | 是   | 回调函数。可以获得Pan手势事件的GestureEvent，GestureRecognizer和组件的FrameNode。   |
 
 **示例：**
 
-参考[on('beforePanStart')](#onbeforepanstart18)接口示例
+参考[on('beforePanStart')](#onbeforepanstart19)接口示例
 
-### off('afterPanStart')<sup>18+</sup>
+### off('afterPanStart')<sup>19+</sup>
 
 off(type: 'afterPanStart', callback?: PanListenerCallback): void
 
-取消[on('afterPanStart')](#onafterpanstart18)监听Pan手势[onActionStart](arkui-ts/ts-basic-gestures-pangesture.md#事件)事件执行后的callback回调。
+取消[on('afterPanStart')](#onafterpanstart19)监听Pan手势[onActionStart](arkui-ts/ts-basic-gestures-pangesture.md#事件)事件执行后的callback回调。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -4394,19 +4710,19 @@ off(type: 'afterPanStart', callback?: PanListenerCallback): void
 | 参数名   | 类型                                                        | 必填 | 说明                                                 |
 | -------- | ----------------------------------------------------------- | ---- | ---------------------------------------------------- |
 | type     | string                                                      | 是   | 监听事件，固定为'afterPanStart'，即Pan手势onActionStart事件执行后的指令下发情况。 |
-| callback | [PanListenerCallback](#panlistenercallback18) | 否   | 需要被注销的回调函数。                               |
+| callback | [PanListenerCallback](#panlistenercallback19) | 否   | 需要被注销的回调函数。                               |
 
 **示例：**
 
-参考[on('beforePanStart')](#onbeforepanstart18)接口示例
+参考[on('beforePanStart')](#onbeforepanstart19)接口示例
 
-### on('beforePanEnd')<sup>18+</sup>
+### on('beforePanEnd')<sup>19+</sup>
 
 on(type: 'beforePanEnd', callback: PanListenerCallback): void
 
 监听Pan手势[onActionEnd](arkui-ts/ts-basic-gestures-pangesture.md#事件)事件执行前的指令下发情况，在onActionEnd事件执行之前执行callback回调。支持手指滑动、鼠标滑动、鼠标滚轮和触摸板拖动，暂不支持屏幕朗读触控模式。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -4415,19 +4731,19 @@ on(type: 'beforePanEnd', callback: PanListenerCallback): void
 | 参数名   | 类型                                                        | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                      | 是   | 监听事件，固定为'beforePanEnd'，用于监听Pan手势onActionEnd事件执行前的指令下发情况，所注册回调将于Pan手势onActionEnd事件触发前触发。 |
-| callback | [PanListenerCallback](#panlistenercallback18) | 是   | 回调函数。可以获得Pan手势事件的GestureEvent，GestureRecognizer和组件的FrameNode。   |
+| callback | [PanListenerCallback](#panlistenercallback19) | 是   | 回调函数。可以获得Pan手势事件的GestureEvent，GestureRecognizer和组件的FrameNode。   |
 
 **示例：**
 
-参考[on('beforePanStart')](#onbeforepanstart18)接口示例
+参考[on('beforePanStart')](#onbeforepanstart19)接口示例
 
-### off('beforePanEnd')<sup>18+</sup>
+### off('beforePanEnd')<sup>19+</sup>
 
 off(type: 'beforePanEnd', callback?: PanListenerCallback): void
 
-取消[on('beforePanEnd')](#onbeforepanend18)监听Pan手势[onActionEnd](arkui-ts/ts-basic-gestures-pangesture.md#事件)事件执行前的callback回调。
+取消[on('beforePanEnd')](#onbeforepanend19)监听Pan手势[onActionEnd](arkui-ts/ts-basic-gestures-pangesture.md#事件)事件执行前的callback回调。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -4436,19 +4752,19 @@ off(type: 'beforePanEnd', callback?: PanListenerCallback): void
 | 参数名   | 类型                                                        | 必填 | 说明                                                 |
 | -------- | ----------------------------------------------------------- | ---- | ---------------------------------------------------- |
 | type     | string                                                      | 是   | 监听事件，固定为'beforePanEnd'，即Pan手势onActionEnd事件执行前的指令下发情况。 |
-| callback | [PanListenerCallback](#panlistenercallback18) | 否   | 需要被注销的回调函数。                               |
+| callback | [PanListenerCallback](#panlistenercallback19) | 否   | 需要被注销的回调函数。                               |
 
 **示例：**
 
-参考[on('beforePanStart')](#onbeforepanstart18)接口示例
+参考[on('beforePanStart')](#onbeforepanstart19)接口示例
 
-### on('afterPanEnd')<sup>18+</sup>
+### on('afterPanEnd')<sup>19+</sup>
 
 on(type: 'afterPanEnd', callback: PanListenerCallback): void
 
 监听Pan手势[onActionEnd](arkui-ts/ts-basic-gestures-pangesture.md#事件)事件执行后的指令下发情况，在onActionEnd事件执行之后执行callback回调。支持手指滑动、鼠标滑动、鼠标滚轮和触摸板拖动，暂不支持屏幕朗读触控模式。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -4457,19 +4773,19 @@ on(type: 'afterPanEnd', callback: PanListenerCallback): void
 | 参数名   | 类型                                                        | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                      | 是   | 监听事件，固定为'beforePanEnd'，用于监听Pan手势onActionEnd事件执行后的指令下发情况，所注册回调将于Pan手势onActionEnd事件触发后触发。 |
-| callback | [PanListenerCallback](#panlistenercallback18) | 是   | 回调函数。可以获得Pan手势事件的GestureEvent，GestureRecognizer和组件的FrameNode。   |
+| callback | [PanListenerCallback](#panlistenercallback19) | 是   | 回调函数。可以获得Pan手势事件的GestureEvent，GestureRecognizer和组件的FrameNode。   |
 
 **示例：**
 
-参考[on('beforePanStart')](#onbeforepanstart18)接口示例
+参考[on('beforePanStart')](#onbeforepanstart19)接口示例
 
-### off('afterPanEnd')<sup>18+</sup>
+### off('afterPanEnd')<sup>19+</sup>
 
 off(type: 'afterPanEnd', callback?: PanListenerCallback): void
 
-取消[on('afterPanEnd')](#onafterpanend18)监听Pan手势[onActionEnd](arkui-ts/ts-basic-gestures-pangesture.md#事件)事件执行后的callback回调。
+取消[on('afterPanEnd')](#onafterpanend19)监听Pan手势[onActionEnd](arkui-ts/ts-basic-gestures-pangesture.md#事件)事件执行后的callback回调。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -4478,19 +4794,429 @@ off(type: 'afterPanEnd', callback?: PanListenerCallback): void
 | 参数名   | 类型                                                        | 必填 | 说明                                                 |
 | -------- | ----------------------------------------------------------- | ---- | ---------------------------------------------------- |
 | type     | string                                                      | 是   | 监听事件，固定为'afterPanEnd'，即Pan手势onActionEnd事件执行后的指令下发情况。 |
-| callback | [PanListenerCallback](#panlistenercallback18) | 否   | 需要被注销的回调函数。                               |
+| callback | [PanListenerCallback](#panlistenercallback19) | 否   | 需要被注销的回调函数。                               |
 
 **示例：**
 
-参考[on('beforePanStart')](#onbeforepanstart18)接口示例
+参考[on('beforePanStart')](#onbeforepanstart19)接口示例
 
+### on('nodeRenderState')<sup>20+</sup>
 
-## PanListenerCallback<sup>18+</sup>
+on(type: 'nodeRenderState', nodeIdentity: NodeIdentity, callback: NodeRenderStateChangeCallback): void
+
+注册一个回调函数，以便在特定节点的渲染状态发生变化时调用，当注册成功时，此回调将立即执行一次。
+
+注意节点数量的限制。出于性能考虑，在单个UI实例中，注册节点太多，将会抛出异常。
+
+通常，当组件被移动到屏幕外时，会收到RENDER_OUT的通知。但在某些情况下，即使组件移动到屏幕外也不会触发RENDER_OUT通知。例如，具有缓存功能的组件[Swiper](./arkui-ts/ts-container-swiper.md#swiper)，即使[cachedCount](./arkui-ts/ts-container-swiper.md#cachedcount15)属性中的参数isShown配置为true，也不会触发RENDER_OUT通知。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                        | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                      | 是   | 监听事件，固定为'nodeRenderState'，用于监听节点渲染状态发生改变。 |
+| nodeIdentity | [NodeIdentity](#nodeidentity20) | 是   | 组件标识。   |
+| callback | [NodeRenderStateChangeCallback](#noderenderstatechangecallback20) | 是   | 回调函数。可以获得组件渲染状态改变事件的NodeRenderState和组件的FrameNode。   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[注册节点渲染状态监听错误码](errorcode-node-render-monitor.md)。
+
+| 错误码ID   | 错误信息 |
+| --------- | ------- |
+| 161001    | The count of nodes monitoring render state is over the limitation. |
+
+**示例：**
+
+该示例展示了如何对目标组件添加监听和取消监听。当向左滑动，被监听组件从屏幕消失，会收到RENDER_OUT的通知，然后向右滑动，被监听组件重新出现在屏幕上，会收到RENDER_IN通知。
+
+```ts
+// 在页面Component中使用
+import { NodeRenderState } from '@ohos.arkui.UIContext';
+
+@Entry
+@Component
+struct Index {
+  @State fontColor: string = '#182431'
+  @State selectedFontColor: string = '#007DFF'
+  @State currentIndex: number = 0
+  @State selectedIndex: number = 0
+  @State notice: string = ""
+  private controller: TabsController = new TabsController()
+
+  @Builder
+  tabBuilder(index: number, name: string) {
+    Column() {
+      Text(name)
+        .fontColor(this.selectedIndex === index ? this.selectedFontColor : this.fontColor)
+        .fontSize(16)
+        .fontWeight(this.selectedIndex === index ? 500 : 400)
+        .lineHeight(22)
+        .margin({ top: 17, bottom: 7 })
+      Divider()
+        .strokeWidth(2)
+        .color('#007DFF')
+        .opacity(this.selectedIndex === index ? 1 : 0)
+    }.width('100%')
+  }
+
+  build() {
+    Column() {
+      Tabs({ barPosition: BarPosition.Start, index: this.currentIndex, controller: this.controller }) {
+        TabContent() {
+          Column() {
+            Column() {
+              Button("被监听节点").margin({ top: 5 }).id("button_1")
+              Button("添加监听").margin({ top: 5 }).onClick(() => {
+                let node: FrameNode | null = this.getUIContext().getFrameNodeById("button_1");
+                if (node) {
+                  let observer = this.getUIContext().getUIObserver();
+                  observer.on("nodeRenderState", node?.getUniqueId(), (state: NodeRenderState, node?: FrameNode) => {
+                    if (state === 0)
+                    {
+                      this.notice = "RENDER_IN";
+                    }
+                    else
+                    {
+                      this.notice = "RENDER_OUT";
+                    }
+                    console.log("节点状态发生改变，当前状态：", state)
+                  })
+                }
+              })
+              Button("取消监听").margin({ top: 5 }).onClick(() => {
+                let node: FrameNode | null = this.getUIContext().getFrameNodeById("button_1");
+                if (node) {
+                  let observer = this.getUIContext().getUIObserver();
+                  observer.off("nodeRenderState", node?.getUniqueId())
+                }
+                this.notice = "";
+              })
+            }
+          }.width('100%').height('100%').backgroundColor('#00CB87')
+        }.tabBar(this.tabBuilder(0, 'green'))
+
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor('#FFBF00')
+        }.tabBar(this.tabBuilder(1, 'blue'))
+
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor('#FFBF00')
+        }.tabBar(this.tabBuilder(2, 'yellow'))
+
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor('#E67C92')
+        }.tabBar(this.tabBuilder(3, 'pink'))
+      }
+      .vertical(false)
+      .barMode(BarMode.Fixed)
+      .barWidth(360)
+      .barHeight(56)
+      .animationDuration(400)
+      .onChange((index: number) => {
+        this.currentIndex = index
+        this.selectedIndex = index
+      })
+      .onAnimationStart((index: number, targetIndex: number, event: TabsAnimationEvent) => {
+        if (index === targetIndex) {
+          return
+        }
+        this.selectedIndex = targetIndex
+      })
+      .width(360)
+      .height(296)
+      .margin({ top: 52 })
+      .backgroundColor('#F1F3F5')
+
+      Text(`收到的通知: ${this.notice}`)
+        .fontSize(20)
+        .margin(10)
+    }.width('100%')
+  }
+}
+```
+![example](figures/node_render_status.gif)
+
+### off('nodeRenderState')<sup>20+</sup>
+
+off(type: 'nodeRenderState', nodeIdentity: NodeIdentity, callback?: NodeRenderStateChangeCallback): void
+
+取消监听节点渲染状态发生变化的callback回调。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                        | 必填 | 说明                                                 |
+| -------- | ----------------------------------------------------------- | ---- | ---------------------------------------------------- |
+| type     | string                                                      | 是   | 监听事件，固定为'nodeRenderState'，即节点渲染状态变化指令下发情况。 |
+| nodeIdentity | [NodeIdentity](#nodeidentity20) | 是   | 组件标识。   |
+| callback | [NodeRenderStateChangeCallback](#noderenderstatechangecallback20) | 否   | 需要被注销的回调函数。   |                               |
+
+**示例：**
+
+参考[on('nodeRenderState')](#onnoderenderstate20)接口示例。
+
+### addGlobalGestureListener<sup>20+</sup>
+
+addGlobalGestureListener(type: GestureListenerType, option: GestureObserverConfigs, callback: GestureListenerCallback): void
+
+注册回调函数以监听手势触发信息。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型         | 必填 | 说明          |
+| -------- | ----------- | ---- | ----------- |
+| type     | [GestureListenerType](#gesturelistenertype20)     | 是   |要监听的手势类型。  |
+| option | [GestureObserverConfigs](#gestureobserverconfigs20) | 是   |  绑定全局监听器时的配置选项。  |
+| callback | [GestureListenerCallback](#gesturelistenercallback20) | 是   |  手势状态更新时的回调函数。  |  
+
+### removeGlobalGestureListener<sup>20+</sup>
+
+removeGlobalGestureListener(type: GestureListenerType, callback?: GestureListenerCallback): void
+
+移除某一手势监听器类型的回调函数。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型     | 必填 | 说明       |
+| -------- | ---------- | ---- | --------- |
+| type     | [GestureListenerType](#gesturelistenertype20)    | 是   | 要移除监听器的事件类型。 |
+| callback | [GestureListenerCallback](#gesturelistenercallback20) | 否   | 待移除的回调函数（未提供时将清除该手势类型的所有回调）。   |  
+
+**示例：**
+
+该示例通过全局监听器实时追踪平移手势的触发阶段、触点ID和手指数量，并在可视化日志区显示手势开始/结束事件及详细触点信息。
+
+```ts
+
+// xxx.ets
+
+import { GestureListenerType, GestureActionPhase, GestureTriggerInfo } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Gesture';
+  @State logs: string[] = [];
+  private panOption: PanGestureOptions = new PanGestureOptions({ direction: PanDirection.Left | PanDirection.Right });
+  private panCallback = (info: GestureTriggerInfo) => {
+    let current = info.current;
+    this.addLog(`Phase: ${info.currentPhase}`);
+    this.addLog(`ID: ${info.event.target.id}`);
+    this.addLog(`FingerCount: ${current.getFingerCount()}`);
+    this.addLog('------------------------');
+  };
+
+  private addLog(log: string) {
+    this.logs.unshift(`[${new Date().toLocaleTimeString()}] ${log}`);
+    if (this.logs.length > 50) {
+      this.logs.pop();
+    }
+  }
+
+  build() {
+    Column() {
+      Row({ space: 20 }) {
+        Text(this.message)
+          .width(400)
+          .height(80)
+          .fontSize(23)
+      }
+      .id('test row')
+      .margin(15)
+      .width(400)
+      .height(150)
+      .borderWidth(2)
+      .gesture(PanGesture({ direction: PanDirection.Left | PanDirection.Right })
+        .onActionStart((event: GestureEvent) => {
+          this.addLog('Pan手势开始');
+        })
+        .onActionEnd((event: GestureEvent) => {
+          this.addLog('Pan手势结束');
+        }))
+
+      Row() {
+        Button('添加PAN监听')
+          .onClick(() => {
+            this.addLog('添加PAN全局监听');
+            let observer = this.getUIContext().getUIObserver();
+            observer.addGlobalGestureListener(
+              GestureListenerType.PAN,
+              { actionPhases: [GestureActionPhase.WILL_START, GestureActionPhase.WILL_END] }, this.panCallback);
+          })
+
+        Button('取消PAN监听')
+          .onClick(() => {
+            this.addLog('取消PAN全局监听');
+            let observer = this.getUIContext().getUIObserver();
+            observer.removeGlobalGestureListener(2, this.panCallback);
+          })
+      }
+      .margin(10)
+      .height(60)
+
+      // 日志显示区域
+      Scroll() {
+        Column() {
+          ForEach(this.logs, (log: string) => {
+            Text(log)
+              .fontSize(20)
+              .textAlign(TextAlign.Start)
+              .width('100%')
+              .margin({ bottom: 8 })
+          }, (log: string) => log)
+        }
+        .width('100%')
+        .padding(15)
+      }
+      .height(200)
+      .border({ width: 1, color: '#CCCCCC' })
+      .margin(10)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+![example](figures/pangesture_uiobserver_listener.gif)
+
+## NodeIdentity<sup>20+</sup>
+type NodeIdentity = string | number
+
+组件标识。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型              | 说明                                |
+| ----------------- | --------------------------------- |
+| string      | 指定组件id，该id通过通用属性[id](./arkui-ts/ts-universal-attributes-component-id.md#id)设置。   |
+| number | 系统分配的唯一标识的节点UniqueID，可通过[getUniqueId](js-apis-arkui-frameNode.md#getuniqueid12)获取。  |
+
+## NodeRenderStateChangeCallback<sup>20+</sup>
+type NodeRenderStateChangeCallback = (state: NodeRenderState, node?: FrameNode) => void
+
+定义了用于在UIObserver中监控某个特定节点渲染状态的回调类型。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型              | 必填 | 说明                                |
+| ------- | ----------------- | ---- | --------------------------------- |
+| state   | [NodeRenderState](#noderenderstate20)     | 是   | 触发事件监听的手势事件的相关信息。   |
+| node    | [FrameNode](js-apis-arkui-frameNode.md#framenode)         | 否   | 触发事件监听的手势事件所绑定的组件，如果组件被释放将返回null。 |
+
+## NodeRenderState<sup>20+</sup>
+
+组件的渲染状态。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 值 |说明 |
+| -------- | ------- | -------- |
+| ABOUT_TO_RENDER_IN | 0 | 该节点已挂载到渲染树上，一般将会在下一帧被渲染。一般情况下可被看见，但会被渲染并不等同于一定可见。 |
+| ABOUT_TO_RENDER_OUT | 1 | 该节点已从渲染树中删除，一般下一帧不会被渲染，用户将不会看到此节点。 |
+
+## GestureListenerCallback<sup>20+</sup>
+
+type GestureListenerCallback = (info: GestureTriggerInfo) => void
+
+定义了用于在UIObserver中监控特定手势触发信息的回调类型。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型              | 必填 | 说明                                |
+| ------- | ----------------- | ---- | --------------------------------- |
+| info   | [GestureTriggerInfo](#gesturetriggerinfo20)     | 是   |  交互触发的手势详情。 |
+
+## GestureActionPhase<sup>20+</sup>
+
+此枚举类型表示手势回调触发阶段，对应gesture.d.ts中定义的动作回调，但不同手势类型支持的阶段不同（如SwipeGesture仅包含WILL_START枚举值）。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称   | 值   | 说明       |
+| ------ | ---- | ---------- |
+| WILL_START | 0 | 手势已被系统成功识别，action-start/action回调将立即执行。 |
+|  WILL_END | 1 | 表示手势已被判定为结束状态（通常发生在用户抬起手指终止交互时），action-end回调将立即执行。 |
+
+## GestureListenerType<sup>20+</sup>
+
+此枚举类型用于指定需要监控的手势类型。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称   | 值   | 说明       |
+| ------ | ---- | ---------- |
+| TAP | 0 | 点击手势。 |
+| LONG_PRESS | 1 | 长按手势。 |
+| PAN  | 2 | 平移手势。 |
+| PINCH | 3 | 捏合手势。 |
+| SWIPE | 4| 滑动手势。 |
+| ROTATION| 5 | 旋转手势。 |
+
+## GestureTriggerInfo<sup>20+</sup>
+
+特定手势回调函数触发时的信息。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称   | 类型   | 必填       |说明       |
+| ------ | ---- | ---------- |---------- |
+| event | [GestureEvent](../apis-arkui/arkui-ts/ts-gesture-settings.md#gestureevent对象说明)   |是       |手势事件对象。 |
+| current | [GestureRecognizer](arkui-ts/ts-gesture-blocking-enhancement.md#gesturerecognizer)    |是      |手势识别器对象。可从中获取手势的详细信息，但请勿在本地保留此对象，因为当节点释放后该对象可能失效。 |
+| currentPhase  | [GestureActionPhase](#gestureactionphase20) |是      | 手势动作回调阶段。|
+| node  | [FrameNode](js-apis-arkui-frameNode.md#framenode) |否      |触发手势的节点。默认值为null，表示没有触发手势的节点。 |
+
+## GestureObserverConfigs<sup>20+</sup>
+
+该参数用于指定需要监听的手势回调阶段（传入空数组将无效），仅当手势触发指定阶段时才会发送通知。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称   | 类型   | 必填       |说明       |
+| ------ | ---- | ---------- |---------- |
+|  actionPhases | Array\<[GestureActionPhase](#gestureactionphase20)\>    |是       |手势事件对象。 |
+
+## PanListenerCallback<sup>19+</sup>
 type PanListenerCallback = (event: GestureEvent, current: GestureRecognizer, node?: FrameNode) => void
 
 Pan手势事件监听函数类型。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -4594,7 +5320,7 @@ pushUrl(options: router.RouterOptions): Promise&lt;void&gt;
 
 | 类型                  | 说明      |
 | ------------------- | ------- |
-| Promise&lt;void&gt; | 异常返回结果。 |
+| Promise&lt;void&gt; | 返回结果。 |
 
 **错误码：**
 
@@ -4610,7 +5336,7 @@ pushUrl(options: router.RouterOptions): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -4626,7 +5352,7 @@ struct Index {
         }
       })
       .then(() => {
-        console.info('succeeded')
+        console.info('succeeded');
       })
       .catch((error: BusinessError) => {
         console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
@@ -4643,7 +5369,7 @@ struct Index {
       .margin({ top: 20 })
       .backgroundColor('#ccc')
       .onClick(() => {
-        this.routePage()
+        this.routePage();
       })
     }
     .width('100%')
@@ -4683,7 +5409,7 @@ pushUrl(options: router.RouterOptions, callback: AsyncCallback&lt;void&gt;): voi
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -4718,7 +5444,7 @@ struct Index {
       .margin({ top: 20 })
       .backgroundColor('#ccc')
       .onClick(() => {
-        this.routePage()
+        this.routePage();
       })
     }
     .width('100%')
@@ -4748,7 +5474,7 @@ pushUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;void
 
 | 类型                  | 说明      |
 | ------------------- | ------- |
-| Promise&lt;void&gt; | 异常返回结果。 |
+| Promise&lt;void&gt; | 返回结果。 |
 
 **错误码：**
 
@@ -4765,13 +5491,13 @@ pushUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;void
 
 ```ts
 import { router } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class RouterTmp {
-  Standard: router.RouterMode = router.RouterMode.Standard
+  Standard: router.RouterMode = router.RouterMode.Standard;
 }
 
-let rtm: RouterTmp = new RouterTmp()
+let rtm: RouterTmp = new RouterTmp();
 
 @Entry
 @Component
@@ -4787,7 +5513,7 @@ struct Index {
         }
       }, rtm.Standard)
       .then(() => {
-        console.info('succeeded')
+        console.info('succeeded');
       })
       .catch((error: BusinessError) => {
         console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
@@ -4804,7 +5530,7 @@ struct Index {
       .margin({ top: 20 })
       .backgroundColor('#ccc')
       .onClick(() => {
-        this.routePage()
+        this.routePage();
       })
     }
     .width('100%')
@@ -4846,13 +5572,13 @@ pushUrl(options: router.RouterOptions, mode: router.RouterMode, callback: AsyncC
 
 ```ts
 import { router } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class RouterTmp {
-  Standard: router.RouterMode = router.RouterMode.Standard
+  Standard: router.RouterMode = router.RouterMode.Standard;
 }
 
-let rtm: RouterTmp = new RouterTmp()
+let rtm: RouterTmp = new RouterTmp();
 
 @Entry
 @Component
@@ -4887,7 +5613,7 @@ struct Index {
       .margin({ top: 20 })
       .backgroundColor('#ccc')
       .onClick(() => {
-        this.routePage()
+        this.routePage();
       })
     }
     .width('100%')
@@ -4916,7 +5642,7 @@ replaceUrl(options: router.RouterOptions): Promise&lt;void&gt;
 
 | 类型                  | 说明      |
 | ------------------- | ------- |
-| Promise&lt;void&gt; | 异常返回结果。 |
+| Promise&lt;void&gt; | 返回结果。 |
 
 **错误码：**
 
@@ -4931,7 +5657,7 @@ replaceUrl(options: router.RouterOptions): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -4944,7 +5670,7 @@ struct Index {
         }
       })
       .then(() => {
-        console.info('succeeded')
+        console.info('succeeded');
       })
       .catch((error: BusinessError) => {
         console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
@@ -4961,7 +5687,7 @@ struct Index {
       .margin({ top: 20 })
       .backgroundColor('#ccc')
       .onClick(() => {
-        this.routePage()
+        this.routePage();
       })
     }
     .width('100%')
@@ -5000,7 +5726,7 @@ replaceUrl(options: router.RouterOptions, callback: AsyncCallback&lt;void&gt;): 
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -5032,7 +5758,7 @@ struct Index {
       .margin({ top: 20 })
       .backgroundColor('#ccc')
       .onClick(() => {
-        this.routePage()
+        this.routePage();
       })
     }
     .width('100%')
@@ -5062,7 +5788,7 @@ replaceUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;v
 
 | 类型                  | 说明      |
 | ------------------- | ------- |
-| Promise&lt;void&gt; | 异常返回结果。 |
+| Promise&lt;void&gt; | 返回结果。 |
 
 **错误码：**
 
@@ -5078,13 +5804,13 @@ replaceUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;v
 
 ```ts
 import { router } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class RouterTmp {
-  Standard: router.RouterMode = router.RouterMode.Standard
+  Standard: router.RouterMode = router.RouterMode.Standard;
 }
 
-let rtm: RouterTmp = new RouterTmp()
+let rtm: RouterTmp = new RouterTmp();
 
 @Entry
 @Component
@@ -5097,7 +5823,7 @@ struct Index {
         }
       }, rtm.Standard)
       .then(() => {
-        console.info('succeeded')
+        console.info('succeeded');
       })
       .catch((error: BusinessError) => {
         console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
@@ -5114,7 +5840,7 @@ struct Index {
       .margin({ top: 20 })
       .backgroundColor('#ccc')
       .onClick(() => {
-        this.routePage()
+        this.routePage();
       })
     }
     .width('100%')
@@ -5158,10 +5884,10 @@ import { router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class RouterTmp {
-  Standard: router.RouterMode = router.RouterMode.Standard
+  Standard: router.RouterMode = router.RouterMode.Standard;
 }
 
-let rtm: RouterTmp = new RouterTmp()
+let rtm: RouterTmp = new RouterTmp();
 
 @Entry
 @Component
@@ -5193,7 +5919,7 @@ struct Index {
       .margin({ top: 20 })
       .backgroundColor('#ccc')
       .onClick(() => {
-        this.routePage()
+        this.routePage();
       })
     }
     .width('100%')
@@ -5222,7 +5948,7 @@ pushNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 
 | 类型                  | 说明      |
 | ------------------- | ------- |
-| Promise&lt;void&gt; | 异常返回结果。 |
+| Promise&lt;void&gt; | 返回结果。 |
 
 **错误码：**
 
@@ -5238,7 +5964,7 @@ pushNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -5254,7 +5980,7 @@ struct Index {
         }
       })
       .then(() => {
-        console.info('succeeded')
+        console.info('succeeded');
       })
       .catch((error: BusinessError) => {
         console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
@@ -5271,7 +5997,7 @@ struct Index {
       .margin({ top: 20 })
       .backgroundColor('#ccc')
       .onClick(() => {
-        this.routePage()
+        this.routePage();
       })
     }
     .width('100%')
@@ -5346,7 +6072,7 @@ struct Index {
       .margin({ top: 20 })
       .backgroundColor('#ccc')
       .onClick(() => {
-        this.routePage()
+        this.routePage();
       })
     }
     .width('100%')
@@ -5375,7 +6101,7 @@ pushNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode): Pro
 
 | 类型                  | 说明      |
 | ------------------- | ------- |
-| Promise&lt;void&gt; | 异常返回结果。 |
+| Promise&lt;void&gt; | 返回结果。 |
 
 **错误码：**
 
@@ -5395,9 +6121,9 @@ import { router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class RouterTmp{
-  Standard:router.RouterMode = router.RouterMode.Standard
+  Standard:router.RouterMode = router.RouterMode.Standard;
 }
-let rtm:RouterTmp = new RouterTmp()
+let rtm:RouterTmp = new RouterTmp();
 
 @Entry
 @Component
@@ -5413,7 +6139,7 @@ struct Index {
         }
       }, rtm.Standard)
       .then(() => {
-        console.info('succeeded')
+        console.info('succeeded');
       })
       .catch((error: BusinessError) => {
         console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
@@ -5430,7 +6156,7 @@ struct Index {
       .margin({ top: 20 })
       .backgroundColor('#ccc')
       .onClick(() => {
-        this.routePage()
+        this.routePage();
       })
     }
     .width('100%')
@@ -5475,10 +6201,10 @@ import { router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class RouterTmp {
-  Standard: router.RouterMode = router.RouterMode.Standard
+  Standard: router.RouterMode = router.RouterMode.Standard;
 }
 
-let rtm: RouterTmp = new RouterTmp()
+let rtm: RouterTmp = new RouterTmp();
 
 @Entry
 @Component
@@ -5513,7 +6239,7 @@ struct Index {
       .margin({ top: 20 })
       .backgroundColor('#ccc')
       .onClick(() => {
-        this.routePage()
+        this.routePage();
       })
     }
     .width('100%')
@@ -5542,7 +6268,7 @@ replaceNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 
 | 类型                  | 说明      |
 | ------------------- | ------- |
-| Promise&lt;void&gt; | 异常返回结果。 |
+| Promise&lt;void&gt; | 返回结果。 |
 
 **错误码：**
 
@@ -5570,7 +6296,7 @@ struct Index {
         }
       })
       .then(() => {
-        console.info('succeeded')
+        console.info('succeeded');
       })
       .catch((error: BusinessError) => {
         console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
@@ -5587,7 +6313,7 @@ struct Index {
       .margin({ top: 20 })
       .backgroundColor('#ccc')
       .onClick(() => {
-        this.routePage()
+        this.routePage();
       })
     }
     .width('100%')
@@ -5658,7 +6384,7 @@ struct Index {
       .margin({ top: 20 })
       .backgroundColor('#ccc')
       .onClick(() => {
-        this.routePage()
+        this.routePage();
       })
     }
     .width('100%')
@@ -5689,7 +6415,7 @@ replaceNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode): 
 
 | 类型                  | 说明      |
 | ------------------- | ------- |
-| Promise&lt;void&gt; | 异常返回结果。 |
+| Promise&lt;void&gt; | 返回结果。 |
 
 **错误码：**
 
@@ -5708,10 +6434,10 @@ import { router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class RouterTmp {
-  Standard: router.RouterMode = router.RouterMode.Standard
+  Standard: router.RouterMode = router.RouterMode.Standard;
 }
 
-let rtm: RouterTmp = new RouterTmp()
+let rtm: RouterTmp = new RouterTmp();
 
 @Entry
 @Component
@@ -5724,7 +6450,7 @@ struct Index {
         }
       }, rtm.Standard)
       .then(() => {
-        console.info('succeeded')
+        console.info('succeeded');
       })
       .catch((error: BusinessError) => {
         console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
@@ -5741,7 +6467,7 @@ struct Index {
       .margin({ top: 20 })
       .backgroundColor('#ccc')
       .onClick(() => {
-        this.routePage()
+        this.routePage();
       })
     }
     .width('100%')
@@ -5785,10 +6511,10 @@ import { router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class RouterTmp {
-  Standard: router.RouterMode = router.RouterMode.Standard
+  Standard: router.RouterMode = router.RouterMode.Standard;
 }
 
-let rtm: RouterTmp = new RouterTmp()
+let rtm: RouterTmp = new RouterTmp();
 
 @Entry
 @Component
@@ -5820,7 +6546,7 @@ struct Index {
       .margin({ top: 20 })
       .backgroundColor('#ccc')
       .onClick(() => {
-        this.routePage()
+        this.routePage();
       })
     }
     .width('100%')
@@ -5855,7 +6581,7 @@ router.back({url:'pages/detail'});
 
 ### back<sup>12+</sup>
 
-back(index: number, params?: Object): void;
+back(index: number, params?: Object): void
 
 返回指定的页面。
 
@@ -5980,7 +6706,7 @@ getStateByIndex(index: number): router.RouterState | undefined
 
 | 类型                          | 说明      |
 | --------------------------- | ------- |
-| router.[RouterState](js-apis-router.md#outerstate) \| undefined | 返回页面状态信息。索引不存在时返回undefined。 |
+| router.[RouterState](js-apis-router.md#routerstate) \| undefined | 返回页面状态信息。索引不存在时返回undefined。 |
 
 **示例：** 
 
@@ -5999,7 +6725,7 @@ if (options != undefined) {
 ```
 ### getStateByUrl<sup>12+</sup>
 
-getStateByUrl(url: string): Array<router.[RouterState](js-apis-router.md#outerstate)>
+getStateByUrl(url: string): Array<router.[RouterState](js-apis-router.md#routerstate)>
 
 通过url获取当前页面的状态信息。
 
@@ -6017,7 +6743,7 @@ getStateByUrl(url: string): Array<router.[RouterState](js-apis-router.md#outerst
 
 | 类型                          | 说明      |
 | --------------------------- | ------- |
-| Array<router.[RouterState](js-apis-router.md#outerstate)> | 页面状态信息。 |
+| Array<router.[RouterState](js-apis-router.md#routerstate)> | 页面状态信息。 |
 
 **示例：** 
 
@@ -6129,7 +6855,7 @@ router.getParams();
 
 type CustomBuilderWithId = (id: number)&nbsp;=&gt;&nbsp;void
 
-组件属性方法参数可使用CustomBuilderWithId类型来自定义UI描述，并且可以指定组件ID生成用户自定义组件。
+组件属性、方法参数可使用CustomBuilderWithId类型来自定义UI描述，并且可以指定组件ID生成用户自定义组件。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -6187,6 +6913,8 @@ showToast(options: promptAction.ShowToastOptions): void
 
 **示例：**
 
+该示例通过调用showToast接口，显示文本提示框。
+
 <!--code_no_check-->
 ```ts
 import { PromptAction } from '@kit.ArkUI';
@@ -6208,6 +6936,8 @@ try {
 ### openToast<sup>18+</sup>
 
 openToast(options: promptAction.ShowToastOptions): Promise&lt;number&gt;
+
+显示文本提示框并通过Promise返回其id。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -6236,6 +6966,8 @@ openToast(options: promptAction.ShowToastOptions): Promise&lt;number&gt;
 
 **示例：**
 
+该示例通过调用openToast和closeToast接口，展示了弹出以及关闭文本提示框的功能。
+
 ```ts
 import { PromptAction } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -6244,7 +6976,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Component
 struct toastExample {
   @State toastId: number = 0;
-  promptAction: PromptAction = this.getUIContext().getPromptAction()
+  promptAction: PromptAction = this.getUIContext().getPromptAction();
 
   build() {
     Column() {
@@ -6258,10 +6990,10 @@ struct toastExample {
             this.toastId = toastId;
           })
             .catch((error: BusinessError) => {
-              console.error(`openToast error code is ${error.code}, message is ${error.message}`)
+              console.error(`openToast error code is ${error.code}, message is ${error.message}`);
             })
         })
-      Blank().height(50);
+      Blank().height(50)
       Button('Close Toast')
         .height(100)
         .onClick(() => {
@@ -6282,6 +7014,8 @@ struct toastExample {
 
 closeToast(toastId: number): void
 
+关闭文本提示框。
+
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -6300,6 +7034,7 @@ closeToast(toastId: number): void
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
 | 100001   | Internal error.                                              |
+| 103401   | Cannot find the toast.                                       |
 
 **示例：**
 
@@ -6334,6 +7069,8 @@ showDialog(options: promptAction.ShowDialogOptions, callback: AsyncCallback&lt;p
 **示例：**
 
 <!--code_no_check-->
+
+该示例通过调用showDialog接口，展示了弹出对话框以及返回对话框响应结果的功能。
 
 ```ts
 import { PromptAction } from '@kit.ArkUI';
@@ -6372,7 +7109,7 @@ try {
 
 showDialog(options: promptAction.ShowDialogOptions): Promise&lt;promptAction.ShowDialogSuccessResponse&gt;
 
-创建并显示对话框，对话框响应后同步返回结果，通过Promise获取对话框响应结果。
+创建并显示对话框，通过Promise获取对话框响应结果。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -6400,6 +7137,8 @@ showDialog(options: promptAction.ShowDialogOptions): Promise&lt;promptAction.Sho
 | 100001 | Internal error. |
 
 **示例：**
+
+该示例通过调用showDialog接口，展示了弹出对话框以及通过Promise获取对话框响应结果的功能。
 
 <!--code_no_check-->
 ```ts
@@ -6430,7 +7169,7 @@ promptAction.showDialog({
 
 ### showActionMenu<sup>11+</sup>
 
-showActionMenu(options: promptAction.ActionMenuOptions, callback: AsyncCallback&lt;[promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse)&gt;):void
+showActionMenu(options: promptAction.ActionMenuOptions, callback: AsyncCallback&lt;[promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse)&gt;): void
 
 创建并显示操作菜单，菜单响应结果异步返回。
 
@@ -6491,7 +7230,7 @@ try {
 
 ### showActionMenu<sup>(deprecated)</sup>
 
-showActionMenu(options: promptAction.ActionMenuOptions, callback: [promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse)):void
+showActionMenu(options: promptAction.ActionMenuOptions, callback: [promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse)): void
 
 创建并显示操作菜单，菜单响应结果异步返回。
 
@@ -6516,6 +7255,8 @@ showActionMenu(options: promptAction.ActionMenuOptions, callback: [promptAction.
 | 100001 | Internal error. |
 
 **示例：**
+
+该示例通过调用showActionMenu接口，展示了弹出对话框以及返回对话框响应结果的功能。
 
 <!--code_no_check-->
 ```ts
@@ -6577,6 +7318,8 @@ showActionMenu(options: promptAction.ActionMenuOptions): Promise&lt;promptAction
 
 **示例：**
 
+该示例通过调用showActionMenu接口，展示了弹出对话框以及通过Promise获取对话框响应结果的功能。
+
 <!--code_no_check-->
 ```ts
 import { PromptAction } from '@kit.ArkUI';
@@ -6624,7 +7367,7 @@ openCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>, options
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    异常返回Promise对象。 |
+|   Promise&lt;void&gt;           |    返回Promise对象。 |
 
 **错误码：**
 
@@ -6633,37 +7376,75 @@ openCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>, options
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
-| 103301 | The ComponentContent is incorrect. |
-| 103302 | Dialog content already exists.|
+| 103301 | Dialog content error. The ComponentContent is incorrect. |
+| 103302 | Dialog content already exist. The ComponentContent has already been opened. |
 
 **示例：**
 
+该示例通过监听[系统环境信息](../apis-ability-kit/js-apis-app-ability-configuration.md)（系统语言、深浅色等）的变化，调用[ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) 的[update](../apis-arkui/js-apis-arkui-builderNode.md#update)和[updateConfiguration](../apis-arkui/js-apis-arkui-builderNode.md#updateconfiguration12)实现自定义弹窗的数据更新及节点的全量刷新。
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
 import { ComponentContent } from '@kit.ArkUI';
+import { AbilityConstant, Configuration, EnvironmentCallback, ConfigurationConstant } from '@kit.AbilityKit';
+import { BusinessError } from "@kit.BasicServicesKit";
+import { resourceManager } from '@kit.LocalizationKit'
 
 class Params {
-  text: string = ""
+  text: string = "";
+  colorMode: resourceManager.ColorMode = resourceManager.ColorMode.LIGHT
 
-  constructor(text: string) {
-    this.text = text;
+  constructor(text: string, colorMode: resourceManager.ColorMode) {
+    this.text = text
+    this.colorMode = colorMode
   }
 }
 
 @Builder
-function buildText(params: Params) {
+function BuilderDialog(params: Params) {
   Column() {
     Text(params.text)
       .fontSize(50)
       .fontWeight(FontWeight.Bold)
       .margin({ bottom: 36 })
-  }.backgroundColor('#FFF0F0F0')
+  }.backgroundColor(params.colorMode == resourceManager.ColorMode.LIGHT ? "#D5D5D5" : "#004AAF")
 }
 
 @Entry
 @Component
 struct Index {
-  @State message: string = "hello"
+  @State message: string = "hello";
+  contentNode: ComponentContent<Params> | null = null;
+  callbackId: number | undefined = 0;
+
+  aboutToAppear(): void {
+    let environmentCallback: EnvironmentCallback = {
+      onMemoryLevel: (level: AbilityConstant.MemoryLevel): void => {
+      },
+      onConfigurationUpdated: (config: Configuration): void => {
+        console.log("onConfigurationUpdated " + JSON.stringify(config));
+        this.getUIContext().getHostContext()?.getApplicationContext().resourceManager.getConfiguration((err,
+          config) => {
+          // 调用ComponentContent的update更新colorMode信息。
+          this.contentNode?.update(new Params(this.message, config.colorMode))
+          setTimeout(() => {
+            // 调用ComponentContent的updateConfiguration，触发节点的全量更新。
+            this.contentNode?.updateConfiguration()
+          })
+        })
+      }
+    }
+    // 注册监听系统环境变化监听器
+    this.callbackId =
+      this.getUIContext().getHostContext()?.getApplicationContext().on('environment', environmentCallback)
+    // 设置应用深浅色跟随系统
+    this.getUIContext()
+      .getHostContext()?.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET)
+  }
+
+  aboutToDisappear() {
+    // 解注册监听系统环境变化的回调
+    this.getUIContext().getHostContext()?.getApplicationContext().off('environment', this.callbackId)
+    this.contentNode?.dispose()
+  }
 
   build() {
     Row() {
@@ -6672,14 +7453,19 @@ struct Index {
           .onClick(() => {
             let uiContext = this.getUIContext();
             let promptAction = uiContext.getPromptAction();
-            let contentNode = new ComponentContent(uiContext, wrapBuilder(buildText), new Params(this.message));
-            promptAction.openCustomDialog(contentNode)
-              .then(() => {
-                console.info('succeeded')
-              })
-              .catch((error: BusinessError) => {
-                console.error(`OpenCustomDialog args error code is ${error.code}, message is ${error.message}`);
-              })
+            if (this.contentNode == null && uiContext.getHostContext() != undefined) {
+              this.contentNode = new ComponentContent(uiContext, wrapBuilder(BuilderDialog), new Params(this.message,
+                uiContext.getHostContext()!!.getApplicationContext().resourceManager.getConfigurationSync().colorMode))
+            }
+            if (this.contentNode == null) {
+              return
+            }
+            promptAction.closeCustomDialog(this.contentNode)
+            promptAction.openCustomDialog(this.contentNode).then(() => {
+              console.info("succeeded")
+            }).catch((error: BusinessError) => {
+              console.error(`OpenCustomDialog args error code is ${error.code}, message is ${error.message}`);
+            })
           })
       }
       .width('100%')
@@ -6716,7 +7502,7 @@ openCustomDialogWithController\<T extends Object>(dialogContent: ComponentConten
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    异常返回Promise对象。 |
+|   Promise&lt;void&gt;           |    返回Promise对象。 |
 
 **错误码：**
 
@@ -6725,17 +7511,19 @@ openCustomDialogWithController\<T extends Object>(dialogContent: ComponentConten
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
-| 103301 | The ComponentContent is incorrect. |
-| 103302 | Dialog content already exists.|
+| 103301 | Dialog content error. The ComponentContent is incorrect. |
+| 103302 | Dialog content already exist. The ComponentContent has already been opened. |
 
 **示例：**
+
+该示例通过调用openCustomDialog接口，展示了支持传入弹窗控制器与自定义弹窗绑定的功能。
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { ComponentContent, promptAction } from '@kit.ArkUI';
 
 class Params {
-  text: string = ""
+  text: string = "";
   dialogController: promptAction.DialogController = new promptAction.DialogController();
 
   constructor(text: string, dialogController: promptAction.DialogController) {
@@ -6754,7 +7542,7 @@ function buildText(params: Params) {
     Button('点我关闭弹窗：通过外部传递的DialogController')
       .onClick(() => {
         if (params.dialogController != undefined) {
-          params.dialogController.close()
+          params.dialogController.close();
         }
       })
   }.backgroundColor('#FFF0F0F0')
@@ -6763,8 +7551,8 @@ function buildText(params: Params) {
 @Entry
 @ComponentV2
 struct Index {
-  @Local message: string = "hello"
-  private dialogController: promptAction.DialogController = new promptAction.DialogController()
+  @Local message: string = "hello";
+  private dialogController: promptAction.DialogController = new promptAction.DialogController();
 
   build() {
     Row() {
@@ -6777,7 +7565,7 @@ struct Index {
               new Params(this.message, this.dialogController));
             promptAction.openCustomDialogWithController(contentNode, this.dialogController)
               .then(() => {
-                console.info('succeeded')
+                console.info('succeeded');
               })
               .catch((error: BusinessError) => {
                 console.error(`OpenCustomDialogWithController args error code is ${error.code}, message is ${error.message}`);
@@ -6812,7 +7600,7 @@ closeCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>): Promi
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    异常返回Promise对象。 |
+|   Promise&lt;void&gt;           |    返回Promise对象。 |
 
 **错误码：**
 
@@ -6821,17 +7609,19 @@ closeCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>): Promi
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
-| 103301 | The ComponentContent is incorrect. |
-| 103303 | The ComponentContent cannot be found. |
+| 103301 | Dialog content error. The ComponentContent is incorrect. |
+| 103303 | Dialog content not found. The ComponentContent cannot be found. |
 
 **示例：**
+
+该示例通过调用closeCustomDialog接口，关闭已弹出的dialogContent对应的自定义弹窗。
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { ComponentContent } from '@kit.ArkUI';
 
 class Params {
-  text: string = ""
+  text: string = "";
 
   constructor(text: string) {
     this.text = text;
@@ -6851,7 +7641,7 @@ function buildText(params: Params) {
 @Entry
 @Component
 struct Index {
-  @State message: string = "hello"
+  @State message: string = "hello";
 
   build() {
     Row() {
@@ -6863,7 +7653,7 @@ struct Index {
             let contentNode = new ComponentContent(uiContext, wrapBuilder(buildText), new Params(this.message));
             promptAction.openCustomDialog(contentNode)
               .then(() => {
-                console.info('succeeded')
+                console.info('succeeded');
               })
               .catch((error: BusinessError) => {
                 console.error(`OpenCustomDialog args error code is ${error.code}, message is ${error.message}`);
@@ -6871,7 +7661,7 @@ struct Index {
             setTimeout(() => {
               promptAction.closeCustomDialog(contentNode)
                 .then(() => {
-                  console.info('succeeded')
+                  console.info('succeeded');
                 })
                 .catch((error: BusinessError) => {
                   console.error(`OpenCustomDialog args error code is ${error.code}, message is ${error.message}`);
@@ -6908,7 +7698,7 @@ updateCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>, optio
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    异常返回Promise对象。 |
+|   Promise&lt;void&gt;           |    返回Promise对象。 |
 
 **错误码：**
 
@@ -6917,17 +7707,19 @@ updateCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>, optio
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
-| 103301 | The ComponentContent is incorrect. |
-| 103303 | The ComponentContent cannot be found. |
+| 103301 | Dialog content error. The ComponentContent is incorrect. |
+| 103303 | Dialog content not found. The ComponentContent cannot be found. |
 
 **示例：**
+
+该示例通过调用updateCustomDialog接口，动态调整已弹出自定义弹窗的位置。
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { ComponentContent } from '@kit.ArkUI';
 
 class Params {
-  text: string = ""
+  text: string = "";
 
   constructor(text: string) {
     this.text = text;
@@ -6947,7 +7739,7 @@ function buildText(params: Params) {
 @Entry
 @Component
 struct Index {
-  @State message: string = "hello"
+  @State message: string = "hello";
 
   build() {
     Row() {
@@ -6956,22 +7748,22 @@ struct Index {
           .onClick(() => {
             let uiContext = this.getUIContext();
             let promptAction = uiContext.getPromptAction();
-            let contentNode = new ComponentContent(uiContext, wrapBuilder(buildText), new Params(this.message))
+            let contentNode = new ComponentContent(uiContext, wrapBuilder(buildText), new Params(this.message));
             promptAction.openCustomDialog(contentNode)
               .then(() => {
-                console.info('succeeded')
+                console.info('succeeded');
               })
               .catch((error: BusinessError) => {
-                console.error(`updateCustomDialog args error code is ${error.code}, message is ${error.message}`)
+                console.error(`updateCustomDialog args error code is ${error.code}, message is ${error.message}`);
               })
 
             setTimeout(() => {
               promptAction.updateCustomDialog(contentNode, { alignment: DialogAlignment.CenterEnd })
                 .then(() => {
-                  console.info('succeeded')
+                  console.info('succeeded');
                 })
                 .catch((error: BusinessError) => {
-                  console.error(`updateCustomDialog args error code is ${error.code}, message is ${error.message}`)
+                  console.error(`updateCustomDialog args error code is ${error.code}, message is ${error.message}`);
                 })
             }, 2000); //2秒后自动更新弹窗位置
           })
@@ -6988,7 +7780,7 @@ struct Index {
 
 openCustomDialog(options: promptAction.CustomDialogOptions): Promise\<number>
 
-创建并弹出自定义弹窗。使用Promise异步回调，返回供closeCustomDialog使用的对话框id。暂不支持isModal = true与showInSubWindow = true同时使用。
+创建并弹出自定义弹窗。通过Promise异步回调返回供closeCustomDialog使用的对话框id。暂不支持isModal = true与showInSubWindow = true同时使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -7019,7 +7811,7 @@ openCustomDialog(options: promptAction.CustomDialogOptions): Promise\<number>
 
 presentCustomDialog(builder: CustomBuilder \| CustomBuilderWithId, controller?: promptAction.DialogController, options?: promptAction.DialogOptions): Promise\<number>
 
-创建并弹出自定义弹窗。使用Promise异步回调，返回供closeCustomDialog使用的对话框id。
+创建并弹出自定义弹窗。通过Promise异步回调返回供closeCustomDialog使用的对话框id。
 
 支持在自定义弹窗内容中持有弹窗ID进行对应操作。支持传入弹窗控制器与自定义弹窗绑定，后续可以通过控制器控制自定义弹窗。
 
@@ -7061,21 +7853,21 @@ import { PromptAction, promptAction } from '@kit.ArkUI';
 @Entry
 @ComponentV2
 struct Index {
-  @Local message: string = "hello"
-  private ctx: UIContext = this.getUIContext()
-  private promptAction: PromptAction = this.ctx.getPromptAction()
-  private dialogController: promptAction.DialogController = new promptAction.DialogController()
+  @Local message: string = "hello";
+  private ctx: UIContext = this.getUIContext();
+  private promptAction: PromptAction = this.ctx.getPromptAction();
+  private dialogController: promptAction.DialogController = new promptAction.DialogController();
 
-  private customDialogComponentId: number = 0
+  private customDialogComponentId: number = 0;
   @Builder customDialogComponent() {
     Column() {
       Text(this.message).fontSize(30)
       Row({ space: 10 }) {
         Button("通过DialogId关闭").onClick(() => {
-          this.promptAction.closeCustomDialog(this.customDialogComponentId)
+          this.promptAction.closeCustomDialog(this.customDialogComponentId);
         })
         Button("通过DialogController关闭").onClick(() => {
-          this.dialogController.close()
+          this.dialogController.close();
         })
       }
     }.height(200).padding(5).justifyContent(FlexAlign.SpaceBetween)
@@ -7086,10 +7878,10 @@ struct Index {
       Text(this.message).fontSize(30)
       Row({ space: 10 }) {
         Button("通过DialogId关闭").onClick(() => {
-          this.promptAction.closeCustomDialog(dialogId)
+          this.promptAction.closeCustomDialog(dialogId);
         })
         Button("通过DialogController关闭").onClick(() => {
-          this.dialogController.close()
+          this.dialogController.close();
         })
       }
     }.height(200).padding(5).justifyContent(FlexAlign.SpaceBetween)
@@ -7105,10 +7897,10 @@ struct Index {
               this.customDialogComponent()
             }, this.dialogController)
               .then((dialogId: number) => {
-                this.customDialogComponentId = dialogId
+                this.customDialogComponentId = dialogId;
               })
               .catch((err: BusinessError) => {
-                console.error("presentCustomDialog error: " + err.code + " " + err.message)
+                console.error("presentCustomDialog error: " + err.code + " " + err.message);
               })
           })
         Button('presentCustomDialog with id')
@@ -7118,7 +7910,7 @@ struct Index {
               this.customDialogComponentWithId(dialogId)
             }, this.dialogController)
               .catch((err: BusinessError) => {
-                console.error("presentCustomDialog with id error: " + err.code + " " + err.message)
+                console.error("presentCustomDialog with id error: " + err.code + " " + err.message);
               })
           })
       }
@@ -7163,8 +7955,8 @@ import { PromptAction } from '@kit.ArkUI';
 @Entry
 @Component
 struct Index {
-  promptAction: PromptAction = this.getUIContext().getPromptAction()
-  private customDialogComponentId: number = 0
+  promptAction: PromptAction = this.getUIContext().getPromptAction();
+  private customDialogComponentId: number = 0;
 
   @Builder
   customDialogComponent() {
@@ -7172,10 +7964,10 @@ struct Index {
       Text('弹窗').fontSize(30)
       Row({ space: 50 }) {
         Button("确认").onClick(() => {
-          this.promptAction.closeCustomDialog(this.customDialogComponentId)
+          this.promptAction.closeCustomDialog(this.customDialogComponentId);
         })
         Button("取消").onClick(() => {
-          this.promptAction.closeCustomDialog(this.customDialogComponentId)
+          this.promptAction.closeCustomDialog(this.customDialogComponentId);
         })
       }
     }.height(200).padding(5).justifyContent(FlexAlign.SpaceBetween)
@@ -7191,17 +7983,17 @@ struct Index {
                 this.customDialogComponent()
               },
               onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
-                console.info("reason" + JSON.stringify(dismissDialogAction.reason))
-                console.log("dialog onWillDismiss")
+                console.info("reason" + JSON.stringify(dismissDialogAction.reason));
+                console.log("dialog onWillDismiss");
                 if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
-                  dismissDialogAction.dismiss()
+                  dismissDialogAction.dismiss();
                 }
                 if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
-                  dismissDialogAction.dismiss()
+                  dismissDialogAction.dismiss();
                 }
               }
             }).then((dialogId: number) => {
-              this.customDialogComponentId = dialogId
+              this.customDialogComponentId = dialogId;
             })
           })
       }
@@ -7233,14 +8025,14 @@ getTopOrder(): LevelOrder
 
 **示例：**
 
-该示例通过调用getTopOrder接口，展示了获取最顶层显示的弹窗的顺序的功能。
+该示例通过调用getTopOrder接口，展示了获取最顶层显示弹窗顺序的功能。
 
 ```ts
 import { ComponentContent, PromptAction, LevelOrder, promptAction, UIContext } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class Params {
-  text: string = ""
+  text: string = "";
   constructor(text: string) {
     this.text = text;
   }
@@ -7259,16 +8051,16 @@ function buildText(params: Params) {
 @Entry
 @Component
 struct Index {
-  @State message: string = '弹窗'
-  private ctx: UIContext = this.getUIContext()
-  private promptAction: PromptAction = this.ctx.getPromptAction()
+  @State message: string = '弹窗';
+  private ctx: UIContext = this.getUIContext();
+  private promptAction: PromptAction = this.ctx.getPromptAction();
   private contentNode: ComponentContent<Object> =
-    new ComponentContent(this.ctx, wrapBuilder(buildText), new Params(this.message))
+    new ComponentContent(this.ctx, wrapBuilder(buildText), new Params(this.message));
 
   private baseDialogOptions: promptAction.BaseDialogOptions = {
     showInSubWindow: false,
     levelOrder: LevelOrder.clamp(30.1),
-  }
+  };
 
   build() {
     Row() {
@@ -7278,7 +8070,7 @@ struct Index {
           .onClick(() => {
             this.promptAction.openCustomDialog(this.contentNode, this.baseDialogOptions)
               .catch((err: BusinessError) => {
-                console.error("openCustomDialog error: " + err.code + " " + err.message)
+                console.error("openCustomDialog error: " + err.code + " " + err.message);
               })
               .then(() => {
                 let topOrder: LevelOrder = this.promptAction.getTopOrder();
@@ -7313,14 +8105,14 @@ getBottomOrder(): LevelOrder
 
 **示例：**
 
-该示例通过调用getBottomOrder接口，展示了获取最底层显示的弹窗的顺序的功能。
+该示例通过调用getBottomOrder接口，展示了获取最底层显示弹窗顺序的功能。
 
 ```ts
 import { ComponentContent, PromptAction, LevelOrder, promptAction, UIContext } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class Params {
-  text: string = ""
+  text: string = "";
   constructor(text: string) {
     this.text = text;
   }
@@ -7339,16 +8131,16 @@ function buildText(params: Params) {
 @Entry
 @Component
 struct Index {
-  @State message: string = '弹窗'
-  private ctx: UIContext = this.getUIContext()
-  private promptAction: PromptAction = this.ctx.getPromptAction()
+  @State message: string = '弹窗';
+  private ctx: UIContext = this.getUIContext();
+  private promptAction: PromptAction = this.ctx.getPromptAction();
   private contentNode: ComponentContent<Object> =
-    new ComponentContent(this.ctx, wrapBuilder(buildText), new Params(this.message))
+    new ComponentContent(this.ctx, wrapBuilder(buildText), new Params(this.message));
 
   private baseDialogOptions: promptAction.BaseDialogOptions = {
     showInSubWindow: false,
     levelOrder: LevelOrder.clamp(30.1),
-  }
+  };
 
   build() {
     Row() {
@@ -7358,7 +8150,7 @@ struct Index {
           .onClick(() => {
             this.promptAction.openCustomDialog(this.contentNode, this.baseDialogOptions)
               .catch((err: BusinessError) => {
-                console.error("openCustomDialog error: " + err.code + " " + err.message)
+                console.error("openCustomDialog error: " + err.code + " " + err.message);
               })
               .then(() => {
                 let bottomOrder: LevelOrder = this.promptAction.getBottomOrder();
@@ -7377,7 +8169,7 @@ struct Index {
 
 openPopup\<T extends Object>(content: ComponentContent\<T>, target: TargetInfo, options?: PopupCommonOptions): Promise&lt;void&gt;
 
-创建并弹出以content作为内容的popup弹窗，使用Promise异步回调。
+创建并弹出以content作为内容的Popup弹窗，使用Promise异步回调。
 
 > **说明：**
 >
@@ -7403,7 +8195,7 @@ openPopup\<T extends Object>(content: ComponentContent\<T>, target: TargetInfo, 
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    异常返回Promise对象。 |
+|   Promise&lt;void&gt;           |    返回Promise对象。 |
 
 **错误码：**
 
@@ -7419,13 +8211,15 @@ openPopup\<T extends Object>(content: ComponentContent\<T>, target: TargetInfo, 
 
 **示例：**
 
+该示例通过调用openPopuo、updatePopup和closePopup接口，展示了弹出、更新以及关闭Popup的功能。
+
 ```ts
 import { ComponentContent, FrameNode } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 interface PopupParam {
-  updateFunc?: () => void
-  closeFunc?: () => void
+  updateFunc?: () => void;
+  closeFunc?: () => void;
 }
 
 export function showPopup(context: UIContext, uniqueId: number, contentNode: ComponentContent<PopupParam>,
@@ -7442,7 +8236,7 @@ export function showPopup(context: UIContext, uniqueId: number, contentNode: Com
       console.info('openPopup success');
     })
     .catch((err: BusinessError) => {
-      console.info('openPopup error: ' + err.code + ' ' + err.message);
+      console.error('openPopup error: ' + err.code + ' ' + err.message);
     })
   popupParam.updateFunc = () => {
     promptAction.updatePopup(contentNode, {
@@ -7452,7 +8246,7 @@ export function showPopup(context: UIContext, uniqueId: number, contentNode: Com
         console.info('updatePopup success');
       })
       .catch((err: BusinessError) => {
-        console.info('updatePopup error: ' + err.code + ' ' + err.message);
+        console.error('updatePopup error: ' + err.code + ' ' + err.message);
       })
   }
   popupParam.closeFunc = () => {
@@ -7461,7 +8255,7 @@ export function showPopup(context: UIContext, uniqueId: number, contentNode: Com
         console.info('closePopup success');
       })
       .catch((err: BusinessError) => {
-        console.info('closePopup error: ' + err.code + ' ' + err.message);
+        console.error('closePopup error: ' + err.code + ' ' + err.message);
       })
   }
 }
@@ -7491,10 +8285,10 @@ struct Index {
       Button('Open Popup')
         .fontSize(20)
         .onClick(() => {
-          let context = this.getUIContext()
+          let context = this.getUIContext();
           const popupParam: PopupParam = {};
           const contentNode = new ComponentContent(context, wrapBuilder(buildText), popupParam);
-          showPopup(context, this.getUniqueId(), contentNode, popupParam)
+          showPopup(context, this.getUniqueId(), contentNode, popupParam);
         })
     }
   }
@@ -7505,7 +8299,7 @@ struct Index {
 
 updatePopup\<T extends Object>(content: ComponentContent\<T>, options: PopupCommonOptions, partialUpdate?: boolean ): Promise&lt;void&gt;
 
-更新content对应的popup弹窗的样式，使用Promise异步回调。
+更新content对应的Popup弹窗的样式，使用Promise异步回调。
 
 > **说明：**
 >
@@ -7528,7 +8322,7 @@ updatePopup\<T extends Object>(content: ComponentContent\<T>, options: PopupComm
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    异常返回Promise对象。 |
+|   Promise&lt;void&gt;           |    返回Promise对象。 |
 
 **错误码：**
 
@@ -7548,7 +8342,7 @@ updatePopup\<T extends Object>(content: ComponentContent\<T>, options: PopupComm
 
 closePopup\<T extends Object>(content: ComponentContent\<T>): Promise&lt;void&gt;
 
-关闭content对应的popup弹窗，使用Promise异步回调。
+关闭content对应的Popup弹窗，使用Promise异步回调。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -7564,7 +8358,7 @@ closePopup\<T extends Object>(content: ComponentContent\<T>): Promise&lt;void&gt
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    异常返回Promise对象。 |
+|   Promise&lt;void&gt;           |    返回Promise对象。 |
 
 **错误码：**
 
@@ -7584,7 +8378,7 @@ closePopup\<T extends Object>(content: ComponentContent\<T>): Promise&lt;void&gt
 
 openMenu\<T extends Object>(content: ComponentContent\<T>, target: TargetInfo, options?: MenuOptions): Promise&lt;void&gt;
 
-创建并弹出以content作为内容的menu弹窗。使用Promise异步回调。
+创建并弹出以content作为内容的Menu弹窗。使用Promise异步回调。
 
 > **说明：**
 >
@@ -7610,7 +8404,7 @@ openMenu\<T extends Object>(content: ComponentContent\<T>, target: TargetInfo, o
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    异常返回Promise对象。 |
+|   Promise&lt;void&gt;           |    返回Promise对象。 |
 
 **错误码：**
 
@@ -7625,6 +8419,8 @@ openMenu\<T extends Object>(content: ComponentContent\<T>, target: TargetInfo, o
 | 103305 | The node of targetId is not in the component tree. |
 
 **示例：**
+
+该示例通过调用openMenu接口，展示了弹出Menu的功能。
 
 ```ts
 import { ComponentContent, FrameNode } from '@kit.ArkUI';
@@ -7666,9 +8462,9 @@ struct Index {
         .width('80%')
         .margin(10)
         .onClick(() => {
-          let context = this.getUIContext()
+          let context = this.getUIContext();
           const contentNode = new ComponentContent(context, wrapBuilder(MyMenu));
-          doSomething(context, this.getUniqueId(), contentNode)
+          doSomething(context, this.getUniqueId(), contentNode);
         })
     }
   }
@@ -7679,11 +8475,13 @@ struct Index {
 
 updateMenu\<T extends Object>(content: ComponentContent\<T>, options: MenuOptions, partialUpdate?: boolean ): Promise&lt;void&gt;
 
-更新content对应的menu弹窗的样式。使用Promise异步回调。
+更新content对应的Menu弹窗的样式。使用Promise异步回调。
 
 > **说明：**
 >
-> 不支持更新showInSubWindow、preview、previewAnimationOptions、transition、onAppear、aboutToAppear、onDisappear、aboutToDisappear。
+> 不支持更新showInSubWindow、preview、previewAnimationOptions、transition、onAppear、aboutToAppear、onDisappear、aboutToDisappear、onWillAppear、onDidAppear、onWillDisappear和onDidDisappear。
+>
+> 支持mask通过设置[MenuMaskType](./arkui-ts/ts-universal-attributes-menu.md#menumasktype20类型说明)实现更新蒙层样式，不支持mask通过设置boolean实现蒙层从无到有或者从有到无的更新。
 >
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
@@ -7695,14 +8493,14 @@ updateMenu\<T extends Object>(content: ComponentContent\<T>, options: MenuOption
 | 参数名     | 类型                                       | 必填   | 说明      |
 | ------- | ---------------------------------------- | ---- | ------- |
 | content | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | 是 | menu弹窗中显示的组件内容。 |
-| options | [MenuOptions](./arkui-ts/ts-universal-attributes-menu.md#menuoptions10) | 是 | menu弹窗样式。<br/>**说明：** <br/>不支持更新showInSubWindow、preview、previewAnimationOptions、transition、onAppear、aboutToAppear、onDisappear、aboutToDisappear。 |
+| options | [MenuOptions](./arkui-ts/ts-universal-attributes-menu.md#menuoptions10) | 是 | menu弹窗样式。<br/>**说明：** <br/>1. 不支持更新showInSubWindow、preview、previewAnimationOptions、transition、onAppear、aboutToAppear、onDisappear、aboutToDisappear、onWillAppear、onDidAppear、onWillDisappear和onDidDisappear。<br/>2. 支持mask通过设置[MenuMaskType](./arkui-ts/ts-universal-attributes-menu.md#menumasktype20类型说明)实现更新蒙层样式，不支持mask通过设置boolean实现蒙层从无到有或者从有到无的更新。 |
 | partialUpdate | boolean | 否 | menu弹窗更新方式，默认值为false。<br/>**说明：** <br/>1. true为增量更新，保留当前值，更新options中的指定属性。 <br/>2. false为全量更新，除options中的指定属性，其他属性恢复默认值。 |
 
 **返回值：**
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    异常返回Promise对象。 |
+|   Promise&lt;void&gt;           |    返回Promise对象。 |
 
 **错误码：**
 
@@ -7715,6 +8513,8 @@ updateMenu\<T extends Object>(content: ComponentContent\<T>, options: MenuOption
 | 103303 | The ComponentContent cannot be found. |
 
 **示例：**
+
+该示例通过调用updateMenu接口，展示了更新Menu箭头样式的功能。
 
 ```ts
 import { ComponentContent, FrameNode } from '@kit.ArkUI';
@@ -7748,7 +8548,7 @@ export function showMenu(context: UIContext, uniqueId: number, contentNode: Comp
     promptAction.updateMenu(contentNode, {
       enableArrow: false,
     });
-  }, 2000)
+  }, 2000);
 }
 
 @Entry
@@ -7761,9 +8561,9 @@ struct Index {
         .width('80%')
         .margin(10)
         .onClick(() => {
-          let context = this.getUIContext()
+          let context = this.getUIContext();
           const contentNode = new ComponentContent(context, wrapBuilder(MyMenu));
-          doSomething(context, this.getUniqueId(), contentNode)
+          doSomething(context, this.getUniqueId(), contentNode);
         })
     }
   }
@@ -7774,7 +8574,7 @@ struct Index {
 
 closeMenu\<T extends Object>(content: ComponentContent\<T>): Promise&lt;void&gt;
 
-关闭content对应的menu弹窗。使用Promise异步回调。
+关闭content对应的Menu弹窗。使用Promise异步回调。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -7790,7 +8590,7 @@ closeMenu\<T extends Object>(content: ComponentContent\<T>): Promise&lt;void&gt;
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-|   Promise&lt;void&gt;           |    异常返回Promise对象。 |
+|   Promise&lt;void&gt;           |    返回Promise对象。 |
 
 **错误码：**
 
@@ -7803,6 +8603,8 @@ closeMenu\<T extends Object>(content: ComponentContent\<T>): Promise&lt;void&gt;
 | 103303 | The ComponentContent cannot be found. |
 
 **示例：**
+
+该示例通过调用closeMenu接口，展示了关闭Menu的功能。
 
 ```ts
 import { ComponentContent, FrameNode } from '@kit.ArkUI';
@@ -7834,7 +8636,7 @@ export function showMenu(context: UIContext, uniqueId: number, contentNode: Comp
   });
   setTimeout(() => {
     promptAction.closeMenu(contentNode);
-  }, 2000)
+  }, 2000);
 }
 
 @Entry
@@ -7847,9 +8649,9 @@ struct Index {
         .width('80%')
         .margin(10)
         .onClick(() => {
-          let context = this.getUIContext()
+          let context = this.getUIContext();
           const contentNode = new ComponentContent(context, wrapBuilder(MyMenu));
-          doSomething(context, this.getUniqueId(), contentNode)
+          doSomething(context, this.getUniqueId(), contentNode);
         })
     }
   }
@@ -7857,7 +8659,7 @@ struct Index {
 ```
 
 ## DragController<sup>11+</sup>
-以下API需先使用UIContext中的[getDragController()](js-apis-arkui-UIContext.md#getdragcontroller11)方法获取UIContext实例，再通过此实例调用对应方法。
+以下API需先使用UIContext中的[getDragController()](js-apis-arkui-UIContext.md#getdragcontroller11)方法获取DragController实例，再通过此实例调用对应方法。
 
 ### executeDrag<sup>11+</sup>
 
@@ -7888,7 +8690,7 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragI
 **示例：**
 
 ```ts
-import { dragController } from "@kit.ArkUI"
+import { dragController } from "@kit.ArkUI";
 import { unifiedDataChannel } from '@kit.ArkData';
 
 @Entry
@@ -7906,28 +8708,28 @@ struct DragControllerPage {
   build() {
     Column() {
       Button('touch to execute drag')
-        .onTouch((event?:TouchEvent) => {
-          if(event){
+        .onTouch((event?: TouchEvent) => {
+          if (event) {
             if (event.type == TouchType.Down) {
-              let text = new unifiedDataChannel.Text()
-              let unifiedData = new unifiedDataChannel.UnifiedData(text)
+              let text = new unifiedDataChannel.Text();
+              let unifiedData = new unifiedDataChannel.UnifiedData(text);
 
               let dragInfo: dragController.DragInfo = {
                 pointerId: 0,
                 data: unifiedData,
                 extraParams: ''
+              };
+              class tmp {
+                event: DragEvent | undefined = undefined;
+                extraParams: string = '';
               }
-              class tmp{
-                event:DragEvent|undefined = undefined
-                extraParams:string = ''
-              }
-              let eve:tmp = new tmp()
-              this.getUIContext().getDragController().executeDrag(()=>{this.DraggingBuilder()}, dragInfo, (err, eve) => {
-                if(eve.event){
+              let eve: tmp = new tmp();
+              this.getUIContext().getDragController().executeDrag(() => { this.DraggingBuilder() }, dragInfo, (err, eve) => {
+                if (eve.event) {
                   if (eve.event.getResult() == DragResult.DRAG_SUCCESSFUL) {
-                  // ...
+                    // ...
                   } else if (eve.event.getResult() == DragResult.DRAG_FAILED) {
-                  // ...
+                    // ...
                   }
                 }
               })
@@ -7973,14 +8775,14 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragI
 **示例：**
 
 ```ts
-import { dragController } from "@kit.ArkUI"
+import { dragController } from "@kit.ArkUI";
 import { image } from '@kit.ImageKit';
 import { unifiedDataChannel } from '@kit.ArkData';
 
 @Entry
 @Component
 struct DragControllerPage {
-  @State pixmap: image.PixelMap|null = null
+  @State pixmap: image.PixelMap | null = null;
 
   @Builder DraggingBuilder() {
     Column() {
@@ -8003,31 +8805,31 @@ struct DragControllerPage {
   build() {
     Column() {
       Button('touch to execute drag')
-        .onTouch((event?:TouchEvent) => {
-          if(event){
+        .onTouch((event?: TouchEvent) => {
+          if (event) {
             if (event.type == TouchType.Down) {
-              let text = new unifiedDataChannel.Text()
-              let unifiedData = new unifiedDataChannel.UnifiedData(text)
+              let text = new unifiedDataChannel.Text();
+              let unifiedData = new unifiedDataChannel.UnifiedData(text);
 
               let dragInfo: dragController.DragInfo = {
                 pointerId: 0,
                 data: unifiedData,
                 extraParams: ''
-              }
-              let pb:CustomBuilder = ():void=>{this.PixmapBuilder()}
+              };
+              let pb: CustomBuilder = (): void => { this.PixmapBuilder() };
               this.getUIContext().getComponentSnapshot().createFromBuilder(pb).then((pix: image.PixelMap) => {
                 this.pixmap = pix;
                 let dragItemInfo: DragItemInfo = {
                   pixelMap: this.pixmap,
-                  builder: ()=>{this.DraggingBuilder()},
+                  builder: () => { this.DraggingBuilder() },
                   extraInfo: "DragItemInfoTest"
-                }
+                };
 
-                class tmp{
-                  event:DragResult|undefined = undefined
-                  extraParams:string = ''
+                class tmp {
+                  event: DragResult | undefined = undefined;
+                  extraParams: string = '';
                 }
-                let eve:tmp = new tmp()
+                let eve: tmp = new tmp();
                 this.getUIContext().getDragController().executeDrag(dragItemInfo, dragInfo)
                   .then((eve) => {
                     if (eve.event.getResult() == DragResult.DRAG_SUCCESSFUL) {
@@ -8036,7 +8838,7 @@ struct DragControllerPage {
                       // ...
                     }
                   })
-                  .catch((err:Error) => {
+                  .catch((err: Error) => {
                   })
               })
             }
@@ -8122,7 +8924,7 @@ export default class EntryAbility extends UIAbility {
         uiContext = windowClass.getUIContext();
         this.storage.setOrCreate<UIContext>('uiContext', uiContext);
         // 获取UIContext实例
-      })
+      });
     });
   }
 
@@ -8144,17 +8946,17 @@ export default class EntryAbility extends UIAbility {
 ```
 2.通过this.getUIContext().getSharedLocalStorage()获取上下文，进而获取DragController对象实施后续操作。
 ```ts
-import { dragController, componentSnapshot, UIContext, DragController } from "@kit.ArkUI"
+import { dragController, componentSnapshot, UIContext, DragController } from "@kit.ArkUI";
 import { image } from '@kit.ImageKit';
 import { unifiedDataChannel } from '@kit.ArkData';
 
 @Entry()
 @Component
 struct DragControllerPage {
-  @State pixmap: image.PixelMap|null = null
-  private dragAction: dragController.DragAction|null = null;
-  customBuilders:Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
-  storages = this.getUIContext().getSharedLocalStorage()
+  @State pixmap: image.PixelMap | null = null;
+  private dragAction: dragController.DragAction | null = null;
+  customBuilders: Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
+  storages = this.getUIContext().getSharedLocalStorage();
 
   @Builder DraggingBuilder() {
     Column() {
@@ -8175,40 +8977,40 @@ struct DragControllerPage {
       .height(100)
       .backgroundColor(Color.Red)
 
-      Button('多对象dragAction customBuilder拖拽').onTouch((event?:TouchEvent) => {
-        if(event){
+      Button('多对象dragAction customBuilder拖拽').onTouch((event?: TouchEvent) => {
+        if (event) {
           if (event.type == TouchType.Down) {
             console.info("muti drag Down by listener");
-            this.customBuilders.push(()=>{this.DraggingBuilder()});
-            this.customBuilders.push(()=>{this.DraggingBuilder()});
-            this.customBuilders.push(()=>{this.DraggingBuilder()});
-            let text = new unifiedDataChannel.Text()
-            let unifiedData = new unifiedDataChannel.UnifiedData(text)
+            this.customBuilders.push(() => { this.DraggingBuilder() });
+            this.customBuilders.push(() => { this.DraggingBuilder() });
+            this.customBuilders.push(() => { this.DraggingBuilder() });
+            let text = new unifiedDataChannel.Text();
+            let unifiedData = new unifiedDataChannel.UnifiedData(text);
             let dragInfo: dragController.DragInfo = {
               pointerId: 0,
               data: unifiedData,
               extraParams: ''
-            }
+            };
             try{
               let uiContext: UIContext = this.storages?.get<UIContext>('uiContext') as UIContext;
-              this.dragAction = uiContext.getDragController().createDragAction(this.customBuilders, dragInfo)
-              if(!this.dragAction){
+              this.dragAction = uiContext.getDragController().createDragAction(this.customBuilders, dragInfo);
+              if (!this.dragAction) {
                 console.info("listener dragAction is null");
-                return
+                return;
               }
-              this.dragAction.on('statusChange', (dragAndDropInfo)=>{
+              this.dragAction.on('statusChange', (dragAndDropInfo) => {
                 if (dragAndDropInfo.status == dragController.DragStatus.STARTED) {
                   console.info("drag has start");
-                } else if (dragAndDropInfo.status == dragController.DragStatus.ENDED){
+                } else if (dragAndDropInfo.status == dragController.DragStatus.ENDED) {
                   console.info("drag has end");
                   if (!this.dragAction) {
-                    return
+                    return;
                   }
-                  this.customBuilders.splice(0, this.customBuilders.length)
-                  this.dragAction.off('statusChange')
+                  this.customBuilders.splice(0, this.customBuilders.length);
+                  this.dragAction.off('statusChange');
                 }
               })
-              this.dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
+              this.dragAction.startDrag().then(() => {}).catch((err: Error) => {
                 console.error("start drag Error:" + err.message);
               })
             } catch(err) {
@@ -8216,7 +9018,7 @@ struct DragControllerPage {
             }
           }
         }
-      }).margin({top:20})
+      }).margin({ top: 20 })
     }
   }
 }
@@ -8337,29 +9139,29 @@ import { dragController } from "@kit.ArkUI";
 @Entry
 @Component
 struct NormalEts {
-  @State finished: boolean = false
-  @State timeout1: number = 1
-  @State pixmap: image.PixelMap | undefined = undefined
-  @State unifiedData1: unifiedDataChannel.UnifiedData | undefined = undefined
-  @State previewData: DragItemInfo | undefined = undefined
+  @State finished: boolean = false;
+  @State timeout1: number = 1;
+  @State pixmap: image.PixelMap | undefined = undefined;
+  @State unifiedData1: unifiedDataChannel.UnifiedData | undefined = undefined;
+  @State previewData: DragItemInfo | undefined = undefined;
 
   loadData() {
     let timeout = setTimeout(() => {
       this.getUIContext().getComponentSnapshot().get("image1", (error: Error, pixmap: image.PixelMap) => {
-        this.pixmap = pixmap
+        this.pixmap = pixmap;
         this.previewData = {
           pixelMap: this.pixmap
-        }
-      })
+        };
+      });
 
       let data: unifiedDataChannel.Image = new unifiedDataChannel.Image();
       data.imageUri = "app.media.startIcon";
       let unifiedData = new unifiedDataChannel.UnifiedData(data);
-      this.unifiedData1 = unifiedData
+      this.unifiedData1 = unifiedData;
 
-      this.getUIContext().getDragController().notifyDragStartRequest(dragController.DragStartRequestStatus.READY)
+      this.getUIContext().getDragController().notifyDragStartRequest(dragController.DragStartRequestStatus.READY);
     }, 4000);
-    this.timeout1 = timeout
+    this.timeout1 = timeout;
   }
 
 
@@ -8373,20 +9175,20 @@ struct NormalEts {
           .dragPreview(this.previewData)
           .onPreDrag((status: PreDragStatus) => {
             if (status == PreDragStatus.PREPARING_FOR_DRAG_DETECTION) {
-              this.loadData()
+              this.loadData();
             } else {
               clearTimeout(this.timeout1);
             }
           })
           .onDragStart((event: DragEvent) => {
             if (this.finished == false) {
-              this.getUIContext().getDragController().notifyDragStartRequest(dragController.DragStartRequestStatus.WAITING)
+              this.getUIContext().getDragController().notifyDragStartRequest(dragController.DragStartRequestStatus.WAITING);
             } else {
               event.setData(this.unifiedData1);
             }
           })
-          .onDragEnd(()=>{
-            this.finished = false
+          .onDragEnd(() => {
+            this.finished = false;
           })
       }
       .height(400)
@@ -8394,6 +9196,49 @@ struct NormalEts {
     }
 }
 ```
+### enableDropDisallowedBadge<sup>20+</sup>
+
+enableDropDisallowedBadge(enabled: boolean): void
+
+当组件的类型与配置的[allowDrop](../apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md#allowdrop)无交集时可显示禁用角标。当目标进行拖拽时，通过该方法检查是否显示拖拽禁止角标。该接口暂不支持[UIExtension](../apis-arkui/js-apis-arkui-uiExtension.md)。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| enabled | boolean | 是   | 当组件的类型与配置的[allowDrop](../apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md#allowdrop)无交集时可显示禁用角标，当目标进行拖拽时，通过enableDropDisallowedBadge方法检查是否显示拖拽禁止角标。true表示显示拖拽禁止角标，false表示不显示拖拽禁止角标。默认值为false。 |
+
+**示例：**
+
+该示例通过enableDropDisallowedBadge接口实现了对目标进行拖拽时显示拖拽禁止角标的功能。
+
+```ts
+import { UIAbility } from '@kit.AbilityKit';
+import { window, UIContext } from '@kit.ArkUI';
+
+ export default class EntryAbility extends UIAbility {
+   onWindowStageCreate(windowStage: window.WindowStage): void {
+       windowStage.loadContent('pages/Index', (err, data) => {
+         if (err.code) {
+         return;
+       }
+       windowStage.getMainWindow((err, data) => {
+         if (err.code) {
+           return;
+         }
+         let windowClass: window.Window = data;
+         let uiContext: UIContext = windowClass.getUIContext();
+         uiContext.getDragController().enableDropDisallowedBadge(true);
+     });
+   });
+ }
+}
+```
+![UIContext](figures/UIContext.png)
 
 ## OverlayManager<sup>12+</sup>
 
@@ -8421,7 +9266,7 @@ addComponentContent(content: ComponentContent, index?: number): void
 | 参数名     | 类型                                       | 必填   | 说明          |
 | ------- | ---------------------------------------- | ---- | ----------- |
 | content | [ComponentContent](js-apis-arkui-ComponentContent.md) | 是    | 在OverlayManager上新增指定节点上添加此content。 <br>**说明：** <br/> 新增的节点默认处于页面居中，按层级堆叠。|
-| index | number | 否    | 新增节点在OverlayManager上的层级位置。<br>**说明：** <br/> 当index ≥ 0时，若index的值越大，则ComponentContent的层级越高；当多个ComponentContent的index相同时，若ComponentContent添加的时间越晚，则层级越高。<br/> 当index < 0、index = null或index = undefined时，ComponentContent默认添加至最高层。<br/>当同一个ComponentContent被添加多次时，只保留最后一次添加的ComponentContent。<br/>
+| index | number | 否    | 新增节点在OverlayManager上的层级位置。<br>**说明：** <br/> 当index ≥ 0时，越大，ComponentContent的层级越高；若多个ComponentContent的index相同，ComponentContent添加的时间越晚层级越高。<br/> 当index < 0、index = null或index = undefined时，ComponentContent默认添加至最高层。<br/>当同一个ComponentContent被添加多次时，只保留最后一次添加的ComponentContent。
 
 **示例：**
 
@@ -8514,7 +9359,7 @@ struct OverlayExample {
       Button("跳转页面").onClick(() => {
         this.getUIContext().getRouter().pushUrl({
           url: 'pages/Second'
-        })
+        });
       })
     }
     .width('100%')
@@ -8527,7 +9372,7 @@ struct OverlayExample {
 
 addComponentContentWithOrder(content: ComponentContent, levelOrder?: LevelOrder): void
 
-指定显示顺序创建浮层节点。
+创建浮层节点时，指定显示顺序。
 
 支持在浮层节点创建时指定显示的顺序。
 
@@ -8544,17 +9389,17 @@ addComponentContentWithOrder(content: ComponentContent, levelOrder?: LevelOrder)
 
 **示例：**
 
-该示例通过调用addComponentContentWithOrder接口，展示了指定显示顺序创建浮层节点的功能。
+该示例通过调用addComponentContentWithOrder接口，实现了按照指定显示顺序创建浮层节点的功能。
 
 ```ts
 import { ComponentContent, PromptAction, LevelOrder, UIContext, OverlayManager } from '@kit.ArkUI';
 
 class Params {
-  text: string = ""
-  offset: Position
+  text: string = "";
+  offset: Position;
   constructor(text: string, offset: Position) {
-    this.text = text
-    this.offset = offset
+    this.text = text;
+    this.offset = offset;
   }
 }
 @Builder
@@ -8569,14 +9414,14 @@ function builderText(params: Params) {
 @Entry
 @Component
 struct Index {
-  @State message: string = '弹窗'
-  private ctx: UIContext = this.getUIContext()
-  private promptAction: PromptAction = this.ctx.getPromptAction()
-  private overlayNode: OverlayManager = this.ctx.getOverlayManager()
-  @StorageLink('contentArray') contentArray: ComponentContent<Params>[] = []
-  @StorageLink('componentContentIndex') componentContentIndex: number = 0
-  @StorageLink('arrayIndex') arrayIndex: number = 0
-  @StorageLink("componentOffset") componentOffset: Position = {x: 0, y: 80}
+  @State message: string = '弹窗';
+  private ctx: UIContext = this.getUIContext();
+  private promptAction: PromptAction = this.ctx.getPromptAction();
+  private overlayNode: OverlayManager = this.ctx.getOverlayManager();
+  @StorageLink('contentArray') contentArray: ComponentContent<Params>[] = [];
+  @StorageLink('componentContentIndex') componentContentIndex: number = 0;
+  @StorageLink('arrayIndex') arrayIndex: number = 0;
+  @StorageLink("componentOffset") componentOffset: Position = { x: 0, y: 80 };
 
   build() {
     Row() {
@@ -8587,9 +9432,9 @@ struct Index {
             let componentContent = new ComponentContent(
               this.ctx, wrapBuilder<[Params]>(builderText),
               new Params(this.message + (this.contentArray.length), this.componentOffset)
-            )
-            this.contentArray.push(componentContent)
-            this.overlayNode.addComponentContentWithOrder(componentContent, LevelOrder.clamp(100.1))
+            );
+            this.contentArray.push(componentContent);
+            this.overlayNode.addComponentContentWithOrder(componentContent, LevelOrder.clamp(100.1));
             let topOrder: LevelOrder = this.promptAction.getTopOrder();
             if (topOrder !== undefined) {
               console.error('topOrder: ' + topOrder.getOrder());
@@ -8605,9 +9450,9 @@ struct Index {
             let componentContent = new ComponentContent(
               this.ctx, wrapBuilder<[Params]>(builderText),
               new Params(this.message + (this.contentArray.length), this.componentOffset)
-            )
-            this.contentArray.push(componentContent)
-            this.overlayNode.addComponentContentWithOrder(componentContent, LevelOrder.clamp(100.2))
+            );
+            this.contentArray.push(componentContent);
+            this.overlayNode.addComponentContentWithOrder(componentContent, LevelOrder.clamp(100.2));
             let topOrder: LevelOrder = this.promptAction.getTopOrder();
             if (topOrder !== undefined) {
               console.error('topOrder: ' + topOrder.getOrder());
@@ -8627,7 +9472,7 @@ struct Index {
 
 removeComponentContent(content: ComponentContent): void
 
-在overlay上删除指定节点。
+删除overlay上的指定节点。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -8667,7 +9512,7 @@ showComponentContent(content: ComponentContent): void
 
 hideComponentContent(content: ComponentContent): void
 
-在OverlayManager上隐藏指定节点。
+隐藏OverlayManager上的指定节点。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -8715,14 +9560,12 @@ hideAllComponentContents(): void
 
 初始化[OverlayManager](#overlaymanager12)时所用参数。
 
-**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称             | 类型                | 必填     | 说明                     |
 | --------------- | ---------------------- | ------------ | --------------------- |
-| renderRootOverlay   | boolean | 否 | 是否渲染overlay根节点，true表示渲染overlay根节点，false表示不渲染overlay根节点，默认值为true。|
-| enableBackPressedEvent<sup>18+</sup>   | boolean | 否 | 是否支持通过侧滑手势关闭OverlayManager下的ComponentContent，默认值为false。 |
+| renderRootOverlay   | boolean | 否 | 是否渲染overlay根节点，true表示渲染overlay根节点，false表示不渲染overlay根节点，默认值为true。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
+| enableBackPressedEvent<sup>19+</sup>   | boolean | 否 | 是否支持通过侧滑手势关闭OverlayManager下的ComponentContent，true表示可以通过侧滑关闭，false表示不可以通过侧滑关闭，默认值为false。 <br/>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。|
 
 ## AtomicServiceBar<sup>11+</sup>
 
@@ -8795,7 +9638,7 @@ setBackgroundColor(color:Nullable<Color | number | string>): void
 **示例：**
 
 ```ts
-import {UIContext, AtomicServiceBar,window } from '@kit.ArkUI';
+import { UIContext, AtomicServiceBar, window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 onWindowStageCreate(windowStage: window.WindowStage) {
   // Main window is created, set main page for this ability
@@ -8835,7 +9678,7 @@ setTitleContent(content:string): void
 **示例：**
 
 ```ts
-import {UIContext, AtomicServiceBar,window } from '@kit.ArkUI';
+import { UIContext, AtomicServiceBar, window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 onWindowStageCreate(windowStage: window.WindowStage) {
@@ -8876,7 +9719,7 @@ setTitleFontStyle(font:FontStyle):void
 **示例：**
 
 ```ts
-import {UIContext, Font, AtomicServiceBar } from '@kit.ArkUI';
+import { UIContext, Font, AtomicServiceBar } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 onWindowStageCreate(windowStage: window.WindowStage) {
@@ -8918,7 +9761,7 @@ setIconColor(color:Nullable<Color | number | string>): void
 **示例：**
 
 ```ts
-import {UIContext, Font, window } from '@kit.ArkUI';
+import { UIContext, Font, window } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 onWindowStageCreate(windowStage: window.WindowStage) {
@@ -8997,7 +9840,7 @@ struct Index {
 
 
 ## FocusController<sup>12+</sup>
-以下API需先使用UIContext中的[getFocusController()](js-apis-arkui-UIContext.md#getFocusController12)方法获取UIContext实例，再通过此实例调用对应方法。
+以下API需先使用UIContext中的[getFocusController()](js-apis-arkui-UIContext.md#getfocuscontroller12)方法获取FocusController实例，再通过该实例调用对应方法。
 
 ### clearFocus<sup>12+</sup>
 
@@ -9015,8 +9858,8 @@ clearFocus(): void
 @Entry
 @Component
 struct ClearFocusExample {
-  @State inputValue: string = ''
-  @State btColor: Color = Color.Blue
+  @State inputValue: string = '';
+  @State btColor: Color = Color.Blue;
 
   build() {
     Column({ space: 20 }) {
@@ -9035,10 +9878,10 @@ struct ClearFocusExample {
           .backgroundColor(this.btColor)
           .defaultFocus(true)
           .onFocus(() => {
-            this.btColor = Color.Red
+            this.btColor = Color.Red;
           })
           .onBlur(() => {
-            this.btColor = Color.Blue
+            this.btColor = Color.Blue;
           })
         Button('clearFocus')
           .width(200)
@@ -9046,7 +9889,7 @@ struct ClearFocusExample {
           .fontColor(Color.White)
           .backgroundColor(Color.Blue)
           .onClick(() => {
-            this.getUIContext().getFocusController().clearFocus()
+            this.getUIContext().getFocusController().clearFocus();
           })
       }
     }
@@ -9060,7 +9903,7 @@ struct ClearFocusExample {
 
 requestFocus(key: string): void
 
-通过组件的id将焦点转移到组件树对应的实体节点。当前帧生效。
+通过组件的id将焦点转移到组件树对应的实体节点，当前帧生效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -9088,7 +9931,7 @@ requestFocus(key: string): void
 @Entry
 @Component
 struct RequestExample {
-  @State btColor: Color = Color.Blue
+  @State btColor: Color = Color.Blue;
 
   build() {
     Column({ space: 20 }) {
@@ -9100,10 +9943,10 @@ struct RequestExample {
           .focusOnTouch(true)
           .backgroundColor(this.btColor)
           .onFocus(() => {
-            this.btColor = Color.Red
+            this.btColor = Color.Red;
           })
           .onBlur(() => {
-            this.btColor = Color.Blue
+            this.btColor = Color.Blue;
           })
           .id("testButton")
 
@@ -9117,7 +9960,7 @@ struct RequestExample {
           .width(200)
           .height(70)
           .onClick(() => {
-            this.getUIContext().getFocusController().requestFocus("testButton")
+            this.getUIContext().getFocusController().requestFocus("testButton");
           })
 
         Button('requestFocus fail')
@@ -9125,9 +9968,9 @@ struct RequestExample {
           .height(70)
           .onClick(() => {
             try {
-              this.getUIContext().getFocusController().requestFocus("eee")
+              this.getUIContext().getFocusController().requestFocus("eee");
             } catch (error) {
-              console.error('requestFocus failed code is ' + error.code + ' message is ' + error.message)
+              console.error('requestFocus failed code is ' + error.code + ' message is ' + error.message);
             }
           })
       }
@@ -9161,11 +10004,11 @@ activate(isActive: boolean, autoInactive?: boolean): void
 @Component
 struct ActivateExample {
   aboutToAppear() {
-    this.getUIContext().getFocusController().activate(true, false)
+    this.getUIContext().getFocusController().activate(true, false);
   }
 
   aboutToDisappear() {
-    this.getUIContext().getFocusController().activate(false)
+    this.getUIContext().getFocusController().activate(false);
   }
 
   build() {
@@ -9190,9 +10033,77 @@ struct ActivateExample {
 }
 ```
 
+### isActive<sup>20+</sup>
+
+isActive(): boolean
+
+返回UI实例的焦点激活态。
+
+焦点激活态可参考[基础概念：焦点激活态](../../ui/arkts-common-events-focus-event.md#基础概念)。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型          | 说明       |
+| ------------  | --------- |
+|  boolean  | 返回UI实例的焦点激活态。true表示当前进入焦点激活态，false表示当前已退出焦点激活态。 |
+
+**示例：**
+
+验证isActive返回UI实例的焦点激活态。
+```ts
+@Entry
+@Component
+struct ClearFocusExample {
+  @State inputValue: string = '';
+  @State btColor: Color = Color.Blue;
+
+  build() {
+    Column({ space: 20 }) {
+      Column({ space: 5 }) {
+        Button('button1')
+          .width(200)
+          .height(70)
+          .fontColor(Color.White)
+          .focusOnTouch(true)
+          .backgroundColor(Color.Blue)
+          .onClick(()=> {
+            console.log("button1 onClick");
+            this.getUIContext().getFocusController().activate(true);
+            console.log("focus status " + this.getUIContext().getFocusController().isActive());
+          })
+        Button('button2')
+          .width(200)
+          .height(70)
+          .fontColor(Color.White)
+          .focusOnTouch(true)
+          .backgroundColor(this.btColor)
+          .defaultFocus(true)
+          .onClick(()=> {
+            console.log("button2 onClick");
+            this.getUIContext().getFocusController().activate(false);
+            console.log("focus status " + this.getUIContext().getFocusController().isActive());
+          })
+          .onFocus(() => {
+            this.btColor = Color.Red;
+          })
+          .onBlur(() => {
+            this.btColor = Color.Blue;
+          })
+      }
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
 ### setAutoFocusTransfer<sup>14+</sup>
 
-setAutoFocusTransfer(isAutoFocusTransfer: boolean): void;
+setAutoFocusTransfer(isAutoFocusTransfer: boolean): void
 
 设置页面切换时，新的页面是否需要主动获取焦点。
 
@@ -9209,7 +10120,7 @@ setAutoFocusTransfer(isAutoFocusTransfer: boolean): void;
 ```ts
 @CustomDialog
 struct CustomDialogExample {
-  controller?: CustomDialogController
+  controller?: CustomDialogController;
   build() {
     Column() {
       Text('这是自定义弹窗')
@@ -9221,8 +10132,8 @@ struct CustomDialogExample {
       Button('点我关闭弹窗')
         .onClick(() => {
           if (this.controller != undefined) {
-            this.getUIContext().getFocusController().setAutoFocusTransfer(true)
-            this.controller.close()
+            this.getUIContext().getFocusController().setAutoFocusTransfer(true);
+            this.controller.close();
           }
         })
         .margin(20)
@@ -9235,9 +10146,9 @@ struct CustomDialogUser {
   dialogController: CustomDialogController | null = new CustomDialogController({
     builder: CustomDialogExample({
     }),
-  })
+  });
   aboutToDisappear() {
-    this.dialogController = null
+    this.dialogController = null;
   }
 
   build() {
@@ -9245,8 +10156,8 @@ struct CustomDialogUser {
       Button('click me')
         .onClick(() => {
           if (this.dialogController != null) {
-            this.getUIContext().getFocusController().setAutoFocusTransfer(false)
-            this.dialogController.open()
+            this.getUIContext().getFocusController().setAutoFocusTransfer(false);
+            this.dialogController.open();
           }
         }).backgroundColor(0x317aff)
     }.width('100%').margin({ top: 5 })
@@ -9278,7 +10189,7 @@ setKeyProcessingMode(mode: KeyProcessingMode): void
 struct Index {
 
   aboutToAppear() {
-    this.getUIContext().getFocusController().setKeyProcessingMode(KeyProcessingMode.ANCESTOR_EVENT)
+    this.getUIContext().getFocusController().setKeyProcessingMode(KeyProcessingMode.ANCESTOR_EVENT);
   }
 
   build() {
@@ -9286,11 +10197,11 @@ struct Index {
       Row() {
         Button('Button1').id('Button1').onKeyEvent((event) => {
           console.log("Button1");
-          return true
+          return true;
         })
         Button('Button2').id('Button2').onKeyEvent((event) => {
           console.log("Button2");
-          return true
+          return true;
         })
       }
       .width('100%')
@@ -9353,7 +10264,7 @@ import { UIContext, CursorController } from '@kit.ArkUI';
 @Entry
 @Component
 struct CursorControlExample {
-  @State text: string = ''
+  @State text: string = '';
   cursorCustom: CursorController = this.getUIContext().getCursorController();
 
   build() {
@@ -9361,7 +10272,7 @@ struct CursorControlExample {
       Row().height(200).width(200).backgroundColor(Color.Green).position({x: 150 ,y:70})
         .onHover((flag) => {
           if (flag) {
-            this.cursorCustom.setCursor(pointer.PointerStyle.EAST)
+            this.cursorCustom.setCursor(pointer.PointerStyle.EAST);
           } else {
             console.info("restoreDefault");
             this.cursorCustom.restoreDefault();
@@ -9399,7 +10310,7 @@ import { UIContext, CursorController } from '@kit.ArkUI';
 @Entry
 @Component
 struct CursorControlExample {
-  @State text: string = ''
+  @State text: string = '';
   cursorCustom: CursorController = this.getUIContext().getCursorController();
 
   build() {
@@ -9407,7 +10318,7 @@ struct CursorControlExample {
       Row().height(200).width(200).backgroundColor(Color.Blue).position({x: 100 ,y:70})
         .onHover((flag) => {
           if (flag) {
-            this.cursorCustom.setCursor(pointer.PointerStyle.WEST)
+            this.cursorCustom.setCursor(pointer.PointerStyle.WEST);
           } else {
             this.cursorCustom.restoreDefault();
           }
@@ -9485,6 +10396,15 @@ struct Index {
 
 以下API需先使用UIContext中的[getMeasureUtils()](js-apis-arkui-UIContext.md#getmeasureutils12)方法获取MeasureUtils实例，再通过此实例调用对应方法。
 
+> **说明：**
+>
+>
+> 如需更多测算文本参数，建议使用图形对应测算接口[Paragraph](../apis-arkgraphics2d/js-apis-graphics-text.md#paragraph)接口。
+>
+> 调用文本计算接口时，不推荐同时用[ApplicationContext.setFontSizeScale](../apis-ability-kit/js-apis-inner-application-applicationContext.md#applicationcontextsetfontsizescale13)设置应用字体大小缩放比例。为了确保时序正确性，建议开发者自行监听字体缩放变化，以保证测算结果的准确性。
+>
+> 如果计算裁剪后的文本，在裁剪字符串时，建议按照unicode单位迭代，而非按照字符串length长度迭代。否则容易出现字符被截断，导致计算结果不准确的情况，常见emoji字符被截断。
+
 ### measureText<sup>12+</sup>
 
 measureText(options: MeasureOptions): number
@@ -9505,7 +10425,7 @@ measureText(options: MeasureOptions): number
 
 | 类型          | 说明       |
 | ------------  | --------- |
-| number        | 文本宽度。<br/>**说明:**<br/>单位px。 |
+| number        | 文本宽度。<br/>**说明:**<br/>浮点数会向上取整。<br/>单位：px |
 
 
 **示例：**
@@ -9522,7 +10442,7 @@ struct Index {
   @State textWidth: number = this.uiContextMeasure.measureText({
     textContent: "Hello World",
     fontSize: '50px'
-  })
+  });
 
   build() {
     Row() {
@@ -9556,11 +10476,11 @@ measureTextSize(options: MeasureOptions): SizeOptions
 
 | 类型          | 说明       |
 | ------------  | --------- |
-| [SizeOption](arkui-ts/ts-types.md#sizeoptions)   | 返回文本所占布局宽度和高度。<br/>**说明:**<br/> 文本宽度以及高度返回值单位均为px。 |
+| [SizeOptions](arkui-ts/ts-types.md#sizeoptions)   | 返回文本所占布局宽度和高度。<br/>**说明:**<br/>没有传参constraintWidth的情况下，文本宽度返回值浮点数会向上取整。<br/>文本宽度以及高度返回值单位均为px。 |
 
 
 **示例：**
-通过MeasureUtils的measureTextSize方法获取"Hello World"文字的宽度和高度
+通过MeasureUtils的measureTextSize方法获取"Hello World"文字的宽度和高度。
 
 ```ts
 import { MeasureUtils } from '@kit.ArkUI';
@@ -9570,10 +10490,10 @@ import { MeasureUtils } from '@kit.ArkUI';
 struct Index {
   @State uiContext: UIContext = this.getUIContext();
   @State uiContextMeasure: MeasureUtils = this.uiContext.getMeasureUtils();
-  textSize : SizeOptions = this.uiContextMeasure.measureTextSize({
+  textSize: SizeOptions = this.uiContextMeasure.measureTextSize({
     textContent: "Hello World",
     fontSize: '50px'
-  })
+  });
   build() {
     Row() {
       Column() {
@@ -9611,13 +10531,13 @@ get(id: string, callback: AsyncCallback<image.PixelMap>, options?: componentSnap
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| id       | string                                                       | 是   | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)。 |
-| callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 是   | 截图返回结果的回调。                                         |
+| id       | string                                                       | 是   | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)。<br/>**说明：** 不支持未挂树组件，当传入的组件标识是离屏或缓存未挂树的节点时，系统不会对其进行截图。 |
+| callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;image.[PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | 是   | 截图返回结果的回调。                                         |
 | options<sup>12+</sup>       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)            | 否    | 截图相关的自定义参数。 |
 
 **错误码：** 
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码和[截图错误码](errorcode-snapshot.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -9633,7 +10553,7 @@ import { UIContext } from '@kit.ArkUI';
 @Entry
 @Component
 struct SnapshotExample {
-  @State pixmap: image.PixelMap | undefined = undefined
+  @State pixmap: image.PixelMap | undefined = undefined;
   uiContext: UIContext = this.getUIContext();
   build() {
     Column() {
@@ -9645,11 +10565,11 @@ struct SnapshotExample {
         .onClick(() => {
           this.uiContext.getComponentSnapshot().get("root", (error: Error, pixmap: image.PixelMap) => {
             if (error) {
-              console.error("error: " + JSON.stringify(error))
+              console.error("error: " + JSON.stringify(error));
               return;
             }
-            this.pixmap = pixmap
-          }, {scale : 2, waitUntilRenderFinished : true})
+            this.pixmap = pixmap;
+          }, { scale: 2, waitUntilRenderFinished: true });
         }).margin(10)
     }
     .width('100%')
@@ -9677,18 +10597,18 @@ get(id: string, options?: componentSnapshot.SnapshotOptions): Promise<image.Pixe
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| id     | string | 是   | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)。 |
+| id     | string | 是   | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)。<br/>**说明：** 不支持未挂树组件，当传入的组件标识是离屏或缓存未挂树的节点时，系统不会对其进行截图。 |
 | options<sup>12+</sup>       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)            | 否    | 截图相关的自定义参数。 |
 
 **返回值：**
 
 | 类型                                                         | 说明             |
 | ------------------------------------------------------------ | ---------------- |
-| Promise&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 截图返回的结果。 |
+| Promise&lt;image.[PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | 截图返回的结果。 |
 
 **错误码：** 
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码和[截图错误码](errorcode-snapshot.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -9704,7 +10624,7 @@ import { UIContext } from '@kit.ArkUI';
 @Entry
 @Component
 struct SnapshotExample {
-  @State pixmap: image.PixelMap | undefined = undefined
+  @State pixmap: image.PixelMap | undefined = undefined;
   uiContext: UIContext = this.getUIContext();
 
   build() {
@@ -9716,12 +10636,12 @@ struct SnapshotExample {
       Button("click to generate UI snapshot")
         .onClick(() => {
           this.uiContext.getComponentSnapshot()
-            .get("root", {scale : 2, waitUntilRenderFinished : true})
+            .get("root", { scale: 2, waitUntilRenderFinished: true })
             .then((pixmap: image.PixelMap) => {
-              this.pixmap = pixmap
+              this.pixmap = pixmap;
             })
             .catch((err: Error) => {
-              console.error("error: " + err)
+              console.error("error: " + err);
             })
         }).margin(10)
     }
@@ -9736,12 +10656,12 @@ struct SnapshotExample {
 
 createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap>, delay?: number, checkImageStatus?: boolean, options?: componentSnapshot.SnapshotOptions): void
 
-在应用后台渲染[CustomBuilder](arkui-ts/ts-types.md#custombuilder8)自定义组件，并输出其截图。通过回调返回结果。
+传入[CustomBuilder](arkui-ts/ts-types.md#custombuilder8)自定义组件，系统对其进行离屏构建后进行截图，并通过回调返回结果。
 > **说明：** 
 >
-> 由于需要等待组件构建、渲染成功，离屏截图的回调有500ms以内的延迟。
+> 由于需要等待组件构建、渲染成功，离屏截图的回调有500ms以内的延迟，不适宜使用在对性能敏感的场景。
 >
-> 部分执行耗时任务的组件可能无法及时在截图前加载完成，因此会截取不到加载成功后的图像。例如：加载网络图片的[Image](arkui-ts/ts-basic-components-image.md)组件、[Web](../apis-arkweb/ts-basic-components-web.md)组件。
+> 部分执行耗时任务的组件可能无法及时在截图前加载完成，因此会截取不到加载成功后的图像。例如：加载网络图片的[Image](arkui-ts/ts-basic-components-image.md)组件、[Web](../apis-arkweb/arkts-basic-components-web.md)组件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -9752,14 +10672,14 @@ createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | builder  | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8)         | 是   | 自定义组件构建函数。<br/>**说明：** 不支持全局builder。      |
-| callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 是   | 截图返回结果的回调。支持在回调中获取离屏组件绘制区域坐标和大小。 |
+| callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;image.[PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | 是   | 截图返回结果的回调。支持在回调中获取离屏组件绘制区域坐标和大小。 |
 | delay<sup>12+</sup>   | number | 否    | 指定触发截图指令的延迟时间。当布局中使用了图片组件时，需要指定延迟时间，以便系统解码图片资源。资源越大，解码需要的时间越长，建议尽量使用不需要解码的PixelMap资源。<br/> 当使用PixelMap资源或对Image组件设置syncload为true时，可以配置delay为0，强制不等待触发截图。该延迟时间并非指接口从调用到返回的时间，由于系统需要对传入的builder进行临时离屏构建，因此返回的时间通常要比该延迟时间长。<br/>**说明：** 截图接口传入的builder中，不应使用状态变量控制子组件的构建，如果必须要使用，在调用截图接口时，也不应再有变化，以避免出现截图不符合预期的情况。<br/> 默认值：300 <br/> 单位：毫秒 <br/> 取值范围：[0, +∞)，小于0时按默认值处理。 |
 | checkImageStatus<sup>12+</sup>  | boolean | 否    | 指定是否允许在截图之前，校验图片解码状态。如果为true，则会在截图之前检查所有Image组件是否已经解码完成，如果没有完成检查，则会放弃截图并返回异常。<br/>默认值：false|
 | options<sup>12+</sup>       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12) | 否    | 截图相关的自定义参数。 |
 
 **错误码：** 
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码和[截图错误码](errorcode-snapshot.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -9776,7 +10696,7 @@ import { UIContext } from '@kit.ArkUI';
 @Entry
 @Component
 struct ComponentSnapshotExample {
-  @State pixmap: image.PixelMap | undefined = undefined
+  @State pixmap: image.PixelMap | undefined = undefined;
   uiContext: UIContext = this.getUIContext();
   @Builder
   RandomBuilder() {
@@ -9806,11 +10726,11 @@ struct ComponentSnapshotExample {
           },
             (error: Error, pixmap: image.PixelMap) => {
               if (error) {
-                console.error("error: " + JSON.stringify(error))
+                console.error("error: " + JSON.stringify(error));
                 return;
               }
-              this.pixmap = pixmap
-            }, 320, true, {scale : 2, waitUntilRenderFinished : true})
+              this.pixmap = pixmap;
+            }, 320, true, { scale: 2, waitUntilRenderFinished: true });
         })
       Image(this.pixmap)
         .margin(10)
@@ -9826,13 +10746,13 @@ struct ComponentSnapshotExample {
 
 createFromBuilder(builder: CustomBuilder, delay?: number, checkImageStatus?: boolean, options?: componentSnapshot.SnapshotOptions): Promise<image.PixelMap>
 
-在应用后台渲染[CustomBuilder](arkui-ts/ts-types.md#custombuilder8)自定义组件，并输出其截图。通过Promise返回结果。
+传入[CustomBuilder](arkui-ts/ts-types.md#custombuilder8)自定义组件，系统对其进行离屏构建后进行截图，并通过回调返回结果。
 
 > **说明：** 
 >
-> 由于需要等待组件构建、渲染成功，离屏截图的回调有500ms以内的延迟。
+> 由于需要等待组件构建、渲染成功，离屏截图的回调有500ms以内的延迟，不适宜使用在对性能敏感的场景。
 >
-> 部分执行耗时任务的组件可能无法及时在截图前加载完成，因此会截取不到加载成功后的图像。例如：加载网络图片的[Image](arkui-ts/ts-basic-components-image.md)组件、[Web](../apis-arkweb/ts-basic-components-web.md)组件。
+> 部分执行耗时任务的组件可能无法及时在截图前加载完成，因此会截取不到加载成功后的图像。例如：加载网络图片的[Image](arkui-ts/ts-basic-components-image.md)组件、[Web](../apis-arkweb/arkts-basic-components-web.md)组件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -9843,7 +10763,7 @@ createFromBuilder(builder: CustomBuilder, delay?: number, checkImageStatus?: boo
 | 参数名  | 类型                                                 | 必填 | 说明                                                    |
 | ------- | ---------------------------------------------------- | ---- | ------------------------------------------------------- |
 | builder | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) | 是   | 自定义组件构建函数。<br/>**说明：** 不支持全局builder。 |
-| delay<sup>12+</sup>   | number | 否    | 指定触发截图指令的延迟时间。当布局中使用了图片组件时，需要指定延迟时间，以便系统解码图片资源。资源越大，解码需要的时间越长，建议尽量使用不需要解码的PixelMap资源。<br/> 当使用PixelMap资源或对Image组件设置syncload为true时，可以配置delay为0，强制不等待触发截图。该延迟时间并非指接口从调用到返回的时间，由于系统需要对传入的builder进行临时离屏构建，因此返回的时间通常要比该延迟时间长。<br/>**说明：** 截图接口传入的builder中，不应使用状态变量控制子组件的构建，如果必须要使用，在调用截图接口时，也不应再有变化，以避免出现截图不符合预期的情况。<br/> 默认值：300 <br/> 单位：毫秒|
+| delay<sup>12+</sup>   | number | 否    | 指定触发截图指令的延迟时间。当布局中使用了图片组件时，需要指定延迟时间，以便系统解码图片资源。资源越大，解码需要的时间越长，建议尽量使用不需要解码的PixelMap资源。<br/> 当使用PixelMap资源或对Image组件设置syncload为true时，可以配置delay为0，强制不等待触发截图。该延迟时间并非指接口从调用到返回的时间，由于系统需要对传入的builder进行临时离屏构建，因此返回的时间通常要比该延迟时间长。<br/>**说明：** 截图接口传入的builder中，不应使用状态变量控制子组件的构建，如果必须要使用，在调用截图接口时，也不应再有变化，以避免出现截图不符合预期的情况。<br/> 默认值：300 <br/> 单位：毫秒<br/> 取值范围：[0, +∞)，小于0时按默认值处理。|
 | checkImageStatus<sup>12+</sup>  | boolean | 否    | 指定是否允许在截图之前，校验图片解码状态。如果为true，则会在截图之前检查所有Image组件是否已经解码完成，如果没有完成检查，则会放弃截图并返回异常。<br/>默认值：false|
 | options<sup>12+</sup>       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)           | 否    | 截图相关的自定义参数。 |
 
@@ -9851,11 +10771,11 @@ createFromBuilder(builder: CustomBuilder, delay?: number, checkImageStatus?: boo
 
 | 类型                                                         | 说明             |
 | ------------------------------------------------------------ | ---------------- |
-| Promise&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 截图返回的结果。 |
+| Promise&lt;image.[PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | 截图返回的结果。 |
 
 **错误码：** 
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码和[截图错误码](errorcode-snapshot.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -9872,7 +10792,7 @@ import { UIContext } from '@kit.ArkUI';
 @Entry
 @Component
 struct ComponentSnapshotExample {
-  @State pixmap: image.PixelMap | undefined = undefined
+  @State pixmap: image.PixelMap | undefined = undefined;
   uiContext: UIContext = this.getUIContext();
   @Builder
   RandomBuilder() {
@@ -9899,12 +10819,12 @@ struct ComponentSnapshotExample {
           this.uiContext.getComponentSnapshot()
             .createFromBuilder(() => {
               this.RandomBuilder()
-            }, 320, true, {scale : 2, waitUntilRenderFinished : true})
+            }, 320, true, { scale: 2, waitUntilRenderFinished: true })
             .then((pixmap: image.PixelMap) => {
-              this.pixmap = pixmap
+              this.pixmap = pixmap;
             })
             .catch((err: Error) => {
-              console.error("error: " + err)
+              console.error("error: " + err);
             })
         })
       Image(this.pixmap)
@@ -9921,7 +10841,7 @@ struct ComponentSnapshotExample {
 
 getSync(id: string, options?: componentSnapshot.SnapshotOptions): image.PixelMap
 
-获取已加载的组件的截图，传入组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)，找到对应组件进行截图。同步等待截图完成返回[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)。
+获取已加载的组件的截图，传入组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)，找到对应组件进行截图。同步等待截图完成返回[PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)。
 
 > **说明：**
 >
@@ -9935,18 +10855,18 @@ getSync(id: string, options?: componentSnapshot.SnapshotOptions): image.PixelMap
 
 | 参数名  | 类型     | 必填   | 说明                                       |
 | ---- | ------ | ---- | ---------------------------------------- |
-| id   | string | 是    | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)。 |
+| id   | string | 是    | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)。 <br/>**说明：** 不支持未挂树组件，当传入的组件标识是离屏或缓存未挂树的节点时，系统不会对其进行截图。|
 | options       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)            | 否    | 截图相关的自定义参数。 |
 
 **返回值：**
 
 | 类型                            | 说明       |
 | ----------------------------- | -------- |
-| image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 截图返回的结果。 |
+| image.[PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 截图返回的结果。 |
 
 **错误码：** 
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码和[截图错误码](errorcode-snapshot.md)。
 
 | 错误码ID  | 错误信息                |
 | ------ | ------------------- |
@@ -9963,7 +10883,7 @@ import { UIContext } from '@kit.ArkUI';
 @Entry
 @Component
 struct SnapshotExample {
-  @State pixmap: image.PixelMap | undefined = undefined
+  @State pixmap: image.PixelMap | undefined = undefined;
 
   build() {
     Column() {
@@ -9974,10 +10894,10 @@ struct SnapshotExample {
       Button("click to generate UI snapshot")
         .onClick(() => {
           try {
-            let pixelmap = this.getUIContext().getComponentSnapshot().getSync("root", {scale : 2, waitUntilRenderFinished : true})
-            this.pixmap = pixelmap
+            let pixelmap = this.getUIContext().getComponentSnapshot().getSync("root", { scale: 2, waitUntilRenderFinished: true });
+            this.pixmap = pixelmap;
           } catch (error) {
-            console.error("getSync errorCode: " + error.code + " message: " + error.message)
+            console.error("getSync errorCode: " + error.code + " message: " + error.message);
           }
         }).margin(10)
     }
@@ -10006,18 +10926,18 @@ getWithUniqueId(uniqueId: number, options?: componentSnapshot.SnapshotOptions): 
 
 | 参数名  | 类型     | 必填   | 说明                                       |
 | ---- | ------ | ---- | ---------------------------------------- |
-| uniqueId   | number | 是    | 目标组件的[uniqueId](js-apis-arkui-frameNode.md#getuniqueid12) |
+| uniqueId   | number | 是    | 目标组件的[uniqueId](js-apis-arkui-frameNode.md#getuniqueid12) <br/>**说明：** 不支持未挂树组件，当传入的组件标识是离屏或缓存未挂树的节点时，系统不会对其进行截图。|
 | options       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)            | 否    | 截图相关的自定义参数。 |
 
 **返回值：**
 
 | 类型                                                         | 说明             |
 | ------------------------------------------------------------ | ---------------- |
-| Promise&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 截图返回的结果。 |
+| Promise&lt;image.[PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | 截图返回的结果。 |
 
 **错误码：** 
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码和[截图错误码](errorcode-snapshot.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -10038,10 +10958,10 @@ class MyNodeController extends NodeController {
 
   makeNode(uiContext: UIContext): FrameNode | null {
     this.node = new FrameNode(uiContext);
-    this.node.commonAttribute.width('100%').height('100%')
+    this.node.commonAttribute.width('100%').height('100%');
 
     let image = typeNode.createNode(uiContext, 'Image');
-    image.initialize($r('app.media.img')).width('100%').height('100%').autoResize(true)
+    image.initialize($r('app.media.img')).width('100%').height('100%').autoResize(true);
     this.imageNode = image;
 
     this.node.appendChild(image);
@@ -10054,7 +10974,7 @@ class MyNodeController extends NodeController {
 struct SnapshotExample {
   private myNodeController: MyNodeController = new MyNodeController();
 
-  @State pixmap: image.PixelMap | undefined = undefined
+  @State pixmap: image.PixelMap | undefined = undefined;
 
   build() {
     Column() {
@@ -10067,15 +10987,15 @@ struct SnapshotExample {
           try {
             this.getUIContext()
               .getComponentSnapshot()
-              .getWithUniqueId(this.myNodeController.imageNode?.getUniqueId(), {scale: 2, waitUntilRenderFinished: true})
+              .getWithUniqueId(this.myNodeController.imageNode?.getUniqueId(), { scale: 2, waitUntilRenderFinished: true })
               .then((pixmap: image.PixelMap) => {
-                this.pixmap = pixmap
+                this.pixmap = pixmap;
               })
               .catch((err: Error) => {
-                console.log("error: " + err)
+                console.log("error: " + err);
               })
           } catch (error) {
-            console.error("UniqueId get snapshot Error: " + JSON.stringify(error))
+            console.error("UniqueId get snapshot Error: " + JSON.stringify(error));
           }
         }).margin(10)
     }
@@ -10090,7 +11010,7 @@ struct SnapshotExample {
 
 getSyncWithUniqueId(uniqueId: number, options?: componentSnapshot.SnapshotOptions): image.PixelMap
 
-获取已加载的组件的截图，传入组件的[uniqueId](js-apis-arkui-frameNode.md#getuniqueid12)，找到对应组件进行截图。同步等待截图完成返回[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)。
+获取已加载的组件的截图，传入组件的[uniqueId](js-apis-arkui-frameNode.md#getuniqueid12)，找到对应组件进行截图。同步等待截图完成返回[PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)。
 
 > **说明：**
 >
@@ -10104,18 +11024,18 @@ getSyncWithUniqueId(uniqueId: number, options?: componentSnapshot.SnapshotOption
 
 | 参数名  | 类型     | 必填   | 说明                                       |
 | ---- | ------ | ---- | ---------------------------------------- |
-| uniqueId   | number | 是    | 目标组件的[uniqueId](js-apis-arkui-frameNode.md#getuniqueid12)。 |
+| uniqueId   | number | 是    | 目标组件的[uniqueId](js-apis-arkui-frameNode.md#getuniqueid12)。<br/>**说明：** 不支持未挂树组件，当传入的组件标识是离屏或缓存未挂树的节点时，系统不会对其进行截图。|
 | options       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)            | 否    | 截图相关的自定义参数。 |
 
 **返回值：**
 
 | 类型                            | 说明       |
 | ----------------------------- | -------- |
-| image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 截图返回的结果。 |
+| image.[PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 截图返回的结果。 |
 
 **错误码：** 
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码和[截图错误码](errorcode-snapshot.md)。
 
 | 错误码ID  | 错误信息                |
 | ------ | ------------------- |
@@ -10137,10 +11057,10 @@ class MyNodeController extends NodeController {
 
   makeNode(uiContext: UIContext): FrameNode | null {
     this.node = new FrameNode(uiContext);
-    this.node.commonAttribute.width('100%').height('100%')
+    this.node.commonAttribute.width('100%').height('100%');
 
     let image = typeNode.createNode(uiContext, 'Image');
-    image.initialize($r('app.media.img')).width('100%').height('100%').autoResize(true)
+    image.initialize($r('app.media.img')).width('100%').height('100%').autoResize(true);
     this.imageNode = image;
 
     this.node.appendChild(image);
@@ -10153,7 +11073,7 @@ class MyNodeController extends NodeController {
 struct SnapshotExample {
   private myNodeController: MyNodeController = new MyNodeController();
 
-  @State pixmap: image.PixelMap | undefined = undefined
+  @State pixmap: image.PixelMap | undefined = undefined;
 
   build() {
     Column() {
@@ -10166,9 +11086,9 @@ struct SnapshotExample {
           try {
             this.pixmap = this.getUIContext()
               .getComponentSnapshot()
-              .getSyncWithUniqueId(this.myNodeController.imageNode?.getUniqueId(), {scale: 2, waitUntilRenderFinished: true})
+              .getSyncWithUniqueId(this.myNodeController.imageNode?.getUniqueId(), { scale: 2, waitUntilRenderFinished: true });
           } catch (error) {
-            console.error("UniqueId getSync snapshot Error: " + JSON.stringify(error))
+            console.error("UniqueId getSync snapshot Error: " + JSON.stringify(error));
           }
         }).margin(10)
     }
@@ -10224,7 +11144,7 @@ class Params {
 
 @Builder
 function buildText(params: Params) {
-  ReusableChildComponent({ text: params.text });
+  ReusableChildComponent({ text: params.text })
 }
 
 @Component
@@ -10254,8 +11174,8 @@ struct ReusableChildComponent {
 @Entry
 @Component
 struct Index {
-  @State pixmap: image.PixelMap | undefined = undefined
-  @State message: string | undefined | null = "hello"
+  @State pixmap: image.PixelMap | undefined = undefined;
+  @State message: string | undefined | null = "hello";
   uiContext: UIContext = this.getUIContext();
 
   build() {
@@ -10267,12 +11187,12 @@ struct Index {
             let contentNode = new ComponentContent(uiContext, wrapBuilder(buildText), new Params(this.message));
             this.uiContext.getComponentSnapshot()
               .createFromComponent(contentNode
-                , 320, true, {scale : 2, waitUntilRenderFinished : true})
+                , 320, true, { scale: 2, waitUntilRenderFinished: true })
               .then((pixmap: image.PixelMap) => {
-                this.pixmap = pixmap
+                this.pixmap = pixmap;
               })
               .catch((err: Error) => {
-                console.error("error: " + err)
+                console.error("error: " + err);
               })
           })
         Image(this.pixmap)
@@ -10311,13 +11231,13 @@ onFrame(frameTimeInNano: number): void
 **示例：**
 
 ```ts
-import {FrameCallback } from '@kit.ArkUI';
+import { FrameCallback } from '@kit.ArkUI';
 
 class MyFrameCallback extends FrameCallback {
   private tag: string;
 
   constructor(tag: string) {
-    super()
+    super();
     this.tag = tag;
   }
 
@@ -10373,7 +11293,7 @@ class MyIdleCallback extends FrameCallback {
   private tag: string;
 
   constructor(tag: string) {
-    super()
+    super();
     this.tag = tag;
   }
 
@@ -10429,14 +11349,14 @@ setFrameRateRange(range: ExpectedFrameRateRange): void
 **示例：**
 
 ```ts
-import { SwiperDynamicSyncSceneType, SwiperDynamicSyncScene } from '@kit.ArkUI'
+import { SwiperDynamicSyncSceneType, SwiperDynamicSyncScene } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct Frame {
-  @State ANIMATION:ExpectedFrameRateRange = {min:0, max:120, expected: 90}
-  @State GESTURE:ExpectedFrameRateRange = {min:0, max:120, expected: 30}
-  private scenes: SwiperDynamicSyncScene[] = []
+  @State ANIMATION: ExpectedFrameRateRange = { min: 0, max: 120, expected: 90 };
+  @State GESTURE: ExpectedFrameRateRange = { min: 0, max: 120, expected: 30};
+  private scenes: SwiperDynamicSyncScene[] = [];
 
   build() {
     Column() {
@@ -10454,20 +11374,20 @@ struct Frame {
         .backgroundColor(Color.Blue)
         .autoPlay(true)
         .onAppear(()=>{
-          this.scenes = this.getUIContext().requireDynamicSyncScene("dynamicSwiper") as SwiperDynamicSyncScene[]
+          this.scenes = this.getUIContext().requireDynamicSyncScene("dynamicSwiper") as SwiperDynamicSyncScene[];
         })
       }
 
       Button("set frame")
-        .onClick(()=>{
+        .onClick(() => {
           this.scenes.forEach((scenes: SwiperDynamicSyncScene) => {
 
             if (scenes.type == SwiperDynamicSyncSceneType.ANIMATION) {
-              scenes.setFrameRateRange(this.ANIMATION)
+              scenes.setFrameRateRange(this.ANIMATION);
             }
 
             if (scenes.type == SwiperDynamicSyncSceneType.GESTURE) {
-              scenes.setFrameRateRange(this.GESTURE)
+              scenes.setFrameRateRange(this.GESTURE);
             }
           });
         })
@@ -10495,14 +11415,14 @@ getFrameRateRange(): ExpectedFrameRateRange
 **示例：**
 
 ```ts
-import { SwiperDynamicSyncSceneType, SwiperDynamicSyncScene } from '@kit.ArkUI'
+import { SwiperDynamicSyncSceneType, SwiperDynamicSyncScene } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct Frame {
-  @State ANIMATION:ExpectedFrameRateRange = {min:0, max:120, expected: 90}
-  @State GESTURE:ExpectedFrameRateRange = {min:0, max:120, expected: 30}
-  private scenes: SwiperDynamicSyncScene[] = []
+  @State ANIMATION: ExpectedFrameRateRange = { min: 0, max: 120, expected: 90 };
+  @State GESTURE: ExpectedFrameRateRange = { min: 0, max: 120, expected: 30 };
+  private scenes: SwiperDynamicSyncScene[] = [];
 
   build() {
     Column() {
@@ -10519,23 +11439,23 @@ struct Frame {
         .id("dynamicSwiper")
         .backgroundColor(Color.Blue)
         .autoPlay(true)
-        .onAppear(()=>{
-          this.scenes = this.getUIContext().requireDynamicSyncScene("dynamicSwiper") as SwiperDynamicSyncScene[]
+        .onAppear(() => {
+          this.scenes = this.getUIContext().requireDynamicSyncScene("dynamicSwiper") as SwiperDynamicSyncScene[];
         })
       }
 
       Button("set frame")
-        .onClick(()=>{
+        .onClick(() => {
           this.scenes.forEach((scenes: SwiperDynamicSyncScene) => {
 
             if (scenes.type == SwiperDynamicSyncSceneType.ANIMATION) {
-              scenes.setFrameRateRange(this.ANIMATION)
-              scenes.getFrameRateRange()
+              scenes.setFrameRateRange(this.ANIMATION);
+              scenes.getFrameRateRange();
             }
 
             if (scenes.type == SwiperDynamicSyncSceneType.GESTURE) {
-              scenes.setFrameRateRange(this.GESTURE)
-              scenes.getFrameRateRange()
+              scenes.setFrameRateRange(this.GESTURE);
+              scenes.getFrameRateRange();
             }
           });
         })
@@ -10565,8 +11485,8 @@ SwiperDynamicSyncScene继承自[DynamicSyncScene](#dynamicsyncscene12)，对应S
 
 | 名称     | 值   | 说明                   |
 | -------- | ---- | ---------------------- |
-| GESTURE | 0   | 手势操作场景 |
-| ANIMATION | 1   | 动画过度场景 |
+| GESTURE | 0   | 手势操作场景。 |
+| ANIMATION | 1   | 动画过渡场景。 |
 
 ## MarqueeDynamicSyncScene<sup>14+</sup>
 
@@ -10600,22 +11520,22 @@ import { MarqueeDynamicSyncSceneType, MarqueeDynamicSyncScene } from '@kit.ArkUI
 @Entry
 @Component
 struct MarqueeExample {
-  @State start: boolean = false
-  @State src: string = ''
-  @State marqueeText: string = 'Running Marquee'
-  private fromStart: boolean = true
-  private step: number = 10
-  private loop: number = Number.POSITIVE_INFINITY
-  controller: TextClockController = new TextClockController()
-  convert2time(value: number): string{
+  @State start: boolean = false;
+  @State src: string = '';
+  @State marqueeText: string = 'Running Marquee';
+  private fromStart: boolean = true;
+  private step: number = 10;
+  private loop: number = Number.POSITIVE_INFINITY;
+  controller: TextClockController = new TextClockController();
+  convert2time(value: number): string {
     let date = new Date(Number(value+'000'));
     let hours = date.getHours().toString().padStart(2, '0');
     let minutes = date.getMinutes().toString().padStart(2, '0');
     let seconds = date.getSeconds().toString().padStart(2, '0');
     return hours+ ":" + minutes + ":" + seconds;
   }
-  @State ANIMATION: ExpectedFrameRateRange = {min:0, max:120, expected:30}
-  private scenes: MarqueeDynamicSyncScene[] = []
+  @State ANIMATION: ExpectedFrameRateRange = { min: 0, max: 120, expected: 30 };
+  private scenes: MarqueeDynamicSyncScene[] = [];
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -10636,15 +11556,15 @@ struct MarqueeExample {
         .margin({ bottom: 40 })
         .id('dynamicMarquee')
         .onAppear(()=>{
-          this.scenes = this.getUIContext().requireDynamicSyncScene('dynamicMarquee') as MarqueeDynamicSyncScene[]
+          this.scenes = this.getUIContext().requireDynamicSyncScene('dynamicMarquee') as MarqueeDynamicSyncScene[];
         })
       Button('Start')
         .onClick(() => {
-          this.start = true
-          this.controller.start()
+          this.start = true;
+          this.controller.start();
           this.scenes.forEach((scenes: MarqueeDynamicSyncScene) => {
             if (scenes.type == MarqueeDynamicSyncSceneType.ANIMATION) {
-              scenes.setFrameRateRange(this.ANIMATION)
+              scenes.setFrameRateRange(this.ANIMATION);
             }
           });
         })
@@ -10667,7 +11587,7 @@ struct MarqueeExample {
 }
 ```
 ## TextMenuController<sup>16+</sup>
-以下API需先使用UIContext中的[getTextMenuController()](js-apis-arkui-UIContext.md#gettextmenucontroller16)方法获取TextMenuController实例，再通过此实例调用对应方法。
+以下非静态API需先使用UIContext中的[getTextMenuController()](js-apis-arkui-UIContext.md#gettextmenucontroller16)方法获取TextMenuController实例，再通过此实例调用对应方法。
 
 ### setMenuOptions<sup>16+</sup>
 
@@ -10700,7 +11620,7 @@ struct Index {
         {
           showMode: TextMenuShowMode.PREFER_WINDOW
         }
-      )
+      );
   }
 
   build() {
@@ -10725,80 +11645,145 @@ struct Index {
   }
 }
 ```
-## setPixelRoundMode<sup>18+</sup>
+### disableSystemServiceMenuItems<sup>20+</sup>
 
-setPixelRoundMode(mode: PixelRoundMode): void
+static disableSystemServiceMenuItems(disable: boolean): void
 
-配置当前页面的像素取整模式。
+屏蔽文本选择菜单内所有系统服务菜单项。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+> **说明：**
+> 
+> 此接口调用后整个应用进程都会生效。
+>
+> 此接口可在[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)使用。
+>
+> 此接口调用后将影响文本组件的接口[editMenuOptions](./arkui-ts/ts-basic-components-text.md#editmenuoptions12)，其回调方法[onCreateMenu](./arkui-ts/ts-text-common.md#oncreatemenu12)的入参列表中不包含被屏蔽的菜单选项。
+>
+> 涉及文本选择菜单的组件有 [Text](./arkui-ts/ts-basic-components-text.md)、[TextArea](./arkui-ts/ts-basic-components-textarea.md)、[TextInput](./arkui-ts/ts-basic-components-textinput.md)、[Search](./arkui-ts/ts-basic-components-search.md)、[RichEditor](./arkui-ts/ts-basic-components-richeditor.md)、[Web](../apis-arkweb/arkts-basic-components-web.md)。
+>
+> 系统服务菜单项指除[TextMenuItemId](./arkui-ts/ts-text-common.md#textmenuitemid12)中的复制、剪切、全选、粘贴以外的菜单项。
 
-**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
 | 参数名      | 类型         | 必填   | 说明   |
 | -------- | ---------- | ---- | ---- |
-| mode | [PixelRoundMode](./arkui-ts/ts-appendix-enums.md#pixelroundmode18)| 是    | 像素取整模式。<br />默认值：PixelRoundMode.PIXEL_ROUND_ON_LAYOUT_FINISH |
+| disable | boolean | 是    | 是否禁用系统服务菜单。true表示禁用，false表示不禁用。<br />默认值: false |
 
 **示例：**
 
 ```ts
-// EntryAbility.ets
-import { UIContext } from '@kit.ArkUI';
-import { hilog } from '@kit.PerformanceAnalysisKit';
+import { TextMenuController } from '@kit.ArkUI';
 
-onWindowStageCreate(windowStage: window.WindowStage) {
-    // Main window is created, set main page for this ability
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
-
-    windowStage.loadContent('pages/Index', (err, data) => {
-      let uiContext :UIContext = windowStage.getMainWindowSync().getUIContext();
-      uiContext.setPixelRoundMode(PixelRoundMode.PIXEL_ROUND_ON_LAYOUT_FINISH);
-      if (err.code) {
-        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
-        return;
-      }
-      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
-    });
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  aboutToAppear(): void {
+    // 禁用所有系统服务菜单。
+    TextMenuController.disableSystemServiceMenuItems(true)
   }
+
+  aboutToDisappear(): void {
+    // 页面消失恢复系统服务菜单。
+    TextMenuController.disableSystemServiceMenuItems(false)
+  }
+
+  build() {
+    Row() {
+      Column() {
+        TextInput({ text: "这是一个TextInput，长按弹出文本选择菜单" })
+          .height(60)
+          .fontStyle(FontStyle.Italic)
+          .fontWeight(FontWeight.Bold)
+          .textAlign(TextAlign.Center)
+          .caretStyle({ width: '4vp' })
+          .editMenuOptions({
+            onCreateMenu: (menuItems: Array<TextMenuItem>) => {
+                // menuItems不包含被屏蔽的系统菜单项。
+                return menuItems
+            },
+            onMenuItemClick: (menuItem: TextMenuItem, textRange: TextRange) => {
+                return false
+            }
+          })
+      }.width('100%')
+    }
+    .height('100%')
+  }
+}
 ```
+### disableMenuItems<sup>20+</sup>
 
-## getPixelRoundMode<sup>18+</sup>
+static disableMenuItems(items: Array\<TextMenuItemId>): void
 
-getPixelRoundMode(): PixelRoundMode
+屏蔽文本选择菜单内指定的系统服务菜单项。
 
-获取当前页面的像素取整模式。
+> **说明：**
+> 
+> 此接口调用后整个应用进程都会生效。
+>
+> 此接口可在[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)使用。
+>
+> 此接口调用后将影响文本组件的接口[editMenuOptions](./arkui-ts/ts-basic-components-text.md#editmenuoptions12)，其回调方法[onCreateMenu](./arkui-ts/ts-text-common.md#oncreatemenu12)的入参列表中不包含被屏蔽的菜单选项。
+>
+> 涉及文本选择菜单的组件有 [Text](./arkui-ts/ts-basic-components-text.md)、[TextArea](./arkui-ts/ts-basic-components-textarea.md)、[TextInput](./arkui-ts/ts-basic-components-textinput.md)、[Search](./arkui-ts/ts-basic-components-search.md)、[RichEditor](./arkui-ts/ts-basic-components-richeditor.md)、[Web](../apis-arkweb/arkts-basic-components-web.md)。
+>
+> 系统服务菜单项指除[TextMenuItemId](./arkui-ts/ts-text-common.md#textmenuitemid12)中的复制、剪切、全选、粘贴以外的菜单项。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
-**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**返回值：**
+**参数：**
 
-| 类型         | 说明   |
-| ---------- | ---- |
-| [PixelRoundMode](./arkui-ts/ts-appendix-enums.md#pixelroundmode18)| 当前页面的像素取整模式。|
+| 参数名      | 类型         | 必填   | 说明   |
+| -------- | ---------- | ---- | ---- |
+| items | Array<[TextMenuItemId](./arkui-ts/ts-text-common.md#textmenuitemid12)> | 是    | 禁用菜单项的列表。<br />默认值: [] |
 
 **示例：**
 
 ```ts
-// EntryAbility.ets
-import { UIContext } from '@kit.ArkUI';
-import { hilog } from '@kit.PerformanceAnalysisKit';
+import { TextMenuController } from '@kit.ArkUI';
 
-onWindowStageCreate(windowStage: window.WindowStage) {
-    // Main window is created, set main page for this ability
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
-
-    windowStage.loadContent('pages/Index', (err, data) => {
-      let uiContext :UIContext = windowStage.getMainWindowSync().getUIContext();
-      console.info("pixelRoundMode : " + uiContext.getPixelRoundMode().valueOf());
-      if (err.code) {
-        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
-        return;
-      }
-      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
-    });
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  aboutToAppear(): void {
+    // 禁用搜索和翻译菜单。
+    TextMenuController.disableMenuItems([TextMenuItemId.SEARCH, TextMenuItemId.TRANSLATE])
   }
+
+  aboutToDisappear(): void {
+    // 恢复系统服务菜单。
+    TextMenuController.disableMenuItems([])
+  }
+
+  build() {
+    Row() {
+      Column() {
+        TextInput({ text: "这是一个TextInput，长按弹出文本选择菜单" })
+          .height(60)
+          .fontStyle(FontStyle.Italic)
+          .fontWeight(FontWeight.Bold)
+          .textAlign(TextAlign.Center)
+          .caretStyle({ width: '4vp' })
+          .editMenuOptions({
+            onCreateMenu: (menuItems: Array<TextMenuItem>) => {
+                // menuItems不包含搜索和翻译。
+                return menuItems;
+            },
+            onMenuItemClick: (menuItem: TextMenuItem, textRange: TextRange) => {
+                return false
+            }
+          })
+      }.width('100%')
+    }
+    .height('100%')
+  }
+}
 ```

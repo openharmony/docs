@@ -7,6 +7,8 @@ Declares the SCSI Peripheral DDK APIs used by the host to access the SCSI device
 
 **File to include**: &lt;scsi_peripheral/scsi_peripheral_api.h&gt;
 
+**Library**: libscsi.z.so
+
 **System capability**: SystemCapability.Driver.SCSI.Extension
 
 **Since**: 18

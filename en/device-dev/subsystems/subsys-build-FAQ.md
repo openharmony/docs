@@ -46,7 +46,7 @@
   which riscv32-unknown-elf-gcc
   ```
 
-  2. Run the **chmod** command to change the permission for the directory to **755**.
+  Run the **chmod** command to change the permission for the directory to **755**.
 
 ### "No module named 'Crypto'"
 
@@ -90,11 +90,11 @@
 
 - **Solution**<br>
 
-  Modify the process .cfg file to reduce the privilege level. Do not set **uid** to **root** or **system** unless necessary.
+  1. Modify the process .cfg file to reduce the privilege level. Do not set **uid** to **root** or **system** unless necessary.
 
-  If a process must have the **root** or **system** privilege due to service requirements, modify the **high_privilege_process_list.json** file with the approval of the security experts. The **high_privilege_process_list.json** file is located in **vendor/***{company_name}/{product_name }***/security_config**.
+     If a process must have the **root** or **system** privilege due to service requirements, modify the **high_privilege_process_list.json** file with the approval of the security experts. The **high_privilege_process_list.json** file is located in `vendor/{company_name}/{product_name }/security_config/high_privilege_process_list.json`.
 
-  For example, the file for rk3586 is **//vendor/hihope/rk3568/security_config/high_privilege_process_list.json**.
+     For example, the file for rk3586 is stored in `//vendor/hihope/rk3568/security_config/high_privilege_process_list.json`.
 
 
 ### "Error: some services do not match with critical whitelist"

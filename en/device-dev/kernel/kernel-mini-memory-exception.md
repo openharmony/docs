@@ -23,7 +23,7 @@ In the figure, the registers in different colors indicate different functions. T
 
 ## Available APIs
 
-The following table describes APIs available for the OpenHarmony LiteOS-M stack trace module. For more details about the APIs, see the API reference.
+The following table describes the APIs provided by the OpenHarmony LiteOS-M stack trace module. For details about the APIs, see [los_backtrace.h](https://gitee.com/openharmony/kernel_liteos_m/blob/master/components/backtrace/los_backtrace.h).
 
 **Table 1** APIs of the stack trace module
 

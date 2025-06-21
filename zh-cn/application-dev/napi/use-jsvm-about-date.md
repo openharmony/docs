@@ -43,7 +43,7 @@ static JSVM_Value CreateDate(JSVM_Env env, JSVM_CallbackInfo info) {
 
     bool isDate;
     JSVM_CALL(OH_JSVM_IsDate(env, returnValue, &isDate));
-    if (isDate == false) {
+    if (!isDate) {
         OH_LOG_ERROR(LOG_APP, "JSVM IsDate fail");
         return returnValue;
     }
@@ -70,6 +70,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char *srcCallNative = R"JS(createDate())JS";
 ```
+<!-- @[oh_jsvm_create_date](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutDate/createdate/src/main/cpp/hello.cpp) -->
 
 ### OH_JSVM_GetDateValue
 
@@ -78,14 +79,14 @@ const char *srcCallNative = R"JS(createDate())JS";
 cpp部分代码
 
 ```cpp
-#include <time.h>
+#include <ctime>
 // OH_JSVM_GetDateValue的样例方法
 static JSVM_Value GetDateValue(JSVM_Env env, JSVM_CallbackInfo info) {
     size_t argc = 1;
     JSVM_Value args[1] = {nullptr};
     JSVM_CALL(OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr));
     // 获取传入的Unix Time Stamp时间
-    double value;
+    double value = 0;
     JSVM_CALL(OH_JSVM_GetDateValue(env, args[0], &value)); 
    
     // 将获取到的Unix Time Stamp时间转化为日期字符串打印
@@ -110,6 +111,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char *srcCallNative = R"JS(getDateValue(new Date(Date.now())))JS";
 ```
+<!-- @[oh_jsvm_get_date_value](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutDate/getdatevalue/src/main/cpp/hello.cpp) -->
 
 ### OH_JSVM_IsDate
 
@@ -123,7 +125,7 @@ static JSVM_Value IsDate(JSVM_Env env, JSVM_CallbackInfo info) {
     size_t argc = 1;
     JSVM_Value args[1] = {nullptr};
     JSVM_CALL(OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr));
-    bool isData;
+    bool isData = false;
     JSVM_CALL(OH_JSVM_IsDate(env, args[0], &isData));
     OH_LOG_INFO(LOG_APP, "JSVM IsDate success:%{public}d", isData);
     
@@ -143,3 +145,4 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char *srcCallNative = R"JS(isDate(new Date(Date.now())))JS";
 ```
+<!-- @[oh_jsvm_is_date](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutDate/isdate/src/main/cpp/hello.cpp) -->

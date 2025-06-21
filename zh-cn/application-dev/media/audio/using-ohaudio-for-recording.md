@@ -15,7 +15,7 @@ OHAudio音频录制状态变化示意图：
 target_link_libraries(sample PUBLIC libohaudio.so)
 ```
 ### 添加头文件
-开发者通过引入<[native_audiostreambuilder.h](../../reference/apis-audio-kit/native__audiostreambuilder_8h.md)>和<[native_audiocapturer.h](../../reference/apis-audio-kit/native__audiocapturer_8h.md)>头文件，使用音频录制相关API。
+开发者通过引入<[native_audiostreambuilder.h](../../reference/apis-audio-kit/capi-native-audiostreambuilder-h.md)>和<[native_audiocapturer.h](../../reference/apis-audio-kit/capi-native-audiocapturer-h.md)>头文件，使用音频录制相关API。
 
 ```cpp
 #include <ohaudio/native_audiocapturer.h>
@@ -23,21 +23,21 @@ target_link_libraries(sample PUBLIC libohaudio.so)
 ```
 ## 音频流构造器
 
-OHAudio提供OH_AudioStreamBuilder接口，遵循构造器设计模式，用于构建音频流。开发者需要根据业务场景，指定对应的[OH_AudioStream_Type](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostream_type)。
+OHAudio提供OH_AudioStreamBuilder接口，遵循构造器设计模式，用于构建音频流。开发者需要根据业务场景，指定对应的[OH_AudioStream_Type](../../reference/apis-audio-kit/capi-native-audiostream-base-h.md#oh_audiostream_type)。
 
 `OH_AudioStream_Type`包含两种类型：
 
 - AUDIOSTREAM_TYPE_RENDERER
 - AUDIOSTREAM_TYPE_CAPTURER
 
-使用[OH_AudioStreamBuilder_Create](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_create)创建构造器示例：
+使用[OH_AudioStreamBuilder_Create](../../reference/apis-audio-kit/capi-native-audiostreambuilder-h.md#oh_audiostreambuilder_create)创建构造器示例：
 
 ```cpp
 OH_AudioStreamBuilder* builder;
 OH_AudioStreamBuilder_Create(&builder, streamType);
 ```
 
-在音频业务结束之后，开发者应该执行[OH_AudioStreamBuilder_Destroy](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_destroy)接口来销毁构造器。
+在音频业务结束之后，开发者应该执行[OH_AudioStreamBuilder_Destroy](../../reference/apis-audio-kit/capi-native-audiostreambuilder-h.md#oh_audiostreambuilder_destroy)接口来销毁构造器。
 
 ```cpp
 OH_AudioStreamBuilder_Destroy(builder);
@@ -45,7 +45,7 @@ OH_AudioStreamBuilder_Destroy(builder);
 
 ## 开发步骤及注意事项
 
-详细的API说明请参考[OHAudio API参考](../../reference/apis-audio-kit/_o_h_audio.md)。
+详细的API说明请参考[OHAudio API参考](../../reference/apis-audio-kit/capi-ohaudio.md)。
 
 开发者可以通过以下几个步骤来实现一个简单的录制功能。
 
@@ -73,7 +73,7 @@ OH_AudioStreamBuilder_Destroy(builder);
     OH_AudioStreamBuilder_SetCapturerInfo(builder, AUDIOSTREAM_SOURCE_TYPE_MIC);
     ```
 
-    同样，音频录制的音频数据要通过回调接口读入，开发者要实现回调接口，使用`OH_AudioStreamBuilder_SetCapturerCallback`设置回调函数。回调函数的声明请查看[OH_AudioCapturer_Callbacks](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiocapturer_callbacks)。
+    同样，音频录制的音频数据要通过回调接口读入，开发者要实现回调接口，使用`OH_AudioStreamBuilder_SetCapturerCallback`设置回调函数。回调函数的声明请查看[OH_AudioCapturer_Callbacks](../../reference/apis-audio-kit/capi-oh-audiocapturer-callbacks-struct.md)。
 
 3. 设置音频回调函数。
 
@@ -133,7 +133,7 @@ OH_AudioStreamBuilder_Destroy(builder);
 
     为了避免不可预期的行为，在设置音频回调函数时，可以通过下面两种方式中的任意一种来设置音频回调函数：
 
-    - 请确保[OH_AudioCapturer_Callbacks](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiocapturer_callbacks)的每一个回调都被**自定义的回调方法**或**空指针**初始化。
+    - 请确保[OH_AudioCapturer_Callbacks](../../reference/apis-audio-kit/capi-oh-audiocapturer-callbacks-struct.md)的每一个回调都被**自定义的回调方法**或**空指针**初始化。
 
       ```cpp
       // 自定义读入数据函数。
@@ -231,10 +231,10 @@ OH_AudioStreamBuilder_Destroy(builder);
 
 当设备支持低时延通路时，开发者可以使用低时延模式创建音频录制构造器，获得更高质量的音频体验。
 
-开发流程与普通录制场景一致，仅需要在创建音频录制构造器时，调用[OH_AudioStreamBuilder_SetLatencyMode()](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_setlatencymode)设置低时延模式。
+开发流程与普通录制场景一致，仅需要在创建音频录制构造器时，调用[OH_AudioStreamBuilder_SetLatencyMode()](../../reference/apis-audio-kit/capi-native-audiostreambuilder-h.md#oh_audiostreambuilder_setlatencymode)设置低时延模式。
 
 > **注意：**
-> 当音频录制场景[OH_AudioStream_SourceType](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostream_sourcetype)为`AUDIOSTREAM_SOURCE_TYPE_VOICE_COMMUNICATION`时，不支持主动设置低时延模式，系统会根据设备的能力，决策输出的音频通路。
+> 当音频录制场景[OH_AudioStream_SourceType](../../reference/apis-audio-kit/capi-native-audiostream-base-h.md#oh_audiostream_sourcetype)为`AUDIOSTREAM_SOURCE_TYPE_VOICE_COMMUNICATION`时，不支持主动设置低时延模式，系统会根据设备的能力，决策输出的音频通路。
 
 开发示例
 

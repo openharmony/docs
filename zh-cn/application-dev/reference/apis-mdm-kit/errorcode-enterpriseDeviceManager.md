@@ -20,7 +20,7 @@ The application is not an administrator application of the device.
 
 **处理步骤**
 
-请检查调用者是否成功激活过设备管理器，没有激活过的设备管理器的应用无法调用设备管理接口。
+请检查调用者是否成功激活过设备管理应用，没有激活过的设备管理应用无法调用设备管理接口。
 
 ## 9200002 设备管理器权限不够
 
@@ -34,7 +34,7 @@ The administrator application does not have permission to manage the device.
 
 **可能原因**
 
-激活成了DA管理器，调用了SDA管理器接口。
+激活成了DA管理器，但调用了SDA管理器接口。
 
 **处理步骤**
 
@@ -114,18 +114,18 @@ The specified user ID is invalid.
 
 **错误描述**
 
-当应用调用接口设置用户策略，指定的user id不存在、或者DA,SDA管理器跨用户设置时，则会产生此错误码。
+当应用调用接口设置用户策略，指定的user id不存在、或DA管理器跨用户设置，则会产生此错误码。
 
 **可能原因**
 
 该错误码表示指定的用户ID非法，可能原因如下。
-1. 调用接口设置用户策略时候，指定的user id不存在。
-2. 指定的user id和调用者user id不同。DA,SDA管理器不允许跨用户设置。
+1. 调用接口设置用户策略，指定的user id不存在。
+2. DA管理器不允许跨用户设置，指定的user id和调用者user id不同。
 
 **处理步骤**
 
 1. 检查去调用接口中指定的user id是否是有效的user id。
-2. 检查调用者user id和指定设置的user id是否是同一user id，非SDA模式下不允许跨用户设置策略。
+2. 检查调用者user id和指定设置的user id是否是同一user id，DA模式下不允许跨用户设置策略。
 
 ## 9200007 系统服务工作异常
 

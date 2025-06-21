@@ -154,7 +154,7 @@ For details about how to use the APIs (such as parameter usage restrictions and 
 
    ```typescript
    // Import the dependent module.
-   import testNapi from 'libentry.so'
+   import testNapi from 'libentry.so';
 
    // Add the interface invocation to onCreate().
    // Register the system event watcher at startup.
@@ -193,7 +193,7 @@ For details about how to use the APIs (such as parameter usage restrictions and 
     ```
 
     > **NOTE**
-    > For details, see [Default Main Thread Jank Event Time Specifications](./hiappevent-watcher-mainthreadjank-events.md#default-main-thread-jank-event-time-specifications) and [Main Thread Jank Event Specifications](./hiappevent-watcher-mainthreadjank-events.md#main-thread-jank-event-specifications).
+    > For details, see [Default Main Thread Jank Event Time Specifications](./hiappevent-watcher-mainthreadjank-events.md#default-main-thread-jank-event-time-specifications) and [Log Specifications of the Main Thread Jank Event](./hiappevent-watcher-mainthreadjank-events.md#log-specifications-of-the-main-thread-jank-event).
 
 11. Remove the event watcher.
 

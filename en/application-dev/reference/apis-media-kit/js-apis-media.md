@@ -237,7 +237,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let avTranscoder: media.AVTranscoder;
+let avTranscoder: media.AVTranscoder | undefined = undefined;
 media.createAVTranscoder().then((transcoder: media.AVTranscoder) => {
   if (transcoder != null) {
     avTranscoder = transcoder;
@@ -295,6 +295,12 @@ createAVMetadataExtractor(): Promise\<AVMetadataExtractor>
 Creates an **AVMetadataExtractor** instance. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Media.AVMetadataExtractor
+
+**Return value**
+
+| Type          | Description                                    |
+| -------------- | ---------------------------------------- |
+| Promise\<[AVMetadataExtractor](#avmetadataextractor11)>  | Promise used to return the **AVMetadataExtractor** instance.|
 
 **Error codes**
 
@@ -913,8 +919,7 @@ constructor(context: Context) {
 }
 
 let player = await media.createAVPlayer();
-let context = getContext(this) as common.UIAbilityContext;
-let fileDescriptor = await this.context.resourceManager.getRawFd('xxx.mp4');
+let fileDescriptor = await this.context.resourceManager.getRawFd('xxx.mp4')
 player.fdSrc = fileDescriptor
 let playStrategy : media.PlaybackStrategy = {
   preferredWidth: 1,
@@ -926,7 +931,6 @@ let playStrategy : media.PlaybackStrategy = {
   thresholdForAutoQuickPlay: 5
 };
 player.setPlaybackStrategy(playStrategy);
-
 ```
 
 ### setPlaybackRange<sup>18+</sup>
@@ -1062,7 +1066,7 @@ Mutes or unmutes the audio. This API can be called only when the AVPlayer is in 
 | Name  | Type    | Mandatory| Description                |
 | -------- | -------- | ---- | -------------------- |
 | mediaType | [MediaType](#mediatype8) | Yes  | Media type.|
-| muted | boolean | Yes  | Whether to mute the audio.|
+| muted | boolean | Yes  | Whether to mute the audio. The value **true** means to mute the audio, and **false** means the opposite.|
 
 **Return value**
 
@@ -1615,7 +1619,7 @@ media.createAVPlayer(async (err: BusinessError, player: media.AVPlayer) => {
 
 getPlaybackPosition(): number
 
-Obtains the current playback position. This API can be used in the prepared, playing, paused, or completed state.
+Obtains the current playback position. This API can be called only when the AVPlayer is in the prepared, playing, paused, or completed state.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -1861,27 +1865,29 @@ avPlayer.seek(seekTime, media.SeekMode.SEEK_PREV_SYNC)
 ```
 
 ```ts
-// SEEK_CONTINUOUS can be used together with the callback of seekBar/slider.
-async onSlideMoving(position : number) : Promise<void> {
-  // To trigger a callback when the seekBar/slider moves, call seek(position, media.SeekMode.SEEK_CONTINUOUS) to perform the seek operation.
-  this.avPlayer.seek(position, media.SeekMode.SEEK_CONTINUOUS)
-}
+// Use SEEK_CONTINUOUS with the onChange callback of the Slider. When slideMode is Moving, it triggers continuous seeking during the drag.
+let slideMovingTime: number = 2000
+avPlayer.seek(slideMovingTime, media.SeekMode.SEEK_CONTINUOUS)
 
-async onSlideEnd(position : number) : Promise<void> {
-  // To trigger a callback when the seekBar/slider movement ends, call seek(-1, media.SeekMode.SEEK_CONTINUOUS) to end the seek operation.
-  this.avPlayer.seek(-1, media.SeekMode.SEEK_CONTINUOUS)
-}
+// To end the seek when slideMode is End, call seek(-1, media.SeekMode.SEEK_CONTINUOUS).
+avPlayer.seek(-1, media.SeekMode.SEEK_CONTINUOUS)
 ```
 
 ### isSeekContinuousSupported<sup>18+</sup>
 
 isSeekContinuousSupported() : boolean
 
-Checks whether the media source supports [seek](#seek9) in SEEK_CONTINUOUS mode ([SeekMode](#seekmode8)). The actual value is returned when this API is called in the prepared, playing, paused, or completed state. The value **false** is returned if it is called in other states. For devices that do not support the seek operation in SEEK_CONTINUOUS mode, **false** is returned.
+Checks whether the media source supports [seek](#seek9) in SEEK_CONTINUOUS mode (specified by [SeekMode](#seekmode8)). The actual value is returned when this API is called in the prepared, playing, paused, or completed state. The value **false** is returned if it is called in other states. For devices that do not support the seek operation in SEEK_CONTINUOUS mode, **false** is returned.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
+
+**Return value**
+
+| Type          | Description                                      |
+| -------------- | ------------------------------------------ |
+| boolean | Check result. The value **true** means that the media source supports [seek](#seek9) in SEEK_CONTINUOUS mode, and **false** means the opposite.|
 
 **Example**
 
@@ -2005,6 +2011,92 @@ Unsubscribes from the event that checks whether the playback speed is successful
 ```ts
 avPlayer.off('speedDone')
 ```
+
+
+### setPlaybackRate<sup>20+</sup>
+
+setPlaybackRate(rate: number): void
+
+Sets the playback rate. This API can be called only when the AVPlayer is in the prepared, playing, paused, or completed state. The value range is [0.125, 4.0]. You can check whether the setting takes effect through the [playbackRateDone](#onplaybackratedone20) event.
+
+>**NOTE**
+>
+>This API is not supported in live mode.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.Multimedia.Media.AVPlayer
+
+**Parameters**
+
+| Name| Type                            | Mandatory| Description              |
+| ------ | -------------------------------- | ---- | ------------------ |
+| rate  | number | Yes  | Playback rate to set.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](errorcode-media.md).
+
+| ID| Error Message                                  |
+| -------- | ------------------------------------------ |
+| 5400108  | The parameter check failed, parameter value out of range.      |
+| 5400102  | Operation not allowed, if invalid state or live stream.     |
+
+**Example**
+
+```ts
+avPlayer.setPlaybackRate(2.0)
+```
+
+
+### on('playbackRateDone')<sup>20+</sup>
+
+on(type: 'playbackRateDone', callback: OnPlaybackRateDone): void
+
+Subscribes to the event indicating that the playback rate set by calling [setPlaybackRate](#setplaybackrate20) is applied.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.Multimedia.Media.AVPlayer
+
+**Parameters**
+
+| Name  | Type    | Mandatory| Description                                                        |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | Yes  | Event type, which is **'playbackRateDone'** in this case. This event is triggered each time **setPlaybackRate** is called.|
+| callback | [OnPlaybackRateDone](#onplaybackratedone20) | Yes  | Callback invoked when the event is triggered. It reports the new playback rate.<br>This parameter is supported since API version 20.|
+
+**Example**
+
+```ts
+avPlayer.on('playbackRateDone', (rate:number) => {
+  console.info('playbackRateDone called,and rate value is:' + rate)
+})
+```
+
+### off('playbackRateDone')<sup>20+</sup>
+
+off(type: 'playbackRateDone', callback?: OnPlaybackRateDone): void
+
+Unsubscribes from the event indicating that the playback rate set by calling [setPlaybackRate](#setplaybackrate20) is applied.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.Multimedia.Media.AVPlayer
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                                     |
+| ------ | ------ | ---- | --------------------------------------------------------- |
+| type   | string | Yes  | Event type, which is **'playbackRateDone'** in this case.|
+| callback | [OnPlaybackRateDone](#onplaybackratedone20) | No  |  Callback invoked when the event is triggered. It reports the new playback rate. If this parameter is specified, only the specified callback is unregistered. Otherwise, all callbacks associated with the specified event will be unregistered.<br>This parameter is supported since API version 20.|
+
+**Example**
+
+```ts
+avPlayer.off('playbackRateDone')
+```
+
 
 ### setBitrate<sup>9+</sup>
 
@@ -2661,8 +2753,8 @@ Adds an external subtitle to a video based on the FD. Currently, the external su
 | Name| Type                  | Mandatory| Description                                                        |
 | ------ | ---------------------- | ---- | ------------------------------------------------------------ |
 | fd | number   | Yes  | Resource handle, which is obtained by calling [resourceManager.getRawFd](../apis-localization-kit/js-apis-resource-manager.md#getrawfd9).|
-| offset | number | No  | Resource offset, which needs to be entered based on the preset asset information. An invalid value causes a failure to parse subtitle assets.|
-| length | number | No  | Resource length, which needs to be entered based on the preset asset information. The default value is the remaining bytes from the offset in the file. An invalid value causes a failure to parse subtitle assets.|
+| offset | number | No  | Resource offset, which needs to be entered based on the preset asset information. An invalid value causes a failure to parse subtitle assets. The default value is **0**.|
+| length | number | No  | Resource length, which needs to be entered based on the preset asset information. The default value is the remaining bytes from the offset in the file. An invalid value causes a failure to parse subtitle assets. The default value is **0**.|
 
 **Return value**
 
@@ -3161,8 +3253,8 @@ Describes the callback invoked for the track change event.
 
 | Name  | Type  | Mandatory| Description                                                        |
 | ------ | ------ | ------ | ---------------------------------------------------------- |
-| index  | number | Yes| Index of a track.    |
-| isSelected | boolean | Yes| Status of the track, that is, whether the track is selected.|
+| index  | number | Yes| Index of the track that has changed.    |
+| isSelected | boolean | Yes| Whether the track at the current index is selected. The value **true** means that the track at the current index is selected, and **false** means the opposite.|
 
 ## OnAVPlayerStateChangeHandle<sup>12+</sup>
 
@@ -3243,6 +3335,20 @@ Super resolution is automatically disabled in either of the following cases:
 | Name  | Type  | Mandatory| Description                                                        |
 | ------ | ------ | ------ | ------------------------------------------------------------ |
 | enabled  | boolean | Yes| Whether super resolution is enabled. The value **true** means that it is enabled, and **false** means the opposite.    |
+
+## OnPlaybackRateDone<sup>20+</sup>
+
+type OnPlaybackRateDone = (rate: number) => void
+
+Describes the callback invoked for the event indicating that the playback rate setting is complete.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.Multimedia.Media.AVPlayer
+
+| Name  | Type  | Mandatory| Description                                                        |
+| ------ | ------ | ------ | ------------------------------------------------------------ |
+| rate | number | Yes| Playback rate.|
 
 ## AVFileDescriptor<sup>9+</sup>
 
@@ -3352,10 +3458,11 @@ Enumerates the video scale modes.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
-| Name                     | Value  | Description                                            |
-| ------------------------- | ---- | ------------------------------------------------ |
-| VIDEO_SCALE_TYPE_FIT      | 0    | Default mode. The video will be stretched to fit the window.             |
-| VIDEO_SCALE_TYPE_FIT_CROP | 1    | The video will be stretched to fit the window, without changing its aspect ratio. The content may be cropped.|
+| Name                       | Value  | Description                                             |
+| ----------------------------| ---- | ------------------------------------------------ |
+| VIDEO_SCALE_TYPE_FIT        | 0    | Default mode. The video will be stretched to fit the window.               |
+| VIDEO_SCALE_TYPE_FIT_CROP   | 1    | Maintains the video's aspect ratio, and scales to fill the shortest side of the window, with the longer side cropped.    |
+| VIDEO_SCALE_TYPE_SCALED_ASPECT<sup>20+</sup> | 2    | Maintains the video's aspect ratio, and scales to fill the longer side of the window, with the shorter side centered and unfilled parts left black.<br>**Atomic service API**: This API can be used in atomic services since API version 20. |
 
 ## MediaDescription<sup>8+</sup>
 
@@ -4758,7 +4865,7 @@ constructor(context: Context) {
 async function saveVideo(asset: photoAccessHelper.PhotoAsset) {
   console.info("saveVideo called");
   try {
-    let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+    let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(this.context);
     let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
     assetChangeRequest.saveCameraPhoto();
     await phAccessHelper.applyChanges(assetChangeRequest);
@@ -4833,8 +4940,8 @@ Describes the callback invoked for the AVRecorder state change event.
 
 | Name  | Type  | Mandatory| Description                                                        |
 | ------ | ------ | ------ | ------------------------------------------------------------ |
-| state  | [AVRecorderState](#avrecorderstate9) | Mandatory| AVRecorder state.    |
-| reason | [StateChangeReason](#statechangereason9) | Mandatory| Reason for the state change.|
+| state  | [AVRecorderState](#avrecorderstate9) | Yes| AVRecorder state.    |
+| reason | [StateChangeReason](#statechangereason9) | Yes| Reason for the state change.|
 
 ## AVRecorderConfig<sup>9+</sup>
 
@@ -4861,6 +4968,7 @@ The **audioSourceType** and **videoSourceType** parameters are used to distingui
 Describes the audio and video recording profile.
 
 > **NOTE**
+>
 > The following table lists the audio parameters. For details about each parameter, see the field description below.
 >
 > | Encoding Format | Container Format | Sampling Rate | Bit Rate | Audio Channel Count |
@@ -4879,15 +4987,14 @@ Describes the audio and video recording profile.
 | audioChannels    | number                                       | No  | Number of audio channels. This parameter is mandatory for audio recording.<br>- Range [1 - 8] for the AAC encoding format.<br>- Range [1] for the G.711 μ-law encoding format.<br>- Range [1 - 2] for the MP3 encoding format.<br>- Range [1] for the AMR-NB and AMR-WB encoding formats.<br>**Atomic service API**: This API can be used in atomic services since API version 12.      |
 | audioCodec       | [CodecMimeType](#codecmimetype8)             | No  | Audio encoding format. This parameter is mandatory for audio recording. Currently, AUDIO_AAC, AUDIO_MP3, AUDIO_G711MU, AUDIO_AMR_NB, and AUDIO_AMR_WB are supported.<br>**Atomic service API**: This API can be used in atomic services since API version 12.    |
 | audioSampleRate  | number                                       | No  | Audio sampling rate. This parameter is mandatory for audio recording.<br>Supported sampling rate ranges:<br>- Range [8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 88200, 96000] for the AAC encoding format.<br>- Range [8000] for the G.711 μ-law encoding format.<br>- Range [8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000] for the MP3 encoding format.<br>- Range [8000] for the AMR-NB encoding format.<br>- Range [16000] for the AMR-WB encoding format.<br>Variable bit rate. The bit rate is for reference only.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| fileFormat       | [ContainerFormatType](#containerformattype8) | Yes  | Container format of a file. This parameter is mandatory. Currently, the MP4, M4A, MP3, WAV, and AMR container formats are supported. The AUDIO_MP3 encoding format cannot be used in the MP4 container format.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| fileFormat       | [ContainerFormatType](#containerformattype8) | Yes  | Container format of a file. This parameter is mandatory. Currently, the MP4, M4A, MP3, WAV, AMR, and AAC container formats are supported. The default container format for AAC audio is ADTS frame format. The AUDIO_MP3 encoding format is not supported within the MP4 container format.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | videoBitrate     | number                                       | No  | Video encoding bit rate. This parameter is mandatory for video recording. The value range is [10000 - 100000000]. |
 | videoCodec       | [CodecMimeType](#codecmimetype8)             | No  | Video encoding format. This parameter is mandatory for video recording. Currently, VIDEO_AVC is supported.|
 | videoFrameWidth  | number                                       | No  | Width of a video frame. This parameter is mandatory for video recording. The value range is [176 - 4096].        |
 | videoFrameHeight | number                                       | No  | Height of a video frame. This parameter is mandatory for video recording. The value range is [144 - 4096].        |
-| videoFrameRate   | number                                       | No  | Video frame rate. This parameter is mandatory for video recording. The value range is [1 - 60].            |
+| videoFrameRate   | number                                       | No  | Video frame rate. This parameter is mandatory for video recording. The recommended value range is [1 - 60].            |
 | isHdr<sup>11+</sup>            | boolean                        | No  | HDR encoding. This parameter is optional for video recording. The default value is **false**, and there is no requirement on the encoding format. When **isHdr** is set to **true**, the encoding format must be **video/hevc**.|
 | enableTemporalScale<sup>12+</sup>            | boolean                        | No  | Whether temporal layered encoding is supported. This parameter is optional for video recording. The default value is **false**. If this parameter is set to **true**, some frames in the video output streams can be skipped without being encoded.|
-| enableStableQualityMode<sup>18+</sup>            | boolean                        | No  | Whether to enable stable quality mode for video recording. This parameter is optional for video recording. The default value is **false**. If this parameter is set to **true**, the system will use a video encoding strategy designed to maintain stable quality.|
 
 ## AudioSourceType<sup>9+</sup>
 
@@ -4928,6 +5035,7 @@ Enumerates the container format types (CFTs).
 | CFT_MP3<sup>12+</sup>  | 'mp3' | Audio container format MP3.|
 | CFT_WAV<sup>12+</sup>  | 'wav' | Audio container format WAV.|
 | CFT_AMR<sup>18+</sup>  | 'amr' | Audio container format AMR.|
+| CFT_AAC<sup>20+</sup>  | 'aac' | Audio container format AAC. The default format is ADTS frame header.|
 
 ## Location
 
@@ -4981,7 +5089,7 @@ Enumerates the modes for creating media files.
 
 ## AVTranscoder<sup>12+</sup>
 
-A transcoding management class that provides APIs to transcode videos. Before calling any API in **AVTranscoder**, you must use **createAVTranscoder()** to create an **AVTranscoder** instance.
+A transcoding management class that provides APIs to transcode videos. Before calling any API in **AVTranscoder**, you must use [createAVTranscoder()](#mediacreateavtranscoder12) to create an **AVTranscoder** instance.
 
 For details about the AVTranscoder demo, see [Using AVTranscoder for Transcoding](../../media/media/using-avtranscoder-for-transcodering.md).
 
@@ -4991,7 +5099,7 @@ For details about the AVTranscoder demo, see [Using AVTranscoder for Transcoding
 
 | Name   | Type                                | Read-Only| Optional| Description              |
 | ------- | ------------------------------------ | ---- | ---- | ------------------ |
-| fdSrc<sup>12+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                       |  No | No  | Source media file descriptor, which specifies the data source.<br>**Example:**<br>There is a media file that stores continuous assets, the address offset is 0, and the byte length is 100. Its file descriptor is **AVFileDescriptor { fd = resourceHandle; offset = 0; length = 100; }**.<br>**NOTE**<br> - After the resource handle (FD) is transferred to an **AVTranscoder** instance, do not use the resource handle to perform other read and write operations, including but not limited to transferring this handle to other **AVPlayer**, **AVMetadataExtractor**, **AVImageGenerator**, or **AVTranscoder** instance. Competition occurs when multiple AVTranscoders use the same resource handle to read and write files at the same time, resulting in errors in obtaining data.|
+| fdSrc<sup>12+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                       |  No | No  | Source media file descriptor, which specifies the data source.<br>**Example:**<br>There is a media file that stores continuous assets, the address offset is 0, and the byte length is 100. Its file descriptor is **AVFileDescriptor { fd = resourceHandle; offset = 0; length = 100; }**.<br>**NOTE**<br>- After the resource handle (FD) is transferred to an **AVTranscoder** instance, do not use the resource handle to perform other read and write operations, including but not limited to transferring this handle to other **AVPlayer**, **AVMetadataExtractor**, **AVImageGenerator**, or **AVTranscoder** instance. Competition occurs when multiple AVTranscoders use the same resource handle to read and write files at the same time, resulting in errors in obtaining data.|
 | fdDst<sup>12+</sup>                               | number                 |  No | No  | Destination media file descriptor, which specifies the data source. After creating an **AVTranscoder** instance, you must set both **fdSrc** and **fdDst**.<br>**NOTE**<br> - After the resource handle (FD) is transferred to an **AVTranscoder** instance, do not use the resource handle to perform other read and write operations, including but not limited to transferring this handle to other **AVPlayer**, **AVMetadataExtractor**, **AVImageGenerator**, or **AVTranscoder** instance. Competition occurs when multiple AVTranscoders use the same resource handle to read and write files at the same time, resulting in errors in obtaining data.|
 
 ### prepare<sup>12+</sup>
@@ -5006,7 +5114,7 @@ Sets video transcoding parameters. This API uses a promise to return the result.
 
 | Name| Type                                  | Mandatory| Description                      |
 | ------ | -------------------------------------- | ---- | -------------------------- |
-| config | [AVTranscoderConfig](#avtranscoderconfig12) | Yes  | Video transcoding parameters to set.|
+| config | [AVTranscoderConfig](#avtranscoderconfig12) | Yes  | Video transcoding parameters to set.<!--RP1--><!--RP1End-->|
 
 **Return value**
 
@@ -5022,6 +5130,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 | -------- | -------------------------------------- |
 | 401  | The parameter check failed. Return by promise. |
 | 5400102  | Operation not allowed. Return by promise. |
+| 5400103  | IO error. Return by promise.              |
 | 5400105  | Service died. Return by promise.       |
 | 5400106  | Unsupported format. Returned by promise.  |
 
@@ -5037,8 +5146,6 @@ let avTranscoderConfig: media.AVTranscoderConfig = {
   fileFormat : media.ContainerFormatType.CFT_MPEG_4,
   videoBitrate : 3000000,
   videoCodec : media.CodecMimeType.VIDEO_AVC,
-  videoFrameWidth : 1280,
-  videoFrameHeight : 720,
 }
 
 avTranscoder.prepare(avTranscoderConfig).then(() => {
@@ -5402,7 +5509,7 @@ Describes the video transcoding parameters.
 
 | Name           | Type                                   | Read-Only| Optional| Description                                                        |
 | --------------- | ---------------------------------------- |---- | ---- | ------------------------------------------------------------ |
-| audioBitrate | number     | No| Yes| Bit rate of the output audio, in bit/s. The value range is [1-500000]. The default value is 48 kbit/s. |
+| audioBitrate | number     | No| Yes| Bit rate of the output audio, in bit/s. The value range is [1-500000]. The default value is 48 kbit/s.|
 | audioCodec | [CodecMimeType](#codecmimetype8)     | No| Yes | Encoding format of the output audio. Currently, only AAC is supported. The default value is **AAC**.                  |
 | fileFormat         | [ContainerFormatType](#containerformattype8) | No| No  | Container format of the output video file. Currently, only MP4 is supported.|
 | videoBitrate         | number | No|  Yes | Bit rate of the output video, in bit/s. The default bit rate depends on the resolution of the output video. The default bit rate is 1 Mbit/s for the resolution in the range [240p, 480P], 2 Mbit/s for the range (480P,720P], 4 Mbit/s for the range (720P,1080P], and 8 Mbit/s for 1080p or higher.|
@@ -5424,7 +5531,7 @@ For details about the demo for obtaining audio or video metadata, see [Obtaining
 
 | Name                                               | Type                                                        | Readable| Writable| Description                                                        |
 | --------------------------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| fdSrc<sup>11+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                       | Yes  | Yes  | Media file descriptor, which specifies the data source. Before obtaining metadata, you must set the data source through either **fdSrc** or **dataSrc**.<br>**Example:**<br>There is a media file that stores continuous assets, the address offset is 0, and the byte length is 100. Its file descriptor is **AVFileDescriptor { fd = resourceHandle; offset = 0; length = 100; }**.<br>**NOTE**<br> - After the resource handle (FD) is transferred to an **AVMetadataExtractor** instance, do not use the resource handle to perform other read and write operations, including but not limited to transferring this handle to other **AVPlayer**, **AVMetadataExtractor**, **AVImageGenerator**, or **AVTranscoder** instance. Competition occurs when multiple AVMetadataExtractor use the same resource handle to read and write files at the same time, resulting in errors in obtaining data.|
+| fdSrc<sup>11+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                       | Yes  | Yes  | Media file descriptor, which specifies the data source. Before obtaining metadata, you must set the data source through either **fdSrc** or **dataSrc**.<br>**Example:**<br>There is a media file that stores continuous assets, the address offset is 0, and the byte length is 100. Its file descriptor is **AVFileDescriptor { fd = resourceHandle; offset = 0; length = 100; }**.<br>**NOTE**<br>- After the resource handle (FD) is transferred to an **AVMetadataExtractor** instance, do not use the resource handle to perform other read and write operations, including but not limited to transferring this handle to other **AVPlayer**, **AVMetadataExtractor**, **AVImageGenerator**, or **AVTranscoder** instance. Competition occurs when multiple AVMetadataExtractor use the same resource handle to read and write files at the same time, resulting in errors in obtaining data.|
 | dataSrc<sup>11+</sup>                               | [AVDataSrcDescriptor](#avdatasrcdescriptor10)                | Yes  | Yes  | Streaming media resource descriptor, which specifies the data source. Before obtaining metadata, you must set the data source through either **fdSrc** or **dataSrc**.<br> When an application obtains a media file from the remote, you can set **dataSrc** to obtain the metadata before the application finishes the downloading.|
 
 ### fetchMetadata<sup>11+</sup>
@@ -6335,7 +6442,7 @@ Sets a surface ID. This API uses an asynchronous callback to return the result.
 
 | Name   | Type                | Mandatory| Description                     |
 | --------- | -------------------- | ---- | ------------------------- |
-| surfaceId | string               | Yes  | Surface ID.                 |
+| surfaceId | string               | Yes  | Surface ID.                |
 | callback  | AsyncCallback\<void> | Yes  | Callback used to return the result. If the setting is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Example**
@@ -6371,7 +6478,7 @@ Sets a surface ID. This API uses a promise to return the result.
 
 | Name   | Type  | Mandatory| Description     |
 | --------- | ------ | ---- | --------- |
-| surfaceId | string | Yes  | Surface ID. |
+| surfaceId | string | Yes  | Surface ID.|
 
 **Return value**
 
@@ -7759,7 +7866,7 @@ For details about the demo for obtaining video thumbnails, see [Obtaining Video 
 
 | Name                                               | Type                                                        | Readable| Writable| Description                                                        |
 | --------------------------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| fdSrc<sup>12+</sup>                                  | [AVFileDescriptor](js-apis-media.md#avfiledescriptor9)                       | Yes  | Yes  | Media file descriptor, which specifies the data source.<br>**Example:**<br>There is a media file that stores continuous assets, the address offset is 0, and the byte length is 100. Its file descriptor is **AVFileDescriptor { fd = resourceHandle; offset = 0; length = 100; }**.<br>**NOTE**<br> - After the resource handle (FD) is transferred to an **AVImageGenerator** instance, do not use the resource handle to perform other read and write operations, including but not limited to transferring this handle to other **AVPlayer**, **AVMetadataExtractor**, **AVImageGenerator**, or **AVTranscoder** instance. Competition occurs when multiple AVImageGenerator use the same resource handle to read and write files at the same time, resulting in errors in obtaining data.|
+| fdSrc<sup>12+</sup>                                  | [AVFileDescriptor](js-apis-media.md#avfiledescriptor9)                       | Yes  | Yes  | Media file descriptor, which specifies the data source.<br>**Example:**<br>There is a media file that stores continuous assets, the address offset is 0, and the byte length is 100. Its file descriptor is **AVFileDescriptor { fd = resourceHandle; offset = 0; length = 100; }**.<br>**NOTE**<br>- After the resource handle (FD) is transferred to an **AVImageGenerator** instance, do not use the resource handle to perform other read and write operations, including but not limited to transferring this handle to other **AVPlayer**, **AVMetadataExtractor**, **AVImageGenerator**, or **AVTranscoder** instance. Competition occurs when multiple AVImageGenerator use the same resource handle to read and write files at the same time, resulting in errors in obtaining data.|
 
 ### fetchFrameByTime<sup>12+</sup>
 
@@ -7890,6 +7997,68 @@ media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenera
 });
 ```
 
+### fetchScaledFrameByTime<sup>20+</sup>
+
+fetchScaledFrameByTime(timeUs: number, queryMode: AVImageQueryOptions, outputSize?: OutputSize):Promise\<image.PixelMap\>
+
+Fetches a scaled thumbnail from the video at a particular timestamp. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Media.AVImageGenerator
+
+**Parameters**
+
+| Name    | Type                                         | Mandatory| Description                                                |
+| ---------- | --------------------------------------------- | ---- | ---------------------------------------------------- |
+| timeUs     | number                                        | Yes  | Timestamp, in microseconds (μs), at which the thumbnail is to be fetched from the video.|
+| queryMode  | [AVImageQueryOptions](#avimagequeryoptions12) | Yes  | Relationship between the thumbnail timestamp in and the video frame.          |
+| outputSize | [OutputSize ](#outputsize20)                  | No  | Output size of the thumbnail. By default, the original image size is used.              |
+
+**Return value**
+
+| Type                                                        | Description                             |
+| ------------------------------------------------------------ | --------------------------------- |
+| Promise\<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)> | Promise used to return the video thumbnail.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](errorcode-media.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 5400102  | Operation not allowed. Returned by promise. |
+| 5400106  | Unsupported format. Returned by promise.    |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
+import { media } from '@kit.MediaKit';
+let avImageGenerator: media.AVImageGenerator | undefined = undefined;
+let pixel_map : image.PixelMap | undefined = undefined;
+// Initialize input parameters.
+let timeUs: number = 0;
+let queryOption: media.AVImageQueryOptions = media.AVImageQueryOptions.AV_IMAGE_QUERY_NEXT_SYNC;
+let outputSize: media.OutputSize = {
+  width : 300,
+  height : 300,
+}
+// Obtain the thumbnail.
+media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenerator) => {
+  if(generator != null){
+    avImageGenerator = generator;
+    console.info(`Succeeded in creating AVImageGenerator`);
+    avImageGenerator.fetchScaledFrameByTime(timeUs, queryOption, outputSize).then((pixelMap: image.PixelMap) => {
+      pixel_map = pixelMap;
+    }).catch((error: BusinessError) => {
+      console.error(`Failed to fetch ScaledFrameByTime, error message:${error.message}`);
+    });
+  } else {
+    console.error(`Failed to creat AVImageGenerator, error message:${err.message}`);
+  };
+});
+```
+
 ### release<sup>12+</sup>
 
 release(callback: AsyncCallback\<void>): void
@@ -8008,6 +8177,17 @@ Defines the format parameters of the video thumbnail to be obtained.
 | width  | number | Yes  | Yes  | Width of the thumbnail. The value must be greater than 0 and less than or equal to the width of the original video. Otherwise, the returned thumbnail will not be scaled.|
 | height | number | Yes  | Yes  | Height of the thumbnail. The value must be greater than 0 and less than or equal to the height of the original video. Otherwise, the returned thumbnail will not be scaled.|
 
+## OutputSize<sup>20+</sup>
+
+Describes the output size of the video thumbnail fetched.
+
+**System capability**: SystemCapability.Multimedia.Media.AVImageGenerator
+
+| Name  | Type  | Read-Only| Optional| Description                                                        |
+| ------ | ------ | ---- | ---- | ------------------------------------------------------------ |
+| width  | number | No  | Yes  | Width of the thumbnail.<br>- If this parameter is set to a value less than 0, the width will be the original video width.<br>- If the value is **0** or is not assigned, the scaling ratio is the same as the height ratio.|
+| height | number | No  | Yes  | Height of the thumbnail.<br>- If this parameter is set to a value less than 0, the height will be the original video height.<br>- If the value is **0** or is not assigned, the scaling ratio is the same as the width ratio.|
+
 ## media.createMediaSourceWithUrl<sup>12+</sup>
 
 createMediaSourceWithUrl(url: string, headers?: Record\<string, string>): MediaSource
@@ -8073,36 +8253,27 @@ let mimeType : media.AVMimeTypes = media.AVMimeTypes.APPLICATION_M3U8;
 mediaSource.setMimeType(mimeType);
 
 ```
-## media.createMediaSourceWithStreamData<sup>18+</sup>
+## media.createMediaSourceWithStreamData<sup>19+</sup>
 
 createMediaSourceWithStreamData(streams: Array\<MediaStream>): MediaSource
 
 Creates a multi-bitrate media source for streaming media. Currently, only the HTTP-FLV multi-bitrate media source is supported.
 
-**Atomic service API**: This API can be used in atomic services since API version 18.
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
 **Parameters**
 
-| Name | Type                                | Read-Only| Optional| Description                                                 |
-| ------- | ------------------------------------ | --- | ---- | ----------------------------------------------------- |
-| streams | Array<[MediaStream](#mediastream18)> | No| No  | Array of **MediaStream** objects. The supported streaming media format is HTTP-FLV.|
+| Name | Type                                | Mandatory| Description                                                 |
+| ------- | ------------------------------------ | ---- | ----------------------------------------------------- |
+| streams | Array<[MediaStream](#mediastream19)> | Yes| Array of **MediaStream** objects. The supported streaming media format is HTTP-FLV.|
 
 **Return value**
 
 | Type                         | Description               |
 | ----------------------------- | ------------------- |
 | [MediaSource](#mediasource12) | **MediaSource** instance.|
-
-**Error codes**
-
-For details about the error codes, see [Media Error Codes](errorcode-media.md).
-
-| ID| Error Message                                                    |
-| -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
-| 5400101  | No memory.                                                   |
 
 **Example 1**
 
@@ -8114,9 +8285,11 @@ streams.push({url: "http:/xxx/1080p.flv", width: 1280, height: 720, bitrate: 200
 let mediaSource : media.MediaSource = media.createMediaSourceWithStreamData(streams);
 ```
 
-## MediaStream<sup>18+</sup>
+## MediaStream<sup>19+</sup>
 
 Defines the media stream data information.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -8168,16 +8341,37 @@ Sets a **MediaSourceLoader** object, which is used to help the player request me
 **Example**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
+import HashMap from '@ohos.util.HashMap';
 
 let headers: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
 let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx",  headers);
+let uuid: number = 1;
+let requests: HashMap<number, media.MediaSourceLoadingRequest> = new HashMap();
+
+let sourceOpenCallback: media.SourceOpenCallback = (request: media.MediaSourceLoadingRequest) => {
+  console.log(`Opening resource: ${request.url}`);
+  // Open the resource and return a unique handle, ensuring the mapping between the UUID and request.
+  uuid += 1;
+  requests.set(uuid, request);
+  return uuid;
+}
+
+let sourceReadCallback: media.SourceReadCallback = (uuid: number, requestedOffset: number, requestedLength: number) => {
+  console.log(`Reading resource with handle ${uuid}, offset: ${requestedOffset}, length: ${requestedLength}`);
+  // Check whether the UUID is valid and store the read request. Avoid blocking the request while pushing data and header information.
+}
+
+let sourceCloseCallback: media.SourceCloseCallback = (uuid: number) => {
+  console.log(`Closing resource with handle ${uuid}`);
+  // Clear resources related to the current UUID.
+  requests.remove(uuid);
+}
 
 // Implemented by applications as required.
 let resourceLoader: media.MediaSourceLoader = {
-  open: SourceOpenCallback,
-  read: SourceReadCallback,
-  close: SourceCloseCallback
+  open: sourceOpenCallback,
+  read: sourceReadCallback,
+  close: sourceCloseCallback
 };
 
 mediaSource.setMediaResourceLoaderDelegate(resourceLoader);
@@ -8337,8 +8531,11 @@ mediaSource.setMediaResourceLoaderDelegate(mediaSourceLoader);
 let playStrategy : media.PlaybackStrategy = {
   preferredBufferDuration: 20,
 };
-let player = await media.createAVPlayer();
-player.setMediaSource(mediaSource, playStrategy);
+
+async function setupPlayer() {
+  let player = await media.createAVPlayer();
+  player.setMediaSource(mediaSource, playStrategy);
+}
 ```
 
 ## MediaSourceLoadingRequest<sup>18+</sup>
@@ -8353,8 +8550,8 @@ Defines a loading request object. Applications use this object to obtain the loc
 
 | Name  | Type   | Read-Only  | Optional  | Description               |
 | --------------------------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| url<sup>18+</sup>        | string                        | No  | No  | Resource URL, which is the path to the resource that the application needs to open.|
-| header<sup>18+</sup>     | Record<string, string>        | No  | Yes  | HTTP request header. If the header exists, the application should set the header information in the HTTP request when downloading data.|
+| url        | string                        | No  | No  | Resource URL, which is the path to the resource that the application needs to open.|
+| header     | Record<string, string>        | No  | Yes  | HTTP request header. If the header exists, the application should set the header information in the HTTP request when downloading data.|
 
 ### respondData<sup>18+</sup>
 
@@ -8383,10 +8580,13 @@ Sends data to the player.
 **Example**
 
 ```ts
+import HashMap from '@ohos.util.HashMap';
 let requests: HashMap<number, media.MediaSourceLoadingRequest> = new HashMap();
 let uuid = 1;
 
 let request = requests.get(uuid);
+let offset = 0; // Offset of the current media data relative to the start of the resource.
+let buf = new ArrayBuffer(0); // Data defined by the application and pushed to the player.
 let num = request.respondData(uuid, offset, buf);
 ```
 
@@ -8411,6 +8611,7 @@ Sends response header information to the player. This API must be called before 
 **Example**
 
 ```ts
+import HashMap from '@ohos.util.HashMap';
 let requests: HashMap<number, media.MediaSourceLoadingRequest> = new HashMap();
 let uuid = 1;
 
@@ -8448,6 +8649,7 @@ Notifies the player of the current request status. After pushing all the data fo
 **Example**
 
 ```ts
+import HashMap from '@ohos.util.HashMap';
 let requests: HashMap<number, media.MediaSourceLoadingRequest> = new HashMap();
 let uuid = 1;
 
@@ -8498,7 +8700,7 @@ Describes the playback strategy.
 | -------- | -------- | ---- | -------------------- |
 | preferredWidth| number | No  | Preferred width, in px. The value is an integer greater than 0, for example, 1080.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | preferredHeight | number | No  | Preferred height, in px. The value is an integer greater than 0, for example, 1920.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| preferredBufferDuration | number | No | Preferred buffer duration, in seconds. The value ranges from 1 to 20.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| preferredBufferDuration | number | No | Preferred buffer duration, in seconds. The value ranges from 1 to 20.<br>For details, see [Minimizing Stuttering in Online Video Playback](https://developer.huawei.com/consumer/en/doc/best-practices/bpta-online-video-playback-lags-practice).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | preferredHdr | boolean | No  | Whether HDR is preferred. The value **true** means that HDR is preferred, and **false** means the opposite.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | enableSuperResolution<sup>18+</sup> | boolean | No  | Whether to enable super resolution. The value **true** means to enable it, and **false** (default) means to disable it.<br>If super resolution is disabled, super resolution APIs cannot be called. If super resolution is enabled, the default target resolution is 1920 x 1080, in px.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 | showFirstFrameOnPrepare<sup>17+</sup> | boolean | No  | Whether to show the first frame after **prepare** is called. The value **true** means to show the first frame after **prepare** is called, and **false** means the opposite. The default value is **false**.<br>**Atomic service API**: This API can be used in atomic services since API version 17.|
@@ -8550,6 +8752,16 @@ Enumerates the video fill modes during screen capture.
 | PRESERVE_ASPECT_RATIO | 0    | Keeps the original aspect ratio, matching the aspect ratio of the physical screen.|
 | SCALE_TO_FILL | 1    | Stretches the image to fit the specified dimensions.|
 
+## AVScreenCaptureStrategy<sup>20+</sup>
+
+Describes the screen capture strategy.
+
+**System capability**: SystemCapability.Multimedia.Media.AVScreenCapture
+
+| Name                 | Type   | Mandatory| Description                |
+| --------------------- | ------- | --- | -------------------- |
+| keepCaptureDuringCall | boolean | No | Whether to keep screen capture during a cellular call.|
+
 ## AVScreenCaptureRecordConfig<sup>12+</sup>
 
 Defines the screen capture parameters.
@@ -8568,6 +8780,7 @@ Defines the screen capture parameters.
 | preset            | [AVScreenCaptureRecordPreset](#avscreencapturerecordpreset12) | No  | Encoding and container format used. The default value is **SCREEN_RECORD_PRESET_H264_AAC_MP4**.|
 | displayId<sup>15+</sup>            | number | No  | ID of the display used for screen capture. By default, the main screen is captured.|
 | fillMode<sup>18+</sup>            | [AVScreenCaptureFillMode](#avscreencapturefillmode18)| No  | Video fill mode during screen capture.|
+| strategy<sup>20+</sup>            | [AVScreenCaptureStrategy](#avscreencapturestrategy20)| No  | Screen capture strategy.|
 
 ## AVScreenCaptureRecorder<sup>12+</sup>
 

@@ -1,6 +1,6 @@
 # 动态手势设置
 
-动态设置组件绑定的手势，支持开发者在属性设置时使用if/else语法。
+动态设置组件绑定的手势，支持开发者在属性设置时使用if/else语法进行动态设置。
 
 >  **说明：**
 >
@@ -8,7 +8,7 @@
 
 ## gestureModifier
 
-gestureModifier(modifier:&nbsp;GestureModifier)
+gestureModifier(modifier:&nbsp;GestureModifier): T
 
 动态设置组件绑定的手势。
 
@@ -25,6 +25,12 @@ gestureModifier(modifier:&nbsp;GestureModifier)
 | 参数名   | 类型                  | 必填 | 说明                                                         |
 | -------- | --------------------- | ---- | ------------------------------------------------------------ |
 | modifier | [GestureModifier](#gesturemodifier-1) | 是   | 在当前组件上，动态设置组件绑定的手势，支持使用if/else语法。<br/>modifier: 手势修改器，开发者需要自定义class实现GestureModifier接口。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
 
 ## GestureModifier
 
@@ -52,7 +58,7 @@ applyGesture(event: UIGestureEvent): void
 ```ts
 // xxx.ets
 class MyButtonModifier implements GestureModifier {
-  supportDoubleTap: boolean = true
+  supportDoubleTap: boolean = true;
 
   applyGesture(event: UIGestureEvent): void {
     if (this.supportDoubleTap) {

@@ -18,7 +18,7 @@ taskpool使用过程中的相关注意点请查[TaskPool注意事项](../../arkt
 
 > **说明：**
 >
-> 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 
@@ -33,7 +33,7 @@ execute(func: Function, ...args: Object[]): Promise\<Object>
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -81,7 +81,7 @@ execute<A extends Array\<Object>, R>(func: (...args: A) => R | Promise\<R>, ...a
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 13 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 13开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -129,9 +129,9 @@ taskpool.execute<[number], number>(printArgs, 100).then((value: number) => { // 
   console.info("taskpool result: " + value);
 });
 
-taskpool.execute<[number, string, number], string>(testWithThreeParams, 100, "test", 100).then((value: string) => {})
+taskpool.execute<[number, string, number], string>(testWithThreeParams, 100, "test", 100).then((value: string) => {});
 
-taskpool.execute<[[number, string]], string>(testWithArray, [100, "test"]).then((value: string) => {})
+taskpool.execute<[[number, string]], string>(testWithArray, [100, "test"]).then((value: string) => {});
 ```
 
 
@@ -143,7 +143,7 @@ execute(task: Task, priority?: Priority): Promise\<Object>
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -202,13 +202,13 @@ execute<A extends Array\<Object>, R>(task: GenericsTask<A, R>, priority?: Priori
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 13 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 13开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
 | 参数名   | 类型                  | 必填 | 说明                                       |
 | -------- | --------------------- | ---- | ---------------------------------------- |
-| task     | [GenericsTask](#genericstask13)         | 是   | 需要在任务池中执行的泛型任务。                  |
+| task     | [GenericsTask<A, R>](#genericstask13)         | 是   | 需要在任务池中执行的泛型任务。                  |
 | priority | [Priority](#priority) | 否   | 等待执行的任务的优先级，该参数默认值为taskpool.Priority.MEDIUM。 |
 
 **返回值：**
@@ -261,7 +261,7 @@ execute(group: TaskGroup, priority?: Priority): Promise<Object[]>
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -322,7 +322,7 @@ executeDelayed(delayTime: number, task: Task, priority?: Priority): Promise\<Obj
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -355,7 +355,7 @@ executeDelayed(delayTime: number, task: Task, priority?: Priority): Promise\<Obj
 
 ```ts
 // import BusinessError
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Concurrent
 function printArgs(args: number): void {
@@ -381,14 +381,14 @@ executeDelayed<A extends Array\<Object>, R>(delayTime: number, task: GenericsTas
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 13 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 13开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
 | 参数名       | 类型          | 必填 | 说明                 |
 | ----------- | ------------- | ---- | -------------------- |
 | delayTime   | number        | 是   | 延时时间。单位为ms。  |
-| task        | [GenericsTask](#genericstask13) | 是   | 需要延时执行的泛型任务。 |
+| task        | [GenericsTask\<A, R>](#genericstask13) | 是   | 需要延时执行的泛型任务。 |
 | priority    | [Priority](#priority)       | 否   | 延时执行的任务的优先级，默认值为taskpool.Priority.MEDIUM。 |
 
 **返回值：**
@@ -438,7 +438,7 @@ executePeriodically(period: number, task: Task, priority?: Priority): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -514,14 +514,14 @@ executePeriodically<A extends Array\<Object>, R>(period: number, task: GenericsT
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 13 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 13开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
 | 参数名       | 类型          | 必填  | 说明                 |
 | -----------  | ------------- | ----- | -------------------- |
 | period       | number        | 是    | 周期时长。单位为ms。  |
-| task         | [GenericsTask](#genericstask13) | 是    | 需要周期执行的泛型任务。 |
+| task         | [GenericsTask\<A, R>](#genericstask13) | 是    | 需要周期执行的泛型任务。 |
 | priority     | [Priority](#priority) | 否   | 周期执行的任务的优先级，该参数默认值为taskpool.Priority.MEDIUM。 |
 
 
@@ -587,9 +587,11 @@ cancel(task: Task): void
 
 取消任务池中的任务。当任务在taskpool等待队列中，取消该任务后该任务将不再执行，并返回任务被取消的异常；当任务已经在taskpool工作线程执行，取消该任务并不影响任务继续执行，执行结果在catch分支返回，搭配isCanceled使用可以对任务取消行为作出响应。taskpool.cancel对其之前的taskpool.execute/taskpool.executeDelayed生效。
 
+从API version 20开始，支持在执行cancel操作后，在catch分支里使用BusinessError<[taskpool.TaskResult](#taskresult20)>的泛型标记，来获取任务中抛出的异常信息或最终的执行结果。
+
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -638,7 +640,7 @@ function concurrentFunc() {
   let task4: taskpool.Task = new taskpool.Task(inspectStatus, 400); // 400: test number
   let task5: taskpool.Task = new taskpool.Task(inspectStatus, 500); // 500: test number
   let task6: taskpool.Task = new taskpool.Task(inspectStatus, 600); // 600: test number
-  taskpool.execute(task1).then((res: Object)=>{
+  taskpool.execute(task1).then((res: Object) => {
     console.info("taskpool test result: " + res);
   });
   taskpool.execute(task2);
@@ -647,7 +649,7 @@ function concurrentFunc() {
   taskpool.execute(task5);
   taskpool.execute(task6);
   // 1s后取消task
-  setTimeout(()=>{
+  setTimeout(() => {
     try {
       taskpool.cancel(task1);
     } catch (e) {
@@ -665,9 +667,11 @@ cancel(group: TaskGroup): void
 
 取消任务池中的任务组。当一个任务组的任务未全部执行结束时取消任务组，则返回undefined作为任务组结果。
 
+从API version 20开始，支持在执行cancel操作后，在catch分支里使用BusinessError<[taskpool.TaskResult](#taskresult20)>的泛型标记，来获取任务中抛出的异常信息或最终的执行结果。
+
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -702,13 +706,13 @@ function concurrentFunc() {
   taskGroup1.addTask(printArgs, 10); // 10: test number
   let taskGroup2: taskpool.TaskGroup = new taskpool.TaskGroup();
   taskGroup2.addTask(printArgs, 100); // 100: test number
-  taskpool.execute(taskGroup1).then((res: Array<Object>)=>{
+  taskpool.execute(taskGroup1).then((res: Array<Object>) => {
     console.info("taskGroup1 res is:" + res);
   });
-  taskpool.execute(taskGroup2).then((res: Array<Object>)=>{
+  taskpool.execute(taskGroup2).then((res: Array<Object>) => {
     console.info("taskGroup2 res is:" + res);
   });
-  setTimeout(()=>{
+  setTimeout(() => {
     try {
       taskpool.cancel(taskGroup2);
     } catch (e) {
@@ -726,9 +730,11 @@ cancel(taskId: number): void
 
 通过任务ID取消任务池中的任务。当任务在taskpool等待队列中，取消该任务后该任务将不再执行，并返回任务被取消的异常；当任务已经在taskpool工作线程执行，取消该任务并不影响任务继续执行，执行结果在catch分支返回，搭配isCanceled使用可以对任务取消行为作出响应。taskpool.cancel对其之前的taskpool.execute/taskpool.executeDelayed生效。在其他线程调用taskpool.cancel时需要注意，因为cancel的行为是异步的，可能对之后的taskpool.execute/taskpool.executeDelayed生效。
 
+从API version 20开始，支持在执行cancel操作后，在catch分支里使用BusinessError<[taskpool.TaskResult](#taskresult20)>的泛型标记，来获取任务中抛出的异常信息或最终的执行结果。
+
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 18 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -774,7 +780,7 @@ function cancelFunction(taskId: number) {
 function concurrentFunc() {
   let task = new taskpool.Task(printArgs, 100); // 100: test number
   taskpool.execute(task);
-  setTimeout(()=>{
+  setTimeout(() => {
     let cancelTask = new taskpool.Task(cancelFunction, task.taskId);
     taskpool.execute(cancelTask);
   }, 1000);
@@ -822,7 +828,7 @@ function longTask(arg: number): number {
 
 function concurrentFunc() {
   let task1: taskpool.LongTask = new taskpool.LongTask(longTask, 1000); // 1000: sleep time
-  taskpool.execute(task1).then((res: Object)=>{
+  taskpool.execute(task1).then((res: Object) => {
     taskpool.terminateTask(task1);
     console.info("taskpool longTask result: " + res);
   });
@@ -867,8 +873,8 @@ isConcurrent(func: Function): boolean
 @Concurrent
 function test() {}
 
-let result: Boolean = taskpool.isConcurrent(test)
-console.info("result is: " + result)
+let result: Boolean = taskpool.isConcurrent(test);
+console.info("result is: " + result);
 ```
 
 ## taskpool.getTaskPoolInfo<sup>10+</sup>
@@ -879,7 +885,7 @@ getTaskPoolInfo(): TaskPoolInfo
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
@@ -901,10 +907,10 @@ let taskpoolInfo: taskpool.TaskPoolInfo = taskpool.getTaskPoolInfo();
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| HIGH   | 0    | 任务为高优先级。<br/>**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。 |
-| MEDIUM | 1 | 任务为中优先级。<br/>**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。 |
-| LOW | 2 | 任务为低优先级。<br/>**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。 |
-| IDLE<sup>12+</sup> | 3 | 任务为后台任务。<br/>**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。 |
+| HIGH   | 0    | 任务为高优先级。<br/>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| MEDIUM | 1 | 任务为中优先级。<br/>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| LOW | 2 | 任务为低优先级。<br/>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| IDLE<sup>12+</sup> | 3 | 任务为后台任务。<br/>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
 
 **示例：**
 
@@ -944,21 +950,21 @@ for (let i: number = 0; i < taskArray.length; i+=4) { // 4: 每次执行4个任�
 
 ## Task
 
-表示任务。使用[constructor](#constructor)方法构造Task。任务可以多次执行或放入任务组执行或放入串行队列执行或放入异步队列执行或添加依赖关系执行。
+表示任务。任务可以多次执行或放入任务组执行或放入串行队列执行或放入异步队列执行或添加依赖关系执行。
 
 ### 属性
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称                 | 类型       | 可读 | 可写 | 说明                                                         |
+| 名称                 | 类型       | 只读 | 可选 | 说明                                                         |
 | -------------------- | --------- | ---- | ---- | ------------------------------------------------------------ |
-| function             | Function  | 是   | 是   | 创建任务时需要传入的函数，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。<br>**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。|
-| arguments            | Object[]  | 是   | 是   | 创建任务传入函数所需的参数，支持的参数类型请查[序列化支持类型](#序列化支持类型)。<br>**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。|
-| name<sup>11+</sup>   | string    | 是   | 否   | 创建任务时指定的任务名称。<br>**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。|
-| taskId<sup>18+</sup>   | number    | 是   | 否   | 任务的ID。<br>**原子化服务API**：从API version 18 开始，该接口支持在原子化服务中使用。|
-| totalDuration<sup>11+</sup>  | number    | 是   | 否   | 执行任务总耗时。单位为ms。<br>**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。 |
-| ioDuration<sup>11+</sup>     | number    | 是   | 否   | 执行任务异步IO耗时。单位为ms。<br>**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。|
-| cpuDuration<sup>11+</sup>    | number    | 是   | 否   | 执行任务CPU耗时。单位为ms。<br>**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。|
+| function             | Function  | 否   | 否   | 创建任务时需要传入的函数，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。|
+| arguments            | Object[]  | 否   | 是   | 创建任务传入函数所需的参数，支持的参数类型请查[序列化支持类型](#序列化支持类型)。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。|
+| name<sup>11+</sup>   | string    | 是   | 否   | 创建任务时指定的任务名称。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。|
+| taskId<sup>18+</sup>   | number    | 是   | 否   | 任务的ID。<br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。|
+| totalDuration<sup>11+</sup>  | number    | 是   | 否   | 执行任务总耗时。单位为ms。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| ioDuration<sup>11+</sup>     | number    | 是   | 否   | 执行任务异步IO耗时。单位为ms。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。|
+| cpuDuration<sup>11+</sup>    | number    | 是   | 否   | 执行任务CPU耗时。单位为ms。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。|
 
 ### constructor
 
@@ -968,7 +974,7 @@ Task的构造函数。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1006,7 +1012,7 @@ Task的构造函数，可以指定任务名称。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1047,7 +1053,7 @@ static isCanceled(): boolean
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
@@ -1099,7 +1105,7 @@ function inspectStatus(arg: number): number {
 }
 
 let task: taskpool.Task = new taskpool.Task(inspectStatus, 100); // 100: test number
-taskpool.execute(task).then((res: Object)=>{
+taskpool.execute(task).then((res: Object) => {
   console.info("taskpool test result: " + res);
 }).catch((err: string) => {
   console.error("taskpool test occur error: " + err);
@@ -1119,7 +1125,7 @@ setTransferList(transfer?: ArrayBuffer[]): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1159,9 +1165,9 @@ console.info("testTransfer view1 byteLength: " + view1.byteLength);
 
 let task: taskpool.Task = new taskpool.Task(testTransfer, view, view1);
 task.setTransferList([view.buffer, view1.buffer]);
-taskpool.execute(task).then((res: Object)=>{
+taskpool.execute(task).then((res: Object) => {
   console.info("test result: " + res);
-}).catch((e: string)=>{
+}).catch((e: string) => {
   console.error("test catch: " + e);
 })
 console.info("testTransfer view2 byteLength: " + view.byteLength);
@@ -1184,7 +1190,7 @@ setCloneList(cloneList: Object[] | ArrayBuffer[]): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1239,7 +1245,7 @@ export class BaseClass {
     this.num1 = num;
   }
 
-  constructor(){
+  constructor() {
     console.info(this.str);
     this.isDone1 = true;
   }
@@ -1261,9 +1267,9 @@ export class DeriveClass extends BaseClass {
 ```ts
 // index.ets
 // 宿主线程（这里的宿主线程为UI主线程）调用taskpool，在taskpool线程中调用BaseClass和DeriveClass的方法、访问对应属性
-import { taskpool } from '@kit.ArkTS'
-import { BusinessError } from '@kit.BasicServicesKit'
-import { BaseClass, DeriveClass } from './sendable'
+import { taskpool } from '@kit.ArkTS';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { BaseClass, DeriveClass } from './sendable';
 
 @Concurrent
 function testFunc(arr: Array<BaseClass>, num: number): number {
@@ -1286,7 +1292,7 @@ function printLog(arr: Array<DeriveClass>): void {
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World'
+  @State message: string = 'Hello World';
 
   build() {
     Row() {
@@ -1295,7 +1301,7 @@ struct Index {
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
         Button() {
-          Text("TaskPool Test")
+          Text("TaskPool Test");
         }.onClick(() => {
           // task1访问调用BaseClass.str1/BaseClass.SetNum/BaseClass.GetNum/BaseClass.isDone1/BaseClass.publicFunc
           let baseInstance1: BaseClass = new BaseClass();
@@ -1341,12 +1347,12 @@ static sendData(...args: Object[]): void
 > **说明：**
 >
 > - 该接口在taskpool的线程中调用。
-> - 避免在回调函数中使用该方法。
+> - 避免在回调函数中使用该方法，否则可能导致消息无法发送到宿主线程。
 > - 调用该接口时确保处理数据的回调函数已在宿主线程注册。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1406,7 +1412,7 @@ onReceiveData(callback?: Function): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1457,7 +1463,7 @@ addDependency(...tasks: Task[]): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1483,7 +1489,7 @@ addDependency(...tasks: Task[]): void
 function delay(args: number): number {
   let t: number = Date.now();
   while ((Date.now() - t) < 1000) {
-	continue;
+    continue;
   }
   return args;
 }
@@ -1497,7 +1503,7 @@ task1.addDependency(task2);
 task2.addDependency(task3);
 console.info("dependency: add dependency end");
 
-console.info("dependency: start execute second")
+console.info("dependency: start execute second");
 taskpool.execute(task1).then(() => {
   console.info("dependency: second task1 success");
 })
@@ -1517,7 +1523,7 @@ removeDependency(...tasks: Task[]): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1543,7 +1549,7 @@ removeDependency(...tasks: Task[]): void
 function delay(args: number): number {
   let t: number = Date.now();
   while ((Date.now() - t) < 1000) {
-	continue;
+    continue;
   }
   return args;
 }
@@ -1561,7 +1567,7 @@ task1.removeDependency(task2);
 task2.removeDependency(task3);
 console.info("dependency: remove dependency end");
 
-console.info("dependency: start execute")
+console.info("dependency: start execute");
 taskpool.execute(task1).then(() => {
   console.info("dependency: task1 success");
 })
@@ -1602,23 +1608,23 @@ onEnqueued(callback: CallbackFunction): void
 **示例：**
 
 ```ts
-import { taskpool } from '@kit.ArkTS'
+import { taskpool } from '@kit.ArkTS';
 
 @Concurrent
 function delay(args: number): number {
   let t: number = Date.now();
   while ((Date.now() - t) < 1000) {
-	continue;
+	  continue;
   }
   return args;
 }
 
 let task: taskpool.Task = new taskpool.Task(delay, 1);
-task.onEnqueued(()=>{
-  console.info("taskpool: onEnqueued")
+task.onEnqueued(() => {
+  console.info("taskpool: onEnqueued");
 });
-taskpool.execute(task).then(()=> {
-  console.info("taskpool: execute task success")
+taskpool.execute(task).then(() => {
+  console.info("taskpool: execute task success");
 });
 ```
 
@@ -1651,23 +1657,23 @@ onStartExecution(callback: CallbackFunction): void
 **示例：**
 
 ```ts
-import { taskpool } from '@kit.ArkTS'
+import { taskpool } from '@kit.ArkTS';
 
 @Concurrent
 function delay(args: number): number {
   let t: number = Date.now();
   while ((Date.now() - t) < 1000) {
-	continue;
+	  continue;
   }
   return args;
 }
 
 let task: taskpool.Task = new taskpool.Task(delay, 1);
-task.onStartExecution(()=>{
-  console.info("taskpool: onStartExecution")
+task.onStartExecution(() => {
+  console.info("taskpool: onStartExecution");
 });
-taskpool.execute(task).then(()=> {
-  console.info("taskpool: execute task success")
+taskpool.execute(task).then(() => {
+  console.info("taskpool: execute task success");
 });
 ```
 
@@ -1699,13 +1705,13 @@ onExecutionFailed(callback: CallbackFunctionWithError): void
 **示例：**
 
 ```ts
-import { taskpool } from '@kit.ArkTS'
-import { BusinessError } from '@kit.BasicServicesKit'
-import { HashMap } from '@kit.ArkTS'
+import { taskpool } from '@kit.ArkTS';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { HashMap } from '@kit.ArkTS';
 
 @Concurrent
-function test(args:number) {
-  let t = Date.now()
+function test(args: number) {
+  let t = Date.now();
   while ((Date.now() - t) < 100) {
     continue;
   }
@@ -1715,12 +1721,12 @@ function test(args:number) {
 }
 
 let task2 = new taskpool.Task(test, 1);
-task2.onExecutionFailed((e:Error)=>{
+task2.onExecutionFailed((e: Error) => {
   console.info("taskpool: onExecutionFailed error is " + e);
 })
-taskpool.execute(task2).then(()=>{
-  console.info("taskpool: execute task success")
-}).catch((e:BusinessError)=>{
+taskpool.execute(task2).then(() => {
+  console.info("taskpool: execute task success");
+}).catch((e:BusinessError) => {
   console.error(`taskpool: error code: ${e.code}, error info: ${e.message}`);
 })
 ```
@@ -1753,7 +1759,7 @@ onExecutionSucceeded(callback: CallbackFunction): void
 **示例：**
 
 ```ts
-import { taskpool } from '@kit.ArkTS'
+import { taskpool } from '@kit.ArkTS';
 
 @Concurrent
 function delay(args: number): number {
@@ -1765,11 +1771,11 @@ function delay(args: number): number {
 }
 
 let task: taskpool.Task = new taskpool.Task(delay, 1);
-task.onExecutionSucceeded(()=>{
-  console.info("taskpool: onExecutionSucceeded")
+task.onExecutionSucceeded(() => {
+  console.info("taskpool: onExecutionSucceeded");
 });
-taskpool.execute(task).then(()=> {
-  console.info("taskpool: execute task success")
+taskpool.execute(task).then(() => {
+  console.info("taskpool: execute task success");
 });
 ```
 
@@ -1804,13 +1810,13 @@ function inspectStatus(arg: number): number {
 
 async function taskpoolCancel(): Promise<void> {
   let task: taskpool.Task = new taskpool.Task(inspectStatus, 100); // 100: test number
-  taskpool.execute(task).then((res: Object)=>{
+  taskpool.execute(task).then((res: Object) => {
     console.info("taskpool test result: " + res);
   }).catch((err: string) => {
     console.error("taskpool test occur error: " + err);
   });
 
-  setTimeout(()=>{
+  setTimeout(() => {
     if (!task.isDone()) {
       taskpool.cancel(task);
     }
@@ -1884,7 +1890,7 @@ GenericsTask的构造函数。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 13 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 13开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1936,7 +1942,7 @@ GenericsTask的构造函数，可以指定任务名称。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 13 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 13开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1971,7 +1977,7 @@ let name: string = task.name;
 
 ## TaskGroup<sup>10+</sup>
 
-表示任务组，一次执行一组任务，适用于执行一组有关联的任务。如果所有任务正常执行，异步执行完毕后返回所有任务结果的数组，数组中元素的顺序与[addTask](#addtask10-1)的顺序相同；如果任意任务失败，则会抛出对应异常。如果任务组中存在多个任务失败的情况，则会抛出第一个失败任务的异常。任务组可以多次执行，但执行后不能新增任务。使用[constructor](#constructor10)方法构造TaskGroup。
+表示任务组，一次执行一组任务，适用于执行一组有关联的任务。如果所有任务正常执行，异步执行完毕后返回所有任务结果的数组，数组中元素的顺序与[addTask](#addtask10-1)的顺序相同；如果任意任务失败，则会抛出对应异常。如果任务组中存在多个任务失败的情况，则会抛出第一个失败任务的异常。任务组可以多次执行，但执行后不能新增任务。
 
 ### constructor<sup>10+</sup>
 
@@ -1981,7 +1987,7 @@ TaskGroup的构造函数。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **示例：**
 
@@ -1997,7 +2003,7 @@ TaskGroup的构造函数，可以指定任务组名称。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2029,7 +2035,7 @@ addTask(func: Function, ...args: Object[]): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2068,7 +2074,7 @@ addTask(task: Task): void
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2105,15 +2111,15 @@ taskGroup.addTask(task);
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称 | 类型   | 可读 | 可写 | 说明                         |
+| 名称 | 类型   | 只读 | 可选 | 说明                         |
 | ---- | ------ | ---- | ---- | ---------------------------- |
-| name<sup>11+</sup> | string | 是   | 是   | 创建任务组时指定的任务组名称。 |
+| name<sup>11+</sup> | string | 否   | 否   | 创建任务组时指定的任务组名称。 |
 
 ## SequenceRunner <sup>11+</sup>
 
-表示串行队列的任务，用于执行一组需要串行执行的任务。使用[constructor](#constructor11-3)方法构造SequenceRunner。
+表示串行队列的任务，用于执行一组需要串行执行的任务。
 
 ### constructor<sup>11+</sup>
 
@@ -2123,7 +2129,7 @@ SequenceRunner的构造函数。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2158,7 +2164,7 @@ SequenceRunner的构造函数。构造一个全局串行队列，如果名字相
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2194,7 +2200,7 @@ execute(task: Task): Promise\<Object>
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2224,7 +2230,7 @@ execute(task: Task): Promise\<Object>
 
 ```ts
 @Concurrent
-function additionDelay(delay:number): void {
+function additionDelay(delay: number): void {
   let start: number = new Date().getTime();
   while (new Date().getTime() - start < delay) {
     continue;
@@ -2234,8 +2240,7 @@ function additionDelay(delay:number): void {
 function waitForRunner(finalString: string): string {
   return finalString;
 }
-async function seqRunner()
-{
+async function seqRunner() {
   let finalString:string = "";
   let task1:taskpool.Task = new taskpool.Task(additionDelay, 3000);
   let task2:taskpool.Task = new taskpool.Task(additionDelay, 2000);
@@ -2262,7 +2267,7 @@ async function seqRunner()
 
 ## AsyncRunner<sup>18+</sup>
 
-表示异步队列，可以指定任务执行并发度和指定任务的排队策略。使用[constructor](#constructor18)方法构造AsyncRunner。
+表示异步队列，可以指定任务执行并发度和指定任务的排队策略。
 
 ### constructor<sup>18+</sup>
 
@@ -2272,7 +2277,7 @@ AsyncRunner的构造函数。构造一个非全局的异步队列，如果参数
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 18 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2308,7 +2313,7 @@ AsyncRunner的构造函数。构造一个全局异步队列，如果名字相同
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 18 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2350,7 +2355,7 @@ execute(task: Task, priority?: Priority): Promise\<Object>
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 18 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -2381,27 +2386,25 @@ execute(task: Task, priority?: Priority): Promise\<Object>
 
 ```ts
 @Concurrent
-function additionDelay(delay:number): void {
+function additionDelay(delay: number): void {
   let start: number = new Date().getTime();
   while (new Date().getTime() - start < delay) {
     continue;
   }
 }
-async function asyRunner()
-{
+async function asyRunner() {
   let runner:taskpool.AsyncRunner = new taskpool.AsyncRunner("runner1", 5, 5);
   for (let i = 0; i < 30; i++) {
     let task:taskpool.Task = new taskpool.Task(additionDelay, 1000);
     runner.execute(task).then(() => {
       console.info("asyncRunner: task" + i + " done.");
     }).catch((e: BusinessError) => {
-      console.info("asyncRunner: task" + i + " error." + e.code + "-" + e.message);
+      console.error("asyncRunner: task" + i + " error." + e.code + "-" + e.message);
     });
   }
 }
 
-async function asyRunner2()
-{
+async function asyRunner2() {
   let runner:taskpool.AsyncRunner = new taskpool.AsyncRunner(5);
   for (let i = 0; i < 20; i++) {
     let task:taskpool.Task = new taskpool.Task(additionDelay, 1000);
@@ -2418,7 +2421,7 @@ async function asyRunner2()
 
 **系统能力：**  SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称      | 值        | 说明          |
 | --------- | -------- | ------------- |
@@ -2437,12 +2440,12 @@ async function asyRunner2()
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称     | 类型                | 可读 | 可写 | 说明                                                           |
+| 名称     | 类型                | 只读 | 可选 | 说明                                                           |
 | -------- | ------------------ | ---- | ---- | ------------------------------------------------------------- |
 | name<sup>12+</sup> | string             | 是   | 否   | 任务的名字。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                    |
-| taskId   | number             | 是   | 否   | 任务的ID。<br/> **原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。                                                     |
-| state    | [State](#state10)  | 是   | 否   | 任务的状态。<br/> **原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。                                                    |
-| duration | number             | 是   | 否   | 任务执行至当前所用的时间，单位为ms。当返回为0时，表示任务未执行；返回为空时，表示没有任务执行。<br/> **原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。  |
+| taskId   | number             | 是   | 否   | 任务的ID。<br/> **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。                                                     |
+| state    | [State](#state10)  | 是   | 否   | 任务的状态。<br/> **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。                                                    |
+| duration | number             | 是   | 否   | 任务执行至当前所用的时间，单位为ms。当返回为0时，表示任务未执行；返回为空时，表示没有任务执行。<br/> **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。  |
 
 ## ThreadInfo<sup>10+</sup>
 
@@ -2454,9 +2457,9 @@ async function asyRunner2()
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称     | 类型                    | 可读 | 可写 | 说明                                                      |
+| 名称     | 类型                    | 只读 | 可选 | 说明                                                      |
 | -------- | ---------------------- | ---- | ---- | -------------------------------------------------------- |
 | tid      | number                 | 是   | 否   | 工作线程的标识符。返回为空时，代表没有任务执行。              |
 | taskIds  | number[]               | 是   | 否   | 在当前线程上运行的任务id列表。返回为空时，代表没有任务执行。   |
@@ -2472,13 +2475,107 @@ async function asyRunner2()
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称          | 类型                              | 可读 | 可写 | 说明                  |
+| 名称          | 类型                              | 只读 | 可选 | 说明                  |
 | ------------- | -------------------------------- | ---- | ---- | -------------------- |
 | threadInfos   | [ThreadInfo[]](#threadinfo10)    | 是   | 否   | 工作线程的内部信息。   |
 | taskInfos     | [TaskInfo[]](#taskinfo10)        | 是   | 否   | 任务的内部信息。       |
 
+## TaskResult<sup>20+</sup>
+
+处于等待或执行过程中的任务进行取消操作后，在catch分支里捕获到BusinessError里的补充信息。其他场景下该信息为undefined。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+### 属性
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
+| 名称     | 类型                | 只读 | 可选 | 说明                                                           |
+| -------- | ------------------ | ---- | ---- | ------------------------------------------------------------- |
+| result | Object             | 是   | 是   | 任务执行结果。默认为undefined。                                    |
+| error   | Error \| Object   | 是   | 是   | 错误信息。默认和BusinessError的message字段一致。                 |
+
+> **说明：**
+>
+> 任务被取消后，有如下两种情况：
+>    - 如果当前任务是处于等待阶段，则result的值为undefined，error的值和BusinessError的message字段一致；
+>    - 如果当前任务正在运行，有异常抛出的情况下result的值为undefined，error的值为抛出的异常信息；没有异常的情况下，result为任务执行完成后的结果，error的值和BusinessError的message字段一致。
+>
+
+**示例**
+
+```ts
+import { taskpool } from '@kit.ArkTS';
+import { BusinessError } from '@kit.BasicServicesKit'
+
+@Concurrent
+function loop(): Error | number {
+  let start: number = Date.now();
+  while (Date.now() - start < 1500) {
+  }
+  if (taskpool.Task.isCanceled()) {
+    return 0;
+  }
+  while (Date.now() - start < 3000) {
+  }
+  if (taskpool.Task.isCanceled()) {
+    throw new Error("this is loop error");
+  }
+  return 1;
+}
+
+// 执行前取消
+function waitingCancel() {
+  let task = new taskpool.Task(loop);
+  taskpool.executeDelayed(2000, task).catch((e:BusinessError<taskpool.TaskResult>) => {
+    console.error(`waitingCancel task catch code: ${e.code}, message: ${e.message}`);
+    // waitingCancel task catch code: 0, message: taskpool:: task has been canceled
+    if (e.data !== undefined) {
+      console.error(`waitingCancel task catch data: result: ${e.data.result}, error: ${e.data.error}`);
+      // waitingCancel task catch data: result: undefined, error: taskpool:: task has been canceled
+    }
+  })
+  setTimeout(() => {
+    taskpool.cancel(task);
+  }, 1000);
+}
+
+// 执行过程中取消
+function runningCancel() {
+  let task = new taskpool.Task(loop);
+  taskpool.execute(task).catch((e:BusinessError<taskpool.TaskResult>) => {
+    console.error(`runningCancel task catch code: ${e.code}, message: ${e.message}`);
+    // runningCancel task catch code: 0, message: taskpool:: task has been canceled
+    if (e.data !== undefined) {
+      console.error(`runningCancel task catch data: result: ${e.data.result}, error: ${e.data.error}`);
+      // runningCancel task catch data: result: 0, error: taskpool:: task has been canceled
+    }
+  })
+  setTimeout(() => {
+    taskpool.cancel(task);
+  }, 1000);
+}
+
+// 执行过程中抛异常
+function runningCancelError() {
+  let task = new taskpool.Task(loop);
+  taskpool.execute(task).catch((e:BusinessError<taskpool.TaskResult>) => {
+    console.error(`runningCancelError task catch code: ${e.code}, message: ${e.message}`);
+    // runningCancelError task catch code: 0, message: taskpool:: task has been canceled
+    if (e.data !== undefined) {
+      console.error(`runningCancelError task catch data: result: ${e.data.result}, error: ${e.data.error}`);
+      // runningCancelError task catch data: result: undefined, error: Error: this is loop error
+    }
+  })
+  setTimeout(() => {
+    taskpool.cancel(task);
+  }, 2000);
+}
+```
 
 ## 其他说明
 
@@ -2781,7 +2878,7 @@ let taskId: number = 0;
 let state: number = 0;
 let duration: number = 0;
 let name: string = "";
-let threadIS = Array.from(taskpoolInfo.threadInfos)
+let threadIS = Array.from(taskpoolInfo.threadInfos);
 for (let threadInfo of threadIS) {
   tid = threadInfo.tid;
   if (threadInfo.taskIds != undefined && threadInfo.priority != undefined) {
@@ -2790,7 +2887,7 @@ for (let threadInfo of threadIS) {
   }
   console.info("taskpool---tid is:" + tid + ", taskIds is:" + taskIds + ", priority is:" + priority);
 }
-let taskIS = Array.from(taskpoolInfo.taskInfos)
+let taskIS = Array.from(taskpoolInfo.taskInfos);
 for (let taskInfo of taskIS) {
   taskId = taskInfo.taskId;
   state = taskInfo.state;

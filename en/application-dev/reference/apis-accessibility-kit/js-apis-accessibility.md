@@ -189,7 +189,7 @@ Enables listening for the enabled status changes of captions configuration. This
 
 > **NOTE**
 >
-> This API is deprecated since API version 12.
+> This API is deprecated since API version 12. Related features are no longer available in the system.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Hearing
 
@@ -227,7 +227,7 @@ Enables listening for captions style changes. This API uses an asynchronous call
 
 > **NOTE**
 >
-> This API is deprecated since API version 12.
+> This API is deprecated since API version 12. Related features are no longer available in the system.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Hearing
 
@@ -266,7 +266,7 @@ Disables listening for the enabled status changes of captions configuration. Thi
 
 > **NOTE**
 >
-> This API is deprecated since API version 12.
+> This API is deprecated since API version 12. Related features are no longer available in the system.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Hearing
 
@@ -305,7 +305,7 @@ Disables listening for captions style changes. This API uses an asynchronous cal
 
 > **NOTE**
 >
-> This API is deprecated since API version 12.
+> This API is deprecated since API version 12. Related features are no longer available in the system.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Hearing
 
@@ -344,8 +344,8 @@ Describes a GUI change event.
 
 ### Properties
 
-| Name              | Type                                   | Mandatory | Description                   |
-| ---------------- | ------------------------------------- |-----|-----------------------|
+| Name            | Type                                  | Mandatory | Description                |
+| ---------------- | ------------------------------------- |----- |-----------------------|
 | type             | [EventType](#eventtype)               | Yes  | Accessibility event type.        |
 | windowUpdateType | [WindowUpdateType](#windowupdatetype) | No  | Window update type.              |
 | bundleName       | string                                | Yes  | Name of the target application.          |
@@ -356,12 +356,12 @@ Describes a GUI change event.
 | textMoveUnit     | [TextMoveUnit](#textmoveunit)         | No  | Text move granularity.     |
 | contents         | Array&lt;string&gt;                   | No  | Array of contents.                |
 | lastContent      | string                                | No  | Latest content.                |
-| beginIndex       | number                                | No  | Sequence number of the first item displayed on the page.|
-| currentIndex     | number                                | No  | Sequence number of the current item.     |
-| endIndex         | number                                | No  | Sequence number of the last item displayed on the page.|
-| itemCount        | number                                | No  | Total number of records.       |
-| elementId<sup>12+</sup>        | number                                | No  | Element ID of the component.       |
-| textAnnouncedForAccessibility<sup>12+</sup>        | string                                | No  | Content for auto-broadcasting.       |
+| beginIndex       | number                                | No  | Sequence number of the first item displayed on the page. Default value: **0**.|
+| currentIndex     | number                                | No  | Sequence number of the current item. Default value: **0**.     |
+| endIndex         | number                                | No  | Sequence number of the last item displayed on the page. Default value: **0**.|
+| itemCount        | number                                | No  | Total number of records. Default value: **0**.       |
+| elementId<sup>12+</sup>        | number                  | No  | Element ID of the component. Default value: **0**.       |
+| textAnnouncedForAccessibility<sup>12+</sup>        | string     | No  | Content for auto-broadcasting.       |
 | textResourceAnnouncedForAccessibility<sup>18+</sup>        | Resource      | No  | Content for auto-broadcasting, which supports resources of the string type. |
 | customId<sup>12+</sup>        | string                                | No  | Component ID for auto-focusing.       |
 
@@ -694,7 +694,7 @@ Obtains a **CaptionsManager** instance.
 
 > **NOTE**
 >
-> This API is deprecated since API version 12.
+> This API is deprecated since API version 12. Related features are no longer available in the system.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Hearing
 

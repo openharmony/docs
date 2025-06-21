@@ -23,9 +23,9 @@
 
 DevEco Studio会收集设备`/data/log/faultlog/faultlogger/`路径下的进程崩溃故障日志到FaultLog下，根据进程名和故障和时间分类显示。获取日志的方法参见：[DevEco Studio使用指南-FaultLog](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-fault-log)。
 
-#### 方式二：通过hiAppEvent接口订阅
+#### 方式二：通过HiAppEvent接口订阅
 
-hiAppEvent提供了故障订阅接口，可以订阅各类故障打点，详见[HiAppEvent介绍](hiappevent-intro.md)。
+HiAppEvent给开发者提供了故障订阅接口，详见[HiAppEvent介绍](hiappevent-intro.md)。参考[订阅崩溃事件（ArkTS）](hiappevent-watcher-crash-events-arkts.md)或[订阅崩溃事件（C/C++）](hiappevent-watcher-crash-events-ndk.md)完成崩溃事件订阅，并通过事件的[external_log](hiappevent-watcher-crash-events.md#params字段说明)字段读取崩溃日志内容。
 
 #### 方式三：通过hdc获取日志，需打开开发者选项
 
@@ -74,6 +74,7 @@ r0:00000000 r1:ffc09854 r2:00000000 r3:00000008
 r4:00000000 r5:fffff000 r6:0000000a r7:000000af
 r8:ffc09919 r9:ffc09930 r10:00000000
 fp:ffc098e8 ip:005b76e4 sp:ffbe8daa lr:005ade99 pc:f7bb0400
+cpsr:20870010  <- 状态寄存器（arm32架构为cpsr，aarch64架构为pstate和esr）
 ...
 Maps:
 ...
@@ -501,8 +502,11 @@ Module name:crasher_cpp <- 模块名
 Timestamp:2017-08-06 21:52:51.000 <- 故障发生时间戳
 Pid:10208 <- 进程号
 Uid:0     <- 用户ID
+HiTraceId:a92ab1c7eae68fa  <- HiTraceId(非必选，进程无HiTraceId不打印)
 Process name:./crasher_cpp <- 进程名称
 Process life time:1s  <- 进程存活时间
+Process Memory(kB): 11902(Rss)     <- 进程占用内存
+Device Memory(kB): Total 1935820, Free 516244, Available 1205608 <- 整机内存状态（非必选）
 Reason:Signal:SIGSEGV(SI_TKILL)@0x000027e0 from:10208:0 <- 故障原因，详见信号值说明
 Fault thread info:
 Tid:10208, Name:crasher_cpp  <- 故障线程号，线程名
@@ -518,6 +522,7 @@ r0:00000000 r1:ffc09854 r2:00000000 r3:00000008
 r4:00000000 r5:fffff000 r6:0000000a r7:000000af
 r8:ffc09919 r9:ffc09930 r10:00000000
 fp:ffc098e8 ip:005b76e4 sp:ffc09850 lr:005ade99 pc:f7bb0400
+cpsr:20870010           <-  状态寄存器值（arm32架构为cpsr，aarch64架构为pstate和esr）
 Memory near registers:  <-  故障现场寄存器的地址（地址必须在有效内存中）附近内存值，括号表示寄存器里的地址是在哪一段内存中
 r1([stack]):          <- 故障现场r1寄存器的地址附近内存值
     ffc0984c f7bd8348
@@ -650,11 +655,24 @@ HiLog: <- 故障之前进程打印的流水日志
 | #01 | 00006e95 | /data/crasher_cpp | DfxCrasher::RaiseSegmentFaultException() | 92 | d6cead5be17c9bb7eee2a9b4df4b7626 |
 | #02 | 00008909 | /data/crasher_cpp | DfxCrasher::ParseAndDoCrash(char const*) const | 612 | d6cead5be17c9bb7eee2a9b4df4b7626 |
 
-> **说明**
+> **说明：**
 >
 > - 文件名也有可能是匿名内存映射，比如[heap]、[stack]等。
-> - 函数名长度超过256字节时，CppCrash日志不打印函数名和函数内偏移的字节数。
+> - 日志没有打印函数名可能是由于以下两种原因：
+>
+> 1. 二进制文件中没有保存该函数名信息。
+>
+> 2. 二进制文件中保存的函数名长度超过256字节。
+>
 > - 如果没打印BuildID，可以通过readelf -n xxx.so确认二进制是否有BuildID，如果没有则尝试增加编译参数--enable-linker-build-id，同时注意LDFLAGS‌里不要加--build-id=none。
+
+ARM 64位系统支持抓取CPP和JS之间跨语言的调用栈，因此如果在函数调用链上有JS代码，崩溃日志还会打印如下格式的JS代码调用栈：
+
+```text
+#00 at onPageShow (entry|har1|1.0.0|src/main/ets/pages/Index.ts:7:13)
+```
+
+详细说明见[JS异常代码调用栈格式规范](jscrash-guidelines.md#异常代码调用栈格式规范)。
 
 #### 空指针故障场景
 
@@ -676,8 +694,11 @@ Module name:crasher_cpp            <- 模块名
 Timestamp:2024-05-06 20:10:51.000  <- 故障发生时间戳
 Pid:9623   <- 进程号
 Uid:0         <- 用户ID
+HiTraceId:a92ab1c7eae68fa          <- HiTraceId(非必选，进程无HiTraceId不打印)
 Process name:./crasher_cpp         <- 进程名称
 Process life time:1s               <- 进程存活时间
+Process Memory(kB): 11902(Rss)     <- 进程占用内存
+Device Memory(kB): Total 1935820, Free 516244, Available 1205608 <- 整机内存状态（非必选）
 Reason:Signal:SIGSEGV(SEGV_MAPERR)@0x00000004  probably caused by NULL pointer dereference   <- 故障原因和空指针提示
 Fault thread info:
 Tid:9623, Name:crasher_cpp         <- 故障线程号，线程名
@@ -692,6 +713,7 @@ r0:ffffafd2 r1:00000004 r2:00000001 r3:00000000
 r4:ffd27e39 r5:0096e000 r6:00000a40 r7:0096fdfc
 r8:f7ba58d5 r9:f7baea86 r10:f7cadd38
 fp:ffd27308 ip:f7cb2078 sp:ffd272a0 lr:f7c7ab98 pc:0096ad22
+cpsr:20870010           <-  状态寄存器值（arm32架构为cpsr，aarch64架构为pstate和esr）
 ...
 ```
 
@@ -731,8 +753,11 @@ Module name:crasher_cpp                <- 模块名
 Timestamp:2024-05-06 20:18:24.000      <- 故障发生时间戳
 Pid:9838                               <- 进程号
 Uid:0                                  <- 用户ID
+HiTraceId:a92ab1c7eae68fa              <- HiTraceId(非必选，进程无HiTraceId不打印)
 Process name:./crasher_cpp             <- 进程名称
 Process life time:2s                   <- 进程存活时间
+Process Memory(kB): 11902(Rss)     <- 进程占用内存
+Device Memory(kB): Total 1935820, Free 516244, Available 1205608 <- 整机内存状态（非必选）
 Reason:Signal:SIGSEGV(SEGV_ACCERR)@0xf76b7ffc  current thread stack low address = 0xf76b8000, probably caused by stack-buffer-overflow    <- 故障原因和栈溢出提示
 Tid:10343, Name:crasher_cpp
 #00 pc 000072e6 /data/crasher_cpp(DoStackOverflow(void*)+30)(d6cead5be17c9bb7eee2a9b4df4b7626)
@@ -760,8 +785,11 @@ Module name:crasher_cpp                   <- 模块名
 Timestamp:2024-05-06 20:27:23.2035266415  <- 故障发生时间戳
 Pid:10026                                 <- 进程号
 Uid:0                                     <- 用户ID
+HiTraceId:a92ab1c7eae68fa                 <- HiTraceId(非必选，进程无HiTraceId不打印)
 Process name:./crasher_cpp                <- 进程名称
 Process life time:1s                      <- 进程存活时间
+Process Memory(kB): 11902(Rss)            <- 进程占用内存
+Device Memory(kB): Total 1935820, Free 516244, Available 1205608 <- 整机内存状态（非必选）
 Reason:Signal:SIGSEGV(SEGV_MAPERR)@0000000000  probably caused by NULL pointer dereference      <- 故障原因
 LastFatalMessage:Failed to unwind stack, try to get unreliable call stack from #02 by reparsing thread stack <- #00和#01一般认为是可信的，从#02开始尝试从线程栈内存里解析不可靠的调用栈
 Fault thread info:
@@ -778,6 +806,7 @@ r0:00000000 r1:c2085db0 r2:00000000 r3:ff8970c8
 r4:0000003f r5:00000000 r6:f755c0e0 r7:00000000
 r8:ff8975c9 r9:ff8975e0 r10:00000001
 fp:008de1a4 ip:f76b5c48 sp:ff896fd0 lr:f76abcdf pc:00000000
+cpsr:20870010
 ...
 ```
 
@@ -795,8 +824,11 @@ Module name:crasher_cpp                     <- 模块名
 Timestamp:2024-05-06 20:28:24.000           <- 故障发生时间戳
 Pid:9838                                    <- 进程号
 Uid:0                                       <- 用户ID
+HiTraceId:a92ab1c7eae68fa                   <- HiTraceId(非必选，进程无HiTraceId不打印)
 Process name:./crasher_cpp                  <- 进程名称
 Process life time:2s                        <- 进程存活时间
+Process Memory(kB): 11902(Rss)            <- 进程占用内存
+Device Memory(kB): Total 1935820, Free 516244, Available 1205608 <- 整机内存状态（非必选）
 Reason:Signal:SIGSEGV(SI_TKILL)@0x000000000004750  from:18256:0  <- 故障原因
 Fault thread info:
 Tid:18257, Name:crasher_cpp                 <- 故障线程号，线程名
@@ -809,6 +841,61 @@ Tid:18257, Name:crasher_cpp                 <- 故障线程号，线程名
 #02 pc 00009b40 /system/bin/crasher_cpp(main+140)(adfc673300571d2da1e47d1d12f48b50)
 #03 pc 0000a4e1c /system/bin/ld-musl-aarch64.so.l(libc_start_main_stage2+68)(adfc673300571d2da1e47d1d12f48b44)
 ...
+```
+
+#### 应用通过HiAppEvent设置崩溃日志配置参数场景
+
+系统提供了通用的崩溃日志生成功能，但一些应用对崩溃日志打印内容有个性化的需求，因此从**API version 20**开始HiAppEvent的[setEventConfig](hiappevent-watcher-crash-events-arkts.md#崩溃日志配置参数设置接口描述)接口支持设置崩溃日志配置参数。以下是一份DevEco Studio归档在FaultLog的32位系统崩溃日志的核心内容：
+
+``` text
+...
+Build info:OpenHarmony 6.0.0.33
+Enabled app log configs:    <- 使能的配置参数列表，只打印不是默认值的配置参数
+Extend pc lr printing:true  <- extend_pc_lr_printing参数设置为true
+Log cut off size:102400B    <- 崩溃日志大小截断到100KB（仅通过HiAppEvent接口订阅获取的崩溃日志生效）
+Simplify maps printing:true <- simplify_vma_printing参数设置为true
+Timestamp:2025-05-17 19:17:07.000
+...
+Registers: <- 故障现场寄存器
+r0:00000000 r1:ff87d48c r2:00000000 r3:00000008
+r4:00000000 r5:fffff000 r6:00000000 r7:000000af
+r8:00c0b4f0 r9:00c0bdc0 r10:00c0bdc0
+fp:ff87d520 ip:00c0a6e4 sp:ff87d488 lr:f7ecc044 pc:f7f19940
+cpsr:00800010
+Memory near registers:
+...
+lr(/system/lib/ld-musl-arm.so.1): <- lr寄存器地址附近的内存值
+    f7ecbfc8 e0824000 <- extend_pc_lr_printing设置为true时，向前打印内存值到此
+    ...
+    f7ecc03c e3a00006 <- extend_pc_lr_printing设置为false时，向前打印内存值到此
+    f7ecc040 eb013612
+    f7ecc044 e59f10b0 <- lr寄存器地址（f7ecc044）的内存值（e59f10b0）
+    ...
+    f7ecc0b8 e58d4004 <- extend_pc_lr_printing设置为false时，向后打印内存值到此
+    f7ecc0bc e1a0100d
+    f7ecc0c0 e3a00020
+    f7ecc0c4 e3a070af <- extend_pc_lr_printing设置为true时，向后打印内存值到此
+pc(/system/lib/ld-musl-arm.so.1): <- pc寄存器地址附近的内存值
+    f7f198c4 e5900000 <- extend_pc_lr_printing设置为true时，向前打印内存值到此
+    ...
+    f7f19938 e3a03008 <- extend_pc_lr_printing设置为false时，向前打印内存值到此
+    f7f1993c ef000000
+    f7f19940 e51b0014 <- pc寄存器地址（f7f19940）的内存值（e51b0014）
+    ... 
+    f7f199b4 e2b52000 <- extend_pc_lr_printing设置为false时，向后打印内存值到此
+    f7f199b8 03530000
+    f7f199bc 0a000003
+    f7f199c0 ebfec957 <- extend_pc_lr_printing设置为true时，向后打印内存值到此
+...
+Maps:       <- simplify_vma_printing设置为true，打印Maps数量减少，只保留崩溃日志中出现的地址所属的Maps
+ba0000-ba9000 r--p 00000000 /data/test/test_signalhandler
+ba9000-bd8000 r-xp 00008000 /data/test/test_signalhandler
+bd8000-bdb000 r--p 00036000 /data/test/test_signalhandler
+bdb000-bdc000 rw-p 00038000 /data/test/test_signalhandler
+... <- 继续打印崩溃日志中出现的地址所属的Maps，此处省略不展示
+OpenFiles:
+...
+[truncated]  <- 日志截断的标志符，如果有打印说明日志被截断了
 ```
 
 ### 如何阅读汇编指令
@@ -830,6 +917,8 @@ CppCrash日志核心内容如下：
 ```text
 Process name:com.ohos.medialibrary.medialibrarydata
 Process life time:13402s
+Process Memory(kB): 11902(Rss)
+Device Memory(kB): Total 1935820, Free 516244, Available 1205608
 Reason:SIGSEGV(SEGV_MAPERR)@0x0000005b3b46c000
 Fault thread info:
 Tid:48552, Name:UpradeTask

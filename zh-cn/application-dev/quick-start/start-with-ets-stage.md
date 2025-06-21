@@ -1,31 +1,6 @@
 # 构建第一个ArkTS应用（Stage模型）
 
-
-## 创建ArkTS工程（4.1Beta1版本及之前）
-
-> **说明：**
->
-> - 为确保运行效果，此处以使用**DevEco Studio 4.1 Beta1**版本为例<!--Del-->，点击[此处](../../release-notes/OpenHarmony-v4.1-beta1.md#配套关系)获取下载链接<!--DelEnd-->。
->
-> - 此版本可直接创建OpenHarmony ArkTS工程。
-
-1. 若首次打开**DevEco Studio**，请点击**Create Project**创建工程。如果已经打开了一个工程，请在菜单栏选择**File** &gt; **New** &gt; **Create Project**来创建一个新工程。
-
-2. 选择**Application**应用开发（本文以应用开发为例，**Atomic Service**对应为原子化服务开发），选择模板“**[OpenHarmony]Empty Ability**”，点击**Next**进行下一步配置。
-
-   若开发者需要进行Native相关工程的开发，可选择Native C++模板。
-
-   ![createProject](figures/createProject.png)
-
-3. 进入配置工程界面，**Compile SDK**选择**11**，其他参数保持默认设置即可。
-
-   其中**Node**用来配置当前工程运行的Node.js版本，可选择使用已有的Node.js或下载新的Node.js版本。
-
-   ![chooseStageModel](figures/chooseStageModel.png)
-
-4. 点击**Finish**，工具会自动生成示例代码和相关资源，等待工程创建完成。
-
-## 创建ArkTS工程（4.1Beta1版本之后）
+## 创建ArkTS工程
 
 > **说明：**
 >

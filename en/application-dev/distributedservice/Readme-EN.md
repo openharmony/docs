@@ -7,5 +7,6 @@
   <!--Del-->
   - [UIAbility and Extension Connection Development](distributedextension-guidelines.md)
   <!--DelEnd-->
+  - [Enhanced Connection Development](linkEnhance_development-guide.md)
 - Distributed Hardware Connection Management<!--devconnect-distributed-->
   - [Distributed Camera Development](camera-distributed.md)

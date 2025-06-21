@@ -24,13 +24,14 @@ Read [AVImageGenerator](../../reference/apis-media-kit/js-apis-media.md#avimageg
 
 4. Call **release()** to release the AVImageGenerator instance.
 
-## Sample Code
+## Development Example
 
 Refer to the sample code below to set the file descriptor and obtain the thumbnail of a video at the specified time.
 
 ```ts
 import { media } from '@kit.MediaKit';
 import { image } from '@kit.ImageKit';
+import { common } from '@kit.AbilityKit';
 
 const TAG = 'MetadataDemo';
 @Entry
@@ -77,7 +78,8 @@ struct Index {
     // Create an AVImageGenerator instance.
     let avImageGenerator: media.AVImageGenerator = await media.createAVImageGenerator();
     // Set the fdSrc attribute.
-    avImageGenerator.fdSrc = await getContext(this).resourceManager.getRawFd('demo.mp4');
+    let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+    avImageGenerator.fdSrc = await context.resourceManager.getRawFd('demo.mp4');
 
     // Initialize input parameters.
     let timeUs = 0;

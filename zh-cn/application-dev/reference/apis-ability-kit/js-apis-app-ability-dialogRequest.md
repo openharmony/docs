@@ -1,7 +1,7 @@
 # @ohos.app.ability.dialogRequest (dialogRequest模块)
 
 dialogRequest模块用于处理模态弹框的能力，包括获取RequestInfo（用于绑定模态弹框）、获取RequestCallback（用于设置结果）。
-模态弹框是指一个系统弹出框，其特点在于：该弹出框会拦截弹框之下的页面的鼠标、键盘、触屏等事件，销毁该弹框，才能操作下面的页面。
+模态弹框是指一个系统弹框，该弹框会拦截弹框之下的页面的鼠标、键盘、触屏等事件。销毁该弹框后，才能对页面进行操作。
 
 > **说明：**
 >
@@ -36,7 +36,7 @@ getRequestInfo(want: Want): RequestInfo
 
 | 类型   | 说明                     |
 | ------ | ------------------------ |
-| [RequestInfo](#requestinfo) | 请求方RequestInfo,用于绑定模态窗口。 |
+| [RequestInfo](#requestinfo) | 请求方RequestInfo，用于绑定模态窗口。 |
 
 **错误码**：
 
@@ -122,8 +122,8 @@ export default class EntryAbility extends UIAbility {
 | ---- | ------ | ---- | --------------------------- |
 | left  | number | 是   | 弹框边框的左上角的X坐标。 |
 | top  | number | 是   | 弹框边框的左上角的Y坐标。 |
-| width  | number | 是   | 弹框的宽度。 |
-| height  | number | 是   | 弹框的高度。 |
+| width  | number | 是   | 弹框的宽度，单位为px。 |
+| height  | number | 是   | 弹框的高度，单位为px。 |
 
 ## RequestInfo
 

@@ -55,7 +55,7 @@ async function persistPermissionExample() {
         });
     } catch (error) {
         let err: BusinessError = error as BusinessError;
-        console.error('persistPermission failed with err: ' + JSON.stringify(err));
+        console.error(`persistPermission failed with err, Error code: ${err.code}, message: ${err.message}`);
     }
 }
 ```
@@ -103,7 +103,7 @@ async function revokePermissionExample() {
         });
     } catch (error) {
         let err: BusinessError = error as BusinessError;
-        console.error('revokePermission failed with err: ' + JSON.stringify(err));
+        console.error(`revokePermission failed with err, Error code: ${err.code}, message: ${err.message}`);
     }
 }
 ```
@@ -155,7 +155,7 @@ async function activatePermissionExample() {
         });
     } catch (error) {
         let err: BusinessError = error as BusinessError;
-        console.error('activatePermission failed with err: ' + JSON.stringify(err));
+        console.error(`activatePermission failed with err, Error code: ${err.code}, message: ${err.message}`);
     }
 }
 ```

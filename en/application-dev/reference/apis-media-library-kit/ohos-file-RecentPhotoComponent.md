@@ -53,7 +53,7 @@ Represents the configuration of the latest image or video.
 
 | Name                   | Type                                                                                     | Mandatory | Description  |
 |-------------------------|-----------------------------------------------------------------------------------------|-------|--------|
-| period                  | number                                                                                  | No   | Time period for the latest image or video, in seconds. The maximum value is **86400** seconds (one day), which is also the default value.<br> If there is no image or video in the specified period, the component is not displayed.|
+| period                  | number                                                                                  | No   | Time period for the latest image or video, in seconds. The maximum value is **86400** seconds (one day), which is also the default value.<br>If the value is less than or equal to 0, greater than 86400, or not set, the most recent photos over the longest period of up to one day is displayed by default. If there is no image or video in the specified period, the component is not displayed.|
 | MIMEType                | [photoAccessHelper.PhotoViewMIMETypes](js-apis-photoAccessHelper.md#photoviewmimetypes) | No   | Types of the file displayed. The default value is **PhotoViewMIMETypes.IMAGE_VIDEO_TYPE**.                        |
 | photoSource             | [PhotoSource](#photosource)                                                             | No   | Source of the latest image or video, for example, photo or video taken by the camera or screenshot. By default, the source is not restricted.                              |
 

@@ -16,20 +16,20 @@ For details about the APIs, see [getDisplayCountry](../reference/apis-localizati
    ```
 
 2. Localize language names.
-   In scenarios where language names are provided for users, for example, switching of the system language, the system displays the localized language names to users. The following provides an example of displaying German in a way similar to Chinese.
+   Language names can be localized into representations in different languages. The following uses German as an example:
    ```ts
    let displayLanguage: string = i18n.System.getDisplayLanguage('de', 'zh-Hans-CN'); // displayLanguage = 'German'
    // language: two-letter language code, for example, zh, de, or fr.
-   // locale: localization identifier, for example, en-GB, en-US, or zh-Hans-CN.
+   // locale: locale ID, for example, en-GB, en-US, or zh-Hans-CN.
    // sentenceCase: whether the first letter of the language name needs to be capitalized. The default value is true.
    ```
 
 3. Localize country/region names.
-   In scenarios where country/region names are provided for users, for example, switching of the system locale, the system displays the localized country/region names to users. The following uses Saudi Arabia as an example.
+   Country/region names can be localized into representations in different languages. The following uses Saudi Arabia as an example:
    ```ts
    let displayCountry: string = i18n.System.getDisplayCountry('SA', 'en-GB'); // displayCountry = 'Saudi Arabia'
    // country: two-letter country/region code, for example, CN, DE, or SA.
-   // locale: localization identifier, for example, en-GB, en-US, or zh-Hans-CN.
+   // locale: locale ID, for example, en-GB, en-US, or zh-Hans-CN.
    // sentenceCase: whether the first letter of the country/region name needs to be capitalized. The default value is true.
    ```
 <!--no_check-->

@@ -7,3 +7,4 @@
   - [使用MindSpore Lite进行端侧训练 (C/C++)](mindspore-lite-train-guidelines.md)
 - [使用MindSpore Lite实现图像分类 (ArkTS)](mindspore-guidelines-based-js.md)
 - [使用MindSpore Lite实现图像分类 (C/C++)](mindspore-guidelines-based-native.md)
+- [使用MindSpore Lite实现语音识别 (C/C++)](mindspore-asr-based-native.md)

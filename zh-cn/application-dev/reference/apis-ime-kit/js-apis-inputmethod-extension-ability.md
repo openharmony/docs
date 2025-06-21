@@ -13,7 +13,15 @@
 import { InputMethodExtensionAbility } from '@kit.IMEKit';
 ```
 
-## 属性
+## InputMethodExtensionAbility
+
+输入法Extension ability类。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+### context
+
+输入法Extension ability的上下文信息。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -21,7 +29,7 @@ import { InputMethodExtensionAbility } from '@kit.IMEKit';
 | -------- | -------- | -------- | -------- | -------- |
 | context | [InputMethodExtensionContext](js-apis-inputmethod-extension-context.md) | 否 | 否 | InputMethodExtension的上下文环境，继承于ExtensionContext。 |
 
-## InputMethodExtensionAbility.onCreate
+### onCreate
 
 onCreate(want: Want): void
 
@@ -42,12 +50,12 @@ import { InputMethodExtensionAbility } from '@kit.IMEKit';
 import { Want } from '@kit.AbilityKit';
 class InputMethodExt extends InputMethodExtensionAbility {
   onCreate(want: Want): void {
-    console.log('onCreate, want:' + want.abilityName);
+    console.info('onCreate, want:' + want.abilityName);
   }
 }
 ```
 
-## InputMethodExtensionAbility.onDestroy
+### onDestroy
 
 onDestroy(): void
 
@@ -61,7 +69,7 @@ Extension生命周期回调，在销毁输入法应用时回调，执行资源�
 import { InputMethodExtensionAbility } from '@kit.IMEKit';
 class InputMethodExt extends InputMethodExtensionAbility {
   onDestroy(): void {
-    console.log('onDestroy');
+    console.info('onDestroy');
   }
 }
 ```

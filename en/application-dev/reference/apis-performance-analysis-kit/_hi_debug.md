@@ -562,7 +562,7 @@ Enumerates the error codes used in the HiDebug module.
 | HIDEBUG_INVALID_ARGUMENT  | The parameter is invalid. Possible causes: 1. The parameter value is incorrect. 2. The parameter type is incorrect.&nbsp;&nbsp; | 
 | HIDEBUG_TRACE_CAPTURED_ALREADY  | Repeated collection.&nbsp;&nbsp; | 
 | HIDEBUG_NO_PERMISSION  | No file write permission.&nbsp;&nbsp; | 
-| HIDEBUG_TRACE_ABNORMAL  | Abnormal trace status.&nbsp;&nbsp; |
+| HIDEBUG_TRACE_ABNORMAL  | Abnormal trace status&nbsp;&nbsp; | 
 | HIDEBUG_NO_TRACE_RUNNING  | No trace collection is running.&nbsp;&nbsp; | 
 
 
@@ -614,7 +614,7 @@ Obtains the CPU usage of an application.
 
 **Returns**
 
-Returns the application CPU usage obtained if the operation is successful. Returns **0** if the operation fails.
+Returns the application CPU usage obtained if the operation is successful. Returns **0** if the CPU usage of the application is too low.
 
 
 ### OH_HiDebug_GetAppMemoryLimit()
@@ -663,7 +663,7 @@ Obtains the CPU usage of all threads of an application.
 
 **Returns**
 
-Returns the CPU usage of all threads. For details, see [HiDebug_ThreadCpuUsagePtr](#hidebug_threadcpuusageptr). Returns **null** if the function fails to be called.
+Returns the CPU usage of all threads. For details, see [HiDebug_ThreadCpuUsagePtr](#hidebug_threadcpuusageptr). Returns **null** if the thread data is not obtained.
 
 
 ### OH_HiDebug_GetGraphicsMemory()
@@ -745,7 +745,7 @@ Starts application trace collection.
 
 **Returns**
 
-0 - The operation is successful.
+**0** - The operation is successful.
 
 **HIDEBUG_INVALID_ARGUMENT 401** - The **fileName** parameter is a null pointer, the input **length** parameter is too small, or the value of **limitSize** is less than or equal to **0**.
 

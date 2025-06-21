@@ -15,7 +15,7 @@ import { jsLeakWatcher } from '@kit.PerformanceAnalysisKit';
 
 ## jsLeakWatcher.enable
 
-enable(isEnable: boolean): void;
+enable(isEnable: boolean): void
 
 Enables the detection for JS object leak. This function is disabled by default.
 
@@ -36,7 +36,7 @@ jsLeakWatcher.enable(true);
 
 ## jsLeakWatcher.watch
 
-watch(obj: object, msg: string): void;
+watch(obj: object, msg: string): void
 
 Registers the object to be checked.
 
@@ -47,7 +47,7 @@ Registers the object to be checked.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | obj | object | Yes| Name of the object to be checked.|
-| msg | string | Yes| User-defined object information.|
+| msg | string | Yes| Custom object information.|
 
 **Example**
 
@@ -59,7 +59,7 @@ jsLeakWatcher.watch(obj, "Trace Object");
 
 ## jsLeakWatcher.check
 
-check(): string;
+check(): string
 
 Obtains the list of objects that are registered using **jsLeakWatcher.watch()** and may leak. Objects that are not reclaimed after GC is triggered are marked as leaked.
 
@@ -79,7 +79,7 @@ let leakObjlist:string = jsLeakWatcher.check();
 
 ## jsLeakWatcher.dump
 
-dump(filePath: string): Array&lt;string&gt;;
+dump(filePath: string): Array&lt;string&gt;
 
 Exports the list of leaked objects and VM memory snapshot.
 
@@ -95,7 +95,7 @@ Exports the list of leaked objects and VM memory snapshot.
 
 | Type   | Description                                                      |
 | ------- | ---------------------------------------------------------- |
-| Array&lt;string&gt; | Array of exported results. Index **0** indicates the name of the leak list file, and the file name extension is **.jsleaklist**. Index **1** indicates the name of the VM memory snapshot file, and the file name extension is **.heapsnapshort**.|
+| Array&lt;string&gt; | Array of exported results. Index **0** indicates the name of the leak list file, whose name extension is **.jsleaklist**. Index **1** indicates the name of the VM memory snapshot file, whose name extension is **.heapsnapshort**.|
 
 **Error codes**
 
@@ -108,6 +108,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-let context = getContext(this);
-let files:Array<string> = jsLeakWatcher.dump(context.filesDir);
+let context = this.getUIContext().getHostContext();
+let files: Array<string> = jsLeakWatcher.dump(context?.filesDir);
 ```

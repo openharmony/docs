@@ -78,6 +78,7 @@ const char *srcCallNative = R"JS(
     let script = getValueStringUtf8(data);
 )JS";
 ```
+<!-- @[oh_jsvm_get_value_string_utf8](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutString/getvaluestringutf8/src/main/cpp/hello.cpp) -->
 
 预期输出结果
 
@@ -127,6 +128,7 @@ const char *srcCallNative = R"JS(
     let script = createStringUtf8();
 )JS";
 ```
+<!-- @[oh_jsvm_create_string_utf8](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutString/createstringutf8/src/main/cpp/hello.cpp) -->
 
 预期输出结果
 
@@ -190,6 +192,7 @@ const char *srcCallNative = R"JS(
     let script = getValueStringUtf16(data);
 )JS";
 ```
+<!-- @[oh_jsvm_get_value_string_utf16](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutString/getvaluestringutf16/src/main/cpp/hello.cpp) -->
 
 预期输出结果
 
@@ -246,6 +249,7 @@ const char *srcCallNative = R"JS(
     let script = createStringUtf16();
 )JS";
 ```
+<!-- @[oh_jsvm_create_string_utf16](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutString/createstringutf16/src/main/cpp/hello.cpp) -->
 
 预期输出结果
 
@@ -272,7 +276,7 @@ static JSVM_Value GetValueStringLatin1(JSVM_Env env, JSVM_CallbackInfo info)
     JSVM_Value args[1] = {nullptr};
     OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);
     char buf[MAX_BUFFER_SIZE];
-    size_t length;
+    size_t length = 0;
     JSVM_Value jsvmRes = nullptr;
     JSVM_Status status = OH_JSVM_GetValueStringLatin1(env, args[0], buf, MAX_BUFFER_SIZE, &length);
     if (status != JSVM_OK) {
@@ -299,6 +303,7 @@ const char *srcCallNative = R"JS(
     let script = getValueStringLatin1(data);
 )JS";
 ```
+<!-- @[oh_jsvm_get_value_string_latin1](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutString/getvaluestringlatin1/src/main/cpp/hello.cpp) -->
 
 预期输出结果
 
@@ -333,7 +338,7 @@ static JSVM_Value CreateStringLatin1(JSVM_Env env, JSVM_CallbackInfo info)
         OH_LOG_ERROR(LOG_APP, "JSVM CreateStringLatin1 fail");
     } else {
         char buf[MAX_BUFFER_SIZE];
-        size_t length;
+        size_t length = 0;
         OH_JSVM_GetValueStringLatin1(env, result, buf, MAX_BUFFER_SIZE, &length);
         OH_LOG_INFO(LOG_APP, "JSVM CreateStringLatin1 success: %{public}s", buf);
     }
@@ -353,6 +358,7 @@ const char *srcCallNative = R"JS(
     let script = createStringLatin1();
 )JS";
 ```
+<!-- @[oh_jsvm_create_string_latin1](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutString/createstringlatin1/src/main/cpp/hello.cpp) -->
 
 预期输出结果
 

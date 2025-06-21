@@ -13,7 +13,7 @@
 
 ## 约束限制
 
-- 系统默认日志方式是WAL（Write Ahead Log）模式，系统默认落盘方式是FULL模式。
+- 系统默认日志方式是[WAL](data-terminology.md#wal模式)（Write Ahead Log）模式，系统默认落盘方式是[FULL模式](data-terminology.md#full模式)。
 
 - 数据库中默认有4个读连接和1个写连接，线程获取到空闲读连接时，即可进行读取操作。当没有空闲读连接时，会创建新的读连接。
 
@@ -23,11 +23,103 @@
 
 - ArkTS侧支持的基本数据类型：number、string、二进制类型数据、boolean；特殊数据类型：ValueType。
 
-- 为保证插入并读取数据成功，建议一条数据不要超过2M。超出该大小，插入成功，读取失败。
+- 为保证插入并读取数据成功，建议一条数据不要超过2M。单条数据超出该大小时，即使插入成功，也会出现读取失败的情况。
+
+## 规格限制
+
+### 数据类型
+
+数据库表字段的类型，如下所示：
+
+| 类型 | 描述 | 是否支持 |
+| -------- | -------- | -------- |
+| NULL | 空值 | 是 |
+| INTEGER | 整形 | 是 |
+| DOUBLE | 浮点类型 | 是 |
+| TEXT | 字符串类型 | 是 |
+| BLOB | 二进制类型 | 是 |
+| FLOATVECTOR | 向量数据类型 | 是 |
+
+### 字段约束
+
+数据库表字段的约束，如下所示：
+
+| 功能 | SQL语法 | 是否支持 |
+| -------- | -------- | -------- |
+| 不可为NULL | NOT NULL | 是 |
+| 默认值 | DEFAULT  | 是 |
+| 唯一索引 | UNIQUE | 是 |
+| 主键索引 | PRIMARY KEY | 是 |
+| 外键索引 | FOREIGN | 否 |
+| CHECK约束 | CHECK | 否 |
+
+### 子句
+
+查询语句中的子句，如下所示：
+
+| 关键字 | 描述 | 是否支持 |
+| -------- | -------- | -------- |
+| WHERE | 从一个或多个表中获取数据的条件。 | 是 |
+| LIMIT | 返回数据的限制。  | 是 |
+| ORDER BY | 基于一列或多列排序。 | 是 |
+| ORDER BY 向量距离 | <->是L2距离，<=>是余弦距离。 | 是 |
+| GROUP BY | 对相同的数据进行分组。 | 是 |
+| HAVING | 过滤聚合函数的结果。 | 是 |
+| INDEXED BY | 查询时必须使用特定索引。 | 是 |
+| DISTINCT | 消除重复记录。 | 否 |
+
+### 集合
+
+查询语句中的集合语句，如下所示：
+
+| 关键字 | 描述 | 是否支持 |
+| -------- | -------- | -------- |
+| UNION | 合并两个或多个查询语句的结果并去重。 | 是 |
+| UNION ALL | 合并两个或多个查询语句的结果。 | 是 |
+
+### 运算符
+
+针对某个条件做筛选时，可以使用运算符，一般在查询语句中使用。运算符如下所示：
+
+| 运算类型 | 符号 | 是否支持 |
+| -------- | -------- | -------- |
+| 算术运算 | +、-、*、/、% | 是 |
+| 比较运算 | ==、=、!=、>、>=、<、<= | 是 |
+| 逻辑运算 | AND、BETWEEN、EXISTS、IN、NOT IN、NOT、OR、IS NULL、IS、IS NOT、LIKE、GLOB | 是 |
+| 字符串拼接运算 | \|\| | 是 |
+| 位运算 | &、\|、~、<<、>> | 是 |
+| 向量距离运算 | <->、<=> | 是，支持在聚合函数max和min中使用 |
+
+### 时间&日期
+
+根据不同的时间函数返回不同格式的日期，一般在查询语句中使用。时间&日期函数如下所示：
+
+| 关键字 | 描述 | 是否支持 |
+| -------- | -------- | -------- |
+| DATE | 以"YYYY-MM-DD"格式返回日期。 | 是 |
+| TIME | 以"HH:MM:SS"格式返回时间。 | 是 |
+| DATETIME | 以"YYYY-MM-DD HH:MM:SS"格式返回。 | 是 |
+| JULIANDAY | 返回从格林尼治时间的公元前4714年11月24日正午算起的天数。 | 是 |
+| STRFTIME | 根据第一个参数指定的格式字符串返回格式化的日期。 | 是 |
+
+### 函数
+
+SQL语句中的函数，如下所示：
+
+| 关键字 | 描述 | 是否支持 |
+| -------- | -------- | -------- |
+| COUNT | 计算查询返回的行数。 | 是 |
+| MAX/MIN | 选择某列的最大值/最小值。 | 是 |
+| AVG | 计算某列的平均值。 | 是 |
+| SUM | 计算某列的总和。 | 是 |
+| RANDOM | 返回一个'-9223372036854775808'到'9223372036854775807'之间的伪随机整数。 | 是 |
+| ABS | 计算绝对值。 | 是 |
+| UPPER/LOWER | 将字符串转换为大/小写字母。 | 是 |
+| LENGTH | 返回字符串的长度。 | 是 |
 
 ## 接口说明
 
-以下是向量数据库持久化功能的相关接口，更多接口及使用方式请见[关系型数据库](../reference/apis-arkdata/js-apis-data-relationalStore.md)。
+以下是向量数据库持久化功能的相关接口，更多接口及使用方式请见[关系型数据库](../reference/apis-arkdata/arkts-apis-data-relationalStore.md)。
 
 | 接口名称 | 描述 |
 | -------- | -------- |
@@ -67,7 +159,7 @@
 
    > **说明：**
    >
-   > - 应用创建的数据库与其上下文（Context）有关，即使使用同样的数据库名称，但不同的应用上下文，会产生多个数据库，例如每个UIAbility都有各自的上下文。
+   > - 应用创建的数据库与其上下文（Context）有关，即使使用同样的数据库名称，不同的应用上下文也会产生多个数据库，例如每个UIAbility都有各自的上下文。
    > 
    > - 当应用首次获取数据库（调用getRdbStore）后，在应用沙箱内会产生对应的数据库文件。使用数据库的过程中，在与数据库文件相同的目录下可能会产生以-wal和-shm结尾的临时文件。此时若开发者希望移动数据库文件到其它地方使用查看，则需要同时移动这些临时文件，当应用被卸载完成后，其在设备上产生的数据库文件及临时文件也会被移除。
    > 
@@ -281,7 +373,37 @@
    }
    ```
 
-8. 配置数据老化功能。当应用的数据需要经常清理时，可以按时间或空间配置数据老化策略，从而实现数据的自动化清理。
+8. 手动回收索引删除产生的磁盘碎片。从API version 20 开始支持此功能。
+
+    向量数据库对已创建gsdiskann索引的表执行向量删除操作后，会自动执行磁盘碎片回收，但在以下两个场景下自动回收可能会无法触发：
+    - 删除gsdiskann索引下的向量后，立刻关闭数据库。
+    - 批量删除gsdiskann索引下的向量后，后续不对该表进行任何操作。
+
+   因此提供手动触发gsdiskann索引磁盘碎片回收的语句，语法如下所示：
+   ```sql
+   PRAGMA DISKANN_ASYNC_COLLECTING;
+   ```
+  
+   > **说明：**
+   >
+   > - 一次触发对向量数据库中所有表下的全部gsdiskann索引执行回收。
+   > 
+   > - 磁盘碎片回收任务为后台任务，不会阻塞后续其他语句的执行。
+   > 
+   > - 磁盘碎片回收任务由后台基于负载自动调度，通常仅在低负载场景下执行，成功所需时间依赖负载情况。
+
+    示例代码如下：
+
+   ```ts
+   try {
+     // 手动触发异步删除整理，对向量数据库下所有gsdiskann执行磁盘碎片回收
+     await store!.execute("PRAGMA DISKANN_ASYNC_COLLECTING;");
+   } catch (err) {
+     console.error(`diskann async collecting failed, code is ${err.code}, message is ${err.message}`);
+   }
+   ```
+
+9. 配置数据老化功能。当应用的数据需要经常清理时，可以按时间或空间配置数据老化策略，从而实现数据的自动化清理。
    
    语法如下所示：
 
@@ -323,16 +445,39 @@
    }
    ```
 
-9. 删除数据库。
+10. 配置数据压缩功能。该功能在建表时配置，可以压缩数据类型为text的列数据。
 
-   调用deleteRdbStore方法，删除数据库及数据库相关文件。示例代码如下：
+   从API version 20开始，支持数据压缩功能。
+
+   语法如下所示：
+
+   ```sql
+   CREATE TABLE table_name(content text [, ...]) [WITH(compress_col = 'content')];
+   ```
+
+   其中，compress_col为必填参数，value是类型为text的数据列名，可以与数据老化功能同时配置。
+
+   示例代码如下：
 
    ```ts
    try {
-     await relationalStore.deleteRdbStore(this.context, STORE_CONFIG);
+     // content列配置了数据压缩，并且配置了数据老化。
+     await store!.execute("CREATE TABLE IF NOT EXISTS test3 (time integer not null, content text) with (time_col = 'time', interval = '5 minute', compress_col = 'content');");
    } catch (err) {
-     console.error(`delete rdbStore failed, code is ${err.code},message is ${err.message}`);
+     console.error(`configure data compress failed, code is ${err.code}, message is ${err.message}`);
    }
    ```
+
+11. 删除数据库。
+
+    调用deleteRdbStore方法，删除数据库及数据库相关文件。示例代码如下：
+
+    ```ts
+    try {
+      await relationalStore.deleteRdbStore(this.context, STORE_CONFIG);
+    } catch (err) {
+      console.error(`delete rdbStore failed, code is ${err.code},message is ${err.message}`);
+    }
+    ```
 
    

@@ -271,6 +271,278 @@ struct Index {
 
 ```
 
+## 下载网络资源文件至用户文件
+开发者可以使用上传下载模块（[ohos.request](../../reference/apis-basic-services-kit/js-apis-request.md)）的[request.agent](../../reference/apis-basic-services-kit/js-apis-request.md#requestagentcreate10)下载接口将网络资源文件下载到用户文件。
+
+### 下载文档类文件
+
+开发者可以通过调用[DocumentViewPicker](../../reference/apis-core-file-kit/js-apis-file-picker.md#documentviewpicker)的[save()](../../reference/apis-core-file-kit/js-apis-file-picker.md#save)接口保存文件并获得用户文件的uri，将此uri作为[Config](../../reference/apis-basic-services-kit/js-apis-request.md#config10)的saveas字段值进行下载。
+
+```ts
+import { BusinessError, request } from '@kit.BasicServicesKit';
+import { picker } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Button("下载文档").width("50%").margin({ top: 20 }).height(40).onClick(async () => {
+          // 创建文件管理器选项实例。
+          const documentSaveOptions = new picker.DocumentSaveOptions();
+          // 保存文件名（可选）。 默认为空。
+          documentSaveOptions.newFileNames = ["xxxx.txt"];
+          // 保存文件类型['后缀类型描述|后缀类型']，选择所有文件：'所有文件(*.*)|.*'（可选），如果选择项存在多个后缀（最大限制100个过滤后缀），默认选择第一个。如果不传该参数，默认无过滤后缀。
+          documentSaveOptions.fileSuffixChoices = ['文档|.txt', '.pdf'];
+
+          let uri: string = '';
+          // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+          let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+          const documentViewPicker = new picker.DocumentViewPicker(context);
+          await documentViewPicker.save(documentSaveOptions).then((documentSaveResult: Array<string>) => {
+            uri = documentSaveResult[0];
+            console.info('DocumentViewPicker.save to file succeed and uri is:' + uri);
+          }).catch((err: BusinessError) => {
+            console.error(`Invoke documentViewPicker.save failed, code is ${err.code}, message is ${err.message}`);
+          })
+          if (uri != '') {
+            let config: request.agent.Config = {
+              action: request.agent.Action.DOWNLOAD,
+              url: 'https://xxxx/xxxx.txt',
+              // saveas字段是DocumentViewPicker保存的文件的uri
+              saveas: uri,
+              gauge: true,
+              // overwrite字段必须为true
+              overwrite: true,
+              network: request.agent.Network.WIFI,
+              // mode字段必须为request.agent.Mode.FOREGROUND
+              mode: request.agent.Mode.FOREGROUND,
+            };
+            try {
+              request.agent.create(context, config).then((task: request.agent.Task) => {
+                task.start((err: BusinessError) => {
+                  if (err) {
+                    console.error(`Failed to start the download task, Code: ${err.code}  message: ${err.message}`);
+                    return;
+                  }
+                });
+                task.on('progress', async (progress) => {
+                  console.warn(`Request download status ${progress.state}, downloaded ${progress.processed}`);
+                })
+                task.on('completed', async (progress) => {
+                  console.warn('Request download completed, ' + JSON.stringify(progress));
+                  // 该方法需用户管理任务生命周期，任务结束后调用remove释放task对象
+                  request.agent.remove(task.tid);
+                })
+              }).catch((err: BusinessError) => {
+                console.error(`Failed to operate a download task, Code: ${err.code}, message: ${err.message}`);
+              });
+            } catch (err) {
+              console.error(`Failed to create a download task, err: ${err}`);
+            }
+          }
+        })
+      }
+    }
+  }
+}
+```
+
+### 下载音频类文件
+
+开发者可以通过调用[AudioViewPicker](../../reference/apis-core-file-kit/js-apis-file-picker.md#audioviewpicker)的[save()](../../reference/apis-core-file-kit/js-apis-file-picker.md#save-3)接口保存文件并获得用户文件的uri，将此uri作为[Config](../../reference/apis-basic-services-kit/js-apis-request.md#config10)的saveas字段值进行下载。
+
+```ts
+import { BusinessError, request } from '@kit.BasicServicesKit';
+import { picker } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Button("下载音频").width("50%").margin({ top: 20 }).height(40).onClick(async () => {
+          // 创建文件管理器选项实例。
+          const audioSaveOptions = new picker.AudioSaveOptions();
+          // 保存文件名（可选）。 默认为空。
+          audioSaveOptions.newFileNames = ['xxxx.mp3'];
+
+          let uri: string = '';
+          // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+          let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+          const audioViewPicker = new picker.AudioViewPicker(context);
+          await audioViewPicker.save(audioSaveOptions).then((audioSelectResult: Array<string>) => {
+            uri = audioSelectResult[0];
+            console.info('AudioViewPicker.save to file succeed and uri is:' + uri);
+          }).catch((err: BusinessError) => {
+            console.error(`Invoke audioViewPicker.save failed, code is ${err.code}, message is ${err.message}`);
+          })
+          if (uri != '') {
+            let config: request.agent.Config = {
+              action: request.agent.Action.DOWNLOAD,
+              url: 'https://xxxx/xxxx.mp3',
+              // saveas字段是AudioViewPicker保存的文件的uri
+              saveas: uri,
+              gauge: true,
+              // overwrite字段必须为true
+              overwrite: true,
+              network: request.agent.Network.WIFI,
+              // mode字段必须为request.agent.Mode.FOREGROUND
+              mode: request.agent.Mode.FOREGROUND,
+            };
+            try {
+              request.agent.create(context, config).then((task: request.agent.Task) => {
+                task.start((err: BusinessError) => {
+                  if (err) {
+                    console.error(`Failed to start the download task, Code: ${err.code}  message: ${err.message}`);
+                    return;
+                  }
+                });
+                task.on('progress', async (progress) => {
+                  console.warn(`Request download status ${progress.state}, downloaded ${progress.processed}`);
+                })
+                task.on('completed', async (progress) => {
+                  console.warn('Request download completed, ' + JSON.stringify(progress));
+                  // 该方法需用户管理任务生命周期，任务结束后调用remove释放task对象
+                  request.agent.remove(task.tid);
+                })
+              }).catch((err: BusinessError) => {
+                console.error(`Failed to operate a download task, Code: ${err.code}, message: ${err.message}`);
+              });
+            } catch (err) {
+              console.error(`Failed to create a download task, err: ${err}`);
+            }
+          }
+        })
+      }
+    }
+  }
+}
+```
+
+### 下载图片或视频类文件
+
+开发者可以通过调用[PhotoAccessHelper](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md)的[createAsset()](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#createasset-2)接口创建媒体文件并获得用户文件的uri，将此uri作为[Config](../../reference/apis-basic-services-kit/js-apis-request.md#config10)的saveas字段值进行下载。
+
+需要权限：[ohos.permission.WRITE_IMAGEVIDEO](../../security/AccessToken/permissions-for-all-user.md#ohospermissionwrite_media)
+
+权限[ohos.permission.WRITE_IMAGEVIDEO](../../security/AccessToken/permissions-for-all-user.md#ohospermissionwrite_media)是[system_basic](../../security/AccessToken/app-permission-mgmt-overview.md#权限机制中的基本概念)级别的[受限开放权限](../../security/AccessToken/restricted-permissions.md)，normal等级的应用需要将自身的APL等级声明为system_basic及以上。授权方式为user_grant，需要[向用户申请授权](../../security/AccessToken/request-user-authorization.md)。
+
+```ts
+import { BusinessError, request } from '@kit.BasicServicesKit';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+
+import { bundleManager } from '@kit.AbilityKit';
+import { abilityAccessCtrl, Context, PermissionRequestResult, common } from '@kit.AbilityKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Button("下载图片").width("50%").margin({ top: 20 }).height(40).onClick(async () => {
+          let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION |
+          bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_METADATA;
+          // 获取应用程序的accessTokenID。
+          let tokenID = -1;
+          try {
+            await bundleManager.getBundleInfoForSelf(bundleFlags).then((data) => {
+              console.info(`/Request getBundleInfoForSelf successfully. Data: ${JSON.stringify(data)}`);
+              tokenID = data.appInfo.accessTokenId;
+            }).catch((err: BusinessError) => {
+              console.error(`GetBundleInfoForSelf failed. Cause: ${err.message}`);
+            });
+          } catch (err) {
+            let message = (err as BusinessError).message;
+            console.error('GetBundleInfoForSelf failed: %{public}s', message);
+          }
+          let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+
+          let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
+          let grant = true;
+          // 校验应用是否授予权限。使用Promise异步回调。
+          await atManager.checkAccessToken(tokenID, 'ohos.permission.WRITE_IMAGEVIDEO')
+            .then((data: abilityAccessCtrl.GrantStatus) => {
+              console.log(`/Request checkAccessToken success, data->${JSON.stringify(data)}`);
+              if (data != abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED) {
+                grant = false;
+              }
+            })
+            .catch((err: BusinessError) => {
+              console.error(`GheckAccessToken fail, err->${JSON.stringify(err)}`);
+            });
+
+          if (!grant) {
+            // 用于UIAbility拉起弹框请求用户授权。使用callback异步回调。
+            await atManager.requestPermissionsFromUser(context, ['ohos.permission.WRITE_IMAGEVIDEO'])
+              .then((data: PermissionRequestResult) => {
+                console.info('/Request grant:' + JSON.stringify(data));
+                console.info('/Request grant permissions:' + data.permissions);
+                console.info('/Request grant authResults:' + data.authResults);
+                console.info('/Request grant dialogShownResults:' + data.dialogShownResults);
+              }).catch((err: BusinessError) => {
+                console.error('Grant error:' + JSON.stringify(err));
+              });
+          }
+
+          try {
+            let photoType: photoAccessHelper.PhotoType = photoAccessHelper.PhotoType.IMAGE;
+            let extension: string = 'jpg';
+            let options: photoAccessHelper.CreateOptions = {
+              title: 'xxxx'
+            }
+            // 获取相册管理模块的实例，用于访问和修改相册中的媒体文件。
+            let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+            // 指定文件类型、后缀和创建选项，创建图片或视频资源，以Promise方式返回结果。
+            let uri: string = await phAccessHelper.createAsset(photoType, extension, options);
+            console.info('/Request createAsset uri' + uri);
+            console.info('/Request createAsset successfully');
+
+            let config: request.agent.Config = {
+              action: request.agent.Action.DOWNLOAD,
+              url: 'https://xxxx/xxxx.jpg',
+              // saveas字段是PhotoAccessHelper保存的文件的uri
+              saveas: uri,
+              gauge: true,
+              // overwrite字段必须为true
+              overwrite: true,
+              network: request.agent.Network.WIFI,
+              // mode字段必须为request.agent.Mode.FOREGROUND
+              mode: request.agent.Mode.FOREGROUND,
+            };
+            request.agent.create(context, config).then((task: request.agent.Task) => {
+              task.start((err: BusinessError) => {
+                if (err) {
+                  console.error(`Failed to start the download task, Code: ${err.code}  message: ${err.message}`);
+                  return;
+                }
+              });
+              task.on('progress', async (progress) => {
+                console.warn(`Request download status ${progress.state}, downloaded ${progress.processed}`);
+              })
+              task.on('completed', async (progress) => {
+                console.warn('Request download completed, ' + JSON.stringify(progress));
+                //该方法需用户管理任务生命周期，任务结束后调用remove释放task对象
+                request.agent.remove(task.tid);
+              })
+            }).catch((err: BusinessError) => {
+              console.error(`Failed to operate a download task, Code: ${err.code}, message: ${err.message}`);
+            });
+          } catch (err) {
+            console.error(`Failed to create a download task, err: ${err}`);
+          }
+        })
+      }
+    }
+  }
+}
+```
+
 ## 添加网络配置
 
 ### HTTP拦截

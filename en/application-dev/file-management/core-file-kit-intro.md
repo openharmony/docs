@@ -66,12 +66,13 @@ The application file access framework is implemented through [ohos.file.fs](../r
 
 You can use the user file access framework to access and manage user files. This framework leverages the ExtensionAbility of OpenHarmony to provide a set of methods and interfaces for accessing user files.
 
-**Figure 2** User file access framework 
+**Figure 2** User file access framework
+
 ![User file access framework](figures/user-file-access-framework.png)
 
 - The file access client (a system application or third-party application) can access user files, for example, select a photo or save multiple documents, by starting the **FilePicker** application.
 
-- **FilePicker**: allows a file access client to select and save user files without any permission. For details, see [Selecting User Files](select-user-file.md).
+- **FilePicker**: a system prebuilt application that allows a client to select and save user files without any permission. For details, see [Selecting User Files](select-user-file.md).
 
 - **FileManager**: You can also develop your own file picker or file manager application as required. <!--RP1-->File picker is a subset of file manager. For details about how to develop a file manager application, see [Developing a File Manager Application](dev-user-file-manager.md).<!--RP1End-->
 

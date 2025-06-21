@@ -37,20 +37,20 @@ struct Page_StartFAModel {
             };
             let options: common.ConnectOptions = {
               onConnect: (elementName, proxy) => {
-                hilog.info(DOMAIN_NUMBER, TAG, 'onConnect called.');
+                hilog.info(DOMAIN_NUMBER, TAG, `onConnect called.`);
                 this.getUIContext().getPromptAction().showToast({
                   message: 'ConnectFAServiceAbility'
                 });
               },
               onDisconnect: (elementName) => {
-                hilog.info(DOMAIN_NUMBER, TAG, 'onDisconnect called.');
+                hilog.info(DOMAIN_NUMBER, TAG, `onDisconnect called.`);
               },
               onFailed: (code) => {
-                hilog.info(DOMAIN_NUMBER, TAG, 'onFailed code is: ' + code);
+                hilog.error(DOMAIN_NUMBER, TAG, `onFailed code is: ${code}.`);
               }
             };
             let connectionId = this.context.connectServiceExtensionAbility(want, options);
-            hilog.info(DOMAIN_NUMBER, TAG, 'connectionId is ' + JSON.stringify(connectionId));
+            hilog.info(DOMAIN_NUMBER, TAG, `connectionId is: ${JSON.stringify(connectionId)}.`);
           })
         }
         // ...
@@ -96,20 +96,20 @@ struct Page_StartFAModel {
             };
             let options: common.ConnectOptions = {
               onConnect: (elementName, proxy) => {
-                hilog.info(DOMAIN_NUMBER, TAG, 'onConnect called.');
+                hilog.info(DOMAIN_NUMBER, TAG, `onConnect called.`);
                 this.getUIContext().getPromptAction().showToast({
                   message: 'ConnectFAServiceAbility'
                 });
               },
               onDisconnect: (elementName) => {
-                hilog.info(DOMAIN_NUMBER, TAG, 'onDisconnect called.');
+                hilog.info(DOMAIN_NUMBER, TAG, `onDisconnect called.`);
               },
               onFailed: (code) => {
-                hilog.info(DOMAIN_NUMBER, TAG, 'onFailed code is: ' + code);
+                hilog.error(DOMAIN_NUMBER, TAG, `onFailed code is: ${code}.`);
               }
             };
             let connectionId = this.context.connectServiceExtensionAbility(want, options);
-            hilog.info(DOMAIN_NUMBER, TAG, 'connectionId is ' + JSON.stringify(connectionId));
+            hilog.info(DOMAIN_NUMBER, TAG, `connectionId is：${JSON.stringify(connectionId)}.`);
           })
         }
         // ...

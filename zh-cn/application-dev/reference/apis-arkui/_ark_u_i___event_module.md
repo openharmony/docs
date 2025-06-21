@@ -29,8 +29,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [ArkUI_UIInputEvent_Type](#arkui_uiinputevent_type) { ARKUI_UIINPUTEVENT_TYPE_UNKNOWN = 0, ARKUI_UIINPUTEVENT_TYPE_TOUCH = 1, ARKUI_UIINPUTEVENT_TYPE_AXIS = 2, ARKUI_UIINPUTEVENT_TYPE_MOUSE = 3 } | UI输入事件类型定义。  | 
-| {<br/>OH_NATIVEXCOMPONENT_RESULT_SUCCESS = 0, OH_NATIVEXCOMPONENT_RESULT_FAILED = -1, OH_NATIVEXCOMPONENT_RESULT_BAD_PARAMETER = -2, UI_TOUCH_EVENT_ACTION_CANCEL = 0,<br/>UI_TOUCH_EVENT_ACTION_DOWN = 1, UI_TOUCH_EVENT_ACTION_MOVE = 2, UI_TOUCH_EVENT_ACTION_UP = 3<br/>} | 定义输入事件的Action Code。  | 
+| [ArkUI_UIInputEvent_Type](#arkui_uiinputevent_type) { ARKUI_UIINPUTEVENT_TYPE_UNKNOWN = 0, ARKUI_UIINPUTEVENT_TYPE_TOUCH = 1, ARKUI_UIINPUTEVENT_TYPE_AXIS = 2, ARKUI_UIINPUTEVENT_TYPE_MOUSE = 3, ARKUI_UIINPUTEVENT_TYPE_KEY = 4<sup>20+</sup> } | UI输入事件类型定义。  | 
+| {<br/>UI_TOUCH_EVENT_ACTION_CANCEL = 0,<br/>UI_TOUCH_EVENT_ACTION_DOWN = 1, UI_TOUCH_EVENT_ACTION_MOVE = 2, UI_TOUCH_EVENT_ACTION_UP = 3<br/>} | 定义输入事件的Action Code。  | 
 | {<br/>UI_INPUT_EVENT_TOOL_TYPE_UNKNOWN = 0, UI_INPUT_EVENT_TOOL_TYPE_FINGER = 1, UI_INPUT_EVENT_TOOL_TYPE_PEN = 2, UI_INPUT_EVENT_TOOL_TYPE_MOUSE = 3,<br/>UI_INPUT_EVENT_TOOL_TYPE_TOUCHPAD = 4, UI_INPUT_EVENT_TOOL_TYPE_JOYSTICK = 5<br/>} | 产生输入事件的工具类型定义。  | 
 | { UI_INPUT_EVENT_SOURCE_TYPE_UNKNOWN = 0, UI_INPUT_EVENT_SOURCE_TYPE_MOUSE = 1, UI_INPUT_EVENT_SOURCE_TYPE_TOUCH_SCREEN = 2 } | 产生输入事件的来源类型定义。  | 
 | [HitTestMode](#hittestmode) { HTM_DEFAULT = 0, HTM_BLOCK, HTM_TRANSPARENT, HTM_NONE } | 定义触摸测试类型的枚举值。  | 
@@ -123,6 +123,7 @@
 | int32_t [OH_ArkUI_UIInputEvent_GetTargetDisplayId](#oh_arkui_uiinputevent_gettargetdisplayid) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event) | 获取发生UI输入事件的屏幕ID。 | 
 | int32_t [OH_ArkUI_AxisEvent_SetPropagation](#oh_arkui_axisevent_setpropagation)(const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event, bool propagation) | 设置是否激活轴事件冒泡。|
 | int32_t [OH_ArkUI_AxisEvent_GetScrollStep](#oh_arkui_axisevent_getscrollstep)(const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event) | 获取鼠标滚轮轴滚动步长配置。|
+| ArkUI_ErrorCode [OH_ArkUI_UIInputEvent_GetLatestStatus](#oh_arkui_uiinputevent_getlateststatus)() | 调用该方法获取最近一次UIInput相关方法的执行情况。通常情况下不需要使用该方法，仅在返回值结果不确定是否异常时使用。<br>**起始版本：** 20 |
 
 
 ## 类型定义说明
@@ -156,9 +157,6 @@ anonymous enum
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| OH_NATIVEXCOMPONENT_RESULT_SUCCESS  | 成功结果。  | 
-| OH_NATIVEXCOMPONENT_RESULT_FAILED  | 失败结果。  | 
-| OH_NATIVEXCOMPONENT_RESULT_BAD_PARAMETER  | 无效参数。  | 
 | UI_TOUCH_EVENT_ACTION_CANCEL  | 触摸取消。  | 
 | UI_TOUCH_EVENT_ACTION_DOWN  | 触摸按下。  | 
 | UI_TOUCH_EVENT_ACTION_MOVE  | 触摸移动。  | 
@@ -261,7 +259,7 @@ enum ArkUI_ModifierKeyName
 | ARKUI_MODIFIER_KEY_CTRL  | Ctrl.  | 
 | ARKUI_MODIFIER_KEY_SHIFT  | Shift.  | 
 | ARKUI_MODIFIER_KEY_ALT  | Alt.  | 
-| ARKUI_MODIFIER_KEY_FN  | Fn.  | 
+| ARKUI_MODIFIER_KEY_FN  | Fn（仅调试使用，通常不上报Fn状态）.  | 
 
 
 ### ArkUI_UIInputEvent_Type
@@ -275,6 +273,13 @@ UI输入事件类型定义。
 
 **起始版本：** 12
 
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| ARKUI_UIINPUTEVENT_TYPE_UNKNOWN  | 未定义。 | 
+| ARKUI_UIINPUTEVENT_TYPE_TOUCH  | 触摸事件。  | 
+| ARKUI_UIINPUTEVENT_TYPE_AXIS  | 轴事件。  | 
+| ARKUI_UIINPUTEVENT_TYPE_MOUSE  | 鼠标事件。  | 
+| ARKUI_UIINPUTEVENT_TYPE_KEY  | 按键事件。  | 
 
 ### HitTestMode
 
@@ -333,6 +338,23 @@ enum ArkUI_InteractionHand
 | ARKUI_EVENT_HAND_NONE  | 未知。  | 
 | ARKUI_EVENT_HAND_LEFT  | 左手。  | 
 | ARKUI_EVENT_HAND_RIGHT  | 右手。  | 
+
+```
+anonymous enum
+```
+**描述：**
+
+定义轴事件的Action Code。
+
+**起始版本：** 15
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| UI_AXIS_EVENT_ACTION_NONE  | 无轴事件。 | 
+| UI_AXIS_EVENT_ACTION_BEGIN  | 轴事件开始。 | 
+| UI_AXIS_EVENT_ACTION_UPDATE  | 轴事件触发中。 | 
+| UI_AXIS_EVENT_ACTION_END  | 轴事件结束。  | 
+| UI_AXIS_EVENT_ACTION_CANCEL  | 轴事件取消。 | 
 
 
 ## 函数说明
@@ -1396,7 +1418,7 @@ int64_t OH_ArkUI_UIInputEvent_GetEventTime (const ArkUI_UIInputEvent * event)
 ```
 **描述：**
 
-获取UI输入事件发生的时间。
+获取UI输入事件发生的时间。单位：ns。
 
 **起始版本：** 12
 
@@ -1426,9 +1448,9 @@ int32_t OH_ArkUI_UIInputEvent_GetPressedKeys (const ArkUI_UIInputEvent * event, 
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| event | ArkUI_UIInputEvent事件指针。  | 
-| pressedKeyCodes | 输出参数，表示所有按下键的数组，指向的内存空间需要调用者申请。  | 
-| length | 作为输入参数表示传入的pressedKeyCodes数组长度，作为输出参数表示实际按下按键的个数。  | 
+| event | ArkUI_UIInputEvent事件指针。| 
+| pressedKeyCodes | 输出参数，表示所有按下键的数组，指向的内存空间需要调用者申请。| 
+| length | 作为输入参数表示传入的pressedKeyCodes数组长度，作为输出参数表示实际按下按键的个数。| 
 
 **返回：**
 
@@ -2125,3 +2147,26 @@ int32_t OH_ArkUI_AxisEvent_GetScrollStep (const ArkUI_UIInputEvent * event)
 **返回：**
 
 返回鼠标滚轮轴滚动步长配置。
+
+### OH_ArkUI_UIInputEvent_GetLatestStatus()
+```
+ArkUI_ErrorCode OH_ArkUI_UIInputEvent_GetLatestStatus()
+```
+**描述：**
+
+调用该方法获取最近一次UIInput相关方法的执行情况。通常情况下不需要使用该方法，仅在返回值结果不确定是否异常时使用。
+以下是一个使用示例（对于返回的float类型，0.0并不代表错误，因此可以进一步使用GetLatestStatus方法来确认是否发生异常）。
+```
+float x = OH_ArkUI_PointerEvent_GetX(event);
+if (ARKUI_ERROR_CODE_NO_ERROR != OH_Arkui_UIInputEvent_GetlatestStatus()) {
+    // error
+    return;
+}
+```
+系统将在每次执行UIInput相关函数时主动清空上一次函数调用的状态，以确保每次通过该接口获取的均为最近一次的状态。
+
+**起始版本：** 20
+
+**返回：**
+
+返回最近一次调用UIInput方法产生的结果代码。

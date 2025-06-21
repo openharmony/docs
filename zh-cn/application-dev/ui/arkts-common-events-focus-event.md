@@ -11,12 +11,12 @@
 - 走焦：指焦点在应用内的组件之间转移的行为。这一过程对用户是透明的，但开发者可以通过监听onFocus（焦点获取）和onBlur（焦点失去）事件来捕捉这些变化。关于走焦的具体方式和规则，详见[走焦规范](#走焦规范)。
 
 
-**焦点态**
+**焦点激活态**
 
 用来指向当前获焦组件的样式。
 
-- 显示规则：默认情况下焦点态不会显示，只有当应用进入激活态后，焦点态才会显示。因此，虽然获得焦点的组件不一定显示焦点态（取决于是否处于激活态），但显示焦点态的组件必然是获得焦点的。大部分组件内置了焦点态样式，开发者同样可以使用样式接口进行自定义，一旦自定义，组件将不再显示内置的焦点态样式。关于焦点态样式设置的具体方式，详见[焦点样式](#焦点样式)。在焦点链中，若多个组件同时拥有焦点态，系统将采用子组件优先的策略，优先显示子组件的焦点态，并且仅显示一个焦点态。
-- 进入激活态：使用外接键盘按下Tab键/使用FocusController的activate(true)方法才会进入焦点的激活态，进入激活态后，才可以使用键盘Tab键/方向键进行走焦。首次用来激活焦点态的Tab键不会触发走焦。
+- 显示规则：默认情况下焦点激活态不会显示，只有当应用进入激活态后，焦点激活态才会显示。因此，虽然获得焦点的组件不一定显示焦点激活态（取决于是否处于激活态），但显示焦点激活态的组件必然是获得焦点的。大部分组件内置了焦点激活态样式，开发者同样可以使用样式接口进行自定义，一旦自定义，组件将不再显示内置的焦点激活态样式。关于焦点激活态样式设置的具体方式，详见[焦点样式](#焦点样式)。在焦点链中，若多个组件同时拥有焦点激活态，系统将采用子组件优先的策略，优先显示子组件的焦点激活态，并且仅显示一个焦点激活态。
+- 进入激活态：使用外接键盘按下Tab键/使用FocusController的activate(true)方法才会进入焦点的激活态，进入激活态后，才可以使用键盘Tab键/方向键进行走焦。首次用来激活焦点激活态的Tab键不会触发走焦。
 - 退出激活态：当应用收到FocusController的active(false)方法/点击事件时（包括手指触屏的按下事件和鼠标左键的按下事件），焦点的激活态会退出。
 
 ```ts
@@ -37,18 +37,18 @@ struct FocusActiveExample {
 ```
 
 
-按下Tab键，激活焦点态显示。点击鼠标退出焦点激活态。
+按下Tab键，焦点激活态显示。点击鼠标退出焦点激活态。
 
 ![Active_Focus_1](figures/Active_Focus_1.gif)
 
 
-调用[activate](../reference/apis-arkui/js-apis-arkui-UIContext.md#activate14)接口进入和退出走焦激活态。
+调用[activate](../reference/apis-arkui/js-apis-arkui-UIContext.md#activate14)接口进入和退出焦点激活态。
 
 ![Active_Focus_2](figures/Active_Focus_2.gif)
 
 示例操作步骤：
-1. 点击Set Active按钮，调用[activate](../reference/apis-arkui/js-apis-arkui-UIContext.md#activate14)接口进入走焦激活态。
-2. Tab走焦至Set Not Active按钮，Enter键触发按键事件，调用[activate](../reference/apis-arkui/js-apis-arkui-UIContext.md#activate14)接口退出走焦激活态。
+1. 点击Set Active按钮，调用[activate](../reference/apis-arkui/js-apis-arkui-UIContext.md#activate14)接口进入焦点激活态。
+2. Tab走焦至Set Not Active按钮，Enter键触发按键事件，调用[activate](../reference/apis-arkui/js-apis-arkui-UIContext.md#activate14)接口退出焦点激活态。
 
 **层级页面**
 
@@ -68,9 +68,9 @@ struct FocusActiveExample {
 
 **根容器**
 
-根容器是层级页面内的概念，当某个层级页面首次创建并展示时，根据层级页面的特性，焦点会立即被该页面抢占。此时，该层级页面所在焦点链的末端节点将成为默认焦点，而这个默认焦点通常位于该层级页面的根容器上。
+根容器是[层级页面](#基础概念)内的概念，当某个[层级页面](#基础概念)首次创建并展示时，根据[层级页面](#基础概念)的特性，焦点会立即被该[层级页面](#基础概念)抢占。此时，该[层级页面](#基础概念)所在焦点链的末端节点将成为默认焦点，而这个默认焦点通常位于该[层级页面](#基础概念)的根容器上。
 
-在缺省状态下，层级页面的默认焦点位于其根容器上，但开发者可以通过defaultFocus属性来自定义这一行为。
+在缺省状态下，[层级页面](#基础概念)的默认焦点位于其根容器上，但开发者可以通过defaultFocus属性来自定义这一行为。
 
 当焦点位于根容器时，首次按下Tab键不仅会使焦点进入激活状态，还会触发焦点向子组件的传递。如果子组件本身也是一个容器，则焦点会继续向下传递，直至到达叶子节点。传递规则是：优先传递给上一次获得焦点的子节点，如果不存在这样的节点，则默认传递给第一个子节点。
 
@@ -114,7 +114,7 @@ Shift+Tab键：与Tab键具有相反的焦点转移效果。
 
 - 组件删除：当处于焦点状态的组件被删除时，焦点框架首先尝试将焦点转移到相邻的兄弟组件上，遵循先向后再向前的顺序。若所有兄弟组件均不可获焦，则焦点将释放，并通知其父组件进行焦点处理。
 - 属性变更：若将处于焦点状态的组件的focusable或enabled属性设置为false，或者将visibility属性设置为不可见，系统将自动转移焦点至其他可获焦组件，转移方式与1中相同。
-- 层级页面切换：当发生层级页面切换时，如从一个页面跳转到另一个页面，当前页面的焦点将自动释放，新页面可能会根据预设逻辑自动获得焦点。
+- [层级页面](#基础概念)切换：当发生[层级页面](#基础概念)切换时，如从一个[层级页面](#基础概念)跳转到另一个[层级页面](#基础概念)，当前[层级页面](#基础概念)的焦点将自动释放，新[层级页面](#基础概念)可能会根据预设逻辑自动获得焦点。
 - Web组件初始化：对于Web组件，当其被创建时，若其设计需要立即获得焦点（如某些弹出框或输入框），则可能触发焦点转移至该Web组件，其行为属于组件自身的行为逻辑，不属于焦点框架的规格范围。
 
 ### 走焦算法
@@ -189,9 +189,9 @@ Tab键走焦：按照子节点的挂载顺序循环走焦。
 投影走焦算法基于当前获焦组件在走焦方向上的投影，结合子组件与投影的重叠面积和中心点距离进行胜出判定。该算法特别适用于子组件大小不一的容器，目前仅有配置了wrap属性的Flex组件。运行规则如下：
 
 
-- 方向键走焦时，判断投影与子组件区域的重叠面积，在所有面积不为0的子组件中，计算它们与当前获焦组件的中心点直线距离，距离最短的胜出，若存在多个备选，则节点树上更靠前的胜出。若无任何子组件与投影由重叠，说明该容器已经无法处理该方向键的走焦请求。
-- Tab键走焦时，先使用规格1，按照方向键右进行判定，若找到则成功退出，若无法找到，则将当前获焦子组件的位置模拟往下移动该获焦子组件的高度，然后再按照方向键左进行投影判定，有投影重叠且中心点直线距离最远的子组件胜出，若无投影重叠的子组件，则表示该容器无法处理本次Tab键走焦请求。
-- Shift+Tab键走焦时，先使用规格1，按照方向键左进行判定，找到则成功退出。若无法找到，则将当前获焦子组件的位置模拟向上移动该获焦子组件的高度，然后再按照方向键右进行投影判定，有投影重叠且中心点直线距离最远的子组件胜出，若无投影重叠的子组件，则表示该容器无法处理本次的Shift+Tab键走焦请求。
+- 方向键走焦时，判断投影与子组件区域的重叠面积，在所有面积不为0的子组件中，计算它们与当前获焦组件的中心点直线距离，距离最短的胜出，若存在多个备选，则节点树上更靠前的胜出。若无任何子组件与投影有重叠，说明该容器已经无法处理该方向键的走焦请求。
+- Tab键走焦时，先使用规格1，按照方向键右进行判定，若找到则成功退出，若无法找到，则将当前获焦子组件的位置模拟往下移动该获焦子组件的高度，然后再按照方向键左进行投影判定，有投影重叠且中心点直线距离最近的子组件胜出，若无投影重叠的子组件，则表示该容器无法处理本次Tab键走焦请求。
+- Shift+Tab键走焦时，先使用规格1，按照方向键左进行判定，找到则成功退出。若无法找到，则将当前获焦子组件的位置模拟向上移动该获焦子组件的高度，然后再按照方向键右进行投影判定，有投影重叠且中心点直线距离最近的子组件胜出，若无投影重叠的子组件，则表示该容器无法处理本次的Shift+Tab键走焦请求。
 
 ```ts
 @Entry
@@ -340,7 +340,7 @@ struct FocusEventExample {
 
 上述示例包含以下3步：
 
-- 应用打开，按下Tab键激活走焦，“First Button”显示焦点态样式：组件外围有一个蓝色的闭合框，onFocus回调响应，背景色变成绿色。
+- 应用打开，按下Tab键激活走焦，“First Button”显示焦点激活态样式：组件外围有一个蓝色的闭合框，onFocus回调响应，背景色变成绿色。
 - 按下Tab键，触发走焦，“Second Button”获焦，onFocus回调响应，背景色变成绿色；“First Button”失焦，onBlur回调响应，背景色变回灰色。
 - 按下Tab键，触发走焦，“Third Button”获焦，onFocus回调响应，背景色变成绿色；“Second Button”失焦，onBlur回调响应，背景色变回灰色。
 
@@ -429,13 +429,11 @@ enabled(value: boolean)
 
 设置组件可交互性属性[enabled](../reference/apis-arkui/arkui-ts/ts-universal-attributes-enable.md#enabled)为`false`，则组件不可交互，无法获焦。
 
-
 ```ts
 visibility(value: Visibility)
 ```
 
 设置组件可见性属性[visibility](../reference/apis-arkui/arkui-ts/ts-universal-attributes-visibility.md#visibility)为`Visibility.None`或`Visibility.Hidden`，则组件不可见，无法获焦。
-
 
 ```ts
 focusOnTouch(value: boolean)
@@ -443,11 +441,9 @@ focusOnTouch(value: boolean)
 
 设置当前组件是否支持点击获焦能力。
 
-
 > **说明：**
 >
 >当某组件处于获焦状态时，将其的focusable属性或enabled属性设置为false，会自动使该组件失焦，然后焦点按照[走焦规范](#走焦规范)将焦点转移给其他组件。
-
 
 ```ts
 // xxx.ets
@@ -541,7 +537,6 @@ struct FocusableExample {
 
 上述示例包含以下3步：
 
-
 - 第一个Text组件没有设置focusable(true)属性，该Text组件无法获焦。
 - 点击第二个Text组件，由于设置了focusOnTouch(true)，第二个组件获焦。按下Tab键，触发走焦，仍然是第二个Text组件获焦。按键盘F键，触发onKeyEvent，focusable置为false，第二个Text组件变成不可获焦，焦点自动转移，会自动从Text组件寻找下一个可获焦组件，焦点转移到第三个Text组件上。
 - 按键盘G键，触发onKeyEvent，enabled置为false，第三个Text组件变成不可获焦，焦点自动转移，使焦点转移到Row容器上，容器中使用的是默认配置，会转移到Button1上。
@@ -597,6 +592,7 @@ struct ScopeFocusExample {
 ![Scope_Focus_1.gif](figures/Scope_Focus_1.gif)
 
 上述示例包含以下2步：
+
 - Column配置onClick事件并设置focusable为true后，Tab键走焦，Column容器可以绘制焦点框。
 - 点击Button1，将Column的focusable属性设置为false，Column容器无法获焦和绘制焦点框。
 
@@ -635,18 +631,19 @@ struct TabStopExample {
 ![TabStop_Focus_1.gif](figures/TabStop_Focus_1.gif)
 
 上述示例包含以下2步：
+
 - Column配置tabStop后，Tab键走焦，焦点在Button1和Column容器之间切换，Column容器可以绘制焦点框。
 - 走焦至Column容器后，按Enter键，焦点转移到容器中的第一个可获焦节点上。Tab键走焦，走焦至容器中其他可获焦节点。
 
 ## 默认焦点
 
-### 页面的默认焦点
+### 层级页面的默认焦点
 
 ```ts
 defaultFocus(value: boolean)
 ```
 
-设置当前组件是否为当前页面上的默认焦点。
+设置当前组件是否为当前[层级页面](#基础概念)上的默认焦点。
 
 
 ```ts
@@ -713,7 +710,7 @@ struct morenjiaodian {
 
 上述示例包含以下2步：
 
-- 在第三个Button组件上设置了defaultFocus(true)，进入页面后第三个Button默认获焦，显示为绿色。
+- 在第三个Button组件上设置了defaultFocus(true)，进入[层级页面](#基础概念)后第三个Button默认获焦，显示为绿色。
 - 按下Tab键，触发走焦，第三个Button正处于获焦状态，会出现焦点框。
 
 ### 容器的默认焦点
@@ -722,7 +719,7 @@ struct morenjiaodian {
 
 **defaultFocus与FocusPriority的区别**
 
-[defaultFocus](../reference/apis-arkui/arkui-ts/ts-universal-attributes-focus.md#defaultfocus9)是用于指定页面首次展示时的默认获焦节点，[FocusPriority](../reference/apis-arkui/arkui-ts/ts-universal-attributes-focus.md#focuspriority12)是用于指定某个容器首次获焦时其子节点的获焦优先级。上述两个属性在某些场景同时配置时行为未定义，例如下面的场景，页面首次展示无法同时满足defaultFocus获焦和高优先级组件获焦。
+[defaultFocus](../reference/apis-arkui/arkui-ts/ts-universal-attributes-focus.md#defaultfocus9)是用于指定[层级页面](#基础概念)首次展示时的默认获焦节点，[FocusPriority](../reference/apis-arkui/arkui-ts/ts-universal-attributes-focus.md#focuspriority12)是用于指定某个容器首次获焦时其子节点的获焦优先级。上述两个属性在某些场景同时配置时行为未定义，例如下面的场景，[层级页面](#基础概念)首次展示无法同时满足defaultFocus获焦和高优先级组件获焦。
 
 示例
 
@@ -741,23 +738,23 @@ struct Index {
 }
 ```
 
-### 页面/容器整体获焦时的焦点链
+### 层级页面/容器整体获焦时的焦点链
 
 **整体获焦与非整体获焦**
 
-- 整体获焦是页面/容器自身作为焦点链的叶节点获焦，获焦后再把焦点链叶节点转移到子孙组件。例如，页面切换、Navigation组件中的路由切换、焦点组走焦、容器组件主动调用requestFocusById等。
+- 整体获焦是[层级页面](#基础概念)/容器自身作为焦点链的叶节点获焦，获焦后再把焦点链叶节点转移到子孙组件。例如，[层级页面](#基础概念)切换、Navigation组件中的路由切换、焦点组走焦、容器组件主动调用requestFocusById等。
 
 - 非整体获焦是某个组件作为焦点链叶节点获焦，导致其祖先节点跟着获焦。例如TextInput组件主动获取焦点、Tab键在非焦点组场景下走焦等。
 
 **整体获焦的焦点链形成**
 
-1.页面首次获焦：
+1.[层级页面](#基础概念)首次获焦：
 
 - 焦点链叶节点为配置了defaultFocus的节点。
 
-- 未配置defaultFocus时，焦点停留在页面的根容器上。
+- 未配置defaultFocus时，焦点停留在[层级页面](#基础概念)的根容器上。
 
-2.页面非首次获焦：由上次获焦的节点获焦。
+2.[层级页面](#基础概念)非首次获焦：由上次获焦的节点获焦。
 
 3.获焦链上存在配置了获焦优先级的组件和容器：
 
@@ -770,7 +767,7 @@ struct Index {
 
 > **说明：**
 >
-> 最终绘制焦点态的组件的[zIndex](../reference/apis-arkui/arkui-ts/ts-universal-attributes-z-order.md#zindex)默认会被抬升至INT_MAX，如果该组件已经配置了zIndex，则不做zIndex调整。该组件不再绘制焦点态时，例如组件失焦或是退出走焦态，zIndex恢复为默认层级。
+> 最终绘制焦点激活态的组件的[zIndex](../reference/apis-arkui/arkui-ts/ts-universal-attributes-z-order.md#zindex)默认会被抬升至INT_MAX，如果该组件已经配置了zIndex，则不做zIndex调整。该组件不再绘制焦点激活态时，例如组件失焦或是退出走焦态，zIndex恢复为默认层级。
 >
 
 ```ts
@@ -810,7 +807,7 @@ struct RequestFocusExample {
 
 上述示例包含以下2步：
 
-- 进入页面，按下Tab键触发走焦，第一个Button获焦，焦点框样式为紧贴边缘的蓝色细框。
+- 进入[层级页面](#基础概念)，按下Tab键触发走焦，第一个Button获焦，焦点框样式为紧贴边缘的蓝色细框。
 - 按下Tab键，走焦到第二个Button，焦点框样式为远离边缘的红色粗框。
 
 ## 主动获焦/失焦
@@ -832,7 +829,7 @@ struct RequestFocusExample {
   ```ts
   clearFocus(): void
   ```
-  清除焦点，将焦点强制转移到页面根容器节点，焦点链路上其他节点失焦。
+  清除焦点，将焦点强制转移到层级页面根容器节点，焦点链路上其他节点失焦。
 
 - 使用focusControl中的方法
   ```ts
@@ -932,10 +929,10 @@ tabIndex(index: number)
 
 若存在配置了tabIndex大于0的组件，则Tab键走焦只会在tabIndex大于0的组件内，按照tabIndex的值从小到大并循环依次走焦。若没有配置tabIndex大于0的组件，则tabIndex等于0的组件按照组件预设的走焦规则走焦。
 
->  **说明：**
+> **说明：**
 >
 > 不能同时设置tabIndex与focusScopeId属性。
-> 不建议在页面中通过单独设置组件的tabIndex属性为负数来控制获焦能力，可以使用focusable属性代替。
+> 不建议在[层级页面](#基础概念)中通过单独设置组件的tabIndex属性为负数来控制获焦能力，可以使用focusable属性代替。
 
 ```ts
 @Entry

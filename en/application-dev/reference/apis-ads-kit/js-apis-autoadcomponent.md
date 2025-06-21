@@ -4,7 +4,7 @@ The AutoAdComponent module provides the capability of displaying carousel ads.
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
@@ -24,12 +24,12 @@ Component used to automatically play ads.
 
 **Parameters**
 
-| Name                | Type                                                                               | Mandatory| Description       | 
-|---------------------|-----------------------------------------------------------------------------------|----|-----------|
-| adParam             | advertising.[AdRequestParams](js-apis-advertising.md#adrequestparams)             | Yes | Ad request parameters.  | 
-| adOptions           | advertising.[AdOptions](js-apis-advertising.md#adoptions)                         | Yes | Ad configuration.    | 
-| displayOptions      | advertising.[AdDisplayOptions](js-apis-advertising.md#addisplayoptions)           | Yes | Ad display parameters.  | 
-| interactionListener | advertising.[AdInteractionListener](js-apis-advertising.md#adinteractionlistener) | Yes | Ad status change callback.| 
+| Name             | Type                                                                             | Mandatory| Description             |
+|---------------------|-----------------------------------------------------------------------------------|-----|-----------------|
+| adParam             | advertising.[AdRequestParams](js-apis-advertising.md#adrequestparams)             | Yes  | Ad request parameters.    |
+| adOptions           | advertising.[AdOptions](js-apis-advertising.md#adoptions)                         | Yes  | Ad configuration.        |
+| displayOptions      | advertising.[AdDisplayOptions](js-apis-advertising.md#addisplayoptions)           | Yes  | Ad display parameters.    |
+| interactionListener | advertising.[AdInteractionListener](js-apis-advertising.md#adinteractionlistener) | Yes  | Ad status change callback.|
 
 **Example**
 
@@ -90,3 +90,13 @@ struct Index {
   }
 }
 ```
+
+## build
+
+build(): void
+
+A constructor used to create an **AutoAdComponent** object.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Advertising.Ads

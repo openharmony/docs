@@ -56,7 +56,7 @@ color(value: ResourceColor)
 
 enableLoading(value: boolean)
 
-设置LoadingProgress动画显示或者不显示。LoadingProgress动画不显示时，该组件依旧占位。通用属性[Visibility.Hidden](ts-universal-attributes-visibility.md#visibility)隐藏的是包括[border](ts-universal-attributes-border.md#border)、[padding](ts-universal-attributes-size.md#padding)等整个组件范围，而enableLoading=false只隐藏LoadingProgress本身动画内容，不包括border等。
+设置LoadingProgress动画是否显示。LoadingProgress动画不显示时，该组件依旧占位。通用属性[Visibility.Hidden](ts-universal-attributes-visibility.md#visibility)隐藏的是包括[border](ts-universal-attributes-border.md#border)、[padding](ts-universal-attributes-size.md#padding)等整个组件范围，而enableLoading=false只隐藏LoadingProgress本身动画内容，不包括border等。
 
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -101,9 +101,9 @@ contentModifier(modifier: ContentModifier\<LoadingProgressConfiguration>)
 | ------ | ------ | ------ |-------------------------------- |-------------------------------- |
 | enableLoading | boolean | 否 | 否 |LoadingProgress动画是否显示。<br/>默认值：true，true表示显示LoadingProgress动画，false表示不显示LoadingProgress动画。 |
 
-## LoadingProgressStyle<sup>(deprecated)</sup>枚举说明
+## LoadingProgressStyle枚举说明
 
-从API version 8开始废弃。
+表示LoadingProgress的样式类型，不推荐使用。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 

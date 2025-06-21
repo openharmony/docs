@@ -45,8 +45,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 202      | not system app.                     |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
-| 1500004  | A third-party application cannot send system common events.                |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      |
 | 1500007  | Failed to send the message to the common event service. |
 | 1500008  | Failed to initialize the common event service. |
 | 1500009  | Failed to obtain system parameters.  |
@@ -56,21 +55,18 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// Callback for common event publication.
-function publishCB(err: BusinessError) {
-  if (err) {
-    console.error(`publishAsUser failed, code is ${err.code}, message is ${err.message}`);
-  } else {
-    console.info("publishAsUser");
-  }
-}
-
 // Specify the user to whom the common event will be published.
 let userId = 100;
 
 // Publish a common event.
 try {
-    commonEventManager.publishAsUser("event", userId, publishCB);
+    commonEventManager.publishAsUser('event', userId, (err: BusinessError) => {
+      if (err) {
+        console.error(`publishAsUser failed, code is ${err.code}, message is ${err.message}`);
+        return;
+      }
+      console.info('publishAsUser');
+    });
 } catch (error) {
     let err: BusinessError = error as BusinessError;
     console.error(`publishAsUser failed, code is ${err.code}, message is ${err.message}`);
@@ -103,8 +99,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 202      | not system app.                     |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
-| 1500004  | A third-party application cannot send system common events.                |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      |
 | 1500007  | Failed to send the message to the common event service. |
 | 1500008  | Failed to initialize the common event service. |
 | 1500009  | Failed to obtain system parameters.  |
@@ -117,21 +112,20 @@ import { BusinessError } from '@kit.BasicServicesKit';
 // Attributes of a common event.
 let options:commonEventManager.CommonEventPublishData = {
   code: 0,			 // Result code of the common event.
-  data: "initial data",// Result data of the common event.
+  data: 'initial data', // Initial data of the common event.
 }
-// Callback for common event publication.
-function publishCB(err: BusinessError) {
-  if (err) {
-    console.error(`publishAsUser failed, code is ${err.code}, message is ${err.message}`);
-  } else {
-    console.info("publishAsUser");
-  }
-}
+
 // Specify the user to whom the common event will be published.
 let userId = 100;
 // Publish a common event.
 try {
-  commonEventManager.publishAsUser("event", userId, options, publishCB);
+  commonEventManager.publishAsUser('event', userId, options, (err: BusinessError) => {
+    if (err) {
+      console.error(`publishAsUser failed, code is ${err.code}, message is ${err.message}`);
+      return;
+    }
+    console.info('publishAsUser');
+  });
 } catch (error) {
   let err: BusinessError = error as BusinessError;
   console.error(`publishAsUser failed, code is ${err.code}, message is ${err.message}`);
@@ -165,7 +159,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | -------- | ----------------------------------- |
 | 201      | The application does not have permission to call the interface.    |
 | 202      | not system app.                     |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      |
 | 1500004  | A third-party application cannot send system common events.                |
 | 1500007  | Failed to send the message to the common event service.             |
 | 1500008  | Failed to initialize the common event service.     |
@@ -175,7 +169,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-commonEventManager.removeStickyCommonEvent("sticky_event", (err: BusinessError) => {
+commonEventManager.removeStickyCommonEvent('sticky_event', (err: BusinessError) => {
   if (err) {
     console.error(`removeStickyCommonEvent failed, errCode: ${err.code}, errMes: ${err.message}`);
     return;
@@ -216,7 +210,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | -------- | ----------------------------------- |
 | 201      | The application does not have permission to call the interface.    |
 | 202      | not system app.                     |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      |
 | 1500004  | A third-party application cannot send system common events.                |
 | 1500007  | Failed to send the message to the common event service.             |
 | 1500008  | Failed to initialize the common event service.     |
@@ -226,7 +220,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-commonEventManager.removeStickyCommonEvent("sticky_event").then(() => {
+commonEventManager.removeStickyCommonEvent('sticky_event').then(() => {
   console.info(`removeStickyCommonEvent success`);
 }).catch ((err: BusinessError) => {
   console.error(`removeStickyCommonEvent failed, errCode: ${err.code}, errMes: ${err.message}`);
@@ -235,7 +229,7 @@ commonEventManager.removeStickyCommonEvent("sticky_event").then(() => {
 
 ## commonEventManager.setStaticSubscriberState<sup>10+</sup>
 
-setStaticSubscriberState(enable: boolean, callback: AsyncCallback\<void>): void;
+setStaticSubscriberState(enable: boolean, callback: AsyncCallback\<void>): void
 
 Enables or disables static subscription for the current application. This API uses an asynchronous callback to return the result.
 
@@ -259,7 +253,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 202      | not system app.                     |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      |
 | 1500007  | Failed to send the message to the common event service.             |
 | 1500008  | Failed to initialize the common event service.     |
 
@@ -269,7 +263,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 
 commonEventManager.setStaticSubscriberState(true, (err: BusinessError) => {
-  if (err) {
+  if (err.code != 0) {
     console.error(`setStaticSubscriberState failed, errCode: ${err.code}, errMes: ${err.message}`);
     return;
   }
@@ -279,7 +273,7 @@ commonEventManager.setStaticSubscriberState(true, (err: BusinessError) => {
 
 ## commonEventManager.setStaticSubscriberState<sup>10+</sup>
 
-setStaticSubscriberState(enable: boolean): Promise\<void>;
+setStaticSubscriberState(enable: boolean): Promise\<void>
 
 Enables or disables static subscription for the current application. This API uses a promise to return the result.
 
@@ -308,7 +302,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 202      | not system app.                     |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      |
 | 1500007  | Failed to send the message to the common event service.             |
 | 1500008  | Failed to initialize the common event service.     |
 
@@ -357,7 +351,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                                              |
 | -------- | ------------------------------------------------------ |
 | 202      | not system app.                     |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      |
 | 1500007  | Failed to send the message to the common event service.        |
 | 1500008  | Failed to initialize the common event service. |
 
@@ -365,18 +359,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { promptAction } from '@kit.ArkUI';
 
 let evenName: string[] = ['usual.event.SEND_DATA'];
 commonEventManager.setStaticSubscriberState(true, evenName).then(() => {
-  try {
-    promptAction.showToast({
-      message: 'app.string.static_subscribe_enabled',
-      duration: 2000,
-    });
-  } catch (error) {
-    console.error(`showToast error code is ${error.code}, message is ${error.message}`);
-  }
   console.info(`setStaticSubscriberState success, state is ${true}`);
 }).catch((err: BusinessError) => {
   console.error(`setStaticSubscriberState failed, errCode: ${err.code}, errMes: ${err.message}`);

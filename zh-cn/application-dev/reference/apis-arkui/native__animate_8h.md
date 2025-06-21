@@ -32,10 +32,13 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| typedef struct [ArkUI_AnimateOption](_ark_u_i___native_module.md#arkui_animateoption) [ArkUI_AnimateOption](_ark_u_i___native_module.md#arkui_animateoption) | 设置动画效果相关参数。  | 
-| typedef struct ArkUI_Curve \* [ArkUI_CurveHandle](_ark_u_i___native_module.md#arkui_curvehandle) | 定义曲线的插值对象指针定义。  | 
+| typedef struct [ArkUI_AnimateOption](_ark_u_i___native_module.md#arkui_animateoption) [ArkUI_AnimateOption](_ark_u_i___native_module.md#arkui_animateoption) | 设置动画效果相关参数。  |
+| typedef struct [ArkUI_Curve](_ark_u_i___native_module.md#arkui_curve) [ArkUI_Curve](_ark_u_i___native_module.md#arkui_curve) | 提供曲线的插值对象定义。  | 
+| typedef struct [ArkUI_Curve](_ark_u_i___native_module.md#arkui_curve) \* [ArkUI_CurveHandle](_ark_u_i___native_module.md#arkui_curvehandle) | 定义曲线的插值对象指针定义。  | 
 | typedef struct [ArkUI_KeyframeAnimateOption](_ark_u_i___native_module.md#arkui_keyframeanimateoption) [ArkUI_KeyframeAnimateOption](_ark_u_i___native_module.md#arkui_keyframeanimateoption) | 定义关键帧动画参数对象。  | 
 | typedef struct [ArkUI_AnimatorOption](_ark_u_i___native_module.md#arkui_animatoroption) [ArkUI_AnimatorOption](_ark_u_i___native_module.md#arkui_animatoroption) | 定义animator动画参数对象。  | 
+| typedef struct [ArkUI_AnimatorEvent](_ark_u_i___native_module.md#arkui_animatorevent) [ArkUI_AnimatorEvent](_ark_u_i___native_module.md#arkui_animatorevent) | 定义animator回调事件对象。  |
+| typedef struct [ArkUI_AnimatorOnFrameEvent](_ark_u_i___native_module.md#arkui_animatoronframeevent) [ArkUI_AnimatorOnFrameEvent](_ark_u_i___native_module.md#arkui_animatoronframeevent) | 定义animator接收到帧时回调对象。  |
 | typedef struct ArkUI_Animator \* [ArkUI_AnimatorHandle](_ark_u_i___native_module.md#arkui_animatorhandle) | 定义animator动画对象指针。  | 
 | typedef struct [ArkUI_TransitionEffect](_ark_u_i___native_module.md#arkui_transitioneffect) [ArkUI_TransitionEffect](_ark_u_i___native_module.md#arkui_transitioneffect) | 定义transition属性配置转场参数对象。  | 
 
@@ -74,6 +77,8 @@
 | int32_t [OH_ArkUI_KeyframeAnimateOption_GetIterations](_ark_u_i___native_module.md#oh_arkui_keyframeanimateoption_getiterations) ([ArkUI_KeyframeAnimateOption](_ark_u_i___native_module.md#arkui_keyframeanimateoption) \*option) | 获取关键帧动画播放次数。  | 
 | int32_t [OH_ArkUI_KeyframeAnimateOption_GetDuration](_ark_u_i___native_module.md#oh_arkui_keyframeanimateoption_getduration) ([ArkUI_KeyframeAnimateOption](_ark_u_i___native_module.md#arkui_keyframeanimateoption) \*option, int32_t index) | 获取关键帧动画某段状态持续时间。  | 
 | [ArkUI_CurveHandle](_ark_u_i___native_module.md#arkui_curvehandle) [OH_ArkUI_KeyframeAnimateOption_GetCurve](_ark_u_i___native_module.md#oh_arkui_keyframeanimateoption_getcurve) ([ArkUI_KeyframeAnimateOption](_ark_u_i___native_module.md#arkui_keyframeanimateoption) \*option, int32_t index) | 获取关键帧动画某段状态动画曲线。  | 
+| [ArkUI_ExpectedFrameRateRange](_ark_u_i___expected_frame_rate_range.md)* [OH_ArkUI_KeyframeAnimateOption_GetExpectedFrameRate](_ark_u_i___native_module.md#oh_arkui_keyframeanimateoption_getexpectedframerate)([ArkUI_KeyframeAnimateOption](_ark_u_i___native_module.md#arkui_keyframeanimateoption)* option) | 获取关键帧动画参数的期望帧率。<br />**起始版本：** 19  |
+| int32_t [OH_ArkUI_KeyframeAnimateOption_SetExpectedFrameRate](_ark_u_i___native_module.md#oh_arkui_keyframeanimateoption_setexpectedframerate)([ArkUI_KeyframeAnimateOption](_ark_u_i___native_module.md#arkui_keyframeanimateoption)* option, [ArkUI_ExpectedFrameRateRange](_ark_u_i___expected_frame_rate_range.md)* frameRate) | 设置关键帧动画期望帧率。<br />**起始版本：** 19| 
 | [ArkUI_AnimatorOption](_ark_u_i___native_module.md#arkui_animatoroption) \* [OH_ArkUI_AnimatorOption_Create](_ark_u_i___native_module.md#oh_arkui_animatoroption_create) (int32_t keyframeSize) | 创建animator动画对象参数。  | 
 | void [OH_ArkUI_AnimatorOption_Dispose](_ark_u_i___native_module.md#oh_arkui_animatoroption_dispose) ([ArkUI_AnimatorOption](_ark_u_i___native_module.md#arkui_animatoroption) \*option) | 销毁animator动画对象参数。  | 
 | int32_t [OH_ArkUI_AnimatorOption_SetDuration](_ark_u_i___native_module.md#oh_arkui_animatoroption_setduration) ([ArkUI_AnimatorOption](_ark_u_i___native_module.md#arkui_animatoroption) \*option, int32_t value) | 设置animator动画播放的时长，单位毫秒。  | 
@@ -89,7 +94,8 @@
 | int32_t [OH_ArkUI_AnimatorOption_SetKeyframeCurve](_ark_u_i___native_module.md#oh_arkui_animatoroption_setkeyframecurve) ([ArkUI_AnimatorOption](_ark_u_i___native_module.md#arkui_animatoroption) \*option, [ArkUI_CurveHandle](_ark_u_i___native_module.md#arkui_curvehandle) value, int32_t index) | 设置animator动画关键帧曲线类型。  | 
 | int32_t [OH_ArkUI_AnimatorOption_GetDuration](_ark_u_i___native_module.md#oh_arkui_animatoroption_getduration) ([ArkUI_AnimatorOption](_ark_u_i___native_module.md#arkui_animatoroption) \*option) | 获取animator动画播放的时长。  | 
 | int32_t [OH_ArkUI_AnimatorOption_GetDelay](_ark_u_i___native_module.md#oh_arkui_animatoroption_getdelay) ([ArkUI_AnimatorOption](_ark_u_i___native_module.md#arkui_animatoroption) \*option) | 获取animator动画延时播放时长。  | 
-| int32_t [OH_ArkUI_AnimatorOption_GetIterations](_ark_u_i___native_module.md#oh_arkui_animatoroption_getiterations) ([ArkUI_AnimatorOption](_ark_u_i___native_module.md#arkui_animatoroption) \*option) | 获取animator动画播放次数。  | 
+| int32_t [OH_ArkUI_AnimatorOption_GetIterations](_ark_u_i___native_module.md#oh_arkui_animatoroption_getiterations) ([ArkUI_AnimatorOption](_ark_u_i___native_module.md#arkui_animatoroption) \*option) | 获取animator动画播放次数。  |
+| [ArkUI_AnimationFillMode](_ark_u_i___native_module.md#arkui_animationfillmode) [OH_ArkUI_AnimatorOption_GetFill](_ark_u_i___native_module.md#oh_arkui_animatoroption_getfill) ([ArkUI_AnimatorOption](_ark_u_i___native_module.md#arkui_animatoroption) \*option) | 获取animator动画执行后是否恢复到初始状态。  | 
 | [ArkUI_AnimationDirection](_ark_u_i___native_module.md#arkui_animationdirection) [OH_ArkUI_AnimatorOption_GetDirection](_ark_u_i___native_module.md#oh_arkui_animatoroption_getdirection) ([ArkUI_AnimatorOption](_ark_u_i___native_module.md#arkui_animatoroption) \*option) | 获取animator动画播放方向。  | 
 | [ArkUI_CurveHandle](_ark_u_i___native_module.md#arkui_curvehandle) [OH_ArkUI_AnimatorOption_GetCurve](_ark_u_i___native_module.md#oh_arkui_animatoroption_getcurve) ([ArkUI_AnimatorOption](_ark_u_i___native_module.md#arkui_animatoroption) \*option) | 获取animator动画插值曲线。  | 
 | float [OH_ArkUI_AnimatorOption_GetBegin](_ark_u_i___native_module.md#oh_arkui_animatoroption_getbegin) ([ArkUI_AnimatorOption](_ark_u_i___native_module.md#arkui_animatoroption) \*option) | 获取animator动画插值起点。  | 

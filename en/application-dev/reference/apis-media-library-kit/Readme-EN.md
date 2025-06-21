@@ -17,14 +17,18 @@
   <!--DelEnd-->
 - C APIs<!--media-library-c-->
   - Modules<!--media-library-module-->
-    - [MediaAssetManager](_media_asset_manager.md)
+    - [MediaAssetManager](capi-mediaassetmanager.md)
   - Header Files<!--media-library-headerfile-->
-    - [media_access_helper_capi.h](media__access__helper__capi_8h.md)
-    - [media_asset_base_capi.h](media__asset__base__capi_8h.md)
-    - [media_asset_capi.h](media__asset__capi_8h.md)
-    - [media_asset_change_request_capi.h](media__asset__change__request__capi_8h.md)
-    - [media_asset_manager_capi.h](media__asset__manager__capi_8h.md)
-    - [moving_photo_capi.h](moving__photo__capi_8h.md)
+    - [media_access_helper_capi.h](capi-media-access-helper-capi-h.md)
+    - [media_asset_base_capi.h](capi-media-asset-base-capi-h.md)
+    - [media_asset_capi.h](capi-media-asset-capi-h.md)
+    - [media_asset_change_request_capi.h](capi-media-asset-change-request-capi-h.md)
+    - [media_asset_manager_capi.h](capi-media-asset-manager-capi-h.md)
+    - [moving_photo_capi.h](capi-moving-photo-capi-h.md)
   - Structs<!--media-library-struct-->
-    - [MediaLibrary_RequestId](_media_library___request_id.md)
-    - [MediaLibrary_RequestOptions](_media_library___request_options.md)
+    - [MediaLibrary_RequestId](capi-medialibrary-requestid.md)
+    - [OH_MediaAssetManager](capi-oh-mediaassetmanager.md)
+    - [OH_MediaAssetChangeRequest](capi-oh-mediaassetchangerequest.md)
+    - [OH_MovingPhoto](capi-oh-movingphoto.md)
+    - [OH_MediaAsset](capi-oh-mediaasset.md)
+    - [MediaLibrary_RequestOptions](capi-medialibrary-requestoptions.md)

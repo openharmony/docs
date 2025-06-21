@@ -1,4 +1,4 @@
-# GATT-based BLE Connection and Data Transmission Development
+# GATT-based BLE Connection and Data Transmission
 
 ## Introduction
 Generic Attribute Profile (GATT) provides profile discovery and description services for the BLE protocol. It defines how ATT attributes are organized and exchanged over a BLE connection.<br>A GATT server (referred to as server in this topic) is a device that stores attribute data locally and provides data access to a remote GATT client paired via BLE. A GATT client (referred to as client in this topic) is a device that accesses data on the remote GATT server via read, write, notify, or indicate operations.

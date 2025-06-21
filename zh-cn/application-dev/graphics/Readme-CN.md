@@ -51,4 +51,5 @@
 - [NativeImage开发指导 (C/C++)](native-image-guidelines.md)
 - [NativeVsync开发指导 (C/C++)](native-vsync-guidelines.md)
 - [NativeWindow开发指导 (C/C++)](native-window-guidelines.md)
+- [GPU/CPU内存访问同步操作开发指南 (C/C++)](native-fence-guidelines.md)
 - [图形开发术语](graphic-term.md)

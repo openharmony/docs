@@ -8,7 +8,7 @@
 
 ## foregroundBlurStyle
 
-foregroundBlurStyle(value: BlurStyle, options?: ForegroundBlurStyleOptions)
+foregroundBlurStyle(value: BlurStyle, options?: ForegroundBlurStyleOptions): T
 
 为当前组件提供内容模糊能力。
 
@@ -23,9 +23,15 @@ foregroundBlurStyle(value: BlurStyle, options?: ForegroundBlurStyleOptions)
 | value   | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | 是   | 内容模糊样式。           |
 | options | [ForegroundBlurStyleOptions](#foregroundblurstyleoptions对象说明) | 否   | 可选参数，内容模糊选项。 |
 
+**返回值：**
+
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| T | 返回当前组件。 |
+
 ## foregroundBlurStyle<sup>18+</sup>
 
-foregroundBlurStyle(style: Optional\<BlurStyle>, options?: ForegroundBlurStyleOptions, sysOptions?: [SystemAdaptiveOptions](ts-universal-attributes-background.md#systemadaptiveoptions18))
+foregroundBlurStyle(style: Optional\<BlurStyle>, options?: ForegroundBlurStyleOptions): T
 
 为当前组件提供内容模糊能力。与[foregroundBlurStyle](#foregroundblurstyle)相比，style参数新增了对undefined类型的支持。
 
@@ -39,7 +45,36 @@ foregroundBlurStyle(style: Optional\<BlurStyle>, options?: ForegroundBlurStyleOp
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | style   | Optional\<[BlurStyle](ts-universal-attributes-background.md#blurstyle9)> | 是   | 内容模糊样式。<br/>当style的值为undefined时，恢复为无模糊的内容。 |
 | options | [ForegroundBlurStyleOptions](#foregroundblurstyleoptions对象说明) | 否   | 可选参数，内容模糊选项。                                     |
-| sysOptions<sup>18+</sup>   |  [SystemAdaptiveOptions](ts-universal-attributes-background.md#systemadaptiveoptions18)    |   否   |  系统自适应调节参数。<br/>默认值：{ disableSystemAdaptation: false }    |
+
+**返回值：**
+
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| T | 返回当前组件。 |
+
+## foregroundBlurStyle<sup>19+</sup>
+
+foregroundBlurStyle(style: Optional\<BlurStyle>, options?: ForegroundBlurStyleOptions, sysOptions?: SystemAdaptiveOptions): T
+
+为当前组件提供内容模糊能力。与[foregroundBlurStyle<sup>18+</sup>](#foregroundblurstyle18)相比，新增了sysOptions参数，即支持系统自适应调节参数。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名  | 类型                                                         | 必填 | 说明                                                         |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| style   | Optional\<[BlurStyle](ts-universal-attributes-background.md#blurstyle9)> | 是   | 内容模糊样式。<br/>当style的值为undefined时，恢复为无模糊的内容。 |
+| options | [ForegroundBlurStyleOptions](#foregroundblurstyleoptions对象说明) | 否   | 可选参数，内容模糊选项。                                     |
+| sysOptions   |  [SystemAdaptiveOptions](ts-universal-attributes-background.md#systemadaptiveoptions19)    |   否   |  系统自适应调节参数。<br/>默认值：{ disableSystemAdaptation: false }    |
+
+**返回值：**
+
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| T | 返回当前组件。 |
 
 ## ForegroundBlurStyleOptions对象说明
 继承自[BlurStyleOptions](#blurstyleoptions)
@@ -55,7 +90,7 @@ foregroundBlurStyle(style: Optional\<BlurStyle>, options?: ForegroundBlurStyleOp
 | colorMode     | [ThemeColorMode](ts-container-with-theme.md#themecolormode10枚举说明) | 否   | 内容模糊效果使用的深浅色模式。<br/>默认值：ThemeColorMode.SYSTEM<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | adaptiveColor | [AdaptiveColor](#adaptivecolor10枚举说明)   | 否   | 内容模糊效果使用的取色模式。<br/>默认值：AdaptiveColor.DEFAULT<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | blurOptions<sup>11+</sup> | [BlurOptions](#bluroptions11)         | 否    | 灰阶模糊参数。<br/>默认值：grayscale: [0,0] <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| scale<sup>12+</sup> | number   | 否   | 内容模糊效果程度。<br/>默认值：1.0 <br/>取值范围：[0.0, 1.0] <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| scale<sup>12+</sup> | number   | 否   | 内容模糊效果程度。<br/>默认值：1.0 <br/>取值范围：[0.0, 1.0] <br/>1.0表示模糊程度最高。 <br/>0.0表示模糊程度最低。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 ## AdaptiveColor<sup>10+</sup>枚举说明
 
@@ -84,7 +119,7 @@ foregroundBlurStyle(style: Optional\<BlurStyle>, options?: ForegroundBlurStyleOp
 
 ## 示例
 
-该示例主要演示通过foregroundBlurStyle给图片设置内容模糊。
+该示例主要演示通过foregroundBlurStyle为图片设置内容模糊效果。
 
 ```ts
 // xxx.ets

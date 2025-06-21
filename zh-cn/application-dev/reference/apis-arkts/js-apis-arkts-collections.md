@@ -1,6 +1,6 @@
 # @arkts.collections (ArkTS容器集)
 
-本模块提供的ArkTS容器集，可以用于并发场景下的高性能数据传递。功能与JavaScript内建的对应容器类似，但ArkTS容器实例无法通过\.或者\[\]添加或更新属性。
+本模块提供的ArkTS容器集，可以用于并发场景下的高性能数据传递。功能与JavaScript内建的对应容器类似，但ArkTS容器实例无法通过`.`或者`[]`添加或更新属性。
 
 ArkTS容器在多个并发实例间传递时，其默认行为是引用传递，支持多个并发实例可以同时操作同一个容器实例。另外，也支持拷贝传递，即每个并发实例持有一个ArkTS容器实例。
 
@@ -582,7 +582,7 @@ static isArray(value: Object | undefined | null): boolean
 **示例：**
 
 ```ts
-let arr: collections.Array<string> = new collections.Array('a', 'b', 'c', 'd')
+let arr: collections.Array<string> = new collections.Array('a', 'b', 'c', 'd');
 let result: boolean = collections.Array.isArray(arr);
 console.info(result + '');
 // 预期输出： true
@@ -621,7 +621,7 @@ static of\<T>(...items: T\[]): Array\<T>
 **示例：**
 
 ```ts
-let arr: collections.Array<string> = collections.Array.of('a', 'b', 'c', 'd')
+let arr: collections.Array<string> = collections.Array.of('a', 'b', 'c', 'd');
 console.info(arr.toString());
 // 预期输出： a, b, c, d
 ```
@@ -993,7 +993,7 @@ reverse(): Array\<T>
 
 | 类型    | 说明                 |
 | ----- | ------------------ |
-| Array | 反转后的ArkTS Array对象。 |
+| Array\<T> | 反转后的ArkTS Array对象。 |
 
 **错误码：**
 
@@ -1375,7 +1375,7 @@ reduce\<U>(callbackFn: (previousValue: U, currentValue: T, currentIndex: number,
 
 | 参数名       | 类型                                                         | 必填 | 说明                                                         |
 | ------------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callbackFn   | callbackFn: (previousValue: U, currentValue: T, currentIndex: number, array: Array\<T>) => U | 是   | 一个接受四个参数的函数，用于对每个元素执行操作，并将结果作为累加值传递给下一个元素。 |
+| callbackFn   | (previousValue: U, currentValue: T, currentIndex: number, array: Array\<T>) => U | 是   | 一个接受四个参数的函数，用于对每个元素执行操作，并将结果作为累加值传递给下一个元素。 |
 | initialValue | U                                                            | 是   | 用于初始化累加器的值。                                       |
 
 **返回值：**
@@ -2088,7 +2088,7 @@ constructor(entries?: readonly (readonly [K, V])[] | null)
 
 | 参数名  | 类型   | 必填 | 说明                                                         |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| entries | [K, V][] \| null | 否   | 键值对数组或其它可迭代对象。默认值为null，创建一个空Map对象。 |
+| entries | readonly (readonly [K, V])[] \| null | 否   | 键值对数组或其它可迭代对象。默认值为null，创建一个空Map对象。 |
 
 **错误码：**
 
@@ -2418,7 +2418,7 @@ get(key: K): V | undefined
 
 | 类型 | 说明                                                         |
 | ---- | ------------------------------------------------------------ |
-| V    | 与指定键相关联的元素，如果键在Map对象中找不到，则返回undefined。 |
+| V \| undefined    | 与指定键相关联的元素，如果键在Map对象中找不到，则返回undefined。 |
 
 **错误码：**
 
@@ -2450,6 +2450,12 @@ has(key: K): boolean
 **原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明      |
+| ------ | ---- | ---- | --------- |
+| key    | K    | 是   | 待查找元素的值。 |
 
 **返回值：**
 
@@ -2487,6 +2493,13 @@ set(key: K, value: V): Map<K, V>
 **原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明      |
+| ------ | ---- | ---- | --------- |
+| key    | K    | 是   | 添加或更新指定元素的键。 |
+| value    | V    | 是   | 添加或更新指定元素的值。 |
 
 **返回值：**
 
@@ -2597,7 +2610,7 @@ constructor(values?: readonly T[] | null)
 
 | 参数名 | 类型 | 必填 | 说明                                                      |
 | ------ | ---- | ---- | --------------------------------------------------------- |
-| values | T[] \| null | 否 | 数组或其它可迭代对象。默认值为null，创建一个空Set对象。 |
+| values | readonly T[] \| null | 否 | 数组或其它可迭代对象。默认值为null，创建一个空Set对象。 |
 
 **错误码：**
 
@@ -3000,7 +3013,7 @@ mySet.add(obj);
 ```ts
 let set = new collections.Set<number>([1, 2, 3, 4, 5]);
 
-let val: Array<number> = Array.from(set.values())
+let val: Array<number> = Array.from(set.values());
 for (let item of val) {
   console.info("value: " + item);
 }
@@ -3388,7 +3401,7 @@ constructor(buffer: ArrayBuffer, byteOffset?: number, length?: number)
 
 ```ts
 let int32Array: collections.Int32Array = collections.Int32Array.from([1, 2, 3, 4, 5, 6]);
-console.info("byteLength: " + int32Array.buffer.byteLength) // byteLength: 24
+console.info("byteLength: " + int32Array.buffer.byteLength); // byteLength: 24
 // 从int32Array对应buffer第4个字节开始，长度为5
 let uint32Array: collections.Uint32Array = new collections.Uint32Array(int32Array.buffer, 4, 5);
 console.info("[" + uint32Array + "]"); // [2, 3, 4, 5, 6]
@@ -3537,7 +3550,7 @@ static of(...items: number[]): TypedArray
 **示例：**
 
 ```ts
-let arr: collections.Uint32Array = collections.Uint32Array.of(1, 2, 3, 4)
+let arr: collections.Uint32Array = collections.Uint32Array.of(1, 2, 3, 4);
 console.info(arr.toString());
 // 预期输出：1,2,3,4
 ```

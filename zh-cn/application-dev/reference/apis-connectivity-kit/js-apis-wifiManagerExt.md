@@ -19,7 +19,7 @@ enableHotspot(): void
 使能WLAN热点。
 
 > **说明：**
-> 从 API version 9开始支持，从API version 10开始废弃。
+> 从API version 9开始支持，从API version 10开始废弃。
 
 **需要权限：** ohos.permission.MANAGE_WIFI_HOTSPOT_EXT
 
@@ -54,7 +54,7 @@ disableHotspot(): void
 去使能WLAN热点。
 
 > **说明：**
-> 从 API version 9开始支持，从API version 10开始废弃。
+> 从API version 9开始支持，从API version 10开始废弃。
 
 **需要权限：** ohos.permission.MANAGE_WIFI_HOTSPOT_EXT
 
@@ -162,7 +162,7 @@ getSupportedPowerMode(callback: AsyncCallback&lt;Array&lt;PowerMode&gt;&gt;): vo
   wifiManagerExt.getSupportedPowerMode().then(data => {
       console.info("get supported power mode info: " + JSON.stringify(data));
   }).catch((error:number) => {
-      console.info("get supported power mode error");
+      console.error("get supported power mode error");
   });
 ```
 
@@ -173,7 +173,7 @@ getPowerMode(): Promise&lt;PowerMode&gt;
 获取功率模式，使用Promise异步回调。
 
 > **说明：**
-> 从 API version 9开始支持，从API version 10开始废弃。
+> 从API version 9开始支持，从API version 10开始废弃。
 
 **需要权限：** ohos.permission.GET_WIFI_INFO
 
@@ -250,7 +250,7 @@ getPowerMode(callback: AsyncCallback&lt;PowerMode&gt;): void
   wifiManagerExt.getPowerMode().then(data => {
       console.info("get power mode info: " + JSON.stringify(data));
   }).catch((error:number) => {
-      console.info("get power mode error");
+      console.error("get power mode error");
   });
 ```
 
@@ -261,7 +261,7 @@ setPowerMode(mode: PowerMode) : void
  设置功率模式。
 
 > **说明：**
-> 从 API version 9开始支持，从API version 10开始废弃。
+> 从API version 9开始支持，从API version 10开始废弃。
 
 **需要权限：** ohos.permission.MANAGE_WIFI_HOTSPOT_EXT
 

@@ -42,7 +42,7 @@ static JSVM_Value Consoleinfo(JSVM_Env env, JSVM_CallbackInfo info) {
     size_t argc = 1;
     JSVM_Value args[1];
     char log[256] = "";
-    size_t log_length;
+    size_t log_length = 0;
     JSVM_CALL(OH_JSVM_GetCbInfo(env, info, &argc, args, NULL, NULL));
 
     JSVM_CALL(OH_JSVM_GetValueStringUtf8(env, args[0], log, 255, &log_length));
@@ -107,7 +107,7 @@ static JSVM_Value Add(JSVM_Env env, JSVM_CallbackInfo info) {
     size_t argc = 2;
     JSVM_Value args[2];
     JSVM_CALL(OH_JSVM_GetCbInfo(env, info, &argc, args, NULL, NULL));
-    double num1, num2;
+    double num1 = 0, num2 = 0;
     JSVM_CALL(OH_JSVM_GetValueDouble(env, args[0], &num1));
     JSVM_CALL(OH_JSVM_GetValueDouble(env, args[1], &num2));
     JSVM_Value sum = nullptr;
@@ -133,7 +133,7 @@ static JSVM_Value AssertEqual(JSVM_Env env, JSVM_CallbackInfo info) {
 }
 
 static int fromOHStringValue(JSVM_Env &env, JSVM_Value &value, std::string &result) {
-    size_t size;
+    size_t size = 0;
     CHECK_RET(OH_JSVM_GetValueStringUtf8(env, value, nullptr, 0, &size));
     char resultStr[size + 1];
     CHECK_RET(OH_JSVM_GetValueStringUtf8(env, value, resultStr, size + 1, &size));
@@ -303,7 +303,7 @@ static int32_t TestJSVM() {
     };";
 
     // 创建首个运行环境，并绑定TS回调
-    uint32_t coreId1;
+    uint32_t coreId1 = 0;
     CHECK_COND(CreateJsCore(&coreId1) == 0);
     OH_LOG_INFO(LOG_APP, "TEST coreId: %{public}d", coreId1);
     // 在首个运行环境中执行JS代码
@@ -312,7 +312,7 @@ static int32_t TestJSVM() {
     OH_LOG_INFO(LOG_APP, "TEST evaluateJS: %{public}s", result1.c_str());
 
     // 创建第二个运行环境，并绑定TS回调
-    uint32_t coreId2;
+    uint32_t coreId2 = 0;
     CHECK_COND(CreateJsCore(&coreId2) == 0);
     OH_LOG_INFO(LOG_APP, "TEST coreId: %{public}d", coreId2);
     // 在第二个运行环境中执行JS代码
@@ -329,6 +329,7 @@ static int32_t TestJSVM() {
     return 0;
 }
 ```
+<!-- @[runtime_task](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmDebug/runtimetask/src/main/cpp/hello.cpp) -->
 预计的输出结果：
 ```
 JSVM CreateJsCore START

@@ -77,7 +77,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 off(evt: 'progress', callback: (pg: SyncProgress) => void): void
 
-Unregisters a listener for the device-cloud sync progress.
+Unregisters all listeners for the device-cloud sync progress.
 
 **Required permissions**: ohos.permission.CLOUDFILE_SYNC
 
@@ -408,7 +408,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 off(evt: 'progress', callback: (pg: DownloadProgress) => void): void
 
-Unregisters a listener for the download progress of a cloud file.
+Unregisters all listeners for the download progress event of a cloud file.
 
 **Required permissions**: ohos.permission.CLOUDFILE_SYNC
 
@@ -887,7 +887,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 getFileSyncState(uri: string): FileSyncState
 
-Obtains the file sync status.
+Obtains the file sync state.
 
 **System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
@@ -903,7 +903,7 @@ Obtains the file sync status.
 
 | Type                 | Description            |
 | --------------------- | ---------------- |
-| [FileSyncState](#filesyncstate11) | Sync status of the file.|
+| [FileSyncState](#filesyncstate11) | Sync state of the file.|
 
 **Error codes**
 
@@ -929,8 +929,8 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   let path = "/data/storage/el2/cloud/1.txt";
   let uri = fileUri.getUriFromPath(path);
   try {
-    let state = fileSync.getFileSyncState(uri)
-  }.catch(err) {
+    let state = cloudSync.getFileSyncState(uri);
+  } catch (err) {
     let error:BusinessError = err as BusinessError;
     console.error("getFileSyncStatefailed with error:" + JSON.stringify(error));
   }
@@ -953,3 +953,185 @@ Enumerates the device-cloud file sync states.
 | TO_BE_UPLOADED<sup>12+</sup> |  4 | The file is going to be uploaded.|
 | UPLOAD_SUCCESS<sup>12+</sup> |  5 | The file has been successfully uploaded.|
 | UPLOAD_FAILURE<sup>12+</sup> |  6 | The file fails to be uploaded.|
+
+## cloudSync.optimizeStorage<sup>17+</sup>
+
+optimizeStorage(): Promise&lt;void&gt;
+
+Optimizes the resources from the local Gallery that have been synced to the cloud and executes the automatic aging policy according to the remaining local space. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.CLOUDFILE_SYNC
+
+**System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**System API**: This is a system API.
+
+**Return value**
+
+  | Type                 | Description                          |
+  | ------------------- | ---------------------------- |
+  | Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](errorcode-filemanagement.md).
+
+| ID                    | Error Message       |
+| ---------------------------- | ---------- |
+| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 202 | Permission verification failed, application which is not a system application uses system API. |
+| 13600001  | IPC error. |
+| 13900042  | Unknown error. |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  cloudSync.optimizeStorage().then(() => {
+	  console.info("optimize storage successfully");   // The foreground UX waits for blocking operations to complete.
+  }).catch((err: BusinessError) => {
+	  console.error("optimize storage failed with error message: " + err.message + ", error code: " + err.code);
+  });
+  ```
+
+## cloudSync.startOptimizeSpace<sup>17+</sup>
+
+startOptimizeSpace(optimizePara: OptimizeSpaceParam, callback?: Callback\<OptimizeSpaceProgress>): Promise&lt;void&gt;
+
+Optimizes local resources that have been synced to the cloud and optimizes local images and videos that have not been accessed before the aging period expires. This API uses a promise to return the result.
+
+**startOptimizeSpace** is used together with **stopOptimizeSpace**. If **startOptimizeSpace** is called repeatedly, the error code 22400006 will be returned, indicating that other tasks are being executed.
+
+**Required permissions**: ohos.permission.CLOUDFILE_SYNC
+
+**System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name    | Type  | Mandatory| Description|
+| ---------- | ------ | ---- | ---- |
+| optimizePara | [OptimizeSpaceParam](#optimizespaceparam17) | Yes  | Optimizes parameters.|
+| callback | Callback&lt;[OptimizeSpaceProgress](#optimizespaceprogress17)&gt; | No  | Callback used to return the optimization progress. By default, error 401 is returned and the clearing task is not executed.|
+
+**Return value**
+
+  | Type                 | Description                          |
+  | ------------------- | ---------------------------- |
+  | Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](errorcode-filemanagement.md).
+
+| ID                    | Error Message       |
+| ---------------------------- | ---------- |
+| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 202 | Permission verification failed, application which is not a system application uses system API. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 13600001  | IPC error. |
+| 22400005  | Inner error. |
+| 22400006  | The same task is already in progress. |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let para:cloudSync.OptimizeSpaceParam = {totalSize: 1073741824, agingDays: 30};
+  let callback = (data:cloudSync.OptimizeSpaceProgress) => {
+    if (data.state == cloudSync.OptimizeState.FAILED) {
+      console.info("optimize space failed");
+    } else if (data.state == cloudSync.OptimizeState.COMPLETED && data.progress == 100) {
+      console.info("optimize space successfully");
+    } else if (data.state == cloudSync.OptimizeState.RUNNING) {
+      console.info("optimize space progress:" + data.progress);
+    }
+  }
+  cloudSync.startOptimizeSpace(para, callback).then(() => {
+	  console.info("start optimize space");
+  }).catch((err: BusinessError) => {
+	  console.error("start optimize space failed with error message: " + err.message + ", error code: " + err.code);
+  });
+  ```
+
+## cloudSync.stopOptimizeSpace<sup>17+</sup>
+
+stopOptimizeSpace(): void
+
+Synchronously stops optimizing cloud resource space. This method is used with **startOptimizeSpace**.
+
+**Required permissions**: ohos.permission.CLOUDFILE_SYNC
+
+**System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**System API**: This is a system API.
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](errorcode-filemanagement.md).
+
+| ID                    | Error Message       |
+| ---------------------------- | ---------- |
+| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 202 | Permission verification failed, application which is not a system application uses system API. |
+| 13600001  | IPC error. |
+| 22400005  | Inner error. |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let para:cloudSync.OptimizeSpaceParam = {totalSize: 1073741824, agingDays: 30};
+  let callback = (data:cloudSync.OptimizeSpaceProgress) => {
+    if (data.state == cloudSync.OptimizeState.FAILED) {
+      console.info("optimize space failed");
+    } else if (data.state == cloudSync.OptimizeState.RUNNING) {
+      console.info("optimize space progress:" + data.progress);
+    }
+  }
+  cloudSync.startOptimizeSpace(para, callback);
+  cloudSync.stopOptimizeSpace();   // Stop space optimization.
+  ```
+
+## OptimizeState<sup>17+</sup>
+
+Enumerates the space optimization states.
+
+**System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**System API**: This is a system API.
+
+| Name|  Value|  Description|
+| ----- |  ---- |  ---- |
+| RUNNING |  0 | The space is being optimized.|
+| COMPLETED |  1 | The space optimization is complete.|
+| FAILED |  2 | Space optimization failed.|
+| STOPPED |  3 | Space optimization stopped.|
+
+## OptimizeSpaceProgress<sup>17+</sup>
+
+Represents the space optimization states and optimization progress.
+
+**System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**System API**: This is a system API.
+
+| Name    | Type  | Mandatory| Description|
+| ---------- | ------ | ---- | ---- |
+| state | [OptimizeState](#optimizestate17) | Yes  | Enumerates the space optimization states.|
+| progress | number | Yes  | Optimization progress percentage. The value ranges from 1 to 100.|
+
+## OptimizeSpaceParam<sup>17+</sup>
+
+Sets the total optimization space and aging days.
+
+**System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**System API**: This is a system API.
+
+| Name    | Type  | Mandatory| Description|
+| ---------- | ------ | ---- | ---- |
+| totalSize | number | Yes  | Total size of the optimization space. You can obtain the total size of all files to be aged through the media library API. The size is transferred by the application and is in bytes.|
+| agingDays | number | Yes  | Aging days. The system will optimize the local images/videos that have not been accessed and have been synced to the cloud before the aging days.|

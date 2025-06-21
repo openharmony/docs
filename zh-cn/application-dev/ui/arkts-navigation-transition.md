@@ -1,7 +1,7 @@
 # 导航转场
 
 
-导航转场是页面的路由转场方式，也就是一个界面消失，另外一个界面出现的动画效果。开发者也可以自定义导航转场的动画效果，具体请参考Navigation[示例3](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#示例3)。
+导航转场是页面的路由转场方式，也就是一个界面消失，另外一个界面出现的动画效果。开发者也可以自定义导航转场的动画效果，具体请参考Navigation[示例3](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#示例3设置可交互转场动画)。
 
 
 导航转场推荐使用[Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md)组件实现，可搭配[NavDestination](../reference/apis-arkui/arkui-ts/ts-basic-components-navdestination.md)组件实现导航功能。
@@ -18,12 +18,12 @@
 
 3.在List内的组件添加onClick方法，并在其中使用路由栈NavPathStack的pushPathByName方法，使组件可以在点击之后从当前页面跳转到输入参数name在路由表内对应的页面。
 ```ts
-//PageOne.ets
+//Index.ets
 @Entry
 @Component
 struct NavigationDemo {
   @Provide('pathInfos') pathInfos: NavPathStack = new NavPathStack();
-  private listArray: Array<string> = ['WLAN', 'Bluetooth', 'Personal Hotpot', 'Connect & Share'];
+  private listArray: Array<string> = ['WLAN', 'Bluetooth', 'Personal Hotspot', 'Connect & Share'];
 
   build() {
     Column() {
@@ -79,7 +79,7 @@ struct NavigationDemo {
             }
             .width('100%')
             .onClick(() => {
-              this.pathInfos.pushPathByName(`${item}`, '详情页面参数')//将name指定的NaviDestination页面信息入栈,传递的参数为param
+              this.pathInfos.pushPathByName(`${item}`, '详情页面参数'); // 将name指定的NaviDestination页面信息入栈,传递的参数为param
             })
           }, (item: string): string => item)
         }
@@ -111,7 +111,7 @@ struct NavigationDemo {
 
 @Builder
 export function MyCommonPageBuilder(name: string, param: string) {
-  MyCommonPage({ name: name, value: param })
+  MyCommonPage({ name: name, value: param });
 }
 
 @Component
@@ -153,7 +153,7 @@ export struct MyCommonPage {
       .size({ width: '100%', height: '100%' })
     }.title(`${this.name}`)
     .onReady((ctx: NavDestinationContext) => {
-      //NavDestinationContext获取当前所在的页面栈
+      // NavDestinationContext获取当前所在的页面栈
       this.pathInfos = ctx.pathStack;
     }) 
 
@@ -172,8 +172,8 @@ export struct MyCommonPage {
 ```ts
 //PageTwo.ets
 @Builder
-export function MySharePageBuilder(name: string, param: string) {
-  MySharePage({ name: name })
+export function MySharePageBuilder(name: string) {
+  MySharePage({ name: name });
 }
 
 @Component
@@ -230,7 +230,7 @@ export struct MySharePage {
             }
             .width('100%')
             .onClick(() => {
-              this.pathInfos.pushPathByName(`${item}`, '页面设置参数')
+              this.pathInfos.pushPathByName(`${item}`, '页面设置参数');
             })
           }, (item: string): string => item)
         }
@@ -242,7 +242,7 @@ export struct MySharePage {
       .size({ width: '100%', height: '100%' })
     }.title(`${this.name}`)
     .onReady((ctx: NavDestinationContext) => {
-      //NavDestinationContext获取当前所在的页面栈
+      // NavDestinationContext获取当前所在的页面栈
       this.pathInfos = ctx.pathStack;
     }) 
   }
@@ -268,7 +268,7 @@ export struct MySharePage {
       "buildFunction" : "MyCommonPageBuilder"
     },
     {
-      "name" : "Personal Hotpot",
+      "name" : "Personal Hotspot",
       "pageSourceFile"  : "src/main/ets/pages/PageOne.ets",
       "buildFunction" : "MyCommonPageBuilder"
     },

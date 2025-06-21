@@ -1,6 +1,6 @@
 # @ohos.security.cryptoFramework (加解密算法库框架)
 
-为屏蔽底层硬件和算法库，向上提供统一的密码算法库加解密相关接口。
+提供统一的密码算法库加解密接口，以屏蔽底层硬件和算法库。
 
 > **说明：**
 >
@@ -24,6 +24,7 @@ import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 | NOT_SUPPORT                           | 801      | 操作不支持。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                 |
 | ERR_OUT_OF_MEMORY                     | 17620001 | 内存错误。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                   |
 | ERR_RUNTIME_ERROR                     | 17620002 | 运行时外部错误。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。           |
+| ERR_PARAMETER_CHECK_FAILED<sup>20+</sup>            | 17620003 | 表示参数检查失败。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。           |
 | ERR_CRYPTO_OPERATION                  | 17630001 | 调用三方算法库API出错。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。     |
 
 ## DataBlob
@@ -34,9 +35,9 @@ buffer数组，提供blob数据类型。
 
  **系统能力：** SystemCapability.Security.CryptoFramework
 
-| 名称 | 类型       | 可读 | 可写 | 说明   |
+| 名称 | 类型       | 只读 | 可选 | 说明   |
 | ---- | ---------- | ---- | ---- | ------ |
-| data | Uint8Array | 是   | 是   | 数据。 |
+| data | Uint8Array | 否   | 否   | 数据。 |
 
 > **说明：**
 >
@@ -44,47 +45,47 @@ buffer数组，提供blob数据类型。
 
 ## ParamsSpec
 
-加解密参数，在进行对称加解密时需要构造其子类对象，并将子类对象传入[init()](#init-2)方法。
+加解密参数，在进行对称加解密时需要构造其子类对象，并将子类对象传入[init()](#init-1)方法。
 
-适用于需要iv等参数的对称加解密模式（对于无iv等参数的模式如ECB模式，无需构造，在[init()](#init-2)中传入null即可）。
+适用于需要iv等参数的对称加解密模式（对于无iv等参数的模式如ECB模式，无需构造，在[init()](#init-1)中传入null即可）。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Cipher
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Cipher
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Cipher。
 
-| 名称    | 类型   | 可读 | 可写 | 说明                                                         |
+| 名称    | 类型   | 只读 | 可选 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| algName | string | 是   | 是   | 指明对称加解密参数的算法模式。可选值如下：<br/> - "IvParamsSpec"：适用于CBC\|CTR\|OFB\|CFB模式<br/> - "GcmParamsSpec"：适用于GCM模式<br/> - "CcmParamsSpec"：适用于CCM模式 |
+| algName | string | 否   | 否   | 指明对称加解密参数的算法模式。可选值如下：<br/> - "IvParamsSpec"：适用于CBC\|CTR\|OFB\|CFB模式。<br/> - "GcmParamsSpec"：适用于GCM模式。<br/> - "CcmParamsSpec"：适用于CCM模式。 |
 
 > **说明：**
 >
-> 由于[init()](#init-2)的params参数是ParamsSpec类型（父类），而实际需要传入具体的子类对象（如IvParamsSpec），因此在构造子类对象时应设置其父类ParamsSpec的algName参数，使算法库在init()时知道传入的是哪种子类对象。
+> 由于[init()](#init-1)的params参数是ParamsSpec类型（父类），而实际需要传入具体的子类对象（如IvParamsSpec），因此在构造子类对象时应设置其父类ParamsSpec的algName参数，使算法库在init()时知道传入的是哪种子类对象。
 
 ## IvParamsSpec
 
-加解密参数[ParamsSpec](#paramsspec)的子类，用于在对称加解密时作为[init()](#init-2)方法的参数。
+加解密参数[ParamsSpec](#paramsspec)的子类，用于在对称加解密时作为[init()](#init-1)方法的参数。
 
-适用于CBC、CTR、OFB、CFB这些仅使用iv作为参数的加解密模式。
+适用于CBC、CTR、OFB、CFB这些需要iv作为参数的加解密模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Cipher
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Cipher
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Cipher。
 
-| 名称 | 类型                  | 可读 | 可写 | 说明                                                         |
+| 名称 | 类型                  | 只读 | 可选 | 说明                                                         |
 | ---- | --------------------- | ---- | ---- | ------------------------------------------------------------ |
-| iv   | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数iv。常见取值如下：<br/>- AES的CBC\|CTR\|OFB\|CFB模式：iv长度为16字节<br/>- 3DES的CBC\|OFB\|CFB模式：iv长度为8字节<br/>- SM4<sup>10+</sup>的CBC\|CTR\|OFB\|CFB模式：iv长度为16字节 |
+| iv   | [DataBlob](#datablob) | 否   | 否  | 指明加解密参数iv。常见取值如下：<br/>- AES的CBC\|CTR\|OFB\|CFB模式：iv长度为16字节。<br/>- 3DES的CBC\|OFB\|CFB模式：iv长度为8字节。<br/>- SM4<sup>10+</sup>的CBC\|CTR\|OFB\|CFB模式：iv长度为16字节。 |
 
 > **说明：**
 >
-> 传入[init()](#init-2)方法前需要指定其algName属性（来源于父类[ParamsSpec](#paramsspec)）。
+> 传入[init()](#init-1)方法前需要指定其algName属性（来源于父类[ParamsSpec](#paramsspec)）。
 
 ## GcmParamsSpec
 
-加解密参数[ParamsSpec](#paramsspec)的子类，用于在对称加解密时作为[init()](#init-2)方法的参数。
+加解密参数[ParamsSpec](#paramsspec)的子类，用于在对称加解密时作为[init()](#init-1)方法的参数。
 
 适用于GCM模式。
 
@@ -92,23 +93,23 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Cipher
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Cipher
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Cipher。
 
-| 名称    | 类型                  | 可读 | 可写 | 说明                                                         |
+| 名称    | 类型                  | 只读 | 可选 | 说明                                                         |
 | ------- | --------------------- | ---- | ---- | ------------------------------------------------------------ |
-| iv      | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数iv，长度为1~16字节，常用为12字节。                             |
-| aad     | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数aad，长度为0~INT_MAX字节，常用为16字节。                             |
-| authTag | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数authTag，长度为16字节。<br/>采用GCM模式加密时，需要获取[doFinal()](#dofinal-2)或[doFinalSync()](#dofinalsync12)输出的[DataBlob](#datablob)，取出其末尾16字节作为解密时[init()](#init-2)或[initSync()](#initsync12)方法的入参GcmParamsSpec中的的authTag。 |
+| iv      | [DataBlob](#datablob) | 否   | 否   | 指明加解密参数iv，长度为1~16字节，常用为12字节。                             |
+| aad     | [DataBlob](#datablob) | 否   | 否   | 指明加解密参数aad，长度为0~INT_MAX字节，常用为16字节。                             |
+| authTag | [DataBlob](#datablob) | 否   | 否   | 指明加解密参数authTag，长度为16字节。<br/>采用GCM模式加密时，需从[doFinal()](#dofinal)或[doFinalSync()](#dofinalsync12)输出的[DataBlob](#datablob)中提取末尾16字节，作为[init()](#init-1)或[initSync()](#initsync12)方法中GcmParamsSpec的authTag。 |
 
 > **说明：**
 >
-> 1. 传入[init()](#init-2)方法前需要指定其algName属性（来源于父类[ParamsSpec](#paramsspec)）。
-> 2. 对于在1~16字节长度范围内的iv，加解密算法库不作额外限制，但其结果取决于底层openssl是否支持。
-> 3. 用户不需要使用aad参数或aad长度为0时，可以指定aad的data属性为空的Uint8Array，来构造GcmParamsSpec，写法为aad: { data: new Uint8Array() }。
+> 1. 传入[init()](#init-1)方法前需要指定其algName属性（来源于父类[ParamsSpec](#paramsspec)）。
+> 2. 对于1~16字节长度的iv，加解密算法库无额外限制，但结果取决于底层openssl的支持情况。
+> 3. 当aad参数不需要使用或aad长度为0时，可以将aad的data属性设置为一个空的Uint8Array，来构造GcmParamsSpec，写法为aad: { data: new Uint8Array() }。
 
 ## CcmParamsSpec
 
-加解密参数[ParamsSpec](#paramsspec)的子类，用于在对称加解密时作为[init()](#init-2)方法的参数。
+加解密参数[ParamsSpec](#paramsspec)的子类，用于在对称加解密时作为[init()](#init-1)方法的参数。
 
 适用于CCM模式。
 
@@ -116,17 +117,17 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Cipher
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Cipher
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Cipher。
 
-| 名称    | 类型                  | 可读 | 可写 | 说明                                                         |
+| 名称    | 类型                  | 只读 | 可选 | 说明                                                         |
 | ------- | --------------------- | ---- | ---- | ------------------------------------------------------------ |
-| iv      | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数iv，长度为7字节。                              |
-| aad     | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数aad，长度为8字节。                             |
-| authTag | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数authTag，长度为12字节。<br/>采用CCM模式加密时，需要获取[doFinal()](#dofinal-2)或[doFinalSync()](#dofinalsync12)输出的[DataBlob](#datablob)，取出其末尾12字节作为解密时[init()](#init-2)或[initSync()](#initsync12)方法的入参[CcmParamsSpec](#ccmparamsspec)中的authTag。 |
+| iv      | [DataBlob](#datablob) | 否   | 否   | 指明加解密参数iv，长度为7字节。                              |
+| aad     | [DataBlob](#datablob) | 否   | 否   | 指明加解密参数aad，长度为8字节。                             |
+| authTag | [DataBlob](#datablob) | 否   | 否   | 指定加解密参数authTag，长度为12字节。<br/>在CCM模式加密时，需从[doFinal()](#dofinal)或[doFinalSync()](#dofinalsync12)输出的[DataBlob](#datablob)末尾提取12字节，作为[init()](#init-1)或[initSync()](#initsync12)方法的参数[CcmParamsSpec](#ccmparamsspec)中的authTag。 |
 
 > **说明：**
 >
-> 传入[init()](#init-2)方法前需要指定其algName属性（来源于父类[ParamsSpec](#paramsspec)）。
+> 传入[init()](#init-1)方法前需要指定其algName属性（来源于父类[ParamsSpec](#paramsspec)）。
 
 ## CryptoMode
 
@@ -136,7 +137,7 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Cipher
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Cipher
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Cipher。
 
 | 名称         | 值   | 说明               |
 | ------------ | ---- | ------------------ |
@@ -151,7 +152,7 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 | 名称         | 值   | 说明             |
 | ------------ | ---- | ---------------- |
@@ -194,7 +195,7 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 | 名称         | 值   | 说明             |
 | ------------ | ---- | ---------------- |
@@ -205,7 +206,7 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 ## CipherSpecItem<sup>10+</sup>
 
-表示加解密参数的枚举，这些加解密参数支持通过[setCipherSpec](#setcipherspec10)接口设置/通过[getCipherSpec](#getcipherspec10)接口获取。
+表示加解密参数的枚举。这些参数支持通过[setCipherSpec](#setcipherspec10)接口设置，通过[getCipherSpec](#getcipherspec10)接口获取。
 
 当前只支持RSA算法和SM2算法，从API version 11开始，增加对SM2_MD_NAME_STR参数的支持，详细规格请参考[加解密规格](../../security/CryptoArchitectureKit/crypto-asym-encrypt-decrypt-spec.md)。
 
@@ -213,7 +214,7 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Cipher
 
-API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Cipher
+API version 10-11 系统能力为 SystemCapability.Security.CryptoFramework；从 API version 12 开始为SystemCapability.Security.CryptoFramework.Cipher
 
 | 名称         | 值   | 说明             |
 | ------------ | ---- | ---------------- |
@@ -225,7 +226,7 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 ## SignSpecItem<sup>10+</sup>
 
-表示签名验签参数的枚举，这些签名验签参数支持通过[setSignSpec](#setsignspec10)、[setVerifySpec](#setverifyspec10)接口设置/通过[getSignSpec](#getsignspec10)、[getVerifySpec](#getverifyspec10)接口获取。
+表示签名验签参数的枚举。这些参数支持通过[setSignSpec](#setsignspec10)、[setVerifySpec](#setverifyspec10)接口设置，通过[getSignSpec](#getsignspec10)、[getVerifySpec](#getverifyspec10)接口获取。
 
 当前只支持RSA算法和SM2算法，从API version 11开始，增加对SM2_USER_ID_UINT8ARR参数的支持，详细规格请参考[签名验签规格](../../security/CryptoArchitectureKit/crypto-sign-sig-verify-overview.md)。
 
@@ -233,7 +234,7 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Signature
 
-API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Signature
+API version 10-11 系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为 SystemCapability.Security.CryptoFramework.Signature。
 
 | 名称         | 值   | 说明             |
 | ------------ | ---- | ---------------- |
@@ -252,12 +253,12 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
-| 名称    | 类型   | 可读 | 可写 | 说明                                                         |
+| 名称    | 类型   | 只读 | 可选 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| algName | string | 是   | 是   | 指定非对称密钥的算法名称，比如"RSA"、"DSA"、"ECC"、"SM2"、"Ed25519"、"X25519"、"DH"。 |
-| specType | [AsyKeySpecType](#asykeyspectype10) | 是   | 是 | 指定密钥参数类型，用于区分公/私钥参数。 |
+| algName | string | 否   | 否   | 指定非对称密钥的算法名称，比如"RSA"、"DSA"、"ECC"、"SM2"、"Ed25519"、"X25519"、"DH"。 |
+| specType | [AsyKeySpecType](#asykeyspectype10) | 否   | 否 | 指定密钥参数类型，用于区分公/私钥参数。 |
 
 ## DSACommonParamsSpec<sup>10+</sup>
 
@@ -269,13 +270,13 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
-| 名称    | 类型   | 可读 | 可写 | 说明                                                         |
+| 名称    | 类型   | 只读 | 可选 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| p | bigint | 是   | 是   | 指定DSA算法的素模数p。 |
-| q | bigint | 是   | 是   | 指定DSA算法中密钥参数q（p-1的素因子）。 |
-| g | bigint | 是   | 是   | 指定DSA算法的参数g。 |
+| p | bigint | 否   | 否   | 指定DSA算法的素模数p。 |
+| q | bigint | 否   | 否   | 指定DSA算法中密钥参数q（p-1的素因子）。 |
+| g | bigint | 否   | 否   | 指定DSA算法的参数g。 |
 
 ## DSAPubKeySpec<sup>10+</sup>
 
@@ -287,12 +288,12 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
-| 名称    | 类型   | 可读 | 可写 | 说明                                                         |
+| 名称    | 类型   | 只读 | 可选 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| params | [DSACommonParamsSpec](#dsacommonparamsspec10) | 是   | 是   | 指定DSA算法中公私钥都包含的公共参数。 |
-| pk | bigint | 是   | 是   | 指定DSA算法的公钥。 |
+| params | [DSACommonParamsSpec](#dsacommonparamsspec10) | 否   | 否   | 指定DSA算法中公私钥包含的公共参数。 |
+| pk | bigint | 否   | 否   | 指定DSA算法的公钥值。 |
 
 ## DSAKeyPairSpec<sup>10+</sup>
 
@@ -304,41 +305,41 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
-| 名称    | 类型   | 可读 | 可写 | 说明                                                         |
+| 名称    | 类型   | 只读 | 可选 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| params | [DSACommonParamsSpec](#dsacommonparamsspec10) | 是   | 是   | 指定DSA算法中公私钥都包含的公共参数。 |
-| sk | bigint | 是   | 是   | 指定DSA算法的私钥sk。 |
-| pk | bigint | 是   | 是   | 指定DSA算法的公钥pk。 |
+| params | [DSACommonParamsSpec](#dsacommonparamsspec10) | 否   | 否   | 指定DSA算法中公私钥都包含的公共参数。 |
+| sk | bigint | 否   | 否   | 指定DSA算法的私钥值sk。 |
+| pk | bigint | 否   | 否   | 指定DSA算法的公钥值pk。 |
 
 ## ECField<sup>10+</sup>
 
-指定椭圆曲线的域。当前只支持Fp域。
+指定椭圆曲线的域类型。当前只支持Fp域。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
-| 名称    | 类型   | 可读 | 可写 | 说明                                                         |
+| 名称    | 类型   | 只读 | 可选 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| fieldType | string | 是   | 是   | 指定椭圆曲线域的类型，当前只支持"Fp"。 |
+| fieldType | string | 否   | 否   | 指定椭圆曲线域的类型，当前只支持"Fp"。 |
 
 ## ECFieldFp<sup>10+</sup>
 
-指定椭圆曲线素数域。是[ECField](#ecfield10)的子类。
+指定椭圆曲线的素数域。是[ECField](#ecfield10)的子类。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 10-11系统能力为SystemCapability.Security.CryptoFramework。从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
-| 名称    | 类型   | 可读 | 可写 | 说明                                                         |
+| 名称    | 类型   | 只读 | 可选 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| p | bigint | 是   | 是   | 指定素数p。 |
+| p | bigint | 否   | 否   | 指定素数p的值。 |
 
 ## Point<sup>10+</sup>
 
@@ -348,12 +349,12 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
-| 名称    | 类型   | 可读 | 可写 | 说明                                                         |
+| 名称    | 类型   | 只读 | 可选 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| x | bigint | 是   | 是   | 指定椭圆曲线上，点的x坐标。 |
-| y | bigint | 是   | 是   | 指定椭圆曲线上，点的y坐标。 |
+| x | bigint | 否   | 否   | 指定椭圆曲线上点的x坐标。 |
+| y | bigint | 否   | 否   | 指定椭圆曲线上点的y坐标。 |
 
 ## ECCCommonParamsSpec<sup>10+</sup>
 
@@ -365,16 +366,16 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
-| 名称    | 类型   | 可读 | 可写 | 说明                                                         |
+| 名称    | 类型   | 只读 | 可选 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| field | [ECField](#ecfield10) | 是   | 是   | 指定椭圆曲线的域（当前只支持Fp域）。 |
-| a | bigint | 是   | 是   | 指定椭圆曲线的第一个系数a。 |
-| b | bigint | 是   | 是   | 指定椭圆曲线的第二个系数b。 |
-| g | [Point](#point10) | 是   | 是   | 指定基点g。 |
-| n | bigint | 是   | 是   | 指定基点g的阶数n。 |
-| h | number | 是   | 是   | 指定余因子h。 |
+| field | [ECField](#ecfield10) | 否   | 否   | 指定椭圆曲线的域（当前只支持Fp域）。 |
+| a | bigint | 否   | 否   | 指定椭圆曲线的第一个系数a。 |
+| b | bigint | 否   | 否   | 指定椭圆曲线的第二个系数b。 |
+| g | [Point](#point10) | 否   | 否   | 指定基点g。 |
+| n | bigint | 否   | 否   | 指定基点g的阶数n。 |
+| h | number | 否   | 否   | 指定余因子h。 |
 
 ## ECCPriKeySpec<sup>10+</sup>
 
@@ -386,12 +387,12 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
-| 名称    | 类型   | 可读 | 可写 | 说明                                                         |
+| 名称    | 类型   | 只读 | 可选 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| params | [ECCCommonParamsSpec](#ecccommonparamsspec10) | 是   | 是   | 指定ECC算法中公私钥都包含的公共参数。 |
-| sk | bigint | 是   | 是   | 指定ECC算法的私钥sk。 |
+| params | [ECCCommonParamsSpec](#ecccommonparamsspec10) | 否   | 否   | 指定ECC算法中公私钥都包含的公共参数。 |
+| sk | bigint | 否   | 否   | 指定ECC算法的私钥sk。 |
 
 ## ECCPubKeySpec<sup>10+</sup>
 
@@ -403,12 +404,12 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
-| 名称    | 类型   | 可读 | 可写 | 说明                                                         |
+| 名称    | 类型   | 只读 | 可选 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| params | [ECCCommonParamsSpec](#ecccommonparamsspec10) | 是   | 是   | 指定ECC算法中公私钥都包含的公共参数。 |
-| pk | [Point](#point10) | 是   | 是   | 指定ECC算法的公钥pk。 |
+| params | [ECCCommonParamsSpec](#ecccommonparamsspec10) | 否   | 否   | 指定ECC算法中公私钥都包含的公共参数。 |
+| pk | [Point](#point10) | 否   | 否   | 指定ECC算法的公钥pk。 |
 
 ## ECCKeyPairSpec<sup>10+</sup>
 
@@ -420,13 +421,13 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
-| 名称    | 类型   | 可读 | 可写 | 说明                                                         |
+| 名称    | 类型   | 只读 | 可选 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| params | [ECCCommonParamsSpec](#ecccommonparamsspec10) | 是   | 是   | 指定ECC算法中公私钥都包含的公共参数。 |
-| sk | bigint | 是   | 是   | 指定ECC算法的私钥sk。 |
-| pk | [Point](#point10) | 是   | 是   | 指定ECC算法的公钥pk。 |
+| params | [ECCCommonParamsSpec](#ecccommonparamsspec10) | 否   | 否   | 指定ECC算法中公私钥都包含的公共参数。 |
+| sk | bigint | 否   | 否   | 指定ECC算法的私钥sk。 |
+| pk | [Point](#point10) | 否   | 否   | 指定ECC算法的公钥pk。 |
 
 ## RSACommonParamsSpec<sup>10+</sup>
 
@@ -438,11 +439,11 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
-| 名称    | 类型   | 可读 | 可写 | 说明                                                         |
+| 名称    | 类型   | 只读 | 可选 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| n | bigint | 是   | 是   | 指定模数n。 |
+| n | bigint | 否   | 否   | 指定模数n。 |
 
 ## RSAPubKeySpec<sup>10+</sup>
 
@@ -454,12 +455,12 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
-| 名称    | 类型   | 可读 | 可写 | 说明                                                         |
+| 名称    | 类型   | 只读 | 可选 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| params | [RSACommonParamsSpec](#rsacommonparamsspec10) | 是   | 是   | 指定RSA算法中公私钥都包含的公共参数。 |
-| pk | bigint | 是   | 是   | 指定RSA算法的公钥pk。 |
+| params | [RSACommonParamsSpec](#rsacommonparamsspec10) | 否   | 否   | 指定RSA算法中公私钥都包含的公共参数。 |
+| pk | bigint | 否   | 否   | 指定RSA算法的公钥pk。 |
 
 ## RSAKeyPairSpec<sup>10+</sup>
 
@@ -471,13 +472,13 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
-| 名称    | 类型   | 可读 | 可写 | 说明                                                         |
+| 名称    | 类型   | 只读 | 可选 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| params | [RSACommonParamsSpec](#rsacommonparamsspec10) | 是   | 是   | 指定RSA算法中公私钥都包含的公共参数。 |
-| sk | bigint | 是   | 是   | 指定RSA算法的私钥sk。 |
-| pk | bigint | 是   | 是   | 指定RSA算法的公钥pk。 |
+| params | [RSACommonParamsSpec](#rsacommonparamsspec10) | 否   | 否   | 指定RSA算法中公私钥都包含的公共参数。 |
+| sk | bigint | 否   | 否   | 指定RSA算法的私钥sk。 |
+| pk | bigint | 否   | 否   | 指定RSA算法的公钥pk。 |
 
 ## ED25519PriKeySpec<sup>11+</sup>
 
@@ -489,11 +490,11 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
-| 名称 | 类型   | 可读 | 可写 | 说明                      |
+| 名称 | 类型   | 只读 | 可选 | 说明                      |
 | ---- | ------ | ---- | ---- | ------------------------- |
-| sk   | bigint | 是   | 是   | 指定ED25519算法的私钥sk。 |
+| sk   | bigint | 否   | 否   | 指定ED25519算法的私钥sk。 |
 
 ## ED25519PubKeySpec<sup>11+</sup>
 
@@ -505,11 +506,11 @@ API version11系统能力为SystemCapability.Security.CryptoFramework；从API v
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
-| 名称 | 类型   | 可读 | 可写 | 说明                      |
+| 名称 | 类型   | 只读 | 可选 | 说明                      |
 | ---- | ------ | ---- | ---- | ------------------------- |
-| pk   | bigint | 是   | 是   | 指定ED25519算法的公钥pk。 |
+| pk   | bigint | 否   | 否   | 指定ED25519算法的公钥pk。 |
 
 ## ED25519KeyPairSpec<sup>11+</sup>
 
@@ -521,12 +522,12 @@ API version11系统能力为SystemCapability.Security.CryptoFramework；从API v
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
-| 名称 | 类型   | 可读 | 可写 | 说明                      |
+| 名称 | 类型   | 只读 | 可选 | 说明                      |
 | ---- | ------ | ---- | ---- | ------------------------- |
-| sk   | bigint | 是   | 是   | 指定ED25519算法的私钥sk。 |
-| pk   | bigint | 是   | 是   | 指定ED25519算法的公钥pk。 |
+| sk   | bigint | 否   | 否   | 指定ED25519算法的私钥sk。 |
+| pk   | bigint | 否   | 否   | 指定ED25519算法的公钥pk。 |
 
 ## X25519PriKeySpec<sup>11+</sup>
 
@@ -538,11 +539,11 @@ API version11系统能力为SystemCapability.Security.CryptoFramework；从API v
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
-| 名称 | 类型   | 可读 | 可写 | 说明                     |
+| 名称 | 类型   | 只读 | 可选 | 说明                     |
 | ---- | ------ | ---- | ---- | ------------------------ |
-| sk   | bigint | 是   | 是   | 指定X25519算法的私钥sk。 |
+| sk   | bigint | 否   | 否   | 指定X25519算法的私钥sk。 |
 
 ## X25519PubKeySpec<sup>11+</sup>
 
@@ -554,11 +555,11 @@ API version11系统能力为SystemCapability.Security.CryptoFramework；从API v
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
-| 名称 | 类型   | 可读 | 可写 | 说明                     |
+| 名称 | 类型   | 只读 | 可选 | 说明                     |
 | ---- | ------ | ---- | ---- | ------------------------ |
-| pk   | bigint | 是   | 是   | 指定X25519算法的公钥pk。 |
+| pk   | bigint | 否   | 否   | 指定X25519算法的公钥pk。 |
 
 ## X25519KeyPairSpec<sup>11+</sup>
 
@@ -570,12 +571,12 @@ API version11系统能力为SystemCapability.Security.CryptoFramework；从API v
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
-| 名称 | 类型   | 可读 | 可写 | 说明                     |
+| 名称 | 类型   | 只读 | 可选 | 说明                     |
 | ---- | ------ | ---- | ---- | ------------------------ |
-| sk   | bigint | 是   | 是   | 指定X25519算法的私钥sk。 |
-| pk   | bigint | 是   | 是   | 指定X25519算法的公钥pk。 |
+| sk   | bigint | 否   | 否   | 指定X25519算法的私钥sk。 |
+| pk   | bigint | 否   | 否   | 指定X25519算法的公钥pk。 |
 
 ## DHCommonParamsSpec<sup>11+</sup>
 
@@ -587,13 +588,13 @@ API version11系统能力为SystemCapability.Security.CryptoFramework；从API v
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
-| 名称 | 类型   | 可读 | 可写 | 说明                                |
+| 名称 | 类型   | 只读 | 可选 | 说明                                |
 | ---- | ------ | ---- | ---- | ----------------------------------- |
-| p    | bigint | 是   | 是   | 指定DH算法中大素数p。               |
-| g    | bigint | 是   | 是   | 指定DH算法中参数g。                 |
-| l    | number | 是   | 是   | 指定DH算法中私钥的长度，单位为bit。 |
+| p    | bigint | 否   | 否   | 指定DH算法中大素数p。               |
+| g    | bigint | 否   | 否   | 指定DH算法中参数g。                 |
+| l    | number | 否   | 否   | 指定DH算法中私钥的长度，单位为bit。 |
 
 ## DHPriKeySpec<sup>11+</sup>
 
@@ -605,12 +606,12 @@ API version11系统能力为SystemCapability.Security.CryptoFramework；从API v
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
-| 名称   | 类型               | 可读 | 可写 | 说明                                 |
+| 名称   | 类型               | 只读 | 可选 | 说明                                 |
 | ------ | ------------------ | ---- | ---- | ------------------------------------ |
-| params | [DHCommonParamsSpec](#dhcommonparamsspec11) | 是   | 是   | 指定DH算法中公私钥都包含的公共参数。 |
-| sk     | bigint             | 是   | 是   | 指定DH算法的私钥sk。                 |
+| params | [DHCommonParamsSpec](#dhcommonparamsspec11) | 否   | 否   | 指定DH算法中公私钥都包含的公共参数。 |
+| sk     | bigint             | 否   | 否   | 指定DH算法的私钥sk。                 |
 
 ## DHPubKeySpec<sup>11+</sup>
 
@@ -622,12 +623,12 @@ API version11系统能力为SystemCapability.Security.CryptoFramework；从API v
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
-| 名称   | 类型               | 可读 | 可写 | 说明                                 |
+| 名称   | 类型               | 只读 | 可选 | 说明                                 |
 | ------ | ------------------ | ---- | ---- | ------------------------------------ |
-| params | [DHCommonParamsSpec](#dhcommonparamsspec11) | 是   | 是   | 指定DH算法中公私钥都包含的公共参数。 |
-| pk     | bigint             | 是   | 是   | 指定DH算法的公钥pk。                 |
+| params | [DHCommonParamsSpec](#dhcommonparamsspec11) | 否   | 否   | 指定DH算法中公私钥都包含的公共参数。 |
+| pk     | bigint             | 否   | 否   | 指定DH算法的公钥pk。                 |
 
 ## DHKeyPairSpec<sup>11+</sup>
 
@@ -639,13 +640,13 @@ API version11系统能力为SystemCapability.Security.CryptoFramework；从API v
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
-| 名称   | 类型               | 可读 | 可写 | 说明                                 |
+| 名称   | 类型               | 只读 | 可选 | 说明                                 |
 | ------ | ------------------ | ---- | ---- | ------------------------------------ |
-| params | [DHCommonParamsSpec](#dhcommonparamsspec11) | 是   | 是   | 指定DH算法中公私钥都包含的公共参数。 |
-| sk     | bigint             | 是   | 是   | 指定DH算法的私钥sk。                 |
-| pk     | bigint             | 是   | 是   | 指定DH算法的公钥pk。                 |
+| params | [DHCommonParamsSpec](#dhcommonparamsspec11) | 否   | 否   | 指定DH算法中公私钥都包含的公共参数。 |
+| sk     | bigint             | 否   | 否   | 指定DH算法的私钥sk。                 |
+| pk     | bigint             | 否   | 否   | 指定DH算法的公钥pk。                 |
 
 ## KdfSpec<sup>11+</sup>
 
@@ -655,11 +656,11 @@ API version11系统能力为SystemCapability.Security.CryptoFramework；从API v
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Kdf
 
-API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Kdf
+API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Kdf。
 
-| 名称    | 类型   | 可读 | 可写 | 说明                                                         |
+| 名称    | 类型   | 只读 | 可选 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| algName | string | 是   | 是   | 指明密钥派生函数的算法名，如"PBKDF2"。 |
+| algName | string | 否   | 否   | 指明密钥派生函数的算法名，如"PBKDF2"。 |
 
 ## PBKDF2Spec<sup>11+</sup>
 
@@ -669,18 +670,18 @@ API version11系统能力为SystemCapability.Security.CryptoFramework；从API v
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Kdf
 
-API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Kdf
+API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Kdf。
 
-| 名称    | 类型   | 可读 | 可写 | 说明                                                         |
+| 名称    | 类型   | 只读 | 可选 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| password | string \| Uint8Array | 是   | 是   | 用户输入的原始密码。|
-| salt | Uint8Array | 是   | 是   | 盐值。 |
-| iterations | number | 是   | 是   | 迭代次数，需要为正整数。 |
-| keySize | number | 是   | 是   | 派生得到的密钥字节长度。 |
+| password | string \| Uint8Array | 否   | 否   | 用户输入的原始密码。|
+| salt | Uint8Array | 否   | 否   | 盐值。 |
+| iterations | number | 否   | 否   | 迭代次数，需要为正整数。 |
+| keySize | number | 否   | 否   | 派生得到的密钥字节长度。 |
 
 > **说明：**
 >
-> password指的是原始密码，如果使用string类型，需要直接传入用于密钥派生的数据，而不是HexString、base64等字符串类型，同时需要确保该字符串为utf-8编码，否则派生结果会有差异。
+>  password 是原始密码。如果使用 string 类型，需直接传入用于密钥派生的数据，而不是 HexString 或 base64 等字符串类型，并确保该字符串为 UTF-8 编码，否则派生结果会有差异。
 
 ## HKDFSpec<sup>12+</sup>
 
@@ -690,12 +691,12 @@ API version11系统能力为SystemCapability.Security.CryptoFramework；从API v
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Kdf
 
-| 名称    | 类型   | 可读 | 可写 | 说明                                                         |
+| 名称    | 类型   | 只读 | 可选 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| key | string \| Uint8Array | 是   | 是   | 密钥材料。|
-| salt | Uint8Array | 是   | 是   | 盐值。 |
-| info | Uint8Array | 是   | 是   | 拓展信息。 |
-| keySize | number | 是   | 是   | 派生得到的密钥字节长度。 |
+| key | string \| Uint8Array | 否   | 否   | 密钥材料。|
+| salt | Uint8Array | 否   | 否   | 盐值。 |
+| info | Uint8Array | 否   | 否   | 拓展信息。 |
+| keySize | number | 否   | 否   | 派生得到的密钥字节长度。 |
 
 > **说明：**
 >
@@ -715,13 +716,13 @@ API version11系统能力为SystemCapability.Security.CryptoFramework；从API v
 
 | 名称    | 类型   | 只读 | 可选 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| passphrase | string \| Uint8Array | 是   | 否   | 用户输入的原始密码。|
-| salt | Uint8Array | 是   | 否   | 盐值。 |
-| n | number | 是   | 否   | 迭代次数，需要为正整数。 |
-| p | number | 是   | 否   | 并行化参数，需要为正整数。 |
-| r | number | 是   | 否   | 块大小参数，需要为正整数。 |
-| maxMemory | number | 是   | 否   | 最大内存限制参数，需要为正整数。 |
-| keySize | number | 是   | 否   | 派生得到的密钥字节长度，需要为正整数。 |
+| passphrase | string \| Uint8Array | 否   | 否   | 用户输入的原始密码。|
+| salt | Uint8Array | 否   | 否   | 盐值。 |
+| n | number | 否   | 否   | 迭代次数，需要为正整数。 |
+| p | number | 否   | 否   | 并行化参数，需要为正整数。 |
+| r | number | 否   | 否   | 块大小参数，需要为正整数。 |
+| maxMemory | number | 否   | 否   | 最大内存限制参数，需要为正整数。 |
+| keySize | number | 否   | 否   | 派生得到的密钥字节长度，需要为正整数。 |
 
 > **说明：**
 >
@@ -735,12 +736,12 @@ SM2密文参数，使用SM2密文格式转换函数进行格式转换时，需�
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Cipher
 
-| 名称    | 类型   | 可读 | 可写 | 说明                                                         |
+| 名称    | 类型   | 只读 | 可选 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| xCoordinate | bigint | 是   | 是   | x分量。|
-| yCoordinate | bigint | 是   | 是   | y分量。 |
-| cipherTextData | Uint8Array | 是   | 是   | 密文。|
-| hashData | Uint8Array | 是   | 是   | 杂凑值。 |
+| xCoordinate | bigint | 否   | 否   | x分量。|
+| yCoordinate | bigint | 否   | 否   | y分量。 |
+| cipherTextData | Uint8Array | 否   | 否   | 密文。|
+| hashData | Uint8Array | 否   | 否   | 杂凑值。 |
 
 > **说明：**
 >
@@ -759,8 +760,8 @@ RSA私钥编码参数，使用获取私钥字符串时，可以添加此参数�
 
 | 名称    | 类型   | 只读 | 可选 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| password | string | 是   | 否   | 密码。|
-| cipherName | string | 是   | 否   | 算法名。 |
+| password | string | 否   | 否   | 密码。|
+| cipherName | string | 否   | 否   | 算法名。 |
 
 > **说明：**
 >
@@ -769,7 +770,7 @@ RSA私钥编码参数，使用获取私钥字符串时，可以添加此参数�
 > - cipherName是必选参数，可以指定编码用到的算法。当前仅支持AES-128-CBC、AES-192-CBC、AES-256-CBC、DES-EDE3-CBC。
 
 ## MacSpec<sup>18+</sup>
-消息认证码参数，计算HMAC、CMAC消息认证码时，需要构建其子类对象并作为输入。
+消息认证码参数，计算HMAC、CMAC消息认证码时，需要构建子类对象并作为输入参数。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -777,11 +778,11 @@ RSA私钥编码参数，使用获取私钥字符串时，可以添加此参数�
 
 | 名称    | 类型   | 只读 | 可选 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| algName | string | 是   | 否   | 消息验证码算法名。|
+| algName | string | 否   | 否   | 消息验证码算法名。|
 
 > **说明：**
 >
-> algName是必选参数，表示消息验证码使用的算法。
+> algName是必选参数，表示消息验证码算法。
 
 ## HmacSpec<sup>18+</sup>
 密钥派生函数参数[MacSpec](#macspec18)的子类，作为HMAC消息验证码计算的输入。
@@ -792,11 +793,11 @@ RSA私钥编码参数，使用获取私钥字符串时，可以添加此参数�
 
 | 名称    | 类型   | 只读 | 可选 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| mdName | string | 是   | 否   | 摘要算法名。|
+| mdName | string | 否   | 否   | 摘要算法名。|
 
 > **说明：**
 >
-> mdName是必选参数，表示HMAC消息验证码使用的摘要算法名。
+> mdName是必选参数，表示HMAC摘要算法。
 
 ## CmacSpec<sup>18+</sup>
 密钥派生函数参数[MacSpec](#macspec18)的子类，作为CMAC消息验证码计算的输入。
@@ -807,15 +808,32 @@ RSA私钥编码参数，使用获取私钥字符串时，可以添加此参数�
 
 | 名称    | 类型   | 只读 | 可选 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| cipherName | string | 是   | 否   | 对称加密算法名。 |
+| cipherName | string | 否   | 否   | 对称加密算法名。 |
 
 > **说明：**
 >
-> cipherName是必选参数，表示CMAC消息验证码使用的对称加密算法名。
+> cipherName是必选参数，表示CMAC对称加密算法。
+
+## EccSignatureSpec<sup>20+</sup>
+
+包含（r、s）的sm2签名数据的结构体。
+
+> **说明：**
+>
+> r和s的长度各为256位。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.CryptoFramework.Signature
+
+| 名称    | 类型   | 只读 | 可选 | 说明                                                         |
+| ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
+| r | bigint | 否   | 否   | r分量。|
+| s | bigint | 否   | 否   | s分量。 |
 
 ## Key
 
-密钥（父类），在运行密码算法（如加解密）时需要提前生成其子类对象，并传入[Cipher](#cipher)实例的[init()](#init-2)方法。
+密钥（父类），在运行密码算法（如加解密）时需要提前生成其子类对象，并传入[Cipher](#cipher)实例的[init()](#init-1)方法。
 
 密钥可以通过密钥生成器来生成。
 
@@ -825,9 +843,9 @@ RSA私钥编码参数，使用获取私钥字符串时，可以添加此参数�
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key。
 
-| 名称    | 类型   | 可读 | 可写 | 说明                         |
+| 名称    | 类型   | 只读 | 可选 | 说明                         |
 | ------- | ------ | ---- | ---- | ---------------------------- |
 | format  | string | 是   | 否   | 密钥的格式。                 |
 | algName | string | 是   | 否   | 密钥对应的算法名（如果是对称密钥，则含密钥长度，否则不含密钥长度）。 |
@@ -836,17 +854,17 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 
 getEncoded(): DataBlob
 
-同步方法，获取密钥数据的字节流。密钥可以为对称密钥，公钥或者私钥。其中，公钥格式满足ASN.1语法、X.509规范、DER编码格式；私钥格式满足ASN.1语法，PKCS#8规范、DER编码方式。
+同步方法，获取密钥数据的字节流。密钥可以是对称密钥、公钥或私钥。公钥格式需符合ASN.1语法、X.509规范和DER编码；私钥格式需符合ASN.1语法、PKCS#8规范和DER编码。
 
 > **说明：**
 >
-> RSA算法使用密钥参数生成私钥时，私钥对象不支持getEncoded。
+> RSA算法使用密钥参数生成私钥时，私钥对象支持getEncoded。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key。
 
 **返回值：**
 
@@ -878,7 +896,7 @@ async function testGenerateAesKey() {
 
 ## SymKey
 
-对称密钥，是[Key](#key)的子类，在对称加解密时需要将其对象传入[Cipher](#cipher)实例的[init()](#init-2)方法使用。
+对称密钥，是[Key](#key)的子类，在对称加解密时需要将其对象传入[Cipher](#cipher)实例的[init()](#init-1)方法使用。
 
 对称密钥可以通过对称密钥生成器[SymKeyGenerator](#symkeygenerator)来生成。
 
@@ -886,13 +904,13 @@ async function testGenerateAesKey() {
 
 clearMem(): void
 
-同步方法，将系统底层内存中的的密钥内容清零。建议在不再使用对称密钥实例时，调用本函数，避免内存中密钥数据存留过久。
+同步方法，将系统底层内存中的密钥内容清零。建议在不再使用对称密钥实例时调用此函数，避免密钥数据在内存中存留过久。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.SymKey
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.SymKey
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.SymKey。
 
 **示例：**
 
@@ -922,7 +940,7 @@ getAsyKeySpec(itemType: AsyKeySpecItem): bigint | string | number
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 **参数：**
 
@@ -937,7 +955,7 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 | bigint \| string \| number | 用于查看密钥参数的具体内容。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -959,11 +977,12 @@ console.info('ecc item --- p: ' + p.toString(16));
 
 getEncodedDer(format: string): DataBlob
 
-支持根据指定的密钥格式（如采用哪个规范、是否压缩等），获取满足ASN.1语法、DER编码的公钥数据。当前仅支持获取ECC压缩/非压缩格式的公钥数据。
+支持根据指定的密钥格式（如规范、压缩状态等），获取符合ASN.1语法和DER编码的公钥数据。目前仅支持ECC压缩和非压缩格式的公钥数据。
 
 > **说明：**
 >
-> 本接口和[Key.getEncoded()](#getencoded)的区别是：<br/>
+> 本接口和[Key.getEncoded()](#getencoded)的区别是：
+>
 > 1. 本接口可根据入参决定数据的输出格式。
 > 2. [Key.getEncoded()](#getencoded)接口，不支持指定密钥格式，生成的数据格式与原始数据格式保持一致。（原始数据格式，指通过[convertKey](#convertkey-3)接口生成密钥对象时的数据格式）。
 
@@ -981,10 +1000,10 @@ getEncodedDer(format: string): DataBlob
 
 | 类型                        | 说明                              |
 | --------------------------- | --------------------------------- |
-| [DataBlob](#datablob) | 返回指定密钥格式的，满足ASN.1语法、DER编码的公钥数据。 |
+| [DataBlob](#datablob) | 返回满足ASN.1语法和DER编码的指定密钥格式的公钥数据。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -1005,7 +1024,7 @@ console.info('returnBlob data：' + returnBlob.data);
 
 getEncodedPem(format: string): string
 
-同步方法，获取密钥数据的字符串。密钥可以为RSA公钥或者私钥。其中，公钥格式满足X.509规范、PKCS#1规范和PEM编码格式。
+同步方法，获取密钥数据的字符串。密钥可以是RSA公钥或私钥。公钥需符合X.509、PKCS#1规范，并采用PEM编码。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1024,7 +1043,7 @@ getEncodedPem(format: string): string
 | string | 用于获取指定密钥格式的具体内容。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -1063,13 +1082,13 @@ function TestPubKeyPkcs1ToX509BySync1024() {
 
 clearMem(): void
 
-同步方法，将系统底层内存中的的密钥内容清零。
+同步方法，清零系统底层内存中的密钥内容。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 **示例：**
 
@@ -1089,7 +1108,7 @@ getAsyKeySpec(itemType: AsyKeySpecItem): bigint | string | number
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 **参数：**
 
@@ -1104,7 +1123,7 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 | bigint \| string \| number | 用于查看密钥参数的具体内容。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -1147,10 +1166,10 @@ getEncodedDer(format: string): DataBlob
 
 | 类型                        | 说明                              |
 | --------------------------- | --------------------------------- |
-| [DataBlob](#datablob) | 返回指定密钥格式的，满足ASN.1语法、DER编码的ecc私钥数据。 |
+| [DataBlob](#datablob) | 返回满足ASN.1语法和DER编码的指定密钥格式的ECC私钥数据。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -1171,7 +1190,7 @@ console.info('returnBlob data：' + returnBlob.data);
 
 getEncodedPem(format: string): string
 
-同步方法，获取密钥数据的字符串。密钥可以为RSA公钥或者私钥。其中，私钥格式满足PKCS#8规范、PKCS#1规范和PEM编码方式。
+同步方法，获取密钥数据的字符串。密钥可以是RSA公钥或私钥。私钥格式需符合PKCS#8、PKCS#1规范，并采用PEM编码。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1190,7 +1209,7 @@ getEncodedPem(format: string): string
 | string | 用于获取指定密钥格式的具体内容。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍请参见 [crypto framework 错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -1233,7 +1252,7 @@ function TestPriKeyPkcs1ToPkcs8BySync1024() {
 
 getEncodedPem(format: string, config: KeyEncodingConfig): string
 
-同步方法，获取密钥数据的字符串。密钥可以为RSA公钥或者私钥。其中，私钥格式满足PKCS#8规范、PKCS#1规范和PEM编码方式。
+同步方法，获取密钥数据的字符串。支持RSA公钥和私钥。私钥格式满足PKCS#8规范、PKCS#1规范和PEM编码方式。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -1299,13 +1318,13 @@ function TestPriKeyPkcs1Encoded() {
 
 ## KeyPair
 
-非对称密钥对，包含：公钥与私钥。
+非对称密钥对包含公钥和私钥。
 
 可以通过非对称密钥生成器[AsyKeyGenerator](#asykeygenerator)、[AsyKeyGeneratorBySpec](#asykeygeneratorbyspec10)来生成。
 
 > **说明：**
 >
-> KeyPair对象中的pubKey对象和priKey对象，作为KeyPair对象中的一个参数存在，当离开KeyPair对象作用域时，其内部对象可能被析构。
+> KeyPair对象中的pubKey对象和priKey对象是KeyPair对象的成员。当KeyPair对象超出作用域时，其内部的pubKey对象和priKey对象将被析构。
 >
 > 业务方使用时应持有KeyPair对象的引用，而非内部pubKey或priKey对象的引用。
 
@@ -1315,9 +1334,9 @@ function TestPriKeyPkcs1Encoded() {
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
-| 名称    | 类型   | 可读 | 可写 | 说明           |
+| 名称    | 类型   | 只读 | 可选 | 说明           |
 | ------- | ------ | ---- | ---- | ------------ |
 | priKey  | [PriKey](#prikey) | 是   | 否   | 私钥。      |
 | pubKey | [PubKey](#pubkey) | 是   | 否   | 公钥。       |
@@ -1326,7 +1345,7 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 
 createSymKeyGenerator(algName: string): SymKeyGenerator
 
-通过指定算法名称的字符串，获取相应的对称密钥生成器实例。
+通过指定算法名称获取相应的对称密钥生成器实例。
 
 支持的规格详见[对称密钥生成和转换规格](../../security/CryptoArchitectureKit/crypto-sym-key-generation-conversion-spec.md)。
 
@@ -1334,7 +1353,7 @@ createSymKeyGenerator(algName: string): SymKeyGenerator
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.SymKey
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.SymKey
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.SymKey。
 
 **参数：**
 
@@ -1368,7 +1387,7 @@ let symKeyGenerator = cryptoFramework.createSymKeyGenerator('3DES192');
 
 对称密钥生成器。
 
-在使用该类的方法前，需要先使用[createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator)方法构建一个SymKeyGenerator实例。
+在使用该类的方法前，先使用[createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator)构建SymKeyGenerator实例。
 
 ### 属性
 
@@ -1376,9 +1395,9 @@ let symKeyGenerator = cryptoFramework.createSymKeyGenerator('3DES192');
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.SymKey
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.SymKey
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.SymKey。
 
-| 名称    | 类型   | 可读 | 可写 | 说明                           |
+| 名称    | 类型   | 只读 | 可选 | 说明                           |
 | ------- | ------ | ---- | ---- | ------------------------------ |
 | algName | string | 是   | 否   | 对称密钥生成器指定的算法名称。 |
 
@@ -1394,13 +1413,13 @@ generateSymKey(callback: AsyncCallback\<SymKey>): void
 
 > **说明：**
 >
-> 对于HMAC算法的对称密钥，如果已经在创建对称密钥生成器时指定了具体哈希算法（如指定“HMAC|SHA256”），则会随机生成与哈希长度一致的二进制密钥数据（如指定“HMAC|SHA256”会随机生成256位的密钥数据）。<br/>如果在创建对称密钥生成器时没有指定具体哈希算法，如仅指定“HMAC”，则不支持随机生成对称密钥数据，可通过[convertKey](#convertkey)方式生成对称密钥数据。
+> 对于HMAC算法的对称密钥，如果在创建对称密钥生成器时指定了具体哈希算法（如“HMAC|SHA256”），则会随机生成与哈希长度一致的二进制密钥数据（如256位的密钥数据）。如果未指定具体哈希算法，如仅指定“HMAC”，则不支持随机生成对称密钥数据，可通过[convertKey](#convertkey)方式生成对称密钥数据。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.SymKey
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.SymKey
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.SymKey。
 
 **参数：**
 
@@ -1409,7 +1428,7 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 | callback | AsyncCallback\<[SymKey](#symkey)> | 是   | 回调函数。当生成对称密钥成功，err为undefined，data为获取到的SymKey；否则为错误对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
@@ -1440,7 +1459,7 @@ generateSymKey(): Promise\<SymKey>
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.SymKey
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.SymKey
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.SymKey。
 
 **返回值：**
 
@@ -1526,7 +1545,7 @@ convertKey(key: DataBlob, callback: AsyncCallback\<SymKey>): void
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.SymKey
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.SymKey
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.SymKey。
 
 **参数：**
 
@@ -1536,7 +1555,7 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 | callback | AsyncCallback\<[SymKey](#symkey)> | 是   | 回调函数。当生成对称密钥成功，err为undefined，data为获取到的SymKey；否则为错误对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息                                               |
 | -------- | --------------------------------------------------- |
@@ -1572,13 +1591,13 @@ convertKey(key: DataBlob): Promise\<SymKey>
 
 异步根据指定数据生成对称密钥，通过Promise获取结果。
 
-必须在使用[createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator)创建对称密钥生成器后，才能使用本函数。
+在使用本函数前，需先通过[createSymKeyGenerator](#cryptoframeworkcreatesymkeygenerator)创建对称密钥生成器。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.SymKey
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.SymKey
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.SymKey。
 
 **参数：**
 
@@ -1593,7 +1612,7 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 | Promise\<[SymKey](#symkey)> | Promise对象，返回对称密钥SymKey。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息                                          |
 | -------- | --------------------------------------------- |
@@ -1637,7 +1656,7 @@ convertKeySync(key: DataBlob): SymKey
 
 > **说明：**
 >
-> 对于HMAC算法的对称密钥，如果已经在创建对称密钥生成器时指定了具体哈希算法（如指定“HMAC|SHA256”），则需要传入与哈希长度一致的二进制密钥数据（如传入SHA256对应256位的密钥数据）。<br/>如果在创建对称密钥生成器时没有指定具体哈希算法，如仅指定“HMAC”，则支持传入长度在[1,4096]范围内（单位为byte）的任意二进制密钥数据。
+> 对于HMAC算法的对称密钥，如果在创建对称密钥生成器时指定了具体哈希算法（如“HMAC|SHA256”），则需要传入与哈希长度一致的二进制密钥数据（如SHA256对应的256位密钥数据）。如果在创建对称密钥生成器时未指定具体哈希算法，如仅指定“HMAC”，则支持传入长度在1到4096字节范围内的任意二进制密钥数据。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1648,6 +1667,12 @@ convertKeySync(key: DataBlob): SymKey
 | 参数名     | 类型          | 必填 | 说明                       |
 | -------- | ------------------- | ---- | ---------------------|
 | key      | [DataBlob](#datablob)             | 是   | 指定的对称密钥材料。                                         |
+
+**返回值：**
+
+| 类型                        | 说明                              |
+| --------------------------- | --------------------------------- |
+| [SymKey](#symkey) | 对称密钥。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
@@ -1688,7 +1713,7 @@ createAsyKeyGenerator(algName: string): AsyKeyGenerator
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 **参数：**
 
@@ -1700,7 +1725,7 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 
 | 类型            | 说明                         |
 | --------------- | ---------------------------- |
-| [AsyKeyGenerator](#asykeygenerator) | 返回非对称密钥生成器的对象。 |
+| [AsyKeyGenerator](#asykeygenerator) | 返回非对称密钥生成器。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
@@ -1729,9 +1754,9 @@ let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator('ECC256');
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
-| 名称    | 类型   | 可读 | 可写 | 说明                             |
+| 名称    | 类型   | 只读 | 可选 | 说明                             |
 | ------- | ------ | ---- | ---- | -------------------------------- |
 | algName | string | 是   | 否   | 非对称密钥生成器指定的算法名称。 |
 
@@ -1745,7 +1770,7 @@ generateKeyPair(callback: AsyncCallback\<KeyPair>): void
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 **参数：**
 
@@ -1754,7 +1779,7 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 | callback | AsyncCallback\<[KeyPair](#keypair)> | 是   | 回调函数，用于获取非对称密钥。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍请参见 [crypto framework错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -1781,13 +1806,13 @@ asyKeyGenerator.generateKeyPair((err, keyPair) => {
 
 generateKeyPair(): Promise\<KeyPair>
 
-异步获取该非对称密钥生成器随机生成的密钥，通过Promise获取结果。
+异步获取非对称密钥生成器随机生成的密钥，通过Promise获取结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 **返回值：**
 
@@ -1796,7 +1821,7 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 | Promise\<[KeyPair](#keypair)> | 使用Promise的方式获取非对称密钥。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍请参见[crypto framework 错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -1823,7 +1848,7 @@ keyGenPromise.then(keyPair => {
 
 generateKeyPairSync(): KeyPair
 
-同步获取该非对称密钥生成器随机生成的密钥。
+同步获取非对称密钥生成器随机生成的密钥。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1836,7 +1861,7 @@ generateKeyPairSync(): KeyPair
 | [KeyPair](#keypair) | 非对称密钥。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍请参见[crypto framework 错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -1872,7 +1897,7 @@ convertKey(pubKey: DataBlob | null, priKey: DataBlob | null, callback: AsyncCall
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 **参数：**
 
@@ -1920,7 +1945,7 @@ convertKey(pubKey: DataBlob | null, priKey: DataBlob | null): Promise\<KeyPair>
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 **参数：**
 
@@ -1977,8 +2002,8 @@ convertKeySync(pubKey: DataBlob | null, priKey: DataBlob | null): KeyPair
 
 | 参数名   | 类型    | 必填 | 说明             |
 | ------ | -------- | ---- | ---------------- |
-| pubKey | [DataBlob](#datablob) \| null<sup>10+</sup> | 是   | 指定的公钥材料。如果公钥不需要转换，可直接传入null。API 10之前只支持DataBlob， API 10之后增加支持null。 |
-| priKey | [DataBlob](#datablob) \| null<sup>10+</sup> | 是   | 指定的私钥材料。如果私钥不需要转换，可直接传入null。API 10之前只支持DataBlob， API 10之后增加支持null。 |
+| pubKey | [DataBlob](#datablob) \| null<sup>10+</sup> | 是   | 指定公钥材料。如果公钥无需转换，传入null。API 10前仅支持DataBlob，API 10起支持传入null。 |
+| priKey | [DataBlob](#datablob) \| null<sup>10+</sup> | 是   | 指定私钥材料。API 10前仅支持DataBlob，API 10起支持传入null。 |
 
 **返回值：**
 
@@ -2019,8 +2044,8 @@ try {
 
 **密钥转换说明**
 
-1. 非对称密钥（RSA、ECC、DSA）的公钥和私钥调用getEncoded()方法后，分别返回X.509格式和PKCS#8格式的二进制数据，其中对于ecc私钥，返回的是RFC5915定义格式。上述数据可用于跨应用传输或持久化存储。
-2. 当调用convertKey方法将外来二进制数据转换为算法库非对称密钥对象时，公钥应满足ASN.1语法、X.509规范、DER编码格式，私钥应满足ASN.1语法、PKCS#8规范、DER编码格式。
+1. 非对称密钥（RSA、ECC、DSA）的公钥和私钥调用 getEncoded() 方法后，分别返回 X.509 格式的二进制数据和 PKCS#8 格式的二进制数据。对于 ECC 私钥，返回的是 RFC5915 定义的格式。这些数据可用于跨应用传输或持久化存储。
+2. 当调用convertKey方法将外来二进制数据转换为算法库非对称密钥对象时，公钥应符合ASN.1语法、X.509规范和DER编码格式；私钥应符合ASN.1语法、PKCS#8规范和DER编码格式。
 3. convertKey方法中，公钥和私钥二进制数据非必选项，可单独传入公钥或私钥的数据，生成对应只包含公钥或私钥的KeyPair对象。
 4. convertKey或convertKeySync方法将外来二进制数据转换为算法库非对称密钥对象时，不会校验生成的密钥对象的规格与创建非对称密钥生成器时指定的密钥规格是否一致。
 
@@ -2122,7 +2147,7 @@ convertPemKey(pubKey: string | null, priKey: string | null, password: string): P
 | ------ | -------- | ---- | ---------------- |
 | pubKey | string \| null | 是  | 指定的公钥材料。如果公钥不需要转换，可直接传入null。|
 | priKey | string \| null | 是  | 指定的私钥材料。如果私钥不需要转换，可直接传入null。注：公钥和私钥材料不能同时为null。|
-| password | string | 是 | 指定口令，用于解密私钥可以传入。|
+| password | string | 是 | 指定口令，用于解密私钥。|
 
 **返回值：**
 
@@ -2175,86 +2200,11 @@ async function TestConvertPemKeyByPromise() {
 }
 ```
 
-### convertPemKey<sup>18+</sup>
-
-convertPemKey(pubKey: string | null, priKey: string | null, password: string): Promise\<KeyPair>
-
-异步获取指定数据生成非对称密钥，通过Promise获取结果。
-
-> **说明：**
-> 1. 当调用convertPemKey方法将外来字符串数据转换为算法库非对称密钥对象时，公钥应满足ASN.1语法、X.509规范、PEM编码格式，私钥应满足ASN.1语法、PKCS#8规范、PEM编码格式。
-> 2. convertPemKey方法中，公钥和私钥字符串数据为非必选项，可单独传入公钥或私钥的数据，生成对应只包含公钥或私钥的KeyPair对象。
-> 3. convertPemKey方法将外来字符串数据转换为算法库非对称密钥对象时，不会校验生成的密钥对象的规格与创建非对称密钥生成器时指定的密钥规格是否一致。
-> 4. password为口令，传入后可以解密加密后的私钥。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
-
-**参数：**
-
-| 参数名   | 类型    | 必填 | 说明             |
-| ------ | -------- | ---- | ---------------- |
-| pubKey | string \| null | 是  | 指定的公钥材料。如果公钥不需要转换，可直接传入null。|
-| priKey | string \| null | 是  | 指定的私钥材料。如果私钥不需要转换，可直接传入null。注：公钥和私钥材料不能同时为null。|
-| password | string | 是 | 指定口令，用于解密私钥可以传入。|
-
-**返回值：**
-
-| 类型              | 说明                              |
-| ----------------- | --------------------------------- |
-| Promise\<[KeyPair](#keypair)> | 使用Promise的方式获取非对称密钥。 |
-
-**错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
-
-| 错误码ID | 错误信息               |
-| -------- | ---------------------- |
-| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.         |
-| 17620001 | memory operation failed.          |
-| 17630001 | crypto operation error.          |
-
-**示例：**
-
-```ts
-import { cryptoFramework } from '@kit.CryptoArchitectureKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let priKeyPkcs1EncodingStr : string =
-  "-----BEGIN RSA PRIVATE KEY-----\n"
-    +"Proc-Type: 4,ENCRYPTED\n"
-    +"DEK-Info: AES-128-CBC,815A066131BF05CF87CE610A59CC69AE\n\n"
-    +"7Jd0vmOmYGFZ2yRY8fqRl3+6rQlFtNcMILvcb5KWHDSrxA0ULmJE7CW0DSRikHoA\n"
-    +"t0KgafhYXeQXh0dRy9lvVRAFSLHCLJVjchx90V7ZSivBFEq7+iTozVp4AlbgYsJP\n"
-    +"vx/1sfZD2WAcyMJ7IDmJyft7xnpVSXsyWGTT4f3eaHJIh1dqjwrso7ucAW0FK6rp\n"
-    +"/TONyOoXNfXtRbVtxNyCWBxt4HCSclDZFvS9y8fz9ZwmCUV7jei/YdzyQI2wnE13\n"
-    +"W8cKlpzRFL6BWi8XPrUtAw5MWeHBAPUgPWMfcmiaeyi5BJFhQCrHLi+Gj4EEJvp7\n"
-    +"mP5cbnQAx6+paV5z9m71SKrI/WSc4ixsYYdVmlL/qwAK9YliFfoPl030YJWW6rFf\n"
-    +"T7J9BUlHGUJ0RB2lURNNLakM+UZRkeE9TByzCzgTxuQtyv5Lwsh2mAk3ia5x0kUO\n"
-    +"LHg3Eoabhdh+YZA5hHaxnpF7VjspB78E0F9Btq+A41rSJ6zDOdToHey4MJ2nxdey\n"
-    +"Z3bi81TZ6Fp4IuROrvZ2B/Xl3uNKR7n+AHRKnaAO87ywzyltvjwSh2y3xhJueiRs\n"
-    +"BiYkyL3/fnocD3pexTdN6h3JgQGgO5GV8zw/NrxA85mw8o9im0HreuFObmNj36T9\n"
-    +"k5N+R/QIXW83cIQOLaWK1ThYcluytf0tDRiMoKqULiaA6HvDMigExLxuhCtnoF8I\n"
-    +"iOLN1cPdEVQjzwDHLqXP2DbWW1z9iRepLZlEm1hLRLEmOrTGKezYupVv306SSa6J\n"
-    +"OA55lAeXMbyjFaYCr54HWrpt4NwNBX1efMUURc+1LcHpzFrBTTLbfjIyq6as49pH\n"
-    +"-----END RSA PRIVATE KEY-----\n"
-
-async function TestConvertPemKeyByPromise() {
-  let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024');
-  let keyGenPromise = asyKeyGenerator.convertPemKey(null, priKeyPkcs1EncodingStr, "123456");
-  keyGenPromise.then(keyPair => {
-    console.info('convertPemKey success.');
-  }).catch((error: BusinessError) => {
-    console.error("convertPemKey error.");
-  });
-}
-```
-
 ### convertPemKeySync<sup>12+</sup>
 
 convertPemKeySync(pubKey: string | null, priKey: string | null): KeyPair
 
-同步获取指定数据生成非对称密钥。
+同步获取指定数据，生成非对称密钥。
 
 > **说明：**
 > convertPemKeySync接口与convertPemKey接口注意事项相同，见[convertPemKey](#convertpemkey12)接口说明。
@@ -2268,7 +2218,7 @@ convertPemKeySync(pubKey: string | null, priKey: string | null): KeyPair
 | 参数名   | 类型    | 必填 | 说明             |
 | ------ | -------- | ---- | ---------------- |
 | pubKey | string \| null| 是   | 指定的公钥材料。如果公钥不需要转换，可直接传入null。|
-| priKey | string \| null| 是   | 指定的私钥材料。如果私钥不需要转换，可直接传入null。注：公钥和私钥材料不能同时为null。|
+| priKey | string \| null| 是   | 指定私钥材料。私钥无需转换时，可传入null。注意：公钥和私钥材料不能同时为null。|
 
 **返回值：**
 
@@ -2277,7 +2227,7 @@ convertPemKeySync(pubKey: string | null, priKey: string | null): KeyPair
 | [KeyPair](#keypair) | 非对称密钥。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -2332,7 +2282,7 @@ function TestConvertPemKeyBySync() {
 
 convertPemKeySync(pubKey: string | null, priKey: string | null, password: string): KeyPair
 
-同步获取指定数据生成非对称密钥。
+同步获取指定数据，生成非对称密钥。
 
 > **说明：**
 > convertPemKeySync接口与convertPemKey接口注意事项相同，见[convertPemKey](#convertpemkey18)接口说明。
@@ -2345,8 +2295,8 @@ convertPemKeySync(pubKey: string | null, priKey: string | null, password: string
 
 | 参数名   | 类型    | 必填 | 说明             |
 | ------ | -------- | ---- | ---------------- |
-| pubKey | string \| null| 是   | 指定的公钥材料。如果公钥不需要转换，可直接传入null。|
-| priKey | string \| null| 是   | 指定的私钥材料。如果私钥不需要转换，可直接传入null。注：公钥和私钥材料不能同时为null。|
+| pubKey | string \| null| 是   | 指定的公钥材料。如果公钥不需要转换，可传入null。|
+| priKey | string \| null| 是   | 指定私钥材料。若无需转换，传入 null。注意：公钥与私钥材料不可同时为 null。|
 | password | string | 是 | 指定口令，用于解密私钥。|
 
 **返回值：**
@@ -2356,7 +2306,7 @@ convertPemKeySync(pubKey: string | null, priKey: string | null, password: string
 | [KeyPair](#keypair) | 非对称密钥。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -2407,7 +2357,7 @@ function TestConvertPemKeyBySync() {
 
 createAsyKeyGeneratorBySpec(asyKeySpec: AsyKeySpec): AsyKeyGeneratorBySpec
 
-通过指定密钥参数，获取相应的非对称密钥生成器实例。
+指定密钥参数，获取非对称密钥生成器实例。
 
 支持的规格详见[非对称密钥生成和转换规格](../../security/CryptoArchitectureKit/crypto-asym-key-generation-conversion-spec.md)。
 
@@ -2415,7 +2365,7 @@ createAsyKeyGeneratorBySpec(asyKeySpec: AsyKeySpec): AsyKeyGeneratorBySpec
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 **参数：**
 
@@ -2482,9 +2432,9 @@ let asyKeyGeneratorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(asyKeyPa
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
-| 名称    | 类型   | 可读 | 可写 | 说明                       |
+| 名称    | 类型   | 只读 | 可选 | 说明                       |
 | ------- | ------ | ---- | ---- | -------------------------- |
 | algName | string | 是   | 否   | 非对称密钥生成器的算法名。 |
 
@@ -2500,7 +2450,7 @@ generateKeyPair(callback: AsyncCallback\<KeyPair>): void
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 **参数：**
 
@@ -2544,7 +2494,7 @@ generateKeyPair(): Promise\<KeyPair>
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 **返回值：**
 
@@ -2631,13 +2581,13 @@ generatePriKey(callback: AsyncCallback\<PriKey>): void
 
 异步获取非对称密钥生成器生成的密钥，通过注册回调函数获取结果。
 
-当使用[PRIVATE_KEY_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以得到指定的私钥；当使用[KEY_PAIR_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以从生成的密钥对中获取指定的私钥。
+使用[PRIVATE_KEY_SPEC](#asykeyspectype10)类型密钥参数创建密钥生成器，生成指定私钥。使用[KEY_PAIR_SPEC](#asykeyspectype10)类型密钥参数创建密钥生成器，从生成的密钥对中获取指定私钥。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 **参数：**
 
@@ -2646,7 +2596,7 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 | callback | AsyncCallback\<[PriKey](#prikey)> | 是   | 回调函数，用于获取非对称密钥。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -2681,7 +2631,7 @@ generatePriKey(): Promise\<PriKey>
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 **返回值：**
 
@@ -2690,7 +2640,7 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 | Promise\<[PriKey](#prikey)> | 使用Promise的方式获取非对称密钥。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -2771,7 +2721,7 @@ generatePubKey(callback: AsyncCallback\<PubKey>): void
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 **参数：**
 
@@ -2780,7 +2730,7 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 | callback | AsyncCallback\<[PubKey](#pubkey)> | 是   | 回调函数，用于获取非对称密钥。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -2815,7 +2765,7 @@ generatePubKey(): Promise\<PubKey>
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 **返回值：**
 
@@ -2854,7 +2804,7 @@ generatePubKeySync(): PubKey
 
 同步获取该非对称密钥生成器生成的密钥。
 
-当使用[PUBLIC_KEY_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以得到指定的公钥；当使用[KEY_PAIR_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以从生成的密钥对中获取指定的公钥。
+当使用[PUBLIC_KEY_SPEC](#asykeyspectype10)类型的密钥参数来创建密钥生成器时，可以得到指定的公钥；使用[KEY_PAIR_SPEC](#asykeyspectype10)类型的密钥参数时，可以从生成的密钥对中获取指定的公钥。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2901,19 +2851,19 @@ try {
 
 static genECCCommonParamsSpec(curveName: string): ECCCommonParamsSpec
 
-根据椭圆曲线相应的NID(Name IDentifier)字符串名称生成相应的非对称公共密钥参数。详见[ECC密钥生成规格](../../security/CryptoArchitectureKit/crypto-asym-key-generation-conversion-spec.md#ecc)和[SM2密钥生成规格](../../security/CryptoArchitectureKit/crypto-asym-key-generation-conversion-spec.md#sm2)。
+根据椭圆曲线相应的NID（Name IDentifier）字符串名称生成相应的非对称公共密钥参数。详见[ECC密钥生成规格](../../security/CryptoArchitectureKit/crypto-asym-key-generation-conversion-spec.md#ecc)和[SM2密钥生成规格](../../security/CryptoArchitectureKit/crypto-asym-key-generation-conversion-spec.md#sm2)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 **参数：**
 
 | 参数名  | 类型   | 必填 | 说明                                           |
 | ------- | ------ | ---- | ---------------------------------------------- |
-| curveName | string | 是   | 椭圆曲线相应的NID(Name IDentifier)字符串名称。 |
+| curveName | string | 是   | 椭圆曲线相应的NID（Name IDentifier）字符串名称。 |
 
 **返回值：**
 
@@ -2948,7 +2898,7 @@ try {
 
 static convertPoint(curveName: string, encodedPoint: Uint8Array): Point
 
-根据椭圆曲线的曲线名，即相应的NID(Name IDentifier)，将指定的点数据转换为Point对象。当前支持压缩/非压缩格式的点数据。  
+根据椭圆曲线的曲线名，即相应的NID（Name IDentifier），将指定的点数据转换为Point对象。当前支持压缩/非压缩格式的点数据。  
 
 > **说明：**
 >
@@ -2964,7 +2914,7 @@ static convertPoint(curveName: string, encodedPoint: Uint8Array): Point
 
 | 参数名       | 类型        | 必填 | 说明                                           |
 | ------------ | ---------- | ---- | ---------------------------------------------- |
-| curveName    | string     | 是   | 椭圆曲线的曲线名，即相应的NID(Name IDentifier)。 |
+| curveName    | string     | 是   | 椭圆曲线的曲线名，即相应的NID（Name IDentifier）。 |
 | encodedPoint | Uint8Array | 是   | 指定的ECC椭圆曲线上的点的数据。 |
 
 **返回值：**
@@ -2997,7 +2947,7 @@ console.info('returnPoint: ' + returnPoint.x.toString(16));
 
 static getEncodedPoint(curveName: string, point: Point, format: string): Uint8Array
 
-根据椭圆曲线的曲线名，即相应的NID(Name IDentifier)，按照指定的点数据格式，将Point对象转换为点数据。当前支持压缩/非压缩格式的点数据。
+根据椭圆曲线的曲线名，即相应的NID（Name IDentifier），按照指定的点数据格式，将Point对象转换为点数据。当前支持压缩/非压缩格式的点数据。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3007,7 +2957,7 @@ static getEncodedPoint(curveName: string, point: Point, format: string): Uint8Ar
 
 | 参数名       | 类型               | 必填 | 说明                                           |
 | ------------ | ----------------- | ---- | ---------------------------------------------- |
-| curveName    | string            | 是   | 椭圆曲线的曲线名，即相应的NID(Name IDentifier)。 |
+| curveName    | string            | 是   | 椭圆曲线的曲线名，即相应的NID（Name IDentifier）。 |
 | point        | [Point](#point10) | 是   | 椭圆曲线上的Point点对象。 |
 | format       | string            | 是   | 需要获取的点数据格式，当前支持"COMPRESSED"或"UNCOMPRESSED"。 |
 
@@ -3062,7 +3012,7 @@ static genDHCommonParamsSpec(pLen: number, skLen?: number): DHCommonParamsSpec
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey
+API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Key.AsymKey。
 
 **参数：**
 
@@ -3109,7 +3059,7 @@ try {
 
 static genCipherTextBySpec(spec: SM2CipherTextSpec, mode?: string): DataBlob
 
-根据指定的SM2密文参数，生成符合国密标准的ASN.1格式的SM2密文。
+根据指定的SM2密文参数，生成符合国密标准的ASN.1格式SM2密文。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3178,7 +3128,7 @@ static getCipherTextSpec(cipherText: DataBlob, mode?: string): SM2CipherTextSpec
 
 | 类型              | 说明                              |
 | ----------------- | --------------------------------- |
-| [SM2CipherTextSpec](#sm2ciphertextspec12) | 返回具体的SM2密文参数。 |
+| [SM2CipherTextSpec](#sm2ciphertextspec12) | 返回SM2密文参数。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
@@ -3215,7 +3165,7 @@ createCipher(transformation: string): Cipher
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Cipher
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Cipher
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Cipher。
 
 **参数：**
 
@@ -3225,9 +3175,9 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 
 > **说明：**
 >
-> 1. 目前对称加解密中，PKCS5和PKCS7的实现相同，其padding长度和分组长度保持一致（即PKCS5和PKCS7在3DES中均按照8字节填充，在AES中均按照16字节填充），另有NoPadding表示不填充。
+> 1. 目前对称加解密中，PKCS5和PKCS7的实现相同，其padding长度和分组长度保持一致。在3DES中均按8字节填充，在AES中均按16字节填充。另有NoPadding表示不填充。
 > <br/>开发者需要自行了解密码学不同分组模式的差异，以便选择合适的参数规格。例如选择ECB和CBC模式时，建议启用填充，否则必须确保明文长度是分组大小的整数倍；选择其他模式时，可以不启用填充，此时密文长度和明文长度一致（即可能不是分组大小的整数倍）。
-> 2. 使用RSA、SM2进行非对称加解密时，必须创建两个Cipher对象分别进行加密和解密操作，而不能对同一个Cipher对象进行加解密。对称加解密没有此要求（即只要算法规格一样，可以对同一个Cipher对象进行加解密操作）。
+> 2. 使用RSA或SM2进行非对称加解密时，必须创建两个Cipher对象，分别进行加密和解密操作，不能对同一个Cipher对象进行加解密。对称加解密没有此要求，只要算法规格一致，可以对同一个Cipher对象进行加解密操作。
 
 **返回值：**
 
@@ -3236,7 +3186,7 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 | [Cipher](#cipher) | 返回加解密生成器的对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -3277,9 +3227,9 @@ try {
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Cipher
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Cipher
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Cipher。
 
-| 名称    | 类型   | 可读 | 可写 | 说明                         |
+| 名称    | 类型   | 只读 | 可选 | 说明                         |
 | ------- | ------ | ---- | ---- | ---------------------------- |
 | algName | string | 是   | 否   | 加解密生成器指定的算法名称。 |
 
@@ -3295,7 +3245,7 @@ init(opMode: CryptoMode, key: Key, params: ParamsSpec | null, callback: AsyncCal
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Cipher
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Cipher
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Cipher。
 
 **参数：**
 
@@ -3307,13 +3257,13 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 | callback | AsyncCallback\<void>      | 是   | 回调函数。当加解密初始化成功，err为undefined，否则为错误对象。     |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息                                                 |
 | -------- | --------------------------------------------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory operation failed.                                            |
-| 17620002 | failed to convert paramters between arkts and c.                                           |
+| 17620002 | failed to convert parameters between arkts and c.                                          |
 | 17630001 | crypto operation error.|
 
 ### init
@@ -3328,7 +3278,7 @@ init(opMode: CryptoMode, key: Key, params: ParamsSpec | null): Promise\<void>
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Cipher
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Cipher
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Cipher。
 
 **参数：**
 
@@ -3336,7 +3286,7 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 | ------ | ------------------------- | ---- | ------------------------------------------------------------ |
 | opMode | [CryptoMode](#cryptomode) | 是   | 加密或者解密模式。                                           |
 | key    | [Key](#key)               | 是   | 指定加密或解密的密钥。                                       |
-| params | [ParamsSpec](#paramsspec) \| null<sup>10+</sup> | 是   | 指定加密或解密的参数，对于ECB等没有参数的算法模式，可以传入null。API 10之前只支持ParamsSpec， API 10之后增加支持null。 |
+| params | [ParamsSpec](#paramsspec) \| null<sup>10+</sup> | 是   | 指定加密或解密的参数，对于ECB等没有参数的算法模式，可以传入null。API 10之前仅支持ParamsSpec，从API 10开始增加对null的支持。 |
 
 **返回值：**
 
@@ -3351,7 +3301,7 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 | -------- | ------------------------------------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory operation failed.                                     |
-| 17620002 | failed to convert paramters between arkts and c.                                    |
+| 17620002 | failed to convert parameters between arkts and c.                                    |
 | 17630001 | crypto operation error.|
 
 ### initSync<sup>12+</sup>
@@ -3381,7 +3331,7 @@ initSync(opMode: CryptoMode, key: Key, params: ParamsSpec | null): void
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory operation failed.           |
-| 17620002 | failed to convert paramters between arkts and c.          |
+| 17620002 | failed to convert parameters between arkts and c.         |
 | 17630001 | crypto operation error. |
 
 ### update
@@ -3394,9 +3344,20 @@ update(data: DataBlob, callback: AsyncCallback\<DataBlob>): void
 
 > **说明：**
 >
-> 1. 在进行对称加解密操作的时候，如果开发者对各个分组模式不够熟悉，建议对每次update和doFinal的结果都判断是否为null，并在结果不为null时取出其中的数据进行拼接，形成完整的密文/明文。这是因为选择的分组模式等各项规格都可能对update和doFinal结果产生影响。<br/>（例如对于ECB和CBC模式，不论update传入的数据是否为分组长度的整数倍，都会以分组作为基本单位进行加/解密，并输出本次update新产生的加/解密分组结果。<br/>可以理解为，update只要凑满一个新的分组就会有输出，如果没有凑满则此次update输出为null，把当前还没被加/解密的数据留着，等下一次update/doFinal传入数据的时候，拼接起来继续凑分组。<br/>最后doFinal的时候，会把剩下的还没加/解密的数据，根据[createCipher](#cryptoframeworkcreatecipher)时设置的padding模式进行填充，补齐到分组的整数倍长度，再输出剩余加解密结果。<br/>而对于可以将分组密码转化为流模式实现的模式，还可能出现密文长度和明文长度相同的情况等。）
-> 2. 根据数据量，可以不调用update（即init完成后直接调用doFinal）或多次调用update。<br/>
->    算法库目前没有对update（单次或累计）的数据量设置大小限制，建议对于大数据量的对称加解密，采用多次update的方式传入数据。<br/>
+> 1. 在进行对称加解密操作时，如果开发者对各个分组模式不够熟悉，建议对每次update和doFinal的结果进行判断，确保其不为null，并在结果不为null时取出数据进行拼接，形成完整的密文或明文。这是因选择的分组模式等各项规格可能对update和doFinal的结果产生影响。
+>
+>    例如，对于ECB和CBC模式，不论update传入的数据是否为分组长度的整数倍，都会以分组为单位进行加解密，并输出本次update新产生的加解密分组结果。
+>
+>    可以理解为update只要凑满一个新的分组就会有输出，如果没有凑满则此次update输出为null，将当前未被加解密的数据留着，等下一次update或doFinal传入数据时，拼接起来继续凑分组。
+>
+>    最后doFinal时，会将剩下的未加解密的数据根据[createCipher](#cryptoframeworkcreatecipher)时设置的填充模式进行填充，补齐到分组的整数倍长度，再输出剩余的加解密结果。
+>
+>    对于可以将分组密码转化为流模式实现的模式，还可能出现密文长度与明文长度相同的情况。
+>
+> 2. 根据数据量，可以不调用update（即init完成后直接调用doFinal）或多次调用update。
+>
+>    算法库未对单次或累计的update数据量设置限制。对于大数据量的对称加解密操作，建议分多次调用update方法传入数据。
+>
 >    AES使用多次update操作的示例代码详见[使用AES对称密钥分段加解密](../../security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-gcm-by-segment.md)。
 > 3. RSA、SM2非对称加解密不支持update操作。
 > 4. 对于CCM模式的对称加解密算法，加密时只能调用1次update接口加密数据并调用doFinal接口获取tag，或直接调用doFinal接口加密数据并获取tag，解密时只能调用1次update接口或调用1次doFinal接口解密数据并验证tag。
@@ -3405,14 +3366,14 @@ update(data: DataBlob, callback: AsyncCallback\<DataBlob>): void
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Cipher
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Cipher
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Cipher。
 
 **参数：**
 
 | 参数名     | 类型                                  | 必填 | 说明                                                         |
 | -------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
-| data     | [DataBlob](#datablob)                 | 是   | 加密或者解密的数据。data不能为null。           |
-| callback | AsyncCallback\<[DataBlob](#datablob)> | 是   | 回调函数。当更新加/解密数据成功，err为undefined，data为此次更新的加/解密结果DataBlob；否则为错误对象。 |
+| data     | [DataBlob](#datablob)                 | 是   | 需要进行加密或解密的数据。data不能为null。           |
+| callback | AsyncCallback\<[DataBlob](#datablob)> | 是   | 回调函数。更新加/解密数据成功时，err为undefined，data为DataBlob；否则为错误对象。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
@@ -3421,7 +3382,7 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 | -------- | ------------------------------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory operation failed.                               |
-| 17620002 | failed to convert paramters between arkts and c.                              |
+| 17620002 | failed to convert parameters between arkts and c.                            |
 | 17630001 | crypto operation error.                     |
 
 ### update
@@ -3430,11 +3391,11 @@ update(data: DataBlob): Promise\<DataBlob>
 
 分段更新加密或者解密数据操作，通过Promise获取加/解密数据。
 
-必须在对[Cipher](#cipher)实例使用[init()](#init-2)初始化后，才能使用本函数。
+必须在对[Cipher](#cipher)实例使用[init()](#init-1)初始化后，才能使用本函数。
 
 > **说明：**
 >
-> 1. 在进行对称加解密操作的时候，如果开发者对各个分组模式不够熟悉，建议对每次update和doFinal的结果都判断是否为null，并在结果不为null时取出其中的数据进行拼接，形成完整的密文/明文。这是因为选择的分组模式等各项规格都可能对update和doFinal结果产生影响。
+> 1. 在进行对称加解密操作时，如果开发者对各分组模式不够熟悉，建议每次调用update和doFinal后，都判断结果是否为null。如果结果不为null，则取出其中的数据进行拼接，以形成完整的密文或明文。这是因为选择的分组模式等各项规格可能会影响update和doFinal的结果。
 > <br/>（例如对于ECB和CBC模式，不论update传入的数据是否为分组长度的整数倍，都会以分组作为基本单位进行加/解密，并输出本次update新产生的加/解密分组结果。<br/>可以理解为，update只要凑满一个新的分组就会有输出，如果没有凑满则此次update输出为null，把当前还没被加/解密的数据留着，等下一次update/doFinal传入数据的时候，拼接起来继续凑分组。<br/>最后doFinal的时候，会把剩下的还没加/解密的数据，根据[createCipher](#cryptoframeworkcreatecipher)时设置的padding模式进行填充，补齐到分组的整数倍长度，再输出剩余加解密结果。<br/>而对于可以将分组密码转化为流模式实现的模式，还可能出现密文长度和明文长度相同的情况等。）
 > 2. 根据数据量，可以不调用update（即init完成后直接调用doFinal）或多次调用update。<br/>
 >    算法库目前没有对update（单次或累计）的数据量设置大小限制，建议对于大数据量的对称加解密，可以采用多次update的方式传入数据。<br/>
@@ -3446,7 +3407,7 @@ update(data: DataBlob): Promise\<DataBlob>
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Cipher
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Cipher
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Cipher。
 
 **参数：**
 
@@ -3467,7 +3428,7 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 | -------- | -------------------------------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory operation failed.                                |
-| 17620002 | failed to convert paramters between arkts and c.                               |
+| 17620002 | failed to convert parameters between arkts and c.                               |
 | 17630001 | crypto operation error.                      |
 
 ### updateSync<sup>12+</sup>
@@ -3490,6 +3451,12 @@ updateSync(data: DataBlob): DataBlob
 | ------ | --------------------- | ---- | ------------------------------------------------------------ |
 | data   | [DataBlob](#datablob) | 是   | 加密或者解密的数据。data不能为null。 |
 
+**返回值：**
+
+| 类型                            | 说明                                             |
+| ------------------------------- | ------------------------------------------------ |
+| [DataBlob](#datablob) | 返回此次更新的加/解密结果DataBlob。 |
+
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
 
@@ -3497,17 +3464,18 @@ updateSync(data: DataBlob): DataBlob
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory operation failed.           |
-| 17620002 | failed to convert paramters between arkts and c.          |
+| 17620002 | failed to convert parameters between arkts and c.         |
 | 17630001 | crypto operation error. |
 
 ### doFinal
 
 doFinal(data: DataBlob | null, callback: AsyncCallback\<DataBlob>): void
 
-（1）在对称加解密中，doFinal加/解密（分组模式产生的）剩余数据和本次传入的数据，最后结束加密或者解密数据操作，通过注册回调函数获取加密或者解密数据。<br/>如果数据量较小，可以在doFinal中一次性传入数据，而不使用update；如果在本次加解密流程中，已经使用[update](#update-4)传入过数据，可以在doFinal的data参数处传入null。<br/>根据对称加解密的模式不同，doFinal的输出有如下区别：
+（1）在对称加解密中doFinal用于处理剩余数据和本次传入的数据，并最终结束加密或解密操作，通过注册回调函数获取加密或解密后的数据。如果数据量较小，可以在 `doFinal` 中一次性传入数据，而不使用update；如果在本次加解密流程中已经使用[update](#update)传入过数据，可以在doFinal的data参数处传入null。根据对称加解密的模式不同，doFinal的输出有以下区别：
 
-- 对于GCM和CCM模式的对称加密：一次加密流程中，如果将每一次update和doFinal的结果拼接起来，会得到“密文+authTag”，即末尾的16字节（GCM模式）或12字节（CCM模式）是authTag，而其余部分均为密文。（也就是说，如果doFinal的data参数传入null，则doFinal的结果就是authTag）authTag需要填入解密时的[GcmParamsSpec](#gcmparamsspec)或[CcmParamsSpec](#ccmparamsspec)；密文则作为解密时的入参data。
-- 对于其他模式的对称加解密、GCM和CCM模式的对称解密：一次加/解密流程中，每一次update和doFinal的结果拼接起来，得到完整的明文/密文。
+- 在GCM和CCM模式的对称加密中，一次加密流程中，将每次update和doFinal的结果拼接起来，会得到“密文 + authTag”。GCM模式下，authTag为末尾的16字节；CCM模式下，authTag为末尾的12字节。其余部分均为密文。如果doFinal的data参数传入null，则doFinal的结果就是authTag。解密时，authTag需要填入[GcmParamsSpec](#gcmparamsspec)或[CcmParamsSpec](#ccmparamsspec)，密文作为解密时的data参数。
+- 对于其他模式的对称加解密及GCM和CCM模式的对称解密：每次加/解密流程中，update和doFinal的结果拼接起来，得到完整的明文或密文。
+
 
 （2）在RSA、SM2非对称加解密中，doFinal加/解密本次传入的数据，通过注册回调函数获取加密或者解密数据。如果数据量较大，可以多次调用doFinal，拼接结果得到完整的明文/密文。
 
@@ -3524,28 +3492,28 @@ doFinal(data: DataBlob | null, callback: AsyncCallback\<DataBlob>): void
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Cipher
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Cipher
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Cipher。
 
 **参数：**
 
 | 参数名     | 类型                                  | 必填 | 说明                                                         |
 | -------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
-| data     | [DataBlob](#datablob) \| null<sup>10+</sup>                 | 是   | 加密或者解密的数据。在对称加解密中允许为null，但不允许传入{data: Uint8Array(空) }。API 10之前只支持DataBlob， API 10之后增加支持null。       |
-| callback | AsyncCallback\<[DataBlob](#datablob)> | 是   | 回调函数。当最终加/解密数据成功，err为undefined，data为剩余数据的加/解密结果DataBlob；否则为错误对象。 |
+| data     | [DataBlob](#datablob) \| null<sup>10+</sup>                 | 是   | 加密或解密的数据。在对称加解密中可为null，但不可传入{data: Uint8Array(空) }。API 10前仅支持DataBlob，API 10后增加null支持。       |
+| callback | AsyncCallback\<[DataBlob](#datablob)> | 是   | 回调函数。最终加/解密成功时，err为undefined，data为加/解密结果DataBlob；否则为错误对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory operation failed.           |
-| 17620002 | failed to convert paramters between arkts and c.          |
+| 17620002 | failed to convert parameters between arkts and c.          |
 | 17630001 | crypto operation error. |
 
 **以AES GCM模式加密为例：**
 
-此外，更多加解密流程的完整示例可参考[加解密开发指导](../../security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-gcm.md)。
+更多加解密流程的完整示例请参考[加解密开发指导](../../security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-gcm.md)。
 
 ```ts
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
@@ -3602,30 +3570,34 @@ doFinal(data: DataBlob | null): Promise\<DataBlob>
 （1）在对称加解密中，doFinal加/解密（分组模式产生的）剩余数据和本次传入的数据，最后结束加密或者解密数据操作，通过Promise获取加密或者解密数据。<br/>如果数据量较小，可以在doFinal中一次性传入数据，而不使用update；如果在本次加解密流程中，已经使用update传入过数据，可以在doFinal的data参数处传入null。<br/>根据对称加解密的模式不同，doFinal的输出有如下区别：
 
 - 对于GCM和CCM模式的对称加密：一次加密流程中，如果将每一次update和doFinal的结果拼接起来，会得到“密文+authTag”，即末尾的16字节（GCM模式）或12字节（CCM模式）是authTag，而其余部分均为密文。（也就是说，如果doFinal的data参数传入null，则doFinal的结果就是authTag）<br/>authTag需要填入解密时的[GcmParamsSpec](#gcmparamsspec)或[CcmParamsSpec](#ccmparamsspec)；密文则作为解密时的入参data。
-- 对于其他模式的对称加解密、GCM和CCM模式的对称解密：一次加/解密流程中，每一次update和doFinal的结果拼接起来，得到完整的明文/密文。
+- 对于其他模式的对称加解密及GCM和CCM模式的对称解密：一次加解密流程中，每次update和doFinal的结果拼接起来，得到完整的明文或密文。
 
-（2）在RSA、SM2非对称加解密中，doFinal加/解密本次传入的数据，通过Promise获取加密或者解密数据。如果数据量较大，可以多次调用doFinal，拼接结果得到完整的明文/密文。
+（2）在RSA和SM2非对称加解密中，使用doFinal方法加解密传入的数据，并通过Promise获取加密或解密结果。如果数据量较大，可以多次调用doFinal，拼接结果以获得完整的明文或密文。
 
 > **说明：**
 >
->  1. 对称加解密中，调用doFinal标志着一次加解密流程已经完成，即[Cipher](#cipher)实例的状态被清除，因此当后续开启新一轮加解密流程时，需要重新调用init()并传入完整的参数列表进行初始化<br/>（比如即使是对同一个Cipher实例，采用同样的对称密钥，进行加密然后解密，则解密中调用init的时候仍需填写params参数，而不能直接省略为null）。
->  2. 如果遇到解密失败，需检查加解密数据和init时的参数是否匹配，包括GCM模式下加密得到的authTag是否填入解密时的GcmParamsSpec等。
->  3. doFinal的结果可能为null，因此使用.data字段访问doFinal结果的具体数据前，请记得先判断结果是否为null，避免产生异常。
->    对于加密，CFB、OFB和CTR模式，如果doFinal传null, 则返回结果为null。<br/>
->    对于解密，GCM、CCM、CFB、OFB和CTR模式，如果doFinal传null，则返回结果为null；对于解密，其他模式，如果明文是加密块大小的整倍数，调用update传入所有密文，调用doFinal传null, 则返回结果为null。<br/>
+>  1. 对称加解密中，调用doFinal标志着一次加解密流程完成，[Cipher](#cipher)实例状态被清除。因此，后续开启新流程时，需重新调用init并传入完整参数列表进行初始化。
+>
+>     即使是对同一个Cipher实例，使用相同对称密钥，进行加密后解密时，调用init仍需填写params参数，不能省略为null。
+>  2. 如果遇到解密失败，检查加解密数据和初始化时的参数是否匹配，包括GCM模式下加密得到的authTag是否填入解密时的GcmParamsSpec。
+>  3. doFinal的结果可能为null，因此在使用.data字段访问doFinal结果的具体数据前，请先判断结果是否为null，以避免产生异常。
+>
+>     对于加密，CFB、OFB 和 CTR 模式，如果doFinal传入null，则返回结果为null。
+>
+>     对于解密，GCM、CCM、CFB、OFB和CTR模式，如果doFinal传null，则返回结果为null；对于其他模式，如果明文是加密块大小的整倍数，调用update传入所有密文，调用doFinal传null, 则返回结果为null。
 >  4. 非对称加解密时多次doFinal操作的示例代码详见[使用RSA非对称密钥分段加解密](../../security/CryptoArchitectureKit/crypto-rsa-asym-encrypt-decrypt-by-segment.md)，SM2和RSA的操作类似。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Cipher
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Cipher
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Cipher。
 
 **参数：**
 
 | 参数名 | 类型                  | 必填 | 说明                 |
 | ---- | --------------------- | ---- | -------------------- |
-| data | [DataBlob](#datablob) \| null<sup>10+</sup> | 是   | 加密或者解密的数据。data参数允许为null，但不允许传入{data: Uint8Array(空) }。API 10之前只支持DataBlob， API 10之后增加支持null。 |
+| data | [DataBlob](#datablob) \| null<sup>10+</sup> | 是   | 加密或者解密的数据。data参数允许为null，但不允许传入{data: Uint8Array(空) }。API 10之前只支持DataBlob，API 10之后增加支持null。 |
 
 **返回值：**
 
@@ -3640,7 +3612,7 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 | -------- | -------------------------------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory operation failed.                                |
-| 17620002 | failed to convert paramters between arkts and c.                               |
+| 17620002 | failed to convert parameters between arkts and c.                               |
 | 17630001 | crypto operation error.                      |
 
 **以AES GCM模式加密为例：**
@@ -3694,12 +3666,18 @@ async function cipherByPromise() {
 
 doFinalSync(data: DataBlob | null): DataBlob
 
-（1）在对称加解密中，doFinalSync加/解密（分组模式产生的）剩余数据和本次传入的数据，最后结束加密或者解密数据操作，通过注册回调函数获取加密或者解密数据。<br/>如果数据量较小，可以在doFinalSync中一次性传入数据，而不使用updateSync；如果在本次加解密流程中，已经使用[updateSync](#updatesync12)传入过数据，可以在doFinalSync的data参数处传入null。<br/>根据对称加解密的模式不同，doFinalSync的输出有如下区别：
+（1）在对称加解密中，doFinalSync用于处理剩余数据和本次传入的数据，并结束加密或解密操作，通过注册回调函数获取加密或解密结果。
 
-- 对于GCM和CCM模式的对称加密：一次加密流程中，如果将每一次updateSync和doFinalSync的结果拼接起来，会得到“密文+authTag”，即末尾的16字节（GCM模式）或12字节（CCM模式）是authTag，而其余部分均为密文。（也就是说，如果doFinalSync的data参数传入null，则doFinalSync的结果就是authTag）<br/>authTag需要填入解密时的[GcmParamsSpec](#gcmparamsspec)或[CcmParamsSpec](#ccmparamsspec)；密文则作为解密时的入参data。
-- 对于其他模式的对称加解密、GCM和CCM模式的对称解密：一次加/解密流程中，每一次updateSync和doFinalSync的结果拼接起来，得到完整的明文/密文。
+如果数据量较小，可以在doFinalSync中一次性传入数据，而不使用updateSync。如果在本次加解密流程中已经使用[updateSync](#updatesync12)传入过数据，可以在doFinalSync的data参数处传入null。
 
-（2）在RSA、SM2非对称加解密中，doFinalSync加/解密本次传入的数据，通过注册回调函数获取加密或者解密数据。如果数据量较大，可以多次调用doFinalSync，拼接结果得到完整的明文/密文。
+根据对称加解密的模式不同，doFinalSync的输出有以下区别：
+
+- 对于GCM和CCM模式的对称加密：一次加密流程中，如果将每次updateSync和doFinalSync的结果拼接起来，会得到“密文 + authTag”。即末尾的16字节（GCM模式）或12字节（CCM模式）是authTag，其余部分均为密文。也就是说，如果doFinalSync的data参数传入null，则doFinalSync的结果就是 authTag。  
+
+  authTag需要填入解密时的[GcmParamsSpec](#gcmparamsspec)或[CcmParamsSpec](#ccmparamsspec)；密文则作为解密时的入参data。
+- 对于其他模式的对称加解密以及GCM和CCM模式的对称解密：在一次加/解密流程中，每次updateSync和doFinalSync的结果拼接起来，得到完整的明文或密文。
+
+（2）在RSA和SM2非对称加解密中，doFinalSync用于加解密本次传入的数据，通过注册回调函数获取加密或解密后的数据。如果数据量超过单次处理能力，可以多次调用doFinalSync，并将结果拼接以获得完整的明文或密文。
 
 其他注意事项同接口[doFinal()](#dofinal)说明。
 
@@ -3713,14 +3691,20 @@ doFinalSync(data: DataBlob | null): DataBlob
 | ------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | data   | [DataBlob](#datablob)  | 是   | 加密或者解密的数据。在对称加解密中允许为null，但不允许传入{data: Uint8Array(空) }。 |
 
+**返回值：**
+
+| 类型                            | 说明                                             |
+| ------------------------------- | ------------------------------------------------ |
+| [DataBlob](#datablob) | 返回剩余数据的加/解密结果DataBlob。 |
+
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory operation failed.           |
-| 17620002 | failed to convert paramters between arkts and c.          |
+| 17620002 | failed to convert parameters between arkts and c.          |
 | 17630001 | crypto operation error. |
 
 **以AES GCM模式加密为例：**
@@ -3781,7 +3765,7 @@ setCipherSpec(itemType: CipherSpecItem, itemValue: Uint8Array): void
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Cipher
 
-API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Cipher
+API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Cipher。
 
 **参数：**
 
@@ -3791,7 +3775,7 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 | itemValue | Uint8Array | 是   | 用于指定加解密参数的具体值。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -3819,7 +3803,7 @@ getCipherSpec(itemType: CipherSpecItem): string | Uint8Array
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Cipher
 
-API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Cipher
+API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Cipher。
 
 **参数：**
 
@@ -3855,7 +3839,7 @@ let mdName = cipher.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MD_NAME_ST
 
 createSign(algName: string): Sign
 
-Sign实例生成。
+生成Sign实例。
 
 支持的规格详见[签名验签规格](../../security/CryptoArchitectureKit/crypto-sign-sig-verify-overview.md)。
 
@@ -3863,13 +3847,13 @@ Sign实例生成。
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Signature
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Signature
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Signature。
 
 **参数：**
 
 | 参数名  | 类型   | 必填 | 说明                                                         |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| algName | string | 是   | 指定签名算法：RSA，ECC，DSA，SM2<sup>10+</sup>或ED25519<sup>11+</sup>。使用RSA PKCS1模式时需要设置摘要，使用RSA PSS模式时需要设置摘要和掩码摘要。<br/>使用RSA算法签名时，通过设置OnlySign参数可支持传入数据摘要仅作签名。 |
+| algName | string | 是   | 指定签名算法：RSA、ECC、DSA、SM2<sup>10+</sup>或ED25519<sup>11+</sup>。使用RSA PKCS1模式时需设置摘要；使用RSA PSS模式时需设置摘要和掩码摘要。签名时，通过设置OnlySign参数可传入数据摘要仅作签名。 |
 
 **返回值**：
 
@@ -3878,7 +3862,7 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 | Sign | 返回由输入算法指定生成的Sign对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -3908,15 +3892,15 @@ Sign类，使用Sign方法之前需要创建该类的实例进行操作，通过
 
 Sign类不支持重复初始化，当业务方需要使用新密钥签名时，需要重新创建新Sign对象并调用init初始化。
 
-业务方使用时，在createSign时确定签名的模式，调用init接口设置密钥。
+业务方使用时，调用createSign接口确定签名的模式，调用init接口设置密钥。
 
-当待签名数据较短时，可在init初始化后，（无需update）直接调用sign接口传入原文数据进行签名。
+当待签名数据长度较短时，可在初始化后直接调用sign接口传入数据进行签名，无需调用update。
 
 当待签名数据较长时，可通过update接口分段传入切分后的原文数据，最后调用sign接口对整体原文数据进行签名。
 
 当使用update分段传入原文时，sign接口API 10之前只支持传入DataBlob， API 10之后增加支持null。业务方可在循环中调用update接口，循环结束后调用sign进行签名。
 
-当使用DSA算法进行签名，并设置了摘要算法为NoHash时，则不支持update操作，update接口会返回错误码ERR_CRYPTO_OPERATION。
+使用DSA算法签名时，如果摘要算法设置为NoHash，则不支持update操作，调用update接口将返回错误码ERR_CRYPTO_OPERATION。
 
 ### 属性
 
@@ -3924,9 +3908,9 @@ Sign类不支持重复初始化，当业务方需要使用新密钥签名时，�
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Signature
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Signature
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Signature。
 
-| 名称    | 类型   | 可读 | 可写 | 说明                         |
+| 名称    | 类型   | 只读 | 可选 | 说明                         |
 | ------- | ------ | ---- | ---- | ---------------------------- |
 | algName | string | 是   | 否   | 签名指定的算法名称。 |
 
@@ -3936,13 +3920,13 @@ init(priKey: PriKey, callback: AsyncCallback\<void>): void
 
 使用私钥初始化Sign对象，通过注册回调函数获取结果。init、update、sign为三段式接口，需要成组使用。其中init和sign必选，update可选。
 
-Sign类暂不支持重复init。
+Sign类不支持重复初始化。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Signature
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Signature
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Signature。
 
 **参数：**
 
@@ -3958,7 +3942,7 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory operation failed.          |
-| 17620002 | failed to convert paramters between arkts and c.          |
+| 17620002 | failed to convert parameters between arkts and c.         |
 | 17630001 | crypto operation error. |
 
 ### init
@@ -3967,13 +3951,13 @@ init(priKey: PriKey): Promise\<void>
 
 使用私钥初始化Sign对象，通过Promise获取结果。init、update、sign为三段式接口，需要成组使用。其中init和sign必选，update可选。
 
-Sign类暂不支持重复init。
+Sign类不支持重复初始化。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Signature
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Signature
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Signature。
 
 **参数：**
 
@@ -3994,7 +3978,7 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory operation failed.          |
-| 17620002 | failed to convert paramters between arkts and c.          |
+| 17620002 | failed to convert parameters between arkts and c.         |
 | 17630001 | crypto operation error. |
 
 ### initSync<sup>12+</sup>
@@ -4003,7 +3987,7 @@ initSync(priKey: PriKey): void
 
 使用私钥初始化Sign对象，通过同步方式获取结果。initSync、updateSync、signSync为三段式接口，需要成组使用。其中initSync和signSync必选，updateSync可选。
 
-Sign类暂不支持重复initSync。
+Sign类不支持重复调用initSync。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4022,7 +4006,7 @@ Sign类暂不支持重复initSync。
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory operation failed.          |
-| 17620002 | failed to convert paramters between arkts and c.          |
+| 17620002 | failed to convert parameters between arkts and c.         |
 | 17630001 | crypto operation error. |
 
 ### update
@@ -4045,7 +4029,7 @@ update(data: DataBlob, callback: AsyncCallback\<void>): void
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Signature
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Signature
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Signature。
 
 **参数：**
 
@@ -4055,13 +4039,13 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 | callback | AsyncCallback\<void>  | 是   | 回调函数。当签名更新成功，err为undefined，否则为错误对象。|
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory operation failed.          |
-| 17620002 | failed to convert paramters between arkts and c.          |
+| 17620002 | failed to convert parameters between arkts and c.          |
 | 17630001 | crypto operation error. |
 
 ### update
@@ -4070,12 +4054,12 @@ update(data: DataBlob): Promise\<void>
 
 追加待签名数据，通过Promise方式完成更新。
 
-必须在对[Sign](#sign)实例使用[init()](#init-3)初始化后，才能使用本函数。
+在使用本函数前，必须先使用[Sign](#sign)方法对[init()](#init-3)实例进行初始化。
 
 > **说明：**
 >
 > 根据数据量，可以不调用update（即[init](#init-3)完成后直接调用[sign](#sign-2)）或多次调用update。<br/>
-> 算法库目前没有对update（单次或累计）的数据量设置大小限制，建议对于大数据量的签名操作，采用多次update的方式传入数据，避免一次性申请过大内存。<br/>
+> 算法库不对单次或累计的update数据量设置大小限制。建议在处理大数据量的签名操作时，采用多次update方式传入数据，以避免一次性申请过多内存。
 > 签名使用多次update操作的示例代码详见[使用RSA密钥对分段签名验签](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1-by-segment.md)，其余算法操作类似。<br/>
 > OnlySign模式下，不支持update操作，需要直接使用sign传入数据。<br/>
 > 当使用DSA算法进行签名，并设置了摘要算法为NoHash时，则不支持update操作，update接口会返回错误码ERR_CRYPTO_OPERATION。
@@ -4084,7 +4068,7 @@ update(data: DataBlob): Promise\<void>
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Signature
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Signature
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Signature。
 
 **参数：**
 
@@ -4099,13 +4083,13 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 | Promise\<void> | 无返回结果的Promise对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍请参见 [crypto framework 错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory operation failed.          |
-| 17620002 | failed to convert paramters between arkts and c.          |
+| 17620002 | failed to convert parameters between arkts and c.         |
 | 17630001 | crypto operation error. |
 
 ### updateSync<sup>12+</sup>
@@ -4141,13 +4125,13 @@ updateSync(data: DataBlob): void
 | void | 无返回结果。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍请参见 [crypto framework 错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory operation failed.          |
-| 17620002 | failed to convert paramters between arkts and c.          |
+| 17620002 | failed to convert parameters between arkts and c.         |
 | 17630001 | crypto operation error. |
 
 ### sign
@@ -4160,7 +4144,7 @@ sign(data: DataBlob | null, callback: AsyncCallback\<DataBlob>): void
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Signature
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Signature
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Signature。
 
 **参数：**
 
@@ -4170,13 +4154,13 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 | callback | AsyncCallback\<[DataBlob](#datablob)> | 是   | 回调函数，用于获取DataBlob数据。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory operation failed.          |
-| 17620002 | failed to convert paramters between arkts and c.          |
+| 17620002 | failed to convert parameters between arkts and c.         |
 | 17630001 | crypto operation error. |
 
 ### sign
@@ -4189,7 +4173,7 @@ sign(data: DataBlob | null): Promise\<DataBlob>
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Signature
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Signature
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Signature。
 
 **参数：**
 
@@ -4210,7 +4194,7 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory operation failed.          |
-| 17620002 | failed to convert paramters between arkts and c.          |
+| 17620002 | failed to convert parameters between arkts and c.         |
 | 17630001 | crypto operation error. |
 
 ### signSync<sup>12+</sup>
@@ -4242,7 +4226,7 @@ signSync(data: DataBlob | null): DataBlob
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory operation failed.          |
-| 17620002 | failed to convert paramters between arkts and c.          |
+| 17620002 | failed to convert parameters between arkts and c.         |
 | 17630001 | crypto operation error. |
 
 **callback示例：**
@@ -4342,7 +4326,8 @@ setSignSpec(itemType: SignSpecItem, itemValue: number): void
 
 setSignSpec(itemType: SignSpecItem, itemValue: number \| Uint8Array): void
 
-设置签名参数。常用的签名参数可以直接通过[createSign](#cryptoframeworkcreatesign) 来指定，剩余参数可以通过本接口指定。
+设置签名参数。常用签名参数可通过 [createSign](#cryptoframeworkcreatesign) 指定，其他参数则通过本接口设置。
+
 
 只支持RSA算法、SM2算法，从API version11开始，支持SM2算法设置签名参数。
 
@@ -4350,7 +4335,7 @@ setSignSpec(itemType: SignSpecItem, itemValue: number \| Uint8Array): void
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Signature
 
-API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Signature
+API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Signature。
 
 **参数：**
 
@@ -4382,13 +4367,13 @@ signer.setSignSpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM, setN);
 
 getSignSpec(itemType: SignSpecItem): string | number
 
-获取签名参数。当前只支持RSA算法。
+获取签名参数。当前仅支持RSA算法。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Signature
 
-API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Signature
+API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Signature。
 
 **参数：**
 
@@ -4424,7 +4409,7 @@ let saltLen = signer.getSignSpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM);
 
 createVerify(algName: string): Verify
 
-Verify实例生成。
+生成Verify实例。
 
 支持的规格详见[签名验签规格](../../security/CryptoArchitectureKit/crypto-sign-sig-verify-overview.md)。
 
@@ -4432,13 +4417,13 @@ Verify实例生成。
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Signature
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Signature
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Signature。
 
 **参数：**
 
 | 参数名  | 类型   | 必填 | 说明                                                         |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| algName | string | 是   | 指定签名算法：RSA，ECC，DSA，SM2<sup>10+</sup>或ED25519<sup>11+</sup>。使用RSA PKCS1模式时需要设置摘要，使用RSA PSS模式时需要设置摘要和掩码摘要。<br/>使用RSA算法验签时，通过设置Recover参数可支持对签名后数据进行验签恢复。 |
+| algName | string | 是   | 指定签名算法：RSA、ECC、DSA、SM2<sup>10+</sup>或ED25519<sup>11+</sup>。使用RSA PKCS1模式时需设置摘要；使用RSA PSS模式时需设置摘要和掩码摘要。使用RSA算法验签时，设置Recover参数可支持验签恢复。 |
 
 **返回值**：
 
@@ -4447,7 +4432,7 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 | Verify | 返回由输入算法指定生成的Verify对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -4487,9 +4472,9 @@ Verify类不支持重复初始化，当业务方需要使用新密钥验签时�
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Signature
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Signature
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Signature。
 
-| 名称    | 类型   | 可读 | 可写 | 说明                         |
+| 名称    | 类型   | 只读 | 可选 | 说明                         |
 | ------- | ------ | ---- | ---- | ---------------------------- |
 | algName | string | 是   | 否   | 验签指定的算法名称。 |
 
@@ -4503,7 +4488,7 @@ init(pubKey: PubKey, callback: AsyncCallback\<void>): void
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Signature
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Signature
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Signature。
 
 **参数：**
 
@@ -4519,7 +4504,7 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory operation failed.          |
-| 17620002 | failed to convert paramters between arkts and c.          |
+| 17620002 | failed to convert parameters between arkts and c.         |
 | 17630001 | crypto operation error. |
 
 ### init
@@ -4532,7 +4517,7 @@ init(pubKey: PubKey): Promise\<void>
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Signature
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Signature
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Signature。
 
 **参数：**
 
@@ -4547,13 +4532,13 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 | Promise\<void> | 无返回结果的Promise对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory operation failed.          |
-| 17620002 | failed to convert paramters between arkts and c.          |
+| 17620002 | failed to convert parameters between arkts and c.         |
 | 17630001 | crypto operation error. |
 
 ### initSync<sup>12+</sup>
@@ -4579,13 +4564,13 @@ initSync(pubKey: PubKey): void
 | void | 无返回结果。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory operation failed.          |
-| 17620002 | failed to convert paramters between arkts and c.          |
+| 17620002 | failed to convert parameters between arkts and c.         |
 | 17630001 | crypto operation error. |
 
 ### update
@@ -4594,7 +4579,7 @@ update(data: DataBlob, callback: AsyncCallback\<void>): void
 
 追加待验签数据，通过注册回调函数完成更新。
 
-必须在对[Verify](#verify)实例使用[init()](#init-4)初始化后，才能使用本函数。
+必须在对[Verify](#verify)实例使用[init](#init-4)初始化后，才能使用本函数。
 
 > **说明：**
 >
@@ -4607,7 +4592,7 @@ update(data: DataBlob, callback: AsyncCallback\<void>): void
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Signature
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Signature
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Signature。
 
 **参数：**
 
@@ -4623,7 +4608,7 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory operation failed.          |
-| 17620002 | failed to convert paramters between arkts and c.          |
+| 17620002 | failed to convert parameters between arkts and c.         |
 | 17630001 | crypto operation error. |
 
 ### update
@@ -4645,7 +4630,7 @@ update(data: DataBlob): Promise\<void>
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Signature
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Signature
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Signature。
 
 **参数：**
 
@@ -4666,7 +4651,7 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory operation failed.          |
-| 17620002 | failed to convert paramters between arkts and c.          |
+| 17620002 | failed to convert parameters between arkts and c.         |
 | 17630001 | crypto operation error. |
 
 ### updateSync<sup>12+</sup>
@@ -4701,26 +4686,26 @@ updateSync(data: DataBlob): void
 | void | 无返回结果。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory operation failed.          |
-| 17620002 | failed to convert paramters between arkts and c.          |
+| 17620002 | failed to convert parameters between arkts and c.         |
 | 17630001 | crypto operation error. |
 
 ### verify
 
 verify(data: DataBlob | null, signatureData: DataBlob, callback: AsyncCallback\<boolean>): void
 
-对数据进行验签，通过注册回调函数返回返回验签结果。
+对数据进行验签，通过注册回调函数返回验签结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Signature
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Signature
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Signature。
 
 **参数：**
 
@@ -4737,7 +4722,7 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory operation failed.          |
-| 17620002 | failed to convert paramters between arkts and c.          |
+| 17620002 | failed to convert parameters between arkts and c.         |
 | 17630001 | crypto operation error. |
 
 ### verify
@@ -4750,7 +4735,7 @@ verify(data: DataBlob | null, signatureData: DataBlob): Promise\<boolean>
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Signature
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Signature
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Signature。
 
 **参数：**
 
@@ -4772,7 +4757,7 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory operation failed.          |
-| 17620002 | failed to convert paramters between arkts and c.          |
+| 17620002 | failed to convert parameters between arkts and c.         |
 | 17630001 | crypto operation error. |
 
 ### verifySync<sup>12+</sup>
@@ -4796,7 +4781,7 @@ verifySync(data: DataBlob | null, signatureData: DataBlob): boolean
 
 | 类型              | 说明                           |
 | ----------------- | ------------------------------ |
-| boolean | 同步返回值，代表验签是否通过。 |
+| boolean | 同步返回值，表示验签是否成功。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
@@ -4805,7 +4790,7 @@ verifySync(data: DataBlob | null, signatureData: DataBlob): boolean
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory operation failed.          |
-| 17620002 | failed to convert paramters between arkts and c.          |
+| 17620002 | failed to convert parameters between arkts and c.         |
 | 17630001 | crypto operation error. |
 
 **callback示例：**
@@ -4842,7 +4827,7 @@ function verifyByCallback() {
 
 **Promise示例：**
 
-此外，更多签名验签的完整示例可参考[签名验签开发指导](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1.md)。
+更多示例请参见[签名验签开发指导](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1.md)。
 
 ```ts
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
@@ -4935,13 +4920,13 @@ recover(signatureData: DataBlob): Promise\<DataBlob | null>
 | Promise\<[DataBlob](#datablob)  \| null> | 验签恢复的数据。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory operation failed.          |
-| 17620002 | failed to convert paramters between arkts and c.          |
+| 17620002 | failed to convert parameters between arkts and c.         |
 | 17630001 | crypto operation error. |
 
 **示例：**
@@ -5015,7 +5000,7 @@ recoverSync(signatureData: DataBlob): DataBlob | null
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory operation failed.          |
-| 17620002 | failed to convert paramters between arkts and c.          |
+| 17620002 | failed to convert parameters between arkts and c.         |
 | 17630001 | crypto operation error. |
 
 ### setVerifySpec<sup>10+</sup>
@@ -5026,7 +5011,7 @@ setVerifySpec(itemType: SignSpecItem, itemValue: number \| Uint8Array): void
 
 设置验签参数。常用的签名参数可以直接通过[createVerify](#cryptoframeworkcreateverify) 来指定，剩余参数可以通过本接口指定。
 
-只支持RSA算法、SM2算法，从API version 11开始，支持SM2算法设置验签参数。
+支持RSA算法和SM2算法，从API version 11开始，支持SM2算法设置验签参数。
 
 验签的参数应当与签名的参数保持一致。
 
@@ -5034,7 +5019,7 @@ setVerifySpec(itemType: SignSpecItem, itemValue: number \| Uint8Array): void
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Signature
 
-API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Signature
+API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Signature。
 
 **参数：**
 
@@ -5074,7 +5059,7 @@ getVerifySpec(itemType: SignSpecItem): string | number
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Signature
 
-API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Signature
+API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Signature。
 
 **参数：**
 
@@ -5110,7 +5095,7 @@ let saltLen = verifyer.getVerifySpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_N
 
 createKeyAgreement(algName: string): KeyAgreement
 
-KeyAgreement实例生成。
+生成KeyAgreement实例。
 
 支持的规格详见[密钥协商规格](../../security/CryptoArchitectureKit/crypto-key-agreement-overview.md)。
 
@@ -5118,7 +5103,7 @@ KeyAgreement实例生成。
 
 **系统能力：** SystemCapability.Security.CryptoFramework.KeyAgreement
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.KeyAgreement
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.KeyAgreement。
 
 **参数：**
 
@@ -5159,9 +5144,9 @@ KeyAgreement类，使用密钥协商方法之前需要创建该类的实例进�
 
 **系统能力：** SystemCapability.Security.CryptoFramework.KeyAgreement
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.KeyAgreement
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.KeyAgreement。
 
-| 名称    | 类型   | 可读 | 可写 | 说明                         |
+| 名称    | 类型   | 只读 | 可选 | 说明                         |
 | ------- | ------ | ---- | ---- | ---------------------------- |
 | algName | string | 是   | 否   | 密钥协商指定的算法名称。 |
 
@@ -5175,7 +5160,7 @@ generateSecret(priKey: PriKey, pubKey: PubKey, callback: AsyncCallback\<DataBlob
 
 **系统能力：** SystemCapability.Security.CryptoFramework.KeyAgreement
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.KeyAgreement
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.KeyAgreement。
 
 **参数：**
 
@@ -5192,7 +5177,7 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory operation failed.          |
-| 17620002 | failed to convert paramters between arkts and c.          |
+| 17620002 | failed to convert parameters between arkts and c.         |
 | 17630001 | crypto operation error. |
 
 ### generateSecret
@@ -5205,7 +5190,7 @@ generateSecret(priKey: PriKey, pubKey: PubKey): Promise\<DataBlob>
 
 **系统能力：** SystemCapability.Security.CryptoFramework.KeyAgreement
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.KeyAgreement
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.KeyAgreement。
 
 **参数：**
 
@@ -5227,7 +5212,7 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory operation failed.          |
-| 17620002 | failed to convert paramters between arkts and c.          |
+| 17620002 | failed to convert parameters between arkts and c.          |
 | 17630001 | crypto operation error. |
 
 ### generateSecretSync<sup>12+</sup>
@@ -5254,13 +5239,13 @@ generateSecretSync(priKey: PriKey, pubKey: PubKey): DataBlob
 |[DataBlob](#datablob) | 共享密钥。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory operation failed.          |
-| 17620002 | failed to convert paramters between arkts and c.          |
+| 17620002 | failed to convert parameters between arkts and c.         |
 | 17630001 | crypto operation error. |
 
 **callback示例：**
@@ -5319,7 +5304,7 @@ createMd(algName: string): Md
 
 **系统能力：** SystemCapability.Security.CryptoFramework.MessageDigest
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.MessageDigest
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.MessageDigest。
 
 **参数：**
 
@@ -5334,7 +5319,7 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 | Md   | 返回由输入算法指定生成的[Md](#md)对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
@@ -5366,9 +5351,9 @@ Md类，调用Md方法可以进行MD（Message Digest）摘要计算。调用前
 
 **系统能力：** SystemCapability.Security.CryptoFramework.MessageDigest
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.MessageDigest
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.MessageDigest。
 
-| 名称    | 类型   | 可读 | 可写 | 说明                   |
+| 名称    | 类型   | 只读 | 可选 | 说明                   |
 | ------- | ------ | ---- | ---- | ---------------------- |
 | algName | string | 是   | 否   | 代表指定的摘要算法名。 |
 
@@ -5388,7 +5373,7 @@ update(input: DataBlob, callback: AsyncCallback\<void>): void
 
 **系统能力：** SystemCapability.Security.CryptoFramework.MessageDigest
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.MessageDigest
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.MessageDigest。
 
 **参数：**
 
@@ -5422,7 +5407,7 @@ update(input: DataBlob): Promise\<void>
 
 **系统能力：** SystemCapability.Security.CryptoFramework.MessageDigest
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.MessageDigest
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.MessageDigest。
 
 | 参数名 | 类型     | 必填 | 说明         |
 | ------ | -------- | ---- | ------------ |
@@ -5435,7 +5420,7 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 | Promise\<void> | 无返回结果的Promise对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -5468,7 +5453,7 @@ updateSync(input: DataBlob): void
 | void | 无返回结果。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -5490,14 +5475,15 @@ digest(callback: AsyncCallback\<DataBlob>): void
 
 **系统能力：** SystemCapability.Security.CryptoFramework.MessageDigest
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.MessageDigest
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.MessageDigest。
 
 | 参数名   | 类型                     | 必填 | 说明       |
 | -------- | ------------------------ | ---- | ---------- |
 | callback | AsyncCallback\<[DataBlob](#datablob)> | 是   | 回调函数，用于获取DataBlob数据。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)。
+
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -5535,7 +5521,7 @@ digest(): Promise\<DataBlob>
 
 **系统能力：** SystemCapability.Security.CryptoFramework.MessageDigest
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.MessageDigest
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.MessageDigest。
 
 **返回值：**
 
@@ -5589,7 +5575,7 @@ digestSync(): DataBlob
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.         |
 | 17620001 | memory operation failed. |
-| 17620002 | failed to convert paramters between arkts and c. |
+| 17620002 | failed to convert parameters between arkts and c. |
 | 17630001 | crypto operation error. |
 
 **示例：**
@@ -5611,13 +5597,13 @@ async function mdBySync() {
 
 getMdLength(): number
 
-获取Md消息摘要长度（字节数）。
+获取Md消息摘要的字节长度。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework.MessageDigest
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.MessageDigest
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.MessageDigest。
 
 **返回值：**
 
@@ -5626,7 +5612,7 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 | number | 返回md计算结果的字节长度。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍请参见 [crypto framework 错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -5647,7 +5633,7 @@ function getLength() {
 
 createMac(algName: string): Mac
 
-生成Mac实例，用于进行消息认证码的计算与操作。
+生成Mac实例，用于消息认证码的计算与操作。
 
 支持的规格详见[HMAC消息认证码算法规格](../../security/CryptoArchitectureKit/crypto-compute-mac-overview.md#消息认证码计算介绍及算法规格)。
 
@@ -5655,7 +5641,7 @@ createMac(algName: string): Mac
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Mac
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Mac
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Mac。
 
 **参数：**
 
@@ -5723,7 +5709,7 @@ createMac(macSpec: MacSpec): Mac
 | -------- | ------------------ |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 17620001 | memory operation failed.       |
-| 17620002 | failed to convert paramters between arkts and c.       |
+| 17620002 | failed to convert parameters between arkts and c.      |
 | 17630001 | crypto operation error.       |
 
 **示例：**
@@ -5755,9 +5741,9 @@ Mac类，调用Mac方法可以进行MAC（Message Authentication Code）加密�
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Mac
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Mac
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Mac。
 
-| 名称    | 类型   | 可读 | 可写 | 说明                   |
+| 名称    | 类型   | 只读 | 可选 | 说明                   |
 | ------- | ------ | ---- | ---- | ---------------------- |
 | algName | string | 是   | 否   | 代表指定的摘要算法名。 |
 
@@ -5775,7 +5761,7 @@ init(key: SymKey, callback: AsyncCallback\<void>): void
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Mac
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Mac
+API version 9-11 系统能力为SystemCapability.Security.CryptoFramework；从API version 12 开始为SystemCapability.Security.CryptoFramework.Mac。
 
 **参数：**
 
@@ -5803,7 +5789,7 @@ init(key: SymKey): Promise\<void>
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Mac
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Mac
+API version 9-11 系统能力为SystemCapability.Security.CryptoFramework；从API version 12 开始为SystemCapability.Security.CryptoFramework.Mac。
 
 **参数：**
 
@@ -5849,7 +5835,7 @@ initSync(key: SymKey): void
 | void | 无返回结果。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -5865,13 +5851,13 @@ update(input: DataBlob, callback: AsyncCallback\<void>): void
 
 > **说明：**
 >
-> HMAC算法多次调用update更新的代码示例详见开发指导[消息认证码计算](../../security/CryptoArchitectureKit/crypto-compute-hmac.md#分段hmac)。
+> HMAC算法多次调用update更新的代码示例详见[消息认证码计算](../../security/CryptoArchitectureKit/crypto-compute-hmac.md#分段hmac)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Mac
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Mac
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Mac。
 
 **参数：**
 
@@ -5881,7 +5867,7 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 | callback | AsyncCallback\<void>  | 是   | 回调函数。当HMAC更新成功，err为undefined，否则为错误对象。|
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -5897,13 +5883,13 @@ update(input: DataBlob): Promise\<void>
 
 > **说明：**
 >
-> HMAC算法多次调用update更新的代码示例详见开发指导[消息认证码计算](../../security/CryptoArchitectureKit/crypto-compute-hmac.md#分段hmac)。
+> HMAC算法多次调用update更新的代码示例详见[消息认证码计算](../../security/CryptoArchitectureKit/crypto-compute-hmac.md#分段hmac)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Mac
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Mac
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Mac。
 
 **参数：**
 
@@ -5918,7 +5904,7 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 | Promise\<void> | 无返回结果的Promise对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍请参见[crypto framework 错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -5934,7 +5920,7 @@ updateSync(input: DataBlob): void
 
 > **说明：**
 >
-> HMAC算法多次调用updateSync更新的代码示例详见开发指导[消息认证码计算](../../security/CryptoArchitectureKit/crypto-compute-hmac.md#分段hmac)。
+> HMAC算法多次调用updateSync更新的代码示例详见[消息认证码计算](../../security/CryptoArchitectureKit/crypto-compute-hmac.md#分段hmac)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5946,14 +5932,9 @@ updateSync(input: DataBlob): void
 | ------ | -------- | ---- | ---------- |
 | input  | [DataBlob](#datablob) | 是   | 传入的消息。 |
 
-**返回值：**
-
-| 类型           | 说明          |
-| -------------- | ------------- |
-| void | 无返回结果的对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍请参见[crypto framework 错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -5971,7 +5952,7 @@ doFinal(callback: AsyncCallback\<DataBlob>): void
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Mac
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Mac
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Mac。
 
 **参数：**
 
@@ -6022,7 +6003,7 @@ doFinal(): Promise\<DataBlob>
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Mac
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Mac
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Mac。
 
 **返回值：**
 
@@ -6082,7 +6063,7 @@ doFinalSync(): DataBlob
 | -------- | ---------------------- |
 | 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.          |
 | 17620001 | memory operation failed.           |
-| 17620002 | failed to convert paramters between arkts and c. |
+| 17620002 | failed to convert parameters between arkts and c. |
 | 17630001 | crypto operation error. |
 
 **示例：**
@@ -6116,13 +6097,13 @@ getMacLength(): number
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Mac
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Mac
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Mac。
 
 **返回值：**
 
 | 类型   | 说明                        |
 | ------ | --------------------------- |
-| number | 返回mac计算结果的字节长度。 |
+| number | 返回Mac计算结果的字节长度。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
@@ -6175,7 +6156,7 @@ createRandom(): Random
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Rand
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Rand
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Rand。
 
 **返回值**：
 
@@ -6214,9 +6195,9 @@ Random类，调用Random方法可以进行随机数计算。调用前，需要�
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Rand
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Rand
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Rand。
 
-| 名称    | 类型   | 可读 | 可写 | 说明                 |
+| 名称    | 类型   | 只读 | 可选 | 说明                 |
 | ------- | ------ | ---- | ---- | -------------------- |
 | algName<sup>10+</sup> | string | 是   | 否   | 代表当前使用的随机数生成算法，目前只支持“CTR_DRBG"。 |
 
@@ -6234,7 +6215,7 @@ generateRandom(len: number, callback: AsyncCallback\<DataBlob>): void
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Rand
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Rand
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Rand。
 
 **参数：**
 
@@ -6281,7 +6262,7 @@ generateRandom(len: number): Promise\<DataBlob>
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Rand
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Rand
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Rand。
 
 **参数：**
 
@@ -6329,7 +6310,7 @@ generateRandomSync(len: number): DataBlob
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Rand
 
-API version10-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Rand
+API version 10-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Rand。
 
 **参数：**
 
@@ -6344,7 +6325,7 @@ API version10-11系统能力为SystemCapability.Security.CryptoFramework；从AP
 |[DataBlob](#datablob) | 表示生成的随机数。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍请参见 [crypto framework 错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -6382,14 +6363,14 @@ setSeed(seed: DataBlob): void
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Rand
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Rand
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Rand。
 
 | 参数名 | 类型     | 必填 | 说明         |
 | ------ | -------- | ---- | ------------ |
 | seed   | [DataBlob](#datablob) | 是   | 设置的种子。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍请参见 [crypto framework 错误码](errorcode-crypto-framework.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ----------------- |
@@ -6427,7 +6408,7 @@ createKdf(algName: string): Kdf
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Kdf
 
-API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Kdf
+API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Kdf。
 
 **参数：**
 
@@ -6468,9 +6449,9 @@ let kdf = cryptoFramework.createKdf('PBKDF2|SHA256');
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Kdf
 
-API version11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Kdf
+API version 11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Kdf。
 
-| 名称    | 类型   | 可读 | 可写 | 说明                         |
+| 名称    | 类型   | 只读 | 可选 | 说明                         |
 | ------- | ------ | ---- | ---- | ---------------------------- |
 | algName | string | 是   | 否   | 密钥派生函数的算法名称。 |
 
@@ -6484,7 +6465,7 @@ generateSecret(params: KdfSpec, callback: AsyncCallback\<DataBlob>): void
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Kdf
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Kdf
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Kdf。
 
 **参数：**
 
@@ -6494,7 +6475,7 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 | callback | AsyncCallback\<[DataBlob](#datablob)> | 是   | 回调函数，用于获取派生得到的密钥DataBlob数据。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+以下错误码的详细介绍请参见[crypto framework错误码]。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -6556,7 +6537,7 @@ generateSecret(params: KdfSpec): Promise\<DataBlob>
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Kdf
 
-API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API version12开始为SystemCapability.Security.CryptoFramework.Kdf
+API version 9-11系统能力为SystemCapability.Security.CryptoFramework；从API version 12开始为SystemCapability.Security.CryptoFramework.Kdf。
 
 **参数：**
 
@@ -6568,7 +6549,7 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 
 | 类型               | 说明     |
 | ------------------ | -------- |
-| Promise\<[DataBlob](#datablob)> | 回调函数，用于获取派生得到的密钥DataBlob数据。 |
+| Promise\<[DataBlob](#datablob)> | 通过Promise形式返回派生得到的密钥。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
@@ -6652,7 +6633,7 @@ generateSecretSync(params: KdfSpec): DataBlob
 | -------- | ---------------------- |
 | 401 | invalid parameters.  Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.  |
 | 17620001 | memory operation failed.          |
-| 17620002 | failed to convert paramters between arkts and c. |
+| 17620002 | failed to convert parameters between arkts and c. |
 | 17630001 | crypto operation error. |
 
 **示例：**
@@ -6687,4 +6668,117 @@ generateSecretSync(params: KdfSpec): DataBlob
   let kdf = cryptoFramework.createKdf('HKDF|SHA256|EXTRACT_AND_EXPAND');
   let secret = kdf.generateSecretSync(spec);
   console.info("[Sync]key derivation output is " + secret.data);
+  ```
+
+## SignatureUtils<sup>20+</sup>
+
+用于SM2数据转换的工具类。
+
+### genEccSignatureSpec<sup>20+</sup>
+
+static genEccSignatureSpec(data: Uint8Array): EccSignatureSpec
+
+从ASN1 DER格式的sm2签名数据获取r和s。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.CryptoFramework.Signature
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                   |
+| ------ | ------ | ---- | ---------------------- |
+| data   | Uint8Array        | 是   | ASN1 DER格式的签名数据。 |
+
+**返回值：**
+
+| 类型               | 说明     |
+| ------------------ | -------- |
+| [EccSignatureSpec](#eccsignaturespec20) | 包含r和s的数据结构体。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 17620001 | memory operation failed.          |
+| 17620002 | failed to convert parameters between arkts and c. |
+| 17620003 | parameter check failed. Possible causes: <br>1. The length of the data parameter is 0 or too large. |
+| 17630001 | crypto operation error. |
+
+**示例：**
+
+  ```ts
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  function testGenEccSignatureSpec() {
+    try {
+      let data =
+        new Uint8Array([48, 69, 2, 33, 0, 216, 15, 76, 238, 158, 165, 108, 76, 72, 63, 115, 52, 255, 51, 149, 54, 224,
+          179, 49, 225, 70, 36, 117, 88, 154, 154, 27, 194, 161, 3, 1, 115, 2, 32, 51, 9, 53, 55, 248, 82, 7, 159, 179,
+          144, 57, 151, 195, 17, 31, 106, 123, 32, 139, 219, 6, 253, 62, 240, 181, 134, 214, 107, 27, 230, 175, 40])
+      let spec: cryptoFramework.EccSignatureSpec = cryptoFramework.SignatureUtils.genEccSignatureSpec(data)
+      console.info('genEccSignatureSpec success');
+    } catch (err) {
+      let e: BusinessError = err as BusinessError;
+      console.error(`ecc error, ${e.code}, ${e.message}`);
+    }
+  }
+  ```
+
+
+### genEccSignature<sup>20+</sup>
+
+static genEccSignature(spec: EccSignatureSpec): Uint8Array;
+
+将（r、s）的sm2签名数据转换为ASN1 DER格式。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.CryptoFramework.Signature
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                   |
+| ------ | ------ | ---- | ---------------------- |
+| spec   | [EccSignatureSpec](#eccsignaturespec20)        | 是   | （r、s）的sm2签名数据。 |
+
+**返回值：**
+
+| 类型               | 说明     |
+| ------------------ | -------- |
+| Uint8Array | ASN1 DER格式的签名数据。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 17620001 | memory operation failed.          |
+| 17620002 | failed to convert parameters between arkts and c. |
+| 17620003 | parameter check failed. Possible causes: <br>1. The r or s value of the spec parameter is 0 or too large. |
+| 17630001 | crypto operation error. |
+
+**示例：**
+
+  ```ts
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  function testGenEccSignature() {
+    try {
+      let spec: cryptoFramework.EccSignatureSpec = {
+        r: BigInt('97726608965854271693043443511967021777934035174185659091642456228829830775155'),
+        s: BigInt('23084224202834231287427338597254751764391338275617140205467537273296855150376'),
+      }
+
+      let data = cryptoFramework.SignatureUtils.genEccSignature(spec)
+      console.info('genEccSignature success');
+      console.info('data is ' + data)
+    } catch (err) {
+      let e: BusinessError = err as BusinessError;
+      console.error(`ecc error, ${e.code}, ${e.message}`);
+    }
+  }
   ```

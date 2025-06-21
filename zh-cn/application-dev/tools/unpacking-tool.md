@@ -218,7 +218,9 @@ java -jar app_unpacking_tool.jar --mode appqf --appqf-path <path> --out-path <pa
 | shellVersionName               | String  | 标识应用的API版本名称。  | NA          |
 | multiFrameworkBundle           | boolean | 标识应用框架。true表示混合打包，false表示非混合打包。   | NA          |
 | debug                          | boolean | 标识应用是否可调试。true表示可调试，false表示不可调试。     | NA          |
-| icon                           | String  | 标识应用的图标路径。 | NA          |
+| iconId                         | int     | 标识应用的图标资源ID。 | NA          |
+| labelId                        | int     | 标识应用的label资源ID。  | NA          |
+| icon                           | String  | 标识应用的图标。 | NA          |
 | label                          | String  | 标识应用的label。  | NA          |
 | description                    | String  | 标识应用的描述信息。    | stage模型新增。   |
 | minCompatibleVersionCode       | int     | 标识应用能够兼容的最低版本号。  | NA          |
@@ -271,8 +273,10 @@ java -jar app_unpacking_tool.jar --mode appqf --appqf-path <path> --out-path <pa
 | name              | String                    | 标识当前ability的逻辑名。        | NA                              |
 | description       | String                    | 标识ability的描述。             | NA                              |
 | descriptionRes    | String                    | 标识ability资源的描述。            | NA                              |
+| iconId            | int                       | 标识ability图标资源ID。            | NA                              |
 | icon              | String                    | 标识ability图标。            | NA                              |
 | iconPath          | String                    | 标识ability图标路径。      | NA                              |
+| labelId           | int                       | 标识ability对用户显示的名称资源ID。       | NA                              |
 | label             | String                    | 标识ability对用户显示的名称。       | NA                              |
 | labelRes          | String                    | 标识ability对用户显示的名称资源。      | NA                    |
 | type              | String                    | 标识ability类型。      | Stage模型下该值直接赋予page类型。 |

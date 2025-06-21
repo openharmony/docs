@@ -57,7 +57,7 @@ import { appManager } from '@kit.AbilityKit';
 
 ## KeepAliveBundleInfo<sup>14+</sup>
 
-定义应用保活信息，可以通过[getKeepAliveBundles](#appmanagergetkeepalivebundles14)获取当前应用的相关信息。
+定义应用保活信息，可以通过[getKeepAliveBundles](#appmanagergetkeepalivebundles14)或[getKeepAliveAppServiceExtensions](#appmanagergetkeepaliveappserviceextensions20)获取。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -65,10 +65,11 @@ import { appManager } from '@kit.AbilityKit';
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ------------------------- | ------ | ---- | ---- | --------- |
-| bundleName   | string | 是 | 否  | Bundle名称。 |
-| userId   | number | 是 | 否  | 用户ID。 |
-| appType       | [KeepAliveAppType](#keepaliveapptype14) | 是 | 否 | 表示被保活应用的应用类型。   |
-| setter       | [KeepAliveSetter](#keepalivesetter14) | 是 | 否 | 表示应用保活设置者类型。   |
+| bundleName   | string | 否 | 否  | Bundle名称。 |
+| type       | [KeepAliveAppType](#keepaliveapptype14) | 否 | 否 | 表示被保活应用的应用类型。   |
+| setter       | [KeepAliveSetter](#keepalivesetter14) | 否 | 否 | 表示应用保活设置者类型。   |
+| setterUserId<sup>20+</sup>   | number | 否 | 是  | 应用保活设置者的用户ID。 |
+| allowUserToCancel<sup>20+</sup>   | boolean | 否 | 是  | 表示是否允许用户取消保活。true表示允许，false表示不允许。 |
 
 ## appManager.isSharedBundleRunning<sup>10+</sup>
 
@@ -116,7 +117,7 @@ const bundleName = "this is a bundleName";
 const versionCode = 1;
 
 appManager.isSharedBundleRunning(bundleName, versionCode).then((data) => {
-  console.log(`The shared bundle running is: ${JSON.stringify(data)}`);
+  console.info(`The shared bundle running is: ${JSON.stringify(data)}`);
 }).catch((error: BusinessError) => {
   console.error(`error: ${JSON.stringify(error)}`);
 });
@@ -165,7 +166,7 @@ appManager.isSharedBundleRunning(bundleName, versionCode, (err, data) => {
   if (err) {
     console.error(`err: ${JSON.stringify(err)}`);
   } else {
-    console.log(`The shared bundle running is: ${JSON.stringify(data)}`);
+    console.info(`The shared bundle running is: ${JSON.stringify(data)}`);
   }
 });
 ```
@@ -208,7 +209,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let observer: appManager.AppForegroundStateObserver = {
   onAppStateChanged(appStateData) {
-    console.log(`[appManager] onAppStateChanged: ${JSON.stringify(appStateData)}`);
+    console.info(`[appManager] onAppStateChanged: ${JSON.stringify(appStateData)}`);
   },
 };
 
@@ -260,7 +261,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let abilityFirstFrameStateObserverForAll: appManager.AbilityFirstFrameStateObserver = {
   onAbilityFirstFrameDrawn(abilityStateData: appManager.AbilityFirstFrameStateData) {
-    console.log("abilityFirstFrame: ", JSON.stringify(abilityStateData));
+    console.info("abilityFirstFrame: ", JSON.stringify(abilityStateData));
   }
 };
 
@@ -313,7 +314,7 @@ let observer_: appManager.AppForegroundStateObserver | undefined;
 // 1.注册应用启动和退出的监听器
 let observer: appManager.AppForegroundStateObserver = {
   onAppStateChanged(appStateData: appManager.AppStateData) {
-    console.log(`[appManager] onAppStateChanged: ${JSON.stringify(appStateData)}`);
+    console.info(`[appManager] onAppStateChanged: ${JSON.stringify(appStateData)}`);
   },
 };
 
@@ -375,7 +376,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let abilityFirstFrameStateObserverForAll: appManager.AbilityFirstFrameStateObserver = {
   onAbilityFirstFrameDrawn(abilityStateData: appManager.AbilityFirstFrameStateData) {
-    console.log("abilityFirstFrame: ", JSON.stringify(abilityStateData));
+    console.info("abilityFirstFrame: ", JSON.stringify(abilityStateData));
   }
 };
 
@@ -435,7 +436,7 @@ function getForegroundApplicationsCallback(err: BusinessError, data: Array<appMa
   if (err) {
     console.error(`getForegroundApplicationsCallback fail, err: ${JSON.stringify(err)}`);
   } else {
-    console.log(`getForegroundApplicationsCallback success, data: ${JSON.stringify(data)}`);
+    console.info(`getForegroundApplicationsCallback success, data: ${JSON.stringify(data)}`);
   }
 }
 
@@ -483,7 +484,7 @@ import { appManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 appManager.getForegroundApplications().then((data) => {
-  console.log(`getForegroundApplications success, data: ${JSON.stringify(data)}`);
+  console.info(`getForegroundApplications success, data: ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
   console.error(`getForegroundApplications fail, err: ${JSON.stringify(err)}`);
 });
@@ -540,7 +541,7 @@ let accountId = 0;
 
 try {
   appManager.killProcessWithAccount(bundleName, accountId).then(() => {
-    console.log('killProcessWithAccount success');
+    console.info('killProcessWithAccount success');
   }).catch((err: BusinessError) => {
     console.error(`killProcessWithAccount fail, err: ${JSON.stringify(err)}`);
   });
@@ -606,7 +607,7 @@ let appIndex = 1;
 
 try {
   appManager.killProcessWithAccount(bundleName, accountId, isClearPageStack, appIndex).then(() => {
-    console.log('killProcessWithAccount success');
+    console.info('killProcessWithAccount success');
   }).catch((err: BusinessError) => {
     console.error(`killProcessWithAccount fail, err: ${JSON.stringify(err)}`);
   });
@@ -665,7 +666,7 @@ function killProcessWithAccountCallback(err: BusinessError) {
   if (err) {
     console.error(`killProcessWithAccountCallback fail, err: ${JSON.stringify(err)}`);
   } else {
-    console.log('killProcessWithAccountCallback success.');
+    console.info('killProcessWithAccountCallback success.');
   }
 }
 
@@ -714,7 +715,7 @@ function killProcessesByBundleNameCallback(err: BusinessError) {
   if (err) {
     console.error(`killProcessesByBundleNameCallback fail, err: ${JSON.stringify(err)}`);
   } else {
-    console.log('killProcessesByBundleNameCallback success.');
+    console.info('killProcessesByBundleNameCallback success.');
   }
 }
 
@@ -772,7 +773,7 @@ let bundleName = 'bundleName';
 
 try {
   appManager.killProcessesByBundleName(bundleName).then((data) => {
-    console.log('killProcessesByBundleName success.');
+    console.info('killProcessesByBundleName success.');
   }).catch((err: BusinessError) => {
     console.error(`killProcessesByBundleName fail, err: ${JSON.stringify(err)}`);
   });
@@ -825,7 +826,7 @@ function clearUpApplicationDataCallback(err: BusinessError) {
   if (err) {
     console.error(`clearUpApplicationDataCallback fail, err: ${JSON.stringify(err)}`);
   } else {
-    console.log('clearUpApplicationDataCallback success.');
+    console.info('clearUpApplicationDataCallback success.');
   }
 }
 
@@ -883,7 +884,7 @@ let bundleName = 'bundleName';
 
 try {
   appManager.clearUpApplicationData(bundleName).then((data) => {
-    console.log('clearUpApplicationData success.');
+    console.info('clearUpApplicationData success.');
   }).catch((err: BusinessError) => {
     console.error(`clearUpApplicationData fail, err: ${JSON.stringify(err)}`);
   });
@@ -932,7 +933,7 @@ function getProcessMemoryByPidCallback(err: BusinessError, data: number) {
   if (err) {
     console.error(`getProcessMemoryByPidCallback fail, err: ${JSON.stringify(err)}`);
   } else {
-    console.log('getProcessMemoryByPidCallback success.');
+    console.info('getProcessMemoryByPidCallback success.');
   }
 }
 
@@ -987,7 +988,7 @@ let pid = 0;
 
 try {
   appManager.getProcessMemoryByPid(pid).then((data) => {
-    console.log('getProcessMemoryByPid success.');
+    console.info('getProcessMemoryByPid success.');
   }).catch((err: BusinessError) => {
     console.error(`getProcessMemoryByPid fail, err: ${JSON.stringify(err)}`);
   });
@@ -1036,7 +1037,7 @@ function getRunningProcessInfoByBundleNameCallback(err: BusinessError, data: Arr
   if (err) {
     console.error(`getRunningProcessInfoByBundleNameCallback fail, err: ${JSON.stringify(err)}`);
   } else {
-    console.log('getRunningProcessInfoByBundleNameCallback success.');
+    console.info('getRunningProcessInfoByBundleNameCallback success.');
   }
 }
 
@@ -1091,7 +1092,7 @@ let bundleName = "bundleName";
 
 try {
   appManager.getRunningProcessInfoByBundleName(bundleName).then((data) => {
-    console.log('getRunningProcessInfoByBundleName success.');
+    console.info('getRunningProcessInfoByBundleName success.');
   }).catch((err: BusinessError) => {
     console.error(`getRunningProcessInfoByBundleName fail, err: ${JSON.stringify(err)}`);
   });
@@ -1142,7 +1143,7 @@ function getRunningProcessInfoByBundleNameCallback(err: BusinessError, data: Arr
   if (err) {
     console.error(`getRunningProcessInfoByBundleNameCallback fail, err: ${JSON.stringify(err)}`);
   } else {
-    console.log('getRunningProcessInfoByBundleNameCallback success.');
+    console.info('getRunningProcessInfoByBundleNameCallback success.');
   }
 }
 
@@ -1199,7 +1200,7 @@ let userId = 0;
 
 try {
   appManager.getRunningProcessInfoByBundleName(bundleName, userId).then((data) => {
-    console.log('getRunningProcessInfoByBundleName success.');
+    console.info('getRunningProcessInfoByBundleName success.');
   }).catch((err: BusinessError) => {
     console.error(`getRunningProcessInfoByBundleName fail, err: ${JSON.stringify(err)}`);
   });
@@ -1254,7 +1255,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let bundleName = "com.example.myapplication";
 
 appManager.isApplicationRunning(bundleName).then((data) => {
-  console.log(`The application running is: ${JSON.stringify(data)}`);
+  console.info(`The application running is: ${JSON.stringify(data)}`);
 }).catch((error: BusinessError) => {
   console.error(`error: ${JSON.stringify(error)}`);
 });
@@ -1303,7 +1304,7 @@ try {
     if (err) {
       console.error(`err: ${JSON.stringify(err)}`);
     } else {
-      console.log(`The application running is: ${JSON.stringify(data)}`);
+      console.info(`The application running is: ${JSON.stringify(data)}`);
     }
   });
 } catch (paramError) {
@@ -1374,7 +1375,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   appManager.getRunningProcessInformationByBundleType(bundleManager.BundleType.ATOMIC_SERVICE)
     .then((data) => {
-      console.log(`The running process information is: ${JSON.stringify(data)}`);
+      console.info(`The running process information is: ${JSON.stringify(data)}`);
     }).catch((error: BusinessError) => {
     console.error(`error: ${JSON.stringify(error)}`);
   });
@@ -1559,7 +1560,7 @@ struct Index {
         let missionId: number = 0;
         try {
           appManager.terminateMission(missionId).then(()=>{
-              console.log('terminateMission success.');
+              console.info('terminateMission success.');
             }).catch((err: BusinessError)=>{
               console.error('terminateMission failed. err: ' + JSON.stringify(err));
             })
@@ -1669,7 +1670,7 @@ clearUpAppData(bundleName: string, appCloneIndex?: number): Promise\<void>
 | 202 | Not System App. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-| 16000073 | The app clone index does not exist. |
+| 16000073 | The app clone index is invalid. |
 
 **示例：**
 
@@ -1682,7 +1683,7 @@ let appCloneIndex: number = 0;
 
 try {
   appManager.clearUpAppData(bundleName, appCloneIndex).then(() => {
-    console.log(`clearUpAppData success.`);
+    console.info(`clearUpAppData success.`);
   }).catch((err: BusinessError) => {
     console.error(`clearUpAppData fail, err: ${JSON.stringify(err)}`);
   });
@@ -1711,7 +1712,7 @@ setKeepAliveForBundle(bundleName: string, userId: number, enable: boolean): Prom
 | -------- | -------- | -------- | -------- |
 | bundleName    | string   | 是    | 表示要设置保活的应用包名。 |
 | userId    | number   | 是    | 表示要设置保活应用所属的用户ID。 |
-| enable    | boolean   | 是    | 表示对应用保活或者取消保活。 |
+| enable    | boolean   | 是    | 表示对应用保活或者取消保活。true表示对应用保活，false表示对应用取消保活。 |
 
 **返回值：**
 
@@ -1731,9 +1732,9 @@ setKeepAliveForBundle(bundleName: string, userId: number, enable: boolean): Prom
 | 801 | Capability not supported. |
 | 16000050 | Internal error. |
 | 16300005 | The target bundle does not exist. |
-| 16300008 | The target bundle has no main ability. |
+| 16300008 | The target bundle has no MainAbility. |
 | 16300009 | The target bundle has no status-bar ability. |
-| 16300010 | The target application is not attached to status bar. |
+| 16300010 | The target application is not attached to the status bar. |
 
 **示例：**
 
@@ -1745,7 +1746,7 @@ try {
   let bundleName = "ohos.samples.keepaliveapp";
   let userId = 100;
   appManager.setKeepAliveForBundle(bundleName, userId, true).then(() => {
-    console.log(`setKeepAliveForBundle success`);
+    console.info(`setKeepAliveForBundle success`);
   }).catch((err: BusinessError) => {
     console.error(`setKeepAliveForBundle fail, err: ${JSON.stringify(err)}`);
   });
@@ -1804,7 +1805,7 @@ let userId = 100;
 let type: appManager.KeepAliveAppType = appManager.KeepAliveAppType.THIRD_PARTY;
 try {
   appManager.getKeepAliveBundles(type, userId).then((data) => {
-    console.log(`getKeepAliveBundles success, data: ${JSON.stringify(data)}`);
+    console.info(`getKeepAliveBundles success, data: ${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
     console.error(`getKeepAliveBundles fail, err: ${JSON.stringify(err)}`);
   });
@@ -1861,7 +1862,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   let pids: Array<number> = [100, 101, 102];
   appManager.killProcessesInBatch(pids).then(() => {
-    console.log(`killProcessesInBatch success`);
+    console.info(`killProcessesInBatch success`);
   }).catch((err: BusinessError) => {
     console.error(`killProcessesInBatch fail, err: ${JSON.stringify(err)}`);
   });
@@ -1869,5 +1870,122 @@ try {
   let code = (paramError as BusinessError).code;
   let message = (paramError as BusinessError).message;
   console.error(`[appManager] killProcessesInBatch error: ${code}, ${message}`);
+}
+```
+
+## appManager.setKeepAliveForAppServiceExtension<sup>20+</sup>
+
+setKeepAliveForAppServiceExtension(bundleName: string, enabled: boolean): Promise\<void>
+
+为AppServiceExtensionAbility设置保活或取消保活。使用Promise异步回调。
+> **说明：**
+>
+> - 本接口当前仅支持2in1设备。
+> - 仅当应用安装在userId为1的用户下，且应用中entry类型的HAP的module.json5配置文件中的mainElement字段配置为AppServiceExtensionAbility时，该接口才生效。
+
+**需要权限**：ohos.permission.MANAGE_APP_KEEP_ALIVE
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统接口**：此接口为系统接口。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| bundleName    | string   | 是    | 表示要设置保活的应用包名。 |
+| enabled    | boolean   | 是    | 表示是否进行应用保活。true表示保活，false表示不保活。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。|
+
+**错误码**:
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not system application. |
+| 801 | Capability not supported. |
+| 16000050 | Internal error. |
+| 16000081 | Failed to obtain the target application information. |
+| 16000202 | Invalid main element type. |
+| 16000203 | Cannot change the keep-alive status. |
+| 16000204 | The target bundle is not in u1. |
+
+**示例：**
+
+```ts
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let bundleName = "ohos.samples.keepaliveapp";
+  appManager.setKeepAliveForAppServiceExtension(bundleName, true).then(() => {
+    console.info(`setKeepAliveForAppServiceExtension success`);
+  }).catch((err: BusinessError) => {
+    console.error(`setKeepAliveForAppServiceExtension fail, err: ${JSON.stringify(err)}`);
+  });
+} catch (paramError) {
+  let code = (paramError as BusinessError).code;
+  let message = (paramError as BusinessError).message;
+  console.error(`[appManager] setKeepAliveForAppServiceExtension error: ${code}, ${message}`);
+}
+```
+
+## appManager.getKeepAliveAppServiceExtensions<sup>20+</sup>
+
+getKeepAliveAppServiceExtensions(): Promise\<Array\<KeepAliveBundleInfo>>
+
+获取所有保活的AppServiceExtensionAbility应用信息，此信息由[KeepAliveBundleInfo](#keepalivebundleinfo14)定义。使用Promise异步回调。
+
+> **说明：**
+>
+> - 本接口当前仅支持2in1设备。
+> - 仅当应用安装在userId为1的用户下，且应用中entry类型的HAP的module.json5配置文件中的mainElement字段配置为AppServiceExtensionAbility时，该接口才生效。
+
+**需要权限**：ohos.permission.MANAGE_APP_KEEP_ALIVE
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统接口**：此接口为系统接口。
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise\<Array\<[KeepAliveBundleInfo](#keepalivebundleinfo14)>> | Promise对象，返回用户保活应用信息的数组。|
+
+**错误码**:
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not system application. |
+| 801 | Capability not supported. |
+| 16000050 | Internal error. |
+
+**示例：**
+
+```ts
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  appManager.getKeepAliveAppServiceExtensions().then((data) => {
+    console.info(`getKeepAliveAppServiceExtensions success, data: ${JSON.stringify(data)}`);
+  }).catch((err: BusinessError) => {
+    console.error(`getKeepAliveAppServiceExtensions fail, err: ${JSON.stringify(err)}`);
+  });
+} catch (paramError) {
+  let code = (paramError as BusinessError).code;
+  let message = (paramError as BusinessError).message;
+  console.error(`[appManager] getKeepAliveAppServiceExtensions error: ${code}, ${message}`);
 }
 ```

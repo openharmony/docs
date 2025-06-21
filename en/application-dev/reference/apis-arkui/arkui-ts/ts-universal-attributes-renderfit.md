@@ -42,7 +42,7 @@ Sets how the final state of the component's content is rendered during its width
 >
 >  For the [XComponent](./ts-basic-components-xcomponent.md) component of the TEXTURE or SURFACE type, if the **renderFit** attribute is not set, it defaults to **RenderFit.RESIZE_FILL**.
 >
->  For the [XComponent](./ts-basic-components-xcomponent.md) component of the SURFACE type with an opaque black background, the **renderFit** attribute can only be set to **RenderFit.RESIZE_FILL**. Other **RenderFit** enum values are not recommended.
+> For the **XComponent** component of the SURFACE type with an opaque black background color: In versions earlier than API version 18, the **renderFit** attribute only supports **RenderFit.RESIZE_FILL**; since API version 18, the **renderFit** attribute supports all its available enum values.
 >
 >  For the **XComponent** component created using the [ArkUI NDK API](../../../ui/ndk-access-the-arkts-page.md), the [getAttribute](../_ark_u_i___native_node_a_p_i__1.md#getattribute) function is not supported for obtaining the **renderFit** attribute value.
 
@@ -107,7 +107,7 @@ struct RenderFitExample {
 
       Button("animate")
         .onClick(() => {
-          animateTo({ curve: Curve.Ease }, () => {
+          this.getUIContext()?.animateTo({ curve: Curve.Ease }, () => {
             if (this.flag) {
               this.width1 = 150;
               this.height1 = 50;

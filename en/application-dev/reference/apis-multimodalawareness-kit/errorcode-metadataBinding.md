@@ -6,7 +6,7 @@
 
 ## 32100001 File Creation Failed 
 **Error Message** 
-Internal handling failed.  
+Internal handling failed. File creation failed. 
 
 **Symptom** 
 This error code is reported if a service error occurs when a certain **metadataBinding** API called. 
@@ -21,7 +21,7 @@ The service is abnormal.
 
 ## 32100002 Encoding Failed 
 **Error Message** 
-Encode process fail.  
+Encoding failed. Possible causes: 1. Image processing error; 2. Channel coding error.  
 
 **Symptom** 
 This error code is reported if the **encodeImage** API fails because of an algorithm error.
@@ -35,7 +35,7 @@ Algorithm execution fails because of memory allocation failures or other reasons
 
 ## 32100003 Decoding Failed 
 **Error Code Information** 
-Decode process fail.  
+Decoding failed. Possible causes: 1. Image not encoded; 2. Image destroyed.  
 
 **Symptom** 
 This error code is reported if the **decodeImage** API fails because of an algorithm error.
@@ -50,7 +50,7 @@ Algorithm execution fails because of memory allocation failures or other reasons
 
 ## 32100004 Subscription Failed 
 **Error Code Information** 
-Subscribe Failed.  
+Subscription failed. Possible causes: 1. Abnormal system capability; 2. IPC exception; 3. Algorithm loading exception.
 
 **Symptom** 
 This error code is reported if subscription fails when the **on** API of the **metadataBinding** module is called. 
@@ -65,7 +65,7 @@ Subscription to change events has failed.
 ## 32100005 Unsubscription Failed 
 
 **Error Code Information** 
-UnSubscribe Failed.  
+Unsubscription failed. Possible causes: 1. Abnormal system capability; 2. IPC exception.
 
 **Symptom** 
 This error code is reported if unsubscription fails when the **off** API of the **metadataBinding** module is called. 

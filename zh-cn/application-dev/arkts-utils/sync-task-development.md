@@ -6,12 +6,18 @@
 
 同步任务的实现需要考虑多个线程之间的协作和同步，以确保数据的正确性和程序的正确执行。
 
-由于TaskPool偏向于单个独立的任务，因此当各个同步任务之间相对独立时推荐使用TaskPool，例如一系列导入的静态方法，或者单例实现的方法。如果同步任务之间有关联性，则需要使用Worker，例如无法单例创建的类对象实现的方法。
+由于TaskPool偏向于单个独立的任务，因此当各个同步任务之间相对独立时推荐使用TaskPool，例如一系列导入的静态方法，或者单例实现的方法。如果同步任务之间有关联性，则需要使用Worker。
 
 
 ## 使用TaskPool处理同步任务
 
-当需要调度相互独立的任务，或通过静态方法实现的任务，或可以通过单例构造唯一的句柄以及类对象并在不同任务线程之间使用时，推荐使用TaskPool。
+以下场景推荐使用TaskPool。
+
+- 调度相互独立的任务。
+                        
+- 静态方法实现的任务。
+
+- 单例构造的句柄或者类对象跨线程使用。
 
 > **说明：**
 >
@@ -70,6 +76,7 @@ struct Index {
   }
 }
 ```
+<!-- @[taskpool_handle_sync_task](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/managers/SyncTaskDevelopment.ets) -->
 
 
 ## 使用Worker处理关联的同步任务
@@ -116,6 +123,7 @@ struct Index {
       }
     }
     ```
+    <!-- @[worker_handle_associated_sync_task](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/managers/SyncTaskDevelopment.ets) -->
 
 
 2. 在Worker线程中绑定Worker对象，同时处理同步任务逻辑。
@@ -132,6 +140,7 @@ struct Index {
       }
     }
     ```
+    <!-- @[worker_handle_associated_sync_task](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/workers/handle.ts) -->
     
     ```ts
     // MyWorker.ts代码
@@ -157,3 +166,4 @@ struct Index {
      }
     }
     ```
+    <!-- @[worker_handle_associated_sync_task](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/workers/MyWorker2.ts) -->

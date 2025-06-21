@@ -11,7 +11,7 @@ GC（全称 Garbage Collection），即垃圾回收。在计算机领域，GC是
 当对象B指向对象A时，A的引用计数加1；当该指向断开时，A的引用计数减1。如果A的引用计数为0，回收对象A。  
 
 - 优点：引用计数算法设计简单，内存回收及时，在对象成为垃圾时立即回收，因此无需引入单独的暂停业务代码（Stop The World，STW）阶段。
-- 缺点：对对象操作时插入计数环节，增加了内存分配和赋值的开销，影响程序性能。更严重的是存在循环引用问题。
+- 缺点：对对象操作时插入计数环节，增加了内存分配和赋值的开销，影响程序性能。更严重的是存在由循环引用导致的内存泄漏问题。
 ```
 class Parent {
   constructor() {
@@ -43,7 +43,7 @@ function main() {
 - 优点：对象追踪算法可以解决循环引用的问题，且对内存的分配和赋值没有额外的开销。
 - 缺点：和引用计数算法相反，对象追踪算法较为复杂，且有短暂的STW阶段。此外，回收会有延迟，导致比较多的浮动垃圾。
 
-引用计数和对象追踪算法各有优劣。由于引用计数存在循环引用的性能问题，ArkTS运行时选择基于对象追踪（即Tracing GC）算法设计GC。
+引用计数和对象追踪算法各有优劣。由于引用计数存在内存泄漏问题，ArkTS运行时选择基于对象追踪（即Tracing GC）算法设计GC。
 
 ### 对象追踪的三种类型
 
@@ -79,7 +79,7 @@ ArkTS运行时采用传统的分代模型，将对象进行分类。考虑到大
 
 ![image](./figures/generational-model.png)
 
-ArkTS运行时将新分配的对象直接分配到年轻代（Young Space）的From空间。经过一次GC后依然存活的对象，会移动到To空间，然后会交换from和to空间的类型。而经过再次GC后依然存活的对象，会被复制到老年代（Old Space）。
+ArkTS运行时将新分配的对象直接分配到年轻代（Young Space）的From空间。经过一次GC后依然存活的对象，会移动到To空间。而经过再次GC后依然存活的对象，会被移动到老年代（Old Space）。
 
 #### 混合算法
 
@@ -111,7 +111,7 @@ HPP GC流程中引入了大量的并发和并行优化，以减少对应用性�
 ![image](./figures/gc-heap-space.png)
 
 - SemiSpace：年轻代（Young Generation），存放新创建出来的对象，存活率低，主要使用copying算法进行内存回收。
-- OldSpace：老年代（Old Generation），存放年轻代多次回收仍存活的对象会被复制到该空间，根据场景混合多种算法进行内存回收。
+- OldSpace：老年代（Old Generation），存放年轻代多次回收仍存活的对象会被移动到该空间，根据场景混合多种算法进行内存回收。
 - HugeObjectSpace：大对象空间，使用单独的Region存放一个大对象的空间。
 - ReadOnlySpace：只读空间，存放运行期间的只读数据。
 - NonMovableSpace：不可移动空间，存放不可移动的对象。
@@ -133,8 +133,8 @@ HPP GC流程中引入了大量的并发和并行优化，以减少对应用性�
 | 参数名 | 范围 | 作用 |
 | --- | --- | --- |
 | HeapSize | 448MB | 主线程默认堆空间总大小，小内存设备会依据实际内存池大小修正。 |
-| SemiSpaceSize | 2MB-4MB/2MB-8MB/2MB-16MB | Semispace空间大小。 |
-| NonmovableSpaceSize | 2MB/6MB/64MB | nonmovableSpace空间大小。 |
+| SemiSpaceSize | 2MB-4MB/2MB-8MB/2MB-16MB | SemiSpace空间大小。 |
+| NonmovableSpaceSize | 2MB/6MB/64MB | NonmovableSpace空间大小。 |
 | SnapshotSpaceSize | 512KB | 快照空间大小。 |
 | MachineCodeSpaceSize | 2MB | 机器码空间大小。 |
 
@@ -142,13 +142,13 @@ HPP GC流程中引入了大量的并发和并行优化，以减少对应用性�
 
 | 参数名 | 范围 | 作用 |
 | --- | --- | --- |
-| HeapSize  | 768 MB | work类型线程堆空间大小。 |
+| HeapSize  | 768 MB | worker类型线程堆空间大小。 |
 
 #### Semi Space
 heap中生成两个Semi Space供copying使用。
 | 参数名 | 范围 | 作用 |
 | --- | --- | --- |
-| semiSpaceSize | 2MB-4MB/2MB-8MB/2MB-16MB | Semispace空间大小，会根据堆总大小有不同的范围限制。 |
+| semiSpaceSize | 2MB-4MB/2MB-8MB/2MB-16MB | SemiSpace空间大小，会根据堆总大小有不同的范围限制。 |
 | semiSpaceTriggerConcurrentMark | 1M/1.5M/1.5M| 首次单独触发Semi Space的并发mark的界限值，超过该值则触发。 |
 | semiSpaceStepOvershootSize| 2MB | 允许过冲最大大小。 |
 
@@ -172,7 +172,7 @@ heap中生成两个Semi Space供copying使用。
 
 | 参数名 | 范围 | 作用 |
 | --- | --- | --- |
-| maxStackSize | 128KB | 控制解释器栈帧大小。 |
+| maxStackSize | 128KB | 控制解释器栈大小。 |
 
 #### 并发参数
 
@@ -182,7 +182,7 @@ heap中生成两个Semi Space供copying使用。
 | MIN_TASKPOOL_THREAD_NUM | 3 | 线程池最小线程数。 |
 | MAX_TASKPOOL_THREAD_NUM | 7 | 线程池最大线程数。 |
 
-注：该线程池主要用于执行GC流程中的并发任务。线程池初始化时，会综合参考gcThreadNum和线程上下限。如果gcThreadNum为负值，线程池的线程数将初始化为CPU核心数的一半。
+注：该线程池主要用于执行GC流程中的并发任务。线程池初始化时，会综合参考gcThreadNum和线程数的上下限。如果gcThreadNum为负值，线程池的线程数将初始化为CPU核心数的一半。
 
 #### 其他参数
 
@@ -191,8 +191,6 @@ heap中生成两个Semi Space供copying使用。
 | minAllocLimitGrowingStep | 2M/4M/8M | heap整体重新计算空间大小限制时，控制oldSpace、heapObject和globalNative的最小增长步长。 |
 | minGrowingStep | 4M/8M/16M | 调整oldSpace的最小增长步长。 |
 | longPauseTime | 40ms | 判断是否为超长GC界限，超长GC会触发完整GC日志信息打印，方便开发者定位分析。可通过`gc-long-paused-time`进行配置。 |
-
-### 其他：新增单VM内ArrayBuffer的native总内存上限为4GB
 
 ## GC流程
 
@@ -271,7 +269,7 @@ heap中生成两个Semi Space供copying使用。
 - 说明：根据当前GC统计的数据变化，重新计算并调整`newOldSpaceLimit`、`newGlobalSpaceLimit`、`globalSpaceNativeLimit`和增长因子。
 - 日志关键词：`RecomputeLimits`。
 
-#### PartialGC的Cset 选择策略
+#### PartialGC的CSet 选择策略
 
 - 函数方法：`OldSpace::SelectCSet()`
 - 说明：PartialGC执行时采用该策略，优先选择存活对象数量少、回收代价小的Region进行GC。
@@ -437,4 +435,52 @@ struct Index {
 }
 ```
 
+## GC常见问题
 
+### GC稳定性问题排查指导
+
+GC稳定性问题大多由两种异常引起：一是非法多线程操作导致的对象异常。二是踩内存问题导致的存储的指针异常。这两种问题在GC任务中的表现通常为堆栈中的地址访问异常。 
+
+可通过线程名称和堆栈内的方法来识别GC任务：`OS_GC_Thread`线程主要执行GC任务和PGO相关任务（采集型任务）；或者通过堆栈内包含`GCTask`等关键词识别GC任务。GC任务上报地址异常类型的崩溃时，开发者应首先应排查非法多线程问题和踩内存问题。 
+
+- 检测非法多线程操作：[方舟运行时检测](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-multi-thread-check)。
+- 检测踩内存问题：[HWASan检测](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-hwasan)。
+
+以下示例仅列举部分情况，实际问题上报的地址异常类型多种多样，此处不再赘述。
+
+对象异常问题典型堆栈信息： 
+
+0xffff000000000048 为对象异常偏移出错。
+
+``` text
+Reason:Signal:SIGSEGV(SEGV_MAPERR)@0xffff000000000048 
+Fault thread info:
+Tid:6490, Name:OS_GC_Thread
+#00 pc 0000000000507310 /system/lib64/platformsdk/libark_jsruntime.so(panda::ecmascript::JSHClass::SizeFromJSHClass(panda::ecmascript::TaggedObject*)+0)(a3d1ba664de66d31faed07d711ee1299)
+#01 pc 0000000000521f94 /system/lib64/platformsdk/libark_jsruntime.so(panda::ecmascript::CompressGCMarker::EvacuateObject(unsigned int, panda::ecmascript::TaggedObject*, panda::ecmascript::MarkWord const&, panda::ecmascript::ObjectSlot)+80)(a3d1ba664de66d31faed07d711ee1299)
+#02 pc 0000000000521ee4 /system/lib64/platformsdk/libark_jsruntime.so(panda::ecmascript::CompressGCMarker::MarkObject(unsigned int, panda::ecmascript::TaggedObject*, panda::ecmascript::ObjectSlot)+372)(a3d1ba664de66d31faed07d711ee1299)
+#03 pc 0000000000523e40 /system/lib64/platformsdk/libark_jsruntime.so(a3d1ba664de66d31faed07d711ee1299)
+#04 pc 0000000000516d74 /system/lib64/platformsdk/libark_jsruntime.so(a3d1ba664de66d31faed07d711ee1299)
+#05 pc 00000000005206d4 /system/lib64/platformsdk/libark_jsruntime.so(panda::ecmascript::CompressGCMarker::ProcessMarkStack(unsigned int)+160)(a3d1ba664de66d31faed07d711ee1299)
+#06 pc 000000000050460c /system/lib64/platformsdk/libark_jsruntime.so(panda::ecmascript::Heap::ParallelGCTask::Run(unsigned int)+228)(a3d1ba664de66d31faed07d711ee1299)
+#07 pc 000000000064f648 /system/lib64/platformsdk/libark_jsruntime.so(panda::ecmascript::Runner::Run(unsigned int)+188)(a3d1ba664de66d31faed07d711ee1299)
+#08 pc 000000000064f718 /system/lib64/platformsdk/libark_jsruntime.so(a3d1ba664de66d31faed07d711ee1299)
+#09 pc 00000000001ba6b8 /system/lib/ld-musl-aarch64.so.1(start+236)(8102fa8a64ba5e1e9f2257469d3fb251)
+```
+指针异常问题典型堆栈信息：
+
+0x000056c2fffc0008 为指针异常，指针映射出错。
+
+``` text
+Reason:Signal:SIGSEGV(SEGV_MAPERR)@0x000056c2fffc0008 
+Fault thread info:
+Tid:2936, Name:OS_GC_Thread
+#00 pc 00000000004d2ec0 /system/lib64/platformsdk/libark_jsruntime.so(733f61d2f51e825872484cc344970fe5)
+#01 pc 00000000004c6cac /system/lib64/platformsdk/libark_jsruntime.so(733f61d2f51e825872484cc344970fe5)
+#02 pc 00000000004cd180 /system/lib64/platformsdk/libark_jsruntime.so(panda::ecmascript::NonMovableMarker::ProcessMarkStack(unsigned int)+256)(733f61d2f51e825872484cc344970fe5)
+#03 pc 000000000049d108 /system/lib64/platformsdk/libark_jsruntime.so(panda::ecmascript::ConcurrentMarker::ProcessConcurrentMarkTask(unsigned int)+52)(733f61d2f51e825872484cc344970fe5)
+#04 pc 00000000004b6620 /system/lib64/platformsdk/libark_jsruntime.so(panda::ecmascript::Heap::ParallelGCTask::Run(unsigned int)+236)(733f61d2f51e825872484cc344970fe5)
+#05 pc 00000000005d6e60 /system/lib64/platformsdk/libark_jsruntime.so(panda::ecmascript::Runner::Run(unsigned int)+168)(733f61d2f51e825872484cc344970fe5)
+#06 pc 00000000005d6f30 /system/lib64/platformsdk/libark_jsruntime.so(733f61d2f51e825872484cc344970fe5)
+#07 pc 00000000001bdb84 /system/lib/ld-musl-aarch64.so.1(start+236)(e65f5c83306cf9c7dd4643794946ab9f)
+```

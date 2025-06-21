@@ -42,7 +42,7 @@ type AsyncLockCallback\<T> = () => T | Promise\<T>
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 类型   | 可读 | 可写 | 说明       |
+| 名称 | 类型   | 只读 | 可选 | 说明       |
 | ---- | ------ | ---- | ---- | ---------- |
 | name | string | 是   | 否   | 锁的名称。 |
 
@@ -153,9 +153,9 @@ static query(name: string): AsyncLockState
 
 **参数：**
 
-| 名称 | 类型   | 必填 | 说明       |
-| ---- | ------ | ---- | ---------- |
-| name | string | 是   | 锁的名称。 |
+| 名称 | 类型   | 必填 | 说明                                                                                                                     |
+| ---- | ------ | ---- | ------------------------------------------------------------------------------------------------------------------------ |
+| name | string | 是   | 要查询的锁的名称，仅可查询通过[request接口](#request)获取的锁（即与[request接口](#request)入参锁名称保持一致）。 |
 
 **返回值：**
 
@@ -224,7 +224,7 @@ lockAsync\<T>(callback: AsyncLockCallback\<T>): Promise\<T>
 
 | 名称     | 类型                                    | 必填 | 说明                   |
 | -------- | --------------------------------------- | ---- | ---------------------- |
-| callback | [AsyncLockCallback](#asynclockcallback) | 是   | 获取锁后要调用的函数。 |
+| callback | [AsyncLockCallback\<T>](#asynclockcallback) | 是   | 获取锁后要调用的函数。 |
 
 **返回值：**
 
@@ -264,7 +264,7 @@ lockAsync\<T>(callback: AsyncLockCallback\<T>, mode: AsyncLockMode): Promise\<T>
 
 | 名称     | 类型                                    | 必填 | 说明                   |
 | -------- | --------------------------------------- | ---- | ---------------------- |
-| callback | [AsyncLockCallback](#asynclockcallback) | 是   | 获取锁后要调用的函数。 |
+| callback | [AsyncLockCallback\<T>](#asynclockcallback) | 是   | 获取锁后要调用的函数。 |
 | mode     | [AsyncLockMode](#asynclockmode)         | 是   | 锁的操作模式。         |
 
 **返回值：**
@@ -295,7 +295,7 @@ let p1 = lock.lockAsync<void>(() => {
 
 lockAsync\<T, U>(callback: AsyncLockCallback\<T>, mode: AsyncLockMode, options: AsyncLockOptions\<U>): Promise\<T | U>
 
-在获取的锁下执行操作。该方法首先获取锁，然后调用回调，最后释放锁。回调在调用[lockAsync](#lockasync)的同一线程中以异步方式执行。在[AsyncLockOptions](#asynclockoptions)中可以提供一个可选的超时值。在这种情况下，如果超时前未能获取锁，lockAsync将拒绝返回的Promise并带上一个BusinessError实例。这种情况下，错误信息将包含持有的锁和等待的锁的信息以及可能的死锁警告。
+在获取的锁下执行操作。该方法首先获取锁，然后调用回调，最后释放锁。回调在调用[lockAsync](#lockasync)的同一线程中以异步方式执行。在[AsyncLockOptions](#asynclockoptions)中可以提供一个可选的超时值。在这种情况下，如果超时前未能获取锁，lockAsync将返回被拒绝的Promise并带上一个BusinessError实例。这种情况下，错误信息将包含持有的锁和等待的锁的信息以及可能的死锁警告。
 
 **原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
@@ -305,7 +305,7 @@ lockAsync\<T, U>(callback: AsyncLockCallback\<T>, mode: AsyncLockMode, options: 
 
 | 名称     | 类型                                      | 必填 | 说明                   |
 | -------- | ----------------------------------------- | ---- | ---------------------- |
-| callback | [AsyncLockCallback](#asynclockcallback)   | 是   | 获取锁后要调用的函数。 |
+| callback | [AsyncLockCallback\<T>](#asynclockcallback)   | 是   | 获取锁后要调用的函数。 |
 | mode     | [AsyncLockMode](#asynclockmode)           | 是   | 锁的操作模式。         |
 | options  | [AsyncLockOptions\<U>](#asynclockoptions) | 是   | 锁的操作选项。         |
 
@@ -421,11 +421,11 @@ options.signal = s;
 
 #### 属性
 
-| 名称        | 类型                                  | 可读 | 可写 | 说明                                                                                                                      |
+| 名称        | 类型                                  | 只读 | 可选 | 说明                                                                                                                      |
 | ----------- | ------------------------------------- | ---- | ---- | ------------------------------------------------------------------------------------------------------------------------- |
-| isAvailable | boolean                               | 是   | 是   | 当前锁是否可用。取值为true，则只有在尚未持有锁定请求时才会授予该锁定请求；为false则表示将等待当前锁被释放。默认为 false。 |
-| signal      | [AbortSignal\<T>](#abortsignal)\|null | 是   | 是   | 用于中止异步操作的对象。当signal.aborted为true时，锁请求将被丢弃；当signal.aborted为false时，请求会继续等待获取锁；当signal为null时，请求正常排队运行。默认为 null。               |
-| timeout     | number                                | 是   | 是   | 锁操作的超时时间，单位为毫秒。若该值大于零，且操作运行时间超过该时间，[lockAsync](#lockasync)将返回被拒绝的Promise。默认为 0。      |
+| isAvailable | boolean                               | 否   | 否   | 当前锁是否可用。取值为true，则只有在尚未持有锁定请求时才会授予该锁定请求；为false则表示将等待当前锁被释放。默认为 false。 |
+| signal      | [AbortSignal\<T>](#abortsignal)\|null | 否   | 否   | 用于中止异步操作的对象。当signal.aborted为true时，锁请求将被丢弃；当signal.aborted为false时，请求会继续等待获取锁；当signal为null时，请求正常排队运行。默认为 null。               |
+| timeout     | number                                | 否   | 否   | 锁操作的超时时间，单位为毫秒。若该值大于零，且操作运行时间超过该时间，[lockAsync](#lockasync)将返回被拒绝的Promise。默认为 0。      |
 
 ### AsyncLockState
 
@@ -437,10 +437,10 @@ options.signal = s;
 
 #### 属性
 
-| 名称    | 类型                              | 可读 | 可写 | 说明             |
+| 名称    | 类型                              | 只读 | 可选 | 说明             |
 | ------- | --------------------------------- | ---- | ---- | ---------------- |
-| held    | [AsyncLockInfo[]](#asynclockinfo) | 是   | 是   | 持有的锁信息。   |
-| pending | [AsyncLockInfo[]](#asynclockinfo) | 是   | 是   | 等待中的锁信息。 |
+| held    | [AsyncLockInfo[]](#asynclockinfo) | 否   | 否   | 持有的锁信息。   |
+| pending | [AsyncLockInfo[]](#asynclockinfo) | 否   | 否   | 等待中的锁信息。 |
 
 ### AsyncLockInfo
 
@@ -452,15 +452,15 @@ options.signal = s;
 
 #### 属性
 
-| 名称      | 类型                            | 可读 | 可写 | 说明                                                      |
+| 名称      | 类型                            | 只读 | 可选 | 说明                                                      |
 | --------- | ------------------------------- | ---- | ---- | --------------------------------------------------------- |
-| name      | string                          | 是   | 是   | 锁的名称。                                                |
-| mode      | [AsyncLockMode](#asynclockmode) | 是   | 是   | 锁的模式。                                                |
-| contextId | number                          | 是   | 是   | [AsyncLockMode](#asynclockmode)调用者的执行上下文标识符。 |
+| name      | string                          | 否   | 否   | 锁的名称。                                                |
+| mode      | [AsyncLockMode](#asynclockmode) | 否   | 否   | 锁的模式。                                                |
+| contextId | number                          | 否   | 否   | [AsyncLockMode](#asynclockmode)调用者的执行上下文标识符。 |
 
 ### AbortSignal
 
-用于中止异步操作的对象。该类的实例必须在其创建的同一线程中访问。从其他线程访问此类的字段会导致未定义的行为。
+用于终止异步操作的对象。该类的实例必须在其创建的同一线程中访问。从其他线程访问此类的字段会导致未定义的行为。
 
 **原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
@@ -468,14 +468,14 @@ options.signal = s;
 
 #### 属性
 
-| 名称    | 类型    | 可读 | 可写 | 说明                                                             |
+| 名称    | 类型    | 只读 | 可选 | 说明                                                             |
 | ------- | ------- | ---- | ---- | ---------------------------------------------------------------- |
-| aborted | boolean | 是   | 是   | 是否终止异步操作。为true时表示中止异步操作，为false时表示异步操作未被中止。     |
-| reason  | \<T>    | 是   | 是   | 中止的原因。此值将用于拒绝[lockAsync](#lockasync)返回的Promise。 |
+| aborted | boolean | 否   | 否   | 是否终止异步操作。为true时表示中止异步操作，为false时表示异步操作未被中止。     |
+| reason  | \<T>    | 否   | 否   | 中止的原因。此值将用于拒绝[lockAsync](#lockasync)返回的Promise。 |
 
 ### ConditionVariable<sup>18+</sup>
 
-实现异步等待功能的类，支持异步等待通知操作。
+实现异步等待功能的类，支持异步等待通知操作。该类使用[@Sendable装饰器](../../arkts-utils/arkts-sendable.md)装饰。
 
 **原子化服务API**：从API version 18 开始，该接口支持在原子化服务中使用。
 
@@ -544,7 +544,7 @@ wait(): Promise\<void>
 **示例：**
 
 ```ts
-let conditionVariable = ArkTSUtils.locks.AsyncLock.ConditionVariable();
+const conditionVariable: ArkTSUtils.locks.ConditionVariable = new ArkTSUtils.locks.ConditionVariable();
 conditionVariable.wait().then(() => {
   console.info(`Thread being awakened, then continue...`); //被唤醒后输出日志
 });
@@ -575,7 +575,7 @@ waitFor(timeout : number) : Promise\<void>
 **示例：**
 
 ```ts
-let conditionVariable = ArkTSUtils.locks.AsyncLock.ConditionVariable();
+const conditionVariable: ArkTSUtils.locks.ConditionVariable = new ArkTSUtils.locks.ConditionVariable();
 conditionVariable.waitFor(3000).then(() => {
   console.info(`Thread being awakened, then continue...`); //被唤醒后输出日志
 });
@@ -594,7 +594,7 @@ notifyAll() : void
 **示例：**
 
 ```ts
-let conditionVariable = ArkTSUtils.locks.AsyncLock.ConditionVariable();
+const conditionVariable: ArkTSUtils.locks.ConditionVariable = new ArkTSUtils.locks.ConditionVariable();
 conditionVariable.waitFor(3000).then(() => {
   console.info(`Thread being awakened, then continue...`); //被唤醒后输出日志
 });
@@ -614,19 +614,16 @@ notifyOne() : void
 **示例：**
 
 ```ts
-let conditionVariable = ArkTSUtils.locks.AsyncLock.ConditionVariable();
+const conditionVariable: ArkTSUtils.locks.ConditionVariable = new ArkTSUtils.locks.ConditionVariable();
 conditionVariable.waitFor(3000).then(() => {
   console.info(`Thread a being awakened, then continue...`); //被唤醒后输出日志
-});
-conditionVariable.waitFor().then(() => {
-  console.info(`Thread twob being awakened, then continue...`); //被唤醒后输出日志
 });
 conditionVariable.notifyOne();
 ```
 
 ## ArkTSUtils.ASON
 
-为支持将JSON字符串解析为共享数据，即[Sendable支持的数据类型](../../arkts-utils/arkts-sendable.md#sendable支持的数据类型)，ArkTS语言基础库新增了ASON工具。ASON工具支持解析JSON字符串并生成共享数据，用于跨并发域传输，同时也支持将共享数据转换为JSON字符串。
+为支持将JSON字符串解析为共享数据，即[Sendable支持的数据类型](../../arkts-utils/arkts-sendable.md#sendable支持的数据类型)，ArkTS语言基础库新增了ASON工具。ASON工具支持解析JSON字符串并生成共享数据，用于跨并发实例引用传递，同时也支持将共享数据转换为JSON字符串。
 
 ### ISendable
 
@@ -658,7 +655,7 @@ type Transformer = (this: ISendable, key: string, value: ISendable | undefined |
 | ------ | ------ | ---- | --------------- |
 | this   | [ISendable](#isendable) | 是 | 在解析的键值对所属的对象。|
 | key  | string | 是 | 属性名。|
-| value  | [ISendable](#isendable) | 是 | 在解析的键值对的值。|
+| value  | [ISendable](#isendable) \| undefined \| null| 是 | 在解析的键值对的值。|
 
 **返回值：**
 
@@ -728,6 +725,14 @@ parse(text: string, reviver?: Transformer, options?: ParseOptions): ISendable | 
 | -------- | -------- |
 | [ISendable](#isendable) \| null | 返回ISendable数据或null。入参为null时，返回null。|
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401      | Parameter error. Invalid JSON string. |
+
 **示例：**
 
 ```ts
@@ -766,44 +771,16 @@ console.info("largeNumber is " + (map as collections.Map<string,bigint>).get("la
 // 期望输出: largeNumber is 112233445566778899
 ```
 
+
 ### stringify
-
-stringify(value: ISendable | null | undefined): string
-
-该方法将ISendable数据转换为JSON字符串。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| value | [ISendable](#isendable) \| null \| undefined  | 是 | ISendable数据。|
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| string | 转换后的JSON字符串。|
-
-**示例：**
-
-```ts
-import { collections } from '@kit.ArkTS';
-
-let arr = new collections.Array(1, 2, 3);
-let str = ArkTSUtils.ASON.stringify(arr);
-console.info(str);
-// 期望输出: '[1,2,3]'
-```
-
-### stringify<sup>18+</sup>
 
 stringify(value: Object | null | undefined): string
 
 该方法将ArkTS对象数据转换为JSON字符串，额外支持Map和Set相关类型。
+
+> **说明：**
+>
+> 从API 18开始参数修改为Object类型，API 18之前参数只支持ISendable类型。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -820,6 +797,14 @@ stringify(value: Object | null | undefined): string
 | 类型 | 说明 |
 | -------- | -------- |
 | string | 转换后的JSON字符串。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401      | Parameter error. Invalid ArkTS value. |
 
 **示例：**
 
@@ -895,11 +880,11 @@ isSendable(value: Object | null | undefined): boolean
 **示例：**
 
 ```ts
-import { ArkTSUtils } from '@kit.ArkTS'
+import { ArkTSUtils } from '@kit.ArkTS';
 
 @Sendable
 function sendableFunc() {
-  console.info("sendableFunc")
+  console.info("sendableFunc");
 }
 
 if (ArkTSUtils.isSendable(sendableFunc)) {
@@ -920,7 +905,7 @@ SendableLruCache在缓存空间不足时，会用新数据替换近期最少使�
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称   | 类型   | 可读 | 可写 | 说明                   |
+| 名称   | 类型   | 只读 | 可选 | 说明                   |
 | ------ | ------ | ---- | ---- | ---------------------- |
 | length | number | 是   | 否   | 当前缓冲区中值的总数。 |
 
@@ -1069,7 +1054,7 @@ console.info('res = ' + res);
 
 getCreateCount(): number
 
-获取调用createDefault接口创建对象的次数。
+获取调用内部默认接口创建对象的次数。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -1079,7 +1064,7 @@ getCreateCount(): number
 
 | 类型   | 说明                |
 | ------ | -------------------|
-| number | 返回使用createDefault接口创建对象的次数。 |
+| number | 返回使用内部默认接口创建对象的次数。 |
 
 **示例：**
 
@@ -1259,7 +1244,7 @@ get(key: K): V | undefined
 
 | 类型                     | 说明                                                         |
 | ------------------------ | ------------------------------------------------------------ |
-| V \| undefined | 如果指定的键存在于缓冲区中，则返回与键关联的值；否则调用createDefault接口，如果返回值为undefined，则返回undefined，否则返回createDefault接口结果。 |
+| V \| undefined | 如果指定的键存在于缓冲区中，则返回与键关联的值；否则调用内部默认接口，并返回其结果。如果内部默认接口返回undefined，则最终返回undefined。 |
 
 **示例：**
 
@@ -1292,7 +1277,7 @@ put(key: K,value: V): V
 
 | 类型 | 说明                                                         |
 | ---- | ------------------------------------------------------------ |
-| V    | 返回与添加的键关联的值。如果键或值为空，将抛出错误ID为401的参数错误异常。 |
+| V    | 返回与添加的键关联的值。|
 
 **示例：**
 
@@ -1345,7 +1330,7 @@ keys(): K[]
 
 | 类型      | 说明                                                         |
 | --------- | ------------------------------------------------------------ |
-| K&nbsp;[] | 返回当前缓冲区中所有键的列表，按从最近访问到最少访问的升序排列。 |
+| K&nbsp;[] | 返回当前缓冲区中所有键的列表，按从最近访问到最少访问的顺序排列。 |
 
 **示例：**
 

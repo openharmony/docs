@@ -38,7 +38,7 @@ Subscribes to steady standing state events.
 | Name  | Type                            | Mandatory| Description                                                        |
 | -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                           | Yes  | Event type. This field has a fixed value of **steadyStandingDetect**.|
-| callback | Callback&lt;[SteadyStandingStatus](#SteadyStandingStatus)&gt; | Yes  | Callback used to return the steady standing state of the device.|
+| callback | Callback&lt;[SteadyStandingStatus](#steadystandingstatus)&gt; | Yes  | Callback used to return the steady standing state of the device.|
 
 **Error codes**
 
@@ -49,7 +49,7 @@ For details about the error codes, see [Device Status Awareness Error Codes](err
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 | 801      | Capability not supported. Function can not work correctly due to limited device capabilities. |
 | 32500001 | Service exception. |
-| 32500002 | Subscribe Failed. |
+| 32500002 | Subscription failed. |
 
 **Example**
 
@@ -76,7 +76,7 @@ Unsubscribes from steady standing state events.
 | Name  | Type                            | Mandatory| Description                                                        |
 | -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                           | Yes  | Event type. This field has a fixed value of **steadyStandingDetect**.|
-| callback | Callback&lt;[SteadyStandingStatus](#SteadyStandingStatus)&gt; | Yes  | Callback used to return the steady standing state of the device.|
+| callback | Callback&lt;[SteadyStandingStatus](#steadystandingstatus)&gt; | Yes  | Callback used to return the steady standing state of the device.|
 
 **Error codes**
 
@@ -87,7 +87,7 @@ For details about the error codes, see [Device Status Awareness Error Codes](err
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 | 801      | Capability not supported. Function can not work correctly due to limited device capabilities. |
 | 32500001 | Service exception. |
-| 32500003 | Unsubscribe Failed. |
+| 32500003 | Unsubscription failed. |
 
 **Example**
 

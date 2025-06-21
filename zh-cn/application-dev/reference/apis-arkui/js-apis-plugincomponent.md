@@ -2,9 +2,9 @@
 
 用于给插件组件的使用方请求组件与数据，使用方发送组件模板和数据。
 
->  **说明：**
+> **说明：**
 >
->  - 本模块首批接口从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 本模块首批接口从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## 导入模块
 
@@ -46,7 +46,7 @@ type KVObject = { [key: string]: number | string | boolean | [] | KVObject }
 
 ### PushParameters
 
-使用PluginManager.Push方法时候的需要传递的参数。
+使用PluginManager.Push方法时需要传递的参数。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -56,13 +56,13 @@ type KVObject = { [key: string]: number | string | boolean | [] | KVObject }
 | --------- | ----------------------------------- | ---- | ---------------------------------------- |
 | want      | [Want](../apis-ability-kit/js-apis-application-want.md) | 是    | 组件使用方Ability信息。                          |
 | name      | string                              | 是    | 组件名称。                                    |
-| data      | [KVObject](#kvobject)               | 是    | 组件数据值。                                   |
-| extraData | [KVObject](#kvobject)               | 是    | 附加数据值。                                   |
-| jsonPath  | string                              | 否    | 存放模板路径的[external.json](#externaljson文件说明)件的路径。 |
+| data      | [KVObject](#kvobject)               | 是    | 组件数据。                                   |
+| extraData | [KVObject](#kvobject)               | 是    | 附加数据。                                   |
+| jsonPath  | string                              | 否    | 存放模板路径的[external.json](#externaljson文件说明)文件的路径。 |
 
 ### RequestParameters
 
-使用PluginManager.Request方法时候的需要传递的参数。
+使用PluginManager.Request方法时需要传递的参数。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -72,12 +72,12 @@ type KVObject = { [key: string]: number | string | boolean | [] | KVObject }
 | -------- | ----------------------------------- | ---- | ---------------------------------------- |
 | want     | [Want](../apis-ability-kit/js-apis-application-want.md) | 是    | 组件提供方Ability信息。                          |
 | name     | string                              | 是    | 请求组件名称。                                  |
-| data     | [KVObject](#kvobject)               | 是    | 附加数据。                                    |
-| jsonPath | string                              | 否    | 存放模板路径的[external.json](#externaljson文件说明)文件的路径。jsonPath字段不为空或者未设置的时候不触发Request通信。 |
+| data     | [KVObject](#kvobject)               | 是    | 组件数据。                                    |
+| jsonPath | string                              | 否    | 存放模板路径的[external.json](#externaljson文件说明)文件的路径。当jsonPath字段不为空时不触发Request通信。 |
 
 ### RequestCallbackParameters
 
-PluginManager.Request方法时候接收到的回调结果。
+PluginManager.Request方法接收到的回调结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -91,7 +91,7 @@ PluginManager.Request方法时候接收到的回调结果。
 
 ### RequestEventResult
 
-注册Request监听方法后，接受到的请求事件时候回应请求的数据类型。
+注册Request监听方法后，接收到请求事件时回应请求的数据类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -119,7 +119,7 @@ type OnPushEventCallback = (source: Want, template: PluginComponentTemplate, dat
 | 参数名        | 类型                                       | 必填   | 说明                     |
 | --------- | ---------------------------------------- | ---- | ---------------------- |
 | source    | [Want](../apis-ability-kit/js-apis-application-want.md)      | 是    | Push请求发送方相关信息。         |
-| template  | [PluginComponentTemplate](#plugincomponenttemplate) | 是    | Push请求发送方相关信息请求组件模板名称。 |
+| template  | [PluginComponentTemplate](#plugincomponenttemplate) | 是    | 请求组件模板名称。 |
 | data      | [KVObject](#kvobject)                    | 是    | 数据。                    |
 | extraData | [KVObject](#kvobject)                    | 是    | 附加数据。                  |
 
@@ -130,11 +130,11 @@ import { pluginComponentManager, PluginComponentTemplate } from '@kit.ArkUI';
 import { Want } from '@kit.AbilityKit';
 
 function onPushListener(source: Want, template: PluginComponentTemplate, data: pluginComponentManager.KVObject, extraData: pluginComponentManager.KVObject) {
-  console.log("onPushListener template.source=" + template.source);
-  console.log("onPushListener source=" + JSON.stringify(source));
-  console.log("onPushListener template=" + JSON.stringify(template));
-  console.log("onPushListener data=" + JSON.stringify(data));
-  console.log("onPushListener extraData=" + JSON.stringify(extraData));
+  console.info("onPushListener template.source=" + template.source);
+  console.info("onPushListener source=" + JSON.stringify(source));
+  console.info("onPushListener template=" + JSON.stringify(template));
+  console.info("onPushListener data=" + JSON.stringify(data));
+  console.info("onPushListener extraData=" + JSON.stringify(extraData));
 }
 ```
 
@@ -155,13 +155,13 @@ type OnRequestEventCallback = (source: Want, name: string, data: KVObject) => Re
 | --------- | ----------------------------------- | ---- | ----------------- |
 | source    | [Want](../apis-ability-kit/js-apis-application-want.md) | 是    | request请求发送方相关信息。 |
 | name      | string                              | 是    | 模板名称。             |
-| data | [KVObject](#kvobject)               | 是    | 附加数据。             |
+| data | [KVObject](#kvobject)               | 是    | 数据。             |
 
 **返回值：**
 
 | 类型                                       | 说明                                                       |
 | ---------------------------------------- | --------------------------------------------------------- |
-| [RequestEventResult](#requesteventresult) | 注册Request监听方法后，接受到的请求事件时候回应请求的数据类型。 |
+| [RequestEventResult](#requesteventresult) | 注册Request监听方法后，接收到请求事件时回应请求的数据类型。 |
 
 **示例：**
 
@@ -171,9 +171,9 @@ import { Want } from '@kit.AbilityKit';
 
 function onRequestListener(source: Want, name: string, data: pluginComponentManager.KVObject) {
   console.error("onRequestListener");
-  console.log("onRequestListener source=" + JSON.stringify(source));
-  console.log("onRequestListener name=" + name);
-  console.log("onRequestListener data=" + JSON.stringify(data));
+  console.info("onRequestListener source=" + JSON.stringify(source));
+  console.info("onRequestListener name=" + name);
+  console.info("onRequestListener data=" + JSON.stringify(data));
   let RtnData: Record<string, string | pluginComponentManager.KVObject> = {
     'template': "ets/pages/plugin.js",
     'data': data,
@@ -186,7 +186,7 @@ function onRequestListener(source: Want, name: string, data: pluginComponentMana
 
 push(param: PushParameters , callback: AsyncCallback&lt;void&gt;): void
 
-组件提供方向组件使用方主动发送组件与数据。
+组件提供方向组件使用方主动发送组件和数据。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -219,7 +219,7 @@ pluginComponentManager.push(
     jsonPath: "",
   },
   (err, data) => {
-    console.log("push_callback: push ok!");
+    console.info("push_callback: push ok!");
   }
 )
 ```
@@ -240,7 +240,7 @@ request(param: RequestParameters, callback: AsyncCallback&lt;RequestCallbackPara
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | param    | [RequestParameters](#requestparameters)                      | 是   | 组件模板的详细请求信息。                                     |
-| callback | AsyncCallback&lt;[RequestCallbackParameters](#requestcallbackparameters)&gt; | 是   | 此次请求的异步回调，&nbsp;通过回调接口的参数返回接受请求的数据。 |
+| callback | AsyncCallback&lt;[RequestCallbackParameters](#requestcallbackparameters)&gt; | 是   | 此次请求的异步回调，通过回调接口的参数返回接收请求的数据。 |
 
 **示例：**
 
@@ -260,10 +260,10 @@ pluginComponentManager.request(
     jsonPath: "",
   },
   (err, data) => {
-    console.log("request_callback: componentTemplate.ability=" + data.componentTemplate.ability);
-    console.log("request_callback: componentTemplate.source=" + data.componentTemplate.source);
-    console.log("request_callback: data=" + JSON.stringify(data.data));
-    console.log("request_callback: extraData=" + JSON.stringify(data.extraData));
+    console.info("request_callback: componentTemplate.ability=" + data.componentTemplate.ability);
+    console.info("request_callback: componentTemplate.source=" + data.componentTemplate.source);
+    console.info("request_callback: data=" + JSON.stringify(data.data));
+    console.info("request_callback: extraData=" + JSON.stringify(data.extraData));
   }
 )
 ```
@@ -291,17 +291,17 @@ on(eventType: string, callback: OnPushEventCallback | OnRequestEventCallback ): 
 import { pluginComponentManager, PluginComponentTemplate } from '@kit.ArkUI';
 import { Want } from '@kit.AbilityKit';
 function onPushListener(source:Want, template:PluginComponentTemplate, data:pluginComponentManager.KVObject, extraData:pluginComponentManager.KVObject) {
-  console.log("onPushListener template.source=" + template.source);
-  console.log("onPushListener source=" + JSON.stringify(source));
-  console.log("onPushListener template=" + JSON.stringify(template));
-  console.log("onPushListener data=" + JSON.stringify(data));
-  console.log("onPushListener extraData=" + JSON.stringify(extraData));
+  console.info("onPushListener template.source=" + template.source);
+  console.info("onPushListener source=" + JSON.stringify(source));
+  console.info("onPushListener template=" + JSON.stringify(template));
+  console.info("onPushListener data=" + JSON.stringify(data));
+  console.info("onPushListener extraData=" + JSON.stringify(extraData));
 }
 function onRequestListener(source:Want, name:string, data:pluginComponentManager.KVObject) {
   console.error("onRequestListener");
-  console.log("onRequestListener source=" + JSON.stringify(source));
-  console.log("onRequestListener name=" + name);
-  console.log("onRequestListener data=" + JSON.stringify(data));
+  console.info("onRequestListener source=" + JSON.stringify(source));
+  console.info("onRequestListener name=" + name);
+  console.info("onRequestListener data=" + JSON.stringify(data));
   let RtnData:Record<string,string|pluginComponentManager.KVObject> = { 'template': "ets/pages/plugin.js", 'data': data };
   return RtnData;
 }

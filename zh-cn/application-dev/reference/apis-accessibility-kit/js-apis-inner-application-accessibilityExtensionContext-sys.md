@@ -213,7 +213,7 @@ rootElement.getCursorPosition((err: BusinessError, data: number) => {
 
 ### startAbility<sup>12+</sup>
 
-startAbility(want: Want): void;
+startAbility(want: Want): Promise\<void>;
 
 提供拉起前台页面的能力。
 
@@ -224,6 +224,12 @@ startAbility(want: Want): void;
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](../../reference/apis-ability-kit/js-apis-app-ability-want.md) | 是 | Want类型参数，传入需要启动的ability的信息，如Ability名称，Bundle名称等。 |
+
+**返回值：**
+
+| 类型                  | 说明               |
+| ------------------- | ---------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -251,7 +257,7 @@ axContext.startAbility(want).then(() => {
 });
 ```
 
-### getElements<sup>18+</sup>
+### AccessibilityExtensionContext.getElements<sup>18+</sup>
 
 getElements(windowId: number, elementId?: number): Promise<Array&lt;AccessibilityElement&gt;>;
 
@@ -264,7 +270,7 @@ getElements(windowId: number, elementId?: number): Promise<Array&lt;Accessibilit
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | windowId | number | 是 | 表示查询的窗口id。 |
-| elementId | number | 否 | 表示查询的节点id。传入此参数表示查询当前节点下的所有子节点列表，不传则查询窗口下所有节点。 |
+| elementId | number | 否 | 表示查询的节点id。传入此参数表示查询当前节点下的所有子节点列表，不传则查询窗口下所有节点。默认值为-1。 |
 
 **返回值：**
 | 类型                                  | 说明                     |
@@ -277,7 +283,7 @@ getElements(windowId: number, elementId?: number): Promise<Array&lt;Accessibilit
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300003 | No accessibility permission to perform the operation. |
 
@@ -297,7 +303,7 @@ axContext.getElements(windowId, elementId).then((data:AccessibilityElement[]) =>
 });
 ```
 
-### getDefaultFocusedElementIds<sup>18+</sup>
+### AccessibilityExtensionContext.getDefaultFocusedElementIds<sup>18+</sup>
 
 getDefaultFocusedElementIds(windowId: number): Promise<Array&lt;number&gt;>;
 
@@ -339,4 +345,186 @@ axContext.getDefaultFocusedElementIds(windowId).then((data: number[]) => {
 }).catch((err: BusinessError) => {
   console.error(`failed to get default focus, Code is ${err.code}, message is ${err.message}`);
 });
+```
+
+### AccessibilityExtensionContext.holdRunningLockSync<sup>20+</sup>
+
+holdRunningLockSync(): void
+
+持有RunningLock锁，持锁后，屏幕不会自动灭屏。
+
+**需要权限**：ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
+
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
+**错误码：**
+
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID   | 错误信息                                     |
+| ------- | ---------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.  |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**示例：**
+
+```ts
+import { AccessibilityExtensionAbility } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  axContext.holdRunningLockSync();
+} catch (err) {
+  console.error(`Failed to hold RunningLock, Code is ${err.code}, message is ${err.message}`);
+}
+```
+
+### AccessibilityExtensionContext.unholdRunningLockSync<sup>20+</sup>
+
+unholdRunningLockSync(): void
+
+释放RunningLock锁，恢复自动灭屏。
+
+**需要权限**：ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
+
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
+**错误码：**
+
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID   | 错误信息                                     |
+| ------- | ---------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.  |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**示例：**
+
+```ts
+import { AccessibilityExtensionAbility } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  axContext.unholdRunningLockSync();
+} catch (err) {
+  console.error(`Failed to unhold RunningLock, code is ${err.code}, message is ${err.message}`);
+}
+```
+
+### AccessibilityExtensionContext.on('preDisconnect')<sup>20+</sup>
+
+on(type: 'preDisconnect', callback: Callback&lt;void&gt;): void
+
+向无障碍服务注册回调函数，在无障碍服务关闭该无障碍扩展服务前会执行该回调函数。
+
+此注册函数需要与[notifyDisconnect](#accessibilityextensioncontextnotifydisconnect20)配合使用，如果不调用[notifyDisconnect](#accessibilityextensioncontextnotifydisconnect20)，则默认等待30秒后，无障碍扩展服务会自动关闭。
+
+**需要权限**：ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
+
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 监听事件名，固定为‘preDisconnect’，即无障碍扩展服务即将关闭事件。 |
+| callback | Callback&lt;void&gt; | 是 |回调函数，在无障碍扩展服务即将关闭时回调。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID   | 错误信息                                     |
+| ------- | ---------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.  |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**示例：**
+
+```ts
+import { AccessibilityExtensionAbility } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  axContext.on('preDisconnect', () => {
+    console.info(`To do something before accessibilityExtension disconnect.`);
+  });
+} catch (err) {
+  console.error(`Failed to register, code is ${err.code}, message is ${err.message}`);
+}
+```
+
+### AccessibilityExtensionContext.off('preDisconnect')<sup>20+</sup>
+
+off(type: 'preDisconnect', callback?: Callback&lt;void&gt;): void
+
+取消已经向无障碍服务注册的预关闭回调函数，无障碍服务关闭该扩展服务前不再执行该回调。
+
+**需要权限**：ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
+
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 监听事件名，固定为‘preDisconnect’，即无障碍扩展服务即将关闭事件。 |
+| callback | Callback&lt;void&gt; | 否 |回调函数，取消指定无障碍扩展服务即将关闭时的回调。需与[on('preDisconnect')](#accessibilityextensioncontextonpredisconnect20)的callback一致。缺省时，表示注销所有已注册事件。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID   | 错误信息                                     |
+| ------- | ---------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.  |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**示例：**
+
+```ts
+import { AccessibilityExtensionAbility } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  axContext.off('preDisconnect', () => {
+    console.info(`To do something before accessibilityExtension disconnect.`);
+  });
+} catch (err) {
+  console.error(`Failed to unRegister, code is ${err.code}, message is ${err.message}`);
+}
+```
+
+### AccessibilityExtensionContext.notifyDisconnect<sup>20+</sup>
+
+notifyDisconnect(): void
+
+通知无障碍服务可以关闭该无障碍扩展服务。
+
+此函数需要与注册预关闭接口[on('preDisconnect')](#accessibilityextensioncontextonpredisconnect20)配合使用，如果没有调用过注册预关闭函数，直接调用此函数不生效。
+
+**需要权限**：ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
+
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
+**错误码：**
+
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID   | 错误信息                                     |
+| ------- | ---------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.  |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**示例：**
+
+```ts
+import { AccessibilityExtensionAbility } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  axContext.notifyDisconnect();
+} catch (err) {
+  console.error(`Failed to notify accessibility, code is ${err.code}, message is ${err.message}`);
+}
 ```

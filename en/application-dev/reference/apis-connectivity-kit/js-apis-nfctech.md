@@ -6,6 +6,10 @@ The **nfctech** module provides APIs for reading and writing tags that use diffe
 >
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
+> **NOTE**
+>
+> If an error is reported while importing the tag module editor, the capabilities of a specific device model may exceed the capability set defined for the default device. To use these capabilities, configure a custom SysCap by following instructions in [SystemCapability Development](https://developer.huawei.com/consumer/en/doc/harmonyos-references/syscap).
+
 ## Modules to Import
 
 ```js
@@ -17,6 +21,8 @@ import { tag } from '@kit.ConnectivityKit';
 Provides APIs to access NFC-A (ISO 14443-3A) properties and perform I/O operations on a tag. This class inherits from **[TagSession](js-apis-tagSession.md)**.
 
 **TagSession** is the base class of all NFC tag technologies. It provides common interfaces for establishing connections and transferring data. For more details, see [TagSession](js-apis-tagSession.md).
+
+For details about how to obtain an **NfcATag** object, see [NFC Tag Read/Write Development](../../connectivity/nfc/nfc-tag-access-guide.md).
 
 The following describes the unique APIs of **NfcATag**.
 
@@ -78,6 +84,8 @@ Provides APIs to access NFC-B (ISO 14443-3B) properties and perform I/O operatio
 
 **TagSession** is the base class of all NFC tag technologies. It provides common interfaces for establishing connections and transferring data. For more details, see [TagSession](js-apis-tagSession.md).
 
+For details about how to obtain an **NfcBTag** object, see [NFC Tag Read/Write Development](../../connectivity/nfc/nfc-tag-access-guide.md).
+
 The following describes the unique APIs of **NfcBTag**.
 
 ### NfcBTag.getRespAppData
@@ -137,6 +145,8 @@ console.info("nfcB respProtocol: " + respProtocol);
 Provides APIs to access NFC-F (JIS 6319-4) properties and perform I/O operations on a tag. This class inherits from **TagSession**.
 
 **TagSession** is the base class of all NFC tag technologies. It provides common interfaces for establishing connections and transferring data. For more details, see [TagSession](js-apis-tagSession.md).
+
+For details about how to obtain an **NfcFTag** object, see [NFC Tag Read/Write Development](../../connectivity/nfc/nfc-tag-access-guide.md).
 
 The following describes the unique APIs of **NfcFTag**.
 
@@ -198,6 +208,8 @@ Provides APIs to access NFC-V (ISO 15693) properties and perform I/O operations 
 
 **TagSession** is the base class of all NFC tag technologies. It provides common interfaces for establishing connections and transferring data. For more details, see [TagSession](js-apis-tagSession.md).
 
+For details about how to obtain an **NfcVTag** object, see [NFC Tag Read/Write Development](../../connectivity/nfc/nfc-tag-access-guide.md).
+
 The following describes the unique APIs of **NfcVTag**.
 
 ### NfcvTag.getResponseFlags
@@ -257,6 +269,8 @@ console.info("nfcV dsfId: " + dsfId);
 Provides APIs to access ISO-DEP (ISO 14443-4) properties and I/O operations on a tag. This class inherits from **TagSession**.
 
 **TagSession** is the base class of all NFC tag technologies. It provides common interfaces for establishing connections and transferring data. For more details, see [TagSession](js-apis-tagSession.md).
+
+For details about how to obtain an **IsoDepTag** object, see [NFC Tag Read/Write Development](../../connectivity/nfc/nfc-tag-access-guide.md).
 
 The following describes the unique APIs of **IsoDepTag**.
 
@@ -340,7 +354,6 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | The tag running state is abnormal in the service. |
 | 3100204 | The tag I/O operation failed. |
-| 3100205 | The tag leaves the field. |
 
 **Example**
 
@@ -388,7 +401,7 @@ Checks whether an extended APDU is supported. This API uses an asynchronous call
 
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| callback | AsyncCallback\<boolean> | Yes  | Callback used to return the result. If the extended APDU is supported, **true** is returned; otherwise, **false** is returned.|
+| callback | AsyncCallback\<boolean> | Yes  | Callback used to return the operation result. If the extended APDU is supported, **true** is returned; otherwise, **false** is returned.|
 
 **Error codes**
 
@@ -468,6 +481,8 @@ console.info("ndef ndefRecords number: " + ndefRecords.length);
 Provides APIs to access the tags in the NFC Data Exchange Format (NDEF). This class inherits from **TagSession**.
 
 **TagSession** is the base class of all NFC tag technologies. It provides common interfaces for establishing connections and transferring data. For more details, see [TagSession](js-apis-tagSession.md).
+
+For details about how to obtain an **NdefTag** object, see [NFC Tag Read/Write Development](../../connectivity/nfc/nfc-tag-access-guide.md).
 
 The following describes the unique APIs of **NdefTag**.
 
@@ -576,7 +591,6 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | The tag running state is abnormal in the service. |
 | 3100204 | The tag I/O operation failed. |
-| 3100205 | The tag leaves the field. |
 
 **Example**
 
@@ -703,7 +717,6 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | The tag running state is abnormal in the service. |
 | 3100204 | The tag I/O operation failed. |
-| 3100205 | The tag leaves the field. |
 
 **Example**
 
@@ -756,7 +769,7 @@ Writes an NDEF message to this tag. This API uses an asynchronous callback to re
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | msg | [NdefMessage](#ndefmessage9) | Yes  | NDEF message to write.|
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the operation result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -870,7 +883,6 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | The tag running state is abnormal in the service. |
 | 3100204 | The tag I/O operation failed. |
-| 3100205 | The tag leaves the field. |
 
 **Example**
 
@@ -918,7 +930,7 @@ Sets this NDEF tag to read-only. This API uses an asynchronous callback to retur
 
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the operation result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -1016,6 +1028,8 @@ Provides APIs to access MIFARE Classic properties and perform I/O operations on 
 
 **TagSession** is the base class of all NFC tag technologies. It provides common interfaces for establishing connections and transferring data. For more details, see [TagSession](js-apis-tagSession.md).
 
+For details about how to obtain a **MifareClassicTag** object, see [NFC Tag Read/Write Development](../../connectivity/nfc/nfc-tag-access-guide.md).
+
 The following describes the unique APIs of **MifareClassicTag**.
 
 ### MifareClassicTag.authenticateSector<sup>9+</sup>
@@ -1054,7 +1068,6 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | The tag running state is abnormal in the service. |
 | 3100204 | The tag I/O operation failed. |
-| 3100205 | The tag leaves the field. |
 
 **Example**
 
@@ -1107,7 +1120,7 @@ Authenticates a sector using a key. The sector can be accessed only after the au
 | sectorIndex | number | Yes  | Index of the sector to authenticate. The sector indexes start from **0**.|
 | key | number[]| Yes  | Key (6 bytes) used for sector authentication.|
 | isKeyA | boolean | Yes  | Whether the key is key A. The value **true** indicates key A, and **false** indicates key B.|
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the authentication result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the operation result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -1187,7 +1200,6 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | The tag running state is abnormal in the service. |
 | 3100204 | The tag I/O operation failed. |
-| 3100205 | The tag leaves the field. |
 
 **Example**
 
@@ -1318,7 +1330,6 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | The tag running state is abnormal in the service. |
 | 3100204 | The tag I/O operation failed. |
-| 3100205 | The tag leaves the field. |
 
 **Example**
 
@@ -1371,7 +1382,7 @@ Writes data to a block on this tag. This API uses an asynchronous callback to re
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | blockIndex | number | Yes  | Index of the block to write. The block indexes start from **0**.|
 | data | number[] | Yes  | 16-byte data to write.|
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the operation result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -1455,7 +1466,6 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | The tag running state is abnormal in the service. |
 | 3100204 | The tag I/O operation failed. |
-| 3100205 | The tag leaves the field. |
 
 **Example**
 
@@ -1507,7 +1517,7 @@ Increments a block with the specified value and saves the result in a buffer for
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | blockIndex | number | Yes  | Index of the block to increment. The block indexes start from **0**.|
 | value | number | Yes  | Block data to increment. The value cannot be a negative number.|
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the operation result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -1589,7 +1599,6 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | The tag running state is abnormal in the service. |
 | 3100204 | The tag I/O operation failed. |
-| 3100205 | The tag leaves the field. |
 
 **Example**
 
@@ -1641,7 +1650,7 @@ Decrements a block with the specified value. This API uses an asynchronous callb
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | blockIndex | number | Yes  | Index of the block to increment. The block indexes start from **0**.|
 | value | number | Yes  | Block data to decrement. The value cannot be a negative number.|
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the operation result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -1723,7 +1732,6 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | The tag running state is abnormal in the service. |
 | 3100204 | The tag I/O operation failed. |
-| 3100205 | The tag leaves the field. |
 
 **Example**
 
@@ -1773,7 +1781,7 @@ Transfers data from the temporary register to a block. This API uses an asynchro
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | blockIndex | number | Yes  | Index of the destination block. The value starts form **0**.|
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the operation result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -1854,7 +1862,6 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | The tag running state is abnormal in the service. |
 | 3100204 | The tag I/O operation failed. |
-| 3100205 | The tag leaves the field. |
 
 **Example**
 
@@ -1904,7 +1911,7 @@ Restores data in the temporary register from a block. This API uses an asynchron
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | blockIndex | number | Yes  | Index of the destination block. The value starts form **0**.|
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the operation result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -2208,6 +2215,8 @@ Provides APIs to access MIFARE Ultralight properties and perform I/O operations 
 
 **TagSession** is the base class of all NFC tag technologies. It provides common interfaces for establishing connections and transferring data. For more details, see [TagSession](js-apis-tagSession.md).
 
+For details about how to obtain a **MifareUltralightTag** object, see [NFC Tag Read/Write Development](../../connectivity/nfc/nfc-tag-access-guide.md).
+
 The following describes the unique APIs of **MifareUltralightTag**.
 
 ### MifareUltralightTag.readMultiplePages<sup>9+</sup>
@@ -2244,7 +2253,6 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | The tag running state is abnormal in the service. |
 | 3100204 | The tag I/O operation failed. |
-| 3100205 | The tag leaves the field. |
 
 **Example**
 
@@ -2376,7 +2384,6 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | The tag running state is abnormal in the service. |
 | 3100204 | The tag I/O operation failed. |
-| 3100205 | The tag leaves the field. |
 
 **Example**
 
@@ -2428,7 +2435,7 @@ Writes one page (4 bytes) of data to this tag. This API uses an asynchronous cal
 | -------- | ----------------------- | ---- | ------------------------ |
 | pageIndex | number | Yes  | Index of the page to write. The page indexes start from **0**.|
 | data | number[] | Yes  | 4-byte data to write.|
-| callback|AsyncCallback\<void> |Yes| Callback used to return the result.|
+| callback|AsyncCallback\<void> |Yes| Callback used to return the operation result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -2508,6 +2515,8 @@ Provides APIs for formatting NDEF formattable tags. This class inherits from **T
 
 **TagSession** is the base class of all NFC tag technologies. It provides common interfaces for establishing connections and transferring data. For more details, see [TagSession](js-apis-tagSession.md).
 
+For details about how to obtain an **NdefFormatableTag** object, see [NFC Tag Read/Write Development](../../connectivity/nfc/nfc-tag-access-guide.md).
+
 The following describes the unique APIs of **NdefFormatableTag**.
 
 ### NdefFormatableTag.format<sup>9+</sup>
@@ -2544,7 +2553,6 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | The tag running state is abnormal in the service. |
 | 3100204 | The tag I/O operation failed. |
-| 3100205 | The tag leaves the field. |
 
 **Example**
 
@@ -2552,7 +2560,7 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 import { tag } from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// Obtain the correct NDEF Formatable tag by using the tag.TagInfo API in @ohos.nfc.tag.
+// Obtain the correct NDEF formattable tag by using the tag.TagInfo API in @ohos.nfc.tag.
 
 function nfcTechDemo() {
     // Connect the tag if it has not been connected.
@@ -2603,7 +2611,7 @@ Formats this tag as an NDEF tag, and writes an NDEF message to it. This API uses
 
 | **Type**| **Description**                            |
 | ------------------ | --------------------------|
-| callback: AsyncCallback\<void> | Callback used to return the result.|
+| callback: AsyncCallback\<void> | Callback used to return the operation result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -2622,7 +2630,7 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 import { tag } from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// Obtain the correct NDEF Formatable tag by using the tag.TagInfo API in @ohos.nfc.tag.
+// Obtain the correct NDEF formattable tag by using the tag.TagInfo API in @ohos.nfc.tag.
 
 function nfcTechDemo() {
     // Connect the tag if it has not been connected.
@@ -2686,7 +2694,6 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | The tag running state is abnormal in the service. |
 | 3100204 | The tag I/O operation failed. |
-| 3100205 | The tag leaves the field. |
 
 **Example**
 
@@ -2694,7 +2701,7 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 import { tag } from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// Obtain the correct NDEF Formatable tag by using the tag.TagInfo API in @ohos.nfc.tag.
+// Obtain the correct NDEF formattable tag by using the tag.TagInfo API in @ohos.nfc.tag.
 
 function nfcTechDemo() {
     // Connect the tag if it has not been connected.
@@ -2745,7 +2752,7 @@ Formats this tag as an NDEF tag, writes an NDEF message to the NDEF tag, and the
 
 | **Type**| **Description**                            |
 | ------------------ | --------------------------|
-| callback: AsyncCallback\<void> | Callback used to return the result.|
+| callback: AsyncCallback\<void> | Callback used to return the operation result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -2764,7 +2771,7 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 import { tag } from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// Obtain the correct NDEF Formatable tag by using the tag.TagInfo API in @ohos.nfc.tag.
+// Obtain the correct NDEF formattable tag by using the tag.TagInfo API in @ohos.nfc.tag.
 
 function nfcTechDemo() {
     // Connect the tag if it has not been connected.
@@ -2801,6 +2808,8 @@ Provides the capability of reading barcode label attributes and accessing I/O op
 
 **TagSession** is the base class of all NFC tag technologies. It provides common interfaces for establishing connections and transferring data. For more details, see [TagSession](js-apis-tagSession.md).
 
+For details about how to obtain a **BarcodeTag** object, see [NFC Tag Read/Write Development](../../connectivity/nfc/nfc-tag-access-guide.md).
+
 The following describes the unique APIs of **BarcodeTag**.
 
 ### BarcodeTag.getBarcode<sup>18+</sup>
@@ -2831,4 +2840,3 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | 201  | Permission denied. |
 | 3100201 | The tag running state is abnormal in the service. |
 | 3100204 | The tag I/O operation failed. |
-| 3100205 | The tag leaves the field. |

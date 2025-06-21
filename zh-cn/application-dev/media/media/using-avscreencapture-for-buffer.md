@@ -17,9 +17,11 @@
 
 屏幕录制过程中发生系统用户切换事件时，录屏将自动停止。因系统用户切换中断的录屏会上报OH_SCREEN_CAPTURE_STATE_STOPPED_BY_USER_SWITCHES状态。
 
-本开发指导将以完成一次屏幕数据录制的过程为例，向开发者讲解如何使用AVScreenCapture进行屏幕录制，详细的API声明请参考[AVScreenCapture API参考](../../reference/apis-media-kit/_a_v_screen_capture.md)。
+本开发指导将以完成一次屏幕数据录制的过程为例，向开发者讲解如何使用AVScreenCapture进行屏幕录制，详细的API声明请参考[AVScreenCapture API参考](../../reference/apis-media-kit/capi-avscreencapture.md)。
 
 如果配置了采集麦克风音频数据，需对应配置麦克风权限ohos.permission.MICROPHONE和申请长时任务，配置方式请参见[向用户申请权限](../../security/AccessToken/request-user-authorization.md)、[申请长时任务](../../task-management/continuous-task.md)。
+
+<!--RP2--><!--RP2End-->
 
 ## 开发步骤及注意事项
 
@@ -88,16 +90,29 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so libnative_buffe
     OH_AVScreenCapture_SetMicrophoneEnabled(capture, isMic);
     ```
 
-6. 回调函数的设置，主要监听录屏过程中的错误事件的发生，音频流和视频流数据的产生事件，录屏屏幕id的获取事件，具体设计可参考[详细说明](#详细说明)。
+6. 回调函数的设置，主要监听录屏过程中的错误事件的发生，音频流和视频流数据的产生事件，录屏屏幕id的获取事件，录屏内容变更事件，具体设计可参考[详细说明](#详细说明)。
 
     ```c++
     OH_AVScreenCapture_SetErrorCallback(capture, OnError, userData);
     OH_AVScreenCapture_SetStateCallback(capture, OnStateChange, userData);
     OH_AVScreenCapture_SetDataCallback(capture, OnBufferAvailable, userData);
     OH_AVScreenCapture_SetDisplayCallback(capture, OnDisplaySelected, userData);
+    OH_AVScreenCapture_SetCaptureContentChangedCallback(capture, OnCaptureContentChanged, userData);
+    OH_AVScreenCapture_SetSelectionCallback(capture, OnUserSelected, userData);
     ```
 
-7. 调用StartScreenCapture()方法开始进行屏幕录制。
+7. 设置屏幕录制隐私窗口屏蔽模式。（可选）
+
+    value值设为0，表示全屏屏蔽模式。value值设为1，表示窗口屏蔽模式。默认为全屏屏蔽模式。
+
+    ```c++
+    int value = 0;
+    OH_AVScreenCapture_CaptureStrategy* strategy = OH_AVScreenCapture_CreateCaptureStrategy();
+    OH_AVScreenCapture_StrategyForPrivacyMaskMode(strategy, value);
+    OH_AVScreenCapture_SetCaptureStrategy(capture, strategy);
+    ```
+
+8. 调用StartScreenCapture()方法开始进行屏幕录制。
 
     ```c++
     bool IsCaptureStreamRunning = true;
@@ -110,20 +125,30 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so libnative_buffe
     OH_AVScreenCapture_StartScreenCaptureWithSurface(capture, window);
     ```
 
-8. 调用StopScreenCapture()方法停止录制，具体设计可参考[详细说明](#详细说明)。
+9. 调用StopScreenCapture()方法停止录制，具体设计可参考[详细说明](#详细说明)。
 
     ```c++
     OH_AVScreenCapture_StopScreenCapture(capture);
     ```
 
-9. 调用Release()方法销毁实例，释放资源。
+10. 调用Release()方法销毁实例，释放资源。
 
     ```c++
     OH_AVScreenCapture_Release(capture);
     ```
 
 ## PC/2in1设备录屏窗口选择界面规格说明
-基于录屏取码流接口提供了PC/2in1设备录屏窗口选择界面，为兼容已有的接口设计，目前支持三方应用在指定屏幕模式(OH_CAPTURE_SPECIFIED_SCREEN)、传一个窗口Id的指定窗口模式(OH_CAPTURE_SPECIFIED_WINDOW)下，PC/2in1设备弹出Picker选择弹窗并根据传入的窗口Id选中对应窗口。最终录屏内容以Picker弹出后，用户在弹窗上的选择为准。
+基于录屏取码流接口提供了PC/2in1设备录屏窗口选择界面，按照以下表格中的配置弹出相应的弹窗。PC/2in1设备弹出Picker选择弹窗并根据传入的窗口Id选中对应窗口。最终录屏内容以Picker弹出后，用户在弹窗上的选择为准。
+
+API 20开始，支持通过[OH_AVScreenCapture_SetCaptureArea](../../reference/apis-media-kit/capi-native-avscreen-capture-h.md#oh_avscreencapture_setcapturearea)接口，设置区域录屏功能生效，弹出隐私允许/不允许弹窗。
+
+| 屏幕模式类型                                          | 传入窗口Id数量     | 弹窗类型            |
+| ----------------------------------------------------- | ------------------ | ------------------- |
+| OH_CAPTURE_HOME_SCREEN                                | 传入的窗口Id不生效 | 隐私允许/不允许弹窗 |
+| OH_CAPTURE_SPECIFIED_SCREEN                           | 传入的窗口Id不生效 | Picker弹窗          |
+| OH_CAPTURE_SPECIFIED_WINDOW                           | 0个或1个窗口Id     | Picker弹窗          |
+| OH_CAPTURE_SPECIFIED_WINDOW                           | 2个或多个窗口Id    | 隐私允许/不允许弹窗 |
+| 区域录屏（调用OH_AVScreenCapture_SetCaptureArea接口） | 传入的窗口Id不生效 | 隐私允许/不允许弹窗 |
 
 PC/2in1设备录屏窗口选择界面推荐在OH_CAPTURE_SPECIFIED_WINDOW模式下使用，需根据PC/2in1设备分辨率配置录屏的高度和宽度值并传入屏幕Id（若有期望录制的某个窗口，可同时传入单个窗口Id）。
 
@@ -180,6 +205,7 @@ config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.s
 3. OH_CAPTURE_HOME_SCREEN模式。
 
     PC/2in1设备不弹Picker选择界面，弹出隐私允许/不允许弹窗；
+    此模式下，配置的videoCapInfo.displayId不会生效，默认使用主屏displayId。
 
     ```c++
     // 根据PC/2in1设备分辨率在config_中配置录屏的宽度、高度。
@@ -188,7 +214,6 @@ config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.s
 
     // 设置录屏模式为OH_CAPTURE_HOME_SCREEN，传入屏幕Id。
     config_.captureMode = OH_CAPTURE_HOME_SCREEN;
-    config_.videoInfo.videoCapInfo.displayId = 0;
     ```
 
 ## 详细说明
@@ -227,7 +252,7 @@ config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.s
 
 2. 回调函数设置。
     
-    针对录屏过程中可能发生的错误事件、状态变化和数据获取，分别设置了相应的事件监听函数。
+    针对录屏过程中可能发生的错误事件、状态变化、数据获取和录屏内容变更，分别设置了相应的事件监听函数。
 
     ```c++
     // 错误事件发生回调函数OnError()。
@@ -338,6 +363,34 @@ config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.s
         (void)displayId;
         (void)userData;
     }
+
+    // 录屏内容变更回调函数OnCaptureContentChanged()。
+    void OnCaptureContentChanged(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureContentChangedEvent event, OH_Rect *area, void *userData) {
+        (void)capture;
+        if (event == OH_SCREEN_CAPTURE_CONTENT_HIDE) {
+            // 处理录屏内容变为隐藏。
+        }
+        if (event == OH_SCREEN_CAPTURE_CONTENT_VISIBLE) {
+            // 处理录屏内容变为可见。
+            // 录屏内容变为可见时，可通过回调回传的area参数，获取窗口的位置信息。
+        }
+        if (event == OH_SCREEN_CAPTURE_CONTENT_UNAVAILABLE) {
+            // 处理录屏内容变为不可用，如录屏窗口关闭。
+        }
+        (void)area;
+        (void)userData;
+    }
+
+    // 手工确认页面用户选择结果的回调函数OnUserSelected()。
+    void OnUserSelected(OH_AVScreenCapture* capture, OH_AVScreenCapture_UserSelectionInfo* selections, void *userData) {
+        (void)capture;
+        (void)userData;
+        int* selectType = new int;
+        uint64_t* displayId = new uint64_t;
+        // 通过获取接口，拿到对应的选择类型和屏幕Id。OH_AVScreenCapture_UserSelectionInfo* selections仅在OnUserSelected回调中有效。
+        OH_AVSCREEN_CAPTURE_ErrCode errorSelectType = OH_AVScreenCapture_GetCaptureTypeSelected(selections, selectType);
+        OH_AVSCREEN_CAPTURE_ErrCode errorDisplayId = OH_AVScreenCapture_GetDisplayIdSelected(selections, displayId);
+    }
     ```
 
 3. 停止录屏服务并释放资源。
@@ -374,7 +427,6 @@ config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.s
 > 编码格式当前阶段仅作预留，待后续版本实现。
 
 ```c++
-
 #include "napi/native_api.h"
 #include <multimedia/player_framework/native_avscreen_capture.h>
 #include <multimedia/player_framework/native_avscreen_capture_base.h>
@@ -494,8 +546,37 @@ void OnDisplaySelected(struct OH_AVScreenCapture *capture, uint64_t displayId, v
     (void)userData;
 }
 
+// 录屏内容变更回调函数OnCaptureContentChanged()。
+void OnCaptureContentChanged(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureContentChangedEvent event, OH_Rect *area, void *userData) {
+    (void)capture;
+    if (event == OH_SCREEN_CAPTURE_CONTENT_HIDE) {
+        // 处理录屏内容变为隐藏。
+    }
+    if (event == OH_SCREEN_CAPTURE_CONTENT_VISIBLE) {
+        // 处理录屏内容变为可见。
+        // 录屏内容变为可见时，可通过回调回传的area参数，获取窗口的位置信息。
+    }
+    if (event == OH_SCREEN_CAPTURE_CONTENT_UNAVAILABLE) {
+        // 处理录屏内容变为不可用，如录屏窗口关闭。
+    }
+    (void)area;
+    (void)userData;
+}
+
+// 手工确认页面用户选择结果的回调函数OnUserSelected()。
+void OnUserSelected(OH_AVScreenCapture* capture, OH_AVScreenCapture_UserSelectionInfo* selections, void *userData) {
+    (void)capture;
+    (void)userData;
+    int* selectType = new int;
+    uint64_t* displayId = new uint64_t;
+    // 通过获取接口，拿到对应的选择类型和屏幕Id。OH_AVScreenCapture_UserSelectionInfo* selections仅在OnUserSelected回调中有效。
+    OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_GetCaptureTypeSelected(selections, selectType);
+    OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_GetDisplayIdSelected(selections, displayId);
+}
+
 struct OH_AVScreenCapture *capture;
-static napi_value Screencapture(napi_env env, napi_callback_info info) {
+// 开始录屏时调用StartScreenCapture。
+static napi_value StartScreenCapture(napi_env env, napi_callback_info info) {
     // 从js端获取窗口id number[]。
     std::vector<int> windowIdsExclude = {};
     size_t argc = 1;
@@ -522,6 +603,18 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
     OH_AVScreenCapture_SetDataCallback(capture, OnBufferAvailable, nullptr);
     // 可选 设置录屏屏幕Id回调，必须在开始录屏前调用。
     OH_AVScreenCapture_SetDisplayCallback(capture, OnDisplaySelected, nullptr);
+    // 可选 设置手工确认页面用户选择结果的回调，必须在开始录屏前调用。
+    OH_AVScreenCapture_SetSelectionCallback(capture, OnUserSelected, nullptr);
+
+    // 可选，设置录屏内容变化回调。
+    OH_Rect* area = nullptr;
+    OH_AVScreenCapture_SetCaptureContentChangedCallback(capture, OnCaptureContentChanged, area);
+
+    // 可选，设置隐私窗口屏蔽模式。
+    int value = 0;
+    OH_AVScreenCapture_CaptureStrategy* strategy = OH_AVScreenCapture_CreateCaptureStrategy();
+    OH_AVScreenCapture_StrategyForPrivacyMaskMode(strategy, value);
+    OH_AVScreenCapture_SetCaptureStrategy(capture, strategy);
 
     // 可选 设置光标显示开关，开始录屏前后均可调用。
     OH_AVScreenCapture_ShowCursor(capture, false);
@@ -551,6 +644,15 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
                                        .videoInfo = videoinfo};
     OH_AVScreenCapture_Init(capture, config);
 
+    // 可选（API 20开始支持）：可以根据需要设置区域坐标和大小，设置想要捕获的区域，如下方创建了一个从（0，0）为起点的长100，宽100的矩形区域。此接口也可以在开始录屏以后设置。
+    OH_Rect* region = new OH_Rect;
+    region->x = 0;
+    region->y = 0;
+    region->width = 100;
+    region->height = 100;
+    uint64_t regionDisplayId = 0; // 传入矩形区域所在的屏幕Id。
+    OH_AVScreenCapture_SetCaptureArea(capture, regionDisplayId, region);
+
     // 可选 [Surface模式]。
     // 通过 MIME TYPE 创建编码器，系统会根据MIME创建最合适的编码器。
     // OH_AVCodec *codec = OH_VideoEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_AVC);    
@@ -578,15 +680,56 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
     // 可选 设置录屏时的最大帧率 需在启动后调用。
     // OH_AVScreenCapture_SetMaxVideoFrameRate(capture, 20);
 
-    sleep(10); // 录制10s。
-    // 结束录屏。
-    OH_AVScreenCapture_StopScreenCapture(capture);
-    // 释放ScreenCapture。
-    OH_AVScreenCapture_Release(capture);
+    // 结束录屏见StopScreenCapture。
+    
     // 返回调用结果，示例仅返回随意值。
     napi_value sum;
     napi_create_double(env, 5, &sum);
 
     return sum;
 }
+
+// 停止录屏时调用StopScreenCapture。
+static napi_value StopScreenCapture(napi_env env, napi_callback_info info) {
+    if (IsCaptureStreamRunning && capture != nullptr) {
+        // 停止录屏。
+        OH_AVScreenCapture_StopScreenCapture(capture);
+
+        // 释放录屏资源。
+        OH_AVScreenCapture_Release(capture);
+
+        // 清理其他资源，如关闭文件等。
+
+        // 录屏取码流状态置为false，录屏服务实例置空。
+        IsCaptureStreamRunning = false;
+        capture = nullptr;
+    }
+    // 返回调用结果，示例仅返回随意值。
+    napi_value sum;
+    napi_create_double(env, 5, &sum);
+
+    return sum;
+}
+
+EXTERN_C_START
+static napi_value Init(napi_env env, napi_value exports) {
+    napi_property_descriptor desc[] = {
+        {"startScreenCapture", nullptr, StartScreenCapture, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"stopScreenCapture", nullptr, StopScreenCapture, nullptr, nullptr, nullptr, napi_default, nullptr}};
+    napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
+    return exports;
+}
+EXTERN_C_END
+
+static napi_module demoModule = {
+    .nm_version = 1,
+    .nm_flags = 0,
+    .nm_filename = nullptr,
+    .nm_register_func = Init,
+    .nm_modname = "entry",
+    .nm_priv = ((void *)0),
+    .reserved = {0},
+};
+
+extern "C" __attribute__((constructor)) void RegisterEntryModule(void) { napi_module_register(&demoModule); }
 ```

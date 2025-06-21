@@ -83,7 +83,7 @@ radius(value: Dimension | BorderRadiuses)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[BorderRadiuses](ts-types.md#borderradiuses9) | 是   | Menu边框圆角半径。<br/>默认值：2in1设备上默认值为8vp，其他设备上默认值为20vp。<br/> 从API version 12开始，当水平方向两个圆角半径之和的最大值大于菜单宽度，或垂直方向两个圆角半径之和的最大值大于菜单高度时，菜单四个圆角均采用菜单默认圆角半径值。 |
+| value  | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[BorderRadiuses](ts-types.md#borderradiuses9) | 是   | Menu边框圆角半径。<br/>默认值：2in1设备上默认值为8vp，其他设备上默认值为20vp。<br/> 从API version 12开始，当水平方向两个圆角半径之和的最大值大于菜单宽度，或垂直方向两个圆角半径之和的最大值大于菜单高度时，菜单四个圆角均采用菜单默认圆角半径值。<br/>当设置Dimension类型且传参为异常值时，菜单圆角取默认值。<br/>当设置BorderRadiuses类型且传参为异常值时，菜单默认没有圆角。 |
 
 ### menuItemDivider<sup>12+</sup>
 
@@ -134,6 +134,22 @@ subMenuExpandingMode(mode: SubMenuExpandingMode)
 | 参数名 | 类型                         | 必填 | 说明           |
 | ------ | ---------------------------- | ---- |--------------|
 | mode  | [SubMenuExpandingMode](#submenuexpandingmode12枚举说明) | 是   | Menu子菜单展开样式。<br/>默认值：SubMenuExpandingMode.SIDE_EXPAND  |
+
+### subMenuExpandSymbol<sup>20+</sup>
+
+subMenuExpandSymbol(symbol: SymbolGlyphModifier)
+
+设置Menu子菜单展开符号。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                         | 必填 | 说明           |
+| ------ | ---------------------------- | ---- |--------------|
+| symbol  | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 是   | Menu子菜单展开符号。<br/>1、子菜单的展开样式为SubMenuExpandingMode.SIDE_EXPAND时，不显示展开符号。<br/>2、子菜单的展开样式为SubMenuExpandingMode.EMBEDDED_EXPAND时，展开时展开符号会顺时针旋转180°。<br/>默认值：`$r('sys.symbol.chevron_down').fontSize('24vp')` <br/>3、子菜单的展开样式为SubMenuExpandingMode.STACK_EXPAND时，展开时展开符号会顺时针旋转90°。<br/>默认值：`$r('sys.symbol.chevron_forward').fontSize('20vp').padding('2vp')`  |
 
 ### fontSize<sup>(deprecated)</sup>
 
@@ -310,3 +326,116 @@ struct Index {
 ```
 
 ![zh-cn_image_0000001174582862](figures/normal-symbol.png)
+
+### 示例3（设置Menu子菜单展开符号）
+
+该示例通过配置subMenuExpandSymbol实现对Menu子菜单展开符号配置颜色。
+
+```ts
+import { SymbolGlyphModifier } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct Index {
+  @State startIconModifier: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos_star'))
+  @State endIconModifier: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos_mic'))
+  @State expandSymbolModifier: SymbolGlyphModifier =
+    new SymbolGlyphModifier($r('sys.symbol.chevron_down')).fontColor([Color.Red]).fontSize('24vp')
+
+  @Builder
+  SubMenu() {
+    Menu() {
+      MenuItem({
+        symbolStartIcon: this.startIconModifier,
+        content: "图标"
+      })
+      MenuItem({
+        symbolStartIcon: this.startIconModifier,
+        content: "列表"
+      })
+    }.backgroundColor(Color.Grey)
+  }
+
+  @Builder
+  MyMenu() {
+    Menu() {
+      MenuItem({
+        symbolStartIcon: this.startIconModifier,
+        symbolEndIcon: this.endIconModifier,
+        content: "新建文件夹",
+        builder: (): void => this.SubMenu(),
+      })
+      MenuItem({
+        symbolStartIcon: this.startIconModifier,
+        content: "排序方式",
+        builder: (): void => this.SubMenu(),
+      })
+        .borderRadius('300.00vp')
+      MenuItem({
+        symbolStartIcon: this.startIconModifier,
+        content: "查看方式",
+        builder: (): void => this.SubMenu(),
+      })
+    }
+    .subMenuExpandingMode(SubMenuExpandingMode.EMBEDDED_EXPAND)
+    .backgroundColor(Color.Grey)
+    .subMenuExpandSymbol(this.expandSymbolModifier)
+  }
+
+  build() {
+    Button('click to show menu')
+      .position({ top: 40, left: 40 })
+      .bindMenu(this.MyMenu)
+  }
+}
+```
+
+![image](figures/menu-arrow.gif)
+
+### 示例4（设置分割线样式）
+
+该示例通过设置menuItemGroupDivider属性实现分割线样式。
+
+```ts
+import { LengthMetrics } from '@kit.ArkUI'
+
+@Entry
+@Component
+struct Index {
+
+  @Builder
+  MyMenu() {
+    Menu() {
+      MenuItem({ content: "Item Content" })
+      MenuItem({ content: "Item Content" })
+      MenuItem({ content: "Item Content" })
+      MenuItemGroup() {
+        MenuItem({ content: "Group Child" })
+        MenuItem({ content: "Group Child" })
+      }
+      MenuItem({ content: "Item Content" })
+    }
+    .menuItemDivider({
+      strokeWidth: LengthMetrics.vp(5),
+      color: '#d5d5d5',
+      mode: DividerMode.EMBEDDED_IN_MENU
+    })
+    .menuItemGroupDivider({
+      strokeWidth: LengthMetrics.vp(5),
+      color: '#707070',
+      mode: DividerMode.EMBEDDED_IN_MENU
+    })
+  }
+
+  build() {
+    RelativeContainer() {
+      Button("show menu")
+        .bindMenu(this.MyMenu())
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+![dividerStyleMode](figures/MenudividerStyleMode.png)

@@ -57,7 +57,7 @@ The [getContext](../reference/apis-arkui/js-apis-getContext.md#getcontext) API e
   @Entry
   @Component
   struct Page_EventHub {
-    private context = getContext(this) as common.UIAbilityContext;
+    private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
     startAbilityTest(): void {
       let want: Want = {
@@ -83,7 +83,7 @@ The [getContext](../reference/apis-arkui/js-apis-getContext.md#getcontext) API e
   @Component
   struct Page_UIAbilityComponentsBasicUsage {
     startAbilityTest(): void {
-      let context = getContext(this) as common.UIAbilityContext;
+      let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
       let want: Want = {
         // Want parameter information.
       };
@@ -112,25 +112,111 @@ The [getContext](../reference/apis-arkui/js-apis-getContext.md#getcontext) API e
         //...
         Button('FuncAbilityB')
           .onClick(() => {
-            let context = getContext(this) as common.UIAbilityContext;
+            let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
             try {
               context.terminateSelf((err: BusinessError) => {
                 if (err.code) {
                   // Process service logic errors.
-                  console.error(`terminateSelf failed, code is ${err.code}, message is ${err.message}`);
+                  console.error(`terminateSelf failed, code is ${err.code}, message is ${err.message}.`);
                   return;
                 }
                 // Carry out normal service processing.
-                console.info('terminateSelf succeed');
+                console.info(`terminateSelf succeed.`);
               });
             } catch (err) {
               // Capture the synchronization parameter error.
               let code = (err as BusinessError).code;
               let message = (err as BusinessError).message;
-              console.error(`terminateSelf failed, code is ${code}, message is ${message}`);
+              console.error(`terminateSelf failed, code is ${code}, message is ${message}.`);
             }
           })
       }
     }
   }
   ```
+
+
+## Obtaining Information About the UIAbility Launcher
+
+When the launcher ability (UIAbilityA) starts the target ability (UIAbilityB) using **startAbility**, UIAbilityB can obtain information about UIAbilityA, such as its PID, bundle name, and ability name, through the [parameters](../reference/apis-ability-kit/js-apis-app-ability-want.md#properties) parameter.
+
+
+1. Tap the **Start UIAbilityB** button in UIAbilityA to start UIAbilityB.
+
+    ```ts
+    import { common, Want } from '@kit.AbilityKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
+
+    @Entry
+    @Component
+    struct Index {
+      @State message: string = 'Hello World';
+      @State context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+
+      build() {
+        Scroll() {
+          Column() {
+            Text(this.message)
+              .id('HelloWorld')
+              .fontSize(50)
+              .fontWeight(FontWeight.Bold)
+              .alignRules({
+                center: { anchor: '__container__', align: VerticalAlign.Center },
+                middle: { anchor: '__container__', align: HorizontalAlign.Center }
+              })
+              .onClick(() => {
+                this.message = 'Welcome';
+              })
+            Button('terminateSelf').onClick(() => {
+              this.context.terminateSelf()
+            })
+
+            Button('Start UIAbilityB').onClick((event: ClickEvent) => {
+              let want: Want = {
+                bundleName: this.context.abilityInfo.bundleName,
+                abilityName: 'UIAbilityB',
+              }
+
+              this.context.startAbility(want, (err: BusinessError) => {
+                if (err.code) {
+                  console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}.`);
+                }
+              });
+            })
+          }
+        }
+      }
+    }
+    ```
+
+2. In the [onCreate](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate) lifecycle of UIAbilityB, obtain and print the PID, bundle name, and ability name of UIAbilityA.
+
+    ```ts
+    import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+    import { window } from '@kit.ArkUI';
+
+    export default class UIAbilityB extends UIAbility {
+      onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+        // The caller does not need to manually pass parameters. The system automatically passes the caller's information to the Want object.
+        console.log(`onCreate, callerPid: ${want.parameters?.['ohos.aafwk.param.callerPid']}.`);
+        console.log(`onCreate, callerBundleName: ${want.parameters?.['ohos.aafwk.param.callerBundleName']}.`);
+        console.log(`onCreate, callerAbilityName: ${want.parameters?.['ohos.aafwk.param.callerAbilityName']}.`);
+      }
+
+      onDestroy(): void {
+        console.log(`UIAbilityB onDestroy.`);
+      }
+
+      onWindowStageCreate(windowStage: window.WindowStage): void {
+        console.log(`Ability onWindowStageCreate.`);
+
+        windowStage.loadContent('pages/Index', (err) => {
+          if (err.code) {
+            console.error(`Failed to load the content, error code: ${err.code}, error msg: ${err.message}.`);
+            return;
+          }
+          console.log(`Succeeded in loading the content.`);
+        });
+      }
+    }
+    ```

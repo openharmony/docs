@@ -648,10 +648,10 @@ let connectId = featureAbility.connectAbility(
       console.log(`ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}`);
     },
     onDisconnect: (element) => {
-      console.log(`ConnectAbility onDisconnect element.deviceId : ${element.deviceId}`)
+      console.log(`ConnectAbility onDisconnect element.deviceId : ${element.deviceId}`);
     },
     onFailed: (code) => {
-      console.error(`featureAbilityTest ConnectAbility onFailed errCode : ${code}`)
+      console.error(`featureAbilityTest ConnectAbility onFailed errCode : ${code}`);
     },
   },
 );
@@ -757,7 +757,7 @@ let connectId = featureAbility.connectAbility(
 );
 
 featureAbility.disconnectAbility(connectId).then(() => {
-  console.log('disconnectAbility success')
+  console.log('disconnectAbility success');
 }).catch((error: BusinessError)=>{
   console.error(`featureAbilityTest result errCode : ${error.code}`);
 });
@@ -778,7 +778,7 @@ getWindow(callback: AsyncCallback\<window.Window>): void
 
 | 参数名     | 类型                          | 必填 | 说明                          |
 | -------- | ----------------------------- | ---- | ----------------------------- |
-| callback | AsyncCallback\<[window.Window](../apis-arkui/js-apis-window.md#window)> | 是   | 回调函数，返回当前Ability对应的窗口。 |
+| callback | AsyncCallback\<[window.Window](../apis-arkui/arkts-apis-window-Window.md)> | 是   | 回调函数，返回当前Ability对应的窗口。 |
 
 **示例：**
 
@@ -811,7 +811,7 @@ getWindow(): Promise\<window.Window>
 
 | 类型                    | 说明                          |
 | ----------------------- | ----------------------------- |
-| Promise\<[window.Window](../apis-arkui/js-apis-window.md#window)> | Promise对象，返回当前Ability对应的窗口。 |
+| Promise\<[window.Window](../apis-arkui/arkts-apis-window-Window.md)> | Promise对象，返回当前Ability对应的窗口。 |
 
 **示例：**
 

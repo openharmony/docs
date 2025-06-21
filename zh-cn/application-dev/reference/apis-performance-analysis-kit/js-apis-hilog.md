@@ -229,7 +229,9 @@ hilog.fatal(0x0001, "testTag", "%{public}s World %{private}d", "hello", 3);
 
 setMinLogLevel(level: LogLevel): void
 
-设置应用日志打印的最低日志级别，进程在打印日志时，需要同时校验该日志级别和全局日志级别，所以设置的日志级别不能低于全局日志级别，[全局日志级别](../../dfx/hilog.md#查看和设置日志级别)默认为Info。
+设置应用日志打印的最低日志级别。
+
+用于拦截低级别日志打印，需要注意日志级别低于全局日志级别会导致日志打印失败，参考[全局日志级别查询方式](../../dfx/hilog.md#查看和设置日志级别)。
 
 **原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -243,7 +245,7 @@ setMinLogLevel(level: LogLevel): void
 
 **示例：**
 
-打印5条不同级别的hilog日志，在打印过程中调用两次setMinLogLevel接口：
+以全局日志级别为INFO下，打印5条不同级别的hilog日志，在打印过程中调用两次setMinLogLevel接口为例：
 
 ```js
 hilog.info(0x0001, "testTag", 'this is an info level log, id: %{public}d', 1);
@@ -255,8 +257,13 @@ hilog.debug(0x0001, "testTag", 'this is a debug level log, id: %{public}d', 4);
 hilog.info(0x0001, "testTag", 'this is an info level log, id: %{public}d', 5);
 ```
 
-全局日志默认级别为Info，第一条日志可以正常打印，在设置进程最低可打印日志级别为Warn后，第二条日志不符合该日志级别，第二条日志打印失败，第三条日志可以正常打印，在设置进程最低日志级别为Debug后，但是全局默认日志级别为Info，所以第四条日志不满足全局日志级别，打印失败，第五条日志可以打印，结果如下所示：
+由于全局日志起始为INFO，第一条日志可以正常打印。
 
+在设置进程最低可打印日志级别为WARN后，第二条日志不符合该日志级别，第二条日志打印失败，第三条日志可以正常打印。
+
+在设置进程最低日志级别为DEBUG后，但是此时全局日志级别为INFO，所以第四条日志不满足全局日志级别，打印失败，第五条日志可以打印。
+
+最终打印结果如下所示：
 ```
 08-07 23:50:01.532   13694-13694   A00001/testTag                  com.example.hilogemo  I     this is an info level log, id: 1
 08-07 23:50:01.532   13694-13694   A00001/testTag                  com.example.hilogemo  E     this is an error level log, id: 3
@@ -279,6 +286,7 @@ hilog.info(0x0001, "testTag", 'this is an info level log, id: %{public}d', 5);
 | ------------ | ---- | ---- |
 |      d/i      | 支持打印number和bigint类型。 | 123 |
 |   s     | 支持打印string undefined bool 和null类型。 | "123" |
+| o/O | 支持打印object、undefined和null类型。<br>从API version 20开始，支持该能力。 | obj |
 
 **示例：**
 ```js
@@ -289,6 +297,7 @@ let testObj: Record<string, string | number> = {
 let isBol = true;
 let bigNum = BigInt(1234567890123456789);
 hilog.info(0x0001, "jsHilogTest", "print object: %{public}s", JSON.stringify(testObj));
+hilog.info(0x0001, "jsHilogTest", "print object: %{public}o", testObj);
 hilog.info(0x0001, "jsHilogTest", "private flag: %{private}s %s, print null: %{public}s", "hello", "world", null);
 hilog.info(0x0001, "jsHilogTest", "print undefined: %{public}s", undefined);
 hilog.info(0x0001, "jsHilogTest", "print number: %{public}d %{public}i", 123, 456);
@@ -298,6 +307,7 @@ hilog.info(0x0001, "jsHilogTest", "print boolean: %{public}s", isBol);
 
 **打印结果：**
 ```
+08-09 13:26:29.094  2266  2266 I A00001/jsHilogTest: print object: {"name":"Jack","age":22}
 08-09 13:26:29.094  2266  2266 I A00001/jsHilogTest: print object: {"name":"Jack","age":22}
 08-09 13:26:29.094  2266  2266 I A00001/jsHilogTest: private flag: <private> <private>, print null: null
 08-09 13:26:29.094  2266  2266 I A00001/jsHilogTest: print undefined: undefined

@@ -417,7 +417,7 @@ castAudio(session: SessionToken | 'all', audioDevices: Array<audio.AudioDeviceDe
 | 参数名        | 类型           | 必填 | 说明 |
 | ------------ | -------------- |------|------|
 | session      | [SessionToken](#sessiontoken) &#124; 'all' | 是   | 会话令牌。SessionToken表示单个token；字符串`'all'`指所有token。 |
-| audioDevices | Array\<[audio.AudioDeviceDescriptor](../apis-audio-kit/js-apis-audio.md#audiodevicedescriptor)\> | 是   | 媒体设备列表。  |
+| audioDevices | Array\<[audio.AudioDeviceDescriptor](../apis-audio-kit/arkts-apis-audio-i.md#audiodevicedescriptor)\> | 是   | 媒体设备列表。  |
 
 **返回值：**
 
@@ -481,7 +481,7 @@ castAudio(session: SessionToken | 'all', audioDevices: Array<audio.AudioDeviceDe
 | 参数名       | 类型                                         | 必填 | 说明                                                         |
 | ------------ |--------------------------------------------| ---- | ------------------------------------------------------------ |
 | session      | [SessionToken](#sessiontoken) &#124; 'all' | 是   | 会话令牌。SessionToken表示单个token；字符串`'all'`指所有token。 |
-| audioDevices | Array\<[audio.AudioDeviceDescriptor](../apis-audio-kit/js-apis-audio.md#audiodevicedescriptor)\>   | 是   | 媒体设备列表。 |
+| audioDevices | Array\<[audio.AudioDeviceDescriptor](../apis-audio-kit/arkts-apis-audio-i.md#audiodevicedescriptor)\>   | 是   | 媒体设备列表。 |
 | callback     | AsyncCallback\<void>     | 是   | 回调函数。当投播成功，err为undefined，否则返回错误对象。      |
 
 **错误码：**
@@ -2156,6 +2156,12 @@ setDisplaySurface(surfaceId: string): Promise\<void>
 
 **系统接口：** 该接口为系统接口。
 
+**参数：**
+
+| 参数名   | 类型                                                | 必填 | 说明                         |
+| -------- | --------------------------------------------------- | ---- | ---------------------------- |
+| surfaceId | string | 是   | 设置播放的surfaceId。 |
+
 **返回值：**
 
 | 类型                                          | 说明                        |
@@ -2354,15 +2360,15 @@ aVCastController.off('videoSizeChange');
 
 **系统接口：** 该接口为系统接口。
 
-| 名称          | 类型              | 可读 | 可写 | 说明  |
+| 名称          | 类型              | 只读 | 可选 | 说明  |
 | --------------| ---------------- | ---------------- | ---------------- |------|
-| sessionId    | string    | 是 | 是  | 会话ID      |
-| type         | [AVSessionType](js-apis-avsession.md#avsessiontype10)   | 是 | 是 | 会话类型。    |
-| sessionTag   | string             | 是 | 是 | 会话的自定义名称。    |
-| elementName  | [ElementName](../apis-ability-kit/js-apis-bundle-ElementName.md)  | 是 | 是 | 会话所属应用的信息（包含bundleName、abilityName等）。 |
-| isActive     | boolean             | 是 | 是 | 会话是否被激活。<br>true：已被激活。 <br>false：没有被激活。                                      |
-| isTopSession | boolean             | 是 | 是 | 会话是否为最新的会话。 <br>true：是最新的会话。<br>false：不是最新的会话。                |
-| outputDevice | [OutputDeviceInfo](js-apis-avsession.md#outputdeviceinfo10)    | 是 | 是 | 分布式设备相关信息。   |
+| sessionId    | string    | 否 | 否  | 会话ID。      |
+| type         | [AVSessionType](js-apis-avsession.md#avsessiontype10)   | 否 | 否 | 会话类型。    |
+| sessionTag   | string             | 否 | 否 | 会话的自定义名称。    |
+| elementName  | [ElementName](../apis-ability-kit/js-apis-bundle-ElementName.md)  | 否 | 否 | 会话所属应用的信息（包含bundleName、abilityName等）。 |
+| isActive     | boolean             | 否 | 否 | 会话是否被激活。<br>true：已被激活。 <br>false：没有被激活。                                      |
+| isTopSession | boolean             | 否 | 否 | 会话是否为最新的会话。 <br>true：是最新的会话。<br>false：不是最新的会话。                |
+| outputDevice | [OutputDeviceInfo](js-apis-avsession.md#outputdeviceinfo10)    | 否 | 否 | 分布式设备相关信息。   |
 
 ## DeviceLogEventCode<sup>13+</sup>
 

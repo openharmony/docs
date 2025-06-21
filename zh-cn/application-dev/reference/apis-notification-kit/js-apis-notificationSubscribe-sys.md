@@ -30,7 +30,7 @@ subscribe(subscriber: NotificationSubscriber, info: NotificationSubscribeInfo, c
 
 | 参数名       | 类型                      | 必填 | 说明             |
 | ---------- | ------------------------- | ---- | ---------------- |
-| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber-sys.md#notificationsubscriber)    | 是   | 通知订阅对象。     |
+| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber-sys.md)    | 是   | 通知订阅对象。     |
 | info       | [NotificationSubscribeInfo](js-apis-inner-notification-notificationSubscribeInfo-sys.md#notificationsubscribeinfo) | 是   | 通知订阅信息。 |
 | callback   | AsyncCallback\<void\>     | 是   | 订阅动作回调函数。 |
 
@@ -62,7 +62,7 @@ let subscribeCallback = (err: BusinessError) => {
   }
 }
 let onConsumeCallback = (data: notificationSubscribe.SubscribeCallbackData) => {
-  console.info("Consume callback: " + JSON.stringify(data));
+  console.info(`Consume callback: ${JSON.stringify(data)}`);
 }
 let subscriber: notificationSubscribe.NotificationSubscriber = {
   onConsume: onConsumeCallback
@@ -90,7 +90,7 @@ subscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>): 
 
 | 参数名       | 类型                   | 必填 | 说明             |
 | ---------- | ---------------------- | ---- | ---------------- |
-| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber-sys.md#notificationsubscriber) | 是   | 通知订阅对象。     |
+| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber-sys.md) | 是   | 通知订阅对象。     |
 | callback   | AsyncCallback\<void\>  | 是   | 订阅动作回调函数。 |
 
 **错误码：**
@@ -120,7 +120,7 @@ let subscribeCallback = (err: BusinessError) => {
   }
 }
 let onConsumeCallback = (data: notificationSubscribe.SubscribeCallbackData) => {
-  console.info("Consume callback: " + JSON.stringify(data));
+  console.info(`Consume callback: ${JSON.stringify(data)}`);
 }
 let subscriber: notificationSubscribe.NotificationSubscriber = {
   onConsume: onConsumeCallback
@@ -146,7 +146,7 @@ subscribe(subscriber: NotificationSubscriber, info?: NotificationSubscribeInfo):
 
 | 参数名       | 类型                      | 必填 | 说明         |
 | ---------- | ------------------------- | ---- | ------------ |
-| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber-sys.md#notificationsubscriber)    | 是   | 通知订阅对象。 |
+| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber-sys.md)    | 是   | 通知订阅对象。 |
 | info       | [NotificationSubscribeInfo](js-apis-inner-notification-notificationSubscribeInfo-sys.md#notificationsubscribeinfo) | 否   | 通知订阅信息，默认为空（当为空时，表示订阅当前用户下所有应用的通知，否则表示订阅通知并指定订阅信息）。   |
 
 **返回值：**
@@ -175,7 +175,7 @@ subscribe(subscriber: NotificationSubscriber, info?: NotificationSubscribeInfo):
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let onConsumeCallback = (data: notificationSubscribe.SubscribeCallbackData) => {
-  console.info("Consume callback: " + JSON.stringify(data));
+  console.info(`Consume callback: ${JSON.stringify(data)}`);
 }
 let subscriber: notificationSubscribe.NotificationSubscriber = {
   onConsume: onConsumeCallback
@@ -183,7 +183,7 @@ let subscriber: notificationSubscribe.NotificationSubscriber = {
 notificationSubscribe.subscribe(subscriber).then(() => {
   console.info("subscribe success");
 }).catch((err: BusinessError) => {
-  console.error("subscribe fail: " + JSON.stringify(err));
+  console.error(`subscribe fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -202,7 +202,7 @@ subscribeSelf(subscriber: NotificationSubscriber): Promise\<void\>
 
 | 参数名       | 类型                      | 必填 | 说明         |
 | ---------- | ------------------------- | ---- | ------------ |
-| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber-sys.md#notificationsubscriber)    | 是   | 通知订阅对象。 |
+| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber-sys.md)    | 是   | 通知订阅对象。 |
 
 **返回值：**
 
@@ -237,7 +237,7 @@ let subscriber: notificationSubscribe.NotificationSubscriber = {
 notificationSubscribe.subscribeSelf(subscriber).then(() => {
   console.info("subscribeSelf success");
 }).catch((err: BusinessError) => {
-  console.error("subscribeSelf fail: " + JSON.stringify(err));
+  console.error(`subscribeSelf fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -259,7 +259,7 @@ unsubscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>)
 
 | 参数名       | 类型                   | 必填 | 说明                 |
 | ---------- | ---------------------- | ---- | -------------------- |
-| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber-sys.md#notificationsubscriber) | 是   | 通知订阅对象。         |
+| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber-sys.md) | 是   | 通知订阅对象。         |
 | callback   | AsyncCallback\<void\>  | 是   | 取消订阅动作回调函数。 |
 
 **错误码：**
@@ -312,7 +312,7 @@ unsubscribe(subscriber: NotificationSubscriber): Promise\<void\>
 
 | 参数名       | 类型                   | 必填 | 说明         |
 | ---------- | ---------------------- | ---- | ------------ |
-| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber-sys.md#notificationsubscriber) | 是   | 通知订阅对象。 |
+| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber-sys.md) | 是   | 通知订阅对象。 |
 
 **返回值：**
 
@@ -347,7 +347,7 @@ let subscriber: notificationSubscribe.NotificationSubscriber = {
 notificationSubscribe.unsubscribe(subscriber).then(() => {
   console.info("unsubscribe success");
 }).catch((err: BusinessError) => {
-  console.error("unsubscribe fail: " + JSON.stringify(err));
+  console.error(`unsubscribe fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -471,7 +471,7 @@ let reason: notificationSubscribe.RemoveReason = notificationSubscribe.RemoveRea
 notificationSubscribe.remove(bundle, notificationKey, reason).then(() => {
   console.info("remove success");
 }).catch((err: BusinessError) => {
-  console.error("remove fail: " + JSON.stringify(err));
+  console.error(`remove fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -575,7 +575,7 @@ let reason: notificationSubscribe.RemoveReason = notificationSubscribe.RemoveRea
 notificationSubscribe.remove(hashCode, reason).then(() => {
 	console.info("remove success");
 }).catch((err: BusinessError) => {
-  console.error("remove fail: " + JSON.stringify(err));
+  console.error(`remove fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -677,7 +677,7 @@ let reason: notificationSubscribe.RemoveReason = notificationSubscribe.RemoveRea
 notificationSubscribe.remove(hashCodes, reason).then(() => {
   console.info("remove success");
 }).catch((err: BusinessError) => {
-  console.error("remove fail: " + JSON.stringify(err));
+  console.error(`remove fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -825,7 +825,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 notificationSubscribe.removeAll().then(() => {
 	console.info("removeAll success");
 }).catch((err: BusinessError) => {
-  console.error("removeAll fail: " + JSON.stringify(err));
+  console.error(`removeAll fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -897,6 +897,12 @@ removeAll(userId: number): Promise\<void>
 | ------ | ------------ | ---- | ---------- |
 | userId | number | 是   | 用户ID。 |
 
+**返回值：**
+
+| 类型     | 说明         |
+| ------- |------------|
+| Promise\<void\> | 无返回结果的Promise对象。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
@@ -920,7 +926,7 @@ let userId: number = 1;
 notificationSubscribe.removeAll(userId).then(() => {
 	console.info("removeAll success");
 }).catch((err: BusinessError) => {
-  console.error("removeAll fail: " + JSON.stringify(err));
+  console.error(`removeAll fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -942,6 +948,12 @@ distributeOperation(hashcode: string, operationInfo?: OperationInfo): Promise\<v
 | ------ | ------------ | ---- | ---------- |
 | hashcode | string | 是   | 通知唯一ID。 |
 | operationInfo | [OperationInfo](#operationinfo18) | 否   | 跨设备协同操作信息。 |
+
+**返回值：**
+
+| 类型     | 说明         |
+| ------- |------------|
+| Promise\<void\> | 无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -968,7 +980,7 @@ let operationInfo: notificationSubscribe.OperationInfo = {
 notificationSubscribe.distributeOperation(hashcode, operationInfo).then(() => {
 	console.info("distributeOperation success");
 }).catch((err: BusinessError) => {
-  console.error("distributeOperation fail: " + JSON.stringify(err));
+  console.error(`distributeOperation fail: ${JSON.stringify(err)}`);
 });
 ```
 

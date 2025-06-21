@@ -46,13 +46,14 @@ on(type: 'touch', receiver: TouchEventReceiver): void
 
 ```js
 import { TouchEvent } from '@kit.InputKit';
+
 try {
   inputMonitor.on('touch', (touchEvent: TouchEvent) => {
     console.log(`Monitor on success ${JSON.stringify(touchEvent)}`);
     return false;
   });
 } catch (error) {
-  console.log(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -93,7 +94,7 @@ try {
     return false;
   });
 } catch (error) {
-  console.log(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -160,7 +161,7 @@ let rect: display.Rect[] = [{
 try {
   inputMonitor.on('mouse', rect, callback);
 } catch (error) {
-  console.log(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -194,6 +195,7 @@ off(type: 'touch', receiver?: TouchEventReceiver): void
 
 ```js
 import { TouchEvent } from '@kit.InputKit';
+
 // 取消监听单个回调函数
 let callback = (touchEvent: TouchEvent) => {
   console.log(`Monitor on success ${JSON.stringify(touchEvent)}`);
@@ -204,12 +206,13 @@ try {
   inputMonitor.off('touch', callback);
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
 ```js
 import { TouchEvent } from '@kit.InputKit';
+
 // 取消监听所有回调函数
 let callback = (touchEvent: TouchEvent) => {
   console.log(`Monitor on success ${JSON.stringify(touchEvent)}`);
@@ -220,7 +223,7 @@ try {
   inputMonitor.off('touch');
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -254,6 +257,7 @@ off(type: 'mouse', receiver?: Callback&lt;MouseEvent&gt;): void
 
 ```js
 import { MouseEvent } from '@kit.InputKit';
+
 // 取消监听单个回调函数
 let callback = (mouseEvent: MouseEvent) => {
   console.log(`Monitor on success ${JSON.stringify(mouseEvent)}`);
@@ -264,12 +268,13 @@ try {
   inputMonitor.off('mouse', callback);
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
 ```js
 import { MouseEvent } from '@kit.InputKit';
+
 // 取消监听所有回调函数
 let callback = (mouseEvent: MouseEvent) => {
   console.log(`Monitor on success ${JSON.stringify(mouseEvent)}`);
@@ -280,7 +285,7 @@ try {
   inputMonitor.off('mouse');
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -310,6 +315,7 @@ try {
 
 ```js
 import { TouchEvent } from '@kit.InputKit';
+
 try {
   inputMonitor.on('touch', touchEvent => {
     if (touchEvent.touches.length == 3) { // 当前有三个手指按下
@@ -318,7 +324,7 @@ try {
     return false;
   });
 } catch (error) {
-    console.log(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+    console.error(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -352,14 +358,15 @@ on(type: 'pinch', receiver: Callback&lt;[Pinch](js-apis-multimodalinput-gesturee
 **示例：**
 
 ```js
-import type { Pinch } from '@kit.InputKit';
+import { Pinch } from '@kit.InputKit';
+
 try {
   inputMonitor.on('pinch', (pinchEvent) => {
     console.log(`Monitor on success ${JSON.stringify(pinchEvent)}`);
     return false;
   });
 } catch (error) {
-  console.log(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -405,7 +412,7 @@ try {
   inputMonitor.off('pinch', callback);
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -422,7 +429,7 @@ try {
   inputMonitor.off('pinch');
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -462,7 +469,7 @@ try {
     return false;
   });
 } catch (error) {
-  console.log(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -508,7 +515,7 @@ try {
   inputMonitor.off("threeFingersSwipe", callback);
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -525,7 +532,7 @@ try {
   inputMonitor.off("threeFingersSwipe");
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -565,7 +572,7 @@ try {
     return false;
   });
 } catch (error) {
-  console.log(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -611,7 +618,7 @@ try {
   inputMonitor.off('fourFingersSwipe', callback);
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -628,7 +635,7 @@ try {
   inputMonitor.off('fourFingersSwipe');
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -648,7 +655,7 @@ on(type: 'rotate', fingers: number, receiver: Callback&lt;Rotate&gt;): void
 | -------- | -------------------------- | ---- | ------------------- |
 | type     | string                     | 是    | 输入设备事件类型，取值'rotate'。 |
 | fingers     | number                     | 是    | 旋转的手指数，目前支持监听手指数是2。 |
-| receiver | Callback&lt;[Rotate](js-apis-multimodalinput-gestureevent.md#rotate)&gt; | 是    | 回调函数，异步上报旋转输入事件。  |
+| receiver | Callback&lt;[Rotate](js-apis-multimodalinput-gestureevent.md#rotate11)&gt; | 是    | 回调函数，异步上报旋转输入事件。  |
 
 **错误码**：
 
@@ -663,14 +670,15 @@ on(type: 'rotate', fingers: number, receiver: Callback&lt;Rotate&gt;): void
 **示例：**
 
 ```js
-import type { Rotate } from '@kit.InputKit';
+import { Rotate } from '@kit.InputKit';
+
 try {
   inputMonitor.on('rotate', 2, (rotateEvent: Rotate) => {
     console.log(`Monitor on success ${JSON.stringify(rotateEvent)}`);
     return false;
   });
 } catch (error) {
-  console.log(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -690,7 +698,7 @@ off(type: 'rotate', fingers: number, receiver?: Callback&lt;Rotate&gt;): void
 | -------- | -------------------------- | ---- | ------------------- |
 | type     | string                     | 是    | 输入设备事件类型，取值'rotate'。 |
 | fingers     | number                     | 是    | 旋转的手指数，目前支持监听手指数是2。 |
-| receiver | Callback&lt;[Rotate](js-apis-multimodalinput-gestureevent.md#rotate)&gt; | 否    | 需要取消监听的回调函数。若不填，则取消当前应用监听的所有回调函数。 |
+| receiver | Callback&lt;[Rotate](js-apis-multimodalinput-gestureevent.md#rotate11)&gt; | 否    | 需要取消监听的回调函数。若不填，则取消当前应用监听的所有回调函数。 |
 
 **错误码**：
 
@@ -717,7 +725,7 @@ try {
   inputMonitor.off('rotate', 2, callback);
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -734,7 +742,7 @@ try {
   inputMonitor.off('rotate', 2);
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -769,14 +777,15 @@ on(type: 'pinch', fingers: number, receiver: Callback&lt;Pinch&gt;): void
 **示例：**
 
 ```js
-import type { Pinch } from '@kit.InputKit';
+import { Pinch } from '@kit.InputKit';
+
 try {
   inputMonitor.on('pinch', 2, (pinchEvent: Pinch) => {
     console.log(`Monitor on success ${JSON.stringify(pinchEvent)}`);
     return false;
   });
 } catch (error) {
-  console.log(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -823,7 +832,7 @@ try {
   inputMonitor.off('pinch', 2, callback);
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -840,13 +849,13 @@ try {
   inputMonitor.off('pinch', 2);
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
 ## inputMonitor.on('threeFingersTap')<sup>11+</sup>
 
-on(type: 'threeFingersTap', receiver: Callback&lt;[ThreeFingersTap](js-apis-multimodalinput-gestureevent.md#threefingerstap)&gt;): void
+on(type: 'threeFingersTap', receiver: Callback&lt;[ThreeFingersTap](js-apis-multimodalinput-gestureevent.md#threefingerstap11)&gt;): void
 
 监听全局触控板的三指轻点事件。
 
@@ -859,7 +868,7 @@ on(type: 'threeFingersTap', receiver: Callback&lt;[ThreeFingersTap](js-apis-mult
 | 参数名   | 类型                                                         | 必填 | 说明                                      |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | 是   | 输入设备事件类型，取值'threeFingersTap'。 |
-| receiver | Callback&lt;[ThreeFingersTap](js-apis-multimodalinput-gestureevent.md#threefingerstap)&gt; | 是   | 回调函数，异步上报三指轻点输入事件。      |
+| receiver | Callback&lt;[ThreeFingersTap](js-apis-multimodalinput-gestureevent.md#threefingerstap11)&gt; | 是   | 回调函数，异步上报三指轻点输入事件。      |
 
 **错误码**：
 
@@ -880,13 +889,13 @@ try {
     return false;
   });
 } catch (error) {
-  console.log(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
 ## inputMonitor.off('threeFingersTap')<sup>11+</sup>
 
-off(type: 'threeFingersTap', receiver?: Callback&lt;[ThreeFingersTap](js-apis-multimodalinput-gestureevent.md#threefingerstap)&gt;): void
+off(type: 'threeFingersTap', receiver?: Callback&lt;[ThreeFingersTap](js-apis-multimodalinput-gestureevent.md#threefingerstap11)&gt;): void
 
 取消监听全局触控板的三指轻点事件。
 
@@ -899,7 +908,7 @@ off(type: 'threeFingersTap', receiver?: Callback&lt;[ThreeFingersTap](js-apis-mu
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 输入设备事件类型，取值'threeFingersTap'。                    |
-| receiver | Callback&lt;[ThreeFingersTap](js-apis-multimodalinput-gestureevent.md#threefingerstap)&gt; | 否   | 需要取消监听的回调函数。若不填，则取消当前应用监听的所有回调函数。 |
+| receiver | Callback&lt;[ThreeFingersTap](js-apis-multimodalinput-gestureevent.md#threefingerstap11)&gt; | 否   | 需要取消监听的回调函数。若不填，则取消当前应用监听的所有回调函数。 |
 
 **错误码**：
 
@@ -926,7 +935,7 @@ try {
   inputMonitor.off("threeFingersTap", callback);
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -943,7 +952,7 @@ try {
   inputMonitor.off("threeFingersTap");
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -978,7 +987,6 @@ on(type: 'touchscreenSwipe', fingers: number, receiver: Callback&lt;TouchGesture
 **示例：**
 
 ```js
-import inputMonitor from '@ohos.multimodalInput.inputMonitor';
 import { TouchGestureEvent } from '@ohos.multimodalInput.gestureEvent';
 
 let fingers: number = 4;
@@ -987,7 +995,7 @@ try {
     console.log(`Monitor on success ${JSON.stringify(event)}`);
   });
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1023,7 +1031,6 @@ off(type: 'touchscreenSwipe', fingers: number, receiver?: Callback&lt;TouchGestu
 
 ```js
 // 取消监听单个回调函数
-import inputMonitor from '@ohos.multimodalInput.inputMonitor';
 import { TouchGestureEvent } from '@ohos.multimodalInput.gestureEvent';
 
 let callback = (event: TouchGestureEvent) => {
@@ -1034,13 +1041,12 @@ try {
   inputMonitor.on('touchscreenSwipe', fingers, callback);
   inputMonitor.off('touchscreenSwipe', fingers, callback);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
 ```js
 // 取消监听所有回调函数
-import inputMonitor from '@ohos.multimodalInput.inputMonitor';
 import { TouchGestureEvent } from '@ohos.multimodalInput.gestureEvent';
 
 let fingers: number = 4;
@@ -1050,7 +1056,7 @@ try {
   });
   inputMonitor.off('touchscreenSwipe', fingers);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1085,7 +1091,6 @@ on(type: 'touchscreenPinch', fingers: number, receiver: Callback&lt;TouchGesture
 **示例：**
 
 ```js
-import inputMonitor from '@ohos.multimodalInput.inputMonitor';
 import { TouchGestureEvent } from '@ohos.multimodalInput.gestureEvent';
 
 let fingers: number = 4;
@@ -1094,7 +1099,7 @@ try {
     console.log(`Monitor on success ${JSON.stringify(event)}`);
   });
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1130,7 +1135,6 @@ off(type: 'touchscreenPinch', fingers: number, receiver?: Callback&lt;TouchGestu
 
 ```js
 // 取消监听单个回调函数
-import inputMonitor from '@ohos.multimodalInput.inputMonitor';
 import { TouchGestureEvent } from '@ohos.multimodalInput.gestureEvent';
 
 let callback = (event: TouchGestureEvent) => {
@@ -1141,13 +1145,12 @@ try {
   inputMonitor.on('touchscreenPinch', fingers, callback);
   inputMonitor.off("touchscreenPinch", fingers, callback);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
 ```js
 // 取消监听所有回调函数
-import inputMonitor from '@ohos.multimodalInput.inputMonitor';
 import { TouchGestureEvent } from '@ohos.multimodalInput.gestureEvent';
 
 let fingers: number = 4;
@@ -1157,7 +1160,7 @@ try {
   });
   inputMonitor.off("touchscreenPinch", fingers);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1181,7 +1184,7 @@ on(type: 'keyPressed', keys: Array&lt;KeyCode&gt;, receiver: Callback&lt;KeyEven
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[按键监听错误码](./errorcode-inputkeymonitor.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[按键监听错误码](./errorcode-inputmonitor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1201,7 +1204,7 @@ try {
     console.log(`Monitor on success ${JSON.stringify(event)}`);
   });
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1246,7 +1249,7 @@ try {
   inputMonitor.on('keyPressed', keys, callback);
   inputMonitor.off("keyPressed", callback);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1261,6 +1264,6 @@ try {
   });
   inputMonitor.off("keyPressed");
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```

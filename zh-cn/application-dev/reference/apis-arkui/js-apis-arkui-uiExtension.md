@@ -10,18 +10,22 @@
 ## 导入模块
 
 ```
-import { uiExtension } from '@kit.ArkUI'
+import { uiExtension } from '@kit.ArkUI';
 ```
 
 ## WindowProxy
+
+UIExtension宿主窗代理。
 
 ### 属性
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用
+
 | 名称                                 | 类型                  | 只读 | 可选 | 说明                                                                                                     |
 | ------------------------------------| -------------------------------------------------- | ---- | ---- | ------------------------------------------------------------------------------------------------------ |
-| properties<sup>14+</sup>            | [WindowProxyProperties](#windowproxyproperties14) |  否  |  否  | 组件（EmbeddedComponent或UIExtensionComponent）的信息。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。<br/>**约束：** 由于架构约束，不建议在[onSessionCreate](../apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#uiextensionabilityonsessioncreate)阶段同步获取该值，建议在收到[on('windowSizeChange')](../apis-arkui/js-apis-arkui-uiExtension.md#onwindowsizechange)回调之后获取。                                                                            |
+| properties<sup>14+</sup>            | [WindowProxyProperties](#windowproxyproperties14) |  否  |  否  | 组件（EmbeddedComponent或UIExtensionComponent）的信息。<br/>**约束：** 由于架构约束，不建议在[onSessionCreate](../apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#onsessioncreate)阶段同步获取该值，建议在收到[on('windowSizeChange')](../apis-arkui/js-apis-arkui-uiExtension.md#onwindowsizechange)回调之后获取。                                                                            |
 
 ### getWindowAvoidArea
 
@@ -29,19 +33,19 @@ getWindowAvoidArea(type: window.AvoidAreaType): window.AvoidArea
 
 获取宿主应用窗口内容规避的区域；如系统栏区域、刘海屏区域、手势区域、软键盘区域等与宿主窗口内容重叠时，需要宿主窗口内容避让的区域。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type |[window.AvoidAreaType](./js-apis-window.md#avoidareatype7) | 是 | 表示规避区类型。 |
+| type |[window.AvoidAreaType](arkts-apis-window-e.md#avoidareatype7) | 是 | 表示规避区类型。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-|[window.AvoidArea](./js-apis-window.md#avoidarea7) | 宿主窗口内容规避区域。 |
+|[window.AvoidArea](arkts-apis-window-i.md#avoidarea7) | 宿主窗口内容规避区域。 |
 
 **错误码**：
 
@@ -51,7 +55,7 @@ getWindowAvoidArea(type: window.AvoidAreaType): window.AvoidArea
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
-**示例**
+**示例：**
 
 ```ts
 // ExtensionProvider.ts
@@ -74,9 +78,9 @@ on(type: 'avoidAreaChange', callback: Callback&lt;AvoidAreaInfo&gt;): void
 
 注册系统规避区变化的监听。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ---- | ---- | ---- |
@@ -91,7 +95,7 @@ on(type: 'avoidAreaChange', callback: Callback&lt;AvoidAreaInfo&gt;): void
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
-**示例**
+**示例：**
 
 ```ts
 // ExtensionProvider.ts
@@ -115,9 +119,9 @@ off(type: 'avoidAreaChange', callback?: Callback&lt;AvoidAreaInfo&gt;): void
 
 注销系统规避区变化的监听。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 参数名   | 类型 | 必填 | 说明 |
 | -------- | ---- | ---- | ---  |
@@ -132,7 +136,7 @@ off(type: 'avoidAreaChange', callback?: Callback&lt;AvoidAreaInfo&gt;): void
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
 
-**示例**
+**示例：**
 
 ```ts
 // ExtensionProvider.ts
@@ -153,14 +157,14 @@ on(type: 'windowSizeChange', callback: Callback<window.Size>): void
 
 注册宿主应用窗口尺寸变化的监听。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 参数名   | 类型                  | 必填 | 说明                   |
 | -------- | --------------------- | ---- | ---------------------- |
 | type     | string                | 是   | 监听的事件类型，固定为'windowSizeChange'，即窗口尺寸变化事件。 |
-| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[window.Size](js-apis-window.md#size7)> | 是   | 回调函数：入参用于接收当前窗口的尺寸。 |
+| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[window.Size](arkts-apis-window-i.md#size7)> | 是   | 回调函数：入参用于接收当前窗口的尺寸。 |
 
 **错误码**：
 
@@ -170,7 +174,7 @@ on(type: 'windowSizeChange', callback: Callback<window.Size>): void
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
-**示例**
+**示例：**
 
 ```ts
 // ExtensionProvider.ts
@@ -194,14 +198,14 @@ off(type: 'windowSizeChange', callback?: Callback<window.Size>): void
 
 注销宿主应用窗口尺寸变化的监听。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 参数名   | 类型                  | 必填 | 说明                   |
 | -------- | --------------------- | ---- | ---------------------- |
 | type     | string                | 是   | 注销的事件类型，固定值：'windowSizeChange'，即窗口尺寸变化事件。 |
-| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[window.Size](js-apis-window.md#size7)> | 否   | 回调函数：如果传入该参数，则关闭该监听。如果未传入参数，则关闭所有系统规避区变化的监听。 |
+| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[window.Size](arkts-apis-window-i.md#size7)> | 否   | 回调函数：如果传入该参数，则关闭该监听。如果未传入参数，则关闭所有系统规避区变化的监听。 |
 
 **错误码**：
 
@@ -211,7 +215,7 @@ off(type: 'windowSizeChange', callback?: Callback<window.Size>): void
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 
-**示例**
+**示例：**
 
 ```ts
 // ExtensionProvider.ts
@@ -241,7 +245,7 @@ on(type: 'rectChange', reasons: number, callback: Callback&lt;RectChangeOptions&
 | 参数名   | 类型                           | 必填 | 说明                                                     |
 | -------- | ------------------------------ | ---- | -------------------------------------------------------- |
 | type     | string                         | 是   | 监听事件，固定为'rectChange'，即组件（EmbeddedComponent或UIExtensionComponent）矩形变化事件。 |
-| reasons  | number                         | 是   | 触发组件（EmbeddedComponent或UIExtensionComponent）位置及尺寸变化的原因。
+| reasons  | number                         | 是   | 触发组件（EmbeddedComponent或UIExtensionComponent）位置及尺寸变化的原因，具体取值可参考[RectChangeReason](#rectchangereason14)枚举值。
 | callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[RectChangeOptions](#rectchangeoptions14)> | 是 | 回调函数。返回当前组件（EmbeddedComponent或UIExtensionComponent）矩形变化值及变化原因。 |
 
 **错误码：**
@@ -329,13 +333,13 @@ createSubWindowWithOptions(name: string, subWindowOptions: window.SubWindowOptio
 | 参数名 | 类型   | 必填 | 说明           |
 | ------ | ------ | ---- | -------------- |
 | name   | string | 是   | 子窗口的名字。 |
-| subWindowOptions | [window.SubWindowOptions](js-apis-window.md#subwindowoptions11) | 是   | 子窗口参数。  |
+| subWindowOptions | [window.SubWindowOptions](arkts-apis-window-i.md#subwindowoptions11) | 是   | 子窗口参数。  |
 
 **返回值：**
 
 | 类型                             | 说明                                             |
 | -------------------------------- | ------------------------------------------------ |
-| Promise&lt;[window.Window](js-apis-window.md#window)&gt; | Promise对象。返回当前WindowProxy下创建的子窗口对象。 |
+| Promise&lt;[window.Window](arkts-apis-window-Window.md#window)&gt; | Promise对象。返回当前WindowProxy下创建的子窗口对象。 |
 
 **错误码：**
 
@@ -346,7 +350,6 @@ createSubWindowWithOptions(name: string, subWindowOptions: window.SubWindowOptio
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 801 | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal. |
-| 1300005 | This window proxy is abnormal. |
 
 **示例：**
 
@@ -440,7 +443,12 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
     // 占用事件
     setTimeout(() => {
       try {
-        extensionWindow.occupyEvents(uiExtension.EventFlag.EVENT_CLICK | uiExtension.EventFlag.EVENT_LONG_PRESS);
+        let promise = extensionWindow.occupyEvents(uiExtension.EventFlag.EVENT_CLICK | uiExtension.EventFlag.EVENT_LONG_PRESS);
+        promise.then(() => {
+          console.info(`Successed in occupy events`);
+        }).catch((err: BusinessError) => {
+          console.error(`Failed to occupy events. Cause code: ${err.code}, message: ${err.message}`);
+        });
       } catch (e) {
         console.error(`Occupy events got exception code: ${e.code}, message: ${e.message}`);
       }
@@ -471,14 +479,14 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
 
 用于表示窗口规避区的信息。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称 | 类型                 | 必填 | 说明        |
 | ------ | -------------------- | ------------------ | ------------------ |
-| type   | [window.AvoidAreaType](js-apis-window.md#avoidareatype7) | 是 | 窗口规避区类型。   |
-| area   | [window.AvoidArea](js-apis-window.md#avoidarea7)     | 是| 窗口内容规避区域。 |
+| type   | [window.AvoidAreaType](arkts-apis-window-e.md#avoidareatype7) | 是 | 窗口规避区类型。   |
+| area   | [window.AvoidArea](arkts-apis-window-i.md#avoidarea7)     | 是| 窗口内容规避区域。 |
 
 ## WindowProxyProperties<sup>14+</sup>
 
@@ -490,7 +498,7 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
 
 | 名称                         | 类型        | 必填      | 说明                             |
 | ------------------------------ | ----------- | -------------------------------- | -------------------------------- |
-| uiExtensionHostWindowProxyRect | [window.Rect](js-apis-window.md#rect7) | 是 | 组件（EmbeddedComponent或UIExtensionComponent）的位置和宽高。 |
+| uiExtensionHostWindowProxyRect | [window.Rect](arkts-apis-window-i.md#rect7) | 是 | 组件（EmbeddedComponent或UIExtensionComponent）的位置和宽高。 |
 
 ## RectChangeReason<sup>14+</sup>
 
@@ -512,10 +520,10 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
-| 名称       | 类型      | 可读 | 可写 | 说明               |
+| 名称       | 类型      | 只读 | 可选 | 说明               |
 | ---------- | ------------- | ---- | ---- | ------------------ |
-| rect   | [window.Rect](js-apis-window.md#rect7) | 是   | 是   | 组件矩形变化后的值。 |
-| reason    | [RectChangeReason](#rectchangereason14) | 是   | 是   | 组件矩形变化的原因。 |
+| rect   | [window.Rect](arkts-apis-window-i.md#rect7) | 否   | 否   | 组件矩形变化后的值。 |
+| reason    | [RectChangeReason](#rectchangereason14) | 否   | 否   | 组件矩形变化的原因。 |
 
 ## 完整示例
 
@@ -530,7 +538,7 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
   @Entry
   @Component
   struct Index {
-    @State message: string = 'Message: '
+    @State message: string = 'Message: ';
     private want: Want = {
       bundleName: "com.example.embeddeddemo",
       abilityName: "ExampleEmbeddedAbility",
@@ -562,7 +570,7 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
   ```ts
   import { EmbeddedUIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
 
-  const TAG: string = '[ExampleEmbeddedAbility]'
+  const TAG: string = '[ExampleEmbeddedAbility]';
   export default class ExampleEmbeddedAbility extends EmbeddedUIExtensionAbility {
     
     onCreate() {
@@ -598,13 +606,13 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
   import { UIExtensionContentSession } from '@kit.AbilityKit';
   import { uiExtension, window } from '@kit.ArkUI';
   import { BusinessError } from '@kit.BasicServicesKit';
-  let storage = LocalStorage.getShared()
 
-  @Entry(storage)
+  @Entry()
   @Component
   struct Extension {
     @State message: string = 'EmbeddedUIExtensionAbility Index';
-    private session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
+    private storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
+    private session: UIExtensionContentSession | undefined = this.storage?.get<UIExtensionContentSession>('session');
     private extensionWindow: uiExtension.WindowProxy | undefined = this.session?.getUIExtensionWindowProxy();
     private subWindow: window.Window | undefined = undefined;
 
@@ -647,7 +655,7 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
           this.extensionWindow?.createSubWindowWithOptions('subWindowForHost', subWindowOpts)
               .then((subWindow: window.Window) => {
                   this.subWindow = subWindow;
-                  this.subWindow.loadContent('pages/Index', storage, (err, data) =>{
+                  this.subWindow.loadContent('pages/Index', this.storage, (err, data) =>{
                       if (err && err.code != 0) {
                           return;
                       }

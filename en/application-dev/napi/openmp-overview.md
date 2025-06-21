@@ -10,4 +10,6 @@ OpenMP has been widely used in scientific computing, image processing, machine l
 
 Currently, the OpenHarmony uses the OpenMP library provided by [llvm 15.0.4](https://github.com/llvm/llvm-project/releases/tag/llvmorg-15.0.4). For details about the OpenMP API version, see [clang-OpenMPSupport](https://clang.llvm.org/docs/OpenMPSupport.html).
 
-For details about how to use OpenMP in HarmonyOS applications, see [Building and Running Applications with OpenMP](openmp-guideline.md).
+For details about how to use OpenMP in OpenHarmony applications, see [Building and Running Applications with OpenMP](openmp-guideline.md).
+
+<!--no_check-->

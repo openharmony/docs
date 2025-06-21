@@ -4,6 +4,10 @@
 
 谓词的接口函数与数据库的筛选条件一一对应，开发者在使用前需了解数据库相关知识。
 
+谓词(DataSharePredicates)的使用场景如下：
+
+- 用于调用[关系型数据库](js-apis-data-relationalStore-sys.md)和[键值型数据库](js-apis-distributedKVStore-sys.md)系统接口时的检索条件使用。此种场景下，开发者根据使用的数据库类型参考对应的谓词使用方法。
+
 > **说明：** 
 >
 > - 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -29,7 +33,7 @@ notEqualTo(field: string, value: ValueType): DataSharePredicates
 
 该接口用于配置谓词以匹配值不等于指定值的字段。
 
-目前仅RDB及KVDB(schema)支持该谓词。
+目前仅关系型数据库及键值型数据库支持该谓词。
 
 **系统接口：**  此接口为系统接口。
 
@@ -51,8 +55,8 @@ notEqualTo(field: string, value: ValueType): DataSharePredicates
 **示例：**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.notEqualTo("NAME", "Rose")
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.notEqualTo("NAME", "Rose");
 ```
 
 ### beginWrap
@@ -61,7 +65,7 @@ beginWrap(): DataSharePredicates
 
 该接口用于向谓词添加左括号，相当于sql语句的“(”，必须和右括号一起使用。
 
-目前仅RDB支持该谓词。
+目前仅关系型数据库支持该谓词。
 
 **系统接口：**  此接口为系统接口。
 
@@ -76,13 +80,13 @@ beginWrap(): DataSharePredicates
 **示例：**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
+let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "lisi")
     .beginWrap()
     .equalTo("AGE", 18)
     .or()
     .equalTo("SALARY", 200.5)
-    .endWrap()
+    .endWrap();
 ```
 
 ### endWrap
@@ -91,7 +95,7 @@ endWrap(): DataSharePredicates
 
 该接口用于向谓词添加右括号。
 
-目前仅RDB支持该谓词。
+目前仅关系型数据库支持该谓词。
 
 **系统接口：**  此接口为系统接口。
 
@@ -106,13 +110,13 @@ endWrap(): DataSharePredicates
 **示例：**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
+let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "lisi")
     .beginWrap()
     .equalTo("AGE", 18)
     .or()
     .equalTo("SALARY", 200.5)
-    .endWrap()
+    .endWrap();
 ```
 
 ### or
@@ -121,7 +125,7 @@ or(): DataSharePredicates
 
 该接口用于将或条件添加到谓词中。
 
-目前仅RDB及KVDB(schema)支持该谓词。
+目前仅关系型数据库及键值型数据库支持该谓词。
 
 **系统接口：**  此接口为系统接口。
 
@@ -139,7 +143,7 @@ or(): DataSharePredicates
 let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.equalTo("NAME", "lisi")
     .or()
-    .equalTo("NAME", "Rose")
+    .equalTo("NAME", "Rose");
 ```
 
 ### contains
@@ -148,7 +152,7 @@ contains(field: string, value: string): DataSharePredicates
 
 该接口用于配置谓词以匹配值包含指定字段的字段。
 
-目前仅RDB支持该谓词。
+目前仅关系型数据库支持该谓词。
 
 **系统接口：**  此接口为系统接口。
 
@@ -170,8 +174,8 @@ contains(field: string, value: string): DataSharePredicates
 **示例：**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.contains("NAME", "os")
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.contains("NAME", "os");
 ```
 
 ### beginsWith
@@ -180,7 +184,7 @@ beginsWith(field: string, value: string): DataSharePredicates
 
 该接口用于配置谓词以匹配值以指定字符串起始的字段。
 
-目前仅RDB支持该谓词。
+目前仅关系型数据库支持该谓词。
 
 **系统接口：**  此接口为系统接口。
 
@@ -202,8 +206,8 @@ beginsWith(field: string, value: string): DataSharePredicates
 **示例：**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.beginsWith("NAME", "os")
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.beginsWith("NAME", "os");
 ```
 
 ### endsWith
@@ -212,7 +216,7 @@ endsWith(field: string, value: string): DataSharePredicates
 
 该接口用于配置谓词以匹配值以指定字符串结尾的字段。
 
-目前仅RDB支持该谓词。
+目前仅关系型数据库支持该谓词。
 
 **系统接口：**  此接口为系统接口。
 
@@ -234,8 +238,8 @@ endsWith(field: string, value: string): DataSharePredicates
 **示例：**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.endsWith("NAME", "os")
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.endsWith("NAME", "os");
 ```
 
 ### isNull
@@ -244,7 +248,7 @@ isNull(field: string): DataSharePredicates
 
 该接口用于配置谓词以匹配值为null的字段。
 
-目前仅RDB及KVDB(schema)支持该谓词。
+目前仅关系型数据库及键值型数据库支持该谓词。
 
 **系统接口：**  此接口为系统接口。
 
@@ -265,8 +269,8 @@ isNull(field: string): DataSharePredicates
 **示例：**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.isNull("NAME")
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.isNull("NAME");
 ```
 
 ### isNotNull
@@ -275,7 +279,7 @@ isNotNull(field: string): DataSharePredicates
 
 该接口用于配置谓词以匹配值不为null的字段。
 
-目前仅RDB及KVDB(schema)支持该谓词。
+目前仅关系型数据库及键值型数据库支持该谓词。
 
 **系统接口：**  此接口为系统接口。
 
@@ -296,8 +300,8 @@ isNotNull(field: string): DataSharePredicates
 **示例：**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.isNotNull("NAME")
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.isNotNull("NAME");
 ```
 
 ### like
@@ -306,7 +310,7 @@ like(field: string, value: string): DataSharePredicates
 
 该接口用于配置谓词以匹配指定通配符表达式的字段。
 
-目前仅RDB及KVDB(schema)支持该谓词。
+目前仅关系型数据库及键值型数据库支持该谓词。
 
 **系统接口：**  此接口为系统接口。
 
@@ -328,8 +332,8 @@ like(field: string, value: string): DataSharePredicates
 **示例：**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.like("NAME", "%os%")
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.like("NAME", "%os%");
 ```
 
 ### unlike
@@ -338,7 +342,7 @@ unlike(field: string, value: string): DataSharePredicates
 
 该接口用于配置谓词以匹配不类似指定通配符表达式的字段。
 
-目前仅RDB及KVDB(schema)支持该谓词。
+目前仅关系型数据库及键值型数据库支持该谓词。
 
 **系统接口：**  此接口为系统接口。
 
@@ -360,8 +364,8 @@ unlike(field: string, value: string): DataSharePredicates
 **示例：**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.unlike("NAME", "%os%")
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.unlike("NAME", "%os%");
 ```
 
 ### glob
@@ -370,7 +374,7 @@ glob(field: string, value: string): DataSharePredicates
 
 该接口用于配置谓词以匹配指定通配符表达式的字段。
 
-目前仅RDB支持该谓词。
+目前仅关系型数据库支持该谓词。
 
 **系统接口：**  此接口为系统接口。
 
@@ -392,8 +396,8 @@ glob(field: string, value: string): DataSharePredicates
 **示例：**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.glob("NAME", "?h*g")
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.glob("NAME", "?h*g");
 ```
 
 ### between
@@ -402,7 +406,7 @@ between(field: string, low: ValueType, high: ValueType): DataSharePredicates
 
 该接口用于配置谓词以匹配值在指定范围内的字段。包含两端边界值，为左闭右闭区间，该字段的数据类型必须为int类型。
 
-目前仅RDB支持该谓词。
+目前仅关系型数据库支持该谓词。
 
 **系统接口：**  此接口为系统接口。
 
@@ -425,8 +429,8 @@ between(field: string, low: ValueType, high: ValueType): DataSharePredicates
 **示例：**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.between("AGE", 10, 50)
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.between("AGE", 10, 50);
 ```
 
 ### notBetween
@@ -435,7 +439,7 @@ notBetween(field: string, low: ValueType, high: ValueType): DataSharePredicates
 
 该接口用于配置谓词以匹配值超出指定范围的字段。不包含两端边界值，为左开右开区间，该字段的数据类型必须为int类型。
 
-目前仅RDB支持该谓词。
+目前仅关系型数据库支持该谓词。
 
 **系统接口：**  此接口为系统接口。
 
@@ -458,8 +462,8 @@ notBetween(field: string, low: ValueType, high: ValueType): DataSharePredicates
 **示例：**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.notBetween("AGE", 10, 50)
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.notBetween("AGE", 10, 50);
 ```
 
 ### greaterThan
@@ -468,7 +472,7 @@ greaterThan(field: string, value: ValueType): DataSharePredicates
 
 该接口用于配置谓词以匹配值大于指定值的字段。
 
-目前仅RDB及KVDB(schema)支持该谓词。
+目前仅关系型数据库及键值型数据库支持该谓词。
 
 **系统接口：**  此接口为系统接口。
 
@@ -490,8 +494,8 @@ greaterThan(field: string, value: ValueType): DataSharePredicates
 **示例：**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.greaterThan("AGE", 10)
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.greaterThan("AGE", 10);
 ```
 
 ### lessThan
@@ -500,7 +504,7 @@ lessThan(field: string, value: ValueType): DataSharePredicates
 
 该接口用于配置谓词以匹配值小于指定值的字段。
 
-目前仅RDB及KVDB(schema)支持该谓词。
+目前仅关系型数据库及键值型数据库支持该谓词。
 
 **系统接口：**  此接口为系统接口。
 
@@ -522,8 +526,8 @@ lessThan(field: string, value: ValueType): DataSharePredicates
 **示例：**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.lessThan("AGE", 50)
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.lessThan("AGE", 50);
 ```
 
 ### greaterThanOrEqualTo
@@ -532,7 +536,7 @@ greaterThanOrEqualTo(field: string, value: ValueType): DataSharePredicates
 
 该接口用于配置谓词以匹配值大于或等于指定值的字段。
 
-目前仅RDB及KVDB(schema)支持该谓词。
+目前仅关系型数据库及键值型数据库支持该谓词。
 
 **系统接口：**  此接口为系统接口。
 
@@ -554,8 +558,8 @@ greaterThanOrEqualTo(field: string, value: ValueType): DataSharePredicates
 **示例：**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.greaterThanOrEqualTo("AGE", 10)
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.greaterThanOrEqualTo("AGE", 10);
 ```
 
 ### lessThanOrEqualTo
@@ -564,7 +568,7 @@ lessThanOrEqualTo(field: string, value: ValueType): DataSharePredicates
 
 该接口用于配置谓词以匹配值小于或等于指定值的字段。
 
-目前仅RDB及KVDB(schema)支持该谓词。
+目前仅关系型数据库及键值型数据库支持该谓词。
 
 **系统接口：**  此接口为系统接口。
 
@@ -586,8 +590,8 @@ lessThanOrEqualTo(field: string, value: ValueType): DataSharePredicates
 **示例：**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.lessThanOrEqualTo("AGE", 50)
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.lessThanOrEqualTo("AGE", 50);
 ```
 
 ### distinct
@@ -596,7 +600,7 @@ distinct(): DataSharePredicates
 
 该接口用于配置谓词以过滤重复记录并仅保留其中一个。
 
-目前仅RDB支持该谓词。
+目前仅关系型数据库支持该谓词。
 
 **系统接口：**  此接口为系统接口。
 
@@ -611,8 +615,8 @@ distinct(): DataSharePredicates
 **示例：**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.equalTo("NAME", "Rose").distinct()
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.equalTo("NAME", "Rose").distinct();
 ```
 
 ### groupBy
@@ -621,7 +625,7 @@ groupBy(fields: Array&lt;string&gt;): DataSharePredicates
 
 该接口用于配置谓词按指定列分组查询结果。
 
-目前仅RDB支持该谓词。
+目前仅关系型数据库支持该谓词。
 
 **系统接口：**  此接口为系统接口。
 
@@ -642,8 +646,8 @@ groupBy(fields: Array&lt;string&gt;): DataSharePredicates
 **示例：**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.groupBy(["AGE", "NAME"])
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.groupBy(["AGE", "NAME"]);
 ```
 
 ### indexedBy
@@ -652,7 +656,7 @@ indexedBy(field: string): DataSharePredicates
 
 该接口用于配置谓词按指定索引列查询结果。使用该方法前，需要设置索引列。
 
-目前仅RDB支持该谓词。
+目前仅关系型数据库支持该谓词。
 
 **系统接口：**  此接口为系统接口。
 
@@ -673,8 +677,8 @@ indexedBy(field: string): DataSharePredicates
 **示例：**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.indexedBy("SALARY_INDEX")
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.indexedBy("SALARY_INDEX");
 ```
 
 ### notIn
@@ -683,7 +687,7 @@ notIn(field: string, value: Array&lt;ValueType&gt;): DataSharePredicates
 
 该接口用于配置谓词以匹配值不在指定范围内的字段。
 
-目前仅RDB及KVDB(schema)支持该谓词。
+目前仅关系型数据库及键值型数据库支持该谓词。
 
 **系统接口：**  此接口为系统接口。
 
@@ -705,8 +709,8 @@ notIn(field: string, value: Array&lt;ValueType&gt;): DataSharePredicates
 **示例：**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.notIn("NAME", ["Lisa", "Rose"])
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.notIn("NAME", ["Lisa", "Rose"]);
 ```
 
 ### prefixKey
@@ -736,8 +740,8 @@ prefixKey(prefix: string): DataSharePredicates
 **示例：**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.prefixKey("NAME")
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.prefixKey("NAME");
 ```
 
 ### inKeys
@@ -767,6 +771,6 @@ inKeys(keys: Array&lt;string&gt;): DataSharePredicates
 **示例：**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.inKeys(["Lisa", "Rose"])
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.inKeys(["Lisa", "Rose"]);
 ```

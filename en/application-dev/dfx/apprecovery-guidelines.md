@@ -36,16 +36,19 @@ No error will be thrown if the preceding APIs are used in the troubleshooting sc
 **restartApp**: After this API is called, the recovery framework kills the current process and restarts the ability specified by **setRestartWant**, with **APP_RECOVERY** set as the startup cause. In API version 9 and scenarios where an ability is not specified by **setRestartWant**, the last foreground ability that supports recovery is started. If the no foreground ability supports recovery, the application crashes. If a saved state is available for the restarted ability, the saved state is passed as the **wantParam** attribute in the **want** parameter of the ability's **onCreate** callback. The interval between two restarts must be greater than 1 minute. If this API is called repeatedly within 1 minute, the application exits but does not restart. The behavior of automatic restart is the same as that of proactive restart.
 
 ### Application State Management
+
 Since API version 10, application recovery is not limited to automatic restart in the case of an exception. Therefore, you need to understand when the application will load the saved state.
 If the last exit of an application is not initiated by a user and a saved state is available for recovery, the startup reason is set to **APP_RECOVERY** when the application is started by the user next time, and the recovery state of the application is cleared.
-The application recovery status flag is set when **saveAppState** is actively or passively called. The flag is cleared when the application exits normally or the saved state is consumed. (A normal exit is usually triggered by pressing the back key or clearing recent tasks.)
+The application recovery status flag is set when **saveAppState** is actively or passively called. The flag is cleared when the application exits normally or restarts after an abnormal exit. (A normal exit is usually triggered by pressing the back key or clearing recent tasks.)
 
 ![Application recovery status management](./figures/application_recovery_status_management.png)
 
 ### Application State Saving and Restore
+
 API version 10 or later supports saving of the application state when an application is suspended. If a JsError occurs, **onSaveState** is called in the main thread. If an AppFreeze occurs, however, the main thread may be suspended, and therefore **onSaveState** is called in a non-main thread. The following figure shows the main service flow.
 
-![Application recovery from the freezing state](./figures/application_recovery_from_freezing.png)
+![Application recovery from the freezing state](./figures/20250410102405.png)
+
 When the application is suspended, the callback is not executed in the JS thread. Therefore, you are advised not to use the imported dynamic Native library or access the **thread_local** object created by the main thread in the code of the **onSaveState** callback.
 
 ### Framework Fault Management
@@ -59,6 +62,7 @@ Fault management is an important way for applications to deliver a better user e
 - Fault query is the process of calling APIs of [faultLogger](../reference/apis-performance-analysis-kit/js-apis-faultLogger.md) to obtain the fault information.
 
 The figure below does not illustrate the time when [faultLogger](../reference/apis-performance-analysis-kit/js-apis-faultLogger.md) is called. You can refer to the [LastExitReason](../reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md#abilityconstantlastexitreason) passed during application initialization to determine whether to call [faultLogger](../reference/apis-performance-analysis-kit/js-apis-faultLogger.md) to query information about the previous fault.
+
 ![Fault rectification process](./figures/fault_rectification.png)
 
 It is recommended that you call [errorManager](../reference/apis-ability-kit/js-apis-app-ability-errorManager.md) to handle the exception. After the processing is complete, you can call the **saveAppState** API and restart the application.
@@ -72,12 +76,10 @@ Common fault types include JavaScript application crash, application freezing, a
 | Fault  | Fault Listening | State Saving| Automatic Restart| Log Query|
 | ----------|--------- |--------- |--------- |--------- |
 | [JS_CRASH](../reference/apis-performance-analysis-kit/js-apis-faultLogger.md#faulttype) | Supported|Supported|Supported|Supported|
-| [APP_FREEZE](../reference/apis-performance-analysis-kit/js-apis-faultLogger.md#faulttype) | Not supported|Supported|Supported|Supported|
+| [APP_FREEZE](../reference/apis-performance-analysis-kit/js-apis-faultLogger.md#faulttype) | This fault is supported since API version 18.|Supported|Supported|Supported|
 | [CPP_CRASH](../reference/apis-performance-analysis-kit/js-apis-faultLogger.md#faulttype) | Not supported|Not supported|Not supported|Supported|
 
 **State Saving** in the table header means saving of the application state when a fault occurs. To protect user data as much as possible when an AppFreeze occurs, you can adopt either the periodic or automatic way, and the latter will save user data when an ability is switched to the background.
-
-
 
 ## Development Example
 
@@ -97,7 +99,9 @@ export default class MyAbilityStage extends AbilityStage {
     }
 }
 ```
+
 ### Enabling Application Recovery for the Specified Abilities
+
 Generally, the ability configuration list is named **module.json5**.
 ```json
 {

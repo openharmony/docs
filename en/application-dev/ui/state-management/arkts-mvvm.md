@@ -354,12 +354,12 @@ struct ThingsComponent {
 struct Index {
   @State isFinished: boolean = false;
   @State planList: string[] = [
-    '7:30 Get up'
-    '8:30 Breakfast'
-    '11:30 Lunch'
-    '17:30 Dinner'
-    '21:30 Snack'
-    '22:30 Shower'
+    '7:30 Get up',
+    '8:30 Breakfast',
+    '11:30 Lunch',
+    '17:30 Dinner',
+    '21:30 Snack',
+    '22:30 Shower',
     '1:30 Go to bed'
   ];
 
@@ -401,12 +401,12 @@ The following figure shows the effect.
 @Observed
 class TodoListData {
   planList: string[] = [
-    '7:30 Get up'
-    '8:30 Breakfast'
-    '11:30 Lunch'
-    '17:30 Dinner'
-    '21:30 Snack'
-    '22:30 Shower'
+    '7:30 Get up',
+    '8:30 Breakfast',
+    '11:30 Lunch',
+    '17:30 Dinner',
+    '21:30 Snack',
+    '22:30 Shower',
     '1:30 Go to bed'
   ];
 }
@@ -865,13 +865,13 @@ The code is as follows:
 
   ```typescript
   [
-    {"thingsName": "7:30 Get up," "isFinish": false},
-    {"thingsName": "8:30 Breakfast," "isFinish": false},
-    {"thingsName": "11:30 Lunch," "isFinish": false},
-    {"thingsName": "17:30 Dinner," "isFinish": false},
-    {"thingsName": "21:30 Snack," "isFinish": false},
-    {"thingsName": "22:30 Shower," "isFinish": false},
-    {"thingsName": "1:30 Go to bed," "isFinish": false}
+    {"thingsName": "7:30 Get up", "isFinish": false},
+    {"thingsName": "8:30 Breakfast", "isFinish": false},
+    {"thingsName": "11:30 Lunch", "isFinish": false},
+    {"thingsName": "17:30 Dinner", "isFinish": false},
+    {"thingsName": "21:30 Snack", "isFinish": false},
+    {"thingsName": "22:30 Shower", "isFinish": false},
+    {"thingsName": "1:30 Go to bed", "isFinish": false}
   ]
   ```
 

@@ -295,6 +295,12 @@ createAVMetadataExtractor(): Promise\<AVMetadataExtractor>
 
 **系统能力：** SystemCapability.Multimedia.Media.AVMetadataExtractor
 
+**返回值：**
+
+| 类型           | 说明                                     |
+| -------------- | ---------------------------------------- |
+| Promise\<[AVMetadataExtractor](#avmetadataextractor11)>  | Promise对象。异步返回元数据获取类对象（AVMetadataExtractor）。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
@@ -359,15 +365,15 @@ let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
   usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags : 0
-}
+};
 
 media.createSoundPool(5, audioRendererInfo, (error, soundPool_: media.SoundPool) => {
   if (error) {
-    console.error(`Failed to createSoundPool`)
+    console.error(`Failed to createSoundPool`);
     return;
   } else {
     soundPool = soundPool_;
-    console.info(`Succeeded in createSoundPool`)
+    console.info(`Succeeded in createSoundPool`);
   }
 });
 ```
@@ -416,7 +422,7 @@ let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
   usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags : 0
-}
+};
 
 media.createSoundPool(5, audioRendererInfo).then((soundpool_: media.SoundPool) => {
   if (soundpool_ != null) {
@@ -648,7 +654,7 @@ Audio/Video播放demo可参考：[音频播放开发指导](../../media/media/us
 | url<sup>9+</sup>                                    | string                                                       | 否   | 是   | 媒体URL，只允许在**idle**状态下设置。<br/>支持的视频格式(mp4、mpeg-ts、mkv)。<br>支持的音频格式(m4a、aac、mp3、ogg、wav、flac、amr)。<br/>**支持路径示例**：<br>1. fd类型播放：fd://xx。<br>![](figures/zh-cn_image_url.png)<br>2. http网络播放: http\://xx。<br/>3. https网络播放: https\://xx。<br/>4. hls网络播放路径：http\://xx或者https\://xx。<br>**说明：**<br>- 设置网络播放路径，需[声明权限](../../security/AccessToken/declare-permissions.md)：[ohos.permission.INTERNET](../../security/AccessToken/permissions-for-all.md#ohospermissioninternet)，相关错误码: [201](../errorcode-universal.md)。<br>- 从API version 11开始不支持webm。<br> - 将资源句柄（fd）传递给 AVPlayer 实例之后，请不要通过该资源句柄做其他读写操作，包括但不限于将同一个资源句柄传递给多个 AVPlayer / AVMetadataExtractor / AVImageGenerator / AVTranscoder。同一时间通过同一个资源句柄读写文件时存在竞争关系，将导致媒体播放器数据获取异常。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | fdSrc<sup>9+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                       | 否   | 是   | 媒体文件描述，只允许在**idle**状态下设置。<br/>使用场景：应用中的媒体资源被连续存储在同一个文件中。<br/>支持的视频格式(mp4、mpeg-ts、mkv)。<br>支持的音频格式(m4a、aac、mp3、ogg、wav、flac、amr)。<br/>**使用示例**：<br/>假设一个连续存储的媒体文件: <br/>视频1(地址偏移:0，字节长度:100)；<br/>视频2(地址偏移:101，字节长度:50)；<br/>视频3(地址偏移:151，字节长度:150)；<br/>1. 播放视频1：AVFileDescriptor { fd = 资源句柄; offset = 0; length = 100; }。<br/>2. 播放视频2：AVFileDescriptor { fd = 资源句柄; offset = 101; length = 50; }。<br/>3. 播放视频3：AVFileDescriptor { fd = 资源句柄; offset = 151; length = 150; }。<br/>假设是一个独立的媒体文件: 请使用src=fd://xx。<br>**说明：**<br>从API version 11开始不支持webm。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | dataSrc<sup>10+</sup>                               | [AVDataSrcDescriptor](#avdatasrcdescriptor10)                | 否   | 是   | 流式媒体资源描述，只允许在**idle**状态下设置。<br/>使用场景：应用播放从远端下载到本地的文件，在应用未下载完整音视频资源时，提前播放已获取的资源文件。<br/>支持的视频格式(mp4、mpeg-ts、mkv)。<br>支持的音频格式(m4a、aac、mp3、ogg、wav、flac、amr)。<br/>**使用示例**：<br/>假设用户正在从远端服务器获取音视频媒体文件，希望下载到本地的同时播放已经下载好的部分: <br/>1.用户需要获取媒体文件的总大小size（单位为字节），获取不到时设置为-1。<br/>2.用户需要实现回调函数func用于填写数据，如果size = -1，则func形式为：func(buffer: ArrayBuffer, length: number)，此时播放器只会按照顺序获取数据；否则func形式为：func(buffer: ArrayBuffer, length: number, pos: number)，播放器会按需跳转并获取数据。<br/>3.用户设置AVDataSrcDescriptor {fileSize = size, callback = func}。<br/>**注意事项**：<br/>如果播放的是mp4/m4a格式用户需要保证moov字段（媒体信息字段）在mdat字段（媒体数据字段）之前，或者moov之前的字段小于10M，否则会导致解析失败无法播放。<br>**说明：**<br>从API version 11开始不支持webm。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| surfaceId<sup>9+</sup>                              | string                                                       | 否   | 是   | 视频窗口ID，默认无窗口。<br/>支持在**initialized**状态下设置。<br/>支持在**prepared**/**playing**/**paused**/**completed**/**stopped**状态下重新设置，重新设置时确保已经在**initialized**状态下进行设置，否则重新设置失败，重新设置后视频播放在新的窗口渲染。<br/>使用场景：视频播放的窗口渲染，纯音频播放不用设置。<br/>**使用示例**：<br/>[通过XComponent创建surfaceId](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid)。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| surfaceId<sup>9+</sup>                              | string                                                       | 否   | 是   | 视频窗口ID，默认无窗口。<br/>支持在**initialized**状态下设置。<br/>支持在**prepared**/**playing**/**paused**/**completed**/**stopped**状态下重新设置，重新设置时确保已经在**initialized**状态下进行设置，否则重新设置失败，重新设置后视频播放在新的窗口渲染。<br/>使用场景：视频播放的窗口渲染，纯音频播放不用设置。<br/>**使用示例**：<br/>[通过XComponent创建surfaceId](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid9)。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | loop<sup>9+</sup>                                   | boolean                                                      | 否   | 否   | 视频循环播放属性，默认'false'，设置为'true'表示循环播放，动态属性。<br/>只允许在**prepared**/**playing**/**paused**/**completed**状态下设置。<br/>直播场景不支持loop设置。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | videoScaleType<sup>9+</sup>                         | [VideoScaleType](#videoscaletype9)                           | 否   | 是   | 视频缩放模式，默认VIDEO_SCALE_TYPE_FIT，动态属性。<br/>只允许在**prepared**/**playing**/**paused**/**completed**状态下设置。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | audioInterruptMode<sup>9+</sup>                     | [audio.InterruptMode](../apis-audio-kit/js-apis-audio.md#interruptmode9)       | 否   | 是   | 音频焦点模型，默认SHARE_MODE，动态属性。<br/>只允许在**prepared**/**playing**/**paused**/**completed**状态下设置。<br/>在第一次调用[play()](#play9)之前设置， 以便此后中断模式生效。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
@@ -713,7 +719,7 @@ avPlayer.on('stateChange', async (state: string, reason: media.StateChangeReason
       console.info('unknown state :' + state);
       break;
   }
-})
+});
 ```
 
 ### off('stateChange')<sup>9+</sup>
@@ -736,7 +742,7 @@ off(type: 'stateChange', callback?: OnAVPlayerStateChangeHandle): void
 **示例：**
 
 ```ts
-avPlayer.off('stateChange')
+avPlayer.off('stateChange');
 ```
 
 ### on('error')<sup>9+</sup>
@@ -791,9 +797,9 @@ on(type: 'error', callback: ErrorCallback): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.on('error', (error: BusinessError) => {
-  console.info('error happened,and error message is :' + error.message)
-  console.info('error happened,and error code is :' + error.code)
-})
+  console.info('error happened,and error message is :' + error.message);
+  console.info('error happened,and error code is :' + error.code);
+});
 ```
 
 ### off('error')<sup>9+</sup>
@@ -816,7 +822,7 @@ off(type: 'error', callback?: ErrorCallback): void
 **示例：**
 
 ```ts
-avPlayer.off('error')
+avPlayer.off('error');
 ```
 
 ### setMediaSource<sup>12+</sup>
@@ -906,9 +912,13 @@ setPlaybackStrategy(strategy: PlaybackStrategy): Promise\<void>
 ```ts
 import { common } from '@kit.AbilityKit';
 
+private context: Context | undefined;
+constructor(context: Context) {
+  this.context = context; // this.getUIContext().getHostContext();
+}
+
 let player = await media.createAVPlayer();
-let context = getContext(this) as common.UIAbilityContext
-let fileDescriptor = await context.resourceManager.getRawFd('xxx.mp4')
+let fileDescriptor = await this.context.resourceManager.getRawFd('xxx.mp4');
 player.fdSrc = fileDescriptor
 let playStrategy : media.PlaybackStrategy = {
   preferredWidth: 1,
@@ -994,11 +1004,11 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.prepare((err: BusinessError) => {
   if (err) {
-    console.error('Failed to prepare,error message is :' + err.message)
+    console.error('Failed to prepare,error message is :' + err.message);
   } else {
     console.info('Succeeded in preparing');
   }
-})
+});
 ```
 
 ### prepare<sup>9+</sup>
@@ -1036,8 +1046,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 avPlayer.prepare().then(() => {
   console.info('Succeeded in preparing');
 }, (err: BusinessError) => {
-  console.error('Failed to prepare,error message is :' + err.message)
-})
+  console.error('Failed to prepare,error message is :' + err.message);
+});
 ```
 
 ### setMediaMuted<sup>12+</sup>
@@ -1079,10 +1089,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.prepare().then(() => {
   console.info('Succeeded in preparing');
-  avPlayer.setMediaMuted(media.MediaType.MEDIA_TYPE_AUD, true)
+  avPlayer.setMediaMuted(media.MediaType.MEDIA_TYPE_AUD, true);
 }, (err: BusinessError) => {
-  console.error('Failed to prepare,error message is :' + err.message)
-})
+  console.error('Failed to prepare,error message is :' + err.message);
+});
 ```
 
 ### play<sup>9+</sup>
@@ -1116,11 +1126,11 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.play((err: BusinessError) => {
   if (err) {
-    console.error('Failed to play,error message is :' + err.message)
+    console.error('Failed to play,error message is :' + err.message);
   } else {
     console.info('Succeeded in playing');
   }
-})
+});
 ```
 
 ### play<sup>9+</sup>
@@ -1155,8 +1165,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 avPlayer.play().then(() => {
   console.info('Succeeded in playing');
 }, (err: BusinessError) => {
-  console.error('Failed to play,error message is :' + err.message)
-})
+  console.error('Failed to play,error message is :' + err.message);
+});
 ```
 
 ### pause<sup>9+</sup>
@@ -1190,11 +1200,11 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.pause((err: BusinessError) => {
   if (err) {
-    console.error('Failed to pause,error message is :' + err.message)
+    console.error('Failed to pause,error message is :' + err.message);
   } else {
     console.info('Succeeded in pausing');
   }
-})
+});
 ```
 
 ### pause<sup>9+</sup>
@@ -1229,8 +1239,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 avPlayer.pause().then(() => {
   console.info('Succeeded in pausing');
 }, (err: BusinessError) => {
-  console.error('Failed to pause,error message is :' + err.message)
-})
+  console.error('Failed to pause,error message is :' + err.message);
+});
 ```
 
 ### stop<sup>9+</sup>
@@ -1264,11 +1274,11 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.stop((err: BusinessError) => {
   if (err) {
-    console.error('Failed to stop,error message is :' + err.message)
+    console.error('Failed to stop,error message is :' + err.message);
   } else {
     console.info('Succeeded in stopping');
   }
-})
+});
 ```
 
 ### stop<sup>9+</sup>
@@ -1303,8 +1313,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 avPlayer.stop().then(() => {
   console.info('Succeeded in stopping');
 }, (err: BusinessError) => {
-  console.error('Failed to stop,error message is :' + err.message)
-})
+  console.error('Failed to stop,error message is :' + err.message);
+});
 ```
 
 ### reset<sup>9+</sup>
@@ -1338,11 +1348,11 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.reset((err: BusinessError) => {
   if (err) {
-    console.error('Failed to reset,error message is :' + err.message)
+    console.error('Failed to reset,error message is :' + err.message);
   } else {
     console.info('Succeeded in resetting');
   }
-})
+});
 ```
 
 ### reset<sup>9+</sup>
@@ -1377,8 +1387,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 avPlayer.reset().then(() => {
   console.info('Succeeded in resetting');
 }, (err: BusinessError) => {
-  console.error('Failed to reset,error message is :' + err.message)
-})
+  console.error('Failed to reset,error message is :' + err.message);
+});
 ```
 
 ### release<sup>9+</sup>
@@ -1412,11 +1422,11 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.release((err: BusinessError) => {
   if (err) {
-    console.error('Failed to release,error message is :' + err.message)
+    console.error('Failed to release,error message is :' + err.message);
   } else {
     console.info('Succeeded in releasing');
   }
-})
+});
 ```
 
 ### release<sup>9+</sup>
@@ -1451,8 +1461,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 avPlayer.release().then(() => {
   console.info('Succeeded in releasing');
 }, (err: BusinessError) => {
-  console.error('Failed to release,error message is :' + err.message)
-})
+  console.error('Failed to release,error message is :' + err.message);
+});
 ```
 
 ### getTrackDescription<sup>9+</sup>
@@ -1634,12 +1644,12 @@ getPlaybackPosition(): number
 import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.prepare().then(() => {
-  console.info('Succeeded in preparing')
-  let playbackPosition: number = avPlayer.getPlaybackPosition()
-  console.info(`AVPlayer getPlaybackPosition== ${playbackPosition}`)
+  console.info('Succeeded in preparing');
+  let playbackPosition: number = avPlayer.getPlaybackPosition();
+  console.info(`AVPlayer getPlaybackPosition== ${playbackPosition}`);
 }, (err: BusinessError) => {
-  console.error('Failed to prepare,error message is :' + err.message)
-})
+  console.error('Failed to prepare,error message is :' + err.message);
+});
 ```
 
 ### selectTrack<sup>12+</sup>
@@ -1849,21 +1859,17 @@ seek(timeMs: number, mode?:SeekMode): void
 **示例：**
 
 ```ts
-let seekTime: number = 1000
-avPlayer.seek(seekTime, media.SeekMode.SEEK_PREV_SYNC)
+let seekTime: number = 1000;
+avPlayer.seek(seekTime, media.SeekMode.SEEK_PREV_SYNC);
 ```
 
 ```ts
-// SEEK_CONTINUOUS 可以结合seekBar/slider的回调方法进行对应处理。
-async onSlideMoving(position : number) : Promise<void> {
-  // seekBar/slider移动过程中回调触发，调用seek(position, media.SeekMode.SEEK_CONTINUOUS)进行seek。
-  this.avPlayer.seek(position, media.SeekMode.SEEK_CONTINUOUS)
-}
+// SEEK_CONTINUOUS 可以结合Slider的onChange回调方法进行对应处理，当slideMode为Moving时，触发拖动过程的SeekContinuous。
+let slideMovingTime: number = 2000;
+avPlayer.seek(slideMovingTime, media.SeekMode.SEEK_CONTINUOUS);
 
-async onSlideEnd(position : number) : Promise<void> {
-  // seekBar/slider移动结束回调触发，调用seek(-1, media.SeekMode.SEEK_CONTINUOUS)结束seek。
-  this.avPlayer.seek(-1, media.SeekMode.SEEK_CONTINUOUS)
-}
+// 当slideMode为End时，调用seek(-1, media.SeekMode.SEEK_CONTINUOUS)结束seek。
+avPlayer.seek(-1, media.SeekMode.SEEK_CONTINUOUS);
 ```
 
 ### isSeekContinuousSupported<sup>18+</sup>
@@ -1876,10 +1882,16 @@ isSeekContinuousSupported() : boolean
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
+**返回值：**
+
+| 类型           | 说明                                       |
+| -------------- | ------------------------------------------ |
+| boolean | 媒体源是否支持以SEEK_CONTINUOUS模式进行seek。 |
+
 **示例：**
 
 ```ts
-let isSupported = avPlayer.isSeekContinuousSupported()
+let isSupported = avPlayer.isSeekContinuousSupported();
 ```
 
 ### on('seekDone')<sup>9+</sup>
@@ -1903,8 +1915,8 @@ on(type: 'seekDone', callback: Callback\<number>): void
 
 ```ts
 avPlayer.on('seekDone', (seekDoneTime:number) => {
-  console.info('seekDone called,and seek time is:' + seekDoneTime)
-})
+  console.info('seekDone called,and seek time is:' + seekDoneTime);
+});
 ```
 
 ### off('seekDone')<sup>9+</sup>
@@ -1927,7 +1939,7 @@ off(type: 'seekDone', callback?: Callback\<number>): void
 **示例：**
 
 ```ts
-avPlayer.off('seekDone')
+avPlayer.off('seekDone');
 ```
 
 ### setSpeed<sup>9+</sup>
@@ -1950,7 +1962,7 @@ setSpeed(speed: PlaybackSpeed): void
 **示例：**
 
 ```ts
-avPlayer.setSpeed(media.PlaybackSpeed.SPEED_FORWARD_2_00_X)
+avPlayer.setSpeed(media.PlaybackSpeed.SPEED_FORWARD_2_00_X);
 ```
 
 ### on('speedDone')<sup>9+</sup>
@@ -1974,8 +1986,8 @@ on(type: 'speedDone', callback: Callback\<number>): void
 
 ```ts
 avPlayer.on('speedDone', (speed:number) => {
-  console.info('speedDone called,and speed value is:' + speed)
-})
+  console.info('speedDone called,and speed value is:' + speed);
+});
 ```
 
 ### off('speedDone')<sup>9+</sup>
@@ -1996,8 +2008,93 @@ off(type: 'speedDone', callback?: Callback\<number>): void
 **示例：**
 
 ```ts
-avPlayer.off('speedDone')
+avPlayer.off('speedDone');
 ```
+
+
+### setPlaybackRate<sup>20+</sup>
+
+setPlaybackRate(rate: number): void
+
+设置倍速模式。只能在prepared/playing/paused/completed状态调用，取值范围是[0.125, 4.0]，可以通过[playbackRateDone](#onplaybackratedone20)事件确认是否生效。<br>
+>**注意：**
+>
+>直播场景不支持setPlaybackRate。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**参数：**
+
+| 参数名 | 类型                             | 必填 | 说明               |
+| ------ | -------------------------------- | ---- | ------------------ |
+| rate  | number | 是   | 指定播放倍速速率。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
+
+| 错误码ID | 错误信息                                   |
+| -------- | ------------------------------------------ |
+| 5400108  | The parameter check failed, parameter value out of range.      |
+| 5400102  | Operation not allowed，if invalid state or live stream.      |
+
+**示例：**
+
+```ts
+avPlayer.setPlaybackRate(2.0);
+```
+
+
+### on('playbackRateDone')<sup>20+</sup>
+
+on(type: 'playbackRateDone', callback: OnPlaybackRateDone): void
+
+监听[setPlaybackRate](#setplaybackrate20)生效的事件。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | 是   | setPlaybackRate生效的事件回调类型，支持的事件：'playbackRateDone'，每次调用setPlaybackRate后都会回调此事件。 |
+| callback | [OnPlaybackRateDone](#onplaybackratedone20) | 是   | setPlaybackRate生效的事件回调方法，上报设置后的播放速率。<br/>从API version 20开始支持此参数。 |
+
+**示例：**
+
+```ts
+avPlayer.on('playbackRateDone', (rate:number) => {
+  console.info('playbackRateDone called,and rate value is:' + rate);
+});
+```
+
+### off('playbackRateDone')<sup>20+</sup>
+
+off(type: 'playbackRateDone', callback?: OnPlaybackRateDone): void
+
+取消监听[setPlaybackRate](#setplaybackrate20)生效的事件。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                      |
+| ------ | ------ | ---- | --------------------------------------------------------- |
+| type   | string | 是   | setPlaybackRate生效的事件回调类型，取消注册的事件：'playbackRateDone'。 |
+| callback | [OnPlaybackRateDone](#onplaybackratedone20) | 否   |  setPlaybackRate生效的事件回调方法，上报设置后的播放速率。如填写该参数，则仅取消注册此回调方法，否则取消注册playbackRateDone事件的所有回调方法。<br/>从API version 20开始支持此参数。 |
+
+**示例：**
+
+```ts
+avPlayer.off('playbackRateDone');
+```
+
 
 ### setBitrate<sup>9+</sup>
 
@@ -2018,8 +2115,8 @@ setBitrate(bitrate: number): void
 **示例：**
 
 ```ts
-let bitrate: number = 96000
-avPlayer.setBitrate(bitrate)
+let bitrate: number = 96000;
+avPlayer.setBitrate(bitrate);
 ```
 
 ### on('bitrateDone')<sup>9+</sup>
@@ -2043,8 +2140,8 @@ on(type: 'bitrateDone', callback: Callback\<number>): void
 
 ```ts
 avPlayer.on('bitrateDone', (bitrate:number) => {
-  console.info('bitrateDone called,and bitrate value is:' + bitrate)
-})
+  console.info('bitrateDone called,and bitrate value is:' + bitrate);
+});
 ```
 
 ### off('bitrateDone')<sup>9+</sup>
@@ -2065,7 +2162,7 @@ off(type: 'bitrateDone', callback?: Callback\<number>): void
 **示例：**
 
 ```ts
-avPlayer.off('bitrateDone')
+avPlayer.off('bitrateDone');
 ```
 
 ### on('availableBitrates')<sup>9+</sup>
@@ -2089,8 +2186,8 @@ on(type: 'availableBitrates', callback: Callback\<Array\<number>>): void
 
 ```ts
 avPlayer.on('availableBitrates', (bitrates: Array<number>) => {
-  console.info('availableBitrates called,and availableBitrates length is:' + bitrates.length)
-})
+  console.info('availableBitrates called,and availableBitrates length is:' + bitrates.length);
+});
 ```
 
 ### off('availableBitrates')<sup>9+</sup>
@@ -2113,7 +2210,7 @@ off(type: 'availableBitrates', callback?: Callback\<Array\<number>>): void
 **示例：**
 
 ```ts
-avPlayer.off('availableBitrates')
+avPlayer.off('availableBitrates');
 ```
 
 
@@ -2144,7 +2241,7 @@ avPlayer.on('mediaKeySystemInfoUpdate', (mediaKeySystemInfo: Array<drm.MediaKeyS
       console.info('mediaKeySystemInfoUpdate happened uuid: ' + mediaKeySystemInfo[i]["uuid"]);
       console.info('mediaKeySystemInfoUpdate happened pssh: ' + mediaKeySystemInfo[i]["pssh"]);
     }
-})
+});
 ```
 
 ### off('mediaKeySystemInfoUpdate')<sup>11+</sup>
@@ -2167,7 +2264,7 @@ off(type: 'mediaKeySystemInfoUpdate', callback?: Callback\<Array\<drm.MediaKeySy
 **示例：**
 
 ```ts
-avPlayer.off('mediaKeySystemInfoUpdate')
+avPlayer.off('mediaKeySystemInfoUpdate');
 ```
 
 ### setVolume<sup>9+</sup>
@@ -2189,8 +2286,8 @@ setVolume(volume: number): void
 **示例：**
 
 ```ts
-let volume: number = 1.0
-avPlayer.setVolume(volume)
+let volume: number = 1.0;
+avPlayer.setVolume(volume);
 ```
 
 ### on('volumeChange')<sup>9+</sup>
@@ -2214,8 +2311,8 @@ on(type: 'volumeChange', callback: Callback\<number>): void
 
 ```ts
 avPlayer.on('volumeChange', (vol: number) => {
-  console.info('volumeChange called,and new volume is :' + vol)
-})
+  console.info('volumeChange called,and new volume is :' + vol);
+});
 ```
 
 ### off('volumeChange')<sup>9+</sup>
@@ -2236,7 +2333,7 @@ off(type: 'volumeChange', callback?: Callback\<number>): void
 **示例：**
 
 ```ts
-avPlayer.off('volumeChange')
+avPlayer.off('volumeChange');
 ```
 
 ### on('endOfStream')<sup>9+</sup>
@@ -2260,8 +2357,8 @@ on(type: 'endOfStream', callback: Callback\<void>): void
 
 ```ts
 avPlayer.on('endOfStream', () => {
-  console.info('endOfStream called')
-})
+  console.info('endOfStream called');
+});
 ```
 
 ### off('endOfStream')<sup>9+</sup>
@@ -2282,7 +2379,7 @@ off(type: 'endOfStream', callback?: Callback\<void>): void
 **示例：**
 
 ```ts
-avPlayer.off('endOfStream')
+avPlayer.off('endOfStream');
 ```
 
 ### on('timeUpdate')<sup>9+</sup>
@@ -2308,8 +2405,8 @@ on(type: 'timeUpdate', callback: Callback\<number>): void
 
 ```ts
 avPlayer.on('timeUpdate', (time:number) => {
-  console.info('timeUpdate called,and new time is :' + time)
-})
+  console.info('timeUpdate called,and new time is :' + time);
+});
 ```
 
 ### off('timeUpdate')<sup>9+</sup>
@@ -2332,7 +2429,7 @@ off(type: 'timeUpdate', callback?: Callback\<number>): void
 **示例：**
 
 ```ts
-avPlayer.off('timeUpdate')
+avPlayer.off('timeUpdate');
 ```
 
 ### on('durationUpdate')<sup>9+</sup>
@@ -2358,8 +2455,8 @@ on(type: 'durationUpdate', callback: Callback\<number>): void
 
 ```ts
 avPlayer.on('durationUpdate', (duration: number) => {
-  console.info('durationUpdate called,new duration is :' + duration)
-})
+  console.info('durationUpdate called,new duration is :' + duration);
+});
 ```
 
 ### off('durationUpdate')<sup>9+</sup>
@@ -2380,7 +2477,7 @@ off(type: 'durationUpdate', callback?: Callback\<number>): void
 **示例：**
 
 ```ts
-avPlayer.off('durationUpdate')
+avPlayer.off('durationUpdate');
 ```
 
 ### on('bufferingUpdate')<sup>9+</sup>
@@ -2404,8 +2501,8 @@ on(type: 'bufferingUpdate', callback: OnBufferingUpdateHandler): void
 
 ```ts
 avPlayer.on('bufferingUpdate', (infoType: media.BufferingInfoType, value: number) => {
-  console.info('bufferingUpdate called,and infoType value is:' + infoType + ', value is :' + value)
-})
+  console.info('bufferingUpdate called,and infoType value is:' + infoType + ', value is :' + value);
+});
 ```
 
 ### off('bufferingUpdate')<sup>9+</sup>
@@ -2428,7 +2525,7 @@ off(type: 'bufferingUpdate', callback?: OnBufferingUpdateHandler): void
 **示例：**
 
 ```ts
-avPlayer.off('bufferingUpdate')
+avPlayer.off('bufferingUpdate');
 ```
 
 ### on('startRenderFrame')<sup>9+</sup>
@@ -2452,8 +2549,8 @@ on(type: 'startRenderFrame', callback: Callback\<void>): void
 
 ```ts
 avPlayer.on('startRenderFrame', () => {
-  console.info('startRenderFrame called')
-})
+  console.info('startRenderFrame called');
+});
 ```
 
 ### off('startRenderFrame')<sup>9+</sup>
@@ -2474,7 +2571,7 @@ off(type: 'startRenderFrame', callback?: Callback\<void>): void
 **示例：**
 
 ```ts
-avPlayer.off('startRenderFrame')
+avPlayer.off('startRenderFrame');
 ```
 
 ### on('videoSizeChange')<sup>9+</sup>
@@ -2498,8 +2595,8 @@ on(type: 'videoSizeChange', callback: OnVideoSizeChangeHandler): void
 
 ```ts
 avPlayer.on('videoSizeChange', (width: number, height: number) => {
-  console.info('videoSizeChange called,and width is:' + width + ', height is :' + height)
-})
+  console.info('videoSizeChange called,and width is:' + width + ', height is :' + height);
+});
 ```
 
 ### off('videoSizeChange')<sup>9+</sup>
@@ -2522,7 +2619,7 @@ off(type: 'videoSizeChange', callback?: OnVideoSizeChangeHandler): void
 **示例：**
 
 ```ts
-avPlayer.off('videoSizeChange')
+avPlayer.off('videoSizeChange');
 ```
 
 ### on('audioInterrupt')<sup>9+</sup>
@@ -2548,8 +2645,8 @@ on(type: 'audioInterrupt', callback: Callback\<audio.InterruptEvent>): void
 import { audio } from '@kit.AudioKit';
 
 avPlayer.on('audioInterrupt', (info: audio.InterruptEvent) => {
-  console.info('audioInterrupt called,and InterruptEvent info is:' + info)
-})
+  console.info('audioInterrupt called,and InterruptEvent info is:' + info);
+});
 ```
 
 ### off('audioInterrupt')<sup>9+</sup>
@@ -2572,7 +2669,7 @@ off(type: 'audioInterrupt', callback?: Callback<audio.InterruptEvent>): void
 **示例：**
 
 ```ts
-avPlayer.off('audioInterrupt')
+avPlayer.off('audioInterrupt');
 ```
 
 ### on('audioOutputDeviceChangeWithInfo')<sup>11+</sup>
@@ -2591,7 +2688,7 @@ on(type: 'audioOutputDeviceChangeWithInfo', callback: Callback\<audio.AudioStrea
 
 | 参数名   | 类型                       | 必填 | 说明                                        |
 | :------- | :------------------------- | :--- | :------------------------------------------ |
-| type     | string                     | 是   | 事件回调类型，支持的事件为：'outputDeviceChangeWithInfo'。 |
+| type     | string                     | 是   | 事件回调类型，支持的事件为：'audioOutputDeviceChangeWithInfo'。 |
 | callback | Callback\<[audio.AudioStreamDeviceChangeInfo](../apis-audio-kit/js-apis-audio.md#audiostreamdevicechangeinfo11)> | 是   | 回调函数，返回当前音频流的输出设备描述信息及变化原因。 |
 
 **错误码：**
@@ -2624,7 +2721,7 @@ off(type: 'audioOutputDeviceChangeWithInfo', callback?: Callback\<audio.AudioStr
 
 | 参数名   | 类型                       | 必填 | 说明                                        |
 | :------- | :------------------------- | :--- | :------------------------------------------ |
-| type     | string                     | 是   | 事件回调类型，支持的事件为：'outputDeviceChange'。 |
+| type     | string                     | 是   | 事件回调类型，支持的事件为：'audioOutputDeviceChangeWithInfo'。 |
 | callback | Callback\<[audio.AudioStreamDeviceChangeInfo](../apis-audio-kit/js-apis-audio.md#audiostreamdevicechangeinfo11)> | 否   | 回调函数，返回当前音频流的输出设备描述信息及变化原因。 |
 
 **错误码：**
@@ -2676,10 +2773,13 @@ addSubtitleFromFd(fd: number, offset?: number, length?: number): Promise\<void>
 ```ts
 import { common } from '@kit.AbilityKit'
 
-let context = getContext(this) as common.UIAbilityContext
-let fileDescriptor = await context.resourceManager.getRawFd('xxx.srt')
+private context: Context | undefined;
+constructor(context: Context) {
+  this.context = context; // this.getUIContext().getHostContext();
+}
+let fileDescriptor = await this.context.resourceManager.getRawFd('xxx.srt');
 
-avPlayer.addSubtitleFromFd(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length)
+avPlayer.addSubtitleFromFd(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length);
 ```
 
 ### addSubtitleFromUrl<sup>12+</sup>
@@ -2715,10 +2815,10 @@ addSubtitleFromUrl(url: string): Promise\<void>
 
 <!--code_no_check-->
 ```ts
-let fdUrl:string = 'http://xxx.xxx.xxx/xx/index.srt'
+let fdUrl:string = 'http://xxx.xxx.xxx/xx/index.srt';
 
-let avPlayer: media.AVPlayer = await media.createAVPlayer()
-avPlayer.addSubtitleFromUrl(fdUrl)
+let avPlayer: media.AVPlayer = await media.createAVPlayer();
+avPlayer.addSubtitleFromUrl(fdUrl);
 ```
 
 ### on('subtitleUpdate')<sup>12+</sup>
@@ -2746,11 +2846,11 @@ avPlayer.on('subtitleUpdate', async (info: media.SubtitleInfo) => {
     let text = (!info.text) ? '' : info.text
     let startTime = (!info.startTime) ? 0 : info.startTime
     let duration = (!info.duration) ? 0 : info.duration
-    console.info('subtitleUpdate info: text=' + text + ' startTime=' + startTime +' duration=' + duration)
+    console.info('subtitleUpdate info: text=' + text + ' startTime=' + startTime +' duration=' + duration);
   } else {
-    console.info('subtitleUpdate info is null')
+    console.info('subtitleUpdate info is null');
   }
-})
+});
 ```
 
 ### off('subtitleUpdate')<sup>12+</sup>
@@ -2773,7 +2873,7 @@ off(type: 'subtitleUpdate', callback?: Callback\<SubtitleInfo>): void
 **示例：**
 
 ```ts
-avPlayer.off('subtitleUpdate')
+avPlayer.off('subtitleUpdate');
 ```
 
 ### on('trackChange')<sup>12+</sup>
@@ -2797,8 +2897,8 @@ on(type: 'trackChange', callback: OnTrackChangeHandler): void
 
 ```ts
 avPlayer.on('trackChange', (index: number, isSelect: boolean) => {
-  console.info('trackChange info: index=' + index + ' isSelect=' + isSelect)
-})
+  console.info('trackChange info: index=' + index + ' isSelect=' + isSelect);
+});
 ```
 
 ### off('trackChange')<sup>12+</sup>
@@ -2821,7 +2921,7 @@ off(type: 'trackChange', callback?: OnTrackChangeHandler): void
 **示例：**
 
 ```ts
-avPlayer.off('trackChange')
+avPlayer.off('trackChange');
 ```
 
 ### on('trackInfoUpdate')<sup>12+</sup>
@@ -2849,12 +2949,12 @@ avPlayer.on('trackInfoUpdate', (info: Array<media.MediaDescription>) => {
     for (let i = 0; i < info.length; i++) {
       let propertyIndex: Object = info[i][media.MediaDescriptionKey.MD_KEY_TRACK_INDEX];
       let propertyType: Object = info[i][media.MediaDescriptionKey.MD_KEY_TRACK_TYPE];
-      console.info('track info: index=' + propertyIndex + ' tracktype=' + propertyType)
+      console.info('track info: index=' + propertyIndex + ' tracktype=' + propertyType);
     }
   } else {
-    console.info('track info is null')
+    console.info('track info is null');
   }
-})
+});
 ```
 
 ### off('trackInfoUpdate')<sup>12+</sup>
@@ -2877,7 +2977,7 @@ off(type: 'trackInfoUpdate', callback?: Callback\<Array\<MediaDescription>>): vo
 **示例：**
 
 ```ts
-avPlayer.off('trackInfoUpdate')
+avPlayer.off('trackInfoUpdate');
 ```
 
 ### on('amplitudeUpdate')<sup>13+</sup>
@@ -2899,8 +2999,8 @@ on(type: 'amplitudeUpdate', callback: Callback\<Array\<number>>): void
 
 ```ts
 avPlayer.on('amplitudeUpdate', (value: Array<number>) => {
-  console.info('amplitudeUpdate called,and amplitudeUpdate = ${value}')
-})
+  console.info('amplitudeUpdate called,and amplitudeUpdate = ${value}');
+});
 ```
 
 ### off('amplitudeUpdate')<sup>13+</sup>
@@ -2921,7 +3021,7 @@ off(type: 'amplitudeUpdate', callback?: Callback\<Array\<number>>): void
 **示例：**
 
 ```ts
-avPlayer.off('amplitudeUpdate')
+avPlayer.off('amplitudeUpdate');
 ```
 
 ### on('seiMessageReceived')<sup>18+</sup>
@@ -2949,16 +3049,16 @@ import util from '@ohos.util';
 
 avPlayer.on('seiMessageReceived', [5], (messages: Array<media.SeiMessage>, playbackPosition?: number) =>
 {
-  console.info('seiMessageReceived playbackPosition ' + playbackPosition)
+  console.info('seiMessageReceived playbackPosition ' + playbackPosition);
 
   for (let key = 0; key < messages.length; key++) {
-    console.info('seiMessageReceived messages payloadType ' + messages[key].payloadType + ' payload size ' + messages[key].payload.byteLength)
+    console.info('seiMessageReceived messages payloadType ' + messages[key].payloadType + ' payload size ' + messages[key].payload.byteLength);
 
-    let textDecoder = util.TextDecoder.create("utf-8",{ignoreBOM: true})
-    let ab = messages[key]?.payload?.slice(16, messages[key].payload.byteLength)
-    let result: Uint8Array = new Uint8Array(ab)
-    let retStr: string = textDecoder.decodeToString(result)
-    console.info('seiMessageReceived messages payload ' + retStr)
+    let textDecoder = util.TextDecoder.create("utf-8",{ignoreBOM: true});
+    let ab = messages[key]?.payload?.slice(16, messages[key].payload.byteLength);
+    let result: Uint8Array = new Uint8Array(ab);
+    let retStr: string = textDecoder.decodeToString(result);
+    console.info('seiMessageReceived messages payload ' + retStr);
   }
 });
 ```
@@ -2984,7 +3084,7 @@ off(type: 'seiMessageReceived', payloadTypes?: Array\<number>, callback?: OnSeiM
 **示例：**
 
 ```ts
-avPlayer.off('seiMessageReceived')
+avPlayer.off('seiMessageReceived');
 ```
 
 ### setSuperResolution<sup>18+</sup>
@@ -3024,7 +3124,7 @@ setSuperResolution(enabled: boolean) : Promise\<void>
 **示例：**
 
 ```ts
-avPlayer.setSuperResolution(true)
+avPlayer.setSuperResolution(true);
 ```
 
 ### setVideoWindowSize<sup>18+</sup>
@@ -3066,7 +3166,7 @@ setVideoWindowSize(width: number, height: number) : Promise\<void>
 **示例：**
 
 ```ts
-avPlayer.setVideoWindowSize(1920, 1080)
+avPlayer.setVideoWindowSize(1920, 1080);
 ```
 
 ### on('superResolutionChanged')<sup>18+</sup>
@@ -3090,8 +3190,8 @@ on(type:'superResolutionChanged', callback: OnSuperResolutionChanged): void
 
 ```ts
 avPlayer.on('superResolutionChanged', (enabled: boolean) => {
-  console.info('superResolutionChanged called, and enabled is:' + enabled)
-})
+  console.info('superResolutionChanged called, and enabled is:' + enabled);
+});
 ```
 
 ### off('superResolutionChanged')<sup>18+</sup>
@@ -3114,7 +3214,7 @@ off(type:'superResolutionChanged', callback?: OnSuperResolutionChanged): void
 **示例：**
 
 ```ts
-avPlayer.off('superResolutionChanged')
+avPlayer.off('superResolutionChanged');
 ```
 
 ## AVPlayerState<sup>9+</sup>
@@ -3151,8 +3251,8 @@ track变更事件回调方法。
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ------ | ---------------------------------------------------------- |
-| index  | number | 是 | 当前选中的track索引。     |
-| isSelected | boolean | 是 | 当前索引的选中状态。 |
+| index  | number | 是 | 当前变更的track索引。     |
+| isSelected | boolean | 是 | 当前变更的track索引是否被选中。true表示处于选中状态，false表示处于非选中状态。 |
 
 ## OnAVPlayerStateChangeHandle<sup>12+</sup>
 
@@ -3233,6 +3333,20 @@ type OnSuperResolutionChanged = (enabled: boolean) => void
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ------ | ------------------------------------------------------------ |
 | enabled  | boolean | 是 | 表示当前超分是否开启。true表示超分开启，false表示超分关闭。     |
+
+## OnPlaybackRateDone<sup>20+</sup>
+
+type OnPlaybackRateDone = (rate: number) => void
+
+播放速率设置完成事件回调方法。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+| 参数名   | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ------ | ------------------------------------------------------------ |
+| rate | number | 是 | 播放速率。 |
 
 ## AVFileDescriptor<sup>9+</sup>
 
@@ -3342,10 +3456,11 @@ SEI信息内容，描述SEI信息的负载类型和数据。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
-| 名称                      | 值   | 说明                                             |
-| ------------------------- | ---- | ------------------------------------------------ |
-| VIDEO_SCALE_TYPE_FIT      | 0    | 默认比例类型，视频拉伸至与窗口等大。              |
-| VIDEO_SCALE_TYPE_FIT_CROP | 1    | 保持视频宽高比拉伸至填满窗口，内容可能会有裁剪。 |
+| 名称                        | 值   | 说明                                              |
+| ----------------------------| ---- | ------------------------------------------------ |
+| VIDEO_SCALE_TYPE_FIT        | 0    | 默认比例类型，视频拉伸至与窗口等大。                |
+| VIDEO_SCALE_TYPE_FIT_CROP   | 1    | 保持视频宽高比缩放至最短边填满窗口，长边超出窗口部分被裁剪。     |
+| VIDEO_SCALE_TYPE_FIT_ASPECT<sup>20+</sup> | 2    | 保持视频宽高比缩放至长边填满窗口，短边居中对齐，未填满部分留黑。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。  |
 
 ## MediaDescription<sup>8+</sup>
 
@@ -3440,7 +3555,7 @@ media.createAVPlayer(async (err: BusinessError, player: media.AVPlayer) => {
 
 > **说明：**
 >
-> 使用相机进行视频录制时，需要与相机模块配合，相机模块接口的使用详情见[相机管理](../apis-camera-kit/js-apis-camera.md)。
+> 使用相机进行视频录制时，需要与相机模块配合，相机模块接口的使用详情见[相机管理](../apis-camera-kit/arkts-apis-camera.md)。
 
 ### 属性
 
@@ -3460,7 +3575,7 @@ prepare(config: AVRecorderConfig, callback: AsyncCallback\<void>): void
 
 不涉及音频录制时，可以不需要获取ohos.permission.MICROPHONE权限。
 
-使用相机视频录制还需要与相机模块配合，相机模块接口的使用详情见[相机管理](../apis-camera-kit/js-apis-camera.md)。
+使用相机视频录制还需要与相机模块配合，相机模块接口的使用详情见[相机管理](../apis-camera-kit/arkts-apis-camera.md)。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
@@ -3499,7 +3614,7 @@ let avRecorderProfile: media.AVRecorderProfile = {
   videoFrameWidth : 640,
   videoFrameHeight : 480,
   videoFrameRate : 30
-}
+};
 let avRecorderConfig: media.AVRecorderConfig = {
   audioSourceType : media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
   videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
@@ -3507,7 +3622,7 @@ let avRecorderConfig: media.AVRecorderConfig = {
   url : 'fd://', // 文件需先由调用者创建，赋予读写权限，将文件fd传给此参数，eg.fd://45
   rotation : 0, // 合理值0、90、180、270，非合理值prepare接口将报错。
   location : { latitude : 30, longitude : 130 }
-}
+};
 
 avRecorder.prepare(avRecorderConfig, (err: BusinessError) => {
   if (err) {
@@ -3515,7 +3630,7 @@ avRecorder.prepare(avRecorderConfig, (err: BusinessError) => {
   } else {
     console.info('Succeeded in preparing');
   }
-})
+});
 ```
 
 ### prepare<sup>9+</sup>
@@ -3528,7 +3643,7 @@ prepare(config: AVRecorderConfig): Promise\<void>
 
 不涉及音频录制时，可以不需要获ohos.permission.MICROPHONE权限。
 
-使用相机视频录制还需要与相机模块配合，相机模块接口的使用详情见[相机管理](../apis-camera-kit/js-apis-camera.md)。
+使用相机视频录制还需要与相机模块配合，相机模块接口的使用详情见[相机管理](../apis-camera-kit/arkts-apis-camera.md)。
 
 **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。
 
@@ -3574,7 +3689,7 @@ let avRecorderProfile: media.AVRecorderProfile = {
   videoFrameWidth : 640,
   videoFrameHeight : 480,
   videoFrameRate : 30
-}
+};
 let avRecorderConfig: media.AVRecorderConfig = {
   audioSourceType : media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
   videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
@@ -3582,7 +3697,7 @@ let avRecorderConfig: media.AVRecorderConfig = {
   url : 'fd://',  // 文件需先由调用者创建，赋予读写权限，将文件fd传给此参数，eg.fd://45
   rotation : 0, // 合理值0、90、180、270，非合理值prepare接口报错。
   location : { latitude : 30, longitude : 130 }
-}
+};
 
 avRecorder.prepare(avRecorderConfig).then(() => {
   console.info('Succeeded in preparing');
@@ -3716,12 +3831,53 @@ updateRotation(rotation: number): Promise\<void>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let rotation = 90
+let rotation = 90;
 
 avRecorder.updateRotation(rotation).then(() => {
   console.info('Succeeded in updateRotation');
 }).catch((err: BusinessError) => {
   console.error('Failed to updateRotation and catch error is ' + err.message);
+});
+```
+
+### setWillMuteWhenInterrupted<sup>20+</sup>
+
+setWillMuteWhenInterrupted(muteWhenInterrupted: boolean): Promise&lt;void&gt;
+
+设置当前录制音频流是否启用静音打断模式。使用Promise异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
+
+**参数：**
+
+| 参数名     | 类型             | 必填   | 说明                                                      |
+| ---------- |---------------- | ------ |---------------------------------------------------------|
+| muteWhenInterrupted | boolean | 是  | 设置当前录制音频流是否启用静音打断模式, true表示启用，false表示不启用，保持为默认打断模式。 |
+
+**返回值：**
+
+| 类型                | 说明                          |
+| ------------------- | ----------------------------- |
+| Promise&lt;void&gt;| Promise对象。无返回结果的Promise对象。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+
+| 错误码ID | 错误信息                               |
+| -------- | -------------------------------------- |
+| 5400102  | Operation not allowed. Return by promise. |
+| 5400105  | Service died. Return by promise.       |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+avRecorder.setWillMuteWhenInterrupted(true).then(() => {
+  console.info('setWillMuteWhenInterrupted Success!');
+}).catch((err: BusinessError) => {
+  console.error(`setWillMuteWhenInterrupted Fail: ${err}`);
 });
 ```
 
@@ -4739,13 +4895,16 @@ on(type: 'photoAssetAvailable', callback: Callback\<photoAccessHelper.PhotoAsset
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { common } from '@kit.AbilityKit'
 let photoAsset: photoAccessHelper.PhotoAsset;
-let context = getContext(this) as common.UIAbilityContext
+private context: Context | undefined;
+constructor(context: Context) {
+  this.context = context; // this.getUIContext().getHostContext();
+}
 
 // 例:处理photoAsset回调，保存video。
 async function saveVideo(asset: photoAccessHelper.PhotoAsset) {
   console.info("saveVideo called");
   try {
-    let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+    let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(this.context);
     let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
     assetChangeRequest.saveCameraPhoto();
     await phAccessHelper.applyChanges(assetChangeRequest);
@@ -4866,12 +5025,12 @@ type OnAVRecorderStateChangeHandler = (state: AVRecorderState, reason: StateChan
 | audioChannels    | number                                       | 否   | 音频采集声道数，选择音频录制时必填。<br>- AAC编码格式支持范围[1 - 8]。<br>- G711-mulaw编码格式支持范围[1]。<br>- MP3编码格式支持范围[1 - 2]。<br>- AMR-NB、AMR-WB编码格式支持范围[1]。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。       |
 | audioCodec       | [CodecMimeType](#codecmimetype8)             | 否   | 音频编码格式，选择音频录制时必填。当前支持AUDIO_AAC，AUDIO_MP3，AUDIO_G711MU, AUDIO_AMR_NB, AUDIO_AMR_WB。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。     |
 | audioSampleRate  | number                                       | 否   | 音频采样率，选择音频录制时必填。<br>支持范围：<br>- AAC编码支持采样率范围[8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 88200, 96000]。<br>- G711-mulaw编码支持采样率范围[8000]。<br>- MP3编码支持采样率范围[8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000]。<br>- AMR_NB编码支持采样率范围[8000]。<br>- AMR_WB编码支持采样率范围[16000]。<br>可变比特率模式，码率仅作参考。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。 |
-| fileFormat       | [ContainerFormatType](#containerformattype8) | 是   | 文件的容器格式，必要参数。当前支持MP4、M4A、MP3、WAV、AMR封装格式，不支持在MP4封装格式下使用AUDIO_MP3编码格式。<br>**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。|
+| fileFormat       | [ContainerFormatType](#containerformattype8) | 是   | 文件的容器格式，必要参数。当前支持MP4、M4A、MP3、WAV、AMR、AAC封装格式，当前AAC音频封装默认为ADTS帧头格式。不支持在MP4封装格式下使用AUDIO_MP3编码格式。<br>**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。|
 | videoBitrate     | number                                       | 否   | 视频编码比特率，选择视频录制时必填，支持范围[10000 - 100000000]。  |
 | videoCodec       | [CodecMimeType](#codecmimetype8)             | 否   | 视频编码格式，选择视频录制时必填。当前支持VIDEO_AVC。|
 | videoFrameWidth  | number                                       | 否   | 视频帧的宽，选择视频录制时必填，支持范围[176 - 4096]。         |
 | videoFrameHeight | number                                       | 否   | 视频帧的高，选择视频录制时必填，支持范围[144 - 4096]。         |
-| videoFrameRate   | number                                       | 否   | 视频帧率，选择视频录制时必填，支持范围[1 - 60]。             |
+| videoFrameRate   | number                                       | 否   | 视频帧率，选择视频录制时必填，推荐范围[1 - 60]。             |
 | isHdr<sup>11+</sup>            | boolean                        | 否   | HDR编码，选择视频录制时选填，isHdr默认为false，对应编码格式没有要求，isHdr为true时，对应的编码格式必须为video/hevc。|
 | enableTemporalScale<sup>12+</sup>            | boolean                        | 否   | 视频录制是否支持时域分层编码功能，选择视频录制时选填，enableTemporalScale默认为false。设置为true时，编码输出的码流中部分帧可以支持跳过不编码。|
 
@@ -4914,6 +5073,7 @@ type OnAVRecorderStateChangeHandler = (state: AVRecorderState, reason: StateChan
 | CFT_MP3<sup>12+</sup>  | 'mp3' | 音频的容器格式，MP3。 |
 | CFT_WAV<sup>12+</sup>  | 'wav' | 音频的容器格式，WAV。 |
 | CFT_AMR<sup>18+</sup>  | 'amr' | 音频的容器格式，AMR。 |
+| CFT_AAC<sup>20+</sup>  | 'aac' | 音频的容器格式，AAC。默认为ADTS帧头格式。 |
 
 ## Location
 
@@ -4967,7 +5127,7 @@ type OnAVRecorderStateChangeHandler = (state: AVRecorderState, reason: StateChan
 
 ## AVTranscoder<sup>12+</sup>
 
-视频转码管理类，用于视频转码。在调用AVTranscoder的方法前，需要先通过createAVTranscoder()构建一个AVTranscoder实例。
+视频转码管理类，用于视频转码。在调用AVTranscoder的方法前，需要先通过[createAVTranscoder()](#mediacreateavtranscoder12)构建一个AVTranscoder实例。
 
 视频转码demo可参考：[视频转码开发指导](../../media/media/using-avtranscoder-for-transcodering.md)
 
@@ -4992,7 +5152,7 @@ prepare(config: AVTranscoderConfig): Promise\<void>
 
 | 参数名 | 类型                                   | 必填 | 说明                       |
 | ------ | -------------------------------------- | ---- | -------------------------- |
-| config | [AVTranscoderConfig](#avtranscoderconfig12) | 是   | 配置视频转码的相关参数。 |
+| config | [AVTranscoderConfig](#avtranscoderconfig12) | 是   | 配置视频转码的相关参数。 <!--RP1--><!--RP1End-->|
 
 **返回值：**
 
@@ -5008,6 +5168,7 @@ prepare(config: AVTranscoderConfig): Promise\<void>
 | -------- | -------------------------------------- |
 | 401  | The parameter check failed. Return by promise. |
 | 5400102  | Operation not allowed. Return by promise. |
+| 5400103  | IO error. Return by promise.              |
 | 5400105  | Service died. Return by promise.       |
 | 5400106  | Unsupported format. Returned by promise.  |
 
@@ -5023,9 +5184,7 @@ let avTranscoderConfig: media.AVTranscoderConfig = {
   fileFormat : media.ContainerFormatType.CFT_MPEG_4,
   videoBitrate : 3000000,
   videoCodec : media.CodecMimeType.VIDEO_AVC,
-  videoFrameWidth : 1280,
-  videoFrameHeight : 720,
-}
+};
 
 avTranscoder.prepare(avTranscoderConfig).then(() => {
   console.info('prepare success');
@@ -5227,7 +5386,7 @@ avTranscoder.release().then(() => {
 
 on(type: 'progressUpdate', callback: Callback\<number>): void
 
-注册转码进度更新事件，并通过注册的回调方法通知用户。用户只能注册一个进度更新事件的回调方法，当用户重复注册时，以最后一次注册的回调接口为准。
+注册转码进度更新事件，并通过注册的回调方法通知开发者。开发者只能注册一个进度更新事件的回调方法，当开发者重复注册时，以最后一次注册的回调接口为准。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVTranscoder
 
@@ -5258,7 +5417,7 @@ off(type:'progressUpdate', callback?: Callback\<number>): void
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| type   | string | 是   | 进度更新事件回调类型，支持的事件：'progressUpdate'，用户操作和系统都会触发此事件。 |
+| type   | string | 是   | 进度更新事件回调类型，支持的事件：'progressUpdate'。 |
 | callback | [Callback\<number>](../apis-basic-services-kit/js-apis-base.md#callback) | 否   | 已注册的进度更新事件回调。由于当前回调注册时，仅会保留最后一次注册的回调，建议此参数缺省。 |
 
 **示例：**
@@ -5271,9 +5430,9 @@ avTranscoder.off('progressUpdate');
 
 on(type: 'error', callback: ErrorCallback): void
 
-注册AVtranscoder的错误事件，该事件仅用于错误提示。如果AVTranscoder上报error事件，用户需要通过[release()](#release12)退出转码操作。
+注册AVtranscoder的错误事件，该事件仅用于错误提示。如果AVTranscoder上报error事件，开发者需要通过[release()](#release12)退出转码操作。
 
-用户只能订阅一个错误事件的回调方法，当用户重复订阅时，以最后一次订阅的回调接口为准。
+开发者只能订阅一个错误事件的回调方法，当开发者重复订阅时，以最后一次订阅的回调接口为准。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVTranscoder
 
@@ -5334,9 +5493,9 @@ avTranscoder.off('error');
 
 on(type: 'complete', callback: Callback\<void>): void
 
-注册转码完成事件，并通过注册的回调方法通知用户。用户只能注册一个进度更新事件的回调方法，当用户重复注册时，以最后一次注册的回调接口为准。
+注册转码完成事件，并通过注册的回调方法通知开发者。开发者只能注册一个进度更新事件的回调方法，当开发者重复注册时，以最后一次注册的回调接口为准。
 
-当AVTranscoder上报complete事件时，当前转码操作已完成，用户需要通过[release()](#release12)退出转码操作。
+当AVTranscoder上报complete事件时，当前转码操作已完成，开发者需要通过[release()](#release12)退出转码操作。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVTranscoder
 
@@ -5352,7 +5511,7 @@ on(type: 'complete', callback: Callback\<void>): void
 ```ts
 avTranscoder.on('complete', async () => {
   console.info('avTranscoder complete');
-  // 用户须在此监听转码完成事件
+  // 开发者须在此监听转码完成事件
   // 须等待avTranscoder.release()之后，再对转码后的文件进行转发、上传、转存等处理
   await avTranscoder.release();
   avTranscoder = undefined;
@@ -5371,7 +5530,7 @@ off(type:'complete', callback?: Callback\<void>): void
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| type   | string | 是   | 转码完成事件回调类型，支持的事件：'complete'，用户操作和系统都会触发此事件。 |
+| type   | string | 是   | 转码完成事件回调类型，支持的事件：'complete'。 |
 | callback | [Callback\<void>](../apis-basic-services-kit/js-apis-base.md#callback) | 否   | 完成事件回调方法。 |
 
 **示例：**
@@ -5479,7 +5638,7 @@ fetchMetadata(): Promise\<AVMetadata>
 import { BusinessError } from '@kit.BasicServicesKit';
 
 avMetadataExtractor.fetchMetadata().then((metadata: media.AVMetadata) => {
-  console.info(`Succeeded in fetching Metadata, genre: ${metadata.genre}`)
+  console.info(`Succeeded in fetching Metadata, genre: ${metadata.genre}`);
 }).catch((error: BusinessError) => {
   console.error(`Failed to fetch Metadata, error message:${error.message}`);
 });
@@ -5497,7 +5656,7 @@ fetchAlbumCover(callback: AsyncCallback\<image.PixelMap>): void
 
 | 参数名   | 类型                                         | 必填 | 说明                                |
 | -------- | -------------------------------------------- | ---- | ----------------------------------- |
-| callback | AsyncCallback\<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)>    | 是   | 回调函数。异步返回专辑封面。 |
+| callback | AsyncCallback\<[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)>    | 是   | 回调函数。异步返回专辑封面。 |
 
 **错误码：**
 
@@ -5537,7 +5696,7 @@ fetchAlbumCover(): Promise\<image.PixelMap>
 
 | 类型           | 说明                                     |
 | -------------- | ---------------------------------------- |
-| Promise\<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)> |  Promise对象。异步返回专辑封面。 |
+| Promise\<[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)> |  Promise对象。异步返回专辑封面。 |
 
 **错误码：**
 
@@ -6205,8 +6364,8 @@ on(type: 'audioInterrupt', callback: (info: audio.InterruptEvent) => void): void
 import { audio } from '@kit.AudioKit';
 
 audioPlayer.on('audioInterrupt', (info: audio.InterruptEvent) => {
-  console.info('audioInterrupt called,and InterruptEvent info is:' + info)
-})
+  console.info('audioInterrupt called,and InterruptEvent info is:' + info);
+});
 ```
 
 ### on('error')<sup>(deprecated)</sup>
@@ -7209,8 +7368,8 @@ on(type: 'audioInterrupt', callback: (info: audio.InterruptEvent) => void): void
 import { audio } from '@kit.AudioKit';
 
 videoPlayer.on('audioInterrupt', (info: audio.InterruptEvent) => {
-  console.info('audioInterrupt called,and InterruptEvent info is:' + info)
-})
+  console.info('audioInterrupt called,and InterruptEvent info is:' + info);
+});
 ```
 
 ### on('error')<sup>(deprecated)</sup>
@@ -7307,7 +7466,7 @@ let audioRecorderConfig: media.AudioRecorderConfig = {
   format : media.AudioOutputFormat.AAC_ADTS,
   uri : 'fd://1',       // 文件需先由调用者创建，并给予适当的权限。
   location : { latitude : 30, longitude : 130},
-}
+};
 audioRecorder.on('prepare', () => {    //设置'prepare'事件回调。
   console.info('prepare called');
 });
@@ -7469,7 +7628,7 @@ let audioRecorderConfig: media.AudioRecorderConfig = {
   format : media.AudioOutputFormat.AAC_ADTS,
   uri : 'fd://xx',  // 文件需先由调用者创建，并给予适当的权限。
   location : { latitude : 30, longitude : 130}
-}
+};
 audioRecorder.on('error', (error: BusinessError) => {  // 设置'error'事件回调。
   console.error(`audio error called, error: ${error}`);
 });
@@ -7529,7 +7688,7 @@ let audioRecorderConfig: media.AudioRecorderConfig = {
   format : media.AudioOutputFormat.AAC_ADTS,
   uri : 'fd://xx',   // 文件需先由调用者创建，并给予适当的权限。
   location : { latitude : 30, longitude : 130}
-}
+};
 audioRecorder.on('error', (error: BusinessError) => {  // 设置'error'事件回调。
   console.error(`audio error called, error: ${error}`);
 });
@@ -7699,7 +7858,7 @@ fetchFrameByTime(timeUs: number, options: AVImageQueryOptions, param: PixelMapPa
 | timeUs | number                   | 是   | 需要获取的缩略图在视频中的时间点，单位为微秒（μs）。 |
 | options | [AVImageQueryOptions](#avimagequeryoptions12)     | 是   | 需要获取的缩略图时间点与视频帧的对应关系。 |
 | param | [PixelMapParams](#pixelmapparams12)     | 是   | 需要获取的缩略图的格式参数。 |
-| callback | AsyncCallback\<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)>   | 是   | 回调函数。获取缩略图成功时，err为undefined，data为PixelMap实例，否则为错误对象。 |
+| callback | AsyncCallback\<[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)>   | 是   | 回调函数。获取缩略图成功时，err为undefined，data为PixelMap实例，否则为错误对象。 |
 
 **错误码：**
 
@@ -7720,14 +7879,14 @@ let avImageGenerator: media.AVImageGenerator | undefined = undefined;
 let pixel_map : image.PixelMap | undefined = undefined;
 
 // 初始化入参。
-let timeUs: number = 0
+let timeUs: number = 0;
 
-let queryOption: media.AVImageQueryOptions = media.AVImageQueryOptions.AV_IMAGE_QUERY_NEXT_SYNC
+let queryOption: media.AVImageQueryOptions = media.AVImageQueryOptions.AV_IMAGE_QUERY_NEXT_SYNC;
 
 let param: media.PixelMapParams = {
   width : 300,
   height : 300,
-}
+};
 
 // 获取缩略图。
 media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenerator) => {
@@ -7736,8 +7895,8 @@ media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenera
     console.info(`Succeeded in creating AVImageGenerator`);
     avImageGenerator.fetchFrameByTime(timeUs, queryOption, param, (error: BusinessError, pixelMap) => {
       if (error) {
-        console.error(`Failed to fetch FrameByTime, err = ${JSON.stringify(error)}`)
-        return
+        console.error(`Failed to fetch FrameByTime, err = ${JSON.stringify(error)}`);
+        return;
       }
       pixel_map = pixelMap;
     });
@@ -7767,7 +7926,7 @@ fetchFrameByTime(timeUs: number, options: AVImageQueryOptions, param: PixelMapPa
 
 | 类型           | 说明                                     |
 | -------------- | ---------------------------------------- |
-| Promise\<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)> | Promise对象，返回视频缩略图对象。 |
+| Promise\<[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)> | Promise对象，返回视频缩略图对象。 |
 
 **错误码：**
 
@@ -7788,14 +7947,14 @@ let avImageGenerator: media.AVImageGenerator | undefined = undefined;
 let pixel_map : image.PixelMap | undefined = undefined;
 
 // 初始化入参。
-let timeUs: number = 0
+let timeUs: number = 0;
 
-let queryOption: media.AVImageQueryOptions = media.AVImageQueryOptions.AV_IMAGE_QUERY_NEXT_SYNC
+let queryOption: media.AVImageQueryOptions = media.AVImageQueryOptions.AV_IMAGE_QUERY_NEXT_SYNC;
 
 let param: media.PixelMapParams = {
   width : 300,
   height : 300,
-}
+};
 
 // 获取缩略图。
 media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenerator) => {
@@ -7806,6 +7965,68 @@ media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenera
       pixel_map = pixelMap;
     }).catch((error: BusinessError) => {
       console.error(`Failed to fetch FrameByTime, error message:${error.message}`);
+    });
+  } else {
+    console.error(`Failed to creat AVImageGenerator, error message:${err.message}`);
+  };
+});
+```
+
+### fetchScaledFrameByTime<sup>20+</sup>
+
+fetchScaledFrameByTime(timeUs: number, queryMode: AVImageQueryOptions, outputSize?: OutputSize):Promise\<image.PixelMap\>
+
+支持按比例缩放提取视频缩略图。使用Promise异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVImageGenerator
+
+**参数：**
+
+| 参数名     | 类型                                          | 必填 | 说明                                                 |
+| ---------- | --------------------------------------------- | ---- | ---------------------------------------------------- |
+| timeUs     | number                                        | 是   | 在视频中需要获取的缩略图的时间点，单位为微秒（μs）。 |
+| queryMode  | [AVImageQueryOptions](#avimagequeryoptions12) | 是   | 需要获取的缩略图时间点与视频帧的对应关系。           |
+| outputSize | [OutputSize ](#outputsize20)                  | 否   | 定义帧的输出大小。默认按原图大小显示。               |
+
+**返回值：**
+
+| 类型                                                         | 说明                              |
+| ------------------------------------------------------------ | --------------------------------- |
+| Promise\<[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)> | Promise对象。返回视频缩略图对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 5400102  | Operation not allowed. Returned by promise. |
+| 5400106  | Unsupported format. Returned by promise.    |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
+import { media } from '@kit.MediaKit';
+let avImageGenerator: media.AVImageGenerator | undefined = undefined;
+let pixel_map : image.PixelMap | undefined = undefined;
+// 初始化入参。
+let timeUs: number = 0;
+let queryOption: media.AVImageQueryOptions = media.AVImageQueryOptions.AV_IMAGE_QUERY_NEXT_SYNC;
+let outputSize: media.OutputSize = {
+  width : 300,
+  height : 300,
+};
+// 获取缩略图。
+media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenerator) => {
+  if(generator != null){
+    avImageGenerator = generator;
+    console.info(`Succeeded in creating AVImageGenerator`);
+    avImageGenerator.fetchScaledFrameByTime(timeUs, queryOption, outputSize).then((pixelMap: image.PixelMap) => {
+      pixel_map = pixelMap;
+    }).catch((error: BusinessError) => {
+      console.error(`Failed to fetch ScaledFrameByTime, error message:${error.message}`);
     });
   } else {
     console.error(`Failed to creat AVImageGenerator, error message:${err.message}`);
@@ -7931,6 +8152,17 @@ media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenera
 | width  | number | 是   | 是   | 输出的缩略图宽度。应保证大于0且不大于原始视频宽度。否则返回的缩略图不会进行缩放。 |
 | height | number | 是   | 是   | 输出的缩略图高度。应保证大于0且不大于原始视频高度。否则返回的缩略图不会进行缩放。 |
 
+## OutputSize<sup>20+</sup>
+
+用于获取视频缩略图时，来定义输出图像大小。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVImageGenerator
+
+| 名称   | 类型   | 只读 | 可选 | 说明                                                         |
+| ------ | ------ | ---- | ---- | ------------------------------------------------------------ |
+| width  | number | 否   | 是   | 输出的缩略图宽度。<br/>- 如果该值小于0，宽度是视频的原始宽度。<br/>- 如果值为0或未分配任何值，缩放比例同高度比例。 |
+| height | number | 否   | 是   | 输出的缩略图高度。<br/>- 如果该值小于0，高度是视频的原始高度。<br/>- 如果值为0或未分配任何值，缩放比例同宽度比例。 |
+
 ## media.createMediaSourceWithUrl<sup>12+</sup>
 
 createMediaSourceWithUrl(url: string, headers?: Record\<string, string>): MediaSource
@@ -7977,8 +8209,11 @@ let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx
 import { common } from '@kit.AbilityKit';
 import { resourceManager } from '@kit.LocalizationKit';
 
-let context = getContext(this) as common.UIAbilityContext;
-let mgr = context.resourceManager;
+private context: Context | undefined;
+constructor(context: Context) {
+  this.context = context; // this.getUIContext().getHostContext();
+}
+let mgr = this.context.resourceManager;
 let fileDescriptor = await mgr.getRawFd("xxx.m3u8");
 
 let fd:string = fileDescriptor.fd.toString();
@@ -7993,21 +8228,21 @@ let mimeType : media.AVMimeTypes = media.AVMimeTypes.APPLICATION_M3U8;
 mediaSource.setMimeType(mimeType);
 
 ```
-## media.createMediaSourceWithStreamData<sup>18+</sup>
+## media.createMediaSourceWithStreamData<sup>19+</sup>
 
 createMediaSourceWithStreamData(streams: Array\<MediaStream>): MediaSource
 
 创建流媒体多码率媒体来源实例方法，当前仅支持HTTP-FLV协议格式多码率。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
 **参数：**
 
-| 参数名  | 类型                                 | 只读 | 可选 | 说明                                                  |
-| ------- | ------------------------------------ | --- | ---- | ----------------------------------------------------- |
-| streams | Array<[MediaStream](#mediastream18)> | 否 | 否   | 可设置MediaStream数组，支持的流媒体格式：HTTP-FLV。 |
+| 参数名  | 类型                                 | 必填 | 说明                                                  |
+| ------- | ------------------------------------ | ---- | ----------------------------------------------------- |
+| streams | Array<[MediaStream](#mediastream19)> | 是 | 可设置MediaStream数组，支持的流媒体格式：HTTP-FLV。 |
 
 **返回值：**
 
@@ -8015,32 +8250,25 @@ createMediaSourceWithStreamData(streams: Array\<MediaStream>): MediaSource
 | ----------------------------- | ------------------- |
 | [MediaSource](#mediasource12) | 返回MediaSource，用于媒体资源设置。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
-| 5400101  | No memory.                                                   |
-
 **示例1：**
 
 ```ts
 let streams : Array<media.MediaStream> = [];
 streams.push({url: "http://xxx/480p.flv", width: 854, height: 480, bitrate: 800000});
-streams.push({url: "http:/xxx/720p.flv", width: 1280, height: 720, bitrate: 2000000});
-streams.push({url: "http:/xxx/1080p.flv", width: 1280, height: 720, bitrate: 2000000});
+streams.push({url: "http://xxx/720p.flv", width: 1280, height: 720, bitrate: 2000000});
+streams.push({url: "http://xxx/1080p.flv", width: 1280, height: 720, bitrate: 2000000});
 let mediaSource : media.MediaSource = media.createMediaSourceWithStreamData(streams);
 ```
 
-## MediaStream<sup>18+</sup>
+## MediaStream<sup>19+</sup>
 
 媒体流数据信息。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
-| 参数名  | 类型   | 只读 | 可选 | 说明                                                         |
+| 名称  | 类型   | 只读 | 可选 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
 | url     | string | 否   | 否   | 媒体资源链接，当前仅支持http或者https。                                                 |
 | width   | number | 否   | 否   | 媒体资源视频宽像素值。未知时可以填0，此时将无法通过[PlaybackStrategy](#playbackstrategy12)优选匹配。 |
@@ -8088,16 +8316,37 @@ setMediaResourceLoaderDelegate(resourceLoader: MediaSourceLoader): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
+import HashMap from '@ohos.util.HashMap';
 
 let headers: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
 let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx",  headers);
+let uuid: number = 1;
+let requests: HashMap<number, media.MediaSourceLoadingRequest> = new HashMap();
+
+let sourceOpenCallback: media.SourceOpenCallback = (request: media.MediaSourceLoadingRequest) => {
+  console.log(`Opening resource: ${request.url}`);
+  // 成功打开资源，返回唯一的句柄, 保证uuid和request对应。
+  uuid += 1;
+  requests.set(uuid, request);
+  return uuid;
+};
+
+let sourceReadCallback: media.SourceReadCallback = (uuid: number, requestedOffset: number, requestedLength: number) => {
+  console.log(`Reading resource with handle ${uuid}, offset: ${requestedOffset}, length: ${requestedLength}`);
+  // 判断uuid是否合法、存储read请求，不要在read请求阻塞去推送数据和头信息。
+};
+
+let sourceCloseCallback: media.SourceCloseCallback = (uuid: number) => {
+  console.log(`Closing resource with handle ${uuid}`);
+  // 清除当前uuid相关资源。
+  requests.remove(uuid);
+};
 
 // 应用按需实现。
 let resourceLoader: media.MediaSourceLoader = {
-  open: SourceOpenCallback,
-  read: SourceReadCallback,
-  close: SourceCloseCallback
+  open: sourceOpenCallback,
+  read: sourceReadCallback,
+  close: sourceCloseCallback
 };
 
 mediaSource.setMediaResourceLoaderDelegate(resourceLoader);
@@ -8142,7 +8391,7 @@ let sourceOpenCallback: media.SourceOpenCallback = (request: media.MediaSourceLo
   uuid += 1;
   requests.set(uuid, request);
   return uuid;
-}
+};
 ```
 
 ## SourceReadCallback<sup>18+</sup>
@@ -8172,7 +8421,7 @@ type SourceReadCallback = (uuid: number, requestedOffset: number, requestedLengt
 let sourceReadCallback: media.SourceReadCallback = (uuid: number, requestedOffset: number, requestedLength: number) => {
   console.log(`Reading resource with handle ${uuid}, offset: ${requestedOffset}, length: ${requestedLength}`);
   // 判断uuid是否合法、存储read请求，不要在read请求阻塞去推送数据和头信息。
-}
+};
 ```
 
 ## SourceCloseCallback<sup>18+</sup>
@@ -8205,7 +8454,7 @@ let sourceCloseCallback: media.SourceCloseCallback = (uuid: number) => {
   console.log(`Closing resource with handle ${uuid}`);
   // 清除当前uuid相关资源。
   requests.remove(uuid);
-}
+};
 ```
 
 ## MediaSourceLoader<sup>18+</sup>
@@ -8254,8 +8503,11 @@ mediaSource.setMediaResourceLoaderDelegate(mediaSourceLoader);
 let playStrategy : media.PlaybackStrategy = {
   preferredBufferDuration: 20,
 };
-let player = await media.createAVPlayer();
-player.setMediaSource(mediaSource, playStrategy);
+
+async function setupPlayer() {
+  let player = await media.createAVPlayer();
+  player.setMediaSource(mediaSource, playStrategy);
+}
 ```
 
 ## MediaSourceLoadingRequest<sup>18+</sup>
@@ -8270,8 +8522,8 @@ player.setMediaSource(mediaSource, playStrategy);
 
 | 名称   | 类型    | 只读   | 可选   | 说明                |
 | --------------------------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| url<sup>18+</sup>        | string                        | 否   | 否   | 资源url，需要应用程序打开的资源路径。 |
-| header<sup>18+</sup>     | Record<string, string>        | 否   | 是   | 网络请求标头，如果存在需要应用在下载数据是将头信息设置到http请求中。 |
+| url        | string                        | 否   | 否   | 资源url，需要应用程序打开的资源路径。 |
+| header     | Record<string, string>        | 否   | 是   | 网络请求标头，如果存在需要应用在下载数据是将头信息设置到http请求中。 |
 
 ### respondData<sup>18+</sup>
 
@@ -8300,10 +8552,13 @@ respondData(uuid: number, offset: number, buffer: ArrayBuffer): number
 **示例：**
 
 ```ts
+import HashMap from '@ohos.util.HashMap';
 let requests: HashMap<number, media.MediaSourceLoadingRequest> = new HashMap();
 let uuid = 1;
 
 let request = requests.get(uuid);
+let offset = 0; // 当前媒体数据相对于资源起始位置的偏移量
+let buf = new ArrayBuffer(0); // 由应用定义，推送给播放器的数据
 let num = request.respondData(uuid, offset, buf);
 ```
 
@@ -8328,6 +8583,7 @@ respondHeader(uuid: number, header?: Record<string, string>, redirectUrl?: strin
 **示例：**
 
 ```ts
+import HashMap from '@ohos.util.HashMap';
 let requests: HashMap<number, media.MediaSourceLoadingRequest> = new HashMap();
 let uuid = 1;
 
@@ -8365,6 +8621,7 @@ finishLoading(uuid: number, state: LoadingRequestError): void
 **示例：**
 
 ```ts
+import HashMap from '@ohos.util.HashMap';
 let requests: HashMap<number, media.MediaSourceLoadingRequest> = new HashMap();
 let uuid = 1;
 
@@ -8423,7 +8680,7 @@ request.finishLoading(uuid, loadingError);
 | preferredAudioLanguage<sup>13+</sup> | string | 否 | 播放策略首选音轨语言。dash场景下应用可按需设置。非dash场景暂不支持，建议缺省。<br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
 | preferredSubtitleLanguage<sup>13+</sup> | string | 否 | 播放策略首选字幕语言。dash场景下应用可按需设置。非dash场景暂不支持，建议缺省。<br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
 | preferredBufferDurationForPlaying<sup>18+</sup> | number | 否 | 播放策略首选起播缓冲水线。当起播缓冲时间超过该值，开始播放。单位s，取值范围0-20。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
-| thresholdForAutoQuickPlay<sup>18+</sup> | number | 否 | 智能追帧水线，单位为s，取值应不小于2s，且需大于起播缓冲水线，默认设置为5s。<br>播放策略可以通过设置智能追帧水线来保证直播的实时性。flv直播场景下应用可按需设置，非flv直播场景暂不支持。网络状态的变化可能会导致播放器在某段时间内积压大量数据。播放器会定期检查当前播放时间与缓存中最新的帧时间戳之间的差值，当这个差值过大时，播放器将以1.2倍速开始追帧；当差值小于起播缓冲水线时，则停止追帧并恢复到正常播放速度。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| thresholdForAutoQuickPlay<sup>18+</sup> | number | 否 | 智能追帧水线，单位为s，取值应不小于2s，且需大于起播缓冲水线，默认设置为5s。<br>播放策略可以通过设置智能追帧水线来保证直播的实时性。flv直播场景下应用可按需设置，非flv直播场景暂不支持。网络状态的变化可能会导致播放器在某段时间内积压大量数据。播放器会定期检查当前播放时间与缓存中最新的帧时间戳之间的差值，当这个差值过大时，播放器将以1.2倍速开始智能追帧。[speedDone事件](#onspeeddone9)会回调特定值100，表示智能追帧开启成功。当差值小于起播缓冲水线时，则停止追帧并恢复到正常播放速度。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 
 ## AVScreenCaptureRecordPreset<sup>12+</sup>
 
@@ -8467,6 +8724,16 @@ request.finishLoading(uuid, loadingError);
 | PRESERVE_ASPECT_RATIO | 0    | 保持与原始图像相同的宽高比例，即与物理屏幕宽高比例一致。 |
 | SCALE_TO_FILL | 1    | 进行图像拉伸填充，适配设置的宽度和高度。 |
 
+## AVScreenCaptureStrategy<sup>20+</sup>
+
+录屏策略。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
+
+| 名称                  | 类型    | 必填 | 说明                 |
+| --------------------- | ------- | --- | -------------------- |
+| keepCaptureDuringCall | boolean | 否  | 蜂窝通话时是否保持录屏。 |
+
 ## AVScreenCaptureRecordConfig<sup>12+</sup>
 
 表示录屏参数配置。
@@ -8485,6 +8752,7 @@ request.finishLoading(uuid, loadingError);
 | preset            | [AVScreenCaptureRecordPreset](#avscreencapturerecordpreset12) | 否   | 录屏使用的编码和封装格式，默认SCREEN_RECORD_PRESET_H264_AAC_MP4格式。 |
 | displayId<sup>15+</sup>            | number | 否   | 指定录屏使用的屏幕，默认主屏幕。 |
 | fillMode<sup>18+</sup>            | [AVScreenCaptureFillMode](#avscreencapturefillmode18)| 否   | 录屏时视频流的填充模式。 |
+| strategy<sup>20+</sup>            | [AVScreenCaptureStrategy](#avscreencapturestrategy20)| 否   | 录屏策略。 |
 
 ## AVScreenCaptureRecorder<sup>12+</sup>
 
@@ -8528,13 +8796,13 @@ let avCaptureConfig: media.AVScreenCaptureRecordConfig = {
     frameWidth: 640,
     frameHeight: 480
     // 补充其他参数。
-}
+};
 
 avScreenCaptureRecorder.init(avCaptureConfig).then(() => {
     console.info('Succeeded in initing avScreenCaptureRecorder');
 }).catch((err: BusinessError) => {
     console.info('Failed to init avScreenCaptureRecorder, error: ' + err.message);
-})
+});
 ```
 
 ### startRecording<sup>12+</sup>
@@ -8567,7 +8835,7 @@ avScreenCaptureRecorder.startRecording().then(() => {
     console.info('Succeeded in starting avScreenCaptureRecorder');
 }).catch((err: BusinessError) => {
     console.info('Failed to start avScreenCaptureRecorder, error: ' + err.message);
-})
+});
 ```
 
 ### stopRecording<sup>12+</sup>
@@ -8600,7 +8868,7 @@ avScreenCaptureRecorder.stopRecording().then(() => {
     console.info('Succeeded in stopping avScreenCaptureRecorder');
 }).catch((err: BusinessError) => {
     console.info('Failed to stop avScreenCaptureRecorder, error: ' + err.message);
-})
+});
 ```
 
 ### skipPrivacyMode<sup>12+</sup>
@@ -8616,7 +8884,7 @@ skipPrivacyMode(windowIDs: Array\<number>): Promise\<void>
 
 | 参数名 | 类型    | 必填 | 说明                                                      |
 | ------ | ------- | ---- | --------------------------------------------------------- |
-| windowIDs | Array\<number> | 是   | 需要豁免隐私的窗口列表，包括主窗口id和子窗口id，窗口属性获取方法可以参考[窗口API引用](../apis-arkui/js-apis-window.md#getwindowproperties9)。 |
+| windowIDs | Array\<number> | 是   | 需要豁免隐私的窗口列表，包括主窗口id和子窗口id，窗口属性获取方法可以参考[窗口API引用](../apis-arkui/arkts-apis-window-Window.md#getwindowproperties9)。 |
 
 **返回值：**
 
@@ -8641,7 +8909,7 @@ avScreenCaptureRecorder.skipPrivacyMode(windowIDs).then(() => {
     console.info('Succeeded in skipping privacy mode');
 }).catch((err: BusinessError) => {
     console.info('Failed to skip privacy mode, error: ' + err.message);
-})
+});
 ```
 
 ### setMicEnabled<sup>12+</sup>
@@ -8680,7 +8948,7 @@ avScreenCaptureRecorder.setMicEnabled(true).then(() => {
     console.info('Succeeded in setMicEnabled avScreenCaptureRecorder');
 }).catch((err: BusinessError) => {
     console.info('Failed to setMicEnabled avScreenCaptureRecorder, error: ' + err.message);
-})
+});
 ```
 
 ### release<sup>12+</sup>
@@ -8713,7 +8981,7 @@ avScreenCaptureRecorder.release().then(() => {
     console.info('Succeeded in releasing avScreenCaptureRecorder');
 }).catch((err: BusinessError) => {
     console.info('Faile to release avScreenCaptureRecorder, error: ' + err.message);
-})
+});
 ```
 
 ### on('stateChange')<sup>12+</sup>
@@ -8736,7 +9004,7 @@ on(type: 'stateChange', callback: Callback\<AVScreenCaptureStateCode>): void
 ```ts
 avScreenCaptureRecorder.on('stateChange', (state: media.AVScreenCaptureStateCode) => {
     console.info('avScreenCaptureRecorder stateChange to ' + state);
-})
+});
 ```
 
 ### on('error')<sup>12+</sup>
@@ -8767,7 +9035,7 @@ on(type: 'error', callback: ErrorCallback): void
 ```ts
 avScreenCaptureRecorder.on('error', (err: BusinessError) => {
     console.error('avScreenCaptureRecorder error:' + err.message);
-})
+});
 ```
 
 ### off('stateChange')<sup>12+</sup>

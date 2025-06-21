@@ -135,6 +135,24 @@ Another process occupies the audio focus.
 
 Destroy the current instance and check whether another process is recording. If you can stop the other process, you can create the current instance again.
 
+## 5400108 Parameter Value Out of Range
+
+**Error Message**
+
+The parameter check failed, parameter value out of range.
+
+**Description**
+
+The parameter check fails because the value is beyond the allowable range.
+
+**Possible Causes**
+
+The value of the parameter exceeds the expected range.
+
+**Solution**
+
+Adjust the parameter value to fall within the acceptable range.
+
 ## 5411001 Failed to Parse or Connect to the Server Address
 
 **Error Message**
@@ -309,7 +327,7 @@ The SSL connection fails.
 
 **Error Message**
 
-SSL server cert needed.
+SSL server cert untrusted.
 
 **Description**
 

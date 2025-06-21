@@ -9,7 +9,7 @@ Canvas组件提供画布，用于自定义绘制图形。具体用法请参考[C
 在pages/index目录下的hml文件中创建一个Canvas组件。
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <canvas></canvas>

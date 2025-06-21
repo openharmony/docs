@@ -9,7 +9,7 @@ After a notification is read, the count on the badge is decremented by 1. If the
 
 ## Available APIs
 
-If the **badgeNumber** is set to **0**, badges are cleared; if the value is greater than **99**, **99+** is displayed on the badge.
+If **badgeNumber** is set to **0**, badges are cleared; if the value is greater than **99**, **99+** is displayed on the badge.
 
 - You can use either of the following methods to increase the count on the badge:
 

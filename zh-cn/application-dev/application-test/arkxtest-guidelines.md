@@ -3,11 +3,11 @@
 
 ## 概述
 
-自动化测试框架arkxtest，作为工具集的重要组成部分，支持JS/TS语言的单元测试框架（JsUnit）及UI测试框架（UiTest）。<br>JsUnit提供单元测试用例执行能力，提供用例编写基础接口，生成对应报告，用于测试系统或应用接口。<br>UiTest通过简洁易用的API提供查找和操作界面控件能力，支持用户开发基于界面操作的自动化测试脚本。<br>本指南介绍了测试框架的主要功能、实现原理、环境准备，以及测试脚本编写和执行方法。同时，以shell命令方式，对外提供了获取截屏、控件树、录制用户操作、便捷注入UI模拟操作等能力，助力开发者更灵活方便测试和验证。
+自动化测试框架arkxtest，作为工具集的重要组成部分，支持JS/TS语言的单元测试框架（JsUnit）、UI测试框架（UiTest）及白盒性能测试框架（PerfTest）。<br>JsUnit提供单元测试用例执行能力，提供用例编写基础接口，生成对应报告，用于测试系统或应用接口。<br>UiTest通过简洁易用的API提供查找和操作界面控件能力，支持用户开发基于界面操作的自动化测试脚本。<br>PerfTest提供基于代码段的白盒性能测试能力，支持采集指定代码段执行期间或指定场景发生时的性能数据。<br>本指南介绍了测试框架的主要功能、实现原理、环境准备，以及测试脚本编写和执行方法。同时，以shell命令方式，对外提供了获取截屏、控件树、录制用户操作、便捷注入UI模拟操作等能力，助力开发者更灵活方便测试和验证。
 
 ## 实现原理
 
-测试框架分为单元测试框架和UI测试框架。<br>单元测试框架是测试框架的基础底座，提供了最基本的用例识别、调度、执行及结果汇总的能力。<br>UI测试框架主要对外提供了UiTest API供开发人员在对应测试场景调用，而其脚本的运行基础仍是单元测试框架。
+测试框架分为单元测试框架、UI测试框架和白盒性能测试框架。<br>单元测试框架是测试框架的基础底座，提供了最基本的用例识别、调度、执行及结果汇总的能力。<br>UI测试框架主要对外提供了UiTest API供开发人员在对应测试场景调用，而其脚本的运行基础仍是单元测试框架。<br>白盒性能测试框架提供PerfTest API供开发人员在基于代码段的性能测试场景中使用，测试脚本基于单元测试框架开发。
 
 ### 单元测试框架
 
@@ -24,6 +24,12 @@
   图3.UI测试框架主要功能
 
   ![](figures/Uitest.PNG)
+
+### 白盒性能测试框架
+
+  图4.白盒性能测试框架主要功能
+
+  <img src="figures/perftest.PNG" alt="perftest" width="760">
 
 ## 基于ArkTS编写和执行测试
 
@@ -169,6 +175,158 @@ export default function abilityTest() {
   }
   ```
 
+#### 编写白盒性能测试脚本
+
+本章节主要介绍白盒性能测试框架支持能力，以及对应能力API的使用方法。<br>白盒性能测试基于单元测试，测试脚本在单元测试脚本上增加了对PerfTest接口的调用。<!--RP5-->具体请参考[API文档](../reference/apis-test-kit/js-apis-perftest.md)<!--RP5End-->。性能测试过程中，可以结合使用UI测试框架接口，对界面进行模拟操作并测试指定场景的性能。<br>如下示例代码实现的场景是：测试函数执行期间的应用性能、测试当前应用内列表滑动帧率。
+
+1.测试函数执行期间的应用性能。
+
+- 在main > ets > utils文件夹下新增PerfUtils.ets文件，在文件中编写自定义的函数。
+
+  ```ts
+  export class PerfUtils {
+    public static CalculateTest() {
+      let num: number = 0
+      for (let index = 0; index < 10000; index++) {
+        num++;
+      }
+    }
+  }
+  ```
+
+- 在ohosTest > ets > test文件夹下.test.ets文件中编写具体测试代码。
+
+  ```ts
+  import { describe, it, expect } from '@ohos/hypium';
+  import { PerfMetric, PerfTest, PerfTestStrategy, PerfMeasureResult } from '@kit.TestKit';
+  import { PerfUtils } from '../../../main/ets/utils/PerfUtils';
+
+  export default function PerfTestTest() {
+    describe('PerfTestTest', () => {
+      it('testExample0', 0, async (done: Function) => {
+        let metrics: Array<PerfMetric> = [PerfMetric.DURATION, PerfMetric.CPU_USAGE] // 指定被测指标
+        let actionCode = async (finish: Callback<boolean>) => { // 测试代码段中使用uitest进行列表滑动
+          await await PerfUtils.CalculateTest()
+          finish(true);
+        };
+        let perfTestStrategy: PerfTestStrategy = {  // 定义测试策略
+          metrics: metrics,
+          actionCode: actionCode,
+        };
+        try {
+          let perfTest: PerfTest = PerfTest.create(perfTestStrategy); // 创建测试任务对象PerfTest
+          await perfTest.run(); // 执行测试，异步函数需使用await同步等待完成
+          let res1: PerfMeasureResult = perfTest.getMeasureResult(PerfMetric.DURATION); // 获取耗时指标的测试结果
+          let res2: PerfMeasureResult = perfTest.getMeasureResult(PerfMetric.CPU_USAGE); // 获取CPU使用率指标的测试结果
+          perfTest.destroy(); // 销毁PerfTest对象
+          expect(res1.average).assertLessOrEqual(1000); // 断言性能测试结果
+          expect(res2.average).assertLessOrEqual(30); // 断言性能测试结果
+        } catch (error) {
+          console.error(`Failed to execute perftest. Cause:${JSON.stringify(error)}`);
+          expect(false).assertTrue()
+        }
+        done();
+      })
+    })
+  }
+  ```
+
+2.测试当前应用内列表滑动帧率
+
+- 编写Index.ets页面代码，作为被测示例demo。
+
+  ```ts
+  @Entry
+  @Component
+  struct ListPage {
+    scroller: Scroller = new Scroller()
+    private arr: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    build() {
+      Row() {
+        Column() {
+          Scroll(this.scroller) {
+            Column() {
+              ForEach(this.arr, (item: number) => {
+                Text(item.toString())
+                  .width('90%')
+                  .height('40%')
+                  .fontSize(80)
+                  .textAlign(TextAlign.Center)
+                  .margin({ top: 10 })
+              }, (item: string) => item)
+            }
+          }
+          .width('100%')
+          .height('100%')
+          .scrollable(ScrollDirection.Vertical)
+          .scrollBar(BarState.On)
+          .scrollBarColor(Color.Gray)
+        }
+        .width('100%')
+      }
+      .height('100%')
+    }
+  }
+  ```
+
+- 在ohosTest > ets > test文件夹下.test.ets文件中编写具体测试代码。
+
+  ```ts
+  import { describe, it, expect } from '@ohos/hypium';
+  import { PerfMetric, PerfTest, PerfTestStrategy, PerfMeasureResult } from '@kit.TestKit';
+  import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
+  import { Want } from '@kit.AbilityKit';
+
+  const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+  export default function PerfTestTest() {
+    describe('PerfTestTest', () => {
+      it('testExample',0, async (done: Function) => {
+        let driver = Driver.create();
+        await driver.delayMs(1000);
+        const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
+        const want: Want = {
+          bundleName: bundleName,
+          abilityName: 'EntryAbility'
+        };
+        await delegator.startAbility(want); // 打开测试页面
+        await driver.delayMs(1000);
+        let scroll = await driver.findComponent(ON.type('Scroll'));
+        await driver.delayMs(1000);
+        let center = await scroll.getBoundsCenter();  // 获取Scroll可滚动组件坐标
+        await driver.delayMs(1000);
+        let metrics: Array<PerfMetric> = [PerfMetric.LIST_SWIPE_FPS]  // 指定被测指标为列表滑动帧率
+        let actionCode = async (finish: Callback<boolean>) => { // 测试代码段中使用uitest进行列表滑动
+          await driver.fling({x: center.x, y: Math.floor(center.y * 3 / 2)}, {x: center.x, y: Math.floor(center.y / 2)}, 50, 20000);
+          await driver.delayMs(3000);
+          finish(true);
+        };
+        let resetCode = async (finish: Callback<boolean>) => {  // 复位环境，将列表划至顶部
+          await scroll.scrollToTop(40000);
+          await driver.delayMs(1000);
+          finish(true);
+        };
+        let perfTestStrategy: PerfTestStrategy = {  // 定义测试策略
+          metrics: metrics,
+          actionCode: actionCode,
+          resetCode: resetCode,
+          iterations: 5,  // 指定测试迭代次数
+          timeout: 50000, // 指定actionCode和resetCode的超时时间
+        };
+        try {
+          let perfTest: PerfTest = PerfTest.create(perfTestStrategy); // 创建测试任务对象PerfTest
+          await perfTest.run(); // 执行测试，异步函数需使用await同步等待完成
+          let res: PerfMeasureResult = perfTest.getMeasureResult(PerfMetric.LIST_SWIPE_FPS); // 获取列表滑动帧率指标的测试结果
+          perfTest.destroy(); // 销毁PerfTest对象
+          expect(res.average).assertLargerOrEqual(60);  // 断言性能测试结果
+        } catch (error) {
+          console.error(`Failed to execute perftest. Cause:${JSON.stringify(error)}`);
+        }
+        done();
+      })
+    })
+  }
+  ```
+
 ### 执行测试脚本
 
 #### 在DevEco Studio执行
@@ -191,7 +349,7 @@ export default function abilityTest() {
 
 **查看测试用例覆盖率**
 
-执行完测试用例后可以查看测试用例覆盖率，具体操作请参考[代码测试](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-code-test-V5)下各章节内的覆盖率统计模式。
+执行完测试用例后可以查看测试用例覆盖率，具体操作请参考[代码测试](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-code-test)下各章节内的覆盖率统计模式。
 
 #### 在CMD执行
 
@@ -448,16 +606,16 @@ hdc shell uitest uiRecord read
 | 命令   | 必填 | 描述              | 
 |------|------|-----------------|
 | help   | 是    | uiInput命令相关帮助信息。 |
-| click   | 是    | 模拟单击操作。      | 
-| doubleClick   | 是    | 模拟双击操作。      | 
-| longClick   | 是    | 模拟长按操作。     | 
-| fling   | 是    | 模拟快滑操作。   | 
-| swipe   | 是    | 模拟慢滑操作。     | 
-| drag   | 是    | 模拟拖拽操作。     | 
-| dircFling   | 是    | 模拟指定方向滑动操作。     |
-| inputText   | 是    | 指定坐标点，模拟输入框输入文本操作。                   |
-| text   | 是    | 无需指定坐标点，在当前获焦处，模拟输入框输入文本操作。                           |
-| keyEvent   | 是    | 模拟实体按键事件（如：键盘，电源键，返回上一级，返回桌面等），以及组合按键操作。     | 
+| click   | 是    | 模拟单击操作。具体请参考下方**uiInput click/doubleClick/longClick使用示例**。      | 
+| doubleClick   | 是    | 模拟双击操作。具体请参考下方**uiInput click/doubleClick/longClick使用示例**。      | 
+| longClick   | 是    | 模拟长按操作。具体请参考下方**uiInput click/doubleClick/longClick使用示例**。     | 
+| fling   | 是    | 模拟快滑操作。具体请参考下方**uiInput fling使用示例使用示例**。   | 
+| swipe   | 是    | 模拟慢滑操作。具体请参考下方**uiInput swipe/drag使用示例**。     | 
+| drag   | 是    | 模拟拖拽操作。具体请参考下方**uiInput swipe/drag使用示例**。     | 
+| dircFling   | 是    | 模拟指定方向滑动操作。具体请参考下方**uiInput dircFling使用示例**。     |
+| inputText   | 是    | 指定坐标点，模拟输入框输入文本操作。具体请参考下方**uiInput inputText使用示例**。                   |
+| text   | 是    | 无需指定坐标点，在当前获焦处，模拟输入框输入文本操作。具体请参考下方**uiInput text使用示例**。                           |
+| keyEvent   | 是    | 模拟实体按键事件（如：键盘，电源键，返回上一级，返回桌面等），以及组合按键操作。具体请参考下方**uiInput keyEvent使用示例**。     | 
 
 
 #### uiInput click/doubleClick/longClick使用示例
@@ -560,7 +718,7 @@ hdc shell uitest uiInput text hello
 
 | 配置参数             | 必填       | 描述                                                                                                                              |                
 |------|------|---------------------------------------------------------------------------------------------------------------------------------|
-| keyID1   | 是    | 实体按键对应ID，取值范围：Back、Home、Power、或[KeyCode键码值](../reference/apis-input-kit/js-apis-keycode.md#keycode)。<br>当取值为Back、Home或Power时，不支持输入组合键。 | 
+| keyID1   | 是    | 实体按键对应ID，取值范围：Back、Home、Power、或[KeyCode键码值](../reference/apis-input-kit/js-apis-keycode.md#keycode)。<br>当取值为Back、Home或Power时，不支持输入组合键。 <br>当前注入大写锁定键（KeyCode=2074）无效，请使用组合键实现大写字母输入。如“按键shift+按键V”输入大写字母V。 | 
 | keyID2    | 否    | 实体按键对应ID，取值范围：[KeyCode键码值](../reference/apis-input-kit/js-apis-keycode.md#keycode)，默认值为空。                                               |
 | keyID3    | 否    | 实体按键对应ID，取值范围：[KeyCode键码值](../reference/apis-input-kit/js-apis-keycode.md#keycode)，默认值为空。                                               |
 
@@ -571,6 +729,10 @@ hdc shell uitest uiInput keyEvent Home
 hdc shell uitest uiInput keyEvent Back
 # 组合键粘贴。
 hdc shell uitest uiInput keyEvent 2072 2038
+# 输入小写字母v。
+hdc shell uitest uiInput keyEvent 2038
+# 输入大写字母V。
+hdc shell uitest uiInput keyEvent 2047 2038
 ```
 
 ### 获取版本信息
@@ -701,7 +863,7 @@ hdc shell uitest start-daemon
 
 1. 检查用例代码逻辑，确保即使断言失败场景认可走到done函数，保证用例执行结束。
 
-2. 可在IDE中Run/Debug Configurations中修改用例执行超时配置参数，避免用例执行超时。
+2. 可在DevEco Studio中Run/Debug Configurations中修改用例执行超时配置参数，避免用例执行超时。
 
 3. 检查用例代码逻辑，断言结果，确保断言Pass。
 ### UI测试用例常见问题

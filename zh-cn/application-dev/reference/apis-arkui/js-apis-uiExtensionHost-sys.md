@@ -13,7 +13,7 @@
 ## 导入模块
 
 ```
-import { uiExtensionHost } from '@kit.ArkUI'
+import { uiExtensionHost } from '@kit.ArkUI';
 ```
 
 ## UIExtensionHostWindowProxy
@@ -30,21 +30,21 @@ getWindowAvoidArea(type: window.AvoidAreaType): window.AvoidArea
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | [window.AvoidAreaType](js-apis-window.md#avoidareatype7) | 是 | 表示规避区类型。 |
+| type | [window.AvoidAreaType](arkts-apis-window-e.md#avoidareatype7) | 是 | 表示规避区类型。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [window.AvoidArea](js-apis-window.md#avoidarea7) | 宿主窗口内容规避区域。 |
+| [window.AvoidArea](arkts-apis-window-i.md#avoidarea7) | 宿主窗口内容规避区域。 |
 
-**返回值：** 
+**错误码：**
 
 | 错误码ID | 错误信息         |
 | -------- | ---------------- |
 | 401      | Parameter error. |
 
-**示例**
+**示例：**
 
 ```ts
 // ExtensionProvider.ts
@@ -75,7 +75,7 @@ on(type: 'avoidAreaChange', callback: Callback<{ type: window.AvoidAreaType, are
 | 参数名   | 类型   | 必填 | 说明                   |
 | -------- | ------ | ---- | ---------------------- |
 | type     | string | 是   | 监听的事件类型，固定为'avoidAreaChange'，即系统规避区变化事件。 |
-| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<{ type: [window.AvoidAreaType](js-apis-window.md#avoidareatype7), area: [window.AvoidArea](js-apis-window.md#avoidarea7) }> | 是 | 回调函数：入参用于接收当前规避区的信息，其中，"type"表示窗口规避区类型，"area"表示窗口内容规避区域。 |
+| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<{ type: [window.AvoidAreaType](arkts-apis-window-e.md#avoidareatype7), area: [window.AvoidArea](arkts-apis-window-i.md#avoidarea7) }> | 是 | 回调函数：入参用于接收当前规避区的信息，其中，"type"表示窗口规避区类型，"area"表示窗口内容规避区域。 |
 
 **错误码：** 
 
@@ -83,7 +83,7 @@ on(type: 'avoidAreaChange', callback: Callback<{ type: window.AvoidAreaType, are
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: <br/> 1. Mandatory parameters are left unspecified.<br/> 2. Incorrect parameters types.<br/> 3. Parameter verification failed. |
 
-**示例**
+**示例：**
 
 ```ts
 // ExtensionProvider.ts
@@ -113,7 +113,7 @@ off(type: 'avoidAreaChange', callback?: Callback<{ type: window.AvoidAreaType, a
 | 参数名   | 类型   | 必填 | 说明                   |
 | -------- | ------ | ---- | ---------------------- |
 | type     | string | 是   | 注销的事件类型，固定为'avoidAreaChange'，即系统规避区变化事件。 |
-| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<{ type: [window.AvoidAreaType](js-apis-window.md#avoidareatype7), area: [window.AvoidArea](js-apis-window.md#avoidarea7) }> | 否 | 回调函数：如果传入该参数，则关闭该监听。如果未传入参数，则关闭所有系统规避区变化的监听。 |
+| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<{ type: [window.AvoidAreaType](arkts-apis-window-e.md#avoidareatype7), area: [window.AvoidArea](arkts-apis-window-i.md#avoidarea7) }> | 否 | 回调函数：如果传入该参数，则关闭该监听。如果未传入参数，则关闭所有系统规避区变化的监听。 |
 
 **错误码：** 
 
@@ -121,7 +121,7 @@ off(type: 'avoidAreaChange', callback?: Callback<{ type: window.AvoidAreaType, a
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: <br/> 1. Mandatory parameters are left unspecified.<br/> 2. Incorrect parameters types.<br/> 3. Parameter verification failed. |
 
-**示例**
+**示例：**
 
 ```ts
 // ExtensionProvider.ts
@@ -149,7 +149,7 @@ on(type: 'windowSizeChange', callback: Callback<window.Size>): void
 | 参数名   | 类型                  | 必填 | 说明                   |
 | -------- | --------------------- | ---- | ---------------------- |
 | type     | string                | 是   | 监听的事件类型，固定为'windowSizeChange'，即窗口尺寸变化事件。 |
-| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[window.Size](js-apis-window.md#size7)> | 是   | 回调函数：入参用于接收当前窗口的尺寸。 |
+| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[window.Size](arkts-apis-window-i.md#size7)> | 是   | 回调函数：入参用于接收当前窗口的尺寸。 |
 
 **错误码：** 
 
@@ -157,7 +157,7 @@ on(type: 'windowSizeChange', callback: Callback<window.Size>): void
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: <br/> 1. Mandatory parameters are left unspecified.<br/> 2. Incorrect parameters types.<br/> 3. Parameter verification failed. |
 
-**示例**
+**示例：**
 
 ```ts
 // ExtensionProvider.ts
@@ -187,7 +187,7 @@ off(type: 'windowSizeChange', callback?: Callback<window.Size>): void
 | 参数名   | 类型                  | 必填 | 说明                   |
 | -------- | --------------------- | ---- | ---------------------- |
 | type     | string                | 是   | 注销的事件类型，固定值：'windowSizeChange'，即窗口尺寸变化事件。 |
-| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[window.Size](js-apis-window.md#size7)> | 否   | 回调函数：如果传入该参数，则关闭该监听。如果未传入参数，则关闭所有系统规避区变化的监听。 |
+| callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[window.Size](arkts-apis-window-i.md#size7)> | 否   | 回调函数：如果传入该参数，则关闭该监听。如果未传入参数，则关闭所有系统规避区变化的监听。 |
 
 **错误码：** 
 
@@ -195,7 +195,7 @@ off(type: 'windowSizeChange', callback?: Callback<window.Size>): void
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: <br/> 1. Mandatory parameters are left unspecified.<br/> 2. Incorrect parameters types.<br/> 3. Parameter verification failed. |
 
-**示例**
+**示例：**
 
 ```ts
 // ExtensionProvider.ts
@@ -224,7 +224,7 @@ properties: UIExtensionHostWindowProxyProperties
 | ---------- | ------------------------------------ | -------------------------------- |
 | properties | [UIExtensionHostWindowProxyProperties](#uiextensionhostwindowproxyproperties) | UIExtensionComponent组件以及宿主窗口的信息。 |
 
-**示例**
+**示例：**
 
 ```ts
 // ExtensionProvider.ts
@@ -274,7 +274,7 @@ hideNonSecureWindows(shouldHide: boolean): Promise&lt;void&gt;
 | 1300002  | Abnormal state. Possible causes: <br> 1. Permission denied. Interface caller does not have permission "ohos.permission.ALLOW_SHOW_NON_SECURE_WINDOWS". <br> 2. The UIExtension window proxy is abnormal. |
 | 1300003  | This window manager service works abnormally. |
 
-**示例**
+**示例：**
 
 ```ts
 // ExtensionProvider.ts
@@ -287,18 +287,18 @@ export default class EntryAbility extends UIExtensionAbility {
     const extensionHostWindow = session.getUIExtensionHostWindowProxy();
     // 隐藏非安全窗口
     extensionHostWindow.hideNonSecureWindows(true).then(()=> {
-      console.log(`Succeeded in hiding the non-secure windows.`);
+      console.info(`Succeeded in hiding the non-secure windows.`);
     }).catch((err: BusinessError)=> {
-      console.log(`Failed to hide the non-secure windows. Cause:${JSON.stringify(err)}`);
+      console.error(`Failed to hide the non-secure windows. Cause:${JSON.stringify(err)}`);
     })
   }
   onSessionDestroy(session: UIExtensionContentSession) {
     const extensionHostWindow = session.getUIExtensionHostWindowProxy();
     // 取消隐藏非安全窗口
     extensionHostWindow.hideNonSecureWindows(false).then(()=> {
-      console.log(`Succeeded in showing the non-secure windows.`);
+      console.info(`Succeeded in showing the non-secure windows.`);
     }).catch((err: BusinessError)=> {
-      console.log(`Failed to show the non-secure windows. Cause:${JSON.stringify(err)}`);
+      console.error(`Failed to show the non-secure windows. Cause:${JSON.stringify(err)}`);
     })
   }
 }
@@ -321,13 +321,13 @@ createSubWindowWithOptions(name: string, subWindowOptions: window.SubWindowOptio
 | 参数名 | 类型   | 必填 | 说明           |
 | ------ | ------ | ---- | -------------- |
 | name   | string | 是   | 子窗口的名字。 |
-| subWindowOptions | [window.SubWindowOptions](js-apis-window.md#subwindowoptions) | 是 | 子窗口参数。 |
+| subWindowOptions | [window.SubWindowOptions](arkts-apis-window-i.md#subwindowoptions11) | 是 | 子窗口参数。 |
 
 **返回值：**
 
 | 类型                             | 说明                                             |
 | -------------------------------- | ------------------------------------------------ |
-| Promise&lt;[window.Window](js-apis-window.md#window)&gt; | Promise对象。返回当前UIExtensionHostWindowProxy下创建的子窗口对象。 |
+| Promise&lt;[window.Window](arkts-apis-window-Window.md#window)&gt; | Promise对象。返回当前UIExtensionHostWindowProxy下创建的子窗口对象。 |
 
 **错误码：**
 
@@ -358,7 +358,7 @@ export default class EntryAbility extends UIExtensionAbility {
     // 创建子窗口
     extensionHostWindow.createSubWindowWithOptions('subWindowForHost', subWindowOpts)
       .then((subWindow: window.Window) => {
-        subWindow.loadContent('pages/Index', (err, data) =>{
+        subWindow.setUIContent('pages/Index', (err, data) =>{
           if (err && err.code != 0) {
             return;
           }
@@ -420,7 +420,7 @@ setWaterMarkFlag(enable: boolean): Promise&lt;void&gt;
 | 1300003 | This window manager service works abnormally.  |
 | 1300008 | The operation is on invalid display. |
 
-**示例**
+**示例：**
 
 ```ts
 // ExtensionProvider.ts
@@ -432,18 +432,18 @@ export default class EntryAbility extends UIExtensionAbility {
     const extensionHostWindow = session.getUIExtensionHostWindowProxy();
     // 添加安全水印标志
     extensionHostWindow.setWaterMarkFlag(true).then(() => {
-      console.log(`Succeeded in setting water mark flag of window.`);
+      console.info(`Succeeded in setting water mark flag of window.`);
     }).catch((err: BusinessError) => {
-      console.log(`Failed to setting water mark flag of window. Cause:${JSON.stringify(err)}`);
+      console.error(`Failed to setting water mark flag of window. Cause:${JSON.stringify(err)}`);
     })
   }
   onSessionDestroy(session: UIExtensionContentSession) {
     const extensionHostWindow = session.getUIExtensionHostWindowProxy();
     // 删除安全水印标志
     extensionHostWindow.setWaterMarkFlag(false).then(() => {
-      console.log(`Succeeded in deleting water mark flag of window.`);
+      console.info(`Succeeded in deleting water mark flag of window.`);
     }).catch((err: BusinessError) => {
-      console.log(`Failed to deleting water mark flag of window. Cause:${JSON.stringify(err)}`);
+      console.error(`Failed to deleting water mark flag of window. Cause:${JSON.stringify(err)}`);
     })
   }
 }
@@ -455,7 +455,7 @@ hidePrivacyContentForHost(shouldHide: boolean): Promise&lt;void&gt;
 设置UIExtension组件在非系统截图时的隐私内容保护开关，使用Promise异步回调。
 > **说明：**
 >
-> 开启截图隐私内容保护后，使用窗口截图[window.snapshot](js-apis-window.md###snapshot)或者组件截图[UIContext.getComponentSnapshot](js-apis-arkui-UIContext.md###getComponentSnapshot)
+> 开启截图隐私内容保护后，使用窗口截图[window.snapshot](arkts-apis-window-Window.md#snapshot9)或者组件截图[UIContext.getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)
 将无法截取到当前组件的内容（不包括该组件下创建的子窗）。
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
@@ -484,7 +484,7 @@ hidePrivacyContentForHost(shouldHide: boolean): Promise&lt;void&gt;
 | 401      | Parameter error. Possible causes: <br> 1. Mandatory parameters are left unspecified. <br> 2. Incorrect parameters types. <br> 3. Parameter verification failed. |
 | 1300002  | The UIExtension window proxy is abnormal.                    |
 
-**示例**
+**示例：**
 
 ```ts
 // ExtensionProvider.ts
@@ -496,9 +496,9 @@ export default class EntryAbility extends UIExtensionAbility {
     const extensionHostWindow = session.getUIExtensionHostWindowProxy();
     // 开启截图隐私内容保护
     extensionHostWindow.hidePrivacyContentForHost(true).then(() => {
-      console.log(`Successfully enabled privacy protection for non-system screenshots.`);
+      console.info(`Successfully enabled privacy protection for non-system screenshots.`);
     }).catch((err: BusinessError) => {
-      console.log(`Failed enabled privacy protection for non-system screenshots. Cause:${JSON.stringify(err)}`);
+      console.error(`Failed enabled privacy protection for non-system screenshots. Cause:${JSON.stringify(err)}`);
     })
   }
 }
@@ -514,7 +514,7 @@ export default class EntryAbility extends UIExtensionAbility {
 
 | 名称                         | 类型        | 必填      | 说明                             |
 | ------------------------------ | ----------- | -------------------------------- | -------------------------------- |
-| uiExtensionHostWindowProxyRect | [window.Rect](js-apis-window.md#rect7) | 是 | UIExtensionComponent的位置和宽高。 |
+| uiExtensionHostWindowProxyRect | [window.Rect](arkts-apis-window-i.md#rect7) | 是 | UIExtensionComponent的位置和宽高。 |
 
 ## 完整示例
 
@@ -529,7 +529,7 @@ export default class EntryAbility extends UIExtensionAbility {
   @Entry
   @Component
   struct Index {
-    @State message: string = 'Message: '
+    @State message: string = 'Message: ';
     private want: Want = {
       bundleName: "com.example.uiextensiondemo",
       abilityName: "ExampleUIExtensionAbility",
@@ -558,7 +558,7 @@ export default class EntryAbility extends UIExtensionAbility {
   ```ts
   import { UIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
 
-  const TAG: string = '[ExampleUIExtensionAbility]'
+  const TAG: string = '[ExampleUIExtensionAbility]';
   export default class ExampleUIExtensionAbility extends UIExtensionAbility {
     onCreate() {
       console.log(TAG, `onCreate`);
@@ -594,30 +594,29 @@ export default class EntryAbility extends UIExtensionAbility {
   import { BusinessError } from '@kit.BasicServicesKit';
   import { uiExtensionHost, window } from '@kit.ArkUI';
 
-  let storage = LocalStorage.getShared()
-
-  @Entry(storage)
+  @Entry()
   @Component
   struct Extension {
     @State message: string = 'UIExtensionAbility Index';
-    private session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
-    private extensionWindow: uiExtensionHost.UIExtensionHostWindowProxy | undefined = this.session?.getUIExtensionHostWindowProxy();
+    private storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
+    private session: UIExtensionContentSession | undefined = this.storage?.get<UIExtensionContentSession>('session');
+    private extensionHostWindow: uiExtensionHost.UIExtensionHostWindowProxy | undefined = this.session?.getUIExtensionHostWindowProxy();
     private subWindow: window.Window | undefined = undefined;
 
     aboutToAppear(): void {
-      this.extensionWindow?.on('windowSizeChange', (size) => {
+      this.extensionHostWindow?.on('windowSizeChange', (size) => {
           console.info(`size = ${JSON.stringify(size)}`);
       });
-      this.extensionWindow?.on('avoidAreaChange', (info) => {
+      this.extensionHostWindow?.on('avoidAreaChange', (info) => {
           console.info(`type = ${JSON.stringify(info.type)}, area = ${JSON.stringify(info.area)}`);
       });
-      let promise = this.extensionWindow?.hideNonSecureWindows(true);
+      let promise = this.extensionHostWindow?.hideNonSecureWindows(true);
       promise?.then(()=> {
         console.log(`Succeeded in hiding the non-secure windows.`);
       }).catch((err: BusinessError)=> {
         console.log(`Failed to hide the non-secure windows. Cause:${JSON.stringify(err)}`);
       })
-      extensionHostWindow.hidePrivacyContentForHost(true).then(() => {
+      this.extensionHostWindow?.hidePrivacyContentForHost(true)?.then(() => {
         console.log(`Successfully enabled privacy protection for non-system screenshots.`);
       }).catch((err: BusinessError) => {
         console.log(`Failed enabled privacy protection for non-system screenshots. Cause:${JSON.stringify(err)}`);
@@ -625,9 +624,9 @@ export default class EntryAbility extends UIExtensionAbility {
     }
 
     aboutToDisappear(): void {
-      this.extensionWindow?.off('windowSizeChange');
-      this.extensionWindow?.off('avoidAreaChange');
-      let promise = this.extensionWindow?.hideNonSecureWindows(false);
+      this.extensionHostWindow?.off('windowSizeChange');
+      this.extensionHostWindow?.off('avoidAreaChange');
+      let promise = this.extensionHostWindow?.hideNonSecureWindows(false);
       promise?.then(()=> {
         console.log(`Succeeded in showing the non-secure windows.`);
       }).catch((err: BusinessError)=> {
@@ -641,11 +640,11 @@ export default class EntryAbility extends UIExtensionAbility {
           .fontSize(20)
           .fontWeight(FontWeight.Bold)
         Button("获取组件大小").width('90%').margin({top: 5, bottom: 5}).fontSize(16).onClick(() => {
-          let rect = this.extensionWindow?.properties.uiExtensionHostWindowProxyRect;
+          let rect = this.extensionHostWindow?.properties.uiExtensionHostWindowProxyRect;
           console.info(`UIExtensionComponent的宽高和位置信息: ${JSON.stringify(rect)}`);
         })
         Button("获取系统规避区信息").width('90%').margin({top: 5, bottom: 5}).fontSize(16).onClick(() => {
-          let avoidArea: window.AvoidArea | undefined = this.extensionWindow?.getWindowAvoidArea(window.AvoidAreaType.TYPE_SYSTEM);
+          let avoidArea: window.AvoidArea | undefined = this.extensionHostWindow?.getWindowAvoidArea(window.AvoidAreaType.TYPE_SYSTEM);
           console.info(`系统规避区: ${JSON.stringify(avoidArea)}`);
         })
         Button("创建子窗口").width('90%').margin({top: 5, bottom: 5}).fontSize(16).onClick(() => {
@@ -653,10 +652,10 @@ export default class EntryAbility extends UIExtensionAbility {
             'title': 'This is a subwindow',
             decorEnabled: true
           };
-          this.extensionWindow?.createSubWindowWithOptions('subWindowForHost', subWindowOpts)
+          this.extensionHostWindow?.createSubWindowWithOptions('subWindowForHost', subWindowOpts)
             .then((subWindow: window.Window) => {
               this.subWindow = subWindow;
-              this.subWindow.loadContent('pages/Index', storage, (err, data) =>{
+              this.subWindow.loadContent('pages/Index', this.storage, (err, data) =>{
                 if (err && err.code != 0) {
                   return;
                 }

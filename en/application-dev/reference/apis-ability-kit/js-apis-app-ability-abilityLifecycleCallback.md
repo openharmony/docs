@@ -498,7 +498,7 @@ import { AbilityLifecycleCallback, UIAbility } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 
 // Import GlobalContext. Use the actual path declared.
-import { GlobalContext } from '../GlobalContext'
+import { GlobalContext } from '../GlobalContext';
 
 // Declare the ability lifecycle callbacks. A listener can be registered in applicationContext only after all the callbacks are configured.
 let abilityLifecycleCallback: AbilityLifecycleCallback = {
@@ -593,7 +593,7 @@ Second ability of the application
 import { UIAbility } from '@kit.AbilityKit';
 
 // Import GlobalContext. Use the actual path declared.
-import { GlobalContext } from '../GlobalContext'
+import { GlobalContext } from '../GlobalContext';
 import { BusinessError } from '@ohos.base';
 
 export default class MySecondAbility extends UIAbility {

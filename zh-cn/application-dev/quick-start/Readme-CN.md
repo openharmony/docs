@@ -5,7 +5,6 @@
   - [构建第一个ArkTS应用（Stage模型）](start-with-ets-stage.md)
 <!--DelEnd-->
 - 开发基础知识<!--development-fundamentals-->
-  - [应用程序包术语](application-package-glossary.md)
   - 应用程序包基础知识<!--application-package-fundamentals-->
     - [应用程序包概述](application-package-overview.md)
     - 应用程序包结构<!--application-package-structure-->
@@ -15,7 +14,9 @@
       - [HAP](hap-package.md)
       - [HAR](har-package.md)
       - [HSP](in-app-hsp.md)
-    - [应用程序包安装卸载与更新](application-package-install-uninstall.md)
+    - 应用程序包安装卸载与更新<!--application-package-install-->
+      - [应用安装卸载与更新开发指导](application-package-install-uninstall.md)
+      - [应用安装与更新一致性校验](multi_module_installation_update_consistency_verification.md)
   - 应用配置文件（Stage模型）<!--application-configuration-file-stage-->
     - [应用配置文件概述（Stage模型）](application-configuration-file-overview-stage.md)
     - [app.json5配置文件](app-configuration-file.md)
@@ -32,7 +33,9 @@
     - [创建应用静态快捷方式](typical-scenario-configuration.md)
     - [创建应用分身](app-clone.md)
     - [创建应用多实例](multiInstance.md)
-    - [配置分层图标](layered-image.md)
+    - [配置应用图标](layered-image.md)
+  - [应用程序包常见问题](common_problem_of_application.md)
+  - [应用程序包术语](application-package-glossary.md)
 - [资源分类与访问](resource-categories-and-access.md)
 - 学习ArkTS语言<!--learning-arkts-->
   - [初识ArkTS语言](arkts-get-started.md)
@@ -43,3 +46,6 @@
     - [从TypeScript到ArkTS的适配规则](typescript-to-arkts-migration-guide.md)
     - [适配指导案例](arkts-more-cases.md)
   - [ArkTS高性能编程实践](arkts-high-performance-programming.md)
+  - 面向其他语言的ArkTS迁移指导
+    - [从Java到ArkTS的迁移指导](getting-started-with-arkts-for-java-programmers.md)
+    - [从Swift到ArkTS的迁移指导](getting-started-with-arkts-for-swift-programmers.md)

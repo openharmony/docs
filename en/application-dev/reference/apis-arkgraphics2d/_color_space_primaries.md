@@ -9,6 +9,7 @@ The ColorSpacePrimaries struct describes the color space primaries.
 
 **Related module**: [NativeColorSpaceManager](_native_color_space_manager.md)
 
+**Header file**: [native_color_space_manager.h](native__color__space__manager_8h.md)
 
 ## Summary
 
@@ -35,7 +36,6 @@ The ColorSpacePrimaries struct describes the color space primaries.
 ```
 float ColorSpacePrimaries::bX
 ```
-
 **Description**
 
 X-coordinate of the blue color.
@@ -46,7 +46,6 @@ X-coordinate of the blue color.
 ```
 float ColorSpacePrimaries::bY
 ```
-
 **Description**
 
 Y-coordinate of the blue color.
@@ -57,7 +56,6 @@ Y-coordinate of the blue color.
 ```
 float ColorSpacePrimaries::gX
 ```
-
 **Description**
 
 X-coordinate of the green color.
@@ -68,7 +66,6 @@ X-coordinate of the green color.
 ```
 float ColorSpacePrimaries::gY
 ```
-
 **Description**
 
 Y-coordinate of the green color.
@@ -79,7 +76,6 @@ Y-coordinate of the green color.
 ```
 float ColorSpacePrimaries::rX
 ```
-
 **Description**
 
 X-coordinate of the red color.
@@ -90,7 +86,6 @@ X-coordinate of the red color.
 ```
 float ColorSpacePrimaries::rY
 ```
-
 **Description**
 
 Y-coordinate of the red color.
@@ -101,7 +96,6 @@ Y-coordinate of the red color.
 ```
 float ColorSpacePrimaries::wX
 ```
-
 **Description**
 
 X-coordinate of the white point.
@@ -112,7 +106,6 @@ X-coordinate of the white point.
 ```
 float ColorSpacePrimaries::wY
 ```
-
 **Description**
 
 Y-coordinate of the white point.

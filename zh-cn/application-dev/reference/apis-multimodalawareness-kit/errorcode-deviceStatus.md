@@ -27,7 +27,7 @@ Service exception.
 
 **错误信息**
 
-Subscribe Failed.
+Subscription failed.
 
 **错误描述**
 
@@ -46,7 +46,7 @@ Subscribe Failed.
 
 **错误信息**
 
-UnSubscribe Failed.
+Unsubscription failed.
 
 **错误描述**
 

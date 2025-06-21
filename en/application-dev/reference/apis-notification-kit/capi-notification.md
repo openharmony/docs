@@ -3,7 +3,7 @@
 
 ## Overview
 
-Describes the notification capabilities provided by the **Notification** for applications.
+The **Notification** module provides the notification capabilities for applications.
 
 **System capability**: SystemCapability.Notification.Notification
 

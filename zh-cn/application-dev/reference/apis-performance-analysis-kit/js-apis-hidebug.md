@@ -68,7 +68,7 @@ getNativeHeapFreeSize(): bigint
 
 | 类型   | 说明                            |
 | ------ | ----------------------------- |
-| bigint | 返回内存分配器持有的空闲的普通块所占用内存大小，单位为Byte。 |
+| bigint | 返回内存分配器统计的进程持有的空闲的普通块所占用内存大小，单位为Byte。 |
 
 **示例：**
 ```ts
@@ -228,6 +228,7 @@ getServiceDump(serviceid: number, fd: number, args: Array\<string>) : void
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { fileIo } from '@kit.CoreFileKit';
 import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -235,6 +236,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let fileFd = -1;
 try {
+  // 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext。
   let path: string = this.getUIContext().getHostContext()!.filesDir + "/serviceInfo.txt";
   console.info("output path: " + path);
   fileFd = fileIo.openSync(path, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE).fd;
@@ -482,7 +484,7 @@ startAppTraceCapture(tags: number[], flag: TraceFlag, limitSize: number) : strin
 
 该接口补充了[hitrace](../../dfx/hitrace.md)功能，开发者可通过该接口完成指定范围的trace自动化采集。由于该接口中trace采集过程中消耗的性能与需要采集的范围成正相关，建议开发者在使用该接口前，通过hitrace命令抓取应用的trace日志，从中筛选出所需trace采集的关键范围，以提高该接口性能。
 
-`startAppTraceCapture()`方法的调用需要与`[stopAppTraceCapture()](#hidebugstopapptracecapture12)`方法的调用一一对应，重复开启trace采集将导致接口调用异常，由于trace采集过程中会消耗较多性能，开发者应在完成采集后及时关闭。
+`startAppTraceCapture()`方法的调用需要与'[stopAppTraceCapture()](#hidebugstopapptracecapture12)'方法的调用一一对应，重复开启trace采集将导致接口调用异常，由于trace采集过程中会消耗较多性能，开发者应在完成采集后及时关闭。
 
 应用调用startAppTraceCapture接口启动采集trace，当采集的trace大小超过了limitSize，系统将自动调用stopAppTraceCapture接口停止采集。因此limitSize大小设置不当，将导致生成trace数据不足，无法满足故障分析。所以要求开发者根据实际情况，评估limitSize大小。
 
@@ -645,6 +647,8 @@ setAppResourceLimit(type: string, value: number, enableDebugLog: boolean) : void
 
 设置应用的文件描述符数量、线程数量、JS内存或Native内存资源限制。
 
+主要应用场景在于构造内存泄漏故障，参见[订阅资源泄漏事件（ArkTS）](../../dfx/hiappevent-watcher-resourceleak-events-arkts.md)、[订阅资源泄漏事件（C/C++）](../../dfx/hiappevent-watcher-resourceleak-events-ndk.md)。
+
 > **注意：**
 >
 > 当设置的开发者选项开关打开并重启设备后，此功能有效。
@@ -655,11 +659,11 @@ setAppResourceLimit(type: string, value: number, enableDebugLog: boolean) : void
 
 **参数：**
 
-| 参数名   | 类型   | 必填 | 说明                                                         |
-| -------- | ------ | ---- | ------------------------------------------------------------ |
-| type | string |  是  | 泄漏资源类型，共四种：<br/>- pss_memory（native内存）<br/>- js_heap（js堆内存）<br/>- fd（文件描述符）<br/>- thread（线程）                                                                       |
+| 参数名   | 类型   | 必填 | 说明                                                                                                                                                                      |
+| -------- | ------ | ---- |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| type | string |  是  | 泄漏资源类型，共四种：<br/>- pss_memory（native内存）<br/>- js_heap（js堆内存）<br/>- fd（文件描述符）<br/>- thread（线程）                                                                            |
 | value | number |  是  | 对应泄漏资源类型的最大值，范围：<br/>- pss_memory类型：`[1024, 4 * 1024 * 1024]`（单位：KB）<br/>- js_heap类型：`[85, 95]`（分配给JS堆内存上限的85%~95%）<br/>- fd类型：`[10, 10000]`<br/>- thread类型：`[1, 1000]` |
-| enableDebugLog | boolean |  是  | 是否启用外部调试日志，默认值为false。请仅在灰度版本中设置为true，因为收集调试日志会花费太多的cpu或内存。                                                                                     |
+| enableDebugLog | boolean |  是  | 是否启用外部调试日志。外部调试日志请仅在灰度版本（正式版本发布之前，先向一小部分用户推出的测试版本）中启用，因为收集调试日志会占用大量的cpu资源和内存资源，可能会引起应用流畅性问题。<br/>true：启用外部调试日志。<br/>false：禁用外部调试日志。                                     |
 
 **错误码：**
 
@@ -780,6 +784,12 @@ getVMRuntimeStat(item: string): number
 | 参数名   | 类型   | 必填 | 说明          |
 | -------- | ------ | ---- |-------------|
 | item | string | 是   | 需要获取GC信息的类型。 |
+
+**返回值：**
+
+| 类型     | 说明                        |
+|--------|---------------------------|
+| number | 系统GC统计信息，根据传入的参数，返回相应的信息。 |
 
 | 输入参数                         | 返回值说明          |
 |------------------------------|----------------|
@@ -958,15 +968,15 @@ GcStats包含以下键值信息：
 
 isDebugState(): boolean
 
-获取应用进程的调试状态。如果应用进程的Ark层或Native层处于调试状态，则返回true；否则返回false。
+获取应用进程的调试状态。
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 **返回值：**
 
-| 类型  | 说明                      |
-| ------ | -------------------------- |
-| boolean | 应用进程的调试状态。 |
+| 类型  | 说明                                                   |
+| ------ |------------------------------------------------------|
+| boolean | 应用进程的Ark层或Native层是否处于调试状态。true：处于调试状态。false：未处于调试状态。 |
 
 **示例**
 
@@ -1059,15 +1069,15 @@ dumpJsRawHeapData(needGC?: boolean): Promise&lt;string&gt;
 > **注意：**
 >
 > 系统通过该接口转存快照会消耗大量资源，因此严格限制了调用频率和次数。处理完生成的文件后，请立即删除。
-> 建议仅在应用的灰度测试版本中使用。在正式版本中不推荐使用，避免影响应用流畅性。
+> 建议仅在应用的灰度版本中使用。在正式版本中不推荐使用，避免影响应用流畅性。
 
 **原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-| 参数名                     | 类型      | 必填 | 说明                                       |
-|-------------------------|---------|----|------------------------------------------|
-| needGC         | boolean | 否  | 转储堆快照时是否需要GC。默认为true。未填写时，转储前将触发GC。 |
+| 参数名                     | 类型      | 必填 | 说明                                          |
+|-------------------------|---------|----|---------------------------------------------|
+| needGC         | boolean | 否  | 转储堆快照前是否需要GC。true：需要GC。false：不需GC。默认值：true。 |
 
 **返回值：**
 
@@ -1100,4 +1110,102 @@ hidebug.dumpJsRawHeapData().then((filePath: string) => {
 }).catch((error: BusinessError) => {
   console.error(`error code: ${error.code}, error msg: ${error.message}`);
 })
+```
+
+## hidebug.enableGwpAsanGrayscale<sup>20+</sup>
+
+enableGwpAsanGrayscale(options?: GwpAsanOptions, duration?: number): void
+
+使能GWP-Asan，用于检测堆内存使用中的非法行为。
+
+该接口主要用于动态配置并启用GWP-Asan，以适配应用自定义的GWP-Asan检测策略。配置在应用重新启动后生效。
+
+更多关于GWP-Asan的说明，请参见[使用GWP-Asan检测内存错误](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-stability-gwpasan-detection)。
+
+> **说明**：
+> 
+> 1. 若设备运行期间已使能超过20个应用，调用该接口将会失败，并抛出错误码。
+> 2. 为避免应用异常退出，请务必使用try-catch捕获异常。
+
+**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**参数**：
+| 参数名   | 类型   | 必填 | 说明   |
+|---------|---------|--------|-----|
+|options | [GwpAsanOptions](#gwpasanoptions20) | 否 | GWP-Asan配置项。如果未进行设置，则会使用默认参数。|
+|duration | number | 否 | GWP-Asan持续时间，默认7天，需要传入大于0的正整数。|
+
+**错误码**：
+
+以下错误码的详细介绍请参见[HiDebug错误码](errorcode-hiviewdfx-hidebug.md)。
+
+| 错误码ID    | 错误信息 |
+|----------| ----------------------------------------------------------------- |
+| 11400114 | The number of GWP-ASAN applications of this device overflowed after last boot. |
+
+**示例**：
+
+```ts
+import { hidebug } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let options: hidebug.GwpAsanOptions = {
+  alwaysEnabled: true,
+  sampleRate: 2500,
+  maxSimutaneousAllocations: 5000,
+};
+let duration: number = 4;
+
+try {
+  hidebug.enableGwpAsanGrayscale(options, duration);
+  console.info('Succeeded in enabling GWP-Asan.');
+} catch (error) {
+  const err: BusinessError = error as BusinessError;
+  console.error(`Failed to enable GWP-Asan. Code: ${err.code}, message: ${err.message}`);
+}
+```
+## GwpAsanOptions<sup>20+</sup>
+GWP-Asan配置项。可用于配置是否使能、采样频率，以及最大分配的插槽数。
+
+**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+| 名称         | 类型  | 只读  | 可选 | 说明 |
+|--------------|------|-------|-------|-----|
+|alwaysEnabled | bool | 否  | 是 | true：100%使能GWP-Asan。<br/>false：1/128概率使能GWP-Asan。<br/> 默认值：false。|
+|sampleRate    |number| 否  |是|GWP-Asan采样频率，默认值为2500，需要传入大于0的正整数，若传入小数则向上取整。<br/> 1/sampleRate的概率对分配的内存进行采样。|
+|maxSimutaneousAllocations|number|否|是|最大分配的插槽数，默认值为1000，需要传入大于0的正整数，若传入小数则向上取整。<br/>当插槽用尽时，新分配的内存将不再受监控。<br/>释放已使用的内存后，其占用的插槽将自动复用，以便于后续内存的监控。|
+
+## hidebug.disableGwpAsanGrayscale<sup>20+</sup>
+disableGwpAsanGrayscale(): void
+
+停止使能GWP-Asan。调用该接口将取消自定义配置，恢复默认参数[GwpAsanOptions](#gwpasanoptions20)。
+
+**系统能力**：SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**示例**：
+
+```ts
+import { hidebug } from '@kit.PerformanceAnalysisKit';
+
+hidebug.disableGwpAsanGrayscale();
+```
+
+## hidebug.getGwpAsanGrayscaleState<sup>20+</sup>
+getGwpAsanGrayscaleState(): number
+
+获取当前GWP-Asan剩余使能天数。
+
+**返回值**：
+
+| 类型 | 说明 |
+|-----------|-------------|
+| number    |获取当前GWP-Asan剩余使能天数。若当前未使能，返回值0。|
+
+**示例**：
+
+```ts
+import { hidebug } from '@kit.PerformanceAnalysisKit';
+
+let remainDays: number = hidebug.getGwpAsanGrayscaleState();
+console.info(`remainDays: ${remainDays}`);
 ```

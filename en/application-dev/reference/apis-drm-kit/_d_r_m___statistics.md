@@ -9,6 +9,8 @@ The DRM_Statistics struct describes the statistics information about a media key
 
 **Related module**: [Drm](_drm.md)
 
+**Header file**: [native_drm_common.h](native__drm__common_8h.md)
+
 
 ## Summary
 

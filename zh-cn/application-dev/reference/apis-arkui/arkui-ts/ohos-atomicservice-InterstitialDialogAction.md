@@ -208,7 +208,7 @@ export default class EntryAbility extends UIAbility {
   }
 }
 ```
-
+<!--code_no_check-->
 ```ts
 // Index.ets
 import { getDialogUIContext } from '../entryability/EntryAbility';
@@ -335,7 +335,7 @@ export default class EntryAbility extends UIAbility {
   }
 }
 ```
-
+<!--code_no_check-->
 ```ts
 // Index.ets
 import { getDialogUIContext } from '../entryability/EntryAbility';

@@ -47,7 +47,7 @@ The ShortcutInfo module defines shortcut information configured in the configura
 
 Describes the custom data in the shortcut configuration.
 
- **System capability**: SystemCapability.BundleManager.BundleFramework.Launcher
+**System capability**: SystemCapability.BundleManager.BundleFramework.Launcher
 
 | Name         | Type   | Read-Only| Optional| Description                  |
 | ------------- | ------ | ---- | ---------------------- | ---------------------- |

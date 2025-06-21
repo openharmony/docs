@@ -34,7 +34,7 @@ import { motion } from '@kit.MultimodalAwarenessKit';
 
 订阅触控操作手感知事件。
 
-**需要权限**：ohos.permission.ACTIVITY_MOTION
+**需要权限**：ohos.permission.ACTIVITY_MOTION 或 ohos.permission.DETECT_GESTURE
 
 **系统能力**：SystemCapability.MultimodalAwareness.Motion
 
@@ -55,7 +55,7 @@ import { motion } from '@kit.MultimodalAwarenessKit';
 | 401      | Parameter error. Parameter verification failed. |
 | 801      | Capability not supported. Function can not work correctly due to limited device capabilities. |
 | 31500001 | Service exception. Possible causes: 1. A system error, such as null pointer, container-related exception; 2. N-API invocation exception, invalid N-API status. |
-| 31500002 | Subscribe Failed. Possible causes: 1. Callback registration failure; 2. Failed to bind native object to js wrapper; 3. N-API invocation exception, invalid N-API status; 4. IPC request exception. |
+| 31500002 | Subscription failed. Possible causes: 1. Callback registration failure; 2. Failed to bind native object to js wrapper; 3. N-API invocation exception, invalid N-API status; 4. IPC request exception. |
 
 **示例**：
 
@@ -64,7 +64,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 callback(data:motion.OperatingHandStatus) {
     console.info('callback success' + data);
-}
+};
 
 try {
     motion.on('operatingHandChanged', this.callback);  
@@ -83,7 +83,7 @@ off(type: 'operatingHandChanged', callback?: Callback&lt;OperatingHandStatus&gt;
 
 取消订阅触控操作手感知事件。
 
-**需要权限**：ohos.permission.ACTIVITY_MOTION
+**需要权限**：ohos.permission.ACTIVITY_MOTION 或 ohos.permission.DETECT_GESTURE
 
 **系统能力**：SystemCapability.MultimodalAwareness.Motion
 
@@ -104,7 +104,7 @@ off(type: 'operatingHandChanged', callback?: Callback&lt;OperatingHandStatus&gt;
 | 401      | Parameter error. Parameter verification failed. |
 | 801      | Capability not supported. Function can not work correctly due to limited device capabilities. |
 | 31500001 | Service exception. Possible causes: 1. A system error, such as null pointer, container-related exception; 2. N-API invocation exception, invalid N-API status. |
-| 31500003 | Unsubscribe Failed. Possible causes: 1. Callback removal failure; 2. N-API invocation exception, invalid N-API status; 3. IPC request exception. |
+| 31500003 | Unsubscription failed. Possible causes: 1. Callback failure; 2. N-API invocation exception, invalid N-API status; 3. IPC request exception. |
 
 **示例**：
 
@@ -128,7 +128,7 @@ getRecentOperatingHandStatus(): OperatingHandStatus;
 
 获取最新触控操作手状态。
 
-**需要权限**：ohos.permission.ACTIVITY_MOTION
+**需要权限**：ohos.permission.ACTIVITY_MOTION 或 ohos.permission.DETECT_GESTURE
 
 **系统能力**：SystemCapability.MultimodalAwareness.Motion
 

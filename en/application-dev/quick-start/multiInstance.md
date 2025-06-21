@@ -30,4 +30,4 @@ Application multi-instance can run on only 2-in-1 devices.
 
 - Build and package the configured project and install it on the device.
 - Right-click an application icon on the home screen to open an application process. Then right-click the application icon again and choose **Open**.
-In this case, two application process pages of a same application are displayed on the home screen.
+In this case, two application process pages of the same application are displayed on the home screen.

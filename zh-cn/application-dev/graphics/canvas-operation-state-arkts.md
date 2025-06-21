@@ -81,7 +81,7 @@ canvas.detachBrush();
 | ![Screenshot_20250120154655737](figures/Screenshot_20250120154655737.jpg) | ![Screenshot_20250118152812670](figures/Screenshot_20250118152812670.jpg) |
 
 
-## 矩阵变化操作
+## 矩阵变换操作
 
 矩阵变换也是常见的画布操作，是一种坐标系的转换，用于进行图形的变化。
 
@@ -204,9 +204,9 @@ canvas.detachBrush();
 
 | 接口 | 描述 |
 | -------- | -------- |
-| save(): void; | 用于保存当前画布的状态（画布矩阵）到一个栈顶。 |
-| restore(): void; | 用于恢复保存在栈顶的画布状态（画布矩阵）。 |
-| restoreToCount(count: number): void; | 用于恢复到指定数量的画布状态（画布矩阵）。 |
+| save(): void | 用于保存当前画布的状态（画布矩阵）到一个栈顶。 |
+| restore(): void | 用于恢复保存在栈顶的画布状态（画布矩阵）。 |
+| restoreToCount(count: number): void | 用于恢复到指定数量的画布状态（画布矩阵）。 |
 
 简单示例和示意图如下所示：
 
@@ -222,7 +222,7 @@ pen.setStrokeWidth(20);
 canvas.attachPen(pen);
 // 保存操作，当前是不存在放大等操作的，这个原始状态会被保存下来
 canvas.save();
-// x轴和y轴放行分别放大2倍
+// x轴和y轴方向分别放大2倍
 canvas.scale(2, 2);
 // 绘制圆形，因为执行过放大操作，所以此时绘制的是大圆
 canvas.drawCircle(300, 300, 200);

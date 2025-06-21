@@ -39,6 +39,7 @@ Defines **Params** (specifying the action that can be performed) in the Want.
 | APP_INSTANCE_KEY<sup>14+</sup>  | ohos.extra.param.key.appInstance  | Specific application instance.|
 | CREATE_APP_INSTANCE_KEY<sup>14+</sup>  | ohos.extra.param.key.createAppInstance  | Action of creating an application instance.|
 | CALLER_APP_CLONE_INDEX<sup>14+</sup>  | ohos.param.callerAppCloneIndex  | Clone index of the caller.|
+| APP_LAUNCH_TRUSTLIST<sup>17+</sup>  | ohos.params.appLaunchTrustList  | Filter list of applications for implicit launch. Only applications in the list are matched during implicit launch. The value is an array of [AppIdentifiers](js-apis-bundleManager-bundleInfo.md#signatureinfo) of the string type. The filter list supports a maximum of 50 applications. Passing an empty array will have no effect.<br>**Atomic service API**: This API can be used in atomic services since API version 17.|
 | LAUNCH_REASON_MESSAGE<sup>18+</sup>  | ohos.params.launchReasonMessage  | Reason for starting the ability when the caller starts the target ability. The caller must be a system application and must request the ohos.permission.SET_LAUNCH_REASON_MESSAGE permission. Currently, the value can only be **ReasonMessage_SystemShare**.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 
 ## Flags

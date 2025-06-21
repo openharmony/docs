@@ -2,7 +2,7 @@
 
 ## 使用场景
 
-为方便开发者定位问题，当前应用在ArkTS内存OOM时会自动进行Heapdump，虚拟机会扫描并保存当前堆上的所有对象信息，生成rawheap文件。该文件以二进制形式保存，开发者可从SDK中toolchains路径下获取rawheap_translator工具进行解析，转换成heapsnapshot文件，可通过[DevEco Studio](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-snapshot-basic-operations-V5#section6760173514388)打开查看。
+为方便开发者定位问题，当前应用在ArkTS内存OOM（Out of Memory）时会自动进行Heapdump（由于内存限制，并非总是能够成功完成Heapdump），虚拟机会扫描并保存当前堆上的所有对象信息，生成rawheap文件。该文件以二进制形式保存，开发者可从SDK中toolchains路径下获取rawheap_translator工具进行解析，转换成heapsnapshot文件，可通过[DevEco Studio](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-snapshot-basic-operations#section6760173514388)或Chrome浏览器打开查看。
 
 ## 使用指导
 
@@ -11,8 +11,7 @@
 当前工具适配了OHOS、Windows、Linux、MacOS平台，获取方法如下：
 
 - 设备内获取：/bin/rawheap_translator，可在oh设备使用；
-
-- SDK中获取：不同平台工具在SDK路径下toolchains目录获取，可在对应平台下使用。
+- SDK中获取：不同平台工具在SDK路径下sdk/default/openharmony/toolchains目录下获取rawheap_translator.exe，可在对应平台下使用。
 
 ### 环境配置
 
@@ -65,8 +64,8 @@ rawheap_translator <rawheap_file> [heapsnapshot_file]
 
 | 选项 | 描述 | 举例 |
 | -------- | ----------------- | ---------------------------------- |
-| \<rawheap_file\> | 必选参数，OOM时生成的rawheap文件路径：<br>/data/log/reliability/resource_leak/memory_leak | 解析指定目录(如：D:\temp\rawheap)下的rawheap文件：<br>rawheap_translator D:\temp\rawheap\xxx.rawheap<br>解析当前目录下的rawheap文件：<br>rawheap_translator xxx.rawheap |
-| [heapsnapshot_file] | 可选参数，指定生成的文件名称和路径，后缀名必须是heapsnapshot；<br>不指定则默认为当前路径，生成的文件名如：hprof_2024-11-19-21-13-20.heapsnapshot | 解析当前目录下的rawheap文件，并在指定路径(如：D:\temp)下生成的heapsnapshot：<br>rawheap_translator xxx.rawheap D:\temp\xxx.heapsnapshot<br>解析当前目录下的rawheap文件，并在当前路径下生成的heapsnapshot：<br>rawheap_translator xxx.rawheap xxx.heapsnapshot |
+| \<rawheap_file\> | 必选参数，OOM时生成的rawheap文件路径：<br>/data/log/reliability/resource_leak/memory_leak | 解析指定目录（如：D:\temp\rawheap）下的rawheap文件：<br>rawheap_translator D:\temp\rawheap\xxx.rawheap<br>解析当前目录下的rawheap文件：<br>rawheap_translator xxx.rawheap |
+| [heapsnapshot_file] | 可选参数，指定生成的文件名称和路径，后缀名必须是heapsnapshot；<br>不指定则默认为当前路径，生成的文件名如：hprof_2024-11-19-21-13-20.heapsnapshot | 解析当前目录下的rawheap文件，并在指定路径（如：D:\temp）下生成的heapsnapshot：<br>rawheap_translator xxx.rawheap D:\temp\xxx.heapsnapshot<br>解析当前目录下的rawheap文件，并在当前路径下生成的heapsnapshot：<br>rawheap_translator xxx.rawheap xxx.heapsnapshot |
 > **注意：**
 >
 > [heapsnapshot_file] 需要指向具有读写权限的路径，如果未指定参数，需要保证当前执行cmd命令时所在目录具有读写权限。<br>
@@ -207,7 +206,7 @@ rawheap文件大小、生成耗时，与当前ArkTS堆内存大小、存活对�
 
 ## 常见问题
 ### 工具版本过低
-工具解析时，提示：The rawheap file's version 2.0.0 is not matched the current rawheap translator, please use the newest version of the translator!
+工具解析时，提示：The rawheap file's version 1.1.0 is not matched the current rawheap translator, please use the newest version of the translator!
 ```bash
 [INFO] Main: start to translate rawheap!
 [INFO] Meta::ParseVersion: current metadata version is 1.0.0

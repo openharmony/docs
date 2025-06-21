@@ -1,13 +1,19 @@
-# Adapting to Camera Changes in Different Folding States (ArkTS)
+# Adapting Camera Changes in Different Fold States (ArkTS)
+Foldable devices come in various forms. When developing camera applications, a consistent camera switching solution is necessary to enhance user experience during photo and video capture.
 
-Before developing a camera application, request permissions by following the instructions provided in [Camera Development Preparations](camera-preparation.md).
+A single foldable device can use different cameras depending on its fold state. The system identifies each camera and associates it with a specific fold state, indicating which cameras are available in those states. Applications can call [CameraManager.on('foldStatusChange')](../../reference/apis-camera-kit/js-apis-camera.md#onfoldstatuschange12) or [display.on('foldStatusChange')](../../reference/apis-arkui/js-apis-display.md#displayonfoldstatuschange10) to listen for fold state changes of the device, call [CameraManager.getSupportedCameras](../../reference/apis-camera-kit/js-apis-camera.md#getsupportedcameras) to obtain the available cameras in the current state, and make adaptations accordingly.
 
-Cameras that a foldable device can use vary according to its folding states. To deliver a smooth user experience during transitions between folded and unfolded states, an application can call [CameraManager.on('foldStatusChange')](../../reference/apis-camera-kit/js-apis-camera.md#onfoldstatuschange12) or [display.on('foldStatusChange')](../../reference/apis-arkui/js-apis-display.md#displayonfoldstatuschange10) to listen for folding state changes of the device, call [CameraManager.getSupportedCameras](../../reference/apis-camera-kit/js-apis-camera.md#getsupportedcameras) to obtain the available cameras in the current state, and make adaptations accordingly.
+The number of supported cameras can differ among foldable devices in various fold states.
+
+For example, foldable device A has three cameras: B (rear), C (front), and D (front). In the unfolded state, calling [CameraManager.getSupportedCameras](../../reference/apis-camera-kit/js-apis-camera.md#getsupportedcameras) returns both cameras B (rear) and C (front). However, in the folded state, only camera D (front) is accessible. Therefore, when using the rear camera or switching between cameras, it is crucial to first verify the existence of the rear camera.
 
 Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API reference.
 
+For details about how to obtain the context, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+Before developing a camera application, request permissions by following the instructions provided in [Requesting Camera Development Permissions](camera-preparation.md).
 ## Creating an XComponent
-Use two [XComponents](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md) to present the folded and unfolded states, respectively. This prevents the previous camera feed from lingering on the screen if the camera is not properly closed during folding state transition.
+Use two [XComponents](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md) to present the folded and unfolded states, respectively. This prevents the previous camera feed from lingering on the screen if the camera is not properly closed during fold state transition.
 
    ```ts
     @Entry
@@ -36,15 +42,15 @@ Use two [XComponents](../../reference/apis-arkui/arkui-ts/ts-basic-components-xc
               .onLoad(async () => {
                 await this.loadXComponent();
               })
-              .width(px2vp(1080))
-              .height(px2vp(1920))
+              .width(this.getUIContext().px2vp(1080))
+              .height(this.getUIContext().px2vp(1920))
           } else {
             XComponent(this.mXComponentOptions)
               .onLoad(async () => {
                 await this.loadXComponent();
               })
-              .width(px2vp(1080))
-              .height(px2vp(1920))
+              .width(this.getUIContext().px2vp(1080))
+              .height(this.getUIContext().px2vp(1920))
           }
         }
         .size({ width: '100%', height: '100%' })
@@ -52,26 +58,29 @@ Use two [XComponents](../../reference/apis-arkui/arkui-ts/ts-basic-components-xc
       }
     }
    ```
-## Obtaining the Device Folding State
+## Obtaining the Device Fold State
 
 You can use either of the following solutions.
 
-- Solution 1: Call [CameraManager.on('foldStatusChange')](../../../application-dev/reference/apis-camera-kit/js-apis-camera.md#onfoldstatuschange12) provided by the camera framework to listen for device folding state changes.
+- Solution 1: Call [CameraManager.on('foldStatusChange')](../../../application-dev/reference/apis-camera-kit/js-apis-camera.md#onfoldstatuschange12) provided by the camera framework to listen for fold state changes.
     ```ts
     import { camera } from '@kit.CameraKit';
     import { BusinessError } from '@kit.BasicServicesKit';
-
-    let cameraManager = camera.getCameraManager(getContext())
 
     function registerFoldStatusChanged(err: BusinessError, foldStatusInfo: camera.FoldStatusInfo) {
       // The foldStatus variable is used to control the display of the XComponent.
       AppStorage.setOrCreate<number>('foldStatus', foldStatusInfo.foldStatus);
     }
 
-    cameraManager.on('foldStatusChange', registerFoldStatusChanged);
-    //cameraManager.off('foldStatusChange', registerFoldStatusChanged);
+    function onFoldStatusChange(cameraManager: camera.CameraManager) {
+      cameraManager.on('foldStatusChange', registerFoldStatusChanged);
+    }
+
+    function offFoldStatusChange(cameraManager: camera.CameraManager) {
+      cameraManager.off('foldStatusChange', registerFoldStatusChanged);
+    }
     ```
-- Solution 2: Call [display.on('foldStatusChange')](../../reference/apis-arkui/js-apis-display.md#displayonfoldstatuschange10) to listen for device folding state changes.
+- Solution 2: Call [display.on('foldStatusChange')](../../reference/apis-arkui/js-apis-display.md#displayonfoldstatuschange10) to listen for fold state changes.
     ```ts
     import { display } from '@kit.ArkUI';
     let preFoldStatus: display.FoldStatus = display.getFoldStatus();
@@ -97,8 +106,6 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { abilityAccessCtrl } from '@kit.AbilityKit';
 import { display } from '@kit.ArkUI';
 
-let context = getContext(this);
-
 const TAG = 'FoldScreenCameraAdaptationDemo ';
 
 @Entry
@@ -114,7 +121,7 @@ struct Index {
   }
   private mSurfaceId: string = '';
   private mCameraPosition: camera.CameraPosition = camera.CameraPosition.CAMERA_POSITION_BACK;
-  private mCameraManager: camera.CameraManager = camera.getCameraManager(context);
+  private mCameraManager: camera.CameraManager | undefined = undefined;
   // Select the surface width and height as required.
   private surfaceRect: SurfaceRect = {
     surfaceWidth: 1080,
@@ -132,6 +139,7 @@ struct Index {
       height: 1080
     }
   };
+  private mContext: Context | undefined = undefined;
 
   private preFoldStatus: display.FoldStatus = display.getFoldStatus();
   // Listen for the foldable screen status. You can use cameraManager.on(type: 'foldStatusChange', callback: AsyncCallback<FoldStatusInfo>): void;
@@ -161,7 +169,6 @@ struct Index {
       return;
     }
     this.preFoldStatus = foldStatus;
-    // Obtain the currently opened camera. If the rear camera is opened, its use is not affected when the device is folded.
     if (!this.curCameraDevice) {
       return;
     }
@@ -171,7 +178,7 @@ struct Index {
 
   requestPermissionsFn(): void {
     let atManager = abilityAccessCtrl.createAtManager();
-    atManager.requestPermissionsFromUser(context, [
+    atManager.requestPermissionsFromUser(this.mContext, [
       'ohos.permission.CAMERA'
     ]).then((): void => {
       this.isShow = true;
@@ -180,8 +187,19 @@ struct Index {
     });
   }
 
+  initContext(): void {
+    let uiContext = this.getUIContext();
+    this.mContext = uiContext.getHostContext();
+  }
+
+  initCameraManager(): void {
+    this.mCameraManager = camera.getCameraManager(this.mContext);
+  }
+
   aboutToAppear(): void {
     console.log(TAG + 'aboutToAppear is called');
+    this.initContext();
+    this.initCameraManager();
     this.requestPermissionsFn();
     this.onFoldStatusChange();
   }
@@ -236,12 +254,12 @@ struct Index {
   }
 
   onFoldStatusChange(): void {
-    this.mCameraManager.on('foldStatusChange', this.foldStatusCallback);
+    this.mCameraManager?.on('foldStatusChange', this.foldStatusCallback);
     // display.on('foldStatusChange', this.displayFoldStatusCallback);
   }
 
   offFoldStatusChange(): void {
-    this.mCameraManager.off('foldStatusChange', this.foldStatusCallback);
+    this.mCameraManager?.off('foldStatusChange', this.foldStatusCallback);
     // display.off('foldStatusChange', this.displayFoldStatusCallback);
   }
 
@@ -297,6 +315,7 @@ struct Index {
     let deviceIndex = cameraArray.findIndex((cameraDevice: camera.CameraDevice) => {
       return cameraDevice.cameraPosition === cameraPosition;
     })
+    // If no camera is found at the specified position, you can select another camera. Handle the situation based on the specific scenario.
     if (deviceIndex === -1) {
       deviceIndex = 0;
       console.error(TAG + 'not found camera');
@@ -416,15 +435,15 @@ struct Index {
             .onLoad(async () => {
               await this.loadXComponent();
             })
-            .width(px2vp(1080))
-            .height(px2vp(1920))
+            .width(this.getUIContext().px2vp(1080))
+            .height(this.getUIContext().px2vp(1920))
         } else {
           XComponent(this.mXComponentOptions)
             .onLoad(async () => {
               await this.loadXComponent();
             })
-            .width(px2vp(1080))
-            .height(px2vp(1920))
+            .width(this.getUIContext().px2vp(1080))
+            .height(this.getUIContext().px2vp(1920))
         }
         Text('Switch camera')
           .size({ width: 80, height: 48 })

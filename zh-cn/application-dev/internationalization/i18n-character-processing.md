@@ -151,9 +151,9 @@ let normalizedText: string = normalizer.normalize('\u1E9B\u0323'); // normalized
 
 4. 获取可换行点的位置。
    ```ts
-   let currentPos: number = iterator.current(); // 获取iterator在当前所处理文本中的位置
+   let currentPos: number = iterator.current(); // 获取换行迭代器在当前所处理文本中的位置
    let firstPos: number = iterator.first(); // 设置为第一个可换行点，返回该可换行点的位置。第一个可换行点总是在文本的起始位置，firstPos = 0
-   let nextPos: number = iterator.next(index?: number); // 将iterator移动index数量个可换行点，index为正数代表向后移动，index为负数代表向前移动，默认值为1。nextPos为移动后在文本中的位置，如果超出文本的长度范围，返回-1
+   let nextPos: number = iterator.next(index?: number); // 将换行迭代器移动index数量个可换行点，index为正数代表向后移动，index为负数代表向前移动，默认值为1。nextPos为移动后在文本中的位置，如果超出文本的长度范围，返回-1
    let isBoundary: boolean = iterator.isBoundary(offset: number); // 判断offset位置是否是可换行点
    ```
 
@@ -169,10 +169,10 @@ let iterator: i18n.BreakIterator  = i18n.getLineInstance('en-GB');
 // 设置处理文本
 iterator.setLineBreakText('Apple is my favorite fruit.');
 
-// 将BreakIterator对象移动到文本起始位置
+// 将换行迭代器移动到文本起始位置
 let firstPos: number = iterator.first(); // firstPos = 0
 
-// 将BreakIterator对象向后移动2个可换行点
+// 将换行迭代器向后移动2个可换行点
 let nextPos: number = iterator.next(2); // nextPos = 9
 
 // 判断某个位置是否是可换行点
@@ -184,16 +184,16 @@ let breakText: string = iterator.getLineBreakText(); // breakText = 'Apple is my
 
 ### 文件路径镜像处理
 
-文件路径镜像处理是指传入镜像语言时，对文件路径字符串进行本地化处理，实现镜像语言下文件路径的镜像显示效果。使用I18NUtil类的[getUnicodeWrappedFilePath](../reference/apis-localization-kit/js-apis-i18n.md#getunicodewrappedfilepath18)接口可以实现文件路径镜像处理，具体开发步骤如下：
+文件路径镜像处理是指传入镜像语言时，对文件路径字符串进行本地化处理，实现镜像语言下文件路径的镜像显示效果。使用I18NUtil类的[getUnicodeWrappedFilePath](../reference/apis-localization-kit/js-apis-i18n.md#getunicodewrappedfilepath20)接口可以实现文件路径镜像处理，具体开发步骤如下：
 
 1. 导入模块。
    ```ts
-   import { i18n, intl } from '@kit.LocalizationKit';
+   import { i18n } from '@kit.LocalizationKit';
    ```
 
 2. 文件路径镜像处理。
    ```ts
-   let mirrorPath: string = i18n.I18NUtil.getUnicodeWrappedFilePath(path: string, delimiter?: string, locale?: intl.Locale);
+   let mirrorPath: string = i18n.I18NUtil.getUnicodeWrappedFilePath(path: string, delimiter?: string, locale?: Intl.Locale);
    ```
 
 
@@ -201,18 +201,18 @@ let breakText: string = iterator.getLineBreakText(); // breakText = 'Apple is my
 ```ts
 // 导入模块
 import { BusinessError } from '@kit.BasicServicesKit';
-import { i18n, intl } from '@kit.LocalizationKit';
+import { i18n } from '@kit.LocalizationKit';
 
 try {
   // 传入镜像语言，对路径进行镜像处理
   let path: string = 'data/out/tmp';
   let delimiter: string = '/';
-  let locale: intl.Locale = new intl.Locale('ar');
+  let locale: Intl.Locale = new Intl.Locale('ar');
   // mirrorPath = 'tmp/out/data/'
   let mirrorPath: string = i18n.I18NUtil.getUnicodeWrappedFilePath(path, delimiter, locale);
 
   // 传入非镜像语言，不处理路径
-  let localeZh: intl.Locale = new intl.Locale('zh');
+  let localeZh: Intl.Locale = new Intl.Locale('zh');
   // unMirrorPath = '/data/out/tmp'
   let unMirrorPath: string = i18n.I18NUtil.getUnicodeWrappedFilePath(path, delimiter, localeZh);
 } catch (error) {

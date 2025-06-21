@@ -1,6 +1,7 @@
-# SPP-based Data Transmission Development
+# SPP-based Data Transmission
 
 ## Introduction
+
 Serial Port Profile (SPP) is a Bluetooth protocol used to establish serial communication connections between Bluetooth devices. With SPP, Bluetooth devices can transmit data, such as files and text, just like using a serial port.
 
 ## When to Use

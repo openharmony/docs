@@ -1,12 +1,12 @@
 # Transferable对象（NativeBinding对象）
 
 
-Transferable对象，也称为NativeBinding对象，是指绑定C++对象的JS对象，主体功能由C++提供，其JS对象壳被分配在虚拟机本地堆（LocalHeap）。跨线程传输时复用同一个C++对象，相比于JS对象的拷贝模式，传输效率高。因此，可共享或转移的NativeBinding对象也被称为Transferable对象。
+Transferable对象，也称为NativeBinding对象，是指绑定C++对象的JS对象，主体功能由C++提供，其JS对象壳被分配在虚拟机本地堆（LocalHeap）。跨线程传输时复用同一个C++对象，相比于JS对象的拷贝模式，传输效率高。因此，可共享或转移的NativeBinding对象也被称为Transferable对象。开发者也可以自定义Transferable对象，详细示例请参考[自定义Native Transferable对象的多线程操作场景](napi-coerce-to-native-binding-object.md)。
 
 
 ## 共享模式
 
-如果C++实现能够保证线程安全性，则这个NativeBinding对象的C++部分支持共享传输。此时，NativeBinding对象跨线程传输后，只需要重新创建JS壳，就可以桥接到相同的C++对象上。通信过程如下图所示：
+如果C++实现能够保证线程安全性，则这个NativeBinding对象的C++部分支持共享传输。此时，NativeBinding对象跨线程传输后，只需要重新创建JS壳，就可以桥接到同一个C++对象上，实现C++对象的共享。通信过程如下图所示：
 
 
 ![nativeBinding](figures/nativeBinding.png)
@@ -19,11 +19,11 @@ Transferable对象，也称为NativeBinding对象，是指绑定C++对象的JS�
 
 ## 转移模式
 
-如果C++实现包含数据，且无法保证线程安全性，则NativeBinding对象的C++部分需要采用转移方式传输。NativeBinding对象跨线程传输后，重新创建JS壳即可桥接到C++对象上，但需移除原对象的绑定关系。通信过程如下图所示：
+如果C++实现包含数据，且无法保证线程安全性，则NativeBinding对象的C++部分需要采用转移方式传输。NativeBinding对象跨线程传输后，重新创建JS壳即可桥接到C++对象上，但需移除原JS壳与C++对象的绑定关系。通信过程如下图所示：
 
 ![nativeBinding_transfer](figures/nativeBinding_transfer.png)
 
-常见的转移模式NativeBinding对象包括[PixelMap对象](../reference/apis-image-kit/js-apis-image.md#imagecreatepixelmap8)，它可以读取或写入图像数据，获取图像信息，常用于显示图片。
+常见的转移模式NativeBinding对象包括[PixelMap对象](../reference/apis-image-kit/arkts-apis-image-f.md#imagecreatepixelmap8)，它可以读取或写入图像数据，获取图像信息，常用于显示图片。
 
 ### 使用示例
 
@@ -80,6 +80,7 @@ struct Index {
   }
 }
 ```
+<!-- @[example_pass_obj](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/CommunicationObjects/entry/src/main/ets/managers/TransferabledObject.ets) -->
 
 ```ts
 // pixelMapTest.ets
@@ -99,3 +100,4 @@ export async function loadPixelMap(rawFileDescriptor: number): Promise<PixelMap>
   return pixelMap;
 }
 ```
+<!-- @[example_pass_obj](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/CommunicationObjects/entry/src/main/ets/managers/pixelMapTest.ets) -->

@@ -70,12 +70,12 @@ struct Index {
             let context: Context = this.getUIContext().getHostContext() as Context;
             let sessionId: string;  // 供后续函数入参使用。
 
-            avSession.createAVSession(context, tag, "audio").then((data: avSession.AVSession) => {
+            avSession.createAVSession(context, tag, "audio").then(async (data: avSession.AVSession) => {
             currentAVSession = data;
             sessionId = currentAVSession.sessionId;
             console.info(`CreateAVSession : SUCCESS : sessionId = ${sessionId}`);
             }).catch((err: BusinessError) => {
-            console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+            console.error(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
             });
           })
       }
@@ -121,26 +121,26 @@ import { avSession } from '@kit.AVSessionKit';
 struct Index {
   @State message: string = 'hello world';
 
-  build() { 
+  build() {
     Column() {
-        Text(this.message)
-          .onClick(()=>{
-            let currentAVSession: avSession.AVSession;
-            let tag = "createNewSession";
-            let context: Context = this.getUIContext().getHostContext() as Context;
-            let sessionId: string;  // 供后续函数入参使用。
+      Text(this.message)
+        .onClick(()=>{
+          let currentAVSession: avSession.AVSession;
+          let tag = "createNewSession";
+          let context: Context = this.getUIContext().getHostContext() as Context;
+          let sessionId: string;  // 供后续函数入参使用。
 
-            avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
+          avSession.createAVSession(context, tag, "audio", async (err: BusinessError, data: avSession.AVSession) => {
             if (err) {
-                console.error(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+              console.error(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
             } else {
-                currentAVSession = data;
-                sessionId = currentAVSession.sessionId;
-                console.info(`CreateAVSession : SUCCESS : sessionId = ${sessionId}`);
+              currentAVSession = data;
+              sessionId = currentAVSession.sessionId;
+              console.info(`CreateAVSession : SUCCESS : sessionId = ${sessionId}`);
             }
-            });
-          })
-      }
+          });
+        })
+    }
     .width('100%')
     .height('100%')
   }
@@ -151,15 +151,14 @@ struct Index {
 
 远端设备支持的协议类型的枚举。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
 | 名称                        | 值   | 说明         |
 | --------------------------- | ---- | ----------- |
-| TYPE_LOCAL<sup>11+</sup>      | 0    | 本地设备，包括设备本身的内置扬声器或音频插孔、A2DP 设备。 |
-| TYPE_CAST_PLUS_STREAM<sup>11+</sup>      | 2    | Cast+的Stream模式。表示媒体正在其他设备上展示。 |
-| TYPE_DLNA<sup>12+</sup>      | 4    | DLNA协议。表示媒体正在其他设备上展示。 |
+| TYPE_LOCAL<sup>11+</sup>      | 0    | 本地设备，包括设备本身的内置扬声器或音频插孔、A2DP 设备。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| TYPE_CAST_PLUS_STREAM<sup>11+</sup>      | 2    | Cast+的Stream模式。表示媒体正在其他设备上展示。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| TYPE_DLNA<sup>12+</sup>      | 4    | DLNA协议。表示媒体正在其他设备上展示。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| TYPE_CAST_PLUS_AUDIO<sup>20+</sup>      | 8    | PCM模式。表示媒体正在其他设备上展示。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## AVSessionType<sup>10+<sup>
 
@@ -190,7 +189,7 @@ type AVSessionType = 'audio' | 'video' | 'voice_call' | 'video_call'
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
-| 名称      | 类型   | 可读 | 可写 | 说明                          |
+| 名称      | 类型   | 只读 | 可选 | 说明                          |
 | :-------- | :----- | :--- | :--- | :---------------------------- |
 | sessionId | string | 是   | 否   | AVSession对象唯一的会话标识。 |
 | sessionType| [AVSessionType](#avsessiontype10) | 是   | 否   | AVSession会话类型。 |
@@ -1317,14 +1316,31 @@ getController(): Promise\<AVSessionController>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { avSession } from '@kit.AVSessionKit';
 
-let avsessionController: avSession.AVSessionController;
-currentAVSession.getController().then((avcontroller: avSession.AVSessionController) => {
-  avsessionController = avcontroller;
-  console.info(`GetController : SUCCESS : sessionid : ${avsessionController.sessionId}`);
-}).catch((err: BusinessError) => {
-  console.error(`GetController BusinessError: code: ${err.code}, message: ${err.message}`);
-});
+@Entry
+@Component
+struct Index {
+  @State message: string = 'hello world';
+  build() {
+    Column() {
+      Text(this.message)
+        .onClick(async ()=>{
+          let context: Context = this.getUIContext().getHostContext() as Context;
+          let currentAVSession: avSession.AVSession = await avSession.createAVSession(context, 'SESSION_NAME', 'audio');
+          let avsessionController: avSession.AVSessionController;
+          currentAVSession.getController().then(async (avcontroller: avSession.AVSessionController) => {
+            avsessionController = avcontroller;
+            console.info(`GetController : SUCCESS : sessionid : ${avsessionController.sessionId}`);
+          }).catch((err: BusinessError) => {
+            console.error(`GetController BusinessError: code: ${err.code}, message: ${err.message}`);
+          });
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
 ```
 
 ### getController<sup>10+</sup>
@@ -1353,17 +1369,35 @@ getController(callback: AsyncCallback\<AVSessionController>): void
 **示例：**
 
 ```ts
+import { avSession } from '@kit.AVSessionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let avsessionController: avSession.AVSessionController;
-currentAVSession.getController((err: BusinessError, avcontroller: avSession.AVSessionController) => {
-  if (err) {
-    console.error(`GetController BusinessError: code: ${err.code}, message: ${err.message}`);
-  } else {
-    avsessionController = avcontroller;
-    console.info(`GetController : SUCCESS : sessionid : ${avsessionController.sessionId}`);
+@Entry
+@Component
+struct Index {
+  @State message: string = 'hello world';
+
+  build() {
+    Column() {
+      Text(this.message)
+        .onClick(async () => {
+          let context: Context = this.getUIContext().getHostContext() as Context;
+          let currentAVSession: avSession.AVSession = await avSession.createAVSession(context, 'SESSION_NAME', 'audio');
+          let avsessionController: avSession.AVSessionController;
+          currentAVSession.getController((err: BusinessError, avcontroller: avSession.AVSessionController) => {
+            if (err) {
+              console.error(`GetController BusinessError: code: ${err.code}, message: ${err.message}`);
+            } else {
+              avsessionController = avcontroller;
+              console.info(`GetController : SUCCESS : sessionid : ${avsessionController.sessionId}`);
+            }
+          });
+        })
+    }
+    .width('100%')
+    .height('100%')
   }
-});
+}
 ```
 
 ### getAVCastController<sup>10+</sup>
@@ -1999,11 +2033,14 @@ currentAVSession.on('rewind', (time?: number) => {
 });
 ```
 
-### on('playFromAssetId')<sup>11+</sup>
+### on('playFromAssetId')<sup>(deprecated)</sup>
 
 on(type:'playFromAssetId', callback: (assetId: number) => void): void
 
 设置媒体id播放监听事件。
+
+> **说明：**
+> 从 API version 11 开始支持，从 API version 20 开始废弃。建议使用[on('playWithAssetId')](#onplaywithassetid20)设置媒体id播放监听事件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2014,7 +2051,7 @@ on(type:'playFromAssetId', callback: (assetId: number) => void): void
 | 参数名   | 类型                 | 必填 | 说明                                                         |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
 | type     | string               | 是   | 事件回调类型，支持的事件是`'playFromAssetId'`，当媒体id播放时，触发该事件回调。 |
-| callback | callback: (assetId: number) => void | 是   | 回调函数。参数assetId是媒体id。      |
+| callback | (assetId: number) => void | 是   | 回调函数。参数assetId是媒体id。      |
 
 **错误码：**
 
@@ -2034,11 +2071,14 @@ currentAVSession.on('playFromAssetId', (assetId: number) => {
 });
 ```
 
-### off('playFromAssetId')<sup>11+</sup>
+### off('playFromAssetId')<sup>(deprecated)</sup>
 
 off(type: 'playFromAssetId', callback?: (assetId: number) => void): void
 
 取消媒体id播放事件监听，关闭后，不再进行该事件回调。
+
+> **说明：**
+> 从 API version 11 开始支持，从 API version 20 开始废弃。建议使用[off('playWithAssetId')](#offplaywithassetid20)取消媒体id播放事件监听。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2049,7 +2089,7 @@ off(type: 'playFromAssetId', callback?: (assetId: number) => void): void
 | 参数名    | 类型                  | 必填 | 说明                                                                                                                         |
 | -------- | -------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
 | type     | string               | 是   | 关闭对应的监听事件，支持的事件是`'playFromAssetId'`。 |
-| callback | callback: (assetId: number) => void | 否   | 回调函数。当监听事件取消成功，err为undefined，否则返回错误对象。<br>该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。参数assetId是媒体id。                            |
+| callback | (assetId: number) => void | 否   | 回调函数。当监听事件取消成功，err为undefined，否则返回错误对象。<br>该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。参数assetId是媒体id。                            |
 
 **错误码：**
 
@@ -2065,6 +2105,78 @@ off(type: 'playFromAssetId', callback?: (assetId: number) => void): void
 
 ```ts
 currentAVSession.off('playFromAssetId');
+```
+
+### on('playWithAssetId')<sup>20+</sup>
+
+on(type:'playWithAssetId', callback: Callback\<string>): void
+
+设置指定资源id进行播放的监听事件。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                                                         |
+| -------- | -------------------- | ---- | ------------------------------------------------------------ |
+| type     | string               | 是   | 事件回调类型，支持的事件是`'playWithAssetId'`，当指定资源id进行播放时，触发该事件回调。 |
+| callback | Callback\<string> | 是   | 回调函数。参数assetId是媒体id。      |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+
+**示例：**
+
+```ts
+let playWithAssetIdCallback = (assetId: string) => {
+  console.info(`on playWithAssetId entry,  assetId = ${assetId}`);
+}
+currentAVSession.on('playWithAssetId', playWithAssetIdCallback);
+```
+
+
+### off('playWithAssetId')<sup>20+</sup>
+
+off(type: 'playWithAssetId', callback?: Callback\<string>): void
+
+取消指定资源id进行播放的事件监听，关闭后，不再进行该事件回调。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名    | 类型                  | 必填 | 说明                                                                                                                         |
+| -------- | -------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
+| type     | string               | 是   | 关闭对应的监听事件，支持的事件是`'playWithAssetId'`。 |
+| callback | Callback\<string> | 否   | 回调函数。当监听事件取消成功，err为undefined，否则返回错误对象。<br>该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。参数assetId是媒体id。                            |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+
+**示例：**
+
+```ts
+currentAVSession.off('playWithAssetId');
 ```
 
 ### on('seek')<sup>10+</sup>
@@ -2364,7 +2476,7 @@ on(type: 'commonCommand', callback: (command: string, args: {[key: string]: Obje
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 事件回调类型，支持事件`'commonCommand'`：当自定义控制命令变化时，触发该事件。 |
-| callback | (command: string, args: {[key:string]: Object}) => void         | 是   | 回调函数，command为变化的自定义控制命令名，args为自定义控制命令的参数，参数内容与[sendCommonCommand](#sendcommoncommand10)方法设置的参数内容完全一致。          |
+| callback | (command: string, args: {[key: string]: Object}) => void         | 是   | 回调函数，command为变化的自定义控制命令名，args为自定义控制命令的参数，参数内容与[sendCommonCommand](#sendcommoncommand10)方法设置的参数内容完全一致。          |
 
 **错误码：**
 
@@ -3393,19 +3505,19 @@ type AVCastControlCommandType = 'play' | 'pause' | 'stop' | 'playNext' | 'playPr
 
 | 类型             | 说明         |
 | ---------------- | ------------ |
-| 'play'           | 播放。         |
-| 'pause'          | 暂停。        |
-| 'stop'           | 停止。         |
-| 'playNext'       | 下一首。       |
-| 'playPrevious'   | 上一首。       |
-| 'fastForward'    | 快进。         |
-| 'rewind'         | 快退。         |
-| 'seek'           | 跳转某一节点。 |
-| 'setVolume'      | 设置音量。     |
-| 'setSpeed'       | 设置播放倍速。 |
-| 'setLoopMode'    | 设置循环模式。 |
-| 'toggleFavorite' | 是否收藏。     |
-| 'toggleMute'     | 设置静音状态。 |
+| 'play'           | 播放。无需传入参数。 |
+| 'pause'          | 暂停。无需传入参数。   |
+| 'stop'           | 停止。无需传入参数。         |
+| 'playNext'       | 下一首。无需传入参数。       |
+| 'playPrevious'   | 上一首。无需传入参数。       |
+| 'fastForward'    | 快进。无需传入参数。       |
+| 'rewind'         | 快退。无需传入参数。        |
+| 'seek'           | 跳转某一节点。对应参数使用number类型。 |
+| 'setVolume'      | 设置音量。对应参数使用number类型, 可通过[AVPlaybackState.maxVolume](#avplaybackstate10)获取系统最大音量     |
+| 'setSpeed'       | 设置播放倍速。对应参数使用[media.PlaybackSpeed](../apis-media-kit/arkts-apis-media-e.md#playbackspeed8)。 |
+| 'setLoopMode'    | 设置循环模式。对应参数使用[LoopMode](#loopmode10)。 |
+| 'toggleFavorite' | 是否收藏。对应参数使用[AVMetadata.assetId](#avmetadata10)。    |
+| 'toggleMute'     | 设置静音状态。无需传入参数。 |
 
 ## AVCastControlCommand<sup>10+</sup>
 
@@ -3417,8 +3529,8 @@ type AVCastControlCommandType = 'play' | 'pause' | 'stop' | 'playNext' | 'playPr
 
 | 名称      | 类型                                              | 必填 | 说明           |
 | --------- | ------------------------------------------------- | ---- | -------------- |
-| command   | [AVCastControlCommandType](#avcastcontrolcommandtype10)     | 是   | 命令。           |
-| parameter | [media.PlaybackSpeed](../apis-media-kit/js-apis-media.md#playbackspeed8) &#124; number &#124; string &#124; [LoopMode](#loopmode10) | 否   | 命令对应的参数。 |
+| command   | [AVCastControlCommandType](#avcastcontrolcommandtype10)     | 是   | 命令。每种命令对应的参数不同，具体的对应关系可查阅[AVCastControlCommandType](#avcastcontrolcommandtype10)里的详细介绍。 |
+| parameter | [media.PlaybackSpeed](../apis-media-kit/arkts-apis-media-e.md#playbackspeed8) &#124; number &#124; string &#124; [LoopMode](#loopmode10) | 否   | 命令对应的参数。 |
 
 ## AVCastController<sup>10+</sup>
 
@@ -3527,7 +3639,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 aVCastController.getSupportedDecoders().then((decoderTypes: avSession.DecoderType[]) => {
   console.info(`getSupportedDecoders : SUCCESS : decoderTypes.length : ${decoderTypes.length}`);
-  if (descriptors.length > 0 ) {
+  if (decoderTypes.length > 0 ) {
     console.info(`getSupportedDecoders : SUCCESS : decoderTypes[0] : ${decoderTypes[0]}`);
   }
 }).catch((err: BusinessError) => {
@@ -3688,7 +3800,7 @@ sendControlCommand(command: AVCastControlCommand): Promise\<void>
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
-| 6600105  | Invalid session command. |
+| 6600105  | Invalid session command.Stop sending the command or event,sending commands supported by the controlled end. |
 | 6600109  | The remote connection is not established. |
 
 **示例：**
@@ -3728,7 +3840,7 @@ sendControlCommand(command: AVCastControlCommand, callback: AsyncCallback\<void>
 | -------- | ------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
-| 6600105  | Invalid session command. |
+| 6600105  | Invalid session command.Stop sending the command or event,sending commands supported by the controlled end. |
 | 6600109  | The remote connection is not established. |
 
 **示例：**
@@ -4074,7 +4186,7 @@ getValidCommands(callback: AsyncCallback<Array\<AVCastControlCommandType>>): voi
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | ------------------------------------- | ---- | ------------------------------------- |
-| callback | Array<[AVCastControlCommandType](#avcastcontrolcommandtype10)> | 是 | 回调函数。返回当前支持的命令。 |
+| callback | AsyncCallback<Array<[AVCastControlCommandType](#avcastcontrolcommandtype10)>> | 是 | 回调函数。返回当前支持的命令。 |
 
 **错误码：**
 
@@ -4089,7 +4201,7 @@ getValidCommands(callback: AsyncCallback<Array\<AVCastControlCommandType>>): voi
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-aVCastController.getValidCommands((err: BusinessError, state: avSession.AVCastControlCommandType) => {
+aVCastController.getValidCommands((err: BusinessError, state: avSession.AVCastControlCommandType[]) => {
   if (err) {
     console.error(`getValidCommands BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
@@ -4125,7 +4237,7 @@ getValidCommands(): Promise<Array\<AVCastControlCommandType>>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-aVCastController.getValidCommands().then((state: avSession.AVCastControlCommandType) => {
+aVCastController.getValidCommands().then((state: avSession.AVCastControlCommandType[]) => {
   console.info('getValidCommands successfully');
 }).catch((err: BusinessError) => {
   console.error(`getValidCommands BusinessError: code: ${err.code}, message: ${err.message}`);
@@ -4337,7 +4449,7 @@ on(type: 'mediaItemChange', callback: Callback\<AVQueueItem>): void
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 事件回调类型，支持事件`'mediaItemChange'`：当播放的媒体内容变化时，触发该事件。 |
-| callback | (callback: [AVQueueItem](#avqueueitem10)) => void         | 是   | 回调函数，参数AVQueueItem是当前正在播放的媒体内容。                      |
+| callback | Callback<[AVQueueItem](#avqueueitem10)>         | 是   | 回调函数，参数AVQueueItem是当前正在播放的媒体内容。                      |
 
 **错误码：**
 
@@ -4530,7 +4642,7 @@ on(type: 'requestPlay', callback: Callback\<AVQueueItem>): void
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 事件回调类型，支持事件`'requestPlay'`：当请求播放状态变化时，触发该事件。 |
-| callback | (state: [AVQueueItem](#avqueueitem10)) => void               | 是   | 回调函数，参数AVQueueItem是当前正在播放的媒体内容。当监听事件注册成功，err为undefined，否则返回错误对象。  | 
+| callback | Callback\<[AVQueueItem](#avqueueitem10)>                | 是   | 回调函数，参数AVQueueItem是当前正在播放的媒体内容。当监听事件注册成功，err为undefined，否则返回错误对象。  | 
 
 **错误码：**
 
@@ -4562,7 +4674,7 @@ off(type: 'requestPlay', callback?: Callback\<AVQueueItem>): void
 | 参数名   | 类型                                                         | 必填 | 说明                                                     |
 | -------- | ------------------------------------------------------------| ---- | ----------------------------------------------------- |
 | type     | string                                                      | 是   | 取消对应的监听事件，支持事件`'requestPlay'`。    |
-| callback | (state: [AVQueueItem](#avqueueitem10)) => void              | 否   | 回调函数，参数AVQueueItem是当前正在播放的媒体内容。当监听事件取消成功，err为undefined，否则返回错误对象。该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。|
+| callback | Callback\<[AVQueueItem](#avqueueitem10)>             | 否   | 回调函数，参数AVQueueItem是当前正在播放的媒体内容。当监听事件取消成功，err为undefined，否则返回错误对象。该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。|
 
 **错误码：**
 
@@ -5425,13 +5537,13 @@ let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, re
 | author          | string                  | 否   | 是   | 专辑作者。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                               |
 | avQueueName<sup>12+</sup>       | string                  | 否   | 是   | 歌单（歌曲列表）名称。                                                               |
 | avQueueId<sup>11+</sup>       | string                  | 否   | 是   | 歌单（歌曲列表）唯一标识Id。                                                               |
-| avQueueImage<sup>11+</sup>    | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) &#124; string | 否   | 是   | 歌单（歌曲列表）封面图。<br>图片的像素数据或者图片路径地址（本地路径或网络路径）。应用通过setAVMetadata设置图片数据。<br>- 设置的数据类型为PixelMap时，通过getAVMetadata获取的将为PixelMap。<br>- 设置为url图片路径，获取的为url图片路径。  |
+| avQueueImage<sup>11+</sup>    | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) &#124; string | 否   | 是   | 歌单（歌曲列表）封面图。<br>图片的像素数据或者图片路径地址（本地路径或网络路径）。应用通过setAVMetadata设置图片数据。<br>- 设置的数据类型为PixelMap时，通过getAVMetadata获取的将为PixelMap。<br>- 设置为url图片路径，获取的为url图片路径。  |
 | album           | string                  | 否   | 是   | 专辑名称。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                               |
 | writer          | string                  | 否   | 是   | 词作者。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                |
 | composer        | string                  | 否   | 是   | 作曲者。                                                                |
 | duration        | number                  | 否   | 是   | 媒体时长，单位毫秒（ms）。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                  |
-| mediaImage      | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) &#124; string | 否   | 是   | 图片的像素数据或者图片路径地址(本地路径或网络路径)。应用通过setAVMetadata设置图片数据。<br>- 设置的数据类型为PixelMap时，通过getAVMetadata获取的将为PixelMap。<br>- 设置为url图片路径，获取的为url图片路径。  <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                             |
-| bundleIcon<sup>18+</sup>      | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是   | 是   | 应用图标图片的像素数据。只读类型，不从应用侧设置。|
+| mediaImage      | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) &#124; string | 否   | 是   | 图片的像素数据或者图片路径地址(本地路径或网络路径)。应用通过setAVMetadata设置图片数据。<br>- 设置的数据类型为PixelMap时，通过getAVMetadata获取的将为PixelMap。<br>- 设置为url图片路径，获取的为url图片路径。  <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                             |
+| bundleIcon<sup>18+</sup>      | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 是   | 是   | 应用图标图片的像素数据。只读类型，不从应用侧设置。|
 | publishDate     | Date                    | 否   | 是   | 发行日期。                                                             |
 | subtitle        | string                  | 否   | 是   | 子标题。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                |
 | description     | string                  | 否   | 是   | 媒体描述。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                               |
@@ -5450,30 +5562,31 @@ let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, re
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
-| 名称         | 类型                    | 必填  | 说明                     |
-| ------------ | ----------------------- | ---- | ----------------------- |
-| assetId      | string                  | 是   | 播放列表媒体ID。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。          |
-| title        | string                  | 否   | 播放列表媒体标题。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。        |
-| subtitle     | string                  | 否   | 播放列表媒体子标题。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。      |
-| description  | string                  | 否   | 播放列表媒体描述的文本。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
-| mediaImage | image.PixelMap \| string   | 否   | 播放列表媒体图片像素数据。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| extras       | {[key: string]: Object}    | 否   | 播放列表媒体额外字段。     |
-| mediaUri     | string                  | 否   | 播放列表媒体URI。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-| mediaType     | string                  | 否   | 播放列表媒体类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-| mediaSize     | number                  | 否   | 播放列表媒体的大小。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-| albumTitle     | string                  | 否   | 播放列表媒体专辑标题。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-| albumCoverUri     | string                  | 否   | 播放列表媒体专辑标题URI。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。    |
-| lyricContent     | string                  | 否   | 播放列表媒体歌词内容。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-| lyricUri     | string                  | 否   | 播放列表媒体歌词URI。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-| artist     | string                  | 否   | 播放列表媒体专辑作者。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-| fdSrc     | media.AVFileDescriptor        | 否   | 播放列表媒体本地文件的句柄。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-| dataSrc<sup>12+</sup>     | media.AVDataSrcDescriptor        | 否   | 播放列表数据源描述。         |
-| drmScheme<sup>12+</sup>     | string        | 否   | 播放列表媒体支持的DRM方案，由uuid表示。       |
-| duration     | number                  | 否   | 播放列表媒体播放时长。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-| startPosition     | number                  | 否   | 播放列表媒体起始播放位置。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-| creditsPosition     | number                  | 否   | 播放列表媒体的片尾播放位置。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-| appName     | string                  | 否   | 播放列表提供的应用的名字。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-|displayTags<sup>11+</sup>     | number | 否   | 媒体资源的金标类型，取值参考[DisplayTag](#displaytag11)。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。        |
+| 名称         | 类型                    | 只读  | 可选  | 说明                     |
+| ------------ | ----------------------- | ---- | ---- | ----------------------- |
+| assetId      | string                  | 否   | 否   | 播放列表媒体ID。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。          |
+| title        | string                  | 否   | 是   | 播放列表媒体标题。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。        |
+| subtitle     | string                  | 否   | 是   | 播放列表媒体子标题。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。      |
+| description  | string                  | 否   | 是   | 播放列表媒体描述的文本。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
+| mediaImage | image.PixelMap \| string   | 否   | 是   | 播放列表媒体图片像素数据。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| extras       | {[key: string]: Object}    | 否   | 是   | 播放列表媒体额外字段。     |
+| mediaUri     | string                  | 否   | 是   | 播放列表媒体URI。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| mediaType     | string                  | 否   | 是   | 播放列表媒体类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| mediaSize     | number                  | 否   | 是   | 播放列表媒体的大小。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| albumTitle     | string                  | 否   | 是   | 播放列表媒体专辑标题。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| albumCoverUri     | string                  | 否   | 是   | 播放列表媒体专辑标题URI。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。    |
+| lyricContent     | string                  | 否   | 是   | 播放列表媒体歌词内容。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| lyricUri     | string                  | 否   | 是   | 播放列表媒体歌词URI。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| artist     | string                  | 否   | 是   | 播放列表媒体专辑作者。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| fdSrc     | media.AVFileDescriptor        | 否   | 是   | 播放列表媒体本地文件的句柄。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| dataSrc<sup>12+</sup>     | media.AVDataSrcDescriptor        | 否   | 是   | 播放列表数据源描述。         |
+| pcmSrc<sup>20+</sup>     | boolean        | 否   | 是   | 播放列表是否使用PCM数据源。true表示使用PCM数据源，false表示不使用PCM数据源。<br>由于设备限制，暂时无法使用，将在后续版本提供支持。         |
+| drmScheme<sup>12+</sup>     | string        | 否   | 是   | 播放列表媒体支持的DRM方案，由uuid表示。       |
+| duration     | number                  | 否   | 是   | 播放列表媒体播放时长。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| startPosition     | number                  | 否   | 是   | 播放列表媒体起始播放位置。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| creditsPosition     | number                  | 否   | 是   | 播放列表媒体的片尾播放位置。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| appName     | string                  | 否   | 是   | 播放列表提供的应用的名字。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+|displayTags<sup>11+</sup>     | number | 否   | 是   | 媒体资源的金标类型，取值参考[DisplayTag](#displaytag11)。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。        |
 
 ## AVQueueItem<sup>10+</sup>
 
@@ -5536,7 +5649,7 @@ let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, re
 | --------------- |-------------------------| ---- |---------------------------------------------------------------------|
 | name            | string                  | 否    | 来电人姓名（别名）。    |                                                                                                                      
 | phoneNumber     | string                  | 否    | 来电电话号码。            |                                                   
-| avatar          | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)          | 否    | 来电人头像。            |                                                   
+| avatar          | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)          | 否    | 来电人头像。            |                                                   
 
 ## AVCallState<sup>11+</sup>
 
@@ -5583,6 +5696,8 @@ let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, re
 
 枚举，设备所支持的解码格式。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
 | 名称                        | 值   | 说明           |
@@ -5595,6 +5710,8 @@ let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, re
 ## ResolutionLevel<sup>19+</sup>
 
 枚举，设备所支持的分辨率。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
@@ -5646,6 +5763,7 @@ let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, re
 | supportedDrmCapabilities<sup>12+</sup> | Array\<string> | 否   | 播放设备支持的DRM能力。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast   <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | manufacturer<sup>13+</sup> | string | 否   | 播放设备生产厂家。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast  <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。|
 | modelName<sup>13+</sup> | string | 否   | 播放设备型号名称。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast  <br>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。|
+| audioCapabilities<sup>20+</sup> | [AudioCapabilities](#audiocapabilities20) | 否   | 播放设备支持的音频能力。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast |
 
 ## OutputDeviceInfo<sup>10+</sup>
 
@@ -5708,7 +5826,7 @@ AVSessionController控制器可查看会话ID，并可完成对会话发送命�
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
-| 名称      | 类型   | 可读 | 可写 | 说明                                    |
+| 名称      | 类型   | 只读 | 可选 | 说明                                    |
 | :-------- | :----- | :--- | :--- | :-------------------------------------- |
 | sessionId | string | 是   | 否   | AVSessionController对象唯一的会话标识。 |
 
@@ -5718,34 +5836,18 @@ AVSessionController控制器可查看会话ID，并可完成对会话发送命�
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { avSession } from '@kit.AVSessionKit';
-@Entry
-@Component
-struct Index {
-  @State message: string = 'hello world';
 
-  build() {
-    Column() {
-      Text(this.message)
-        .onClick(()=>{
-          let currentAVSession: avSession.AVSession | undefined = undefined;
-          let tag: string = "createNewSession";
-          let context: Context = this.getUIContext().getHostContext() as Context;
-          let sessionId: string = "";
-          let AVSessionController: avSession.AVSessionController;
-          avSession.createAVSession(context, tag, "audio").then(async (data:avSession.AVSession)=> {
-            currentAVSession = data;
-            sessionId = currentAVSession.sessionId;
-            AVSessionController = await currentAVSession.getController();
-            console.info('CreateAVSession : SUCCESS :sessionid = ${sessionid}');
-          }).catch((err: BusinessError) => {
-            console.error(`CreateController BusinessError: code: ${err.code}, message: ${err.message}`);
-          });
-        })
-    }
-    .width('100%')
-    .height('100%')
-  }
-}
+let tag: string = "createNewSession";
+let sessionId: string = "";
+let AVSessionController: avSession.AVSessionController;
+avSession.createAVSession(context, tag, "audio").then(async (data:avSession.AVSession)=> {
+  currentAVSession = data;
+  sessionId = currentAVSession.sessionId;
+  AVSessionController = await currentAVSession.getController();
+  console.info('CreateAVSession : SUCCESS :sessionid = ${sessionid}');
+}).catch((err: BusinessError) => {
+  console.error(`CreateController BusinessError: code: ${err.code}, message: ${err.message}`);
+});
 ```
 
 ### getAVPlaybackState<sup>10+</sup>
@@ -6679,9 +6781,9 @@ sendControlCommand(command: AVControlCommand): Promise\<void>
 | 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
-| 6600105  | Invalid session command. |
+| 6600105  | Invalid session command.Stop sending the command or event,sending commands supported by the controlled end. |
 | 6600106  | The session is not activated. |
-| 6600107  | Too many commands or events. |
+| 6600107  | Too many commands or events.Controls the frequency of sending self-query and control commands. |
 
 **示例：**
 
@@ -6725,9 +6827,9 @@ sendControlCommand(command: AVControlCommand, callback: AsyncCallback\<void>): v
 | 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
 | 6600102  | The session does not exist.     |
 | 6600103  | The session controller does not exist.   |
-| 6600105  | Invalid session command.           |
+| 6600105  | Invalid session command.Stop sending the command or event,sending commands supported by the controlled end. |
 | 6600106  | The session is not activated.                |
-| 6600107  | Too many commands or events.      |
+| 6600107  | Too many commands or events.Controls the frequency of sending self-query and control commands. |
 
 **示例：**
 
@@ -6780,50 +6882,34 @@ sendCommonCommand(command: string, args: {[key: string]: Object}): Promise\<void
 | 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
-| 6600105  | Invalid session command. |
+| 6600105  | Invalid session command.Stop sending the command or event,sending commands supported by the controlled end. |
 | 6600106  | The session is not activated. |
-| 6600107  | Too many commands or events. |
+| 6600107  | Too many commands or events.Controls the frequency of sending self-query and control commands. |
 
 **示例：**
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { avSession } from '@kit.AVSessionKit';
-@Entry
-@Component
-struct Index {
-  @State message: string = 'hello world';
 
-  build() {
-    Column() {
-      Text(this.message)
-        .onClick(()=>{
-          let currentAVSession: avSession.AVSession | undefined = undefined;
-          let tag: string = "createNewSession";
-          let context: Context = this.getUIContext().getHostContext() as Context;
-          let sessionId: string = "";
-          let controller:avSession.AVSessionController | undefined = undefined;
-          avSession.createAVSession(context, tag, "audio").then(async (data:avSession.AVSession)=> {
-            currentAVSession = data;
-            sessionId = currentAVSession.sessionId;
-            controller = await currentAVSession.getController();
-            console.info('CreateAVSession : SUCCESS :sessionid = ${sessionid}');
-          }).catch((err: BusinessError) => {
-            console.info('CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}')
-          });
-          let commandName = "my_command";
-          if (controller !== undefined) {
-            (controller as avSession.AVSessionController).sendCommonCommand(commandName, {command : "This is my command"}).then(() => {
-              console.info('SendCommonCommand successfully');
-            }).catch((err: BusinessError) => {
-              console.error(`SendCommonCommand BusinessError: code: ${err.code}, message: ${err.message}`);
-            })
-          }
-        })
-    }
-    .width('100%')
-    .height('100%')
-  }
+let tag: string = "createNewSession";
+let sessionId: string = "";
+let controller:avSession.AVSessionController | undefined = undefined;
+avSession.createAVSession(context, tag, "audio").then(async (data:avSession.AVSession)=> {
+  currentAVSession = data;
+  sessionId = currentAVSession.sessionId;
+  controller = await currentAVSession.getController();
+  console.info('CreateAVSession : SUCCESS :sessionid = ${sessionid}');
+}).catch((err: BusinessError) => {
+  console.error('CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}')
+});
+let commandName = "my_command";
+if (controller !== undefined) {
+  (controller as avSession.AVSessionController).sendCommonCommand(commandName, {command : "This is my command"}).then(() => {
+    console.info('SendCommonCommand successfully');
+  }).catch((err: BusinessError) => {
+    console.error(`SendCommonCommand BusinessError: code: ${err.code}, message: ${err.message}`);
+  })
 }
 ```
 
@@ -6856,50 +6942,34 @@ sendCommonCommand(command: string, args: {[key: string]: Object}, callback: Asyn
 | 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
 | 6600102  | The session does not exist.     |
 | 6600103  | The session controller does not exist.   |
-| 6600105  | Invalid session command.           |
+| 6600105  | Invalid session command.Stop sending the command or event,sending commands supported by the controlled end. |
 | 6600106  | The session is not activated.                |
-| 6600107  | Too many commands or events.      |
+| 6600107  | Too many commands or events.Controls the frequency of sending self-query and control commands. |
 
 **示例：**
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { avSession } from '@kit.AVSessionKit';
-@Entry
-@Component
-struct Index {
-  @State message: string = 'hello world';
-
-  build() {
-    Column() {
-      Text(this.message)
-        .onClick(()=>{
-          let currentAVSession: avSession.AVSession | undefined = undefined;
-          let tag: string = "createNewSession";
-          let context: Context = this.getUIContext().getHostContext() as Context;
-          let sessionId: string = "";
-          let controller:avSession.AVSessionController | undefined = undefined;
-          avSession.createAVSession(context, tag, "audio").then(async (data:avSession.AVSession)=> {
-            currentAVSession = data;
-            sessionId = currentAVSession.sessionId;
-            controller = await currentAVSession.getController();
-            console.info('CreateAVSession : SUCCESS :sessionid = ${sessionid}');
-          }).catch((err: BusinessError) => {
-            console.info('CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}')
-          });
-          let commandName = "my_command";
-          if (controller !== undefined) {
-            (controller as avSession.AVSessionController).sendCommonCommand(commandName, {command : "This is my command"}, (err: BusinessError) => {
-              if (err) {
-                console.error(`SendCommonCommand BusinessError: code: ${err.code}, message: ${err.message}`);
-              }
-            })
-          }
-        })
+          
+let tag: string = "createNewSession";
+let sessionId: string = "";
+let controller:avSession.AVSessionController | undefined = undefined;
+avSession.createAVSession(context, tag, "audio").then(async (data:avSession.AVSession)=> {
+  currentAVSession = data;
+  sessionId = currentAVSession.sessionId;
+  controller = await currentAVSession.getController();
+  console.info('CreateAVSession : SUCCESS :sessionid = ${sessionid}');
+}).catch((err: BusinessError) => {
+  console.error('CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}')
+});
+let commandName = "my_command";
+if (controller !== undefined) {
+  (controller as avSession.AVSessionController).sendCommonCommand(commandName, {command : "This is my command"}, (err: BusinessError) => {
+    if (err) {
+      console.error(`SendCommonCommand BusinessError: code: ${err.code}, message: ${err.message}`);
     }
-    .width('100%')
-    .height('100%')
-  }
+  })
 }
 ```
 
@@ -6929,49 +6999,34 @@ getExtras(): Promise\<{[key: string]: Object}>
 | 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
-| 6600105  | Invalid session command. |
-| 6600107  | Too many commands or events. |
+| 6600105  | Invalid session command.Stop sending the command or event,sending commands supported by the controlled end. |
+| 6600107  | Too many commands or events.Controls the frequency of sending self-query and control commands. |
 
 **示例：**
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { avSession } from '@kit.AVSessionKit';
-@Entry
-@Component
-struct Index {
-  @State message: string = 'hello world';
-
-  build() {
-    Column() {
-      Text(this.message)
-        .onClick(()=>{
-          let currentAVSession: avSession.AVSession | undefined = undefined;
-          let tag: string = "createNewSession";
-          let context: Context = this.getUIContext().getHostContext() as Context;
-          let sessionId: string = "";
-          let controller:avSession.AVSessionController | undefined = undefined;
-          avSession.createAVSession(context, tag, "audio").then(async (data:avSession.AVSession)=> {
-            currentAVSession = data;
-            sessionId = currentAVSession.sessionId;
-            controller = await currentAVSession.getController();
-            console.info('CreateAVSession : SUCCESS :sessionid = ${sessionid}');
-          }).catch((err: BusinessError) => {
-            console.info('CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}')
-          });
-          if (controller !== undefined) {
-            (controller as avSession.AVSessionController).getExtras().then((extras) => {
-              console.info(`getExtras : SUCCESS : ${extras}`);
-            }).catch((err: BusinessError) => {
-              console.error(`getExtras BusinessError: code: ${err.code}, message: ${err.message}`);
-            });
-          }
-        })
-    }
-    .width('100%')
-    .height('100%')
-  }
+         
+let tag: string = "createNewSession";
+let sessionId: string = "";
+let controller:avSession.AVSessionController | undefined = undefined;
+avSession.createAVSession(context, tag, "audio").then(async (data:avSession.AVSession)=> {
+  currentAVSession = data;
+  sessionId = currentAVSession.sessionId;
+  controller = await currentAVSession.getController();
+  console.info('CreateAVSession : SUCCESS :sessionid = ${sessionid}');
+}).catch((err: BusinessError) => {
+  console.error('CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}')
+});
+if (controller !== undefined) {
+  (controller as avSession.AVSessionController).getExtras().then((extras) => {
+    console.info(`getExtras : SUCCESS : ${extras}`);
+  }).catch((err: BusinessError) => {
+    console.error(`getExtras BusinessError: code: ${err.code}, message: ${err.message}`);
+  });
 }
+    
 ```
 
 ### getExtras<sup>10+</sup>
@@ -6998,50 +7053,34 @@ getExtras(callback: AsyncCallback\<{[key: string]: Object}>): void
 | 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
-| 6600105  | Invalid session command. |
-| 6600107  | Too many commands or events. |
+| 6600105  | Invalid session command.Stop sending the command or event,sending commands supported by the controlled end. |
+| 6600107  |Too many commands or events.Controls the frequency of sending self-query and control commands. |
 
 **示例：**
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { avSession } from '@kit.AVSessionKit';
-@Entry
-@Component
-struct Index {
-  @State message: string = 'hello world';
 
-  build() {
-    Column() {
-      Text(this.message)
-        .onClick(()=>{
-          let currentAVSession: avSession.AVSession | undefined = undefined;
-          let tag: string = "createNewSession";
-          let context: Context = this.getUIContext().getHostContext() as Context;
-          let sessionId: string = "";
-          let controller:avSession.AVSessionController | undefined = undefined;
-          avSession.createAVSession(context, tag, "audio").then(async (data:avSession.AVSession)=> {
-            currentAVSession = data;
-            sessionId = currentAVSession.sessionId;
-            controller = await currentAVSession.getController();
-            console.info('CreateAVSession : SUCCESS :sessionid = ${sessionid}');
-          }).catch((err: BusinessError) => {
-            console.info('CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}')
-          });
-          if (controller !== undefined) {
-            (controller as avSession.AVSessionController).getExtras((err, extras) => {
-              if (err) {
-                console.error(`getExtras BusinessError: code: ${err.code}, message: ${err.message}`);
-              } else {
-                console.info(`getExtras : SUCCESS : ${extras}`);
-              }
-            });
-          }
-        })
+let tag: string = "createNewSession";
+let sessionId: string = "";
+let controller:avSession.AVSessionController | undefined = undefined;
+avSession.createAVSession(context, tag, "audio").then(async (data:avSession.AVSession)=> {
+  currentAVSession = data;
+  sessionId = currentAVSession.sessionId;
+  controller = await currentAVSession.getController();
+  console.info('CreateAVSession : SUCCESS :sessionid = ${sessionid}');
+}).catch((err: BusinessError) => {
+  console.error('CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}')
+});
+if (controller !== undefined) {
+  (controller as avSession.AVSessionController).getExtras((err, extras) => {
+    if (err) {
+      console.error(`getExtras BusinessError: code: ${err.code}, message: ${err.message}`);
+    } else {
+      console.info(`getExtras : SUCCESS : ${extras}`);
     }
-    .width('100%')
-    .height('100%')
-  }
+  });
 }
 ```
 
@@ -7074,65 +7113,35 @@ getExtrasWithEvent(extraEvent: string): Promise\<ExtraInfo>
 | 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
-| 6600105  | Invalid session command. |
+| 6600105  | Invalid session command.Stop sending the command or event,sending commands supported by the controlled end. |
 
 **示例：**
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-@Entry
-@Component
-struct Index {
-  @State message: string = 'hello world';
+let controller: avSession.AVSessionController | ESObject;
+const COMMON_COMMAND_STRING_1 = 'AUDIO_GET_VOLUME';
+const COMMON_COMMAND_STRING_2 = 'AUDIO_GET_AVAILABLE_DEVICES';
+const COMMON_COMMAND_STRING_3 = 'AUDIO_GET_PREFERRED_OUTPUT_DEVICE_FOR_RENDERER_INFO';
+if (controller !== undefined) {
+  controller.getExtrasWithEvent(COMMON_COMMAND_STRING_1).then(() => {
+    console.info(`${[COMMON_COMMAND_STRING_1]}`);
+  }).catch((err: BusinessError) => {
+    console.error(`getExtrasWithEvent failed with err: ${err.code}, ${err.message}`);
+  })
 
-  build() {
-    Row() {
-      Column() {
-        Text(this.message)
-          .fontSize(40)
-          .fontWeight(FontWeight.Bold)
-          .onClick(() => {
-            getExtrasWithEventTest();
-          })
-      }
-    }
-  }
-}
+  controller.getExtrasWithEvent(COMMON_COMMAND_STRING_2).then(() => {
+    console.info(`${[COMMON_COMMAND_STRING_2]}`);
+  }).catch((err: BusinessError) => {
+    console.error(`getExtrasWithEvent failed with err: ${err.code}, ${err.message}`);
+  })
 
-async function getExtrasWithEventTest() {
-  let controllerList: Array<avSession.AVSessionController>;
-  let controller: avSession.AVSessionController | ESObject;
-  
-  try {
-    controllerList = await avSession.getDistributedSessionController(avSession.DistributedSessionType.TYPE_SESSION_REMOTE);
-    controller = controllerList[0];
-  } catch (err) {
-    console.info(`getDistributedSessionController fail with err: ${err}`);
-  }
-
-  const COMMON_COMMAND_STRING_1 = 'AUDIO_GET_VOLUME';
-  const COMMON_COMMAND_STRING_2 = 'AUDIO_GET_AVAILABLE_DEVICES';
-  const COMMON_COMMAND_STRING_3 = 'AUDIO_GET_PREFERRED_OUTPUT_DEVICE_FOR_RENDERER_INFO';
-  if (controller !== undefined) {
-    controller.getExtrasWithEvent(COMMON_COMMAND_STRING_1).then((extras: avSession.ExtraInfo) => {
-      console.info(`${extras[COMMON_COMMAND_STRING_1]}`);
-    }).catch((err: BusinessError) => {
-      console.info(`getExtrasWithEvent failed with err: ${err.code}, ${err.message}`);
-    })
-
-    controller.getExtrasWithEvent(COMMON_COMMAND_STRING_2).then((extras: avSession.ExtraInfo) => {
-      console.info(`${extras[COMMON_COMMAND_STRING_2]}`);
-    }).catch((err: BusinessError) => {
-      console.info(`getExtrasWithEvent failed with err: ${err.code}, ${err.message}`);
-    })
-
-    controller.getExtrasWithEvent(COMMON_COMMAND_STRING_3).then((extras: avSession.ExtraInfo) => {
-      console.info(`${extras[COMMON_COMMAND_STRING_3]}`);
-    }).catch((err: BusinessError) => {
-      console.info(`getExtrasWithEvent failed with err: ${err.code}, ${err.message}`);
-    })
-  }
+  controller.getExtrasWithEvent(COMMON_COMMAND_STRING_3).then(() => {
+    console.info(`${[COMMON_COMMAND_STRING_3]}`);
+  }).catch((err: BusinessError) => {
+    console.error(`getExtrasWithEvent failed with err: ${err.code}, ${err.message}`);
+  })
 }
 ```
 
@@ -7299,7 +7308,7 @@ on(type: 'callMetadataChange', filter: Array\<keyof CallMetadata> | 'all', callb
 | --------| -----------|-----|------------|
 | type     | string    | 是   | 事件回调类型，支持事件`'callMetadataChange'`：当通话元数据变化时，触发该事件。 |
 | filter   | Array\<keyof&nbsp;[CallMetadata](#callmetadata11)\>&nbsp;&#124;&nbsp;'all' | 是   | 'all' 表示关注通话元数据所有字段变化；Array<keyof&nbsp;[CallMetadata](#callmetadata11)\> 表示关注Array中的字段变化。 |
-| callback | Callback<[CallMetadata](#callmetadata11)\>\>   | 是   | 回调函数，参数callmetadata是变化后的通话元数据。|
+| callback | Callback<[CallMetadata](#callmetadata11)\>   | 是   | 回调函数，参数callmetadata是变化后的通话元数据。|
 
 **错误码：**
 
@@ -7704,7 +7713,7 @@ avsessionController.off('outputDeviceChange');
 
 ### on('sessionEvent')<sup>10+</sup>
 
-on(type: 'sessionEvent', callback: (sessionEvent: string, args: {[key:string]: Object}) => void): void
+on(type: 'sessionEvent', callback: (sessionEvent: string, args: {[key: string]: Object}) => void): void
 
 媒体控制器设置会话自定义事件变化的监听器。
 
@@ -7717,7 +7726,7 @@ on(type: 'sessionEvent', callback: (sessionEvent: string, args: {[key:string]: O
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 事件回调类型，支持事件`'sessionEvent'`：当会话事件变化时，触发该事件。 |
-| callback | (sessionEvent: string, args: {[key:string]: object}) => void         | 是   | 回调函数，sessionEvent为变化的会话事件名，args为事件的参数。          |
+| callback | (sessionEvent: string, args: {[key: string]: Object}) => void         | 是   | 回调函数，sessionEvent为变化的会话事件名，args为事件的参数。          |
 
 **错误码：**
 
@@ -7734,44 +7743,28 @@ on(type: 'sessionEvent', callback: (sessionEvent: string, args: {[key:string]: O
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { avSession } from '@kit.AVSessionKit';
-@Entry
-@Component
-struct Index {
-  @State message: string = 'hello world';
-
-  build() {
-    Column() {
-      Text(this.message)
-        .onClick(()=>{
-          let currentAVSession: avSession.AVSession | undefined = undefined;
-          let tag: string = "createNewSession";
-          let context: Context = this.getUIContext().getHostContext() as Context;
-          let sessionId: string = "";
-          let controller:avSession.AVSessionController | undefined = undefined;
-          avSession.createAVSession(context, tag, "audio").then(async (data:avSession.AVSession)=> {
-            currentAVSession = data;
-            sessionId = currentAVSession.sessionId;
-            controller = await currentAVSession.getController();
-            console.info('CreateAVSession : SUCCESS :sessionid = ${sessionid}');
-          }).catch((err: BusinessError) => {
-            console.info('CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}')
-          });
-          if (controller !== undefined) {
-            (controller as avSession.AVSessionController).on('sessionEvent', (sessionEvent, args) => {
-              console.info(`OnSessionEvent, sessionEvent is ${sessionEvent}, args: ${JSON.stringify(args)}`);
-            });
-          }
-        })
-    }
-    .width('100%')
-    .height('100%')
-  }
+       
+let tag: string = "createNewSession";
+let sessionId: string = "";
+let controller:avSession.AVSessionController | undefined = undefined;
+avSession.createAVSession(context, tag, "audio").then(async (data:avSession.AVSession)=> {
+  currentAVSession = data;
+  sessionId = currentAVSession.sessionId;
+  controller = await currentAVSession.getController();
+  console.info('CreateAVSession : SUCCESS :sessionid = ${sessionid}');
+}).catch((err: BusinessError) => {
+  console.error('CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}')
+});
+if (controller !== undefined) {
+  (controller as avSession.AVSessionController).on('sessionEvent', (sessionEvent, args) => {
+    console.info(`OnSessionEvent, sessionEvent is ${sessionEvent}, args: ${JSON.stringify(args)}`);
+  });
 }
 ```
 
 ### off('sessionEvent')<sup>10+</sup>
 
-off(type: 'sessionEvent', callback?: (sessionEvent: string, args: {[key:string]: Object}) => void): void
+off(type: 'sessionEvent', callback?: (sessionEvent: string, args: {[key: string]: Object}) => void): void
 
 媒体控制器取消监听会话事件的变化通知。
 
@@ -7784,7 +7777,7 @@ off(type: 'sessionEvent', callback?: (sessionEvent: string, args: {[key:string]:
 | 参数名   | 类型                                                         | 必填 | 说明                                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
 | type     | string                                                       | 是   | 取消对应的监听事件，支持事件`'sessionEvent'`。    |
-| callback | (sessionEvent: string, args: {[key:string]: Object}) => void         | 否   | 回调函数，参数sessionEvent是变化的事件名，args为事件的参数。<br>该参数为可选参数，若不填写该参数，则认为取消所有对sessionEvent事件的监听。                      |
+| callback | (sessionEvent: string, args: {[key: string]: Object}) => void         | 否   | 回调函数，参数sessionEvent是变化的事件名，args为事件的参数。<br>该参数为可选参数，若不填写该参数，则认为取消所有对sessionEvent事件的监听。                      |
 
 **错误码：**
 
@@ -7953,7 +7946,7 @@ on(type: 'extrasChange', callback: (extras: {[key:string]: Object}) => void): vo
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 事件回调类型，支持事件`'extrasChange'`：当媒体提供方设置自定义媒体数据包时，触发该事件。 |
-| callback | (extras: {[key:string]: object}) => void         | 是   | 回调函数，extras为媒体提供方新设置的自定义媒体数据包，该自定义媒体数据包与dispatchSessionEvent方法设置的数据包完全一致。          |
+| callback | (extras: {[key:string]: Object}) => void         | 是   | 回调函数，extras为媒体提供方新设置的自定义媒体数据包，该自定义媒体数据包与dispatchSessionEvent方法设置的数据包完全一致。          |
 
 **错误码：**
 
@@ -7970,38 +7963,22 @@ on(type: 'extrasChange', callback: (extras: {[key:string]: Object}) => void): vo
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { avSession } from '@kit.AVSessionKit';
-@Entry
-@Component
-struct Index {
-  @State message: string = 'hello world';
 
-  build() {
-    Column() {
-      Text(this.message)
-        .onClick(()=>{
-          let currentAVSession: avSession.AVSession | undefined = undefined;
-          let tag: string = "createNewSession";
-          let context: Context = this.getUIContext().getHostContext() as Context;
-          let sessionId: string = "";
-          let controller:avSession.AVSessionController | undefined = undefined;
-          avSession.createAVSession(context, tag, "audio").then(async (data:avSession.AVSession)=> {
-            currentAVSession = data;
-            sessionId = currentAVSession.sessionId;
-            controller = await currentAVSession.getController();
-            console.info('CreateAVSession : SUCCESS :sessionid = ${sessionid}');
-          }).catch((err: BusinessError) => {
-            console.info('CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}')
-          });
-          if (controller !== undefined) {
-            (controller as avSession.AVSessionController).on('extrasChange', (extras) => {
-              console.info(`Caught extrasChange event,the new extra is: ${JSON.stringify(extras)}`);
-            });
-          }
-        })
-    }
-    .width('100%')
-    .height('100%')
-  }
+let tag: string = "createNewSession";
+let sessionId: string = "";
+let controller:avSession.AVSessionController | undefined = undefined;
+avSession.createAVSession(context, tag, "audio").then(async (data:avSession.AVSession)=> {
+  currentAVSession = data;
+  sessionId = currentAVSession.sessionId;
+  controller = await currentAVSession.getController();
+  console.info('CreateAVSession : SUCCESS :sessionid = ${sessionid}');
+}).catch((err: BusinessError) => {
+  console.error('CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}')
+});
+if (controller !== undefined) {
+  (controller as avSession.AVSessionController).on('extrasChange', (extras) => {
+    console.info(`Caught extrasChange event,the new extra is: ${JSON.stringify(extras)}`);
+  });
 }
 ```
 
@@ -8020,7 +7997,7 @@ off(type: 'extrasChange', callback?: (extras: {[key:string]: Object}) => void): 
 | 参数名    | 类型                    | 必填 | 说明                                                                                                    |
 | -------- | ----------------------- | ---- | ------------------------------------------------------------------------------------------------------- |
 | type     | string                  | 是   | 取消对应的监听事件，支持事件`'extrasChange'`。                                                         |
-| callback | ({[key:string]: Object}) => void | 否   | 注册监听事件时的回调函数。<br>该参数为可选参数，若不填写该参数，则认为取消会话所有与此事件相关的监听。 |
+| callback | (extras: {[key:string]: Object}) => void | 否   | 注册监听事件时的回调函数。<br>该参数为可选参数，若不填写该参数，则认为取消会话所有与此事件相关的监听。 |
 
 **错误码：**
 
@@ -8073,7 +8050,7 @@ try {
   let playbackState: avSession.AVPlaybackState = avsessionController.getAVPlaybackStateSync();
 } catch (err) {
   let error = err as BusinessError;
-  console.info(`getAVPlaybackStateSync error, error code: ${error.code}, error message: ${error.message}`);
+  console.error(`getAVPlaybackStateSync error, error code: ${error.code}, error message: ${error.message}`);
 }
 ```
 
@@ -8111,7 +8088,7 @@ try {
   let metaData: avSession.AVMetadata = avsessionController.getAVMetadataSync();
 } catch (err) {
   let error = err as BusinessError;
-  console.info(`getAVMetadataSync error, error code: ${error.code}, error message: ${error.message}`);
+  console.error(`getAVMetadataSync error, error code: ${error.code}, error message: ${error.message}`);
 }
 ```
 
@@ -8460,7 +8437,7 @@ try {
 ## AVControlCommandType<sup>10+</sup>
 
 type AVControlCommandType = 'play' | 'pause' | 'stop' | 'playNext' | 'playPrevious' | 'fastForward' | 'rewind' |
-  'seek' | 'setSpeed' | 'setLoopMode' | 'toggleFavorite' | 'playFromAssetId' | 'answer' | 'hangUp' | 'toggleCallMute' | 'setTargetLoopMode'
+  'seek' | 'setSpeed' | 'setLoopMode' | 'setTargetLoopMode' | 'toggleFavorite' | 'playFromAssetId' | 'playWithAssetId' | 'answer' | 'hangUp' | 'toggleCallMute'
 
 会话可传递的命令。
 
@@ -8470,24 +8447,27 @@ type AVControlCommandType = 'play' | 'pause' | 'stop' | 'playNext' | 'playPrevio
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 | 类型             | 说明         |
 | ---------------- | ------------ |
-| 'play'           | 播放。         |
-| 'pause'          | 暂停。         |
-| 'stop'           | 停止。         |
-| 'playNext'       | 下一首。       |
-| 'playPrevious'   | 上一首。       |
-| 'fastForward'    | 快进。         |
-| 'rewind'         | 快退。         |
-| 'seek'           | 跳转某一节点。 |
-| 'setSpeed'       | 设置播放倍速。 |
-| 'setLoopMode'    | 设置循环模式。 |
-| 'toggleFavorite' | 是否收藏。     |
-| 'playFromAssetId'| 播放指定的assetid。 |
-|'answer'          | 接听。        |
-| 'hangUp'         | 挂断。        |
-|'toggleCallMute'  | 设置通话静音状态。 |
-| 'setTargetLoopMode' <sup>18+</sup>   | 设置目标循环模式。 |
+| 'play'           | 播放。无需传入参数。|
+| 'pause'          | 暂停。无需传入参数。|
+| 'stop'           | 停止。 无需传入参数。 |
+| 'playNext'       | 下一首。无需传入参数。|
+| 'playPrevious'   | 上一首。无需传入参数。|
+| 'fastForward'    | 快进。无需传入参数。 |
+| 'rewind'         | 快退。无需传入参数。 |
+| 'seek'           | 跳转某一节点。对应参数使用number类型。|
+| 'setSpeed'       | 设置播放倍速。对应参数使用number类型。 |
+| 'setLoopMode'    | 设置循环模式。对应参数使用[LoopMode](#loopmode10)。 |
+| 'setTargetLoopMode' <sup>18+</sup>   | 设置目标循环模式。对应参数推荐使用[LoopMode](#loopmode10)。 |
+| 'toggleFavorite' | 是否收藏。对应参数使用[AVMetadata.assetId](#avmetadata10)。     |
+| 'playFromAssetId'| 播放指定的assetId。 |
+| 'playWithAssetId' <sup>20+</sup>    | 播放指定的assetId。对应参数使用[AVMetadata.assetId](#avmetadata10)，<br>字符串长度<40960字节。<br> |
+|'answer'          | 接听。无需传入参数。        |
+| 'hangUp'         | 挂断。无需传入参数。        |
+|'toggleCallMute'  | 设置通话静音状态。无需传入参数。 |
 
 ## AVControlCommand<sup>10+</sup>
 
@@ -8499,7 +8479,7 @@ type AVControlCommandType = 'play' | 'pause' | 'stop' | 'playNext' | 'playPrevio
 
 | 名称      | 类型                                              | 必填 | 说明           |
 | --------- | ------------------------------------------------- | ---- | -------------- |
-| command   | [AVControlCommandType](#avcontrolcommandtype10)     | 是   | 命令。           |
+| command   | [AVControlCommandType](#avcontrolcommandtype10)     | 是   | 命令。每种命令对应的参数不同，具体的对应关系可查阅[AVControlCommandType](#avcontrolcommandtype10)里的详细介绍。       |
 | parameter | [LoopMode](#loopmode10) &#124; string &#124; number | 否   | 命令对应的参数。 |
 
 
@@ -8783,3 +8763,15 @@ async function onPickerStateChange(context: common.Context) {
 | SECONDS_10             | 10 | 时间为10秒。             |
 | SECONDS_15             | 15 | 时间为15秒。             |
 | SECONDS_30             | 30 | 时间为30秒。             |
+
+## AudioCapabilities<sup>20+</sup>
+
+表示投播设备支持的音频能力。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+| 名称            | 类型                      | 只读 | 可选 | 说明                                                                  |
+| --------------- |-------------------------| ---- | ---- |---------------------------------------------------------------------|
+| streamInfos            | Array\<[audio.AudioStreamInfo](../apis-audio-kit/arkts-apis-audio-i.md#audiostreaminfo8)>                  | 是    | 否    | 音频能力参数的列表。  |

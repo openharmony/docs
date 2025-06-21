@@ -108,7 +108,7 @@ starStyle(options: StarStyleOptions)
 
 设置评分的样式。该属性所支持的图片类型能力参考[Image](ts-basic-components-image.md)组件。
 
-支持加载本地图片和网络图片，暂不支持PixelMap类型和Resource资源。
+支持加载本地图片和网络图片，暂不支持PixelMap类型。
 
 默认图片加载方式为异步，暂不支持同步加载。
 
@@ -122,7 +122,7 @@ starStyle(options: StarStyleOptions)
 
 | 参数名  | 类型                                            | 必填 | 说明                                                         |
 | ------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [StarStyleOptions](#starstyleoptions18对象说明) | 是   | 评分的样式。<br/>**说明：** <br/>backgroundUri或者foregroundUri或者secondaryUri设置的图片路径错误时，图片不显示。<br/>backgroundUri或者foregroundUri设置为undefined或者空字符串时，rating会选择加载系统默认星型图源。<br/>secondaryUri不设置或者设置的值为undefined或者空字符串时，优先设置为backgroundUri，效果上等同于只设置了foregroundUri、backgroundUri。 |
+| options | [StarStyleOptions](#starstyleoptions18对象说明) | 是   | 评分的样式。<br/>**说明：** <br/>当backgroundUri、foregroundUri或secondaryUri设置的图片路径错误时，图片将不显示。<br/>当backgroundUri或foregroundUri设置为undefined或空字符串时，Rating组件将加载系统默认星型图源。<br/>当secondaryUri未设置或设置为undefined或空字符串时，将优先使用backgroundUri，效果等同于仅设置foregroundUri和backgroundUri。 |
 
 ### starStyle<sup>18+</sup>
 
@@ -130,7 +130,7 @@ starStyle(options: Optional\<StarStyleOptions>)
 
 设置评分的样式。该属性所支持的图片类型能力参考[Image](ts-basic-components-image.md)组件。
 
-支持加载本地图片和网络图片，暂不支持PixelMap类型和Resource资源。
+支持加载本地图片和网络图片，暂不支持PixelMap类型。
 
 默认图片加载方式为异步，暂不支持同步加载。
 
@@ -146,13 +146,13 @@ starStyle(options: Optional\<StarStyleOptions>)
 
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| options | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[StarStyleOptions](#starstyleoptions18对象说明)> | 是   | 评分的样式。<br/>**说明：** <br/>backgroundUri或者foregroundUri或者secondaryUri设置的图片路径错误时，图片不显示。<br/>backgroundUri或者foregroundUri设置为undefined或者空字符串时，rating会选择加载系统默认星型图源。<br/>secondaryUri不设置或者设置的值为undefined或者空字符串时，优先设置为backgroundUri，效果上等同于只设置了foregroundUri、backgroundUri。 |
+| options | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[StarStyleOptions](#starstyleoptions18对象说明)> | 是   | 评分的样式。<br/>**说明：** <br/>当backgroundUri、foregroundUri或secondaryUri设置的图片路径错误时，图片将不显示。<br/>当backgroundUri或foregroundUri设置为undefined或空字符串时，Rating组件将加载系统默认星型图源。<br/>当secondaryUri未设置或设置为undefined或空字符串时，将优先使用backgroundUri，效果等同于仅设置foregroundUri和backgroundUri。 |
 
 >  **说明：**
 >
->  rating宽高为[width, height]时，单个图片的绘制区域为[width / stars, height]。
+>  当Rating组件的宽高为[width, height]时，单个图片的绘制区域为[width / stars, height]。
 >
->  为了指定绘制区域为方形，建议自定义宽高时采取[height * stars, height], width = height * stars的方式。
+>  为确保绘制区域为方形，建议自定义宽高时采用[height * stars, height]，即width = height * stars的方式。
 
 ### contentModifier<sup>12+</sup>
 
@@ -192,7 +192,7 @@ contentModifier(modifier: Optional<ContentModifier\<RatingConfiguration>>)
 
 onChange(callback:(value:&nbsp;number)&nbsp;=&gt;&nbsp;void)
 
-操作评分条的评星发生改变时触发该回调。
+当评分条的评星变化时触发该回调。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -210,7 +210,7 @@ onChange(callback:(value:&nbsp;number)&nbsp;=&gt;&nbsp;void)
 
 onChange(callback:Optional\<OnRatingChangeCallback>)
 
-操作评分条的评星发生改变时触发该回调。与[onChange](#onchange)相比，callback:参数新增了对undefined类型的支持。
+当评分条的评星变化时触发该回调。与[onChange](#onchange)相比，callback参数新增了对undefined类型的支持。
 
 **卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
@@ -222,13 +222,13 @@ onChange(callback:Optional\<OnRatingChangeCallback>)
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[OnRatingChangeCallback](#onratingchangecallback18)> | 是   | 操作评分条的评星发生改变时触发该回调。<br/>当callback的值为undefined时，不使用回调函数。 |
+| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[OnRatingChangeCallback](#onratingchangecallback18)> | 是   | 操作评分条的评星变化时触发该回调。<br/>当callback的值为undefined时，不使用回调函数。 |
 
 ## OnRatingChangeCallback<sup>18+</sup>
 
 type OnRatingChangeCallback = (rating: number) => void
 
-操作评分条的评星发生改变时触发该回调。
+操作评分条的评星变化时触发该回调。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -260,12 +260,14 @@ type OnRatingChangeCallback = (rating: number) => void
 | 名称  | 类型    |    只读    |    可选      |  说明              |
 | ------ | ------ | ------ |-------------------------------- |-------------------------------- |
 | rating    | number  | 否 | 否 | 设置并接收评分值。<br/>默认值：0<br/>取值范围： [0, stars]<br/>小于0取0，大于[stars](#stars)取最大值stars。<br />该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。<br />该参数支持[!!](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。 |
-| indicator | boolean | 否 | 否 | 评分条是否作为一个指示器。值为true时，表示作为一个指示器，值为false时，表示不作为一个指示器。<br/>默认值：false |
+| indicator | boolean | 否 | 否 | 评分条是否作为指示器使用。当值为true时，表示作为指示器；当值为false时，表示不作为指示器。<br/>默认值：false |
 | stars | number | 否 | 否 |评分条的星级总数。<br/>默认值：5 |
 | stepSize | number | 否 | 否 |评分条的评分步长。<br/>默认值：0.5 |
 | triggerChange | Callback\<number> | 否 | 否 |触发评分数量变化。 |
 
 ## RatingOptions<sup>18+</sup>对象说明
+
+评分组件的信息。
 
 **卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
@@ -276,9 +278,11 @@ type OnRatingChangeCallback = (rating: number) => void
 | 名称                   | 类型    | 必填 | 说明                                                         |
 | ---------------------- | ------- | ---- | ------------------------------------------------------------ |
 | rating<sup>7+</sup>    | number  | 是   | 设置并接收评分值。<br/>默认值：0<br/>取值范围： [0, stars]<br/>小于0取0，大于[stars](#stars)取最大值stars。<br />该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| indicator<sup>7+</sup> | boolean | 否   | 设置评分组件作为指示器使用，不可改变评分。<br/>默认值：false，可进行评分<br/>**说明：** <br/>indicator=true时，默认组件高度height=12.0vp，组件width=height * stars。 <br/>indicator=false时，默认组件高度height=28.0vp，组件width=height * stars。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| indicator<sup>7+</sup> | boolean | 否   | 设置评分组件作为指示器使用，值为true时，不可改变评分。<br/>默认值：false，可进行评分<br/>**说明：** <br/>indicator=true时，默认组件高度height=12.0vp，组件width=height * stars。 <br/>indicator=false时，默认组件高度height=28.0vp，组件width=height * stars。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## StarStyleOptions<sup>18+</sup>对象说明
+
+评分组件选中、未选中以及部分选中的星级样式。
 
 **卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
@@ -288,15 +292,19 @@ type OnRatingChangeCallback = (rating: number) => void
 
 | 名称                       | 类型   | 必填 | 说明                                                         |
 | -------------------------- | ------ | ---- | ------------------------------------------------------------ |
-| backgroundUri<sup>7+</sup> | string | 是   | 未选中的星级的图片链接，可由用户自定义或使用系统默认图片。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| foregroundUri<sup>7+</sup> | string | 是   | 选中的星级的图片路径，可由用户自定义或使用系统默认图片。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| secondaryUri<sup>7+</sup>  | string | 否   | 部分选中的星级的图片路径，可由用户自定义或使用系统默认图片。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| backgroundUri<sup>7+</sup> | [ResourceStr](ts-types.md#resourcestr) | 是   | 未选中的星级的图片链接，可由用户自定义或使用系统默认图片。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>从API version 20开始，该接口支持设置Resource资源。参考[示例4（通过Resource资源设置评分的样式）](#示例4通过resource资源设置评分的样式)代码。|
+| foregroundUri<sup>7+</sup> | [ResourceStr](ts-types.md#resourcestr) | 是   | 选中的星级的图片路径，可由用户自定义或使用系统默认图片。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>从API version 20开始，该接口支持设置Resource资源。参考[示例4（通过Resource资源设置评分的样式）](#示例4通过resource资源设置评分的样式)代码。|
+| secondaryUri<sup>7+</sup>  | [ResourceStr](ts-types.md#resourcestr) | 否   | 部分选中的星级的图片路径，可由用户自定义或使用系统默认图片。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>从API version 20开始，该接口支持设置Resource资源。参考[示例4（通过Resource资源设置评分的样式）](#示例4通过resource资源设置评分的样式)代码。|
+
+> **说明：** 
+>
+> string格式可用于加载网络图片和本地图片。当使用相对路径引用本地图片时，例如Image("common/test.jpg")，其中common目录与pages同级，同时支持Base64字符串。
 
 ## 示例
 
 ### 示例1（设置默认评分样式）
 
-该示例为创建默认星型评分样式。
+以下示例展示了如何创建默认星型评分样式。
 
 ```ts
 // xxx.ets
@@ -354,7 +362,7 @@ struct RatingExample {
 
 ### 示例2（设置评分的样式）
 
-该示例通过配置starStyle实现自定义星级的图片链接。
+以下示例展示了如何通过配置starStyle实现自定义星级的图片链接。
 
 ```ts
 // xxx.ets
@@ -389,8 +397,7 @@ struct RatingExample {
 ![rating1](figures/rating1.gif)
 
 ### 示例3（自定义评分条）
-该示例实现了自定义评分条的功能，每个圆圈表示0.5分。ratingIndicator为true时表示评分条作为一个指示器不可改变评分；
-为false时可以进行评分。ratingStars可改变评分总数。ratingStepsize可改变评分步长。
+以下示例实现了自定义评分条的功能，其中每个圆圈表示0.5分。当ratingIndicator为true时，评分条作为指示器使用，不可改变评分；当为false时，可进行评分。ratingStars用于设置评分总数，ratingStepsize用于设置评分步长。
 
 ```ts
 // xxx.ets
@@ -592,3 +599,39 @@ struct ratingExample {
 ```
 
 ![rating2](figures/rating2.gif)
+
+### 示例4（通过Resource资源设置评分的样式）
+
+该示例通过Resource资源配置starStyle，实现自定义星级图片链接。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct RatingExample {
+  @State rating: number = 3.5;
+
+  build() {
+    Column() {
+      Rating({ rating: this.rating, indicator: false })
+        .stars(5)
+        .stepSize(0.5)
+        .starStyle({
+          backgroundUri: $r('app.media.imag1'),
+          foregroundUri: $r('app.media.imag2'),
+          secondaryUri: $r('app.media.imag3')
+        })
+        .margin({ top: 24 })
+        .onChange((value: number) => {
+          this.rating = value;
+        })
+      Text('current score is ' + this.rating)
+        .fontSize(16)
+        .fontColor('rgba(24,36,49,0.60)')
+        .margin({ top: 16 })
+    }.width('100%').height('100%').backgroundColor('#F1F3F5')
+  }
+}
+```
+
+![rating1](figures/rating1.gif)

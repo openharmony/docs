@@ -24,6 +24,59 @@
 import { text } from '@kit.ArkGraphics2D';
 ```
 
+## text.setTextHighContrast<sup>20+</sup>
+
+setTextHighContrast(action: TextHighContrast): void
+
+用于设置文字渲染高对比度模式。
+
+该接口设置后整个进程都会生效，进程内所有页面共用相同模式。
+
+可调用此接口设置，也可通过系统设置界面中**高对比度文字配置开关**进行开启/关闭。使用此接口设置开启/关闭文字渲染高对比度配置的优先级高于系统开关设置。
+
+该接口针对应用的文字自绘制场景不生效。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型               | 必填 | 说明                              |
+| ----- | ------------------ | ---- | --------------------------------------------------------------------------------- |
+| action | [TextHighContrast](#texthighcontrast20)  | 是   | 文字渲染高对比度模式。                                                              |
+
+**示例：**
+
+```ts
+text.setTextHighContrast(text.TextHighContrast.TEXT_APP_DISABLE_HIGH_CONTRAST)
+```
+
+## text.setTextUndefinedGlyphDisplay<sup>20+</sup>
+
+setTextUndefinedGlyphDisplay(noGlyphShow: TextUndefinedGlyphDisplay): void
+
+设置字符映射到.notdef（未定义）字形时要使用的字形类型。
+
+影响此调用后呈现的所有文本。
+
+此配置会影响显示字体中未定义字符的方式：
+
+- 默认行为遵循字体的内部.notdef字形设计。
+- 开启后将强制使缺失字形的字符以豆腐块形式显示。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型               | 必填 | 说明                              |
+| ----- | ------------------ | ---- | ------------------------------------------------------------------------------- |
+| noGlyphShow | [TextUndefinedGlyphDisplay](#textundefinedglyphdisplay20) | 是   | 无法塑形字符的显示方式。 |
+
+**示例：**
+
+```ts
+text.setTextUndefinedGlyphDisplay(text.TextUndefinedGlyphDisplay.USE_TOFU)
+```
+
 ## text.matchFontDescriptors<sup>18+</sup>
 
 matchFontDescriptors(desc: FontDescriptor): Promise&lt;Array&lt;FontDescriptor&gt;&gt;
@@ -219,6 +272,29 @@ struct Index {
 }
 ```
 
+## TextHighContrast<sup>20+</sup>
+
+文字渲染高对比度配置类型枚举。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+| 名称                               | 值   | 说明                                            |
+| ---------------------------------- | ---- | ---------------------------------------------- |
+| TEXT_FOLLOW_SYSTEM_HIGH_CONTRAST   | 0    | 跟随系统设置中的高对比度文字配置。                                            |
+| TEXT_APP_DISABLE_HIGH_CONTRAST     | 1    | 关闭APP的文字渲染高对比度配置，该模式的优先级要高于系统设置中的高对比度文字配置。 |
+| TEXT_APP_ENABLE_HIGH_CONTRAST      | 2    | 开启APP的文字渲染高对比度配置，该模式的优先级要高于系统设置中的高对比度文字配置。 |
+
+## TextUndefinedGlyphDisplay<sup>20+</sup>
+
+文本未定义字形时的显示方式枚举。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+| 名称           | 值   | 说明                                 |
+| -------------- | ---- | ------------------------------------ |
+| USE_DEFAULT    | 0    | 使用字体的内部.notdef字形。遵循字体的内部.notdef字形设计，可以是空框、空格或自定义符号。|
+| USE_TOFU       | 1    | 总是用显式的豆腐块替换未定义的字形，覆盖字体的默认行为。用于调试缺失字符或强制一致的缺失符号显示。|
+
 ## TextAlign
 
 文本对齐方式枚举。
@@ -233,6 +309,19 @@ struct Index {
 | JUSTIFY   | 3    | 文本两侧对齐，对最后一行无效。                    |
 | START     | 4    | 基于文本的方向[TextDirection](#textdirection)，文本靠开头方向对齐。 |
 | END       | 5    | 基于文本的方向[TextDirection](#textdirection)，文本以结束方向对齐。 |
+
+## TextVerticalAlign<sup>20+</sup>
+
+文本垂直对齐方式枚举。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+| 名称        | 值   | 说明                                          |
+| --------- | ---- | ---------------------------------------------- |
+| BASELINE | 0    | 文本基线对齐。                                  |
+| BOTTOM | 1    | 文本底部对齐。                                  |
+| CENTER    | 2    | 文本居中对齐。                                  |
+| TOP | 3    | 文本顶部对齐。                    |
 
 ## TextDirection
 
@@ -279,9 +368,9 @@ struct Index {
 | 名称                      | 类型                                                  | 只读 | 可选 | 说明                                         |
 | ------------------------- | --------------------------------------------------- | ---- | ---- | -------------------------------------------- |
 | textDecoration            | [TextDecorationType](#textdecorationtype)           | 是   | 是   | 装饰线类型，默认为NONE。                       |
-| color                     | [common2D.Color](js-apis-graphics-common2D.md#color)| 是   | 是   | 装饰线颜色，默认为透明。                       |
+| color                     | [common2D.Color](js-apis-graphics-common2D.md#color)| 是   | 是   | 装饰线颜色，默认为跟随文本颜色。                       |
 | decorationStyle           | [TextDecorationStyle](#textdecorationstyle)         | 是   | 是   | 装饰线样式，默认为SOLID。                      |
-| decorationThicknessScale  | number                                              | 是   | 是   | 装饰线粗细系数，浮点数，默认为1.0。|
+| decorationThicknessScale  | number                                              | 是   | 是   | 装饰线粗细系数，浮点数，默认为1.0。如果设置的值小于等于0，则不会绘制装饰线。|
 
 ## TextDecorationType
 
@@ -369,7 +458,7 @@ struct Index {
 | ALL                   | 0x0 | 高度修饰符设置为段落中第一行上升、最后一行下降。            |
 | DISABLE_FIRST_ASCENT  | 0x1 | 高度修饰符设置为禁止段落中第一行上升。                   |
 | DISABLE_LAST_ASCENT   | 0x2 | 高度修饰符设置为禁止段落中最后一行下降。                 |
-| DISABLE_ALL           | 0x1 \| 0x2 | 高度修饰符设置为段落中第一行上升、最后一行下降。          |
+| DISABLE_ALL           | 0x1 \| 0x2 | 高度修饰符设置为禁止段落中第一行上升、最后一行下降。          |
 
 ## TextBaseline
 
@@ -444,6 +533,18 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 | axis      | string                                               | 是  |  否   | 可变字体属性键值对中的关键字标识的字符串。       |
 | value     | number                                               | 是  |  否   | 可变字体属性键值对的值。                        |
 
+## TextBadgeType<sup>20+</sup>
+
+文本上下标枚举。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+| 名称   | 值 | 说明      |
+| ------ | - | --------- |
+| TEXT_BADGE_NONE | 0 | 不使能上下标。 |
+| TEXT_SUPERSCRIPT | 1 | 使能上标。 |
+| TEXT_SUBSCRIPT | 2 | 使能下标。 |
+
 ## TextStyle
 
 文本样式。
@@ -456,7 +557,7 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 | color         | [common2D.Color](js-apis-graphics-common2D.md#color) | 是 | 是 | 文字颜色，默认为白色。                         |
 | fontWeight    | [FontWeight](#fontweight)                            | 是 | 是 | 字重，默认为W400。 目前只有系统默认字体支持字重的调节，其他字体设置字重值小于semi-bold（即W600）时字体粗细无变化，当设置字重值大于等于semi-bold（即W600）时可能会触发伪加粗效果。                         |
 | fontStyle     | [FontStyle](#fontstyle)                              | 是 | 是 | 字体样式，默认为常规样式。                          |
-| baseline      | [TextBaseline](#textbaseline)                        | 是 | 是 | 文本基线型，默认为ALPHABETIC。               |
+| baseline      | [TextBaseline](#textbaseline)                        | 是 | 是 | 文本基线类型，默认为ALPHABETIC。               |
 | fontFamilies  | Array\<string>                                       | 是 | 是 | 字体家族名称列表，默认为空，匹配系统字体。                    |
 | fontSize      | number                                               | 是 | 是 | 字体大小，浮点数，默认为14.0，单位为px。  |
 | letterSpacing | number                                               | 是 | 是 | 字符间距，正数拉开字符距离，若是负数则拉近字符距离，浮点数，默认为0.0，单位为物理像素px。|
@@ -472,6 +573,7 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 | fontVariations| Array\<[FontVariation](#fontvariation)>              | 是 | 是 | 可变字体属性数组。|
 | textShadows   | Array\<[TextShadow](#textshadow)>                    | 是 | 是 | 文本阴影数组。|
 | backgroundRect| [RectStyle](#rectstyle)                              | 是 | 是 | 文本矩形框样式。|
+| badgeType<sup>20+</sup>   | [TextBadgeType](#textbadgetype20) | 是   | 是   | 设置文本排版时是否使能上标或下标。TEXT_SUPERSCRIPT表示使能上标，TEXT_SUBSCRIPT表示使能下标，默认值为TEXT_BADGE_NONE表示不使能。|
 
 ## StrutStyle
 
@@ -481,7 +583,7 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 
 | 名称                      | 类型                                       | 只读 | 可选 | 说明                                                                 |
 | -------------  | ---------------------------------------------------- | ---- | -- | --------------------------------------------------------------------- |
-| fontFamilies   | Array\<string>                                       | 是   | 是 | 字体族名称列表，默认为系统字体。                                               |
+| fontFamilies   | Array\<string>                                       | 是   | 是 | 字体家族名称列表，默认为空，匹配系统字体。                                               |
 | fontStyle      | [FontStyle](#fontstyle)                              | 是   | 是 | 字体样式，默认为常规样式。                                               |
 | fontWidth      | [FontWidth](#fontwidth)                              | 是   | 是 | 字体宽度，默认为NORMAL。                                                |
 | fontWeight     | [FontWeight](#fontweight)                            | 是   | 是 | 字重，默认为W400。系统默认字体支持字重调节，其他字体设置字重值小于W600时无变化，大于等于W600时可能触发伪加粗效果。                             |
@@ -501,7 +603,7 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | - | - | -  | - | - |
-| path | string | 否 | 是 | 字体绝对路径，可取任意字符串，跟随实际系统路径限制规则，默认为空字符串。 |
+| path | string | 否 | 是 | 字体绝对路径，可取遵循系统限制的任意字符串，默认为空字符串。 |
 | postScriptName | string | 否 | 是 | 字体唯一标识名称，可取任意字符串，默认为空字符串。 |
 | fullName | string | 否 | 是 | 字体名称，可取任意字符串，默认为空字符串。 |
 | fontFamily | string | 否 | 是 | 字体家族，可取任意字符串，默认为空字符串。 |
@@ -660,6 +762,118 @@ struct RenderTest {
 }
 ```
 
+### unloadFontSync<sup>20+</sup>
+unloadFontSync(name: string): void
+
+卸载指定的自定义字体，此接口为同步接口。
+
+使用此接口卸载字体别名所对应的自定义字体后，对应的自定义字体将不再可用。
+
+所有使用该字体别名的排版对象都应该被销毁重建。
+
+- 卸载不存在的字体别名不会产生任何效果且不会抛出错误。
+- 此操作仅影响后续字体使用。
+- 卸载正在使用的字体可能导致文本渲染异常（如乱码或字形缺失）。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+|   参数名 | 类型               | 必填 | 说明                              |
+|   -----  | ------------------ | ---- | --------------------------------------------------------------------------------- |
+|   name   | string             | 是   | 需要取消注册的字体别名，与加载字体时使用的别名相同。 |
+
+**示例：**
+
+``` ts
+import { text } from "@kit.ArkGraphics2D"
+
+@Entry
+@Component
+struct UnloadFontSyncTest {
+  private fc: text.FontCollection = text.FontCollection.getGlobalInstance();
+  @State content: string = "默认字体"
+
+  build() {
+    Column({ space: 10 }) {
+      Text(this.content)
+        .fontFamily("custom")
+      Button("load font")
+        .onClick(() => {
+          this.fc.loadFontSync("custom", "file:///system/fonts/NotoSansCJK-Regular.ttc")
+          this.content = "自定义字体"
+        })
+      Button("unload font")
+        .onClick(() => {
+          this.fc.unloadFontSync("custom")
+          this.content = "默认字体"
+        })
+    }.width("100%")
+    .height("100%")
+    .justifyContent(FlexAlign.Center)
+  }
+}
+```
+
+### unloadFont<sup>20+</sup>
+unloadFont(name: string): Promise\<void>
+
+卸载指定的自定义字体。使用Promise异步回调。
+
+使用此接口卸载字体别名所对应的自定义字体后，对应的自定义字体将不再可用。
+
+所有使用该字体别名的排版对象都应该被销毁重建。
+
+- 卸载不存在的字体别名不会产生任何效果且不会抛出错误。
+- 此操作仅影响后续字体使用。
+- 卸载正在使用的字体可能导致文本渲染异常（如乱码或字形缺失）。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型               | 必填 | 说明                              |
+| -----  | ------------------ | ---- | --------------------------------- |
+| name   | string             | 是   | 需要卸载的字体的别名，与加载字体时使用的别名相同。 |
+
+**返回值：**
+
+| 类型           | 说明                      |
+| -------------- | ------------------------- |
+| Promise\<void> | 无返回结果的Promise对象。 |
+
+**示例：**
+
+```ts
+import { text } from "@kit.ArkGraphics2D"
+
+@Entry
+@Component
+struct UnloadFontTest {
+  private fc: text.FontCollection = text.FontCollection.getGlobalInstance();
+  @State content: string = "默认字体"
+
+  build() {
+    Column({ space: 10 }) {
+      Text(this.content)
+        .fontFamily("custom")
+      Button("load font")
+        .onClick(async () => {
+          await this.fc.loadFont("custom", "file:///system/fonts/NotoSansCJK-Regular.ttc")
+          this.content = "自定义字体"
+        })
+      Button("unload font")
+        .onClick(async () => {
+          await this.fc.unloadFont("custom")
+          this.content = "默认字体"
+        })
+    }.width("100%")
+    .height("100%")
+    .justifyContent(FlexAlign.Center)
+  }
+}
+```
+
 ### clearCaches
 
 clearCaches(): void
@@ -703,7 +917,9 @@ struct Index {
 | strutStyle           | [StrutStyle](#strutstyle)                  | 是   | 是   | 支柱样式，默认为初始的StrutStyle。               |
 | textHeightBehavior   | [TextHeightBehavior](#textheightbehavior)  | 是   | 是   | 文本高度修饰符模式，默认为ALL。                              |
 | tab<sup>18+</sup>   | [TextTab](#texttab18)  | 是   | 是   | 表示段落中文本制表符后的文本对齐方式及位置，默认将制表符替换为一个空格。此参数与文本对齐方式（align属性）或省略号样式（[TextStyle](#textstyle)中的ellipsis属性）共同配置时无效。 |
-
+| trailingSpaceOptimized<sup>20+</sup>   | boolean | 是   | 是   | 表示文本排版时行尾空格是否参与对齐计算。true表示行尾空格不参与计算，false表示行尾空格参与计算，默认值为false。|
+| autoSpace<sup>20+</sup>   | boolean | 是   | 是   | 设置文本排版时是否使能自动间距。true表示使能自动间距，则会在文本排版时自动调整CJK（中文字符、日文字符、韩文字符）与西文（拉丁字母、西里尔字母、希腊字母）、CJK与数字、CJK与版权符号、版权符号与数字、版权符号与西文之间的间距。false表示不使能自动间距，默认值为false。|
+| verticalAlign<sup>20+</sup>   | [TextVerticalAlign](#textverticalalign20) | 是   | 是   | 文本垂直对齐方式，开启行高缩放（即设置[TextStyle](#textstyle)的heightScale）或行内不同字号（即设置[TextStyle](#textstyle)的fontSize）文本混排时生效。 |
 
 ## PlaceholderAlignment
 
@@ -719,6 +935,7 @@ struct Index {
 | TOP_OF_ROW_BOX      | 3 | 顶部与文本顶部对齐。   |
 | BOTTOM_OF_ROW_BOX   | 4 | 底部与文本底部对齐。   |
 | CENTER_OF_ROW_BOX   | 5 | 居中对齐。|
+| FOLLOW_PARAGRAPH<sup>20+</sup> | 6 | 跟随文本排版对齐。|
 
 ![zh-ch_image_PlaceholderAlignment.png](figures/zh-ch_image_PlaceholderAlignment.png)
 
@@ -1327,7 +1544,7 @@ getActualTextRange(lineNumber: number, includeSpaces: boolean): Range
 | 参数名 | 类型   | 必填 | 说明      |
 | ----- | ------ | ---- | --------- |
 | lineNumber  | number | 是   | 要获取文本范围的行索引，行索引从0开始。该接口只能获取已有行的边界，即输入行索引从0开始。最大行索引为文本行数量-1，文本行数量可通过[getLineCount](#getlinecount)接口获取。|
-| includeSpaces  | boolean | 是   | 指示是否应包含空白字符。true表示包含空白字符，false表示不包含空白字符。|
+| includeSpaces  | boolean | 是   | 表示是否应包含空白字符。true表示包含空白字符，false表示不包含空白字符。|
 
 **返回值：**
 
@@ -1386,6 +1603,51 @@ getLineMetrics(lineNumber: number): LineMetrics | undefined
 
 ```ts
 let lineMetrics =  paragraph.getLineMetrics(0);
+```
+
+### updateColor<sup>20+</sup>
+
+updateColor(color: common2D.Color): void;
+
+更新整个文本段落的颜色。如果当前装饰线未设置颜色，使用该接口也会同时更新装饰线的颜色。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型                                                  | 必填 | 说明                    |
+| ------ | ---------------------------------------------------- | ---- | ---------------------- |
+| color  | [common2D.Color](js-apis-graphics-common2D.md#color) | 是   | 更新后的字体色。|
+
+**示例：**
+
+```ts
+paragraph.updateColor({ alpha: 255, red: 255, green: 0, blue: 0 });
+```
+
+### updateDecoration<sup>20+</sup>
+
+updateDecoration(decoration: Decoration): void;
+
+更新整个文本段落的装饰线。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型                                                  | 必填 | 说明                    |
+| ------ | ---------------------------------------------------- | ---- | ---------------------- |
+| decoration | [Decoration](#decoration)                        | 是 | 更新后的装饰线。|
+
+**示例：**
+
+```ts
+paragraph.updateDecoration({
+  textDecoration: text.TextDecorationType.OVERLINE,
+  color: { alpha: 255, red: 255, green: 0, blue: 0 },
+  decorationStyle: text.TextDecorationStyle.WAVY,
+  decorationThicknessScale: 2.0,
+});
 ```
 
 ## LineTypeset<sup>18+</sup>
@@ -2741,6 +3003,55 @@ getTypographicBounds(): TypographicBounds
 
 ```ts
 let typographicBounds = runs[0].getTypographicBounds();
+```
+
+### getTextDirection<sup>20+</sup>
+
+getTextDirection(): TextDirection
+
+获取该排版单元的文本方向。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型                   | 说明           |
+| ---------------------- | -------------- |
+|   [TextDirection](#textdirection)  | 返回该排版单元的文本方向。|
+
+**示例：**
+
+```ts
+let textDirection = runs[0].getTextDirection();
+```
+
+### getAdvances<sup>20+</sup>
+
+getAdvances(range: Range): Array<common2D.Point>
+
+获取该排版单元指定范围内每个字形的字形宽度数组。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名    | 类型    | 必填 | 说明                       |
+| -------- | ------- | ---- | -------------------------- |
+| range    | [Range](#range)   | 是   | 要获取的字形位置范围。range.start表示范围开始的位置，range.end表示范围的长度。如果长度是0表示从range.start开始获取到渲染块结束。当range.end、range.start为负数，或者传入null、undefined时，该方法将返回undefined。|
+
+**返回值：**
+
+| 类型                   | 说明                                   |
+| ---------------------- | ------------------------------------- |
+| Array<[common2D.Point](js-apis-graphics-common2D.md#point12)>  | 返回该排版单元中每个字形相对于水平方向和垂直方向的字形宽度。 |
+
+**示例：**
+
+```ts
+let advancesRange = runs[0].getAdvances({start:1, end:2}); // 获取渲染块从起始位置1开始, 长度为2范围内的字形宽度
+advancesRange = runs[0].getAdvances({start:-1, end:2}); // -1是非法参数，将返回undefined
+advancesRange = runs[0].getAdvances({start:0, end:-10}); // -10是非法参数，将返回undefined
+let advancesNull = runs[0].getAdvances(null); // null是非法参数，将返回undefined
 ```
 
 ## TextTab<sup>18+</sup>

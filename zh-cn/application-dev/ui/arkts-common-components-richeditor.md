@@ -5,9 +5,9 @@ RichEditor是支持图文混排和文本交互式编辑的组件，通常用于�
 开发者可以创建[使用属性字符串](#创建使用属性字符串构建的richeditor组件)和[不使用属性字符串](#创建不使用属性字符串构建的richeditor组件)构建的RichEditor组件。
 
 ### 创建使用属性字符串构建的RichEditor组件
-使用RichEditor(options: [RichEditorStyledStringOptions](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#richeditorstyledstringoptions12))接口创建属性字符串构建的RichEditor组件，是基于属性字符串（[StyledString/MutableStyledString](arkts-styled-string.md)）构建的，通常应用于需要界面美化和内容强调的场景，通过设置重要功能特性文本的样式来突出显示，从而吸引用户注意。
+使用RichEditor(options: [RichEditorStyledStringOptions](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#richeditorstyledstringoptions12))接口创建属性字符串构建的RichEditor组件，是基于属性字符串（[StyledString/MutableStyledString](arkts-styled-string.md)）构建的。这种构建方式开发者可以通过在应用侧持有属性字符串对象来管理数据，通过修改属性字符串对象的内容、样式，再传递给组件，即可实现对富文本组件内容的更新。
 
-相较于不使用属性字符串构建的RichEditor组件，此种方式提供了多种文本修改方式，包括调整字号、添加字体颜色、使文本具备可点击性，以及支持自定义文本绘制等。此外，此种方式还提供了多种类型样式对象，覆盖了各种常见的文本样式格式，如文本装饰线样式、文本行高样式、文本阴影样式等。
+相比于使用controller提供的接口进行内容样式更新，使用起来更加灵活便捷。同时属性字符串对象可以设置到各类支持属性字符串的文本组件中，可以快速实现内容的迁移。
 
 ```ts
 fontStyle: TextStyle = new TextStyle({
@@ -35,14 +35,14 @@ RichEditor(this.options)
 ![alt text](figures/richeditor_image_stylestringoptions.gif)
 
 ### 创建不使用属性字符串构建的RichEditor组件
-使用RichEditor(value: [RichEditorOptions](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#richeditoroptions))接口创建非属性字符串构建的RichEditor组件，一般用于展示简单的图文信息，例如展示联系人的信息，也可以用于内容要求格式统一的场景，例如一些代码编辑器。
+使用RichEditor(value: [RichEditorOptions](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#richeditoroptions))接口创建非属性字符串构建的RichEditor组件，一般用于复杂内容场景，开发者通过RichEditorController提供的接口实现内容、样式的管理。
 
 ```ts
 @Entry
 @Component
 struct create_rich_editor {
-  controller: RichEditorController = new RichEditorController()
-  options: RichEditorOptions = { controller: this.controller }
+  controller: RichEditorController = new RichEditorController();
+  options: RichEditorOptions = { controller: this.controller };
 
   build() {
     Column() {
@@ -148,7 +148,7 @@ SystemMenu() {
           MenuItem({
             startIcon: this.theme.cutIcon,
             content: "剪切",
-            labelInfo: "Ctrl+X",
+            labelInfo: "Ctrl+X"
           })
           MenuItem({
             startIcon: this.theme.copyIcon,
@@ -177,7 +177,7 @@ SystemMenu() {
 ### 设置输入框光标、手柄颜色
 通过[caretColor](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#caretcolor12)设置输入框光标、手柄颜色。
 
-设置不同颜色的光标和手柄可以提高视觉辨识度，特别是在包含多个输入区域或不同类型内容输入区域的复杂界面中，独特的光标颜色能协助用户迅速定位当前操作的输入区域。这一特性同样适用于需要标示特殊功能或状态的输入框，比如密码输入框。
+设置不同颜色的光标和手柄可以提高视觉辨识度，特别是在包含多个输入区域的复杂界面中，独特的光标颜色能帮助快速定位当前操作的输入区域。这一特性也可以提升用户体验，使光标颜色与应用页面整体的风格相协调。
 
 ```ts
 RichEditor(this.options)
@@ -199,7 +199,7 @@ RichEditor(this.options)
 ### 设置无输入时的提示文本
 通过[placeholder](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#placeholder12)设置无输入时的提示文本。
 
-例如，在用户登录界面采用提示文本，有助于用户区分用户名与密码的输入框。又如，在文本编辑框中，运用提示文本明确输入要求，如“限输入100字以内”，以此指导用户正确操作。
+例如，在用户登录界面采用提示文本，有助于用户区分用户名与密码的输入框。又如，在文本编辑框中，使用提示文本明确输入要求，如“限输入100字以内”，以此指导用户正确操作。
 
 ```ts
 RichEditor(this.options)
@@ -272,7 +272,7 @@ RichEditor(this.options)
 ### 添加组件初始化完成后可触发的回调
 通过[onReady](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#onready)来添加组件初始化完成后可触发的回调。
 
-该回调可在组件初始化后，有效地展示包括图文和表情在内的丰富内容。例如，利用富文本组件展示新闻时，此回调可触发从服务器获取图文数据的操作。随后，将获取到的数据填充至组件中，确保组件在初始化完成后能够迅速在页面上呈现完整的新闻内容。
+该回调可以用于执行一些组件的初始化逻辑。例如在使用富文本组件展示新闻的场景中，可以在该回调中从服务器获取图文数据，并将其添加到组件中，从而实现进入应用页面后即呈现完整新闻内容的功能。
 
 ```ts
 RichEditor(this.options)
@@ -288,25 +288,24 @@ RichEditor(this.options)
 
 ![alt text](figures/richeditor_image_onReady.gif)
 
-### 添加组件内容被选中时可触发的回调
-通过[onSelect](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#onselect)来添加组件内容被选中时可触发的回调。
+### 添加组件内容选择区域或编辑状态下光标位置改变时可触发的回调
+通过[onSelectionChange](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#onselectionchange12)来添加组件内容选择区域或编辑状态下光标位置改变时可触发的回调。
 
-该回调可在文本选择后增强操作体验。例如，在选中文本后，可在回调中触发弹出菜单，以便用户进行文本样式的修改。或者对选中的文本进行内容分析和处理，为用户提供输入建议，从而提升文本编辑的效率和便捷性。
-
-触发回调有两种方式：一是通过鼠标左键选择，即按下左键进行选择，然后在松开左键时触发回调。二是通过手指触摸选择，即用手指进行选择，然后在松开手指时触发回调。
+该回调可用于实时监听组件内容选中区域变化，例如实现实时更新工具栏状态（显示字体、段落格式等）、统计选中内容长度或生成选中内容摘要。实时响应选中状态，动态联动交互元素，提升富文本编辑的操作反馈体验和功能的灵活性。
 
 ```ts
 RichEditor(this.options)
   .onReady(() => {
-    this.controller.addTextSpan('选中此处文本，触发onselect回调。', {
+    this.controller.addTextSpan('改变内容选择区域或编辑状态下的光标位置，触发onSelectionChange回调。', {
       style: {
         fontColor: Color.Black,
         fontSize: 15
       }
     })
   })
-  .onSelect((value: RichEditorSelection) => {
-    this.controller1.addTextSpan(JSON.stringify(value), {
+  .onSelectionChange((value: RichEditorRange) => {
+    this.controller1.addTextSpan("\n" + "触发了onSelectionChange回调，起始范围信息为：(" + value.start + "," +
+    value.end + ")", {
       style: {
         fontColor: Color.Gray,
         fontSize: 10
@@ -321,7 +320,7 @@ RichEditor(this.options1)
   .height(70)
 ```
 
-![alt text](figures/richeditor_image_onSelect.gif)
+![alt text](figures/richeditor_image_onSelectionChange.gif)
 
 ### 添加图文变化前和图文变化后可触发的回调
 通过[onWillChange](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#onwillchange12)添加图文变化前可触发的回调。此回调适用于用户实时数据校验与提醒，例如在用户输入文本时，可在回调内实现对输入内容的检测，若检测到敏感词汇，应立即弹出提示框。此外，它还适用于实时字数统计与限制，对于有字数限制的输入场景，可在回调中实时统计用户输入的字数，并在接近字数上限时提供相应的提示。
@@ -357,7 +356,6 @@ RichEditor(this.options)
         fontSize: 10
       }
     })
-    return true;
   })
   .width(300)
   .height(50)
@@ -370,11 +368,11 @@ RichEditor(this.options1)
 ![alt text](figures/richeditor_image_ondid.gif)
 
 ### 添加输入法输入内容前和完成输入后可触发的回调
-在添加输入法输入内容前，可以通过[aboutToIMEInput](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#abouttoimeinput)触发回调。在输入法完成输入后，可以通过[onIMEInputComplete](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#onimeinputcomplete)或者[onDidIMEInput](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#ondidimeinput12)触发回调。
+在添加输入法输入内容前，可以通过[aboutToIMEInput](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#abouttoimeinput)触发回调。在输入法完成输入后，可以通过[onDidIMEInput](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#ondidimeinput12)触发回调。
 
-这三种回调机制适用于智能输入辅助。例如：在用户开始输入文本前，利用回调进行词汇联想的提供，在用户完成输入后，利用回调执行自动化纠错或格式转换。三种回调的时序依次为：aboutToIMEInput、onIMEInputComplete、onDidIMEInput。
+这两种回调机制适用于文本上屏过程的业务逻辑处理。例如：在用户输入的文本上屏前，利用回调提供联想词汇，在用户完成输入后，执行自动化纠错或格式转换。两种回调的时序依次为：aboutToIMEInput、onDidIMEInput。
 
-使用[RichEditorStyledStringOptions](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#richeditorstyledstringoptions12)构建的组件并不支持上述三种回调功能。
+使用[RichEditorStyledStringOptions](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#richeditorstyledstringoptions12)构建的组件并不支持上述两种回调功能。
 
 ```ts
 RichEditor(this.options)
@@ -388,15 +386,6 @@ RichEditor(this.options)
   })
   .aboutToIMEInput((value: RichEditorInsertValue) => {
     this.controller1.addTextSpan('输入法输入内容前，触发aboutToIMEInput回调：\n' + JSON.stringify(value), {
-      style: {
-        fontColor: Color.Gray,
-        fontSize: 10
-      }
-    })
-    return true;
-  })
-  .onIMEInputComplete((value: RichEditorTextSpanResult) => {
-    this.controller1.addTextSpan('输入法完成输入后，触发onIMEInputComplete回调：\n' + JSON.stringify(value), {
       style: {
         fontColor: Color.Gray,
         fontSize: 10
@@ -420,41 +409,92 @@ RichEditor(this.options1)
   .height(70)
 ```
 
-![alt text](figures/richeditor_image_aboutToIMEInput3.0.gif)
+![alt text](figures/richeditor_image_aboutToIMEInput4.gif)
 
 ### 添加完成粘贴前可触发的回调
-通过[onPaste](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#onpaste11)添加完成粘贴前可触发的回调。
+通过[onPaste](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#onpaste11)回调，来添加粘贴前要处理的流程。
 
 此回调适用于内容格式的处理。例如，当用户复制包含HTML标签的文本时，可在回调中编写代码，将其转换为富文本组件所支持的格式，同时剔除不必要的标签或仅保留纯文本内容。
 
 由于组件默认的粘贴行为仅限于纯文本，无法处理图片粘贴，开发者可利用此方法实现图文并茂的粘贴功能，从而替代组件原有的粘贴行为。
 
 ```ts
-RichEditor(this.options)
-  .onReady(() => {
-    this.controller.addTextSpan('对此处文本进行复制粘贴操作可触发对应回调。', {
-      style: {
-        fontColor: Color.Black,
-        fontSize: 15
+import { BusinessError, pasteboard } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct on_cut_copy_paste {
+  controller: RichEditorController = new RichEditorController();
+  options: RichEditorOptions = { controller: this.controller }
+  controller1: RichEditorController = new RichEditorController();
+  options1: RichEditorOptions = { controller: this.controller1 }
+
+  PopDataFromPasteboard() {
+    let selection = this.controller.getSelection();
+    let start = selection.selection[0];
+    let end = selection.selection[1];
+    if (start == end) {
+      start = this.controller.getCaretOffset();
+      end = this.controller.getCaretOffset();
+    }
+    let moveOffset = 0;
+    let sysBoard = pasteboard.getSystemPasteboard();
+    sysBoard.getData((err, data) => {
+      if (err) {
+        return;
       }
-    })
-  })
-  .onPaste(() => {
-    this.controller1.addTextSpan('触发onPaste回调\n', {
-      style: {
-        fontColor: Color.Gray,
-        fontSize: 10
+      if (start != end) {
+        this.controller.deleteSpans({ start: start, end: end })
       }
+      let count = data.getRecordCount();
+      for (let i = 0; i < count; i++) {
+        const element = data.getRecord(i);
+        if (element && element.plainText && element.mimeType === pasteboard.MIMETYPE_TEXT_PLAIN) {
+          this.controller.addTextSpan(element.plainText,
+            {
+              style: { fontSize: 26, fontColor: Color.Red },
+              offset: start + moveOffset
+            }
+          )
+          moveOffset += element.plainText.length;
+        }
+      }
+      this.controller.setCaretOffset(start + moveOffset)
     })
-  })
-  .width(300)
-  .height(70)
+  }
+
+  build() {
+    Column() {
+      Column({ space: 3 }) {
+        RichEditor(this.options)
+          .onReady(() => {
+            this.controller.addTextSpan('对此处文本进行复制粘贴操作可触发对应回调。',
+              { style: { fontColor: Color.Black, fontSize: 15 } })
+          })
+          .onPaste((event) => {
+            this.controller1.addTextSpan('触发onPaste回调\n', { style: { fontColor: Color.Gray, fontSize: 10 } })
+            if (event != undefined && event.preventDefault) {
+              event.preventDefault();
+            }
+            console.info('RichEditor onPaste')
+            this.PopDataFromPasteboard()
+          })
+          .width(300)
+          .height(70)
+        Text('查看回调内容：').fontSize(10).fontColor(Color.Gray).width(300)
+          .width(300)
+          .height(300)
+
+      }.width('100%').alignItems(HorizontalAlign.Start)
+    }.height('100%')
+  }
+}
 ```
 
 ### 添加完成剪切前可触发的回调
-通过[onCut](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#oncut12)添加完成剪切前可触发的回调。
+通过[onCut](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#oncut12)回调，来添加剪切前要处理的流程。
 
-此回调功能适用于数据处理与存储，例如，当用户从富文本组件中剪切内容时，可在回调中执行将被剪切的内容进行临时存储的操作，确保后续的粘贴操作能够准确无误地还原内容。
+此回调功能适用于数据处理与存储。例如，当用户从富文本组件中剪切内容时，可在回调中执行将被剪切的内容进行临时存储的操作，确保后续的粘贴操作能够准确无误地还原内容。
 
 由于组件默认的剪切行为仅限于纯文本，无法处理图片剪切，开发者可利用此方法实现图文并茂的剪切功能，从而替代组件原有的剪切行为。
 
@@ -481,11 +521,11 @@ RichEditor(this.options)
 ```
 
 ### 添加完成复制前可触发的回调
-通过[onCopy](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#oncopy12)添加完成复制前可触发的回调。
+通过[onCopy](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#oncopy12)回调，来添加复制前要处理的流程。
 
 此回调适用于内容的备份与共享，例如在用户复制内容时，可在回调中执行以下操作：将复制的内容及其格式信息保存至本地备份文件夹，或自动生成一段包含复制内容及产品购买链接的分享文案，以方便用户进行粘贴和分享。
 
-由于组件默认的复制行为仅限于纯文本，无法处理图片复制，开发者可利用此方法实现图文并茂的复制功能，从而替代组件原有的复制行为。
+组件默认的复制行为仅限于纯文本，无法处理图片。开发者可利用此方法实现图文并茂的复制功能，替代组件的默认行为。
 
 ```ts
 RichEditor(this.options)
@@ -514,15 +554,15 @@ RichEditor(this.options)
 
 更多事件使用请参考[RichEditor事件](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#事件)。
 
-## 设置用户预设的样式
-通过[setTypingStyle](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#settypingstyle11)设置用户预设的样式。
+## 设置用户预设的文本样式
+通过[setTypingStyle](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#settypingstyle11)设置用户预设的文本样式。
 
 此接口可用于个性化的写作体验，例如可以使用此接口让输入的不同层级标题自动应用相应格式（如一级、二级标题）。
 
 ```ts
 RichEditor(this.options)
   .onReady(() => {
-    this.controller.addTextSpan('点击按钮,改变组件预设样式。', {
+    this.controller.addTextSpan('点击按钮，改变预设文本样式。', {
       style: {
         fontColor: Color.Black,
         fontSize: 15
@@ -555,7 +595,7 @@ Button('setTypingStyle', {
 ## 设置组件内的内容选中时部分背板高亮
 通过[setSelection](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#setselection11)设置组件内的内容选中时部分背板高亮。
 
-此接口可用与文本聚焦效果，例如当用户点击某个文本段落的标题或摘要时，可通过该接口自动选中并高亮出对应正文内容。
+此接口可用于实现文本聚焦效果，例如当用户点击某个文本段落的标题或摘要时，可通过该接口自动选中并高亮出对应正文内容。
 
 当组件内未获焦出现光标时，调用该接口不产生选中效果。
 
@@ -586,30 +626,45 @@ Button('setSelection(0,2)', {
 ## 添加文本内容
 除了直接在组件内输入内容，也可以通过[addTextSpan](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#addtextspan)添加文本内容。
 
-此接口可以实现文本样式多样化，例如需要创建混合样式文本。
+此接口可以实现文本样式多样化，例如创建混合样式文本。
 
 如果组件是获焦状态，有光标在闪烁，那么通过addTextSpan添加文本内容后，光标位置会更新，在新添加文本内容的右侧闪烁。
 
 ```ts
-RichEditor(this.options)
-  .onReady(() => {
-    this.controller.addTextSpan('点击按钮在此处添加text。', {
-      style: {
-        fontColor: Color.Black,
-        fontSize: 15
-      }
-    })
-  })
-  .width(300)
-  .height(100)
-Button('addTextSpan', {
-  buttonStyle: ButtonStyleMode.NORMAL
-})
-  .height(30)
-  .fontSize(13)
-  .onClick(() => {
-    this.controller.addTextSpan('新添加一段文字。')
-  })
+@Entry
+@Component
+struct add_text_span {
+  controller: RichEditorController = new RichEditorController();
+  options: RichEditorOptions = { controller: this.controller }
+
+  build() {
+    Column() {
+      RichEditor(this.options)
+        .onReady(() => {
+          this.controller.addTextSpan('点击按钮在此处添加text。', {
+            style: {
+              fontColor: Color.Black,
+              fontSize: 15
+            }
+          })
+        })
+        .border({ width: 1, color: Color.Gray })
+        .constraintSize({
+          maxHeight: 100
+        })
+        .width(300)
+        .margin(10)
+      Button('addTextSpan', {
+        buttonStyle: ButtonStyleMode.NORMAL
+      })
+        .height(30)
+        .fontSize(13)
+        .onClick(() => {
+          this.controller.addTextSpan('新添加一段文字。')
+        })
+    }
+  }
+}
 ```
 
 ![alt text](figures/richeditor_image_add_text.gif)
@@ -689,7 +744,7 @@ Button('addBuilderSpan', {
 ## 添加SymbolSpan内容
 可通过[addSymbolSpan](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#addsymbolspan11)添加Symbol内容。此接口可用于特殊符号添加与展示，例如在编辑学术论文时，此接口可用于添加各种数学符号。
 
-添加Symbol内容时，如果组件内有光标闪烁，则插入Symbol后光标位置更新为新插入Symbol的右侧。
+添加Symbol内容时，如果组件是获焦状态，有光标在闪烁，则插入Symbol后光标位置更新为新插入Symbol的右侧。
 Symbol内容暂不支持手势、复制、拖拽处理。
 
 ```ts

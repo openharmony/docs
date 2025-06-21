@@ -1,6 +1,6 @@
 #  OffscreenCanvas
 
-OffscreenCanvas组件用于自定义绘制图形。
+OffscreenCanvas组件用于绘制自定义图形。
 
 使用[Canvas](ts-components-canvas-canvas.md)组件或[Canvas API](ts-canvasrenderingcontext2d.md)时，渲染、动画和用户交互通常发生在应用程序的主线程上，与画布动画和渲染相关的计算可能会影响应用程序性能。OffscreenCanvas提供了一个可以在屏幕外渲染的画布，这样可以在单独的线程中运行一些任务，从而避免影响应用程序主线程性能。
 
@@ -28,7 +28,7 @@ OffscreenCanvas(width: number, height: number, unit?: LengthMetricsUnit)
 | ------ | -------- | ---- | ------------------------------------- |
 | width  | number   | 是  | OffscreenCanvas组件的宽度。<br>默认单位为vp。 |
 | height | number   | 是  | OffscreenCanvas组件的高度。<br>默认单位为vp。 |
-| unit<sup>12+</sup>  | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | 否   |  用来配置OffscreenCanvas对象的单位模式，配置后无法动态更改，配置方法同[CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md#lengthmetricsunit12)。<br>默认值：DEFAULT。 |
+| unit<sup>12+</sup>  | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | 否   |  用来配置OffscreenCanvas对象的单位模式，配置后无法动态更改，配置方法同[CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md#lengthmetricsunit12)。<br>默认值：DEFAULT |
 
 ## 属性
 
@@ -54,7 +54,7 @@ OffscreenCanvas支持以下属性：
 struct OffscreenCanvasPage {
   private settings: RenderingContextSettings = new RenderingContextSettings(true);
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
-  private offCanvas: OffscreenCanvas = new OffscreenCanvas(200, 300)
+  private offCanvas: OffscreenCanvas = new OffscreenCanvas(200, 300);
 
   build() {
     Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Start, justifyContent: FlexAlign.Start }) {
@@ -90,7 +90,7 @@ struct OffscreenCanvasPage {
 struct OffscreenCanvasPage {
   private settings: RenderingContextSettings = new RenderingContextSettings(true);
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
-  private offCanvas: OffscreenCanvas = new OffscreenCanvas(200, 300)
+  private offCanvas: OffscreenCanvas = new OffscreenCanvas(200, 300);
 
   build() {
     Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Start, justifyContent: FlexAlign.Start }) {
@@ -144,9 +144,9 @@ transferToImageBitmap(): ImageBitmap
 @Entry
 @Component
 struct OffscreenCanvasPage {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private offCanvas: OffscreenCanvas = new OffscreenCanvas(300, 500)
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+  private offCanvas: OffscreenCanvas = new OffscreenCanvas(300, 500);
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -190,7 +190,7 @@ getContext(contextType: "2d", options?: RenderingContextSettings): OffscreenCanv
 | 参数名  | 类型 | 必填 | 说明    |
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | contextType | string | 是   | OffscreenCanvas组件绘图上下文的类型，当前仅支持"2d"类型。|
-| options      | [RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings) | 否 | 用来配置OffscreenCanvasRenderingContext2D对象的参数，见[RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings)。<br>默认值：null。 |
+| options      | [RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings) | 否 | 用来配置OffscreenCanvasRenderingContext2D对象的参数，见[RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings)。<br>默认值：null |
 
 **返回值：**
 
@@ -206,7 +206,7 @@ getContext(contextType: "2d", options?: RenderingContextSettings): OffscreenCanv
 struct OffscreenCanvasExamplePage {
   private settings: RenderingContextSettings = new RenderingContextSettings(true);
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
-  private offscreenCanvas: OffscreenCanvas = new OffscreenCanvas(600, 800)
+  private offscreenCanvas: OffscreenCanvas = new OffscreenCanvas(600, 800);
 
   build() {
     Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Start, justifyContent: FlexAlign.Start }) {
@@ -268,6 +268,9 @@ struct OffscreenCanvasExamplePage {
 
 ```ts
 import { worker } from '@kit.ArkTS';
+import { image } from '@kit.ImageKit';
+import { resourceManager } from '@kit.LocalizationKit';
+import { common } from '@kit.AbilityKit';
 
 @Entry
 @Component
@@ -275,6 +278,13 @@ struct OffscreenCanvasExamplePage {
   private settings: RenderingContextSettings = new RenderingContextSettings(true);
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
   private myWorker = new worker.ThreadWorker('entry/ets/workers/Worker.ts');
+  private imgPixelMap: image.PixelMap | undefined = undefined
+
+  aboutToAppear(): void {
+    let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+    const resourceMgr: resourceManager.ResourceManager = context.resourceManager;
+    this.imgPixelMap = resourceMgr.getDrawableDescriptor($r("app.media.startIcon").id).getPixelMap()
+  }
 
   build() {
     Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Start, justifyContent: FlexAlign.Start }) {
@@ -287,16 +297,17 @@ struct OffscreenCanvasExamplePage {
           .backgroundColor('#FFFFFF')
           .onReady(() => {
             let offCanvas = new OffscreenCanvas(600, 800)
-            this.myWorker.postMessage({ myOffCanvas: offCanvas });
+            this.myWorker.postMessage({ myOffCanvas: offCanvas, imgPixelMap: this.imgPixelMap });
             this.myWorker.onmessage = (e): void => {
               if (e.data.myImage) {
                 let image: ImageBitmap = e.data.myImage
                 this.context.transferFromImageBitmap(image)
               }
             }
-            
           })
-      }.width('100%').height('100%')
+      }
+      .width('100%')
+      .height('100%')
     }
     .width('100%')
     .height('100%')
@@ -313,11 +324,30 @@ workerPort.onmessage = (e: MessageEvents) => {
     let offContext = offCanvas.getContext("2d")
     offContext.fillStyle = '#CDCDCD'
     offContext.fillRect(0, 0, 200, 150)
+
+    let imgPixelMap: image.PixelMap = e.data.imgPixelMap
+    let imgBitmap: ImageBitmap = new ImageBitmap(imgPixelMap)
+    offContext.drawImage(imgBitmap, 0, 200)
+
+    let path2d = new Path2D("M250 150 L150 350 L350 350 Z")
+    offContext.stroke(path2d)
+
+    let matrix: Matrix2D = new Matrix2D()
+    matrix.scaleX = 1
+    matrix.scaleY = 1
+    matrix.rotateX = -0.5
+    matrix.rotateY = 0.5
+    matrix.translateX = 10
+    matrix.translateY = 10
+    offContext.setTransform(matrix)
+    offContext.fillStyle = "#707070"
+    offContext.fillRect(20, 20, 100, 100)
+
     let image = offCanvas.transferToImageBitmap()
     workerPort.postMessage({ myImage: image });
   }
 }
 ```
 
-![zh-cn_image_0000001194032666](figures/offscreen_canvas_width.png)
+![offscreenCanvasPostMessage](figures/offscreen_canvas_postMessage.png)
 

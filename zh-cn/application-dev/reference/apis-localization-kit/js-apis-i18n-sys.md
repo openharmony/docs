@@ -22,7 +22,7 @@ import { i18n } from '@kit.LocalizationKit';
 
 static setSystemLanguage(language: string): void
 
-设置系统语言。当前调用该接口不支持系统界面语言的实时刷新。
+设置系统语言。
 
 若要监听系统语言变化，可以监听[事件](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_locale_changed)OHOS::EventFwk::CommonEventSupport::COMMON_EVENT_LOCALE_CHANGED。
 
@@ -171,7 +171,7 @@ static setSystemLocale(locale: string): void
 
 static set24HourClock(option: boolean): void
 
-设置系统时间为24小时。
+设置系统时制是否为24小时制。
 
 **系统接口**：此接口为系统接口。
 
@@ -183,7 +183,7 @@ static set24HourClock(option: boolean): void
 
 | 参数名    | 类型      | 必填   | 说明                                       |
 | ------ | ------- | ---- | ---------------------------------------- |
-| option | boolean | 是    | true表示开启系统24小时制开关，false表示关闭系统24小时开关。 |
+| option | boolean | 是    | true表示设置系统时制为24小时制，false表示设置系统时制为12小时制。 |
 
 **错误码：**
 
@@ -199,7 +199,7 @@ static set24HourClock(option: boolean): void
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  // 将系统时间设置为24小时制
+  // 将系统时制设置为24小时制
   try {
     i18n.System.set24HourClock(true);
   } catch(error) {
@@ -212,7 +212,7 @@ static set24HourClock(option: boolean): void
 
 static addPreferredLanguage(language: string, index?: number): void
 
-在系统偏好语言列表中的指定位置添加偏好语言。
+在系统偏好语言列表的指定位置添加偏好语言。
 
 **系统接口**：此接口为系统接口。
 
@@ -256,7 +256,7 @@ static addPreferredLanguage(language: string, index?: number): void
 
 static removePreferredLanguage(index: number): void
 
-删除系统偏好语言列表中指定位置的偏好语言。
+从系统偏好语言列表中移除指定位置的偏好语言。
 
 **系统接口**：此接口为系统接口。
 
@@ -339,7 +339,7 @@ static setUsingLocalDigit(flag: boolean): void
 
 static setTemperatureType(type: TemperatureType): void
 
-设置用户偏好的温度单位。
+设置系统的温度单位。
 
 **系统接口**：此接口为系统接口。
 
@@ -383,7 +383,7 @@ static setTemperatureType(type: TemperatureType): void
 
 static setFirstDayOfWeek(type: WeekDay): void
 
-设置用户偏好的周起始日。
+设置系统的周起始日。
 
 **系统接口**：此接口为系统接口。
 
@@ -423,6 +423,313 @@ static setFirstDayOfWeek(type: WeekDay): void
   }
   ```
 
+### getSystemCollations<sup>20+</sup>
+
+static getSystemCollations(): Map&lt;string, string&gt;
+
+获取系统支持的排序方式及名称。如系统语言为英文时，可以支持大写在前或小写在前的排序方式。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**返回值：**
+
+| 类型                     | 说明    |
+| ---------------------- | ----- |
+| Map&lt;string, string&gt; | 系统支持的排序方式及名称。其中Map的key为表示排序方式的字符串，value为表示排序方式对应名称的字符串。支持的范围和系统语言相关。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**示例：**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { i18n } from '@kit.LocalizationKit';
+
+try {
+  let systemCollations : Map<string, string> = i18n.System.getSystemCollations();
+} catch(error) {
+  let err: BusinessError = error as BusinessError;
+  console.error(`call System.getSystemCollations failed, error code: ${err.code}, message: ${err.message}.`);
+}
+```
+
+### getUsingCollation<sup>20+</sup>
+
+static getUsingCollation(): string
+
+获取系统当前使用的排序方式。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**返回值：**
+
+| 类型                     | 说明    |
+| ---------------------- | ----- |
+| string | 系统当前使用的排序方式。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**示例：**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { i18n } from '@kit.LocalizationKit';
+
+try {
+  let usingCollation : string = i18n.System.getUsingCollation();
+} catch(error) {
+  let err: BusinessError = error as BusinessError;
+  console.error(`call System.getUsingCollation failed, error code: ${err.code}, message: ${err.message}.`);
+}
+```
+
+### setSystemCollation<sup>20+</sup>
+
+static setSystemCollation(identifier: string): void
+
+设置系统的排序方式。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.UPDATE_CONFIGURATION
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：**
+
+| 参数名  | 类型      | 必填   | 说明                              |
+| ---- | ------- | ---- | ------------------------------- |
+| identifier | string | 是 | 系统支持的排序方式。支持的范围可以通过[getSystemCollations](#getsystemcollations20)获取。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
+
+**示例：**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { i18n } from '@kit.LocalizationKit';
+
+try {
+  i18n.System.setSystemCollation("zhuyin"); // 如果设置当前系统不支持的排序方式会报错
+} catch(error) {
+  let err: BusinessError = error as BusinessError;
+  console.error(`call System.setSystemCollation failed, error code: ${err.code}, message: ${err.message}.`);
+}
+```
+
+### getSystemNumberingSystems<sup>20+</sup>
+
+static getSystemNumberingSystems(): Map&lt;string, string&gt;
+
+获取系统支持的数字系统及示例。示例为数字0~9在对应数字系统下的显示。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**返回值：**
+
+| 类型                     | 说明    |
+| ---------------------- | ----- |
+| Map&lt;string, string&gt; | 系统支持的数字系统及示例。其中Map的key为表示数字系统的字符串，value为表示数字系统对应的示例。支持的范围和系统语言相关。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**示例：**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { i18n } from '@kit.LocalizationKit';
+
+try {
+  let systemNumberingSystems : Map<string, string> = i18n.System.getSystemNumberingSystems();
+} catch(error) {
+  let err: BusinessError = error as BusinessError;
+  console.error(`call System.getSystemNumberingSystems failed, error code: ${err.code}, message: ${err.message}.`);
+}
+```
+
+### setSystemNumberingSystem<sup>20+</sup>
+
+static setSystemNumberingSystem(identifier: string):void
+
+设置系统的数字系统。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.UPDATE_CONFIGURATION
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：**
+
+| 参数名  | 类型      | 必填   | 说明                              |
+| ---- | ------- | ---- | ------------------------------- |
+| identifier | string | 是 | 系统支持的数字系统。支持的范围可以通过[getSystemNumberingSystems](#getsystemnumberingsystems20)获取。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
+
+**示例：**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { i18n } from '@kit.LocalizationKit';
+
+try {
+  i18n.System.setSystemNumberingSystem("arab"); // 如果设置当前系统不支持的数字系统会报错
+} catch(error) {
+  let err: BusinessError = error as BusinessError;
+  console.error(`call System.setSystemNumberingSystem failed, error code: ${err.code}, message: ${err.message}.`);
+}
+```
+
+### getSystemNumberPatterns<sup>20+</sup>
+
+static getSystemNumberPatterns(): Map&lt;string, string&gt;
+
+获取系统支持的数字格式及示例。数字格式指数字中的千分符和小数分隔符的格式。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**返回值：**
+
+| 类型                     | 说明    |
+| ---------------------- | ----- |
+| Map&lt;string, string&gt; | 系统支持的数字格式及示例。其中Map的key表示数字格式，是千分符和小数分隔符的unicode编码，value表示数字格式对应的示例。支持的范围和系统语言地区相关。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**示例：**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { i18n } from '@kit.LocalizationKit';
+
+try {
+  let systemNumberPatterns : Map<string, string> = i18n.System.getSystemNumberPatterns();
+} catch(error) {
+  let err: BusinessError = error as BusinessError;
+  console.error(`call System.getSystemNumberPatterns failed, error code: ${err.code}, message: ${err.message}.`);
+}
+```
+
+### getUsingNumberPattern<sup>20+</sup>
+
+static getUsingNumberPattern(): string
+
+获取系统当前使用的数字格式。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**返回值：**
+
+| 类型                     | 说明    |
+| ---------------------- | ----- |
+| string | 系统当前使用的数字格式。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**示例：**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { i18n } from '@kit.LocalizationKit';
+
+try {
+  let usingNumberPattern : string = i18n.System.getUsingNumberPattern();
+} catch(error) {
+  let err: BusinessError = error as BusinessError;
+  console.error(`call System.getUsingNumberPattern failed, error code: ${err.code}, message: ${err.message}.`);
+}
+```
+
+### setSystemNumberPattern<sup>20+</sup>
+
+static setSystemNumberPattern(pattern: string): void
+
+设置系统的数字格式。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.UPDATE_CONFIGURATION
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：**
+
+| 参数名  | 类型      | 必填   | 说明                              |
+| ---- | ------- | ---- | ------------------------------- |
+| pattern | string | 是 | 系统支持的数字格式。支持的范围可以通过[getSystemNumberPatterns](#getsystemnumberpatterns20)获取。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
+
+**示例：**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { i18n } from '@kit.LocalizationKit';
+
+try {
+  i18n.System.setSystemNumberPattern("002e002c"); // 如果设置当前系统不支持的数字格式会报错
+} catch(error) {
+  let err: BusinessError = error as BusinessError;
+  console.error(`call System.setSystemNumberPattern failed, error code: ${err.code}, message: ${err.message}.`);
+}
+```
 
 ## SystemLocaleManager<sup>10+</sup>
 
@@ -446,7 +753,7 @@ constructor()
 
 getLanguageInfoArray(languages: Array&lt;string&gt;, options?: SortOptions): Array&lt;LocaleItem&gt;
 
-获取语言排序数组。
+获取排序后的语言信息列表。
 
 **系统接口**：此接口为系统接口。
 
@@ -456,14 +763,14 @@ getLanguageInfoArray(languages: Array&lt;string&gt;, options?: SortOptions): Arr
 
 |   参数名  |      类型      | 必填 |     说明      |
 | --------- | ------------- | ---- | ------------- |
-| languages | Array&lt;string&gt; | 是   | 待排序语言列表，要求是合法的语言ID。|
+| languages | Array&lt;string&gt; | 是   | 待排序的语言列表，要求是合法的语言ID。|
 | options   | [SortOptions](#sortoptions10)   | 否   | 语言排序选项。 |
 
 **返回值：**
 
 |       类型        |         说明          |
 | ----------------- | -------------------- |
-| Array&lt;[LocaleItem](#localeitem10)&gt; | 排序后的语言列表信息。 |
+| Array&lt;[LocaleItem](#localeitem10)&gt; | 排序后的语言信息列表。 |
 
 **错误码：**
 
@@ -497,7 +804,7 @@ getLanguageInfoArray(languages: Array&lt;string&gt;, options?: SortOptions): Arr
 
 getRegionInfoArray(regions: Array&lt;string&gt;, options?: SortOptions): Array&lt;LocaleItem&gt;
 
-获取国家或地区排序数组。
+获取排序后的国家或地区信息列表。
 
 **系统接口**：此接口为系统接口。
 
@@ -514,7 +821,7 @@ getRegionInfoArray(regions: Array&lt;string&gt;, options?: SortOptions): Array&l
 
 |       类型        |         说明          |
 | ----------------- | -------------------- |
-| Array&lt;[LocaleItem](#localeitem10)&gt; | 排序后的国家或地区列表信息。 |
+| Array&lt;[LocaleItem](#localeitem10)&gt; | 排序后的国家或地区信息列表。 |
 
 **错误码：**
 
@@ -547,7 +854,7 @@ getRegionInfoArray(regions: Array&lt;string&gt;, options?: SortOptions): Array&l
 
 static getTimeZoneCityItemArray(): Array&lt;TimeZoneCityItem&gt;
 
-获取时区城市组合信息的数组。
+获取排序后的时区城市组合信息列表。
 
 **系统接口**：此接口为系统接口。
 
@@ -557,7 +864,7 @@ static getTimeZoneCityItemArray(): Array&lt;TimeZoneCityItem&gt;
 
 |       类型        |         说明          |
 | ----------------- | -------------------- |
-| Array&lt;[TimeZoneCityItem](#timezonecityitem10)&gt; | 排序后的时区城市组合信息数组。 |
+| Array&lt;[TimeZoneCityItem](#timezonecityitem10)&gt; | 排序后的时区城市组合信息列表。 |
 
 **错误码：**
 
@@ -585,7 +892,7 @@ static getTimeZoneCityItemArray(): Array&lt;TimeZoneCityItem&gt;
 
 ## LocaleItem<sup>10+</sup>
 
-SystemLocaleManager对语言或国家地区列表的排序结果信息项。
+语言或国家地区的组合信息。
 
 **系统接口**：此接口为系统接口。
 
@@ -600,7 +907,7 @@ SystemLocaleManager对语言或国家地区列表的排序结果信息项。
 
 ## TimeZoneCityItem<sup>10+</sup>
 
-时区城市组合信息。
+时区城市的组合信息。
 
 **系统接口**：此接口为系统接口。
 
@@ -643,4 +950,4 @@ SystemLocaleManager对语言或国家地区列表的排序结果信息项。
 | --------------- | --------------- | ---- | --------------------------------------- |
 | locale          | string          |  否  | [表示区域ID的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成，如"zh-Hans-CN"。<br>默认值：系统当前区域ID。    |
 | isUseLocalName  | boolean         |  否  | true表示使用本地名称进行排序，false表示不使用本地名称进行排序。<br>若调用方法为getLanguageInfoArray，isUseLocalName属性默认值为true。<br>若调用方法为getRegionInfoArray，isUseLocalName属性默认值为false。                |
-| isSuggestedFirst | boolean        |  否  | true表示将推荐语言或国家地区在排序结果中置顶，false表示不将推荐语言或国家地区在排序结果中置顶。<br>isSuggestedFirst属性默认值为true。  |
+| isSuggestedFirst | boolean        |  否  | true表示将推荐语言或国家地区在排序结果中置顶，false表示不将推荐语言或国家地区在排序结果中置顶。<br>默认值：true。  |

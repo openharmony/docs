@@ -18,7 +18,7 @@ DrawingRenderingContext(unit?: LengthMetricsUnit)
 
 | 参数名      | 类型 | 必填   | 说明 |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| unit<sup>12+</sup>  | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | 否    | 用来配置DrawingRenderingContext对象的单位模式，配置后无法更改，配置方法同[CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md#lengthmetricsunit12)。<br>默认值：DEFAULT。 |
+| unit<sup>12+</sup>  | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | 否    | 用来配置DrawingRenderingContext对象的单位模式，配置后无法更改，配置方法同[CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md#lengthmetricsunit12)。<br>默认值：DEFAULT |
 
 ## 属性
 
@@ -54,6 +54,20 @@ invalidate(): void
 
 使组件无效，触发组件的重新渲染。
 
+## DrawingCanvas<sup>12+</sup>对象说明
+
+type DrawingCanvas = Canvas
+
+可用于向XComponent上绘制内容的画布对象。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                  | 说明           |
+| --------------------- | -------------- |
+| [Canvas](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#canvas) | 返回一个Canvas对象。 |
+
 ## 示例
 
 该示例实现了如何使用DrawingRenderingContext中的方法进行绘制。
@@ -63,7 +77,7 @@ invalidate(): void
 @Entry
 @Component
 struct CanvasExample {
-  private context: DrawingRenderingContext = new DrawingRenderingContext()
+  private context: DrawingRenderingContext = new DrawingRenderingContext();
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {

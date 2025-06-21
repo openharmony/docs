@@ -1,4 +1,5 @@
 # SceneNode
+
 The SceneNode module provides the types and operation methods of scene nodes in 3D graphics.
 
 > **NOTE**
@@ -6,12 +7,14 @@ The SceneNode module provides the types and operation methods of scene nodes in 
 > The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
+
 ```ts
 import { LayerMask, NodeType, Container, Node, Geometry, LightType, Light, SpotLight, DirectionalLight,
   Camera } from '@kit.ArkGraphics3D';
 ```
+
 ## LayerMask
-Layer mask of a node.
+Layer mask of the node.
 
 ### getEnabled
 getEnabled(index: number): boolean
@@ -28,7 +31,7 @@ Checks whether the mask is enabled for a layer of a given index.
 **Return value**
 | Type| Description|
 | ---- | ---- |
-| boolean | **true**: The layer mask is enabled.<br>**false**: The layer mask is disabled.|
+| boolean | Check result. The value **true** means that the layer mask is enabled, and **false** means the opposite.|
 
 **Example**
 ```ts
@@ -124,7 +127,6 @@ function append() : void {
   });
 }
 ```
-
 
 ### insertAfter
 insertAfter(item: T, sibling: T | null): void
@@ -253,7 +255,7 @@ Obtains the number of nodes in the container.
 **Return value**
 | Type| Description|
 | ---- | ---- |
-| number | Number of nodes in the container.|
+| number | Number of nodes in the container. The value is a non-negative integer.|
 
 **Example**
 ```ts
@@ -328,7 +330,7 @@ function getNode() : void {
 ```
 
 ## Geometry
-Geometry node, which inherits from [Node](#node).
+Geometric node type that holds renderable mesh data and supports optional deformation features. It inherits from [Node](#node).
 
 ### Properties
 
@@ -337,7 +339,7 @@ Geometry node, which inherits from [Node](#node).
 | Name| Type| Read Only| Optional| Description|
 | ---- | ---- | ---- | ---- | ---- |
 | mesh | [Mesh](js-apis-inner-scene-resources.md#mesh) | Yes| No| Mesh attribute.|
-
+| morpher<sup>20+</sup> | [Morpher](js-apis-inner-scene-resources.md#morpher20) | Yes| Yes| Optional morpher that adds vertex-based deformation or animation effects to the geometry. If this parameter is not specified, the geometry does not support deformation.|
 
 ## LightType
 Enumerates the light types.
@@ -390,3 +392,44 @@ Camera node, which inherits from [Node](#node).
 | enabled | boolean | No| No| Whether the camera is enabled. The value **true** means that the camera is enabled, and **false** means the opposite.|
 | postProcess | [PostProcessSettings](js-apis-inner-scene-post-process-settings.md#postprocesssettings) \| null | No| No| Post-processing settings.|
 | clearColor | [Color](js-apis-inner-scene-types.md#color) \| null | No| No| Color after the render target is cleared.|
+
+### raycast<sup>20+</sup>
+raycast(viewPosition: Vec2, params: RaycastParameters): Promise<RaycastResult[]>
+
+Casts a ray from a specific position on the screen to detect and retrieve information about all hit 3D objects. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.ArkUi.Graphics3D
+
+**Parameters**
+| Name| Type| Mandatory| Description|
+| ---- | ---- | ---- | ---- |
+| viewPosition | [Vec2](js-apis-inner-scene-types.md#vec2) | Yes| Standardized Device Coordinates (NDC). The value range is [-1, 1]. The bottom-left corner of the screen is (-1, -1), and the top-right corner is (1, 1).|
+| params | [RaycastParameters](js-apis-inner-scene.md#raycastparameters20) | Yes| Configuration parameters for raycasting, such as detection range and filtered nodes.|
+
+**Return value**
+| Type| Description|
+| ---- | ---- |
+| Promise<[RaycastResult](js-apis-inner-scene.md#raycastresult20)[]> | An array of hit objects sorted by distance (from nearest to farthest). If no objects are hit, an empty array is returned.|
+
+**Example**
+```ts
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, Vec2, Vec3, RaycastParameters,
+  RaycastResult } from '@kit.ArkGraphics3D';
+
+function Raycast() : void {
+  let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+  scene.then(async (result: Scene) => {
+    if (result) {
+      let sceneFactory: SceneResourceFactory = result.getResourceFactory();
+      let sceneCameraParameter: SceneNodeParameters = { name: "camera1" };
+      // Create a camera.
+      let camera: Promise<Camera> = sceneFactory.createCamera(sceneCameraParameter);
+      camera.enabled = true;
+      lookAt(this.cam, { x: 15, y: 10, z: 20 }, { x: 0, y: 0, z: 0 }, { x: 0, y: 1, z: 0 });
+      let viewPos: scene3d.Vec2 = { x: 0.5, y: 0.5 };
+      return camera?.raycast(viewPos, result.root);
+    }
+  });
+}
+```

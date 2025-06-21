@@ -20,7 +20,7 @@
 | bypassDnd            | boolean               | 否 | 是  | 是否在系统中绕过免打扰模式。<br> - true：是。<br> - false：否。       |
 | lockscreenVisibility | number                | 否 | 是  | 在锁定屏幕上显示通知的模式。预留能力，暂不支持。       |
 | vibrationEnabled     | boolean               | 否 | 是  | 是否可振动。<br> - true：是。<br> - false：否。               |
-| sound                | string                | 否 | 是  | 通知提示音。               |
+| sound                | string                | 否 | 是  | 该渠道的通知的自定义铃声文件名。该文件放在resources/rawfile目录下，支持m4a、aac、mp3、ogg、wav、flac、amr等格式。               |
 | lightEnabled         | boolean               | 否 | 是  | 是否闪灯。<br> - true：是。<br> - false：否。                |
 | lightColor           | number                | 否 | 是  | 通知灯颜色。预留能力，暂不支持。               |
 | vibrationValues      | Array\<number\>       | 否 | 是  | 通知振动样式。预留能力，暂不支持。              |

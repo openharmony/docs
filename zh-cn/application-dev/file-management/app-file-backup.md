@@ -48,7 +48,7 @@ async function getLocalCapabilities(context: common.UIAbilityContext): Promise<v
    fs.closeSync(fileData.fd);
  } catch (error) {
    let err: BusinessError = error as BusinessError;
-   console.error('getLocalCapabilities failed with err: ' + JSON.stringify(err));
+   console.error(`getLocalCapabilities failed with err, code is ${err.code}, message is ${err.message}`);
  }
 }
 ```
@@ -58,11 +58,10 @@ async function getLocalCapabilities(context: common.UIAbilityContext): Promise<v
 | 属性名称       | 数据类型 | 必填 | 含义                   |
 | -------------- | -------- | ---- | ---------------------- |
 | bundleInfos    | 数组     | 是   | 应用信息列表。           |
-| allToBackup    | 布尔值   | 是   | 是否允许备份恢复。       |
+| allToBackup    | 布尔值   | 是   | 是否允许备份恢复。true表示允许，false表示不允许。       |
 | extensionName  | 字符串   | 是   | 应用的扩展名。           |
 | name           | 字符串   | 是   | 应用的包名。             |
-| needToInstall  | 布尔值   | 是   | 应用恢复时是否需要安装。 |
-| spaceOccupied  | 数值     | 是   | 应用数据占用的空间大小。 |
+| spaceOccupied  | 数值     | 是   | 应用数据占用的空间大小（单位为Byte）。 |
 | versionCode    | 数值     | 是   | 应用的版本号。           |
 | versionName    | 字符串   | 是   | 应用的版本名称。         |
 | deviceType     | 字符串   | 是   | 设备类型。               |
@@ -94,23 +93,23 @@ async function getLocalCapabilities(context: common.UIAbilityContext): Promise<v
 
 **示例**
 
- ```ts
+  ```ts
   import backup from '@ohos.file.backup';
   import common from '@ohos.app.ability.common';
   import fs from '@ohos.file.fs';
   import { BusinessError } from '@ohos.base';
-
+  appfileDir: string = '';
   // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
-  let context = this.getUIContext().getHostContext() as common.UIAbilityContext; 
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  this.appfileDir = context.filesDir;
   // 创建SessionBackup类的实例用于备份数据
   let g_session: backup.SessionBackup;
-  function createSessionBackup(context: common.UIAbilityContext): backup.SessionBackup {
+  function createSessionBackup(fileDir: string): backup.SessionBackup {
     let generalCallbacks: backup.GeneralCallbacks = {
-      let filesDir = context.filesDir;
       // onFileReady为服务回调给应用侧数据完成的通知，建议开发者在该接口内不要进行过多的耗时实现，可以通过异步线程实现file.fd数据的处理
       onFileReady: (err: BusinessError, file: backup.File) => {
         if (err) {
-          console.info('onFileReady err: ' + JSON.stringify(err));
+          console.error(`onFileReady err, code is ${err.code}, message is ${err.message}`);
         }
         try {
           let bundlePath = filesDir + '/' + file.bundleName;
@@ -127,21 +126,21 @@ async function getLocalCapabilities(context: common.UIAbilityContext): Promise<v
       },
       onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
         if (err) {
-          console.info('onBundleBegin err: ' + JSON.stringify(err));
+          console.error(`onBundleBegin err, code is ${err.code}, message is ${err.message}`);
         } else {
           console.info('onBundleBegin bundleName: ' + bundleName);
         }
       },
       onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
         if (err) {
-          console.info('onBundleEnd err: ' + JSON.stringify(err));
+          console.error(`onBundleEnd err, code is ${err.code}, message is ${err.message}`);
         } else {
           console.info('onBundleEnd bundleName: ' + bundleName);
         }
       },
       onAllBundlesEnd: (err: BusinessError) => {
         if (err) {
-          console.info('onAllBundlesEnd err: ' + JSON.stringify(err));
+          console.error(`onAllBundlesEnd err, code is ${err.code}, message is ${err.message}`);
         } else {
           console.info('onAllBundlesEnd');
         }
@@ -162,8 +161,8 @@ async function getLocalCapabilities(context: common.UIAbilityContext): Promise<v
     return sessionBackup;
   }
 
-  async function sessionBackup (): Promise<void> {
-    g_session = createSessionBackup();
+  async function sessionBackup (fileDir: string): Promise<void> {
+    g_session = createSessionBackup(fileDir);
     // 此处可根据backup.getLocalCapabilities()提供的能力文件，选择需要备份的应用
     // 也可直接根据应用包名称进行备份
     const backupApps: string[] = [
@@ -172,7 +171,7 @@ async function getLocalCapabilities(context: common.UIAbilityContext): Promise<v
     await g_session.appendBundles(backupApps);
     console.info('appendBundles success');
   }
- ```
+  ```
 
 ## 应用恢复数据
 
@@ -184,7 +183,7 @@ async function getLocalCapabilities(context: common.UIAbilityContext): Promise<v
 
 **示例**
 
- ```ts
+  ```ts
   import backup from '@ohos.file.backup';
   import fs from '@ohos.file.fs';
   import { BusinessError } from '@ohos.base';
@@ -207,7 +206,7 @@ async function getLocalCapabilities(context: common.UIAbilityContext): Promise<v
     let generalCallbacks: backup.GeneralCallbacks = {
       onFileReady: (err: BusinessError, file: backup.File) => {
         if (err) {
-          console.info('onFileReady err: ' + JSON.stringify(err));
+          console.error(`onFileReady err, code is ${err.code}, message is ${err.message}`);
         }
         // 此处开发者请根据实际场景待恢复文件存放位置进行调整 bundlePath
         let bundlePath: string = '';
@@ -225,19 +224,19 @@ async function getLocalCapabilities(context: common.UIAbilityContext): Promise<v
       },
       onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
         if (err) {
-          console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
+          console.error(`onBundleBegin failed with err, code is ${err.code}, message is ${err.message}`);
         }
         console.info('onBundleBegin success');
       },
       onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
         if (err) {
-          console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
+          console.error(`onBundleEnd failed with err, code is ${err.code}, message is ${err.message}`);
         }
         console.info('onBundleEnd success');
       },
       onAllBundlesEnd: (err: BusinessError) => {
         if (err) {
-          console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+          console.error(`onAllBundlesEnd failed with err, code is ${err.code}, message is ${err.message}`);
         }
         console.info('onAllBundlesEnd success');
       },
@@ -278,4 +277,4 @@ async function getLocalCapabilities(context: common.UIAbilityContext): Promise<v
     await g_session.getFileHandle(handle);
     console.info('getFileHandle success');
   }
- ```
+  ```

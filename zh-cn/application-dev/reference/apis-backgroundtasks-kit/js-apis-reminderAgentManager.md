@@ -742,6 +742,58 @@ reminderAgentManager.getExcludeDates(reminderId).then((dates) => {
 });
 ```
 
+## reminderAgentManager.updateReminder<sup>20+</sup>
+
+updateReminder(reminderId: number, reminderReq: ReminderRequest): Promise\<void>
+
+更新指定id的代理提醒，使用Promise异步回调。仅[有效（未过期）](../../task-management/agent-powered-reminder.md#约束与限制)、未显示在通知中心的代理提醒支持更新。
+
+**需要权限**： ohos.permission.PUBLISH_AGENT_REMINDER
+
+**系统能力**： SystemCapability.Notification.ReminderAgent
+
+**参数**：
+
+| 参数名     | 类型   | 必填 | 说明                               |
+| ---------- | ------ | ---- | ---------------------------------- |
+| reminderId | number | 是   | 需要更新的代理提醒的id，id为[publishReminder](#reminderagentmanagerpublishreminder)返回值。 |
+| reminderReq | [ReminderRequest](#reminderrequest) | 是   | 代理提醒对象实例，用于设置提醒类型、响铃时长等具体信息。 |
+
+**返回值**：
+
+| 类型                   | 说明                              |
+| ---------------------- | --------------------------------- |
+| Promise\<void> | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                     |
+| -------- | ---------------------------- |
+| 201      | Permission denied.           |
+| 1700003  | The reminder does not exist. |
+| 1700007  | If the input parameter is not a valid parameter. |
+
+**示例**：
+
+```ts
+import { reminderAgentManager } from '@kit.BackgroundTasksKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let timer: reminderAgentManager.ReminderRequestTimer = {
+  reminderType: reminderAgentManager.ReminderType.REMINDER_TYPE_TIMER,
+  triggerTimeInSeconds: 10
+}
+
+let reminderId: number = 1;
+reminderAgentManager.updateReminder(reminderId, timer).then(() => {
+  console.info("update reminder succeed");
+}).catch((err: BusinessError) => {
+  console.error("promise err code:" + err.code + " message:" + err.message);
+});
+```
+
 ## ActionButtonType
 
 提醒上的按钮的类型。
@@ -764,6 +816,17 @@ reminderAgentManager.getExcludeDates(reminderId).then((dates) => {
 | REMINDER_TYPE_TIMER | 0 | 表示提醒类型：倒计时。 |
 | REMINDER_TYPE_CALENDAR | 1 | 表示提醒类型：日历。 |
 | REMINDER_TYPE_ALARM | 2 | 表示提醒类型：闹钟。 |
+
+## RingChannel<sup>20+</sup>
+
+自定义提示音的音频播放通道。
+
+**系统能力**：SystemCapability.Notification.ReminderAgent
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| RING_CHANNEL_ALARM | 0 | 闹钟通道。 |
+| RING_CHANNEL_MEDIA | 1 | 媒体通道。 |
 
 
 ## ActionButton
@@ -832,10 +895,11 @@ reminderAgentManager.getExcludeDates(reminderId).then((dates) => {
 | notificationId | number | 否 | 指明提醒使用的通知的id号，需开发者传入，相同id号的提醒会覆盖。 |
 | groupId<sup>11+</sup> | string | 否 | 指明提醒使用相同的组id。相同组id中，一个提醒被点击不在提醒后，组内其他提醒也会被取消。 |
 | slotType | [notification.SlotType](../apis-notification-kit/js-apis-notificationManager.md#slottype) | 否 | 指明提醒的通道渠道类型。 |
-| tapDismissed<sup>10+</sup> | boolean | 否 | 通知是否自动清除，具体请参考[NotificationRequest.tapDismissed](../apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest)。  |
+| tapDismissed<sup>10+</sup> | boolean | 否 | 通知是否自动清除，默认值为true，具体请参考[NotificationRequest.tapDismissed](../apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest)。<br> - true：点击通知消息或通知按钮后，自动删除当前通知。<br> - false：点击通知消息或通知按钮后，保留当前通知。 |
 | autoDeletedTime<sup>10+</sup> | number | 否 | 自动清除的时间，具体请参考[NotificationRequest.autoDeletedTime](../apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest)。 |
 | snoozeSlotType<sup>11+</sup> | [notification.SlotType](../apis-notification-kit/js-apis-notificationManager.md#slottype) | 否 | 指明延时提醒的通道渠道类型(不适用于倒计时提醒类型)。 |
 | customRingUri<sup>11+</sup> | string | 否 | 指明自定义提示音的uri，提示音文件必须放在resources/rawfile目录下，支持m4a、aac、mp3、ogg、wav、flac、amr等格式。 |
+| ringChannel<sup>20+</sup> | [RingChannel](#ringchannel20) | 否 | 指明自定义提示音的音频播放通道，默认为闹钟通道。|
 
 ## ReminderRequestCalendar
 

@@ -15,16 +15,16 @@ ArkTS要求类的所有属性在声明时或者在构造函数中显式地初始
 
 ```typescript
 class Person {
-  name: string // undefined
+  name: string; // undefined
   
   setName(n: string): void {
-    this.name = n
+    this.name = n;
   }
   
   getName(): string {
   // 开发者使用"string"作为返回类型，这隐藏了name可能为"undefined"的事实。
   // 更合适的做法是将返回类型标注为"string | undefined"，以告诉开发者这个API所有可能的返回值的类型。
-    return this.name
+    return this.name;
   }
 }
 
@@ -37,15 +37,15 @@ ArkTS要求属性显式初始化，代码应如下所示：
 
 ```typescript
 class Person {
-  name: string = ''
+  name: string = '';
   
   setName(n: string): void {
-    this.name = n
+    this.name = n;
   }
   
   // 类型为"string"，不可能为"null"或者"undefined"
   getName(): string {
-    return this.name
+    return this.name;
   }
 }
 
@@ -58,19 +58,19 @@ buddy.getName().length; // 0, 没有运行时异常
 
 ```typescript
 class Person {
-    name?: string // 可能为undefined
+    name?: string; // 可能为undefined
 
     setName(n: string): void {
-        this.name = n
+        this.name = n;
     }
 
     // 编译时错误：name可能为"undefined"，所以不能将这个API的返回类型标注为"string"
     getNameWrong(): string {
-        return this.name
+        return this.name;
     }
 
     getName(): string | undefined { // 返回类型匹配name的类型
-        return this.name
+        return this.name;
     }
 }
 
@@ -92,10 +92,10 @@ buddy.getName()?.length; // 编译成功，没有运行时错误
 
 ```typescript
 function notify(who: string, what: string) {
-  console.log(`Dear ${who}, a message for you: ${what}`)
+  console.info(`Dear ${who}, a message for you: ${what}`);
 }
 
-notify('Jack', 'You look great today')
+notify('Jack', 'You look great today');
 ```
 
 在大多数情况下，函数`notify`会接受两个`string`类型的变量作为输入，产生一个新的字符串。但是，如果将一些特殊值作为输入，例如`notify(null, undefined)`，情况会怎么样呢？
@@ -104,26 +104,26 @@ notify('Jack', 'You look great today')
 ```typescript
 function __internal_tostring(s: any): string {
   if (typeof s === 'string')
-    return s
+    return s;
   if (s === undefined)
-    return 'undefined'
+    return 'undefined';
   if (s === null)
-    return 'null'
+    return 'null';
   // ...
 }
 ```
 
 现在想象一下，如果函数`notify`是某些复杂的负载场景中的一部分，而不仅仅是打印日志，那么在运行时执行像`__internal_tostring`的类型检查将会是一个性能问题。
 
-如果可以保证在运行时，只有`string`类型的值（不会是其他值，例如`null`或者`undefined`）可以被传入函数`notify`呢？在这种情况下，因为可以确保没有其他边界情况，像`__internal_tostring`的检查就是多余的了。对于这个场景，这样的机制叫做“null-safety”，也就是说，保证`null`不是一个合法的`string`类型变量的值。如果ArkTS有了这个特性，类型不符合的代码将无法编译。
+如果可以保证在运行时，只有`string`类型的值（不会是其他值，例如`null`或者`undefined`）可以被传入函数`notify`呢？在这种情况下，因为可以确保没有其他边界情况，像`__internal_tostring`的检查就是多余的了。对于这个场景，这样的机制叫做“null-safety”，也就是说，保证`null`或`undefined`不是一个合法的`string`类型变量的值。如果ArkTS有了这个特性，类型不符合的代码将无法编译。
 
 ```typescript
 function notify(who: string, what: string) {
-  console.log(`Dear ${who}, a message for you: ${what}`)
+  console.info(`Dear ${who}, a message for you: ${what}`);
 }
 
-notify('Jack', 'You look great today')
-notify(null, undefined) // 编译时错误
+notify('Jack', 'You look great today');
+notify(null, undefined); // 编译时错误
 ```
 
 TS通过启用编译选项`strictNullChecks`实现此特性。虽然TS被编译成JS，但因为JS没有这个特性，所以严格`null`检查仅在编译时起效。从程序稳定性和性能的角度考虑，ArkTS将“null-safety”视为一个重要的特性。因此，ArkTS强制进行严格`null`检查，在ArkTS中上述代码将始终编译失败。作为交换，此类代码为ArkTS引擎提供了更多信息和关于值的类型保证，有助于优化性能。
@@ -145,19 +145,19 @@ ArkTS支持与TS/JS的高效互操作。在当前版本中，ArkTS运行时兼�
 ```typescript
 // lib.ts
 export class C {
-  v: string
+  v: string; // 编译期报错 Property 'v' has no initializer
 }
 
 export let c = new C()
 
 // app.ets
-import { C, c } from './lib'
+import { C, c } from './lib';
 
 function foo(c: C) {
-  c.v.length
+  c.v.length;
 }
 
-foo(c)  //  运行时异常：v is undefined
+foo(c);
 ```
 
 ## 方舟运行时兼容TS/JS
@@ -175,13 +175,14 @@ foo(c)  //  运行时异常：v is undefined
     循环依赖示例:
     ```typescript
     // bar.ets
-    import {v} from './foo' // bar.ets依赖foo.ets
+    import {v} from './foo'; // bar.ets依赖foo.ets
     export let u = 0;
 
     // foo.ets
-    import {u} from './bar' // foo.ets同时又依赖bar.ets
+    import {u} from './bar'; // foo.ets同时又依赖bar.ets
     export let v = 0;
 
+    //应用加载失败
     ```
 
 **与标准TS/JS的差异**

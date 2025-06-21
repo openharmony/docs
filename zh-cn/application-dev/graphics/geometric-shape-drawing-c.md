@@ -24,7 +24,7 @@
 
 ## 接口说明
 
-几何形状绘制的常用接口如下表所示，详细的使用和参数说明请见[drawing_canvas.h](../reference/apis-arkgraphics2d/drawing__canvas_8h.md)。
+几何形状绘制的常用接口如下表所示，详细的使用和参数说明请见[drawing_canvas.h](../reference/apis-arkgraphics2d/capi-drawing-canvas-h.md)。
 
 | 接口 | 描述 |
 | -------- | -------- |
@@ -161,7 +161,7 @@ OH_Drawing_PointDestroy(point);
 
 可以使用画笔或画刷在画布上进行路径的绘制，路径具体可以用于绘制直线、弧线、贝塞尔曲线等，也可以通过路径组合的方式组成其他复杂的形状。
 
-绘制路径的相关接口和实现如下，详细的使用和参数说明请见[drawing_path](../reference/apis-arkgraphics2d/drawing__path_8h.md)。常用的接口如下：
+绘制路径的相关接口和实现如下，详细的使用和参数说明请见[drawing_path](../reference/apis-arkgraphics2d/capi-drawing-path-h.md)。常用的接口如下：
 
 1. 使用OH_Drawing_PathCreate()接口可以创建一个路径对象。
 
@@ -227,7 +227,7 @@ OH_Drawing_PathDestroy(path);
 
 ## 绘制区域
 
-区域不是一个特定的形状，可以设置为指定的矩形或路径，也可以对两个区域进行组合操作。可以使用画笔或画刷在画布上进行区域的绘制。详细的API说明请参考[drawing_region.h](../reference/apis-arkgraphics2d/drawing__region_8h.md)。
+区域不是一个特定的形状，可以设置为指定的矩形或路径，也可以对两个区域进行组合操作。可以使用画笔或画刷在画布上进行区域的绘制。详细的API说明请参考[drawing_region.h](../reference/apis-arkgraphics2d/capi-drawing-region-h.md)。
 
 目前支持设置矩形区域和路径区域，分别通过OH_Drawing_RegionSetRect()接口和OH_Drawing_RegionSetPath()接口来设置。
 

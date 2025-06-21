@@ -5,13 +5,15 @@
 
 声明用于主机侧访问设备的USB DDK接口。
 
-**起始版本：**
+**引用文件：** <usb/usb_ddk_api.h>
 
-10
+**库：** libusb_ndk.z.so
 
-**相关模块：**
+**系统能力：** SystemCapability.Driver.USB.Extension
 
-[USB DDK](_usb_ddk.md)
+**起始版本：** 10
+
+**相关模块：** [USB DDK](_usb_ddk.md)
 
 
 ## 汇总

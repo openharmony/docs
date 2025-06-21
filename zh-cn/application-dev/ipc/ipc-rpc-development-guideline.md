@@ -168,7 +168,7 @@ IPC/RPC的主要工作是跨进程建立对象通信的连接（客户端进程�
     let connectId = featureAbility.connectAbility(want, connect);
   ```
 
-  Stage模型使用common.UIAbilityContext的[connectServiceExtensionAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability)接口连接Ability。
+  Stage模型使用common.UIAbilityContext的[connectServiceExtensionAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#connectserviceextensionability)接口连接Ability。
   在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
   <!--code_no_check-->
@@ -261,7 +261,7 @@ IPC/RPC的主要工作是跨进程建立对象通信的连接（客户端进程�
     featureAbility.disconnectAbility(connectId, disconnectCallback);
    ```
 
-   Stage模型使用common.UIAbilityContext提供的[disconnectServiceExtensionAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextdisconnectserviceextensionability-1)接口断开连接，此处的connectId是在连接服务时保存的。
+   Stage模型使用common.UIAbilityContext提供的[disconnectServiceExtensionAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#disconnectserviceextensionability-1)接口断开连接，此处的connectId是在连接服务时保存的。
    在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需要在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
   <!--code_no_check-->

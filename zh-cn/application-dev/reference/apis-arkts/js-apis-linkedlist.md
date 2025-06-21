@@ -899,7 +899,7 @@ linkedList.add(5);
 linkedList.add(4);
 
 // 使用方法一：
-let items = Array.from(linkedList)
+let items = Array.from(linkedList);
 for (let item of items) {
   console.log("value:" + item);
 }

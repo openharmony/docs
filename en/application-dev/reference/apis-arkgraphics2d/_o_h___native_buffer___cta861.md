@@ -11,6 +11,7 @@ The OH_NativeBuffer_Cta861 struct describes the CTA-861.3 static metadata.
 
 **Related module**: [OH_NativeBuffer](_o_h___native_buffer.md)
 
+**Header file**: [buffer_common.h](buffer__common_8h.md)
 
 ## Summary
 

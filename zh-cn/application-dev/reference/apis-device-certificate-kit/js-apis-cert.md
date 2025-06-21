@@ -27,6 +27,7 @@ import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 | NOT_SUPPORT                           | 801      | 操作不支持。                  |
 | ERR_OUT_OF_MEMORY                     | 19020001 | 内存错误。                    |
 | ERR_RUNTIME_ERROR                     | 19020002 | 运行时外部错误。              |
+| ERR_PARAMETER_CHECK_FAILED<sup>20+</sup>             | 19020003 | 参数检查失败。 <br> **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。               |
 | ERR_CRYPTO_OPERATION                  | 19030001 | 调用三方算法库API出错。       |
 | ERR_CERT_SIGNATURE_FAILURE            | 19030002 | 证书签名验证错误。            |
 | ERR_CERT_NOT_YET_VALID                | 19030003 | 证书尚未生效。                |
@@ -42,9 +43,9 @@ buffer数组。
  **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
  **系统能力：** SystemCapability.Security.Cert
-| 名称           | 类型           | 可读 | 可写 | 说明              |
+| 名称           | 类型           | 只读 | 可选 | 说明              |
 | -------------- | -------------- | ---- | ---- | ----------------|
-| data           | Uint8Array     | 是   | 是   | 数据。    |
+| data           | Uint8Array     | 否   | 否   | 数据。    |
 
 ## DataArray
 
@@ -53,9 +54,9 @@ buffer数组的列表。
  **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
  **系统能力：** SystemCapability.Security.Cert
-| 名称           | 类型           | 可读 | 可写 | 说明               |
+| 名称           | 类型           | 只读 | 可选 | 说明               |
 | -------------- | -------------- | ---- | ---- | ----------------|
-| data           | Array\<Uint8Array>     | 是   | 是   | 数据列表。    |
+| data           | Array\<Uint8Array>     | 否   | 否   | 数据列表。    |
 
 ## EncodingFormat
 
@@ -85,32 +86,32 @@ buffer数组的列表。
 | DER | 1      | DER格式。 |
 
 ## CsrAttribute<sup>18+</sup>
- 表示生成CSR的编码格式配置参数中的拓展。
+ 表示生成CSR的编码格式配置参数中的扩展。
 
-openssl中规定了拓展类型，例如challengePassword、keyUsage等。
+openssl中规定了扩展类型，例如challengePassword、keyUsage等。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
  **系统能力：** SystemCapability.Security.Cert
 
-| 名称       | 值 |  说明      |
-| ---------- | ------ | --------- |
-| type | 指定的拓展类型 | openssl指定的拓展类型。 |
-| value | 拓展值 | 拓展值。 |
+| 名称    | 类型   | 只读 | 可选 | 说明                                                         |
+| ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
+| type | string | 否   | 否   | openssl指定的扩展类型。 |
+| value | string | 否   | 否  | 扩展值。 |
 
 ## CsrGenerationConfig<sup>18+</sup>
-RSA私钥生成CSR时的配置参数，包含主体、拓展、摘要算法、输出格式等。
+RSA私钥生成CSR时的配置参数，包含主体、扩展、摘要算法、输出格式等。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
-| 名称    | 类型   | 可读 | 可写 | 说明                                                         |
+| 名称    | 类型   | 只读 | 可选 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| subject | [X500DistinguishedName](#x500distinguishedname12) | 是   | 是   | X509定义的Name类型的对象。 |
-| mdName | string | 是   | 是   | 摘要算法名。 |
-| attributes | Array\<[CsrAttribute](#csrattribute18)> | 是   | 是   | 拓展。 |
-| outFormat | [EncodingBaseFormat](#encodingbaseformat18) | 是   | 是   | 输出类型。 |
+| subject | [X500DistinguishedName](#x500distinguishedname12) | 否   | 否   | X509定义的Name类型的对象。 |
+| mdName | string | 否   | 否   | 摘要算法名。 |
+| attributes | Array\<[CsrAttribute](#csrattribute18)> | 否   | 是   | 扩展。 |
+| outFormat | [EncodingBaseFormat](#encodingbaseformat18) | 否   | 是   | 输出类型。 |
 
 > **说明：**
 >
@@ -118,7 +119,7 @@ RSA私钥生成CSR时的配置参数，包含主体、拓展、摘要算法、�
 >
 > - mdName是摘要算法名，当前支持SHA1、SHA256、SHA384、SHA512。
 >
-> - attributes是可选参数，可以指定openssl中规定的拓展类型跟拓展值生成CSR。例如challengePassword、keyUsage等。
+> - attributes是可选参数，可以指定openssl中规定的扩展类型跟扩展值生成CSR。例如challengePassword、keyUsage等。
 >
 > - outFormat指定输出CSR的格式，若不指定默认为PEM格式。
 
@@ -188,10 +189,10 @@ RSA私钥生成CSR时的配置参数，包含主体、拓展、摘要算法、�
 
 **系统能力：** SystemCapability.Security.Cert
 
-| 名称           | 类型                              | 可读 | 可写 | 说明                           |
+| 名称           | 类型                              | 只读 | 可选 | 说明                           |
 | -------------- | --------------------------------- | ---- | ---- | ------------------------------ |
-| data           | Uint8Array                        | 是   | 是   | 传入的证书数据。 |
-| encodingFormat | [EncodingFormat](#encodingformat) | 是   | 是   | 指明证书编码格式。             |
+| data           | Uint8Array                        | 否   | 否   | 传入的证书数据。 |
+| encodingFormat | [EncodingFormat](#encodingformat) | 否   | 否   | 指明证书编码格式。             |
 
 
 ## CertChainData
@@ -204,11 +205,11 @@ RSA私钥生成CSR时的配置参数，包含主体、拓展、摘要算法、�
 
 **系统能力：** SystemCapability.Security.Cert
 
-| 名称           | 类型                              | 可读 | 可写 | 说明                                                         |
+| 名称           | 类型                              | 只读 | 可选 | 说明                                                         |
 | -------------- | --------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| data           | Uint8Array                        | 是   | 是   | 证书数据，按照长度(2字节)-数据的形式传入，如：08ABCDEFGH07ABCDEFG,第一本证书，前2个字节表示证书的长度为8字节，后面附加8字节的证书数据；第2本证书前2个字节表示证书的长度为7字节，后面附加7字节的证书数据。 |
-| count          | number                            | 是   | 是   | 传入的数据中，包含的证书数量。                               |
-| encodingFormat | [EncodingFormat](#encodingformat) | 是   | 是   | 指明证书编码格式。                                           |
+| data           | Uint8Array                        | 否   | 否   | 证书数据，按照长度（2字节）-数据的形式传入。如：08ABCDEFGH07ABCDEFG，第一本证书，前2个字节表示证书的长度为8字节，后面附加8字节的证书数据；第2本证书前2个字节表示证书的长度为7字节，后面附加7字节的证书数据。 |
+| count          | number                            | 否   | 否   | 传入的数据中，包含的证书数量。                               |
+| encodingFormat | [EncodingFormat](#encodingformat) | 否   | 否   | 指明证书编码格式。                                           |
 
 ## GeneralNameType<sup>12+</sup>
 
@@ -322,12 +323,12 @@ RSA私钥生成CSR时的配置参数，包含主体、拓展、摘要算法、�
 
 **系统能力：** SystemCapability.Security.Cert
 
-| 名称      | 类型                  | 可读 | 可写 | 说明                        |
+| 名称      | 类型                  | 只读 | 可选 | 说明                        |
 | --------- | --------------------- | ---- | ---- | --------------------------- |
-| CACert    | [X509Cert](#x509cert) | 是   | 是   | 信任的CA证书。              |
-| CAPubKey  | Uint8Array            | 是   | 是   | 信任的CA证书公钥, DER格式。 |
-| CASubject | Uint8Array            | 是   | 是   | 信任的CA证书主题, DER格式。 |
-| nameConstraints<sup>12+</sup> | Uint8Array      | 是   | 是   | 名称约束, DER格式。 |
+| CACert    | [X509Cert](#x509cert) | 否   | 是   | 信任的CA证书。              |
+| CAPubKey  | Uint8Array            | 否   | 是   | 信任的CA证书公钥，DER格式。 |
+| CASubject | Uint8Array            | 否   | 是   | 信任的CA证书主题，DER格式。 |
+| nameConstraints<sup>12+</sup> | Uint8Array      | 否   | 是   | 名称约束，DER格式。 |
 
 ## RevocationCheckOptions<sup>12+</sup>
 
@@ -421,7 +422,7 @@ RSA私钥生成CSR时的配置参数，包含主体、拓展、摘要算法、�
 
 **系统能力：** SystemCapability.Security.Cert
 
-| 名称        | 类型                                  | 可读 | 可写 | 说明           |
+| 名称        | 类型                                  | 只读 | 可选 | 说明           |
 | ----------- | ------------------------------------- | ---- | ---- | -------------- |
 | trustAnchor | [X509TrustAnchor](#x509trustanchor11) | 是   | 否   | 表示信任锚。   |
 | entityCert  | [X509Cert](#x509cert)                 | 是   | 否   | 表示实体证书。 |
@@ -1445,9 +1446,9 @@ getIssuerName(encodingType: EncodingType): string
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 401 | Parameter error.  Possible causes: <br>1. Incorrect parameter types;<br>2. Parameter verification failed.           |
 | 19020001 | memory malloc failed.                                     |
 | 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
+| 19020003 | parameter check failed. Possible causes: <br>1. The value of encodingType is not in the EncodingType enumeration range.|
 | 19030001 | crypto operation error.|
 
 **示例：**
@@ -2939,9 +2940,9 @@ toString(encodingType: EncodingType): string
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | Parameter error.  Possible causes: <br>1. Incorrect parameter types;<br>2. Parameter verification failed. |
 | 19020001 | memory malloc failed. |
 | 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
+| 19020003 | parameter check failed. Possible causes: <br>1. The value of encodingType is not in the EncodingType enumeration range.|
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -5780,6 +5781,7 @@ getEncoded() : Promise\<EncodingBlob>
 | 类型                                    | 说明                             |
 | --------------------------------------- | -------------------------------- |
 | Promise\<[EncodingBlob](#encodingblob)> | 表示X509证书吊销列表的序列化数据。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[证书错误码](errorcode-cert.md)。
@@ -6298,9 +6300,9 @@ getIssuerName(encodingType: EncodingType): string
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 401 | Parameter error.  Possible causes: <br>1. Incorrect parameter types;<br>2. Parameter verification failed.           |
 | 19020001 | memory malloc failed.                                     |
 | 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
+| 19020003 | parameter check failed. Possible causes: <br>1. The value of encodingType is not in the EncodingType enumeration range.|
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -7552,9 +7554,9 @@ toString(encodingType: EncodingType): string
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 401 | Parameter error.  Possible causes: <br>1. Incorrect parameter types;<br>2. Parameter verification failed.           |
 | 19020001 | memory malloc failed.                                     |
 | 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
+| 19020003 | parameter check failed. Possible causes: <br>1. The value of encodingType is not in the EncodingType enumeration range.|
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -7806,7 +7808,7 @@ try {
 
 **系统能力：** SystemCapability.Security.Cert
 
-| 名称    | 类型   | 可读 | 可写 | 说明                         |
+| 名称    | 类型   | 只读 | 可选 | 说明                         |
 | ------- | ------ | ---- | ---- | -------------------------- |
 | algorithm  | string | 是   | 否   | X509证书链校验器算法名称。 |
 
@@ -8803,10 +8805,10 @@ getCertIssuer(encodingType: EncodingType): string
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 401 | Parameter error.  Possible causes: <br>1. Incorrect parameter types;<br>2. Parameter verification failed.           |
 | 801 | this operation is not supported. |
 | 19020001 | memory malloc failed.                                     |
 | 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C.                                    |
+| 19020003 | parameter check failed. Possible causes: <br>1. The value of encodingType is not in the EncodingType enumeration range.|
 | 19030001 | crypto operation error. |
 
 **示例：**
@@ -11373,7 +11375,7 @@ async function certChainHashCode() {
 
 generateCsr(keyInfo: PrivateKeyInfo, config: CsrGenerationConfig): string | Uint8Array
 
-表示使用指定的RSA私钥，传入主体、拓展、摘要算法、输出格式等配置参数去生成CSR。
+表示使用指定的RSA私钥，传入主体、扩展、摘要算法、输出格式等配置参数去生成CSR。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -11739,9 +11741,9 @@ getName(encodingType: EncodingType): string
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | Parameter error.  Possible causes: <br>1. Incorrect parameter types;<br>2. Parameter verification failed.|
 | 19020001 | memory malloc failed. |
 | 19020002 | runtime error. Possible causes: <br>1. Memory copy failed;<br>2. A null pointer occurs inside the system;<br>3. Failed to convert parameters between ArkTS and C. |
+| 19020003 | parameter check failed. Possible causes: <br>1. The value of encodingType is not in the EncodingType enumeration range.|
 | 19030001 | crypto operation error. |
 
 **示例：**

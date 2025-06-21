@@ -8,7 +8,7 @@ You can use [FilePicker](../reference/apis-core-file-kit/js-apis-file-picker.md)
 
 - [DocumentViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#documentviewpicker): used to select and save documents. The **DocumentViewPicker** API triggers the **FilePicker** application. Documents are not distinguished by file name extensions. For example, the images and files downloaded from a browser are documents.
 
-- [AudioViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#audioviewpicker): used to select and save audio clips. The **AudioViewPicker** API triggers the **FilePicker** application. 
+- [AudioViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#audioviewpicker): used to select and save audio clips. The **AudioViewPicker** API triggers the **AudioPicker** application.
 
 ## Selecting Images or Videos
 
@@ -33,7 +33,7 @@ You can use [FilePicker](../reference/apis-core-file-kit/js-apis-file-picker.md)
    documentSelectOptions.maxSelectNumber = 5;
    // Specify the path of the files or folder to select. This parameter is optional.
    documentSelectOptions.defaultFilePathUri = "file://docs/storage/Users/currentUser/test";
-   // (Optional. If this parameter is not transferred, all files are displayed by default.) Set the file name extension types ['File name extension description|File name extension type'] that can be selected. (Optional) Use a comma to separate multiple file name extensions, which cannot exceed 100. The wildcard ['All files (*.*)|.*'] can be used on 2-in-1 devices to display all files. Currently, mobile phones do not support this configuration.
+   // (Optional. If this parameter is not transferred, all files are displayed by default.) Set the file name extension types ['File name extension description|File name extension type'] that can be selected. (Optional) Use a comma to separate multiple file name extensions, which cannot exceed 100. The wildcard ['All files (*.*)|.*'] can be used on 2-in-1 devices to display all files. (Mobile phones can support this configuration since API version 17.)
     documentSelectOptions.fileSuffixFilters = ['Image(.png, .jpg)|.png, .jpg', 'Document|.txt', 'Video|.mp4', '.pdf'];
    // Whether to grant the permission for the specified files or folder. The value true means to grant the permission, the value false (default) means the opposite. If this parameter is true, defaultFilePathUri is mandatory and the file management authorization page is displayed. If this parameter is false, a common file management page is displayed. This parameter is optional and only 2-in-1 devices are supported.
    documentSelectOptions.authMode = false;
@@ -43,19 +43,20 @@ You can use [FilePicker](../reference/apis-core-file-kit/js-apis-file-picker.md)
    documentSelectOptions.multiUriArray = ["file://docs/storage/Users/currentUser/test", "file://docs/storage/Users/currentUser/2test"];
    // Whether to enable the aggregation view mode to launch the file management application. The value DEFAULT means that this parameter does not take effect and the aggregation view mode is disabled. Values other than DEFAULT means that other parameters do not take effect. Only mobile phones are supported.
    documentSelectOptions.mergeMode = picker.MergeTypeMode.DEFAULT;
-   // Whether to support encryption (only files are supported). The default value is false. If this parameter is set to true, files can be encrypted on the picker page.
+   // Whether to support encryption (only files are supported). The default value is false. If this parameter is set to true, files can be encrypted on the Picker page.
    documentSelectOptions.isEncryptionSupported = false;
    ```
 
 3. Create a [DocumentViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#documentviewpicker) instance, and call [select()](../reference/apis-core-file-kit/js-apis-file-picker.md#select-3) to start the FilePicker application page for the user to select documents.
-   
+
    ```ts
    let uris: Array<string> = [];
-   let context = getContext (this) as common.Context; // Ensure that getContext (this) returns UIAbilityContext.
+   // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+   let context = this.getUIContext().getHostContext() as common.UIAbilityContext; 
    // Create a DocumentViewPicker instance.
    const documentViewPicker = new picker.DocumentViewPicker(context);
    documentViewPicker.select(documentSelectOptions).then((documentSelectResult: Array<string>) => {
-     // After the user selects documents, a result set containing the document URIs is returned.
+     // After the files are selected, a result set containing the file URIs is returned.
      uris = documentSelectResult;
      console.info('documentViewPicker.select to file succeed and uris are:' + uris);
    }).catch((err: BusinessError) => {
@@ -63,17 +64,17 @@ You can use [FilePicker](../reference/apis-core-file-kit/js-apis-file-picker.md)
    })
    ```
 
-  > **NOTE**
-  >
+   > **NOTE**
+   >
   > - The permission for the URI returned by [select()](../reference/apis-core-file-kit/js-apis-file-picker.md#select-3) of Picker is a temporary read-only permission. The temporary permission will be invalidated once the application exits.
   >
-  > - You can persist the temporary permission for a URI. This operation is available only for 2-in-1 devices. For details, see [Persisting a Temporary Permission Granted by Picker](file-persistPermission.md#persisting-a-temporary-permission-granted-by-picker).
+  > - You can persist the temporary permission for a URI. For details, see [Persisting a Temporary Permission Granted by Picker](file-persistPermission.md#persisting-a-temporary-permission-granted-by-picker).
   >
   > - Further operations can be performed on the documents based on the file URIs returned in the result set. You are advised to define a global variable to save the URI.
   >
   > - If metadata needs to be obtained, you can use the [@ohos.file.fs](../reference/apis-core-file-kit/js-apis-file-fs.md) and [@ohos.file.fileuri](../reference/apis-core-file-kit/js-apis-file-fileuri.md) APIs to obtain document attribute information, such as the document name, size, access time, modification time, and path, based on the URI.
 
-4. After the application UI is returned from FilePicker, call [fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync) to open a document based on the URI. The file descriptor (FD) is obtained.
+4. After the application UI is returned from FilePicker, call [fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync) to open a document based on the URI. The file descriptor (FD) is returned after the document is opened.
 
    ```ts
    let uri: string = '';
@@ -113,15 +114,15 @@ You can use [FilePicker](../reference/apis-core-file-kit/js-apis-file-picker.md)
    const audioSelectOptions = new picker.AudioSelectOptions();
    ```
 
-3. Create an [AudioViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#audioviewpicker) instance, and call [select()](../reference/apis-core-file-kit/js-apis-file-picker.md#select-5) to start the FilePicker application page for the user to select audio clips.
-   
+3. Create an [AudioViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#audioviewpicker) instance, and call [select()](../reference/apis-core-file-kit/js-apis-file-picker.md#select-5) to start the AudioPicker application page for the user to select audio clips.
+
    ```ts
    let uris: string = '';
-   // Ensure that getContext(this) returns UIAbilityContext.
-   let context = getContext(this) as common.Context; 
+   // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+   let context = this.getUIContext().getHostContext() as common.UIAbilityContext; 
    const audioViewPicker = new picker.AudioViewPicker(context);
    audioViewPicker.select(audioSelectOptions).then((audioSelectResult: Array<string>) => {
-     // After the user selects audio clips, a result set containing the URIs of the audio clips selected is returned.
+     // After the files are selected, a result set containing the URIs of the audio files selected is returned.
      uris = audioSelectResult[0];
      console.info('audioViewPicker.select to file succeed and uri is:' + uris);
    }).catch((err: BusinessError) => {
@@ -129,15 +130,15 @@ You can use [FilePicker](../reference/apis-core-file-kit/js-apis-file-picker.md)
    })
    ```
 
-  > **NOTE**
-  >
+   > **NOTE**
+   >
   > - The permission for the URI returned by [select()](../reference/apis-core-file-kit/js-apis-file-picker.md#select-3) of Picker is a temporary read-only permission. The temporary permission will be invalidated once the application exits.
   >
-  > - You can persist the temporary permission for a URI. This operation is available only for 2-in-1 devices. For details, see [Persisting a Temporary Permission Granted by Picker](file-persistPermission.md#persisting-a-temporary-permission-granted-by-picker).
+  > - You can persist the temporary permission for a URI. For details, see [Persisting a Temporary Permission Granted by Picker](file-persistPermission.md#persisting-a-temporary-permission-granted-by-picker).
   >
   > - You can read file data based on the URI. You are advised to define a global variable to save the URI. For example, you can use the [@ohos.file.fs](../reference/apis-core-file-kit/js-apis-file-fs.md) API to obtain the FD of the audio clip based on the URI, and then develop the audio playback application with the media service. For details, see [Audio Playback Development](../media/audio/audio-playback-overview.md).
 
-4. After the application UI is returned from FilePicker, call [fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync) to open an audio clip based on the URI. The FD is obtained.
+4. After the application UI is returned from AudioPicker, call [fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync) to open an audio clip based on the URI. The FD is returned after the audio clip is opened.
 
    ```ts
    let uri: string = '';

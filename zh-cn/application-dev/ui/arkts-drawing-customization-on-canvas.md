@@ -16,9 +16,9 @@ Canvas提供画布组件，用于自定义绘制图形，开发者使用CanvasRe
   @Component
   struct CanvasExample1 {
     //用来配置CanvasRenderingContext2D对象的参数，包括是否开启抗锯齿，true表明开启抗锯齿。
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
     //用来创建CanvasRenderingContext2D对象，通过在canvas中调用CanvasRenderingContext2D对象来绘制。
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
   
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -51,10 +51,10 @@ Canvas提供画布组件，用于自定义绘制图形，开发者使用CanvasRe
   @Component
   struct CanvasExample2 {
     //用来配置CanvasRenderingContext2D对象和OffscreenCanvasRenderingContext2D对象的参数，包括是否开启抗锯齿。true表明开启抗锯齿
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
     //用来创建OffscreenCanvas对象，width为离屏画布的宽度，height为离屏画布的高度。通过在canvas中调用OffscreenCanvasRenderingContext2D对象来绘制。
-    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
    
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -81,12 +81,12 @@ Canvas提供画布组件，用于自定义绘制图形，开发者使用CanvasRe
 
   >**说明：**
   >
-  >在画布组件中，通过CanvasRenderingContext2D对象和OffscreenCanvasRenderingContext2D对象在Canvas组件上进行绘制时调用的接口相同，另接口参数如无特别说明，单位均为vp。
+  >在画布组件中，通过CanvasRenderingContext2D对象和OffscreenCanvasRenderingContext2D对象在Canvas组件上进行绘制时调用的接口相同，另外，接口参数如无特别说明，单位均为vp。
 
 - 在Canvas上加载Lottie动画时，需要先按照如下方式下载Lottie。
 
   ```ts
-  import lottie from '@ohos/lottie'
+  import lottie from '@ohos/lottie';
   ```
 
   具体接口请参考[Lottie](https://gitee.com/openharmony-tpc/lottieETS)。
@@ -201,37 +201,18 @@ OffscreenCanvasRenderingContext2D对象和CanvasRenderingContext2D对象提供�
 
   ![2023022795105(1)](figures/2023022795105(1).jpg)
 
-- 使用自定义字体绘制文本。
-
-  可以通过[font](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#font)接口（设置文本绘制中的字体样式）加载自定义字体，然后通过[fillText](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#filltext)（绘制填充类文本）、[strokeText](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#stroketext)（绘制描边类文本）等接口进行文本绘制。
-
-  ```ts
-  Canvas(this.context)
-    .width('100%')
-    .height('100%')
-    .backgroundColor('#F5DC62')
-    .onReady(() => {
-      //加载自定义字体
-      this.context.font = '30vp customFont'
-      this.context.fillText("Hello World!", 20, 50)
-      this.context.strokeText("Hello World!", 20, 100)
-    })
-  ```
-
-  ![customFont](figures/customFont.jpeg)
-
 - 绘制图片和图像像素信息处理。
 
-  可以通过[drawImage](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#drawimage)（图像绘制）、[putImageData](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#putimagedata)（使用[ImageData](../reference/apis-arkui/arkui-ts/ts-components-canvas-imagedata.md)数据填充新的矩形区域）等接口绘制图片，通过[createImageData](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#createimagedata)（创建新的ImageData 对象）、[getPixelMap](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#getpixelmap)（以当前canvas指定区域内的像素创建[PixelMap](../reference/apis-image-kit/js-apis-image.md#pixelmap7)对象）、[getImageData](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#getimagedata)（以当前canvas指定区域内的像素创建ImageData对象）等接口进行图像像素信息处理。
+  可以通过[drawImage](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#drawimage)（图像绘制）、[putImageData](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#putimagedata)（使用[ImageData](../reference/apis-arkui/arkui-ts/ts-components-canvas-imagedata.md)数据填充新的矩形区域）等接口绘制图片，通过[createImageData](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#createimagedata)（创建新的ImageData 对象）、[getPixelMap](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#getpixelmap)（以当前canvas指定区域内的像素创建[PixelMap](../reference/apis-image-kit/arkts-apis-image-PixelMap.md)对象）、[getImageData](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#getimagedata)（以当前canvas指定区域内的像素创建ImageData对象）等接口进行图像像素信息处理。
 
   ```ts
   @Entry
   @Component
   struct GetImageData {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
-    private img: ImageBitmap = new ImageBitmap("/common/images/1234.png")
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
+    private img: ImageBitmap = new ImageBitmap("/common/images/1234.png");
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -284,6 +265,45 @@ OffscreenCanvasRenderingContext2D对象和CanvasRenderingContext2D对象提供�
 
   ![2023022700701(1)](figures/2023022700701(1).jpg)
 
+## 使用状态变量驱动画布刷新
+
+可以使用状态变量来驱动Canvas刷新，将变化的数据通过@Watch监听，并绑定自定义的draw()方法。当数据刷新时，@Watch绑定的方法会执行绘制逻辑，使Canvas刷新。
+
+```ts
+@Entry
+@Component
+struct CanvasContentUpdate {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+  @State @Watch('draw')content: string = 'Hello World';
+
+  draw() {
+    this.context.clearRect(0, 0, 400, 200); // 清空Canvas的内容
+    this.context.fillText(this.content, 50, 100); // 重新绘制
+  }
+
+  build() {
+    Column() {
+      Canvas(this.context)
+        .width('100%')
+        .height('25%')
+        .backgroundColor('rgb(39, 135, 217)')
+        .onReady(() => {
+          this.context.font = '65px sans-serif';
+          this.context.fillText(this.content, 50, 100);
+        })
+      TextInput({
+        text:$$this.content // 修改文本输入框里的内容时，状态变量的更新会驱动Canvas刷新
+      })
+        .fontSize(35)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+![data_drive_update](figures/data_drive_update.gif)
 
 ## 场景示例
 

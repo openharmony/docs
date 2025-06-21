@@ -710,8 +710,11 @@ libace_napi.z.so
 |FUNC|napi_wrap_sendable | 包裹一个native实例到ArkTS对象中。|12|
 |FUNC|napi_wrap_sendable_with_size | 包裹一个native实例到ArkTS对象中并指定大小。|12|
 |FUNC|napi_unwrap_sendable | 获取ArkTS对象包裹的native实例。|12|
-|FUNC|napi_remove_wrap_sendable | 移除并获取ArkTS对象包裹的native实例。|12|
+|FUNC|napi_remove_wrap_sendable | 移除并获取ArkTS对象包裹的native实例，移除后回调将不再触发，需手动delete释放内存。|12|
 |FUNC|napi_wrap_enhance | 在ArkTS对象上绑定一个Node-API模块对象实例并指定实例大小，开发者可以指定绑定的回调函数是否异步执行（若异步则需线程安全）。|18|
+|FUNC|napi_create_ark_context|创建一个新的运行时上下文环境。|20|
+|FUNC|napi_switch_ark_context|切换到指定的运行时上下文环境。|20|
+|FUNC|napi_destroy_ark_context|销毁通过接口napi_create_ark_context创建的一个上下文环境。|20|
 
 > 说明：
 >
@@ -1392,7 +1395,7 @@ napi_status napi_remove_wrap_sendable(napi_env env, napi_value js_object, void**
 
 **描述：**
 
-移除并获取ArkTS对象包装的native实例。
+移除并获取ArkTS对象包装的native实例，移除后回调将不再触发，需手动delete释放内存。
 
 **参数：**
 
@@ -1451,7 +1454,74 @@ napi_status napi_wrap_enhance(napi_env env,
 
 - napi_pending_exception：如果有未捕获的异常或执行过程中发生异常时返回。
 
-#### napi_finalize回调函数说明
+### napi_create_ark_context
+
+```cpp
+napi_status napi_create_ark_context(napi_env env, napi_env* newEnv);
+```
+
+**描述：**
+
+创建一个新的运行时上下文环境。通过napi_create_ark_context接口创建的运行时上下文环境暂时不支持console、timer、intl等模块能力。
+使用该接口需要注意以下几点：
+1. 只支持通过最初的上下文环境创建的新的上下文环境，禁止通过该接口创建的上下文环境去创建新的上下文环境。
+2. 当前该接口不支持在非主线程的ArkTS线程中调用。
+3. 调用该接口前，调用者需要保证当前上下文环境不存在异常，否则会导致该接口调用失败。
+4. 该接口创建的上下文环境暂时不支持加载应用自带的so。
+5. 多上下文运行时环境不支持sendable特性。
+
+**参数：**
+
+- [in] env：Node-API的环境对象，表示当前的执行环境。
+
+- [out] newEnv：新创建的运行时上下文环境。
+
+**返回：**
+
+如果API成功，则返回napi_ok。
+
+### napi_switch_ark_context
+
+```cpp
+napi_status napi_switch_ark_context(napi_env env)
+```
+
+**描述：**
+
+切换到指定的运行时上下文环境。使用该接口需要注意以下几点：
+1. 当前该接口不支持在非主线程的ArkTS线程中调用。
+2. 调用该接口前，调用者需要保证当前上下文环境不存在异常，否则会导致该接口调用失败。
+
+**参数：**
+
+- [in] env：指定的运行时上下文环境。
+
+**返回：**
+
+如果API成功，则返回napi_ok。
+
+### napi_destroy_ark_context
+
+```cpp
+napi_status napi_destroy_ark_context(napi_env env)
+```
+
+**描述：**
+
+销毁通过接口napi_create_ark_context创建的一个上下文环境。使用该接口需要注意以下几点：
+1. 当前该接口不支持在非主线程的ArkTS线程中调用。
+2. 该接口只能销毁通过napi_create_ark_context接口创建的运行时上下文环境。
+3. 不能通过该接口去销毁正在运行的上下文环境。
+
+**参数：**
+
+- [in] env：要销毁的运行时上下文环境。
+
+**返回：**
+
+如果API成功，则返回napi_ok。
+
+### napi_finalize回调函数说明
 
 ```cpp
 typedef void (*napi_finalize)(napi_env env,

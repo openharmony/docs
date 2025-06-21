@@ -46,6 +46,10 @@ FileManagement_ErrCode OH_Environment_GetUserDesktopDir (char ** result)
 | -------- | -------- |
 | result | Desktop根目录路径指针。请引用头文件malloc.h并使用free()进行资源释放。  |
 
+**需要权限：**
+
+ohos.permission.READ_WRITE_DESKTOP_DIRECTORY。
+
 **返回：**
 
 返回FileManagement模块错误码[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode)。
@@ -67,6 +71,10 @@ FileManagement_ErrCode OH_Environment_GetUserDocumentDir (char ** result)
 | -------- | -------- |
 | result | Document根目录路径指针。请引用头文件malloc.h并使用free()进行资源释放。  |
 
+**需要权限：**
+
+ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY
+
 **返回：**
 
 返回FileManagement模块错误码[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode)。
@@ -87,6 +95,10 @@ FileManagement_ErrCode OH_Environment_GetUserDownloadDir (char ** result)
 | 名称 | 描述 |
 | -------- | -------- |
 | result | Download根目录路径指针。请引用头文件malloc.h并使用free()进行资源释放。  |
+
+**需要权限：**
+
+ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY。
 
 **返回：**
 

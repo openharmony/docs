@@ -205,7 +205,7 @@ JSON文件路径错误，或无访问权限。
 
 **错误信息**
 
-Failed to parse the JSON file, format is incorrect.
+Failed to parse the JSON file: incorrect format.
 
 **错误描述**
 
@@ -223,7 +223,7 @@ JSON文件格式错误，如包含多余的逗号等。
 
 **错误信息**
 
-The value type of node 'xxx' does not match, expected type: xxx.
+The value type of node 'xxx' does not match. Expected type: xxx.
 
 **错误描述**
 
@@ -277,7 +277,7 @@ JSON中对应节点为空，如object配置为{}，或数组配置为[]。
 
 **错误信息**
 
-The node 'xxx' of the JSON file can only have one member.
+The node 'xxx' in the JSON file can have only one member.
 
 **错误描述**
 
@@ -295,7 +295,7 @@ JSON中对应节点包含了多个子节点。
 
 **错误信息**
 
-Invalid node name 'xxx', it should be one of ["boolean","color","float","id","intarray","integer","pattern","plural","strarray","string","symbol","theme"].
+Invalid node name 'xxx'. Valid values: ["boolean","color","float","id","intarray","integer","pattern","plural","strarray","string","symbol","theme"].
 
 **错误描述**
 
@@ -313,7 +313,7 @@ JSON中对应节点的名称错误，不在指定的名称["boolean","color","fl
 
 **错误信息**
 
-Failed to create directory or file 'xxx'.
+Failed to create the directory or file 'xxx'.
 
 **错误描述**
 
@@ -331,7 +331,7 @@ Failed to create directory or file 'xxx'.
 
 **错误信息**
 
-Failed to delete directory or file 'xxx'.
+Failed to delete the directory or file 'xxx'.
 
 **错误描述**
 
@@ -349,7 +349,7 @@ Failed to delete directory or file 'xxx'.
 
 **错误信息**
 
-Failed to copy file from 'xxx' to 'xxx'.
+Failed to copy the file from 'xxx' to 'xxx'.
 
 **错误描述**
 
@@ -367,7 +367,7 @@ Failed to copy file from 'xxx' to 'xxx'.
 
 **错误信息**
 
-Failed to open file 'xxx'.
+Failed to open the file 'xxx'.
 
 **错误描述**
 
@@ -385,7 +385,7 @@ Failed to open file 'xxx'.
 
 **错误信息**
 
-Failed to read file 'xxx'.
+Failed to read the file 'xxx'.
 
 **错误描述**
 
@@ -423,7 +423,7 @@ Unknown option 'xxx'.
 
 **错误信息**
 
-Option 'xxx' should have a argument.
+Option 'xxx' requires an argument.
 
 **错误描述**
 
@@ -495,7 +495,7 @@ Duplicated input path 'xxx'.
 
 **错误信息**
 
-The package name 'xxx' and 'xxx' conflict.
+The package names 'xxx' and 'xxx' conflict.
 
 **错误描述**
 
@@ -531,7 +531,7 @@ Invalid output path 'xxx'.
 
 **错误信息**
 
-The output path 'xxx' and 'xxx' conflict.
+The output paths 'xxx' and 'xxx' conflict.
 
 **错误描述**
 
@@ -549,7 +549,7 @@ The output path 'xxx' and 'xxx' conflict.
 
 **错误信息**
 
-Duplicated res header path 'xxx'.
+Duplicated resource header path 'xxx'.
 
 **错误描述**
 
@@ -567,7 +567,7 @@ Duplicated res header path 'xxx'.
 
 **错误信息**
 
-The module name 'xxx' and 'xxx' conflict.
+The module names 'xxx' and 'xxx' conflict.
 
 **错误描述**
 
@@ -603,7 +603,7 @@ Duplicated module name 'xxx'.
 
 **错误信息**
 
-The module.json(in Stage Model) or config.json(in FA Model) path 'xxx' and 'xxx' conflict.
+The paths 'xxx' and 'xxx' of the module.json (in the stage model) or config.json (in the FA model) file conflict.
 
 **错误描述**
 
@@ -621,7 +621,7 @@ The module.json(in Stage Model) or config.json(in FA Model) path 'xxx' and 'xxx'
 
 **错误信息**
 
-Invalid start id 'xxx', out of range.
+Invalid start ID 'xxx'. It is out of range.
 
 **错误描述**
 
@@ -657,7 +657,7 @@ Duplicated append path 'xxx'.
 
 **错误信息**
 
-The target config 'xxx' and 'xxx' conflict.
+The target configurations 'xxx' and 'xxx' conflict.
 
 **错误描述**
 
@@ -675,7 +675,7 @@ The target config 'xxx' and 'xxx' conflict.
 
 **错误信息**
 
-Invalid target config argument 'xxx'. The argument format of option --target-config is supposed to be like 'Locale[zh_CN,en_US];Device[phone]'.
+Invalid target configuration argument 'xxx'. The argument format for option --target-config should be like 'Locale[zh_CN,en_US];Device[phone]'.
 
 **错误描述**
 
@@ -729,7 +729,7 @@ Duplicated system id_defined.json path 'xxx'.
 
 **错误信息**
 
-The compression JSON path 'xxx' and 'xxx' conflict.
+The compression JSON paths 'xxx' and 'xxx' conflict.
 
 **错误描述**
 
@@ -765,7 +765,7 @@ The argument value 'xxx' is not an ASCII value.
 
 **错误信息**
 
-Option 'xxx' and 'xxx' cannot be used together.
+Options 'xxx' and 'xxx' cannot be used together.
 
 **错误描述**
 
@@ -783,7 +783,7 @@ Option 'xxx' and 'xxx' cannot be used together.
 
 **错误信息**
 
-The package name is empty, it should be specified with option -p/--packageName.
+The package name is empty. It should be specified with option -p/--packageName.
 
 **错误描述**
 
@@ -801,7 +801,7 @@ The package name is empty, it should be specified with option -p/--packageName.
 
 **错误信息**
 
-The resource header path(like ./ResourceTable.js, ./ResrouceTable.h) is empty, it should be specified with option -r/--resHeader.
+The resource header path (for example, ./ResourceTable.js, ./ResourceTable.h) is empty. It should be specified with option -r/--resHeader.
 
 **错误描述**
 
@@ -837,7 +837,7 @@ dump命令未指定HAP包路径。
 
 **错误信息**
 
-Invalid HAP path 'xxx' of the resource dump command.
+Invalid HAP path 'xxx' in the resource dump command.
 
 **错误描述**
 
@@ -855,7 +855,7 @@ dump命令指定的HAP包路径错误或无访问权限。
 
 **错误信息**
 
-Invalid thread count 'xxx', it should be an integer and greater than 0.
+Invalid thread count 'xxx'. It should be an integer greater than 0.
 
 **错误描述**
 
@@ -873,7 +873,7 @@ Invalid thread count 'xxx', it should be an integer and greater than 0.
 
 **错误信息**
 
-Output path exists, but option -f/--forceWrite not specified.
+The output path exists. Specify option -f/--forceWrite to overwrite.
 
 **错误描述**
 
@@ -891,7 +891,7 @@ Output path exists, but option -f/--forceWrite not specified.
 
 **错误信息**
 
-Multiple input paths, but the module.json(in Stage Model) or config.json(in FA Model) path is not specified with option -j/--json.
+There are multiple input paths, but the path of the module.json (in the stage model) or config.json (in the FA model) file is not specified with option -j/--json.
 
 **错误描述**
 
@@ -909,7 +909,7 @@ Multiple input paths, but the module.json(in Stage Model) or config.json(in FA M
 
 **错误信息**
 
-Invalid module type 'xxx', it should be one of ["entry", "har", "shared", "feature"].
+Invalid module type 'xxx'. Valid values: ["entry", "har", "shared", "feature"].
 
 **错误描述**
 
@@ -927,7 +927,7 @@ Invalid module type 'xxx', it should be one of ["entry", "har", "shared", "featu
 
 **错误信息**
 
-The id_defined.json and the start id 'xxx' which specified with option -e/--startId conflict.
+The start ID 'xxx' specified by option -e/--startId conflict with the IDs in the id_defined.json file.
 
 **错误描述**
 
@@ -949,7 +949,7 @@ The id_defined.json and the start id 'xxx' which specified with option -e/--star
 
 **错误信息**
 
-Invalid resource type 'xxx' in the id_defined.json, it should be one of ["boolean","color","float","id","intarray","integer","pattern","plural","strarray","string","symbol","theme"].
+Invalid resource type 'xxx' in the id_defined.json file. Valid values: ["boolean","color","float","id","intarray","integer","pattern","plural","strarray","string","symbol","theme"].
 
 **错误描述**
 
@@ -967,7 +967,7 @@ id_defined.json中资源类型type的取值不在["boolean","color","float","id"
 
 **错误信息**
 
-Invalid id value 'xxx' in the id_defined.json, it shoud be a hex string, match the pattern ^0[xX][0-9a-fA-F]{8}, and in the scope [0x01000000,0x06FFFFFF] or [0x08000000,0xFFFFFFFF].
+Invalid ID value 'xxx' in the id_defined.json file. It should be a hexadecimal string, match the pattern ^0[xX][0-9a-fA-F]{8}, and be in the scope [0x01000000,0x06FFFFFF] or [0x08000000,0xFFFFFFFF].
 
 **错误描述**
 
@@ -987,7 +987,7 @@ id_defined.json中资源id无效。
 
 **错误信息**
 
-The order value 'xxx' in the id_defined.json does not match the record element sequence 'xxx', expected value: xxx.
+The order value 'xxx' in the id_defined.json file does not match the record element sequence 'xxx'. Expected value: xxx.
 
 **错误描述**
 
@@ -1026,7 +1026,7 @@ id_defined.json中资源的order属性值错误，如下错误示例：
 
 **错误信息**
 
-The name 'xxx' and 'xxx' in the id_defined.json define the same ID.
+The names 'xxx' and 'xxx' in the id_defined.json file define the same ID.
 
 **错误描述**
 
@@ -1044,7 +1044,7 @@ id_defined.json中两个资源定义了同一个资源id值。
 
 **错误信息**
 
-The module name 'xxx' not found in ["yyy","zzz"], which specifies with -m/--modules.
+The module name 'xxx' is not found in ["yyy","zzz"], which is specified by -m/--modules.
 
 **错误描述**
 
@@ -1063,7 +1063,7 @@ The module name 'xxx' not found in ["yyy","zzz"], which specifies with -m/--modu
 
 **错误信息**
 
-Failed to scan resources, invalid path 'xxx'.
+Failed to scan resources: invalid path 'xxx'.
 
 **错误描述**
 
@@ -1083,7 +1083,7 @@ Failed to scan resources, invalid path 'xxx'.
 
 **错误信息**
 
-Invalid qualifiers key 'xxx', it should match the pattern of qualifiers directory, for example zh_CN,en_US,etc.
+Invalid qualifier key 'xxx'. It should match the pattern of the qualifiers directory, for example zh_CN or en_US.
 
 **错误描述**
 
@@ -1101,7 +1101,7 @@ Invalid qualifiers key 'xxx', it should match the pattern of qualifiers director
 
 **错误信息**
 
-Invalid resource directory name 'xxx', it should be one of ["element","media","profile"].
+Invalid resource directory name 'xxx'. Valid values: ["element","media","profile"].
 
 **错误描述**
 
@@ -1119,7 +1119,7 @@ Invalid resource directory name 'xxx', it should be one of ["element","media","p
 
 **错误信息**
 
-Invalid translate priority value 'xxx', it should be one of ["code","translate","LT","customer"].
+Invalid translation priority value 'xxx'. Valid values: ["code","translate","LT","customer"].
 
 **错误描述**
 
@@ -1137,7 +1137,7 @@ Invalid translate priority value 'xxx', it should be one of ["code","translate",
 
 **错误信息**
 
-Unsupported element resource type 'xxx', it should be one of ["integer","string","strarray","intarray","boolean","color","theme","plural","float","pattern","symbol"].
+Unsupported element resource type 'xxx'. Valid values: ["integer","string","strarray","intarray","boolean","color","theme","plural","float","pattern","symbol"].
 
 **错误描述**
 
@@ -1155,7 +1155,7 @@ element目录下json资源文件支持的资源类型为["integer","string","str
 
 **错误信息**
 
-Invalid color value 'xxx' of the resource 'xxx', it only supported reference '$color:xxx' or '#rgb','#argb','#rrggbb','#aarrggbb'.
+Invalid color value 'xxx' of the resource 'xxx'. It can only reference '$color:xxx' or be '#rgb', '#argb', '#rrggbb', or '#aarrggbb'.
 
 **错误描述**
 
@@ -1175,7 +1175,7 @@ color资源只支持以下两种格式：
 
 **错误信息**
 
-Invalid resource reference `$xxx:xxx`, it only supported reference `$(ohos:)?xxx:xxx`.
+Invalid resource reference `$xxx:xxx`. Supported reference: `$(ohos:)?xxx:xxx`.
 
 **错误描述**
 
@@ -1193,7 +1193,7 @@ Invalid resource reference `$xxx:xxx`, it only supported reference `$(ohos:)?xxx
 
 **错误信息**
 
-The parent value of resource 'xxx' is empty, it should be a valid resource name.
+The parent value of resource 'xxx' is empty. It should be a valid resource name.
 
 **错误描述**
 
@@ -1245,7 +1245,7 @@ theme资源的parent属性是可选的，其值需配置为其他theme资源的�
 
 **错误信息**
 
-The array resource 'xxx' is to large, the total length of the value of the array elements cannot exceed 65535.
+The array resource 'xxx' is too large. The total length of the value of the array elements cannot exceed 65535.
 
 **错误描述**
 
@@ -1263,7 +1263,7 @@ The array resource 'xxx' is to large, the total length of the value of the array
 
 **错误信息**
 
-Invalid quantity 'xxx' of the plural resource 'xxx', it should be one of ["zero","one","two","few","many","other"].
+Invalid quantity 'xxx' of the plural resource 'xxx'. Valid values: ["zero","one","two","few","many","other"].
 
 **错误描述**
 
@@ -1322,7 +1322,7 @@ Duplicated quantity 'xxx' of the plural resource 'xxx'.
 
 **错误信息**
 
-The plural resource 'xxx' should contains 'other' quantity.
+The plural resource 'xxx' should contain the 'other' quantity.
 
 **错误描述**
 
@@ -1340,7 +1340,7 @@ The plural resource 'xxx' should contains 'other' quantity.
 
 **错误信息**
 
-Invalid value 'xxx' of the symbol resource 'xxx', it should be in the scope [0xF0000,0xFFFFF] or [0x100000,0x10FFFF].
+Invalid value 'xxx' of the symbol resource 'xxx'. It should be in the scope [0xF0000,0xFFFFF] or [0x100000,0x10FFFF].
 
 **错误描述**
 
@@ -1358,7 +1358,7 @@ symbol资源的值不在[0xF0000,0xFFFFF] 或 [0x100000,0x10FFFF]范围内。
 
 **错误信息**
 
-Invalid resource name 'xxx', it should be match the pattern [a-zA-Z0-9_].
+Invalid resource name 'xxx'. It should match the pattern [a-zA-Z0-9_].
 
 **错误描述**
 
@@ -1376,7 +1376,7 @@ Invalid resource name 'xxx', it should be match the pattern [a-zA-Z0-9_].
 
 **错误信息**
 
-Resource 'xxx' conflict, first declared at 'xxx', but declare again at 'xxx'.
+Resource 'xxx' conflict. It is first declared at 'xxx' and declared again at 'xxx'.
 
 **错误描述**
 
@@ -1394,7 +1394,7 @@ Resource 'xxx' conflict, first declared at 'xxx', but declare again at 'xxx'.
 
 **错误信息**
 
-The resource id 'xxx' exceed, greater than the max id 'xxx'.
+The resource ID 'xxx' exceeds the maximum ID 'xxx'.
 
 **错误描述**
 
@@ -1451,7 +1451,7 @@ resources.index格式不正确，如内容为空或文件开头不存在128字�
 
 **错误信息**
 
-Failed to parse the hap.
+Failed to parse the HAP.
 
 **错误描述**
 

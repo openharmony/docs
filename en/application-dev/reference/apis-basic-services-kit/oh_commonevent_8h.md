@@ -20,29 +20,29 @@ Defines the APIs for subscribing to and unsubscribing from common events.
 
 | Name| Description|
 | -------- | -------- |
-|typedef struct [CommonEvent_SubscribeInfo](./capi-common-event.md#commonevent_subscribeinfo) [CommonEvent_SubscribeInfo](./capi-common-event.md#commonevent_subscribeinfo) | Defines a struct for the subscriber information. |
+|typedef struct [CommonEvent_SubscribeInfo](./capi-common-event.md#commonevent_subscribeinfo) [CommonEvent_SubscribeInfo](./capi-common-event.md#commonevent_subscribeinfo) | Defines a struct for the subscriber information.|
 |typedef void [CommonEvent_Subscriber](./capi-common-event.md#commonevent_subscriber) | Defines a subscriber.|
-|typedef struct [CommonEvent_RcvData](./capi-common-event.md#commonevent_rcvdata) [CommonEvent_RcvData](./capi-common-event.md#commonevent_rcvdata) | Defines a struct for the common event data. |
+|typedef struct [CommonEvent_RcvData](./capi-common-event.md#commonevent_rcvdata) [CommonEvent_RcvData](./capi-common-event.md#commonevent_rcvdata) | Defines a struct for the common event data.|
 |typedef void [CommonEvent_Parameters](./capi-common-event.md#commonevent_parameters) | Defines the additional information about a common event.|
 |typedef void (*[CommonEvent_ReceiveCallback](./capi-common-event.md#commonevent_receivecallback))(const [CommonEvent_RcvData](./capi-common-event.md#commonevent_rcvdata) *data) | Defines the callback function of a common event.|
-|typedef struct [CommonEvent_PublishInfo](./capi-common-event.md#commonevent_publishinfo) [CommonEvent_PublishInfo](./capi-common-event.md#commonevent_publishinfo) | Defines a struct for an attribute object used for publishing a custom common event. |
+|typedef struct [CommonEvent_PublishInfo](./capi-common-event.md#commonevent_publishinfo) [CommonEvent_PublishInfo](./capi-common-event.md#commonevent_publishinfo) | Defines a struct for an attribute object used for publishing a custom common event.|
 
 ### Enums
 
 | Name| Description|
 | -------- | -------- |
-| typedef enum [CommonEvent_ErrCode](./capi-common-event.md#commonevent_errcode)  {<br>COMMONEVENT_ERR_OK = 0,<br>COMMONEVENT_ERR_PERMISSION_ERROR = 201,<br>COMMONEVENT_ERR_INVALID_PARAMETER = 401,<br>COMMONEVENT_ERR_SENDING_REQUEST_FAILED = 1500007,<br>COMMONEVENT_ERR_INIT_UNDONE = 1500008,<br>COMMONEVENT_ERR_SUBSCRIBER_NUM_EXCEEDED = 1500010,<br>COMMONEVENT_ERR_ALLOC_MEMORY_FAILED = 1500011<br>} | Enumerates the error codes.|
+| typedef enum [CommonEvent_ErrCode](./capi-common-event.md#commonevent_errcode)  {<br>COMMONEVENT_ERR_OK = 0,<br>COMMONEVENT_ERR_PERMISSION_ERROR = 201,<br>COMMONEVENT_ERR_INVALID_PARAMETER = 401,<br>COMMONEVENT_ERR_NOT_SYSTEM_SERVICE = 1500004,<br>COMMONEVENT_ERR_SENDING_REQUEST_FAILED = 1500007,<br>COMMONEVENT_ERR_INIT_UNDONE = 1500008,<br>COMMONEVENT_ERR_SUBSCRIBER_NUM_EXCEEDED = 1500010,<br>COMMONEVENT_ERR_ALLOC_MEMORY_FAILED = 1500011<br>} | Enumerates the error codes.|
 
 
 ### Functions
 
 | Name| Description|
 | -------- | -------- |
-| CommonEvent_SubscribeInfo* [OH_CommonEvent_CreateSubscribeInfo](./capi-common-event.md#oh_commonevent_createsubscribeinfo)(const char* events[], int32_t eventsNum) | Creates the subscriber information.|
-| CommonEvent_ErrCode [OH_CommonEvent_SetPublisherPermission](./capi-common-event.md#oh_commonevent_setpublisherpermission)(CommonEvent_SubscribeInfo* info, const char* permission) | Sets the subscriber permission.|
+| CommonEvent_SubscribeInfo* [OH_CommonEvent_CreateSubscribeInfo](./capi-common-event.md#oh_commonevent_createsubscribeinfo)(const char* events[], int32_t eventsNum); | Creates the subscriber information.|
+| CommonEvent_ErrCode [OH_CommonEvent_SetPublisherPermission](./capi-common-event.md#oh_commonevent_setpublisherpermission)(CommonEvent_SubscribeInfo* info, const char* permission); | Sets the subscriber permission.|
 | CommonEvent_ErrCode [OH_CommonEvent_SetPublisherBundleName](./capi-common-event.md#oh_commonevent_setpublisherbundlename)(CommonEvent_SubscribeInfo* info, const char* bundleName); | Sets a bundle name of the subscriber.|
-| void [OH_CommonEvent_DestroySubscribeInfo](./capi-common-event.md#oh_commonevent_destroysubscribeinfo)(CommonEvent_SubscribeInfo* info) | Destroys the subscriber information.|
-| CommonEvent_Subscriber* [OH_CommonEvent_CreateSubscriber](./capi-common-event.md#oh_commonevent_createsubscriber)(const CommonEvent_SubscribeInfo* info, CommonEvent_ReceiveCallback callback) | Creates a subscriber.|
+| void [OH_CommonEvent_DestroySubscribeInfo](./capi-common-event.md#oh_commonevent_destroysubscribeinfo)(CommonEvent_SubscribeInfo* info); | Destroys the subscriber information.|
+| CommonEvent_Subscriber* [OH_CommonEvent_CreateSubscriber](./capi-common-event.md#oh_commonevent_createsubscriber)(const CommonEvent_SubscribeInfo* info, CommonEvent_ReceiveCallback callback); | Creates a subscriber.|
 | void [OH_CommonEvent_DestroySubscriber](./capi-common-event.md#oh_commonevent_destroysubscriber)(CommonEvent_Subscriber* subscriber); | Destroys a subscriber.|
 | CommonEvent_ErrCode [OH_CommonEvent_Subscribe](./capi-common-event.md#oh_commonevent_subscribe)(const CommonEvent_Subscriber* subscriber); | Subscribes to a common event.|
 | CommonEvent_ErrCode [OH_CommonEvent_UnSubscribe](./capi-common-event.md#oh_commonevent_unsubscribe)(const CommonEvent_Subscriber* subscriber); | Unsubscribes from a common event.|

@@ -97,7 +97,6 @@
     - [OH_Drawing_RunBuffer](_o_h___drawing___run_buffer.md) 
     - [OH_Drawing_String](_o_h___drawing___string.md)
     - [OH_Drawing_StrutStyle](_o_h___drawing___strut_style.md)
-    - [OH_Filter](_o_h___filter.md)
     - [OH_Filter_ColorMatrix](_o_h___filter___color_matrix.md)
     - [OH_NativeBuffer_ColorXY](_o_h___native_buffer___color_x_y.md)
     - [OH_NativeBuffer_Config](_o_h___native_buffer___config.md)

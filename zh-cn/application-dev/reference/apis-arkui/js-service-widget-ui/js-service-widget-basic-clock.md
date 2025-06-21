@@ -19,7 +19,7 @@
 | 名称          | 类型          | 默认值  | 必填   | 描述                                       |
 | ----------- | ----------- | ---- | ---- | ---------------------------------------- |
 | clockconfig | ClockConfig | -    | 是    | Clock的图片资源和样式设置，包括日间时段（6:00-18:00）和夜间时段（18:00-次日6:00）两套资源和样式设置。<br/>其中每套资源和样式包括表盘资源、时针指针资源、分针指针资源、秒针指针资源四张图和相应时间段的表盘数字颜色。<br/>日间资源为必填项。夜间资源可不填，不填时默认会复用日间资源用作夜间时段的显示。<br/>仅支持动态更新整个Object，不支持动态更新Object里的内容。<br/>建议使用PNG资源作为Clock组件的图片资源。<br/>不支持使用SVG资源作为Clock组件的图片资源。 |
-| showdigit   | boolean     | true | 否    | 是否由Clock组件绘制表盘数字。<br/>该属性为true时，请留意clockconfig中digitRadiusRatio和digitSizeRatio参数与表盘的匹配情况。<br/>由Clock组件绘制的表盘数字支持国际化。 |
+| showdigit   | boolean     | true | 否    | 是否由Clock组件绘制表盘数字。<br/>true表示由Clock组件绘制表盘数字，false表示不由Clock组件绘制表盘数字。<br/>该属性为true时，请留意clockconfig中digitRadiusRatio和digitSizeRatio参数与表盘的匹配情况。<br/>由Clock组件绘制的表盘数字支持国际化。 |
 | hourswest   | number      | -    | 否    | 时钟的时区偏移值，时区为标准时区减去hourswest。<br/>有效范围为[-12,&nbsp;12]，其中负值范围表示东时区，比如东八区对应的是-8。不设置默认采用系统时间所在的时区。 |
 
   **表1** ClockConfig

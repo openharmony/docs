@@ -133,7 +133,7 @@ visibleAreaChanged(minVisible: number, maxVisible: number): void;
 
 ## IDataSourcePrefetching
 
-继承自[IDataSource](./arkui-ts/ts-rendering-control-lazyforeach.md#idatasource10)。实现该接口，提供具备预取能力的DataSource。
+继承自[IDataSource](./arkui-ts/ts-rendering-control-lazyforeach.md#idatasource)。实现该接口，提供具备预取能力的DataSource。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -154,6 +154,12 @@ prefetch(index: number): Promise\<void\> | void;
 |-------|--------|----|----------|
 | index | number | 是  | 预取数据项索引值。 |
 
+**返回值：**
+
+| 类型 | 说明 |
+| ----------------------- | -------- |
+| Promise\<void\> \| void | 异步执行时返回Promise对象，同步执行时无返回值。Promise仅表示操作完成，无实际返回内容。 |
+
 ### cancel
 cancel?(index: number): Promise\<void\> | void;
 
@@ -168,6 +174,12 @@ cancel?(index: number): Promise\<void\> | void;
 | 参数名   | 类型     | 必填 | 说明         |
 |-------|--------|----|------------|
 | index | number | 是  | 取消预取数据项索引值。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| ----------------------- | -------- |
+| Promise\<void\> \| void | 异步执行时返回Promise对象，同步执行时无返回值。Promise仅表示操作完成，无实际返回内容。 |
 
 列表内容移出屏幕时（比如列表快速滑动场景下），预取算法判断屏幕以外的Item可以被取消预取时，该方法即会被调用。例如，如果HTTP框架支持请求取消，则可以在此处取消在prefetch中发起的网络请求。
 

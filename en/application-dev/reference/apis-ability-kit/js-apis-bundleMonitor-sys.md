@@ -28,10 +28,10 @@ For details about the APL, see [Basic Concepts in the Permission Mechanism](../.
 
 **System API**: This is a system API.
 
-| Name      | Template  | Read-Only| Optional| Description                      |
+| Name      | Type  | Read-Only| Optional| Description                      |
 | ---------- | ------ | ---- | ---- | -------------------------- |
 | bundleName | string | Yes  | No  | Name of the bundle whose status changes.|
-| userId     | number | Yes  | No  | ID of the user whose bundle status changes.  |
+| userId     | number | Yes  | No  | ID of the user for whom the bundle status changes. You can obtain the ID by calling [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9).  |
 
 ## BundleChangedEvent
 
@@ -75,7 +75,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | --------------------------------------|
-| 201 | Permission denied. |
+| 201 | Verify permission denied. |
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 
@@ -121,7 +121,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | --------------------------------------|
-| 201 | Permission denied. |
+| 201 | Verify permission denied. |
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 

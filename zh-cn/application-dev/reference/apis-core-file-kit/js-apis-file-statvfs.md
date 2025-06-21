@@ -14,7 +14,7 @@ import { statfs } from '@kit.CoreFileKit';
 
 ## statfs.getFreeSize
 
-getFreeSize(path:string):Promise&lt;number&gt;
+getFreeSize(path:string): Promise&lt;number&gt;
 
 异步方法获取指定文件系统空闲字节数，以Promise形式返回结果。
 
@@ -36,8 +36,25 @@ getFreeSize(path:string):Promise&lt;number&gt;
 
 接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)。
 
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 13900002 | No such file or directory. |
+| 13900004 | Interrupted system call. |
+| 13900005 | I/O error. |
+| 13900008 | Bad file descriptor. |
+| 13900011 | Out of memory. |
+| 13900012 | Permission denied. |
+| 13900013 | Bad address. |
+| 13900018 | Not a directory. |
+| 13900030 | File name too long. |
+| 13900031 | Function not implemented. |
+| 13900033 | Too many symbolic links encountered. |
+| 13900038 | Value too large for defined data type. |
+| 13900042 | Unknown error. |
+
 **示例：**
 
+<!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -71,8 +88,25 @@ getFreeSize(path:string, callback:AsyncCallback&lt;number&gt;): void
 
 接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)。
 
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 13900002 | No such file or directory. |
+| 13900004 | Interrupted system call. |
+| 13900005 | I/O error. |
+| 13900008 | Bad file descriptor. |
+| 13900011 | Out of memory. |
+| 13900012 | Permission denied. |
+| 13900013 | Bad address. |
+| 13900018 | Not a directory. |
+| 13900030 | File name too long. |
+| 13900031 | Function not implemented. |
+| 13900033 | Too many symbolic links encountered. |
+| 13900038 | Value too large for defined data type. |
+| 13900042 | Unknown error. |
+
 **示例：**
 
+<!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -113,8 +147,25 @@ getFreeSizeSync(path:string): number
 
 接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)。
 
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 13900002 | No such file or directory. |
+| 13900004 | Interrupted system call. |
+| 13900005 | I/O error. |
+| 13900008 | Bad file descriptor. |
+| 13900011 | Out of memory. |
+| 13900012 | Permission denied. |
+| 13900013 | Bad address. |
+| 13900018 | Not a directory. |
+| 13900030 | File name too long. |
+| 13900031 | Function not implemented. |
+| 13900033 | Too many symbolic links encountered. |
+| 13900038 | Value too large for defined data type. |
+| 13900042 | Unknown error. |
+
 **示例：**
 
+<!--code_no_check-->
   ```ts
   import { common } from '@kit.AbilityKit';
 
@@ -149,8 +200,25 @@ getTotalSize(path: string): Promise&lt;number&gt;
 
 接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)。
 
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 13900002 | No such file or directory. |
+| 13900004 | Interrupted system call. |
+| 13900005 | I/O error. |
+| 13900008 | Bad file descriptor. |
+| 13900011 | Out of memory. |
+| 13900012 | Permission denied. |
+| 13900013 | Bad address. |
+| 13900018 | Not a directory. |
+| 13900030 | File name too long. |
+| 13900031 | Function not implemented. |
+| 13900033 | Too many symbolic links encountered. |
+| 13900038 | Value too large for defined data type. |
+| 13900042 | Unknown error. |
+
 **示例：**
 
+<!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -184,8 +252,25 @@ getTotalSize(path: string, callback: AsyncCallback&lt;number&gt;): void
 
 接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)。
 
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 13900002 | No such file or directory. |
+| 13900004 | Interrupted system call. |
+| 13900005 | I/O error. |
+| 13900008 | Bad file descriptor. |
+| 13900011 | Out of memory. |
+| 13900012 | Permission denied. |
+| 13900013 | Bad address. |
+| 13900018 | Not a directory. |
+| 13900030 | File name too long. |
+| 13900031 | Function not implemented. |
+| 13900033 | Too many symbolic links encountered. |
+| 13900038 | Value too large for defined data type. |
+| 13900042 | Unknown error. |
+
 **示例：**
 
+<!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -226,8 +311,25 @@ getTotalSizeSync(path: string): number
 
 接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)。
 
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 13900002 | No such file or directory. |
+| 13900004 | Interrupted system call. |
+| 13900005 | I/O error. |
+| 13900008 | Bad file descriptor. |
+| 13900011 | Out of memory. |
+| 13900012 | Permission denied. |
+| 13900013 | Bad address. |
+| 13900018 | Not a directory. |
+| 13900030 | File name too long. |
+| 13900031 | Function not implemented. |
+| 13900033 | Too many symbolic links encountered. |
+| 13900038 | Value too large for defined data type. |
+| 13900042 | Unknown error. |
+
 **示例：**
 
+<!--code_no_check-->
   ```ts
   import { common } from '@kit.AbilityKit';
 

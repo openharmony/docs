@@ -4,14 +4,14 @@ The Window module provides basic window management capabilities, such as creatin
 
 This module provides the following common window-related functions:
 
-- [Window](#window): window instance, which is the basic unit managed by the window manager.
+- [Window](arkts-apis-window-Window.md): window instance, which is the basic unit managed by the window manager.
 - [WindowStage](#windowstage9): window manager that manages windows.
 
 > **NOTE**
 >
 > - The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> - This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohos.window (Window)](js-apis-window.md).
+> - This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohos.window (Window)](arkts-apis-window.md).
 
 ## Modules to Import
 
@@ -47,7 +47,17 @@ Enumerates the window types.
 | TYPE_HANDWRITE<sup>12+</sup>        | 21      | Stylus window.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.<br>**System capability**: SystemCapability.Window.SessionManager|
 | TYPE_WALLET_SWIPE_CARD<sup>15+</sup>| 22      | Wallet swipe card window.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.<br>**System capability**: SystemCapability.Window.SessionManager|
 | TYPE_SCREEN_CONTROL<sup>15+</sup>   | 23      | Top-level window used for locking touch input, which intercepts screen touch and click events.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.<br>**System capability**: SystemCapability.Window.SessionManager|
+| TYPE_FLOAT_NAVIGATION<sup>17+</sup> | 24      | Floating window with a three-button navigation bar.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.<br>**System capability**: SystemCapability.Window.SessionManager|
+| TYPE_DYNAMIC<sup>20+</sup> | 25      | System window that allows for adjustable z-levels.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.<br>**System capability**: SystemCapability.Window.SessionManager|
+| TYPE_MUTISCREEN_COLLABORATION<sup>20+</sup> | 26      | Window for multi-screen collaboration.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.<br>**System capability**: SystemCapability.Window.SessionManager|
 
+## Configuration<sup>9+</sup>
+
+Defines the parameters for creating a child window or system window.
+
+| Name| Type| Mandatory| Description                      |
+| ---------- | --------- | ---- | -------------- |
+| zIndex<sup>20+</sup>       | number | No| Z-level of the system window. This parameter is valid only when [WindowType](#windowtype7) is set to **TYPE_DYNAMIC**.<br>**System capability**: SystemCapability.Window.SessionManager|
 
 ## WindowMode<sup>7+</sup>
 
@@ -106,7 +116,7 @@ Describes the callback for a single system bar.
 | --------------- | ------------------------- | ---- | ---- | ------------------------------------------------------------ |
 | type            | [WindowType](#windowtype7) | Yes  | No  | Type of the system bar whose properties are changed. Only the status bar and navigation bar are supported.|
 | isEnable        | boolean                   | Yes  | No  | Whether the system bar is displayed. The value **true** means that the system bar is displayed, and **false** means the opposite.|
-| region          | [Rect](js-apis-window.md#rect7)             | Yes  | No  | Current position and size of the system bar.                                    |
+| region          | [Rect](arkts-apis-window-i.md#rect7)             | Yes  | No  | Current position and size of the system bar.                                    |
 | backgroundColor | string                    | Yes  | No  | Background color of the system bar. The value is a hexadecimal RGB or ARGB color code and is case insensitive, for example, **#00FF00** or **#FF00FF00**.|
 | contentColor    | string                    | Yes  | No  | Color of the text on the system bar.                                            |
 
@@ -167,23 +177,6 @@ Describes the translation parameters.
 | x    | number   | No  | Yes | Distance to translate along the x-axis. The value is a floating point number, the default value is 0.0, and the unit is px.|
 | y    | number   | No  | Yes | Distance to translate along the y-axis. The value is a floating point number, the default value is 0.0, and the unit is px.|
 | z    | number   | No  | Yes | Distance to translate along the z-axis. The value is a floating point number, the default value is 0.0, and the unit is px.|
-
-## WindowInfo<sup>12+</sup>
-
-Describes the window information.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.Window.SessionManager
-
-| Name  | Type  | Read Only| Optional| Description                                      |
-| ------ | ------ | ---- | ---- | ------------------------------------------ |
-| rect  | [Rect](js-apis-window.md#rect7)   | Yes  | No  | Size of the rectangle that can be drawn in the window. The upper boundary and left boundary are calculated relative to the window.|
-| bundleName  | string   | Yes  | No  | Bundle name.         |
-| abilityName | string   | Yes  | No  | Ability name.              |
-| windowId | number | Yes  | No  | Window ID.  |
-| windowStatusType | [WindowStatusType](js-apis-window.md#windowstatustype11) | Yes  | No  | Window mode.  |
-| isFocused<sup>14+</sup> | boolean | Yes  | Yes  | Whether the window gains focus. The value **true** means that the window gains focus, and **false** means the opposite.  |
 
 ## window.minimizeAll<sup>9+</sup>
 minimizeAll(id: number, callback: AsyncCallback&lt;void&gt;): void
@@ -573,7 +566,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 try {
   window.on('gestureNavigationEnabledChange', (data) => {
-    console.info('Succeeded in enabling the listener for gesture navigation status changes. Data: ' + JSON.stringify(data));
+    console.info(`Succeeded in enabling the listener for gesture navigation status changes. Data: ${data}`);
   });
 } catch (exception) {
   console.error(`Failed to enable the listener for gesture navigation status changes. Cause code: ${exception.code}, message: ${exception.message}`);
@@ -656,7 +649,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 try {
   window.on('waterMarkFlagChange', (data) => {
-    console.info('Succeeded in enabling the listener for watermark flag changes. Data: ' + JSON.stringify(data));
+    console.info(`Succeeded in enabling the listener for watermark flag changes. Data: ${data}`);
   });
 } catch (exception) {
   console.error(`Failed to enable the listener for watermark flag changes. Cause code: ${exception.code}, message: ${exception.message}`);
@@ -818,7 +811,7 @@ Sets the watermark image display status. This API uses an asynchronous callback 
 
 | Name  | Type                     | Mandatory| Description          |
 | -------- | ------------------------- | ---- | -------------- |
-| pixelMap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Yes| Watermark image.|
+| pixelMap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Yes| Watermark image, which can be obtained by calling [createPixelMap](../apis-image-kit/js-apis-image.md#imagecreatepixelmap8).|
 | enable   | boolean                  | Yes  | Whether to display the watermark image. The value **true** means to display the watermark image, and **false** means the opposite.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
@@ -878,7 +871,7 @@ Sets the watermark image display status. This API uses a promise to return the r
 
 | Name| Type                       | Mandatory | Description                |
 | ------ | --------------------------- | ---- | -------------------- |
-| pixelMap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Yes| Watermark image.|
+| pixelMap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Yes| Watermark image, which can be obtained by calling [createPixelMap](../apis-image-kit/js-apis-image.md#imagecreatepixelmap8).|
 | enable   | boolean                  | Yes  | Whether to display the watermark image. The value **true** means to display the watermark image, and **false** means the opposite.|
 
 **Return value**
@@ -941,7 +934,7 @@ Obtains a snapshot of the same size as the specified window. This API uses a pro
 **Parameters**
 | Name  | Type  | Mandatory | Description        |
 | -------- | ------ | ----- | ------------ |
-| windowId | number | Yes   | Window ID. You can call [getWindowProperties](js-apis-window.md#getwindowproperties9) to obtain the window properties, in which **id** is the window ID.|
+| windowId | number | Yes   | Window ID. You can call [getWindowProperties](arkts-apis-window-Window.md#getwindowproperties9) to obtain the window properties, in which **id** is the window ID.|
 
 **Return value**
 | Type                   | Description                           |
@@ -979,62 +972,63 @@ try {
 }
 ```
 
-## window.getVisibleWindowInfo<sup>12+</sup>
+## window.getTopNavDestinationName<sup>20+</sup>
 
-getVisibleWindowInfo(): Promise&lt;Array&lt;WindowInfo&gt;&gt;
+getTopNavDestinationName(windowId: number): Promise&lt;string&gt;
 
-Obtains information about visible windows on the current screen. Visible windows are windows that are not returned to the background.
+Obtains the name of [NavDestination](arkui-ts/ts-basic-components-navdestination.md) in the current top-level [Navigation](arkui-ts/ts-basic-components-navigation.md) component of the specified foreground window. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.Window.SessionManager
 
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                                                       |
+| ------ | ---------- |----|---------------------------------------------------------------------------|
+| windowId   | number| Yes | ID of the window to query. This parameter must be an integer greater than 0. If it is less than or equal to 0, error code 1300016 is returned. If the specified window does not exist or is not in the foreground, error code 1300002 is returned.|
 
 **Return value**
 
-| Type| Description|
-| ------------------- | ----------------------- |
-| Promise&lt;[WindowInfo](#windowinfo12)&gt; | Promise used to return the information about visible windows.|
+| Type                            | Description                     |
+| -------------------------------- |-------------------------|
+| Promise&lt;string&gt; | Promise used to return the [NavDestination](arkui-ts/ts-basic-components-navdestination.md) name obtained.<br>If there are nested **Navigation** components or multiple **Navigation** components on the current page, the information of the most recently created **Navigation** component is queried.<br>If the page does not have the **Navigation** component or the **Navigation** component does not have **NavDestination**, an empty string is returned.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
 
-| ID| Error Message|
-| ------- | ------------------------------ |
+| ID   | Error Message|
+|----------| ------------------------------ |
 | 202     | Permission verification failed, non-system application uses system API. |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal.                |
 | 1300003 | This window manager service works abnormally. |
+| 1300016 | Parameter error. Possible cause: 1. Invalid parameter range. |
 
 **Example**
-
 ```ts
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let promise = window.getVisibleWindowInfo();
-promise.then((data) => {
-  data.forEach(windowInfo=>{
-    console.info(`left:${windowInfo.rect.left}`);
-    console.info(`top:${windowInfo.rect.top}`);
-    console.info(`width:${windowInfo.rect.width}`);
-    console.info(`height:${windowInfo.rect.height}`);
-    console.info(`windowId:${windowInfo.windowId}`);
-    console.info(`windowStatusType:${windowInfo.windowStatusType}`);
-    console.info(`abilityName:${windowInfo.abilityName}`);
-    console.info(`bundleName:${windowInfo.bundleName}`);
-    console.info(`isFocused:${windowInfo.isFocused}`);
-  })
-}).catch((err: BusinessError) => {
-  console.error('Failed to getWindowInfo. Cause: ' + JSON.stringify(err));
-});
+try {
+  let windowId = 10;
+  let promise = window.getTopNavDestinationName(windowId);
+  promise.then((data) => {
+    console.info(`Succeeded, data: ${data}`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed, cause code: ${err.code}, message: ${err.message}`);
+  });
+} catch (exception) {
+  console.error(`Failed, exception code: ${exception.code}, message: ${exception.message}`);
+}
 ```
 
 ## Window
 
 Represents a window instance, which is the basic unit managed by the window manager.
 
-In the following API examples, you must use [getLastWindow()](js-apis-window.md#windowgetlastwindow9), [createWindow()](js-apis-window.md#windowcreatewindow9), or [findWindow()](js-apis-window.md#windowfindwindow9) to obtain a **Window** instance (named windowClass in this example) and then call a method in this instance.
+In the following API examples, you must use [getLastWindow()](arkts-apis-window-Window.md#windowgetlastwindow9), [createWindow()](arkts-apis-window-Window.md#windowcreatewindow9), or [findWindow()](arkts-apis-window-Window.md#windowfindwindow9) to obtain a **Window** instance (named windowClass in this example) and then call a method in this instance.
 
 ### hide<sup>7+</sup>
 
@@ -1772,7 +1766,9 @@ try {
 ### setSnapshotSkip<sup>9+</sup>
 setSnapshotSkip(isSkip: boolean): void
 
-Sets whether to ignore this window during screen capturing or recording. This API is generally used in scenarios where screen capture or recording is disabled.
+Sets whether to ignore this window during screen capture, recording, or casting. This API is typically used in situations where you want to prevent screen capture, recording, or casting.
+
+If you want the window to always be ignored during screen capture, recording, or casting while it is in the foreground, listen for window lifecycle changes using [on('windowEvent')](arkts-apis-window-Window.md#onwindowevent10). Set **isSkip** to **false** when the window is in the background and **true** when it is in the foreground.
 
 **System API**: This is a system API.
 
@@ -2179,7 +2175,7 @@ Blurs the background of this window.
 
 The window background refers to the lower-layer area covered by the window, which is the same as the window size.
 
-To make the blur effect visible, you must set the window background transparent by calling [setWindowBackgroundColor](js-apis-window.md#setwindowbackgroundcolor9).
+To make the blur effect visible, you must set the window background transparent by calling [setWindowBackgroundColor](arkts-apis-window-Window.md#setwindowbackgroundcolor9).
 
 **System API**: This is a system API.
 
@@ -2341,7 +2337,7 @@ Sets the touchable areas for this window. By default, the entire window is touch
 
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| rects | Array<[Rect](js-apis-window.md#rect7)> | Yes  | Touchable areas. The maximum number of touchable areas cannot exceed 10, and each touchable area cannot exceed the window area.|
+| rects | Array<[Rect](arkts-apis-window-i.md#rect7)> | Yes  | Touchable areas. The maximum number of touchable areas cannot exceed 10, and each touchable area cannot exceed the window area.|
 
 **Error codes**
 
@@ -2372,6 +2368,8 @@ raiseToAppTop(callback: AsyncCallback&lt;void&gt;): void
 
 Raises the application child window to the top layer of the application. This API uses an asynchronous callback to return the result.
 
+Before calling this API, ensure that the child window has been created and [showWindow()](arkts-apis-window-Window.md#showwindow9) has been successfully executed.
+
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
@@ -2397,16 +2395,34 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
+// EntryAbility.ets
+import { window } from '@kit.ArkUI';
+import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-windowClass.raiseToAppTop((err: BusinessError) => {
-  const errCode: number = err.code;
-  if (errCode) {
-    console.error(`Failed to raise the window to app top. Cause code: ${err.code}, message: ${err.message}`);
-    return;
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    // Create a child window.
+    windowStage.createSubWindow('testSubWindow').then((subWindow) => {
+      if (subWindow == null) {
+        console.error('Failed to create the subWindow. Cause: The data is empty');
+        return;
+      }
+      subWindow.showWindow().then(() => {
+        subWindow.raiseToAppTop((err: BusinessError) => {
+          const errCode: number = err.code;
+          if (errCode) {
+            console.error(`Failed to raise the window to app top. Cause code: ${err.code}, message: ${err.message}`);
+            return;
+          }
+          console.info('Succeeded in raising the window to app top.');
+        });
+      });
+    });
   }
-  console.info('Succeeded in raising the window to app top.');
-});
+}
 ```
 
 ### setWaterMarkFlag<sup>10+</sup>
@@ -2568,6 +2584,8 @@ raiseAboveTarget(windowId: number, callback: AsyncCallback&lt;void&gt;): void
 
 Raises a child window above a target child window. This API uses an asynchronous callback to return the result.
 
+Before calling this API, ensure that the child window to raise and the target child window have been created and [showWindow()](arkts-apis-window-Window.md#showwindow9) has been successfully executed for each.
+
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.Window.SessionManager
@@ -2576,7 +2594,7 @@ Raises a child window above a target child window. This API uses an asynchronous
 
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| windowId | number                    | Yes  | ID of the target child window, which is the value of **properties.id** in [properties](js-apis-window.md#windowproperties) obtained through [getWindowProperties](js-apis-window.md#getwindowproperties9).|
+| windowId | number                    | Yes  | ID of the target child window, which is the value of **properties.id** in [properties](arkts-apis-window-i.md#windowproperties) obtained through [getWindowProperties](arkts-apis-window-Window.md#getwindowproperties9).|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
 **Error codes**
@@ -2597,6 +2615,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 // EntryAbility.ets
+import { window } from '@kit.ArkUI';
 import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -2604,26 +2623,27 @@ export default class EntryAbility extends UIAbility {
   // ...
   onWindowStageCreate(windowStage: window.WindowStage): void {
     console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
+    let windowClass: window.Window;
     // Create a child window.
     try {
-      let subWindow = windowStage.createSubWindow("testSubWindow");
-      subWindow.then((data) => {
+      windowStage.createSubWindow("testSubWindow").then((data) => {
         if (data == null) {
           console.error("Failed to create the subWindow. Cause: The data is empty");
           return;
         }
         windowClass = data;
-        // The windowClass must be obtained above the targetWindow.
-        let targetWindow: window.Window = windowClass;
-        let properties = targetWindow.getWindowProperties();
-        let targetId = properties.id;
-        windowClass.raiseAboveTarget(targetId, (err) => {
-          if (err.code) {
-            console.error(`Failed to raise the subWindow to target subWindow top. Cause code: ${err.code}, message: ${err.message}`);
-            return;
-          }
-          console.info('Succeeded in raising the subWindow to target subWindow top.');
+        windowClass.showWindow().then(() => {
+          // The windowClass must be obtained above the targetWindow.
+          let targetWindow: window.Window = windowClass;
+          let properties = targetWindow.getWindowProperties();
+          let targetId = properties.id;
+          windowClass.raiseAboveTarget(targetId, (err: BusinessError) => {
+            if (err.code) {
+              console.error(`Failed to raise the subWindow to target subWindow top. Cause code: ${err.code}, message: ${err.message}`);
+              return;
+            }
+            console.info('Succeeded in raising the subWindow to target subWindow top.');
+          });
         });
       });
     } catch (exception) {
@@ -2639,6 +2659,8 @@ raiseAboveTarget(windowId: number): Promise&lt;void&gt;
 
 Raises a child window above a target child window. This API uses a promise to return the result.
 
+Before calling this API, ensure that the child window to raise and the target child window have been created and [showWindow()](arkts-apis-window-Window.md#showwindow9) has been successfully executed for each.
+
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.Window.SessionManager
@@ -2647,7 +2669,7 @@ Raises a child window above a target child window. This API uses a promise to re
 
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| windowId | number                    | Yes  | ID of the target child window, which is the value of **properties.id** in [properties](js-apis-window.md#windowproperties) obtained through [getWindowProperties](js-apis-window.md#getwindowproperties9).|
+| windowId | number                    | Yes  | ID of the target child window, which is the value of **properties.id** in [properties](arkts-apis-window-i.md#windowproperties) obtained through [getWindowProperties](arkts-apis-window-Window.md#getwindowproperties9).|
 
 **Return value**
 
@@ -2673,6 +2695,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 // EntryAbility.ets
+import { window } from '@kit.ArkUI';
 import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -2680,25 +2703,25 @@ export default class EntryAbility extends UIAbility {
   // ...
   onWindowStageCreate(windowStage: window.WindowStage): void {
     console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
+    let windowClass: window.Window;
     // Create a child window.
     try {
-      let subWindow = windowStage.createSubWindow("testSubWindow");
-      subWindow.then((data) => {
+      windowStage.createSubWindow("testSubWindow").then((data) => {
         if (data == null) {
           console.error("Failed to create the subWindow. Cause: The data is empty");
           return;
         }
         windowClass = data;
-        // The windowClass must be obtained above the targetWindow.
-        let targetWindow: window.Window = windowClass;
-        let properties = targetWindow.getWindowProperties();
-        let targetId = properties.id;
-        let promise = windowClass.raiseAboveTarget(targetId);
-        promise.then(()=> {
-          console.info('Succeeded in raising the subWindow to target subWindow top.');
-        }).catch((err: BusinessError)=>{
-          console.error(`Failed to raise the subWindow to target subWindow top. Cause code: ${err.code}, message: ${err.message}`);
+        windowClass.showWindow().then(() => {
+          // The windowClass must be obtained above the targetWindow.
+          let targetWindow: window.Window = windowClass;
+          let properties = targetWindow.getWindowProperties();
+          let targetId = properties.id;
+          windowClass.raiseAboveTarget(targetId).then(()=> {
+            console.info('Succeeded in raising the subWindow to target subWindow top.');
+          }).catch((err: BusinessError)=>{
+            console.error(`Failed to raise the subWindow to target subWindow top. Cause code: ${err.code}, message: ${err.message}`);
+          });
         });
       });
     } catch (exception) {
@@ -2715,6 +2738,8 @@ setRaiseByClickEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): vo
 Sets whether to enable a child window to raise itself by click. This API uses an asynchronous callback to return the result.
 
 Generally, when a user clicks a child window, the child window is displayed on the top. If the **enable** parameter is set to **false**, the child window is not displayed on the top when being clicked.
+
+Before calling this API, ensure that the child window has been created and [showWindow()](arkts-apis-window-Window.md#showwindow9) has been successfully executed.
 
 **System API**: This is a system API.
 
@@ -2745,6 +2770,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 // EntryAbility.ets
+import { window } from '@kit.ArkUI';
 import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -2752,84 +2778,28 @@ export default class EntryAbility extends UIAbility {
   // ...
   onWindowStageCreate(windowStage: window.WindowStage): void {
     console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
     // Create a child window.
-    try {
-      let subWindow = windowStage.createSubWindow("testSubWindow");
-      subWindow.then((data) => {
-        if (data == null) {
-          console.error("Failed to create the subWindow. Cause: The data is empty");
-          return;
-        }
-        windowClass = data;
-        let enabled = false;
-        windowClass.setRaiseByClickEnabled(enabled, (err) => {
+    windowStage.createSubWindow("testSubWindow").then((subWindow) => {
+      if (subWindow == null) {
+        console.error('Failed to create the subWindow. Cause: The data is empty');
+        return;
+      }
+      subWindow.showWindow().then(() => {
+        try {
+          let enabled = false;
+          subWindow.setRaiseByClickEnabled(enabled, (err) => {
           if (err.code) {
             console.error(`Failed to disable the raise-by-click function. Cause code: ${err.code}, message: ${err.message}`);
             return;
           }
           console.info('Succeeded in disabling the raise-by-click function.');
-        });
+          });
+        } catch (err) {
+          console.error(`Failed to disable the raise-by-click function. Cause code: ${err.code}, message: ${err.message}`);
+        }
       });
-    } catch (exception) {
-      console.error(`Failed to create the subWindow. Cause code: ${exception.code}, message: ${exception.message}`);
-    }
+    });
   }
-}
-```
-
-### enableDrag<sup>14+</sup>
-
-enableDrag(enable: boolean): Promise&lt;void&gt;
-
-Enables or disables window dragging. This API uses a promise to return the result.
-
-After window dragging is enabled, the window can be resized using the mouse.
-
-This API takes effect only for the system window on 2-in-1 devices. If this API is called for other device types, an error is reported.
-
-**System capability**: SystemCapability.Window.SessionManager
-
-**System API**: This is a system API.
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | ---------------------------- | -- | --------- |
-| enable| boolean | Yes| Whether to enable dragging.<br>The value **true** means to enable dragging, and **false** means the opposite.<br>|
-
-**Return value**
-
-| Type               | Description                     |
-| ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. |
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
-
-| ID| Error Message|
-| -------- | -------------------------------------------- |
-| 202     | Permission verification failed. A non-system application calls a system API.   |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002 | This window state is abnormal.                |
-| 1300003 | This window manager service works abnormally. |
-| 1300004 | Unauthorized operation.                       |
-
-**Example**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-try {
-  windowClass.enableDrag(true).then(() => { 
-    console.info('succeeded in setting window draggable');
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to set window draggable. Cause code: ${err.code}, message: ${err.message}`);
-  });
-} catch (exception) {
-  console.error(`Failed to set window draggable. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -2893,14 +2863,18 @@ export default class EntryAbility extends UIAbility {
       console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
 
       let shouldHide = true;
-      // Call hideNonSystemFloatingWindows with the callback parameter.
-      mainWindow.hideNonSystemFloatingWindows(shouldHide, (err) => {
-        if (err.code) {
-          console.error(`Failed to hide the non-system floating windows. Cause code: ${err.code}, message: ${err.message}`);
-          return;
-        }
-        console.info('Succeeded in hiding the non-system floating windows.');
-      });
+      try {
+        // Call hideNonSystemFloatingWindows with the callback parameter.
+        mainWindow.hideNonSystemFloatingWindows(shouldHide, (err) => {
+          if (err.code) {
+            console.error(`Failed to hide the non-system floating windows. Cause code: ${err.code}, message: ${err.message}`);
+            return;
+          }
+          console.info('Succeeded in hiding the non-system floating windows.');
+        });
+      } catch (exception) {
+        console.error(`Failed to hide the non-system floating windows. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
     });
   }
 }
@@ -2972,13 +2946,17 @@ export default class EntryAbility extends UIAbility {
       console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
 
       let shouldHide = true;
-      // Call hideNonSystemFloatingWindows to obtain a promise object.
-      let promise = mainWindow.hideNonSystemFloatingWindows(shouldHide);
-      promise.then(()=> {
-        console.info('Succeeded in hiding the non-system floating windows.');
-      }).catch((err: BusinessError)=>{
-        console.error(`Failed to hide the non-system floating windows. Cause code: ${err.code}, message: ${err.message}`);
-      });
+      try {
+        // Call hideNonSystemFloatingWindows to obtain a promise object.
+        let promise = mainWindow.hideNonSystemFloatingWindows(shouldHide);
+        promise.then(()=> {
+          console.info('Succeeded in hiding the non-system floating windows.');
+        }).catch((err: BusinessError)=>{
+          console.error(`Failed to hide the non-system floating windows. Cause code: ${err.code}, message: ${err.message}`);
+        });
+      } catch (exception) {
+        console.error(`Failed to hide the non-system floating windows. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
     });
   }
 }
@@ -3032,10 +3010,9 @@ export default class EntryAbility extends UIAbility {
   // ...
   onWindowStageCreate(windowStage: window.WindowStage): void {
     // ...
-    windowStage.getMainWindow().then((window) => {
+    windowStage.getMainWindow().then((mainWindow) => {
       let isTopmost: boolean = true;
-      let promise = window.setTopmost(isTopmost);
-      promise.then(() => {
+      mainWindow.setTopmost(isTopmost).then(() => {
         console.info('Succeeded in setting the main window to be topmost.');
       }).catch((err: BusinessError) => {
         console.error(`Failed to set the main window to be topmost. Cause code: ${err.code}, message: ${err.message}`);
@@ -3086,12 +3063,16 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let enable = true;
-let promise = windowClass.setSingleFrameComposerEnabled(enable);
-promise.then(()=> {
-    console.info('Succeeded in enabling the single-frame-composer function.');
-}).catch((err: BusinessError)=>{
-    console.error(`Failed to enable the single-frame-composer function. code:${err.code}, message:${err.message}.`);
-});
+try {
+  let promise = windowClass.setSingleFrameComposerEnabled(enable);
+  promise.then(()=> {
+      console.info('Succeeded in enabling the single-frame-composer function.');
+  }).catch((err: BusinessError)=>{
+      console.error(`Failed to enable the single-frame-composer function. code:${err.code}, message:${err.message}.`);
+  });
+} catch (exception) {
+  console.error(`Failed to enable the single-frame-composer function. Cause code: ${exception.code}, message: ${exception.message}`);
+}
 ```
 
 ### setTitleButtonVisible<sup>12+</sup>
@@ -3237,7 +3218,7 @@ promise.then(() => {
 
 requestFocus(isFocused: boolean): Promise&lt;void&gt;
 
-Allows this window to proactively request to gain or lose focus. This API uses a promise to return the result. A value is returned as long as the API is successfully called. The return value does not indicate that the window has gained or lost focus. You can use [on('windowEvent')](js-apis-window.md#onwindowevent10) to listen for the focus status of the window.
+Allows this window to proactively request to gain or lose focus. This API uses a promise to return the result. A value is returned as long as the API is successfully called. The return value does not indicate that the window has gained or lost focus. You can use [on('windowEvent')](arkts-apis-window-Window.md#onwindowevent10) to listen for the focus status of the window.
 
 When a focus request is sent, whether the window can successfully gain focus depends on its capability of being focused and its current visibility. To gain focus, the window must be capable of receiving focus and in a visible state (actively displayed and not hidden or destroyed).
 
@@ -3297,9 +3278,9 @@ Describes the parameters used for creating a child window.
 
 ## WindowStage<sup>9+</sup>
 
-Implements a window manager, which manages each basic window unit, that is, [Window](#window) instance.
+Implements a window manager, which manages each basic window unit, that is, [Window](arkts-apis-window-Window.md) instance.
 
-Before calling any of the following APIs, you must use [onWindowStageCreate()](../apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate) to create a **WindowStage** instance.
+Before calling any of the following APIs, you must use [onWindowStageCreate()](../apis-ability-kit/js-apis-app-ability-uiAbility.md#onwindowstagecreate) to create a **WindowStage** instance.
 
 ### disableWindowDecor<sup>9+</sup>
 
@@ -3307,7 +3288,7 @@ disableWindowDecor(): void
 
 Disables window decorators.
 
-When window decorators are disabled and the main window transitions into full-screen mode, hovering the cursor over the hot zone of the top window's title bar will cause a floating title bar to appear. To prevent the floating title bar from appearing, call [setTitleAndDockHoverShown()](./js-apis-window.md#settitleanddockhovershown14).
+When window decorators are disabled and the main window transitions into full-screen mode, hovering the cursor over the hot zone of the top window's title bar will cause a floating title bar to appear. To prevent the floating title bar from appearing, call [setTitleAndDockHoverShown()](arkts-apis-window-Window.md#settitleanddockhovershown14).
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -3390,6 +3371,69 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
+### setImageForRecent<sup>20+</sup>
+
+setImageForRecent(imgResourceId: number, value: ImageFit): Promise&lt;void&gt;
+
+Sets the image displayed in the multitasking window. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name     | Type   | Mandatory| Description                                                        |
+| ----------- | ------- | ---- | ------------------------------------------------------------ |
+| imgResourceId | number | Yes  | Resource ID of the custom image. The image must be stored in the **resources/base/media** directory and its resource ID can be obtained using the **$r** resource access mode. For example, to obtain the resource ID of the startIcon image, use the following: $r("app.media.startIcon").id.|
+| value | [ImageFit](arkui-ts/ts-appendix-enums.md#imagefit) | Yes| Fill mode of the custom image.|
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
+
+| ID| Error Message|
+| ------- | ------------------------------ |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+| 1300016 | Parameter error. Possible cause: 1. Invalid parameter range. 2. Invalid parameter length. 3. Incorrect parameter format. |
+
+**Example**
+
+```ts
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    let imgResourceId = $r("app.media.startIcon").id
+    try {
+      let promise = windowStage.setImageForRecent(imgResourceId, ImageFit.Fill);
+      promise.then(() => {
+        console.info(`Succeeded in setting image for recent`);
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to set image for recent. Cause code: ${err.code}, message: ${err.message}`);
+      });
+    } catch (exception) {
+      console.error(`Failed to set image for recent.`);
+    }
+  }
+};
+```
+
 ## TransitionContext<sup>9+</sup>
 
 Provides the context for the transition animation.
@@ -3404,7 +3448,7 @@ Provides the context for the transition animation.
 
 | Name                 | Type         | Readable| Writable| Description            |
 | --------------------- | ----------------- | ---- | ---- | ---------------- |
-| toWindow<sup>9+</sup> | [Window](#window) | Yes  | Yes  | Target window to display the animation.|
+| toWindow<sup>9+</sup> | [Window](arkts-apis-window-Window.md) | Yes  | Yes  | Target window to display the animation.|
 
 ### completeTransition<sup>9+</sup>
 
@@ -3436,7 +3480,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 (context: window.TransitionContext) => {
   let toWindow: window.Window = context.toWindow;
-  animateTo({
+  this.getUIContext()?.animateTo({
     duration: 1000, // Animation duration.
     tempo: 0.5, // Playback speed.
     curve: Curve.EaseInOut, // Animation curve.
@@ -3544,7 +3588,7 @@ try {
   animationConfig?.ShowWindowWithCustomAnimation(systemTypeWindow, (context : window.TransitionContext)=>{
     console.info('complete transition end');
     let toWindow = context.toWindow;
-    animateTo({
+    this.getUIContext()?.animateTo({
       duration: 1000, // Animation duration.
       tempo: 0.5, // Playback speed.
       curve: Curve.EaseInOut, // Animation curve.
@@ -3627,7 +3671,7 @@ try {
   animationConfig?.HideWindowWithCustomAnimation(systemTypeWindow, (context : window.TransitionContext)=>{
     console.info('complete transition end');
     let toWindow = context.toWindow;
-    animateTo({
+    this.getUIContext()?.animateTo({
       duration: 1000, // Animation duration.
       tempo: 0.5, // Playback speed.
       curve: Curve.EaseInOut, // Animation curve.
@@ -3697,6 +3741,6 @@ Describes the parameters for creating a window for a UI ServiceExtensionAbility.
 | ------ | ------------------------- | ---- | ---- |---------- |
 | windowName   | string | No| No | Window name.|
 | windowAttribute   | [ExtensionWindowAttribute](#extensionwindowattribute14) | No| No  | Window attribute. It specifies whether the created window is a child window or a system window. When **windowAttribute** is set to **SUB_WINDOW**, **subWindowOptions** is mandatory. When **windowAttribute** is set to **SYSTEM_WINDOW**, **systemWindowOptions** is mandatory. Otherwise, the window fails to be created.|
-| windowRect   | [Rect](js-apis-window.md#rect7) | No| No  | Rectangular area of the window.|
-| subWindowOptions   | [SubWindowOptions](js-apis-window.md#subwindowoptions11) | No| Yes| Parameters used for creating a child window. There is no default value. This parameter is mandatory when **windowAttribute** is set to **SUB_WINDOW**. Otherwise, the window fails to be created.|
+| windowRect   | [Rect](arkts-apis-window-i.md#rect7) | No| No  | Rectangular area of the window.|
+| subWindowOptions   | [SubWindowOptions](arkts-apis-window-i.md#subwindowoptions11) | No| Yes| Parameters used for creating a child window. There is no default value. This parameter is mandatory when **windowAttribute** is set to **SUB_WINDOW**. Otherwise, the window fails to be created.|
 | systemWindowOptions   | [SystemWindowOptions](#systemwindowoptions14) | No| Yes| Parameters for creating a system window. There is no default value. This parameter is mandatory when **windowAttribute** is set to **SYSTEM_WINDOW**. Otherwise, the window fails to be created.|

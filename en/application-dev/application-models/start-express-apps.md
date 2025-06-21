@@ -24,29 +24,47 @@ If the **type** field in **startAbilityByType** is set to **express**, the inten
 2. Construct parameters and call the **startAbilityByType** API.
    
     ```ts
-    let context = getContext(this) as common.UIAbilityContext;
-        let wantParam: Record<string, Object> = {
-        'sceneType': 1,
-        'expressNo': 'SF123456'
-        };
-        let abilityStartCallback: common.AbilityStartCallback = {
-        onError: (code: number, name: string, message: string) => {
-            console.log(`onError code ${code} name: ${name} message: ${message}`);
-        },
-        onResult: (result)=>{
-            console.log(`onResult result: ${JSON.stringify(result)}`);
-        }
-        }
-        
-        context.startAbilityByType("express", wantParam, abilityStartCallback, 
-            (err) => {
-                if (err) {
-                    console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
-                } else {
-                    console.log(`success`);
-                }
-        });
+    @Entry
+    @Component
+    struct Index {
+        @State hideAbility: string = 'hideAbility'
 
+        build() {
+            Row() {
+                Column() {
+                    Text(this.hideAbility)
+                    .fontSize(30)
+                    .fontWeight(FontWeight.Bold)
+                        .onClick(() => {
+                            let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+                            let wantParam: Record<string, Object> = {
+                                'sceneType': 1,
+                                'expressNo': 'SF123456'
+                            };
+                            let abilityStartCallback: common.AbilityStartCallback = {
+                                onError: (code: number, name: string, message: string) => {
+                                    console.log(`onError code ${code} name: ${name} message: ${message}`);
+                                },
+                                onResult: (result) => {
+                                    console.log(`onResult result: ${JSON.stringify(result)}`);
+                                }
+                            }
+
+                            context.startAbilityByType("express", wantParam, abilityStartCallback,
+                                (err) => {
+                                    if (err) {
+                                        console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
+                                    } else {
+                                        console.log(`success`);
+                                    }
+                                });
+                        });
+                }
+                .width('100%')
+            }
+            .height('100%')
+        }
+    }
     ```
     
     Effect

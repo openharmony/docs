@@ -1,6 +1,6 @@
 # 声明权限
 
-应用在申请权限时，需要在项目的配置文件中，逐个声明需要的权限，否则应用将无法获取授权。
+应用在申请权限时，需要在项目的配置文件中，逐个声明需要的权限，否则应用将无法获取授权<!--RP2--><!--RP2End-->。
 
 ## 在配置文件中声明权限
 
@@ -10,7 +10,7 @@
 | -------- | -------- | -------- | -------- |
 | name | 需要使用的权限名称。 | 字符串 | **必填**，需为系统已定义的权限，取值范围请参考[应用权限列表](app-permissions.md)。
 | reason | 申请权限的原因。 | 字符串 | **可选填写**，该字段用于应用上架校验，当申请的权限为user_grant权限时必填，并且需要进行多语种适配。<br>使用string类资源引用。格式为$string: \*\*\*。<br/>可参考[权限使用理由的文案内容规范](#权限使用理由的文案内容规范)。 |
-| usedScene | 权限使用的场景，该字段用于应用上架校验。包括abilities和when两个子项。<br/>- abilities：使用权限的UIAbility或者ExtensionAbility组件的名称。<br/>- when：调用时机。 | 对象 | usedScene**必填**。<br/>- abilities：**可选填写**，可以配置为多个UIAbility或者ExtensionAbility名称的字符串数组。<br/>- when：**可选填写**，但如果配置此字段，只能填入固定值inuse（使用时）、always（始终），不能为空。<br/>当申请的权限为user_grant权限时建议填写。 |
+| usedScene | 权限使用的场景，该字段用于应用上架校验。包括abilities和when两个子项。<br/>- abilities：使用权限的UIAbility或者ExtensionAbility组件的名称。<br/>- when：调用时机。 | 对象 | **申请user_grant权限时，usedScene必填，其他情况下选填。<br>**<br/>- abilities：**可选填写**，可以配置为多个UIAbility或者ExtensionAbility名称的字符串数组。<br/>- when：**可选填写**，但如果配置此字段，只能填入固定值inuse（使用时）、always（始终），不能为空。<br/>当申请的权限为user_grant权限时建议填写。 |
 
 > **说明：**
 > 已在子模块中申请的权限，无需在主项目重复添加，权限将在整个应用生效。
@@ -81,3 +81,5 @@
 2. 如果是申请其他权限组中的权限，系统将使用权限组内当前被申请的第一个子权限的使用理由，作为该权限组的使用理由进行展示。组内的排序，固定按照权限管理内排列的权限组数组顺序。
 
    举例说明：权限组A = {权限A, 权限B, 权限C}；申请传入的权限是{权限C, 权限B}，界面将展示权限B的权限使用理由。
+
+3. 如果应用内多包申请的权限名称一样，但权限使用理由不一致，系统返回的权限申请详细信息[ReqPermissionDetail](../../reference/apis-ability-kit/js-apis-bundleManager-bundleInfo.md#reqpermissiondetail)里只会有一个权限申请理由，优先级从高到低为：entry类型HAP、feature类型HAP、应用内HSP。

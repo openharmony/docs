@@ -1,4 +1,4 @@
-# @ohos.app.ability.childProcessManager (childProcessManager)
+# @ohos.app.ability.childProcessManager (子进程管理)
 
 childProcessManager模块提供子进程管理能力，支持子进程启动操作。当前仅支持2in1、tablet设备。
 
@@ -196,7 +196,7 @@ startArkChildProcess(srcEntry: string, args: ChildProcessArgs, options?: ChildPr
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 801 | Capability not supported. |
 | 16000050 | Internal error. |
-| 16000061  | Operation not supported. The API cannot be called in a child process. |
+| 16000061  | Operation not supported. |
 | 16000062  | The number of child processes exceeds the upper limit. |
 
 **示例：**
@@ -307,7 +307,7 @@ startNativeChildProcess(entryPoint: string, args: ChildProcessArgs, options?: Ch
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 801 | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 16000050 | Internal error. |
-| 16000061  | Operation not supported. The API cannot be called in a child process. |
+| 16000061  | Operation not supported. |
 | 16000062  | The number of child processes exceeds the upper limit. |
 
 **示例：**

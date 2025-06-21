@@ -2,7 +2,7 @@
 
 ## Overview
 
-In the stage model, system applications are allowed to create and manage system windows, including the volume bar, wallpaper, notification panel, status bar, and navigation bar. For details about the supported system window types, see [WindowType](../reference/apis-arkui/js-apis-window.md#windowtype7).
+In the stage model, system applications are allowed to create and manage system windows, including the volume bar, wallpaper, notification panel, status bar, and navigation bar. For details about the supported system window types, see [WindowType](../reference/apis-arkui/arkts-apis-window-e.md#windowtype7).
 
 When a window is displayed, hidden, or switched, an animation is usually used to smooth the interaction process.
 
@@ -72,7 +72,7 @@ export default class ServiceExtensionAbility1 extends ServiceExtensionAbility {
     window.createWindow(config, (err: BusinessError, data) => {
       let errCode: number = err.code;
       if (errCode) {
-        console.error('Failed to create the volume window. Cause:' + JSON.stringify(err));
+        console.error(`Failed to create the volume window. Code:${err.code}, message:${err.message}`);
         return;
       }
       console.info('Succeeded in creating the volume window.')

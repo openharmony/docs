@@ -89,7 +89,7 @@ Picker配置选项。
 | checkboxTextColor               | string                                  | 否   | 勾选框内文本颜色。格式为8位十六进制颜色代码。 （该能力暂不支持）                                        |
 | photoBrowserBackgroundColorMode | [PickerColorMode](#pickercolormode)     | 否   | 大图背景颜色。包括跟随系统、浅色模式以及深色模式，默认为跟随系统。                                        |
 | maxSelectedReminderMode         | [ReminderMode](#remindermode)           | 否   | 选择数量达到最大时的提示方式。包括弹toast提示、不提示以及蒙层提示，默认为弹toast提示。                         |
-| orientation                     | [PickerOrientation](#pickerorientation) | 否   | 宫格页面滑动预览方向，包括水平和竖直两个方向，默认为竖直方向。（该能力暂不支持）                                 |
+| orientation                     | [PickerOrientation](#pickerorientation) | 否   | 宫格页面滑动预览方向，包括水平和竖直两个方向，默认为竖直方向。                                 |
 | selectMode                      | [SelectMode](#selectmode)               | 否   | 选择模式。包括多选和单选，默认为多选。                                                      |
 | maxPhotoSelectNumber            | number                                  | 否   | 图片最大的选择数量。最大值为500，受到最大选择总数的限制。默认为500。                                           |
 | maxVideoSelectNumber            | number                                  | 否   | 视频最大的选择数量。最大值为500，受到最大选择总数的限制。默认为500。                                           |
@@ -97,6 +97,7 @@ Picker配置选项。
 | photoBrowserCheckboxPosition<sup>13+</sup>    | [number, number]                        | 否   | 设置大图页checkbox的位置。第一个参数为X方向偏移量，第二个参数为Y方向偏移量。传参范围0-1，代表距离组件左上角0%-100%的偏移量。默认值为[0, 0]。 |
 | gridMargin<sup>14+</sup>        | [Margin](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md#margin)                        | 否   | 设置组件宫格页margin。 |
 | photoBrowserMargin<sup>14+</sup>    | [Margin](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md#margin)                        | 否   | 设置组件大图页margin |
+| singleLineConfig<sup>20+</sup>             | [SingleLineConfig](#singlelineconfig)                                                | 否   | 设置组件宫格页单行显示模式，单行模式下，组件不提供打开大图浏览相关功能。组件不支持大图相关回调，PickerController不支持大图相关的接口，接口调用将无效。     
 
 ## ItemsDeletedCallback<sup>13+</sup>
 
@@ -293,7 +294,7 @@ saveTrustedPhotoAssets(trustedUris: Array&lt;string&gt;, callback: AsyncCallback
 
 ## ItemInfo
 
-继承自[BaseItemInfo]，仅含私有参数itemType
+继承自[BaseItemInfo](#baseiteminfo)，增加私有参数itemType。
 
 图片、视频相关信息。
 
@@ -341,6 +342,20 @@ saveTrustedPhotoAssets(trustedUris: Array&lt;string&gt;, callback: AsyncCallback
 | 名称     | 类型    | 必填  | 说明     |
 |----------|--------|-----|---------|
 | data | Map&lt;[MaxCountType](#maxcounttype), number&gt; | 否             | 最大选择数量（包含图片的最大选择数量、视频的最大选择数量以及总的最大选择数量） |
+
+## SingleLineConfig
+
+单行显示模式配置项。单行模式下，组件不提供打开大图浏览相关功能。组件不支持大图相关回调，PickerController不支持大图相关的接口，接口调用将无效。
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称 | 类型                                             | 必填 | 说明                                                                           |
+| ---- | ------------------------------------------------ | ---- | ------------------------------------------------------------------------------ |
+| itemDisplayRatio | [ItemDisplayRatio](#itemdisplayratio20) | 否   | 宫格显示宽高比，支持1:1，原图宽高比两种模式，默认为宽高比1:1显示。 |
+| itemBorderRadius | [Length](../apis-arkui/arkui-ts/ts-types.md#length) &verbar; [BorderRadiuses](../apis-arkui/arkui-ts/ts-types.md#borderradiuses9) &verbar; [LocalizedBorderRadiuses](../apis-arkui/arkui-ts/ts-types.md#localizedborderradiuses12) | 否   | 宫格圆角属性。 |
+| itemGap | [Length](../apis-arkui/arkui-ts/ts-types.md#length) | 否   | 宫格间距。 |
 
 ## DataType
 
@@ -503,6 +518,19 @@ Picker的颜色模式。
 | STOPPED | 2   | 视频播放停止。 |
 | SEEK_START | 3   | 开始拖拽进度条。 |
 | SEEK_FINSH | 4   | 结束拖拽进度条。 |
+
+## ItemDisplayRatio<sup>20+</sup>
+
+单行布局宫格显示宽高比模式，包括1:1和原图宽高比两种模式。
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称                | 值  | 说明           |
+| ------------------- | --- | -------------- |
+| SQUARE_RATIO        | 0   | 1:1比例显示。    |
+| ORIGINAL_SIZE_RATIO | 1   | 原图宽高比显示。 |
 
 ## 示例
 

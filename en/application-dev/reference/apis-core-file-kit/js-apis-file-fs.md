@@ -12,7 +12,7 @@ The **fs** module provides APIs for file operations, including accessing and man
 import { fileIo as fs } from '@kit.CoreFileKit';
 ```
 
-## Guidelines
+## How to Use
 
 Before using the APIs provided by this module to perform operations on a file or directory, obtain the application sandbox path of the file or directory as follows:
 
@@ -44,13 +44,13 @@ Obtains detailed attribute information of a file or directory. This API uses a p
 
 | Name| Type  | Mandatory| Description                      |
 | ------ | ------ | ---- | -------------------------- |
-| file   | string \| number | Yes  | Application sandbox path or FD of the file.|
+| file   | string \| number | Yes  | Application sandbox path or FD of the file or directory.|
 
 **Return value**
 
   | Type                          | Description        |
   | ---------------------------- | ---------- |
-  | Promise&lt;[Stat](#stat)&gt; | Promise used to return detailed file information.|
+  | Promise&lt;[Stat](#stat)&gt; | Promise used to return the file or directory information.|
 
 **Error codes**
 
@@ -82,8 +82,8 @@ Obtains detailed attribute information of a file or directory. This API uses an 
 
 | Name  | Type                              | Mandatory| Description                          |
 | -------- | ---------------------------------- | ---- | ------------------------------ |
-| file     | string \| number                   | Yes  | Application sandbox path or FD of the file.    |
-| callback | AsyncCallback&lt;[Stat](#stat)&gt; | Yes  | Callback used to return the file information obtained.|
+| file     | string \| number                   | Yes  | Application sandbox path or FD of the file or directory.    |
+| callback | AsyncCallback&lt;[Stat](#stat)&gt; | Yes  | Callback used to return the file or directory information obtained.|
 
 **Error codes**
 
@@ -116,13 +116,13 @@ Obtains detailed attribute information of a file or directory. This API returns 
 
 | Name| Type  | Mandatory| Description                      |
 | ------ | ------ | ---- | -------------------------- |
-| file   | string \| number | Yes  | Application sandbox path or FD of the file.|
+| file   | string \| number | Yes  | Application sandbox path or FD of the file or directory.|
 
 **Return value**
 
   | Type           | Description        |
   | ------------- | ---------- |
-  | [Stat](#stat) | File information obtained.|
+  | [Stat](#stat) | Detailed information of a file or directory.|
 
 **Error codes**
 
@@ -149,14 +149,14 @@ Checks whether the file or directory exists or has the operation permission. Thi
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| path   | string | Yes  | Application sandbox path of the file to check.                                  |
-| mode<sup>12+</sup>   | [AccessModeType](#accessmodetype12) | No  | Permission on the file to verify. If this parameter is left blank, the system checks whether the file exists.|
+| path   | string | Yes  | Application sandbox path of the file or directory.                                  |
+| mode<sup>12+</sup>   | [AccessModeType](#accessmodetype12) | No  | Permission on the file or directory to check. If this parameter is left blank, the system checks whether the file exists.|
 
 **Return value**
 
   | Type                 | Description                          |
   | ------------------- | ---------------------------- |
-  | Promise&lt;boolean&gt; | Promise used to return a Boolean value. Returns **true** if the file exists; returns **false** otherwise.|
+  | Promise&lt;boolean&gt; | Promise used to return a Boolean value. The value **true** means the file exists; the value **false** means the opposite.|
 
 **Error codes**
 
@@ -195,15 +195,15 @@ Checks whether the file or directory is stored locally or has the operation perm
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| path   | string | Yes  | Application sandbox path of the file to check.                                  |
-| mode<sup>12+</sup>   | [AccessModeType](#accessmodetype12) | Yes  | Permission on the file to verify.|
-| flag<sup>12+</sup>  | [AccessFlagType](#accessflagtype12) | Yes| Location of the file to verify.|
+| path   | string | Yes  | Application sandbox path of the file or directory.                                  |
+| mode<sup>12+</sup>   | [AccessModeType](#accessmodetype12) | Yes  | Permission on the file or directory to check.|
+| flag<sup>12+</sup>  | [AccessFlagType](#accessflagtype12) | Yes| Position of the file or directory to check.|
 
 **Return value**
 
   | Type                 | Description                          |
   | ------------------- | ---------------------------- |
-  | Promise&lt;boolean&gt; | Promise used to return a Boolean value. The value **true** means the file is a local file and has the related permission. The value **false** means the file does not exist or is on the cloud or a distributed device.|
+  | Promise&lt;boolean&gt; | Promise used to return a Boolean value. The value **true** means the file or directory is a local one and has the related permission. The value **false** means the file or directory does not exist or is on the cloud or a distributed device.|
 
 **Error codes**
 
@@ -244,8 +244,8 @@ Checks whether a file or directory exists. This API uses an asynchronous callbac
 
 | Name  | Type                     | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| path     | string                    | Yes  | Application sandbox path of the file to check.                                  |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result. The value **true** means the file exists; the value **false** means the opposite.|
+| path     | string                    | Yes  | Application sandbox path of the file or directory.                                  |
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** means the file exists; the value **false** means the opposite.|
 
 **Error codes**
 
@@ -288,14 +288,14 @@ Checks whether a file or directory exists or has the operation permission. This 
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| path   | string | Yes  | Application sandbox path of the file to check.                                  |
-| mode<sup>12+</sup>   | [AccessModeType](#accessmodetype12) | No  | Permission on the file to verify. If this parameter is left blank, the system checks whether the file exists.|
+| path   | string | Yes  | Application sandbox path of the file or directory.                                  |
+| mode<sup>12+</sup>   | [AccessModeType](#accessmodetype12) | No  | Permission on the file or directory to check. If this parameter is left blank, the system checks whether the file or directory exists.|
 
 **Return value**
 
   | Type                 | Description                          |
   | ------------------- | ---------------------------- |
-  | boolean | Returns **true** if the file exists; returns **false** otherwise.|
+  | boolean | The value **true** means the file exists; the value **false** means the opposite.|
 
 **Error codes**
 
@@ -337,14 +337,14 @@ Checks whether a file or directory is stored locally or has the operation permis
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | path   | string | Yes  | Application sandbox path of the file to check.                                  |
-| mode<sup>12+</sup>   | [AccessModeType](#accessmodetype12) | Yes  | Permission on the file to verify.|
-| flag<sup>12+</sup>  | [AccessFlagType](#accessflagtype12) | Yes  | Location of the file to verify.|
+| mode<sup>12+</sup>   | [AccessModeType](#accessmodetype12) | Yes  | Permission on the file or directory to check.|
+| flag<sup>12+</sup>  | [AccessFlagType](#accessflagtype12) | Yes  | Position of the file or directory to check.|
 
 **Return value**
 
   | Type                 | Description                          |
   | ------------------- | ---------------------------- |
-  | boolean | Returns **true** if the file is a local file and has the related permission; returns **false** if the file does not exist or is on the cloud or a distributed device.|
+  | boolean | The value **true** means the file is a local file and has the related permission. The value **false** means the file does not exist or is on the cloud or a distributed device.|
 
 **Error codes**
 
@@ -427,7 +427,7 @@ Closes a file or directory. This API uses an asynchronous callback to return the
   | Name     | Type                       | Mandatory  | Description          |
   | -------- | ------------------------- | ---- | ------------ |
   | file       | number \| [File](#file)        | Yes   | **File** object or FD of the file to close. Once closed, the **File** object or FD cannot be used for read or write operations.|
-  | callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked immediately after the file is closed.|
+  | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
 
 **Error codes**
 
@@ -482,7 +482,7 @@ copy(srcUri: string, destUri: string, options?: CopyOptions): Promise\<void>
 
 Copies a file or directory. This API uses a promise to return the result.
 
-File copy across devices is supported. This API forcibly overwrites the file or folder with the same name in the destination directory. The file or directory URI is supported.\n
+File copy across devices is supported. This API forcibly overwrites the file or directory. The input parameter can be the URI of the file or directory.<br>
 A maximum of 10 cross-device copy tasks are allowed at the same time, and the number of files to be copied at a time cannot exceed 500.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
@@ -491,8 +491,8 @@ A maximum of 10 cross-device copy tasks are allowed at the same time, and the nu
 
   | Name | Type                        | Mandatory  | Description                                      |
   | ---- | -------------------------- | ---- | ---------------------------------------- |
-  | srcUri  | string | Yes   | URI of the file or folder to copy.                     |
-  | destUri | string | Yes   | URI of the destination file or folder.                         |
+  | srcUri  | string | Yes   | URI of the file or directory to copy.                     |
+  | destUri | string | Yes   | URI of the destination file or directory.                         |
   | options | [CopyOptions](#copyoptions11)| No| Callback invoked to provide the copy progress. If this parameter is not set, the callback will not be invoked.|
 
 **Return value**
@@ -539,9 +539,9 @@ try {
 
 copy(srcUri: string, destUri: string, callback: AsyncCallback\<void>): void
 
-Copies a file or folder. This API uses an asynchronous callback to return the result.
+Copies a file or directory. This API uses an asynchronous callback to return the result.
 
-File copy across devices is supported. This API forcibly overwrites the file or folder with the same name in the destination directory. The file or directory URI is supported.\n
+File copy across devices is supported. This API forcibly overwrites the file or directory. The input parameter can be the URI of the file or directory.<br>
 A maximum of 10 cross-device copy tasks are allowed at the same time, and the number of files to be copied at a time cannot exceed 500.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
@@ -550,8 +550,8 @@ A maximum of 10 cross-device copy tasks are allowed at the same time, and the nu
 
   | Name | Type   | Mandatory  | Description         |
   | ---- | ------------------ | ---- | ----------------------------|
-  | srcUri  | string | Yes   | URI of the file or folder to copy.                     |
-  | destUri | string | Yes   | URI of the destination file or folder.                         |
+  | srcUri  | string | Yes   | URI of the file or directory to copy.                     |
+  | destUri | string | Yes   | URI of the destination file or directory.                         |
   | callback | AsyncCallback\<void>| Yes| Callback used to return the result.|
 
 **Error codes**
@@ -587,9 +587,9 @@ try {
 
 copy(srcUri: string, destUri: string, options: CopyOptions, callback: AsyncCallback\<void>): void
 
-Copies a file or folder. This API uses an asynchronous callback to return the result.
+Copies a file or directory. This API uses an asynchronous callback to return the result.
 
-File copy across devices is supported. This API forcibly overwrites the file or folder with the same name in the destination directory. The file or directory URI is supported.\n
+File copy across devices is supported. This API forcibly overwrites the file or directory. The input parameter can be the URI of the file or directory.<br>
 A maximum of 10 cross-device copy tasks are allowed at the same time, and the number of files to be copied at a time cannot exceed 500.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
@@ -598,8 +598,8 @@ A maximum of 10 cross-device copy tasks are allowed at the same time, and the nu
 
   | Name | Type                        | Mandatory  | Description                                      |
   | ---- | -------------------------- | ---- | ---------------------------------------- |
-  | srcUri  | string | Yes   | URI of the file or folder to copy.                     |
-  | destUri | string | Yes   | URI of the destination file or folder.                         |
+  | srcUri  | string | Yes   | URI of the file or directory to copy.                     |
+  | destUri | string | Yes   | URI of the destination file or directory.                         |
   | options | [CopyOptions](#copyoptions11) |Yes| Callback used to return the copy progress.                         |
   | callback | AsyncCallback\<void>| Yes| Callback used to return the result.|
 
@@ -790,7 +790,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 copyDir(src: string, dest: string, mode?: number): Promise\<void>
 
-Copies a directory. This API uses a promise to return the result.
+Copies the source directory to the destination path. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -798,9 +798,9 @@ Copies a directory. This API uses a promise to return the result.
 
   | Name   | Type    | Mandatory  | Description                         |
   | ------ | ------ | ---- | --------------------------- |
-  | src | string | Yes   | Application sandbox path of the folder to copy.|
-  | dest | string | Yes   | Application sandbox path of the destination folder.|
-  | mode | number | No   | Copy mode. The default value is **0**.<br>- **0**: Throw an exception if a file conflict occurs.<br> Throw an exception if there is a folder with the same name in the destination folder and there are files with the same name in the conflicting folder. All the non-conflicting files in the source folder will be moved to the destination folder, and the non-conflicting files in the destination folder will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.<br>- **1**: Forcibly overwrite the files with the same name in the destination folder. If there is a folder with the same name in the destination directory and there are files with the same name in the conflicting folder, all the files with the same name in the destination folder will be overwritten and the non-conflicting files will be retained.|
+  | src | string | Yes   | Application sandbox path of the source directory.|
+  | dest | string | Yes   | Application sandbox path of the destination directory.|
+  | mode | number | No   | Copy mode. The default value is **0**.<br>- **0**: Throw an exception if a file conflict occurs.<br> An exception will be thrown if the destination directory contains a directory with the same name as the source directory, and a file with the same name exists in the conflict directory. All the non-conflicting files in the source directory will be moved to the destination directory, and the non-conflicting files in the destination directory will be retained. The data attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.<br>- **1**: Forcibly overwrite the files with the same name in the destination directory.<br> When the destination directory contains a directory with the same name as the source directory, the files with the same names in the destination directory are overwritten forcibly; the files without conflicts in the destination directory are retained.|
 
 **Return value**
 
@@ -830,7 +830,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 copyDir(src: string, dest: string, mode: number, callback: AsyncCallback\<void, Array\<ConflictFiles>>): void
 
-Copies a folder with the specified mode. This API uses an asynchronous callback to return the result.
+Copies the source directory to the destination path. You can set the copy mode. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -838,9 +838,9 @@ Copies a folder with the specified mode. This API uses an asynchronous callback 
 
   | Name   | Type    | Mandatory  | Description                         |
   | ------ | ------ | ---- | --------------------------- |
-  | src | string | Yes   | Application sandbox path of the folder to copy.|
-  | dest | string | Yes   | Application sandbox path of the destination folder.|
-  | mode | number | Yes   | Copy mode. The default value is **0**.<br>- **0**: Throw an exception if a file conflict occurs.<br> Throw an exception if there is a folder with the same name in the destination folder and there are files with the same name in the conflicting folder. All the non-conflicting files in the source folder will be moved to the destination folder, and the non-conflicting files in the destination folder will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.<br>- **1**: Forcibly overwrite the files with the same name in the destination folder. If there is a folder with the same name in the destination directory and there are files with the same name in the conflicting folder, all the files with the same name in the destination folder will be overwritten and the non-conflicting files will be retained.|
+  | src | string | Yes   | Application sandbox path of the source directory.|
+  | dest | string | Yes   | Application sandbox path of the destination directory.|
+  | mode | number | Yes   | Copy mode. The default value is **0**.<br>- **0**: Throw an exception if a file conflict occurs.<br> An exception will be thrown if the destination directory contains a directory with the same name as the source directory, and a file with the same name exists in the conflict directory. All the non-conflicting files in the source directory will be moved to the destination directory, and the non-conflicting files in the destination directory will be retained. The data attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.<br>- **1**: Forcibly overwrite the files with the same name in the destination directory.<br> When the destination directory contains a directory with the same name as the source directory, the files with the same names in the destination directory are overwritten forcibly; the files without conflicts in the destination directory are retained.|
   | callback | AsyncCallback&lt;void, Array&lt;[ConflictFiles](#conflictfiles10)&gt;&gt; | Yes   | Callback used to return the result.             |
 
 **Error codes**
@@ -872,9 +872,9 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 copyDir(src: string, dest: string, callback: AsyncCallback\<void, Array\<ConflictFiles>>): void
 
-Copies a directory. This API uses an asynchronous callback to return the result.
+Copies the source directory to the destination path. This API uses an asynchronous callback to return the result.
 
-An exception will be thrown if there is a folder with the same name in the destination directory and there are files with the same name in the conflicting folder. All the non-conflicting files in the source folder will be moved to the destination folder, and the non-conflicting files in the destination folder will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.
+An exception will be thrown if the destination directory contains a directory with the same name as the source directory and there are files with the same name in the conflicting directory. All the non-conflicting files in the source directory will be moved to the destination directory, and the non-conflicting files in the destination directory will be retained. The data attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -882,8 +882,8 @@ An exception will be thrown if there is a folder with the same name in the desti
 
   | Name   | Type    | Mandatory  | Description                         |
   | ------ | ------ | ---- | --------------------------- |
-  | src | string | Yes   | Application sandbox path of the folder to copy.|
-  | dest | string | Yes   | Application sandbox path of the destination folder.|
+  | src | string | Yes   | Application sandbox path of the source directory.|
+  | dest | string | Yes   | Application sandbox path of the destination directory.|
   | callback | AsyncCallback&lt;void, Array&lt;[ConflictFiles](#conflictfiles10)&gt;&gt; | Yes   | Callback used to return the result.             |
 
 **Error codes**
@@ -915,7 +915,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 copyDirSync(src: string, dest: string, mode?: number): void
 
-Copies a folder. This API returns the result synchronously.
+Copies the source directory to the destination path. This API returns the result synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -923,9 +923,9 @@ Copies a folder. This API returns the result synchronously.
 
   | Name   | Type    | Mandatory  | Description                         |
   | ------ | ------ | ---- | --------------------------- |
-  | src | string | Yes   | Application sandbox path of the folder to copy.|
-  | dest | string | Yes   | Application sandbox path of the destination folder.|
-  | mode | number | No   | Copy mode. The default value is **0**.<br>- **0**: Throw an exception if a file conflict occurs.<br> Throw an exception if there is a folder with the same name in the destination folder and there are files with the same name in the conflicting folder. All the non-conflicting files in the source folder will be moved to the destination folder, and the non-conflicting files in the destination folder will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.<br>- **1**: Forcibly overwrite the files with the same name in the destination folder. If there is a folder with the same name in the destination directory and there are files with the same name in the conflicting folder, all the files with the same name in the destination folder will be overwritten and the non-conflicting files will be retained.|
+  | src | string | Yes   | Application sandbox path of the source directory.|
+  | dest | string | Yes   | Application sandbox path of the destination directory.|
+  | mode | number | No   | Copy mode. The default value is **0**.<br>- **0**: Throw an exception if a file conflict occurs.<br> An exception will be thrown if the destination directory contains a directory with the same name as the source directory, and a file with the same name exists in the conflict directory. All the non-conflicting files in the source directory will be moved to the destination directory, and the non-conflicting files in the destination directory will be retained. The data attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.<br>- **1**: Forcibly overwrite the files with the same name in the destination directory.<br> When the destination directory contains a directory with the same name as the source directory, the files with the same names in the destination directory are overwritten forcibly; the files without conflicts in the destination directory are retained.|
 
 **Error codes**
 
@@ -1018,17 +1018,20 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   let dmInstance = distributedDeviceManager.createDeviceManager("com.example.filesync");
   let deviceInfoList: Array<distributedDeviceManager.DeviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
-  let networkId = deviceInfoList[0].networkId;
-  let listeners: fs.DfsListeners = {
-    onStatus(networkId, status) {
-      console.info('onStatus');
-    }
+  if (deviceInfoList && deviceInfoList.length > 0) {
+    console.info(`Success to get available device list`);
+    let networkId = deviceInfoList[0].networkId;
+    let listeners: fs.DfsListeners = {
+      onStatus(networkId, status) {
+        console.info('onStatus');
+      }
+    };
+    fs.connectDfs(networkId, listeners).then(() => {
+      console.info("Success to connectDfs");
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to connectDfs. Code: ${err.code}, message: ${err.message}`);
+    });
   }
-  fs.connectDfs(networkId, listeners).then(() => {
-    console.info("Success to connectDfs");
-  }).catch((err: BusinessError) => {
-    console.error("connectDfs failed with error message: " + err.message + ", error code: " + err.code);
-  });
   ```
 
 ## fs.disconnectDfs<sup>12+</sup>
@@ -1065,12 +1068,15 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   let dmInstance = distributedDeviceManager.createDeviceManager("com.example.filesync");
   let deviceInfoList: Array<distributedDeviceManager.DeviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
-  let networkId = deviceInfoList[0].networkId;
-  fs.disconnectDfs(networkId).then(() => {
-    console.info("Success to disconnectDfs");
-  }).catch((err: BusinessError) => {
-    console.error('disconnectDfs failed with error message: ${JSON.stringify(err)}')
-  })
+  if (deviceInfoList && deviceInfoList.length > 0) {
+    console.info(`Success to get available device list`);
+    let networkId = deviceInfoList[0].networkId;
+    fs.disconnectDfs(networkId).then(() => {
+      console.info("Success to disconnect dfs");
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to disconnect dfs. Code: ${err.code}, message: ${err.message}`);
+    })
+  }
   ```
 
 ## fs.setxattr<sup>12+</sup>
@@ -1085,7 +1091,7 @@ Sets an extended attribute of a file or directory.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| path   | string | Yes  | Application sandbox path of the directory.                                  |
+| path   | string | Yes  | Application sandbox path of the file or directory.                                  |
 | key   | string | Yes  | Key of the extended attribute to obtain. The value is a string of less than 256 bytes and can contain only the **user.** prefix. |
 | value   | string | Yes  | Value of the extended attribute to set.                                  |
 
@@ -1127,7 +1133,7 @@ Sets an extended attribute of a file or directory.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| path   | string | Yes  | Application sandbox path of the directory.                                  |
+| path   | string | Yes  | Application sandbox path of the file or directory.                                  |
 | key   | string | Yes  | Key of the extended attribute to obtain. The value is a string of less than 256 bytes and can contain only the **user.** prefix.  |
 | value   | string | Yes  | Value of the extended attribute to set.                                  |
 
@@ -1165,7 +1171,7 @@ Obtains an extended attribute of a file or directory.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| path   | string | Yes  | Application sandbox path of the directory.                                  |
+| path   | string | Yes  | Application sandbox path of the file or directory.                                  |
 | key   | string | Yes  | Key of the extended attribute to obtain.                                  |
 
 **Return value**
@@ -1206,7 +1212,7 @@ Obtains an extended attribute of a file. This API returns the result synchronous
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| path   | string | Yes  | Application sandbox path of the directory.                                  |
+| path   | string | Yes  | Application sandbox path of the file or directory.                                  |
 | key   | string | Yes  | Key of the extended attribute to obtain.                                  |
 
 **Return value**
@@ -1289,7 +1295,7 @@ Creates a directory. This API uses a promise to return the result. The value **t
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | path   | string | Yes  | Application sandbox path of the directory.                                  |
-| recursion   | boolean | Yes  | Whether to create a directory recursively. The value **true** means to create a directory recursively. The value **false** means to create a single-level directory.  |
+| recursion   | boolean | Yes  | Whether to create a directory recursively.<br>The value **true** means to create a directory recursively. The value **false** means to create a single-level directory.  |
 
 **Return value**
 
@@ -1363,7 +1369,7 @@ Creates a directory. This API uses an asynchronous callback to return the result
 | Name  | Type                     | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | path     | string                    | Yes  | Application sandbox path of the directory.                                  |
-| recursion   | boolean | Yes  | Whether to create a directory recursively. The value **true** means to create a directory recursively. The value **false** means to create a single-level directory.  |
+| recursion   | boolean | Yes  | Whether to create a directory recursively.<br>The value **true** means to create a directory recursively. The value **false** means to create a single-level directory.  |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                            |
 
 **Error codes**
@@ -1426,7 +1432,7 @@ Creates a directory. This API returns the result synchronously. The value **true
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | path   | string | Yes  | Application sandbox path of the directory.                                  |
-| recursion   | boolean | Yes  | Whether to create a directory recursively. The value **true** means to create a directory recursively. The value **false** means to create a single-level directory.  |
+| recursion   | boolean | Yes  | Whether to create a directory recursively.<br>The value **true** means to create a directory recursively. The value **false** means to create a single-level directory.  |
 
 **Error codes**
 
@@ -1453,8 +1459,8 @@ Opens a file or directory. This API uses a promise to return the result. This AP
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| path   | string | Yes  | Application sandbox path or URI of the file.                                  |
-| mode  | number | No  | [Mode](#openmode) for opening the file. You must specify one of the following options. By default, the file is opened in read-only mode.<br>- **OpenMode.READ_ONLY(0o0)**: Open the file in read-only mode.<br>- **OpenMode.WRITE_ONLY(0o1)**: Open the file in write-only mode.<br>- **OpenMode.READ_WRITE(0o2)**: Open the file in read/write mode.<br>You can add the following function options in bitwise OR mode. By default, no additional option is added.  <br>- **OpenMode.CREATE(0o100)**: Create a file if the file does not exist.<br>- **OpenMode.TRUNC(0o1000)**: If the file exists and is opened in write mode, truncate the file length to 0.<br>- **OpenMode.APPEND(0o2000)**: Open the file in append mode. New data will be added to the end of the file.<br>- **OpenMode.NONBLOCK(0o4000)**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the opened file and in subsequent I/Os.<br>- **OpenMode.DIR(0o200000)**: If **path** does not point to a directory, throw an exception. The write permission is not allowed.<br>- **OpenMode.NOFOLLOW(0o400000)**: If **path** points to a symbolic link, throw an exception.<br>- **OpenMode.SYNC(0o4010000)**: Open the file in synchronous I/O mode.|
+| path   | string | Yes  | Application sandbox path or URI of the file or directory.                                  |
+| mode  | number | No  | [Mode](#openmode) for opening the file or directory. You must specify one of the following options. By default, the file is opened in read-only mode.<br>- **OpenMode.READ_ONLY(0o0)**: Open the file in read-only mode.<br>- **OpenMode.WRITE_ONLY(0o1)**: Open the file in write-only mode.<br>- **OpenMode.READ_WRITE(0o2)**: Open the file in read/write mode.<br>You can add the following function options in bitwise OR mode. By default, no additional option is added.  <br>- **OpenMode.CREATE(0o100)**: Create a file if the file does not exist.<br>- **OpenMode.TRUNC(0o1000)**: If the file exists and is opened in write mode, truncate the file length to 0.<br>- **OpenMode.APPEND(0o2000)**: Open the file in append mode. New data will be added to the end of the file.<br>- **OpenMode.NONBLOCK(0o4000)**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the opened file and in subsequent I/Os.<br>- **OpenMode.DIR(0o200000)**: If **path** does not point to a directory, throw an exception. The write permission is not allowed.<br>- **OpenMode.NOFOLLOW(0o400000)**: If **path** points to a symbolic link, throw an exception.<br>- **OpenMode.SYNC(0o4010000)**: Open the file in synchronous I/O mode.|
 
 **Return value**
 
@@ -1496,8 +1502,8 @@ This API supports the use of a URI.
 
 | Name  | Type                           | Mandatory| Description                                                        |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| path     | string                          | Yes  | Application sandbox path or URI of the file.                                  |
-| mode  | number | Yes  | [Mode](#openmode) for opening the file. You must specify one of the following options. By default, the file is opened in read-only mode.<br>- **OpenMode.READ_ONLY(0o0)**: Open the file in read-only mode.<br>- **OpenMode.WRITE_ONLY(0o1)**: Open the file in write-only mode.<br>- **OpenMode.READ_WRITE(0o2)**: Open the file in read/write mode.<br>You can also specify the following options, separated by a bitwise OR operator (&#124;). By default, no additional options are given.<br>- **OpenMode.CREATE(0o100)**: If the file does not exist, create it.<br>- **OpenMode.TRUNC(0o1000)**: If the file exists and is opened in write mode, truncate the file length to 0.<br>- **OpenMode.APPEND(0o2000)**: Open the file in append mode. New data will be added to the end of the file.<br>- **OpenMode.NONBLOCK(0o4000)**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the opened file and in subsequent I/Os.<br>- **OpenMode.DIR(0o200000)**: If **path** does not point to a directory, throw an exception. The write permission is not allowed.<br>- **OpenMode.NOFOLLOW(0o400000)**: If **path** points to a symbolic link, throw an exception.<br>- **OpenMode.SYNC(0o4010000)**: Open the file in synchronous I/O mode.|
+| path     | string                          | Yes  | Application sandbox path or URI of a file or directory.                                  |
+| mode  | number | Yes  | [Mode](#openmode) for opening the file or directory. You must specify one of the following options. By default, the file is opened in read-only mode.<br>- **OpenMode.READ_ONLY(0o0)**: Open the file in read-only mode.<br>- **OpenMode.WRITE_ONLY(0o1)**: Open the file in write-only mode.<br>- **OpenMode.READ_WRITE(0o2)**: Open the file in read/write mode.<br>You can also specify the following options, separated by a bitwise OR operator (&#124;). By default, no additional options are given.<br>- **OpenMode.CREATE(0o100)**: If the file does not exist, create it.<br>- **OpenMode.TRUNC(0o1000)**: If the file exists and is opened in write mode, truncate the file length to 0.<br>- **OpenMode.APPEND(0o2000)**: Open the file in append mode. New data will be added to the end of the file.<br>- **OpenMode.NONBLOCK(0o4000)**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the opened file and in subsequent I/Os.<br>- **OpenMode.DIR(0o200000)**: If **path** does not point to a directory, throw an exception. The write permission is not allowed.<br>- **OpenMode.NOFOLLOW(0o400000)**: If **path** points to a symbolic link, throw an exception.<br>- **OpenMode.SYNC(0o4010000)**: Open the file in synchronous I/O mode.|
 | callback     | AsyncCallback&lt;void&gt;                          | Yes  | Callback used to return the result.                                  |
 
 **Error codes**
@@ -1533,7 +1539,7 @@ Opens a file or directory. This API uses an asynchronous callback to return the 
 
 | Name  | Type                           | Mandatory| Description                                                        |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| path     | string                          | Yes  | Application sandbox path or URI of the file.                                  |
+| path     | string                          | Yes  | Application sandbox path or URI of a file or directory.                                  |
 | callback     | AsyncCallback&lt;void&gt;                          | Yes  | Callback used to return the result.                                  |
 
 **Error codes**
@@ -1569,8 +1575,8 @@ Opens a file or directory. This API returns the result synchronously. This API s
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| path   | string | Yes  | Application sandbox path or file URI of the file to open.                                  |
-| mode  | number | No  | [Mode](#openmode) for opening the file. You must specify one of the following options. By default, the file is opened in read-only mode.<br>- **OpenMode.READ_ONLY(0o0)**: Open the file in read-only mode.<br>- **OpenMode.WRITE_ONLY(0o1)**: Open the file in write-only mode.<br>- **OpenMode.READ_WRITE(0o2)**: Open the file in read/write mode.<br>You can also specify the following options, separated by a bitwise OR operator (&#124;). By default, no additional options are given.<br>- **OpenMode.CREATE(0o100)**: If the file does not exist, create it.<br>- **OpenMode.TRUNC(0o1000)**: If the file exists and is opened in write mode, truncate the file length to 0.<br>- **OpenMode.APPEND(0o2000)**: Open the file in append mode. New data will be added to the end of the file.<br>- **OpenMode.NONBLOCK(0o4000)**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the opened file and in subsequent I/Os.<br>- **OpenMode.DIR(0o200000)**: If **path** does not point to a directory, throw an exception. The write permission is not allowed.<br>- **OpenMode.NOFOLLOW(0o400000)**: If **path** points to a symbolic link, throw an exception.<br>- **OpenMode.SYNC(0o4010000)**: Open the file in synchronous I/O mode.|
+| path   | string | Yes  | Application sandbox path or URI of a file or directory to open.                                  |
+| mode  | number | No  | [Mode](#openmode) for opening the file or directory. You must specify one of the following options. By default, the file is opened in read-only mode.<br>- **OpenMode.READ_ONLY(0o0)**: Open the file in read-only mode.<br>- **OpenMode.WRITE_ONLY(0o1)**: Open the file in write-only mode.<br>- **OpenMode.READ_WRITE(0o2)**: Open the file in read/write mode.<br>You can also specify the following options, separated by a bitwise OR operator (&#124;). By default, no additional options are given.<br>- **OpenMode.CREATE(0o100)**: If the file does not exist, create it.<br>- **OpenMode.TRUNC(0o1000)**: If the file exists and is opened in write mode, truncate the file length to 0.<br>- **OpenMode.APPEND(0o2000)**: Open the file in append mode. New data will be added to the end of the file.<br>- **OpenMode.NONBLOCK(0o4000)**: If **path** points to a named pipe (also known as a FIFO), block special file, or character special file, perform non-blocking operations on the opened file and in subsequent I/Os.<br>- **OpenMode.DIR(0o200000)**: If **path** does not point to a directory, throw an exception. The write permission is not allowed.<br>- **OpenMode.NOFOLLOW(0o400000)**: If **path** points to a symbolic link, throw an exception.<br>- **OpenMode.SYNC(0o4010000)**: Open the file in synchronous I/O mode.|
 
 **Return value**
 
@@ -1723,7 +1729,11 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 rmdir(path: string): Promise&lt;void&gt;
 
-Deletes a directory. This API uses a promise to return the result.
+Removes a directory. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API can be used to remove a single file. However, you are advised to use **unlink()** instead.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1751,7 +1761,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
   import { BusinessError } from '@kit.BasicServicesKit';
   let dirPath = pathDir + "/testDir";
   fs.rmdir(dirPath).then(() => {
-    console.info("Directory deleted");
+    console.info("Directory removed");
   }).catch((err: BusinessError) => {
     console.error("rmdir failed with error message: " + err.message + ", error code: " + err.code);
   });
@@ -1761,7 +1771,11 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 rmdir(path: string, callback: AsyncCallback&lt;void&gt;): void
 
-Deletes a directory. This API uses an asynchronous callback to return the result.
+Removes a directory. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API can be used to remove a single file. However, you are advised to use **unlink()** instead.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1787,7 +1801,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
     if (err) {
       console.error("rmdir failed with error message: " + err.message + ", error code: " + err.code);
     } else {
-      console.info("Directory deleted");
+      console.info("Directory removed");
     }
   });
   ```
@@ -1796,7 +1810,11 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 rmdirSync(path: string): void
 
-Deletes a directory. This API returns the result synchronously.
+Removes a directory. This API returns the result synchronously.
+
+> **NOTE**
+>
+> This API can be used to remove a single file. However, you are advised to use **unlink()** instead.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1823,7 +1841,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 unlink(path: string): Promise&lt;void&gt;
 
-Deletes a file. This API uses a promise to return the result.
+Removes a file. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1851,7 +1869,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
   import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + "/test.txt";
   fs.unlink(filePath).then(() => {
-    console.info("File deleted");
+    console.info("File removed");
   }).catch((err: BusinessError) => {
     console.error("remove file failed with error message: " + err.message + ", error code: " + err.code);
   });
@@ -1861,7 +1879,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 unlink(path: string, callback: AsyncCallback&lt;void&gt;): void
 
-Deletes a file. This API uses an asynchronous callback to return the result.
+Removes a file. This API uses an asynchronous callback to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1872,7 +1890,7 @@ Deletes a file. This API uses an asynchronous callback to return the result.
 | Name  | Type                     | Mandatory| Description                      |
 | -------- | ------------------------- | ---- | -------------------------- |
 | path     | string                    | Yes  | Application sandbox path of the file.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked immediately after the file is deleted.  |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked immediately after the file is removed.  |
 
 **Error codes**
 
@@ -1887,7 +1905,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
     if (err) {
       console.error("remove file failed with error message: " + err.message + ", error code: " + err.code);
     } else {
-      console.info("File deleted");
+      console.info("File removed");
     }
   });
   ```
@@ -1896,7 +1914,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 unlinkSync(path: string): void
 
-Deletes a file. This API returns the result synchronously.
+Removes a file. This API returns the result synchronously.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1924,7 +1942,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 write(fd: number, buffer: ArrayBuffer | string, options?: WriteOptions): Promise&lt;number&gt;
 
-Writes data into a file. This API uses a promise to return the result.
+Writes data to a file. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2323,7 +2341,7 @@ Represents the information obtained by the **ReaderIterator** object.
 
 | Name       | Type      | Description               |
 | ----------- | --------------- | ------------------ |
-| done | boolean     |  Whether the iteration is complete. The value **true** means the iteration is complete; the value **false** means the iteration is not complete.         |
+| done | boolean     |  Whether the iteration is complete. The value **true** means the iteration is complete; the value **false** means the opposite.         |
 | value    | string     | File text content read line by line.|
 
 ## fs.readText
@@ -2413,7 +2431,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 readTextSync(filePath: string, options?: ReadTextOptions): string
 
-Reads the text of a file. This API returns the result synchronously.
+Reads the text content of a file. This API returns the result synchronously.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2557,11 +2575,11 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 rename(oldPath: string, newPath: string): Promise&lt;void&gt;
 
-Renames a file or folder. This API uses a promise to return the result.
+Renames a file or directory. This API uses a promise to return the result.
 
 > **NOTE**
 > 
-> This API is not applicable to the files or folders in a distributed directory.
+> This API is not supported in a distributed directory.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2571,8 +2589,8 @@ Renames a file or folder. This API uses a promise to return the result.
 
 | Name | Type  | Mandatory| Description                        |
 | ------- | ------ | ---- | ---------------------------- |
-| oldPath | string | Yes  | Application sandbox path of the file or folder to rename.|
-| newPath | string | Yes  | Application sandbox path of the renamed file or folder.  |
+| oldPath | string | Yes  | Application sandbox path of the file or directory to rename.|
+| newPath | string | Yes  | Application sandbox path of the renamed file or directory.  |
 
 **Return value**
 
@@ -2601,11 +2619,11 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 rename(oldPath: string, newPath: string, callback: AsyncCallback&lt;void&gt;): void
 
-Renames a file or folder. This API uses an asynchronous callback to return the result.
+Renames a file or directory. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 > 
-> This API is not applicable to the files or folders in a distributed directory.
+> This API is not supported in a distributed directory.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2615,8 +2633,8 @@ Renames a file or folder. This API uses an asynchronous callback to return the r
 
 | Name  | Type                     | Mandatory| Description                        |
 | -------- | ------------------------- | ---- | ---------------------------- |
-| oldPath | string | Yes  | Application sandbox path of the file or folder to rename.|
-| newPath | string | Yes  | Application sandbox path of the renamed file or folder.  |
+| oldPath | string | Yes  | Application sandbox path of the file or directory to rename.|
+| newPath | string | Yes  | Application sandbox path of the renamed file or directory.  |
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.  |
 
 **Error codes**
@@ -2642,11 +2660,11 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 renameSync(oldPath: string, newPath: string): void
 
-Renames a file or folder. This API returns the result synchronously.
+Renames a file or directory. This API returns the result synchronously.
 
 > **NOTE**
 >
-> This API is not applicable to the files or folders in a distributed directory.
+> This API is not supported in a distributed directory.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2656,8 +2674,8 @@ Renames a file or folder. This API returns the result synchronously.
 
 | Name | Type  | Mandatory| Description                        |
 | ------- | ------ | ---- | ---------------------------- |
-| oldPath | string | Yes  | Application sandbox path of the file or folder to rename.|
-| newPath | string | Yes  | Application sandbox path of the renamed file or folder.  |
+| oldPath | string | Yes  | Application sandbox path of the file or directory to rename.|
+| newPath | string | Yes  | Application sandbox path of the renamed file or directory.  |
 
 **Error codes**
 
@@ -2816,7 +2834,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 fdatasync(fd: number, callback: AsyncCallback&lt;void&gt;): void
 
-Synchronizes the data (excluding the metadata) of a file. This API uses an asynchronous callback to return the result.
+Synchronizes the data of a file. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -2916,7 +2934,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 ## fs.symlink
 symlink(target: string, srcPath: string, callback: AsyncCallback&lt;void&gt;): void
 
-Creates a symbolic link based on a file path. This API uses an asynchronous callback to return the result.
+Creates a symbolic link based on the file path. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -2951,7 +2969,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 symlinkSync(target: string, srcPath: string): void
 
-Creates a symbolic link based on a file path. This API returns the result synchronously.
+Creates a symbolic link based on the file path. This API returns the result synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -2977,7 +2995,9 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 ## fs.listFile
 listFile(path: string, options?: ListFileOptions): Promise<string[]>
 
-Lists all files in a directory. This API supports recursive listing of all files (including files in subfolders) and file filtering. This API uses a promise to return the result starting with a slash (/).
+Lists the names of all files and directories in the current path. Filtering is supported. This API uses a promise to return the result.
+
+You can configure the **recursion** parameter in **options** to recursively list the relative paths of all files. The relative path starts with a slash (/).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2987,7 +3007,7 @@ Lists all files in a directory. This API supports recursive listing of all files
 
   | Name   | Type    | Mandatory  | Description                         |
   | ------ | ------ | ---- | --------------------------- |
-  | path | string | Yes   | Application sandbox path of the folder.|
+  | path | string | Yes   | Application sandbox path of the directory.|
   | options | [ListFileOptions](#listfileoptions11) | No   | Options for filtering files. The files are not filtered by default.|
 
 
@@ -3028,7 +3048,9 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 ## fs.listFile
 listFile(path: string, options?: ListFileOptions, callback: AsyncCallback<string[]>): void
 
-Lists all files in a directory. This API supports recursive listing of all files (including files in subfolders) and file filtering. This API uses an asynchronous callback to return the result starting with a slash (/).
+Lists the names of all files and directories in the current path. Filtering is supported. This API uses an asynchronous callback to return the result.
+
+You can configure the **recursion** parameter in **options** to recursively list the relative paths of all files. The relative path starts with a slash (/).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -3038,7 +3060,7 @@ Lists all files in a directory. This API supports recursive listing of all files
 
   | Name   | Type    | Mandatory  | Description                         |
   | ------ | ------ | ---- | --------------------------- |
-  | path | string | Yes   | Application sandbox path of the folder.|
+  | path | string | Yes   | Application sandbox path of the directory.|
   | options | [ListFileOptions](#listfileoptions11) | No   | Options for filtering files. The files are not filtered by default.|
   | callback | AsyncCallback&lt;string[]&gt; | Yes   | Callback used to return the file names listed.             |
 
@@ -3077,7 +3099,9 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 listFileSync(path: string, options?: ListFileOptions): string[]
 
-Lists all file names in a folder synchronously. This API supports recursive listing of all files (including files in subfolders) and file filtering. The returned result starts with a slash (/).
+Lists the names of all files and directories in the current directory. This API returns the result synchronously. Filtering is supported.
+
+You can configure the **recursion** parameter in **options** to recursively list the relative paths of all files. The relative path starts with a slash (/).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -3087,7 +3111,7 @@ Lists all file names in a folder synchronously. This API supports recursive list
 
   | Name   | Type    | Mandatory  | Description                         |
   | ------ | ------ | ---- | --------------------------- |
-  | path | string | Yes   | Application sandbox path of the folder.|
+  | path | string | Yes   | Application sandbox path of the directory.|
   | options | [ListFileOptions](#listfileoptions11) | No   | Options for filtering files. The files are not filtered by default.|
 
 
@@ -3095,7 +3119,7 @@ Lists all file names in a folder synchronously. This API supports recursive list
 
   | Type                  | Description        |
   | --------------------- | ---------- |
-  | string[] | List of the file names obtained.|
+  | string[] | File names obtained.|
 
 **Error codes**
 
@@ -3134,7 +3158,7 @@ Adjusts the position of the file offset pointer.
   | Name   | Type    | Mandatory  | Description                         |
   | ------ | ------ | ---- | --------------------------- |
   | fd | number | Yes   | FD of the file.|
-  | offset | number | Yes   | Number of bytes to move the offset.|
+  | offset | number | Yes   | Relative offset, in bytes.|
   | whence | [WhenceType](#whencetype11) | No   | Where to start the offset. If this parameter is not specified, the file start position is used by default.|
 
 **Return value**
@@ -3160,11 +3184,11 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 moveDir(src: string, dest: string, mode?: number): Promise\<void>
 
-Moves a directory. This API uses a promise to return the result.
+Moves the source directory to the destination directory. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is not applicable to the files or folders in a distributed directory.
+> This API is not supported in a distributed directory.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -3172,9 +3196,9 @@ Moves a directory. This API uses a promise to return the result.
 
   | Name   | Type    | Mandatory  | Description                         |
   | ------ | ------ | ---- | --------------------------- |
-  | src | string | Yes   | Application sandbox path of the folder to copy.|
-  | dest | string | Yes   | Application sandbox path of the destination folder.|
-  | mode | number | No   | Mode for moving the folder. The default value is **0**.<br>- **0**: Throw an exception if a directory conflict occurs.<br> Throw an exception if there is a non-empty folder with the same name in the destination directory.<br>- **1**: Throw an exception if a file conflict occurs.<br> Throw an exception if there is a folder with the same name in the destination folder and there are files with the same name in the conflicting folder. All the non-conflicting files in the source folder will be moved to the destination folder, and the non-conflicting files in the destination folder will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.<br>- **2**: Forcibly overwrite the conflicting files in the destination directory. If there is a folder with the same name in the destination directory and there are files with the same name in the conflicting folder, all the files with the same name in the destination folder will be overwritten and the non-conflicting files will be retained.<br>- **3**: Forcibly overwrite the conflicting folder.<br> Move the source folder to the destination directory and overwrite the conflicting folder completely. Original files in the folder will be deleted if there is a folder with the same name in the destination directory.|
+  | src | string | Yes   | Application sandbox path of the source directory.|
+  | dest | string | Yes   | Application sandbox path of the destination directory.|
+  | mode | number | No   | Move mode. The default value is **0**.<br>- **0**: Throw an exception if a directory conflict occurs.<br> An exception will be thrown if the destination directory contains a non-empty directory with the same name as the source directory.<br>- **1**: Throw an exception if a file conflict occurs.<br> An exception will be thrown if the destination directory contains a directory with the same name as the source directory, and a file with the same name exists in the conflict directory. All the non-conflicting files in the source directory will be moved to the destination directory, and the non-conflicting files in the destination directory will be retained. The data attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.<br>- **2**: Forcibly overwrite the conflicting files in the destination directory.<br> When the destination directory contains a directory with the same name as the source directory, the files with the same names in the destination directory are overwritten forcibly; the files without conflicts in the destination directory are retained.<br>- **3**: Forcibly overwrite the conflicting directory.<br> The source directory is moved to the destination directory, and the content of the moved directory is the same as that of the source directory. If the destination directory contains a directory with the same name as the source directory, all original files in the directory will be deleted.|
 
 **Return value**
 
@@ -3204,11 +3228,11 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 moveDir(src: string, dest: string, mode: number, callback: AsyncCallback\<void, Array\<ConflictFiles>>): void
 
-Moves a folder with the specified mode. This API uses an asynchronous callback to return the result.
+Moves the source directory to the destination directory. You can set the move mode. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
-> This API is not applicable to the files or folders in a distributed directory.
+> This API is not supported in a distributed directory.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -3216,9 +3240,9 @@ Moves a folder with the specified mode. This API uses an asynchronous callback t
 
   | Name   | Type    | Mandatory  | Description                         |
   | ------ | ------ | ---- | --------------------------- |
-  | src | string | Yes   | Application sandbox path of the folder to copy.|
-  | dest | string | Yes   | Application sandbox path of the destination folder.|
-  | mode | number | Yes   | Mode for moving the folder. The default value is **0**.<br>- **0**: Throw an exception if a directory conflict occurs.<br> Throw an exception if there is a folder with the same name in the destination directory.<br>- **1**: Throw an exception if a file conflict occurs.<br> Throw an exception if there is a folder with the same name in the destination folder and there are files with the same name in the conflicting folder. All the non-conflicting files in the source folder will be moved to the destination folder, and the non-conflicting files in the destination folder will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.<br>- **2**: Forcibly overwrite the conflicting files in the destination directory. If there is a folder with the same name in the destination directory and there are files with the same name in the conflicting folder, all the files with the same name in the destination folder will be overwritten and the non-conflicting files will be retained.<br>- **3**: Forcibly overwrite the conflicting folder.<br> Move the source folder to the destination directory and overwrite the conflicting folder completely. Original files in the folder will be deleted if there is a folder with the same name in the destination directory.|
+  | src | string | Yes   | Application sandbox path of the source directory.|
+  | dest | string | Yes   | Application sandbox path of the destination directory.|
+  | mode | number | Yes   | Move mode. The default value is **0**.<br>- **0**: Throw an exception if a directory conflict occurs.<br> An exception will be thrown if the destination directory contains a directory with the same name as the source directory.<br>- **1**: Throw an exception if a file conflict occurs.<br> An exception will be thrown if the destination directory contains a directory with the same name as the source directory, and a file with the same name exists in the conflict directory. All the non-conflicting files in the source directory will be moved to the destination directory, and the non-conflicting files in the destination directory will be retained. The data attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.<br>- **2**: Forcibly overwrite the conflicting files in the destination directory.<br> When the destination directory contains a directory with the same name as the source directory, the files with the same names in the destination directory are overwritten forcibly; the files without conflicts in the destination directory are retained.<br>- **3**: Forcibly overwrite the conflicting directory.<br> The source directory is moved to the destination directory, and the content of the moved directory is the same as that of the source directory. If the destination directory contains a directory with the same name as the source directory, all original files in the directory will be deleted.|
   | callback | AsyncCallback&lt;void, Array&lt;[ConflictFiles](#conflictfiles10)&gt;&gt; | Yes   | Callback used to return the result.             |
 
 **Error codes**
@@ -3250,13 +3274,13 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 moveDir(src: string, dest: string, callback: AsyncCallback\<void, Array\<ConflictFiles>>): void
 
-Moves a folder. This API uses an asynchronous callback to return the result.
+Moves the source directory to the destination directory. This API uses an asynchronous callback to return the result.
 
-An exception will be thrown if there is a folder with the same name in the destination directory.
+An exception will be thrown if a directory conflict occurs, that is, the destination directory contains a directory with the same name as the source directory.
 
 > **NOTE**
 >
-> This API is not applicable to the files or folders in a distributed directory.
+> This API is not supported in a distributed directory.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -3264,8 +3288,8 @@ An exception will be thrown if there is a folder with the same name in the desti
 
   | Name   | Type    | Mandatory  | Description                         |
   | ------ | ------ | ---- | --------------------------- |
-  | src | string | Yes   | Application sandbox path of the folder to copy.|
-  | dest | string | Yes   | Application sandbox path of the destination folder.|
+  | src | string | Yes   | Application sandbox path of the source directory.|
+  | dest | string | Yes   | Application sandbox path of the destination directory.|
   | callback | AsyncCallback&lt;void, Array&lt;[ConflictFiles](#conflictfiles10)&gt;&gt; | Yes   | Callback used to return the result.             |
 
 **Error codes**
@@ -3297,11 +3321,11 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 moveDirSync(src: string, dest: string, mode?: number): void
 
-Moves a folder. This API returns the result synchronously.
+Moves the source directory to the destination directory. This API returns the result synchronously.
 
 > **NOTE**
 >
-> This API is not applicable to the files or folders in a distributed directory.
+> This API is not supported in a distributed directory.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -3309,9 +3333,9 @@ Moves a folder. This API returns the result synchronously.
 
   | Name   | Type    | Mandatory  | Description                         |
   | ------ | ------ | ---- | --------------------------- |
-  | src | string | Yes   | Application sandbox path of the folder to copy.|
-  | dest | string | Yes   | Application sandbox path of the destination folder.|
-  | mode | number | No   | Mode for moving the folder. The default value is **0**.<br>- **0**: Throw an exception if a directory conflict occurs.<br> Throw an exception if there is a folder with the same name in the destination directory.<br>- **1**: Throw an exception if a file conflict occurs.<br> Throw an exception if there is a folder with the same name in the destination folder and there are files with the same name in the conflicting folder. All the non-conflicting files in the source folder will be moved to the destination folder, and the non-conflicting files in the destination folder will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.<br>- **2**: Forcibly overwrite the conflicting files in the destination directory. If there is a folder with the same name in the destination directory and there are files with the same name in the conflicting folder, all the files with the same name in the destination folder will be overwritten and the non-conflicting files will be retained.<br>- **3**: Forcibly overwrite the conflicting folder.<br> Move the source folder to the destination directory and overwrite the conflicting folder completely. Original files in the folder will be deleted if there is a folder with the same name in the destination directory.|
+  | src | string | Yes   | Application sandbox path of the source directory.|
+  | dest | string | Yes   | Application sandbox path of the destination directory.|
+  | mode | number | No   | Move mode. The default value is **0**.<br>- **0**: Throw an exception if a directory conflict occurs.<br> An exception will be thrown if the destination directory contains a directory with the same name as the source directory.<br>- **1**: Throw an exception if a file conflict occurs.<br> An exception will be thrown if the destination directory contains a directory with the same name as the source directory, and a file with the same name exists in the conflict directory. All the non-conflicting files in the source directory will be moved to the destination directory, and the non-conflicting files in the destination directory will be retained. The data attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.<br>- **2**: Forcibly overwrite the conflicting files in the destination directory.<br> When the destination directory contains a directory with the same name as the source directory, the files with the same names in the destination directory are overwritten forcibly; the files without conflicts in the destination directory are retained.<br>- **3**: Forcibly overwrite the conflicting directory.<br> The source directory is moved to the destination directory, and the content of the moved directory is the same as that of the source directory. If the destination directory contains a directory with the same name as the source directory, all original files in the directory will be deleted.|
 
 **Error codes**
 
@@ -3348,7 +3372,7 @@ Moves a file. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is not applicable to the files or folders in a distributed directory.
+> This API is not supported in a distributed directory.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -3358,7 +3382,7 @@ Moves a file. This API uses a promise to return the result.
   | ------ | ------ | ---- | --------------------------- |
   | src | string | Yes   | Application sandbox path of the file to move.|
   | dest | string | Yes   | Application sandbox path of the destination file.|
-  | mode | number | No   | Whether to overwrite the file with the same name in the destination directory.<br> The value **0** means to overwrite the file with the same name in the destination directory; the value **1** means to throw an exception.<br> The default value is **0**.|
+  | mode | number | No   | Move mode.<br>The value **0** means to overwrite the file with the same name in the destination directory; the value **1** means to throw an exception. The default value is **0**.|
 
 **Return value**
 
@@ -3391,7 +3415,7 @@ Moves a file with the specified mode. This API uses an asynchronous callback to 
 
 > **NOTE**
 >
-> This API is not applicable to the files or folders in a distributed directory.
+> This API is not supported in a distributed directory.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -3401,7 +3425,7 @@ Moves a file with the specified mode. This API uses an asynchronous callback to 
   | ------ | ------ | ---- | --------------------------- |
   | src | string | Yes   | Application sandbox path of the file to move.|
   | dest | string | Yes   | Application sandbox path of the destination file.|
-  | mode | number | Yes   | Whether to overwrite the file with the same name in the destination directory.<br> The value **0** means to overwrite the file with the same name in the destination directory; the value **1** means to throw an exception.<br> The default value is **0**.|
+  | mode | number | Yes   | Move mode.<br>The value **0** means to overwrite the file with the same name in the destination directory; the value **1** means to throw an exception. The default value is **0**.|
   | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.             |
 
 **Error codes**
@@ -3431,7 +3455,7 @@ Moves a file and forcibly overwrites the file with the same name in the destinat
 
 > **NOTE**
 >
-> This API is not applicable to the files or folders in a distributed directory.
+> This API is not supported in a distributed directory.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -3470,7 +3494,7 @@ Moves a file. This API returns the result synchronously.
 
 > **NOTE**
 >
-> This API is not applicable to the files or folders in a distributed directory.
+> This API is not supported in a distributed directory.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -3480,7 +3504,7 @@ Moves a file. This API returns the result synchronously.
   | ------ | ------ | ---- | --------------------------- |
   | src | string | Yes   | Application sandbox path of the file to move.|
   | dest | string | Yes   | Application sandbox path of the destination file.|
-  | mode | number | No   | Whether to overwrite the file with the same name in the destination directory.<br> The value **0** means to overwrite the file with the same name in the destination directory; the value **1** means to throw an exception.<br> The default value is **0**.|
+  | mode | number | No   | Move mode.<br>The value **0** means to overwrite the file with the same name in the destination directory; the value **1** means to throw an exception. The default value is **0**.|
 
 **Error codes**
 
@@ -3534,7 +3558,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 mkdtemp(prefix: string, callback: AsyncCallback&lt;string&gt;): void
 
-Creates a temporary directory. This API uses an asynchronous callback to return the result. The folder name is created by replacing a string (specified by **prefix**) with six randomly generated characters.
+Creates a temporary directory. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -3566,7 +3590,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 mkdtempSync(prefix: string): string
 
-Creates a temporary directory. This API returns the result synchronously. The folder name is created by replacing a string (specified by **prefix**) with six randomly generated characters.
+Creates a temporary directory. This API returns the result synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -3580,7 +3604,7 @@ Creates a temporary directory. This API returns the result synchronously. The fo
 
   | Type   | Description        |
   | ------ | ---------- |
-  | string | Unique path generated.|
+  | string | Unique directory generated.|
 
 **Error codes**
 
@@ -3624,7 +3648,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 createRandomAccessFile(file: string | File, mode?: number): Promise&lt;RandomAccessFile&gt;
 
-Creates a **RandomAccessFile** instance based on a file path or file object. This API uses a promise to return the result.
+Creates a **RandomAccessFile** instance based on the specified file path or file object. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -3735,7 +3759,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 createRandomAccessFile(file: string | File, mode?: number, options?: RandomAccessFileOptions): Promise&lt;RandomAccessFile&gt;
 
-Creates a **RandomAccessFile** instance based on a file path or file object. This API uses a promise to return the result.
+Creates a **RandomAccessFile** instance based on the specified file path or file object. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -3847,6 +3871,8 @@ createStream(path: string, mode: string): Promise&lt;Stream&gt;
 
 Creates a stream based on a file path. This API uses a promise to return the result. To close the stream, use **close()** of [Stream](#stream).
 
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
@@ -3886,6 +3912,8 @@ createStream(path: string, mode: string, callback: AsyncCallback&lt;Stream&gt;):
 
 Creates a stream based on a file path. This API uses an asynchronous callback to return the result. To close the stream, use **close()** of [Stream](#stream).
 
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
@@ -3921,6 +3949,8 @@ createStreamSync(path: string, mode: string): Stream
 
 Creates a stream based on a file path. This API returns the result synchronously. To close the stream, use **close()** of [Stream](#stream).
 
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
@@ -3955,6 +3985,8 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 fdopenStream(fd: number, mode: string): Promise&lt;Stream&gt;
 
 Opens a stream based on an FD. This API uses a promise to return the result. To close the stream, use **close()** of [Stream](#stream).
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -4001,6 +4033,8 @@ fdopenStream(fd: number, mode: string, callback: AsyncCallback&lt;Stream&gt;): v
 
 Opens a stream based on an FD. This API uses an asynchronous callback to return the result. To close the stream, use **close()** of [Stream](#stream).
 
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
@@ -4042,6 +4076,8 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 fdopenStreamSync(fd: number, mode: string): Stream
 
 Opens a stream based on an FD. This API returns the result synchronously. To close the stream, use **close()** of [Stream](#stream).
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -4130,7 +4166,7 @@ Creates a writeable stream. This API returns the result synchronously.
   | Name | Type    | Mandatory  | Description                                      |
   | ---- | ------ | ---- | ---------------------------------------- |
   | path   | string | Yes   | Path of the file.                            |
-  | options | [WriteStreamOptions](#writestreamoptions12) | No   | The options are as follows:<br>- **start** (number): start position to write the data in the file. This parameter is optional. The default value is the current position.<br>- **mode** (number): [mode](#openmode) for creating the writeable stream. This parameter is optional. The default value is the write-only mode.|
+  | options | [WriteStreamOptions](#writestreamoptions12) | No   | The options are as follows:<br>- **start** (number): start position to write the data in the file. This parameter is optional. By default, data is written from the current position.<br>- **mode** (number): [mode](#openmode) for creating the writeable stream. This parameter is optional. The default value is the write-only mode.|
 
 **Return value**
 
@@ -4188,7 +4224,7 @@ getBaseFile(): File
 
 Obtains the file object through the **AtomicFile** object.
 
-You can call **close()** to close the FD.
+The FD needs to be closed by calling **close()**.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -4198,6 +4234,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { common } from '@kit.AbilityKit';
@@ -4240,6 +4277,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { common } from '@kit.AbilityKit';
@@ -4268,7 +4306,7 @@ try {
     },1000);
   })
 } catch (err) {
-  hilog.error(0x0000, 'AtomicFile', 'failed! , Cause: %{public}s', JSON.stringify(err) ?? '');
+  hilog.error(0x0000, 'AtomicFile', 'failed!, err : %{public}s', err.message);
 }
 ```
 
@@ -4292,6 +4330,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { common } from '@kit.AbilityKit';
@@ -4316,7 +4355,7 @@ try {
     },1000);
   })
 } catch (err) {
-  hilog.error(0x0000, 'AtomicFile', 'failed!, Cause: %{public}s', JSON.stringify(err) ?? '');
+  hilog.error(0x0000, 'AtomicFile', 'failed!, err : %{public}s', err.message);
 }
 ```
 
@@ -4344,6 +4383,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { common } from '@kit.AbilityKit';
@@ -4356,7 +4396,7 @@ let pathDir = context.filesDir;
 try {
   let file = new fs.AtomicFile(`${pathDir}/write.txt`);
   let writeSream = file.startWrite();
-  hilog.error(0x0000, 'AtomicFile', 'startWrite end');
+  hilog.info(0x0000, 'AtomicFile', 'startWrite end');
   writeSream.write("xxxxxxxx","utf-8",()=> {
     hilog.info(0x0000, 'AtomicFile', 'write end');
   })
@@ -4379,6 +4419,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { common } from '@kit.AbilityKit';
@@ -4395,7 +4436,7 @@ try {
     file.finishWrite();
   })
 } catch (err) {
-  hilog.error(0x0000, 'AtomicFile', 'failed! , Cause: %{public}s', JSON.stringify(err) ?? '');
+  hilog.error(0x0000, 'AtomicFile', 'failed!, err : %{public}s', err.message);
 }
 ```
 
@@ -4413,6 +4454,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { common } from '@kit.AbilityKit';
@@ -4432,7 +4474,7 @@ try {
   })
 } catch (err) {
   file.failWrite();
-  hilog.error(0x0000, 'AtomicFile', 'failed! , Cause: %{public}s', JSON.stringify(err) ?? '');
+  hilog.error(0x0000, 'AtomicFile', 'failed!, err : %{public}s', err.message);
 }
 ```
 
@@ -4450,6 +4492,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 import { common } from '@kit.AbilityKit';
 import { fileIo as fs} from '@kit.CoreFileKit';
@@ -4474,7 +4517,7 @@ try {
     },1000);
   })
 } catch (err) {
-  hilog.error(0x0000, 'AtomicFile', 'failed!, Cause: %{public}s', JSON.stringify(err) ?? '');
+  hilog.error(0x0000, 'AtomicFile', 'failed!, err : %{public}s', err.message);
 }
 ```
 
@@ -4491,7 +4534,7 @@ Creates a **Watcher** object to listen for file or directory changes.
   | Name | Type    | Mandatory  | Description                                      |
   | ---- | ------ | ---- | ---------------------------------------- |
   | path   | string | Yes   | Application sandbox path of the file or directory to observe.                            |
-  | events | number | Yes   | Events to observe. Multiple events can be separated by a bitwise OR operator (\|).<br>- **0x1: IN_ACCESS**: A file is accessed.<br>- **0x2: IN_MODIFY**: The file content is modified.<br>- **0x4: IN_ATTRIB**: The file metadata is modified.<br>- **0x8: IN_CLOSE_WRITE**: A file is opened, written with data, and then closed.<br>- **0x10: IN_CLOSE_NOWRITE**: A file or directory is opened and then closed without data written.<br>- **0x20: IN_OPEN**: A file or directory is opened.<br>- **0x40: IN_MOVED_FROM**: A file in the observed directory is moved.<br>- **0x80: IN_MOVED_TO**: A file is moved to the observed directory.<br>- **0x100: IN_CREATE**: A file or directory is created in the observed directory.<br>- **0x200: IN_DELETE**: A file or directory is deleted from the observed directory.<br>- **0x400: IN_DELETE_SELF**: The observed directory is deleted. After the directory is deleted, the listening stops.<br>- **0x800: IN_MOVE_SELF**: The observed file or folder is moved. After the file or folder is moved, the listening continues.<br>- **0xfff: IN_ALL_EVENTS**: All events.|
+  | events | number | Yes   | Events to observe. Multiple events can be separated by a bitwise OR operator (\|).<br>- **0x1: IN_ACCESS**: A file is accessed.<br>- **0x2: IN_MODIFY**: The file content is modified.<br>- **0x4: IN_ATTRIB**: The file metadata is modified.<br>- **0x8: IN_CLOSE_WRITE**: A file is opened, written with data, and then closed.<br>- **0x10: IN_CLOSE_NOWRITE**: A file or directory is opened and then closed without data written.<br>- **0x20: IN_OPEN**: A file or directory is opened.<br>- **0x40: IN_MOVED_FROM**: A file in the observed directory is moved.<br>- **0x80: IN_MOVED_TO**: A file is moved to the observed directory.<br>- **0x100: IN_CREATE**: A file or directory is created in the observed directory.<br>- **0x200: IN_DELETE**: A file or directory is deleted from the observed directory.<br>- **0x400: IN_DELETE_SELF**: The observed directory is deleted. After the directory is deleted, the listening stops.<br>- **0x800: IN_MOVE_SELF**: The observed file or directory is moved. After the file or directory is moved, the listening continues.<br>- **0xfff: IN_ALL_EVENTS**: All events.|
   | listener   | [WatchEventListener](#watcheventlistener10) | Yes   | Callback invoked when an observed event occurs. The callback will be invoked each time an observed event occurs.                            |
 
 **Return value**
@@ -4506,8 +4549,11 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 **Example**
 
+<!--code_no_check-->
   ```ts
+  import { common } from '@kit.AbilityKit';
   import { fileIo as fs, WatchEvent } from '@kit.CoreFileKit';
+
   // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let pathDir = context.filesDir;
@@ -4530,7 +4576,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 (event: WatchEvent): void
 
-Called when an observed event occurs.
+Provides APIs for observing events.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -4551,8 +4597,8 @@ Defines the event to observe.
 | Name  | Type  | Read-Only  | Optional  | Description     |
 | ---- | ------ | ---- | ---- | ------- |
 | fileName | string | Yes   | No   | Sandbox path of the file to observe. The sandbox path contains the file name.|
-| event | number | Yes   | No   | Events to observe. Multiple events can be separated by a bitwise OR operator (\|).<br>- **0x1: IN_ACCESS**: A file is accessed.<br>- **0x2: IN_MODIFY**: The file content is modified.<br>- **0x4: IN_ATTRIB**: The file metadata is modified.<br>- **0x8: IN_CLOSE_WRITE**: A file is opened, written with data, and then closed.<br>- **0x10: IN_CLOSE_NOWRITE**: A file or directory is opened and then closed without data written.<br>- **0x20: IN_OPEN**: A file or directory is opened.<br>- **0x40: IN_MOVED_FROM**: A file in the observed directory is moved.<br>- **0x80: IN_MOVED_TO**: A file is moved to the observed directory.<br>- **0x100: IN_CREATE**: A file or directory is created in the observed directory.<br>- **0x200: IN_DELETE**: A file or directory is deleted from the observed directory.<br>- **0x400: IN_DELETE_SELF**: The observed directory is deleted. After the directory is deleted, the listening stops.<br>- **0x800: IN_MOVE_SELF**: The observed file or folder is moved. After the file or folder is moved, the listening continues.<br>- **0xfff: IN_ALL_EVENTS**: All events.|
-| cookie | number | Yes   | No   | Cookie bound with the event. Currently, only the **IN_MOVED_FROM** and **IN_MOVED_TO** events are supported. The **IN_MOVED_FROM** and **IN_MOVED_TO** events of the same file have the same **cookie** value.|
+| event | number | Yes   | No   | Events to observe. Multiple events can be separated by a bitwise OR operator (\|).<br>- **0x1: IN_ACCESS**: A file is accessed.<br>- **0x2: IN_MODIFY**: The file content is modified.<br>- **0x4: IN_ATTRIB**: The file metadata is modified.<br>- **0x8: IN_CLOSE_WRITE**: A file is opened, written with data, and then closed.<br>- **0x10: IN_CLOSE_NOWRITE**: A file or directory is opened and then closed without data written.<br>- **0x20: IN_OPEN**: A file or directory is opened.<br>- **0x40: IN_MOVED_FROM**: A file in the observed directory is moved.<br>- **0x80: IN_MOVED_TO**: A file is moved to the observed directory.<br>- **0x100: IN_CREATE**: A file or directory is created in the observed directory.<br>- **0x200: IN_DELETE**: A file or directory is deleted from the observed directory.<br>- **0x400: IN_DELETE_SELF**: The observed directory is deleted. After the directory is deleted, the listening stops.<br>- **0x800: IN_MOVE_SELF**: The observed file or directory is moved. After the file or directory is moved, the listening continues.<br>- **0xfff: IN_ALL_EVENTS**: All events.|
+| cookie | number | Yes   | No   | Cookie bound with the event.<br>Currently, only the **IN_MOVED_FROM** and **IN_MOVED_TO** events are supported. The **IN_MOVED_FROM** and **IN_MOVED_TO** events of the same file have the same **cookie** value.|
 
 ## Progress<sup>11+</sup>
 
@@ -4585,6 +4631,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 **Example**
 
+<!--code_no_check-->
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
@@ -4604,23 +4651,24 @@ let progressListener: fs.ProgressListener = (progress: fs.Progress) => {
   console.info(`progressSize: ${progress.processedSize}, totalSize: ${progress.totalSize}`);
   if (progress.processedSize / progress.totalSize > 0.5) {
     copySignal.cancel();
+    console.info("copy cancel.");
   }
 };
 let options: fs.CopyOptions = {
   "progressListener" : progressListener,
-  "copySignal" : new fs.TaskSignal,
+  "copySignal" : copySignal,
 }
-console.info("copyFileWithCancel success.");
+
 try {
-  fs.copy(srcDirPathLocal, dstDirUriLocal, options, (err: BusinessError) => {
+  fs.copy(srcDirUriLocal, dstDirUriLocal, options, (err: BusinessError) => {
     if (err) {
-      console.info("copyFileWithCancel fail.");
+      console.error("copy fail, err: ", err.message);
       return;
     }
-    console.info("copyFileWithCancel success.");
+    console.info("copy success.");
   })
 } catch (err) {
-  console.error("copyFileWithCancel failed with invalid param.");
+  console.error("copyFileWithCancel failed, err: ", err.message);
 }
 
 ```
@@ -4699,7 +4747,7 @@ Represents detailed file information. Before calling any API of the **Stat()** c
 
 | Name    | Type  | Read-Only  | Optional  | Description                                      |
 | ------ | ------ | ---- | ---- | ---------------------------------------- |
-| ino    | bigint | Yes   | No   | File identifier, which varies with files on the same device.|                 |
+| ino    | bigint | Yes   | No   | File ID. Different files on the same device have different **ino**s.|                 |
 | mode   | number | Yes   | No   | File permissions. The meaning of each bit is as follows:<br>**NOTE**<br>The following values are in octal format. The return values are in decimal format. You need to convert the values.<br>- **0o400**: The user has the read permission on a regular file or a directory entry.<br>- **0o200**: The user has the permission to write a regular file or create and delete a directory entry.<br>- **0o100**: The user has the permission to execute a regular file or search for the specified path in a directory.<br>- **0o040**: The user group has the read permission on a regular file or a directory entry.<br>- **0o020**: The user group has the permission to write a regular file or create and delete a directory entry.<br>- **0o010**: The user group has the permission to execute a regular file or search for the specified path in a directory.<br>- **0o004**: Other users have the permission to read a regular file or read a directory entry.<br>- **0o002**: Other users have the permission to write a regular file or create and delete a directory entry.<br>- **0o001**: Other users have the permission to execute a regular file or search for the specified path in a directory.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | uid    | number | Yes   | No   | ID of the file owner.|
 | gid    | number | Yes   | No   | ID of the user group of the file.|
@@ -4899,7 +4947,9 @@ Provides API for stream operations. Before calling any API of **Stream**, you ne
 
 close(): Promise&lt;void&gt;
 
-Closes this stream. This API uses a promise to return the result.
+Closes the file stream. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -4930,7 +4980,9 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 close(callback: AsyncCallback&lt;void&gt;): void
 
-Closes this stream. This API uses an asynchronous callback to return the result.
+Closes the file stream. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -4963,7 +5015,9 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 closeSync(): void
 
-Closes this stream. This API returns the result synchronously.
+Closes the file stream. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -4983,7 +5037,9 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 flush(): Promise&lt;void&gt;
 
-Flushes this stream. This API uses a promise to return the result.
+Flushes the file stream. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -5015,7 +5071,9 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 flush(callback: AsyncCallback&lt;void&gt;): void
 
-Flushes this stream. This API uses an asynchronous callback to return the result.
+Flushes the file stream. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -5049,7 +5107,9 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 flushSync(): void
 
-Flushes this stream. This API returns the result synchronously.
+Flushes the file stream. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -5070,7 +5130,9 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 write(buffer: ArrayBuffer | string, options?: WriteOptions): Promise&lt;number&gt;
 
-Writes data to this stream. This API uses a promise to return the result.
+Writes data to a stream file. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -5115,7 +5177,9 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 write(buffer: ArrayBuffer | string, options?: WriteOptions, callback: AsyncCallback&lt;number&gt;): void
 
-Writes data to this stream. This API uses an asynchronous callback to return the result.
+Writes data to a stream file. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -5159,7 +5223,9 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 writeSync(buffer: ArrayBuffer | string, options?: WriteOptions): number
 
-Writes data to this stream. This API returns the result synchronously.
+Writes data to a stream file. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -5199,7 +5265,9 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 read(buffer: ArrayBuffer, options?: ReadOptions): Promise&lt;number&gt;
 
-Reads data from the stream. This API uses a promise to return the result.
+Reads data from a stream file. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -5247,7 +5315,9 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 read(buffer: ArrayBuffer, options?: ReadOptions, callback: AsyncCallback&lt;number&gt;): void
 
-Reads data from this stream. This API uses an asynchronous callback to return the result.
+Reads data from a stream file. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -5292,7 +5362,9 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 readSync(buffer: ArrayBuffer, options?: ReadOptions): number
 
-Reads data from this stream. This API returns the result synchronously.
+Reads data from a stream file. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -5382,7 +5454,7 @@ Applies an exclusive lock or a shared lock on this file in blocking mode. This A
 
   | Name    | Type         | Mandatory  | Description                                      |
   | ------- | ----------- | ---- | ---------------------------------------- |
-  | exclusive  | boolean | No  | Lock to apply. The value **true** means an exclusive lock, and the value **false** (default) means a shared lock.     |
+  | exclusive  | boolean | No  | Lock to apply.<br>The value **true** means an exclusive lock, and the value **false** (default) means a shared lock.     |
 
 **Return value**
 
@@ -5421,7 +5493,7 @@ Applies an exclusive lock or a shared lock on this file in blocking mode. This A
 
   | Name    | Type         | Mandatory  | Description                                      |
   | ------- | ----------- | ---- | ---------------------------------------- |
-  | exclusive  | boolean | No  | Lock to apply. The value **true** means an exclusive lock, and the value **false** (default) means a shared lock.       |
+  | exclusive  | boolean | No  | Lock to apply.<br>The value **true** means an exclusive lock, and the value **false** (default) means a shared lock.       |
   | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.  |
 
 **Error codes**
@@ -5456,7 +5528,7 @@ Applies an exclusive lock or a shared lock on this file in non-blocking mode.
 
   | Name    | Type         | Mandatory  | Description                                      |
   | ------- | ----------- | ---- | ---------------------------------------- |
-  | exclusive  | boolean | No  | Lock to apply. The value **true** means an exclusive lock, and the value **false** (default) means a shared lock.      |
+  | exclusive  | boolean | No  | Lock to apply.<br>The value **true** means an exclusive lock, and the value **false** (default) means a shared lock.      |
 
 **Error codes**
 
@@ -5565,7 +5637,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 close(): void
 
-Closes this **RandomAccessFile** instance. This API returns the result synchronously.
+Closes the **RandomAccessFile** instance. This API returns the result synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -5585,7 +5657,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 write(buffer: ArrayBuffer | string, options?: WriteOptions): Promise&lt;number&gt;
 
-Writes data to a file. This API uses a promise to return the result.
+Writes data into a file. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -5905,7 +5977,7 @@ Obtains a **WriteStream** instance of this **RandomAccessFile**.
 
 ## Watcher<sup>10+</sup>
 
-Provides APIs for observing the changes of files or folders. Before using the APIs of **Watcher**, call **createWatcher()** to create a **Watcher** object.
+Provides APIs for observing the changes of files or directories. Before using the APIs of **Watcher**, call **createWatcher()** to create a **Watcher** object.
 
 ### start<sup>10+</sup>
 
@@ -5980,10 +6052,10 @@ Defines the file filtering configuration used by **listFile()**.
 | ----------- | --------------- | ------------------ | ------------------ |
 | suffix | Array&lt;string&gt;     | No| Locate files that fully match the specified file name extensions, which are of the OR relationship.          |
 | displayName    | Array&lt;string&gt;     | No| Locate files that fuzzy match the specified file names, which are of the OR relationship. Currently, only the wildcard * is supported.|
-| mimeType    | Array&lt;string&gt; | No| Locate files that fully match the specified MIME types, which are of the OR relationship.      |
-| fileSizeOver    | number | No| Locate files that are greater than or equal to the specified size.      |
+| mimeType    | Array&lt;string&gt; | No| Locate files that fully match the specified MIME types, which are of the OR relationship. This parameter is reserved.     |
+| fileSizeOver    | number | No| Locate files that are greater than the specified size.      |
 | lastModifiedAfter    | number | No| Locate files whose last modification time is the same or later than the specified time.      |
-| excludeMedia    | boolean | No| Whether to exclude the files already in **Media**. The value **true** means to exclude the files already in **Media**; the value **false** means not to exclude the files already in **Media**.   |
+| excludeMedia    | boolean | No| Whether to exclude the files already in **Media**.<br>The value **true** means to exclude the files already in **Media**; the value **false** means not to exclude the files already in **Media**.   |
 
 ## ConflictFiles<sup>10+</sup>
 
@@ -6081,7 +6153,7 @@ Defines the options used in **readText()**. It inherits from [ReadOptions](#read
 
 ## WriteOptions<sup>11+</sup>
 
-Defines the options use din **write()**. It inherits from [Options](#options11).
+Defines the options used in **write()**. It inherits from [Options](#options11).
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -6101,7 +6173,7 @@ Defines the options used in **listFile()**.
 
 | Name       | Type      | Mandatory      |  Description               |
 | ----------- | --------------- | ------------------ | ------------------ |
-| recursion | boolean     | No| Whether to list all files in the subfolders recursively. This parameter is optional. The default value is **false**. If **recursion** is **false**, the names of the files and folders that meet the specified conditions in the current directory are returned. If **recursion** is **true**, relative paths (starting with /) of all files that meet the specified conditions in the current directory are returned.          |
+| recursion | boolean     | No| Whether to list all files in the subdirectories recursively. This parameter is optional. The default value is **false**. If **recursion** is **false**, the names of files and directories that meet the filtering requirements in the current directory are returned. If **recursion** is **true**, relative paths (starting with /) of all files that meet the specified conditions in the current directory are returned.          |
 |  listNum    | number     | No| Number of file names to list. This parameter is optional. The default value is **0**, which means to list all files.|
 | filter    | [Filter](#filter10) | No| File filtering configuration. This parameter is optional. It specifies the file filtering conditions.|
 
@@ -6131,7 +6203,7 @@ Adjusts the position of the readable stream offset pointer.
 
   | Name   | Type    | Mandatory  | Description                         |
   | ------ | ------ | ---- | --------------------------- |
-  | offset | number | Yes   | Number of bytes to move the offset.|
+  | offset | number | Yes   | Relative offset, in bytes.|
   | whence | [WhenceType](#whencetype11) | No   | Where to start the offset. The default value is **SEEK_SET**, which indicates the beginning of the file.|
 
 **Return value**
@@ -6197,7 +6269,7 @@ Adjusts the position of the writeable stream offset pointer.
 
   | Name   | Type    | Mandatory  | Description                         |
   | ------ | ------ | ---- | --------------------------- |
-  | offset | number | Yes   | Number of bytes to move the offset.|
+  | offset | number | Yes   | Relative offset, in bytes.|
   | whence | [WhenceType](#whencetype11) | No   | Where to start the offset. The default value is **SEEK_SET**, which indicates the beginning of the file.|
 
 **Return value**

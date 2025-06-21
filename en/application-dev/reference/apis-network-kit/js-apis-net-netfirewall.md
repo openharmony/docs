@@ -163,7 +163,7 @@ Removes a firewall rule.
 
 | Type               | Description                                                                |
 | ------------------- | ---------------------------------------------------------------------|
-| Promise\<void>      | Promise Promise that returns no value.                                |
+| Promise\<void>      | Promise that returns no value.                                |
 
 **Error codes**
 
@@ -508,7 +508,7 @@ Defines a firewall rule.
 | direction   | [NetFirewallRuleDirection](#netfirewallruledirection)       | Yes| Interception direction, which can be inbound or outbound.                                        |
 | action      | [FirewallRuleAction](#firewallruleaction)                   | Yes| Action.                                                        |
 | type        | [NetFirewallRuleType](#netfirewallruletype)                 | Yes| Rule type.                                                    |
-| isEnabled   | boolean                                                     | Yes| Whether to enable the firewall rule.                                                    |
+| isEnabled   | boolean                                                     | Yes| Whether to enable the firewall rule. The value **true** means to enable the firewall rule, and the value **false** means the opposite.                                                    |
 | id          | number                                                      | No| Firewall rule ID.                                                      |
 | description | string                                                      | No| Firewall rule description. This parameter is optional and can contain a maximum of 256 characters.                               |
 | appUid      | number                                                      | No| Application or service UID.                                           |
@@ -542,9 +542,9 @@ Defines the pagination structure for firewall rules.
 
 | Name      | Type                                       | Mandatory| Description         |
 |------------|-------------------------------------------- |------|---------------|
-| page       | number                                      | Yes  | Current page.   |
-| pageSize   | number                                      | Yes  | Page size.     |
-| totalPage  | number                                      | Yes  | Total number of pages.     |
+| page       | number                                      | Yes  | Current page number. The value range is [1,1000].   |
+| pageSize   | number                                      | Yes  | Page size. The value range is [1,50].     |
+| totalPage  | number                                      | Yes  | Total number of pages. The value range is [1,1000].     |
 | data       | Array\<[NetFirewallRule](#netfirewallrule)> | Yes  | Page data.   |
 
 ## NetFirewallPolicy
@@ -555,7 +555,7 @@ Defines a firewall policy.
 
 | Name      | Type                                      | Mandatory| Description         |
 | -----------| -------------------------------------------|------|-------------- |
-| isOpen     | boolean                                    | Yes  | Whether to enable or disable the firewall.|
+| isOpen     | boolean                                    | Yes  | Whether to enable or disable the firewall. The value **true** means to enable the firewall, and the value **false** means the opposite.|
 | inAction   | [FirewallRuleAction](#firewallruleaction)  | Yes  | Inbound action.   |
 | outAction  | [FirewallRuleAction](#firewallruleaction)  | Yes  | Outbound action.   |
 
@@ -650,7 +650,7 @@ Defines the domain information of a firewall rule.
 
 | Name        | Type   | Mandatory| Description                                     |
 | ------------ | --------|------|------------------------------------------ |
-| isWildcard   | boolean | Yes  | Whether to contain wildcards.                         |
+| isWildcard   | boolean | Yes  | Whether to contain wildcards. The value **true** means to contain wildcards, and the value **false** means the opposite.                         |
 | domain       | string  | Yes  | DNS domain. If **isWildcard** is **false**, you need to specify the complete domain name.|
 
 ## NetFirewallDnsParams

@@ -5,7 +5,7 @@
 > **说明：**
 >
 > - 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> - 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.multimedia.camera (相机管理)](js-apis-camera.md)。
+> - 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.multimedia.camera (相机管理)](arkts-apis-camera.md)。
 
 ## 导入模块
 
@@ -73,7 +73,7 @@ lcd闪光灯信息项。
 
 | 名称   | 类型                            | 只读  | 可选       | 说明 |
 | ------ | ----------------------------- |-----| ---------- | ---------- |
-| raw<sup>12+</sup> | [image.Image](../apis-image-kit/js-apis-image.md#image9)| NA  | 是   | raw图。 |
+| raw<sup>12+</sup> | [image.Image](../apis-image-kit/arkts-apis-image-Image.md)| NA  | 是   | raw图。 |
 
 ## ExposureMode
 
@@ -116,7 +116,7 @@ lcd闪光灯信息项。
 
 ## CameraManager
 
-相机管理器类，使用前需要通过[getCameraManager](js-apis-camera.md#cameragetcameramanager)获取相机管理实例。
+相机管理器类，使用前需要通过[getCameraManager](arkts-apis-camera-f.md#cameragetcameramanager)获取相机管理实例。
 
 ### createDepthDataOutput<sup>13+</sup>
 
@@ -132,20 +132,21 @@ createDepthDataOutput(profile: DepthProfile): DepthDataOutput
 
 | 参数名     | 类型                                             | 必填 | 说明                              |
 | -------- | ----------------------------------------------- | ---- | ------------------------------- |
-| profile  | [DepthProfile](#depthprofile13)           | 是   | 支持的预览配置信息，通过[getSupportedOutputCapability](js-apis-camera.md#getsupportedoutputcapability11)接口获取。|
+| profile  | [DepthProfile](#depthprofile13)           | 是   | 支持的预览配置信息，通过[getSupportedOutputCapability](arkts-apis-camera-CameraManager.md#getsupportedoutputcapability11)接口获取。|
 
 **返回值：**
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| [DepthDataOutput](#depthdataoutput13)    | DepthDataOutput实例。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。 |
+| [DepthDataOutput](#depthdataoutput13)    | DepthDataOutput实例。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode)。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)和[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
+| 202                    |  Not System Application.               |
 | 7400101                |  Parameter missing or parameter type incorrect.               |
 | 7400201                |  Camera service fatal error.               |
 
@@ -183,6 +184,14 @@ isCameraMuteSupported(): boolean
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
 | boolean    | 返回true表示相机可以被禁用，返回false表示相机不能被禁用。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 202             |  Permission verification failed. A non-system application calls a system API.   |
 
 **示例：**
 
@@ -237,6 +246,16 @@ muteCameraPersistent(mute: boolean, type: PolicyType): void
 | -------- |-----------------------------| ---- |--------------------------------------------|
 | mute     | boolean                     |  是  | 禁用相机。true为禁用；false为解除禁用。                   |
 | type     | [PolicyType](#policytype12) |  是  | 策略类型。请使用[PolicyType](#policytype12)里面支持的类型 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)和[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 201               |  Permission denied.                        |
+| 202               |  Not System Application.                  |
+| 7400101           |  Parameter missing or parameter type incorrect.  |
 
 **示例：**
 
@@ -328,7 +347,7 @@ isPrelaunchSupported(camera: CameraDevice): boolean
 
 | 参数名     | 类型                                               | 必填 | 说明       |
 | -------- |--------------------------------------------------| ---- | --------- |
-| camera | [CameraDevice](./js-apis-camera.md#cameradevice) | 是 | 相机信息。|
+| camera | [CameraDevice](arkts-apis-camera-i.md#cameradevice) | 是 | 相机信息。|
 
 **返回值：**
 
@@ -427,6 +446,14 @@ prelaunch(): void
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 202 | Not System Application. |
+
 **示例：**
 
 ```ts
@@ -458,7 +485,7 @@ createDeferredPreviewOutput(profile?: Profile): PreviewOutput
 
 | 参数名     | 类型             | 必填 | 说明       |
 | -------- | --------------- | ---- | --------- |
-| profile | [Profile](js-apis-camera.md#profile) | 否 | 相机预览流的配置文件。 |
+| profile | [Profile](arkts-apis-camera-i.md#profile) | 否 | 相机预览流的配置文件。 |
 
 **返回值：**
 
@@ -570,7 +597,7 @@ function preSwitch(cameraDevice: camera.CameraDevice, context: common.BaseContex
 
 相机设备输入对象。
 
-会话中[Session](js-apis-camera.md#session11)使用的相机信息。
+会话中[Session](arkts-apis-camera-Session.md)使用的相机信息。
 
 ### on('cameraOcclusionDetection')<sup>12+</sup>
 
@@ -653,7 +680,7 @@ function unregisterCameraOcclusionDetection(cameraInput: camera.CameraInput): vo
 
 ## DepthProfile<sup>13+</sup>
 
-深度数据配置信息项，继承[Profile](js-apis-camera.md#profile)。
+深度数据配置信息项，继承[Profile](arkts-apis-camera-i.md#profile)。
 
 **系统接口：** 此接口为系统接口。
 
@@ -690,7 +717,7 @@ function unregisterCameraOcclusionDetection(cameraInput: camera.CameraInput): vo
 | 名称      | 类型                          | 只读 | 可选 | 说明            |
 | -------- | ----------------------------- |----- |---| -------------- |
 | format | [CameraFormat](#cameraformat)   | 是 |  否  | 深度图的格式。 |
-| depthMap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)    | 是 |  否  | 深度图。 |
+| depthMap | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)    | 是 |  否  | 深度图。 |
 | qualityLevel | [DepthDataQualityLevel](#depthdataqualitylevel13)   | 是 |  否  | 深度图的质量。 |
 | accuracy | [DepthDataAccuracy](#depthdataaccuracy13) | 是 |  否  | 深度图的精度。 |
 
@@ -707,14 +734,14 @@ release(): void
 **示例：**
 
 ```ts
-function releaseDepthData(depthData: camera.DepthData): void {
+async function releaseDepthData(depthData: camera.DepthData): Promise<void> {
   await depthData.release();
 }
 ```
 
 ## DepthDataOutput<sup>13+</sup>
 
-深度信息输出类。继承[CameraOutput](js-apis-camera.md#cameraoutput)。
+深度信息输出类。继承[CameraOutput](arkts-apis-camera-CameraOutput.md)。
 
 ### start<sup>13+</sup>
 
@@ -876,7 +903,7 @@ on(type: 'error', callback: ErrorCallback): void
 | 参数名     | 类型         | 必填 | 说明                       |
 | -------- | --------------| ---- | ------------------------ |
 | type     | string        | 是   | 监听事件，固定为'error'，depthDataOutput创建成功可监听。 |
-| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。  |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode)。  |
 
 **示例：**
 
@@ -1099,7 +1126,7 @@ function enableDepthFusion(DepthFusion: camera.DepthFusion): void {
 
 |            名称                 | 类型                                               |     只读    |     必填     | 说明       |
 | ------------------------------- |--------------------------------------------------| ----------- | ------------ | ---------- |
-| cameraDevice                    | [CameraDevice](./js-apis-camera.md#cameradevice) |      否     |       是      | 相机信息。         |
+| cameraDevice                    | [CameraDevice](arkts-apis-camera-i.md#cameradevice) |      否     |       是      | 相机信息。         |
 | restoreParamType<sup>11+</sup>  | [RestoreParamType](#restoreparamtype11)          |      否     |       否      | 预保存参数类型。    |
 | activeTime<sup>11+</sup>        | number                                           |      否     |       否      | 激活时间，单位min。 |
 | settingParam<sup>11+</sup>      | [SettingParam](#settingparam11)                  |      否     |       否      | 设置参数内容。      |
@@ -1134,13 +1161,13 @@ function enableDepthFusion(DepthFusion: camera.DepthFusion): void {
 
 ## PreviewOutput
 
-预览输出类。继承[CameraOutput](js-apis-camera.md#cameraoutput)。
+预览输出类。继承[CameraOutput](arkts-apis-camera-CameraOutput.md)。
 
 ### addDeferredSurface
 
 addDeferredSurface(surfaceId: string): void
 
-配置延迟预览的Surface，可以在[Session.commitConfig](js-apis-camera.md#commitconfig11-1)配流和[Session.start](js-apis-camera.md#start11-1)启流之后运行。
+配置延迟预览的Surface，可以在[Session.commitConfig](arkts-apis-camera-Session.md#commitconfig11-1)配流和[Session.start](arkts-apis-camera-Session.md#start11-1)启流之后运行。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1154,10 +1181,11 @@ addDeferredSurface(surfaceId: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)和[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
+| 202                    |  Permission verification failed. A non-system application calls a system API.    |
 | 7400101                |  Parameter missing or parameter type incorrect.        |
 
 **示例：**
@@ -1208,6 +1236,8 @@ isSketchSupported(): boolean
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 function isSketchSupported(previewOutput: camera.PreviewOutput): boolean {
   try {
     let isSupported: boolean = previewOutput.isSketchSupported();
@@ -1514,7 +1544,7 @@ async function releaseDeferredPhotoProxy(proxyObj: camera.DeferredPhotoProxy): P
 
 ## PhotoOutput
 
-拍照会话中使用的输出信息，继承[CameraOutput](js-apis-camera.md#cameraoutput)。
+拍照会话中使用的输出信息，继承[CameraOutput](arkts-apis-camera-CameraOutput.md)。
 
 ### burstCapture<sup>12+</sup>
 
@@ -1530,7 +1560,7 @@ burstCapture(setting: PhotoCaptureSetting): Promise\<void\>
 
 | 参数名  | 类型                                        | 必填 | 说明     |
 | ------- | ------------------------------------------- | ---- | -------- |
-| setting | [PhotoCaptureSetting](js-apis-camera.md#photocapturesetting) | 是   | 拍照设置，传入undefined类型数据按默认无参处理。 |
+| setting | [PhotoCaptureSetting](arkts-apis-camera-i.md#photocapturesetting) | 是   | 拍照设置，传入undefined类型数据按默认无参处理。 |
 
 **返回值：**
 
@@ -1899,7 +1929,7 @@ isQuickThumbnailSupported(): boolean
 
 是否支持输出快速缩略图。
 
-在[addOutput](js-apis-camera.md#addoutput11)、[addInput](js-apis-camera.md#addinput11)之后，[commitConfig](js-apis-camera.md#commitconfig11-1)之前生效。
+在[addOutput](arkts-apis-camera-Session.md#addoutput11)、[addInput](arkts-apis-camera-Session.md#addinput11)之后，[commitConfig](arkts-apis-camera-Session.md#commitconfig11-1)之前生效。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1950,7 +1980,7 @@ enableQuickThumbnail(enabled: boolean): void
 
 启用/禁用快速缩略图。
 
-在[addOutput](js-apis-camera.md#addoutput11)、[addInput](js-apis-camera.md#addinput11)之后，[commitConfig](js-apis-camera.md#commitconfig11-1)之前生效。
+在[addOutput](arkts-apis-camera-Session.md#addoutput11)、[addInput](arkts-apis-camera-Session.md#addinput11)之后，[commitConfig](arkts-apis-camera-Session.md#commitconfig11-1)之前生效。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2024,7 +2054,7 @@ on(type: 'quickThumbnail', callback: AsyncCallback\<image.PixelMap>): void
 | 参数名     | 类型         | 必填 | 说明                                 |
 | -------- | ------------- | ---- | ----------------------------------- |
 | type    | string     | 是   | 监听事件，固定为'quickThumbnail'。 |
-| callback | AsyncCallback\<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)> | 是 | 回调返回PixelMap。 |
+| callback | AsyncCallback\<[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)> | 是 | 回调返回PixelMap。 |
 
 **示例：**
 
@@ -2087,7 +2117,7 @@ off(type: 'quickThumbnail', callback?: AsyncCallback\<image.PixelMap>): void
 | 参数名     | 类型         | 必填 | 说明                                 |
 | -------- | ------------- | ---- | ----------------------------------- |
 | type    | string     | 是   | 监听事件，固定为'quickThumbnail'。 |
-| callback | AsyncCallback\<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)> | 否 | 回调函数，可选，有就是匹配on('quickThumbnail') callback（callback对象不可是匿名函数）。 |
+| callback | AsyncCallback\<[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)> | 否 | 回调函数，可选，有就是匹配on('quickThumbnail') callback（callback对象不可是匿名函数）。 |
 
 **示例：**
 
@@ -2099,7 +2129,7 @@ function unregisterQuickThumbnail(photoOutput: camera.PhotoOutput): void {
 
 ## MetadataOutput
 
-metadata流。继承[CameraOutput](js-apis-camera.md#cameraoutput)。
+metadata流。继承[CameraOutput](arkts-apis-camera-CameraOutput.md)。
 
 ### addMetadataObjectTypes<sup>13+</sup> 
 
@@ -2212,7 +2242,7 @@ function removeMetadataObjectTypes(metadataOutput: camera.MetadataOutput, types:
 
 ## MetadataObject
 
-相机检测元数据信息的基础类型，[CameraInput](#camerainput)相机信息中的数据来源，通过metadataOutput.[on('metadataObjectsAvailable')](js-apis-camera.md#onmetadataobjectsavailable)接口获取。
+相机检测元数据信息的基础类型，[CameraInput](#camerainput)相机信息中的数据来源，通过metadataOutput.[on('metadataObjectsAvailable')](arkts-apis-camera-MetadataOutput.md#onmetadataobjectsavailable)接口获取。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2223,14 +2253,14 @@ function removeMetadataObjectTypes(metadataOutput: camera.MetadataOutput, types:
 
 ## MetadataFaceObject<sup>13+</sup>
 
-相机检测到的人脸元数据信息，继承自[MetadataObject](#metadataobject)，[CameraInput](#camerainput)相机信息中的数据来源，通过metadataOutput.[on('metadataObjectsAvailable')](js-apis-camera.md#onmetadataobjectsavailable)接口获取。
+相机检测到的人脸元数据信息，继承自[MetadataObject](#metadataobject)，[CameraInput](#camerainput)相机信息中的数据来源，通过metadataOutput.[on('metadataObjectsAvailable')](arkts-apis-camera-MetadataOutput.md#onmetadataobjectsavailable)接口获取。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 | 名称                    | 类型                              | 只读 | 可选 |说明                |
 | ---------------------- | --------------------------------- | ---- | ---- | --------------------- |
-| leftEyeBoundingBox     | [Rect](js-apis-camera.md#rect)                             |  是  |  否  | 左眼区域框|
-| rightEyeBoundingBox    | [Rect](js-apis-camera.md#rect)                            |  是  |  否  | 右眼区域框。|
+| leftEyeBoundingBox     | [Rect](arkts-apis-camera-i.md#rect)                             |  是  |  否  | 左眼区域框|
+| rightEyeBoundingBox    | [Rect](arkts-apis-camera-i.md#rect)                            |  是  |  否  | 右眼区域框。|
 | emotion                | [Emotion](#emotion13)             |  是  |  否  | 检测到的情绪类型。|
 | emotionConfidence      | number                            |  是  |  否  | 情绪检测置信度，取值范围[0,1]。|
 | pitchAngle             | number                            |  是  |  否  | 俯仰角度，取值范围[-90, 90]，以向下为正。|
@@ -2239,53 +2269,53 @@ function removeMetadataObjectTypes(metadataOutput: camera.MetadataOutput, types:
 
 ## MetadataHumanBodyObject<sup>13+</sup>
 
-相机检测到的人体元数据信息，继承自[MetadataObject](#metadataobject)，[CameraInput](#camerainput)相机信息中的数据来源，通过metadataOutput.[on('metadataObjectsAvailable')](js-apis-camera.md#onmetadataobjectsavailable)接口获取。
+相机检测到的人体元数据信息，继承自[MetadataObject](#metadataobject)，[CameraInput](#camerainput)相机信息中的数据来源，通过metadataOutput.[on('metadataObjectsAvailable')](arkts-apis-camera-MetadataOutput.md#onmetadataobjectsavailable)接口获取。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 ## MetadataCatFaceObject<sup>13+</sup>
 
-相机检测到的猫脸元数据信息，继承自[MetadataObject](#metadataobject)，[CameraInput](#camerainput)相机信息中的数据来源，通过metadataOutput.[on('metadataObjectsAvailable')](js-apis-camera.md#onmetadataobjectsavailable)接口获取。
+相机检测到的猫脸元数据信息，继承自[MetadataObject](#metadataobject)，[CameraInput](#camerainput)相机信息中的数据来源，通过metadataOutput.[on('metadataObjectsAvailable')](arkts-apis-camera-MetadataOutput.md#onmetadataobjectsavailable)接口获取。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 | 名称                    | 类型                              | 只读 | 可选 |说明                |
 | ---------------------- | --------------------------------- | ---- | ---- | --------------------- |
-| leftEyeBoundingBox     | [Rect](js-apis-camera.md#rect)                              |  是  |  否  | 左眼区域框。|
-| rightEyeBoundingBox    | [Rect](js-apis-camera.md#rect)                              |  是  |  否  | 右眼区域框。|
+| leftEyeBoundingBox     | [Rect](arkts-apis-camera-i.md#rect)                              |  是  |  否  | 左眼区域框。|
+| rightEyeBoundingBox    | [Rect](arkts-apis-camera-i.md#rect)                              |  是  |  否  | 右眼区域框。|
 
 ## MetadataCatBodyObject<sup>13+</sup>
 
-相机检测到的猫的身体元数据信息，继承自[MetadataObject](#metadataobject)，[CameraInput](#camerainput)相机信息中的数据来源，通过metadataOutput.[on('metadataObjectsAvailable')](js-apis-camera.md#onmetadataobjectsavailable)接口获取。
+相机检测到的猫的身体元数据信息，继承自[MetadataObject](#metadataobject)，[CameraInput](#camerainput)相机信息中的数据来源，通过metadataOutput.[on('metadataObjectsAvailable')](arkts-apis-camera-MetadataOutput.md#onmetadataobjectsavailable)接口获取。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 ## MetadataDogFaceObject<sup>13+</sup>
 
-相机检测到的狗脸元数据信息，继承自[MetadataObject](#metadataobject)，[CameraInput](#camerainput)相机信息中的数据来源，通过metadataOutput.[on('metadataObjectsAvailable')](js-apis-camera.md#onmetadataobjectsavailable)接口获取。
+相机检测到的狗脸元数据信息，继承自[MetadataObject](#metadataobject)，[CameraInput](#camerainput)相机信息中的数据来源，通过metadataOutput.[on('metadataObjectsAvailable')](arkts-apis-camera-MetadataOutput.md#onmetadataobjectsavailable)接口获取。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 | 名称                    | 类型                              | 只读 | 可选 |说明                |
 | ---------------------- | --------------------------------- | ---- | ---- | --------------------- |
-| leftEyeBoundingBox     | [Rect](js-apis-camera.md#rect)                              |  是  |  否  | 左眼区域框。|
-| rightEyeBoundingBox    | [Rect](js-apis-camera.md#rect)                              |  是  |  否  | 右眼区域框。|
+| leftEyeBoundingBox     | [Rect](arkts-apis-camera-i.md#rect)                              |  是  |  否  | 左眼区域框。|
+| rightEyeBoundingBox    | [Rect](arkts-apis-camera-i.md#rect)                              |  是  |  否  | 右眼区域框。|
 
 ## MetadataDogBodyObject<sup>13+</sup>
 
-相机检测到的狗的身体元数据信息，继承自[MetadataObject](#metadataobject)，[CameraInput](#camerainput)相机信息中的数据来源，通过metadataOutput.[on('metadataObjectsAvailable')](js-apis-camera.md#onmetadataobjectsavailable)接口获取。
+相机检测到的狗的身体元数据信息，继承自[MetadataObject](#metadataobject)，[CameraInput](#camerainput)相机信息中的数据来源，通过metadataOutput.[on('metadataObjectsAvailable')](arkts-apis-camera-MetadataOutput.md#onmetadataobjectsavailable)接口获取。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 ## MetadataSalientDetectionObject<sup>13+</sup>
 
-相机检测到的显著性元数据信息，继承自[MetadataObject](#metadataobject)，[CameraInput](#camerainput)相机信息中的数据来源，通过metadataOutput.[on('metadataObjectsAvailable')](js-apis-camera.md#onmetadataobjectsavailable)接口获取。
+相机检测到的显著性元数据信息，继承自[MetadataObject](#metadataobject)，[CameraInput](#camerainput)相机信息中的数据来源，通过metadataOutput.[on('metadataObjectsAvailable')](arkts-apis-camera-MetadataOutput.md#onmetadataobjectsavailable)接口获取。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 ## MetadataBarcodeObject<sup>14+</sup>
 
-相机检测到的二维码元数据信息，继承自[MetadataObject](#metadataobject)，[CameraInput](#camerainput)相机信息中的数据来源，通过metadataOutput.[on('metadataObjectsAvailable')](js-apis-camera.md#onmetadataobjectsavailable)接口获取。
+相机检测到的二维码元数据信息，继承自[MetadataObject](#metadataobject)，[CameraInput](#camerainput)相机信息中的数据来源，通过metadataOutput.[on('metadataObjectsAvailable')](arkts-apis-camera-MetadataOutput.md#onmetadataobjectsavailable)接口获取。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2527,86 +2557,6 @@ function setExposure(nightPhotoSession: camera.NightPhotoSession): void {
 }
 ```
 
-## MacroQuery<sup>12+</sup>
-
-提供用于查询设备是否支持相机微距拍摄的方法。
-
-### isMacroSupported<sup>11+</sup>
-
-isMacroSupported(): boolean
-
-检测当前状态下是否支持微距能力，需要在CaptureSession调用[commitConfig](js-apis-camera.md#commitconfig11-1)之后进行调用。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**返回值：**
-
-| 类型        | 说明                          |
-| ---------- | ----------------------------- |
-|   boolean  | 返回是否支持微距能力，返回true为支持，返回false为不支持。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
-
-| 错误码ID   | 错误信息                     |
-|---------|--------------------------|
-| 202     | Not System Application.  |
-
-**示例：**
-
-```ts
-function isMacroSupported(photoSession: camera.PhotoSessionForSys): boolean {
-  let isSupported: boolean = photoSession.isMacroSupported();
-  return isSupported;
-}
-```
-
-## Macro<sup>11+</sup>
-
-Macro extends [MacroQuery](#macroquery12)
-
-提供了使能微距能力的接口。
-
-### enableMacro<sup>11+</sup>
-
-enableMacro(enabled: boolean): void
-
-使能当前的微距能力，需要在支持微距能力的情况下进行调用。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**参数：**
-
-| 参数名     | 类型                   | 必填 | 说明                  |
-| -------- | -------------------- | ---- | -------------------- |
-| enabled | boolean | 是   | true：开启微距能力，false：关闭微距能力。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
-
-| 错误码ID    | 错误信息                     |
-|----------|--------------------------|
-| 202      | Not System Application.  |
-| 7400102  | Operation not allowed.   |
-| 7400103  | Session not config.      |
-
-**示例：**
-
-```ts
-function enableMacro(photoSession: camera.PhotoSessionForSys): void {
-  let isSupported: boolean = photoSession.isMacroSupported();
-  if (isSupported) {
-    photoSession.enableMacro(true);
-  }
-}
-```
-
 ## TripodStatus<sup>13+</sup>
 
 枚举，脚架状态枚举。
@@ -2802,17 +2752,19 @@ getZoomPointInfos(): Array\<ZoomPointInfo\>
 **示例：**
 
 ```ts
+import { camera } from '@kit.CameraKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 function getZoomPointInfos(photoSessionForSys: camera.PhotoSessionForSys): Array<camera.ZoomPointInfo> {
+  let zoomPointInfos: Array<camera.ZoomPointInfo> = [];
   try {
-    let zoomPointInfos: Array<ZoomPointInfo> = photoSessionForSys.getZoomPointInfos();
-	return zoomPointInfos;
+    zoomPointInfos = photoSessionForSys.getZoomPointInfos();
   } catch (error) {
-    // 失败返回错误码error.code并处理。
+    // If the operation fails, error.code is returned and processed.
     let err = error as BusinessError;
     console.error(`The getZoomPointInfos call failed. error code: ${err.code}`);
   }
+  return zoomPointInfos;
 }
 ```
 
@@ -3464,10 +3416,10 @@ function setPhysicalAperture(session: camera.PortraitPhotoSession, physicalApert
 
 ## CaptureSession<sup>(deprecated)</sup>
 
-拍照会话类，保存一次相机运行所需要的所有资源[CameraInput](js-apis-camera.md#camerainput)、[CameraOutput](js-apis-camera.md#cameraoutput)，并向相机设备申请完成相机功能(录像，拍照)。
+拍照会话类，保存一次相机运行所需要的所有资源[CameraInput](arkts-apis-camera-CameraInput.md)、[CameraOutput](arkts-apis-camera-CameraOutput.md)，并向相机设备申请完成相机功能(录像，拍照)。
 
 > **说明：**
->从 API version 10开始支持，从API version 11开始废弃。建议使用[PhotoSession](#photosession11)、[VideoSession](#videosession11)替代。
+>从 API version 10开始支持，从API version 11开始废弃。建议使用[PhotoSession](arkts-apis-camera-PhotoSession.md)、[VideoSession](arkts-apis-camera-VideoSession.md)替代。
 
 ### getSupportedBeautyTypes<sup>(deprecated)</sup>
 
@@ -3655,9 +3607,9 @@ function getBeauty(captureSession: camera.CaptureSession): number {
 
 ## PhotoSessionForSys<sup>11+</sup>
 
-PhotoSessionForSys extends PhotoSession, Beauty, ColorEffect, ColorManagement, Macro, SceneDetection
+PhotoSessionForSys extends PhotoSession, Beauty, ColorEffect, ColorManagement, SceneDetection
 
-提供给系统应用的PhotoSession，普通拍照模式会话类，继承自[Session](js-apis-camera.md#session11)，用于设置普通拍照模式的参数以及保存所需要的所有资源[CameraInput](js-apis-camera.md#camerainput)、[CameraOutput](js-apis-camera.md#cameraoutput)。
+提供给系统应用的PhotoSession，普通拍照模式会话类，继承自[Session](arkts-apis-camera-Session.md)，用于设置普通拍照模式的参数以及保存所需要的所有资源[CameraInput](arkts-apis-camera-CameraInput.md)、[CameraOutput](arkts-apis-camera-CameraOutput.md)。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3667,7 +3619,7 @@ PhotoSessionForSys extends PhotoSession, Beauty, ColorEffect, ColorManagement, M
 
 PhotoSession extends Session, Flash, AutoExposure, Focus, Zoom, ColorManagement
 
-普通拍照模式会话类，继承自[Session](js-apis-camera.md#session11)，用于设置普通拍照模式的参数以及保存所需要的所有资源[CameraInput](js-apis-camera.md#camerainput)、[CameraOutput](js-apis-camera.md#cameraoutput)。
+普通拍照模式会话类，继承自[Session](arkts-apis-camera-Session.md)，用于设置普通拍照模式的参数以及保存所需要的所有资源[CameraInput](arkts-apis-camera-CameraInput.md)、[CameraOutput](arkts-apis-camera-CameraOutput.md)。
 
 ### on('macroStatusChanged')<sup>11+</sup>
 
@@ -3920,7 +3872,7 @@ function unregisterLcdFlashStatus(photoSession: camera.PhotoSession): void {
 | 名称           | 类型                                      | 只读 | 可选 | 说明       |
 | -------------- | ----------------------------------------- | ---- | ---- | ---------- |
 | trackingMode   | [FocusTrackingMode](#focustrackingmode15) | 否   | 否   | 跟踪模式。 |
-| trackingRegion | [Rect](js-apis-camera.md#rect)            | 否   | 否   | 跟踪区域。 |
+| trackingRegion | [Rect](arkts-apis-camera-i.md#rect)            | 否   | 否   | 跟踪区域。 |
 
 ## LightStatus<sup>18+</sup>
 
@@ -3937,9 +3889,9 @@ function unregisterLcdFlashStatus(photoSession: camera.PhotoSession): void {
 
 ## VideoSessionForSys<sup>11+</sup>
 
-VideoSessionForSys extends VideoSession, Beauty, ColorEffect, ColorManagement, Macro, Aperture, ColorReservation
+VideoSessionForSys extends VideoSession, Beauty, ColorEffect, ColorManagement, Aperture, ColorReservation
 
-提供给系统应用的VideoSession，普通录像模式会话类，继承自[Session](js-apis-camera.md#session11)，用于设置普通录像模式的参数以及保存所需要的所有资源[CameraInput](js-apis-camera.md#camerainput)、[CameraOutput](js-apis-camera.md#cameraoutput)。
+提供给系统应用的VideoSession，普通录像模式会话类，继承自[Session](arkts-apis-camera-Session.md)，用于设置普通录像模式的参数以及保存所需要的所有资源[CameraInput](arkts-apis-camera-CameraInput.md)、[CameraOutput](arkts-apis-camera-CameraOutput.md)。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3949,7 +3901,7 @@ VideoSessionForSys extends VideoSession, Beauty, ColorEffect, ColorManagement, M
 
 VideoSession extends Session, Flash, AutoExposure, Focus, Zoom, Stabilization, ColorManagement
 
-普通录像模式会话类，继承自[Session](js-apis-camera.md#session11)，用于设置普通录像模式的参数以及保存所需要的所有资源[CameraInput](js-apis-camera.md#camerainput)、[CameraOutput](js-apis-camera.md#cameraoutput)。
+普通录像模式会话类，继承自[Session](arkts-apis-camera-Session.md)，用于设置普通录像模式的参数以及保存所需要的所有资源[CameraInput](arkts-apis-camera-CameraInput.md)、[CameraOutput](arkts-apis-camera-CameraOutput.md)。
 
 ### on('macroStatusChanged')<sup>11+</sup>
 
@@ -4206,22 +4158,25 @@ on(type: 'lightStatusChange', callback: AsyncCallback\<LightStatus\>): void
 **示例**：
 
 ```ts
-    private handleLightStatusCallback: AsyncCallback<camera.LightStatus> =
-    (err, data: camera.LightStatus) => {
-      if (err) {
-        Logger.error(TAG, `handleLightStatusOff err: ${simpleStringify(err)}}`);
-        return;
-      }
-      Logger.info(TAG, `lightStatusCallback: ${data}`);
-    };
-    public handleLightStatusOn(): void {
-        Logger.info(TAG, 'handleLightStatusOn');
-        try {
-          this.mSession?.on('lightStatusChange', this.handleLightStatusCallback);
-        } catch (e) {
-          Logger.error(TAG, `handleLightStatusOn err:${e}`);
-        }
-    }
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function handleLightStatusCallback(err: BusinessError, lightStatus: camera.LightStatus) : void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
+  console.info(`lightStatus: ${lightStatus}`);
+}
+
+function handleLightStatusOn(mSession: camera.VideoSessionForSys): void {
+  console.info('handleLightStatusOn');
+  try {
+    mSession.on('lightStatusChange', handleLightStatusCallback);
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`handleLightStatusOn err:${err}`);
+  }
+}
 ```
 
 ### off('lightStatusChange')<sup>18+</sup>
@@ -4252,29 +4207,32 @@ off(type: 'lightStatusChange', callback?: AsyncCallback\<LightStatus\>): void
 **示例**：
 
 ```ts
-    private handleLightStatusCallback: AsyncCallback<camera.LightStatus> =
-    (err, data: camera.LightStatus) => {
-      if (err) {
-        Logger.error(TAG, `handleLightStatusOff err: ${simpleStringify(err)}}`);
-        return;
-      }
-      Logger.info(TAG, `lightStatusCallback: ${data}`);
-    };
-    public handleLightStatusOff(): void {
-        Logger.info(TAG, 'handleLightStatusOff');
-        try {
-          this.mSession?.off('lightStatusChange');
-        } catch (e) {
-          Logger.error(TAG, `handleLightStatusOff err:${e}`);
-        }
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function LightStatusCallback(err: BusinessError, lightStatus: camera.LightStatus) : void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
   }
+  console.info(`lightStatus: ${lightStatus}`);
+}
+
+function handleLightStatusOff(mSession: camera.VideoSessionForSys): void {
+  console.info('handleLightStatusOff');
+  try {
+    mSession.on('lightStatusChange', LightStatusCallback);
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`handleLightStatusOff err:${err}`);
+  }
+}
 ```
 
 ## PortraitPhotoSession<sup>11+</sup>
 
 PortraitPhotoSession extends Session, Flash, AutoExposure, Focus, Zoom, Beauty, ColorEffect, ColorManagement, Portrait, Aperture
 
-人像拍照模式会话类，继承自[Session](js-apis-camera.md#session11)，用于设置人像拍照模式的参数以及保存所需要的所有资源[CameraInput](js-apis-camera.md#camerainput)、[CameraOutput](js-apis-camera.md#cameraoutput)。
+人像拍照模式会话类，继承自[Session](arkts-apis-camera-Session.md)，用于设置人像拍照模式的参数以及保存所需要的所有资源[CameraInput](arkts-apis-camera-CameraInput.md)、[CameraOutput](arkts-apis-camera-CameraOutput.md)。
 
 ### on('error')<sup>11+</sup>
 
@@ -4290,8 +4248,8 @@ on(type: 'error', callback: ErrorCallback): void
 
 | 参数名     | 类型        | 必填 | 说明                           |
 | -------- | --------------------------------- | ---- | ------------------------------ |
-| type     | string                               | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。session调用相关接口出现错误时会触发该事件，比如调用[beginConfig](js-apis-camera.md#beginconfig11)，[commitConfig](js-apis-camera.md#commitconfig11-1)，[addInput](js-apis-camera.md#addinput11)等接口发生错误时返回错误信息。 |
-| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。        |
+| type     | string                               | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。session调用相关接口出现错误时会触发该事件，比如调用[beginConfig](arkts-apis-camera-Session.md#beginconfig11)，[commitConfig](arkts-apis-camera-Session.md#commitconfig11-1)，[addInput](arkts-apis-camera-Session.md#addinput11)等接口发生错误时返回错误信息。 |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode)。        |
 
 **示例：**
 
@@ -4347,7 +4305,7 @@ on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 | 参数名     | 类型                    | 必填 | 说明                       |
 | -------- | ---------------- | ---- | ------------------------ |
 | type     | string                                    | 是   | 监听事件，固定为'focusStateChange'，session创建成功可监听。仅当自动对焦模式时，且相机对焦状态发生改变时可触发该事件。 |
-| callback | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\> | 是   | 回调函数，用于获取当前对焦状态。  |
+| callback | AsyncCallback\<[FocusState](arkts-apis-camera-e.md#focusstate)\> | 是   | 回调函数，用于获取当前对焦状态。  |
 
 **示例：**
 
@@ -4382,7 +4340,7 @@ off(type: 'focusStateChange', callback?: AsyncCallback\<FocusState\>): void
 | 参数名     | 类型                                      | 必填 | 说明                       |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string                                    | 是   | 监听事件，固定为'focusStateChange'，session创建成功可监听。 |
-| callback | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\> | 否   | 回调函数，可选，有就是匹配on('focusStateChange') callback（callback对象不可是匿名函数）。  |
+| callback | AsyncCallback\<[FocusState](arkts-apis-camera-e.md#focusstate)\> | 否   | 回调函数，可选，有就是匹配on('focusStateChange') callback（callback对象不可是匿名函数）。  |
 
 **示例：**
 
@@ -4407,7 +4365,7 @@ on(type: 'smoothZoomInfoAvailable', callback: AsyncCallback\<SmoothZoomInfo\>): 
 | 参数名     | 类型                   | 必填 | 说明                       |
 | -------- | ----------------------- | ---- | ------------------------ |
 | type     | string                  | 是   | 监听事件，固定为'smoothZoomInfoAvailable'，session创建成功可监听。|
-| callback | AsyncCallback\<[SmoothZoomInfo](js-apis-camera.md#smoothzoominfo11)\> | 是   | 回调函数，用于获取当前平滑变焦状态。  |
+| callback | AsyncCallback\<[SmoothZoomInfo](arkts-apis-camera-i.md#smoothzoominfo11)\> | 是   | 回调函数，用于获取当前平滑变焦状态。  |
 
 **示例：**
 
@@ -4442,7 +4400,7 @@ off(type: 'smoothZoomInfoAvailable', callback?: AsyncCallback\<SmoothZoomInfo\>)
 | 参数名     | 类型                                      | 必填 | 说明                       |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string              | 是   | 监听事件，固定为'smoothZoomInfoAvailable'，session创建成功可监听。|
-| callback | AsyncCallback\<[SmoothZoomInfo](js-apis-camera.md#smoothzoominfo11)\> | 否   | 回调函数，可选，有就是匹配on('smoothZoomInfoAvailable') callback（callback对象不可是匿名函数）。  |
+| callback | AsyncCallback\<[SmoothZoomInfo](arkts-apis-camera-i.md#smoothzoominfo11)\> | 否   | 回调函数，可选，有就是匹配on('smoothZoomInfoAvailable') callback（callback对象不可是匿名函数）。  |
 
 **示例：**
 
@@ -4533,7 +4491,7 @@ function unregisterLcdFlashStatus(portraitPhotoSession: camera.PortraitPhotoSess
 
 NightPhotoSession extends Session, Flash, AutoExposure, Focus, Zoom, ColorEffect, ColorManagement, ManualExposure
 
-夜景拍照模式会话类，继承自[Session](js-apis-camera.md#session11)，用于设置夜景拍照模式的参数以及保存所需要的所有资源[CameraInput](js-apis-camera.md#camerainput)、[CameraOutput](js-apis-camera.md#cameraoutput)。
+夜景拍照模式会话类，继承自[Session](arkts-apis-camera-Session.md)，用于设置夜景拍照模式的参数以及保存所需要的所有资源[CameraInput](arkts-apis-camera-CameraInput.md)、[CameraOutput](arkts-apis-camera-CameraOutput.md)。
 
 ### on('error')<sup>11+</sup>
 
@@ -4549,8 +4507,8 @@ on(type: 'error', callback: ErrorCallback): void
 
 | 参数名     | 类型                                                          | 必填 | 说明                           |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------ |
-| type     | string                                                      | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。session调用相关接口出现错误时会触发该事件，比如调用[beginConfig](js-apis-camera.md#beginconfig11)，[commitConfig](js-apis-camera.md#commitconfig11-1)，[addInput](js-apis-camera.md#addinput11)等接口发生错误时返回错误信息。 |
-| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。 |
+| type     | string                                                      | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。session调用相关接口出现错误时会触发该事件，比如调用[beginConfig](arkts-apis-camera-Session.md#beginconfig11)，[commitConfig](arkts-apis-camera-Session.md#commitconfig11-1)，[addInput](arkts-apis-camera-Session.md#addinput11)等接口发生错误时返回错误信息。 |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode)。 |
 
 **示例：**
 
@@ -4606,7 +4564,7 @@ on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 | 参数名     | 类型                    | 必填 | 说明                       |
 | -------- | ---------------- | ---- | ------------------------ |
 | type     | string                                    | 是   | 监听事件，固定为'focusStateChange'，session创建成功可监听。仅当自动对焦模式时，且相机对焦状态发生改变时可触发该事件。 |
-| callback | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\> | 是   | 回调函数，用于获取当前对焦状态。  |
+| callback | AsyncCallback\<[FocusState](arkts-apis-camera-e.md#focusstate)\> | 是   | 回调函数，用于获取当前对焦状态。  |
 
 **示例：**
 
@@ -4641,7 +4599,7 @@ off(type: 'focusStateChange', callback?: AsyncCallback\<FocusState\>): void
 | 参数名     | 类型                                      | 必填 | 说明                       |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string                                    | 是   | 监听事件，固定为'focusStateChange'，session创建成功可监听。 |
-| callback | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\> | 否   | 回调函数，可选，有就是匹配on('focusStateChange') callback（callback对象不可是匿名函数）。  |
+| callback | AsyncCallback\<[FocusState](arkts-apis-camera-e.md#focusstate)\> | 否   | 回调函数，可选，有就是匹配on('focusStateChange') callback（callback对象不可是匿名函数）。  |
 
 **示例：**
 
@@ -4666,7 +4624,7 @@ on(type: 'smoothZoomInfoAvailable', callback: AsyncCallback\<SmoothZoomInfo\>): 
 | 参数名     | 类型                   | 必填 | 说明                       |
 | -------- | ----------------------- | ---- | ------------------------ |
 | type     | string                  | 是   | 监听事件，固定为'smoothZoomInfoAvailable'，session创建成功可监听。|
-| callback | AsyncCallback\<[SmoothZoomInfo](js-apis-camera.md#smoothzoominfo11)\> | 是   | 回调函数，用于获取当前平滑变焦状态。  |
+| callback | AsyncCallback\<[SmoothZoomInfo](arkts-apis-camera-i.md#smoothzoominfo11)\> | 是   | 回调函数，用于获取当前平滑变焦状态。  |
 
 **示例：**
 
@@ -4701,7 +4659,7 @@ off(type: 'smoothZoomInfoAvailable', callback?: AsyncCallback\<SmoothZoomInfo\>)
 | 参数名     | 类型                                      | 必填 | 说明                       |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string              | 是   | 监听事件，固定为'smoothZoomInfoAvailable'，session创建成功可监听。|
-| callback | AsyncCallback\<[SmoothZoomInfo](js-apis-camera.md#smoothzoominfo11)\> | 否   | 回调函数，可选，有就是匹配on('smoothZoomInfoAvailable') callback（callback对象不可是匿名函数）。  |
+| callback | AsyncCallback\<[SmoothZoomInfo](arkts-apis-camera-i.md#smoothzoominfo11)\> | 否   | 回调函数，可选，有就是匹配on('smoothZoomInfoAvailable') callback（callback对象不可是匿名函数）。  |
 
 **示例：**
 
@@ -4791,7 +4749,7 @@ function unregisterLcdFlashStatus(nightPhotoSession: camera.NightPhotoSession): 
 
 HighResolutionPhotoSession extends Session, AutoExposure, Focus
 
-高像素拍照模式会话类，继承自[Session](js-apis-camera.md#session11)，用于设置高像素拍照模式的参数以及保存所需要的所有资源[CameraInput](js-apis-camera.md#camerainput)、[CameraOutput](js-apis-camera.md#cameraoutput)。
+高像素拍照模式会话类，继承自[Session](arkts-apis-camera-Session.md)，用于设置高像素拍照模式的参数以及保存所需要的所有资源[CameraInput](arkts-apis-camera-CameraInput.md)、[CameraOutput](arkts-apis-camera-CameraOutput.md)。
 
 ### on('error')<sup>12+</sup>
 
@@ -4807,8 +4765,8 @@ on(type: 'error', callback: ErrorCallback): void
 
 | 参数名     | 类型        | 必填 | 说明                           |
 | -------- | --------------------------------- | ---- | ------------------------------ |
-| type     | string                               | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。session调用相关接口出现错误时会触发该事件，比如调用[beginConfig](js-apis-camera.md#beginconfig11)，[commitConfig](js-apis-camera.md#commitconfig11-1)，[addInput](js-apis-camera.md#addinput11)等接口发生错误时返回错误信息。 |
-| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。        |
+| type     | string                               | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。session调用相关接口出现错误时会触发该事件，比如调用[beginConfig](arkts-apis-camera-Session.md#beginconfig11)，[commitConfig](arkts-apis-camera-Session.md#commitconfig11-1)，[addInput](arkts-apis-camera-Session.md#addinput11)等接口发生错误时返回错误信息。 |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode)。        |
 
 **错误码：**
 
@@ -4879,7 +4837,7 @@ on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 | 参数名     | 类型                    | 必填 | 说明                       |
 | -------- | ---------------- | ---- | ------------------------ |
 | type     | string                                    | 是   | 监听事件，固定为'focusStateChange'，session创建成功可监听。仅当自动对焦模式时，且相机对焦状态发生改变时可触发该事件。 |
-| callback | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\> | 是   | 回调函数，用于获取当前对焦状态。  |
+| callback | AsyncCallback\<[FocusState](arkts-apis-camera-e.md#focusstate)\> | 是   | 回调函数，用于获取当前对焦状态。  |
 
 **错误码：**
 
@@ -4930,7 +4888,7 @@ off(type: 'focusStateChange', callback?: AsyncCallback\<FocusState\>): void
 | 参数名     | 类型                                      | 必填 | 说明                       |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string                                    | 是   | 监听事件，固定为'focusStateChange'，session创建成功可监听。 |
-| callback | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\> | 否   | 回调函数，可选，有就是匹配on('focusStateChange') callback（callback对象不可是匿名函数）。  |
+| callback | AsyncCallback\<[FocusState](arkts-apis-camera-e.md#focusstate)\> | 否   | 回调函数，可选，有就是匹配on('focusStateChange') callback（callback对象不可是匿名函数）。  |
 
 **示例：**
 
@@ -4957,7 +4915,7 @@ function unregisterFocusStateChange(highResolutionPhotoSession: camera.HighResol
 
 SlowMotionVideoSession extends Session, Flash, AutoExposure, Focus, Zoom, ColorEffect
 
-慢动作录像模式会话类，继承自[Session](js-apis-camera.md#session11)，用于设置慢动作录像模式的参数以及保存所需要的所有资源[CameraInput](js-apis-camera.md#camerainput)、[CameraOutput](js-apis-camera.md#cameraoutput)。
+慢动作录像模式会话类，继承自[Session](arkts-apis-camera-Session.md)，用于设置慢动作录像模式的参数以及保存所需要的所有资源[CameraInput](arkts-apis-camera-CameraInput.md)、[CameraOutput](arkts-apis-camera-CameraOutput.md)。
 
 > **说明：**
 > 慢动作模式下只能添加预览流和录像流。
@@ -4975,8 +4933,8 @@ on(type: 'error', callback: ErrorCallback): void
 
 | 参数名     | 类型        | 必填 | 说明                           |
 | -------- | --------------------------------- | ---- | ------------------------------ |
-| type     | string                               | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。session调用相关接口出现错误时会触发该事件，比如调用[beginConfig](js-apis-camera.md#beginconfig11)，[commitConfig](js-apis-camera.md#commitconfig11-1)，[addInput](js-apis-camera.md#addinput11)等接口发生错误时返回错误信息。 |
-| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。        |
+| type     | string                               | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。session调用相关接口出现错误时会触发该事件，比如调用[beginConfig](arkts-apis-camera-Session.md#beginconfig11)，[commitConfig](arkts-apis-camera-Session.md#commitconfig11-1)，[addInput](arkts-apis-camera-Session.md#addinput11)等接口发生错误时返回错误信息。 |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode)。        |
 
 **错误码：**
 
@@ -5048,7 +5006,7 @@ on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 | 参数名     | 类型                    | 必填 | 说明                       |
 | -------- | ---------------- | ---- | ------------------------ |
 | type     | string                                    | 是   | 监听事件，固定为'focusStateChange'，session创建成功可监听。仅当自动对焦模式时，且相机对焦状态发生改变时可触发该事件。 |
-| callback | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\> | 是   | 回调函数，用于获取当前对焦状态。  |
+| callback | AsyncCallback\<[FocusState](arkts-apis-camera-e.md#focusstate)\> | 是   | 回调函数，用于获取当前对焦状态。  |
 
 **错误码：**
 
@@ -5091,7 +5049,7 @@ off(type: 'focusStateChange', callback?: AsyncCallback\<FocusState\>): void
 | 参数名     | 类型                                      | 必填 | 说明                       |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string                                    | 是   | 监听事件，固定为'focusStateChange'，session创建成功可监听。 |
-| callback | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\> | 否   | 回调函数，可选，有就是匹配on('focusStateChange') callback（callback对象不可是匿名函数）。  |
+| callback | AsyncCallback\<[FocusState](arkts-apis-camera-e.md#focusstate)\> | 否   | 回调函数，可选，有就是匹配on('focusStateChange') callback（callback对象不可是匿名函数）。  |
 
 **错误码：**
 
@@ -5124,7 +5082,7 @@ on(type: 'smoothZoomInfoAvailable', callback: AsyncCallback\<SmoothZoomInfo\>): 
 | 参数名     | 类型                   | 必填 | 说明                       |
 | -------- | ----------------------- | ---- | ------------------------ |
 | type     | string                  | 是   | 监听事件，固定为'smoothZoomInfoAvailable'，session创建成功可监听。|
-| callback | AsyncCallback\<[SmoothZoomInfo](js-apis-camera.md#smoothzoominfo11)\> | 是   | 回调函数，用于获取当前平滑变焦状态。  |
+| callback | AsyncCallback\<[SmoothZoomInfo](arkts-apis-camera-i.md#smoothzoominfo11)\> | 是   | 回调函数，用于获取当前平滑变焦状态。  |
 
 **错误码：**
 
@@ -5167,7 +5125,7 @@ off(type: 'smoothZoomInfoAvailable', callback?: AsyncCallback\<SmoothZoomInfo\>)
 | 参数名     | 类型                                      | 必填 | 说明                       |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string              | 是   | 监听事件，固定为'smoothZoomInfoAvailable'，session创建成功可监听。|
-| callback | AsyncCallback\<[SmoothZoomInfo](js-apis-camera.md#smoothzoominfo11)\> | 否   | 回调函数，可选，有就是匹配on('smoothZoomInfoAvailable') callback（callback对象不可是匿名函数）。  |
+| callback | AsyncCallback\<[SmoothZoomInfo](arkts-apis-camera-i.md#smoothzoominfo11)\> | 否   | 回调函数，可选，有就是匹配on('smoothZoomInfoAvailable') callback（callback对象不可是匿名函数）。  |
 
 **错误码：**
 
@@ -5243,7 +5201,7 @@ off(type: 'slowMotionStatus', callback?: AsyncCallback\<SlowMotionStatus\>): voi
 | 参数名     | 类型                                      | 必填 | 说明                       |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string              | 是   | 监听事件，固定为'slowMotionStatus'，session创建成功可监听。|
-| callback | AsyncCallback\<[SlowMotionStatus](#slowmotionstatus12)\> | 否   | 回调函数，可选，有就是匹配on('slowMotionStatus') callback（callback对象不可是匿名函数）。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。  |
+| callback | AsyncCallback\<[SlowMotionStatus](#slowmotionstatus12)\> | 否   | 回调函数，可选，有就是匹配on('slowMotionStatus') callback（callback对象不可是匿名函数）。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode)。  |
 
 **错误码：**
 
@@ -5267,7 +5225,7 @@ isSlowMotionDetectionSupported(): boolean
 查询当前设备是否支持慢动作检测功能。
 
 > **说明：**
-> 该接口需要在[commitConfig](js-apis-camera.md#commitconfig11-1)之后调用。
+> 该接口需要在[commitConfig](arkts-apis-camera-Session.md#commitconfig11-1)之后调用。
 
 **系统接口：** 此接口为系统接口。
 
@@ -5277,7 +5235,7 @@ isSlowMotionDetectionSupported(): boolean
 
 | 类型        | 说明                                                                                     |
 | ---------- |----------------------------------------------------------------------------------------|
-| boolean    | 返回true表示支持慢动作检测功能，false表示不支持。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。 |
+| boolean    | 返回true表示支持慢动作检测功能，false表示不支持。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode)。 |
 
 **错误码：**
 
@@ -5286,7 +5244,6 @@ isSlowMotionDetectionSupported(): boolean
 | 错误码ID   | 错误信息        |
 |---------| --------------- |
 | 202     |  Not System Application.                               |
-| 7400103 |  Session not config.                                   |
 
 **示例：**
 
@@ -5314,7 +5271,7 @@ setSlowMotionDetectionArea(area: Rect): void
 
 > **说明：**
 > 在调用该方法之前，先调用[isSlowMotionDetectionSupported](#isslowmotiondetectionsupported12)确认设备是否支持慢动作检测功能, 才能保证其他相关方法的正常运行。 
-该接口需要在[commitConfig](js-apis-camera.md#commitconfig11-1)之后调用。
+该接口需要在[commitConfig](arkts-apis-camera-Session.md#commitconfig11-1)之后调用。
 
 **系统接口：** 此接口为系统接口。
 
@@ -5324,7 +5281,7 @@ setSlowMotionDetectionArea(area: Rect): void
 
 | 参数名     | 类型                                            | 必填 | 说明                          |
 | -------- | ---------------------------------------------- | ---- | --------------------------- |
-| area  | [Rect](js-apis-camera.md#rect)      | 是   | 矩形定义。                   |
+| area  | [Rect](arkts-apis-camera-i.md#rect)      | 是   | 矩形定义。                   |
 
 **错误码：**
 
@@ -5333,8 +5290,6 @@ setSlowMotionDetectionArea(area: Rect): void
 | 错误码ID   | 错误信息        |
 |---------| --------------- |
 | 202     |  Not System Application.                            |
-| 7400101 |  Parameter missing or parameter type incorrect.     |
-| 7400103 |  Session not config.                                |
 
 **示例：**
 
@@ -5356,7 +5311,7 @@ function setSlowMotionDetectionArea(slowMotionVideoSession: camera.SlowMotionVid
 
 PanoramaPhotoSession extends Session, Focus, AutoExposure, WhiteBalance, ColorEffect
 
-全景拍照模式会话类，继承自[Session](js-apis-camera.md#session11)，用于设置全景拍照模式的参数以及保存所需要的所有资源[CameraInput](js-apis-camera.md#camerainput)、[CameraOutput](js-apis-camera.md#cameraoutput)。
+全景拍照模式会话类，继承自[Session](arkts-apis-camera-Session.md)，用于设置全景拍照模式的参数以及保存所需要的所有资源[CameraInput](arkts-apis-camera-CameraInput.md)、[CameraOutput](arkts-apis-camera-CameraOutput.md)。
 
 ### on('error')<sup>12+</sup>
 
@@ -5372,8 +5327,8 @@ on(type: 'error', callback: ErrorCallback): void
 
 | 参数名     | 类型                                                          | 必填 | 说明                           |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------ |
-| type     | string                                                      | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。session调用相关接口出现错误时会触发该事件，比如调用[beginConfig](js-apis-camera.md#beginconfig11)，[commitConfig](js-apis-camera.md#commitconfig11-1)，[addInput](js-apis-camera.md#addinput11)等接口发生错误时返回错误信息。 |
-| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。 |
+| type     | string                                                      | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。session调用相关接口出现错误时会触发该事件，比如调用[beginConfig](arkts-apis-camera-Session.md#beginconfig11)，[commitConfig](arkts-apis-camera-Session.md#commitconfig11-1)，[addInput](arkts-apis-camera-Session.md#addinput11)等接口发生错误时返回错误信息。 |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode)。 |
 
 **示例：**
 
@@ -5429,7 +5384,7 @@ on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 | 参数名     | 类型                    | 必填 | 说明                       |
 | -------- | ---------------- | ---- | ------------------------ |
 | type     | string                                    | 是   | 监听事件，固定为'focusStateChange'，session创建成功可监听。仅当自动对焦模式时，且相机对焦状态发生改变时可触发该事件。 |
-| callback | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\> | 是   | 回调函数，用于获取当前对焦状态。  |
+| callback | AsyncCallback\<[FocusState](arkts-apis-camera-e.md#focusstate)\> | 是   | 回调函数，用于获取当前对焦状态。  |
 
 **示例：**
 
@@ -5464,7 +5419,7 @@ off(type: 'focusStateChange', callback?: AsyncCallback\<FocusState\>): void
 | 参数名     | 类型                                      | 必填 | 说明                       |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string                                    | 是   | 监听事件，固定为'focusStateChange'，session创建成功可监听。 |
-| callback | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\> | 否   | 回调函数，可选，有就是匹配on('focusStateChange') callback（callback对象不可是匿名函数）。  |
+| callback | AsyncCallback\<[FocusState](arkts-apis-camera-e.md#focusstate)\> | 否   | 回调函数，可选，有就是匹配on('focusStateChange') callback（callback对象不可是匿名函数）。  |
 
 **示例：**
 
@@ -5576,7 +5531,7 @@ isExposureMeteringModeSupported(aeMeteringMode: ExposureMeteringMode): boolean
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| boolean    | 获取是否支持传入的测光模式，返回true为支持，返回false为不支持。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。 |
+| boolean    | 获取是否支持传入的测光模式，返回true为支持，返回false为不支持。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode)。 |
 
 **错误码：**
 
@@ -5627,7 +5582,7 @@ getExposureMeteringMode(): ExposureMeteringMode
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| [ExposureMeteringMode](#exposuremeteringmode12)    | 获取当前测光模式。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。 |
+| [ExposureMeteringMode](#exposuremeteringmode12)    | 获取当前测光模式。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode)。 |
 
 **错误码：**
 
@@ -5738,7 +5693,7 @@ isFocusAssistSupported(): boolean
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| boolean    | 返回true表示支持对焦辅助灯，false表示不支持。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。 |
+| boolean    | 返回true表示支持对焦辅助灯，false表示不支持。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode)。 |
 
 **错误码：**
 
@@ -5787,7 +5742,7 @@ isFocusRangeTypeSupported(type: FocusRangeType): boolean
 
 | 类型    | 说明                                                         |
 | ------- | ------------------------------------------------------------ |
-| boolean | 返回true表示支持指定的对焦范围类型，false表示不支持。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。 |
+| boolean | 返回true表示支持指定的对焦范围类型，false表示不支持。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode)。 |
 
 **错误码**：
 
@@ -5837,7 +5792,7 @@ isFocusDrivenTypeSupported(type: FocusDrivenType): boolean
 
 | 类型    | 说明                                                         |
 | ------- | ------------------------------------------------------------ |
-| boolean | 返回true表示支持指定的对焦驱动类型，false表示不支持。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。 |
+| boolean | 返回true表示支持指定的对焦驱动类型，false表示不支持。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode)。 |
 
 **错误码**：
 
@@ -6241,7 +6196,7 @@ isManualIsoSupported(): boolean
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| boolean    | 返回true表示支持手动调节ISO，false表示不支持。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。 |
+| boolean    | 返回true表示支持手动调节ISO，false表示不支持。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode)。 |
 
 **错误码：**
 
@@ -6284,7 +6239,7 @@ getIsoRange(): Array\<number\>
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| Array\<number\>   | 用于获取ISO范围，范围为[50,100,...,6400]，实际根据底层能力返回为准，接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。 |
+| Array\<number\>   | 用于获取ISO范围，范围为[50,100,...,6400]，实际根据底层能力返回为准，接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode)。 |
 
 **错误码：**
 
@@ -6404,301 +6359,11 @@ function getIso(professionalPhotoSession: camera.ProfessionalPhotoSession): numb
 }
 ```
 
-## WhiteBalanceMode<sup>12+</sup>
-
-枚举，白平衡模式。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-| 名称                           | 值   | 说明         |
-| ----------------------------- | ---- | ----------- |
-| AUTO          | 0    | 自动 |
-| CLOUDY        | 1    | 阴天 |
-| INCANDESCENT  | 2    | 白炽光 |
-| FLUORESCENT   | 3    | 荧光 |
-| DAYLIGHT     	| 4    | 日光 |
-| MANUAL        | 5    | 手动 |
-
-## WhiteBalanceQuery<sup>12+</sup>
-
-提供了查询设备对指定的白平衡模式是否支持，以及获取设备支持的白平衡模式范围的方法。
-
-### isWhiteBalanceModeSupported<sup>12+</sup>
-
-isWhiteBalanceModeSupported(mode: WhiteBalanceMode): boolean
-
-检测是否支持当前传入的白平衡模式。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-**参数：**
-
-| 参数名      | 类型                           | 必填  | 说明                           |
-| -------- | -------------------------------| ---- | ----------------------------- |
-| mode   | [WhiteBalanceMode](#whitebalancemode12)  | 是   | 白平衡模式。                      |
-
-**返回值：**
-
-| 类型        | 说明                          |
-| ---------- | ----------------------------- |
-| boolean    | 返回true表示支持该白平衡模式，false表示不支持。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
-
-| 错误码ID         | 错误信息        |
-| --------------- | --------------- |
-| 202     | Not System Application. |
-| 7400101                |  Parameter missing or parameter type incorrect.        |
-| 7400103                |  Session not config.                                   |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-function isWhiteBalanceModeSupported(professionalPhotoSession: camera.ProfessionalPhotoSession): boolean {
-  let status: boolean = false;
-  try {
-	let mode: WhiteBalanceMode = camera.WhiteBalanceMode.DAYLIGHT;
-    status = professionalPhotoSession.isWhiteBalanceModeSupported(mode);
-  } catch (error) {
-    // 失败返回错误码error.code并处理。
-    let err = error as BusinessError;
-    console.error(`The isWhiteBalanceModeSupported call failed. error code: ${err.code}`);
-  }
-  return status;
-}
-```
-
-### getWhiteBalanceRange<sup>12+</sup>
-
-getWhiteBalanceRange(): Array\<number\>
-
-获取手动白平衡的调节范围。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**返回值：**
-
-| 类型        | 说明                          |
-| ---------- | ----------------------------- |
-| Array\<number\>   | 用于获取手动白平衡值可调范围，如[2800,...,10000]，单位为K(Kelvin，温度单位)，实际情况根据底层能力返回为准。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
-
-| 错误码ID         | 错误信息        |
-| --------------- | --------------- |
-| 202     | Not System Application. |
-| 7400103                |  Session not config.                                   |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-function getWhiteBalanceRange(professionalPhotoSession: camera.ProfessionalPhotoSession): Array<number> {
-  let range: Array<number> = [];
-  try {
-    range = professionalPhotoSession.getWhiteBalanceRange();
-  } catch (error) {
-    // 失败返回错误码error.code并处理。
-    let err = error as BusinessError;
-    console.error(`The getWhiteBalanceRange call failed. error code: ${err.code}`);
-  }
-  return range;
-}
-```
-
-## WhiteBalance<sup>12+</sup>
-
-WhiteBalance extends [WhiteBalanceQuery](#whitebalancequery12)
-
-提供了处理设备白平衡的相关功能，包括获取和设置白平衡模式和白平衡值。
-
-### setWhiteBalanceMode<sup>12+</sup>
-
-setWhiteBalanceMode(mode: WhiteBalanceMode): void
-
-设置白平衡模式。进行设置之前，需要先检查设备是否支持指定的白平衡模式，可使用方法[isWhiteBalanceModeSupported](#iswhitebalancemodesupported12)。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**参数：**
-
-| 参数名      | 类型                            | 必填 | 说明                    |
-| -------- | -------------------------------| ---- | ----------------------- |
-| mode   | [WhiteBalanceMode](#whitebalancemode12)  | 是   | 白平衡模式。                |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
-
-| 错误码ID         | 错误信息        |
-| --------------- | --------------- |
-| 202     | Not System Application. |
-| 7400101                |  Parameter missing or parameter type incorrect.        |
-| 7400103                |  Session not config.                                   |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-function setWhiteBalanceMode(professionalPhotoSession: camera.ProfessionalPhotoSession): void {
-  try {
-    professionalPhotoSession.setWhiteBalanceMode(camera.WhiteBalanceMode.DAYLIGHT);
-  } catch (error) {
-    // 失败返回错误码error.code并处理。
-    let err = error as BusinessError;
-    console.error(`The setWhiteBalanceMode call failed. error code: ${err.code}`);
-  }
-}
-```
-
-### getWhiteBalanceMode<sup>12+</sup>
-
-getWhiteBalanceMode(): WhiteBalanceMode
-
-获取当前白平衡模式。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**返回值：**
-
-| 类型        | 说明                          |
-| ---------- | ----------------------------- |
-| [WhiteBalanceMode](#whitebalancemode12)    | 获取当前白平衡模式。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
-
-| 错误码ID         | 错误信息        |
-| --------------- | --------------- |
-| 202     | Not System Application. |
-| 7400103                |  Session not config.                                   |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-function getWhiteBalanceMode(professionalPhotoSession: camera.ProfessionalPhotoSession): camera.WhiteBalanceMode | undefined {
-  let whiteBalanceMode: camera.WhiteBalanceMode | undefined = undefined;
-  try {
-    whiteBalanceMode = professionalPhotoSession.getWhiteBalanceMode();
-  } catch (error) {
-    // 失败返回错误码error.code并处理。
-    let err = error as BusinessError;
-    console.error(`The getWhiteBalanceMode call failed. error code: ${err.code}`);
-  }
-  return whiteBalanceMode;
-}
-```
-
-### setWhiteBalance<sup>12+</sup>
-setWhiteBalance(whiteBalance: number): void
-
-设置手动白平衡值。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**参数：**
-
-| 参数名      | 类型                     | 必填 | 说明                 |
-| -------- | ----------------------- | ---- | ------------------- |
-| whiteBalance | number | 是   | 设置手动白平衡值 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
-
-| 错误码ID         | 错误信息        |
-| --------------- | --------------- |
-| 202     | Not System Application. |
-| 7400101                |  Parameter missing or parameter type incorrect.        |
-| 7400103                |  Session not config.                                   |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-function setWhiteBalance(professionalPhotoSession: camera.ProfessionalPhotoSession): void {
-  try {
-    let whiteBalance: number = 1000;
-    professionalPhotoSession.setWhiteBalance(whiteBalance);
-  } catch (error) {
-    // 失败返回错误码error.code并处理。
-    let err = error as BusinessError;
-    console.error(`The setWhiteBalance call failed. error code: ${err.code}`);
-  }
-}
-```
-
-### getWhiteBalance<sup>12+</sup>
-
-getWhiteBalance(): number
-
-获取当前手动白平衡的值。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**返回值：**
-
-| 类型        | 说明                          |
-| ---------- | ----------------------------- |
-| number    | 返回当前白平衡值。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
-
-| 错误码ID         | 错误信息        |
-| --------------- | --------------- |
-| 202     | Not System Application. |
-| 7400103                |  Session not config.                                   |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-function getWhiteBalance(professionalPhotoSession: camera.ProfessionalPhotoSession): number {
-  let whiteBalance: number = 0;
-  try {
-    whiteBalance = professionalPhotoSession.getWhiteBalance();
-  } catch (error) {
-    // 失败返回错误码error.code并处理。
-    let err = error as BusinessError;
-    console.error(`The getWhiteBalance call failed. error code: ${err.code}`);
-  }
-  return whiteBalance;
-}
-```
-
 ## ProfessionalPhotoSession<sup>12+</sup>
 
 ProfessionalPhotoSession extends Session, AutoExposure, ManualExposure, Focus, ManualFocus, WhiteBalance, ManualIso, Flash, Zoom, ColorEffect, Aperture
 
-专业拍照会话类，继承自[Session](js-apis-camera.md#session12)，用于设置专业拍照会话的参数以及保存所需要的所有资源[CameraInput](js-apis-camera.md#camerainput)、[CameraOutput](js-apis-camera.md#cameraoutput)。
+专业拍照会话类，继承自[Session](arkts-apis-camera-Session.md)，用于设置专业拍照会话的参数以及保存所需要的所有资源[CameraInput](arkts-apis-camera-CameraInput.md)、[CameraOutput](arkts-apis-camera-CameraOutput.md)。
 
 ### on('error')<sup>12+</sup>
 
@@ -6714,8 +6379,8 @@ on(type: 'error', callback: ErrorCallback): void
 
 | 参数名     | 类型                                                          | 必填 | 说明                           |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------ |
-| type     | string                                                      | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。session调用相关接口出现错误时会触发该事件，比如调用[beginConfig](js-apis-camera.md#beginconfig11)，[commitConfig](js-apis-camera.md#commitconfig11-1)，[addInput](js-apis-camera.md#addinput11)等接口发生错误时返回错误信息。 |
-| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。 |
+| type     | string                                                      | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。session调用相关接口出现错误时会触发该事件，比如调用[beginConfig](arkts-apis-camera-Session.md#beginconfig11)，[commitConfig](arkts-apis-camera-Session.md#commitconfig11-1)，[addInput](arkts-apis-camera-Session.md#addinput11)等接口发生错误时返回错误信息。 |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode)。 |
 
 **错误码：**
 
@@ -6787,7 +6452,7 @@ on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 | 参数名     | 类型                    | 必填 | 说明                       |
 | -------- | ---------------- | ---- | ------------------------ |
 | type     | string                                    | 是   | 监听事件，固定为'focusStateChange'，session创建成功可监听。仅当自动对焦模式时，且相机对焦状态发生改变时可触发该事件。 |
-| callback | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\> | 是   | 回调函数，用于获取当前对焦状态。  |
+| callback | AsyncCallback\<[FocusState](arkts-apis-camera-e.md#focusstate)\> | 是   | 回调函数，用于获取当前对焦状态。  |
 
 **错误码：**
 
@@ -6830,7 +6495,7 @@ off(type: 'focusStateChange', callback?: AsyncCallback\<FocusState\>): void
 | 参数名     | 类型                                      | 必填 | 说明                       |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string                                    | 是   | 监听事件，固定为'focusStateChange'，session创建成功可监听。 |
-| callback | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\> | 否   | 回调函数，可选，有就是匹配on('focusStateChange') callback（callback对象不可是匿名函数）。  |
+| callback | AsyncCallback\<[FocusState](arkts-apis-camera-e.md#focusstate)\> | 否   | 回调函数，可选，有就是匹配on('focusStateChange') callback（callback对象不可是匿名函数）。  |
 
 **错误码：**
 
@@ -6863,7 +6528,7 @@ on(type: 'smoothZoomInfoAvailable', callback: AsyncCallback\<SmoothZoomInfo\>): 
 | 参数名     | 类型                   | 必填 | 说明                       |
 | -------- | ----------------------- | ---- | ------------------------ |
 | type     | string                  | 是   | 监听事件，固定为'smoothZoomInfoAvailable'，session创建成功可监听。|
-| callback | AsyncCallback\<[SmoothZoomInfo](js-apis-camera.md#smoothzoominfo11)\> | 是   | 回调函数，用于获取当前平滑变焦状态。  |
+| callback | AsyncCallback\<[SmoothZoomInfo](arkts-apis-camera-i.md#smoothzoominfo11)\> | 是   | 回调函数，用于获取当前平滑变焦状态。  |
 
 **错误码：**
 
@@ -6906,7 +6571,7 @@ off(type: 'smoothZoomInfoAvailable', callback?: AsyncCallback\<SmoothZoomInfo\>)
 | 参数名     | 类型                                      | 必填 | 说明                       |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string              | 是   | 监听事件，固定为'smoothZoomInfoAvailable'，session创建成功可监听。|
-| callback | AsyncCallback\<[SmoothZoomInfo](js-apis-camera.md#smoothzoominfo11)\> | 否   | 回调函数，可选，有就是匹配on('smoothZoomInfoAvailable') callback（callback对象不可是匿名函数）。  |
+| callback | AsyncCallback\<[SmoothZoomInfo](arkts-apis-camera-i.md#smoothzoominfo11)\> | 否   | 回调函数，可选，有就是匹配on('smoothZoomInfoAvailable') callback（callback对象不可是匿名函数）。  |
 
 **错误码：**
 
@@ -7216,7 +6881,7 @@ function unregisterLuminationInfoEvent(professionalPhotoSession: camera.Professi
 
 ProfessionalVideoSession extends Session, AutoExposure, ManualExposure, Focus, ManualFocus, WhiteBalance, ManualIso, Flash, Zoom, ColorEffect, Aperture
 
-专业录像模式会话类，继承自[Session](js-apis-camera.md#session12)，用于设置专业录像模式的参数以及保存所需要的所有资源[CameraInput](js-apis-camera.md#camerainput)、[CameraOutput](js-apis-camera.md#cameraoutput)。
+专业录像模式会话类，继承自[Session](arkts-apis-camera-Session.md)，用于设置专业录像模式的参数以及保存所需要的所有资源[CameraInput](arkts-apis-camera-CameraInput.md)、[CameraOutput](arkts-apis-camera-CameraOutput.md)。
 
 ### on('error')<sup>12+</sup>
 
@@ -7232,8 +6897,8 @@ on(type: 'error', callback: ErrorCallback): void
 
 | 参数名     | 类型                                                          | 必填 | 说明                           |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------ |
-| type     | string                                                      | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。session调用相关接口出现错误时会触发该事件，比如调用[beginConfig](js-apis-camera.md#beginconfig11)，[commitConfig](js-apis-camera.md#commitconfig11-1)，[addInput](js-apis-camera.md#addinput11)等接口发生错误时返回错误信息。 |
-| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。 |
+| type     | string                                                      | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。session调用相关接口出现错误时会触发该事件，比如调用[beginConfig](arkts-apis-camera-Session.md#beginconfig11)，[commitConfig](arkts-apis-camera-Session.md#commitconfig11-1)，[addInput](arkts-apis-camera-Session.md#addinput11)等接口发生错误时返回错误信息。 |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode)。 |
 
 **错误码：**
 
@@ -7305,7 +6970,7 @@ on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 | 参数名     | 类型                    | 必填 | 说明                       |
 | -------- | ---------------- | ---- | ------------------------ |
 | type     | string                                    | 是   | 监听事件，固定为'focusStateChange'，session创建成功可监听。仅当自动对焦模式时，且相机对焦状态发生改变时可触发该事件。 |
-| callback | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\> | 是   | 回调函数，用于获取当前对焦状态。  |
+| callback | AsyncCallback\<[FocusState](arkts-apis-camera-e.md#focusstate)\> | 是   | 回调函数，用于获取当前对焦状态。  |
 
 **错误码：**
 
@@ -7348,7 +7013,7 @@ off(type: 'focusStateChange', callback?: AsyncCallback\<FocusState\>): void
 | 参数名     | 类型                                      | 必填 | 说明                       |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string                                    | 是   | 监听事件，固定为'focusStateChange'，session创建成功可监听。 |
-| callback | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\> | 否   | 回调函数，可选，有就是匹配on('focusStateChange') callback（callback对象不可是匿名函数）。  |
+| callback | AsyncCallback\<[FocusState](arkts-apis-camera-e.md#focusstate)\> | 否   | 回调函数，可选，有就是匹配on('focusStateChange') callback（callback对象不可是匿名函数）。  |
 
 **错误码：**
 
@@ -7381,7 +7046,7 @@ on(type: 'smoothZoomInfoAvailable', callback: AsyncCallback\<SmoothZoomInfo\>): 
 | 参数名     | 类型                   | 必填 | 说明                       |
 | -------- | ----------------------- | ---- | ------------------------ |
 | type     | string                  | 是   | 监听事件，固定为'smoothZoomInfoAvailable'，session创建成功可监听。|
-| callback | AsyncCallback\<[SmoothZoomInfo](js-apis-camera.md#smoothzoominfo11)\> | 是   | 回调函数，用于获取当前平滑变焦状态。  |
+| callback | AsyncCallback\<[SmoothZoomInfo](arkts-apis-camera-i.md#smoothzoominfo11)\> | 是   | 回调函数，用于获取当前平滑变焦状态。  |
 
 **错误码：**
 
@@ -7424,7 +7089,7 @@ off(type: 'smoothZoomInfoAvailable', callback?: AsyncCallback\<SmoothZoomInfo\>)
 | 参数名     | 类型                                      | 必填 | 说明                       |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string              | 是   | 监听事件，固定为'smoothZoomInfoAvailable'，session创建成功可监听。|
-| callback | AsyncCallback\<[SmoothZoomInfo](js-apis-camera.md#smoothzoominfo11)\> | 否   | 回调函数，可选，有就是匹配on('smoothZoomInfoAvailable') callback（callback对象不可是匿名函数）。  |
+| callback | AsyncCallback\<[SmoothZoomInfo](arkts-apis-camera-i.md#smoothzoominfo11)\> | 否   | 回调函数，可选，有就是匹配on('smoothZoomInfoAvailable') callback（callback对象不可是匿名函数）。  |
 
 **错误码：**
 
@@ -7734,7 +7399,7 @@ function unregisterLuminationInfoEvent(professionalVideoSession: camera.Professi
 
 MacroPhotoSession extends Session, Flash, AutoExposure, Focus, Zoom, ColorEffect, ManualFocus
 
-微距拍照模式会话类，继承自[Session](js-apis-camera.md#session11)，用于设置微距拍照模式的参数以及保存所需要的所有资源[CameraInput](js-apis-camera.md#camerainput)、[CameraOutput](js-apis-camera.md#cameraoutput)。
+微距拍照模式会话类，继承自[Session](arkts-apis-camera-Session.md)，用于设置微距拍照模式的参数以及保存所需要的所有资源[CameraInput](arkts-apis-camera-CameraInput.md)、[CameraOutput](arkts-apis-camera-CameraOutput.md)。
 
 ### on('error')<sup>12+</sup>
 
@@ -7750,8 +7415,8 @@ on(type: 'error', callback: ErrorCallback): void
 
 | 参数名      | 类型                                                                        | 必填  | 说明                                                                                                                                                                      |
 |----------|---------------------------------------------------------------------------|-----|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| type     | string                                                                    | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。session调用相关接口出现错误时会触发该事件，比如调用[beginConfig](js-apis-camera.md#beginconfig11)，[commitConfig](js-apis-camera.md#commitconfig11-1)，[addInput](js-apis-camera.md#addinput11)等接口发生错误时返回错误信息。 |
-| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。                                                                                                           |
+| type     | string                                                                    | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。session调用相关接口出现错误时会触发该事件，比如调用[beginConfig](arkts-apis-camera-Session.md#beginconfig11)，[commitConfig](arkts-apis-camera-Session.md#commitconfig11-1)，[addInput](arkts-apis-camera-Session.md#addinput11)等接口发生错误时返回错误信息。 |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode)。                                                                                                           |
 
 **错误码：**
 
@@ -7823,7 +7488,7 @@ on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 | 参数名       | 类型                                          | 必填 | 说明                                                                      |
 |-----------|---------------------------------------------|----|-------------------------------------------------------------------------|
 | type      | string                                      | 是  | 监听事件，固定为'focusStateChange'，session创建成功可监听。仅当自动对焦模式时，且相机对焦状态发生改变时可触发该事件。 |
-| callback  | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\>  | 是  | 回调函数，用于获取当前对焦状态。                                                        |
+| callback  | AsyncCallback\<[FocusState](arkts-apis-camera-e.md#focusstate)\>  | 是  | 回调函数，用于获取当前对焦状态。                                                        |
 
 **错误码：**
 
@@ -7866,7 +7531,7 @@ off(type: 'focusStateChange', callback?: AsyncCallback\<FocusState\>): void
 | 参数名       | 类型                                          | 必填 | 说明                                                           |
 |-----------|---------------------------------------------|----|--------------------------------------------------------------|
 | type      | string                                      | 是  | 监听事件，固定为'focusStateChange'，session创建成功可监听。                   |
-| callback  | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\>  | 否  | 回调函数，如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。  |
+| callback  | AsyncCallback\<[FocusState](arkts-apis-camera-e.md#focusstate)\>  | 否  | 回调函数，如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。  |
 
 **错误码：**
 
@@ -7899,7 +7564,7 @@ on(type: 'smoothZoomInfoAvailable', callback: AsyncCallback\<SmoothZoomInfo\>): 
 | 参数名     | 类型                   | 必填 | 说明                       |
 | -------- | ----------------------- | ---- | ------------------------ |
 | type     | string                  | 是   | 监听事件，固定为'smoothZoomInfoAvailable'，session创建成功可监听。|
-| callback | AsyncCallback\<[SmoothZoomInfo](js-apis-camera.md#smoothzoominfo11)\> | 是   | 回调函数，用于获取当前平滑变焦状态。  |
+| callback | AsyncCallback\<[SmoothZoomInfo](arkts-apis-camera-i.md#smoothzoominfo11)\> | 是   | 回调函数，用于获取当前平滑变焦状态。  |
 
 **错误码：**
 
@@ -7942,7 +7607,7 @@ off(type: 'smoothZoomInfoAvailable', callback?: AsyncCallback\<SmoothZoomInfo\>)
 | 参数名     | 类型                                      | 必填 | 说明                       |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string              | 是   | 监听事件，固定为'smoothZoomInfoAvailable'，session创建成功可监听。|
-| callback | AsyncCallback\<[SmoothZoomInfo](js-apis-camera.md#smoothzoominfo11)\> | 否   | 回调函数，如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。 |
+| callback | AsyncCallback\<[SmoothZoomInfo](arkts-apis-camera-i.md#smoothzoominfo11)\> | 否   | 回调函数，如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。 |
 
 **错误码：**
 
@@ -7964,7 +7629,7 @@ function unregisterSmoothZoomInfo(macroPhotoSession: camera.MacroPhotoSession): 
 
 MacroVideoSession extends Session, Flash, AutoExposure, Focus, Zoom, ColorEffect, ManualFocus
 
-微距录像模式会话类，继承自[Session](js-apis-camera.md#session11)，用于设置微距录像模式的参数以及保存所需要的所有资源[CameraInput](js-apis-camera.md#camerainput)、[CameraOutput](js-apis-camera.md#cameraoutput)。
+微距录像模式会话类，继承自[Session](arkts-apis-camera-Session.md)，用于设置微距录像模式的参数以及保存所需要的所有资源[CameraInput](arkts-apis-camera-CameraInput.md)、[CameraOutput](arkts-apis-camera-CameraOutput.md)。
 
 ### on('error')<sup>12+</sup>
 
@@ -7980,8 +7645,8 @@ on(type: 'error', callback: ErrorCallback): void
 
 | 参数名      | 类型                                                                        | 必填  | 说明                                                                                                                                                                      |
 |----------|---------------------------------------------------------------------------|-----|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| type     | string                                                                    | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。session调用相关接口出现错误时会触发该事件，比如调用[beginConfig](js-apis-camera.md#beginconfig11)，[commitConfig](js-apis-camera.md#commitconfig11-1)，[addInput](js-apis-camera.md#addinput11)等接口发生错误时返回错误信息。 |
-| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。                                                                                                           |
+| type     | string                                                                    | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。session调用相关接口出现错误时会触发该事件，比如调用[beginConfig](arkts-apis-camera-Session.md#beginconfig11)，[commitConfig](arkts-apis-camera-Session.md#commitconfig11-1)，[addInput](arkts-apis-camera-Session.md#addinput11)等接口发生错误时返回错误信息。 |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode)。                                                                                                           |
 
 **错误码：**
 
@@ -8053,7 +7718,7 @@ on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 | 参数名       | 类型                                          | 必填 | 说明                                                                      |
 |-----------|---------------------------------------------|----|-------------------------------------------------------------------------|
 | type      | string                                      | 是  | 监听事件，固定为'focusStateChange'，session创建成功可监听。仅当自动对焦模式时，且相机对焦状态发生改变时可触发该事件。 |
-| callback  | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\>  | 是  | 回调函数，用于获取当前对焦状态。                                                        |
+| callback  | AsyncCallback\<[FocusState](arkts-apis-camera-e.md#focusstate)\>  | 是  | 回调函数，用于获取当前对焦状态。                                                        |
 
 **错误码：**
 
@@ -8096,7 +7761,7 @@ off(type: 'focusStateChange', callback?: AsyncCallback\<FocusState\>): void
 | 参数名       | 类型                                          | 必填 | 说明                                                           |
 |-----------|---------------------------------------------|----|--------------------------------------------------------------|
 | type      | string                                      | 是  | 监听事件，固定为'focusStateChange'，session创建成功可监听。                   |
-| callback  | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\>  | 否  | 回调函数，如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。  |
+| callback  | AsyncCallback\<[FocusState](arkts-apis-camera-e.md#focusstate)\>  | 否  | 回调函数，如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。  |
 
 **错误码：**
 
@@ -8129,7 +7794,7 @@ on(type: 'smoothZoomInfoAvailable', callback: AsyncCallback\<SmoothZoomInfo\>): 
 | 参数名     | 类型                   | 必填 | 说明                       |
 | -------- | ----------------------- | ---- | ------------------------ |
 | type     | string                  | 是   | 监听事件，固定为'smoothZoomInfoAvailable'，session创建成功可监听。|
-| callback | AsyncCallback\<[SmoothZoomInfo](js-apis-camera.md#smoothzoominfo11)\> | 是   | 回调函数，用于获取当前平滑变焦状态。  |
+| callback | AsyncCallback\<[SmoothZoomInfo](arkts-apis-camera-i.md#smoothzoominfo11)\> | 是   | 回调函数，用于获取当前平滑变焦状态。  |
 
 **错误码：**
 
@@ -8172,7 +7837,7 @@ off(type: 'smoothZoomInfoAvailable', callback?: AsyncCallback\<SmoothZoomInfo\>)
 | 参数名     | 类型                                      | 必填 | 说明                       |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string              | 是   | 监听事件，固定为'smoothZoomInfoAvailable'，session创建成功可监听。|
-| callback | AsyncCallback\<[SmoothZoomInfo](js-apis-camera.md#smoothzoominfo11)\> | 否   | 回调函数，如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。 |
+| callback | AsyncCallback\<[SmoothZoomInfo](arkts-apis-camera-i.md#smoothzoominfo11)\> | 否   | 回调函数，如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。 |
 
 **错误码：**
 
@@ -8229,7 +7894,7 @@ function isLcdFlashSupported(nightPhotoSession: camera.NightPhotoSession): boole
 
 ## Flash<sup>11+</sup>
 
-Flash extends [FlashQuery](js-apis-camera.md#flashquery12)
+Flash extends [FlashQuery](arkts-apis-camera-FlashQuery.md)
 
 闪光灯类，对设备闪光灯操作。
 
@@ -8251,10 +7916,11 @@ enableLcdFlash(enabled: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)和[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
+| 202                    | Not System Application. |
 | 7400103                |  Session not config.                                   |
 
 **示例：**
@@ -8318,7 +7984,7 @@ TryAE参数信息，TryAE是指延时摄影时硬件会根据环境光照变化�
 
 TimeLapsePhotoSession extends Session, Focus, ManualFocus, AutoExposure, ManualExposure, ManualIso, WhiteBalance, Zoom, ColorEffect
 
-延时摄影会话类，继承自[Session](js-apis-camera.md#session12)，用于设置延时摄影会话的参数以及保存所需要的所有资源[CameraInput](js-apis-camera.md#camerainput)、[CameraOutput](js-apis-camera.md#cameraoutput)。
+延时摄影会话类，继承自[Session](arkts-apis-camera-Session.md)，用于设置延时摄影会话的参数以及保存所需要的所有资源[CameraInput](arkts-apis-camera-CameraInput.md)、[CameraOutput](arkts-apis-camera-CameraOutput.md)。
 
 ### on('error')<sup>12+</sup>
 
@@ -8334,8 +8000,8 @@ on(type: 'error', callback: ErrorCallback): void
 
 | 参数名     | 类型                                                          | 必填 | 说明                           |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------ |
-| type     | string                                                      | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。session调用相关接口出现错误时会触发该事件，比如调用[beginConfig](js-apis-camera.md#beginconfig11)，[commitConfig](js-apis-camera.md#commitconfig11-1)，[addInput](js-apis-camera.md#addinput11)等接口发生错误时返回错误信息。 |
-| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。 |
+| type     | string                                                      | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。session调用相关接口出现错误时会触发该事件，比如调用[beginConfig](arkts-apis-camera-Session.md#beginconfig11)，[commitConfig](arkts-apis-camera-Session.md#commitconfig11-1)，[addInput](arkts-apis-camera-Session.md#addinput11)等接口发生错误时返回错误信息。 |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode)。 |
 
 **错误码：**
 
@@ -8407,7 +8073,7 @@ on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 | 参数名     | 类型                    | 必填 | 说明                       |
 | -------- | ---------------- | ---- | ------------------------ |
 | type     | string                                    | 是   | 监听事件，固定为'focusStateChange'，session创建成功可监听。仅当自动对焦模式时，且相机对焦状态发生改变时可触发该事件。 |
-| callback | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\> | 是   | 回调函数，用于获取当前对焦状态。  |
+| callback | AsyncCallback\<[FocusState](arkts-apis-camera-e.md#focusstate)\> | 是   | 回调函数，用于获取当前对焦状态。  |
 
 **错误码：**
 
@@ -8450,7 +8116,7 @@ off(type: 'focusStateChange', callback?: AsyncCallback\<FocusState\>): void
 | 参数名     | 类型                                      | 必填 | 说明                       |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string                                    | 是   | 监听事件，固定为'focusStateChange'，session创建成功可监听。 |
-| callback | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\> | 否   | 回调函数，可选，有就是匹配on('focusStateChange') callback（callback对象不可是匿名函数）。  |
+| callback | AsyncCallback\<[FocusState](arkts-apis-camera-e.md#focusstate)\> | 否   | 回调函数，可选，有就是匹配on('focusStateChange') callback（callback对象不可是匿名函数）。  |
 
 **错误码：**
 
@@ -8770,7 +8436,7 @@ isTryAENeeded(): boolean
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| boolean   | 是否需要执行TryAE，返回true为是，返回false为否，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。 |
+| boolean   | 是否需要执行TryAE，返回true为是，返回false为否，错误码类型[CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode)。 |
 
 **错误码：**
 
@@ -8883,7 +8549,7 @@ getSupportedTimeLapseIntervalRange(): Array\<number\>
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| Array\<number\>   | 用于获取拍摄间隔范围，单位毫秒（ms），根据底层能力返回为准，接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。 |
+| Array\<number\>   | 用于获取拍摄间隔范围，单位毫秒（ms），根据底层能力返回为准，接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode)。 |
 
 **错误码：**
 
@@ -9011,7 +8677,7 @@ getTimeLapseRecordState(): TimeLapseRecordState
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| [TimeLapseRecordState](#timelapserecordstate12)    | 获取当前拍摄状态。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。 |
+| [TimeLapseRecordState](#timelapserecordstate12)    | 获取当前拍摄状态。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode)。 |
 
 **错误码：**
 
@@ -9096,7 +8762,7 @@ getTimeLapsePreviewType(): TimeLapsePreviewType
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| [TimeLapsePreviewType](#timelapsepreviewtype12)    | 获取当前预览类型。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。 |
+| [TimeLapsePreviewType](#timelapsepreviewtype12)    | 获取当前预览类型。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode)。 |
 
 **错误码：**
 
@@ -9171,7 +8837,7 @@ function setTimeLapsePreviewType(timeLapsePhotoSession: camera.TimeLapsePhotoSes
 
 LightPaintingPhotoSession extends Session, Flash, Focus, Zoom, ColorEffect
 
-流光快门拍照模式会话类，继承自[Session](js-apis-camera.md#session11)，用于设置流光快门拍照模式的参数以及保存所需要的所有资源[CameraInput](js-apis-camera.md#camerainput)、[CameraOutput](js-apis-camera.md#cameraoutput)。
+流光快门拍照模式会话类，继承自[Session](arkts-apis-camera-Session.md)，用于设置流光快门拍照模式的参数以及保存所需要的所有资源[CameraInput](arkts-apis-camera-CameraInput.md)、[CameraOutput](arkts-apis-camera-CameraOutput.md)。
 
 ### on('error')<sup>12+</sup>
 
@@ -9187,8 +8853,8 @@ on(type: 'error', callback: ErrorCallback): void
 
 | 参数名      | 类型                                                                        | 必填  | 说明                                                                                                                                                                      |
 |----------|---------------------------------------------------------------------------|-----|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| type     | string                                                                    | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。session调用相关接口出现错误时会触发该事件，比如调用[beginConfig](js-apis-camera.md#beginconfig11)，[commitConfig](js-apis-camera.md#commitconfig11-1)，[addInput](js-apis-camera.md#addinput11)等接口发生错误时返回错误信息。 |
-| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。                                                                                                           |
+| type     | string                                                                    | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。session调用相关接口出现错误时会触发该事件，比如调用[beginConfig](arkts-apis-camera-Session.md#beginconfig11)，[commitConfig](arkts-apis-camera-Session.md#commitconfig11-1)，[addInput](arkts-apis-camera-Session.md#addinput11)等接口发生错误时返回错误信息。 |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](arkts-apis-camera-e.md#cameraerrorcode)。                                                                                                           |
 
 **错误码：**
 
@@ -9260,7 +8926,7 @@ on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 | 参数名       | 类型                                          | 必填 | 说明                                                                      |
 |-----------|---------------------------------------------|----|-------------------------------------------------------------------------|
 | type      | string                                      | 是  | 监听事件，固定为'focusStateChange'，session创建成功可监听。仅当自动对焦模式时，且相机对焦状态发生改变时可触发该事件。 |
-| callback  | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\>  | 是  | 回调函数，用于获取当前对焦状态。                                                        |
+| callback  | AsyncCallback\<[FocusState](arkts-apis-camera-e.md#focusstate)\>  | 是  | 回调函数，用于获取当前对焦状态。                                                        |
 
 **错误码：**
 
@@ -9303,7 +8969,7 @@ off(type: 'focusStateChange', callback?: AsyncCallback\<FocusState\>): void
 | 参数名       | 类型                                          | 必填 | 说明                                                           |
 |-----------|---------------------------------------------|----|--------------------------------------------------------------|
 | type      | string                                      | 是  | 监听事件，固定为'focusStateChange'，session创建成功可监听。                   |
-| callback  | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\>  | 否  | 回调函数，如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。  |
+| callback  | AsyncCallback\<[FocusState](arkts-apis-camera-e.md#focusstate)\>  | 否  | 回调函数，如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。  |
 
 **错误码：**
 
@@ -9336,7 +9002,7 @@ on(type: 'smoothZoomInfoAvailable', callback: AsyncCallback\<SmoothZoomInfo\>): 
 | 参数名     | 类型                   | 必填 | 说明                       |
 | -------- | ----------------------- | ---- | ------------------------ |
 | type     | string                  | 是   | 监听事件，固定为'smoothZoomInfoAvailable'，session创建成功可监听。|
-| callback | AsyncCallback\<[SmoothZoomInfo](js-apis-camera.md#smoothzoominfo11)\> | 是   | 回调函数，用于获取当前平滑变焦状态。  |
+| callback | AsyncCallback\<[SmoothZoomInfo](arkts-apis-camera-i.md#smoothzoominfo11)\> | 是   | 回调函数，用于获取当前平滑变焦状态。  |
 
 **错误码：**
 
@@ -9379,7 +9045,7 @@ off(type: 'smoothZoomInfoAvailable', callback?: AsyncCallback\<SmoothZoomInfo\>)
 | 参数名     | 类型                                      | 必填 | 说明                       |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string              | 是   | 监听事件，固定为'smoothZoomInfoAvailable'，session创建成功可监听。|
-| callback | AsyncCallback\<[SmoothZoomInfo](js-apis-camera.md#smoothzoominfo11)\> | 否   | 回调函数，如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。 |
+| callback | AsyncCallback\<[SmoothZoomInfo](arkts-apis-camera-i.md#smoothzoominfo11)\> | 否   | 回调函数，如果指定参数则取消对应callback（callback对象不可是匿名函数），否则取消所有callback。 |
 
 **错误码：**
 

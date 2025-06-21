@@ -120,6 +120,7 @@ Returns one of the following result codes:
 
 **AV_ERR_VIDEO_UNSUPPORTED_COLOR_SPACE_CONVERSION**: CSC is not supported.
 
+**AV_ERR_UNSUPPORT**: The feature is not supported.
 
 ### OH_VideoDecoder_CreateByMime()
 

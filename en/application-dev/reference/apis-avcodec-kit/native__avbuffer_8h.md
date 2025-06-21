@@ -29,7 +29,7 @@ The **native_avbuffer.h** file declares the functions of the media struct **AVBu
 
 | Name| Description| 
 | -------- | -------- |
-| [OH_AVBuffer](_core.md#oh_avbuffer) \* [OH_AVBuffer_Create](_core.md#oh_avbuffer_create) (int32_t capacity) | Creates an **OH_AVBuffer** instance. The caller must call [OH_AVBuffer_Destroy](_core.md#oh_avbuffer_destroy) to manually release the **OH_AVBuffer** instance returned.| 
+| [OH_AVBuffer](_core.md#oh_avbuffer) \* [OH_AVBuffer_Create](_core.md#oh_avbuffer_create) (int32_t capacity) | Creates an **OH_AVBuffer** instance. You must call [OH_AVBuffer_Destroy](_core.md#oh_avbuffer_destroy) to manually release the **OH_AVBuffer** instance returned.| 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVBuffer_Destroy](_core.md#oh_avbuffer_destroy) (OH_AVBuffer \*buffer) | Releases an **OH_AVBuffer** instance.| 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVBuffer_GetBufferAttr](_core.md#oh_avbuffer_getbufferattr) (OH_AVBuffer \*buffer, [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) \*attr) | Obtains the basic attributes, including **pts**, **size**, **offset**, and **flags**, of a buffer.| 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVBuffer_SetBufferAttr](_core.md#oh_avbuffer_setbufferattr) (OH_AVBuffer \*buffer, const [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) \*attr) | Sets the basic attributes, including **pts**, **size**, **offset**, and **flags**, of a buffer.| 

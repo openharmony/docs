@@ -80,7 +80,7 @@ export default class MigrationAbility extends UIAbility {
 
 ## continueManager.off
 
-off(type: 'prepareContinue', context: Context, callback: AsyncCallback&lt;ContinueResultInfo&gt;): void
+off(type: 'prepareContinue', context: Context, callback?: AsyncCallback&lt;ContinueResultInfo&gt;): void
 
 Unregisters the callback used to obtain the quick start result when an application is launched quickly. This API uses an asynchronous callback to return the result.
 
@@ -96,7 +96,7 @@ Unregisters the callback used to obtain the quick start result when an applicati
   | -------- |------------------------------------| -------- |--------------------------------------|
 | type | string                             | Yes| The value is fixed at **prepareContinue**.                |
 | context | [Context](../apis-ability-kit/js-apis-inner-application-baseContext.md)                            | Yes| Context of the ability.                    |
-| callback | AsyncCallback&lt;[ContinueResultInfo](js-apis-app-ability-continueManager.md#continueresultinfo)&gt; | Yes| Callback used to return the result. If the callback is unregistered, **err** is undefined, and **ContinueResultInfo** is the callback unregistration result. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;[ContinueResultInfo](js-apis-app-ability-continueManager.md#continueresultinfo)&gt; | No| Callback used to return the result. If the callback is unregistered, **err** is undefined, and **ContinueResultInfo** is the callback unregistration result. Otherwise, **err** is an error object.|
 
 **Error codes**
 

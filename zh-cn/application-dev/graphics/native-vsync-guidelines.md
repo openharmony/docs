@@ -13,7 +13,7 @@ NativeVSync模块用来获取系统VSync信号，提供了OH_NativeVSync实例�
 | OH_NativeVSync_FrameCallback (long long timestamp, void \*data) | 回调函数的形式，timestamp表示时间戳，data为回调函数入参。 | 
 | OH_NativeVSync_RequestFrame (OH_NativeVSync \*nativeVsync, OH_NativeVSync_FrameCallback callback, void \*data) | 请求下一次VSync信号，当信号到来时，调用回调函数callback。 | 
 
-详细的接口说明请参考[native_vsync](../reference/apis-arkgraphics2d/_native_vsync.md)。
+详细的接口说明请参考[native_vsync](../reference/apis-arkgraphics2d/capi-nativevsync.md)。
 
 ## 开发步骤
 

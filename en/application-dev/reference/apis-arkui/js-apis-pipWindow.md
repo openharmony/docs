@@ -1,12 +1,12 @@
 # @ohos.PiPWindow (PiP Window)
 
-The **PiPWindow** module provides basic APIs for manipulating Picture in Picture (PiP). For example, you can use the APIs to check whether the PiP feature is enabled and create a PiP controller to start or stop a PiP window. PiP is mainly used in video playback, video call, or video meeting scenarios.
+The PiPWindow module provides basic APIs for manipulating Picture in Picture (PiP). For example, you can use the APIs to check whether the PiP feature is supported and create a PiP controller to start or stop a PiP window. PiP is mainly used in video playback, video calls, or video meetings.
 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > 
-> This module must be used on the device that supports the **SystemCapability.Window.SessionManager** capability.<!--RP1--> For details, see [SystemCapability](../syscap.md).<!--RP1End-->
+> This module must be used on the device that supports the **SystemCapability.Window.SessionManager** capability. <!--RP1-->For details, see [SystemCapability](../syscap.md).<!--RP1End-->
 
 ## Modules to Import
 
@@ -28,7 +28,7 @@ Checks whether the PiP feature is supported.
 
 | Type      | Description                                 |
 |----------|-------------------------------------|
-| boolean  | Status of the PiP feature. The value **true** means that the PiP feature is supported, and **false** means the opposite.|
+| boolean  | Check result. The value **true** means that the PiP feature is supported, and **false** means the opposite.|
 
 **Example**
 
@@ -72,7 +72,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { BuilderNode, FrameNode, NodeController, Size, UIContext } from '@kit.ArkUI';
+import { BuilderNode, FrameNode, NodeController, UIContext } from '@kit.ArkUI';
+import { common } from '@kit.AbilityKit';
 
 class Params {
   text: string = '';
@@ -124,8 +125,13 @@ let nodeController: TextNodeController = new TextNodeController('this is custom 
 let navId: string = "page_1"; // The navigation ID of the current page is page_1. For details, see the definition of PiPConfiguration. The navigation name is customized.
 let contentWidth: number = 800; // The content width is 800 px.
 let contentHeight: number = 600; // The content height is 600 px.
+let para: Record<string, number> = { 'PropA': 47 };
+let localStorage: LocalStorage = new LocalStorage(para);
+let res: boolean = localStorage.setOrCreate('PropB', 121);
+let ctx = this.getUIContext().getHostContext() as common.UIAbilityContext; // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+let defaultWindowSize: number = 1; // Set the window to be a small window when first pulled up in PiP.
 let config: PiPWindow.PiPConfiguration = {
-  context: getContext(this),
+  context: ctx,
   componentController: mXComponentController,
   navigationId: navId,
   templateType: PiPWindow.PiPTemplateType.VIDEO_PLAY,
@@ -133,10 +139,12 @@ let config: PiPWindow.PiPConfiguration = {
   contentHeight: contentHeight,
   controlGroups: [PiPWindow.VideoPlayControlGroup.VIDEO_PREVIOUS_NEXT],
   customUIController: nodeController, // Optional. Set this parameter if you want to display the custom UI at the top of the PiP window.
+  localStorage: localStorage, // Optional. Set this parameter if you want to track the main window instance.
+  defaultWindowSizeType: defaultWindowSize // Optional. If you need to configure the default window size upon launch, set this parameter.
 };
 
-let promise : Promise<PiPWindow.PiPController> = PiPWindow.create(config);
-promise.then((data : PiPWindow.PiPController) => {
+let promise: Promise<PiPWindow.PiPController> = PiPWindow.create(config);
+promise.then((data: PiPWindow.PiPController) => {
   pipController = data;
   console.info(`Succeeded in creating pip controller. Data:${data}`);
 }).catch((err: BusinessError) => {
@@ -180,30 +188,29 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { PiPWindow, UIContext } from '@kit.ArkUI';
-import { typeNode } from '@ohos.arkui.node';
+import { PiPWindow, typeNode, UIContext } from '@kit.ArkUI';
+import { common } from '@kit.AbilityKit';
 
 let pipController: PiPWindow.PiPController | undefined = undefined;
 let xComponentController: XComponentController = new XComponentController();
-let context: UIContext | undefined = undefined; // You can pass UIContext or use this.getUIContext() in the layout to assign a valid value to context.
-let xComponent = typeNode.createNode(context, 'XComponent');
-xComponent.initialize({
-  id:'xcomponent',
-  type:XComponentType.SURFACE,
-  controller:xComponentController
-});
+let ctx = this.getUIContext().getHostContext() as common.UIAbilityContext; // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+let options: XComponentOptions = {
+  type: XComponentType.SURFACE,
+  controller: xComponentController
+}
+let xComponent = typeNode.createNode(this.getUIContext(), 'XComponent', options);
 let contentWidth: number = 800; // The content width is 800 px.
 let contentHeight: number = 600; // The content height is 600 px.
 let config: PiPWindow.PiPConfiguration = {
-  context: getContext(this),
+  context: ctx,
   componentController: xComponentController,
   templateType: PiPWindow.PiPTemplateType.VIDEO_PLAY,
   contentWidth: contentWidth,
   contentHeight: contentHeight
 };
 
-let promise : Promise<PiPWindow.PiPController> = PiPWindow.create(config, xComponent);
-promise.then((data : PiPWindow.PiPController) => {
+let promise: Promise<PiPWindow.PiPController> = PiPWindow.create(config, xComponent);
+promise.then((data: PiPWindow.PiPController) => {
   pipController = data;
   console.info(`Succeeded in creating pip controller. Data:${data}`);
 }).catch((err: BusinessError) => {
@@ -215,20 +222,20 @@ promise.then((data : PiPWindow.PiPController) => {
 
 Defines the parameters for creating a PiP controller.
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
 **System capability**: SystemCapability.Window.SessionManager
 
 | Name                 | Type                                                                        | Mandatory | Description                                                                                                                                                                                                                                                                                                                                       |
 |---------------------|----------------------------------------------------------------------------|-----|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| context             | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | Yes  | Context environment.                                                                                                                                                                                                                                                                                                                                 |
-| componentController | [XComponentController](arkui-ts/ts-basic-components-xcomponent.md#xcomponentcontroller) | Yes  | Original [XComponent](arkui-ts/ts-basic-components-xcomponent.md) controller.                                                                                                                                                                                                                                                                     |
-| navigationId        | string                                                                     | No  | Navigation ID of the current page.<br>1. When the UIAbility uses [Navigation](arkui-ts/ts-basic-components-navigation.md) to manage pages, set the ID of the **Navigation** component for the PiP controller. This ensures that the original page can be restored from the PiP window.<br>2. When the UIAbility uses [Router](js-apis-router.md) to manage pages, you do not need to set the ID of the **Navigation** component for the PiP controller.<br>3. If the UIAbility has only one page, you do not need to set the navigation ID. The original page can be restored from the PiP window.|
-| templateType        | [PiPTemplateType](#piptemplatetype)                                        | No  | Template type, which is used to distinguish video playback, video call, and video meeting scenarios.                                                                                                                                                                                                                                                                                                                 |
-| contentWidth        | number                                                                     | No  | Width of the original content, in px. It is used to determine the aspect ratio of the PiP window. When the PiP controller is created in [typeNode mode](#pipwindowcreate12), the default value is 1920. When the PiP controller is created [not in typeNode mode](#pipwindowcreate), the default value is the width of the [XComponent](arkui-ts/ts-basic-components-xcomponent.md).                                                                |
-| contentHeight       | number                                                                     | No  | Height of the original content, in px. It is used to determine the aspect ratio of the PiP window. It is used to determine the aspect ratio of the PiP window. When the PiP controller is created in [typeNode mode](#pipwindowcreate12), the default value is 1080. When the PiP controller is created [not in typeNode mode](#pipwindowcreate), the default value is the height of the [XComponent](arkui-ts/ts-basic-components-xcomponent.md).                                                                |
-| controlGroups<sup>12+</sup>       | Array<[PiPControlGroup](#pipcontrolgroup12)>                               | No  | A list of optional component groups of the PiP controller. An application can configure whether to display these optional components. If this parameter is not set for an application, the basic components (for example, play/pause of the video playback component group) are displayed. A maximum of three components can be configured in the list.                                                                                                                                                                                                                                                  |
-| customUIController<sup>12+</sup>      | [NodeController](js-apis-arkui-nodeController.md)           | No  | Custom UI that can be displayed at the top of the PiP window.                                                                                                                                                                                                                                                                                            |
+| context             | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | Yes  | Context environment.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                                                                                                                                                                                                                                                 |
+| componentController | [XComponentController](arkui-ts/ts-basic-components-xcomponent.md#xcomponentcontroller) | Yes  | Original [XComponent](arkui-ts/ts-basic-components-xcomponent.md) controller.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                                                                                                                                                                                     |
+| navigationId        | string                                                                     | No  | Navigation ID of the current page. If no value is passed, the page does not need to be cached.<br>1. When the UIAbility uses [Navigation](arkui-ts/ts-basic-components-navigation.md) to manage pages, set the ID of the **Navigation** component for the PiP controller. This ensures that the original page can be restored from the PiP window.<br>2. When the UIAbility uses [Router](js-apis-router.md) to manage pages, you do not need to set the ID of the **Navigation** component for the PiP controller.<br>3. If the UIAbility has only one page, you do not need to set the navigation ID. The original page can be restored from the PiP window.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| templateType        | [PiPTemplateType](#piptemplatetype)                                        | No  | Template type, which is used to distinguish video playback, video call, and video meeting scenarios. If no value is passed, the video playback template is used.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                                                                                                                                                                                                                                 |
+| contentWidth        | number                                                                     | No  | Width of the original content, in px. It is used to determine the aspect ratio of the PiP window. When the PiP controller is created in [typeNode mode](#pipwindowcreate12), the default value is 1920. When the PiP controller is created [not in typeNode mode](#pipwindowcreate), the default value is the width of the [XComponent](arkui-ts/ts-basic-components-xcomponent.md).<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                |
+| contentHeight       | number                                                                     | No  | Height of the original content, in px. It is used to determine the aspect ratio of the PiP window. When the PiP controller is created in [typeNode mode](#pipwindowcreate12), the default value is 1080. When the PiP controller is created [not in typeNode mode](#pipwindowcreate), the default value is the height of the [XComponent](arkui-ts/ts-basic-components-xcomponent.md).<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                |
+| controlGroups<sup>12+</sup>       | Array<[PiPControlGroup](#pipcontrolgroup12)>                               | No  | A list of optional component groups of the PiP controller. An application can configure whether to display these optional components. If this parameter is not set for an application, the basic components (for example, play/pause of the video playback component group) are displayed. A maximum of three components can be configured in the list. <br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                                                                                                                                                                |
+| customUIController<sup>12+</sup>      | [NodeController](js-apis-arkui-nodeController.md)           | No  | Custom UI that can be displayed at the top of the PiP window. If no value is passed, custom UI is not used.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                                                                                                                                                                                                          |
+| localStorage<sup>17+</sup>      | [LocalStorage](../../ui/state-management/arkts-localstorage.md)           | No  | A page-level UI state storage unit. In multi-instance scenarios, it can be used to track the UI state storage object of the main window instance. If no value is passed, you cannot retrieve the main window's UI storage object through the PiP window.<br>**Atomic service API**: This API can be used in atomic services since API version 17.                                                                                                                                                                                                                                                                                          |
+| defaultWindowSizeType<sup>19+</sup>| number                                                                     | No  |  Size of the window when first pulled up in PiP.<br>The value **0** means that no size is set, and the window will launch at the size it was before being closed in the previous PiP session.<br>The value **1** means a small window, and **2** means a large window.<br>If no value is passed, **0** is used.<br>**Atomic service API**: This API can be used in atomic services since API version 19.                                                                |
 
 ## PiPWindowSize<sup>15+</sup>
 
@@ -242,7 +249,7 @@ Describes the size of a PiP window.
 | ------ | -------- | ---- | ---- | ---------- |
 | width  | number   | Yes  | No  | Window width, in px. The value must be a positive integer and cannot be greater than the screen width.|
 | height | number   | Yes  | No  | Window height, in px. The value must be a positive integer and cannot be greater than the screen height.|
-| scale  | number   | Yes  | No  | Scale factor of the window, representing the display size relative to the width and height. The value is a floating point number ranging from 0.0 to 1.0. The value **1** means that the window matches the specified width and height.|
+| scale  | number   | Yes  | No  | Scale factor of the window, representing the display size relative to the width and height. The value is a floating point number in the range (0.0, 1.0]. The value **1** means that the window matches the specified width and height.|
 
 ## PiPWindowInfo<sup>15+</sup>
 
@@ -318,7 +325,7 @@ Enumerates the video playback component groups. They are used only when [PiPTemp
 | Name                  | Value  | Description                   |
 |----------------------|-----|-----------------------|
 | VIDEO_PREVIOUS_NEXT       | 101   | Previous/Next component group for video playback.<br>This component group is mutually exclusive with the fast-forward/rewind component group. It cannot be added if the fast-forward/rewind component group is added.          |
-| FAST_FORWARD_BACKWARD    | 102   | Fast-forward/Rewind component group for video playback.<br>This component group is mutually exclusive with the previous/next component group. It cannot be added if the previous/next control component group is added.          |
+| FAST_FORWARD_BACKWARD    | 102   | Fast-forward/Rewind component group for video playback.<br>This component group is mutually exclusive with the previous/next component group. It cannot be added if the previous/next component group is added.          |
 
 ## VideoCallControlGroup<sup>12+</sup>
 
@@ -603,7 +610,7 @@ promise.then(() => {
 
 setAutoStartEnabled(enable: boolean): void
 
-Sets whether to automatically start a PiP window when the user returns to the home screen.
+Sets whether to automatically start a PiP window when the user returns to the home screen. By default, no PiP window is started.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -626,7 +633,7 @@ pipController.setAutoStartEnabled(enable);
 
 updateContentSize(width: number, height: number): void
 
-Updates the media content size when the media content is switched.
+Updates the media content size when the media content changes.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -658,7 +665,7 @@ pipController.updateContentSize(width, height);
 ### updatePiPControlStatus<sup>12+</sup>
 updatePiPControlStatus(controlType: PiPControlType, status: PiPControlStatus): void
 
-Updates the enabled status of a component displayed on the PiP controller.
+Updates the PiP component status.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -687,12 +694,12 @@ let status: PiPWindow.PiPControlStatus = PiPWindow.PiPControlStatus.PLAY; // The
 pipController.updatePiPControlStatus(controlType, status);
 ```
 
-### updateContentNode<sup>16+</sup>
+### updateContentNode<sup>18+</sup>
 updateContentNode(contentNode: typeNode.XComponent): Promise&lt;void&gt;
 
 Updates the PiP node content.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Window.SessionManager
 
@@ -727,7 +734,7 @@ let context: UIContext | undefined = undefined; // You can pass UIContext or use
 
 try {
   let contentNode = typeNode.createNode(context, "XComponent");
-  pipcontroller.updateContentNode(contentNode);
+  pipController.updateContentNode(contentNode);
 } catch (exception) {
   console.error(`Failed to update content node. Cause: ${exception.code}, message: ${exception.message}`);
 }
@@ -809,7 +816,7 @@ try {
 
 on(type: 'stateChange', callback: (state: PiPState, reason: string) => void): void
 
-Subscribes to PiP state events.
+Subscribes to PiP state events. To avoid potential memory leaks, you are advised to stop listening when it is no longer needed.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -879,7 +886,7 @@ pipController.off('stateChange');
 
 on(type: 'controlPanelActionEvent', callback: ControlPanelActionEventCallback): void
 
-Subscribes to PiP action events. The [on('controlEvent')](#oncontrolevent12) API is preferred.
+Subscribes to PiP action events. To avoid potential memory leaks, you are advised to stop listening when it is no longer needed. The [on('controlEvent')](#oncontrolevent12) API is preferred.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -927,7 +934,7 @@ pipController.on('controlPanelActionEvent', (event: PiPWindow.PiPActionEventType
 
 on(type: 'controlEvent', callback: Callback&lt;ControlEventParam&gt;): void
 
-Subscribes to PiP action events.
+Subscribes to PiP action events. To avoid potential memory leaks, you are advised to stop listening when it is no longer needed.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1020,7 +1027,7 @@ pipController.off('controlEvent', () => {});
 
 on(type: 'pipWindowSizeChange', callback: Callback&lt;PiPWindowSize&gt;): void
 
-Subscribes to the PiP window size change event.
+Subscribes to PiP window size change events. To avoid potential memory leaks, you are advised to stop listening when it is no longer needed.
 
 **Atomic service API**: This API can be used in atomic services since API version 15.
 

@@ -12,7 +12,6 @@ During the MD operation, you can [pass in all the data at a time](#generating-an
 
 The following provides examples of MD operations with different data passing methods.
 
-
 ### Generating an MD by Passing In Full Data
 
 1. Call [cryptoFramework.createMd](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatemd) with the MD algorithm **MD5** to create a message digest (**Md**) instance.
@@ -33,7 +32,7 @@ The following provides examples of MD operations with different data passing met
     let mdAlgName = 'MD5'; // MD algorithm to use.
     let message = 'mdTestMessage'; // Message to be digested.
     let md = cryptoFramework.createMd(mdAlgName);
-    // If there is a small amount of data to be processed, call update() to pass in all the data at a time. The data to be passed in by a single **update()** call is not limited.
+    // If there is a small amount of data to be processed, call update() to pass in all the data at a time. The amount of data to be passed in by a single update() call is not limited.
     await md.update({ data: new Uint8Array(buffer.from(message, 'utf-8').buffer) });
     let mdResult = await md.digest();
     console.info('Md result:' + mdResult.data);
@@ -52,7 +51,7 @@ The following provides examples of MD operations with different data passing met
     let mdAlgName = 'MD5'; // MD algorithm to use.
     let message = 'mdTestMessage'; // Message to be digested.
     let md = cryptoFramework.createMd(mdAlgName);
-    // If there is a small amount of data to be processed, call update() to pass in all the data at a time. The data to be passed in by a single **update()** call is not limited.
+    // If there is a small amount of data to be processed, call update() to pass in all the data at a time. The amount of data to be passed in by a single update() call is not limited.
     md.updateSync({ data: new Uint8Array(buffer.from(message, 'utf-8').buffer) });
     let mdResult = md.digestSync();
     console.info('[Sync]:Md result:' + mdResult.data);
@@ -83,7 +82,7 @@ The following provides examples of MD operations with different data passing met
     // In this example, the message is of 43 bytes. After decoded in UTF-8 format, the message is also of 43 bytes.
     let messageText = "aaaaa.....bbbbb.....ccccc.....ddddd.....eee";
     let messageData = new Uint8Array(buffer.from(messageText, 'utf-8').buffer);
-    let updateLength = 20; // Set the data length to be passed in each time to 20 bytes. You can set this parameter as required.
+    let updateLength = 20; // Pass in 20 bytes each time. You can set this parameter as required.
     for (let i = 0; i < messageData.length; i += updateLength) {
       let updateMessage = messageData.subarray(i, i + updateLength);
       let updateMessageBlob: cryptoFramework.DataBlob = { data: updateMessage };
@@ -108,7 +107,7 @@ The following provides examples of MD operations with different data passing met
     // In this example, the message is of 43 bytes. After decoded in UTF-8 format, the message is also of 43 bytes.
     let messageText = "aaaaa.....bbbbb.....ccccc.....ddddd.....eee";
     let messageData = new Uint8Array(buffer.from(messageText, 'utf-8').buffer);
-    let updateLength = 20; // Set the data length to be passed in each time to 20 bytes. You can set this parameter as required.
+    let updateLength = 20; // Pass in 20 bytes each time. You can set this parameter as required.
     for (let i = 0; i < messageData.length; i += updateLength) {
       let updateMessage = messageData.subarray(i, i + updateLength);
       let updateMessageBlob: cryptoFramework.DataBlob = { data: updateMessage };

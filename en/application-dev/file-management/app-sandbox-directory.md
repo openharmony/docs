@@ -10,7 +10,7 @@ The application sandbox is an isolation mechanism used to prevent malicious data
 
 The following figure illustrates the file access mechanism in the application sandbox.
 
-**Figure 1** File access mechanism in the application sandbox
+**Figure 1** File access mechanism in the application sandbox 
 ![Application sandbox file access relationship](figures/application-sandbox-file-access-relationship.png)
 
 ## Application Sandbox Directory and Application Sandbox Path
@@ -20,12 +20,12 @@ With the application sandbox mechanism, an application is not aware of the exist
 - As shown in the following figure, the application sandbox mechanism minimizes the number of directories and files visible to a common application (third-party application). In addition, the directories and file paths visible to a common application are different from those visible to a system process. The path of a file or folder in the application sandbox directory visible to a common application is called the application sandbox path.
 
 <!--RP1-->
-- Generally, the hdc shell environment is equivalent to the system process view. Therefore, the application sandbox path is different from the physical path displayed on the hdc for debugging. For details about the mappings, see [Mappings Between Application Sandbox Paths and Physical Paths](#mappings-between-application-sandbox-paths-and-physical-paths).
+- The hdc shell environment is equivalent to the system process view. Therefore, the application sandbox path is different from the physical path displayed on the hdc for debugging. For details about the mappings, see [Mappings Between Application Sandbox Paths and Physical Paths](#mappings-between-application-sandbox-paths-and-physical-paths).
 <!--RP1End-->
 
 - The application sandbox paths and physical paths are not in one-to-one mappings. The application sandbox paths are always shorter than physical paths. Some physical paths do not have the corresponding application sandbox paths.
 
-**Figure 2** Different directory views to processes and applications
+**Figure 2** Different directory views to processes and applications 
 ![Application sandbox path](figures/application-sandbox-path.png)
 
 ## Application File Directory and Application File Path
@@ -34,9 +34,9 @@ The application sandbox directory consists of the application file directory and
 
 The system file directory visible to an application is preset by OpenHarmony.
 
-The following figure shows the application file directory structure. The path of a file or a folder in the application file directory is called the application file path. The application file paths have different attributes.
+The following figure shows the application file directory structure. The path of a file or a directory in the application file directory is called the application file path. Each file path has different attributes and features.
 
-**Figure 3** Application file directory structure
+**Figure 3** Application file directory structure 
 ![Application file directory structure](figures/application-file-directory-structure.png)
 
 > **NOTE**
@@ -50,22 +50,22 @@ The following figure shows the application file directory structure. The path of
 
 3. There are files of different encryption levels in **el1/** and **el5/**.
 
-    EL1 (Encryption Level 1):
-     - All files are protected on the device. After the device is powered on, users can access the files protected by EL1 without identity authentication. This mode is not recommended unless otherwise specified.
+    Encryption Level 1 (EL1):
+     - All files are protected on the device. After the device is powered on, users can access the files protected by EL1 without identity authentication. This method is not recommended unless otherwise required.
      - The ciphertext stolen from the storage device cannot be decrypted offline.
 
-    EL2 (Encryption Level 2):
+    Encryption Level 2 (EL2):
      - On the basis of EL1, files are protected after the first user authentication. After the device is powered on, users can access the files protected by EL2 only after the first authentication. Those files are always accessible as long as the device is online. This mode is recommended by default.
      - Files cannot be read by attackers if the phone is lost after power-off.
 
-    EL3 (Encryption Level 3):
+    Encryption Level 3 (EL3):
      - Files can be created but cannot be read when the screen is locked, which is different from EL4. This mode is not required unless otherwise specified.
 
-    EL4 (Encryption Level 4):
+    Encryption Level 4 (EL4):
      - On the basis of EL2, files are protected when the device screen is locked. In this case, data protected by EL4 cannot be accessed. This mode is not required unless otherwise specified.
      - Files cannot be read by attackers if the device is stolen with screen locked.
 
-    EL5 (Encryption Level 5):
+    Encryption Level 5 (EL5):
      - On the basis of EL2, files are protected when the device screen is locked. In this case, data protected by EL5 cannot be accessed, but files can be created, read, and written. This mode is not required unless otherwise specified.
      - EL5 directories are not generated by default unless the permissions for access to the EL5 database are configured. For details, see [Using an EL5 Database](../database/encrypted_estore_guidelines.md).
 
@@ -88,7 +88,7 @@ The following figure shows the application file directory structure. The path of
 
    | Folder Name| Context Attribute Name| Type| Description|
    | -------- | -------- | -------- | -------- |
-   | bundle | bundleCodeDir | Installation file directory| Directory for saving the HAPs after an application is installed.<br>This directory is cleared when the application is uninstalled.<br>Do not access resource files using concatenated paths. Use [@ohos.resourceManager](../reference/apis-localization-kit/js-apis-resource-manager.md) instead.<br>You can store the application's code resource data, including the HAPs of the application, reusable library files, and plug-ins, in this directory. The code in this directory can be dynamically loaded.|
+   | bundle | bundleCodeDir | Installation file directory| Directory for saving the HAPs after an application is installed.<br>This directory is cleared when the application is uninstalled.<br>You cannot access resource files using concatenated paths. Use [@ohos.resourceManager](../reference/apis-localization-kit/js-apis-resource-manager.md) instead.<br>You can store the application's code resource data, including the HAPs of the application, reusable library files, and plug-ins, in this directory. The code in this directory can be dynamically loaded.|
    | base | NA | Directory for the device's files| Directory for saving the application's persistent data on the device. Subdirectories include **files/**, **cache/**, **temp/**, and **haps/**.<br>This directory is cleared when the application is uninstalled.|
    | database | databaseDir | Database directory| Directory in **el2** for saving the files operated by the distributed database service.<br>This directory is cleared when the application is uninstalled.<br>This directory can be used to store the application's private database data, such as database files, in distributed scenarios only.|
    | distributedfiles | distributedFilesDir | Distributed file directory| Directory in **el2** for saving the application files that can be directly accessed across devices.<br>This directory is cleared when the application is uninstalled.<br>You can place the application's data used for distributed scenarios, including file sharing, file backup, and file processing across devices, in this directory. The data stored in this directory enables an application to run smoothly on multiple devices that form a Super Device.|

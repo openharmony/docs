@@ -8,15 +8,15 @@
 
 **变更原因**
 
-预置应用被卸载后可以安装一个bundleName相同、签名不同的hap仿冒，有安全风险。
+预置应用被卸载后可以安装一个bundleName相同、签名信息不同的应用仿冒，有安全风险。
 
 **变更影响**
 
 该变更为不兼容变更。
 
-变更前：预置应用被卸载后安装一个bundleName相同、签名不同的hap会安装成功。
+变更前：预置应用被卸载后安装一个bundleName相同、签名信息中密钥和APP ID都不同的应用会安装成功。
 
-变更后：预置应用被卸载后安装一个bundleName相同、签名不同的hap会安装失败。
+变更后：预置应用被卸载后安装一个bundleName相同、签名信息中密钥和APP ID都不同的应用会安装失败。
 
 **起始API Level**
 
@@ -32,7 +32,8 @@ API 7
 
 **适配指导**
 
-预置应用使用hdc命令安装时，安装hap的签名应该与预置hap的签名一致。
+1. 重新签名，保证应用签名信息中的[密钥](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section462703710326)和[APP ID](https://developer.huawei.com/consumer/cn/doc/app/agc-help-createharmonyapp-0000001945392297)任意一个与预置应用的一致。
+2. 修改安装应用的[bundleName](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/app-configuration-file.md)，确保与预置应用的不一致。
 
 ## cl.bundlemanager.2 bm uninstall命令无法直接卸载已设置应用锁的应用
 

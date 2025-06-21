@@ -1,5 +1,4 @@
-# 数据库备份与恢复
-
+# 数据库备份与恢复（ArkTS）
 
 ## 场景介绍
 
@@ -109,7 +108,7 @@
        if (err) {
          console.error(`Fail to backup data.code:${err.code},message:${err.message}`);
        } else {
-         console.info('Succeeded in backupping data.');
+         console.info('Succeeded in backuping data.');
        }
      });
    } catch (e) {
@@ -172,11 +171,11 @@
 
 数据库操作或者存储过程中，有可能会因为各种原因发生非预期的数据库异常的情况，可以根据需要使用关系型数据库的备份能力，以便在数据库异常时，可靠高效地恢复数据保证业务数据正常使用。
 
-关系型数据库支持两种手动备份和自动备份（仅系统应用可用）两种方式。
+关系型数据库支持手动备份和自动备份（仅系统应用可用）两种方式。
 
 ### 手动备份
 
-手动备份：通过调用[backup](../reference/apis-arkdata/js-apis-data-relationalStore.md#backup)接口实现数据库手动备份。示例如下：
+手动备份：通过调用[backup](../reference/apis-arkdata/arkts-apis-data-relationalStore-RdbStore.md#backup)接口实现数据库手动备份。示例如下：
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
@@ -262,7 +261,7 @@ export default class EntryAbility extends UIAbility {
 
 在创建或使用关系型数据库的过程中，抛出14800011异常错误码说明数据库出现异常，可以删除数据库后恢复数据。
 
-需要通过在[StoreConfig](../reference/apis-arkdata/js-apis-data-relationalStore.md#storeconfig)中配置allowRebuild参数为true以设置数据库在出现异常时自动删库。数据库重建成功后为空库，需要开发者重新建表并且使用提前备份好的数据进行数据恢复，备份操作可见[关系型数据库备份](#关系型数据库备份)，数据恢复可见[关系型数据库恢复](#关系型数据库数据恢复)。
+需要通过在[StoreConfig](../reference/apis-arkdata/arkts-apis-data-relationalStore-i.md#storeconfig)中配置allowRebuild参数为true以设置数据库在出现异常时自动删库。数据库重建成功后为空库，需要开发者重新建表并且使用提前备份好的数据进行数据恢复，备份操作可见[关系型数据库备份](#关系型数据库备份)，数据恢复可见[关系型数据库恢复](#关系型数据库数据恢复)。
 
 若数据库异常前已配置StoreConfig中的allowRebuild为true，则数据库出现异常时将自动删库。
 
@@ -423,7 +422,7 @@ export default class EntryAbility extends UIAbility {
                resultSet.close();
              } catch (e) {
                  if (e.code !== 14800014) {
-                   console.info(`Code:${err.code}, message:${err.message}`);
+                   console.error(`Code:${e.code}, message:${e.message}`);
                  }
              }
            }
@@ -436,9 +435,11 @@ export default class EntryAbility extends UIAbility {
              console.info(`Succeeded in restoring RdbStore.`);
            })
          }
-         console.info(`Code:${err.code}, message:${err.message}`);
+         console.error(`Code:${err.code}, message:${err.message}`);
      }
    }
    ```
 
 <!--DelEnd-->
+
+<!--RP1--><!--RP1End-->

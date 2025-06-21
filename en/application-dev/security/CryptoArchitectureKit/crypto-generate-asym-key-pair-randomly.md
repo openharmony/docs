@@ -1,11 +1,8 @@
 # Randomly Generating an Asymmetric Key Pair (ArkTS)
 
-
 This topic uses RSA and SM2 as an example to describe how to generate an asymmetric key pair (**KeyPair**) and obtain the binary data.
 
-
 The **KeyPair** object created can be used for subsequent encryption and decryption operations, and the binary data can be used for key storage and transfer.
-
 
 ## Randomly Generating an RSA Key Pair
 
@@ -66,7 +63,6 @@ For details about the algorithm specifications, see [RSA](crypto-asym-key-genera
     }
   }
   ```
-
 
 ## Randomly Generating an SM2 Key Pair
 

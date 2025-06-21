@@ -47,7 +47,7 @@ Incorrect ability type.
 **处理步骤**
 
 1. 检查want中的bundleName、moduleName和abilityName是否正确。
-2. 根据Ability类型调用不同接口，如ServiceExtensionAbility应使用<!--Del-->[startServiceExtensionAbility](js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstartserviceextensionability)方法启动或<!--DelEnd-->[connectServiceExtensionAbility()](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability)方法连接。
+2. 根据Ability类型调用不同接口，如ServiceExtensionAbility应使用<!--Del-->[startServiceExtensionAbility](js-apis-inner-application-uiAbilityContext-sys.md#startserviceextensionability)方法启动或<!--DelEnd-->[connectServiceExtensionAbility()](js-apis-inner-application-uiAbilityContext.md#connectserviceextensionability)方法连接。
 
 ## 16000003 指定的ID不存在
 
@@ -71,7 +71,7 @@ The specified ID does not exist.
 
 **错误信息**
 
-Failed to start the invisible ability.
+Cannot start an invisible component.
 
 **错误描述**
 
@@ -180,7 +180,7 @@ wukong模式，不允许启动/停止ability。
 
 **错误信息**
 
-The call with the continuation flag is forbidden.
+The call with the continuation and prepare continuation flag is forbidden.
 
 **错误描述**
 
@@ -220,11 +220,11 @@ The application is controlled.
 
 **错误描述**
 
-当应用受到应用市场管控时，方法将返回该错误码。
+当应用受到管控时，将返回该错误码。
 
 **可能原因**
 
-应用疑似存在恶意行为，受到应用市场管控不允许启动。
+应用被系统管控模块管控，不允许启动。
 
 **处理步骤**
 
@@ -266,37 +266,23 @@ Service timeout.
 
 服务超时，请稍后重试。
 
-## 16000017 上一个Ability未启动完成，先缓存在队列中等待后续启动
-
-**错误信息**
-
-Another ability is being started. Wait until it finishes starting.
-
-**错误描述**
-
-需要启动的Ability过多，由于系统处理能力有限，会先将请求缓存在队列中，按照顺序依次处理。
-
-**可能原因**
-
-系统并发大。
-
-**处理步骤**
-
-无需处理，等待启动即可。
-
 ## 16000018 限制API 11以上版本三方应用跳转
 
 **错误信息**
 
-Redirection to a third-party application is not allowed in API version 11 or later.
+Redirection to a third-party application is not allowed in API version greater than 11.
 
 **错误描述**
 
 当应用API版本大于11的时候，不允许显式跳转到其他三方应用。
 
+**可能原因**
+
+应用使用的API版本大于11并且显式跳转到其他三方应用。
+
 **处理步骤**
 
-使用隐式启动方式或通过[openLink](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12)跳转其他应用。
+使用隐式启动方式或通过[openLink](js-apis-inner-application-uiAbilityContext.md#openlink12)跳转其他应用。
 
 ## 16000019 隐式启动未查找到匹配应用
 
@@ -318,6 +304,26 @@ No matching ability is found.
 1. 确保隐式启动的参数配置正确。
 2. 确保对应的HAP包已安装。
 
+<!--Del-->
+## 16000020 传入的Context对象不是Ability级别Context
+
+**错误信息**
+
+The context is not ability context.
+
+**错误描述**
+
+传入的Context对象不是Ability级别Context。
+
+**可能原因**
+
+传入的Context对象既不是UIAbilityContext或ExtensionContext，也没有继承自UIAbilityContext或ExtensionContext。
+
+**处理步骤**
+
+使用UIAbilityContext或ExtensionContext对象作为入参，或者使用继承了UIAbilityContext或ExtensionContext类的对象作为入参。
+<!--DelEnd-->
+
 ## 16000050 内部错误
 
 **错误信息**
@@ -338,42 +344,6 @@ Internal error.
 2. 检查是否启动了过多的ability。
 3. 尝试重启设备。
 
-## 16000051 网络异常
-
-**错误信息**
-
-Network error.
-
-**错误描述**
-
-当网络异常时，方法将返回该错误码。
-
-**可能原因**
-
-网络不可用。
-
-**处理步骤**
-
-网络异常，请稍后重试，或者重连网络尝试。
-
-## 16000052 不支持免安装
-
-**错误信息**
-
-Installation-free is not supported.
-
-**错误描述**
-
-当前应用不支持免安装时，方法将返回该错误码。
-
-**可能原因**
-
-应用包不满足免安装要求，如包大小超过限制等。
-
-**处理步骤**
-
-请检查应用是否支持免安装。
-
 ## 16000053 非顶层应用
 
 **错误信息**
@@ -392,24 +362,6 @@ The ability is not on the top of the UI.
 
 请检查当前应用是否显示在界面顶层。
 
-## 16000054 免安装服务繁忙
-
-**错误信息**
-
-The installation-free service is busy. Try again later.
-
-**错误描述**
-
-当免安装服务繁忙时，方法将返回该错误码。
-
-**可能原因**
-
-已有相同原子化服务的下载安装任务在执行。
-
-**处理步骤**
-
-免安装服务繁忙，请稍后重试。
-
 ## 16000055 免安装超时
 
 **错误信息**
@@ -427,42 +379,6 @@ Installation-free timed out.
 **处理步骤**
 
 免安装超时，请稍后重试。
-
-## 16000056 不允许免安装其他应用
-
-**错误信息**
-
-Installation-free is not allowed for other applications.
-
-**错误描述**
-
-当免安装其他应用时，方法将返回该错误码。
-
-**可能原因**
-
-不允许免安装其他应用。
-
-**处理步骤**
-
-确认免安装的是正确的应用。
-
-## 16000057 不支持跨设备免安装
-
-**错误信息**
-
-Cross-device installation-free is not supported.
-
-**错误描述**
-
-当持跨设备免安装时，方法将返回该错误码。
-
-**可能原因**
-
-不支持跨设备免安装。
-
-**处理步骤**
-
-确认为非跨设备免安装应用。
 
 ## 16000058 指定的URI flag无效
 
@@ -717,7 +633,7 @@ App clone is not supported.
 
 **处理步骤**
 
-参考[应用多实例的配置方法](../../quick-start/multiInstance.md#应用多实例的配置方法)，在app.json5配置文件中配置multiAppMode标签，开启应用分身功能后，再调用[getCurrentAppCloneIndex](./js-apis-inner-application-applicationContext.md#applicationcontextgetcurrentappcloneindex12)接口。
+参考[应用多实例的配置方法](../../quick-start/multiInstance.md)，在app.json5配置文件中配置multiAppMode标签，开启应用分身功能后，再调用[getCurrentAppCloneIndex](./js-apis-inner-application-applicationContext.md#applicationcontextgetcurrentappcloneindex12)接口。
 
 <!--Del-->
 ## 16000072 不支持应用多开
@@ -786,7 +702,7 @@ The caller does not exist.
 
 **错误信息**
 
-Not support back to caller.
+BackToCaller is not supported.
 
 **错误描述**
 
@@ -805,7 +721,7 @@ Not support back to caller.
 
 **错误信息**
 
-The APP_INSTANCE_KEY is invalid.
+The app instance key is invalid.
 
 **错误描述**
 
@@ -879,7 +795,7 @@ The APP_INSTANCE_KEY cannot be specified.
 
 **错误信息**
 
-Creating an instance is not supported.
+Creating a new instance is not supported.
 
 **错误描述**
 
@@ -897,7 +813,7 @@ Creating an instance is not supported.
 
 **错误信息**
 
-Get target application info failed.
+Failed to obtain the target application information.
 
 **错误描述**
 
@@ -915,47 +831,11 @@ Get target application info failed.
 2. 检查分身应用索引是否在允许范围内。
 3. 检查目标应用是否创建了该索引对应的分身应用。
 
-## 16000082 单实例模式下的UIAbility未完成启动
-
-**错误信息**
-
-The UIAbility is being started.
-
-**错误描述**
-
-如果UIAbility启动模式为“singleton”，在UIAbility启动完成之前不能再次调用启动接口，否则将返回该错误码。
-
-**可能原因**
-
-该UIAbility为singleton模式，正在启动过程中。
-
-**处理步骤**
-
-确保该UIAbility启动完成，再执行新的启动任务。
-
-## 16000083 不允许该类型ExtensionAbility启动指定Ability
-
-**错误信息**
-
-The extension can not start the ability due to extension control.
-
-**错误描述**
-
-不同类型ExtensionAbility所需要的能力不同。系统不允许该类型ExtensionAbility启动指定Ability。
-
-**可能原因**
-
-当前类型ExtensionAbility受系统管控，不允许该类型Extension启动指定Ability。
-
-**处理步骤**
-
-查看对应类型ExtensionAbility的使用约束限制，确保接口使用符合约束限制。
-
 ## 16000084 只允许DelegatorAbility单次调用
 
 **错误信息**
 
-Only allow DelegatorAbility to call the method once.
+Only DelegatorAbility is allowed to call this API, and only once.
 
 **错误描述**
 
@@ -975,7 +855,7 @@ Only allow DelegatorAbility to call the method once.
 
 **错误信息**
 
-The interaction process between Ability and Window encountered an error.
+An error occurred during the interaction between the ability and window.
 
 **错误描述**
 
@@ -988,6 +868,123 @@ The interaction process between Ability and Window encountered an error.
 **处理步骤**
 
 系统错误，尝试重新调用。
+
+## 16000086 传入的context不是UIAbilityContext
+
+**错误信息**
+
+The context is not UIAbilityContext.
+
+**错误描述**
+
+传入的context不是UIAbilityContext。
+
+**可能原因**
+
+传入的Context对象既不是UIAbilityContext、也没有继承自UIAbilityContext。
+
+**处理步骤**
+
+使用UIAbilityContext对象或者继承了UIAbilityContext类的对象作为入参。
+
+## 16000090 调用方不是原子化服务
+
+**错误信息**
+
+The caller is not an atomic service.
+
+**错误描述**
+
+调用方不是原子化服务。
+
+**可能原因**
+
+接口调用方不是原子化服务。
+
+**处理步骤**
+
+当前应用不支持调用该接口。
+
+<!--Del-->
+## 16000091 根据key获取文件URI数据失败
+
+**错误信息**
+
+Failed to get the file URI from the key.
+
+**错误描述**
+
+根据key获取文件URI失败。
+
+**可能原因**
+
+1. key为空。
+2. key不属于当前调用方。
+3. key不属于特定业务的数据通路。
+4. key对应UDMF中写入的数据不全为文件URI。
+
+**处理步骤**
+
+1. 确保key是由调用方创建的。
+2. 确保key属于特定业务的数据通路。参考[UDMF数据通路](../apis-arkdata/js-apis-data-unifiedDataChannel.md#intention)。
+3. 确保创建key时在UDMF中写入的数据都为文件URI。
+
+## 16000092 无权限授权URI
+
+**错误信息**
+
+No permission to authorize the URI.
+
+**错误描述**
+
+无权限授权URI。
+
+**可能原因**
+
+创建key时写入的URI存在无权限授权的URI。
+
+**处理步骤**
+
+确保创建key时写入的URI均为有权限授权的URI。
+
+## 16000093 调用方的token ID无效
+
+**错误信息**
+
+The caller token ID is invalid.
+
+**错误描述**
+
+调用方的token ID无效。
+
+**可能原因**
+
+系统未找到callerTokenId对应的应用。
+
+**处理步骤**
+
+检查callerTokenId对应的应用是否安装。
+
+## 16000094 目标应用的token ID无效
+
+**错误信息**
+
+The target token ID is invalid.
+
+**错误描述**
+
+目标应用的token ID无效。
+
+**可能原因**
+
+1. 系统未找到targetTokenId对应的应用。
+2. targetTokenId与callerTokenId是同一应用。
+
+**处理步骤**
+
+1. 确保传入的targetTokenId对应的应用已安装。
+2. 确保callerTokenId与targetTokenId不是同一应用。
+<!--DelEnd-->
 
 ## 16000100 监听Ability生命周期变化的AbilityMonitor方法执行失败
 
@@ -1033,23 +1030,77 @@ The interaction process between Ability and Window encountered an error.
 
 检查是否成功创建了AbilityDelegatorRegistry实例。
 
-## 16000101 执行shell命令失败
+## 16000110 当前应用不在Kiosk模式的列表内
 
 **错误信息**
 
-Failed to run the shell command.
+Current application is not in kiosk app list, can not exit kiosk mode.
 
 **错误描述**
 
-当命令不是有效的shell命令时，方法将返回该错误码。
+当前应用不在EDM配置的支持Kiosk模式的应用列表内，尝试进入或退出Kiosk模式时，将返回错误码。
 
 **可能原因**
 
-命令不是有效的shell命令。
+应用不在EDM配置的支持Kiosk模式的应用列表内。
 
 **处理步骤**
 
-检查命令是否为有效的shell命令。
+检查应用是否在EDM配置的支持Kiosk模式的应用列表内。
+
+## 16000111 已经有应用进入了Kiosk模式
+
+**错误信息**
+
+System is already in kiosk mode, can not enter again.
+
+**错误描述**
+
+当前系统已有应用进入Kiosk模式，调用方尝试进入时将返回错误码。
+
+**可能原因**
+
+已经有应用进入Kiosk模式。
+
+**处理步骤**
+
+检查系统内是否存在应用已经进入Kiosk模式。
+
+## 16000112 当前系统没有应用进入Kiosk模式
+
+**错误信息**
+
+Current application is not in kiosk mode, can not exit.
+
+**错误描述**
+
+如果系统中没有应用进入Kiosk模式，尝试退出Kiosk模式时将返回错误码。
+
+**可能原因**
+
+当前系统没有应用进入Kiosk模式。
+
+**处理步骤**
+
+检查当前系统是否有应用进入Kiosk模式。
+
+## 16000113 当前Ability不在前台
+
+**错误信息**
+
+Current ability is not in foreground.
+
+**错误描述**
+
+当Ability未处于前台状态时，尝试执行需在前台进行的操作将返回错误码。
+
+**可能原因**
+
+当前Ability没有处于前台。
+
+**处理步骤**
+
+检查当前Ability是否处于前台状态。
 
 ## 16000151 无效wantAgent对象
 
@@ -1072,78 +1123,62 @@ Invalid wantAgent object.
 1. 检查传入接口的wantAgent对象是否存在。
 2. 检查调用方是否为三方应用。不支持三方应用设置其他应用的Ability。
 
-## 16000152 未找到wantAgent对象
+<!--Del-->
+## 16000153 wantAgent对象已被取消
 
 **错误信息**
 
-The wantAgent object does not exist.
+The WantAgent has been canceled.
 
 **错误描述**
 
-当传入接口的wantAgent对象不存在时，方法将返回该错误码。
+当传入接口的wantAgent对象已被取消时，方法将返回该错误码。
 
 **可能原因**
 
-传入接口的wantAgent对象不存在。
+传入接口的wantAgent对象已被取消。
 
 **处理步骤**
 
-检查传入接口的wantAgent对象是否合法。
+使用未被取消的wantAgent对象。
+<!--DelEnd-->
 
-## 16000153 wangAgent对象已取消
+## 16000200 不允许该调用方启动应用后台服务
 
 **错误信息**
 
-The wantAgent object has been canceled.
+The caller is not in the appIdentifierAllowList of the target application.
 
 **错误描述**
 
-当传入接口的wangAgent对象已取消时，方法将返回该错误码。
+调用方不在目标应用的[appIdentifierAllowList](../../quick-start/module-configuration-file.md#extensionabilities标签)中时，返回该错误码。
 
 **可能原因**
 
-传入接口的触发的wantAgent已取消。
+[startAppServiceExtensionAbility](js-apis-inner-application-uiAbilityContext.md#startappserviceextensionability20)、[stopAppServiceExtensionAbility](js-apis-inner-application-uiAbilityContext.md#stopappserviceextensionability20)接口调用方的app-identifier不在目标[AppServiceExtensionAbility](js-apis-app-ability-appServiceExtensionAbility.md)的[appIdentifierAllowList](../../quick-start/module-configuration-file.md#extensionabilities标签)中。
 
 **处理步骤**
 
-检查触发的wantAgent对象是否已取消。
+将接口调用方的app-identifier配置在目标[AppServiceExtensionAbility](js-apis-app-ability-appServiceExtensionAbility.md)的[appIdentifierAllowList](../../quick-start/module-configuration-file.md#extensionabilities标签)中。
 
-## 16100001 指定Uri的Ability不存在
+## 16000201 目标服务还未启动
 
 **错误信息**
 
-The ability with the specified URI does not exist.
+The target service has not been started yet.
 
 **错误描述**
 
-当指定Uri的Ability不存在时，方法将返回该错误码。
+目标服务还未启动时，返回该错误码。
 
 **可能原因**
 
-所查询的Ability不存在。
+使用[connectAppServiceExtensionAbility](js-apis-inner-application-uiAbilityContext.md#connectappserviceextensionability20)接口时服务端还未启动且当前应用无权限拉起目标服务。
 
 **处理步骤**
 
-确认查询的Ability是否存在。
-
-## 16100002 接口调用Ability类型错误
-
-**错误信息**
-
-Incorrect ability type.
-
-**错误描述**
-
-当接口调用Ability类型错误时，方法将返回该错误码。
-
-**可能原因**
-
-接口调用所在的Ability类型不支持该接口调用。
-
-**处理步骤**
-
-1. 检查包名对应的Ability是否正确。
-2. 根据Ability类型调用不同接口。
+1. 等待服务端启动后重新连接。
+2. 由当前应用拉起目标服务时，需要将接口调用方的app-identifier配置在目标[AppServiceExtensionAbility](js-apis-app-ability-appServiceExtensionAbility.md)的[appIdentifierAllowList](../../quick-start/module-configuration-file.md#extensionabilities标签)中。
 
 ## 16200001 通用组件客户端(Caller)已回收
 
@@ -1182,24 +1217,6 @@ The callee does not exist.
 **处理步骤**
 
 请检查通用组件服务端是否存在。
-
-## 16200003 回收失败
-
-**错误信息**
-
-Release error. The caller does not call any callee.
-
-**错误描述**
-
-当回收失败时，方法将返回该错误码。
-
-**可能原因**
-
-通用组件客户端(Caller)对象未注册通用组件服务端(Callee)。
-
-**处理步骤**
-
-请检查是否已注册通用组件服务端。
 
 ## 16200004 方法已注册
 
@@ -1346,102 +1363,6 @@ Invalid patch package.
 1. 请检查传递的补丁包文件路径是否有效。
 2. 请检查是否有权限访问此补丁包文件。
 
-## 18500003 补丁包部署失败
-
-**错误信息**
-
-Failed to deploy the patch.
-
-**错误描述**
-
-当补丁包部署失败时，方法将返回该错误码。
-
-**可能原因**
-
-1. patch.json中type只能为patch或者hotreload，否则部署失败。
-2. 若对应bundleName的hap包未安装，部署失败。
-3. bundleName、versionCode必须和已安装的hap应用相同，如果为patch类型，还需确保versionName相同，否则部署失败。
-4. 如果已经部署过补丁包，新部署的补丁包的versionCode必须大于之前补丁包的versionCode，否则部署失败。
-5. 对于patch类型的补丁会校验签名信息，使用的签名证书需要和应用相同，签名不一致，部署失败。
-6. 在部署patch类型的补丁包时，如果是debug版本，先判断是否有在使用的补丁包，如果在使用的补丁包为hotreload类型，则部署失败。
-7. 在部署hotreload类型的补丁包时，如果是debug版本，先判断是否有在使用的补丁包，如果在使用的补丁包为patch类型，则部署失败；如果是release版本，则部署失败。
-
-**处理步骤**
-
-请检查补丁包是否符合规则。
-
-## 18500004 补丁包使能失败
-
-**错误信息**
-
-Failed to enable the patch package.
-
-**错误描述**
-
-当补丁包使能失败时，方法将返回该错误码。
-
-**可能原因**
-
-使能补丁时补丁包状态不正确。
-
-**处理步骤**
-
-请检查补丁包状态。
-
-## 18500005 补丁包删除失败
-
-**错误信息**
-
-Failed to remove the patch package.
-
-**错误描述**
-
-当补丁包删除失败时，方法将返回该错误码。
-
-**可能原因**
-
-删除旧补丁时补丁包状态不正确。
-
-**处理步骤**
-
-请检查补丁包状态。
-
-## 18500006 加载补丁失败
-
-**错误信息**
-
-Failed to load the patch.
-
-**错误描述**
-
-当加载补丁失败时，方法将返回该错误码。
-
-**可能原因**
-
-方舟引擎加载补丁失败。
-
-**处理步骤**
-
-请检查补丁包是否正确。
-
-## 18500007 卸载旧补丁失败
-
-**错误信息**
-
-Failed to unload the patch.
-
-**错误描述**
-
-当方舟引擎卸载旧补丁失败时，方法将返回该错误码。
-
-**可能原因**
-
-方舟引擎卸载补丁失败。
-
-**处理步骤**
-
-请检查补丁包是否正确。
-
 ## 18500008 快速修复内部错误
 
 **错误信息**
@@ -1482,7 +1403,7 @@ The application has an ongoing quick fix task.
 
 **错误信息**
 
-observer not found.
+The observer does not exist.
 
 **错误描述**
 
@@ -1518,7 +1439,7 @@ The target bundle does not exist.
 
 **错误信息**
 
-The target bundle has no main uiability.
+The target bundle has no MainAbility.
 
 **错误描述**
 
@@ -1554,7 +1475,7 @@ The target bundle has no status-bar ability.
 
 **错误信息**
 
-The target application is not attached to status bar.
+The target application is not attached to the status bar.
 
 **错误描述**
 
@@ -1605,7 +1526,7 @@ uri不存在或uri非图片类型文件。
 
 检查文件是否存在以及文件类型是否为图片。
 
-## 29600002 图片大小过大
+## 29600003 图片大小过大
 
 **错误信息**
 
@@ -1628,7 +1549,7 @@ Image too big.
 
 **错误信息**
 
-The target free install task does not exist.
+The target free-installation task does not exist.
 
 **错误描述**
 
@@ -1636,7 +1557,7 @@ The target free install task does not exist.
 
 **可能原因**
 
-传入的bundleName、moduleName、abilityName或startTime错误，导致查询不到相关原子化服务原子化服务的下载安装任务信息。
+传入的bundleName、moduleName、abilityName或startTime错误，导致查询不到相关原子化服务的下载安装任务信息。
 
 **处理步骤**
 
@@ -1713,3 +1634,77 @@ Running startup tasks timeout.
 **处理步骤**
 
 根据需要调整超时时间。超时时间的设置可参见[设置启动参数](../../application-models/app-startup.md#设置启动参数)。
+
+<!--Del-->
+## 16400001 目标应用类型不是系统级HSP
+
+**错误信息**
+
+The input bundleName is not a system HSP.
+
+**错误描述**
+
+通过[createSystemHspModuleResourceManager](js-apis-inner-application-context-sys.md#contextcreatesystemhspmoduleresourcemanager12)接口创建[ResourceManager](../apis-localization-kit/js-apis-resource-manager.md#resourcemanager)时，如果传入的bundleName不属于[系统级HSP](../../quick-start/application-package-glossary.md#系统级hsp)的模块，将返回该错误码。
+
+**可能原因**
+
+调用createSystemHspModuleResourceManager传入的bundleName，不是OEM预置到系统中的HSP的bundleName。
+
+**处理步骤**
+
+检查bundleName是否正确。
+
+## 16000202 仅支持为appService类型的ExtensionAbility设置保活
+
+**错误信息**
+
+Invalid main element type.
+
+**错误描述**
+
+如果设置保活的对象不是appService类型的ExtensionAbility，方法将返回该错误码。
+
+**可能原因**
+
+应用中entry类型的HAP的module.json5配置文件中的mainElement字段不是appService类型的ExtensionAbility。
+
+**处理步骤**
+
+修改应用中entry类型的HAP的module.json5配置文件的mainElement字段为appService类型的ExtensionAbility。
+
+## 16000203 无法更改AppServiceExtensionAbility保活状态
+
+**错误信息**
+
+Cannot change the keep-alive status.
+
+**错误描述**
+
+无法更改AppServiceExtensionAbility保活状态时，方法返回该错误码。
+
+**可能原因**
+
+AppServiceExtensionAbility的保活策略由MDM设置为用户不可取消，或者由其他用户设置为保活。
+
+**处理步骤**
+
+MDM取消设置保活，或设置保活策略为用户可取消；在设置保活的用户下取消AppServiceExtensionAbility的保活。
+
+## 16000204 指定的应用未安装在userId为1的用户下
+
+**错误信息**
+
+The target bundle is not in u1.
+
+**错误描述**
+
+当指定的应用未安装在userId为1的用户下时，方法返回该错误码。
+
+**可能原因**
+
+指定的应用未安装在userId为1的用户下。
+
+**处理步骤**
+
+将指定的应用安装在userId为1的用户下。
+<!--DelEnd-->

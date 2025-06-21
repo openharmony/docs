@@ -14,9 +14,9 @@ import { statistics } from '@kit.NetworkKit';
 
 ## statistics.getIfaceRxBytes<sup>10+</sup>
 
-getIfaceRxBytes(nic: string, callback: AsyncCallback\<number>): void;
+getIfaceRxBytes(nic: string, callback: AsyncCallback\<number>): void
 
-获取指定网卡实时下行流量，使用 callback 方式作为异步方法。
+获取指定网卡实时下行流量，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -29,9 +29,9 @@ getIfaceRxBytes(nic: string, callback: AsyncCallback\<number>): void;
 
 **错误码：**
 
-以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
+以下错误码的详细介绍参见[流量管理错误码](errorcode-net-statistics.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2100002   | Failed to connect to the service.            |
@@ -47,14 +47,14 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { statistics } from '@kit.NetworkKit';
 
 statistics.getIfaceRxBytes("wlan0", (error: BusinessError, stats: number) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(stats));
 });
 ```
 
 ## statistics.getIfaceRxBytes<sup>10+</sup>
 
-getIfaceRxBytes(nic: string): Promise\<number>;
+getIfaceRxBytes(nic: string): Promise\<number>
 
 获取指定网卡实时下行流量，使用 Promise 方式作为异步方法。
 
@@ -73,9 +73,9 @@ getIfaceRxBytes(nic: string): Promise\<number>;
 
 **错误码：**
 
-以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
+以下错误码的详细介绍参见[流量管理错误码](errorcode-net-statistics.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2100002   | Failed to connect to the service.            |
@@ -96,7 +96,7 @@ statistics.getIfaceRxBytes("wlan0").then((stats: number) => {
 
 ## statistics.getIfaceTxBytes<sup>10+</sup>
 
-getIfaceTxBytes(nic: string, callback: AsyncCallback\<number>): void;
+getIfaceTxBytes(nic: string, callback: AsyncCallback\<number>): void
 
 获取指定网卡实时上行流量，使用 callback 方式作为异步方法。
 
@@ -111,9 +111,9 @@ getIfaceTxBytes(nic: string, callback: AsyncCallback\<number>): void;
 
 **错误码：**
 
-以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
+以下错误码的详细介绍参见[流量管理错误码](errorcode-net-statistics.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2100002   | Failed to connect to the service.            |
@@ -129,14 +129,14 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { statistics } from '@kit.NetworkKit';
 
 statistics.getIfaceTxBytes("wlan0", (error: BusinessError, stats: number) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(stats));
 });
 ```
 
 ## statistics.getIfaceTxBytes<sup>10+</sup>
 
-getIfaceTxBytes(nic: string): Promise\<number>;
+getIfaceTxBytes(nic: string): Promise\<number>
 
 获取指定网卡实时上行流量，使用 Promise 方式作为异步方法。
 
@@ -155,9 +155,9 @@ getIfaceTxBytes(nic: string): Promise\<number>;
 
 **错误码：**
 
-以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
+以下错误码的详细介绍参见[流量管理错误码](errorcode-net-statistics.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2100002   | Failed to connect to the service.            |
@@ -178,7 +178,7 @@ statistics.getIfaceTxBytes("wlan0").then((stats: number) => {
 
 ## statistics.getCellularRxBytes<sup>10+</sup>
 
-getCellularRxBytes(callback: AsyncCallback\<number>): void;
+getCellularRxBytes(callback: AsyncCallback\<number>): void
 
 获取蜂窝实时下行流量，使用 callback 方式作为异步方法。
 
@@ -192,9 +192,9 @@ getCellularRxBytes(callback: AsyncCallback\<number>): void;
 
 **错误码：**
 
-以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
+以下错误码的详细介绍参见[流量管理错误码](errorcode-net-statistics.md)。
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
@@ -209,14 +209,14 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { statistics } from '@kit.NetworkKit';
 
 statistics.getCellularRxBytes((error: BusinessError, stats: number) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(stats));
 });
 ```
 
 ## statistics.getCellularRxBytes<sup>10+</sup>
 
-getCellularRxBytes(): Promise\<number>;
+getCellularRxBytes(): Promise\<number>
 
 获取蜂窝实时下行流量，使用 Promise 方式作为异步方法。
 
@@ -229,9 +229,9 @@ getCellularRxBytes(): Promise\<number>;
 
 **错误码：**
 
-以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
+以下错误码的详细介绍参见[流量管理错误码](errorcode-net-statistics.md)。
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
@@ -251,7 +251,7 @@ statistics.getCellularRxBytes().then((stats: number) => {
 
 ## statistics.getCellularTxBytes<sup>10+</sup>
 
-getCellularTxBytes(callback: AsyncCallback\<number>): void;
+getCellularTxBytes(callback: AsyncCallback\<number>): void
 
 获取蜂窝实时上行流量，使用 callback 方式作为异步方法。
 
@@ -265,9 +265,9 @@ getCellularTxBytes(callback: AsyncCallback\<number>): void;
 
 **错误码：**
 
-以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
+以下错误码的详细介绍参见[流量管理错误码](errorcode-net-statistics.md)。
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
@@ -282,14 +282,14 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { statistics } from '@kit.NetworkKit';
 
 statistics.getCellularTxBytes((error: BusinessError, stats: number) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(stats));
 });
 ```
 
 ## statistics.getCellularTxBytes<sup>10+</sup>
 
-getCellularTxBytes(): Promise\<number>;
+getCellularTxBytes(): Promise\<number>
 
 获取蜂窝实时上行流量，使用 Promise 方式作为异步方法。
 
@@ -302,9 +302,9 @@ getCellularTxBytes(): Promise\<number>;
 
 **错误码：**
 
-以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
+以下错误码的详细介绍参见[流量管理错误码](errorcode-net-statistics.md)。
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
@@ -324,9 +324,11 @@ statistics.getCellularTxBytes().then((stats: number) => {
 
 ## statistics.getAllRxBytes<sup>10+</sup>
 
-getAllRxBytes(callback: AsyncCallback\<number>): void;
+getAllRxBytes(callback: AsyncCallback\<number>): void
 
 获取所有网卡实时下行流量，使用 callback 方式作为异步方法。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -338,9 +340,9 @@ getAllRxBytes(callback: AsyncCallback\<number>): void;
 
 **错误码：**
 
-以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
+以下错误码的详细介绍参见[流量管理错误码](errorcode-net-statistics.md)。
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 2100002   | Failed to connect to the service. |
 | 2100003   | System internal error.                       |
@@ -354,16 +356,18 @@ import { statistics } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 statistics.getAllRxBytes((error: BusinessError, stats: number) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(stats));
 });
 ```
 
 ## statistics.getAllRxBytes<sup>10+</sup>
 
-getAllRxBytes(): Promise\<number>;
+getAllRxBytes(): Promise\<number>
 
 获取所有网卡实时下行流量，使用 Promise 方式作为异步方法。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -374,9 +378,9 @@ getAllRxBytes(): Promise\<number>;
 
 **错误码：**
 
-以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
+以下错误码的详细介绍参见[流量管理错误码](errorcode-net-statistics.md)。
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
@@ -395,9 +399,11 @@ statistics.getAllRxBytes().then((stats: number) => {
 
 ## statistics.getAllTxBytes<sup>10+</sup>
 
-getAllTxBytes(callback: AsyncCallback\<number>): void;
+getAllTxBytes(callback: AsyncCallback\<number>): void
 
 获取所有网卡实时上行流量，使用 callback 方式作为异步方法。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -409,9 +415,9 @@ getAllTxBytes(callback: AsyncCallback\<number>): void;
 
 **错误码：**
 
-以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
+以下错误码的详细介绍参见[流量管理错误码](errorcode-net-statistics.md)。
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
@@ -425,16 +431,18 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { statistics } from '@kit.NetworkKit';
 
 statistics.getAllTxBytes((error: BusinessError, stats: number) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(stats));
 });
 ```
 
 ## statistics.getAllTxBytes<sup>10+</sup>
 
-getAllTxBytes(): Promise\<number>;
+getAllTxBytes(): Promise\<number>
 
 获取所有网卡实时上行流量，使用 Promise 方式作为异步方法。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -445,9 +453,9 @@ getAllTxBytes(): Promise\<number>;
 
 **错误码：**
 
-以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
+以下错误码的详细介绍参见[流量管理错误码](errorcode-net-statistics.md)。
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
@@ -466,7 +474,7 @@ statistics.getAllTxBytes().then((stats: number) => {
 
 ## statistics.getUidRxBytes<sup>10+</sup>
 
-getUidRxBytes(uid: number, callback: AsyncCallback\<number>): void;
+getUidRxBytes(uid: number, callback: AsyncCallback\<number>): void
 
 获取指定应用实时下行流量，使用 callback 方式作为异步方法。
 
@@ -481,9 +489,9 @@ getUidRxBytes(uid: number, callback: AsyncCallback\<number>): void;
 
 **错误码：**
 
-以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
+以下错误码的详细介绍参见[流量管理错误码](errorcode-net-statistics.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2100002   | Failed to connect to the service.            |
@@ -498,14 +506,14 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { statistics } from '@kit.NetworkKit';
 
 statistics.getUidRxBytes(20010038, (error: BusinessError, stats: number) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(stats));
 });
 ```
 
 ## statistics.getUidRxBytes<sup>10+</sup>
 
-getUidRxBytes(uid: number): Promise\<number>;
+getUidRxBytes(uid: number): Promise\<number>
 
 获取指定应用实时下行流量，使用 Promise 方式作为异步方法。
 
@@ -524,9 +532,9 @@ getUidRxBytes(uid: number): Promise\<number>;
 
 **错误码：**
 
-以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
+以下错误码的详细介绍参见[流量管理错误码](errorcode-net-statistics.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2100002   | Failed to connect to the service.            |
@@ -546,7 +554,7 @@ statistics.getUidRxBytes(20010038).then((stats: number) => {
 
 ## statistics.getUidTxBytes<sup>10+</sup>
 
-getUidTxBytes(uid: number, callback: AsyncCallback\<number>): void;
+getUidTxBytes(uid: number, callback: AsyncCallback\<number>): void
 
 获取指定应用实时上行流量，使用 callback 方式作为异步方法。
 
@@ -561,9 +569,9 @@ getUidTxBytes(uid: number, callback: AsyncCallback\<number>): void;
 
 **错误码：**
 
-以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
+以下错误码的详细介绍参见[流量管理错误码](errorcode-net-statistics.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2100002   | Failed to connect to the service.            |
@@ -578,14 +586,14 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { statistics } from '@kit.NetworkKit';
 
 statistics.getUidTxBytes(20010038, (error: BusinessError, stats: number) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(stats));
 });
 ```
 
 ## statistics.getUidTxBytes<sup>10+</sup>
 
-getUidTxBytes(uid: number): Promise\<number>;
+getUidTxBytes(uid: number): Promise\<number>
 
 获取指定应用实时上行流量，使用 Promise 方式作为异步方法。
 
@@ -604,9 +612,9 @@ getUidTxBytes(uid: number): Promise\<number>;
 
 **错误码：**
 
-以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
+以下错误码的详细介绍参见[流量管理错误码](errorcode-net-statistics.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2100002   | Failed to connect to the service.            |
@@ -627,7 +635,7 @@ statistics.getUidTxBytes(20010038).then((stats: number) => {
 
 ## statistics.getSockfdRxBytes<sup>11+</sup>
 
-getSockfdRxBytes(sockfd: number, callback: AsyncCallback\<number\>): void;
+getSockfdRxBytes(sockfd: number, callback: AsyncCallback\<number\>): void
 
 获取指定socket的下行流量信息，使用 callback 方式作为异步方法。
 
@@ -642,9 +650,9 @@ getSockfdRxBytes(sockfd: number, callback: AsyncCallback\<number\>): void;
 
 **错误码：**
 
-以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
+以下错误码的详细介绍参见[流量管理错误码](errorcode-net-statistics.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
@@ -657,16 +665,16 @@ getSockfdRxBytes(sockfd: number, callback: AsyncCallback\<number\>): void;
 import { BusinessError } from '@kit.BasicServicesKit';
 import { statistics } from '@kit.NetworkKit';
 
-let sockfd = 50; // 实际开发中需要先根据自己创建的socket获取到
+let sockfd = 50; // 实际开发中需要先根据自己创建的socket获取到。
 statistics.getSockfdRxBytes(sockfd, (error: BusinessError, stats: number) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(stats));
 });
 ```
 
 ## statistics.getSockfdRxBytes<sup>11+</sup>
 
-getSockfdRxBytes(sockfd: number): Promise\<number\>;
+getSockfdRxBytes(sockfd: number): Promise\<number\>
 
 获取指定socket的下行流量信息，使用 Promise 方式作为异步方法。
 
@@ -686,9 +694,9 @@ getSockfdRxBytes(sockfd: number): Promise\<number\>;
 
 **错误码：**
 
-以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
+以下错误码的详细介绍参见[流量管理错误码](errorcode-net-statistics.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
@@ -701,7 +709,7 @@ getSockfdRxBytes(sockfd: number): Promise\<number\>;
 import { BusinessError } from '@kit.BasicServicesKit';
 import { statistics } from '@kit.NetworkKit';
 
-let sockfd = 50; // 实际开发中需要先根据自己创建的socket获取到
+let sockfd = 50; // 实际开发中需要先根据自己创建的socket获取到。
 statistics.getSockfdRxBytes(sockfd).then((stats: number) => {
   console.log(JSON.stringify(stats));
 }).catch((err: BusinessError) => {
@@ -711,7 +719,7 @@ statistics.getSockfdRxBytes(sockfd).then((stats: number) => {
 
 ## statistics.getSockfdTxBytes<sup>11+</sup>
 
-getSockfdTxBytes(sockfd: number, callback: AsyncCallback\<number\>): void;
+getSockfdTxBytes(sockfd: number, callback: AsyncCallback\<number\>): void
 
 获取指定socket的上行流量信息，使用 callback 方式作为异步方法。
 
@@ -726,9 +734,9 @@ getSockfdTxBytes(sockfd: number, callback: AsyncCallback\<number\>): void;
 
 **错误码：**
 
-以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
+以下错误码的详细介绍参见[流量管理错误码](errorcode-net-statistics.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
@@ -741,16 +749,16 @@ getSockfdTxBytes(sockfd: number, callback: AsyncCallback\<number\>): void;
 import { BusinessError } from '@kit.BasicServicesKit';
 import { statistics } from '@kit.NetworkKit';
 
-let sockfd = 50; // 实际开发中需要先根据自己创建的socket获取到
+let sockfd = 50; // 实际开发中需要先根据自己创建的socket获取到。
 statistics.getSockfdTxBytes(sockfd, (error: BusinessError, stats: number) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(stats));
 });
 ```
 
 ## statistics.getSockfdTxBytes<sup>11+</sup>
 
-getSockfdTxBytes(sockfd: number): Promise\<number\>;
+getSockfdTxBytes(sockfd: number): Promise\<number\>
 
 获取指定socket的上行流量信息，使用 Promise 方式作为异步方法。
 
@@ -770,9 +778,9 @@ getSockfdTxBytes(sockfd: number): Promise\<number\>;
 
 **错误码：**
 
-以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
+以下错误码的详细介绍参见[流量管理错误码](errorcode-net-statistics.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
@@ -785,7 +793,7 @@ getSockfdTxBytes(sockfd: number): Promise\<number\>;
 import { BusinessError } from '@kit.BasicServicesKit';
 import { statistics } from '@kit.NetworkKit';
 
-let sockfd = 50; // 实际开发中需要先根据自己创建的socket获取到
+let sockfd = 50; // 实际开发中需要先根据自己创建的socket获取到。
 statistics.getSockfdTxBytes(sockfd).then((stats: number) => {
   console.log(JSON.stringify(stats));
 }).catch((err: BusinessError) => {
@@ -799,7 +807,7 @@ type NetBearType = connection.NetBearType
 
 网络类型。
 
-**系统能力**：SystemCapability.Communication.NetManager
+**系统能力**：SystemCapability.Communication.NetManager.Core
 
 |       类型       |            说明             |
 | ---------------- | --------------------------- |
