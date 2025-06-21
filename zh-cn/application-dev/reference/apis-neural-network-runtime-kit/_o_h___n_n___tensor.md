@@ -28,7 +28,7 @@
 | uint32_t [dimensionCount](#dimensioncount) | 指定张量的维数。 | 
 | const int32_t \* [dimensions](#dimensions) | 指定张量的维度信息（形状）。 | 
 | const [OH_NN_QuantParam](_o_h___n_n___quant_param.md) \* [quantParam](#quantparam) | 指定张量的量化信息，数据类型要求为[OH_NN_QuantParam](_o_h___n_n___quant_param.md)。 | 
-| [OH_NN_TensorType](_neural_network_runtime.md#oh_nn_tensortype) [type](#type) | 指定张量的类型。type的取值和张量的用途相关，当张量用作模型的输入或输出，则要求将type设置为[OH_NN_TENSOR](_neural_network_runtime.md)； 当张量用作算子参数，则要求从[OH_NN_TensorType](_neural_network_runtime.md#oh_nn_tensortype)中选择除[OH_NN_TENSOR](_neural_network_runtime.md)以外的枚举值。 | 
+| [OH_NN_TensorType](_neural_network_runtime.md#oh_nn_tensortype) [type](#type) | 指定张量的类型。type的取值和张量的用途相关，当张量用作模型的输入或输出，则要求将type设置为[OH_NN_TENSOR](_neural_network_runtime.md#oh_nn_tensortype-1)； 当张量用作算子参数，则要求从[OH_NN_TensorType](_neural_network_runtime.md#oh_nn_tensortype)中选择除[OH_NN_TENSOR](_neural_network_runtime.md#oh_nn_tensortype-1)以外的枚举值。 | 
 
 
 ## 结构体成员变量说明
@@ -86,4 +86,4 @@ OH_NN_TensorType OH_NN_Tensor::type
 
 **描述**
 
-指定张量的类型。type的取值和张量的用途相关，当张量用作模型的输入或输出，则要求将type设置为[OH_NN_TENSOR](_neural_network_runtime.md)； 当张量用作算子参数，则要求从[OH_NN_TensorType](_neural_network_runtime.md#oh_nn_tensortype)中选择除[OH_NN_TENSOR](_neural_network_runtime.md)以外的枚举值。
+指定张量的类型。type的取值和张量的用途相关，当张量用作模型的输入或输出，则要求将type设置为[OH_NN_TENSOR](_neural_network_runtime.md#oh_nn_tensortype-1)； 当张量用作算子参数，则要求从[OH_NN_TensorType](_neural_network_runtime.md#oh_nn_tensortype)中选择除[OH_NN_TENSOR](_neural_network_runtime.md#oh_nn_tensortype-1)以外的枚举值。

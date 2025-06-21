@@ -9,10 +9,11 @@
 ## 内存类型介绍
 
 当前PixelMap的内存类型包括以下两种。
+
 - DMA_ALLOC：DMA内存。IPC耗时同样较短，但无需纹理上传。
 - SHARE_MEMORY：共享内存。IPC耗时较少，但需要进行纹理上传。
- 
-鉴于当前的解码接口内存分配策略无法满足某些场景的需求，系统提供了[createPixelMapUsingAllocator](../../reference/apis-image-kit/js-apis-image.md#createpixelmapusingallocator15)接口，以便用户能够自定义内存分配类型进行解码。接口定义及使用示例详见[图片解码接口说明](../../reference/apis-image-kit/js-apis-image.md#imagesource)。
+
+鉴于当前的解码接口内存分配策略无法满足某些场景的需求，系统提供了[createPixelMapUsingAllocator](../../reference/apis-image-kit/arkts-apis-image-ImageSource.md#createpixelmapusingallocator15)接口，以便用户能够自定义内存分配类型进行解码。接口定义及使用示例详见[图片解码接口说明](../../reference/apis-image-kit/arkts-apis-image-ImageSource.md)。
 
 ### DMA_ALLOC和SHARE_MEMORY的区别
 
@@ -42,14 +43,14 @@
 
 ## 系统默认的内存分配方式
 
-在使用[createPixelMap](../../reference/apis-image-kit/js-apis-image.md#createpixelmap7)接口进行解码时，不同场景下会采取不同的内存分配类型。
+在使用[createPixelMap](../../reference/apis-image-kit/arkts-apis-image-ImageSource.md#createpixelmap7)接口进行解码时，不同场景下会采取不同的内存分配类型。
 
 以下场景将使用DMA_ALLOC。
 
 - 解码HDR图片。
 - 解码HEIF格式图片。
-- 解码JPEG格式图片，当原图的宽和高均在1024至8192之间，[desiredPixelFormat](../../reference/apis-image-kit/js-apis-image.md#decodingoptions7)为RGBA_8888或NV21，同时硬件不繁忙（并发数为3）。
-- 解码其他格式图片。要求[desiredSize](../../reference/apis-image-kit/js-apis-image.md#decodingoptions7)大于等于512 * 512（未设置desiredSize时按原图尺寸考虑），并且宽度为64的倍数。
+- 解码JPEG格式图片，当原图的宽和高均在1024至8192之间，[desiredPixelFormat](../../reference/apis-image-kit/arkts-apis-image-i.md#decodingoptions7)为RGBA_8888或NV21，同时硬件不繁忙（并发数为3）。
+- 解码其他格式图片。要求[desiredSize](../../reference/apis-image-kit/arkts-apis-image-i.md#decodingoptions7)大于等于512 * 512（未设置desiredSize时按原图尺寸考虑），并且宽度为64的倍数。
 
 除上述场景外，其余情况均使用SHARE_MEMORY。
 
@@ -57,7 +58,7 @@
 
 默认场景下，由系统选择性能最优的内存分配方式。特定场景支持应用使用指定的内存分配方式。
 
-开发者使用接口[createPixelMapUsingAllocator](../../reference/apis-image-kit/js-apis-image.md#createpixelmapusingallocator15)进行解码时，系统会根据传入的[解码参数](../../reference/apis-image-kit/js-apis-image.md#decodingoptions7)和[内存申请类型](../../reference/apis-image-kit/js-apis-image.md#allocatortype15)，自动选择硬件解码和软件解码。
+开发者使用接口[createPixelMapUsingAllocator](../../reference/apis-image-kit/arkts-apis-image-ImageSource.md#createpixelmapusingallocator15)进行解码时，系统会根据传入的[解码参数](../../reference/apis-image-kit/arkts-apis-image-i.md#decodingoptions7)和[内存申请类型](../../reference/apis-image-kit/arkts-apis-image-e.md#allocatortype15)，自动选择硬件解码和软件解码。
 
 在创建像素图时，将根据用户指定的分配器类型来决定采用DMA_ALLOC分配机制还是SHARE_MEMORY分配机制。
 
@@ -69,7 +70,7 @@
 - 硬件解码仅支持DMA_ALLOC的内存模式。
 - SVG格式图片解码仅支持SHARE_MEMORY的内存模式。
 
-使用接口[createPixelMapUsingAllocator](../../reference/apis-image-kit/js-apis-image.md#createpixelmapusingallocator15)进行解码时，若设置的内存分配模式，与图片格式或解码方式不匹配，则会抛出内存分配失败的异常。
+使用接口[createPixelMapUsingAllocator](../../reference/apis-image-kit/arkts-apis-image-ImageSource.md#createpixelmapusingallocator15)进行解码时，若设置的内存分配模式，与图片格式或解码方式不匹配，则会抛出内存分配失败的异常。
 
 如果用户选择的分配类型为AUTO，系统将根据解码和渲染的时间综合评估，以决定使用DMA_ALLOC还是SHARE_MEMORY分配机制。
 
@@ -83,9 +84,9 @@ stride（步幅）描述了图片在内存中每一行像素数据的存储宽�
 
 - stride值需为硬件平台要求字节数的整数倍。
 - 如果通过上面的计算公式得到的stride不满足对齐要求时，系统会自动补齐填充数据（padding）。
-stride的值可以通过[getImageInfo()](../../reference/apis-image-kit/js-apis-image.md#getimageinfo-1) 接口获取。
+stride的值可以通过[getImageInfo()](../../reference/apis-image-kit/arkts-apis-image-ImageSource.md#getimageinfo-1) 接口获取。
 
-1. 调用[getImageInfo()](../../reference/apis-image-kit/js-apis-image.md#getimageinfo-1)方法，获取ImageInfo对象。
+1. 调用[getImageInfo()](../../reference/apis-image-kit/arkts-apis-image-ImageSource.md#getimageinfo-1)方法，获取ImageInfo对象。
 2. 从ImageInfo对象中访问stride值：info.stride。
 
 ```ts

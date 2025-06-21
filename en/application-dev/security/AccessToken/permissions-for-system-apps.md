@@ -4921,6 +4921,20 @@ Allows an application to access the virus protection page.
 
 **Valid since**：20
 
+## ohos.permission.ACCESS_TVCOOPERATION
+
+Allows a system application to use the TvCooperation service.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Supported devices**: TV
+
+**Valid since**：20
+
 ## ohos.permission.GRANT_URI_PERMISSION_AS_CALLER
 
 Allow an application to grant URI access permissions to the target application as the caller.
@@ -4946,5 +4960,33 @@ Allows a system application to access /data/log/ directory.
 **Enable via ACL**：true
 
 **Supported devices**：General
+
+**Valid since**：20
+
+## ohos.permission.FILE_ACCESS_FOR_PRIVATE_SPACE
+
+Allows the private space application to mount public directories from the main space into the application sandbox.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Supported devices**: Phone | Tablet
+
+**Valid since**：20
+
+## ohos.permission.ACCESS_CAMERA_SCENARIOS_CARD
+
+Allows an applications to access the remote photography card services.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Supported devices**: Wearable
 
 **Valid since**：20

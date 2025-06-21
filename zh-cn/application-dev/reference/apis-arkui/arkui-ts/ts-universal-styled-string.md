@@ -861,7 +861,7 @@ ShadowOptions对象中不支持fill字段。
 
 | 名称           | 类型              | 只读   | 可选   | 说明     |
 | ------------ |---------------------| ---- | ---- | ------ |
-| value  | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) |  是  |  否  | 获取属性字符串的图片数据源。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| value  | [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) |  是  |  否  | 获取属性字符串的图片数据源。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | size  | [SizeOptions](ts-types.md#sizeoptions) |  是  |  是  | 获取属性字符串的图片尺寸。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>返回number类型值的单位为`px`。 |
 | verticalAlign  | [ImageSpanAlignment](ts-appendix-enums.md#imagespanalignment10) |  是  |  是  | 获取属性字符串的图片对齐方式。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | objectFit  | [ImageFit](ts-appendix-enums.md#imagefit) |  是  |  是  | 获取属性字符串的图片缩放类型。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -936,7 +936,7 @@ type ColorFilterType = ColorFilter | DrawingColorFilter
 
 | 名称  | 类型                              | 必填 | 说明   |
 | ------- | --------------------------------- | ---- | --------------------------------- |
-| value | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) |  是  | 设置图片数据源。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| value | [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) |  是  | 设置图片数据源。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | size | [SizeOptions](ts-types.md#sizeoptions) | 否   | 设置图片大小。 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>size的默认值与objectFit的值有关，不同的objectFit的值对应size的默认值不同。比如当objectFit的值为Cover时，图片高度为组件高度减去组件上下的内边距，图片宽度为组件宽度减去组件左右的内边距。 |
 | verticalAlign | [ImageSpanAlignment](ts-appendix-enums.md#imagespanalignment10) | 否   | 设置图片基于文本的对齐方式。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>默认值：ImageSpanAlignment.BOTTOM |
 | objectFit | [ImageFit](ts-appendix-enums.md#imagefit) | 否   | 设置图片的缩放类型。 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>默认值：ImageFit.Cover |
@@ -1087,7 +1087,7 @@ invalidate(): void
 | wordBreak   | [WordBreak](ts-appendix-enums.md#wordbreak11) | 是    | 是    | 获取属性字符串文本段落的断行规则。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | leadingMargin   | number \| [LeadingMarginPlaceholder](ts-basic-components-richeditor.md#leadingmarginplaceholder11) | 是    | 是   | 获取属性字符串文本段落的缩进。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | paragraphSpacing<sup>19+</sup>  | number | 是    | 是   | 获取属性字符串文本段落的段落间距。单位VP。<br/>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。 |
-| textVerticalAlign<sup>20+</sup>  | [TextVerticalAlign](ts-text-common.md#textverticalalign) | 是    | 是   | 获取属性字符串文本段落在垂直方向的对齐方式。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| textVerticalAlign<sup>20+</sup>  | [TextVerticalAlign](ts-text-common.md#textverticalalign20) | 是    | 是   | 获取属性字符串文本段落在垂直方向的对齐方式。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 >  **说明：**
 >
@@ -1122,7 +1122,7 @@ constructor(value?: ParagraphStyleInterface)
 | wordBreak   | [WordBreak](ts-appendix-enums.md#wordbreak11) | 否    | 设置文本段落的断行规则。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | leadingMargin   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [LeadingMarginPlaceholder](ts-basic-components-richeditor.md#leadingmarginplaceholder11) | 否    | 设置文本段落的缩进。不支持百分比。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | paragraphSpacing<sup>19+</sup>   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否  | 设置文本段落的段落间距。<br/>段落间距默认大小为0。不支持百分比。<br/>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。 |
-| textVerticalAlign<sup>20+</sup>   | [TextVerticalAlign](ts-text-common.md#textverticalalign) |  否  | 设置文本段落在垂直方向的对齐方式。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| textVerticalAlign<sup>20+</sup>   | [TextVerticalAlign](ts-text-common.md#textverticalalign20) |  否  | 设置文本段落在垂直方向的对齐方式。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## UserDataSpan
 
@@ -1219,6 +1219,42 @@ constructor(url: string)
 | 参数名  | 类型                              | 必填 | 说明   |
 | ------- | --------------------------------- | ---- | --------------------------------- |
 | url | string | 是   | 超链接设置项。|
+
+
+## TextLayout<sup>20+</sup>
+
+文本布局类。
+
+### getParagraphs<sup>20+</sup>
+
+getParagraphs(styledString: StyledString, options?: TextLayoutOptions): Array\<Paragraph\>
+
+将属性字符串根据文本布局选项转换成对应的[Paragraph](../../apis-arkgraphics2d/js-apis-graphics-text.md#paragraph)数组。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明           |
+| ----- | ------ | ---- | -------------- |
+| styledString | [StyledString](#styledstring) | 是   | 待转换的属性字符串。|
+| options | [TextLayoutOptions](#textlayoutoptions对象说明20) | 否 | 文本布局选项。|
+
+**返回值：**
+
+| 类型     | 说明        |
+| ------ | --------- |
+| Array<[Paragraph](../../apis-arkgraphics2d/js-apis-graphics-text.md#paragraph)> | [Paragraph](../../apis-arkgraphics2d/js-apis-graphics-text.md#paragraph)的数组。 |
+
+## TextLayoutOptions对象说明<sup>20+</sup>
+
+文本布局选项。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| constraintWidth | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)  | 否 | 设置被计算文本布局宽度。若不设置则宽度为单行布局所占最大宽度值。 |
 
 ## 示例
 
@@ -2632,3 +2668,211 @@ struct Index {
 
 ![](figures/styledString_14.png)
 
+### 示例15 (属性字符串转换成Paragraph)
+
+该示例通过调用TextLayout.GetParagraph接口，展示了通过测算文本，当内容超出最大显示行数的时候，截断文本显示并展示“...全文”的效果。
+
+``` typescript
+import { LengthMetrics } from '@kit.ArkUI';
+import image from '@ohos.multimedia.image';
+import { drawing, text } from '@kit.ArkGraphics2D';
+let gUIContext: UIContext;
+class MyCustomSpan extends CustomSpan {
+  constructor(word: string, width: number, height: number) {
+    super();
+    this.word = word;
+    this.width = width;
+    this.height = height;
+  }
+  onMeasure(measureInfo: CustomSpanMeasureInfo): CustomSpanMetrics {
+    return { width: this.width, height: this.height };
+  }
+  onDraw(context: DrawContext, options: CustomSpanDrawInfo) {
+    let canvas = context.canvas;
+    const brush = new drawing.Brush();
+    brush.setColor({
+      alpha: 255,
+      red: 0,
+      green: 74,
+      blue: 175
+    });
+    const font = new drawing.Font();
+    font.setSize(25);
+    const textBlob = drawing.TextBlob.makeFromString(this.word, font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
+    canvas.attachBrush(brush);
+    canvas.drawRect({
+      left: options.x + 10,
+      right: options.x + gUIContext.vp2px(this.width) - 10,
+      top: options.lineTop + 10,
+      bottom: options.lineBottom - 10
+    });
+    brush.setColor({
+      alpha: 255,
+      red: 23,
+      green: 169,
+      blue: 141
+    });
+    canvas.attachBrush(brush);
+    canvas.drawTextBlob(textBlob, options.x + 20, options.lineBottom - 15);
+    canvas.detachBrush();
+  }
+  setWord(word: string) {
+    this.word = word;
+  }
+  width: number = 160;
+  word: string = "drawing";
+  height: number = 10;
+}
+@Entry
+@Component
+struct Indeddddx {
+  @State pixelmap?: PixelMap = undefined;
+  str : string = "Four score and seven years ago our fathers brought forth on this continent, a new nation, conceived in Liberty, and dedicated to the proposition that all men are created equal."
+  mutableStr2 = new MutableStyledString(this.str, [
+    {
+      start: 0,
+      length: 3,
+      styledKey: StyledStringKey.FONT,
+      styledValue: new TextStyle({fontSize: LengthMetrics.px(20)})
+    },
+    {
+      start: 3,
+      length: 3,
+      styledKey: StyledStringKey.FONT,
+      styledValue: new TextStyle({fontColor: Color.Brown})
+    }
+  ])
+  imagePixelMap: image.PixelMap | undefined = undefined;
+  @State pixelmap2?: PixelMap = undefined;
+  private async getPixmapFromMedia(resource: Resource) {
+    let unit8Array  = await this.getUIContext().getHostContext()?.resourceManager?.getMediaContent({
+      bundleName: resource.bundleName,
+      moduleName: resource.moduleName,
+      id: resource.id
+    });
+    let imageSource = image.createImageSource(unit8Array?.buffer.slice(0, unit8Array.buffer.byteLength));
+    let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
+      desiredPixelFormat: image.PixelMapFormat.RGBA_8888
+    });
+    await imageSource.release();
+    return createPixelMap;
+  }
+  getlineNum(styledString: StyledString, width: LengthMetrics) {
+    let paragraphArr = TextLayout.getParagraphs(styledString, { constraintWidth: width})
+    let res = 0
+    for (let i = 0; i < paragraphArr.length; ++i) {
+      res += paragraphArr[i].getLineCount()
+    }
+    return res
+  }
+  getCorretIndex(styledString : MutableStyledString, maxLines: number, width: LengthMetrics)  {
+    let low = 0
+    let high = styledString.length - 1;
+    while(low <= high) {
+      let mid = (low + high) >> 1;
+      console.log("demo: get " + low + " " + high + " " + mid)
+      let moreStyledString = new MutableStyledString("... 全文", [{
+        start: 4,
+        length: 2,
+        styledKey: StyledStringKey.FONT,
+        styledValue: new TextStyle({fontColor: Color.Blue})
+      }])
+      moreStyledString.insertStyledString(0, styledString.subStyledString(0, mid))
+      let lineNum = this.getlineNum(moreStyledString, LengthMetrics.px(500))
+      if(lineNum <= maxLines) {
+        low = mid + 1;
+      } else {
+        high = mid -1;
+      }
+    }
+    return high
+  }
+  mutableStrAllContent = new MutableStyledString(this.str, [
+    {
+      start: 0,
+      length: 3,
+      styledKey: StyledStringKey.FONT,
+      styledValue: new TextStyle({fontSize: LengthMetrics.px(40)})
+    },
+    {
+      start: 3,
+      length: 3,
+      styledKey: StyledStringKey.FONT,
+      styledValue: new TextStyle({fontColor: Color.Brown})
+    }
+  ])
+  customSpan1: MyCustomSpan = new MyCustomSpan("Hello", 120, 10);
+  mutableStrAllContent2 = new MutableStyledString(this.str, [
+    {
+      start: 0,
+      length: 3,
+      styledKey: StyledStringKey.FONT,
+      styledValue: new TextStyle({fontSize: LengthMetrics.px(100)})
+    },
+    {
+      start: 3,
+      length: 3,
+      styledKey: StyledStringKey.FONT,
+      styledValue: new TextStyle({fontColor: Color.Brown})
+    }
+  ])
+  controller: TextController = new TextController()
+  controller2: TextController = new TextController()
+  textController: TextController = new TextController()
+  textController2: TextController = new TextController()
+  async aboutToAppear() {
+    gUIContext = this.getUIContext();
+    this.mutableStrAllContent2.insertStyledString(0, new StyledString(this.customSpan1));
+    this.mutableStr2.insertStyledString(0, new StyledString(this.customSpan1));
+    this.imagePixelMap = await this.getPixmapFromMedia($r('app.media.startIcon'));
+  }
+  build() {
+    Scroll() {
+      Column() {
+        Text('原文')
+        Text(undefined, { controller: this.controller }).width('500px').onAppear(() => {
+          this.controller.setStyledString(this.mutableStrAllContent)
+        })
+        Divider().strokeWidth(8).color('#F1F3F5')
+        Text('排版后')
+        Text(undefined, { controller: this.textController }).onAppear(() => {
+          let now = this.getCorretIndex(this.mutableStrAllContent, 3, LengthMetrics.px(500))
+          if (now != this.mutableStrAllContent.length - 1) {
+            let moreStyledString = new MutableStyledString("... 全文", [{
+              start: 4,
+              length: 2,
+              styledKey: StyledStringKey.FONT,
+              styledValue: new TextStyle({ fontColor: Color.Blue })
+            }])
+            moreStyledString.insertStyledString(0, this.mutableStrAllContent.subStyledString(0, now))
+            this.textController.setStyledString(moreStyledString)
+          } else {
+            this.textController.setStyledString(this.mutableStrAllContent)
+          }
+        })
+          .width('500px')
+        Divider().strokeWidth(8).color('#F1F3F5')
+        Text('原文')
+        Text(undefined, { controller: this.controller2 }).width('500px').onAppear(() => {
+          this.controller2.setStyledString(this.mutableStrAllContent2)
+        })
+        Divider().strokeWidth(8).color('#F1F3F5')
+        Text('排版后')
+        Text(undefined, { controller: this.textController2 }).onAppear(() => {
+          let now = this.getCorretIndex(this.mutableStrAllContent2, 3, LengthMetrics.px(500))
+          let moreStyledString = new MutableStyledString("... 全文", [{
+            start: 4,
+            length: 2,
+            styledKey: StyledStringKey.FONT,
+            styledValue: new TextStyle({ fontColor: Color.Blue })
+          }])
+          moreStyledString.insertStyledString(0, this.mutableStrAllContent2.subStyledString(0, now))
+          this.textController2.setStyledString(moreStyledString)
+        })
+          .width('500px')
+      }.width('100%')
+    }
+  }
+}
+```
+![](figures/styledString_15.png)

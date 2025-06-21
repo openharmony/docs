@@ -21,5 +21,6 @@
 | [native_audiorenderer.h](capi-native-audiorenderer-h.md) | 声明输出类型的音频流相关接口。 |
 | [native_audio_common.h](capi-native-audio-common-h.md) | 声明音频公共基础数据结构。<br> 定义音频接口的公共返回值的类型。 |
 | [native_audio_device_base.h](capi-native-audio-device-base-h.md) | 定义音频设备参数的类型以及获取每个设备参数的接口。 |
+| [native_audio_resource_manager.h](capi-native-audio-resource-manager-h.md) | 声明音频资源管理相关的接口。 |
 | [native_audiostream_base.h](capi-native-audiostream-base-h.md) | 声明OHAudio基础的数据结构。 |
 | [native_audiostreambuilder.h](capi-native-audiostreambuilder-h.md) | 声明音频流构造器相关接口。<br> 包含构造和销毁构造器，设置音频流属性，回调等相关接口。 |

@@ -23,7 +23,7 @@ onAccessibilityFocus(callback: AccessibilityFocusCallback): T
 
 | 参数名   | 类型    | 必填 | 说明                                                         |
 | -------- | ------- | ---- | ------------------------------------------------------------ |
-| callback | [AccessibilityFocusCallback](ts-universal-accessibility-event.md#AccessibilityFocusCallback) | 是   | 向注册回调函数方通知当前获焦、失焦状态。 |
+| callback | [AccessibilityFocusCallback](ts-universal-accessibility-event.md#accessibilityfocuscallback) | 是   | 向注册回调函数方通知当前获焦、失焦状态。 |
 
 **返回值：**
 
@@ -63,7 +63,7 @@ onAccessibilityActionIntercept(callback: AccessibilityActionInterceptCallback): 
 
 | 参数名   | 类型    | 必填 | 说明                                                         |
 | -------- | ------- | ---- | ------------------------------------------------------------ |
-| callback | [AccessibilityActionInterceptCallback](ts-universal-accessibility-event.md#accessibilityactioninterceptcallback) | 是   | 在无障碍事件触发前，向注册回调函数方通知，由注册方决定是否拦截该次无障碍事件。 |
+| callback | [AccessibilityActionInterceptCallback](ts-universal-accessibility-event.md#accessibilityactioninterceptcallback20) | 是   | 在无障碍事件触发前，向注册回调函数方通知，由注册方决定是否拦截该次无障碍事件。 |
 
 **返回值：**
 
@@ -87,13 +87,13 @@ type AccessibilityActionInterceptCallback = (action: AccessibilityAction) => Acc
 
 | 参数名  | 类型    | 必填 | 说明              |
 | ------ | ------ | ---- | ---------------- |
-| action | [AccessibilityAction](ts-universal-accessibility-event.md#accessibilityaction枚举说明) | 是 | 当前触发的无障碍事件类型。 |
+| action | [AccessibilityAction](ts-universal-accessibility-event.md#accessibilityaction20枚举说明) | 是 | 当前触发的无障碍事件类型。 |
 
 **返回值：**
 
 | 类型    | 说明              |
 | ------ | ---------------- |
-| [AccessibilityActionInterceptResult](ts-universal-accessibility-event.md#accessibilityactioninterceptresult枚举说明) | 无障碍事件拦截结果。 |
+| [AccessibilityActionInterceptResult](ts-universal-accessibility-event.md#accessibilityactioninterceptresult20枚举说明) | 无障碍事件拦截结果。 |
 
 ## AccessibilityAction<sup>20+</sup>枚举说明
 

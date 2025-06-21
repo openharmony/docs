@@ -314,9 +314,7 @@ To implement an input method application, manually create an InputMethodExtensio
    }
    ```
 
-5. **module.json5** file:
-
-   Register the InputMethodExtensionAbility in the [module.json5 file](../quick-start/module-configuration-file.md) corresponding to the **Module** project. Set **type** to **"inputMethod"** and **srcEntry** to the code path of the **InputMethodExtensionAbility** component.
+5. **module.json5** file:<br>Register the InputMethodExtensionAbility in the [module.json5 file](../quick-start/module-configuration-file.md) corresponding to the **Module** project. Set **type** to **"inputMethod"** and **srcEntry** to the code path of the **InputMethodExtensionAbility** component.
 
    ```json
    {
@@ -336,31 +334,8 @@ To implement an input method application, manually create an InputMethodExtensio
    }
    ```
 
-## Verification Method
-
-1. Start the dialog box that lists the input methods for switching by an API for an application.
-
-     ```ts
-     import { inputMethod } from '@kit.IMEKit';
-     import { BusinessError } from '@kit.BasicServicesKit';
-      
-     let inputMethodSetting = inputMethod.getSetting();
-     try {
-       inputMethodSetting.showOptionalInputMethods((err: BusinessError, data: boolean) => {
-         if (err) {
-           console.error(`Failed to showOptionalInputMethods: ${JSON.stringify(err)}`);
-           return;
-         }
-         console.log('Succeeded in showing optionalInputMethods.');
-       });
-     } catch (err) {
-       console.error(`Failed to showOptionalInputMethods: ${JSON.stringify(err)}`);
-     }
-     ```
-
-2. In the dialog box for switching between input methods, switch the input method to the demo application.
-
-3. When you click any edit box, the demo application should start.
+<!--RP1-->
+<!--RP1End-->
 
 ## Constraints
 

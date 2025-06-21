@@ -14,6 +14,18 @@ AbilityConstant提供Ability相关的枚举，包括应用启动原因[LaunchRea
 import { AbilityConstant } from '@kit.AbilityKit';
 ```
 
+## 常量
+
+**系统能力**：SystemCapability.Ability.AbilityBase
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
+| 名称 | 类型 | 值 | 说明 |
+| ---- | -----| ---- | ---------------------------------------------------------- |
+| REASON_MESSAGE_DESKTOP_SHORTCUT<sup>20+</sup>  | string | "ReasonMessage_DesktopShortcut" | 通过桌面快捷方式启动。开发者如果从[LaunchParam](#launchparam)的launchReasonMessage属性中获取到该字符串，表示UIAbility是通过点击桌面快捷方式启动的。|
+
 ## LaunchParam
 
 启动参数。Ability启动时由系统自动传入，开发者无需修改。

@@ -203,7 +203,7 @@ OffscreenCanvasRenderingContext2D对象和CanvasRenderingContext2D对象提供�
 
 - 绘制图片和图像像素信息处理。
 
-  可以通过[drawImage](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#drawimage)（图像绘制）、[putImageData](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#putimagedata)（使用[ImageData](../reference/apis-arkui/arkui-ts/ts-components-canvas-imagedata.md)数据填充新的矩形区域）等接口绘制图片，通过[createImageData](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#createimagedata)（创建新的ImageData 对象）、[getPixelMap](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#getpixelmap)（以当前canvas指定区域内的像素创建[PixelMap](../reference/apis-image-kit/js-apis-image.md#pixelmap7)对象）、[getImageData](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#getimagedata)（以当前canvas指定区域内的像素创建ImageData对象）等接口进行图像像素信息处理。
+  可以通过[drawImage](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#drawimage)（图像绘制）、[putImageData](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#putimagedata)（使用[ImageData](../reference/apis-arkui/arkui-ts/ts-components-canvas-imagedata.md)数据填充新的矩形区域）等接口绘制图片，通过[createImageData](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#createimagedata)（创建新的ImageData 对象）、[getPixelMap](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#getpixelmap)（以当前canvas指定区域内的像素创建[PixelMap](../reference/apis-image-kit/arkts-apis-image-PixelMap.md)对象）、[getImageData](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#getimagedata)（以当前canvas指定区域内的像素创建ImageData对象）等接口进行图像像素信息处理。
 
   ```ts
   @Entry
@@ -265,6 +265,45 @@ OffscreenCanvasRenderingContext2D对象和CanvasRenderingContext2D对象提供�
 
   ![2023022700701(1)](figures/2023022700701(1).jpg)
 
+## 使用状态变量驱动画布刷新
+
+可以使用状态变量来驱动Canvas刷新，将变化的数据通过@Watch监听，并绑定自定义的draw()方法。当数据刷新时，@Watch绑定的方法会执行绘制逻辑，使Canvas刷新。
+
+```ts
+@Entry
+@Component
+struct CanvasContentUpdate {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+  @State @Watch('draw')content: string = 'Hello World';
+
+  draw() {
+    this.context.clearRect(0, 0, 400, 200); // 清空Canvas的内容
+    this.context.fillText(this.content, 50, 100); // 重新绘制
+  }
+
+  build() {
+    Column() {
+      Canvas(this.context)
+        .width('100%')
+        .height('25%')
+        .backgroundColor('rgb(39, 135, 217)')
+        .onReady(() => {
+          this.context.font = '65px sans-serif';
+          this.context.fillText(this.content, 50, 100);
+        })
+      TextInput({
+        text:$$this.content // 修改文本输入框里的内容时，状态变量的更新会驱动Canvas刷新
+      })
+        .fontSize(35)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+![data_drive_update](figures/data_drive_update.gif)
 
 ## 场景示例
 

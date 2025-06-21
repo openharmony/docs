@@ -114,8 +114,8 @@ saveEditedContentWithImage(pixeMap: image.PixelMap, option: image.PackingOption)
 **参数：**
 | 参数名  | 类型  | 必填  | 说明  |
 | ------------ | ------------ | ------------ | ------------ |
-| pixeMap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)  | 是  | 编辑过的图片image.PixelMap。  |
-| option  | [image.PackingOption](..//apis-image-kit/js-apis-image.md#packingoption)  |  是 | 设置打包参数。  |
+| pixeMap | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)  | 是  | 编辑过的图片image.PixelMap。  |
+| option  | [image.PackingOption](..//apis-image-kit/arkts-apis-image-i.md#packingoption)  |  是 | 设置打包参数。  |
 
 **返回值：**
 |  类型 | 说明  |

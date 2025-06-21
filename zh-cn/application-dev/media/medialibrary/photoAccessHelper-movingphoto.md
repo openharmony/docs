@@ -103,11 +103,22 @@ import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { dataSharePredicates } from '@kit.ArkData';
 import { common } from '@kit.AbilityKit';
 
-// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Button("example").onClick(async () => {
+        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+        example(phAccessHelper, context);
+      }).width('100%')
+    }
+    .height('90%')
+  }
+}
 
-async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   try {
     // picker选择动态照片uri。
     let photoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
@@ -152,8 +163,20 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { common } from '@kit.AbilityKit';
 
-// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+@Entry
+@Component
+struct Index {
+  @State outputText: string = '支持的类型为：\n';
+  build() {
+    Row() {
+      Button("example").onClick(async () => {
+        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+        example(context);
+      }).width('100%')
+    }
+    .height('90%')
+  }
+}
 
 async function example(context: Context) {
   try {

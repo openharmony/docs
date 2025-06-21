@@ -1,6 +1,6 @@
 # @ohos.app.ability.EmbeddedUIExtensionAbility (跨进程界面嵌入扩展能力)
 
-EmbeddedUIExtensionAbility为开发者提供了跨进程界面嵌入的能力，继承自[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)。目前EmbeddedUIExtensionAbility只能被同应用的UIAbility拉起，并且仅在2in1和tablet设备上生效。各类Ability的继承关系详见[继承关系说明](./js-apis-app-ability-ability.md#ability的继承关系说明)。
+EmbeddedUIExtensionAbility为开发者提供了跨进程界面嵌入的能力，继承自[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)。各类Ability的继承关系详见[继承关系说明](./js-apis-app-ability-ability.md#ability的继承关系说明)。
 
 > **说明：**
 >
@@ -16,8 +16,8 @@ import { EmbeddedUIExtensionAbility } from '@kit.AbilityKit';
 
 ## EmbeddedUIExtensionAbility
 
-EmbeddedUIExtensionAbility为开发者提供了跨进程界面嵌入的能力，继承自[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)。目前EmbeddedUIExtensionAbility只能被同应用的UIAbility拉起，并且仅在2in1和tablet设备上生效。各类Ability的继承关系详见[继承关系说明](./js-apis-app-ability-ability.md#ability的继承关系说明)。
+EmbeddedUIExtensionAbility为开发者提供了跨进程界面嵌入的能力，继承自[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)。
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+目前EmbeddedUIExtensionAbility只能被同应用的UIAbility拉起，并且仅在2in1和tablet设备上生效。
 
-**模型约束**：此接口仅可在Stage模型下使用。
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core

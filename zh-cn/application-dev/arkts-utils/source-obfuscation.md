@@ -12,7 +12,7 @@
 | 本地HSP | 源码形式的HSP模块。 |
 | 远程HSP | 构建后打包生成的HSP包。 |
 | 三方库 | 由第三方开发并发布的库，发布到OHPM中心仓，供其他应用使用。 |
-| 名称混淆 | 将代码中的类名、方法名、变量名等标识符修改为无意义的名称。 |
+| 名称混淆 | 将代码中的类名、方法名、变量名、属性名、export变量名等标识符修改为简洁且无意义的修饰符。 |
 
 ## 混淆能力范围
 
@@ -20,7 +20,7 @@
 ArkGuard支持ArkTS、TS和JS语言，不支持C/C++、JSON、资源文件等。
 
 ### 混淆能力
-ArkGuard支持基础的名称混淆、代码压缩和注释删除功能，不支持控制混淆、数据混淆等高级混淆功能。
+ArkGuard支持名称混淆、代码压缩和注释删除的基础混淆功能，不支持控制流混淆、数据混淆等高级混淆功能。
 
 名称混淆主要提供**名称重命名**和**配置保留白名单**的能力。
   
@@ -28,9 +28,9 @@ ArkGuard支持基础的名称混淆、代码压缩和注释删除功能，不支
 
 **1.语言的限制**
 
-代码混淆工具在处理不同编程语言时，其类型分析机制、混淆策略和执行效率都会因目标语言的特性而呈现差异。以业界常用的ProGuard为例，其主要面向Java这类强类型语言进行混淆。由于强类型语言具有严格的类型系统，每个类型都有明确的定义来源。这种特性使得混淆过程中的类型关系追踪和处理更为精确，从而大幅减少了需要配置保留规则的场景。
+源码混淆工具在处理不同编程语言时，其类型分析机制、混淆策略和执行效率都会因目标语言的特性而呈现差异。以业界常用的ProGuard为例，其主要面向Java这类强类型语言进行混淆。由于强类型语言具有严格的类型系统，每个类型都有明确的定义来源。这种特性使得混淆过程中的类型关系追踪和处理更为精确，从而大幅减少了需要配置保留规则的场景。
 
-相比之下，ArkGuard混淆工具主要针对JS、TS和ArkTS语言。JS支持运行时动态修改对象、函数，而混淆是在编译阶段进行的静态处理，这种差异可能导致混淆后的名称在运行时无法被正确解析，进而引发运行时异常。TS和ArkTS虽然引入了静态类型系统，但采用了结构性类型机制，即具有相同结构的不同命名类型会被视为等价类型。因此，在TS和ArkTS中仍然无法追溯类型的确切来源。  
+相比之下，ArkGuard混淆工具主要针对JS、TS和ArkTS语言。JS支持运行时动态修改对象和函数，而混淆是在编译阶段进行的静态处理，这种差异可能导致混淆后的名称在运行时无法被正确解析，进而引发运行时异常。TS和ArkTS虽然引入了静态类型系统，但采用了结构性类型机制，即具有相同结构的不同命名类型会被视为等价类型。因此，在TS和ArkTS中仍然无法追溯类型的确切来源。  
 基于这些特性，使用ArkGuard时需要对更多的语法场景进行白名单配置，同时，ArkGuard采用全局生效的属性保留机制，根据白名单统一保留所有同名属性，而无法支持针对特定类型的精确保留配置。
 
 具体而言，可以参考以下示例：
@@ -80,9 +80,9 @@ test(a2);
 
 **2.安全保证的有限性**
 
-与其他代码混淆工具一样，混淆只能在一定程度上增加逆向过程的难度，并不能真正阻止逆向工程。
+与其他源码混淆工具类似，混淆只能在一定程度上增加逆向过程的难度，并不能真正阻止逆向工程。
 
-并且，由于ArkGuard混淆工具仅支持基础混淆功能，开发者不应只依赖ArkGuard来保证应用的安全性，对于源码安全有高要求的开发者，应考虑使用[应用加密](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/code-protect)、第三方安全加固等安全措施来保护代码。
+并且，由于ArkGuard混淆工具仅支持基础混淆功能，开发者不应只依赖ArkGuard来保证应用的安全性，对于源码安全有高要求的开发者，应考虑使用[应用加密](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/code-protect)、安全加固等安全措施来保护代码。
 
 ## 混淆机制及流程
 
@@ -103,15 +103,16 @@ test(a2);
 
 | 功能 | 选项 |
 | --- | --- |
+| 默认混淆 | 开启混淆后生效 |
 | 关闭混淆 | [`-disable-obfuscation`](#-disable-obfuscation) |
-| 属性名称混淆 | [`-enable-property-obfuscation`](#-enable-property-obfuscation) |
-| 字符串属性名称混淆 | [`-enable-string-property-obfuscation`](#-enable-string-property-obfuscation) |
-| 顶层作用域名称混淆 | [`-enable-toplevel-obfuscation`](#-enable-toplevel-obfuscation) |
-| 导入导出名称混淆 | [`-enable-export-obfuscation`](#-enable-export-obfuscation) |
-| 文件名混淆 | [`-enable-filename-obfuscation`](#-enable-filename-obfuscation) |
+| 开启属性名称混淆 | [`-enable-property-obfuscation`](#-enable-property-obfuscation) |
+| 开启字符串属性名称混淆 | [`-enable-string-property-obfuscation`](#-enable-string-property-obfuscation) |
+| 开启顶层作用域名称混淆 | [`-enable-toplevel-obfuscation`](#-enable-toplevel-obfuscation) |
+| 开启导入导出名称混淆 | [`-enable-export-obfuscation`](#-enable-export-obfuscation) |
+| 开启文件名混淆 | [`-enable-filename-obfuscation`](#-enable-filename-obfuscation) |
 | 代码压缩 | [`-compact`](#-compact) |
 | 声明文件注释删除 | [`-remove-comments`](#-remove-comments) |
-| console打印删除 | [`-remove-log`](#-remove-log) |
+| 删除console.*语句 | [`-remove-log`](#-remove-log) |
 | 名称缓存输出 | [`-print-namecache`](#-print-namecache) |
 | 名称缓存复用 | [`-apply-namecache`](#-apply-namecache) |
 | 输出未混淆名单 | [`-print-kept-names`](#-print-kept-names) |
@@ -121,11 +122,15 @@ test(a2);
 | 合并依赖模块选项 | [`-enable-lib-obfuscation-options`](#-enable-lib-obfuscation-options) |
 | 通过注释在源码中标记白名单 | [`-use-keep-in-source`](#-use-keep-in-source) |
 
+### 默认混淆
+
+开启混淆后默认生效，仅混淆局部变量名及参数名。
+
 ### -disable-obfuscation
 
 关闭所有混淆。
 
-若配置该选项，那么默认混淆（局部变量及参数名）以及所有已配置的混淆、保留选项的功能将全部失效。
+若配置该选项，那么默认混淆（仅混淆局部变量及参数名）以及所有已配置的混淆、保留选项的功能将全部失效。
 
 ### -enable-property-obfuscation
 
@@ -168,8 +173,8 @@ test(a2);
     ```
 
 * 被[保留选项](#-keep-property-name)指定的属性名不会被混淆。
-* SDK API列表中的属性名不会被混淆。SDK API列表是构建时从SDK中自动提取出来的一个名称列表，其缓存文件为systemApiCache.json，路径为工程目录下build/default/cache/{...}/release/obfuscation中。
-* 字符串字面量属性名不会被混淆。例如下面例子中的`exampleName`和`exampleAge`。
+* SDK API列表中的属性名不会被混淆。SDK API列表是构建时从SDK中自动提取出来的一个名称列表，其缓存文件为systemApiCache.json，路径为工程目录下build/default/cache/{...}/release/obfuscation。
+* 字符串字面量属性名不会被混淆。例如下面例子中的`exampleName`和`exampleAge`不会被混淆。
 
     ```
     let person = {"exampleName": "abc"};
@@ -186,8 +191,6 @@ test(a2);
     ```
 
 ### -enable-string-property-obfuscation
-
-开启字符串属性混淆，仅在已开启属性混淆的基础上生效。
 
 若想混淆字符串字面量属性名，需要在已配置`-enable-property-obfuscation`的基础上使用。例如：
 
@@ -226,7 +229,7 @@ export enum Params {
 let params = obj['ohos.want.action.home'];
 ```
 
-因此在开启了`-enable-string-property-obfuscation`选项时，如果想保留代码中使用的SDK API字符串常量的属性不被混淆，例如obj['ohos.want.action.home']，那么需要使用[-keep-property-name选项](#-keep-property-name)保留。
+因此，在开启了`-enable-string-property-obfuscation`选项时，如果想保留代码中使用的SDK API字符串常量的属性不被混淆，例如obj['ohos.want.action.home']，那么需要使用[-keep-property-name](#-keep-property-name)选项保留。
 
 ### -enable-toplevel-obfuscation
 
@@ -267,7 +270,7 @@ let params = obj['ohos.want.action.home'];
   }
   ```
 
-若配置该选项，那么非顶层作用域中导入或导出的名称会被混淆。**若想混淆顶层作用域中导入或导出的名称，需要在已配置`-enable-toplevel-obfuscation`的基础上使用；若想混淆导入或导出的属性名，需要在已配置`-enable-property-obfuscation`的基础上使用。** 开启此选项时，以下特殊场景不会被混淆：
+若仅配置该选项，那么只有非顶层作用域中导入或导出的名称会被混淆。**若想混淆顶层作用域中导入或导出的名称，需要在已配置`-enable-toplevel-obfuscation`的基础上使用；若想混淆导入或导出的属性名，需要在已配置`-enable-property-obfuscation`的基础上使用。** 开启此选项时，以下特殊场景不会被混淆：
 
 * 远程HAR(真实路径在oh_modules中的包)中导出的名称和属性名不会被混淆。
 * 被[保留选项](#保留选项)指定的名称与属性名不会被混淆。
@@ -308,7 +311,7 @@ let params = obj['ohos.want.action.home'];
 
 ### -compact
 
-删除不必要的空格符和所有的换行符。
+删除在代码中不参与语法结构、不影响程序运行的空格符和所有的换行符。
 
 若配置该选项，所有代码会被压缩到一行。效果如下：
 
@@ -456,7 +459,7 @@ let params = obj['ohos.want.action.home'];
 
 其中，'sdk'类白名单单独输出到缓存路径`build/default/cache/{...}/release/obfuscation/`下的`systemApiCache.json`文件中，其他类型白名单则都输出到`whitelist.json`文件中。
 
-未混淆名单（keptNames.json）中包含未混淆的名称及未混淆的原因。其中，未混淆原因有以下七种：与sdk白名单重名、与语言白名单重名、与用户配置白名单重名、与struct白名单重名、与导出白名单重名、与字符串属性白名单重名（未开启字符串属性混淆的情况下）以及与enum白名单重名。
+未混淆名单（keptNames.json）中包含未混淆的名称及未混淆的原因。其中，未混淆原因有以下七种：与sdk白名单重名、与语言白名单重名、与用户配置白名单重名、与struct白名单重名、与导出白名单重名、与字符串属性白名单重名（未开启[字符串属性混淆](#-enable-string-property-obfuscation)的情况下）以及与enum白名单重名。
 
 **使用该选项时，需要注意以下事项：**
 
@@ -470,7 +473,7 @@ enum Test {
 ```
 enum白名单内容为['member1', 'member2']。这是由于历史版本的har模块的编译中间产物为js文件，在js文件中enum类型会转换为一个立即执行函数，而enum成员会被转化为一个字符串属性和一个字符串常量。因此，为了保证开启属性混淆的情况下功能正常，需要将enum成员名称收集为白名单。在编译新版字节码har模块时，此特性仍然被保留。
 
-**2.** 在编译HAP/HSP/字节码HAR模块且开启属性混淆的情况下，当enum的成员被初始化时，'enum'白名单收集初始化表达式中包含的变量名称。  
+**2.** 在编译HAP/HSP/字节码HAR模块且开启属性混淆的情况下，当enum的成员被初始化时，'enum'白名单会收集初始化表达式中包含的变量名称。  
 例如：
 ```
 let outdoor = 1;

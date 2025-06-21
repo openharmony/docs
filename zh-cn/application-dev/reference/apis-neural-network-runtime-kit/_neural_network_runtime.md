@@ -778,7 +778,7 @@ enum OH_NN_TensorType
 | OH_NN_AVG_POOL_PAD_MODE | 当张量作为AvgPool算子的padMode参数时，使用本枚举值。 | 
 | OH_NN_AVG_POOL_PAD | 当张量作为AvgPool算子的pad参数时，使用本枚举值。 | 
 | OH_NN_AVG_POOL_ACTIVATION_TYPE | 当张量作为AvgPool算子的activationType参数时，使用本枚举值。 | 
-| OH_NN_BATCH_NORM_EPSILON | 当张量作为BatchNorm算子的eosilon参数时，使用本枚举值。 | 
+| OH_NN_BATCH_NORM_EPSILON | 当张量作为BatchNorm算子的epsilon参数时，使用本枚举值。 | 
 | OH_NN_BATCH_TO_SPACE_ND_BLOCKSIZE | 当张量作为BatchToSpaceND算子的blockSize参数时，使用本枚举值。 | 
 | OH_NN_BATCH_TO_SPACE_ND_CROPS | 当张量作为BatchToSpaceND算子的crops参数时，使用本枚举值。 | 
 | OH_NN_CONCAT_AXIS | 当张量作为Concat算子的axis参数时，使用本枚举值。 | 
@@ -907,13 +907,13 @@ enum OH_NN_TensorType
 | OH_NN_DETECTION_POST_PROCESS_NMS_IOU_THRESHOLD<sup>12+</sup> | 当张量作为DetectionPostProcess算子的nmsIouThreshold参数时，使用本枚举值。 | 
 | OH_NN_DETECTION_POST_PROCESS_NMS_SCORE_THRESHOLD<sup>12+</sup> | 当张量作为DetectionPostProcess算子的nmsScoreThreshold参数时，使用本枚举值。 | 
 | OH_NN_DETECTION_POST_PROCESS_MAX_DETECTIONS<sup>12+</sup> | 当张量作为DetectionPostProcess算子的maxDetections参数时，使用本枚举值。 | 
-| OH_NN_DETECTION_POST_PROCESS_DETECTIONS_PER_CLASS<sup>12+</sup> | 当张量作为DetectionPostProcess算子的preClass参数时，使用本枚举值。 | 
-| OH_NN_DETECTION_POST_PROCESS_MAX_CLASSES_PER_DETECTION<sup>12+</sup> | 当张量作为DetectionPostProcess算子的maxClassPreDetection参数时，使用本枚举值。 | 
+| OH_NN_DETECTION_POST_PROCESS_DETECTIONS_PER_CLASS<sup>12+</sup> | 当张量作为DetectionPostProcess算子的perClass参数时，使用本枚举值。 | 
+| OH_NN_DETECTION_POST_PROCESS_MAX_CLASSES_PER_DETECTION<sup>12+</sup> | 当张量作为DetectionPostProcess算子的maxClassPerDetection参数时，使用本枚举值。 | 
 | OH_NN_DETECTION_POST_PROCESS_NUM_CLASSES<sup>12+</sup> | 当张量作为DetectionPostProcess算子的numClasses参数时，使用本枚举值。 | 
 | OH_NN_DETECTION_POST_PROCESS_USE_REGULAR_NMS<sup>12+</sup> | 当张量作为DetectionPostProcess算子的useRegularNms参数时，使用本枚举值。 | 
 | OH_NN_DETECTION_POST_PROCESS_OUT_QUANTIZED<sup>12+</sup> | 当张量作为DetectionPostProcess算子的outQuantized参数时，使用本枚举值。 | 
 | OH_NN_L2_NORMALIZE_AXIS<sup>12+</sup> | 当张量作为L2Normalize算子的axis参数时，使用本枚举值。 | 
-| OH_NN_L2_NORMALIZE_EPSILON<sup>12+</sup> | 当张量作为L2Normalize算子的epslion参数时，使用本枚举值。 | 
+| OH_NN_L2_NORMALIZE_EPSILON<sup>12+</sup> | 当张量作为L2Normalize算子的epsilon参数时，使用本枚举值。 | 
 | OH_NN_L2_NORMALIZE_ACTIVATION_TYPE<sup>12+</sup> | 当张量作为L2Normalize算子的activationType参数时，使用本枚举值。 | 
 | OH_NN_LOG_SOFTMAX_AXIS<sup>12+</sup> | 当张量作为LogSoftmax算子的axis参数时，使用本枚举值。 | 
 | OH_NN_LRN_DEPTH_RADIUS<sup>12+</sup> | 当张量作为LRN算子的depthRadius参数时，使用本枚举值。 | 
@@ -1356,7 +1356,7 @@ OH_NN_ReturnCode OH_NNDevice_GetAllDevicesID (const size_t **allDevicesID, uint3
 
 获取对接到 Neural Network Runtime 的硬件ID。
 
-每个硬件存在唯一且固定的ID，该接口通过uin32_t数组返回当前设备上已经对接的硬件ID。
+每个硬件存在唯一且固定的ID，该接口通过uint32_t数组返回当前设备上已经对接的硬件ID。
 
 硬件ID通过size_t数组返回，数组的每个元素是单个硬件的ID值。数组内存由内部进行管理，在下次调用该接口前，数据指针将一直有效。
 

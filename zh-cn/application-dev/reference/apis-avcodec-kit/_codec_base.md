@@ -477,7 +477,7 @@ typedef void(* OH_AVCodecOnError) (OH_AVCodec *codec, int32_t errorCode, void *u
 | -------- | -------- |
 | codec | OH_AVCodec实例。  | 
 | errorCode | 特定错误代码。在不同场景下返回的错误码不同，详情可见上述描述中的表格。  | 
-| userData | 用户执行回调所依赖的数据。  |
+| userData | 开发者执行回调所依赖的数据。  |
 
 
 ### OH_AVCodecOnNeedInputBuffer
@@ -499,7 +499,7 @@ typedef void(* OH_AVCodecOnNeedInputBuffer) (OH_AVCodec *codec, uint32_t index, 
 | codec | OH_AVCodec实例。  | 
 | index | 与新可用的输入缓冲区相对应的索引。  | 
 | buffer | 新的可用输入缓冲区。  | 
-| userData | 用户执行回调所依赖的数据。  | 
+| userData | 开发者执行回调所依赖的数据。  | 
 
 
 ### OH_AVCodecOnNeedInputData
@@ -525,7 +525,7 @@ typedef void(* OH_AVCodecOnNeedInputData) (OH_AVCodec *codec, uint32_t index, OH
 | codec | OH_AVCodec实例。  | 
 | index | 与新可用的输入缓冲区相对应的索引。  | 
 | data | 新的可用输入缓冲区。  | 
-| userData | 用户执行回调所依赖的数据。  | 
+| userData | 开发者执行回调所依赖的数据。  | 
 
 
 ### OH_AVCodecOnNewOutputBuffer
@@ -547,7 +547,7 @@ typedef void(* OH_AVCodecOnNewOutputBuffer) (OH_AVCodec *codec, uint32_t index, 
 | codec | OH_AVCodec实例。  | 
 | index | 与新输出缓冲区对应的索引。  | 
 | buffer | 包含新输出数据的缓冲区。  | 
-| userData | 用户执行回调所依赖的数据。  | 
+| userData | 开发者执行回调所依赖的数据。  | 
 
 
 ### OH_AVCodecOnNewOutputData
@@ -574,7 +574,7 @@ typedef void(* OH_AVCodecOnNewOutputData) (OH_AVCodec *codec, uint32_t index, OH
 | index | 与新输出缓冲区对应的索引。  | 
 | data | 包含新输出数据的缓冲区。  | 
 | attr | 新输出缓冲区的说明，请参见[OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md)。  | 
-| userData | 用户执行回调所依赖的数据。  | 
+| userData | 开发者执行回调所依赖的数据。  | 
 
 
 ### OH_AVCodecOnStreamChanged
@@ -595,7 +595,7 @@ typedef void(* OH_AVCodecOnStreamChanged) (OH_AVCodec *codec, OH_AVFormat *forma
 | -------- | -------- |
 | codec | OH_AVCodec实例。  |
 | format | 新输出流描述信息。  |
-| userData | 用户执行回调所依赖的数据。  |
+| userData | 开发者执行回调所依赖的数据。  |
 
 
 ### OH_AVCProfile

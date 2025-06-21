@@ -30,7 +30,7 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | [ArkUI_UIInputEvent_Type](#arkui_uiinputevent_type) { ARKUI_UIINPUTEVENT_TYPE_UNKNOWN = 0, ARKUI_UIINPUTEVENT_TYPE_TOUCH = 1, ARKUI_UIINPUTEVENT_TYPE_AXIS = 2, ARKUI_UIINPUTEVENT_TYPE_MOUSE = 3, ARKUI_UIINPUTEVENT_TYPE_KEY = 4<sup>20+</sup> } | UI输入事件类型定义。  | 
-| {<br/>OH_NATIVEXCOMPONENT_RESULT_SUCCESS = 0, OH_NATIVEXCOMPONENT_RESULT_FAILED = -1, OH_NATIVEXCOMPONENT_RESULT_BAD_PARAMETER = -2, UI_TOUCH_EVENT_ACTION_CANCEL = 0,<br/>UI_TOUCH_EVENT_ACTION_DOWN = 1, UI_TOUCH_EVENT_ACTION_MOVE = 2, UI_TOUCH_EVENT_ACTION_UP = 3<br/>} | 定义输入事件的Action Code。  | 
+| {<br/>UI_TOUCH_EVENT_ACTION_CANCEL = 0,<br/>UI_TOUCH_EVENT_ACTION_DOWN = 1, UI_TOUCH_EVENT_ACTION_MOVE = 2, UI_TOUCH_EVENT_ACTION_UP = 3<br/>} | 定义输入事件的Action Code。  | 
 | {<br/>UI_INPUT_EVENT_TOOL_TYPE_UNKNOWN = 0, UI_INPUT_EVENT_TOOL_TYPE_FINGER = 1, UI_INPUT_EVENT_TOOL_TYPE_PEN = 2, UI_INPUT_EVENT_TOOL_TYPE_MOUSE = 3,<br/>UI_INPUT_EVENT_TOOL_TYPE_TOUCHPAD = 4, UI_INPUT_EVENT_TOOL_TYPE_JOYSTICK = 5<br/>} | 产生输入事件的工具类型定义。  | 
 | { UI_INPUT_EVENT_SOURCE_TYPE_UNKNOWN = 0, UI_INPUT_EVENT_SOURCE_TYPE_MOUSE = 1, UI_INPUT_EVENT_SOURCE_TYPE_TOUCH_SCREEN = 2 } | 产生输入事件的来源类型定义。  | 
 | [HitTestMode](#hittestmode) { HTM_DEFAULT = 0, HTM_BLOCK, HTM_TRANSPARENT, HTM_NONE } | 定义触摸测试类型的枚举值。  | 
@@ -157,9 +157,6 @@ anonymous enum
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| OH_NATIVEXCOMPONENT_RESULT_SUCCESS  | 成功结果。  | 
-| OH_NATIVEXCOMPONENT_RESULT_FAILED  | 失败结果。  | 
-| OH_NATIVEXCOMPONENT_RESULT_BAD_PARAMETER  | 无效参数。  | 
 | UI_TOUCH_EVENT_ACTION_CANCEL  | 触摸取消。  | 
 | UI_TOUCH_EVENT_ACTION_DOWN  | 触摸按下。  | 
 | UI_TOUCH_EVENT_ACTION_MOVE  | 触摸移动。  | 
@@ -276,6 +273,13 @@ UI输入事件类型定义。
 
 **起始版本：** 12
 
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| ARKUI_UIINPUTEVENT_TYPE_UNKNOWN  | 未定义。 | 
+| ARKUI_UIINPUTEVENT_TYPE_TOUCH  | 触摸事件。  | 
+| ARKUI_UIINPUTEVENT_TYPE_AXIS  | 轴事件。  | 
+| ARKUI_UIINPUTEVENT_TYPE_MOUSE  | 鼠标事件。  | 
+| ARKUI_UIINPUTEVENT_TYPE_KEY  | 按键事件。  | 
 
 ### HitTestMode
 
@@ -334,6 +338,23 @@ enum ArkUI_InteractionHand
 | ARKUI_EVENT_HAND_NONE  | 未知。  | 
 | ARKUI_EVENT_HAND_LEFT  | 左手。  | 
 | ARKUI_EVENT_HAND_RIGHT  | 右手。  | 
+
+```
+anonymous enum
+```
+**描述：**
+
+定义轴事件的Action Code。
+
+**起始版本：** 15
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| UI_AXIS_EVENT_ACTION_NONE  | 无轴事件。 | 
+| UI_AXIS_EVENT_ACTION_BEGIN  | 轴事件开始。 | 
+| UI_AXIS_EVENT_ACTION_UPDATE  | 轴事件触发中。 | 
+| UI_AXIS_EVENT_ACTION_END  | 轴事件结束。  | 
+| UI_AXIS_EVENT_ACTION_CANCEL  | 轴事件取消。 | 
 
 
 ## 函数说明

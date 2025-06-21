@@ -114,7 +114,7 @@ ArkWeb渲染子进程模式类型。
 
 ## OfflineResourceType<sup>12+</sup>
 
-[OfflineResourceMap](./arkts-apis-webview-WebviewController.md#offlineresourcemap12)对象对应的本地离线资源的接口类型。
+[OfflineResourceMap](./arkts-apis-webview-i.md#offlineresourcemap12)对象对应的本地离线资源的接口类型。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 

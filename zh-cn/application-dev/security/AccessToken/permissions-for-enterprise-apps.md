@@ -193,7 +193,7 @@
 
 **变更信息**：API 7-13该权限仅向系统应用开放；从API 14开始，开放范围从系统应用变更为企业普通应用。
 
-### ohos.permission.SET_TELEPHONY_ESIM_STATE_OPEN
+## ohos.permission.SET_TELEPHONY_ESIM_STATE_OPEN
 
 允许系统应用和运营商应用设置eSIM昵称和激活eSIM。
 
@@ -335,6 +335,23 @@
 **ACL使能**：true<!--DelEnd-->
 
 **起始版本**：18
+
+## ohos.permission.kernel.AUTH_AUDIT_EVENT
+
+允许企业安全应用阻断安全审计事件。
+
+企业安全应用申请此权限后，可以阻断安全审计事件。这些事件包括文件创建，文件打开和文件删除等。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**支持设备**：PC/2in1
+
+**起始版本**：20
 
 ## ohos.permission.SUPPORT_APP_SERVICE_EXTENSION
 

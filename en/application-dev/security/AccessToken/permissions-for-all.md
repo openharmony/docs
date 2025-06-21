@@ -456,3 +456,20 @@ With this permission, the application can detect information such as the user's 
 **Authorization mode**: system_grant
 
 **Valid since**: 20
+
+## ohos.permission.BACKGROUND_MANAGER_POWER_SAVE_MODE
+
+Allows an application to set its power-saving mode.
+
+This permission is applicable to the applications that meet the following conditions: 
+- The application does not gain the system focus or is not performing audio playback or UI refresh operations. 
+- It cannot acquire a power lock through the framework layer. 
+- It should not be forced into power-saving mode when CPU resources become constrained during the execution of time-consuming tasks such as compression, decompression, and compilation.
+
+**Permission level**: normal
+
+**Authorization mode**: system_grant
+
+**Supported devices**: PC/2in1
+
+**Valid since**: 20

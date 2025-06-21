@@ -1,6 +1,6 @@
-# 通过message事件刷新卡片内容
+# 卡片传递消息给应用（message事件）
 
-在卡片页面中可以通过[postCardAction](../reference/apis-arkui/js-apis-postCardAction.md#postcardaction)接口触发message事件拉起FormExtensionAbility，然后由FormExtensionAbility刷新卡片内容，下面是这种刷新方式的简单示例。
+在卡片页面中可以通过[postCardAction](../reference/apis-arkui/js-apis-postCardAction.md#postcardaction)接口触发message事件拉起[FormExtensionAbility](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md)，通过[onFormEvent](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#formextensionabilityonformevent)接口回调通知，以完成点击卡片控件后传递消息给应用的功能，然后由FormExtensionAbility刷新卡片内容，下面是这种刷新方式的简单示例。
 
 > **说明：**
 >

@@ -198,7 +198,7 @@ soundpool支持的格式与底层一致，支持的格式可以参考文档：[�
 
 **参考资料**
 
-[readLatestImage](../reference/apis-image-kit/js-apis-image.md#readlatestimage9)
+[readLatestImage](../reference/apis-image-kit/arkts-apis-image-ImageReceiver.md#readlatestimage9)
 
 ## 如何实现录音监听？(API 10)
 
@@ -275,5 +275,5 @@ soundpool支持的格式与底层一致，支持的格式可以参考文档：[�
 
 **参考资料**
 
-1. [scale](../reference/apis-image-kit/js-apis-image.md#scale9)
-2. [packing](../reference/apis-image-kit/js-apis-image.md#packing)
+1. [scale](../reference/apis-image-kit/arkts-apis-image-PixelMap.md#scale9)
+2. [packing](../reference/apis-image-kit/arkts-apis-image-ImagePacker.md#packing13)

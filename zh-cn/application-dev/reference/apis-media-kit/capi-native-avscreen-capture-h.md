@@ -14,6 +14,8 @@
 
 **相关模块：** [AVScreenCapture](capi-avscreencapture.md)
 
+**相关示例：** [NativeAvScreenCapture](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Media/ScreenCapture/ScreenCaptureSample)
+
 ## 汇总
 
 ### 函数
@@ -523,7 +525,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StartScreenCaptureWithSurface(str
 | 参数项 | 描述 |
 | -- | -- |
 | struct [OH_AVScreenCapture](capi-oh-avscreencapture.md) *capture | 指向OH_AVScreenCapture实例的指针。 |
-| [OHNativeWindow](../apis-arkgraphics2d/capi-nativewindow.md) *window | 指向OHNativeWindow实例的指针。 |
+| [OHNativeWindow](../apis-arkgraphics2d/capi-nativewindow-nativewindow.md) *window | 指向OHNativeWindow实例的指针。 |
 
 **返回：**
 

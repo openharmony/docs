@@ -74,8 +74,6 @@ ArkUI框架会在自定义组件确定位置时，将该自定义组件的子节
 
 子组件布局信息。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### 属性
@@ -83,6 +81,7 @@ ArkUI框架会在自定义组件确定位置时，将该自定义组件的子节
 | 名称         | 类型       | 只读|可选|  说明                                                      |
 |--------------|---------------------------------- | ------|-----------------------------------------------------|---------------------|
 | measureResult| [MeasureResult](#measureresult10) |   否|否| 子组件测量后的尺寸信息。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br>单位：vp     |
+| uniqueId<sup>18+</sup>| number | 否 |否| 系统为子组件分配的唯一标识UniqueID。<br>取值范围[0,+∞)。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
 
 ### layout
 
@@ -690,8 +689,8 @@ struct CustomLayoutText {
 
 ### 示例5（通过layout修改布局）
 通过layout修改布局。
-```ts
 <!--deprecated_code_no_check-->
+```ts
 // xxx.ets
 @Entry
 @Component
