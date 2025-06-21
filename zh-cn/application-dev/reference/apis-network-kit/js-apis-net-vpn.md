@@ -47,4 +47,4 @@ type AbilityContext = _AbilityContext
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
-| [_AbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) | 需要保存状态的UIAbility所对应的context，继承自Context，提供UIAbility的相关配置信息以及操作UIAbility和ServiceExtensionAbility的方法。 |
+| [_AbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) | 需要保存状态的UIAbility所对应的context，继承自[Context](../apis-ability-kit/js-apis-inner-application-context.md)，提供UIAbility的相关配置信息以及操作UIAbility和ServiceExtensionAbility的方法。 |

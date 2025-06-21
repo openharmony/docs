@@ -23,7 +23,7 @@ type NetHandle = connection.NetHandle
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
-| [connection.NetHandle](./js-apis-net-connection.md#nethandle) | 网络链路信息 |
+| [connection.NetHandle](./js-apis-net-connection.md#nethandle) | 网络链路信息。 |
 
 
 

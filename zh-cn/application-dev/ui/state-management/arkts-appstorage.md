@@ -386,7 +386,7 @@ struct Gallery {
             // 选中态：黑变红
             let eventData: emitter.EventData = {
               data: {
-                "colorTag": 1;
+                "colorTag": 1
               }
             };
             emitter.emit(innerEvent, eventData);

@@ -6,7 +6,7 @@ Provides APIs to obtain information about trusted devices and local devices.
 
 **File to include**: <distributedhardware/device_manager/oh_device_manager.h>
 
-**Library:** libnative_devicemanager.so
+**Library:** libdevicemanager_ndk.so
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
@@ -50,4 +50,4 @@ Obtains the display name of the local device.<br>The device display name involve
 
 | Type| Description                                                                                                                                                                                                                                                                                                                                                                          |
 | -- |------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| int32_t | Error code. For details about the error code definitions, see [DeviceManager_ErrorCode](capi-oh-device-manager-err-code-h.md#devicemanager_errorcode).<br>         [ERR_OK](capi-oh-device-manager-err-code-h.md#devicemanager_errorcode) is returned if the execution is successful.<br>         [ERR_INVALID_PARAMETER](capi-oh-device-manager-err-code-h.md#devicemanager_errorcode) is returned if the input parameter is invalid.<br>         [DM_ERR_FAILED](capi-oh-device-manager-err-code-h.md#devicemanager_errorcode) is returned if the function fails to be executed.<br>         [DM_ERR_OBTAIN_SERVICE](capi-oh-device-manager-err-code-h.md#devicemanager_errorcode) is returned if the device management service fails to be obtained.<br>         [DM_ERR_OBTAIN_BUNDLE_NAME](capi-oh-device-manager-err-code-h.md#devicemanager_errorcode) is returned if the bundle name fails to be obtained.|
+| int32_t | Error code. For details about the error code definitions, see [DeviceManager_ErrorCode](capi-oh-device-manager-err-code-h.md#devicemanager_errorcode).<br>         [ERR_OK](capi-oh-device-manager-err-code-h.md#devicemanager_errorcode) is returned if the execution is successful.<br>         [DM_ERR_FAILED](capi-oh-device-manager-err-code-h.md#devicemanager_errorcode) is returned if the function fails to be executed.<br>         [DM_ERR_OBTAIN_SERVICE](capi-oh-device-manager-err-code-h.md#devicemanager_errorcode) is returned if the device management service fails to be obtained.<br>         [DM_ERR_OBTAIN_BUNDLE_NAME](capi-oh-device-manager-err-code-h.md#devicemanager_errorcode) is returned if the bundle name fails to be obtained.|

@@ -63,7 +63,7 @@ HashSet支持增、删、改、查操作，常用API如下：
 | 访问元素 | forEach(callbackFn: (value?: T, key?: T, set?: HashSet\<T>) => void, thisArg?: Object) | 遍历访问整个set的元素。 |
 | 访问元素 | \[Symbol.iterator]():IterableIterator&lt;T&gt; | 创建迭代器以进行数据访问。 |
 | 修改元素 | forEach(callbackFn: (value?: T, key?: T, set?: HashSet\<T>) => void, thisArg?: Object) | 通过遍历修改整个set的元素。 |
-| 删除元素 | remove(value: T) | 删除set中匹配到的值。 |
+| 删除元素 | remove(value: T) | 删除指定的元素。 |
 | 删除元素 | clear() | 清空整个set。 |
 
 ## TreeMap
@@ -83,7 +83,7 @@ TreeMap支持增、删、改、查操作，常用API如下：
 | 增加元素 | set(key: K, value: V) | 增加一个键值对。 |
 | 访问元素 | get(key: K) | 获取key对应的value值。 |
 | 访问元素 | getFirstKey() | 获取map中排在首位的key值。 |
-| 访问元素 | getLastKey() | 获取map中排在未位的key值。 |
+| 访问元素 | getLastKey() | 获取map中排在末位的key值。 |
 | 访问元素 | keys() | 返回一个迭代器对象，包含map中的所有key值。 |
 | 访问元素 | values() | 返回一个迭代器对象，包含map中的所有value值。 |
 | 访问元素 | entries() | 返回一个迭代器对象，包含map中的所有键值对。 |
@@ -118,7 +118,7 @@ TreeSet支持增、删、改、查操作，常用API如下：
 | 访问元素 | forEach(callbackFn: (value?: T, key?: T, set?: TreeSet\<T>) => void, thisArg?: Object) | 遍历访问整个set的元素。 |
 | 访问元素 | \[Symbol.iterator]():IterableIterator&lt;T&gt; | 创建迭代器以进行数据访问。 |
 | 修改元素 | forEach(callbackFn: (value?: T, key?: T, set?: TreeSet\<T>) => void, thisArg?: Object) | 通过遍历修改整个set的元素。 |
-| 删除元素 | remove(value: T) | 删除set中匹配到的值。 |
+| 删除元素 | remove(value: T) | 删除指定的元素。 |
 | 删除元素 | clear() | 清空整个set。 |
 
 ## LightWeightMap
@@ -176,7 +176,7 @@ LightWeightSet支持增、删、改、查操作，常用API如下：
 | 访问元素 | forEach(callbackFn: (value?: T, key?: T, set?: LightWeightSet\<T>) => void, thisArg?: Object) | 遍历访问整个set的元素。 |
 | 访问元素 | \[Symbol.iterator]():IterableIterator&lt;T&gt; | 创建迭代器以进行数据访问。 |
 | 修改元素 | forEach(callbackFn: (value?: T, key?: T, set?: LightWeightSet\<T>) => void, thisArg?: Object) | 通过遍历修改整个set的元素。 |
-| 删除元素 | remove(key: K) | 删除set中匹配到的键值对。 |
+| 删除元素 | remove(key: K) | 删除指定的元素。 |
 | 删除元素 | removeAt(index: number) | 删除set中指定index对应的值。 |
 | 删除元素 | clear() | 清空整个set。 |
 

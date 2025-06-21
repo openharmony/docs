@@ -18,11 +18,36 @@
       }
     }
     ```
-3. 在app.json5配置文件中引用分层图标资源文件。示例如下：
+3. 在[app.json5配置文件](app-configuration-file.md)中引用分层图标资源文件。示例如下：
      ```json
         {
           "app": {
             "icon": "$media:layered_image",
+            // ...
+          }
+        }
+    ```
+4. 如果在module.json5配置文件的[abilities标签](module-configuration-file.md#abilities标签)中配置了icon和label，且该对应的ability中skills标签下面的entities中包含"entity.system.home"、actions中包含"ohos.want.action.home"或者"action.system.home"，在module.json5文件中，需要将abilities标签下的icon配置值修改为分层图标的资源配置路径。配置要求参考[图标生成机制](../application-models/application-component-configuration-stage.md#生成机制)。
+
+     ```json
+        {
+          "module": {
+            "abilities": [
+              "name": "EntryAbility",
+              // ...
+              "icon": "$media:layered_image", // 修改icon的配置为分层图标的资源配置路径
+              "skills": [
+                {
+                  "entities": [
+                    "entity.system.home"
+                  ],
+                  "actions": [
+                    "ohos.want.action.home"
+                  ]
+                }
+              ],
+              // ...
+            ]
             // ...
           }
         }

@@ -18,7 +18,7 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [OH_Drawing_Array* OH_Drawing_TypographyGetTextLines(OH_Drawing_Typography* typography)](#oh_drawing_typographygettextlines) | - | 获取排版对象的文本行数组。文本行数组中包含一个或多个文本行对象。不再需要[OH_Drawing_Array](capi-oh-drawing-array.md)时，请使用[OH_Drawing_DestroyTextLines](capi-drawing-text-line-h.md#oh_drawing_destroytextlines)接口释放该对象的指针。 |
+| [OH_Drawing_Array* OH_Drawing_TypographyGetTextLines(OH_Drawing_Typography* typography)](#oh_drawing_typographygettextlines) | - | 获取排版对象的文本行数组。文本行数组中包含一个或多个文本行对象。不再需要[OH_Drawing_Array](capi-drawing-oh-drawing-array.md)时，请使用[OH_Drawing_DestroyTextLines](capi-drawing-text-line-h.md#oh_drawing_destroytextlines)接口释放该对象的指针。 |
 | [void OH_Drawing_DestroyTextLines(OH_Drawing_Array* lines)](#oh_drawing_destroytextlines) | - | 释放文本行数组的内存。 |
 | [void OH_Drawing_DestroyTextLine(OH_Drawing_TextLine* line)](#oh_drawing_destroytextline) | - | 释放单个文本行对象的内存。只能释放单独申请内存的文本行对象，不能释放文本行数组中的某一个文本行对象的内存。 |
 | [OH_Drawing_TextLine* OH_Drawing_GetTextLineByIndex(OH_Drawing_Array* lines, size_t index)](#oh_drawing_gettextlinebyindex) | - | 获取文本行数组指定索引处的文本行对象。 |
@@ -48,7 +48,7 @@ OH_Drawing_Array* OH_Drawing_TypographyGetTextLines(OH_Drawing_Typography* typog
 
 **描述**
 
-获取排版对象的文本行数组。文本行数组中包含一个或多个文本行对象。不再需要[OH_Drawing_Array](capi-oh-drawing-array.md)时，请使用[OH_Drawing_DestroyTextLines](capi-drawing-text-line-h.md#oh_drawing_destroytextlines)接口释放该对象的指针。
+获取排版对象的文本行数组。文本行数组中包含一个或多个文本行对象。不再需要[OH_Drawing_Array](capi-drawing-oh-drawing-array.md)时，请使用[OH_Drawing_DestroyTextLines](capi-drawing-text-line-h.md#oh_drawing_destroytextlines)接口释放该对象的指针。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -59,13 +59,13 @@ OH_Drawing_Array* OH_Drawing_TypographyGetTextLines(OH_Drawing_Typography* typog
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Typography](capi-oh-drawing-typography.md)* typography | 指向排版对象[OH_Drawing_Typography](capi-oh-drawing-typography.md)的指针。 |
+| [OH_Drawing_Typography](capi-drawing-oh-drawing-typography.md)* typography | 指向排版对象[OH_Drawing_Typography](capi-drawing-oh-drawing-typography.md)的指针。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_Array](capi-oh-drawing-array.md)* | 指向文本行数组[OH_Drawing_Array](capi-oh-drawing-array.md)的指针。 |
+| [OH_Drawing_Array](capi-drawing-oh-drawing-array.md)* | 指向文本行数组[OH_Drawing_Array](capi-drawing-oh-drawing-array.md)的指针。 |
 
 ### OH_Drawing_DestroyTextLines()
 
@@ -86,7 +86,7 @@ void OH_Drawing_DestroyTextLines(OH_Drawing_Array* lines)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Array](capi-oh-drawing-array.md)* lines | 指向文本行数组[OH_Drawing_Array](capi-oh-drawing-array.md)的指针。 |
+| [OH_Drawing_Array](capi-drawing-oh-drawing-array.md)* lines | 指向文本行数组[OH_Drawing_Array](capi-drawing-oh-drawing-array.md)的指针。 |
 
 ### OH_Drawing_DestroyTextLine()
 
@@ -107,7 +107,7 @@ void OH_Drawing_DestroyTextLine(OH_Drawing_TextLine* line)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_TextLine](capi-oh-drawing-textline.md)* line | 指向文本行对象[OH_Drawing_TextLine](capi-oh-drawing-textline.md)的指针。 |
+| [OH_Drawing_TextLine](capi-drawing-oh-drawing-textline.md)* line | 指向文本行对象[OH_Drawing_TextLine](capi-drawing-oh-drawing-textline.md)的指针。 |
 
 ### OH_Drawing_GetTextLineByIndex()
 
@@ -128,14 +128,14 @@ OH_Drawing_TextLine* OH_Drawing_GetTextLineByIndex(OH_Drawing_Array* lines, size
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Array](capi-oh-drawing-array.md)* lines | 指向文本行数组[OH_Drawing_Array](capi-oh-drawing-array.md)的指针。 |
+| [OH_Drawing_Array](capi-drawing-oh-drawing-array.md)* lines | 指向文本行数组[OH_Drawing_Array](capi-drawing-oh-drawing-array.md)的指针。 |
 | size_t index | 指定的文本行数组的索引。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_TextLine](capi-oh-drawing-textline.md)* | 指向指定索引处的文本行对象[OH_Drawing_TextLine](capi-oh-drawing-textline.md)的指针。 |
+| [OH_Drawing_TextLine](capi-drawing-oh-drawing-textline.md)* | 指向指定索引处的文本行对象[OH_Drawing_TextLine](capi-drawing-oh-drawing-textline.md)的指针。 |
 
 ### OH_Drawing_TextLineGetGlyphCount()
 
@@ -156,7 +156,7 @@ double OH_Drawing_TextLineGetGlyphCount(OH_Drawing_TextLine* line)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_TextLine](capi-oh-drawing-textline.md)* line | 指向文本行对象[OH_Drawing_TextLine](capi-oh-drawing-textline.md)的指针。 |
+| [OH_Drawing_TextLine](capi-drawing-oh-drawing-textline.md)* line | 指向文本行对象[OH_Drawing_TextLine](capi-drawing-oh-drawing-textline.md)的指针。 |
 
 **返回：**
 
@@ -183,7 +183,7 @@ void OH_Drawing_TextLineGetTextRange(OH_Drawing_TextLine* line, size_t* start, s
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_TextLine](capi-oh-drawing-textline.md)* line | 指向文本行对象[OH_Drawing_TextLine](capi-oh-drawing-textline.md)的指针。 |
+| [OH_Drawing_TextLine](capi-drawing-oh-drawing-textline.md)* line | 指向文本行对象[OH_Drawing_TextLine](capi-drawing-oh-drawing-textline.md)的指针。 |
 | size_t* start | 指向区间左侧端点索引的指针。 |
 | size_t* end | 指向区间右侧端点索引的指针。 |
 
@@ -206,13 +206,13 @@ OH_Drawing_Array* OH_Drawing_TextLineGetGlyphRuns(OH_Drawing_TextLine* line)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_TextLine](capi-oh-drawing-textline.md)* line | 指向文本行对象[OH_Drawing_TextLine](capi-oh-drawing-textline.md)的指针。 |
+| [OH_Drawing_TextLine](capi-drawing-oh-drawing-textline.md)* line | 指向文本行对象[OH_Drawing_TextLine](capi-drawing-oh-drawing-textline.md)的指针。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_Array](capi-oh-drawing-array.md)* | 指向文本渲染单元[OH_Drawing_Run](capi-oh-drawing-run.md)数组[OH_Drawing_Array](capi-oh-drawing-array.md)的指针，不再需要[OH_Drawing_Array](capi-oh-drawing-array.md)时，请使用[OH_Drawing_DestroyRuns](capi-drawing-text-line-h.md#oh_drawing_destroyruns)释放该对象的指针。 |
+| [OH_Drawing_Array](capi-drawing-oh-drawing-array.md)* | 指向文本渲染单元[OH_Drawing_Run](capi-drawing-oh-drawing-run.md)数组[OH_Drawing_Array](capi-drawing-oh-drawing-array.md)的指针，不再需要[OH_Drawing_Array](capi-drawing-oh-drawing-array.md)时，请使用[OH_Drawing_DestroyRuns](capi-drawing-text-line-h.md#oh_drawing_destroyruns)释放该对象的指针。 |
 
 ### OH_Drawing_DestroyRuns()
 
@@ -233,7 +233,7 @@ void OH_Drawing_DestroyRuns(OH_Drawing_Array* runs)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Array](capi-oh-drawing-array.md)* runs | 指向文本渲染单元[OH_Drawing_Run](capi-oh-drawing-run.md)数组[OH_Drawing_Array](capi-oh-drawing-array.md)的指针。 |
+| [OH_Drawing_Array](capi-drawing-oh-drawing-array.md)* runs | 指向文本渲染单元[OH_Drawing_Run](capi-drawing-oh-drawing-run.md)数组[OH_Drawing_Array](capi-drawing-oh-drawing-array.md)的指针。 |
 
 ### OH_Drawing_GetRunByIndex()
 
@@ -254,14 +254,14 @@ OH_Drawing_Run* OH_Drawing_GetRunByIndex(OH_Drawing_Array* runs, size_t index)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Array](capi-oh-drawing-array.md)* runs | 指向文本渲染单元[OH_Drawing_Run](capi-oh-drawing-run.md)数组[OH_Drawing_Array](capi-oh-drawing-array.md)的指针。 |
+| [OH_Drawing_Array](capi-drawing-oh-drawing-array.md)* runs | 指向文本渲染单元[OH_Drawing_Run](capi-drawing-oh-drawing-run.md)数组[OH_Drawing_Array](capi-drawing-oh-drawing-array.md)的指针。 |
 | size_t index | 文本渲染单元数组的索引。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_Run](capi-oh-drawing-run.md)* | 指向指定索引处的文本渲染单元对象[OH_Drawing_Run](capi-oh-drawing-run.md)的指针。 |
+| [OH_Drawing_Run](capi-drawing-oh-drawing-run.md)* | 指向指定索引处的文本渲染单元对象[OH_Drawing_Run](capi-drawing-oh-drawing-run.md)的指针。 |
 
 ### OH_Drawing_TextLinePaint()
 
@@ -282,8 +282,8 @@ void OH_Drawing_TextLinePaint(OH_Drawing_TextLine* line, OH_Drawing_Canvas* canv
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_TextLine](capi-oh-drawing-textline.md)* line | 指向文本行对象[OH_Drawing_TextLine](capi-oh-drawing-textline.md)的指针。 |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向绘制的目标画布[OH_Drawing_Canvas](capi-oh-drawing-canvas.md)。 |
+| [OH_Drawing_TextLine](capi-drawing-oh-drawing-textline.md)* line | 指向文本行对象[OH_Drawing_TextLine](capi-drawing-oh-drawing-textline.md)的指针。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向绘制的目标画布[OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)。 |
 | double x | 绘制的左上角位置的横坐标，单位为物理像素px。 |
 | double y | 绘制的左上角位置的纵坐标，单位为物理像素px。 |
 
@@ -306,7 +306,7 @@ OH_Drawing_TextLine* OH_Drawing_TextLineCreateTruncatedLine(OH_Drawing_TextLine*
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_TextLine](capi-oh-drawing-textline.md)* line | 指向文本行对象[OH_Drawing_TextLine](capi-oh-drawing-textline.md)的指针。 |
+| [OH_Drawing_TextLine](capi-drawing-oh-drawing-textline.md)* line | 指向文本行对象[OH_Drawing_TextLine](capi-drawing-oh-drawing-textline.md)的指针。 |
 | double width | 截断后的行宽度。 |
 | int mode | 截断的类型，取值对应为 [OH_Drawing_EllipsisModal](capi-drawing-text-typography-h.md#oh_drawing_ellipsismodal) 枚举，当前仅支持头部截断ELLIPSIS_MODAL_HEAD和尾部截断ELLIPSIS_MODAL_TAIL。 |
 | const char* ellipsis | 截断的标记字符串。 |
@@ -315,7 +315,7 @@ OH_Drawing_TextLine* OH_Drawing_TextLineCreateTruncatedLine(OH_Drawing_TextLine*
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_TextLine](capi-oh-drawing-textline.md)* | 返回指向截断的文本行对象[OH_Drawing_TextLine](capi-oh-drawing-textline.md)指针。 |
+| [OH_Drawing_TextLine](capi-drawing-oh-drawing-textline.md)* | 返回指向截断的文本行对象[OH_Drawing_TextLine](capi-drawing-oh-drawing-textline.md)指针。 |
 
 ### OH_Drawing_TextLineGetTypographicBounds()
 
@@ -336,7 +336,7 @@ double OH_Drawing_TextLineGetTypographicBounds(OH_Drawing_TextLine* line, double
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_TextLine](capi-oh-drawing-textline.md)* line | 指向文本行对象[OH_Drawing_TextLine](capi-oh-drawing-textline.md)的指针。height = ascent + descent + leading。 |
+| [OH_Drawing_TextLine](capi-drawing-oh-drawing-textline.md)* line | 指向文本行对象[OH_Drawing_TextLine](capi-drawing-oh-drawing-textline.md)的指针。height = ascent + descent + leading。 |
 | double* ascent | 指向文本行对象上升高度的指针。 |
 | double* descent | 指向文本行对象下降高度的指针。 |
 | double* leading | 指向文本行对象行间距的指针。 |
@@ -366,13 +366,13 @@ OH_Drawing_Rect* OH_Drawing_TextLineGetImageBounds(OH_Drawing_TextLine* line)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_TextLine](capi-oh-drawing-textline.md)* line | 指向文本行对象[OH_Drawing_TextLine](capi-oh-drawing-textline.md)的指针。 |
+| [OH_Drawing_TextLine](capi-drawing-oh-drawing-textline.md)* line | 指向文本行对象[OH_Drawing_TextLine](capi-drawing-oh-drawing-textline.md)的指针。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_Rect](capi-oh-drawing-rect.md)* | 指向文本行对象的图像边界[OH_Drawing_Rect](capi-oh-drawing-rect.md)的指针，不再需要[OH_Drawing_Rect](capi-oh-drawing-rect.md)时，请使用[OH_Drawing_RectDestroy](capi-drawing-rect-h.md#oh_drawing_rectdestroy)接口释放该对象的指针。 |
+| [OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)* | 指向文本行对象的图像边界[OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)的指针，不再需要[OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)时，请使用[OH_Drawing_RectDestroy](capi-drawing-rect-h.md#oh_drawing_rectdestroy)接口释放该对象的指针。 |
 
 ### OH_Drawing_TextLineGetTrailingSpaceWidth()
 
@@ -393,7 +393,7 @@ double OH_Drawing_TextLineGetTrailingSpaceWidth(OH_Drawing_TextLine* line)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_TextLine](capi-oh-drawing-textline.md)* line | 指向文本行对象[OH_Drawing_TextLine](capi-oh-drawing-textline.md)的指针。 |
+| [OH_Drawing_TextLine](capi-drawing-oh-drawing-textline.md)* line | 指向文本行对象[OH_Drawing_TextLine](capi-drawing-oh-drawing-textline.md)的指针。 |
 
 **返回：**
 
@@ -420,8 +420,8 @@ int32_t OH_Drawing_TextLineGetStringIndexForPosition(OH_Drawing_TextLine* line, 
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_TextLine](capi-oh-drawing-textline.md)* line | 指向文本行对象[OH_Drawing_TextLine](capi-oh-drawing-textline.md)的指针。 |
-| [OH_Drawing_Point](capi-oh-drawing-point.md)* point | 指向要查找索引的位置[OH_Drawing_Point](capi-oh-drawing-point.md)指针。 |
+| [OH_Drawing_TextLine](capi-drawing-oh-drawing-textline.md)* line | 指向文本行对象[OH_Drawing_TextLine](capi-drawing-oh-drawing-textline.md)的指针。 |
+| [OH_Drawing_Point](capi-drawing-oh-drawing-point.md)* point | 指向要查找索引的位置[OH_Drawing_Point](capi-drawing-oh-drawing-point.md)指针。 |
 
 **返回：**
 
@@ -448,7 +448,7 @@ double OH_Drawing_TextLineGetOffsetForStringIndex(OH_Drawing_TextLine* line, int
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_TextLine](capi-oh-drawing-textline.md)* line | 指向文本行对象[OH_Drawing_TextLine](capi-oh-drawing-textline.md)的指针。 |
+| [OH_Drawing_TextLine](capi-drawing-oh-drawing-textline.md)* line | 指向文本行对象[OH_Drawing_TextLine](capi-drawing-oh-drawing-textline.md)的指针。 |
 | int32_t index | 要获取偏移量的字符串索引。 |
 
 **返回：**
@@ -505,7 +505,7 @@ void OH_Drawing_TextLineEnumerateCaretOffsets(OH_Drawing_TextLine* line, Drawing
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_TextLine](capi-oh-drawing-textline.md)* line | 指向文本行对象[OH_Drawing_TextLine](capi-oh-drawing-textline.md)的指针。 |
+| [OH_Drawing_TextLine](capi-drawing-oh-drawing-textline.md)* line | 指向文本行对象[OH_Drawing_TextLine](capi-drawing-oh-drawing-textline.md)的指针。 |
 | [Drawing_CaretOffsetsCallback](#drawing_caretoffsetscallback) callback | 用户自定义函数[Drawing_CaretOffsetsCallback](capi-drawing-text-line-h.md#drawing_caretoffsetscallback)。 |
 
 ### OH_Drawing_TextLineGetAlignmentOffset()
@@ -526,7 +526,7 @@ double OH_Drawing_TextLineGetAlignmentOffset(OH_Drawing_TextLine* line, double a
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_TextLine](capi-oh-drawing-textline.md)* line | 指向文本行对象[OH_Drawing_TextLine](capi-oh-drawing-textline.md)的指针。 |
+| [OH_Drawing_TextLine](capi-drawing-oh-drawing-textline.md)* line | 指向文本行对象[OH_Drawing_TextLine](capi-drawing-oh-drawing-textline.md)的指针。 |
 | double alignmentFactor | 对齐因子，即对齐的程度。小于等于0.0表示左对齐，大于0.0小于0.5表示偏左对齐，0.5表示居中对齐，大于0.5小于1.0表示偏右对齐，大于等于1.0表示右对齐。 |
 | double alignmentWidth | 对齐宽度，即最终偏移后的文本行对象右下角相对于起始位置的偏移值。如果指定对齐宽度小于文本行对象的实际宽度，则返回0。 |
 

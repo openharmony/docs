@@ -14,7 +14,7 @@ The **metadataBinding** module provides the capability of adding metadata to ima
 import { metadataBinding } from '@kit.MultimodalAwarenessKit';
 ```
 
-## encodeImage(image.PixelMap, string)
+## metadataBinding.encodeImage
 encodeImage(srcImage: image.PixelMap, metadata: string): Promise<image.PixelMap>;  
 Encodes metadata into an image. 
 **System capability**: SystemCapability.MultimodalAwareness.metadataBinding
@@ -55,7 +55,7 @@ metadataBinding.encodeImage(srcImage, metadata).then((pixelMap: image.PixelMap) 
 });
 ```
 
-## decodeImage(image.PixelMap)
+## metadataBinding.decodeImage
 function decodeImage(encodedImage: image.PixelMap): Promise\<string\>
 Decodes the information carried in the image.
 
@@ -94,7 +94,7 @@ metadataBinding.decodeImage(encodeImage).then((metadata: string) =>{
 }); 
 ```
 
-## notifyMetadataBindingEvent(string)
+## metadataBinding.notifyMetadataBindingEvent
 notifyMetadataBindingEvent(metadata: string): void;
 Transfers metadata to the application or service that calls the encoding API.
 **System capability**: SystemCapability.MultimodalAwareness.metadataBinding

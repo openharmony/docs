@@ -995,7 +995,7 @@ console.info("test contains: " + path.contains(0, 0));
 console.info("test contains: " + path.contains(60, 60));
 ```
 
-### setLastPoint<sub>20+</sup>
+### setLastPoint<sup>20+</sup>
 
 setLastPoint(x: number, y: number): void
 
@@ -4055,7 +4055,7 @@ static createBlendImageFilter(mode: BlendMode, background: ImageFilter, foregrou
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 25900001 | Parameter error.Possible causes: 1.Incorrect parameter range; 2.Incorrect parameter types.|
+| 25900001 | Parameter error.Possible causes: Incorrect parameter range. |
 
 **示例：**
 
@@ -5229,7 +5229,7 @@ measureText(text: string, encoding: TextEncoding): number
 
 > **说明：**
 >
-> 此接口用于测量原始字符串的文本宽度，若想测量排版后的文本宽度，建议使用[measure.measureText](../apis-arkui/js-apis-measure.md#measuretextmeasuretext)替代。
+> 此接口用于测量原始字符串的文本宽度，若想测量排版后的文本宽度，建议使用[measure.measureText](../apis-arkui/js-apis-arkui-UIContext.md#measuretext12)替代。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 

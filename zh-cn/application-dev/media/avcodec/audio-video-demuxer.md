@@ -65,11 +65,11 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    ```c++
    // 创建文件操作符 fd，打开时对文件实例必须有读权限（filePath 为待解封装文件路径，需预置文件，保证路径指向的文件存在）。
    std::string filePath = "test.mp4";
-   int fd = open(filePath.c_str(), O_RDONLY);
+   int32_t fd = open(filePath.c_str(), O_RDONLY);
    struct stat fileStatus {};
-   size_t fileSize = 0;
+   int64_t fileSize = 0;
    if (stat(filePath.c_str(), &fileStatus) == 0) {
-      fileSize = static_cast<size_t>(fileStatus.st_size);
+      fileSize = static_cast<int64_t>(fileStatus.st_size);
    } else {
       printf("get stat failed");
       return;
@@ -222,6 +222,11 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    uint32_t videoTrackIndex = 0;
    int32_t w = 0;
    int32_t h = 0;
+   int64_t bitRate = 0; // 配置比特率，单位为bps。
+   double frameRate = 0.0;
+   const char* mimetype = nullptr;
+   uint8_t *codecConfig = nullptr;
+   size_t bufferSize = 0;
    int32_t trackType;
    for (uint32_t index = 0; index < (static_cast<uint32_t>(trackCount)); index++) {
       // 获取轨道信息，用户可通过该接口获取对应轨道级别属性，具体支持信息参考附表 2。
@@ -245,6 +250,23 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
             printf("get track height from track format failed");
             return;
          }
+         if (!OH_AVFormat_GetLongValue(format, OH_MD_KEY_BITRATE, &bitRate)) {
+            printf("get track bitRate from track format failed");
+            return;
+         }
+         if (!OH_AVFormat_GetDoubleValue(format, OH_MD_KEY_FRAME_RATE, &frameRate)) {
+            printf("get track frameRate from track format failed");
+            return;
+         }
+         if (!OH_AVFormat_GetStringValue(format, OH_MD_KEY_CODEC_MIME, &mimetype)) {
+            printf("get track mimetype from track format failed");
+            return;
+         }
+         if (!OH_AVFormat_GetBuffer(format, OH_MD_KEY_CODEC_CONFIG, &codecConfig, &bufferSize)) {
+            printf("get track codecConfig from track format failed");
+            return;
+         }
+         printf(" track width%d, track height：%d, track bitRate：%ld, track frameRate：%f, track mimetype：%s\n", w, h, bitRate, frameRate, mimetype);
       }
       OH_AVFormat_Destroy(trackFormat);
    }
@@ -296,7 +318,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    OH_AVDemuxer_ReadSampleBuffer接口本身可能存在耗时久，取决于文件IO，建议以异步方式进行调用。
    ```c++
    // 为每个线程定义处理函数。
-   void ReadTrackSamples(OH_AVFormatDemuxer *demuxer, int trackIndex, int buffer_size, 
+   void ReadTrackSamples(OH_AVFormatDemuxer *demuxer, uint32_t trackIndex, int buffer_size, 
                          std::atomic<bool>& isEnd, std::atomic<bool>& threadFinished)
    {
       // 创建缓冲区。

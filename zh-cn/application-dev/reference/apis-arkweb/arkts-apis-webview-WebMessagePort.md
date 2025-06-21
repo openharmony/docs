@@ -6,7 +6,7 @@
 >
 > - 本模块接口从API version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
-> - 示例效果请以真机运行为准，当前IDE预览器不支持。
+> - 示例效果请以真机运行为准，当前DevEco Studio预览器不支持。
 
 ## 属性
 
@@ -20,7 +20,7 @@
 
 postMessageEvent(message: WebMessage): void
 
-发送[WebMessage](./arkts-apis-webview-t.md#webmessage)类型消息给HTML5侧，必须先调用[onMessageEvent](#onmessageevent9)，否则会发送失败。完整示例代码参考[postMessage](./arkts-apis-webview-WebviewController.md#postmessage)。
+发送[WebMessage](./arkts-apis-webview-t.md#webmessage)类型消息给HTML5侧，必须先调用[onMessageEvent](#onmessageevent)，否则会发送失败。完整示例代码参考[postMessage](./arkts-apis-webview-WebviewController.md#postmessage)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 

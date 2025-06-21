@@ -7,6 +7,8 @@
 >  - 该组件嵌套List子组件滚动时，若List不设置宽高，则默认全部加载，在对性能有要求的场景下建议指定List的宽高。
 >  - 该组件滚动的前提是主轴方向大小小于内容大小。
 >  - Scroll组件[通用属性clip](ts-universal-attributes-sharp-clipping.md)的默认值为true。
+>  - Scroll组件的高度超出屏幕显示范围时，可以通过设置通用属性[layoutWeight](ts-universal-attributes-size.md#layoutweight)让Scroll高度适应主轴的剩余空间。
+>  - 手指触摸屏幕时，会停止当前触摸范围内所有滚动组件的滚动动画（[scrollTo](#scrollto)和[scrollToIndex](#scrolltoindex)接口触发的滚动动画除外），包括边缘回弹动画。
 
 
 ## 子组件
@@ -230,7 +232,7 @@ initialOffset(value: OffsetOptions)
 | Horizontal | 仅支持水平方向滚动。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | Vertical   | 仅支持竖直方向滚动。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | None       | 不可滚动。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| Free<sup>(deprecated) </sup> | 支持竖直或水平方向滚动。<br/> 从API version 9开始废弃。|
+| Free<sup>(deprecated) </sup> | 支持竖直或水平方向滚动。<br/> 从API version 9开始废弃，无替代接口。|
 
 ## ScrollSnapOptions<sup>10+</sup>对象说明
 
@@ -258,15 +260,23 @@ initialOffset(value: OffsetOptions)
 
 onScrollFrameBegin(event: OnScrollFrameBeginCallback)
 
-每帧开始滚动时触发，事件参数传入即将发生的滚动量，事件处理函数中可根据应用场景计算实际需要的滚动量并作为事件处理函数的返回值返回，Scroll将按照返回值的实际滚动量进行滚动。
+该接口回调时，事件参数传入即将发生的滚动量，事件处理函数中可根据应用场景计算实际需要的滚动量并作为事件处理函数的返回值返回，Scroll将按照返回值的实际滚动量进行滚动。
 
 支持offsetRemain为负值。
 
 若通过onScrollFrameBegin事件和scrollBy方法实现容器嵌套滚动，需设置子滚动节点的EdgeEffect为None。如Scroll嵌套List滚动时，List组件的edgeEffect属性需设置为EdgeEffect.None。
 
-触发该事件的条件：
+满足以下任一条件时触发该事件：
 
-1、滚动组件触发滚动时触发，包括键鼠操作等其他触发滚动的输入设置。<br/>2、调用除fling接口外的其他滚动控制接口时不触发。<br/>3、越界回弹不触发。<br/>4、拖动滚动条不触发。
+1. 用户交互（如手指滑动、键鼠操作等）触发滚动。
+2. Scroll惯性滚动。
+3. 调用[fling](#fling12)接口触发滚动。
+
+不触发该事件的条件：
+
+1. 调用除[fling](#fling12)接口外的其他滚动控制接口。
+2. 越界回弹。
+3. 拖动滚动条。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -571,6 +581,11 @@ scrollTo(options: [ScrollOptions](#scrolloptions18对象说明))
 | ----- | ---- | ---- | --------- |
 | options | [ScrollOptions](#scrolloptions18对象说明) | 是    | 滑动到指定位置的参数。 
 
+>  **说明：**
+>
+> ScrollTo动画速度大于200vp/s时，滚动组件区域内的组件不响应点击事件。
+>
+
 ### scrollEdge
 
 scrollEdge(value: Edge, options?: ScrollEdgeOptions)
@@ -669,7 +684,9 @@ scrollToIndex(value: number, smooth?: boolean, align?: ScrollAlign, options?: Sc
 
 >  **说明：**
 >
->  仅支持ArcList、Grid、List、WaterFlow组件。
+> 1.仅支持ArcList、Grid、List、WaterFlow组件。
+>
+> 2.在LazyForEach、ForEach、Repeat刷新数据源时，需确保在数据刷新完成之后再调用此接口。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -858,7 +875,7 @@ getItemIndex(x: number, y: number): number
 
 | 名称   | 类型  | 必填 | 说明              |
 | ----- | ------ | ------ | ----------------- |
-| extraOffset | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否 | 滑动到指定Index的额外偏移量。 |
+| extraOffset | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否 | 滑动到指定Index的额外偏移量。如果值为正数，则向底部额外偏移；如果值为负数，则向顶部额外偏移。 |
 
 ## ScrollPageOptions<sup>14+</sup>对象说明
 

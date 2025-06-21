@@ -47,7 +47,7 @@ import { freeInstall } from '@kit.AbilityKit';
 | GET_BUNDLE_SUMMARY | 0x00000002 | 获取应用包pack.info的bundle摘要信息。  |
 | GET_MODULE_SUMMARY | 0x00000004 | 获取应用包pack.info的module摘要信息。  |
 
-## freeInstall.setHapModuleUpgradeFlag
+## setHapModuleUpgradeFlag
 
 setHapModuleUpgradeFlag(bundleName: string, moduleName: string, upgradeFlag: UpgradeFlag, callback: AsyncCallback\<void>):void
 

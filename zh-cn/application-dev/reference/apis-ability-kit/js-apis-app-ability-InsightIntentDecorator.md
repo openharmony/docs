@@ -32,7 +32,7 @@ import { InsightIntentLink, InsightIntentPage, InsightIntentFunctionMethod, Insi
 
 ## @InsightIntentLink
 
-使用该装饰器装饰当前应用的uri链接，可以将该uri链接定义为意图，便于AI入口通过定义的意图快速跳转到当前应用。该装饰器支持的参数参见[LinkIntentDecoratorInfo](#functionintentdecoratorinfo)。
+使用该装饰器装饰当前应用的uri链接，可以将该uri链接定义为意图，便于AI入口通过定义的意图快速跳转到当前应用。该装饰器支持的参数参见[LinkIntentDecoratorInfo](#linkintentdecoratorinfo)。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -45,7 +45,7 @@ import { InsightIntentLink, InsightIntentPage, InsightIntentFunctionMethod, Insi
 以自定义意图为例：自定义意图的parameters需要传入标准的JSON Schema数据结构。
 
 ```ts
-import { InsightIntentLink } from '@kit.AbilityKit';
+import { InsightIntentLink, LinkParamCategory } from '@kit.AbilityKit';
 
 @InsightIntentLink({
   intentName: 'PlayMusic',
@@ -53,10 +53,15 @@ import { InsightIntentLink } from '@kit.AbilityKit';
   intentVersion: '1.0.1',
   displayName: '播放歌曲',
   displayDescription: '播放音乐意图',
-  icon: $r("sys.float.window_shadow_config"),
+  icon: $r('sys.float.window_shadow_config'),
   llmDescription: '支持传递歌曲名称，播放音乐',
   keywords: ['音乐播放', '播放歌曲', 'PlayMusic'],
   uri: 'https://www.example.com/music/',
+  paramMappings: [{
+    paramName: 'songName',
+    paramMappingName: 'music',
+    paramCategory: LinkParamCategory.LINK
+  }],
   parameters: {
     "schema": "http://json-schema.org/draft-07/schema#",
     "type": "object",
@@ -71,9 +76,30 @@ import { InsightIntentLink } from '@kit.AbilityKit';
     },
     "required": ["songName"],
     "additionalProperties": false
-  }
+  },
+  result: {
+    "type": "object",
+    "propertyNames": {
+      "enum": [
+        "code",
+        "result"
+      ]
+    },
+    "required": [
+      "code",
+      "result"
+    ],
+    "properties": {
+      "code": {
+        "description": "执行结果码",
+        "type": "number"
+      },
+      "result": {}
+    }
+  },
+  example: '{songName: Song}'
 })
-export class ClassForFunc {
+export class ClassForLink {
   private _playback: string = 'intention_test';
 
   public set playback(value: string) {
@@ -87,6 +113,7 @@ export class ClassForFunc {
   constructor(playback: string) {
     this._playback = playback;
   }
+
   static Function1(playbackProgress:number, playback?: number): void {
     console.log('Function1'+ playbackProgress);
   }
@@ -107,7 +134,7 @@ export class ClassForFunc {
 
 > **说明：**
 >
-> 如果根据schema与intentVersion字段，在标准意图列表存在匹配的标准意图，系统会将intentName、llmDescription、keywords、parameters字段均设置为标准意图的相应字段值。
+> 如果根据schema与intentVersion字段，在标准意图列表存在匹配的标准意图，系统会将intentName、llmDescription、keywords、parameters、result、example字段均设置为标准意图的相应字段值。
 
 | 名称               | 类型            | 只读         | 可选 | 说明                                                         |
 | ------------------ | ----------------| ---------- | ---- | ------------------------------------------------------------ |
@@ -118,9 +145,11 @@ export class ClassForFunc {
 | displayDescription | string         | 否        | 是   | 表示在意图框架中显示的意图描述。                                       |
 | schema             | string         | 否        | 是   | 表示标准意图的名称。                  |
 | icon               | ResourceStr | 否   | 是   | 表示意图图标。<br/>- 当取值为字符串类型时，表示图标读取网络资源。<br/>- 当取值为[Resource](../../reference/apis-localization-kit/js-apis-resource-manager.md)时，表示图标读取本地资源。 |
-| llmDescription     | string      | 否           | 是   | 表示意图的功能，用于大型语言模型理解该意图。在标准意图的情况下，其取值会使用该字段在标准意图中定义的值。                  |
-| keywords           | string[]     | 否          | 是   | 表示意图的搜索关键字。在标准意图的情况下，其取值会使用该字段在标准意图中定义的值。                                       |
-| parameters         | Record<string, Object>| 否 | 是   | 表示意图参数的数据格式声明，用于意图调用时定义入参的数据格式。在标准意图的情况下，其取值会使用该字段在标准意图中定义的值。取值参见[各垂域意图schema](https://developer.huawei.com/consumer/cn/doc/service/intents-schema-0000001901962713) |
+| llmDescription     | string      | 否           | 是   | 表示意图的功能，用于大型语言模型理解该意图。                  |
+| keywords           | string[]     | 否          | 是   | 表示意图的搜索关键字。                                       |
+| parameters         | Record<string, Object>| 否 | 是   | 表示意图参数的数据格式声明，用于意图调用时定义入参的数据格式。取值参见[各垂域意图Schema](https://developer.huawei.com/consumer/cn/doc/service/intents-schema-0000001901962713) |
+| result           | Record<string, Object>     | 否          | 是   | 表示意图调用返回结果的数据格式声明，用于定义意图调用返回结果的数据格式。                                       |
+| example         | string | 否 | 是   | 表示意图调用的调用参数样例。             |
 
 ## LinkIntentDecoratorInfo
 
@@ -155,7 +184,22 @@ LinkIntentParamMapping是[@InsightIntentLink](#insightintentlink)装饰器的意
 | ---------------- | ------ | ----| ---- | -------------------------------------- |
 | paramName        | string | 否 | 否   | 表示意图参数的名称。                       |
 | paramMappingName | string | 否 | 是   | 表示意图参数映射名称。                     |
-| paramCategory    | string | 否 | 是   | 表示意图参数类别，值可以是“link”或“want”。<br/>若意图参数在uri链接中使用，则赋值为“link”。系统处理“link”类别的意图参数时，获取paramName字段对应的意图参数映射名称，并将该意图参数映射名称拼接到uri链接的末尾(以键值对的形式key=value，key为意图参数映射名称，value为意图参数值)。<br/>若意图参数需要以[Want](./js-apis-app-ability-want.md)形式传递给应用，则赋值为“want”。系统处理“want”类别的意图参数时，获取paramName字段对应的意图参数映射名称，并将该意图参数映射名称及取值通过[Want](./js-apis-app-ability-want.md)的parameters字段进行传递。  |
+| paramCategory    | [LinkParamCategory](#linkparamcategory) | 否 | 是   | 表示意图参数类别。<br/>若意图参数类别取值为[LINK](#linkparamcategory)，系统获取paramName字段对应的意图参数映射名称，并将该意图参数映射名称拼接到uri链接的末尾(以键值对的形式key=value，key为意图参数映射名称，value为意图参数值)。<br/>若意图参数类别为[WANT](#linkparamcategory)，系统获取paramName字段对应的意图参数映射名称，并将该意图参数映射名称及取值通过[Want](./js-apis-app-ability-want.md)的parameters字段进行传递。  |
+
+## LinkParamCategory
+
+[@InsightIntentLink](#insightintentlink)装饰器的意图参数类别，用于定义意图参数的传递形式。
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| LINK  | 'link' | 表示意图参数类别为'link'。意图参数将被拼接到uri链接的末尾，以uri链接的形式传给应用。 |
+| WANT  | 'want' | 表示意图参数类别为'want'。意图参数将通过[Want](./js-apis-app-ability-want.md)的parameters字段传给应用。 |
 
 ## @InsightIntentPage
 
@@ -252,7 +296,7 @@ PageIntentDecoratorInfo继承自[IntentDecoratorInfo](#intentdecoratorinfo)，�
 **示例：**
 
 ```ts
-import {  InsightIntentFunction, InsightIntentFunctionMethod } from '@kit.AbilityKit';
+import { InsightIntentFunction, InsightIntentFunctionMethod } from '@kit.AbilityKit';
 
 @InsightIntentFunction()
 export class ClassForFuncDemo {
@@ -262,7 +306,7 @@ export class ClassForFuncDemo {
   intentVersion: '1.0.1',
   displayName: '查询天气',
   displayDescription: '显示天气信息',
-  icon: $r("sys.plural.selecttitlebar_accessibility_message_desc_new"),
+  icon: $r('sys.plural.selecttitlebar_accessibility_message_desc_new'),
   llmDescription: 'Get weather of an location',
   parameters: {
     "schema": "http://json-schema.org/draft-07/schema#",
@@ -297,23 +341,6 @@ export class ClassForFuncDemo {
 
 **原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
 
-## EntryIntentDecoratorInfo
-
-EntryIntentDecoratorInfo继承自[IntentDecoratorInfo](#intentdecoratorinfo)，用于描述[@InsightIntentEntry](#insightintententry)装饰器支持的参数。
-
-**模型约束**：此接口仅可在Stage模型下使用。
-
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
-
-**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
-
-**属性：**
-
-| 名称               | 类型         | 只读       | 可选 | 说明                                                         |
-| ------------------ | -------------| --------- | ---- | ------------------------------------------------------------ |
-| abilityName        | string       | 否        | 否   | 表示与意图绑定的Ability名称。                                  |
-| executeMode        | [insightIntent.ExecuteMode](./js-apis-app-ability-insightIntent.md#executemode)[]| 否        | 否   | 表示意图调用执行模式。即拉起绑定的Ability时支持的执行模式。 |
-
 ## @InsightIntentEntry
 
 使用该装饰器装饰一个继承自[InsightIntentEntryExecutor](./js-apis-app-ability-InsightIntentEntryExecutor.md)的类，并配置拉起Ability时支持的执行模式，便于AI入口拉起绑定的Ability组件时，执行对应的意图操作。该装饰器支持的参数参见[EntryIntentDecoratorInfo](#entryintentdecoratorinfo)。
@@ -339,10 +366,10 @@ const LOG_TAG: string = 'testTag-EntryIntent';
   intentVersion: '1.0.1',
   displayName: '播放歌曲',
   displayDescription: '播放音乐意图',
-  icon: $r("app.media.app_icon"),
+  icon: $r('app.media.app_icon'),
   llmDescription: '支持传递歌曲名称，播放音乐',
   keywords: ['音乐播放', '播放歌曲', 'PlayMusic'],
-  abilityName: "EntryAbility",
+  abilityName: 'EntryAbility',
   executeMode: [insightIntent.ExecuteMode.UI_ABILITY_FOREGROUND],
   parameters: {
     "schema": "http://json-schema.org/draft-07/schema#",
@@ -370,9 +397,9 @@ export default class PlayMusicDemo extends InsightIntentEntryExecutor<string> {
     storage.setOrCreate('songName', this.songName);
     // 根据executeMode参数的不同情况，提供不同拉起PlayMusicPage页面的方式。
     if (this.executeMode == insightIntent.ExecuteMode.UI_ABILITY_FOREGROUND) {
-      this.windowStage?.loadContent("pages/PlayMusicPage", storage);
+      this.windowStage?.loadContent('pages/PlayMusicPage', storage);
     } else if (this.executeMode == insightIntent.ExecuteMode.UI_EXTENSION_ABILITY) {
-      this.uiExtensionSession?.loadContent("pages/PlayMusicPage", storage);
+      this.uiExtensionSession?.loadContent('pages/PlayMusicPage', storage);
     }
     // 定义意图的执行结果
     let result: insightIntent.IntentResult<string> = {
@@ -385,3 +412,20 @@ export default class PlayMusicDemo extends InsightIntentEntryExecutor<string> {
   }
 }
 ```
+
+## EntryIntentDecoratorInfo
+
+EntryIntentDecoratorInfo继承自[IntentDecoratorInfo](#intentdecoratorinfo)，用于描述[@InsightIntentEntry](#insightintententry)装饰器支持的参数。
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
+**属性：**
+
+| 名称               | 类型         | 只读       | 可选 | 说明                                                         |
+| ------------------ | -------------| --------- | ---- | ------------------------------------------------------------ |
+| abilityName        | string       | 否        | 否   | 表示与意图绑定的Ability名称。                                  |
+| executeMode        | [insightIntent.ExecuteMode](./js-apis-app-ability-insightIntent.md#executemode)[]| 否        | 否   | 表示意图调用执行模式。即拉起绑定的Ability时支持的执行模式。 |

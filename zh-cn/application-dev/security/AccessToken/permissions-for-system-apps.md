@@ -4664,7 +4664,7 @@
 
 **起始版本**：18
 
-### ohos.permission.UPDATE_FONT
+## ohos.permission.UPDATE_FONT
 
 允许应用安装和卸载字体。
 

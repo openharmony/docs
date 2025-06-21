@@ -2443,6 +2443,53 @@ try {
 }
 ```
 
+### setImmersiveEffect<sup>20+</sup>
+
+setImmersiveEffect(effect: ImmersiveEffect): void
+
+设置输入法应用的沉浸效果。
+- 只有在[启用沉浸式模式](#setimmersivemode15)时，才能使用渐变模式和流光模式。
+- 只有在启用渐变模式时，才能使用流光模式。
+- 未启用渐变模式时，渐变高度必须为0px。
+- 只有系统应用才能设置流光模式。
+- 必须先调用以下任一接口，才能调用当前接口：
+  - [adjustPanelRect](#adjustpanelrect12)(支持API version 12)
+  - [adjustPanelRect](#adjustpanelrect15)(支持API version 15)
+  - [resize](#resize10)(支持API version 10)
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明     |
+| -------- | ---------------------- | ---- | -------- |
+| effect | [ImmersiveEffect](#immersiveeffect20) | 是   | 沉浸效果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 801  |capability not supported.                          |
+| 12800002   |input method engine error. Possible causes:1.input method panel not created. 2.the input method application does not subscribe to related events. |
+| 12800013   |window manager service error.                          |
+| 12800020   |invalid immersive effect. 1.The gradient mode and the fluid light mode can only be used when the immersive mode is enabled. 2.The fluid light mode can only be used when the gradient mode is enabled. 3.When the gradient mode is not enabled, the gradient height can only be 0. |
+| 12800021   |this operation is allowed only after adjustPanelRect or resize is called. |
+
+**示例：**
+
+```ts
+try {
+  let effect : inputMethodEngine.ImmersiveEffect = {
+    gradientHeight: 100,
+    gradientMode: inputMethodEngine.GradientMode.LINEAR_GRADIENT
+  }
+  panel.setImmersiveMode(effect);
+} catch (err) {
+  console.error(`Failed to setImmersiveMode: code:${err.code}, message:${err.message}`);
+}
+```
 
 ## KeyboardController
 
@@ -4780,6 +4827,7 @@ try {
 | placeholder<sup>20+</sup> | string | 是 | 是 | 编辑框设置的占位符信息。|
 | abilityName<sup>20+</sup> | string | 是 | 是 | 编辑框设置的ability名称。|
 | capitalizeMode<sup>20+</sup> | [CapitalizeMode](#capitalizemode20) | 是 | 是 | 编辑框设置大小写模式。如果没有设置或设置非法值，默认不进行任何首字母大写处理。|
+| gradientMode<sup>20+</sup> | [GradientMode](#gradientmode20) | 是 | 是 | 渐变模式。如果没有设置或设置非法值，默认不使用渐变模式。|
 
 ## KeyEvent
 
@@ -4912,6 +4960,28 @@ try {
 | MOUSE | 1 | 表示键盘请求是由鼠标操作触发的。 |
 | TOUCH | 2 | 表示键盘请求是由触摸操作触发的。 |
 | OTHER | 20 | 表示键盘请求是由其他原因触发的。 |
+
+## GradientMode<sup>20+</sup>
+
+枚举，输入法渐变模式。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+| 名称         | 值 | 说明               |
+| ------------ | -- | ------------------ |
+| NONE | 0 | 不使用渐变模式。 |
+| LINEAR_GRADIENT | 1 | 线性渐变。 |
+
+## ImmersiveEffect<sup>20+</sup>
+
+沉浸效果。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+| 名称   | 类型                                  | 只读 | 可选 | 说明           |
+| ------ | ------------------------------------ | ---- | ---- | -------------- |
+| gradientHeight   | number                      | 否   | 否   | 渐变高度，不能超过屏幕高度的15%。|
+| gradientMode | [GradientMode](#gradientmode20) | 否   | 否   | 渐变模式。 |
 
 ## TextInputClient<sup>(deprecated)</sup>
 
