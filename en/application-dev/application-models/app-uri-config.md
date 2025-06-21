@@ -31,7 +31,7 @@ URIs can be expressed in different formats based on the available fields. Among 
 
 > **NOTE**
 > - The scheme of a third-party application cannot be the same as that of a system application. Otherwise, the third-party application cannot be started using the URI.
-> - If multiple applications are configured with the same URLs, these applications will be matched during application redirection, and a dialog box will be displayed for uses to select. For better user experience, you can use the **path** field to distinguish the application to start. For example, use **https://www.example.com/path1** to start target application 1 and use **https://www.example.com/path2** to start target application 2.
+> - If multiple applications are configured with the same URLs, these applications will be matched during application redirection, and a dialog box will be displayed for users to select. For better user experience, you can use the **path** field to distinguish the application to start. For example, use **https://www.example.com/path1** to start target application 1 and use **https://www.example.com/path2** to start target application 2.
 
 
 ### Description of linkFeature
@@ -53,7 +53,7 @@ The use of the **linkFeature** field enables an application to deliver a more us
     |RoutePlan|Plans a route.|
     |PlaceSearch|Searches a location.|
 
-2. One-touch return: When a user switches from application A to application B, application B calls the [quick return API](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextbacktocallerabilitywithresult12) to return to application A. For example, if application A is redirected to the payment page of application B and application B has applied for the linkfeature of payment, the user can return to application A at one touch after finishing the payment in application B.
+2. One-touch return: When a user switches from application A to application B, application B calls the [quick return API](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#backtocallerabilitywithresult12) to return to application A. For example, if application A is redirected to the payment page of application B and application B has applied for the linkfeature of payment, the user can return to application A at one touch after finishing the payment in application B.
 
     |Value|Description|
     |---|---|

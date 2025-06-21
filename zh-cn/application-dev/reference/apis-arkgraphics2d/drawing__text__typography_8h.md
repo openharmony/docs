@@ -5,7 +5,7 @@
 
 定义绘制模块中排版相关的函数。
 
-引用文件"native_drawing/drawing_text_typography.h"
+**引用文件：** <native_drawing/drawing_text_typography.h>
 
 **库：** libnative_drawing.so
 
@@ -86,7 +86,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \* [OH_Drawing_CreateTypographyStyle](_drawing.md#oh_drawing_createtypographystyle) (void) | 创建指向OH_Drawing_TypographyStyle对象的指针。不再需要[OH_Drawing_TypographyStyle](#oh_drawing_typographystyle)时，请使用[OH_Drawing_DestroyTypographyStyle](_drawing.md#oh_drawing_destroytypographystyle)接口释放该对象的指针。  | 
+| [OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \* [OH_Drawing_CreateTypographyStyle](_drawing.md#oh_drawing_createtypographystyle) (void) | 创建指向OH_Drawing_TypographyStyle对象的指针。不再需要[OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle)时，请使用[OH_Drawing_DestroyTypographyStyle](_drawing.md#oh_drawing_destroytypographystyle)接口释放该对象的指针。  | 
 | void [OH_Drawing_DestroyTypographyStyle](_drawing.md#oh_drawing_destroytypographystyle) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*) | 释放被OH_Drawing_TypographyStyle对象占据的内存。  | 
 | void [OH_Drawing_SetTypographyTextDirection](_drawing.md#oh_drawing_settypographytextdirection) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*, int) | 设置指定排版样式中的文本方向。  | 
 | void [OH_Drawing_SetTypographyTextAlign](_drawing.md#oh_drawing_settypographytextalign) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*, int) | 设置文本对齐方式。  | 

@@ -686,6 +686,9 @@ try {
 on(type: SensorId.ORIENTATION, callback: Callback&lt;OrientationResponse&gt;, options?: Options): void
 
 Subscribes to data of the orientation sensor.
+> **NOTE**
+> 
+> Applications or services invoking this API can prompt users to use figure-8 calibration to improve the accuracy of the direction sensor. The sensor has a theoretical error of ±5 degrees, but the specific precision may vary depending on different driver implementations and algorithmic designs.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -4282,7 +4285,7 @@ Describes the timestamp of the sensor data.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
-| Name     | Type  | Readable| Writable| Description                    |
+| Name     | Type  | Read-Only| Optional| Description                    |
 | --------- | ------ | ---- | ---- | ------------------------ |
 | timestamp | number | Yes  | Yes  | Timestamp when the sensor reports data.|
 | accuracy<sup>11+</sup> | [SensorAccuracy](#sensoraccuracy11)<sup>11+</sup> | Yes  | No  | Accuracy of the sensor data.|
@@ -4293,7 +4296,7 @@ Describes the sensor information.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
-| Name           | Type| Readable| Writable| Description                  |
+| Name           | Type| Read-Only| Optional| Description                  |
 | --------------- | -------- | ---------------------- | ---------------------- | ---------------------- |
 | sensorName      | string   | Yes | No | Sensor name.           |
 | vendorName      | string   | Yes | No | Vendor of the sensor.        |
@@ -4315,7 +4318,7 @@ Describes the acceleration sensor data. It extends from [Response](#response).
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name| Type  | Readable| Writable| Description                                                      |
+| Name| Type  | Read-Only| Optional| Description                                                      |
 | ---- | ------ | ---- | ---- | ---------------------------------------------------------- |
 | x    | number | Yes  | Yes  | Acceleration along the x-axis of the device, in m/s². The value is equal to the reported physical quantity.|
 | y    | number | Yes  | Yes  | Acceleration along the y-axis of the device, in m/s². The value is equal to the reported physical quantity.|
@@ -4329,7 +4332,7 @@ Describes the linear acceleration sensor data. It extends from [Response](#respo
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name| Type  | Readable| Writable| Description                                    |
+| Name| Type  | Read-Only| Optional| Description                                    |
 | ---- | ------ | ---- | ---- | ---------------------------------------- |
 | x    | number | Yes  | Yes  | Linear acceleration along the x-axis of the device, in m/s².|
 | y    | number | Yes  | Yes  | Linear acceleration along the y-axis of the device, in m/s².|
@@ -4343,7 +4346,7 @@ Describes the uncalibrated acceleration sensor data. It extends from [Response](
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name | Type  | Readable| Writable| Description                                          |
+| Name | Type  | Read-Only| Optional| Description                                          |
 | ----- | ------ | ---- | ---- | ---------------------------------------------- |
 | x     | number | Yes  | Yes  | Uncalibrated acceleration along the x-axis of the device, in m/s².    |
 | y     | number | Yes  | Yes  | Uncalibrated acceleration along the y-axis of the device, in m/s².    |
@@ -4360,7 +4363,7 @@ Describes the gravity sensor data. It extends from [Response](#response).
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name| Type  | Readable| Writable| Description                                    |
+| Name| Type  | Read-Only| Optional| Description                                    |
 | ---- | ------ | ---- | ---- | ---------------------------------------- |
 | x    | number | Yes  | Yes  | Gravitational acceleration along the x-axis of the device, in m/s².|
 | y    | number | Yes  | Yes  | Gravitational acceleration along the y-axis of the device, in m/s².|
@@ -4376,7 +4379,7 @@ Describes the orientation sensor data. It extends from [Response](#response).
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name | Type  | Readable| Writable| Description                                                 |
+| Name | Type  | Read-Only| Optional| Description                                                 |
 | ----- | ------ | ---- | ---- | ----------------------------------------------------- |
 | alpha | number | Yes  | Yes  | Rotation angle of the device around the z-axis, in degrees. The value ranges from 0 to 360. |
 | beta  | number | Yes  | Yes  | Rotation angle of the device around the x-axis, in degrees. The value ranges from 0 to ±180.|
@@ -4390,7 +4393,7 @@ Describes the rotation vector sensor data. It extends from [Response](#response)
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name| Type  | Readable| Writable| Description             |
+| Name| Type  | Read-Only| Optional| Description             |
 | ---- | ------ | ---- | ---- | ----------------- |
 | x    | number | Yes  | Yes  | X-component of the rotation vector.|
 | y    | number | Yes  | Yes  | Y-component of the rotation vector.|
@@ -4407,7 +4410,7 @@ Describes the gyroscope sensor data. It extends from [Response](#response).
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name| Type  | Readable| Writable| Description                                                  |
+| Name| Type  | Read-Only| Optional| Description                                                  |
 | ---- | ------ | ---- | ---- | ------------------------------------------------------ |
 | x    | number | Yes  | Yes  | Angular velocity of rotation around the x-axis of the device, in rad/s. The value is equal to the reported physical quantity.|
 | y    | number | Yes  | Yes  | Angular velocity of rotation around the y-axis of the device, in rad/s. The value is equal to the reported physical quantity.|
@@ -4421,7 +4424,7 @@ Describes the uncalibrated gyroscope sensor data. It extends from [Response](#re
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name | Type  | Readable| Writable| Description                                      |
+| Name | Type  | Read-Only| Optional| Description                                      |
 | ----- | ------ | ---- | ---- | ------------------------------------------ |
 | x     | number | Yes  | Yes  | Uncalibrated angular velocity of rotation around the x-axis of the device, in rad/s.    |
 | y     | number | Yes  | Yes  | Uncalibrated angular velocity of rotation around the y-axis of the device, in rad/s.    |
@@ -4438,7 +4441,7 @@ Describes the significant motion sensor data. It extends from [Response](#respon
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name  | Type  | Readable| Writable| Description                                                        |
+| Name  | Type  | Read-Only| Optional| Description                                                        |
 | ------ | ------ | ---- | ---- | ------------------------------------------------------------ |
 | scalar | number | Yes  | Yes  | Intensity of a motion. This parameter specifies whether a device has a significant motion on three physical axes (X, Y, and Z). The value **1** is reported when the device has a significant motion.|
 
@@ -4450,7 +4453,7 @@ Describes the proximity sensor data. It extends from [Response](#response).
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name    | Type  | Readable| Writable| Description                                                      |
+| Name    | Type  | Read-Only| Optional| Description                                                      |
 | -------- | ------ | ---- | ---- | ---------------------------------------------------------- |
 | distance | number | Yes  | Yes  | Proximity between the visible object and the device monitor. The value **0** means the two are close to each other, and a value greater than 0 means that they are far away from each other.|
 
@@ -4462,7 +4465,7 @@ Describes the ambient light sensor data. It extends from [Response](#response).
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name                           | Type  | Readable| Writable| Description                                                        |
+| Name                           | Type  | Read-Only| Optional| Description                                                        |
 | ------------------------------- | ------ | ---- | ---- | ------------------------------------------------------------ |
 | intensity                       | number | Yes  | Yes  | Illumination, in lux.                                      |
 | colorTemperature<sup>12+</sup>  | number | Yes  | Yes  | Color temperature, in Kelvin. This parameter is optional. If this parameter is not supported, **undefined** is returned. If this parameter is supported, a normal value is returned.|
@@ -4476,7 +4479,7 @@ Describes the Hall effect sensor data. It extends from [Response](#response).
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name  | Type  | Readable| Writable| Description                                                        |
+| Name  | Type  | Read-Only| Optional| Description                                                        |
 | ------ | ------ | ---- | ---- | ------------------------------------------------------------ |
 | status | number | Yes  | Yes  | Hall effect sensor status. This parameter specifies whether a magnetic field exists around a device. The value **0** means that a magnetic field does not exist, and a value greater than **0** means the opposite.|
 
@@ -4488,7 +4491,7 @@ Describes the magnetic field sensor data. It extends from [Response](#response).
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name| Type  | Readable| Writable| Description                        |
+| Name| Type  | Read-Only| Optional| Description                        |
 | ---- | ------ | ---- | ---- | ---------------------------- |
 | x    | number | Yes  | Yes  | Magnetic field strength on the x-axis, in μT.|
 | y    | number | Yes  | Yes  | Magnetic field strength on the y-axis, in μT.|
@@ -4502,7 +4505,7 @@ Describes the uncalibrated magnetic field sensor data. It extends from [Response
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name | Type  | Readable| Writable| Description                                  |
+| Name | Type  | Read-Only| Optional| Description                                  |
 | ----- | ------ | ---- | ---- | -------------------------------------- |
 | x     | number | Yes  | Yes  | Uncalibrated magnetic field strength on the x-axis, in μT.    |
 | y     | number | Yes  | Yes  | Uncalibrated magnetic field strength on the y-axis, in μT.    |
@@ -4519,7 +4522,7 @@ Describes the pedometer sensor data. It extends from [Response](#response).
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name | Type  | Readable| Writable| Description            |
+| Name | Type  | Read-Only| Optional| Description            |
 | ----- | ------ | ---- | ---- | ---------------- |
 | steps | number | Yes  | Yes  | Number of steps a user has walked.|
 
@@ -4531,7 +4534,7 @@ Describes the humidity sensor data. It extends from [Response](#response).
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name    | Type  | Readable| Writable| Description                                                     |
+| Name    | Type  | Read-Only| Optional| Description                                                     |
 | -------- | ------ | ---- | ---- | --------------------------------------------------------- |
 | humidity | number | Yes  | Yes  | Ambient relative humidity, in a percentage (%).|
 
@@ -4543,7 +4546,7 @@ Describes the pedometer detection sensor data. It extends from [Response](#respo
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name  | Type  | Readable| Writable| Description                                                        |
+| Name  | Type  | Read-Only| Optional| Description                                                        |
 | ------ | ------ | ---- | ---- | ------------------------------------------------------------ |
 | scalar | number | Yes  | Yes  | Pedometer detection. This parameter specifies whether a user takes a step. The value **0** means that the user does not take a step, and **1** means that the user takes a step.|
 
@@ -4555,7 +4558,7 @@ Describes the ambient temperature sensor data. It extends from [Response](#respo
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name       | Type  | Readable| Writable| Description                      |
+| Name       | Type  | Read-Only| Optional| Description                      |
 | ----------- | ------ | ---- | ---- | -------------------------- |
 | temperature | number | Yes  | Yes  | Ambient temperature, in degree Celsius.|
 
@@ -4567,7 +4570,7 @@ Describes the barometer sensor data. It extends from [Response](#response).
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name    | Type  | Readable| Writable| Description                  |
+| Name    | Type  | Read-Only| Optional| Description                  |
 | -------- | ------ | ---- | ---- | ---------------------- |
 | pressure | number | Yes  | Yes  | Atmospheric pressure, in units of hPa.|
 
@@ -4579,7 +4582,7 @@ Describes the heart rate sensor data. It extends from [Response](#response).
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name     | Type  | Readable| Writable| Description                                   |
+| Name     | Type  | Read-Only| Optional| Description                                   |
 | --------- | ------ | ---- | ---- | --------------------------------------- |
 | heartRate | number | Yes  | Yes  | Heart rate, in beats per minute (bpm).|
 
@@ -4591,7 +4594,7 @@ Describes the wear detection sensor data. It extends from [Response](#response).
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name | Type  | Readable| Writable| Description                                            |
+| Name | Type  | Read-Only| Optional| Description                                            |
 | ----- | ------ | ---- | ---- | ------------------------------------------------ |
 | value | number | Yes  | Yes  | Whether the device is being worn. The value **1** means that the device is being worn, and **0** means the opposite.|
 
@@ -4604,7 +4607,7 @@ Describes the sensor data reporting frequency.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
-| Name    | Type                                                       | Readable| Writable| Description                                                        |
+| Name    | Type                                                       | Read-Only| Optional| Description                                                        |
 | -------- | ----------------------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
 | interval | number\|[SensorFrequency](#sensorfrequency11)<sup>11+</sup> | Yes  | Yes  | Frequency at which a sensor reports data. The default value is 200,000,000 ns. The maximum and minimum values of this parameter are determined by the reporting frequency supported by the hardware. If the configured frequency is greater than the maximum value, the maximum value is used for data reporting. If the configured frequency is less than the minimum value, the minimum value is used for data reporting.|
 
@@ -4630,7 +4633,7 @@ Describes the response for setting the rotation matrix.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
-| Name       | Type               | Readable| Writable| Description      |
+| Name       | Type               | Read-Only| Optional| Description      |
 | ----------- | ------------------- | ---- | ---- | ---------- |
 | rotation    | Array&lt;number&gt; | Yes  | Yes  | Rotation matrix.|
 | inclination | Array&lt;number&gt; | Yes  | Yes  | Inclination matrix.|
@@ -4642,7 +4645,7 @@ Describes the coordinate options.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
-| Name| Type  | Readable| Writable| Description       |
+| Name| Type  | Read-Only| Optional| Description       |
 | ---- | ------ | ---- | ---- | ----------- |
 | x    | number | Yes  | Yes  | X coordinate direction.|
 | y    | number | Yes  | Yes  | Y coordinate direction.|
@@ -4654,7 +4657,7 @@ Describes a geomagnetic response object.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
-| Name           | Type  | Readable| Writable| Description                                              |
+| Name           | Type  | Read-Only| Optional| Description                                              |
 | --------------- | ------ | ---- | ---- | -------------------------------------------------- |
 | x               | number | Yes  | Yes  | North component of the geomagnetic field.                                  |
 | y               | number | Yes  | Yes  | East component of the geomagnetic field.                                  |
@@ -4670,7 +4673,7 @@ Describes the geographical location.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
-| Name     | Type  | Readable| Writable| Description      |
+| Name     | Type  | Read-Only| Optional| Description      |
 | --------- | ------ | ---- | ---- | ---------- |
 | latitude  | number | Yes  | Yes  | Latitude.    |
 | longitude | number | Yes  | Yes  | Longitude.    |

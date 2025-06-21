@@ -384,7 +384,7 @@ If error 14800011 is thrown, you need to rebuild the database and restore data t
    }
    ```
 
-5. Back up the database in the same directory. <br>Two backup modes are available: manual backup and automatic backup (available only for system applications). For details, see [Backing Up an RDB Store](data-backup-and-restore.md#backing-up-an-rdb store).
+5. Back up the database in the same directory. <br>Two backup modes are available: manual backup and automatic backup (available only for system applications). For details, see [Backing Up an RDB Store](data-backup-and-restore.md#backing-up-an-rdb-store).
 
    Example: Perform manual backup of an RDB store.
 

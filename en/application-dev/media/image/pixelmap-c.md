@@ -1,6 +1,6 @@
 # Using Image_NativeModule for PixelMap Operations
 
-You can use the **Pixelmap** class to create, operation and release a PixelMap, and obtain its width, height, pixel format, alpha type, and row stride.
+You can use the **Pixelmap** class to create, operate, and release a PixelMap, and obtain its width, height, pixel format, alpha type, and row stride.
 
 ## How to Develop
 

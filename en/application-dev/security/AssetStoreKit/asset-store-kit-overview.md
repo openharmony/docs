@@ -14,7 +14,7 @@ The AES256-GCM algorithm is used to encrypt and decrypt assets. The following ac
   * The asset encryption/decryption also protects the integrity of the asset owner identity. Even if the owner of the asset is tampered with, attackers cannot obtain data of other services.
 
 * Group-based access control:
-  * You can add multiple applications of the same developer to a group and set the ground ID when adding assets. The applications in the same group can access data with each other.
+  * You can add multiple applications of the same developer to a group and set the group ID when adding assets. The applications in the same group can access data with each other.
   * The group information consists of the developer ID and group ID. The developer ID does not need to be configured. The group ID is configured during application development. For details, see [Tags in the Configuration File](../../quick-start/app-configuration-file.md#tags-in-the-configuration-file). When an application is released, it is signed by a private key to ensure the group ID integrity.
   * You can configure multiple groups for an application and allocate assets to different groups based on their sharing scope. This allows fine-grained group-based access control.
 

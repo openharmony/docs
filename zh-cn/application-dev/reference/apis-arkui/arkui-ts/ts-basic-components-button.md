@@ -555,12 +555,13 @@ struct SwipeGestureExample {
 @Component
 struct buttonTestDemo {
   @State txt: string = 'overflowTextOverlengthTextOverflow.Clip';
-  @State widthShortSize: number = 210;
+  @State widthShortSize: number = 205;
 
   build() {
     Row() {
       Column() {
         Button(this.txt)
+          .type(ButtonType.Capsule)
           .width(this.widthShortSize)
           .height(100)
           .backgroundColor(0x317aff)
@@ -647,7 +648,7 @@ struct ButtonExample {
         Button('Normal', { buttonStyle: ButtonStyleMode.NORMAL, role: ButtonRole.ERROR });
         Button('Textual', { buttonStyle: ButtonStyleMode.TEXTUAL, role: ButtonRole.ERROR });
       }
-    }.height(200).padding({ left: 35, right: 35, top: 35 })
+    }.height(200).padding({ left: 15, right: 15, top: 35 })
   }
 }
 ```

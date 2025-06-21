@@ -11,7 +11,7 @@ Provides the C APIs of the network connection module for network management.
 ## Summary
 
 
-### File
+### Files
 
 | Name| Description| 
 | -------- | -------- |
@@ -28,7 +28,7 @@ Provides the C APIs of the network connection module for network management.
 | [NetConn_NetAddr](_net_conn___net_addr.md) | Network address.| 
 | [NetConn_Route](_net_conn___route.md) | Route configuration.| 
 | [NetConn_HttpProxy](_net_conn___http_proxy.md) | Proxy configuration.| 
-| [NetConn_ConnectionProperties](_net_conn___connection_properties.md) | Network connection information.| 
+| [NetConn_ConnectionProperties](_net_conn___connection_properties.md) | Defines the network connection properties.| 
 | [NetConn_NetHandleList](_net_conn___net_handle_list.md) | Network list.| 
 | [NetConn_NetConnCallback](_net_conn___net_conn_callback.md) | Defines network status callbacks.|
 | [NetConn_NetSpecifier](_net_conn___net_specifier.md) | Defines the network feature set, including a network capability set and a network ID.|
@@ -58,7 +58,7 @@ Provides the C APIs of the network connection module for network management.
 | [NetConn_NetAddr](#netconn_netaddr) | Network address.| 
 | [NetConn_Route](#netconn_route) | Route configuration.| 
 | [NetConn_HttpProxy](#netconn_httpproxy) | Proxy configuration.| 
-| [NetConn_ConnectionProperties](#netconn_connectionproperties) | Network connection information.| 
+| [NetConn_ConnectionProperties](#netconn_connectionproperties) | Network connection properties.| 
 | [NetConn_NetHandleList](#netconn_nethandlelist) | Network list.| 
 | (\*[OH_NetConn_CustomDnsResolver](#oh_netconn_customdnsresolver)) (const char \*host, const char \*serv, const struct addrinfo \*hint, struct addrinfo \*\*res) | Pointer to the custom DNS resolver.| 
 | [NetConn_NetConnCallback](#netconn_netconncallback) | Defines network status callbacks.|
@@ -113,7 +113,7 @@ typedef struct NetConn_ConnectionProperties NetConn_ConnectionProperties
 
 **Description**
 
-Network connection information.
+Defines the network connection properties.
 
 **Since**: 11
 

@@ -35,7 +35,7 @@ Obtains the EID of the embedded universal integrated circuit card (eUICC) in the
 
 | Type                 | Description                               |
 | --------------------- | ---------------------------------- |
-| string | EID of the eUICC in the specified slot.|
+| Promise\<string\> | EID of the eUICC in the specified slot.|
 
 **Error codes**
 

@@ -11,11 +11,13 @@ Network Kit provides the following functions:
 - [Ethernet connection](net-ethernet.md): provides wired network capabilities, which allow you to set the IP address, subnet mask, gateway, and Domain Name System (DNS) server of a wired network.
 <!--DelEnd-->
 
+<!--RP1-->
+<!--RP1End-->
 
 ## Constraints
 
 To use the functions of the network management module, you must obtain the permissions listed in the following table.
-Before requesting permissions, ensure that the [basic principles for using permissions](../security/AccessToken/app-permission-mgmt-overview.md#basic-principles-for-using-permissions) are met. Declare the permissions required by your application. For details, see [Declaring Permissions in the Configuration File](accesstoken-guidelines.md#declaring-permissions-in-the configuration-file).
+Before requesting permissions, ensure that the [basic principles for using permissions](../security/AccessToken/app-permission-mgmt-overview.md#basic-principles-for-using-permissions) are met. Declare the permissions required by your application. For details, see [Declaring Permissions](../security/AccessToken/declare-permissions.md).
 
 | Permission                          | Description                                  |
 | -------------------------------- | -------------------------------------- |

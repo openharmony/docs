@@ -406,6 +406,10 @@ dispose(): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+> **说明：**
+>
+> ComponentContent的组件在挂载时，调用dispose会触发组件的aboutToDisappear回调。
+
 **示例：** 
 
 ```ts
@@ -484,7 +488,7 @@ updateConfiguration(): void
 
 **示例：**
 ```ts
-import { NodeController, FrameNode, ComponentContent } from '@kit.ArkUI';
+import { NodeController, FrameNode, ComponentContent, UIContext, FrameCallback } from '@kit.ArkUI';
 import { AbilityConstant, Configuration, EnvironmentCallback, ConfigurationConstant } from '@kit.AbilityKit';
 
 @Builder
@@ -523,6 +527,12 @@ class MyNodeController extends NodeController {
   }
 }
 
+class MyFrameCallback extends FrameCallback {
+  onFrame() {
+    updateColorMode();
+  }
+}
+
 function updateColorMode() {
   componentContentMap.forEach((value, index) => {
     value.updateConfiguration();
@@ -541,7 +551,7 @@ struct FrameNodeTypeTest {
       },
       onConfigurationUpdated: (config: Configuration): void => {
         console.log('onConfigurationUpdated ' + JSON.stringify(config));
-        updateColorMode();
+        this.getUIContext()?.postFrameCallback(new MyFrameCallback());
       }
     }
     // 注册监听回调

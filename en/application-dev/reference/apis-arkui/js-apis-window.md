@@ -234,7 +234,7 @@ Describes the window properties.
 
 | Name                                 | Type                 | Read-Only| Optional| Description                                                                                                    |
 | ------------------------------------- | ------------------------- | ---- | ---- |--------------------------------------------------------------------------------------------------------|
-| windowRect<sup>7+</sup>               | [Rect](#rect7)             | No  | No  | Window size, which can be obtained from the page lifecycle [onPageShow](./arkui-ts/ts-custom-component-lifecycle.md#onpageshow) or the application lifecycle [onForeground](../apis-ability-kit/js-apis-app-ability-uiAbility.md#onforeground).<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                                 |
+| windowRect<sup>7+</sup>               | [Rect](#rect7)             | No  | No  | Window size, which can be obtained from the page lifecycle [onPageShow](./arkui-ts/ts-custom-component-lifecycle.md#onpageshow) or the application lifecycle [onForeground](../apis-ability-kit/js-apis-app-ability-uiAbility.md).<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                                 |
 | drawableRect<sup>11+</sup>            | [Rect](#rect7)             | No  | No  | Size of the rectangle that can be drawn in the window. The upper boundary and left boundary are calculated relative to the window. In the stage model, this API must be used after [loadContent()](#loadcontent9) or [setUIContent()](#setuicontent9) is called to load the page content.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                 |
 | type<sup>7+</sup>                     | [WindowType](#windowtype7) | No  | No  | Window type.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                 |
 | isFullScreen                          | boolean                   | No  | No  | Whether the window is displayed in full-screen mode. The default value is **false**. The value **true** means that the window is displayed in full-screen mode, and **false** means the opposite.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                                                                                 |
@@ -10051,7 +10051,7 @@ Sets whether the main window or the child window is in full-screen mode. This AP
 
 > **NOTE**
 >
-> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [setWindowSystemBarEnable()](#setwindowsystembarenable9-1) and [setWindowLayoutFullScreen()](#setwindowlayoutfullscreen9-1) to implement the full-screen mode.
+> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [setWindowSystemBarEnable()](#setwindowsystembarenable9) and [setWindowLayoutFullScreen()](#setwindowlayoutfullscreen9) to implement the full-screen mode.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -10162,7 +10162,7 @@ Sets whether the main window layout or the child window layout is immersive. Thi
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setWindowLayoutFullScreen()](#setwindowlayoutfullscreen9-1) instead.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setWindowLayoutFullScreen()](#setwindowlayoutfullscreen9) instead.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -10275,7 +10275,7 @@ The return value does not indicate that the status bar and <!--RP15-->three-butt
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setWindowSystemBarEnable()](#setwindowsystembarenable9-1) instead.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setWindowSystemBarEnable()](#setwindowsystembarenable9) instead.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -10394,7 +10394,7 @@ This API does not take effect when it is called by a child window.
 
 > **NOTE**
 >
-> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [setWindowSystemBarProperties()](#setwindowsystembarproperties9-1) instead.
+> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [setWindowSystemBarProperties()](#setwindowsystembarproperties9) instead.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -11494,7 +11494,7 @@ Describes the parameters used for creating a child window.
 
 Implements a window manager, which manages each basic window unit, that is, [Window](#window) instance.
 
-Before calling any of the following APIs, you must use [onWindowStageCreate()](../apis-ability-kit/js-apis-app-ability-uiAbility.md#onwindowstagecreate) to create a **WindowStage** instance.
+Before calling any of the following APIs, you must use [onWindowStageCreate()](../apis-ability-kit/js-apis-app-ability-uiAbility.md) to create a **WindowStage** instance.
 
 ### getMainWindow<sup>9+</sup>
 
@@ -12487,7 +12487,7 @@ export default class EntryAbility extends UIAbility {
 
 on(eventType: 'windowStageClose', callback: Callback&lt;void&gt;): void
 
-Subscribes to the click event on the close button in the three-button navigation bar of the main window. This event is triggered when the close button in the three-button navigation bar of the main window is clicked. The registered lifecycle callback function [UIAbility.onPrepareToTerminate](../apis-ability-kit/js-apis-app-ability-uiAbility.md#onpreparetoterminate10) is not executed.
+Subscribes to the click event on the close button in the three-button navigation bar of the main window. This event is triggered when the close button in the three-button navigation bar of the main window is clicked. The registered lifecycle callback function [UIAbility.onPrepareToTerminate](../apis-ability-kit/js-apis-app-ability-uiAbility.md) is not executed.
 
 If the event is subscribed to multiple times, only the most recently subscribed-to event takes effect.
 

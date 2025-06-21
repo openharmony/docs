@@ -14,7 +14,7 @@ Provides APIs for creating, mapping, unmapping, and destroying an **Ashmem** obj
 ## Summary
 
 
-### File
+### Files
 
 | Name| Description| 
 | -------- | -------- |
@@ -43,7 +43,7 @@ Provides APIs for creating, mapping, unmapping, and destroying an **Ashmem** obj
 | [OH_DDK_CreateAshmem](#oh_ddk_createashmem) (const uint8_t *name, [DDK_Ashmem](_ddk_ashmem.md) \*\*ashmem) | Creates an **Ashmem** object. | 
 | [OH_DDK_MapAshmem](#oh_ddk_mapashmem) ([DDK_Ashmem](_ddk_ashmem.md) \*ashmem, const uint8_t ashmemMapType) | Maps an **Ashmem** object. | 
 | [OH_DDK_UnmapAshmem](#oh_ddk_unmapashmem) ([DDK_Ashmem](_ddk_ashmem.md) \*ashmem) | Unmaps an **Ashmem** object. | 
-| [OH_DDK_DestoryAshmem](#oh_ddk_destoryashmem) ([DDK_Ashmem](_ddk_ashmem.md) \*ashmem) | Destroys an **Ashmem** object. | 
+| [OH_DDK_DestroyAshmem](#oh_ddk_destroyashmem) ([DDK_Ashmem](_ddk_ashmem.md) \*ashmem) | Destroys an **Ashmem** object. | 
 
 
 ## Enum Description
@@ -147,7 +147,7 @@ Unmaps an **Ashmem** object.
 - [DDK_NULL_PTR](#ddk_retcode) if the input **ashmem** is a null pointer.
 - [DDK_FAILURE] (#ddk_retcode) if the file descriptor of the shared memory is invalid.
 
-### OH_DDK_DestoryAshmem()
+### OH_DDK_DestroyAshmem()
 
 
 ```
@@ -156,7 +156,7 @@ DDK_RetCode OH_DDK_DestroyAshmem(DDK_Ashmem *ashmem);
 
 **Description**
 
-Destroys the created shared memory.
+Destroys an **Ashmem** object.
 
 **Parameters**
 

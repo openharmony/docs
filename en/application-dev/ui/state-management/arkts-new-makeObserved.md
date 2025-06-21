@@ -472,7 +472,7 @@ class Info {
 }
 
 let test: Record<string, number> = { "a": 123 };
-let testJsonStr :string = JSON.stringify(test);
+let testJsonStr: string = JSON.stringify(test);
 let test2: Record<string, Info> = { "a": new Info(20) };
 let test2JsonStr: string = JSON.stringify(test2);
 

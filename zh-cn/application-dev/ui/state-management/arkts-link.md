@@ -133,148 +133,148 @@ struct ParentComponent {
 
 2. \@Link装饰的变量禁止本地初始化，否则编译期会报错。
 
-  ```ts
-  // 错误写法，编译报错
-  @Link count: number = 10;
-
-  // 正确写法
-  @Link count: number;
-  ```
+    ```ts
+    // 错误写法，编译报错
+    @Link count: number = 10;
+  
+    // 正确写法
+    @Link count: number;
+    ```
 
 3. \@Link装饰的变量的类型要和数据源类型保持一致，否则框架会抛出运行时错误。
 
-  【反例】
-
-  ```ts
-  class Info {
-    info: string = 'Hello';
-  }
-
-  class Cousin {
-    name: string = 'Hello';
-  }
-
-  @Component
-  struct Child {
-    // 错误写法，@Link与@State数据源类型不一致
-    @Link test: Cousin;
-
-    build() {
-      Text(this.test.name)
+    【反例】
+  
+    ```ts
+    class Info {
+      info: string = 'Hello';
     }
-  }
-
-  @Entry
-  @Component
-  struct LinkExample {
-    @State info: Info = new Info();
-
-    build() {
-      Column() {
-        // 错误写法，@Link与@State数据源类型不一致
-        Child({test: new Cousin()})
+  
+    class Cousin {
+      name: string = 'Hello';
+    }
+  
+    @Component
+    struct Child {
+      // 错误写法，@Link与@State数据源类型不一致
+      @Link test: Cousin;
+  
+      build() {
+        Text(this.test.name)
       }
     }
-  }
-  ```
-
-  【正例】
-
-  ```ts
-  class Info {
-    info: string = 'Hello';
-  }
-
-  @Component
-  struct Child {
-    // 正确写法
-    @Link test: Info;
-
-    build() {
-      Text(this.test.info)
-    }
-  }
-
-  @Entry
-  @Component
-  struct LinkExample {
-    @State info: Info = new Info();
-
-    build() {
-      Column() {
-        // 正确写法
-        Child({test: this.info})
+  
+    @Entry
+    @Component
+    struct LinkExample {
+      @State info: Info = new Info();
+  
+      build() {
+        Column() {
+          // 错误写法，@Link与@State数据源类型不一致
+          Child({test: new Cousin()})
+        }
       }
     }
-  }
-  ```
+    ```
+
+    【正例】
+
+    ```ts
+    class Info {
+      info: string = 'Hello';
+    }
+  
+    @Component
+    struct Child {
+      // 正确写法
+      @Link test: Info;
+  
+      build() {
+        Text(this.test.info)
+      }
+    }
+  
+    @Entry
+    @Component
+    struct LinkExample {
+      @State info: Info = new Info();
+  
+      build() {
+        Column() {
+          // 正确写法
+          Child({test: this.info})
+        }
+      }
+    }
+    ```
 
 4. \@Link装饰的变量仅能被状态变量初始化，不能使用常规变量初始化，否则编译期会给出告警，并在运行时崩溃。
 
-  【反例】
-
-  ```ts
-  class Info {
-    info: string = 'Hello';
-  }
-
-  @Component
-  struct Child {
-    @Link msg: string;
-    @Link info: string;
-
-    build() {
-      Text(this.msg + this.info)
+    【反例】
+  
+    ```ts
+    class Info {
+      info: string = 'Hello';
     }
-  }
-
-  @Entry
-  @Component
-  struct LinkExample {
-    @State message: string = 'Hello';
-    @State info: Info = new Info();
-
-    build() {
-      Column() {
-        // 错误写法，常规变量不能初始化@Link
-        Child({msg: 'World', info: this.info.info})
+  
+    @Component
+    struct Child {
+      @Link msg: string;
+      @Link info: string;
+  
+      build() {
+        Text(this.msg + this.info)
       }
     }
-  }
-  ```
-
-  【正例】
-
-  ```ts
-  class Info {
-    info: string = 'Hello';
-  }
-
-  @Component
-  struct Child {
-    @Link msg: string;
-    @Link info: Info;
-
-    build() {
-      Text(this.msg + this.info.info)
-    }
-  }
-
-  @Entry
-  @Component
-  struct LinkExample {
-    @State message: string = 'Hello';
-    @State info: Info = new Info();
-
-    build() {
-      Column() {
-        // 正确写法
-        Child({msg: this.message, info: this.info})
+  
+    @Entry
+    @Component
+    struct LinkExample {
+      @State message: string = 'Hello';
+      @State info: Info = new Info();
+  
+      build() {
+        Column() {
+          // 错误写法，常规变量不能初始化@Link
+          Child({msg: 'World', info: this.info.info})
+        }
       }
     }
-  }
-  ```
-
+    ```
+  
+    【正例】
+  
+    ```ts
+    class Info {
+      info: string = 'Hello';
+    }
+  
+    @Component
+    struct Child {
+      @Link msg: string;
+      @Link info: Info;
+  
+      build() {
+        Text(this.msg + this.info.info)
+      }
+    }
+  
+    @Entry
+    @Component
+    struct LinkExample {
+      @State message: string = 'Hello';
+      @State info: Info = new Info();
+  
+      build() {
+        Column() {
+          // 正确写法
+          Child({msg: this.message, info: this.info})
+        }
+      }
+    }
+    ```
+  
 5. \@Link不支持装饰Function类型的变量，框架会抛出运行时错误。
 
 
@@ -307,7 +307,7 @@ struct GreenButton {
       .width(this.greenButtonState.width)
       .height(40)
       .backgroundColor('#64bb5c')
-      .fontColor('#FFFFFF，90%')
+      .fontColor('#FFFFFF')
       .onClick(() => {
         if (this.greenButtonState.width < 700) {
           // 更新class的属性，变化可以被观察到同步回父组件
@@ -329,7 +329,7 @@ struct YellowButton {
       .width(this.yellowButtonState)
       .height(40)
       .backgroundColor('#f7ce00')
-      .fontColor('#FFFFFF，90%')
+      .fontColor('#FFFFFF')
       .onClick(() => {
         // 子组件的简单类型可以同步回父组件
         this.yellowButtonState += 40.0;
@@ -348,26 +348,26 @@ struct ShufflingContainer {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
         // 简单类型从父组件@State向子组件@Link数据同步
         Button('Parent View: Set yellowButton')
-          .width(312)
+          .width(this.yellowButtonProp)
           .height(40)
           .margin(12)
-          .fontColor('#FFFFFF，90%')
+          .fontColor('#FFFFFF')
           .onClick(() => {
             this.yellowButtonProp = (this.yellowButtonProp < 700) ? this.yellowButtonProp + 40 : 100;
           })
         // class类型从父组件@State向子组件@Link数据同步
         Button('Parent View: Set GreenButton')
-          .width(312)
+          .width(this.greenButtonState.width)
           .height(40)
           .margin(12)
-          .fontColor('#FFFFFF，90%')
+          .fontColor('#FFFFFF')
           .onClick(() => {
             this.greenButtonState.width = (this.greenButtonState.width < 700) ? this.greenButtonState.width + 100 : 100;
           })
         // class类型初始化@Link
-        GreenButton({ greenButtonState: $greenButtonState }).margin(12)
+        GreenButton({ greenButtonState: this.greenButtonState }).margin(12)
         // 简单类型初始化@Link
-        YellowButton({ yellowButtonState: $yellowButtonProp }).margin(12)
+        YellowButton({ yellowButtonState: this.yellowButtonProp }).margin(12)
       }
     }
   }

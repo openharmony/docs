@@ -168,7 +168,7 @@
     ```ts
     // xxx.ets
     import fs from '@ohos.file.fs';
-    import { Want, AbilityConstant } from '@kit.AbilityKit';
+    import { Want, AbilityConstant, UIAbility } from '@kit.AbilityKit';
     import { BusinessError } from '@kit.BasicServicesKit';
 
     export default class EntryAbility extends UIAbility {

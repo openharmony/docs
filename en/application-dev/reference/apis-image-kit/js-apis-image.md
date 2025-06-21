@@ -8321,7 +8321,7 @@ Defines image source initialization options.
 
 | Name             | Type                              | Read Only| Optional| Description              |
 | ----------------- | ---------------------------------- | ---- | ---- | ------------------ |
-| sourceDensity     | number                             | No  | No  | Pixel density of the image resource, in ppi.<br>If **desiredSize** is not set in [DecodingOptions](# decodingoptions7) and **SourceOptions.sourceDensity** and **DecodingOptions.fitDensity** are not 0, the PixelMap output after decoding will be scaled.<br>The formula for calculating the width after scaling is as follows (the same applies to the height): (width * fitDensity + (sourceDensity >> 1)) / sourceDensity.|
+| sourceDensity     | number                             | No  | No  | Pixel density of the image resource, in ppi.<br>If **desiredSize** is not set in [DecodingOptions](#decodingoptions7) and **SourceOptions.sourceDensity** and **DecodingOptions.fitDensity** are not 0, the PixelMap output after decoding will be scaled.<br>The formula for calculating the width after scaling is as follows (the same applies to the height): (width * fitDensity + (sourceDensity >> 1)) / sourceDensity.|
 | sourcePixelFormat | [PixelMapFormat](#pixelmapformat7) | No  | Yes  | Image pixel format. The default value is **UNKNOWN**.    |
 | sourceSize        | [Size](#size)                      | No  | Yes  | Image pixel size. The default value is null.    |
 

@@ -8,7 +8,7 @@ After the errorManager API is used to listen for exceptions and errors, the appl
 
 ## Available APIs
 
-Application error management APIs are provided by the [errorManager](../reference/apis-ability-kit/js-apis-app-ability-errorManager.md#) module. For details about how to import the module, see [Development Example](#development-example).
+Application error management APIs are provided by the [errorManager](../reference/apis-ability-kit/js-apis-app-ability-errorManager.md) module. For details about how to import the module, see [Development Example](#development-example).
 
 **Application Error Management APIs**
 
@@ -24,7 +24,7 @@ Application error management APIs are provided by the [errorManager](../referenc
 | on(type: 'loopObserver', timeout: number, observer: LoopObserver): void<sup>12+</sup> | Registers an observer for the message processing duration of the main thread. A callback will be invoked if a main thread jank event occurs.<br>This API can be called only in the main thread. A new observer will overwrite the previous one. |
 | off(type: 'loopObserver', observer?: LoopObserver): void<sup>12+</sup> | Unregisters an observer for the message processing duration of the main thread in LoopObserver mode. |
 | on(type: 'freeze', observer: FreezeObserver): void<sup>18+</sup> | Registers an observer for the main thread freeze event of the application. This API can be called only in the main thread. A new observer will overwrite the previous one. |
-| off(type: 'freeze', observer?: FreezeObserver): void<sup>18+</sup> | Unregisters an observer for the message processing duration of the main thread in LoopObserver mode. |
+| off(type: 'freeze', observer?: FreezeObserver): void<sup>18+</sup> | Unregisters an observer for the message processing duration of the main thread in FreezeObserver mode. |
 
 When an asynchronous callback is used, the return value can be processed directly in the callback. If a promise is used, the return value can also be processed in the promise in a similar way. For details about the result codes, see [Result Codes for Unregistering an Observer](#result-codes-for-unregistering-an-observer).
 

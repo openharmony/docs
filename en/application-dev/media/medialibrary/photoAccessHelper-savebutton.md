@@ -47,7 +47,7 @@ struct Index {
 
 For details about the **SaveButton** component, see [SaveButton](../../reference/apis-arkui/arkui-ts/ts-security-components-savebutton.md).
 
-This following walks you through on how to create an image using the **SaveButton** security component.
+The following walks you through on how to create an image using the **SaveButton** security component.
 
 **How to Develop**
 
@@ -101,7 +101,7 @@ In addition to specifying the asset in the application sandbox directory using *
 
 ## Saving a Media Asset Using an Authorization Pop-Up
 
-This following walks you through on how to save an image using an authorization pop-up.
+The following walks you through on how to save an image using an authorization pop-up.
 
 **How to Develop**
 

@@ -63,7 +63,7 @@ With the router event, a touch on the widget can start the associated applicatio
   }
   ```
   
-- In the **onCreate** or **onNewWant** lifecycle callback of the UIAbility, use the input parameter **want** to obtain the ID (**formID**) and other information of the widget, and then call the [updateForm](../reference/apis-form-kit/js-apis-app-form-formProvider.md#updateform) API to update the widget.
+- In the **onCreate** or **onNewWant** lifecycle callback of the UIAbility, use the input parameter **want** to obtain the ID (**formID**) and other information of the widget, and then call the [updateForm](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formproviderupdateform) API to update the widget.
   
   ```ts
   import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
@@ -178,7 +178,7 @@ With the router event, a touch on the widget can start the associated applicatio
   }
   ```
   
-- Listen for the method required by the call event in the **onCreate** callback of the UIAbility, and then call the [updateForm](../reference/apis-form-kit/js-apis-app-form-formProvider.md#updateform) API in the corresponding method to update the widget.
+- Listen for the method required by the call event in the **onCreate** callback of the UIAbility, and then call the [updateForm](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formproviderupdateform) API in the corresponding method to update the widget.
   
   ```ts
   import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';

@@ -916,10 +916,10 @@ error: signature verification failed due to not trusted app source.
     hdc shell bm get -u
     ```
 
-    2. 打开IDE安装路径，在sdk目录下找到UnsgnedDebugProfileTemplate.json配置文件。
+    2. 打开DevEco Studio安装路径，在sdk目录下找到UnsgnedDebugProfileTemplate.json配置文件。
 
     ```
-    IDE安装路径\sdk\版本号或者default\openharmony\toolchains\lib\
+    DevEco Studio安装路径\sdk\版本号或者default\openharmony\toolchains\lib\
 
     例如：xxxx\Huawei\DevEco Studio\sdk\HarmonyOS-NEXT-DB1\openharmony\toolchains\lib\
     例如：xxxx\Huawei\DevEco Studio\sdk\default\openharmony\toolchains\lib\
@@ -2297,7 +2297,7 @@ error: bundle cannot be installed because the appId is not same with preinstalle
 **处理步骤**
 
 1. 重新签名，保证应用签名信息中的[密钥](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section462703710326)和[APP ID](https://developer.huawei.com/consumer/cn/doc/app/agc-help-createharmonyapp-0000001945392297)任意一个与预置应用的一致。
-2. 修改安装应用的[bundleName](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/app-configuration-file.md)，确保与预置应用的不一致。
+2. 修改安装应用的[bundleName](../quick-start/app-configuration-file.md)，确保与预置应用的不一致。
 
 ### 9568418 应用设置了卸载处置规则，不允许直接卸载
 **错误信息**
@@ -2560,7 +2560,7 @@ error: install parse native so failed.
 
 **处理步骤**
 
-1. 将设备或模拟器与DevEco Studio进行连接，具体指导及要求可查看[运行应用/元服务](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-running-app)。
+1. 将设备或模拟器与DevEco Studio进行连接，具体指导及要求可查看[运行应用/元服务](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-run-device)。
 
 2. 在命令行执行如下[hdc命令](#环境要求hdc工具)，查询设备支持的Abi列表。
 

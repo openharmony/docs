@@ -68,11 +68,11 @@ The **native_drm_common.h** file declares the DRM data types.
 | Name| Description| 
 | -------- | -------- |
 | typedef enum [DRM_EventType](_drm.md#drm_eventtype-1) [DRM_EventType](_drm.md#drm_eventtype) | Defines an enum for the types of events that can be subscribed to.| 
-| typedef enum [DRM_ContentProtectionLevel](_drm.md#drm_contentprotectionlevel-1) [DRM_ContentProtectionLevel](#drm_contentprotectionlevel) | Defines an enum for the content protection levels.| 
-| typedef enum [DRM_MediaKeyType](_drm.md#drm_mediakeytype-1) [DRM_MediaKeyType](#drm_mediakeytype) | Defines an enum for the types of media keys.| 
-| typedef enum [DRM_MediaKeyRequestType](_drm.md#drm_mediakeyrequesttype-1) [DRM_MediaKeyRequestType](#drm_mediakeyrequesttype) | Defines an enum for the types of media key requests.| 
-| typedef enum [DRM_OfflineMediaKeyStatus](_drm.md#drm_offlinemediakeystatus-1) [DRM_OfflineMediaKeyStatus](#drm_offlinemediakeystatus) | Defines an enum for the statuses of offline media keys.| 
-| typedef enum [DRM_CertificateStatus](_drm.md#drm_certificatestatus-1) [DRM_CertificateStatus](#drm_certificatestatus) | Defines an enum for the DRM certificate statuses.| 
+| typedef enum [DRM_ContentProtectionLevel](_drm.md#drm_contentprotectionlevel-1) [DRM_ContentProtectionLevel](_drm.md#drm_contentprotectionlevel-1) | Defines an enum for the content protection levels.| 
+| typedef enum [DRM_MediaKeyType](_drm.md#drm_mediakeytype-1) [DRM_MediaKeyType](_drm.md#drm_mediakeytype-1) | Defines an enum for the types of media keys.| 
+| typedef enum [DRM_MediaKeyRequestType](_drm.md#drm_mediakeyrequesttype-1) [DRM_MediaKeyRequestType](_drm.md#drm_mediakeyrequesttype-1) | Defines an enum for the types of media key requests.| 
+| typedef enum [DRM_OfflineMediaKeyStatus](_drm.md#drm_offlinemediakeystatus-1) [DRM_OfflineMediaKeyStatus](_drm.md#drm_offlinemediakeystatus-1) | Defines an enum for the statuses of offline media keys.| 
+| typedef enum [DRM_CertificateStatus](_drm.md#drm_certificatestatus-1) [DRM_CertificateStatus](_drm.md#drm_certificatestatus-1) | Defines an enum for the DRM certificate statuses.| 
 | typedef struct [DRM_MediaKeyRequestInfo](_d_r_m___media_key_request_info.md) [DRM_MediaKeyRequestInfo](_drm.md#drm_mediakeyrequestinfo) | Defines a struct for the information about a media key request.| 
 | typedef struct [DRM_MediaKeyRequest](_d_r_m___media_key_request.md) [DRM_MediaKeyRequest](_drm.md#drm_mediakeyrequest) | Defines a struct for a media key request.| 
 | typedef struct [DRM_Statistics](_d_r_m___statistics.md) [DRM_Statistics](_drm.md#drm_statistics) | Defines a struct for the statistical information of a media key system.| 

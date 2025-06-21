@@ -37,7 +37,7 @@ You can use the APIs to query and bind peripheral devices so as to use the custo
 
 The following sample code is a demo that illustrates how to develop both the client and server and implement IPC.
 
-1. Create an OpenHarmony project. For details, see [Creating a Project] (https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-create-new-project).
+1. Create a project following instructions in [Creating a Project](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-create-new-project).
 
     **NOTE**
 

@@ -6,15 +6,15 @@
 
 ## 2203001 Failed to Create a VPN
 
-**Error Information**
+**Error Message**
 
 VPN creation denied. Check the user type.
 
-**Description**
+**Error Description**
 
 This error code is reported if a VPN fails to be created.
 
-**Possible Causes**
+**Possible Cause**
 
 The login user does not have the operation permission. Specifically, the GUEST user does not have the permission to call the **setUp** API.
 
@@ -25,15 +25,15 @@ Check the type of the login user.
 
 ## 2203002 VPN Already Exists
 
-**Error Information**
+**Error Message**
 
 VPN already exists.
 
-**Description**
+**Error Description**
 
 This error code is reported if a VPN already exists.
 
-**Possible Causes**
+**Possible Cause**
 
 The VPN has been created.
 
@@ -44,15 +44,15 @@ Call the **destroy** API to destroy the existing VPN, and then call the **setUp*
 
 ## 2203004 Invalid Descriptor
 
-**Error Information**
+**Error Message**
 
 Invalid socket file descriptor.
 
-**Description**
+**Error Description**
 
 This error code is reported if the socket file descriptor is invalid.
 
-**Possible Causes**
+**Possible Cause**
 
 A TCP socket connection fails to be established.
 

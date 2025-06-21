@@ -42,7 +42,7 @@ Subscribes to operating hand change events.
 
 | Name  | Type                            | Mandatory| Description                                                        |
 | -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                           | Yes  | Event type. Event type. This parameter has a fixed value of **operatingHandChanged**.|
+| type     | string                           | Yes  | Event type. This parameter has a fixed value of **operatingHandChanged**.|
 | callback | Callback&lt;[OperatingHandStatus](#operatinghandstatus)&gt; | Yes  | Callback used to return the operating hand status.                                  |
 
 **Error codes**
@@ -81,7 +81,7 @@ Unsubscribes from operating hand change events.
 
 | Name  | Type                            | Mandatory| Description                                                        |
 | -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                           | Yes  | Event type. Event type. This parameter has a fixed value of **operatingHandChanged**.|
+| type     | string                           | Yes  | Event type. This parameter has a fixed value of **operatingHandChanged**.|
 | callback | Callback&lt;[OperatingHandStatus](#operatinghandstatus)&gt; | No  | Callback used to return the operating hand status.                                  |
 
 **Error codes**

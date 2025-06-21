@@ -1315,7 +1315,7 @@ getFilteredInspectorTree(filters?: Array\<string\>): string
 
 | 参数名  | 类型            | 必填 | 说明                                                         |
 | ------- | --------------- | ---- | ------------------------------------------------------------ |
-| filters | Array\<string\> | 否   | 需要获取的组件属性的过滤列表。目前仅支持过滤字段：<br/>"id"：组件唯一标识。<br/>"src"：资源来源。 <br/>"content"：元素、组件或对象所包含的信息或数据。<br/>"editable"：是否可编辑。<br/>"scrollable"：是否可滚动。<br/>"selectable"：是否可选择。<br/>"focusable"：是否可聚焦。<br/>"focused"：是否已聚焦。<br/>如果在filters参数中包含以上一个或者多个字段，则未包含的字段会在组件属性查询结果中被过滤掉。如果用户未传入filters参数或者filters参数为空数组，则以上字段全部不会在组件属性查询结果中被过滤掉。<br/>其余字段仅供测试场景使用。 |
+| filters | Array\<string\> | 否   | 需要获取的组件属性的过滤列表。目前仅支持过滤字段：<br/>"id"：组件唯一标识。<br/>"src"：资源来源。 <br/>"content"：元素、组件或对象所包含的信息或数据。<br/>"editable"：是否可编辑。<br/>"scrollable"：是否可滚动。<br/>"selectable"：是否可选择。<br/>"focusable"：是否可聚焦。<br/>"focused"：是否已聚焦。<br/>从API version 20开始，支持该过滤字段：<br/>"isLayoutInspector"：是否显示自定义组件的属性。<br/>如果在filters参数中包含以上一个或者多个字段，则未包含的字段会在组件属性查询结果中被过滤掉。如果用户未传入filters参数或者filters参数为空数组，则以上字段全部不会在组件属性查询结果中被过滤掉。<br/>其余字段仅供测试场景使用。 |
 
 **返回值：** 
 
@@ -1336,6 +1336,69 @@ getFilteredInspectorTree(filters?: Array\<string\>): string
 <!--code_no_check-->
 ```ts
 uiContext.getFilteredInspectorTree(['id', 'src', 'content']);
+```
+
+<!--code_no_check-->
+```ts
+// xxx.ets
+import { UIContext } from '@kit.ArkUI';
+@Entry
+@Component
+struct ComponentPage {
+  loopConsole(inspectorStr: string, i: string) {
+    console.log(`InsTree ${i}| type: ${JSON.parse(inspectorStr).$type}, ID: ${JSON.parse(inspectorStr).$ID}`)
+    if (JSON.parse(inspectorStr).$children) {
+      i += '-'
+      for (let index = 0; index < JSON.parse(inspectorStr).$children.length; index++) {
+        this.loopConsole(JSON.stringify(JSON.parse(inspectorStr).$children[index]), i)
+      }
+    }
+  }
+
+  build() {
+    Column() {
+      Button('content').onClick(() => {
+        const uiContext: UIContext = this.getUIContext();
+        let inspectorStr = uiContext.getFilteredInspectorTree(['content']);
+        console.log(`InsTree : ${inspectorStr}`)
+        inspectorStr = JSON.stringify(JSON.parse(inspectorStr))
+        this.loopConsole(inspectorStr, '-')
+      })
+      Button('isLayoutInspector').onClick(() => {
+        const uiContext: UIContext = this.getUIContext();
+        let inspectorStr = uiContext.getFilteredInspectorTree(['isLayoutInspector']);
+        console.log(`InsTree : ${inspectorStr}`)
+        inspectorStr = JSON.stringify(JSON.parse(inspectorStr).content)
+        this.loopConsole(inspectorStr, '-')
+      })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+当传入"content"过滤字段时，返回的JSON字符串结构如下：
+
+<!--code_no_check-->
+```ts
+InsTree : {"$type":"root","width":"720.000000","height":"1280.000000","$resolution":"1.500000","$children":[{"$type":"Column","$ID":15,"type":"build-in","$rect":"[0.00, 72.00],[720.00,1208.00]","$debugLine":"","$attrs":{},"$children":[{"$type":"Button","$ID":16,"type":"build-in","$rect":"[293.00, 72.00],[427.00,132.00]","$debugLine":"","$attrs":{}},{"$type":"Button","$ID":18,"type":"build-in","$rect":"[237.00, 132.00],[484.00,192.00]","$debugLine":"","$attrs":{}}]}]}\
+InsTree -| type: root, ID: undefined
+InsTree --| type: Column, ID: 15
+InsTree ---| type: Button, ID: 16
+InsTree ---| type: Button, ID: 18
+```
+
+从API version 20开始，当传入"isLayoutInspector"过滤字段时，返回的JSON字符串结构新增外层结构"type"与"content"，其中"content"包含未增加该字段时的原有JSON字符串结构；同时，返回值结构中增添自定义组件。返回的JSON字符串结构如下：
+
+<!--code_no_check-->
+```ts
+InsTree : {"type":"root","content":{"$type":"root","width":"720.000000","height":"1280.000000","$resolution":"1.500000","$children":[{"$type":"JsView","$ID":13,"type":"custom","state":{"observedPropertiesInfo":[],"viewInfo":{"componentName":"ComponentPage","id":14,"isV2":false,"isViewActive_":true}},"$rect":"[0.00, 72.00],[720.00,1208.00]","$debugLine":"{\"$line\":\"(0:0)\"}","viewTag":"ComponentPage","$attrs":{"viewKey":"13"},"$children":[{"$type":"Column","$ID":15, "type":"build-in","$rect":"[0.00, 72.00],[720.00,1208.00]","$debugLine":"","$attrs":{ ...
+InsTree -| type: root, ID: undefined
+InsTree --| type: JsView, ID: 13
+InsTree ---| type: Column, ID: 15
+InsTree ----| type: Button, ID: 16
+InsTree ----| type: Button, ID: 18
 ```
 
 ### getFilteredInspectorTreeById<sup>12+</sup>
@@ -3228,7 +3291,7 @@ off(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callba
 
 on(type: 'scrollEvent', callback: Callback\<observer.ScrollEventInfo\>): void
 
-监听滚动事件的开始和结束。
+监听所有滚动组件滚动事件的开始和结束。滚动组件包括[List](./arkui-ts/ts-container-list.md)、[Grid](./arkui-ts/ts-container-grid.md)、[Scroll](./arkui-ts/ts-container-scroll.md)、[WaterFlow](./arkui-ts/ts-container-waterflow.md)、[ArcList](./arkui-ts/ts-container-arclist.md)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3249,7 +3312,7 @@ on(type: 'scrollEvent', callback: Callback\<observer.ScrollEventInfo\>): void
 
 off(type: 'scrollEvent', callback?: Callback\<observer.ScrollEventInfo\>): void
 
-取消监听滚动事件的开始和结束。
+取消监听所有滚动组件滚动事件的开始和结束。滚动组件包括[List](./arkui-ts/ts-container-list.md)、[Grid](./arkui-ts/ts-container-grid.md)、[Scroll](./arkui-ts/ts-container-scroll.md)、[WaterFlow](./arkui-ts/ts-container-waterflow.md)、[ArcList](./arkui-ts/ts-container-arclist.md)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3270,7 +3333,7 @@ off(type: 'scrollEvent', callback?: Callback\<observer.ScrollEventInfo\>): void
 
 on(type: 'scrollEvent', options: observer.ObserverOptions, callback: Callback\<observer.ScrollEventInfo\>): void
 
-监听滚动事件的开始和结束。
+监听指定id的滚动组件滚动事件的开始和结束。滚动组件包括[List](./arkui-ts/ts-container-list.md)、[Grid](./arkui-ts/ts-container-grid.md)、[Scroll](./arkui-ts/ts-container-scroll.md)、[WaterFlow](./arkui-ts/ts-container-waterflow.md)、[ArcList](./arkui-ts/ts-container-arclist.md)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3292,7 +3355,7 @@ on(type: 'scrollEvent', options: observer.ObserverOptions, callback: Callback\<o
 
 off(type: 'scrollEvent', options: observer.ObserverOptions, callback?: Callback\<observer.ScrollEventInfo\>): void
 
-取消监听滚动事件的开始和结束。
+取消监听指定id的滚动组件滚动事件的开始和结束。滚动组件包括[List](./arkui-ts/ts-container-list.md)、[Grid](./arkui-ts/ts-container-grid.md)、[Scroll](./arkui-ts/ts-container-scroll.md)、[WaterFlow](./arkui-ts/ts-container-waterflow.md)、[ArcList](./arkui-ts/ts-container-arclist.md)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3315,11 +3378,11 @@ import { UIObserver } from '@kit.ArkUI';
 @Component
 struct Index {
   scroller: Scroller = new Scroller();
-  observer: UIObserver = new UIObserver();
+  observer: UIObserver = this.getUIContext().getUIObserver();
   private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7];
 
   build() {
-    Row() {
+    Column() {
       Column() {
         Scroll(this.scroller) {
           Column() {
@@ -3335,7 +3398,7 @@ struct Index {
             }, (item: string) => item)
           }.width('100%')
         }
-        .id("testId")
+        .id('testId')
         .height('80%')
       }
       .width('100%')
@@ -3356,13 +3419,13 @@ struct Index {
       Row() {
         Button('UIObserverWithId on')
           .onClick(() => {
-            this.observer.on('scrollEvent', { id:"testId" }, (info) => {
+            this.observer.on('scrollEvent', { id: 'testId' }, (info) => {
               console.info('scrollEventInfo', JSON.stringify(info));
             });
           })
         Button('UIObserverWithId off')
           .onClick(() => {
-            this.observer.off('scrollEvent', { id:"testId" });
+            this.observer.off('scrollEvent', { id: 'testId' });
           })
       }
     }
@@ -6185,6 +6248,8 @@ showDialog(options: promptAction.ShowDialogOptions): Promise&lt;promptAction.Sho
 
 **示例：**
 
+该示例通过调用showToast接口，显示文本提示框。
+
 <!--code_no_check-->
 ```ts
 import { PromptAction } from '@kit.ArkUI';
@@ -6422,32 +6487,70 @@ openCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>, options
 
 **示例：**
 
+该示例通过监听[系统环境信息](../apis-ability-kit/js-apis-app-ability-configuration.md)（系统语言、深浅色等）的变化，调用[ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) 的[update](../apis-arkui/js-apis-arkui-builderNode.md#update)和[updateConfiguration](../apis-arkui/js-apis-arkui-builderNode.md#updateconfiguration12)实现自定义弹窗的数据更新及节点的全量刷新。
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
 import { ComponentContent } from '@kit.ArkUI';
+import { AbilityConstant, Configuration, EnvironmentCallback, ConfigurationConstant } from '@kit.AbilityKit';
+import { BusinessError } from "@kit.BasicServicesKit";
+import { resourceManager } from '@kit.LocalizationKit'
 
 class Params {
   text: string = "";
+  colorMode: resourceManager.ColorMode = resourceManager.ColorMode.LIGHT
 
-  constructor(text: string) {
-    this.text = text;
+  constructor(text: string, colorMode: resourceManager.ColorMode) {
+    this.text = text
+    this.colorMode = colorMode
   }
 }
 
 @Builder
-function buildText(params: Params) {
+function BuilderDialog(params: Params) {
   Column() {
     Text(params.text)
       .fontSize(50)
       .fontWeight(FontWeight.Bold)
       .margin({ bottom: 36 })
-  }.backgroundColor('#FFF0F0F0')
+  }.backgroundColor(params.colorMode == resourceManager.ColorMode.LIGHT ? "#D5D5D5" : "#004AAF")
 }
 
 @Entry
 @Component
 struct Index {
   @State message: string = "hello";
+  contentNode: ComponentContent<Params> | null = null;
+  callbackId: number | undefined = 0;
+
+  aboutToAppear(): void {
+    let environmentCallback: EnvironmentCallback = {
+      onMemoryLevel: (level: AbilityConstant.MemoryLevel): void => {
+      },
+      onConfigurationUpdated: (config: Configuration): void => {
+        console.log("onConfigurationUpdated " + JSON.stringify(config));
+        this.getUIContext().getHostContext()?.getApplicationContext().resourceManager.getConfiguration((err,
+          config) => {
+          // 调用ComponentContent的update更新colorMode信息。
+          this.contentNode?.update(new Params(this.message, config.colorMode))
+          setTimeout(() => {
+            // 调用ComponentContent的updateConfiguration，触发节点的全量更新。
+            this.contentNode?.updateConfiguration()
+          })
+        })
+      }
+    }
+    // 注册监听系统环境变化监听器
+    this.callbackId =
+      this.getUIContext().getHostContext()?.getApplicationContext().on('environment', environmentCallback)
+    // 设置应用深浅色跟随系统
+    this.getUIContext()
+      .getHostContext()?.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET)
+  }
+
+  aboutToDisappear() {
+    // 解注册监听系统环境变化的回调
+    this.getUIContext().getHostContext()?.getApplicationContext().off('environment', this.callbackId)
+    this.contentNode?.dispose()
+  }
 
   build() {
     Row() {
@@ -6456,14 +6559,19 @@ struct Index {
           .onClick(() => {
             let uiContext = this.getUIContext();
             let promptAction = uiContext.getPromptAction();
-            let contentNode = new ComponentContent(uiContext, wrapBuilder(buildText), new Params(this.message));
-            promptAction.openCustomDialog(contentNode)
-              .then(() => {
-                console.info('succeeded');
-              })
-              .catch((error: BusinessError) => {
-                console.error(`OpenCustomDialog args error code is ${error.code}, message is ${error.message}`);
-              })
+            if (this.contentNode == null && uiContext.getHostContext() != undefined) {
+              this.contentNode = new ComponentContent(uiContext, wrapBuilder(BuilderDialog), new Params(this.message,
+                uiContext.getHostContext()!!.getApplicationContext().resourceManager.getConfigurationSync().colorMode))
+            }
+            if (this.contentNode == null) {
+              return
+            }
+            promptAction.closeCustomDialog(this.contentNode)
+            promptAction.openCustomDialog(this.contentNode).then(() => {
+              console.info("succeeded")
+            }).catch((error: BusinessError) => {
+              console.error(`OpenCustomDialog args error code is ${error.code}, message is ${error.message}`);
+            })
           })
       }
       .width('100%')
@@ -6483,6 +6591,8 @@ openCustomDialogWithController\<T extends Object>(dialogContent: ComponentConten
 通过该接口弹出的弹窗内容样式完全按照dialogContent中设置的样式显示，即相当于customdialog设置customStyle为true时的显示效果。
 
 暂不支持[isModal](js-apis-promptAction.md#basedialogoptions11) = true与[showInSubWindow](js-apis-promptAction.md#basedialogoptions11) = true同时使用。
+
+显示文本提示框并通过Promise返回其id。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -6513,6 +6623,8 @@ openCustomDialogWithController\<T extends Object>(dialogContent: ComponentConten
 | 103302 | Dialog content already exists.|
 
 **示例：**
+
+该示例通过调用openToast和closeToast接口，展示了弹出以及关闭文本提示框的功能。
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -6809,6 +6921,8 @@ presentCustomDialog(builder: CustomBuilder \| CustomBuilderWithId, controller?: 
 
 暂不支持isModal = true与showInSubWindow = true同时使用。
 
+关闭文本提示框。
+
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -6837,6 +6951,8 @@ presentCustomDialog(builder: CustomBuilder \| CustomBuilderWithId, controller?: 
 | 100001   | Internal error.                                              |
 
 **示例：**
+
+该示例通过调用showDialog接口，展示了弹出对话框以及返回对话框响应结果的功能。
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -7203,6 +7319,8 @@ openPopup\<T extends Object>(content: ComponentContent\<T>, target: TargetInfo, 
 
 **示例：**
 
+该示例通过调用openCustomDialog接口，展示了支持传入弹窗控制器与自定义弹窗绑定的功能。
+
 ```ts
 import { ComponentContent, FrameNode } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -7410,6 +7528,8 @@ openMenu\<T extends Object>(content: ComponentContent\<T>, target: TargetInfo, o
 
 **示例：**
 
+该示例通过调用closeCustomDialog接口，关闭已弹出的dialogContent对应的自定义弹窗。
+
 ```ts
 import { ComponentContent, FrameNode } from '@kit.ArkUI';
 
@@ -7500,6 +7620,8 @@ updateMenu\<T extends Object>(content: ComponentContent\<T>, options: MenuOption
 
 **示例：**
 
+该示例通过调用updateCustomDialog接口，动态调整已弹出自定义弹窗的位置。
+
 ```ts
 import { ComponentContent, FrameNode } from '@kit.ArkUI';
 
@@ -7587,6 +7709,8 @@ closeMenu\<T extends Object>(content: ComponentContent\<T>): Promise&lt;void&gt;
 | 103303 | The ComponentContent cannot be found. |
 
 **示例：**
+
+该示例通过调用openPopuo、updatePopup和closePopup接口，展示了弹出、更新以及关闭Popup的功能。
 
 ```ts
 import { ComponentContent, FrameNode } from '@kit.ArkUI';
@@ -7755,6 +7879,8 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragI
 | 100001   | Internal handling failed. |
 
 **示例：**
+
+该示例通过调用openMenu接口，展示了弹出Menu的功能。
 
 ```ts
 import { dragController } from "@kit.ArkUI";
@@ -8046,6 +8172,8 @@ setDragEventStrictReportingEnabled(enable: boolean): void
 
 **示例：**
 
+该示例通过调用updateMenu接口，展示了更新Menu箭头样式的功能。
+
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
 import { window, UIContext } from '@kit.ArkUI';
@@ -8111,6 +8239,8 @@ notifyDragStartRequest(requestStatus: dragController.DragStartRequestStatus): vo
 | requestStatus  | [dragController.DragStartRequestStatus](js-apis-arkui-dragController.md#dragstartrequeststatus18)    | 是  |定义应用是否可以发起拖拽。|
 
 **示例：**
+
+该示例通过调用closeMenu接口，展示了关闭Menu的功能。
 
 ```ts
 import { unifiedDataChannel } from '@kit.ArkData';

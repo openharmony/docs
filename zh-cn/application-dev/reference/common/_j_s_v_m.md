@@ -324,8 +324,15 @@
 | JSVM_EXTERN [JSVM_Status](#jsvm_status) [OH_JSVM_SetHandlerForOOMError](#oh_jsvm_sethandlerforoomerror) ([JSVM_VM](#jsvm_vm) vm, [JSVM_HandlerForOOMError](#jsvm_handlerforoomerror) handler) | 为OOM错误设置回调处理。当接口被重复调用时，仅最后一次生效。当传入的handler为null时，表示取消之前的设置 |
 | JSVM_EXTERN [JSVM_Status](#jsvm_status) [OH_JSVM_SetHandlerForFatalError](#oh_jsvm_sethandlerforfatalerror) ([JSVM_VM](#jsvm_vm) vm, [JSVM_HandlerForFatalError](#jsvm_handlerforfatalerror) handler) | 为Fatal错误设置回调处理。当接口被重复调用时，仅最后一次生效。当传入的handler为null时，表示取消之前的设置 |
 | JSVM_EXTERN [JSVM_Status](#jsvm_status) [OH_JSVM_SetHandlerForPromiseReject](#oh_jsvm_sethandlerforpromisereject) ([JSVM_VM](#jsvm_vm) vm, [JSVM_HandlerForPromiseReject](#jsvm_handlerforpromisereject) handler) | 为PromiseReject错误设置回调处理。当接口被重复调用时，仅最后一次生效。当传入的handler为null时，表示取消之前的设置 |
-| JSVM_EXTERN [JSVM_Status](#jsvm_status) [OH_JSVM_DefineClassWithOptions](#oh_jsvm_defineclasswithoptions) ([JSVM_Env ](#jsvm_env) env, const char \*utf8name, size_t length, [JSVM_Callback](#jsvm_callback) constructor, size_t propertyCount, const [JSVM_PropertyDescriptor](#_j_s_v_m___property_descriptor.md) \*properties, [JSVM_Value](#jsvm_value) parentClass, size_t optionCount, [JSVM_DefineClassOptions](#_j_s_v_m___define_class_options.md) options[], [JSVM_Value](#jsvm_value) \*result) | 在封装一个 C++ 类时，通过构造函数传递的 C++ 构造函数回调应该是类中的一个静态方法，该方法调用实际的类构造函数，然后根据传入的不同选项，将新的 C++ 实例封装在一个 JavaScript 对象中，并返回封装对象 |
-
+| JSVM_EXTERN [JSVM_Status](#jsvm_status) [OH_JSVM_DefineClassWithOptions](#oh_jsvm_defineclasswithoptions) ([JSVM_Env](#jsvm_env) env, const char \*utf8name, size_t length, [JSVM_Callback](#jsvm_callback) constructor, size_t propertyCount, const [JSVM_PropertyDescriptor](_j_s_v_m___property_descriptor.md) \*properties, [JSVM_Value](#jsvm_value) parentClass, size_t optionCount, [JSVM_DefineClassOptions](_j_s_v_m___define_class_options.md) options[], [JSVM_Value](#jsvm_value) \*result) | 在封装一个 C++ 类时，通过构造函数传递的 C++ 构造函数回调应该是类中的一个静态方法，该方法调用实际的类构造函数，然后根据传入的不同选项，将新的 C++ 实例封装在一个 JavaScript 对象中，并返回封装对象 |
+| [JSVM_Status](#jsvm_status) JSVM_CDECL [OH_JSVM_CreateExternalStringLatin1](#oh_jsvm_createexternalstringlatin1)([JSVM_Env](#jsvm_env) env, char \*str, size_t length, [JSVM_Finalize](#jsvm_finalize) finalizeCallback, void \*finalizeHint, [JSVM_Value](#jsvm_value) \*result, bool \*copied) | 此 API 使用 ISO-8859-1 编码的 C 字符串，创建一个外部的 JavaScript 字符串。创建外部字符串失败时会复制原生字符串。 |
+| [JSVM_Status](#jsvm_status) JSVM_CDECL [OH_JSVM_CreateExternalStringUtf16](#oh_jsvm_createexternalstringutf16)([JSVM_Env](#jsvm_env) env, char16_t \*str, size_t length, [JSVM_Finalize](#jsvm_finalize) finalizecallback,  void \*finalizeHint, [JSVM_Value](#jsvm_value) \*result, bool \*copied) | 此 API 使用 UTF16-LE 编码的 C 字符串，创建一个外部的 JavaScript 字符串。创建外部字符串失败时会复制原生字符串。 |
+| JSVM_EXTERN [JSVM_Status](#jsvm_status) [OH_JSVM_CreatePrivate](#oh_jsvm_createprivate)([JSVM_Env](#jsvm_env) env, [JSVM_Value](#jsvm_value) description, [JSVM_Data](#jsvm_data) \*result) | 创建一个 JavaScript private key 对象。 |
+| JSVM_EXTERN [JSVM_Status](#jsvm_status) [OH_JSVM_SetPrivate](#oh_jsvm_setprivate)([JSVM_Env](#jsvm_env) env, [JSVM_Value](#jsvm_value) object, [JSVM_Data](#jsvm_data) key,   [JSVM_Value](#jsvm_value) value) | 为传入的object设置一个 private 属性。 |
+| JSVM_EXTERN [JSVM_Status](#jsvm_status) [OH_JSVM_GetPrivate](#oh_jsvm_getprivate)([JSVM_Env](#jsvm_env) env, [JSVM_Value](#jsvm_value) object,  [JSVM_Data](#jsvm_data) key, [JSVM_Value](#jsvm_value) \*result) | 从传入的object获取 private key 对应的 private 属性。 |
+| JSVM_EXTERN  [JSVM_Status](#jsvm_status) [OH_JSVM_DeletePrivate](#oh_jsvm_deleteprivate)([JSVM_Env](#jsvm_env) env, [JSVM_Value](#jsvm_value) object,  [JSVM_Data](#jsvm_data) key) |  从传入的 object 上删除 private key 对应的 private 属性。 |
+| JSVM_EXTERN [JSVM_Status](#jsvm_status) [OH_JSVM_CreateDataReference](#oh_jsvm_createdatareference)([JSVM_Env](#jsvm_env) env,  [JSVM_Data](#jsvm_data) data, uint32_t initialRefcount, [JSVM_Ref](#jsvm_ref) \*result) | 创建一个对于给定 JSVM_Data 对象的引用，初始的引用计数为传入的 initialRefcount。 |
+| JSVM_EXTERN [JSVM_Status](#jsvm_status) [OH_JSVM_GetReferenceData](#oh_jsvm_getreferencedata)([JSVM_Env](#jsvm_env) env, [JSVM_Ref](#jsvm_ref) ref, [JSVM_Data](#jsvm_data) \*result) | 如果引用仍然有效，通过 result 参数返回对应的 JSVM_Data，表示与 JSVM_Ref 关联的 JavaScript 值。否则结果将为空。 |
 
 ## 宏定义说明
 
@@ -6010,6 +6017,251 @@ JSVM_EXTERN JSVM_Status OH_JSVM_DefineClassWithOptions(JSVM_Env env, const char*
 JSVM_INVALID_ARG 表示vm为空。<br/>
 
 JSVM_GENERIC_FAILURE 表示传入的utf8name | constructor | properties无效，导致执行失败。
+
+
+### OH_JSVM_CreateExternalStringLatin1()
+
+```
+JSVM_Status JSVM_CDECL OH_JSVM_CreateExternalStringLatin1(JSVM_Env env, char* str, size_t length, JSVM_Finalize finalizeCallback, void* finalizeHint, JSVM_Value* result,  bool* copied)
+```
+
+**描述**
+
+此 API 使用 ISO-8859-1 编码的 C 字符串，创建一个外部的 JavaScript 字符串。创建外部字符串失败时会复制原生字符串。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | 调用JSVM-API的环境。 | 
+| str | 指向 ISO-8859-1 编码字符串的指针。 |
+| length | 字符串的字节长度，如果是空终止字符串可以直接传入 JSVM_AUTO_LENGTH。 |
+| finalizeCallback | 可选项，是当创建的字符串被 GC 回收时会触发的回调函数。更多细节详见 JSVM_Finalize 类型说明。 |
+| finalizeHint  | 可选项，当字符串被回收时会传递给触发的 finalize callback。 |
+| result | 接收创建完成的 JavaScript 外部字符串，表示为 JSVM_Value 类型。 |
+| copied | 指示外部字符串是否成功创建的标志，为真表示创建外部字符串失败并返回一个原生 JS 字符串，否表示成功。 |
+
+**返回：**
+
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。<br/>
+
+JSVM_INVALID_ARG 表示vm为空。<br/>
+
+JSVM_GENERIC_FAILURE 表示传入的utf8name | constructor | properties无效，导致执行失败。
+
+
+### OH_JSVM_CreateExternalStringUtf16()
+
+```
+JSVM_Status JSVM_CDECL OH_JSVM_CreateExternalStringUtf16(JSVM_Env env,  char16_t* str,size_t length, JSVM_Finalize finalizecallback, void* finalizeHint, JSVM_Value* result,  bool* copied)
+```
+
+**描述**
+
+此 API 使用 UTF16-LE 编码的 C 字符串，创建一个外部的 JavaScript 字符串。创建外部字符串失败时会复制原生字符串。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | 调用JSVM-API的环境。 | 
+| str | 指向 UTF16-LE 编码字符串的指针。 |
+| length | length 字符串的字节长度，如果是空终止字符串可以直接传入 JSVM_AUTO_LENGTH。 |
+| finalizeCallback | 可选项，是当创建的字符串被 GC 回收时会触发的回调函数。更多细节详见 JSVM_Finalize 类型说明。 |
+| finalizeHint  | 可选项，当字符串被回收时会传递给触发的 finalize callback。 |
+| result | 接收创建完成的 JavaScript 外部字符串，表示为 JSVM_Value 类型。 |
+| copied | 指示外部字符串是否成功创建的标志，为真表示创建外部字符串失败并返回一个原生 JS 字符串，否表示成功。 |
+
+**返回：**
+
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。<br/>
+
+JSVM_INVALID_ARG 表示传入参数中 env, str 和 copied 中任一值为空。<br/>
+
+
+### OH_JSVM_CreatePrivate()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_CreatePrivate(JSVM_Env env,  JSVM_Value description, JSVM_Data* result)
+```
+
+**描述**
+
+创建一个 JavaScript private key 对象。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | 调用JSVM-API的环境。 | 
+| description | 可选项，它指的是要作为 private key 描述的 JavaScript 字符串。 |
+| result | 接收创建成功的 JavaScript private key 对象的指针。 |
+
+**返回：**
+
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。<br/>
+
+JSVM_INVALID_ARG 表示传入参数中 env, str 和 copied 中任一值为空。<br/>
+
+JSVM_STRING_EXPECTED 表示传入的 description 不是字符串。<br/>
+
+
+### OH_JSVM_SetPrivate()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_SetPrivate(JSVM_Env env,  JSVM_Value object, JSVM_Data key, JSVM_Value value)
+```
+
+**描述**
+
+为传入的object设置一个 private 属性。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | 调用JSVM-API的环境。 | 
+| object | 将要进行 private 属性设置的对象。 |
+| key | private 属性的 private key 对象。 |
+| value | private 属性值。 |
+
+**返回：**
+
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。<br/>
+
+JSVM_INVALID_ARG 表示任一传入参数为空或者 key 不是一个 private key 对象。<br/>
+
+JSVM_OBJECT_EXPECTED  表示传入的 object 不是一个真正的 JavaScript object。<br/>
+
+JSVM_GENERIC_FAILURE 表示设置 private 属性失败，同时没有异常产生。<br/>
+
+JSVM_PENDING_EXCPTION 表示发生了异常。<br/>
+
+
+### OH_JSVM_GetPrivate()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_GetPrivate(JSVM_Env env, JSVM_Value object, JSVM_Data key,  JSVM_Value *result)
+```
+
+**描述**
+
+从传入的object获取 private key 对应的 private 属性。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | 调用JSVM-API的环境。 | 
+| object | 获取 private 属性的对象。 |
+| key | private 属性的 private key 对象。 |
+| result | private 属性值。 |
+
+**返回：**
+
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。<br/>
+
+JSVM_INVALID_ARG 表示任一传入参数为空或者 key 不是一个 private key 对象。<br/>
+
+JSVM_OBJECT_EXPECTED  表示传入的 object 不是一个真正的 JavaScript object。<br/>
+
+JSVM_GENERIC_FAILURE 表示设置 private 属性失败，同时没有异常产生。<br/>
+
+JSVM_PENDING_EXCPTION 表示发生了异常。<br/>
+
+
+### OH_JSVM_DeletePrivate()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_DeletePrivate(JSVM_Env env, JSVM_Value object, JSVM_Data key)
+```
+
+**描述**
+
+从传入的 object 上删除 private key 对应的 private 属性。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | 调用JSVM-API的环境。 | 
+| object | 删除 private 属性的对象。 |
+| key | private 属性的 private key 对象。 |
+
+**返回：**
+
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。<br/>
+
+JSVM_INVALID_ARG 表示任一传入参数为空或者 key 不是一个 private key 对象。<br/>
+
+JSVM_OBJECT_EXPECTED  表示传入的 object 不是一个真正的 JavaScript object。<br/>
+
+JSVM_GENERIC_FAILURE 表示删除 private 属性失败，同时没有异常产生。<br/>
+
+JSVM_PENDING_EXCPTION 表示发生了异常。<br/>
+
+
+### OH_JSVM_CreateDataReference()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_CreateDataReference(JSVM_Env env, JSVM_Data data, uint32_t initialRefcount, JSVM_Ref* result)
+```
+
+**描述**
+
+创建一个对于给定 JSVM_Data 对象的引用，初始的引用计数为传入的 initialRefcount。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | 调用JSVM-API的环境。 | 
+| data | 将要创建引用的 JSVM_Data 对象。 |
+| initialRefcount | 初始引用计数值。 |
+| result | 接收新创建的对象引用，表示为 JSVM_Ref 类型。 |
+
+**返回：**
+
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。<br/>
+
+
+### OH_JSVM_GetReferenceData()
+
+```
+JSVM_EXTERN JSVM_Status OH_JSVM_GetReferenceData(JSVM_Env env, JSVM_Ref ref, JSVM_Data* result)
+```
+
+**描述**
+
+如果引用仍然有效，通过 result 参数返回对应的 JSVM_Data，表示与 JSVM_Ref 关联的 JavaScript 值。否则结果将为空。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | 调用JSVM-API的环境。 | 
+| ref | 请求相应值的JSVM_Ref。 |
+| result | JSVM_Ref 引用的 JSVM_Data。 |
+
+**返回：**
+
+返回执行状态码 JSVM_Status。 JSVM_OK 表示执行成功。<br/>
 
 
 ### OH_JSVM_ReleaseScript()

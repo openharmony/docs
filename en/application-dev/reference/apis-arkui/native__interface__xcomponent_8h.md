@@ -7,6 +7,8 @@ Declares the APIs for accessing **NativeXComponent**.
 
 **Library**: libace_ndk.z.so
 
+**Header file**: <ace/xcomponent/native_interface_xcomponent.h>
+
 **Since**: 8
 
 **Related module**: [Native XComponent](_o_h___native_x_component.md)

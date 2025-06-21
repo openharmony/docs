@@ -9,7 +9,7 @@
 Internal handling failed.  
 
 **Symptom** 
-This error code is reported if a service error occurs when a certain **metadataBinding** API called. 
+This error code is reported if a service error occurs when a certain **metadataBinding** API is called. 
 
 **Possible Cause** 
 The service is abnormal. 

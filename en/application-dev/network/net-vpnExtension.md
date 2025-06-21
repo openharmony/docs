@@ -1,10 +1,10 @@
 # VPN Extension Ability Development
 
-## Introduction
+## Overview
 
 A virtual private network (VPN) is a dedicated network established on a public network. Unlike a traditional private network, a VPN does not require an end-to-end physical link between any two nodes. It is built over a network platform (for example, Internet) provided by a public network service provider. User data is transmitted over the logical link.
 
-OpenHarmony provides the VPN Extension solution for enhanced VPN management. The following guides you through on how to develop your own VPN client.
+OpenHarmony provides the VPN Extension solution for enhanced VPN management. Currently, the VPN capabilities provided to third-party applications are primarily used for creating virtual NICs and configuring VPN routing information. The connection tunnel process and internal connection protocols need to be implemented by the applications themselves. The following guides you through on how to develop your own VPN client.
 
 > **NOTE**
 >
@@ -48,8 +48,8 @@ To enable your application to support the VPN functionality, you need to create 
 
 Next, you need to configure, start, and stop the VPN in the created **VpnExtensionAbility**.
 
-- Create a VPN tunnel. The TCP tunnel is used as an example. For details, see **TcpConnect()** in [vpn_client](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Connectivity/VPN/entry/src/main/cpp/vpn_client.cpp) demo project.
-- Use [VpnConnection.protect](../reference/apis-network-kit/js-apis-net-vpnExtension.md#protect) to enable protection for the TCP tunnel.
+- Establish a VPN tunnel. The following uses the UDP tunnel as an example. For details, see the **UdpConnect()** API in the [napi_init](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/VPNControl_Case/entry/src/main/cpp/napi_init.cpp) demo project.
+- Use [VpnConnection.protect](../reference/apis-network-kit/js-apis-net-vpnExtension.md#protect) to enable protection for the UDP tunnel.
 - Construct VPN Config parameters. For details, see [VPN Config Parameters](#description-of-vpn-config-parameters).
 - Use [VpnConnection.create](../reference/apis-network-kit/js-apis-net-vpnExtension.md#create) to establish a VPN connection.
 - Process data of the virtual network interface card (vNIC), such as reading or writing data.
@@ -63,7 +63,6 @@ To start a connection from the VPN application, you need to call **startVpnExten
 import { common, Want } from '@kit.AbilityKit';
 import { vpnExtension } from '@kit.NetworkKit';
 
-let context = getContext(this) as common.VpnExtensionContext;
 let want: Want = {
   deviceId: "",
   bundleName: "com.example.myvpndemo",
@@ -107,7 +106,6 @@ The sample code is as follows:
 import { common, Want } from '@kit.AbilityKit';
 import { vpnExtension } from '@kit.NetworkKit';
 
-let context = getContext(this) as common.VpnExtensionContext;
 let want: Want = {
   deviceId: "",
   bundleName: "com.example.myvpndemo",
@@ -177,10 +175,10 @@ To ensure network connectivity, the system automatically stops the VPN connectio
 | dnsAddresses        | Array\<string\>                                              | No  | IP addresses of DNS servers. Trusted VPN applications can access the network through these IP addresses. If this parameter is not configured, IP address allocated by the system will be used.|
 | searchDomains       | Array\<string\>                                              | No  | List of DNS search domains.                                           |
 | mtu                 | number                                                       | No  | Maximum transmission unit (MTU), in bytes.                              |
-| isIPv4Accepted      | boolean                                                      | No  | Whether IPv4 is supported. The default value is **true**.                                |
-| isIPv6Accepted      | boolean                                                      | No  | Whether IPv6 is supported. The default value is **false**.                               |
-| isInternal          | boolean                                                      | No  | Whether the built-in VPN is supported. The default value is **false**.                            |
-| isBlocking          | boolean                                                      | No  | Whether the blocking mode is used. The default value is **false**.                               |
+| isIPv4Accepted      | boolean                                                      | No  | Whether IPv4 is supported. The default value is **true**. The value **true** indicates that IPV4 is supported, and the value **false** indicates the opposite.                                |
+| isIPv6Accepted      | boolean                                                      | No  | Whether IPv6 is supported. The default value is **false**. The value **true** indicates that IPV6 is supported, and the value **false** indicates the opposite.                               |
+| isInternal          | boolean                                                      | No  | Whether the built-in VPN is supported. The default value is **false**. The value **true** indicates that the built-in VPN is supported, and the value **false** indicates the opposite.                            |
+| isBlocking          | boolean                                                      | No  | Whether the blocking mode is used. The default value is **false**. The value **true** indicates that the blocking mode is used, and the value **false** indicates the opposite.                               |
 | trustedApplications | Array\<string\>                                              | No  | Trusted VPN applications, which are represented by bundle names of the string type             |
 | blockedApplications | Array\<string\>                                              | No  | Blocked VPN applications, which are represented by bundle names of the string type           |
 
@@ -241,4 +239,4 @@ function vpnCreate(){
 
 ## VPN Demo
 
-The OpenHarmony project provides a sample application named [VPN](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/VPN), which showcases how to implement the VPN service.
+The OpenHarmony project provides a sample application named [VPN](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/VPNControl_Case), which showcases how to implement the VPN service.

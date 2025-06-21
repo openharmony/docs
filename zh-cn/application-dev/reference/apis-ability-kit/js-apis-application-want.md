@@ -17,7 +17,7 @@ import Want from '@ohos.application.Want';
 **系统能力**：SystemCapability.Ability.AbilityBase
 
 | 名称        | 类型                 | 只读 | 可选 | 说明                                                         |
-| ----------- | -------------------- | ---- | ------------------------------------------------------------ |
+| ----------- | -------------------- | ---- | ---- | ------------------------------------------------------------ |
 | deviceId    | string               | 否   | 是   | 表示运行指定Ability的设备ID。如果未设置该字段，则表明指定本设备。                                |
 | bundleName   | string               | 否   | 是   | 表示Bundle名称。 |
 | abilityName  | string               | 否   | 是   | 表示待启动的Ability名称。如果在Want中该字段同时指定了BundleName和AbilityName，则Want可以直接匹配到指定的Ability。AbilityName需要在一个应用的范围内保证唯一。 |

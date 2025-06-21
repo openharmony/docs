@@ -1,6 +1,6 @@
 # Sorting by Local Habits
 
-## Use Cases
+## When to Use
 
 The sorting function allows list content, for example, the language list in **Settings**, to be sorted and displayed in line with local user habits.
 

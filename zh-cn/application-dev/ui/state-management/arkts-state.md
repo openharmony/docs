@@ -4,7 +4,7 @@
 
 在状态变量相关装饰器中，@State是最基础的装饰器，也是大部分状态变量的数据源。
 
-在阅读\@State文档前，建议开发者对状态管理框架有基本的了解。建议提前阅读：[状态管理概述](./arkts-state-management-overview.md)。
+在阅读\@State文档前，建议开发者对状态管理框架有基本的了解。建议提前阅读：[状态管理概述](./arkts-state-management-overview.md)。最佳实践请参考[状态管理最佳实践](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-status-management)。
 
 > **说明：**
 >
@@ -35,7 +35,7 @@
 
 | 传递/访问          | 说明                                                         |
 | ------------------ | ------------------------------------------------------------ |
-| 从父组件初始化     | 可以从父组件或本地初始化。<br/>从父组件初始化，传入的值非undefined时，将会覆盖本地初始化；传入的值为undefined时，则初始值为@State装饰变量的本地初始值。<br/>支持父组件中常规变量（常规变量对@State赋值，只是数值的初始化，常规变量的变化不会触发UI刷新，只有状态变量才能触发UI刷新）、\@State、[\@Link](arkts-link.md)、[\@Prop](arkts-prop.md)、[\@Provide](arkts-provide-and-consume.md)、[\@Consume](arkts-provide-and-consume.md)、[\@ObjectLink](arkts-observed-and-objectlink.md)、[\@StorageLink](arkts-appstorage.md#storagelink)、[\@StorageProp](arkts-appstorage.md#storageprop)、[\@LocalStorageLink](arkts-localstorage.md#localstoragelink)和[\@LocalStorageProp](arkts-localstorage.md#localstorageprop)装饰的变量，初始化子组件的\@State。 |
+| 从父组件初始化     | 可以从父组件或本地初始化。<br/>父组件传入非undefined值时覆盖本地初始值，否则使用@State的本地初始值。<br/>支持父组件中的常规变量以及装饰器装饰的状态变量：\@State、[\@Link](arkts-link.md)、[\@Prop](arkts-prop.md)、[\@Provide](arkts-provide-and-consume.md)、[\@Consume](arkts-provide-and-consume.md)、[\@ObjectLink](arkts-observed-and-objectlink.md)、[\@StorageLink](arkts-appstorage.md#storagelink)、[\@StorageProp](arkts-appstorage.md#storageprop)、[\@LocalStorageLink](arkts-localstorage.md#localstoragelink)和[\@LocalStorageProp](arkts-localstorage.md#localstorageprop)，初始化\@State。需要注意：父组件传入的外部变量对\@State初始化时，仅作为初始值，后续变量的变化不会同步至\@State。 |
 | 用于初始化子组件   | \@State装饰的变量支持初始化子组件的常规变量、\@State、\@Link、\@Prop、\@Provide。 |
 | 是否支持组件外访问 | 不支持，只能在组件内访问。                                   |
 
@@ -216,13 +216,13 @@
 
 1. \@State装饰的变量必须初始化，否则编译期会报错。
 
-  ```ts
-  // 错误写法，编译报错
-  @State count: number;
-
-  // 正确写法
-  @State count: number = 10;
-  ```
+    ```ts
+    // 错误写法，编译报错
+    @State count: number;
+  
+    // 正确写法
+    @State count: number = 10;
+    ```
 
 2. \@State不支持装饰Function类型的变量，框架会抛出运行时错误。
 
@@ -250,6 +250,7 @@ struct MyComponent {
   }
 }
 ```
+
 
 ### 装饰class对象类型的变量
 
@@ -312,7 +313,6 @@ struct MyComponent {
 ![Video-state](figures/Video-state.gif)
 
 从该示例中，我们可以了解到\@State变量的初始化机制：
-
 
 1. 没有外部传入的情况下，使用默认的值进行本地初始化：
 
@@ -448,6 +448,7 @@ struct MyComponent {
   }
 }
 ```
+
 
 ## 常见问题
 

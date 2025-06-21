@@ -1,6 +1,6 @@
-# Connectivity Kit
+# Introduction to Connectivity Kit
 
-## Introduction to Connectivity Kit
+## Overview
 
 Mobile devices have become an integral part of every life. For example, people listen to music with Bluetooth headphones, surf the Internet over Wi-Fi, and use their mobile phone as a transit pass or credit card.
 In these applications, NFC implements short-range interactions like payments and access control, Bluetooth provides basic wireless connections for devices, such as headphones, wearables, and peripheral devices, and Wi-Fi provides high-speed Internet access.

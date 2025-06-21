@@ -218,7 +218,7 @@ Called when a paste operation is performed.
 | Name  | Type                                                        | Mandatory| Description                                                    |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------------------------- |
 | pasteValue | string | Yes| Text to be pasted.|
-| event | [PasteEvent](ts-basic-components-richeditor.md#pasteevent) | Yes| Custom paste event.|
+| event | [PasteEvent](ts-basic-components-richeditor.md#pasteevent11) | Yes| Custom paste event.|
 
 
 ## OnTextSelectionChangeCallback

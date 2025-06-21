@@ -1055,6 +1055,8 @@ type ExtensionRunningInfo = _ExtensionRunningInfo
 
 ExtensionRunningInfo二级模块。
 
+**系统接口**：此接口为系统接口。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 类型 | 说明 |
@@ -1066,6 +1068,8 @@ ExtensionRunningInfo二级模块。
 type AbilityForegroundStateObserver = _AbilityForegroundStateObserver.default
 
 AbilityForegroundStateObserver二级模块。
+
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

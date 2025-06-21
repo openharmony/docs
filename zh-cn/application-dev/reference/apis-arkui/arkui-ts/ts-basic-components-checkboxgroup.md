@@ -32,6 +32,8 @@ CheckboxGroup(options?: CheckboxGroupOptions)
 
 ## CheckboxGroupOptions对象说明
 
+多选框群组的信息。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -51,6 +53,8 @@ CheckboxGroup(options?: CheckboxGroupOptions)
 selectAll(value: boolean)
 
 设置是否全选。若同组的[Checkbox](ts-basic-components-checkbox.md)显式设置了select属性，则Checkbox的优先级高。
+
+在与带有缓存功能的组件（如[List](ts-container-list.md)）配合使用时，未创建的Checkbox选中状态需由开发者控制。
 
 从API version 10开始，该属性支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。
 从API version 18开始，该属性支持[!!](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。
@@ -73,8 +77,9 @@ selectAll(isAllSelected: Optional\<boolean>)
 
 设置是否全选。若同组的[Checkbox](ts-basic-components-checkbox.md)显式设置了select属性，则Checkbox的优先级高。与[selectAll](#selectall)相比，isAllSelected参数新增了对undefined类型的支持。
 
-该属性支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。
-该属性支持[!!](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。
+在与带有缓存功能的组件（如[List](ts-container-list.md)）配合使用时，未创建的Checkbox选中状态需由开发者控制。
+
+该属性支持[$$](../../../ui/state-management/arkts-two-way-sync.md)、[!!](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。
 
 **卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
@@ -284,6 +289,8 @@ type OnCheckboxGroupChangeCallback  = (value: CheckboxGroupResult) => void
 
 ## CheckboxGroupResult对象说明
 
+多选框群组的名称和状态。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -296,6 +303,8 @@ type OnCheckboxGroupChangeCallback  = (value: CheckboxGroupResult) => void
 | status | [SelectStatus](#selectstatus枚举说明) | 否 | 否 | 选中状态。 |
 
 ## SelectStatus枚举说明
+
+多选框群组的选中状态。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 

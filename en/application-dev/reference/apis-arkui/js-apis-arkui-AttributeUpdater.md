@@ -41,7 +41,7 @@ Defines a decorator for updating attributes.
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 ## AttributeUpdater<T, C = Initializer\<T>>
-Represents the implementation class of [AttributeModifier](arkui-ts/ts-universal-attributes-attribute-modifier.md#AttributeModifier). You need to customize a class to inherit **AttributeUpdater**.
+Represents the implementation class of [AttributeModifier](arkui-ts/ts-universal-attributes-attribute-modifier.md#attributemodifiert). You need to customize a class to inherit **AttributeUpdater**.
 
 **C** indicates the constructor type of the component, for example, **TextInterface** of the **Text** component and **ImageInterface** of the **Image** component. It is required only when **updateConstructorParams** is used.
 

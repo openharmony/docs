@@ -25,11 +25,11 @@ Defines the struct for the basic location information.
 | double [speed](#speed) | Speed, in m/s. | 
 | double [direction](#direction) | Direction information. The value ranges from **0** to **360**, in degrees. | 
 | int64_t [timeForFix](#timeforfix) | Location timestamp in the UTC format. | 
-| int64_t [timeSinceBoot](#timesinceboot) | Location timestamp since boot, in nanosecond.<br>The value is the duration from the time when the device is booted to the time when the location is obtained. This means that the timestamp is reset each time the device is restarted.<br>  | 
+| int64_t [timeSinceBoot](#timesinceboot) | Location timestamp since boot, in nanoseconds.<br>The value is the duration from the time when the device is booted to the time when the location is obtained. This means that the timestamp is reset each time the device is restarted.<br>  | 
 | double [altitudeAccuracy](#altitudeaccuracy) | Height accuracy, in meters. | 
 | double [speedAccuracy](#speedaccuracy) | Speed accuracy, in m/s. | 
 | double [directionAccuracy](#directionaccuracy) | Direction accuracy. The value ranges from **0** to **360**, in degrees. | 
-| int64_t [uncertaintyOfTimeSinceBoot](#uncertaintyoftimesinceboot) | Uncertainty of the location timestamp (that is, **timeSinceBoot**), in nanosecond. | 
+| int64_t [uncertaintyOfTimeSinceBoot](#uncertaintyoftimesinceboot) | Uncertainty of the location timestamp (that is, **timeSinceBoot**), in nanoseconds. | 
 | [Location_SourceType](_location.md#location_sourcetype) [locationSourceType](#locationsourcetype) | Source of the location result.<br>For details, see [Location_SourceType](_location.md#location_sourcetype).| 
 
 
