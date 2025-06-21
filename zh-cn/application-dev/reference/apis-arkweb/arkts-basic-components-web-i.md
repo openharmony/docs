@@ -101,17 +101,6 @@ Web媒体策略的配置。
 | onDisappear | Callback\<void\>  | 否     | 自定义选择菜单关闭时回调。     |
 | preview    | [CustomBuilder](../apis-arkui/arkui-ts/ts-types.md#custombuilder8)          | 否     | 自定义选择菜单的预览内容样式，未配置时无预览内容。|
 | menuType   | [MenuType](../apis-arkui/arkui-ts/ts-text-common.md#menutype13枚举说明)      | 否     | 自定义选择菜单类型。<br>默认值：`MenuType.SELECTION_MENU`。<br> 从API version 20起，`MenuType.PREVIEW_MENU`支持超链接预览。     |
-| previewMenuOptions<sup>20+</sup> | [PreviewMenuOptions](#previewmenuoptions20) | 否     | 自定义选择预览菜单选项。 |
-
-## PreviewMenuOptions<sup>20+</sup>
-
-预览菜单选项。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-| 名称           | 类型                                             | 必填    | 说明             |
-| ---------- | -----------------------------------------------------| ------ | ---------------- |
-| hapticFeedbackMode   | [HapticFeedbackMode](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#hapticfeedbackmode18)   | 否     | 菜单弹出时振动效果。需配置"ohos.permission.VIBRATE"权限<br/>默认值：HapticFeedbackMode.DISABLED，菜单弹出时不振动。     |
 
 ## EmbedOptions<sup>16+</sup>
 
@@ -122,7 +111,6 @@ Web同层渲染的配置。
 | 名称             | 类型      | 必填   | 说明                                       |
 | -------------- | ------- | ---- | ---------------------------------------- |
 | supportDefaultIntrinsicSize | boolean | 否    | 设置同层渲染元素是否支持固定大小 300 * 150。<br>当H5侧CSS设置了大小时，同层渲染元素大小为CSS大小，否则为固定大小。<br>为true时，固定大小为 300 * 150。<br>为false时，若H5侧CSS未设置大小，则同层渲染元素不渲染。<br>默认值：false<br>单位：px |
-| supportCssDisplayChange<sup>20+</sup> | boolean | 否    | 设置同层渲染可见性接口是否支持显示属性。 <br>同层渲染可见性接口默认支持同层标签相对于视口的可见状态。 <br>设置为true时，支持显示CSS属性，包括visibility、display和宽高。 <br>设置为false时，不支持显示CSS属性，仅支持同层标签相对于视口的可见性。 |
 
 ## OnAlertEvent<sup>12+</sup>
 
@@ -147,7 +135,6 @@ Web同层渲染的配置。
 | url | string | 是 | 当前显示弹窗所在网页的URL。                       |
 | message | string | 是 | 弹窗中显示的信息。                       |
 | result | [JsResult](./arkts-basic-components-web-JsResult.md) | 是 | 通知Web组件用户操作行为。                       |
-| isReload<sup>20+</sup> | boolean | 否 | 页面是否刷新。<br>当页面因刷新即将离开时，isReload参数被设置为true；当页面因关闭即将离开时，isReload参数被设置为false。<br>默认值：false。|
 
 ## OnConfirmEvent<sup>12+</sup>
 
@@ -705,26 +692,6 @@ Web组件进入全屏回调事件的详情。
 | embedId     | string   | 否    | 同层标签的唯一id。 |
 | touchEvent  | [TouchEvent](../apis-arkui/arkui-ts/ts-universal-events-touch.md#touchevent对象说明)  | 否    | 手指触摸动作信息。 |
 | result<sup>12+</sup>     | [EventResult](./arkts-basic-components-web-EventResult.md)   | 否    | 通知Web组件手势事件的消费结果。 |
-
-## OnLoadStartedEvent<sup>20+</sup>
-
-定义网页加载开始时触发的函数。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-| 名称             | 类型      | 必填   | 说明                                       |
-| -------------- | ---- | ---- | ---------------------------------------- |
-| url | string | 是 | 页面的URL地址。                       |
-
-## OnLoadFinishedEvent<sup>20+</sup>
-
-定义网页加载结束时触发的函数。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-| 名称             | 类型      | 必填   | 说明                                       |
-| -------------- | ---- | ---- | ---------------------------------------- |
-| url | string | 是 | 页面的URL地址。                       |
 
 ## Header
 

@@ -39,7 +39,7 @@ Web组件为开发者提供了丰富的控制Web页面能力。包括：
   |  ---|---|
   | OpenHarmony 4.0及之前 | M99 |
   | OpenHarmony 4.1-5.1 | M114 |
-  | OpenHarmony 6.0 | M132 |
+  | OpenHarmony-6.0-Beta1 | M114 |
 
 ## 相关实例
 
