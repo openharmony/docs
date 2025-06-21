@@ -806,11 +806,11 @@
 | int32_t [OH_ArkUI_AccessibilityValue_GetMax](#oh_arkui_accessibilityvalue_getmax) ([ArkUI_AccessibilityValue](#arkui_accessibilityvalue) \*value) | 获取无障碍最大值信息。  |
 | void [OH_ArkUI_AccessibilityValue_SetCurrent](#oh_arkui_accessibilityvalue_setcurrent) ([ArkUI_AccessibilityValue](#arkui_accessibilityvalue) \*value, int32_t current) | 设置无障碍当前值信息。  |
 | int32_t [OH_ArkUI_AccessibilityValue_GetCurrent](#oh_arkui_accessibilityvalue_getcurrent) ([ArkUI_AccessibilityValue](#arkui_accessibilityvalue) \*value) | 获取无障碍当前值信息。  |
-| int32_t [OH_ArkUI_AccessibilityValue_SetRangeMin](#oh_arkui_accessibilityvalue_setrangemin) ([ArkUI_AccessibilityValue](#arkui_accessibilityvalue) \*value) | 用于设置范围组件的无障碍最小值信息。  |
+| int32_t [OH_ArkUI_AccessibilityValue_SetRangeMin](#oh_arkui_accessibilityvalue_setrangemin) ([ArkUI_AccessibilityValue](#arkui_accessibilityvalue) \*value, int32_t rangeMin) | 用于设置范围组件的无障碍最小值信息。  |
 | int32_t [OH_ArkUI_AccessibilityValue_GetRangeMin](#oh_arkui_accessibilityvalue_getrangemin) ([ArkUI_AccessibilityValue](#arkui_accessibilityvalue) \*value) | 用于获取范围组件的无障碍最小值信息。  |
-| int32_t [OH_ArkUI_AccessibilityValue_SetRangeMax](#oh_arkui_accessibilityvalue_setrangemax) ([ArkUI_AccessibilityValue](#arkui_accessibilityvalue) \*value) | 用于设置范围组件的无障碍最大值信息。  |
+| int32_t [OH_ArkUI_AccessibilityValue_SetRangeMax](#oh_arkui_accessibilityvalue_setrangemax) ([ArkUI_AccessibilityValue](#arkui_accessibilityvalue) \*value, int32_t rangeMax) | 用于设置范围组件的无障碍最大值信息。  |
 | int32_t [OH_ArkUI_AccessibilityValue_GetRangeMax](#oh_arkui_accessibilityvalue_getrangemax) ([ArkUI_AccessibilityValue](#arkui_accessibilityvalue) \*value) | 用于获取范围组件的无障碍最大值信息。  |
-| int32_t [OH_ArkUI_AccessibilityValue_SetRangeCurrent](#oh_arkui_accessibilityvalue_setrangecurrent) ([ArkUI_AccessibilityValue](#arkui_accessibilityvalue) \*value) | 用于设置范围组件的无障碍当前值信息。  |
+| int32_t [OH_ArkUI_AccessibilityValue_SetRangeCurrent](#oh_arkui_accessibilityvalue_setrangecurrent) ([ArkUI_AccessibilityValue](#arkui_accessibilityvalue) \*value, int32_t rangeCurrent) | 用于设置范围组件的无障碍当前值信息。  |
 | int32_t [OH_ArkUI_AccessibilityValue_GetRangeCurrent](#oh_arkui_accessibilityvalue_getrangecurrent) ([ArkUI_AccessibilityValue](#arkui_accessibilityvalue) \*value) | 用于获取范围组件的无障碍当前值信息。  |
 | void [OH_ArkUI_AccessibilityValue_SetText](#oh_arkui_accessibilityvalue_settext) ([ArkUI_AccessibilityValue](#arkui_accessibilityvalue) \*value, const char \*text) | 设置无障碍文本描述信息。  |
 | const char \* [OH_ArkUI_AccessibilityValue_GetText](#oh_arkui_accessibilityvalue_gettext) ([ArkUI_AccessibilityValue](#arkui_accessibilityvalue) \*value) | 获取无障碍文本描述信息。  |
