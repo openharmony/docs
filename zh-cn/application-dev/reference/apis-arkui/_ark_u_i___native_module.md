@@ -149,7 +149,7 @@
 | typedef struct [ArkUI_VisibleAreaEventOptions](#arkui_visibleareaeventoptions) [ArkUI_VisibleAreaEventOptions](#arkui_visibleareaeventoptions) | 可见区域变化监听的参数。  |
 | typedef struct [ArkUI_CustomProperty](#arkui_customproperty) [ArkUI_CustomProperty](#arkui_customproperty) | 定义自定义属性的CustomProperty类信息。  |
 | typedef struct [ArkUI_HostWindowInfo](#arkui_hostwindowinfo) [ArkUI_HostWindowInfo](#arkui_hostwindowinfo) | 定义窗口属性的HostWindowInfo类信息。  |
-| typedef struct [ArkUI_ActiveChildrenInfo](#arkui_activechildreninfo) [ArkUI_HostWindowInfo](#arkui_activechildreninfo) | 定义ActiveChildrenInfo类信息。  |
+| typedef struct [ArkUI_ActiveChildrenInfo](#arkui_activechildreninfo) [ArkUI_ActiveChildrenInfo](#arkui_activechildreninfo) | 定义ActiveChildrenInfo类信息。  |
 
 
 ### 枚举
@@ -15362,7 +15362,7 @@ void* OH_ArkUI_QueryModuleInterfaceByName (ArkUI_NativeAPIVariantKind type, cons
 ```
 **描述：**
 
-获取指定类型的Native模块接口集合。
+需调用该函数初始化C-API环境，并获取指定类型的Native模块接口集合。
 
 **起始版本：** 12
 
