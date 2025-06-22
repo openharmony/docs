@@ -17751,6 +17751,48 @@ int32_t OH_ArkUI_PostIdleCallback(ArkUI_ContextHandle uiContext, void* userData,
 [ARKUI_ERROR_CODE_CALLBACK_INVALID](_ark_u_i___native_module.md#arkui_errorcode) 回调函数无效。</br >
 
 
+### OH_ArkUI_InitModuleForArkTSEnv()
+
+```
+ArkUI_ErrorCode OH_ArkUI_InitModuleForArkTSEnv(napi_env env)
+```
+**描述：**
+
+初始化指定虚拟机环境下的ArkUI相关接口。本函数不允许在非UI线程中调用。如果检测到在非UI线程中调用，程序将主动终止。
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | Node-API的环境指针。| 
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) 成功。</br >
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) 参数无效（如env为null或设置白名单失败）。</br >
+[ARKUI_ERROR_CODE_CAPI_INIT_ERROR](_ark_u_i___native_module.md#arkui_errorcode) CAPI初始化错误。</br >
+
+
+### OH_ArkUI_NotifyArkTSEnvDestroy()
+
+```
+void OH_ArkUI_NotifyArkTSEnvDestroy(napi_env env)
+```
+**描述：**
+
+通知指定的虚拟机环境已销毁。本函数不允许在非UI线程中调用。如果检测到在非UI线程中调用，程序将主动终止。
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| env | Node-API的环境指针。| 
+
+
 ### OH_ArkUI_RegisterLayoutCallbackOnNodeHandle()
 
 ```
