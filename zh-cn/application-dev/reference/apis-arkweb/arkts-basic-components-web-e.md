@@ -349,3 +349,14 @@ Web布局模式的配置。
 | -------------------------- | -- | ------------- |
 | DEFAULT                    | 0 | 默认值，Web会在触摸按下屏幕时申请获焦，包括点击、长按、滑动、缩放等任何触摸屏幕的手势行为。 |
 | GESTURE_TAP_AND_LONG_PRESS | 1 | Web只会在点击和长按手势事件生成时申请获焦，点击和长按在触摸抬起之后生成，滑动和缩放等手势行为不会获焦。 |
+
+## WebBypassVsyncCondition<sup>20+</sup>
+
+跳过渲染vsync条件。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称          | 值 | 说明                 |
+| ----------- | -- | ------------------ |
+| NONE        | 0 | 默认值，按vsync调度流程绘制。         |
+| SCROLLBY_FROM_ZERO_OFFSET | 1 | 在使用scrollby（只支持带滚动偏移量）且Web页面滚动偏移量为0，渲染流程跳过vsync调度直接绘制。 |

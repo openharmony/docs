@@ -1955,6 +1955,45 @@ nestedScroll(value: NestedScrollOptions | NestedScrollOptionsExt)
   </html>
   ```
 
+## bypassVsyncCondition<sup>20+</sup>
+
+bypassVsyncCondition(condition: WebBypassVsyncCondition)
+
+当开发者调用scrollBy接口进行页面滚动时，可以通过bypassVsyncCondition接口设置渲染流程跳过vsync（垂直同步）调度，直接触发绘制。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名  | 类型                                  | 必填   | 说明                  |
+| ---- | ------------------------------------- | ---- | --------------------- |
+| condition | [WebBypassVsyncCondition](./arkts-basic-components-web-e.md#webbypassvsynccondition20) | 是    | 触发渲染流程跳过vsync调度的条件。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+    condition: WebBypassVsyncCondition = WebBypassVsyncCondition.SCROLLBY_FROM_ZERO_OFFSET;
+
+    build() {
+      Column() {
+        Button('scrollBy')
+          .onClick(() => {
+            this.controller.scrollBy(0, 5);
+          })
+        Web({ src: 'www.example.com', controller: this.controller })
+          .bypassVsyncCondition(this.condition)
+      }
+    }
+  }
+  ```
+
 ## enableNativeEmbedMode<sup>11+</sup>
 
 enableNativeEmbedMode(mode: boolean)
