@@ -273,7 +273,7 @@ deviceTypes示例：
 
 非自由多窗模式下只能通过配置module.json5中abilities标签下的SupportWindowMode属性配置窗口支持模式，其他配置方式均不生效。
 
-5. <!--Del-->使用metadata标签配置主窗边角以直角显示。配置项为：name为ohos.ability.window.isRightAngle，value取值为true或false，取值为true表示窗口边角以直角显示、取值为false则使用系统默认圆角，未配置时默认为false。主窗直角配置仅在PC/2in1设备上生效，且仅支持系统应用。<!--DelEnd-->
+<!--Del-->5. 使用metadata标签配置主窗边角以直角显示。配置项为：name为ohos.ability.window.isRightAngle，value取值为true或false，取值为true表示窗口边角以直角显示、取值为false则使用系统默认圆角，未配置时默认为false。主窗直角配置仅在PC/2in1设备上生效，且仅支持系统应用。<!--DelEnd-->
 
 ```json
 {
