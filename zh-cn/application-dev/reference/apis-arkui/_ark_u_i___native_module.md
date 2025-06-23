@@ -18423,7 +18423,7 @@ ArkUI_ErrorCode OH_ArkUI_PanGesture_SetDistanceMap(ArkUI_GestureRecognizer* reco
 | recognizer | 手势识别器指针。  | 
 | size | 手势最小滑动阈值数组的大小。 |
 | toolTypeArray | 指向输入事件的工具类型数组的指针。 |
-| distanceArray | 指向最小滑动阈值数组的指针。 |
+| distanceArray | 指向最小滑动阈值数组的指针。单位为px。 |
 
 **返回：**
 
@@ -18448,7 +18448,7 @@ ArkUI_ErrorCode OH_ArkUI_PanGesture_GetDistanceByToolType(ArkUI_GestureRecognize
 | -------- | -------- |
 | recognizer | 手势识别器指针。  | 
 | toolType | 输入事件的工具类型。 |
-| distance | 手势识别器的手势移动阈值。 |
+| distance | 手势识别器的手势移动阈值。单位为px。 |
 
 **返回：**
 
