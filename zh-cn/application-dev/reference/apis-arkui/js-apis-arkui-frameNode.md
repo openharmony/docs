@@ -3069,36 +3069,6 @@ let parameters: NativeXComponentParameters = {
 typeNode.createNode(uiContext, 'XComponent', parameters);
 ```
 
-### getAttribute('XComponent')<sup>20+</sup>
-getAttribute(node: FrameNode, nodeType: 'XComponent'): XComponentAttribute | undefined
-
-获取XComponent节点的属性。若该节点非ArkTS语言创建，则需要设置是否支持跨语言访问，如果不支持跨语言访问，则返回undefined。该接口不支持声明式方式创建的节点。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明  |
-| ------------------ | ------------------ | ------------------- | ------------------- |
-| node | [FrameNode](./js-apis-arkui-frameNode.md) | 是   | 获取属性时所需的目标节点。 |
-| nodeType | 'XComponent' | 是 | 获取XComponent节点类型的属性。 |
-
-**返回值：**
-
-| 类型                  | 说明      |
-| ------------------ | ------------------ |
-| XComponentAttribute&nbsp;\|&nbsp;undefined | XComponent节点类型的属性，若获取失败，则返回undefined。 |
-
-**示例：** 
-
-<!--code_no_check-->
-
-```ts
-typeNode.getAttribute(node, 'XComponent');
-```
-
 ### QRCode<sup>14+</sup>
 type QRCode = TypedFrameNode&lt;QRCodeInterface, QRCodeAttribute&gt;
 
