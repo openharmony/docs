@@ -569,3 +569,26 @@
 | -------------- | ------ | ------------------ |
 | TYPE_ACTIVATED | 0      | 表示触发焦点事件。 |
 | TYPE_INTERRUPT | 1      | 表示音频打断事件。 |
+
+## AudioLoopbackMode<sup>20+</sup>
+
+表示返听模式的枚举。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+| 名称           | 值     | 说明              |
+| -------------- | ------ | ----------------- |
+| HARDWARE       | 0      | 表示硬件返听模式。 |
+
+## AudioLoopbackStatus<sup>20+</sup>
+
+表示返听状态的枚举。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+| 名称               | 值     | 说明             |
+| ------------------ | ------ | ---------------- |
+| UNAVAILABLE_DEVICE | -2     | 表示返听由于输入\输出设备而不可用（如出声设备变更）。    |
+| UNAVAILABLE_SCENE  | -1     | 表示返听由于音频场景而不可用（如音频焦点、低时延管控）。 |
+| AVAILABLE_IDLE     |  0     | 表示返听可用。     |
+| AVAILABLE_RUNNING  |  1     | 表示返听运行中。   |
