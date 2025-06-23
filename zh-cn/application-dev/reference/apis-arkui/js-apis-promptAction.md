@@ -780,14 +780,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Entry
 @Component
 struct DialogExample {
-  @State log:string = 'Log information:';
+  @State log: string = 'Log information:';
   build() {
     Column() {
-      Button('showdialog')
-        .width(200)
-        .height(60)
-        .margin(20)
-        .fontSize(16)
+      Button('showDialog')
         .onClick(() => {
           this.showCustomDialog();
         })
@@ -812,20 +808,20 @@ struct DialogExample {
           }
         ],
         onDidAppear: () => {
-          this.log += '# onDidAppear'
-          console.info("prompAction,is onDidAppear!")
+          this.log += '# onDidAppear';
+          console.info("showDialog,is onDidAppear!");
         },
         onDidDisappear: () => {
-          this.log += '# onDidDisappear'
-          console.info("prompAction,is onDidDisappear!")
+          this.log += '# onDidDisappear';
+          console.info("showDialog,is onDidDisappear!");
         },
         onWillAppear: () => {
-          this.log = 'Log information:#onWillAppear'
-          console.info("prompAction,is onWillAppear!")
+          this.log = 'Log information:#onWillAppear';
+          console.info("showDialog,is onWillAppear!");
         },
         onWillDisappear: () => {
-          this.log += '# onWillDisappear'
-          console.info("prompAction,is onWillDisappear!")
+          this.log += '# onWillDisappear';
+          console.info("showDialog,is onWillDisappear!");
         },
       })
     } catch (error) {
