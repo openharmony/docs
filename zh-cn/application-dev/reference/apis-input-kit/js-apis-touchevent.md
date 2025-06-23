@@ -1,6 +1,6 @@
-# @ohos.multimodalInput.touchEvent (触摸输入事件)
+# @ohos.multimodalInput.touchEvent (触屏输入事件)
 
-设备上报的触摸（触屏）事件，继承自[InputEvent](./js-apis-inputevent.md)。
+设备上报的触屏事件，继承自[InputEvent](./js-apis-inputevent.md)。
 
 > **说明：**
 >
@@ -14,20 +14,20 @@ import { Action,ToolType,SourceType,Touch,TouchEvent } from '@kit.InputKit';
 
 ## Action
 
-触摸事件类型。
+触屏事件类型。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
 | 名称     | 值   | 说明   |
 | ------ | ------ | ---- |
-| CANCEL | 0 | 触摸取消。 |
-| DOWN   | 1 | 触摸按下。 |
-| MOVE   | 2 | 触摸移动。 |
-| UP     | 3 | 触摸抬起。 |
+| CANCEL | 0 | 触屏取消。 |
+| DOWN   | 1 | 触屏按下。 |
+| MOVE   | 2 | 触屏移动。 |
+| UP     | 3 | 触屏抬起。 |
 
 ## ToolType
 
-操作触摸的工具类型。
+操作触屏的工具类型。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -44,7 +44,7 @@ import { Action,ToolType,SourceType,Touch,TouchEvent } from '@kit.InputKit';
 
 ## SourceType 
 
-触摸来源的设备类型。
+触屏来源的设备类型。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
@@ -56,21 +56,21 @@ import { Action,ToolType,SourceType,Touch,TouchEvent } from '@kit.InputKit';
 
 ## Touch
 
-触摸点信息。
+触屏点信息。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 
 | 名称          | 类型   | 只读   | 可选   | 说明                                  |
 | ----------- | ------ | ---- | ---- | ----------------------------------- |
-| id          | number | 否    | 否    | 触摸事件标识。                                |
+| id          | number | 否    | 否    | 触屏事件标识。                                |
 | pressedTime | number | 否    | 否    | 按下时间戳，单位：μs。                           |
-| screenX     | number | 否    | 否    | 触摸位置所属的屏幕x坐标。                        |
-| screenY     | number | 否    | 否    | 触摸位置所属的屏幕y坐标。                        |
-| windowX     | number | 否    | 否    | 触摸位置在窗口中的x坐标。                        |
-| windowY     | number | 否    | 否    | 触摸位置在窗口中的y坐标。                        |
+| screenX     | number | 否    | 否    | 触屏位置所属的屏幕x坐标。                        |
+| screenY     | number | 否    | 否    | 触屏位置所属的屏幕y坐标。                        |
+| windowX     | number | 否    | 否    | 触屏位置在窗口中的x坐标。                        |
+| windowY     | number | 否    | 否    | 触屏位置在窗口中的y坐标。                        |
 | pressure    | number | 否    | 否    | 压力值，取值范围是[0.0, 1.0]，0.0表示不支持。       |
-| width       | number | 否    | 否    | 触摸区域的宽度。                           |
-| height      | number | 否    | 否    | 触摸区域的高度。                           |
+| width       | number | 否    | 否    | 触屏区域的宽度。                           |
+| height      | number | 否    | 否    | 触屏区域的高度。                           |
 | tiltX       | number | 否    | 否    | 相对YZ平面的角度，取值的范围[-90, 90]，其中正值是向右倾斜。 |
 | tiltY       | number | 否    | 否    | 相对XZ平面的角度，取值的范围[-90, 90]，其中正值是向下倾斜。 |
 | toolX       | number | 否    | 否    | 工具区域的中心点x坐标。                           |
@@ -90,6 +90,6 @@ import { Action,ToolType,SourceType,Touch,TouchEvent } from '@kit.InputKit';
 | 名称         | 类型       | 只读   | 可选   | 说明        |
 | ---------- | ---------- | ---- | ---- | --------- |
 | action     | [Action](#action)     | 否    | 否    | 触屏事件类型。     |
-| touch      | [Touch](#touch)      | 否    | 否    | 当前触摸点信息。   |
-| touches    | [Touch](#touch)[]    | 否    | 否    | 所有触摸点。     |
-| sourceType | [SourceType](#sourcetype) | 否    | 否    | 触摸来源的设备类型。 |
+| touch      | [Touch](#touch)      | 否    | 否    | 当前触屏点信息。   |
+| touches    | [Touch](#touch)[]    | 否    | 否    | 所有触屏点。     |
+| sourceType | [SourceType](#sourcetype) | 否    | 否    | 触屏来源的设备类型。 |
