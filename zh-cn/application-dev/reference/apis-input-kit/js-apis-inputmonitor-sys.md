@@ -1268,11 +1268,11 @@ try {
 }
 ```
 
-## inputMonitor.queryTouchEvents(count)<sup>20+</sup>
+## inputMonitor.queryTouchEvents()<sup>20+</sup>
 
 queryTouchEvents(count: number): Promise&lt;Array&lt;TouchEvent&gt;&gt;
 
-查询最近的触屏事件，最多支持查询 100 条事件，使用Promise异步回调。返回的触屏事件中仅包含以下有效信息：actionTime、sourceType、isInject、pressure、tiltX、tiltY。
+查询最近的触屏事件，最多支持查询 100 条事件，使用Promise异步回调。
 
 **需要权限：** ohos.permission.INPUT_MONITORING
 
@@ -1288,7 +1288,13 @@ queryTouchEvents(count: number): Promise&lt;Array&lt;TouchEvent&gt;&gt;
 
 | 类型          | 说明                                |
 | :------------ | :---------------------------------- |
-| Promise&lt;Array&lt;[TouchEvent](js-apis-touchevent-sys.md#touchevent)&gt;&gt; | Promise对象，返回查询到的触屏事件。 |
+| Promise&lt;Array&lt;[TouchEvent](js-apis-touchevent-sys.md#touchevent)&gt;&gt; | Promise对象，返回查询到的触屏事件。包含以下有效信息：
+-actionTime：触屏事件发生的时间；
+-[SourceType](js-apis-touchevent.md#sourcetype)：触摸来源的设备类型；
+-[isInject](js-apis-touchevent-sys.md#TouchEvent)：表示该触屏事件是否为注入事件；
+-pressure：压力值；
+-tiltX：相对YZ平面的角度；
+-tiltY相对XZ平面的角度。 |
 
 **错误码**：
 
