@@ -998,7 +998,7 @@ notifyScreenshotEvent(eventType: ScreenshotEventType): Promise&lt;void&gt;
 | -------- | -------------------------------------------- |
 | 202     | Permission verification failed. A non-system application calls a system API. |
 | 1300003  | This window manager service works abnormally. |
-| 1300016 | Parameter error. Possible cause: 1. Invalid parameter range. 2. Invalid parameter length. 3. Incorrect parameter format. |
+| 1300016 | Parameter error. Possible cause: 1. Invalid parameter range. |
 
 **示例：**
 
@@ -1009,7 +1009,7 @@ try {
   let eventType: window.ScreenshotEventType = window.ScreenshotEventType.SYSTEM_SCREENSHOT;
   let promise = window.notifyScreenshotEvent(eventType);
   promise.then(() => {
-    console.info(`Succeeded in notify screenshot event type.`);
+    console.info(`Succeeded in notifying screenshot event type.`);
   }).catch((err: BusinessError) =>{
     console.error(`Failed to notify screenshot event type. Cause code: ${err.code}, message: ${err.message}`);
   });
