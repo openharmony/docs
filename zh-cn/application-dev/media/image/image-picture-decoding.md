@@ -45,6 +45,7 @@
             const resourceMgr: resourceManager.ResourceManager = context.resourceManager;
             // 获取资源文件内容，返回Uint8Array。
             const fileData: Uint8Array = await resourceMgr.getRawFileContent('test.jpg');
+            console.info('Successfully got RawFileContent');
             // 转为ArrayBuffer并返回。
             const buffer: ArrayBuffer = fileData.buffer.slice(0);
             return buffer;
@@ -140,6 +141,7 @@
 
 5. 释放picture。
 
+   确认picture的异步方法已经执行完成，不再使用该变量后，可按需手动调用下面方法释放。
    ```ts
    picture.release();
    ```
