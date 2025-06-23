@@ -442,6 +442,10 @@ getWithRange(start: NodeIdentity, end: NodeIdentity, isStartRect: boolean, optio
 
 传入两个组件的ID，获取范围内的组件的截图，并通过Promise返回结果。
 
+> **说明：**
+>
+> start对应的组件和end对应的组件必须为同一棵组件树上的组件，且start对应的组件需要为end对应的组件的祖先组件。
+
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
