@@ -22,9 +22,9 @@ chainAnimationOptions(value: ChainAnimationOptions)
 
 **参数：**
 
-| 名称    | 参数类型                                     | 描述                           |
-| ------ | ---------------------------------------- | ---------------------------------- |
-| value  | [ChainAnimationOptions](#chainanimationoptions10对象说明) | 链式联动动效参数。|
+| 参数名    | 类型                                     | 必填   | 说明                           |
+| ------ | ---------------------------------------- | ---- | ---------------------------------- |
+| value  | [ChainAnimationOptions](#chainanimationoptions10对象说明) | 是   | 链式联动动效参数。|
 
 ## ChainEdgeEffect<sup>10+</sup>枚举说明
 
@@ -47,7 +47,7 @@ chainAnimationOptions(value: ChainAnimationOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名           | 类型                                       | 必填   | 说明                                       |
+| 名称           | 类型                                       | 必填   | 说明                                       |
 | ------------ | ---------------------------------------- | ---- | ---------------------------------------- |
 | minSpace     | [Length](ts-types.md#length)             | 是    | 设置链式联动动效最小间距。                            |
 | maxSpace     | [Length](ts-types.md#length)             | 是    | 设置链式联动动效最大间距。                            |
