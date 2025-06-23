@@ -1131,3 +1131,13 @@ constructor(options?: NumericTextTransitionOptions)
 | --------------------- | -------  | ------------------- |
 | DOWN                  | 0  | 内容往下翻。|
 | UP                    | 1  | 内容往上翻。 |
+
+## TextLayoutOptions对象说明<sup>20+</sup>
+
+文本布局选项。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| constraintWidth | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)  | 否 | 设置被计算文本布局宽度。若不设置则宽度为单行布局所占最大宽度值。 |
