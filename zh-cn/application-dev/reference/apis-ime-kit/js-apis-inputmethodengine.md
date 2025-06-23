@@ -4713,6 +4713,10 @@ getAttachOptions(): AttachOptions
 | -------- | ---------------- |
 | 801      | Capability not supported. |
 
+> **说明：**
+>
+> 在 api20  ` 801 Capability not supported.` 这个错误码被移除。
+
 **示例：**
 
 ```ts
@@ -4746,6 +4750,10 @@ on(type: 'attachOptionsDidChange', callback: Callback\<AttachOptions>): void
 | 错误码ID | 错误信息         |
 | -------- | ---------------- |
 | 801      | Capability not supported. |
+
+> **说明：**
+>
+> 在 api20  ` 801 Capability not supported.` 这个错误码被移除。
 
 **示例：**
 
@@ -4923,6 +4931,7 @@ try {
 | 名称   | 类型   | 只读 | 可选 | 说明                                                         |
 | ------ | ------ | ---- | ---- | ---------------------------------------------------------- |
 | requestKeyboardReason    | [RequestKeyboardReason](#requestkeyboardreason19) | 否   | 是   | 请求键盘输入原因。 |
+| isSimpleKeyboardEnabled    | boolean | 否   | 是   | 简单键盘标志。 |
 
 ## WindowInfo<sup>12+</sup>
 

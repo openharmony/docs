@@ -637,6 +637,27 @@ getInputMethodSetting(): InputMethodSetting
 let inputMethodSetting = inputMethod.getInputMethodSetting();
 ```
 
+## inputMethod.SetSimpleKeyboardEnabled<sup>20+</sup>
+
+SetSimpleKeyboardEnabled(enable: boolean): void
+
+编辑框应用设置简单键盘标志给当前应用，绑定时会将简单键盘标志通过输入法框架传递给输入法应用。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| enable | boolean | 否 | 简单键盘标志 |
+
+**示例：**
+
+```ts
+  let enable = false;
+  inputMethod.SetSimpleKeyboardEnabled(enable);
+```
+
 ## TextInputType<sup>10+</sup>
 
 文本输入类型。
