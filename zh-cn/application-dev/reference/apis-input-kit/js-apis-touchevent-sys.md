@@ -51,4 +51,4 @@ import { FixedMode, Touch, TouchEvent } from '@kit.InputKit';
 | 名称         | 类型       | 只读   | 可选   | 说明        |
 | ---------- | ---------- | ---- | ---- | --------- |
 | fixedMode  | [FixedMode](#fixedmode)   | 否    | 是    | 修正坐标的模式。<br> **说明**：该接口仅在手机设备上生效。|
-| isInject  | boolean<sup>20+</sup>   | 否    | 是    | 表示该触摸事件是否为注入事件。<br> **说明**：该接口仅在手机设备上生效。|
+| isInject<sup>20+</sup>  | boolean   | 否    | 是    | 表示该触屏事件是否为注入事件。注入事件详细介绍可参考[@ohos.multimodalInput.inputEventClient (输入事件注入)(系统接口)](js-apis-inputeventclient-sys.md)。<br> **说明**：该接口仅在手机设备上生效。|

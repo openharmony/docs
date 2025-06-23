@@ -1268,7 +1268,7 @@ try {
 }
 ```
 
-## inputMonitor.queryTouchEvents(number)<sup>20+</sup>
+## inputMonitor.queryTouchEvents(count)<sup>20+</sup>
 
 queryTouchEvents(count: number): Promise&lt;Array&lt;TouchEvent&gt;&gt;
 
@@ -1282,13 +1282,13 @@ queryTouchEvents(count: number): Promise&lt;Array&lt;TouchEvent&gt;&gt;
 
 | 参数名   | 类型                                                      | 必填 | 说明                                                         |
 | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| count     | number                                                    | 是   | 要查询的触摸事件数量。 |
+| count     | number                                                    | 是   | 要查询的触摸事件数量。入参范围是1-100。 |
 
 **返回值：**
 
 | 类型          | 说明                                |
 | :------------ | :---------------------------------- |
-| Promise&lt;Array&lt;[TouchEvent](js-apis-touchevent.md#touchevent)&gt;&gt; | Promise对象，返回查询到的触屏事件。 |
+| Promise&lt;Array&lt;[TouchEvent](js-apis-touchevent-sys.md#touchevent)&gt;&gt; | Promise对象，返回查询到的触屏事件。 |
 
 **错误码**：
 

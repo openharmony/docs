@@ -120,4 +120,4 @@ System internal error. An internal error occurred while the system was processin
 
 **处理步骤**
 
-在调用前判断设备能力或添加异常捕获，以兼容不同设备行为。
+出现异常时请重新调用。
