@@ -169,7 +169,7 @@
 | [ArkUI_GroupGestureMode](#arkui_groupgesturemode) { SEQUENTIAL_GROUP = 0, PARALLEL_GROUP = 1, EXCLUSIVE_GROUP = 2 } | 定义手势组事件模式。  | 
 | [ArkUI_GestureDirection](#arkui_gesturedirection) {<br/>GESTURE_DIRECTION_ALL = 0b1111, GESTURE_DIRECTION_HORIZONTAL = 0b0011, GESTURE_DIRECTION_VERTICAL = 0b1100, GESTURE_DIRECTION_LEFT = 0b0001,<br/>GESTURE_DIRECTION_RIGHT = 0b0010, GESTURE_DIRECTION_UP = 0b0100, GESTURE_DIRECTION_DOWN = 0b1000, GESTURE_DIRECTION_NONE = 0<br/>} | 定义滑动手势方向。  | 
 | [ArkUI_GestureMask](#arkui_gesturemask) { NORMAL_GESTURE_MASK = 0, IGNORE_INTERNAL_GESTURE_MASK } | 定义手势屏蔽模式。  | 
-| [ArkUI_GestureRecognizerType](#arkui_gesturerecognizertype) {<br/>TAP_GESTURE = 0, LONG_PRESS_GESTURE, PAN_GESTURE, PINCH_GESTURE,<br/>ROTATION_GESTURE, SWIPE_GESTURE, GROUP_GESTURE<br/>} | 定义手势类型。  | 
+| [ArkUI_GestureRecognizerType](#arkui_gesturerecognizertype) {<br/>TAP_GESTURE = 0, LONG_PRESS_GESTURE, PAN_GESTURE, PINCH_GESTURE,<br/>ROTATION_GESTURE, SWIPE_GESTURE, GROUP_GESTURE, CLICK, DRAG<br/>} | 定义手势类型。  | 
 | [ArkUI_GestureInterruptResult](#arkui_gestureinterruptresult) { GESTURE_INTERRUPT_RESULT_CONTINUE = 0, GESTURE_INTERRUPT_RESULT_REJECT } | 定义手势打断结果。  | 
 | [ArkUI_GestureRecognizerState](#arkui_gesturerecognizerstate) {<br/>ARKUI_GESTURE_RECOGNIZER_STATE_READY = 0, ARKUI_GESTURE_RECOGNIZER_STATE_DETECTING = 1, ARKUI_GESTURE_RECOGNIZER_STATE_PENDING = 2, ARKUI_GESTURE_RECOGNIZER_STATE_BLOCKED = 3,<br/>ARKUI_GESTURE_RECOGNIZER_STATE_SUCCESSFUL = 4, ARKUI_GESTURE_RECOGNIZER_STATE_FAILED = 5<br/>} | 定义手势识别器状态。  | 
 | [ArkUI_NativeAPIVariantKind](#arkui_nativeapivariantkind) { ARKUI_NATIVE_NODE, ARKUI_NATIVE_DIALOG, ARKUI_NATIVE_GESTURE, ARKUI_NATIVE_ANIMATE } | 定义Native接口集合类型。  | 
@@ -2939,6 +2939,8 @@ enum ArkUI_GestureRecognizerType
 | ROTATION_GESTURE  | 旋转手势。  |
 | SWIPE_GESTURE  | 滑动手势。  |
 | GROUP_GESTURE  | 手势组合。  |
+| CLICK  | 点击手势。  |
+| DRAG  | 拖拽手势。  |
 
 
 ### ArkUI_GroupGestureMode
@@ -18953,7 +18955,7 @@ ArkUI_ErrorCode OH_ArkUI_SetTouchTestDoneCallback(ArkUI_NodeHandle node, void* u
 | -------- | -------- |
 | node | 需要设置手势收集完成回调的节点句柄。 |
 | userData | 自定义事件参数，在回调触发时在回调函数中携带。 |
-| touchTestDone | 手势收集完成后触发的回调函数。 |
+| touchTestDone | 手势收集完成后触发的回调函数。<br>- event：手势的基本信息。<br>- recognizers：手势识别器数组。<br>- count：手势识别器个数。  |
 
 **返回：**
 
