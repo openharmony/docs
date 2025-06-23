@@ -255,7 +255,7 @@ on(type: 'connectionAccepted', callback: Callback&lt;Connection&gt;): void
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 201      | Permission denied.|
-| 32390206 | Invalid parameter.  |
+| 32390206 | Parameter invalid.  |
 
 **示例：**
 
@@ -304,7 +304,7 @@ off(type: 'connectionAccepted', callback?: Callback&lt;Connection&gt;): void
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 201      | Permission denied.|
-| 32390206 | Invalid parameter.  |
+| 32390206 | Parameter invalid.  |
 
 **示例：**
 
@@ -334,7 +334,7 @@ try {
 
 ### on('serverStopped')
 
-on(type: 'serverStopped', callback: Callback&lt;Connection&gt;): void
+on(type: 'serverStopped', callback: Callback&lt;number&gt;): void
 
 在创建服务成功后，注册serverStopped回调，监听服务异常停止。使用callback异步回调。
 
@@ -354,7 +354,7 @@ on(type: 'serverStopped', callback: Callback&lt;Connection&gt;): void
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 201      | Permission denied.|
-| 32390206 | Invalid parameter.  |
+| 32390206 | Parameter invalid.  |
 
 **示例：**
 
@@ -384,7 +384,7 @@ try {
 
 ### off('serverStopped')
 
-off(type: 'serverStopped', callback?: Callback&lt;Connection&gt;): void
+off(type: 'serverStopped', callback?: Callback&lt;number&gt;): void
 
 取消注册serverStopped事件的回调监听。使用callback异步回调。
 
@@ -404,7 +404,7 @@ off(type: 'serverStopped', callback?: Callback&lt;Connection&gt;): void
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 201      | Permission denied.|
-| 32390206 | Invalid parameter.  |
+| 32390206 | Parameter invalid.  |
 
 **示例：**
 
@@ -449,7 +449,7 @@ try {
 
 ### connect()
 
-connect(void):&nbsp;void
+connect():&nbsp;void
 
 在客户端执行，向服务端设备发起连接，最大连接个数限制为10。
 
@@ -933,7 +933,7 @@ try {
 ```
 ### off('dataReceived')
 
-on(type: 'dataReceived', callback?: Callback&lt;ArrayBuffer&gt;): void
+off(type: 'dataReceived', callback?: Callback&lt;ArrayBuffer&gt;): void
 
 取消dataReceived事件的回调监听，使用callback异步回调。
 
