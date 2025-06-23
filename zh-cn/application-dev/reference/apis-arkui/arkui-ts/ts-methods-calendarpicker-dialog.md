@@ -62,7 +62,7 @@ static show(options?: CalendarDialogOptions)
 
 ### 示例1（设置弹窗背板）
 
-该示例通过backgroundColor、backgroundBlurStyle、shadow设置日历选择器弹窗背板。
+该示例通过[CalendarDialogOptions](#calendardialogoptions对象说明)的backgroundColor、backgroundBlurStyle、shadow设置日历选择器弹窗背板。
 
 ```ts
 // xxx.ets
@@ -115,7 +115,7 @@ struct CalendarPickerDialogExample {
 
 ### 示例2（自定义按钮样式）
 
-该示例通过配置 acceptButtonStyle、cancelButtonStyle实现自定义日历选择器弹窗按钮样式。
+该示例通过配置[CalendarDialogOptions](#calendardialogoptions对象说明)的acceptButtonStyle、cancelButtonStyle实现自定义日历选择器弹窗按钮样式。
 
 ```ts
 // xxx.ets
@@ -221,7 +221,7 @@ struct CalendarPickerDialogExample {
 
 ### 示例4（设置日期选中态底板样式）
 
-该示例通过hintRadius设置日期选中态底板样式。
+该示例通过[CalendarOptions](ts-basic-components-calendarpicker.md#calendaroptions对象说明)的hintRadius设置日期选中态底板样式。
 
 ```ts
 // xxx.ets
@@ -254,7 +254,7 @@ struct CalendarPickerDialogExample {
 
 ### 示例5（设置开始日期和结束日期）
 
-该示例通过start和end设置日历选择器弹窗的开始日期和结束日期。
+该示例通过[CalendarOptions](ts-basic-components-calendarpicker.md#calendaroptions对象说明)的start和end设置日历选择器弹窗的开始日期和结束日期。
 
 ```ts
 // xxx.ets
@@ -287,7 +287,7 @@ struct CalendarPickerDialogExample {
 
 ### 示例6（设置日历选择器弹窗在系统当前日期时，保持高亮显示和禁用日期区间）
 
-该示例通过markToday设置日历选择器弹窗在系统当前日期时，开启保持高亮显示，同时，通过disabledDateRange设置日历选择器弹窗的禁用日期区间。
+该示例通过[CalendarDialogOptions](#calendardialogoptions对象说明)的markToday设置日历选择器弹窗在系统当前日期时，开启保持高亮显示，同时，通过[CalendarOptions](ts-basic-components-calendarpicker.md#calendaroptions对象说明)的disabledDateRange设置日历选择器弹窗的禁用日期区间。
 
 ```ts
 // xxx.ets
