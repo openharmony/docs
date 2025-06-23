@@ -41,16 +41,17 @@ onConfigurationUpdate(newConfig: Configuration): void
 | newConfig | [Configuration](js-apis-app-ability-configuration.md) | 是 | 表示需要更新的配置信息。 |
 
 **示例：**
-  ```ts
+
+```ts
 // Ability是顶层基类，不支持开发者直接继承。故以派生类UIAbility举例说明。
 import { UIAbility, Configuration } from '@kit.AbilityKit';
 
 class MyUIAbility extends UIAbility {
-    onConfigurationUpdate(config: Configuration) {
-        console.log(`onConfigurationUpdate, config: ${JSON.stringify(config)}`);
-    }
+  onConfigurationUpdate(config: Configuration) {
+    console.log(`onConfigurationUpdate, config: ${JSON.stringify(config)}`);
+  }
 }
-  ```
+```
 
 ## Ability.onMemoryLevel
 
@@ -70,7 +71,7 @@ onMemoryLevel(level: AbilityConstant.MemoryLevel): void
 
 **示例：**
 
-  ```ts
+```ts
 // Ability是顶层基类，不支持开发者直接继承。故以派生类UIAbility举例说明。
 import { UIAbility, AbilityConstant } from '@kit.AbilityKit';
 
@@ -79,4 +80,4 @@ class MyUIAbility extends UIAbility {
     console.log(`onMemoryLevel, level: ${JSON.stringify(level)}`);
   }
 }
-  ```
+```
