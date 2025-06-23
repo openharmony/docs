@@ -1233,6 +1233,107 @@ List() {
     }
     ```
 
+## 支持滑动离手事件
+
+从API version 20开始，滚动类组件（[Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md)、[List](../reference/apis-arkui/arkui-ts/ts-container-list.md)、[Scroll](../reference/apis-arkui/arkui-ts/ts-container-scroll.md)、[WaterFlow](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md)）支持滑动离手事件回调功能，当用户手指离开屏幕时，会触发该事件并上报离手瞬间的滑动速度。开发者可利用此接口实现类似新闻浏览页面的自定义限位滚动效果，短新闻限位滚动，长新闻自由滚动。
+
+  **图26** 自定义限位滚动效果
+
+![onWillStopDragging](figures/onWillStopDragging.gif)
+
+1. 定义新闻条目数据结构。
+
+    ```ts
+    // 结构参考
+    class news {
+      public id: string;
+      public title: string;
+      public content: string;
+      public type: string;
+
+      constructor(id: string, title: string, content: string, type: string) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.type = type;
+      }
+    }
+    ```
+
+2. 构造新闻条目结构，通过type属性来区分长新闻，短新闻。
+
+    ```ts
+    // 实现参考
+    @State newsData: Array<news> = [
+      new news('1', '新闻标题1', '这是第一条短新闻，内容较少，快速滑动切换', 'short'),
+      new news('2', '新闻标题2', '这是第一条短新闻，内容较少，快速滑动切换', 'short'),
+      new news('3', '新闻标题3', '这是第二条长新闻，内容较多，可以自由滑动查看完整内容。'.repeat(20), 'long'),
+      new news('4', '新闻标题4', '这是第三条短新闻，内容较少，快速滑动切换', 'short'),
+      new news('5', '新闻标题5', '这是第四条长新闻，内容较多，可以自由滑动查看完整内容。', 'long')
+    ];
+    ```
+
+3. 滑动离手事件onWillStopDragging及新闻处理逻辑：
+   - 上报离手瞬间滑动速度，支持正负方向速度检测，向上滑动为正，向下滑动为负。
+
+     ```ts
+     // 实现参考
+     onWillStopDragging((velocity: number) => {
+       if (velocity < 0) {
+         // 向下滑动处理
+       } else {
+         // 向上滑动处理
+       }
+     })
+     ```
+
+   - 通过getItemRect接口方法获取当前项位置信息。
+
+     ```ts
+     // 实现参考
+     let rect = this.scrollerForList.getItemRect(this.currentIndex);
+     ```
+     
+   - 处理短新闻：直接跳转相邻项。
+     
+     ```ts
+     // 实现参考
+     if (velocity > 10) {
+       this.scrollerForList.scrollToIndex(this.currentIndex, true, ScrollAlign.START);
+     } else if (velocity < -10) {
+       this.scrollerForList.scrollToIndex(this.currentIndex + 1, true, ScrollAlign.START);
+     }
+     ```
+
+   - 处理长新闻：计算剩余显示范围决定滚动终点。
+   
+     ```ts
+     let rect = this.scrollerForList.getItemRect(this.currentIndex);
+     if (velocity < -30) {
+       if (rect) {
+         // 当前节点在页面内的剩余显示范围
+         let leftRect = rect.y + rect.height;
+         //   终点位置
+         let mainPosition = -velocity * DEFAULT_FRICTION / FRICTION_SCALE;
+         if (leftRect + mainPosition > 0.75 * this.listHeight) {
+           this.scrollerForList.scrollToIndex(this.currentIndex + 1, true, ScrollAlign.START);
+           return;
+         } else if (leftRect + mainPosition < 0.25 * this.listHeight) {
+           this.scrollerForList.scrollToIndex(this.currentIndex, true, ScrollAlign.END,
+             { extraOffset: LengthMetrics.vp(this.listHeight * 0.3) })
+           return;
+         }
+       }
+     } else if (velocity > 30) {
+       let leftRect = rect?.y + rect?.height;
+       let mainPosition = velocity * DEFAULT_FRICTION / FRICTION_SCALE;
+       if (leftRect + mainPosition > 0.75 * this.listHeight) {
+         this.scrollerForList.scrollToIndex(this.currentIndex, true, ScrollAlign.START);
+         return;
+       }
+     }
+     ```
+
 ## 相关实例
 
 如需详细了解ArkUI中列表的创建与使用，请参考以下示例：

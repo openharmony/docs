@@ -94,7 +94,7 @@ OH_Drawing_SamplingOptions* OH_Drawing_SamplingOptionsCreate(OH_Drawing_FilterMo
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_SamplingOptions](capi-oh-drawing-samplingoptions.md)* | 函数会返回一个指针，指针指向创建的采样选项对象[OH_Drawing_SamplingOptions](capi-oh-drawing-samplingoptions.md)。 |
+| [OH_Drawing_SamplingOptions](capi-drawing-oh-drawing-samplingoptions.md)* | 函数会返回一个指针，指针指向创建的采样选项对象[OH_Drawing_SamplingOptions](capi-drawing-oh-drawing-samplingoptions.md)。 |
 
 ### OH_Drawing_SamplingOptionsDestroy()
 
@@ -114,6 +114,6 @@ void OH_Drawing_SamplingOptionsDestroy(OH_Drawing_SamplingOptions* samplingOptio
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_SamplingOptions](capi-oh-drawing-samplingoptions.md)* samplingOptions | 指向采样选项对象[OH_Drawing_SamplingOptions](capi-oh-drawing-samplingoptions.md)的指针。 |
+| [OH_Drawing_SamplingOptions](capi-drawing-oh-drawing-samplingoptions.md)* samplingOptions | 指向采样选项对象[OH_Drawing_SamplingOptions](capi-drawing-oh-drawing-samplingoptions.md)的指针。 |
 
 

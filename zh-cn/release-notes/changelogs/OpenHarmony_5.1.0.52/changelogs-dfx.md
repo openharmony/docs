@@ -18,9 +18,7 @@
 
 此变更涉及应用适配。
 
-变更前：hiperf record/stat指定线程支持对release应用进行调试。
-
-变更后：hiperf record/stat指定线程仅支持对debug应用进行调试。
+变更后仅支持对debug应用进行调试。
 
 **起始API Level**
 

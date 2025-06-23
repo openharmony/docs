@@ -218,7 +218,6 @@ function destroy() : void {
 | mipMapMode | [SamplerFilter](#samplerfilter20) | 否 | 是 | mipmap过滤模式，控制纹理贴图在多层不同分辨率之间的采样方式，默认值为LINEAR。 |
 | addressModeU | [SamplerAddressMode](#sampleraddressmode20) | 否 | 是 | 纹理贴图U方向（水平）的采样方式，默认值为REPEAT。 |
 | addressModeV | [SamplerAddressMode](#sampleraddressmode20) | 否 | 是 | 纹理贴图V方向（垂直）的采样方式，默认值为REPEAT。 |
-| addressModeW | [SamplerAddressMode](#sampleraddressmode20) | 否 | 是 | 纹理贴图W方向（深度）的采样方式，默认值为REPEAT。 |
 
 ## SubMesh
 子网格类型。
@@ -270,7 +269,7 @@ function destroy() : void {
 | ---- | ---- | ---- | ---- | ---- |
 | enabled | boolean | 否 | 否 | 动画是否使能。true表示可以播放动画，false表示不可以播放动画。 |
 | speed<sup>20+</sup> | number | 否 | 是 | 动画的播放速度因子。默认值为1.0，表示正常速度播放。如果设置为负值，动画将以反向速度播放。 |
-| duration | number | 是 | 否 | 动画持续时间，取值范围大于等于0。 |
+| duration | number | 是 | 否 | 动画持续时间，单位为秒（s），取值范围大于等于0。 |
 | running | boolean | 是 | 否 | 动画运行状态。true表示动画正在播放，false表示动画停止播放。 |
 | progress | number | 是 | 否 | 动画进度状态，取值区间为[0, 1]。 |
 
@@ -522,5 +521,5 @@ function finish() : void {
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
-| width | number | 是 | 否 | 图片宽度，取值范围大于0。 |
-| height | number | 是 | 否 | 图片高度，取值范围大于0。 |
+| width | number | 是 | 否 | 图片宽度，单位为像素（px），取值范围大于0。 |
+| height | number | 是 | 否 | 图片高度，单位为像素（px），取值范围大于0。 |

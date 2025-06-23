@@ -52,16 +52,21 @@ IsolatedComponent(options: IsolatedOptions)
 
 **参数：**
 
-| 参数名                | 参数类型                                                   | 必填 | 说明           |
+| 参数名                | 类型                                                   | 必填 | 说明           |
 | --------------------- | ---------------------------------------------------------- | ---- | ------------------ |
 | options | [IsolatedOptions](#isolatedoptions)                | 是   | 需要传递的构造项。 |
 
 ## IsolatedOptions
+
 用于在IsolatedComponent进行构造的时候，传递可选的构造参数。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
-| 参数名               | 参数类型                                 | 必填 | 说明                                                                                                      |
+| 参数名               | 类型                                 | 必填 | 说明                                                                                                      |
 | ----                 | ---------------------------------------- | ---- | ---------------                                                                                               |
 | want | [Want](../../apis-ability-kit/js-apis-app-ability-want.md)                                  | 是   | 要加载的Abc信息。 |
 | worker | [RestrictedWorker](../../apis-arkts/js-apis-worker-sys.md#restrictedworker11)       | 是   | 运行Abc的受限worker。 |
@@ -89,7 +94,7 @@ onError(callback:ErrorCallback)
 
 **参数：**
 
-| 参数名                | 参数类型                                                   | 必填 | 说明           |
+| 参数名                | 类型                                                   | 必填 | 说明           |
 | --------------------- | ---------------------------------------------------------- | ---- | ------------------ |
 | callback | [ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#errorcallback)                | 是   | 报错信息。 |
 
@@ -155,7 +160,7 @@ onError(callback:ErrorCallback)
           // 1.调用verifyAbc接口校验abc文件
           Button("verifyAbc").onClick(() => {
             let abcFilePath = `${this.context.filesDir}/${this.fileName}.abc`;
-            console.log("abcFilePath: " + abcFilePath);
+            console.info("abcFilePath: " + abcFilePath);
             VerifyAbc([abcFilePath], false);
           }).height(100).width(100)
 

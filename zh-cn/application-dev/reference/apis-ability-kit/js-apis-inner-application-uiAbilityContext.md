@@ -3028,7 +3028,7 @@ startAppServiceExtensionAbility(want: Want): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 801 | Capability not support. |
+| 801 | Capability not supported. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Cannot start an invisible component. |
@@ -3107,7 +3107,7 @@ stopAppServiceExtensionAbility(want: Want): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 801 | Capability not support. |
+| 801 | Capability not supported. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Cannot start an invisible component. |
@@ -3183,7 +3183,7 @@ connectAppServiceExtensionAbility(want: Want, options: ConnectOptions): number
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 801 | Capability not support. |
+| 801 | Capability not supported. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Cannot start an invisible component. |
@@ -3267,7 +3267,7 @@ disconnectAppServiceExtensionAbility(connection: number): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 801 | Capability not support. |
+| 801 | Capability not supported. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 

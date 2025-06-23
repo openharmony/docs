@@ -13,6 +13,7 @@
     - [Interface (AudioStreamManager)](arkts-apis-audio-AudioStreamManager.md)
     - [Interface (AudioVolumeGroupManager)](arkts-apis-audio-AudioVolumeGroupManager.md)
     - [Interface (AudioVolumeManager)](arkts-apis-audio-AudioVolumeManager.md)
+    - [Interface (AudioLoopback)](arkts-apis-audio-AudioLoopback.md)
     - [Interfaces (其他)](arkts-apis-audio-i.md)
     - [Enums](arkts-apis-audio-e.md)
     - [Constants](arkts-apis-audio-c.md)
@@ -40,6 +41,7 @@
     - [native_audiorenderer.h](capi-native-audiorenderer-h.md)
     - [native_audio_common.h](capi-native-audio-common-h.md)
     - [native_audio_device_base.h](capi-native-audio-device-base-h.md)
+    - [native_audio_resource_manager.h](capi-native-audio-resource-manager-h.md)
     - [native_audiostream_base.h](capi-native-audiostream-base-h.md)
     - [native_audiostreambuilder.h](capi-native-audiostreambuilder-h.md)
   - 结构体<!--audio-struct-->

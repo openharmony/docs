@@ -18,8 +18,8 @@ import { resourceManager } from '@kit.LocalizationKit'
 
 **系统能力：** SystemCapability.Global.ResourceManager
 
-| 名称     | 类型    | 可读   | 可写  | 说明           |
+| 名称     | 类型    | 只读   | 可选  | 说明           |
 | ------ | ------  | ---- | ---- | ------------------ |
-| fd     | number  | 是    | 否 | 文件描述符。 |
-| offset | number  | 是    | 否 | 起始偏移量。      |
-| length | number  | 是    | 否 | 文件长度。       |
+| fd     | number  | 否    | 否 | 文件描述符。 |
+| offset | number  | 否    | 否 | 起始偏移量。      |
+| length | number  | 否    | 否 | 文件长度。       |

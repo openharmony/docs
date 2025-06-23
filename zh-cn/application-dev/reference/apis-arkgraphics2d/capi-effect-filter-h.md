@@ -49,8 +49,8 @@ EffectErrorCode OH_Filter_CreateEffect(OH_PixelmapNative* pixelmap, OH_Filter** 
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PixelmapNative](capi-oh-pixelmapnative.md)* pixelmap | 创建滤镜的位图。 |
-| [OH_Filter](capi-oh-filter.md)** filter | 用来接收滤镜的二级指针。 |
+| [OH_PixelmapNative](capi-drawing-oh-pixelmapnative.md)* pixelmap | 创建滤镜的位图。 |
+| [OH_Filter](capi-effectkit-oh-filter.md)** filter | 用来接收滤镜的二级指针。 |
 
 **返回：**
 
@@ -75,7 +75,7 @@ EffectErrorCode OH_Filter_Release(OH_Filter* filter)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Filter](capi-oh-filter.md)* filter | 被释放的对象指针。 |
+| [OH_Filter](capi-effectkit-oh-filter.md)* filter | 被释放的对象指针。 |
 
 **返回：**
 
@@ -100,7 +100,7 @@ EffectErrorCode OH_Filter_Blur(OH_Filter* filter, float radius)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Filter](capi-oh-filter.md)* filter | 滤镜指针。 |
+| [OH_Filter](capi-effectkit-oh-filter.md)* filter | 滤镜指针。 |
 | float radius | 毛玻璃效果的模糊半径，单位为像素。 |
 
 **返回：**
@@ -126,7 +126,7 @@ EffectErrorCode OH_Filter_BlurWithTileMode(OH_Filter* filter, float radius, Effe
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Filter](capi-oh-filter.md)* filter | 滤镜指针。 |
+| [OH_Filter](capi-effectkit-oh-filter.md)* filter | 滤镜指针。 |
 | float radius | 毛玻璃效果的模糊半径，单位为像素。 |
 | [EffectTileMode](capi-effect-types-h.md#effecttilemode) tileMode | 着色器效果平铺模式，支持可选的具体模式可见[EffectTileMode](capi-effect-types-h.md#effecttilemode)枚举。 |
 
@@ -153,7 +153,7 @@ EffectErrorCode OH_Filter_Brighten(OH_Filter* filter, float brightness)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Filter](capi-oh-filter.md)* filter | 滤镜指针。 |
+| [OH_Filter](capi-effectkit-oh-filter.md)* filter | 滤镜指针。 |
 | float brightness | 提亮效果的亮度值，取值范围在0-1之间，取值为0时图像保持不变。 |
 
 **返回：**
@@ -179,7 +179,7 @@ EffectErrorCode OH_Filter_GrayScale(OH_Filter* filter)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Filter](capi-oh-filter.md)* filter | 滤镜指针。 |
+| [OH_Filter](capi-effectkit-oh-filter.md)* filter | 滤镜指针。 |
 
 **返回：**
 
@@ -204,7 +204,7 @@ EffectErrorCode OH_Filter_Invert(OH_Filter* filter)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Filter](capi-oh-filter.md)* filter | 滤镜指针。 |
+| [OH_Filter](capi-effectkit-oh-filter.md)* filter | 滤镜指针。 |
 
 **返回：**
 
@@ -229,8 +229,8 @@ EffectErrorCode OH_Filter_SetColorMatrix(OH_Filter* filter, OH_Filter_ColorMatri
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Filter](capi-oh-filter.md)* filter | 滤镜指针。 |
-| [OH_Filter_ColorMatrix](capi-oh-filter-colormatrix.md)* matrix | 用来创建滤镜的自定义矩阵[OH_Filter_ColorMatrix](capi-oh-filter-colormatrix.md)。 |
+| [OH_Filter](capi-effectkit-oh-filter.md)* filter | 滤镜指针。 |
+| [OH_Filter_ColorMatrix](capi-effectkit-oh-filter-colormatrix.md)* matrix | 用来创建滤镜的自定义矩阵[OH_Filter_ColorMatrix](capi-effectkit-oh-filter-colormatrix.md)。 |
 
 **返回：**
 
@@ -255,8 +255,8 @@ EffectErrorCode OH_Filter_GetEffectPixelMap(OH_Filter* filter, OH_PixelmapNative
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Filter](capi-oh-filter.md)* filter | 用来创建位图的滤镜指针。 |
-| [OH_PixelmapNative](capi-oh-pixelmapnative.md)** pixelmap | 用来接收位图的二级指针。 |
+| [OH_Filter](capi-effectkit-oh-filter.md)* filter | 用来创建位图的滤镜指针。 |
+| [OH_PixelmapNative](capi-drawing-oh-pixelmapnative.md)** pixelmap | 用来接收位图的二级指针。 |
 
 **返回：**
 

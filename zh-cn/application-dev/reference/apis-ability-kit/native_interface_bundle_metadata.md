@@ -6,7 +6,7 @@
 
 **起始版本：** 20
 
-**相关模块：** [Bundle](_bundle.md)
+**相关模块：** [bundle](_bundle.md)
 
 **所在头文件：** [native_interface_bundle.h](native__interface__bundle.md)
 

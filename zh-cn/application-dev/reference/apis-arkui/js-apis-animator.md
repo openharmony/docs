@@ -11,6 +11,8 @@
 > 该模块不支持在[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)的文件声明处使用，即不能在UIAbility的生命周期中调用，需要在创建组件实例后使用。
 >
 > 本模块功能依赖UI的执行上下文，不可在[UI上下文不明确](../../ui/arkts-global-interface.md)的地方使用，参见[UIContext](js-apis-arkui-UIContext.md#uicontext)说明。
+>
+> 自定义组件中一般会持有一个[create](#create18)接口返回的[AnimatorResult](#animatorresult)对象，以保证动画对象不在动画过程中析构，而这个对象也通过回调捕获了自定义组件对象。则需要在自定义组件销毁时的[aboutToDisappear](../apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttodisappear)中释放动画对象，来避免因为循环依赖导致内存泄漏。
 
 ## 导入模块
 
@@ -177,7 +179,7 @@ this.animator = animator.createAnimator(options);
 
 reset(options: AnimatorOptions): void
 
-更新当前animator动画。
+重置当前animator动画参数。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -239,7 +241,7 @@ try {
 
 reset(options: AnimatorOptions \| SimpleAnimatorOptions): void
 
-更新当前animator动画。与[reset](#reset9)相比，新增对[SimpleAnimatorOptions](#simpleanimatoroptions18)类型入参的支持。
+重置当前animator动画参数。与[reset](#reset9)相比，新增对[SimpleAnimatorOptions](#simpleanimatoroptions18)类型入参的支持。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -381,13 +383,33 @@ onFrame: (progress: number) => void
 
 **示例：**
 
-<!--deprecated_code_no_check-->
 ```ts
-import { Animator as animator, AnimatorResult } from '@kit.ArkUI';
+import { AnimatorResult } from '@kit.ArkUI';
 
-let animatorResult: AnimatorResult | undefined = animator.create(options)
-animatorResult.onFrame = (value: number) => {
-  console.info("onFrame callback")
+@Entry
+@Component
+struct AnimatorTest {
+  private backAnimator: AnimatorResult | undefined = undefined
+
+  create() {
+    this.backAnimator = this.getUIContext().createAnimator({
+      duration: 2000,
+      easing: "ease",
+      delay: 0,
+      fill: "forwards",
+      direction: "normal",
+      iterations: 1,
+      begin: 100, //动画插值起点
+      end: 200 //动画插值终点
+    })
+    this.backAnimator.onFrame = (value: number) => {
+      console.info("onFrame callback")
+    }
+  }
+
+  build() {
+    // ......
+  }
 }
 ```
 
@@ -403,12 +425,33 @@ onFinish: () => void
 
 **示例：**
 
-<!--deprecated_code_no_check-->
 ```ts
-import {Animator as animator, AnimatorResult } from '@kit.ArkUI';
-let animatorResult:AnimatorResult|undefined = animator.create(options)
-animatorResult.onFinish = ()=> {
-  console.info("onFinish callback")
+import { AnimatorResult } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct AnimatorTest {
+  private backAnimator: AnimatorResult | undefined = undefined
+
+  create() {
+    this.backAnimator = this.getUIContext().createAnimator({
+      duration: 2000,
+      easing: "ease",
+      delay: 0,
+      fill: "forwards",
+      direction: "normal",
+      iterations: 1,
+      begin: 100, //动画插值起点
+      end: 200 //动画插值终点
+    })
+    this.backAnimator.onFinish = ()=> {
+      console.info("onFinish callback")
+    }
+  }
+
+  build() {
+    // ......
+  }
 }
 ```
 
@@ -424,13 +467,33 @@ onCancel: () => void
 
 **示例：**
 
-<!--deprecated_code_no_check-->
 ```ts
-import { Animator as animator, AnimatorResult } from '@kit.ArkUI';
+import { AnimatorResult } from '@kit.ArkUI';
 
-let animatorResult: AnimatorResult | undefined = animator.create(options)
-animatorResult.onCancel = () => {
-  console.info("onCancel callback")
+@Entry
+@Component
+struct AnimatorTest {
+  private backAnimator: AnimatorResult | undefined = undefined
+
+  create() {
+    this.backAnimator = this.getUIContext().createAnimator({
+      duration: 2000,
+      easing: "ease",
+      delay: 0,
+      fill: "forwards",
+      direction: "normal",
+      iterations: 1,
+      begin: 100, //动画插值起点
+      end: 200 //动画插值终点
+    })
+    this.backAnimator.onCancel = () => {
+      console.info("onCancel callback")
+    }
+  }
+
+  build() {
+    // ......
+  }
 }
 ```
 
@@ -446,13 +509,33 @@ onRepeat: () => void
 
 **示例：**
 
-<!--deprecated_code_no_check-->
 ```ts
-import { Animator as animator, AnimatorResult } from '@kit.ArkUI';
+import { AnimatorResult } from '@kit.ArkUI';
 
-let animatorResult: AnimatorResult | undefined = animator.create(options)
-animatorResult.onRepeat = () => {
-  console.info("onRepeat callback")
+@Entry
+@Component
+struct AnimatorTest {
+  private backAnimator: AnimatorResult | undefined = undefined
+
+  create() {
+    this.backAnimator = this.getUIContext().createAnimator({
+      duration: 2000,
+      easing: "ease",
+      delay: 0,
+      fill: "forwards",
+      direction: "normal",
+      iterations: 1,
+      begin: 100, //动画插值起点
+      end: 200 //动画插值终点
+    })
+    this.backAnimator.onRepeat = () => {
+      console.info("onRepeat callback")
+    }
+  }
+
+  build() {
+    // ......
+  }
 }
 ```
 
@@ -582,26 +665,38 @@ setExpectedFrameRateRange(rateRange: ExpectedFrameRateRange): void
 
 **示例：**
 
-<!--deprecated_code_no_check-->
 ```ts
-import { Animator as animator, AnimatorResult } from '@kit.ArkUI';
+import { AnimatorResult } from '@kit.ArkUI';
 
-let animatorResult: AnimatorResult | undefined = animator.create({
-  duration: 2000,
-  easing: "ease",
-  delay: 0,
-  fill: "forwards",
-  direction: "normal",
-  iterations: 1,
-  begin: 100,
-  end: 200
-})
 let expectedFrameRate: ExpectedFrameRateRange = {
   min: 0,
   max: 120,
   expected: 30
 }
-animatorResult.setExpectedFrameRateRange(expectedFrameRate);
+
+@Entry
+@Component
+struct AnimatorTest {
+  private backAnimator: AnimatorResult | undefined = undefined
+
+  create() {
+    this.backAnimator = this.getUIContext().createAnimator({
+      duration: 2000,
+      easing: "ease",
+      delay: 0,
+      fill: "forwards",
+      direction: "normal",
+      iterations: 1,
+      begin: 100, //动画插值起点
+      end: 200 //动画插值终点
+    })
+    this.backAnimator.setExpectedFrameRateRange(expectedFrameRate);
+  }
+
+  build() {
+    // ......
+  }
+}
 ```
 
 ### update<sup>(deprecated)</sup>

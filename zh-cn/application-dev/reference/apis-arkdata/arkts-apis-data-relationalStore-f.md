@@ -628,7 +628,7 @@ getInsertSqlInfo(table: string, values: ValuesBucket, conflict?: ConflictResolut
 
 | **错误码ID** | **错误信息**             |
 |-----------|---------------------|
-| 14800001       | Invalid args. Possible causes: 1. Empty conditions; 2. Missing GROUP BY clause. |
+| 14800001       | Invalid arguments. Possible causes: 1. Empty conditions; 2. Missing GROUP BY clause. |
 
 
 **示例：**
@@ -724,7 +724,7 @@ getDeleteSqlInfo(predicates: RdbPredicates): SqlInfo
 
 | **错误码ID** | **错误信息**             |
 |-----------|---------------------|
-| 14800001       | Invalid args. Possible causes: 1. Empty conditions; 2. Missing GROUP BY clause. |
+| 14800001       | Invalid arguments. Possible causes: 1. Empty conditions; 2. Missing GROUP BY clause. |
 
 
 **示例：**
@@ -740,7 +740,7 @@ const sqlInfo: relationalStore.SqlInfo = relationalStore.getDeleteSqlInfo(predic
 
 ## relationalStore.getQuerySqlInfo<sup>20+</sup>
 
-getQuerySqlInfo(predicates: RdbPredicates, columns: Array\<string>): SqlInfo
+getQuerySqlInfo(predicates: RdbPredicates, columns?: Array\<string>): SqlInfo
 
 获取用于查询数据的SQL语句，此为同步接口。
 

@@ -25,9 +25,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 <!--RP1End-->
 
-## 权限列表
-
-### ohos.permission.SYSTEM_FLOAT_WINDOW
+## ohos.permission.SYSTEM_FLOAT_WINDOW
 
 允许应用使用悬浮窗的能力。
 
@@ -39,7 +37,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **起始版本**：7
 
-### ohos.permission.READ_CONTACTS
+## ohos.permission.READ_CONTACTS
 
 允许应用读取联系人数据。
 
@@ -51,7 +49,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **起始版本**：8
 
-### ohos.permission.WRITE_CONTACTS
+## ohos.permission.WRITE_CONTACTS
 
 允许应用添加、移除或更改联系人数据。
 
@@ -63,7 +61,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **起始版本**：8
 
-### ohos.permission.READ_AUDIO
+## ohos.permission.READ_AUDIO
 
 允许读取用户公共目录的音频文件。
 
@@ -75,7 +73,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **起始版本**：9
 
-### ohos.permission.WRITE_AUDIO
+## ohos.permission.WRITE_AUDIO
 
 允许修改用户公共目录的音频文件。
 
@@ -87,7 +85,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **起始版本**：9
 
-### ohos.permission.READ_IMAGEVIDEO
+## ohos.permission.READ_IMAGEVIDEO
 
 允许读取用户公共目录的图片或视频文件。
 
@@ -99,7 +97,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **起始版本**：9
 
-### ohos.permission.WRITE_IMAGEVIDEO
+## ohos.permission.WRITE_IMAGEVIDEO
 
 允许修改用户公共目录的图片或视频文件。
 
@@ -112,7 +110,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 **起始版本**：9
 
 <!--Del-->
-### ohos.permission.WRITE_DOCUMENT
+## ohos.permission.WRITE_DOCUMENT
 
 允许修改用户公共目录的文档。
 
@@ -128,7 +126,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 请参考[文件权限组废弃替代方案](app-permission-group-list.md#文件deprecated)。
 
-### ohos.permission.READ_DOCUMENT
+## ohos.permission.READ_DOCUMENT
 
 允许读取用户公共目录的文档。
 
@@ -145,7 +143,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 请参考[文件权限组废弃替代方案](app-permission-group-list.md#文件deprecated)。
 <!--DelEnd-->
 
-### ohos.permission.READ_WRITE_DESKTOP_DIRECTORY
+## ohos.permission.READ_WRITE_DESKTOP_DIRECTORY
 
 允许应用访问公共目录下Desktop目录及子目录。
 
@@ -159,7 +157,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **起始版本**：11
 
-### ohos.permission.ACCESS_DDK_USB
+## ohos.permission.ACCESS_DDK_USB
 
 允许扩展外设驱动访问USB DDK接口开发USB总线扩展外设驱动。
 
@@ -171,7 +169,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **起始版本**：11
 
-### ohos.permission.ACCESS_DDK_HID
+## ohos.permission.ACCESS_DDK_HID
 
 允许扩展外设驱动访问HID DDK接口开发HID类扩展外设驱动。
 
@@ -183,7 +181,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **起始版本**：11
 
-### ohos.permission.READ_PASTEBOARD
+## ohos.permission.READ_PASTEBOARD
 
 允许应用读取剪贴板。
 
@@ -195,7 +193,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **起始版本**：11
 
-### ohos.permission.FILE_ACCESS_PERSIST
+## ohos.permission.FILE_ACCESS_PERSIST
 
 允许应用支持持久化访问文件Uri。
 
@@ -209,7 +207,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **变更信息：** 在API 11，权限等级为system_basic；从API 12开始，权限等级变更为normal，向普通应用开放。
 
-### ohos.permission.INTERCEPT_INPUT_EVENT
+## ohos.permission.INTERCEPT_INPUT_EVENT
 
 允许应用拦截输入事件。
 
@@ -223,7 +221,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **变更信息**：API 11，权限等级为system_core；从API 12开始，权限等级变更为system_basic，向普通应用开放。
 
-### ohos.permission.INPUT_MONITORING
+## ohos.permission.INPUT_MONITORING
 
 允许应用监听输入事件。
 
@@ -237,7 +235,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **变更信息**：API 7-11，权限等级为system_core；从API 12开始，权限等级变更为system_basic，向普通应用开放。
 
-### ohos.permission.SHORT_TERM_WRITE_IMAGEVIDEO
+## ohos.permission.SHORT_TERM_WRITE_IMAGEVIDEO
 
 允许应用保存图片、视频到用户公共目录。
 
@@ -251,7 +249,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **起始版本**：12
 
-### ohos.permission.READ_WRITE_USER_FILE
+## ohos.permission.READ_WRITE_USER_FILE
 
 允许应用访问并修改用户目录下的文件。
 
@@ -265,7 +263,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **起始版本**：13
 
-### ohos.permission.READ_WRITE_USB_DEV
+## ohos.permission.READ_WRITE_USB_DEV
 
 允许应用连接设备，并通过USB调试读写该设备。
 
@@ -279,7 +277,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **起始版本**：13
 
-### ohos.permission.GET_WIFI_PEERS_MAC
+## ohos.permission.GET_WIFI_PEERS_MAC
 
 允许应用获取对端Wi-Fi设备的MAC地址。
 
@@ -295,7 +293,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **变更信息**：API 8-13，权限等级为system_core；从API 14开始，权限等级变更为system_basic，向普通应用开放。
 
-### ohos.permission.kernel.DISABLE_CODE_MEMORY_PROTECTION
+## ohos.permission.kernel.DISABLE_CODE_MEMORY_PROTECTION
 
 允许应用禁用本应用的代码运行时完整性保护。
 
@@ -309,7 +307,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **起始版本**：14
 
-### ohos.permission.kernel.ALLOW_WRITABLE_CODE_MEMORY
+## ohos.permission.kernel.ALLOW_WRITABLE_CODE_MEMORY
 
 允许应用申请可写可执行匿名内存。
 
@@ -323,7 +321,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **起始版本**：14
 
-### ohos.permission.kernel.ALLOW_EXECUTABLE_FORT_MEMORY
+## ohos.permission.kernel.ALLOW_EXECUTABLE_FORT_MEMORY
 
 允许系统JS引擎申请带MAP_FORT标识的匿名可执行内存。
 
@@ -337,7 +335,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **起始版本**：14
 
-### ohos.permission.MANAGE_PASTEBOARD_APP_SHARE_OPTION
+## ohos.permission.MANAGE_PASTEBOARD_APP_SHARE_OPTION
 
 允许应用设置或移除剪贴板数据的可粘贴范围。
 
@@ -349,7 +347,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **起始版本**：14
 
-### ohos.permission.MANAGE_UDMF_APP_SHARE_OPTION
+## ohos.permission.MANAGE_UDMF_APP_SHARE_OPTION
 
 允许应用设置或移除其使用UDMF支持的数据分享范围。
 
@@ -361,7 +359,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **起始版本**：14
 
-### ohos.permission.ACCESS_DISK_PHY_INFO
+## ohos.permission.ACCESS_DISK_PHY_INFO
 
 允许应用获取硬盘的硬件信息。
 
@@ -373,7 +371,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **起始版本**：15
 
-### ohos.permission.PRELOAD_FILE
+## ohos.permission.PRELOAD_FILE
 
 允许应用预加载文件以提升文件打开速度。
 
@@ -385,7 +383,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **起始版本**：15
 
-### ohos.permission.SET_PAC_URL
+## ohos.permission.SET_PAC_URL
 
 允许应用设置代理自动配置脚本地址。
 
@@ -399,7 +397,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **起始版本**：15
 
-### ohos.permission.PERSONAL_MANAGE_RESTRICTIONS
+## ohos.permission.PERSONAL_MANAGE_RESTRICTIONS
 
 允许设备管理应用管理个人设备限制策略。
 
@@ -411,7 +409,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **起始版本**：15
 
-### ohos.permission.START_PROVISIONING_MESSAGE
+## ohos.permission.START_PROVISIONING_MESSAGE
 
 允许应用启动设备管理业务部署流程，将该应用激活为个人设备管理应用。
 
@@ -423,7 +421,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **起始版本**：15
 
-### ohos.permission.USE_FRAUD_CALL_LOG_PICKER
+## ohos.permission.USE_FRAUD_CALL_LOG_PICKER
 
 允许应用使用诈骗通话记录选择器，获取通话记录内容。
 
@@ -435,7 +433,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **起始版本**：15
 
-### ohos.permission.USE_FRAUD_MESSAGES_PICKER
+## ohos.permission.USE_FRAUD_MESSAGES_PICKER
 
 允许应用使用诈骗短信选择器，获取短信内容。
 
@@ -447,7 +445,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **起始版本**：15
 
-### ohos.permission.PERSISTENT_BLUETOOTH_PEERS_MAC
+## ohos.permission.PERSISTENT_BLUETOOTH_PEERS_MAC
 
 允许应用固化对端蓝牙设备MAC对应的虚拟随机地址。
 
@@ -461,7 +459,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **起始版本**：16
 
-### ohos.permission.ACCESS_VIRTUAL_SCREEN
+## ohos.permission.ACCESS_VIRTUAL_SCREEN
 
 允许应用管控虚拟屏。
 
@@ -475,7 +473,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **起始版本**：18
 
-### ohos.permission.MANAGE_APN_SETTING
+## ohos.permission.MANAGE_APN_SETTING
 
 允许应用读取或设置APN信息。
 
@@ -487,7 +485,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **起始版本**：16
 
-### ohos.permission.GET_WIFI_LOCAL_MAC
+## ohos.permission.GET_WIFI_LOCAL_MAC
 
 允许应用获取本机的Wi-Fi设备的MAC地址。
 
@@ -501,7 +499,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **变更信息**：API 8-15该权限仅向系统应用开放；从API 16开始，在PC/2in1设备上面向普通应用开放，在其余设备上仍仅面向系统应用开放。
 
-### ohos.permission.kernel.ALLOW_USE_JITFORT_INTERFACE
+## ohos.permission.kernel.ALLOW_USE_JITFORT_INTERFACE
 
 允许应用调用JITFort接口更新MAP_FORT内存的内容。
 
@@ -513,7 +511,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **起始版本**：16
 
-### ohos.permission.kernel.DISABLE_GOTPLT_RO_PROTECTION
+## ohos.permission.kernel.DISABLE_GOTPLT_RO_PROTECTION
 
 允许应用关闭进程内.got.plt段的只读保护。
 
@@ -525,7 +523,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **起始版本**：17
 
-### ohos.permission.USE_FRAUD_APP_PICKER
+## ohos.permission.USE_FRAUD_APP_PICKER
 
 允许应用使用诈骗应用选择器，获取应用信息。
 
@@ -556,7 +554,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **起始版本**：18
 
-### ohos.permission.kernel.SUPPORT_PLUGIN
+## ohos.permission.kernel.SUPPORT_PLUGIN
 
 允许主体应用安装插件。
 
@@ -568,7 +566,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **起始版本**：19
 
-### ohos.permission.CUSTOM_SANDBOX
+## ohos.permission.CUSTOM_SANDBOX
 
 允许应用将沙箱类型改为动态沙箱。
 
@@ -580,7 +578,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **起始版本**：18
 
-### ohos.permission.MANAGE_SCREEN_TIME_GUARD
+## ohos.permission.MANAGE_SCREEN_TIME_GUARD
 
 允许应用调用屏幕时间守护相关接口，进行屏幕使用限制、应用访问控制、管控使用时间等操作。
 
@@ -592,7 +590,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **起始版本**：20
 
-### ohos.permission.CUSTOMIZE_SAVE_BUTTON
+## ohos.permission.CUSTOMIZE_SAVE_BUTTON
 
 允许应用自定义保存控件的图标和文本。
 
@@ -606,7 +604,7 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 
 **起始版本**：20
 
-### ohos.permission.GET_ABILITY_INFO
+## ohos.permission.GET_ABILITY_INFO
 
 允许应用根据URI查询Ability信息。
 
@@ -631,5 +629,19 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 **授权方式**：系统授权（system_grant）
 
 **支持设备**：Phone | PC/2in1 | Tablet
+
+**起始版本**：20
+
+## ohos.permission.USE_FLOAT_BALL
+
+允许应用使用全局闪控球的能力。
+
+<!--RP46--><!--RP46End-->
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**支持设备**：Phone | Tablet
 
 **起始版本**：20

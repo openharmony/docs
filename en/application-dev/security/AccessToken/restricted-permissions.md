@@ -604,3 +604,17 @@ Allows an application to use the Native Development Kit (NDK) of the passkey ser
 **Supported devices**: Phone | PC/2in1 | Tablet
 
 **Valid since**: 20
+
+## ohos.permission.USE_FLOAT_BALL
+
+Allows an application to use the global float ball.
+
+<!--RP46--><!--RP46End-->
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Supported devices**: Phone | Tablet
+
+**Valid since**: 20

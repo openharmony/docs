@@ -101,5 +101,11 @@
         - [ArkGuard混淆开启指南](source-obfuscation-guide.md)
         - [不同包类型的源码混淆建议](source-obfuscation-practice.md)
         - [ArkGuard混淆常见问题](source-obfuscation-questions.md)
+    - ArkGuard字节码混淆工具<!--arkts-arkguard-bytecode-->
+        - [ArkGuard字节码混淆工具概述](bytecode-obfuscation-overview.md)
+        - [ArkGuard字节码混淆原理及功能](bytecode-obfuscation.md)
+        - [ArkGuard字节码混淆开启指南](bytecode-obfuscation-guide.md)
+        - [不同包类型的字节码混淆建议](bytecode-obfuscation-practice.md)
+        - [ArkGuard字节码混淆常见问题](bytecode-obfuscation-questions.md)
     - [在build-profile.json5中配置arkOptions](arkoptions-guide.md)
 

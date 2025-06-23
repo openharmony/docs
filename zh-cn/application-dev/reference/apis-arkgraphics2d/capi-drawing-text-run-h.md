@@ -55,7 +55,7 @@ OH_Drawing_Array* OH_Drawing_GetRunStringIndices(OH_Drawing_Run* run, int64_t st
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Run](capi-oh-drawing-run.md)* run | 指向渲染单元[OH_Drawing_Run](capi-oh-drawing-run.md)对象的指针。 |
+| [OH_Drawing_Run](capi-drawing-oh-drawing-run.md)* run | 指向渲染单元[OH_Drawing_Run](capi-drawing-oh-drawing-run.md)对象的指针。 |
 | int64_t start | 渲染单元内指定的开始位置，传入负数时该方法返回空指针。 |
 | int64_t length | 渲染单元内指定的长度，length为0时获取渲染单元的所有字符索引数组，length小于0时该方法返回空指针。 |
 
@@ -63,7 +63,7 @@ OH_Drawing_Array* OH_Drawing_GetRunStringIndices(OH_Drawing_Run* run, int64_t st
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_Array](capi-oh-drawing-array.md)* | 返回字形的字符索引数组，不再需要[OH_Drawing_Array](capi-oh-drawing-array.md)时，请使用[OH_Drawing_DestroyRunStringIndices](capi-drawing-text-run-h.md#oh_drawing_destroyrunstringindices)接口释放该对象的指针。 |
+| [OH_Drawing_Array](capi-drawing-oh-drawing-array.md)* | 返回字形的字符索引数组，不再需要[OH_Drawing_Array](capi-drawing-oh-drawing-array.md)时，请使用[OH_Drawing_DestroyRunStringIndices](capi-drawing-text-run-h.md#oh_drawing_destroyrunstringindices)接口释放该对象的指针。 |
 
 ### OH_Drawing_GetRunStringIndicesByIndex()
 
@@ -84,7 +84,7 @@ uint64_t OH_Drawing_GetRunStringIndicesByIndex(OH_Drawing_Array* stringIndices, 
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Array](capi-oh-drawing-array.md)* stringIndices | 字符索引数组。 |
+| [OH_Drawing_Array](capi-drawing-oh-drawing-array.md)* stringIndices | 字符索引数组。 |
 | size_t index | 渲染单元字形的字符索引数组下标。 |
 
 **返回：**
@@ -112,7 +112,7 @@ void OH_Drawing_DestroyRunStringIndices(OH_Drawing_Array* stringIndices)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Array](capi-oh-drawing-array.md)* stringIndices | 字符索引数组。 |
+| [OH_Drawing_Array](capi-drawing-oh-drawing-array.md)* stringIndices | 字符索引数组。 |
 
 ### OH_Drawing_GetRunStringRange()
 
@@ -133,7 +133,7 @@ void OH_Drawing_GetRunStringRange(OH_Drawing_Run* run, uint64_t* location, uint6
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Run](capi-oh-drawing-run.md)* run | 指向渲染单元[OH_Drawing_Run](capi-oh-drawing-run.md)对象的指针。 |
+| [OH_Drawing_Run](capi-drawing-oh-drawing-run.md)* run | 指向渲染单元[OH_Drawing_Run](capi-drawing-oh-drawing-run.md)对象的指针。 |
 | uint64_t* location | 表示渲染单元字形的字符范围的开始位置，该位置是相对于整个段落的偏移。 |
 | uint64_t* length | 表示渲染单元字符范围的长度。 |
 
@@ -156,7 +156,7 @@ float OH_Drawing_GetRunTypographicBounds(OH_Drawing_Run* run, float* ascent, flo
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Run](capi-oh-drawing-run.md)* run | 指向渲染单元[OH_Drawing_Run](capi-oh-drawing-run.md)对象的指针。 |
+| [OH_Drawing_Run](capi-drawing-oh-drawing-run.md)* run | 指向渲染单元[OH_Drawing_Run](capi-drawing-oh-drawing-run.md)对象的指针。 |
 | float* ascent | 渲染单元中最高字符到基准线的距离。 |
 | float* descent | 渲染单元中最低字符到基准线的距离。 |
 | float* leading | 渲染单元行间距。 |
@@ -186,8 +186,8 @@ void OH_Drawing_RunPaint(OH_Drawing_Canvas* canvas, OH_Drawing_Run* run, double 
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布[OH_Drawing_Canvas](capi-oh-drawing-canvas.md)对象的指针。 |
-| [OH_Drawing_Run](capi-oh-drawing-run.md)* run | 指向渲染单元[OH_Drawing_Run](capi-oh-drawing-run.md)对象的指针。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向画布[OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)对象的指针。 |
+| [OH_Drawing_Run](capi-drawing-oh-drawing-run.md)* run | 指向渲染单元[OH_Drawing_Run](capi-drawing-oh-drawing-run.md)对象的指针。 |
 | double x | 渲染单元x坐标。 |
 | double y | 渲染单元y坐标。 |
 
@@ -210,13 +210,13 @@ OH_Drawing_Rect* OH_Drawing_GetRunImageBounds(OH_Drawing_Run* run)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Run](capi-oh-drawing-run.md)* run | 指向渲染单元[OH_Drawing_Run](capi-oh-drawing-run.md)对象的指针。 |
+| [OH_Drawing_Run](capi-drawing-oh-drawing-run.md)* run | 指向渲染单元[OH_Drawing_Run](capi-drawing-oh-drawing-run.md)对象的指针。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_Rect](capi-oh-drawing-rect.md)* | 返回指向渲染单元图像边界[OH_Drawing_Rect](capi-oh-drawing-rect.md)对象的指针，不再需要[OH_Drawing_Rect](capi-oh-drawing-rect.md)时，请使用[OH_Drawing_DestroyRunImageBounds](capi-drawing-text-run-h.md#oh_drawing_destroyrunimagebounds)接口释放该对象的指针。 |
+| [OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)* | 返回指向渲染单元图像边界[OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)对象的指针，不再需要[OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)时，请使用[OH_Drawing_DestroyRunImageBounds](capi-drawing-text-run-h.md#oh_drawing_destroyrunimagebounds)接口释放该对象的指针。 |
 
 ### OH_Drawing_DestroyRunImageBounds()
 
@@ -237,7 +237,7 @@ void OH_Drawing_DestroyRunImageBounds(OH_Drawing_Rect* rect)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Rect](capi-oh-drawing-rect.md)* rect | 指向渲染单元图像边界[OH_Drawing_Rect](capi-oh-drawing-rect.md)对象的指针。 |
+| [OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)* rect | 指向渲染单元图像边界[OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)对象的指针。 |
 
 ### OH_Drawing_GetRunGlyphs()
 
@@ -258,7 +258,7 @@ OH_Drawing_Array* OH_Drawing_GetRunGlyphs(OH_Drawing_Run* run, int64_t start, in
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Run](capi-oh-drawing-run.md)* run | 指向渲染单元[OH_Drawing_Run](capi-oh-drawing-run.md)对象的指针。 |
+| [OH_Drawing_Run](capi-drawing-oh-drawing-run.md)* run | 指向渲染单元[OH_Drawing_Run](capi-drawing-oh-drawing-run.md)对象的指针。 |
 | int64_t start | 渲染单元内指定的开始位置，传入负数时该方法返回空指针。 |
 | int64_t length | 渲染单元内指定的长度，length为0时获取渲染单元的所有字符索引，length小于0时该方法返回空指针。 |
 
@@ -266,7 +266,7 @@ OH_Drawing_Array* OH_Drawing_GetRunGlyphs(OH_Drawing_Run* run, int64_t start, in
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_Array](capi-oh-drawing-array.md)* | 返回指向渲染单元字形数组[OH_Drawing_Array](capi-oh-drawing-array.md)对象的指针，不再需要[OH_Drawing_Array](capi-oh-drawing-array.md)时，请使用[OH_Drawing_DestroyRunGlyphs](capi-drawing-text-run-h.md#oh_drawing_destroyrunglyphs)接口释放该对象的指针。 |
+| [OH_Drawing_Array](capi-drawing-oh-drawing-array.md)* | 返回指向渲染单元字形数组[OH_Drawing_Array](capi-drawing-oh-drawing-array.md)对象的指针，不再需要[OH_Drawing_Array](capi-drawing-oh-drawing-array.md)时，请使用[OH_Drawing_DestroyRunGlyphs](capi-drawing-text-run-h.md#oh_drawing_destroyrunglyphs)接口释放该对象的指针。 |
 
 ### OH_Drawing_GetRunGlyphsByIndex()
 
@@ -287,7 +287,7 @@ uint16_t OH_Drawing_GetRunGlyphsByIndex(OH_Drawing_Array* glyphs, size_t index)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Array](capi-oh-drawing-array.md)* glyphs | 指向渲染单元字形数组[OH_Drawing_Array](capi-oh-drawing-array.md)对象的指针。 |
+| [OH_Drawing_Array](capi-drawing-oh-drawing-array.md)* glyphs | 指向渲染单元字形数组[OH_Drawing_Array](capi-drawing-oh-drawing-array.md)对象的指针。 |
 | size_t index | 渲染单元字形数组下标。 |
 
 **返回：**
@@ -315,7 +315,7 @@ void OH_Drawing_DestroyRunGlyphs(OH_Drawing_Array* glyphs)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Array](capi-oh-drawing-array.md)* glyphs | 指向渲染单元字形数组[OH_Drawing_Array](capi-oh-drawing-array.md)对象的指针。 |
+| [OH_Drawing_Array](capi-drawing-oh-drawing-array.md)* glyphs | 指向渲染单元字形数组[OH_Drawing_Array](capi-drawing-oh-drawing-array.md)对象的指针。 |
 
 ### OH_Drawing_GetRunPositions()
 
@@ -336,7 +336,7 @@ OH_Drawing_Array* OH_Drawing_GetRunPositions(OH_Drawing_Run* run, int64_t start,
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Run](capi-oh-drawing-run.md)* run | 指向渲染单元[OH_Drawing_Run](capi-oh-drawing-run.md)对象的指针。 |
+| [OH_Drawing_Run](capi-drawing-oh-drawing-run.md)* run | 指向渲染单元[OH_Drawing_Run](capi-drawing-oh-drawing-run.md)对象的指针。 |
 | int64_t start | 渲染单元内指定的开始位置，传入负数时该方法返回空指针。 |
 | int64_t length | 渲染单元内指定的长度，length为0时获取渲染单元的所有字符索引，length小于0时该方法返回空指针。 |
 
@@ -344,7 +344,7 @@ OH_Drawing_Array* OH_Drawing_GetRunPositions(OH_Drawing_Run* run, int64_t start,
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_Array](capi-oh-drawing-array.md)* | 返回指向渲染单元字形位置数组[OH_Drawing_Array](capi-oh-drawing-array.md)对象的指针，不再需要[OH_Drawing_Array](capi-oh-drawing-array.md)时，请使用[OH_Drawing_DestroyRunPositions](capi-drawing-text-run-h.md#oh_drawing_destroyrunpositions)接口释放该对象的指针。 |
+| [OH_Drawing_Array](capi-drawing-oh-drawing-array.md)* | 返回指向渲染单元字形位置数组[OH_Drawing_Array](capi-drawing-oh-drawing-array.md)对象的指针，不再需要[OH_Drawing_Array](capi-drawing-oh-drawing-array.md)时，请使用[OH_Drawing_DestroyRunPositions](capi-drawing-text-run-h.md#oh_drawing_destroyrunpositions)接口释放该对象的指针。 |
 
 ### OH_Drawing_GetRunPositionsByIndex()
 
@@ -365,14 +365,14 @@ OH_Drawing_Point* OH_Drawing_GetRunPositionsByIndex(OH_Drawing_Array* positions,
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Array](capi-oh-drawing-array.md)* positions | 指向渲染单元字形位置数组[OH_Drawing_Array](capi-oh-drawing-array.md)对象的指针。 |
+| [OH_Drawing_Array](capi-drawing-oh-drawing-array.md)* positions | 指向渲染单元字形位置数组[OH_Drawing_Array](capi-drawing-oh-drawing-array.md)对象的指针。 |
 | size_t index | 渲染单元字形位置数组下标。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_Point](capi-oh-drawing-point.md)* | 返回指向渲染单元单个字形位置[OH_Drawing_Point](capi-oh-drawing-point.md)对象的指针。 |
+| [OH_Drawing_Point](capi-drawing-oh-drawing-point.md)* | 返回指向渲染单元单个字形位置[OH_Drawing_Point](capi-drawing-oh-drawing-point.md)对象的指针。 |
 
 ### OH_Drawing_DestroyRunPositions()
 
@@ -393,7 +393,7 @@ void OH_Drawing_DestroyRunPositions(OH_Drawing_Array* positions)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Array](capi-oh-drawing-array.md)* positions | 指向渲染单元字形位置数组[OH_Drawing_Array](capi-oh-drawing-array.md)对象的指针。 |
+| [OH_Drawing_Array](capi-drawing-oh-drawing-array.md)* positions | 指向渲染单元字形位置数组[OH_Drawing_Array](capi-drawing-oh-drawing-array.md)对象的指针。 |
 
 ### OH_Drawing_GetRunGlyphCount()
 
@@ -414,7 +414,7 @@ uint32_t OH_Drawing_GetRunGlyphCount(OH_Drawing_Run* run)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Run](capi-oh-drawing-run.md)* run | 指向渲染单元[OH_Drawing_Run](capi-oh-drawing-run.md)对象的指针。 |
+| [OH_Drawing_Run](capi-drawing-oh-drawing-run.md)* run | 指向渲染单元[OH_Drawing_Run](capi-drawing-oh-drawing-run.md)对象的指针。 |
 
 **返回：**
 

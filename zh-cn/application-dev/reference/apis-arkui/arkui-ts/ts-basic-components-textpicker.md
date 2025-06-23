@@ -1003,8 +1003,6 @@ struct TextPickerExample {
 
 ```ts
 // xxx.ets
-import { TextPickerModifier } from '@kit.ArkUI';
-
 @Entry
 @Component
 struct TextPickerExample {
@@ -1015,16 +1013,6 @@ struct TextPickerExample {
       ['Text2', 'Text2', 'Text2', 'Text2'],
       ['Text3', 'Text3', 'Text3', 'Text3']
     ]
-  private textPickerModifier: TextPickerModifier = new TextPickerModifier()
-    .selectedBackgroundStyle({
-      borderRadius: {
-        topLeft:8,
-        topRight:8,
-        bottomLeft:8,
-        bottomRight:8
-      },
-      color: "#FFFFEEF6"
-    })
   build() {
     Column() {
       Row() {
@@ -1050,7 +1038,15 @@ struct TextPickerExample {
         .height("10%")
       Row() {
         TextPicker({ range: this.showText2 })
-          .attributeModifier(this.textPickerModifier)
+          .selectedBackgroundStyle({
+            borderRadius: {
+              topLeft:8,
+              topRight:8,
+              bottomLeft:8,
+              bottomRight:8
+            },
+            color: "#FFFFEEF6"
+          })
       }
     }.height('100%')
   }

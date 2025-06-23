@@ -27,6 +27,7 @@
   <!--Del-->
   - [分布式音频播放(仅对系统应用开放)](distributed-audio-playback.md)
   <!--DelEnd-->
+  - [音频工作组管理](audio-workgroup.md)
 - 音频录制<!--audio-recording-->
   - [音频录制开发概述](audio-recording-overview.md)
   - [使用AudioCapturer开发音频录制功能](using-audiocapturer-for-recording.md)
@@ -36,6 +37,7 @@
   - [管理全局音频输入设备](audio-input-device-management.md)
   - [共享音频输入](audio-recording-concurrency.md)
   - [实现音频耳返](audio-ear-monitor.md)
+  - [实现音频低时延耳返](audio-ear-monitor-loopback.md)
 - 音频通话<!--audio-call-->
   - [音频通话开发概述](audio-call-overview.md)
   - [开发音频通话功能](audio-call-development.md)

@@ -240,7 +240,7 @@ try {
 
 getShortcutInfo(bundleName :string, callback: AsyncCallback\<Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)\>\>) : void
 
-查询当前用户下指定应用的[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)。
+查询当前用户下指定应用的快捷方式信息[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)，只支持查询主应用的ShortcutInfo，查询分身应用请使用[getShortcutInfoByAppIndex](#launcherbundlemanagergetshortcutinfobyappindex20)。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
@@ -293,7 +293,7 @@ try {
 
 getShortcutInfo(bundleName : string) : Promise\<Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)\>\>
 
-查询当前用户下指定应用的[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)。
+查询当前用户下指定应用的快捷方式信息[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)，只支持查询主应用的ShortcutInfo，查询分身应用请使用[getShortcutInfoByAppIndex](#launcherbundlemanagergetshortcutinfobyappindex20)。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
@@ -349,7 +349,7 @@ try {
 
 getShortcutInfoSync(bundleName : string) : Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)\>
 
-查询当前用户下指定应用的[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)。
+查询当前用户下指定应用的快捷方式信息[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)，只支持查询主应用的ShortcutInfo，查询分身应用请使用[getShortcutInfoByAppIndex](#launcherbundlemanagergetshortcutinfobyappindex20)。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
@@ -401,7 +401,7 @@ try {
 
 getShortcutInfoSync(bundleName: string, userId: number) : Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)\>
 
-查询指定用户下指定应用的[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)。
+查询指定用户下指定应用的快捷方式信息[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)，只支持查询主应用的ShortcutInfo，查询分身应用请使用[getShortcutInfoByAppIndex](#launcherbundlemanagergetshortcutinfobyappindex20)。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
@@ -574,17 +574,72 @@ try {
                 .then(() => {
                 console.info('startShortcutWithReason success');
             }).catch ((err: BusinessError) => {
-                console.error('startShortcutWithReason errData is errCode:${err.code}  message:${err.message}');
+                console.error(`startShortcutWithReason errData is errCode:${err.code}  message:${err.message}`);
             });
         } catch (error) {
             let code = (error as BusinessError).code;
             let message = (error as BusinessError).message;
-            console.error('startShortcutWithReason error is errCode:${code}  message:${message}');
+            console.error(`startShortcutWithReason error is errCode:${code}  message:${message}`);
         }
     }
 } catch (errData) {
     let code = (errData as BusinessError).code;
     let message = (errData as BusinessError).message;
-    console.error('startShortcutWithReason errData is errCode:${code}  message:${message}');
+    console.error(`startShortcutWithReason errData is errCode:${code}  message:${message}`);
+}
+```
+
+## launcherBundleManager.getShortcutInfoByAppIndex<sup>20+</sup>
+
+getShortcutInfoByAppIndex(bundleName: string, appIndex: number): Array\<ShortcutInfo\>
+
+查询当前用户下指定分身应用的快捷方式信息[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)。
+
+获取调用方自己的信息时不需要权限。
+
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Launcher
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明         |
+| ---------- | ------ | ---- | -------------- |
+| bundleName | string | 是   | 应用Bundle名称。 |
+| appIndex | number | 是   | 分身应用的索引。 |
+
+**返回值：**
+
+| 类型                   | 说明                                            |
+| ---------------------- | ----------------------------------------------- |
+| Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)\> | Array形式返回当前用户下指定分身应用的[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                                |
+| -------- | ---------------------------------------- |
+| 201 | Verify permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 801 | Capability not support. |
+| 17700001 | The specified bundle name is not found.  |
+| 17700061 | The specified app index is invalid. |
+
+**示例：**
+
+```ts
+import { launcherBundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+    let data = launcherBundleManager.getShortcutInfoByAppIndex("com.example.demo", 1);
+    console.info('getShortcutInfoByAppIndex successfully, data is ' + JSON.stringify(data));
+} catch (errData) {
+    let code = (errData as BusinessError).code;
+    let message = (errData as BusinessError).message;
+    console.error(`Failed to getShortcutInfoByAppIndex. Code: ${code}, message: ${message}`);
 }
 ```

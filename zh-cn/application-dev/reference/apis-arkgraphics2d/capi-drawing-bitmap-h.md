@@ -21,7 +21,7 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [OH_Drawing_BitmapFormat](capi-oh-drawing-bitmapformat.md) | OH_Drawing_BitmapFormat | 结构体用于描述位图像素的格式，包括颜色类型和透明度类型。 |
+| [OH_Drawing_BitmapFormat](capi-drawing-oh-drawing-bitmapformat.md) | OH_Drawing_BitmapFormat | 结构体用于描述位图像素的格式，包括颜色类型和透明度类型。 |
 
 ### 函数
 
@@ -59,7 +59,7 @@ OH_Drawing_Bitmap* OH_Drawing_BitmapCreate(void)
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_Bitmap](capi-oh-drawing-bitmap.md)* | 函数会返回一个指针，指针指向创建的位图对象。 |
+| [OH_Drawing_Bitmap](capi-drawing-oh-drawing-bitmap.md)* | 函数会返回一个指针，指针指向创建的位图对象。 |
 
 ### OH_Drawing_BitmapDestroy()
 
@@ -80,7 +80,7 @@ void OH_Drawing_BitmapDestroy(OH_Drawing_Bitmap* bitmap)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Bitmap](capi-oh-drawing-bitmap.md)* bitmap | 指向位图对象的指针。 |
+| [OH_Drawing_Bitmap](capi-drawing-oh-drawing-bitmap.md)* bitmap | 指向位图对象的指针。 |
 
 ### OH_Drawing_BitmapCreateFromPixels()
 
@@ -101,7 +101,7 @@ OH_Drawing_Bitmap* OH_Drawing_BitmapCreateFromPixels(OH_Drawing_Image_Info* imag
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Image_Info](capi-oh-drawing-image-info.md)* imageInfo | 指向图片信息对象[OH_Drawing_Image_Info](capi-oh-drawing-image-info.md)的指针。 |
+| [OH_Drawing_Image_Info](capi-drawing-oh-drawing-image-info.md)* imageInfo | 指向图片信息对象[OH_Drawing_Image_Info](capi-drawing-oh-drawing-image-info.md)的指针。 |
 | void* pixels | 指向像素存储的内存首地址，内存由开发者申请，保证有效性。 |
 | uint32_t rowBytes | 每行像素的大小，小于等于0时无效。 |
 
@@ -109,7 +109,7 @@ OH_Drawing_Bitmap* OH_Drawing_BitmapCreateFromPixels(OH_Drawing_Image_Info* imag
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_Bitmap](capi-oh-drawing-bitmap.md)* | 函数返回一个指针，指针指向创建的位图对象[OH_Drawing_Bitmap](capi-oh-drawing-bitmap.md)。 |
+| [OH_Drawing_Bitmap](capi-drawing-oh-drawing-bitmap.md)* | 函数返回一个指针，指针指向创建的位图对象[OH_Drawing_Bitmap](capi-drawing-oh-drawing-bitmap.md)。 |
 
 ### OH_Drawing_BitmapBuild()
 
@@ -130,10 +130,10 @@ void OH_Drawing_BitmapBuild(OH_Drawing_Bitmap* bitmap,const uint32_t width, cons
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Bitmap](capi-oh-drawing-bitmap.md)* bitmap | 指向位图对象的指针。 |
+| [OH_Drawing_Bitmap](capi-drawing-oh-drawing-bitmap.md)* bitmap | 指向位图对象的指针。 |
 | const uint32_t width | 位图要初始化设置的宽度。 |
 | const uint32_t height | 位图要初始化设置的高度。 |
-| const [OH_Drawing_BitmapFormat](capi-oh-drawing-bitmapformat.md)* bitmapFormat | 位图要初始化设置的像素格式，包括像素的颜色类型和透明度类型。 |
+| const [OH_Drawing_BitmapFormat](capi-drawing-oh-drawing-bitmapformat.md)* bitmapFormat | 位图要初始化设置的像素格式，包括像素的颜色类型和透明度类型。 |
 
 ### OH_Drawing_BitmapGetWidth()
 
@@ -154,7 +154,7 @@ uint32_t OH_Drawing_BitmapGetWidth(OH_Drawing_Bitmap* bitmap)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Bitmap](capi-oh-drawing-bitmap.md)* bitmap | 指向位图对象的指针。 |
+| [OH_Drawing_Bitmap](capi-drawing-oh-drawing-bitmap.md)* bitmap | 指向位图对象的指针。 |
 
 **返回：**
 
@@ -181,7 +181,7 @@ uint32_t OH_Drawing_BitmapGetHeight(OH_Drawing_Bitmap* bitmap)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Bitmap](capi-oh-drawing-bitmap.md)* bitmap | 指向位图对象的指针。 |
+| [OH_Drawing_Bitmap](capi-drawing-oh-drawing-bitmap.md)* bitmap | 指向位图对象的指针。 |
 
 **返回：**
 
@@ -208,7 +208,7 @@ OH_Drawing_ColorFormat OH_Drawing_BitmapGetColorFormat(OH_Drawing_Bitmap* bitmap
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Bitmap](capi-oh-drawing-bitmap.md)* bitmap | 指向位图对象的指针。 |
+| [OH_Drawing_Bitmap](capi-drawing-oh-drawing-bitmap.md)* bitmap | 指向位图对象的指针。 |
 
 **返回：**
 
@@ -235,7 +235,7 @@ OH_Drawing_AlphaFormat OH_Drawing_BitmapGetAlphaFormat(OH_Drawing_Bitmap* bitmap
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Bitmap](capi-oh-drawing-bitmap.md)* bitmap | 指向位图对象的指针。 |
+| [OH_Drawing_Bitmap](capi-drawing-oh-drawing-bitmap.md)* bitmap | 指向位图对象的指针。 |
 
 **返回：**
 
@@ -262,7 +262,7 @@ void* OH_Drawing_BitmapGetPixels(OH_Drawing_Bitmap* bitmap)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Bitmap](capi-oh-drawing-bitmap.md)* bitmap | 指向位图对象的指针。 |
+| [OH_Drawing_Bitmap](capi-drawing-oh-drawing-bitmap.md)* bitmap | 指向位图对象的指针。 |
 
 **返回：**
 
@@ -289,8 +289,8 @@ void OH_Drawing_BitmapGetImageInfo(OH_Drawing_Bitmap* bitmap, OH_Drawing_Image_I
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Bitmap](capi-oh-drawing-bitmap.md)* bitmap | 指向位图对象[OH_Drawing_Bitmap](capi-oh-drawing-bitmap.md)的指针。 |
-| [OH_Drawing_Image_Info](capi-oh-drawing-image-info.md)* imageInfo | 指向图片信息对象[OH_Drawing_Image_Info](capi-oh-drawing-image-info.md)的指针。 |
+| [OH_Drawing_Bitmap](capi-drawing-oh-drawing-bitmap.md)* bitmap | 指向位图对象[OH_Drawing_Bitmap](capi-drawing-oh-drawing-bitmap.md)的指针。 |
+| [OH_Drawing_Image_Info](capi-drawing-oh-drawing-image-info.md)* imageInfo | 指向图片信息对象[OH_Drawing_Image_Info](capi-drawing-oh-drawing-image-info.md)的指针。 |
 
 ### OH_Drawing_BitmapReadPixels()
 
@@ -311,8 +311,8 @@ bool OH_Drawing_BitmapReadPixels(OH_Drawing_Bitmap* bitmap, const OH_Drawing_Ima
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Bitmap](capi-oh-drawing-bitmap.md)* bitmap | 指向位图对象[OH_Drawing_Bitmap](capi-oh-drawing-bitmap.md)的指针。 |
-| const [OH_Drawing_Image_Info](capi-oh-drawing-image-info.md)* dstInfo | 指向图片信息对象[OH_Drawing_Image_Info](capi-oh-drawing-image-info.md)的指针。 |
+| [OH_Drawing_Bitmap](capi-drawing-oh-drawing-bitmap.md)* bitmap | 指向位图对象[OH_Drawing_Bitmap](capi-drawing-oh-drawing-bitmap.md)的指针。 |
+| const [OH_Drawing_Image_Info](capi-drawing-oh-drawing-image-info.md)* dstInfo | 指向图片信息对象[OH_Drawing_Image_Info](capi-drawing-oh-drawing-image-info.md)的指针。 |
 | void* dstPixels | 目标像素存储区域。 |
 | size_t dstRowBytes | 目标像素数据每行的字节数，应大于或等于图片信息对象中的最小每行字节数。 |
 | int32_t srcX | 源位图中读取像素数据的起始x轴坐标，应小于源位图的宽度。 |

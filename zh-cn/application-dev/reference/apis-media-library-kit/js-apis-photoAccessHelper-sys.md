@@ -12,7 +12,62 @@
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 ```
+## photoAccessHelper.getPhotoAccessHelper<sup>19+</sup>
 
+getPhotoAccessHelper(context: Context, userId: number): PhotoAccessHelper
+
+支持跨用户获取相册管理模块的实例，用于访问和修改相册中的媒体文件。
+
+​**模型约束**：此接口仅可在Stage模型下使用。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名  | 类型    | 必填 | 说明                       |
+| ------- | ------- | ---- | -------------------------- |
+| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 传入Ability实例的上下文。 |
+| userId | number | 是   | 传入待访问用户的id。 |
+
+**返回值：**
+
+| 类型                            | 说明    |
+| ----------------------------- | :---- |
+| [PhotoAccessHelper](#photoaccesshelper) | 相册管理模块的实例。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+
+**示例：**
+
+```ts
+// 此处获取的phAccessHelper实例为全局对象，后续使用到phAccessHelper的地方默认为使用此处获取的对象，如未添加此段代码报phAccessHelper未定义的错误请自行添加。
+// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
+import { common } from '@kit.AbilityKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Button("example").onClick(async () => {
+        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+        // 此处101表示其他用户空间的userid
+        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context, 101);
+      }).width('100%')
+    }
+    .height('90%')
+  }
+}
+```
+​
 ## PhotoAccessHelper
 
 ### createAsset
@@ -1689,7 +1744,7 @@ getSharedPhotoAssets(options: FetchOptions): Array\<SharedPhotoAsset\>
 
 | 类型                    | 说明                |
 | ----------------------- | ------------------ |
-| Array\<[SharedPhotoAsset](#sharedphotoasset)\> | 返回共享的照片资产。 |
+| Array\<[SharedPhotoAsset](#sharedphotoasset13)\> | 返回共享的照片资产。 |
 
 **错误码：**
 
@@ -1766,8 +1821,6 @@ startAssetAnalysis(type: AnalysisType, assetUris?: Array&lt;string&gt;): Promise
 phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
 
 ```ts
-import { common } from '@kit.AbilityKit';
-
 async function example(context: Context) {
   console.info('startAssetAnalysisDemo');
   try {
@@ -1959,8 +2012,6 @@ saveGalleryFormInfo(info:GalleryFormInfo):Promise&lt;void&gt;
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
-import {photoAccessHelper} from '@kit.MediaLibraryKit';
-import { common } from '@kit.AbilityKit';
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('saveGalleryFormInfoDemo');
@@ -2028,8 +2079,6 @@ updateGalleryFormInfo(info:GalleryFormInfo):Promise&lt;void&gt;
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
-import {photoAccessHelper} from '@kit.MediaLibraryKit';
-import { common } from '@kit.AbilityKit';
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('updateGalleryFormInfoDemo');
@@ -2098,8 +2147,6 @@ removeGalleryFormInfo(info:GalleryFormInfo):Promise&lt;void&gt;
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import {photoAccessHelper} from '@kit.MediaLibraryKit';
-import { common } from '@kit.AbilityKit';
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('removeGalleryFormInfoDemo');
@@ -4004,7 +4051,6 @@ getThumbnailData(type: ThumbnailType): Promise&lt;ArrayBuffer&gt;
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { common } from '@kit.AbilityKit';
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('getThumbnailDataDemo');
@@ -4024,7 +4070,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 }
 ```
 
-## SharedPhotoAsset
+## SharedPhotoAsset<sup>13+</sup>
 
 共享图片资产。
 
@@ -4036,38 +4082,38 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | --- | ---- | ---- | --- |
-| fileId<sup>13+</sup> | number | 否 | 否 | 图片资产标识id。<br>**系统接口**：此接口为系统接口。|
-| uri<sup>13+</sup> | string | 否 | 否 | 图片资产uri。<br>**系统接口**：此接口为系统接口。|
-| data<sup>13+</sup> | string | 否 | 否 | 图片资产的路径数据。<br>**系统接口**：此接口为系统接口。|
-| mediaType<sup>13+</sup> | [PhotoType](./js-apis-photoAccessHelper.md#phototype) | 否 | 否 | 图片资产的媒体类型。<br>**系统接口**：此接口为系统接口。|
-| displayName<sup>13+</sup> | string | 否 | 否 | 图片资产的显示名称。<br>**系统接口**：此接口为系统接口。|
-| size<sup>13+</sup> | number  | 否 | 否 | 图片资产文件大小。<br>**系统接口**：此接口为系统接口。|
-| dataAdded<sup>13+</sup> | number | 否 | 否 | 添加了图片资产数据。<br>**系统接口**：此接口为系统接口。|
-| dataModified<sup>13+</sup> | number | 否 | 否 | 更改了图片资产数据。<br>**系统接口**：此接口为系统接口。|
-| duration<sup>13+</sup> | number | 否 | 否 | 视频类型的图片资产时长。<br>**系统接口**：此接口为系统接口。|
-| width<sup>13+</sup> | number | 否 | 否 | 图片资产的像素宽度。<br>**系统接口**：此接口为系统接口。|
-| height<sup>13+</sup> | number | 否 | 否 | 图片资产的像素高度。<br>**系统接口**：此接口为系统接口。|
-| dataTaken<sup>13+</sup> | number | 否 | 否 | 图片资产拍照后存入本地时间。<br>**系统接口**：此接口为系统接口。|
-| orientation<sup>13+</sup> | number | 否 | 否 | 图片资产的旋转角度。<br>**系统接口**：此接口为系统接口。|
-| isFavorite<sup>13+</sup> | boolean | 否 | 否 | 是否收藏了此图片。<br>**系统接口**：此接口为系统接口。|
-| title<sup>13+</sup> | string | 否 | 否 | 图片资产的标题。<br>**系统接口**：此接口为系统接口。|
-| position<sup>13+</sup> | [PositionType](./js-apis-photoAccessHelper.md#positiontype16) | 否 | 否 | 图片资产存在位置。<br>**系统接口**：此接口为系统接口。|
-| dataTrashed<sup>13+</sup> | number | 否 | 否 | 图片资产是否在回收站中。<br>**系统接口**：此接口为系统接口。|
-| hidden<sup>13+</sup> | boolean | 否 | 否 | 图片资产是否隐藏。<br>**系统接口**：此接口为系统接口。|
-| userComment<sup>13+</sup> | string | 否 | 否 | 图片资产的用户评论信息。<br>**系统接口**：此接口为系统接口。|
-| cameraShotKey<sup>13+</sup> | string | 否 | 否 | 图片资产相机拍摄信息。<br>**系统接口**：此接口为系统接口。|
-| dateYear<sup>13+</sup> | string | 否 | 否 | 图片资产创建年份时间。<br>**系统接口**：此接口为系统接口。|
-| dateMonth<sup>13+</sup> | string | 否 | 否 | 图片资产创建月份时间。<br>**系统接口**：此接口为系统接口。|
-| dateDay<sup>13+</sup> | string | 否 | 否 | 图片资产创建日时间。<br>**系统接口**：此接口为系统接口。|
-| pending<sup>13+</sup> | boolean | 否 | 否 | 图片资产等待状态，true为等待。<br>**系统接口**：此接口为系统接口。|
-| dateAddedMs<sup>13+</sup> | number | 否 | 否 | 图片资产数据添加后经过时间。<br>**系统接口**：此接口为系统接口。|
-| dateTrashedMs<sup>13+</sup> | number | 否 | 否 | 图片资产数据进回收站后经过时间。<br>**系统接口**：此接口为系统接口。|
-| subtype<sup>13+</sup> | [PhotoSubtype](#photosubtype) | 否 | 否 | 图片资产子类型。<br>**系统接口**：此接口为系统接口。|
-| movingPhotoEffectMode<sup>13+</sup> | [MovingPhotoEffectMode](#movingphotoeffectmode12) | 否 | 否 | 动态照片效果模式。<br>**系统接口**：此接口为系统接口。|
-| dynamicRangeType<sup>13+</sup> | [DynamicRangeType](./js-apis-photoAccessHelper.md#dynamicrangetype12) | 否 | 否 | 媒体文件的动态范围类型。<br>**系统接口**：此接口为系统接口。|
-| thumbnailReady<sup>13+</sup> | boolean | 否 | 否 | 图片资产的缩略图是否准备好。<br>**系统接口**：此接口为系统接口。|
-| lcdSize<sup>13+</sup> | string | 否 | 否 | 图片资产的lcd缩略图宽高信息。<br>**系统接口**：此接口为系统接口。|
-| thmSize<sup>13+</sup> | string | 否 | 否 | 图片资产的thumb缩略图宽高信息。<br>**系统接口**：此接口为系统接口。|
+| fileId | number | 否 | 否 | 图片资产标识id。<br>**系统接口**：此接口为系统接口。|
+| uri | string | 否 | 否 | 图片资产uri。<br>**系统接口**：此接口为系统接口。|
+| data | string | 否 | 否 | 图片资产的路径数据。<br>**系统接口**：此接口为系统接口。|
+| mediaType | [PhotoType](./js-apis-photoAccessHelper.md#phototype) | 否 | 否 | 图片资产的媒体类型。<br>**系统接口**：此接口为系统接口。|
+| displayName | string | 否 | 否 | 图片资产的显示名称。<br>**系统接口**：此接口为系统接口。|
+| size | number  | 否 | 否 | 图片资产文件大小。<br>**系统接口**：此接口为系统接口。|
+| dataAdded | number | 否 | 否 | 添加了图片资产数据。<br>**系统接口**：此接口为系统接口。|
+| dataModified | number | 否 | 否 | 更改了图片资产数据。<br>**系统接口**：此接口为系统接口。|
+| duration | number | 否 | 否 | 视频类型的图片资产时长。<br>**系统接口**：此接口为系统接口。|
+| width | number | 否 | 否 | 图片资产的像素宽度。<br>**系统接口**：此接口为系统接口。|
+| height | number | 否 | 否 | 图片资产的像素高度。<br>**系统接口**：此接口为系统接口。|
+| dataTaken | number | 否 | 否 | 图片资产拍照后存入本地时间。<br>**系统接口**：此接口为系统接口。|
+| orientation | number | 否 | 否 | 图片资产的旋转角度。<br>**系统接口**：此接口为系统接口。|
+| isFavorite | boolean | 否 | 否 | 是否收藏了此图片。<br>**系统接口**：此接口为系统接口。|
+| title | string | 否 | 否 | 图片资产的标题。<br>**系统接口**：此接口为系统接口。|
+| position | [PositionType](./js-apis-photoAccessHelper.md#positiontype16) | 否 | 否 | 图片资产存在位置。<br>**系统接口**：此接口为系统接口。|
+| dataTrashed | number | 否 | 否 | 图片资产是否在回收站中。<br>**系统接口**：此接口为系统接口。|
+| hidden | boolean | 否 | 否 | 图片资产是否隐藏。<br>**系统接口**：此接口为系统接口。|
+| userComment | string | 否 | 否 | 图片资产的用户评论信息。<br>**系统接口**：此接口为系统接口。|
+| cameraShotKey | string | 否 | 否 | 图片资产相机拍摄信息。<br>**系统接口**：此接口为系统接口。|
+| dateYear | string | 否 | 否 | 图片资产创建年份时间。<br>**系统接口**：此接口为系统接口。|
+| dateMonth | string | 否 | 否 | 图片资产创建月份时间。<br>**系统接口**：此接口为系统接口。|
+| dateDay | string | 否 | 否 | 图片资产创建日时间。<br>**系统接口**：此接口为系统接口。|
+| pending | boolean | 否 | 否 | 图片资产等待状态，true为等待。<br>**系统接口**：此接口为系统接口。|
+| dateAddedMs | number | 否 | 否 | 图片资产数据添加后经过时间。<br>**系统接口**：此接口为系统接口。|
+| dateTrashedMs | number | 否 | 否 | 图片资产数据进回收站后经过时间。<br>**系统接口**：此接口为系统接口。|
+| subtype | [PhotoSubtype](#photosubtype) | 否 | 否 | 图片资产子类型。<br>**系统接口**：此接口为系统接口。|
+| movingPhotoEffectMode | [MovingPhotoEffectMode](#movingphotoeffectmode12) | 否 | 否 | 动态照片效果模式。<br>**系统接口**：此接口为系统接口。|
+| dynamicRangeType | [DynamicRangeType](./js-apis-photoAccessHelper.md#dynamicrangetype12) | 否 | 否 | 媒体文件的动态范围类型。<br>**系统接口**：此接口为系统接口。|
+| thumbnailReady | boolean | 否 | 否 | 图片资产的缩略图是否准备好。<br>**系统接口**：此接口为系统接口。|
+| lcdSize | string | 否 | 否 | 图片资产的lcd缩略图宽高信息。<br>**系统接口**：此接口为系统接口。|
+| thmSize | string | 否 | 否 | 图片资产的thumb缩略图宽高信息。<br>**系统接口**：此接口为系统接口。|
 | thumbnailModifiedMs<sup>14+</sup> | number | 否 | 是 | 图片资产的缩略图状态改变后经过时间。<br>**系统接口**：此接口为系统接口。|
 | thumbnailVisible<sup>14+</sup> | [ThumbnailVisibility](#thumbnailvisibility14) | 否 | 否 | 图片资产的缩略图是否可见。<br>**系统接口**：此接口为系统接口。|
 
@@ -5088,7 +5134,6 @@ setSupportedWatermarkType(watermarkType: WatermarkType): void
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-import { common } from '@kit.AbilityKit';
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('setSupportedWatermarkTypeDemo');
@@ -6697,7 +6742,6 @@ setSubTitle(title: string): void
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-import { common } from '@kit.AbilityKit';
 
 async function example(context: Context) {
   try {
@@ -6764,8 +6808,6 @@ static deleteHighlightAlbums(context: Context, albums: Array&lt;Album&gt;): Prom
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
-import { common } from '@kit.AbilityKit';
 
 async function example(context: Context) {
   try {
@@ -6826,7 +6868,6 @@ constructor(album: Album)
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-import { common } from '@kit.AbilityKit';s
 
 async function example(context: Context) {
   console.info('MediaAnalysisAlbumChangeRequest constructorDemo');
@@ -6882,7 +6923,6 @@ setOrderPosition(assets: Array&lt;PhotoAsset&gt;, position: Array&lt;number&gt;)
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-import { common } from '@kit.AbilityKit';
 
 async function example(context: Context) {
   try {
@@ -6958,7 +6998,6 @@ constructor(album: Album)
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-import { common } from '@kit.AbilityKit';
 
 async function example(context: Context) {
   console.info('AnalysisAlbum constructorDemo');
@@ -7018,7 +7057,6 @@ getOrderPosition(assets: Array&lt;PhotoAsset&gt;): Promise&lt;Array&lt;number&gt
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-import { common } from '@kit.AbilityKit';
 
 async function example(context: Context) {
   try {
@@ -7097,7 +7135,6 @@ static getCloudEnhancementInstance(context: Context): CloudEnhancement
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-import { common } from '@kit.AbilityKit';
 
 async function example(context: Context) {
   console.info('getCloudEnhancementInstanceDemo');
@@ -7778,8 +7815,6 @@ static getCloudMediaAssetManagerInstance(context: Context): CloudMediaAssetManag
 **示例：**
 
 ```ts
-import { common } from '@kit.AbilityKit';
-
 async function example(context: Context) {
   console.info('getCloudMediaAssetManagerInstanceDemo');
   try {
@@ -7828,8 +7863,6 @@ startDownloadCloudMedia(downloadType: CloudMediaDownloadType): Promise&lt;void&g
 **示例：**
 
 ```ts
-import { common } from '@kit.AbilityKit';
-
 async function example(context: Context) {
   console.info('startDownloadCloudMediaDemo');
   try {
@@ -7871,8 +7904,6 @@ pauseDownloadCloudMedia(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { common } from '@kit.AbilityKit';
-
 async function example(context: Context) {
   console.info('pauseDownloadCloudMediaDemo');
   try {
@@ -7914,8 +7945,6 @@ cancelDownloadCloudMedia(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { common } from '@kit.AbilityKit';
-
 async function example(context: Context) {
   console.info('cancelDownloadCloudMediaDemo');
   try {
@@ -7964,8 +7993,6 @@ retainCloudMediaAsset(retainType: CloudMediaRetainType): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { common } from '@kit.AbilityKit';
-
 async function example(context: Context) {
   console.info('retainCloudMediaAssetDemo');
   try {
@@ -8007,8 +8034,6 @@ getCloudMediaAssetStatus(): Promise&lt;CloudMediaAssetStatus&gt;
 **示例：**
 
 ```ts
-import { common } from '@kit.AbilityKit';
-
 async function example(context: Context) {
   console.info('getCloudMediaAssetStatusDemo');
   try {
@@ -8167,6 +8192,7 @@ async function example(context: Context) {
 | ---------------------- | ------------------- | ---- | ------------------------------------------------ |
 | subtype           | [PhotoSubtype](#photosubtype) | 否  | 图片或者视频的子类型。  |
 | cameraShotKey           | string | 否  | 锁屏相机拍照或录像的标记字段（仅开放给系统相机,其key值由系统相机定义）。   |
+| userId<sup>19+</sup>           | number | 否  | 用户id。  |
 
 ## RequestPhotoOptions<sup>11+</sup>
 
