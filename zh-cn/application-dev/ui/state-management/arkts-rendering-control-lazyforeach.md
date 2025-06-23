@@ -1268,7 +1268,7 @@ struct MyComponent {
           item.message += '00';
           this.data.reloadData();
         })
-      }, (item: StringData, index: number) => JSON.stringify(item))
+      }, (item: StringData, index: number) => item.message)
     }.cachedCount(5)
   }
 }
@@ -1422,7 +1422,7 @@ struct MyComponent {
         .onClick(() => {
           item.message.message += '0';
         })
-      }, (item: StringData, index: number) => JSON.stringify(item) + index.toString())
+      }, (item: StringData, index: number) => item.message.message + index.toString())
     }.cachedCount(5)
   }
 }
@@ -1509,7 +1509,7 @@ struct MyComponent {
           // @ObjectLink装饰的成员变量仅能监听到其子属性的变化，再深入嵌套的属性便无法观测到
           item.message = new NestedString(item.message.message + '0');
         })
-      }, (item: StringData, index: number) => JSON.stringify(item) + index.toString())
+      }, (item: StringData, index: number) => item.message.message + index.toString())
     }.cachedCount(5)
   }
 }
