@@ -464,7 +464,7 @@ Remote file already exists.
 
 **错误信息**
 
-The SSL CA certificate does not exist or is unaccessible.
+The SSL CA certificate does not exist or is inaccessible.
 
 **错误描述**
 
