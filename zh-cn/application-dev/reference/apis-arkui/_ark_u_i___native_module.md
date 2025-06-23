@@ -8283,54 +8283,6 @@ int32_t OH_ArkUI_NodeUtils_GetAttachedNodeHandleById(const char* id, ArkUI_NodeH
 [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) 成功。</br >
 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) 方法参数异常。</br >
 
-### OH_ArkUI_NodeUtils_GetNodeHandleByUniqueId()
-
-```
-int32_t OH_ArkUI_NodeUtils_GetNodeHandleByUniqueId(const uint32_t uniqueId, ArkUI_NodeHandle* node)
-```
-**描述：**
-
-通过uniqueId获取节点。
-
-**起始版本：** 20
-
-**参数：**
-
-| 名称 | 描述 |
-| -------- | -------- |
-| uniqueId | 目标节点的uniqueId。 |
-| node | 目标节点的指针。 |
-
-**返回：**
-
-[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) 成功。</br >
-[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) 方法参数异常。</br >
-[ARKUI_ERROR_CODE_CAPI_INIT_ERROR](_ark_u_i___native_module.md#arkui_errorcode) CAPI初始化错误。</br >
-
-### OH_ArkUI_NodeUtils_GetNodeUniqueId()
-
-```
-int32_t OH_ArkUI_NodeUtils_GetNodeUniqueId(ArkUI_NodeHandle node, int32_t* uniqueId)
-```
-**描述：**
-
-获取目标节点的uniqueId。
-
-**起始版本：** 20
-
-**参数：**
-
-| 名称 | 描述 |
-| -------- | -------- |
-| node | ArkUI节点指针。 |
-| uniqueId | 目标节点的uniqueId，默认为-1。 |
-
-**返回：**
-
-[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) 成功。</br >
-[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) 方法参数异常。</br >
-[ARKUI_ERROR_CODE_CAPI_INIT_ERROR](_ark_u_i___native_module.md#arkui_errorcode) CAPI初始化错误。</br >
-
 ### OH_ArkUI_NodeUtils_SetCrossLanguageOption()
 
 ```
