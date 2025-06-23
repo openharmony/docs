@@ -1866,8 +1866,6 @@ on(type:'playWithAssetId', callback: Callback\<string>): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
-**ArkTS版本：** 该接口仅适用于ArkTS1.2。
-
 **参数：**
 
 | 参数名   | 类型                 | 必填 | 说明     |
@@ -1902,8 +1900,6 @@ off(type: 'playWithAssetId', callback?: Callback\<string>): void
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
-
-**ArkTS版本：** 该接口仅适用于ArkTS1.2。
 
 **参数：**
 
