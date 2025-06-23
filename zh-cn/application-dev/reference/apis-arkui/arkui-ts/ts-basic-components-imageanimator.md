@@ -115,7 +115,7 @@ fixedSize(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 设置图片大小是否固定为组件大小。&nbsp;true表示图片大小与组件大小一致，此时设置图片的width&nbsp;、height&nbsp;、top&nbsp;和left属性无效。false表示每一张图片的width&nbsp;、height&nbsp;、top和left属性都要单独设置。<br/>默认值：true |
+| value  | boolean | 是   | 设置图片大小是否固定为组件大小。&nbsp;true表示图片大小与组件大小一致，此时设置图片的width&nbsp;、height&nbsp;、top&nbsp;和left属性无效。false表示每一张图片的width&nbsp;、height&nbsp;、top和left属性都要单独设置。图片宽高与组件宽高不一致时，图片不会被拉伸。<br/>默认值：true |
 
 ### preDecode<sup>(deprecated)</sup>
 
