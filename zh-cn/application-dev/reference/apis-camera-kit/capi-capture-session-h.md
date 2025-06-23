@@ -20,15 +20,15 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [CaptureSession_Callbacks](capi-capturesession-callbacks.md) | CaptureSession_Callbacks | 捕获会话的回调。 |
-| [Camera_CaptureSession](capi-camera-capturesession.md) | Camera_CaptureSession | 捕获会话对象。<br> 可以使用[OH_CameraManager_CreateCaptureSession](capi-camera-manager-h.md#oh_cameramanager_createcapturesession)方法创建指针。 |
+| [CaptureSession_Callbacks](capi-oh-camera-capturesession-callbacks.md) | CaptureSession_Callbacks | 捕获会话的回调。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md) | Camera_CaptureSession | 捕获会话对象。<br> 可以使用[OH_CameraManager_CreateCaptureSession](capi-camera-manager-h.md#oh_cameramanager_createcapturesession)方法创建指针。 |
 
 ### 函数
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [typedef void (\*OH_CaptureSession_OnFocusStateChange)(Camera_CaptureSession* session, Camera_FocusState focusState)](#oh_capturesession_onfocusstatechange) | OH_CaptureSession_OnFocusStateChange | 在[CaptureSession_Callbacks](capi-capturesession-callbacks.md)中被调用的捕获会话焦点状态回调。 |
-| [typedef void (\*OH_CaptureSession_OnError)(Camera_CaptureSession* session, Camera_ErrorCode errorCode)](#oh_capturesession_onerror) | OH_CaptureSession_OnError | 在[CaptureSession_Callbacks](capi-capturesession-callbacks.md)中被调用的捕获会话错误回调。 |
+| [typedef void (\*OH_CaptureSession_OnFocusStateChange)(Camera_CaptureSession* session, Camera_FocusState focusState)](#oh_capturesession_onfocusstatechange) | OH_CaptureSession_OnFocusStateChange | 在[CaptureSession_Callbacks](capi-oh-camera-capturesession-callbacks.md)中被调用的捕获会话焦点状态回调。 |
+| [typedef void (\*OH_CaptureSession_OnError)(Camera_CaptureSession* session, Camera_ErrorCode errorCode)](#oh_capturesession_onerror) | OH_CaptureSession_OnError | 在[CaptureSession_Callbacks](capi-oh-camera-capturesession-callbacks.md)中被调用的捕获会话错误回调。 |
 | [typedef void (\*OH_CaptureSession_OnSmoothZoomInfo)(Camera_CaptureSession* session,Camera_SmoothZoomInfo* smoothZoomInfo)](#oh_capturesession_onsmoothzoominfo) | OH_CaptureSession_OnSmoothZoomInfo | 拍照会话平滑变焦信息回调，触发平滑变焦后该回调会返回。 |
 | [typedef void (\*OH_CaptureSession_OnAutoDeviceSwitchStatusChange)(Camera_CaptureSession* session,Camera_AutoDeviceSwitchStatusInfo* autoDeviceSwitchStatusInfo)](#oh_capturesession_onautodeviceswitchstatuschange) | OH_CaptureSession_OnAutoDeviceSwitchStatusChange | 捕获会话设备切换状态回调。 |
 | [typedef void (\*OH_CaptureSession_OnSystemPressureLevel)(Camera_CaptureSession* session,Camera_SystemPressureLevel* systemPressureLevel)](#oh_capturesession_onsystempressurelevel) | OH_CaptureSession_OnSystemPressureLevel | 捕获系统压力状态变化回调。 |
@@ -117,7 +117,7 @@ typedef void (*OH_CaptureSession_OnFocusStateChange)(Camera_CaptureSession* sess
 
 **描述**
 
-在[CaptureSession_Callbacks](capi-capturesession-callbacks.md)中被调用的捕获会话焦点状态回调。
+在[CaptureSession_Callbacks](capi-oh-camera-capturesession-callbacks.md)中被调用的捕获会话焦点状态回调。
 
 **起始版本：** 11
 
@@ -126,7 +126,7 @@ typedef void (*OH_CaptureSession_OnFocusStateChange)(Camera_CaptureSession* sess
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | 传递回调的Camera_CaptureSession实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | 传递回调的Camera_CaptureSession实例。 |
 | [Camera_FocusState](capi-camera-h.md#camera_focusstate) focusState | 回调传递的会话焦点状态。 |
 
 ### OH_CaptureSession_OnError()
@@ -137,7 +137,7 @@ typedef void (*OH_CaptureSession_OnError)(Camera_CaptureSession* session, Camera
 
 **描述**
 
-在[CaptureSession_Callbacks](capi-capturesession-callbacks.md)中被调用的捕获会话错误回调。
+在[CaptureSession_Callbacks](capi-oh-camera-capturesession-callbacks.md)中被调用的捕获会话错误回调。
 
 **起始版本：** 11
 
@@ -146,7 +146,7 @@ typedef void (*OH_CaptureSession_OnError)(Camera_CaptureSession* session, Camera
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | 传递回调的Camera_CaptureSession实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | 传递回调的Camera_CaptureSession实例。 |
 | [Camera_ErrorCode](capi-camera-h.md#camera_errorcode) errorCode | 捕获会话的错误码。 |
 
 **参考：**
@@ -170,8 +170,8 @@ typedef void (*OH_CaptureSession_OnSmoothZoomInfo)(Camera_CaptureSession* sessio
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | 传递回调的Camera_CaptureSession实例。 |
-| [Camera_SmoothZoomInfo](capi-camera-smoothzoominfo.md)* smoothZoomInfo | 回调传递的平滑变焦参数信息。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | 传递回调的Camera_CaptureSession实例。 |
+| [Camera_SmoothZoomInfo](capi-oh-camera-camera-smoothzoominfo.md)* smoothZoomInfo | 回调传递的平滑变焦参数信息。 |
 
 ### OH_CaptureSession_OnAutoDeviceSwitchStatusChange()
 
@@ -190,8 +190,8 @@ typedef void (*OH_CaptureSession_OnAutoDeviceSwitchStatusChange)(Camera_CaptureS
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | 传递回调的Camera_CaptureSession实例。 |
-| [Camera_AutoDeviceSwitchStatusInfo](capi-camera-autodeviceswitchstatusinfo.md)* autoDeviceSwitchStatusInfo | 回调传递的设备切换状态信息。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | 传递回调的Camera_CaptureSession实例。 |
+| [Camera_AutoDeviceSwitchStatusInfo](capi-oh-camera-camera-autodeviceswitchstatusinfo.md)* autoDeviceSwitchStatusInfo | 回调传递的设备切换状态信息。 |
 
 ### OH_CaptureSession_OnSystemPressureLevel()
 
@@ -210,7 +210,7 @@ typedef void (*OH_CaptureSession_OnSystemPressureLevel)(Camera_CaptureSession* s
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | 传递回调的Camera_CaptureSession实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | 传递回调的Camera_CaptureSession实例。 |
 | [Camera_SystemPressureLevel](capi-camera-h.md#camera_systempressurelevel)* systemPressureLevel | 回调传递的系统压力等级。 |
 
 ### OH_CaptureSession_RegisterCallback()
@@ -230,8 +230,8 @@ Camera_ErrorCode OH_CaptureSession_RegisterCallback(Camera_CaptureSession* sessi
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | 传递回调的Camera_CaptureSession实例。 |
-| [CaptureSession_Callbacks](capi-capturesession-callbacks.md)* callback | 要注册的捕获会话事件回调。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | 传递回调的Camera_CaptureSession实例。 |
+| [CaptureSession_Callbacks](capi-oh-camera-capturesession-callbacks.md)* callback | 要注册的捕获会话事件回调。 |
 
 **返回：**
 
@@ -256,8 +256,8 @@ Camera_ErrorCode OH_CaptureSession_UnregisterCallback(Camera_CaptureSession* ses
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | 传递回调的Camera_CaptureSession实例。 |
-| [CaptureSession_Callbacks](capi-capturesession-callbacks.md)* callback | 要注销的捕获会话事件回调。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | 传递回调的Camera_CaptureSession实例。 |
+| [CaptureSession_Callbacks](capi-oh-camera-capturesession-callbacks.md)* callback | 要注销的捕获会话事件回调。 |
 
 **返回：**
 
@@ -282,7 +282,7 @@ Camera_ErrorCode OH_CaptureSession_RegisterSmoothZoomInfoCallback(Camera_Capture
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | 传递回调的Camera_CaptureSession实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | 传递回调的Camera_CaptureSession实例。 |
 | [OH_CaptureSession_OnSmoothZoomInfo](#oh_capturesession_onsmoothzoominfo) smoothZoomInfoCallback | 要注册的平滑变焦信息事件回调。 |
 
 **返回：**
@@ -308,7 +308,7 @@ Camera_ErrorCode OH_CaptureSession_UnregisterSmoothZoomInfoCallback(Camera_Captu
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | 传递回调的Camera_CaptureSession实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | 传递回调的Camera_CaptureSession实例。 |
 | [OH_CaptureSession_OnSmoothZoomInfo](#oh_capturesession_onsmoothzoominfo) smoothZoomInfoCallback | 要注销的平滑变焦信息事件回调。 |
 
 **返回：**
@@ -334,7 +334,7 @@ Camera_ErrorCode OH_CaptureSession_SetSessionMode(Camera_CaptureSession* session
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
 | [Camera_SceneMode](capi-camera-h.md#camera_scenemode) sceneMode | 相机模式。 |
 
 **返回：**
@@ -360,8 +360,8 @@ Camera_ErrorCode OH_CaptureSession_AddSecureOutput(Camera_CaptureSession* sessio
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
-| [Camera_PreviewOutput](capi-camera-previewoutput.md)* previewOutput | 要标记为安全输出的Camera_PreviewOutput。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_PreviewOutput](capi-oh-camera-camera-previewoutput.md)* previewOutput | 要标记为安全输出的Camera_PreviewOutput。 |
 
 **返回：**
 
@@ -386,7 +386,7 @@ Camera_ErrorCode OH_CaptureSession_BeginConfig(Camera_CaptureSession* session)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
 
 **返回：**
 
@@ -411,7 +411,7 @@ Camera_ErrorCode OH_CaptureSession_CommitConfig(Camera_CaptureSession* session)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
 
 **返回：**
 
@@ -436,8 +436,8 @@ Camera_ErrorCode OH_CaptureSession_AddInput(Camera_CaptureSession* session, Came
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
-| [Camera_Input](capi-camera-input.md)* cameraInput | 要添加的相机输入实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_Input](capi-oh-camera-camera-input.md)* cameraInput | 要添加的相机输入实例。 |
 
 **返回：**
 
@@ -462,8 +462,8 @@ Camera_ErrorCode OH_CaptureSession_RemoveInput(Camera_CaptureSession* session, C
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
-| [Camera_Input](capi-camera-input.md)* cameraInput | 要删除的相机输入实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_Input](capi-oh-camera-camera-input.md)* cameraInput | 要删除的相机输入实例。 |
 
 **返回：**
 
@@ -488,8 +488,8 @@ Camera_ErrorCode OH_CaptureSession_AddPreviewOutput(Camera_CaptureSession* sessi
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
-| [Camera_PreviewOutput](capi-camera-previewoutput.md)* previewOutput | 要添加的预览输出实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_PreviewOutput](capi-oh-camera-camera-previewoutput.md)* previewOutput | 要添加的预览输出实例。 |
 
 **返回：**
 
@@ -514,8 +514,8 @@ Camera_ErrorCode OH_CaptureSession_RemovePreviewOutput(Camera_CaptureSession* se
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
-| [Camera_PreviewOutput](capi-camera-previewoutput.md)* previewOutput | 要删除的预览输出实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_PreviewOutput](capi-oh-camera-camera-previewoutput.md)* previewOutput | 要删除的预览输出实例。 |
 
 **返回：**
 
@@ -540,8 +540,8 @@ Camera_ErrorCode OH_CaptureSession_AddPhotoOutput(Camera_CaptureSession* session
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
-| [Camera_PhotoOutput](capi-camera-photooutput.md)* photoOutput | 要添加的拍照输出实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_PhotoOutput](capi-oh-camera-camera-photooutput.md)* photoOutput | 要添加的拍照输出实例。 |
 
 **返回：**
 
@@ -566,8 +566,8 @@ Camera_ErrorCode OH_CaptureSession_RemovePhotoOutput(Camera_CaptureSession* sess
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
-| [Camera_PhotoOutput](capi-camera-photooutput.md)* photoOutput | 要删除的拍照输出实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_PhotoOutput](capi-oh-camera-camera-photooutput.md)* photoOutput | 要删除的拍照输出实例。 |
 
 **返回：**
 
@@ -592,8 +592,8 @@ Camera_ErrorCode OH_CaptureSession_AddVideoOutput(Camera_CaptureSession* session
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
-| [Camera_VideoOutput](capi-camera-videooutput.md)* videoOutput | 要添加的录像输出实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_VideoOutput](capi-oh-camera-camera-videooutput.md)* videoOutput | 要添加的录像输出实例。 |
 
 **返回：**
 
@@ -618,8 +618,8 @@ Camera_ErrorCode OH_CaptureSession_RemoveVideoOutput(Camera_CaptureSession* sess
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
-| [Camera_VideoOutput](capi-camera-videooutput.md)* videoOutput | 要删除的录像输出实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_VideoOutput](capi-oh-camera-camera-videooutput.md)* videoOutput | 要删除的录像输出实例。 |
 
 **返回：**
 
@@ -644,8 +644,8 @@ Camera_ErrorCode OH_CaptureSession_AddMetadataOutput(Camera_CaptureSession* sess
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
-| [Camera_MetadataOutput](capi-camera-metadataoutput.md)* metadataOutput | 要添加的元数据输出实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_MetadataOutput](capi-oh-camera-camera-metadataoutput.md)* metadataOutput | 要添加的元数据输出实例。 |
 
 **返回：**
 
@@ -670,8 +670,8 @@ Camera_ErrorCode OH_CaptureSession_RemoveMetadataOutput(Camera_CaptureSession* s
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
-| [Camera_MetadataOutput](capi-camera-metadataoutput.md)* metadataOutput | 要删除的元数据输出实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_MetadataOutput](capi-oh-camera-camera-metadataoutput.md)* metadataOutput | 要删除的元数据输出实例。 |
 
 **返回：**
 
@@ -696,7 +696,7 @@ Camera_ErrorCode OH_CaptureSession_Start(Camera_CaptureSession* session)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | 要启动的Camera_CaptureSession实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | 要启动的Camera_CaptureSession实例。 |
 
 **返回：**
 
@@ -721,7 +721,7 @@ Camera_ErrorCode OH_CaptureSession_Stop(Camera_CaptureSession* session)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | 要停止的Camera_CaptureSession实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | 要停止的Camera_CaptureSession实例。 |
 
 **返回：**
 
@@ -746,7 +746,7 @@ Camera_ErrorCode OH_CaptureSession_Release(Camera_CaptureSession* session)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | 要释放的Camera_CaptureSession实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | 要释放的Camera_CaptureSession实例。 |
 
 **返回：**
 
@@ -771,7 +771,7 @@ Camera_ErrorCode OH_CaptureSession_HasFlash(Camera_CaptureSession* session, bool
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
 | bool* hasFlash | 是否支持闪光灯的结果。 |
 
 **返回：**
@@ -797,7 +797,7 @@ Camera_ErrorCode OH_CaptureSession_IsFlashModeSupported(Camera_CaptureSession* s
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
 | [Camera_FlashMode](capi-camera-h.md#camera_flashmode) flashMode | 要检查的闪光灯模式。 |
 | bool* isSupported | 是否支持闪光灯模式的结果。 |
 
@@ -824,7 +824,7 @@ Camera_ErrorCode OH_CaptureSession_GetFlashMode(Camera_CaptureSession* session, 
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
 | [Camera_FlashMode](capi-camera-h.md#camera_flashmode)* flashMode | 当前闪光灯模式。 |
 
 **返回：**
@@ -850,7 +850,7 @@ Camera_ErrorCode OH_CaptureSession_SetFlashMode(Camera_CaptureSession* session, 
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
 | [Camera_FlashMode](capi-camera-h.md#camera_flashmode) flashMode | 要设置的闪光灯模式。 |
 
 **返回：**
@@ -876,7 +876,7 @@ Camera_ErrorCode OH_CaptureSession_IsExposureModeSupported(Camera_CaptureSession
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
 | [Camera_ExposureMode](capi-camera-h.md#camera_exposuremode) exposureMode | 要检查的曝光模式。 |
 | bool* isSupported | 是否支持曝光模式的结果。 |
 
@@ -903,7 +903,7 @@ Camera_ErrorCode OH_CaptureSession_GetExposureMode(Camera_CaptureSession* sessio
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
 | [Camera_ExposureMode](capi-camera-h.md#camera_exposuremode)* exposureMode | 当前的曝光模式。 |
 
 **返回：**
@@ -929,7 +929,7 @@ Camera_ErrorCode OH_CaptureSession_SetExposureMode(Camera_CaptureSession* sessio
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
 | [Camera_ExposureMode](capi-camera-h.md#camera_exposuremode) exposureMode | 要设置的曝光模式。 |
 
 **返回：**
@@ -955,8 +955,8 @@ Camera_ErrorCode OH_CaptureSession_GetMeteringPoint(Camera_CaptureSession* sessi
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
-| [Camera_Point](capi-camera-point.md)* point | 当前测量点。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_Point](capi-oh-camera-camera-point.md)* point | 当前测量点。 |
 
 **返回：**
 
@@ -981,8 +981,8 @@ Camera_ErrorCode OH_CaptureSession_SetMeteringPoint(Camera_CaptureSession* sessi
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
-| [Camera_Point](capi-camera-point.md) point | 要设置的测量点。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_Point](capi-oh-camera-camera-point.md) point | 要设置的测量点。 |
 
 **返回：**
 
@@ -1007,7 +1007,7 @@ Camera_ErrorCode OH_CaptureSession_GetExposureBiasRange(Camera_CaptureSession* s
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
 | float* minExposureBias | 曝光补偿的最小值。 |
 | float* maxExposureBias | 曝光补偿的最大值。 |
 | float* step | 每个级别之间的曝光补偿阶梯。 |
@@ -1035,7 +1035,7 @@ Camera_ErrorCode OH_CaptureSession_SetExposureBias(Camera_CaptureSession* sessio
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
 | float exposureBias | 要设置的曝光补偿。 |
 
 **返回：**
@@ -1061,7 +1061,7 @@ Camera_ErrorCode OH_CaptureSession_GetExposureBias(Camera_CaptureSession* sessio
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
 | float* exposureBias | 当前的曝光补偿。 |
 
 **返回：**
@@ -1087,7 +1087,7 @@ Camera_ErrorCode OH_CaptureSession_IsFocusModeSupported(Camera_CaptureSession* s
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
 | [Camera_FocusMode](capi-camera-h.md#camera_focusmode) focusMode | 要检查的聚焦模式。 |
 | bool* isSupported | 是否支持聚焦模式的结果。 |
 
@@ -1114,7 +1114,7 @@ Camera_ErrorCode OH_CaptureSession_GetFocusMode(Camera_CaptureSession* session, 
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
 | [Camera_FocusMode](capi-camera-h.md#camera_focusmode)* focusMode | 当前聚焦模式。 |
 
 **返回：**
@@ -1140,7 +1140,7 @@ Camera_ErrorCode OH_CaptureSession_SetFocusMode(Camera_CaptureSession* session, 
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
 | [Camera_FocusMode](capi-camera-h.md#camera_focusmode) focusMode | 要设置的聚焦模式。 |
 
 **返回：**
@@ -1166,8 +1166,8 @@ Camera_ErrorCode OH_CaptureSession_GetFocusPoint(Camera_CaptureSession* session,
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
-| [Camera_Point](capi-camera-point.md)* focusPoint | 当前焦点。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_Point](capi-oh-camera-camera-point.md)* focusPoint | 当前焦点。 |
 
 **返回：**
 
@@ -1192,8 +1192,8 @@ Camera_ErrorCode OH_CaptureSession_SetFocusPoint(Camera_CaptureSession* session,
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
-| [Camera_Point](capi-camera-point.md) focusPoint | 要设置的目标点。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_Point](capi-oh-camera-camera-point.md) focusPoint | 要设置的目标点。 |
 
 **返回：**
 
@@ -1218,7 +1218,7 @@ Camera_ErrorCode OH_CaptureSession_GetZoomRatioRange(Camera_CaptureSession* sess
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
 | float* minZoom | 缩放比范围的最小值。 |
 | float* maxZoom | 缩放比例范围的最大值。 |
 
@@ -1245,7 +1245,7 @@ Camera_ErrorCode OH_CaptureSession_GetZoomRatio(Camera_CaptureSession* session, 
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
 | float* zoom | 当前缩放比例。 |
 
 **返回：**
@@ -1271,7 +1271,7 @@ Camera_ErrorCode OH_CaptureSession_SetZoomRatio(Camera_CaptureSession* session, 
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
 | float zoom | 要设置的目标缩放比。<br> 设置可变焦距比到底层生效需要一定时间，获取正确设置的可变焦距比需要等待1~2帧的时间。 |
 
 **返回：**
@@ -1297,7 +1297,7 @@ Camera_ErrorCode OH_CaptureSession_IsVideoStabilizationModeSupported(Camera_Capt
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
 | [Camera_VideoStabilizationMode](capi-camera-h.md#camera_videostabilizationmode) mode | 要检查的录像防抖模式。 |
 | bool* isSupported | 是否支持录像防抖模式的结果。 |
 
@@ -1324,7 +1324,7 @@ Camera_ErrorCode OH_CaptureSession_GetVideoStabilizationMode(Camera_CaptureSessi
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
 | [Camera_VideoStabilizationMode](capi-camera-h.md#camera_videostabilizationmode)* mode | 当前录像防抖模式。 |
 
 **返回：**
@@ -1350,7 +1350,7 @@ Camera_ErrorCode OH_CaptureSession_SetVideoStabilizationMode(Camera_CaptureSessi
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
 | [Camera_VideoStabilizationMode](capi-camera-h.md#camera_videostabilizationmode) mode | 要设置的录像防抖模式。 |
 
 **返回：**
@@ -1376,8 +1376,8 @@ Camera_ErrorCode OH_CaptureSession_CanAddInput(Camera_CaptureSession* session,Ca
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
-| [Camera_Input](capi-camera-input.md)* cameraInput | 要设置的相机输入实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_Input](capi-oh-camera-camera-input.md)* cameraInput | 要设置的相机输入实例。 |
 | bool* isSuccessful | 是否可以将相机输入添加到会话中的结果。 |
 
 **返回：**
@@ -1403,8 +1403,8 @@ Camera_ErrorCode OH_CaptureSession_CanAddPreviewOutput(Camera_CaptureSession* se
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
-| [Camera_PreviewOutput](capi-camera-previewoutput.md)* cameraOutput | 要设置的预览输出实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_PreviewOutput](capi-oh-camera-camera-previewoutput.md)* cameraOutput | 要设置的预览输出实例。 |
 | bool* isSuccessful | 是否可以将相机预览输出添加到会话中的结果。 |
 
 **返回：**
@@ -1430,8 +1430,8 @@ Camera_ErrorCode OH_CaptureSession_CanAddPhotoOutput(Camera_CaptureSession* sess
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
-| [Camera_PhotoOutput](capi-camera-photooutput.md)* cameraOutput | 要设置的拍照输出实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_PhotoOutput](capi-oh-camera-camera-photooutput.md)* cameraOutput | 要设置的拍照输出实例。 |
 | bool* isSuccessful | 拍照输出是否可以添加到会话中的结果。 |
 
 **返回：**
@@ -1457,8 +1457,8 @@ Camera_ErrorCode OH_CaptureSession_CanAddVideoOutput(Camera_CaptureSession* sess
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
-| [Camera_VideoOutput](capi-camera-videooutput.md)* cameraOutput | 要添加的录像输出实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_VideoOutput](capi-oh-camera-camera-videooutput.md)* cameraOutput | 要添加的录像输出实例。 |
 | bool* isSuccessful | 录像输出是否可以添加到会话中的结果。 |
 
 **返回：**
@@ -1484,7 +1484,7 @@ Camera_ErrorCode OH_CaptureSession_CanPreconfig(Camera_CaptureSession* session,C
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
 | [Camera_PreconfigType](capi-camera-h.md#camera_preconfigtype) preconfigType | 要检查的预配置类型。 |
 | bool* canPreconfig | 是否支持预配置的结果。 |
 
@@ -1511,7 +1511,7 @@ Camera_ErrorCode OH_CaptureSession_CanPreconfigWithRatio(Camera_CaptureSession* 
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
 | [Camera_PreconfigType](capi-camera-h.md#camera_preconfigtype) preconfigType | 要检查的预配置类型。 |
 | [Camera_PreconfigRatio](capi-camera-h.md#camera_preconfigratio) preconfigRatio | 要检查的预配置比例。 |
 | bool* canPreconfig | 是否支持预配置的结果。 |
@@ -1539,7 +1539,7 @@ Camera_ErrorCode OH_CaptureSession_Preconfig(Camera_CaptureSession* session,Came
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
 | [Camera_PreconfigType](capi-camera-h.md#camera_preconfigtype) preconfigType | 指定的预配置类型。 |
 
 **返回：**
@@ -1565,7 +1565,7 @@ Camera_ErrorCode OH_CaptureSession_PreconfigWithRatio(Camera_CaptureSession* ses
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
 | [Camera_PreconfigType](capi-camera-h.md#camera_preconfigtype) preconfigType | 指定的预配置类型。 |
 | [Camera_PreconfigRatio](capi-camera-h.md#camera_preconfigratio) preconfigRatio | 指定的预配置比例。 |
 
@@ -1592,7 +1592,7 @@ Camera_ErrorCode OH_CaptureSession_GetExposureValue(Camera_CaptureSession* sessi
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
 | float* exposureValue | 当前的曝光值。 |
 
 **返回：**
@@ -1618,7 +1618,7 @@ Camera_ErrorCode OH_CaptureSession_GetFocalLength(Camera_CaptureSession* session
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
 | float* focalLength | 当前焦距值。 |
 
 **返回：**
@@ -1644,7 +1644,7 @@ Camera_ErrorCode OH_CaptureSession_SetSmoothZoom(Camera_CaptureSession* session,
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
 | float targetZoom | 要设置的目标变焦比。 |
 | [Camera_SmoothZoomMode](capi-camera-h.md#camera_smoothzoommode) smoothZoomMode | 平滑变焦模式。 |
 
@@ -1671,7 +1671,7 @@ Camera_ErrorCode OH_CaptureSession_GetSupportedColorSpaces(Camera_CaptureSession
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
 | OH_NativeBuffer_ColorSpace** colorSpace | 如果方法调用成功，将记录支持的OH_NativeBuffer_ColorSpace列表。 |
 | uint32_t* size | 如果方法调用成功，将记录支持的OH_NativeBuffer_ColorSpace列表的大小。 |
 
@@ -1698,7 +1698,7 @@ Camera_ErrorCode OH_CaptureSession_DeleteColorSpaces(Camera_CaptureSession* sess
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
 | [OH_NativeBuffer_ColorSpace](../apis-arkgraphics2d/capi-buffer-common-h.md#oh_nativebuffer_colorspace)* colorSpace | 如果方法调用成功，将删除的OH_NativeBuffer_ColorSpace列表。 |
 
 **返回：**
@@ -1724,7 +1724,7 @@ Camera_ErrorCode OH_CaptureSession_GetActiveColorSpace(Camera_CaptureSession* se
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
 | [OH_NativeBuffer_ColorSpace](../apis-arkgraphics2d/capi-buffer-common-h.md#oh_nativebuffer_colorspace)* colorSpace | 当前的OH_NativeBuffer_ColorSpace。 |
 
 **返回：**
@@ -1750,7 +1750,7 @@ Camera_ErrorCode OH_CaptureSession_SetActiveColorSpace(Camera_CaptureSession* se
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
 | [OH_NativeBuffer_ColorSpace](../apis-arkgraphics2d/capi-buffer-common-h.md#oh_nativebuffer_colorspace) colorSpace | 要设置的目标OH_NativeBuffer_ColorSpace。 |
 
 **返回：**
@@ -1776,7 +1776,7 @@ Camera_ErrorCode OH_CaptureSession_RegisterAutoDeviceSwitchStatusCallback(Camera
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
 | [OH_CaptureSession_OnAutoDeviceSwitchStatusChange](#oh_capturesession_onautodeviceswitchstatuschange) autoDeviceSwitchStatusChange | 要注册的设备切换事件回调。 |
 
 **返回：**
@@ -1802,7 +1802,7 @@ Camera_ErrorCode OH_CaptureSession_UnregisterAutoDeviceSwitchStatusCallback(Came
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
 | [OH_CaptureSession_OnAutoDeviceSwitchStatusChange](#oh_capturesession_onautodeviceswitchstatuschange) autoDeviceSwitchStatusChange | 要注销的设备切换事件回调。 |
 
 **返回：**
@@ -1828,7 +1828,7 @@ Camera_ErrorCode OH_CaptureSession_IsAutoDeviceSwitchSupported(Camera_CaptureSes
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
 | bool* isSupported | 是否支持自动设备切换的结果。 |
 
 **返回：**
@@ -1854,7 +1854,7 @@ Camera_ErrorCode OH_CaptureSession_EnableAutoDeviceSwitch(Camera_CaptureSession*
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
 | bool enabled | 是否启用自动切换的标志。 |
 
 **返回：**
@@ -1880,7 +1880,7 @@ Camera_ErrorCode OH_CaptureSession_RegisterSystemPressureLevelCallback(Camera_Ca
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | 传递回调的Camera_CaptureSession实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | 传递回调的Camera_CaptureSession实例。 |
 | [OH_CaptureSession_OnSystemPressureLevel](#oh_capturesession_onsystempressurelevel) systemPressureLevel | 要注册的系统压力状态回调。 |
 
 **返回：**
@@ -1906,7 +1906,7 @@ Camera_ErrorCode OH_CaptureSession_UnregisterSystemPressureLevelCallback(Camera_
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | 传递回调的Camera_CaptureSession实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | 传递回调的Camera_CaptureSession实例。 |
 | [OH_CaptureSession_OnSystemPressureLevel](#oh_capturesession_onsystempressurelevel) systemPressureLevel | 要注销的系统压力状态回调。 |
 
 **返回：**
@@ -1932,7 +1932,7 @@ Camera_ErrorCode OH_CaptureSession_SetQualityPrioritization(Camera_CaptureSessio
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
 | [Camera_QualityPrioritization](capi-camera-h.md#camera_qualityprioritization) qualityPrioritization | 要设置的录像质量优先级，默认为高质量。 |
 
 **返回：**
@@ -1958,7 +1958,7 @@ Camera_ErrorCode OH_CaptureSession_IsMacroSupported(Camera_CaptureSession* sessi
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
 | bool* isSupported | 是否支持微距能力的结果。 |
 
 **返回：**
@@ -1984,7 +1984,7 @@ Camera_ErrorCode OH_CaptureSession_EnableMacro(Camera_CaptureSession* session, b
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
 | bool enabled | 是否启用微距能力的标志。 |
 
 **返回：**
@@ -2010,7 +2010,7 @@ Camera_ErrorCode OH_CaptureSession_SetWhiteBalance(Camera_CaptureSession* sessio
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
 | int32_t colorTemperature | 色温值，单位为K。 |
 
 **返回：**
@@ -2036,7 +2036,7 @@ Camera_ErrorCode OH_CaptureSession_GetWhiteBalance(Camera_CaptureSession* sessio
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
 | int32_t *colorTemperature | 色温值，单位为K。 |
 
 **返回：**
@@ -2060,7 +2060,7 @@ Camera_ErrorCode OH_CaptureSession_GetWhiteBalanceMode(Camera_CaptureSession* se
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
 | [Camera_WhiteBalanceMode](capi-camera-h.md#camera_whitebalancemode)* whiteBalanceMode | 白平衡模式。 |
 
 **返回：**
@@ -2086,7 +2086,7 @@ Camera_ErrorCode OH_CaptureSession_IsWhiteBalanceModeSupported(Camera_CaptureSes
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
 | [Camera_WhiteBalanceMode](capi-camera-h.md#camera_whitebalancemode) whiteBalanceMode | 指定的白平衡模式。 |
 | bool* isSupported | 用于返回是否支持指定的白平衡模式，支持返回true，否则返回false。 |
 
@@ -2113,7 +2113,7 @@ Camera_ErrorCode OH_CaptureSession_SetWhiteBalanceMode(Camera_CaptureSession* se
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
 | [Camera_WhiteBalanceMode](capi-camera-h.md#camera_whitebalancemode) whiteBalanceMode | 白平衡模式。 |
 
 **返回：**
@@ -2139,7 +2139,7 @@ Camera_ErrorCode OH_CaptureSession_GetWhiteBalanceRange(Camera_CaptureSession* s
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_CaptureSession](capi-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)* session | Camera_CaptureSession实例。 |
 | int32_t *minColorTemperature | 支持的最小色温值，单位为K。 |
 | int32_t *maxColorTemperature | 支持的最大色温值，单位为K。 |
 
