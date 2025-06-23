@@ -7744,8 +7744,6 @@ startMoving(): Promise&lt;void&gt;
 
 仅在[onTouch](./arkui-ts/ts-universal-events-touch.md#touchevent对象说明)事件（其中，事件类型必须为TouchType.Down）的回调方法中调用此接口才会有移动效果，成功调用此接口后，窗口将跟随鼠标或触摸点移动。
 
-在点击拖拽场景下，若不期望在按下时触发拖拽事件，则可以在事件类型为TouchType.Move（需要保证当前行为已经触发TouchType.Down事件）时调用此接口，触发移动效果。
-
 手机设备上对子窗、系统窗口生效。
 
 平板设备非自由多窗模式上对子窗、系统窗口生效；平板设备自由多窗模式上对主窗、子窗和系统窗口生效。
@@ -7804,22 +7802,6 @@ struct Index {
               }
             }
           })
-        Blank('160')
-          .color(Color.Red)
-          .onTouch((event: TouchEvent) => {
-            if (event.type === TouchType.Down) {
-              try {
-                let windowClass: window.Window = window.findWindow("subWindow");
-                windowClass.startMoving().then(() => {
-                  console.info('Succeeded in starting moving window.')
-                }).catch((err: BusinessError) => {
-                  console.error(`Failed to start moving. Cause code: ${err.code}, message: ${err.message}`);
-                });
-              } catch (exception) {
-                console.error(`Failed to start moving window. Cause code: ${exception.code}, message: ${exception.message}`);
-              }
-            }
-          })
       }.width('100%')
     }.height('100%').width('100%')
   }
@@ -7835,8 +7817,6 @@ startMoving(offsetX: number, offsetY: number): Promise&lt;void&gt;
 在同应用内窗口分合后，且鼠标保持按下状态直接移动新窗口，如果此时鼠标快速移动，窗口移动时鼠标可能会在窗口外。可以使用本接口指定窗口移动时鼠标在窗口内的位置，先移动窗口到鼠标位置，再开始移动窗口。
 
 仅在[onTouch](./arkui-ts/ts-universal-events-touch.md#touchevent对象说明)事件（其中，事件类型必须为TouchType.Down）的回调方法中调用此接口才会有移动效果，成功调用此接口后，窗口将跟随鼠标移动。
-
-在点击拖拽场景下，若不期望在按下时触发拖拽事件，则可以在事件类型为TouchType.Move（需要保证当前行为已经触发TouchType.Down事件）时调用此接口，触发移动效果。
 
 <!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
 
@@ -7886,22 +7866,6 @@ struct Index {
           .color(Color.Blue)
           .onTouch((event: TouchEvent) => {
             if (event.type === TouchType.Down) {
-              try {
-                let windowClass: window.Window = window.findWindow("subWindow");
-                windowClass.startMoving(100, 50).then(() => {
-                  console.info('Succeeded in starting moving window.')
-                }).catch((err: BusinessError) => {
-                  console.error(`Failed to start moving. Cause code: ${err.code}, message: ${err.message}`);
-                });
-              } catch (exception) {
-                console.error(`Failed to start moving window. Cause code: ${exception.code}, message: ${exception.message}`);
-              }
-            }
-          })
-        Blank('160')
-          .color(Color.Red)
-          .onTouch((event: TouchEvent) => {
-            if (event.type === TouchType.Move) {
               try {
                 let windowClass: window.Window = window.findWindow("subWindow");
                 windowClass.startMoving(100, 50).then(() => {
