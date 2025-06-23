@@ -254,14 +254,14 @@ WindowStage生命周期。
 
 ## ScreenshotEventType<sup>20+</sup>
 
-截图事件类型枚举。
+截屏事件类型枚举。
 
-**系统能力：**  SystemCapability.Window.SessionManager
+**系统能力：**  SystemCapability.WindowManager.WindowManager.Core
 
 | 名称   | 值 | 说明                   |
 | ------ | ---- | --------------------- |
-| SYSTEM_SCREENSHOT | 0 | 系统截图。 |
-| SYSTEM_SCREENSHOT_ABORT | 1 | 系统截图中止。 |
-| SCROLL_SHOT_START | 2 | 滚动截图开始。 |
-| SCROLL_SHOT_END | 3 | 滚动截图结束。 |
-| SCROLL_SHOT_ABORT | 4 | 滚动截图开始中止。 |
+| SYSTEM_SCREENSHOT | 0 | 系统截屏成功。 |
+| SYSTEM_SCREENSHOT_ABORT | 1 | 系统截屏中止。 |
+| SCROLL_SHOT_START | 2 | 滚动截屏开始。 |
+| SCROLL_SHOT_END | 3 | 滚动截屏结束。 |
+| SCROLL_SHOT_ABORT | 4 | 滚动截屏中止。 |

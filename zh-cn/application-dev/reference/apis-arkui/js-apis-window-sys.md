@@ -972,7 +972,7 @@ try {
 
 notifyScreenshotEvent(eventType: ScreenshotEventType): Promise&lt;void&gt;
 
-通知截屏事件，使用Promise异步回调。
+通知屏幕触发截屏动作的事件类型，使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
