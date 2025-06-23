@@ -395,7 +395,7 @@ export interface MyInfo {
 city1
 ```
 
-#### 同时开启-enable-export-obfuscation和-enable-toplevel-obfuscation选项可能出现的问题
+### 同时开启-enable-export-obfuscation和-enable-toplevel-obfuscation选项可能出现的问题
 
 **当开启这两个选项时，主模块调用其他模块方法时涉及的方法名称混淆情况如下**：
 |主模块	|依赖模块	|导入与导出的名称混淆情况|
@@ -408,7 +408,7 @@ HSP需要将给其他模块用的方法配置到白名单中。因为主模块�
 
 ![bytecode-buildoptionset](figures/bytecode-buildoptionset.png)
 
-##### 案例一：动态导入某个类，类定义的地方被混淆，导入类名时却没有混淆，导致报错
+#### 案例一：动态导入某个类，类定义的地方被混淆，导入类名时却没有混淆，导致报错
 
 ```ts
 // 混淆前
@@ -425,7 +425,7 @@ let mytest = (await import('./file')).Test1
 
 使用-keep-global-name选项将"Test1"配置到白名单。
 
-##### 案例二：在使用namespace中的方法时，该方法定义的地方被混淆了，但使用的地方却没有被混淆，导致报错
+#### 案例二：在使用namespace中的方法时，该方法定义的地方被混淆了，但使用的地方却没有被混淆，导致报错
 
 ```ts
 // 混淆前
