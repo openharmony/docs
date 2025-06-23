@@ -59,9 +59,7 @@ IsolatedComponent(options: IsolatedOptions)
 ## IsolatedOptions
 用于在IsolatedComponent进行构造的时候，传递可选的构造参数。
 
-**参数：**
-
-| 参数名               | 参数类型                                 | 必填 | 说明                                                                                                      |
+| 名称               | 参数类型                                 | 必填 | 说明                                                                                                      |
 | ----                 | ---------------------------------------- | ---- | ---------------                                                                                               |
 | want | [Want](../../apis-ability-kit/js-apis-app-ability-want.md)                                  | 是   | 要加载的Abc信息。 |
 | worker | [RestrictedWorker](../../apis-arkts/js-apis-worker-sys.md#restrictedworker11)       | 是   | 运行Abc的受限worker。 |
