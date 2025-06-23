@@ -566,7 +566,7 @@ resolvedOptions(): NumberOptions
 >
 >  - 各属性不同取值代表的含义或呈现效果，请参考[数字与度量衡国际化](../../internationalization/i18n-numbers-weights-measures.md)。
 
-## Collator<sup>(deprecated)</sup>
+## Collator<sup>8+</sup>
 
 ### constructor<sup>(deprecated)</sup>
 
@@ -604,7 +604,7 @@ constructor(locale: string | Array&lt;string&gt;, options?: CollatorOptions)
 | 参数名                  | 类型                                   | 必填   | 说明                           |
 | -------------------- | ------------------------------------ | ---- | ---------------------------- |
 | locale               | string \| Array&lt;string&gt;        | 是    | 区域ID或区域ID数组。输入是区域ID数组时，使用第一个有效的区域ID。  |
-| options              | [CollatorOptions](#collatoroptionsdeprecated) | 否    | 创建排序对象时可设置的配置项。       |
+| options              | [CollatorOptions](#collatoroptions8) | 否    | 创建排序对象时可设置的配置项。       |
 
 **示例：**
   ```ts
@@ -663,7 +663,7 @@ resolvedOptions(): CollatorOptions
 
 | 类型                                   | 说明                |
 | ------------------------------------ | ----------------- |
-| [CollatorOptions](#collatoroptionsdeprecated) | 返回排序对象的属性。 |
+| [CollatorOptions](#collatoroptions8) | 返回排序对象的属性。 |
 
 **示例：**
   ```ts
@@ -675,9 +675,7 @@ resolvedOptions(): CollatorOptions
   ```
 
 
-## CollatorOptions<sup>(deprecated)</sup>
-
-从API version 8开始支持，从API version 20开始不再维护。
+## CollatorOptions<sup>8+</sup>
 
 创建排序对象时可设置的配置项。
 
@@ -689,19 +687,22 @@ resolvedOptions(): CollatorOptions
 
 | 名称                | 类型      | 必填   | 说明                                       |
 | ----------------- | ------- | ---- | ---------------------------------------- |
-| localeMatcher     | string  | 否    | 区域匹配算法，取值范围：<br>"lookup"：模糊匹配。<br>"best fit"：准确匹配。<br>默认值："best fit"。 |
-| usage             | string  | 否    | 比较的用途，取值范围：<br>"sort"：用作排序。<br>"search"：用作查找匹配的字符串。<br>默认值："sort"。        |
-| sensitivity       | string  | 否    | 表示字符串中的哪些差异会导致非零结果值，取值范围：<br>"base"：不同的字母比较不相等，比如：'a' ≠ 'b', 'a' = 'á', 'a' = 'A'。<br>"accent"：不同的字母或不同读音的相同字母比较不相等，比如'a' ≠ 'b', 'a' ≠ 'á', 'a' = 'A'。<br>"case"：不同的字母或相同字母大小写比较不相等，比如：'a' ≠ 'b', 'a' = 'á', 'a' ≠ 'A'。<br>"variant"：不同的字母或读音及其它有区别的标志或大小写都是不相等的，比如：'a' ≠ 'b', 'a' ≠ 'á', 'a' ≠ 'A'。<br>默认值："variant"。        |
-| collation         | string  | 否    | 区域的排序规则，取值包括：<br>"big5han"：拉丁字母使用的拼音排序。<br>"compat"：兼容性排序，仅用于阿拉伯语。<br>"dict"：词典风格排序，仅用于僧伽罗语。<br>"direct"：二进制码点排序。<br>"ducet"：按Unicode排序元素表排序。<br>"eor"：按欧洲排序规则排序。<br>"gb2312"：拼音排序，仅用于中文排序。<br>"phonebk"：电话本风格排序。<br>"phonetic"：发音排序。<br>"pinyin"：拼音排序。<br>"reformed"：瑞典语排序。<br>"searchjl"：韩语初始辅音搜索的特殊排序。<br>"stroke"：汉语的笔画排序。<br>"trad"：传统风格排序，如西班牙语。<br>"unihan"：统一汉字排序，用于日语、韩语、中文等汉字排序。<br>"zhuyin"：注音排序，仅用于中文排序。<br>默认值："default"。 |
-| numeric           | boolean | 否    | 数字排序，取值包括：<br>true：使用数字排序，比如：'1' &lt; '2' &lt; '10' &lt; '11'。<br>false：不使用数字排序，比如：'1' &lt; '10' &lt; '11' &lt; '2'。<br>默认值：false。          |
-| caseFirst         | string  | 否    | 区域的排序规则是否考虑大小写，取值包括：<br>"upper"：大写排前面。<br>"lower"：小写排前面。<br>"false"：使用区域默认的大小写排序规则。<br>默认值："false"。 |
+| localeMatcher<sup>(deprecated)</sup>     | string  | 否    | 从API version 8开始支持，从API version 20开始不再维护，建议使用Intl.CollatorOptions.localeMatcher替代，用法参考[Intl.Collator](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator/Collator#options)。<br>区域匹配算法，取值范围：<br>"lookup"：模糊匹配。<br>"best fit"：准确匹配。<br>默认值："best fit"。 |
+| usage<sup>(deprecated)</sup>             | string  | 否    | 从API version 8开始支持，从API version 20开始不再维护，建议使用Intl.CollatorOptions.usage替代，用法参考[Intl.Collator](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator/Collator#options)。<br>比较的用途，取值范围：<br>"sort"：用作排序。<br>"search"：用作查找匹配的字符串。<br>默认值："sort"。        |
+| sensitivity<sup>(deprecated)</sup>       | string  | 否    | 从API version 8开始支持，从API version 20开始不再维护，建议使用Intl.CollatorOptions.sensitivity替代，用法参考[Intl.Collator](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator/Collator#options)。<br>表示字符串中的哪些差异会导致非零结果值，取值范围：<br>"base"：不同的字母比较不相等，比如：'a' ≠ 'b', 'a' = 'á', 'a' = 'A'。<br>"accent"：不同的字母或不同读音的相同字母比较不相等，比如'a' ≠ 'b', 'a' ≠ 'á', 'a' = 'A'。<br>"case"：不同的字母或相同字母大小写比较不相等，比如：'a' ≠ 'b', 'a' = 'á', 'a' ≠ 'A'。<br>"variant"：不同的字母或读音及其它有区别的标志或大小写都是不相等的，比如：'a' ≠ 'b', 'a' ≠ 'á', 'a' ≠ 'A'。<br>默认值："variant"。        |
+| ignorePunctuation<sup>(deprecated)</sup> | boolean | 否    | 从API version 8开始支持，从API version 20开始不再维护，建议使用Intl.CollatorOptions.ignorePunctuation替代，用法参考[Intl.Collator](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator/Collator#options)。<br>true表示忽略标点符号，false表示考虑标点符号。<br>默认值：false。        |
+| collation<sup>(deprecated)</sup>         | string  | 否    | 从API version 8开始支持，从API version 20开始不再维护，建议使用Intl.CollatorOptions.collation替代，用法参考[Intl.Collator](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator/Collator#options)。<br>区域的排序规则，取值包括：<br>"big5han"：拉丁字母使用的拼音排序。<br>"compat"：兼容性排序，仅用于阿拉伯语。<br>"dict"：词典风格排序，仅用于僧伽罗语。<br>"direct"：二进制码点排序。<br>"ducet"：按Unicode排序元素表排序。<br>"eor"：按欧洲排序规则排序。<br>"gb2312"：拼音排序，仅用于中文排序。<br>"phonebk"：电话本风格排序。<br>"phonetic"：发音排序。<br>"pinyin"：拼音排序。<br>"reformed"：瑞典语排序。<br>"searchjl"：韩语初始辅音搜索的特殊排序。<br>"stroke"：汉语的笔画排序。<br>"trad"：传统风格排序，如西班牙语。<br>"unihan"：统一汉字排序，用于日语、韩语、中文等汉字排序。<br>"zhuyin"：注音排序，仅用于中文排序。<br>默认值："default"。 |
+| numeric<sup>(deprecated)</sup>           | boolean | 否    | 从API version 8开始支持，从API version 20开始不再维护，建议使用Intl.CollatorOptions.numeric替代，用法参考[Intl.Collator](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator/Collator#options)。<br>数字排序，取值包括：<br>true：使用数字排序，比如：'1' &lt; '2' &lt; '10' &lt; '11'。<br>false：不使用数字排序，比如：'1' &lt; '10' &lt; '11' &lt; '2'。<br>默认值：false。          |
+| caseFirst<sup>(deprecated)</sup>         | string  | 否    | 从API version 8开始支持，从API version 20开始不再维护，建议使用Intl.CollatorOptions.caseFirst替代，用法参考[Intl.Collator](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator/Collator#options)。<br>区域的排序规则是否考虑大小写，取值包括：<br>"upper"：大写排前面。<br>"lower"：小写排前面。<br>"false"：使用区域默认的大小写排序规则。<br>默认值："false"。 |
 
 
 ## PluralRules<sup>8+</sup>
 
-### constructor<sup>8+</sup>
+### constructor<sup>(deprecated)</sup>
 
 constructor()
+
+从API version 8开始支持，从API version 20开始不再维护，建议使用[Intl.PluralRules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/PluralRules/PluralRules)代替。
 
 创建单复数对象来计算数字的单复数类别。
 
@@ -716,9 +717,11 @@ constructor()
   ```
 
 
-### constructor<sup>8+</sup>
+### constructor<sup>(deprecated)</sup>
 
 constructor(locale: string | Array&lt;string&gt;, options?: PluralRulesOptions)
+
+从API version 8开始支持，从API version 20开始不再维护，建议使用[Intl.PluralRules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/PluralRules/PluralRules)代替。
 
 创建单复数对象来计算数字的单复数类别。
 
@@ -739,9 +742,11 @@ constructor(locale: string | Array&lt;string&gt;, options?: PluralRulesOptions)
   let pluralRules= new intl.PluralRules("zh-CN", {"localeMatcher": "lookup", "type": "cardinal"});
   ```
 
-### select<sup>8+</sup>
+### select<sup>(deprecated)</sup>
 
 select(n: number): string
+
+从API version 8开始支持，从API version 20开始不再维护，建议使用[Intl.PluralRules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/PluralRules/select)代替。
 
 获取数字的单复数类别。
 
@@ -783,15 +788,15 @@ select(n: number): string
 
 **系统能力**：SystemCapability.Global.I18n
 
-| 名称                       | 类型     | 可读   | 可写   | 说明                                       |
+| 名称                       | 类型     | 只读   | 可选   | 说明                                       |
 | ------------------------ | ------ | ---- | ---- | ---------------------------------------- |
-| localeMatcher            | string | 是    | 是    | 区域匹配算法，取值包括："best&nbsp;fit",&nbsp;"lookup"。<br>默认值：best fit。 |
-| type                     | string | 是    | 是    | 排序的类型，取值包括："cardinal",&nbsp;"ordinal",<br>默认值：cardinal。<br>- cardinal：基数词，ordinal：序数词。  |
-| minimumIntegerDigits     | number | 是    | 是    | 表示要使用的最小整数位数，取值范围：1~21。<br>默认值：1。                  |
-| minimumFractionDigits    | number | 是    | 是    | 表示要使用的最小分数位数，取值范围：0~20。<br>默认值：0。                  |
-| maximumFractionDigits    | number | 是    | 是    | 表示要使用的最大分数位数，取值范围：1~21。<br>默认值：3。                  |
-| minimumSignificantDigits | number | 是    | 是    | 表示要使用的最小有效位数，取值范围：1~21。<br>默认值：1。                  |
-| maximumSignificantDigits | number | 是    | 是    | 表示要使用的最大有效位数，取值范围：1~21。<br>默认值：21。                |
+| localeMatcher<sup>(deprecated)</sup>            | string | 否    | 是    | 从API version 8开始支持，从API version 20开始不再维护，建议使用Intl.PluralRulesOptions.localeMatcher替代，用法参考[Intl.PluralRules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/PluralRules/PluralRules#options)。<br>区域匹配算法，取值包括："best&nbsp;fit",&nbsp;"lookup"。<br>默认值：best fit。 |
+| type<sup>(deprecated)</sup>                     | string | 否    | 是    | 从API version 8开始支持，从API version 20开始不再维护，建议使用Intl.PluralRulesOptions.type替代，用法参考[Intl.PluralRules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/PluralRules/PluralRules#options)。<br>排序的类型，取值包括："cardinal",&nbsp;"ordinal",<br>默认值：cardinal。<br>- cardinal：基数词，ordinal：序数词。  |
+| minimumIntegerDigits<sup>(deprecated)</sup>     | number | 否    | 是    | 从API version 8开始支持，从API version 20开始不再维护，建议使用Intl.PluralRulesOptions.minimumIntegerDigits替代，用法参考[Intl.PluralRules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/PluralRules/PluralRules#options)。<br>表示要使用的最小整数位数，取值范围：1~21。<br>默认值：1。                  |
+| minimumFractionDigits<sup>(deprecated)</sup>    | number | 否    | 是    | 从API version 8开始支持，从API version 20开始不再维护，建议使用Intl.PluralRulesOptions.minimumFractionDigits替代，用法参考[Intl.PluralRules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/PluralRules/PluralRules#options)。<br>表示要使用的最小分数位数，取值范围：0~20。<br>默认值：0。                  |
+| maximumFractionDigits<sup>(deprecated)</sup>    | number | 否    | 是    | 从API version 8开始支持，从API version 20开始不再维护，建议使用Intl.PluralRulesOptions.maximumFractionDigits替代，用法参考[Intl.PluralRules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/PluralRules/PluralRules#options)。<br>表示要使用的最大分数位数，取值范围：1~21。<br>默认值：3。                  |
+| minimumSignificantDigits<sup>(deprecated)</sup> | number | 否    | 是    | 从API version 8开始支持，从API version 20开始不再维护，建议使用Intl.PluralRulesOptions.minimumSignificantDigits替代，用法参考[Intl.PluralRules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/PluralRules/PluralRules#options)。<br>表示要使用的最小有效位数，取值范围：1~21。<br>默认值：1。                  |
+| maximumSignificantDigits<sup>(deprecated)</sup> | number | 否    | 是    | 从API version 8开始支持，从API version 20开始不再维护，建议使用Intl.PluralRulesOptions.maximumSignificantDigits替代，用法参考[Intl.PluralRules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/PluralRules/PluralRules#options)。<br>表示要使用的最大有效位数，取值范围：1~21。<br>默认值：21。                |
 
 
 ## RelativeTimeFormat<sup>8+</sup>
