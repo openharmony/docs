@@ -47,7 +47,7 @@ ArkWeb_WebMessagePtr (*createWebMessage)()
 
 | 类型                       | 说明 |
 |--------------------------|----|
-| [ArkWeb_WebMessagePtr](capi-arkweb-webmessage8h.md) | 消息结构体。   |
+| [ArkWeb_WebMessagePtr](capi-web-arkweb-webmessage8h.md) | 消息结构体。   |
 
 ### destroyWebMessage()
 
@@ -73,7 +73,7 @@ void (*setType)(ArkWeb_WebMessagePtr webMessage, ArkWeb_WebMessageType type)
 
 | 参数项                                                                       | 描述 |
 |---------------------------------------------------------------------------|----|
-| [ArkWeb_WebMessagePtr](capi-arkweb-webmessage8h.md) webMessage            | 消息结构体指针。   |
+| [ArkWeb_WebMessagePtr](capi-web-arkweb-webmessage8h.md) webMessage            | 消息结构体指针。   |
 | [ArkWeb_WebMessageType](capi-arkweb-type-h.md#arkweb_webmessagetype) type | 消息类型。   |
 
 ### getType()
@@ -90,7 +90,7 @@ ArkWeb_WebMessageType (*getType)(ArkWeb_WebMessagePtr webMessage)
 
 | 参数项                                 | 描述 |
 |-------------------------------------|----|
-| [ArkWeb_WebMessagePtr](capi-arkweb-webmessage8h.md) webMessage | 消息结构体指针。   |
+| [ArkWeb_WebMessagePtr](capi-web-arkweb-webmessage8h.md) webMessage | 消息结构体指针。   |
 
 ### setData()
 
@@ -106,7 +106,7 @@ void (*setData)(ArkWeb_WebMessagePtr webMessage, void* data, size_t dataLength)
 
 | 参数项                                                            | 描述       |
 |----------------------------------------------------------------|----------|
-| [ArkWeb_WebMessagePtr](capi-arkweb-webmessage8h.md) webMessage | 消息结构体指针。 |
+| [ArkWeb_WebMessagePtr](capi-web-arkweb-webmessage8h.md) webMessage | 消息结构体指针。 |
 |  void* data                                                              | 数据指针。         |
 |  size_t dataLength                                                              | 数据长度。         |
 
@@ -125,7 +125,7 @@ void* (*getData)(ArkWeb_WebMessagePtr webMessage, size_t* dataLength)
 
 | 参数项                  | 描述       |
 |----------------------|----------|
-| [ArkWeb_WebMessagePtr](capi-arkweb-webmessage8h.md) webMessage | 消息结构体指针。 |
+| [ArkWeb_WebMessagePtr](capi-web-arkweb-webmessage8h.md) webMessage | 消息结构体指针。 |
 | size_t* dataLength   | 出参，数据长度。         |
 
 **返回：**

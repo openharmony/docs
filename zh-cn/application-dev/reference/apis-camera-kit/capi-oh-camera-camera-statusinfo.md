@@ -16,7 +16,7 @@
 
 | 名称 | 描述 |
 | -- | -- |
-| [Camera_Device](capi-camera-device.md)* camera | 相机实例。 |
+| [Camera_Device](capi-oh-camera-camera-device.md)* camera | 相机实例。 |
 | [Camera_Status](capi-camera-h.md#camera_status) status | 当前相机状态。 |
 
 

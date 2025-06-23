@@ -58,7 +58,7 @@ int32_t (*OH_AudioCapturer_OnReadData)(OH_AudioCapturer* capturer,void* userData
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AudioCapturer](capi-oh-audiocapturerstruct.md)* capturer | 指向[OH_AudioStreamBuilder_GenerateCapturer](capi-native-audiostreambuilder-h.md#oh_audiostreambuilder_generatecapturer)创建的音频流实例。 |
+| [OH_AudioCapturer](capi-ohaudio-oh-audiocapturerstruct.md)* capturer | 指向[OH_AudioStreamBuilder_GenerateCapturer](capi-native-audiostreambuilder-h.md#oh_audiostreambuilder_generatecapturer)创建的音频流实例。 |
 | void* userData | 指向应用自定义的数据存储区域。     |
 | void* buffer | 指向播放数据存储区域，用于应用填充播放数据。      |
 | int32_t length | buffer的长度。     |
@@ -83,7 +83,7 @@ int32_t (*OH_AudioCapturer_OnStreamEvent)(OH_AudioCapturer* capturer,void* userD
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AudioCapturer](capi-oh-audiocapturerstruct.md)* capturer | 指向[OH_AudioStreamBuilder_GenerateCapturer](capi-native-audiostreambuilder-h.md#oh_audiostreambuilder_generatecapturer)创建的音频流实例。 |
+| [OH_AudioCapturer](capi-ohaudio-oh-audiocapturerstruct.md)* capturer | 指向[OH_AudioStreamBuilder_GenerateCapturer](capi-native-audiostreambuilder-h.md#oh_audiostreambuilder_generatecapturer)创建的音频流实例。 |
 | void* userData | 指向应用自定义的数据存储区域。 |
 | [OH_AudioStream_Event](capi-native-audiostream-base-h.md#oh_audiostream_event) event | 音频事件。 |
 
@@ -107,7 +107,7 @@ int32_t (*OH_AudioCapturer_OnInterruptEvent)(OH_AudioCapturer* capturer,void* us
 
 | 参数项  | 描述 |
 |--| -- |
-| [OH_AudioCapturer](capi-oh-audiocapturerstruct.md)* capturer | 指向[OH_AudioStreamBuilder_GenerateCapturer](capi-native-audiostreambuilder-h.md#oh_audiostreambuilder_generatecapturer)创建的音频流实例。 |
+| [OH_AudioCapturer](capi-ohaudio-oh-audiocapturerstruct.md)* capturer | 指向[OH_AudioStreamBuilder_GenerateCapturer](capi-native-audiostreambuilder-h.md#oh_audiostreambuilder_generatecapturer)创建的音频流实例。 |
 | void* userData | 指向应用自定义的数据存储区域。 |
 | [OH_AudioInterrupt_ForceType](capi-native-audiostream-base-h.md#oh_audiointerrupt_forcetype) type | 音频中断类型。 |
 | [OH_AudioInterrupt_Hint](capi-native-audiostream-base-h.md#oh_audiointerrupt_hint) hint | 音频中断提示类型。 |
@@ -133,7 +133,7 @@ int32_t (*OH_AudioCapturer_OnError)(OH_AudioCapturer* capturer, void* userData, 
 
 | 参数项  | 描述 |
 |--| -- |
-| [OH_AudioCapturer](capi-oh-audiocapturerstruct.md)* capturer | 指向[OH_AudioStreamBuilder_GenerateCapturer](capi-native-audiostreambuilder-h.md#oh_audiostreambuilder_generatecapturer)创建的音频流实例。 |
+| [OH_AudioCapturer](capi-ohaudio-oh-audiocapturerstruct.md)* capturer | 指向[OH_AudioStreamBuilder_GenerateCapturer](capi-native-audiostreambuilder-h.md#oh_audiostreambuilder_generatecapturer)创建的音频流实例。 |
 | void* userData | 指向应用自定义的数据存储区域。 |
 | [OH_AudioStream_Result](capi-native-audiostream-base-h.md#oh_audiostream_result) error | 音频录制错误结果，可能为AUDIOSTREAM_ERROR_INVALID_PARAM、AUDIOSTREAM_ERROR_ILLEGAL_STATE或者 AUDIOSTREAM_ERROR_SYSTEM。 |
 

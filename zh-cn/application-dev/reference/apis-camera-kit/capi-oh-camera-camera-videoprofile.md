@@ -17,7 +17,7 @@
 | 名称 | 描述 |
 | -- | -- |
 | [Camera_Format](capi-camera-h.md#camera_format) format | 相机格式。 |
-| [Camera_Size](capi-camera-size.md) size | 图片大小。 |
-| [Camera_FrameRateRange](capi-camera-frameraterange.md) range | 帧速率，单位为fps（每秒帧数）。 |
+| [Camera_Size](capi-oh-camera-camera-size.md) size | 图片大小。 |
+| [Camera_FrameRateRange](capi-oh-camera-camera-frameraterange.md) range | 帧速率，单位为fps（每秒帧数）。 |
 
 

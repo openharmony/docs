@@ -108,7 +108,7 @@ ArkWeb_WebMessagePortPtr* (*createWebMessagePorts)(const char* webTag, size_t* s
 
 | 类型                           | 说明 |
 |------------------------------|----|
-| [ArkWeb_WebMessagePortPtr](capi-arkweb-webmessageport8h.md) | Post Message端口结构体指针。   |
+| [ArkWeb_WebMessagePortPtr](capi-web-arkweb-webmessageport8h.md) | Post Message端口结构体指针。   |
 
 ### destroyWebMessagePorts()
 
@@ -124,7 +124,7 @@ void (*destroyWebMessagePorts)(ArkWeb_WebMessagePortPtr** ports, size_t size)
 
 | 参数项           | 描述                |
 |---------------|--------------------|
-| [ArkWeb_WebMessagePortPtr](capi-arkweb-webmessageport8h.md)** ports | 发送Message端口结构体指针数组。 |
+| [ArkWeb_WebMessagePortPtr](capi-web-arkweb-webmessageport8h.md)** ports | 发送Message端口结构体指针数组。 |
 | size_t size   | 端口数量。              |
 
 ### postWebMessage()
@@ -143,7 +143,7 @@ ArkWeb_ErrorCode (*postWebMessage)(const char* webTag, const char* name, ArkWeb_
 | -- | -- |
 | const char* webTag | Web组件名称。 |
 |  const char* name | 发送给HTML的消息名称。 |
-|  [ArkWeb_WebMessagePortPtr](capi-arkweb-webmessageport8h.md)* webMessagePorts | Post Message端口结构体指针。 |
+|  [ArkWeb_WebMessagePortPtr](capi-web-arkweb-webmessageport8h.md)* webMessagePorts | Post Message端口结构体指针。 |
 |  size_t size | 端口数量。 |
 |  const char* url | 接收到消息的页面url。 |
 
@@ -188,7 +188,7 @@ void (*registerJavaScriptProxyEx)(const char* webTag, const ArkWeb_ProxyObjectWi
 | 参数项 | 描述 |
 | -- | -- |
 | const char* webTag | Web组件名称。 |
-|  const [ArkWeb_ProxyObjectWithResult](capi-arkweb-proxyobjectwithresult.md)* proxyObject | 注册的对象。 |
+|  const [ArkWeb_ProxyObjectWithResult](capi-web-arkweb-proxyobjectwithresult.md)* proxyObject | 注册的对象。 |
 | const char* permission | json格式字符串，默认值为空。该字符串用来配置JSBridge的权限限制，可以配置对象和方法级别。 |
 
 ### registerAsyncJavaScriptProxyEx()

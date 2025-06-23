@@ -17,7 +17,7 @@
 | 名称                                       | 描述 |
 |------------------------------------------| -- |
 | const char* objName                      | 注入的对象名。 |
-| const [ArkWeb_ProxyMethod](capi-arkweb-proxymethod.md)* methodList | 注入的对象携带的方法结构体数组。 |
+| const [ArkWeb_ProxyMethod](capi-web-arkweb-proxymethod.md)* methodList | 注入的对象携带的方法结构体数组。 |
 | size_t size                              | 方法结构体数组的长度。 |
 
 
