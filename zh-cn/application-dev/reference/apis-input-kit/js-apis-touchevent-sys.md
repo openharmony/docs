@@ -1,12 +1,12 @@
-# @ohos.multimodalInput.touchEvent (触摸输入事件)(系统接口)
+# @ohos.multimodalInput.touchEvent (触屏输入事件)(系统接口)
 
-设备上报的触摸（触屏）事件，继承自[InputEvent](./js-apis-inputevent.md)。
+设备上报的触屏事件，继承自[InputEvent](./js-apis-inputevent.md)。
 
 > **说明：**
 >
 > 本模块首批接口从API version 19开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
-> 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.multimodalInput.touchEvent (触摸输入事件)](js-apis-touchevent.md)。
+> 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.multimodalInput.touchEvent (触屏输入事件)](js-apis-touchevent.md)。
 
 ## 导入模块
 
@@ -29,7 +29,7 @@ import { FixedMode, Touch, TouchEvent } from '@kit.InputKit';
 
 ## Touch
 
-触摸点信息。
+触屏点信息。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.Core
 

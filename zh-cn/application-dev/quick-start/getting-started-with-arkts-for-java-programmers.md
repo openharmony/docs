@@ -1,4 +1,4 @@
-# 从Java到ArkTS的迁移教程
+# 从Java到ArkTS的迁移指导
 
 对于熟悉Java的开发者而言，ArkTS作为新的开发语言，带来了全新的开发体验与机遇。ArkTS在语法和编程范式上不仅继承了现代语言的特性，还针对生态进行了深度优化。理解Java与ArkTS的差异和共性，能够帮助开发者快速上手应用开发，避开常见的编程误区。
 
@@ -14,9 +14,9 @@
 
 **ArkTS示例：**
 
-```arkts
+```typescript
 // 类型注解（类似Java）。
-let name: string = 'OpenHarmony'; 
+let age: number = 20; 
 const program: string = 'ArkTS';
 
 // 类型推断（类似Java的局部变量类型推断）。
@@ -39,7 +39,7 @@ let version = 5.0;
 ### 复杂数据类型
 | Java类型体系                | ArkTS类型体系            | ArkTS示例代码                                                                 | 核心差异说明                                                                 |  
 |-----------------------------|--------------------------|-------------------------------------------------------------------------|-----------------------------------------------------------------------------|  
-| **数组**：`int[] arr = new int[5];` | **Array**：`let arr: Array<number> = [1, 2, 3];` | ```// 固定长度初始化（类似Java）```<br>```let fixedArr: number[] = new Array<number>(5);```<br>```// 动态长度语法糖```<br>```let dynamicArr = [4, 5, 6];```<br> | Java数组长度固定。<br>ArkTS的`Array`是动态数组，支持`push`/`pop`等操作；可直接用`[]`简化初始化。 |  
+| **数组**：`int[] arr = new int[5];` | **Array**：`let arr: Array<number> = [1, 2, 3];` | ```// 固定长度初始化（类似Java）```<br>```let fixedArr: number[] = new Array<number>(5);```<br>```// 动态长度语法糖```<br>```let dynamicArr = [4, 5, 6];```<br> | Java数组长度固定。<br>ArkTS的`Array`是动态数组，支持`push`/`pop`等操作；可直接用`[]`简化初始化。数组不会越界，当数组下标超过数组长度时会得到undefined。 |  
 | **集合 - List**：`List<String> list = new ArrayList<>();` | **Array**：`let strList: Array<string> = ['a', 'b'];` | ```strList.push('c'); // 向数组末尾添加元素```<br>```let firstItem = strList[0]; // 索引访问```<br> | Java集合通过接口（如`List`）与实现类（如`ArrayList`）分离。<br>ArkTS数组兼具基础类型与集合特性，语法更简洁。 |  
 | **集合 - Map**：`Map<String, Integer> map = new HashMap<>();` | **Map**：`let map: Map<string, number> = new Map();` | ```map.set('key', 1); // 添加键值对```<br>```let value = map.get('key'); // 获取值```<br>```map.has('key'); // 检查键是否存在```<br> |Java的`Map`需显式声明泛型类型。<br>ArkTS的`Map`操作更直接，支持链式调用（如`map.set('a', 1).set('b', 2)`）。 |  
 | **接口**：`interface Shape { double area(); }` | **interface**：`interface Shapes { area(): number; }` | ```class Rectangles implements Shapes {```<br>```  public width: number = 0;```<br>```  public height: number = 0;```<br>```  area(): number { return this.width * this.height; }```<br>```}```<br> | 语法结构相似，但ArkTS接口实现无需显式修饰符（如Java的`public`），且支持可选属性（如`name?: string`）。 |  
@@ -51,7 +51,7 @@ let version = 5.0;
 
 **ArkTS示例：**
 
-```arkts
+```typescript
 // 常规函数定义。
 function add(x: number, y: number): number {
     return x + y;
@@ -73,7 +73,7 @@ Java在编译时多态，允许同一类中存在多个同名方法，通过参�
 
 **Java示例：** Java函数重载
 
-```
+```java
 class Example {
     // 方法1：接受int参数。
     void print(int value) {
@@ -97,7 +97,7 @@ ArkTS提供类型声明层面的多态，仅用于类型检查和文档提示，
 
 **ArkTS示例：** ArkTS函数重载
 
-```
+```typescript
 function foo(x: number): void;            /* 第一个函数定义 */
 function foo(x: string): void;            /* 第二个函数定义 */
 function foo(x: number | string): void {  /* 函数实现 */
@@ -123,7 +123,7 @@ ArkTS采用更为灵活的语言结构，融合了面向对象编程和函数式
 
 **ArkTS示例：**
 
-```
+```typescript
 // 引入ArkTS标准库中的ArkTS容器集。
 
 import { collections } from '@kit.ArkTS';
@@ -147,7 +147,7 @@ ArkTS支持显式命名空间（namespace）和模块化组织。
 
 **ArkTS示例：**
 
-```
+```typescript
 namespace Models {
     export class User {
         // 实现细节。
@@ -167,7 +167,7 @@ ArkTS支持在类体内直接初始化属性。
 
 **ArkTS示例：**
 
-```
+```typescript
 class User {
     private name: string = 'Default'
 }
@@ -195,7 +195,7 @@ Java的this始终指向当前类的实例对象，由代码结构在编译时确
 
 **Java示例：**
 
-```
+```java
 class MyClass {
   void method() {
     System.out.println(this); // 始终指向MyClass的实例。
@@ -207,35 +207,33 @@ ArkTS的this指向取决于函数调用时的上下文。
 
 **ArkTS示例：**
 
-```
-// 类中使用 this，this 实际指向实例化后的对象。
-class UserInfo { 
-  name: string = 'xxx'; 
- 
-  getName() { 
-    return this.name;
-  } 
-} 
+```typescript
+class A {
+  bar: string = 'I am A';
 
-const user: UserInfo = new UserInfo();
-
-// 对象中函数的this指向外层。
-interface Interface_1 {
-  logName: () => void
+  foo() {
+    console.info(this.bar);
+  }
 }
 
-class OuterClass {
-  name = "Outer";
+class B {
+  bar: string = 'I am B';
 
-  obj :Interface_1 =  {
-    logName: () => {
-      console.log(this.name);
-    }
-  };
+  callFunction(fn: () => void) {
+    fn();
+  }
 }
 
-const outer = new OuterClass();
-outer.obj.logName(); 
+function callFunction(fn: () => void) {
+  fn();
+}
+
+let a: A = new A();
+let b: B = new B();
+
+callFunction(a.foo); // 程序crash。this的上下文发生了变化。
+b.callFunction(a.foo); // 程序crash。this的上下文发生了变化。
+b.callFunction(a.foo.bind(b)) // 输出'I'm B'。
 ```
 
 ## 类型系统
@@ -251,7 +249,7 @@ ArkTS具有强大的类型推断能力，编译器能够根据上下文自动推
 
 **ArkTS示例：**
 
-```
+```typescript
 let num = 10; // 编译器自动推断num为number类型。
 ```
 
@@ -259,7 +257,7 @@ let num = 10; // 编译器自动推断num为number类型。
 
 **ArkTS示例：**
 
-```
+```typescript
 interface Person {
   name: string;
   age?: number;  // age 是可选属性。
@@ -278,7 +276,7 @@ ArkTS支持联合类型（`|`）。联合类型表示一个值可以是多种类
 
 **ArkTS示例：**
 
-```
+```typescript
 // 联合类型示例。
 
 let value: string | number;

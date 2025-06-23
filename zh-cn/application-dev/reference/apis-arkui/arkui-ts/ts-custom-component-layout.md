@@ -7,6 +7,8 @@
 > 本模块首批接口从API version 9开始支持，后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > 
 > 在自定义组件内实现onMeasureSize, onPlaceChildren任一方法即视为实现自定义布局，推荐同时实现两种方法，具体参数说明可见对应接口参数说明。
+> 
+> 自定义布局内不支持使用懒加载(包含[Repeat](../../../ui/state-management/arkts-new-rendering-control-repeat.md)和[LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md))。
 
 ## onMeasureSize<sup>10+</sup>
 
