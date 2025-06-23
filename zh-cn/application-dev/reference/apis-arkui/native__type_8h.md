@@ -76,6 +76,8 @@
 | typedef struct [ArkUI_ActiveChildrenInfo](_ark_u_i___native_module.md#arkui_activechildreninfo) [ArkUI_HostWindowInfo](_ark_u_i___native_module.md#arkui_activechildreninfo) | 定义ActiveChildrenInfo类信息。  | 
 | typedef struct [ArkUI_TextPickerRangeContentArray](_ark_u_i___native_module.md#arkui_textpickerrangecontentarray) [ArkUI_TextPickerRangeContentArray](_ark_u_i___native_module.md#arkui_textpickerrangecontentarray) | 定义文本选择器的数据选择列表。<br/>**起始版本：** 19  | 
 | typedef struct [ArkUI_TextCascadePickerRangeContentArray](_ark_u_i___native_module.md#arkui_textcascadepickerrangecontentarray) [ArkUI_TextCascadePickerRangeContentArray](_ark_u_i___native_module.md#arkui_textcascadepickerrangecontentarray) | 定义多列联动数据选择器的多列联动数据选择列表。<br/>**起始版本：** 19  | 
+| typedef struct [ArkUI_ActiveChildrenInfo](_ark_u_i___native_module.md#arkui_activechildreninfo) [ArkUI_ActiveChildrenInfo](_ark_u_i___native_module.md#arkui_activechildreninfo) | 定义ActiveChildrenInfo类信息。<br/>**起始版本：** 14  | 
+| typedef struct ArkUI_CrossLanguageOption ArkUI_CrossLanguageOption | 定义跨语言配置。<br/>**起始版本：** 15  | 
 
 ### 枚举
 
@@ -438,3 +440,9 @@
 | void [OH_ArkUI_TextCascadePickerRangeContentArray_SetTextAtIndex](_ark_u_i___native_module.md#oh_arkui_textcascadepickerrangecontentarray_settextatindex) ([ArkUI_TextCascadePickerRangeContentArray](_ark_u_i___native_module.md#arkui_textcascadepickerrangecontentarray) \*handle,char\* text,int32_t index) |   指定TextCascadePickerRangeContent数组指定位置的text数据。<br />**起始版本：** 19 |
 | void [OH_ArkUI_TextCascadePickerRangeContentArray_setChildAtIndex](_ark_u_i___native_module.md#oh_arkui_textcascadepickerrangecontentarray_setchildatindex) ([ArkUI_TextCascadePickerRangeContentArray](_ark_u_i___native_module.md#arkui_textcascadepickerrangecontentarray) \*handle,[ArkUI_TextCascadePickerRangeContentArray](_ark_u_i___native_module.md#arkui_textcascadepickerrangecontentarray)\* child,int32_t index) |   指定TextCascadePickerRangeContent数组指定位置的child数据。<br />**起始版本：** 19 |
 | void [OH_ArkUI_TextCascadePickerRangeContentArray_Destroy](_ark_u_i___native_module.md#oh_arkui_textcascadepickerrangecontentarray_destroy) ([ArkUI_TextCascadePickerRangeContentArray](_ark_u_i___native_module.md#arkui_textcascadepickerrangecontentarray) \*handle) |  删除TextCascadePickerRangeContent数组对象。<br />**起始版本：** 19 |
+| const char\* [OH_ArkUI_HostWindowInfo_GetName](_ark_u_i___native_module.md#oh_arkui_hostwindowinfo_getname) ([ArkUI_HostWindowInfo](_ark_u_i___native_module.md#arkui_hostwindowinfo)\* info) | 获取HostWindowInfo对象中的窗口名称。 |
+| void [OH_ArkUI_HostWindowInfo_Destroy](_ark_u_i___native_module.md#oh_arkui_hostwindowinfo_destroy) ([ArkUI_HostWindowInfo](_ark_u_i___native_module.md#arkui_hostwindowinfo)\* info) | 销毁HostWindowInfo对象。 |
+| ArkUI_CrossLanguageOption\* [OH_ArkUI_CrossLanguageOption_Create](_ark_u_i___native_module.md#oh_arkui_crosslanguageoption_create) (void) | 创建跨语言配置实例。 |
+| void [OH_ArkUI_CrossLanguageOption_Destroy](_ark_u_i___native_module.md#oh_arkui_crosslanguageoption_destroy) (ArkUI_CrossLanguageOption\* option) | 销毁跨语言配置实例。 |
+| void [OH_ArkUI_CrossLanguageOption_SetAttributeSettingStatus](_ark_u_i___native_module.md#oh_arkui_crosslanguageoption_setattributesettingstatus) (ArkUI_CrossLanguageOption\* option, bool enabled) | 设置是否允许跨语言修改属性的配置项。 |
+| bool [OH_ArkUI_CrossLanguageOption_GetAttributeSettingStatus](_ark_u_i___native_module.md#oh_arkui_crosslanguageoption_getattributesettingstatus) (ArkUI_CrossLanguageOption\* option) | 获取是否允许跨语言修改属性的配置项的值。 |
