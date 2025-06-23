@@ -11,7 +11,7 @@ UIAbility的生命周期示意图如下所示。
 
 以UIAbility实例的冷启动为例说明：
 
-1. 当用户启动一个UIAbility时，系统首先触发onCreate()回调告知应用该UIAbility正在被启动，紧接着触发onForeground()回调将UIAbility切换到与用户交互的前台状态。
+1. 当用户启动一个UIAbility时，系统首先触发onCreate()回调告知应用该UIAbility正在被启动。紧接着，系统触发onForeground()回调将UIAbility切换到与用户交互的前台状态。
  
 2. 当用户跳转到其他应用时，系统会触发onBackground()回调将UIAbility切换到后台状态。
  
