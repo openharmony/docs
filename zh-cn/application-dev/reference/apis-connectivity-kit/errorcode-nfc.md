@@ -99,7 +99,7 @@ NFC Tag不支持所执行的读写操作。
 
 **错误信息**
 
-The tag leaves the field.
+The tag is no longer within the detection range.
 
 **错误描述**
 
