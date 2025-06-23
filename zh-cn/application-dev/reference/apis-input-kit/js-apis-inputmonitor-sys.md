@@ -1288,7 +1288,7 @@ queryTouchEvents(count: number): Promise&lt;Array&lt;TouchEvent&gt;&gt;
 
 | 类型          | 说明                                |
 | :------------ | :---------------------------------- |
-| Promise&lt;Array&lt;[TouchEvent](js-apis-touchevent-sys.md#touchevent)&gt;&gt; | Promise对象，返回查询到的触屏事件。包含以下有效信息：<br/>- actionTime：触屏事件发生的时间；<br/>- [SourceType](js-apis-touchevent.md#sourcetype)：触摸来源的设备类型；<br/>- [isInject](js-apis-touchevent-sys.md#TouchEvent)：表示该触屏事件是否为注入事件；<br/>- pressure：压力值；<br/>- tiltX：相对YZ平面的角度；<br/>- tiltY：相对XZ平面的角度。<br/> |
+| Promise&lt;Array&lt;[TouchEvent](js-apis-touchevent-sys.md#touchevent)&gt;&gt; | Promise对象，返回查询到的触屏事件。包含以下有效信息：<br/>- actionTime：触屏事件发生的时间，表示从1970.1.1 00:00:00 GMT逝去的微秒数。<br/>- [SourceType](js-apis-touchevent.md#sourcetype)：触摸来源的设备类型。<br/>- [isInject](js-apis-touchevent-sys.md#TouchEvent)：表示该触屏事件是否为注入事件。<br/>- pressure：压力值，取值范围是[0.0, 1.0]，0.0表示不支持。<br/>- tiltX：相对YZ平面的角度，取值的范围[-90, 90]，其中正值是向右倾斜。<br/>- tiltY：相对XZ平面的角度，取值的范围[-90, 90]，其中正值是向下倾斜。 |
 
 **错误码**：
 
