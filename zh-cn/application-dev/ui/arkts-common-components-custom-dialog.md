@@ -559,7 +559,7 @@ struct InterceptCustomDialog {
       }
     }),
     onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
-      console.log('dialog onWillDismiss reason: ' + dismissDialogAction.reason);
+      console.info('dialog onWillDismiss reason: ' + dismissDialogAction.reason);
       // 1、PRESS_BACK    点击三键back、侧滑（左滑/右滑）、键盘ESC。
       // 2、TOUCH_OUTSIDE    点击遮障层时
       // 3、CLOSE_BUTTON    点击关闭按钮
