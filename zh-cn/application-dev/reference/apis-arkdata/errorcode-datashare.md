@@ -33,7 +33,7 @@ Inner error.
 
 **错误信息**
 
-The DataShareHelper is not initialized successfully.
+The DataShareHelper fails to be initialized.
 
 **错误描述**
 

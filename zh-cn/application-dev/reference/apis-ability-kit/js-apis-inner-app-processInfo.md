@@ -16,10 +16,10 @@ import featureAbility from '@ohos.ability.featureAbility';
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| pid | number | 是 | 否 | 进程ID。 |
-| processName | string | 是 | 否 | 进程名称。 |
+| pid | number | 否 | 否 | 进程ID。 |
+| processName | string | 否 | 否 | 进程名称。 |
 
 **示例：**
 <!--code_no_check_fa-->

@@ -22,7 +22,7 @@
 
   ```ts
   // 不允许使用side-effects-import
-  import "./sharedModule"
+  import "./sharedModule";
   ```
 
 - 共享模块导出的变量必须是可共享对象。
@@ -94,6 +94,7 @@
    
    export let singletonA = new SingletonA();
    ```
+   <!-- @[export_sendable_object](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableObjectRelated/entry/src/main/ets/managers/sharedModule.ets) -->
 
 2. 在多个线程中操作共享模块导出的对象。
 
@@ -143,3 +144,4 @@
      }
    }
    ```
+   <!-- @[ multi_thread_operate_exported_obj](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableObjectRelated/entry/src/main/ets/managers/ArktsSendableModule.ets) -->

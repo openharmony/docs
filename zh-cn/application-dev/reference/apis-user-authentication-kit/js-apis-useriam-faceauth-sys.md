@@ -46,7 +46,7 @@ let faceAuthManager = new faceAuth.FaceAuthManager();
 
 setSurfaceId(surfaceId: string): void;
 
-该接口仅用于在录入人脸时，设置人脸预览界面 [XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid) 持有 Surface 的 ID，需要配合[人脸录入接口](../apis-basic-services-kit/js-apis-osAccount-sys.md#addcredential8)来使用。
+该接口仅用于在录入人脸时，设置人脸预览界面 [XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid9) 持有 Surface 的 ID，需要配合[人脸录入接口](../apis-basic-services-kit/js-apis-osAccount-sys.md#addcredential8)来使用。
 
 **系统能力：** SystemCapability.UserIAM.UserAuth.FaceAuth
 
@@ -58,7 +58,7 @@ setSurfaceId(surfaceId: string): void;
 
 | 参数名         | 类型                               | 必填 | 说明                       |
 | -------------- | ---------------------------------- | ---- | -------------------------- |
-| surfaceId       | string     | 是   | [XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid) 持有 Surface 的 ID。 |
+| surfaceId       | string     | 是   | [XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid9) 持有 Surface 的 ID。 |
 
 以下错误码的详细介绍请参见[用户认证错误码](errorcode-useriam.md)。
 

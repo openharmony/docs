@@ -62,7 +62,7 @@ target_link_libraries(entry PUBLIC
 
 3. 设置处理数据。
 
-    **场景一：设置 OH_PixelmapNative 输入类型。**
+    **场景一：设置OH_PixelmapNative输入类型。**
 
     OH_PixelmapNative的具体使用方法请参考[Pixelmap开发指导](image-pixelmap-operation-native.md)。
 
@@ -76,7 +76,7 @@ target_link_libraries(entry PUBLIC
     CHECK_AND_RETURN_LOG(errorCode == ImageEffect_ErrorCode::EFFECT_SUCCESS, "OH_ImageEffect_SetOutputPixelmap fail!");
     ```
 
-    **场景二：设置 OH_NativeBuffer 输入类型。**
+    **场景二：设置OH_NativeBuffer输入类型。**
 
     OH_NativeBuffer的具体使用方法请参考[NativeBuffer开发指导](../../graphics/native-buffer-guidelines.md)。
 
@@ -90,7 +90,7 @@ target_link_libraries(entry PUBLIC
     CHECK_AND_RETURN_LOG(errorCode == ImageEffect_ErrorCode::EFFECT_SUCCESS, "OH_ImageEffect_SetOutputNativeBuffer fail!");
     ```
 
-    **场景三：设置 URI 输入类型。**
+    **场景三：设置URI输入类型。**
 
     ```c++
     // 设置输入的URI。
@@ -101,8 +101,20 @@ target_link_libraries(entry PUBLIC
     errorCode = OH_ImageEffect_SetOutputUri(imageEffect, outputUri);
     CHECK_AND_RETURN_LOG(errorCode == ImageEffect_ErrorCode::EFFECT_SUCCESS, "OH_ImageEffect_SetOutputUri fail!");
     ```
+    **场景四：设置纹理输入类型。**
 
-    **场景四：设置 OHNativeWindow 输入类型。**
+    纹理输入场景是使用硬件GPU渲染的高性能场景，此场景下，应用需要提供合法的OpenGL上下文环境，并在正确的环境下，设置参数以及进行渲染操作。
+    ```c++
+    // 设置输入的纹理ID。
+    errorCode = OH_ImageEffect_SetInputTextureId(imageEffect, inputTex, ColorSpaceName::SRGB);
+    CHECK_AND_RETURN_LOG(errorCode == ImageEffect_ErrorCode::EFFECT_SUCCESS, "OH_ImageEffect_SetInputTextureId fail!");
+
+    // 设置输出的纹理ID, 注意不能与输入是同一块纹理，否则可能产生渲染异常。
+    errorCode = OH_ImageEffect_SetOutputTextureId(imageEffect, outputTex);
+    CHECK_AND_RETURN_LOG(errorCode == ImageEffect_ErrorCode::EFFECT_SUCCESS, "OH_ImageEffect_SetOutputTextureId fail!");
+    ```
+
+    **场景五：设置OHNativeWindow输入类型。**
 
     以相机预览场景为例来说明OHNativeWindow输入场景。XComponent组件为相机预览流提供的SurfaceId，可在native c++层将SurfaceId转换成OHNativeWindow，下面提供一份代码示例。
     XComponent模块的具体使用方法请参考[XComponent组件参考](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)。

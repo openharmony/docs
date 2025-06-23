@@ -420,6 +420,44 @@ maskDispersion(dispersionMask: Mask, alpha: number, rFactor?: [number, number], 
 filter.maskDispersion(mask, 0.5, [0.15, -0.15], [0.0, 0.0], [-0.15, 0.15])
 ```
 
+### hdrBrightnessRatio<sup>20+</sup>
+hdrBrightnessRatio(ratio: number): Filter
+
+为组件内容添加HDR（高动态范围成像）提亮效果。不建议嵌套使用，强行嵌套使用可能造成过曝现象。
+
+提亮效果需要开启HDR渲染管线才能生效，某些场景下即使尝试触发HDR渲染管线也无法开启HDR，例如：设备硬件规格不支持HDR。
+
+设备当前支持最大提亮倍数为设备当前的最大亮度除以设备SDR参考白亮度得到的值。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**系统接口：** 此接口为系统接口。
+
+**参数：**
+| 参数名         | 类型                  | 必填 | 说明                       |
+| ------------- | --------------------- | ---- | ------------------------- |
+| ratio  | number         | 是   | 提亮倍数，取值范围为[1.0, 设备当前支持最大提亮倍数]。设置小于1.0的值时，按值为1.0处理；当值等于1.0时，不做任何处理；当值大于1.0时，会尝试触发HDR渲染管线，设置大于设备当前支持最大提亮倍数的值时，按值为设备当前支持最大提亮倍数处理。|
+
+**返回值：**
+
+| 类型              | 说明                               |
+| ----------------- | --------------------------------- |
+| [Filter](#filter) | 返回挂载了HDR提亮效果的Filter。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**示例：**
+
+```ts
+filter.hdrBrightnessRatio(2.0)
+```
+
 ## TileMode
 像素填充模式枚举。
 
@@ -580,7 +618,7 @@ static createRippleMask(center: common2D.Point, radius: number, width: number, o
 ### createPixelMapMask<sup>20+</sup>
 static createPixelMapMask(pixelMap: image.PixelMap, srcRect: common2D.Rect, dstRect: common2D.Rect, fillColor?: Color): Mask
 
-通过输入的[pixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)pixelMap的待绘制区域、挂载节点的绘制区域和绘制区域外填充的颜色创建具有缩放效果的Mask实例，具体的效果由输入的参数决定。
+通过输入的[pixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)pixelMap的待绘制区域、挂载节点的绘制区域和绘制区域外填充的颜色创建具有缩放效果的Mask实例，具体的效果由输入的参数决定。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -589,7 +627,7 @@ static createPixelMapMask(pixelMap: image.PixelMap, srcRect: common2D.Rect, dstR
 **参数：**
 | 参数名  | 类型                                      | 必填 | 说明                       |
 | ------- | ---------------------------------------- | ---- | ------------------------- |
-| pixelMap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是   | image模块创建的PixelMap实例。可通过图片解码或直接创建获得，具体可见[图片开发指导](../../media/image/image-overview.md)。   |
+| pixelMap | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 是   | image模块创建的PixelMap实例。可通过图片解码或直接创建获得，具体可见[图片开发指导](../../media/image/image-overview.md)。   |
 | srcRect | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | pixelMap的待绘制区域，各元素取值范围为[0, 1]，小于0的转为0，大于1的转为1。图片最左侧和最上侧对应位置0，最右侧和最下侧对应位置1。right需大于left，bottom需大于top。 |
 | dstRect | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | pixelMap在mask挂载的节点上的绘制区域，各元素取值范围为[0, 1]，小于0的转为0，大于1的转为1。节点最左侧和最上侧对应位置0，最右侧和最下侧对应位置1。right需大于left，bottom需大于top。 |
 | fillColor | [Color](#color20) | 否   |  节点上在pixelMap绘制区域之外的区域填充的颜色，各元素取值范围为[0, 1]，默认透明色，小于0的转为0，大于1的转为1。 |

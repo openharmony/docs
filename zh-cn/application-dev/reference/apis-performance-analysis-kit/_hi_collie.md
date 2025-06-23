@@ -383,7 +383,7 @@ HiCollie_ErrorCode OH_HiCollie_SetTimer (HiCollie_SetTimerParam param, int * id 
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| param | 定义输入参数，参考[HiCollie_SetTimerParam](#hicollie_settimerparam) 。 | 
+| param | 定义输入参数。  | 
 | id | 用于保存返回的计时器id的指针，它不应为NULL。  | 
 
 **返回：**

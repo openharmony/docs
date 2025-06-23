@@ -482,7 +482,7 @@ shiftAppWindowTouchEvent(sourceWindowId: number, targetWindowId: number, fingerI
 
 在同应用内窗口的分合场景下，需要将触屏输入事件从源窗口转移到目标窗口。使用Promise异步回调，针对主窗和子窗生效。
 
-源窗口仅在[onTouch](arkui-ts/ts-universal-events-touch.md#touchevent)事件（其中，事件类型必须为TouchType.Down）的回调方法中调用此接口才会有触屏输入事件转移效果，成功调用此接口后，系统会向源窗口补发触屏抬起（touch up）事件，并且向目标窗口补发触屏按下（touch down）事件。
+源窗口仅在[onTouch](arkui-ts/ts-universal-events-touch.md#ontouch)事件（其中，事件类型必须为TouchType.Down）的回调方法中调用此接口才会有触屏输入事件转移效果，成功调用此接口后，系统会向源窗口补发触屏抬起（touch up）事件，并且向目标窗口补发触屏按下（touch down）事件。
 
 <!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
 
@@ -494,7 +494,7 @@ shiftAppWindowTouchEvent(sourceWindowId: number, targetWindowId: number, fingerI
 | -------------- | ------ | ----- | ----------------------- |
 | sourceWindowId | number | 是    | 源窗口id。推荐使用[getWindowProperties()](arkts-apis-window-Window.md#getwindowproperties9)方法获取窗口id属性。            |
 | targetWindowId | number | 是    | 目标窗口id。推荐使用[getWindowProperties()](arkts-apis-window-Window.md#getwindowproperties9)方法获取窗口id属性。             |
-| fingerId | number | 是    | 触屏事件的fingerId。推荐使用[touchEvent](arkui-ts/ts-universal-events-touch.md#TouchEvent对象说明)事件中[touches](arkui-ts/ts-universal-events-touch.md#TouchObject对象说明)属性获取id。             |
+| fingerId | number | 是    | 触屏事件的fingerId。推荐使用[touchEvent](arkui-ts/ts-universal-events-touch.md#touchevent对象说明)事件中[touches](arkui-ts/ts-universal-events-touch.md#touchobject对象说明)属性获取id。             |
 
 **返回值：**
 
@@ -755,8 +755,9 @@ getGlobalWindowMode(displayId?: number): Promise&lt;number&gt;
 | 1300003 | This window manager service works abnormally. |
 | 1300016 | Parameter error. Possible cause: 1. Invalid parameter range. |
 
+**示例：**
 ```ts
-import { window } from '@ohos.window';
+import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
@@ -769,6 +770,60 @@ try {
   });
 } catch (exception) {
   console.error(`Failed to obtain global window mode. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+## window.setStartWindowBackgroundColor<sup>20+</sup>
+
+setStartWindowBackgroundColor(moduleName: string, abilityName: string, color: ColorMetrics): Promise&lt;void&gt;
+
+设置同应用内指定mouduleName、abilityName对应UIAbility的启动页背景色，使用Promise异步回调。
+
+该接口对同应用的所有进程生效，例如多实例或应用分身场景。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+ 
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                          | 必填 | 说明                                                     |
+| -------- | ----------------------------- | ---- | -------------------------------------------------------- |
+| moduleName     | string                        | 是   | 需要设置的UIAbility所属module的名字，moduleName的长度范围为0-200，仅支持设置当前同一应用包名内的moduleName。 |
+| abilityName     | string                        | 是   | 需要设置的UIAbility名字，abilityName的长度范围为0-200，仅支持设置当前同一应用包名内的abilityName。 |
+| color | [ColorMetrics](js-apis-arkui-graphics.md#colormetrics12) | 是   | 设置的启动页背景色。                       |
+
+**返回值：**
+
+| 类型 | 说明 |
+| ------------------- | ------------------------ |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 801     | Capability not supported.function setStartWindowBackgroundColor can not to work correctly due to limited device capabilities. |
+| 1300003 | This window manager service works abnormally. |
+| 1300016 | Parameter error. Possible cause: 1. Invalid parameter range. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { ColorMetrics, window } from '@kit.ArkUI';
+
+try {
+  let promise = window.setStartWindowBackgroundColor("entry", "EntryAbility", ColorMetrics.numeric(0xff000000));
+  promise.then(() => {
+    console.log('Succeeded in setting the starting window color.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to set the starting window color. Cause code: ${err.code}, message: ${err.message}`);
+  });
+} catch (exception) {
+  console.error(`Failed to set the starting window color. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 

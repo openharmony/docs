@@ -53,7 +53,7 @@ The following describes how to add a button in the application and click the but
    import { BusinessError } from '@kit.BasicServicesKit';
    function testHiDebug(event?: ClickEvent) {
      try {
-       console.info(`getSystemCpuUsage: ${hidebug.getSystemCpuUsage()}`)
+       console.info(`getSystemCpuUsage: ${hidebug.getSystemCpuUsage()}`);
      } catch (error) {
        console.error(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
      }
@@ -66,7 +66,7 @@ The following describes how to add a button in the application and click the but
    @Entry
    @Component
    struct Index {
-     @State message: string = 'Hello World'
+     @State message: string = 'Hello World';
 
      build() {
        Row() {

@@ -47,7 +47,7 @@ switchInputMethod(bundleName: string, subtypeId?: string): Promise&lt;void&gt;
 | 202      | not system application.  |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800005 | configuration persistence error.        |
-| 12800008 | input method manager service error. |
+| 12800008 | input method manager service error. Possible cause: a system error, such as null pointer, IPC exception. |
 
 **示例：**
 
@@ -169,7 +169,7 @@ off(type: 'imeShow', callback?: (info: Array\<InputWindowInfo>) => void): void
 
 | 参数名   | 类型 | 必填 | 说明   |
 | -------- | ---- | ---- | ------ |
-| type     | string | 是 | 设置监听类型，固定取值`imeShow`。 |
+| type     | string | 是 | 设置监听类型，固定取值'imeShow'。 |
 | callback | (info: Array<[InputWindowInfo](js-apis-inputmethod.md#inputwindowinfo10)>) => void  | 否 | 取消订阅的回调函数。<br>参数不填写时，取消订阅type对应的所有回调事件。 |
 
 **示例：**
@@ -239,7 +239,7 @@ isPanelShown(panelInfo: PanelInfo): boolean
 | -------- | ----------------------------------- |
 | 202      | not system application.  |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12800008 | input method manager service error. |
+| 12800008 | input method manager service error. Possible cause: a system error, such as null pointer, IPC exception. |
 
 **示例：**
 

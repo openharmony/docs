@@ -6,7 +6,7 @@
 >
 > - 本模块接口从API version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
-> - 示例效果请以真机运行为准，当前IDE预览器不支持。
+> - 示例效果请以真机运行为准，当前DevEco Studio预览器不支持。
 
 ## constructor<sup>11+</sup>
 
@@ -404,6 +404,16 @@ encoding如果为非base64（包括空值），则假定数据对安全URL字符
 
 data数据必须使用base64编码或将内容中的任何#字符编码为%23。否则#将被视为内容的结尾而剩余的文本将被用作文档片段标识符。
 
+> **说明：**
+>
+> - 若加载本地图片，可以给baseUrl或historyUrl任一参数赋值空格，详情请参考示例代码。
+>
+> - 加载本地图片场景，baseUrl和historyUrl不能同时为空，否则图片无法成功加载。
+>
+> - 若html中的富文本中带有注入#等特殊字符，建议将baseUrl和historyUrl两个参数的值设置为"空格"。
+>
+> - 加载文字场景，需主动设置`<meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">`避免文本字体大小不一致。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
@@ -415,12 +425,6 @@ data数据必须使用base64编码或将内容中的任何#字符编码为%23。
 | encoding   | string | 是   | 编码类型，具体为"base64"或者"URL"编码。                       |
 | baseUrl    | string | 否   | 指定的一个URL路径（"http"/"https"/"data"协议），并由Web组件赋值给`window.origin`。当加载大量html文件时，需设置为"data"。 |
 | historyUrl | string | 否   | 用作历史记录所使用的URL。非空时，历史记录以此URL进行管理。当baseUrl为空时，此属性无效。 |
-
-> **说明：**
->
-> 若加载本地图片，可以给baseUrl或historyUrl任一参数赋值空格，详情请参考示例代码。
-> 加载本地图片场景，baseUrl和historyUrl不能同时为空，否则图片无法成功加载。
-> 若html中的富文本中带有注入#等特殊字符，建议将baseUrl和historyUrl两个参数的值设置为"空格"。
 
 **错误码：**
 
@@ -685,7 +689,7 @@ struct WebComponent {
 
 backward(): void
 
-按照历史栈，后退一个页面。一般结合[accessBackward](accessbackward)一起使用。
+按照历史栈，后退一个页面。一般结合[accessBackward](#accessbackward)一起使用。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1149,6 +1153,7 @@ runJavaScript(script: string, callback : AsyncCallback\<string>): void
 >
 > - 跨导航操作（如loadUrl）时，JavaScript状态将不再保留。例如，调用loadUrl前定义的全局变量和函数在加载的页面中将不存在。
 > - 建议应用程序使用registerJavaScriptProxy来确保JavaScript状态能够在页面导航间保持。
+> - 目前不支持传递对象，支持传递结构体。
 > - 执行异步方法无法获取返回值，需要根据具体情境判断是否使用同步或异步方式。
 
 **系统能力：** SystemCapability.Web.Webview.Core
@@ -1240,6 +1245,7 @@ runJavaScript(script: string): Promise\<string>
 >
 > - 跨导航操作（如loadUrl）时，JavaScript状态 将不再保留，例如，调用loadUrl前定义的全局变量和函数在加载的页面中将不存在。
 > - 建议应用程序使用registerJavaScriptProxy来确保JavaScript状态能够在页面导航间保持。
+> - 目前不支持传递对象，支持传递结构体。
 > - 执行异步方法无法获取返回值，需要根据具体情境判断是否使用同步或异步方式。
 
 **系统能力：** SystemCapability.Web.Webview.Core
@@ -2301,6 +2307,7 @@ struct WebComponent {
 </html>
 ```
 
+<!--code_no_check-->
 ```js
 //xxx.js
 var h5Port;
@@ -3390,7 +3397,7 @@ getFavicon(): image.PixelMap
 
 | 类型                                   | 说明                            |
 | -------------------------------------- | ------------------------------- |
-| [PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 页面favicon图标的PixelMap对象。 |
+| [PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 页面favicon图标的PixelMap对象。 |
 
 **错误码：**
 
@@ -3843,7 +3850,7 @@ getBackForwardEntries(): BackForwardList
 
 | 类型                                | 说明                        |
 | ----------------------------------- | --------------------------- |
-| [BackForwardList](./arkts-apis-webview-i.md#backforwardlist) | 当前Webview的历史信息列表。 |
+| [BackForwardList](./arkts-apis-webview-BackForwardList.md) | 当前Webview的历史信息列表。 |
 
 **错误码：**
 
@@ -4483,11 +4490,15 @@ prefetchPage(url: string, additionalHeaders?: Array\<WebHeader>): void
 
 > **说明：**
 >
-> 下载的页面资源，会缓存五分钟左右，超过这段时间Web组件会自动释放。
+> - 下载的页面资源，会缓存五分钟左右，超过这段时间Web组件会自动释放。
 >
-> prefetchPage对302重定向页面同样正常预取。
+> - prefetchPage对302重定向页面同样正常预取。
 >
-> 先执行prefetchPage，再加载页面时，已预取的资源将直接从缓存中加载。
+> - 先执行prefetchPage，再加载页面时，已预取的资源将直接从缓存中加载。
+>
+> - 连续prefetchPage多个url只有第一个生效。
+>
+> - prefetchPage有时间限制，500ms内不能多次预取。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -4666,7 +4677,7 @@ static prepareForPageLoad(url: string, preconnectable: boolean, numSockets: numb
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
 | 17100002 | URL error. The webpage corresponding to the URL is invalid, or the URL length exceeds 2048.                                                 |
-| 171000013| The number of preconnect sockets is invalid.                                                 |
+| 17100013 | The number of preconnect sockets is invalid.                                                 |
 
 **示例：**
 
@@ -4915,7 +4926,7 @@ struct WebComponent {
 }
 ```
 
-### setAppCustomUserAgent<sup>20+</sup>
+## setAppCustomUserAgent<sup>20+</sup>
 
 static setAppCustomUserAgent(userAgent: string): void
 
@@ -4923,7 +4934,7 @@ static setAppCustomUserAgent(userAgent: string): void
 
 当需要设置应用级自定义用户代理时，建议在Web组件创建前调用setAppCustomUserAgent方法设置User-Agent，再创建指定src的Web组件或通过[loadUrl](#loadurl)加载具体页面。
 
-默认User-Agent定义与使用场景，及相关User-Agent接口定义优先级请参考[User-Agent开发指导](../../web/web-default-userAgent.md)
+默认User-Agent定义与使用场景，及相关User-Agent接口定义优先级请参考[User-Agent开发指导](../../web/web-default-userAgent.md)。
 
 **系统能力：**  SystemCapability.Web.Webview.Core
 
@@ -4964,17 +4975,15 @@ struct WebComponent {
 }
 ```
 
-### setUserAgentForHosts<sup>20+</sup>
+## setUserAgentForHosts<sup>20+</sup>
 
-static setUserAgentForHosts(userAgent: string, hosts: Array): void
+static setUserAgentForHosts(userAgent: string, hosts: Array\<string>): void
 
 针对特定网站设置自定义用户代理，会覆盖系统的用户代理，应用内所有Web组件生效。
 
 当需要对特定网站设置自定义用户代理时，建议在Web组件创建前调用setUserAgentForHosts方法设置User-Agent，再创建指定src的Web组件或通过[loadUrl](#loadurl)加载具体页面。
 
-
-
-默认User-Agent定义与使用场景，及相关User-Agent接口定义优先级请参考[User-Agent开发指导](../../web/web-default-userAgent.md)
+默认User-Agent定义与使用场景，及相关User-Agent接口定义优先级请参考[User-Agent开发指导](../../web/web-default-userAgent.md)。
 
 **系统能力：**  SystemCapability.Web.Webview.Core
 
@@ -4983,7 +4992,15 @@ static setUserAgentForHosts(userAgent: string, hosts: Array): void
 | 参数名          | 类型    |  必填  | 说明 |
 | ---------------| ------- | ---- | ------------- |
 | userAgent      | string  | 是   | 用户自定义代理信息。建议先使用[getDefaultUserAgent](#getdefaultuseragent14)获取当前默认用户代理，在此基础上追加自定义用户代理信息。 |
-| hosts      | Array  | 是   | 用户自定义代理的相关域名列表，每次调用时仅保留最新传入的列表，并限制最大条目数为两万，超出部分自动截断。 |
+| hosts      | Array\<string>  | 是   | 用户自定义代理的相关域名列表，每次调用时仅保留最新传入的列表，并限制最大条目数为两万，超出部分自动截断。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -5127,6 +5144,10 @@ enableSafeBrowsing(enable: boolean): void
 <!--RP1-->启用检查网站安全风险的功能，非法和欺诈网站是强制启用的，不能通过此功能禁用。
 本功能默认不生效，OpenHarmony只提供恶意网址拦截页WebUI，网址风险检测以及显示WebUI的功能由Vendor实现。推荐在WebContentsObserver中监听跳转[DidStartNavigation](https://gitee.com/openharmony-tpc/chromium_src/blob/master/content/public/browser/web_contents_observer.h#:~:text=virtual%20void-,DidStartNavigation)、[DidRedirectNavigation](https://gitee.com/openharmony-tpc/chromium_src/blob/master/content/public/browser/web_contents_observer.h#:~:text=virtual%20void-,DidRedirectNavigation)进行检测。
 <!--RP1End-->
+
+> **说明：**
+> 
+> 该接口不生效，调用不会产生任何实际效果。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -7625,6 +7646,12 @@ webPageSnapshot(info: SnapshotInfo, callback: AsyncCallback\<SnapshotResult>): v
 
 获取网页全量绘制结果。
 
+> **说明：**
+>
+> 仅支持对渲染进程上的资源进行截图：静态图片和文本。
+> 
+> 如果页面有视频则截图时会显示该视频的占位图片，没有占位图片则显示空白。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
@@ -8620,7 +8647,7 @@ struct Index {
 
 getScrollOffset(): ScrollOffset
 
-获取网页当前的滚动偏移量。
+获取网页当前的滚动偏移量（包含过滚动偏移量）。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -8628,7 +8655,7 @@ getScrollOffset(): ScrollOffset
 
 | 类型                            | 说明                   |
 | :------------------------------ | ---------------------- |
-| [ScrollOffset](./arkts-apis-webview-i.md#scrolloffset13) | 网页当前的滚动偏移量。 |
+| [ScrollOffset](./arkts-apis-webview-i.md#scrolloffset13) | 网页当前的滚动偏移量（包含过滚动偏移量）。 |
 
 **示例：**
 
@@ -8684,6 +8711,74 @@ struct WebComponent {
 }
 ```
 
+## getPageOffset<sup>20+</sup>
+
+getPageOffset(): ScrollOffset
+
+获取网页当前的滚动偏移量（不包含过滚动偏移量）。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值**
+
+| 类型                            | 说明                   |
+| :------------------------------ | ---------------------- |
+| [ScrollOffset](./arkts-apis-webview-i.md#scrolloffset13) | 网页当前的滚动偏移量（不包含过滚动偏移量）。 |
+
+**示例：**
+
+```ts
+import { webview } from '@kit.ArkWeb';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Web({ src: $rawfile('index.html'), controller: this.controller })
+        .onScroll((event) => {
+          console.log("getPageOffset x:" + this.controller.getPageOffset().x + ",y:" +
+          this.controller.getPageOffset().y);
+        })
+    }
+  }
+}
+```
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" id="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .blue {
+          background-color: lightblue;
+        }
+        .green {
+          background-color: lightgreen;
+        }
+        .blue, .green {
+         font-size:16px;
+         height:200px;
+         text-align: center;       /* 水平居中 */
+         line-height: 200px;       /* 垂直居中（值等于容器高度） */
+        }
+    </style>
+</head>
+<body>
+<div class="blue" >webArea</div>
+<div class="green">webArea</div>
+<div class="blue">webArea</div>
+<div class="green">webArea</div>
+<div class="blue">webArea</div>
+<div class="green">webArea</div>
+<div class="blue">webArea</div>
+</body>
+</html>
+```
+
 ## getLastHitTest<sup>18+</sup>
 
 getLastHitTest(): HitTestValue
@@ -8736,7 +8831,7 @@ struct WebComponent {
 }
 ```
 
-### getAttachState<sup>20+</sup>
+## getAttachState<sup>20+</sup>
 
 getAttachState(): ControllerAttachState
 
@@ -8784,7 +8879,7 @@ struct WebComponent {
   }
 }
 ```
-### on('controllerAttachStateChange')<sup>20+</sup>
+## on('controllerAttachStateChange')<sup>20+</sup>
 
 on(type: 'controllerAttachStateChange', callback: Callback&lt;ControllerAttachState&gt;): void
 
@@ -8803,7 +8898,7 @@ on(type: 'controllerAttachStateChange', callback: Callback&lt;ControllerAttachSt
 
 请参考[off](#offcontrollerattachstatechange20)。
 
-### off('controllerAttachStateChange')<sup>20+</sup>
+## off('controllerAttachStateChange')<sup>20+</sup>
 
 off(type: 'controllerAttachStateChange', callback?: Callback&lt;ControllerAttachState&gt;): void
 
@@ -8872,7 +8967,7 @@ struct WebComponent {
   }
 }
 ```
-### waitForAttached<sup>20+</sup>
+## waitForAttached<sup>20+</sup>
 
 waitForAttached(timeout: number):Promise&lt;ControllerAttachState&gt;
 
@@ -8920,6 +9015,65 @@ struct WebComponent {
         console.log('Controller is attached.');
         this.controller.refresh();
       }
+    } catch (error) {
+      console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+    }
+  }
+
+  build() {
+    Column() {
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+## setWebDebuggingAccess<sup>20+</sup>
+
+static setWebDebuggingAccess(webDebuggingAccess: boolean, port: number): void
+
+设置是否启用无线网页调试功能，默认不开启。
+
+* 当没有指定端口port时，该接口等同于[setWebDebuggingAccess](#setwebdebuggingaccess)接口，ArkWeb会启动一个本地domain socket监听。
+* 当指定了端口port时，ArkWeb会启动一个tcp socket监听。这时可以无线调试网页。详情请参考[无线调试](../../web/web-debugging-with-devtools.md#无线调试)。
+
+由于小于1024的端口号作为熟知或系统端口，在操作系统上需要特权才能开启，因此port的取值必须大于1024，否则该接口会抛出异常。
+
+安全提示：启用网页调试功能可以让用户检查修改Web页面内部状态，存在安全隐患，不建议在应用正式发布版本中启用。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名              | 类型    | 必填   |  说明 |
+| ------------------ | ------- | ---- | ------------- |
+| webDebuggingAccess | boolean | 是   | 设置是否启用网页调试功能。<br/>true表示开启网页调试功能，false表示关闭网页调试功能。 |
+| port               | number  | 是   | 指定devtools服务的tcp端口号。如果没有指定port，那么该接口等同于[setWebDebuggingAccess](#setwebdebuggingaccess)接口。<br/>取值范围: (1024, 65535]<br/>如果port的值在区间[0, 1024]内，则会抛出BusinessError异常，错误码为17100023。 |
+
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100023 | The port number is not within the allowed range. |
+
+**示例：**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  aboutToAppear(): void {
+    try {
+      webview.WebviewController.setWebDebuggingAccess(true, 8888);
     } catch (error) {
       console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
     }
@@ -9038,66 +9192,6 @@ struct WebComponent {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
-      Web({ src: 'www.example.com', controller: this.controller })
-    }
-  }
-}
-```
-
-### setWebDebuggingAccess<sup>20+</sup>
-
-static setWebDebuggingAccess(webDebuggingAccess: boolean, port: number): void
-
-设置是否启用无线网页调试功能，默认不开启。
-
-* 当没有指定端口port时，该接口等同于[setWebDebuggingAccess](#setwebdebuggingaccess)接口，ArkWeb会启动一个本地domain socket监听。
-* 当指定了端口port时，ArkWeb会启动一个tcp socket监听。这时可以无线调试网页。详情请参考[无线调试](../../web/web-debugging-with-devtools.md#无线调试)。
-
-由于小于1024的端口号作为熟知或系统端口，在操作系统上需要特权才能开启，因此port的取值必须大于1024，否则该接口会抛出异常。
-
-安全提示：启用网页调试功能可以让用户检查修改Web页面内部状态，存在安全隐患，不建议在应用正式发布版本中启用。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-**参数：**
-
-| 参数名              | 类型    | 必填   |  说明 |
-| ------------------ | ------- | ---- | ------------- |
-| webDebuggingAccess | boolean | 是   | 设置是否启用网页调试功能。<br/>true表示开启网页调试功能，false表示关闭网页调试功能。 |
-| port               | number  | 否   | 指定devtools服务的tcp端口号。如果没有指定port，那么该接口等同于[setWebDebuggingAccess](#setwebdebuggingaccess)接口。<br/>取值范围: (1024, 65535]<br/>如果port的值在区间[0, 1024]内，则会抛出BusinessError异常，错误码为17100023。 |
-
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[webview错误码](errorcode-webview.md)。
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
-| 17100023 | The port number is not within the allowed range. |
-
-**示例：**
-
-```ts
-// xxx.ets
-import { webview } from '@kit.ArkWeb';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-@Entry
-@Component
-struct WebComponent {
-  controller: webview.WebviewController = new webview.WebviewController();
-
-  aboutToAppear(): void {
-    try {
-      webview.WebviewController.setWebDebuggingAccess(true, 8888);
-    } catch (error) {
-      console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
-    }
-  }
-
-  build() {
-    Column() {
       Web({ src: 'www.example.com', controller: this.controller })
     }
   }

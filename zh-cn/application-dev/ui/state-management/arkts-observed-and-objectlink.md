@@ -204,140 +204,140 @@ struct Parent {
 4. API version 19前，\@ObjectLink装饰的变量类型必须是显式地由\@Observed装饰的类。如果未指定类型，或不是\@Observed装饰的class，编译期会报错。
 API version 19及以后，\@ObjectLink也可以被[makeV1Observed](../../reference/apis-arkui/js-apis-StateManagement.md#makev1observed19)的返回值初始化，否则会有运行时告警日志。
 
-  ```ts
-  @Observed
-  class Info {
-    count: number;
-
-    constructor(count: number) {
-      this.count = count;
+    ```ts
+    @Observed
+    class Info {
+      count: number;
+  
+      constructor(count: number) {
+        this.count = count;
+      }
     }
-  }
-
-  class Test {
-    msg: number;
-
-    constructor(msg: number) {
-      this.msg = msg;
+  
+    class Test {
+      msg: number;
+  
+      constructor(msg: number) {
+        this.msg = msg;
+      }
     }
-  }
-
-  // 错误写法，count未指定类型，编译报错
-  @ObjectLink count;
-  // 错误写法，Test未被@Observed装饰，编译报错
-  @ObjectLink test: Test;
-
-  // 正确写法
-  @ObjectLink count: Info;
-  ```
-
+  
+    // 错误写法，count未指定类型，编译报错
+    @ObjectLink count;
+    // 错误写法，Test未被@Observed装饰，编译报错
+    @ObjectLink test: Test;
+  
+    // 正确写法
+    @ObjectLink count: Info;
+    ```
+  
 5. \@ObjectLink装饰的变量不能本地初始化，仅能通过构造参数从父组件传入初始值，否则编译期会报错。
 
-  ```ts
-  @Observed
-  class Info {
-    count: number;
-
-    constructor(count: number) {
-      this.count = count;
+    ```ts
+    @Observed
+    class Info {
+      count: number;
+  
+      constructor(count: number) {
+        this.count = count;
+      }
     }
-  }
-
-  // 错误写法，编译报错
-  @ObjectLink count: Info = new Info(10);
-
-  // 正确写法
-  @ObjectLink count: Info;
-  ```
+  
+    // 错误写法，编译报错
+    @ObjectLink count: Info = new Info(10);
+  
+    // 正确写法
+    @ObjectLink count: Info;
+    ```
 
 6. \@ObjectLink装饰的变量是只读的，不能被赋值，否则会有运行时报错提示Cannot set property when setter is undefined。如果需要对\@ObjectLink装饰的变量进行整体替换，可以在父组件对其进行整体替换。
 
-  【反例】
-
-  ```ts
-  @Observed
-  class Info {
-    count: number;
-
-    constructor(count: number) {
-      this.count = count;
-    }
-  }
-
-  @Component
-  struct Child {
-    @ObjectLink num: Info;
-
-    build() {
-      Column() {
-        Text(`num的值: ${this.num.count}`)
-          .onClick(() => {
-            // 错误写法，@ObjectLink装饰的变量不能被赋值
-            this.num = new Info(10);
-          })
+    【反例】
+  
+    ```ts
+    @Observed
+    class Info {
+      count: number;
+  
+      constructor(count: number) {
+        this.count = count;
       }
     }
-  }
-
-  @Entry
-  @Component
-  struct Parent {
-    @State num: Info = new Info(10);
-
-    build() {
-      Column() {
-        Text(`count的值: ${this.num.count}`)
-        Child({num: this.num})
+  
+    @Component
+    struct Child {
+      @ObjectLink num: Info;
+  
+      build() {
+        Column() {
+          Text(`num的值: ${this.num.count}`)
+            .onClick(() => {
+              // 错误写法，@ObjectLink装饰的变量不能被赋值
+              this.num = new Info(10);
+            })
+        }
       }
     }
-  }
-  ```
 
-  【正例】
-
-  ```ts
-  @Observed
-  class Info {
-    count: number;
-
-    constructor(count: number) {
-      this.count = count;
-    }
-  }
-
-  @Component
-  struct Child {
-    @ObjectLink num: Info;
-
-    build() {
-      Column() {
-        Text(`num的值: ${this.num.count}`)
-          .onClick(() => {
-            // 正确写法，可以更改@ObjectLink装饰变量的成员属性
-            this.num.count = 20;
-          })
+    @Entry
+    @Component
+    struct Parent {
+      @State num: Info = new Info(10);
+  
+      build() {
+        Column() {
+          Text(`count的值: ${this.num.count}`)
+          Child({num: this.num})
+        }
       }
     }
-  }
-
-  @Entry
-  @Component
-  struct Parent {
-    @State num: Info = new Info(10);
-
-    build() {
-      Column() {
-        Text(`count的值: ${this.num.count}`)
-        Button('click')
-          .onClick(() => {
-            // 可以在父组件做整体替换
-            this.num = new Info(30);
-          })
-        Child({num: this.num})
+    ```
+  
+    【正例】
+  
+    ```ts
+    @Observed
+    class Info {
+      count: number;
+  
+      constructor(count: number) {
+        this.count = count;
       }
     }
-  }
-  ```
+  
+    @Component
+    struct Child {
+      @ObjectLink num: Info;
+  
+      build() {
+        Column() {
+          Text(`num的值: ${this.num.count}`)
+            .onClick(() => {
+              // 正确写法，可以更改@ObjectLink装饰变量的成员属性
+              this.num.count = 20;
+            })
+        }
+      }
+    }
+  
+    @Entry
+    @Component
+    struct Parent {
+      @State num: Info = new Info(10);
+  
+      build() {
+        Column() {
+          Text(`count的值: ${this.num.count}`)
+          Button('click')
+            .onClick(() => {
+              // 可以在父组件做整体替换
+              this.num = new Info(30);
+            })
+          Child({num: this.num})
+        }
+      }
+    }
+    ```
 
 
 ## 使用场景

@@ -124,7 +124,7 @@ libnative_rdb_ndk.z.so
 
    ```c
    // 不使用参数绑定修改数据
-   OH_Rdb_ExecuteV2(store_, "update test set data1 = '[5.1, 6.1] where id = 0;", nullptr, nullptr);
+   OH_Rdb_ExecuteV2(store_, "update test set data1 = '[5.1, 6.1]' where id = 0;", nullptr, nullptr);
 
    // 使用参数绑定修改数据
    float test1[2] = { 5.5, 6.6 };

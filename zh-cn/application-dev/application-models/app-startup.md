@@ -17,7 +17,7 @@ AppStartup提供了一种简单高效的应用启动方式，可以支持任务�
 
 ## 支持的范围
 
-- HAP：entry类型的HAP支持以自动和手动模式启动。从API version 20开始，feature类型的HAP支持以自动模式启动。
+- HAP：entry类型的HAP支持以自动和手动模式启动。从API version 20开始，feature类型的HAP支持以自动和手动模式启动。
 
 - HSP/HAR: 从API version 18开始，支持在[HSP](../quick-start/in-app-hsp.md)和[HAR](../quick-start/har-package.md)中配置启动任务。HSP和HAR的启动任务、so预加载任务无法主动配置为自动模式，但可以被HAP中自动模式的启动任务、so预加载任务拉起。
 
@@ -260,8 +260,8 @@ export default class MyStartupConfigEntry extends StartupConfigEntry {
 
 上述操作中已完成启动框架配置文件、启动参数的配置，还需要在每个功能组件对应的启动任务文件中，通过实现[StartupTask](../reference/apis-ability-kit/js-apis-app-appstartup-startupTask.md)来添加启动任务。其中，需要用到下面的两个方法：
 
-- [init](../reference/apis-ability-kit/js-apis-app-appstartup-startupTask.md#startuptaskinit)：启动任务初始化。当该任务依赖的启动任务全部执行完毕，即onDependencyCompleted完成调用后，才会执行init方法对该任务进行初始化。
-- [onDependencyCompleted](../reference/apis-ability-kit/js-apis-app-appstartup-startupTask.md#startuptaskondependencycompleted)：当前任务依赖的启动任务执行完成时，调用该方法。
+- [init](../reference/apis-ability-kit/js-apis-app-appstartup-startupTask.md#init)：启动任务初始化。当该任务依赖的启动任务全部执行完毕，即onDependencyCompleted完成调用后，才会执行init方法对该任务进行初始化。
+- [onDependencyCompleted](../reference/apis-ability-kit/js-apis-app-appstartup-startupTask.md#ondependencycompleted)：当前任务依赖的启动任务执行完成时，调用该方法。
 
 
 下面以[startup_config.json](#定义启动框架配置文件)中的StartupTask_001.ets文件为例，示例代码如下。开发者需要分别为每个待初始化功能组件添加启动任务。
@@ -291,17 +291,17 @@ export default class StartupTask_001 extends StartupTask {
   }
 }
 ```
- 
+
  ### （可选）HSP与HAR中使用启动框架
- 
+
  通常大型应用会有多个[HSP](../quick-start/in-app-hsp.md)和[HAR](../quick-start/har-package.md)，本节将提供一个应用示例，以展示如何在HSP包和HAR包中使用启动框架。该示例应用包括两个HSP包（hsp1、hsp2）和一个HAR包（har1），并且包含启动任务和so预加载任务。
- 
+
  开发步骤如下：
 
   1. 除[HAP](../quick-start/hap-package.md)外，在HSP包和HAR包的“resources/base/profile”目录下创建启动框架配置文件，不同模块可以使用相同文件名，本文以"startup_config.json"为例。
   
   2. 分别在各个模块的启动框架配置文件startup_config.json中， 添加对应的配置信息。
-        
+     
         假设当前应用存在的启动任务与so预加载任务如下表所示。
         
         **表4** 应用启动任务与so预加载任务说明
@@ -316,7 +316,7 @@ export default class StartupTask_001 extends StartupTask {
         ![app-startup](figures/hsp-har-startup.png) 
   
         [HAP](../quick-start/hap-package.md)的startup_config.json可参考[定义启动框架配置文件](#定义启动框架配置文件)，HSP与HAR的startup_config.json文件无法配置"configEntry"字段，以hsp1包配置文件为例，示例如下：
-          
+        
         ```json
         {
           "startupTasks": [
@@ -384,7 +384,7 @@ export default class StartupTask_001 extends StartupTask {
           }
         }
         ```
-  
+
   其余步骤请参考[设置启动参数](#设置启动参数)和[为每个待初始化功能组件添加启动任务](#为每个待初始化功能组件添加启动任务)章节进行配置。
 
 
@@ -491,7 +491,7 @@ struct Index {
 **场景1：uri匹配**
 
 假定需要用户点击通知消息跳转到通知详情页面时，仅自动执行StartupTask_004和libentry_006任务。若启动通知详情UIAbility时Want中的uri属性为`test://com.example.startupdemo/notification`，可以通过uri匹配。示例如下：
-  
+
 1. 对[定义启动框架配置文件](#定义启动框架配置文件)步骤中的startup_config.json文件进行修改，增加StartupTask_004任务和libentry_006任务的matchRules配置。
 
     ```json

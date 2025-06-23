@@ -8,7 +8,7 @@
 
 ### 趣味交互类型
 
-趣味交互类型互动卡片，提供卡片小游戏功能，当用户点击卡片时，开始体验对应卡片小游戏。当前仅支持基于[鸿蒙快游戏](https://developer.huawei.com/consumer/cn/doc/quickApp-Guides/quickgame-interact-card-0000002045917828)开发。详细请参考[趣味交互类型互动卡片开发指导](arkts-ui-liveform-funinteraction-development.md)。
+趣味交互类型互动卡片，提供卡片小游戏功能，当用户点击卡片时，开始体验对应卡片小游戏。当前仅支持基于[快游戏](https://developer.huawei.com/consumer/cn/doc/quickApp-Guides/quickgame-interact-card-0000002045917828)开发。详细请参考[趣味交互类型互动卡片开发指导](arkts-ui-liveform-funinteraction-development.md)。
 
 **图1** 趣味交互类型互动卡片样例
 
@@ -23,4 +23,5 @@
 ![live-form-weather-demo.gif](figures/live-form-weather-demo.gif)
 
 ## 约束和限制
-互动卡片作为卡片功能的增强，卡片自身业务不能强依赖互动卡片动效能力。
+- 互动卡片作为卡片功能的增强，卡片自身业务不能强依赖互动卡片动效能力。
+<!--RP1--><!--RP1End-->

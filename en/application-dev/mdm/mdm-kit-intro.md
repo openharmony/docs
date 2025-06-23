@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Mobile Device Management (MDM) is an enterprise-level IT application solution used to manage and protect data and applications on enterprise devices. It ensures device and data security and stability through centralized management, remote configuration, and monitoring. It is widely used in enterprises and government agencies to ensure efficient management and secure use of devices and data.
+MDM Kit provides APIs for enterprise-level Mobile Device Management (MDM) applications to manage and protect data and applications on enterprise devices. It ensures device and data security and stability through centralized management, remote configuration, and monitoring. It is widely used in enterprises and government agencies to ensure efficient management and secure use of devices and data.
 
 ## Working Principles
 

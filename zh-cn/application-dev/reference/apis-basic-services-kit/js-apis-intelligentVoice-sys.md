@@ -1,6 +1,6 @@
 # @ohos.ai.intelligentVoice (智能语音)(系统接口)
 
-智能语音主要提供了语音注册及语音唤醒相关功能。
+智能语音主要提供了语音注册及语音唤醒相关功能。<!--Del-->当前功能与芯片相关，在OpenHarmony暂不支持使用。<!--DelEnd-->
 
 该模块提供以下智能语音相关的常用功能：
 
@@ -1429,6 +1429,12 @@ setWakeupHapInfo(info: WakeupHapInfo): Promise\<void\>
 **需要权限：** ohos.permission.MANAGE_INTELLIGENT_VOICE
 
 **系统能力：** SystemCapability.AI.IntelligentVoice.Core
+
+**参数：**
+
+| 参数名     | 类型                              | 必填 | 说明                                          |
+| -------- | -------------------------------- | --- | ------------------------------------------- |
+| info     | [WakeupHapInfo](#wakeuphapinfo)                           | 是   | 唤醒hap信息。 |
 
 **返回值：**
 

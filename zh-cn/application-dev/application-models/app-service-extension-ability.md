@@ -21,7 +21,7 @@
 
 - 如果[AppServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-appServiceExtensionAbility.md)实例未启动，接口调用方必须为AppServiceExtensionAbility所属应用或者在AppServiceExtensionAbility支持的应用清单（即[extensionAbilities标签](../quick-start/module-configuration-file.md#extensionabilities标签)的appIdentifierAllowList属性）中的应用。
 
-- AppServiceExtensionAbility内不支持调用[window](../reference/apis-arkui/js-apis-window.md)相关API。
+- AppServiceExtensionAbility内不支持调用[window](../reference/apis-arkui/arkts-apis-window.md)相关API。
 
 ## 运行机制
 
@@ -113,7 +113,7 @@
 
 ### 启动一个后台服务
 
-应用通过[startAppServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startappserviceextensionability20)方法启动一个后台服务，服务的[onRequest()](../reference/apis-ability-kit/js-apis-app-ability-appServiceExtensionAbility.md#onrequest)回调就会被调用，并在该回调方法中接收到调用者传递过来的[Want](../reference/apis-ability-kit/js-apis-app-ability-want.md)对象。后台服务启动后，其生命周期独立于客户端，即使客户端已经销毁，该后台服务仍可继续运行。因此，后台服务需要在其工作完成时通过调用[AppServiceExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-appServiceExtensionContext.md)的[terminateSelf()](../reference/apis-ability-kit/js-apis-inner-application-appServiceExtensionContext.md#appserviceextensioncontextterminateself)来自行停止，或者由另一个组件调用[stopAppServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#stopappserviceextensionability20)来将其停止。
+应用通过[startAppServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startappserviceextensionability20)方法启动一个后台服务，服务的[onRequest()](../reference/apis-ability-kit/js-apis-app-ability-appServiceExtensionAbility.md#onrequest)回调就会被调用，并在该回调方法中接收到调用者传递过来的[Want](../reference/apis-ability-kit/js-apis-app-ability-want.md)对象。后台服务启动后，其生命周期独立于客户端，即使客户端已经销毁，该后台服务仍可继续运行。因此，后台服务需要在其工作完成时通过调用[AppServiceExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-appServiceExtensionContext.md)的[terminateSelf()](../reference/apis-ability-kit/js-apis-inner-application-appServiceExtensionContext.md#terminateself)来自行停止，或者由另一个组件调用[stopAppServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#stopappserviceextensionability20)来将其停止。
 
 
 - 在应用中启动一个新的[AppServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-appServiceExtensionAbility.md)。示例中的context的获取方式请参见[获取UIAbility的上下文信息](uiability-usage.md#获取uiability的上下文信息)。
@@ -425,109 +425,111 @@ let options: common.ConnectOptions = {
 
 ## 服务端对客户端身份校验
 
-部分开发者需要使用AppServiceExtensionAbility提供一些较为敏感的服务，因此需要对客户端身份进行校验，此处推荐两种校验方式：
+部分开发者需要使用AppServiceExtensionAbility提供一些较为敏感的服务，可以通过如下方式对客户端身份进行校验。
 
-- **通过callerUid识别客户端应用**
+<!--Del-->
+### 通过callerUid识别客户端应用
 
-  通过调用[getCallingUid()](../reference/apis-ipc-kit/js-apis-rpc.md#getcallinguid)接口获取客户端的uid，再调用[getBundleNameByUid()](../reference/apis-ability-kit/js-apis-bundleManager-sys.md#bundlemanagergetbundlenamebyuid)接口获取uid对应的bundleName，从而识别客户端身份。此处需要注意的是[getBundleNameByUid()](../reference/apis-ability-kit/js-apis-bundleManager-sys.md#bundlemanagergetbundlenamebyuid)是一个异步接口，因此服务端无法将校验结果返回给客户端，这种校验方式适合客户端向服务端发起执行异步任务请求的场景，示例代码如下：
+通过调用[getCallingUid()](../reference/apis-ipc-kit/js-apis-rpc.md#getcallinguid)接口获取客户端的uid，再调用[getBundleNameByUid()](../reference/apis-ability-kit/js-apis-bundleManager-sys.md#bundlemanagergetbundlenamebyuid14)接口获取uid对应的bundleName，从而识别客户端身份。此处需要注意的是[getBundleNameByUid()](../reference/apis-ability-kit/js-apis-bundleManager-sys.md#bundlemanagergetbundlenamebyuid14)是一个异步接口，因此服务端无法将校验结果返回给客户端，这种校验方式适合客户端向服务端发起执行异步任务请求的场景，示例代码如下：
 
-  ```ts
-  import { AppServiceExtensionAbility } from '@kit.AbilityKit';
-  import { bundleManager } from '@kit.AbilityKit';
-  import { rpc } from '@kit.IPCKit';
-  import { hilog } from '@kit.PerformanceAnalysisKit';
-  import { BusinessError } from '@kit.BasicServicesKit';
+```ts
+import { AppServiceExtensionAbility } from '@kit.AbilityKit';
+import { bundleManager } from '@kit.AbilityKit';
+import { rpc } from '@kit.IPCKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-  const TAG: string = "[AppServiceExtImpl]";
-  const DOMAIN_NUMBER: number = 0xFF00;
+const TAG: string = "[AppServiceExtImpl]";
+const DOMAIN_NUMBER: number = 0xFF00;
 
-  // 开发者需要在这个类型里对接口进行实现
-  class Stub extends rpc.RemoteObject {
-    onRemoteMessageRequest(
-      code: number,
-      data: rpc.MessageSequence,
-      reply: rpc.MessageSequence,
-      options: rpc.MessageOption): boolean | Promise<boolean> {
-      // 开发者自行实现业务逻辑
-      let callerUid = rpc.IPCSkeleton.getCallingUid();
-      bundleManager.getBundleNameByUid(callerUid).then((callerBundleName) => {
-        hilog.info(DOMAIN_NUMBER, TAG, 'getBundleNameByUid: ' + callerBundleName);
-        // 对客户端包名进行识别
-        if (callerBundleName !== 'com.samples.stagemodelabilitydevelop') { // 识别不通过
-          hilog.info(DOMAIN_NUMBER, TAG, 'The caller bundle is not in trustlist, reject');
-          return;
-        }
-        // 识别通过，执行正常业务逻辑
-      }).catch((err: BusinessError) => {
-        hilog.error(DOMAIN_NUMBER, TAG, 'getBundleNameByUid failed: ' + err.message);
-      });
-      return true;
-    }
-  }
-
-  export default class AppServiceExtension extends AppServiceExtensionAbility {
-    onConnect(want: Want): rpc.RemoteObject {
-        return new Stub('test');
-    }
-    // 其他生命周期
-  }
-  ```
-
-- **通过callerTokenId对客户端进行鉴权**
-
-  通过调用[getCallingTokenId()](../reference/apis-ipc-kit/js-apis-rpc.md#getcallingtokenid)接口获取客户端的tokenID，再调用[verifyAccessTokenSync()](../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#verifyaccesstokensync)接口判断客户端是否有某个具体权限，由于当前不支持自定义权限，因此只能校验当前[系统所定义的权限](../security/AccessToken/app-permissions.md)。示例代码如下：
-
-  ```ts
-  import { AppServiceExtensionAbility } from '@kit.AbilityKit';
-  import { abilityAccessCtrl, bundleManager } from '@kit.AbilityKit';
-  import { rpc } from '@kit.IPCKit';
-  import { hilog } from '@kit.PerformanceAnalysisKit';
-  import { BusinessError } from '@kit.BasicServicesKit';
-
-  const TAG: string = '[AppServiceExtImpl]';
-  const DOMAIN_NUMBER: number = 0xFF00;
-
-  // 开发者需要在这个类里进行实现
-
-  class Stub extends rpc.RemoteObject {
-    onRemoteMessageRequest(
-      code: number,
-      data: rpc.MessageSequence,
-      reply: rpc.MessageSequence,
-      options: rpc.MessageOption): boolean | Promise<boolean> {
-      // 开发者自行实现业务逻辑
-      hilog.info(DOMAIN_NUMBER, TAG, `onRemoteMessageRequest: ${data}`);
-      let callerUid = rpc.IPCSkeleton.getCallingUid();
-      bundleManager.getBundleNameByUid(callerUid).then((callerBundleName) => {
-        hilog.info(DOMAIN_NUMBER, TAG, 'getBundleNameByUid: ' + callerBundleName);
-        // 对客户端包名进行识别
-        if (callerBundleName !== 'com.samples.stagemodelabilitydevelop') { // 识别不通过
-          hilog.info(DOMAIN_NUMBER, TAG, 'The caller bundle is not in trustlist, reject');
-          return;
-        }
-      // 识别通过，执行正常业务逻辑
-      }).catch((err: BusinessError) => {
-        hilog.error(DOMAIN_NUMBER, TAG, 'getBundleNameByUid failed: ' + err.message);
-      });
-
-      let callerTokenId = rpc.IPCSkeleton.getCallingTokenId();
-      let accessManger = abilityAccessCtrl.createAtManager();
-      // 所校验的具体权限由开发者自行选择，此处ohos.permission.GET_BUNDLE_INFO_PRIVILEGED只作为示例
-      let grantStatus = accessManger.verifyAccessTokenSync(callerTokenId, 'ohos.permission.GET_BUNDLE_INFO_PRIVILEGED');
-      if (grantStatus === abilityAccessCtrl.GrantStatus.PERMISSION_DENIED) {
-        hilog.error(DOMAIN_NUMBER, TAG, 'PERMISSION_DENIED');
-        return false;
+// 开发者需要在这个类型里对接口进行实现
+class Stub extends rpc.RemoteObject {
+  onRemoteMessageRequest(
+    code: number,
+    data: rpc.MessageSequence,
+    reply: rpc.MessageSequence,
+    options: rpc.MessageOption): boolean | Promise<boolean> {
+    // 开发者自行实现业务逻辑
+    let callerUid = rpc.IPCSkeleton.getCallingUid();
+    bundleManager.getBundleNameByUid(callerUid).then((callerBundleName) => {
+      hilog.info(DOMAIN_NUMBER, TAG, 'getBundleNameByUid: ' + callerBundleName);
+      // 对客户端包名进行识别
+      if (callerBundleName !== 'com.samples.stagemodelabilitydevelop') { // 识别不通过
+        hilog.info(DOMAIN_NUMBER, TAG, 'The caller bundle is not in trustlist, reject');
+        return;
       }
-      hilog.info(DOMAIN_NUMBER, TAG, 'verify access token success.');
-      return true;
-    }
+      // 识别通过，执行正常业务逻辑
+    }).catch((err: BusinessError) => {
+      hilog.error(DOMAIN_NUMBER, TAG, 'getBundleNameByUid failed: ' + err.message);
+    });
+    return true;
   }
+}
 
-  export default class AppServiceExtension extends AppServiceExtensionAbility {
-    onConnect(want: Want): rpc.RemoteObject {
-        return new Stub('test');
-    }
-    // 其他生命周期
+export default class AppServiceExtension extends AppServiceExtensionAbility {
+  onConnect(want: Want): rpc.RemoteObject {
+      return new Stub('test');
   }
-  ```
+  // 其他生命周期
+}
+```
+<!--DelEnd-->
+
+### 通过callerTokenId对客户端进行鉴权
+
+通过调用[getCallingTokenId()](../reference/apis-ipc-kit/js-apis-rpc.md#getcallingtokenid8)接口获取客户端的tokenID，再调用[verifyAccessTokenSync()](../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#verifyaccesstokensync9)接口判断客户端是否有某个具体权限，由于当前不支持自定义权限，因此只能校验当前[系统所定义的权限](../security/AccessToken/app-permissions.md)。示例代码如下：
+
+```ts
+import { AppServiceExtensionAbility } from '@kit.AbilityKit';
+import { abilityAccessCtrl, bundleManager } from '@kit.AbilityKit';
+import { rpc } from '@kit.IPCKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+const TAG: string = '[AppServiceExtImpl]';
+const DOMAIN_NUMBER: number = 0xFF00;
+
+// 开发者需要在这个类里进行实现
+
+class Stub extends rpc.RemoteObject {
+  onRemoteMessageRequest(
+    code: number,
+    data: rpc.MessageSequence,
+    reply: rpc.MessageSequence,
+    options: rpc.MessageOption): boolean | Promise<boolean> {
+    // 开发者自行实现业务逻辑
+    hilog.info(DOMAIN_NUMBER, TAG, `onRemoteMessageRequest: ${data}`);
+    let callerUid = rpc.IPCSkeleton.getCallingUid();
+    bundleManager.getBundleNameByUid(callerUid).then((callerBundleName) => {
+      hilog.info(DOMAIN_NUMBER, TAG, 'getBundleNameByUid: ' + callerBundleName);
+      // 对客户端包名进行识别
+      if (callerBundleName !== 'com.samples.stagemodelabilitydevelop') { // 识别不通过
+        hilog.info(DOMAIN_NUMBER, TAG, 'The caller bundle is not in trustlist, reject');
+        return;
+      }
+    // 识别通过，执行正常业务逻辑
+    }).catch((err: BusinessError) => {
+      hilog.error(DOMAIN_NUMBER, TAG, 'getBundleNameByUid failed: ' + err.message);
+    });
+
+    let callerTokenId = rpc.IPCSkeleton.getCallingTokenId();
+    let accessManger = abilityAccessCtrl.createAtManager();
+    // 所校验的具体权限由开发者自行选择，此处ohos.permission.GET_BUNDLE_INFO_PRIVILEGED只作为示例
+    let grantStatus = accessManger.verifyAccessTokenSync(callerTokenId, 'ohos.permission.GET_BUNDLE_INFO_PRIVILEGED');
+    if (grantStatus === abilityAccessCtrl.GrantStatus.PERMISSION_DENIED) {
+      hilog.error(DOMAIN_NUMBER, TAG, 'PERMISSION_DENIED');
+      return false;
+    }
+    hilog.info(DOMAIN_NUMBER, TAG, 'verify access token success.');
+    return true;
+  }
+}
+
+export default class AppServiceExtension extends AppServiceExtensionAbility {
+  onConnect(want: Want): rpc.RemoteObject {
+      return new Stub('test');
+  }
+  // 其他生命周期
+}
+```
 

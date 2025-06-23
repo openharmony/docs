@@ -4699,6 +4699,34 @@ Allows an application to install and uninstall fonts.
 
 **Valid since**: 19
 
+## ohos.permission.READ_PARENT_CONTROL_DATA
+
+Allows an application to read the parental control website configuration.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Supported devices**：Phone | Tablet | 2in1
+
+**Valid since**：19
+
+## ohos.permission.WRITE_PARENT_CONTROL_DATA
+
+Allows an application to write the parental control website configuration.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Supported devices**：Phone | Tablet | 2in1
+
+**Valid since**：19
+
 ## ohos.permission.ACCESSIBILITY_EXTENSION_ABILITY
 
 Allows an application to call the accessibility service extension APIs to query and manipulate UI components.
@@ -4823,6 +4851,90 @@ With this permission, the application can access kernel APIs across processes to
 
 **Valid since**：20
 
+## ohos.permission.VIRUS_PROTECTION_SERVICE
+
+Allows an application to start virus scanning tasks.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Supported devices**: Phone | PC/2in1 | Tablet
+
+**Valid since**：20
+
+## ohos.permission.UPLOAD_SAMPLE_FILE
+
+Allows an application to upload sample files to the cloud.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Supported devices**: Phone | PC/2in1 | Tablet
+
+**Valid since**：20
+
+## ohos.permission.DOWNLOAD_POLICY_FILE
+
+Allows an application to dowonload policy files from the cloud.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Supported devices**: Phone | PC/2in1 | Tablet
+
+**Valid since**：20
+
+## ohos.permission.NOTIFY_VIRUS_PROTECTION
+
+Allows an application to send notification to the virus protection page.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Supported devices**: Phone | PC/2in1 | Tablet
+
+**Valid since**：20
+
+## ohos.permission.ACCESS_VIRUS_PROTECTION
+
+Allows an application to access the virus protection page.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Supported devices**: Phone | PC/2in1 | Tablet
+
+**Valid since**：20
+
+## ohos.permission.ACCESS_TVCOOPERATION
+
+Allows a system application to use the TvCooperation service.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Supported devices**: TV
+
+**Valid since**：20
+
 ## ohos.permission.GRANT_URI_PERMISSION_AS_CALLER
 
 Allow an application to grant URI access permissions to the target application as the caller.
@@ -4834,5 +4946,87 @@ Allow an application to grant URI access permissions to the target application a
 **Enable via ACL**：true
 
 **Supported devices**: General
+
+**Valid since**：20
+
+## ohos.permission.ACCESS_DFX_LOG_DIR
+
+Allows a system application to access /data/log/ directory.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Supported devices**：General
+
+## ohos.permission.FILE_TRANSFER_OPERATION
+
+Allows a system application to perform operations, such as transferring files, canceling file transfer, and deleting, moving, and modifying files.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Supported devices**：PC/2in1
+
+**Valid since**：20
+
+## ohos.permission.FILE_TRANSFER_INFO_QUERY
+
+Allows a system application to query files and file transfer information.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Supported devices**：PC/2in1
+
+**Valid since**：20
+
+## ohos.permission.MANAGE_LOCAL_WORKSPACES
+
+Allows a system application to create and delete workspaces.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Supported devices**：PC/2in1
+
+**Valid since**：20
+
+## ohos.permission.FILE_ACCESS_FOR_PRIVATE_SPACE
+
+Allows the private space application to mount public directories from the main space into the application sandbox.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Supported devices**: Phone | Tablet
+
+**Valid since**：20
+
+## ohos.permission.ACCESS_CAMERA_SCENARIOS_CARD
+
+Allows an applications to access the remote photography card services.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Supported devices**: Wearable
 
 **Valid since**：20

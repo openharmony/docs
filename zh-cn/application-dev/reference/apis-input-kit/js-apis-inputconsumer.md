@@ -1,6 +1,6 @@
 # @ohos.multimodalInput.inputConsumer (全局快捷键)
 
-全局快捷键订阅模块，用于处理组合按键的订阅。
+全局快捷键订阅模块，用于处理组合按键的订阅，本模块也支持音量键拦截监听能力。
 
 > **说明：**
 >
@@ -22,11 +22,11 @@ import { inputConsumer, KeyEvent } from '@kit.InputKit';
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
 
-| 名称        | 类型   | 可读   | 可写   | 说明      |
+| 名称        | 类型   | 只读   | 可选   | 说明      |
 | --------- | ------ | ------- | ------- | ------- |
-| preKeys   | Array&lt;number&gt; | 是      | 否      | 修饰键（包括 Ctrl、Shift 和 Alt）集合，数量范围[1, 2]，无顺序要求。<br>例如，Ctrl+Shift+Esc中，Ctrl+Shift称为修饰键。 |
-| finalKey  | number  | 是      | 否      | 被修饰键，除修饰键和Meta键以外的按键，详细按键介绍请参见[键值](js-apis-keycode.md)。<br>例如，Ctrl+Shift+Esc中，Esc称为被修饰键。 |
-| isRepeat  | boolean  | 是      | 否      | 是否上报重复的按键事件。true表示上报，false表示不上报，默认值为true。 |
+| preKeys   | Array&lt;number&gt; | 否      | 否      | 修饰键（包括 Ctrl、Shift 和 Alt）集合，数量范围[1, 2]，无顺序要求。<br>例如，Ctrl+Shift+Esc中，Ctrl+Shift称为修饰键。 |
+| finalKey  | number  | 否      | 否      | 被修饰键，除修饰键和Meta键以外的按键，详细按键介绍请参见[键值](js-apis-keycode.md)。<br>例如，Ctrl+Shift+Esc中，Esc称为被修饰键。 |
+| isRepeat  | boolean  | 否      | 是      | 是否上报重复的按键事件。true表示上报，false表示不上报，默认值为true。 |
 
 ## KeyPressedConfig<sup>16+</sup>
 
@@ -34,11 +34,11 @@ import { inputConsumer, KeyEvent } from '@kit.InputKit';
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
 
-| 名称        | 类型   | 可读   | 可写   | 说明      |
+| 名称        | 类型   | 只读   | 可选   | 说明      |
 | --------- | ------ | ------- | ------- | ------- |
-| key       | number  | 是      | 否      | 按键键值。<br>当前仅支持[KEYCODE_VOLUME_UP](js-apis-keycode.md#keycode)键和[KEYCODE_VOLUME_DOWN](js-apis-keycode.md#keycode)键。 |
-| action    | number  | 是      | 否      | 按键事件类型。当前仅支持取值为1，表示按键按下。 |
-| isRepeat  | boolean  | 是      | 否      | 是否上报重复的按键事件。true表示上报，false表示不上报，默认值为true。 |
+| key       | number  | 否      | 否      | 按键键值。<br>当前仅支持[KEYCODE_VOLUME_UP](js-apis-keycode.md#keycode)键和[KEYCODE_VOLUME_DOWN](js-apis-keycode.md#keycode)键。 |
+| action    | number  | 否      | 否      | 按键事件类型。当前仅支持取值为1，表示按键按下。 |
+| isRepeat  | boolean  | 否      | 否      | 是否上报重复的按键事件。true表示上报，false表示不上报，默认值为true。 |
 
 ## inputConsumer.getAllSystemHotkeys
 
@@ -147,7 +147,7 @@ off(type: 'hotkeyChange', hotkeyOptions: HotkeyOptions, callback?: Callback&lt;H
 ```js
 let leftCtrlKey = 2072;
 let zKey = 2042;
-// 取消订阅单个全局快捷键回调函数
+// 取消订阅单个应用快捷键回调函数
 let hotkeyCallback = (hotkeyOptions: inputConsumer.HotkeyOptions) => {
   console.log(`hotkeyOptions: ${JSON.stringify(hotkeyOptions)}`);
 }
@@ -164,7 +164,7 @@ try {
 ```js
 let leftCtrlKey = 2072;
 let zKey = 2042;
-// 取消订阅所有全局快捷键回调函数
+// 取消订阅所有应用快捷键回调函数
 let hotkeyCallback = (hotkeyOptions: inputConsumer.HotkeyOptions) => {
   console.log(`hotkeyOptions: ${JSON.stringify(hotkeyOptions)}`);
 }
@@ -182,7 +182,9 @@ try {
 
 on(type: 'keyPressed', options: KeyPressedConfig, callback: Callback&lt;KeyEvent&gt;): void
 
-订阅按键按下事件，使用callback异步回调。若当前应用窗口为前台焦点窗口，用户按下指定按键，会触发回调。
+订阅按键按下事件，使用callback异步回调。若当前应用窗口为前台焦点窗口，用户按下指定按键，会触发回调。此接口仅支持手机和平板形态设备。
+
+订阅成功后，该按键事件的系统默认行为将被屏蔽，即不会再触发系统级的响应，如音量调节。要恢复系统响应，请使用[off](#inputconsumeroffkeypressed16)方法取消订阅。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
 
@@ -224,7 +226,7 @@ try {
 
 off(type: 'keyPressed', callback?: Callback&lt;KeyEvent&gt;): void
 
-取消按键按下事件订阅，使用callback异步回调。
+取消对'keyPressed'事件的订阅，使用callback异步回调。调用该方法后，被屏蔽的系统按键默认行为将恢复，即系统对音量调节等默认响应将恢复。此接口仅支持手机和平板形态设备。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
 

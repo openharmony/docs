@@ -32,7 +32,7 @@ Check whether the system services are running properly.
 
 2. Check whether **PowerManagerService** is included in the system service list.
 
-## 4900102 System Shuting Down
+## 4900102 System Shutting Down
 
 **Error Message**
 

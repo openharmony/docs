@@ -32,7 +32,7 @@ Shape(value?: PixelMap)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | 否 | 绘制目标，可将图形绘制在指定的PixelMap对象中，若未设置，则在当前绘制目标中进行绘制。 |
+| value | [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) | 否 | 绘制目标，可将图形绘制在指定的PixelMap对象中，若未设置，则在当前绘制目标中进行绘制。 |
 
 
 ## 属性
@@ -131,7 +131,7 @@ stroke(value: ResourceColor)
 
 strokeDashArray(value: Array&lt;any&gt;)
 
-设置边框间隙，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。取值范围≥0，异常值按照默认值处理。
+设置边框间隙，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。取值范围为≥0，异常值按照默认值处理。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -297,7 +297,7 @@ mesh(value: Array&lt;number&gt;, column: number, row: number)
 
 ### 示例1（组件属性绘制）
 
-通过Shape组件绘制矩形、椭圆、直线路径。
+通过Shape组件绘制矩形、椭圆和直线路径。
 
 ```ts
 // xxx.ets

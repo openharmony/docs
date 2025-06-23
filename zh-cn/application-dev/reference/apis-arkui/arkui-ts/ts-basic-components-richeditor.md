@@ -149,7 +149,7 @@ AI菜单生效时，需要非编辑态选中单个AI实体，才能展示AI菜�
 
 | 参数名 | 类型    | 必填 | 说明                              |
 | ------ | ------- | ---- | --------------------------------- |
-| enable  | boolean | 是   | 使能文本识别。<br/>默认值： false |
+| enable  | boolean | 是   | 使能文本识别。<br/>true表示使能文本特殊实体识别，false表示不使能文本特殊实体识别。<br/>默认值： false |
 
 ### dataDetectorConfig<sup>11+</sup>
 
@@ -301,7 +301,7 @@ enableKeyboardOnFocus(isEnabled: boolean)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------- | ---- | ----------------------------------------------------------- |
-| isEnabled  | boolean | 是   | 通过点击以外的方式获焦时，是否主动拉起软键盘。<br/>默认值：true，表示能够主动拉起软键盘。 |
+| isEnabled  | boolean | 是   | 通过点击以外的方式获焦时，是否主动拉起软键盘。<br/>true表示主动拉起软键盘，false表示不主动拉起软键盘。<br/>默认值： true |
 
 ### barState<sup>13+</sup>
 
@@ -410,6 +410,22 @@ undoStyle(style: Optional&lt;UndoStyle&gt;)
 | 参数名 | 类型                                          | 必填  | 说明                                                                                  |
 | ------ | --------------------------------------------- |-----|-------------------------------------------------------------------------------------|
 | style  | [Optional](ts-universal-attributes-custom-property.md#optional12)&lt;[UndoStyle](#undostyle20-1)&gt; | 否   | 撤销还原是否保留原样式选项。默认值：UndoStyle.CLEAR_STYLE |
+
+### enableAutoSpacing<sup>20+</sup>
+
+enableAutoSpacing(enable: Optional\<boolean>)
+
+设置是否开启中文与西文的自动间距。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                               |
+| ------ | ------- | ---- | ---------------------------------- |
+| enable | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否开启中文与西文的自动间距。<br/>true为开启自动间距，false为不开启。<br />默认值：false |
 
 ## 事件
 
@@ -870,7 +886,7 @@ Span类型信息。
 | 名称               | 类型                                                                | 必填  | 说明               |
 |------------------|-------------------------------------------------------------------|-----|------------------|
 | spanPosition     | [RichEditorSpanPosition](#richeditorspanposition)                 | 是   | Span位置。|
-| valuePixelMap    | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)                    | 否   | 图片内容。|
+| valuePixelMap    | [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md)                    | 否   | 图片内容。|
 | valueResourceStr | [ResourceStr](ts-types.md#resourcestr)                            | 否   | 图片资源id。|
 | imageStyle       | [RichEditorImageSpanStyleResult](#richeditorimagespanstyleresult) | 是 | 图片样式。|
 | offsetInSpan     | [number, number] | 是 | Span里图片的起始和结束位置。|
@@ -1108,7 +1124,7 @@ getLayoutManager(): LayoutManager
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-| [LayoutManager](ts-text-common.md#LayoutManager12) | 布局管理器对象。 |
+| [LayoutManager](ts-text-common.md#layoutmanager12) | 布局管理器对象。 |
 
 ### getPreviewText<sup>12+</sup>
 
@@ -1191,7 +1207,7 @@ addImageSpan(value: PixelMap | ResourceStr, options?: RichEditorImageSpanOptions
 
 | 参数名     | 类型                                     | 必填   | 说明  |
 | ------- | ---------------------------------------- | ---- | ----- |
-| value   | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)\|[ResourceStr](ts-types.md#resourcestr) | 是    | 图片内容。 |
+| value   | [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md)\|[ResourceStr](ts-types.md#resourcestr) | 是    | 图片内容。 |
 | options | [RichEditorImageSpanOptions](#richeditorimagespanoptions) | 否    | 图片选项。 |
 
 **返回值：**
@@ -1220,7 +1236,7 @@ addBuilderSpan(value: CustomBuilder, options?: RichEditorBuilderSpanOptions): nu
 > - 如果组件光标闪烁，插入后光标位置更新为新插入builder的后面。
 
 通用属性仅支持[size](ts-universal-attributes-size.md#size)、[padding](ts-universal-attributes-size.md#padding)、[margin](ts-universal-attributes-size.md#margin)、[aspectRatio](ts-universal-attributes-layout-constraints.md#aspectratio)、[borderStyle](ts-universal-attributes-border.md#borderstyle)、[borderWidth](ts-universal-attributes-border.md#borderwidth)、[borderColor](ts-universal-attributes-border.md#bordercolor)、[borderRadius](ts-universal-attributes-border.md#borderradius)、[backgroundColor](ts-universal-attributes-background.md#backgroundcolor)、[backgroundBlurStyle](ts-universal-attributes-background.md#backgroundblurstyle9)、[opacity](ts-universal-attributes-opacity.md)、[blur](ts-universal-attributes-image-effect.md#blur)、[backdropBlur](ts-universal-attributes-background.md#backdropblur)、[shadow](ts-universal-attributes-image-effect.md#shadow)、[grayscale](ts-universal-attributes-image-effect.md#grayscale)、[brightness](ts-universal-attributes-image-effect.md#brightness)、[saturate](ts-universal-attributes-image-effect.md#saturate)、
-[contrast](ts-universal-attributes-image-effect.md#contrast)、[invert](ts-universal-attributes-image-effect.md#invert)、[sepia](ts-universal-attributes-image-effect.md#sepia)、[hueRotate](ts-universal-attributes-image-effect.md#huerotate)、[colorBlend](ts-universal-attributes-image-effect.md#colorblend7)、[linearGradientBlur](ts-universal-attributes-image-effect.md#lineargradientblur12)、[clip](ts-universal-attributes-sharp-clipping.md#clip)、[mask](ts-universal-attributes-sharp-clipping.md#mask)、[foregroundBlurStyle](ts-universal-attributes-foreground-blur-style.md#foregroundblurstyle)、[accessibilityGroup](ts-universal-attributes-accessibility.md#accessibilitygroup)、[accessibilityText](ts-universal-attributes-accessibility.md#accessibilitytext)、[accessibilityDescription](ts-universal-attributes-accessibility.md#accessibilitydescription)、[accessibilityLevel](ts-universal-attributes-accessibility.md#accessibilitylevel)、[sphericalEffect](ts-universal-attributes-image-effect.md#sphericaleffect12)、[lightUpEffect](ts-universal-attributes-image-effect.md#lightupeffect12)、[pixelStretchEffect](ts-universal-attributes-image-effect.md#pixelstretcheffect12)。
+[contrast](ts-universal-attributes-image-effect.md#contrast)、[invert](ts-universal-attributes-image-effect.md#invert)、[sepia](ts-universal-attributes-image-effect.md#sepia)、[hueRotate](ts-universal-attributes-image-effect.md#huerotate)、[colorBlend](ts-universal-attributes-image-effect.md#colorblend7)、[linearGradientBlur](ts-universal-attributes-image-effect.md#lineargradientblur12)、[clip](ts-universal-attributes-sharp-clipping.md#clip12)、[mask](ts-universal-attributes-sharp-clipping.md#mask12)、[foregroundBlurStyle](ts-universal-attributes-foreground-blur-style.md#foregroundblurstyle)、[accessibilityGroup](ts-universal-attributes-accessibility.md#accessibilitygroup)、[accessibilityText](ts-universal-attributes-accessibility.md#accessibilitytext)、[accessibilityDescription](ts-universal-attributes-accessibility.md#accessibilitydescription)、[accessibilityLevel](ts-universal-attributes-accessibility.md#accessibilitylevel)、[sphericalEffect](ts-universal-attributes-image-effect.md#sphericaleffect12)、[lightUpEffect](ts-universal-attributes-image-effect.md#lightupeffect12)、[pixelStretchEffect](ts-universal-attributes-image-effect.md#pixelstretcheffect12)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1623,6 +1639,7 @@ SymbolSpan样式选项。
 | wordBreak<sup>12+</sup> |  [WordBreak](ts-appendix-enums.md#wordbreak11) | 否    | 设置断行规则。 <br />默认值：WordBreak.BREAK_WORD <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | lineBreakStrategy<sup>12+</sup> | [LineBreakStrategy](ts-appendix-enums.md#linebreakstrategy12) | 否 | 设置折行规则。 <br />默认值：LineBreakStrategy.GREEDY<br />在wordBreak不等于breakAll的时候生效，不支持连字符。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | paragraphSpacing<sup>19+</sup> | number | 否    | 设置段落间距大小。<br/>单位：fp<br/>段落间距默认大小为0。<br/>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。|
+| textVerticalAlign<sup>20+</sup> | [TextVerticalAlign](ts-text-common.md#textverticalalign20) |  否  | 设置文本段落在垂直方向的对齐方式。<br/>默认值：TextVerticalAlign.BASELINE <br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
 
 ## LeadingMarginPlaceholder<sup>11+</sup>
 
@@ -1632,7 +1649,7 @@ SymbolSpan样式选项。
 
 | 名称       | 类型                                       | 必填   | 说明             |
 | -------- | ---------------------------------------- | ---- | -------------- |
-| pixelMap | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | 是    | 图片内容。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| pixelMap | [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) | 是    | 图片内容。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | size     | \[[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)\] | 是    | 图片大小，不支持设置百分比。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## RichEditorParagraphResult<sup>11+</sup>
@@ -1975,7 +1992,7 @@ type OnHoverCallback = (status: boolean, event: HoverEvent) => void
 | 名称               | 类型                                                                | 必填  | 说明               |
 |------------------|-------------------------------------------------------------------|-----|------------------|
 | spanPosition     | [RichEditorSpanPosition](#richeditorspanposition)                 | 是   | Span位置。|
-| value            | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)\|[ResourceStr](ts-types.md#resourcestr)  | 是   | 图片内容。|
+| value            | [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md)\|[ResourceStr](ts-types.md#resourcestr)  | 是   | 图片内容。|
 | imageStyle       | [RichEditorImageSpanStyle](#richeditorimagespanstyle) | 否 | 图片样式。|
 
 ## RichEditorUrlStyle<sup>19+</sup>
@@ -3091,6 +3108,7 @@ struct Index {
             },
             paragraphStyle: {
               textAlign: TextAlign.Start,
+              textVerticalAlign：TextVerticalAlign.BASELINE,
               leadingMargin: 16
             }
           })
@@ -3810,7 +3828,350 @@ struct Index {
 ```
 ![AddBuilderSpanExample](figures/rich_editor_addBuilderSpan.gif)
 
-### 示例10（设置文本识别配置）
+### 示例10（使用和管理组件内的BuilderSpan）
+通过[addBuilderSpan](#addbuilderspan11)接口添加的自定义布局Span，[getSpans](#getspans)、[onWillChange](#onwillchange12)等API不会返回BuilderSpan内部的信息。开发者需要自行维护BuilderSpan的状态，并且在组件内容发生变化时同步更新。
+
+```ts
+const TAG = 'BuilderSpanDemo';
+
+class BuilderObject {
+  content: string
+  imageUri?: string
+  type: string
+  id?: string
+
+  constructor(content: string, type: string, imageUri?: string, id?: string) {
+    this.content = content
+    this.imageUri = imageUri
+    this.type = type
+    this.id = id
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  controller: RichEditorController = new RichEditorController()
+  option: RichEditorOptions = { controller: this.controller }
+  @State content: string = "";
+  @State start: number = 0;
+  @State end: number = 0;
+  private customBuilder: CustomBuilder = undefined;
+  private builderArray: BuilderObject[] = [];
+  private indicesToRemove: number[] = [];
+  private builderId: number = 0;
+
+  @Builder
+  imageTextBuilder(builder: BuilderObject) {
+    Row({ space: 2 }) {
+      Image($r(builder.imageUri)).width(24).height(24).margin({ left: -5 })
+      Text(builder.content).fontSize(10)
+    }.width(110).height(50).padding(5)
+  }
+
+  @Builder
+  chipBuilder(builder: BuilderObject) {
+    Row() {
+      Text(builder.content)
+        .fontSize(14)
+        .fontColor(Color.Black)
+        .fontFamily('HarmonyHeiTi')
+        .margin({ right: 4 })
+
+      SymbolGlyph($r('sys.symbol.xmark'))
+        .width(16)
+        .height(16)
+        .id(builder.id)
+        .onClick((event: ClickEvent) => {
+          this.deleteChipBuilder(event.target.id)
+        })
+    }
+    .width('auto')
+    .height(28)
+    .backgroundColor(Color.Gray)
+    .borderRadius(10)
+    .padding({
+      top: 4,
+      bottom: 4,
+      left: 12,
+      right: 12
+    })
+  }
+
+  private deleteChipBuilder(builderId?: string) {
+    if (builderId == null || builderId == "") {
+      console.info(TAG, "delete chipBuilder error");
+      return
+    }
+    let deleteRange: number[] = this.getTargetBuilderSpanRange(builderId)
+    if (deleteRange.length == 0) {
+      console.error(TAG, "getTargetBuilderSpanRange failed" + builderId);
+      return
+    }
+    this.builderArray = this.builderArray.filter(item => item.id !== builderId);
+    this.controller.deleteSpans({ start: deleteRange[0], end: deleteRange[1] });
+    console.info(TAG, `deleteChipBuilder start = ${deleteRange[0]}, end = ${deleteRange[1]}`);
+    console.info(TAG, `deleteChipBuilder builderArray + ${this.builderArray.length}`);
+  }
+
+  private getTargetBuilderSpanRange(builderId: string): number[] {
+    let allSpans = this.controller.getSpans();
+    let result: number[] = [];
+    let chitBuilderIndex = 0;
+    for (let spanIndex = 0; spanIndex < allSpans.length; spanIndex++) {
+      if (!this.isBuilderSpanResult(allSpans[spanIndex])) {
+        continue;
+      }
+      if (this.builderArray.length <= chitBuilderIndex) {
+        break;
+      }
+      if (this.builderArray[chitBuilderIndex].id === builderId) {
+        result = allSpans[spanIndex].spanPosition.spanRange;
+        break;
+      }
+      chitBuilderIndex++;
+    }
+    return result;
+  }
+
+  private isTextSpanResult(item: RichEditorImageSpanResult | RichEditorTextSpanResult): boolean {
+    return typeof (item as RichEditorImageSpanResult)['imageStyle'] == 'undefined';
+  }
+
+  private isBuilderSpanResult(item: RichEditorImageSpanResult | RichEditorTextSpanResult): boolean {
+    return typeof (item as RichEditorImageSpanResult)['imageStyle'] != 'undefined'
+      && ((item as RichEditorImageSpanResult).valueResourceStr == " "
+        || (item as RichEditorImageSpanResult).valueResourceStr == "");
+  }
+
+  build() {
+    Column() {
+      Scroll() {
+        Column() {
+          Text("Builder Info:").width("100%")
+          Text() {
+            Span(this.content)
+          }.width("100%")
+        }
+      }
+      .borderWidth(1)
+      .borderColor(Color.Red)
+      .width("100%")
+      .height("20%")
+
+      // 添加Builder时，记录builder的相对顺序，以及builder信息
+      // getSpans接口valueResourceStr == " "或""的Span是builderSpan，并且会按顺序返回builder
+      // 可以根据上面两点，在查询时还原builder信息
+      Button("addImageTextBuilder")
+        .onClick(() => {
+          let insertOffset = this.controller.getCaretOffset();
+          let builder = new BuilderObject('Custom PopUP ' + this.builderId, 'imageTextBuilder', 'app.media.icon');
+          this.customBuilder = () => {
+            this.imageTextBuilder(builder);
+          }
+          let addIndex = this.addBuilderByIndex(insertOffset);
+          console.info(TAG, "add imageTextBuilder index = " + addIndex);
+          this.builderArray.splice(addIndex, 0, builder);
+          this.controller.addBuilderSpan(this.customBuilder, { offset: insertOffset });
+          this.builderId++;
+          console.info(TAG, "add imageTextBuilder success");
+        })
+      Button("addChipBuilder")
+        .onClick(() => {
+          let insertOffset = this.controller.getCaretOffset();
+          let builder = new BuilderObject('Hello World ' + this.builderId, 'chipBuilder', '',
+            'chipBuilder' + this.builderId);
+          this.customBuilder = () => {
+            this.chipBuilder(builder);
+          }
+          let addIndex = this.addBuilderByIndex(insertOffset);
+          console.info(TAG, "add addChipBuilder index = " + addIndex);
+          this.builderArray.splice(addIndex, 0, builder);
+          this.controller.addBuilderSpan(this.customBuilder, { offset: insertOffset });
+          this.builderId++;
+          console.info(TAG, "add chipBuilder success");
+        })
+
+      Row() {
+        Button("getSpans").onClick(() => {
+          console.info(TAG, "getSpans = " + JSON.stringify(this.controller.getSpans()));
+          this.content = "";
+          let allSpans = this.controller.getSpans();
+          let builderSpanIndex = 0;
+          allSpans.forEach(item => {
+            if (this.isTextSpanResult(item)) {
+              console.info(TAG, "text span value: " + (item as RichEditorTextSpanResult).value);
+            } else if (this.isBuilderSpanResult(item)) {
+              let builderOrder = "This is builderSpan " + builderSpanIndex + ":"
+              console.info(TAG, builderOrder);
+              this.content += builderOrder + "\n";
+              let builderResult = (item as RichEditorImageSpanResult);
+              let builderIndex = "index: " + builderResult.spanPosition.spanIndex
+                + ", range: " + builderResult.spanPosition.spanRange[0] + ", "
+                + builderResult.spanPosition.spanRange[1];
+              console.info(TAG, builderIndex);
+              this.content += builderIndex + "\n";
+              if (builderSpanIndex >= this.builderArray.length) {
+                console.error(TAG, "getSpans error,  builderSpanIndex = " + builderSpanIndex
+                  + ", builderArray.length = " + this.builderArray.length);
+                return;
+              }
+              let builderInfo = "content: " + this.builderArray[builderSpanIndex].content
+                + ", image uri: " + this.builderArray[builderSpanIndex].imageUri
+                + ", id: " + this.builderArray[builderSpanIndex].id + "\n\n";
+              console.info(TAG, builderInfo);
+              this.content += builderInfo;
+              builderSpanIndex++;
+            } else {
+              let imageResult = (item as RichEditorImageSpanResult);
+              console.info(TAG, "image span " + imageResult.valueResourceStr + ", index: " +
+              imageResult.spanPosition.spanIndex + ", range: " +
+              imageResult.offsetInSpan[0] + ", " + imageResult.offsetInSpan[1] + ", size: " +
+              imageResult.imageStyle.size[0] + ", " + imageResult.imageStyle.size[1]);
+            }
+          })
+        })
+        Button("deleteSelectedSpans")
+          .onClick(() => {
+            this.start = this.controller.getSelection().selection[0];
+            this.end = this.controller.getSelection().selection[1];
+            if (this.start == this.end) {
+              return;
+            }
+            let allSpans = this.controller.getSpans();
+            let needRemoveIndex = 0;
+            for (let i = 0; i < allSpans.length; i++) {
+              if (!this.isBuilderSpanResult(allSpans[i])) {
+                continue;
+              }
+              let builderIndex = (allSpans[i] as RichEditorImageSpanResult).spanPosition.spanRange[0];
+              if (builderIndex < this.start || builderIndex >= this.end) {
+                needRemoveIndex++;
+                continue;
+              }
+              this.indicesToRemove.push(needRemoveIndex);
+              needRemoveIndex++;
+            }
+            console.info(TAG, "deleteSpans indicesToRemove = " + this.indicesToRemove.toString());
+            this.deleteBuilderByIndices();
+            console.info(TAG, "deleteSpans builderArray = " + this.builderArray.length);
+            this.controller.deleteSpans({ start: this.start, end: this.end });
+          })
+      }
+      .borderWidth(1)
+      .borderColor(Color.Red)
+      .width("100%")
+      .height("5%")
+
+      Column() {
+        RichEditor(this.option)
+          .onReady(() => {
+            this.controller.addTextSpan("0123456789",
+              {
+                style:
+                {
+                  fontColor: Color.Orange,
+                  fontSize: 30
+                }
+              })
+          })
+          .aboutToDelete((value: RichEditorDeleteValue) => {
+            console.log(TAG, "aboutToDelete = " + JSON.stringify(value));
+            let isBuilderAboutToDelete = this.isBuilderAboutToDelete(value);
+            console.log(TAG, "aboutToDelete isBuilderAboutToDelete = " + isBuilderAboutToDelete);
+            this.getIndicesToRemove(value, isBuilderAboutToDelete);
+            console.info(TAG, "indicesToRemove = " + this.indicesToRemove.toString());
+            this.deleteBuilderByIndices();
+            console.info(TAG, "builderArray = " + this.builderArray.length);
+            return true;
+          })
+          .borderWidth(1)
+          .borderColor(Color.Green)
+          .width("100%")
+          .height("30%")
+      }
+      .margin({ top: 60 })
+      .borderWidth(1)
+      .borderColor(Color.Red)
+      .width("100%")
+      .height("70%")
+    }
+  }
+
+  private isBuilderAboutToDelete(value: RichEditorDeleteValue): boolean {
+    let flag = false;
+    for (let i = 0; i < value.richEditorDeleteSpans.length; i++) {
+      if (this.isBuilderSpanResult(value.richEditorDeleteSpans[i])) {
+        flag = true;
+        break;
+      }
+    }
+    return flag;
+  }
+
+  private getIndicesToRemove(value: RichEditorDeleteValue, isBuilderAboutToDelete: boolean): void {
+    if (!isBuilderAboutToDelete) {
+      return
+    }
+    let allSpans = this.controller.getSpans();
+    for (let i = 0; i < value.richEditorDeleteSpans.length; i++) {
+      let needRemoveIndex = 0;
+      let item = value.richEditorDeleteSpans[i];
+      if (!this.isBuilderSpanResult(item)) {
+        continue;
+      }
+      let aboutToDeleteBuilderIndex = (item as RichEditorImageSpanResult).spanPosition.spanIndex
+      for (let j = 0; j < allSpans.length; j++) {
+        if (!this.isBuilderSpanResult(allSpans[j])) {
+          continue;
+        }
+        let builderIndex = (allSpans[j] as RichEditorImageSpanResult).spanPosition.spanIndex
+        if (builderIndex == aboutToDeleteBuilderIndex) {
+          this.indicesToRemove.push(needRemoveIndex)
+          break;
+        }
+        needRemoveIndex++;
+      }
+    }
+  }
+
+  private deleteBuilderByIndices(): void {
+    let indicesSet = new Set(this.indicesToRemove);
+    let newLength = 0;
+    for (let i = 0; i < this.builderArray.length; i++) {
+      if (!indicesSet.has(i)) {
+        this.builderArray[newLength] = this.builderArray[i];
+        newLength++;
+      }
+    }
+    this.builderArray.length = newLength;
+    this.indicesToRemove.length = 0;
+  }
+
+  private addBuilderByIndex(insertOffset: number): number {
+    if (insertOffset == 0 || this.builderArray.length == 0) {
+      return 0;
+    }
+    let allSpans = this.controller.getSpans();
+    let addIndex = 0;
+    for (let i = 0; i < allSpans.length; i++) {
+      if (!this.isBuilderSpanResult(allSpans[i])) {
+        continue;
+      }
+      let builderIndex = (allSpans[i] as RichEditorImageSpanResult).spanPosition.spanRange[0];
+      if (builderIndex < insertOffset) {
+        addIndex++;
+        continue;
+      }
+      break;
+    }
+    return addIndex;
+  }
+}
+```
+![BuilderSpanManagerExample](figures/rich_editor_builderSpanManager.gif)
+
+### 示例11（设置文本识别配置）
 设置[enableDataDetector](#enabledatadetector11)为true时，通过[dataDetectorConfig](#datadetectorconfig11)接口设置文本识别配置。
 
 ```ts
@@ -3874,7 +4235,7 @@ struct TextExample7 {
   }
 }
 ```
-### 示例11（设置光标、手柄和底板颜色）
+### 示例12（设置光标、手柄和底板颜色）
 通过[caretColor](#caretcolor12)属性设置输入框光标、手柄颜色，通过[selectedBackgroundColor](#selectedbackgroundcolor12)属性设置文本选中底板颜色。
 
 ``` ts
@@ -3907,7 +4268,7 @@ struct RichEditorDemo {
 ```
 ![SetCaretAndSelectedBackgroundColorExample](figures/rich_editor_caret_color.gif)
 
-### 示例12（设置行高和字符间距）
+### 示例13（设置行高和字符间距）
 通过[updateSpanStyle](#updatespanstyle)接口配置文本行高（[lineHeight](#richeditortextstyle)）和字符间距（[letterSpacing](#richeditortextstyle)）。
 
 ```ts
@@ -4029,7 +4390,7 @@ struct RichEditorDemo03 {
 ```
 ![AddBuilderSpanExample](figures/richEditorLineHeightAndLetterSpacing.png)
 
-### 示例13（自定义粘贴事件）
+### 示例14（自定义粘贴事件）
 为组件添加[onPaste](#onpaste11)事件，通过[PasteEvent](#pasteevent11)自定义用户粘贴事件。
 
 ```ts
@@ -4060,7 +4421,7 @@ struct RichEditorDemo {
 ```
 ![PreventDefaultExample](figures/richEditorPreventDefault.gif)
 
-### 示例14（配置文字特性效果）
+### 示例15（配置文字特性效果）
 通过[addTextSpan](#addtextspan)接口设置文字特性效果（[fontFeature](#richeditortextstyle)）。当添加“ss01”特性的FontFeature属性时，数字“0”由原来的椭圆形改变为带有倒圆角形。
 
 ```ts
@@ -4107,7 +4468,7 @@ struct RichEditorExample {
 ```
 ![FontFeatureExample](figures/richEditorFontFeature.png)
 
-### 示例15（自定义键盘避让）
+### 示例16（自定义键盘避让）
 通过[customKeyboard](#customkeyboard)属性绑定自定义键盘，通过参数[KeyboardOptions](#keyboardoptions12)设置自定义键盘是否支持避让功能。
 
 ```ts
@@ -4186,7 +4547,7 @@ struct RichEditorExample {
 ```
 ![CustomRichEditorType](figures/Custom_Rich_Editor.gif)
 
-### 示例16（查看编辑状态）
+### 示例17（查看编辑状态）
 通过[isEditing](#isediting12)接口获取当前富文本的编辑状态。为组件添加[onEditingChange](#oneditingchange12)事件，可通过打印日志，获取当前组件是否在编辑态。
 
 ```ts
@@ -4225,7 +4586,7 @@ struct RichEditor_onEditingChange {
 
 ![RichEditorOnEditingChange](figures/richEditorOnEditingChange.gif)
 
-### 示例17（配置文本变化回调）
+### 示例18（配置文本变化回调）
 为组件添加[onWillChange](#onwillchange12)事件，能够在组件执行增删操作前，触发回调。
 
 ```ts
@@ -4310,7 +4671,7 @@ struct RichEditorExample {
   }
 }
 ```
-### 示例18（配置输入法enter键功能）
+### 示例19（配置输入法enter键功能）
 通过[enterKeyType](#enterkeytype12)属性设置软键盘输入法回车键类型。
 
 ```ts
@@ -4344,7 +4705,7 @@ struct SoftKeyboardEnterTypeExample {
 
 ![SoftKeyboardEnterType](figures/richeditorentertype.gif)
 
-### 示例19（设置段落折行规则）
+### 示例20（设置段落折行规则）
 通过[updateParagraphStyle](#updateparagraphstyle11)接口设置折行类型（[lineBreakStrategy](#richeditorparagraphstyle11)），通过[getParagraphs](#getparagraphs11)接口获取当前段落的折行类型。
 
 ```ts
@@ -4422,7 +4783,7 @@ struct LineBreakStrategyExample {
 
 ![LineBreakStrategy](figures/richEditorLineBreak.gif)
 
-### 示例20（属性字符串基本功能）
+### 示例21（属性字符串基本功能）
 [属性字符串](./ts-universal-styled-string.md)通过[RichEditorStyledStringController](#richeditorstyledstringcontroller12)中的[setStyledString](#setstyledstring12)方法与RichEditor组件绑定。通过[getStyledString](#getstyledstring12)接口获取富文本组件显示的属性字符串。
 
 ```ts
@@ -4643,7 +5004,7 @@ struct Index {
 
 ![StyledString](figures/StyledString(example20).gif)
 
-### 示例21（获取布局信息）
+### 示例22（获取布局信息）
 通过[getLayoutManager](#getlayoutmanager12)接口获取布局管理器对象，通过[getLineCount](ts-text-common.md#getlinecount)接口获取组件内容的总行数，通过[getGlyphPositionAtCoordinate](ts-text-common.md#getglyphpositionatcoordinate)接口获取较为接近给定坐标的字形的位置信息，通过[getLineMetrics](ts-text-common.md#getlinemetrics)接口获取指定行的行信息、文本样式信息、以及字体属性信息。
 
 ```ts
@@ -4713,7 +5074,7 @@ export struct Index {
 
 ![LayoutManager](figures/getLayoutManager.gif)
 
-### 示例22（设置自定义菜单扩展项）
+### 示例23（设置自定义菜单扩展项）
 通过[editMenuOptions](#editmenuoptions12)属性设置自定义菜单扩展项，允许用户设置扩展项的文本内容、图标、回调方法。
 
 ```ts
@@ -4777,7 +5138,7 @@ struct RichEditorExample {
 
 ![RichEditorSelectionMenuOptions](figures/richEditorSelectionMenuOptions.png)
 
-### 示例23（组件部分常用属性）
+### 示例24（组件部分常用属性）
 通过[barState](#barstate13)属性设置组件滚动条的显示模式。通过[enableKeyboardOnFocus](#enablekeyboardonfocus12)属性设置组件通过点击以外的方式获焦时，是否主动拉起软键盘。通过[enableHapticFeedback](#enablehapticfeedback13)属性设置组件是否支持触控反馈。通过[getPreviewText](#getpreviewtext12)接口获取组件预上屏信息。通过[stopBackPress](#stopbackpress18)属性设置是否阻止返回键向其它组件或应用侧传递。
 
 ```ts
@@ -4866,7 +5227,7 @@ struct RichEditor_example {
 
 ![StyledString](figures/example23.gif)
 
-### 示例24（获取光标相对组件位置的矩形）
+### 示例25（获取光标相对组件位置的矩形）
 通过RichEditorBaseController的[getCaretRect](#getcaretrect18)方法来获取当前光标相对于组件位置的Rect。
 
 ```ts
@@ -4920,7 +5281,7 @@ struct Index {
 
 ![StyledString](figures/example24.gif)
 
-### 示例25（设置最大行数和最大字符数）
+### 示例26（设置最大行数和最大字符数）
 通过maxLength设置可输入的最大字符数，通过maxLines设置可输入的最大行数。
 
 ```ts
@@ -5018,64 +5379,6 @@ struct RichEditorExample {
 }
 ```
 ![StyledString](figures/maxLengthmaxLines.gif)
-
-### 示例26（设置自定义布局拖拽背板及拖拽投影配置）
-通过使用addBuilderSpan，可以在拖拽场景中为自定义布局的拖拽背板和拖拽投影设置相关参数。
-
-```ts
-// xxx.ets
-import { ColorMetrics } from '@kit.ArkUI'
-
-@Entry
-@Component
-struct richEditorNew03 {
-  controller: RichEditorController = new RichEditorController();
-  options: RichEditorOptions = { controller: this.controller }
-  build() {
-    Column({ space: 10 }) {
-      Column() {
-        RichEditor(this.options)
-          .onReady(() => {
-            this.controller.addBuilderSpan(() => {
-              this.placeholderBuilder()
-            }, {
-              offset: -1,
-              dragBackgroundColor: ColorMetrics.rgba(0xff, 0x80, 0, 0xff),
-              isDragShadowNeeded: false
-            })
-            this.controller.addBuilderSpan(() => {
-              this.placeholderBuilder()
-            }, {
-              offset: -1,
-              dragBackgroundColor: ColorMetrics.resourceColor("#ffff0000")
-                .blendColor(ColorMetrics.resourceColor("#ff00ff00")),
-              isDragShadowNeeded: true
-            })
-            this.controller.addBuilderSpan(() => {
-              this.placeholderBuilder()
-            }, { offset: -1 })
-          })
-          .borderWidth(1)
-          .width("100%")
-          .height("50%")
-          .margin(50)
-      }
-      .width('100%')
-      .margin({top:100})
-    }
-  }
-
-  @Builder
-  placeholderBuilder() {
-    Row() {
-      Text('是BuilderSpan，不是纯文本内容')
-        .fontSize(22)
-        .copyOption(CopyOptions.InApp)
-    }
-  }
-}
-```
-![StyledString](figures/builderspan_drag_config.gif)
 
 ### 示例27（文本设置Url样式）
 可以通过在addTextSpan和UpdateSpanStyle接口中加入UrlStyle，来实现文本点击时跳转到指定链接的功能。
@@ -5352,3 +5655,231 @@ struct RichEditorExample {
   }
 }
 ```
+
+### 示例30（设置装饰线粗细和多装饰线）
+
+```ts
+import { LengthMetrics } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct Index {
+  private controller: RichEditorController = new RichEditorController();
+  private styledStringController: RichEditorStyledStringController = new RichEditorStyledStringController();
+
+  build() {
+    Column({ space: 20 }) {
+      RichEditor({ controller: this.controller })
+        .onReady(() => {
+          // 预置一段文本
+          this.controller.addTextSpan('一段预置的文本', {
+            style: {
+              fontSize: 25,
+              decoration: {
+                type: TextDecorationType.LineThrough,
+                // 设置装饰线粗细比例为2
+                thicknessScale: 2
+              }
+            }
+          })
+        })
+
+      // 设置富文本多装饰线
+      RichEditor({ controller: this.styledStringController })
+
+      Button('追加粗细比例为8的文本')
+        .fontSize(20)
+        .onClick(() => {
+          this.controller.addTextSpan('追加的文本', {
+            style: {
+              fontSize: 25,
+              decoration: {
+                type: TextDecorationType.LineThrough,
+                // 设置装饰线粗细比例为8
+                thicknessScale: 8
+              }
+            }
+          })
+        })
+
+      Button('修改全段文本的粗细比例为4')
+        .fontSize(20)
+        .onClick(() => {
+          this.controller.updateSpanStyle({
+            start: 0,
+            end: 1000, // 下标超过文本长度时，会更新整段文本
+            textStyle: {
+              decoration: {
+                type: TextDecorationType.LineThrough,
+                // 设置装饰线粗细比例为4
+                thicknessScale: 4
+              }
+            }
+          })
+        })
+
+      Button('多装饰线文本')
+        .fontSize(20)
+        .onClick(() => {
+          let mutString: MutableStyledString = new MutableStyledString('设置富文本多装饰线', [
+            {
+              start: 0,
+              length: 9,
+              styledKey: StyledStringKey.FONT,
+              styledValue: new TextStyle({ fontSize: LengthMetrics.vp(25) })
+            },
+            {
+              start: 0,
+              length: 5,
+              styledKey: StyledStringKey.DECORATION,
+              styledValue: new DecorationStyle(
+                {
+                  type: TextDecorationType.Underline,
+                },
+                {
+                  // 开启多装饰线
+                  enableMultiType: true
+                }
+              )
+            },
+            {
+              start: 2,
+              length: 4,
+              styledKey: StyledStringKey.DECORATION,
+              styledValue: new DecorationStyle(
+                {
+                  type: TextDecorationType.LineThrough,
+                },
+                {
+                  // 开启多装饰线
+                  enableMultiType: true
+                }
+              )
+            },
+            {
+              start: 4,
+              length: 5,
+              styledKey: StyledStringKey.DECORATION,
+              styledValue: new DecorationStyle(
+                {
+                  type: TextDecorationType.Overline,
+                },
+                {
+                  // 开启多装饰线
+                  enableMultiType: true
+                }
+              )
+            },
+          ])
+          this.styledStringController.setStyledString(mutString);
+        })
+    }
+    .height('100%')
+    .width('100%')
+    .justifyContent(FlexAlign.Center)
+    .alignItems(HorizontalAlign.Center)
+  }
+}
+```
+![Decoration](figures/decoration_thickness_scale.gif)
+
+
+### 示例31（设置开启中西文自动间距）
+该示例通过[enableAutoSpacing](#enableautospacing20)属性设置中西文自动间距。
+
+```ts
+@Entry
+@Component
+struct AutoSpacing {
+  controller: RichEditorController = new RichEditorController();
+  options: RichEditorOptions = { controller: this.controller };
+  @State enableAutoSpace:boolean = false;
+  build() {
+    Column() {
+      Column() {
+        Row({space:2}) {
+          Button("插入中西文内容").onClick(() => {
+            this.controller.addTextSpan("Add文本Span",
+              {
+                style:
+                {
+                  fontColor: Color.Orange,
+                  fontSize: 20
+                }
+              })
+          })
+          Button("插入图片").onClick(() => {
+            this.controller.addImageSpan($r("app.media.icon"),
+              {
+                imageStyle:
+                {
+                  size: ["100px", "100px"]
+                }
+              });
+          })
+          Button("插入Symbol").onClick(() => {
+            this.controller.addSymbolSpan($r("sys.symbol.ohos_trash"),
+              {
+                style:
+                {
+                  fontSize: 32
+                }
+              });
+          })
+        }
+        .borderWidth(1)
+        .borderColor(Color.Red)
+        .justifyContent(FlexAlign.Center)
+        .width("100%")
+        .height("10%")
+        Row({space:2}) {
+          Button("开启中西文自动间距").onClick(() => {
+            this.enableAutoSpace = true;
+          })
+          Button("关闭中西文自动间距").onClick(() => {
+            this.enableAutoSpace = false;
+          })
+        }
+        .borderWidth(1)
+        .borderColor(Color.Red)
+        .justifyContent(FlexAlign.Center)
+        .width("100%")
+        .height("10%")
+      }
+      Column() {
+        RichEditor(this.options)
+          .onReady(()=>{
+            this.controller.addImageSpan($r("app.media.icon"),
+              {
+                imageStyle:
+                {
+                  size: ["100px", "100px"]
+                }
+              });
+            this.controller.addTextSpan("中西文Auto Spacing自动间距",
+              {
+                style:
+                {
+                  fontColor: Color.Orange,
+                  fontSize: 20
+                }
+              })
+            this.controller.addSymbolSpan($r("sys.symbol.ohos_trash"),
+              {
+                style:
+                {
+                  fontSize: 20
+                }
+              });
+          })
+          .enableAutoSpacing(this.enableAutoSpace)
+          .borderWidth(1)
+          .borderColor(Color.Green)
+          .width("100%")
+          .height("50%")
+      }
+    }
+  }
+}
+```
+![AutoSpacing](figures/richEditorAutoSpacing.gif)

@@ -1,4 +1,4 @@
-# @ohos.app.ability.appManager (appManager)
+# @ohos.app.ability.appManager (应用管理)
 
 appManager模块提供App管理的能力，包括查询当前是否处于稳定性测试场景、查询是否为ram受限设备、获取应用程序的内存大小、获取有关运行进程的信息等。
 
@@ -686,7 +686,7 @@ killProcessesByBundleName(bundleName: string, clearPageStack: boolean, appIndex?
 | -------- | -------- | -------- | -------- |
 | bundleName | string | 是 | 表示Bundle名称。 |
 | clearPageStack | boolean | 是 | 表示是否清除页面堆栈。true表示清除，false表示不清除。 |
-| appIndex | number | 否 | 应用分身Id。 |
+| appIndex | number | 否 | 应用分身Id，默认值为0。取值为0时，表示终止主应用的所有进程。取值大于0时，表示终止指定分身应用的所有进程。 |
 
 **返回值：**
 
@@ -780,6 +780,30 @@ try {
 }
 ```
 
+## AbilityStateData<sup>14+</sup>
+
+type AbilityStateData = _AbilityStateData
+
+Ability状态信息。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 类型 | 说明 |
+| --- | --- |
+| [_AbilityStateData](js-apis-inner-application-abilityStateData.md) | Ability状态信息。 |
+
+## AppStateData<sup>14+</sup>
+
+type AppStateData = _AppStateData
+
+应用状态信息。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 类型 | 说明 |
+| --- | --- |
+| [_AppStateData](js-apis-inner-application-appStateData.md) | 应用状态信息。 |
+
 ## ApplicationStateObserver<sup>14+</sup>
 
 type ApplicationStateObserver = _ApplicationStateObserver.default
@@ -805,3 +829,15 @@ ProcessInformation模块。
 | 类型 | 说明 |
 | --- | --- |
 | [_ProcessInformation](js-apis-inner-application-processInformation.md) | ProcessInformation模块。 |
+
+## ProcessData<sup>14+</sup>
+
+type ProcessData = _ProcessData
+
+进程数据。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 类型 | 说明 |
+| --- | --- |
+| [_ProcessData](js-apis-inner-application-processData.md) | 进程数据。 |

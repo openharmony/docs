@@ -13,7 +13,7 @@
    import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
-2. 通过[CameraOutputCapability](../../reference/apis-camera-kit/arkts-apis-camera-i.md#cameraoutputcapability)类中的depthProfiles属性获取当前设备支持的深度能力，返回depthProfilesArray数组。通过[createDepthDataOutput](../../reference/apis-camera-kit/js-apis-camera-sys.md#createdepthdataoutput)方法创建深度流。
+2. 通过[CameraOutputCapability](../../reference/apis-camera-kit/arkts-apis-camera-i.md#cameraoutputcapability)类中的depthProfiles属性获取当前设备支持的深度能力，返回depthProfilesArray数组。通过[createDepthDataOutput](../../reference/apis-camera-kit/js-apis-camera-sys.md#createdepthdataoutput13)方法创建深度流。
 
    ```ts
    function getDepthDataOutput(cameraManager: camera.CameraManager, cameraOutputCapability: camera.CameraOutputCapability): camera.DepthDataOutput | undefined {

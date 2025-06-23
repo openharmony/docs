@@ -1,8 +1,8 @@
-# 快捷键开发指导
+# 系统预置全局快捷键开发指导
 
 ## 场景介绍
 
-快捷键提供设置快捷键拉起Ability延迟时间的能力。使用场景例如：按下快捷键五秒后截屏。
+系统预置全局快捷键提供设置快捷键拉起Ability延迟时间的能力。使用场景例如：按下快捷键五秒后截屏。
 
 ## 导入模块
 
@@ -24,16 +24,17 @@ import { shortKey } from '@kit.InputKit';
 
 ```js
 import { shortKey } from '@kit.InputKit';
+
 try {
   shortKey.setKeyDownDuration("screenshot", 500, (error) => {//设置截屏应用screenshot延迟时间为5秒（500毫秒）
     if (error) {
-      console.log(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
-    console.log(`Set key down duration success`);
+    console.info(`Set key down duration success`);
   });
 } catch (error) {
-  console.log(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 

@@ -101,7 +101,7 @@ Add the **mix**, **max**, **value**, **step**, and **mode** attributes to set th
 
 ## Binding Events
 
-Add the **change** event to the **&lt;rating&gt;** component and pass the ChangeEvent attribute when adding the event.
+Add the **change** event to the **&lt;slider&gt;** component and pass the ChangeEvent attribute when adding the event.
 
 
 ```html

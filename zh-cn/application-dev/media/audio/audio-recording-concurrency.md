@@ -57,6 +57,6 @@
 - 尽量避免并发录音场景，在应用设计时尽量避免与其他录音任务重叠。如需要，可以在界面中提示用户“当前存在其他录音任务”。
 
   如果必须进行并发录音，建议在界面上明确告知用户音频质量可能会受到影响。
-- [选择合适的录音流类型](using-right-streamusage-and-sourcetype.md)，不同的录音流类型对应着不同的系统优化处理策略，建议开发者根据需求选择合适的[录音流类型](../../reference/apis-audio-kit/js-apis-audio.md#sourcetype8)。
+- [选择合适的录音流类型](using-right-streamusage-and-sourcetype.md)，不同的录音流类型对应着不同的系统优化处理策略，建议开发者根据需求选择合适的[录音流类型](../../reference/apis-audio-kit/arkts-apis-audio-e.md#sourcetype8)。
 - 在没有录音需求时，应及时停止并释放录音资源，避免对其他录音流产生影响，并减少不必要的系统开销。
 - 应用实现不应过度依赖固定的录音并发规则，而应根据系统接口返回的状态进行自适应处理。

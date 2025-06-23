@@ -48,7 +48,7 @@ sideLength(value: Length)
 
 circleRadius(value: Length)
 
-设置宫格中圆点的半径。设置为0或负数时取默认值。
+设置宫格中圆点的半径。设置为0或负数时，取默认值。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -93,7 +93,7 @@ regularColor(value: ResourceColor)
 
 selectedColor(value: ResourceColor)
 
-设置宫格圆点在“选中”状态的填充色。
+设置宫格圆点在“选中”状态的填充颜色。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -125,7 +125,7 @@ activeColor(value: ResourceColor)
 
 pathColor(value: ResourceColor)
 
-设置连线颜色。
+设置连线的颜色。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -173,7 +173,7 @@ autoReset(value: boolean)
 
 activateCircleStyle(options: Optional\<CircleStyleOptions\>)
 
-设置宫格圆点在“激活”状态的背景圆环样式。
+设置宫格圆点在“激活”状态下的背景圆环样式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -183,7 +183,7 @@ activateCircleStyle(options: Optional\<CircleStyleOptions\>)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| options  | [CircleStyleOptions](#circlestyleoptions12对象说明) | 是   | 宫格圆点在“激活”状态的背景圆环样式。|
+| options  | Optional\<[CircleStyleOptions](#circlestyleoptions12对象说明)\> | 是   | 宫格圆点在“激活”状态的背景圆环样式。|
 
 ### CircleStyleOptions<sup>12+</sup>对象说明
 
@@ -192,8 +192,8 @@ activateCircleStyle(options: Optional\<CircleStyleOptions\>)
 
 | 名称          | 类型 | 必填 | 说明 |
 | ------------- | ------- | ---- | -------- |
-| color | [ResourceColor](ts-types.md#resourcecolor) | 否 | 背景圆环颜色。 <br/>默认值：与pathColor值相同<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| radius  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否 | 背景圆环的半径。<br/>默认值：circleRadius的11/6<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
+| color | [ResourceColor](ts-types.md#resourcecolor) | 否 | 背景圆环颜色。 <br/>默认值：与pathColor值相同。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| radius  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否 | 背景圆环的半径。<br/>默认值：circleRadius的11/6。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
 | enableWaveEffect | boolean | 否 | 波浪效果开关。<br/>默认值：true，表示波浪效果开关打开，显示波浪效果。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
 | enableForeground<sup>15+</sup> | boolean | 否 | 背景圆环是否在前景显示。<br/>默认值：false，背景圆环不在前景显示。 <br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 
@@ -247,7 +247,7 @@ onDotConnect(callback: [Callback](../../apis-basic-services-kit/js-apis-base.md#
 
 ## PatternLockController
 
-PatternLock组件的控制器，可以通过它进行组件状态重置。
+PatternLock组件的控制器，用于重置组件状态。
 
 ### 导入对象
 
@@ -339,7 +339,7 @@ struct PatternLockExample {
 
 ### 示例2（判断密码是否正确）
 
-该示例通过sideLength设置九宫格的大小、circleRadius等属性设置宫格圆点样式、onPatternComplete属性设置密码输入时的回调。 
+该示例通过[sideLength](#sidelength)设置九宫格的大小、[circleRadius](#circleradius)等属性设置宫格圆点样式、[onPatternComplete](#onpatterncomplete)属性设置密码输入时的回调。 
 
 当用户密码输入完成后，按输入的密码不同，给予不同的回应：输入的密码长度小于5时，提示重新输入；第一次输入完成后，提示第二次输入密码；第二次输入完成后，判断两次输入的密码是否相同，相同则提示密码设置成功，否则提示重新输入。 
 

@@ -244,7 +244,7 @@ import { buffer } from '@kit.ArkTS';
 
 let buf1 = buffer.from('1234');
 let buf2 = buffer.from('0123');
-let res = buf1.compare(buf2);
+let res = buffer.compare(buf1, buf2);
 
 console.info(Number(res).toString());
 // 输出结果：1
@@ -643,7 +643,7 @@ console.info("newBuf = " + newBuf.toString('ascii'));
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | length | number | 是 | 否 | Buffer对象的字节长度。 |
 | buffer | ArrayBuffer | 是 | 否 | ArrayBuffer对象。 |
@@ -3408,7 +3408,7 @@ console.info("result = " + result);
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | size | number | 是 | 否 | Blob实例的总字节大小。 |
 | type | string | 是 | 否 | Blob实例的内容类型。 |

@@ -28,7 +28,7 @@ ConsoleMessage的信息级别。
 | Compatible | 1 | 兼容模式：混合内容兼容性模式，部分不安全的内容可能被加载。           |
 | None       | 2 | 严格模式：不允许加载HTTP和HTTPS混合内容。               |
 
- ## HitTestType
+## HitTestType
 
  **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -205,6 +205,8 @@ Web布局模式的配置。
 | ----- | -- | ------------- |
 | None  | 0 | 非特殊媒体或其他媒体类型。 |
 | Image | 1 | 图片。           |
+| Video<sup>20+</sup> | 2 | 视频。           |
+| Audio<sup>20+</sup> | 3 | 音频。           |
 
 ## ContextMenuInputFieldType<sup>9+</sup>
 
@@ -324,3 +326,26 @@ Web布局模式的配置。
 | 名称            | 值 | 说明                |
 | -------------- | -- | ------------------  |
 | LONG_PRESS     | 1 | 通过长按触发菜单弹出。 |
+
+## AudioSessionType<sup>20+</sup>
+
+应用中Web音频类型。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 名称            | 值 | 说明                |
+| -------------- | -- | ------------------  |
+| AMBIENT     | 3 | 适用于网页游戏场景，支持Web游戏声音与系统音乐同时播放。 |
+
+## GestureFocusMode<sup>20+</sup>
+
+手势获焦的模式。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称                       | 值 | 说明           |
+| -------------------------- | -- | ------------- |
+| DEFAULT                    | 0 | 默认值，Web会在触摸按下屏幕时申请获焦，包括点击、长按、滑动、缩放等任何触摸屏幕的手势行为。 |
+| GESTURE_TAP_AND_LONG_PRESS | 1 | Web只会在点击和长按手势事件生成时申请获焦，点击和长按在触摸抬起之后生成，滑动和缩放等手势行为不会获焦。 |

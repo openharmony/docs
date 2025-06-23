@@ -87,6 +87,8 @@ Sendable interface需同时满足以下两个规则：
 
 - 元素均为Sendable类型的union type数据。
 
+- 开发者自定义的Native Sendable对象。详情可参考[自定义Native Sendable对象的多线程操作场景](napi-define-sendable-object.md)。
+
 > **说明：**
 >
 > - JS内置对象在并发实例间的传递遵循结构化克隆算法，跨线程行为是拷贝传递。因此，JS内置对象的实例不是Sendable类型。
@@ -138,6 +140,7 @@ class SendableTestClass {
   }
 }
 ```
+<!-- @[example_modify_class](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableObjectIntroduction/class/Index.ets) -->
 
 **装饰器修饰Function使用示例：**
 
@@ -182,3 +185,4 @@ let sendableClass = new SendableTestClass(SendableTestFunction);
 sendableClass.callback();
 sendableClass.CallSendableFunc();
 ```
+<!-- @[example_modify_function](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableObjectIntroduction/entry/src/main/ets/managers/functionusage.ets) -->

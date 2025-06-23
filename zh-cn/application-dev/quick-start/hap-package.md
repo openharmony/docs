@@ -18,7 +18,7 @@ HAP（Harmony Ability Package）是应用安装和运行的基本单元。HAP包
 
 - 不支持导出接口和ArkUI组件，给其他模块使用。
 
-- 多HAP场景下，App Pack包中同一设备类型的所有HAP中必须有且只有一个Entry类型的HAP，Feature类型的HAP可以有一个或者多个，也可以没有。
+- 多HAP场景下，App Pack包中同一设备类型的所有HAP中最多只能包含一个Entry类型的HAP，也可以不包含；Feature类型的HAP可以包含一个或者多个，也可以不包含。
 
 - 多HAP场景下，同一应用中的所有HAP的配置文件中的bundleName、versionCode、versionName、minCompatibleVersionCode、debug、minAPIVersion、targetAPIVersion、apiReleaseType相同，同一设备类型的所有HAP对应的moduleName标签必须唯一。HAP打包生成App Pack包时，会对上述参数配置进行校验。
 

@@ -1,4 +1,4 @@
-# @ohos.fastbuffer (线性容器FastBuffer)
+# @ohos.fastbuffer (FastBuffer)
 
 FastBuffer对象是更高效的Buffer容器，用于表示固定长度的字节序列，是专门存放二进制数据的缓存区。
 
@@ -7,8 +7,6 @@ FastBuffer对象是更高效的Buffer容器，用于表示固定长度的字节�
 > **说明：**
 >
 > 本模块首批接口从API version 20开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
->
-> 未做特殊说明时，FastBuffer的方法中number类型的参数取值范围应在0至Fastbuffer.length之间，越界时会抛出错误码为10200001的RangeError异常。
 
 ## 导入模块
 
@@ -18,7 +16,7 @@ import { fastbuffer } from '@kit.ArkTS';
 
 ## BufferEncoding
 
-BufferEncoding = 'ascii' | 'utf8' | 'utf-8'| 'utf16le'| 'ucs2'| 'ucs-2'| 'base64'| 'base64url'| 'latin1'| 'binary'| 'hex'
+type BufferEncoding = 'ascii' | 'utf8' | 'utf-8' | 'utf16le' | 'ucs2' | 'ucs-2' | 'base64' | 'base64url' | 'latin1' | 'binary' | 'hex'
 
 表示支持的编码格式类型。
 
@@ -64,14 +62,6 @@ alloc(size: number, fill?: string | FastBuffer | number, encoding?: BufferEncodi
 | -------- | -------- |
 | [FastBuffer](#fastbuffer) | 返回一个FastBuffer对象。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 10200001 | Range error. Possible causes: The value of the parameter is not within the specified range. |
-
 **示例：**
 
 ```ts
@@ -80,6 +70,10 @@ import { fastbuffer } from '@kit.ArkTS';
 let buf1 = fastbuffer.alloc(5);
 let buf2 = fastbuffer.alloc(5, 'a');
 let buf3 = fastbuffer.alloc(11, 'aGVsbG8gd29ybGQ=', 'base64');
+console.info(buf2.toString());
+// 输出结果：aaaaa
+console.info(buf3.toString());
+// 输出结果：hello world
 ```
 
 ## fastbuffer.allocUninitializedFromPool
@@ -105,14 +99,6 @@ allocUninitializedFromPool(size: number): FastBuffer
 | 类型 | 说明 |
 | -------- | -------- |
 | [FastBuffer](#fastbuffer) | 未初始化的Buffer实例。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 10200001 | Range error. Possible causes: The value of the parameter is not within the specified range. |
 
 **示例：**
 
@@ -147,14 +133,6 @@ allocUninitialized(size: number): FastBuffer
 | 类型 | 说明 |
 | -------- | -------- |
 | [FastBuffer](#fastbuffer) | 未初始化的FastBuffer实例。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 10200001 | Range error. Possible causes: The value of the parameter is not within the specified range. |
 
 **示例：**
 
@@ -228,7 +206,6 @@ compare(buf1: FastBuffer | Uint8Array, buf2: FastBuffer | Uint8Array): -1 | 0 | 
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | Range error. Possible causes: The value of the parameter is not within the specified range. |
 | 10200068 | The underlying ArrayBuffer is null or detach. |
 
 **示例：**
@@ -250,6 +227,10 @@ concat(list: FastBuffer[] | Uint8Array[], totalLength?: number): FastBuffer
 
 将数组中指定字节长度的内容复制到新的FastBuffer对象中并返回拼接后的FastBuffer对象。
 
+当数组中所有对象的长度总和大于totalLength时，返回结果的长度将被截断为totalLength。
+
+当数组中所有对象的长度总和小于totalLength时，返回结果的多余部分将会被填充为0。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
@@ -259,7 +240,7 @@ concat(list: FastBuffer[] | Uint8Array[], totalLength?: number): FastBuffer
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | list | [FastBuffer](#fastbuffer)[]&nbsp;\|&nbsp;Uint8Array[] | 是 | 实例数组。 |
-| totalLength | number | 否 | 需要复制的总字节长度，默认值为0。取值范围：0 <= totalLength <= list中对象的长度总和。 |
+| totalLength | number | 否 | 需要复制的总字节长度，默认值为0。 |
 
 **返回值：**
 
@@ -308,15 +289,6 @@ from(array: number[]): FastBuffer
 | 类型 | 说明 |
 | -------- | -------- |
 | [FastBuffer](#fastbuffer) | 新的FastBuffer对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 10200068 | The underlying ArrayBuffer is null or detach. |
 
 **示例：**
 
@@ -368,6 +340,8 @@ import { fastbuffer } from '@kit.ArkTS';
 
 let ab = new ArrayBuffer(10);
 let buf = fastbuffer.from(ab, 0, 2);
+console.info(buf.length.toString());
+// 输出结果：2
 ```
 
 ## fastbuffer.from
@@ -385,7 +359,7 @@ from(buffer: FastBuffer | Uint8Array): FastBuffer
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| fastbuffer | [FastBuffer](#fastbuffer)&nbsp;\|&nbsp;Uint8Array | 是 | 对象数据。 |
+| buffer | [FastBuffer](#fastbuffer)&nbsp;\|&nbsp;Uint8Array | 是 | 对象数据。 |
 
 **返回值：**
 
@@ -399,7 +373,6 @@ from(buffer: FastBuffer | Uint8Array): FastBuffer
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200068 | The underlying ArrayBuffer is null or detach. |
 
 **示例：**
@@ -410,6 +383,8 @@ import { fastbuffer } from '@kit.ArkTS';
 // 以FastBuffer对象类型进行创建新的FastBuffer对象
 let buf1 = fastbuffer.from('buffer');
 let buf2 = fastbuffer.from(buf1);
+console.info(buf2.toString());
+// 输出结果：buffer
 
 // 以Uint8Array对象类型进行创建FastBuffer对象，保持对象间内存共享
 let uint8Array = new Uint8Array(10);
@@ -542,7 +517,9 @@ console.info(fastbuffer.isEncoding('').toString());
 
 transcode(source: FastBuffer | Uint8Array, fromEnc: string, toEnc: string): FastBuffer
 
-将FastBuffer或Uint8Array对象从一种字符编码重新编码为另一种。
+将FastBuffer或Uint8Array对象从fromEnc编码转换为toEnc编码。
+
+fastbuffer.transcode支持的编码：'ascii' | 'utf8' | 'utf16le'| 'ucs2' | 'latin1'| 'binary'
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -562,22 +539,14 @@ transcode(source: FastBuffer | Uint8Array, fromEnc: string, toEnc: string): Fast
 | -------- | -------- |
 | [FastBuffer](#fastbuffer) | 将当前编码转换成目标编码，并返回一个新的FastBuffer对象。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-
 **示例：**
 
 ```ts
 import { fastbuffer } from '@kit.ArkTS';
 
-let newBuf = fastbuffer.transcode(fastbuffer.from('€'), 'utf-8', 'ascii');
+let newBuf = fastbuffer.transcode(fastbuffer.from('buffer'), 'utf-8', 'ascii');
 console.info("newBuf = " + newBuf.toString('ascii'));
-// 输出结果：newBuf = ,
+// 输出结果：newBuf = buffer
 ```
 
 ## FastBuffer
@@ -594,14 +563,6 @@ console.info("newBuf = " + newBuf.toString('ascii'));
 | buffer | ArrayBuffer | 是 | 否 | ArrayBuffer对象。 |
 | byteOffset | number | 是 | 否 | 当前Buffer所在内存池的偏移量。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 10200013 | Cannot set property on Container. |
-
 **示例：**
 
 ```ts
@@ -615,42 +576,6 @@ console.info(JSON.stringify(new Uint8Array(arrayBuffer)));
 // 输出结果：{"0":49,"1":50,"2":51,"3":54}
 console.info(JSON.stringify(buf.byteOffset));
 // 输出结果：0
-```
-
-### constructor
-
-constructor(value: number | FastBuffer | Uint8Array | ArrayBuffer | SharedArrayBuffer | Array\<number\> | string, byteOffsetOrEncoding?: number | string, length?: number)
-
-FastBuffer的构造函数。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| value | number&nbsp;\|&nbsp;[FastBuffer](#fastbuffer)&nbsp;\|&nbsp;Uint8Array&nbsp;\|&nbsp;ArrayBuffer&nbsp;\|&nbsp;SharedArrayBuffer&nbsp;\|&nbsp;Array\<number\>&nbsp;\|&nbsp;string | 是 | 指定的FastBuffer对象长度或实例对象。 |
-| byteOffsetOrEncoding | number&nbsp;\|&nbsp;[BufferEncoding](#bufferencoding) | 否 | 字节偏移量或编码格式，默认值：0。 |
-| length | number | 否 | 字节长度。|
-
-**错误码：**
-
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 10200001 | Range error. Possible causes: The value of the parameter is not within the specified range. |
-| 10200012 | The FastBuffer's constructor cannot be directly invoked. |
-
-**示例：**
-
-```ts
-import { fastbuffer } from '@kit.ArkTS';
-
-let buf1 = new fastbuffer.FastBuffer(10);
-let buf2 = new fastbuffer.FastBuffer("buffer is a buffer.");
 ```
 
 ### compare
@@ -668,10 +593,10 @@ compare(target: FastBuffer | Uint8Array, targetStart?: number, targetEnd?: numbe
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | target | [FastBuffer](#fastbuffer)&nbsp;\|&nbsp;Uint8Array | 是 | 要比较的实例对象。 |
-| targetStart | number | 否 | `target`实例中开始的偏移量。默认值：0。 |
-| targetEnd | number | 否 | `target`实例中结束的偏移量（不包含结束位置）。默认值：目标对象的字节长度。取值范围：targetStart <= targetEnd <= target.length。 |
-| sourceStart | number | 否 | `this`实例中开始的偏移量。默认值：0。 |
-| sourceEnd | number | 否 | `this`实例中结束的偏移量（不包含结束位置）。默认值：当前对象的字节长度。取值范围：sourceStart <= sourceEnd <= this.length。 |
+| targetStart | number | 否 | `target`实例中开始的偏移量。默认值：0。 0 <= targetStart <= target.length。|
+| targetEnd | number | 否 | `target`实例中结束的偏移量（不包含结束位置）。默认值：目标对象的字节长度。取值范围：0 <= targetEnd <= target.length。 |
+| sourceStart | number | 否 | `this`实例中开始的偏移量。默认值：0。取值范围：0 <= sourceStart <= this.length。|
+| sourceEnd | number | 否 | `this`实例中结束的偏移量（不包含结束位置）。默认值：当前对象的字节长度。取值范围：0 <= sourceEnd <= this.length。 |
 
 **返回值：**
 
@@ -719,9 +644,9 @@ copy(target: FastBuffer| Uint8Array, targetStart?: number, sourceStart?: number,
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | target | [FastBuffer](#fastbuffer)&nbsp;\|&nbsp;Uint8Array | 是 | 要复制到的Buffer或Uint8Array实例。 |
-| targetStart | number | 否 | `target`实例中开始写入的偏移量。默认值：0。 |
-| sourceStart | number | 否 | `this`实例中开始复制的偏移量。默认值: 0。 |
-| sourceEnd | number | 否 | `this`实例中结束复制的偏移量（不包含结束位置）。默认值：当前对象的字节长度。 取值范围：sourceStart <= sourceEnd <= this.length && sourceEnd - sourceStart <= target.length - targetStart。 |
+| targetStart | number | 否 | `target`实例中开始写入的偏移量。默认值：0。取值范围：0 <= targetStart <= UINT32_MAX。 |
+| sourceStart | number | 否 | `this`实例中开始复制的偏移量。默认值: 0。取值范围：0 <= sourceStart <= UINT32_MAX。 |
+| sourceEnd | number | 否 | `this`实例中结束复制的偏移量（不包含结束位置）。默认值：当前对象的字节长度。取值范围：0 <= sourceEnd <= this.length。 |
 
 **返回值：**
 
@@ -821,7 +746,6 @@ equals(otherBuffer: Uint8Array | FastBuffer): boolean
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200068 | The underlying ArrayBuffer is null or detach. |
 
 **示例：**
@@ -854,8 +778,8 @@ fill(value: string | FastBuffer | Uint8Array | number, offset?: number, end?: nu
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | string&nbsp;\|&nbsp;FastBuffer&nbsp;\|&nbsp;Uint8Array&nbsp;\|&nbsp;number | 是 | 用于填充的值。 |
-| offset | number | 否 | 起始偏移量。默认值：0。 |
-| end | number | 否 | 结束偏移量（不包含结束位置）。 默认值：当前对象的字节长度。取值范围：offset <= end <= this.length。 |
+| offset | number | 否 | 起始偏移量。默认值：0。取值范围：0 <= offset <= this.length。 |
+| end | number | 否 | 结束偏移量（不包含结束位置）。 默认值：当前对象的字节长度。取值范围：0 <= end <= this.length。 |
 | encoding | [BufferEncoding](#bufferencoding) | 否 | 字符编码格式（`value`为string才有意义）。默认值：'utf8'。传入无法识别的encoding会抛出TypeError。 |
 
 **返回值：**
@@ -890,6 +814,10 @@ includes(value: string | number | FastBuffer | Uint8Array, byteOffset?: number, 
 
 检查FastBuffer对象是否包含`value`值。
 
+若byteOffset为正数，则从0开始计算偏移量；如果为负数，则从末尾开始计算偏移量。
+
+当byteOffset大于等于this.length时，返回false。当byteOffset小于等于-this.length，查找整个FastBuffer中是否存在`value`。
+
 **原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
@@ -899,7 +827,7 @@ includes(value: string | number | FastBuffer | Uint8Array, byteOffset?: number, 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;FastBuffer&nbsp;\|&nbsp;Uint8Array | 是 | 要搜索的内容。 |
-| byteOffset | number | 否 | 字节偏移量。若为正数，则从0开始计算偏移量；如果为负数，则从末尾开始计算偏移量。默认值：0。取值范围：-this.length <= byteOffset <= this.length。 |
+| byteOffset | number | 否 | 字节偏移量。若为正数，则从0开始计算偏移量；若byteOffset为正数，则从0开始计算偏移量；如果为负数，则从末尾开始计算偏移量。默认值：0。|
 | encoding | [BufferEncoding](#bufferencoding) | 否 | 字符编码格式。默认值：'utf8'。传入无法识别的encoding会抛出TypeError。 |
 
 **返回值：**
@@ -907,14 +835,6 @@ includes(value: string | number | FastBuffer | Uint8Array, byteOffset?: number, 
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 若FastBuffer对象包含`value`值时返回true，否则为false。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 10200001 | Range error. Possible causes: The value of the parameter is not within the specified range. |
 
 **示例：**
 
@@ -934,6 +854,10 @@ indexOf(value: string | number | FastBuffer | Uint8Array, byteOffset?: number, e
 
 返回当前对象中首次出现`value`的索引，如果不包含`value`，则返回-1。
 
+若byteOffset为正数，则从0开始计算偏移量；如果为负数，则从末尾开始计算偏移量。
+
+当byteOffset大于等于this.length时，返回-1。当byteOffset小于等于-this.length，返回整个FastBuffer中首次出现`value`的索引。
+
 **原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
@@ -943,7 +867,7 @@ indexOf(value: string | number | FastBuffer | Uint8Array, byteOffset?: number, e
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;FastBuffer&nbsp;\|&nbsp;Uint8Array | 是 | 要查找的内容。 |
-| byteOffset | number | 否 | 字节偏移量。若为正数，则从0开始计算偏移量；如果为负数，则从末尾开始计算偏移量。默认值：0。取值范围：-this.length <= byteOffset <= this.length。 |
+| byteOffset | number | 否 | 字节偏移量。若byteOffset为正数，则从0开始计算偏移量；如果为负数，则从末尾开始计算偏移量。默认值：0。|
 | encoding | [BufferEncoding](#bufferencoding) | 否 | 字符编码格式。默认值：'utf8'。传入无法识别的encoding会抛出TypeError。 |
 
 **返回值：**
@@ -952,15 +876,7 @@ indexOf(value: string | number | FastBuffer | Uint8Array, byteOffset?: number, e
 | -------- | -------- |
 | number | 返回第一次出现的位置。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 10200001 | Range error. Possible causes: The value of the parameter is not within the specified range. |
-
-**示例
+**示例**
 
 ```ts
 import { fastbuffer } from '@kit.ArkTS';
@@ -1052,6 +968,10 @@ lastIndexOf(value: string | number | FastBuffer | Uint8Array, byteOffset?: numbe
 
 返回当前对象中最后一次出现`value`的索引，如果对象不包含`value`，则返回-1。
 
+若byteOffset为正数，则从0开始计算偏移量；如果为负数，则从末尾开始计算偏移量。
+
+当byteOffset大于等于this.length时，返回整个FastBuffer中最后一次出现`value`的索引。当byteOffset小于等于-this.length时，返回-1。
+
 **原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
@@ -1061,7 +981,7 @@ lastIndexOf(value: string | number | FastBuffer | Uint8Array, byteOffset?: numbe
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;FastBuffer&nbsp;\|&nbsp;Uint8Array | 是 | 要搜索的内容。 |
-| byteOffset | number | 否 | 字节偏移量。若为正数，则从0开始计算偏移量；如果为负数，则从末尾开始计算偏移量。默认值：this.length。取值范围：-this.length <= byteOffset <= this.length。 |
+| byteOffset | number | 否 | 字节偏移量。若byteOffset为正数，则从0开始计算偏移量；如果为负数，则从末尾开始计算偏移量。默认值：this.length - 1。|
 | encoding | [BufferEncoding](#bufferencoding) | 否 | 字符编码格式。默认值：'utf8'。 |
 
 **返回值：**
@@ -1069,14 +989,6 @@ lastIndexOf(value: string | number | FastBuffer | Uint8Array, byteOffset?: numbe
 | 类型 | 说明 |
 | -------- | -------- |
 | number | 最后一次出现`value`值的索引。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 10200001 | Range error. Possible causes: The value of the parameter is not within the specified range. |
 
 **示例：**
 
@@ -1119,7 +1031,6 @@ readBigInt64BE(offset?: number): bigint
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
 | 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 8. Received value is: [offset]. |
 
 **示例：**
@@ -1166,7 +1077,6 @@ readBigInt64LE(offset?: number): bigint
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
 | 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 8. Received value is: [offset]. |
 
 **示例：**
@@ -1213,7 +1123,6 @@ readBigUInt64BE(offset?: number): bigint
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
 | 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 8. Received value is: [offset]. |
 
 **示例：**
@@ -1259,7 +1168,6 @@ readBigUInt64LE(offset?: number): bigint
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
 | 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 8. Received value is: [offset]. |
 
 **示例：**
@@ -1306,7 +1214,6 @@ readDoubleBE(offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
 | 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 8. Received value is: [offset]. |
 
 **示例：**
@@ -1351,7 +1258,6 @@ readDoubleLE(offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
 | 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 8. Received value is: [offset]. |
 
 **示例：**
@@ -1396,7 +1302,6 @@ readFloatBE(offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
 | 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 4. Received value is: [offset]. |
 
 **示例：**
@@ -1441,7 +1346,6 @@ readFloatLE(offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
 | 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 4. Received value is: [offset]. |
 
 **示例：**
@@ -1486,7 +1390,6 @@ readInt8(offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
 | 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 1. Received value is: [offset]. |
 
 **示例：**
@@ -1533,7 +1436,6 @@ readInt16BE(offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
 | 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 2. Received value is: [offset]. |
 
 **示例：**
@@ -1578,7 +1480,6 @@ readInt16LE(offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
 | 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 2. Received value is: [offset]. |
 
 **示例：**
@@ -1623,7 +1524,6 @@ readInt32BE(offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
 | 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 4. Received value is: [offset]. |
 
 **示例：**
@@ -1668,7 +1568,6 @@ readInt32LE(offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
 | 10200001 |  The value of "offset" is out of range. It must be >= 0 and <= buf.length - 4. Received value is: [offset]. |
 
 **示例：**
@@ -1715,7 +1614,6 @@ readIntBE(offset: number, byteLength: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
@@ -1764,7 +1662,6 @@ readIntLE(offset: number, byteLength: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
@@ -1810,7 +1707,6 @@ readUInt8(offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Incorrect parameter types. |
 | 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 1. Received value is: [offset]. |
 
 **示例：**
@@ -1822,7 +1718,7 @@ let buf = fastbuffer.from([1, -2]);
 console.info(buf.readUInt8(0).toString());
 // 输出结果：1
 console.info(buf.readUInt8(1).toString());
-// 输出结果：0
+// 输出结果：254
 let buf1 = fastbuffer.allocUninitializedFromPool(4);
 let result = buf1.writeUInt8(0x42);
 console.info("result = " + result);
@@ -1858,7 +1754,6 @@ readUInt16BE(offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Incorrect parameter types. |
 | 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 2. Received value is: [offset]. |
 
 **示例：**
@@ -1906,7 +1801,6 @@ readUInt16LE(offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Incorrect parameter types. |
 | 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 2. Received value is: [offset]. |
 
 **示例：**
@@ -1954,7 +1848,6 @@ readUInt32BE(offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Incorrect parameter types. |
 | 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 4. Received value is: [offset]. |
 
 **示例：**
@@ -2000,7 +1893,6 @@ readUInt32LE(offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Incorrect parameter types. |
 | 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 4. Received value is: [offset]. |
 
 **示例：**
@@ -2047,7 +1939,6 @@ readUIntBE(offset: number, byteLength: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
@@ -2094,7 +1985,6 @@ readUIntLE(offset: number, byteLength: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
@@ -2321,7 +2211,6 @@ toString(encoding?: string, start?: number, end?: number): string
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | Range error. Possible causes: The value of the parameter is not within the specified range. |
 | 10200068 | The underlying ArrayBuffer is null or detach. |
 
 **示例：**
@@ -2370,6 +2259,7 @@ write(str: string, offset?: number, length?: number, encoding?: string): number
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200001 | Range error. Possible causes: The value of the parameter is not within the specified range. |
+| 10200068 | The underlying ArrayBuffer is null or detach. |
 
 **示例：**
 
@@ -2401,7 +2291,7 @@ writeBigInt64BE(value: bigint, offset?: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | bigint | 是 | 写入Buffer的数据。 |
+| value | bigint | 是 | 写入Buffer的数据。取值范围：-INT64_MAX <= value <= INT64_MAX。|
 | offset | number | 否 | 偏移量。默认值：0。取值范围：0 <= offset <= this.length - 8。 |
 
 
@@ -2417,7 +2307,6 @@ writeBigInt64BE(value: bigint, offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
@@ -2445,7 +2334,7 @@ writeBigInt64LE(value: bigint, offset?: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | bigint | 是 | 写入Buffer的数据。 |
+| value | bigint | 是 | 写入Buffer的数据。取值范围：-INT64_MAX <= value <= INT64_MAX。|
 | offset | number | 否 | 偏移量。默认值：0。取值范围：0 <= offset <= this.length - 8。 |
 
 
@@ -2461,7 +2350,6 @@ writeBigInt64LE(value: bigint, offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
@@ -2489,7 +2377,7 @@ writeBigUInt64BE(value: bigint, offset?: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | bigint | 是 | 写入Buffer的数据。 |
+| value | bigint | 是 | 写入Buffer的数据。取值范围：0 <= value <= UINT64_MAX。|
 | offset | number | 否 | 偏移量。默认值：0。取值范围：0 <= offset <= this.length - 8。 |
 
 
@@ -2505,7 +2393,6 @@ writeBigUInt64BE(value: bigint, offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
@@ -2533,7 +2420,7 @@ writeBigUInt64LE(value: bigint, offset?: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | bigint | 是 | 写入Buffer的数据。 |
+| value | bigint | 是 | 写入Buffer的数据。取值范围：0 <= value <= UINT64_MAX。 |
 | offset | number | 否 | 偏移量。默认值：0。取值范围：0 <= offset <= this.length - 8。 |
 
 
@@ -2549,7 +2436,6 @@ writeBigUInt64LE(value: bigint, offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
@@ -2577,7 +2463,7 @@ writeDoubleBE(value: number, offset?: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | number | 是 | 写入Buffer的数据。 |
+| value | number | 是 | 写入Buffer的数据。取值范围：-DOUBLE_MAX <= value <= DOUBLE_MAX。|
 | offset | number | 否 | 偏移量。默认值：0。取值范围：0 <= offset <= this.length - 8。 |
 
 
@@ -2593,7 +2479,6 @@ writeDoubleBE(value: number, offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 8. Received value is: [offset] |
 
 **示例：**
@@ -2621,7 +2506,7 @@ writeDoubleLE(value: number, offset?: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | number | 是 | 写入Buffer的数据。 |
+| value | number | 是 | 写入Buffer的数据。取值范围：-DOUBLE_MAX <= value <= DOUBLE_MAX。|
 | offset | number | 否 | 偏移量。默认值：0。取值范围：0 <= offset <= this.length - 8。 |
 
 
@@ -2637,7 +2522,6 @@ writeDoubleLE(value: number, offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 8. Received value is: [offset] |
 
 **示例：**
@@ -2665,7 +2549,7 @@ writeFloatBE(value: number, offset?: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | number | 是 | 写入Buffer的数据。 |
+| value | number | 是 | 写入Buffer的数据。取值范围：-FLOAT_MAX <= value <= FLOAT_MAX。|
 | offset | number | 否 | 偏移量。默认值：0。取值范围：0 <= offset <= this.length - 4。 |
 
 
@@ -2681,7 +2565,6 @@ writeFloatBE(value: number, offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 4. Received value is: [offset] |
 
 **示例：**
@@ -2710,7 +2593,7 @@ writeFloatLE(value: number, offset?: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | number | 是 | 写入Buffer的数据。 |
+| value | number | 是 | 写入Buffer的数据。取值范围：-FLOAT_MAX <= value <= FLOAT_MAX。 |
 | offset | number | 否 | 偏移量。默认值：0。取值范围：0 <= offset <= this.length - 4。 |
 
 
@@ -2726,7 +2609,6 @@ writeFloatLE(value: number, offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 4. Received value is: [offset] |
 
 **示例：**
@@ -2754,7 +2636,7 @@ writeInt8(value: number, offset?: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | number | 是 | 写入Buffer的数据。 |
+| value | number | 是 | 写入Buffer的数据。取值范围：-INT8_MAX <= value <= INT8_MAX。 |
 | offset | number | 否 | 偏移量。默认值：0。取值范围：0 <= offset <= this.length - 1。 |
 
 
@@ -2770,7 +2652,6 @@ writeInt8(value: number, offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
@@ -2802,7 +2683,7 @@ writeInt16BE(value: number, offset?: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | number | 是 | 写入Buffer的数据。 |
+| value | number | 是 | 写入Buffer的数据。取值范围：-INT16_MAX <= value <= INT16_MAX。 |
 | offset | number | 否 | 偏移量。默认值：0。取值范围：0 <= offset <= this.length - 2。 |
 
 
@@ -2818,7 +2699,6 @@ writeInt16BE(value: number, offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
@@ -2847,7 +2727,7 @@ writeInt16LE(value: number, offset?: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | number | 是 | 写入Buffer的数据。 |
+| value | number | 是 | 写入Buffer的数据。取值范围：-INT16_MAX <= value <= INT16_MAX。 |
 | offset | number | 否 | 偏移量。默认值：0。取值范围：0 <= offset <= this.length - 2。 |
 
 
@@ -2863,7 +2743,6 @@ writeInt16LE(value: number, offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
@@ -2891,7 +2770,7 @@ writeInt32BE(value: number, offset?: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | number | 是 | 写入Buffer的数据。 |
+| value | number | 是 | 写入Buffer的数据。取值范围：-INT32_MAX <= value <= INT32_MAX。 |
 | offset | number | 否 | 偏移量。默认值：0。取值范围：0 <= offset <= this.length - 4。 |
 
 
@@ -2907,7 +2786,6 @@ writeInt32BE(value: number, offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
@@ -2936,7 +2814,7 @@ writeInt32LE(value: number, offset?: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | number | 是 | 写入Buffer的数据。 |
+| value | number | 是 | 写入Buffer的数据。取值范围：-INT32_MAX <= value <= INT32_MAX。 |
 | offset | number | 否 | 偏移量。默认值：0。取值范围：0 <= offset <= this.length - 4。 |
 
 
@@ -2952,7 +2830,6 @@ writeInt32LE(value: number, offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
@@ -2980,7 +2857,7 @@ writeIntBE(value: number, offset: number, byteLength: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | number | 是 | 写入Buffer的数据。 |
+| value | number | 是 | 写入Buffer的数据。取值范围取决于byteLength。  |
 | offset | number | 是 | 偏移量。默认值：0。取值范围：0 <= offset <= this.length - byteLength。 |
 | byteLength | number | 是 | 要写入的字节数。 |
 
@@ -2997,7 +2874,6 @@ writeIntBE(value: number, offset: number, byteLength: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
@@ -3026,7 +2902,7 @@ writeIntLE(value: number, offset: number, byteLength: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | number | 是 | 写入Buffer的数据。 |
+| value | number | 是 | 写入Buffer的数据。取值范围取决于byteLength。 |
 | offset | number | 是 | 偏移量。默认值：0。取值范围：0 <= offset <= this.length - byteLength。 |
 | byteLength | number | 是 | 要写入的字节数。 |
 
@@ -3043,7 +2919,6 @@ writeIntLE(value: number, offset: number, byteLength: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
@@ -3071,7 +2946,7 @@ writeUInt8(value: number, offset?: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | number | 是 | 写入Buffer的数据。 |
+| value | number | 是 | 写入Buffer的数据。取值范围：0 <= value <= UINT8_MAX。 |
 | offset | number | 否 | 偏移量。默认值：0。取值范围：0 <= offset <= this.length - 1。 |
 
 
@@ -3087,7 +2962,6 @@ writeUInt8(value: number, offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
@@ -3124,7 +2998,7 @@ writeUInt16BE(value: number, offset?: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | number | 是 | 写入Buffer的数据。 |
+| value | number | 是 | 写入Buffer的数据。取值范围：0 <= value <= UINT16_MAX。 |
 | offset | number | 否 | 偏移量。默认值为0。取值范围：0 <= offset <= this.length - 2。 |
 
 
@@ -3140,7 +3014,6 @@ writeUInt16BE(value: number, offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
@@ -3171,7 +3044,7 @@ writeUInt16LE(value: number, offset?: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | number | 是 | 写入Buffer的数据。 |
+| value | number | 是 | 写入Buffer的数据。取值范围：0 <= value <= UINT16_MAX。 |
 | offset | number | 否 | 偏移量。默认值：0。取值范围：0 <= offset <= this.length - 2。 |
 
 
@@ -3187,7 +3060,6 @@ writeUInt16LE(value: number, offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
@@ -3218,7 +3090,7 @@ writeUInt32BE(value: number, offset?: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | number | 是 | 写入Buffer的数据。 |
+| value | number | 是 | 写入Buffer的数据。取值范围：0 <= value <= UINT32_MAX。 |
 | offset | number | 否 | 偏移量。默认值：0。取值范围：0 <= offset <= this.length - 4。 |
 
 
@@ -3234,7 +3106,6 @@ writeUInt32BE(value: number, offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
@@ -3262,7 +3133,7 @@ writeUInt32LE(value: number, offset?: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | number | 是 | 写入FastBuffer对象的数据。 |
+| value | number | 是 | 写入FastBuffer对象的数据。取值范围：0 <= value <= UINT32_MAX。 |
 | offset | number | 否 | 偏移量。默认值：0。取值范围：0 <= offset <= this.length - 4。 |
 
 
@@ -3278,7 +3149,6 @@ writeUInt32LE(value: number, offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
@@ -3306,7 +3176,7 @@ writeUIntBE(value: number, offset: number, byteLength: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | number | 是 | 写入Buffer的数据。 |
+| value | number | 是 | 写入Buffer的数据。取值范围取决于byteLength。 |
 | offset | number | 是 | 偏移量。默认值：0。取值范围：0 <= offset <= this.length - byteLength。 |
 | byteLength | number | 是 | 要写入的字节数。 |
 
@@ -3323,7 +3193,6 @@ writeUIntBE(value: number, offset: number, byteLength: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
@@ -3351,7 +3220,7 @@ writeUIntLE(value: number, offset: number, byteLength: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | number | 是 | 写入Buffer的数据。 |
+| value | number | 是 | 写入Buffer的数据。取值范围取决于byteLength。 |
 | offset | number | 是 | 偏移量。默认值：0。取值范围：0 <= offset <= this.length - byteLength。 |
 | byteLength | number | 是 | 要写入的字节数。 |
 
@@ -3368,7 +3237,6 @@ writeUIntLE(value: number, offset: number, byteLength: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**

@@ -33,7 +33,7 @@ This error code is reported when the API does not have the required permissions 
 
 **Possible Causes**
 
-The virtual screen object of another process is operated.
+The creator and destroyer of the virtual screen are different.
 
 **Solution**
 

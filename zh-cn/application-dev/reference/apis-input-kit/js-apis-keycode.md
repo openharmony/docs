@@ -365,6 +365,7 @@ import { KeyCode } from '@kit.InputKit';
 | KEYCODE_BTN_7                    |  3107 | 按键7。                         |
 | KEYCODE_BTN_8                    |  3108 | 按键8。                         |
 | KEYCODE_BTN_9                    |  3109 | 按键9。                         |
-| KEYCODE_DAGGER_CLICK<sup>18+</sup> | 3211 | 智能手表dagger单击键。 |
-| KEYCODE_DAGGER_DOUBLE_CLICK<sup>18+</sup> | 3212 | 智能手表dagger双击键。 |
-| KEYCODE_DAGGER_LONG_PRESS<sup>18+</sup> | 3213 | 智能手表dagger长按键。 |
+| KEYCODE_DAGGER_CLICK<sup>18+</sup> | 3211 | 智能手表智感窗按键单击。 |
+| KEYCODE_DAGGER_DOUBLE_CLICK<sup>18+</sup> | 3212 | 智能手表智感窗按键双击。 |
+| KEYCODE_DAGGER_LONG_PRESS<sup>18+</sup> | 3213 | 智能手表智感窗按键长按。 |
+| KEYCODE_DIV<sup>20+</sup> | 3220 | 智能手表左按键，仅支持智能穿戴设备使用。 |

@@ -1,4 +1,4 @@
-# @ohos.app.ability.wantConstant (wantConstant)
+# @ohos.app.ability.wantConstant (Want常量)
 
 wantConstant模块提供了[Want](js-apis-app-ability-want.md)操作相关的系统预设枚举和常量，例如在启动Ability时常用的Flag、Param参数等。
 
@@ -42,6 +42,8 @@ import { wantConstant } from '@kit.AbilityKit';
 | APP_LAUNCH_TRUSTLIST<sup>17+</sup>  | ohos.params.appLaunchTrustList  | 表示隐式启动时的应用过滤列表。<br>隐式启动时仅匹配列表中的应用，值为string类型的[AppIdentifier](js-apis-bundleManager-bundleInfo.md#signatureinfo)数组，过滤列表最多支持50个应用，传入空数组不生效。<br>**原子化服务API**：从API version 17开始，该接口支持在原子化服务中使用。 |
 | LAUNCH_REASON_MESSAGE<sup>18+</sup>  | ohos.params.launchReasonMessage  | 表示应用拉起的原因。<br>调用方必须为系统应用，且需要申请ohos.permission.SET_LAUNCH_REASON_MESSAGE权限。当前取值仅支持"ReasonMessage_SystemShare"。 <br>**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。 |
 | DESTINATION_PLUGIN_ABILITY<sup>19+</sup>  | ohos.params.pluginAbility  | 指示目标Ability是插件Ability。 |
+| ATOMIC_SERVICE_SHARE_ROUTER<sup>20+</sup>  | ohos.params.atomicservice.shareRouter  | 表示被拉起的原子化服务的页面栈信息。仅当拉起方为UIAbilityContext，被拉起方为原子化服务时生效。<br>例如，某原子化服务中包含首页和第2页，如果希望直接拉起原子化服务的第2页，可以在拉起原子化服务时通过该字段传递第2页的页面栈信息。<br>**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。 |
+| ABILITY_UNIFIED_DATA_KEY<sup>20+</sup>  | ohos.param.ability.udKey  | 表示基于[UDMF](../../reference/apis-arkdata/js-apis-data-unifiedDataChannel.md)进行文件分享时使用的唯一标识。该字段只允许系统应用设置，三方应用可以读取。<br>当Want中存在URI授权Flag字段（即[FLAG_AUTH_READ_URI_PERMISSION](#flags)或[FLAG_AUTH_WRITE_URI_PERMISSION](#flags)），且同时存在PARAMS_STREAM字段时，该字段将不生效。 <br>**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。|
 
 ## Flags
 

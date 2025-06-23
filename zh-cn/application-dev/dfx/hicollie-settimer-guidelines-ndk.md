@@ -122,7 +122,7 @@ HiCollie模块对外提供函数执行时间超长的检测机制。
            Button("TestHiCollieTimerNdk")
              .fontSize(50)
              .fontWeight(FontWeight.Bold)
-             .onClick(testNapi.TestHiCollieTimerNdk);  //添加点击事件，触发testHiCollieTimerNdk方法。
+             .onClick(testNapi.TestHiCollieTimerNdk);  //添加点击事件，触发TestHiCollieTimerNdk方法。
          }
          .width('100%')
        }
@@ -131,7 +131,7 @@ HiCollie模块对外提供函数执行时间超长的检测机制。
    }
    ```
 
-6. 点击IDE界面中的运行按钮，运行应用工程:
+6. 点击DevEco Studio界面中的运行按钮，运行应用工程:
 
 7. 在DevEco Studio的底部，切换到“Log->HiLog”窗口，设置日志的过滤条件为“testTag”:
    

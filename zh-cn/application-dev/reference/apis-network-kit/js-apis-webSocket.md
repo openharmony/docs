@@ -10,7 +10,6 @@
 
 服务端：（目前服务端仅支持智慧屏使用）使用WebSocket建立服务器与客户端的双向连接，需要先通过[createWebSocketServer](#websocketcreatewebsocketserver19)方法创建[WebSocketServer](#websocketserver19)对象，然后通过[start](#start19)方法启动服务器，监听客户端的申请建链的消息。当连接成功后，服务端会收到[connect](#onconnect19)事件的回调，之后服务端可以通过[send](#send19)方法与客户端进行通信，或者通过[listAllConnections](#listallconnections19)方法列举出当前与服务端建链的所有客户端信息。当客户端给服务端发消息时，服务端会收到[messageReceive](#onmessagereceive19)事件回调。当服务端想断开与某个客户端的连接时，可以通过调用[close](#close19)方法主动断开与某个客户端的连接，之后服务端会收到[close](#onclose19)事件的回调。当服务端想停止service时，可以调用[stop](#stop19)方法。若在上述任一过程中发生错误，服务端会收到[error](#onerror19)事件的回调。
 
-
 ## 导入模块
 
 ```ts
@@ -50,7 +49,7 @@ connect(url: string, callback: AsyncCallback\<boolean\>): void
 根据URL地址，建立一个WebSocket连接，使用callback方式作为异步方法。
 
 > **说明：**
-> 可通过监听error事件获得该接口的执行结果，错误发生时会得到错误码：200。
+> 可通过监听error事件获得该接口的执行结果。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -69,6 +68,8 @@ connect(url: string, callback: AsyncCallback\<boolean\>): void
 
 **错误码：**
 
+以下错误码的详细介绍参见[webSocket错误码](errorcode-net-webSocket.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID              | 错误信息                                   |
 | --------------------- | ------------------------------------------ |
 | 401                   | Parameter error.                           |
@@ -79,8 +80,6 @@ connect(url: string, callback: AsyncCallback\<boolean\>): void
 | 2302998               | It is not allowed to access this domain.   |
 | 2302999               | Internal error.             |
 
-> **错误码说明：**
-> 以上错误码的详细介绍参见[webSocket错误码](errorcode-net-webSocket.md)。
 
 **示例：**
 
@@ -92,9 +91,9 @@ let ws = webSocket.createWebSocket();
 let url = "ws://";
 ws.connect(url, (err: BusinessError, value: boolean) => {
   if (!err) {
-    console.log("connect success");
+    console.info("connect success")
   } else {
-    console.error("connect fail, err:" + JSON.stringify(err));
+    console.error(`connect fail. Code: ${err.code}, message: ${err.message}`)
   }
 });
 ```
@@ -126,6 +125,8 @@ connect(url: string, options: WebSocketRequestOptions, callback: AsyncCallback\<
 
 **错误码：**
 
+以下错误码的详细介绍参见[webSocket错误码](errorcode-net-webSocket.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID              | 错误信息                                   |
 | --------------------- | ------------------------------------------ |
 | 401                   | Parameter error.                           |
@@ -135,9 +136,6 @@ connect(url: string, options: WebSocketRequestOptions, callback: AsyncCallback\<
 | 2302003               | Websocket connection already exists.       |
 | 2302998               | It is not allowed to access this domain.   |
 | 2302999               | Internal error.             |
-
-> **错误码说明：**
-> 以上错误码的详细介绍参见[webSocket错误码](errorcode-net-webSocket.md)。
 
 **示例：**
 
@@ -158,9 +156,9 @@ if (options !=undefined) {
 let url = "ws://"
 ws.connect(url, options, (err: BusinessError, value: Object) => {
   if (!err) {
-    console.log("connect success");
+    console.info("connect success")
   } else {
-    console.error("connect fail, err:" + JSON.stringify(err))
+    console.error(`connect fail. Code: ${err.code}, message: ${err.message}`)
   }
 });
 ```
@@ -197,6 +195,8 @@ connect(url: string, options?: WebSocketRequestOptions): Promise\<boolean\>
 
 **错误码：**
 
+以下错误码的详细介绍参见[webSocket错误码](errorcode-net-webSocket.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID              | 错误信息                                   |
 | --------------------- | ------------------------------------------ |
 | 401                   | Parameter error.                           |
@@ -207,9 +207,6 @@ connect(url: string, options?: WebSocketRequestOptions): Promise\<boolean\>
 | 2302998               | It is not allowed to access this domain.   |
 | 2302999               | Internal error.             |
 
-> **错误码说明：**
-> 以上错误码的详细介绍参见[webSocket错误码](errorcode-net-webSocket.md)。
-
 **示例：**
 
 ```ts
@@ -219,9 +216,9 @@ let ws = webSocket.createWebSocket();
 let url = "ws://"
 let promise = ws.connect(url);
 promise.then((value: boolean) => {
-  console.log("connect success");
+  console.info("connect success")
 }).catch((err:string) => {
-  console.error("connect fail, error:" + JSON.stringify(err));
+  console.error("connect fail, error:" + JSON.stringify(err))
 });
 ```
 
@@ -246,6 +243,8 @@ send(data: string | ArrayBuffer, callback: AsyncCallback\<boolean\>): void
 
 **错误码：**
 
+以下错误码的详细介绍参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
@@ -265,18 +264,18 @@ class OutValue {
 }
 ws.connect(url, (err: BusinessError, value: boolean) => {
     if (!err) {
-      console.log("connect success");
+      console.info("connect success")
     } else {
-      console.error("connect fail, err:" + JSON.stringify(err))
+      console.error(`connect fail. Code: ${err.code}, message: ${err.message}`)
     }
 });
 ws.on('open', (err: BusinessError, value: Object) => {
-  console.log("on open, status:" + (value as OutValue).status + ", message:" + (value as OutValue).message);
+  console.info("on open, status:" + (value as OutValue).status + ", message:" + (value as OutValue).message)
     ws.send("Hello, server!", (err: BusinessError, value: boolean) => {
     if (!err) {
-      console.log("send success");
+      console.info("send success")
     } else {
-      console.error("send fail, err:" + JSON.stringify(err))
+      console.error(`send fail. Code: ${err.code}, message: ${err.message}`)
     }
   });
 });
@@ -312,6 +311,8 @@ send(data: string | ArrayBuffer): Promise\<boolean\>
 
 **错误码：**
 
+以下错误码的详细介绍参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
@@ -331,19 +332,19 @@ class OutValue {
 }
 ws.connect(url, (err: BusinessError, value: boolean) => {
     if (!err) {
-      console.log("connect success");
+      console.info("connect success")
     } else {
-      console.error("connect fail, err:" + JSON.stringify(err))
+      console.error(`connect fail. Code: ${err.code}, message: ${err.message}`)
     }
 });
 
 ws.on('open', (err: BusinessError, value: Object) => {
-  console.log("on open, status:" + (value as OutValue).status + ", message:" + (value as OutValue).message);
+  console.info("on open, status:" + (value as OutValue).status + ", message:" + (value as OutValue).message)
   let promise = ws.send("Hello, server!");
   promise.then((value: boolean) => {
-    console.log("send success")
+    console.info("send success")
   }).catch((err:string) => {
-    console.error("send fail, error:" + JSON.stringify(err))
+    console.error(`send fail, error:" + JSON.stringify(err))
   });
 });
 ```
@@ -372,6 +373,8 @@ close(callback: AsyncCallback\<boolean\>): void
 
 **错误码：**
 
+以下错误码的详细介绍参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
@@ -386,9 +389,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let ws = webSocket.createWebSocket();
 ws.close((err: BusinessError) => {
   if (!err) {
-    console.log("close success")
+    console.info("close success")
   } else {
-    console.error("close fail, err is " + JSON.stringify(err))
+    console.error(`close fail. Code: ${err.code}, message: ${err.message}`)
   }
 });
 ```
@@ -414,6 +417,8 @@ close(options: WebSocketCloseOptions, callback: AsyncCallback\<boolean\>): void
 
 **错误码：**
 
+以下错误码的详细介绍参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
@@ -434,9 +439,9 @@ if (options != undefined) {
 }
 ws.close(options, (err: BusinessError) => {
     if (!err) {
-        console.log("close success")
+        console.info("close success")
     } else {
-        console.error("close fail, err is " + JSON.stringify(err))
+        console.error(`close fail. Code: ${err.code}, message: ${err.message}`)
     }
 });
 ```
@@ -467,6 +472,8 @@ close(options?: WebSocketCloseOptions): Promise\<boolean\>
 
 **错误码：**
 
+以下错误码的详细介绍参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
@@ -485,9 +492,9 @@ if (options != undefined) {
 }
 let promise = ws.close();
 promise.then((value: boolean) => {
-    console.log("close success")
+    console.info("close success")
 }).catch((err:string) => {
-    console.error("close fail, err is " + JSON.stringify(err))
+    console.error(`close fail, error:" + JSON.stringify(err))
 });
 ```
 
@@ -505,7 +512,7 @@ on(type: 'open', callback: AsyncCallback\<Object\>): void
 
 | 参数名   | 类型                    | 必填 | 说明                          |
 | -------- | ----------------------- | ---- | ----------------------------- |
-| type     | string                  | 是   | 'open'：WebSocket的打开事件。 |
+| type     | string                  | 是   | 订阅的事件类型。'open'：WebSocket的打开事件。 |
 | callback | AsyncCallback\<Object\> | 是   | 回调函数。                    |
 
 **示例：**
@@ -520,7 +527,7 @@ class OutValue {
   message: string = ""
 }
 ws.on('open', (err: BusinessError, value: Object) => {
-  console.log("on open, status:" + (value as OutValue).status + ", message:" + (value as OutValue).message);
+  console.info("on open, status:" + (value as OutValue).status + ", message:" + (value as OutValue).message)
 });
 ```
 
@@ -541,7 +548,7 @@ off(type: 'open', callback?: AsyncCallback\<Object\>): void
 
 | 参数名   | 类型                    | 必填 | 说明                          |
 | -------- | ----------------------- | ---- | ----------------------------- |
-| type     | string                  | 是   | 'open'：WebSocket的打开事件。 |
+| type     | string                  | 是   | 取消订阅的事件类型。'open'：WebSocket的打开事件。 |
 | callback | AsyncCallback\<Object\> | 否   | 回调函数。                    |
 
 **示例：**
@@ -556,10 +563,10 @@ class OutValue {
   message: string = ""
 }
 let callback1 = (err: BusinessError, value: Object) => {
- console.log("on open, status:" + ((value as OutValue).status + ", message:" + (value as OutValue).message));
+ console.info("on open, status:" + ((value as OutValue).status + ", message:" + (value as OutValue).message))
 }
 ws.on('open', callback1);
-// 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅
+// 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 ws.off('open', callback1);
 ```
 
@@ -570,7 +577,7 @@ on(type: 'message', callback: AsyncCallback\<string | ArrayBuffer\>): void
 订阅WebSocket的接收服务器消息事件，使用callback方式作为异步方法。
 
 > **说明：**
-> AsyncCallback中的数据可以是字符串(API 6)或ArrayBuffer(API 8)。
+> AsyncCallback中的数据可以是字符串（API version 6开始支持）或ArrayBuffer（API version 8开始支持）。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -580,7 +587,7 @@ on(type: 'message', callback: AsyncCallback\<string | ArrayBuffer\>): void
 
 | 参数名   | 类型                    | 必填 | 说明                                         |
 | -------- | ----------------------- | ---- | -------------------------------------------- |
-| type     | string                  | 是   | 'message'：WebSocket的接收服务器消息事件。 |
+| type     | string                  | 是   | 订阅的事件类型。'message'：WebSocket的接收服务器消息事件。 |
 | callback | AsyncCallback\<string \| ArrayBuffer <sup>8+</sup>\> | 是   | 回调函数。                                   |
 
 **示例：**
@@ -591,7 +598,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
 ws.on('message', (err: BusinessError<void>, value: string | ArrayBuffer) => {
-  console.log("on message, message:" + value);
+  console.info("on message, message:" + value)
 });
 ```
 
@@ -613,7 +620,7 @@ off(type: 'message', callback?: AsyncCallback\<string | ArrayBuffer\>): void
 
 | 参数名   | 类型                                                | 必填 | 说明                                         |
 | -------- | --------------------------------------------------- | ---- | -------------------------------------------- |
-| type     | string                                              | 是   | 'message'：WebSocket的接收到服务器消息事件。 |
+| type     | string                                              | 是   | 取消订阅的事件类型。'message'：WebSocket的接收到服务器消息事件。 |
 | callback | AsyncCallback\<string \|ArrayBuffer <sup>8+</sup>\> | 否   | 回调函数。                                   |
 
 **示例：**
@@ -639,7 +646,7 @@ on(type: 'close', callback: AsyncCallback\<CloseResult\>): void
 
 | 参数名   | 类型                                            | 必填 | 说明                           |
 | -------- | ----------------------------------------------- | ---- | ------------------------------ |
-| type     | string                                          | 是   | 'close'：WebSocket的关闭事件。 |
+| type     | string                                          | 是   | 订阅的事件类型。'close'：WebSocket的关闭事件。 |
 | callback | AsyncCallback\<CloseResult\> | 是   | 回调函数。<br>close：close错误码，reason：错误码说明 |
 
 **示例：**
@@ -650,7 +657,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
 ws.on('close', (err: BusinessError, value: webSocket.CloseResult) => {
-  console.log("on close, code is " + value.code + ", reason is " + value.reason);
+  console.info("on close, code is " + value.code + ", reason is " + value.reason)
 });
 ```
 
@@ -671,7 +678,7 @@ off(type: 'close', callback?: AsyncCallback\<CloseResult\>): void
 
 | 参数名   | 类型                                            | 必填 | 说明                           |
 | -------- | ----------------------------------------------- | ---- | ------------------------------ |
-| type     | string                                          | 是   | 'close'：WebSocket的关闭事件。 |
+| type     | string                                          | 是   | 取消订阅的事件类型。'close'：WebSocket的关闭事件。 |
 | callback | AsyncCallback\<CloseResult\> | 否   | 回调函数。<br>close：close错误码，reason：错误码说明 |
 
 **示例：**
@@ -697,8 +704,8 @@ on(type: 'error', callback: ErrorCallback): void
 
 | 参数名   | 类型          | 必填 | 说明                            |
 | -------- | ------------- | ---- | ------------------------------- |
-| type     | string        | 是   | 'error'：WebSocket的Error事件。 |
-| callback | ErrorCallback | 是   | 回调函数。<br>常见错误码：200 |
+| type     | string        | 是   | 订阅的事件类型。'error'：WebSocket的Error事件。 |
+| callback | ErrorCallback | 是   | 回调函数。 |
 
 **示例：**
 
@@ -708,7 +715,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
 ws.on('error', (err: BusinessError) => {
-  console.error("on error, error:" + JSON.stringify(err))
+  console.error(`on error. Code: ${err.code}, message: ${err.message}`)
 });
 ```
 
@@ -729,8 +736,8 @@ off(type: 'error', callback?: ErrorCallback): void
 
 | 参数名   | 类型          | 必填 | 说明                            |
 | -------- | ------------- | ---- | ------------------------------- |
-| type     | string        | 是   | 'error'：WebSocket的Error事件。 |
-| callback | ErrorCallback | 否   | 回调函数。默认值：200。                      |
+| type     | string        | 是   | 取消订阅的事件类型。'error'：WebSocket的Error事件。 |
+| callback | ErrorCallback | 否   | 回调函数。                      |
 
 **示例：**
 
@@ -753,7 +760,7 @@ on(type: 'dataEnd', callback: Callback\<void\>): void
 
 | 参数名   |       类型        | 必填 |                  说明                   |
 | -------- | ---------------- | ---- | --------------------------------------- |
-| type     | string           | 是   | 'dataEnd'：WebSocket的数据接收结束事件。 |
+| type     | string           | 是   | 订阅的事件类型。'dataEnd'：WebSocket的数据接收结束事件。 |
 | callback | Callback\<void\> | 是   | 回调函数。                              |
 
 **示例：**
@@ -763,7 +770,7 @@ import { webSocket } from '@kit.NetworkKit';
 
 let ws = webSocket.createWebSocket();
 ws.on('dataEnd', () => {
-  console.log("on dataEnd")
+  console.info("on dataEnd")
 });
 ```
 
@@ -782,7 +789,7 @@ off(type: 'dataEnd', callback?: Callback\<void\>): void
 
 | 参数名   |        类型       | 必填 |                说明                    |
 | -------- | ---------------- | ---- | -------------------------------------- |
-| type     | string           | 是   | 'dataEnd'：WebSocket的数据接收结束事件。|
+| type     | string           | 是   | 取消订阅的事件类型。'dataEnd'：WebSocket的数据接收结束事件。|
 | callback | Callback\<void\> | 否   | 回调函数。                             |
 
 **示例：**
@@ -806,8 +813,8 @@ on(type: 'headerReceive', callback: Callback\<ResponseHeaders\>): void
 
 | 参数名   |        类型       | 必填 |                说明                    |
 | -------- | ---------------- | ---- | -------------------------------------- |
-| type     | string           | 是   | 'headerReceive'：WebSocket的headerReceive事件。|
-| callback | Callback\<ResponseHeaders\> | 是   | 回调函数,返回订阅事件。                             |
+| type     | string           | 是   | 订阅的事件类型。'headerReceive'：WebSocket的headerReceive事件。|
+| callback | Callback\<ResponseHeaders\> | 是   | 回调函数，返回订阅事件。                             |
 
 **示例：**
 
@@ -816,7 +823,7 @@ import { webSocket } from '@kit.NetworkKit';
 
 let ws = webSocket.createWebSocket();
 ws.on('headerReceive', (data) => {
-  console.log("on headerReceive " + JSON.stringify(data));
+  console.info("on headerReceive " + JSON.stringify(data))
 });
 ```
 
@@ -835,8 +842,8 @@ off(type: 'headerReceive', callback?: Callback\<ResponseHeaders\>): void
 
 | 参数名   |        类型       | 必填 |                说明                    |
 | -------- | ---------------- | ---- | -------------------------------------- |
-| type     | string           | 是   | 'headerReceive'：WebSocket的headerReceive事件。|
-| callback | Callback\<ResponseHeaders\> | 否   | 回调函数,返回订阅事件。                           |
+| type     | string           | 是   | 取消订阅的事件类型。'headerReceive'：WebSocket的headerReceive事件。|
+| callback | Callback\<ResponseHeaders\> | 否   | 回调函数，返回订阅事件。                           |
 
 **示例：**
 
@@ -909,8 +916,8 @@ start(config: WebSocketServerConfig): Promise\<boolean\>
 | -------   | ------------------------------------------ |
 | 201       | Permission denied.                         |
 | 2302002   | Websocket certificate file does not exist. |
-| 2302004   | Cant't listen on the given NIC.            |
-| 2302005   | Cant't listen on the given Port.           |
+| 2302004   | Can't listen on the given NIC.            |
+| 2302005   | Can't listen on the given Port.           |
 | 2302999   | Websocket other unknown error.             |
 
 **示例：**
@@ -1135,7 +1142,7 @@ localServer.on('connect', (connection: webSocket.WebSocketConnection) => {
   console.info(`New client connected! Client ip: ${connection.clientIP}, Client port: ${connection.clientPort}`);
   localServer.close(connection).then((success: boolean) => {
     if (success) {
-      console.log('close client successfully');
+      console.info('close client successfully');
     } else {
       console.error('close client failed');
     }
@@ -1314,7 +1321,7 @@ localServer.off('messageReceive');
 
 ### on('close')<sup>19+</sup>
 
-on(type: 'close', callback: Callback\<ClientConnectionCloseCallback\>): void
+on(type: 'close', callback: ClientConnectionCloseCallback): void
 
 订阅WebSocketServer的关闭事件，使用callback方式作为异步方法。
 
@@ -1341,7 +1348,7 @@ localServer.on('close', (clientConnection: webSocket.WebSocketConnection, closeR
 
 ### off('close')<sup>19+</sup>
 
-off(type: 'close', callback?: Callback\<ClientConnectionCloseCallback\>): void
+off(type: 'close', callback?: ClientConnectionCloseCallback): void
 
 取消订阅WebSocketServer的关闭事件，使用callback方式作为异步方法。
 
@@ -1444,11 +1451,11 @@ localServer.off('error');
 
 **系统能力**：SystemCapability.Communication.NetStack
 
-| 名称 | 类型   | 必填 | 说明                                                         |
-| ------ | ------ | ---- | ------------------------------------------------------------ |
-| certPath   | string  | 是   | 证书路径。 |
-| keyPath | string | 是   | 证书密钥的路径。 |
-| keyPassword | string | 否   | 证书密钥的密码。 |
+| 名称 | 类型   | 必填 | 说明                |
+| ------ | ------ | ---- |-------------------|
+| certPath   | string  | 是   | 证书路径。             |
+| keyPath | string | 是   | 证书密钥的路径。          |
+| keyPassword | string | 否   | 证书密钥的密码。缺省为空字符串。 |
 
 ## ProxyConfiguration<sup>12+</sup>
 type ProxyConfiguration = 'system' | 'no-proxy' | HttpProxy
@@ -1500,7 +1507,7 @@ type ResponseHeaders = {
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
-| {[k:string]:string \| string[] \| undefined} | header数据类型为键值对、字符串或者undefined |
+| {[k:string]:string \| string[] \| undefined} | header数据类型为键值对、字符串或者undefined。 |
 
 ## close错误码说明
 
@@ -1510,11 +1517,11 @@ type ResponseHeaders = {
 
 | 值        | 说明               |
 | :-------- | :----------------- |
-| 1000      | 正常关闭           |
-| 1001      | 服务器主动关闭     |
-| 1002      | 协议错误           |
-| 1003      | 无法处理的数据类型 |
-| 1004~1015 | 保留值             |
+| 1000      | 正常关闭。           |
+| 1001      | 服务器主动关闭。     |
+| 1002      | 协议错误。           |
+| 1003      | 无法处理的数据类型。 |
+| 1004~1015 | 保留值。             |
 
 ## HttpProxy<sup>12+</sup>
 
@@ -1522,7 +1529,7 @@ type HttpProxy = connection.HttpProxy
 
 网络全局代理配置信息。
 
-**系统能力**：SystemCapability.Communication.NetStack
+**系统能力**：SystemCapability.Communication.NetStack.Core
 
 |       类型       |            说明             |
 | ---------------- | --------------------------- |

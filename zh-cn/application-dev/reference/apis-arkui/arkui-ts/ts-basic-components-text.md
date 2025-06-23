@@ -11,6 +11,10 @@
 
 可以包含[Span](ts-basic-components-span.md)、[ImageSpan](ts-basic-components-imagespan.md)、[SymbolSpan](ts-basic-components-symbolSpan.md)和[ContainerSpan](ts-basic-components-containerspan.md)子组件。
 
+>  **说明：**
+>
+>  使用[子组件](#子组件)实现实现文字竖排、图文混排场景。
+
 ## 接口
 
 Text(content?: string | Resource , value?: TextOptions)
@@ -62,29 +66,57 @@ textAlign(value: TextAlign)
 | ------ | ------------------------------------------- | ---- | ---------------------------------------------------------- |
 | value  | [TextAlign](ts-appendix-enums.md#textalign) | 是   | 文本段落在水平方向的对齐方式。<br/>默认值：TextAlign.Start<br/>Wearable设备上默认值为：TextAlign.Center |
 
+### textVerticalAlign<sup>20+</sup>
+
+textVerticalAlign(textVerticalAlign: Optional\<TextVerticalAlign>)
+
+设置文本段落在垂直方向的对齐方式。
+
+与[halfLeading](#halfleading12)同时配置时，halfLeading不生效。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                        | 必填 | 说明                                                       |
+| ------ | ------------------------------------------- | ---- | ---------------------------------------------------------- |
+| textVerticalAlign  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[TextVerticalAlign](ts-text-common.md#textverticalalign20)> | 否   | 文本段落在垂直方向的对齐方式。<br/>默认值：TextVerticalAlign.BASELINE |
+
 ### textOverflow
 
 textOverflow(options: TextOverflowOptions)
 
 设置文本超长时的显示方式。
 
-文本截断按字进行。例如，英文以单词为最小单位进行截断，若需要以字母为单位进行截断，可在字母间添加零宽空格：`\u200B`。从API version 11开始，建议优先组合[wordBreak](#wordbreak11)属性设置为WordBreak.BREAK_ALL方式实现字母为单位进行截断，具体详见[示例4设置文本断行及折行](#示例4设置文本断行及折行)。
+当[TextOverflowOptions](#textoverflowoptions18对象说明)设置为TextOverflow.None、TextOverflow.Clip或TextOverflowEllipsis时：
 
-当overflow设置为TextOverflow.None、TextOverflow.Clip或TextOverflow.Ellipsis时，需配合[maxLines](#maxlines)属性使用，单独设置不生效。设置TextOverflow.None与TextOverflow.Clip效果相同。
+- 设置为TextOverflow.None、TextOverflow.Clip，文本超长时按最大行截断显示。
 
-当overflow设置为TextOverflow.MARQUEE时：
+- 设置为TextOverflow.Ellipsis，文本超长时显示不下的文本用省略号代替。
+
+- 需配合[maxLines](#maxlines)使用，单独设置不生效。
+
+- 断行规则参考[wordBreak](#wordbreak11)。默认情况下参考WordBreak.BREAK_WORD的截断方式，文本截断按字进行。例如，英文以单词为最小单位进行截断。若需要以字母为单位进行截断，可在字母间添加零宽空格：`\u200B`，或者设置WordBreak.BREAK_ALL。
+
+- 折行规则参考[lineBreakStrategy](#linebreakstrategy12)。该属性在[wordBreak](#wordbreak11)不等于WordBreak.BREAK_ALL的时候生效，不支持连词符。
+
+- 从API version 11开始，建议优先组合[textOverflow](#textoverflow)和[wordBreak](#wordbreak11)属性来设置截断方式，具体详见[示例4设置文本断行及折行](#示例4设置文本断行及折行)<!--RP1--><!--RP1End-->。
+
+当TextOverflowOptions设置为TextOverflow.MARQUEE时：
 
 - 文本在一行内滚动显示。
 
 - 设置[maxLines](#maxlines)及[copyOption](#copyoption9)属性均不生效。
 
-- Text组件[clip](ts-universal-attributes-sharp-clipping.md#clip)属性默认为true。
+- Text组件[clip](ts-universal-attributes-sharp-clipping.md#clip12)属性默认为true。
 
 - 属性字符串的[CustomSpan](ts-universal-styled-string.md#customspan)不支持跑马灯模式。
 
 - [textAlign](#textalign)属性的生效规则：当文本不可滚动时，textAlign属性生效；当文本可滚动时，textAlign属性不生效。
 
-从API version 12开始，当overflow设置为TextOverflow.MARQUEE时，支持ImageSpan组件，文本和图片可在一行内滚动显示。
+- 从API version 12开始，当TextOverflowOptions设置为TextOverflow.MARQUEE时，支持ImageSpan组件，文本和图片可在一行内滚动显示。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -138,6 +170,10 @@ lineHeight(value: number | string | Resource)
 | ------ | ------------------------------------------------------------ | ---- | ---------------- |
 | value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本的文本行高。 |
 
+>  **说明：**
+>  
+>  特殊字符字体高度远超出同行的其他字符高度时，文本框出现截断、遮挡、内容相对位置发生变化等不符合预期的显示异常，需要开发者调整组件高度、行高等属性，修改对应的页面布局。
+
 ### decoration
 
 decoration(value: DecorationStyleInterface)
@@ -155,6 +191,10 @@ decoration(value: DecorationStyleInterface)
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [DecorationStyleInterface<sup>12+</sup>](ts-universal-styled-string.md#decorationstyleinterface) | 是   | 文本装饰线样式对象。<br/>默认值：<br/>{<br/>&nbsp;type:&nbsp;TextDecorationType.None,<br/>&nbsp;color:&nbsp;Color.Black,<br/>&nbsp;style:&nbsp;TextDecorationStyle.SOLID&nbsp;<br/>}<br/>**说明：** <br/>style参数不支持卡片能力。 |
+
+>  **说明：**
+>
+>  当文字的下边缘轮廓与装饰线位置相交时，会触发下划线避让规则，下划线将在这些字符处避让文字。常见“gjyqp”等英文字符。
 
 ### baselineOffset
 
@@ -187,6 +227,8 @@ letterSpacing(value: number | ResourceStr)
 设置该值为百分比时，按默认值显示。设置该值为0时，按默认值显示。string类型支持number类型取值的字符串形式，可以附带单位，例如"10"、"10fp"。
 
 当取值为负值时，文字会被压缩。负值过小时会将组件内容区大小压缩为0，导致内容无法显示。
+
+对每个字符生效，包括行尾字符。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -362,7 +404,7 @@ fontFamily(value: string | Resource)
 
 | 参数名 | 类型                                                 | 必填 | 说明                                                         |
 | ------ | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 字体列表。默认字体'HarmonyOS Sans'。<br>应用当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。<br>卡片当前仅支持'HarmonyOS Sans'字体。 |
+| value  | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 字体列表。默认字体'HarmonyOS Sans'。<br>使用多个字体时，请用逗号','分隔，字体的优先级按顺序生效。例如：'Arial, HarmonyOS Sans'。<br>应用当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。<br>卡片当前仅支持'HarmonyOS Sans'字体。 |
 
 ### copyOption<sup>9+</sup>
 
@@ -492,6 +534,8 @@ wordBreak(value: WordBreak)
 
 设置断行规则。
 
+默认情况下，不调用wordBreak或者设置WordBreak.BREAK_WORD时，文本截断按字进行。例如，英文以单词为最小单位进行截断。
+
 WordBreak.BREAK_ALL与{overflow:&nbsp;TextOverflow.Ellipsis}、maxLines组合使用，可实现英文单词按字母截断，超出部分以省略号显示。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -576,9 +620,9 @@ decoration:{
 
 当copyOption设置为CopyOptions.None时，点击实体弹出的菜单不包含选择文本、复制、翻译、分享和搜索功能。当copyOption不为CopyOptions.None，且textSelectable设置为TextSelectableMode.UNSELECTABLE时，仍然具有实体复制功能，但不包含选择文本功能。
 
-从API 20开始支持AI菜单。当enableDataDetector设置为true，并且[copyOption](#copyoption9)设置为CopyOptions.LocalDevice时，AI菜单生效，菜单选项包括[TextMenuItemId](ts-text-common.md#textmenuitemid12)中的url、email、phoneNumber、address、dateTime。
+从API version 20开始，支持在文本选择菜单与鼠标右键菜单中显示实体识别选项。当enableDataDetector设置为true，且[copyOption](#copyoption9)设置为CopyOptions.LocalDevice时，AI菜单功能生效。菜单选项包括[TextMenuItemId](ts-text-common.md#textmenuitemid12)中的url(打开链接)、email(新建邮件)、phoneNumber(呼叫)、address(导航至该位置)、dateTime(新建日程提醒)。
 
-AI菜单生效时，需要选中单个AI实体，才能展示AI菜单。
+AI菜单生效时，需选中范围内，包括一个完整的AI实体，才能展示对应的选项。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -638,6 +682,12 @@ bindSelectionMenu的长按响应时长为600ms，bindContextMenu的长按响应�
 | responseType | [TextResponseType](#textresponsetype11枚举说明)  | 是   | 选择菜单的响应类型。<br/>默认值：TextResponseType.LONG_PRESS |
 | options      | [SelectionMenuOptions](ts-basic-components-richeditor.md#selectionmenuoptions10) | 否   | 选择菜单的选项。                                             |
 
+>  **说明：**
+>
+>  通过[editMenuOptions](#editmenuoptions12)设置文本选择菜单时，保留系统默认的风格，触发菜单弹出的条件不变。
+>
+>  通过[bindSelectionMenu](#bindselectionmenu11)设置文本选择菜单时，风格由开发者定义，触发菜单弹出的条件由开发者定义。
+
 ### fontFeature<sup>12+</sup>
 
 fontFeature(value: string)
@@ -677,6 +727,8 @@ fontFeature属性列表：
 >  字体排版引擎会对开发者传入的宽度[width](ts-universal-attributes-size.md#width)进行向下取整，保证是整型像素后进行排版。如果向上取整，可能会出现文字右侧被截断。
 >
 >  当多个Text组件在[Row](ts-container-row.md)容器内布局且没有设置具体的布局分配信息时，Text会以Row的最大尺寸进行布局。如果需要子组件主轴累加的尺寸不超过Row容器主轴的尺寸，可以设置[layoutWeight](ts-universal-attributes-size.md#layoutweight)或者是以[Flex](ts-universal-attributes-flex-layout.md)布局来约束子组件的主轴尺寸。
+>
+>  系统默认字体支持的liga连字：Th fb ff fb ffb ffh ffi ffk ffl fh fi fk。常导致Span、属性字符串的效果不符合预期，关闭liga连字特性可以规避。
 
 ### lineSpacing<sup>12+</sup>
 
@@ -709,7 +761,7 @@ lineSpacing(value: LengthMetrics, options?: LineSpacingOptions)
 | 参数名 | 类型                                                         | 必填 | 说明             |
 | ------ | ------------------------------------------------------------ | ---- | ---------------- |
 | value  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 是   | 文本的行间距。设置值不大于0时，取默认值0。 |
-| options  | [LineSpacingOptions](#linespacingoptions20对象说明) | 否   | 设置行间距配置项。<br/>默认值：{&nbsp;onlyBetweenLines:&nbsp;false&nbsp;} |
+| options  | [LineSpacingOptions](ts-text-common.md#linespacingoptions20对象说明) | 否   | 设置行间距配置项。<br/>默认值：{&nbsp;onlyBetweenLines:&nbsp;false&nbsp;} |
 
 ### privacySensitive<sup>12+</sup>
 
@@ -776,6 +828,12 @@ editMenuOptions(editMenu: EditMenuOptions)
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
 | editMenu  | [EditMenuOptions](ts-text-common.md#editmenuoptions) | 是   | 扩展菜单选项。 |
+
+>  **说明：**
+>
+>  通过[editMenuOptions](#editmenuoptions12)设置文本选择菜单时，保留系统默认的风格，触发菜单弹出的条件不变。
+>
+>  通过[bindSelectionMenu](#bindselectionmenu11)设置文本选择菜单时，风格由开发者定义，触发菜单弹出的条件由开发者定义。
 
 ### minFontScale<sup>12+</sup>
 
@@ -898,7 +956,7 @@ enableHapticFeedback(isEnabled: boolean)
 
 ### optimizeTrailingSpace<sup>20+</sup>
 
-optimizeTrailingSpace(optimize: boolean)
+optimizeTrailingSpace(optimize: Optional\<boolean>)
 
 设置是否在文本布局过程中优化每行末尾的空格，可解决行尾空格影响对齐显示效果问题。
 
@@ -910,7 +968,7 @@ optimizeTrailingSpace(optimize: boolean)
 
 * 行首空格不在优化范围内，行尾文本强制换行，每行行尾空格根据组件宽度优化行尾空格。
 
-当纯空格文本设置优化行尾空格[optimizeTrailingSpace](#optimizetrailingspace20)为true时，不允许同时设置文本背景色 [backgroundcolor](ts-universal-attributes-background.md#backgroundcolor)、空格装饰线 [textDecoration](../arkui-js/js-components-basic-text.md#text)和对齐 [textAlign](#textalign)三个属性。
+当纯空格文本设置优化行尾空格[optimizeTrailingSpace](#optimizetrailingspace20)为true时，不允许同时设置文本背景色[backgroundcolor](ts-universal-attributes-background.md#backgroundcolor)、空格装饰线[decoration](#decoration)和对齐[textAlign](#textalign)三个属性。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -920,7 +978,7 @@ optimizeTrailingSpace(optimize: boolean)
 
 | 参数名           | 类型             | 必填 | 说明                                            |
 | ---------------- | ------- | ---- | ----------------------------------------------- |
-| optimize         | boolean | 是   | 是否优化每行末尾的空格。<br/>true表示优化末尾空格，false则不优化。<br/>默认值：false |
+| optimize         | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否优化每行末尾的空格。<br/>true表示优化末尾空格，false则不优化。<br/>默认值：false |
 
 ### caretColor<sup>14+</sup>
 
@@ -974,7 +1032,7 @@ marqueeOptions(options: Optional\<TextMarqueeOptions>)
 
 ### enableAutoSpacing<sup>20+</sup>
 
-enableAutoSpacing(enable: Optional\<boolean>)
+enableAutoSpacing(enabled: Optional\<boolean>)
 
 设置是否开启中文与西文的自动间距。
 
@@ -986,13 +1044,13 @@ enableAutoSpacing(enable: Optional\<boolean>)
 
 | 参数名 | 类型    | 必填 | 说明                               |
 | ------ | ------- | ---- | ---------------------------------- |
-| enable | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否开启中文与西文的自动间距。<br/>true为开启自动间距，false为不开启。<br />默认值：false |
+| enabled | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否开启中文与西文的自动间距。<br/>true为开启自动间距，false为不开启。<br />默认值：false |
 
 ### shaderStyle<sup>20+</sup>
 
 shaderStyle(shader: ShaderStyle)
 
-可以显示为径向渐变[radialGradient](../arkui-ts/ts-universal-attributes-gradient-color.md#radialgradient)或线性渐变[LinearGradient](../arkui-ts/ts-universal-attributes-gradient-color.md#lineargradient)的效果，shaderStyle的优先级高于[fontColor](../arkui-ts/ts-basic-components-symbolSpan.md#fontcolor)，纯色建议使用[fontColor](../arkui-ts/ts-basic-components-symbolSpan.md#fontcolor)。
+可以显示为径向渐变[radialGradient](../arkui-ts/ts-universal-attributes-gradient-color.md#radialgradient)或线性渐变[LinearGradient](../arkui-ts/ts-universal-attributes-gradient-color.md#lineargradient)的效果，shaderStyle的优先级高于[fontColor](../arkui-ts/ts-basic-components-symbolSpan.md#fontcolor)和AI识别，纯色建议使用[fontColor](../arkui-ts/ts-basic-components-symbolSpan.md#fontcolor)。当center设置到组件范围外时，可将repeating设置为true查看现象。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -1059,20 +1117,6 @@ shaderStyle(shader: ShaderStyle)
 | 名称 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | overflow<sup>7+</sup>  | [TextOverflow](ts-appendix-enums.md#textoverflow) | 是   | 文本超长时的显示方式。<br/>默认值：TextOverflow.Clip <br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-
-## LineSpacingOptions<sup>20+</sup>对象说明
-
-设置文本的行间距，是否仅在行与行之间生效。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型                                                         | 必填 | 说明             |
-| ------ | ------------------------------------------------------------ | ---- | ---------------- |
-| onlyBetweenLines  | boolean | 否   | 文本的行间距是否仅在行与行之间生效。<br/>当设置为true时，行间距仅适用于行与行之间，首行上方和尾行下方无额外的行间距。当设置为false时，首行上方和尾行下方均会存在行间距。<br/>默认值：false |
 
 ## 事件
 
@@ -1179,6 +1223,19 @@ setStyledString(value: StyledString): void
 | ----- | ------ | ---- | ------------------- |
 | value | [StyledString](ts-universal-styled-string.md#styledstring) | 是    | 属性字符串。<br/>**说明：** <br/>StyledString的子类[MutableStyledString](ts-universal-styled-string.md#mutablestyledstring)也可以作为入参值。 |
 
+>  **说明：**    
+>  多次调用setStyledString，会用新的入参覆盖已绑定的属性字符串，而不是叠加新的入参。
+> 
+>  属性字符串通过controller绑定时，需要等待布局完成后，绑定生效。当[measure](../js-apis-arkui-frameNode.md#measure12)和setStyledString同时使用，开发者需要通过[@ohos.arkui.inspector (布局回调)](../js-apis-arkui-inspector.md)判断布局完成，再绑定属性字符串。
+>
+>  在API version 14及以下版本，开发者调用TextController的setStyledString接口设置属性字符串，如果调用时TextController还未绑定对应的Text，则此次设置无效。
+>
+>  从API version 15开始，TextController会保存设置的属性字符串。当TextController已经和Text绑定，则Text会自动设置属性字符串，显示对应的样式。
+>  
+>  这一区别体现在[aboutToAppear](./ts-custom-component-lifecycle.md#abouttoappear)中设置属性字符串，API 14及以下版本不生效，API 15及以上版本生效，推荐用法请参考[创建并应用StyledString和MutableStyledString](../../../ui/arkts-styled-string.md#创建并应用styledstring和mutablestyledstring)。
+
+
+
 ### getLayoutManager<sup>12+</sup>
 
 getLayoutManager(): LayoutManager
@@ -1193,7 +1250,7 @@ getLayoutManager(): LayoutManager
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-| [LayoutManager](ts-text-common.md#LayoutManager) | 布局管理器对象。 |
+| [LayoutManager](ts-text-common.md#layoutmanager12) | 布局管理器对象。 |
 
 ## TextMarqueeOptions<sup>18+</sup>对象说明
 
@@ -2060,15 +2117,16 @@ struct TextExample11 {
 @Component
 struct TextExample12 {
   @State text: string = 'Text editMenuOptions'
+  @State endIndex: number = 0;
   onCreateMenu = (menuItems: Array<TextMenuItem>) => {
     let item1: TextMenuItem = {
-      content: 'custom1',
+      content: 'create1',
       icon: $r('app.media.startIcon'),
-      id: TextMenuItemId.of('custom1'),
+      id: TextMenuItemId.of('create1'),
     };
     let item2: TextMenuItem = {
-      content: 'custom2',
-      id: TextMenuItemId.of('custom2'),
+      content: 'create2',
+      id: TextMenuItemId.of('create2'),
       icon: $r('app.media.startIcon'),
     };
     menuItems.push(item1);
@@ -2076,8 +2134,12 @@ struct TextExample12 {
     return menuItems;
   }
   onMenuItemClick = (menuItem: TextMenuItem, textRange: TextRange) => {
-    if (menuItem.id.equals(TextMenuItemId.of("custom2"))) {
-      console.log("拦截 id: custom2 start:" + textRange.start + "; end:" + textRange.end);
+    if (menuItem.id.equals(TextMenuItemId.of("create2"))) {
+      console.log("拦截 id: create2 start:" + textRange.start + "; end:" + textRange.end);
+      return true;
+    }
+    if (menuItem.id.equals(TextMenuItemId.of("prepare1"))) {
+      console.log("拦截 id: prepare1 start:" + textRange.start + "; end:" + textRange.end);
       return true;
     }
     if (menuItem.id.equals(TextMenuItemId.COPY)) {
@@ -2089,9 +2151,20 @@ struct TextExample12 {
       return false;
     }
     return false;
-  };
+  }
+  onPrepareMenu = (menuItems: Array<TextMenuItem>) => {
+    let item1: TextMenuItem = {
+      content: 'prepare1_' + this.endIndex,
+      icon: $r('app.media.startIcon'),
+      id: TextMenuItemId.of('prepare1'),
+    };
+    menuItems.unshift(item1);
+    return menuItems;
+  }
   @State editMenuOptions: EditMenuOptions = {
-    onCreateMenu: this.onCreateMenu, onMenuItemClick: this.onMenuItemClick
+    onCreateMenu: this.onCreateMenu,
+    onMenuItemClick: this.onMenuItemClick,
+    onPrepareMenu: this.onPrepareMenu
   };
 
   build() {
@@ -2101,6 +2174,9 @@ struct TextExample12 {
         .copyOption(CopyOptions.LocalDevice)
         .editMenuOptions(this.editMenuOptions)
         .margin({ top: 100 })
+        .onTextSelectionChange((selectionStart: number, selectionEnd: number) => {
+          this.endIndex = selectionEnd;
+        })
     }
     .width("90%")
     .margin("5%")
@@ -2169,40 +2245,45 @@ struct TextExample {
 @Component
 struct shaderStyle {
   @State message: string = 'Hello World';
-
+  @State linearGradientOptions1: LinearGradientOptions =
+  {
+    angle: 45,
+    colors: [[Color.Red, 0.0], [Color.Blue, 0.3], [Color.Green, 0.5]]
+  };
+  @State linearGradientOptions2: LinearGradientOptions =
+  {
+    direction: GradientDirection.LeftTop,
+    colors: [[Color.Red, 0.0], [Color.Blue, 0.3], [Color.Green, 0.5]],
+    repeating: true,
+  };
+  @State radialGradientOptions: RadialGradientOptions = 
+  {
+    center: [50, 50],
+    radius: 20,
+    colors: [[Color.Red, 0.0], [Color.Blue, 0.3], [Color.Green, 0.5]],
+    repeating: true,
+  };
   build() {
     Column({ space: 5 }) {
       Text('angle为45°的线性渐变').fontSize(18).width('90%').fontColor(0xCCCCCC)
         .margin({ top: 40, left: 40 })
       Text(this.message)
         .fontSize(50)
-        .shaderStyle({
-          angle: 45,
-          colors: [[Color.Red, 0.0], [Color.Blue, 0.3], [Color.Green, 0.5]]
-        })
+        .shaderStyle(this.linearGradientOptions1)
         .width('80%')
         .height(50)
       Text('direction为LeftTop的线性渐变').fontSize(18).width('90%').fontColor(0xCCCCCC)
         .margin({ top: 40, left: 40 })
       Text(this.message)
         .fontSize(50)
-        .shaderStyle({
-          direction: GradientDirection.LeftTop,
-          colors: [[Color.Red, 0.0], [Color.Blue, 0.3], [Color.Green, 0.5]],
-          repeating: true,
-        })
+        .shaderStyle(this.linearGradientOptions2)
         .width('80%')
         .height(50)
       Text('径向渐变').fontSize(18).width('90%').fontColor(0xCCCCCC)
         .margin({ top: 40, left: 40 })
       Text(this.message)
         .fontSize(50)
-        .shaderStyle({
-          center: [50, 50],
-          radius: 20,
-          colors: [[Color.Red, 0.0], [Color.Blue, 0.3], [Color.Green, 0.5]],
-          repeating: true,
-        })
+        .shaderStyle(this.radialGradientOptions)
         .width('80%')
         .height(50)
     }
@@ -2241,3 +2322,33 @@ struct TextExample16 {
 ```
 
 ![textOptimizeTrailingSpace](figures/textOptimizeTrailingSpace.PNG)
+
+### 示例17（文本垂直对齐）
+
+该示例通过textVerticalAlign属性展示了文本如何设置文本垂直对齐效果。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextExample14 {
+  build() {
+    Column({ space: 10 }) {
+      Text() {
+        Span("Hello")
+          .fontSize(50)
+        ImageSpan($r('app.media.app_icon'))
+          .width(30).height(30)
+          .verticalAlign(ImageSpanAlignment.FOLLOW_PARAGRAPH)
+        Span("World")
+      }
+      .textVerticalAlign(TextVerticalAlign.CENTER)
+      .borderWidth(1)
+    }
+    .alignItems(HorizontalAlign.Center)
+    .width("100%")
+  }
+}
+```
+
+![textVerticalAlign](figures/textVerticalAlign.png)

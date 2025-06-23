@@ -221,11 +221,13 @@ setValue(context: Context, name: string, value: string, callback: AsyncCallback\
 
 **示例**：
 
+<!--code_no_check-->
 ```js
 import { settings } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
 // 更新数据项亮度的值(该数据项在数据库中已存在，故setValue方法将更新该数据项的值)。
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
 const context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 settings.setValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100', (status) => {
   console.log('Callback return whether value is set.');
@@ -260,11 +262,13 @@ setValue(context: Context, name: string, value: string): Promise\<boolean>
 
 **示例**：
 
+<!--code_no_check-->
 ```js
 import { settings } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
 // 更新数据项亮度的值(该数据项在数据库中已存在，故setValue方法将更新该数据项的值)。
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
 const context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 settings.setValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100').then((status) => {
   console.log('Callback return whether value is set.');
@@ -310,11 +314,13 @@ setValue(context: Context, name: string, value: string, domainName: string): Pro
 
 **示例**：
 
+<!--code_no_check-->
 ```js
 import { settings } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
 // 更新数据项亮度的值(该数据项在数据库中已存在，故setValue方法将更新该数据项的值)。
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
 const context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 settings.setValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100', settings.domainName.DEVICE_SHARED).then((status) => {
   console.log(`callback:return whether value is set.`)
@@ -341,10 +347,12 @@ getValue(context: Context, name: string, callback: AsyncCallback\<string>): void
 
 **示例**：
 
+<!--code_no_check-->
 ```js
 import { settings } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
 const context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 settings.getValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, (err, value) => {
   if (err) {
@@ -380,10 +388,12 @@ getValue(context: Context, name: string): Promise\<string>
 
 **示例**：
 
+<!--code_no_check-->
 ```js
 import { settings } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
 const context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 settings.getValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS).then((value) => {
   console.log(`promise:value -> ${value}`)
@@ -419,11 +429,13 @@ getValue(context: Context, name: string, domainName: string): Promise\<string>
 
 **示例**：
 
+<!--code_no_check-->
 ```js
 import { settings } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
 // 更新数据项亮度的值(该数据项在数据库中已存在，故getValue方法将更新该数据项的值)。
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
 const context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 settings.getValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, settings.domainName.DEVICE_SHARED).then((value) => {
   console.log(`Promise:value -> ${value}`);
@@ -456,11 +468,13 @@ getValueSync(context: Context, name: string, defValue: string): string
 
 **示例**：
 
+<!--code_no_check-->
 ```js
 import { settings } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
 // 获取数据项亮度的值(该数据项在数据库中已存在)。
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
 const context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let value = settings.getValueSync(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '10');
 ```
@@ -496,11 +510,13 @@ getValueSync(context: Context, name: string, defValue: string, domainName: strin
 
 **示例**：
 
+<!--code_no_check-->
 ```js
 import { settings } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
 // 更新数据项亮度的值(该数据项在数据库中已存在)。
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
 const context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let value = settings.getValueSync(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100',  settings.domainName.DEVICE_SHARED);
 ```
@@ -536,11 +552,13 @@ setValueSync(context: Context, name: string, value: string): boolean
 
 **示例**：
 
+<!--code_no_check-->
 ```js
 import { settings } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
 // 更新数据项亮度的值(该数据项在数据库中已存在，故setValueSync方法将更新该数据项的值)。
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
 const context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let ret = settings.setValueSync(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100');
 ```
@@ -587,11 +605,13 @@ setValueSync(context: Context, name: string, value: string, domainName: string):
 
 **示例**：
 
+<!--code_no_check-->
 ```js
 import { settings } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
 // 更新数据项亮度的值(该数据项在数据库中已存在，故setValueSync方法将更新该数据项的值)。
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
 const context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let ret = settings.setValueSync(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100', settings.domainName.DEVICE_SHARED);
 ```
@@ -623,10 +643,12 @@ registerKeyObserver(context: Context, name: string, domainName: string, observer
 
 **示例**：
 
+<!--code_no_check-->
 ```js
 import { settings } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
 const context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 settings.registerKeyObserver(context, settings.display.SCREEN_BRIGHTNESS_STATUS, settings.domainName.DEVICE_SHARED, (err, val) => {
   if (err) {
@@ -663,10 +685,12 @@ unregisterKeyObserver(context: Context, name: string, domainName: string): boole
 
 **示例**：
 
+<!--code_no_check-->
 ```js
 import { settings } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
 const context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let ret = settings.unregisterKeyObserver(context, settings.display.SCREEN_BRIGHTNESS_STATUS,  settings.domainName.DEVICE_SHARED);
 ```
@@ -704,11 +728,13 @@ openNetworkManagerSettings(context: Context): Promise\<boolean>
 
 **示例**：
 
+<!--code_no_check-->
 ```js
 import { settings } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
 // 跳转网络管理器设置页面。
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
 const context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 settings.openNetworkManagerSettings(context).then((status) => {
   console.log(`callback:return whether setings is open.`)
@@ -736,7 +762,7 @@ enableAirplaneMode(enable: boolean, callback: AsyncCallback\<void>): void
 let isEnabled :boolean = true;
 settings.enableAirplaneMode(isEnabled, (err:Error) => {
     if (err) {
-        console.log('Failed to enable AirplaneMode.');
+        console.error('Failed to enable AirplaneMode.');
         return;
     }
     console.log('Return true if enable.');
@@ -770,7 +796,7 @@ let isEnabled :boolean = true;
 settings.enableAirplaneMode(isEnabled).then(() => {
   console.log('Succeeded in enabling AirplaneMode.');
 }).catch((err:Error) => {
-  console.log(`Failed to enable AirplaneMode. Cause: ${err}`);
+  console.error(`Failed to enable AirplaneMode. Cause: ${err}`);
 })
 ```
 

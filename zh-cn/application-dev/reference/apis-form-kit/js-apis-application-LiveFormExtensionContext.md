@@ -2,8 +2,6 @@
 
 LiveFormExtensionContext是[LiveFormExtensionAbility](./js-apis-app-form-LiveFormExtensionAbility.md)的上下文，继承自[ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md)。
 
-LiveFormExtensionContext提供允许访问特定于LiveFormExtensionAbility资源的能力。
-
 > **说明：**
 >
 > 本模块首批接口从API version 20开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -14,7 +12,12 @@ LiveFormExtensionContext提供允许访问特定于LiveFormExtensionAbility资�
 ```ts
 import { LiveFormExtensionAbility } from '@kit.FormKit';
 ```
-### LiveFormExtensionContext.setBackgroundImage
+
+## LiveFormExtensionContext
+
+LiveFormExtensionContext提供允许访问特定于LiveFormExtensionAbility资源的能力。
+
+### setBackgroundImage
 
 setBackgroundImage(res: Resource): Promise&lt;void&gt;
 

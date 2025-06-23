@@ -55,7 +55,7 @@ startAbility(want: Want): Promise&lt;void&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 202     | The application is not system-app, can not use system-api.      |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.      |
 | 16000001 | The specified ability does not exist.                        |
 | 16000002 | Incorrect ability type.                                      |
 | 16000004 | Cannot start an invisible component.                         |
@@ -65,7 +65,7 @@ startAbility(want: Want): Promise&lt;void&gt;
 | 16000011 | The context does not exist.                                  |
 | 16000012 | The application is controlled.                               |
 | 16000013 | The application is controlled by EDM.                        |
-| 16000019 | Can not match any component                                  |
+| 16000019 | No matching ability is found.                                |
 | 16000050 | Internal error.                                              |
 | 16200001 | The caller has been released.                                |
 

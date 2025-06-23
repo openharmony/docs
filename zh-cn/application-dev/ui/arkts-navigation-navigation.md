@@ -427,7 +427,27 @@ this.pageStack.moveIndexToTop(1);
 
 ### 参数获取
 
-NavPathStack通过Get相关接口去获取页面的一些参数。
+NavDestination子页第一次创建时会触发[onReady](../reference/apis-arkui/arkui-ts/ts-basic-components-navdestination.md#onready11)回调，可以获取此页面对应的参数。
+
+```ts
+@Component
+struct Page01 {
+  pathStack: NavPathStack | undefined = undefined;
+  pageParam: string = '';
+
+  build() {
+    NavDestination() {
+...
+    }.title('Page01')
+    .onReady((context: NavDestinationContext) => {
+      this.pathStack = context.pathStack;
+      this.pageParam = context.pathInfo.param as string;
+    })
+  }
+}
+```
+
+其他业务场景，可以通过主动调用NavPathStack的Get相关接口去获取指定页面的参数。
 
 ```ts
 // 获取栈中所有页面name集合
@@ -610,7 +630,7 @@ Navigation作为路由容器，其生命周期承载在NavDestination组件上�
   ```
 - 页面状态监听
   
-  通过[observer.on('navDestinationUpdate')](../reference/apis-arkui/js-apis-arkui-observer.md#observeronnavdestinationupdate)提供的注册接口可以注册NavDestination生命周期变化的监听，使用方式如下：
+  通过[observer.on('navDestinationUpdate')](../reference/apis-arkui/js-apis-arkui-observer.md#uiobserveronnavdestinationupdate)提供的注册接口可以注册NavDestination生命周期变化的监听，使用方式如下：
   
   ```ts
   uiObserver.on('navDestinationUpdate', (info) => {

@@ -55,7 +55,7 @@ publish(request: NotificationRequest, userId: number, callback: AsyncCallback\<v
 | 1600014  | No permission.                                   |
 | 1600015  | The current notification status does not support duplicate configurations. |
 | 1600016  | The notification version for this update is too low. |
-| 1600020  | The application is not allowed to publish notifications due to permission control settings. |
+| 1600020  | The application is not allowed to send notifications due to permission settings. |
 | 2300007  | Network unreachable.                              |
 
 **示例：**
@@ -111,7 +111,7 @@ publish(request: NotificationRequest, userId: number): Promise\<void\>
 
 | 类型     | 说明        | 
 | ------- |-----------|
-| Promise\<void\> | 无返回结果的Promise对象。 | 
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -134,7 +134,7 @@ publish(request: NotificationRequest, userId: number): Promise\<void\>
 | 1600014  | No permission.                                   |
 | 1600015  | The current notification status does not support duplicate configurations. |
 | 1600016  | The notification version for this update is too low. |
-| 1600020  | The application is not allowed to publish notifications due to permission control settings. |
+| 1600020  | The application is not allowed to send notifications due to permission settings. |
 | 2300007  | Network unreachable.                              |
 
 **示例：**
@@ -239,7 +239,7 @@ addSlot(slot: NotificationSlot): Promise\<void\>
 
 | 类型     | 说明        | 
 | ------- |-----------|
-| Promise\<void\> | 无返回结果的Promise对象。 | 
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -350,7 +350,7 @@ addSlots(slots: Array\<NotificationSlot\>): Promise\<void\>
 
 | 类型      | 说明        | 
 |---------|-----------|
-| Promise\<void\> | 无返回结果的Promise对象。 | 
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -462,7 +462,7 @@ setNotificationEnable(bundle: BundleOption, enable: boolean): Promise\<void\>
 
 | 类型      | 说明        | 
 |---------|-----------|
-| Promise\<void\> | 无返回结果的Promise对象。 | 
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -529,10 +529,10 @@ getAllNotificationEnabledBundles(): Promise<Array<BundleOption\>>
 import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.getAllNotificationEnabledBundles().then((data: Array<notificationManager.BundleOption>) => {
-    console.info("Enable bundle data is" + JSON.stringify(data));
+    console.info(`Enable bundle data is ${JSON.stringify(data)}`);
     data.forEach(element => {
-        console.info("Enable uid is " + JSON.stringify(element.uid));
-        console.info("Enable bundle is " + JSON.stringify(element.bundle));
+        console.info(`Enable uid is ${JSON.stringify(element.uid)}`);
+        console.info(`Enable bundle is ${JSON.stringify(element.bundle)}`);
     });
 }).catch((err: BusinessError) => {
     console.error(`getAllNotificationEnabledBundles failed, code is ${err.code}, message is ${err.message}`);
@@ -639,7 +639,7 @@ let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
 notificationManager.isNotificationEnabled(bundle).then((data: boolean) => {
-	console.info("isNotificationEnabled success, data: " + JSON.stringify(data));
+	console.info(`isNotificationEnabled success, data: ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`isNotificationEnabled failed, code is ${err.code}, message is ${err.message}`);
 });
@@ -744,7 +744,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let userId: number = 1;
 
 notificationManager.isNotificationEnabled(userId).then((data: boolean) => {
-	console.info("isNotificationEnabled success, data: " + JSON.stringify(data));
+	console.info(`isNotificationEnabled success, data: ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`isNotificationEnabled failed, code is ${err.code}, message is ${err.message}`);
 });
@@ -830,7 +830,7 @@ displayBadge(bundle: BundleOption, enable: boolean): Promise\<void\>
 
 | 类型      | 说明        | 
 |---------|-----------|
-| Promise\<void\> | 无返回结果的Promise对象。 | 
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -967,7 +967,7 @@ let bundle: notificationManager.BundleOption = {
 };
 
 notificationManager.isBadgeDisplayed(bundle).then((data: boolean) => {
-	console.info("isBadgeDisplayed success, data: " + JSON.stringify(data));
+	console.info(`isBadgeDisplayed success, data: ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`isBadgeDisplayed failed, code is ${err.code}, message is ${err.message}`);
 });
@@ -998,7 +998,7 @@ setSlotFlagsByBundle(bundle: BundleOption, slotFlags: number): Promise\<void\>
 
 | 类型      | 说明        | 
 |---------|-----------|
-| Promise\<void\> | 无返回结果的Promise对象。 | 
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -1120,7 +1120,7 @@ setSlotByBundle(bundle: BundleOption, slot: NotificationSlot): Promise\<void\>
 
 | 类型      | 说明        | 
 |---------|-----------|
-| Promise\<void\> | 无返回结果的Promise对象。 | 
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -1207,7 +1207,7 @@ let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
 notificationManager.getSlotFlagsByBundle(bundle).then((data : number) => {
-	console.info("getSlotFlagsByBundle success, data: " + JSON.stringify(data));
+	console.info(`getSlotFlagsByBundle success, data: ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`getSlotFlagsByBundle failed, code is ${err.code}, message is ${err.message}`);
 });
@@ -1318,7 +1318,7 @@ let bundle: notificationManager.BundleOption = {
 };
 
 notificationManager.getSlotsByBundle(bundle).then((data: Array<notificationManager.NotificationSlot>) => {
-	console.info("getSlotsByBundle success, data: " + JSON.stringify(data));
+	console.info(`getSlotsByBundle success, data: ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`getSlotsByBundle failed, code is ${err.code}, message is ${err.message}`);
 });
@@ -1431,7 +1431,7 @@ let bundle: notificationManager.BundleOption = {
 };
 
 notificationManager.getSlotNumByBundle(bundle).then((data: number) => {
-	console.info("getSlotNumByBundle success, data: " + JSON.stringify(data));
+	console.info(`getSlotNumByBundle success, data: ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`getSlotNumByBundle failed, code is ${err.code}, message is ${err.message}`);
 });
@@ -1521,7 +1521,7 @@ getAllActiveNotifications(): Promise\<Array\<NotificationRequest\>\>
 import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.getAllActiveNotifications().then((data: Array<notificationManager.NotificationRequest>) => {
-	console.info("getAllActiveNotifications success, data: " + JSON.stringify(data));
+	console.info(`getAllActiveNotifications success, data: ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`getAllActiveNotifications failed, code is ${err.code}, message is ${err.message}`);
 });
@@ -1639,7 +1639,7 @@ let filter: notificationManager.NotificationFilter = {
     extraInfoKeys: ['event']
 }
 notificationManager.getActiveNotificationByFilter(filter).then((data: notificationManager.NotificationRequest) => {
-	console.info("getActiveNotificationByFilter success, data: " + JSON.stringify(data));
+	console.info(`getActiveNotificationByFilter success, data: ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`getActiveNotificationByFilter failed, code is ${err.code}, message is ${err.message}`);
 });
@@ -1721,7 +1721,7 @@ removeGroupByBundle(bundle: BundleOption, groupName: string): Promise\<void\>
 
 | 类型      | 说明        | 
 |---------|-----------|
-| Promise\<void\> | 无返回结果的Promise对象。 | 
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -1835,7 +1835,7 @@ setDoNotDisturbDate(date: DoNotDisturbDate): Promise\<void\>
 
 | 类型      | 说明        | 
 |---------|-----------|
-| Promise\<void\> | 无返回结果的Promise对象。 | 
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -1958,7 +1958,7 @@ setDoNotDisturbDate(date: DoNotDisturbDate, userId: number): Promise\<void\>
 
 | 类型      | 说明        | 
 |---------|-----------|
-| Promise\<void\> | 无返回结果的Promise对象。 | 
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -2089,7 +2089,7 @@ getDoNotDisturbDate(): Promise\<DoNotDisturbDate\>
 import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.getDoNotDisturbDate().then((data: notificationManager.DoNotDisturbDate) => {
-  console.info("getDoNotDisturbDate success, data: " + JSON.stringify(data));
+  console.info(`getDoNotDisturbDate success, data: ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`getDoNotDisturbDate failed, code is ${err.code}, message is ${err.message}`);
 });
@@ -2203,7 +2203,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let userId: number = 1;
 
 notificationManager.getDoNotDisturbDate(userId).then((data: notificationManager.DoNotDisturbDate) => {
-	console.info("getDoNotDisturbDate success, data: " + JSON.stringify(data));
+	console.info(`getDoNotDisturbDate success, data: ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`getDoNotDisturbDate failed, code is ${err.code}, message is ${err.message}`);
 });
@@ -2253,7 +2253,7 @@ let isSupportDoNotDisturbModeCallback = (err: BusinessError, data: boolean): voi
     if (err) {
         console.error(`isSupportDoNotDisturbMode failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("isSupportDoNotDisturbMode success, data: " + JSON.stringify(data));
+        console.info(`isSupportDoNotDisturbMode success, data: ${JSON.stringify(data)}`);
     }
 }
 
@@ -2299,7 +2299,7 @@ isSupportDoNotDisturbMode(): Promise\<boolean\>
 import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.isSupportDoNotDisturbMode().then((data: boolean) => {
-	console.info("isSupportDoNotDisturbMode success, data: " + JSON.stringify(data));
+	console.info(`isSupportDoNotDisturbMode success, data: ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`isSupportDoNotDisturbMode failed, code is ${err.code}, message is ${err.message}`);
 });
@@ -2381,7 +2381,7 @@ setDistributedEnable(enable: boolean): Promise\<void>
 
 | 类型              | 说明        | 
 |-----------------|-----------|
-| Promise\<void\> | 无返回结果的Promise对象。 | 
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -2495,7 +2495,7 @@ setDistributedEnableByBundle(bundle: BundleOption, enable: boolean): Promise\<vo
 
 | 类型              | 说明        | 
 |-----------------|-----------|
-| Promise\<void\> | 无返回结果的Promise对象。 | 
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -2575,7 +2575,7 @@ let isDistributedEnabledByBundleCallback = (err: BusinessError, data: boolean): 
     if (err) {
         console.error(`isDistributedEnabledByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("isDistributedEnabledByBundle success" + JSON.stringify(data));
+        console.info(`isDistributedEnabledByBundle success, data: ${JSON.stringify(data)}`);
     }
 };
 let bundle: notificationManager.BundleOption = {
@@ -2635,7 +2635,7 @@ let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
 notificationManager.isDistributedEnabledByBundle(bundle).then((data: boolean) => {
-    console.info("isDistributedEnabledByBundle success, data: " + JSON.stringify(data));
+    console.info(`isDistributedEnabledByBundle success, data: ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`isDistributedEnabledByBundle failed, code is ${err.code}, message is ${err.message}`);
 });
@@ -2730,7 +2730,7 @@ getDeviceRemindType(): Promise\<DeviceRemindType\>
 import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.getDeviceRemindType().then((data: notificationManager.DeviceRemindType) => {
-    console.info("getDeviceRemindType success, data: " + JSON.stringify(data));
+    console.info(`getDeviceRemindType success, data: ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`getDeviceRemindType failed, code is ${err.code}, message is ${err.message}`);
 });
@@ -2778,7 +2778,7 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 | 1600012  | No memory space.                          |
 | 1600015  | The current notification status does not support duplicate configurations. |
 | 1600016  | The notification version for this update is too low. |
-| 1600020  | The application is not allowed to publish notifications due to permission control settings. |
+| 1600020  | The application is not allowed to send notifications due to permission settings. |
 | 2300007  | Network unreachable.                              |
 
 **示例：**
@@ -2838,7 +2838,7 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 
 | 类型              | 说明        | 
 |-----------------|-----------|
-| Promise\<void\> | 无返回结果的Promise对象。 | 
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -2860,7 +2860,7 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 | 1600012  | No memory space.                          |
 | 1600015  | The current notification status does not support duplicate configurations. |
 | 1600016  | The notification version for this update is too low. |
-| 1600020  | The application is not allowed to publish notifications due to permission control settings. |
+| 1600020  | The application is not allowed to send notifications due to permission settings. |
 | 2300007  | Network unreachable.                              |
 
 **示例：**
@@ -2915,7 +2915,7 @@ publishAsBundle(representativeBundle: BundleOption, request: NotificationRequest
 
 | 类型              | 说明        | 
 |-----------------|-----------|
-| Promise\<void\> | 无返回结果的Promise对象。 | 
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -2937,7 +2937,7 @@ publishAsBundle(representativeBundle: BundleOption, request: NotificationRequest
 | 1600012  | No memory space.                          |
 | 1600015  | The current notification status does not support duplicate configurations. |
 | 1600016  | The notification version for this update is too low. |
-| 1600020  | The application is not allowed to publish notifications due to permission control settings. |
+| 1600020  | The application is not allowed to send notifications due to permission settings. |
 | 2300007  | Network unreachable.                              |
 
 **示例：**
@@ -3049,7 +3049,7 @@ cancelAsBundle(id: number, representativeBundle: string, userId: number): Promis
 
 | 类型              | 说明        | 
 |-----------------|-----------|
-| Promise\<void\> | 无返回结果的Promise对象。 | 
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -3108,7 +3108,7 @@ cancelAsBundle(representativeBundle: BundleOption, id: number): Promise\<void\>
 
 | 类型              | 说明        | 
 |-----------------|-----------|
-| Promise\<void\> | 无返回结果的Promise对象。 | 
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -3165,7 +3165,7 @@ cancel(representativeBundle: BundleOption, id: number): Promise\<void\>
 
 | 类型              | 说明        | 
 |-----------------|-----------|
-| Promise\<void\> | 无返回结果的Promise对象。 | 
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 | 
 
 **错误码：**
 
@@ -3345,7 +3345,7 @@ setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean,
 
 | 类型     | 说明         |
 | ------- |------------|
-| Promise\<void\> | 无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -3486,7 +3486,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 // isNotificationSlotEnabled
 notificationManager.isNotificationSlotEnabled({ bundle: "ohos.samples.notification", },
     notificationManager.SlotType.SOCIAL_COMMUNICATION).then((data: boolean) => {
-    console.info("isNotificationSlotEnabled success, data: " + JSON.stringify(data));
+    console.info(`isNotificationSlotEnabled success, data: ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`isNotificationSlotEnabled failed, code is ${err.code}, message is ${err.message}`);
 });
@@ -3651,7 +3651,7 @@ let getSyncNotificationEnabledWithoutAppCallback = (err: BusinessError, data: bo
     if (err) {
         console.error(`getSyncNotificationEnabledWithoutAppCallback failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("getSyncNotificationEnabledWithoutAppCallback success, data: " + JSON.stringify(data));
+        console.info(`getSyncNotificationEnabledWithoutAppCallback success, data: ${JSON.stringify(data)}`);
     }
 }
 notificationManager.getSyncNotificationEnabledWithoutApp(userId, getSyncNotificationEnabledWithoutAppCallback);
@@ -3704,7 +3704,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 // 用户ID，使用时需替换为真实的userId。
 let userId: number = 100;
 notificationManager.getSyncNotificationEnabledWithoutApp(userId).then((data: boolean) => {
-  console.info('getSyncNotificationEnabledWithoutApp, data: ' + JSON.stringify(data));
+  console.info(`getSyncNotificationEnabledWithoutApp, data: ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`getSyncNotificationEnabledWithoutApp failed, code is ${err.code}, message is ${err.message}`);
 });
@@ -3885,7 +3885,7 @@ triggerSystemLiveView(bundle: BundleOption, notificationId: number, buttonOption
 
 | 类型 | 说明 |
 | ---- | ----|
-| Promise\<void> | 无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -3948,7 +3948,7 @@ subscribeSystemLiveView(subscriber: SystemLiveViewSubscriber): Promise\<void>
 
 | 类型 | 说明 |
 | ---- | ----|
-| Promise\<void> | 无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -3970,7 +3970,7 @@ subscribeSystemLiveView(subscriber: SystemLiveViewSubscriber): Promise\<void>
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let onResponseCallback = (id:number, option:notificationManager.ButtonOptions) => {
-    console.info("onResponseCallback: " + JSON.stringify(option) + "notificationId" + id);
+    console.info(`notificationId: ${id},onResponseCallback: ${JSON.stringify(option)}`);
 }
 let subscriber: notificationManager.SystemLiveViewSubscriber  = {
     onResponse: onResponseCallback,
@@ -4008,7 +4008,7 @@ setDistributedEnabledByBundle(bundle: BundleOption, deviceType: string, enable: 
 
 | 类型 | 说明 |
 | ---- | ----|
-| Promise\<void> | 无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -4100,7 +4100,7 @@ let bundle: notificationManager.BundleOption = {
 };
 let deviceType: string = "phone";
 notificationManager.isDistributedEnabledByBundle(bundle, deviceType).then((data: boolean) => {
-    console.info("isDistributedEnabledByBundle success, data: " + JSON.stringify(data));
+    console.info(`isDistributedEnabledByBundle success, data: ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`isDistributedEnabledByBundle failed, code is ${err.code}, message is ${err.message}`);
 });
@@ -4131,7 +4131,7 @@ setSmartReminderEnabled(deviceType: string, enable: boolean): Promise<void\>
 
 | 类型 | 说明 |
 | ---- | ----|
-| Promise\<void> | 无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -4214,7 +4214,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let deviceType: string = "phone";
 notificationManager.isSmartReminderEnabled(deviceType).then((data: boolean) => {
-    console.info("isSmartReminderEnabled success， data:" + data);
+    console.info(`isSmartReminderEnabled success， data:${data}`);
 }).catch((err: BusinessError) => {
     console.error(`isSmartReminderEnabled failed, code is ${err.code}, message is ${err.message}`);
 });
@@ -4243,7 +4243,7 @@ setBadgeNumberByBundle(bundle: BundleOption, badgeNumber: number): Promise\<void
 
 | 类型            | 说明                      |
 | --------------- | ------------------------- |
-| Promise\<void\> | 无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -4335,7 +4335,7 @@ let bundle: notificationManager.BundleOption = {
 let slotType = notificationManager.SlotType.LIVE_VIEW;
 
 notificationManager.getSlotByBundle(bundle, slotType).then((data: notificationManager.NotificationSlot) => {
-	console.info("getSlotByBundle success, data: " + JSON.stringify(data));
+	console.info(`getSlotByBundle success, data: ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`getSlotByBundle failed, code is ${err.code}, message is ${err.message}`);
 });
@@ -4365,7 +4365,7 @@ addDoNotDisturbProfile(templates: Array\<DoNotDisturbProfile>): Promise\<void\>
 
 | 类型      | 说明        |
 |---------|-----------|
-| Promise\<void\> | 无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -4436,7 +4436,7 @@ removeDoNotDisturbProfile(templates: Array\<DoNotDisturbProfile>): Promise\<void
 
 | 类型      | 说明        |
 |---------|-----------|
-| Promise\<void\> | 无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -4518,7 +4518,7 @@ setAdditionalConfig(key: string, value: string): Promise\<number\>
 import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.setAdditionalConfig('RING_TRUSTLIST_PKG','[bundleName1,bundleName2]').then((data: number) => {
-  console.info("setAdditionalConfig success, data: " + JSON.stringify(data));
+  console.info(`setAdditionalConfig success, data: ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
   console.error(`setAdditionalConfig failed, code is ${err.code}, message is ${err.message}`);
 });
@@ -4571,7 +4571,7 @@ getDoNotDisturbProfile(id: number): Promise\<DoNotDisturbProfile\>
 import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.getDoNotDisturbProfile(1).then((data: notificationManager.DoNotDisturbProfile) => {
-  console.info("getDoNotDisturbProfile success: " + JSON.stringify(data));
+  console.info(`getDoNotDisturbProfile success: ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
   console.error(`getDoNotDisturbProfile failed, code is ${err.code}, message is ${err.message}`);
 });
@@ -4602,7 +4602,7 @@ disableNotificationFeature(disabled: boolean, bundleList: Array\<string\>): Prom
 
 | 类型            | 说明                     | 
 |-----------------|-------------------------|
-| Promise\<void\> | 无返回结果的Promise对象。 | 
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 | 
 
 **错误码**：
 
@@ -4660,7 +4660,7 @@ setTargetDeviceStatus(deviceType: string, status: number): Promise\<void\>
 
 | 类型            | 说明                     | 
 |-----------------|-------------------------|
-| Promise\<void\> | 无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码**：
 
@@ -4708,7 +4708,7 @@ setDistributedEnabledBySlot(slot: SlotType, deviceType: string, enabled: boolean
 
 | 类型            | 说明                     | 
 |-----------------|-------------------------|
-| Promise\<void\> | 无返回结果的Promise对象。 | 
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 | 
 
 **错误码**：
 

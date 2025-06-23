@@ -222,7 +222,7 @@ hdc shell bm dump -n com.xxx.demo |grep versionCode
 
 ![示例图](figures/installed_hap_verisonCode.PNG)
 
-2. 新安装的应用查看版本，HAP或者HSP用IDE打开，查看里面module.json文件中的versionCode字段配置。
+2. 新安装的应用查看版本，HAP或者HSP用DevEco Studio打开，查看里面module.json文件中的versionCode字段配置。
 
 ![示例图](figures/hap_verisonCode.PNG)
 
@@ -948,10 +948,10 @@ The launch want is not found.
 Launch Want不存在。
 
 **可能原因**<br/>
-应用没有Ability，或者没有entities配置为entity.system.home和actions配置为action.system.home的Ability。
+应用没有Ability，或者没有entities配置为entity.system.home和actions配置为ohos.want.action.home的Ability。
 
 **处理步骤**<br/>
-应用需要有entities配置为entity.system.home并且actions配置为action.system.home的Ability。
+应用需要有entities配置为entity.system.home并且actions配置为ohos.want.action.home的Ability。
 
 <!--Del-->
 ## 17700073 由于设备上存在具有相同包名称但不同签名信息的应用程序，导致安装失败
@@ -1163,7 +1163,7 @@ Failed to install the plugin because the host application lacks ohos.permission.
 
 **处理步骤**<br/>
 1. 参考[权限申请指导](../../security/AccessToken/declare-permissions.md)申请[ohos.permission.kernel.SUPPORT_PLUGIN权限](../../security/AccessToken/restricted-permissions.md#ohospermissionkernelsupport_plugin)。
-2. 该权限等级为system_basic，若[应用APL等级](../../security/AccessToken/app-permission-mgmt-overview.md#权限机制)低于system_basic，请[申请受限权限](../../security/AccessToken/declare-permissions-in-acl.md)。
+2. 该权限等级为system_basic，若[应用APL等级](../../security/AccessToken/app-permission-mgmt-overview.md#权限机制中的基本概念)低于system_basic，请[申请受限权限](../../security/AccessToken/declare-permissions-in-acl.md)。
 
 ## 17700089 插件的 pluginDistributionIDs 解析失败
 
@@ -1239,7 +1239,11 @@ Bundle manager service is excepted.
 包管理服务异常。
 
 **可能原因**<br/>
+场景一： 
 系统出现未知的异常，导致包管理服务已停止或者异常退出。
+
+场景二：
+系统抛出未捕获的错误码，例如IPC失败、文件拷贝失败等。
 
 **处理步骤**<br/>
 1. 重启手机后再次尝试请求接口。
@@ -1255,6 +1259,7 @@ ls -ls
 hdc file recv /data/log/faultlog/faultlogger/
 hdc file recv /data/log/hilog/
 ```
+
 <!--Del-->
 ## 17700201 abc文件校验失败
 **错误信息**<br/>

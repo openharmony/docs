@@ -8,7 +8,7 @@
 
 ## background<sup>10+</sup>
 
-background(builder: CustomBuilder, options?: { align?: Alignment })
+background(builder: CustomBuilder, options?: { align?: Alignment }): T
 
 设置组件背景。
 
@@ -21,11 +21,63 @@ background(builder: CustomBuilder, options?: { align?: Alignment })
 | 参数名  | 类型                                                 | 必填 | 说明                                                         |
 | ------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | builder | [CustomBuilder](ts-types.md#custombuilder8)          | 是   | 自定义背景。                                                 |
-| options | {align?:[Alignment](ts-appendix-enums.md#alignment)} | 否   | 设置自定义背景与组件的对齐方式。<br/>同时设置了background，backgroundColor，backgroundImage时，叠加显示，background在最上层。 |
+| options | {align?:[Alignment](ts-appendix-enums.md#alignment)} | 否   | 设置自定义背景与组件的对齐方式。 |
+
+**返回值：**
+
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| T | 返回当前组件。 |
 
 >  **说明：**
 >
->  自定义背景渲染会有一定延迟，不能响应事件，不能进行动态更新。该属性不支持嵌套使用，不支持预览器预览。
+> - 自定义背景渲染会有一定延迟，不能响应事件，不能进行动态更新。该属性不支持嵌套使用，不支持预览器预览。
+> - 同时设置了background，backgroundColor，backgroundImage时，三者叠加显示，background在最上层。
+
+## background<sup>20+</sup>
+
+background(content: CustomBuilder | ResourceColor, options?: BackgroundOptions): T
+
+设置组件背景。与[background](#background10)相比，content参数新增了对[ResourceColor](ts-types.md#resourcecolor)类型的支持，并新增了背景向父组件的安全区扩展的能力。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名  | 类型                                                 | 必填 | 说明                                                         |
+| ------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| content | [CustomBuilder](ts-types.md#custombuilder8) \| [ResourceColor](ts-types.md#resourcecolor)        | 是   | 自定义背景。                                                 |
+| options | [BackgroundOptions](#backgroundoptions20对象说明) | 否   | 设置自定义背景选项。|
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
+
+>  **说明：**
+>
+> - 自定义背景渲染会有一定延迟，不能响应事件，不能进行动态更新。该属性不支持嵌套使用，不支持预览器预览。
+> - 同时设置了background，backgroundColor，backgroundImage时，三者将按以下规则叠加显示：
+>   - 若background为ResourceColor类型，或设置了ignoresLayoutSafeAreaEdges属性，则background位于最底层。
+>   - 其他情况下，background位于最上层。
+
+## BackgroundOptions<sup>20+</sup>对象说明
+
+background配置选项。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称          | 类型   | 必填 | 说明                                                         |
+| ------------- | ------ | ---- | ------------------------------------------------------------ |
+| align<sup>10+</sup>          | [Alignment](ts-appendix-enums.md#alignment) | 否   | 自定义背景与组件的对齐方式。该属性仅对CustomBuilder类型的背景生效。如果设置了ignoresLayoutSafeAreaEdges，则背景的布局区域为包含了扩展安全区的范围。<br/>默认值：Alignment.Center<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| ignoresLayoutSafeAreaEdges | Array<[LayoutSafeAreaEdge](ts-types.md#layoutsafeareaedge12)> | 否   | 配置背景要扩展到的安全区。未配置该属性时，CustomBuilder背景不扩展，ResourceColor背景扩展至父组件全部安全区。<br/> 默认值：[] <br/>**说明：**<br/>动态调整该属性会按照设置的扩展区域重新生成背景。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+
+> **说明：**
+>
+> 背景设置ignoreLayoutSafeArea之后生效的条件为父组件设置了对应方向的[safeAreaPadding](./ts-universal-attributes-size.md#safeareapadding14)。
 
 ## backgroundColor
 
@@ -81,7 +133,7 @@ backgroundColor(color: Optional\<ResourceColor>): T
 
 ## backgroundColor<sup>20+</sup>
 
-backgroundColor(color: Optional<ResourceColor | ColorMetrics>)
+backgroundColor(color: Optional<ResourceColor | ColorMetrics>): T
 
 设置组件背景色。与[backgroundColor](#backgroundcolor18)相比，color参数新增了对[ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)类型的支持。
 
@@ -97,9 +149,15 @@ backgroundColor(color: Optional<ResourceColor | ColorMetrics>)
 | ------ | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | color  | Optional\<[ResourceColor](ts-types.md#resourcecolor) \| [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)> | 是   | 设置组件的背景色。<br/>当color的值为undefined时，恢复为默认透明的背景色。 |
 
+**返回值：**
+
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| T | 返回当前组件。 |
+
 ## backgroundImage
 
-backgroundImage(src: ResourceStr&nbsp;|&nbsp;PixelMap, repeat?: ImageRepeat)
+backgroundImage(src: ResourceStr&nbsp;|&nbsp;PixelMap, repeat?: ImageRepeat): T
 
 设置组件的背景图片。
 
@@ -113,12 +171,18 @@ backgroundImage(src: ResourceStr&nbsp;|&nbsp;PixelMap, repeat?: ImageRepeat)
 
 | 参数名 | 类型                                            | 必填 | 说明                                                         |
 | ------ | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| src    | [ResourceStr](ts-types.md#resourcestr) \| [PixelMap<sup>12+</sup>](../../apis-image-kit/js-apis-image.md#pixelmap7)          | 是   | 图片地址，支持网络图片资源地址、本地图片资源地址、Base64和PixelMap资源，不支持svg类型的图片。 |
+| src    | [ResourceStr](ts-types.md#resourcestr) \| [PixelMap<sup>12+</sup>](../../apis-image-kit/arkts-apis-image-PixelMap.md)          | 是   | 图片地址，支持网络图片资源地址、本地图片资源地址、Base64和PixelMap资源，不支持svg和gif类型的图片。 |
 | repeat | [ImageRepeat](ts-appendix-enums.md#imagerepeat) | 否   | 设置背景图片的重复样式，默认不重复。当设置的背景图片为透明底色图片，且同时设置了backgroundColor时，二者叠加显示，背景颜色在最底部。 |
+
+**返回值：**
+
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| T | 返回当前组件。 |
 
 ## backgroundImage<sup>18+</sup>
 
-backgroundImage(src: ResourceStr&nbsp;|&nbsp;PixelMap, options?: BackgroundImageOptions)
+backgroundImage(src: ResourceStr&nbsp;|&nbsp;PixelMap, options?: BackgroundImageOptions): T
 
 设置组件的背景图片。与[backgroundImage](#backgroundimage)相比，增加了设置图片同步或异步加载方式的能力。
 
@@ -132,12 +196,18 @@ backgroundImage(src: ResourceStr&nbsp;|&nbsp;PixelMap, options?: BackgroundImage
 
 | 参数名 | 类型                                            | 必填 | 说明                                                         |
 | ------ | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| src    | [ResourceStr](ts-types.md#resourcestr) \| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)          | 是   | 图片地址，支持网络图片资源地址、本地图片资源地址、Base64和PixelMap资源，不支持svg类型的图片。 |
+| src    | [ResourceStr](ts-types.md#resourcestr) \| [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md)          | 是   | 图片地址，支持网络图片资源地址、本地图片资源地址、Base64和PixelMap资源，不支持svg和gif类型的图片。 |
 | options | [BackgroundImageOptions](ts-universal-attributes-image-effect.md#backgroundimageoptions18) | 否   | 设置背景图选项。 |
+
+**返回值：**
+
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| T | 返回当前组件。 |
 
 ## backgroundImageSize
 
-backgroundImageSize(value: SizeOptions | ImageSize)
+backgroundImageSize(value: SizeOptions | ImageSize): T
 
 设置组件背景图片的宽度和高度。
 
@@ -153,9 +223,15 @@ backgroundImageSize(value: SizeOptions | ImageSize)
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [SizeOptions](ts-universal-attributes-size.md#sizeoptions对象说明)&nbsp;\|&nbsp;[ImageSize](ts-appendix-enums.md#imagesize) | 是   | 设置背景图像的高度和宽度。当输入为{width:&nbsp;Length,&nbsp;height:&nbsp;Length}对象时，如果只设置一个属性，则第二个属性保持图片原始宽高比进行调整。默认保持原图的比例不变。<br/>width和height取值范围： [0, +∞)<br/>默认值：ImageSize.Auto<br/>**说明：** <br/>width和height均设置为小于或等于0的值时，按值为0显示。当width和height中只有一个值未设置或者设置为小于等于0的值时，另一个会根据图片原始宽高比进行调整。 |
 
+**返回值：**
+
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| T | 返回当前组件。 |
+
 ## backgroundImagePosition
 
-backgroundImagePosition(value: Position | Alignment)
+backgroundImagePosition(value: Position | Alignment): T
 
 设置背景图的位置。
 
@@ -170,6 +246,12 @@ backgroundImagePosition(value: Position | Alignment)
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [Position](ts-types.md#position)&nbsp;\|&nbsp;[Alignment](ts-appendix-enums.md#alignment) | 是   | 设置背景图在组件中显示位置，即相对于组件左上角的坐标。<br/>默认值：<br/>{<br/>x:&nbsp;0,<br/>y:&nbsp;0<br/>} <br/> x和y值设置百分比时，偏移量是相对组件自身宽高计算的。 |
+
+**返回值：**
+
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| T | 返回当前组件。 |
 
 ## BlurStyle<sup>9+</sup>
 
@@ -456,14 +538,14 @@ backgroundEffect(options: Optional\<BackgroundEffectOptions>, sysOptions?: Syste
 | saturation   | number        |   否   |   饱和度，取值范围：[0, +∞)，默认为1。推荐取值范围：[0, 50]。     |
 | brightness   | number        |   否   |   亮度，取值范围：[0, +∞)，默认为1。推荐取值范围：[0, 2]。 |
 | color        | [ResourceColor](ts-types.md#resourcecolor)         |   否   |   颜色，默认透明色。  |
-| adaptiveColor | [AdaptiveColor](ts-universal-attributes-foreground-blur-style.md#adaptivecolor10) |   否  | 背景模糊效果使用的取色模式,默认为DEFAULT。使用AVERAGE时color必须带有透明度，取色模式才生效。   |
+| adaptiveColor | [AdaptiveColor](ts-universal-attributes-foreground-blur-style.md#adaptivecolor10枚举说明) |   否  | 背景模糊效果使用的取色模式,默认为DEFAULT。使用AVERAGE时color必须带有透明度，取色模式才生效。   |
 | blurOptions  | [BlurOptions](ts-universal-attributes-foreground-blur-style.md#bluroptions11) |   否   |   灰阶模糊参数，默认为[0,0]。  |
 | policy<sup>14+</sup>    | [BlurStyleActivePolicy](#blurstyleactivepolicy14) | 否    | 模糊激活策略。<br/> 默认值：BlurStyleActivePolicy.ALWAYS_ACTIVE |
 | inactiveColor<sup>14+</sup>  | [ResourceColor](ts-types.md#resourcecolor)  | 否    | 窗口失焦后，窗口内控件模糊效果会被移除，则使用inactiveColor作为控件背板颜色。 |
 
 ## backgroundImageResizable<sup>12+</sup>
 
-backgroundImageResizable(value: ResizableOptions)
+backgroundImageResizable(value: ResizableOptions): T
 
 设置背景图在拉伸时可调整大小的图像选项。
 
@@ -480,6 +562,12 @@ backgroundImageResizable(value: ResizableOptions)
 | 参数名 | 类型                                    | 必填 | 说明                             |
 | ------ | --------------------------------------- | ---- | -------------------------------- |
 | value  | [ResizableOptions](ts-basic-components-image.md#resizableoptions11) | 是   | 图像拉伸时可调整大小的图像选项。 |
+
+**返回值：**
+
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| T | 返回当前组件。 |
 
 ## BackgroundBlurStyleOptions<sup>10+</sup>对象说明
 
@@ -961,3 +1049,56 @@ struct P3BackgroundDemo {
 ```
 
 ![zh-cn_background_p3](figures/zh-cn_background_p3.png)
+
+### 示例9（设置组件背景扩展）
+
+该示例通过background实现组件背景扩展到父组件的安全区。
+
+```ts
+import { LengthMetrics } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct BackgroundExtension {
+  @Builder
+  myImages() {
+    Column() {
+      Image($r('app.media.startIcon'))
+        .width('100%')
+        .height('100%')
+    }
+  }
+
+  build() {
+    Column({space: 10}) {
+      Stack() {
+        // CustomBuilder类型的背景设置了ignoresLayoutSafeAreaEdges属性，背景扩展到父组件安全区
+        Column()
+          .size({ width: '100%', height: '100%' })
+          .border({ width: 1, color: Color.Red })
+          .background(
+            this.myImages(),
+            { align: Alignment.Center , ignoresLayoutSafeAreaEdges: [ LayoutSafeAreaEdge.START, LayoutSafeAreaEdge.TOP ] }
+          )
+      }
+      .size({ width: 300, height: 300 })
+      .backgroundColor('#004aaf')
+      .safeAreaPadding(LengthMetrics.vp(50))
+
+      Stack() {
+        // ResourceColor类型的背景未设置ignoresLayoutSafeAreaEdges属性，背景默认扩展到父组件安全区
+        Column()
+          .size({ width: '100%', height: '100%' })
+          .border({ width: 1, color: Color.Red })
+          .background('#d5d5d5', { align: Alignment.Center })
+      }
+      .size({ width: 300, height: 300 })
+      .backgroundColor('#707070')
+      .safeAreaPadding(LengthMetrics.vp(50))
+    }
+    .margin(10)
+  }
+}
+```
+
+![backgroundExtension](figures/backgroundExtension.png)

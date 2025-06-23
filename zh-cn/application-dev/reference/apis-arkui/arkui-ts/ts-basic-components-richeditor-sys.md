@@ -12,8 +12,6 @@
 
 添加builder的偏移位置和builder样式信息。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -21,7 +19,7 @@
 | 名称     | 类型     | 必填   | 说明                                    |
 | ------ | ------ | ---- | ------------------------------------- |
 | dragBackgroundColor<sup>18+</sup> | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12) | 否    | 添加builder单独拖拽时的背板背景颜色。不配置或者异常值时，颜色按系统默认配置。  |
-| isDragShadowNeeded<sup>18+</sup> | boolean | 否    | 添加builder单独拖拽时是否需要投影。不配置或者异常值时，默认需要投影。 |
+| isDragShadowNeeded<sup>18+</sup> | boolean | 否    | 添加builder单独拖拽时是否需要投影。不配置或者异常值时，默认需要投影。true表示需要投影，false表示不需要投影。<br/>默认值： true |
 
 ## RichEditorGesture<sup>11+</sup>
 
@@ -33,7 +31,7 @@
 
 | 名称          | 类型         | 必填   | 说明            |
 | ----------- | ---------- | ---- | ------------- |
-| onDoubleClick<sup>14+</sup> | Callback\<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)\>  | 否    | [GestureEvent](ts-gesture-settings.md#gestureevent对象说明)为用户双击事件。<br/>长按完成时回调事件。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
+| onDoubleClick<sup>14+</sup> | Callback\<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)\>  | 否    | [GestureEvent](ts-gesture-settings.md#gestureevent对象说明)为用户双击事件。<br/>长按完成时回调事件。|
 
 ## RichEditorChangeValue<sup>12+</sup>
 
@@ -45,7 +43,9 @@
 | --- | --- | --- | --- |
 | changeReason<sup>20+</sup> | [TextChangeReason](ts-text-common.md#textchangereason20) | 是 | 组件内容变化的原因。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
-## 示例（获取组件内容变化原因）
+## 示例
+
+### 示例1（获取组件内容变化原因）
 可以通过onWillChange接口返回的changeReason获取组件内容变化的原因。
 
 ```ts
@@ -69,3 +69,61 @@ struct RichEditorExample {
   }
 }
 ```
+
+### 示例2（设置自定义布局拖拽背板及拖拽投影配置）
+通过使用addBuilderSpan，可以在拖拽场景中为自定义布局的拖拽背板和拖拽投影设置相关参数。
+
+```ts
+// xxx.ets
+import { ColorMetrics } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct richEditorNew03 {
+  controller: RichEditorController = new RichEditorController();
+  options: RichEditorOptions = { controller: this.controller }
+  build() {
+    Column({ space: 10 }) {
+      Column() {
+        RichEditor(this.options)
+          .onReady(() => {
+            this.controller.addBuilderSpan(() => {
+              this.placeholderBuilder()
+            }, {
+              offset: -1,
+              dragBackgroundColor: ColorMetrics.rgba(0xff, 0x80, 0, 0xff),
+              isDragShadowNeeded: false
+            })
+            this.controller.addBuilderSpan(() => {
+              this.placeholderBuilder()
+            }, {
+              offset: -1,
+              dragBackgroundColor: ColorMetrics.resourceColor("#ffff0000")
+                .blendColor(ColorMetrics.resourceColor("#ff00ff00")),
+              isDragShadowNeeded: true
+            })
+            this.controller.addBuilderSpan(() => {
+              this.placeholderBuilder()
+            }, { offset: -1 })
+          })
+          .borderWidth(1)
+          .width("100%")
+          .height("50%")
+          .margin(50)
+      }
+      .width('100%')
+      .margin({top:100})
+    }
+  }
+
+  @Builder
+  placeholderBuilder() {
+    Row() {
+      Text('是BuilderSpan，不是纯文本内容')
+        .fontSize(22)
+        .copyOption(CopyOptions.InApp)
+    }
+  }
+}
+```
+![StyledString](figures/builderspan_drag_config.gif)

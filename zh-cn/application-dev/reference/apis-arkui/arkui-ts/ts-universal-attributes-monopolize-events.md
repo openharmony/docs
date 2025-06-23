@@ -5,11 +5,11 @@
 
 >  **说明：**
 >
->  从API Version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  从API version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## monopolizeEvents
 
-monopolizeEvents(monopolize: boolean)
+monopolizeEvents(monopolize: boolean): T
 
 设置组件是否独占事件。
 
@@ -19,10 +19,15 @@ monopolizeEvents(monopolize: boolean)
 
 **参数：** 
 
-
 | 参数名   | 类型 | 必填 | 说明                  |
 | ----------- | -------- | ------------------------ | ------------------------ |
 | monopolize | boolean  | 是 | 设置组件是否独占事件。true表示组件独占事件，false表示组件不独占事件。<br />默认值：false <br />**说明：**<br />1、如果第一根手指触发了组件事件独占，在抬起前又按下了一根手指，则第二根手指的交互继续处于组件独占状态，依次类推。<br />2、如果开发者通过[parallelGesture](ts-gesture-settings.md)绑定了与子组件同时触发的手势，如[PanGesture](ts-basic-gestures-pangesture.md)，子组件设置了独占控制且首个响应事件，则父组件的手势不会响应。|
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
 
 ## 示例
 

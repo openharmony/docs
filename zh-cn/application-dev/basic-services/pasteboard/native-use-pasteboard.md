@@ -8,7 +8,7 @@
 
 - **OH_PasteboardObserver**：剪贴板数据变更观察者对象，用以监听剪贴板数据变更事件。
 - **OH_Pasteboard**：剪贴板对象，用来进行查询、写入等操作。
-- **OH_UdmfData**：统一数据对象，详见[UDMF开发指导 (C/C++)](../../database/native-unified-data-management-framework-guidelines.md)。
+- [**OH_UdmfData**](../../reference/apis-arkdata/capi-oh-udmfdata.md#oh_udmfdata)：统一数据对象。
 
 ## 约束限制
 
@@ -21,7 +21,7 @@
 
 ## 接口说明
 
-详细接口见[Pasteboard文档](../../reference/apis-basic-services-kit/_pasteboard.md)。
+详细接口见[Pasteboard文档](../../reference/apis-basic-services-kit/capi-pasteboard.md)。
 
 | 接口名称                                                     | 描述                                                    |
 | ------------------------------------------------------------ | ------------------------------------------------------- |

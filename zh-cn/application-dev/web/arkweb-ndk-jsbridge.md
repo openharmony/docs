@@ -5,7 +5,7 @@
 
 ## 适用的应用架构
 
-应用使用ArkTS、C++语言混合开发，或本身应用架构较贴近于小程序架构，自带C++侧环境，推荐使用ArkWeb在Native侧提供的[ArkWeb_ControllerAPI](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#arkweb_controllerapi)、[ArkWeb_ComponentAPI](../reference/apis-arkweb/_ark_web___component_a_p_i.md#arkweb_componentapi)实现JSBridge功能。
+应用使用ArkTS、C++语言混合开发，或本身应用架构较贴近于小程序架构，自带C++侧环境，推荐使用ArkWeb在Native侧提供的[ArkWeb_ControllerAPI](../reference/apis-arkweb/capi-arkweb-controllerapi.md)、[ArkWeb_ComponentAPI](../reference/apis-arkweb/capi-arkweb-componentapi.md)实现JSBridge功能。
 
   ![arkweb_jsbridge_arch](figures/arkweb_jsbridge_arch.png)
 
@@ -18,9 +18,9 @@
   Native JSBridge方案解决了ArkTS环境的冗余切换，同时允许回调在非UI线程上运行，避免造成UI阻塞。
 
 ## 使用Native接口实现JSBridge通信（推荐）
-原先，Native同步接口不支持返回值，其返回类型固定为void。然而，为满足业务扩展需求，自API version 16起，引入了替代接口，支持bool、string和buffer类型的返回值。
+原先，Native同步接口不支持返回值，其返回类型固定为void。然而，为满足业务扩展需求，自API version 18起，引入了替代接口，支持bool、string和buffer类型的返回值。
 
-另外针对同步接口[registerJavaScriptProxyEx](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#registerjavascriptproxyex)和异步接口[registerAsyncJavaScriptProxyEx](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#registerasyncjavascriptproxyex)，新增了参数[permission](#前端页面调用应用侧函数)字段，用于调用权限控制。
+另外针对同步接口[registerJavaScriptProxyEx](../reference/apis-arkweb/capi-arkweb-controllerapi.md#registerjavascriptproxyex)和异步接口[registerAsyncJavaScriptProxyEx](../reference/apis-arkweb/capi-arkweb-controllerapi.md#registerasyncjavascriptproxyex)，新增了参数[permission](#前端页面调用应用侧函数)字段，用于调用权限控制。
 
 ### 接口替代关系
 
@@ -75,7 +75,7 @@
 
 ### 使用Native接口获取API结构体
 
-在ArkWeb Native侧，需要先获取API结构体，才能调用结构体里的Native API。ArkWeb Native侧API通过函数[OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb/_web.md#oh_arkweb_getnativeapi)获取，根据入参type不同，可分别获取[ArkWeb_ControllerAPI](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#arkweb_controllerapi)、[ArkWeb_ComponentAPI](../reference/apis-arkweb/_ark_web___component_a_p_i.md#arkweb_componentapi)结构体。其中，[ArkWeb_ControllerAPI](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#arkweb_controllerapi)对应ArkTS侧[web_webview.WebviewController API](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md)，[ArkWeb_ComponentAPI](../reference/apis-arkweb/_ark_web___component_a_p_i.md#arkweb_componentapi)对应ArkTS侧[ArkWeb组件API](../reference/apis-arkweb/arkts-basic-components-web.md)。
+在ArkWeb Native侧，需要先获取API结构体，才能调用结构体里的Native API。ArkWeb Native侧API通过函数[OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb/capi-arkweb-interface-h.md#oh_arkweb_getnativeapi)获取，根据入参type不同，可分别获取[ArkWeb_ControllerAPI](../reference/apis-arkweb/capi-arkweb-controllerapi.md)、[ArkWeb_ComponentAPI](../reference/apis-arkweb/capi-arkweb-componentapi.md)结构体。其中，[ArkWeb_ControllerAPI](../reference/apis-arkweb/capi-arkweb-controllerapi.md)对应ArkTS侧[web_webview.WebviewController API](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md)，[ArkWeb_ComponentAPI](../reference/apis-arkweb/capi-arkweb-componentapi.md)对应ArkTS侧[ArkWeb组件API](../reference/apis-arkweb/arkts-basic-components-web.md)。
 
   ```c++
   static ArkWeb_ControllerAPI *controller = nullptr;
@@ -87,7 +87,7 @@
 
 ### Native侧注册组件生命周期回调
 
-通过[ArkWeb_ComponentAPI](../reference/apis-arkweb/_ark_web___component_a_p_i.md#arkweb_componentapi)注册组件生命周期回调，调用接口前，建议通过[ARKWEB_MEMBER_MISSING](../reference/apis-arkweb/_web.md#arkweb_member_missing)校验该函数结构体中是否存在对应函数指针，以避免SDK与设备ROM不匹配导致crash问题。
+通过[ArkWeb_ComponentAPI](../reference/apis-arkweb/capi-arkweb-componentapi.md)注册组件生命周期回调，调用接口前，建议通过[ARKWEB_MEMBER_MISSING](../reference/apis-arkweb/capi-arkweb-type-h.md#宏定义)校验该函数结构体中是否存在对应函数指针，以避免SDK与设备ROM不匹配导致crash问题。
 
   ```c++
   if (!ARKWEB_MEMBER_MISSING(component, onControllerAttached)) {
@@ -121,7 +121,7 @@
 
 ### 前端页面调用应用侧函数
 
-通过[registerJavaScriptProxyEx](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#registerjavascriptproxyex)将应用侧函数注册至前端页面，推荐在[onControllerAttached](../reference/apis-arkweb/_ark_web___component_a_p_i.md#oncontrollerattached)回调中注册应用侧函数，如果在其它时机注册，需要手动调用[refresh](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#refresh)才能生效。
+通过[registerJavaScriptProxyEx](../reference/apis-arkweb/capi-arkweb-controllerapi.md#registerjavascriptproxyex)将应用侧函数注册至前端页面，推荐在[onControllerAttached](../reference/apis-arkweb/capi-arkweb-componentapi.md#oncontrollerattached)回调中注册应用侧函数，如果在其它时机注册，需要手动调用[refresh](../reference/apis-arkweb/capi-arkweb-controllerapi.md#refresh)才能生效。
 
   ```c++
   // 注册对象
@@ -196,7 +196,7 @@
 
 ### 应用侧调用前端页面函数
 
-使用[runJavaScript](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#runjavascript)调用前端页面函数。
+使用[runJavaScript](../reference/apis-arkweb/capi-arkweb-controllerapi.md#runjavascript)调用前端页面函数。
 
   ```c++
   // 构造runJS执行的结构体
@@ -792,7 +792,7 @@
 
 ### 使用Native接口获取API结构体
 
-ArkWeb Native侧得先获取API结构体，才能调用结构体里的Native API。ArkWeb Native侧API通过函数[OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb/_web.md#oh_arkweb_getnativeapi)获取，根据入参type不同，可分别获取[ArkWeb_ControllerAPI](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#arkweb_controllerapi)、[ArkWeb_ComponentAPI](../reference/apis-arkweb/_ark_web___component_a_p_i.md#arkweb_componentapi)函数指针结构体。其中，[ArkWeb_ControllerAPI](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#arkweb_controllerapi)对应ArkTS侧[web_webview.WebviewController API](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md)，[ArkWeb_ComponentAPI](../reference/apis-arkweb/_ark_web___component_a_p_i.md#arkweb_componentapi)对应ArkTS侧[ArkWeb组件API](../reference/apis-arkweb/arkts-basic-components-web.md)。
+ArkWeb Native侧得先获取API结构体，才能调用结构体里的Native API。ArkWeb Native侧API通过函数[OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb/capi-arkweb-interface-h.md#oh_arkweb_getnativeapi)获取，根据入参type不同，可分别获取[ArkWeb_ControllerAPI](../reference/apis-arkweb/capi-arkweb-controllerapi.md)、[ArkWeb_ComponentAPI](../reference/apis-arkweb/capi-arkweb-componentapi.md)函数指针结构体。其中，[ArkWeb_ControllerAPI](../reference/apis-arkweb/capi-arkweb-controllerapi.md)对应ArkTS侧[web_webview.WebviewController API](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md)，[ArkWeb_ComponentAPI](../reference/apis-arkweb/capi-arkweb-componentapi.md)对应ArkTS侧[ArkWeb组件API](../reference/apis-arkweb/arkts-basic-components-web.md)。
 
   ```c++
   static ArkWeb_ControllerAPI *controller = nullptr;
@@ -804,7 +804,7 @@ ArkWeb Native侧得先获取API结构体，才能调用结构体里的Native API
 
 ### Native侧注册组件生命周期回调
 
-通过[ArkWeb_ComponentAPI](../reference/apis-arkweb/_ark_web___component_a_p_i.md#arkweb_componentapi)注册组件生命周期回调，在调用接口前建议通过[ARKWEB_MEMBER_MISSING](../reference/apis-arkweb/_web.md#arkweb_member_missing)校验该函数结构体是否有对应函数指针，避免SDK与设备ROM不匹配导致crash问题。
+通过[ArkWeb_ComponentAPI](../reference/apis-arkweb/capi-arkweb-componentapi.md)注册组件生命周期回调，在调用接口前建议通过[ARKWEB_MEMBER_MISSING](../reference/apis-arkweb/capi-arkweb-type-h.md#宏定义)校验该函数结构体是否有对应函数指针，避免SDK与设备ROM不匹配导致crash问题。
 
   ```c++
   if (!ARKWEB_MEMBER_MISSING(component, onControllerAttached)) {
@@ -838,7 +838,7 @@ ArkWeb Native侧得先获取API结构体，才能调用结构体里的Native API
 
 ### 前端页面调用应用侧函数
 
-通过[registerJavaScriptProxy](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#registerjavascriptproxy)将应用侧函数注册至前端页面，推荐在[onControllerAttached](../reference/apis-arkweb/_ark_web___component_a_p_i.md#oncontrollerattached)回调中注册，其它时机注册需要手动调用[refresh](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#refresh)才能生效。
+通过[registerJavaScriptProxy](../reference/apis-arkweb/capi-arkweb-controllerapi.md#registerjavascriptproxy)将应用侧函数注册至前端页面，推荐在[onControllerAttached](../reference/apis-arkweb/capi-arkweb-componentapi.md#oncontrollerattached)回调中注册，其它时机注册需要手动调用[refresh](../reference/apis-arkweb/capi-arkweb-controllerapi.md#refresh)才能生效。
 
   ```c++
   // 注册对象
@@ -854,7 +854,7 @@ ArkWeb Native侧得先获取API结构体，才能调用结构体里的Native API
 
 ### 应用侧调用前端页面函数
 
-通过[runJavaScript](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#runjavascript)调用前端页面函数。
+通过[runJavaScript](../reference/apis-arkweb/capi-arkweb-controllerapi.md#runjavascript)调用前端页面函数。
 
   ```c++
   // 构造runJS执行的结构体

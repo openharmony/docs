@@ -1,5 +1,8 @@
 # OpenHarmony Release Notes
 
+## OpenHarmony 6.x Releases
+- [OpenHarmony v6.0 Beta1 (2025-06-19)](OpenHarmony-v6.0-beta1.md)
+
 ## OpenHarmony 5.x Releases
 - [OpenHarmony v5.1.0 Release (2025-04-30)](OpenHarmony-v5.1.0-release.md)
 - [OpenHarmony v5.0.3 Release (2025-03-21)](OpenHarmony-v5.0.3-release.md)

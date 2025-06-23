@@ -159,6 +159,16 @@
 | ------- | ---- | -------------------------- |
 | DESTROY | 0    | 表示窗口销毁时的转场动画。 |
 
+## AnimationType<sup>20+</sup>
+
+窗口动画类型枚举。
+
+**系统能力：**  SystemCapability.Window.SessionManager
+
+| 名称    | 值   | 说明                       |
+| ------- | ---- | -------------------------- |
+| FADE_IN_OUT | 0    | 表示窗口动画类型为淡入淡出。 |
+
 ## WindowAnchor<sup>20+</sup>
 
 窗口锚点枚举。

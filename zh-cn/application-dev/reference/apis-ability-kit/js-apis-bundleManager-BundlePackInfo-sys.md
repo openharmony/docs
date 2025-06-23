@@ -8,6 +8,12 @@
 >
 > 本模块为系统接口。
 
+## 导入模块
+
+```js
+import { freeInstall } from '@kit.AbilityKit';
+```
+
 ## BundlePackInfo
 
 **系统接口：** 此接口为系统接口。

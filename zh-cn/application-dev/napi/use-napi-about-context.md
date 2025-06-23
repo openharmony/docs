@@ -166,6 +166,7 @@ node_api_get_module_file_name | 否 |
 |napi_deserialize | 是 |
 |napi_delete_serialization_data | 否 |
 |napi_call_threadsafe_function_with_priority | 否 |
+|napi_wrap_enhance | 是 |
 
 ## 不支持多运行时上下文环境调用的NAPI接口
 | 接口 | 多运行时上下文环境调用返回值 |
@@ -286,7 +287,7 @@ node_api_get_module_file_name | 否 |
     static napi_value Init(napi_env env, napi_value exports) {
         napi_property_descriptor desc[] = {
             {"callFunctionInContext", nullptr, NAPI_Global_callFunctionInContext,
-                nullptr, nullptr, nullptr, napi_default, nullptr }
+                nullptr, nullptr, nullptr, napi_default, nullptr}
         };
         napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
         return exports;
@@ -333,7 +334,6 @@ node_api_get_module_file_name | 否 |
 
     include_directories(${NATIVERENDER_ROOT_PATH}
                         ${NATIVERENDER_ROOT_PATH}/include
-                        ${NATIVERENDER_ROOT_PATH}/utils/include)
 
     add_library(entry SHARED napi_init.cpp)
     target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so)

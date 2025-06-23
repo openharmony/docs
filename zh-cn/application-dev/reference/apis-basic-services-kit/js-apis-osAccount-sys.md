@@ -182,7 +182,7 @@ isOsAccountActivated(localId: number): Promise&lt;boolean&gt;
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS或ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -233,7 +233,7 @@ isOsAccountConstraintEnabled(localId: number, constraint: string): Promise&lt;bo
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS或ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -286,7 +286,7 @@ isOsAccountUnlocked(localId: number): Promise&lt;boolean&gt;
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS或ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -783,7 +783,7 @@ getEnabledOsAccountConstraints(localId: number): Promise&lt;Array&lt;string&gt;&
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS或ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -984,7 +984,7 @@ createOsAccount(localName: string, type: OsAccountType, options?: CreateOsAccoun
 | --------- | ------------------------------- | ---- | ---------------------- |
 | localName | string                          | 是   | 创建的系统账号的名称。 |
 | type      | [OsAccountType](js-apis-osAccount.md#osaccounttype) | 是   | 创建的系统账号的类型。 |
-| options      | [CreateOsAccountOptions](js-apis-osAccount-sys.md#createosaccountoptions12) | 否   | 创建系统账号的选项，默认为空。 <br/>从API version 12开始支持该可选参数。|
+| options      | [CreateOsAccountOptions](js-apis-osAccount-sys.md#createosaccountoptions12) | 否   | 创建系统账号的选项，默认为空。<br/>从API version 12开始支持该可选参数。|
 
 **返回值：**
 
@@ -1157,7 +1157,7 @@ queryOsAccount(): Promise&lt;OsAccountInfo&gt;
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.GET_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS或ohos.permission.GET_LOCAL_ACCOUNTS
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1199,7 +1199,7 @@ queryOsAccountById(localId: number, callback: AsyncCallback&lt;OsAccountInfo&gt;
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS或ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1248,7 +1248,7 @@ queryOsAccountById(localId: number): Promise&lt;OsAccountInfo&gt;
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS或ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2094,7 +2094,7 @@ getOsAccountType(localId: number): Promise&lt;OsAccountType&gt;;
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS或ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2134,6 +2134,68 @@ getOsAccountType(localId: number): Promise&lt;OsAccountType&gt;;
     });
   } catch (e) {
     console.error('getOsAccountType exception: ' + JSON.stringify(e));
+  }
+  ```
+
+### bindDomainAccount<sup>20+</sup>
+
+bindDomainAccount(localId: number, domainAccountInfo: DomainAccountInfo): Promise&lt;void&gt;
+
+在指定系统账号上绑定指定域账号。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明         |
+| ------- | ------ | ---- | ------------ |
+| localId     | number | 是   |  要查询的系统账号ID。 |
+| domainAccountInfo | [DomainAccountInfo](#domainaccountinfo8) | 是   | 域账号信息。          |
+
+**返回值：**
+
+| 类型                  | 说明                                                         |
+| --------------------- | ------------------------------------------------------------ |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见通用[错误码说明文档](../errorcode-universal.md)和[账号管理错误码](./errorcode-account.md)。
+
+| 错误码ID | 错误信息       |
+| -------- | ------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 801 | Capability not supported.|
+| 12300001 | The system service works abnormally. |
+| 12300002 | Invalid domain account information. |
+| 12300003 | The OS account not found. |
+| 12300008 | Restricted OS account. Possible causes: The OS account cannot be bound. |
+| 12300010 | Service busy. Possible causes: The target OS account or domain account is being operated. |
+| 12300021 | The OS account is already bound. |
+| 12300022 | The domain account is already bound. |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
+  try {
+    let localId: number = 100;
+    let domainInfo: osAccount.DomainAccountInfo =
+      {domain: 'testDomain', accountName: 'testAccountName'};
+    accountManager.bindDomainAccount(localId, domainInfo).then(() => {
+      console.info('bindDomainAccount success.');
+    }).catch((error: BusinessError) => {
+      console.error(`bindDomainAccount failed, errCode=${error.code}, errMsg=${error.message}`);
+    });
+  } catch (e) {
+    let error = e as BusinessError;
+    console.error(`bindDomainAccount error, errCode=${error.code}, errMsg=${error.message}`);
   }
   ```
 
@@ -2958,7 +3020,7 @@ static registerInputer(authType: AuthType, inputer: IInputer): void
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-**需要权限：** ohos.permission.ACCESS_USER_AUTH_INTERNAL 或 ohos.permission.MANAGE_USER_IDM
+**需要权限：** ohos.permission.ACCESS_USER_AUTH_INTERNAL或ohos.permission.MANAGE_USER_IDM
 
 **参数：**
 
@@ -3005,7 +3067,7 @@ static unregisterInputer(authType: AuthType): void
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-**需要权限：** ohos.permission.ACCESS_USER_AUTH_INTERNAL 或 ohos.permission.MANAGE_USER_IDM
+**需要权限：** ohos.permission.ACCESS_USER_AUTH_INTERNAL或ohos.permission.MANAGE_USER_IDM
 
 **参数：**
 
@@ -4231,7 +4293,7 @@ isAuthenticationExpired(domainAccountInfo: DomainAccountInfo): Promise&lt;boolea
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS或ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -5215,16 +5277,16 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-| 名称         | 类型                         |  可读 | 可写 | 说明              |
+| 名称         | 类型                         |  只读 | 可选 | 说明              |
 | ------------ | ---------------------------- | ----- | -----|----------------- |
-| result       | number                       | 是    | 是   | 指示结果。         |
-| authSubType  | [AuthSubType](#authsubtype8) | 是    | 是   | 指示认证凭据子类型。|
-| remainTimes  | number                       | 是    | 是   | 指示剩余次数。     |
-| freezingTime | number                       | 是    | 是   | 指示冻结时间。     |
-| enrollmentProgress<sup>10+</sup> | string   | 是    | 是   | 指示录入进度，默认为空。 |
-| sensorInfo<sup>10+</sup> | string           | 是    | 是   | 指示传感器信息，默认为空。 |
-| nextPhaseFreezingTime<sup>12+</sup> | number | 是    | 是   | 指示下次冻结时间，默认为undefined。 |
-| credentialLength<sup>20+</sup> | number | 是    | 是   | 指示凭据长度，默认为undefined。查询生物信息等无定长属性的凭据时返回undefined。 |
+| result       | number                       | 否    | 否   | 指示结果。         |
+| authSubType  | [AuthSubType](#authsubtype8) | 否    | 否   | 指示认证凭据子类型。|
+| remainTimes  | number                       | 否    | 是   | 指示剩余次数。     |
+| freezingTime | number                       | 否    | 是   | 指示冻结时间。     |
+| enrollmentProgress<sup>10+</sup> | string   | 否    | 是   | 指示录入进度，默认为空。 |
+| sensorInfo<sup>10+</sup> | string           | 否    | 是   | 指示传感器信息，默认为空。 |
+| nextPhaseFreezingTime<sup>12+</sup> | number | 否    | 是   | 指示下次冻结时间，默认为undefined。 |
+| credentialLength<sup>20+</sup> | number | 否    | 是   | 指示凭据长度，默认为undefined。查询生物信息等无定长属性的凭据时返回undefined。 |
 
 ## AuthResult<sup>8+</sup>
 

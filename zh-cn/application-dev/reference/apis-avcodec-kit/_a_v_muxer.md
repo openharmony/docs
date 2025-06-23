@@ -171,7 +171,11 @@ AV_ERR_INVALID_VAL，muxer为空指针，或rotation无效。AV_ERR_OPERATE_NOT_
 OH_AVErrCode OH_AVMuxer_SetFormat(OH_AVMuxer *muxer, OH_AVFormat *format)
 ```
 **描述**
-设置format数据到封装器。当前只支持设置创建时间OH_MD_KEY_CREATION_TIME。若创建时间未写入成功，请排查OH_MD_KEY_CREATION_TIME字符串设置是否符合ISO 8601标准的时间格式且为UTC时间。
+设置format数据到封装器。
+
+API 14起，支持设置创建时间OH_MD_KEY_CREATION_TIME。若创建时间未写入成功，请排查OH_MD_KEY_CREATION_TIME字符串设置是否符合ISO 8601标准的时间格式且为UTC时间。
+
+API 20起，增加支持设置文件的描述性文本信息OH_MD_KEY_COMMENT。若文件描述信息未写入成功，请排查OH_MD_KEY_COMMENT是否为字符串类型或字符长度大于等于1且小于等于256。
 
 **系统能力：** SystemCapability.Multimedia.Media.Muxer
 

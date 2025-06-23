@@ -6,7 +6,7 @@
 
 **引用文件：** <distributedhardware/device_manager/oh_device_manager.h>
 
-**库：** libnative_devicemanager.so
+**库：** libdevicemanager_ndk.so
 
 **系统能力：** SystemCapability.DistributedHardware.DeviceManager
 
@@ -50,6 +50,6 @@ int32_t OH_DeviceManager_GetLocalDeviceName(char **localDeviceName, unsigned int
 
 | 类型 | 说明                                                                                                                                                                                                                                                                                                                                                                           |
 | -- |------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| int32_t | 返回执行的错误码。错误码定义详见[DeviceManager_ErrorCode](capi-oh-device-manager-err-code-h.md#devicemanager_errorcode)。<br>         返回[ERR_OK](capi-oh-device-manager-err-code-h.md#devicemanager_errorcode)，表示执行成功。<br>         返回[ERR_INVALID_PARAMETER](capi-oh-device-manager-err-code-h.md#devicemanager_errorcode)，表示传入了无效参数。<br>         返回[DM_ERR_FAILED](capi-oh-device-manager-err-code-h.md#devicemanager_errorcode)，表示函数执行失败。<br>         返回[DM_ERR_OBTAIN_SERVICE](capi-oh-device-manager-err-code-h.md#devicemanager_errorcode)，表示获取设备管理服务失败。<br>         返回[DM_ERR_OBTAIN_BUNDLE_NAME](capi-oh-device-manager-err-code-h.md#devicemanager_errorcode)，表示获取bundleName失败。 |
+| int32_t | 返回执行的错误码。错误码定义详见[DeviceManager_ErrorCode](capi-oh-device-manager-err-code-h.md#devicemanager_errorcode)。<br>         返回[ERR_OK](capi-oh-device-manager-err-code-h.md#devicemanager_errorcode)，表示执行成功。<br>         返回[DM_ERR_FAILED](capi-oh-device-manager-err-code-h.md#devicemanager_errorcode)，表示函数执行失败。<br>         返回[DM_ERR_OBTAIN_SERVICE](capi-oh-device-manager-err-code-h.md#devicemanager_errorcode)，表示获取设备管理服务失败。<br>         返回[DM_ERR_OBTAIN_BUNDLE_NAME](capi-oh-device-manager-err-code-h.md#devicemanager_errorcode)，表示获取bundleName失败。 |
 
 

@@ -26,6 +26,8 @@ Select(options: Array\<SelectOption>)
 
 ## SelectOption对象说明
 
+下拉菜单项的信息。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 类型                            | 必填 | 说明       |
@@ -622,7 +624,7 @@ optionHeight(value: Dimension)
 
 设置下拉菜单显示的最大高度，不支持设置百分比。默认最大高度是屏幕可用高度的80%，设置的菜单最大高度不能超过默认最大高度。
 
-当设置为异常值或零时，属性不生效，下拉菜单最大高度设为默认值，即下拉菜单最大高度默认值为屏幕可用高度的80%。
+当设置为异常值或零时，属性不生效。
 
 如果下拉菜单所有选项的实际高度没有设定的高度大，下拉菜单的高度按实际高度显示。
 
@@ -642,7 +644,7 @@ optionHeight(height: Optional\<Dimension>)
 
 设置下拉菜单显示的最大高度，不支持设置百分比。默认最大高度是屏幕可用高度的80%，设置的菜单最大高度不能超过默认最大高度。与[optionHeight](#optionheight11)<sup>11+</sup>相比，height参数新增了对undefined类型的支持。
 
-当设置为异常值或零时，属性不生效，下拉菜单最大高度设为默认值，即下拉菜单最大高度默认值为屏幕可用高度的80%。
+当设置为异常值或零时，属性不生效。
 
 如果下拉菜单所有选项的实际高度小于设定的高度，下拉菜单的高度按实际高度显示。
 
@@ -836,7 +838,25 @@ selectedOptionTextModifier(modifier: Optional\<[TextModifier](ts-universal-attri
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | modifier  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[TextModifier](ts-universal-attributes-attribute-modifier.md)> | 是   | 设置下拉菜单项选中项的文本样式。<br/>开发者可以根据需要管理和维护文本的样式进行设置。 |
 
+### showInSubWindow<sup>20+</sup>
+
+showInSubWindow(showInSubWindow:Optional\<boolean>)
+
+设置Select的Menu是否显示在子窗中。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| showInSubWindow  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 设置Select的Menu是否显示在子窗中。<br>true代表Select的Menu显示在子窗中，仅对2in1设备生效。<br>false代表Select的Menu不显示在子窗中。<br>默认值：2in1设备为true，其他设备为false。 |
+
 ## ArrowPosition<sup>10+</sup>枚举说明
+
+箭头的位置。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -848,6 +868,8 @@ selectedOptionTextModifier(modifier: Optional\<[TextModifier](ts-universal-attri
 | START | 1 | 箭头在前，文字在后。 |
 
 ## MenuAlignType<sup>10+</sup>枚举说明
+
+下拉菜单的对齐方式。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -873,6 +895,8 @@ selectedOptionTextModifier(modifier: Optional\<[TextModifier](ts-universal-attri
 | AVOID_AROUND_TARGET | 目标组件四周无足够空间时，在最大空间处压缩显示（可滚动）。 |
 
 ## MenuItemConfiguration<sup>12+</sup>对象说明
+
+开发者需要自定义class实现ContentModifier接口。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -933,7 +957,7 @@ onSelect(callback: Optional\<OnSelectCallback> )
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[OnSelectCallback](#onselectcallback16)> | 是   | 下拉菜单选中某一项的回调。<br/>当callback的值为undefined时，不使用回调函数。 |
+| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[OnSelectCallback](#onselectcallback18)> | 是   | 下拉菜单选中某一项的回调。<br/>当callback的值为undefined时，不使用回调函数。 |
 
 ## OnSelectCallback<sup>18+</sup>
 
@@ -951,22 +975,6 @@ type OnSelectCallback = (index: number, selectStr: string) => void
 | ------ | ------ | ---- | -------------- |
 | index  | number | 是   | 选中项的索引，索引值从0开始。 |
 | selectStr | string | 是   | 选中项的值。   |
-
-## showInSubWindow<sup>20+</sup>
-
-showInSubWindow(showInSubWindow:Optional\<boolean>)
-
-设置Select的Menu是否显示在子窗中。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型   | 必填 | 说明           |
-| ------ | ------ | ---- | -------------- |
-| showInSubWindow  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 设置Select的Menu是否显示在子窗中。<br>true代表Select的Menu显示在子窗中，仅对2in1设备生效。<br>false代表Select的Menu不显示在子窗中。<br>默认值：2in1设备为true，其他设备为false。 |
 
 ##  示例1（设置下拉菜单）
 
@@ -1366,3 +1374,31 @@ struct SelectExample {
 
 ```
 ![](figures/SelectOptionModifier.png)
+
+## 示例8（设置分割线模式）
+
+该示例通过配置dividerStyle的mode属性设置分割线模式。
+
+```ts
+import { LengthMetrics } from '@kit.ArkUI'
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Select([{ value: "SelectItem" }, { value: "SelectItem" }, { value: "SelectItem" },])
+        .value("请选择")
+        .dividerStyle({
+          strokeWidth: LengthMetrics.vp(5),
+          color: '#d5d5d5',
+          mode: DividerMode.EMBEDDED_IN_MENU
+        })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+![dividerStyleMode](figures/SelectdividerStyleMode.png)

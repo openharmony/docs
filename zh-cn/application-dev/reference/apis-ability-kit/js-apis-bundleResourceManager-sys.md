@@ -13,17 +13,8 @@
 ## 导入模块
 
 ```ts
-import bundleResourceManager from '@ohos.bundle.bundleResourceManager';
+import { bundleResourceManager } from '@kit.AbilityKit';
 ```
-
-## 权限列表
-
-| 权限                                       | 权限等级     | 描述            |
-| ------------------------------------------ | ------------ | ------------------|
-| ohos.permission.GET_BUNDLE_RESOURCES| system_basic | 允许查询应用的资源信息。 |
-| ohos.permission.GET_INSTALLED_BUNDLE_LIST | system_basic | 读取已安装应用列表。 |
-
-权限等级参考[权限APL等级说明](../../security/AccessToken/app-permission-mgmt-overview.md#权限机制中的基本概念)。
 
 ## 枚举
 
@@ -88,13 +79,13 @@ getBundleResourceInfo(bundleName: string, resourceFlags?: [number](#resourceflag
 **示例：**
 
 ```ts
-import bundleResourceManager from '@ohos.bundle.bundleResourceManager';
+import { bundleResourceManager } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let bundleName = "com.example.myapplication";
-let bundleFlags = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
+let resourceFlag = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
 try {
-    let resourceInfo = bundleResourceManager.getBundleResourceInfo(bundleName, bundleFlags);
+    let resourceInfo = bundleResourceManager.getBundleResourceInfo(bundleName, resourceFlag);
     hilog.info(0x0000, 'testTag', 'getBundleResourceInfo successfully. Data label: %{public}s', JSON.stringify(resourceInfo.label));
 } catch (err) {
     let message = (err as BusinessError).message;
@@ -142,13 +133,13 @@ getLauncherAbilityResourceInfo(bundleName: string, resourceFlags?: [number](#res
 **示例：**
 
 ```ts
-import bundleResourceManager from '@ohos.bundle.bundleResourceManager';
+import { bundleResourceManager } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let bundleName = "com.example.myapplication";
-let bundleFlags = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
+let resourceFlag = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
 try {
-    let resourceInfo = bundleResourceManager.getLauncherAbilityResourceInfo(bundleName, bundleFlags);
+    let resourceInfo = bundleResourceManager.getLauncherAbilityResourceInfo(bundleName, resourceFlag);
     hilog.info(0x0000, 'testTag', 'getLauncherAbilityResourceInfo successfully. Data label: %{public}s', JSON.stringify(resourceInfo[0].label));
 } catch (err) {
     let message = (err as BusinessError).message;
@@ -188,12 +179,12 @@ getAllBundleResourceInfo(resourceFlags: [number](#resourceflag), callback: Async
 **示例：**
 
 ```ts
-import bundleResourceManager from '@ohos.bundle.bundleResourceManager';
+import { bundleResourceManager } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
-let bundleFlags = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
+let resourceFlag = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
 try {
-    bundleResourceManager.getAllBundleResourceInfo(bundleFlags, (err, data) => {
+    bundleResourceManager.getAllBundleResourceInfo(resourceFlag, (err, data) => {
         if (err) {
             hilog.error(0x0000, 'testTag', 'getAllBundleResourceInfo failed. err: %{public}s', err.message);
             return;
@@ -243,12 +234,12 @@ getAllBundleResourceInfo(resourceFlags: [number](#resourceflag)): Promise<Array<
 **示例：**
 
 ```ts
-import bundleResourceManager from '@ohos.bundle.bundleResourceManager';
+import { bundleResourceManager } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
-let bundleFlags = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
+let resourceFlag = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
 try {
-    bundleResourceManager.getAllBundleResourceInfo(bundleFlags).then(data=> {
+    bundleResourceManager.getAllBundleResourceInfo(resourceFlag).then(data=> {
         hilog.info(0x0000, 'testTag', 'getAllBundleResourceInfo successfully. Data length: %{public}s', JSON.stringify(data.length));
     }).catch((err: BusinessError) => {
         hilog.error(0x0000, 'testTag', 'getAllBundleResourceInfo failed. err: %{public}s', err.message);
@@ -291,12 +282,12 @@ getAllLauncherAbilityResourceInfo(resourceFlags: [number](#resourceflag), callba
 **示例：**
 
 ```ts
-import bundleResourceManager from '@ohos.bundle.bundleResourceManager';
+import { bundleResourceManager } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
-let bundleFlags = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
+let resourceFlag = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
 try {
-    bundleResourceManager.getAllLauncherAbilityResourceInfo(bundleFlags, (err, data) => {
+    bundleResourceManager.getAllLauncherAbilityResourceInfo(resourceFlag, (err, data) => {
         if (err) {
             hilog.error(0x0000, 'testTag', 'getAllLauncherAbilityResourceInfo failed. err: %{public}s', err.message);
             return;
@@ -345,12 +336,12 @@ getAllLauncherAbilityResourceInfo(resourceFlags: [number](#resourceflag)): Promi
 
 **示例：**
 ```ts
-import bundleResourceManager from '@ohos.bundle.bundleResourceManager';
+import { bundleResourceManager } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
-let bundleFlags = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
+let resourceFlag = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
 try {
-    bundleResourceManager.getAllLauncherAbilityResourceInfo(bundleFlags).then(data=> {
+    bundleResourceManager.getAllLauncherAbilityResourceInfo(resourceFlag).then(data=> {
         hilog.info(0x0000, 'testTag', 'getAllLauncherAbilityResourceInfo successfully. Data length: %{public}s', JSON.stringify(data.length));
     }).catch((err: BusinessError) => {
         hilog.error(0x0000, 'testTag', 'getAllLauncherAbilityResourceInfo failed. err: %{public}s', err.message);
@@ -404,14 +395,14 @@ getBundleResourceInfo(bundleName: string, resourceFlags?: [number](#resourceflag
 **示例：**
 
 ```ts
-import bundleResourceManager from '@ohos.bundle.bundleResourceManager';
+import { bundleResourceManager } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let bundleName = "com.example.myapplication";
-let bundleFlags = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
+let resourceFlag = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
 let appIndex = 1;
 try {
-    let resourceInfo = bundleResourceManager.getBundleResourceInfo(bundleName, bundleFlags, appIndex);
+    let resourceInfo = bundleResourceManager.getBundleResourceInfo(bundleName, resourceFlag, appIndex);
     hilog.info(0x0000, 'testTag', 'getBundleResourceInfo successfully. Data label: %{public}s', JSON.stringify(resourceInfo.label));
 } catch (err) {
     let message = (err as BusinessError).message;
@@ -460,14 +451,14 @@ getLauncherAbilityResourceInfo(bundleName: string, resourceFlags?: [number](#res
 **示例：**
 
 ```ts
-import bundleResourceManager from '@ohos.bundle.bundleResourceManager';
+import { bundleResourceManager } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let bundleName = "com.example.myapplication";
-let bundleFlags = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
+let resourceFlag = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
 let appIndex = 1;
 try {
-    let resourceInfo = bundleResourceManager.getLauncherAbilityResourceInfo(bundleName, bundleFlags, appIndex);
+    let resourceInfo = bundleResourceManager.getLauncherAbilityResourceInfo(bundleName, resourceFlag, appIndex);
     hilog.info(0x0000, 'testTag', 'getLauncherAbilityResourceInfo successfully. Data label: %{public}s', JSON.stringify(resourceInfo[0].label));
 } catch (err) {
     let message = (err as BusinessError).message;
@@ -521,9 +512,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundleName = "com.example.myapplication";
 let extensionAbilityType = bundleManager.ExtensionAbilityType.INPUT_METHOD;
-let bundleFlags = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
+let resourceFlag = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
 try {
-    let resourceInfo = bundleResourceManager.getExtensionAbilityResourceInfo(bundleName, extensionAbilityType, bundleFlags);
+    let resourceInfo = bundleResourceManager.getExtensionAbilityResourceInfo(bundleName, extensionAbilityType, resourceFlag);
     console.info('getExtensionAbilityResourceInfo successfully. Data label: ' + JSON.stringify(resourceInfo[0].label));
 } catch (err) {
     let message = (err as BusinessError).message;

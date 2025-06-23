@@ -24,7 +24,7 @@ Callback triggered when the size of the input method panel changes.
 
 | Name      | Type                                                | Mandatory| Description                            |
 | ------------ | ---------------------------------------------------- | ---- | -------------------------------- |
-| size         | [window.Size](../apis-arkui/js-apis-window.md#size7) | Yes  | Panel size.                  |
+| size         | [window.Size](../apis-arkui/arkts-apis-window-i.md#size7) | Yes  | Panel size.                  |
 | keyboardArea | [KeyboardArea](./js-apis-inputmethodengine.md#keyboardarea15)    | Yes  | Size of the keyboard area.|
 
 ## Panel<sup>10+</sup>
@@ -50,7 +50,7 @@ Listens for the panel size change. This API uses an asynchronous callback to ret
 | Name  | Type                                       | Mandatory| Description                                                  |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------------------ |
 | type     | string                                      | Yes  | Event type, which is **'sizeUpdate'**.|
-| callback | [SizeUpdateCallback](#sizeupdatecallback14) | Yes  | Callback used to return the result, the size of the soft keyboard panel, including the width and height.|
+| callback | [SizeUpdateCallback](#sizeupdatecallback14) | Yes  | Callback used to return the size of the soft keyboard panel, including the width and height.|
 
 **Example**
 
@@ -85,7 +85,7 @@ Disables listening for the panel size change. This API uses an asynchronous call
 | Name  | Type                                       | Mandatory| Description                                                    |
 | -------- | ------------------------------------------- | ---- | -------------------------------------------------------- |
 | type     | string                                      | Yes  | Event type, which is **'sizeUpdate'**.|
-| callback | [SizeUpdateCallback](#sizeupdatecallback14) | No  | Callback used to return the result, the size of the soft keyboard panel, including the width and height.  |
+| callback | [SizeUpdateCallback](#sizeupdatecallback14) | No  | Callback used to return the size of the soft keyboard panel, including the width and height.  |
 
 **Example**
 
@@ -100,4 +100,36 @@ try {
     console.error(`Failed to subscribe sizeUpdate: ${JSON.stringify(err)}`);
 }
 ```
+## FluidLightMode<sup>20+</sup>
+
+Enumerates the fluid light modes of the input method.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**System API**: This is a system API.
+
+| Name        | Value| Description              |
+| ------------ | -- | ------------------ |
+| NONE | 0 | The fluid light mode is not used.|
+| BACKGROUND_FLUID_LIGHT  | 1 | The background fluid light mode is used.|
+
+## EditorAttribute
+
+Describes the attribute of the edit box.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+| Name        | Type| Read-Only| Optional| Description              |
+| ------------ | -------- | ---- | ---- | ------------------ |
+| fluidLightMode<sup>20+</sup> | [FluidLightMode](#fluidlightmode20) | Yes| Yes| Fluid light mode. If this attribute is not specified or is set to an invalid value, the fluid light mode is not used by default.<br>This attribute is available only to system applications.|
+
+## ImmersiveEffect<sup>20+</sup>
+
+Describes the immersive effect.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+| Name  | Type                                 | Read-Only| Optional| Description          |
+| ------ | ------------------------------------ | ---- | ---- | -------------- |
+| fluidLightMode | [FluidLightMode](#fluidlightmode20) | No  | Yes  | Fluid light mode. If this attribute is not set, the default value is **NONE**.<br>This attribute is available only to system applications.|
 <!--no_check-->

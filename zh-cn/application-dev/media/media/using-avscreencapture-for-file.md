@@ -175,6 +175,17 @@ void OnCaptureContentChanged(struct OH_AVScreenCapture *capture, OH_AVScreenCapt
     (void)userData;
 }
 
+// 手工确认页面用户选择结果的回调函数OnUserSelected()。
+void OnUserSelected(OH_AVScreenCapture* capture, OH_AVScreenCapture_UserSelectionInfo* selections, void *userData) {
+    (void)capture;
+    (void)userData;
+    int* selectType = new int;
+    uint64_t* displayId = new uint64_t;
+    // 通过获取接口，拿到对应的选择类型和屏幕Id。OH_AVScreenCapture_UserSelectionInfo* selections仅在OnUserSelected回调中有效。
+    OH_AVSCREEN_CAPTURE_ErrCode errorSelectType = OH_AVScreenCapture_GetCaptureTypeSelected(selections, selectType);
+    OH_AVSCREEN_CAPTURE_ErrCode errorDisplayId = OH_AVScreenCapture_GetDisplayIdSelected(selections, displayId);
+}
+
 struct OH_AVScreenCapture *capture;
 // 开始录屏时调用StartScreenCapture。
 static napi_value StartScreenCapture(napi_env env, napi_callback_info info) {
@@ -245,14 +256,32 @@ static napi_value StartScreenCapture(napi_env env, napi_callback_info info) {
     OH_Rect* area = nullptr;
     OH_AVScreenCapture_SetCaptureContentChangedCallback(capture, OnCaptureContentChanged, area);
 
+    // 可选，设置隐私窗口屏蔽模式。
+    int value = 0;
+    OH_AVScreenCapture_CaptureStrategy* strategy = OH_AVScreenCapture_CreateCaptureStrategy();
+    OH_AVScreenCapture_StrategyForPrivacyMaskMode(strategy, value);
+    OH_AVScreenCapture_SetCaptureStrategy(capture, strategy);
+
     // 可选，设置录屏屏幕Id回调，必须在开始录屏前调用。
     OH_AVScreenCapture_SetDisplayCallback(capture, OnDisplaySelected, nullptr);
+
+    // 可选 设置手工确认页面用户选择结果的回调，必须在开始录屏前调用。
+    OH_AVScreenCapture_SetSelectionCallback(capture, OnUserSelected, nullptr);
 
     // 可选，设置光标显示开关，开始录屏前后均可调用。
     OH_AVScreenCapture_ShowCursor(capture, false);
 
     // 进行初始化操作。
     int32_t retInit = OH_AVScreenCapture_Init(capture, config);
+
+    // 可选（API 20开始支持）：可以根据需要设置区域坐标和大小，设置想要捕获的区域，如下方创建了一个从（0，0）为起点的长100，宽100的矩形区域。此接口也可以在开始录屏以后设置。
+    OH_Rect* region = new OH_Rect;
+    region->x = 0;
+    region->y = 0;
+    region->width = 100;
+    region->height = 100;
+    uint64_t regionDisplayId = 0; // 传入矩形区域所在的屏幕Id。
+    OH_AVScreenCapture_SetCaptureArea(capture, regionDisplayId, region);
     
     // 开始录屏。
     int32_t retStart = OH_AVScreenCapture_StartScreenRecording(capture);

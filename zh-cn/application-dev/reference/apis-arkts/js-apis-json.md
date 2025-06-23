@@ -135,6 +135,45 @@ console.info((numberObj as object)?.["largeNumber"]);
 // 打印结果: 112233445566778899
 ```
 
+```ts
+import { JSON } from '@kit.ArkTS';
+
+/*
+ * 反序列化包含嵌套引号的JSON字符串场景
+ * */
+
+interface Info {
+  name: string;
+  age: number;
+}
+
+interface TestObj {
+  info: Info;
+}
+
+interface TestStr {
+  info: string;
+}
+
+// 该JSON字符串中存在嵌套引号的情况，破坏了JSON的结构，将无法正常反序列化。
+// let jsonStr = `{"info": "{"name": "zhangsan", "age": 18}"}`;
+
+// 以下提供两种方式解决该场景问题：
+// 方法1：避免出现嵌套的操作，将原始JSON字符串的"{"name": "zhangsan", "age": 18}"转化为{"name": "zhangsan", "age": 18}。
+let jsonStr = `{"info": {"name": "zhangsan", "age": 18}}`;
+let obj1  = JSON.parse(jsonStr) as TestObj;
+console.info(JSON.stringify(obj1)); //{"info":{"name":"zhangsan","age":18}}
+// 获取JSON字符串中的name信息
+console.info(obj1.info.name); // zhangsan
+
+// 方法2：将JSON字符串中嵌套的引号进行双重转义，恢复JSON的正常结构。
+jsonStr = `{"info": "{\\"name\\": \\"zhangsan\\", \\"age\\": 18}"}`;
+let obj2 = JSON.parse(jsonStr) as TestStr;;
+console.info(JSON.stringify(obj2)); // {"info":"{\"name\": \"zhangsan\", \"age\": 18}"}
+// 获取JSON字符串中的name信息
+let obj3 = JSON.parse(obj2.info) as Info;
+console.info(obj3.name); // zhangsan
+```
 
 ## JSON.stringify
 
@@ -321,6 +360,34 @@ let result: string = JSON.stringify(bigIntObject, (key: string, value: Object): 
   return value;
 });
 console.info("result:", result); // result: "112233445566778896"
+```
+
+```ts
+import { JSON } from '@kit.ArkTS';
+
+/*
+ * 序列化浮点数number场景
+ * */
+let floatNumber1 = 10.12345;
+let floatNumber2 = 10.00;
+
+// 序列化小数部分不为零的浮点数，可以正常序列化。
+let result1 = JSON.stringify(floatNumber1);
+console.info(result1); // 10.12345
+
+// 序列化小数部分为零的浮点数，为保持数值的简洁表示，会丢失小数部分的精度。
+let result11 = JSON.stringify(floatNumber2);
+console.info(result11); // 10
+
+// 以下是防止浮点数精度丢失的方法：
+let result2 = JSON.stringify(floatNumber2, (key: string, value: Object): Object => {
+  if (typeof value === 'number') {
+    // 需要按照业务场景需要，定制所需要的固定精度。
+    return value.toFixed(2);
+  }
+  return value;
+});
+console.info(result2); // "10.00"
 ```
 
 ## JSON.has
