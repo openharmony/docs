@@ -189,21 +189,21 @@ Button('Ok', { type: ButtonType.Normal, stateEffect: true })
         List({ space: 4 }) {
           ListItem() {
             Button("First").onClick(() => {
-              this.pathStack.pushPath({ name: "first_page"})
+              this.pathStack.pushPath({ name: "first_page"});
             })
               .width('100%')
           }
 
           ListItem() {
             Button("Second").onClick(() => {
-              this.pathStack.pushPath({ name: "second_page"})
+              this.pathStack.pushPath({ name: "second_page"});
             })
               .width('100%')
           }
 
           ListItem() {
             Button("Third").onClick(() => {
-              this.pathStack.pushPath({ name: "third_page"})
+              this.pathStack.pushPath({ name: "third_page"});
             })
               .width('100%')
           }
@@ -228,12 +228,12 @@ Button('Ok', { type: ButtonType.Normal, stateEffect: true })
         }.width('100%').height('100%')
       }.title("pageOne")
       .onBackPressed(() => {
-        const popDestinationInfo = this.pathStack.pop() // 弹出路由栈栈顶元素
-        console.log('pop' + '返回值' + JSON.stringify(popDestinationInfo))
+        const popDestinationInfo = this.pathStack.pop(); // 弹出路由栈栈顶元素
+        console.info('pop' + '返回值' + JSON.stringify(popDestinationInfo));
         return true
       })
       .onReady((context: NavDestinationContext) => {
-        this.pathStack = context.pathStack
+        this.pathStack = context.pathStack;
       })
     }
   }
@@ -250,12 +250,12 @@ Button('Ok', { type: ButtonType.Normal, stateEffect: true })
         }.width('100%').height('100%')
       }.title("pageTwo")
       .onBackPressed(() => {
-        const popDestinationInfo = this.pathStack.pop() // 弹出路由栈栈顶元素
-        console.log('pop' + '返回值' + JSON.stringify(popDestinationInfo))
+        const popDestinationInfo = this.pathStack.pop(); // 弹出路由栈栈顶元素
+        console.info('pop' + '返回值' + JSON.stringify(popDestinationInfo));
         return true
       })
       .onReady((context: NavDestinationContext) => {
-        this.pathStack = context.pathStack
+        this.pathStack = context.pathStack;
       })
     }
   }
@@ -272,12 +272,12 @@ Button('Ok', { type: ButtonType.Normal, stateEffect: true })
         }.width('100%').height('100%')
       }.title("pageThree")
       .onBackPressed(() => {
-        const popDestinationInfo = this.pathStack.pop() // 弹出路由栈栈顶元素
-        console.log('pop' + '返回值' + JSON.stringify(popDestinationInfo))
+        const popDestinationInfo = this.pathStack.pop(); // 弹出路由栈栈顶元素
+        console.info('pop' + '返回值' + JSON.stringify(popDestinationInfo));
         return true
       })
       .onReady((context: NavDestinationContext) => {
-        this.pathStack = context.pathStack
+        this.pathStack = context.pathStack;
       })
     }
   }

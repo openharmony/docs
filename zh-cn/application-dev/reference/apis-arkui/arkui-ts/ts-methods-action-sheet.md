@@ -10,6 +10,8 @@
 
 ## ActionSheetOptions对象说明
 
+列表选择弹窗的样式。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称      | 类型                    | 必填  | 说明                          |
@@ -45,6 +47,8 @@
 | levelOrder<sup>18+</sup>       | [LevelOrder](../js-apis-promptAction.md#levelorder18) | 否   | 设置弹窗显示的顺序。<br />**说明：**<br />- 默认值：LevelOrder.clamp(0) <br />- 不支持动态刷新顺序。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
 
 ## SheetInfo对象说明
+
+弹窗中的选项内容，每一项支持设置文本、图标以及选中的回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -101,6 +105,8 @@ Dialog关闭的信息。
 
 ## ActionSheetButtonOptions<sup>18+</sup>对象说明
 
+弹窗中按钮的样式。
+
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -114,6 +120,8 @@ Dialog关闭的信息。
 | action<sup>8+</sup> | [VoidCallback](ts-types.md#voidcallback12)      |   是   | Button选中时的回调。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## ActionSheetOffset<sup>18+</sup>对象说明
+
+弹窗的对齐方式。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -176,15 +184,15 @@ struct ActionSheetExample {
               defaultFocus: true,
               value: 'Confirm button',
               action: () => {
-                console.log('Get Alert Dialog handled');
+                console.info('Get Alert Dialog handled');
               }
             },
             cancel: () => {
-              console.log('actionSheet canceled');
+              console.info('actionSheet canceled');
             },
             onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
               console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
-              console.log("dialog onWillDismiss");
+              console.info("dialog onWillDismiss");
               if (dismissDialogAction.reason === DismissReason.PRESS_BACK) {
                 dismissDialogAction.dismiss();
               }
@@ -198,19 +206,19 @@ struct ActionSheetExample {
               {
                 title: 'apples',
                 action: () => {
-                  console.log('apples');
+                  console.info('apples');
                 }
               },
               {
                 title: 'bananas',
                 action: () => {
-                  console.log('bananas');
+                  console.info('bananas');
                 }
               },
               {
                 title: 'pears',
                 action: () => {
-                  console.log('pears');
+                  console.info('pears');
                 }
               }
             ]
@@ -248,15 +256,15 @@ struct ActionSheetExample {
               defaultFocus: true,
               value: 'Confirm button',
               action: () => {
-                console.log('Get Alert Dialog handled');
+                console.info('Get Alert Dialog handled');
               }
             },
             cancel: () => {
-              console.log('actionSheet canceled');
+              console.info('actionSheet canceled');
             },
             onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
               console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
-              console.log("dialog onWillDismiss");
+              console.info("dialog onWillDismiss");
               if (dismissDialogAction.reason === DismissReason.PRESS_BACK) {
                 dismissDialogAction.dismiss();
               }
@@ -270,19 +278,19 @@ struct ActionSheetExample {
               {
                 title: 'apples',
                 action: () => {
-                  console.log('apples');
+                  console.info('apples');
                 }
               },
               {
                 title: 'bananas',
                 action: () => {
-                  console.log('bananas');
+                  console.info('bananas');
                 }
               },
               {
                 title: 'pears',
                 action: () => {
-                  console.log('pears');
+                  console.info('pears');
                 }
               }
             ]
@@ -333,19 +341,19 @@ struct ActionSheetExample {
               {
                 title: 'apples',
                 action: () => {
-                  console.log('apples');
+                  console.info('apples');
                 }
               },
               {
                 title: 'bananas',
                 action: () => {
-                  console.log('bananas');
+                  console.info('bananas');
                 }
               },
               {
                 title: 'pears',
                 action: () => {
-                  console.log('pears');
+                  console.info('pears');
                 }
               }
             ]
@@ -393,15 +401,15 @@ struct ActionSheetExample {
               defaultFocus: true,
               value: 'Confirm button',
               action: () => {
-                console.log('Get Alert Dialog handled');
+                console.info('Get Alert Dialog handled');
               }
             },
             cancel: () => {
-              console.log('actionSheet canceled');
+              console.info('actionSheet canceled');
             },
             onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
               console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
-              console.log("dialog onWillDismiss");
+              console.info("dialog onWillDismiss");
               if (dismissDialogAction.reason === DismissReason.PRESS_BACK) {
                 dismissDialogAction.dismiss();
               }
@@ -415,19 +423,19 @@ struct ActionSheetExample {
               {
                 title: 'apples',
                 action: () => {
-                  console.log('apples');
+                  console.info('apples');
                 }
               },
               {
                 title: 'bananas',
                 action: () => {
-                  console.log('bananas');
+                  console.info('bananas');
                 }
               },
               {
                 title: 'pears',
                 action: () => {
-                  console.log('pears');
+                  console.info('pears');
                 }
               }
             ]
@@ -462,15 +470,15 @@ struct ActionSheetExample {
               defaultFocus: true,
               value: 'Confirm button',
               action: () => {
-                console.log('Get Alert Dialog handled');
+                console.info('Get Alert Dialog handled');
               }
             },
             cancel: () => {
-              console.log('actionSheet canceled');
+              console.info('actionSheet canceled');
             },
             onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
               console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
-              console.log("dialog onWillDismiss")
+              console.info("dialog onWillDismiss")
               if (dismissDialogAction.reason === DismissReason.PRESS_BACK) {
                 dismissDialogAction.dismiss();
               }
@@ -486,19 +494,19 @@ struct ActionSheetExample {
               {
                 title: 'apples',
                 action: () => {
-                  console.log('apples');
+                  console.info('apples');
                 }
               },
               {
                 title: 'bananas',
                 action: () => {
-                  console.log('bananas');
+                  console.info('bananas');
                 }
               },
               {
                 title: 'pears',
                 action: () => {
-                  console.log('pears');
+                  console.info('pears');
                 }
               }
             ]
