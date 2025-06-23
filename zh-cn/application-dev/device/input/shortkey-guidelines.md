@@ -24,6 +24,7 @@ import { shortKey } from '@kit.InputKit';
 
 ```js
 import { shortKey } from '@kit.InputKit';
+
 try {
   shortKey.setKeyDownDuration("screenshot", 500, (error) => {//设置截屏应用screenshot延迟时间为5秒（500毫秒）
     if (error) {
