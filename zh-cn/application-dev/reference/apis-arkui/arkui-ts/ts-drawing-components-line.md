@@ -63,7 +63,7 @@ startPoint(value: Array&lt;any&gt;)
 
 | 参数名 | 类型                                      | 必填 | 说明                                                         |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | Array&lt;[Length](ts-types.md#length)&gt; | 是   | 直线起点坐标点（相对坐标），单位vp。<br/>默认值：[0,&nbsp;0] |
+| value  | Array&lt;any&gt; | 是   | 直线起点坐标点（相对坐标），单位vp。<br/>默认值：[0,&nbsp;0] |
 
 ### endPoint
 
@@ -81,7 +81,7 @@ endPoint(value: Array&lt;any&gt;)
 
 | 参数名 | 类型                                      | 必填 | 说明                                                         |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | Array&lt;[Length](ts-types.md#length)&gt; | 是   | 直线终点坐标点（相对坐标），单位vp。<br/>默认值：[0,&nbsp;0] |
+| value  | Array&lt;any&gt; | 是   | 直线终点坐标点（相对坐标），单位vp。<br/>默认值：[0,&nbsp;0] |
 
 ### fill
 
@@ -153,11 +153,11 @@ strokeDashArray(value: Array&lt;any&gt;)
 
 | 参数名 | 类型                                      | 必填 | 说明                      |
 | ------ | ----------------------------------------- | ---- | ------------------------- |
-| value  | Array&lt;[Length](ts-types.md#length)&gt; | 是   | 边框间隙。<br/>默认值：[]<br/>默认单位：vp |
+| value  | Array&lt;any&gt; | 是   | 边框间隙。<br/>默认值：[]<br/>默认单位：vp |
 
 ### strokeDashOffset
 
-strokeDashOffset(value: number&nbsp;|&nbsp;string)
+strokeDashOffset(value: Length)
 
 设置边框绘制起点的偏移量，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
@@ -171,7 +171,7 @@ strokeDashOffset(value: number&nbsp;|&nbsp;string)
 
 | 参数名 | 类型                       | 必填 | 说明                                 |
 | ------ | -------------------------- | ---- | ------------------------------------ |
-| value  | number&nbsp;\|&nbsp;string | 是   | 边框绘制起点的偏移量。<br/>默认值：0<br/>默认单位：vp |
+| value  | [Length](ts-types.md#length) | 是   | 边框绘制起点的偏移量。<br/>默认值：0<br/>默认单位：vp |
 
 ### strokeLineCap
 
@@ -211,7 +211,7 @@ strokeLineJoin(value: LineJoinStyle)
 
 ### strokeMiterLimit
 
-strokeMiterLimit(value: number | string)
+strokeMiterLimit(value: Length)
 
 设置锐角绘制成斜角的极限值，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。Line组件不支持设置锐角图形，该属性设置无效。
 
@@ -225,7 +225,7 @@ strokeMiterLimit(value: number | string)
 
 | 参数名 | 类型                       | 必填 | 说明                                   |
 | ------ | -------------------------- | ---- | -------------------------------------- |
-| value  | number&nbsp;\|&nbsp;string | 是   | 锐角绘制成斜角的极限值。<br/>默认值：4 |
+| value  | [Length](ts-types.md#length) | 是   | 锐角绘制成斜角的极限值。<br/>默认值：4 |
 
 ### strokeOpacity
 
