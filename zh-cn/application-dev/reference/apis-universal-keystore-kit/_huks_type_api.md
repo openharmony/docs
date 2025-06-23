@@ -79,7 +79,7 @@
 | [OH_Huks_RsaPssSaltLenType](#oh_huks_rsapsssaltlentype) { <br/>OH_HUKS_RSA_PSS_SALT_LEN_DIGEST = 0, <br/>OH_HUKS_RSA_PSS_SALT_LEN_MAX = 1 <br/>} | 枚举密钥存储格式。 | 
 | [OH_Huks_ErrCode](#oh_huks_errcode) {<br/>OH_HUKS_SUCCESS = 0, <br/>OH_HUKS_ERR_CODE_PERMISSION_FAIL = 201, OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT = 401, <br/>OH_HUKS_ERR_CODE_NOT_SUPPORTED_API = 801,<br/>OH_HUKS_ERR_CODE_FEATURE_NOT_SUPPORTED = 12000001, <br/>OH_HUKS_ERR_CODE_MISSING_CRYPTO_ALG_ARGUMENT = 12000002, <br/>OH_HUKS_ERR_CODE_INVALID_CRYPTO_ALG_ARGUMENT = 12000003, <br/>OH_HUKS_ERR_CODE_FILE_OPERATION_FAIL = 12000004,<br/>OH_HUKS_ERR_CODE_COMMUNICATION_FAIL = 12000005, <br/>OH_HUKS_ERR_CODE_CRYPTO_FAIL = 12000006, <br/>OH_HUKS_ERR_CODE_KEY_AUTH_PERMANENTLY_INVALIDATED = 12000007, <br/>OH_HUKS_ERR_CODE_KEY_AUTH_VERIFY_FAILED = 12000008,<br/>OH_HUKS_ERR_CODE_KEY_AUTH_TIME_OUT = 12000009, <br/>OH_HUKS_ERR_CODE_SESSION_LIMIT = 12000010, OH_HUKS_ERR_CODE_ITEM_NOT_EXIST = 12000011, <br/>OH_HUKS_ERR_CODE_INTERNAL_ERROR = 12000012,<br/>OH_HUKS_ERR_CODE_CREDENTIAL_NOT_EXIST = 12000013, <br/>OH_HUKS_ERR_CODE_INSUFFICIENT_MEMORY = 12000014, <br/>OH_HUKS_ERR_CODE_CALL_SERVICE_FAILED = 12000015, <br/>OH_HUKS_ERR_CODE_DEVICE_PASSWORD_UNSET = 12000016<br/>} | 错误码。 | 
 | [OH_Huks_TagType](#oh_huks_tagtype) {<br/>OH_HUKS_TAG_TYPE_INVALID = 0 &lt;&lt; 28, <br/>OH_HUKS_TAG_TYPE_INT = 1 &lt;&lt; 28, <br/>OH_HUKS_TAG_TYPE_UINT = 2 &lt;&lt; 28, <br/>OH_HUKS_TAG_TYPE_ULONG = 3 &lt;&lt; 28,<br/>OH_HUKS_TAG_TYPE_BOOL = 4 &lt;&lt; 28, <br/>OH_HUKS_TAG_TYPE_BYTES = 5 &lt;&lt; 28<br/>} | 参数集中参数类型的掩码值。 |  
-| [OH_Huks_UserAuthType](#oh_huks_userauthtype) { <br/>OH_HUKS_USER_AUTH_TYPE_FINGERPRINT = 1 &lt;&lt; 0, <br/>OH_HUKS_USER_AUTH_TYPE_FACE = 1 &lt;&lt; 1, <br/>OH_HUKS_USER_AUTH_TYPE_PIN = 1 &lt;&lt; 2 <br/>} | 密钥访问控制中的用户认证类型。 | 
+| [OH_Huks_UserAuthType](#oh_huks_userauthtype) { <br/>OH_HUKS_USER_AUTH_TYPE_FINGERPRINT = 1 &lt;&lt; 0, <br/>OH_HUKS_USER_AUTH_TYPE_FACE = 1 &lt;&lt; 1, <br/>OH_HUKS_USER_AUTH_TYPE_PIN = 1 &lt;&lt; 2, <br/>OH_HUKS_USER_AUTH_TYPE_TUI_PIN = 1 &lt;&lt; 5 <br/>} | 密钥访问控制中的用户认证类型。 | 
 | [OH_Huks_UserAuthMode](#oh_huks_userauthmode) { <br/>OH_HUKS_USER_AUTH_MODE_LOCAL = 0, <br/>OH_HUKS_USER_AUTH_MODE_COAUTH = 1, } | 密钥访问控制中的用户认证模式。 |
 | [OH_Huks_AuthAccessType](#oh_huks_authaccesstype) { <br/>OH_HUKS_AUTH_ACCESS_INVALID_CLEAR_PASSWORD = 1 &lt;&lt; 0, <br/>OH_HUKS_AUTH_ACCESS_INVALID_NEW_BIO_ENROLL = 1 &lt;&lt; 1, <br/>OH_HUKS_AUTH_ACCESS_ALWAYS_VALID = 1 &lt;&lt; 2 <br/>} | 安全访问控制类型，表示密钥失效的原则。 | 
 | [OH_Huks_AuthStorageLevel](#oh_huks_authstoragelevel) { <br/>OH_HUKS_AUTH_STORAGE_LEVEL_DE = 0, <br/>OH_HUKS_AUTH_STORAGE_LEVEL_CE = 1, <br/>OH_HUKS_AUTH_STORAGE_LEVEL_ECE = 2 <br/>} | 表示生成或导入密钥时，指定该密钥的存储安全等级。 | 
@@ -506,6 +506,23 @@ enum OH_Huks_SecureSignType
 | OH_HUKS_SECURE_SIGN_WITH_AUTHINFO | 签名类型为携带认证信息。生成或导入密钥时指定该字段，则在使用密钥进行签名时，对待签名的数据添加认证信息后进行签名。 | 
 
 
+### OH_Huks_KeyWrapType
+
+```
+enum OH_Huks_KeyWrapType
+```
+
+**描述**
+
+生成或导入密钥时，指定该密钥的封装类型。
+
+**起始版本：** 20
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| OH_HUKS_KEY_WRAP_TYPE_HUKS_BASED | 硬件唯一密钥的封装类型。 | 
+
+
 ### OH_Huks_Tag
 
 ```
@@ -621,6 +638,7 @@ enum OH_Huks_UserAuthType
 | OH_HUKS_USER_AUTH_TYPE_FINGERPRINT | 用户认证类型为指纹。 | 
 | OH_HUKS_USER_AUTH_TYPE_FACE | 用户认证类型为人脸。 | 
 | OH_HUKS_USER_AUTH_TYPE_PIN | 用户认证类型为PIN码。 | 
+| OH_HUKS_USER_AUTH_TYPE_TUI_PIN | 用户认证类型为TUI PIN码。<br>**起始版本：** 20 | 
 
 
 ### OH_Huks_UserAuthMode
