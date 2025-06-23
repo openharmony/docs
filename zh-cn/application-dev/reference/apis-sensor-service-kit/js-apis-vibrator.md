@@ -979,7 +979,7 @@ getVibratorInfoSync(param?: VibratorInfoParam): Array&lt;VibratorInfo&gt;;
 
 on(type: 'vibratorStateChange', callback: Callback&lt;VibratorStatusEvent&gt;): void
 
-注册一个回调函数，在马达上线或下线时触发回调；
+注册一个回调函数，在马达上线或下线时触发回调。
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
