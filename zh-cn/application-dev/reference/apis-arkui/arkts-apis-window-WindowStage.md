@@ -1003,7 +1003,7 @@ on(eventType: 'windowStageLifecycleEvent', callback: Callback&lt;WindowStageLife
 >
 > 1.前者无法保证状态切换间的顺序，对于状态间的顺序有要求的情况下不推荐使用，推荐使用本接口；
 >
-> 2.当前接口不提供WindowStage的获焦失焦状态监听，推荐使用[on('windowEvent')](arkts-apis-window-Window.md#onwindowevent10)；
+> 2.当前接口不提供WindowStage的获焦失焦状态监听，对于windowStage获焦失焦状态有监听需求的情况下，推荐使用[on('windowEvent')](arkts-apis-window-Window.md#onwindowevent10)；
 >
 > 3.其他系统机制及其生命周期状态切换的详细说明，请参考开发指导。
 
@@ -1038,11 +1038,12 @@ export default class EntryAbility extends UIAbility {
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     console.info('onWindowStageCreate');
-    try {
-      windowStage.on('windowStageLifecycleEvent', (data) => {
+    const callback = (data: window.WindowStageLifecycleEventType) => {
         console.info('Succeeded in enabling the listener for window stage event changes. Data: ' +
         JSON.stringify(data));
-      });
+    }
+    try {
+      windowStage.on('windowStageLifecycleEvent', callback);
     } catch (exception) {
       console.error(`Failed to enable the listener for window stage event changes. Cause code: ${exception.code}, message: ${exception.message}`);
     }
