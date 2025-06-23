@@ -353,7 +353,7 @@
           - [ArkGuard混淆开启指南](arkts-utils/source-obfuscation-guide.md)
           - [不同包类型的源码混淆建议](arkts-utils/source-obfuscation-practice.md)
           - [ArkGuard混淆常见问题](arkts-utils/source-obfuscation-questions.md)
-        - ArkGuard字节码混淆混淆工具<!--arkts-arkguard-bytecode-->
+        - ArkGuard字节码混淆工具<!--arkts-arkguard-bytecode-->
           - [ArkGuard字节码混淆工具概述](arkts-utils/bytecode-obfuscation-overview.md)
           - [ArkGuard字节码混淆原理及功能](arkts-utils/bytecode-obfuscation.md)
           - [ArkGuard字节码混淆开启指南](arkts-utils/bytecode-obfuscation-guide.md)
@@ -805,6 +805,7 @@
         - [创建ArkTS卡片](form/arkts-ui-widget-creation.md)
         - [配置ArkTS卡片的配置文件](form/arkts-ui-widget-configuration.md)
         - [管理ArkTS卡片生命周期](form/arkts-ui-widget-lifecycle.md)
+        - [ArkTS卡片进程模型](form/arkts-ui-widget-process.md)
         - ArkTS卡片提供方开发指导<!--arkts-ui-widget-->
           - ArkTS卡片UI界面开发<!--arkts-ui-widget-page-->
             - [ArkTS卡片界面开发概述](form/arkts-ui-widget-page-overview.md)
@@ -825,9 +826,9 @@
             - [卡片拉起应用UIAbility到后台（call事件）](form/arkts-ui-widget-event-call.md)
             - [卡片传递消息给应用（message事件）](form/arkts-ui-widget-event-formextensionability.md)
             - [通过router或call事件刷新卡片内容](form/arkts-ui-widget-event-uiability.md)
-          - ArkTS卡片页面编辑<!--arkts-ui-widget-edit-->
-            - [ArkTS卡片页面编辑交互概述](form/arkts-ui-widget-event-formeditextensionability-overview.md)
-            - [编辑刷新卡片页面内容](form/arkts-ui-widget-event-formeditextensionability.md)
+          - ArkTS卡片编辑<!--arkts-ui-widget-edit-->
+            - [ArkTS卡片编辑概述](form/arkts-ui-widget-event-formeditextensionability-overview.md)
+            - [卡片编辑开发指导](form/arkts-ui-widget-event-formeditextensionability.md)
           - 应用内请求卡片加桌<!--arkts-ui-widget-add-->
             - [应用内拉起卡片管理加桌](form/arkts-ui-widget-open-formmanager.md)
         <!--Del--> 
@@ -1889,9 +1890,9 @@
         - JSVM-API典型使用场景指导<!--jsvm-scenarios-->
             - [JSVM-API调试&定位](napi/jsvm-debugger-cpuprofiler-heapsnapshot.md)
             - [JSVM-API Tracing](napi/use-jsvm-about-trace.md)
-            - [JSVM 申请JIT权限指导](napi/jsvm-apply-jit-profile.md)
-            - [JSVM 坚盾守护模式](napi/jsvm-secure-shield-mode.md)
-            - [JSVM 定位内存泄漏问题指导](napi/jsvm-locate-memory-leak.md)
+            - [JSVM-API 申请JIT权限指导](napi/jsvm-apply-jit-profile.md)
+            - [JSVM-API 坚盾守护模式](napi/jsvm-secure-shield-mode.md)
+            - [JSVM-API 内存泄漏问题定位指导](napi/jsvm-locate-memory-leak.md)
             - JSVM-API调优&高性能使用示例<!--jsvm-usage-examples-->
               - [使用JSVM-API接口创建多个引擎执行JS代码并销毁](napi/use-jsvm-runtime-task.md)
               - [使用 code cache 加速编译](napi/use-jsvm-about-code-cache.md)
@@ -3185,6 +3186,7 @@
           - [OH_NativeXComponent_MouseEvent_Callback](reference/apis-arkui/_o_h___native_x_component___mouse_event___callback.md)
           - [OH_NativeXComponent_TouchEvent](reference/apis-arkui/_o_h___native_x_component___touch_event.md)
           - [OH_NativeXComponent_TouchPoint](reference/apis-arkui/_o_h___native_x_component___touch_point.md)
+          - [OH_NativeXComponent_HistoricalPoint](reference/apis-arkui/_o_h___native_x_component___historical_point.md)
           - [PictureInPicture_PipConfig](reference/apis-arkui/capi-pictureinpicture-pipconfig.md)
           - [WindowManager_Rect](reference/apis-arkui/capi-windowmanager-rect.md)
           - [struct](reference/apis-arkui/capi-struct.md)
@@ -4075,7 +4077,7 @@
           - [@ohos.multimodalInput.mouseEvent (鼠标输入事件)](reference/apis-input-kit/js-apis-mouseevent.md)
           - [@ohos.multimodalInput.gestureEvent (手势事件)](reference/apis-input-kit/js-apis-multimodalinput-gestureevent.md)
           - [@ohos.multimodalInput.pointer (鼠标指针)](reference/apis-input-kit/js-apis-pointer.md)
-          - [@ohos.multimodalInput.touchEvent (触摸输入事件)](reference/apis-input-kit/js-apis-touchevent.md)
+          - [@ohos.multimodalInput.touchEvent (触屏输入事件)](reference/apis-input-kit/js-apis-touchevent.md)
           - [@ohos.multimodalInput.infraredEmitter (红外管理)](reference/apis-input-kit/js-apis-infraredemitter.md)
           - [@ohos.multimodalInput.inputConsumer (全局快捷键)](reference/apis-input-kit/js-apis-inputconsumer.md)
           <!--Del-->
@@ -4086,7 +4088,7 @@
           - [@ohos.multimodalInput.inputEventClient (输入事件注入)(系统接口)](reference/apis-input-kit/js-apis-inputeventclient-sys.md)
           - [@ohos.multimodalInput.inputMonitor (输入监听)(系统接口)](reference/apis-input-kit/js-apis-inputmonitor-sys.md)
           - [@ohos.multimodalInput.gestureEvent (手势事件)(系统接口)](reference/apis-input-kit/js-apis-multimodalinput-gestureevent-sys.md)
-          - [@ohos.multimodalInput.touchEvent (触摸输入事件)(系统接口)](reference/apis-input-kit/js-apis-touchevent-sys.md)
+          - [@ohos.multimodalInput.touchEvent (触屏输入事件)(系统接口)](reference/apis-input-kit/js-apis-touchevent-sys.md)
           - 已停止维护的接口<!--input-arkts-dep-->
             - [@ohos.multimodalInput.inputDeviceCooperate (键鼠穿越)(系统接口)](reference/apis-input-kit/js-apis-cooperate-sys.md)
           <!--DelEnd-->
@@ -4897,13 +4899,13 @@
           - [graphic_error_code.h](reference/apis-arkgraphics2d/capi-graphic-error-code-h.md)
           - [native_fence.h](reference/apis-arkgraphics2d/capi-native-fence-h.md)
         - 结构体<!--arkgraphics-struct-->
-          - [OH_NativeBuffer_ColorXY](reference/apis-arkgraphics2d/capi-oh-nativebuffer-colorxy.md)
-          - [OH_NativeBuffer_Smpte2086](reference/apis-arkgraphics2d/capi-oh-nativebuffer-smpte2086.md)
-          - [OH_NativeBuffer_Cta861](reference/apis-arkgraphics2d/capi-oh-nativebuffer-cta861.md)
-          - [OH_NativeBuffer_StaticMetadata](reference/apis-arkgraphics2d/capi-oh-nativebuffer-staticmetadata.md)
-          - [OH_NativeBuffer_Config](reference/apis-arkgraphics2d/capi-oh-nativebuffer-config.md)
-          - [OH_NativeBuffer_Plane](reference/apis-arkgraphics2d/capi-oh-nativebuffer-plane.md)
-          - [OH_NativeBuffer_Planes](reference/apis-arkgraphics2d/capi-oh-nativebuffer-planes.md)
+          - [OH_NativeBuffer_ColorXY](reference/apis-arkgraphics2d/capi-oh-nativebuffer-oh-nativebuffer-colorxy.md)
+          - [OH_NativeBuffer_Smpte2086](reference/apis-arkgraphics2d/capi-oh-nativebuffer-oh-nativebuffer-smpte2086.md)
+          - [OH_NativeBuffer_Cta861](reference/apis-arkgraphics2d/capi-oh-nativebuffer-oh-nativebuffer-cta861.md)
+          - [OH_NativeBuffer_StaticMetadata](reference/apis-arkgraphics2d/capi-oh-nativebuffer-oh-nativebuffer-staticmetadata.md)
+          - [OH_NativeBuffer_Config](reference/apis-arkgraphics2d/capi-oh-nativebuffer-oh-nativebuffer-config.md)
+          - [OH_NativeBuffer_Plane](reference/apis-arkgraphics2d/capi-oh-nativebuffer-oh-nativebuffer-plane.md)
+          - [OH_NativeBuffer_Planes](reference/apis-arkgraphics2d/capi-oh-nativebuffer-oh-nativebuffer-planes.md)
           - [ColorSpacePrimaries](reference/apis-arkgraphics2d/capi-nativecolorspacemanager-colorspaceprimaries.md)
           - [WhitePointArray](reference/apis-arkgraphics2d/capi-nativecolorspacemanager-whitepointarray.md)
           - [DisplaySoloist_ExpectedRateRange](reference/apis-arkgraphics2d/capi-nativedisplaysoloist-displaysoloist-expectedraterange.md)
@@ -4936,11 +4938,11 @@
           - [Rect](reference/apis-arkgraphics2d/capi-nativewindow-rect.md)
           - [OHHDRMetaData](reference/apis-arkgraphics2d/capi-nativewindow-ohhdrmetadata.md)
           - [OHExtDataHandle](reference/apis-arkgraphics2d/capi-nativewindow-ohextdatahandle.md)
-          - [OH_NativeBuffer](reference/apis-arkgraphics2d/capi-oh-nativebuffer.md)
+          - [OH_NativeBuffer](reference/apis-arkgraphics2d/capi-oh-nativebuffer-oh-nativebuffer.md)
           - [OH_NativeColorSpaceManager](reference/apis-arkgraphics2d/capi-nativecolorspacemanager-oh-nativecolorspacemanager.md)
           - [OH_DisplaySoloist](reference/apis-arkgraphics2d/capi-nativedisplaysoloist-oh-displaysoloist.md)
           - [NativePixelMap_](reference/apis-arkgraphics2d/capi-drawing-nativepixelmap-.md)
-          - [OH_PixelmapNative](reference/apis-arkgraphics2d/capi-effectkit-oh-pixelmapnative.md)
+          - [OH_PixelmapNative](reference/apis-arkgraphics2d/capi-drawing-oh-pixelmapnative.md)
           - [OH_Drawing_FontCollection](reference/apis-arkgraphics2d/capi-drawing-oh-drawing-fontcollection.md)
           - [OH_Drawing_Typography](reference/apis-arkgraphics2d/capi-drawing-oh-drawing-typography.md)
           - [OH_Drawing_TextStyle](reference/apis-arkgraphics2d/capi-drawing-oh-drawing-textstyle.md)
@@ -4990,8 +4992,8 @@
           - [OH_Drawing_RecordCmd](reference/apis-arkgraphics2d/capi-drawing-oh-drawing-recordcmd.md)
           - [OH_Drawing_Array](reference/apis-arkgraphics2d/capi-drawing-oh-drawing-array.md)
           - [OH_Filter](reference/apis-arkgraphics2d/capi-effectkit-oh-filter.md)
-          - [OH_NativeImage](reference/apis-arkgraphics2d/capi-oh-nativeimage.md)
-          - [NativeWindow](reference/apis-arkgraphics2d/capi-nativewindow.md)
+          - [OH_NativeImage](reference/apis-arkgraphics2d/capi-oh-nativeimage-oh-nativeimage.md)
+          - [NativeWindow](reference/apis-arkgraphics2d/capi-nativewindow-nativewindow.md)
           - [NativeWindowBuffer](reference/apis-arkgraphics2d/capi-nativewindow-nativewindowbuffer.md)
           - [OH_NativeVSync](reference/apis-arkgraphics2d/capi-nativevsync-oh-nativevsync.md)
           - [OHIPCParcel](reference/apis-arkgraphics2d/capi-nativewindow-ohipcparcel.md)

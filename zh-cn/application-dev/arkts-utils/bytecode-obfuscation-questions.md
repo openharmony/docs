@@ -16,8 +16,7 @@
 
 #### 目录差异
 
-![bytecode-compilation-code-build](figures/build-product.png) 
-![bytecode-compilation-build](figures/build-product.png)
+![bytecode-compilation-code-build](figures/bytecode-compilation-code-build.png) ![bytecode-compilation-build](figures/bytecode-compilation-build.png)
 
 字节码混淆后，obfuscation目录中多了obf、origin文件夹和config.json文件，具体详见[混淆效果](bytecode-obfuscation-guide.md#查看混淆效果)。
 
@@ -182,7 +181,7 @@ callargs2 0x2e, v2, v3
 · 混淆后的文件目录：build/default/[...]/release/obfuscation/obf。
 · 混淆名称映射表及系统API白名单目录：build/default/[...]/release/obfuscation。
 
-![bytecode-build-product](figures/build-product.png)
+![bytecode-build-product](figures/bytecode-build-product.png)
 
 · 名称映射表文件：nameCache.json，该文件记录了源码名称混淆的映射关系。
 · 系统API白名单文件：systemApiCache.json，该文件记录了SDK中的接口与属性名称，与其重名的源码不会被混淆。
@@ -396,7 +395,7 @@ export interface MyInfo {
 city1
 ```
 
-#### 同时开启-enable-export-obfuscation和-enable-toplevel-obfuscation选项可能出现的问题
+### 同时开启-enable-export-obfuscation和-enable-toplevel-obfuscation选项可能出现的问题
 
 **当开启这两个选项时，主模块调用其他模块方法时涉及的方法名称混淆情况如下**：
 |主模块	|依赖模块	|导入与导出的名称混淆情况|
@@ -407,9 +406,9 @@ city1
 
 HSP需要将给其他模块用的方法配置到白名单中。因为主模块里也需要配置相同的白名单，所以推荐将HSP配置了白名单的混淆文件（假设名称为hsp-white-list.txt）添加到依赖它的模块的混淆配置项里，即下图files字段里。
 
-![bytecode-buildoptionset](figures/build-product.png)
+![bytecode-buildoptionset](figures/bytecode-buildoptionset.png)
 
-##### 案例一：动态导入某个类，类定义的地方被混淆，导入类名时却没有混淆，导致报错
+#### 案例一：动态导入某个类，类定义的地方被混淆，导入类名时却没有混淆，导致报错
 
 ```ts
 // 混淆前
@@ -426,7 +425,7 @@ let mytest = (await import('./file')).Test1
 
 使用-keep-global-name选项将"Test1"配置到白名单。
 
-##### 案例二：在使用namespace中的方法时，该方法定义的地方被混淆了，但使用的地方却没有被混淆，导致报错
+#### 案例二：在使用namespace中的方法时，该方法定义的地方被混淆了，但使用的地方却没有被混淆，导致报错
 
 ```ts
 // 混淆前
@@ -533,7 +532,7 @@ person["b"] = 22; // 混淆后
 
 工程的目录结构如下图所示，模块library1的外层还有目录"directory"，开启文件名混淆后，"directory" 被混淆为f12，导致路径找不到。
 
-![bytecode-directory](figures/build-product.png)
+![bytecode-directory](figures/bytecode-directory.png)
 
 **解决方案**：
 

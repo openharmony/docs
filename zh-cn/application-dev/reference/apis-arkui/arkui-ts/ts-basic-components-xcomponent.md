@@ -97,7 +97,6 @@ XComponent(value: {id: string, type: string, libraryname?: string, controller?: 
 | type | [XComponentType](ts-appendix-enums.md#xcomponenttype10)         | 是   | 用于指定XComponent组件类型。 |
 | controller | [XComponentController](#xcomponentcontroller) | 是 | 给组件绑定一个控制器，通过控制器调用组件方法，仅类型为SURFACE或TEXTURE时有效。 |
 | imageAIOptions | [ImageAIOptions](ts-image-common.md#imageaioptions) | 否 | 给组件设置一个AI分析选项，通过此项可配置分析类型或绑定一个分析控制器。 |
-| screenId<sup>17+</sup> | number | 否 | 屏幕的id。 |
 
 ## NativeXComponentParameters<sup>19+</sup>
 
@@ -536,7 +535,7 @@ lockCanvas(): DrawingCanvas | null
 **返回值：**
 | 类型                                 | 说明                                  |
 | ------------------------------------ | ------------------------------------- |
-| [DrawingCanvas](#drawingcanvas12对象说明) \| null | 可用于向XComponent区域绘制的画布对象或者空对象null。 |
+| [DrawingCanvas](ts-drawingrenderingcontext.md#drawingcanvas12对象说明) \| null | 可用于向XComponent区域绘制的画布对象或者空对象null。 |
 
 > **说明：**
 >
@@ -565,7 +564,7 @@ unlockCanvasAndPost(canvas: DrawingCanvas): void
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| canvas | [DrawingCanvas](#drawingcanvas12对象说明) | 是 | 之前调用lockCanvas方法返回的画布对象。 |
+| canvas | [DrawingCanvas](ts-drawingrenderingcontext.md#drawingcanvas12对象说明) | 是 | 之前调用lockCanvas方法返回的画布对象。 |
 
 > **说明：**
 >
@@ -611,20 +610,6 @@ unlockCanvasAndPost(canvas: DrawingCanvas): void
 > surfaceWidth和surfaceHeight属性的取值都不可超过8192px，否则会导致渲染异常。
 >
 > 沉浸式场景下，默认布局的SurfaceRect不包括安全区，需调用[setXComponentSurfaceRect](ts-basic-components-xcomponent.md#setxcomponentsurfacerect12)接口主动设置Surface显示区域达到沉浸式效果。
-
-## DrawingCanvas<sup>12+</sup>对象说明
-
-type DrawingCanvas = Canvas
-
-可用于向XComponent上绘制内容的画布对象。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 类型                  | 说明           |
-| --------------------- | -------------- |
-| [Canvas](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#canvas) | 返回一个Canvas对象。 |
 
 ## 示例
 

@@ -82,7 +82,7 @@ test(a2);
 
 下图为应用编译的简要流程图：
 
-![bytecode-compilation-process](figures/build-product.png)
+![bytecode-compilation-process](figures/bytecode-compilation-process.png)
 
 开发者可以在模块的build-profile.json5配置文件中开启混淆功能，详细参考[字节码混淆开启指南](bytecode-obfuscation-guide.md)，从而在编译打包的过程中自动对abc进行混淆处理。
 
@@ -106,6 +106,7 @@ test(a2);
 |console打印删除|[`-remove-log`](#-remove-log)|
 |名称缓存输出|[`-print-namecache`](#-print-namecache)|
 |名称缓存复用|[`-apply-namecache`](#-apply-namecache)|
+|合并依赖模块选项|[`-enable-lib-obfuscation-options`](#-enable-lib-obfuscation-options)|
 |开启字节码混淆|[`-enable-bytecode-obfuscation`](#-enable-bytecode-obfuscation)|
 |开启字节码混淆调试能力|[`-enable-bytecode-obfuscation-debugging`](#-enable-bytecode-obfuscation-debugging)|
 

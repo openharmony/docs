@@ -574,18 +574,18 @@ try {
                 .then(() => {
                 console.info('startShortcutWithReason success');
             }).catch ((err: BusinessError) => {
-                console.error('startShortcutWithReason errData is errCode:${err.code}  message:${err.message}');
+                console.error(`startShortcutWithReason errData is errCode:${err.code}  message:${err.message}`);
             });
         } catch (error) {
             let code = (error as BusinessError).code;
             let message = (error as BusinessError).message;
-            console.error('startShortcutWithReason error is errCode:${code}  message:${message}');
+            console.error(`startShortcutWithReason error is errCode:${code}  message:${message}`);
         }
     }
 } catch (errData) {
     let code = (errData as BusinessError).code;
     let message = (errData as BusinessError).message;
-    console.error('startShortcutWithReason errData is errCode:${code}  message:${message}');
+    console.error(`startShortcutWithReason errData is errCode:${code}  message:${message}`);
 }
 ```
 

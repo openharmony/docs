@@ -90,6 +90,20 @@ The input event pointer is not a cloned event pointer.
 
 NA
 
+## 180004 组件状态异常
+
+**错误信息**
+
+The component status is abnormal.
+
+**错误描述**
+
+组件状态异常。
+
+**处理步骤**
+
+NA
+
 ## 180005 未命中可响应事件的组件
 
 **错误信息**

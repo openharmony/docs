@@ -1,6 +1,6 @@
-# 不同包类型的源码混淆建议
+# 不同包类型的字节码混淆建议
 
-由于不同包类型的用途及构建流程的差异，开发者对不同包类型使用混淆有不同的注意事项。本文对[HAP](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/hap-package.md)、[HAR](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/har-package.md)和][HSP](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/in-app-hsp.md)三种包类型分别提供建议，帮助开发者高效使用混淆。
+由于不同包类型的用途及构建流程的差异，开发者对不同包类型使用混淆有不同的注意事项。本文对[HAP](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/hap-package.md)、[HAR](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/har-package.md)和[HSP](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/in-app-hsp.md)三种包类型分别提供建议，帮助开发者高效使用混淆。
 为了对混淆在不同包类型下的行为有更清晰的理解，建议开发者在对不同包类型进行配置前，充分了解混淆原理及混淆开启流程，并优先阅读[Stage模型应用程序包结构](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/application-package-structure-stage.md)（了解不同包类型之间的差异点）。
 
 ## 推荐混淆选项
@@ -48,7 +48,7 @@
 
 ### HAR包通用建议
 
-1. HAR包的开发者需充分了解[三种混淆配置文件](bytecode-obfuscation-guide.md#三种混淆配置文件)以及[混淆规则的合并策略](bytecode-obfuscation.md#混淆规则合并策略)，以及在被HAP包使用时的[HAP包混淆建议](HAP包混淆建议)中的注意事项，确保被应用依赖时本模块所有功能正常。
+1. HAR包的开发者需充分了解[三种混淆配置文件](bytecode-obfuscation-guide.md#三种混淆配置文件)以及[混淆规则的合并策略](bytecode-obfuscation.md#混淆规则合并策略)，以及在被HAP包使用时的[HAP包混淆建议](#hap包混淆建议)中的注意事项，确保被应用依赖时本模块所有功能正常。
 
 2. 由于HAR包会影响使用它的主模块的混淆流程，**无论HAR包本身是否开启混淆，都应该配置consumer-rules.txt，来保证主模块在开启任意混淆的情况下，HAR包内部实现的功能都保持正常**。
 
@@ -56,7 +56,7 @@
 
 ### 本地源码HAR包
 
-作为一个未发布的静态包，本地源码HAR包不会独立进行编译混淆，而是会跟随依赖它的主模块（如HAP）一同进行编译混淆，开发者需参阅[HAP包混淆建议](HAP包混淆建议)了解相关行为。
+作为一个未发布的静态包，本地源码HAR包不会独立进行编译混淆，而是会跟随依赖它的主模块（如HAP）一同进行编译混淆，开发者需参阅[HAP包混淆建议](#hap包混淆建议)了解相关行为。
 
 ### 发布态源码HAR包
 
@@ -79,26 +79,26 @@
 
 ### 发布态字节码HAR包
 
-字节码HAR包的混淆适配流程与发布态源码HAR包基本一致。但是由于ArkGuard是源码混淆工具，因此当release编译构建发布一个字节码HAR包时，在构建本模块HAR时会进行一次混淆，当发布后的HAR包被使用方依赖时，如果使用方开启混淆，ArkGuard不会对字节码HAR包进行二次混淆。
+字节码HAR包的混淆适配流程与发布态源码HAR包基本一致。但是由于ArkGuard是字节码混淆工具，因此当release编译构建发布一个字节码HAR包时，在构建本模块HAR时会进行一次混淆，当发布后的HAR包被使用方依赖时，如果使用方开启混淆，ArkGuard不会对字节码HAR包进行二次混淆。
 
 ## HSP包混淆建议
 
 ### HSP包通用建议
 
-1. HSP包的开发者需充分了解[三种混淆配置文件](bytecode-obfuscation-guide.md#三种混淆配置文件)以及[混淆规则的合并策略](bytecode-obfuscation.md#混淆规则合并策略)，以及在被HAP包使用时的[HAP包混淆建议](HAP包混淆建议)中的注意事项，确保被应用依赖时本模块所有功能正常。
+1. HSP包的开发者需充分了解[三种混淆配置文件](bytecode-obfuscation-guide.md#三种混淆配置文件)以及[混淆规则的合并策略](bytecode-obfuscation.md#混淆规则合并策略)，以及在被HAP包使用时的[HAP包混淆建议](#hap包混淆建议)中的注意事项，确保被应用依赖时本模块所有功能正常。
 2. 由于HSP包是独立构建，并且只会构建一次，因此要重点关注模块内部的混淆效果，同时让其他模块正常调用接口即可。
 3. 由于consumer配置的传递性，**HSP包开发者不应该在其中配置开启某种混淆的能力，只应该配置保留某个白名单的规则，并且为减少对依赖方的影响范围，只建议使用`-keep-global-name`和`-keep-property-name`两种白名单配置能力。**
 
 ### 本地源码HSP包
 
 1. 本地源码HSP包要明确对外提供哪些接口及其相关属性，并将这些名称配置到obfuscation-rules.txt及consumer-rules.txt中。
-2. 对于模块内部混淆效果，开发者可以参阅[HAP包混淆建议](HAP包混淆建议)中的所有建议。
+2. 对于模块内部混淆效果，开发者可以参阅[HAP包混淆建议](#hap包混淆建议)中的所有建议。
 3. 功能验证时，应同时构建主模块和HSP包，然后验证HSP包提供的全部接口功能。
 
 ### 集成态HSP包
 
 1. 集成态HSP包要明确对外提供哪些接口及其相关属性，并将这些名称配置到obfuscation-rules.txt中。consumer-rules.txt文件中无需配置，因为打包后的tgz压缩包中包含HAR与HSP两个子压缩包，HAR包中的声明文件内定义的对外导出接口及其属性会被自动收集到白名单中。
-2. 对于集成态HSP包的内部混淆效果，开发者可以参阅[HAP包混淆建议](HAP包混淆建议)中的所有建议。
+2. 对于集成态HSP包的内部混淆效果，开发者可以参阅[HAP包混淆建议](#hap包混淆建议)中的所有建议。
 3. 集成态HSP包在发布后会被各方依赖，需要充分验证使用方开启混淆时HSP包接口可以被正常调用。
 
 > **说明**

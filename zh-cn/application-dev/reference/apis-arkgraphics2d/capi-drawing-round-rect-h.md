@@ -74,7 +74,7 @@ OH_Drawing_RoundRect* OH_Drawing_RoundRectCreate(const OH_Drawing_Rect* rect, fl
 
 | 参数项 | 描述 |
 | -- | -- |
-| const [OH_Drawing_Rect](capi-oh-drawing-rect.md)* rect | 指向矩形对象的指针。 |
+| const [OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)* rect | 指向矩形对象的指针。 |
 | float xRad | X轴上的圆角半径，小于或等于0时无效。 |
 | float yRad | Y轴上的圆角半径，小于或等于0时无效。 |
 
@@ -82,7 +82,7 @@ OH_Drawing_RoundRect* OH_Drawing_RoundRectCreate(const OH_Drawing_Rect* rect, fl
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_RoundRect](capi-oh-drawing-roundrect.md)* | 函数会返回一个指针，指针指向创建的圆角矩形对象。 |
+| [OH_Drawing_RoundRect](capi-drawing-oh-drawing-roundrect.md)* | 函数会返回一个指针，指针指向创建的圆角矩形对象。 |
 
 ### OH_Drawing_RoundRectCopy()
 
@@ -103,13 +103,13 @@ OH_Drawing_RoundRect* OH_Drawing_RoundRectCopy(const OH_Drawing_RoundRect* round
 
 | 参数项 | 描述 |
 | -- | -- |
-| const [OH_Drawing_RoundRect](capi-oh-drawing-roundrect.md)* roundRect | 指向用于拷贝的圆角矩形对象[OH_Drawing_RoundRect](capi-oh-drawing-roundrect.md)的指针。 |
+| const [OH_Drawing_RoundRect](capi-drawing-oh-drawing-roundrect.md)* roundRect | 指向用于拷贝的圆角矩形对象[OH_Drawing_RoundRect](capi-drawing-oh-drawing-roundrect.md)的指针。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_RoundRect](capi-oh-drawing-roundrect.md)* | 函数会返回一个指针，指针指向创建的新圆角矩形对象。 |
+| [OH_Drawing_RoundRect](capi-drawing-oh-drawing-roundrect.md)* | 函数会返回一个指针，指针指向创建的新圆角矩形对象。 |
 
 ### OH_Drawing_RoundRectSetCorner()
 
@@ -130,7 +130,7 @@ void OH_Drawing_RoundRectSetCorner(OH_Drawing_RoundRect* roundRect,OH_Drawing_Co
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_RoundRect](capi-oh-drawing-roundrect.md)* roundRect | 指向圆角矩形对象的指针。 |
+| [OH_Drawing_RoundRect](capi-drawing-oh-drawing-roundrect.md)* roundRect | 指向圆角矩形对象的指针。 |
 | [OH_Drawing_CornerPos](#oh_drawing_cornerpos) pos | 圆角位置的枚举，支持类型可见[OH_Drawing_CornerPos](capi-drawing-round-rect-h.md#oh_drawing_cornerpos)。 |
 | OH_Drawing_Corner_Radii radii | 圆角半径结构体OH_Drawing_Corner_Radii，其中包含x轴方向和y轴方向上的半径，半径小于等于0时无效。 |
 
@@ -153,7 +153,7 @@ OH_Drawing_Corner_Radii OH_Drawing_RoundRectGetCorner(OH_Drawing_RoundRect* roun
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_RoundRect](capi-oh-drawing-roundrect.md)* roundRect | 指向圆角矩形对象的指针。 |
+| [OH_Drawing_RoundRect](capi-drawing-oh-drawing-roundrect.md)* roundRect | 指向圆角矩形对象的指针。 |
 | [OH_Drawing_CornerPos](#oh_drawing_cornerpos) pos | 圆角位置的枚举，支持类型可见[OH_Drawing_CornerPos](capi-drawing-round-rect-h.md#oh_drawing_cornerpos)。 |
 
 **返回：**
@@ -181,7 +181,7 @@ void OH_Drawing_RoundRectDestroy(OH_Drawing_RoundRect* roundRect)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_RoundRect](capi-oh-drawing-roundrect.md)* roundRect | 指向圆角矩形对象的指针。 |
+| [OH_Drawing_RoundRect](capi-drawing-oh-drawing-roundrect.md)* roundRect | 指向圆角矩形对象的指针。 |
 
 ### OH_Drawing_RoundRectOffset()
 
@@ -202,7 +202,7 @@ OH_Drawing_ErrorCode OH_Drawing_RoundRectOffset(OH_Drawing_RoundRect* roundRect,
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_RoundRect](capi-oh-drawing-roundrect.md)* roundRect | 指向圆角矩形对象[OH_Drawing_Point2D](capi-oh-drawing-point2d.md)的指针。 |
+| [OH_Drawing_RoundRect](capi-drawing-oh-drawing-roundrect.md)* roundRect | 指向圆角矩形对象[OH_Drawing_Point2D](capi-drawing-oh-drawing-point2d.md)的指针。 |
 | float dx | 轴方向偏移量。 |
 | float dy | 轴方向偏移量。 |
 

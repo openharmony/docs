@@ -7,6 +7,10 @@
 >  - 该组件从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 >  - 该组件从API version 12开始支持与垂直滚动的Swiper和Web的联动。当Swiper设置loop属性为true时，Refresh无法和Swiper产生联动。
+>
+>  - Refresh和内容大小小于组件自身的List组件嵌套使用并且中间还有其他组件时，手势可能会被中间组件响应，导致Refresh未产生下拉刷新效果，可以将[alwaysEnabled](./ts-container-scrollable-common.md#edgeeffectoptions11对象说明)参数设为true，此时List会响应手势并通过嵌套滚动带动Refresh组件产生下拉刷新效果，具体可以参考[示例9不满一屏实现下拉刷新](#示例9不满一屏场景实现下拉刷新)。
+>
+>  - 组件内部已绑定手势实现跟手滚动等功能，需要增加自定义手势操作时请参考[手势拦截增强](ts-gesture-blocking-enhancement.md)进行处理。
 
 ## 子组件
 
@@ -792,3 +796,67 @@ struct RefreshExample {
 ```
 
 ![refresh_pulldownratio](figures/refresh_pulldownratio.gif)
+
+### 示例9（不满一屏场景实现下拉刷新）
+
+通过设置[edgeEffect](ts-container-scrollable-common.md#edgeeffect11)属性中的alwaysEnabled参数，可以在不满一屏的情况下实现Refresh组件的下拉刷新效果。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct RefreshExample {
+  @State isRefreshing: boolean = false;
+  @State alwaysEnabled: boolean = false;
+
+  build() {
+    Column() {
+      Refresh({ refreshing: $$this.isRefreshing }) {
+        Column() {
+          List() {
+            ListItem() {
+              Text('alwaysEnabled:' + this.alwaysEnabled)
+                .width('70%')
+                .height(80)
+                .fontSize(16)
+                .margin(10)
+                .textAlign(TextAlign.Center)
+                .borderRadius(10)
+                .backgroundColor(0xFFFFFF)
+                .onClick(() => {
+                  this.alwaysEnabled = !this.alwaysEnabled;
+                })
+            }
+          }
+          .width('100%')
+          .height('100%')
+          .alignListItem(ListItemAlign.Center)
+          .scrollBar(BarState.Auto)
+          // List组件内容大小小于组件自身且alwaysEnabled为false时，List不会响应手势，此时手势会被Column组件响应，不会产生下拉刷新效果
+          // alwaysEnabled设为true，List会响应手势并通过嵌套滚动带动Refresh组件产生下拉刷新效果
+          .edgeEffect(EdgeEffect.Spring, { alwaysEnabled: this.alwaysEnabled })
+        }
+        .gesture(
+          PanGesture({ direction: PanDirection.Vertical })
+        )
+      }
+      .onStateChange((refreshStatus: RefreshStatus) => {
+        console.info('Refresh onStatueChange state is ' + refreshStatus);
+      })
+      .onOffsetChange((value: number) => {
+        console.info('Refresh onOffsetChange offset:' + value);
+      })
+      .onRefreshing(() => {
+        setTimeout(() => {
+          this.isRefreshing = false;
+        }, 2000)
+      })
+      .backgroundColor(0x89CFF0)
+      .refreshOffset(64)
+      .pullToRefresh(true)
+    }
+  }
+}
+```
+
+![refresh_list_edgeEffect](figures/refresh_alwaysEnabled.gif)

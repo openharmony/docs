@@ -199,7 +199,7 @@ interpolation(value: ImageInterpolation)
 
 | 参数名 | 类型                                      | 必填 | 说明                                                |
 | ------ | ----------------------------------------- | ---- | --------------------------------------------------- |
-| value  | [ImageInterpolation](#imageinterpolation) | 是   | 图片的插值效果。<br/>默认值：ImageInterpolation.Low |
+| value  | [ImageInterpolation](#imageinterpolation) | 是   | 图片的插值效果。<br/>默认值：ImageInterpolation.Low<br/>设置undefined时，取值为ImageInterpolation.None。 |
 
 ### renderMode
 
@@ -546,7 +546,7 @@ orientation(orientation: ImageRotateOrientation)
 
 | 参数名 | 类型                                    | 必填 | 说明                             |
 | ------ | --------------------------------------- | ---- | -------------------------------- |
-| orientation  | [ImageRotateOrientation](#imagerotateorientation14) | 是   | 图像内容的显示方向。<br/>不支持gif和svg类型的图片。<br/>如果需要显示携带旋转角度信息或翻转信息的图片，建议使用ImageRotateOrientation.AUTO进行设置。<br/>默认值：ImageRotateOrientation.UP |
+| orientation  | [ImageRotateOrientation](#imagerotateorientation14) | 是   | 图像内容的显示方向。<br/>不支持gif和svg类型的图片。<br/>如果需要显示携带旋转角度信息或翻转信息的图片，建议使用ImageRotateOrientation.AUTO进行设置。<br/>默认值：ImageRotateOrientation.UP<br/>设置undefined时，取值为ImageRotateOrientation.AUTO。 |
 
 ### hdrBrightness<sup>19+</sup>
 
@@ -1172,7 +1172,7 @@ struct drawingLatticeTest {
   private yDivs: Array<number> = [1, 2, 200];
   private fXCount: number = 3;
   private fYCount: number = 3;
-  private DrawingLatticeFirst: DrawingLattice =
+  private drawingLatticeFirst: DrawingLattice =
     drawing.Lattice.createImageLattice(this.xDivs, this.yDivs, this.fXCount, this.fYCount);
 
   build() {
@@ -1191,7 +1191,7 @@ struct drawingLatticeTest {
             .width(260)
             .height(260)
             .resizable({
-              lattice: this.DrawingLatticeFirst
+              lattice: this.drawingLatticeFirst
             })
         }.width('100%')
       }.width('100%')
@@ -1213,7 +1213,7 @@ import { image } from '@kit.ImageKit';
 @Entry
 @Component
 struct ImageExample {
-  pixelMaps: Array<PixelMap>  = [];
+  pixelMaps: PixelMap[] = [];
   options: AnimationOptions = { iterations: 1 };
   @State animated: AnimatedDrawableDescriptor | undefined = undefined;
 
@@ -1228,7 +1228,7 @@ struct ImageExample {
         Image(this.animated)
           .width('500px').height('500px')
           .onFinish(() => {
-            console.info("finish");
+            console.info('finish');
           })
       }.height('50%')
       Row() {
@@ -1251,7 +1251,7 @@ struct ImageExample {
       id: resource.id
     });
     let imageSource = image.createImageSource(unit8Array?.buffer.slice(0, unit8Array.buffer.byteLength));
-    let createPixelMap: Array<image.PixelMap> = await imageSource.createPixelMapList({
+    let createPixelMap: image.PixelMap[] = await imageSource.createPixelMapList({
       desiredPixelFormat: image.PixelMapFormat.RGBA_8888
     });
     await imageSource.release();
@@ -1273,7 +1273,7 @@ struct ImageExample {
   }
 
   private async getPixelMaps() {
-    let myPixelMaps:Array<PixelMap> = await this.getPixmapListFromMedia($r('app.media.mountain')); //添加图片
+    let myPixelMaps:PixelMap[] = await this.getPixmapListFromMedia($r('app.media.mountain')); //添加图片
     myPixelMaps.push(await this.getPixmapFromMedia($r('app.media.sky')));
     myPixelMaps.push(await this.getPixmapFromMedia($r('app.media.clouds')));
     myPixelMaps.push(await this.getPixmapFromMedia($r('app.media.landscape')));
@@ -1298,36 +1298,45 @@ struct ImageExample3 {
   private imageTwo: Resource = $r('app.media.2');
   @State src: Resource = this.imageOne;
   @State src2: Resource = this.imageTwo;
-  private ColorFilterMatrix: number[] = [1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0];
-  private color: common2D.Color = { alpha: 255, red: 255, green: 0, blue: 0 };
-  @State DrawingColorFilterFirst: ColorFilter | undefined = undefined;
-  @State DrawingColorFilterSecond: ColorFilter | undefined = undefined;
-  @State DrawingColorFilterThird: ColorFilter | undefined = undefined;
+  private colorFilterMatrix: number[] = [1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0];
+  private color: common2D.Color = {
+    alpha: 255,
+    red: 255,
+    green: 0,
+    blue: 0
+  };
+  @State drawingColorFilterFirst: ColorFilter | undefined = undefined;
+  @State drawingColorFilterSecond: ColorFilter | undefined = undefined;
+  @State drawingColorFilterThird: ColorFilter | undefined = undefined;
 
   build() {
     Column() {
       Image(this.src)
         .width(100)
         .height(100)
-        .colorFilter(this.DrawingColorFilterFirst)
+        .colorFilter(this.drawingColorFilterFirst)
         .onClick(()=>{
-          this.DrawingColorFilterFirst = drawing.ColorFilter.createBlendModeColorFilter(this.color, drawing.BlendMode.SRC_IN);
+          this.drawingColorFilterFirst =
+            drawing.ColorFilter.createBlendModeColorFilter(this.color, drawing.BlendMode.SRC_IN);
         })
 
       Image(this.src2)
         .width(100)
         .height(100)
-        .colorFilter(this.DrawingColorFilterSecond)
+        .colorFilter(this.drawingColorFilterSecond)
         .onClick(()=>{
-          this.DrawingColorFilterSecond = new ColorFilter(this.ColorFilterMatrix);
+          this.drawingColorFilterSecond = new ColorFilter(this.ColorFilterMatrix);
         })
 
       //当加载图片为SVG格式时
       Image($r('app.media.test_self'))
-        .width(110).height(110).margin(15)
-        .colorFilter(this.DrawingColorFilterThird)
+        .width(110)
+        .height(110)
+        .margin(15)
+        .colorFilter(this.drawingColorFilterThird)
         .onClick(()=>{
-          this.DrawingColorFilterThird = drawing.ColorFilter.createBlendModeColorFilter(this.color, drawing.BlendMode.SRC_IN);
+          this.drawingColorFilterThird =
+            drawing.ColorFilter.createBlendModeColorFilter(this.color, drawing.BlendMode.SRC_IN);
         })
     }
   }
@@ -1421,14 +1430,14 @@ struct ImageContentExample {
 struct ImageExample {
   build() {
     Column({ space: 10 }) {
-      Image($r("app.media.startIcon"))
+      Image($r('app.media.startIcon'))
         .width(50)
         .height(50)
         .margin({top :30})
         .privacySensitive(true)
     }
     .alignItems(HorizontalAlign.Center)
-    .width("100%")
+    .width('100%')
   }
 }
 ```
@@ -1549,33 +1558,33 @@ struct Test {
     Row() {
       Column({ space: 50 }) {
         Column({ space: 5 }) {
-          Image($r("app.media.example"))
+          Image($r('app.media.example'))
             .border({ width:2, color: Color.Black })
             .objectFit(ImageFit.Contain)
             .width(150)
             .height(150)
-          Text("图片无变换")
+          Text('图片无变换')
             .fontSize('25px')
         }
         Column({ space: 5 }) {
-          Image($r("app.media.example"))
+          Image($r('app.media.example'))
             .border({ width:2, color: Color.Black })
             .objectFit(ImageFit.None)
             .translate({ x: 10, y: 10 })
             .scale({ x: 0.5, y: 0.5 })
             .width(100)
             .height(100)
-          Text("Image直接变换，默认显示图源左上角。")
+          Text('Image直接变换，默认显示图源左上角。')
             .fontSize('25px')
         }
         Column({ space: 5 }) {
-          Image($r("app.media.example"))
+          Image($r('app.media.example'))
             .objectFit(ImageFit.MATRIX)
             .imageMatrix(this.matrix1)
             .border({ width:2, color: Color.Black })
             .width(150)
             .height(150)
-          Text("通过imageMatrix变换，调整图源位置，实现最佳呈现。")
+          Text('通过imageMatrix变换，调整图源位置，实现最佳呈现。')
             .fontSize('25px')
         }
       }
@@ -1598,13 +1607,13 @@ struct Index {
   @State borderRadiusValue: number = 10;
   build() {
     Column() {
-      Image($r("app.media.sky"))
+      Image($r('app.media.sky'))
         .sourceSize({width:1393, height:1080})
         .height(300)
         .width(300)
         .objectFit(ImageFit.Contain)
         .borderWidth(1)
-      Image($r("app.media.sky"))
+      Image($r('app.media.sky'))
         .sourceSize({width:13, height:10})
         .height(300)
         .width(300)
@@ -1630,7 +1639,7 @@ struct Index {
   @State borderRadiusValue: number = 10;
   build() {
     Column() {
-      Image($r("app.media.sky"))
+      Image($r('app.media.sky'))
         .renderMode(ImageRenderMode.Template)
         .height(300)
         .width(300)
@@ -1656,7 +1665,7 @@ struct Index {
   @State borderRadiusValue: number = 10;
   build() {
     Column() {
-      Image($r("app.media.sky"))
+      Image($r('app.media.sky'))
         .objectRepeat(ImageRepeat.Y)
         .height('90%')
         .width('90%')
@@ -1681,28 +1690,28 @@ struct Index {
 struct Index {
   build() {
     Column() {
-      Text("不设置fillColor")
-      Image($r("app.media.svgExample"))
+      Text('不设置fillColor')
+      Image($r('app.media.svgExample'))
         .height(100)
         .width(100)
         .objectFit(ImageFit.Contain)
         .borderWidth(1)
-      Text("fillColor传入ColorContent.ORIGIN")
-      Image($r("app.media.svgExample"))
+      Text('fillColor传入ColorContent.ORIGIN')
+      Image($r('app.media.svgExample'))
         .height(100)
         .width(100)
         .objectFit(ImageFit.Contain)
         .borderWidth(1)
         .fillColor(ColorContent.ORIGIN)
-      Text("fillColor传入Color.Blue")
-      Image($r("app.media.svgExample"))
+      Text('fillColor传入Color.Blue')
+      Image($r('app.media.svgExample'))
         .height(100)
         .width(100)
         .objectFit(ImageFit.Contain)
         .borderWidth(1)
         .fillColor(Color.Blue)
-      Text("fillColor传入undefined")
-      Image($r("app.media.svgExample"))
+      Text('fillColor传入undefined')
+      Image($r('app.media.svgExample'))
         .height(100)
         .width(100)
         .objectFit(ImageFit.Contain)
@@ -1752,7 +1761,7 @@ struct Index {
         .height('auto')
         .margin({top:160})
         .hdrBrightness(this.bright) // 设置图片的HDR亮度，值由bright状态控制
-      Button("图片动态提亮 0->1")
+      Button('图片动态提亮 0->1')
         .onClick(() => {
           // 动画过渡，切换亮度值
           this.getUIContext()?.animateTo({}, () => {

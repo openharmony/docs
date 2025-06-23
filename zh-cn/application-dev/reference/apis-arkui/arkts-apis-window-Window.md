@@ -92,9 +92,15 @@ showWindow(options: ShowWindowOptions): Promise&lt;void&gt;
 
 显示当前窗口，使用Promise异步回调，仅支持系统窗口及应用子窗口，或将已显示的应用主窗口的层级提升至顶部。支持传入参数来控制窗口显示的行为。
 
-**系统能力：** SystemCapability.WindowManager.WindowManager
+**系统能力：** SystemCapability.Window.SessionManager
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | ------------------------- | -- | --------- |
+| options | [ShowWindowOptions](arkts-apis-window-i.md#showwindowoptions20) | 是 | 显示子窗口或系统窗口时的参数。 |
 
 **返回值：**
 
@@ -111,7 +117,7 @@ showWindow(options: ShowWindowOptions): Promise&lt;void&gt;
 | 801     | Capability not supported. Function showWindow can not work correctly due to limited device capabilities. |
 | 1300002 | This window state is abnormal. |
 | 1300004 | Unauthorized operation. |
-| 1300016     | Parameter validation error. Possible cause: 1. The value of the parameter is out of the allowed range; 2. The length of the parameter exceeds the allowed length; 3. The parameter format is incorrect. |
+| 1300016 | Parameter validation error. Possible cause: 1. The value of the parameter is out of the allowed range; 2. The length of the parameter exceeds the allowed length; 3. The parameter format is incorrect. |
 
 **示例：**
 
@@ -1037,7 +1043,7 @@ try {
 
 setTitleAndDockHoverShown(isTitleHoverShown?: boolean, isDockHoverShown?: boolean): Promise&lt;void&gt;
 
-设置主窗口进入全屏沉浸式时鼠标Hover到热区上是否显示窗口标题栏和dock栏，使用Promise异步回调，仅2in1设备可用。
+设置主窗口进入全屏模式时鼠标Hover到热区上是否显示窗口标题栏和dock栏，使用Promise异步回调，仅2in1设备可用。
 
 **系统能力**：SystemCapability.Window.SessionManager
 
@@ -1079,7 +1085,7 @@ export default class EntryAbility extends UIAbility {
         data => {
           mainWindow = data;
           console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
-          // 调用maximize接口，设置窗口进入全屏沉浸式。
+          // 调用maximize接口，设置窗口进入全屏模式。
           mainWindow.maximize(window.MaximizePresentation.ENTER_IMMERSIVE);
           // 调用setTitleAndDockHoverShown接口，隐藏标题栏和dock栏。
           mainWindow.setTitleAndDockHoverShown(false, false);
@@ -5853,7 +5859,7 @@ maximize(presentation?: MaximizePresentation): Promise&lt;void&gt;
 
 | 参数名 | 类型  | 必填 | 说明 |
 | ----- | ---------------------------- | -- | --------------------------------- |
-| presentation  | [MaximizePresentation](arkts-apis-window-e.md#maximizepresentation12) | 否 | 主窗口或子窗口最大化时的布局枚举。默认值window.MaximizePresentation.ENTER_IMMERSIVE，即默认最大化时进入沉浸式布局。 |
+| presentation  | [MaximizePresentation](arkts-apis-window-e.md#maximizepresentation12) | 否 | 主窗口或子窗口最大化时的布局枚举。默认值window.MaximizePresentation.ENTER_IMMERSIVE，即默认最大化时进入全屏模式。 |
 
 **返回值：**
 

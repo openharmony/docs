@@ -13,6 +13,7 @@
     - [Interface (AudioStreamManager)](arkts-apis-audio-AudioStreamManager.md)
     - [Interface (AudioVolumeGroupManager)](arkts-apis-audio-AudioVolumeGroupManager.md)
     - [Interface (AudioVolumeManager)](arkts-apis-audio-AudioVolumeManager.md)
+    - [Interface (AudioLoopback)](arkts-apis-audio-AudioLoopback.md)
     - [Interfaces (其他)](arkts-apis-audio-i.md)
     - [Enums](arkts-apis-audio-e.md)
     - [Constants](arkts-apis-audio-c.md)

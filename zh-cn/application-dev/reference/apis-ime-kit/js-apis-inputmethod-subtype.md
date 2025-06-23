@@ -12,9 +12,9 @@
 import { InputMethodSubtype } from '@kit.IMEKit';
 ```
 
-## 属性
+## InputMethodSubtype
 
-属性值。
+输入法子类型属性。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
