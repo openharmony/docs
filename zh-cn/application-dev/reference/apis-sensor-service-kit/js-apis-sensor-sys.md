@@ -116,7 +116,7 @@ try {
 
 ### COLOR<sup>10+</sup>
 
-off(type: SensorId.COLOR, callback?: Callback&lt;ColorResponse&gt;): void
+off(type: SensorId.COLOR, sensorInfoParam?: SensorInfoParam, callback?: Callback&lt;ColorResponse&gt;): void
 
 取消订阅颜色传感器数据。
 
@@ -126,10 +126,11 @@ off(type: SensorId.COLOR, callback?: Callback&lt;ColorResponse&gt;): void
 
 **参数**：
 
-| 参数名   | 类型                                              | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9).COLOR                      | 是   | 传感器类型，该值固定为SensorId.COLOR。                       |
-| callback | Callback&lt;[ColorResponse](#colorresponse10)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
+| 参数名   | 类型                                                     | 必填 | 说明                                                         |
+| -------- |--------------------------------------------------------| ---- | ------------------------------------------------------------ |
+| type     | [SensorId](#sensorid9).COLOR                           | 是   | 传感器类型，该值固定为SensorId.COLOR。                       |
+| sensorInfoParam<sup>19+</sup> | [SensorInfoParam](#sensorinfoparam19) |  否 | 传感器传入设置参数，可指定deviceId、sensorIndex |
+| callback | Callback&lt;[ColorResponse](#colorresponse10)&gt;      | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **错误码**：
 
@@ -169,7 +170,7 @@ try {
 
 ### SAR<sup>10+</sup>
 
-off(type: SensorId.SAR, callback?: Callback&lt;SarResponse&gt;): void
+off(type: SensorId.SAR, sensorInfoParam?: SensorInfoParam, callback?: Callback&lt;SarResponse&gt;): void
 
 取消订阅吸收比率传感器数据。
 
@@ -182,6 +183,7 @@ off(type: SensorId.SAR, callback?: Callback&lt;SarResponse&gt;): void
 | 参数名   | 类型                                          | 必填 | 说明                                                         |
 | -------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).SAR                    | 是   | 传感器类型，该值固定为SensorId.SAR。                         |
+| sensorInfoParam<sup>19+</sup> | [SensorInfoParam](#sensorinfoparam19) |  否 | 传感器传入设置参数，可指定deviceId、sensorIndex |
 | callback | Callback&lt;[SarResponse](#sarresponse10)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **错误码**：
@@ -257,3 +259,16 @@ try {
 | 名称            | 类型   | 可读 | 可写 | 说明                            |
 | --------------- | ------ | ---- | ---- | ------------------------------- |
 | absorptionRatio | number | 是   | 是   | 表示具体的吸收率，单位 : W/kg。 |
+
+
+## SensorInfoParam<sup>19+</sup>
+
+传感器传入设置参数。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+
+
+| 参数名 | 类型                   | 必填 | 说明                      |
+| ------ | ---------------------- | ---- |-------------------------|
+| deviceId   | number | 否   | 设备ID：默认值为-1，表示本地设备。     |
+| sensorIndex   | number | 否   | 传感器索引：默认值为0，为设备上的默认传感器。 |
