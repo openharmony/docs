@@ -70,6 +70,7 @@
 | typedef struct [ArkUI_CustomProperty](_ark_u_i___native_module.md#arkui_customproperty) [ArkUI_CustomProperty](_ark_u_i___native_module.md#arkui_customproperty) | 定义自定义属性的CustomProperty类信息。  | 
 | typedef struct [ArkUI_HostWindowInfo](_ark_u_i___native_module.md#arkui_hostwindowinfo) [ArkUI_HostWindowInfo](_ark_u_i___native_module.md#arkui_hostwindowinfo) | 定义窗口属性的HostWindowInfo类信息。  | 
 | typedef struct [ArkUI_ActiveChildrenInfo](_ark_u_i___native_module.md#arkui_activechildreninfo) [ArkUI_HostWindowInfo](_ark_u_i___native_module.md#arkui_activechildreninfo) | 定义ActiveChildrenInfo类信息。  | 
+| typedef struct ArkUI_CrossLanguageOption ArkUI_CrossLanguageOption | 定义跨语言配置。  | 
 
 ### 枚举
 
@@ -381,3 +382,9 @@
 | int32_t [OH_ArkUI_VisibleAreaEventOptions_SetExpectedUpdateInterval](_ark_u_i___native_module.md#oh_arkui_visibleareaeventoptions_setexpectedupdateinterval) ([ArkUI_VisibleAreaEventOptions](_ark_u_i___native_module.md#arkui_visibleareaeventoptions) \*option, int32_t value) | 设置预期更新间隔，单位为ms。定义了开发者期望的更新间隔。 |
 | int32_t [OH_ArkUI_VisibleAreaEventOptions_GetRatios](_ark_u_i___native_module.md#oh_arkui_visibleareaeventoptions_getratios) ([ArkUI_VisibleAreaEventOptions](_ark_u_i___native_module.md#arkui_visibleareaeventoptions) \*option, float\* value, int32_t\* size) | 获取阈值数组。  | 
 | int32_t [OH_ArkUI_VisibleAreaEventOptions_GetExpectedUpdateInterval](_ark_u_i___native_module.md#oh_arkui_visibleareaeventoptions_getexpectedupdateinterval) ([ArkUI_VisibleAreaEventOptions](_ark_u_i___native_module.md#arkui_visibleareaeventoptions) \*option,) |  获取预期更新间隔。 | 
+| const char\* [OH_ArkUI_HostWindowInfo_GetName](_ark_u_i___native_module.md#oh_arkui_hostwindowinfo_getname) ([ArkUI_HostWindowInfo](_ark_u_i___native_module.md#arkui_hostwindowinfo)\* info) | 获取HostWindowInfo对象中的窗口名称。 |
+| void [OH_ArkUI_HostWindowInfo_Destroy](_ark_u_i___native_module.md#oh_arkui_hostwindowinfo_destroy) ([ArkUI_HostWindowInfo](_ark_u_i___native_module.md#arkui_hostwindowinfo)\* info) | 销毁HostWindowInfo对象。 |
+| ArkUI_CrossLanguageOption\* [OH_ArkUI_CrossLanguageOption_Create](_ark_u_i___native_module.md#oh_arkui_crosslanguageoption_create) (void) | 创建跨语言配置实例。 |
+| void [OH_ArkUI_CrossLanguageOption_Destroy](_ark_u_i___native_module.md#oh_arkui_crosslanguageoption_destroy) (ArkUI_CrossLanguageOption\* option) | 销毁跨语言配置实例。 |
+| void [OH_ArkUI_CrossLanguageOption_SetAttributeSettingStatus](_ark_u_i___native_module.md#oh_arkui_crosslanguageoption_setattributesettingstatus) (ArkUI_CrossLanguageOption\* option, bool enabled) | 设置是否允许跨语言修改属性的配置项。 |
+| bool [OH_ArkUI_CrossLanguageOption_GetAttributeSettingStatus](_ark_u_i___native_module.md#oh_arkui_crosslanguageoption_getattributesettingstatus) (ArkUI_CrossLanguageOption\* option) | 获取是否允许跨语言修改属性的配置项的值。 |
