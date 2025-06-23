@@ -19,7 +19,7 @@
 ## 导入模块
 
 ```ts
-import { AppStorageV2,PersistenceV2,UIUtils} from '@kit.ArkUI';
+import { AppStorageV2, PersistenceV2, UIUtils } from '@kit.ArkUI';
 ```
 
 ## AppStorageV2
