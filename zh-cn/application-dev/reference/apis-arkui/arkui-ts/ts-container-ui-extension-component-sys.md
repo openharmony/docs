@@ -209,15 +209,14 @@ type ReceiveCallback = Callback\<Record\<string, Object\>\>
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：**
 
-| 参数名               | 类型                                 | 必填 | 说明                                                                                                      |
+| 名称               | 类型                                 | 必填 | 说明                                                                                                      |
 | ----                 | ---------------------------------------- | ---- | ---------------                                                                                               |
-| isTransferringCaller | boolean                                  | 否   | 在使用UIExtensionComponent嵌套时，设置当前UIExtensionComponent是否转发上一级的Caller信息。</br> 默认值：false。 |
+| isTransferringCaller | boolean                                  | 否   | 在使用UIExtensionComponent嵌套时，设置当前UIExtensionComponent是否转发上一级的Caller信息。</br> 默认值：false |
 | placeholder<sup>12+<sup> | [ComponentContent](../js-apis-arkui-ComponentContent.md)       | 否   | 设置占位符，在UIExtensionComponent与UIExtensionAbility建立连接前显示。 |
-| dpiFollowStrategy<sup>12+<sup> | [DpiFollowStrategy](ts-container-ui-extension-component-sys.md#dpifollowstrategy12)                  | 否   | 提供接口支持设置DPI跟随宿主或跟随UIExtensionAbility。</br> 默认值：FOLLOW_UI_EXTENSION_ABILITY_DPI。 |
+| dpiFollowStrategy<sup>12+<sup> | [DpiFollowStrategy](ts-container-ui-extension-component-sys.md#dpifollowstrategy12)                  | 否   | 提供接口支持设置DPI跟随宿主或跟随UIExtensionAbility。</br> 默认值：FOLLOW_UI_EXTENSION_ABILITY_DPI |
 | areaChangePlaceholder<sup>14+<sup> | Record<string, [ComponentContent](../js-apis-arkui-ComponentContent.md)>       | 否   | 设置尺寸变化占位符，在UIExtensionComponent尺寸发生变化并且UIExtension内部渲染未完成时显示, key值支持"FOLD_TO_EXPAND"(折叠展开尺寸变化)、"UNDEFINED"(默认尺寸变化)。 |
-| windowModeFollowStrategy<sup>18+<sup> | [WindowModeFollowStrategy](ts-container-ui-extension-component-sys.md#windowmodefollowstrategy18)    | 否   | 提供接口以支持设置窗口Mode，使其能够跟随宿主或UIExtensionAbility。</br> 默认值：FOLLOW_UI_EXTENSION_ABILITY_WINDOW_MODE。 |
+| windowModeFollowStrategy<sup>18+<sup> | [WindowModeFollowStrategy](ts-container-ui-extension-component-sys.md#windowmodefollowstrategy18)    | 否   | 提供接口以支持设置窗口Mode，使其能够跟随宿主或UIExtensionAbility。</br> 默认值：FOLLOW_UI_EXTENSION_ABILITY_WINDOW_MODE |
 
 ## DpiFollowStrategy<sup>12+</sup>
 
@@ -482,23 +481,23 @@ const TAG: string = '[UIExtAbility]'
 export default class UIExtAbility extends UIExtensionAbility {
 
   onCreate() {
-    console.log(TAG, `UIExtAbility onCreate`);
+    console.info(TAG, `UIExtAbility onCreate`);
   }
 
   onForeground() {
-    console.log(TAG, `UIExtAbility onForeground`);
+    console.info(TAG, `UIExtAbility onForeground`);
   }
 
   onBackground() {
-    console.log(TAG, `UIExtAbility onBackground`);
+    console.info(TAG, `UIExtAbility onBackground`);
   }
 
   onDestroy() {
-    console.log(TAG, `UIExtAbility onDestroy`);
+    console.info(TAG, `UIExtAbility onDestroy`);
   }
 
   onSessionCreate(want: Want, session: UIExtensionContentSession) {
-    console.log(TAG, `UIExtAbility onSessionCreate, want: ${JSON.stringify(want)}`);
+    console.info(TAG, `UIExtAbility onSessionCreate, want: ${JSON.stringify(want)}`);
     let param: Record<string, UIExtensionContentSession> = {
       'session': session
     };
@@ -507,7 +506,7 @@ export default class UIExtAbility extends UIExtensionAbility {
   }
 
   onSessionDestroy(session: UIExtensionContentSession) {
-    console.log(TAG, `UIExtAbility onSessionDestroy`);
+    console.info(TAG, `UIExtAbility onSessionDestroy`);
   }
 }
 ```
@@ -600,7 +599,7 @@ export struct pageOneTmp {
     }.title("pageOne")
     .onBackPressed(() => {
       const popDestinationInfo = this.pathStack.pop(); // 弹出路由栈栈顶元素
-      console.log('pop' + '返回值' + JSON.stringify(popDestinationInfo));
+      console.info('pop' + '返回值' + JSON.stringify(popDestinationInfo));
       return true;
     })
     .onReady((context: NavDestinationContext) => {

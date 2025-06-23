@@ -154,22 +154,25 @@ struct OnAccessibilityHoverEventExample {
 该示例代码会在无障碍模式下捕获无法无障碍聚焦的组件的触摸事件，并将事件信息显示在组件下方的文本中。
 
 ```ts
-// xxx.ets
 @Entry
 @Component
 struct TestExample {
   @State text: string = '';
   @State eventType: string = '';
+
   build() {
-    Column({space: 50}) {
+    Column({ space: 50 }) {
       Column() {
         Button("Test Button")
           .accessibilityLevel("no")
-      }.margin({top: 20})
+      }.margin({ top: 20 })
+
       Text(this.text)
-    }.width('100%').height('100%')
+    }
+    .width('100%')
+    .height('100%')
     .onAccessibilityHoverTransparent((event?: TouchEvent) => {
-      if(event){
+      if (event) {
         if (event.type === TouchType.HOVER_ENTER) {
           this.eventType = 'HOVER_ENTER';
         }
