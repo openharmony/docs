@@ -1585,13 +1585,24 @@ on(type: 'keyPressed', keys: Array&lt;KeyCode&gt;, receiver: Callback&lt;KeyEven
 ```js
 import { inputMonitor, KeyEvent, KeyCode } from '@kit.InputKit';
 
-let keys: Array<KeyCode> = [KeyCode.KEYCODE_VOLUME_UP];
-try {
-  inputMonitor.on('keyPressed', keys, (event: KeyEvent ) => {
-    console.log(`Monitor on success ${JSON.stringify(event)}`);
-  });
-} catch (error) {
-  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            let keys: Array<KeyCode> = [KeyCode.KEYCODE_VOLUME_UP];
+            inputMonitor.on('keyPressed', keys, (event: KeyEvent ) => {
+              console.log(`Monitor on success ${JSON.stringify(event)}`);
+            });
+          } catch (error) {
+            console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
