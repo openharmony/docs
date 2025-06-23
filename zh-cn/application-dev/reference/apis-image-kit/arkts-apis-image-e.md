@@ -68,6 +68,7 @@
 | ----------------- | ---- | ------------------ |
 | EXIF_METADATA     | 1    | exif数据。         |
 | FRAGMENT_METADATA | 2    | 水印裁剪图元数据。 |
+| GIF_METADATA<sup>20+</sup> | 5    | GIF图片元数据。 |
 
 ## ScaleMode<sup>9+</sup>
 
@@ -285,6 +286,17 @@
 | Y_IN_ORIGINAL | "YInOriginal"         | 水印裁剪图左上角在原始图中的Y坐标。 |
 | WIDTH         | "FragmentImageWidth"  | 水印裁剪图的宽。                    |
 | HEIGHT        | "FragmentImageHeight" | 水印裁剪图的高。                    |
+
+## GifPropertyKey<sup>20+</sup>
+
+枚举，GIF图片信息。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+| 名称              | 值                | 说明                   |
+| ----------------- | ----------------- | --------------------- |
+| GIF_DELAY_TIME    | "GifDelayTime"    | GIF图片的每帧播放时长（单位为毫秒）。 |
+| GIF_DISPOSAL_TYPE | "GifDisposalType" | GIF图片每帧的帧过渡模式。 |
 
 ## ImageFormat<sup>9+</sup>
 
