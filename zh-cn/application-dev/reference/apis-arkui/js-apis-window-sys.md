@@ -3175,6 +3175,59 @@ try {
 }
 ```
 
+### isMainWindowFullScreenAcrossDisplays<sup>11+</sup>
+
+setSingleFrameComposerEnabled(enable: boolean): Promise&lt;void&gt;
+
+禁止/使能单帧合成渲染节点的功能。使用Promise异步回调。
+
+单帧合成渲染节点的功能主要用于跟手性要求较高的场景，使能该功能之后可以降低渲染节点的上屏延时。通过setSingleFrameComposerEnabled接口，如果enable设置为true，则使能单帧合成渲染节点的功能，否则禁止单帧合成渲染节点的功能。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| enable   | boolean                   | 是   | 设置单帧合成渲染节点的功能是否使能，true表示使能，false表示禁止。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let enable = true;
+try {
+  let promise = windowClass.setSingleFrameComposerEnabled(enable);
+  promise.then(()=> {
+      console.info('Succeeded in enabling the single-frame-composer function.');
+  }).catch((err: BusinessError)=>{
+      console.error(`Failed to enable the single-frame-composer function. code:${err.code}, message:${err.message}.`);
+  });
+} catch (exception) {
+  console.error(`Failed to enable the single-frame-composer function. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
 ### setTitleButtonVisible<sup>12+</sup>
 
 setTitleButtonVisible(isMaximizeVisible: boolean, isMinimizeVisible: boolean, isSplitVisible: boolean): void
