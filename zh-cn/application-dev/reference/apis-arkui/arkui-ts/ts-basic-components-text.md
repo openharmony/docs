@@ -428,6 +428,22 @@ copyOption(value: CopyOptions)
 | ------ | ------------------------------------------------ | ---- | ---------------------------------------------------------- |
 | value  | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 是   | 组件是否支持文本可复制粘贴。<br />默认值：CopyOptions.None |
 
+### contentTransition<sup>20+</sup>
+
+contentTransition(transition: Optional\<ContentTransition>)
+
+可以设置为数字翻牌动效[NumericTextTransition](../arkui-ts/ts-text-common.md#numerictexttransition20)。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                             | 必填 | 说明                                                       |
+| ------ | ------------------------------------------------ | ---- | ---------------------------------------------------------- |
+| transition  | Optional\<[ContentTransition](../arkui-ts/ts-text-common.md#contenttransition20)> | 是   | 文本动效属性。 |
+
 ### draggable<sup>9+</sup>
 
 draggable(value: boolean)
@@ -2352,3 +2368,33 @@ struct TextExample14 {
 ```
 
 ![textVerticalAlign](figures/textVerticalAlign.png)
+
+### 示例18（文本翻牌动效）
+
+该示例通过contentTransition属性展示了数字翻牌效果。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextNumberTransition {
+  @State number: number = 98
+  @State numberTransition: NumericTextTransition = { flipDirection: FlipDirection.DOWN, enableBlur: false }
+
+  build() {
+    Column() {
+      Text(this.number + "")
+        .borderWidth(1)
+        .fontSize(40)
+        .contentTransition(this.numberTransition)
+      Button("chang number")
+        .onClick(() => {
+          this.number++
+        })
+        .margin(10)
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
