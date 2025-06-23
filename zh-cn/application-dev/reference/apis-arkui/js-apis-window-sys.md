@@ -3319,23 +3319,17 @@ promise.then(() => {
 
 isMainWindowFullScreenAcrossDisplays(): Promise&lt;boolean&gt;
 
-判断当前窗口的主窗口是否跨多块屏幕使用全屏模式显示，使用Promise异步回调，仅支持主窗口与应用子窗口
+判断当前窗口的主窗口是否跨多块屏幕使用全屏模式显示，使用Promise异步回调，仅支持主窗口与应用子窗口。
 
 **系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**参数：**
-
-| 类型 | 说明 |
-| ---------------------- | ------------------------------------------------------------------------------------ |
-| Promise&lt;boolean&gt; | Promise对象。返回true表示当前窗口的主窗跨多块屏幕使用全屏模式显示，返回false表示当前窗口的主窗未跨多块屏幕使用全屏模式显示。 |
-
 **返回值：**
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示当前窗口的主窗口跨多块屏幕使用全屏模式显示，返回false表示当前窗口的主窗口未跨多块屏幕使用全屏模式显示。 |
 
 **错误码：**
 
@@ -3362,7 +3356,7 @@ try {
       console.error(`Failed to use isMainWindowFullScreenAcrossDisplays function. code:${err.code}, message:${err.message}.`);
   });
 } catch (exception) {
-  console.error(`Failed to use isMainWindowFullScreenAcrossDisplays function. Cause code: ${exception.code}, message: ${exception.message}`);
+  console.error(`Failed to use isMainWindowFullScreenAcrossDisplays function. Cause code: ${exception.code}, message: ${exception.message}.`);
 }
 ```
 
@@ -3384,7 +3378,6 @@ on(type: 'mainWindowFullScreenAcrossDisplaysChanged', callback: Callback&lt;bool
 | callback | Callback&lt;boolean&gt;   | 是   | 回调函数。即本窗口的主窗口跨多块屏幕使用全屏模式显示的状态变化回调。回调函数返回boolean类型参数，当返回参数为true时表示主窗口在跨多块屏幕使用全屏模式显示，否则表示主窗口未跨多块屏幕使用全屏模式显示。                               |
 
 **错误码：**
-
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
 
