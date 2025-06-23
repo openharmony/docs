@@ -5,8 +5,10 @@
 >  **说明：**
 >
 >  从 API version 8 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
-
+>
+>  OffscreenCanvasRenderingContext2D无法在ServiceExtensionAbility中使用，ServiceExtensionAbility中建议使用[Drawing模块](../../apis-arkgraphics2d/js-apis-graphics-drawing.md)进行离屏绘制。
+>
+>  [beginPath](#beginpath)、[moveTo](#moveto)、[lineTo](#lineto)、[closePath](#closepath)、[bezierCurveTo](#beziercurveto)、[quadraticCurveTo](#quadraticcurveto)、[arc](#arc)、[arcTo](#arcto)、[ellipse](#ellipse)、[rect](#rect)和[roundRect](#roundrect20)接口只能对OffscreenCanvasRenderingContext2D中的路径生效，无法对[CanvasRenderingContext2D](./ts-canvasrenderingcontext2d.md)和[Path2D](./ts-components-canvas-path2d.md)对象中设置的路径生效。
 
 ## 接口
 

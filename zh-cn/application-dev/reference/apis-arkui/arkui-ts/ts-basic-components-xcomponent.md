@@ -535,7 +535,7 @@ lockCanvas(): DrawingCanvas | null
 **返回值：**
 | 类型                                 | 说明                                  |
 | ------------------------------------ | ------------------------------------- |
-| [DrawingCanvas](ts-drawingrenderingcontext#drawingcanvas12对象说明) \| null | 可用于向XComponent区域绘制的画布对象或者空对象null。 |
+| [DrawingCanvas](ts-drawingrenderingcontext.md#drawingcanvas12对象说明) \| null | 可用于向XComponent区域绘制的画布对象或者空对象null。 |
 
 > **说明：**
 >
@@ -564,7 +564,7 @@ unlockCanvasAndPost(canvas: DrawingCanvas): void
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| canvas | [DrawingCanvas](ts-drawingrenderingcontext#drawingcanvas12对象说明) | 是 | 之前调用lockCanvas方法返回的画布对象。 |
+| canvas | [DrawingCanvas](ts-drawingrenderingcontext.md#drawingcanvas12对象说明) | 是 | 之前调用lockCanvas方法返回的画布对象。 |
 
 > **说明：**
 >
