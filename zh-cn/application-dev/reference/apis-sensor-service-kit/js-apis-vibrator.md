@@ -896,7 +896,7 @@ isSupportEffectSync(effectId: string): boolean
 
 getEffectInfoSync(effectId: string, param?: VibratorInfoParam): EffectInfo;
 
-通过设备ID和可控马达ID获取效果信息。
+通过设备ID和可控马达ID获取预置振动效果信息，用于判断该预置振动效果是否受支持。
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
@@ -1068,7 +1068,7 @@ off(type: 'vibratorStateChange', callback?: Callback&lt;VibratorStatusEvent&gt;)
 
 ## VibratorStatusEvent<sup>19+</sup>
 
-震动设备上下线事件信息
+振动设备上线、下线状态事件信息。
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
@@ -1083,21 +1083,21 @@ off(type: 'vibratorStateChange', callback?: Callback&lt;VibratorStatusEvent&gt;)
 
 ## VibratorInfoParam<sup>19+</sup>
 
-设备上马达的参数。默认情况下，VibratorInfoParam默认为查询或控制本地默认马达
+设备上马达的参数。默认情况下，VibratorInfoParam默认为查询或控制本地全部马达。
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
 
-| 名称 | 类型   | 只读 | 可选 | 说明                       |
-| ---- | ------ | ---- | ---- |--------------------------|
-| deviceId    | number | 否   | 是   | 设备的ID：默认值为-1，控制的为本地设备。   |
-| vibratorId    | number | 否   | 是   | 马达ID：默认值为-1，控制的是该设备的全部马达 |
+| 名称 | 类型   | 只读 | 可选 | 说明                                                         |
+| ---- | ------ | ---- | ---- |------------------------------------------------------------|
+| deviceId    | number | 否   | 是   | 设备的ID：默认值为-1，控制的为本地设备，其它设备Id需使用[getEffectInfoSync](#geteffectinfosync19)查询。 |
+| vibratorId    | number | 否   | 是   | 马达ID：默认值为-1，控制的是该设备的全部马达，其它马达Id需使用[getEffectInfoSync](#geteffectinfosync19)查询。     |
 
 
 
 ## EffectInfo<sup>19+</sup>
 
-是否支持预制效果信息的结果
+查询的预制效果信息。
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
@@ -1109,7 +1109,7 @@ off(type: 'vibratorStateChange', callback?: Callback&lt;VibratorStatusEvent&gt;)
 
 ## VibratorInfo<sup>19+</sup>
 
-表示系统中马达的信息。
+表示查询的马达信息。
 
 | 名称 | 类型    | 说明        |
 | ---- | ------ |-----------|

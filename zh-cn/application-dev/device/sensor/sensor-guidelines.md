@@ -50,7 +50,7 @@
 
     该传感器支持的最小采样周期为5000000纳秒，最大采样周期是200000000纳秒。不同传感器支持的采样周期范围也不同，interval应该设置在传感器支持范围内，大于最大值时以最大值上报数据，小于最小值时以最小值上报数据。设置数值越小数据上报越频繁，其功耗越大。
 
-    根据设备Id查询传感器
+    根据设备Id查询传感器。
     ```ts
     try {
       const deviceId = 1;
@@ -84,7 +84,7 @@
    }
    ```
 
-   第三个参数还可以传入SensorInfoParam，传递deviceId、sensorIndex
+   第三个参数还可以传入SensorInfoParam，传递deviceId、sensorIndex。
    ```ts 
    import { sensor } from '@kit.SensorServiceKit';
    import { BusinessError } from '@kit.BasicServicesKit';
@@ -118,7 +118,7 @@
     sensor.off(sensor.SensorId.ACCELEROMETER);
     ```
 
-    根据SensorInfoParam取消监听
+    根据SensorInfoParam取消监听。
     ```ts
     sensor.off(sensor.SensorId.ACCELEROMETER, { deviceId: 1, sensorIndex: 3 });
     ```
@@ -134,7 +134,7 @@
     });
     ```
 
-    取消监听
+    取消监听。
     ```ts
     // 请在订阅后在使用此接口取消订阅
     sensor.off('sensorStatusChange');

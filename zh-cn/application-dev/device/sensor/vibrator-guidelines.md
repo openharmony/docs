@@ -156,7 +156,7 @@ Json文件共包含3个属性。
 
 1. 控制设备上的振动器，需要申请权限ohos.permission.VIBRATE。具体配置方式请参考[声明权限](../../security/AccessToken/declare-permissions.md)。
 
-2. 振动器查询
+2. 振动器查询。
 
   **情形一** 查询所有马达信息：
   
@@ -405,9 +405,9 @@ Json文件共包含3个属性。
    ```
 
 
-5. 动态马达状态变化监听
+5. 动态马达状态变化监听。
 
-   注册监听
+   注册监听。
    ```ts
    import { vibrator } from '@kit.SensorServiceKit';
    import { BusinessError } from '@kit.BasicServicesKit';
@@ -426,7 +426,7 @@ Json文件共包含3个属性。
    }
    ```
 
-   取消监听,取消传入的callback需与注册的一致
+   取消监听,取消传入的callback需与注册的一致。
    ```ts
    import { vibrator } from '@kit.SensorServiceKit';
    import { BusinessError } from '@kit.BasicServicesKit';

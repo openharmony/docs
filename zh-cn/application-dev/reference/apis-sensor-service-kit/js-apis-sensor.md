@@ -4437,15 +4437,15 @@ try {
 
 ## SensorInfoParam<sup>19+</sup>
 
-传感器传入设置参数。
+传感器传入设置参数，多传感器情况下通过deviceId、sensorIndex控制指定传感器。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
 
 | 参数名 | 类型                   | 必填 | 说明                      |
 | ------ | ---------------------- | ---- |-------------------------|
-| deviceId   | number | 否   | 设备ID：默认值为-1，表示本地设备。     |
-| sensorIndex   | number | 否   | 传感器索引：默认值为0，为设备上的默认传感器。 |
+| deviceId   | number | 否   | 设备ID：默认值为-1，表示本地设备，其它设备Id需通过[getSensorListByDeviceSync](#sensorgetsensorlistbydevicesync19)查询。     |
+| sensorIndex   | number | 否   | 传感器索引：默认值为0，为设备上的默认传感器，其它传感器Id需通过[getSensorListByDeviceSync](#sensorgetsensorlistbydevicesync19)查询。 |
 
 
 ## SensorStatusEvent<sup>19+</sup>
