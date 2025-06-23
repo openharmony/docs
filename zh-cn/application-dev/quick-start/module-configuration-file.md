@@ -269,11 +269,11 @@ deviceTypes示例：
 
 4. 使用metadata配置[自由多窗](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-multi-window#section118295375110)下的可支持窗口模式。配置项为：name为ohos.ability.window.SupportWindowModeInFreeWindow，value取值为：fullscreen（表示全屏模式）、split（表示分屏模式）、floating（表示悬浮窗模式）。value取值为字符串，可以取多种模式，每个之间用逗号分隔开，不区分顺序，不添加空格，例如：fullscreen,split。仅在平板、PC/2in1设备上生效。
 
-5. <!--Del-->使用metadata标签配置主窗边角以直角显示。配置项为：name为ohos.ability.window.isRightAngle，value取值为true或false，取值为true表示窗口边角以直角显示、取值为false则使用系统默认圆角，未配置时默认为false。主窗直角配置仅在PC/2in1设备上生效，且仅支持系统应用。<!--DelEnd-->
-
 自由多窗下的可支持窗口模式可以采用多种方法进行配置，配置优先级为：通过[SetSupportedWindowModes](../reference/apis-arkui/arkts-apis-window-WindowStage.md#setsupportedwindowmodes15)接口配置 > 通过StartAbility配置[StartOption](../reference/apis-ability-kit/js-apis-app-ability-startOptions.md#startoptions)中的SupportWindowMode > 使用metadata配置 > 配置module.json5中[abilities](#abilities标签)标签下的SupportWindowMode属性。
 
 非自由多窗模式下只能通过配置module.json5中abilities标签下的SupportWindowMode属性配置窗口支持模式，其他配置方式均不生效。
+
+5. <!--Del-->使用metadata标签配置主窗边角以直角显示。配置项为：name为ohos.ability.window.isRightAngle，value取值为true或false，取值为true表示窗口边角以直角显示、取值为false则使用系统默认圆角，未配置时默认为false。主窗直角配置仅在PC/2in1设备上生效，且仅支持系统应用。<!--DelEnd-->
 
 ```json
 {
@@ -315,10 +315,6 @@ deviceTypes示例：
         "name": "ohos.ability.window.isMaximize",
         "value": "true"
       },
-      <!--Del-->{
-        "name": "ohos.ability.window.isRightAngle",
-        "value": "true"
-      },<!--DelEnd-->
       {
         "name": "enable.remove.starting.window",
         "value": "true"
