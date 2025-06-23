@@ -15,12 +15,15 @@ CompletionHandler作为[StartOptions](js-apis-app-ability-startOptions.md)的可
 当前支持使用该模块的接口包括：
 - [startAbility](js-apis-inner-application-uiAbilityContext.md#startability-2)
 - [startAbilityForResult](js-apis-inner-application-uiAbilityContext.md#startabilityforresult-2)
+- [UIAbilityContext.openAtomicService](js-apis-inner-application-uiAbilityContext.md#openatomicservice12)
+- [UIExtensionContext.openAtomicService](js-apis-inner-application-uiExtensionContext.md#openatomicservice12)
 
 <!--Del-->
 - [startAbilityForResultWithAccount](js-apis-inner-application-uiAbilityContext-sys.md#startabilityforresultwithaccount-2)
 - [startAbilityWithAccount](js-apis-inner-application-uiAbilityContext-sys.md#startabilitywithaccount-2)
 - [startRecentAbility](js-apis-inner-application-uiAbilityContext-sys.md#startrecentability-2)
 - [startAbilityAsCaller](js-apis-inner-application-uiAbilityContext-sys.md#startabilityascaller10-2)
+- [ServiceExtensionContext.openAtomicService](js-apis-inner-application-serviceExtensionContext-sys.md#serviceextensioncontextopenatomicservice18)
 <!--DelEnd-->
 
 ## 导入模块
@@ -69,7 +72,7 @@ onRequestFailure(elementName: ElementName, message: string): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | elementName | [ElementName](js-apis-bundleManager-elementName.md) | 是 | 被拉起应用的ElementName信息。 |
-| message | string | 是 | 拉起应用失败时的信息。该信息采用JSON格式，样式如下：<br>{<br>    "errMsg": "xxx"<br>}<br>其中，"xxx"的取值说明如下：<br>Failed to call \<api-name\>：表示调用接口出错。其中，\<api-name\>为具体的接口名，比如startAbility。<br>User refused redirection：表示用户关闭了应用跳转弹框。<br>User closed the implicit startup picker：表示用户关闭了隐式启动时的应用选择弹框。<br>User closed the app clone picker：表示用户关闭了分身应用选择弹框。<br>Free installation failed：表示免安装失败。</br> |
+| message | string | 是 | 拉起应用失败时的信息。该信息采用JSON格式，样式如下：<br>{<br>    "errMsg": "xxx"<br>}<br>其中，"xxx"的取值说明如下：<br>Failed to call \<api-name\>：表示调用接口出错。其中，\<api-name\>为具体的接口名，比如startAbility、openAtomicService。<br>User refused redirection：表示用户关闭了应用跳转弹框。<br>User closed the implicit startup picker：表示用户关闭了隐式启动时的应用选择弹框。<br>User closed the app clone picker：表示用户关闭了分身应用选择弹框。<br>Free installation failed：表示免安装失败。</br> |
 
 **示例：**
 
