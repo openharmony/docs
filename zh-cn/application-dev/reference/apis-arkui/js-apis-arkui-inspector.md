@@ -134,7 +134,7 @@ on(type: 'drawChildren',  callback: Callback\<void\>): void
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | 是   | 必须填写字符串'drawChildren'。<br>drawChildren: 子组件绘制送显完成。|
-| callback | [Callback\<void\>](js-apis-arkui-inspector.md#)   | 是   | 监听drawChildren的回调。                                     |
+| callback | Callback\<void\>  | 是   | 监听drawChildren的回调。                                     |
 
 ### off('drawChildren')<sup>20+<sup>
 
