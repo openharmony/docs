@@ -8924,7 +8924,7 @@ int32_t OH_ArkUI_CustomDialog_SetCustomShadow(
 | 名称 | 描述 |
 | -------- | -------- |
 | options | 弹窗参数。 |
-| customShadow | 弹窗的自定义阴影参数，格式与NODE_SHADOW属性一致。 |
+| customShadow | 弹窗的自定义阴影参数，格式与NODE_CUSTOM_SHADOW属性一致。 |
 
 **返回：**
 
