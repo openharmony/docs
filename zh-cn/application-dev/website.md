@@ -3556,12 +3556,12 @@
             - [asset_api.h](reference/apis-asset-store-kit/capi-asset-api-h.md)
             - [asset_type.h](reference/apis-asset-store-kit/capi-asset-type-h.md)
           - 结构体<!--asset-store-struct-->
-            - [Asset_Blob](reference/apis-asset-store-kit/capi-asset-blob.md)
-            - [Asset_Value](reference/apis-asset-store-kit/capi-asset-value.md)
-            - [Asset_Attr](reference/apis-asset-store-kit/capi-asset-attr.md)
-            - [Asset_Result](reference/apis-asset-store-kit/capi-asset-result.md)
-            - [Asset_ResultSet](reference/apis-asset-store-kit/capi-asset-resultset.md)
-            - [Asset_SyncResult](reference/apis-asset-store-kit/capi-asset-syncresult.md)
+            - [Asset_Blob](reference/apis-asset-store-kit/capi-assettype-asset-blob.md)
+            - [Asset_Value](reference/apis-asset-store-kit/capi-assettype-asset-value.md)
+            - [Asset_Attr](reference/apis-asset-store-kit/capi-assettype-asset-attr.md)
+            - [Asset_Result](reference/apis-asset-store-kit/capi-assettype-asset-result.md)
+            - [Asset_ResultSet](reference/apis-asset-store-kit/capi-assettype-asset-resultset.md)
+            - [Asset_SyncResult](reference/apis-asset-store-kit/capi-assettype-asset-syncresult.md)
         - 错误码<!--asset-store-arkts-errcode-->
           - [Asset错误码](reference/apis-asset-store-kit/errorcode-asset.md)
       - Crypto Architecture Kit（加解密算法框架服务）<!--crypto-architecture-api-->
@@ -4012,8 +4012,8 @@
             - [Print_Range](reference/apis-basic-services-kit/_print___range.md)
             - [Pasteboard_ProgressInfo](reference/apis-basic-services-kit/capi-pasteboard-progressinfo.md)
             - [Pasteboard_GetDataParams](reference/apis-basic-services-kit/capi-pasteboard-getdataparams.md)
-            - [OH_PasteboardObserver](reference/apis-basic-services-kit/capi-oh-pasteboardobserver.md)
-            - [OH_Pasteboard](reference/apis-basic-services-kit/capi-oh-pasteboard.md)
+            - [OH_PasteboardObserver](reference/apis-basic-services-kit/capi-pasteboard-oh-pasteboardobserver.md)
+            - [OH_Pasteboard](reference/apis-basic-services-kit/capi-pasteboard-oh-pasteboard.md)
         - 错误码<!--basic-services-arkts-errcode-->
           - [USB服务错误码](reference/apis-basic-services-kit/errorcode-usb.md)
           - [RunningLock锁错误码](reference/apis-basic-services-kit/errorcode-runninglock.md)
