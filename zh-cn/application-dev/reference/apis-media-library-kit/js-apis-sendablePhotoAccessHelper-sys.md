@@ -13,6 +13,62 @@
 import { sendablePhotoAccessHelper } from '@kit.MediaLibraryKit';
 ```
 
+## sendablePhotoAccessHelper.getPhotoAccessHelper<sup>19+</sup>
+
+getPhotoAccessHelper(context: Context, userId: number): PhotoAccessHelper
+
+支持跨用户获取相册管理模块的实例，用于访问和修改相册中的媒体文件。
+
+​**模型约束**：此接口仅可在Stage模型下使用。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名  | 类型    | 必填 | 说明                       |
+| ------- | ------- | ---- | -------------------------- |
+| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 传入Ability实例的上下文。 |
+| userId | number | 是   | 传入待访问用户的id。 |
+
+**返回值：**
+
+| 类型                            | 说明    |
+| ----------------------------- | :---- |
+| [PhotoAccessHelper](#photoaccesshelper) | 相册管理模块的实例。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+
+**示例：**
+
+```ts
+// 此处获取的phAccessHelper实例为全局对象，后续使用到phAccessHelper的地方默认为使用此处获取的对象，如未添加此段代码报phAccessHelper未定义的错误请自行添加。
+// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
+import { common } from '@kit.AbilityKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Button("example").onClick(async () => {
+        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+        // 此处101表示其他用户空间的userid
+        let phAccessHelper = sendablePhotoAccessHelper.getPhotoAccessHelper(context, 101);
+      }).width('100%')
+    }
+    .height('90%')
+  }
+}
+```
+
 ## PhotoAccessHelper
 
 ### createAsset
