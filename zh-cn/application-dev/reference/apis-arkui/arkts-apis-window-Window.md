@@ -3179,7 +3179,7 @@ on(type: 'screenshotAppEvent', callback: Callback&lt;ScreenshotEventType&gt;): v
 ```ts
 try {
   windowClass.on('screenshotAppEvent', (data) => {
-    console.info(`screenshot happened. Event: ${data}`);
+    console.info(`screenshotAppEvent happened. Event: ${data}`);
   });
 } catch (exception) {
   console.error(`Failed to register callback. Cause code: ${exception.code}, message: ${exception.message}`);
@@ -3226,6 +3226,7 @@ try {
 } catch (exception) {
   console.error(`Failed to unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
 }
+```
 
 ### on('dialogTargetTouch')<sup>10+</sup>
 
