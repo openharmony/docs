@@ -1900,12 +1900,12 @@ import { ColorMetrics } from '@kit.ArkUI';
 @Entry
 @Component
 struct fillColorMetricsDemo {
-  @State p3Red: ColorMetrics = ColorMetrics.colorWithSpace(ColorSpace.DISPLAY_P3, 1, 0, 0);
-  @State sRGBRed: ColorMetrics = ColorMetrics.colorWithSpace(ColorSpace.SRGB, 1, 0, 0);
-  @State p3Green: ColorMetrics = ColorMetrics.colorWithSpace(ColorSpace.DISPLAY_P3, 0, 1 ,0);
-  @State sRGBGreen: ColorMetrics = ColorMetrics.colorWithSpace(ColorSpace.SRGB, 0, 1 ,0);
-  @State p3Blue: ColorMetrics = ColorMetrics.colorWithSpace(ColorSpace.DISPLAY_P3, 0, 0, 1);
-  @State sRGBBlue: ColorMetrics = ColorMetrics.colorWithSpace(ColorSpace.SRGB, 0, 0, 1);
+  @State p3Red: ColorMetrics = ColorMetrics.colorWithSpace(ColorSpace.DISPLAY_P3, 0.631, 0.0392, 0.1294);
+  @State sRGBRed: ColorMetrics = ColorMetrics.colorWithSpace(ColorSpace.SRGB, 0.631, 0.0392, 0.1294);
+  @State p3Green: ColorMetrics = ColorMetrics.colorWithSpace(ColorSpace.DISPLAY_P3, 0.09, 0.662 ,0.552);
+  @State sRGBGreen: ColorMetrics = ColorMetrics.colorWithSpace(ColorSpace.SRGB, 0.09, 0.662 ,0.552);
+  @State p3Blue: ColorMetrics = ColorMetrics.colorWithSpace(ColorSpace.DISPLAY_P3, 0, 0.290 ,0.686);
+  @State sRGBBlue: ColorMetrics = ColorMetrics.colorWithSpace(ColorSpace.SRGB, 0, 0.290 ,0.686);
   @State colorArray: (Color|undefined|ColorMetrics|ColorContent)[] = [
     this.p3Red, this.sRGBRed, this.p3Green, this.sRGBGreen, this.p3Blue,
     this.sRGBBlue, ColorContent.ORIGIN, Color.Gray, undefined
@@ -1925,15 +1925,17 @@ struct fillColorMetricsDemo {
         .onClick(()=>{
           this.arrayIdx = (this.arrayIdx + 1) % this.colorArray.length
         })
-      Divider()
+      Blank().height(30).width('100%')
       Text("FillColor is SRGB Red")
       Image($r('app.media.svgExample'))
         .width(110).height(110).margin(15)
         .fillColor(this.sRGBRed)
+      Blank().height(30).width('100%')
       Text("FillColor is SRGB Green")
       Image($r('app.media.svgExample'))
         .width(110).height(110).margin(15)
         .fillColor(this.sRGBGreen)
+      Blank().height(30).width('100%')
       Text("FillColor is SRGB Blue")
       Image($r('app.media.svgExample'))
         .width(110).height(110).margin(15)
@@ -1942,3 +1944,5 @@ struct fillColorMetricsDemo {
   }
 }
 ```
+
+![colorMetrics](figures/colorMetrics.gif)
