@@ -623,6 +623,8 @@ Allows an application to use the global float ball.
 
 Allows an application to use the information hiding APIs to obtain the information hiding status.
 
+With this permission, the application can obtain the current screen peeping state, that is, whether the screen is being peeped by others.
+
 <!--RP44--><!--RP44End-->
 
 **Permission level**: system_basic
