@@ -47,4 +47,5 @@ OH_HiAppEvent_DestroyParamList(list);
 | [EVENT_ADDRESS_SANITIZER](_hi_app_event.md#event_address_sanitizer)&nbsp;&nbsp;&nbsp;"ADDRESS_SANITIZER" | 应用踩内存事件。  | 
 | [EVENT_MAIN_THREAD_JANK](_hi_app_event.md#event_main_thread_jank)&nbsp;&nbsp;&nbsp;"MAIN_THREAD_JANK" | 应用主线程超时事件。  | 
 | [EVENT_APP_HICOLLIE](_hi_app_event.md#event_app_hicollie)&nbsp;&nbsp;&nbsp;"APP_HICOLLIE" | 应用任务执行超时事件。  | 
+| [EVENT_APP_KILLED](_hi_app_event.md#event_app_killed)&nbsp;&nbsp;&nbsp;"APP_KILLED" | 应用查杀事件。  | 
 | [DOMAIN_OS](_hi_app_event.md#domain_os)&nbsp;&nbsp;&nbsp;"OS" | OS作用域。  | 
