@@ -3124,59 +3124,6 @@ try {
 }
 ```
 
-### isMainWindowFullScreenAcrossDisplays<sup>11+</sup>
-
-setSingleFrameComposerEnabled(enable: boolean): Promise&lt;void&gt;
-
-禁止/使能单帧合成渲染节点的功能。使用Promise异步回调。
-
-单帧合成渲染节点的功能主要用于跟手性要求较高的场景，使能该功能之后可以降低渲染节点的上屏延时。通过setSingleFrameComposerEnabled接口，如果enable设置为true，则使能单帧合成渲染节点的功能，否则禁止单帧合成渲染节点的功能。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Window.SessionManager
-
-**参数：**
-
-| 参数名   | 类型                      | 必填 | 说明       |
-| -------- | ------------------------- | ---- | ---------- |
-| enable   | boolean                   | 是   | 设置单帧合成渲染节点的功能是否使能，true表示使能，false表示禁止。 |
-
-**返回值：**
-
-| 类型                | 说明                      |
-| ------------------- | ------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | ------------------------------ |
-| 202     | Permission verification failed. A non-system application calls a system API. |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002 | This window state is abnormal. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let enable = true;
-try {
-  let promise = windowClass.setSingleFrameComposerEnabled(enable);
-  promise.then(()=> {
-      console.info('Succeeded in enabling the single-frame-composer function.');
-  }).catch((err: BusinessError)=>{
-      console.error(`Failed to enable the single-frame-composer function. code:${err.code}, message:${err.message}.`);
-  });
-} catch (exception) {
-  console.error(`Failed to enable the single-frame-composer function. Cause code: ${exception.code}, message: ${exception.message}`);
-}
-```
-
 ### setTitleButtonVisible<sup>12+</sup>
 
 setTitleButtonVisible(isMaximizeVisible: boolean, isMinimizeVisible: boolean, isSplitVisible: boolean): void
@@ -3366,6 +3313,146 @@ promise.then(() => {
 }).catch((err: BusinessError) => {
   console.error(`Failed to request focus. Cause code: ${err.code}, message: ${err.message}`);
 });
+```
+
+### isMainWindowFullScreenAcrossDisplays<sup>20+</sup>
+
+isMainWindowFullScreenAcrossDisplays(): Promise&lt;boolean&gt;
+
+判断当前窗口的主窗口是否跨多块屏幕使用全屏模式显示，使用Promise异步回调，仅支持主窗口与应用子窗口
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 类型 | 说明 |
+| ---------------------- | ------------------------------------------------------------------------------------ |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示当前窗口的主窗跨多块屏幕使用全屏模式显示，返回false表示当前窗口的主窗未跨多块屏幕使用全屏模式显示。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+| 1300004  | Unauthorized operation. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let promise = windowClass.isMainWindowFullScreenAcrossDisplays();
+  promise.then(()=> {
+      console.info('Succeeded in using isMainWindowFullScreenAcrossDisplays function.');
+  }).catch((err: BusinessError)=>{
+      console.error(`Failed to use isMainWindowFullScreenAcrossDisplays function. code:${err.code}, message:${err.message}.`);
+  });
+} catch (exception) {
+  console.error(`Failed to use isMainWindowFullScreenAcrossDisplays function. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+### on('mainWindowFullScreenAcrossDisplaysChanged')<sup>20+</sup>
+
+on(type: 'mainWindowFullScreenAcrossDisplaysChanged', callback: Callback&lt;boolean&gt;): void
+
+监听本窗口的主窗口跨多块屏幕使用全屏模式显示的状态变化。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                       | 必填 | 说明                                                         |
+| -------- | --------------------------| ---- | ------------------------------------------------------------ |
+| type     | string                    | 是   | 监听事件，固定为'mainWindowFullScreenAcrossDisplaysChanged'，即本窗口的主窗口跨多块屏幕使用全屏模式显示的状态变化。 |
+| callback | Callback&lt;boolean&gt;   | 是   | 回调函数。即本窗口的主窗口跨多块屏幕使用全屏模式显示的状态变化回调。回调函数返回boolean类型参数，当返回参数为true时表示主窗口在跨多块屏幕使用全屏模式显示，否则表示主窗口未跨多块屏幕使用全屏模式显示。                               |
+
+**错误码：**
+
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+| 1300004  | Unauthorized operation. |
+
+**示例：**
+
+```ts
+const callback = (mainWindowFullScreenAcrossDisplaysChanged: boolean) => {
+  console.info(`main window across displays changed. Data: ${mainWindowFullScreenAcrossDisplaysChanged}`);
+}
+try {
+  windowClass.on('mainWindowFullScreenAcrossDisplaysChanged', callback);
+} catch (exception) {
+  console.error(`Failed to register callback. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+### off('mainWindowFullScreenAcrossDisplaysChanged')<sup>20+</sup>
+
+off(type: 'mainWindowFullScreenAcrossDisplaysChanged', callback?: Callback&lt;boolean&gt;): void
+
+取消监听本窗口的主窗口跨多块屏幕使用全屏模式显示的状态变化。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                        | 必填 | 说明                                   |
+| -------- |----------------------------| ---- |--------------------------------------|
+| type     | string                    | 是   | 监听事件，固定为'mainWindowFullScreenAcrossDisplaysChanged'，即本窗口的主窗口跨多块屏幕使用全屏模式显示的状态变化。 |
+| callback | Callback&lt;boolean&gt;    | 否   | 回调函数。即本窗口的主窗口跨多块屏幕使用全屏模式显示的状态变化回调。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有本窗口的主窗口跨多块屏幕使用全屏模式显示的状态变化回调。            |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+| 1300004  | Unauthorized operation. |
+
+**示例：**
+
+```ts
+const callback = (mainWindowFullScreenAcrossDisplaysChanged: boolean) => {
+  // ...
+}
+try {
+  // 通过on接口开启监听
+  windowClass.on('mainWindowFullScreenAcrossDisplaysChanged', callback);
+  // 关闭指定callback的监听
+  windowClass.off('mainWindowFullScreenAcrossDisplaysChanged', callback);
+  // 如果通过on开启多个callback进行监听，同时关闭所有监听：
+  windowClass.off('mainWindowFullScreenAcrossDisplaysChanged');
+} catch (exception) {
+  console.error(`Failed to unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
+}
 ```
 
 ## SubWindowOptions<sup>11+</sup>
