@@ -225,7 +225,7 @@ struct Index {
            globalObservedObject}`) // true
       Text(`UIUtils.getTarget(this.numberList) === globalNumberList: ${UIUtils.getTarget(this.numberList) ===
            globalNumberList}`) // true
-      Text(`UIUtils.getTarget(this.sampleMap) === globalSampleMAP: ${UIUtils.getTarget(this.sampleMap) ===
+      Text(`UIUtils.getTarget(this.sampleMap) === globalSampleMap: ${UIUtils.getTarget(this.sampleMap) ===
            globalSampleMap}`) // true
       Text(`UIUtils.getTarget(this.sampleSet) === globalSampleSet: ${UIUtils.getTarget(this.sampleSet) ===
            globalSampleSet}`) // true
