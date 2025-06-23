@@ -336,7 +336,7 @@
 
 ### (data: T)<sup>15+</sup>
 
-(data: T): V;
+(data: T): V
 
 通用回调函数。
 
