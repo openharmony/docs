@@ -1007,7 +1007,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
 
 try {
-  let eventType: ScreenshotEventType = window.ScreenshotEventType.SYSTEM_SCREENSHOT;
+  let eventType: window.ScreenshotEventType = window.ScreenshotEventType.SYSTEM_SCREENSHOT;
   let promise = window.notifyScreenshotEvent(eventType);
   promise.then(() => {
     console.info(`Succeeded in notify screenshot event type.`);
