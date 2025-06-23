@@ -4,7 +4,7 @@ The Buffer module, built on memory management mechanisms, abstracts memory regio
 
 The core functionalities of the Buffer module are as follows:
 
-1. **Memory allocation**: You can initialize a buffer with a specified size, limited by uint32, resulting in a fixed memory capacity upon creation.
+1. **Memory allocation**: You can initialize a buffer with a specified size, resulting in a fixed memory capacity upon creation.
 
 2. **Data read/write and copying**: You can access bytes within a buffer by index, read and write data byte-by-byte, and copy parts of a buffer to another buffer or array.
 

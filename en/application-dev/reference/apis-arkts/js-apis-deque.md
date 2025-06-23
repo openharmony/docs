@@ -1,10 +1,10 @@
 # @ohos.util.Deque (Linear Container Deque)
 
-Double-ended queue (deque) is a sequence container implemented based on the queue data structure that follows the principles of First In First Out (FIFO) and Last In First Out (LIFO). It allows insertion and removal of elements at both the ends. **Deque** can dynamically adjust the capacity based on project requirements. It doubles the capacity each time. **Deque** differs from **[Queue](js-apis-queue.md)** and **[Vector](js-apis-vector.md)** mainly in the following aspects:
+Double-Ended Queue (Deque) is a data structure implemented based on a circular queue. It supports insertion and deletion of elements at both ends. It follows the principles of First In First Out (FIFO) and Last In First Out (LIFO). Deque can dynamically adjust the capacity based on project requirements. It doubles the capacity each time.
 
-**Queue** allows element removal at the front and insertion at the rear.
+Queue allows element removal at the front and insertion at the rear. Compared with [Queue](js-apis-queue.md), which only allows element deletion at the front and insertion at the back, Deque permits insertion and deletion at both ends.
 
-**Vector** supports insertion and deletion of elements in between, as well as at both the ends. When compared with **Vector**, **Deque** is more efficient in inserting and removing header elements, but less efficient in accessing elements.
+Both [Vector](js-apis-vector.md) and Deque support insertion and deletion at the ends, but Deque does not support insertion in the middle. Deque is more efficient than a Vector for inserting and deleting elements at the front, whereas a Vector excels in element access efficiency.
 
 **Recommended use case**: Use **Deque** when you need to frequently insert or remove elements at both the ends of a container.
 
@@ -24,15 +24,15 @@ import { Deque } from '@kit.ArkTS';
 
 ## Deque
 
-### Attributes
+### Properties
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| length | number | Yes| No| Number of elements in a deque (called container later).|
+| length | number | Yes| No| Number of elements in a Deque.|
 
 ### constructor
 
@@ -62,7 +62,7 @@ let deque: Deque<string | number | boolean | Object> = new Deque();
 
 insertFront(element: T): void
 
-Inserts an element at the front of this container.
+Inserts an element at the front of this Deque.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -103,7 +103,7 @@ deque.insertFront(false);
 
 insertEnd(element: T): void
 
-Inserts an element at the end of this container.
+Inserts an element at the end of this Deque.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -145,7 +145,7 @@ deque.insertEnd(false);
 
 has(element: T): boolean
 
-Checks whether this container has the specified element.
+Checks whether this Deque has the specified element.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -161,7 +161,7 @@ Checks whether this container has the specified element.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the specified element is contained; returns **false** otherwise.|
+| boolean | Operation result. The value **true** is returned if the specified element is contained; otherwise, **false** is returned.|
 
 **Error codes**
 
@@ -183,7 +183,7 @@ let result = deque.has("squirrel");
 
 popFirst(): T
 
-Removes the first element of this container.
+Removes the first element of this Deque.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -219,7 +219,7 @@ let result = deque.popFirst();
 
 popLast(): T
 
-Removes the last element of this container.
+Removes the last element of this Deque.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -256,7 +256,7 @@ let result = deque.popLast();
 forEach(callbackFn: (value: T, index?: number, deque?: Deque&lt;T&gt;) => void,
 thisArg?: Object): void
 
-Uses a callback to traverse the elements in this container and obtain their position indexes.
+Uses a callback to traverse the elements in this Deque and obtain their indexes.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -266,10 +266,10 @@ Uses a callback to traverse the elements in this container and obtain their posi
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callbackFn | function | Yes| Callback invoked to traverse the elements in the container.|
+| callbackFn | function | Yes| Callback invoked to traverse the elements in the Deque.|
 | thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. The default value is this instance.|
 
-callbackFn
+callbackFn parameters
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -303,7 +303,7 @@ deque.forEach((value: number, index?: number | undefined, deque?: Deque<number> 
 
 getFirst(): T
 
-Obtains the first element of this container.
+Obtains the first element of this Deque.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -338,7 +338,7 @@ let result = deque.getFirst();
 
 getLast(): T
 
-Obtains the last element of this container.
+Obtains the last element of this Deque.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -373,7 +373,7 @@ let result = deque.getLast();
 
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
-Obtains an iterator, each item of which is a JavaScript object.
+Returns an iterator, each item of which is a JavaScript object.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -402,7 +402,7 @@ deque.insertFront(5);
 deque.insertFront(4);
 
 // Method 1:
-let nums: Array<number> = Array.from(deque)
+let nums: Array<number> = Array.from(deque);
 for (let item of nums) {
   console.log("value:" + item);
 }
