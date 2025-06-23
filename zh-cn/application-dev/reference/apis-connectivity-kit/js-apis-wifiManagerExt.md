@@ -43,7 +43,7 @@ enableHotspot(): void
   try {
       wifiManagerExt.enableHotspot();
   }catch(error){
-      console.error("failed:" + JSON.stringify(error));
+      console.error("failed: " + JSON.stringify(error));
   }
 ```
 
@@ -78,7 +78,7 @@ disableHotspot(): void
   try {
       wifiManagerExt.disableHotspot();
   }catch(error){
-      console.error("failed:" + JSON.stringify(error));
+      console.error("failed: " + JSON.stringify(error));
   }
 ```
 
@@ -204,7 +204,7 @@ getPowerMode(): Promise&lt;PowerMode&gt;
       let model = wifiManagerExt.getPowerMode();
       console.info("model info:" + model);
   }catch(error){
-      console.error("failed:" + JSON.stringify(error));
+      console.error("failed: " + JSON.stringify(error));
   }
 ```
 
@@ -292,6 +292,6 @@ setPowerMode(mode: PowerMode) : void
       let model = 0;
       wifiManagerExt.setPowerMode(model);
   }catch(error){
-      console.error("failed:" + JSON.stringify(error));
+      console.error("failed: " + JSON.stringify(error));
   }
 ```
