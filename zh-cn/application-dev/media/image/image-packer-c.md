@@ -60,7 +60,7 @@ Image_ErrorCode packToFileFromImageSourceTest(int fd)
         OH_LOG_ERROR(LOG_APP, "ImagePackerNativeCTest CreatePacker OH_ImagePackerNative_Create failed, errCode: %{public}d.", errCode);
         return errCode;
     }
-// 获取编码能力范围。
+    // 获取编码能力范围。
     Image_MimeType* mimeType = nullptr;
     size_t length = 0;
     errCode = OH_ImagePackerNative_GetSupportedFormats(&mimeType, &length);
@@ -119,7 +119,7 @@ Image_ErrorCode packToFileFromImageSourceTest(int fd)
 
 Image_ErrorCode packToFileFromPixelmapTest(uint8_t *buffer, size_t bufferSize, int fd)
 {
-    //创建ImagePacker实例。
+    // 创建ImagePacker实例。
     OH_ImagePackerNative *testPacker = nullptr;
     Image_ErrorCode errCode = OH_ImagePackerNative_Create(&testPacker);
     if (errCode != IMAGE_SUCCESS) {
@@ -127,7 +127,7 @@ Image_ErrorCode packToFileFromPixelmapTest(uint8_t *buffer, size_t bufferSize, i
         return errCode;
     }
 
-    //创建Pixelmap实例。
+    // 创建Pixelmap实例。
     OH_Pixelmap_InitializationOptions *createOpts;
     OH_PixelmapInitializationOptions_Create(&createOpts);
     OH_PixelmapInitializationOptions_SetWidth(createOpts, 6);
@@ -141,7 +141,7 @@ Image_ErrorCode packToFileFromPixelmapTest(uint8_t *buffer, size_t bufferSize, i
         return errCode;
     }
 
-    //指定编码参数，将PixelMap直接编码进文件。
+    // 指定编码参数，将PixelMap直接编码进文件。
     OH_PackingOptions *option = nullptr;
     OH_PackingOptions_Create(&option);
     char type[] = "image/jpeg";
@@ -153,7 +153,7 @@ Image_ErrorCode packToFileFromPixelmapTest(uint8_t *buffer, size_t bufferSize, i
         return errCode;
     }
 
-    //释放ImagePacker实例。
+    // 释放ImagePacker实例。
     errCode = OH_ImagePackerNative_Release(testPacker);
     if (errCode != IMAGE_SUCCESS)
     {
@@ -161,7 +161,7 @@ Image_ErrorCode packToFileFromPixelmapTest(uint8_t *buffer, size_t bufferSize, i
         return errCode;
     }
 
-    //释放Pixelmap实例。
+    // 释放Pixelmap实例。
     errCode = OH_PixelmapNative_Release(pixelmap);
     if (errCode != IMAGE_SUCCESS)
     {

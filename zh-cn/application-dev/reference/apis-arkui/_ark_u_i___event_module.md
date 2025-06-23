@@ -2155,7 +2155,7 @@ ArkUI_ErrorCode OH_ArkUI_UIInputEvent_GetLatestStatus()
 **描述：**
 
 调用该方法获取最近一次UIInput相关方法的执行情况。通常情况下不需要使用该方法，仅在返回值结果不确定是否异常时使用。
-以下是一个使用示例（对于返回的float类型，0.0并不代表错误，因此可以进一步使用GetLatestStatus方法来确认是否发生异常）。
+以下是一个使用示例（对于返回的float类型，0.0并不代表错误，因此可以进一步使用OH_ArkUI_UIInputEvent_GetLatestStatus方法来确认是否发生异常）。
 ```
 float x = OH_ArkUI_PointerEvent_GetX(event);
 if (ARKUI_ERROR_CODE_NO_ERROR != OH_Arkui_UIInputEvent_GetlatestStatus()) {
