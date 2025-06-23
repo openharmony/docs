@@ -1,33 +1,60 @@
 # 构建弹窗
 
 
-使用弹窗控制器显示自定义弹窗，设置其样式和内容。
+可以通过创建弹窗控制器和创建自定义弹窗的内容对象两种方法显示自定义弹窗，设置其样式和内容。
 
 
-弹窗接口集合定义在结构体里，命名为ArkUI_NativeDialogAPI_x （x表示版本），用于实现各种弹窗控制。
-[OH_ArkUI_QueryModuleInterfaceByName](../reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_querymoduleinterfacebyname)用于获取指定类型的Native模块接口集合，可以通过其返回ArkUI_NativeDialogHandle类型的数据调用Native模块中的接口。
+[通过创建弹窗控制器显示自定义弹窗](#通过创建弹窗控制器显示自定义弹窗)：此时在命名为ArkUI_NativeDialogAPI_x （x表示版本）的结构体里，定义了弹窗接口集合，用于实现各种弹窗控制。
 
 
-## 创建和销毁弹窗控制器
+[通过创建自定义弹窗的内容对象显示自定义弹窗](#通过创建自定义弹窗的内容对象显示自定义弹窗)：该方式下弹窗接口定义在[native_dialog.h](../reference/apis-arkui/native__dialog_8h.md#函数)的函数中。
 
-- 创建弹窗控制器
+
+> **说明：**
+>
+> - 通过创建弹窗控制器来显示自定义弹窗，使用方式可以参考[openCustomDialogWithController](../reference/apis-arkui/js-apis-arkui-UIContext.md#opencustomdialogwithcontroller18)接口。
+> 
+> - 通过创建自定义弹窗的内容对象来显示自定义弹窗，使用方式可以参考[openCustomDialog](../reference/apis-arkui/js-apis-arkui-UIContext.md#opencustomdialog12)接口。
+> 
+> - [OH_ArkUI_QueryModuleInterfaceByName](../reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_querymoduleinterfacebyname)用于获取指定类型的Native模块接口集合，可以通过其返回ArkUI_NativeDialogHandle类型的数据调用Native模块中的接口。
+
+## 创建和销毁自定义弹窗
+
+### 通过创建弹窗控制器显示自定义弹窗
+
+- 创建弹窗控制器：
   [ArkUI_NativeDialogHandle](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nativedialoghandle)表示指向弹窗控制器的指针，可以通过调用[ArkUI_NativeDialogAPI_x](../reference/apis-arkui/_ark_u_i___native_dialog_a_p_i__1.md)的[create](../reference/apis-arkui/_ark_u_i___native_dialog_a_p_i__1.md#create)接口创建一个弹窗控制器。
-
-  该方法返回ArkUI_NativeDialogHandle类型的数据。
+该方法返回ArkUI_NativeDialogHandle类型的数据。
   ```
   ArkUI_NativeDialogAPI_1 *dialogAPI = reinterpret_cast<ArkUI_NativeDialogAPI_1 *>(
       OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_DIALOG, "ArkUI_NativeDialogAPI_1"));
   auto dialogController = dialogAPI->create();
   ```
 
-- 销毁弹窗控制器
-  当不再需要弹窗操作时，需要主动调用dispose接口销毁弹窗控制器对象。
+- 当不再需要弹窗操作时，需要主动调用dispose接口销毁弹窗控制器对象。
   ```
   ArkUI_NativeDialogAPI_1 *dialogAPI = reinterpret_cast<ArkUI_NativeDialogAPI_1 *>(
       OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_DIALOG, "ArkUI_NativeDialogAPI_1"));
   dialogAPI->dispose(dialogController);
   ```
 
+### 通过创建自定义弹窗的内容对象显示自定义弹窗
+
+- 创建弹窗的内容对象：
+  [ArkUI_CustomDialogOptions](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_customdialogoptions)自定义弹窗的内容对象，可以通过调用[OH_ArkUI_CustomDialog_CreateOptions](../reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_customdialog_createoptions)接口创建一个自定义弹窗的内容对象。
+该方法返回ArkUI_CustomDialogOptions类型的指针。
+  ```
+  auto textNode = std::make_shared<ArkUITextNode>();
+  auto dialogOptions = OH_ArkUI_CustomDialog_CreateOptions(textNode->GetHandle());
+  ```
+  > **说明：**
+  > 
+  > ArkUITextNode的声明方式可以查看[ArkUINode.h](../ui/ndk-access-the-arkts-page.md)文件中的实现文本组件。
+
+- 当不再需要弹窗操作时，需要主动调用[OH_ArkUI_CustomDialog_DisposeOptions](../reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_customdialog_disposeoptions)接口销毁弹窗控制器对象。
+  ```
+  OH_ArkUI_CustomDialog_DisposeOptions(dialogOptions);
+  ```
 
 ## 设置弹窗样式
 
@@ -67,7 +94,9 @@
    }
    ```
 
-2. 通过controller控制弹窗样式。弹窗接口清单和描述可查看[native_dialog.h](../reference/apis-arkui/native__dialog_8h.md)。
+2. 以下介绍两种控制弹窗样式的方式，弹窗接口请参考[native_dialog.h](../reference/apis-arkui/native__dialog_8h.md)。
+
+- 通过controller控制弹窗样式。
    ```
    void ShowDialog() {
        ArkUI_NativeDialogAPI_1 *dialogAPI = reinterpret_cast<ArkUI_NativeDialogAPI_1 *>(
@@ -86,7 +115,29 @@
    }
    ```
 
-3. 不需要弹窗时关闭弹窗。
+- 通过dialogOptions控制弹窗样式。
+   ```
+   constexpr int32_t id = 0;
+   void openDialogCallBack(int32_t dialogId) {
+       id = dialogId;
+   }
+   void OpenCustomDialog() {
+       auto contentNode = CreateDialogContent();
+       auto dialogOptions = OH_ArkUI_CustomDialog_CreateOptions(contentNode);
+       OH_ArkUI_CustomDialog_SetAlignment(dialogOptions, static_cast<int32_t>(ARKUI_ALIGNMENT_BOTTOM), 0, 0);
+       OH_ArkUI_CustomDialog_SetBackgroundColor(dialogOptions, 0xffffffff);
+       OH_ArkUI_CustomDialog_SetCornerRadius(dialogOptions, 6, 6, 6, 6);
+       OH_ArkUI_CustomDialog_SetModalMode(dialogOptions, false);
+       OH_ArkUI_CustomDialog_SetAutoCancel(dialogOptions, true);
+       OH_ArkUI_CustomDialog_SetBorderWidth(dialogOptions, 2, 2, 2, 2, ARKUI_LENGTH_METRIC_UNIT_PX);
+       OH_ArkUI_CustomDialog_SetBorderStyle(dialogOptions, ARKUI_BORDER_STYLE_SOLID, ARKUI_BORDER_STYLE_SOLID,ARKUI_BORDER_STYLE_SOLID, ARKUI_BORDER_STYLE_SOLID);
+       OH_ArkUI_CustomDialog_OpenDialog(dialogOptions, openDialogCallBack);
+   }
+   ```
+
+3. 弹窗关闭方式。
+
+- 通过controller关闭弹窗。
    ```
    void CloseDialog() {
        ArkUI_NativeDialogAPI_1 *dialogAPI = reinterpret_cast<ArkUI_NativeDialogAPI_1 *>(
@@ -95,6 +146,12 @@
    }
    ```
 
+- 通过dialogOptions关闭弹窗。
+   ```
+   void CloseCustomDialog() {
+       OH_ArkUI_CustomDialog_CloseDialog(id);
+   }
+   ```
 
 ## 弹窗的交互
 
@@ -141,6 +198,8 @@
    ```
 
 2. 创建Button事件的回调函数，当Button点击时触发弹窗显示或关闭。
+
+- 触发controller弹窗。
    ```
    void OnButtonClicked(ArkUI_NodeEvent *event) {
        if (!event || !buttonNode) {
@@ -160,6 +219,35 @@
                ArkUI_AttributeItem labelItem = {.string = "关闭弹窗"};
                nodeAPI->setAttribute(buttonNode, NODE_BUTTON_LABEL, &labelItem);
                ShowDialog();
+           }
+       }
+   }
+   ```
+
+- 触发dialogOptions弹窗。
+   ```
+   constexpr int32_t id = 0;
+   void openDialogCallBack(int32_t dialogId) {
+       id = dialogId;
+   }
+   void OnButtonClicked(ArkUI_NodeEvent *event) {
+       if (!event || !buttonNode) {
+           return;
+       }
+       auto eventId = OH_ArkUI_NodeEvent_GetTargetId(event);
+       if (eventId == BUTTON_CLICK_ID) {
+           ArkUI_NativeNodeAPI_1 *nodeAPI = reinterpret_cast<ArkUI_NativeNodeAPI_1 *>(
+               OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_NODE, "ArkUI_NativeNodeAPI_1"));
+           if (isShown) {
+               isShown = false;
+               ArkUI_AttributeItem labelItem = {.string = "显示弹窗"};
+               nodeAPI->setAttribute(buttonNode, NODE_BUTTON_LABEL, &labelItem);
+               CloseCustomDialog();
+           } else {
+               isShown = true;
+               ArkUI_AttributeItem labelItem = {.string = "关闭弹窗"};
+               nodeAPI->setAttribute(buttonNode, NODE_BUTTON_LABEL, &labelItem);
+               OpenCustomDialog();
            }
        }
    }
