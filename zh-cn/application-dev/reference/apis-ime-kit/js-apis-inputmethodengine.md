@@ -4715,7 +4715,7 @@ getAttachOptions(): AttachOptions
 
 > **说明：**
 >
-> 在 api20  ` 801 Capability not supported.` 这个错误码被移除。
+> 在 api20 版本起 ` 801 Capability not supported.` 这个错误码被移除。
 
 **示例：**
 
@@ -4753,7 +4753,7 @@ on(type: 'attachOptionsDidChange', callback: Callback\<AttachOptions>): void
 
 > **说明：**
 >
-> 在 api20  ` 801 Capability not supported.` 这个错误码被移除。
+> 在 api20版本起  ` 801 Capability not supported.` 这个错误码被移除。
 
 **示例：**
 
