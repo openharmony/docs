@@ -52,8 +52,6 @@
     - [OH_AudioVolumeManager](capi-oh-audiovolumemanager.md)
     - [OH_AudioDeviceDescriptorArray](capi-oh-audiodevicedescriptorarray.md)
     - [OH_AudioDeviceDescriptor](capi-oh-audiodevicedescriptor.md)
-    - [OH_AudioResourceManager](capi-oh-audioresourcemanager.md)
-    - [OH_AudioWorkgroup](capi-oh-audioworkgroup.md)
     - [OH_AudioStreamInfo](capi-oh-audiostreaminfo.md)
     - [OH_AudioRenderer_Callbacks_Struct](capi-oh-audiorenderer-callbacks-struct.md)
     - [OH_AudioCapturer_Callbacks_Struct](capi-oh-audiocapturer-callbacks-struct.md)
