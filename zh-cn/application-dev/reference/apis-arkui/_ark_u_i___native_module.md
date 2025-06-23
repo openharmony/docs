@@ -747,7 +747,7 @@
 | [ArkUI_FontWeight](#arkui_fontweight) [OH_ArkUI_SwiperDigitIndicator_GetFontWeight](#oh_arkui_swiperdigitindicator_getfontweight)([ArkUI_SwiperDigitIndicator](#arkui_swiperdigitindicator)* indicator) | 获取 Swiper 组件数字导航指示器字体粗细属性。  |
 | void [OH_ArkUI_SwiperDigitIndicator_SetSelectedFontWeight](#oh_arkui_swiperdigitindicator_setselectedfontweight)([ArkUI_SwiperDigitIndicator](#arkui_swiperdigitindicator)* indicator, [ArkUI_FontWeight](#arkui_fontweight) selectedFontWeight) | 设置被选中 Swiper 组件数字导航指示器字体粗细属性。 |
 | [ArkUI_FontWeight](#arkui_fontweight) [OH_ArkUI_SwiperDigitIndicator_GetSelectedFontWeight](#oh_arkui_swiperdigitindicator_getselectedfontweight)([ArkUI_SwiperDigitIndicator](#arkui_swiperdigitindicator)* indicator) | 获取被选中 Swiper 组件数字导航指示器字体粗细属性。  |
-|void [OH_ArkUI_SwiperDigitIndicator_Destroy](#oh_arkui_swiperdigitindicator_destroy)() | 销毁Swiper组件的数字导航指示器指针。  |
+|void [OH_ArkUI_SwiperDigitIndicator_Destroy](#oh_arkui_swiperdigitindicator_destroy)([ArkUI_SwiperDigitIndicator](#arkui_swiperdigitindicator)* indicator) | 销毁Swiper组件的数字导航指示器指针。  |
 | void [OH_ArkUI_SwiperDigitIndicator_SetIgnoreSizeOfBottom](#oh_arkui_swiperdigitindicator_setignoresizeofbottom)([ArkUI_SwiperDigitIndicator](#arkui_swiperdigitindicator)* indicator, int32_t ignoreSize) | 设置OH_ArkUI_SwiperDigitIndicator_SetBottomPosition是否忽略导航点大小。 |
 | int32_t [OH_ArkUI_SwiperDigitIndicator_GetIgnoreSizeOfBottom](#oh_arkui_swiperdigitindicator_getignoresizeofbottom)([ArkUI_SwiperDigitIndicator](#arkui_swiperdigitindicator)* indicator) | 获取OH_ArkUI_SwiperDigitIndicator_SetBottomPosition是否忽略导航点大小。|
 | [ArkUI_SwiperArrowStyle](#arkui_swiperarrowstyle)* [OH_ArkUI_SwiperArrowStyle_Create](#oh_arkui_swiperarrowstyle_create)() | 创建 Swiper 组件的导航箭头。  |
@@ -15951,7 +15951,7 @@ float OH_ArkUI_SwiperIndicator_GetBottomPosition (ArkUI_SwiperIndicator * indica
 
 **返回：**
 
-导航点距离Swiper组件底部的距离。
+导航点距离Swiper组件底部的距离。单位：vp。
 
 
 ### OH_ArkUI_SwiperIndicator_GetColor()
@@ -15995,7 +15995,7 @@ float OH_ArkUI_SwiperIndicator_GetEndPosition (ArkUI_SwiperIndicator * indicator
 
 **返回：**
 
-导航点距离Swiper组件右边的距离。
+导航点距离Swiper组件右边的距离。单位：vp。
 
 
 ### OH_ArkUI_SwiperIndicator_GetItemHeight()
@@ -16017,7 +16017,7 @@ float OH_ArkUI_SwiperIndicator_GetItemHeight (ArkUI_SwiperIndicator * indicator)
 
 **返回：**
 
-圆点导航指示器的高。
+圆点导航指示器的高。单位：vp。
 
 
 ### OH_ArkUI_SwiperIndicator_GetItemWidth()
@@ -16039,7 +16039,7 @@ float OH_ArkUI_SwiperIndicator_GetItemWidth (ArkUI_SwiperIndicator * indicator)
 
 **返回：**
 
-圆点导航指示器的宽。
+圆点导航指示器的宽。单位：vp。
 
 
 ### OH_ArkUI_SwiperIndicator_GetMask()
@@ -16101,7 +16101,7 @@ void OH_ArkUI_SwiperIndicator_SetSpace (ArkUI_SwiperIndicator * indicator， flo
 | 名称 | 描述 |
 | -------- | -------- |
 | indicator | 导航指示器对象指针。  |
-| space | 导航点间距。  |
+| space | 导航点间距。默认值：8，单位：vp。  |
 
 ### OH_ArkUI_SwiperIndicator_GetSpace()
 
@@ -16122,7 +16122,7 @@ float OH_ArkUI_SwiperIndicator_GetSpace (ArkUI_SwiperIndicator * indicator)
 
 **返回：**
 
-导航点间距，默认值为8.0。
+导航点间距。单位：vp。
 
 ### OH_ArkUI_SwiperIndicator_SetIgnoreSizeOfBottom()
 
@@ -16194,7 +16194,7 @@ void OH_ArkUI_SwiperDigitIndicator_SetStartPosition(ArkUI_SwiperDigitIndicator* 
 | 名称 | 描述 |
 | -------- | -------- |
 | indicator | 数字导航指示器对象指针。  |
-| value | 数字导航指示器距离Swiper组件左边的距离，从右至左显示的语言模式下，为其距离 Swiper 组件右边的距离。  |
+| value | 数字导航指示器距离Swiper组件左边的距离，从右至左显示的语言模式下，为其距离 Swiper 组件右边的距离。默认值：0，单位：vp。  |
 
 ### OH_ArkUI_SwiperDigitIndicator_GetStartPosition()
 
@@ -16215,7 +16215,7 @@ float OH_ArkUI_SwiperDigitIndicator_GetStartPosition(ArkUI_SwiperDigitIndicator*
 
 **返回：**
 
-数字导航指示器距离 Swiper 组件左边的距离，从右至左显示的语言模式下，为其距离 Swiper 组件右边的距离。
+数字导航指示器距离 Swiper 组件左边的距离，从右至左显示的语言模式下，为其距离 Swiper 组件右边的距离。单位：vp。
 
 ### OH_ArkUI_SwiperDigitIndicator_SetTopPosition()
 
@@ -16233,7 +16233,7 @@ void OH_ArkUI_SwiperDigitIndicator_SetTopPosition(ArkUI_SwiperDigitIndicator* in
 | 名称 | 描述 |
 | -------- | -------- |
 | indicator | 数字导航指示器对象指针。  |
-| value | 数字导航指示器距离Swiper组件顶部的距离。  |
+| value | 数字导航指示器距离Swiper组件顶部的距离。默认值：0，单位：vp。  |
 
 ### OH_ArkUI_SwiperDigitIndicator_GetTopPosition()
 
@@ -16254,7 +16254,7 @@ float OH_ArkUI_SwiperDigitIndicator_GetTopPosition(ArkUI_SwiperDigitIndicator* i
 
 **返回：**
 
-数字导航指示器距离Swiper组件顶部的距离。
+数字导航指示器距离Swiper组件顶部的距离。单位：vp。
 
 ### OH_ArkUI_SwiperDigitIndicator_SetEndPosition()
 
@@ -16272,7 +16272,7 @@ void OH_ArkUI_SwiperDigitIndicator_SetEndPosition(ArkUI_SwiperDigitIndicator* in
 | 名称 | 描述 |
 | -------- | -------- |
 | indicator | 数字导航指示器对象指针。  |
-| value | 数字导航指示器距离Swiper组件右边的距离，从右至左显示的语言模式下，其距离 Swiper 组件左边的距离。  |
+| value | 数字导航指示器距离Swiper组件右边的距离，从右至左显示的语言模式下，其距离 Swiper 组件左边的距离。默认值：0，单位：vp。  |
 
 ### OH_ArkUI_SwiperDigitIndicator_GetEndPosition()
 
@@ -16293,7 +16293,7 @@ float OH_ArkUI_SwiperDigitIndicator_GetEndPosition(ArkUI_SwiperDigitIndicator* i
 
 **返回：**
 
-数字导航指示器距离Swiper组件右边的距离，从右至左显示的语言模式下，其距离 Swiper 组件左边的距离。
+数字导航指示器距离Swiper组件右边的距离，从右至左显示的语言模式下，其距离 Swiper 组件左边的距离。单位：vp。
 
 ### OH_ArkUI_SwiperDigitIndicator_SetBottomPosition()
 
@@ -16311,7 +16311,7 @@ void OH_ArkUI_SwiperDigitIndicator_SetBottomPosition(ArkUI_SwiperDigitIndicator*
 | 名称 | 描述 |
 | -------- | -------- |
 | indicator | 数字导航指示器对象指针。  |
-| value | 数字导航指示器距离Swiper组件底部的距离。  |
+| value | 数字导航指示器距离Swiper组件底部的距离。默认值：0，单位：vp。  |
 
 ### OH_ArkUI_SwiperDigitIndicator_GetBottomPosition()
 
@@ -16332,7 +16332,7 @@ float OH_ArkUI_SwiperDigitIndicator_GetBottomPosition(ArkUI_SwiperDigitIndicator
 
 **返回：**
 
-数字导航指示器距离Swiper组件底部的距离。
+数字导航指示器距离Swiper组件底部的距离。单位：vp。
 
 ### OH_ArkUI_SwiperDigitIndicator_SetFontColor()
 
@@ -16350,7 +16350,7 @@ void OH_ArkUI_SwiperDigitIndicator_SetFontColor(ArkUI_SwiperDigitIndicator* indi
 | 名称 | 描述 |
 | -------- | -------- |
 | indicator | 数字导航指示器对象指针。  |
-| color | 颜色类型，0xargb格式，形如 0xFFFF0000 表示红色。  |
+| color | 颜色类型，0xargb格式，形如 0xFFFF0000 表示红色。默认值：0xFF182431。  |
 
 ### OH_ArkUI_SwiperDigitIndicator_GetFontColor()
 
@@ -16389,7 +16389,7 @@ void OH_ArkUI_SwiperDigitIndicator_SetSelectedFontColor(ArkUI_SwiperDigitIndicat
 | 名称 | 描述 |
 | -------- | -------- |
 | indicator | 数字导航指示器对象指针。  |
-| selectedColor | 颜色类型，0xargb格式，形如 0xFFFF0000 表示红色。  |
+| selectedColor | 颜色类型，0xargb格式，形如 0xFFFF0000 表示红色。默认值：0xFF182431。  |
 
 ### OH_ArkUI_SwiperDigitIndicator_GetSelectedFontColor()
 
@@ -16772,7 +16772,7 @@ void OH_ArkUI_SwiperArrowStyle_SetBackgroundColor(ArkUI_SwiperArrowStyle* arrowS
 | 名称 | 描述 |
 | -------- | -------- |
 | arrowStyle | 导航箭头对象指针。  |
-| backgroundColor | 导航箭头底板颜色，0xargb格式，形如 0xFFFF0000 表示红色。  |
+| backgroundColor | 导航箭头底板颜色，0xargb格式，形如 0xFFFF0000 表示红色。默认值：显示在导航指示器两侧为0x00000000，显示在Swiper两侧为0x19182431。  |
 
 ### OH_ArkUI_SwiperArrowStyle_GetBackgroundColor()
 
@@ -16931,7 +16931,7 @@ float OH_ArkUI_SwiperIndicator_GetSelectedItemHeight (ArkUI_SwiperIndicator * in
 
 **返回：**
 
-圆点导航指示器的高。
+圆点导航指示器的高。单位：vp。
 
 
 ### OH_ArkUI_SwiperIndicator_GetSelectedItemWidth()
@@ -16953,7 +16953,7 @@ float OH_ArkUI_SwiperIndicator_GetSelectedItemWidth (ArkUI_SwiperIndicator * ind
 
 **返回：**
 
-圆点导航指示器的宽。
+圆点导航指示器的宽。单位：vp。
 
 
 ### OH_ArkUI_SwiperIndicator_GetStartPosition()
@@ -16975,7 +16975,7 @@ float OH_ArkUI_SwiperIndicator_GetStartPosition (ArkUI_SwiperIndicator * indicat
 
 **返回：**
 
-导航点距离Swiper组件左边的距离。
+导航点距离Swiper组件左边的距离。单位：vp。
 
 
 ### OH_ArkUI_SwiperIndicator_GetTopPosition()
@@ -16997,7 +16997,7 @@ float OH_ArkUI_SwiperIndicator_GetTopPosition (ArkUI_SwiperIndicator * indicator
 
 **返回：**
 
-导航点距离Swiper组件顶部的距离。
+导航点距离Swiper组件顶部的距离。单位：vp。
 
 
 ### OH_ArkUI_SwiperIndicator_SetBottomPosition()
@@ -17016,7 +17016,7 @@ void OH_ArkUI_SwiperIndicator_SetBottomPosition (ArkUI_SwiperIndicator * indicat
 | 名称 | 描述 |
 | -------- | -------- |
 | indicator | 导航指示器对象指针。  |
-| value | 导航点距离Swiper组件底部的距离。  |
+| value | 导航点距离Swiper组件底部的距离。默认值：0，单位：vp。  |
 
 
 ### OH_ArkUI_SwiperIndicator_SetColor()
@@ -17054,7 +17054,7 @@ void OH_ArkUI_SwiperIndicator_SetEndPosition (ArkUI_SwiperIndicator * indicator,
 | 名称 | 描述 |
 | -------- | -------- |
 | indicator | 导航指示器对象指针。  |
-| value | 导航点距离Swiper组件右边的距离。  |
+| value | 导航点距离Swiper组件右边的距离。默认值：0，单位：vp。  |
 
 
 ### OH_ArkUI_SwiperIndicator_SetItemHeight()
@@ -17073,7 +17073,7 @@ void OH_ArkUI_SwiperIndicator_SetItemHeight (ArkUI_SwiperIndicator * indicator, 
 | 名称 | 描述 |
 | -------- | -------- |
 | indicator | 导航指示器对象指针。  |
-| value | 圆点导航指示器的高。  |
+| value | 圆点导航指示器的高。默认值：6，单位：vp。  |
 
 
 ### OH_ArkUI_SwiperIndicator_SetItemWidth()
@@ -17092,7 +17092,7 @@ void OH_ArkUI_SwiperIndicator_SetItemWidth (ArkUI_SwiperIndicator * indicator, f
 | 名称 | 描述 |
 | -------- | -------- |
 | indicator | 导航指示器对象指针。  |
-| value | 圆点导航指示器的宽。  |
+| value | 圆点导航指示器的宽。默认值：12，单位：vp。  |
 
 
 ### OH_ArkUI_SwiperIndicator_SetMask()
@@ -17172,7 +17172,7 @@ void OH_ArkUI_SwiperIndicator_SetSelectedItemHeight (ArkUI_SwiperIndicator * ind
 | 名称 | 描述 |
 | -------- | -------- |
 | indicator | 导航指示器对象指针。  |
-| value | 圆点导航指示器的高。  |
+| value | 圆点导航指示器的高。默认值：6，单位：vp。  |
 
 
 ### OH_ArkUI_SwiperIndicator_SetSelectedItemWidth()
@@ -17191,7 +17191,7 @@ void OH_ArkUI_SwiperIndicator_SetSelectedItemWidth (ArkUI_SwiperIndicator * indi
 | 名称 | 描述 |
 | -------- | -------- |
 | indicator | 导航指示器对象指针。  |
-| value | 圆点导航指示器的宽。  |
+| value | 圆点导航指示器的宽。默认值：12，单位：vp。  |
 
 
 ### OH_ArkUI_SwiperIndicator_SetStartPosition()
@@ -17210,7 +17210,7 @@ void OH_ArkUI_SwiperIndicator_SetStartPosition (ArkUI_SwiperIndicator * indicato
 | 名称 | 描述 |
 | -------- | -------- |
 | indicator | 导航指示器对象指针。  |
-| value | 导航点距离Swiper组件左边的距离。  |
+| value | 导航点距离Swiper组件左边的距离。默认值：0，单位：vp。  |
 
 
 ### OH_ArkUI_SwiperIndicator_SetTopPosition()
@@ -17229,7 +17229,7 @@ void OH_ArkUI_SwiperIndicator_SetTopPosition (ArkUI_SwiperIndicator * indicator,
 | 名称 | 描述 |
 | -------- | -------- |
 | indicator | 导航指示器对象指针。  |
-| value | 导航点距离Swiper组件顶部的距离。  |
+| value | 导航点距离Swiper组件顶部的距离。默认值：0，单位：vp。  |
 
 
 ### OH_ArkUI_SystemFontStyleEvent_GetFontSizeScale()
