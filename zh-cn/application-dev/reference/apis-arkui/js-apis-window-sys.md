@@ -3350,8 +3350,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let promise = windowClass.isMainWindowFullScreenAcrossDisplays();
-  promise.then(()=> {
-      console.info('Succeeded in using isMainWindowFullScreenAcrossDisplays function.');
+  promise.then((data: boolean)=> {
+      console.info(`Succeeded in using isMainWindowFullScreenAcrossDisplays function. Data: ${data}`);
   }).catch((err: BusinessError)=>{
       console.error(`Failed to use isMainWindowFullScreenAcrossDisplays function. code:${err.code}, message:${err.message}.`);
   });
