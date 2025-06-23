@@ -107,7 +107,7 @@ textStyle(style: Optional\<PickerTextStyle>)
 
 onChange(callback: Callback\<Date>)
 
-选择日期时触发该事件。
+选择日期时触发该事件。不能通过双向绑定的状态变量触发。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -123,7 +123,7 @@ onChange(callback: Callback\<Date>)
 
 onChange(callback: Optional\<Callback\<Date>>)
 
-选择日期时触发该事件。与[onChange](#onchange)相比，callback参数新增了对undefined类型的支持。
+选择日期时触发该事件。不能通过双向绑定的状态变量触发。与[onChange](#onchange)相比，callback参数新增了对undefined类型的支持。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
