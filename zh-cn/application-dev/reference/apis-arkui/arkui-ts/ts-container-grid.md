@@ -511,6 +511,22 @@ focusWrapMode(mode: Optional\<FocusWrapMode\>)
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | mode   | Optional\<[FocusWrapMode](ts-appendix-enums.md#focuswrapmode20)\> | 是   | 交叉轴方向键走焦模式。<br/>默认值：FocusWrapMode.DEFAULT<br/>**说明：** <br/>异常值按默认值处理，即交叉轴方向键不能换行。 |
 
+### syncLoad<sup>20+</sup>
+
+syncLoad(enable: boolean)
+
+设置是否同步加载Grid区域内所有子组件。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| enable   | boolean | 是   | 是否同步加载子组件。<br/>true表示同步加载，false表示异步加载。<br/>**说明：** <br/>设置为fasle时，异步加载仅在首次显示等非滑动场景生效。 |
+
 ## GridItemAlignment<sup>12+</sup>枚举说明
 
 GridItem的对齐方式枚举。
