@@ -1041,7 +1041,7 @@ bool OH_AVFormat_GetIntBuffer (struct OH_AVFormat *format, const char *key, int3
 
 **描述**
 
-从OH_AVFormat中读取指定长度的数据块。
+从OH_AVFormat中读取一个int32_t数据的数组。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
@@ -1068,7 +1068,7 @@ bool OH_AVFormat_GetIntBuffer (struct OH_AVFormat *format, const char *key, int3
 4. 输入addr为空指针；
 5. size为空指针；
 
-| bool [OH_AVFormat_GetIntBuffer](#oh_avformat_getintbuffer) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, int32_t \*\*addr, size_t \*size) | 从OH_AVFormat中读取指定长度的数据块。 | 
+| bool [OH_AVFormat_GetIntBuffer](#oh_avformat_getintbuffer) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, int32_t \*\*addr, size_t \*size) | 从OH_AVFormat中读取一个int32_t数据的数组。 | 
 
 ### OH_AVFormat_GetDoubleValue()
 
