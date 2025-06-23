@@ -929,6 +929,9 @@ List的边缘效果为弹簧效果时，在List划动到边缘继续划动和松
 
 List组件的滚动控制器，通过它控制List组件的滚动，仅支持一对一绑定到List组件。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 >  **说明：**
 >
@@ -1318,10 +1321,10 @@ struct ListExample {
         console.info('center' + centerIndex);
       })
       .onScrollVisibleContentChange((start: VisibleListContentInfo, end: VisibleListContentInfo) => {
-        console.log(' start index: ' + start.index +
+        console.info(' start index: ' + start.index +
                     ' start item group area: ' + start.itemGroupArea +
                     ' start index in group: ' + start.itemIndexInGroup);
-        console.log(' end index: ' + end.index +
+        console.info(' end index: ' + end.index +
                     ' end item group area: ' + end.itemGroupArea +
                     ' end index in group: ' + end.itemIndexInGroup);
       })
