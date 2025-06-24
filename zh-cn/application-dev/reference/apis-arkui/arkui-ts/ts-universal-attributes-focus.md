@@ -767,6 +767,10 @@ struct FocusableExample {
 
 ![focusScopePriority4](figures/focusScopePriority4.png)
 
+继续按下TAB键，焦点转移到容器1中名为Group1的组件上。
+
+![focusScopePriority5](figures/focusScopePriority5.png)
+
 ### 示例5（设置tab走焦停留）
 
 该示例通过配置tabStop实现使用tab走焦停留在组件上。
