@@ -37,7 +37,7 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 04-19 17:02:14.735  5394  5394 I A03200/testTag: this is a info level hilog
 ```
 
-如上，这是一条domainID为0x3200、tag是"testTag"的info级别的日志：
+如上，这是一条domainID为0x3200、tag是"testTag"的INFO级别的日志：
 
 > **说明：**
 >
@@ -66,10 +66,10 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 | -s | --statistics | - | 查询统计信息，需配合-t或-D使用。 | 
 | -S | - | - | 清除统计信息，需配合-t或-D使用。 | 
 | -Q | - | &lt;control-type&gt; | 超限缺省配额开关控制。 | 
-|  |  | pidon | 进程超限管控开关打开。 | 
-|  |  | pidoff | 进程超限管控开关关闭。 | 
-|  |  | domainon | domain超限管控开关打开。 | 
-|  |  | domainoff | domain超限管控开关关闭。 | 
+|  |  | pidon | 打开进程超限管控开关。 | 
+|  |  | pidoff | 关闭进程超限管控开关。 | 
+|  |  | domainon | 打开domain超限管控开关。 | 
+|  |  | domainoff | 关闭domain超限管控开关。 | 
 | -L | --level | &lt;level&gt; | 指定级别的日志，示例：-L D/I/W/E/F。 | 
 | -t | --type | &lt;type&gt; | 指定类型的日志，示例：-t app/core/init/only_prerelease。app为应用日志，core为系统日志，init为启动日志，only_prerelease为仅在系统release版本前打印的日志，应用开发者无需关注。| 
 | -D | --domain | &lt;domain&gt; | 指定domain。 | 
@@ -423,6 +423,9 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
    $ param get hilog.loggable.global
    I
    ```
+<!--RP17-->
+全局日志级别默认为INFO;
+<!--RP17End-->
 
 <!--RP16-->
 #### 设置日志级别
