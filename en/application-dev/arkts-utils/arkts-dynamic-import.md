@@ -12,7 +12,7 @@ Dynamic imports can be used in application development when you need to import m
 * The imported module has side effects (which can be understood as code that runs directly in the module) that are only needed when certain conditions are triggered.
 
 ## Service Expansion Scenarios
-As aforementioned, in addition to conditional loading, dynamic imports can implement partial reflection. In the following example, an HAP dynamically imports a HAR package (**harlibrary**) and calls its static member function **staticAdd()**, instance member function **instanceAdd()**, and global function **addHarlibrary()**.
+As aforementioned, in addition to conditional loading, dynamic imports can implement partial reflection. In the following example, an HAP dynamically imports a HAR package (**harlibrary**) and calls the static member function **staticAdd()**, instance member function **instanceAdd()**, and global function **addHarLibrary()**.
 ```typescript
 // harlibrary's src/main/ets/utils/Calc.ets
 export class Calc {
@@ -54,7 +54,7 @@ import('harlibrary').then((ns:ESObject) => {
   ns.Calc.staticAdd(8, 9);  // Call the static member function staticAdd().
   let calc:ESObject = new ns.Calc();  // Instantiate the class Calc.
   calc.instanceAdd(10, 11);  // Call the instance member function instanceAdd().
-  ns.addHarlibrary(6, 7);  // Call the global function addHarlibrary().
+  ns.addHarlibrary(6, 7);  // Call the global method addHarLibrary().
 
   // Reflection using class, member function, and method names as strings.
   let className = 'Calc';
@@ -64,7 +64,7 @@ import('harlibrary').then((ns:ESObject) => {
   ns[className][staticMethod](12, 13);  // Call the static member function staticAdd().
   let calc1:ESObject = new ns[className]();  // Instantiate the class Calc.
   calc1[methodName](14, 15);  // Call the instance member function instanceAdd().
-  ns[functionName](16, 17);  // Call the global function addHarlibrary().
+  ns[functionName](16, 17);  // Call the global function addHarLibrary().
 });
 ```
 
@@ -96,7 +96,7 @@ The following table lists the specifications of dynamic import.
 
 ### Dynamic Imports with Constant Expressions
 
-Dynamic imports with constant expressions refer to scenarios where the input to **import** is a constant. The following examples show how to use this type of dynamic import to import a module or API into a HAP module.
+Dynamic imports with constant expressions refer to scenarios where the input to **import** is a constant. The following examples show how to use this type of dynamic import to import APIs of other modules into a HAP module.
 
 Note: In the examples, the paths, such as the path to **Index.ets**, are set based on the current DevEco Studio module configuration and are subject to change.
 
@@ -116,6 +116,12 @@ Note: In the examples, the paths, such as the path to **Index.ets**, are set bas
   import('myHar').then((ns:ESObject) => {
     console.info(ns.add(3, 5));
   });
+
+  // You can use await to process dynamic import. (It must be used in an async function.)
+  async function asyncDynamicImport() {
+    let ns:ESObject = await import('myHar');
+    console.info(ns.add(3, 5));
+  }
   ```
 
   ```json5
@@ -292,22 +298,22 @@ During compilation, static imports and dynamic imports with constant expressions
 If you are using dynamic imports with variable expressions to import modules or files, but not APIs, you need to add the **runtimeOnly** field under **buildOption** in the **build-profile.json5** file of the HAP/HSP/HAR module. The following are some examples.
 
 ```typescript
-// Dynamically import a module based on the module name myHar.
+// Dynamically import a module based on the module name myhar.
 let harName = 'myHar';
-import(harName).then(......);
+import(harName).then(бнбн);
 
 // Dynamically import a file of the module itself based on the file path src/main/ets/index.ets.
 let filePath = './Calc';
-import(filePath).then(......);
+import(filePath).then(бнбн);
 ```
 
 The corresponding **runtimeOnly** configuration is as follows:
 
-```typescript
+```json
 "buildOption": {
   "arkOptions": {
     "runtimeOnly": {
-      "packages": [ "myHar" ]  // Set the name of the module to dynamically import. It must be the same as the one specified under dependencies.
+      "packages": [ "myhar" ]  // Set the name of the module to dynamically import. It must be the same as the one specified under dependencies.
       "sources": ["./src/main/ets/utils/Calc.ets"] // Set the path of the file to dynamically import. The path is relative to the build-profile.json5 file of the module.
     }
   }
@@ -348,7 +354,7 @@ The corresponding **runtimeOnly** configuration is as follows:
     "arkOptions": {
       "runtimeOnly": {
         "packages": [
-          "myHar" // Applicable only when a variable is used to dynamically import a module or file.
+          "myHar"  // Applicable only when a variable is used to dynamically import a module.
         ]
       }
     }

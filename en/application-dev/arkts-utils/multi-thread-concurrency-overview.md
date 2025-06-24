@@ -1,8 +1,17 @@
 # Overview of Multithreaded Concurrency
 
-Concurrency models are programming paradigms designed to implement concurrent tasks in various scenarios. Common concurrency models include those based on shared memory and those based on message passing.
+Multithreaded concurrency refers to the execution of multiple threads simultaneously within a single program, enhancing performance and resource utilization through parallel or alternating task execution. In the development of ArkTS applications, there are many service scenarios that require multithreaded concurrency. These scenarios can be categorized into three main types. For more details, [Multithreaded Development Practice Cases](batch-database-operations-guide.md).
 
-The actor model, as a typical example of a message-passing concurrency model, eliminates the need for you to deal with the complex and sporadic issues associated with locks. It also offers relatively high concurrency, which has led to its widespread adoption and use.
+- Service logic that involves heavy computation or multiple I/O read/write operations, which require extended execution time, such as image/video encoding and decoding, compression/decompression, and database operations.
+
+- Service logic that includes listening for or periodically collecting data, which requires continuous operation over extended periods, such as periodically collecting sensor data.
+
+- Service logic that follows the main thread's lifecycle or is bound to the main thread, such as in gaming platforms.
+
+
+Concurrency models are used to implement concurrent tasks in different usage scenarios. Common concurrency models include those based on shared memory and those based on message communication.
+
+The actor model is a typical example of a concurrency model based on message communication. It allows developers to avoid the complexity of dealing with locks and offers high concurrency, making it widely used.
 
 Currently, ArkTS provides two concurrency capabilities: TaskPool and Worker, both of which are implemented based on the actor model.
 
@@ -10,13 +19,13 @@ For details about the comparison between the actor model and the shared memory c
 
 ## Multithreaded Concurrency Models
 
-Shared memory concurrency model: In this model, multiple threads execute tasks simultaneously. These threads rely on the same memory and have access permissions. Before accessing memory, threads must compete for and lock the memory's usage rights. Threads that fail to acquire the lock must wait for other threads to release the lock before proceeding.
+Shared memory concurrency model: In this model, multiple threads execute tasks simultaneously. These threads rely on the same memory resource and have access permissions. Before accessing memory, threads must compete for and lock the memory's usage rights. Threads that fail to acquire the lock must wait for other threads to release the lock before proceeding.
 
 Actor model: In this model, each thread is an independent actor, which has its own memory. Actors trigger the behavior of each other through message transfer. They cannot directly access the memory space of each other. 
 
-Different from the shared memory concurrency model, the actor model provides independent memory space for each thread. As such, it avoids memory preemption and resulting functional and performance issues.
+Different from the shared memory concurrency model, the actor model provides independent memory space for each thread. As such, it avoids memory preemption and enhances development efficiency.
 
-In the actor model, concurrent tasks and task results are transmitted through the inter-thread communication.
+In the actor model, tasks and task results are transmitted through the inter-thread communication.
 
 This topic uses the classic producer-consumer problem as an example to illustrate the differences between these two models in solving specific problems.
 

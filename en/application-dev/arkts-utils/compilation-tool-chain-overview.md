@@ -18,6 +18,6 @@ The ArkTS compilation toolchain provides the following functions:
 
 6. Disassembly: uses the Disassembler tool to convert bytecode into human-readable assembly instructions.
 
-The following figure shows the process details.
+The following figure shows how the ArkTS compilation toolchain builds a HAP.
 
 ![compilation-tool-overview](figures/compilation-tool-overview.png)

@@ -22,7 +22,7 @@ The following example demonstrates how a Worker can respond to a "hello world" r
    }
    ```
 
-2. In the host thread (UI main thread), create a Worker object. Use the **postmessage** method to send a message to the Worker when a button is clicked, and use the **onmessage** method of Worker to receive the response.
+2. In the host thread (UI main thread), create a Worker object. Use the **postMessage** method to send a message to the Worker thread when a button is clicked, and use the **onmessage** method of Worker to receive the response.
 
    ```ts
    // Index.ets

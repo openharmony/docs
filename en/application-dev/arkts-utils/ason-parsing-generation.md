@@ -1,6 +1,6 @@
 # ASON Parsing and Generation
 
-The [ASON utility](../reference/apis-arkts/js-apis-arkts-utils.md#arktsutilsason) is similar to the JSON utility provided by JavaScript. While JSON is used to serialize (via **stringify**) and deserialize (via **parse**) JavaScript objects, ASON provides serialization and deserialization capabilities specifically for [Sendable objects](arkts-sendable.md). You can convert Sendable objects to strings using the **ASON.stringify** method and convert strings back to Sendable objects using the **ASON.parse** method. This enables high-performance pass-by-reference of these objects between concurrent tasks.
+The [ASON utility](../reference/apis-arkts/js-apis-arkts-utils.md#arktsutilsason) is similar to the JSON utility provided by JavaScript. JSON is used to serialize (via **stringify**) and deserialize (via **parse**) JavaScript objects. In contrast, ASON provides serialization and deserialization capabilities for [Sendable objects](arkts-sendable.md). The **ASON.stringify** method converts an object to a string, and **ASON.parse** converts a string back to a Sendable object. This enables high-performance pass-by-reference of these objects between concurrent tasks.
 
 > **NOTE**
 >

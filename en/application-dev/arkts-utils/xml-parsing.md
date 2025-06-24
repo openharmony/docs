@@ -21,7 +21,7 @@ The XML module provides the **XmlPullParser** class to parse XML documents. The 
 
 - To ensure successful XML parsing and conversion, the input XML data must comply with the standard format.
 
-- Currently, parsing a given node is not supported.
+- Parsing a given node is not supported yet.
 
 
 ## Parsing XML Tags and Values
@@ -74,7 +74,7 @@ The XML module provides the **XmlPullParser** class to parse XML documents. The 
 
     ```ts
     let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tagValueCallbackFunction:func};
-    that.parse(options);
+    that.parseXml(options);
     ```
 
 	The output is as follows:
@@ -130,7 +130,7 @@ The XML module provides the **XmlPullParser** class to parse XML documents. The 
 
     ```ts
     let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, attributeValueCallbackFunction:func};
-    that.parse(options);
+    that.parseXml(options);
     console.info(str); // Print all attributes and their values at a time.
     ```
 
@@ -164,7 +164,7 @@ The XML module provides the **XmlPullParser** class to parse XML documents. The 
 3. Customize a callback function. In this example, the callback function directly prints the event types and element depths.
 
     ```ts
-    let str: string  = '';
+    let str: string = '';
     function func(name: xml.EventType, value: xml.ParseInfo): boolean {
       str = name +' ' + value.getDepth(); // getDepth is called to obtain the element depth.
       console.info(str)
@@ -176,19 +176,19 @@ The XML module provides the **XmlPullParser** class to parse XML documents. The 
 
      ```ts
      let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func};
-     that.parse(options);
+     that.parseXml(options);
      ```
 
    The output is as follows:
 
 	```
-	 0 0 // 0: <?xml version="1.0" encoding="utf-8"?>. The event type value of START_DOCUMENT is 0. 0: The depth is 0.
-	 2 1 // 2: <note importance="high" logged="true">. The event type value of START_TAG is 2. 1: The depth is 1.
-	 2 2 // 2: <title>. The event type value of START_TAG is 2. 2: The depth is 2.
-	 4 2 // 4: Play. The event type value of TEXT is 4. 2: The depth is 2.
-	 3 2 // 3: </title>. The event type value of END_TAG is 3. 2: The depth is 2.
-	 3 1 // 3: </note>. The event type value of END_TAG is 3. 1: The depth is 1 (corresponding to <note>).
-	 1 0 // 1: The event type value of END_DOCUMENT is 1. 0: The depth is 0.
+	 0 0 // First digit 0: <?xml version="1.0" encoding="utf-8"?> corresponds to event type START_DOCUMENT, which value is 0; second digit 0: The depth is 0.
+	 2 1 // First digit 2: <note importance="high" logged="true"> corresponds to event type START_TAG, which value is 2; second digit 1: The depth is 1.
+	 2 2 // First digit 2: <title> corresponds to event type START_TAG, which value is 2; second digit 2: The depth is 2.
+	 4 2 // First digit 4: "Play" corresponds to event type TEXT, which value is 4; second digit 2: The depth is 2.
+	 3 2 // First digit 3: </title> corresponds to event type END_TAG, which value is 3; second digit 2: The depth is 2.
+	 3 1 // First digit 3: </note> corresponds to event type END_TAG, which value is 3; second digit 1: The depth is 1.
+	 1 0 // First digit 1: corresponds to event type END_DOCUMENT, which value is 1; second digit 0: The depth is 0.
 	```
 
 
@@ -238,32 +238,32 @@ let options: xml.ParseOptions = {
   attributeValueCallbackFunction: attFunc,
   tokenValueCallbackFunction: tokenFunc
 };
-that.parse(options);
+that.parseXml(options);
 ```
 
 The output is as follows:
 
-   ```
-   tag-
-   token-0 0
-   tag-book
-   attri-category COOKING
-   token-2 1
-   tag-title
-   attri-lang en
-   token-2 2
-   tag-Everyday
-   token-4 2
-   tag-title
-   token-3 2
-   tag-author
-   token-2 2
-   tag-Giana
-   token-4 2
-   tag-author
-   token-3 2
-   tag-book
-   token-3 1
-   tag-
-   token-1 0
-   ```
+```
+tag-
+token-0 0
+tag-book
+token-2 1
+attri-category COOKING
+tag-title
+token-2 2
+attri-lang en
+tag-Everyday
+token-4 2
+tag-title
+token-3 2
+tag-author
+token-2 2
+tag-Giana
+token-4 2
+tag-author
+token-3 2
+tag-book
+token-3 1
+tag-
+token-1 0
+```

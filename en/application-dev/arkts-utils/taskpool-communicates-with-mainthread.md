@@ -13,7 +13,7 @@ The following example uses multiple image loading tasks that provide real-time u
    }
    ```
 
-2. In the task, use **sendData()** to send messages to the host thread.
+2. Add **sendData()** to the task to enable the child thread to send messages to the host thread.
 
    ```ts
    // IconItemSource.ets
@@ -72,10 +72,10 @@ The following example uses multiple image loading tasks that provide real-time u
              .fontWeight(FontWeight.Bold)
              .onClick(() => {
                let iconItemSourceList: IconItemSource[];
-               let lodePictureTask: taskpool.Task = new taskpool.Task(loadPictureSendData, 30);
+               let loadPictureTask: taskpool.Task = new taskpool.Task(loadPictureSendData, 30);
                // Use notice to receive messages from the task.
-               lodePictureTask.onReceiveData(notice);
-               taskpool.execute(lodePictureTask).then((res: object) => {
+               loadPictureTask.onReceiveData(notice);
+               taskpool.execute(loadPictureTask).then((res: object) => {
                  iconItemSourceList = res as IconItemSource[];
                })
              })

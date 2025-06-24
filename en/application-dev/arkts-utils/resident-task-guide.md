@@ -1,6 +1,6 @@
 # Resident Task Development (Worker)
 
-This section describes how to use Worker to execute a resident task. Worker continuously executes the task until it receives a termination command from the host thread.
+This topic describes how to use Worker to execute a resident task. Worker continuously executes the task until it receives a termination command from the host thread.
 
 The development process and example are outlined as follows:
 

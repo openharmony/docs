@@ -8,15 +8,16 @@ ArkTS supports various module types, including ETS/TS/JS files, JSON files, and 
 
 ## Loading Process of Modular Operation
 
-ArkTS modular operation is implemented according to the ECMA specification and executes modules using a post-order traversal method: starting from the leftmost subtree of the module graph, it executes the modules, then their peers, and finally their parents. This algorithm runs recursively until it reaches the root of the module graph.
+ArkTS modular operation is implemented according to the ECMAScript module specification and executes modules using a post-order traversal method: starting from the leftmost subtree of the module graph, it executes the modules, then their peers, and finally their parents. This algorithm runs recursively until it reaches the root of the module graph.
 
-For example, in the figure below, each parent node loads its corresponding child nodes and executes peers in the order specified by the **import** statements in the code. The execution order for the module graph files is as follows: D-&gt;F-&gt;G-&gt;E-&gt;B-&gt;I-&gt;H-&gt;C-&gt;A.
+For example, in the figure below, each parent node loads its corresponding child nodes and executes peers in the order specified by the **import** statements. The execution order for the module graph files is as follows: D-&gt;F-&gt;G-&gt;E-&gt;B-&gt;I-&gt;H-&gt;C-&gt;A.
 
 ![image_0000002043487154](figures/image_0000002043487154.png)
 
 Here, file A is referred to as the entry file, which is the starting point for execution. Certain built-in interfaces for loading content, such as [windowStage.loadContent](../reference/apis-arkui/js-apis-window.md#loadcontent9) and [Navigation](../ui/arkts-navigation-navigation.md), will also be executed as entry files, especially when these files are not loaded using the **import** syntax.
 
 Starting from file A, a complete set of files will be loaded, including file A, files on which file A depends, and subsequently dependent files, until the leaf nodes of each branch is reached.
+
 
 ## Modular Specifications Supported by ArkTS
 
@@ -30,13 +31,13 @@ For details about how to use **export** and **import** in ArkTS, see [ArkTS Intr
 
 CommonJS modules were proposed as a standard by the JavaScript community in 2009 and first partially adopted and implemented in Node.js. CommonJS treats each file as a module, with the **module** variable representing the current module. **module.exports** is the variable exported by the module, and each module also has an **exports** variable (exports === module.exports).
 
-The following table lists the import and export syntax.
+The following table lists the module import and export syntax.
 
 | Loading Type| Module Import| Module Export (Do Not Mix module.exports with exports)|
 | -------- | -------- | -------- |
-| Variable| const ohos = require('ohos') | exports.add = add<br>module.exports.name = name |
+| Variable| const ohos = require('ohos') | exports.add = add<br/>module.exports.name = name |
 | Variable| const ohos = require('ohos') | module.exports = add |
-| Function| const ohos = require('ohos')<br>ohos.fun(); | exports.fun = function foo () {}<br>module.exports.fun = function foo () {} |
+| Function| const ohos = require('ohos')<br>ohos.fun(); | exports.fun = function foo () {}<br/>module.exports.fun = function foo () {} |
 
 > **NOTE**
 >

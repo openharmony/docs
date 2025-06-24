@@ -8,6 +8,6 @@ The ArkTS common and container libraries enhance the language's basic functional
 
 To address the limited concurrency support in TS/JS, ArkTS enhances concurrency programming APIs and capabilities. It provides two concurrency APIs, [TaskPool](taskpool-introduction.md) and [Worker](worker-introduction.md). In addition, ArkTS introduces the concept of Sendable to support object reference passing between concurrent instances, improving communication performance of ArkTS objects in concurrent environments.
 
-ArkCompiler supports the compilation and execution of ArkTS, TS, and JS. Currently, it is divided into two main parts: the ArkTS compilation toolchain and the ArkTS runtime. The ArkTS compilation toolchain is responsible for compiling high-level languages into Ark bytecode files (\*.abc) on the development side, whereas the ArkTS runtime runs the bytecode files on the device side to execute the program logic.
+ArkCompiler supports the compilation and execution of ArkTS, TS, and JS. Currently, it is divided into two main parts: the ArkTS compilation toolchain and the ArkTS runtime. The ArkTS compilation toolchain is responsible for compiling high-level languages into Ark bytecode files (\*.abc), whereas the ArkTS runtime runs the bytecode files on the device side to execute the program logic.
 
 In the future, ArkTS will continue to evolve based on application development and runtime requirements, gradually introducing more features such as enhanced concurrency capabilities, enhanced system types, and distributed development paradigms.

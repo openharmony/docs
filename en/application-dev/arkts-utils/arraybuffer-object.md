@@ -1,6 +1,6 @@
 # ArrayBuffer Object
 
-An ArrayBuffer object contains a block of native memory, and its JS object wrapper is allocated in the local heap of the virtual machine. Similar to a regular object, an ArrayBuffer object requires serialization and deserialization. However, the native memory can be passed in two ways: pass-by-copy and pass-by-transfer.
+An ArrayBuffer consists of two components: the underlying native memory area that stores data, and the JS object wrapper that encapsulates operations. This JS object wrapper is allocated on the virtual machine's local heap. When passed across threads, the JS object wrapper needs to be serialized and deserialized for pass-by-copy, whereas the native memory area can be transferred in two ways: pass-by-copy and pass-by-transfer.
 
 When pass-by-copy is used, a deep copy (recursive traversal) is required, and both threads can independently access the ArrayBuffer object after the transmission. The following figure shows the communication process.
 
@@ -10,7 +10,7 @@ If pass-by-transfer is used, the original thread can no longer use the ArrayBuff
 
 ![transfer](figures/transfer.png)
 
-ArrayBuffer objects can be used to represent resources such as images. In application development, scenarios requiring image processing (such as adjusting an image's brightness, saturation, or size) are common. To avoid blocking the UI main thread, images can be passed to child threads to perform these operations. Pass-by-transfer is more performant, but the original thread can no longer access the ArrayBuffer object. If both threads need access, pass-by-copy should be used; otherwise, pass-by-transfer is recommended to enhance performance.
+ArrayBuffer objects can be used to represent resources such as images. In application development, processing images (such as adjusting brightness, saturation, and size) can be time-consuming. To avoid blocking the UI main thread for extended periods, images can be passed to a child thread for processing. Passing ArrayBuffer objects by transfer results in higher transmission performance, but the original thread can no longer access the ArrayBuffer objects. If both threads need to access the objects, pass-by-copy is the only option. Otherwise, pass-by-transfer is recommended for better performance.
 
 The following describes how to pass an image to a child thread using both methods.
 
@@ -18,9 +18,9 @@ The following describes how to pass an image to a child thread using both method
 
 In ArkTS, TaskPool defaults to passing ArrayBuffer data by transfer. By calling the **setTransferList()** interface, you can specify which parts of the data should be passed by transfer, while the rest can be switched to pass-by-copy.
 
-First, implement an interface for processing the ArrayBuffer that will be executed in the Task.
+First, implement an interface for processing the ArrayBuffer. The interface will be executed in the Task.
 
-Then, pass the ArrayBuffer data to the Task by copy and process it within the Task.
+Then, pass the ArrayBuffer data to the Task by copy and process it.
 
 Finally, the UI main thread receives the ArrayBuffer data returned after the Task execution and concatenates the data for display.
 

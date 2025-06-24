@@ -4,7 +4,7 @@
 
 ArkTS shared containers ([@arkts.collections (ArkTS Collections)](../reference/apis-arkts/js-apis-arkts-collections.md)) are designed for high-performance data transmission between concurrent tasks. They offer similar functionality to the containers defined in the ECMAScript 262 specification but with some key differences, which are outlined in the [Behavior Differences Between Shared Container APIs and Native APIs](#behavior-differences-between-shared-container-apis-and-native-apis).
 
-By default, ArkTS shared containers are passed by reference, allowing multiple concurrent tasks to manipulate the same container instance. They also support pass-by-copy, where each concurrent task holds an ArkTS container instance.
+By default, ArkTS shared containers are passed by reference, allowing multiple concurrent tasks to manipulate the same container instance. Pass-by-copy is also supported. In this mode, each concurrent task holds an ArkTS container instance.
 
 ArkTS shared containers are not thread-safe and employ a fail-fast mechanism to prevent concurrent structural modifications, which would otherwise trigger exceptions. When modifying container properties, you must use the [asynchronous lock](arkts-async-lock-introduction.md) mechanism to ensure safe access.
 
@@ -64,7 +64,9 @@ ArkTS provides shared containers for Sendable data, with some behavior differenc
 
 > **NOTE**
 >
-> ArkTS shared containers have different types from native ECMAScript containers. Therefore, if the native **isArray()** method is used on a **collections.Array instance** object, **false** is returned.
+> ArkTS shared containers have different types from native ECMAScript 262 containers. Therefore, if the native **isArray()** method is used on a **collections.Array instance** object, **false** is returned.
+>
+> ArkTS shared containers are passed across threads by reference, which is more efficient than native containers. If you need to transfer large amounts of data across threads, you are advised to use ArkTS shared containers.
 
 ### Array
 
@@ -181,4 +183,4 @@ Native TypedArray containers can be converted into ArkTS TypedArray containers u
 | entries(): IterableIterator&lt;[T, T]&gt; | entries(): IterableIterator&lt;[T, T]&gt; | No| / |
 | keys(): IterableIterator&lt;T&gt; | keys(): IterableIterator&lt;T&gt; | No| / |
 | values(): IterableIterator&lt;T&gt; | values(): IterableIterator&lt;T&gt; | Yes| Computed property names (arkts-sendable-compated-prop-name) cannot be used in Sendable classes and interfaces.|
-| new &lt;T = any&gt;(values?: readonly T[] \| null): Set&lt;T&gt; | constructor(values?: readonly T[] \| null) | Yes| The passed-in values during construction cannot be non-Sendable data. Otherwise, an error is reported during compilation.|
+| new &lt;T = any&gt;(values?: readonly T[] \| null): Set&lt;T&gt; | constructor(values?: readonly T[] \| null) | Yes| The data passed during construction must be of the Sendable type. Otherwise, a compilation error is reported.|

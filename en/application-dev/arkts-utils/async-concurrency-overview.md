@@ -1,7 +1,13 @@
 # Asynchronous Concurrency (Promise and Async/Await)
 
 
-Promise and async/await are standard JavaScript asynchronous syntax that provides asynchronous concurrency capabilities. Asynchronous code can be suspended and resumed later, ensuring that only one piece of code is executed at any given moment. This approach is suitable for single I/O tasks, such as a single network request or file read/write operation, without the need to start additional threads.
+Promise and async/await are standard JavaScript asynchronous syntax that provides asynchronous concurrency capabilities. Asynchronous code is suspended and continues to execute later, ensuring that only one piece of code is executed at any given moment. The following are typical scenarios of asynchronous concurrency:
+
+- Non-blocking I/O operations: network requests, file reading and writing, and timers.
+
+- Lightweight tasks without CPU blocking: tasks with short execution times.
+
+- Clear logical dependencies: tasks with explicit order or parallel relationships.
 
 Asynchronous syntax is a feature of programming languages that allows programs to continue executing other operations without waiting for certain operations to complete.
 
@@ -26,7 +32,7 @@ setTimeout(() => {
 })
 ```
 
-In this code, the **setTimeout** function simulates an asynchronous operation that generates a random number one second later. If the random number is greater than 0.5, the **resolve** callback function is executed, with the random number passed as a parameter. Otherwise, the **reject** callback function is executed, with an error object passed as a parameter.
+In the above code, the **setTimeout** function simulates an asynchronous operation and generates a random number after 1 second. If the random number is greater than 0.5, the **resolve** callback is invoked with the random number; otherwise, the **reject** callback is invoked with an error object.
 
 After a Promise object is created, you can use the **then** and **catch** methods to specify callback functions for the fulfilled and rejected states. The **then** method can accept two parameters: one for handling the fulfilled state and the other for handling the rejected state. If only one parameter is passed in, the **then** method automatically calls the callback function when the Promise object state changes to **fulfilled**, with the result of the Promise object passed as a parameter. The **catch** method receives a callback function to handle failures, that is, capturing the Promise's transition to the rejected state or any exceptions thrown during the operation. The code snippet below shows the use of the **then** and **catch** methods.
 
@@ -48,7 +54,7 @@ In this example, the callback function of the **then** method receives the succe
 
 ## Async/Await
 
-Async/Await is syntactic sugar for handling asynchronous operations with Promises, making it easier and more readable to write asynchronous code. By declaring a function as asynchronous with the async keyword and using the await keyword to wait for the resolution of a Promise (fulfilled or rejected), you can write asynchronous operations in a synchronous style.
+Async/Await is syntactic sugar for handling asynchronous operations with Promises, making it easier and more readable to write asynchronous code. By declaring a function as asynchronous with the **async** keyword and using the **await** keyword to wait for the resolution of a Promise (fulfilled or rejected), you can write asynchronous operations in a synchronous style.
 
 An async function returns a Promise object to represent an asynchronous operation. Inside the async function, you can use the await keyword to wait for the resolution of the Promise object and return its resolved value. If an async function throws an exception, the Promise object returned by the function is rejected, and the exception information is passed to the **onRejected()** method of the Promise object.
 
@@ -89,7 +95,7 @@ struct Index {
 
 In this code, the await keyword is used to wait for the resolution of the Promise object and store its resolved value in the **result** variable.
 
-Since you need to wait for the completion of the asynchronous operation, the entire operation must be wrapped in an async function and used with the await keyword. In addition to using await within async functions, you can also use try/catch blocks to catch exceptions in asynchronous operations.
+Note that when waiting for asynchronous operations, the entire operation should be wrapped in an **async** function and used with **await**. You can also use **try/catch** blocks to catch exceptions in asynchronous operations.
 
 ```ts
 async function myAsyncFunction(): Promise<void> {

@@ -17,7 +17,7 @@ import { uri } from '@kit.ArkTS';
 
 Implements a URI, which provides APIs for determining whether objects are equal as well as standard paths.
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -47,11 +47,11 @@ A standard URI mainly consists of three parts, as follows:
 
 [scheme:]scheme-specific-part[#fragment]
 
-The generic URI syntax consists of a hierarchical sequence of components, as follows:
+Breaking down the URI format further, it can be divided into:
 
 [scheme:][//authority][path][?query][#fragment]
 
-It can be further divided into the following parts:
+Further refining the URI format, it can be detailed as:
 
 [scheme:][//[user-info@]host[:port]][path][?query][#fragment]
 
@@ -137,7 +137,7 @@ console.log("result:", uriObj7.checkIsAbsolute()) // result: true
 
 constructor(uri: string)
 
-A constructor used to create a URI instance.
+A constructor used to create a URI.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -212,7 +212,7 @@ Checks whether this URI is the same as another URI object.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the two URIs are the same; returns **false** otherwise.|
+| boolean | Check result. The value **true** is returned if the two URIs are the same; otherwise, **false** is returned.|
 
 **Error codes**
 
@@ -558,7 +558,7 @@ console.info(Array.from(paramNames).toString()); // param1,param2
 
 getQueryValues(key:string): string[]
 
-Obtains the values of a given key from the query component of this URI. If the query component contains encoded content, this API decodes the keys before obtaining the values.
+Obtains all the values of a given key from the query component of this URI. If the query component is encoded, this API decodes the keys before obtaining the values.
 
 The query component follows the question mark (?) and consists of key-value pairs, separated by the at sign (&). In each key-value pair, the equal sign (=) is used to connect the key and value.
 
@@ -598,7 +598,7 @@ console.info(JSON.stringify(uriInstance.getQueryValues("abc"))); // []
 
 getBooleanQueryValue(key:string,defaultValue:boolean): boolean
 
-Obtains the value of the Boolean type of a query parameter in this URI.
+Searches for the first value associated with the given key in the query string and converts it to a boolean value.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -609,12 +609,12 @@ Obtains the value of the Boolean type of a query parameter in this URI.
 | Name      | Type   | Mandatory| Description                                 |
 | ------------ | ------- | ---- | ------------------------------------- |
 | key          | string  | Yes  | Name of the query parameter.              |
-| defaultValue | boolean | Yes  | Default value returned when the query parameter does not contain the specified key.|
+| defaultValue | boolean | Yes  | Value returned when the query parameter does not contain the specified key.|
 
 **Return value**
 
-| Type   | Description                                                                  |
-| ------- | ---------------------------------------------------------------------- |
+| Type   | Description                                                        |
+| ------- | ------------------------------------------------------------ |
 | boolean | If the specified query parameter does not exist, the default value is returned. If the first value of the query parameter is **false** or **0**, **false** is returned. Otherwise, **true** is returned.|
 
 **Error codes**
@@ -723,9 +723,9 @@ Creates a URI based on the provided scheme, scheme-specific-part, and fragment c
 
 | Name  | Type  | Mandatory| Description                           |
 | -------- | ------ | ---- | ------------------------------- |
-| scheme   | string | Yes  | Scheme of the URI.              |
+| scheme   | string | Yes  | Scheme of the URI. This parameter must comply with the URI standard.|
 | ssp      | string | Yes  | Scheme-specific-part of the URI.|
-| fragment | string | Yes  | Fragment of this URI. The fragment component is the part following the number sign (#).            |
+| fragment | string | Yes  | Fragment component of the URI, that is, the content following the number sign (#).|
 
 **Return value**
 
@@ -770,7 +770,7 @@ Checks whether this URI is the same as another URI object.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the two URIs are the same; returns **false** otherwise.|
+| boolean | Check result. The value **true** is returned if the two URIs are the same; otherwise, **false** is returned.|
 
 **Example**
 

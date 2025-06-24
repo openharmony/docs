@@ -2,7 +2,7 @@
 
 ## Overview
 
-**arkOptions** is used to configure settings related to ArkTS compilation. This topic describes the configuration of the **types**, **maxFlowDepth**, and **transformLib** options in **arkOptions**. For more settings, see [build-profile.json5](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-hvigor-build-profile-V5).
+**arkOptions** is used to configure settings related to ArkTS compilation. This topic describes the configuration of the **types**, **maxFlowDepth**, and **transformLib** options in **arkOptions**. For more settings, see [build-profile.json5](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-hvigor-configuration-file-overview).
 
 ## types
 
@@ -10,9 +10,9 @@
 
   Field **types** in **arkOptions**
 
-| Name| Description| Data Type| Optional|
-| -------- | -------- | -------- | -------- |
-| types | Specifies type declaration files to be globally imported, avoiding the need to import them individually in each source file.| Array| Optional, defaults to an empty array|
+| Name| Description| Configuration Scope| Data Type| Optional|
+| -------- | -------- | -------- | -------- | -------- |
+| types | Specifies type declaration files to be globally imported, avoiding the need to import them individually in each source file.| Module-level| Array| Optional, defaults to an empty array|
 
 ### Example
 
