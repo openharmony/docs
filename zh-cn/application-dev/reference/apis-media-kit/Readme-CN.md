@@ -64,7 +64,7 @@
     - [OH_AVRecorder_Range](capi-oh-avrecorder-range.md)
     - [OH_AVRecorder_EncoderInfo](capi-oh-avrecorder-encoderinfo.md)
     - [OH_AudioCaptureInfo](capi-oh-audiocaptureinfo.md)
-    - [OH_NativeBuffer](capi-oh-nativebuffer.md)
+    - [OH_NativeBuffer](capi-avscreencapture-oh-nativebuffer.md)
     - [OH_AVScreenCapture](capi-oh-avscreencapture.md)
     - [OH_AVScreenCapture_ContentFilter](capi-oh-avscreencapture-contentfilter.md)
     - [OH_AVScreenCapture_CaptureStrategy](capi-oh-avscreencapture-capturestrategy.md)
