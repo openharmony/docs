@@ -1329,7 +1329,7 @@ queryMyCard(attrs?: ContactAttributes): Promise&lt;Contact&gt;
 
 selectContact(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-调用选择联系人接口，打开选择联系人UI界面，选定的联系人使用callback异步回调。
+调用选择联系人接口，打开选择联系人UI界面，使用callback异步回调。
 
 > **说明**
 >
@@ -1361,7 +1361,7 @@ selectContact(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 selectContact(): Promise&lt;Array&lt;Contact&gt;&gt;
 
-调用选择联系人接口，打开选择联系人UI界面，选定的联系人使用Promise异步回调。
+调用选择联系人接口，打开选择联系人UI界面，使用Promise异步回调。
 
 > **说明**
 >
@@ -1392,7 +1392,7 @@ selectContact(): Promise&lt;Array&lt;Contact&gt;&gt;
 
 selectContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-调用选择联系人接口，打开选择联系人UI界面，选定的联系人使用callback异步回调。
+调用选择联系人接口，打开选择联系人UI界面，使用callback异步回调。
 
 **原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
@@ -1430,7 +1430,7 @@ selectContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 selectContacts(): Promise&lt;Array&lt;Contact&gt;&gt;
 
-调用选择联系人接口，打开选择联系人UI界面，选定的联系人使用Promise异步回调。
+调用选择联系人接口，打开选择联系人UI界面，使用Promise异步回调。
 
 **原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
@@ -1460,7 +1460,7 @@ selectContacts(): Promise&lt;Array&lt;Contact&gt;&gt;
 
 selectContacts(options: ContactSelectionOptions, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
-调用选择联系人接口，打开选择联系人UI界面，选定的联系人使用callback异步回调。
+调用选择联系人接口，打开选择联系人UI界面，使用callback异步回调。
 
 **原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
@@ -1501,7 +1501,7 @@ selectContacts(options: ContactSelectionOptions, callback: AsyncCallback&lt;Arra
 
 selectContacts(options: ContactSelectionOptions): Promise&lt;Array&lt;Contact&gt;&gt;
 
-调用选择联系人接口，打开选择联系人UI界面，选定的联系人使用Promise异步回调。
+调用选择联系人接口，打开选择联系人UI界面，使用Promise异步回调。
 
 **原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
 
