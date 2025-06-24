@@ -13,9 +13,9 @@
 
 **起始版本：** 12
 
-**相关模块：** [Web
+**相关模块：** [Web](_web.md)
 
-**相关示例：** <!--RP1-->ArkWebSchemeHandler](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkWeb/ArkWebSchemeHandler)<!--RP1End-->
+**相关示例：** <!--RP1-->[ArkWebSchemeHandler](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkWeb/ArkWebSchemeHandler)<!--RP1End-->
 
 
 ## 汇总
@@ -33,17 +33,17 @@
 | typedef struct ArkWeb_ResourceRequest_ [ArkWeb_ResourceRequest](_web.md#arkweb_resourcerequest) | 对应内核的一个请求，可以通过OH_ArkWeb_ResourceRequest获取请求的URL、method、post data以及其他信息。  | 
 | typedef struct ArkWeb_RequestHeaderList_ [ArkWeb_RequestHeaderList](_web.md#arkweb_requestheaderlist) | 请求头列表。  | 
 | typedef struct ArkWeb_HttpBodyStream_ [ArkWeb_HttpBodyStream](_web.md#arkweb_httpbodystream) | 请求的上传数据。  | 
-| typedef void(\* [ArkWeb_OnRequestStart](_web.md#arkweb_onrequeststart)) (const [ArkWeb_SchemeHandler](_web.md#arkweb_schemehandler) \*schemeHandler, ArkWeb_ResourceRequest](_web.md#arkweb_resourcerequest) \*resourceRequest, const [ArkWeb_ResourceHandler](_web.md#arkweb_resourcehandler) \*resourceHandler, bool \*intercept) | 请求开始的回调，这将在IO线程上被调用。  | 
+| typedef void(\* [ArkWeb_OnRequestStart](_web.md#arkweb_onrequeststart)) (const [ArkWeb_SchemeHandler](_web.md#arkweb_schemehandler) \*schemeHandler, [ArkWeb_ResourceRequest](_web.md#arkweb_resourcerequest) \*resourceRequest, const [ArkWeb_ResourceHandler](_web.md#arkweb_resourcehandler) \*resourceHandler, bool \*intercept) | 请求开始的回调，这将在IO线程上被调用。  | 
 | typedef void(\* [ArkWeb_OnRequestStop](_web.md#arkweb_onrequeststop)) (const [ArkWeb_SchemeHandler](_web.md#arkweb_schemehandler) \*schemeHandler, const [ArkWeb_ResourceRequest](_web.md#arkweb_resourcerequest) \*resourceRequest) | 请求完成时的回调函数。  | 
 | typedef void(\* [ArkWeb_HttpBodyStreamReadCallback](_web.md#arkweb_httpbodystreamreadcallback)) (const [ArkWeb_HttpBodyStream](_web.md#arkweb_httpbodystream) \*httpBodyStream, uint8_t \*buffer, int bytesRead) | 当OH_ArkWebHttpBodyStream_Read读取操作完成时的回调函数。  | 
-| typedef void(\* [ArkWeb_HttpBodyStreamInitCallback](_web.md#arkweb_httpbodystreaminitcallback)) (const [ArkWeb_HttpBodyStream](_web.md#arkweb_httpbodystream) \*httpBodyStream, ArkWeb_NetError](_web.md#arkweb_neterror) result) | ArkWeb_HttpBodyStream初始化操作完成时回调函数。  | 
+| typedef void(\* [ArkWeb_HttpBodyStreamInitCallback](_web.md#arkweb_httpbodystreaminitcallback)) (const [ArkWeb_HttpBodyStream](_web.md#arkweb_httpbodystream) \*httpBodyStream, [ArkWeb_NetError](_web.md#arkweb_neterror) result) | ArkWeb_HttpBodyStream初始化操作完成时回调函数。  | 
 
 
 ### 枚举
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [ArkWeb_CustomSchemeOption](_web.md#arkweb_customschemeoption) {<br/>**OH_ARKWEB_SCHEME_OPTION_NONE** = 0, ARKWEB_SCHEME_OPTION_STANDARD = 1 &lt;&lt; 0, ARKWEB_SCHEME_OPTION_LOCAL = 1 &lt;&lt; 1, ARKWEB_SCHEME_OPTION_DISPLAY_ISOLATED = 1 &lt;&lt; 2,<br/>ARKWEB_SCHEME_OPTION_SECURE = 1 &lt;&lt; 3, ARKWEB_SCHEME_OPTION_CORS_ENABLED = 1 &lt;&lt; 4, ARKWEB_SCHEME_OPTION_CSP_BYPASSING = 1 &lt;&lt; 5, ARKWEB_SCHEME_OPTION_FETCH_ENABLED = 1 &lt;&lt; 6,<br/>ARKWEB_SCHEME_OPTION_CODE_CACHE_ENABLED = 1 &lt;&lt; 7<br/>} | custom scheme的配置信息。  | 
+| [ArkWeb_CustomSchemeOption](_web.md#arkweb_customschemeoption) {<br/>OH_ARKWEB_SCHEME_OPTION_NONE = 0, ARKWEB_SCHEME_OPTION_STANDARD = 1 &lt;&lt; 0, ARKWEB_SCHEME_OPTION_LOCAL = 1 &lt;&lt; 1, ARKWEB_SCHEME_OPTION_DISPLAY_ISOLATED = 1 &lt;&lt; 2,<br/>ARKWEB_SCHEME_OPTION_SECURE = 1 &lt;&lt; 3, ARKWEB_SCHEME_OPTION_CORS_ENABLED = 1 &lt;&lt; 4, ARKWEB_SCHEME_OPTION_CSP_BYPASSING = 1 &lt;&lt; 5, ARKWEB_SCHEME_OPTION_FETCH_ENABLED = 1 &lt;&lt; 6,<br/>ARKWEB_SCHEME_OPTION_CODE_CACHE_ENABLED = 1 &lt;&lt; 7<br/>} | custom scheme的配置信息。  | 
 | [ArkWeb_ResourceType](_web.md#arkweb_resourcetype) {<br/>MAIN_FRAME = 0, SUB_FRAME = 1, STYLE_SHEET = 2, SCRIPT = 3,<br/>IMAGE = 4, FONT_RESOURCE = 5, SUB_RESOURCE = 6, OBJECT = 7,<br/>MEDIA = 8, WORKER = 9, SHARED_WORKER = 10, PREFETCH = 11,<br/>FAVICON = 12, XHR = 13, PING = 14, SERVICE_WORKER = 15,<br/>CSP_REPORT = 16, PLUGIN_RESOURCE = 17, NAVIGATION_PRELOAD_MAIN_FRAME = 19, NAVIGATION_PRELOAD_SUB_FRAME = 20<br/>} | 请求的资源类型。  | 
 
 
@@ -64,8 +64,8 @@
 | void [OH_ArkWebResourceRequest_GetFrameUrl](_web.md#oh_arkwebresourcerequest_getframeurl) (const [ArkWeb_ResourceRequest](_web.md#arkweb_resourcerequest) \*resourceRequest, char \*\*frameUrl) | 获取触发此请求的Frame的URL。  | 
 | int32_t [OH_ArkWebHttpBodyStream_SetUserData](_web.md#oh_arkwebhttpbodystream_setuserdata) ([ArkWeb_HttpBodyStream](_web.md#arkweb_httpbodystream) \*httpBodyStream, void \*userData) | 将一个用户数据设置到ArkWeb_HttpBodyStream对象中。  | 
 | void \* [OH_ArkWebHttpBodyStream_GetUserData](_web.md#oh_arkwebhttpbodystream_getuserdata) (const [ArkWeb_HttpBodyStream](_web.md#arkweb_httpbodystream) \*httpBodyStream) | 从ArkWeb_HttpBodyStream获取用户数据。  | 
-| int32_t [OH_ArkWebHttpBodyStream_SetReadCallback](_web.md#oh_arkwebhttpbodystream_setreadcallback) ([ArkWeb_HttpBodyStream](_web.md#arkweb_httpbodystream) \*httpBodyStream, ArkWeb_HttpBodyStreamReadCallback](_web.md#arkweb_httpbodystreamreadcallback) readCallback) | 为OH_ArkWebHttpBodyStream_Read设置回调函数。  | 
-| int32_t [OH_ArkWebHttpBodyStream_Init](_web.md#oh_arkwebhttpbodystream_init) ([ArkWeb_HttpBodyStream](_web.md#arkweb_httpbodystream) \*httpBodyStream, ArkWeb_HttpBodyStreamInitCallback](_web.md#arkweb_httpbodystreaminitcallback) initCallback) | 初始化ArkWeb_HttpBodyStream。  | 
+| int32_t [OH_ArkWebHttpBodyStream_SetReadCallback](_web.md#oh_arkwebhttpbodystream_setreadcallback) ([ArkWeb_HttpBodyStream](_web.md#arkweb_httpbodystream) \*httpBodyStream, [ArkWeb_HttpBodyStreamReadCallback](_web.md#arkweb_httpbodystreamreadcallback) readCallback) | 为OH_ArkWebHttpBodyStream_Read设置回调函数。  | 
+| int32_t [OH_ArkWebHttpBodyStream_Init](_web.md#oh_arkwebhttpbodystream_init) ([ArkWeb_HttpBodyStream](_web.md#arkweb_httpbodystream) \*httpBodyStream, [ArkWeb_HttpBodyStreamInitCallback](_web.md#arkweb_httpbodystreaminitcallback) initCallback) | 初始化ArkWeb_HttpBodyStream。  | 
 | void [OH_ArkWebHttpBodyStream_Read](_web.md#oh_arkwebhttpbodystream_read) (const [ArkWeb_HttpBodyStream](_web.md#arkweb_httpbodystream) \*httpBodyStream, uint8_t \*buffer, int bufLen) | 将请求的上传数据读取到buffer。  | 
 | uint64_t [OH_ArkWebHttpBodyStream_GetSize](_web.md#oh_arkwebhttpbodystream_getsize) (const [ArkWeb_HttpBodyStream](_web.md#arkweb_httpbodystream) \*httpBodyStream) | 获取httpBodyStream的大小。  | 
 | uint64_t [OH_ArkWebHttpBodyStream_GetPosition](_web.md#oh_arkwebhttpbodystream_getposition) (const [ArkWeb_HttpBodyStream](_web.md#arkweb_httpbodystream) \*httpBodyStream) | 获取httpBodyStream当前的读取位置。  | 
@@ -74,26 +74,26 @@
 | bool [OH_ArkWebHttpBodyStream_IsInMemory](_web.md#oh_arkwebhttpbodystream_isinmemory) (const [ArkWeb_HttpBodyStream](_web.md#arkweb_httpbodystream) \*httpBodyStream) | 如果httpBodyStream中的上传数据完全在内存中，并且所有读取请求都将同步成功，则返回true。  | 
 | int32_t [OH_ArkWebResourceRequest_Destroy](_web.md#oh_arkwebresourcerequest_destroy) (const [ArkWeb_ResourceRequest](_web.md#arkweb_resourcerequest) \*resourceRequest) | 销毁ArkWeb_ResourceRequest对象。  | 
 | void [OH_ArkWebResourceRequest_GetReferrer](_web.md#oh_arkwebresourcerequest_getreferrer) (const [ArkWeb_ResourceRequest](_web.md#arkweb_resourcerequest) \*resourceRequest, char \*\*referrer) | 获取请求的Referrer。  | 
-| void [OH_ArkWebResourceRequest_GetRequestHeaders](_web.md#oh_arkwebresourcerequest_getrequestheaders) (const [ArkWeb_ResourceRequest](_web.md#arkweb_resourcerequest) \*resourceRequest, ArkWeb_RequestHeaderList](_web.md#arkweb_requestheaderlist) \*\*requestHeaderList) | 获取请求的请求头列表OH_ArkWeb_RequestHeaderList。  | 
+| void [OH_ArkWebResourceRequest_GetRequestHeaders](_web.md#oh_arkwebresourcerequest_getrequestheaders) (const [ArkWeb_ResourceRequest](_web.md#arkweb_resourcerequest) \*resourceRequest, [ArkWeb_RequestHeaderList](_web.md#arkweb_requestheaderlist) \*\*requestHeaderList) | 获取请求的请求头列表OH_ArkWeb_RequestHeaderList。  | 
 | bool [OH_ArkWebResourceRequest_IsRedirect](_web.md#oh_arkwebresourcerequest_isredirect) (const [ArkWeb_ResourceRequest](_web.md#arkweb_resourcerequest) \*resourceRequest) | 判断这是否是一个重定向请求。  | 
 | bool [OH_ArkWebResourceRequest_IsMainFrame](_web.md#oh_arkwebresourcerequest_ismainframe) (const [ArkWeb_ResourceRequest](_web.md#arkweb_resourcerequest) \*resourceRequest) | 判断这是否是主框架文档资源的请求。  | 
 | bool [OH_ArkWebResourceRequest_HasGesture](_web.md#oh_arkwebresourcerequest_hasgesture) (const [ArkWeb_ResourceRequest](_web.md#arkweb_resourcerequest) \*resourceRequest) | 判断这是否是一个由用户手势触发的请求。  | 
 | int32_t [OH_ArkWeb_RegisterCustomSchemes](_web.md#oh_arkweb_registercustomschemes) (const char \*scheme, int32_t option) | 将custom scheme注册到ArkWeb。  | 
-| bool [OH_ArkWebServiceWorker_SetSchemeHandler](_web.md#oh_arkwebserviceworker_setschemehandler) (const char \*scheme, ArkWeb_SchemeHandler](_web.md#arkweb_schemehandler) \*schemeHandler) | 为指定scheme设置一个ArkWeb_SchemeHandler以拦截ServiceWorker触发的该scheme类型的请求。  | 
-| bool [OH_ArkWeb_SetSchemeHandler](_web.md#oh_arkweb_setschemehandler) (const char \*scheme, const char \*webTag, ArkWeb_SchemeHandler](_web.md#arkweb_schemehandler) \*schemeHandler) | 为指定scheme设置一个ArkWeb_SchemeHandler以拦截该scheme类型的请求。  | 
+| bool [OH_ArkWebServiceWorker_SetSchemeHandler](_web.md#oh_arkwebserviceworker_setschemehandler) (const char \*scheme, [ArkWeb_SchemeHandler](_web.md#arkweb_schemehandler) \*schemeHandler) | 为指定scheme设置一个ArkWeb_SchemeHandler以拦截ServiceWorker触发的该scheme类型的请求。  | 
+| bool [OH_ArkWeb_SetSchemeHandler](_web.md#oh_arkweb_setschemehandler) (const char \*scheme, const char \*webTag, [ArkWeb_SchemeHandler](_web.md#arkweb_schemehandler) \*schemeHandler) | 为指定scheme设置一个ArkWeb_SchemeHandler以拦截该scheme类型的请求。  | 
 | int32_t [OH_ArkWebServiceWorker_ClearSchemeHandlers](_web.md#oh_arkwebserviceworker_clearschemehandlers) () | 清除为ServiceWorker注册的SchemeHandler。  | 
 | int32_t [OH_ArkWeb_ClearSchemeHandlers](_web.md#oh_arkweb_clearschemehandlers) (const char \*webTag) | 清除为指定web注册的SchemeHandler。  | 
 | void [OH_ArkWeb_CreateSchemeHandler](_web.md#oh_arkweb_createschemehandler) ([ArkWeb_SchemeHandler](_web.md#arkweb_schemehandler) \*\*schemeHandler) | 创建一个ArkWeb_SchemeHandler对象。  | 
 | void [OH_ArkWeb_DestroySchemeHandler](_web.md#oh_arkweb_destroyschemehandler) ([ArkWeb_SchemeHandler](_web.md#arkweb_schemehandler) \*schemeHandler) | 销毁一个ArkWeb_SchemeHandler对象。  | 
 | int32_t [OH_ArkWebSchemeHandler_SetUserData](_web.md#oh_arkwebschemehandler_setuserdata) ([ArkWeb_SchemeHandler](_web.md#arkweb_schemehandler) \*schemeHandler, void \*userData) | 将一个用户数据设置到ArkWeb_SchemeHandler对象中。  | 
 | void \* [OH_ArkWebSchemeHandler_GetUserData](_web.md#oh_arkwebschemehandler_getuserdata) (const [ArkWeb_SchemeHandler](_web.md#arkweb_schemehandler) \*schemeHandler) | 从ArkWeb_SchemeHandler获取用户数据。  | 
-| int32_t [OH_ArkWebSchemeHandler_SetOnRequestStart](_web.md#oh_arkwebschemehandler_setonrequeststart) ([ArkWeb_SchemeHandler](_web.md#arkweb_schemehandler) \*schemeHandler, ArkWeb_OnRequestStart](_web.md#arkweb_onrequeststart) onRequestStart) | 为SchemeHandler设置OnRequestStart回调。  | 
-| int32_t [OH_ArkWebSchemeHandler_SetOnRequestStop](_web.md#oh_arkwebschemehandler_setonrequeststop) ([ArkWeb_SchemeHandler](_web.md#arkweb_schemehandler) \*schemeHandler, ArkWeb_OnRequestStop](_web.md#arkweb_onrequeststop) onRequestStop) | 为SchemeHandler设置OnRequestStop回调。  | 
+| int32_t [OH_ArkWebSchemeHandler_SetOnRequestStart](_web.md#oh_arkwebschemehandler_setonrequeststart) ([ArkWeb_SchemeHandler](_web.md#arkweb_schemehandler) \*schemeHandler, [ArkWeb_OnRequestStart](_web.md#arkweb_onrequeststart) onRequestStart) | 为SchemeHandler设置OnRequestStart回调。  | 
+| int32_t [OH_ArkWebSchemeHandler_SetOnRequestStop](_web.md#oh_arkwebschemehandler_setonrequeststop) ([ArkWeb_SchemeHandler](_web.md#arkweb_schemehandler) \*schemeHandler, [ArkWeb_OnRequestStop](_web.md#arkweb_onrequeststop) onRequestStop) | 为SchemeHandler设置OnRequestStop回调。  | 
 | void [OH_ArkWeb_CreateResponse](_web.md#oh_arkweb_createresponse) ([ArkWeb_Response](_web.md#arkweb_response) \*\*response) | 为被拦截的请求创建一个ArkWeb_Response对象。  | 
 | void [OH_ArkWeb_DestroyResponse](_web.md#oh_arkweb_destroyresponse) ([ArkWeb_Response](_web.md#arkweb_response) \*response) | 销毁一个ArkWeb_Response对象。  | 
 | int32_t [OH_ArkWebResponse_SetUrl](_web.md#oh_arkwebresponse_seturl) ([ArkWeb_Response](_web.md#arkweb_response) \*response, const char \*url) | 设置经过重定向或由于HSTS而改变后的解析URL，设置后会触发跳转。  | 
 | void [OH_ArkWebResponse_GetUrl](_web.md#oh_arkwebresponse_geturl) (const [ArkWeb_Response](_web.md#arkweb_response) \*response, char \*\*url) | 获取经过重定向或由于HSTS而更改后的解析URL。  | 
-| int32_t [OH_ArkWebResponse_SetError](_web.md#oh_arkwebresponse_seterror) ([ArkWeb_Response](_web.md#arkweb_response) \*response, ArkWeb_NetError](_web.md#arkweb_neterror) errorCode) | 给ArkWeb_Response对象设置一个错误码。  | 
+| int32_t [OH_ArkWebResponse_SetError](_web.md#oh_arkwebresponse_seterror) ([ArkWeb_Response](_web.md#arkweb_response) \*response, [ArkWeb_NetError](_web.md#arkweb_neterror) errorCode) | 给ArkWeb_Response对象设置一个错误码。  | 
 | [ArkWeb_NetError](_web.md#arkweb_neterror) [OH_ArkWebResponse_GetError](_web.md#oh_arkwebresponse_geterror) (const [ArkWeb_Response](_web.md#arkweb_response) \*response) | 获取ArkWeb_Response的错误码。  | 
 | int32_t [OH_ArkWebResponse_SetStatus](_web.md#oh_arkwebresponse_setstatus) ([ArkWeb_Response](_web.md#arkweb_response) \*response, int status) | 为ArkWeb_Response对象设置一个HTTP状态码。  | 
 | int [OH_ArkWebResponse_GetStatus](_web.md#oh_arkwebresponse_getstatus) (const [ArkWeb_Response](_web.md#arkweb_response) \*response) | 获取ArkWeb_Response的HTTP状态码。  | 
@@ -109,6 +109,6 @@
 | int32_t [OH_ArkWebResourceHandler_DidReceiveResponse](_web.md#oh_arkwebresourcehandler_didreceiveresponse) (const [ArkWeb_ResourceHandler](_web.md#arkweb_resourcehandler) \*resourceHandler, const [ArkWeb_Response](_web.md#arkweb_response) \*response) | 将构造的响应头传递给被拦截的请求。OH_ArkWebResourceHandler_DidReceiveResponse是必须调用的，如果在收到response前发生错误，在response中设置一个error通过该接口通知给内核。  | 
 | int32_t [OH_ArkWebResourceHandler_DidReceiveData](_web.md#oh_arkwebresourcehandler_didreceivedata) (const [ArkWeb_ResourceHandler](_web.md#arkweb_resourcehandler) \*resourceHandler, const uint8_t \*buffer, int64_t bufLen) | 将构造的响应体传递给被拦截的请求。  | 
 | int32_t [OH_ArkWebResourceHandler_DidFinish](_web.md#oh_arkwebresourcehandler_didfinish) (const [ArkWeb_ResourceHandler](_web.md#arkweb_resourcehandler) \*resourceHandler) | 通知ArkWeb内核被拦截的请求已经完成，并且没有更多的数据可用。  | 
-| int32_t [OH_ArkWebResourceHandler_DidFailWithError](_web.md#oh_arkwebresourcehandler_didfailwitherror) (const [ArkWeb_ResourceHandler](_web.md#arkweb_resourcehandler) \*resourceHandler, ArkWeb_NetError](_web.md#arkweb_neterror) errorCode) | 通知ArkWeb内核被拦截请求应该失败。  | 
+| int32_t [OH_ArkWebResourceHandler_DidFailWithError](_web.md#oh_arkwebresourcehandler_didfailwitherror) (const [ArkWeb_ResourceHandler](_web.md#arkweb_resourcehandler) \*resourceHandler, [ArkWeb_NetError](_web.md#arkweb_neterror) errorCode) | 通知ArkWeb内核被拦截请求应该失败。  | 
 | void [OH_ArkWeb_ReleaseString](_web.md#oh_arkweb_releasestring) (char \*string) | 释放由NDK接口创建的字符串  | 
 | void [OH_ArkWeb_ReleaseByteArray](_web.md#oh_arkweb_releasebytearray) (uint8_t \*byteArray) | 释放由NDK接口创建的字节数组。  | 
