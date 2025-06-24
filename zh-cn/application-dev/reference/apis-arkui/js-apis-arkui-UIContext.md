@@ -1305,7 +1305,7 @@ uiContext.getFocusController();
 
 getFilteredInspectorTree(filters?: Array\<string\>): string
 
-获取组件树及组件属性。
+获取组件树及组件属性。此接口耗时较长，仅适用于测试场景。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1405,7 +1405,7 @@ InsTree ----| type: Button, ID: 18
 
 getFilteredInspectorTreeById(id: string, depth: number, filters?: Array\<string\>): string
 
-获取指定的组件及其子组件的属性。
+获取指定的组件及其子组件的属性。此接口耗时较长，仅适用于测试场景。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
