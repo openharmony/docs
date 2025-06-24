@@ -110,6 +110,8 @@
     - [OH_Udmf_ProgressInfo](capi-udmf-oh-udmf-progressinfo.md)
     - [OH_UdmfGetDataParams](capi-udmf-oh-udmfgetdataparams.md)
     - [OH_UdmfOptions](capi-udmf-oh-udmfoptions.md)
+    - [OH_UdmfDataLoadParams](capi-udmf-oh-udmfdataloadparams.md)
+    - [OH_UdmfDataLoadInfo](capi-udmf-oh-udmfdataloadinfo.md)
     - [OH_UdsPlainText](capi-udmf-oh-udsplaintext.md)
     - [OH_UdsHyperlink](capi-udmf-oh-udshyperlink.md)
     - [OH_UdsHtml](capi-udmf-oh-udshtml.md)
