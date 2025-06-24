@@ -15,6 +15,7 @@
 ```js
 import { common } from '@kit.AbilityKit';
 import { contact } from '@kit.ContactsKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 
 @Entry
@@ -38,6 +39,11 @@ struct Index {
           }
           let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
           let promise = contact.addContactViaUI(context, contactInfo);
+          promise.then((data) => {
+              console.info(`Succeeded in add Contact via UI.data->${JSON.stringify(data)}`);
+            }).catch((err: BusinessError) => {
+              console.error(`Failed to add Contact via UI. Code: ${err.code}, message: ${err.message}`);
+            });
         })
     }
   }
@@ -51,6 +57,7 @@ struct Index {
 ```js
 import { common } from '@kit.AbilityKit';
 import { contact } from '@kit.ContactsKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 
 @Entry
@@ -75,6 +82,11 @@ struct Index {
           }
           let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
           let promise = contact.saveToExistingContactViaUI(context, contactInfo);
+          promise.then((data) => {
+              console.info(`Succeeded in save to existing Contact via UI.data->${JSON.stringify(data)}`);
+            }).catch((err: BusinessError) => {
+              console.error(`Failed to save to existing Contact via UI. Code: ${err.code}, message: ${err.message}`);
+            });
         })
     }
   }
