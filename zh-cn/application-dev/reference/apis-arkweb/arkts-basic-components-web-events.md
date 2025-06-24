@@ -798,6 +798,7 @@ onTitleReceive(callback: Callback\<OnTitleReceiveEvent\>)
           .onTitleReceive((event) => {
             if (event) {
               console.log('title:' + event.title);
+              console.log('isRealTitle:' + event.isRealTitle);
             }
           })
       }
