@@ -20,5 +20,5 @@
 
 | 名称                             | typedef关键字 | 描述               |
 | -------------------------------- | ------------- | ------------------ |
-| [OH_VObject](capi-oh-vobject.md) | OH_VObject    | 提供类型转换方法。 |
+| [OH_VObject](capi-rdb-oh-vobject.md) | OH_VObject    | 提供类型转换方法。 |
 
