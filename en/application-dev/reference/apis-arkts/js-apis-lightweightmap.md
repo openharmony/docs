@@ -1,14 +1,14 @@
 # @ohos.util.LightWeightMap (Nonlinear Container LightWeightMap) 
 
-**LightWeightMap** stores key-value (KV) pairs. Each key must be unique and have only one value.
+LightWeightMap stores key-value (KV) pairs. Each key must be unique and have only one value.
 
-**LightWeightMap** is based on generics and uses a lightweight structure. Its default initial capacity is 8, and it has the capacity doubled in each expansion.
+LightWeightMap is based on generics and uses a lightweight structure. Its default initial capacity is 8, and it has the capacity doubled in each expansion.
 
 The keys in such a set are searched using hash values, which are stored in an array.
 
-Compared with **[HashMap](js-apis-hashmap.md)**, which can also store KV pairs, **LightWeightMap** occupies less memory.
+Compared with [HashMap](js-apis-hashmap.md), which can also store KV pairs, LightWeightMap occupies less memory.
 
-**Recommended use case**: Use LightWeightMap when you need to store and access **KV pairs**.
+**Recommended use case**: Use LightWeightMap when you need to store and access KV pairs.
 
 This topic uses the following to identify the use of generics:
 - K: Key
@@ -27,7 +27,7 @@ import { LightWeightMap } from '@kit.ArkTS';
 
 ## LightWeightMap
 
-### Attributes
+### Properties
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -35,7 +35,7 @@ import { LightWeightMap } from '@kit.ArkTS';
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| length | number | Yes| No| Number of elements in a lightweight map (called container later).|
+| length | number | Yes| No| Number of elements in a LightWeightMap.|
 
 
 ### constructor
@@ -68,7 +68,7 @@ let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
 
 isEmpty(): boolean
 
-Checks whether this container is empty (contains no element).
+Checks whether this LightWeightMap is empty (contains no element).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -78,7 +78,7 @@ Checks whether this container is empty (contains no element).
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the container is empty; returns **false** otherwise.|
+| boolean | Check result. The value **true** is returned if the LightWeightMap is empty; otherwise, **false** is returned.|
 
 **Error codes**
 
@@ -100,7 +100,7 @@ let result = lightWeightMap.isEmpty();
 
 hasAll(map: LightWeightMap<K, V>): boolean
 
-Checks whether this container contains all elements of the specified **LightWeightMap** instance.
+Checks whether this LightWeightMap contains all elements of the specified **LightWeightMap** instance.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -116,7 +116,7 @@ Checks whether this container contains all elements of the specified **LightWeig
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if all the elements in the specified **LightWeightMap** instance are contained; returns **false** otherwise.|
+| boolean | Check result. The value **true** is returned if all the elements in the specified LightWeightMap are contained; otherwise, **false** is returned.|
 
 **Error codes**
 
@@ -143,7 +143,7 @@ let result = lightWeightMap.hasAll(map);
 
 hasKey(key: K): boolean
 
-Checks whether this container contains the specified key.
+Checks whether this LightWeightMap has the specified key.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -159,7 +159,7 @@ Checks whether this container contains the specified key.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the specified key is contained; returns **false** otherwise.|
+| boolean | Check result. The value **true** is returned if the specified key is contained; otherwise, **false** is returned.|
 
 **Error codes**
 
@@ -182,7 +182,7 @@ let result = lightWeightMap.hasKey("squirrel");
 
 hasValue(value: V): boolean
 
-Checks whether this container contains the specified value.
+Checks whether this LightWeightMap has the specified value.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -198,7 +198,7 @@ Checks whether this container contains the specified value.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the specified value is contained; returns **false** otherwise.|
+| boolean | Operation result. The value **true** is returned if the specified value is contained; otherwise, **false** is returned.|
 
 **Error codes**
 
@@ -220,9 +220,9 @@ let result = lightWeightMap.hasValue(123);
 
 increaseCapacityTo(minimumCapacity: number): void
 
-Increases the capacity of this container.
+Increases the capacity of this LightWeightMap.
 
-If the passed-in capacity is greater than or equal to the number of elements in this container, the container capacity is changed to the new capacity. If the passed-in capacity is less than the number of elements in this container, the capacity is not changed.
+If the passed-in capacity is greater than or equal to the number of elements in this LightWeightMap, the capacity is changed to the new capacity. If the passed-in capacity is less than the number of elements in this LightWeightMap, the capacity is not changed.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -232,7 +232,7 @@ If the passed-in capacity is greater than or equal to the number of elements in 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| minimumCapacity | number | Yes| Minimum number of elements to accommodate in this container.|
+| minimumCapacity | number | Yes| Minimum number of elements to accommodate in this LightWeightMap.|
 
 **Error codes**
 
@@ -254,7 +254,7 @@ lightWeightMap.increaseCapacityTo(10);
 
 get(key: K): V
 
-Obtains the value of the specified key in this container.
+Obtains the value of the specified key in this LightWeightMap.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -294,7 +294,7 @@ let result = lightWeightMap.get("sparrow");
 
 getIndexOfKey(key: K): number
 
-Obtains the index of the first occurrence of an element with the specified key in this container.
+Obtains the index of the first occurrence of an element with the specified key in this LightWeightMap.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -310,7 +310,7 @@ Obtains the index of the first occurrence of an element with the specified key i
 
 | Type| Description|
 | -------- | -------- |
-| number | Returns the position index if obtained; returns **-1** otherwise.|
+| number | Index of the element. If no match is found, **-1** is returned.|
 
 **Error codes**
 
@@ -334,7 +334,7 @@ let result = lightWeightMap.getIndexOfKey("sparrow");
 
 getIndexOfValue(value: V): number
 
-Obtains the index of the first occurrence of an element with the specified value in this container.
+Obtains the index of the first occurrence of an element with the specified value in this LightWeightMap.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -350,7 +350,7 @@ Obtains the index of the first occurrence of an element with the specified value
 
 | Type| Description|
 | -------- | -------- |
-| number | Returns the position index if obtained; returns **-1** otherwise.|
+| number | Index of the element. If no match is found, **-1** is returned.|
 
 **Error codes**
 
@@ -374,7 +374,7 @@ let result = lightWeightMap.getIndexOfValue(123);
 
 getKeyAt(index: number): K
 
-Obtains the key of an element at the specified position in this container.
+Obtains the key of an element at the specified position in this LightWeightMap.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -390,7 +390,7 @@ Obtains the key of an element at the specified position in this container.
 
 | Type| Description|
 | -------- | -------- |
-| K | Returns the key if obtained; returns **undefined** otherwise.|
+| K | Key obtained. If the key is not found, **undefined** is returned.|
 
 **Error codes**
 
@@ -416,7 +416,7 @@ let result = lightWeightMap.getKeyAt(1);
 
 setAll(map: LightWeightMap<K, V>): void
 
-Adds all elements in a **LightWeightMap** instance to this container.
+Adds all elements in a LightWeightMap to this LightWeightMap.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -426,7 +426,7 @@ Adds all elements in a **LightWeightMap** instance to this container.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| map | LightWeightMap<K, V> | Yes| **LightWeightMap** instance whose elements are to be added to the current container.|
+| map | LightWeightMap<K, V> | Yes| LightWeightMap whose elements are to be added to the current LightWeightMap.|
 
 **Error codes**
 
@@ -451,7 +451,7 @@ map.setAll(lightWeightMap); // Add all elements in lightWeightMap to the map.
 ### set
 set(key: K, value: V): Object
 
-Adds or updates an element in this container.
+Adds or updates an element in this LightWeightMap.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -468,7 +468,7 @@ Adds or updates an element in this container.
 
 | Type| Description|
 | -------- | -------- |
-| Object | Container that contains the new element.|
+| Object | LightWeightMap that contains the new element.|
 
 **Error codes**
 
@@ -490,7 +490,7 @@ let result = lightWeightMap.set("squirrel", 123);
 
 remove(key: K): V
 
-Removes an element with the specified key from this container.
+Removes an element with the specified key from this LightWeightMap.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -530,7 +530,7 @@ lightWeightMap.remove("sparrow");
 
 removeAt(index: number): boolean
 
-Removes an element at the specified position from this container.
+Removes an element at the specified position from this LightWeightMap.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -546,7 +546,7 @@ Removes an element at the specified position from this container.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the element is removed successfully; returns **false** otherwise.|
+| boolean | Operation result. The value **true** is returned if the element is removed; otherwise, **false** is returned.|
 
 **Error codes**
 
@@ -571,7 +571,7 @@ let result = lightWeightMap.removeAt(1);
 
 setValueAt(index: number, newValue: V): boolean
 
-Sets a value for an element at the specified position in this container.
+Sets a value for an element at the specified position in this LightWeightMap.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -588,7 +588,7 @@ Sets a value for an element at the specified position in this container.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the value is set successfully; returns **false** otherwise.|
+| boolean | Operation result. The value **true** is returned if the value is set successfully; otherwise, **false** is returned.|
 
 **Error codes**
 
@@ -614,7 +614,7 @@ lightWeightMap.setValueAt(1, 3546);
 
 getValueAt(index: number): V
 
-Obtains the value of an element at the specified position in this container.
+Obtains the value of an element at the specified position in this LightWeightMap.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -656,7 +656,7 @@ let result = lightWeightMap.getValueAt(1);
 
 clear(): void
 
-Clears this container and sets its length to **0**.
+Clears this LightWeightMap and sets its length to **0**.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -684,7 +684,7 @@ lightWeightMap.clear();
 
 keys(): IterableIterator&lt;K&gt;
 
-Obtains an iterator that contains all the keys in this container.
+Returns an iterator that contains all the keys in this LightWeightMap.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -723,7 +723,7 @@ while(!temp.done) {
 
 values(): IterableIterator&lt;V&gt;
 
-Obtains an iterator that contains all the values in this container.
+Returns an iterator that contains all the values in this LightWeightMap.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -762,7 +762,7 @@ while(!temp.done) {
 
 forEach(callbackFn: (value?: V, key?: K, map?: LightWeightMap<K, V>) => void, thisArg?: Object): void
 
-Uses a callback to traverse the elements in this container and obtain their position indexes.
+Uses a callback to traverse the elements in this LightWeightMap and obtain their indexes.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -772,10 +772,10 @@ Uses a callback to traverse the elements in this container and obtain their posi
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callbackFn | function | Yes| Callback invoked to traverse the elements in the container.|
+| callbackFn | function | Yes| Callback invoked to traverse the elements in the LightWeightMap.|
 | thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. The default value is this instance.|
 
-callbackFn
+callbackFn parameters
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | V | No| Value of the element that is currently traversed. The default value is the value of the first key-value pair.|
@@ -816,7 +816,7 @@ for(let i = 0; i < 10; i++) {
 
 entries(): IterableIterator<[K, V]>
 
-Obtains an iterator that contains all the elements in this container.
+Returns an iterator that contains all the elements in this LightWeightMap.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -865,7 +865,7 @@ for(let i = 0; i < 10; i++) {
 
 toString(): String
 
-Concatenates the elements in this container into a string and returns the string.
+Concatenates the elements in this LightWeightMap into a string and returns the string.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -873,9 +873,9 @@ Concatenates the elements in this container into a string and returns the string
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | String | String obtained.|
+| Type| Description|
+| -------- | -------- |
+| String | String obtained.|
 
 **Error codes**
 
@@ -898,7 +898,7 @@ let result = lightWeightMap.toString();
 
 [Symbol.iterator]\(): IterableIterator&lt;[K, V]&gt;
 
-Obtains an iterator, each item of which is a JavaScript object.
+Returns an iterator. Each item of the iterator is a JavaScript object.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
