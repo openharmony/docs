@@ -64,7 +64,7 @@ swipeAction(options: Optional\<SwipeActionOptions>)
 
 | 参数名  | 类型                                                         | 必填 | 说明                    |
 | ------- | ------------------------------------------------------------ | ---- | ----------------------- |
-| options | [Optional\<SwipeActionOptions>](ts-container-listitem.md#swipeactionoptions9对象说明) | 否   | ArcListItem的划出组件。 |
+| options | [Optional\<SwipeActionOptions>](ts-container-listitem.md#swipeactionoptions9对象说明) | 是   | ArcListItem的划出组件。 |
 
 ## 示例
 
