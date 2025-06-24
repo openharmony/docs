@@ -27,7 +27,7 @@ import { motion } from '@kit.MultimodalAwarenessKit';
 
 ## HoldingHandStatus<sup>20+</sup>
 
-手机握持手状态信息，表示握持手状态变化感知事件的结果。订阅握持手状态变化感知事件后，返回当前哪个手握持设备。
+手机握持手状态信息，表示握持手状态变化感知事件的结果。订阅握持手状态变化感知事件后，返回当前握持手状态信息。
 
 **系统能力**：SystemCapability.MultimodalAwareness.Motion
 
