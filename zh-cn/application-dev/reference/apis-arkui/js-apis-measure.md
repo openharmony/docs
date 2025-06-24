@@ -53,7 +53,7 @@ static measureText(options: MeasureOptions): number
 
 > **说明**
 >
-> 直接使用MeasureText可能导致[UI上下文不明确](../../ui/arkts-global-interface.md)的问题，推荐通过[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getMeasureUtils](./js-apis-arkui-UIContext.md#getmeasureutils12)方法获取当前UI上下文关联的[MeasureUtils](js-apis-arkui-UIContext.md#measureutils12)实例。
+> 直接使用MeasureText可能导致[UI上下文不明确](../../ui/arkts-global-interface.md#ui上下文不明确)的问题，推荐通过[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getMeasureUtils](./js-apis-arkui-UIContext.md#getmeasureutils12)方法获取当前UI上下文关联的[MeasureUtils](js-apis-arkui-UIContext.md#measureutils12)实例。
 
 ```ts
 import { MeasureText } from '@kit.ArkUI';
@@ -112,7 +112,7 @@ static measureTextSize(options: MeasureOptions): SizeOptions
 
 > **说明**
 >
-> 直接使用MeasureText可能导致[UI上下文不明确](../../ui/arkts-global-interface.md)的问题，推荐通过[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getMeasureUtils](./js-apis-arkui-UIContext.md#getmeasureutils12)方法获取当前UI上下文关联的[MeasureUtils](js-apis-arkui-UIContext.md#measureutils12)实例。
+> 直接使用MeasureText可能导致[UI上下文不明确](../../ui/arkts-global-interface.md#ui上下文不明确)的问题，推荐通过[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getMeasureUtils](./js-apis-arkui-UIContext.md#getmeasureutils12)方法获取当前UI上下文关联的[MeasureUtils](js-apis-arkui-UIContext.md#measureutils12)实例。
 
 ```ts
 import { MeasureText } from '@kit.ArkUI';
