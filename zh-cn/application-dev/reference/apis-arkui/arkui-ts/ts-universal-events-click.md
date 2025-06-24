@@ -107,6 +107,8 @@ onClick(event: (event: ClickEvent) => void): T
 
 ## EventTarget<sup>8+</sup>对象说明
 
+触发事件的元素对象显示区域。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
