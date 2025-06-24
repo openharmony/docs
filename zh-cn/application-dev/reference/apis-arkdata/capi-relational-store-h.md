@@ -1988,7 +1988,7 @@ int OH_Rdb_CreateTransaction(OH_Rdb_Store *store, const OH_RDB_TransOptions *opt
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_Rdb_Store](capi-oh-rdb-store.md) *store | 表示指向[OH_Rdb_Store](capi-oh-rdb-store.md)实例的指针。 |
-| const [OH_RDB_TransOptions](capi-oh-rdb-transoptions.md) *options | 表示指向[OH_RDB_TransOptions](capi-oh-rdb-transoptions.md)实例的指针。 |
+| const [OH_RDB_TransOptions](capi-rdb-oh-rdb-transoptions.md) *options | 表示指向[OH_RDB_TransOptions](capi-rdb-oh-rdb-transoptions.md)实例的指针。 |
 | [OH_Rdb_Transaction](capi-oh-rdb-transaction.md) **trans | 输出参数，表示执行成功时指向[OH_Rdb_Transaction](capi-oh-rdb-transaction.md)实例的指针。否则返回nullptr。<br>使用完成后，必须通过[OH_RdbTrans_Destroy](capi-oh-rdb-transaction-h.md#oh_rdbtrans_destroy)接口释放内存。 |
 
 **返回：**
