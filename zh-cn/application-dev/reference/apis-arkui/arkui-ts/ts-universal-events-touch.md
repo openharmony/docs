@@ -66,7 +66,7 @@ getHistoricalPoints(): Array&lt;HistoricalPoint&gt;
 
 **返回值：**
 
-| 类型     | 描述                      |
+| 类型     | 说明                      |
 | ------ | ----------------------- |
 | Array&lt;[HistoricalPoint](#historicalpoint10对象说明)&gt; | 由历史点组成的数组。 |
 
@@ -75,7 +75,7 @@ getHistoricalPoints(): Array&lt;HistoricalPoint&gt;
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称    | 类型                                        | 描述                                  |
+| 名称    | 类型                                        | 说明                                  |
 | ------- | ------------------------------------------- | ------------------------------------- |
 | type    | [TouchType](ts-appendix-enums.md#touchtype) | 触摸事件的类型。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                      |
 | id      | number                                      | 手指唯一标识符。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                      |
@@ -94,6 +94,8 @@ getHistoricalPoints(): Array&lt;HistoricalPoint&gt;
 | hand<sup>15+</sup> | [InteractionHand](./ts-gesture-settings.md#interactionhand枚举说明15) | 表示事件是由左手点击还是右手点击触发。<br />**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 
 ## HistoricalPoint<sup>10+</sup>对象说明
+
+历史点信息。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
