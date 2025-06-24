@@ -258,6 +258,7 @@ struct ColorGradientExample {
 该示例通过sweepGradient来实现组件颜色旋转角度渐变。
 
 ```ts
+// 设置P3色域时需要在ets/entryability/EntryAbility.ets中，通过setColorSpace接口将当前窗口设置为广色域。
 import { ColorMetrics } from '@kit.ArkUI';
 
 @Entry
