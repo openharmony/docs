@@ -2,7 +2,9 @@
 
 ## 概述
 
-提供访问系统剪贴板的接口、数据结构、枚举类型。引用文件：<database/pasteboard/oh_pasteboard.h>
+提供访问系统剪贴板的接口、数据结构、枚举类型。
+
+**引用文件：** <database/pasteboard/oh_pasteboard.h>
 
 **库：** libpasteboard.so
 
@@ -20,8 +22,8 @@
 | -- | -- | -- |
 | [Pasteboard_ProgressInfo](capi-pasteboard-progressinfo.md) | Pasteboard_ProgressInfo | 定义进度上报的数据结构。 |
 | [Pasteboard_GetDataParams](capi-pasteboard-getdataparams.md) | Pasteboard_GetDataParams | 表示从剪贴板获取粘贴数据和进度时需要写入的参数。 |
-| [OH_PasteboardObserver](capi-oh-pasteboardobserver.md) | OH_PasteboardObserver | 定义剪贴板数据变更观察者。 |
-| [OH_Pasteboard](capi-oh-pasteboard.md) | OH_Pasteboard | 定义剪贴板对象，用以操作系统剪贴板。 |
+| [OH_PasteboardObserver](capi-pasteboard-oh-pasteboardobserver.md) | OH_PasteboardObserver | 定义剪贴板数据变更观察者。 |
+| [OH_Pasteboard](capi-pasteboard-oh-pasteboard.md) | OH_Pasteboard | 定义剪贴板对象，用以操作系统剪贴板。 |
 
 ### 枚举
 
@@ -38,11 +40,11 @@
 | [typedef void (\*OH_Pasteboard_ProgressListener)(Pasteboard_ProgressInfo* progressInfo)](#oh_pasteboard_progresslistener) | OH_Pasteboard_ProgressListener | 用于在不使用系统默认进度显示时，通知应用拷贝粘贴任务进度。 |
 | [typedef void (\*Pasteboard_Notify)(void* context, Pasteboard_NotifyType type)](#pasteboard_notify) | Pasteboard_Notify | 定义剪贴板内容变更时触发的回调函数。 |
 | [typedef void (\*Pasteboard_Finalize)(void* context)](#pasteboard_finalize) | Pasteboard_Finalize | 定义用于释放上下文的回调函数，剪贴板数据变更观察者对象销毁时触发。 |
-| [OH_PasteboardObserver* OH_PasteboardObserver_Create()](#oh_pasteboardobserver_create) | - | 创建一个剪贴板数据变更观察者[OH_PasteboardObserver](capi-oh-pasteboardobserver.md)指针及实例对象。 |
-| [int OH_PasteboardObserver_Destroy(OH_PasteboardObserver* observer)](#oh_pasteboardobserver_destroy) | - | 销毁剪贴板数据变更观察者[OH_PasteboardObserver](capi-oh-pasteboardobserver.md)指针指向的实例对象。 |
+| [OH_PasteboardObserver* OH_PasteboardObserver_Create()](#oh_pasteboardobserver_create) | - | 创建一个剪贴板数据变更观察者[OH_PasteboardObserver](capi-pasteboard-oh-pasteboardobserver.md)指针及实例对象。 |
+| [int OH_PasteboardObserver_Destroy(OH_PasteboardObserver* observer)](#oh_pasteboardobserver_destroy) | - | 销毁剪贴板数据变更观察者[OH_PasteboardObserver](capi-pasteboard-oh-pasteboardobserver.md)指针指向的实例对象。 |
 | [int OH_PasteboardObserver_SetData(OH_PasteboardObserver* observer, void* context,const Pasteboard_Notify callback, const Pasteboard_Finalize finalize)](#oh_pasteboardobserver_setdata) | - | 向剪贴板数据变更观察者设置回调函数。 |
-| [OH_Pasteboard* OH_Pasteboard_Create()](#oh_pasteboard_create) | - | 创建剪贴板[OH_Pasteboard](capi-oh-pasteboard.md)指针及实例对象。 |
-| [void OH_Pasteboard_Destroy(OH_Pasteboard* pasteboard)](#oh_pasteboard_destroy) | - | 销毁剪贴板[OH_Pasteboard](capi-oh-pasteboard.md)实例对象。 |
+| [OH_Pasteboard* OH_Pasteboard_Create()](#oh_pasteboard_create) | - | 创建剪贴板[OH_Pasteboard](capi-pasteboard-oh-pasteboard.md)指针及实例对象。 |
+| [void OH_Pasteboard_Destroy(OH_Pasteboard* pasteboard)](#oh_pasteboard_destroy) | - | 销毁剪贴板[OH_Pasteboard](capi-pasteboard-oh-pasteboard.md)实例对象。 |
 | [int OH_Pasteboard_Subscribe(OH_Pasteboard* pasteboard, int type, const OH_PasteboardObserver* observer)](#oh_pasteboard_subscribe) | - | 订阅剪贴板的数据变更事件。 |
 | [int OH_Pasteboard_Unsubscribe(OH_Pasteboard* pasteboard, int type, const OH_PasteboardObserver* observer)](#oh_pasteboard_unsubscribe) | - | 取消对剪贴板数据变更事件的订阅。 |
 | [bool OH_Pasteboard_IsRemoteData(OH_Pasteboard* pasteboard)](#oh_pasteboard_isremotedata) | - | 判断剪贴板中的数据是否来自远端设备。 |
@@ -186,7 +188,7 @@ OH_PasteboardObserver* OH_PasteboardObserver_Create()
 
 **描述：**
 
-创建一个剪贴板数据变更观察者[OH_PasteboardObserver](capi-oh-pasteboardobserver.md)指针及实例对象。
+创建一个剪贴板数据变更观察者[OH_PasteboardObserver](capi-pasteboard-oh-pasteboardobserver.md)指针及实例对象。
 
 **起始版本：** 13
 
@@ -194,7 +196,7 @@ OH_PasteboardObserver* OH_PasteboardObserver_Create()
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_PasteboardObserver](capi-oh-pasteboardobserver.md)* | 执行成功时返回一个指向剪贴板数据变更观察者[OH_PasteboardObserver](capi-oh-pasteboardobserver.md)实例对象的指针，否则返回空指针。<br> 当不再需要使用指针时，请使用[OH_PasteboardObserver_Destroy](capi-oh-pasteboard-h.md#oh_pasteboardobserver_destroy)销毁实例对象，否则会导致内存泄漏。 |
+| [OH_PasteboardObserver](capi-pasteboard-oh-pasteboardobserver.md)* | 执行成功时返回一个指向剪贴板数据变更观察者[OH_PasteboardObserver](capi-pasteboard-oh-pasteboardobserver.md)实例对象的指针，否则返回空指针。<br> 当不再需要使用指针时，请使用[OH_PasteboardObserver_Destroy](capi-oh-pasteboard-h.md#oh_pasteboardobserver_destroy)销毁实例对象，否则会导致内存泄漏。 |
 
 ### OH_PasteboardObserver_Destroy()
 
@@ -204,7 +206,7 @@ int OH_PasteboardObserver_Destroy(OH_PasteboardObserver* observer)
 
 **描述：**
 
-销毁剪贴板数据变更观察者[OH_PasteboardObserver](capi-oh-pasteboardobserver.md)指针指向的实例对象。
+销毁剪贴板数据变更观察者[OH_PasteboardObserver](capi-pasteboard-oh-pasteboardobserver.md)指针指向的实例对象。
 
 **起始版本：** 13
 
@@ -213,7 +215,7 @@ int OH_PasteboardObserver_Destroy(OH_PasteboardObserver* observer)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PasteboardObserver](capi-oh-pasteboardobserver.md)* observer | 表示指向剪贴板数据变更观察者[OH_PasteboardObserver](capi-oh-pasteboardobserver.md)实例的指针。 |
+| [OH_PasteboardObserver](capi-pasteboard-oh-pasteboardobserver.md)* observer | 表示指向剪贴板数据变更观察者[OH_PasteboardObserver](capi-pasteboard-oh-pasteboardobserver.md)实例的指针。 |
 
 **返回：**
 
@@ -238,7 +240,7 @@ int OH_PasteboardObserver_SetData(OH_PasteboardObserver* observer, void* context
 
 | 参数项                                                              | 描述 |
 |------------------------------------------------------------------| -- |
-| [OH_PasteboardObserver](capi-oh-pasteboardobserver.md)* observer | 表示指向剪贴板数据变更观察者[OH_PasteboardObserver](capi-oh-pasteboardobserver.md)实例的指针。 |
+| [OH_PasteboardObserver](capi-pasteboard-oh-pasteboardobserver.md)* observer | 表示指向剪贴板数据变更观察者[OH_PasteboardObserver](capi-pasteboard-oh-pasteboardobserver.md)实例的指针。 |
 | void* context                                                    | 表示指向上下文数据的指针，将作为第一个参数传入[Pasteboard_Notify](capi-oh-pasteboard-h.md#pasteboard_notify)。 |
 | const [Pasteboard_Notify](capi-oh-pasteboard-h.md#pasteboard_notify) callback           | 表示数据变更回调函数。详见：[Pasteboard_Notify](capi-oh-pasteboard-h.md#pasteboard_notify)。 |
 | const [Pasteboard_Finalize](capi-oh-pasteboard-h.md#pasteboard_finalize) finalize                               | 表示可选的回调函数，可以用于剪贴板数据变更观察者销毁时释放上下文数据。详见：[Pasteboard_Finalize](capi-oh-pasteboard-h.md#pasteboard_finalize)。 |
@@ -257,7 +259,7 @@ OH_Pasteboard* OH_Pasteboard_Create()
 
 **描述：**
 
-创建剪贴板[OH_Pasteboard](capi-oh-pasteboard.md)指针及实例对象。
+创建剪贴板[OH_Pasteboard](capi-pasteboard-oh-pasteboard.md)指针及实例对象。
 
 **起始版本：** 13
 
@@ -265,7 +267,7 @@ OH_Pasteboard* OH_Pasteboard_Create()
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Pasteboard](capi-oh-pasteboard.md)* | 执行成功则返回一个指向剪贴板[OH_Pasteboard](capi-oh-pasteboard.md)实例对象的指针，否则返回nulllptr。 |
+| [OH_Pasteboard](capi-pasteboard-oh-pasteboard.md)* | 执行成功则返回一个指向剪贴板[OH_Pasteboard](capi-pasteboard-oh-pasteboard.md)实例对象的指针，否则返回nulllptr。 |
 
 ### OH_Pasteboard_Destroy()
 
@@ -275,7 +277,7 @@ void OH_Pasteboard_Destroy(OH_Pasteboard* pasteboard)
 
 **描述：**
 
-销毁剪贴板[OH_Pasteboard](capi-oh-pasteboard.md)实例对象。
+销毁剪贴板[OH_Pasteboard](capi-pasteboard-oh-pasteboard.md)实例对象。
 
 **起始版本：** 13
 
@@ -284,7 +286,7 @@ void OH_Pasteboard_Destroy(OH_Pasteboard* pasteboard)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pasteboard](capi-oh-pasteboard.md)* pasteboard | 表示指向剪贴板[OH_Pasteboard](capi-oh-pasteboard.md)实例的指针。 |
+| [OH_Pasteboard](capi-pasteboard-oh-pasteboard.md)* pasteboard | 表示指向剪贴板[OH_Pasteboard](capi-pasteboard-oh-pasteboard.md)实例的指针。 |
 
 ### OH_Pasteboard_Subscribe()
 
@@ -303,9 +305,9 @@ int OH_Pasteboard_Subscribe(OH_Pasteboard* pasteboard, int type, const OH_Pasteb
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pasteboard](capi-oh-pasteboard.md)* pasteboard | 表示指向剪贴板[OH_Pasteboard](capi-oh-pasteboard.md)实例的指针。 |
+| [OH_Pasteboard](capi-pasteboard-oh-pasteboard.md)* pasteboard | 表示指向剪贴板[OH_Pasteboard](capi-pasteboard-oh-pasteboard.md)实例的指针。 |
 | int type | 表示订阅的剪贴板数据变更类型，详见：[Pasteboard_NotifyType](capi-oh-pasteboard-h.md#pasteboard_notifytype)。 |
-| const [OH_PasteboardObserver](capi-oh-pasteboardobserver.md)* observer | 表示指向剪贴板数据变更观察者[OH_PasteboardObserver](capi-oh-pasteboardobserver.md)实例的指针。它指定了剪贴板数据变更时触发的回调函数，详见：[OH_PasteboardObserver](capi-oh-pasteboardobserver.md)。 |
+| const [OH_PasteboardObserver](capi-pasteboard-oh-pasteboardobserver.md)* observer | 表示指向剪贴板数据变更观察者[OH_PasteboardObserver](capi-pasteboard-oh-pasteboardobserver.md)实例的指针。它指定了剪贴板数据变更时触发的回调函数，详见：[OH_PasteboardObserver](capi-pasteboard-oh-pasteboardobserver.md)。 |
 
 **返回：**
 
@@ -330,9 +332,9 @@ int OH_Pasteboard_Unsubscribe(OH_Pasteboard* pasteboard, int type, const OH_Past
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pasteboard](capi-oh-pasteboard.md)* pasteboard | 表示指向剪贴板[OH_Pasteboard](capi-oh-pasteboard.md)实例的指针。 |
+| [OH_Pasteboard](capi-pasteboard-oh-pasteboard.md)* pasteboard | 表示指向剪贴板[OH_Pasteboard](capi-pasteboard-oh-pasteboard.md)实例的指针。 |
 | int type | 表示订阅的剪贴板数据变更类型，详见：[Pasteboard_NotifyType](capi-oh-pasteboard-h.md#pasteboard_notifytype)。 |
-| const [OH_PasteboardObserver](capi-oh-pasteboardobserver.md)* observer | 表示指向剪贴板数据变更观察者[OH_PasteboardObserver](capi-oh-pasteboardobserver.md)实例的指针。它指定了剪贴板数据变更时触发的回调函数，详见：[OH_PasteboardObserver](capi-oh-pasteboardobserver.md)。 |
+| const [OH_PasteboardObserver](capi-pasteboard-oh-pasteboardobserver.md)* observer | 表示指向剪贴板数据变更观察者[OH_PasteboardObserver](capi-pasteboard-oh-pasteboardobserver.md)实例的指针。它指定了剪贴板数据变更时触发的回调函数，详见：[OH_PasteboardObserver](capi-pasteboard-oh-pasteboardobserver.md)。 |
 
 **返回：**
 
@@ -357,7 +359,7 @@ bool OH_Pasteboard_IsRemoteData(OH_Pasteboard* pasteboard)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pasteboard](capi-oh-pasteboard.md)* pasteboard | 表示指向剪贴板[OH_Pasteboard](capi-oh-pasteboard.md)实例的指针。 |
+| [OH_Pasteboard](capi-pasteboard-oh-pasteboard.md)* pasteboard | 表示指向剪贴板[OH_Pasteboard](capi-pasteboard-oh-pasteboard.md)实例的指针。 |
 
 **返回：**
 
@@ -382,7 +384,7 @@ int OH_Pasteboard_GetDataSource(OH_Pasteboard* pasteboard, char* source, unsigne
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pasteboard](capi-oh-pasteboard.md)* pasteboard | 表示指向剪贴板[OH_Pasteboard](capi-oh-pasteboard.md)实例的指针。 |
+| [OH_Pasteboard](capi-pasteboard-oh-pasteboard.md)* pasteboard | 表示指向剪贴板[OH_Pasteboard](capi-pasteboard-oh-pasteboard.md)实例的指针。 |
 | char* source | 表示用于存放剪贴板数据数据源实例的指针，开发者需在调用接口前申请指针指向的内存。 |
 | unsigned int len | 表示source指针对应的内存长度，当内存长度不足时调用接口会失败，建议长度：128。 |
 
@@ -409,7 +411,7 @@ bool OH_Pasteboard_HasType(OH_Pasteboard* pasteboard, const char* type)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pasteboard](capi-oh-pasteboard.md)* pasteboard | 表示指向剪贴板[OH_Pasteboard](capi-oh-pasteboard.md)实例的指针。 |
+| [OH_Pasteboard](capi-pasteboard-oh-pasteboard.md)* pasteboard | 表示指向剪贴板[OH_Pasteboard](capi-pasteboard-oh-pasteboard.md)实例的指针。 |
 | const char* type | 表示要检查的数据类型。包含剪贴板基础数据类型与自定义数据类型，其中剪贴板基础数据类型有："text/plain"、"text/html"、"text/uri"、"text/want"和"pixelMap"。 |
 
 **返回：**
@@ -435,7 +437,7 @@ bool OH_Pasteboard_HasData(OH_Pasteboard* pasteboard)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pasteboard](capi-oh-pasteboard.md)* pasteboard | 表示指向剪贴板[OH_Pasteboard](capi-oh-pasteboard.md)实例的指针。 |
+| [OH_Pasteboard](capi-pasteboard-oh-pasteboard.md)* pasteboard | 表示指向剪贴板[OH_Pasteboard](capi-pasteboard-oh-pasteboard.md)实例的指针。 |
 
 **返回：**
 
@@ -460,14 +462,14 @@ OH_UdmfData* OH_Pasteboard_GetData(OH_Pasteboard* pasteboard, int* status)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pasteboard](capi-oh-pasteboard.md)* pasteboard | 表示指向剪贴板[OH_Pasteboard](capi-oh-pasteboard.md)实例的指针。 |
+| [OH_Pasteboard](capi-pasteboard-oh-pasteboard.md)* pasteboard | 表示指向剪贴板[OH_Pasteboard](capi-pasteboard-oh-pasteboard.md)实例的指针。 |
 | int* status | 该参数是输出参数，表示执行的错误码。错误码定义详见[PASTEBOARD_ErrCode](capi-oh-pasteboard-err-code-h.md#pasteboard_errcode)。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_UdmfData](../apis-arkdata/capi-oh-udmfdata.md)* | 执行成功时返回统一数据对象[OH_UdmfData](../apis-arkdata/capi-oh-udmfdata.md)实例的指针。否则返回空指针。 |
+| [OH_UdmfData](../apis-arkdata/capi-udmf-oh-udmfdata.md)* | 执行成功时返回统一数据对象[OH_UdmfData](../apis-arkdata/capi-udmf-oh-udmfdata.md)实例的指针。否则返回空指针。 |
 
 ### OH_Pasteboard_SetData()
 
@@ -486,8 +488,8 @@ int OH_Pasteboard_SetData(OH_Pasteboard* pasteboard, OH_UdmfData* data)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pasteboard](capi-oh-pasteboard.md)* pasteboard | 表示指向剪贴板[OH_Pasteboard](capi-oh-pasteboard.md)实例的指针。 |
-| [OH_UdmfData](../apis-arkdata/capi-oh-udmfdata.md)* data | 表示指向统一数据对象[OH_UdmfData](../apis-arkdata/capi-oh-udmfdata.md)实例的指针。 |
+| [OH_Pasteboard](capi-pasteboard-oh-pasteboard.md)* pasteboard | 表示指向剪贴板[OH_Pasteboard](capi-pasteboard-oh-pasteboard.md)实例的指针。 |
+| [OH_UdmfData](../apis-arkdata/capi-udmf-oh-udmfdata.md)* data | 表示指向统一数据对象[OH_UdmfData](../apis-arkdata/capi-udmf-oh-udmfdata.md)实例的指针。 |
 
 **返回：**
 
@@ -512,7 +514,7 @@ int OH_Pasteboard_ClearData(OH_Pasteboard* pasteboard)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pasteboard](capi-oh-pasteboard.md)* pasteboard | 表示指向剪贴板[OH_Pasteboard](capi-oh-pasteboard.md)实例的指针。 |
+| [OH_Pasteboard](capi-pasteboard-oh-pasteboard.md)* pasteboard | 表示指向剪贴板[OH_Pasteboard](capi-pasteboard-oh-pasteboard.md)实例的指针。 |
 
 **返回：**
 
@@ -537,7 +539,7 @@ char **OH_Pasteboard_GetMimeTypes(OH_Pasteboard *pasteboard, unsigned int *count
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pasteboard](capi-oh-pasteboard.md) *pasteboard | 表示指向剪贴板[OH_Pasteboard](capi-oh-pasteboard.md)实例的指针。 |
+| [OH_Pasteboard](capi-pasteboard-oh-pasteboard.md) *pasteboard | 表示指向剪贴板[OH_Pasteboard](capi-pasteboard-oh-pasteboard.md)实例的指针。 |
 | unsigned int *count | 该参数是输出参数，结果集中的类型数量会写入该变量。 |
 
 **返回：**
@@ -725,7 +727,7 @@ OH_UdmfData* OH_Pasteboard_GetDataWithProgress(OH_Pasteboard* pasteboard, Pasteb
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pasteboard](capi-oh-pasteboard.md)* pasteboard | 表示指向剪贴板[OH_Pasteboard](capi-oh-pasteboard.md)实例的指针。 |
+| [OH_Pasteboard](capi-pasteboard-oh-pasteboard.md)* pasteboard | 表示指向剪贴板[OH_Pasteboard](capi-pasteboard-oh-pasteboard.md)实例的指针。 |
 | [Pasteboard_GetDataParams](capi-pasteboard-getdataparams.md)* params | 表示指向剪贴板OH_Pasteboard_GetDataParams的指针。 |
 | int* status | 该参数是输出参数，表示执行的错误码。错误码定义详见[PASTEBOARD_ErrCode](capi-oh-pasteboard-err-code-h.md#pasteboard_errcode)。 |
 
@@ -733,7 +735,7 @@ OH_UdmfData* OH_Pasteboard_GetDataWithProgress(OH_Pasteboard* pasteboard, Pasteb
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_UdmfData](../apis-arkdata/capi-oh-udmfdata.md)* | 执行成功时返回统一数据对象OH_PasteData实例的指针。否则返回空指针。 |
+| [OH_UdmfData](../apis-arkdata/capi-udmf-oh-udmfdata.md)* | 执行成功时返回统一数据对象OH_PasteData实例的指针。否则返回空指针。 |
 
 ### OH_Pasteboard_GetChangeCount()
 
@@ -752,7 +754,7 @@ uint32_t OH_Pasteboard_GetChangeCount(OH_Pasteboard *pasteboard)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Pasteboard](capi-oh-pasteboard.md) *pasteboard | 表示指向剪贴板[OH_Pasteboard](capi-oh-pasteboard.md)实例的指针。 |
+| [OH_Pasteboard](capi-pasteboard-oh-pasteboard.md) *pasteboard | 表示指向剪贴板[OH_Pasteboard](capi-pasteboard-oh-pasteboard.md)实例的指针。 |
 
 **返回：**
 

@@ -43,7 +43,7 @@ Camera_ErrorCode OH_CameraDevice_GetCameraOrientation(Camera_Device* camera, uin
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_Device](capi-camera-device.md)* camera | 用于获取属性的Camera_Device。 |
+| [Camera_Device](capi-oh-camera-camera-device.md)* camera | 用于获取属性的Camera_Device。 |
 | uint32_t* orientation | 返回相机sensor角度属性。 |
 
 **返回：**
@@ -69,7 +69,7 @@ Camera_ErrorCode OH_CameraDevice_GetHostDeviceName(Camera_Device* camera, char**
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_Device](capi-camera-device.md)* camera | 用于获取属性的Camera_Device。 |
+| [Camera_Device](capi-oh-camera-camera-device.md)* camera | 用于获取属性的Camera_Device。 |
 | char** hostDeviceName | 返回远程设备名称属性。 |
 
 **返回：**
@@ -95,7 +95,7 @@ Camera_ErrorCode OH_CameraDevice_GetHostDeviceType(Camera_Device* camera, Camera
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_Device](capi-camera-device.md)* camera | 用于获取属性的Camera_Device。 |
+| [Camera_Device](capi-oh-camera-camera-device.md)* camera | 用于获取属性的Camera_Device。 |
 | [Camera_HostDeviceType](capi-camera-h.md#camera_hostdevicetype)* hostDeviceType | 远程设备类型属性。 |
 
 **返回：**

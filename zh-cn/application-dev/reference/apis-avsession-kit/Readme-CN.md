@@ -1,7 +1,16 @@
 # AVSession Kit（音视频播控服务）
 
 - ArkTS API<!--avsession-arkts-->
-  - [@ohos.multimedia.avsession (媒体会话管理)](js-apis-avsession.md)
+  - @ohos.multimedia.avsession (媒体会话管理)<!--js-apis-avsession-->
+    - [模块描述](arkts-apis-avsession.md)
+    - [Functions](arkts-apis-avsession-f.md)
+    - [Class (AVCastPickerHelper)](arkts-apis-avsession-AVCastPickerHelper.md)
+    - [Interface (AVCastController)](arkts-apis-avsession-AVCastController.md)
+    - [Interface (AVSession)](arkts-apis-avsession-AVSession.md)
+    - [Interface (AVSessionController)](arkts-apis-avsession-AVSessionController.md)
+    - [Interfaces (其他)](arkts-apis-avsession-i.md)
+    - [Enums](arkts-apis-avsession-e.md)
+    - [Types](arkts-apis-avsession-t.md)
   - [@ohos.multimedia.avCastPickerParam (投播组件参数)](js-apis-avCastPickerParam.md)
   <!--Del-->
   - [@ohos.app.ability.MediaControlExtensionAbility (播控扩展能力)(系统接口)](js-apis-app-ability-MediaControlExtensionAbility-sys.md)

@@ -18,21 +18,21 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [ArkWeb_JavaScriptBridgeData](capi-arkweb-javascriptbridgedata.md) | ArkWeb_JavaScriptBridgeData | 定义JavaScript Bridge数据的基础结构。 |
-| [ArkWeb_WebMessage*](capi-arkweb-webmessage8h.md) | ArkWeb_WebMessagePtr | Post Message数据结构体指针。 |
-| [ArkWeb_JavaScriptValue*](capi-arkweb-javascriptvalue8h.md) | ArkWeb_JavaScriptValuePtr | JavaScript数据结构体指针。 |
-| [ArkWeb_WebMessagePort*](capi-arkweb-webmessageport8h.md) | ArkWeb_WebMessagePortPtr | Post Message端口结构体指针。 |
-| [ArkWeb_JavaScriptObject](capi-arkweb-javascriptobject.md) | ArkWeb_JavaScriptObject | 注入的JavaScript结构体。 |
-| [ArkWeb_ProxyMethod](capi-arkweb-proxymethod.md) | ArkWeb_ProxyMethod | 注入的Proxy方法通用结构体。 |
-| [ArkWeb_ProxyMethodWithResult](capi-arkweb-proxymethodwithresult.md) | ArkWeb_ProxyMethodWithResult | 注入的Proxy方法通用结构体。 |
-| [ArkWeb_ProxyObject](capi-arkweb-proxyobject.md) | ArkWeb_ProxyObject | 注入的Proxy对象通用结构体。 |
-| [ArkWeb_ProxyObjectWithResult](capi-arkweb-proxyobjectwithresult.md) | ArkWeb_ProxyObjectWithResult | 注入的Proxy对象通用结构体。 |
-| [ArkWeb_ControllerAPI](capi-arkweb-controllerapi.md) | ArkWeb_ControllerAPI | Controller相关的Native API结构体。在调用接口前建议通过ARKWEB_MEMBER_MISSING校验该函数结构体是否有对应函数指针，避免SDK与设备ROM不匹配导致crash问题。 |
-| [ArkWeb_ComponentAPI](capi-arkweb-componentapi.md) | ArkWeb_ComponentAPI | Component相关的Native API结构体。 |
-| [ArkWeb_WebMessagePortAPI](capi-arkweb-webmessageportapi.md) | ArkWeb_WebMessagePortAPI | Post Message相关的Native API结构体。在调用接口前建议通过ARKWEB_MEMBER_MISSING校验该函数结构体是否有对应函数指针，避免SDK与设备ROM不匹配导致crash问题。 |
-| [ArkWeb_WebMessageAPI](capi-arkweb-webmessageapi.md) | ArkWeb_WebMessageAPI | Post Message数据相关的Native API结构体。在调用接口前建议通过ARKWEB_MEMBER_MISSING校验该函数结构体是否有对应函数指针，避免SDK与设备ROM不匹配导致crash问题。 |
-| [ArkWeb_CookieManagerAPI](capi-arkweb-cookiemanagerapi.md) | ArkWeb_CookieManagerAPI | 定义了ArkWeb原生CookieManager接口。在调用接口之前，建议使用ARKWEB_MEMBER_MISSING检查函数结构体是否有对应的函数指针，避免SDK与设备ROM不匹配导致崩溃。 |
-| [ArkWeb_JavaScriptValueAPI](capi-arkweb-javascriptvalueapi.md) | ArkWeb_JavaScriptValueAPI | 定义了ArkWeb原生JavaScriptValue接口。在调用接口之前，建议使用ARKWEB_MEMBER_MISSING检查函数结构体是否有对应的函数指针，避免SDK与设备ROM不匹配导致崩溃。 |
+| [ArkWeb_JavaScriptBridgeData](capi-web-arkweb-javascriptbridgedata.md) | ArkWeb_JavaScriptBridgeData | 定义JavaScript Bridge数据的基础结构。 |
+| [ArkWeb_WebMessage*](capi-web-arkweb-webmessage8h.md) | ArkWeb_WebMessagePtr | Post Message数据结构体指针。 |
+| [ArkWeb_JavaScriptValue*](capi-web-arkweb-javascriptvalue8h.md) | ArkWeb_JavaScriptValuePtr | JavaScript数据结构体指针。 |
+| [ArkWeb_WebMessagePort*](capi-web-arkweb-webmessageport8h.md) | ArkWeb_WebMessagePortPtr | Post Message端口结构体指针。 |
+| [ArkWeb_JavaScriptObject](capi-web-arkweb-javascriptobject.md) | ArkWeb_JavaScriptObject | 注入的JavaScript结构体。 |
+| [ArkWeb_ProxyMethod](capi-web-arkweb-proxymethod.md) | ArkWeb_ProxyMethod | 注入的Proxy方法通用结构体。 |
+| [ArkWeb_ProxyMethodWithResult](capi-web-arkweb-proxymethodwithresult.md) | ArkWeb_ProxyMethodWithResult | 注入的Proxy方法通用结构体。 |
+| [ArkWeb_ProxyObject](capi-web-arkweb-proxyobject.md) | ArkWeb_ProxyObject | 注入的Proxy对象通用结构体。 |
+| [ArkWeb_ProxyObjectWithResult](capi-web-arkweb-proxyobjectwithresult.md) | ArkWeb_ProxyObjectWithResult | 注入的Proxy对象通用结构体。 |
+| [ArkWeb_ControllerAPI](capi-web-arkweb-controllerapi.md) | ArkWeb_ControllerAPI | Controller相关的Native API结构体。在调用接口前建议通过ARKWEB_MEMBER_MISSING校验该函数结构体是否有对应函数指针，避免SDK与设备ROM不匹配导致crash问题。 |
+| [ArkWeb_ComponentAPI](capi-web-arkweb-componentapi.md) | ArkWeb_ComponentAPI | Component相关的Native API结构体。 |
+| [ArkWeb_WebMessagePortAPI](capi-web-arkweb-webmessageportapi.md) | ArkWeb_WebMessagePortAPI | Post Message相关的Native API结构体。在调用接口前建议通过ARKWEB_MEMBER_MISSING校验该函数结构体是否有对应函数指针，避免SDK与设备ROM不匹配导致crash问题。 |
+| [ArkWeb_WebMessageAPI](capi-web-arkweb-webmessageapi.md) | ArkWeb_WebMessageAPI | Post Message数据相关的Native API结构体。在调用接口前建议通过ARKWEB_MEMBER_MISSING校验该函数结构体是否有对应函数指针，避免SDK与设备ROM不匹配导致crash问题。 |
+| [ArkWeb_CookieManagerAPI](capi-web-arkweb-cookiemanagerapi.md) | ArkWeb_CookieManagerAPI | 定义了ArkWeb原生CookieManager接口。在调用接口之前，建议使用ARKWEB_MEMBER_MISSING检查函数结构体是否有对应的函数指针，避免SDK与设备ROM不匹配导致崩溃。 |
+| [ArkWeb_JavaScriptValueAPI](capi-web-arkweb-javascriptvalueapi.md) | ArkWeb_JavaScriptValueAPI | 定义了ArkWeb原生JavaScriptValue接口。在调用接口之前，建议使用ARKWEB_MEMBER_MISSING检查函数结构体是否有对应的函数指针，避免SDK与设备ROM不匹配导致崩溃。 |
 
 ### 枚举
 
@@ -118,7 +118,7 @@ typedef void (*ArkWeb_OnJavaScriptCallback)(const char* webTag, const ArkWeb_Jav
 | 参数项                                         | 描述 |
 |---------------------------------------------| -- |
 | const char* webTag                          | Web组件名称。 |
-| const [ArkWeb_JavaScriptBridgeData](capi-arkweb-javascriptbridgedata.md)* data | JavaScriptBridge数据。 |
+| const [ArkWeb_JavaScriptBridgeData](capi-web-arkweb-javascriptbridgedata.md)* data | JavaScriptBridge数据。 |
 | void* userData                              | 用户自定义的数据。 |
 
 ### ArkWeb_OnJavaScriptProxyCallback()
@@ -139,7 +139,7 @@ Proxy方法被执行的回调。
 | 参数项 | 描述 |
 | -- | -- |
 | const char* webTag | Web组件名称。 |
-|  const [ArkWeb_JavaScriptBridgeData](capi-arkweb-javascriptbridgedata.md)* dataArray | 数组数据。 |
+|  const [ArkWeb_JavaScriptBridgeData](capi-web-arkweb-javascriptbridgedata.md)* dataArray | 数组数据。 |
 |  size_t arraySize | 数组大小。 |
 |  void* userData | 用户自定义的数据。 |
 
@@ -161,7 +161,7 @@ Proxy方法被执行的回调。
 | 参数项 | 描述 |
 | -- | -- |
 | const char* webTag | Web组件名称。 |
-|  const [ArkWeb_JavaScriptBridgeData](capi-arkweb-javascriptbridgedata.md)* dataArray | 数组数据。 |
+|  const [ArkWeb_JavaScriptBridgeData](capi-web-arkweb-javascriptbridgedata.md)* dataArray | 数组数据。 |
 |  size_t arraySize | 数组大小。 |
 |  void* userData | 用户自定义的数据。 |
 
@@ -224,8 +224,8 @@ typedef void (*ArkWeb_OnMessageEventHandler)(const char* webTag, const ArkWeb_We
 | 参数项                                                                    | 描述 |
 |------------------------------------------------------------------------| -- |
 | const char* webTag                                                     | Web组件名称。 |
-| const [ArkWeb_WebMessagePortPtr](capi-arkweb-webmessageport8h.md) port | Post Message端口。 |
-| const [ArkWeb_WebMessagePtr](capi-arkweb-webmessage8h.md) message                                 | Post Message数据。 |
+| const [ArkWeb_WebMessagePortPtr](capi-web-arkweb-webmessageport8h.md) port | Post Message端口。 |
+| const [ArkWeb_WebMessagePtr](capi-web-arkweb-webmessage8h.md) message                                 | Post Message数据。 |
 | void* userData                                                         | 用户自定义数据。 |
 
 

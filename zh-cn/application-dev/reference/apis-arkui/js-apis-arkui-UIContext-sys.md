@@ -382,7 +382,7 @@ setKeyboardAppearanceConfig(uniqueId: number, config: KeyboardAppearanceConfig):
 | 参数名     | 类型    | 必填   | 说明      |
 | --- | --- | --- | --- |
 | uniqueId | number | 是 | 组件节点对应的UniqueId。取值范围大于等于0。 |
-| config | [KeyboardAppearanceConfig](../apis-arkui/arkui-ts/ts-text-common-sys.md#keyboardappearanceconfig) | 是 | 键盘样式配置参数。|
+| config | [KeyboardAppearanceConfig](../apis-arkui/arkui-ts/ts-text-common-sys.md#keyboardappearanceconfig20) | 是 | 键盘样式配置参数。|
 
 **错误码：**
 
@@ -442,6 +442,10 @@ getWithRange(start: NodeIdentity, end: NodeIdentity, isStartRect: boolean, optio
 
 传入两个组件的ID，获取范围内的组件的截图，并通过Promise返回结果。
 
+> **说明：**
+>
+> start对应的组件和end对应的组件必须为同一棵组件树上的组件，且start对应的组件需要为end对应的组件的祖先组件。
+
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -452,7 +456,7 @@ getWithRange(start: NodeIdentity, end: NodeIdentity, isStartRect: boolean, optio
 | ---- | ------ | ---- | ------- |
 | start   | [NodeIdentity](./js-apis-arkui-UIContext.md#nodeidentity20) | 是    | 范围开始的组件的ID。 |
 | end   | [NodeIdentity](./js-apis-arkui-UIContext.md#nodeidentity20) | 是    | 范围结束的组件的ID。 |
-| isStartRect   | boolean | 是    | 范围是否以开始组件的外接矩形为准。 |
+| isStartRect   | boolean | 是    | 范围是否以开始组件的外接矩形为准。<br/>true表示以开始组件的外接矩形为准，false表示以结束组件的外接矩形为准。<br/>默认值为true。 |
 | options       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)            | 否    | 截图相关的自定义参数，不支持region参数。 |
 
 **返回值：**
@@ -502,7 +506,7 @@ struct SnapshotExample {
               .then((pixmap: image.PixelMap) => {
                 this.pixmap = pixmap
               }).catch((err:Error) => {
-              console.log("error: " + err)
+              console.error("error: " + err)
             })
           }).margin(10)
       }.justifyContent(FlexAlign.SpaceAround)

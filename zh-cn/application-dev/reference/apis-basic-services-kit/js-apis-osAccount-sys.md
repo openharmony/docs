@@ -2137,6 +2137,68 @@ getOsAccountType(localId: number): Promise&lt;OsAccountType&gt;;
   }
   ```
 
+### bindDomainAccount<sup>20+</sup>
+
+bindDomainAccount(localId: number, domainAccountInfo: DomainAccountInfo): Promise&lt;void&gt;
+
+在指定系统账号上绑定指定域账号。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明         |
+| ------- | ------ | ---- | ------------ |
+| localId     | number | 是   |  要查询的系统账号ID。 |
+| domainAccountInfo | [DomainAccountInfo](#domainaccountinfo8) | 是   | 域账号信息。          |
+
+**返回值：**
+
+| 类型                  | 说明                                                         |
+| --------------------- | ------------------------------------------------------------ |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见通用[错误码说明文档](../errorcode-universal.md)和[账号管理错误码](./errorcode-account.md)。
+
+| 错误码ID | 错误信息       |
+| -------- | ------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 801 | Capability not supported.|
+| 12300001 | The system service works abnormally. |
+| 12300002 | Invalid domain account information. |
+| 12300003 | The OS account not found. |
+| 12300008 | Restricted OS account. Possible causes: The OS account cannot be bound. |
+| 12300010 | Service busy. Possible causes: The target OS account or domain account is being operated. |
+| 12300021 | The OS account is already bound. |
+| 12300022 | The domain account is already bound. |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
+  try {
+    let localId: number = 100;
+    let domainInfo: osAccount.DomainAccountInfo =
+      {domain: 'testDomain', accountName: 'testAccountName'};
+    accountManager.bindDomainAccount(localId, domainInfo).then(() => {
+      console.info('bindDomainAccount success.');
+    }).catch((error: BusinessError) => {
+      console.error(`bindDomainAccount failed, errCode=${error.code}, errMsg=${error.message}`);
+    });
+  } catch (e) {
+    let error = e as BusinessError;
+    console.error(`bindDomainAccount error, errCode=${error.code}, errMsg=${error.message}`);
+  }
+  ```
+
 ## UserAuth<sup>8+</sup>
 
 用户认证类。
@@ -2565,6 +2627,9 @@ prepareRemoteAuth(remoteNetworkId: string): Promise&lt;void&gt;;
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid remoteNetworkId. |
+| 12300090 | Cross-device capability not supported. |
+| 12300091 | Cross-device communication failed. |
+| 12300111 | Operation timeout. |
 
 **示例：**
   ```ts
@@ -2626,6 +2691,9 @@ auth(challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, 
 | 12300001 | The system service works abnormally. |
 | 12300002 | Invalid challenge, authType or authTrustLevel. |
 | 12300013 | Network exception. |
+| 12300020 | Device hardware abnormal. |
+| 12300090 | Cross-device capability not supported. |
+| 12300091 | Cross-device communication failed. |
 | 12300101 | The credential is incorrect. |
 | 12300102 | The credential does not exist. |
 | 12300105 | The trust level is not supported. |
@@ -2637,6 +2705,7 @@ auth(challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, 
 | 12300113 | The authentication service does not exist. |
 | 12300114 | The authentication service works abnormally. |
 | 12300117 | PIN is expired. |
+| 12300119 | Multi-factor authentication failed. |
 | 12300211 | Server unreachable. |
 
 **示例：**
@@ -2696,6 +2765,9 @@ auth(challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, 
 | 12300002 | Invalid challenge, authType, authTrustLevel or options. |
 | 12300003 | Account not found. |
 | 12300013 | Network exception. |
+| 12300020 | Device hardware abnormal. |
+| 12300090 | Cross-device capability not supported. |
+| 12300091 | Cross-device communication failed. |
 | 12300101 | The credential is incorrect. |
 | 12300102 | The credential does not exist. |
 | 12300105 | The trust level is not supported. |
@@ -2707,6 +2779,7 @@ auth(challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, 
 | 12300113 | The authentication service does not exist. |
 | 12300114 | The authentication service works abnormally. |
 | 12300117 | PIN is expired. |
+| 12300119 | Multi-factor authentication failed. |
 | 12300211 | Server unreachable. |
 
 **示例：**
@@ -2769,6 +2842,9 @@ authUser(userId: number, challenge: Uint8Array, authType: AuthType, authTrustLev
 | 12300002 | Invalid challenge, authType or authTrustLevel. |
 | 12300003 | Account not found. |
 | 12300013 | Network exception. |
+| 12300020 | Device hardware abnormal. |
+| 12300090 | Cross-device capability not supported. |
+| 12300091 | Cross-device communication failed. |
 | 12300101 | The credential is incorrect. |
 | 12300102 | The credential does not exist. |
 | 12300105 | The trust level is not supported. |
@@ -2780,6 +2856,7 @@ authUser(userId: number, challenge: Uint8Array, authType: AuthType, authTrustLev
 | 12300113 | The authentication service does not exist. |
 | 12300114 | The authentication service works abnormally. |
 | 12300117 | PIN is expired. |
+| 12300119 | Multi-factor authentication failed. |
 | 12300211 | Server unreachable. |
 
 **示例：**

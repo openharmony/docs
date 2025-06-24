@@ -5154,6 +5154,7 @@ enableDynamicIcon(bundleName: string, moduleName: string): Promise\<void>;
 | 17700001 | The specified bundleName is not found. |
 | 17700002 | The specified moduleName is not found. |
 | 17700304 | Failed to enable the dynamic icon. |
+| 17700307 | Dynamic icons cannot take effect due to existing custom themes. |
 
 **示例：**
 
@@ -5220,6 +5221,7 @@ enableDynamicIcon(bundleName: string, moduleName: string, option?: BundleOptions
 | 17700004 | The specified user ID is not found. |
 | 17700061 | AppIndex not in valid range. |
 | 17700304 | Failed to enable the dynamic icon. |
+| 17700307 | Dynamic icons cannot take effect due to existing custom themes. |
 
 **示例：**
 
@@ -5592,6 +5594,8 @@ try {
 getAppCloneBundleInfo(bundleName: string, appIndex: number, bundleFlags: number, userId?: number): Promise\<BundleInfo>;
 
 根据bundleName、分身索引、[bundleFlags](js-apis-bundleManager.md#bundleflag)以及用户ID查询主应用或分身应用的BundleInfo。使用Promise异步回调。
+
+bundleName是调用方自身时不需要权限。
 
 **系统接口：** 此接口为系统接口。
 

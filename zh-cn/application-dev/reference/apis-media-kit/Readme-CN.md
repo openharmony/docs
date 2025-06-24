@@ -74,7 +74,7 @@
     - [OH_AVScreenCaptureCallback](capi-oh-avscreencapturecallback.md)
     - [OH_Rect](capi-oh-rect.md)
     - [OH_AudioBuffer](capi-oh-audiobuffer.md)
-    - [OH_NativeBuffer](capi-oh-nativebuffer.md)
+    - [OH_NativeBuffer](capi-avscreencapture-oh-nativebuffer.md)
     - [OH_AVScreenCapture](capi-oh-avscreencapture.md)
     - [OH_AVScreenCapture_ContentFilter](capi-oh-avscreencapture-contentfilter.md)
     - [OH_AVScreenCapture_CaptureStrategy](capi-oh-avscreencapture-capturestrategy.md)

@@ -1381,7 +1381,7 @@ uiContext.getFocusController();
 
 getFilteredInspectorTree(filters?: Array\<string\>): string
 
-获取组件树及组件属性。
+获取组件树及组件属性。此接口耗时较长，仅适用于测试场景。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1481,7 +1481,7 @@ InsTree ----| type: Button, ID: 18
 
 getFilteredInspectorTreeById(id: string, depth: number, filters?: Array\<string\>): string
 
-获取指定的组件及其子组件的属性。
+获取指定的组件及其子组件的属性。此接口耗时较长，推荐仅在测试场景下使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -7385,8 +7385,8 @@ openCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>, options
 ```ts
 import { ComponentContent } from '@kit.ArkUI';
 import { AbilityConstant, Configuration, EnvironmentCallback, ConfigurationConstant } from '@kit.AbilityKit';
-import { BusinessError } from "@kit.BasicServicesKit";
-import { resourceManager } from '@kit.LocalizationKit'
+import { BusinessError } from '@kit.BasicServicesKit';
+import { resourceManager } from '@kit.LocalizationKit';
 
 class Params {
   text: string = "";
@@ -7423,10 +7423,10 @@ struct Index {
         console.log("onConfigurationUpdated " + JSON.stringify(config));
         this.getUIContext().getHostContext()?.getApplicationContext().resourceManager.getConfiguration((err,
           config) => {
-          // 调用ComponentContent的update更新colorMode信息。
+          // 调用ComponentContent的update更新colorMode信息
           this.contentNode?.update(new Params(this.message, config.colorMode))
           setTimeout(() => {
-            // 调用ComponentContent的updateConfiguration，触发节点的全量更新。
+            // 调用ComponentContent的updateConfiguration，触发节点的全量更新
             this.contentNode?.updateConfiguration()
           })
         })

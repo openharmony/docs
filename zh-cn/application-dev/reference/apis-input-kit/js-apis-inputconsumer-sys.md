@@ -36,21 +36,34 @@ on(type: 'key', keyOptions: KeyOptions, callback: Callback&lt;KeyOptions&gt;): v
 **示例：** 
 
 ```js
-let leftAltKey = 2045;
-let tabKey = 2049;
-let keyOptions: inputConsumer.KeyOptions = {
-  preKeys: [ leftAltKey ],
-  finalKey: tabKey,
-  isFinalKeyDown: true,
-  finalKeyDownDuration: 0
-};
-let callback = (keyOptions: inputConsumer.KeyOptions) => {
-  console.log(`keyOptions: ${JSON.stringify(keyOptions)}`);
-}
-try {
-  inputConsumer.on("key", keyOptions, callback);
-} catch (error) {
-  console.error(`Subscribe failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { inputConsumer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          let leftAltKey = 2045;
+          let tabKey = 2049;
+          let keyOptions: inputConsumer.KeyOptions = {
+            preKeys: [ leftAltKey ],
+            finalKey: tabKey,
+            isFinalKeyDown: true,
+            finalKeyDownDuration: 0
+          };
+          let callback = (keyOptions: inputConsumer.KeyOptions) => {
+            console.log(`keyOptions: ${JSON.stringify(keyOptions)}`);
+          }
+          try {
+            inputConsumer.on("key", keyOptions, callback);
+          } catch (error) {
+            console.error(`Subscribe failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -74,35 +87,61 @@ off(type: 'key', keyOptions: KeyOptions, callback?: Callback&lt;KeyOptions&gt;):
 **示例：** 
 
 ```js
-let leftAltKey = 2045;
-let tabKey = 2049;
-// 取消订阅单个回调函数
-let callback = (keyOptions: inputConsumer.KeyOptions) => {
-  console.log(`keyOptions: ${JSON.stringify(keyOptions)}`);
-}
-let keyOption: inputConsumer.KeyOptions = {preKeys: [leftAltKey], finalKey: tabKey, isFinalKeyDown: true, finalKeyDownDuration: 0};
-try {
-  inputConsumer.on("key", keyOption, callback);
-  inputConsumer.off("key", keyOption, callback);
-  console.log(`Unsubscribe success`);
-} catch (error) {
-  console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { inputConsumer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          let leftAltKey = 2045;
+          let tabKey = 2049;
+          // 取消订阅单个回调函数
+          let callback = (keyOptions: inputConsumer.KeyOptions) => {
+            console.log(`keyOptions: ${JSON.stringify(keyOptions)}`);
+          }
+          let keyOption: inputConsumer.KeyOptions = {preKeys: [leftAltKey], finalKey: tabKey, isFinalKeyDown: true, finalKeyDownDuration: 0};
+          try {
+            inputConsumer.on("key", keyOption, callback);
+            inputConsumer.off("key", keyOption, callback);
+            console.log(`Unsubscribe success`);
+          } catch (error) {
+            console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 ```js
-let leftAltKey = 2045;
-let tabKey = 2049;
-// 取消订阅所有回调函数
-let callback = (keyOptions: inputConsumer.KeyOptions) => {
-  console.log(`keyOptions: ${JSON.stringify(keyOptions)}`);
-}
-let keyOption: inputConsumer.KeyOptions = {preKeys: [leftAltKey], finalKey: tabKey, isFinalKeyDown: true, finalKeyDownDuration: 0};
-try {
-  inputConsumer.on("key", keyOption, callback);
-  inputConsumer.off("key", keyOption);
-  console.log(`Unsubscribe success`);
-} catch (error) {
-  console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { inputConsumer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          let leftAltKey = 2045;
+          let tabKey = 2049;
+          // 取消订阅所有回调函数
+          let callback = (keyOptions: inputConsumer.KeyOptions) => {
+            console.log(`keyOptions: ${JSON.stringify(keyOptions)}`);
+          }
+          let keyOption: inputConsumer.KeyOptions = {preKeys: [leftAltKey], finalKey: tabKey, isFinalKeyDown: true, finalKeyDownDuration: 0};
+          try {
+            inputConsumer.on("key", keyOption, callback);
+            inputConsumer.off("key", keyOption);
+            console.log(`Unsubscribe success`);
+          } catch (error) {
+            console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -126,12 +165,25 @@ setShieldStatus(shieldMode: ShieldMode, isShield: boolean): void
 **示例：** 
 
 ```js
-let FACTORY_MODE = 0;
-try {
-  inputConsumer.setShieldStatus(FACTORY_MODE,true);
-  console.log(`set shield status success`);
-} catch (error) {
-  console.error(`set shield status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { inputConsumer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          let FACTORY_MODE = 0;
+          try {
+            inputConsumer.setShieldStatus(FACTORY_MODE,true);
+            console.log(`set shield status success`);
+          } catch (error) {
+            console.error(`set shield status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -160,12 +212,25 @@ getShieldStatus(shieldMode: ShieldMode): boolean
 **示例：** 
 
 ```js
-try {
-  let FACTORY_MODE = 0;
-  let shieldstatusResult:Boolean =  inputConsumer.getShieldStatus(FACTORY_MODE);
-  console.log(` get shield status result:${JSON.stringify(shieldstatusResult)}`);
-} catch (error) {
-  console.error(`Failed to get shield status, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { inputConsumer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            let FACTORY_MODE = 0;
+            let shieldstatusResult:Boolean =  inputConsumer.getShieldStatus(FACTORY_MODE);
+            console.log(` get shield status result:${JSON.stringify(shieldstatusResult)}`);
+          } catch (error) {
+            console.error(`Failed to get shield status, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 

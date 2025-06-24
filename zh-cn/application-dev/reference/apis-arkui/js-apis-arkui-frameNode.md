@@ -1,6 +1,6 @@
 # FrameNode
 
-FrameNode表示组件树的实体节点。[NodeController](./js-apis-arkui-nodeController.md#nodecontroller)可通过[BuilderNode](./js-apis-arkui-builderNode.md#buildernode)持有的FrameNode将其挂载到[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)上，也可通过FrameNode获取[RenderNode](./js-apis-arkui-renderNode.md#rendernode)，挂载到其他FrameNode上。
+FrameNode表示组件树的实体节点。[NodeController](./js-apis-arkui-nodeController.md#nodecontroller)可通过[BuilderNode](./js-apis-arkui-builderNode.md#buildernode)持有的FrameNode将其挂载到[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)上，也可通过FrameNode获取[RenderNode](./js-apis-arkui-renderNode.md#rendernode)，挂载到其他FrameNode上。最佳实践请参考[组件动态创建-组件动态添加、更新和删除](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-ui-dynamic-operations#section153921947151012)。
 
 > **说明：**
 >
@@ -52,10 +52,10 @@ import { FrameNode, LayoutConstraint, ExpandMode, typeNode, NodeAdapter } from "
 
 | 名称   | 类型   | 只读 | 可选 | 说明                   |
 | ------ | ------ | ---- | ---- | ---------------------- |
-| baseEventRegistered  | boolean |  否   | 否   | 是否以声明方式绑定事件。<br/>true表示以声明方式绑定事件，false表示不是以声明方式绑定事件。 |
-| nodeEventRegistered  | boolean | 否   | 否   | 是否以命令式FrameNode模式绑定事件。<br/>true表示以命令式FrameNode模式绑定事件，false表示不是以命令式FrameNode模式绑定事件。 |
-| nativeEventRegistered  | boolean | 否   | 否   | 是否将事件绑定为命令式NativeNode。<br/>true表示将事件绑定为命令式NativeNode，false表示不是将事件绑定为命令式NativeNode。 |
-| builtInEventRegistered  | boolean | 否   | 否   | 组件是否绑定内置事件。<br/>true表示组件绑定内置事件，false表示组件没有绑定内置事件。 |
+| baseEventRegistered  | boolean |  否   | 否   | 是否以声明方式绑定事件。<br/>true表示以声明方式绑定事件，false表示没有以声明方式绑定事件。 |
+| nodeEventRegistered  | boolean | 否   | 否   | 是否以自定义组件节点的方式绑定事件，请参考[基础事件示例](#基础事件示例)<br/>true表示以自定义组件节点的方式绑定事件，false表示没有以自定义组件节点的方式绑定事件。 |
+| nativeEventRegistered  | boolean | 否   | 否   | 是否以注册节点事件（[registerNodeEvent](_ark_u_i___native_node_a_p_i__1.md#registernodeevent)）的方式绑定事件。<br/>true表示以注册节点事件的方式绑定事件，false表示没有以注册节点事件的方式绑定事件。|
+| builtInEventRegistered  | boolean | 否   | 否   | 组件是否绑定内置事件(组件内部定义的事件, 无需开发者手动绑定)。<br/>true表示组件绑定内置事件，false表示组件没有绑定内置事件。 |
 
 ## UIState<sup>20+</sup>
 
@@ -4804,7 +4804,7 @@ static detachNodeAdapter(node: FrameNode): void
 | ------- | ------------------------------------------------------ | ---- | ---------------- |
 | node | FrameNode | 是   | 要解除绑定的FrameNode节点。 |
 
-## isDisposed<sup>20+</sup>
+### isDisposed<sup>20+</sup>
 
 isDisposed(): boolean
 

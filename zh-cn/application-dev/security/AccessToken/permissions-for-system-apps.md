@@ -4244,18 +4244,6 @@
 
 **起始版本**：18
 
-## ohos.permission.DLP_GET_HIDE_STATUS
-
-允许系统应用使用信息隐藏接口，获取信息隐藏状态的能力。
-
-**权限级别**：system_basic
-
-**授权方式**：系统授权（system_grant）
-
-**ACL使能**：true
-
-**起始版本**：18
-
 ## ohos.permission.GET_ANIM_POLICY
 
 允许系统应用注册动效插件，获取动效使用策略。
@@ -4942,6 +4930,48 @@
 
 **起始版本**：20
 
+## ohos.permission.FILE_TRANSFER_OPERATION
+
+允许系统应用执行文件的传输、取消传输、删除、移除和修改等操作。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：PC/2in1
+
+**起始版本**：20
+
+## ohos.permission.FILE_TRANSFER_INFO_QUERY
+
+允许系统应用查询文件和文件传输的信息。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：PC/2in1
+
+**起始版本**：20
+
+## ohos.permission.MANAGE_LOCAL_WORKSPACES
+
+允许系统应用创建、删除工作空间。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：PC/2in1
+
+**起始版本**：20
+
 ## ohos.permission.FILE_ACCESS_FOR_PRIVATE_SPACE
 
 允许隐私空间挂载主空间公共目录到应用沙箱。
@@ -4967,5 +4997,19 @@
 **ACL使能**：true
 
 **支持设备**：Wearable
+
+**起始版本**：20
+
+## ohos.permission.TRIGGER_LOCAL_WANTAGENT
+
+允许系统应用触发本地WantAgent实例。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：General
 
 **起始版本**：20

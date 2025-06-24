@@ -3828,7 +3828,350 @@ struct Index {
 ```
 ![AddBuilderSpanExample](figures/rich_editor_addBuilderSpan.gif)
 
-### 示例10（设置文本识别配置）
+### 示例10（使用和管理组件内的BuilderSpan）
+通过[addBuilderSpan](#addbuilderspan11)接口添加的自定义布局Span，[getSpans](#getspans)、[onWillChange](#onwillchange12)等API不会返回BuilderSpan内部的信息。开发者需要自行维护BuilderSpan的状态，并且在组件内容发生变化时同步更新。
+
+```ts
+const TAG = 'BuilderSpanDemo';
+
+class BuilderObject {
+  content: string
+  imageUri?: string
+  type: string
+  id?: string
+
+  constructor(content: string, type: string, imageUri?: string, id?: string) {
+    this.content = content
+    this.imageUri = imageUri
+    this.type = type
+    this.id = id
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  controller: RichEditorController = new RichEditorController()
+  option: RichEditorOptions = { controller: this.controller }
+  @State content: string = "";
+  @State start: number = 0;
+  @State end: number = 0;
+  private customBuilder: CustomBuilder = undefined;
+  private builderArray: BuilderObject[] = [];
+  private indicesToRemove: number[] = [];
+  private builderId: number = 0;
+
+  @Builder
+  imageTextBuilder(builder: BuilderObject) {
+    Row({ space: 2 }) {
+      Image($r(builder.imageUri)).width(24).height(24).margin({ left: -5 })
+      Text(builder.content).fontSize(10)
+    }.width(110).height(50).padding(5)
+  }
+
+  @Builder
+  chipBuilder(builder: BuilderObject) {
+    Row() {
+      Text(builder.content)
+        .fontSize(14)
+        .fontColor(Color.Black)
+        .fontFamily('HarmonyHeiTi')
+        .margin({ right: 4 })
+
+      SymbolGlyph($r('sys.symbol.xmark'))
+        .width(16)
+        .height(16)
+        .id(builder.id)
+        .onClick((event: ClickEvent) => {
+          this.deleteChipBuilder(event.target.id)
+        })
+    }
+    .width('auto')
+    .height(28)
+    .backgroundColor(Color.Gray)
+    .borderRadius(10)
+    .padding({
+      top: 4,
+      bottom: 4,
+      left: 12,
+      right: 12
+    })
+  }
+
+  private deleteChipBuilder(builderId?: string) {
+    if (builderId == null || builderId == "") {
+      console.info(TAG, "delete chipBuilder error");
+      return
+    }
+    let deleteRange: number[] = this.getTargetBuilderSpanRange(builderId)
+    if (deleteRange.length == 0) {
+      console.error(TAG, "getTargetBuilderSpanRange failed" + builderId);
+      return
+    }
+    this.builderArray = this.builderArray.filter(item => item.id !== builderId);
+    this.controller.deleteSpans({ start: deleteRange[0], end: deleteRange[1] });
+    console.info(TAG, `deleteChipBuilder start = ${deleteRange[0]}, end = ${deleteRange[1]}`);
+    console.info(TAG, `deleteChipBuilder builderArray + ${this.builderArray.length}`);
+  }
+
+  private getTargetBuilderSpanRange(builderId: string): number[] {
+    let allSpans = this.controller.getSpans();
+    let result: number[] = [];
+    let chitBuilderIndex = 0;
+    for (let spanIndex = 0; spanIndex < allSpans.length; spanIndex++) {
+      if (!this.isBuilderSpanResult(allSpans[spanIndex])) {
+        continue;
+      }
+      if (this.builderArray.length <= chitBuilderIndex) {
+        break;
+      }
+      if (this.builderArray[chitBuilderIndex].id === builderId) {
+        result = allSpans[spanIndex].spanPosition.spanRange;
+        break;
+      }
+      chitBuilderIndex++;
+    }
+    return result;
+  }
+
+  private isTextSpanResult(item: RichEditorImageSpanResult | RichEditorTextSpanResult): boolean {
+    return typeof (item as RichEditorImageSpanResult)['imageStyle'] == 'undefined';
+  }
+
+  private isBuilderSpanResult(item: RichEditorImageSpanResult | RichEditorTextSpanResult): boolean {
+    return typeof (item as RichEditorImageSpanResult)['imageStyle'] != 'undefined'
+      && ((item as RichEditorImageSpanResult).valueResourceStr == " "
+        || (item as RichEditorImageSpanResult).valueResourceStr == "");
+  }
+
+  build() {
+    Column() {
+      Scroll() {
+        Column() {
+          Text("Builder Info:").width("100%")
+          Text() {
+            Span(this.content)
+          }.width("100%")
+        }
+      }
+      .borderWidth(1)
+      .borderColor(Color.Red)
+      .width("100%")
+      .height("20%")
+
+      // 添加Builder时，记录builder的相对顺序，以及builder信息
+      // getSpans接口valueResourceStr == " "或""的Span是builderSpan，并且会按顺序返回builder
+      // 可以根据上面两点，在查询时还原builder信息
+      Button("addImageTextBuilder")
+        .onClick(() => {
+          let insertOffset = this.controller.getCaretOffset();
+          let builder = new BuilderObject('Custom PopUP ' + this.builderId, 'imageTextBuilder', 'app.media.icon');
+          this.customBuilder = () => {
+            this.imageTextBuilder(builder);
+          }
+          let addIndex = this.addBuilderByIndex(insertOffset);
+          console.info(TAG, "add imageTextBuilder index = " + addIndex);
+          this.builderArray.splice(addIndex, 0, builder);
+          this.controller.addBuilderSpan(this.customBuilder, { offset: insertOffset });
+          this.builderId++;
+          console.info(TAG, "add imageTextBuilder success");
+        })
+      Button("addChipBuilder")
+        .onClick(() => {
+          let insertOffset = this.controller.getCaretOffset();
+          let builder = new BuilderObject('Hello World ' + this.builderId, 'chipBuilder', '',
+            'chipBuilder' + this.builderId);
+          this.customBuilder = () => {
+            this.chipBuilder(builder);
+          }
+          let addIndex = this.addBuilderByIndex(insertOffset);
+          console.info(TAG, "add addChipBuilder index = " + addIndex);
+          this.builderArray.splice(addIndex, 0, builder);
+          this.controller.addBuilderSpan(this.customBuilder, { offset: insertOffset });
+          this.builderId++;
+          console.info(TAG, "add chipBuilder success");
+        })
+
+      Row() {
+        Button("getSpans").onClick(() => {
+          console.info(TAG, "getSpans = " + JSON.stringify(this.controller.getSpans()));
+          this.content = "";
+          let allSpans = this.controller.getSpans();
+          let builderSpanIndex = 0;
+          allSpans.forEach(item => {
+            if (this.isTextSpanResult(item)) {
+              console.info(TAG, "text span value: " + (item as RichEditorTextSpanResult).value);
+            } else if (this.isBuilderSpanResult(item)) {
+              let builderOrder = "This is builderSpan " + builderSpanIndex + ":"
+              console.info(TAG, builderOrder);
+              this.content += builderOrder + "\n";
+              let builderResult = (item as RichEditorImageSpanResult);
+              let builderIndex = "index: " + builderResult.spanPosition.spanIndex
+                + ", range: " + builderResult.spanPosition.spanRange[0] + ", "
+                + builderResult.spanPosition.spanRange[1];
+              console.info(TAG, builderIndex);
+              this.content += builderIndex + "\n";
+              if (builderSpanIndex >= this.builderArray.length) {
+                console.error(TAG, "getSpans error,  builderSpanIndex = " + builderSpanIndex
+                  + ", builderArray.length = " + this.builderArray.length);
+                return;
+              }
+              let builderInfo = "content: " + this.builderArray[builderSpanIndex].content
+                + ", image uri: " + this.builderArray[builderSpanIndex].imageUri
+                + ", id: " + this.builderArray[builderSpanIndex].id + "\n\n";
+              console.info(TAG, builderInfo);
+              this.content += builderInfo;
+              builderSpanIndex++;
+            } else {
+              let imageResult = (item as RichEditorImageSpanResult);
+              console.info(TAG, "image span " + imageResult.valueResourceStr + ", index: " +
+              imageResult.spanPosition.spanIndex + ", range: " +
+              imageResult.offsetInSpan[0] + ", " + imageResult.offsetInSpan[1] + ", size: " +
+              imageResult.imageStyle.size[0] + ", " + imageResult.imageStyle.size[1]);
+            }
+          })
+        })
+        Button("deleteSelectedSpans")
+          .onClick(() => {
+            this.start = this.controller.getSelection().selection[0];
+            this.end = this.controller.getSelection().selection[1];
+            if (this.start == this.end) {
+              return;
+            }
+            let allSpans = this.controller.getSpans();
+            let needRemoveIndex = 0;
+            for (let i = 0; i < allSpans.length; i++) {
+              if (!this.isBuilderSpanResult(allSpans[i])) {
+                continue;
+              }
+              let builderIndex = (allSpans[i] as RichEditorImageSpanResult).spanPosition.spanRange[0];
+              if (builderIndex < this.start || builderIndex >= this.end) {
+                needRemoveIndex++;
+                continue;
+              }
+              this.indicesToRemove.push(needRemoveIndex);
+              needRemoveIndex++;
+            }
+            console.info(TAG, "deleteSpans indicesToRemove = " + this.indicesToRemove.toString());
+            this.deleteBuilderByIndices();
+            console.info(TAG, "deleteSpans builderArray = " + this.builderArray.length);
+            this.controller.deleteSpans({ start: this.start, end: this.end });
+          })
+      }
+      .borderWidth(1)
+      .borderColor(Color.Red)
+      .width("100%")
+      .height("5%")
+
+      Column() {
+        RichEditor(this.option)
+          .onReady(() => {
+            this.controller.addTextSpan("0123456789",
+              {
+                style:
+                {
+                  fontColor: Color.Orange,
+                  fontSize: 30
+                }
+              })
+          })
+          .aboutToDelete((value: RichEditorDeleteValue) => {
+            console.log(TAG, "aboutToDelete = " + JSON.stringify(value));
+            let isBuilderAboutToDelete = this.isBuilderAboutToDelete(value);
+            console.log(TAG, "aboutToDelete isBuilderAboutToDelete = " + isBuilderAboutToDelete);
+            this.getIndicesToRemove(value, isBuilderAboutToDelete);
+            console.info(TAG, "indicesToRemove = " + this.indicesToRemove.toString());
+            this.deleteBuilderByIndices();
+            console.info(TAG, "builderArray = " + this.builderArray.length);
+            return true;
+          })
+          .borderWidth(1)
+          .borderColor(Color.Green)
+          .width("100%")
+          .height("30%")
+      }
+      .margin({ top: 60 })
+      .borderWidth(1)
+      .borderColor(Color.Red)
+      .width("100%")
+      .height("70%")
+    }
+  }
+
+  private isBuilderAboutToDelete(value: RichEditorDeleteValue): boolean {
+    let flag = false;
+    for (let i = 0; i < value.richEditorDeleteSpans.length; i++) {
+      if (this.isBuilderSpanResult(value.richEditorDeleteSpans[i])) {
+        flag = true;
+        break;
+      }
+    }
+    return flag;
+  }
+
+  private getIndicesToRemove(value: RichEditorDeleteValue, isBuilderAboutToDelete: boolean): void {
+    if (!isBuilderAboutToDelete) {
+      return
+    }
+    let allSpans = this.controller.getSpans();
+    for (let i = 0; i < value.richEditorDeleteSpans.length; i++) {
+      let needRemoveIndex = 0;
+      let item = value.richEditorDeleteSpans[i];
+      if (!this.isBuilderSpanResult(item)) {
+        continue;
+      }
+      let aboutToDeleteBuilderIndex = (item as RichEditorImageSpanResult).spanPosition.spanIndex
+      for (let j = 0; j < allSpans.length; j++) {
+        if (!this.isBuilderSpanResult(allSpans[j])) {
+          continue;
+        }
+        let builderIndex = (allSpans[j] as RichEditorImageSpanResult).spanPosition.spanIndex
+        if (builderIndex == aboutToDeleteBuilderIndex) {
+          this.indicesToRemove.push(needRemoveIndex)
+          break;
+        }
+        needRemoveIndex++;
+      }
+    }
+  }
+
+  private deleteBuilderByIndices(): void {
+    let indicesSet = new Set(this.indicesToRemove);
+    let newLength = 0;
+    for (let i = 0; i < this.builderArray.length; i++) {
+      if (!indicesSet.has(i)) {
+        this.builderArray[newLength] = this.builderArray[i];
+        newLength++;
+      }
+    }
+    this.builderArray.length = newLength;
+    this.indicesToRemove.length = 0;
+  }
+
+  private addBuilderByIndex(insertOffset: number): number {
+    if (insertOffset == 0 || this.builderArray.length == 0) {
+      return 0;
+    }
+    let allSpans = this.controller.getSpans();
+    let addIndex = 0;
+    for (let i = 0; i < allSpans.length; i++) {
+      if (!this.isBuilderSpanResult(allSpans[i])) {
+        continue;
+      }
+      let builderIndex = (allSpans[i] as RichEditorImageSpanResult).spanPosition.spanRange[0];
+      if (builderIndex < insertOffset) {
+        addIndex++;
+        continue;
+      }
+      break;
+    }
+    return addIndex;
+  }
+}
+```
+![BuilderSpanManagerExample](figures/rich_editor_builderSpanManager.gif)
+
+### 示例11（设置文本识别配置）
 设置[enableDataDetector](#enabledatadetector11)为true时，通过[dataDetectorConfig](#datadetectorconfig11)接口设置文本识别配置。
 
 ```ts
@@ -3892,7 +4235,7 @@ struct TextExample7 {
   }
 }
 ```
-### 示例11（设置光标、手柄和底板颜色）
+### 示例12（设置光标、手柄和底板颜色）
 通过[caretColor](#caretcolor12)属性设置输入框光标、手柄颜色，通过[selectedBackgroundColor](#selectedbackgroundcolor12)属性设置文本选中底板颜色。
 
 ``` ts
@@ -3925,7 +4268,7 @@ struct RichEditorDemo {
 ```
 ![SetCaretAndSelectedBackgroundColorExample](figures/rich_editor_caret_color.gif)
 
-### 示例12（设置行高和字符间距）
+### 示例13（设置行高和字符间距）
 通过[updateSpanStyle](#updatespanstyle)接口配置文本行高（[lineHeight](#richeditortextstyle)）和字符间距（[letterSpacing](#richeditortextstyle)）。
 
 ```ts
@@ -4047,7 +4390,7 @@ struct RichEditorDemo03 {
 ```
 ![AddBuilderSpanExample](figures/richEditorLineHeightAndLetterSpacing.png)
 
-### 示例13（自定义粘贴事件）
+### 示例14（自定义粘贴事件）
 为组件添加[onPaste](#onpaste11)事件，通过[PasteEvent](#pasteevent11)自定义用户粘贴事件。
 
 ```ts
@@ -4078,7 +4421,7 @@ struct RichEditorDemo {
 ```
 ![PreventDefaultExample](figures/richEditorPreventDefault.gif)
 
-### 示例14（配置文字特性效果）
+### 示例15（配置文字特性效果）
 通过[addTextSpan](#addtextspan)接口设置文字特性效果（[fontFeature](#richeditortextstyle)）。当添加“ss01”特性的FontFeature属性时，数字“0”由原来的椭圆形改变为带有倒圆角形。
 
 ```ts
@@ -4125,7 +4468,7 @@ struct RichEditorExample {
 ```
 ![FontFeatureExample](figures/richEditorFontFeature.png)
 
-### 示例15（自定义键盘避让）
+### 示例16（自定义键盘避让）
 通过[customKeyboard](#customkeyboard)属性绑定自定义键盘，通过参数[KeyboardOptions](#keyboardoptions12)设置自定义键盘是否支持避让功能。
 
 ```ts
@@ -4204,7 +4547,7 @@ struct RichEditorExample {
 ```
 ![CustomRichEditorType](figures/Custom_Rich_Editor.gif)
 
-### 示例16（查看编辑状态）
+### 示例17（查看编辑状态）
 通过[isEditing](#isediting12)接口获取当前富文本的编辑状态。为组件添加[onEditingChange](#oneditingchange12)事件，可通过打印日志，获取当前组件是否在编辑态。
 
 ```ts
@@ -4243,7 +4586,7 @@ struct RichEditor_onEditingChange {
 
 ![RichEditorOnEditingChange](figures/richEditorOnEditingChange.gif)
 
-### 示例17（配置文本变化回调）
+### 示例18（配置文本变化回调）
 为组件添加[onWillChange](#onwillchange12)事件，能够在组件执行增删操作前，触发回调。
 
 ```ts
@@ -4328,7 +4671,7 @@ struct RichEditorExample {
   }
 }
 ```
-### 示例18（配置输入法enter键功能）
+### 示例19（配置输入法enter键功能）
 通过[enterKeyType](#enterkeytype12)属性设置软键盘输入法回车键类型。
 
 ```ts
@@ -4362,7 +4705,7 @@ struct SoftKeyboardEnterTypeExample {
 
 ![SoftKeyboardEnterType](figures/richeditorentertype.gif)
 
-### 示例19（设置段落折行规则）
+### 示例20（设置段落折行规则）
 通过[updateParagraphStyle](#updateparagraphstyle11)接口设置折行类型（[lineBreakStrategy](#richeditorparagraphstyle11)），通过[getParagraphs](#getparagraphs11)接口获取当前段落的折行类型。
 
 ```ts
@@ -4440,7 +4783,7 @@ struct LineBreakStrategyExample {
 
 ![LineBreakStrategy](figures/richEditorLineBreak.gif)
 
-### 示例20（属性字符串基本功能）
+### 示例21（属性字符串基本功能）
 [属性字符串](./ts-universal-styled-string.md)通过[RichEditorStyledStringController](#richeditorstyledstringcontroller12)中的[setStyledString](#setstyledstring12)方法与RichEditor组件绑定。通过[getStyledString](#getstyledstring12)接口获取富文本组件显示的属性字符串。
 
 ```ts
@@ -4661,7 +5004,7 @@ struct Index {
 
 ![StyledString](figures/StyledString(example20).gif)
 
-### 示例21（获取布局信息）
+### 示例22（获取布局信息）
 通过[getLayoutManager](#getlayoutmanager12)接口获取布局管理器对象，通过[getLineCount](ts-text-common.md#getlinecount)接口获取组件内容的总行数，通过[getGlyphPositionAtCoordinate](ts-text-common.md#getglyphpositionatcoordinate)接口获取较为接近给定坐标的字形的位置信息，通过[getLineMetrics](ts-text-common.md#getlinemetrics)接口获取指定行的行信息、文本样式信息、以及字体属性信息。
 
 ```ts
@@ -4731,7 +5074,7 @@ export struct Index {
 
 ![LayoutManager](figures/getLayoutManager.gif)
 
-### 示例22（设置自定义菜单扩展项）
+### 示例23（设置自定义菜单扩展项）
 通过[editMenuOptions](#editmenuoptions12)属性设置自定义菜单扩展项，允许用户设置扩展项的文本内容、图标、回调方法。
 
 ```ts
@@ -4741,61 +5084,88 @@ export struct Index {
 struct RichEditorExample {
   controller: RichEditorController = new RichEditorController();
   options: RichEditorOptions = { controller: this.controller };
-
-  onCreateMenu(menuItems: Array<TextMenuItem>) {
-    console.log('menuItems size=' + menuItems.length);
-    menuItems.forEach((value, index) => {
-      console.log('menuItem' + index + ', id=' + JSON.stringify(value));
-    })
-    let extensionMenuItems: Array<TextMenuItem> = [
-      {
-        content: 'RichEditor扩展1', icon: $r('app.media.startIcon'), id: TextMenuItemId.of('extension1')
-      },
-      {
-        content: 'RichEditor扩展2', icon: $r('app.media.startIcon'), id: TextMenuItemId.of('extension2')
-      },
-      {
-        content: 'RichEditor扩展3', icon: $r('app.media.startIcon'), id: TextMenuItemId.of('extension3')
-      },
-      {
-        content: 'RichEditor扩展4', icon: $r('app.media.startIcon'), id: TextMenuItemId.of('extension4')
-      }
+  @State endIndex: number | undefined = 0;
+  onCreateMenu = (menuItems: Array<TextMenuItem>) => {
+    const idsToFilter = [
+      TextMenuItemId.of('OH_DEFAULT_TRANSLATE'),
+      TextMenuItemId.of('OH_DEFAULT_SHARE'),
+      TextMenuItemId.of('OH_DEFAULT_SEARCH'),
+      TextMenuItemId.of('OH_DEFAULT_AI_WRITE')
     ]
-    return menuItems.concat(extensionMenuItems);
+    const items = menuItems.filter(item => !idsToFilter.some(id => id.equals(item.id)))
+    let item1: TextMenuItem = {
+      content: 'create1',
+      icon: $r('app.media.startIcon'),
+      id: TextMenuItemId.of('create1'),
+    };
+    let item2: TextMenuItem = {
+      content: 'create2',
+      id: TextMenuItemId.of('create2'),
+      icon: $r('app.media.startIcon'),
+    };
+    items.push(item1);
+    items.unshift(item2);
+    return items;
   }
-  onMenuItemClicked(menuItem: TextMenuItem, textRange: TextRange) {
-    if (menuItem.id.equals(TextMenuItemId.of('extension1'))) {
-      console.log('click' + menuItem.content + ', textRange=' + JSON.stringify(textRange));
+  onMenuItemClick = (menuItem: TextMenuItem, textRange: TextRange) => {
+    if (menuItem.id.equals(TextMenuItemId.of("create2"))) {
+      console.log("拦截 id: create2 start:" + textRange.start + "; end:" + textRange.end);
       return true;
+    }
+    if (menuItem.id.equals(TextMenuItemId.of("prepare1"))) {
+      console.log("拦截 id: prepare1 start:" + textRange.start + "; end:" + textRange.end);
+      return true;
+    }
+    if (menuItem.id.equals(TextMenuItemId.COPY)) {
+      console.log("拦截 COPY start:" + textRange.start + "; end:" + textRange.end);
+      return true;
+    }
+    if (menuItem.id.equals(TextMenuItemId.SELECT_ALL)) {
+      console.log("不拦截 SELECT_ALL start:" + textRange.start + "; end:" + textRange.end);
+      return false;
     }
     return false;
   }
+  onPrepareMenu = (menuItems: Array<TextMenuItem>) => {
+    let item1: TextMenuItem = {
+      content: 'prepare1_' + this.endIndex,
+      icon: $r('app.media.startIcon'),
+      id: TextMenuItemId.of('prepare1'),
+    };
+    menuItems.unshift(item1);
+    return menuItems;
+  }
+  @State editMenuOptions: EditMenuOptions = {
+    onCreateMenu: this.onCreateMenu,
+    onMenuItemClick: this.onMenuItemClick,
+    onPrepareMenu: this.onPrepareMenu
+  };
 
   build() {
-    Row() {
+    Column() {
       RichEditor(this.options)
         .onReady(() => {
-          this.controller.addTextSpan("RichEditor扩展")
+          this.controller.addTextSpan("RichEditor editMenuOptions")
         })
-        .editMenuOptions({
-          onCreateMenu: (menuItems: Array<TextMenuItem>) => {
-            return this.onCreateMenu(menuItems);
-          },
-          onMenuItemClick: (menuItem: TextMenuItem, textRange: TextRange) => {
-            return this.onMenuItemClicked(menuItem, textRange);
-          }
+        .editMenuOptions(this.editMenuOptions)
+        .onSelectionChange((range: RichEditorRange) => {
+          console.log("onSelectionChange, (" + range.start + "," + range.end + ")");
+          this.endIndex = range.end
         })
-        .height(200)
+        .height(50)
+        .margin({ top: 100 })
         .borderWidth(1)
         .borderColor(Color.Red)
     }
+    .width("90%")
+    .margin("5%")
   }
 }
 ```
 
-![RichEditorSelectionMenuOptions](figures/richEditorSelectionMenuOptions.png)
+![RichEditorEditMenuOptions](figures/richEditorEditMenuOptions.gif)
 
-### 示例23（组件部分常用属性）
+### 示例24（组件部分常用属性）
 通过[barState](#barstate13)属性设置组件滚动条的显示模式。通过[enableKeyboardOnFocus](#enablekeyboardonfocus12)属性设置组件通过点击以外的方式获焦时，是否主动拉起软键盘。通过[enableHapticFeedback](#enablehapticfeedback13)属性设置组件是否支持触控反馈。通过[getPreviewText](#getpreviewtext12)接口获取组件预上屏信息。通过[stopBackPress](#stopbackpress18)属性设置是否阻止返回键向其它组件或应用侧传递。
 
 ```ts
@@ -4884,7 +5254,7 @@ struct RichEditor_example {
 
 ![StyledString](figures/example23.gif)
 
-### 示例24（获取光标相对组件位置的矩形）
+### 示例25（获取光标相对组件位置的矩形）
 通过RichEditorBaseController的[getCaretRect](#getcaretrect18)方法来获取当前光标相对于组件位置的Rect。
 
 ```ts
@@ -4938,7 +5308,7 @@ struct Index {
 
 ![StyledString](figures/example24.gif)
 
-### 示例25（设置最大行数和最大字符数）
+### 示例26（设置最大行数和最大字符数）
 通过maxLength设置可输入的最大字符数，通过maxLines设置可输入的最大行数。
 
 ```ts
@@ -5037,7 +5407,7 @@ struct RichEditorExample {
 ```
 ![StyledString](figures/maxLengthmaxLines.gif)
 
-### 示例26（文本设置Url样式）
+### 示例27（文本设置Url样式）
 可以通过在addTextSpan和UpdateSpanStyle接口中加入UrlStyle，来实现文本点击时跳转到指定链接的功能。
 
 ```ts
@@ -5084,7 +5454,7 @@ struct RichEditorExample {
 }
 ```
 
-### 示例27（开启带样式的撤销还原能力）
+### 示例28（开启带样式的撤销还原能力）
 对于不使用属性字符串的富文本组件，可以通过配置[undoStyle](#undostyle20)属性为UndoStyle.KEEP_STYLE，以支持撤销还原时保留原内容的样式。
 
 ```ts
@@ -5220,7 +5590,7 @@ struct StyledUndo {
 ```
 ![UndoStyle](figures/richEditorStyledUndo.gif)
 
-### 示例28（文本设置预设段落样式）
+### 示例29（文本设置预设段落样式）
 可以通过setTypingParagraphStyle接口设置预设段落样式。
 
 ```ts
@@ -5313,7 +5683,7 @@ struct RichEditorExample {
 }
 ```
 
-### 示例29（设置装饰线粗细和多装饰线）
+### 示例30（设置装饰线粗细和多装饰线）
 
 ```ts
 import { LengthMetrics } from '@kit.ArkUI';
@@ -5441,7 +5811,7 @@ struct Index {
 ![Decoration](figures/decoration_thickness_scale.gif)
 
 
-### 示例30（设置开启中西文自动间距）
+### 示例31（设置开启中西文自动间距）
 该示例通过[enableAutoSpacing](#enableautospacing20)属性设置中西文自动间距。
 
 ```ts

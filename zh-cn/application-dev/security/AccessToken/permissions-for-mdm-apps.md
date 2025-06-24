@@ -536,6 +536,38 @@
 
 **起始版本**：20
 
+## ohos.permission.ENTERPRISE_MANAGE_LOCAL_PUBLICSPACES
+
+允许企业应用启用、创建、删除工作空间。
+
+获取此权限后，应用可以设置空间切换免密登录时间、用户照片、不允许删除的空间列表等。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**支持设备**：PC/2in1
+
+**起始版本**：20
+
+## ohos.permission.ENTERPRISE_FILE_TRANSFER_AUDIT_POLICY_MANAGEMENT
+
+允许MDM应用管理文件传输的策略和审计信息。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**支持设备**：PC/2in1
+
+**起始版本**：20
+
 ## ohos.permission.ENTERPRISE_SET_WALLPAPER
 
 允许设备管理应用设置壁纸。

@@ -386,6 +386,23 @@ User 1 is a user who supports third-party applications running in singleton mode
 
 **Valid since**：20
 
+## ohos.permission.QUERY_LOCAL_WORKSPACES
+
+Allows a normal enterprise application to query workspace and the list of non-deletable workspaces.
+
+With this permission, the application can query basic workspace information and the list of non-deletable workspaces.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Supported devices**: PC/2in1
+
+**Valid since**：20
+
 ## ohos.permission.SET_NET_EXT_ATTRIBUTE
 
 Allows an application to set network-specific extended attributes.

@@ -1043,7 +1043,7 @@ try {
 
 setTitleAndDockHoverShown(isTitleHoverShown?: boolean, isDockHoverShown?: boolean): Promise&lt;void&gt;
 
-设置主窗口进入全屏沉浸式时鼠标Hover到热区上是否显示窗口标题栏和dock栏，使用Promise异步回调，仅2in1设备可用。
+设置主窗口进入全屏模式时鼠标Hover到热区上是否显示窗口标题栏和dock栏，使用Promise异步回调，仅2in1设备可用。
 
 **系统能力**：SystemCapability.Window.SessionManager
 
@@ -1055,6 +1055,12 @@ setTitleAndDockHoverShown(isTitleHoverShown?: boolean, isDockHoverShown?: boolea
 | ---------- | ------- | ---- | ------------------------------------------------------------ |
 | isTitleHoverShown    | boolean | 否   | 是否显示窗口标题栏。<br>true表示显示窗口标题栏；false表示不显示窗口标题栏。默认值是true。</br> |
 | isDockHoverShown    | boolean | 否   | 是否显示dock栏。<br>true表示显示dock栏；false表示不显示dock栏。默认值是true。</br> |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -1085,7 +1091,7 @@ export default class EntryAbility extends UIAbility {
         data => {
           mainWindow = data;
           console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
-          // 调用maximize接口，设置窗口进入全屏沉浸式。
+          // 调用maximize接口，设置窗口进入全屏模式。
           mainWindow.maximize(window.MaximizePresentation.ENTER_IMMERSIVE);
           // 调用setTitleAndDockHoverShown接口，隐藏标题栏和dock栏。
           mainWindow.setTitleAndDockHoverShown(false, false);
@@ -3153,6 +3159,85 @@ try {
   windowClass.off('screenshot');
 } catch (exception) {
   console.error(`Failed to register or unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+### on('screenshotAppEvent')<sup>20+</sup>
+
+on(type: 'screenshotAppEvent', callback: Callback&lt;ScreenshotEventType&gt;): void
+
+开启屏幕截屏事件类型的监听。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                | 必填 | 说明                                                         |
+| -------- | ------------------- | ---- | ------------------------------------------------------------ |
+| type     | string              | 是   | 监听事件，固定为'screenshotAppEvent'，即屏幕截屏的事件类型，对控制中心截屏、快捷键截屏以及滚动截屏生效。 |
+| callback | Callback&lt;[ScreenshotEventType](arkts-apis-window-e.md#screenshoteventtype20)&gt; | 是   | 回调函数。返回触发的截屏事件类型。                 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```ts
+const callback = (eventType: window.ScreenshotEventType) => {
+  console.info(`screenshotAppEvent happened. Event: ${data}`);
+}
+try {
+  windowClass.on('screenshotAppEvent', callback);
+} catch (exception) {
+  console.error(`Failed to register callback. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+### off('screenshotAppEvent')<sup>20+</sup>
+
+off(type: 'screenshotAppEvent', callback?: Callback&lt;ScreenshotEventType&gt;): void
+
+关闭屏幕截屏事件类型的监听。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型                | 必填 | 说明                                                         |
+| -------- | ------------------- | ---- | ------------------------------------------------------------ |
+| type     | string              | 是   | 监听事件，固定为'screenshotAppEvent'，即屏幕截屏的事件类型。 |
+| callback | Callback&lt;[ScreenshotEventType](arkts-apis-window-e.md#screenshoteventtype20)&gt; | 否   | 回调函数。返回触发的截屏事件类型。若传入参数，则关闭该监听。若未传入参数，则关闭所有窗口截图事件的监听。                 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```ts
+const callback = (eventType: window.ScreenshotEventType) => {
+  // ...
+}
+try {
+  // 通过on接口开启监听
+  windowClass.on('screenshotAppEvent', callback);
+  // 关闭指定callback的监听
+  windowClass.off('screenshotAppEvent', callback);
+  // 如果通过on开启多个callback进行监听，同时关闭所有监听：
+  windowClass.off('screenshotAppEvent');
+} catch (exception) {
+  console.error(`Failed to unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -5859,7 +5944,7 @@ maximize(presentation?: MaximizePresentation): Promise&lt;void&gt;
 
 | 参数名 | 类型  | 必填 | 说明 |
 | ----- | ---------------------------- | -- | --------------------------------- |
-| presentation  | [MaximizePresentation](arkts-apis-window-e.md#maximizepresentation12) | 否 | 主窗口或子窗口最大化时的布局枚举。默认值window.MaximizePresentation.ENTER_IMMERSIVE，即默认最大化时进入沉浸式布局。 |
+| presentation  | [MaximizePresentation](arkts-apis-window-e.md#maximizepresentation12) | 否 | 主窗口或子窗口最大化时的布局枚举。默认值window.MaximizePresentation.ENTER_IMMERSIVE，即默认最大化时进入全屏模式。 |
 
 **返回值：**
 
@@ -7272,6 +7357,11 @@ setWindowTopmost(isWindowTopmost: boolean): Promise&lt;void&gt;
 | --------- | ------- | ---- | --------------------------------------------- |
 | isWindowTopmost | boolean | 是   | 设置主窗口置顶，true为置顶，false为取消置顶。 |
 
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **错误码：**
 

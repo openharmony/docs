@@ -86,7 +86,7 @@ The bundle name does not exist.
 
 **错误信息**
 
-If the input parameter is not a valid parameter.
+If the input parameter is not valid parameter.
 
 **错误描述**
 

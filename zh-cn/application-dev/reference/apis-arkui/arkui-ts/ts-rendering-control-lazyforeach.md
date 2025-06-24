@@ -25,6 +25,10 @@ LazyForEach从提供的数据源中按需迭代数据，并在每次迭代过程
 | itemGenerator | (item:&nbsp;Object, index: number)&nbsp;=&gt;&nbsp;void   | 是   | 子组件生成函数，为数组中的每一个数据项创建一个子组件。<br/>**说明：**<br/>- item是当前数据项，index是数据项索引值。<br/>- itemGenerator的函数体必须使用大括号{...}。<br />- itemGenerator每次迭代只能并且必须生成一个子组件。<br />- itemGenerator中可以使用if语句，但是必须保证if语句每个分支都会创建一个相同类型的子组件。 |
 | keyGenerator  | (item:&nbsp;Object, index: number)&nbsp;=&gt;&nbsp;string | 否   | 键值生成函数，用于给数据源中的每一个数据项生成唯一且固定的键值。修改数据源中的一个数据项若不影响其生成的键值，则对应组件不会被更新，否则此处组件就会被重建更新。`keyGenerator`参数是可选的，但是，为了使开发框架能够更好地识别数组更改并正确更新组件，建议提供。<br/>**说明：**<br/>- item是当前数据项，index是数据项索引值。<br/>- 数据源中的每一个数据项生成的键值不能重复。<br/>- `keyGenerator`缺省时，使用默认的键值生成函数，即`(item: Object, index: number) => { return viewId + '-' + index.toString(); }`，生成键值仅受索引值index影响。 |
 
+> **说明：** 
+>
+> 应避免在`keyGenerator`和`itemGenerator`函数中执行耗时操作，以此来减少应用滑动时卡顿丢帧问题，最佳实践请参考[主线程耗时操作优化-循环渲染](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-time-optimization-of-the-main-thread#section4551193714439)。例如，不推荐使用JSON.stringify函数。在复杂的业务场景中，使用JSON.stringify会对item对象进行序列化，该过程会消耗大量时间与计算资源，从而降低页面性能，最佳实践请参考[懒加载优化性能-键值生成规则](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-lazyforeach-optimization#section68711519072)。
+
 ## IDataSource
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -68,6 +72,10 @@ getData(index:&nbsp;number): any
 | 类型                | 说明        |
 | ------------------- | --------- |
 | any | 获取索引值index对应的数据，由数据源决定具体类型。 |
+
+> **说明：** 
+>
+> 应避免在`getData`函数中执行执行耗时操作，以此来减少应用滑动时卡顿丢帧问题，最佳实践请参考[主线程耗时操作优化-循环渲染](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-time-optimization-of-the-main-thread#section4551193714439)。
 
 ### registerDataChangeListener
 
