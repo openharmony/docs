@@ -32,7 +32,7 @@ Transferable对象，也称为NativeBinding对象，是指绑定C++对象的JS�
 ```ts
 // Index.ets
 import { taskpool } from '@kit.ArkTS';
-import { loadPixelMap } from './pixelMapTest';
+import { loadPixelMap } from './PixelMapTest';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
@@ -83,7 +83,7 @@ struct Index {
 <!-- @[example_pass_obj](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/CommunicationObjects/entry/src/main/ets/managers/TransferabledObject.ets) -->
 
 ```ts
-// pixelMapTest.ets
+// PixelMapTest.ets
 import { image } from '@kit.ImageKit';
 
 @Concurrent
