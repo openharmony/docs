@@ -423,6 +423,25 @@ int OH_UdmfDataLoadInfo_GetRecordCount(OH_UdmfDataLoadInfo* dataLoadInfo)
 | -- | -- |
 | int | 返回记录的数量。 |
 
+### OH_UdmfDataLoadInfo_SetRecordCount()
+
+```
+void OH_UdmfDataLoadInfo_SetRecordCount(OH_UdmfDataLoadInfo* dataLoadInfo, unsigned int recordCount)
+```
+
+**描述**
+
+设置数据加载信息[OH_UdmfDataLoadInfo](capi-udmf-oh-udmfdataloadinfo.md)中的记录数量。
+
+**起始版本：** 20
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [OH_UdmfDataLoadInfo](capi-udmf-oh-udmfdataloadinfo.md)* dataLoadInfo | 表示指向数据加载信息[OH_UdmfDataLoadInfo](capi-udmf-oh-udmfdataloadinfo.md)实例的指针。 |
+| unsigned int recordCount | 表示记录的数量。 |
+
 ### OH_Udmf_DataLoadHandler()
 
 ```
