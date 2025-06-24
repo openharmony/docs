@@ -219,7 +219,23 @@ radiusGradientBlur(value: number, options: LinearGradientBlurOptions): Filter
 **示例：**
 
 ```ts
-filter.radiusGradientBlur(20, {fractionStops: [[0, 0], [0.5, 0.2], [1.0, 1.0]], direction: GradientDirection.Bottom})
+import { uiEffect } from "@kit.ArkGraphics2D"
+
+@Entry
+@Component
+struct RadiusGradientBlurExample {
+  @State blurRadiusExample: number = 64
+  @State linearGradientBlurOptionsExample: LinearGradientBlurOptions =
+    {fractionStops: [[0.0, 0.0], [1.0, 1.0]], direction: GradientDirection.Bottom}
+
+  build() {
+    Column() {
+      Image($rawfile('test.png'))
+        .compositingFilter(uiEffect.createFilter().radiusGradientBlur(this.blurRadiusExample,
+this.linearGradientBlurOptionsExample))
+    }
+  }
+}
 ```
 
 ### bezierWarp<sup>20+</sup>
@@ -307,7 +323,32 @@ colorGradient(colors: Array\<Color>, positions: Array\<common2D.Point>, strength
 **示例：**
 
 ```ts
-filter.colorGradient([{red: 1.0, green: 0.8, blue: 0.5, alpha: 0.8}, {red: 1.0, green: 1.5, blue: 0.5, alpha: 1.0}], [{x: 0.2, y: 0.2}, {x: 0.8, y: 0.6}], [0.3, 0.3], uiEffect.Mask.createRippleMask({x: 0.5, y: 0.5}, 0.5, 0.5, 0.5))
+import { common2D, uiEffect } from "@kit.ArkGraphics2D"
+
+@Entry
+@Component
+struct ColorGradientExample {
+  @State colorsExample: Array<uiEffect.Color> = [
+    {red: 1.0, green: 0.8, blue: 0.5, alpha: 0.8},
+    {red: 1.0, green: 1.5, blue: 0.5, alpha: 1.0}
+  ]
+
+  @State positionsExample: Array<common2D.Point> = [
+    {x: 0.2, y: 0.2},
+    {x: 0.8, y: 0.6}]
+
+  @State strengthsExample: Array<number> = [0.3, 0.3]
+
+  build() {
+    Column() {
+      Row()
+        .width("100%")
+        .height("100%")
+        .backgroundFilter(uiEffect.createFilter().colorGradient(this.colorsExample, this.positionsExample, this.strengthsExample)
+        )
+    }
+  }
+}
 ```
 
 ### edgeLight<sup>20+</sup>
@@ -344,7 +385,25 @@ edgeLight(alpha: number, color?: Color, mask?: Mask, bloom?: boolean): Filter
 **示例：**
 
 ```ts
-uiEffect.createFilter().edgeLight(1.0, {red: 1.0, green: 0.78, blue: 0.57, alpha: 1.0}, null)
+import { uiEffect } from "@kit.ArkGraphics2D"
+
+@Entry
+@Component
+struct EdgeLightExample {
+  @State colorExample: uiEffect.Color = {red: 0.0, green: 1.0, blue: 0.0, alpha: 1.0}
+  
+  @State maskExample: uiEffect.Mask = uiEffect.Mask.createRippleMask({x: 0.5, y: 0.5}, 0.2, 0.5, 0.5)
+  
+  build() {
+    Stack() {
+      Image($rawfile('test.png'))
+      Row()  
+        .width("100%")
+        .height("100%")
+        .backgroundFilter(uiEffect.createFilter().edgeLight(1.0, this.colorExample, this.maskExample, false))
+    }
+  }
+}
 ```
 
 ### displacementDistort<sup>20+</sup>
@@ -379,7 +438,23 @@ displacementDistort(displacementMap: Mask, factor?: [number, number]): Filter
 **示例：**
 
 ```ts
-uiEffect.createFilter().displacementDistort(uiEffect.Mask.createRippleMask({x: 0.5, y: 1.0}, 1.2, 0.3, 0.0), [1.0, 1.0])
+import { uiEffect } from "@kit.ArkGraphics2D"
+
+@Entry
+@Component
+struct DisplacementDistortExample {
+  @State maskExample: uiEffect.Mask = uiEffect.Mask.createRippleMask({x: 0.5, y: 0.5}, 0.2, 0.3, 0.0)
+  
+  build() {
+    Stack() {
+      Image($rawfile('test.png'))
+      Row()  
+        .width("100%")
+        .height("100%")
+        .backgroundFilter(uiEffect.createFilter().displacementDistort(this.maskExample, [5.0, 5.0]))
+    }
+  }
+}
 ```
 
 ### maskDispersion<sup>20+</sup>
@@ -417,7 +492,46 @@ maskDispersion(dispersionMask: Mask, alpha: number, rFactor?: [number, number], 
 **示例：**
 
 ```ts
-filter.maskDispersion(mask, 0.5, [0.15, -0.15], [0.0, 0.0], [-0.15, 0.15])
+import {image} from '@kit.ImageKit'
+import {common2D, uiEffect} from '@kit.ArkGraphics2D'
+
+const context = getContext(this)
+const resourceMgr =context.resourceManager
+
+@Entry
+@Component
+struct MaskDispersion {
+  @State pixelMap_: PixelMap | null = null
+  @State src: common2D.Rect = { left: 0, top: 0, right: 1.0, bottom: 1.0 }
+  @State dst: common2D.Rect = { left: 0, top: 0, right: 1.0, bottom: 1.0 }
+  @State fillColor: uiEffect.Color = { red: 0, green: 0, blue: 0, alpha: 0 }
+
+  onPageShow(): void {
+    resourceMgr.getMediaContent($r("app.media.mask_alpha")).then(val => {
+        let buffer = val.buffer.slice(0, val.buffer.byteLength)
+            let imageSource = image.createImageSource(buffer);
+            imageSource.createPixelMap().then(pixelmap => {
+                this.pixelMap_ = pixelmap
+            })
+    }
+)
+}
+  
+  build() {
+    Stack() {
+      Image($rawfile('test.png'))
+      Row()  
+        .width("100%")
+        .height("100%")
+        .backgroundFilter(uiEffect.createFilter().maskDispersion(
+          uiEffect.Mask.createPixelMapMask(this.pixelMap_, this.src, this.dst, this.fillColor),
+          1.0,
+          [0.5, -0.5],
+          [0.0, 0.0],
+          [-0.5, 0.5]))
+    }
+  }
+}
 ```
 
 ### hdrBrightnessRatio<sup>20+</sup>
