@@ -31,7 +31,7 @@ const promise: Promise<number> = new Promise((resolve: Function, reject: Functio
   }, 1000);
 })
 ```
-<!-- @[promise_async_operation](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/AsyncConcurrencyOverview/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[promise_async_operation](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/AsyncConcurrencyOverview/entry/src/main/ets/pages/Index.ets) -->
 
 在上述代码中，setTimeout函数模拟了一个异步操作，1秒后生成一个随机数。如果随机数大于0.5，调用resolve回调函数并传递该随机数；否则调用reject回调函数并传递一个错误对象。
 
@@ -55,7 +55,7 @@ promise.then((result: number) => {
   console.error(error.message); // 失败时执行
 });
 ```
-<!-- @[promise_then_catch_handling](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/AsyncConcurrencyOverview/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[promise_then_catch_handling](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/AsyncConcurrencyOverview/entry/src/main/ets/pages/Index.ets) -->
 
 在上述代码中，then方法的回调函数接收Promise对象的成功结果作为参数，并输出到控制台。如果Promise对象进入rejected状态，catch方法的回调函数接收错误对象作为参数，并输出到控制台。
 
@@ -103,7 +103,7 @@ struct Index {
   }
 }
 ```
-<!-- @[async_await_sync_operation](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/AsyncConcurrencyOverview/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[async_await_sync_operation](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/AsyncConcurrencyOverview/entry/src/main/ets/pages/Index.ets) -->
 
 在上述示例代码中，使用了await关键字来等待Promise对象的解析，并将其解析值存储在result变量中。
 
@@ -122,4 +122,4 @@ async function myAsyncFunction(): Promise<void> {
 
 myAsyncFunction();
 ```
-<!-- @[async_operation_error_handling_with_try_catch](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/AsyncConcurrencyOverview/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[async_operation_error_handling_with_try_catch](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/AsyncConcurrencyOverview/entry/src/main/ets/pages/Index.ets) -->
