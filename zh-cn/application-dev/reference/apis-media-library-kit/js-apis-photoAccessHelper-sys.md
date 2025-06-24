@@ -8294,6 +8294,8 @@ startDownloadCloudMedia(downloadType: CloudMediaDownloadType): Promise&lt;void&g
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
+**需要权限**：ohos.permission.CLOUDFILE_SYNC_MANAGER
+
 **参数：**
 
 | 参数名   | 类型                      | 必填 | 说明       |
@@ -8344,6 +8346,8 @@ pauseDownloadCloudMedia(): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
+**需要权限**：ohos.permission.CLOUDFILE_SYNC_MANAGER
+
 **返回值：**
 
 | 类型                                    | 说明              |
@@ -8387,6 +8391,8 @@ cancelDownloadCloudMedia(): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
+**需要权限**：ohos.permission.CLOUDFILE_SYNC_MANAGER
+
 **返回值：**
 
 | 类型                                    | 说明              |
@@ -8429,6 +8435,8 @@ retainCloudMediaAsset(retainType: CloudMediaRetainType): Promise&lt;void&gt;
 **系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限**：ohos.permission.CLOUDFILE_SYNC_MANAGER
 
 **参数：**
 
@@ -8479,6 +8487,8 @@ getCloudMediaAssetStatus(): Promise&lt;CloudMediaAssetStatus&gt;
 **系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
 
 **返回值：**
 
