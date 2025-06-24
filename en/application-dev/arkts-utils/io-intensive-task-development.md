@@ -63,7 +63,7 @@ The performance focus of I/O intensive tasks is not the CPU processing capabilit
               .fontSize(50)
               .fontWeight(FontWeight.Bold)
               .onClick(() => {
-                let context = getContext() as common.UIAbilityContext;
+                let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
     
                 // Use TaskPool to execute the concurrent function with frequent I/O operations.
                 // In the case of a large array, the distribution of I/O intensive tasks can block the UI main thread. Therefore, multithreading is necessary.

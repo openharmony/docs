@@ -12,7 +12,7 @@ Nonlinear containers, underpinned by hash tables or red-black trees, implement a
 | TreeMap | Stores a collection of KV pairs with unique keys. It allows users to customize sorting methods. It is suitable for scenarios requiring ordered storage of KV pairs.|
 | TreeSet | Stores a collection of unique values. It allows users to customize sorting methods but does not recommend storing null values. It is suitable for scenarios requiring ordered storage of collections.|
 | LightWeightMap | Stores a collection of KV pairs with unique keys. It uses a more lightweight structure, occupying less memory. It is recommended for scenarios with limited memory and the need to store KV pairs.|
-| LightWeightSet |  Stores a collection of unique values. It uses a more lightweight structure, occupying less memory. It is recommended for creating non-redundant collections or removing duplicates.|
+| LightWeightSet |  Stores a collection of unique values. It uses a more lightweight structure, occupying less memory. It is useful for creating non-redundant collections or removing duplicates.|
 | PlainArray | Stores a collection of KV pairs with unique keys, where keys are of the number type. It uses a lightweight structure and a binary search algorithm for key lookup. It is suitable for storing KV pairs with number-type keys.|
 
 ## HashMap
@@ -70,7 +70,7 @@ Common APIs for adding, removing, modifying, and accessing elements in HashSet a
 
 [TreeMap](../reference/apis-arkts/js-apis-treemap.md) is used to store a collection of KV pairs with unique keys. Each key corresponds to a value.
 
-Defined by generics, TreeMap stores keys in an ordered manner. The underlying structure is a binary tree, allowing for quick lookup of KV pairs through binary tree search. The type of **key** must comply with the ECMA standard. Keys in a TreeMap are stored in order. TreeMap is implemented using a red-black tree, enabling fast insertion and removal.
+Defined by generics, TreeMap stores keys in an ordered manner. TreeMap is implemented using a red-black tree, enabling fast insertion and removal. The type of **key** complies with the ECMA standard.
 
 Compared with [HashMap](../reference/apis-arkts/js-apis-hashmap.md), which provides faster access based on the key's hash code, TreeMap is ordered and thus less efficient.
 
@@ -98,7 +98,7 @@ Common APIs for adding, removing, modifying, and accessing elements in TreeMap a
 
 [TreeSet](../reference/apis-arkts/js-apis-treeset.md) is used to store a collection of unique values.
 
-Defined by generics, TreeSet stores values in an ordered manner. The underlying structure is a binary tree, allowing for quick lookup of values through binary tree search. The type of **value** must comply with the ECMA standard. Values in a TreeSet are stored in order. TreeSet is implemented using a red-black tree, enabling fast insertion and removal.
+Defined by generics, TreeSet stores values in an ordered manner. TreeSet is implemented using a red-black tree, enabling fast insertion and removal. The type of **value** complies with the ECMA standard.
 
 TreeSet is based on [TreeMap](../reference/apis-arkts/js-apis-treemap.md) and processes only the **value** object. It allows for ordered storage of a collection of values and can be sorted according to a custom sorting function.
 
@@ -123,7 +123,7 @@ Common APIs for adding, removing, modifying, and accessing elements in TreeSet a
 
 ## LightWeightMap
 
-[LightWeightMap](../reference/apis-arkts/js-apis-lightweightmap.md) is used to store a collection of KV pairs with unique keys. Each key corresponds to a value. Defined by generics, LightWeightMap uses a more lightweight structure. The underlying structure uses hash codes to identify unique keys, with a conflict resolution strategy of linear probing. The lookup of keys relies on hash codes and binary search algorithms, storing hash codes in an array and mapping them to **key** and **value** values in other arrays. The type of **key** must comply with the ECMA standard.
+[LightWeightMap](../reference/apis-arkts/js-apis-lightweightmap.md) is used to store a collection of KV pairs with unique keys. Each key corresponds to a value. Defined by generics, LightWeightMap uses a more lightweight structure. The underlying structure uses hash codes to identify unique keys, with a conflict resolution strategy of linear probing. The lookup of keys relies on hash codes and binary search algorithms, storing hash codes in an array and mapping them to **key** and **value** values in other arrays. The type of **key** complies with the ECMA standard.
 
 The default initial capacity is 8, and it supports dynamic resizing, doubling its size each time.
 
@@ -156,7 +156,7 @@ Common APIs for adding, removing, modifying, and accessing elements in LightWeig
 
 [LightWeightSet](../reference/apis-arkts/js-apis-lightweightset.md) is used to store a collection of unique values.
 
-Defined by generics, LightWeightSet uses a more lightweight structure. The default initial capacity is 8, and it supports dynamic resizing, doubling its size each time. The lookup of values relies on hash codes and binary search algorithms, storing hash codes in an array and mapping them to values in other arrays. The type of **value** must comply with the ECMA standard.
+Defined by generics, LightWeightSet uses a more lightweight structure. The default initial capacity is 8, and it supports dynamic resizing, doubling its size each time. The lookup of values relies on hash codes and binary search algorithms, storing hash codes in an array and mapping them to values in other arrays. The type of **value** complies with the ECMA standard.
 
 LightWeightSet identifies unique values based on hash at the underlying layer, with a conflict resolution strategy of linear probing and a lookup strategy based on binary search.
 
@@ -168,7 +168,7 @@ Common APIs for adding, removing, modifying, and accessing elements in LightWeig
 
 | Operation| API| Description|
 | --------- | ------- | ------- |
-| Adding elements| add(value: T) | Adds a value.|
+| Adding elements| add(obj: T) | Adds a value.|
 | Accessing elements| getIndexOf(key: T) | Obtains the index corresponding to the specified key.|
 | Accessing elements| getValueAt(index: number) | Obtains the value at the specified index.|
 | Accessing elements| values() | Returns an iterator that contains all the values in the set.|
