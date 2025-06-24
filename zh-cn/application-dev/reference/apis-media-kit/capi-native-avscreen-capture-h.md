@@ -292,7 +292,7 @@ buffer使用完成后，调用OH_AVScreenCapture_ReleaseVideoBuffer接口进行�
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_NativeBuffer](capi-oh-nativebuffer.md) | 执行成功返回OH_NativeBuffer对象，通过OH_NativeBuffer对象相关接口可以获取到视频buffer和分辨率等信息参数。 |
+| [OH_NativeBuffer](capi-avscreencapture-oh-nativebuffer.md) | 执行成功返回OH_NativeBuffer对象，通过OH_NativeBuffer对象相关接口可以获取到视频buffer和分辨率等信息参数。 |
 
 ### OH_AVScreenCapture_ReleaseAudioBuffer()
 
