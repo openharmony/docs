@@ -1032,7 +1032,7 @@ struct CustomDialogExample1 {
       Button('点我关闭弹窗')
         .onClick(() => {
           if (this.controller != undefined) {
-            this.controller.close()
+            this.controller.close();
           }
         })
         .margin(20)
@@ -1043,61 +1043,61 @@ struct CustomDialogExample1 {
 @Entry
 @Component
 struct Example3 {
-  @State log:string = 'Log information:';
+  @State log: string = 'Log information:';
   dialogController: CustomDialogController | null = new CustomDialogController({
     builder: CustomDialogExample1({
-      cancel: ()=> { this.onCancel() },
-      confirm: ()=> { this.onAccept() }
+      cancel: ()=> { this.onCancel(); },
+      confirm: ()=> { this.onAccept(); }
     }),
     cancel: this.existApp,
     autoCancel: true,
     alignment: DialogAlignment.Bottom,
     onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
-      console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
-      console.log("dialog onWillDismiss")
+      console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
+      console.log("dialog onWillDismiss");
       if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
-        dismissDialogAction.dismiss()
+        dismissDialogAction.dismiss();
       }
       if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
-        dismissDialogAction.dismiss()
+        dismissDialogAction.dismiss();
       }
     },
     onDidAppear: () => {
-      this.log += '# onDidAppear'
-      console.info("CustomDialog,is onDidAppear!")
+      this.log += '# onDidAppear';
+      console.info("CustomDialog,is onDidAppear!");
     },
     onDidDisappear: () => {
-      this.log += '# onDidDisappear'
-      console.info("CustomDialog,is onDidDisappear!")
+      this.log += '# onDidDisappear';
+      console.info("CustomDialog,is onDidDisappear!");
     },
     onWillAppear: () => {
-      this.log = 'Log information:onWillAppear'
-      console.info("CustomDialog,is onWillAppear!")
+      this.log = 'Log information:onWillAppear';
+      console.info("CustomDialog,is onWillAppear!");
     },
     onWillDisappear: () => {
-      this.log += '# onWillDisappear'
-      console.info("CustomDialog,is onWillDisappear!")
+      this.log += '# onWillDisappear';
+      console.info("CustomDialog,is onWillDisappear!");
     },
     offset: { dx: 0, dy: -20 },
     customStyle: false,
   })
   onCancel() {
-    console.info('CustomDialog Callback when the first button is clicked')
+    console.info('CustomDialog Callback when the first button is clicked');
   }
 
   onAccept() {
-    console.info('CustomDialog Callback when the second button is clicked')
+    console.info('CustomDialog Callback when the second button is clicked');
   }
 
   existApp() {
-    console.info('CustomDialog Click the callback in the blank area')
+    console.info('CustomDialog Click the callback in the blank area');
   }
   build() {
     Column({ space: 5 }) {
       Button('CustomDialog')
         .onClick(() => {
-          this.dialogController?.open()
-        }).backgroundColor(0x317aff).height("60vp")
+          this.dialogController?.open();
+        })
       Text(this.log).fontSize(30).margin({ top: 200 })
     }.width('100%').margin({ top: 5 })
   }
