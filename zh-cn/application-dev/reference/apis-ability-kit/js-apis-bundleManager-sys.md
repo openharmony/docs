@@ -4888,7 +4888,7 @@ try {
 
 ## bundleManager.getDeveloperIds<sup>12+</sup>
 
-getDeveloperIds(appDistributionType?: number): Array\<String>
+getDeveloperIds(appDistributionType?: number): Array\<string>
 
 根据给定的应用[分发类型](#appdistributiontype12)获取当前用户下的所有的开发者ID列表。
 
@@ -4908,7 +4908,7 @@ getDeveloperIds(appDistributionType?: number): Array\<String>
 
 | 类型                                                         | 说明                                   |
 | ------------------------------------------------------------ | -------------------------------------- |
-| Array\<String>    | 同步返回Array\<String>。 |
+| Array\<string>    | 同步返回Array\<string>。 |
 
 **错误码：**
 
