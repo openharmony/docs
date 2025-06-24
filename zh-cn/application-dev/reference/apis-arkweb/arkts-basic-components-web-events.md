@@ -382,7 +382,7 @@ onConsole(callback: Callback\<OnConsoleEvent, boolean\>)
 
 | 参数名     | 类型                              | 必填   | 说明      |
 | ------- | --------------------------------- | ---- | --------- |
-| callback | Callback\<[OnConsoleEvent](./arkts-basic-components-web-i.md#onconsoleevent12), boolean\> | 是    | 网页收到JavaScript控制台消息时触发。<br>返回值boolean。当返回true时，该条消息将不会再打印至控制台，返回false时仍会打印至控制台。 |
+| callback | Callback\<[OnConsoleEvent](./arkts-basic-components-web-i.md#onconsoleevent12), boolean\> | 是    | 网页收到JavaScript控制台消息时触发。<br>返回值boolean。当返回true时，该条消息将不会再打印至hilog日志，返回false时仍会打印至hilog日志。 |
 
 **示例：**
 
