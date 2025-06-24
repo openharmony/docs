@@ -375,7 +375,7 @@ When **layoutDirection** is **Column** or **ColumnReverse**, the value indicates
 
 multiSelectable(value: boolean)
 
-Whether to enable multiselect. When multiselect is enabled, you can use the **selected** attribute and **onSelect** event to obtain the selected status of grid items; you can also set the [style](./ts-universal-attributes-polymorphic-style.md) for the selected state (by default, no style is set for the selected state).
+Whether to enable multi-select. When multi-select is enabled, you can use the **selected** attribute and **onSelect** event to obtain the selected status of grid items; you can also set the [style](./ts-universal-attributes-polymorphic-style.md) for the selected state (by default, no style is set for the selected state).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -385,7 +385,7 @@ Whether to enable multiselect. When multiselect is enabled, you can use the **se
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | Yes  | Whether to enable multiselect.<br>Default value: **false**<br>**false**: Multiselect is disabled. **true**: Multiselect is disabled.|
+| value  | boolean | Yes  | Whether to enable multi-select.<br>Default value: **false**<br>**false**: Multi-select is disabled. **true**: Multi-select is disabled.|
 
 ### supportAnimation<sup>8+</sup>
 

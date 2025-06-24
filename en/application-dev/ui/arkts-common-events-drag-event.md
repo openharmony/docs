@@ -604,7 +604,7 @@ struct GridEts {
               this.numberBadge--;
             }
           })
-          // Enable multiselect and set the number badge.
+          // Enable multi-select and set the number badge.
           .dragPreviewOptions({numberBadge: this.numberBadge},{isMultiSelectionEnabled:true,defaultAnimationBeforeLifting:true})
           .onDragStart(()=>{
           })
