@@ -5154,6 +5154,7 @@ enableDynamicIcon(bundleName: string, moduleName: string): Promise\<void>;
 | 17700001 | The specified bundleName is not found. |
 | 17700002 | The specified moduleName is not found. |
 | 17700304 | Failed to enable the dynamic icon. |
+| 17700307 | Dynamic icons cannot take effect due to existing custom themes. |
 
 **示例：**
 
@@ -5220,6 +5221,7 @@ enableDynamicIcon(bundleName: string, moduleName: string, option?: BundleOptions
 | 17700004 | The specified user ID is not found. |
 | 17700061 | AppIndex not in valid range. |
 | 17700304 | Failed to enable the dynamic icon. |
+| 17700307 | Dynamic icons cannot take effect due to existing custom themes. |
 
 **示例：**
 
