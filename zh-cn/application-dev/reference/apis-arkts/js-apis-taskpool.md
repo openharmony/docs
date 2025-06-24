@@ -198,7 +198,7 @@ taskpool.execute(task3, taskpool.Priority.HIGH).then((value: Object) => {
 
 execute<A extends Array\<Object>, R>(task: GenericsTask<A, R>, priority?: Priority): Promise\<R>
 
-校验并发函数的参数类型和返回类型后，将创建好的泛型任务放入taskpool内部任务队列。
+校验并发函数的参数类型和返回类型后，将创建好的泛型任务放入taskpool内部任务队列，任务不会立即执行，而是等待分发到工作线程执行。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -257,7 +257,7 @@ taskpool.execute<[number], number>(task3, taskpool.Priority.HIGH).then((value: n
 
 execute(group: TaskGroup, priority?: Priority): Promise<Object[]>
 
-将创建好的任务组放入taskpool内部任务队列，任务组中的任务不会立即执行，而是等待分发到工作线程执行。任务组中任务全部执行完成后，结果数组统一返回。当前执行模式适用于执行一组有关联的任务。
+将创建好的[任务组](#taskgroup10)放入taskpool内部任务队列，任务组中的任务不会立即执行，而是等待分发到工作线程执行。任务组中任务全部执行完成后，结果数组统一返回。当前执行模式适用于执行一组有关联的任务。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -433,7 +433,7 @@ taskpool.executeDelayed<[number], string>(1000, task).then((res: string) => { //
 
 executePeriodically(period: number, task: Task, priority?: Priority): void
 
-周期执行任务每隔period时长执行一次。当前执行模式支持设置任务优先级，并可以通过调用cancel取消任务周期执行。周期任务不能是任务组任务、串行队列任务或异步队列任务，不能再次调用执行接口，且不能拥有依赖关系。
+周期执行任务，每隔period时长执行一次。当前执行模式支持设置任务优先级，并可以通过调用cancel取消任务周期执行。周期任务不能是任务组任务、串行队列任务或异步队列任务，不能再次调用执行接口，且执行的任务不能拥有依赖关系。
 
 
 **系统能力：** SystemCapability.Utils.Lang
@@ -585,7 +585,7 @@ taskpoolTest();
 
 cancel(task: Task): void
 
-取消任务池中的任务。当任务在taskpool等待队列中，取消该任务后该任务将不再执行，并返回任务被取消的异常；当任务已经在taskpool工作线程执行，取消该任务并不影响任务继续执行，执行结果在catch分支返回，搭配isCanceled使用可以对任务取消行为作出响应。taskpool.cancel对其之前的taskpool.execute/taskpool.executeDelayed生效。
+取消任务池中的任务。当任务在taskpool等待队列中，取消该任务后该任务将不再执行，并返回任务被取消的异常；当任务已经在taskpool工作线程执行，取消该任务并不影响任务继续执行，执行结果在catch分支返回，搭配isCanceled使用可以对任务取消行为作出响应。taskpool.cancel对其之前的taskpool.execute/taskpool.executeDelayed/taskpool.executePeriodically生效。
 
 从API version 20开始，支持在执行cancel操作后，在catch分支里使用BusinessError<[taskpool.TaskResult](#taskresult20)>的泛型标记，来获取任务中抛出的异常信息或最终的执行结果。
 
@@ -728,7 +728,7 @@ concurrentFunc();
 
 cancel(taskId: number): void
 
-通过任务ID取消任务池中的任务。当任务在taskpool等待队列中，取消该任务后该任务将不再执行，并返回任务被取消的异常；当任务已经在taskpool工作线程执行，取消该任务并不影响任务继续执行，执行结果在catch分支返回，搭配isCanceled使用可以对任务取消行为作出响应。taskpool.cancel对其之前的taskpool.execute/taskpool.executeDelayed生效。在其他线程调用taskpool.cancel时需要注意，因为cancel的行为是异步的，可能对之后的taskpool.execute/taskpool.executeDelayed生效。
+通过任务ID取消任务池中的任务。当任务在taskpool等待队列中，取消该任务后该任务将不再执行，并返回任务被取消的异常；当任务已经在taskpool工作线程执行，取消该任务并不影响任务继续执行，执行结果在catch分支返回，搭配isCanceled使用可以对任务取消行为作出响应。taskpool.cancel对其之前的taskpool.execute/taskpool.executeDelayed/taskpool.executePeriodically生效。在其他线程调用taskpool.cancel时需要注意，因为cancel的行为是异步的，可能对之后的taskpool.execute/taskpool.executeDelayed生效。
 
 从API version 20开始，支持在执行cancel操作后，在catch分支里使用BusinessError<[taskpool.TaskResult](#taskresult20)>的泛型标记，来获取任务中抛出的异常信息或最终的执行结果。
 
