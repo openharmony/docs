@@ -350,6 +350,50 @@ let array: Array<Array<string>> = [['str1', 'str2', 'str3'], ['str4', 'str5', 's
 let sendableArray = collections.Array.from<Array<string>>(array); // Prints the following exception information: Parameter error.Only accept sendable value
 ```
 
+### from
+
+static from\<T>(iterable: Iterable\<T>): Array\<T>
+
+Creates an ArkTS array from an iterable object.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name   | Type         | Mandatory| Description                           |
+| --------- | ------------- | ---- | ------------------------------- |
+| iterable | Iterable\<T> | Yes   | Array-like object. |
+
+**Return value**
+
+| Type     | Description                   |
+| --------- | ----------------------- |
+| Array\<T> | Newly created ArkTS array.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
+
+| ID| Error Message                        |
+| -------- | -------------------------------- |
+| 401 | Parameter error: Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+| 10200011 | The from method cannot be bound. |
+
+**Example**
+
+```ts
+// Positive example:
+const mapper = new Map([
+  ['1', 'a'],
+  ['2', 'b'],
+]);
+let newArray: collections.Array<string> = collections.Array.from(mapper.values());
+console.info(newArray.toString());
+// Expected output: a,b
+```
+
 ### pop
 
 pop(): T | undefined
