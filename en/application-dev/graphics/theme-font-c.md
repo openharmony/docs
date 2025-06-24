@@ -10,11 +10,11 @@ Theme fonts refer to the fonts that can be used in system theme applications. Th
 
 ![themeText_native](figures/themeText_native.jpg)
 
-To switch the subject word, the app must subscribe to the subject word change event. After receiving the font change event, the app proactively calls the page refresh API to switch the subject word. Otherwise, the subject word takes effect only after the app is restarted. To draw the theme font, you need to use OH_Drawing_GetFontCollectionGlobalInstance to obtain the global font set object. Only the object returned by this API has the theme font information.
+To switch the theme font, the app must subscribe to the theme font change event. After receiving the font change event, the app proactively calls the page refresh API to switch the theme font. Otherwise, the theme font takes effect only after the app is restarted. To draw the theme font, you need to use OH_Drawing_GetFontCollectionGlobalInstance to obtain the global font set object. Only the object returned by this API has the theme font information.
 
 > **NOTE**
 >
-> The font set object created by OH_Drawing_CreateSharedFontCollection does not contain the subject word information and cannot be used to draw the subject word.
+> The font set object created by OH_Drawing_CreateSharedFontCollection does not contain the theme font information and cannot be used to draw the theme font.
 
 
 ## Available APIs
@@ -49,7 +49,7 @@ The following table lists the common APIs for registering and using theme fonts.
    };
    ```
 
-   When newConfig changes, the onConfigurationUpdate function is automatically triggered. The application may obtain the fontId from the sent configuration information, and determine whether the fontId is the same as the fontId stored locally in the application to identify the switching of the subject word. If they are inconsistent, the local font ID is updated and the C++ code is called to update the typesetting result.
+   When newConfig changes, the onConfigurationUpdate function is automatically triggered. The application may obtain the fontId from the sent configuration information, and determine whether the fontId is the same as the fontId stored locally in the application to identify the switching of the theme font. If they are inconsistent, the local font ID is updated and the C++ code is called to update the typesetting result.
 
 3. This step and the following steps describe how to use the theme font on the C++ side. The calling path from ArkTS to C++ needs to be selected based on the actual situation. This example is not recommended.
 

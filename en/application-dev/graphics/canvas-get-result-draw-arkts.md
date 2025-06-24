@@ -9,7 +9,7 @@ Canvas provides the capability of drawing basic graphics on the screen. You can 
 Canvas is the core of graphics drawing. All drawing operations (including basic graphics drawing, text drawing, image drawing, and image transformation) mentioned in this chapter are based on Canvas.
 
 
-Currently, ArkTS can obtain the canvas in either of the following ways: [Obtaining the Canvas That Can Be Directly Displayed](#obtaining-the-canvas-that-can-be-directly-displayed) and [Obtaining and Displaying the Off-Screen Canvas](#obtaining-and-displaying-the off-screen-canvas). The former can display the drawing result on the screen without additional operations after the drawing API is called, while the latter can display the drawing result using existing display methods.
+Currently, ArkTS can obtain the canvas in either of the following ways: [Obtaining the Canvas That Can Be Directly Displayed](#obtaining-the-canvas-that-can-be-directly-displayed) and [Obtaining and Displaying the Off-Screen Canvas](#obtaining-and-displaying-the-off-screen-canvas). The former can display the drawing result on the screen without additional operations after the drawing API is called, while the latter can display the drawing result using existing display methods.
 
 
 ## Obtaining the Canvas That Can Be Directly Displayed

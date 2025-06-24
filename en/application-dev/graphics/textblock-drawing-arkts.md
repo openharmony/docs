@@ -110,7 +110,7 @@ font.setSize(200);
 const textBlob = drawing.TextBlob.makeFromString("Hello world", font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
 // Draw a TextBlob.
 canvas.drawTextBlob(textBlob, 100, 300);
-// Remove the padding effect.
+// Remove the filling effect.
 canvas.detachBrush();
 ```
 
