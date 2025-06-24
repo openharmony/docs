@@ -1,10 +1,10 @@
 # @ohos.util.Vector (Linear Container Vector)
 
-**Vector** is a linear data structure that is implemented based on arrays. When the memory of a vector is used up, a larger contiguous memory area is automatically allocated, all the elements are copied to the new memory area, and the current memory area is reclaimed. **Vector** can be used to efficiently access elements.
+Vector is a linear data structure that is implemented based on arrays. When the memory of a vector is used up, a larger contiguous memory area is automatically allocated, all the elements are copied to the new memory area, and the current memory area is reclaimed. Vector can be used to efficiently access elements.
 
-Both **Vector** and **[ArrayList](js-apis-arraylist.md)** are implemented based on arrays, but **Vector** provides more interfaces for operating the arrays. Both of them can dynamically adjust the capacity. **Vector** doubles the capacity each time, whereas **ArrayList** increases the capacity by 50%.
+Both Vector and [ArrayList](js-apis-arraylist.md) are implemented based on arrays, but Vector provides more interfaces for operating the arrays. Both of them can dynamically adjust the capacity. Vector doubles the capacity each time, whereas ArrayList increases the capacity by 50%.
 
-**Recommended use case**: Use **Vector** when the data volume is large.
+**Recommended use case**: Use Vector when the data volume is large.
 
 This topic uses the following to identify the use of generics:
 - T: Type
@@ -24,13 +24,13 @@ import { Vector } from '@kit.ArkTS';
 
 ## Vector
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.Utils.Lang
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| length | number | Yes| No| Number of elements in a vector (called container later).|
+| length | number | Yes| No| Number of elements in a Vector.|
 
 
 ### constructor
@@ -52,7 +52,7 @@ let vector : Vector<string | number | Array<number>> = new Vector();
 
 add(element: T): boolean
 
-Adds an element at the end of this container.
+Adds an element at the end of this Vector.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -66,7 +66,7 @@ Adds an element at the end of this container.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the element is added successfully; returns **false** otherwise.|
+| boolean | Operation result. The value **true** is returned if the element is added; otherwise, **false** is returned.|
 
 **Example**
 
@@ -112,7 +112,7 @@ vector.insert(true, 2);
 
 has(element: T): boolean
 
-Checks whether this container has the specified element.
+Checks whether this Vector has the specified element.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -126,7 +126,7 @@ Checks whether this container has the specified element.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the container has the specified element; returns **false** otherwise.|
+| boolean | Check result. The value **true** is returned if the Vector has the specified element; otherwise, **false** is returned.|
 
 **Example**
 
@@ -141,7 +141,7 @@ let result1 = vector.has("squirrel");
 
 getIndexOf(element: T): number
 
-Obtains the index of the first occurrence of the specified element in this container.
+Obtains the index of the first occurrence of the specified element in this Vector.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -155,7 +155,7 @@ Obtains the index of the first occurrence of the specified element in this conta
 
 | Type| Description|
 | -------- | -------- |
-| number | Returns the position index if obtained; returns **-1** otherwise.|
+| number | Index of the element. If no match is found, **-1** is returned.|
 
 **Example**
 
@@ -175,7 +175,7 @@ let result = vector.getIndexOf(2);
 
 getLastIndexOf(element: T): number
 
-Obtains the index of the last occurrence of the specified element in this container.
+Obtains the index of the last occurrence of the specified element in this Vector.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -189,7 +189,7 @@ Obtains the index of the last occurrence of the specified element in this contai
 
 | Type| Description|
 | -------- | -------- |
-| number | Returns the position index if obtained; returns **-1** otherwise.|
+| number | Index of the element. If no match is found, **-1** is returned.|
 
 **Example**
 
@@ -223,7 +223,7 @@ Searches for an element based on its index, removes the element after returning 
 
 | Type| Description|
 | -------- | -------- |
-| T | Element removed. If the container is empty, **undefined** is returned. If the index is out of range, an exception is thrown.|
+| T | Element removed. If the Vector is empty, **undefined** is returned. If the index is out of range, an exception is thrown.|
 
 **Example**
 
@@ -241,7 +241,7 @@ let result = vector.removeByIndex(2);
 
 remove(element: T): boolean
 
-Removes the first occurrence of the specified element from this container.
+Removes the first occurrence of the specified element from this Vector.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -255,7 +255,7 @@ Removes the first occurrence of the specified element from this container.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the element is removed successfully; returns **false** otherwise.|
+| boolean | Operation result. The value **true** is returned if the element is removed; otherwise, **false** is returned.|
 
 **Example**
 
@@ -272,7 +272,7 @@ let result = vector.remove(2);
 
 removeByRange(fromIndex: number, toIndex: number): void
 
-Removes from this container all of the elements within a range, including the element at the start position but not that at the end position.
+Removes from this Vector all of the elements within a range, including the element at the start position but not that at the end position.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -299,7 +299,7 @@ vector.removeByRange(2,4);
 replaceAllElements(callbackFn: (value: T, index?: number, vector?: Vector&lt;T&gt;) => T,
 thisArg?: Object): void
 
-Replaces all elements in this container with new elements, and returns the new ones.
+Replaces all elements in this Vector with new elements, and returns the new ones.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -337,7 +337,7 @@ vector.replaceAllElements((value : number) : number => {
 forEach(callbackFn: (value: T, index?: number, vector?: Vector&lt;T&gt;) => void,
 thisArg?: Object): void
 
-Uses a callback to traverse the elements in this container and obtain their position indexes.
+Uses a callback to traverse the elements in this Vector and obtain their position indexes.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -373,7 +373,7 @@ vector.forEach((value : number, index ?: number) : void => {
 
 sort(comparator?: (firstValue: T, secondValue: T) => number): void
 
-Sorts elements in this container.
+Sorts elements in this Vector.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -407,7 +407,7 @@ vector.sort();
 
 subVector(fromIndex: number, toIndex: number): Vector&lt;T&gt;
 
-Obtains elements within a range in this container, including the element at the start position but not that at the end position, and returns these elements as a new **Vector** instance.
+Obtains elements within a range in this Vector, including the element at the start position but not that at the end position, and returns these elements as a new **Vector** instance.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -443,7 +443,7 @@ let result1 = vector.subVector(2,4);
 
 clear(): void
 
-Clears all elements in this container and sets its length to **0**.
+Clears all elements in this Vector and sets its length to **0**.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -462,7 +462,7 @@ vector.clear();
 
 clone(): Vector&lt;T&gt;
 
-Clones this container and returns a copy. The modification to the copy does not affect the original instance.
+Clones this Vector and returns a copy. The modification to the copy does not affect the original instance.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -487,7 +487,7 @@ let result = vector.clone();
 
 getCapacity(): number
 
-Obtains the capacity of this container.
+Obtains the capacity of this Vector.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -512,7 +512,7 @@ let result = vector.getCapacity();
 
 convertToArray(): Array&lt;T&gt;
 
-Converts this container into an array.
+Converts this Vector into an array.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -537,7 +537,7 @@ let result = vector.convertToArray();
 
 isEmpty(): boolean
 
-Checks whether this container is empty (contains no elements).
+Checks whether this Vector is empty (contains no elements).
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -545,7 +545,7 @@ Checks whether this container is empty (contains no elements).
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the container is empty; returns **false** otherwise.|
+| boolean | Check result. The value **true** is returned if the Vector is empty; otherwise, **false** is returned.|
 
 **Example**
 
@@ -562,7 +562,7 @@ let result = vector.isEmpty();
 
 increaseCapacityTo(newCapacity: number): void
 
-Increases the capacity of this container.
+Increases the capacity of this Vector.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -588,7 +588,7 @@ vector.increaseCapacityTo(12);
 
 trimToCurrentLength(): void
 
-Trims the capacity of this container into its current length.
+Trims the capacity of this Vector into its current length.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -607,7 +607,7 @@ vector.trimToCurrentLength();
 
 toString(): string
 
-Uses commas (,) to concatenate elements in this container into a string.
+Uses commas (,) to concatenate elements in this Vector into a string.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -632,7 +632,7 @@ let result = vector.toString();
 
 copyToArray(array: Array&lt;T&gt;): void
 
-Copies elements in this container into an array to overwrite elements of the same position indexes.
+Copies elements in this Vector into an array to overwrite elements of the same position indexes.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -640,13 +640,13 @@ Copies elements in this container into an array to overwrite elements of the sam
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| array | Array&lt;T&gt; | Yes| Array to which the elements in the container will be copied.|
+| array | Array&lt;T&gt; | Yes| Array to which the elements in the Vector will be copied.|
 
 ### getFirstElement
 
 getFirstElement(): T
 
-Obtains the first element in this container.
+Obtains the first element in this Vector.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -671,7 +671,7 @@ let result = vector.getFirstElement();
 
 getLastElement(): T
 
-Obtains the last element in this container.
+Obtains the last element in this Vector.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -711,7 +711,7 @@ Searches for an element backward from the specified position index and returns t
 
 | Type| Description|
 | -------- | -------- |
-| number | Returns the position index if obtained; returns **-1** otherwise.|
+| number | Index of the element. If no match is found, **-1** is returned.|
 
 **Example**
 
@@ -743,7 +743,7 @@ Searches for an element forward from the specified position index and returns th
 
 | Type| Description|
 | -------- | -------- |
-| number | Returns the position index if obtained; returns **-1** otherwise.|
+| number | Index of the element. If no match is found, **-1** is returned.|
 
 **Example**
 
@@ -760,7 +760,7 @@ let result = vector.getIndexFrom(4, 3);
 
 setLength(newSize: number): void
 
-Sets a new length for this container.
+Sets a new length for this Vector.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -786,7 +786,7 @@ vector.setLength(2);
 
 get(index: number): T 
 
-Obtains an element at the specified position in this container.
+Obtains an element at the specified position in this Vector.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -817,7 +817,7 @@ let result = vector.get(2);
 
 set(index: number, element: T): T
 
-Replaces an element at the specified position in this container with a given element.
+Replaces an element at the specified position in this Vector with a given element.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -838,7 +838,7 @@ Replaces an element at the specified position in this container with a given ele
 
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
-Obtains an iterator, each item of which is a JavaScript object.
+Returns an iterator, each item of which is a JavaScript object.
 
 **System capability**: SystemCapability.Utils.Lang
 

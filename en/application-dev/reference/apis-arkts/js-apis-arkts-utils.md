@@ -5,6 +5,8 @@ The Utils module provides a variety of ArkTS utility functions.
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+> This module can be imported only to ArkTS files (with the file name extension .ets).
 
 ## Modules to Import
 
@@ -32,15 +34,15 @@ A supplementary type alias that represents the callback in all the overloads of 
 
 ### AsyncLock
 
-A class that implements an asynchronous lock and allows asynchronous operations to be performed under a lock.
+A class that implements an asynchronous lock and allows asynchronous operations to be performed under a lock. This class is decorated by [@Sendable](../../arkts-utils/arkts-sendable.md).
 
-#### Attributes
+#### Properties
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name| Type  | Readable| Writable| Description      |
+| Name| Type  | Read-Only| Optional| Description      |
 | ---- | ------ | ---- | ---- | ---------- |
 | name | string | Yes  | No  | Name of the lock.|
 
@@ -151,9 +153,9 @@ Queries information about an asynchronous lock.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description      |
-| ---- | ------ | ---- | ---------- |
-| name | string | Yes  | Name of the lock.|
+| Name| Type  | Mandatory| Description                                                                                                                    |
+| ---- | ------ | ---- | ------------------------------------------------------------------------------------------------------------------------ |
+| name | string | Yes  | Name of the lock. Only locks obtained through the [request](#request) API can be queried, meaning that the lock name must match the parameter passed to the [request](#request) API.|
 
 **Return value**
 
@@ -163,10 +165,11 @@ Queries information about an asynchronous lock.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message     |
 | -------- | ------------- |
+| 401      | The input parameters are invalid. |
 | 10200030 | The lock does not exist. |
 
 **Example**
@@ -202,7 +205,7 @@ Queries information about all existing asynchronous locks.
 
 ```ts
 let states: ArkTSUtils.locks.AsyncLockState[] = ArkTSUtils.locks.AsyncLock.queryAll();
-if (states.length == 0) {
+if (states.length === 0) {
     throw new Error('Test failed: At least one state is expected, but what got is ' + states.length);
 }
 ```
@@ -211,7 +214,7 @@ if (states.length == 0) {
 
 lockAsync\<T>(callback: AsyncLockCallback\<T>): Promise\<T>
 
-Performs an operation exclusively under a lock. This API acquires the lock, executes the callback, and releases the lock. The callback is executed asynchronously in the same thread where [lockAsync](#lockasync) was called.
+Performs an operation under a lock. This API acquires the lock, executes the callback, and releases the lock. The callback is executed asynchronously in the same thread where [lockAsync](#lockasync) was called.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -221,7 +224,7 @@ Performs an operation exclusively under a lock. This API acquires the lock, exec
 
 | Name    | Type                                   | Mandatory| Description                  |
 | -------- | --------------------------------------- | ---- | ---------------------- |
-| callback | [AsyncLockCallback](#asynclockcallback) | Yes  | Callback to be executed after a lock is acquired.|
+| callback | [AsyncLockCallback\<T>](#asynclockcallback) | Yes  | Callback to be executed after a lock is acquired.|
 
 **Return value**
 
@@ -231,10 +234,11 @@ Performs an operation exclusively under a lock. This API acquires the lock, exec
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message     |
 | -------- | ------------- |
+| 401      | The input parameters are invalid. |
 | 10200030 | The lock does not exist. |
 
 **Example**
@@ -260,7 +264,7 @@ Performs an operation under a lock. This API acquires the lock, executes the cal
 
 | Name    | Type                                   | Mandatory| Description                  |
 | -------- | --------------------------------------- | ---- | ---------------------- |
-| callback | [AsyncLockCallback](#asynclockcallback) | Yes  | Callback to be executed after a lock is acquired.|
+| callback | [AsyncLockCallback\<T>](#asynclockcallback) | Yes  | Callback to be executed after a lock is acquired.|
 | mode     | [AsyncLockMode](#asynclockmode)         | Yes  | Mode of the lock.        |
 
 **Return value**
@@ -271,10 +275,11 @@ Performs an operation under a lock. This API acquires the lock, executes the cal
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message     |
 | -------- | ------------- |
+| 401      | The input parameters are invalid. |
 | 10200030 | The lock does not exist. |
 
 **Example**
@@ -300,7 +305,7 @@ Performs an operation under a lock. This API acquires the lock, executes the cal
 
 | Name    | Type                                     | Mandatory| Description                  |
 | -------- | ----------------------------------------- | ---- | ---------------------- |
-| callback | [AsyncLockCallback](#asynclockcallback)   | Yes  | Callback to be executed after a lock is acquired.|
+| callback | [AsyncLockCallback\<T>](#asynclockcallback)   | Yes  | Callback to be executed after a lock is acquired.|
 | mode     | [AsyncLockMode](#asynclockmode)           | Yes  | Mode of the lock.        |
 | options  | [AsyncLockOptions\<U>](#asynclockoptions) | Yes  | Options of the lock.        |
 
@@ -312,10 +317,11 @@ Performs an operation under a lock. This API acquires the lock, executes the cal
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message         |
 | -------- | ----------------- |
+| 401      | The input parameters are invalid. |
 | 10200030 | The lock does not exist.     |
 | 10200031 | Timeout exceeded. |
 
@@ -353,27 +359,27 @@ Enumerates the modes of an asynchronous lock.
 let lock = new ArkTSUtils.locks.AsyncLock();
 // shared0 can acquire the lock and start execution.
 lock.lockAsync(async () => {
-    console.log('shared0');
+    console.info('shared0');
     await new Promise<void>((resolve) => setTimeout(resolve, 1000));
 }, ArkTSUtils.locks.AsyncLockMode.SHARED);
 // shared1 can acquire the lock and start execution without waiting for shared0.
 lock.lockAsync(async () => {
-    console.log('shared1');
+    console.info('shared1');
     await new Promise<void>((resolve) => setTimeout(resolve, 1000));
 }, ArkTSUtils.locks.AsyncLockMode.SHARED);
 // exclusive0 can acquire the lock and start execution after shared0 and shared1 are executed.
 lock.lockAsync(async () => {
-    console.log('exclusive0');
+    console.info('exclusive0');
     await new Promise<void>((resolve) => setTimeout(resolve, 1000));
 }, ArkTSUtils.locks.AsyncLockMode.EXCLUSIVE);
 // shared2 can acquire the lock and start execution after exclusive0 is executed.
 lock.lockAsync(async () => {
-    console.log('shared2');
+    console.info('shared2');
     await new Promise<void>((resolve) => setTimeout(resolve, 1000));
 }, ArkTSUtils.locks.AsyncLockMode.SHARED);
 // shared3 can acquire the lock and start execution after exclusive0 is executed, but not after shared2 is executed.
 lock.lockAsync(async () => {
-    console.log('shared3');
+    console.info('shared3');
     await new Promise<void>((resolve) => setTimeout(resolve, 1000));
 }, ArkTSUtils.locks.AsyncLockMode.SHARED);
 ```
@@ -392,7 +398,7 @@ Class that implements the asynchronous lock options.
 
 constructor()
 
-Default constructor used to create an **AsyncLockOptions** instance with the default values for all attributes.
+Default constructor used to create an **AsyncLockOptions** instance with the default values for all properties.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -413,13 +419,13 @@ options.isAvailable = false;
 options.signal = s;
 ```
 
-#### Attributes
+#### Properties
 
-| Name       | Type                                 | Readable| Writable| Description                                                                                                                     |
+| Name       | Type                                 | Read-Only| Optional| Description                                                                                                                     |
 | ----------- | ------------------------------------- | ---- | ---- | ------------------------------------------------------------------------------------------------------------------------- |
-| isAvailable | boolean                               | Yes  | Yes  | Whether the lock is available. If the value is **true**, a lock is granted only when it is not held. If the value is **false**, a lock is granted once it is released. The default value is **false**.|
-| signal      | [AbortSignal\<T>](#abortsignal)\|null | Yes  | Yes  | Signal used to abort an asynchronous operation. If **signal.aborted** is **true**, the lock request is discarded. If **signal.aborted** is **null**, the request is queued normally. The default value is **null**.              |
-| timeout     | number                                | Yes  | Yes  | Timeout interval of the lock request, in milliseconds. If the value is greater than zero and a lock is not acquired before time, [lockAsync](#lockasync) returns a rejected Promise. The default value is **0**.     |
+| isAvailable | boolean                               | No  | No  | Whether the lock is available. If the value is **true**, a lock is granted only when it is not held. If the value is **false**, a lock is granted once it is released. The default value is **false**.|
+| signal      | [AbortSignal\<T>](#abortsignal)\|null | No  | No  | Signal used to abort an asynchronous operation. If **signal.aborted** is **true**, the lock request is discarded. If **signal.aborted** is **false**, the request keeps waiting. If **signal.aborted** is **null**, the request is queued normally. The default value is **null**.              |
+| timeout     | number                                | No  | No  | Timeout duration for the lock operation, in milliseconds. If the value is greater than zero and the operation exceeds this duration, [lockAsync](#lockasync) returns a rejected Promise. The default value is **0**.     |
 
 ### AsyncLockState
 
@@ -429,12 +435,12 @@ A class used to store information about all lock operations currently performed 
 
 **System capability**: SystemCapability.Utils.Lang
 
-#### Attributes
+#### Properties
 
-| Name   | Type                             | Readable| Writable| Description            |
+| Name   | Type                             | Read-Only| Optional| Description            |
 | ------- | --------------------------------- | ---- | ---- | ---------------- |
-| held    | [AsyncLockInfo[]](#asynclockinfo) | Yes  | Yes  | Information about the lock being held.  |
-| pending | [AsyncLockInfo[]](#asynclockinfo) | Yes  | Yes  | Information about the lock in the waiting state.|
+| held    | [AsyncLockInfo[]](#asynclockinfo) | No  | No  | Information about the lock being held.  |
+| pending | [AsyncLockInfo[]](#asynclockinfo) | No  | No  | Information about the lock in the waiting state.|
 
 ### AsyncLockInfo
 
@@ -444,13 +450,13 @@ Describes the information about a lock.
 
 **System capability**: SystemCapability.Utils.Lang
 
-#### Attributes
+#### Properties
 
-| Name     | Type                           | Readable| Writable| Description                                                     |
+| Name     | Type                           | Read-Only| Optional| Description                                                     |
 | --------- | ------------------------------- | ---- | ---- | --------------------------------------------------------- |
-| name      | string                          | Yes  | Yes  | Name of the lock.                                               |
-| mode      | [AsyncLockMode](#asynclockmode) | Yes  | Yes  | Mode of the lock.                                               |
-| contextId | number                          | Yes  | Yes  | Context identifier of the caller of [AsyncLockMode](#asynclockmode).|
+| name      | string                          | No  | No  | Name of the lock.                                               |
+| mode      | [AsyncLockMode](#asynclockmode) | No  | No  | Mode of the lock.                                               |
+| contextId | number                          | No  | No  | Context identifier of the caller of [AsyncLockMode](#asynclockmode).|
 
 ### AbortSignal
 
@@ -460,16 +466,16 @@ A class that implements a signal used to abort an asynchronous operation. An ins
 
 **System capability**: SystemCapability.Utils.Lang
 
-#### Attributes
+#### Properties
 
-| Name   | Type   | Readable| Writable| Description                                                            |
+| Name   | Type   | Read-Only| Optional| Description                                                            |
 | ------- | ------- | ---- | ---- | ---------------------------------------------------------------- |
-| aborted | boolean | Yes  | Yes  | Whether to abort the operation. The value **true** means to abort the operation, and **false** means the opposite.                                          |
-| reason  | \<T>    | Yes  | Yes  | Reason for abort. This value will be used in the rejected Promise returned by [lockAsync](#lockasync).|
+| aborted | boolean | No  | No  | Whether to abort the asynchronous operation. The value **true** means to abort the asynchronous operation, and **false** means the opposite.    |
+| reason  | \<T>    | No  | No  | Reason for abort. This value will be used in the rejected Promise returned by [lockAsync](#lockasync).|
 
 ## ArkTSUtils.ASON
 
-A utility class used to parse JSON strings into [sendable data](../../arkts-utils/arkts-sendable.md#sendable-data-types). ASON allows you to parse JSON strings and generate data that can be passed across concurrency domains. It also supports conversion from sendable data into JSON strings.
+A utility class used to parse JSON strings into [sendable data](../../arkts-utils/arkts-sendable.md#sendable-data-types). ASON allows you to parse JSON strings and generate Sendable data for pass-by-reference across concurrent instances. It also supports conversion from Sendable data into JSON strings.
 
 ### ISendable
 
@@ -501,7 +507,7 @@ Defines the type of the conversion result function.
 | ------ | ------ | ---- | --------------- |
 | this   | [ISendable](#isendable) | Yes| Object to which the key-value pair to parse belongs.|
 | key  | string | Yes| Key to parse.|
-| value  | [ISendable](#isendable) | Yes| Value of the key.|
+| value  | [ISendable](#isendable) \| undefined \| null| Yes| Value of the key.|
 
 **Return value**
 
@@ -571,7 +577,7 @@ Parses a JSON string to generate ISendable data or null.
 | -------- | -------- |
 | [ISendable](#isendable) \| null | ISendable data or **null** (if **null** is passed in).|
 
-**Example**
+**Error codes**
 
 ```ts
 import { lang } from '@kit.ArkTS';
@@ -613,7 +619,7 @@ console.info("largeNumber is " + (map as collections.Map<string,bigint>).get("la
 
 stringify(value: ISendable | null | undefined): string
 
-Converts ISendable data into a JSON string.
+Converts Sendable data into a JSON string.
 
 Extension: THis API supports conversion to a JSON string from a Map, Set, [collections.Map](./js-apis-arkts-collections.md#collectionsmap), [collections.Set](./js-apis-arkts-collections.md#collectionsset), [HashMap](./js-apis-hashmap.md#hashmap), or [HashSet](./js-apis-hashset.md#hashset).
 
@@ -625,7 +631,7 @@ Extension: THis API supports conversion to a JSON string from a Map, Set, [colle
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | [ISendable](#isendable) \| null \| undefined  | Yes| ISendable data.|
+| value | [ISendable](#isendable) \| null \| undefined  | Yes| Sendable data.|
 
 **Return value**
 
@@ -633,7 +639,7 @@ Extension: THis API supports conversion to a JSON string from a Map, Set, [colle
 | -------- | -------- |
 | string | JSON string.|
 
-**Example**
+**Error codes**
 
 ```ts
 import { collections, lang, ArkTSUtils } from '@kit.ArkTS';
@@ -679,16 +685,16 @@ Checks whether the passed-in value is of the sendable data type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Check result. The value **true** means that the passed-in value is of the sendable data type, and **false** means the opposite.|
+| boolean | Check result. The value **true** is returned if the passed-in value is of the sendable data type; otherwise, **false** is returned.|
 
 **Example**
 
 ```ts
-import { ArkTSUtils } from '@kit.ArkTS'
+import { ArkTSUtils } from '@kit.ArkTS';
 
 @Sendable
 function sendableFunc() {
-  console.info("sendableFunc")
+  console.info("sendableFunc");
 }
 
 if (ArkTSUtils.isSendable(sendableFunc)) {

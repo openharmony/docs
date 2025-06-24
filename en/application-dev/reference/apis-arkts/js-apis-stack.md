@@ -1,10 +1,10 @@
 # @ohos.util.Stack (Linear Container Stack)
 
-**Stack** is implemented based on the array data structure. It follows the principle Last Out First In (LOFI) and supports data insertion and removal at one end.
+Stack is implemented based on the array data structure. It follows the principle Last Out First In (LOFI) and supports data insertion and removal at one end.
 
-Unlike **[Queue](js-apis-queue.md)**, which is implemented based on the queue data structure and supports insertion at one end and removal at the other end, **Stack** supports insertion and removal at the same end.
+Unlike [Queue](js-apis-queue.md), which is implemented based on the queue data structure and supports insertion at one end and removal at the other end, Stack supports insertion and removal at the same end.
 
-**Recommended use case**: Use **Stack** in LOFI scenarios.
+**Recommended use case**: Use Stack in LOFI scenarios.
 
 This topic uses the following to identify the use of generics:
 - T: Type
@@ -22,7 +22,7 @@ import { Stack } from '@kit.ArkTS';
 
 ## Stack
 
-### Attributes
+### Properties
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -30,7 +30,7 @@ import { Stack } from '@kit.ArkTS';
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| length | number | Yes| No| Number of elements in a stack (called container later).|
+| length | number | Yes| No| Number of elements in a Stack.|
 
 
 ### constructor
@@ -62,7 +62,7 @@ let stack : Stack<number | string | Object> = new Stack();
 
 push(item: T): T
 
-Adds an element at the top of this container.
+Adds an element at the top of this Stack.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -106,7 +106,7 @@ let result2 = stack.push(c);
 
 pop(): T
 
-Removes the top element from this container.
+Removes the top element from this Stack.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -116,7 +116,7 @@ Removes the top element from this container.
 
 | Type| Description|
 | -------- | -------- |
-| T | Element removed. If the container is empty, **undefined** is returned.|
+| T | Element removed. If the Stack is empty, **undefined** is returned.|
 
 **Error codes**
 
@@ -142,7 +142,7 @@ let result = stack.pop();
 
 peek(): T
 
-Obtains the top element of this container.
+Obtains the top element of this Stack.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -177,7 +177,7 @@ let result = stack.peek();
 
 locate(element: T): number
 
-Obtains the index of the first occurrence of the specified element in this container.
+Obtains the index of the first occurrence of the specified element in this Stack.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -193,7 +193,7 @@ Obtains the index of the first occurrence of the specified element in this conta
 
 | Type| Description|
 | -------- | -------- |
-| number | Index of the first occurrence of the specified element. If the element does not exist, **-1** is returned.|
+| number | Index of the element. If no match is found, **-1** is returned.|
 
 **Error codes**
 
@@ -219,7 +219,7 @@ let result = stack.locate(2);
 forEach(callbackFn: (value: T, index?: number, stack?: Stack&lt;T&gt;) => void,
 thisArg?: Object): void
 
-Uses a callback to traverse the elements in this container and obtain their position indexes.
+Uses a callback to traverse the elements in this Stack and obtain their indexes.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -229,10 +229,10 @@ Uses a callback to traverse the elements in this container and obtain their posi
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callbackFn | function | Yes| Callback invoked to traverse the elements in the container.|
+| callbackFn | function | Yes| Callback invoked to traverse the elements in the Stack.|
 | thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. The default value is this instance.|
 
-callbackFn
+callbackFn parameters
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -266,7 +266,7 @@ stack.forEach((value : number, index ?: number) :void => {
 
 isEmpty(): boolean
 
-Checks whether this container is empty (contains no elements).
+Checks whether this Stack is empty (contains no elements).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -276,7 +276,7 @@ Checks whether this container is empty (contains no elements).
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the container is empty; returns **false** otherwise.|
+| boolean | Returns **true** if the Stack is empty; returns **false** otherwise.|
 
 **Error codes**
 
@@ -301,7 +301,7 @@ let result = stack.isEmpty();
 
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
-Obtains an iterator, each item of which is a JavaScript object.
+Returns an iterator, each item of which is a JavaScript object.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -332,7 +332,7 @@ stack.push(4);
 // Method 1:
 while(!stack.isEmpty()) {
   // Service logic
-  let item = stack.pop()
+  let item = stack.pop();
   console.log("value:" + item);
 }
 

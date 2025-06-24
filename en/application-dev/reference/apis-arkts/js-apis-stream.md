@@ -18,7 +18,7 @@ import { stream  } from '@kit.ArkTS';
 
 Stream to which data can be written. A writable stream allows data to be written to a target, which can be a file, an HTTP response, a standard output, another stream, or the like.
 
-### Attributes
+### Properties
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -27,10 +27,10 @@ Stream to which data can be written. A writable stream allows data to be written
 | Name   | Type     | Read-Only| Optional | Description       |
 | ------- | -------- | ------ | ------ | ----------- |
 | writableObjectMode  | boolean   | Yes  | No| Whether the writable stream works in object mode. The value **true** means that the stream is configured in object mode, and **false** means the opposite. Currently, only raw data (string and Uint8Array) is supported, and the return value is **false**.|
-| writableHighWatermark | number | Yes| No | Maximum amount of data that can be stored in the buffer. The default value is 16 x 1024, in bytes.|
+| writableHighWatermark | number | Yes| No | High watermark for the data volume in the writable stream buffer. This value is not customizable currently. When you call [write()](#write), if the data volume in the buffer reaches this watermark, [write()](#write) will return **false**. The default value is 16 * 1024, in bytes.|
 | writable | boolean | Yes| No | Whether the writable stream is currently writable. The value **true** means that the stream is currently writable, and **false** means that the stream does not accept write operations.|
-| writableLength | number | Yes| No | Number of bytes to be written in the buffer of the readable stream.|
-| writableCorked | number | Yes | No| Number of times the **uncork()** API needs to be called in order to fully uncork the writable stream.|
+| writableLength | number | Yes| No | Number of bytes to be written in the buffer of the writable stream.|
+| writableCorked | number | Yes | No| Count of cork states of the writable stream. If the value is greater than 0, the writable stream buffers all writes. If the value is **0**, buffering stops. You can call [cork()](#cork) to increment the count by one, call [uncork()](#uncork) to decrement the count by one, and call [end()](#end) to clear the count.|
 | writableEnded | boolean | Yes | No| Whether [end()](#end) has been called for the writable stream. This property does not specify whether the data has been flushed. The value **true** means that [end()](#end) has been called, and **false** means the opposite.|
 | writableFinished | boolean | Yes | No| Whether data in the writable stream has been flushed. The value **true** means that data in the stream has been flushed, and **false** means the opposite.|
 
@@ -72,7 +72,7 @@ Writes data to the buffer of the stream. This API uses an asynchronous callback 
 
 | Type  | Description                  |
 | ------ | ---------------------- |
-| boolean | Whether there is space in the buffer of the writable stream. The value **true** means that there is still space in the buffer, and **false** means that the buffer is full.|
+| boolean | Whether there is space in the buffer of the writable stream. The value **true** means that there is still space in the buffer. The value **false** means that the buffer is full, and you are not advised to continue writing data.|
 
 **Error codes**
 
@@ -108,6 +108,8 @@ writableStream.write('test', 'utf8');
 end(chunk?: string | Uint8Array, encoding?: string, callback?: Function): Writable
 
 Ends the writing process in a writable stream. This API uses an asynchronous callback to return the result.
+
+If the value of **writableCorked** is greater than 0, the value is set to **0** and the remaining data in the buffer is output.
 
 If the **chunk** parameter is passed, it is treated as the final data chunk and written using either the **write** or **doWrite** API, based on the current execution context.
 
@@ -187,7 +189,7 @@ Sets the default encoding format for the writable stream.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Whether the setting is successful. The value **true** means that the setting is successful, and **false** means the opposite.|
+| boolean | Operation result. The value **true** is returned if the setting is successful; otherwise, **false** is returned.|
 
 **Error codes**
 
@@ -219,7 +221,9 @@ console.info("Writable is result", result); // Writable is result true
 
 cork(): boolean
 
-Forces all written data to be buffered in memory. This API is called to optimize the performance of continuous write operations.
+Forces subsequent writes to be buffered. This API is called to optimize the performance of continuous write operations.
+
+After this API is called, the value of **writableCorked** is incremented by one. It is recommended that this API be used in pair with [uncork()](#uncork).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -229,7 +233,7 @@ Forces all written data to be buffered in memory. This API is called to optimize
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Whether the corked status is successfully set. The value **true** means that the setting is successful, and **false** means the opposite.|
+| boolean | Operation result. The value **true** is returned if the corked status is successfully set; otherwise, **false** is returned.|
 
 **Example**
 
@@ -253,7 +257,9 @@ console.info("Writable cork result", result); // Writable cork result true
 
 uncork(): boolean
 
-Flushes all data buffered, and writes the data to the target.
+Releases the cork state, flushing the buffered data and writing it to the target location.
+
+After this API is called, the value of **writableCorked** is decremented by one. If the value reaches **0**, the stream is no longer in the cork state. Otherwise, the stream is still in the cork state. It is recommended that this API be used in pair with [cork()](#cork).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -263,7 +269,7 @@ Flushes all data buffered, and writes the data to the target.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Whether the corked status is successfully removed. The value **true** means that the corked status is successfully removed, and **false** means the opposite.|
+| boolean | Operation result. The value **true** is returned if the corked status is removed; otherwise, **false** is returned.|
 
 **Example**
 
@@ -539,7 +545,7 @@ Describes the options used in the **Readable** constructor.
 
 Stream from which data can be read. A readable stream is used to read data from a source, such as a file or a network socket.
 
-### Attributes
+### Properties
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -549,10 +555,10 @@ Stream from which data can be read. A readable stream is used to read data from 
 | ------- | -------- | ------ | ------ | ----------- |
 | readableObjectMode  | boolean   | Yes  | No| Whether the readable stream works in object mode. The value **true** means that the stream is configured in object mode, and **false** means the opposite. Currently, only raw data (string and Uint8Array) is supported, and the return value is **false**.|
 | readable | boolean | Yes| No | Whether the readable stream is currently readable. The value **true** means that the stream is currently readable, and **false** means that no data is available to read from the stream.|
-| readableHighWatermark | number | Yes| No | Maximum amount of data that can be stored in the buffer. The default value is 16 x 1024, in bytes.|
-| readableFlowing | boolean \| null | Yes| No | Whether the readable stream is flowing. The value **true** means that the stream is flowing, and **false** means the opposite.|
+| readableHighWatermark | number | Yes| No | Maximum amount of data that can be stored in the buffer. The default value is 16 * 1024, in bytes.|
+| readableFlowing | boolean \| null | Yes| No | Whether the readable stream is flowing. The value **true** means that the stream is flowing, and **false** means the opposite. The default value is **true**.|
 | readableLength | number | Yes| No | Number of bytes in the buffer.|
-| readableEncoding | string \| null | Yes| No | Encoding format. Currently, **'utf8'**, **'gb18030'**, **'gbk'**, and **'gb2312'** are supported.|
+| readableEncoding | string \| null | Yes| No | Encoding format. The default value is **'utf8'**. Currently, **'utf8'**, **'gb18030'**, **'gbk'**, and **'gb2312'** are supported.|
 | readableEnded | boolean | Yes | No| Whether the readable stream ends. The value **true** means that the stream has no more data to read, and **false** means the opposite.|
 
 ### constructor
@@ -658,7 +664,7 @@ console.info('Readable data is', dataChunk); // Readable data is test
 
 resume(): Readable
 
-Resumes an explicitly paused readable stream. You can use **isPaused** to check whether the stream is in flowing mode.
+Resumes an explicitly paused readable stream. You can use **isPaused** to check whether the stream is paused.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -725,6 +731,7 @@ console.info("Readable test pause", readableStream.isPaused()); // Readable test
 setEncoding(encoding?: string): boolean
 
 Sets an encoding format for the readable stream.
+If the buffer contains data, setting the encoding format is not allowed, and **false** is returned.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -740,7 +747,7 @@ Sets an encoding format for the readable stream.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Whether the setting is successful. The value **true** means that the setting is successful, and **false** means the opposite.|
+| boolean | Operation result. The value **true** is returned if the setting is successful; otherwise, **false** is returned.|
 
 **Error codes**
 
@@ -781,7 +788,7 @@ Checks whether the readable stream is paused. The stream is paused after [pause(
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Whether the stream is paused. The value **true** means that the stream is paused, and **false** means the opposite.|
+| boolean | Check result. The value **true** is returned if the stream is paused; otherwise, **false** is returned.|
 
 **Example**
 
@@ -1077,7 +1084,7 @@ A data read API that needs to be implemented in child classes.
 
 | Name   | Type    | Mandatory    | Description|
 | -------- | -------- | -------- | -------- |
-| size | number | Yes| Number of bytes to read.|
+| size | number | Yes| Number of bytes to read. Value range: 0 <= size <= Number.MAX_VALUE|
 
 **Error codes**
 
@@ -1159,7 +1166,7 @@ console.info("Readable push test", readable.readableLength); // Readable push te
 A stream that is both readable and writable. A duplex stream allows data to be transmitted in two directions, that is, data can be read and written.
 The **Duplex** class inherits from [Readable](#readable) and supports all the APIs in **Readable**.
 
-### Attributes
+### Properties
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1168,11 +1175,11 @@ The **Duplex** class inherits from [Readable](#readable) and supports all the AP
 | Name   | Type     | Read-Only| Optional | Description       |
 | ------- | -------- | ------ | ------ | ----------- |
 | writableObjectMode  | boolean   | Yes  | No| Whether the writable side of the duplex stream works in object mode. The value **true** means that the writable side of the stream is configured in object mode, and **false** means the opposite. Currently, only raw data (string and Uint8Array) is supported, and the return value is **false**.|
-| writableHighWatermark | number | Yes| No | Maximum amount of data that can be stored in the buffer in the writable side of the duplex stream. The default value is 16 x 1024, in bytes.|
+| writableHighWatermark | number | Yes| No | High watermark for the data volume in the buffer of the duplex stream in write mode. This value is not customizable currently. When you call [write()](#write-1), if the data volume in the buffer reaches this watermark, [write()](#write-1) will return **false**. The default value is 16 * 1024, in bytes.|
 | writable | boolean | Yes| No | Whether the duplex stream is currently writable. The value **true** means that the stream is currently writable, and **false** means that the stream does not accept write operations.|
 | writableLength | number | Yes| No | Number of bytes to be written in the buffer of the duplex stream.|
-| writableCorked | number | Yes | No| Number of times the **uncork()** API needs to be called in order to fully uncork the duplex stream.|
-| writableEnded | boolean | Yes | No| Whether [end()](#end) has been called for the duplex stream. This property does not specify whether the data has been flushed. The value **true** means that [end()](#end) has been called, and **false** means the opposite.|
+| writableCorked | number | Yes | No| Count of cork states of the duplex stream. If the value is greater than 0, the duplex stream buffers all writes. If the value is **0**, buffering stops. You can call [cork()](#cork-1) to increment the count by one, call [uncork()](#uncork-1) to decrement the count by one, and call [end()](#end-1) to clear the count.|
+| writableEnded | boolean | Yes | No| Whether [end()](#end-1) has been called for the duplex stream. This property does not specify whether the data has been flushed. The value **true** means that [end()](#end-1) has been called, and **false** means the opposite.|
 | writableFinished | boolean | Yes | No| Whether data in the duplex stream has been flushed. The value **true** means that data in the stream has been flushed, and **false** means the opposite.|
 
 ### constructor
@@ -1213,7 +1220,7 @@ Writes data to the buffer of the stream. This API uses an asynchronous callback 
 
 | Type  | Description                  |
 | ------ | ---------------------- |
-| boolean | Whether there is space in the buffer of the writable stream. The value **true** means that there is still space in the buffer, and **false** means that the buffer is full.|
+| boolean | Whether there is space in the buffer of the writable stream. The value **true** means that there is still space in the buffer. The value **false** means that the buffer is full, and you are not advised to continue writing data.|
 
 **Error codes**
 
@@ -1254,9 +1261,11 @@ end(chunk?: string | Uint8Array, encoding?: string, callback?: Function): Writab
 
 Ends the writing process in a duplex stream. This API uses an asynchronous callback to return the result.
 
+If the value of **writableCorked** is greater than 0, the value is set to **0** and the remaining data in the buffer is output.
+
 If the **chunk** parameter is passed, it is treated as the final data chunk and written using either the **write** or **doWrite** API, based on the current execution context.
 
-If **doWrite** is used for writing, the validity check of the **encoding** parameter depends on **doWrite**. 
+If **doWrite** is used for writing, the validity check of the **encoding** parameter depends on **doWrite**.
 
 If **end** is used alone (without **write**) and the **chunk** parameter is passed, the data is written through **doWrite**.
 
@@ -1330,7 +1339,7 @@ Sets the default encoding format for the duplex stream so that characters can be
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Whether the setting is successful. The value **true** means that the setting is successful, and **false** means the opposite.|
+| boolean | Operation result. The value **true** is returned if the setting is successful; otherwise, **false** is returned.|
 
 **Error codes**
 
@@ -1367,6 +1376,8 @@ cork(): boolean
 
 Forces all written data to be buffered in memory. This API is called to optimize the performance of continuous write operations.
 
+After this API is called, the value of **writableCorked** is incremented by one. It is recommended that this API be used in pair with [uncork()](#uncork-1).
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
@@ -1375,7 +1386,7 @@ Forces all written data to be buffered in memory. This API is called to optimize
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Whether the corked status is successfully set. The value **true** means that the setting is successful, and **false** means the opposite.|
+| boolean | Operation result. The value **true** is returned if the corked status is successfully set; otherwise, **false** is returned.|
 
 **Example**
 
@@ -1391,6 +1402,8 @@ uncork(): boolean
 
 Flushes all data buffered, and writes the data to the target.
 
+After this API is called, the value of **writableCorked** is decremented by one. If the value reaches **0**, the stream is no longer in the cork state. Otherwise, the stream is still in the cork state. It is recommended that this API be used in pair with [cork()](#cork-1).
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
@@ -1399,7 +1412,7 @@ Flushes all data buffered, and writes the data to the target.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Whether the corked status is successfully removed. The value **true** means that the corked status is successfully removed, and **false** means the opposite.|
+| boolean | Operation result. The value **true** is returned if the corked status is removed; otherwise, **false** is returned.|
 
 **Example**
 

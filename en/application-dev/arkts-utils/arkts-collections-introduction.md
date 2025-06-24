@@ -2,11 +2,11 @@
 
 ## ArkTS Collections
 
-ArkTS shared containers ([@arkts.collections (ArkTS Collections)](../reference/apis-arkts/js-apis-arkts-collections.md)) are designed for high-performance data transmission between concurrent tasks. They offer similar functionality to the containers defined in the ECMAScript 262 specification but with some key differences, which are outlined in the [Behavior Differences Between Shared Container APIs and Native APIs](#behavior-differences-between-shared-container-apis-and-native-apis).
+ArkTS shared containers ([@arkts.collections (ArkTS Collections)](../reference/apis-arkts/js-apis-arkts-collections.md)) are designed for high-performance data transmission between concurrent instances. They offer similar functionality to the containers defined in the ECMAScript 262 specification but with some key differences, which are outlined in the [Behavior Differences Between Shared Container APIs and Native APIs](#behavior-differences-between-shared-container-apis-and-native-apis).
 
-By default, ArkTS shared containers are passed by reference, allowing multiple concurrent tasks to manipulate the same container instance. They also support pass-by-copy, where each concurrent task holds an ArkTS container instance.
+By default, ArkTS shared containers are passed by reference, allowing multiple concurrent instances to manipulate the same container instance. Pass-by-copy is also supported. In this mode, each concurrent instance holds an ArkTS container instance.
 
-ArkTS shared containers are not thread-safe and employ a fail-fast mechanism to prevent concurrent structural modifications, which would otherwise trigger exceptions. When modifying container properties, you must use the [asynchronous lock](arkts-async-lock-introduction.md) mechanism to ensure safe access.
+ArkTS shared containers are not thread-safe and employ a fail-fast mechanism to prevent concurrent structural modifications, which would otherwise trigger exceptions. When modifying container properties in a multithreaded scenario, you must use the [asynchronous lock](arkts-async-lock-introduction.md) mechanism to ensure safe access.
 
 The ArkTS shared containers include the following types: [Array](../reference/apis-arkts/js-apis-arkts-collections.md#collectionsarray), [Map](../reference/apis-arkts/js-apis-arkts-collections.md#collectionsmap), [Set](../reference/apis-arkts/js-apis-arkts-collections.md#collectionsset), [TypedArray](../reference/apis-arkts/js-apis-arkts-collections.md#collectionstypedarray) (Int8Array, Uint8Array, Int16Array, Uint16Array, Int32Array, Uint32Array, Uint8ClampedArray, and Float32Array), and [ArrayBuffer](../reference/apis-arkts/js-apis-arkts-collections.md#collectionsarraybuffer). For details, see [@arkts.collections (ArkTS Collections)](../reference/apis-arkts/js-apis-arkts-collections.md).
 
@@ -64,7 +64,9 @@ ArkTS provides shared containers for Sendable data, with some behavior differenc
 
 > **NOTE**
 >
-> ArkTS shared containers have different types from native ECMAScript containers. Therefore, if the native **isArray()** method is used on a **collections.Array instance** object, **false** is returned.
+> ArkTS shared containers have different types from native ECMAScript 262 containers. Therefore, if the native **isArray()** method is used on a **collections.Array instance** object, **false** is returned.
+>
+> ArkTS shared containers are passed across threads by reference, which is more efficient than native containers. If you need to transfer large amounts of data across threads, you are advised to use ArkTS shared containers.
 
 ### Array
 
@@ -100,6 +102,8 @@ Native Array containers can be converted into ArkTS Array containers using the [
 | values(): IterableIterator&lt;T&gt; | values(): IterableIterator&lt;T&gt; | No| / |
 | includes(searchElement: T, fromIndex?: number): boolean | includes(searchElement: T, fromIndex?: number): boolean | No| / |
 | at(index: number): T \| undefined | at(index: number): T \| undefined | No| / |
+| find(predicate: (value: T, index: number, obj: T[]) =&gt; unknown, thisArg?: any): T \| undefined | find(predicate: (value: T, index: number, obj: Array&lt;T&gt;) =&gt; boolean): T \| undefined | Yes| 1. It is not allowed to add, delete, or modify elements during iteration or access. Otherwise, an exception is thrown.<br>2. ArkTS does not support **this**. As a result, the **thisArg** parameter is not supported.|
+| splice(start: number, deleteCount: number, ...items: T[]): T[] | splice(start: number, deleteCount: number, ...items: T[]): Array&lt;T&gt; | Yes| It is not allowed to add, delete, or modify elements during iteration or access. Otherwise, an exception is thrown.|
 
 ### ArrayBuffer
 
@@ -181,4 +185,4 @@ Native TypedArray containers can be converted into ArkTS TypedArray containers u
 | entries(): IterableIterator&lt;[T, T]&gt; | entries(): IterableIterator&lt;[T, T]&gt; | No| / |
 | keys(): IterableIterator&lt;T&gt; | keys(): IterableIterator&lt;T&gt; | No| / |
 | values(): IterableIterator&lt;T&gt; | values(): IterableIterator&lt;T&gt; | Yes| Computed property names (arkts-sendable-compated-prop-name) cannot be used in Sendable classes and interfaces.|
-| new &lt;T = any&gt;(values?: readonly T[] \| null): Set&lt;T&gt; | constructor(values?: readonly T[] \| null) | Yes| The passed-in values during construction cannot be non-Sendable data. Otherwise, an error is reported during compilation.|
+| new &lt;T = any&gt;(values?: readonly T[] \| null): Set&lt;T&gt; | constructor(values?: readonly T[] \| null) | Yes| The data passed during construction must be of the Sendable type. Otherwise, a compilation error is reported.|

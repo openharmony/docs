@@ -2,7 +2,7 @@
 
 ## Overview
 
-**arkOptions** is used to configure settings related to ArkTS compilation. This topic describes the configuration of the **types** and **transformLib** options in **arkOptions**. For more settings, see [build-profile.json5](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-hvigor-build-profile-V5).
+**arkOptions** is used to configure settings related to ArkTS compilation. This topic describes the configuration of the **types**, **maxFlowDepth**, and **transformLib** options in **arkOptions**. For more settings, see [build-profile.json5](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-hvigor-configuration-file-overview).
 
 ## types
 
@@ -10,9 +10,9 @@
 
   Field **types** in **arkOptions**
 
-| Name| Description| Data Type| Optional|
-| -------- | -------- | -------- | -------- |
-| types | Specifies type declaration files to be globally imported, avoiding the need to import them individually in each source file.| Array| Optional, defaults to an empty array|
+| Name| Description| Configuration Scope| Data Type| Optional|
+| -------- | -------- | -------- | -------- | -------- |
+| types | Specifies type declaration files to be globally imported, avoiding the need to import them individually in each source file.| Module-level| Array| Optional, defaults to an empty array|
 
 ### Example
 
@@ -66,7 +66,7 @@ Field **transformLib** in **arkOptions**
 
 | Name| Description| Configuration Scope| Data Type| Optional|
 | -------- | -------- | -------- | -------- | -------- |
-| transformLib | Specifies the bytecode instrumentation plugin configuration, allowing you to modify bytecode during compilation. This field is supported only in the stage model. The format is a relative path pointing to the dynamic library implementing the instrumentation functionality. The dynamic library must be generated on the corresponding platform and cannot be copied or renamed across platforms.| Module-level| String| Optional, defaults to not using this feature|
+| transformLib | Specifies the bytecode instrumentation plugin configuration, allowing you to modify bytecode during compilation. This field is supported only in the stage model. The format is a relative path to the dynamic library that does the instrumentation. The dynamic library must be generated on the corresponding platform and cannot be copied or renamed across platforms.| Module-level| String| Optional, defaults to not using this feature|
 
 ### Example
 

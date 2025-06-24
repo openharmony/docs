@@ -11,6 +11,8 @@ Currently, the following ArkTS containers are provided: [Array](#collectionsarra
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+> This module can be imported only to ArkTS files (with the file name extension .ets).
 
 ## Modules to Import
 
@@ -57,9 +59,9 @@ Returns the element at a given index in this ConcatArray.
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name   | Type  | Mandatory| Description                                                           |
-| ----- | ------ | ---- | ------------------------------------------------------------------ |
-| index | number | Yes  | Index of the element. The index starts from zero. If the passed-in index is less than 0 or greater than or equal to the value of **length**, an error is thrown.|
+| Name   | Type  | Mandatory| Description                      |
+| ----- | ------ | ---- | ---------------------------- |
+| index | number | Yes  | Index of the element. The index starts from zero. |
 
 **Return value**
 
@@ -223,10 +225,11 @@ A constructor used to create an ArkTS array with the given elements.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                           |
 | -------- | --------------------------------------------------- |
+| 401      | Parameter error.                                    |
 | 10200012 | The Array's constructor cannot be directly invoked. |
 
 **Example**
@@ -291,10 +294,11 @@ Creates an ArkTS array of a fixed length, with each element set to a given initi
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                        |
 | -------- | -------------------------------- |
+| 401      | Parameter error.                   |
 | 10200011 | The create method cannot be bound. |
 
 **Example**
@@ -327,10 +331,11 @@ Creates an ArkTS array from an array-like object.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                        |
 | -------- | -------------------------------- |
+| 401      | Parameter error.                 |
 | 10200011 | The from method cannot be bound. |
 
 **Example**
@@ -346,6 +351,50 @@ let sendableArray = collections.Array.from<string>(array); // Returns Sendable A
 // Negative example:
 let array: Array<Array<string>> = [['str1', 'str2', 'str3'], ['str4', 'str5', 'str6'], ['str7', 'str8', 'str9']]; // Native Array<T>, where T is a non-sendable data type.
 let sendableArray = collections.Array.from<Array<string>>(array); // Prints the following exception information: Parameter error.Only accept sendable value
+```
+
+### from
+
+static from\<T>(iterable: Iterable\<T>): Array\<T>
+
+Creates an ArkTS array from an iterable object.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name   | Type         | Mandatory| Description                           |
+| --------- | ------------- | ---- | ------------------------------- |
+| iterable | Iterable\<T> | Yes  | Array-like object.|
+
+**Return value**
+
+| Type     | Description                   |
+| --------- | ----------------------- |
+| Array\<T> | Newly created ArkTS array.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
+
+| ID| Error Message                        |
+| -------- | -------------------------------- |
+| 401 | Parameter error: Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+| 10200011 | The from method cannot be bound. |
+
+**Example**
+
+```ts
+// Positive example:
+const mapper = new Map([
+  ['1', 'a'],
+  ['2', 'b'],
+]);
+let newArray: collections.Array<string> = collections.Array.from(mapper.values());
+console.info(newArray.toString());
+// Expected output: a,b
 ```
 
 ### pop
@@ -404,10 +453,11 @@ Adds one or more elements to the end of this ArkTS array and returns the new len
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                        |
 | -------- | -------------------------------- |
+| 401      | Parameter error.                 |
 | 10200011 | The push method cannot be bound. |
 | 10200201 | Concurrent modification error.   |
 
@@ -442,10 +492,11 @@ Concatenates all elements in this ArkTS array into a string, with a given separa
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                        |
 | -------- | -------------------------------- |
+| 401      | Parameter error.                 |
 | 10200011 | The join method cannot be bound. |
 | 10200201 | Concurrent modification error.   |
 
@@ -512,10 +563,11 @@ Adds one or more elements to the beginning of this ArkTS array and returns the n
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 401      | Parameter error.                    |
 | 10200011 | The unshift method cannot be bound. |
 | 10200201 | Concurrent modification error.      |
 
@@ -540,7 +592,7 @@ Selects a range of elements in this ArkTS array to create an array.
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | start  | number | No  | Start index of the range. If a negative number is passed in, it refers to the index of **start + array.length**. The default value is **0**.  |
-| end    | number | No  | End index of the range (exclusive). If a negative number is passed in, it refers to the index of **end + array.length**. The default value is the length of the ArkTS array.|
+| end    | number | No  | End index of the range (exclusive). If a negative number is passed in, it refers to the index of **end + array.length**. The default value is the length of the original ArkTS array.|
 
 **Return value**
 
@@ -550,10 +602,11 @@ Selects a range of elements in this ArkTS array to create an array.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                         |
 | -------- | --------------------------------- |
+| 401      | Parameter error.                  |
 | 10200011 | The slice method cannot be bound. |
 | 10200201 | Concurrent modification error.    |
 
@@ -588,10 +641,11 @@ Sorts elements in this ArkTS array and returns a new array.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                        |
 | -------- | -------------------------------- |
+| 401      | Parameter error.                 |
 | 10200011 | The sort method cannot be bound. |
 | 10200201 | Concurrent modification error.   |
 
@@ -618,7 +672,7 @@ Returns the index of the first occurrence of a value in this ArkTS Array. If the
 | Name       | Type  | Mandatory| Description                       |
 | ------------- | ------ | ---- | --------------------------- |
 | searchElement | T      | Yes  | Value to search for.               |
-| fromIndex     | number | No  | Index from which the search starts. The default value is **0**.|
+| fromIndex     | number | No  | Index from which the search starts. The value begins at 0. The default value is **0**.|
 
 **Return value**
 
@@ -628,10 +682,11 @@ Returns the index of the first occurrence of a value in this ArkTS Array. If the
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 401      | Parameter error.                    |
 | 10200011 | The indexOf method cannot be bound. |
 | 10200201 | Concurrent modification error.      |
 
@@ -660,10 +715,11 @@ Calls a callback function for each element in this ArkTS Array.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 401      | Parameter error.                    |
 | 10200011 | The forEach method cannot be bound. |
 | 10200201 | Concurrent modification error.      |
 
@@ -700,10 +756,11 @@ Calls a callback function for each element in this ArkTS Array and returns a new
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                       |
 | -------- | ------------------------------- |
+| 401      | Parameter error.                |
 | 10200011 | The map method cannot be bound. |
 | 10200201 | Concurrent modification error.  |
 
@@ -732,7 +789,7 @@ Returns a new array containing all elements that pass a test provided by a callb
 
 | Name   | Type                                                  | Mandatory| Description                                                        |
 | --------- | ------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| predicate | (value: T, index: number, array: Array\<T>) => boolean | Yes  | Function that takes three arguments. It is used to filter elements.|
+| predicate | (value: T, index: number, array: Array\<T>) => boolean | Yes  | Function that takes three arguments. It is used to filter elements. The value **true** means that the current element passes the test and should be retained in the new array. The value **false** means that the current element fails the test and should be excluded from the new array.|
 
 **Return value**
 
@@ -742,10 +799,11 @@ Returns a new array containing all elements that pass a test provided by a callb
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                          |
 | -------- | ---------------------------------- |
+| 401      | Parameter error.                   |
 | 10200011 | The filter method cannot be bound. |
 | 10200201 | Concurrent modification error.     |
 
@@ -780,10 +838,11 @@ Calls a callback function for each element in this ArkTS array, uses the previou
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                          |
 | -------- | ---------------------------------- |
+| 401      | Parameter error.                   |
 | 10200011 | The reduce method cannot be bound. |
 | 10200201 | Concurrent modification error.     |
 
@@ -808,7 +867,7 @@ Similar to the previous API, this API takes an initial value as the second param
 
 | Name      | Type                                                        | Mandatory| Description                                                        |
 | ------------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callbackFn   | callbackFn: (previousValue: U, currentValue: T, currentIndex: number, array: Array\<T>) => U | Yes  | Function that takes four arguments. It performs an operation on each element and passes the result as an accumulated value to the next element.|
+| callbackFn   | (previousValue: U, currentValue: T, currentIndex: number, array: Array\<T>) => U | Yes  | Function that takes four arguments. It performs an operation on each element and passes the result as an accumulated value to the next element.|
 | initialValue | U                                                            | Yes  | Initial value of the accumulator.                                      |
 
 **Return value**
@@ -819,10 +878,11 @@ Similar to the previous API, this API takes an initial value as the second param
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                          |
 | -------- | ---------------------------------- |
+| 401      | Parameter error.                   |
 | 10200011 | The reduce method cannot be bound. |
 | 10200201 | Concurrent modification error.     |
 
@@ -859,10 +919,11 @@ Returns the element at a given index in this ArkTS array.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                      |
 | -------- | ------------------------------ |
+| 401      | Parameter error.               |
 | 10200011 | The at method cannot be bound. |
 | 10200201 | Concurrent modification error. |
 
@@ -990,7 +1051,7 @@ Returns the value of the first element that passes a test provided by a callback
 
 | Name   | Type                                                | Mandatory| Description                                                  |
 | --------- | ---------------------------------------------------- | ---- | ------------------------------------------------------ |
-| predicate | (value: T, index: number, obj: Array\<T>) => boolean | Yes  | Function that takes three arguments. It is used to filter elements.|
+| predicate | (value: T, index: number, obj: Array\<T>) => boolean | Yes  | Function that takes three arguments. It is used to filter elements. The value **true** means that the current element meets the conditions, the traversal stops, and that element is returned. The value **false** means that the current element does not meet the condition, and the traversal continues until the element that meets the condition is found or the entire array is traversed.|
 
 **Return value**
 
@@ -1000,10 +1061,11 @@ Returns the value of the first element that passes a test provided by a callback
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                        |
 | -------- | -------------------------------- |
+| 401      | Parameter error.                 |
 | 10200011 | The find method cannot be bound. |
 | 10200201 | Concurrent modification error.   |
 
@@ -1035,14 +1097,15 @@ Checks whether this ArkTS array contains an element and returns a Boolean value.
 
 | Type   | Description                                               |
 | ------- | --------------------------------------------------- |
-| boolean | **true**: The element exists.<br>**false**: The element does not exist.|
+| boolean | Check result. The value **true** is returned if the element exists; otherwise, **false** is returned.|
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                            |
 | -------- | ------------------------------------ |
+| 401      | Parameter error.                     |
 | 10200011 | The includes method cannot be bound. |
 | 10200201 | Concurrent modification error.       |
 
@@ -1067,7 +1130,7 @@ Returns the index of the first element that passes a test provided by a callback
 
 | Name   | Type                                                | Mandatory| Description                                                  |
 | --------- | ---------------------------------------------------- | ---- | ------------------------------------------------------ |
-| predicate | (value: T, index: number, obj: Array\<T>) => boolean | Yes  | Function that takes three arguments. It is used to filter elements.|
+| predicate | (value: T, index: number, obj: Array\<T>) => boolean | Yes  | Function that takes three arguments. It is used to filter elements. The value **true** means that the current element meets the conditions, the traversal stops, and the index of that element is returned. The value **false** means that the current element does not meet the condition, and the traversal continues until the element that meets the condition is found or the entire array is traversed.|
 
 **Return value**
 
@@ -1077,10 +1140,11 @@ Returns the index of the first element that passes a test provided by a callback
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                             |
 | -------- | ------------------------------------- |
+| 401      | Parameter error.                      |
 | 10200011 | The findIndex method cannot be bound. |
 | 10200201 | Concurrent modification error.        |
 
@@ -1117,10 +1181,11 @@ Fills elements in the specified range of this ArkTS array with a given value.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                        |
 | -------- | -------------------------------- |
+| 401      | Parameter error.                 |
 | 10200011 | The fill method cannot be bound. |
 | 10200201 | Concurrent modification error.   |
 
@@ -1149,10 +1214,11 @@ Shrinks this ArkTS array to a given length.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                        |
 | -------- | -------------------------------- |
+| 401      | Parameter error.                 |
 | 10200011 | The shrinkTo method cannot be bound. |
 | 10200201 | Concurrent modification error.   |
 
@@ -1185,10 +1251,11 @@ Extends this array to a given length by adding elements with the specified initi
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                        |
 | -------- | -------------------------------- |
+| 401      | Parameter error.                 |
 | 10200011 | The extendTo method cannot be bound. |
 | 10200201 | Concurrent modification error.   |
 
@@ -1272,7 +1339,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ---------------------------------- |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2.Incorrect parameter types. |
+| 401      | Parameter error. Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 | 10200011 | The splice method cannot be bound. |
 | 10200201 | Concurrent modification error.     |
 
@@ -1313,7 +1380,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ---------------------------------- |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2.Incorrect parameter types. |
+| 401      | Parameter error. Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 | 10200011 | The splice method cannot be bound. |
 | 10200201 | Concurrent modification error.     |
 
@@ -1335,7 +1402,7 @@ let removeArray = array.splice(2, 2, 6, 7, 8); // The array is changed to [1, 2,
 
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
-Obtains an iterator, each item of which is a JavaScript object.
+Returns an iterator, each item of which is a JavaScript object.
 
 > **NOTE**
 >
@@ -1440,14 +1507,15 @@ A constructor used to create an ArkTS map.
 
 | Name | Type  | Mandatory| Description                                                        |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| entries | [K, V][] \| null | No  | Array containing key-value pairs, or iterator object. The default value is **null**, indicating that an empty map is created.|
+| entries | readonly (readonly [K, V])[] \| null | No  | Array containing key-value pairs, or iterator object. The default value is **null**, indicating that an empty map is created.|
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                               |
 | -------- | ------------------------------------------------------- |
+| 401      | Parameter error.                                        |
 | 10200012 | The ArkTS Map's constructor cannot be directly invoked. |
 
 **Example**
@@ -1665,14 +1733,15 @@ Deletes a specified key from this ArkTS map.
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| boolean | **true**: The key exists and has been deleted.<br>**false**: The key does not exist.|
+| boolean | Operation result. The value **true** is returned if the key exists and has been deleted; otherwise, **false** is returned.|
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                            |
 | -------- | ---------------------------------------------------- |
+| 401      | Parameter error.                                     |
 | 10200011 | The delete method cannot be bound with non-sendable. |
 | 10200201 | Concurrent modification exception.                   |
 
@@ -1715,10 +1784,11 @@ callbackFn
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                             |
 | -------- | ----------------------------------------------------- |
+| 401      | Parameter error.                                      |
 | 10200011 | The forEach method cannot be bound with non-sendable. |
 | 10200201 | Concurrent modification exception.                    |
 
@@ -1767,14 +1837,15 @@ Obtains the value of the specified key in this ArkTS map.
 
 | Type| Description                                                        |
 | ---- | ------------------------------------------------------------ |
-| V    | Value obtained. If the key is not found, **undefined** is returned.|
+| V \| undefined    | Value obtained. If the key is not found, **undefined** is returned.|
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
+| 401      | Parameter error.                                  |
 | 10200011 | The get method cannot be bound with non-sendable. |
 | 10200201 | Concurrent modification exception.                |
 
@@ -1799,18 +1870,25 @@ Checks whether a key exists in this ArkTS map.
 
 **System capability**: SystemCapability.Utils.Lang
 
+**Parameters**
+
+| Name| Type| Mandatory| Description     |
+| ------ | ---- | ---- | --------- |
+| key    | K    | Yes  | Target key.|
+
 **Return value**
 
 | Type   | Description                                         |
 | ------- | --------------------------------------------- |
-| boolean | **true**: The key exists.<br>**false**: The key does not exist.|
+| boolean | Check result. The value **true** is returned if the key exists; otherwise, **false** is returned.|
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
+| 401      | Parameter error.                                  |
 | 10200011 | The has method cannot be bound with non-sendable. |
 | 10200201 | Concurrent modification exception.                |
 
@@ -1835,6 +1913,13 @@ Adds or updates a key-value pair to this ArkTS map.
 
 **System capability**: SystemCapability.Utils.Lang
 
+**Parameters**
+
+| Name| Type| Mandatory| Description     |
+| ------ | ---- | ---- | --------- |
+| key    | K    | Yes  | Target key.|
+| value    | V    | Yes  | Target value.|
+
 **Return value**
 
 | Type           | Description   |
@@ -1843,10 +1928,11 @@ Adds or updates a key-value pair to this ArkTS map.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
+| 401      | Parameter error.                                  |
 | 10200011 | The set method cannot be bound with non-sendable. |
 | 10200201 | Concurrent modification exception.                |
 
@@ -1871,7 +1957,7 @@ myMap.set("foo", obj);
 
 [Symbol.iterator]\(): IterableIterator&lt;[K, V]&gt;
 
-Obtains an iterator, each item of which is a JavaScript object.
+Returns an iterator, each item of which is a JavaScript object.
 
 > **NOTE**
 >
@@ -1943,14 +2029,15 @@ A constructor used to create an ArkTS set.
 
 | Name| Type| Mandatory| Description                                                     |
 | ------ | ---- | ---- | --------------------------------------------------------- |
-| values | T[] \| null | No| Array or iterator object. The default value is **null**, indicating that an empty set is created.|
+| values | readonly T[] \| null | No| Array or iterator object. The default value is **null**, indicating that an empty set is created.|
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                               |
 | -------- | ------------------------------------------------------- |
+| 401      | Parameter error.                                        |
 | 10200012 | The ArkTS Set's constructor cannot be directly invoked. |
 
 **Example**
@@ -2144,13 +2231,13 @@ Deletes an element from this ArkTS set.
 
 | Name| Type| Mandatory| Description            |
 | ------ | ---- | ---- | ---------------- |
-| key    | K    | Yes  | Key to delete.|
+| value    | T    | Yes  | Target value.|
 
 **Return value**
 
 | Type   | Description                             |
 | ------- | --------------------------------- |
-| boolean | **true**: The key is deleted.<br>**false**: The key fails to be deleted.|
+| boolean | Operation result. The value **true** is returned if the key is deleted; otherwise, **false** is returned.|
 
 **Error codes**
 
@@ -2175,7 +2262,7 @@ console.info("result:" + mySet.delete("hello"));
 ```
 
 ### forEach
-forEach(callbackFn: (value1: T, value2: T, set: Set\<T>) => void): void
+forEach(callbackFn: (value: T, value2: T, set: Set\<T>) => void): void
 
 Calls a callback function for each key-value pair in this ArkTS set.
 
@@ -2187,21 +2274,22 @@ Calls a callback function for each key-value pair in this ArkTS set.
 
 | Name    | Type                                        | Mandatory| Description      |
 | ---------- | -------------------------------------------- | ---- | ---------- |
-| callbackFn | (value1: T, value2: T, set: Set\<T>) => void | Yes  | Callback function to run for each key-value pair.|
+| callbackFn | (value: T, value2: T, set: Set\<T>) => void  | Yes  | Callback function to run for each key-value pair. |
 
 callbackFn
 | Name| Type        | Mandatory| Description                        |
 | ------ | ------------ | ---- | ---------------------------- |
-| value1 | T            | No  | Value of the element that is currently traversed.|
+| value  | T            | No  | Value of the element that is currently traversed.|
 | value2 | T            | No  | Key of the element that is currently traversed.|
 | set    | Set&lt;T&gt; | No  | Current set object.           |
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                             |
 | -------- | ----------------------------------------------------- |
+| 401      | Parameter error.                                      |
 | 10200011 | The forEach method cannot be bound with non-sendable. |
 | 10200201 | Concurrent modification exception.                    |
 
@@ -2232,18 +2320,25 @@ Checks whether a value exists in this ArkTS set.
 
 **System capability**: SystemCapability.Utils.Lang
 
+**Parameters**
+
+| Name | Type| Mandatory| Description            |
+| ------ | ---- | ---- | ---------------- |
+| value  | T    | Yes  | Target key.|
+
 **Return value**
 
 | Type   | Description                                         |
 | ------- | --------------------------------------------- |
-| boolean | **true**: The value exists.<br>**false**: The value does not exist.|
+| boolean | Check result. The value **true** is returned if the value exists; otherwise, **false** is returned.|
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
+| 401      | Parameter error.                                  |
 | 10200011 | The has method cannot be bound with non-sendable. |
 | 10200201 | Concurrent modification exception.                |
 
@@ -2265,6 +2360,12 @@ Checks whether a value exists in this ArkTS set, and if not, adds the value to t
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name | Type| Mandatory| Description            |
+| ------ | ---- | ---- | ---------------- |
+| value  | T    | Yes  | Target value. |
 
 **Return value**
 
@@ -2302,7 +2403,7 @@ mySet.add(obj);
 
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
-Obtains an iterator, each item of which is a JavaScript object.
+Returns an iterator, each item of which is a JavaScript object.
 
 > **NOTE**
 >
@@ -2331,14 +2432,14 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 ```ts
 let set = new collections.Set<number>([1, 2, 3, 4, 5]);
 
-let val: Array<number> = Array.from(set.values())
+let val: Array<number> = Array.from(set.values());
 for (let item of val) {
   console.info("value: " + item);
 }
 ```
 
 ## collections.ArrayBuffer
-Underlying data structure of the ArkTS typed array.
+Underlying data structure of the ArkTS TypedArray. This class is decorated by [@Sendable](../../arkts-utils/arkts-sendable.md).
 
 ### Properties
 
@@ -2367,10 +2468,11 @@ A constructor used to create an ArkTS ArrayBuffer of a given length.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                               |
 | -------- | ------------------------------------------------------- |
+| 401      | Parameter error.                                          |
 | 10200012 | The ArrayBuffer's constructor cannot be directly invoked. |
 
 **Example**
@@ -2394,7 +2496,7 @@ Selects a range of elements in this ArkTS ArrayBuffer to create an ArkTS ArrayBu
 | Name| Type  | Mandatory| Description                                             |
 | ------ | ------ | ---- | ------------------------------------------------ |
 | begin  | number | Yes  | Start index of the range. If a negative number is passed in, it refers to the index of **begin + arraybuffer.byteLength**.|
-| end    | number | No  | End index of the range. If a negative number is passed in, it refers to the index of **end + arraybuffer.byteLength**. The default value is the length of the ArkTS ArrayBuffer.|
+| end    | number | No  | End index of the range. If a negative number is passed in, it refers to the index of **end + arraybuffer.byteLength**. The default value is the length of the original ArkTS ArrayBuffer.|
 
 **Return value**
 
@@ -2404,10 +2506,11 @@ Selects a range of elements in this ArkTS ArrayBuffer to create an ArkTS ArrayBu
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID|                    Error Message                  |
 | -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
 | 10200011 | The slice method cannot be bound.            |
 | 10200201 | Concurrent modification error.               |
 
@@ -2422,7 +2525,7 @@ console.info("byteLength: " + slicedBuffer.byteLength); // byteLength: 4
 ## TypedArrayFromMapFn
 type TypedArrayFromMapFn\<FromElementType, ToElementType> = (value: FromElementType, index: number) => ToElementType
 
-Describes the mapping function of the ArkTS typed array.
+Describes the mapping function of the ArkTS TypedArray.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2432,8 +2535,8 @@ Describes the mapping function of the ArkTS typed array.
 
 | Name | Type  | Mandatory| Description                         |
 | ------- | ------ | ---- | --------------------------- |
-| value | FromElementType | Yes| Element that is currently traversed and used to construct an ArkTS typed array.|
-| index | number | Yes| Index of the element.|
+| value | FromElementType | Yes| Element that is currently traversed and used to construct an ArkTS TypedArray.|
+| index | number | Yes| Index of the element, beginning at 0.|
 
 **Return value**
 
@@ -2444,7 +2547,7 @@ Describes the mapping function of the ArkTS typed array.
 ## TypedArrayPredicateFn
 type TypedArrayPredicateFn\<ElementType, ArrayType> = (value: ElementType, index: number, array: ArrayType) => boolean
 
-Describes the assertion function of the ArkTS typed array.
+Describes the assertion function of the ArkTS TypedArray.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2454,20 +2557,20 @@ Describes the assertion function of the ArkTS typed array.
 
 | Name | Type  | Mandatory| Description                         |
 | ------- | ------ | ---- | --------------------------- |
-| value | ElementType | Yes| Element that is being traversed in the ArkTS typed array.|
-| index | number | Yes| Index of the element.|
-| array | ArrayType | Yes| ArkTS typed array that is being traversed.|
+| value | ElementType | Yes| Element that is being traversed in the ArkTS TypedArray.|
+| index | number | Yes| Index of the element, beginning at 0.|
+| array | ArrayType | Yes| ArkTS TypedArray that is being traversed.|
 
 **Return value**
 
 | Type  | Description                         |
 | ------ | --------------------------- |
-| boolean | **true**: The value meets the condition.<br>**false**: The value does not meet the condition.|
+| boolean | Operation result. The value **true** is returned if the value meets the condition; otherwise, **false** is returned.|
 
 ## TypedArrayForEachCallback
 type TypedArrayForEachCallback\<ElementType, ArrayType> = (value: ElementType, index: number, array: ArrayType) => void
 
-Describes the traversal function of the ArkTS typed array.
+Describes the traversal function of the ArkTS TypedArray.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2477,14 +2580,14 @@ Describes the traversal function of the ArkTS typed array.
 
 | Name | Type  | Mandatory| Description                         |
 | ------- | ------ | ---- | --------------------------- |
-| value | ElementType | Yes| Element that is being traversed in the ArkTS typed array.|
-| index | number | Yes| Index of the element.|
-| array | ArrayType | Yes| ArkTS typed array that is being traversed.|
+| value | ElementType | Yes| Element that is being traversed in the ArkTS TypedArray.|
+| index | number | Yes| Index of the element, beginning at 0.|
+| array | ArrayType | Yes| ArkTS TypedArray that is being traversed.|
 
 ## TypedArrayMapCallback
 type TypedArrayMapCallback\<ElementType, ArrayType> = (value: ElementType, index: number, array: ArrayType) => ElementType
 
-Describes the conversion mapping function of the ArkTS typed array.
+Describes the conversion mapping function of the ArkTS TypedArray.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2494,9 +2597,9 @@ Describes the conversion mapping function of the ArkTS typed array.
 
 | Name | Type  | Mandatory| Description                         |
 | ------- | ------ | ---- | --------------------------- |
-| value | ElementType | Yes| Element that is being mapped in the ArkTS typed array.|
-| index | number | Yes| Index of the element.|
-| array | ArrayType | Yes| ArkTS typed array that is being mapped.|
+| value | ElementType | Yes| Element that is being mapped in the ArkTS TypedArray.|
+| index | number | Yes| Index of the element, beginning from 0.|
+| array | ArrayType | Yes| ArkTS TypedArray that is being mapped.|
 
 **Return value**
 
@@ -2507,7 +2610,7 @@ Describes the conversion mapping function of the ArkTS typed array.
 ## TypedArrayReduceCallback
 type TypedArrayReduceCallback\<AccType, ElementType, ArrayType> = (previousValue: AccType, currentValue: ElementType, currentIndex: number, array: ArrayType) => AccType
 
-Describes the reduce function of the ArkTS typed array.
+Describes the reduce function of the ArkTS TypedArray.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2518,9 +2621,9 @@ Describes the reduce function of the ArkTS typed array.
 | Name | Type  | Mandatory| Description                         |
 | ------- | ------ | ---- | --------------------------- |
 | previousValue | AccType | Yes| Accumulated value of the current traversal.|
-| currentValue | ElementType | Yes| Element that is being traversed in the ArkTS typed array.|
-| currentIndex | number | Yes| Index of the element.|
-| array | ArrayType | Yes| ArkTS typed array that is being traversed.|
+| currentValue | ElementType | Yes| Element that is being traversed in the ArkTS TypedArray.|
+| currentIndex | number | Yes| Index of the element, beginning at 0.|
+| array | ArrayType | Yes| ArkTS TypedArray that is being traversed.|
 
 **Return value**
 
@@ -2531,7 +2634,7 @@ Describes the reduce function of the ArkTS typed array.
 ## TypedArrayCompareFn
 type TypedArrayCompareFn\<ElementType> = (first: ElementType, second: ElementType) => number
 
-Describes the sort function of the ArkTS typed array.
+Describes the sort function of the ArkTS TypedArray.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2555,7 +2658,7 @@ Describes the sort function of the ArkTS typed array.
 A linear data structure that is implemented on [ArkTS ArrayBuffer](#collectionsarraybuffer). Currently, Int8Array, Uint8Array, Int16Array, Uint16Array, Int32Array, Uint32Array, Uint8ClampedArray, and Float32Array are supported.
 
 This section uses the following to identify the use of generics:
-- TypedArray: ArkTS typed array of the preceding eight types.
+- TypedArray: ArkTS TypedArray of the preceding eight types.
 
 ### Properties
 
@@ -2565,16 +2668,16 @@ This section uses the following to identify the use of generics:
 
 | Name  | Type  | Read Only| Optional| Description             |
 | ------ | ------ | ---- | ---- | ----------------|
-| buffer | ArrayBuffer | Yes  | No | Bottom-layer buffer used by an ArkTS typed array.|
-| byteLength | number | Yes  | No  | Number of bytes occupied by the ArkTS typed array.|
-| byteOffset | number | Yes  | No  | Offset between the ArkTS typed array and the start position of the ArrayBuffer.|
-| length | number | Yes  | No | Number of elements in the ArkTS typed array.|
-| BYTES_PER_ELEMENT | number | Yes  | No  | Number of bytes occupied by each element in the ArkTS typed array.|
+| buffer | ArrayBuffer | Yes  | No | Bottom-layer buffer used by an ArkTS TypedArray.|
+| byteLength | number | Yes  | No  | Number of bytes occupied by the ArkTS TypedArray.|
+| byteOffset | number | Yes  | No  | Offset between the ArkTS TypedArray and the start position of the ArrayBuffer.|
+| length | number | Yes  | No | Number of elements in the ArkTS TypedArray.|
+| BYTES_PER_ELEMENT | number | Yes  | No  | Number of bytes occupied by each element in the ArkTS TypedArray.|
 
 ### constructor
 constructor()
 
-A constructor used to create an empty ArkTS typed array.
+A constructor used to create an empty ArkTS TypedArray.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2604,7 +2707,7 @@ let float32Array: collections.Float32Array = new collections.Float32Array();
 ### constructor
 constructor(length: number)
 
-A constructor used to create an ArkTS typed array of a given length.
+A constructor used to create an ArkTS TypedArray of a given length.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2614,14 +2717,15 @@ A constructor used to create an ArkTS typed array of a given length.
 
 | Name | Type  | Mandatory| Description                         |
 | ------- | ------ | ---- | --------------------------- |
-| length | number | Yes| Length of the ArkTS typed array.|
+| length | number | Yes| Length of the ArkTS TypedArray.|
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                                 |
 | -------- | -------------------------------------------------------  |
+| 401      | Parameter error.                                         |
 | 10200012 | The TypedArray's constructor cannot be directly invoked. |
 
 
@@ -2642,7 +2746,7 @@ let float32Array: collections.Float32Array = new collections.Float32Array(12);
 ### constructor
 constructor(array: ArrayLike\<number> | ArrayBuffer)
 
-A constructor that creates an ArkTS typed array from an array-like object or ArkTS ArrayBuffer.
+A constructor that creates an ArkTS TypedArray from an array-like object or ArkTS ArrayBuffer.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2652,14 +2756,15 @@ A constructor that creates an ArkTS typed array from an array-like object or Ark
 
 | Name | Type  | Mandatory| Description                                                        |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| array |  ArrayLike\<number> \| ArrayBuffer | Yes| Object used to construct the ArkTS typed array. When the parameter type is ArrayBuffer, the number of bytes occupied by the buffer must be an integer multiple of 4.|
+| array |  ArrayLike\<number> \| ArrayBuffer | Yes| Object used to construct the ArkTS TypedArray. When the parameter type is ArrayBuffer, the number of bytes occupied by the buffer must be an integer multiple of 4.|
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                               |
 | -------- | ------------------------------------------------------- |
+| 401      | Parameter error.                                         |
 | 10200012 | The TypedArray's constructor cannot be directly invoked. |
 
 **Example**
@@ -2671,13 +2776,13 @@ let array: collections.Uint32Array = new collections.Uint32Array(arrayLike);
 ```
 
 ```ts
-// Example 2: Construct an object from an ArkTS typed array.
+// Example 2: Construct an object from an ArkTS TypedArray.
 let arrayBuffer: collections.ArrayBuffer = new collections.ArrayBuffer(12);
 let array: collections.Uint32Array = new collections.Uint32Array(arrayBuffer);
 ```
 
 ```ts
-// Example 3: Construct an object from another ArkTS typed array.
+// Example 3: Construct an object from another ArkTS TypedArray.
 let arrayLike = [1, 3, 5];
 let uint8Array: collections.Uint8Array = new collections.Uint8Array(arrayLike);
 // Uint8Array [1, 3, 5]
@@ -2688,7 +2793,7 @@ let uint32Array: collections.Uint32Array = new collections.Uint32Array(uint8Arra
 ### constructor
 constructor(buffer: ArrayBuffer, byteOffset?: number, length?: number)
 
-A constructor that creates an ArkTS typed array from an ArrayBuffer.
+A constructor that creates an ArkTS TypedArray from an ArrayBuffer.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2698,23 +2803,24 @@ A constructor that creates an ArkTS typed array from an ArrayBuffer.
 
 | Name | Type  | Mandatory| Description                                        |
 | ------- | ------ | ---- | ------------------------------------------ |
-| buffer | ArrayBuffer | Yes| ArrayBuffer object used to construct the ArkTS typed array. The number of bytes occupied by the buffer must be an integer multiple of 4.|
-| byteOffset | number | No| Byte offset of the specified buffer. The default value is **0**.|
-| length | number | No| Length of the ArkTS typed array. The default value is **0**.|
+| buffer | ArrayBuffer | Yes| ArrayBuffer object used to construct the ArkTS TypedArray. The number of bytes occupied by the buffer must be an integer multiple of 4.|
+| byteOffset | number | No| Byte offset of the buffer, beginning at 0. The default value is **0**.|
+| length | number | No| Length of the ArkTS TypedArray. The default value is **0**.|
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                                  |
 | -------- | -------------------------------------------------------   |
+| 401      | Parameter error.                                         |
 | 10200012 | The TypedArray's constructor cannot be directly invoked. |
 
 **Example**
 
 ```ts
 let int32Array: collections.Int32Array = collections.Int32Array.from([1, 2, 3, 4, 5, 6]);
-console.info("byteLength: " + int32Array.buffer.byteLength) // byteLength: 24
+console.info("byteLength: " + int32Array.buffer.byteLength); // byteLength: 24
 // Start from the fourth byte of the buffer corresponding to int32Array. The length is 5.
 let uint32Array: collections.Uint32Array = new collections.Uint32Array(int32Array.buffer, 4, 5);
 console.info("[" + uint32Array + "]"); // [2, 3, 4, 5, 6]
@@ -2723,7 +2829,7 @@ console.info("[" + uint32Array + "]"); // [2, 3, 4, 5, 6]
 ### from
 static from(arrayLike: ArrayLike\<number>): TypedArray
 
-Creates an ArkTS typed array from an array-like or iterator object.
+Creates an ArkTS TypedArray from an array-like or iterator object.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2733,13 +2839,13 @@ Creates an ArkTS typed array from an array-like or iterator object.
 
 | Name | Type  | Mandatory| Description                                                 |
 | ------- | ------ | ---- | --------------------------------------------------- |
-| arrayLike | ArrayLike\<number> | Yes| Array-like object used to construct the ArkTS typed array.|
+| arrayLike | ArrayLike\<number> | Yes| Array-like object used to construct the ArkTS TypedArray.|
 
 **Return value**
 
 | Type        | Description     |
 | ------------ | --------- |
-| TypedArray | New ArkTS typed array generated.|
+| TypedArray | New ArkTS TypedArray generated.|
 
 **Example**
 ```ts
@@ -2751,7 +2857,7 @@ let array: collections.Uint32Array = collections.Uint32Array.from(arrayLike);
 ### from
 static from\<T>(arrayLike: ArrayLike\<T>, mapFn: TypedArrayFromMapFn\<T, number>): TypedArray
 
-Creates an ArkTS typed array from an array-like object.
+Creates an ArkTS TypedArray from an array-like object.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2760,33 +2866,33 @@ Creates an ArkTS typed array from an array-like object.
 **Parameters**
 | Name | Type  | Mandatory| Description                                       |
 | ------- | ------ | ---- | ------------------------------------------|
-| arrayLike | ArrayLike\<T> | Yes| Array-like object used to construct the ArkTS typed array.             |
+| arrayLike | ArrayLike\<T> | Yes| Array-like object used to construct the ArkTS TypedArray.             |
 | mapFn | [TypedArrayFromMapFn](#typedarrayfrommapfn)\<T, number> | Yes| Mapping function.|
 
 **Return value**
 
 | Type        | Description     |
 | ------------ | --------- |
-| TypedArray | New ArkTS typed array generated.|
+| TypedArray | New ArkTS TypedArray generated.|
 
 **Example**
 
 ```ts
-// Example 1: Create an ArkTS typed array from an object.
+// Example 1: Create an ArkTS TypedArray from an object.
 let array: collections.Uint32Array = collections.Uint32Array.from<number>(
   { length: 5 }, (v: Object, k: number) => k);
 // Uint32Array [0, 1, 2, 3, 4]
 ```
 
 ```ts
-// Example 2: Create an ArkTS typed array from a string array.
+// Example 2: Create an ArkTS TypedArray from a string array.
 let array: collections.Uint32Array = collections.Uint32Array.from<string>(
   ["1", "3", "5"], (v: string, k: number) => parseInt(v));
 // Uint32Array [1, 3, 5]
 ```
 
 ```ts
-// Example 3: Create an ArkTS typed array from a string.
+// Example 3: Create an ArkTS TypedArray from a string.
 let array: collections.Uint32Array = collections.Uint32Array.from<string>(
   "12345", (v: string, k: number) => parseInt(v));
 // Uint32Array [1, 2, 3, 4, 5]
@@ -2795,7 +2901,7 @@ let array: collections.Uint32Array = collections.Uint32Array.from<string>(
 ### from
 static from(iterable: Iterable\<number>, mapFn?: TypedArrayFromMapFn\<number, number>): TypedArray
 
-Creates an ArkTS typed array from an iterator object.
+Creates an ArkTS TypedArray from an iterator object.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2804,14 +2910,14 @@ Creates an ArkTS typed array from an iterator object.
 **Parameters**
 | Name | Type  | Mandatory| Description                               |
 | ------- | ------ | ---- | -----------------------------------|
-| iterable | Iterable\<number> | Yes| Iterator object used to construct the ArkTS typed array.  |
+| iterable | Iterable\<number> | Yes| Iterator object used to construct the ArkTS TypedArray.  |
 | mapFn | [TypedArrayFromMapFn](#typedarrayfrommapfn)\<number, number> | No| Mapping function. If no value is passed in, no special processing is conducted on the elements.|
 
 **Return value**
 
 | Type        | Description     |
 | ------------ | --------- |
-| TypedArray | New ArkTS typed array generated.|
+| TypedArray | New ArkTS TypedArray generated.|
 
 **Example**
 
@@ -2833,7 +2939,7 @@ let array: collections.Uint32Array = collections.Uint32Array.from(
 ### copyWithin
 copyWithin(target: number, start: number, end?: number): TypedArray
 
-Copies elements within a given range from this ArkTS typed array to another position in sequence.
+Copies elements within a given range from this ArkTS TypedArray to another position in sequence.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2845,20 +2951,21 @@ Copies elements within a given range from this ArkTS typed array to another posi
 | ------- | ------ | ---- | ------------------------------------------------------------ |
 | target | number | Yes| Index to copy the elements to.|
 | start | number | Yes| Start index of the range. If a negative number is passed in, it refers to the index of **start + typedarray.length**.|
-| end | number | No| End index of the range. If a negative number is passed in, it refers to the index of **end + typedarray.length**. The default value is the length of the ArkTS typed array.|
+| end | number | No| End index of the range. If a negative number is passed in, it refers to the index of **end + typedarray.length**. The default value is the length of the ArkTS TypedArray.|
 
 **Return value**
 
 | Type        | Description     |
 | ------------ | --------- |
-| TypedArray | ArkTS typed array after being modified.|
+| TypedArray | ArkTS TypedArray after being modified.|
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------ |
+| 401      | Parameter error.                                 |
 | 10200011 | The copyWithin method cannot be bound.           |
 | 10200201 | Concurrent modification exception.               |
 
@@ -2873,7 +2980,7 @@ let copied: collections.Uint32Array = array.copyWithin(3, 1, 3);
 ### some
 some(predicate: TypedArrayPredicateFn\<number, TypedArray>): boolean
 
-Checks whether any element in this ArkTS typed array meets a given condition.
+Checks whether any element in this ArkTS TypedArray meets a given condition.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2889,14 +2996,15 @@ Checks whether any element in this ArkTS typed array meets a given condition.
 
 | Type        | Description     |
 | ------------ | --------- |
-| boolean | **true**: An element meeting the given condition exists.<br>**false**: An element meeting the given condition does not exist.|
+| boolean | Check result. The value **true** is returned if an element meeting the given condition exists; otherwise, **false** is returned.|
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                           |
 | -------- | ---------------------------------- |
+| 401      | Parameter error.                   |
 | 10200011 | The some method cannot be bound.   |
 | 10200201 | Concurrent modification exception. |
 
@@ -2914,7 +3022,7 @@ int32Array.some((element: number) => element < 0); // true
 ### every
 every(predicate: TypedArrayPredicateFn\<number, TypedArray>): boolean
 
-Checks whether all elements in this ArkTS typed array meet a given condition.
+Checks whether all elements in this ArkTS TypedArray meet a given condition.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2930,14 +3038,15 @@ Checks whether all elements in this ArkTS typed array meet a given condition.
 
 | Type        | Description     |
 | ------------ | --------- |
-| boolean | **true**: All elements meet the given condition.<br>**false**: Not all elements meet the given condition.|
+| boolean | Check result. The value **true** is returned if all elements meet the given condition; otherwise, **false** is returned.|
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
+| 401      | Parameter error.                  |
 | 10200011 | The every method cannot be bound. |
 | 10200201 | Concurrent modification exception. |
 
@@ -2955,7 +3064,7 @@ int32Array.every((element: number) => element > 0);  // false
 ### fill
 fill(value: number, start?: number, end?: number): TypedArray
 
-Fills all elements in a given range in this ArkTS typed array with a value.
+Fills all elements in a given range in this ArkTS TypedArray with a value.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2967,20 +3076,21 @@ Fills all elements in a given range in this ArkTS typed array with a value.
 | ------- | ------ | ---- | --------------------------------------------------------|
 | value | number | Yes| Value to fill in.|
 | start | number | No| Start index of the range. If a negative number is passed in, it refers to the index of **start + typedarray.length**. The default value is **0**.|
-| end | number | No| End index of the range. If a negative number is passed in, it refers to the index of **end + typedarray.length**. The default value is the length of the ArkTS typed array.|
+| end | number | No| End index of the range (exclusive). If a negative number is passed in, it refers to the index of **end + typedarray.length**. The default value is the length of the ArkTS TypedArray.|
 
 **Return value**
 
 | Type        | Description     |
 | ------------ | --------- |
-| TypedArray | Filled ArkTS typed array.|
+| TypedArray | Filled ArkTS TypedArray.|
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
+| 401      | Parameter error.                 |
 | 10200011 | The fill method cannot be bound. |
 | 10200201 | Concurrent modification exception. |
 
@@ -2996,7 +3106,7 @@ new collections.Uint32Array(arrayLike).fill(4, 1, 2); // Uint32Array [1, 4, 3]
 ### filter
 filter(predicate: TypedArrayPredicateFn\<number, TypedArray>): TypedArray
 
-Returns a new ArkTS typed array that contains all elements that meet the given condition.
+Returns a new ArkTS TypedArray that contains all elements that meet the given condition.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3012,14 +3122,15 @@ Returns a new ArkTS typed array that contains all elements that meet the given c
 
 | Type        | Description     |
 | ------------ | --------- |
-| TypedArray| Filtered ArkTS typed array.|
+| TypedArray| Filtered ArkTS TypedArray.|
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
+| 401      | Parameter error.                   |
 | 10200011 | The filter method cannot be bound. |
 | 10200201 | Concurrent modification exception. |
 
@@ -3054,10 +3165,11 @@ Returns the value of the first element that passes a test provided by a callback
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
+| 401      | Parameter error.                 |
 | 10200011 | The find method cannot be bound. |
 | 10200201 | Concurrent modification exception. |
 
@@ -3092,10 +3204,11 @@ Returns the index of the first element that passes a test provided by a callback
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
+| 401      | Parameter error.                      |
 | 10200011 | The findIndex method cannot be bound. |
 | 10200201 | Concurrent modification exception.  |
 
@@ -3109,7 +3222,7 @@ let foundIndex: number = array.findIndex((element: number) => element % 2 === 0)
 ### forEach
 forEach(callbackFn: TypedArrayForEachCallback\<number, TypedArray>): void
 
-Calls a callback function for each element in this ArkTS typed array.
+Calls a callback function for each element in this ArkTS TypedArray.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3124,10 +3237,11 @@ Calls a callback function for each element in this ArkTS typed array.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
+| 401      | Parameter error.                    |
 | 10200011 | The forEach method cannot be bound. |
 | 10200201 | Concurrent modification exception. |
 
@@ -3143,7 +3257,7 @@ uint32Array.forEach((value: number, index: number, array: collections.Uint32Arra
 ### indexOf
 indexOf(searchElement: number, fromIndex?: number): number
 
-Returns the index of the first occurrence of a value in this ArkTS typed array. If the value is not found, **-1** is returned.
+Returns the index of the first occurrence of a value in this ArkTS TypedArray. If the value is not found, **-1** is returned.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3154,7 +3268,7 @@ Returns the index of the first occurrence of a value in this ArkTS typed array. 
 | Name       | Type  | Mandatory| Description                       |
 | ------------- | ------ | ---- | ---------------------------|
 | searchElement | number | Yes  | Value to search for.               |
-| fromIndex     | number | No  | Index from which the search starts. The default value is **0**. If the index is greater than or equal to the length of the ArkTS typed array, **-1** is returned. If a negative number is passed in, the search starts from the end of the ArkTS typed array.|
+| fromIndex     | number | No  | Index from which the search starts. The default value is **0**. If the index is greater than or equal to the length of the ArkTS TypedArray, **-1** is returned. If a negative number is passed in, the search starts from the end of the ArkTS TypedArray.|
 
 **Return value**
 
@@ -3164,10 +3278,11 @@ Returns the index of the first occurrence of a value in this ArkTS typed array. 
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
+| 401      | Parameter error.                    |
 | 10200011 | The indexOf method cannot be bound. |
 | 10200201 | Concurrent modification exception.                |
 
@@ -3184,7 +3299,7 @@ array.indexOf(9, -2); // 2
 ### join
 join(separator?: string): string
 
-Concatenates all elements in this ArkTS typed array into a string, with a given separator.
+Concatenates all elements in this ArkTS TypedArray into a string, with a given separator.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3204,10 +3319,11 @@ Concatenates all elements in this ArkTS typed array into a string, with a given 
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
+| 401      | Parameter error.                 |
 | 10200011 | The join method cannot be bound. |
 | 10200201 | Concurrent modification exception.  |
 
@@ -3221,7 +3337,7 @@ let joined: string = array.join('-'); // "1-2-3-4-5"
 ### map
 map(callbackFn: TypedArrayMapCallback\<number, TypedArray>): TypedArray
 
-Applies a callback function to each element in this ArkTS typed array and uses the result to create an ArkTS typed array.
+Applies a callback function to each element in this ArkTS TypedArray and uses the result to create an ArkTS TypedArray.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3237,14 +3353,15 @@ Applies a callback function to each element in this ArkTS typed array and uses t
 
 | Type        | Description     |
 | ------------ | --------- |
-| TypedArray | New ArkTS typed array generated.|
+| TypedArray | New ArkTS TypedArray generated.|
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
+| 401      | Parameter error.                |
 | 10200011 | The map method cannot be bound. |
 | 10200201 | Concurrent modification exception. |
 
@@ -3258,7 +3375,7 @@ const mapped: collections.Uint32Array = array.map(Math.sqrt); // Uint32Array [5,
 ### reduce
 reduce(callbackFn: TypedArrayReduceCallback\<number, number, TypedArray>): number
 
-Applies a reduce function on each element in this ArkTS typed array and returns the final reduction result.
+Applies a reduce function on each element in this ArkTS TypedArray and returns the final reduction result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3277,10 +3394,11 @@ Applies a reduce function on each element in this ArkTS typed array and returns 
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID|                      Error Message                    |
 | -------- | ------------------------------------------------ |
+| 401      | Parameter error.                                 |
 | 10200011 | The reduce method cannot be bound.               |
 | 10200201 | Concurrent modification exception.               |
 
@@ -3295,7 +3413,7 @@ let reducedValue: number = array.reduce((accumulator: number, value: number) => 
 ### reduce
 reduce(callbackFn: TypedArrayReduceCallback\<number, number, TypedArray>, initialValue: number): number
 
-Applies a reduce function for each element in this ArkTS typed array, receives an initial value as the parameter called by the reduce function for the first time, and returns the final reduction result.
+Applies a reduce function for each element in this ArkTS TypedArray, receives an initial value as the parameter called by the reduce function for the first time, and returns the final reduction result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3316,10 +3434,11 @@ Applies a reduce function for each element in this ArkTS typed array, receives a
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
+| 401      | Parameter error.                   |
 | 10200011 | The reduce method cannot be bound. |
 | 10200201 | Concurrent modification exception. |
 
@@ -3334,7 +3453,7 @@ let reducedValue: number = array.reduce((accumulator: number, value: number) => 
 ### reduce
 reduce\<U>(callbackFn: TypedArrayReduceCallback\<U, number, TypedArray>, initialValue: U): U
 
-Applies a reduce function for each element in this ArkTS typed array, receives an initial value as the parameter called by the reduce function for the first time, and returns the final reduction result.
+Applies a reduce function for each element in this ArkTS TypedArray, receives an initial value as the parameter called by the reduce function for the first time, and returns the final reduction result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3355,10 +3474,11 @@ Applies a reduce function for each element in this ArkTS typed array, receives a
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
+| 401      | Parameter error.                   |
 | 10200011 | The reduce method cannot be bound. |
 | 10200201 | Concurrent modification exception.  |
 
@@ -3373,7 +3493,7 @@ let reducedValue: string = array.reduce<string>((accumulator: string, value: num
 ### reverse
 reverse(): TypedArray
 
-Reverses this ArkTS typed array.
+Reverses this ArkTS TypedArray.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3383,7 +3503,7 @@ Reverses this ArkTS typed array.
 
 | Type        | Description     |
 | ------------ | --------- |
-| TypedArray   | Reversed ArkTS typed array.|
+| TypedArray   | Reversed ArkTS TypedArray.|
 
 **Error codes**
 
@@ -3418,10 +3538,11 @@ Writes the elements in an array-like object to the given start position in seque
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
+| 401      | Parameter error.                |
 | 10200011 | The set method cannot be bound. |
 | 10200201 | Concurrent modification exception.  |
 
@@ -3436,7 +3557,7 @@ array.set([1, 2, 3], 3); // Uint8Array [0, 0, 0, 1, 2, 3, 0, 0]
 ### slice
 slice(start?: number, end?: number): TypedArray
 
-Selects a range of elements in this ArkTS typed array to create an ArkTS typed array.
+Selects a range of elements in this ArkTS TypedArray to create an ArkTS TypedArray.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3447,20 +3568,21 @@ Selects a range of elements in this ArkTS typed array to create an ArkTS typed a
 | Name| Type  | Mandatory| Description                                                  |
 | ------ | ------ | ---- | -----------------------------------------------------|
 | start  | number | No  | Start index of the range. If a negative number is passed in, it refers to the index of **start + typedarray.length**. The default value is **0**.|
-| end    | number | No  | End index of the range (exclusive). If a negative number is passed in, it refers to the index of **end + typedarray.length**. The default value is the length of the ArkTS typed array.|
+| end    | number | No  | End index of the range (exclusive). If a negative number is passed in, it refers to the index of **end + typedarray.length**. The default value is the length of the ArkTS TypedArray.|
 
 **Return value**
 
 | Type        | Description     |
 | ------------ | --------- |
-| TypedArray | New ArkTS typed array generated.|
+| TypedArray | New ArkTS TypedArray generated.|
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
+| 401      | Parameter error.                  |
 | 10200011 | The slice method cannot be bound. |
 | 10200201 | Concurrent modification exception. |
 
@@ -3476,7 +3598,7 @@ array.slice(-2); // Uint32Array [4, 5]
 ### sort
 sort(compareFn?: TypedArrayCompareFn\<number>): TypedArray
 
-Sorts elements in this ArkTS typed array and returns the sorted ArkTS typed array.
+Sorts elements in this ArkTS TypedArray and returns the sorted ArkTS TypedArray.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3492,14 +3614,15 @@ Sorts elements in this ArkTS typed array and returns the sorted ArkTS typed arra
 
 | Type        | Description     |
 | ------------ | --------- |
-| TypedArray | Sorted ArkTS typed array.|
+| TypedArray | Sorted ArkTS TypedArray.|
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                   |
 | -------- | ------------------------------------------ |
+| 401      | Parameter error.                 |
 | 10200011 | The sort method cannot be bound. |
 | 10200201 | Concurrent modification exception.         |
 
@@ -3515,7 +3638,7 @@ array.sort((a: number, b: number) => b - a); // Uint32Array [5, 4, 3, 2, 1]
 ### subarray
 subarray(begin?: number, end?: number): TypedArray
 
-Returns a new ArkTS typed array based on the same ArkTS ArrayBuffer.
+Returns a new ArkTS TypedArray based on the same ArkTS ArrayBuffer.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3526,20 +3649,21 @@ Returns a new ArkTS typed array based on the same ArkTS ArrayBuffer.
 | Name| Type  | Mandatory| Description                                               |
 | ------ | ------ | ---- | ------------------------------------------------- |
 | begin  | number | No  | Start index of the range. If a negative number is passed in, it refers to the index of **begin + typedarray.length**. The default value is **0**.|
-| end    | number | No  | End index of the range (exclusive). If a negative number is passed in, it refers to the index of **end + typedarray.length**. The default value is the length of the ArkTS typed array.|
+| end    | number | No  | End index of the range (exclusive). If a negative number is passed in, it refers to the index of **end + typedarray.length**. The default value is the length of the ArkTS TypedArray.|
 
 **Return value**
 
 | Type        | Description     |
 | ------------ | --------- |
-| TypedArray | New ArkTS typed array generated.|
+| TypedArray | New ArkTS TypedArray generated.|
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID|            Error Message                              |
 | -------- | -------------------------------------------------|
+| 401      | Parameter error.                                 |
 | 10200011 | The subarray method cannot be bound.             |
 | 10200201 | Concurrent modification exception.               |
 
@@ -3573,10 +3697,11 @@ Returns the element at the given index. If no element is found, **undefined** is
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID|                       Error Message                   |
 | -------- | ------------------------------------------------ |
+| 401      | Parameter error.                                 |
 | 10200011 | The at method cannot be bound.                   |
 | 10200201 | Concurrent modification exception.               |
 
@@ -3592,7 +3717,7 @@ console.info("element: " + array.at(6));  // element: undefined
 ### includes
 includes(searchElement: number, fromIndex?: number): boolean
 
-Checks whether elements are contained in this ArkTS typed array.
+Checks whether elements are contained in this ArkTS TypedArray.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3608,15 +3733,16 @@ Checks whether elements are contained in this ArkTS typed array.
 
 | Type   | Description                                                       |
 | ------- | ---------------------------------------------------------- |
-| boolean | **true**: The element exists.<br>**false**: The element does not exist.|
+| boolean | Check result. The value **true** is returned if the element exists; otherwise, **false** is returned.|
 
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message                                         |
 | -------- | ------------------------------------------------- |
+| 401      | Parameter error.                     |
 | 10200011 | The includes method cannot be bound. |
 | 10200201 | Concurrent modification exception. |
 
@@ -3632,7 +3758,7 @@ console.info("includes: " + array.includes(3, 3)); // includes: false
 ### entries
 entries(): IterableIterator\<[number, number]>
 
-Returns an iterator object that contains the key-value pair of each element in this ArkTS typed array.
+Returns an iterator object that contains the key-value pair of each element in this ArkTS TypedArray.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3666,7 +3792,7 @@ console.info("value: " + iterator.next().value); // value: [2, 33]
 ### keys
 keys(): IterableIterator\<number>
 
-Returns an iterator object that contains the key (index) of each element in this ArkTS typed array.
+Returns an iterator object that contains the key (index) of each element in this ArkTS TypedArray.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3700,7 +3826,7 @@ for (const key of iterator) {
 ### values
 values(): IterableIterator\<number>
 
-Returns an iterator object that contains the value of each element in this ArkTS typed array.
+Returns an iterator object that contains the value of each element in this ArkTS TypedArray.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -3735,7 +3861,7 @@ for (const value of iterator) {
 
 [Symbol.iterator]\(): IterableIterator&lt;number&gt;
 
-Obtains an iterator, each item of which is a JavaScript object.
+Returns an iterator, each item of which is a JavaScript object.
 
 > **NOTE**
 >
@@ -3868,7 +3994,7 @@ Adds an element at the end of this bit vector.
 
 | Type   | Description                             |
 | ------- | --------------------------------- |
-| boolean | **true**: The element is added.<br>**false**: The element fails to add.|
+| boolean | Operation result. The value **true** is returned if the element is added; otherwise, **false** is returned.|
 
 **Error codes**
 
@@ -3876,7 +4002,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2.Incorrect parameter types. |
+| 401      | Parameter error. Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 | 10200011 | The push method cannot be bound.                             |
 | 10200201 | Concurrent modification error.                               |
 
@@ -3951,7 +4077,7 @@ Checks whether a bit value is included in a given range of this bit vector.
 
 | Type   | Description                                  |
 | ------- | -------------------------------------- |
-| boolean | **true**: The bit value exists.<br>**false**: The bit value does not exist.|
+| boolean | Check result. The value **true** is returned if the bit value exists; otherwise, **false** is returned.|
 
 **Error codes**
 
@@ -3959,7 +4085,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2.Incorrect parameter types. |
+| 401      | Parameter error. Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 | 10200001 | The value of fromIndex or toIndex is out of range.           |
 | 10200011 | The has method cannot be bound.                              |
 | 10200201 | Concurrent modification error.                               |
@@ -4001,7 +4127,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2.Incorrect parameter types. |
+| 401      | Parameter error. Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 | 10200001 | The value of fromIndex or toIndex is out of range.           |
 | 10200011 | The setBitsByRange method cannot be bound.                   |
 | 10200201 | Concurrent modification error.                               |
@@ -4040,7 +4166,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2.Incorrect parameter types. |
+| 401      | Parameter error. Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 | 10200011 | The setAllBits method cannot be bound.                       |
 | 10200201 | Concurrent modification error.                               |
 
@@ -4085,7 +4211,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2.Incorrect parameter types. |
+| 401      | Parameter error. Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 | 10200001 | The value of fromIndex or toIndex is out of range.           |
 | 10200011 | The getBitsByRange method cannot be bound.                   |
 | 10200201 | Concurrent modification error.                               |
@@ -4129,7 +4255,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2.Incorrect parameter types. |
+| 401      | Parameter error. Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 | 10200011 | The resize method cannot be bound.                           |
 | 10200201 | Concurrent modification error.                               |
 
@@ -4178,7 +4304,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2.Incorrect parameter types. |
+| 401      | Parameter error. Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 | 10200001 | The value of fromIndex or toIndex is out of range.           |
 | 10200011 | The getBitCountByRange method cannot be bound.               |
 | 10200201 | Concurrent modification error.                               |
@@ -4226,7 +4352,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2.Incorrect parameter types. |
+| 401      | Parameter error. Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 | 10200001 | The value of fromIndex or toIndex is out of range.           |
 | 10200011 | The getIndexOf method cannot be bound.                       |
 | 10200201 | Concurrent modification error.                               |
@@ -4274,7 +4400,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2.Incorrect parameter types. |
+| 401      | Parameter error. Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 | 10200001 | The value of fromIndex or toIndex is out of range.           |
 | 10200011 | The getLastIndexOf method cannot be bound.                   |
 | 10200201 | Concurrent modification error.                               |
@@ -4314,7 +4440,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2.Incorrect parameter types. |
+| 401      | Parameter error. Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 | 10200001 | The value of index is out of range.                          |
 | 10200011 | The flipBitByIndex method cannot be bound.                   |
 | 10200201 | Concurrent modification error.                               |
@@ -4354,7 +4480,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2.Incorrect parameter types. |
+| 401      | Parameter error. Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 | 10200001 | The value of fromIndex or toIndex is out of range.           |
 | 10200011 | The flipBitsByRange method cannot be bound.                  |
 | 10200201 | Concurrent modification error.                               |
@@ -4417,7 +4543,7 @@ while (!temp.done) {
 
 [Symbol.iterator]\(): IterableIterator&lt;number&gt;
 
-Obtains an iterator, each item of which is a JavaScript object.
+Returns an iterator, each item of which is a JavaScript object.
 
 > **NOTE**
 >
