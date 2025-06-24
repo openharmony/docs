@@ -849,6 +849,7 @@ struct MyComponent {
       }, (item: StringData, index: number) => index.toString())
     }.cachedCount(5)
   }
+}
 ```
 
 `@ObservedV2`与`@Trace`用于装饰类以及类中的属性，配合使用能深度观测被装饰的类和属性。示例中，展示了深度嵌套类结构下，通过`@ObservedV2`和`@Trace`实现对多层嵌套属性变化的观测和子组件刷新。当点击子组件`Text`修改被`@Trace`修饰的嵌套类最内层的类成员属性时，仅重新渲染依赖了该属性的组件。
