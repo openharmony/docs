@@ -1,12 +1,12 @@
 # EAWorker（独占线程任务执行器）(ArkTS)
 
 EAWorker类为开发者提供了以独占线程模式执行异步任务的接口。通过创建EAWorker实例，系统会自动分配专属工作线程，开发者可复用该实例执行不同任务，有效提升线程资源利用率。  
-> **说明：** 
+> **说明：**
 >
 > 使用完毕后必须显式调用[join](#join)方法释放线程资源，避免内存泄漏。
 
 文档中涉及到概念以及解释：
-- 互操作（interop）：ArkTS1.2和ArkTS1.1代码相互操作。
+- 互操作（interop）：ArkTS1.2和ArkTS1.1代码相互操作。由于ArkTS1.1运行时为单线程实例，因此支持互操作的EAWorker会持有不同的ArkTS1.1运行时实例用于执行ArkTS1.1字节码，对应的ArkTS1.1中全局变量在不同的线程中也对应不同的实例。
 
 ## constructor
 constructor(needInterop: boolean = false)
