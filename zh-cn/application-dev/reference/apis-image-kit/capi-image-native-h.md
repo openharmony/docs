@@ -111,7 +111,7 @@ Image_ErrorCode OH_ImageNative_GetByteBuffer(OH_ImageNative *image,uint32_t comp
 | -- | -- |
 | [OH_ImageNative](capi-oh-imagenative.md) *image | 表示OH_ImageNative native对象的指针。 |
 | uint32_t componentType | 表示组件的类型。 |
-| [OH_NativeBuffer](../apis-arkgraphics2d/capi-oh-nativebuffer.md) **nativeBuffer | 表示作为获取结果的OH_NativeBuffer缓冲区对象的指针。 |
+| [OH_NativeBuffer](../apis-arkgraphics2d/capi-oh-nativebuffer-oh-nativebuffer.md) **nativeBuffer | 表示作为获取结果的OH_NativeBuffer缓冲区对象的指针。 |
 
 **返回：**
 

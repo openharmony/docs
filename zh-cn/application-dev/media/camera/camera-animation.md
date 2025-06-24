@@ -109,7 +109,7 @@
 
 2. 获取预览流截图。
 
-   预览流截图通过图形提供的[image.createPixelMapFromSurface](../../reference/apis-image-kit/js-apis-image.md#imagecreatepixelmapfromsurface11)接口实现，surfaceId为当前预览流的surfaceId，size为当前预览流profile的宽高。创建截图工具类(ts文件)，导入依赖，导出获取截图方法供页面使用，截图工具类实现参考：
+   预览流截图通过图形提供的[image.createPixelMapFromSurface](../../reference/apis-image-kit/arkts-apis-image-f.md#imagecreatepixelmapfromsurface11)接口实现，surfaceId为当前预览流的surfaceId，size为当前预览流profile的宽高。创建截图工具类(ts文件)，导入依赖，导出获取截图方法供页面使用，截图工具类实现参考：
 
    ```ts
    export class BlurAnimateUtil {

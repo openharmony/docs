@@ -106,7 +106,7 @@ fillOpacity(value: number | string | Resource)
 
 stroke(value: ResourceColor)
 
-设置边框颜色，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法，不设置时，默认有黑色边框线条。异常值不会绘制边框线条。
+设置边框颜色，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法，不设置时，默认边框颜色为黑色。异常值不会绘制边框线条。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -140,7 +140,7 @@ strokeDashArray(value: Array&lt;any&gt;)
 
 ### strokeDashOffset
 
-strokeDashOffset(value: number | string)
+strokeDashOffset(value: Length)
 
 设置线条绘制起点的偏移量，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。异常值按照默认值处理。
 
@@ -154,7 +154,7 @@ strokeDashOffset(value: number | string)
 
 | 参数名 | 类型                       | 必填 | 说明                                 |
 | ------ | -------------------------- | ---- | ------------------------------------ |
-| value  | number&nbsp;\|&nbsp;string | 是   | 线条绘制起点的偏移量。<br/>默认值：0<br/>默认单位：vp |
+| value  | [Length](ts-types.md#length) | 是   | 线条绘制起点的偏移量。<br/>默认值：0<br/>默认单位：vp |
 
 ### strokeLineCap
 
@@ -194,7 +194,7 @@ strokeLineJoin(value: LineJoinStyle)
 
 ### strokeMiterLimit
 
-strokeMiterLimit(value: number | string)
+strokeMiterLimit(value: Length)
 
 设置斜接长度与边框宽度比值的极限值，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。斜接长度表示外边框外边交点到内边交点的距离，边框宽度即strokeWidth属性的值。该属性取值需在strokeLineJoin属性取值LineJoinStyle.Miter时生效。
 
@@ -210,7 +210,7 @@ strokeMiterLimit(value: number | string)
 
 | 参数名 | 类型                       | 必填 | 说明                                           |
 | ------ | -------------------------- | ---- | ---------------------------------------------- |
-| value  | number&nbsp;\|&nbsp;string | 是   | 斜接长度与边框宽度比值的极限值。<br/>默认值：4 |
+| value  | [Length](ts-types.md#length) | 是   | 斜接长度与边框宽度比值的极限值。<br/>默认值：4 |
 
 ### strokeOpacity
 
@@ -283,7 +283,7 @@ SVG路径描述规范支持的命令如下：
 | A    | elliptical Arc                   | (rx ry x-axis-rotation large-arc-flag sweep-flag x y) | 从当前点到 (x, y) 绘制一条椭圆弧。椭圆的大小和方向由两个半径 (rx, ry) 和x-axis-rotation定义，指示整个椭圆相对于当前坐标系如何旋转（以度为单位）。 large-arc-flag 和 sweep-flag确定弧的绘制方式。 |
 | Z    | closepath                        | none                                     | 通过将当前路径连接回当前子路径的初始点来关闭当前子路径。             |
 
-例如： commands('M0 20 L50 50 L50 100 Z')定义了一个三角形，起始于位置（0，20），接着绘制点（0，20）到点（50，50）的直线，再绘制点（50，50）到点（50，100）的直线，最后绘制点（50，100）到（0，20）的直线关闭路径，形成封闭三角形。
+例如： commands('M0 20 L50 50 L50 100 Z')定义了一个三角形，起始于位置（0，20），接着绘制点（0，20）到点（50，50）的直线，再绘制从点（50，50）到点（50，100）的直线，最后绘制从点（50，100）到（0，20）的直线关闭路径，形成封闭三角形。
 
 ## 示例
 

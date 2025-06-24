@@ -5,7 +5,9 @@
 > **说明：**
 >
 > 该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-> 如果在处理大量子组件时遇到卡顿问题，请考虑采用懒加载、缓存列表项、动态预加载、组件复用和布局优化等方法来进行优化。最佳实践请参考[优化长列表加载慢丢帧问题](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-best-practices-long-list)。
+>
+> 组件内部已绑定手势实现跟手滚动等功能，需要增加自定义手势操作时请参考[手势拦截增强](ts-gesture-blocking-enhancement.md)进行处理。
+
 
 
 ## 子组件
@@ -14,6 +16,8 @@
 支持通过渲染控制类型（[if/else](../../../ui/state-management/arkts-rendering-control-ifelse.md)、[ForEach](../../../ui/state-management/arkts-rendering-control-foreach.md)、[LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md)和[Repeat](../../../ui/state-management/arkts-new-rendering-control-repeat.md)）动态生成子组件，更推荐使用LazyForEach或Repeat以优化性能。
 
 > **说明：**
+>
+> 如果在处理大量子组件时遇到卡顿问题，请考虑采用懒加载、缓存列表项、动态预加载、组件复用和布局优化等方法来进行优化。最佳实践请参考[优化长列表加载慢丢帧问题](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-best-practices-long-list)。
 >
 > List的子组件的索引值计算规则：
 >
@@ -364,6 +368,10 @@ enableScrollInteraction(value: boolean)
 | ------ | ------- | ---- | ----------------------------------- |
 | value  | boolean | 是   | 是否支持滚动手势。设置为true时可以通过手指或者鼠标滚动，设置为false时无法通过手指或者鼠标滚动，但不影响控制器[Scroller](ts-container-scroll.md#scroller)的滚动接口。<br/>默认值：true |
 
+> **说明：** 
+>
+> 组件无法通过鼠标按下拖动操作进行滚动。
+
 ### nestedScroll<sup>10+</sup>
 
 nestedScroll(value: NestedScrollOptions)
@@ -513,6 +521,22 @@ focusWrapMode(mode: Optional\<FocusWrapMode\>)
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | mode   | Optional\<[FocusWrapMode](ts-appendix-enums.md#focuswrapmode20)\> | 是   | 交叉轴方向键走焦模式。<br/>默认值：FocusWrapMode.DEFAULT<br/>**说明：** <br/>异常值按默认值处理，即交叉轴方向键不能换行。 |
 
+### syncLoad<sup>20+</sup>
+
+syncLoad(enable: boolean)
+
+设置是否同步加载List区域内所有子组件。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| enable   | boolean | 是   | 是否同步加载子组件。<br/>true表示同步加载，false表示异步加载。<br/>**说明：** <br/>设置为fasle时，异步加载仅在首次显示等非滑动场景生效。 |
+
 ## ListItemAlign<sup>9+</sup>枚举说明
 
 设置子组件在List交叉轴方向的对齐方式。
@@ -660,7 +684,7 @@ List初始化时如果initialIndex为0会触发一次，List滚动到起始位�
 
 onReachEnd(event: () => void)
 
-列表到达末尾位置时触发。
+列表到达末尾位置时触发。不满一屏并且最后一个子组件末端在List内时触发。
 
 List边缘效果为弹簧效果时，划动经过末尾位置时触发一次，回弹回末尾位置时再触发一次。
 
@@ -674,11 +698,21 @@ List边缘效果为弹簧效果时，划动经过末尾位置时触发一次，�
 
 onScrollFrameBegin(event: (offset: number, state: ScrollState) => { offsetRemain: number })
 
-列表开始滑动时触发，事件参数传入即将发生的滑动量，事件处理函数中可根据应用场景计算实际需要的滑动量并作为事件处理函数的返回值返回，列表将按照返回值的实际滑动量进行滑动。
+该接口回调时，事件参数传入即将发生的滑动量，事件处理函数中可根据应用场景计算实际需要的滑动量并作为事件处理函数的返回值返回，列表将按照返回值的实际滑动量进行滑动。
 
 当listDirection的值为Axis.Vertical时，返回垂直方向滑动量，当listDirection的值为Axis.Horizontal时，返回水平方向滑动量。
 
-触发该事件的条件：手指拖动List、List惯性划动时每帧开始时触发；List超出边缘回弹、调用除fling接口外的其他滚动控制接口和拖动滚动条的滚动不会触发。
+满足以下任一条件时触发该事件：
+
+1. 用户交互（如手指滑动、键鼠操作等）触发滚动。
+2. List惯性滚动。
+3. 调用[fling](ts-container-scroll.md#fling12)接口触发滚动。
+
+不触发该事件的条件：
+
+1. 调用除[fling](ts-container-scroll.md#fling12)接口外的其他滚动控制接口。
+2. 越界回弹。
+3. 拖动滚动条。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -1231,10 +1265,23 @@ export class ListDataSource implements IDataSource {
     });
   }
 
+  // 通知控制器添加数据
+  notifyDataAdd(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataAdd(index);
+    });
+  }
+
   // 在指定索引位置删除一个元素
   public deleteItem(index: number): void {
     this.list.splice(index, 1);
     this.notifyDataDelete(index);
+  }
+
+  // 在指定索引位置插入一个元素
+  public insertItem(index: number, data: number): void {
+    this.list.splice(index, 0, data);
+    this.notifyDataAdd(index);
   }
 }
 ```
@@ -1811,3 +1858,47 @@ struct ListExample {
 ```
 
 ![edgeEffect_list](figures/focusWrapMode_list.gif)
+
+### 示例10（设置显示区域外插入数据时，保持显示内容不变）
+
+该示例通过maintainVisibleContentPosition接口，实现了上滑无限加载历史消息场景。
+
+```ts
+import { ListDataSource } from './ListDataSource';
+
+@Entry
+@Component
+struct ListExample {
+  private arr: ListDataSource = new ListDataSource([990, 991, 992, 993, 994, 995, 996, 997, 998, 999]);
+  build() {
+    Column() {
+      List({ space: 20, initialIndex: 9 }) {
+        LazyForEach(this.arr, (item: number) => {
+          ListItem() {
+            Text('message:' + item)
+              .width('100%').height(100)
+              .fontSize(16)
+              .textAlign(TextAlign.Center)
+              .borderRadius(10)
+              .backgroundColor(0xFFFFFF)
+          }
+        }, (item: string) => item)
+      }
+      .maintainVisibleContentPosition(true)
+      .onScrollIndex((start:number)=>{
+        if (start < 5) {
+          for (let i = 0; i < 10; i++) {
+            this.arr.insertItem(0, this.arr.getData(0) - 1);
+          }
+        }
+      })
+    }
+    .width('100%')
+    .height('100%')
+    .backgroundColor(0xDCDCDC)
+    .padding(12)
+  }
+}
+```
+
+![edgeEffect_list](figures/list_maintainvisiblecontentposition.gif)

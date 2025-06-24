@@ -73,7 +73,7 @@ OH_AudioStreamBuilder_Destroy(builder);
     OH_AudioStreamBuilder_SetCapturerInfo(builder, AUDIOSTREAM_SOURCE_TYPE_MIC);
     ```
 
-    同样，音频录制的音频数据要通过回调接口读入，开发者要实现回调接口，使用`OH_AudioStreamBuilder_SetCapturerCallback`设置回调函数。回调函数的声明请查看[OH_AudioCapturer_Callbacks](../../reference/apis-audio-kit/capi-oh-audiocapturer-callbacks-struct.md)。
+    同样，音频录制的音频数据要通过回调接口读入，开发者要实现回调接口，使用`OH_AudioStreamBuilder_SetCapturerCallback`设置回调函数。回调函数的声明请查看[OH_AudioCapturer_Callbacks](../../reference/apis-audio-kit/capi-ohaudio-oh-audiocapturer-callbacks-struct.md)。
 
 3. 设置音频回调函数。
 
@@ -133,7 +133,7 @@ OH_AudioStreamBuilder_Destroy(builder);
 
     为了避免不可预期的行为，在设置音频回调函数时，可以通过下面两种方式中的任意一种来设置音频回调函数：
 
-    - 请确保[OH_AudioCapturer_Callbacks](../../reference/apis-audio-kit/capi-oh-audiocapturer-callbacks-struct.md)的每一个回调都被**自定义的回调方法**或**空指针**初始化。
+    - 请确保[OH_AudioCapturer_Callbacks](../../reference/apis-audio-kit/capi-ohaudio-oh-audiocapturer-callbacks-struct.md)的每一个回调都被**自定义的回调方法**或**空指针**初始化。
 
       ```cpp
       // 自定义读入数据函数。

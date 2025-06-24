@@ -32,10 +32,6 @@ import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { common } from '@kit.AbilityKit';
 
-// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   predicates.equalTo(photoAccessHelper.PhotoKeys.DISPLAY_NAME, 'test.jpg');
@@ -75,17 +71,13 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 1. 建立检索条件，用于获取图片资源。
 2. 调用[PhotoAccessHelper.getAssets](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getassets-1)接口获取图片资源。
 3. 调用[FetchResult.getFirstObject](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getfirstobject-1)接口获取第一张图片。
-4. 调用PhotoAsset.getThumbnail获取图片的缩略图的[PixelMap](../../reference/apis-image-kit/js-apis-image.md#pixelmap7)。
+4. 调用PhotoAsset.getThumbnail获取图片的缩略图的[PixelMap](../../reference/apis-image-kit/arkts-apis-image-PixelMap.md)。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { image } from '@kit.ImageKit';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { common } from '@kit.AbilityKit';
-
-// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -135,11 +127,7 @@ import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { fileIo } from '@kit.CoreFileKit';
 import { common } from '@kit.AbilityKit';
 
-// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-
-async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   try {
     let displayName: string = 'testPhoto' + Date.now() + '.jpg';
     let createOption: photoAccessHelper.PhotoCreateOptions = {
@@ -148,7 +136,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
     let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = photoAccessHelper.MediaAssetChangeRequest.createAssetRequest(context, displayName, createOption);
     let fd: number = await assetChangeRequest.getWriteCacheHandler();
     // write date into fd.
-    await fileIoclose(fd);
+    await fileIo.close(fd);
     await phAccessHelper.applyChanges(assetChangeRequest);
   } catch (err) {
     console.error(`create asset failed with error: ${err.code}, ${err.message}`);
@@ -186,10 +174,6 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { common } from '@kit.AbilityKit';
-
-// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -237,11 +221,7 @@ import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { common } from '@kit.AbilityKit';
 
-// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-
-async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: photoAccessHelper.FetchOptions = {
     fetchColumns: [],

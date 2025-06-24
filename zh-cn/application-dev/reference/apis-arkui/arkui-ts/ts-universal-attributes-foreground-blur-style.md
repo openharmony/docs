@@ -76,6 +76,10 @@ foregroundBlurStyle(style: Optional\<BlurStyle>, options?: ForegroundBlurStyleOp
 | ------ | ------------------------ |
 | T | 返回当前组件。 |
 
+>  **说明：**
+>
+>  foregroundBlurStyle接口为实时模糊接口，每帧执行实时渲染，性能负载较大。当模糊内容与模糊半径均无需变动时，推荐采用静态模糊接口[blur](../../apis-arkgraphics2d/js-apis-effectKit.md#blur)。最佳实践请参考：[图像模糊动效优化-使用场景](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-fuzzy-scene-performance-optimization#section4945532519)。
+
 ## ForegroundBlurStyleOptions对象说明
 继承自[BlurStyleOptions](#blurstyleoptions)
 

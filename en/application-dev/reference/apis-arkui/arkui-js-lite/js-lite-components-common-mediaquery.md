@@ -93,7 +93,7 @@ The number and type of attributes must be the same among **.container** blocks. 
     font-size: 30px;
     text-align: center;
 }
-@media (device-type: samrtVision) {
+@media (device-type: smartVision) {
   .container {
     width: 500px;
     height: 500px;

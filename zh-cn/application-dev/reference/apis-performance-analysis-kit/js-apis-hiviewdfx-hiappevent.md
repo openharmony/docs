@@ -200,7 +200,8 @@ hiAppEvent.removeWatcher(watcher);
 
 setEventParam(params: Record&lt;string, ParamType&gt;, domain: string, name?: string): Promise&lt;void&gt;
 
-事件自定义参数设置方法，使用Promise方式作为异步回调。在同一生命周期中，可以通过事件领域和事件名称关联系统事件和应用事件，系统事件仅支持崩溃和卡死事件。
+事件自定义参数设置方法，使用Promise方式作为异步回调。在同一生命周期中，可以通过事件领域和事件名称关联系统事件和应用事件，系统事件仅支持[崩溃事件](../../dfx/hiappevent-watcher-crash-events.md)和[卡死事件](../../dfx/hiappevent-watcher-freeze-events.md)。
+
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -380,6 +381,9 @@ hiAppEvent.setEventConfig(hiAppEvent.event.MAIN_THREAD_JANK, params).then(() => 
 | eventTypes | [EventType](#eventtype)[] | 否 | 是   | 需要订阅的事件类型集合。默认不进行过滤。 |
 | names<sup>11+</sup>      | string[]                  | 否 | 是   | 需要订阅的事件名称集合。默认不进行过滤。 |
 
+> **说明：**
+>
+> 系统事件中：踩内存事件和任务执行超时事件不支持在元服务中订阅。启动耗时事件、滑动丢帧事件、CPU高负载事件和24h功耗器件分解统计事件均不支持在元服务和分身应用中订阅。
 
 ## AppEventPackageHolder
 
@@ -1105,6 +1109,7 @@ type ParamType = number | string | boolean | Array&lt;string&gt;
 | RESOURCE_OVERLIMIT<sup>12+</sup> | string | 是 | 应用资源泄露事件。系统事件名称常量。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | ADDRESS_SANITIZER<sup>12+</sup> | string | 是 | 应用踩内存事件。系统事件名称常量。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | MAIN_THREAD_JANK<sup>12+</sup> | string | 是 | 应用主线程超时事件。系统事件名称常量。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| APP_KILLED<sup>20+</sup> | string | 是 | 应用查杀事件。系统事件名称常量。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 
 ## hiappevent.param

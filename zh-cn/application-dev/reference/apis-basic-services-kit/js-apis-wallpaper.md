@@ -672,7 +672,7 @@ setWallpaper(source: string | image.PixelMap, wallpaperType: WallpaperType, call
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| source | string \| [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是 | JPEG或PNG文件的Uri路径，或者PNG格式文件的位图。 |
+| source | string \| [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 是 | JPEG或PNG文件的Uri路径，或者PNG格式文件的位图。 |
 | wallpaperType | [WallpaperType](#wallpapertype7) | 是 | 壁纸类型。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，设置壁纸成功，error为undefined，否则返回error信息。 |
 
@@ -731,7 +731,7 @@ setWallpaper(source: string | image.PixelMap, wallpaperType: WallpaperType): Pro
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| source | string \| [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是 | JPEG或PNG文件的Uri路径，或者PNG格式文件的位图。 |
+| source | string \| [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 是 | JPEG或PNG文件的Uri路径，或者PNG格式文件的位图。 |
 | wallpaperType | [WallpaperType](#wallpapertype7) | 是 | 壁纸类型。 |
 
 **返回值：**

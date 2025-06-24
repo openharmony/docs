@@ -838,6 +838,62 @@ cloudData.Config.setGlobalCloudStrategy(cloudData.StrategyType.NETWORK, [cloudDa
 });
 ```
 
+### cloudSync<sup>20+</sup>
+
+static cloudSync(bundleName: string, storeId: string, mode: relationalStore.SyncMode, progress: Callback&lt;relationalStore.ProgressDetails&gt;): Promise&lt;void&gt;
+
+对指定应用的数据进行端云同步，使用Promise异步回调。
+
+**需要权限**：ohos.permission.CLOUDDATA_CONFIG
+
+**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Config
+
+**参数：**
+
+| 参数名      | 类型   | 必填 | 说明                  |
+| ---------- |--------| ---- |-----------------------|
+| bundleName | string | 是   | 待端云同步数据的应用名。|
+| storeId    | string | 是   | 待端云同步的数据库名。  |
+| mode       | [relationalStore.SyncMode](arkts-apis-data-relationalStore-e.md#syncmode) | 是 | 端云同步类型。|
+| progress | Callback&lt;[relationalStore.ProgressDetails](arkts-apis-data-relationalStore-i.md#progressdetails10)&gt; | 是 | 同步进度回调。 |
+
+**返回值：**
+
+| 类型                | 说明                     |
+| ------------------- | ----------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 801      | Capability not supported.|
+| 14800001 | Invalid arguments. Possible causes: 1. Empty conditions; 2. Missing GROUP BY clause.|
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { relationalStore } from '@kit.ArkData';
+
+try{
+  cloudData.Config.cloudSync("bundleName", "storeId", relationalStore.SyncMode.SYNC_MODE_TIME_FIRST, (progress)=>{
+    console.info('Succeeded in getting progress details.');
+  }).then(() => {
+      console.info('Succeeded in syncing cloud data.');
+  }).catch((err: BusinessError) => {
+      console.error(`Failed to sync cloud data. Code: ${err.code}, message: ${err.message}`);
+  });
+} catch (e) {
+  let error = e as BusinessError;
+  console.error(`Failed to sync cloud data. Code: ${e.code}, message: ${e.message}`);
+}
+```
+
 ###  clear
 
 static clear(accountId: string, appActions: Record<string, ClearAction>,  callback: AsyncCallback&lt;void&gt;): void

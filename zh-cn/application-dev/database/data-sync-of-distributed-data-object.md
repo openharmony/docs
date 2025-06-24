@@ -1,4 +1,4 @@
-# 分布式数据对象跨设备数据同步
+# 分布式数据对象跨设备数据同步 (ArkTS)
 
 
 ## 场景介绍
@@ -196,10 +196,7 @@ dataObject['parents']['mon'] = "amy"; // 不支持的修改
 
 ```ts
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
-import { hilog } from '@kit.PerformanceAnalysisKit';
-import { window } from '@kit.ArkUI';
 import { commonType, distributedDataObject } from '@kit.ArkData';
-import { fileIo, fileUri } from '@kit.CoreFileKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // 业务数据定义

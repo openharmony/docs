@@ -4,7 +4,7 @@
 >
 > - 本模块接口从API version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
-> - 示例效果请以真机运行为准，当前IDE预览器不支持。
+> - 示例效果请以真机运行为准，当前DevEco Studio预览器不支持。
 
 ## WebStorageOrigin
 
@@ -28,18 +28,6 @@ Web组件返回的请求/响应头对象。
 | ----------- | ------ | -----|------|------------------- |
 | headerKey   | string | 否 | 否 | 请求/响应头的key。   |
 | headerValue | string | 否 | 否 | 请求/响应头的value。 |
-
-
-## BackForwardList
-
-当前Webview的历史信息列表。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-| 名称         | 类型   | 只读 | 可选 | 说明                                                         |
-| ------------ | ------ | ---- | ---- | ------------------------------------------------------------ |
-| currentIndex | number | 否   | 否   | 当前在页面历史列表中的索引。                                 |
-| size         | number | 否   | 否   | 历史列表中索引的数量，最多保存50条，超过时起始记录会被覆盖。 |
 
 ## WebCustomScheme
 
@@ -103,7 +91,7 @@ Web组件预编译JavaScript生成字节码缓存的配置对象，用于控制�
 | id | string | 否 | snapshot的id。|
 | status | boolean | 否 |  snapshot的状态，正常为true，失败为false，获取全量绘制结果失败，返回size的长宽都为0，map为空。|
 | size | [SizeOptions](../apis-arkui/arkui-ts/ts-types.md#sizeoptions)   | 否 | web绘制的真实尺寸，number类型，单位vp。|
-| imagePixelMap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 否 | 全量绘制结果image.pixelMap格式。|
+| imagePixelMap | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 否 | 全量绘制结果image.pixelMap格式。|
 
 ## OfflineResourceMap<sup>12+</sup>
 
@@ -180,7 +168,7 @@ WebViewController与Web组件的绑定状态。
 
 | 名称          | 类型                                   | 只读 | 可选 | 说明                         |
 | ------------- | -------------------------------------- | ---- | ---- | ---------------------------- |
-| icon          | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是   | 否   | 历史页面图标的PixelMap对象。 |
+| icon          | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 是   | 否   | 历史页面图标的PixelMap对象。 |
 | historyUrl    | string                                 | 否   | 否   | 历史记录项的url地址。        |
 | historyRawUrl | string                                 | 否   | 否   | 历史记录项的原始url地址。    |
 | title         | string                                 | 否   | 否   | 历史记录项的标题。           |

@@ -9,7 +9,7 @@ HAR（Harmony Archive）是静态共享包，可以包含代码、C++库、资�
 ## 约束限制
 
 - HAR不支持在设备上单独安装或运行，只能作为应用模块的依赖项被引用。
-- HAR不支持在配置文件中声明[ExtensionAbility](../application-models/extensionability-overview.md)组件。从API version 14开始，支持在配置文件中声明[UIAbility](../application-models/uiability-overview.md)组件。
+- HAR不支持在配置文件中声明[ExtensionAbility](../application-models/extensionability-overview.md)组件。从API version 14开始，支持在配置文件中声明[UIAbility](../application-models/uiability-overview.md)组件，配置UIAbility的方法参考[在模块中添加Ability](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-add-new-ability#section18658758104318)，拉起HAR中UIAbility的方式与[启动应用内的UIAbility](../application-models/uiability-intra-device-interaction.md)方法相同。
 > **说明：**
 >
 > 如果使用[startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#startability)接口拉起HAR中的UIAbility，接口参数中的moduleName取值需要为依赖该HAR的[HAP](hap-package.md)/[HSP](in-app-hsp.md)的moduleName。
@@ -41,6 +41,10 @@ Index.ets文件是HAR导出声明文件的入口，HAR需要导出的接口，�
   "main": "Index.ets"
 }
 ```
+> **说明：**
+>
+> HAR在和宿主应用一起编译时，会把HAR的代码直接编译到宿主应用中，HAR包是一个编译中间态产物，不是最终的运行实体。运行时，HAR运行的身份信息是其宿主应用，系统会以宿主应用的版本做行为区分。如果需要在HAR中区分宿主应用的版本做不同的行为区分，可以调用[getBundleInfoForSelf](../reference/apis-ability-kit/js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)接口，获取宿主应用的targetVersion，然后根据不同的targetVersion，做不同的逻辑处理。
+
 ### 导出ArkUI组件
 通过`export`导出ArkUI组件，示例如下：
 ```ts

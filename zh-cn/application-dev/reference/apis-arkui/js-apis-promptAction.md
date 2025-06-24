@@ -20,7 +20,7 @@ import { promptAction } from '@kit.ArkUI';
 
 openToast(options: ShowToastOptions): Promise&lt;number&gt;
 
-显示文本提示框并返回其id。
+显示文本提示框并通过Promise返回其id。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -48,6 +48,10 @@ openToast(options: ShowToastOptions): Promise&lt;number&gt;
 | 100001   | Internal error.                                              |
 
 **示例：**
+
+> **说明：**
+> 
+> 直接使用openToast可能导致[UI上下文不明确](../../ui/arkts-global-interface.md)的问题，建议使用UIContext中的getPromptAction方法获取到PromptAction对象，再通过该对象调用[openToast](js-apis-arkui-UIContext.md#opentoast18)实现。
 
 ```ts
 import { promptAction } from '@kit.ArkUI';
@@ -122,6 +126,10 @@ closeToast(toastId: number): void
 
 **示例：**
 
+> **说明：**
+> 
+> 直接使用closeToast可能导致[UI上下文不明确](../../ui/arkts-global-interface.md)的问题，建议使用UIContext中的getPromptAction方法获取到PromptAction对象，再通过该对象调用[openToast](js-apis-arkui-UIContext.md#closetoast18)实现。
+
 示例请看[promptAction.openToaset18](#promptactionopentoast18)的示例。
 
 ## ShowToastOptions
@@ -135,7 +143,7 @@ closeToast(toastId: number): void
 | message                 | string&nbsp;\|&nbsp;[Resource](arkui-ts/ts-types.md#resource) | 是   | 显示的文本信息。<br>**说明：** <br/>默认字体为'Harmony Sans'，不支持设置其他字体。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | duration                | number                                                       | 否   | 默认值1500ms，取值区间：1500ms-10000ms。若小于1500ms则取默认值，若大于10000ms则取上限值10000ms。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | bottom                  | string&nbsp;\|&nbsp;number                                   | 否   | 设置弹窗底部边框距离导航条的高度，ToastShowMode.TOP_MOST模式下，软键盘拉起时，如果bottom值过小，toast要被软键盘遮挡时，会自动避让至距离软键盘80vp处。ToastShowMode.DEFAULT模式下，软键盘拉起时，会上移软键盘的高度。<br/>默认值：80vp<br/>**说明：** <br/>当底部没有导航条时，bottom为设置弹窗底部边框距离窗口底部的高度。<br/>设置对齐方式alignment后，bottom不生效。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| showMode<sup>11+</sup>  | [ToastShowMode](#toastshowmode11)                            | 否   | 设置弹窗是否显示在应用之上。<br>默认值：ToastShowMode.DEFAULT，默认显示在应用内。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| showMode<sup>11+</sup>  | [ToastShowMode](#toastshowmode11)                            | 否   | 设置弹窗层级。<br>默认值：ToastShowMode.DEFAULT，默认显示在应用内。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | alignment<sup>12+</sup> | [Alignment](arkui-ts/ts-appendix-enums.md#alignment)         | 否   | 对齐方式。<br>**说明：** <br/>不同alignment下，Toast位置对齐效果，如下图所示。<br/>![zh-cn_image_0001](figures/toast_alignment.PNG)<br/>Toast的文本显示默认自左向右，不支持其他对齐方式。<br/>默认值：undefined，默认底部偏上位置。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
 | offset<sup>12+</sup>    | [Offset](arkui-ts/ts-types.md#offset)                        | 否   | 在对齐方式上的偏移。<br/>默认值：{ dx: 0, dy: 0 }，默认没有偏移。<br/>**说明：** <br/>只支持设置px类型的数值，如需设置vp，可以将vp改成px传入。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | backgroundColor<sup>12+</sup>    | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否   | 文本提示框背板颜色。<br/>默认值：Color.Transparent<br/>**说明：** <br/>backgroundColor会与模糊属性backgroundBlurStyle叠加产生效果，如果不符合预期，可将backgroundBlurStyle设置为BlurStyle.NONE，即可取消模糊。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -147,7 +155,7 @@ closeToast(toastId: number): void
 
 ## ToastShowMode<sup>11+</sup>
 
-设置弹窗显示模式，默认显示在应用内，支持显示在应用之上。
+设置弹窗显示模式，默认显示在应用内，支持显示在子窗。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -155,8 +163,8 @@ closeToast(toastId: number): void
 
 | 名称     | 值   | 说明                   |
 | -------- | ---- | ---------------------- |
-| DEFAULT  | 0    | Toast 显示在应用内。   |
-| TOP_MOST | 1    | Toast 显示在应用之上。 |
+| DEFAULT  | 0    | Toast显示在应用内。   |
+| TOP_MOST | 1    | Toast显示在子窗。 |
 
 ## ShowDialogOptions
 
@@ -189,10 +197,6 @@ closeToast(toastId: number): void
 | levelUniqueId<sup>15+</sup>       | number | 否   | 设置页面级弹窗需要显示的层级下的[节点 uniqueId](js-apis-arkui-frameNode.md#getuniqueid12)。<br/>取值范围：大于等于0的数字。<br />**说明：**<br />- 当且仅当levelMode属性设置为LevelMode.EMBEDDED时生效。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
 | immersiveMode<sup>15+</sup>       | [ImmersiveMode](#immersivemode15枚举说明) | 否   | 设置页面内弹窗蒙层效果。<br />**说明：**<br />- 默认值：ImmersiveMode.DEFAULT <br />- 当且仅当levelMode属性设置为LevelMode.EMBEDDED时生效。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
 | levelOrder<sup>18+</sup>       | [LevelOrder](#levelorder18) | 否   | 设置弹窗显示的顺序。<br />**说明：**<br />- 默认值：LevelOrder.clamp(0) <br />- 不支持动态刷新顺序。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
-| onWillAppear<sup>20+</sup> | Callback&lt;void&gt; | 否 | 弹窗显示动效前的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>onWillDisappear>>onDidDisappear。<br />2.在onWillAppear内设置改变弹窗显示效果的回调事件，二次弹出生效。 <br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
-| onDidAppear<sup>20+</sup> | Callback&lt;void&gt; | 否 | 弹窗弹出时的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>onWillDisappear>>onDidDisappear。<br />2.在onDidAppear内设置改变弹窗显示效果的回调事件，二次弹出生效。<br />3.快速点击弹出，关闭弹窗时，onWillDisappear在onDidAppear前生效。<br/>4.弹窗入场动效未完成时彻底关闭弹窗，动效打断，onDidAppear不会触发。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
-| onWillDisappear<sup>20+</sup> | Callback&lt;void&gt; | 否 | 弹窗退出动效前的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>onWillDisappear>>onDidDisappear。<br /> **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
-| onDidDisappear<sup>20+</sup> | Callback&lt;void&gt; | 否 | 弹窗消失时的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>onWillDisappear>>onDidDisappear。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## ShowDialogSuccessResponse
 
@@ -216,11 +220,15 @@ closeToast(toastId: number): void
 | ----------------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | title                         | string&nbsp;\|&nbsp;[Resource](arkui-ts/ts-types.md#resource) | 否   | 标题文本。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | buttons                       | [[Button](#button),[Button](#button)?,[Button](#button)?,[Button](#button)?,[Button](#button)?,[Button](#button)?] | 是   | 菜单中菜单项按钮的数组，结构为：{text:'button',&nbsp;color:&nbsp;'\#666666'}，支持1-6个按钮。按钮数量大于6个时，仅显示前6个按钮，之后的按钮不显示。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| showInSubWindow<sup>11+</sup> | boolean                                                      | 否   | 某弹框需要显示在主窗口之外时，是否在子窗口显示此弹窗。值为true表示在子窗口显示弹窗。<br/>默认值：false，在子窗口不显示弹窗。<br/>**说明：**<br/> - showInSubWindow为true的弹窗无法触发显示另一个showInSubWindow为true的弹窗。 <br/> - 若在UIExtension中设置showInSubWindow为true, 弹窗将基于UIExtension的宿主窗口对齐。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| isModal<sup>11+</sup>         | boolean                                                      | 否   | 弹窗是否为模态窗口。值为true表示为模态窗口且有蒙层，不可与弹窗周围其他控件进行交互，即蒙层区域无法事件透传。值为false表示为非模态窗口且无蒙层，可以与弹窗周围其他控件进行交互。<br/>默认值：true<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| levelMode<sup>15+</sup>       | [LevelMode](#levelmode15枚举说明) | 否   | 设置弹窗显示层级。<br />**说明：**<br />- 默认值：LevelMode.OVERLAY <br />- 当且仅当showInSubWindow属性设置为false时生效。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
-| levelUniqueId<sup>15+</sup>       | number | 否   | 设置页面级弹窗需要显示的层级下的[节点 uniqueId](js-apis-arkui-frameNode.md#getuniqueid12)。<br/>取值范围：大于等于0的数字。<br />**说明：**<br />- 当且仅当levelMode属性设置为LevelMode.EMBEDDED时生效。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
-| immersiveMode<sup>15+</sup>       | [ImmersiveMode](#immersivemode15枚举说明) | 否   | 设置页面内弹窗蒙层效果。<br />**说明：**<br />- 默认值：ImmersiveMode.DEFAULT <br />- 当且仅当levelMode属性设置为LevelMode.EMBEDDED时生效。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
+| showInSubWindow<sup>11+</sup> | boolean                                                      | 否   | 某弹框需要显示在主窗口之外时，是否在子窗口显示此菜单。值为true表示在子窗口显示菜单。<br/>默认值：false，在子窗口不显示菜单。<br/>**说明：**<br/> - showInSubWindow为true的菜单无法触发显示另一个showInSubWindow为true的菜单。 <br/> - 若在UIExtension中设置showInSubWindow为true, 菜单将基于UIExtension的宿主窗口对齐。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| isModal<sup>11+</sup>         | boolean                                                      | 否   | 菜单是否为模态窗口。值为true表示为模态窗口且有蒙层，不可与菜单周围其他控件进行交互，即蒙层区域无法事件透传。值为false表示为非模态窗口且无蒙层，可以与菜单周围其他控件进行交互。<br/>默认值：true<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| levelMode<sup>15+</sup>       | [LevelMode](#levelmode15枚举说明) | 否   | 设置菜单显示层级。<br />**说明：**<br />- 默认值：LevelMode.OVERLAY <br />- 当且仅当showInSubWindow属性设置为false时生效。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
+| levelUniqueId<sup>15+</sup>       | number | 否   | 设置页面级菜单需要显示的层级下的[节点 uniqueId](js-apis-arkui-frameNode.md#getuniqueid12)。<br/>取值范围：大于等于0的数字。<br />**说明：**<br />- 当且仅当levelMode属性设置为LevelMode.EMBEDDED时生效。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
+| immersiveMode<sup>15+</sup>       | [ImmersiveMode](#immersivemode15枚举说明) | 否   | 设置页面内菜单蒙层效果。<br />**说明：**<br />- 默认值：ImmersiveMode.DEFAULT <br />- 当且仅当levelMode属性设置为LevelMode.EMBEDDED时生效。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
+| onWillAppear<sup>20+</sup> | Callback&lt;void&gt; | 否 | 菜单显示动效前的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>onWillDisappear>>onDidDisappear。 <br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
+| onDidAppear<sup>20+</sup> | Callback&lt;void&gt; | 否 | 菜单弹出时的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>onWillDisappear>>onDidDisappear。<br />2.快速点击弹出，关闭菜单时，onWillDisappear在onDidAppear前生效。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| onWillDisappear<sup>20+</sup> | Callback&lt;void&gt; | 否 | 菜单退出动效前的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>onWillDisappear>>onDidDisappear。<br /> **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
+| onDidDisappear<sup>20+</sup> | Callback&lt;void&gt; | 否 | 菜单消失时的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>onWillDisappear>>onDidDisappear。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## ActionMenuSuccessResponse
 
@@ -269,14 +277,16 @@ DialogController可作为UIContext弹出自定义弹窗的成员变量，具体�
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-### constructor
+### constructor<sup>18+</sup>
 constructor()
+
+控制器的构造函数。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-### close
+### close<sup>18+</sup>
 close(): void
 
 关闭显示的自定义弹窗，若已关闭，则不生效。
@@ -450,7 +460,7 @@ type DialogOptionsShadow = ShadowOptions&nbsp;\|&nbsp;ShadowStyle
 
 | 名称    | 类型                                                    | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| builder | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) | 是  | 设置自定义弹窗的内容。<br/>**说明：** <br/>builder需要赋值为箭头函数，格式如下：() => { this.XXX() }，其中XXX是内部builder名。<br/>全局builder需要在组件内部创建，并在内部builder中调用。<br/>builder根节点宽高百分比相对弹框容器大小。<br/>builder非根节点宽高百分比相对父节点大小。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| builder | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) | 是  | 设置自定义弹窗的内容。<br/>**说明：** <br/>builder需要赋值为箭头函数，格式如下：() => { this.XXX() }，其中XXX是内部builder名。<br/>全局builder需要在组件内部创建，并在内部builder中调用。<br/>builder根节点宽高百分比相对弹框容器大小。<br/>builder非根节点宽高百分比相对父节点大小。 |
 | backgroundColor <sup>12+</sup>| [ResourceColor](arkui-ts/ts-types.md#resourcecolor)  | 否 | 设置弹窗背板颜色。<br/>默认值：Color.Transparent<br/>**说明：** <br/>当设置了backgroundColor为非透明色时，backgroundBlurStyle需要设置为BlurStyle.NONE，否则颜色显示将不符合预期效果。 |
 | cornerRadius<sup>12+</sup>| [Dimension](arkui-ts/ts-types.md#dimension10)&nbsp;\|&nbsp;[BorderRadiuses](arkui-ts/ts-types.md#borderradiuses9) | 否 | 设置背板的圆角半径。<br />可分别设置4个圆角的半径。<br />默认值：{ topLeft: '32vp', topRight: '32vp', bottomLeft: '32vp', bottomRight: '32vp' }<br /> 圆角大小受组件尺寸限制，最大值为组件宽或高的一半，若值为负，则按照默认值处理。 <br /> 百分比参数方式：以父元素弹窗宽和高的百分比来设置弹窗的圆角。|
 | borderWidth<sup>12+</sup>| [Dimension](arkui-ts/ts-types.md#dimension10)&nbsp;\|&nbsp;[EdgeWidths](arkui-ts/ts-types.md#edgewidths9)  | 否 | 设置弹窗背板的边框宽度。<br />可分别设置4个边框宽度。<br />默认值：0 <br />单位：vp <br /> 百分比参数方式：以父元素弹窗宽的百分比来设置弹窗的边框宽度。<br />当弹窗左边框和右边框大于弹窗宽度，弹窗上边框和下边框大于弹窗高度，显示可能不符合预期。 |
@@ -481,7 +491,7 @@ type DialogOptionsShadow = ShadowOptions&nbsp;\|&nbsp;ShadowStyle
 | dialogTransition<sup>19+</sup>          | [TransitionEffect](arkui-ts/ts-transition-animation-component.md#transitioneffect10对象说明) | 否   | 设置弹窗内容显示的过渡效果。默认无动效。<br />**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。 |
 | maskTransition<sup>19+</sup>          | [TransitionEffect](arkui-ts/ts-transition-animation-component.md#transitioneffect10对象说明) | 否   | 设置蒙层显示的过渡效果。默认无动效。<br />**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。 |
 | onDidAppear<sup>12+</sup> | () => void | 否 | 弹窗弹出时的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>(onDateAccept/onCancel/onDateChange)>>onWillDisappear>>onDidDisappear。<br />2.在onDidAppear内设置改变弹窗显示效果的回调事件，二次弹出生效。<br />3.快速点击弹出，消失弹窗时，存在onWillDisappear在onDidAppear前生效。<br />4. 当弹窗入场动效未完成时关闭弹窗，该回调不会触发。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| onDidDisappear<sup>12+</sup> | () => void | 否 | 弹窗消失时的事件回调。<br />**说明：**<br />正常时序依次为：onWillAppear>>onDidAppear>>(onDateAccept/onCancel/onDateChange)>>onWillDisappear>>onDidDisappear。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| onDidDisappear<sup>12+</sup> | () => void | 否 | 弹窗消失时的事件回调。<br />**说明：**<br />正常时序依次为：onWillAppear>>onDidAppear>>(onDateAccept/onCancel/onDateChange)>>onWillDisappear>>onDidDisappear。 <br/>当弹窗退场动画未完成时（例如：同时触发弹窗关闭和页面切换），该回调不会触发。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | onWillAppear<sup>12+</sup> | () => void | 否 | 弹窗显示动效前的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>(onDateAccept/onCancel/onDateChange)>>onWillDisappear>>onDidDisappear。<br />2.在onWillAppear内设置改变弹窗显示效果的回调事件，二次弹出生效。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | onWillDisappear<sup>12+</sup> | () => void | 否 | 弹窗退出动效前的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>(onDateAccept/onCancel/onDateChange)>>onWillDisappear>>onDidDisappear。<br />2.快速点击弹出，消失弹窗时，存在onWillDisappear在onDidAppear前生效。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | keyboardAvoidMode<sup>12+</sup> | [KeyboardAvoidMode](./arkui-ts/ts-types.md#keyboardavoidmode12枚举说明) | 否 | 用于设置弹窗是否在拉起软键盘时进行自动避让。<br/>默认值：KeyboardAvoidMode.DEFAULT<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -513,9 +523,11 @@ Dialog关闭的信息。
 
 ## DismissReason<sup>12+</sup>枚举说明
 
+关闭原因类型。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称          | 值   | 描述                                                         |
+| 名称          | 值   | 说明                                                       |
 | ------------- | ---- | ------------------------------------------------------------ |
 | PRESS_BACK    | 0    | 点击三键back、侧滑（左滑/右滑）、键盘ESC。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | TOUCH_OUTSIDE | 1    | 点击遮障层时。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -645,9 +657,11 @@ showToast(options: ShowToastOptions): void
 
 > **说明：**
 >
-> 从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)获取[PromptAction](js-apis-arkui-UIContext.md#promptaction)实例，再通过此实例调用替代方法[showToast](js-apis-arkui-UIContext.md#showtoast)。
+> 从API version 18开始废弃，且直接使用showToast可能导致[UI上下文不明确](../../ui/arkts-global-interface.md)的问题，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)获取[PromptAction](js-apis-arkui-UIContext.md#promptaction)实例，再通过此实例调用替代方法[showToast](js-apis-arkui-UIContext.md#showtoast)。
 >
 > 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)方法获取当前UI上下文关联的[PromptAction](js-apis-arkui-UIContext.md#promptaction)对象。
+>
+> Toast样式单一，不支持内容的自定义，具体支持能力请参考[ShowToastOptions](#showtoastoptions)提供的接口。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -709,11 +723,11 @@ API version 12及之后Toast样式。
 
 showDialog(options: ShowDialogOptions): Promise&lt;ShowDialogSuccessResponse&gt;
 
-创建并显示对话框，对话框响应后异步返回结果。
+创建并显示对话框，对话框通过Promise返回结果。
 
 > **说明：**
 >
-> 从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)获取[PromptAction](js-apis-arkui-UIContext.md#promptaction)实例，再通过此实例调用替代方法[showDialog](js-apis-arkui-UIContext.md#showdialog-1)。
+> 从API version 18开始废弃，且直接使用showDialog可能导致[UI上下文不明确](../../ui/arkts-global-interface.md)的问题，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)获取[PromptAction](js-apis-arkui-UIContext.md#promptaction)实例，再通过此实例调用替代方法[showDialog](js-apis-arkui-UIContext.md#showdialog-1)。
 >
 > 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)方法获取当前UI上下文关联的[PromptAction](js-apis-arkui-UIContext.md#promptaction)对象。
 
@@ -779,7 +793,7 @@ showDialog(options: ShowDialogOptions, callback: AsyncCallback&lt;ShowDialogSucc
 
 > **说明：**
 >
-> 从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)获取[PromptAction](js-apis-arkui-UIContext.md#promptaction)实例，再通过此实例调用替代方法[showDialog](js-apis-arkui-UIContext.md#showdialog)。
+> 从API version 18开始废弃，且直接使用showDialog可能导致[UI上下文不明确](../../ui/arkts-global-interface.md)的问题，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)获取[PromptAction](js-apis-arkui-UIContext.md#promptaction)实例，再通过此实例调用替代方法[showDialog](js-apis-arkui-UIContext.md#showdialog)。
 >
 > 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)方法获取当前UI上下文关联的[PromptAction](js-apis-arkui-UIContext.md#promptaction)对象。
 
@@ -886,14 +900,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Entry
 @Component
 struct DialogExample {
-  @State log:string = 'Log information:';
+  @State log: string = 'Log information:';
   build() {
     Column() {
-      Button('showdialog')
-        .width(200)
-        .height(60)
-        .margin(20)
-        .fontSize(16)
+      Button('showDialog')
         .onClick(() => {
           this.showCustomDialog();
         })
@@ -918,20 +928,20 @@ struct DialogExample {
           }
         ],
         onDidAppear: () => {
-          this.log += '# onDidAppear'
-          console.info("prompAction,is onDidAppear!")
+          this.log += '# onDidAppear';
+          console.info("showDialog,is onDidAppear!");
         },
         onDidDisappear: () => {
-          this.log += '# onDidDisappear'
-          console.info("prompAction,is onDidDisappear!")
+          this.log += '# onDidDisappear';
+          console.info("showDialog,is onDidDisappear!");
         },
         onWillAppear: () => {
-          this.log = 'Log information:#onWillAppear'
-          console.info("prompAction,is onWillAppear!")
+          this.log = 'Log information:#onWillAppear';
+          console.info("showDialog,is onWillAppear!");
         },
         onWillDisappear: () => {
-          this.log += '# onWillDisappear'
-          console.info("prompAction,is onWillDisappear!")
+          this.log += '# onWillDisappear';
+          console.info("showDialog,is onWillDisappear!");
         },
       })
     } catch (error) {
@@ -954,7 +964,7 @@ showActionMenu(options: ActionMenuOptions, callback: AsyncCallback&lt;ActionMenu
 
 > **说明：**
 >
-> 从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)获取[PromptAction](js-apis-arkui-UIContext.md#promptaction)实例，再通过此实例调用替代方法[showActionMenu](js-apis-arkui-UIContext.md#showactionmenu11)。
+> 从API version 18开始废弃，且直接使用showActionMenu可能导致[UI上下文不明确](../../ui/arkts-global-interface.md)的问题，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)获取[PromptAction](js-apis-arkui-UIContext.md#promptaction)实例，再通过此实例调用替代方法[showActionMenu](js-apis-arkui-UIContext.md#showactionmenu11)。
 >
 > 从API version 11开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)方法获取当前UI上下文关联的[PromptAction](js-apis-arkui-UIContext.md#promptaction)对象。
 
@@ -1092,11 +1102,11 @@ struct Index {
 
 showActionMenu(options: ActionMenuOptions): Promise&lt;ActionMenuSuccessResponse&gt;
 
-创建并显示操作菜单，菜单响应后异步返回结果。
+创建并显示操作菜单，菜单响应后通过Promise返回结果。
 
 > **说明：**
 >
-> 从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)获取[PromptAction](js-apis-arkui-UIContext.md#promptaction)实例，再通过此实例调用替代方法[showActionMenu](js-apis-arkui-UIContext.md#showactionmenu)。
+> 从API version 18开始废弃，且直接使用showActionMenu可能导致[UI上下文不明确](../../ui/arkts-global-interface.md)的问题，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)获取[PromptAction](js-apis-arkui-UIContext.md#promptaction)实例，再通过此实例调用替代方法[showActionMenu](js-apis-arkui-UIContext.md#showactionmenu)。
 >
 > 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)方法获取当前UI上下文关联的[PromptAction](js-apis-arkui-UIContext.md#promptaction)对象。
 
@@ -1157,7 +1167,7 @@ promptAction.showActionMenu({
 
 openCustomDialog(options: CustomDialogOptions): Promise&lt;number&gt;
 
-打开自定义弹窗。
+打开自定义弹窗。通过Promise返回结果。
 
 <!--Del-->不支持在ServiceExtension中使用。<!--DelEnd-->
 
@@ -1167,7 +1177,7 @@ openCustomDialog(options: CustomDialogOptions): Promise&lt;number&gt;
 
 > **说明：**
 >
-> 从API version 11开始支持，从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)获取[PromptAction](js-apis-arkui-UIContext.md#promptaction)实例，再通过此实例调用替代方法[openCustomDialog](js-apis-arkui-UIContext.md#opencustomdialog12-1)。
+> 从API version 11开始支持，从API version 18开始废弃，且直接使用openCustomDialog可能导致[UI上下文不明确](../../ui/arkts-global-interface.md)的问题，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)获取[PromptAction](js-apis-arkui-UIContext.md#promptaction)实例，再通过此实例调用替代方法[openCustomDialog](js-apis-arkui-UIContext.md#opencustomdialog12-1)。
 >
 > 从API version 12开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)方法获取当前UI上下文关联的[PromptAction](js-apis-arkui-UIContext.md#promptaction)对象。
 
@@ -1451,7 +1461,7 @@ closeCustomDialog(dialogId: number): void
 
 > **说明：**
 >
-> 从API version 11开始支持，从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)获取[PromptAction](js-apis-arkui-UIContext.md#promptaction)实例，再通过此实例调用替代方法[closeCustomDialog](js-apis-arkui-UIContext.md#closecustomdialog12-1)。
+> 从API version 11开始支持，从API version 18开始废弃，且直接使用closeCustomDialog可能导致[UI上下文不明确](../../ui/arkts-global-interface.md)的问题，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)获取[PromptAction](js-apis-arkui-UIContext.md#promptaction)实例，再通过此实例调用替代方法[closeCustomDialog](js-apis-arkui-UIContext.md#closecustomdialog12-1)。
 >
 > 从API version 12开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](js-apis-arkui-UIContext.md#getpromptaction)方法获取当前UI上下文关联的[PromptAction](js-apis-arkui-UIContext.md#promptaction)对象。
 

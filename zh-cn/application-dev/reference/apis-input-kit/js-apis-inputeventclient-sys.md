@@ -41,36 +41,49 @@ injectEvent({KeyEvent: KeyEvent}): void
 **示例：**
 
 ```js
-try {
-  let backKeyDown: inputEventClient.KeyEvent = {
-    isPressed: true,
-    keyCode: 2,
-    keyDownDuration: 0,
-    isIntercepted: false
+import { inputEventClient } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            let backKeyDown: inputEventClient.KeyEvent = {
+              isPressed: true,
+              keyCode: 2,
+              keyDownDuration: 0,
+              isIntercepted: false
+            }
+
+            class EventDown {
+              KeyEvent: inputEventClient.KeyEvent | null = null
+            }
+
+            let eventDown: EventDown = { KeyEvent: backKeyDown }
+            inputEventClient.injectEvent(eventDown);
+
+            let backKeyUp: inputEventClient.KeyEvent = {
+              isPressed: false,
+              keyCode: 2,
+              keyDownDuration: 0,
+              isIntercepted: false
+            };
+
+            class EventUp {
+              KeyEvent: inputEventClient.KeyEvent | null = null
+            }
+
+            let eventUp: EventUp = { KeyEvent: backKeyUp }
+            inputEventClient.injectEvent(eventUp);
+          } catch (error) {
+            console.error(`Failed to inject KeyEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
   }
-
-  class EventDown {
-    KeyEvent: inputEventClient.KeyEvent | null = null
-  }
-
-  let eventDown: EventDown = { KeyEvent: backKeyDown }
-  inputEventClient.injectEvent(eventDown);
-
-  let backKeyUp: inputEventClient.KeyEvent = {
-    isPressed: false,
-    keyCode: 2,
-    keyDownDuration: 0,
-    isIntercepted: false
-  };
-
-  class EventUp {
-    KeyEvent: inputEventClient.KeyEvent | null = null
-  }
-
-  let eventUp: EventUp = { KeyEvent: backKeyUp }
-  inputEventClient.injectEvent(eventUp);
-} catch (error) {
-  console.error(`Failed to inject KeyEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -102,36 +115,49 @@ injectKeyEvent(keyEvent: KeyEventData): void
 **示例：**
 
 ```js
-try {
-  let backKeyDown: inputEventClient.KeyEvent = {
-    isPressed: true,
-    keyCode: 2,
-    keyDownDuration: 0,
-    isIntercepted: false
+import { inputEventClient } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            let backKeyDown: inputEventClient.KeyEvent = {
+              isPressed: true,
+              keyCode: 2,
+              keyDownDuration: 0,
+              isIntercepted: false
+            }
+
+            class EventDown {
+              keyEvent: inputEventClient.KeyEvent | null = null
+            }
+
+            let eventDown: EventDown = { keyEvent: backKeyDown }
+            inputEventClient.injectKeyEvent(eventDown);
+
+            let backKeyUp: inputEventClient.KeyEvent = {
+              isPressed: false,
+              keyCode: 2,
+              keyDownDuration: 0,
+              isIntercepted: false
+            };
+
+            class EventUp {
+              keyEvent: inputEventClient.KeyEvent | null = null
+            }
+
+            let eventUp: EventUp = { keyEvent: backKeyUp }
+            inputEventClient.injectKeyEvent(eventUp);
+          } catch (error) {
+            console.error(`Failed to inject KeyEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
   }
-
-  class EventDown {
-    keyEvent: inputEventClient.KeyEvent | null = null
-  }
-
-  let eventDown: EventDown = { keyEvent: backKeyDown }
-  inputEventClient.injectKeyEvent(eventDown);
-
-  let backKeyUp: inputEventClient.KeyEvent = {
-    isPressed: false,
-    keyCode: 2,
-    keyDownDuration: 0,
-    isIntercepted: false
-  };
-
-  class EventUp {
-    keyEvent: inputEventClient.KeyEvent | null = null
-  }
-
-  let eventUp: EventUp = { keyEvent: backKeyUp }
-  inputEventClient.injectKeyEvent(eventUp);
-} catch (error) {
-  console.error(`Failed to inject KeyEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 ## inputEventClient.injectMouseEvent<sup>11+</sup>
@@ -162,76 +188,88 @@ injectMouseEvent(mouseEvent: MouseEventData): void
 **示例：**
 
 ```js
+import { inputEventClient } from '@kit.InputKit';
 import { MouseEvent } from '@kit.InputKit';
 
-try {
-  let mouseButtonUpData: MouseEvent = {
-    id: 0,
-    deviceId: 1,
-    actionTime: 2,
-    screenId: 1,
-    windowId: 0,
-    action: 3,
-    screenX: 100,
-    screenY: 200,
-    windowX: 100,
-    windowY: 200,
-    rawDeltaX: 200,
-    rawDeltaY: 200,
-    button: 2,
-    pressedButtons: [2],
-    axes: [],
-    pressedKeys: [0],
-    ctrlKey: false,
-    altKey: false,
-    shiftKey: false,
-    logoKey: false,
-    fnKey: false,
-    capsLock: false,
-    numLock: false,
-    scrollLock: false,
-    toolType: 1,
-  }
-  let mouseButtonUp: inputEventClient.MouseEventData = {
-    mouseEvent: mouseButtonUpData
-  }
-  inputEventClient.injectMouseEvent(mouseButtonUp);
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            let mouseButtonUpData: MouseEvent = {
+              id: 0,
+              deviceId: 1,
+              actionTime: 2,
+              screenId: 1,
+              windowId: 0,
+              action: 3,
+              screenX: 100,
+              screenY: 200,
+              windowX: 100,
+              windowY: 200,
+              rawDeltaX: 200,
+              rawDeltaY: 200,
+              button: 2,
+              pressedButtons: [2],
+              axes: [],
+              pressedKeys: [0],
+              ctrlKey: false,
+              altKey: false,
+              shiftKey: false,
+              logoKey: false,
+              fnKey: false,
+              capsLock: false,
+              numLock: false,
+              scrollLock: false,
+              toolType: 1,
+            }
+            let mouseButtonUp: inputEventClient.MouseEventData = {
+              mouseEvent: mouseButtonUpData
+            }
+            inputEventClient.injectMouseEvent(mouseButtonUp);
 
-  let mouseButtonDownData: MouseEvent = {
-    id: 0,
-    deviceId: 1,
-    actionTime: 2,
-    screenId: 1,
-    windowId: 0,
-    action: 2,
-    screenX: 100,
-    screenY: 200,
-    windowX: 100,
-    windowY: 200,
-    rawDeltaX: 200,
-    rawDeltaY: 200,
-    button: 2,
-    pressedButtons: [2],
-    axes: [],
-    pressedKeys: [0],
-    ctrlKey: false,
-    altKey: false,
-    shiftKey: false,
-    logoKey: false,
-    fnKey: false,
-    capsLock: false,
-    numLock: false,
-    scrollLock: false,
-    toolType: 1,
-  }
-  let mouseButtonDown: inputEventClient.MouseEventData = {
-    mouseEvent: mouseButtonDownData
-  };
-  inputEventClient.injectMouseEvent(mouseButtonDown);
-}
+            let mouseButtonDownData: MouseEvent = {
+              id: 0,
+              deviceId: 1,
+              actionTime: 2,
+              screenId: 1,
+              windowId: 0,
+              action: 2,
+              screenX: 100,
+              screenY: 200,
+              windowX: 100,
+              windowY: 200,
+              rawDeltaX: 200,
+              rawDeltaY: 200,
+              button: 2,
+              pressedButtons: [2],
+              axes: [],
+              pressedKeys: [0],
+              ctrlKey: false,
+              altKey: false,
+              shiftKey: false,
+              logoKey: false,
+              fnKey: false,
+              capsLock: false,
+              numLock: false,
+              scrollLock: false,
+              toolType: 1,
+            }
+            let mouseButtonDown: inputEventClient.MouseEventData = {
+              mouseEvent: mouseButtonDownData
+            };
+            inputEventClient.injectMouseEvent(mouseButtonDown);
+          }
 
-catch (error) {
-  console.error(`Failed to inject MouseEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          catch (error) {
+            console.error(`Failed to inject MouseEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -263,65 +301,77 @@ injectTouchEvent(touchEvent: TouchEventData): void
 **示例：**
 
 ```js
+import { inputEventClient } from '@kit.InputKit';
 import { Touch, TouchEvent } from '@kit.InputKit';
 
-try {
-  let touchEvent: Touch = {
-    id: 1,
-    pressedTime: 1,
-    screenX: 0,
-    screenY: 0,
-    windowX: 0,
-    windowY: 0,
-    pressure: 0,
-    width: 0,
-    height: 0,
-    tiltX: 0,
-    tiltY: 0,
-    toolX: 0,
-    toolY: 0,
-    toolWidth: 0,
-    toolHeight: 0,
-    rawX: 0,
-    rawY: 0,
-    toolType: 0,
-  }
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            let touchEvent: Touch = {
+              id: 1,
+              pressedTime: 1,
+              screenX: 0,
+              screenY: 0,
+              windowX: 0,
+              windowY: 0,
+              pressure: 0,
+              width: 0,
+              height: 0,
+              tiltX: 0,
+              tiltY: 0,
+              toolX: 0,
+              toolY: 0,
+              toolWidth: 0,
+              toolHeight: 0,
+              rawX: 0,
+              rawY: 0,
+              toolType: 0,
+            }
 
-  let touchEventUpData: TouchEvent = {
-    action: 1,
-    sourceType: 0,
-    touch: touchEvent,
-    touches: [],
-    id: 0,
-    deviceId: 0,
-    actionTime: 0,
-    screenId: 0,
-    windowId: 0
-  }
-  ;
-  let touchEventUp: inputEventClient.TouchEventData = {
-    touchEvent: touchEventUpData
-  }
-  inputEventClient.injectTouchEvent(touchEventUp);
+            let touchEventUpData: TouchEvent = {
+              action: 1,
+              sourceType: 0,
+              touch: touchEvent,
+              touches: [],
+              id: 0,
+              deviceId: 0,
+              actionTime: 0,
+              screenId: 0,
+              windowId: 0
+            }
+            ;
+            let touchEventUp: inputEventClient.TouchEventData = {
+              touchEvent: touchEventUpData
+            }
+            inputEventClient.injectTouchEvent(touchEventUp);
 
-  let touchEventDownData: TouchEvent = {
-    action: 1,
-    sourceType: 0,
-    touch: touchEvent,
-    touches: [],
-    id: 0,
-    deviceId: 0,
-    actionTime: 0,
-    screenId: 0,
-    windowId: 0
+            let touchEventDownData: TouchEvent = {
+              action: 1,
+              sourceType: 0,
+              touch: touchEvent,
+              touches: [],
+              id: 0,
+              deviceId: 0,
+              actionTime: 0,
+              screenId: 0,
+              windowId: 0
+            }
+            ;
+            let touchEventDown: inputEventClient.TouchEventData = {
+              touchEvent: touchEventDownData
+            }
+            inputEventClient.injectTouchEvent(touchEventDown);
+          } catch (error) {
+            console.error(`Failed to inject touchEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
   }
-  ;
-  let touchEventDown: inputEventClient.TouchEventData = {
-    touchEvent: touchEventDownData
-  }
-  inputEventClient.injectTouchEvent(touchEventDown);
-} catch (error) {
-  console.error(`Failed to inject touchEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -354,11 +404,22 @@ permitInjection(result: boolean): void
 ```ts
 import { inputEventClient } from '@kit.InputKit';
 
-try {
-  let result = true;
-  inputEventClient.permitInjection(result);
-}catch(error){
-  console.error("failed:" + JSON.stringify(error));
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            let result = true;
+            inputEventClient.permitInjection(result);
+          }catch(error){
+            console.error("failed:" + JSON.stringify(error));
+          }
+        })
+    }
+  }
 }
 ```
 

@@ -18,7 +18,7 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [OH_AudioVolumeManager](capi-oh-audiovolumemanager.md) | OH_AudioVolumeManager | 声明音频音量管理器。音频音量管理器提供多种函数，供开发人员获取系统音量信息。 |
+| [OH_AudioVolumeManager](capi-ohaudio-oh-audiovolumemanager.md) | OH_AudioVolumeManager | 声明音频音量管理器。音频音量管理器提供多种函数，供开发人员获取系统音量信息。 |
 
 ### 函数
 
@@ -98,7 +98,7 @@ OH_AudioCommon_Result OH_AudioManager_GetAudioVolumeManager(OH_AudioVolumeManage
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AudioVolumeManager](capi-oh-audiovolumemanager.md) **volumeManager | 指向OH_AudioVolumeManager用于接收创建的音量管理器实例。 |
+| [OH_AudioVolumeManager](capi-ohaudio-oh-audiovolumemanager.md) **volumeManager | 指向OH_AudioVolumeManager用于接收创建的音量管理器实例。 |
 
 **返回：**
 
@@ -123,7 +123,7 @@ OH_AudioCommon_Result OH_AudioVolumeManager_GetMaxVolumeByUsage(OH_AudioVolumeMa
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AudioVolumeManager](capi-oh-audiovolumemanager.md) *volumeManager | 指向OH_AudioVolumeManager用于接收创建的音量管理器实例。 |
+| [OH_AudioVolumeManager](capi-ohaudio-oh-audiovolumemanager.md) *volumeManager | 指向OH_AudioVolumeManager用于接收创建的音量管理器实例。 |
 | [OH_AudioStream_Usage](capi-native-audiostream-base-h.md#oh_audiostream_usage) usage | 用于映射特定音量类型的音频流用途类型。 |
 | int32_t *maxVolumeLevel | 用于接收返回的最大音量。 |
 
@@ -150,7 +150,7 @@ OH_AudioCommon_Result OH_AudioVolumeManager_GetMinVolumeByUsage(OH_AudioVolumeMa
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AudioVolumeManager](capi-oh-audiovolumemanager.md) *volumeManager | 指向OH_AudioVolumeManager用于接收创建的音量管理器实例。 |
+| [OH_AudioVolumeManager](capi-ohaudio-oh-audiovolumemanager.md) *volumeManager | 指向OH_AudioVolumeManager用于接收创建的音量管理器实例。 |
 | [OH_AudioStream_Usage](capi-native-audiostream-base-h.md#oh_audiostream_usage) usage | 用于映射特定音量类型的音频流用途类型。 |
 | int32_t *minVolumeLevel | 用于接收返回的最小音量。 |
 
@@ -177,7 +177,7 @@ OH_AudioCommon_Result OH_AudioVolumeManager_GetVolumeByUsage(OH_AudioVolumeManag
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AudioVolumeManager](capi-oh-audiovolumemanager.md) *volumeManager | 指向OH_AudioVolumeManager用于接收创建的音量管理器实例。 |
+| [OH_AudioVolumeManager](capi-ohaudio-oh-audiovolumemanager.md) *volumeManager | 指向OH_AudioVolumeManager用于接收创建的音量管理器实例。 |
 | [OH_AudioStream_Usage](capi-native-audiostream-base-h.md#oh_audiostream_usage) usage | 用于映射特定音量类型的音频流用途类型。 |
 | int32_t *volumeLevel | 用于接收返回的系统音量。 |
 
@@ -204,7 +204,7 @@ OH_AudioCommon_Result OH_AudioVolumeManager_IsMuteByUsage(OH_AudioVolumeManager 
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AudioVolumeManager](capi-oh-audiovolumemanager.md) *volumeManager | 指向OH_AudioVolumeManager用于接收创建的音量管理器实例。 |
+| [OH_AudioVolumeManager](capi-ohaudio-oh-audiovolumemanager.md) *volumeManager | 指向OH_AudioVolumeManager用于接收创建的音量管理器实例。 |
 | [OH_AudioStream_Usage](capi-native-audiostream-base-h.md#oh_audiostream_usage) usage | 用于映射特定音量类型的音频流用途类型。 |
 | bool *muted | 用于接收返回的音频流是否静音。 |
 
@@ -231,7 +231,7 @@ OH_AudioCommon_Result OH_AudioVolumeManager_RegisterStreamVolumeChangeCallback(O
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AudioVolumeManager](capi-oh-audiovolumemanager.md) *volumeManager | 指向OH_AudioVolumeManager用于接收创建的音量管理器实例。 |
+| [OH_AudioVolumeManager](capi-ohaudio-oh-audiovolumemanager.md) *volumeManager | 指向OH_AudioVolumeManager用于接收创建的音量管理器实例。 |
 | [OH_AudioStream_Usage](capi-native-audiostream-base-h.md#oh_audiostream_usage) usage | 监听用于映射特定音量类型的音频流用途类型。 |
 | [OH_AudioVolumeManager_OnStreamVolumeChangeCallback](capi-native-audio-volume-manager-h.md#oh_audiovolumemanager_onstreamvolumechangecallback) callback | 监听的音频流音量发生时，将调用此回调函数[OH_AudioVolumeManager_OnStreamVolumeChangeCallback](capi-native-audio-volume-manager-h.md#oh_audiovolumemanager_onstreamvolumechangecallback)。 |
 | void *userData | 用户自定义数据指针。 |
@@ -259,7 +259,7 @@ OH_AudioCommon_Result OH_AudioVolumeManager_UnregisterStreamVolumeChangeCallback
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AudioVolumeManager](capi-oh-audiovolumemanager.md) *volumeManager | 指向OH_AudioVolumeManager用于接收创建的音量管理器实例。 |
+| [OH_AudioVolumeManager](capi-ohaudio-oh-audiovolumemanager.md) *volumeManager | 指向OH_AudioVolumeManager用于接收创建的音量管理器实例。 |
 | [OH_AudioVolumeManager_OnStreamVolumeChangeCallback](capi-native-audio-volume-manager-h.md#oh_audiovolumemanager_onstreamvolumechangecallback) callback | 指向[OH_AudioVolumeManager_RegisterStreamVolumeChangeCallback](capi-native-audio-volume-manager-h.md#oh_audiovolumemanager_registerstreamvolumechangecallback)传入的回调函数，用于取消注册。 |
 
 **返回：**
@@ -285,7 +285,7 @@ OH_AudioCommon_Result OH_AudioVolumeManager_GetRingerMode(OH_AudioVolumeManager 
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AudioVolumeManager](capi-oh-audiovolumemanager.md) *volumeManager | 指向OH_AudioVolumeManager用于接收创建的音量管理器实例。 |
+| [OH_AudioVolumeManager](capi-ohaudio-oh-audiovolumemanager.md) *volumeManager | 指向OH_AudioVolumeManager用于接收创建的音量管理器实例。 |
 | [OH_AudioRingerMode](capi-native-audio-common-h.md#oh_audioringermode) *ringerMode | 用于接收返回的铃声模式。 |
 
 **返回：**
@@ -311,7 +311,7 @@ OH_AudioCommon_Result OH_AudioVolumeManager_RegisterRingerModeChangeCallback(OH_
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AudioVolumeManager](capi-oh-audiovolumemanager.md) *volumeManager | 指向OH_AudioVolumeManager用于接收创建的音量管理器实例。 |
+| [OH_AudioVolumeManager](capi-ohaudio-oh-audiovolumemanager.md) *volumeManager | 指向OH_AudioVolumeManager用于接收创建的音量管理器实例。 |
 | [OH_AudioVolumeManager_OnRingerModeChangeCallback](capi-native-audio-volume-manager-h.md#oh_audiovolumemanager_onringermodechangecallback) callback | 监听的铃声模式发生切换时，将调用此回调函数[OH_AudioVolumeManager_OnRingerModeChangeCallback](capi-native-audio-volume-manager-h.md#oh_audiovolumemanager_onringermodechangecallback)。 |
 | void *userData | 用户自定义数据指针。 |
 
@@ -338,7 +338,7 @@ OH_AudioCommon_Result OH_AudioVolumeManager_UnregisterRingerModeChangeCallback(O
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AudioVolumeManager](capi-oh-audiovolumemanager.md) *volumeManager | 指向OH_AudioVolumeManager用于接收创建的音量管理器实例。 |
+| [OH_AudioVolumeManager](capi-ohaudio-oh-audiovolumemanager.md) *volumeManager | 指向OH_AudioVolumeManager用于接收创建的音量管理器实例。 |
 | [OH_AudioVolumeManager_OnRingerModeChangeCallback](capi-native-audio-volume-manager-h.md#oh_audiovolumemanager_onringermodechangecallback) callback | 指向[OH_AudioVolumeManager_RegisterRingerModeChangeCallback](capi-native-audio-volume-manager-h.md#oh_audiovolumemanager_registerringermodechangecallback)传入的回调函数，用于取消注册。 |
 
 **返回：**

@@ -362,7 +362,17 @@ struct CustomNode {
 
 ## 生命周期
 
-Router页面生命周期为`@Entry`页面中的通用方法，主要有如下四个生命周期：
+> **说明：**
+>
+> router页面的生命周期和Navigation页面的生命周期关系如下：
+>
+> 1.router页面的跳转会影响其内部Navigation页面的生命周期。
+>
+> 2.Navigation页面的跳转不会影响其所在router页面的生命周期。
+>
+> 3.应用前后台切换会同时触发router页面和Navigation页面的生命周期。
+
+[Router页面生命周期](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onpageshow)为`@Entry`页面中的通用方法，主要有如下四个生命周期：
 
 ```ts
 // 页面创建后挂树的回调
@@ -718,6 +728,6 @@ struct MyComponent {
 
 ## 路由拦截
 
-Router原生没有提供路由拦截的能力，开发者需要自行封装路由跳转接口，并在自己封装的接口中做路由拦截的判断并重定向路由。
+Router没有提供路由拦截的能力，开发者需要自行封装路由跳转接口，并在自己封装的接口中做路由拦截的判断并重定向路由。
 
 Navigation提供了[setInterception](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#setinterception12)方法，用于设置Navigation页面跳转拦截回调。具体可以参考文档：Navigation[路由拦截](arkts-navigation-navigation.md#路由拦截)

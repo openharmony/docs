@@ -2570,18 +2570,16 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 定义任务失败的原因。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力**：SystemCapability.Request.FileTransferAgent
 
 | 名称 | 值 | 说明                                                                             |
 | -------- | -------- |--------------------------------------------------------------------------------|
-| OTHERS | 0xFF | 表示其他故障。                                                                        |
-| DISCONNECTED | 0x00 | 表示网络断开连接。                                                                      |
-| TIMEOUT | 0x10 | 表示任务超时。                                                                        |
-| PROTOCOL | 0x20 | 表示协议错误，例如：服务器内部错误（500）、无法处理的数据区间（416）等。                                        |
+| OTHERS | 0xFF | 表示其他故障。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                        |
+| DISCONNECTED | 0x00 | 表示网络断开连接。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                      |
+| TIMEOUT | 0x10 | 表示任务超时。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                        |
+| PROTOCOL | 0x20 | 表示协议错误，例如：服务器内部错误（500）、无法处理的数据区间（416）等。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                        |
 | PARAM<sup>12+</sup> | 0x30 | 表示参数错误，例如：url格式错误等。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。          |
-| FSIO | 0x40 | 表示文件系统io错误，例如：打开/查找/读取/写入/关闭。                                                   |
+| FSIO | 0x40 | 表示文件系统io错误，例如：打开/查找/读取/写入/关闭。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                   |
 | DNS<sup>12+</sup> | 0x50 | 表示DNS解析错误。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                  |
 | TCP<sup>12+</sup> | 0x60 | 表示TCP连接错误。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。              |
 | SSL<sup>12+</sup> | 0x70 | 表示SSL连接错误，例如：证书错误、证书校验失败错误等。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |

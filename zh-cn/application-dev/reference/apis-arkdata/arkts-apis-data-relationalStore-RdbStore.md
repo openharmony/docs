@@ -4626,40 +4626,105 @@ on(event: 'sqliteErrorOccurred', observer: Callback&lt;ExceptionMessage&gt;): vo
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async test()
-{
-  try {
-    if (store != undefined) {
-      let exceptionMessage: relationalStore.ExceptionMessage;
-      store.on('sqliteErrorOccurred', exceptionMessage => {
-        let sqliteCode = exceptionMessage.code;
-        let sqliteMessage = exceptionMessage.message;
-        let errSQL = exceptionMessage.sql;
-        console.info(`error log is ${sqliteCode}, errMessage is ${sqliteMessage}, errSQL is ${errSQL}`);
-      })
-    }
-  } catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.error(`Register observer failed, code is ${code},message is ${message}`);
+try {
+  if (store != undefined) {
+    let exceptionMessage: relationalStore.ExceptionMessage;
+    store.on('sqliteErrorOccurred', exceptionMessage => {
+      let sqliteCode = exceptionMessage.code;
+      let sqliteMessage = exceptionMessage.message;
+      let errSQL = exceptionMessage.sql;
+      console.info(`error log is ${sqliteCode}, errMessage is ${sqliteMessage}, errSQL is ${errSQL}`);
+    })
   }
-  const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-    "name TEXT NOT NULL, " + "age INTEGER, " + "salary REAL)";
-  try {
-    let value = new Uint8Array([1, 2, 3, 4, 5]);
-    const valueBucket: relationalStore.ValuesBucket = {
-      'name': "Lisa",
-      'age': 18,
-      'salary': 100.5,
-      'codes': value,
-    };
-    await store.executeSql(CREATE_TABLE_TEST);
-    if (store != undefined) {
-      (store as relationalStore.RdbStore).insert('test', valueBucket);
-    }
-  } catch (err) {
-    console.error(`Insert fail, code:${err.code}, message: ${err.message}`);
+} catch (err) {
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`Register observer failed, code is ${code},message is ${message}`);
+}
+const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+  "name TEXT NOT NULL, " + "age INTEGER, " + "salary REAL)";
+try {
+  let value = new Uint8Array([1, 2, 3, 4, 5]);
+  const valueBucket: relationalStore.ValuesBucket = {
+    'name': "Lisa",
+    'age': 18,
+    'salary': 100.5,
+    'codes': value,
+  };
+  await store.executeSql(CREATE_TABLE_TEST);
+  if (store != undefined) {
+    (store as relationalStore.RdbStore).insert('test', valueBucket);
   }
+} catch (err) {
+  console.error(`Insert fail, code:${err.code}, message: ${err.message}`);
+}
+
+```
+
+### on('perfStat')<sup>20+</sup>
+
+on(event: 'perfStat', observer: Callback&lt;SqlExecutionInfo&gt;): void
+
+订阅SQL统计信息。使用[createTransaction](#createtransaction14)创建的事务进行相关操作（[Transaction](arkts-apis-data-relationalStore-Transaction.md)），只会在事务结束（COMMIT/ROLLBACK）时通知一次统计信息。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名       | 类型                              | 必填 | 说明                                |
+| ------------ |---------------------------------| ---- |-----------------------------------|
+| event        | string                          | 是   | 订阅事件名称，取值为'perfStat'，统计执行SQL的时间。 |
+| observer     | Callback&lt;[SqlExecutionInfo](arkts-apis-data-relationalStore-i.md#sqlexecutioninfo12)&gt; | 是   | 回调函数。用于返回数据库执行SQL的时间。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**    |
+|-----------|--------|
+| 801       | Capability not supported.  |
+| 14800014  | The RdbStore or ResultSet is already closed.     |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let sqlExecutionInfo = (sqlExecutionInfo: relationalStore.SqlExecutionInfo) => {
+  console.info(`sql: ${sqlExecutionInfo.sql[0]}`);
+  console.info(`totalTime: ${sqlExecutionInfo.totalTime}`);
+  console.info(`waitTime: ${sqlExecutionInfo.waitTime}`);
+  console.info(`prepareTime: ${sqlExecutionInfo.prepareTime}`);
+  console.info(`executeTime: ${sqlExecutionInfo.executeTime}`);
+};
+
+try {
+  if (store != undefined) {
+    (store as relationalStore.RdbStore).on('perfStat', sqlExecutionInfo);
+  }
+} catch (err) {
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`Register observer failed, code is ${code},message is ${message}`);
+}
+
+try {
+  let value1 = "Lisa";
+  let value2 = 18;
+  let value3 = 100.5;
+  let value4 = new Uint8Array([1, 2, 3, 4, 5]);
+
+  const valueBucket: relationalStore.ValuesBucket = {
+    'NAME': value1,
+    'AGE': value2,
+    'SALARY': value3,
+    'CODES': value4
+  };
+  if (store != undefined) {
+    (store as relationalStore.RdbStore).insert('test', valueBucket);
+  }
+} catch (err) {
+  console.error(`insert fail, code:${err.code}, message: ${err.message}`);
 }
 ```
 
@@ -4942,7 +5007,7 @@ try {
 
 ### off('sqliteErrorOccurred')<sup>20+</sup>
 
-off(event: 'sqliteErrorOccurred', observer: Callback&lt;ExceptionMessage&gt;): void
+off(event: 'sqliteErrorOccurred', observer?: Callback&lt;ExceptionMessage&gt;): void
 
 停止记录SQL执行过程中的异常日志。
 
@@ -4953,7 +5018,7 @@ off(event: 'sqliteErrorOccurred', observer: Callback&lt;ExceptionMessage&gt;): v
 | 参数名       | 类型                              | 必填 | 说明                                |
 | ------------ |---------------------------------| ---- |-----------------------------------|
 | event        | string                          | 是   | 取消订阅事件名称，取值为'sqliteErrorOccurred'，记录SQL语句执行过程中的错误信息。 |
-| observer     | Callback&lt;[ExceptionMessage](arkts-apis-data-relationalStore-i.md#exceptionmessage20)&gt; | 是   | 回调函数。该参数存在，则取消指定Callback监听回调，否则取消该event事件的所有监听回调。  |
+| observer     | Callback&lt;[ExceptionMessage](arkts-apis-data-relationalStore-i.md#exceptionmessage20)&gt; | 否   | 回调函数。该参数存在，则取消指定Callback监听回调，否则取消该event事件的所有监听回调。  |
 
 **错误码：**
 
@@ -4980,6 +5045,44 @@ try {
 }
 ```
 
+### off('perfStat')<sup>20+</sup>
+
+off(event: 'perfStat', observer?: Callback&lt;SqlExecutionInfo&gt;): void
+
+取消订阅SQL统计信息。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名       | 类型                              | 必填 | 说明                                |
+| ------------ |---------------------------------| ---- |-----------------------------------|
+| event        | string                          | 是   | 取消订阅事件名称。取值为'perfStat'，统计执行SQL的时间。 |
+| observer     | Callback&lt;[SqlExecutionInfo](arkts-apis-data-relationalStore-i.md#sqlexecutioninfo12)&gt; | 否   | 回调函数，表示订阅时的回调函数。该参数存在，则取消指定Callback监听回调，否则取消该event事件的所有监听回调。  |
+
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**    |
+|-----------|--------|
+| 801       | Capability not supported.  |
+| 14800014  | The RdbStore or ResultSet is already closed.     |
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  if (store != undefined) {
+    (store as relationalStore.RdbStore).off('perfStat');
+  }
+} catch (err) {
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`Unregister observer failed, code is ${code},message is ${message}`);
+}
+```
 
 ### emit<sup>10+</sup>
 
@@ -5724,8 +5827,8 @@ rekey(cryptoParam?: CryptoParam): Promise\<void>
 | ------------ | ----------------------------------------------------------------------------------- |
 | 801          | Capability not supported.                                                           |
 | 14800001     | Invalid arguments. Possible causes: 1. Empty conditions; 2. Missing GROUP BY clause.|
-| 14800011     | Database corrupted.                                                                 |
-| 14800014     | Already closed.                                                                     |
+| 14800011     | Failed to open the database because it is corrupted.                                |
+| 14800014     | The RdbStore or ResultSet is already closed.                                        |
 | 14800015     | The database does not respond.                                                      |
 | 14800021     | SQLite: Generic error.                                                              |
 | 14800023     | SQLite: Access permission denied.                                                   |

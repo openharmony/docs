@@ -115,8 +115,8 @@
 | 名称       | 值   | 说明                          |
 | ---------- | ---- | ----------------------------- |
 | UNDEFINED  | 0    | 表示APP未定义窗口模式。       |
-| FULL_SCREEN | 1    | 表示APP全屏模式。             |
-| MAXIMIZE    | 2    | 表示APP窗口最大化模式。   |
+| FULL_SCREEN | 1    | 表示APP全屏模式，在2in1设备中，窗口铺满整个屏幕，且无dock栏和状态栏。             |
+| MAXIMIZE    | 2    | 表示APP窗口最大化模式，在2in1设备中，窗口铺满整个屏幕，有dock栏和状态栏。   |
 | MINIMIZE    | 3    | 表示APP窗口最小化模式。   |
 | FLOATING    | 4    | 表示APP自由悬浮形式窗口模式。   |
 | SPLIT_SCREEN  | 5    | 表示APP分屏模式。   |
@@ -129,10 +129,10 @@
 
 | 名称       | 值   | 说明                          |
 | ---------- | ---- | ----------------------------- |
-| FOLLOW_APP_IMMERSIVE_SETTING  | 0    | 最大化时，跟随应用app当前设置的沉浸式布局。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。       |
-| EXIT_IMMERSIVE | 1    | 最大化时，如果当前窗口设置了沉浸式布局会退出沉浸式布局。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。             |
-| ENTER_IMMERSIVE    | 2    | 最大化时，进入沉浸式布局，鼠标Hover在热区上显示窗口标题栏和dock栏。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
-| ENTER_IMMERSIVE_DISABLE_TITLE_AND_DOCK_HOVER<sup>14+</sup>    | 3    | 最大化时，进入沉浸式布局，鼠标Hover在热区上不显示窗口标题栏和dock栏。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。   |
+| FOLLOW_APP_IMMERSIVE_SETTING  | 0    | 最大化时，跟随应用app当前设置的全屏模式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。       |
+| EXIT_IMMERSIVE | 1    | 最大化时，如果当前窗口设置了全屏模式会退出全屏模式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。             |
+| ENTER_IMMERSIVE    | 2    | 最大化时，进入全屏模式，鼠标Hover在热区上显示窗口标题栏和dock栏。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
+| ENTER_IMMERSIVE_DISABLE_TITLE_AND_DOCK_HOVER<sup>14+</sup>    | 3    | 最大化时，进入全屏模式，鼠标Hover在热区上不显示窗口标题栏和dock栏。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。   |
 
 ## WindowAnimationCurve<sup>20+</sup>
 
@@ -158,6 +158,16 @@
 | 名称    | 值   | 说明                       |
 | ------- | ---- | -------------------------- |
 | DESTROY | 0    | 表示窗口销毁时的转场动画。 |
+
+## AnimationType<sup>20+</sup>
+
+窗口动画类型枚举。
+
+**系统能力：**  SystemCapability.Window.SessionManager
+
+| 名称    | 值   | 说明                       |
+| ------- | ---- | -------------------------- |
+| FADE_IN_OUT | 0    | 表示窗口动画类型为淡入淡出。 |
 
 ## WindowAnchor<sup>20+</sup>
 

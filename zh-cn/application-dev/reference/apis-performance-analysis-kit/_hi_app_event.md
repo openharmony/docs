@@ -52,6 +52,7 @@ HiAppEvent模块提供应用事件打点功能。
 | [EVENT_ADDRESS_SANITIZER](#event_address_sanitizer)&nbsp;&nbsp;&nbsp;"ADDRESS_SANITIZER" | 应用踩内存事件。  | 
 | [EVENT_MAIN_THREAD_JANK](#event_main_thread_jank)&nbsp;&nbsp;&nbsp;"MAIN_THREAD_JANK" | 应用主线程超时事件。  | 
 | [EVENT_APP_HICOLLIE](#event_app_hicollie)&nbsp;&nbsp;&nbsp;"APP_HICOLLIE" | 应用任务执行超时事件。  | 
+| [EVENT_APP_KILLED](#event_app_killed)&nbsp;&nbsp;&nbsp;"APP_KILLED" | 应用查杀事件。  | 
 | [DOMAIN_OS](#domain_os)&nbsp;&nbsp;&nbsp;"OS" | OS作用域。  | 
 | [PARAM_USER_ID](#param_user_id)&nbsp;&nbsp;&nbsp;"user_id" | 用户ID。  | 
 | [PARAM_DISTRIBUTED_SERVICE_NAME](#param_distributed_service_name)&nbsp;&nbsp;&nbsp;"ds_name" | 分布式服务名称。  | 
@@ -255,6 +256,16 @@ OS作用域。
 
 **起始版本：** 12
 
+
+### EVENT_APP_KILLED
+
+```
+#define EVENT_APP_KILLED   "EVENT_APP_KILLED"
+```
+**描述**
+应用查杀事件。
+
+**起始版本：** 20
 
 ### EVENT_RESOURCE_OVERLIMIT
 
@@ -516,7 +527,7 @@ enum HiAppEvent_ErrorCode
 | HIAPPEVENT_SUCCESS  | 操作成功。&nbsp;&nbsp; | 
 | HIAPPEVENT_INVALID_PARAM_VALUE_LENGTH  | 参数值长度无效。<br/>**起始版本：** 18 | 
 | HIAPPEVENT_PROCESSOR_IS_NULL  | 事件处理者为空。<br/>**起始版本：** 18 | 
-| HIAPPEVENT_PROCESSOR_NOT_FOUND  | 事件处理者不存在。<br/**起始版本：** 18 | 
+| HIAPPEVENT_PROCESSOR_NOT_FOUND  | 事件处理者不存在。<br/>**起始版本：** 18 |
 | HIAPPEVENT_INVALID_PARAM_VALUE  | 参数值无效。&nbsp;&nbsp; | 
 | HIAPPEVENT_EVENT_CONFIG_IS_NULL  | 事件配置为空。&nbsp;&nbsp; | 
 | HIAPPEVENT_OPERATE_FAILED  | 操作失败。<br/>**起始版本：** 18 | 

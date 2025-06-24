@@ -4250,18 +4250,6 @@ Allows a system application to start the page for setting privacy protection.
 
 **Valid since**: 18
 
-## ohos.permission.DLP_GET_HIDE_STATUS
-
-Allows a system application to use the information hiding APIs to obtain the information hiding status.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 18
-
 ## ohos.permission.GET_ANIM_POLICY
 
 Allows a system application to register the animation plugin to obtain animation policies.
@@ -4921,6 +4909,20 @@ Allows an application to access the virus protection page.
 
 **Valid since**：20
 
+## ohos.permission.ACCESS_TVCOOPERATION
+
+Allows a system application to use the TvCooperation service.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Supported devices**: TV
+
+**Valid since**：20
+
 ## ohos.permission.GRANT_URI_PERMISSION_AS_CALLER
 
 Allow an application to grant URI access permissions to the target application as the caller.
@@ -4932,5 +4934,101 @@ Allow an application to grant URI access permissions to the target application a
 **Enable via ACL**：true
 
 **Supported devices**: General
+
+**Valid since**：20
+
+## ohos.permission.ACCESS_DFX_LOG_DIR
+
+Allows a system application to access /data/log/ directory.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Supported devices**：General
+
+## ohos.permission.FILE_TRANSFER_OPERATION
+
+Allows a system application to perform operations, such as transferring files, canceling file transfer, and deleting, moving, and modifying files.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Supported devices**：PC/2in1
+
+**Valid since**：20
+
+## ohos.permission.FILE_TRANSFER_INFO_QUERY
+
+Allows a system application to query files and file transfer information.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Supported devices**：PC/2in1
+
+**Valid since**：20
+
+## ohos.permission.MANAGE_LOCAL_WORKSPACES
+
+Allows a system application to create and delete workspaces.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Supported devices**：PC/2in1
+
+**Valid since**：20
+
+## ohos.permission.FILE_ACCESS_FOR_PRIVATE_SPACE
+
+Allows the private space application to mount public directories from the main space into the application sandbox.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Supported devices**: Phone | Tablet
+
+**Valid since**：20
+
+## ohos.permission.ACCESS_CAMERA_SCENARIOS_CARD
+
+Allows an applications to access the remote photography card services.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Supported devices**: Wearable
+
+**Valid since**：20
+
+## ohos.permission.TRIGGER_LOCAL_WANTAGENT
+
+Allows a system application to trigger local WantAgent instances.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Supported devices**：General
 
 **Valid since**：20

@@ -79,7 +79,7 @@ duration(value: number)
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | 是   | 播放时长。<br/>value为0时，不播放图片。<br/>value的改变只会在下一次循环开始时生效。<br/>单位：毫秒<br/>默认值：1000ms |
+| value  | number | 是   | 播放时长。<br/>value为0时，不播放图片。<br/>不支持负数。<br/>value的改变只会在下一次循环开始时生效。<br/>单位：毫秒<br/>默认值：1000ms |
 
 ### reverse
 
@@ -115,7 +115,7 @@ fixedSize(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 设置图片大小是否固定为组件大小。&nbsp;true表示图片大小与组件大小一致，此时设置图片的width&nbsp;、height&nbsp;、top&nbsp;和left属性无效。false表示每一张图片的width&nbsp;、height&nbsp;、top和left属性都要单独设置。<br/>默认值：true |
+| value  | boolean | 是   | 设置图片大小是否固定为组件大小。&nbsp;true表示图片大小与组件大小一致，此时设置图片的width&nbsp;、height&nbsp;、top&nbsp;和left属性无效。false表示每一张图片的width&nbsp;、height&nbsp;、top和left属性都要单独设置。图片宽高与组件宽高不一致时，图片不会被拉伸。<br/>默认值：true |
 
 ### preDecode<sup>(deprecated)</sup>
 
@@ -191,12 +191,12 @@ monitorInvisibleArea(monitorInvisibleArea: boolean)
 
 | 名称   | 类型   | 必填 | 说明 |
 | -------- | -------------- | -------- | -------- |
-| src      | string \| [Resource](ts-types.md#resource)<sup>9+</sup> \| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)<sup>12+</sup> | 是    | 图片路径，图片格式为jpg、jpeg、svg、png、bmp、webp、ico和heif，从API Version9开始支持[Resource](ts-types.md#resource)类型的路径，从API version 12开始支持[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)类型。 <br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。|
+| src      | string \| [Resource](ts-types.md#resource)<sup>9+</sup> \| [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md)<sup>12+</sup> | 是    | 图片路径，图片格式为jpg、jpeg、svg、png、bmp、webp、ico和heif，从API Version9开始支持[Resource](ts-types.md#resource)类型的路径，从API version 12开始支持[PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md)类型。 <br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。|
 | width    | number&nbsp;\|&nbsp;string | 否  | 图片宽度。string类型支持number类型取值的字符串形式，可以附带单位，例如"2"、"2px"。<br/>默认值：0<br/>单位：vp   <br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用       |
 | height   | number&nbsp;\|&nbsp;string | 否  | 图片高度。string类型支持number类型取值的字符串形式，可以附带单位，例如"2"、"2px"。<br/>默认值：0<br/>单位：vp     <br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用        |
 | top      | number&nbsp;\|&nbsp;string | 否  | 图片相对于组件左上角的纵向坐标。string类型支持number类型取值的字符串形式，可以附带单位，例如"2"、"2px"。<br/>默认值：0<br/>单位：vp  <br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用  |
 | left     | number&nbsp;\|&nbsp;string | 否  | 图片相对于组件左上角的横向坐标。string类型支持number类型取值的字符串形式，可以附带单位，例如"2"、"2px"。<br/>默认值：0<br/>单位：vp <br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用   |
-| duration | number          | 否     | 每帧图片的播放时长，单位毫秒。<br/>默认值：0         |
+| duration | number          | 否     | 每帧图片的播放时长，单位毫秒。<br/>默认值：0<br/>不支持负数。         |
 
 ## 事件
 

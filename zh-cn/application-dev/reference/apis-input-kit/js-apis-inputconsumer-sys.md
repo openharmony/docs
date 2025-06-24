@@ -1,6 +1,6 @@
 # @ohos.multimodalInput.inputConsumer (全局快捷键)(系统接口)
 
-组合按键订阅模块，用于处理组合按键的订阅。
+全局快捷键订阅模块，用于处理组合按键的订阅。
 
 > **说明：**
 >
@@ -21,7 +21,7 @@ import { inputConsumer } from '@kit.InputKit';
 
 on(type: 'key', keyOptions: KeyOptions, callback: Callback&lt;KeyOptions&gt;): void
 
-订阅组合按键，当满足条件的组合按键输入事件发生时，使用Callback异步方式上报组合按键数据。
+订阅系统快捷键，当满足条件的组合按键输入事件发生时，使用Callback异步方式上报组合按键数据。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
 
@@ -36,21 +36,34 @@ on(type: 'key', keyOptions: KeyOptions, callback: Callback&lt;KeyOptions&gt;): v
 **示例：** 
 
 ```js
-let leftAltKey = 2045;
-let tabKey = 2049;
-let keyOptions: inputConsumer.KeyOptions = {
-  preKeys: [ leftAltKey ],
-  finalKey: tabKey,
-  isFinalKeyDown: true,
-  finalKeyDownDuration: 0
-};
-let callback = (keyOptions: inputConsumer.KeyOptions) => {
-  console.log(`keyOptions: ${JSON.stringify(keyOptions)}`);
-}
-try {
-  inputConsumer.on("key", keyOptions, callback);
-} catch (error) {
-  console.error(`Subscribe failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { inputConsumer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          let leftAltKey = 2045;
+          let tabKey = 2049;
+          let keyOptions: inputConsumer.KeyOptions = {
+            preKeys: [ leftAltKey ],
+            finalKey: tabKey,
+            isFinalKeyDown: true,
+            finalKeyDownDuration: 0
+          };
+          let callback = (keyOptions: inputConsumer.KeyOptions) => {
+            console.log(`keyOptions: ${JSON.stringify(keyOptions)}`);
+          }
+          try {
+            inputConsumer.on("key", keyOptions, callback);
+          } catch (error) {
+            console.error(`Subscribe failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -59,7 +72,7 @@ try {
 
 off(type: 'key', keyOptions: KeyOptions, callback?: Callback&lt;KeyOptions&gt;): void
 
-取消订阅组合按键。
+取消订阅系统快捷键。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
 
@@ -74,35 +87,61 @@ off(type: 'key', keyOptions: KeyOptions, callback?: Callback&lt;KeyOptions&gt;):
 **示例：** 
 
 ```js
-let leftAltKey = 2045;
-let tabKey = 2049;
-// 取消订阅单个回调函数
-let callback = (keyOptions: inputConsumer.KeyOptions) => {
-  console.log(`keyOptions: ${JSON.stringify(keyOptions)}`);
-}
-let keyOption: inputConsumer.KeyOptions = {preKeys: [leftAltKey], finalKey: tabKey, isFinalKeyDown: true, finalKeyDownDuration: 0};
-try {
-  inputConsumer.on("key", keyOption, callback);
-  inputConsumer.off("key", keyOption, callback);
-  console.log(`Unsubscribe success`);
-} catch (error) {
-  console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { inputConsumer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          let leftAltKey = 2045;
+          let tabKey = 2049;
+          // 取消订阅单个回调函数
+          let callback = (keyOptions: inputConsumer.KeyOptions) => {
+            console.log(`keyOptions: ${JSON.stringify(keyOptions)}`);
+          }
+          let keyOption: inputConsumer.KeyOptions = {preKeys: [leftAltKey], finalKey: tabKey, isFinalKeyDown: true, finalKeyDownDuration: 0};
+          try {
+            inputConsumer.on("key", keyOption, callback);
+            inputConsumer.off("key", keyOption, callback);
+            console.log(`Unsubscribe success`);
+          } catch (error) {
+            console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 ```js
-let leftAltKey = 2045;
-let tabKey = 2049;
-// 取消订阅所有回调函数
-let callback = (keyOptions: inputConsumer.KeyOptions) => {
-  console.log(`keyOptions: ${JSON.stringify(keyOptions)}`);
-}
-let keyOption: inputConsumer.KeyOptions = {preKeys: [leftAltKey], finalKey: tabKey, isFinalKeyDown: true, finalKeyDownDuration: 0};
-try {
-  inputConsumer.on("key", keyOption, callback);
-  inputConsumer.off("key", keyOption);
-  console.log(`Unsubscribe success`);
-} catch (error) {
-  console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { inputConsumer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          let leftAltKey = 2045;
+          let tabKey = 2049;
+          // 取消订阅所有回调函数
+          let callback = (keyOptions: inputConsumer.KeyOptions) => {
+            console.log(`keyOptions: ${JSON.stringify(keyOptions)}`);
+          }
+          let keyOption: inputConsumer.KeyOptions = {preKeys: [leftAltKey], finalKey: tabKey, isFinalKeyDown: true, finalKeyDownDuration: 0};
+          try {
+            inputConsumer.on("key", keyOption, callback);
+            inputConsumer.off("key", keyOption);
+            console.log(`Unsubscribe success`);
+          } catch (error) {
+            console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -110,7 +149,7 @@ try {
 
 setShieldStatus(shieldMode: ShieldMode, isShield: boolean): void
 
-设置快捷键屏蔽类型。
+设置系统快捷键屏蔽类型。
 
 **需要权限**: ohos.permission.INPUT_CONTROL_DISPATCHING
 
@@ -120,18 +159,31 @@ setShieldStatus(shieldMode: ShieldMode, isShield: boolean): void
 
 | 参数名         | 类型                         | 必填   | 说明                                       |
 | ---------- | -------------------------- | ---- | ---------------------------------------- |
-| shieldMode       | [ShieldMode](js-apis-inputconsumer-sys.md#shieldmode11)                     | 是    | 快捷键屏蔽类型，目前仅支持取值为'FACTORY_MODE'，表示屏蔽所有快捷键。                       |
+| shieldMode       | [ShieldMode](js-apis-inputconsumer-sys.md#shieldmode11)                     | 是    | 系统快捷键屏蔽类型，目前仅支持取值为'FACTORY_MODE'，表示屏蔽所有系统快捷键。                       |
 | isShield | boolean  | 是    | 屏蔽类型生效状态，true代表屏蔽类型生效，flase代表不生效。              |
 
 **示例：** 
 
 ```js
-let FACTORY_MODE = 0;
-try {
-  inputConsumer.setShieldStatus(FACTORY_MODE,true);
-  console.log(`set shield status success`);
-} catch (error) {
-  console.error(`set shield status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { inputConsumer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          let FACTORY_MODE = 0;
+          try {
+            inputConsumer.setShieldStatus(FACTORY_MODE,true);
+            console.log(`set shield status success`);
+          } catch (error) {
+            console.error(`set shield status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -139,7 +191,7 @@ try {
 
 getShieldStatus(shieldMode: ShieldMode): boolean
 
-获取快捷键屏蔽类型。
+获取系统快捷键屏蔽类型。
 
 **需要权限**: ohos.permission.INPUT_CONTROL_DISPATCHING
 
@@ -149,7 +201,7 @@ getShieldStatus(shieldMode: ShieldMode): boolean
 
 | 参数名         | 类型                         | 必填   | 说明                                       |
 | ---------- | -------------------------- | ---- | ---------------------------------------- |
-| shieldMode       | [ShieldMode](js-apis-inputconsumer-sys.md#shieldmode11)                    | 是    | 快捷键屏蔽类型，目前仅支持取值为'FACTORY_MODE'，表示屏蔽所有快捷键。                       |
+| shieldMode       | [ShieldMode](js-apis-inputconsumer-sys.md#shieldmode11)                    | 是    | 系统快捷键屏蔽类型，目前仅支持取值为'FACTORY_MODE'，表示屏蔽所有系统快捷键。                       |
 
 **返回值：** 
 
@@ -160,18 +212,31 @@ getShieldStatus(shieldMode: ShieldMode): boolean
 **示例：** 
 
 ```js
-try {
-  let FACTORY_MODE = 0;
-  let shieldstatusResult:Boolean =  inputConsumer.getShieldStatus(FACTORY_MODE);
-  console.log(` get shield status result:${JSON.stringify(shieldstatusResult)}`);
-} catch (error) {
-  console.error(`Failed to get shield status, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { inputConsumer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            let FACTORY_MODE = 0;
+            let shieldstatusResult:Boolean =  inputConsumer.getShieldStatus(FACTORY_MODE);
+            console.log(` get shield status result:${JSON.stringify(shieldstatusResult)}`);
+          } catch (error) {
+            console.error(`Failed to get shield status, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
 ## KeyOptions
 
-组合键选项。
+快捷键选项。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
 
@@ -185,12 +250,12 @@ try {
 
 ## shieldMode<sup>11+</sup>
 
-快捷键屏蔽类型。
+系统快捷键屏蔽类型。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
 
 | 名称                        | 值 | 说明           |
 | ------------------------------ | ----------- | ---------------- |
-| UNSET_MODE | -1 | 值为-1，表示不屏蔽快捷键。 |
-| FACTORY_MODE | 0 | 值为0，表示屏蔽所有快捷键。 |
-| OOBE_MODE | 1 | 值为1，表示OOBE阶段屏蔽所有快捷键，暂不支持该能力。 |
+| UNSET_MODE | -1 | 值为-1，表示不屏蔽系统快捷键。 |
+| FACTORY_MODE | 0 | 值为0，表示屏蔽所有系统快捷键。 |
+| OOBE_MODE | 1 | 值为1，表示OOBE阶段屏蔽所有系统快捷键，暂不支持该能力。 |

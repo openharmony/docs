@@ -77,7 +77,7 @@ OH_AudioStreamBuilder_Destroy(builder);
     OH_AudioStreamBuilder_SetRendererInfo(builder, AUDIOSTREAM_USAGE_MUSIC);
     ```
 
-    注意，播放的音频数据要通过回调接口写入，开发者要实现回调接口，使用`OH_AudioStreamBuilder_SetRendererCallback`设置回调函数。回调函数的声明请查看[OH_AudioRenderer_Callbacks](../../reference/apis-audio-kit/capi-oh-audiorenderer-callbacks-struct.md)。
+    注意，播放的音频数据要通过回调接口写入，开发者要实现回调接口，使用`OH_AudioStreamBuilder_SetRendererCallback`设置回调函数。回调函数的声明请查看[OH_AudioRenderer_Callbacks](../../reference/apis-audio-kit/capi-ohaudio-oh-audiorenderer-callbacks-struct.md)。
 
 3. 设置音频回调函数。
 
@@ -85,7 +85,7 @@ OH_AudioStreamBuilder_Destroy(builder);
 
     在设置音频回调函数时API version 12新增回调函数[OH_AudioRenderer_OnWriteDataCallback](../../reference/apis-audio-kit/capi-native-audiostream-base-h.md#oh_audiorenderer_onwritedatacallback)用于写入音频数据。
 
-    - API version 12开始**推荐**使用[OH_AudioRenderer_OnWriteDataCallback](../../reference/apis-audio-kit/capi-native-audiostream-base-h.md#oh_audiorenderer_onwritedatacallback)代替[OH_AudioRenderer_Callbacks_Struct.OH_AudioRenderer_OnWriteData](../../reference/apis-audio-kit/capi-oh-audiorenderer-callbacks-struct.md#oh_audiorenderer_onwritedata)用于写入音频数据。
+    - API version 12开始**推荐**使用[OH_AudioRenderer_OnWriteDataCallback](../../reference/apis-audio-kit/capi-native-audiostream-base-h.md#oh_audiorenderer_onwritedatacallback)代替[OH_AudioRenderer_Callbacks_Struct.OH_AudioRenderer_OnWriteData](../../reference/apis-audio-kit/capi-ohaudio-oh-audiorenderer-callbacks-struct.md#oh_audiorenderer_onwritedata)用于写入音频数据。
 
       > **注意：**
       > 
@@ -154,7 +154,7 @@ OH_AudioStreamBuilder_Destroy(builder);
       OH_AudioStreamBuilder_SetRendererWriteDataCallback(builder, writeDataCb, nullptr);
       ```
 
-    - API version 11使用回调函数[OH_AudioRenderer_Callbacks_Struct.OH_AudioRenderer_OnWriteData](../../reference/apis-audio-kit/capi-oh-audiorenderer-callbacks-struct.md#oh_audiorenderer_onwritedata)用于写入音频数据。
+    - API version 11使用回调函数[OH_AudioRenderer_Callbacks_Struct.OH_AudioRenderer_OnWriteData](../../reference/apis-audio-kit/capi-ohaudio-oh-audiorenderer-callbacks-struct.md#oh_audiorenderer_onwritedata)用于写入音频数据。
 
       > **注意：**
       > 
@@ -221,7 +221,7 @@ OH_AudioStreamBuilder_Destroy(builder);
 
    为了避免不可预期的行为，在设置音频回调函数时，可以通过下面两种方式中的任意一种来设置音频回调函数：
 
-   - 请确保[OH_AudioRenderer_Callbacks](../../reference/apis-audio-kit/capi-oh-audiorenderer-callbacks-struct.md)的每一个回调都被**自定义的回调方法**或**空指针**初始化。
+   - 请确保[OH_AudioRenderer_Callbacks](../../reference/apis-audio-kit/capi-ohaudio-oh-audiorenderer-callbacks-struct.md)的每一个回调都被**自定义的回调方法**或**空指针**初始化。
    
      ```cpp
      // 自定义写入数据函数。

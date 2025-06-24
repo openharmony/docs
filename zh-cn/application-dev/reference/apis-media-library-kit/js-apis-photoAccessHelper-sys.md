@@ -12,7 +12,62 @@
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 ```
+## photoAccessHelper.getPhotoAccessHelper<sup>19+</sup>
 
+getPhotoAccessHelper(context: Context, userId: number): PhotoAccessHelper
+
+支持跨用户获取相册管理模块的实例，用于访问和修改相册中的媒体文件。
+
+​**模型约束**：此接口仅可在Stage模型下使用。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名  | 类型    | 必填 | 说明                       |
+| ------- | ------- | ---- | -------------------------- |
+| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 传入Ability实例的上下文。 |
+| userId | number | 是   | 传入待访问用户的id。 |
+
+**返回值：**
+
+| 类型                            | 说明    |
+| ----------------------------- | :---- |
+| [PhotoAccessHelper](#photoaccesshelper) | 相册管理模块的实例。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+
+**示例：**
+
+```ts
+// 此处获取的phAccessHelper实例为全局对象，后续使用到phAccessHelper的地方默认为使用此处获取的对象，如未添加此段代码报phAccessHelper未定义的错误请自行添加。
+// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
+import { common } from '@kit.AbilityKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Button("example").onClick(async () => {
+        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+        // 此处101表示其他用户空间的userid
+        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context, 101);
+      }).width('100%')
+    }
+    .height('90%')
+  }
+}
+```
+​
 ## PhotoAccessHelper
 
 ### createAsset
@@ -1563,6 +1618,169 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 }
 ```
 
+### startThumbnailCreationTask<sup>13+</sup>
+
+startThumbnailCreationTask(predicate: dataSharePredicates.DataSharePredicates, callback: AsyncCallback\<void\>): number
+
+按指定规则生成缩略图。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限：** ohos.permission.READ_IMAGEVIDEO
+
+**参数：**
+
+| 参数名      | 类型                                    | 必填 | 说明             |
+| ---------  | --------------------------------------- | ---- | --------------- |
+| predicates | [dataSharePredicates.DataSharePredicates](../apis-arkdata/js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 生成缩略图选项。  |
+| callback   | AsyncCallback&lt;void&gt;               | 是   | 回调函数。当成功时标识通知任务结束，err为undefined，否则为错误对象。|
+
+**返回值：**
+
+| 类型                  | 说明                  |
+| --------------------- | -------------------- |
+| Promise&lt;number&gt; | 返回缩略图生成任务id。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201 |  Permission denied.         |
+| 202 |  Called by non-system application.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
+| 14000011       | Internal system error.         |
+
+**示例：**
+
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData'
+
+function testCallBack() {
+
+}
+
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+
+  try {
+    console.info('startThumbnailCreationTask test start');
+    phAccessHelper.startThumbnailCreationTask(predicates, testCallBack);
+  } catch (err) {
+    console.error(`startThumbnailCreationTask failed, error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### stopThumbnailCreationTask<sup>13+</sup>
+
+stopThumbnailCreationTask(taskId: number): void
+
+停止生成缩略图。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限：** ohos.permission.READ_IMAGEVIDEO
+
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明                     |
+| -----  | ------ | ---- | ------------------------ |
+| taskId | number | 是   | 需要停止的缩略图生成任务id。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201 |  Permission denied.         |
+| 202 |  Called by non-system application.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
+| 14000011       | Internal system error.         |
+
+**示例：**
+
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+
+```ts
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
+  try {
+    console.info('stopThumbnailCreationTask test start');
+    let taskId: number = 75983;
+    phAccessHelper.stopThumbnailCreationTask(taskId);
+  } catch (err) {
+    console.error(`stopThumbnailCreationTask failed, error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### getSharedPhotoAssets<sup>13+</sup>
+
+getSharedPhotoAssets(options: FetchOptions): Array\<SharedPhotoAsset\>
+
+获取共享的照片资产。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限：** ohos.permission.ACCESS_MEDIALIB_THUMB_DB
+
+**参数：**
+
+| 参数名      | 类型         | 必填 | 说明     |
+| ---------  | ------------ | ---- | ------- |
+| options    | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | 是   | 获取共享的照片资产选项。 |
+
+**返回值：**
+
+| 类型                    | 说明                |
+| ----------------------- | ------------------ |
+| Array\<[SharedPhotoAsset](#sharedphotoasset13)\> | 返回共享的照片资产。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201 |  Permission denied.         |
+| 202 |  Called by non-system application.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
+| 14000011       | Internal system error.         |
+
+**示例：**
+
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData'
+
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+
+  try {
+    console.info('getSharedPhotoAssets test start');
+    phAccessHelper.getSharedPhotoAssets(fetchOptions);
+    console.info('getSharedPhotoAssets test end');
+  } catch (err) {
+    console.error(`getSharedPhotoAssets failed, error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
 ### startAssetAnalysis<sup>18+</sup>
 
 startAssetAnalysis(type: AnalysisType, assetUris?: Array&lt;string&gt;): Promise&lt;number&gt;
@@ -1603,8 +1821,6 @@ startAssetAnalysis(type: AnalysisType, assetUris?: Array&lt;string&gt;): Promise
 phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
 
 ```ts
-import { common } from '@kit.AbilityKit';
-
 async function example(context: Context) {
   console.info('startAssetAnalysisDemo');
   try {
@@ -1714,7 +1930,7 @@ getKeyFrameThumbnail(beginFrameTimeMs: number, type: ThumbnailType): Promise<ima
 
 | 类型                            | 说明                    |
 | ----------------------------- | --------------------- |
-| Promise&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Promise对象，返回缩略图的PixelMap。若获取不到，默认返回封面帧 |
+| Promise&lt;[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | Promise对象，返回缩略图的PixelMap。若获取不到，默认返回封面帧 |
 
 **错误码：**
 
@@ -1796,8 +2012,6 @@ saveGalleryFormInfo(info:GalleryFormInfo):Promise&lt;void&gt;
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
-import {photoAccessHelper} from '@kit.MediaLibraryKit';
-import { common } from '@kit.AbilityKit';
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('saveGalleryFormInfoDemo');
@@ -1865,8 +2079,6 @@ updateGalleryFormInfo(info:GalleryFormInfo):Promise&lt;void&gt;
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
-import {photoAccessHelper} from '@kit.MediaLibraryKit';
-import { common } from '@kit.AbilityKit';
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('updateGalleryFormInfoDemo');
@@ -1935,8 +2147,6 @@ removeGalleryFormInfo(info:GalleryFormInfo):Promise&lt;void&gt;
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import {photoAccessHelper} from '@kit.MediaLibraryKit';
-import { common } from '@kit.AbilityKit';
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('removeGalleryFormInfoDemo');
@@ -2077,6 +2287,498 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
     console.info('createAssetsForAppWithAlbum success, data is ' + desFileUris);
   } catch (err) {
     console.error(`createAssetsForAppWithAlbum failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### on('hiddenPhotoChange')<sup>20+</sup> 
+
+on(type: 'hiddenPhotoChange', callback: Callback&lt;PhotoAssetChangeInfos&gt;): void
+
+注册'hiddenPhotoChange'监听隐藏的媒体资产，并通过callback方式返回隐藏资产变化结果，可以注册多个callback。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO 和 ohos.permission.MANAGE_PRIVATE_PHOTOS
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明      |
+|-----------|-------------------------|-----------|-----------------|
+| type | string | 是   | 注册监听隐藏资产，取值为'hiddenPhotoChange'。注册完成后，有隐藏资产发生变化时，通过callback返回变更信息。 |
+| callback  | Callback&lt;[PhotoAssetChangeInfos](./js-apis-photoAccessHelper.md#photoassetchangeinfos20)&gt; | 是   | 返回变更的隐藏媒体资产信息[PhotoAssetChangeInfos](./js-apis-photoAccessHelper.md#photoassetchangeinfos20)。<br>**注意：** 该接口可以注册多个不同的callback监听，[off('hiddenPhotoChange')](#offhiddenphotochange20)即可以关闭所有监听，也可以关闭指定callback监听。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Called by non-system application. |
+| 13900020 | Invalid argument. |
+| 14000011 | Internal system error. |
+
+**示例：**
+
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData'
+
+let onCallback1 = (changeData: photoAccessHelper.PhotoAssetChangeInfos) => {
+    console.info('onCallback1 success, changData: ' + JSON.stringify(changeData));
+  // file had changed, do something.
+}
+let onCallback2 = (changeData: photoAccessHelper.PhotoAssetChangeInfos) => {
+    console.info('onCallback2 success, changData: ' + JSON.stringify(changeData));
+  // file had changed, do something.
+}
+
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper){
+  console.info('onHiddenPhotoChangeDemo.');
+
+  try {
+    // 注册onCallback1监听。
+    phAccessHelper.on('hiddenPhotoChange', onCallback1);
+    // 注册onCallback2监听。
+    phAccessHelper.on('hiddenPhotoChange', onCallback2);
+  } catch (error) {
+    console.error('onHiddenPhotoChange failed, errCode is', error);
+  }
+}
+```
+
+### off('hiddenPhotoChange')<sup>20+</sup> 
+
+off(type: 'hiddenPhotoChange', callback?: Callback&lt;PhotoAssetChangeInfos&gt;): void
+
+取消对'hiddenPhotoChange'隐藏资产的监听。存在多个callback监听时，可以取消指定注册的callback监听；不指定callback时取消所有监听。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO 和 ohos.permission.MANAGE_PRIVATE_PHOTOS
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明      |
+|-----------|-------------------------|-----------|-----------------|
+| type | string | 是   | 取消监听隐藏资产，取值为'hiddenPhotoChange'。取消监听后，有隐藏资产发生变化时，不再通过callback返回变更信息。 |
+| callback | Callback&lt;[PhotoAssetChangeInfos](./js-apis-photoAccessHelper.md#photoassetchangeinfos20)&gt; | 否   | 取消[on('hiddenPhotoChange')](#onhiddenphotochange20)注册时指定的callback监听；不填时，则取消对'hiddenPhotoChange'的所有监听。<br>**注意：** 取消注册的callback后，有隐藏资产发生变化时，不会进入此回调。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Called by non-system application. |
+| 13900020 | Invalid argument. |
+| 14000011 | Internal system error. |
+
+**示例：**
+
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData'
+
+let onCallback1 = (changeData: photoAccessHelper.PhotoAssetChangeInfos) => {
+    console.info('onCallback1 success, changData: ' + JSON.stringify(changeData));
+  // file had changed, do something.
+}
+let onCallback2 = (changeData: photoAccessHelper.PhotoAssetChangeInfos) => {
+    console.info('onCallback2 success, changData: ' + JSON.stringify(changeData));
+  // file had changed, do something.
+}
+
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper){
+  console.info('offHiddenPhotoChangeDemo.');
+
+  try {
+    // 注册onCallback1监听。
+    phAccessHelper.on('hiddenPhotoChange', onCallback1);
+    // 注册onCallback2监听。
+    phAccessHelper.on('hiddenPhotoChange', onCallback2);
+
+    // 关闭onCallback1监听，onCallback2继续监听。
+    phAccessHelper.off('hiddenPhotoChange', onCallback1);
+  } catch (error) {
+    console.error('offHiddenPhotoChange failed, errCode is', error);
+  }
+}
+```
+
+### on('trashedPhotoChange')<sup>20+</sup> 
+
+on(type: 'trashedPhotoChange', callback: Callback&lt;PhotoAssetChangeInfos&gt;): void
+
+注册'trashedPhotoChange'监听回收站的媒体资产，并通过callback方式返回回收站资产变化结果，可以注册多个callback。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明      |
+|-----------|-------------------------|-----------|-----------------|
+| type | string | 是   | 注册监听回收站资产，取值为'trashedPhotoChange'。注册完成后，有回收站资产发生变化时，通过callback返回变更信息。 |
+| callback  | Callback&lt;[PhotoAssetChangeInfos](./js-apis-photoAccessHelper.md#photoassetchangeinfos20)&gt; | 是   | 返回变更的回收站媒体资产信息[PhotoAssetChangeInfos](./js-apis-photoAccessHelper.md#photoassetchangeinfos20)。<br>**注意：** 该接口可以注册多个不同的callback监听，[off('trashedPhotoChange')](#offtrashedphotochange20)即可以关闭所有监听，也可以关闭指定callback监听。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Called by non-system application. |
+| 13900020 | Invalid argument. |
+| 14000011 | Internal system error. |
+
+**示例：**
+
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData'
+
+let onCallback1 = (changeData: photoAccessHelper.PhotoAssetChangeInfos) => {
+    console.info('onCallback1 success, changData: ' + JSON.stringify(changeData));
+  // file had changed, do something.
+}
+let onCallback2 = (changeData: photoAccessHelper.PhotoAssetChangeInfos) => {
+    console.info('onCallback2 success, changData: ' + JSON.stringify(changeData));
+  // file had changed, do something.
+}
+
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context){
+  console.info('onTrashedPhotoChangeDemo.');
+
+  try {
+    // 注册onCallback1监听。
+    phAccessHelper.on('trashedPhotoChange', onCallback1);
+    // 注册onCallback2监听。
+    phAccessHelper.on('trashedPhotoChange', onCallback2);
+  } catch (error) {
+    console.error('onTrashedPhotoChangeDemo failed, errCode is', error);
+  }
+}
+```
+
+### off('trashedPhotoChange')<sup>20+</sup> 
+
+off(type: 'trashedPhotoChange', callback?: Callback&lt;PhotoAssetChangeInfos&gt;): void
+
+取消对'trashedPhotoChange'回收站资产的监听。存在多个callback监听时，可以取消指定注册的callback监听；不指定callback时取消所有监听。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明      |
+|-----------|-------------------------|-----------|-----------------|
+| type | string | 是   | 取消监听回收站资产，取值为'trashedPhotoChange'。取消监听后，有回收站资产发生变化时，不再通过callback返回变更信息。 |
+| callback | Callback&lt;[PhotoAssetChangeInfos](./js-apis-photoAccessHelper.md#photoassetchangeinfos20)&gt; | 否   | 取消[on('trashedPhotoChange')](#ontrashedphotochange20)注册时指定的callback监听；不填时，则取消对'trashedPhotoChange'的所有监听。<br>**注意：** 取消注册的callback后，有回收站资产发生变化时，不会进入此回调。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Called by non-system application. |
+| 13900020 | Invalid argument. |
+| 14000011 | Internal system error. |
+
+**示例：**
+
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData'
+
+let onCallback1 = (changeData: photoAccessHelper.PhotoAssetChangeInfos) => {
+    console.info('onCallback1 success, changData: ' + JSON.stringify(changeData));
+  // file had changed, do something.
+}
+let onCallback2 = (changeData: photoAccessHelper.PhotoAssetChangeInfos) => {
+    console.info('onCallback2 success, changData: ' + JSON.stringify(changeData));
+  // file had changed, do something.
+}
+
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context){
+  console.info('offTrashedPhotoChangeDemo.');
+
+  try {
+    // 注册onCallback1监听。
+    phAccessHelper.on('trashedPhotoChange', onCallback1);
+    // 注册onCallback2监听。
+    phAccessHelper.on('trashedPhotoChange', onCallback2);
+
+    // 关闭onCallback1监听，onCallback2继续监听。
+    phAccessHelper.off('trashedPhotoChange', onCallback1);
+  } catch (error) {
+    console.error('offTrashedPhotoChangeDemo failed, errCode is', error);
+  }
+}
+```
+
+### on('hiddenAlbumChange')<sup>20+</sup> 
+
+on(type: 'hiddenAlbumChange', callback: Callback&lt;AlbumChangeInfos&gt;): void
+
+注册'hiddenAlbumChange'监听隐藏相册，并通过callback方式返回相册变化结果，可以注册多个callback。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO 和 ohos.permission.MANAGE_PRIVATE_PHOTOS
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明      |
+|-----------|-------------------------|-----------|-----------------|
+| type | string | 是   | 注册监听隐藏相册，取值为'hiddenAlbumChange'。注册完成后，有隐藏相册发生变化时，通过callback返回变更信息。 |
+| callback  | Callback&lt;[AlbumChangeInfos](./js-apis-photoAccessHelper.md#albumchangeinfos20)&gt; | 是   | 返回变更的隐藏相册信息[AlbumChangeInfos](./js-apis-photoAccessHelper.md#albumchangeinfos20)。<br>**注意：** 该接口可以注册多个不同的callback监听，[off('hiddenAlbumChange')](#offhiddenalbumchange20)即可以关闭所有监听，也可以关闭指定callback监听。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Called by non-system application. |
+| 13900020 | Invalid argument. |
+| 14000011 | Internal system error. |
+
+**示例：**
+
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData'
+
+let onCallback1 = (changeData: photoAccessHelper.AlbumChangeInfos) => {
+    console.info('onCallback1 success, changData: ' + JSON.stringify(changeData));
+  // file had changed, do something.
+}
+let onCallback2 = (changeData: photoAccessHelper.AlbumChangeInfos) => {
+    console.info('onCallback2 success, changData: ' + JSON.stringify(changeData));
+  // file had changed, do something.
+}
+
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper){
+  console.info('onHiddenAlbumChangeDemo.');
+
+  try {
+    // 注册onCallback1监听。
+    phAccessHelper.on('hiddenAlbumChange', onCallback1);
+    // 注册onCallback2监听。
+    phAccessHelper.on('hiddenAlbumChange', onCallback2);
+  } catch (error) {
+    console.error('onHiddenAlbumChangeDemo failed, errCode is', error);
+  }
+}
+```
+
+### off('hiddenAlbumChange')<sup>20+</sup> 
+
+off(type: 'hiddenAlbumChange', callback?: Callback&lt;AlbumChangeInfos&gt;): void
+
+取消对'hiddenAlbumChange'隐藏相册的监听。存在多个callback监听时，可以取消指定注册的callback监听；不指定callback时取消所有监听。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO 和 ohos.permission.MANAGE_PRIVATE_PHOTOS
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明      |
+|-----------|-------------------------|-----------|-----------------|
+| type | string | 是   | 取消监听隐藏相册，取值为'hiddenAlbumChange'。取消监听后，有隐藏相册发生变化时，不再通过callback返回变更信息。 |
+| callback | Callback&lt;[AlbumChangeInfos](./js-apis-photoAccessHelper.md#albumchangeinfos20)&gt; | 否   | 取消[on('hiddenAlbumChange')](#onhiddenalbumchange20)注册时指定的callback监听；不填时，则取消对'hiddenAlbumChange'的所有监听。<br>**注意：** 取消注册的callback后，有隐藏相册发生变化时，不会进入此回调。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Called by non-system application. |
+| 13900020 | Invalid argument. |
+| 14000011 | Internal system error. |
+
+**示例：**
+
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData'
+
+let onCallback1 = (changeData: photoAccessHelper.AlbumChangeInfos) => {
+    console.info('onCallback1 success, changData: ' + JSON.stringify(changeData));
+  // file had changed, do something.
+}
+let onCallback2 = (changeData: photoAccessHelper.AlbumChangeInfos) => {
+    console.info('onCallback2 success, changData: ' + JSON.stringify(changeData));
+  // file had changed, do something.
+}
+
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper){
+  console.info('onHiddenAlbumChangeDemo.');
+
+  try {
+    // 注册onCallback1监听。
+    phAccessHelper.on('hiddenAlbumChange', onCallback1);
+    // 注册onCallback2监听。
+    phAccessHelper.on('hiddenAlbumChange', onCallback2);
+
+    // 关闭onCallback1监听，onCallback2继续监听。
+    phAccessHelper.off('hiddenAlbumChange', onCallback1);
+  } catch (error) {
+    console.error('onHiddenAlbumChangeDemo failed, errCode is', error);
+  }
+}
+```
+
+### on('trashedAlbumChange')<sup>20+</sup> 
+
+on(type: 'trashedAlbumChange', callback: Callback&lt;AlbumChangeInfos&gt;): void
+
+注册'trashedAlbumChange'监听回收站相册，并通过callback方式返回相册变化结果，可以注册多个callback。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明      |
+|-----------|-------------------------|-----------|-----------------|
+| type | string | 是   | 注册监听回收站相册，取值为'trashedAlbumChange'。注册完成后，有回收站相册发生变化时，通过callback返回变更信息。 |
+| callback  | Callback&lt;[AlbumChangeInfos](./js-apis-photoAccessHelper.md#albumchangeinfos20)&gt; | 是   | 返回变更的相册信息[AlbumChangeInfos](./js-apis-photoAccessHelper.md#albumchangeinfos20)。<br>**注意：** 该接口可以注册多个不同的callback监听，[off('trashedAlbumChange')](#offtrashedalbumchange20)即可以关闭所有监听，也可以关闭指定callback监听。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Called by non-system application. |
+| 13900020 | Invalid argument. |
+| 14000011 | Internal system error. |
+
+**示例：**
+
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData'
+
+let onCallback1 = (changeData: photoAccessHelper.AlbumChangeInfos) => {
+    console.info('onCallback1 success, changData: ' + JSON.stringify(changeData));
+  // file had changed, do something.
+}
+let onCallback2 = (changeData: photoAccessHelper.AlbumChangeInfos) => {
+    console.info('onCallback2 success, changData: ' + JSON.stringify(changeData));
+  // file had changed, do something.
+}
+
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context){
+  console.info('onTrashedAlbumChangeDemo.');
+
+  try {
+    // 注册onCallback1监听。
+    phAccessHelper.on('trashedAlbumChange', onCallback1);
+    // 注册onCallback2监听。
+    phAccessHelper.on('trashedAlbumChange', onCallback2);
+  } catch (error) {
+    console.error('onTrashedAlbumChangeDemo failed, errCode is', error);
+  }
+}
+```
+
+### off('trashedAlbumChange')<sup>20+</sup> 
+
+off(type: 'trashedAlbumChange', callback?: Callback&lt;AlbumChangeInfos&gt;): void
+
+取消对'trashedAlbumChange'回收站相册的监听。存在多个callback监听时，可以取消指定注册的callback监听；不指定callback时取消所有监听。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明      |
+|-----------|-------------------------|-----------|-----------------|
+| type | string | 是   | 取消监听回收站相册，取值为'trashedAlbumChange'。取消监听后，有回收站相册发生变化时，不再通过callback返回变更信息。 |
+| callback | Callback&lt;[AlbumChangeInfos](./js-apis-photoAccessHelper.md#albumchangeinfos20)&gt; | 否   | 取消[on('trashedAlbumChange')](#ontrashedalbumchange20)注册时指定的callback监听；不填时，则取消对'trashedAlbumChange'的所有监听。<br>**注意：** 取消注册的callback后，有回收站相册发生变化时，不会进入此回调。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Called by non-system application. |
+| 13900020 | Invalid argument. |
+| 14000011 | Internal system error. |
+
+**示例：**
+
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData'
+
+let onCallback1 = (changeData: photoAccessHelper.AlbumChangeInfos) => {
+    console.info('onCallback1 success, changData: ' + JSON.stringify(changeData));
+  // file had changed, do something.
+}
+let onCallback2 = (changeData: photoAccessHelper.AlbumChangeInfos) => {
+    console.info('onCallback2 success, changData: ' + JSON.stringify(changeData));
+  // file had changed, do something.
+}
+
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context){
+  console.info('onTrashedAlbumChangeDemo.');
+
+  try {
+    // 注册onCallback1监听。
+    phAccessHelper.on('trashedAlbumChange', onCallback1);
+    // 注册onCallback2监听。
+    phAccessHelper.on('trashedAlbumChange', onCallback2);
+
+    // 关闭onCallback1监听，onCallback2继续监听。
+    phAccessHelper.off('trashedAlbumChange', onCallback1);
+  } catch (error) {
+    console.error('onTrashedAlbumChangeDemo failed, errCode is', error);
   }
 }
 ```
@@ -2484,7 +3186,7 @@ getExif(): Promise&lt;string&gt;
 
 返回jpg格式图片Exif标签组成的json格式的字符串，该方法使用Promise方式返回结果。
 
-此接口中获取的Exif标签信息是由[image](../apis-image-kit/js-apis-image.md)模块提供。Exif标签详细信息请参考[image.PropertyKey](../apis-image-kit/js-apis-image.md#propertykey7)。
+此接口中获取的Exif标签信息是由[image](../apis-image-kit/arkts-apis-image.md)模块提供。Exif标签详细信息请参考[image.PropertyKey](../apis-image-kit/arkts-apis-image-e.md#propertykey7)。
 
 **注意**：此接口返回的是Exif标签组成的json格式的字符串，完整Exif信息由all_exif与[PhotoKeys.USER_COMMENT](#photokeys)组成，fetchColumns需要传入这两个字段。
 
@@ -2548,7 +3250,7 @@ getExif(callback: AsyncCallback&lt;string&gt;): void
 
 返回jpg格式图片Exif标签组成的json格式的字符串，使用callback方式返回异步结果。
 
-此接口中获取的Exif标签信息是由[image](../apis-image-kit/js-apis-image.md)模块提供。Exif标签详细信息请参考[image.PropertyKey](../apis-image-kit/js-apis-image.md#propertykey7)。
+此接口中获取的Exif标签信息是由[image](../apis-image-kit/arkts-apis-image.md)模块提供。Exif标签详细信息请参考[image.PropertyKey](../apis-image-kit/arkts-apis-image-e.md#propertykey7)。
 
 **注意**：此接口返回的是Exif标签组成的json格式的字符串，完整Exif信息由all_exif与[PhotoKeys.USER_COMMENT](#photokeys)组成，fetchColumns需要传入这两个字段。
 
@@ -3552,7 +4254,7 @@ requestPhoto(callback: AsyncCallback&lt;image.PixelMap&gt;): string
 
 | 参数名        | 类型      | 必填   | 说明                                 |
 | ---------- | ------- | ---- | ---------------------------------- |
-| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 是    | Callback对象，返回获取的缩略图，调用2次。 |
+| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | 是    | Callback对象，返回获取的缩略图，调用2次。 |
 
 **返回值：**
 
@@ -3619,7 +4321,7 @@ requestPhoto(options: RequestPhotoOptions, callback: AsyncCallback&lt;image.Pixe
 | 参数名        | 类型      | 必填   | 说明                                 |
 | ---------- | ------- | ---- | ---------------------------------- |
 | options | [RequestPhotoOptions](#requestphotooptions11) | 是    | 获取资源缩略图的选项。 |
-| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 是    | Callback对象，返回获取的缩略图，根据选项的设置可能调用超过1次。 |
+| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | 是    | Callback对象，返回获取的缩略图，根据选项的设置可能调用超过1次。 |
 
 **返回值：**
 
@@ -3841,7 +4543,6 @@ getThumbnailData(type: ThumbnailType): Promise&lt;ArrayBuffer&gt;
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { common } from '@kit.AbilityKit';
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('getThumbnailDataDemo');
@@ -3860,6 +4561,53 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   });
 }
 ```
+
+## SharedPhotoAsset<sup>13+</sup>
+
+共享图片资产。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+### 属性
+
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| ---- | --- | ---- | ---- | --- |
+| fileId | number | 否 | 否 | 图片资产标识id。<br>**系统接口**：此接口为系统接口。|
+| uri | string | 否 | 否 | 图片资产uri。<br>**系统接口**：此接口为系统接口。|
+| data | string | 否 | 否 | 图片资产的路径数据。<br>**系统接口**：此接口为系统接口。|
+| mediaType | [PhotoType](./js-apis-photoAccessHelper.md#phototype) | 否 | 否 | 图片资产的媒体类型。<br>**系统接口**：此接口为系统接口。|
+| displayName | string | 否 | 否 | 图片资产的显示名称。<br>**系统接口**：此接口为系统接口。|
+| size | number  | 否 | 否 | 图片资产文件大小。<br>**系统接口**：此接口为系统接口。|
+| dataAdded | number | 否 | 否 | 添加了图片资产数据。<br>**系统接口**：此接口为系统接口。|
+| dataModified | number | 否 | 否 | 更改了图片资产数据。<br>**系统接口**：此接口为系统接口。|
+| duration | number | 否 | 否 | 视频类型的图片资产时长。<br>**系统接口**：此接口为系统接口。|
+| width | number | 否 | 否 | 图片资产的像素宽度。<br>**系统接口**：此接口为系统接口。|
+| height | number | 否 | 否 | 图片资产的像素高度。<br>**系统接口**：此接口为系统接口。|
+| dataTaken | number | 否 | 否 | 图片资产拍照后存入本地时间。<br>**系统接口**：此接口为系统接口。|
+| orientation | number | 否 | 否 | 图片资产的旋转角度。<br>**系统接口**：此接口为系统接口。|
+| isFavorite | boolean | 否 | 否 | 是否收藏了此图片。<br>**系统接口**：此接口为系统接口。|
+| title | string | 否 | 否 | 图片资产的标题。<br>**系统接口**：此接口为系统接口。|
+| position | [PositionType](./js-apis-photoAccessHelper.md#positiontype16) | 否 | 否 | 图片资产存在位置。<br>**系统接口**：此接口为系统接口。|
+| dataTrashed | number | 否 | 否 | 图片资产是否在回收站中。<br>**系统接口**：此接口为系统接口。|
+| hidden | boolean | 否 | 否 | 图片资产是否隐藏。<br>**系统接口**：此接口为系统接口。|
+| userComment | string | 否 | 否 | 图片资产的用户评论信息。<br>**系统接口**：此接口为系统接口。|
+| cameraShotKey | string | 否 | 否 | 图片资产相机拍摄信息。<br>**系统接口**：此接口为系统接口。|
+| dateYear | string | 否 | 否 | 图片资产创建年份时间。<br>**系统接口**：此接口为系统接口。|
+| dateMonth | string | 否 | 否 | 图片资产创建月份时间。<br>**系统接口**：此接口为系统接口。|
+| dateDay | string | 否 | 否 | 图片资产创建日时间。<br>**系统接口**：此接口为系统接口。|
+| pending | boolean | 否 | 否 | 图片资产等待状态，true为等待。<br>**系统接口**：此接口为系统接口。|
+| dateAddedMs | number | 否 | 否 | 图片资产数据添加后经过时间。<br>**系统接口**：此接口为系统接口。|
+| dateTrashedMs | number | 否 | 否 | 图片资产数据进回收站后经过时间。<br>**系统接口**：此接口为系统接口。|
+| subtype | [PhotoSubtype](#photosubtype) | 否 | 否 | 图片资产子类型。<br>**系统接口**：此接口为系统接口。|
+| movingPhotoEffectMode | [MovingPhotoEffectMode](#movingphotoeffectmode12) | 否 | 否 | 动态照片效果模式。<br>**系统接口**：此接口为系统接口。|
+| dynamicRangeType | [DynamicRangeType](./js-apis-photoAccessHelper.md#dynamicrangetype12) | 否 | 否 | 媒体文件的动态范围类型。<br>**系统接口**：此接口为系统接口。|
+| thumbnailReady | boolean | 否 | 否 | 图片资产的缩略图是否准备好。<br>**系统接口**：此接口为系统接口。|
+| lcdSize | string | 否 | 否 | 图片资产的lcd缩略图宽高信息。<br>**系统接口**：此接口为系统接口。|
+| thmSize | string | 否 | 否 | 图片资产的thumb缩略图宽高信息。<br>**系统接口**：此接口为系统接口。|
+| thumbnailModifiedMs<sup>14+</sup> | number | 否 | 是 | 图片资产的缩略图状态改变后经过时间。<br>**系统接口**：此接口为系统接口。|
+| thumbnailVisible<sup>14+</sup> | [ThumbnailVisibility](#thumbnailvisibility14) | 否 | 否 | 图片资产的缩略图是否可见。<br>**系统接口**：此接口为系统接口。|
 
 ## Album
 
@@ -4878,7 +5626,6 @@ setSupportedWatermarkType(watermarkType: WatermarkType): void
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-import { common } from '@kit.AbilityKit';
 
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('setSupportedWatermarkTypeDemo');
@@ -6487,7 +7234,6 @@ setSubTitle(title: string): void
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-import { common } from '@kit.AbilityKit';
 
 async function example(context: Context) {
   try {
@@ -6554,8 +7300,6 @@ static deleteHighlightAlbums(context: Context, albums: Array&lt;Album&gt;): Prom
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
-import { common } from '@kit.AbilityKit';
 
 async function example(context: Context) {
   try {
@@ -6616,7 +7360,6 @@ constructor(album: Album)
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-import { common } from '@kit.AbilityKit';s
 
 async function example(context: Context) {
   console.info('MediaAnalysisAlbumChangeRequest constructorDemo');
@@ -6672,7 +7415,6 @@ setOrderPosition(assets: Array&lt;PhotoAsset&gt;, position: Array&lt;number&gt;)
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-import { common } from '@kit.AbilityKit';
 
 async function example(context: Context) {
   try {
@@ -6748,7 +7490,6 @@ constructor(album: Album)
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-import { common } from '@kit.AbilityKit';
 
 async function example(context: Context) {
   console.info('AnalysisAlbum constructorDemo');
@@ -6808,7 +7549,6 @@ getOrderPosition(assets: Array&lt;PhotoAsset&gt;): Promise&lt;Array&lt;number&gt
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-import { common } from '@kit.AbilityKit';
 
 async function example(context: Context) {
   try {
@@ -6887,7 +7627,6 @@ static getCloudEnhancementInstance(context: Context): CloudEnhancement
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-import { common } from '@kit.AbilityKit';
 
 async function example(context: Context) {
   console.info('getCloudEnhancementInstanceDemo');
@@ -7568,8 +8307,6 @@ static getCloudMediaAssetManagerInstance(context: Context): CloudMediaAssetManag
 **示例：**
 
 ```ts
-import { common } from '@kit.AbilityKit';
-
 async function example(context: Context) {
   console.info('getCloudMediaAssetManagerInstanceDemo');
   try {
@@ -7591,6 +8328,8 @@ startDownloadCloudMedia(downloadType: CloudMediaDownloadType): Promise&lt;void&g
 **系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限**：ohos.permission.CLOUDFILE_SYNC_MANAGER
 
 **参数：**
 
@@ -7618,8 +8357,6 @@ startDownloadCloudMedia(downloadType: CloudMediaDownloadType): Promise&lt;void&g
 **示例：**
 
 ```ts
-import { common } from '@kit.AbilityKit';
-
 async function example(context: Context) {
   console.info('startDownloadCloudMediaDemo');
   try {
@@ -7642,6 +8379,8 @@ pauseDownloadCloudMedia(): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
+**需要权限**：ohos.permission.CLOUDFILE_SYNC_MANAGER
+
 **返回值：**
 
 | 类型                                    | 说明              |
@@ -7661,8 +8400,6 @@ pauseDownloadCloudMedia(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { common } from '@kit.AbilityKit';
-
 async function example(context: Context) {
   console.info('pauseDownloadCloudMediaDemo');
   try {
@@ -7685,6 +8422,8 @@ cancelDownloadCloudMedia(): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
+**需要权限**：ohos.permission.CLOUDFILE_SYNC_MANAGER
+
 **返回值：**
 
 | 类型                                    | 说明              |
@@ -7704,8 +8443,6 @@ cancelDownloadCloudMedia(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { common } from '@kit.AbilityKit';
-
 async function example(context: Context) {
   console.info('cancelDownloadCloudMediaDemo');
   try {
@@ -7727,6 +8464,8 @@ retainCloudMediaAsset(retainType: CloudMediaRetainType): Promise&lt;void&gt;
 **系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限**：ohos.permission.CLOUDFILE_SYNC_MANAGER
 
 **参数：**
 
@@ -7754,8 +8493,6 @@ retainCloudMediaAsset(retainType: CloudMediaRetainType): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { common } from '@kit.AbilityKit';
-
 async function example(context: Context) {
   console.info('retainCloudMediaAssetDemo');
   try {
@@ -7778,6 +8515,8 @@ getCloudMediaAssetStatus(): Promise&lt;CloudMediaAssetStatus&gt;
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
 **返回值：**
 
 | 类型                                    | 说明              |
@@ -7797,8 +8536,6 @@ getCloudMediaAssetStatus(): Promise&lt;CloudMediaAssetStatus&gt;
 **示例：**
 
 ```ts
-import { common } from '@kit.AbilityKit';
-
 async function example(context: Context) {
   console.info('getCloudMediaAssetStatusDemo');
   try {
@@ -7957,6 +8694,7 @@ async function example(context: Context) {
 | ---------------------- | ------------------- | ---- | ------------------------------------------------ |
 | subtype           | [PhotoSubtype](#photosubtype) | 否  | 图片或者视频的子类型。  |
 | cameraShotKey           | string | 否  | 锁屏相机拍照或录像的标记字段（仅开放给系统相机,其key值由系统相机定义）。   |
+| userId<sup>19+</sup>           | number | 否  | 用户id。  |
 
 ## RequestPhotoOptions<sup>11+</sup>
 
@@ -7968,7 +8706,7 @@ async function example(context: Context) {
 
 | 名称                   | 类型                | 必填 | 说明                                              |
 | ---------------------- | ------------------- | ---- | ------------------------------------------------ |
-| size           | [image.Size](../apis-image-kit/js-apis-image.md#size) | 否  | 获取缩略图的尺寸。  |
+| size           | [image.Size](../apis-image-kit/arkts-apis-image-i.md#size) | 否  | 获取缩略图的尺寸。  |
 | requestPhotoType    | [RequestPhotoType](#requestphototype11) | 否  | 获取的操作类型。  |
 
 ## PhotoCreationSource<sup>18+</sup>
@@ -8140,6 +8878,19 @@ async function example(context: Context) {
 | RENDER\_VIEWED\_DURATION      | 101  | 轮播观看总时长类别。   |
 | ART\_LAYOUT\_VIEWED\_TIMES    | 102  | 二级界面观看次数类别。   |
 | ART\_LAYOUT\_VIEWED\_DURATION | 103  | 二级界面观看总时长类别。    |
+
+## ThumbnailVisibility<sup>14+</sup>
+
+枚举，缩略图是否可访问。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称                           | 值  | 说明       |
+| :---------------------------- | :- | :------- |
+| INVISIBLE        | 0  | 缩略图不可访问。    |
+| VISIBLE         | 1  | 缩略图可访问。    |
 
 ## MovingPhotoEffectMode<sup>12+</sup>
 
@@ -8365,3 +9116,85 @@ async function example(context: Context) {
 | 名称  |  值 |  说明 |
 | ----- |  ---- | ---- |
 | COLOR_STYLE_PHOTO<sup>18+</sup> |  12 | 推荐风格 **系统接口**：此接口为系统接口。|
+
+## ThumbnailChangeStatus<sup>20+</sup>
+
+枚举，表示缩略图（包括图片/视频）更新的状态。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称                      | 值   | 说明                             |
+| ------------------------- | ---- | -------------------------------- |
+| THUMBNAIL_NOT_EXISTS      | 0    | 缩略图不存在。     |
+| THUMBNAIL_ADD             | 1    | 缩略图已重新创建。     |
+| THUMBNAIL_UPDATE          | 2    | 缩略图已更新。     |
+| THUMBNAIL_NOT_CHANGE      | 3    | 缩略图没有变化。     |
+
+## StrongAssociationType<sup>20+</sup>
+
+枚举，表示图片的强关联类型。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称                      | 值   | 说明                             |
+| ------------------------- | ---- | -------------------------------- |
+| NORMAL                    | 0    | 普通图片类型。     |
+| CLOUD_ENHANCEMENT         | 1    | 云增强图片类型。     |
+
+## PhotoAssetChangeInfo<sup>20+</sup>
+
+媒体资产（图片/视频）信息。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称  | 类型                | 只读 | 可选 | 说明                                              |
+| ---- | ------- | ---- |  ---- | ----- |
+| fileId | number  | 否 | 否 | 媒体资产（图片/视频）的id。<br>**系统接口**：此接口为系统接口。  |
+| dateDay | string  | 否 | 否 | 创建媒体文件的日期。<br>**系统接口**：此接口为系统接口。  |
+| isFavorite | boolean  | 否 | 否 | 表示媒体资产（图片/视频）的收藏状态。true表示资产已收藏，false表示资产未收藏。<br>**系统接口**：此接口为系统接口。  |
+| isHidden | boolean  | 否 | 否 | 表示媒体资产（图片/视频）的隐藏状态。true表示资产已隐藏，false表示资产未隐藏。<br>**系统接口**：此接口为系统接口。  |
+| strongAssociation | [StrongAssociationType](#strongassociationtype20)  | 否 | 否 | 图片的强关联类型。<br>**系统接口**：此接口为系统接口。  |
+| thumbnailVisible | [ThumbnailVisibility](#thumbnailvisibility14)  | 否 | 否 | 缩略图的可访问性。<br>**系统接口**：此接口为系统接口。  |
+| dateTrashedMs |number  |否 | 否 | 文件删除时的Unix时间戳（单位：毫秒）。<br>**系统接口**：此接口为系统接口。  |
+| dateAddedMs | number  | 否 | 否 | 文件创建时的Unix时间戳（单位：毫秒）。<br>**系统接口**：此接口为系统接口。  |
+| dateTakenMs | number  | 否 | 否 | 文件拍摄时的Unix时间戳（单位：毫秒）。<br>**系统接口**：此接口为系统接口。  |
+
+## PhotoAssetChangeData<sup>20+</sup>
+
+媒体资产（图片/视频）的具体变更数据。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称                   | 类型                | 只读 | 可选 | 说明          |
+| ---- | ------- | ---- |  ---- | ----- |
+| thumbnailChangeStatus | [ThumbnailChangeStatus](#thumbnailchangestatus20)  | 否 | 否 | 缩略图（图片/视频）更新的状态。<br>**系统接口**：此接口为系统接口。 |
+| version       |  number  | 否 | 否 | 媒体资产（图片/视频）信息通知的版本号，用于确定通知的顺序。<br>**系统接口**：此接口为系统接口。  |
+
+## AlbumChangeInfo<sup>20+</sup>
+
+相册信息。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称  | 类型                | 只读 | 可选 | 说明                                              |
+| ---- | ------- | ---- |  ---- | ----- |
+| hiddenCount | number  | 否 | 否 | 相册中的隐藏资产数量。<br>**系统接口**：此接口为系统接口。 |
+| hiddenCoverUri | string  | 否 | 否 | 相册中隐藏封面资产的uri。<br>**系统接口**：此接口为系统接口。 |
+| isCoverChanged | boolean  | 否 | 否 | 相册封面文件内容是否变化。true表示封面文件内容发生变化，false表示封面文件内容未发生变化。<br>**系统接口**：此接口为系统接口。 |
+| isHiddenCoverChanged | boolean  | 否 | 否 | 相册隐藏封面文件内容是否变化。true表示隐藏封面文件内容发生变化，false表示隐藏封面文件内容未发生变化。<br>**系统接口**：此接口为系统接口。 |
+| coverInfo | [PhotoAssetChangeInfo](#photoassetchangeinfo20)  | 否 | 是 | 相册封面资产的信息。<br>**系统接口**：此接口为系统接口。 |
+| hiddenCoverInfo | [PhotoAssetChangeInfo](#photoassetchangeinfo20)  | 否 | 是 | 相册隐藏封面资产的信息。<br>**系统接口**：此接口为系统接口。 |
+
+## AlbumChangeData<sup>20+</sup>
+
+相册的具体变更数据。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称                   | 类型                | 只读 | 可选 | 说明       |
+| ---- | ------- | ---- |  ---- | ----- |
+| version | number  | 否 | 否 | 相册信息通知的版本号，用于确定通知的顺序。<br>**系统接口**：此接口为系统接口。 |

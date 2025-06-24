@@ -11,7 +11,7 @@ The **drawing_text_lineTypography.h** file declares the functions related to lin
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**Since**: 16
+**Since**: 18
 
 **Related module**: [Drawing](_drawing.md)
 

@@ -36,7 +36,7 @@ bindSheet(isShow: Optional\<boolean\>, builder: CustomBuilder, options?: SheetOp
 >
 > 1. 在非双向绑定情况下，以拖拽方式关闭半模态页面不会改变isShow参数的值。
 >
-> 2. 为了使isShow参数值与半模态界面的状态同步，建议使用[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定isShow参数。从API version 18开始，该参数支持[!!](../../../ui/state-management/arkts-new-binding.md#组件参数双向绑定)双向绑定变量。
+> 2. 为了使isShow参数值与半模态界面的状态同步，建议使用[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定isShow参数。从API version 18开始，该参数支持[!!](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。
 >
 > 3. 在半模态单挡位向上拖拽或是多挡位上滑换挡情况下，内容在拖拽结束或换挡结束后更新显示区域。
 >
@@ -84,6 +84,7 @@ bindSheet(isShow: Optional\<boolean\>, builder: CustomBuilder, options?: SheetOp
 | placementOnTarget<sup>18+</sup> | boolean | 否 | 半模态popup样式弹窗在当前窗口下，四个方向均无法容纳该弹窗大小时，设置是否允许其覆盖在目标节点上。<br /> 默认值：true <br />**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
 | effectEdge<sup>18+</sup> | number | 否 | 设置半模态面板内容区边缘回弹效果，支持单边生效。<br/>**默认值**：默认双边生效，即[EffectEdge](ts-container-scrollable-common.md#effectedge18枚举说明).START \| [EffectEdge](ts-container-scrollable-common.md#effectedge18枚举说明).END（即数值3）。<br />**说明：**<br />1. 仅上边缘生效：[EffectEdge](ts-container-scrollable-common.md#effectedge18枚举说明).START。<br/>2. 仅下边缘生效：[EffectEdge](ts-container-scrollable-common.md#effectedge18枚举说明).END。<br/>3. 双边生效：[EffectEdge](ts-container-scrollable-common.md#effectedge18枚举说明).START \| [EffectEdge](ts-container-scrollable-common.md#effectedge18枚举说明).END（即数值3）。<br/>4. 双边不生效：[EffectEdge](ts-container-scrollable-common.md#effectedge18枚举说明).START & [EffectEdge](ts-container-scrollable-common.md#effectedge18枚举说明).END（即数值0）。<br />**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | showInSubWindow<sup>19+</sup> | boolean                                  | 否    | 半模态是否在独立子窗中显示。<br>默认值：false<br>**说明：** <br>1. 若属性值为true，半模态可以在独立子窗口中展示，并且可以超过应用窗口范围。<br>2. 若属性值为false，半模态只能在应用窗口范围内展示。<br>3. 不建议在showInSubWindow为true的弹窗嵌套显示另一个showInSubWindow为true的弹窗，半模态可能会影响其他组件行为。<br>4. 不建议在showInSubWindow为true的弹窗中使用CalendarPicker、CalendarPickerDialog、DatePickerDialog、TextPickerDialog、TimePickerDialog等picker组件，半模态会影响上述组件行为。<br>5. 半模态显示期间该属性不支持动态切换。<br/>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。 |
+| enableFloatingDragBar<sup>20+</sup>              | boolean | 否   | 控制条是否悬浮显示，true为悬浮显示，false为不悬浮显示。<br />默认值：false <br /> **说明：** <br>悬浮效果只在控制条显示的场景生效，且控制条不占位。<br /> title传入[CustomBuilder](ts-types.md#custombuilder8)时enableFloatingDragBar始终为false。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## SheetSize枚举说明
 

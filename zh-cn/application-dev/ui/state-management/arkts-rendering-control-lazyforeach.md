@@ -4,6 +4,10 @@ API参数说明见：[LazyForEach API参数说明](../../reference/apis-arkui/ar
 
 LazyForEach从数据源中按需迭代数据，并在每次迭代时创建相应组件。当在滚动容器中使用了LazyForEach，框架会根据滚动容器可视区域按需创建组件，当组件滑出可视区域外时，框架会销毁并回收组件以降低内存占用。
 
+> **说明：**
+>
+> 在大量子组件的的场景下，LazyForEach与缓存列表项、动态预加载、组件复用等方法配合使用，可以进一步提升滑动帧率并降低应用内存占用。最佳实践请参考[优化长列表加载慢丢帧问题](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-best-practices-long-list)。
+
 ## 使用限制
 
 - LazyForEach必须在容器组件内使用，仅有[List](../../reference/apis-arkui/arkui-ts/ts-container-list.md)、[Grid](../../reference/apis-arkui/arkui-ts/ts-container-grid.md)、[Swiper](../../reference/apis-arkui/arkui-ts/ts-container-swiper.md)以及[WaterFlow](../../reference/apis-arkui/arkui-ts/ts-container-waterflow.md)组件支持数据懒加载（可配置cachedCount属性，即只加载可视部分以及其前后少量数据用于缓冲），其他组件仍然是一次性加载所有的数据。支持数据懒加载的父组件根据自身及子组件的高度或宽度计算可视区域内需布局的子节点数量，高度或宽度的缺失会导致部分场景[懒加载失效](#懒加载失效)。
@@ -999,7 +1003,7 @@ struct ChildComponent {
 使用`@Param`装饰器，子组件可以接受外部输入参数，实现父子组件间的数据同步。在`MyComponent`中创建子组件时，传递`item.message`，并用`@Param`修饰的变量`data`与其关联。点击`ListItem`中的组件修改`item.message`，数据变化会从父组件传递到子组件，触发子组件刷新。
 
 ## 拖拽排序
-当LazyForEach在List组件下使用，并且设置了onMove事件，可以使能拖拽排序。拖拽排序释放后，如果数据位置发生变化，将触发onMove事件，上报原始索引号和目标索引号。在onMove事件中，根据上报的索引号修改数据源。修改数据源时，无需调用DataChangeListener接口通知数据源变化。
+当LazyForEach在List组件下使用，并且设置了[onMove](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-drag-sorting.md#onmove)事件，可以使能拖拽排序。拖拽排序释放后，如果数据位置发生变化，将触发onMove事件，上报原始索引号和目标索引号。在onMove事件中，根据上报的索引号修改数据源。修改数据源时，无需调用DataChangeListener接口通知数据源变化。
 
 ```ts
 /** BasicDataSource代码见文档末尾BasicDataSource示例代码: string类型数组的BasicDataSource代码 **/
@@ -1268,7 +1272,7 @@ struct MyComponent {
           item.message += '00';
           this.data.reloadData();
         })
-      }, (item: StringData, index: number) => JSON.stringify(item))
+      }, (item: StringData, index: number) => item.message)
     }.cachedCount(5)
   }
 }
@@ -1422,7 +1426,7 @@ struct MyComponent {
         .onClick(() => {
           item.message.message += '0';
         })
-      }, (item: StringData, index: number) => JSON.stringify(item) + index.toString())
+      }, (item: StringData, index: number) => item.message.message + index.toString())
     }.cachedCount(5)
   }
 }
@@ -1509,7 +1513,7 @@ struct MyComponent {
           // @ObjectLink装饰的成员变量仅能监听到其子属性的变化，再深入嵌套的属性便无法观测到
           item.message = new NestedString(item.message.message + '0');
         })
-      }, (item: StringData, index: number) => JSON.stringify(item) + index.toString())
+      }, (item: StringData, index: number) => item.message.message + index.toString())
     }.cachedCount(5)
   }
 }

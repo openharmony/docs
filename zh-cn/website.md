@@ -3,6 +3,8 @@
 - [了解OpenHarmony开源项目](OpenHarmony-Overview_zh.md)
 - [术语](glossary.md)
 - 版本说明
+  - OpenHarmony 6.x Releases
+    - [OpenHarmony v6.0 Beta1 (2025-06-19)](release-notes/OpenHarmony-v6.0-beta1.md)
   - OpenHarmony 5.x Releases
     - [OpenHarmony v5.1.0 Release (2025-04-30)](release-notes/OpenHarmony-v5.1.0-release.md)
     - [OpenHarmony v5.0.3 Release (2025-03-21)](release-notes/OpenHarmony-v5.0.3-release.md)

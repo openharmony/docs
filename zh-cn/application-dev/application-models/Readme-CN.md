@@ -40,7 +40,7 @@
       - [跨端迁移](hop-cross-device-migration.md)
       - [多端协同](hop-multi-device-collaboration.md)
     <!--DelEnd-->
-    - [订阅系统环境变量的变化](subscribe-system-environment-variable-changes.md)
+    - [获取/设置环境变量](subscribe-system-environment-variable-changes.md)
   - 应用间跳转<!--inter-app-redirection-->
     - [应用间跳转概述](link-between-apps-overview.md)
     - 拉起指定应用<!--directional-redirection-->
@@ -73,6 +73,7 @@
     - [设置任务快照的图标和名称](mission-set-icon-name-for-task-snapshot.md)
   <!--DelEnd-->
   - [Stage模型应用配置文件](config-file-stage.md)
+  - [标准意图接入规范](insight-intent-access-specifications.md)
 - FA模型开发指导<!--fa-model-development-->
   - [FA模型开发概述](fa-model-development-overview.md)
   - FA模型应用组件<!--fa-model-application-components-->

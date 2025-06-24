@@ -42,7 +42,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 // 使用 then 方法定义成功和失败的回调
 promise.then((result: number) => {
-  console.info(`Succesed number is ${result}`); // 成功时执行
+  console.info(`The number for success is ${result}`); // 成功时执行
 }, (error: BusinessError) => {
   console.error(error.message); // 失败时执行
 }

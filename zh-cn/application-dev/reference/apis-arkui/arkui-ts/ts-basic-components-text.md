@@ -82,7 +82,7 @@ textVerticalAlign(textVerticalAlign: Optional\<TextVerticalAlign>)
 
 | 参数名 | 类型                                        | 必填 | 说明                                                       |
 | ------ | ------------------------------------------- | ---- | ---------------------------------------------------------- |
-| textVerticalAlign  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[TextVerticalAlign](ts-text-common.md#textverticalalign)> | 否   | 文本段落在垂直方向的对齐方式。<br/>默认值：TextVerticalAlign.BASELINE |
+| textVerticalAlign  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[TextVerticalAlign](ts-text-common.md#textverticalalign20)> | 否   | 文本段落在垂直方向的对齐方式。<br/>默认值：TextVerticalAlign.BASELINE |
 
 ### textOverflow
 
@@ -170,6 +170,10 @@ lineHeight(value: number | string | Resource)
 | ------ | ------------------------------------------------------------ | ---- | ---------------- |
 | value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本的文本行高。 |
 
+>  **说明：**
+>  
+>  特殊字符字体高度远超出同行的其他字符高度时，文本框出现截断、遮挡、内容相对位置发生变化等不符合预期的显示异常，需要开发者调整组件高度、行高等属性，修改对应的页面布局。
+
 ### decoration
 
 decoration(value: DecorationStyleInterface)
@@ -187,6 +191,10 @@ decoration(value: DecorationStyleInterface)
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [DecorationStyleInterface<sup>12+</sup>](ts-universal-styled-string.md#decorationstyleinterface) | 是   | 文本装饰线样式对象。<br/>默认值：<br/>{<br/>&nbsp;type:&nbsp;TextDecorationType.None,<br/>&nbsp;color:&nbsp;Color.Black,<br/>&nbsp;style:&nbsp;TextDecorationStyle.SOLID&nbsp;<br/>}<br/>**说明：** <br/>style参数不支持卡片能力。 |
+
+>  **说明：**
+>
+>  当文字的下边缘轮廓与装饰线位置相交时，会触发下划线避让规则，下划线将在这些字符处避让文字。常见“gjyqp”等英文字符。
 
 ### baselineOffset
 
@@ -219,6 +227,8 @@ letterSpacing(value: number | ResourceStr)
 设置该值为百分比时，按默认值显示。设置该值为0时，按默认值显示。string类型支持number类型取值的字符串形式，可以附带单位，例如"10"、"10fp"。
 
 当取值为负值时，文字会被压缩。负值过小时会将组件内容区大小压缩为0，导致内容无法显示。
+
+对每个字符生效，包括行尾字符。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -394,7 +404,7 @@ fontFamily(value: string | Resource)
 
 | 参数名 | 类型                                                 | 必填 | 说明                                                         |
 | ------ | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 字体列表。默认字体'HarmonyOS Sans'。<br>应用当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。<br>卡片当前仅支持'HarmonyOS Sans'字体。 |
+| value  | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 字体列表。默认字体'HarmonyOS Sans'。<br>使用多个字体时，请用逗号','分隔，字体的优先级按顺序生效。例如：'Arial, HarmonyOS Sans'。<br>应用当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。<br>卡片当前仅支持'HarmonyOS Sans'字体。 |
 
 ### copyOption<sup>9+</sup>
 
@@ -417,6 +427,22 @@ copyOption(value: CopyOptions)
 | 参数名 | 类型                                             | 必填 | 说明                                                       |
 | ------ | ------------------------------------------------ | ---- | ---------------------------------------------------------- |
 | value  | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 是   | 组件是否支持文本可复制粘贴。<br />默认值：CopyOptions.None |
+
+### contentTransition<sup>20+</sup>
+
+contentTransition(transition: Optional\<ContentTransition>)
+
+可以设置为数字翻牌动效[NumericTextTransition](../arkui-ts/ts-text-common.md#numerictexttransition20)。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                             | 必填 | 说明                                                       |
+| ------ | ------------------------------------------------ | ---- | ---------------------------------------------------------- |
+| transition  | Optional\<[ContentTransition](../arkui-ts/ts-text-common.md#contenttransition20)> | 是   | 文本动效属性。 |
 
 ### draggable<sup>9+</sup>
 
@@ -610,9 +636,9 @@ decoration:{
 
 当copyOption设置为CopyOptions.None时，点击实体弹出的菜单不包含选择文本、复制、翻译、分享和搜索功能。当copyOption不为CopyOptions.None，且textSelectable设置为TextSelectableMode.UNSELECTABLE时，仍然具有实体复制功能，但不包含选择文本功能。
 
-从API 20开始支持AI菜单。当enableDataDetector设置为true，并且[copyOption](#copyoption9)设置为CopyOptions.LocalDevice时，AI菜单生效，菜单选项包括[TextMenuItemId](ts-text-common.md#textmenuitemid12)中的url、email、phoneNumber、address、dateTime。
+从API version 20开始，支持在文本选择菜单与鼠标右键菜单中显示实体识别选项。当enableDataDetector设置为true，且[copyOption](#copyoption9)设置为CopyOptions.LocalDevice时，AI菜单功能生效。菜单选项包括[TextMenuItemId](ts-text-common.md#textmenuitemid12)中的url(打开链接)、email(新建邮件)、phoneNumber(呼叫)、address(导航至该位置)、dateTime(新建日程提醒)。
 
-AI菜单生效时，需要选中单个AI实体，才能展示AI菜单。
+AI菜单生效时，需选中范围内，包括一个完整的AI实体，才能展示对应的选项。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -672,6 +698,12 @@ bindSelectionMenu的长按响应时长为600ms，bindContextMenu的长按响应�
 | responseType | [TextResponseType](#textresponsetype11枚举说明)  | 是   | 选择菜单的响应类型。<br/>默认值：TextResponseType.LONG_PRESS |
 | options      | [SelectionMenuOptions](ts-basic-components-richeditor.md#selectionmenuoptions10) | 否   | 选择菜单的选项。                                             |
 
+>  **说明：**
+>
+>  通过[editMenuOptions](#editmenuoptions12)设置文本选择菜单时，保留系统默认的风格，触发菜单弹出的条件不变。
+>
+>  通过[bindSelectionMenu](#bindselectionmenu11)设置文本选择菜单时，风格由开发者定义，触发菜单弹出的条件由开发者定义。
+
 ### fontFeature<sup>12+</sup>
 
 fontFeature(value: string)
@@ -711,6 +743,8 @@ fontFeature属性列表：
 >  字体排版引擎会对开发者传入的宽度[width](ts-universal-attributes-size.md#width)进行向下取整，保证是整型像素后进行排版。如果向上取整，可能会出现文字右侧被截断。
 >
 >  当多个Text组件在[Row](ts-container-row.md)容器内布局且没有设置具体的布局分配信息时，Text会以Row的最大尺寸进行布局。如果需要子组件主轴累加的尺寸不超过Row容器主轴的尺寸，可以设置[layoutWeight](ts-universal-attributes-size.md#layoutweight)或者是以[Flex](ts-universal-attributes-flex-layout.md)布局来约束子组件的主轴尺寸。
+>
+>  系统默认字体支持的liga连字：Th fb ff fb ffb ffh ffi ffk ffl fh fi fk。常导致Span、属性字符串的效果不符合预期，关闭liga连字特性可以规避。
 
 ### lineSpacing<sup>12+</sup>
 
@@ -810,6 +844,12 @@ editMenuOptions(editMenu: EditMenuOptions)
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
 | editMenu  | [EditMenuOptions](ts-text-common.md#editmenuoptions) | 是   | 扩展菜单选项。 |
+
+>  **说明：**
+>
+>  通过[editMenuOptions](#editmenuoptions12)设置文本选择菜单时，保留系统默认的风格，触发菜单弹出的条件不变。
+>
+>  通过[bindSelectionMenu](#bindselectionmenu11)设置文本选择菜单时，风格由开发者定义，触发菜单弹出的条件由开发者定义。
 
 ### minFontScale<sup>12+</sup>
 
@@ -2328,3 +2368,33 @@ struct TextExample14 {
 ```
 
 ![textVerticalAlign](figures/textVerticalAlign.png)
+
+### 示例18（文本翻牌动效）
+
+该示例通过contentTransition属性展示了数字翻牌效果。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextNumberTransition {
+  @State number: number = 98
+  @State numberTransition: NumericTextTransition = { flipDirection: FlipDirection.DOWN, enableBlur: false }
+
+  build() {
+    Column() {
+      Text(this.number + "")
+        .borderWidth(1)
+        .fontSize(40)
+        .contentTransition(this.numberTransition)
+      Button("chang number")
+        .onClick(() => {
+          this.number++
+        })
+        .margin(10)
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```

@@ -325,7 +325,7 @@ type OnCheckboxChangeCallback  = (value: boolean) => void
 | 名称 | 类型    |    只读    |    可选      |  说明              |
 | ------ | ------ | ------ |-------------------------------- |-------------------------------- |
 | name | string | 否 | 否 |当前多选框名称。 |
-| selected | boolean| 否 | 否 | 指示多选框是否被选中。</br>如果select属性没有设置默认值是false。</br>如果设置select属性，此值与设置select属性的值相同。 |
+| selected | boolean| 否 | 否 | 指示多选框是否被选中，值为true时，多选框被选中。值为false时，多选框未选中。</br>如果select属性没有设置默认值是false。</br>如果设置select属性，此值与设置select属性的值相同。 |
 | triggerChange |Callback\<boolean>| 否 | 否 |触发多选框选中状态变化。true表示从未选中变为选中，false表示从选中变为未选中。 |
 
 ## 示例
@@ -559,5 +559,164 @@ struct CheckboxExample {
 }
 ```
 
-
 ![](figures/checkbox4.gif)
+
+### 示例5（获取多选框选中信息）
+
+该示例通过选中checkbox以及checkboxGroup多选框来获取选中的信息。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct CheckboxExample {
+  @State arrOne: Array<string> = ['1', '2', '3'];
+  @State arrTwo: Array<string> = ['1', '2', '3', '4'];
+  @State arrThree: Array<string> = ['1', '2', '3', '4', '5', '6'];
+  @State selected: boolean = false;
+  @State infoOne: string = '';
+  @State infoTwo: string = '';
+  @State infoThree: string = '';
+
+  build() {
+    Column() {
+      // 单元项全选按钮
+      Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
+        CheckboxGroup({ group: 'checkboxGroupOne' })
+          .selectAll(this.selected)
+          .checkboxShape(CheckBoxShape.ROUNDED_SQUARE)
+          .selectedColor('#007DFF')
+          .onChange((itemName: CheckboxGroupResult) => {
+            this.infoOne = "checkboxGroupOne" + JSON.stringify(itemName);
+            console.info("checkboxGroupOne" + JSON.stringify(itemName));
+          })
+        Text('checkboxGroupOne Select All').fontSize(14).lineHeight(20).fontColor('#182431').fontWeight(500)
+      }
+
+      // 选项1
+      Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
+        Column() {
+          ForEach(this.arrOne, (item: string) => {
+            Row() {
+              Checkbox({ name: 'checkbox' + item, group: 'checkboxGroupOne' })
+                .selectedColor('#007DFF')
+                .shape(CheckBoxShape.ROUNDED_SQUARE)
+                .onChange((value: boolean) => {
+                  console.info('Checkbox' + item + 'change is' + value);
+                })
+                .margin({ left: 20 })
+              Text('Checkbox' + item)
+                .fontSize(14)
+                .lineHeight(20)
+                .fontColor('#182431')
+                .fontWeight(500)
+                .margin({ left: 10 })
+            }
+          }, (item: string) => item)
+        }
+      }.margin({ bottom: 15 })
+
+      Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
+        CheckboxGroup({ group: 'checkboxGroupTwo' })
+          .selectAll(this.selected)
+          .checkboxShape(CheckBoxShape.ROUNDED_SQUARE)
+          .selectedColor('#007DFF')
+          .onChange((itemName: CheckboxGroupResult) => {
+            this.infoTwo = "checkboxGroupTwo" + JSON.stringify(itemName);
+            console.info("checkboxGroupTwo" + JSON.stringify(itemName));
+          })
+        Text('checkboxGroupTwo Select All').fontSize(14).lineHeight(20).fontColor('#182431').fontWeight(500)
+      }
+
+      // 选项2
+      Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
+        Column() {
+          ForEach(this.arrTwo, (item: string) => {
+            Row() {
+              Checkbox({ name: 'checkbox' + item, group: 'checkboxGroupTwo' })
+                .selectedColor('#007DFF')
+                .shape(CheckBoxShape.ROUNDED_SQUARE)
+                .onChange((value: boolean) => {
+                  console.info('Checkbox' + item + 'change is' + value);
+                })
+                .margin({ left: 20 })
+              Text('Checkbox' + item)
+                .fontSize(14)
+                .lineHeight(20)
+                .fontColor('#182431')
+                .fontWeight(500)
+                .margin({ left: 10 })
+            }
+          }, (item: string) => item)
+        }
+      }.margin({ bottom: 15 })
+
+      Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
+        CheckboxGroup({ group: 'checkboxGroupThree' })
+          .selectAll(this.selected)
+          .checkboxShape(CheckBoxShape.ROUNDED_SQUARE)
+          .selectedColor('#007DFF')
+          .onChange((itemName: CheckboxGroupResult) => {
+            this.infoThree = "checkboxGroupThree" + JSON.stringify(itemName);
+            console.info("checkboxGroupThree" + JSON.stringify(itemName));
+          })
+        Text('checkboxGroupThree Select All').fontSize(14).lineHeight(20).fontColor('#182431').fontWeight(500)
+      }
+
+      // 选项3
+      Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
+        Column() {
+          ForEach(this.arrThree, (item: string) => {
+            Row() {
+              Checkbox({ name: 'checkbox' + item, group: 'checkboxGroupThree' })
+                .selectedColor('#007DFF')
+                .shape(CheckBoxShape.ROUNDED_SQUARE)
+                .onChange((value: boolean) => {
+                  console.info('Checkbox' + item + 'change is' + value);
+                })
+                .margin({ left: 20 })
+              Text('Checkbox' + item)
+                .fontSize(14)
+                .lineHeight(20)
+                .fontColor('#182431')
+                .fontWeight(500)
+                .margin({ left: 10 })
+            }
+          }, (item: string) => item)
+        }
+      }.margin({ bottom: 15 })
+
+      //全选按钮
+      Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
+        Row() {
+          CheckboxGroup({ group: 'checkboxGroup' })
+            .checkboxShape(CheckBoxShape.CIRCLE)
+            .selectedColor('#007DFF')
+            .width(30)
+            .margin({ left: 10 })
+            .onChange(() => {
+              this.selected = !this.selected
+            })
+          Text('Select All')
+            .fontSize(14)
+            .lineHeight(20)
+            .fontColor('#182431')
+            .fontWeight(500)
+            .margin({ left: 10 })
+        }
+      }.margin({ bottom: 15 })
+
+      //获取选中信息
+      Button('get selected info')
+        .margin({ top: 10 })
+        .onClick(() => {
+          this.getUIContext().getPromptAction().showToast({
+            message: 'selected info: ' + this.infoOne + '\n' + this.infoTwo + '\n' + this.infoThree
+          })
+        })
+    }.padding(10)
+  }
+}
+```
+
+![checkbox5](figures/checkbox5.gif)

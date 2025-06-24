@@ -23,3 +23,10 @@ class MyWorkSchedulerExtensionAbility extends WorkSchedulerExtensionAbility {
     }
 }
 ```
+
+
+## WorkSchedulerExtensionContext
+
+The WorkSchedulerExtensionContext module provides a context environment for the WorkSchedulerExtensionAbility.
+
+**System capability**: SystemCapability.ResourceSchedule.WorkScheduler

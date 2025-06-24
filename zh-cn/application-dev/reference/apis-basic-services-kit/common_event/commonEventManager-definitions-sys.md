@@ -91,6 +91,32 @@
 **取值：** "usual.event.SHORTCUT_CHANGED"
 
 
+### COMMON_EVENT_KIOSK_MODE_ON<sup>20+</sup>
+
+进入Kiosk模式时，事件通知服务将触发并发布系统公共事件。此事件仅由系统发送。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**订阅者所需权限：** 无
+
+**取值：** usual.event.KIOSK_MODE_ON
+
+
+### COMMON_EVENT_KIOSK_MODE_OFF<sup>20+</sup>
+
+退出Kiosk模式时，事件通知服务将触发并发布系统公共事件。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**订阅者所需权限：** 无
+
+**取值：** usual.event.KIOSK_MODE_OFF
+
+
 ## Background Tasks Kit 
 
 ### COMMON_EVENT_DEVICE_IDLE_EXEMPTION_LIST_UPDATED<sup>10+<sup>
@@ -110,6 +136,35 @@
 
 **取值：** "usual.event.DEVICE_IDLE_EXEMPTION_LIST_UPDATED"
 
+## Basic Services Kit-定制
+
+### COMMON_EVENT_CUSTOM_CONFIG_POLICY_UPDATED<sup>20+</sup>
+
+表示设备的配置目录层级与系统参数发生变化的公共事件。
+
+在系统对设备的归属区域和漫游区域识别完成后，会对设备的配置目录层级与系统参数进行刷新，刷新完成后会发送此公共事件。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**订阅者所需权限：** 无
+
+**取值：** "usual.event.CUSTOM_CONFIG_POLICY_UPDATED"
+
+### COMMON_EVENT_CUSTOM_ROAMING_REGION_UPDATED<sup>20+</sup>
+
+表示设备漫游区域发生变化的公共事件。
+
+在设备注入网络、驻留网络、GPS定位等属性变化时，系统服务会进行漫游区域识别。当识别到漫游区域发生变化，则会更新设备漫游区域参数，在更新完成后会发送此公共事件。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**订阅者所需权限：** 无
+
+**取值：** "usual.event.CUSTOM_ROAMING_REGION_UPDATED"
 
 ## Basic Services Kit-电源
 

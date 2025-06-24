@@ -5,7 +5,8 @@
 >  **说明：**
 >
 >  该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。<br/>
->  Video组件只提供简单的视频播放功能，无法支撑复杂的视频播控场景。复杂开发场景推荐使用[AVPlayer播控API](../../apis-media-kit/arkts-apis-media-AVPlayer.md)和[XComponent](ts-basic-components-xcomponent.md)组件开发。
+>  Video组件只提供简单的视频播放功能，无法支撑复杂的视频播控场景。复杂开发场景推荐使用[AVPlayer](../../apis-media-kit/arkts-apis-media-AVPlayer.md)播控API和[XComponent](ts-basic-components-xcomponent.md)组件开发。<br/>
+>  Video组件在使用expandSafeArea扩展到安全区域时，组件视频显示内容区域不支持扩展。
 
 ## 权限列表
 
@@ -43,7 +44,7 @@ Video(value: VideoOptions)
 | ------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | src                 | string \| [Resource](ts-types.md#resource)                            | 否   | 视频的数据源，支持本地视频和网络视频。<br>Resource格式可以跨包/跨模块访问资源文件，常用于访问本地视频。<br/>- 支持rawfile文件下的资源，即通过\$rawfile引用视频文件。<br/>string格式可用于加载网络视频和本地视频，常用于加载网络视频。<br/>- 支持网络视频地址。<br/>- 支持file://路径前缀的字符串，即[应用沙箱URI](../../apis-core-file-kit/js-apis-file-fileuri.md#constructor10)：file://\<bundleName>/\<sandboxPath>。用于读取应用沙箱路径内的资源。需要保证目录包路径下的文件有可读权限。<br/>**说明：**<br/>视频支持的格式是：mp4、mkv、TS。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | currentProgressRate | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[PlaybackSpeed<sup>8+</sup>](#playbackspeed8枚举说明) | 否   | 视频播放倍速。<br/>**说明：**<br/>number格式取值仅支持：0.75，1.0，1.25，1.75，2.0。<br/>string格式支持number格式取值的字符串形式："0.75"，"1.0"，"1.25"，"1.75"，"2.0"。<br/>默认值：1.0 \| PlaybackSpeed.Speed_Forward_1_00_X<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| previewUri          | string&nbsp;\| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)&nbsp;\|&nbsp;[Resource](ts-types.md#resource)  | 否   | 视频未播放时的预览图片路径，默认不显示图片。<br/>string格式可用于加载本地图片和网络图片，<br/>- 支持网络图片地址。<br/>- 支持相对路径引用本地图片，例如：previewUri: “common/test.jpg”。当使用相对路径引用本地图片时，不支持跨包/跨模块调用。<br/>- 支持file://路径前缀的字符串，即[应用沙箱URI](../../apis-core-file-kit/js-apis-file-fileuri.md#constructor10)：file://\<bundleName>/\<sandboxPath>。用于读取应用沙箱路径内的资源。需要保证目录包路径下的文件有可读权限。<br/>Resource格式可以跨包/跨模块访问资源文件。<br/>- 支持rawfile文件下的资源，即通过\\$rawfile引用图片。<br/>- 支持通过\\$r引用系统资源或者应用资源中的图片。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                 |
+| previewUri          | string&nbsp;\| [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md)&nbsp;\|&nbsp;[Resource](ts-types.md#resource)  | 否   | 视频未播放时的预览图片路径，默认不显示图片。<br/>string格式可用于加载本地图片和网络图片，<br/>- 支持网络图片地址。<br/>- 支持相对路径引用本地图片，例如：previewUri: “common/test.jpg”。当使用相对路径引用本地图片时，不支持跨包/跨模块调用。<br/>- 支持file://路径前缀的字符串，即[应用沙箱URI](../../apis-core-file-kit/js-apis-file-fileuri.md#constructor10)：file://\<bundleName>/\<sandboxPath>。用于读取应用沙箱路径内的资源。需要保证目录包路径下的文件有可读权限。<br/>Resource格式可以跨包/跨模块访问资源文件。<br/>- 支持rawfile文件下的资源，即通过\\$rawfile引用图片。<br/>- 支持通过\\$r引用系统资源或者应用资源中的图片。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                 |
 | controller          | [VideoController](#videocontroller)                          | 否   | 设置视频控制器，可以控制视频的播放状态。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                     |
 | imageAIOptions<sup>12+</sup>  | [ImageAIOptions](ts-image-common.md#imageaioptions) | 否   | 设置图像AI分析选项，可配置分析类型或绑定一个分析控制器。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | posterOptions<sup>18+</sup>  | [PosterOptions](#posteroptions18对象说明) | 否   | 设置视频播放的首帧送显选项，可以控制视频是否支持首帧送显。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
@@ -82,6 +83,10 @@ muted(value: boolean)
 | ------ | ------- | ---- | ---------------------------- |
 | value  | boolean | 是   | 是否静音。<br/>true：开启静音；false：关闭静音。<br/>默认值：false |
 
+> **说明：**
+>
+> Video组件在未设置静音的情况下，起播瞬间会抢占音频焦点。若用户想设置静音播放不抢占其他音频焦点，应保证静音设置在开始播放视频之前。
+
 ### autoPlay
 
 autoPlay(value: boolean)
@@ -113,6 +118,10 @@ controls(value: boolean)
 | 参数名 | 类型    | 必填 | 说明                                            |
 | ------ | ------- | ---- | ----------------------------------------------- |
 | value  | boolean | 是   | 控制视频播放的控制栏是否显示。<br/>true：控制栏显示；false：控制栏不显示。<br/>默认值：true |
+
+> **说明：**
+>
+> Video组件自带的控制器无法自定义。若有其他需求，可隐藏自带控制器，自定义控制器的样式或功能。参考<!--RP1-->[视频播放](https://gitee.com/harmonyos_samples/video-play)<!--RP1End-->。
 
 ### objectFit
 
@@ -364,7 +373,7 @@ onFullscreenChange(callback: Callback\<FullscreenInfo>)
 | ---------- | ------- | ---- | ----------------------------------------------------- |
 | callback | Callback\<[FullscreenInfo](#fullscreeninfo18对象说明)> | 是   | 当前视频是否进入全屏播放状态。 |
 
-### FullscreenInfo<sup>18+</sup>对象说明
+## FullscreenInfo<sup>18+</sup>对象说明
 
 用于描述当前视频是否进入全屏播放状态。
 
@@ -376,7 +385,7 @@ onFullscreenChange(callback: Callback\<FullscreenInfo>)
 | ----------- | ------- | ---- | ----  | ---------------------------- |
 | fullscreen<sup>10+</sup>  | boolean | 否 | 否  | 当前视频是否进入全屏播放状态。<br/>true：进入全屏播放状态；false：未进入全屏播放状态。<br/>默认值：false<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
 
-### PreparedInfo<sup>18+</sup>对象说明
+## PreparedInfo<sup>18+</sup>对象说明
 
 用于描述当前视频的时长。
 
@@ -388,7 +397,7 @@ onFullscreenChange(callback: Callback\<FullscreenInfo>)
 | ----------- | ------- | ---- | ----  | ---------------------------- |
 | duration<sup>10+</sup> | number  | 否 | 否  | 当前视频的时长。<br/>单位：秒<br/>取值范围：[0,+∞)<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
-### PlaybackInfo<sup>18+</sup>对象说明
+## PlaybackInfo<sup>18+</sup>对象说明
 
 用于描述当前视频播放的进度。
 
@@ -400,7 +409,7 @@ onFullscreenChange(callback: Callback\<FullscreenInfo>)
 | ----------- | ------- | ---- | ---- | ---------------------------- |
 | time<sup>10+</sup> | number  | 否 | 否  | 当前视频播放的进度。<br/>单位：秒<br/>取值范围：[0,+∞)<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
-### PosterOptions<sup>18+</sup>对象说明
+## PosterOptions<sup>18+</sup>对象说明
 
 用于描述当前视频是否配置首帧送显。
 
@@ -482,6 +491,10 @@ setCurrentTime(value: number)
 
 指定视频播放的进度位置。
 
+> **说明：**
+>
+> 若用户需要从视频内的某一时间点开始播放，应关闭自动播放，在视频准备完成后先跳转再播放。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -508,6 +521,10 @@ requestFullscreen(value: boolean)
 | ------ | -------- | ---- | -------------------------------- |
 | value  | boolean  | 是   | 是否全屏（填充满应用窗口）播放。<br/>true：请求全屏播放；false：不请求全屏播放。<br/>默认值：false |
 
+> **说明：**
+>
+>  Video组件自带的全屏功能仅将视频内容设为全屏，显示默认控制器，无法显示自定义标题或控制器。如需其他功能，用户需自行实现全屏功能。
+
 ### exitFullscreen
 
 exitFullscreen()
@@ -532,7 +549,7 @@ setCurrentTime(value: number, seekMode: SeekMode)
 
 | 参数名      | 类型     | 必填   | 说明           |
 | -------- | -------- | ---- | -------------- |
-| value    | number   | 是    | 视频播放进度位置，单位为s。 |
+| value    | number   | 是    | 视频播放进度位置，单位：秒。 |
 | seekMode | [SeekMode](#seekmode8枚举说明) | 是    | 跳转模式。          |
 
 ## SeekMode<sup>8+</sup>枚举说明
@@ -552,7 +569,7 @@ setCurrentTime(value: number, seekMode: SeekMode)
 
 ### 示例1（视频播放基础用法）
 
-基础用法，包括控制栏、预览图、自动播放、播放速度、响应快捷键、控制器（开始播放、暂停播放、停止播放、重置avPlayer、跳转等）、首帧送显以及一些状态回调方法。
+基础用法包括：控制栏、预览图、自动播放、播放速度、响应快捷键、控制器（开始播放、暂停播放、停止播放、重置avPlayer、跳转等）、首帧送显以及一些状态回调方法。
 
 ```ts
 // xxx.ets

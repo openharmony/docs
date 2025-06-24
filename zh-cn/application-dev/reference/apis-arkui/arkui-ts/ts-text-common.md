@@ -971,6 +971,18 @@ constructor(color: ResourceColor)
 | ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | color | [ResourceColor](ts-types.md#resourcecolor) | 是    | 显示为纯色效果。 |
 
+## IMEClient<sup>20+</sup>对象说明
+
+输入控件绑定输入法客户端类型。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    | 类型                                                    | 必填 | 说明                                                    |
+| ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| nodeId  | number | 是   | 当前输入控件的组件UniqueId。取值范围大于等于0。 |
+
 ## TextChangeReason<sup>20+</sup>
 
 组件内容变化原因。
@@ -1048,3 +1060,74 @@ TextArea组件在文本超长时显示效果。默认值为CLIP，按最大行�
 | BOTTOM   |  1          | 对齐文本底部。 |
 | CENTER   |  2          | 垂直居中对齐。 |
 | TOP      |  3          | 对齐文本顶部。 |
+
+## ContentTransition<sup>20+</sup>
+
+文本动效基类。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+## NumericTextTransition<sup>20+</sup>
+
+数字翻牌动效，不支持渐变色，只支持正整数，与其它文字混排时数字翻牌不生效。
+
+NumericTextTransition继承自[ContentTransition](#contenttransition20)。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### 属性
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称                                       | 类型                                                         | 必填 | 说明                                                         |
+| ------------------------------------------ | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| flipDireciton                              | [FlipDirection](#flipdirection20)    | 否   | 翻牌方向。<br>默认值：FlipDirection.DOWN |
+| enableBlur                                 | boolean                              | 否   | 是否开启翻牌模糊效果。<br>默认值：false<br>true：开启翻牌模糊效果。<br>false：不开启翻牌模糊效果。|
+
+### constructor<sup>20+</sup>
+
+constructor(options?: NumericTextTransitionOptions)
+
+用于创建NumericTextTransition对象的构造函数。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 名称  | 类型   | 必填   | 说明  |
+| ------- | ------ | ---- | ----- |
+| options | [NumericTextTransitionOptions](#numerictexttransitionoptions20对象说明) | 否    | 设置数字翻牌动效。 |
+
+## NumericTextTransitionOptions<sup>20+</sup>对象说明
+
+数字翻牌的参数。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称                                       | 类型                                                         | 必填 | 说明                                                         |
+| ------------------------------------------ | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| flipDireciton                              | [FlipDirection](#flipdirection20)    | 否   | 翻牌方向。<br>默认值：FlipDirection.DOWN |
+| enableBlur                                 | boolean                              | 否   | 是否开启翻牌模糊效果。<br>默认值：false<br>true：开启翻牌模糊效果。<br>false：不开启翻牌模糊效果。|
+
+## FlipDirection<sup>20+</sup>
+
+翻牌方向。默认值为DOWN。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称                   | 值  | 说明                  |
+| --------------------- | -------  | ------------------- |
+| DOWN                  | 0  | 内容往下翻。|
+| UP                    | 1  | 内容往上翻。 |
