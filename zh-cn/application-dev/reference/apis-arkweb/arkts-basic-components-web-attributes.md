@@ -2361,6 +2361,8 @@ Web组件自定义文本选择菜单。
 
 在[onMenuItemClick](../apis-arkui/arkui-ts/ts-text-common.md#onmenuitemclick12)中，可以自定义菜单选项的回调函数。该函数在菜单选项被点击后触发，并根据返回值决定是否执行系统默认的回调。返回true不执行系统回调，返回false继续执行系统回调。
 
+在[onPrepareMenu<sup>20+</sup>](../apis-arkui/arkui-ts/ts-text-common.md#onpreparemenu20)中，当文本选择区域变化后显示菜单之前触发该回调，可在该回调中进行修改、增加、删除菜单选项，实现动态更新菜单。
+
 本接口在与[selectionMenuOptions<sup>(deprecated)</sup>](#selectionmenuoptionsdeprecated)同时使用时，会使selectionMenuOptions<sup>(deprecated)</sup>不生效。
 
 **系统能力：** SystemCapability.Web.Webview.Core
@@ -2377,10 +2379,18 @@ Web组件自定义文本选择菜单。
 // xxx.ets
 import { webview } from '@kit.ArkWeb';
 
+let selectText:string = '';
+class TestClass {
+  setSelectText(param: String) {
+    selectText = param.toString();
+  }
+}
+
 @Entry
 @Component
 struct WebComponent {
   controller: webview.WebviewController = new webview.WebviewController();
+  @State testObj: TestClass = new TestClass();
 
   onCreateMenu(menuItems: Array<TextMenuItem>): Array<TextMenuItem> {
     let items = menuItems.filter((menuItem) => {
@@ -2431,12 +2441,34 @@ struct WebComponent {
     return false;// 返回默认值false
   }
 
-  @State EditMenuOptions: EditMenuOptions = { onCreateMenu: this.onCreateMenu, onMenuItemClick: this.onMenuItemClick }
+   onPrepareMenu(menuItems: Array<TextMenuItem>) => {
+    let item1: TextMenuItem = {
+      content: 'prepare1',
+      id: TextMenuItemId.of('prepareMenu1'),
+    };
+    let item2: TextMenuItem = {
+      content: 'prepare2' + selectText,
+      id: TextMenuItemId.of('prepareMenu2'),
+    };
+    items.push(item1);// 在选项列表后添加新选项
+    items.unshift(item2);// 在选项列表前添加选项
+
+    return items;
+  }
+
+  @State EditMenuOptions: EditMenuOptions =
+    { onCreateMenu: this.onCreateMenu, onMenuItemClick: this.onMenuItemClick, onPrepareMenu:this.onPrepareMenu }
 
   build() {
     Column() {
       Web({ src: $rawfile("index.html"), controller: this.controller })
         .editMenuOptions(this.EditMenuOptions)
+        .javaScriptProxy({
+          object: this.testObj,
+          name: "testObjName",
+          methodList: ["setSelectText"],
+          controller: this.controller,
+        })
     }
   }
 }
@@ -2453,6 +2485,21 @@ struct WebComponent {
   <body>
     <h1>editMenuOptions Demo</h1>
     <span>edit menu options</span>
+    <script>
+      function callArkTS() {
+        let str = testObjName.test();
+        document.getElementById("demo").innerHTML = str;
+      }
+
+      document.addEventListener('selectionchange', () => {
+        var selection = window.getSelection();
+        if (selection.rangeCount > 0) {
+          var selectedText = selection.toString();
+          testObjName.setSelectText(selectedText);
+        }
+        callArkTS();
+      });
+  </script>
   </body>
 </html>
 ```
