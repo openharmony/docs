@@ -1360,7 +1360,7 @@ int32_t OH_ArkUI_PointerEvent_SetStopPropagation (const ArkUI_UIInputEvent * eve
 | 名称 | 描述 | 
 | -------- | -------- |
 | event | 表示指向当前UI输入事件的指针。  | 
-| stopPropagation | 表示是否阻止事件冒泡。  | 
+| stopPropagation | 表示是否阻止事件冒泡。true表示阻止事件冒泡，false表示不阻止事件冒泡。  | 
 
 **返回：**
 
@@ -1562,7 +1562,7 @@ int32_t OH_ArkUI_FocusAxisEvent_SetStopPropagation (const ArkUI_UIInputEvent * e
 | 名称 | 描述 | 
 | -------- | -------- |
 | event | 表示指向当前UI输入事件的指针。  | 
-| stopPropagation | 是否阻止事件冒泡。  | 
+| stopPropagation | 是否阻止事件冒泡。true表示阻止事件冒泡，false表示不阻止事件冒泡。  | 
 
 **返回：**
 
@@ -2120,7 +2120,7 @@ int32_t OH_ArkUI_AxisEvent_SetPropagation (const ArkUI_UIInputEvent * event, boo
 | 名称 | 描述 | 
 | -------- | -------- |
 | event | 表示指向当前UI输入事件的指针。 | 
-| propagation | 表示是否激活事件冒泡。  | 
+| propagation | 表示是否激活事件冒泡。true表示激活事件冒泡，false表示不激活事件冒泡。  | 
 
 **返回：**
 
