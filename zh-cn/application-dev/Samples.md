@@ -1214,7 +1214,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-本示例主要展示了媒体会话（媒体控制方）的相关功能，使用[@ohos.multimedia.avsession](reference/apis-avsession-kit/js-apis-avsession.md)等接口实现媒体提供方与媒体控制方自定义信息的交互功能。
+本示例主要展示了媒体会话（媒体控制方）的相关功能，使用[@ohos.multimedia.avsession](reference/apis-avsession-kit/arkts-apis-avsession.md)等接口实现媒体提供方与媒体控制方自定义信息的交互功能。
 
 ##### 使用
 
@@ -1275,7 +1275,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-本示例主要展示了媒体会话（媒体提供方）的相关功能，使用[@ohos.multimedia.avsession](reference/apis-avsession-kit/js-apis-avsession.md)等接口实现媒体提供方与媒体控制方自定义信息的交互功能。
+本示例主要展示了媒体会话（媒体提供方）的相关功能，使用[@ohos.multimedia.avsession](reference/apis-avsession-kit/arkts-apis-avsession.md)等接口实现媒体提供方与媒体控制方自定义信息的交互功能。
 
 ##### 使用
 
@@ -1795,7 +1795,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-本示例主要展示了网络视频播放的相关功能。使用[@ohos.multimedia.avsession](reference/apis-avsession-kit/js-apis-avsession.md)等接口实现视频播放的功能。
+本示例主要展示了网络视频播放的相关功能。使用[@ohos.multimedia.avsession](reference/apis-avsession-kit/arkts-apis-avsession.md)等接口实现视频播放的功能。
 
 ##### 使用
 
@@ -2700,7 +2700,7 @@ Preferences.flush()保存并刷新文件内容。
 ##### 基本原理
 
 * 该示例使用startBackgroundRunning方法向系统申请长时任务，stopBackgroundRunning方法向系统申请取消长时任务，getWantAgent方法创建一个WantAgent，createAudioPlayer方法创建一个视频播放实例，createAVSession方法创建一个会话对象，fileIo.open方法打开文件等接口实现后台音乐播放。
-* 接口参考：[@ohos.resourceschedule.backgroundTaskManager](reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md)，[@ohos.multimedia.media](reference/apis-media-kit/arkts-apis-media.md)，[@ohos.multimedia.avsession](reference/apis-avsession-kit/js-apis-avsession.md)，[@ohos.fileio](reference/apis-core-file-kit/js-apis-fileio.md)，[@ohos.app.ability.wantAgent](reference/apis-ability-kit/js-apis-app-ability-wantAgent.md)
+* 接口参考：[@ohos.resourceschedule.backgroundTaskManager](reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md)，[@ohos.multimedia.media](reference/apis-media-kit/arkts-apis-media.md)，[@ohos.multimedia.avsession](reference/apis-avsession-kit/arkts-apis-avsession.md)，[@ohos.fileio](reference/apis-core-file-kit/js-apis-fileio.md)，[@ohos.app.ability.wantAgent](reference/apis-ability-kit/js-apis-app-ability-wantAgent.md)
 
 ##### 约束与限制
 

@@ -4448,7 +4448,16 @@
             - [native_avcodec_audioencoder.h](reference/apis-avcodec-kit/native__avcodec__audioencoder_8h.md)
     - AVSession Kit（音视频播控服务）<!--avsession-api-->
       - ArkTS API<!--avsession-arkts-->
-        - [@ohos.multimedia.avsession (媒体会话管理)](reference/apis-avsession-kit/js-apis-avsession.md)
+        - @ohos.multimedia.avsession (媒体会话管理)<!--js-apis-avsession-->
+          - [模块描述](reference/apis-avsession-kit/arkts-apis-avsession.md)
+          - [Functions](reference/apis-avsession-kit/arkts-apis-avsession-f.md)
+          - [Class (AVCastPickerHelper)](reference/apis-avsession-kit/arkts-apis-avsession-AVCastPickerHelper.md)
+          - [Interface (AVCastController)](reference/apis-avsession-kit/arkts-apis-avsession-AVCastController.md)
+          - [Interface (AVSession)](reference/apis-avsession-kit/arkts-apis-avsession-AVSession.md)
+          - [Interface (AVSessionController)](reference/apis-avsession-kit/arkts-apis-avsession-AVSessionController.md)
+          - [Interfaces (其他)](reference/apis-avsession-kit/arkts-apis-avsession-i.md)
+          - [Enums](reference/apis-avsession-kit/arkts-apis-avsession-e.md)
+          - [Types](reference/apis-avsession-kit/arkts-apis-avsession-t.md)
         - [@ohos.multimedia.avCastPickerParam (投播组件参数)](reference/apis-avsession-kit/js-apis-avCastPickerParam.md)
         <!--Del-->
         - [@ohos.app.ability.MediaControlExtensionAbility (播控扩展能力)(系统接口)](reference/apis-avsession-kit/js-apis-app-ability-MediaControlExtensionAbility-sys.md)
