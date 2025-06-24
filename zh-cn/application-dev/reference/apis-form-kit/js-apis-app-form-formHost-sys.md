@@ -2796,7 +2796,7 @@ setPublishFormResult(formId: string, result: formInfo.PublishFormResult): void;
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
 | formId | string                                                       | 是   | 卡片标识。         |
-| result | [PublishFormResult](js-apis-app-form-formInfo-sys.md#publishformresult12) | 是   | 发布卡片加桌结果。 |
+| result | [formInfo.PublishFormResult](js-apis-app-form-formInfo-sys.md#publishformresult12) | 是   | 发布卡片加桌结果。 |
 
 **错误码：**
 

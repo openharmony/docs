@@ -1890,9 +1890,9 @@
         - JSVM-API典型使用场景指导<!--jsvm-scenarios-->
             - [JSVM-API调试&定位](napi/jsvm-debugger-cpuprofiler-heapsnapshot.md)
             - [JSVM-API Tracing](napi/use-jsvm-about-trace.md)
-            - [JSVM 申请JIT权限指导](napi/jsvm-apply-jit-profile.md)
-            - [JSVM 坚盾守护模式](napi/jsvm-secure-shield-mode.md)
-            - [JSVM 定位内存泄漏问题指导](napi/jsvm-locate-memory-leak.md)
+            - [JSVM-API 申请JIT权限指导](napi/jsvm-apply-jit-profile.md)
+            - [JSVM-API 坚盾守护模式](napi/jsvm-secure-shield-mode.md)
+            - [JSVM-API 内存泄漏问题定位指导](napi/jsvm-locate-memory-leak.md)
             - JSVM-API调优&高性能使用示例<!--jsvm-usage-examples-->
               - [使用JSVM-API接口创建多个引擎执行JS代码并销毁](napi/use-jsvm-runtime-task.md)
               - [使用 code cache 加速编译](napi/use-jsvm-about-code-cache.md)
@@ -4077,7 +4077,7 @@
           - [@ohos.multimodalInput.mouseEvent (鼠标输入事件)](reference/apis-input-kit/js-apis-mouseevent.md)
           - [@ohos.multimodalInput.gestureEvent (手势事件)](reference/apis-input-kit/js-apis-multimodalinput-gestureevent.md)
           - [@ohos.multimodalInput.pointer (鼠标指针)](reference/apis-input-kit/js-apis-pointer.md)
-          - [@ohos.multimodalInput.touchEvent (触摸输入事件)](reference/apis-input-kit/js-apis-touchevent.md)
+          - [@ohos.multimodalInput.touchEvent (触屏输入事件)](reference/apis-input-kit/js-apis-touchevent.md)
           - [@ohos.multimodalInput.infraredEmitter (红外管理)](reference/apis-input-kit/js-apis-infraredemitter.md)
           - [@ohos.multimodalInput.inputConsumer (全局快捷键)](reference/apis-input-kit/js-apis-inputconsumer.md)
           <!--Del-->
@@ -4088,7 +4088,7 @@
           - [@ohos.multimodalInput.inputEventClient (输入事件注入)(系统接口)](reference/apis-input-kit/js-apis-inputeventclient-sys.md)
           - [@ohos.multimodalInput.inputMonitor (输入监听)(系统接口)](reference/apis-input-kit/js-apis-inputmonitor-sys.md)
           - [@ohos.multimodalInput.gestureEvent (手势事件)(系统接口)](reference/apis-input-kit/js-apis-multimodalinput-gestureevent-sys.md)
-          - [@ohos.multimodalInput.touchEvent (触摸输入事件)(系统接口)](reference/apis-input-kit/js-apis-touchevent-sys.md)
+          - [@ohos.multimodalInput.touchEvent (触屏输入事件)(系统接口)](reference/apis-input-kit/js-apis-touchevent-sys.md)
           - 已停止维护的接口<!--input-arkts-dep-->
             - [@ohos.multimodalInput.inputDeviceCooperate (键鼠穿越)(系统接口)](reference/apis-input-kit/js-apis-cooperate-sys.md)
           <!--DelEnd-->

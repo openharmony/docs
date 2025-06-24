@@ -3000,6 +3000,54 @@ dataDetectorConfig(config: TextDataDetectorConfig)
   </html>
   ```
 
+## gestureFocusMode<sup>20+</sup>
+
+gestureFocusMode(mode: GestureFocusMode)
+
+设置Web组件手势获焦模式。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名              | 类型                              | 必填   | 说明          |
+| ------------------- | ------------------------------   | ------ | ------------- |
+| mode | [GestureFocusMode](./arkts-basic-components-web-e.md#gesturefocusmode20) | 是     | 设置Web组件手势获焦模式。<br>默认值：`GestureFocusMode.DEFAULT`，表示手势按下时，任何手势均会使Web组件获焦。|
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State mode: GestureFocusMode = GestureFocusMode.DEFAULT;
+    build() {
+      Column() {
+        Web({ src: $rawfile("index.html"), controller: this.controller })
+          .gestureFocusMode(this.mode)
+      }
+    }
+  }
+  ```
+
+  加载的html文件。
+  ```html
+  <!--index.html-->
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <title>测试网页</title>
+  </head>
+  <body>
+    <input type="text" placeholder="Text">
+  </body>
+  </html>
+  ```
+
 ## password<sup>(deprecated)</sup>
 
 password(password: boolean)

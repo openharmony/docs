@@ -31,30 +31,85 @@ import { inputConsumer, KeyEvent } from '@kit.InputKit';
 
 ```js
 import { inputConsumer, KeyEvent } from '@kit.InputKit';
-//应用开启
-try {
-  let options: inputConsumer.KeyPressedConfig = {
-    key: 17,
-    action: 1,
-    isRepeat: false,
+import { KeyCode } from '@kit.InputKit';
+
+@Entry
+@Component
+struct TestDemo14 {
+  private volumeUpCallBackFunc: (event: KeyEvent) => void = () => {
   }
-  //订阅按键按下事件
-  inputConsumer.on('keyPressed', options, (event: KeyEvent) => {
-    console.info(`Subscribe success ${JSON.stringify(event)}`);
-  });
-  //此处应用可定义典型场景如音量键翻页或应用内拍照功能
-} catch (error) {
-  console.error(`Subscribe execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-}
-//应用关闭
-try {
-  // 取消指定回调函数
-  inputConsumer.off('keyPressed', (event: KeyEvent) => {
-    console.info(`Unsubscribe success ${JSON.stringify(event)}`);
-  });
-  // 取消当前已订阅的所有回调函数
-  inputConsumer.off("keyPressed");
-} catch (error) {
-  console.error(`Unsubscribe execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  private volumeDownCallBackFunc: (event: KeyEvent) => void = () => {
+  }
+
+  aboutToAppear(): void {
+    try {
+      let options1: inputConsumer.KeyPressedConfig = {
+        key: KeyCode.KEYCODE_VOLUME_UP,
+        action: 1, // 按下按键的行为
+        isRepeat: false, // 优先消费掉按键事件，不上报
+      }
+      let options2: inputConsumer.KeyPressedConfig = {
+        key: KeyCode.KEYCODE_VOLUME_DOWN,
+        action: 1, // 按下按键的行为
+        isRepeat: false, // 优先消费掉按键事件，不上报
+      }
+
+      // 点击了音量按键上事件回调
+      this.volumeUpCallBackFunc = (event: KeyEvent) => {
+        this.getUIContext().getPromptAction().showToast({ message: '点击了音量按键上' })
+        // do something
+      }
+
+      // 点击了音量按键下事件回调
+      this.volumeDownCallBackFunc = (event: KeyEvent) => {
+        this.getUIContext().getPromptAction().showToast({ message: '点击了音量按键下' })
+        // do something
+      }
+      // 注册监听事件
+      inputConsumer.on('keyPressed', options1, this.volumeUpCallBackFunc);
+      inputConsumer.on('keyPressed', options2, this.volumeDownCallBackFunc);
+    } catch (error) {
+      console.error(`Subscribe execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+    }
+  }
+
+  build() {
+    Column() {
+      Row() {
+        Button('取消监听音量按键上的监听')
+          .onClick(() => {
+            try {
+              // 取消指定回调函数
+              inputConsumer.off('keyPressed', this.volumeUpCallBackFunc);
+              this.getUIContext().getPromptAction().showToast({ message: '取消监听音量按键上的监听事件成功！' })
+            } catch (error) {
+              console.error(`Unsubscribe execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+            }
+          })
+      }.width('100%')
+      .justifyContent(FlexAlign.Center)
+      .margin({ top: 20, bottom: 50 })
+
+      Row() {
+        Button('取消监听音量按键下的监听')
+          .onClick(() => {
+            try {
+              // 取消指定回调函数
+              inputConsumer.off('keyPressed', this.volumeDownCallBackFunc);
+              this.getUIContext().getPromptAction().showToast({ message: '取消监听音量按键下的监听事件成功！' })
+            } catch (error) {
+              console.error(`Unsubscribe execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+            }
+          })
+      }.width('100%')
+      .justifyContent(FlexAlign.Center)
+      .margin({ top: 20, bottom: 50 })
+      Row(){
+        Text('已默认添加监听音量按键上和下的监听')
+      }
+      .width('100%')
+      .justifyContent(FlexAlign.Center)
+    }.width('100%').height('100%')
+  }
 }
 ```
