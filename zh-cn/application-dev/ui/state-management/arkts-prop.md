@@ -186,7 +186,38 @@ struct ParentComponent {
 
 > **说明：**
 >
-> \@Prop装饰的数据更新依赖其所属自定义组件的重新渲染，所以在应用进入后台后，\@Prop无法刷新，推荐使用\@Link代替。
+> \@Prop同步数据源依赖于数据源所在组件的刷新，而应用进入后台后无法触发刷新，因此应用进入后台后，@Prop无法从数据源更新。在此场景下，若需即时数据同步，推荐使用@Link代替。
+
+以下示例中，当@State装饰的变量message改变时，Father组件会刷新。由于Son组件使用@Prop接收了该变量，因此Father组件刷新的过程中会使用message的最新值去更新@Prop的值。@Prop更新后，会触发Son组件的刷新。
+
+```ts
+@Component
+struct Son {
+  @Prop message: string = 'Hi';
+
+  build() {
+    Column() {
+      Text(this.message)
+    }
+  }
+}
+
+@Entry
+@Component
+struct Father {
+  @State message: string = 'Hello';
+
+  build() {
+    Column() {
+      Text(this.message)
+      Button(`father click`).onClick(() => {
+        this.message += '*';
+      })
+      Son({ message: this.message })
+    }
+  }
+}
+```
 
 ## 使用场景
 
