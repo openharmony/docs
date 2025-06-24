@@ -63,6 +63,8 @@ type AccessibilityCallback = (isHover: boolean, event: AccessibilityHoverEvent) 
 | windowY                | number                         | 否 | 手指位置相对于应用窗口左上角的y轴坐标。<br/>单位：vp<br/> |
 | displayX               | number                         | 否 | 手指位置相对于应用屏幕左上角的x轴坐标。<br/>单位：vp<br/> |
 | displayY               | number                         | 否 | 手指位置相对于应用屏幕左上角的y轴坐标。<br/>单位：vp<br/> |
+| globalDisplayX<sup>20+</sup> | number                   | 否 | 手指位置相对于全局屏幕的左上角的X坐标。<br/>单位：vp<br/>取值范围：[0, +∞)<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| globalDisplayY<sup>20+</sup> | number                   | 否 | 手指位置相对于全局屏幕的左上角的Y坐标。<br/>单位：vp<br/>取值范围：[0, +∞)<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## AccessibilityHoverType
 
