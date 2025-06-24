@@ -25,7 +25,7 @@ Here, angle brackets (< >) are delimiters for readability and are not part of th
 Scope tags indicate the type of scope. The table below lists the scopes and their corresponding tags. Other scopes are not included in function names.
 | Scope| Scope Tag| Description|
 | --- | --- | --- |
-| Class| `~` | Scope defined by the **class** keywords.|
+| class | `~` | Scope defined by the **class** keywords.|
 | Instance function| `>` | Scope defined by the instance member functions in a class.|
 | Static function| `<` | Scope defined by the static functions in a class.|
 | Constructor function| `=` | Scope defined by the constructors in a class.|

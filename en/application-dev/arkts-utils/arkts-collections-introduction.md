@@ -2,11 +2,11 @@
 
 ## ArkTS Collections
 
-ArkTS shared containers ([@arkts.collections (ArkTS Collections)](../reference/apis-arkts/js-apis-arkts-collections.md)) are designed for high-performance data transmission between concurrent tasks. They offer similar functionality to the containers defined in the ECMAScript 262 specification but with some key differences, which are outlined in the [Behavior Differences Between Shared Container APIs and Native APIs](#behavior-differences-between-shared-container-apis-and-native-apis).
+ArkTS shared containers ([@arkts.collections (ArkTS Collections)](../reference/apis-arkts/js-apis-arkts-collections.md)) are designed for high-performance data transmission between concurrent instances. They offer similar functionality to the containers defined in the ECMAScript 262 specification but with some key differences, which are outlined in the [Behavior Differences Between Shared Container APIs and Native APIs](#behavior-differences-between-shared-container-apis-and-native-apis).
 
-By default, ArkTS shared containers are passed by reference, allowing multiple concurrent tasks to manipulate the same container instance. They also support pass-by-copy, where each concurrent task holds an ArkTS container instance.
+By default, ArkTS shared containers are passed by reference, allowing multiple concurrent instances to manipulate the same container instance. Pass-by-copy is also supported. In this mode, each concurrent instance holds an ArkTS container instance.
 
-ArkTS shared containers are not thread-safe and employ a fail-fast mechanism to prevent concurrent structural modifications, which would otherwise trigger exceptions. When modifying container properties, you must use the [asynchronous lock](arkts-async-lock-introduction.md) mechanism to ensure safe access.
+ArkTS shared containers are not thread-safe and employ a fail-fast mechanism to prevent concurrent structural modifications, which would otherwise trigger exceptions. When modifying container properties in a multithreaded scenario, you must use the [asynchronous lock](arkts-async-lock-introduction.md) mechanism to ensure safe access.
 
 The ArkTS shared containers include the following types: [Array](../reference/apis-arkts/js-apis-arkts-collections.md#collectionsarray), [Map](../reference/apis-arkts/js-apis-arkts-collections.md#collectionsmap), [Set](../reference/apis-arkts/js-apis-arkts-collections.md#collectionsset), [TypedArray](../reference/apis-arkts/js-apis-arkts-collections.md#collectionstypedarray) (Int8Array, Uint8Array, Int16Array, Uint16Array, Int32Array, Uint32Array, Uint8ClampedArray, and Float32Array), and [ArrayBuffer](../reference/apis-arkts/js-apis-arkts-collections.md#collectionsarraybuffer). For details, see [@arkts.collections (ArkTS Collections)](../reference/apis-arkts/js-apis-arkts-collections.md).
 
@@ -57,6 +57,7 @@ struct Index {
   }
 }
 ```
+<!-- @[example_use](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableObjectRelated/entry/src/main/ets/managers/ArktsCollectionsIntroduction.ets) -->
 
 ## Behavior Differences Between Shared Container APIs and Native APIs
 
@@ -64,7 +65,9 @@ ArkTS provides shared containers for Sendable data, with some behavior differenc
 
 > **NOTE**
 >
-> ArkTS shared containers have different types from native ECMAScript containers. Therefore, if the native **isArray()** method is used on a **collections.Array instance** object, **false** is returned.
+> ArkTS shared containers have different types from native ECMAScript 262 containers. Therefore, if the native **isArray()** method is used on a **collections.Array instance** object, **false** is returned.
+>
+> ArkTS shared containers are passed across threads by reference, which is more efficient than native containers. If you need to transfer large amounts of data across threads, you are advised to use ArkTS shared containers.
 
 ### Array
 
@@ -77,6 +80,7 @@ Native Array containers can be converted into ArkTS Array containers using the [
 | new &lt;T&gt;(arrayLength: number): T[] | constructor() | No| / |
 | new &lt;T&gt;(...items: T[]): T[] | constructor(first: T, ...left: T[]) | Yes| To prevent the spread of **undefined**, a constructor must be provided with an initial value. In inheritance scenarios, this constructor cannot be called to construct an object.|
 | from&lt;T&gt;(arrayLike: ArrayLike&lt;T&gt;): T[] | static from&lt;T&gt;(arrayLike: ArrayLike&lt;T&gt;): Array&lt;T&gt; | No| / |
+| from&lt;T, U&gt;(iterable: Iterable&lt;T&gt; \| ArrayLike&lt;T&gt;, mapfn: (v: T, k: number) => U, thisArg?: any): U[] | static from&lt;U, T&gt;(arrayLike: ArrayLike&lt;U&gt; \| Iterable&lt;U&gt;, mapFn: ArrayFromMapFn&lt;U, T&gt;): Array&lt;T&gt; | No| / |
 | pop(): T \| undefined | pop(): T \| undefined | Yes| It is not allowed to add, delete, or modify elements during iteration or access. Otherwise, an exception is thrown.|
 | push(...items: T[]): number | push(...items: T[]): number | Yes| It is not allowed to add, delete, or modify elements during iteration or access. Otherwise, an exception is thrown.|
 | concat(...items: ConcatArray&lt;T&gt;[]): T[] | concat(...items: ConcatArray&lt;T&gt;[]): Array&lt;T&gt; | Yes| It is not allowed to add, delete, or modify elements during iteration or access. Otherwise, an exception is thrown.|
@@ -100,6 +104,19 @@ Native Array containers can be converted into ArkTS Array containers using the [
 | values(): IterableIterator&lt;T&gt; | values(): IterableIterator&lt;T&gt; | No| / |
 | includes(searchElement: T, fromIndex?: number): boolean | includes(searchElement: T, fromIndex?: number): boolean | No| / |
 | at(index: number): T \| undefined | at(index: number): T \| undefined | No| / |
+| isArray(arg: any): arg is any[] | static isArray(value: Object \| undefined \| null): boolean | Yes| Checks whether the array is an ArkTS array instance. If not, **false** is returned.|
+| of&lt;T&gt;(...items: T[]): T[] | static of&lt;T&gt;(...items: T[]): Array&lt;T&gt; | No| / |
+| copyWithin(target: number, start: number, end?: number): this | copyWithin(target: number, start: number, end?: number): Array&lt;T&gt; | Yes| It is not allowed to add, delete, or modify elements during iteration or access. Otherwise, an exception is thrown.|
+| lastIndexOf(searchElement: T, fromIndex?: number): number | lastIndexOf(searchElement: T, fromIndex?: number): number | Yes| It is not allowed to add, delete, or modify elements during iteration or access. Otherwise, an exception is thrown.|
+| some(predicate: (value: T, index: number, array: T[]) =&gt; unknown, thisArg?: any): boolean | some(predicate: ArrayPredicateFn&lt;T, Array&lt;T&gt;&gt;): boolean | Yes| 1. It is not allowed to add, delete, or modify elements during iteration or access. Otherwise, an exception is thrown.<br>2. ArkTS does not support **this**. As a result, the **thisArg** parameter is not supported.|
+| reduceRight(callbackfn: (previousValue: T, currentValue: T, currentIndex: number, array: T[]) =&gt; T): T | reduceRight(callbackFn: ArrayReduceCallback&lt;T, T, Array&lt;T&gt;&gt;): T | Yes| It is not allowed to add, delete, or modify elements during iteration or access. Otherwise, an exception is thrown.|
+| reduceRight&lt;U&gt;(callbackfn: (previousValue: U, currentValue: T, currentIndex: number, array: T[]) =&gt; U, initialValue: U): U | reduceRight&lt;U = T&gt;(callbackFn: ArrayReduceCallback&lt;U, T, Array&lt;T&gt;&gt;, initialValue: U): U | Yes| It is not allowed to add, delete, or modify elements during iteration or access. Otherwise, an exception is thrown.|
+| reverse(): T[] | reverse(): Array&lt;T&gt; | Yes| It is not allowed to add, delete, or modify elements during iteration or access. Otherwise, an exception is thrown.|
+| toString(): string | toString(): string | Yes| It is not allowed to add, delete, or modify elements during iteration or access. Otherwise, an exception is thrown.|
+| find(predicate: (value: T, index: number, obj: T[]) =&gt; unknown, thisArg?: any): T \| undefined | find(predicate: (value: T, index: number, obj: Array&lt;T&gt;) =&gt; boolean): T \| undefined | Yes| 1. It is not allowed to add, delete, or modify elements during iteration or access. Otherwise, an exception is thrown.<br>2. ArkTS does not support **this**. As a result, the **thisArg** parameter is not supported.|
+| splice(start: number, deleteCount: number, ...items: T[]): T[] | splice(start: number, deleteCount: number, ...items: T[]): Array&lt;T&gt; | Yes| It is not allowed to add, delete, or modify elements during iteration or access. Otherwise, an exception is thrown.|
+| every(predicate: (value: T, index: number, array: T[]) =&gt; unknown, thisArg?: any): boolean | every(predicate: ArrayPredicateFn&lt;T, Array&lt;T&gt;&gt;): boolean | Yes| ArkTS does not support **this**. As a result, the **thisArg** parameter is not supported.|
+| toLocaleString(): string | toLocaleString(): string | Yes| It is not allowed to add, delete, or modify elements during iteration or access. Otherwise, an exception is thrown.|
 
 ### ArrayBuffer
 
@@ -151,6 +168,12 @@ Native TypedArray containers can be converted into ArkTS TypedArray containers u
 | from(arrayLike: ArrayLike&lt;number&gt;): Int8Array | static from(arrayLike: ArrayLike&lt;number&gt;): Int8Array | No| / |
 | from&lt;T&gt;(arrayLike: ArrayLike&lt;T&gt;, mapfn: (v: T, k: number) =&gt; number, thisArg?: any): Int8Array | static from&lt;T&gt;(arrayLike: ArrayLike&lt;T&gt;, mapFn: TypedArrayFromMapFn&lt;T, number&gt;): Int8Array | Yes| ArkTS does not support **this**. As a result, the **thisArg** parameter is not supported.|
 | from(arrayLike: Iterable&lt;number&gt;, mapfn?: (v: number, k: number) =&gt; number, thisArg?: any): Int8Array | static from(arrayLike: Iterable&lt;number&gt;, mapFn?: TypedArrayFromMapFn&lt;number, number&gt;): Int8Array | Yes| ArkTS does not support **this**. As a result, the **thisArg** parameter is not supported.|
+| of(...items: number[]): Int8Array | static of(...items: number[]): Int8Array | No| / |
+| toString(): string | toString(): string | Yes| It is not allowed to add, delete, or modify elements during iteration or access. Otherwise, an exception is thrown.|
+| toLocaleString(): string | toLocaleString(): string  | Yes| It is not allowed to add, delete, or modify elements during iteration or access. Otherwise, an exception is thrown.|
+| lastIndexOf(searchElement: number, fromIndex?: number): number | lastIndexOf(searchElement: number, fromIndex?: number): number | Yes| It is not allowed to add, delete, or modify elements during iteration or access. Otherwise, an exception is thrown.|
+| reduceRight(callbackfn: (previousValue: number, currentValue: number, currentIndex: number, array: Int8Array) =&gt; number): number | reduceRight(callbackFn: TypedArrayReduceCallback&lt;number, number, Int8Array&gt;): number | Yes| It is not allowed to add, delete, or modify elements during iteration or access. Otherwise, an exception is thrown.|
+| reduceRight&lt;U&gt;(callbackfn: (previousValue: U, currentValue: number, currentIndex: number, array: Int8Array) =&gt; U, initialValue: U): U | reduceRight&lt;U = number&gt;(callbackFn: TypedArrayReduceCallback&lt;U, number, Int8Array&gt;, initialValue: U): U | Yes| It is not allowed to add, delete, or modify elements during iteration or access. Otherwise, an exception is thrown.|
 
 ### Map
 
@@ -181,4 +204,4 @@ Native TypedArray containers can be converted into ArkTS TypedArray containers u
 | entries(): IterableIterator&lt;[T, T]&gt; | entries(): IterableIterator&lt;[T, T]&gt; | No| / |
 | keys(): IterableIterator&lt;T&gt; | keys(): IterableIterator&lt;T&gt; | No| / |
 | values(): IterableIterator&lt;T&gt; | values(): IterableIterator&lt;T&gt; | Yes| Computed property names (arkts-sendable-compated-prop-name) cannot be used in Sendable classes and interfaces.|
-| new &lt;T = any&gt;(values?: readonly T[] \| null): Set&lt;T&gt; | constructor(values?: readonly T[] \| null) | Yes| The passed-in values during construction cannot be non-Sendable data. Otherwise, an error is reported during compilation.|
+| new &lt;T = any&gt;(values?: readonly T[] \| null): Set&lt;T&gt; | constructor(values?: readonly T[] \| null) | Yes| The data passed during construction must be of the Sendable type. Otherwise, a compilation error is reported.|

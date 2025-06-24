@@ -1,6 +1,6 @@
-# Using ArkGuard for Obfuscation
+# Using ArkGuard for Source Code Obfuscation
 
-## Enabling Obfuscation
+## Enabling Source Code Obfuscation
 
 ### How to Use
 The source code obfuscation feature is integrated into the system and can be enabled in DevEco Studio. 
@@ -43,50 +43,54 @@ The source code obfuscation feature is integrated into the system and can be ena
     ```
     
     For details about how to configure obfuscation options, see [Obfuscation Configuration Guidelines](#obfuscation-configuration-guidelines). For details about all configuration files involved in obfuscation, see [Obfuscation Configuration Files](#obfuscation-configuration-files).
-    
+
+    > **NOTE**
+    >
+    > 1. In DevEco Studio versions prior to 5.0.3.600, source code obfuscation is enabled by default for new projects, and code developed on the stage model using API version 10 or later is automatically obfuscated.
+    > 2. In DevEco Studio 5.0.3.600 and later versions, source code obfuscation is disabled by default for new projects. To enable obfuscation, set the **ruleOptions.enable** field in the **build-profile.json5** file of the module to **true**. The **obfuscation-rules.txt** file has the following options enabled by default: **-enable-property-obfuscation**, **-enable-toplevel-obfuscation**, **-enable-filename-obfuscation**, and **-enable-export-obfuscation**. You can customize the obfuscation settings as needed.
+
 * Specifying release compilation 
-  
-    Currently, source code obfuscation is supported only for release builds, not for debug builds. This means that obfuscation will only be applied when a module is compiled in release mode, not in debug mode. You can view and modify the build mode by referring to [Specifying a Build Mode](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-hvigor-compilation-options-customizing-guide-V5#section192461528194916).
-    
+    Source code obfuscation is supported only for release builds, not for debug builds. This means that obfuscation will only be applied when a module is compiled in release mode, not in debug mode. You can view and modify the build mode by referring to [Specifying a Build Mode](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-hvigor-compilation-options-customizing-guide#section192461528194916).
+
     > **NOTE**
     >
     > The differences between release and debug builds extend beyond obfuscation. To determine whether application behavior differences are due to obfuscation, you should enable or disable the obfuscation switch rather than simply switching between release and debug builds.
 
-> **NOTE**
->
-> 1. In DevEco Studio versions prior to 5.0.3.600, code obfuscation is enabled by default for new projects, and code developed on the stage model using API version 10 or later is automatically obfuscated.
-> 2. In DevEco Studio 5.0.3.600 and later versions, code obfuscation is disabled by default for new projects. If you want to enable obfuscation, set the **ruleOptions.enable** field in the **build-profile.json5** file of the module to **true**. The **obfuscation-rules.txt** file has the following options enabled by default: **-enable-property-obfuscation**, **-enable-toplevel-obfuscation**, **-enable-filename-obfuscation**, and **-enable-export-obfuscation**. You can customize the obfuscation settings as needed.
-
 ### Obfuscation Configuration Files
-* `obfuscation-rules.txt`
+* `obfuscation-rules.txt`  
   
-    For HAP, HAR, and HSP modules, the **arkOptions.obfuscation.ruleOptions.files** field in the **build-profile.json5** file specifies obfuscation rules applied during module compilation. A default **obfuscation-rules.txt** file is created when a new project is set up.
-    
-* `consumer-rules.txt` 
+    For HAP, HAR, and HSP modules, the **arkOptions.obfuscation.ruleOptions.files** field in the **build-profile.json5** file specifies obfuscation rules applied during module compilation. A default obfuscation rule file, named **obfuscation-rules.txt**, is created when a new project is set up.
+
+* `consumer-rules.txt`  
   
     For HAR and HSP modules, an additional **arkOptions.obfuscation.consumerFiles** field is available in the **build-profile.json5** file. This field specifies obfuscation rules that should be applied when this package is depended upon in the current compilation process. A default **consumer-rules.txt** file is created when a new HAR or HSP module is set up. The key difference between **consumer-rules.txt** and **obfuscation-rules.txt** is as follows: **obfuscation-rules.txt** applies to the compilation of the current module, whereas **consumer-rules.txt** applies to the compilation of other modules that depend on the current module.
-    
+
+    Configuration example of the **build-profile.json5** file:
     ```
     "arkOptions": {
       "obfuscation": {
         "ruleOptions": {
-          "enable": true,
-          "files": ["./obfuscation-rules.txt"],
+          "enable": true, // Enable the obfuscation switch.
+          "files": ["./obfuscation-rules.txt"] // Specify the obfuscation rule file, which takes effect when the current module is compiled.
         }
-        "consumerFiles": ["./consumer-rules.txt"]
+        "consumerFiles": ["./consumer-rules.txt"] // Specify the obfuscation rule file, which takes effect when other modules that depend on the current module are compiled.
       }
     }
     ```
 
-* `obfuscation.txt`
+  > **NOTE**
+  >
+  > If [obfuscation options](source-obfuscation.md#obfuscation-options) are configured in the **consumer-rules.txt** file, the main module may be affected. Therefore, you are advised to configure only [retention options](source-obfuscation.md#retention-options) in this file.
+
+* `obfuscation.txt`  
 
     Unlike the above two files, **obfuscation.txt** is automatically generated based on **consumer-rules.txt** and the obfuscation rules of dependent modules during HAR or HSP compilation. It exists as a compilation product within the released HAR or HSP package. When other applications depend on this package, the obfuscation rules are merged and applied to the current compilation process. For details about the generation and merging logic of **obfuscation.txt**, see [Obfuscation Rule Merging Strategies](source-obfuscation.md#obfuscation-rule-merging-strategies).
 
   > **NOTE**
   >
-  > For third-party libraries, the **obfuscation.txt** file only takes effect when the module's **oh-package.json5** file depends on the library. If the dependency is specified in the project's **oh-package.json5** file, the **obfuscation.txt** file in the third-party library will not take effect.
+  > For third-party libraries, the **obfuscation.txt** file takes effect only when the third-party library is depended upon in the **oh-package.json5** file of the module. If the dependency is specified in the **oh-package.json5** file of the project, the **obfuscation.txt** file of the third-party library does not take effect.
 
-The following table summarizes the differences between these configuration files.
+The following table summarizes the differences between these obfuscation configuration files.
 
 | Configuration File| Configuration Type|  Modifiable |  Affects Obfuscation of This Module |  Affects Obfuscation of Other Modules |
 | --- | --- | --- | --- | --- |
@@ -126,9 +130,9 @@ The following table summarizes the differences between these configuration files
     4. Verify application functionality and interface call functionality when the module is depended upon, and identify any missed scenarios. If the application functionality is abnormal, find the code of the error line in the corresponding [intermediate products](#viewing-obfuscation-effects) based on the obfuscated error stack, identify the necessary trustlist configurations, and retain them.
 4. After the preceding adaptations are successful, configure **-enable-filename-obfuscation**, and perform adaptation in the following scenarios:
     1. If the code contains dynamic import statements (for example, **const path = './filePath'; import(path)**), use **-keep-file-name filePath** to retain the file path.
-    2. If the application has a [routerMap configuration](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/module-configuration-file-V5#routermap) that describes routing information, use **-keep-file-name** to retain the page source file path, which is specified by **pageSourceFile** field in the routing information.
+    2. If the application has a [routerMap configuration](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/module-configuration-file#routermap) that describes routing information, use **-keep-file-name** to retain the page source file path, which is specified by **pageSourceFile** field in the routing information.
     3. If the code uses **ohmUrl** for page navigation (for example, **router.pushUrl({url: '@bundle:com.example.routerPage/Library/Index'})**), use **-keep-file-name** to retain the path.
-    4. Verify application functionality and identify any missed scenarios. If the application function is abnormal and the error stack contains obfuscated paths, you can query the original path in the **build/default/[...]/release/obfuscation/nameCache.json** file within the module and then locate the source code file. You can also use the [hstack plugin](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-command-line-hstack-V5) to trigger automatic deobfuscation of error stacks. After locating the paths to retain, use **-keep-file-name** to retain them.
+    4. Verify application functionality and identify any missed scenarios. If the application function is abnormal and the error stack contains obfuscated paths, you can query the original path in the **build/default/[...]/release/obfuscation/nameCache.json** file within the module and then locate the source code file. You can also use the [hstack plugin](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-command-line-hstack) to trigger automatic deobfuscation of error stacks. After locating the paths to retain, use **-keep-file-name** to retain them.
 
 ### Remarks
 * Currently, custom obfuscation plugins are not supported in the hvigor build process.
@@ -141,12 +145,16 @@ After obfuscation is complete, intermediate products are generated. You can find
 * Obfuscated file directory: build/default/[...]/release/moduleName
 * Directory of the name mapping file and system API trustlist file: build/default/[...]/release/obfuscation
   * The name mapping file, named **nameCache.json**, records the mappings between source code names and names after obfuscation.
-  * The system API trustlist file, named **systemApiCache.json**, records the APIs and property names that will not be obfuscated.
+  * The system API trustlist file, named **systemApiCache.json**, records the APIs and property names that will not be obfuscated in the source code.
 
   ![build-product](figures/build-product.png)
 
 ## Deobfuscating Error Stacks
 
-In applications that have undergone obfuscation, code names are changed, making the error stacks printed during crashes harder to understand because they do not match the source code exactly. You can use the [hstack plugin](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-command-line-hstack-V5) in Command Line Tools of DevEco Studio to deobfuscate the source code stack and analyze issues. The deobfuscation tool requires the **sourceMaps.map** file and the obfuscation name mapping file **nameCache.json** generated during compilation. Be sure to back them up locally.
+In applications that have undergone obfuscation, code names are changed, making the error stacks printed during crashes harder to understand. You can use the [hstack plugin](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-command-line-hstack) in Command Line Tools of DevEco Studio to deobfuscate the source code stack and analyze issues. 
+
+The deobfuscation tool requires the **sourceMaps.map** file and the obfuscation name mapping file **nameCache.json** generated during compilation. Be sure to back them up locally.
+
+* The source code mapping file, named **sourceMaps.map**, records the mappings between the compressed/converted code and the original source code.
 
 ![obfuscation-product](figures/obfuscation-product.png)

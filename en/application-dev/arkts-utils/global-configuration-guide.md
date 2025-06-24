@@ -61,6 +61,7 @@ The following example illustrates the service logic where downloads are permitte
    
    export let config = new Config()
    ```
+   <!-- @[global_config](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/PracticalCases/entry/src/main/ets/managers/Config.ets) -->
 
 2. Enable both the UI main thread and child threads to access the global configuration.
 
@@ -175,3 +176,4 @@ The following example illustrates the service logic where downloads are permitte
      }
    }
    ```
+   <!-- @[access_global_config](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/PracticalCases/entry/src/main/ets/managers/GlobalConfigurationGuide.ets) -->

@@ -6,12 +6,18 @@ Synchronous tasks involve coordinating execution across multiple threads to ensu
 
 To implement synchronous tasks, you must consider the collaboration and synchronization between multiple threads and ensure data integrity and correct program execution.
 
-TaskPool is well-suited for individual, independent tasks. Therefore, it is recommended for scenarios where synchronous tasks are relatively independent, such as a series of static methods or methods implemented using a singleton pattern. Conversely, if synchronous tasks are interdependent, Worker is the better choice, especially when methods rely on class objects.
+TaskPool is well-suited for individual, independent tasks. Therefore, it is recommended for scenarios where synchronous tasks are relatively independent, such as a series of static methods or methods implemented using a singleton pattern. Conversely, if synchronous tasks are interdependent, Worker is the better choice.
 
 
 ## Using TaskPool for Independent Synchronous Tasks
 
-TaskPool is ideal for scheduling independent tasks or when a series of tasks is implemented as static methods. It is also suitable when unique handles or class objects can be constructed via a singleton pattern and used across different task threads.
+TaskPool is recommended in the following scenarios:
+
+- Tasks that are scheduled independently.
+                        
+- Tasks that are implemented using static methods.
+
+- Singleton handles or class objects used across threads.
 
 > **NOTE**
 >
@@ -23,7 +29,7 @@ TaskPool is ideal for scheduling independent tasks or when a series of tasks is 
 
 3. Perform operations on the task result.
 
-In the following example, the service logic uses TaskPool to call related synchronous methods. First, define the concurrent function **taskpoolFunc**, which must be decorated with [@Concurrent](taskpool-introduction.md#concurrent-decorator). Then, define the function **mainFunc**, which creates tasks, executes them, and performs operations on the results returned by the tasks.
+In the following example, the service logic uses TaskPool to call related synchronous methods. First, define the concurrent function **taskpoolFunc**, which must be decorated with [@Concurrent](taskpool-introduction.md#concurrent-decorator). Then, define the function **mainFunc**, which creates tasks, executes them, and processes the results returned by the tasks.
 
 
 ```ts
@@ -70,6 +76,7 @@ struct Index {
   }
 }
 ```
+<!-- @[taskpool_handle_sync_task](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/managers/SyncTaskDevelopment.ets) -->
 
 
 ## Using Worker for Interdependent Synchronous Tasks
@@ -116,6 +123,7 @@ When a series of synchronous tasks needs to be scheduled using the same handle, 
       }
     }
     ```
+    <!-- @[worker_handle_associated_sync_task](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/managers/SyncTaskDevelopment.ets) -->
 
 
 2. Bind the Worker object in the Worker thread and process the synchronous task logic.
@@ -132,6 +140,7 @@ When a series of synchronous tasks needs to be scheduled using the same handle, 
       }
     }
     ```
+    <!-- @[worker_handle_associated_sync_task](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/workers/handle.ts) -->
     
     ```ts
     // MyWorker.ts code
@@ -157,3 +166,4 @@ When a series of synchronous tasks needs to be scheduled using the same handle, 
      }
     }
     ```
+    <!-- @[worker_handle_associated_sync_task](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/workers/MyWorker2.ts) -->

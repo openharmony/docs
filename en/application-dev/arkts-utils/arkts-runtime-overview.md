@@ -16,7 +16,7 @@ ArkTS Runtime is primarily composed of four subsystems:
 
   - Analysis tools: DFX, and profiling tools for CPU and heap analysis
 
-  - Concurrency management: .abc file manager in the actor model
+  - Concurrency management: Ark bytecode file manager in the actor model
 
   - Standard libraries: standard libraries defined by ECMAScript, efficient container libraries, and object models
   

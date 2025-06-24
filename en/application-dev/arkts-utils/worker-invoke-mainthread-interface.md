@@ -1,8 +1,8 @@
 # Synchronous Calls to Host Thread Interfaces from Worker
 
-If an interface is already implemented in the host thread and needs to be called by Worker, you can achieve this by using the approach described in this topic.
+This topic describes the approach that Worker uses to call an interface that is already implemented in the host thread.
 
-The following example demonstrates how Worker can synchronously call an interface implemented in the host thread.
+The example below demonstrates how Worker can synchronously call an interface from the host thread.
 
 1. Implement the interface in the host thread and create a Worker object. Register the interface to be called on the Worker object.
 
@@ -18,6 +18,7 @@ The following example demonstrates how Worker can synchronously call an interfac
      }
    }
    ```
+   <!-- @[implement_child_thread_task](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationScenario/entry/src/main/ets/managers/IconItemSource.ets) -->
 
    ```ts
    // WorkerCallGlobalUsage.ets
@@ -51,6 +52,7 @@ The following example demonstrates how Worker can synchronously call an interfac
    workerInstance.registerGlobalCallObject("picData", picData);
    workerInstance.postMessage("run setUp in picData");
    ```
+   <!-- @[create_worker_obj](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationScenario/entry/src/main/ets/managers/WorkerCallGlobalUsage.ets) -->
 
 2. In Worker, use the **callGlobalCallObjectMethod** interface to call the **setUp()** method implemented in the host thread.
 
@@ -67,3 +69,4 @@ The following example demonstrates how Worker can synchronously call an interfac
      console.error("worker: error code is " + error.code + " error message is " + error.message);
    }
    ```
+   <!-- @[call_main_method](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationScenario/entry/src/main/ets/workers/Worker.ets) -->

@@ -14,13 +14,13 @@ import { process } from '@kit.ArkTS';
 ```
 
 
-## Attributes
+## Properties
 
 **System capability**: SystemCapability.Utils.Lang
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-| Name            | Type  | Readable| Writable| Description            |
+| Name            | Type  | Read-Only| Optional| Description            |
 | ---------------- | ------ | ---- | ---- | ---------------- |
 | uid              | number | Yes  | No  | User identifier (UID) of the process.|
 | pid              | number | Yes  | No  | Process ID (PID) of the process. |
@@ -31,7 +31,7 @@ import { process } from '@kit.ArkTS';
 
 type EventListener = (evt: Object) => void
 
-Describes the event to store.
+Event to store.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -57,7 +57,7 @@ Checks whether this process is isolated.
 
 | Type   | Description                                                   |
 | ------- | ------------------------------------------------------- |
-| boolean | Check result. The value **true** means that the process is isolated, and **false** means the opposite.|
+| boolean | Check result. The value **true** is returned if the process is isolated; otherwise, **false** is returned.|
 
 **Example**
 
@@ -80,7 +80,7 @@ Checks whether this process is running in a 64-bit environment.
 
 | Type   | Description                                                       |
 | ------- | ----------------------------------------------------------- |
-| boolean | Check result. The value **true** means that the process is running in a 64-bit environment, and **false** means the opposite.|
+| boolean | Check result. The value **true** is returned if the process is running in a 64-bit environment; otherwise, **false** is returned.|
 
 **Example**
 
@@ -155,7 +155,7 @@ process.abort();
 
 uptime(): number
 
-Obtains the running time of this process.
+Obtains the running time of the current system, in seconds.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -165,7 +165,7 @@ Obtains the running time of this process.
 
 | Type  | Description                  |
 | ------ | ---------------------- |
-| number | Running time of the process, in seconds.|
+| number | Running time of the system, in seconds.|
 
 **Example**
 
@@ -178,7 +178,7 @@ let time = process.uptime();
 
 kill(signal: number, pid: number): boolean
 
-Sends a signal to the specified process to terminate it.
+Sends a signal to a specified process to terminate it.
 
 > **NOTE**
 >
@@ -195,9 +195,9 @@ Sends a signal to the specified process to terminate it.
 
 **Return value**
 
-| Type   | Description                                                        |
-| ------- | ------------------------------------------------------------ |
-| boolean | Signal sending result. The value **true** means that the signal is sent successfully, and **false** means the opposite.|
+| Type   | Description|
+| ------- | -----------------------------------|
+| boolean | If the signal is sent successfully, **true** is returned. Other, **false** is returned.|
 
 **Example**
 
@@ -319,7 +319,7 @@ Checks whether a UID belongs to this application.
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| boolean | Check result. The value **true** means that the UID belongs to the application, and **false** means the opposite.|
+| boolean | Check result. The value **true** is returned if the UID belongs to the application; otherwise, **false** is returned.|
 
 **Example**
 
@@ -395,7 +395,7 @@ let pres = process.getEnvironmentVar("PATH");
 
 Provides APIs for throwing exceptions during the addition of a process.
 
-A **ProcessManager** object is obtained through its own constructor.
+Construct a **ProcessManager** object.
 
 ### isAppUid<sup>9+</sup>
 
@@ -417,7 +417,7 @@ Checks whether a UID belongs to this application.
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| boolean | Check result. The value **true** means that the UID belongs to the application, and **false** means the opposite.|
+| boolean | Check result. The value **true** is returned if the UID belongs to the application; otherwise, **false** is returned.|
 
 **Error codes**
 
@@ -472,7 +472,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```js
 let pro = new process.ProcessManager();
-let pres = pro .getUidForName("tool");
+let pres = pro.getUidForName("tool");
 ```
 
 
@@ -535,7 +535,7 @@ Obtains the system configuration.
 
 | Type  | Description              |
 | ------ | ------------------ |
-| number | System configuration obtained. If the system configuration does not exist, **-1** is returned.|
+| number | System configuration obtained. If the configuration does not exist, **-1** is returned.|
 
 **Error codes**
 
@@ -562,7 +562,7 @@ Obtains the value of an environment variable.
 
 > **NOTE**
 >
->  If the environment variable does not exist, **undefined** is returned.
+> Obtains the value of an environment variable. If the environment variable does not exist, **undefined** is returned.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -644,14 +644,14 @@ Sends a signal to the specified process to terminate it.
 
 | Name| Type  | Mandatory| Description        |
 | ------ | ------ | ---- | ------------ |
-| signal | number | Yes  | Signal to send.|
+| signal | number | Yes  | Signal to send. Value range: 1 <= signal <= 64.|
 | pid    | number | Yes  | PID of the process, to which the signal will be sent.  |
 
 **Return value**
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| boolean | Signal sending result. The value **true** means that the signal is sent successfully, and **false** means the opposite.|
+| boolean | Signal sending result. The value **true** is returned if the signal is sent successfully; otherwise, **false** is returned.|
 
 **Error codes**
 
