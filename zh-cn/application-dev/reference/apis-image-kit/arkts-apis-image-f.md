@@ -1301,7 +1301,7 @@ getImageSourceSupportedFormats(): string[]
 
 获取支持解码的图片格式，图片格式以mime type表示。
 
-**系统能力：** SystemCapability.Multimedia.Image.Core
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 **返回值：**
 
@@ -1347,7 +1347,7 @@ getImagePackerSupportedFormats(): string[]
 
 获取支持编码的图片格式，图片格式以mime type表示。
 
-**系统能力：** SystemCapability.Multimedia.Image.Core
+**系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
 **返回值：**
 

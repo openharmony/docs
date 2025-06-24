@@ -2,7 +2,7 @@
 
 本模块提供[@InsightIntentEntry](js-apis-app-ability-InsightIntentDecorator.md#insightintententry)装饰器的意图调用执行基类，必须与@InsightIntentEntry装饰器联合使用。
 
-开发者需要在继承该基类的子类中，实现[onExecute()](#insightintententryexecutoronexecute)意图执行回调，并使用@InsightIntentEntry装饰器来装饰子类。
+开发者需要在继承该基类的子类中，实现[onExecute()](#onexecute)意图执行回调，并使用@InsightIntentEntry装饰器来装饰子类。
 
 > **说明：**
 >
@@ -14,7 +14,9 @@
 import { InsightIntentEntryExecutor } from '@kit.AbilityKit';
 ```
 
-## 属性
+## InsightIntentEntryExecutor\<T>
+
+### 属性
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -29,9 +31,9 @@ import { InsightIntentEntryExecutor } from '@kit.AbilityKit';
 | windowStage        | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md#windowstage9)       | 否       | 是   | 表示展示意图的窗口管理器。仅当execuMode字段取值为UI_ABILITY_FOREGROUND（即意图调用需要将UIAbility显示在前台时），该属性生效。    |
 | uiExtensionSession     | [UIExtensionContentSession](./js-apis-app-ability-uiExtensionContentSession.md)       | 否       | 是   | 表示[UIExtensionAbility](./js-apis-app-ability-uiExtensionAbility.md)加载界面内容时创建的实例对象。仅当executeMode字段取值为UI_EXTENSION_ABILITY（即意图调用需要拉起UIExtensionAbility时），该属性生效。    |
 
-## InsightIntentEntryExecutor.onExecute
+### onExecute
 
-onExecute():Promise\<insightIntent.IntentResult\<T>>
+onExecute(): Promise\<insightIntent.IntentResult\<T>>
 
 当AI入口触发意图调用时，系统将会拉起该类绑定的Ability组件，并自动触发该回调。使用Promise异步回调。开发者可以在该回调中实现需要执行的意图操作。
 
@@ -46,7 +48,7 @@ onExecute():Promise\<insightIntent.IntentResult\<T>>
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -71,25 +73,24 @@ const LOG_TAG: string = 'testTag-EntryIntent';
   intentVersion: '1.0.1',
   displayName: '播放歌曲',
   displayDescription: '播放音乐意图',
-  icon: $r("app.media.app_icon"),
+  icon: $r('app.media.app_icon'),
   llmDescription: '支持传递歌曲名称，播放音乐',
   keywords: ['音乐播放', '播放歌曲', 'PlayMusic'],
-  abilityName: "EntryAbility",
+  abilityName: 'EntryAbility',
   executeMode: [insightIntent.ExecuteMode.UI_ABILITY_FOREGROUND],
   parameters: {
-    "schema": "http://json-schema.org/draft-07/schema#",
-    "type": "object",
-    "title": "Song Schema",
-    "description": "A schema for describing songs and their artists",
-    "properties": {
-      "songName": {
-        "type": "string",
-        "description": "The name of the song",
-        "minLength": 1
+    'schema': 'http://json-schema.org/draft-07/schema#',
+    'type': 'object',
+    'title': 'Song Schema',
+    'description': 'A schema for describing songs and their artists',
+    'properties': {
+      'songName': {
+        'type': 'string',
+        'description': 'The name of the song',
+        'minLength': 1
       }
     },
-    "required": ["songName"],
-    "additionalProperties": false
+    'required': ['songName']
   }
 })
 export default class PlayMusicDemo extends InsightIntentEntryExecutor<string> {
@@ -102,14 +103,14 @@ export default class PlayMusicDemo extends InsightIntentEntryExecutor<string> {
     storage.setOrCreate('songName', this.songName);
     // 根据executeMode参数的不同情况，提供不同拉起PlayMusicPage页面的方式。
     if (this.executeMode == insightIntent.ExecuteMode.UI_ABILITY_FOREGROUND) {
-      this.windowStage?.loadContent("pages/PlayMusicPage", storage);       
+      this.windowStage?.loadContent('pages/PlayMusicPage', storage);       
     } else if (this.executeMode == insightIntent.ExecuteMode.UI_EXTENSION_ABILITY) {
-      this.uiExtensionSession?.loadContent("pages/PlayMusicPage", storage);
+      this.uiExtensionSession?.loadContent('pages/PlayMusicPage', storage);
     }
     // 定义意图的执行结果
     let result: insightIntent.IntentResult<string> = {
       code: 123,
-      result: "result"
+      result: 'result'
     }
     hilog.info(0x0000, LOG_TAG, 'PlayMusicDemo return %{public}s', JSON.stringify(result));
     // 以Promise的方式返回意图执行结果

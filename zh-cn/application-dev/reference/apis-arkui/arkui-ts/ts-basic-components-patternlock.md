@@ -339,7 +339,7 @@ struct PatternLockExample {
 
 ### 示例2（判断密码是否正确）
 
-该示例通过sideLength设置九宫格的大小、circleRadius等属性设置宫格圆点样式、onPatternComplete属性设置密码输入时的回调。 
+该示例通过[sideLength](#sidelength)设置九宫格的大小、[circleRadius](#circleradius)等属性设置宫格圆点样式、[onPatternComplete](#onpatterncomplete)属性设置密码输入时的回调。 
 
 当用户密码输入完成后，按输入的密码不同，给予不同的回应：输入的密码长度小于5时，提示重新输入；第一次输入完成后，提示第二次输入密码；第二次输入完成后，判断两次输入的密码是否相同，相同则提示密码设置成功，否则提示重新输入。 
 

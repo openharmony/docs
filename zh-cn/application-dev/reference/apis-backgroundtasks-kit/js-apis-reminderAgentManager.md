@@ -773,7 +773,7 @@ updateReminder(reminderId: number, reminderReq: ReminderRequest): Promise\<void>
 | -------- | ---------------------------- |
 | 201      | Permission denied.           |
 | 1700003  | The reminder does not exist. |
-| 1700007  | If the input parameter is not a valid parameter. |
+| 1700007  | If the input parameter is not valid parameter. |
 
 **示例**：
 

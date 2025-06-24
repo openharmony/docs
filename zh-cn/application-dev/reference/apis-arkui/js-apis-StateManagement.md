@@ -19,7 +19,7 @@
 ## 导入模块
 
 ```ts
-import { AppStorageV2,PersistenceV2,UIUtils} from '@kit.ArkUI';
+import { AppStorageV2, PersistenceV2, UIUtils } from '@kit.ArkUI';
 ```
 
 ## AppStorageV2
@@ -272,14 +272,19 @@ static&nbsp;save\<T\>(keyOrType:&nbsp;string&nbsp;|&nbsp;TypeConstructorWithArgs
 <!--code_no_check-->
 
 ```ts
+@ObservedV2
+class SampleClass {
+  @Trace p: number = 0;
+}
+
 // 假设PersistenceV2中存在key为key_as2的键，持久化该键值对数据
 PersistenceV2.save('key_as2');
 
 // 假设PersistenceV2中存在key为SampleClass的键，持久化该键值对数据
-PersistenceV2.remove(SampleClass);
+PersistenceV2.save(SampleClass);
 
 // 假设PersistenceV2中不存在key为key_as1的键，无意义的操作
-PersistenceV2.remove('key_as1');
+PersistenceV2.save('key_as1');
 ```
 
 ### notifyOnError
@@ -308,6 +313,8 @@ PersistenceV2.notifyOnError((key: string, reason: string, msg: string) => {
 ```
 
 ## ConnectOptions<sup>18+</sup>
+
+globalConnect参数类型。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -615,6 +622,8 @@ struct SampleComp {
 
 new(...args: any): T
 
+创建并返回一个指定类型T的实例。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -736,15 +745,17 @@ struct Index {
 
 new(): T
 
+创建并返回一个指定类型T的实例。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **返回值：**
 
 | 类型 | 说明                                             |
 | ---- | ------------------------------------------------ |
 | T    | T类型的实例。 |
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **示例：**
 

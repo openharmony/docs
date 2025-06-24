@@ -318,6 +318,23 @@ Allows an application to obtain visible window information of the current screen
 
 **Valid since**: 18
 
+## ohos.permission.kernel.AUTH_AUDIT_EVENT
+
+Allows an enterprise security application to block security audit events.
+
+With this permission, the application can block security audit events, such as events of file creation, file opening, and file deletion.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Supported devices**: PC/2in1
+
+**Valid since**：20
+
 ## ohos.permission.SUPPORT_APP_SERVICE_EXTENSION
 
 Allows an application to be launched as an AppServiceExtension.
@@ -357,6 +374,23 @@ With this permission, the software can obtain 802.1x packets and add information
 Allows an application to install on user 1.
 
 User 1 is a user who supports third-party applications running in singleton mode.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Supported devices**: PC/2in1
+
+**Valid since**：20
+
+## ohos.permission.QUERY_LOCAL_WORKSPACES
+
+Allows a normal enterprise application to query workspace and the list of non-deletable workspaces.
+
+With this permission, the application can query basic workspace information and the list of non-deletable workspaces.
 
 **Permission level**：system_basic
 

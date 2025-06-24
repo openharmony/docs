@@ -1585,21 +1585,6 @@ type HttpProxy = connection.HttpProxy
 | ONLY_V4 | CURL_IPRESOLVE_V4 | 设置此选项后，系统仅解析目标域名的IPv4地址，忽略IPv6地址。     |
 | ONLY_V6 | CURL_IPRESOLVE_V6 | 设置此选项后，系统仅解析目标域名的IPv6地址，忽略IPv4地址。     |
 
-## RemoteValidation<sup>18+</sup>
-
-type RemoteValidation = 'system' | 'skip'
-
-证书颁发机构（CA），用于验证远程服务器的身份，可以通过RemoteValidation配置使用系统CA或跳过验证远程服务器CA。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力**：SystemCapability.Communication.NetStack
-
-|       类型       | 说明            |
-| ---------------- |---------------|
-| 'system' | 表示使用系统CA配置验证。 |
-| 'skip' | 跳过验证远程服务器CA。  |
-
 ## Credential<sup>18+</sup>
 
 会话中服务器身份验证设置所使用的身份验证凭据，包括用户名和密码。

@@ -435,7 +435,9 @@ selectedBackgroundStyle(style: Optional\<PickerBackgroundStyle>)
 
 onChange(callback:&nbsp;(value:&nbsp;string&nbsp;\|&nbsp;string[],&nbsp;index:&nbsp;number&nbsp;\|&nbsp;number[])&nbsp;=&gt;&nbsp;void)
 
-滑动TextPicker文本内容后，选项归位至选中项位置时，触发该回调。当显示文本或图片加文本列表时，value值为选中项中的文本值，当显示图片列表时，value值为空。
+滑动TextPicker文本内容后，选项归位至选中项位置时，触发该回调。不能通过双向绑定的状态变量触发。当显示文本或图片加文本列表时，value值为选中项中的文本值，当显示图片列表时，value值为空。
+
+回调会在滑动动画结束后触发，如果需要快速获取索引值变化，建议使用[onEnterSelectedArea](#onenterselectedarea18)接口。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -452,7 +454,7 @@ onChange(callback:&nbsp;(value:&nbsp;string&nbsp;\|&nbsp;string[],&nbsp;index:&n
 
 onChange(callback: Optional\<OnTextPickerChangeCallback>)
 
-滑动TextPicker文本内容后，选项归位至选中项位置时，触发该回调。与[onChange](#onchange)相比，callback参数新增了对undefined类型的支持。
+滑动TextPicker文本内容后，选项归位至选中项位置时，触发该回调。不能通过双向绑定的状态变量触发。与[onChange](#onchange)相比，callback参数新增了对undefined类型的支持。
 
 回调会在滑动动画结束后触发，如果需要快速获取索引值变化，建议使用[onEnterSelectedArea](#onenterselectedarea18)接口。
 
@@ -569,8 +571,6 @@ type OnTextPickerChangeCallback = (value: string | string[], index: number | num
 
 滑动选中[TextPicker](#textpicker)文本内容后，触发该回调。当显示文本或图片加文本列表时，value值为选中项中的文本值，当显示图片列表时，value值为空。
 
-**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
-
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -590,8 +590,6 @@ type TextPickerScrollStopCallback = (value: string | string[], index: number | n
 
 当显示文本或图片加文本列表时，value值为选中项中的文本值，当显示图片列表时，value值为空。
 
-**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
-
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -610,8 +608,6 @@ type TextPickerEnterSelectedAreaCallback = (value: string | string[], index: num
 滑动[TextPicker](#textpicker)过程中，选项进入分割线区域内，触发该回调。
 
 在多列联动场景中，不建议使用该回调，由于该回调标识的是滑动过程中选项进入分割线区域内的节点，而跟随变化的选项并不涉及滑动，因此，回调的返回值中，仅当前滑动列的值会正常变化，其余未滑动列的值保持不变。
-
-**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -1009,8 +1005,6 @@ struct TextPickerExample {
 
 ```ts
 // xxx.ets
-import { TextPickerModifier } from '@kit.ArkUI';
-
 @Entry
 @Component
 struct TextPickerExample {
@@ -1021,16 +1015,6 @@ struct TextPickerExample {
       ['Text2', 'Text2', 'Text2', 'Text2'],
       ['Text3', 'Text3', 'Text3', 'Text3']
     ]
-  private textPickerModifier: TextPickerModifier = new TextPickerModifier()
-    .selectedBackgroundStyle({
-      borderRadius: {
-        topLeft:8,
-        topRight:8,
-        bottomLeft:8,
-        bottomRight:8
-      },
-      color: "#FFFFEEF6"
-    })
   build() {
     Column() {
       Row() {
@@ -1056,7 +1040,15 @@ struct TextPickerExample {
         .height("10%")
       Row() {
         TextPicker({ range: this.showText2 })
-          .attributeModifier(this.textPickerModifier)
+          .selectedBackgroundStyle({
+            borderRadius: {
+              topLeft:8,
+              topRight:8,
+              bottomLeft:8,
+              bottomRight:8
+            },
+            color: "#FFFFEEF6"
+          })
       }
     }.height('100%')
   }

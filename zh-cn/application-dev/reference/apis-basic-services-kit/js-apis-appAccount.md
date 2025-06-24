@@ -2942,7 +2942,7 @@ addAccount(name: string, callback: AsyncCallback&lt;void&gt;): void
 
 > **说明：** 
 > 
->从 API version 7开始支持，从API version 9开始废弃。建议使用[createAccount](#createaccount9)替代。
+>从API version 7开始支持，从API version 9开始废弃。建议使用[createAccount](#createaccount9)替代。
 
 
 **系统能力：** SystemCapability.Account.AppAccount
@@ -2971,7 +2971,7 @@ addAccount(name: string, extraInfo: string, callback: AsyncCallback&lt;void&gt;)
 根据账号名和额外信息添加应用账号。使用callback异步回调。
 
 > **说明：** 
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[createAccount](#createaccount9-1)替代。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用[createAccount](#createaccount9-1)替代。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -3000,7 +3000,7 @@ addAccount(name: string, extraInfo?: string): Promise&lt;void&gt;
 根据账号名和额外信息添加应用账号。使用callback异步回调。使用Promise异步回调。
 
 > **说明：**  
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[createAccount](#createaccount9-2)替代。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用[createAccount](#createaccount9-2)替代。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -3037,7 +3037,7 @@ addAccountImplicitly(owner: string, authType: string, options: {[key: string]: a
 
 > **说明：**  
 >
-> 从 API version 8开始支持，从API version 9开始废弃。建议使用[createAccountImplicitly](#createaccountimplicitly9)替代。
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[createAccountImplicitly](#createaccountimplicitly9)替代。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -3098,7 +3098,7 @@ deleteAccount(name: string, callback: AsyncCallback&lt;void&gt;): void
 
 > **说明：** 
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[removeAccount](#removeaccount9)替代。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用[removeAccount](#removeaccount9)替代。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -3127,7 +3127,7 @@ deleteAccount(name: string): Promise&lt;void&gt;
 
 > **说明：** 
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[removeAccount](#removeaccount9)替代。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用[removeAccount](#removeaccount9)替代。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -3162,7 +3162,7 @@ disableAppAccess(name: string, bundleName: string, callback: AsyncCallback&lt;vo
 
 > **说明：** 
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[setAppAccess](#setappaccess9)替代。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用[setAppAccess](#setappaccess9)替代。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -3192,7 +3192,7 @@ disableAppAccess(name: string, bundleName: string): Promise&lt;void&gt;
 
 > **说明：** 
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[setAppAccess](#setappaccess9-1)替代。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用[setAppAccess](#setappaccess9-1)替代。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -3229,7 +3229,7 @@ enableAppAccess(name: string, bundleName: string, callback: AsyncCallback&lt;voi
 
 > **说明：** 
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[setAppAccess](#setappaccess9)替代。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用[setAppAccess](#setappaccess9)替代。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -3263,7 +3263,7 @@ enableAppAccess(name: string, bundleName: string): Promise&lt;void&gt;
 
 > **说明：** 
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[setAppAccess](#setappaccess9-1)替代。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用[setAppAccess](#setappaccess9-1)替代。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -3300,7 +3300,7 @@ checkAppAccountSyncEnable(name: string, callback: AsyncCallback&lt;boolean&gt;):
 
 > **说明：** 
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[checkDataSyncEnabled](#checkdatasyncenabled9)替代。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用[checkDataSyncEnabled](#checkdatasyncenabled9)替代。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -3335,7 +3335,7 @@ checkAppAccountSyncEnable(name: string): Promise&lt;boolean&gt;
 
 > **说明：** 
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[checkDataSyncEnabled](#checkdatasyncenabled9-1)替代。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用[checkDataSyncEnabled](#checkdatasyncenabled9-1)替代。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -3373,7 +3373,7 @@ setAccountCredential(name: string, credentialType: string, credential: string,ca
 
 > **说明：** 
 >
-> 从 API version 7开始支持，从API version 9开始废弃，建议使用[setCredential](#setcredential9)替代。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[setCredential](#setcredential9)替代。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -3408,7 +3408,7 @@ setAccountCredential(name: string, credentialType: string, credential: string): 
 
 > **说明：** 
 >
-> 从 API version 7开始支持，从API version 9开始废弃，建议使用[setCredential](#setcredential9-1)替代。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[setCredential](#setcredential9-1)替代。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -3446,7 +3446,7 @@ setAccountExtraInfo(name: string, extraInfo: string, callback: AsyncCallback&lt;
 
 > **说明：** 
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[setCustomData](#setcustomdata9)替代。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用[setCustomData](#setcustomdata9)替代。
 
 
 **系统能力：** SystemCapability.Account.AppAccount
@@ -3481,7 +3481,7 @@ setAccountExtraInfo(name: string, extraInfo: string): Promise&lt;void&gt;
 
 > **说明：** 
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[setCustomData](#setcustomdata9-1)替代。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用[setCustomData](#setcustomdata9-1)替代。
 
 
 **系统能力：** SystemCapability.Account.AppAccount
@@ -3519,7 +3519,7 @@ setAppAccountSyncEnable(name: string, isEnable: boolean, callback: AsyncCallback
 
 > **说明：** 
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[setDataSyncEnabled](#setdatasyncenabled9)替代。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用[setDataSyncEnabled](#setdatasyncenabled9)替代。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -3555,7 +3555,7 @@ setAppAccountSyncEnable(name: string, isEnable: boolean): Promise&lt;void&gt;
 
 > **说明：** 
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[setDataSyncEnabled](#setdatasyncenabled9-1)替代。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用[setDataSyncEnabled](#setdatasyncenabled9-1)替代。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -3594,7 +3594,7 @@ setAssociatedData(name: string, key: string, value: string, callback: AsyncCallb
 
 > **说明：** 
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[setCustomData](#setcustomdata9)替代。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用[setCustomData](#setcustomdata9)替代。
 
 
 **系统能力：** SystemCapability.Account.AppAccount
@@ -3630,7 +3630,7 @@ setAssociatedData(name: string, key: string, value: string): Promise&lt;void&gt;
 
 > **说明：** 
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[setCustomData](#setcustomdata9-1)替代。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用[setCustomData](#setcustomdata9-1)替代。
 
 
 **系统能力：** SystemCapability.Account.AppAccount
@@ -3669,7 +3669,7 @@ getAllAccessibleAccounts(callback: AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&
 
 > **说明：** 
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[getAllAccounts](#getallaccounts9)替代。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用[getAllAccounts](#getallaccounts9)替代。
 
 **需要权限：** ohos.permission.GET_ALL_APP_ACCOUNTS，该权限仅系统应用可申请。
 
@@ -3700,7 +3700,7 @@ getAllAccessibleAccounts(): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 
 > **说明：** 
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[getAllAccounts](#getallaccounts9-1)替代。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用[getAllAccounts](#getallaccounts9-1)替代。
 
 **需要权限：** ohos.permission.GET_ALL_APP_ACCOUNTS，该权限仅系统应用可申请。
 
@@ -3732,7 +3732,7 @@ getAllAccounts(owner: string, callback: AsyncCallback&lt;Array&lt;AppAccountInfo
 
 > **说明：** 
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[getAccountsByOwner](#getaccountsbyowner9)替代。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用[getAccountsByOwner](#getaccountsbyowner9)替代。
 
 **需要权限：** ohos.permission.GET_ALL_APP_ACCOUNTS，该权限仅系统应用可申请。
 
@@ -3765,7 +3765,7 @@ getAllAccounts(owner: string): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 
 > **说明：** 
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[getAccountsByOwner](#getaccountsbyowner9-1)替代。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用[getAccountsByOwner](#getaccountsbyowner9-1)替代。
 
 **需要权限：** ohos.permission.GET_ALL_APP_ACCOUNTS，该权限仅系统应用可申请。
 
@@ -3804,7 +3804,7 @@ getAccountCredential(name: string, credentialType: string, callback: AsyncCallba
 
 > **说明：** 
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[getCredential](#getcredential9)替代。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用[getCredential](#getcredential9)替代。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -3838,7 +3838,7 @@ getAccountCredential(name: string, credentialType: string): Promise&lt;string&gt
 
 > **说明：** 
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[getCredential](#getcredential9-1)替代。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用[getCredential](#getcredential9-1)替代。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -3875,7 +3875,7 @@ getAccountExtraInfo(name: string, callback: AsyncCallback&lt;string&gt;): void
 
 > **说明：** 
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[getCustomData](#getcustomdata9)替代。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用[getCustomData](#getcustomdata9)替代。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -3908,7 +3908,7 @@ getAccountExtraInfo(name: string): Promise&lt;string&gt;
 
 > **说明：** 
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[getCustomData](#getcustomdata9-1)替代。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用[getCustomData](#getcustomdata9-1)替代。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -3944,7 +3944,7 @@ getAssociatedData(name: string, key: string, callback: AsyncCallback&lt;string&g
 
 > **说明：** 
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[getCustomData](#getcustomdata9)替代。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用[getCustomData](#getcustomdata9)替代。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -3978,7 +3978,7 @@ getAssociatedData(name: string, key: string): Promise&lt;string&gt;
 
 > **说明：** 
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[getCustomData](#getcustomdata9-1)替代。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用[getCustomData](#getcustomdata9-1)替代。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -4015,7 +4015,7 @@ on(type: 'change', owners: Array&lt;string&gt;, callback: Callback&lt;Array&lt;A
 
 > **说明：** 
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[on('accountChange')](#onaccountchange9)替代。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用[on('accountChange')](#onaccountchange9)替代。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -4049,7 +4049,7 @@ off(type: 'change', callback?: Callback&lt;Array&lt;AppAccountInfo&gt;&gt;): voi
 
 > **说明：** 
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[off('accountChange')](#offaccountchange9)替代。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用[off('accountChange')](#offaccountchange9)替代。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -4085,7 +4085,7 @@ authenticate(name: string, owner: string, authType: string, options: {[key: stri
 
 > **说明：** 
 >
-> 从 API version 8开始支持，从API version 9开始废弃。建议使用[auth](#auth9)替代。
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[auth](#auth9)替代。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -4147,7 +4147,7 @@ getOAuthToken(name: string, owner: string, authType: string, callback: AsyncCall
 
 > **说明：** 
 >
-> 从 API version 8开始支持，从API version 9开始废弃。建议使用[getAuthToken](#getauthtoken9)替代。
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[getAuthToken](#getauthtoken9)替代。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -4183,7 +4183,7 @@ getOAuthToken(name: string, owner: string, authType: string): Promise&lt;string&
 
 > **说明：** 
 >
-> 从 API version 8开始支持，从API version 9开始废弃。建议使用[getAuthToken](#getauthtoken9-1)替代。
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[getAuthToken](#getauthtoken9-1)替代。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -4221,7 +4221,7 @@ setOAuthToken(name: string, authType: string, token: string, callback: AsyncCall
 
 > **说明：** 
 >
-> 从 API version 8开始支持，从API version 9开始废弃。建议使用[setAuthToken](#setauthtoken9)替代。
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[setAuthToken](#setauthtoken9)替代。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -4256,7 +4256,7 @@ setOAuthToken(name: string, authType: string, token: string): Promise&lt;void&gt
 
 > **说明：** 
 >
-> 从 API version 8开始支持，从API version 9开始废弃。建议使用[setAuthToken](#setauthtoken9-1)替代。
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[setAuthToken](#setauthtoken9-1)替代。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -4294,7 +4294,7 @@ deleteOAuthToken(name: string, owner: string, authType: string, token: string, c
 
 > **说明：** 
 >
-> 从 API version 8开始支持，从API version 9开始废弃。建议使用[deleteAuthToken](#deleteauthtoken9)替代。
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[deleteAuthToken](#deleteauthtoken9)替代。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -4331,7 +4331,7 @@ deleteOAuthToken(name: string, owner: string, authType: string, token: string): 
 
 > **说明：** 
 >
-> 从 API version 8开始支持，从API version 9开始废弃。建议使用[deleteAuthToken](#deleteauthtoken9-1)替代。
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[deleteAuthToken](#deleteauthtoken9-1)替代。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -4370,7 +4370,7 @@ setOAuthTokenVisibility(name: string, authType: string, bundleName: string, isVi
 
 > **说明：** 
 >
-> 从 API version 8开始支持，从API version 9开始废弃。建议使用[setAuthTokenVisibility](#setauthtokenvisibility9)替代。
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[setAuthTokenVisibility](#setauthtokenvisibility9)替代。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -4407,7 +4407,7 @@ setOAuthTokenVisibility(name: string, authType: string, bundleName: string, isVi
 
 > **说明：** 
 >
-> 从 API version 8开始支持，从API version 9开始废弃。建议使用[setAuthTokenVisibility](#setauthtokenvisibility9-1)替代。
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[setAuthTokenVisibility](#setauthtokenvisibility9-1)替代。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -4446,7 +4446,7 @@ checkOAuthTokenVisibility(name: string, authType: string, bundleName: string, ca
 
 > **说明：** 
 >
-> 从 API version 8开始支持，从API version 9开始废弃。建议使用[checkAuthTokenVisibility](#checkauthtokenvisibility9)替代。
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[checkAuthTokenVisibility](#checkauthtokenvisibility9)替代。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -4482,7 +4482,7 @@ checkOAuthTokenVisibility(name: string, authType: string, bundleName: string): P
 
 > **说明：** 
 >
-> 从 API version 8开始支持，从API version 9开始废弃。建议使用[checkAuthTokenVisibility](#checkauthtokenvisibility9-1)替代。
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[checkAuthTokenVisibility](#checkauthtokenvisibility9-1)替代。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -4521,7 +4521,7 @@ getAllOAuthTokens(name: string, owner: string, callback: AsyncCallback&lt;Array&
 
 > **说明：** 
 >
-> 从 API version 8开始支持，从API version 9开始废弃。建议使用[getAllAuthTokens](#getallauthtokens9)替代。
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[getAllAuthTokens](#getallauthtokens9)替代。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -4556,7 +4556,7 @@ getAllOAuthTokens(name: string, owner: string): Promise&lt;Array&lt;OAuthTokenIn
 
 > **说明：** 
 >
-> 从 API version 8开始支持，从API version 9开始废弃。建议使用[getAllAuthTokens](#getallauthtokens9-1)替代。
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[getAllAuthTokens](#getallauthtokens9-1)替代。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -4594,7 +4594,7 @@ getOAuthList(name: string, authType: string, callback: AsyncCallback&lt;Array&lt
 
 > **说明：** 
 >
-> 从 API version 8开始支持，从API version 9开始废弃。建议使用[getAuthList](#getauthlist9)替代。
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[getAuthList](#getauthlist9)替代。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -4628,7 +4628,7 @@ getOAuthList(name: string, authType: string): Promise&lt;Array&lt;string&gt;&gt;
 
 > **说明：** 
 >
-> 从 API version 8开始支持，从API version 9开始废弃。建议使用[getAuthList](#getauthlist9-1)替代。
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[getAuthList](#getauthlist9-1)替代。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -4665,7 +4665,7 @@ getAuthenticatorCallback(sessionId: string, callback: AsyncCallback&lt;Authentic
 
 > **说明：** 
 >
-> 从 API version 8开始支持，从API version 9开始废弃。建议使用[getAuthCallback](#getauthcallback9)替代。
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[getAuthCallback](#getauthcallback9)替代。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -4710,7 +4710,7 @@ getAuthenticatorCallback(sessionId: string): Promise&lt;AuthenticatorCallback&gt
 
 > **说明：** 
 >
-> 从 API version 8开始支持，从API version 9开始废弃。建议使用[getAuthCallback](#getauthcallback9-1)替代。
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[getAuthCallback](#getauthcallback9-1)替代。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -4758,7 +4758,7 @@ getAuthenticatorInfo(owner: string, callback: AsyncCallback&lt;AuthenticatorInfo
 
 > **说明：** 
 >
-> 从 API version 8开始支持，从API version 9开始废弃。建议使用[queryAuthenticatorInfo](#queryauthenticatorinfo9)替代。
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[queryAuthenticatorInfo](#queryauthenticatorinfo9)替代。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -4792,7 +4792,7 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 > **说明：** 
 >
-> 从 API version 8开始支持，从API version 9开始废弃。建议使用[queryAuthenticatorInfo](#queryauthenticatorinfo9-1)替代。
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[queryAuthenticatorInfo](#queryauthenticatorinfo9-1)替代。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -4850,7 +4850,7 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 > **说明：** 
 >
-> 从 API version 8开始支持，从API version 9开始废弃。建议使用[AuthTokenInfo](#authtokeninfo9)替代。
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[AuthTokenInfo](#authtokeninfo9)替代。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
 
@@ -5115,7 +5115,7 @@ OAuth认证器回调接口。
 
 > **说明：** 
 >
-> 从 API version 8开始支持，从API version 9开始废弃。建议使用[AuthCallback](#authcallback9)替代。
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[AuthCallback](#authcallback9)替代。
 
 ### onResult<sup>8+</sup>
 
@@ -5218,7 +5218,7 @@ addAccountImplicitly(authType: string, callerBundleName: string, options: {[key:
 
 > **说明：** 
 >
-> 从 API version 8开始支持, 从API version 9开始废弃。建议使用[createAccountImplicitly](#createaccountimplicitly9-2)替代。
+> 从API version 8开始支持, 从API version 9开始废弃。建议使用[createAccountImplicitly](#createaccountimplicitly9-2)替代。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -5256,7 +5256,7 @@ authenticate(name: string, authType: string, callerBundleName: string, options: 
 
 > **说明：** 
 >
-> 从 API version 8开始支持, 从API version 9开始废弃。建议使用[auth](#auth9-2)替代。
+> 从API version 8开始支持, 从API version 9开始废弃。建议使用[auth](#auth9-2)替代。
 
 **系统能力：** SystemCapability.Account.AppAccount
 

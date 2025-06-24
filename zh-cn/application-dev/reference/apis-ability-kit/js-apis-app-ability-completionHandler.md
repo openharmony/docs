@@ -39,6 +39,8 @@ onRequestSuccess(elementName: ElementName, message: string): void
 
 拉端成功时的回调函数。
 
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
@@ -57,6 +59,8 @@ onRequestSuccess(elementName: ElementName, message: string): void
 onRequestFailure(elementName: ElementName, message: string): void
 
 拉端失败时的回调函数。
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

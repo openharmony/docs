@@ -123,8 +123,8 @@
     - [Print_Range](_print___range.md)
     - [Pasteboard_ProgressInfo](capi-pasteboard-progressinfo.md)
     - [Pasteboard_GetDataParams](capi-pasteboard-getdataparams.md)
-    - [OH_PasteboardObserver](capi-oh-pasteboardobserver.md)
-    - [OH_Pasteboard](capi-oh-pasteboard.md)
+    - [OH_PasteboardObserver](capi-pasteboard-oh-pasteboardobserver.md)
+    - [OH_Pasteboard](capi-pasteboard-oh-pasteboard.md)
 - 错误码<!--basic-services-arkts-errcode-->
   - [USB服务错误码](errorcode-usb.md)
   - [RunningLock锁错误码](errorcode-runninglock.md)

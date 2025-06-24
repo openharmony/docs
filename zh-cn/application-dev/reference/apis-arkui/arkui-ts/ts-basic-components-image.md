@@ -199,7 +199,7 @@ interpolation(value: ImageInterpolation)
 
 | 参数名 | 类型                                      | 必填 | 说明                                                |
 | ------ | ----------------------------------------- | ---- | --------------------------------------------------- |
-| value  | [ImageInterpolation](#imageinterpolation) | 是   | 图片的插值效果。<br/>默认值：ImageInterpolation.Low |
+| value  | [ImageInterpolation](#imageinterpolation) | 是   | 图片的插值效果。<br/>默认值：ImageInterpolation.Low<br/>设置undefined时，取值为ImageInterpolation.None。 |
 
 ### renderMode
 
@@ -546,7 +546,7 @@ orientation(orientation: ImageRotateOrientation)
 
 | 参数名 | 类型                                    | 必填 | 说明                             |
 | ------ | --------------------------------------- | ---- | -------------------------------- |
-| orientation  | [ImageRotateOrientation](#imagerotateorientation14) | 是   | 图像内容的显示方向。<br/>不支持gif和svg类型的图片。<br/>如果需要显示携带旋转角度信息或翻转信息的图片，建议使用ImageRotateOrientation.AUTO进行设置。<br/>默认值：ImageRotateOrientation.UP |
+| orientation  | [ImageRotateOrientation](#imagerotateorientation14) | 是   | 图像内容的显示方向。<br/>不支持gif和svg类型的图片。<br/>如果需要显示携带旋转角度信息或翻转信息的图片，建议使用ImageRotateOrientation.AUTO进行设置。<br/>默认值：ImageRotateOrientation.UP<br/>设置undefined时，取值为ImageRotateOrientation.AUTO。 |
 
 ### hdrBrightness<sup>19+</sup>
 
@@ -937,9 +937,9 @@ struct ImageExample1 {
 
 ![zh-cn_image_0000001592882500](figures/zh-cn_image_0000001592882500.gif)
 
-### 示例2（下载与显示网络图片）
+### 示例2（下载与显示静态网络图片）
 
-加载网络图片时，默认网络超时是5分钟，建议使用alt配置加载时的占位图。使用[HTTP](../../../network/http-request.md)工具包发送网络请求，接着将返回的数据解码为Image组件中的`PixelMap`，图片开发可参考[图片处理](../../../media/image/image-overview.md)。
+加载网络图片时，默认网络超时是5分钟，建议使用alt配置加载时的占位图。使用[HTTP](../../../network/http-request.md)工具包发送网络请求，接着将返回的数据解码为Image组件中的`PixelMap`，加载gif到`PixelMap`时，gif显示为静态图。图片开发可参考[图片处理](../../../media/image/image-overview.md)。
 
 使用网络图片时，需要申请权限ohos.permission.INTERNET。具体申请方式请参考[声明权限](../../../security/AccessToken/declare-permissions.md)。
 
@@ -999,7 +999,48 @@ struct ImageExample2 {
 
 ![zh-cn_image_0000001607845173](figures/zh-cn_image_view2.png)
 
-### 示例3（为图片添加事件）
+### 示例3（下载与显示网络gif图片）
+
+该示例使用[cacheDownload.download](../../apis-basic-services-kit/js-apis-request-cacheDownload.md#cachedownloaddownload)接口下载网络gif图片。
+
+使用网络图片时，需要申请权限ohos.permission.INTERNET。具体申请方式请参考[声明权限](../../../security/AccessToken/declare-permissions.md)。
+
+```ts
+import { cacheDownload } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct Index {
+  @State src: string = 'https://www.example.com/xxx.gif'; // 请填写一个具体的网络图片地址。
+
+  async aboutToAppear(): Promise<void> {
+    // 提供缓存下载任务的配置选项。
+    let options: cacheDownload.CacheDownloadOptions = {};
+    try {
+      // 进行缓存下载，资源若下载成功会被缓存到应用内存或应用沙箱目录的特定文件中。
+      cacheDownload.download(this.src, options);
+      console.error(`successs to download the resource. `);
+    } catch (err) {
+      console.error(`Failed to download the resource. err: ${JSON.stringify(err)}`);
+    }
+  }
+
+  build() {
+    Column() {
+      // 若src指定的是网络图片且已成功下载并缓存，则本次显示无需重复下载。
+      Image(this.src)
+        .width(100)
+        .height(100)
+        .objectFit(ImageFit.Cover)
+        .borderWidth(1)
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+### 示例4（为图片添加事件）
 
 该示例为图片添加[onClick](ts-universal-events-click.md#onclick)和[onFinish](#onfinish)事件。
 
@@ -1037,7 +1078,7 @@ struct ImageExample3 {
 
 ![zh-cn_image_0000001607845173](figures/zh-cn_image_0000001607845173.gif)
 
-### 示例4（开启图像AI分析）
+### 示例5（开启图像AI分析）
 <!--RP2-->
 该示例使用[enableAnalyzer](#enableanalyzer11)接口开启图像AI分析。
 
@@ -1091,7 +1132,7 @@ struct ImageExample4 {
 
 ![zh-cn_image_0000001607845173](figures/zh-cn_image_view4.gif)
 <!--RP2End-->
-### 示例5（通过slice拉伸图片）
+### 示例6（通过slice拉伸图片）
 
 该示例通过[resizable](#resizable11)属性的slice选项，调整不同方向对图片进行拉伸。
 
@@ -1158,7 +1199,7 @@ struct Index {
 
 ![imageResizable](figures/imageResizable.gif)
 
-### 示例6（通过lattice拉伸图片）
+### 示例7（通过lattice拉伸图片）
 
 该示例使用[resizable](#resizable11)属性的lattice选项，使用矩形网格对象对图片进行拉伸。
 
@@ -1172,7 +1213,7 @@ struct drawingLatticeTest {
   private yDivs: Array<number> = [1, 2, 200];
   private fXCount: number = 3;
   private fYCount: number = 3;
-  private DrawingLatticeFirst: DrawingLattice =
+  private drawingLatticeFirst: DrawingLattice =
     drawing.Lattice.createImageLattice(this.xDivs, this.yDivs, this.fXCount, this.fYCount);
 
   build() {
@@ -1191,7 +1232,7 @@ struct drawingLatticeTest {
             .width(260)
             .height(260)
             .resizable({
-              lattice: this.DrawingLatticeFirst
+              lattice: this.drawingLatticeFirst
             })
         }.width('100%')
       }.width('100%')
@@ -1202,7 +1243,7 @@ struct drawingLatticeTest {
 
 ![imageResizableLattice](figures/imageResizableLattice.png)
 
-### 示例7（播放PixelMap数组动画）
+### 示例8（播放PixelMap数组动画）
 
 该示例通过[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)对象播放PixelMap数组动画。
 
@@ -1213,7 +1254,7 @@ import { image } from '@kit.ImageKit';
 @Entry
 @Component
 struct ImageExample {
-  pixelMaps: Array<PixelMap>  = [];
+  pixelMaps: PixelMap[] = [];
   options: AnimationOptions = { iterations: 1 };
   @State animated: AnimatedDrawableDescriptor | undefined = undefined;
 
@@ -1228,7 +1269,7 @@ struct ImageExample {
         Image(this.animated)
           .width('500px').height('500px')
           .onFinish(() => {
-            console.info("finish");
+            console.info('finish');
           })
       }.height('50%')
       Row() {
@@ -1251,7 +1292,7 @@ struct ImageExample {
       id: resource.id
     });
     let imageSource = image.createImageSource(unit8Array?.buffer.slice(0, unit8Array.buffer.byteLength));
-    let createPixelMap: Array<image.PixelMap> = await imageSource.createPixelMapList({
+    let createPixelMap: image.PixelMap[] = await imageSource.createPixelMapList({
       desiredPixelFormat: image.PixelMapFormat.RGBA_8888
     });
     await imageSource.release();
@@ -1273,7 +1314,7 @@ struct ImageExample {
   }
 
   private async getPixelMaps() {
-    let myPixelMaps:Array<PixelMap> = await this.getPixmapListFromMedia($r('app.media.mountain')); //添加图片
+    let myPixelMaps:PixelMap[] = await this.getPixmapListFromMedia($r('app.media.mountain')); //添加图片
     myPixelMaps.push(await this.getPixmapFromMedia($r('app.media.sky')));
     myPixelMaps.push(await this.getPixmapFromMedia($r('app.media.clouds')));
     myPixelMaps.push(await this.getPixmapFromMedia($r('app.media.landscape')));
@@ -1284,7 +1325,7 @@ struct ImageExample {
 
 ![zh-cn_image_0000001607845173](figures/zh-cn_image_view6.gif)
 
-### 示例8（为图像设置颜色滤镜效果）
+### 示例9（为图像设置颜色滤镜效果）
 
 该示例通过[colorFilter](#colorfilter9)属性实现了给图像设置颜色滤镜效果。
 
@@ -1298,36 +1339,45 @@ struct ImageExample3 {
   private imageTwo: Resource = $r('app.media.2');
   @State src: Resource = this.imageOne;
   @State src2: Resource = this.imageTwo;
-  private ColorFilterMatrix: number[] = [1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0];
-  private color: common2D.Color = { alpha: 255, red: 255, green: 0, blue: 0 };
-  @State DrawingColorFilterFirst: ColorFilter | undefined = undefined;
-  @State DrawingColorFilterSecond: ColorFilter | undefined = undefined;
-  @State DrawingColorFilterThird: ColorFilter | undefined = undefined;
+  private colorFilterMatrix: number[] = [1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0];
+  private color: common2D.Color = {
+    alpha: 255,
+    red: 255,
+    green: 0,
+    blue: 0
+  };
+  @State drawingColorFilterFirst: ColorFilter | undefined = undefined;
+  @State drawingColorFilterSecond: ColorFilter | undefined = undefined;
+  @State drawingColorFilterThird: ColorFilter | undefined = undefined;
 
   build() {
     Column() {
       Image(this.src)
         .width(100)
         .height(100)
-        .colorFilter(this.DrawingColorFilterFirst)
+        .colorFilter(this.drawingColorFilterFirst)
         .onClick(()=>{
-          this.DrawingColorFilterFirst = drawing.ColorFilter.createBlendModeColorFilter(this.color, drawing.BlendMode.SRC_IN);
+          this.drawingColorFilterFirst =
+            drawing.ColorFilter.createBlendModeColorFilter(this.color, drawing.BlendMode.SRC_IN);
         })
 
       Image(this.src2)
         .width(100)
         .height(100)
-        .colorFilter(this.DrawingColorFilterSecond)
+        .colorFilter(this.drawingColorFilterSecond)
         .onClick(()=>{
-          this.DrawingColorFilterSecond = new ColorFilter(this.ColorFilterMatrix);
+          this.drawingColorFilterSecond = new ColorFilter(this.ColorFilterMatrix);
         })
 
       //当加载图片为SVG格式时
       Image($r('app.media.test_self'))
-        .width(110).height(110).margin(15)
-        .colorFilter(this.DrawingColorFilterThird)
+        .width(110)
+        .height(110)
+        .margin(15)
+        .colorFilter(this.drawingColorFilterThird)
         .onClick(()=>{
-          this.DrawingColorFilterThird = drawing.ColorFilter.createBlendModeColorFilter(this.color, drawing.BlendMode.SRC_IN);
+          this.drawingColorFilterThird =
+            drawing.ColorFilter.createBlendModeColorFilter(this.color, drawing.BlendMode.SRC_IN);
         })
     }
   }
@@ -1335,7 +1385,7 @@ struct ImageExample3 {
 ```
 ![imageSetColorFilter](figures/imageSetColorFilter.gif)
 
-### 示例9（为图像设置填充效果）
+### 示例10（为图像设置填充效果）
 
 该示例通过[objectFit](#objectfit)属性为图像设置填充效果。
 
@@ -1382,7 +1432,7 @@ struct ImageExample{
 
 ![imageResizable](figures/imageSetFit.gif)
 
-### 示例10（切换显示不同类型图片）
+### 示例11（切换显示不同类型图片）
 
 该示例展示了[ResourceStr](ts-types.md#resourcestr)类型与[ImageContent](#imagecontent12)类型作为数据源的显示图片效果。
 
@@ -1411,7 +1461,7 @@ struct ImageContentExample {
 
 ![imageContent](figures/zh-cn_image_view9.gif)
 
-### 示例11（配置隐私隐藏）
+### 示例12（配置隐私隐藏）
 
 该示例通过[privacySensitive](#privacysensitive12)属性展示了如何配置隐私隐藏，效果展示需要卡片框架支持。
 
@@ -1421,21 +1471,21 @@ struct ImageContentExample {
 struct ImageExample {
   build() {
     Column({ space: 10 }) {
-      Image($r("app.media.startIcon"))
+      Image($r('app.media.startIcon'))
         .width(50)
         .height(50)
         .margin({top :30})
         .privacySensitive(true)
     }
     .alignItems(HorizontalAlign.Center)
-    .width("100%")
+    .width('100%')
   }
 }
 ```
 
 ![imageContent](figures/zh-cn_image_view10.gif)
 
-### 示例12（为图片设置扫光效果）
+### 示例13（为图片设置扫光效果）
 
 该示例通过[linearGradient](./ts-basic-components-datapanel.md#lineargradient10)接口和[animateTo()](./ts-explicit-animation.md)接口实现了给图片设置扫光效果。
 
@@ -1523,7 +1573,7 @@ struct ImageExample11 {
 
 ![imageContent](figures/imageScanEffect.gif)
 
-### 示例13（为图片添加变换效果）
+### 示例14（为图片添加变换效果）
 
 该示例通过[imageMatrix](#imagematrix15)和[objectFit](#objectfit)属性，为图片添加旋转和平移的效果。
 
@@ -1549,33 +1599,33 @@ struct Test {
     Row() {
       Column({ space: 50 }) {
         Column({ space: 5 }) {
-          Image($r("app.media.example"))
+          Image($r('app.media.example'))
             .border({ width:2, color: Color.Black })
             .objectFit(ImageFit.Contain)
             .width(150)
             .height(150)
-          Text("图片无变换")
+          Text('图片无变换')
             .fontSize('25px')
         }
         Column({ space: 5 }) {
-          Image($r("app.media.example"))
+          Image($r('app.media.example'))
             .border({ width:2, color: Color.Black })
             .objectFit(ImageFit.None)
             .translate({ x: 10, y: 10 })
             .scale({ x: 0.5, y: 0.5 })
             .width(100)
             .height(100)
-          Text("Image直接变换，默认显示图源左上角。")
+          Text('Image直接变换，默认显示图源左上角。')
             .fontSize('25px')
         }
         Column({ space: 5 }) {
-          Image($r("app.media.example"))
+          Image($r('app.media.example'))
             .objectFit(ImageFit.MATRIX)
             .imageMatrix(this.matrix1)
             .border({ width:2, color: Color.Black })
             .width(150)
             .height(150)
-          Text("通过imageMatrix变换，调整图源位置，实现最佳呈现。")
+          Text('通过imageMatrix变换，调整图源位置，实现最佳呈现。')
             .fontSize('25px')
         }
       }
@@ -1587,7 +1637,7 @@ struct Test {
 
 ![imageMatrix](figures/imageMatrix.jpeg)
 
-### 示例14（通过sourceSize设置图片解码尺寸）
+### 示例15（通过sourceSize设置图片解码尺寸）
 
 该示例通过[sourceSize](ts-basic-components-image.md#sourcesize)接口自定义图片的解码尺寸。
 
@@ -1598,13 +1648,13 @@ struct Index {
   @State borderRadiusValue: number = 10;
   build() {
     Column() {
-      Image($r("app.media.sky"))
+      Image($r('app.media.sky'))
         .sourceSize({width:1393, height:1080})
         .height(300)
         .width(300)
         .objectFit(ImageFit.Contain)
         .borderWidth(1)
-      Image($r("app.media.sky"))
+      Image($r('app.media.sky'))
         .sourceSize({width:13, height:10})
         .height(300)
         .width(300)
@@ -1619,7 +1669,7 @@ struct Index {
 
 ![sourceSizeExample](figures/sourceSizeExample.png)
 
-### 示例15（通过renderMode设置图片的渲染模式）
+### 示例16（通过renderMode设置图片的渲染模式）
 
 该示例通过[renderMode](ts-basic-components-image.md#rendermode)接口设置图片渲染模式为黑白模式。
 
@@ -1630,7 +1680,7 @@ struct Index {
   @State borderRadiusValue: number = 10;
   build() {
     Column() {
-      Image($r("app.media.sky"))
+      Image($r('app.media.sky'))
         .renderMode(ImageRenderMode.Template)
         .height(300)
         .width(300)
@@ -1645,7 +1695,7 @@ struct Index {
 
 ![renderModeExample](figures/renderModeExample.png)
 
-### 示例16（通过objectRepeat设置图片的重复样式）
+### 示例17（通过objectRepeat设置图片的重复样式）
 
 该示例通过[objectRepeat](ts-basic-components-image.md#objectrepeat)接口在竖直轴上重复绘制图片。
 
@@ -1656,7 +1706,7 @@ struct Index {
   @State borderRadiusValue: number = 10;
   build() {
     Column() {
-      Image($r("app.media.sky"))
+      Image($r('app.media.sky'))
         .objectRepeat(ImageRepeat.Y)
         .height('90%')
         .width('90%')
@@ -1671,7 +1721,7 @@ struct Index {
 
 ![objectRepeatExample](figures/objectRepeatExample.png)
 
-### 示例17（设置SVG图片的填充颜色）
+### 示例18（设置SVG图片的填充颜色）
 
 该示例通过[fillColor](#fillcolor15)属性为SVG图片设置不同颜色的填充效果。
 
@@ -1681,28 +1731,28 @@ struct Index {
 struct Index {
   build() {
     Column() {
-      Text("不设置fillColor")
-      Image($r("app.media.svgExample"))
+      Text('不设置fillColor')
+      Image($r('app.media.svgExample'))
         .height(100)
         .width(100)
         .objectFit(ImageFit.Contain)
         .borderWidth(1)
-      Text("fillColor传入ColorContent.ORIGIN")
-      Image($r("app.media.svgExample"))
+      Text('fillColor传入ColorContent.ORIGIN')
+      Image($r('app.media.svgExample'))
         .height(100)
         .width(100)
         .objectFit(ImageFit.Contain)
         .borderWidth(1)
         .fillColor(ColorContent.ORIGIN)
-      Text("fillColor传入Color.Blue")
-      Image($r("app.media.svgExample"))
+      Text('fillColor传入Color.Blue')
+      Image($r('app.media.svgExample'))
         .height(100)
         .width(100)
         .objectFit(ImageFit.Contain)
         .borderWidth(1)
         .fillColor(Color.Blue)
-      Text("fillColor传入undefined")
-      Image($r("app.media.svgExample"))
+      Text('fillColor传入undefined')
+      Image($r('app.media.svgExample'))
         .height(100)
         .width(100)
         .objectFit(ImageFit.Contain)
@@ -1717,7 +1767,7 @@ struct Index {
 
 ![fillColorExample](figures/fillColorExample.png)
 
-### 示例18（设置HDR图源动态提亮）
+### 示例19（设置HDR图源动态提亮）
 
 该示例通过[hdrBrightness](#hdrbrightness19)属性调整HDR图源的亮度，将hdrBrightness从0调整到1。
 
@@ -1752,7 +1802,7 @@ struct Index {
         .height('auto')
         .margin({top:160})
         .hdrBrightness(this.bright) // 设置图片的HDR亮度，值由bright状态控制
-      Button("图片动态提亮 0->1")
+      Button('图片动态提亮 0->1')
         .onClick(() => {
           // 动画过渡，切换亮度值
           this.getUIContext()?.animateTo({}, () => {
@@ -1766,7 +1816,7 @@ struct Index {
 }
 ```
 
-### 示例19（设置图片是否跟随系统语言方向）
+### 示例20（设置图片是否跟随系统语言方向）
 
 该示例通过[matchTextDirection](#matchtextdirection)接口，设置手机语言为维语时图片是否显示镜像翻转显示效果。
 
@@ -1797,7 +1847,7 @@ struct Index {
 
 ![matchTextDirection](figures/matchTextDirection.png)
 
-### 示例20（设置图像内容的显示方向）
+### 示例21（设置图像内容的显示方向）
 
 该示例通过[orientation](#orientation14)属性，设置图像内容的显示方向。
 
@@ -1882,7 +1932,7 @@ struct OrientationExample {
 
 ![orientation](figures/orientation.png)
 
-### 示例21（动态切换SVG图片的填充颜色）
+### 示例22（动态切换SVG图片的填充颜色）
 
 通过按钮切换不同色域下的颜色值，动态改变SVG图片的填充颜色效果，以展示ColorMetrics的使用方式和显示差异。
 

@@ -22,6 +22,24 @@ Component does not support prevent function.
 
 NA
 
+## 106102 组件不支持特定的属性或者事件
+
+**错误信息**
+
+The component does not support specific properties or events.
+
+**错误描述**
+
+组件不支持特定的属性或者事件。
+
+**可能原因**
+
+组件不支持当前设定的属性或事件。
+
+**处理步骤**
+
+使用支持的组件设定属性或事件。
+
 ## 180001 非滚动类容器
 
 **错误信息**
@@ -67,6 +85,20 @@ The input event pointer is not a cloned event pointer.
 **错误描述**
 
 该事件不是克隆事件。
+
+**处理步骤**
+
+NA
+
+## 180004 组件状态异常
+
+**错误信息**
+
+The component status is abnormal.
+
+**错误描述**
+
+组件状态异常。
 
 **处理步骤**
 

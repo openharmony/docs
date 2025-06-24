@@ -38,6 +38,8 @@ registerFont(options: FontOptions): void
 
 ## FontOptions
 
+注册的自定义字体信息。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -203,6 +205,8 @@ getFontByName(fontName: string): FontInfo
 
 ## FontInfo<sup>10+</sup>
 
+字体的详细信息。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -226,8 +230,6 @@ getFontByName(fontName: string): FontInfo
 >
 > 直接使用font可能导致实例不明确的问题，推荐通过使用[UIContext](./js-apis-arkui-UIContext.md#uicontext)中的[getFont](./js-apis-arkui-UIContext.md#getfont)方法获取当前UI上下文关联的[Font](./js-apis-arkui-UIContext.md#font)对象。
 
-<!--deprecated_code_no_check-->
-
 ```ts
 // xxx.ets
 import { font } from '@kit.ArkUI';
@@ -236,24 +238,25 @@ import { font } from '@kit.ArkUI';
 @Component
 struct FontExample {
   fontList: Array<string> = new Array<string>();
-  fontInfo: font.FontInfo = font.getFontByName('');
+  uiFont = this.getUIContext().getFont();
+  fontInfo: font.FontInfo = this.uiFont.getFontByName(''); // 建议使用 this.getUIContext().getFont().getFontByName()接口
 
   build() {
     Column() {
       Button("getFontByName")
         .onClick(() => {
           this.fontInfo =
-            font.getFontByName('HarmonyOS Sans Italic'); // 建议使用 this.getUIContext().getFont().getFontByName()接口
-          console.log("getFontByName(): path = " + this.fontInfo.path);
-          console.log("getFontByName(): postScriptName = " + this.fontInfo.postScriptName);
-          console.log("getFontByName(): fullName = " + this.fontInfo.fullName);
-          console.log("getFontByName(): Family = " + this.fontInfo.family);
-          console.log("getFontByName(): Subfamily = " + this.fontInfo.subfamily);
-          console.log("getFontByName(): weight = " + this.fontInfo.weight);
-          console.log("getFontByName(): width = " + this.fontInfo.width);
-          console.log("getFontByName(): italic = " + this.fontInfo.italic);
-          console.log("getFontByName(): monoSpace = " + this.fontInfo.monoSpace);
-          console.log("getFontByName(): symbolic = " + this.fontInfo.symbolic);
+            this.uiFont.getFontByName('HarmonyOS Sans Italic');
+          console.info("getFontByName(): path = " + this.fontInfo.path);
+          console.info("getFontByName(): postScriptName = " + this.fontInfo.postScriptName);
+          console.info("getFontByName(): fullName = " + this.fontInfo.fullName);
+          console.info("getFontByName(): Family = " + this.fontInfo.family);
+          console.info("getFontByName(): Subfamily = " + this.fontInfo.subfamily);
+          console.info("getFontByName(): weight = " + this.fontInfo.weight);
+          console.info("getFontByName(): width = " + this.fontInfo.width);
+          console.info("getFontByName(): italic = " + this.fontInfo.italic);
+          console.info("getFontByName(): monoSpace = " + this.fontInfo.monoSpace);
+          console.info("getFontByName(): symbolic = " + this.fontInfo.symbolic);
         })
     }.width('100%')
   }
@@ -276,6 +279,8 @@ getUIFontConfig() : UIFontConfig
 
 ## UIFontConfig<sup>11+</sup>
 
+系统的UI字体配置信息。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -286,6 +291,8 @@ getUIFontConfig() : UIFontConfig
 | fallbackGroups       | Array\<[UIFontFallbackGroupInfo](#uifontfallbackgroupinfo11)>  | 是 | 备用字体集。           |
 
 ## UIFontGenericInfo<sup>11+</sup>
+
+系统所支持的通用字体集列表。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -298,6 +305,8 @@ getUIFontConfig() : UIFontConfig
 
 ## UIFontFallbackGroupInfo<sup>11+</sup>
 
+备用字体集。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -307,6 +316,8 @@ getUIFontConfig() : UIFontConfig
 | fallback        | Array\<[UIFontFallbackInfo](#uifontfallbackinfo11)>  | 是 | 表示以下列表为该字体集的备用字体，如果fontSetName为""，表示可以作为所有字体集的备用字体。 |
 
 ## UIFontAliasInfo<sup>11+</sup>
+
+别名列表。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -318,6 +329,8 @@ getUIFontConfig() : UIFontConfig
 
 ## UIFontAdjustInfo<sup>11+</sup>
 
+字体原本的weight值和显示实际值的映射列表。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -327,6 +340,8 @@ getUIFontConfig() : UIFontConfig
 | to            | number  | 是 | 字体在应用中显示的weight值。<br/>可返回的值有100、400、700、900。 |
 
 ## UIFontFallbackInfo<sup>11+</sup>
+
+该字体集的备用字体。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -353,25 +368,25 @@ struct FontExample {
         .margin(50)
         .onClick(() => {
           let fontConfig = font.getUIFontConfig();
-          console.log("font-dir -----------" + String(fontConfig.fontDir.length));
+          console.info("font-dir -----------" + String(fontConfig.fontDir.length));
           for (let i = 0; i < fontConfig.fontDir.length; i++) {
-            console.log(fontConfig.fontDir[i]);
+            console.info(fontConfig.fontDir[i]);
           }
-          console.log("generic-------------" + String(fontConfig.generic.length));
+          console.info("generic-------------" + String(fontConfig.generic.length));
           for (let i = 0; i < fontConfig.generic.length; i++) {
-            console.log("family:" + fontConfig.generic[i].family);
+            console.info("family:" + fontConfig.generic[i].family);
             for (let j = 0; j < fontConfig.generic[i].alias.length; j++) {
-              console.log(fontConfig.generic[i].alias[j].name + " " + fontConfig.generic[i].alias[j].weight);
+              console.info(fontConfig.generic[i].alias[j].name + " " + fontConfig.generic[i].alias[j].weight);
             }
             for (let j = 0; j < fontConfig.generic[i].adjust.length; j++) {
-              console.log(fontConfig.generic[i].adjust[j].weight + " " + fontConfig.generic[i].adjust[j].to);
+              console.info(fontConfig.generic[i].adjust[j].weight + " " + fontConfig.generic[i].adjust[j].to);
             }
           }
-          console.log("fallback------------" + String(fontConfig.fallbackGroups.length));
+          console.info("fallback------------" + String(fontConfig.fallbackGroups.length));
           for (let i = 0; i < fontConfig.fallbackGroups.length; i++) {
-            console.log("fontSetName:" + fontConfig.fallbackGroups[i].fontSetName);
+            console.info("fontSetName:" + fontConfig.fallbackGroups[i].fontSetName);
             for (let j = 0; j < fontConfig.fallbackGroups[i].fallback.length; j++) {
-              console.log("language:" + fontConfig.fallbackGroups[i].fallback[j].language + " family:" +
+              console.info("language:" + fontConfig.fallbackGroups[i].fallback[j].language + " family:" +
               fontConfig.fallbackGroups[i].fallback[j].family);
             }
           }

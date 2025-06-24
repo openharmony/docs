@@ -4,7 +4,7 @@
 
 ## 适用的应用架构
 
-应用使用ArkTS、C++语言混合开发，或本身应用架构较贴近于小程序架构，自带C++侧环境，推荐使用ArkWeb在Native侧提供的[ArkWeb_ControllerAPI](../reference/apis-arkweb/capi-arkweb-controllerapi.md)、[ArkWeb_WebMessageAPI](../reference/apis-arkweb/capi-arkweb-webmessageapi.md)、[ArkWeb_WebMessagePortAPI](../reference/apis-arkweb/capi-arkweb-webmessageportapi.md)实现PostWebMessage功能。
+应用使用ArkTS、C++语言混合开发，或本身应用架构较贴近于小程序架构，自带C++侧环境，推荐使用ArkWeb在Native侧提供的[ArkWeb_ControllerAPI](../reference/apis-arkweb/capi-web-arkweb-controllerapi.md)、[ArkWeb_WebMessageAPI](../reference/apis-arkweb/capi-web-arkweb-webmessageapi.md)、[ArkWeb_WebMessagePortAPI](../reference/apis-arkweb/capi-web-arkweb-webmessageportapi.md)实现PostWebMessage功能。
 
   ![arkweb_jsbridge_arch](figures/arkweb_jsbridge_arch.png)
 
@@ -39,7 +39,7 @@
 
 ### 使用Native接口获取API结构体
 
-ArkWeb Native侧需先获取API结构体，才能调用结构体里的Native API。ArkWeb Native侧API通过函数[OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb/capi-arkweb-interface-h.md#oh_arkweb_getnativeapi)获取，根据入参type不同，可获取对应的函数指针结构体。其中本指导涉及[ArkWeb_ControllerAPI](../reference/apis-arkweb/capi-arkweb-controllerapi.md)、[ArkWeb_WebMessageAPI](../reference/apis-arkweb/capi-arkweb-webmessageapi.md)、[ArkWeb_WebMessagePortAPI](../reference/apis-arkweb/capi-arkweb-webmessageportapi.md)。
+ArkWeb Native侧需先获取API结构体，才能调用结构体里的Native API。ArkWeb Native侧API通过函数[OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb/capi-arkweb-interface-h.md#oh_arkweb_getnativeapi)获取，根据入参type不同，可获取对应的函数指针结构体。其中本指导涉及[ArkWeb_ControllerAPI](../reference/apis-arkweb/capi-web-arkweb-controllerapi.md)、[ArkWeb_WebMessageAPI](../reference/apis-arkweb/capi-web-arkweb-webmessageapi.md)、[ArkWeb_WebMessagePortAPI](../reference/apis-arkweb/capi-web-arkweb-webmessageportapi.md)。
 
   ```c++
   static ArkWeb_ControllerAPI *controller = nullptr;
@@ -54,7 +54,7 @@ ArkWeb Native侧需先获取API结构体，才能调用结构体里的Native API
 
 ### 完整示例
 
-在调用API前建议通过[ARKWEB_MEMBER_MISSING](../reference/apis-arkweb/capi-arkweb-type-h.md#宏定义)校验该函数结构体是否有对应函数指针，避免SDK与设备ROM不匹配导致crash问题。[createWebMessagePorts](../reference/apis-arkweb/capi-arkweb-controllerapi.md#createwebmessageports)、[postWebMessage](../reference/apis-arkweb/capi-arkweb-controllerapi.md#postwebmessage)、[close](../reference/apis-arkweb/capi-arkweb-webmessageportapi.md#close)需运行在UI线程。
+在调用API前建议通过[ARKWEB_MEMBER_MISSING](../reference/apis-arkweb/capi-arkweb-type-h.md#宏定义)校验该函数结构体是否有对应函数指针，避免SDK与设备ROM不匹配导致crash问题。[createWebMessagePorts](../reference/apis-arkweb/capi-web-arkweb-controllerapi.md#createwebmessageports)、[postWebMessage](../reference/apis-arkweb/capi-web-arkweb-controllerapi.md#postwebmessage)、[close](../reference/apis-arkweb/capi-web-arkweb-webmessageportapi.md#close)需运行在UI线程。
 
 * 前端页面代码
 

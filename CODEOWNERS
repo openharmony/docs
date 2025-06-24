@@ -516,7 +516,7 @@ zh-cn/application-dev/reference/apis-ability-kit/js-apis-defaultAppManager.md @B
 zh-cn/application-dev/reference/apis-ability-kit/js-apis-distributedBundleManager.md @Brilliantry_Rui  @changzheng6   @kongjing2  @small_bricklayer
 zh-cn/application-dev/reference/apis-ability-kit/js-apis-freeInstall.md @Brilliantry_Rui  @changzheng6   @kongjing2  @small_bricklayer
 zh-cn/application-dev/reference/apis-ability-kit/js-apis-installer.md @Brilliantry_Rui  @changzheng6   @kongjing2  @small_bricklayer
-zh-cn/application-dev/reference/apis-ability-kit/js-apis-launcherBundleManager.md @Brilliantry_Rui  @changzheng6    @kongjing2  @small_bricklayer
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-launcherBundleManager*.md @Brilliantry_Rui  @changzheng6    @kongjing2  @small_bricklayer
 zh-cn/application-dev/reference/apis-ability-kit/js-apis-overlay*.md @Brilliantry_Rui  @changzheng6   @kongjing2  @small_bricklayer
 zh-cn/application-dev/reference/apis-ability-kit/js-apis-zlib.md @Brilliantry_Rui @changzheng6   @kongjing2  @small_bricklayer
 zh-cn/application-dev/reference/apis-ability-kit/js-apis-shortcut*.md @Brilliantry_Rui  @changzheng6   @kongjing2  @small_bricklayer

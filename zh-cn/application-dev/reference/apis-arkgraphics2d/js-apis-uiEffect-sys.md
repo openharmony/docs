@@ -310,6 +310,72 @@ colorGradient(colors: Array\<Color>, positions: Array\<common2D.Point>, strength
 filter.colorGradient([{red: 1.0, green: 0.8, blue: 0.5, alpha: 0.8}, {red: 1.0, green: 1.5, blue: 0.5, alpha: 1.0}], [{x: 0.2, y: 0.2}, {x: 0.8, y: 0.6}], [0.3, 0.3], uiEffect.Mask.createRippleMask({x: 0.5, y: 0.5}, 0.5, 0.5, 0.5))
 ```
 
+### contentLight<sup>20+</sup>
+contentLight(lightPosition: common2D.Point3d, lightColor: common2D.Color, lightIntensity: number, displacementMap?: Mask): Filter
+
+为组件内容添加3D光照效果。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**系统接口：** 此接口为系统接口。
+
+**参数：**
+| 参数名         | 类型                  | 必填 | 说明                       |
+| ------------- | --------------------- | ---- | ------------------------- |
+| lightPosition | [common2D.Point3d](js-apis-graphics-common2D.md#point3d12) | 是 | 光源在组件空间的位置，[-1, -1, 0]为组件左上角，[1, 1, 0]为组件的右下角，z轴分量越大光源离组件平面越远，可照射区域越大。<br/> x分量取值范围[-10, 10]，y分量取值范围[-10, 10]，z分量取值范围[0, 10]，超出范围会自动截断。 |
+| lightColor | [common2D.Color](js-apis-graphics-common2D.md#color) | 是 | 光源颜色，各元素取值范围为[0, 1]，超出范围会自动截断。 |
+| lightIntensity | number | 是 | 光源强度，取值范围[0, 1]，数值越大光源亮度越大，超出范围会自动截断。|
+| displacementMap | [Mask](#mask20) | 否 | 该参数暂不生效。 |
+
+**返回值：**
+
+| 类型              | 说明                               |
+| ----------------- | --------------------------------- |
+| [filter](#filter) | 返回了具有内容光照效果的filter。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**示例：**
+
+```ts
+import { common2D, uiEffect } from '@kit.ArkGraphics2D'
+@Entry
+@Component
+struct Index {
+  @State point2:common2D.Point3d = {
+    x:0,y:0,z:2
+  }
+  @State color2:common2D.Color = {
+    red:1,green:1,blue:1,alpha:1
+  }
+  @State lightIntentsity2:number = 1
+
+  build() {
+    Column() {
+      Stack() {
+        Image($r('app.media.man'))
+          .width('646px')
+          .height('900px')
+          .borderRadius(10)
+          .foregroundFilter(uiEffect.createFilter().contentLight(this.point2, this.color2, this.lightIntentsity2))
+      }
+      .width('100%')
+      .height('55%')
+    }
+    .height('100%')
+    .width('100%')
+    .justifyContent(FlexAlign.Center)
+    .backgroundColor('#555')
+  }
+}
+```
+
 ### edgeLight<sup>20+</sup>
 edgeLight(alpha: number, color?: Color, mask?: Mask, bloom?: boolean): Filter
 
@@ -528,6 +594,78 @@ let blender : uiEffect.BrightnessBlender =
   uiEffect.createBrightnessBlender({cubicRate:1.0, quadraticRate:1.0, linearRate:1.0, degree:1.0, saturation:1.0,
     positiveCoefficient:[2.3, 4.5, 2.0], negativeCoefficient:[0.5, 2.0, 0.5], fraction:0.0})
 visualEffect.backgroundColorBlender(blender)
+```
+
+### borderLight<sup>20+</sup>
+borderLight(lightPosition: common2D.Point3d, lightColor: common2D.Color, lightIntensity: number, borderWidth: number): VisualEffect
+
+为圆角矩形组件边框添加3D光照效果。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**系统接口：** 此接口为系统接口。
+
+**参数：**
+| 参数名         | 类型                  | 必填 | 说明                       |
+| ------------- | --------------------- | ---- | ------------------------- |
+| lightPosition | [common2D.Point3d](js-apis-graphics-common2D.md#point3d12) | 是 | 光源在组件空间的3D位置，[-1, -1, 0]为组件左上角，[1, 1, 0]为组件的右下角，z轴分量越大，光源离组件平面越远，可照射区域越大。<br/> x轴分量取值范围[-10, 10]，y轴分量取值范围[-10, 10]，z轴分量取值范围[0, 10]，超出范围会自动截断。 |
+| lightColor | [common2D.Color](js-apis-graphics-common2D.md#color) | 是 | 光源颜色，各元素取值范围为[0, 1]，超出范围会自动截断。 |
+| lightIntensity | number | 是 | 光源强度，取值范围[0, 1]，数值越大光源亮度越大，超出范围会自动截断。|
+| borderWidth | number | 是 | 组件边框的受光宽度，取值范围为[0.0, 30.0]，超出范围会自动截断。设置为0.0时，组件边框无光照效果，数值越大，光可照亮的区域越宽。 |
+
+**返回值：**
+
+| 类型              | 说明                               |
+| ----------------- | --------------------------------- |
+| [VisualEffect](#visualeffect) | 返回了具有边框光照效果的VisualEffect。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**示例：**
+```ts
+import { common2D, uiEffect } from '@kit.ArkGraphics2D'
+
+@Entry
+@Component
+struct Index {
+  @State point1:common2D.Point3d = {
+    x:0,y:0,z:2
+  }
+  @State color1:common2D.Color = {
+    red:1,green:1,blue:1,alpha:1
+  }
+  @State lightIntentsity1:number = 1
+  @State bordrwidth:number = 20
+
+  build() {
+    Column() {
+      Stack() {
+        Image($r('app.media.man'))
+          .width('646px')
+          .height('900px')
+          .borderRadius(10)
+        Column()
+          .width('646px')
+          .height('900px')
+          .borderRadius(10)
+          .visualEffect(uiEffect.createEffect().borderLight(this.point1, this.color1, this.lightIntentsity1,
+            this.bordrwidth))
+      }
+      .width('100%')
+      .height('55%')
+    }
+    .height('100%')
+    .width('100%')
+    .justifyContent(FlexAlign.Center)
+    .backgroundColor('#555')
+  }
+}
 ```
 
 ## Blender<sup>13+</sup>

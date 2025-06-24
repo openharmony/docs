@@ -57,7 +57,7 @@ import { appManager } from '@kit.AbilityKit';
 
 ## KeepAliveBundleInfo<sup>14+</sup>
 
-定义应用保活信息，可以通过[getKeepAliveBundles](#appmanagergetkeepalivebundles14)获取当前应用的相关信息。
+定义应用保活信息，可以通过[getKeepAliveBundles](#appmanagergetkeepalivebundles14)或[getKeepAliveAppServiceExtensions](#appmanagergetkeepaliveappserviceextensions20)获取。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -68,6 +68,8 @@ import { appManager } from '@kit.AbilityKit';
 | bundleName   | string | 否 | 否  | Bundle名称。 |
 | type       | [KeepAliveAppType](#keepaliveapptype14) | 否 | 否 | 表示被保活应用的应用类型。   |
 | setter       | [KeepAliveSetter](#keepalivesetter14) | 否 | 否 | 表示应用保活设置者类型。   |
+| setterUserId<sup>20+</sup>   | number | 否 | 是  | 应用保活设置者的用户ID。 |
+| allowUserToCancel<sup>20+</sup>   | boolean | 否 | 是  | 表示是否允许用户取消保活。true表示允许，false表示不允许。 |
 
 ## appManager.isSharedBundleRunning<sup>10+</sup>
 
@@ -1870,3 +1872,168 @@ try {
   console.error(`[appManager] killProcessesInBatch error: ${code}, ${message}`);
 }
 ```
+
+## appManager.setKeepAliveForAppServiceExtension<sup>20+</sup>
+
+setKeepAliveForAppServiceExtension(bundleName: string, enabled: boolean): Promise\<void>
+
+为AppServiceExtensionAbility设置保活或取消保活。使用Promise异步回调。
+> **说明：**
+>
+> - 本接口当前仅支持2in1设备。
+> - 仅当应用安装在userId为1的用户下，且应用中entry类型的HAP的module.json5配置文件中的mainElement字段配置为AppServiceExtensionAbility时，该接口才生效。
+
+**需要权限**：ohos.permission.MANAGE_APP_KEEP_ALIVE
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统接口**：此接口为系统接口。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| bundleName    | string   | 是    | 表示要设置保活的应用包名。 |
+| enabled    | boolean   | 是    | 表示是否进行应用保活。true表示保活，false表示不保活。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。|
+
+**错误码**:
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not system application. |
+| 801 | Capability not supported. |
+| 16000050 | Internal error. |
+| 16000081 | Failed to obtain the target application information. |
+| 16000202 | Invalid main element type. |
+| 16000203 | Cannot change the keep-alive status. |
+| 16000204 | The target bundle is not in u1. |
+
+**示例：**
+
+```ts
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let bundleName = "ohos.samples.keepaliveapp";
+  appManager.setKeepAliveForAppServiceExtension(bundleName, true).then(() => {
+    console.info(`setKeepAliveForAppServiceExtension success`);
+  }).catch((err: BusinessError) => {
+    console.error(`setKeepAliveForAppServiceExtension fail, err: ${JSON.stringify(err)}`);
+  });
+} catch (paramError) {
+  let code = (paramError as BusinessError).code;
+  let message = (paramError as BusinessError).message;
+  console.error(`[appManager] setKeepAliveForAppServiceExtension error: ${code}, ${message}`);
+}
+```
+
+## appManager.getKeepAliveAppServiceExtensions<sup>20+</sup>
+
+getKeepAliveAppServiceExtensions(): Promise\<Array\<KeepAliveBundleInfo>>
+
+获取所有保活的AppServiceExtensionAbility应用信息，此信息由[KeepAliveBundleInfo](#keepalivebundleinfo14)定义。使用Promise异步回调。
+
+> **说明：**
+>
+> - 本接口当前仅支持2in1设备。
+> - 仅当应用安装在userId为1的用户下，且应用中entry类型的HAP的module.json5配置文件中的mainElement字段配置为AppServiceExtensionAbility时，该接口才生效。
+
+**需要权限**：ohos.permission.MANAGE_APP_KEEP_ALIVE
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统接口**：此接口为系统接口。
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise\<Array\<[KeepAliveBundleInfo](#keepalivebundleinfo14)>> | Promise对象，返回用户保活应用信息的数组。|
+
+**错误码**:
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not system application. |
+| 801 | Capability not supported. |
+| 16000050 | Internal error. |
+
+**示例：**
+
+```ts
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  appManager.getKeepAliveAppServiceExtensions().then((data) => {
+    console.info(`getKeepAliveAppServiceExtensions success, data: ${JSON.stringify(data)}`);
+  }).catch((err: BusinessError) => {
+    console.error(`getKeepAliveAppServiceExtensions fail, err: ${JSON.stringify(err)}`);
+  });
+} catch (paramError) {
+  let code = (paramError as BusinessError).code;
+  let message = (paramError as BusinessError).message;
+  console.error(`[appManager] getKeepAliveAppServiceExtensions error: ${code}, ${message}`);
+}
+```
+
+## AppForegroundStateObserver<sup>11+</sup>
+
+type AppForegroundStateObserver = _AppForegroundStateObserver
+
+应用启动和退出的状态监听。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 类型 | 说明 |
+| --- | --- |
+| [_AppForegroundStateObserver](js-apis-inner-application-appForegroundStateObserver-sys.md) | 应用启动和退出的状态监听。 |
+
+## AbilityFirstFrameStateObserver<sup>12+</sup>
+
+type AbilityFirstFrameStateObserver = _AbilityFirstFrameStateObserver
+
+UIAbility首帧绘制完成事件监听对象。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 类型 | 说明 |
+| --- | --- |
+| [_AbilityFirstFrameStateObserver](js-apis-inner-application-abilityFirstFrameStateData-sys.md) | UIAbility首帧绘制完成事件监听对象。 |
+
+## AbilityFirstFrameStateData<sup>12+</sup>
+
+type AbilityFirstFrameStateData = _AbilityFirstFrameStateData
+
+UIAbility首帧绘制完成回调上报数据结构。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 类型 | 说明 |
+| --- | --- |
+| [_AbilityFirstFrameStateData](js-apis-inner-application-abilityFirstFrameStateData-sys.md) | UIAbility首帧绘制完成回调上报数据结构。 |
+
+## RunningMultiAppInfo<sup>12+</sup>
+
+type RunningMultiAppInfo = _RunningMultiAppInfo
+
+应用多开在运行态的结构信息。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 类型 | 说明 |
+| --- | --- |
+| [_RunningMultiAppInfo](js-apis-inner-application-runningMultiAppInfo-sys.md) | 应用多开在运行态的结构信息。 |

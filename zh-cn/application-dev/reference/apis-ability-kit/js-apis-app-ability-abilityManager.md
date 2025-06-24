@@ -28,7 +28,7 @@ Ability的状态，该类型为枚举，可配合[AbilityRunningInfo](js-apis-in
 | BACKGROUNDING | 12 | 表示ability为后台调度中状态。  | 
 
 
-## abilityManager.getAbilityRunningInfos
+## abilityManager.getAbilityRunningInfos<sup>14+</sup>
 
 getAbilityRunningInfos(): Promise\<Array\<AbilityRunningInfo>>
 
@@ -72,6 +72,18 @@ try {
   console.error(`getAbilityRunningInfos fail, error code: ${JSON.stringify(code)}, error msg: ${JSON.stringify(msg)}`);
 }
 ```
+
+## AbilityRunningInfo<sup>14+</sup>
+
+type AbilityRunningInfo = _AbilityRunningInfo
+
+Ability运行的相关信息和状态的定义。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 类型 | 说明 |
+| --- | ---- |
+| [_AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md) | Ability运行的相关信息和状态的定义。 |
 
 ## abilityManager.restartSelfAtomicService<sup>20+</sup>
 
@@ -123,3 +135,27 @@ export default class EntryAbility extends EmbeddableUIAbility {
   }
 }
 ```
+
+## AbilityRunningInfo<sup>14+</sup>
+
+type AbilityRunningInfo = _AbilityRunningInfo
+
+AbilityRunningInfo二级模块。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 类型 | 说明 |
+| --- | --- |
+| [_AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md) | AbilityRunningInfo二级模块，提供对Ability运行的相关信息和状态的定义。 |
+
+## AbilityStateData<sup>14+</sup>
+
+type AbilityStateData = _AbilityStateData.default
+
+AbilityStateData二级模块。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 类型 | 说明 |
+| --- | --- |
+| [_AbilityStateData.default](js-apis-inner-application-abilityStateData.md) | AbilityStateData二级模块，提供Ability状态信息。 |

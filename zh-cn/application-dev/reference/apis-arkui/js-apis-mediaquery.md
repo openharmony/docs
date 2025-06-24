@@ -171,7 +171,7 @@ import { mediaquery } from '@kit.ArkUI';
 struct MediaQueryExample {
   @State color: string = '#DB7093'
   @State text: string = 'Portrait'
-  listener: mediaquery.MediaQueryListener = mediaquery.matchMediaSync('(orientation: landscape)') // 建议使用 this.getUIContext().getMediaQuery().matchMediaSync()接口
+  listener: mediaquery.MediaQueryListener = this.getUIContext().getMediaQuery().matchMediaSync('(orientation: landscape)'); //监听横屏事件，mediaquery.matchMediaSync接口已废弃，建议使用this.getUIContext().getMediaQuery().matchMediaSync()来获取
 
   onPortrait(mediaQueryResult:mediaquery.MediaQueryResult) {
     if (mediaQueryResult.matches) {

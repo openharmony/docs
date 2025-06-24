@@ -31,7 +31,7 @@
 | [OH_AVScreenCaptureCallback](capi-oh-avscreencapturecallback.md) | OH_AVScreenCaptureCallback | OH_AVScreenCapture中所有异步回调函数指针的集合。将该结构体的实例注册到OH_AVScreenCapture实例中，并处理回调上报的信息，以保证OH_AVScreenCapture的正常运行。<br> 从API 12开始，推荐使用接口[OH_AVScreenCapture_OnError](#oh_avscreencapture_onerror)、[OH_AVScreenCapture_OnBufferAvailable](#oh_avscreencapture_onbufferavailable)替代。 |
 | [OH_Rect](capi-oh-rect.md) | OH_Rect | 定义录屏界面的宽高以及画面信息。 |
 | [OH_AudioBuffer](capi-oh-audiobuffer.md) | OH_AudioBuffer | 定义了音频数据的大小、类型、时间戳等配置信息。 |
-| [OH_NativeBuffer](capi-oh-nativebuffer.md) | OH_NativeBuffer | 提供录屏的视频原始码流类。 |
+| [OH_NativeBuffer](capi-avscreencapture-oh-nativebuffer.md) | OH_NativeBuffer | 提供录屏的视频原始码流类。 |
 | [OH_AVScreenCapture](capi-oh-avscreencapture.md) | OH_AVScreenCapture | 通过OH_AVScreenCapture可以获取视频与音频的原始码流。 |
 | [OH_AVScreenCapture_ContentFilter](capi-oh-avscreencapture-contentfilter.md) | OH_AVScreenCapture_ContentFilter | 通过OH_AVScreenCapture_ContentFilter过滤音视频内容。 |
 | [OH_AVScreenCapture_CaptureStrategy](capi-oh-avscreencapture-capturestrategy.md) | OH_AVScreenCapture_CaptureStrategy | 通过OH_AVScreenCapture_CaptureStrategy设置录屏策略。 |

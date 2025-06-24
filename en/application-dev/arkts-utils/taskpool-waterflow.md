@@ -23,89 +23,91 @@ This example describes the following scenarios:
       taskpool.Task.sendData(result);
     }
 
-        export function getImgFromDB() {
-          // Simulate the operation of querying the database and returning data.
-          let task = new taskpool.Task(query);
-          task.onReceiveData(fillImg);
-          taskpool.execute(task);
-        }
+
+    export function getImgFromDB() {
+      // Simulate the operation of querying the database and returning data.
+      let task = new taskpool.Task(query);
+      task.onReceiveData(fillImg);
+      taskpool.execute(task);
+    }
     ```
-    
+    <!-- @[query_database_return_main_thread](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/PracticalCases/entry/src/main/ets/managers/Mock.ets) -->
+
 2. Encapsulate a waterfall data source for loading data to the **WaterFlow** component.
 
     ```ts
     // WaterFlowDataSource.ets
-    
+
     // An object that implements the IDataSource interface, which is used by the WaterFlow component to load data.
     export class WaterFlowDataSource implements IDataSource {
       private dataArray: number[] = [];
       private listeners: DataChangeListener[] = [];
-    
+
       constructor() {
         for (let i = 0; i < 100; i++) {
           this.dataArray.push(i);
         }
       }
-    
+
       // Obtain the data corresponding to the specified index.
       public getData(index: number): number {
         return this.dataArray[index];
       }
-    
+
       // Notify the controller that data has been reloaded.
       notifyDataReload(): void {
         this.listeners.forEach(listener => {
           listener.onDataReloaded();
         })
       }
-    
+
       // Notify the controller that data has been added.
       notifyDataAdd(index: number): void {
         this.listeners.forEach(listener => {
           listener.onDataAdd(index);
         })
       }
-    
+
       // Notify the controller that data has changed.
       notifyDataChange(index: number): void {
         this.listeners.forEach(listener => {
           listener.onDataChange(index);
         })
       }
-    
+
       // Notify the controller that data has been deleted.
       notifyDataDelete(index: number): void {
         this.listeners.forEach(listener => {
           listener.onDataDelete(index);
         })
       }
-    
+
       // Notify the controller that the data position has changed.
       notifyDataMove(from: number, to: number): void {
         this.listeners.forEach(listener => {
           listener.onDataMove(from, to);
         })
       }
-    
+
       //Notify the controller that data has been deleted in batch.
       notifyDatasetChange(operations: DataOperation[]): void {
         this.listeners.forEach(listener => {
           listener.onDatasetChange(operations);
         })
       }
-    
+
       // Obtain the total number of data records.
       public totalCount(): number {
         return this.dataArray.length;
       }
-    
+
       // Register a controller for data changes.
       registerDataChangeListener(listener: DataChangeListener): void {
         if (this.listeners.indexOf(listener) < 0) {
           this.listeners.push(listener);
         }
       }
-    
+
       // Unregister the controller for data changes.
       unregisterDataChangeListener(listener: DataChangeListener): void {
         const pos = this.listeners.indexOf(listener);
@@ -113,49 +115,49 @@ This example describes the following scenarios:
           this.listeners.splice(pos, 1);
         }
       }
-    
+
       // Add data.
       public add1stItem(): void {
         this.dataArray.splice(0, 0, this.dataArray.length);
         this.notifyDataAdd(0);
       }
-    
+
       // Add an element to the end of the data.
       public addLastItem(): void {
         this.dataArray.splice(this.dataArray.length, 0, this.dataArray.length);
         this.notifyDataAdd(this.dataArray.length - 1);
       }
-    
+
       // Add an element at the specified index.
       public addItem(index: number): void {
         this.dataArray.splice(index, 0, this.dataArray.length);
         this.notifyDataAdd(index);
       }
-    
+
       // Delete the first element.
       public delete1stItem(): void {
         this.dataArray.splice(0, 1);
         this.notifyDataDelete(0);
       }
-    
+
       // Delete the second element.
       public delete2ndItem(): void {
         this.dataArray.splice(1, 1);
         this.notifyDataDelete(1);
       }
-    
+
       // Delete the last element.
       public deleteLastItem(): void {
         this.dataArray.splice(-1, 1);
         this.notifyDataDelete(this.dataArray.length);
       }
-    
+
       // Delete an element at the specified index.
       public deleteItem(index: number): void {
         this.dataArray.splice(index, 1);
         this.notifyDataDelete(index);
       }
-    
+
       // Reload the data.
       public reload(): void {
         this.dataArray.splice(1, 1);
@@ -164,6 +166,7 @@ This example describes the following scenarios:
       }
     }
     ```
+    <!-- @[encapsulate_waterfall_data_source](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/PracticalCases/entry/src/main/ets/managers/WaterFlowDataSource.ets) -->
 
 3. During cold start of the application, call the **getImgFromDB()** interface to offload the data query operation to a child thread. After the img receives data from the child thread, render the data to the **WaterFlow** component.
 
@@ -171,13 +174,13 @@ This example describes the following scenarios:
     // Index.ets
     import { WaterFlowDataSource } from './WaterFlowDataSource';
     import { getImgFromDB } from './Mock';
-    
+
     // Simulate an image array.
     let img = new Array<string>(33);
     export function fillImg(imgArr : Array<string>) {
       img = imgArr;
     }
-    
+
     @Entry
     @Component
     struct WaterFlowDemo {
@@ -194,7 +197,7 @@ This example describes the following scenarios:
         let ret = Math.floor(Math.random() * this.maxSize);
         return (ret > this.minSize ? ret : this.minSize);
       }
-    
+
       // Set the width and height array of the flow item.
       setItemSizeArray() {
         for (let i = 0; i < 100; i++) {
@@ -202,11 +205,11 @@ This example describes the following scenarios:
           this.itemHeightArray.push(this.getSize());
         }
       }
-    
+
       aboutToAppear() {
         this.setItemSizeArray();
       }
-    
+
       @Builder
       itemFoot() {
         Column() {
@@ -219,7 +222,7 @@ This example describes the following scenarios:
             .margin({ top: 2 });
         }
       }
-    
+
       build() {
         Column({ space: 2 }) {
           Text("ArkUI WaterFlow Demo")
@@ -234,7 +237,7 @@ This example describes the following scenarios:
                     .fontSize(12)
                     .height('16')
                     .onClick(()=>{
-    
+
                     });
                   // To simulate image loading, use the Text component. For actual JPG loading, use the Image component directly. Example: Image(this.img[item % 33]).objectFit(ImageFit.Contain).width('100%').layoutWeight(1)
                   if (img[item % 33] == null) {
@@ -283,3 +286,4 @@ This example describes the following scenarios:
       }
     }
     ```
+    <!-- @[receive_child_thread_data_render_waterfall_component](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/PracticalCases/entry/src/main/ets/managers/WaterfallRendering.ets) -->

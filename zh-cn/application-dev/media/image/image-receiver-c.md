@@ -36,6 +36,9 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libohimage.so libimage_rece
 #define IMAGE_HEIGHT 480
 #define IMAGE_CAPACITY 2
 
+static OH_ImageReceiverNative* receiver = nullptr;
+static OH_ImageReceiverOptions* options = nullptr;
+
 static void OnCallback(OH_ImageReceiverNative *receiver)
 {
     // callback回调处理接收到的图像数据。
@@ -43,7 +46,7 @@ static void OnCallback(OH_ImageReceiverNative *receiver)
 
     // 读取 OH_ImageReceiverNative 的下一个图片对象。
     OH_ImageNative* image = nullptr;
-    errCode = OH_ImageReceiverNative_ReadNextImage(receiver, &image); 
+    Image_ErrorCode errCode = OH_ImageReceiverNative_ReadNextImage(receiver, &image); 
     // 结合实际使用情况，此处也可以调用OH_ImageReceiverNative_ReadLatestImage方法获取图像数据。
     if (errCode != IMAGE_SUCCESS) {
         OH_LOG_ERROR(LOG_APP, "ImageReceiverNativeCTest get image receiver next image failed, errCode: %{public}d.", errCode);
@@ -62,12 +65,9 @@ static void OnCallback(OH_ImageReceiverNative *receiver)
     }
 }
 
-static OH_ImageReceiverNative* receiver = nullptr;
-
 static void ImageReceiverNativeCTest()
 {
     // 创建 OH_ImageReceiverOptions 实例。
-    OH_ImageReceiverOptions* options = nullptr;
     Image_ErrorCode errCode = OH_ImageReceiverOptions_Create(&options);
     if (errCode != IMAGE_SUCCESS) {
         OH_LOG_ERROR(LOG_APP, "ImageReceiverNativeCTest create image receiver options failed, errCode: %{public}d.", errCode);
@@ -145,7 +145,6 @@ static void ImageReceiverNativeCTest()
     }
 
     // 读取 OH_ImageReceiverNative 的 surfaceID 属性。
-    uint64_t surfaceID = 0;
     errCode = OH_ImageReceiverNative_GetReceivingSurfaceId(receiver, &surfaceID);
     if (errCode != IMAGE_SUCCESS) {
         OH_LOG_ERROR(LOG_APP, "ImageReceiverNativeCTest get image receiver surfaceID failed, errCode: %{public}d.", errCode);
@@ -186,7 +185,7 @@ static void ImageReceiverNativeCTest()
 static void ImageReceiverRelease()
 {
     // 关闭被 OH_ImageReceiverNative_On 开启的回调事件。
-    errCode = OH_ImageReceiverNative_Off(receiver);
+    Image_ErrorCode errCode = OH_ImageReceiverNative_Off(receiver);
     if (errCode != IMAGE_SUCCESS) {
         OH_LOG_ERROR(LOG_APP, "ImageReceiverNativeCTest image receiver off failed, errCode: %{public}d.", errCode);
     }

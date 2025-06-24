@@ -70,6 +70,7 @@ struct Index {
   }
 }
 ```
+<!-- @[process_image_histogram](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/managers/CpuIntensiveTaskDevelopment.ets) -->
 
 
 ## Using Worker for Time-Consuming Data Analysis
@@ -86,7 +87,7 @@ This example demonstrates training a simple housing price prediction model using
     // Index.ets
     import { worker } from '@kit.ArkTS';
 
-    const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/MyWorker.ts');
+    const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/MyWorker.ets');
     ```
 
 3. In the host thread, call [onmessage()](../reference/apis-arkts/js-apis-worker.md#onmessage9) to receive messages from the Worker thread, and call [postMessage()](../reference/apis-arkts/js-apis-worker.md#postmessage9) to send messages to the Worker thread.
@@ -99,7 +100,7 @@ This example demonstrates training a simple housing price prediction model using
 
     // Receive results from the Worker thread.
     workerInstance.onmessage = (() => {
-      console.info('MyWorker.ts onmessage');
+      console.info('MyWorker.ets onmessage');
       if (!done) {
         workerInstance.postMessage({ 'type': 1, 'value': 0 });
         done = true;
@@ -113,11 +114,12 @@ This example demonstrates training a simple housing price prediction model using
     // Send a training message to the Worker thread.
     workerInstance.postMessage({ 'type': 0 });
     ```
+    <!-- @[call_worker_message](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/managers/CpuIntensiveTaskDevelopment.ets) -->
 
-4. Bind the Worker object in the **MyWorker.ts** file. The calling thread is the Worker thread.
+4. Bind the Worker object in the **MyWorker.ets** file. The calling thread is the Worker thread.
 
    ```ts
-   // MyWorker.ts
+   // MyWorker.ets
    import { worker, ThreadWorkerGlobalScope, MessageEvents, ErrorEvent } from '@kit.ArkTS';
 
    let workerPort: ThreadWorkerGlobalScope = worker.workerPort;
@@ -128,7 +130,7 @@ This example demonstrates training a simple housing price prediction model using
     For example, define the prediction model and training process in the Worker thread and interact with the host thread.
 
     ```ts
-    // MyWorker.ts
+    // MyWorker.ets
     // Define the training model and results.
     let result: Array<number>;
     // Define the prediction function.
@@ -161,12 +163,14 @@ This example demonstrates training a simple housing price prediction model using
      }
     }
     ```
+    <!-- @[interact_main_thread](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/workers/MyWorker1.ts) -->
 
 6. After the task is completed, destroy the Worker thread. The Worker thread can be destroyed by itself or the host thread.
 
     After the Worker thread is destroyed, call [onexit()](../reference/apis-arkts/js-apis-worker.md#onexit9) in the host thread to define the logic for handling the destruction.
 
     ```ts
+    // Index.ets
     // After the Worker thread is destroyed, execute the onexit callback.
     workerInstance.onexit = (): void => {
      console.info("main thread terminate");
@@ -176,6 +180,7 @@ This example demonstrates training a simple housing price prediction model using
     Method 1: In the host thread, call [terminate()](../reference/apis-arkts/js-apis-worker.md#terminate9) to destroy the Worker thread and stop it from receiving messages.
 
     ```ts
+    // Index.ets
     // Destroy the Worker thread.
     workerInstance.terminate();
     ```
@@ -183,6 +188,8 @@ This example demonstrates training a simple housing price prediction model using
     Method 2: In the Worker thread, call [close()](../reference/apis-arkts/js-apis-worker.md#close9) to destroy the Worker thread and stop it from receiving messages.
 
     ```ts
+    // MyWorker.ets
     // Destroy the Worker thread.
     workerPort.close();
     ```
+    <!-- @[after_destroy_callback](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/managers/CpuIntensiveTaskDevelopment.ets) -->

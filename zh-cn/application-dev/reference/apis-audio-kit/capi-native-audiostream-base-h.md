@@ -20,12 +20,12 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [OH_AudioStreamInfo](capi-oh-audiostreaminfo.md) | OH_AudioStreamInfo | 定义音频流信息，用于描述基本音频格式。 |
-| [OH_AudioRenderer_Callbacks_Struct](capi-oh-audiorenderer-callbacks-struct.md) | OH_AudioRenderer_Callbacks | 声明输出音频流的回调函数指针。 |
-| [OH_AudioCapturer_Callbacks_Struct](capi-oh-audiocapturer-callbacks-struct.md) | OH_AudioCapturer_Callbacks | 声明输入音频流的回调函数指针。 |
-| [OH_AudioStreamBuilderStruct](capi-oh-audiostreambuilderstruct.md) | OH_AudioStreamBuilder | 声明音频流的构造器。构造器实例通常被用来设置音频流属性和创建音频流。 |
-| [OH_AudioRendererStruct](capi-oh-audiorendererstruct.md) | OH_AudioRenderer | 声明输出音频流。输出音频流的实例被用来播放音频数据。 |
-| [OH_AudioCapturerStruct](capi-oh-audiocapturerstruct.md) | OH_AudioCapturer | 声明输入音频流。输入音频流的实例被用来获取音频数据。 |
+| [OH_AudioStreamInfo](capi-ohaudio-oh-audiostreaminfo.md) | OH_AudioStreamInfo | 定义音频流信息，用于描述基本音频格式。 |
+| [OH_AudioRenderer_Callbacks_Struct](capi-ohaudio-oh-audiorenderer-callbacks-struct.md) | OH_AudioRenderer_Callbacks | 声明输出音频流的回调函数指针。 |
+| [OH_AudioCapturer_Callbacks_Struct](capi-ohaudio-oh-audiocapturer-callbacks-struct.md) | OH_AudioCapturer_Callbacks | 声明输入音频流的回调函数指针。 |
+| [OH_AudioStreamBuilderStruct](capi-ohaudio-oh-audiostreambuilderstruct.md) | OH_AudioStreamBuilder | 声明音频流的构造器。构造器实例通常被用来设置音频流属性和创建音频流。 |
+| [OH_AudioRendererStruct](capi-ohaudio-oh-audiorendererstruct.md) | OH_AudioRenderer | 声明输出音频流。输出音频流的实例被用来播放音频数据。 |
+| [OH_AudioCapturerStruct](capi-ohaudio-oh-audiocapturerstruct.md) | OH_AudioCapturer | 声明输入音频流。输入音频流的实例被用来获取音频数据。 |
 
 ### 枚举
 
@@ -426,7 +426,7 @@ typedef void (*OH_AudioRenderer_OutputDeviceChangeCallback)(OH_AudioRenderer* re
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AudioRenderer](capi-oh-audiorendererstruct.md)* renderer | 指向[OH_AudioStreamBuilder_GenerateRenderer](capi-native-audiostreambuilder-h.md#oh_audiostreambuilder_generaterenderer)创建的音频流实例。 |
+| [OH_AudioRenderer](capi-ohaudio-oh-audiorendererstruct.md)* renderer | 指向[OH_AudioStreamBuilder_GenerateRenderer](capi-native-audiostreambuilder-h.md#oh_audiostreambuilder_generaterenderer)创建的音频流实例。 |
 |  void* userData | 指向通过回调函数传递的应用数据指针。 |
 | [OH_AudioStream_DeviceChangeReason](#oh_audiostream_devicechangereason) reason | 流设备变更原因。 |
 
@@ -447,7 +447,7 @@ typedef void (*OH_AudioRenderer_OnMarkReachedCallback)(OH_AudioRenderer* rendere
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AudioRenderer](capi-oh-audiorendererstruct.md)* renderer | 指向[OH_AudioStreamBuilder_GenerateRenderer](capi-native-audiostreambuilder-h.md#oh_audiostreambuilder_generaterenderer)创建的音频流实例。 |
+| [OH_AudioRenderer](capi-ohaudio-oh-audiorendererstruct.md)* renderer | 指向[OH_AudioStreamBuilder_GenerateRenderer](capi-native-audiostreambuilder-h.md#oh_audiostreambuilder_generaterenderer)创建的音频流实例。 |
 |  uint32_t samplePos | 设置目标标记位置。 |
 |  void* userData | 指向通过回调函数传递的应用数据指针。 |
 
@@ -468,7 +468,7 @@ typedef int32_t (*OH_AudioRenderer_WriteDataWithMetadataCallback)(OH_AudioRender
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AudioRenderer](capi-oh-audiorendererstruct.md)* renderer | 指向[OH_AudioStreamBuilder_GenerateRenderer](capi-native-audiostreambuilder-h.md#oh_audiostreambuilder_generaterenderer)创建的音频流实例。 |
+| [OH_AudioRenderer](capi-ohaudio-oh-audiorendererstruct.md)* renderer | 指向[OH_AudioStreamBuilder_GenerateRenderer](capi-native-audiostreambuilder-h.md#oh_audiostreambuilder_generaterenderer)创建的音频流实例。 |
 | void* userData | 指向通过回调函数传递的应用数据指针。 |
 |  void* audioData | 指向用户写入的音频数据的指针。 |
 |  int32_t audioDataSize | 用户写入的音频数据的数据长度，以字节为单位。 |
@@ -498,7 +498,7 @@ typedef OH_AudioData_Callback_Result (*OH_AudioRenderer_OnWriteDataCallback)(OH_
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AudioRenderer](capi-oh-audiorendererstruct.md)* renderer | 指向[OH_AudioStreamBuilder_GenerateRenderer](capi-native-audiostreambuilder-h.md#oh_audiostreambuilder_generaterenderer)创建的音频流实例。 |
+| [OH_AudioRenderer](capi-ohaudio-oh-audiorendererstruct.md)* renderer | 指向[OH_AudioStreamBuilder_GenerateRenderer](capi-native-audiostreambuilder-h.md#oh_audiostreambuilder_generaterenderer)创建的音频流实例。 |
 |  void* userData | 指向通过回调函数传递的应用数据指针。 |
 | void* audioData | 指向用户写入的音频数据的指针。 |
 |  int32_t audioDataSize | 用户写入的音频数据的数据长度，以字节为单位。 |

@@ -178,6 +178,26 @@ import { window } from '@kit.ArkUI';
 | y    | number   | 否   | 是  | Y轴的平移参数。该参数为浮点数，默认值为0.0，单位为px。 |
 | z    | number   | 否   | 是  | Z轴的平移参数。该参数为浮点数，默认值为0.0，单位为px。 |
 
+
+## StartAnimationSystemOptions<sup>20+</sup>
+
+启动动画配置。
+
+仅对同应用的不同ability间跳转生效。
+
+仅在手机设备或平板设备的非自由多窗模式下生效。
+
+仅对全屏应用生效。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+| 名称             | 类型                                                                     | 只读 | 可选 | 说明                                                         |
+| ---------------- | ----------------------------------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
+| type             | [AnimationType](arkts-apis-window-e.md#animationtype20)                 | 否   | 否   | 窗口动画类型。淡入动画在应用启动时生效，淡出动画仅在应用启动被侧滑、上滑等手势打断时生效，非打断场景依然走默认系统动效。|
+| animationConifg  | [WindowAnimationConfig](arkts-apis-window-i.md#windowanimationconfig20) | 否   | 是   | 窗口动画参数配置。默认动画曲线为WindowAnimationCurve.LINEAR，duration为0。          |
+
 ## window.minimizeAll<sup>9+</sup>
 minimizeAll(id: number, callback: AsyncCallback&lt;void&gt;): void
 
@@ -965,6 +985,56 @@ try {
   });
 } catch (exception) {
   console.error(`Failed to get snapshot. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+## window.notifyScreenshotEvent<sup>20+</sup>
+
+notifyScreenshotEvent(eventType: ScreenshotEventType): Promise&lt;void&gt;
+
+通知屏幕截屏的事件类型，使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名   | 类型   | 必填  | 说明         |
+| -------- | ------ | ----- | ------------ |
+| eventType | [ScreenshotEventType](arkts-apis-window-e.md#screenshoteventtype20) | 是    | 截屏事件类型。 |
+
+**返回值：**
+
+| 类型                    | 说明                            |
+| ----------------------- | ------------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 1300003  | This window manager service works abnormally. |
+| 1300016 | Parameter error. Possible cause: 1. Invalid parameter range. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let eventType: window.ScreenshotEventType = window.ScreenshotEventType.SYSTEM_SCREENSHOT;
+  let promise = window.notifyScreenshotEvent(eventType);
+  promise.then(() => {
+    console.info(`Succeeded in notifying screenshot event type.`);
+  }).catch((err: BusinessError) =>{
+    console.error(`Failed to notify screenshot event type. Cause code: ${err.code}, message: ${err.message}`);
+  });
+} catch (exception) {
+  console.error(`Failed to notify screenshot event type. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 

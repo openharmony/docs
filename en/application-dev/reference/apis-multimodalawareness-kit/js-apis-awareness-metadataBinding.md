@@ -12,7 +12,7 @@ The **metadataBinding** module provides metadata binding–specific functions su
 import { metadataBinding } from '@kit.MultimodalAwarenessKit';
 ```
 
-## submitMetadata(string)
+## metadataBinding.submitMetadata
 function submitMetadata(metadata: string): void;  
 Transfers the metadata to be encoded to the MSDP. The MSDP determines whether to transfer the metadata to the system application or service that calls the encoding API. 
 **System capability**: SystemCapability.MultimodalAwareness.metadataBinding
@@ -45,7 +45,7 @@ try {
 }
 ```
 
-## metadataBinding.on('operationSubmitMetadata', string,  Callback\<number\>)
+## metadataBinding.on('operationSubmitMetadata')
 metadataBinding.on(type: 'operationSubmitMetadata', bundleName: string, callback: Callback\<number\>): void;  
 
 Subscribes to a system event to obtain the encoded metadata. The application needs to register a callback to return the encoded metadata when the registered system event occurs. 
@@ -85,7 +85,7 @@ try {
 ```
 
 
-## metadataBinding.off('operationSubmitMetadata', string,  Callback\<number\>)
+## metadataBinding.off('operationSubmitMetadata')
 metadataBinding.off(type: 'operationSubmitMetadata', bundleName: string, callback?: Callback\<number>): void;  
 Unsubscribes from system events that are used to obtain the encoded metadata. The respective callback will be unregistered. 
 **System capability**: SystemCapability.MultimodalAwareness.metadataBinding 

@@ -92,13 +92,14 @@ java -jar app_packing_tool.jar --mode hsp --json-path <path> [--resources-path <
 开发者可以使用打包工具的jar包对应用进行打包，通过传入打包选项、文件路径，生成所需的App包。App包用于上架应用市场。
 
 **App打包时合法性校验：**
-- 在打包生成App包时，需要保证被打包的每个HAP和HSP在pack.info/module.json文件中配置的bundleName、bundleType、versionCode、debug、minApiVersion相同，moduleName唯一。
-- 所有HAP的minCompatibleVersionCode、targetApiVersion保持一致，且分别不低于所有HSP对应字段的最大值。
+- 在打包生成App包时，需要保证被打包的每个HAP和HSP在pack.info/module.json文件中配置的bundleName、bundleType、versionCode、debug相同，moduleName唯一。
+- 所有HAP的minCompatibleVersionCode、targetAPIVersion、minAPIVersion保持一致，且分别不低于所有HSP对应字段的最大值。
 
 >**说明：**
 >
 > - 从API version 12开始，App打包不再对versionName校验。
-> - 在API version 16之前，App打包时要求所有HAP/HSP的minCompatibleVersionCode、targetApiVersion一致。
+> - 在API version 16之前，App打包时要求所有HAP/HSP的minCompatibleVersionCode、targetAPIVersion一致。
+> - 在API version 20之前，App打包时要求所有HAP/HSP的minAPIVersion一致。
 
 **打包App时的压缩规则：** 打包App时，对release模式的HAP、HSP包会进行压缩，对debug模式的HAP、HSP包不会压缩。
 
@@ -131,13 +132,14 @@ java -jar app_packing_tool.jar --mode app [--hap-path <path>] [--hsp-path <path>
 多工程打包适用于多个团队开发同一个应用，但不方便共享代码的情况。开发者通过传入已经打好的HAP、HSP和App包，将多个包打成一个最终的App包，并上架应用市场。
 
 **多工程打包合法性校验：**
-- 在打包生成App包时，需要保证被打包的每个HAP和HSP在pack.info/module.json文件中配置的bundleName、bundleType、versionCode、debug、minApiVersion相同，moduleName唯一。
-- 所有HAP的minCompatibleVersionCode、targetApiVersion保持一致，且分别不低于所有HSP对应字段的最大值。
+- 在打包生成App包时，需要保证被打包的每个HAP和HSP在pack.info/module.json文件中配置的bundleName、bundleType、versionCode、debug相同，moduleName唯一。
+- 所有HAP的minCompatibleVersionCode、targetAPIVersion、minAPIVersion保持一致，且分别不低于所有HSP对应字段的最大值。
 
 >**说明：**
 >
 > - 从API version 12开始，多工程打包不再对versionName校验。
-> - 在API version 16之前，App打包时要求所有HAP/HSP的minCompatibleVersionCode、targetApiVersion一致。
+> - 在API version 16之前，App打包时要求所有HAP/HSP的minCompatibleVersionCode、targetAPIVersion一致。
+> - 在API version 20之前，App打包时要求所有HAP/HSP的minAPIVersion一致。
 
 示例：
 
@@ -246,7 +248,7 @@ apiReleaseType/bundleTypes/installationFree/deliveryWithInstall参数，并在�
 
 >**说明：**
 >
->从API version 20开始支持通用归一化指令。
+> - 从API version 20开始支持通用归一化指令。
 
 示例：
 
@@ -298,12 +300,13 @@ java -jar app_packing_tool.jar --mode res --entrycard-path <path> --pack-info-pa
 开发者可以使用打包工具的jar包对应用进行打包，通过传入打包选项、HAP、HSP包文件目录路径，生成所需的App包。App包用于上架应用市场。
 
 **App打包时合法性校验：**
-- 在打包生成App包时，需要保证被打包的每个HAP和HSP在pack.info/module.json文件中配置的bundleName、bundleType、versionCode、debug、minApiVersion相同，moduleName唯一。
-- 所有HAP的minCompatibleVersionCode、targetApiVersion保持一致，且分别不低于所有HSP对应字段的最大值。
+- 在打包生成App包时，需要保证被打包的每个HAP和HSP在pack.info/module.json文件中配置的bundleName、bundleType、versionCode、debug相同，moduleName唯一。
+- 所有HAP的minCompatibleVersionCode、targetAPIVersion、minAPIVersion保持一致，且分别不低于所有HSP对应字段的最大值。
 
 >**说明：**
 >
-> 在API version 16之前，在API version 16之前，App打包时要求所有HAP/HSP的minCompatibleVersionCode、targetApiVersion一致。
+> - 在API version 16之前，App打包时要求所有HAP/HSP的minCompatibleVersionCode、targetAPIVersion一致。
+> - 在API version 20之前，App打包时要求所有HAP/HSP的minAPIVersion一致。
 
 **打包App时的压缩规则：** 打包App时，对release模式的HAP、HSP包会进行压缩，对debug模式的HAP、HSP包不会压缩。
 

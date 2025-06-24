@@ -267,6 +267,8 @@ type OnRatingChangeCallback = (rating: number) => void
 
 ## RatingOptions<sup>18+</sup>对象说明
 
+评分组件的信息。
+
 **卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
@@ -279,6 +281,8 @@ type OnRatingChangeCallback = (rating: number) => void
 | indicator<sup>7+</sup> | boolean | 否   | 设置评分组件作为指示器使用，值为true时，不可改变评分。<br/>默认值：false，可进行评分<br/>**说明：** <br/>indicator=true时，默认组件高度height=12.0vp，组件width=height * stars。 <br/>indicator=false时，默认组件高度height=28.0vp，组件width=height * stars。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## StarStyleOptions<sup>18+</sup>对象说明
+
+评分组件选中、未选中以及部分选中的星级样式。
 
 **卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 

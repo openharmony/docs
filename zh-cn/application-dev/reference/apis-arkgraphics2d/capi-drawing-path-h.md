@@ -32,7 +32,7 @@
 | 名称 | 描述 |
 | -- | -- |
 | [OH_Drawing_Path* OH_Drawing_PathCreate(void)](#oh_drawing_pathcreate) | 用于创建一个路径对象。 |
-| [OH_Drawing_Path* OH_Drawing_PathCopy(OH_Drawing_Path* path)](#oh_drawing_pathcopy) | 创建一个路径对象副本[OH_Drawing_Path](capi-oh-drawing-path.md)，用于拷贝一个已有路径对象。<br>本接口会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](capi-drawing-error-code-h.md#oh_drawing_errorcodeget)查看错误码的取值。<br>path为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。 |
+| [OH_Drawing_Path* OH_Drawing_PathCopy(OH_Drawing_Path* path)](#oh_drawing_pathcopy) | 创建一个路径对象副本[OH_Drawing_Path](capi-drawing-oh-drawing-path.md)，用于拷贝一个已有路径对象。<br>本接口会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](capi-drawing-error-code-h.md#oh_drawing_errorcodeget)查看错误码的取值。<br>path为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。 |
 | [void OH_Drawing_PathDestroy(OH_Drawing_Path* path)](#oh_drawing_pathdestroy) | 用于销毁路径对象并回收该对象占有的内存。 |
 | [OH_Drawing_ErrorCode OH_Drawing_PathSetPath(OH_Drawing_Path* path, OH_Drawing_Path* other)](#oh_drawing_pathsetpath) | 将一个路径对象设置成当前的路径对象。 |
 | [OH_Drawing_ErrorCode OH_Drawing_PathIsEmpty(OH_Drawing_Path* path, bool* isEmpty)](#oh_drawing_pathisempty) | 判断一个路径对象是否为空。 |
@@ -191,7 +191,7 @@ OH_Drawing_Path* OH_Drawing_PathCreate(void)
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_Path](capi-oh-drawing-path.md)* | 函数会返回一个指针，指针指向创建的路径对象。 |
+| [OH_Drawing_Path](capi-drawing-oh-drawing-path.md)* | 函数会返回一个指针，指针指向创建的路径对象。 |
 
 ### OH_Drawing_PathCopy()
 
@@ -201,7 +201,7 @@ OH_Drawing_Path* OH_Drawing_PathCopy(OH_Drawing_Path* path)
 
 **描述**
 
-创建一个路径对象副本[OH_Drawing_Path](capi-oh-drawing-path.md)，用于拷贝一个已有路径对象。<br>本接口会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](capi-drawing-error-code-h.md#oh_drawing_errorcodeget)查看错误码的取值。<br>path为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+创建一个路径对象副本[OH_Drawing_Path](capi-drawing-oh-drawing-path.md)，用于拷贝一个已有路径对象。<br>本接口会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](capi-drawing-error-code-h.md#oh_drawing_errorcodeget)查看错误码的取值。<br>path为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -212,13 +212,13 @@ OH_Drawing_Path* OH_Drawing_PathCopy(OH_Drawing_Path* path)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Path](capi-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-oh-drawing-path.md)的指针。 |
+| [OH_Drawing_Path](capi-drawing-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-drawing-oh-drawing-path.md)的指针。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_Path](capi-oh-drawing-path.md)* | 函数返回一个指针，指针指向创建的路径对象副本[OH_Drawing_Path](capi-oh-drawing-path.md)。 |
+| [OH_Drawing_Path](capi-drawing-oh-drawing-path.md)* | 函数返回一个指针，指针指向创建的路径对象副本[OH_Drawing_Path](capi-drawing-oh-drawing-path.md)。 |
 
 ### OH_Drawing_PathDestroy()
 
@@ -239,7 +239,7 @@ void OH_Drawing_PathDestroy(OH_Drawing_Path* path)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Path](capi-oh-drawing-path.md)* path | 指向路径对象的指针。 |
+| [OH_Drawing_Path](capi-drawing-oh-drawing-path.md)* path | 指向路径对象的指针。 |
 
 ### OH_Drawing_PathSetPath()
 
@@ -260,8 +260,8 @@ OH_Drawing_ErrorCode OH_Drawing_PathSetPath(OH_Drawing_Path* path, OH_Drawing_Pa
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Path](capi-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-oh-drawing-path.md)的指针。 |
-| [OH_Drawing_Path](capi-oh-drawing-path.md)* other | 用于设置的路径对象[OH_Drawing_Path](capi-oh-drawing-path.md)的指针。 |
+| [OH_Drawing_Path](capi-drawing-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-drawing-oh-drawing-path.md)的指针。 |
+| [OH_Drawing_Path](capi-drawing-oh-drawing-path.md)* other | 用于设置的路径对象[OH_Drawing_Path](capi-drawing-oh-drawing-path.md)的指针。 |
 
 **返回：**
 
@@ -288,7 +288,7 @@ OH_Drawing_ErrorCode OH_Drawing_PathIsEmpty(OH_Drawing_Path* path, bool* isEmpty
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Path](capi-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-oh-drawing-path.md)的指针。 |
+| [OH_Drawing_Path](capi-drawing-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-drawing-oh-drawing-path.md)的指针。 |
 | bool* isEmpty | 表示路径对象是否为空。true表示路径对象为空，false表示路径对象不为空。作为出参使用。 |
 
 **返回：**
@@ -316,8 +316,8 @@ OH_Drawing_ErrorCode OH_Drawing_PathIsRect(OH_Drawing_Path* path, OH_Drawing_Rec
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Path](capi-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-oh-drawing-path.md)的指针。 |
-| [OH_Drawing_Rect](capi-oh-drawing-rect.md)* rect | 指向矩形对象[OH_Drawing_Rect](capi-oh-drawing-rect.md)的指针，作为出参使用，可以为空。 |
+| [OH_Drawing_Path](capi-drawing-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-drawing-oh-drawing-path.md)的指针。 |
+| [OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)* rect | 指向矩形对象[OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)的指针，作为出参使用，可以为空。 |
 | bool* isRect | 表示路径是否构成矩形。true表示构成矩形，false表示不构成矩形。作为出参使用。 |
 
 **返回：**
@@ -345,7 +345,7 @@ void OH_Drawing_PathMoveTo(OH_Drawing_Path* path, float x, float y)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Path](capi-oh-drawing-path.md)* path | 指向路径对象的指针。 |
+| [OH_Drawing_Path](capi-drawing-oh-drawing-path.md)* path | 指向路径对象的指针。 |
 | float x | 起始点的横坐标。 |
 | float y | 起始点的纵坐标。 |
 
@@ -368,7 +368,7 @@ void OH_Drawing_PathLineTo(OH_Drawing_Path* path, float x, float y)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Path](capi-oh-drawing-path.md)* path | 指向路径对象的指针。 |
+| [OH_Drawing_Path](capi-drawing-oh-drawing-path.md)* path | 指向路径对象的指针。 |
 | float x | 目标点的横坐标。 |
 | float y | 目标点的纵坐标。 |
 
@@ -391,7 +391,7 @@ void OH_Drawing_PathArcTo(OH_Drawing_Path* path,float x1, float y1, float x2, fl
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Path](capi-oh-drawing-path.md)* path | 指向路径对象的指针。 |
+| [OH_Drawing_Path](capi-drawing-oh-drawing-path.md)* path | 指向路径对象的指针。 |
 | float x1 | 包围椭圆的矩形左上角点位置的横坐标。 |
 | float y1 | 包围椭圆的矩形左上角点位置的纵坐标。 |
 | float x2 | 包围椭圆的矩形右下角点位置的横坐标。 |
@@ -418,7 +418,7 @@ void OH_Drawing_PathQuadTo(OH_Drawing_Path* path, float ctrlX, float ctrlY, floa
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Path](capi-oh-drawing-path.md)* path | 指向路径对象的指针。 |
+| [OH_Drawing_Path](capi-drawing-oh-drawing-path.md)* path | 指向路径对象的指针。 |
 | float ctrlX | 控制点位置的横坐标。 |
 | float ctrlY | 控制点位置的纵坐标。 |
 | float endX | 目标点位置的横坐标。 |
@@ -443,7 +443,7 @@ void OH_Drawing_PathConicTo(OH_Drawing_Path* path, float ctrlX, float ctrlY, flo
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Path](capi-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-oh-drawing-path.md)的指针。 |
+| [OH_Drawing_Path](capi-drawing-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-drawing-oh-drawing-path.md)的指针。 |
 | float ctrlX | 控制点位置的横坐标。 |
 | float ctrlY | 控制点位置的纵坐标。 |
 | float endX | 结束点位置的横坐标。 |
@@ -469,7 +469,7 @@ void OH_Drawing_PathCubicTo(OH_Drawing_Path* path, float ctrlX1, float ctrlY1, f
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Path](capi-oh-drawing-path.md)* path | 指向路径对象的指针。 |
+| [OH_Drawing_Path](capi-drawing-oh-drawing-path.md)* path | 指向路径对象的指针。 |
 | float ctrlX1 | 第一个控制点位置的横坐标。 |
 | float ctrlY1 | 第一个控制点位置的纵坐标。 |
 | float ctrlX2 | 第二个控制点位置的横坐标。 |
@@ -496,7 +496,7 @@ void OH_Drawing_PathRMoveTo(OH_Drawing_Path* path, float x, float y)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Path](capi-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-oh-drawing-path.md)的指针。 |
+| [OH_Drawing_Path](capi-drawing-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-drawing-oh-drawing-path.md)的指针。 |
 | float x | 相对于当前路径终点的x轴偏移量，正数往x轴正方向偏移，负数往x轴负方向偏移。 |
 | float y | 相对于当前路径终点的y轴偏移量，正数往y轴正方向偏移，负数往y轴负方向偏移。 |
 
@@ -519,7 +519,7 @@ void OH_Drawing_PathRLineTo(OH_Drawing_Path* path, float x, float y)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Path](capi-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-oh-drawing-path.md)的指针。 |
+| [OH_Drawing_Path](capi-drawing-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-drawing-oh-drawing-path.md)的指针。 |
 | float x | 相对于当前路径终点的x轴偏移量，用于指定目标点的横坐标。 |
 | float y | 相对于当前路径终点的y轴偏移量，用于指定目标点的纵坐标。 |
 
@@ -542,7 +542,7 @@ void OH_Drawing_PathRQuadTo(OH_Drawing_Path* path, float ctrlX, float ctrlY, flo
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Path](capi-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-oh-drawing-path.md)的指针。 |
+| [OH_Drawing_Path](capi-drawing-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-drawing-oh-drawing-path.md)的指针。 |
 | float ctrlX | 相对于路径终点的x轴偏移量，用于指定控制点的横坐标。 |
 | float ctrlY | 相对于路径终点的y轴偏移量，用于指定控制点的纵坐标。 |
 | float endX | 相对于路径终点的x轴偏移量，用于指定目标点的横坐标。 |
@@ -567,7 +567,7 @@ void OH_Drawing_PathRConicTo(OH_Drawing_Path* path, float ctrlX, float ctrlY, fl
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Path](capi-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-oh-drawing-path.md)的指针。 |
+| [OH_Drawing_Path](capi-drawing-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-drawing-oh-drawing-path.md)的指针。 |
 | float ctrlX | 相对于路径终点的x轴偏移量，用于指定控制点的横坐标。 |
 | float ctrlY | 相对于路径终点的y轴偏移量，用于指定控制点的纵坐标。 |
 | float endX | 相对于路径终点的x轴偏移量，用于指定目标点的横坐标。 |
@@ -593,7 +593,7 @@ void OH_Drawing_PathRCubicTo(OH_Drawing_Path* path, float ctrlX1, float ctrlY1, 
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Path](capi-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-oh-drawing-path.md)的指针。 |
+| [OH_Drawing_Path](capi-drawing-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-drawing-oh-drawing-path.md)的指针。 |
 | float ctrlX1 | 相对于路径终点的x轴偏移量，用于指定第一个控制点的横坐标。 |
 | float ctrlY1 | 相对于路径终点的y轴偏移量，用于指定第一个控制点的纵坐标。 |
 | float ctrlX2 | 相对于路径终点的x轴偏移量，用于指定第二个控制点的横坐标。 |
@@ -620,7 +620,7 @@ void OH_Drawing_PathAddRect(OH_Drawing_Path* path, float left, float top, float 
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Path](capi-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-oh-drawing-path.md)的指针。 |
+| [OH_Drawing_Path](capi-drawing-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-drawing-oh-drawing-path.md)的指针。 |
 | float left | 矩形左上角的x轴坐标。 |
 | float top | 矩形左上角的y轴坐标。 |
 | float right | 矩形右下角的x轴坐标。 |
@@ -646,8 +646,8 @@ void OH_Drawing_PathAddRectWithInitialCorner(OH_Drawing_Path* path, const OH_Dra
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Path](capi-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-oh-drawing-path.md)的指针。 |
-| const [OH_Drawing_Rect](capi-oh-drawing-rect.md)* rect | 指向矩形对象[OH_Drawing_Rect](capi-oh-drawing-rect.md)的指针。 |
+| [OH_Drawing_Path](capi-drawing-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-drawing-oh-drawing-path.md)的指针。 |
+| const [OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)* rect | 指向矩形对象[OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)的指针。 |
 | OH_Drawing_PathDirection |  表示绘制方向[OH_Drawing_PathDirection](capi-drawing-path-h.md#oh_drawing_pathdirection)。 |
 | uint32_t start | 起始点的位置，表示从矩形的哪个角开始绘制路径。0：左上角，1：右上角，2：右下角，3：左下角。 |
 
@@ -670,8 +670,8 @@ void OH_Drawing_PathAddRoundRect(OH_Drawing_Path* path,const OH_Drawing_RoundRec
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Path](capi-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-oh-drawing-path.md)的指针。 |
-| const [OH_Drawing_RoundRect](capi-oh-drawing-roundrect.md)* roundRect | 指向圆角矩形对象[OH_Drawing_RoundRect](capi-oh-drawing-roundrect.md)的指针。 |
+| [OH_Drawing_Path](capi-drawing-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-drawing-oh-drawing-path.md)的指针。 |
+| const [OH_Drawing_RoundRect](capi-drawing-oh-drawing-roundrect.md)* roundRect | 指向圆角矩形对象[OH_Drawing_RoundRect](capi-drawing-oh-drawing-roundrect.md)的指针。 |
 | [OH_Drawing_PathDirection](#oh_drawing_pathdirection) pathDirection | 路径方向[OH_Drawing_PathDirection](capi-drawing-path-h.md#oh_drawing_pathdirection)。 |
 
 ### OH_Drawing_PathAddOvalWithInitialPoint()
@@ -693,8 +693,8 @@ void OH_Drawing_PathAddOvalWithInitialPoint(OH_Drawing_Path* path, const OH_Draw
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Path](capi-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-oh-drawing-path.md)的指针。 |
-| const [OH_Drawing_Rect](capi-oh-drawing-rect.md)* rect | 指向矩形对象[OH_Drawing_Rect](capi-oh-drawing-rect.md)的指针。 |
+| [OH_Drawing_Path](capi-drawing-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-drawing-oh-drawing-path.md)的指针。 |
+| const [OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)* rect | 指向矩形对象[OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)的指针。 |
 | uint32_t start | 表示椭圆初始点的索引。 |
 | [OH_Drawing_PathDirection](#oh_drawing_pathdirection) pathDirection | 表示绘制方向[OH_Drawing_PathDirection](capi-drawing-path-h.md#oh_drawing_pathdirection)。 |
 
@@ -717,8 +717,8 @@ void OH_Drawing_PathAddOval(OH_Drawing_Path* path,const OH_Drawing_Rect* rect, O
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Path](capi-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-oh-drawing-path.md)的指针。 |
-| const [OH_Drawing_Rect](capi-oh-drawing-rect.md)* rect | 指向矩形对象[OH_Drawing_Rect](capi-oh-drawing-rect.md)的指针。 |
+| [OH_Drawing_Path](capi-drawing-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-drawing-oh-drawing-path.md)的指针。 |
+| const [OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)* rect | 指向矩形对象[OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)的指针。 |
 | [OH_Drawing_PathDirection](#oh_drawing_pathdirection) pathDirection | 路径方向[OH_Drawing_PathDirection](capi-drawing-path-h.md#oh_drawing_pathdirection)。 |
 
 ### OH_Drawing_PathAddArc()
@@ -740,8 +740,8 @@ void OH_Drawing_PathAddArc(OH_Drawing_Path* path, const OH_Drawing_Rect* rect, f
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Path](capi-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-oh-drawing-path.md)的指针。 |
-| const [OH_Drawing_Rect](capi-oh-drawing-rect.md)* rect | 指向矩形对象[OH_Drawing_Rect](capi-oh-drawing-rect.md)的指针。 |
+| [OH_Drawing_Path](capi-drawing-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-drawing-oh-drawing-path.md)的指针。 |
+| const [OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)* rect | 指向矩形对象[OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)的指针。 |
 | float startAngle | 弧的起始角度，单位为度。 |
 | float sweepAngle | 扫描的度数，为正数时顺时针扫描，为负数时逆时针扫描。实际扫描的度数为该入参对360取模的结果。 |
 
@@ -764,9 +764,9 @@ void OH_Drawing_PathAddPath(OH_Drawing_Path* path, const OH_Drawing_Path* src, c
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Path](capi-oh-drawing-path.md)* path | 指向当前路径对象[OH_Drawing_Path](capi-oh-drawing-path.md)的指针。 |
-| const [OH_Drawing_Path](capi-oh-drawing-path.md)* src | 指向源路径对象[OH_Drawing_Path](capi-oh-drawing-path.md)的指针。 |
-| const [OH_Drawing_Matrix](capi-oh-drawing-matrix.md)* matrix | 指向矩阵对象[OH_Drawing_Matrix](capi-oh-drawing-matrix.md)的指针，为NULL时表示单位矩阵。 |
+| [OH_Drawing_Path](capi-drawing-oh-drawing-path.md)* path | 指向当前路径对象[OH_Drawing_Path](capi-drawing-oh-drawing-path.md)的指针。 |
+| const [OH_Drawing_Path](capi-drawing-oh-drawing-path.md)* src | 指向源路径对象[OH_Drawing_Path](capi-drawing-oh-drawing-path.md)的指针。 |
+| const [OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)* matrix | 指向矩阵对象[OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)的指针，为NULL时表示单位矩阵。 |
 
 ### OH_Drawing_PathAddPathWithMatrixAndMode()
 
@@ -787,9 +787,9 @@ void OH_Drawing_PathAddPathWithMatrixAndMode(OH_Drawing_Path* path, const OH_Dra
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Path](capi-oh-drawing-path.md)* path | 指向当前路径对象[OH_Drawing_Path](capi-oh-drawing-path.md)的指针。 |
-| const [OH_Drawing_Path](capi-oh-drawing-path.md)* src | 指向源路径对象[OH_Drawing_Path](capi-oh-drawing-path.md)的指针。 |
-| const [OH_Drawing_Matrix](capi-oh-drawing-matrix.md)* matrix | 指向矩阵对象[OH_Drawing_Matrix](capi-oh-drawing-matrix.md)的指针，为NULL表示单位矩阵。 |
+| [OH_Drawing_Path](capi-drawing-oh-drawing-path.md)* path | 指向当前路径对象[OH_Drawing_Path](capi-drawing-oh-drawing-path.md)的指针。 |
+| const [OH_Drawing_Path](capi-drawing-oh-drawing-path.md)* src | 指向源路径对象[OH_Drawing_Path](capi-drawing-oh-drawing-path.md)的指针。 |
+| const [OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)* matrix | 指向矩阵对象[OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)的指针，为NULL表示单位矩阵。 |
 | [OH_Drawing_PathAddMode](#oh_drawing_pathaddmode) pathAddMode | 路径添加模式[OH_Drawing_PathAddMode](capi-drawing-path-h.md#oh_drawing_pathaddmode)。 |
 
 ### OH_Drawing_PathAddPathWithMode()
@@ -811,8 +811,8 @@ void OH_Drawing_PathAddPathWithMode(OH_Drawing_Path* path,const OH_Drawing_Path*
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Path](capi-oh-drawing-path.md)* path | 指向当前路径对象[OH_Drawing_Path](capi-oh-drawing-path.md)的指针。 |
-| const [OH_Drawing_Path](capi-oh-drawing-path.md)* src | 指向源路径对象[OH_Drawing_Path](capi-oh-drawing-path.md)的指针。 |
+| [OH_Drawing_Path](capi-drawing-oh-drawing-path.md)* path | 指向当前路径对象[OH_Drawing_Path](capi-drawing-oh-drawing-path.md)的指针。 |
+| const [OH_Drawing_Path](capi-drawing-oh-drawing-path.md)* src | 指向源路径对象[OH_Drawing_Path](capi-drawing-oh-drawing-path.md)的指针。 |
 | [OH_Drawing_PathAddMode](#oh_drawing_pathaddmode) pathAddMode | 路径添加模式[OH_Drawing_PathAddMode](capi-drawing-path-h.md#oh_drawing_pathaddmode)。 |
 
 ### OH_Drawing_PathAddPathWithOffsetAndMode()
@@ -834,8 +834,8 @@ void OH_Drawing_PathAddPathWithOffsetAndMode(OH_Drawing_Path* path, const OH_Dra
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Path](capi-oh-drawing-path.md)* path | 指向当前路径对象[OH_Drawing_Path](capi-oh-drawing-path.md)的指针。 |
-| const [OH_Drawing_Path](capi-oh-drawing-path.md)* src | 指向源路径对象[OH_Drawing_Path](capi-oh-drawing-path.md)的指针。 |
+| [OH_Drawing_Path](capi-drawing-oh-drawing-path.md)* path | 指向当前路径对象[OH_Drawing_Path](capi-drawing-oh-drawing-path.md)的指针。 |
+| const [OH_Drawing_Path](capi-drawing-oh-drawing-path.md)* src | 指向源路径对象[OH_Drawing_Path](capi-drawing-oh-drawing-path.md)的指针。 |
 | float dx | 添加到目标路径横坐标的偏移量。 |
 | float dy | 添加到目标路径纵坐标的偏移量。 |
 | [OH_Drawing_PathAddMode](#oh_drawing_pathaddmode) pathAddMode | 路径添加模式[OH_Drawing_PathAddMode](capi-drawing-path-h.md#oh_drawing_pathaddmode)。 |
@@ -859,8 +859,8 @@ void OH_Drawing_PathAddPolygon(OH_Drawing_Path* path, const OH_Drawing_Point2D* 
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Path](capi-oh-drawing-path.md)* path | 指向当前路径对象[OH_Drawing_Path](capi-oh-drawing-path.md)的指针。 |
-| const [OH_Drawing_Point2D](capi-oh-drawing-point2d.md)* points | 表示多边形的顶点坐标数组。 |
+| [OH_Drawing_Path](capi-drawing-oh-drawing-path.md)* path | 指向当前路径对象[OH_Drawing_Path](capi-drawing-oh-drawing-path.md)的指针。 |
+| const [OH_Drawing_Point2D](capi-drawing-oh-drawing-point2d.md)* points | 表示多边形的顶点坐标数组。 |
 | uint32_t count | 表示多边形顶点坐标数组的大小。 |
 | bool isClosed | 是否添加连接起始点和终止点的线，true表示添加，false表示不添加。 |
 
@@ -883,7 +883,7 @@ void OH_Drawing_PathAddCircle(OH_Drawing_Path* path,float x, float y, float radi
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Path](capi-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-oh-drawing-path.md)的指针。 |
+| [OH_Drawing_Path](capi-drawing-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-drawing-oh-drawing-path.md)的指针。 |
 | float x | 表示圆心的x轴坐标。 |
 | float y | 表示圆心的y轴坐标。 |
 | float radius | 表示圆形的半径。 |
@@ -908,7 +908,7 @@ bool OH_Drawing_PathBuildFromSvgString(OH_Drawing_Path* path, const char* str)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Path](capi-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-oh-drawing-path.md)的指针。 |
+| [OH_Drawing_Path](capi-drawing-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-drawing-oh-drawing-path.md)的指针。 |
 | const char* str | 表示SVG字符串。 |
 
 **返回：**
@@ -936,7 +936,7 @@ bool OH_Drawing_PathContains(OH_Drawing_Path* path, float x, float y)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Path](capi-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-oh-drawing-path.md)的指针。 |
+| [OH_Drawing_Path](capi-drawing-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-drawing-oh-drawing-path.md)的指针。 |
 | float x | 轴上坐标点。 |
 | float y | 轴上坐标点。 |
 
@@ -965,8 +965,8 @@ void OH_Drawing_PathTransform(OH_Drawing_Path* path, const OH_Drawing_Matrix* ma
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Path](capi-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-oh-drawing-path.md)的指针。 |
-| const [OH_Drawing_Matrix](capi-oh-drawing-matrix.md)* matrix | 指向矩阵对象[OH_Drawing_Matrix](capi-oh-drawing-matrix.md)的指针。 |
+| [OH_Drawing_Path](capi-drawing-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-drawing-oh-drawing-path.md)的指针。 |
+| const [OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)* matrix | 指向矩阵对象[OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)的指针。 |
 
 ### OH_Drawing_PathTransformWithPerspectiveClip()
 
@@ -987,9 +987,9 @@ void OH_Drawing_PathTransformWithPerspectiveClip(OH_Drawing_Path* src, const OH_
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Path](capi-oh-drawing-path.md)* src | 指向路径对象[OH_Drawing_Path](capi-oh-drawing-path.md)的指针。 |
-| const [OH_Drawing_Matrix](capi-oh-drawing-matrix.md)* matrix | 指向矩阵对象[OH_Drawing_Matrix](capi-oh-drawing-matrix.md)的指针。 |
-| [OH_Drawing_Path](capi-oh-drawing-path.md)* dst | 指向目标路径对象[OH_Drawing_Path](capi-oh-drawing-path.md)的指针。 |
+| [OH_Drawing_Path](capi-drawing-oh-drawing-path.md)* src | 指向路径对象[OH_Drawing_Path](capi-drawing-oh-drawing-path.md)的指针。 |
+| const [OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)* matrix | 指向矩阵对象[OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)的指针。 |
+| [OH_Drawing_Path](capi-drawing-oh-drawing-path.md)* dst | 指向目标路径对象[OH_Drawing_Path](capi-drawing-oh-drawing-path.md)的指针。 |
 | bool applyPerspectiveClip | 表示变换路径是否应用透视裁剪。true表示应用透视裁剪，false表示不用透视裁剪。 |
 
 ### OH_Drawing_PathSetFillType()
@@ -1011,7 +1011,7 @@ void OH_Drawing_PathSetFillType(OH_Drawing_Path* path, OH_Drawing_PathFillType p
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Path](capi-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-oh-drawing-path.md)的指针。 |
+| [OH_Drawing_Path](capi-drawing-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-drawing-oh-drawing-path.md)的指针。 |
 | [OH_Drawing_PathFillType](#oh_drawing_pathfilltype) pathFillType | 路径填充规则[OH_Drawing_PathFillType](capi-drawing-path-h.md#oh_drawing_pathfilltype)。 |
 
 ### OH_Drawing_PathGetFillType()
@@ -1033,7 +1033,7 @@ OH_Drawing_ErrorCode OH_Drawing_PathGetFillType(OH_Drawing_Path* path, OH_Drawin
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Path](capi-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-oh-drawing-path.md)的指针。 |
+| [OH_Drawing_Path](capi-drawing-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-drawing-oh-drawing-path.md)的指针。 |
 | [OH_Drawing_PathFillType](#oh_drawing_pathfilltype)* pathFillType | 指向路径填充规则[OH_Drawing_PathFillType](capi-drawing-path-h.md#oh_drawing_pathfilltype)的指针。 |
 
 **返回：**
@@ -1061,7 +1061,7 @@ float OH_Drawing_PathGetLength(OH_Drawing_Path* path, bool forceClosed)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Path](capi-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-oh-drawing-path.md)的指针。 |
+| [OH_Drawing_Path](capi-drawing-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-drawing-oh-drawing-path.md)的指针。 |
 | bool forceClosed | 表示是否按照闭合路径测量。true表示测量时路径会被强制视为已闭合，false表示会根据路径的实际闭合状态测量。 |
 
 **返回：**
@@ -1089,8 +1089,8 @@ void OH_Drawing_PathGetBounds(OH_Drawing_Path* path, OH_Drawing_Rect* rect)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Path](capi-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-oh-drawing-path.md)的指针。 |
-| [OH_Drawing_Rect](capi-oh-drawing-rect.md)* rect | 指向矩形对象[OH_Drawing_Rect](capi-oh-drawing-rect.md)的指针。 |
+| [OH_Drawing_Path](capi-drawing-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-drawing-oh-drawing-path.md)的指针。 |
+| [OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)* rect | 指向矩形对象[OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)的指针。 |
 
 ### OH_Drawing_PathClose()
 
@@ -1111,7 +1111,7 @@ void OH_Drawing_PathClose(OH_Drawing_Path* path)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Path](capi-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-oh-drawing-path.md)的指针。 |
+| [OH_Drawing_Path](capi-drawing-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-drawing-oh-drawing-path.md)的指针。 |
 
 ### OH_Drawing_PathOffset()
 
@@ -1132,8 +1132,8 @@ void OH_Drawing_PathOffset(OH_Drawing_Path* path, OH_Drawing_Path* dst, float dx
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Path](capi-oh-drawing-path.md)* path | 指向当前路径对象[OH_Drawing_Path](capi-oh-drawing-path.md)的指针。 |
-| [OH_Drawing_Path](capi-oh-drawing-path.md)* dst | 指向目标路径对象[OH_Drawing_Path](capi-oh-drawing-path.md)的指针，为NULL时会将结果存储到当前路径对象中。 |
+| [OH_Drawing_Path](capi-drawing-oh-drawing-path.md)* path | 指向当前路径对象[OH_Drawing_Path](capi-drawing-oh-drawing-path.md)的指针。 |
+| [OH_Drawing_Path](capi-drawing-oh-drawing-path.md)* dst | 指向目标路径对象[OH_Drawing_Path](capi-drawing-oh-drawing-path.md)的指针，为NULL时会将结果存储到当前路径对象中。 |
 | float dx | 轴方向的偏移量。 |
 | float dy | 轴方向的偏移量。 |
 
@@ -1156,7 +1156,7 @@ void OH_Drawing_PathReset(OH_Drawing_Path* path)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Path](capi-oh-drawing-path.md)* path | 指向路径对象的指针。 |
+| [OH_Drawing_Path](capi-drawing-oh-drawing-path.md)* path | 指向路径对象的指针。 |
 
 ### OH_Drawing_PathIsClosed()
 
@@ -1177,7 +1177,7 @@ bool OH_Drawing_PathIsClosed(OH_Drawing_Path* path, bool forceClosed)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Path](capi-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-oh-drawing-path.md)的指针。 |
+| [OH_Drawing_Path](capi-drawing-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-drawing-oh-drawing-path.md)的指针。 |
 | bool forceClosed | 表示是否按照闭合路径测量，true表示测量时路径会被强制视为已闭合，false表示会根据路径的实际闭合状态测量。 |
 
 **返回：**
@@ -1205,11 +1205,11 @@ bool OH_Drawing_PathGetPositionTangent(OH_Drawing_Path* path, bool forceClosed,f
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Path](capi-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-oh-drawing-path.md)的指针。 |
+| [OH_Drawing_Path](capi-drawing-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-drawing-oh-drawing-path.md)的指针。 |
 | bool forceClosed | 表示是否按照闭合路径测量，true表示测量时路径会被强制视为已闭合，false表示会根据路径的实际闭合状态测量。 |
 | float distance | 表示距离起始点的距离，小于0时会被视为0处理，大于路径长度时会被视为路径长度处理。 |
-| [OH_Drawing_Point2D](capi-oh-drawing-point2d.md)* position | 表示距路径起始点指定距离的坐标点。 |
-| [OH_Drawing_Point2D](capi-oh-drawing-point2d.md)* tangent | 表示距路径起始点指定距离的切线值，tangent.x表示该点切线的余弦值，tangent.y表示该点切线的正弦值。 |
+| [OH_Drawing_Point2D](capi-drawing-oh-drawing-point2d.md)* position | 表示距路径起始点指定距离的坐标点。 |
+| [OH_Drawing_Point2D](capi-drawing-oh-drawing-point2d.md)* tangent | 表示距路径起始点指定距离的切线值，tangent.x表示该点切线的余弦值，tangent.y表示该点切线的正弦值。 |
 
 **返回：**
 
@@ -1236,12 +1236,12 @@ OH_Drawing_ErrorCode OH_Drawing_PathGetSegment(OH_Drawing_Path* path, bool force
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Path](capi-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-oh-drawing-path.md)的指针。 |
+| [OH_Drawing_Path](capi-drawing-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-drawing-oh-drawing-path.md)的指针。 |
 | bool forceClosed | 表示是否按照闭合路径测量，true表示测量时路径会被强制视为已闭合，false表示会根据路径的实际闭合状态测量。 |
 | float start | 表示与路径起始点的距离，距离路径起始点start距离的位置即为截取路径片段的起始点，小于0时会被视作0，大于等于stop时会截取失败。 |
 | float stop | 表示与路径起始点的距离，距离路径起始点stop距离的位置即为截取路径片段的终点，小于等于start时会截取失败，大于路径长度时会被视作路径长度。 |
 | bool startWithMoveTo | 表示是否在目标路径执行[OH_Drawing_PathMoveTo](capi-drawing-path-h.md#oh_drawing_pathmoveto)移动到截取路径片段的起始点位置。true表示执行，false表示不执行。 |
-| [OH_Drawing_Path](capi-oh-drawing-path.md)* dst | 指向目标路径对象[OH_Drawing_Path](capi-oh-drawing-path.md)的指针，截取成功时会将得到的路径片段追加到目标路径上，截取失败时不做改变。 |
+| [OH_Drawing_Path](capi-drawing-oh-drawing-path.md)* dst | 指向目标路径对象[OH_Drawing_Path](capi-drawing-oh-drawing-path.md)的指针，截取成功时会将得到的路径片段追加到目标路径上，截取失败时不做改变。 |
 | bool* result | 返回是否成功截取路径片段的结果。true表示截取成功，false表示截取失败。作为出参使用。 |
 
 **返回：**
@@ -1269,8 +1269,8 @@ bool OH_Drawing_PathOp(OH_Drawing_Path* path, const OH_Drawing_Path* other, OH_D
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Path](capi-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-oh-drawing-path.md)的指针，操作完成后的路径结果将会保存在此路径对象中。 |
-| const [OH_Drawing_Path](capi-oh-drawing-path.md)* other | 指向路径对象[OH_Drawing_Path](capi-oh-drawing-path.md)的指针。 |
+| [OH_Drawing_Path](capi-drawing-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-drawing-oh-drawing-path.md)的指针，操作完成后的路径结果将会保存在此路径对象中。 |
+| const [OH_Drawing_Path](capi-drawing-oh-drawing-path.md)* other | 指向路径对象[OH_Drawing_Path](capi-drawing-oh-drawing-path.md)的指针。 |
 | [OH_Drawing_PathOpMode](#oh_drawing_pathopmode) op | 路径操作枚举类型，支持可选的具体模式可见[OH_Drawing_PathOpMode](capi-drawing-path-h.md#oh_drawing_pathopmode)枚举。 |
 
 **返回：**
@@ -1297,10 +1297,10 @@ bool OH_Drawing_PathGetMatrix(OH_Drawing_Path* path, bool forceClosed,float dist
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Path](capi-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-oh-drawing-path.md)的指针。 |
+| [OH_Drawing_Path](capi-drawing-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-drawing-oh-drawing-path.md)的指针。 |
 | bool forceClosed | 表示是否按照闭合路径测量，true表示测量时路径会被强制视为已闭合，false表示会根据路径的实际闭合状态测量。 |
 | float distance | 表示距离起始点的距离，小于0时会被视为0处理，大于路径长度时会被视为路径长度处理。 |
-| [OH_Drawing_Matrix](capi-oh-drawing-matrix.md)* matrix | 表示要获取的变换矩阵。 |
+| [OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)* matrix | 表示要获取的变换矩阵。 |
 | [OH_Drawing_PathMeasureMatrixFlags](#oh_drawing_pathmeasurematrixflags) flag | 矩阵信息维度枚举，支持可选的具体模式可见[OH_Drawing_PathMeasureMatrixFlags](capi-drawing-path-h.md#oh_drawing_pathmeasurematrixflags)枚举。 |
 
 **返回：**
