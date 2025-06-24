@@ -248,6 +248,100 @@ RichEditor(this.options)
 
 ![max Length](figures/RichEditor_maxLength.gif)
 
+### 设置装饰线
+- 通过[decoration](../reference/apis-arkui/arkui-ts/ts-basic-components-span.md#decoration)设置富文本文本装饰线的样式、颜色和粗细。
+
+  ```ts
+  private controller: RichEditorController = new RichEditorController();
+  RichEditor({ controller: this.controller })
+    .onReady(() => {
+      this.controller.addTextSpan('一段预置的文本', {
+        style: {
+          fontSize: 25,
+          decoration: {
+            type: TextDecorationType.LineThrough,
+            color:Color.Blue,
+            // 设置装饰线粗细比例为6
+            thicknessScale: 6
+          }
+        }
+      })
+    })
+  ```
+
+  ![RichEditor_decoration](figures/RichEditor_decoration.jpg)
+
+- 从API version 20开始，支持开启多装饰线，比如同时设置下划线，中划线。
+
+  ```ts
+  RichEditor({ controller: this.styledStringController })
+  Button('多装饰线文本')
+    .fontSize(20)
+    .onClick(() => {
+      let mutString: MutableStyledString = new MutableStyledString('设置富文本多装饰线', [
+        {
+          start: 0,
+          length: 9,
+          styledKey: StyledStringKey.FONT,
+          styledValue: new TextStyle({ fontSize: LengthMetrics.vp(25) })
+        },
+        {
+          start: 0,
+          length: 5,
+          styledKey: StyledStringKey.DECORATION,
+          styledValue: new DecorationStyle(
+            {
+              type: TextDecorationType.Underline,
+            },
+            {
+              // 开启多装饰线
+              enableMultiType: true
+            }
+          )
+        },
+        {
+          start: 2,
+          length: 4,
+          styledKey: StyledStringKey.DECORATION,
+          styledValue: new DecorationStyle(
+           {
+              type: TextDecorationType.LineThrough,
+            },
+            {
+              // 开启多装饰线
+              enableMultiType: true
+            }
+          )
+        },
+      ])
+      this.styledStringController.setStyledString(mutString);
+    })
+  ```
+
+  ![RichEditor_decoration_multi_type](figures/RichEditor_decoration_multi_type.jpg)
+
+### 设置中西文自动间距
+从API version 20开始，支持通过[enableAutoSpacing](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#enableautospacing20)设置中西文自动间距。
+
+```ts
+Column() {
+  RichEditor(this.options)
+    .onReady(()=>{
+      this.controller.addTextSpan("中西文Auto Spacing自动间距",
+        {
+          style:
+          {
+            fontColor: Color.Orange,
+            fontSize: 20
+          }
+        })
+      })
+    .enableAutoSpacing(this.enableAutoSpace)
+}
+```
+
+![RichEditor_enable_auto_spacing](figures/RichEditor_enable_auto_spacinge.gif)
+
 ### 默认选中菜单
 富文本中的文字被选中时会弹出包含剪切、复制、翻译、分享的菜单。
 
@@ -553,6 +647,245 @@ RichEditor(this.options)
 
 
 更多事件使用请参考[RichEditor事件](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#事件)。
+
+## 设置菜单
+
+从API version 20开始，富文本组件支持屏蔽系统服务类菜单与默认菜单自定义功能。
+
+### 屏蔽系统服务类菜单
+
+- 通过[disableSystemServiceMenuItems](../reference/apis-arkui/js-apis-arkui-UIContext.md#disablesystemservicemenuitems20)屏蔽富文本选择菜单内所有系统服务菜单项。
+
+  ```ts
+  import { TextMenuController } from '@kit.ArkUI';
+  
+  // xxx.ets
+  @Entry
+  @Component
+  struct Index {
+    controller: RichEditorController = new RichEditorController();
+    options: RichEditorOptions = { controller: this.controller };
+  
+    aboutToAppear(): void {
+      // 禁用所有系统服务菜单
+      TextMenuController.disableSystemServiceMenuItems(true);
+    }
+  
+    aboutToDisappear(): void {
+      // 页面消失恢复系统服务菜单
+      TextMenuController.disableSystemServiceMenuItems(false);
+    }
+  
+    build() {
+      Row() {
+        Column() {
+          RichEditor(this.options).onReady(() => {
+            this.controller.addTextSpan("这是一个RichEditor",
+              {
+                style:
+                {
+                  fontSize: 30
+                }
+              })
+          })
+            .height(60)
+            .editMenuOptions({
+              onCreateMenu: (menuItems: Array<TextMenuItem>) => {
+                // menuItems不包含被屏蔽的系统菜单项
+                return menuItems;
+              },
+              onMenuItemClick: (menuItem: TextMenuItem, textRange: TextRange) => {
+                return false;
+              }
+            })
+        }.width('100%')
+      }
+      .height('100%')
+    }
+  }
+  ```
+
+  ![RichEditor_disable_system_service_menuItems](figures/RichEditor_disable_system_service_menuItems.gif)
+
+- 通过[disableMenuItems](../reference/apis-arkui/js-apis-arkui-UIContext.md#disablemenuitems20)屏蔽富文本选择菜单内指定的系统服务菜单项。
+
+  ```ts
+  import { TextMenuController } from '@kit.ArkUI';
+  
+  // xxx.ets
+  @Entry
+  @Component
+  struct Index {
+    controller: RichEditorController = new RichEditorController();
+    options: RichEditorOptions = { controller: this.controller };
+  
+    aboutToAppear(): void {
+      // 禁用搜索和翻译菜单
+      TextMenuController.disableMenuItems([TextMenuItemId.SEARCH, TextMenuItemId.TRANSLATE])
+    }
+  
+    aboutToDisappear(): void {
+      // 恢复系统服务菜单
+      TextMenuController.disableMenuItems([])
+    }
+  
+    build() {
+      Row() {
+        Column() {
+          RichEditor(this.options).onReady(() => {
+            this.controller.addTextSpan("这是一个RichEditor",
+              {
+                style:
+                {
+                  fontSize: 30
+                }
+              })
+          })
+            .height(60)
+            .editMenuOptions({
+              onCreateMenu: (menuItems: Array<TextMenuItem>) => {
+                // menuItems不包含搜索和翻译
+                return menuItems;
+              },
+              onMenuItemClick: (menuItem: TextMenuItem, textRange: TextRange) => {
+                return false
+              }
+            })
+        }.width('100%')
+      }
+      .height('100%')
+    }
+  }
+  ```
+
+  ![RichEditor_disable_menuItems](figures/RichEditor_disable_menuItems.gif)
+
+### 默认菜单支持自定义刷新能力
+
+当富文本选择区域变化后显示菜单之前触发[onPrepareMenu](../reference/apis-arkui/arkui-ts/ts-text-common.md#onpreparemenu20)回调，可在该回调中进行菜单数据设置。
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct RichEditorExample {
+    controller: RichEditorController = new RichEditorController();
+    options: RichEditorOptions = { controller: this.controller };
+    @State endIndex: number | undefined = 0;
+    onCreateMenu = (menuItems: Array<TextMenuItem>) => {
+      const idsToFilter = [
+        TextMenuItemId.TRANSLATE,
+        TextMenuItemId.SHARE,
+        TextMenuItemId.SEARCH,
+        TextMenuItemId.AI_WRITER
+      ]
+      const items = menuItems.filter(item => !idsToFilter.some(id => id.equals(item.id)))
+      let item1: TextMenuItem = {
+        content: 'create1',
+        icon: $r('app.media.startIcon'),
+        id: TextMenuItemId.of('create1'),
+      };
+      let item2: TextMenuItem = {
+        content: 'create2',
+        id: TextMenuItemId.of('create2'),
+        icon: $r('app.media.startIcon'),
+      };
+      items.push(item1);
+      items.unshift(item2);
+      return items;
+    }
+    onMenuItemClick = (menuItem: TextMenuItem, textRange: TextRange) => {
+      if (menuItem.id.equals(TextMenuItemId.of("create2"))) {
+        console.info("拦截 id: create2 start:" + textRange.start + "; end:" + textRange.end);
+        return true;
+      }
+      if (menuItem.id.equals(TextMenuItemId.of("prepare1"))) {
+        console.info("拦截 id: prepare1 start:" + textRange.start + "; end:" + textRange.end);
+        return true;
+      }
+      if (menuItem.id.equals(TextMenuItemId.COPY)) {
+        console.info("拦截 COPY start:" + textRange.start + "; end:" + textRange.end);
+        return true;
+      }
+      if (menuItem.id.equals(TextMenuItemId.SELECT_ALL)) {
+        console.info("不拦截 SELECT_ALL start:" + textRange.start + "; end:" + textRange.end);
+        return false;
+      }
+      return false;
+    }
+    onPrepareMenu = (menuItems: Array<TextMenuItem>) => {
+      let item1: TextMenuItem = {
+        content: 'prepare1_' + this.endIndex,
+        icon: $r('app.media.startIcon'),
+        id: TextMenuItemId.of('prepare1'),
+      };
+      menuItems.unshift(item1);
+      return menuItems;
+    }
+    @State editMenuOptions: EditMenuOptions = {
+      onCreateMenu: this.onCreateMenu,
+      onMenuItemClick: this.onMenuItemClick,
+      onPrepareMenu: this.onPrepareMenu
+    };
+
+    build() {
+      Column() {
+        RichEditor(this.options)
+          .onReady(() => {
+            this.controller.addTextSpan("RichEditor editMenuOptions");
+          })
+          .editMenuOptions(this.editMenuOptions)
+          .onSelectionChange((range: RichEditorRange) => {
+            console.info("onSelectionChange, (" + range.start + "," + range.end + ")");
+            this.endIndex = range.end;
+          })
+          .height(50)
+          .margin({ top: 100 })
+          .borderWidth(1)
+          .borderColor(Color.Red)
+      }
+      .width("90%")
+      .margin("5%")
+    }
+  }
+  ```
+
+  ![alt text](figures/richeditor_on_prepare_menu.gif)
+
+## 设置垂直居中
+
+从API version 20开始，支持通过[textVerticalAlign](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#textverticalalign20)属性实现文本段落在垂直方向的对齐。
+
+  - 以下示例展示了如何通过textVerticalAlign属性设置文本垂直居中对齐效果。
+
+    ```ts
+    controller: RichEditorController = new RichEditorController();
+    options: RichEditorOptions = { controller: this.controller };
+  
+    Column({ space: 5 }) {
+      RichEditor(this.options)
+        .onReady(() => {
+          this.controller.addImageSpan($r('app.media.startIcon'),{
+            imageStyle:{
+              size:[100,100]
+            }
+          })
+          this.controller.addTextSpan("这是一段富文本，展示了文本垂直居中的效果。", {
+            style: {
+              fontColor: Color.Pink,
+              fontSize: "32"
+            },
+            paragraphStyle: {
+              textAlign: TextAlign.Start,
+              textVerticalAlign: TextVerticalAlign.CENTER,
+              leadingMargin: 16
+            }
+          })
+        })
+    }
+    ```
+
+  ![RichEditor_text_vertical_align](figures/RichEditor_text_vertical_align.jpg)
 
 ## 设置用户预设的文本样式
 通过[setTypingStyle](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#settypingstyle11)设置用户预设的文本样式。
