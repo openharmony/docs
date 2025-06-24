@@ -18,7 +18,9 @@ import { overlay } from '@kit.AbilityKit';
 
 setOverlayEnabledByBundleName(bundleName: string, moduleName: string, isEnabled: boolean): Promise\<void>
 
-设置指定应用的overlay module的禁用使能状态。使用Promise异步回调，成功返回应用的处置状态，失败返回对应错误信息。
+设置指定应用的overlay module的禁用使能状态。使用Promise异步回调。
+
+指定应用是调用方自身时不需要权限。
 
 **需要权限：** ohos.permission.CHANGE_OVERLAY_ENABLED_STATE
 
@@ -81,7 +83,9 @@ try {
 
 setOverlayEnabledByBundleName(bundleName: string, moduleName: string, isEnabled: boolean, callback: AsyncCallback\<void>): void
 
-设置指定应用的overlay module的禁用使能状态。使用callback异步回调，成功返回应用的处置状态，失败返回对应错误信息。
+设置指定应用的overlay module的禁用使能状态。使用callback异步回调。
+
+指定应用是调用方自身时不需要权限。
 
 **需要权限：** ohos.permission.CHANGE_OVERLAY_ENABLED_STATE
 
@@ -140,7 +144,9 @@ try {
 
 getOverlayModuleInfoByBundleName(bundleName: string, moduleName?: string): Promise\<Array\<OverlayModuleInfo>>
 
-获取指定应用中指定module的OverlayModuleInfo信息。使用promise异步回调，成功返回null，失败返回对应错误信息。
+获取指定应用中指定module的OverlayModuleInfo信息。使用promise异步回调。
+
+指定应用是调用方自身时不需要权限。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
@@ -186,7 +192,7 @@ let moduleName = "feature";
 (async() => {
     try {
         let overlayModuleInfos = await overlay.getOverlayModuleInfoByBundleName(bundleName, moduleName);
-        console.log('overlayModuleInfos are ' + JSON.stringify(overlayModuleInfos));
+        console.info('overlayModuleInfos are ' + JSON.stringify(overlayModuleInfos));
     } catch(err) {
         let code = (err as BusinessError).code;
         let message = (err as BusinessError).message;
@@ -199,7 +205,9 @@ let moduleName = "feature";
 
 getOverlayModuleInfoByBundleName(bundleName: string, moduleName: string, callback: AsyncCallback\<Array\<OverlayModuleInfo>>): void
 
-获取指定应用中指定module的OverlayModuleInfo信息。使用callback异步回调，成功返回null，失败返回对应错误信息。
+获取指定应用中指定module的OverlayModuleInfo信息。使用callback异步回调。
+
+指定应用是调用方自身时不需要权限。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
@@ -243,7 +251,7 @@ try {
             console.error('getOverlayModuleInfoByBundleName failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
             return;
         }
-        console.log('overlayModuleInfo is ' + JSON.stringify(data));
+        console.info('overlayModuleInfo is ' + JSON.stringify(data));
     });
 } catch (err) {
     let code = (err as BusinessError).code;
@@ -256,7 +264,9 @@ try {
 
 getOverlayModuleInfoByBundleName(bundleName: string, callback: AsyncCallback\<Array\<OverlayModuleInfo>>): void
 
-获取指定应用中所有module的OverlayModuleInfo信息。使用callback异步回调，成功返回null，失败返回对应错误信息。
+获取指定应用中所有module的OverlayModuleInfo信息。使用callback异步回调。
+
+指定应用是调用方自身时不需要权限。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
@@ -296,7 +306,7 @@ try {
             console.error('getOverlayModuleInfoByBundleName failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
             return;
         }
-        console.log('overlayModuleInfo is ' + JSON.stringify(data));
+        console.info('overlayModuleInfo is ' + JSON.stringify(data));
     });
 } catch (err) {
     let code = (err as BusinessError).code;
@@ -309,7 +319,9 @@ try {
 
 getTargetOverlayModuleInfosByBundleName(targetBundleName: string, moduleName?: string): Promise\<Array\<OverlayModuleInfo>>
 
-获取指定应用中指定module关联的所有OverlayModuleInfo信息。使用promise异步回调，成功返回null，失败返回对应错误信息。
+获取指定应用中指定module关联的所有OverlayModuleInfo信息。使用promise异步回调。
+
+指定应用是调用方自身时不需要权限。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
@@ -355,7 +367,7 @@ let moduleName = "feature";
 (async() => {
     try {
         let overlayModuleInfos = await overlay.getTargetOverlayModuleInfosByBundleName(targetBundleName, moduleName);
-        console.log('overlayModuleInfos are ' + JSON.stringify(overlayModuleInfos));
+        console.info('overlayModuleInfos are ' + JSON.stringify(overlayModuleInfos));
     } catch(err) {
         let code = (err as BusinessError).code;
         let message = (err as BusinessError).message;
@@ -368,7 +380,9 @@ let moduleName = "feature";
 
 getTargetOverlayModuleInfosByBundleName(targetBundleName: string, moduleName: string, callback: AsyncCallback&lt;Array&lt;OverlayModuleInfo&gt;&gt;): void
 
-获取指定应用中指定module关联的所有OverlayModuleInfo信息。使用callback异步回调，成功返回null，失败返回对应错误信息。
+获取指定应用中指定module关联的所有OverlayModuleInfo信息。使用callback异步回调。
+
+指定应用是调用方自身时不需要权限。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
@@ -412,7 +426,7 @@ try {
             console.error('getTargetOverlayModuleInfosByBundleName failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
             return;
         }
-        console.log('overlayModuleInfo is ' + JSON.stringify(data));
+        console.info('overlayModuleInfo is ' + JSON.stringify(data));
     });
 } catch (err) {
     let code = (err as BusinessError).code;
@@ -425,7 +439,9 @@ try {
 
 getTargetOverlayModuleInfosByBundleName(targetBundleName: string, callback: AsyncCallback&lt;Array&lt;OverlayModuleInfo&gt;&gt;): void
 
-获取指定应用中所有module关联的所有OverlayModuleInfo信息。使用callback异步回调，成功返回null，失败返回对应错误信息。
+获取指定应用中所有module关联的所有OverlayModuleInfo信息。使用callback异步回调。
+
+指定应用是调用方自身时不需要权限。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
@@ -465,7 +481,7 @@ try {
             console.error('getTargetOverlayModuleInfosByBundleName failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
             return;
         }
-        console.log('overlayModuleInfo is ' + JSON.stringify(data));
+        console.info('overlayModuleInfo is ' + JSON.stringify(data));
     });
 } catch (err) {
     let code = (err as BusinessError).code;
