@@ -15,7 +15,7 @@
 | 名称      | 类型   | 只读 | 可选 | 说明                          |
 | :-------- | :----- | :--- | :--- | :---------------------------- |
 | sessionId | string | 是   | 否   | AVSession对象唯一的会话标识。 |
-| sessionType| [AVSessionType](arkts-apis-avsession-e.md#avsessiontype10) | 是   | 否   | AVSession会话类型。 |
+| sessionType| [AVSessionType](arkts-apis-avsession-t.md#avsessiontype10) | 是   | 否   | AVSession会话类型。 |
 
 **示例：**
 

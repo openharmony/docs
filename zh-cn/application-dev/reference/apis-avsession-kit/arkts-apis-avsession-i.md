@@ -225,7 +225,7 @@
 
 | 名称            | 类型                      | 必填 | 说明               |
 | --------------- |-------------------------| ---- |---------------------------------------------------------------------|
-| sessionType         | [AVSessionType](arkts-apis-avsession-e.md#avsessiontype10)  | 否   | 会话类型，默认值为'audio'。<br>当前仅支持'audio'、'video'会话类型。如果传入'voice_call'、'video_call'，将按照传入默认值'audio'处理。            |
+| sessionType         | [AVSessionType](arkts-apis-avsession-t.md#avsessiontype10)  | 否   | 会话类型，默认值为'audio'。<br>当前仅支持'audio'、'video'会话类型。如果传入'voice_call'、'video_call'，将按照传入默认值'audio'处理。            |
 
 ## AudioCapabilities<sup>20+</sup>
 

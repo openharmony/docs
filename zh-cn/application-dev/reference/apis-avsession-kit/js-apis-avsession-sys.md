@@ -2144,7 +2144,7 @@ avSession.off('deviceLogEvent');
 
 ## AVCastController<sup>10+</sup>
 
-在投播建立后，调用[avSession.getAVCastController](arkts-apis-avsession-f.md#getavcastcontroller10)后，返回会话控制器实例。控制器可查看会话ID，并可完成对会话发送命令及事件，获取会话元数据，播放状态信息等操作。
+在投播建立后，调用[avSession.getAVCastController](arkts-apis-avsession-AVSession.md#getavcastcontroller10)后，返回会话控制器实例。控制器可查看会话ID，并可完成对会话发送命令及事件，获取会话元数据，播放状态信息等操作。
 
 ### setDisplaySurface<sup>10+</sup>
 

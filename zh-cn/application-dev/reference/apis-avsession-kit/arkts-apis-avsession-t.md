@@ -100,8 +100,6 @@ type AVControlCommandType = 'play' | 'pause' | 'stop' | 'playNext' | 'playPrevio
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
-**ArkTS版本：** 该接口仅适用于ArkTS1.1。
-
 | 类型             | 说明         |
 | ---------------- | ------------ |
 | 'play'           | 播放。无需传入参数。|
