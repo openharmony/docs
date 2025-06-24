@@ -316,6 +316,10 @@ struct Child {
             this.originInfo.region.x = 25;
             this.originInfo.region.y = 25;
           })
+        Child({
+          infoArr: this.infoArr,
+          originInfo: this.originInfo
+        })
       }
     }
   }
