@@ -23,9 +23,9 @@
 | [OH_UdmfData](capi-oh-udmfdata.md) | OH_UdmfData | 定义统一数据对象数据结构。 |
 | [OH_UdmfRecord](capi-oh-udmfrecord.md) | OH_UdmfRecord | 定义统一数据对象中记录数据的数据结构，称为数据记录。 |
 | [OH_UdmfRecordProvider](capi-oh-udmfrecordprovider.md) | OH_UdmfRecordProvider | 定义统一数据对象中的数据提供者。 |
-| [OH_UdmfProperty](capi-oh-udmfproperty.md) | OH_UdmfProperty | 定义统一数据对象中数据记录的属性结构。 |
-| [OH_Udmf_ProgressInfo](capi-oh-udmf-progressinfo.md) | OH_Udmf_ProgressInfo | 定义进度信息的数据结构。 |
-| [OH_UdmfGetDataParams](capi-oh-udmfgetdataparams.md) | OH_UdmfGetDataParams | 定义异步获取UDMF数据的请求参数。 |
+| [OH_UdmfProperty](capi-udmf-oh-udmfproperty.md) | OH_UdmfProperty | 定义统一数据对象中数据记录的属性结构。 |
+| [OH_Udmf_ProgressInfo](capi-udmf-oh-udmf-progressinfo.md) | OH_Udmf_ProgressInfo | 定义进度信息的数据结构。 |
+| [OH_UdmfGetDataParams](capi-udmf-oh-udmfgetdataparams.md) | OH_UdmfGetDataParams | 定义异步获取UDMF数据的请求参数。 |
 | [OH_UdmfOptions](capi-oh-udmfoptions.md) | OH_UdmfOptions | 数据操作选项，定义数据操作的可选参数。 |
 
 ### 枚举
@@ -58,22 +58,22 @@
 | [void OH_UdmfRecord_Destroy(OH_UdmfRecord* pThis)](#oh_udmfrecord_destroy) | - | 销毁统一数据记录[OH_UdmfRecord](capi-oh-udmfrecord.md)指针指向的实例对象。 |
 | [int OH_UdmfRecord_AddGeneralEntry(OH_UdmfRecord* pThis, const char* typeId, unsigned char* entry, unsigned int count)](#oh_udmfrecord_addgeneralentry) | - | 添加用户自定义的通用数据至统一数据记录[OH_UdmfRecord](capi-oh-udmfrecord.md)中。对于已定义UDS的类型（比如PlainText、Link、Pixelmap等）不可使用该接口。 |
 | [int OH_UdmfRecord_AddPlainText(OH_UdmfRecord* pThis, OH_UdsPlainText* plainText)](#oh_udmfrecord_addplaintext) | - | 增加纯文本类型[OH_UdsPlainText](capi-oh-udsplaintext.md)数据至统一数据记录[OH_UdmfRecord](capi-oh-udmfrecord.md)中。 |
-| [int OH_UdmfRecord_AddHyperlink(OH_UdmfRecord* pThis, OH_UdsHyperlink* hyperlink)](#oh_udmfrecord_addhyperlink) | - | 增加超链接类型[OH_UdsHyperlink](capi-oh-udshyperlink.md)数据至统一数据记录[OH_UdmfRecord](capi-oh-udmfrecord.md)中。 |
+| [int OH_UdmfRecord_AddHyperlink(OH_UdmfRecord* pThis, OH_UdsHyperlink* hyperlink)](#oh_udmfrecord_addhyperlink) | - | 增加超链接类型[OH_UdsHyperlink](capi-udmf-oh-udshyperlink.md)数据至统一数据记录[OH_UdmfRecord](capi-oh-udmfrecord.md)中。 |
 | [int OH_UdmfRecord_AddHtml(OH_UdmfRecord* pThis, OH_UdsHtml* html)](#oh_udmfrecord_addhtml) | - | 增加超文本标记语言类型[OH_UdsHtml](capi-oh-udshtml.md)数据至统一数据记录[OH_UdmfRecord](capi-oh-udmfrecord.md)中。 |
 | [int OH_UdmfRecord_AddAppItem(OH_UdmfRecord* pThis, OH_UdsAppItem* appItem)](#oh_udmfrecord_addappitem) | - | 增加桌面图标类型[OH_UdsAppItem](capi-oh-udsappitem.md)数据至统一数据记录[OH_UdmfRecord](capi-oh-udmfrecord.md)中。 |
 | [int OH_UdmfRecord_AddFileUri(OH_UdmfRecord* pThis, OH_UdsFileUri* fileUri)](#oh_udmfrecord_addfileuri) | - | 增加文件Uri类型[OH_UdsFileUri](capi-oh-udsfileuri.md)数据至统一数据记录[OH_UdmfRecord](capi-oh-udmfrecord.md)中。 |
-| [int OH_UdmfRecord_AddPixelMap(OH_UdmfRecord* pThis, OH_UdsPixelMap* pixelMap)](#oh_udmfrecord_addpixelmap) | - | 增加像素图片类型[OH_UdsPixelMap](capi-oh-udspixelmap.md)数据至统一数据记录[OH_UdmfRecord](capi-oh-udmfrecord.md)中。 |
+| [int OH_UdmfRecord_AddPixelMap(OH_UdmfRecord* pThis, OH_UdsPixelMap* pixelMap)](#oh_udmfrecord_addpixelmap) | - | 增加像素图片类型[OH_UdsPixelMap](capi-udmf-oh-udspixelmap.md)数据至统一数据记录[OH_UdmfRecord](capi-oh-udmfrecord.md)中。 |
 | [int OH_UdmfRecord_AddArrayBuffer(OH_UdmfRecord* record, const char* type, OH_UdsArrayBuffer* buffer)](#oh_udmfrecord_addarraybuffer) | - | 增加一个ArrayBuffer类型[OH_UdsArrayBuffer](capi-oh-udsarraybuffer.md)的数据至统一数据记录[OH_UdmfRecord](capi-oh-udmfrecord.md)中。 |
 | [int OH_UdmfRecord_AddContentForm(OH_UdmfRecord* pThis, OH_UdsContentForm* contentForm)](#oh_udmfrecord_addcontentform) | - | 增加一个内容卡片类型[OH_UdsContentForm](capi-oh-udscontentform.md)的数据至统一数据记录[OH_UdmfRecord](capi-oh-udmfrecord.md)中。 |
 | [char** OH_UdmfRecord_GetTypes(OH_UdmfRecord* pThis, unsigned int* count)](#oh_udmfrecord_gettypes) | - | 获取统一数据记录[OH_UdmfRecord](capi-oh-udmfrecord.md)中所有类型的结果集。 |
 | [int OH_UdmfRecord_GetGeneralEntry(OH_UdmfRecord* pThis, const char* typeId, unsigned char** entry, unsigned int* count)](#oh_udmfrecord_getgeneralentry) | - | 获取统一数据记录[OH_UdmfRecord](capi-oh-udmfrecord.md)中的特定类型的数据结果集。 |
 | [int OH_UdmfRecord_GetPlainText(OH_UdmfRecord* pThis, OH_UdsPlainText* plainText)](#oh_udmfrecord_getplaintext) | - | 从统一数据记录[OH_UdmfRecord](capi-oh-udmfrecord.md)中获取纯文本类型[OH_UdsPlainText](capi-oh-udsplaintext.md)数据。 |
-| [int OH_UdmfRecord_GetHyperlink(OH_UdmfRecord* pThis, OH_UdsHyperlink* hyperlink)](#oh_udmfrecord_gethyperlink) | - | 从统一数据记录[OH_UdmfRecord](capi-oh-udmfrecord.md)中获取超链接类型[OH_UdsHyperlink](capi-oh-udshyperlink.md)数据。 |
+| [int OH_UdmfRecord_GetHyperlink(OH_UdmfRecord* pThis, OH_UdsHyperlink* hyperlink)](#oh_udmfrecord_gethyperlink) | - | 从统一数据记录[OH_UdmfRecord](capi-oh-udmfrecord.md)中获取超链接类型[OH_UdsHyperlink](capi-udmf-oh-udshyperlink.md)数据。 |
 | [int OH_UdmfRecord_GetHtml(OH_UdmfRecord* pThis, OH_UdsHtml* html)](#oh_udmfrecord_gethtml) | - | 从统一数据记录[OH_UdmfRecord](capi-oh-udmfrecord.md)中获取超文本标记语言类型[OH_UdsHtml](capi-oh-udshtml.md)数据。 |
 | [int OH_UdmfRecord_GetAppItem(OH_UdmfRecord* pThis, OH_UdsAppItem* appItem)](#oh_udmfrecord_getappitem) | - | 从统一数据记录[OH_UdmfRecord](capi-oh-udmfrecord.md)中获取桌面图标类型[OH_UdsAppItem](capi-oh-udsappitem.md)数据。 |
 | [int OH_UdmfRecord_SetProvider(OH_UdmfRecord* pThis, const char* const* types, unsigned int count, OH_UdmfRecordProvider* provider)](#oh_udmfrecord_setprovider) | - | 将指定类型的统一数据提供者[OH_UdmfRecordProvider](capi-oh-udmfrecordprovider.md)设置至统一数据记录[OH_UdmfRecord](capi-oh-udmfrecord.md)中。 |
 | [int OH_UdmfRecord_GetFileUri(OH_UdmfRecord* pThis, OH_UdsFileUri* fileUri)](#oh_udmfrecord_getfileuri) | - | 从统一数据记录[OH_UdmfRecord](capi-oh-udmfrecord.md)中获取文件Uri类型[OH_UdsFileUri](capi-oh-udsfileuri.md)数据。 |
-| [int OH_UdmfRecord_GetPixelMap(OH_UdmfRecord* pThis, OH_UdsPixelMap* pixelMap)](#oh_udmfrecord_getpixelmap) | - | 从统一数据记录[OH_UdmfRecord](capi-oh-udmfrecord.md)中获取像素图片类型[OH_UdsPixelMap](capi-oh-udspixelmap.md)数据。 |
+| [int OH_UdmfRecord_GetPixelMap(OH_UdmfRecord* pThis, OH_UdsPixelMap* pixelMap)](#oh_udmfrecord_getpixelmap) | - | 从统一数据记录[OH_UdmfRecord](capi-oh-udmfrecord.md)中获取像素图片类型[OH_UdsPixelMap](capi-udmf-oh-udspixelmap.md)数据。 |
 | [int OH_UdmfRecord_GetArrayBuffer(OH_UdmfRecord* record, const char* type, OH_UdsArrayBuffer* buffer)](#oh_udmfrecord_getarraybuffer) | - | 从统一数据记录[OH_UdmfRecord](capi-oh-udmfrecord.md)中获取ArrayBuffer类型[OH_UdsArrayBuffer](capi-oh-udsarraybuffer.md)数据。 |
 | [int OH_UdmfRecord_GetContentForm(OH_UdmfRecord* pThis, OH_UdsContentForm* contentForm)](#oh_udmfrecord_getcontentform) | - | 从统一数据记录[OH_UdmfRecord](capi-oh-udmfrecord.md)中获取内容卡片类型[OH_UdsContentForm](capi-oh-udscontentform.md)数据。 |
 | [int OH_UdmfData_GetPrimaryPlainText(OH_UdmfData* data, OH_UdsPlainText* plainText)](#oh_udmfdata_getprimaryplaintext) | - | 从统一数据对象[OH_UdmfData](capi-oh-udmfdata.md)中获取第一个纯文本类型[OH_UdsPlainText](capi-oh-udsplaintext.md)数据。 |
@@ -81,17 +81,17 @@
 | [int OH_UdmfData_GetRecordCount(OH_UdmfData* data)](#oh_udmfdata_getrecordcount) | - | 获取统一数据对象[OH_UdmfData](capi-oh-udmfdata.md)中包含的所有记录数量。 |
 | [OH_UdmfRecord* OH_UdmfData_GetRecord(OH_UdmfData* data, unsigned int index)](#oh_udmfdata_getrecord) | - | 获取统一数据对象[OH_UdmfData](capi-oh-udmfdata.md)中指定位置的数据记录。 |
 | [bool OH_UdmfData_IsLocal(OH_UdmfData* data)](#oh_udmfdata_islocal) | - | 检查统一数据对象[OH_UdmfData](capi-oh-udmfdata.md)是否是来自本端设备的数据。 |
-| [OH_UdmfProperty* OH_UdmfProperty_Create(OH_UdmfData* unifiedData)](#oh_udmfproperty_create) | - | 创建统一数据对象中数据记录属性[OH_UdmfProperty](capi-oh-udmfproperty.md)指针及实例对象。当不再需要使用指针时，请使用[OH_UdmfProperty_Destroy](capi-udmf-h.md#oh_udmfproperty_destroy)销毁实例对象，否则会导致内存泄漏。 |
-| [void OH_UdmfProperty_Destroy(OH_UdmfProperty* pThis)](#oh_udmfproperty_destroy) | - | 销毁数据属性[OH_UdmfProperty](capi-oh-udmfproperty.md)指针指向的实例对象。 |
-| [const char* OH_UdmfProperty_GetTag(OH_UdmfProperty* pThis)](#oh_udmfproperty_gettag) | - | 从数据属性[OH_UdmfProperty](capi-oh-udmfproperty.md)中获取用户自定义标签值。 |
-| [int64_t OH_UdmfProperty_GetTimestamp(OH_UdmfProperty* pThis)](#oh_udmfproperty_gettimestamp) | - | 从数据属性[OH_UdmfProperty](capi-oh-udmfproperty.md)中获取时间戳。 |
-| [Udmf_ShareOption OH_UdmfProperty_GetShareOption(OH_UdmfProperty* pThis)](#oh_udmfproperty_getshareoption) | - | 从数据属性[OH_UdmfProperty](capi-oh-udmfproperty.md)中获取设备内适用范围属性。 |
-| [int OH_UdmfProperty_GetExtrasIntParam(OH_UdmfProperty* pThis, const char* key, int defaultValue)](#oh_udmfproperty_getextrasintparam) | - | 从数据属性[OH_UdmfProperty](capi-oh-udmfproperty.md)中获取自定义的附加整型参数。 |
-| [const char* OH_UdmfProperty_GetExtrasStringParam(OH_UdmfProperty* pThis, const char* key)](#oh_udmfproperty_getextrasstringparam) | - | 从数据属性[OH_UdmfProperty](capi-oh-udmfproperty.md)中获取自定义的附加字符串参数。 |
-| [int OH_UdmfProperty_SetTag(OH_UdmfProperty* pThis, const char* tag)](#oh_udmfproperty_settag) | - | 设置数据属性[OH_UdmfProperty](capi-oh-udmfproperty.md)的自定义标签值。 |
-| [int OH_UdmfProperty_SetShareOption(OH_UdmfProperty* pThis, Udmf_ShareOption option)](#oh_udmfproperty_setshareoption) | - | 设置数据属性[OH_UdmfProperty](capi-oh-udmfproperty.md)的设备内适用范围[Udmf_ShareOption](capi-udmf-h.md#udmf_shareoption)参数。 |
-| [int OH_UdmfProperty_SetExtrasIntParam(OH_UdmfProperty* pThis, const char* key, int param)](#oh_udmfproperty_setextrasintparam) | - | 设置数据属性[OH_UdmfProperty](capi-oh-udmfproperty.md)的附加整型参数。 |
-| [int OH_UdmfProperty_SetExtrasStringParam(OH_UdmfProperty* pThis, const char* key, const char* param)](#oh_udmfproperty_setextrasstringparam) | - | 设置数据属性[OH_UdmfProperty](capi-oh-udmfproperty.md)的附加字符串参数。 |
+| [OH_UdmfProperty* OH_UdmfProperty_Create(OH_UdmfData* unifiedData)](#oh_udmfproperty_create) | - | 创建统一数据对象中数据记录属性[OH_UdmfProperty](capi-udmf-oh-udmfproperty.md)指针及实例对象。当不再需要使用指针时，请使用[OH_UdmfProperty_Destroy](capi-udmf-h.md#oh_udmfproperty_destroy)销毁实例对象，否则会导致内存泄漏。 |
+| [void OH_UdmfProperty_Destroy(OH_UdmfProperty* pThis)](#oh_udmfproperty_destroy) | - | 销毁数据属性[OH_UdmfProperty](capi-udmf-oh-udmfproperty.md)指针指向的实例对象。 |
+| [const char* OH_UdmfProperty_GetTag(OH_UdmfProperty* pThis)](#oh_udmfproperty_gettag) | - | 从数据属性[OH_UdmfProperty](capi-udmf-oh-udmfproperty.md)中获取用户自定义标签值。 |
+| [int64_t OH_UdmfProperty_GetTimestamp(OH_UdmfProperty* pThis)](#oh_udmfproperty_gettimestamp) | - | 从数据属性[OH_UdmfProperty](capi-udmf-oh-udmfproperty.md)中获取时间戳。 |
+| [Udmf_ShareOption OH_UdmfProperty_GetShareOption(OH_UdmfProperty* pThis)](#oh_udmfproperty_getshareoption) | - | 从数据属性[OH_UdmfProperty](capi-udmf-oh-udmfproperty.md)中获取设备内适用范围属性。 |
+| [int OH_UdmfProperty_GetExtrasIntParam(OH_UdmfProperty* pThis, const char* key, int defaultValue)](#oh_udmfproperty_getextrasintparam) | - | 从数据属性[OH_UdmfProperty](capi-udmf-oh-udmfproperty.md)中获取自定义的附加整型参数。 |
+| [const char* OH_UdmfProperty_GetExtrasStringParam(OH_UdmfProperty* pThis, const char* key)](#oh_udmfproperty_getextrasstringparam) | - | 从数据属性[OH_UdmfProperty](capi-udmf-oh-udmfproperty.md)中获取自定义的附加字符串参数。 |
+| [int OH_UdmfProperty_SetTag(OH_UdmfProperty* pThis, const char* tag)](#oh_udmfproperty_settag) | - | 设置数据属性[OH_UdmfProperty](capi-udmf-oh-udmfproperty.md)的自定义标签值。 |
+| [int OH_UdmfProperty_SetShareOption(OH_UdmfProperty* pThis, Udmf_ShareOption option)](#oh_udmfproperty_setshareoption) | - | 设置数据属性[OH_UdmfProperty](capi-udmf-oh-udmfproperty.md)的设备内适用范围[Udmf_ShareOption](capi-udmf-h.md#udmf_shareoption)参数。 |
+| [int OH_UdmfProperty_SetExtrasIntParam(OH_UdmfProperty* pThis, const char* key, int param)](#oh_udmfproperty_setextrasintparam) | - | 设置数据属性[OH_UdmfProperty](capi-udmf-oh-udmfproperty.md)的附加整型参数。 |
+| [int OH_UdmfProperty_SetExtrasStringParam(OH_UdmfProperty* pThis, const char* key, const char* param)](#oh_udmfproperty_setextrasstringparam) | - | 设置数据属性[OH_UdmfProperty](capi-udmf-oh-udmfproperty.md)的附加字符串参数。 |
 | [OH_UdmfOptions* OH_UdmfOptions_Create()](#oh_udmfoptions_create) | - | 创建指向[OH_UdmfOptions](capi-oh-udmfoptions.md)实例的指针。 |
 | [void OH_UdmfOptions_Destroy(OH_UdmfOptions* pThis)](#oh_udmfoptions_destroy) | - | 销毁指向[OH_UdmfOptions](capi-oh-udmfoptions.md)实例的指针。 |
 | [const char* OH_UdmfOptions_GetKey(OH_UdmfOptions* pThis)](#oh_udmfoptions_getkey) | - | 从数据操作选项[OH_UdmfOptions](capi-oh-udmfoptions.md)实例中获取数据的唯一标识符信息。 |
@@ -106,14 +106,14 @@
 | [int OH_Udmf_UpdateUnifiedData(OH_UdmfOptions* options, OH_UdmfData* unifiedData)](#oh_udmf_updateunifieddata) | - | 对统一数据管理框架数据库中的统一数据对象[OH_UdmfData](capi-oh-udmfdata.md)数据进行数据更改。 |
 | [int OH_Udmf_DeleteUnifiedData(OH_UdmfOptions* options, OH_UdmfData** dataArray, unsigned int* dataSize)](#oh_udmf_deleteunifieddata) | - | 删除统一数据管理框架数据库中的统一数据对象[OH_UdmfData](capi-oh-udmfdata.md)数据。 |
 | [void OH_Udmf_DestroyDataArray(OH_UdmfData** dataArray, unsigned int dataSize)](#oh_udmf_destroydataarray) | - | 销毁数据数组内存。 |
-| [int OH_UdmfProgressInfo_GetProgress(OH_Udmf_ProgressInfo* progressInfo)](#oh_udmfprogressinfo_getprogress) | - | 从进度信息[OH_Udmf_ProgressInfo](capi-oh-udmf-progressinfo.md)中获取进度百分比数据。 |
-| [int OH_UdmfProgressInfo_GetStatus(OH_Udmf_ProgressInfo* progressInfo)](#oh_udmfprogressinfo_getstatus) | - | 从进度信息[OH_Udmf_ProgressInfo](capi-oh-udmf-progressinfo.md)中获取状态信息。 |
-| [OH_UdmfGetDataParams* OH_UdmfGetDataParams_Create()](#oh_udmfgetdataparams_create) | - | 创建异步获取UDMF数据的请求参数[OH_UdmfGetDataParams](capi-oh-udmfgetdataparams.md)指针及实例对象。<br>当不再需要使用指针时，请使用[OH_UdmfGetDataParams_Destroy](capi-udmf-h.md#oh_udmfgetdataparams_destroy)销毁实例对象，否则会导致内存泄漏。 |
-| [void OH_UdmfGetDataParams_Destroy(OH_UdmfGetDataParams* pThis)](#oh_udmfgetdataparams_destroy) | - | 销毁异步请求参数[OH_UdmfGetDataParams](capi-oh-udmfgetdataparams.md)指针指向的实例对象。 |
-| [void OH_UdmfGetDataParams_SetDestUri(OH_UdmfGetDataParams* params, const char* destUri)](#oh_udmfgetdataparams_setdesturi) | - | 设置异步请求参数[OH_UdmfGetDataParams](capi-oh-udmfgetdataparams.md)中的目标路径。<br>若设置了目标路径，会将文件类型的数据进行拷贝到指定路径。回调中获取到的文件类型数据会被替换为目标路径的URI。<br>若不设置目标路径，则不会执行拷贝文件操作。回调中获取到的文件类型数据为源端路径URI。<br>若应用涉及复杂文件处理策略，或需要将文件拷贝在多个路径下时，建议不设置此参数，由应用自行完成文件拷贝相关处理。 |
-| [void OH_UdmfGetDataParams_SetFileConflictOptions(OH_UdmfGetDataParams* params, const Udmf_FileConflictOptions options)](#oh_udmfgetdataparams_setfileconflictoptions) | - | 设置异步请求参数[OH_UdmfGetDataParams](capi-oh-udmfgetdataparams.md)中的文件冲突选项。 |
-| [void OH_UdmfGetDataParams_SetProgressIndicator(OH_UdmfGetDataParams* params, const Udmf_ProgressIndicator progressIndicator)](#oh_udmfgetdataparams_setprogressindicator) | - | 设置异步请求参数[OH_UdmfGetDataParams](capi-oh-udmfgetdataparams.md)中的进度条指示选项。 |
-| [void OH_UdmfGetDataParams_SetDataProgressListener(OH_UdmfGetDataParams* params, const OH_Udmf_DataProgressListener dataProgressListener)](#oh_udmfgetdataparams_setdataprogresslistener) | - | 设置异步请求参数[OH_UdmfGetDataParams](capi-oh-udmfgetdataparams.md)中的监听回调函数。 |
+| [int OH_UdmfProgressInfo_GetProgress(OH_Udmf_ProgressInfo* progressInfo)](#oh_udmfprogressinfo_getprogress) | - | 从进度信息[OH_Udmf_ProgressInfo](capi-udmf-oh-udmf-progressinfo.md)中获取进度百分比数据。 |
+| [int OH_UdmfProgressInfo_GetStatus(OH_Udmf_ProgressInfo* progressInfo)](#oh_udmfprogressinfo_getstatus) | - | 从进度信息[OH_Udmf_ProgressInfo](capi-udmf-oh-udmf-progressinfo.md)中获取状态信息。 |
+| [OH_UdmfGetDataParams* OH_UdmfGetDataParams_Create()](#oh_udmfgetdataparams_create) | - | 创建异步获取UDMF数据的请求参数[OH_UdmfGetDataParams](capi-udmf-oh-udmfgetdataparams.md)指针及实例对象。<br>当不再需要使用指针时，请使用[OH_UdmfGetDataParams_Destroy](capi-udmf-h.md#oh_udmfgetdataparams_destroy)销毁实例对象，否则会导致内存泄漏。 |
+| [void OH_UdmfGetDataParams_Destroy(OH_UdmfGetDataParams* pThis)](#oh_udmfgetdataparams_destroy) | - | 销毁异步请求参数[OH_UdmfGetDataParams](capi-udmf-oh-udmfgetdataparams.md)指针指向的实例对象。 |
+| [void OH_UdmfGetDataParams_SetDestUri(OH_UdmfGetDataParams* params, const char* destUri)](#oh_udmfgetdataparams_setdesturi) | - | 设置异步请求参数[OH_UdmfGetDataParams](capi-udmf-oh-udmfgetdataparams.md)中的目标路径。<br>若设置了目标路径，会将文件类型的数据进行拷贝到指定路径。回调中获取到的文件类型数据会被替换为目标路径的URI。<br>若不设置目标路径，则不会执行拷贝文件操作。回调中获取到的文件类型数据为源端路径URI。<br>若应用涉及复杂文件处理策略，或需要将文件拷贝在多个路径下时，建议不设置此参数，由应用自行完成文件拷贝相关处理。 |
+| [void OH_UdmfGetDataParams_SetFileConflictOptions(OH_UdmfGetDataParams* params, const Udmf_FileConflictOptions options)](#oh_udmfgetdataparams_setfileconflictoptions) | - | 设置异步请求参数[OH_UdmfGetDataParams](capi-udmf-oh-udmfgetdataparams.md)中的文件冲突选项。 |
+| [void OH_UdmfGetDataParams_SetProgressIndicator(OH_UdmfGetDataParams* params, const Udmf_ProgressIndicator progressIndicator)](#oh_udmfgetdataparams_setprogressindicator) | - | 设置异步请求参数[OH_UdmfGetDataParams](capi-udmf-oh-udmfgetdataparams.md)中的进度条指示选项。 |
+| [void OH_UdmfGetDataParams_SetDataProgressListener(OH_UdmfGetDataParams* params, const OH_Udmf_DataProgressListener dataProgressListener)](#oh_udmfgetdataparams_setdataprogresslistener) | - | 设置异步请求参数[OH_UdmfGetDataParams](capi-udmf-oh-udmfgetdataparams.md)中的监听回调函数。 |
 
 ## 枚举类型说明
 
@@ -222,7 +222,7 @@ typedef void (*OH_Udmf_DataProgressListener)(OH_Udmf_ProgressInfo* progressInfo,
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Udmf_ProgressInfo](capi-oh-udmf-progressinfo.md)* progressInfo | 进度信息，作为出参使用。 |
+| [OH_Udmf_ProgressInfo](capi-udmf-oh-udmf-progressinfo.md)* progressInfo | 进度信息，作为出参使用。 |
 | [OH_UdmfData](capi-oh-udmfdata.md)* data | 返回的统一数据对象，作为出参使用。 |
 
 ### OH_UdmfData_Create()
@@ -588,7 +588,7 @@ int OH_UdmfRecord_AddHyperlink(OH_UdmfRecord* pThis, OH_UdsHyperlink* hyperlink)
 
 **描述**
 
-增加超链接类型[OH_UdsHyperlink](capi-oh-udshyperlink.md)数据至统一数据记录[OH_UdmfRecord](capi-oh-udmfrecord.md)中。
+增加超链接类型[OH_UdsHyperlink](capi-udmf-oh-udshyperlink.md)数据至统一数据记录[OH_UdmfRecord](capi-oh-udmfrecord.md)中。
 
 **起始版本：** 12
 
@@ -598,7 +598,7 @@ int OH_UdmfRecord_AddHyperlink(OH_UdmfRecord* pThis, OH_UdsHyperlink* hyperlink)
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_UdmfRecord](capi-oh-udmfrecord.md)* pThis | 表示指向统一数据记录[OH_UdmfRecord](capi-oh-udmfrecord.md)实例的指针。 |
-| [OH_UdsHyperlink](capi-oh-udshyperlink.md)* hyperlink | 表示指向超链接类型[OH_UdsHyperlink](capi-oh-udshyperlink.md)实例的指针。 |
+| [OH_UdsHyperlink](capi-udmf-oh-udshyperlink.md)* hyperlink | 表示指向超链接类型[OH_UdsHyperlink](capi-udmf-oh-udshyperlink.md)实例的指针。 |
 
 **返回：**
 
@@ -692,7 +692,7 @@ int OH_UdmfRecord_AddPixelMap(OH_UdmfRecord* pThis, OH_UdsPixelMap* pixelMap)
 
 **描述**
 
-增加像素图片类型[OH_UdsPixelMap](capi-oh-udspixelmap.md)数据至统一数据记录[OH_UdmfRecord](capi-oh-udmfrecord.md)中。
+增加像素图片类型[OH_UdsPixelMap](capi-udmf-oh-udspixelmap.md)数据至统一数据记录[OH_UdmfRecord](capi-oh-udmfrecord.md)中。
 
 **起始版本：** 13
 
@@ -702,7 +702,7 @@ int OH_UdmfRecord_AddPixelMap(OH_UdmfRecord* pThis, OH_UdsPixelMap* pixelMap)
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_UdmfRecord](capi-oh-udmfrecord.md)* pThis | 表示指向统一数据记录[OH_UdmfRecord](capi-oh-udmfrecord.md)实例的指针。 |
-| [OH_UdsPixelMap](capi-oh-udspixelmap.md)* pixelMap | 表示指向像素图片类型[OH_UdsPixelMap](capi-oh-udspixelmap.md)实例的指针。 |
+| [OH_UdsPixelMap](capi-udmf-oh-udspixelmap.md)* pixelMap | 表示指向像素图片类型[OH_UdsPixelMap](capi-udmf-oh-udspixelmap.md)实例的指针。 |
 
 **返回：**
 
@@ -851,7 +851,7 @@ int OH_UdmfRecord_GetHyperlink(OH_UdmfRecord* pThis, OH_UdsHyperlink* hyperlink)
 
 **描述**
 
-从统一数据记录[OH_UdmfRecord](capi-oh-udmfrecord.md)中获取超链接类型[OH_UdsHyperlink](capi-oh-udshyperlink.md)数据。
+从统一数据记录[OH_UdmfRecord](capi-oh-udmfrecord.md)中获取超链接类型[OH_UdsHyperlink](capi-udmf-oh-udshyperlink.md)数据。
 
 **起始版本：** 12
 
@@ -861,7 +861,7 @@ int OH_UdmfRecord_GetHyperlink(OH_UdmfRecord* pThis, OH_UdsHyperlink* hyperlink)
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_UdmfRecord](capi-oh-udmfrecord.md)* pThis | 表示指向统一数据记录[OH_UdmfRecord](capi-oh-udmfrecord.md)实例的指针。 |
-| [OH_UdsHyperlink](capi-oh-udshyperlink.md)* hyperlink | 该参数是输出参数，表示指向超链接类型[OH_UdsHyperlink](capi-oh-udshyperlink.md)实例的指针。 |
+| [OH_UdsHyperlink](capi-udmf-oh-udshyperlink.md)* hyperlink | 该参数是输出参数，表示指向超链接类型[OH_UdsHyperlink](capi-udmf-oh-udshyperlink.md)实例的指针。 |
 
 **返回：**
 
@@ -983,7 +983,7 @@ int OH_UdmfRecord_GetPixelMap(OH_UdmfRecord* pThis, OH_UdsPixelMap* pixelMap)
 
 **描述**
 
-从统一数据记录[OH_UdmfRecord](capi-oh-udmfrecord.md)中获取像素图片类型[OH_UdsPixelMap](capi-oh-udspixelmap.md)数据。
+从统一数据记录[OH_UdmfRecord](capi-oh-udmfrecord.md)中获取像素图片类型[OH_UdsPixelMap](capi-udmf-oh-udspixelmap.md)数据。
 
 **起始版本：** 13
 
@@ -993,7 +993,7 @@ int OH_UdmfRecord_GetPixelMap(OH_UdmfRecord* pThis, OH_UdsPixelMap* pixelMap)
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_UdmfRecord](capi-oh-udmfrecord.md)* pThis | 表示指向统一数据记录[OH_UdmfRecord](capi-oh-udmfrecord.md)实例的指针。 |
-| [OH_UdsPixelMap](capi-oh-udspixelmap.md)* pixelMap | 该参数是输出参数，表示指向像素图片类型[OH_UdsPixelMap](capi-oh-udspixelmap.md)实例的指针。 |
+| [OH_UdsPixelMap](capi-udmf-oh-udspixelmap.md)* pixelMap | 该参数是输出参数，表示指向像素图片类型[OH_UdsPixelMap](capi-udmf-oh-udspixelmap.md)实例的指针。 |
 
 **返回：**
 
@@ -1190,7 +1190,7 @@ OH_UdmfProperty* OH_UdmfProperty_Create(OH_UdmfData* unifiedData)
 
 **描述**
 
-创建统一数据对象中数据记录属性[OH_UdmfProperty](capi-oh-udmfproperty.md)指针及实例对象。当不再需要使用指针时，请使用[OH_UdmfProperty_Destroy](capi-udmf-h.md#oh_udmfproperty_destroy)销毁实例对象，否则会导致内存泄漏。
+创建统一数据对象中数据记录属性[OH_UdmfProperty](capi-udmf-oh-udmfproperty.md)指针及实例对象。当不再需要使用指针时，请使用[OH_UdmfProperty_Destroy](capi-udmf-h.md#oh_udmfproperty_destroy)销毁实例对象，否则会导致内存泄漏。
 
 **起始版本：** 12
 
@@ -1205,7 +1205,7 @@ OH_UdmfProperty* OH_UdmfProperty_Create(OH_UdmfData* unifiedData)
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_UdmfProperty](capi-oh-udmfproperty.md)* | 执行成功则返回一个指向属性[OH_UdmfProperty](capi-oh-udmfproperty.md)实例对象的指针，否则返回nullptr。 |
+| [OH_UdmfProperty](capi-udmf-oh-udmfproperty.md)* | 执行成功则返回一个指向属性[OH_UdmfProperty](capi-udmf-oh-udmfproperty.md)实例对象的指针，否则返回nullptr。 |
 
 ### OH_UdmfProperty_Destroy()
 
@@ -1215,7 +1215,7 @@ void OH_UdmfProperty_Destroy(OH_UdmfProperty* pThis)
 
 **描述**
 
-销毁数据属性[OH_UdmfProperty](capi-oh-udmfproperty.md)指针指向的实例对象。
+销毁数据属性[OH_UdmfProperty](capi-udmf-oh-udmfproperty.md)指针指向的实例对象。
 
 **起始版本：** 12
 
@@ -1224,7 +1224,7 @@ void OH_UdmfProperty_Destroy(OH_UdmfProperty* pThis)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_UdmfProperty](capi-oh-udmfproperty.md)* pThis | 表示指向数据属性[OH_UdmfProperty](capi-oh-udmfproperty.md)实例的指针。 |
+| [OH_UdmfProperty](capi-udmf-oh-udmfproperty.md)* pThis | 表示指向数据属性[OH_UdmfProperty](capi-udmf-oh-udmfproperty.md)实例的指针。 |
 
 ### OH_UdmfProperty_GetTag()
 
@@ -1234,7 +1234,7 @@ const char* OH_UdmfProperty_GetTag(OH_UdmfProperty* pThis)
 
 **描述**
 
-从数据属性[OH_UdmfProperty](capi-oh-udmfproperty.md)中获取用户自定义标签值。
+从数据属性[OH_UdmfProperty](capi-udmf-oh-udmfproperty.md)中获取用户自定义标签值。
 
 **起始版本：** 12
 
@@ -1243,7 +1243,7 @@ const char* OH_UdmfProperty_GetTag(OH_UdmfProperty* pThis)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_UdmfProperty](capi-oh-udmfproperty.md)* pThis | 表示指向数据属性[OH_UdmfProperty](capi-oh-udmfproperty.md)实例的指针。 |
+| [OH_UdmfProperty](capi-udmf-oh-udmfproperty.md)* pThis | 表示指向数据属性[OH_UdmfProperty](capi-udmf-oh-udmfproperty.md)实例的指针。 |
 
 **返回：**
 
@@ -1259,7 +1259,7 @@ int64_t OH_UdmfProperty_GetTimestamp(OH_UdmfProperty* pThis)
 
 **描述**
 
-从数据属性[OH_UdmfProperty](capi-oh-udmfproperty.md)中获取时间戳。
+从数据属性[OH_UdmfProperty](capi-udmf-oh-udmfproperty.md)中获取时间戳。
 
 **起始版本：** 12
 
@@ -1268,7 +1268,7 @@ int64_t OH_UdmfProperty_GetTimestamp(OH_UdmfProperty* pThis)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_UdmfProperty](capi-oh-udmfproperty.md)* pThis | 表示指向数据属性[OH_UdmfProperty](capi-oh-udmfproperty.md)实例的指针。 |
+| [OH_UdmfProperty](capi-udmf-oh-udmfproperty.md)* pThis | 表示指向数据属性[OH_UdmfProperty](capi-udmf-oh-udmfproperty.md)实例的指针。 |
 
 **返回：**
 
@@ -1284,7 +1284,7 @@ Udmf_ShareOption OH_UdmfProperty_GetShareOption(OH_UdmfProperty* pThis)
 
 **描述**
 
-从数据属性[OH_UdmfProperty](capi-oh-udmfproperty.md)中获取设备内适用范围属性。
+从数据属性[OH_UdmfProperty](capi-udmf-oh-udmfproperty.md)中获取设备内适用范围属性。
 
 **起始版本：** 12
 
@@ -1293,7 +1293,7 @@ Udmf_ShareOption OH_UdmfProperty_GetShareOption(OH_UdmfProperty* pThis)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_UdmfProperty](capi-oh-udmfproperty.md)* pThis | 表示指向数据属性[OH_UdmfProperty](capi-oh-udmfproperty.md)实例的指针。 |
+| [OH_UdmfProperty](capi-udmf-oh-udmfproperty.md)* pThis | 表示指向数据属性[OH_UdmfProperty](capi-udmf-oh-udmfproperty.md)实例的指针。 |
 
 **返回：**
 
@@ -1309,7 +1309,7 @@ int OH_UdmfProperty_GetExtrasIntParam(OH_UdmfProperty* pThis, const char* key, i
 
 **描述**
 
-从数据属性[OH_UdmfProperty](capi-oh-udmfproperty.md)中获取自定义的附加整型参数。
+从数据属性[OH_UdmfProperty](capi-udmf-oh-udmfproperty.md)中获取自定义的附加整型参数。
 
 **起始版本：** 12
 
@@ -1318,7 +1318,7 @@ int OH_UdmfProperty_GetExtrasIntParam(OH_UdmfProperty* pThis, const char* key, i
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_UdmfProperty](capi-oh-udmfproperty.md)* pThis | 表示指向数据属性[OH_UdmfProperty](capi-oh-udmfproperty.md)实例的指针。 |
+| [OH_UdmfProperty](capi-udmf-oh-udmfproperty.md)* pThis | 表示指向数据属性[OH_UdmfProperty](capi-udmf-oh-udmfproperty.md)实例的指针。 |
 | const char* key | 表示键值对的键。 |
 | int defaultValue | 用于用户自行设置获取值失败时的默认值。 |
 
@@ -1336,7 +1336,7 @@ const char* OH_UdmfProperty_GetExtrasStringParam(OH_UdmfProperty* pThis, const c
 
 **描述**
 
-从数据属性[OH_UdmfProperty](capi-oh-udmfproperty.md)中获取自定义的附加字符串参数。
+从数据属性[OH_UdmfProperty](capi-udmf-oh-udmfproperty.md)中获取自定义的附加字符串参数。
 
 **起始版本：** 12
 
@@ -1345,7 +1345,7 @@ const char* OH_UdmfProperty_GetExtrasStringParam(OH_UdmfProperty* pThis, const c
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_UdmfProperty](capi-oh-udmfproperty.md)* pThis | 表示指向数据属性[OH_UdmfProperty](capi-oh-udmfproperty.md)实例的指针。 |
+| [OH_UdmfProperty](capi-udmf-oh-udmfproperty.md)* pThis | 表示指向数据属性[OH_UdmfProperty](capi-udmf-oh-udmfproperty.md)实例的指针。 |
 | const char* key | 表示键值对的键。 |
 
 **返回：**
@@ -1362,7 +1362,7 @@ int OH_UdmfProperty_SetTag(OH_UdmfProperty* pThis, const char* tag)
 
 **描述**
 
-设置数据属性[OH_UdmfProperty](capi-oh-udmfproperty.md)的自定义标签值。
+设置数据属性[OH_UdmfProperty](capi-udmf-oh-udmfproperty.md)的自定义标签值。
 
 **起始版本：** 12
 
@@ -1371,7 +1371,7 @@ int OH_UdmfProperty_SetTag(OH_UdmfProperty* pThis, const char* tag)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_UdmfProperty](capi-oh-udmfproperty.md)* pThis | 表示指向数据属性[OH_UdmfProperty](capi-oh-udmfproperty.md)实例的指针。 |
+| [OH_UdmfProperty](capi-udmf-oh-udmfproperty.md)* pThis | 表示指向数据属性[OH_UdmfProperty](capi-udmf-oh-udmfproperty.md)实例的指针。 |
 | const char* tag | 表示自定义标签值。 |
 
 **返回：**
@@ -1388,7 +1388,7 @@ int OH_UdmfProperty_SetShareOption(OH_UdmfProperty* pThis, Udmf_ShareOption opti
 
 **描述**
 
-设置数据属性[OH_UdmfProperty](capi-oh-udmfproperty.md)的设备内适用范围[Udmf_ShareOption](capi-udmf-h.md#udmf_shareoption)参数。
+设置数据属性[OH_UdmfProperty](capi-udmf-oh-udmfproperty.md)的设备内适用范围[Udmf_ShareOption](capi-udmf-h.md#udmf_shareoption)参数。
 
 **起始版本：** 12
 
@@ -1397,7 +1397,7 @@ int OH_UdmfProperty_SetShareOption(OH_UdmfProperty* pThis, Udmf_ShareOption opti
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_UdmfProperty](capi-oh-udmfproperty.md)* pThis | 表示指向数据属性[OH_UdmfProperty](capi-oh-udmfproperty.md)实例的指针。 |
+| [OH_UdmfProperty](capi-udmf-oh-udmfproperty.md)* pThis | 表示指向数据属性[OH_UdmfProperty](capi-udmf-oh-udmfproperty.md)实例的指针。 |
 | [Udmf_ShareOption](#udmf_shareoption) option | 表示设备内适用范围[Udmf_ShareOption](capi-udmf-h.md#udmf_shareoption)参数。 |
 
 **返回：**
@@ -1414,7 +1414,7 @@ int OH_UdmfProperty_SetExtrasIntParam(OH_UdmfProperty* pThis, const char* key, i
 
 **描述**
 
-设置数据属性[OH_UdmfProperty](capi-oh-udmfproperty.md)的附加整型参数。
+设置数据属性[OH_UdmfProperty](capi-udmf-oh-udmfproperty.md)的附加整型参数。
 
 **起始版本：** 12
 
@@ -1423,7 +1423,7 @@ int OH_UdmfProperty_SetExtrasIntParam(OH_UdmfProperty* pThis, const char* key, i
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_UdmfProperty](capi-oh-udmfproperty.md)* pThis | 表示指向[OH_UdmfRecord](capi-oh-udmfrecord.md)实例的指针。 |
+| [OH_UdmfProperty](capi-udmf-oh-udmfproperty.md)* pThis | 表示指向[OH_UdmfRecord](capi-oh-udmfrecord.md)实例的指针。 |
 | const char* key | 表示键值对的键。 |
 | int param | 表示键值对的值。 |
 
@@ -1441,7 +1441,7 @@ int OH_UdmfProperty_SetExtrasStringParam(OH_UdmfProperty* pThis, const char* key
 
 **描述**
 
-设置数据属性[OH_UdmfProperty](capi-oh-udmfproperty.md)的附加字符串参数。
+设置数据属性[OH_UdmfProperty](capi-udmf-oh-udmfproperty.md)的附加字符串参数。
 
 **起始版本：** 12
 
@@ -1450,7 +1450,7 @@ int OH_UdmfProperty_SetExtrasStringParam(OH_UdmfProperty* pThis, const char* key
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_UdmfProperty](capi-oh-udmfproperty.md)* pThis | 表示指向数据属性[OH_UdmfRecord](capi-oh-udmfrecord.md)实例的指针。 |
+| [OH_UdmfProperty](capi-udmf-oh-udmfproperty.md)* pThis | 表示指向数据属性[OH_UdmfRecord](capi-oh-udmfrecord.md)实例的指针。 |
 | const char* key | 表示键值对的键。 |
 | const char* param | 表示键值对的值。 |
 
@@ -1819,7 +1819,7 @@ int OH_UdmfProgressInfo_GetProgress(OH_Udmf_ProgressInfo* progressInfo)
 
 **描述**
 
-从进度信息[OH_Udmf_ProgressInfo](capi-oh-udmf-progressinfo.md)中获取进度百分比数据。
+从进度信息[OH_Udmf_ProgressInfo](capi-udmf-oh-udmf-progressinfo.md)中获取进度百分比数据。
 
 **起始版本：** 15
 
@@ -1828,7 +1828,7 @@ int OH_UdmfProgressInfo_GetProgress(OH_Udmf_ProgressInfo* progressInfo)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Udmf_ProgressInfo](capi-oh-udmf-progressinfo.md)* progressInfo | 表示进度信息[OH_Udmf_ProgressInfo](capi-oh-udmf-progressinfo.md)。 |
+| [OH_Udmf_ProgressInfo](capi-udmf-oh-udmf-progressinfo.md)* progressInfo | 表示进度信息[OH_Udmf_ProgressInfo](capi-udmf-oh-udmf-progressinfo.md)。 |
 
 **返回：**
 
@@ -1844,7 +1844,7 @@ int OH_UdmfProgressInfo_GetStatus(OH_Udmf_ProgressInfo* progressInfo)
 
 **描述**
 
-从进度信息[OH_Udmf_ProgressInfo](capi-oh-udmf-progressinfo.md)中获取状态信息。
+从进度信息[OH_Udmf_ProgressInfo](capi-udmf-oh-udmf-progressinfo.md)中获取状态信息。
 
 **起始版本：** 15
 
@@ -1853,7 +1853,7 @@ int OH_UdmfProgressInfo_GetStatus(OH_Udmf_ProgressInfo* progressInfo)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Udmf_ProgressInfo](capi-oh-udmf-progressinfo.md)* progressInfo | 表示进度信息[OH_Udmf_ProgressInfo](capi-oh-udmf-progressinfo.md)。 |
+| [OH_Udmf_ProgressInfo](capi-udmf-oh-udmf-progressinfo.md)* progressInfo | 表示进度信息[OH_Udmf_ProgressInfo](capi-udmf-oh-udmf-progressinfo.md)。 |
 
 **返回：**
 
@@ -1869,7 +1869,7 @@ OH_UdmfGetDataParams* OH_UdmfGetDataParams_Create()
 
 **描述**
 
-创建异步获取UDMF数据的请求参数[OH_UdmfGetDataParams](capi-oh-udmfgetdataparams.md)指针及实例对象。<br>当不再需要使用指针时，请使用[OH_UdmfGetDataParams_Destroy](capi-udmf-h.md#oh_udmfgetdataparams_destroy)销毁实例对象，否则会导致内存泄漏。
+创建异步获取UDMF数据的请求参数[OH_UdmfGetDataParams](capi-udmf-oh-udmfgetdataparams.md)指针及实例对象。<br>当不再需要使用指针时，请使用[OH_UdmfGetDataParams_Destroy](capi-udmf-h.md#oh_udmfgetdataparams_destroy)销毁实例对象，否则会导致内存泄漏。
 
 **起始版本：** 15
 
@@ -1877,7 +1877,7 @@ OH_UdmfGetDataParams* OH_UdmfGetDataParams_Create()
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_UdmfGetDataParams](capi-oh-udmfgetdataparams.md)* | 执行成功则返回一个指向属性[OH_UdmfGetDataParams](capi-oh-udmfgetdataparams.md)实例对象的指针，否则返回nullptr。 |
+| [OH_UdmfGetDataParams](capi-udmf-oh-udmfgetdataparams.md)* | 执行成功则返回一个指向属性[OH_UdmfGetDataParams](capi-udmf-oh-udmfgetdataparams.md)实例对象的指针，否则返回nullptr。 |
 
 ### OH_UdmfGetDataParams_Destroy()
 
@@ -1887,7 +1887,7 @@ void OH_UdmfGetDataParams_Destroy(OH_UdmfGetDataParams* pThis)
 
 **描述**
 
-销毁异步请求参数[OH_UdmfGetDataParams](capi-oh-udmfgetdataparams.md)指针指向的实例对象。
+销毁异步请求参数[OH_UdmfGetDataParams](capi-udmf-oh-udmfgetdataparams.md)指针指向的实例对象。
 
 **起始版本：** 15
 
@@ -1896,7 +1896,7 @@ void OH_UdmfGetDataParams_Destroy(OH_UdmfGetDataParams* pThis)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_UdmfGetDataParams](capi-oh-udmfgetdataparams.md)* pThis | 表示指向异步请求参数[OH_UdmfGetDataParams](capi-oh-udmfgetdataparams.md)实例的指针。 |
+| [OH_UdmfGetDataParams](capi-udmf-oh-udmfgetdataparams.md)* pThis | 表示指向异步请求参数[OH_UdmfGetDataParams](capi-udmf-oh-udmfgetdataparams.md)实例的指针。 |
 
 ### OH_UdmfGetDataParams_SetDestUri()
 
@@ -1906,7 +1906,7 @@ void OH_UdmfGetDataParams_SetDestUri(OH_UdmfGetDataParams* params, const char* d
 
 **描述**
 
-设置异步请求参数[OH_UdmfGetDataParams](capi-oh-udmfgetdataparams.md)中的目标路径。<br>若设置了目标路径，会将文件类型的数据进行拷贝到指定路径。回调中获取到的文件类型数据会被替换为目标路径的URI。<br>若不设置目标路径，则不会执行拷贝文件操作。回调中获取到的文件类型数据为源端路径URI。<br>若应用涉及复杂文件处理策略，或需要将文件拷贝在多个路径下时，建议不设置此参数，由应用自行完成文件拷贝相关处理。
+设置异步请求参数[OH_UdmfGetDataParams](capi-udmf-oh-udmfgetdataparams.md)中的目标路径。<br>若设置了目标路径，会将文件类型的数据进行拷贝到指定路径。回调中获取到的文件类型数据会被替换为目标路径的URI。<br>若不设置目标路径，则不会执行拷贝文件操作。回调中获取到的文件类型数据为源端路径URI。<br>若应用涉及复杂文件处理策略，或需要将文件拷贝在多个路径下时，建议不设置此参数，由应用自行完成文件拷贝相关处理。
 
 **起始版本：** 15
 
@@ -1915,7 +1915,7 @@ void OH_UdmfGetDataParams_SetDestUri(OH_UdmfGetDataParams* params, const char* d
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_UdmfGetDataParams](capi-oh-udmfgetdataparams.md)* params | 表示指向异步请求参数[OH_UdmfGetDataParams](capi-oh-udmfgetdataparams.md)实例的指针。 |
+| [OH_UdmfGetDataParams](capi-udmf-oh-udmfgetdataparams.md)* params | 表示指向异步请求参数[OH_UdmfGetDataParams](capi-udmf-oh-udmfgetdataparams.md)实例的指针。 |
 | const char* destUri | 表示目标路径地址。 |
 
 ### OH_UdmfGetDataParams_SetFileConflictOptions()
@@ -1926,7 +1926,7 @@ void OH_UdmfGetDataParams_SetFileConflictOptions(OH_UdmfGetDataParams* params, c
 
 **描述**
 
-设置异步请求参数[OH_UdmfGetDataParams](capi-oh-udmfgetdataparams.md)中的文件冲突选项。
+设置异步请求参数[OH_UdmfGetDataParams](capi-udmf-oh-udmfgetdataparams.md)中的文件冲突选项。
 
 **起始版本：** 15
 
@@ -1935,7 +1935,7 @@ void OH_UdmfGetDataParams_SetFileConflictOptions(OH_UdmfGetDataParams* params, c
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_UdmfGetDataParams](capi-oh-udmfgetdataparams.md)* params | 表示指向异步请求参数[OH_UdmfGetDataParams](capi-oh-udmfgetdataparams.md)实例的指针。 |
+| [OH_UdmfGetDataParams](capi-udmf-oh-udmfgetdataparams.md)* params | 表示指向异步请求参数[OH_UdmfGetDataParams](capi-udmf-oh-udmfgetdataparams.md)实例的指针。 |
 | const [Udmf_FileConflictOptions](#udmf_fileconflictoptions) options | 表示文件拷贝冲突时的选项。 |
 
 ### OH_UdmfGetDataParams_SetProgressIndicator()
@@ -1946,7 +1946,7 @@ void OH_UdmfGetDataParams_SetProgressIndicator(OH_UdmfGetDataParams* params, con
 
 **描述**
 
-设置异步请求参数[OH_UdmfGetDataParams](capi-oh-udmfgetdataparams.md)中的进度条指示选项。
+设置异步请求参数[OH_UdmfGetDataParams](capi-udmf-oh-udmfgetdataparams.md)中的进度条指示选项。
 
 **起始版本：** 15
 
@@ -1955,7 +1955,7 @@ void OH_UdmfGetDataParams_SetProgressIndicator(OH_UdmfGetDataParams* params, con
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_UdmfGetDataParams](capi-oh-udmfgetdataparams.md)* params | 表示指向异步请求参数[OH_UdmfGetDataParams](capi-oh-udmfgetdataparams.md)实例的指针。 |
+| [OH_UdmfGetDataParams](capi-udmf-oh-udmfgetdataparams.md)* params | 表示指向异步请求参数[OH_UdmfGetDataParams](capi-udmf-oh-udmfgetdataparams.md)实例的指针。 |
 | const [Udmf_ProgressIndicator](#udmf_progressindicator) progressIndicator | 表示是否使用默认进度条选项。 |
 
 ### OH_UdmfGetDataParams_SetDataProgressListener()
@@ -1966,7 +1966,7 @@ void OH_UdmfGetDataParams_SetDataProgressListener(OH_UdmfGetDataParams* params, 
 
 **描述**
 
-设置异步请求参数[OH_UdmfGetDataParams](capi-oh-udmfgetdataparams.md)中的监听回调函数。
+设置异步请求参数[OH_UdmfGetDataParams](capi-udmf-oh-udmfgetdataparams.md)中的监听回调函数。
 
 **起始版本：** 15
 
@@ -1975,5 +1975,5 @@ void OH_UdmfGetDataParams_SetDataProgressListener(OH_UdmfGetDataParams* params, 
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_UdmfGetDataParams](capi-oh-udmfgetdataparams.md)* params | 表示指向异步请求参数[OH_UdmfGetDataParams](capi-oh-udmfgetdataparams.md)实例的指针。 |
+| [OH_UdmfGetDataParams](capi-udmf-oh-udmfgetdataparams.md)* params | 表示指向异步请求参数[OH_UdmfGetDataParams](capi-udmf-oh-udmfgetdataparams.md)实例的指针。 |
 | const [OH_Udmf_DataProgressListener](#oh_udmf_dataprogresslistener) dataProgressListener | 用户自定义的监听回调函数，可用于获取进度信息和数据。 |
