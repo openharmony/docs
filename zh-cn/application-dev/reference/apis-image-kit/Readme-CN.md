@@ -54,7 +54,7 @@
     - [OH_DecodingOptionsForPicture](capi-oh-decodingoptionsforpicture.md)
     - [OH_DecodingOptions](capi-oh-decodingoptions.md)
     - [OH_PixelmapNative](capi-oh-pixelmapnative.md)
-    - [OH_NativeBuffer](capi-oh-nativebuffer.md)
+    - [OH_NativeBuffer](capi-image-nativemodule-oh-nativebuffer.md)
     - [OH_Pixelmap_HdrStaticMetadata](capi-oh-pixelmap-hdrstaticmetadata.md)
     - [OH_NativeColorSpaceManager](capi-oh-nativecolorspacemanager.md)
     - [OH_Pixelmap_HdrDynamicMetadata](capi-oh-pixelmap-hdrdynamicmetadata.md)
