@@ -11,7 +11,7 @@
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 16
+**起始版本：** 18
 
 **相关模块：**[Drawing](_drawing.md)
 
