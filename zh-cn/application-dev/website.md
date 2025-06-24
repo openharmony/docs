@@ -3618,7 +3618,7 @@
             - [OH_CryptoKdf](reference/apis-crypto-architecture-kit/capi-cryptokdfapi-oh-cryptokdf.md)
             - [OH_CryptoKdfParams](reference/apis-crypto-architecture-kit/capi-cryptokdfapi-oh-cryptokdfparams.md)
             - [OH_CryptoKeyAgreement](reference/apis-crypto-architecture-kit/capi-cryptokeyagreementapi-oh-cryptokeyagreement.md)
-            - [OH_CryptoMac](reference/apis-crypto-architecture-kit/capi-cryptomacapi-cryptomacapi-oh-cryptomac.md)
+            - [OH_CryptoMac](reference/apis-crypto-architecture-kit/capi-cryptomacapi-oh-cryptomac.md)
             - [OH_CryptoRand](reference/apis-crypto-architecture-kit/capi-cryptorandapi-oh-cryptorand.md)
             - [OH_CryptoVerify](reference/apis-crypto-architecture-kit/capi-cryptosignatureapi-oh-cryptoverify.md)
             - [OH_CryptoSign](reference/apis-crypto-architecture-kit/capi-cryptosignatureapi-oh-cryptosign.md)
