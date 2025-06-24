@@ -1893,7 +1893,7 @@ struct OrientationExample {
 
 ### 示例21（动态切换SVG图片的填充颜色）
 
-通过按钮切换不同色域下的颜色值，动态改变SVG图片的填充颜色效果，以展示ColorMetrics的使用方式和显示差异。
+通过按钮切换不同色域下的颜色值，动态改变SVG图片的填充颜色效果，以展示[ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)类型的使用方式和显示差异。
 
 ```ts
 import { ColorMetrics } from '@kit.ArkUI';
