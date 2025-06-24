@@ -1467,7 +1467,7 @@ getSmsSegmentsInfo\(slotId: number, message: string, force7bit: boolean\): Promi
 | --------- | ------- | ---- | ----------------------------------------- |
 | slotId    | number  | 是   | SIM卡槽ID：<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | message   | string  | 是   | 消息。                                      |
-| force7bit | boolean | 是   | 是否使用7 bit编码。                          |
+| force7bit | boolean | 是   | 是否使用7 bit编码，默认false。<br/>-true：是<br/>-false：否                          |
 
 **返回值：**
 
