@@ -469,7 +469,7 @@ struct ButtonExample {
           .backgroundColor(0x317aff)
           .width(90)
           .onClick(() => {
-            console.log('ButtonType.Normal')
+            console.info('ButtonType.Normal');
           })
         Button({ type: ButtonType.Normal, stateEffect: true }) {
           Row() {
