@@ -1771,6 +1771,8 @@
       - [使用MindSpore Lite实现图像分类 (ArkTS)](ai/mindspore/mindspore-guidelines-based-js.md)
       - [使用MindSpore Lite实现图像分类 (C/C++)](ai/mindspore/mindspore-guidelines-based-native.md)
       - [使用MindSpore Lite实现语音识别 (C/C++)](ai/mindspore/mindspore-asr-based-native.md)
+      - 附录<!--mindspore-lite-appendix-->
+        - [MindSpore Lite支持的算子列表](ai/mindspore/mindspore-lite-supported-operators.md)
     - Neural Network Runtime Kit（Neural Network运行时服务）<!--neural-network-runtime-kit-->
       - [Neural Network Runtime Kit简介](ai/nnrt/Neural-Network-Runtime-Kit-Introduction.md)
       - [Neural Network Runtime对接AI推理框架开发指导](ai/nnrt/neural-network-runtime-guidelines.md)
