@@ -232,7 +232,7 @@ struct RadiusGradientBlurExample {
     Column() {
       Image($rawfile('test.png'))
         .compositingFilter(uiEffect.createFilter().radiusGradientBlur(this.blurRadiusExample,
-this.linearGradientBlurOptionsExample))
+          this.linearGradientBlurOptionsExample))
     }
   }
 }
