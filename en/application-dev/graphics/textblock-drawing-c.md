@@ -99,11 +99,11 @@ You can also use a shader to implement the text gradient effect. For details abo
 The following is a brief example and schematic diagram of adding a linear gradient shader effect to the text:
 
 ```c++
-// Start point
+// Start point.
 OH_Drawing_Point *startPt = OH_Drawing_PointCreate(100, 100);
-To
+// End point.
 OH_Drawing_Point *endPt = OH_Drawing_PointCreate(900, 900);
-Color array.
+// Color array.
 uint32_t colors[] = {0xFFFFFF00, 0xFFFF0000, 0xFF0000FF};
 // Relative position array
 float pos[] = {0.0f, 0.5f, 1.0f};

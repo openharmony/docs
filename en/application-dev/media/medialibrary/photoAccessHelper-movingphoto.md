@@ -4,14 +4,14 @@ A moving photo is a photo form that combines an image and a video, empowering a 
 
 The media library provides the capabilities of accessing and managing moving photo assets, including:
 
-- [Saves Moving Photo Assets using SaveButton](#saves-moving-photo-assets)
+- [Saving Moving Photo Assets](#saving-moving-photo-assets)
 - [Obtaining a Moving Photo Object](#obtaining-a-moving-photo-object)
 - [Playing Moving Photos with MovingPhotoView](movingphotoview-guidelines.md)
 - [Reading Moving Photo Assets](#reading-moving-photo-assets)
 
 Camera Kit provides the capability of taking moving photos. For details, see [Moving Photos](../camera/camera-moving-photo.md).
 
-## Saves Moving Photo Assets
+## Saving Moving Photo Assets
 
 Use the **SaveButton** security component to save the assets (image and video) of a moving photo.
 
