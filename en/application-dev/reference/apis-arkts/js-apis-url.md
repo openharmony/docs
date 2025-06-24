@@ -48,10 +48,10 @@ let objectParams = new url.URLParams([ ['user1', 'abc1'], ['query2', 'first2'], 
 let objectParams1 = new url.URLParams({"fod" : '1' , "bard" : '2'});
 // Construct a URLParams object in string mode.
 let objectParams2 = new url.URLParams('?fod=1&bard=2');
-// Construct a URLParams object using the search attribute of the url object.
+// Construct a URLParams object using the search property of the url object.
 let urlObject = url.URL.parseURL('https://developer.mozilla.org/?fod=1&bard=2');
 let objectParams3 = new url.URLParams(urlObject.search);
-// Construct a URLParams object using the params attribute of the url object.
+// Construct a URLParams object using the params property of the url object.
 let urlObject1 = url.URL.parseURL('https://developer.mozilla.org/?fod=1&bard=2');
 let objectParams4 = urlObject1.params;
 ```
@@ -300,7 +300,7 @@ Checks whether a key has a value.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the value exists; returns **false** otherwise.|
+| boolean | Check result. The value **true** is returned if the value exists; otherwise, **false** is returned.|
 
 **Error codes**
 
@@ -483,7 +483,7 @@ console.log(params.toString()); // Output 'fod=1&bard=2&fod=3'
 
 Provides APIs for parsing, constructing, standardizing, and encoding URL strings.
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -499,7 +499,7 @@ Provides APIs for parsing, constructing, standardizing, and encoding URL strings
 | port | string | Yes| Yes| Port in a URL. **Atomic service API**: This API can be used in atomic services since API version 11.|
 | protocol | string | Yes| Yes| Protocol in a URL. **Atomic service API**: This API can be used in atomic services since API version 11.|
 | search | string | Yes| Yes| Serialized query string in a URL. **Atomic service API**: This API can be used in atomic services since API version 11.|
-| searchParams<sup>(deprecated)</sup> | [URLSearchParams](#urlsearchparamsdeprecated) | Yes| No| **URLSearchParams** object allowing access to the query parameters in a URL.<br>- **NOTE**: This attribute is supported since API version 7 and is deprecated since API version 9. You are advised to use params<sup>9+</sup> instead.|
+| searchParams<sup>(deprecated)</sup> | [URLSearchParams](#urlsearchparamsdeprecated) | Yes| No| **URLSearchParams** object allowing access to the query parameters in a URL.<br>- **NOTE**: This property is supported since API version 7 and is deprecated since API version 9. You are advised to use params<sup>9+</sup> instead.|
 | params<sup>9+</sup> | [URLParams](#urlparams9) | Yes| No| **URLParams** object allowing access to the query parameters in a URL. **Atomic service API**: This API can be used in atomic services since API version 11.|
 | username | string | Yes| Yes| Username in a URL. **Atomic service API**: This API can be used in atomic services since API version 11.|
 
@@ -539,7 +539,7 @@ Creates a URL.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | url | string | Yes| A string representing an absolute or a relative URL.<br>In the case of a relative URL, you must specify **base** to parse the final URL.<br>In the case of an absolute URL, the passed **base** will be ignored.|
-| base | string \| URL | No| Either a string or an object. The default value is **undefined**.<br>- **string**: string.<br>- **URL**: URL object.<br>- This parameter is used when **url** is a relative URL.|
+| base | string \| URL | No| Either a string or an object. The default value is **undefined**.<br>- **string**: string.<br>- **URL**: URL object.|
 
 **Example**
 
@@ -583,7 +583,7 @@ Parses a URL.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | url | string | Yes| A string representing an absolute or a relative URL.<br>In the case of a relative URL, you must specify **base** to parse the final URL.<br>In the case of an absolute URL, the passed **base** will be ignored.|
-| base | string \| URL | No| Either a string or an object. The default value is **undefined**.<br>- **string**: string.<br>- **URL**: URL object.<br>- This parameter is used when **url** is a relative URL.|
+| base | string \| URL | No| Either a string or an object. The default value is **undefined**.<br>- **string**: string. If the first parameter is a relative URL, the parameter must comply with the URL standard.<br>- **URL**: URL object.<br>- This parameter is used when **url** is a relative URL.|
 
 > **NOTE**
 >
@@ -629,7 +629,7 @@ Converts the parsed URL into a string.
 
 | Type| Description|
 | -------- | -------- |
-| string | Website address in a serialized string.|
+| string | Target string.|
 
 **Example**
 
@@ -652,7 +652,7 @@ Converts the parsed URL into a JSON string.
 
 | Type| Description|
 | -------- | -------- |
-| string | Website address in a serialized string.|
+| string | JSON string.|
 
 **Example**
 ```ts
@@ -682,7 +682,7 @@ A constructor used to create a **URLSearchParams** instance.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| init | string[][] \| Record&lt;string, string&gt; \| string \| URLSearchParams | No| Input parameter objects, which include the following:<br>- **string[][]**: two-dimensional string array.<br>- **Record&lt;string, string&gt;**: list of objects.<br>- **string**: string.<br>- **URLSearchParams**: object.<br>The default value is **null**.|
+| init | string[][] \| Record&lt;string, string&gt; \| string \| URLSearchParams | No| Input parameter objects, which include the following:<br>- **string[][]**: two-dimensional string array.<br>- **Record&lt;string, string&gt;**: list of objects.<br>- **string**: string.<br>- **URLSearchParams**: object.<br>The default value is **undefined**.|
 
 **Example**
 
@@ -906,7 +906,7 @@ Checks whether a key has a value.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Check result. The value **true** means that the key has a value, and **false** means the opposite.|
+| boolean | Check result. The value **true** is returned if the key has a value; otherwise, **false** is returned.|
 
 **Example**
 

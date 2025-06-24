@@ -1,12 +1,12 @@
 # @ohos.util.TreeMap (Nonlinear Container TreeMap)
 
-**TreeMap** stores key-value (KV) pairs. Each key must be unique and have only one value.
+TreeMap stores key-value (KV) pairs. Each key must be unique and have only one value.
 
-**TreeMap** is implemented using a red-black tree, which is a binary search tree where keys are stored in sorted order for efficient insertion and removal.
+TreeMap is implemented using a red-black tree, which is a binary search tree where keys are stored in sorted order for efficient insertion and removal.
 
-**[HashMap](js-apis-hashmap.md)** is faster in accessing data than **TreeMap**, because the former accesses data based on the hash code of the key, whereas the latter stores and accesses the keys in sorted order.
+[HashMap](js-apis-hashmap.md) is faster in accessing data than TreeMap, because the former accesses data based on the hash code of the key, whereas the latter stores and accesses the keys in sorted order.
 
-Recommended use case: Use **TreeMap** when you need to store KV pairs in sorted order.
+Recommended use case: Use TreeMap when you need to store KV pairs in sorted order.
 
 This topic uses the following to identify the use of generics:
 
@@ -27,7 +27,7 @@ import { TreeMap } from '@kit.ArkTS';
 
 ## TreeMap
 
-### Attributes
+### Properties
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -35,7 +35,7 @@ import { TreeMap } from '@kit.ArkTS';
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| length | number | Yes| No| Number of elements in a tree map (called container later).|
+| length | number | Yes| No| Number of elements in a TreeMap.|
 
 
 ### constructor
@@ -106,7 +106,7 @@ for (let item of numbers) {
 
 isEmpty(): boolean
 
-Checks whether this container is empty (contains no element).
+Checks whether this TreeMap is empty (contains no element).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -116,7 +116,7 @@ Checks whether this container is empty (contains no element).
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the container is empty; returns **false** otherwise.|
+| boolean | Returns **true** if the TreeMap is empty; returns **false** otherwise.|
 
 **Error codes**
 
@@ -138,7 +138,7 @@ let result = treeMap.isEmpty();
 
 hasKey(key: K): boolean
 
-Checks whether this container has the specified key.
+Checks whether this TreeMap has the specified key.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -177,7 +177,7 @@ let result = treeMap.hasKey("squirrel");
 
 hasValue(value: V): boolean
 
-Checks whether this container has the specified value.
+Checks whether this TreeMap has the specified key.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -216,7 +216,7 @@ let result = treeMap.hasValue(123);
 
 get(key: K): V
 
-Obtains the value of the specified key in this container.
+Obtains the value of the specified key in this TreeMap.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -256,7 +256,7 @@ let result = treeMap.get("sparrow");
 
 getFirstKey(): K
 
-Obtains the first key in this container.
+Obtains the first key in this TreeMap.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -290,7 +290,7 @@ let result = treeMap.getFirstKey();
 
 getLastKey(): K
 
-Obtains the last key in this container.
+Obtains the last key in this TreeMap.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -324,7 +324,7 @@ let result = treeMap.getLastKey();
 
 setAll(map: TreeMap<K, V>): void
 
-Adds all elements in a **TreeMap** instance to this container.
+Adds all elements in a **TreeMap** instance to this TreeMap.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -334,7 +334,7 @@ Adds all elements in a **TreeMap** instance to this container.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| map | TreeMap<K, V> | Yes| **TreeMap** object to be added to the container.|
+| map | TreeMap<K, V> | Yes| **TreeMap** object to be added to the TreeMap.|
 
 **Error codes**
 
@@ -355,7 +355,7 @@ let map : TreeMap<string, number> = new TreeMap();
 map.set("demo", 12);
 map.setAll(treeMap); // Add all elements in the treeMap to the map.
 map.forEach((value ?: number, key ?: string) : void => {
-  console.log("value" + value, "key" + key); // Print result: 12 demo, 356 sparrow, and 123 squirrel
+  console.log("value" + value, "key" + key); // Output: 12 demo, 356 sparrow, and 123 squirrel
 })
 ```
 
@@ -364,7 +364,7 @@ map.forEach((value ?: number, key ?: string) : void => {
 
 set(key: K, value: V): Object
 
-Adds or updates an element in this container.
+Adds or updates an element in this TreeMap.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -381,7 +381,7 @@ Adds or updates an element in this container.
 
 | Type| Description|
 | -------- | -------- |
-| Object | Container that contains the new element.|
+| Object | TreeMap that contains the new element.|
 
 **Error codes**
 
@@ -404,7 +404,7 @@ treeMap.set("squirrel", 123);
 
 remove(key: K): V
 
-Removes the element with the specified key from this container.
+Removes the element with the specified key from this TreeMap.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -444,7 +444,7 @@ let result = treeMap.remove("sparrow");
 
 getLowerKey(key: K): K
 
-Obtains the key that is equal to placed in front of the input key in this container.
+Obtains the largest key in this TreeMap that is less than the specified comparison key.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -485,7 +485,7 @@ let result = treeMap.getLowerKey("sparrow");
 
 getHigherKey(key: K): K
 
-Obtains the key that is equal to or placed next to the input key in this container.
+Obtains the smallest key in this TreeMap that is greater than the specified comparison key.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -525,7 +525,7 @@ let result = treeMap.getHigherKey("sparrow");
 
 replace(key: K, newValue: V): boolean
 
-Replaces an element in this container.
+Replaces an element in this TreeMap.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -565,7 +565,7 @@ let result = treeMap.replace("sparrow", 357);
 
 clear(): void
 
-Clears this container and sets its length to **0**.
+Clears this TreeMap and sets its length to **0**.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -593,7 +593,7 @@ treeMap.clear();
 
 keys(): IterableIterator&lt;K&gt;
 
-Obtains an iterator that contains all the keys in this container.
+Returns an iterator that contains all the keys in this TreeMap.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -632,7 +632,7 @@ while(!t.done) {
 
 values(): IterableIterator&lt;V&gt;
 
-Obtains an iterator that contains all the values in this container.
+Returns an iterator that contains all the values in this TreeMap.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -671,7 +671,7 @@ while(!t.done) {
 
 forEach(callbackFn: (value?: V, key?: K, map?: TreeMap<K, V>) => void, thisArg?: Object): void
 
-Uses a callback to traverse the elements in this container and obtain their position indexes.
+Uses a callback to traverse the elements in this TreeMap and obtain their indexes.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -681,7 +681,7 @@ Uses a callback to traverse the elements in this container and obtain their posi
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callbackFn | function | Yes| Callback invoked to traverse the elements in the container.|
+| callbackFn | function | Yes| Callback invoked to traverse the elements in the TreeMap.|
 | thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. The default value is this instance.|
 
 callbackFn
@@ -725,7 +725,7 @@ treeMap.forEach((value ?: number, key ?: string) : void => {
 
 entries(): IterableIterator<[K, V]>
 
-Obtains an iterator that contains all the elements in this container.
+Returns an iterator that contains all the elements in this TreeMap.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -773,7 +773,7 @@ while(!t.done) {
 
 [Symbol.iterator]\(): IterableIterator&lt;[K, V]&gt;
 
-Obtains an iterator, each item of which is a JavaScript object.
+Returns an iterator, each item of which is a JavaScript object.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 

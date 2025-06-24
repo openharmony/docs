@@ -36,7 +36,7 @@ A supplementary type alias that represents the callback in all the overloads of 
 
 A class that implements an asynchronous lock and allows asynchronous operations to be performed under a lock. This class is decorated by [@Sendable](../../arkts-utils/arkts-sendable.md).
 
-#### Attributes
+#### Properties
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -205,7 +205,7 @@ Queries information about all existing asynchronous locks.
 
 ```ts
 let states: ArkTSUtils.locks.AsyncLockState[] = ArkTSUtils.locks.AsyncLock.queryAll();
-if (states.length == 0) {
+if (states.length === 0) {
     throw new Error('Test failed: At least one state is expected, but what got is ' + states.length);
 }
 ```
@@ -214,7 +214,7 @@ if (states.length == 0) {
 
 lockAsync\<T>(callback: AsyncLockCallback\<T>): Promise\<T>
 
-Performs an operation exclusively under a lock. This API acquires the lock, executes the callback, and releases the lock. The callback is executed asynchronously in the same thread where [lockAsync](#lockasync) was called.
+Performs an operation under a lock. This API acquires the lock, executes the callback, and releases the lock. The callback is executed asynchronously in the same thread where [lockAsync](#lockasync) was called.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -398,7 +398,7 @@ Class that implements the asynchronous lock options.
 
 constructor()
 
-Default constructor used to create an **AsyncLockOptions** instance with the default values for all attributes.
+Default constructor used to create an **AsyncLockOptions** instance with the default values for all properties.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -419,7 +419,7 @@ options.isAvailable = false;
 options.signal = s;
 ```
 
-#### Attributes
+#### Properties
 
 | Name       | Type                                 | Readable| Writable| Description                                                                                                                     |
 | ----------- | ------------------------------------- | ---- | ---- | ------------------------------------------------------------------------------------------------------------------------- |
@@ -435,7 +435,7 @@ A class used to store information about all lock operations currently performed 
 
 **System capability**: SystemCapability.Utils.Lang
 
-#### Attributes
+#### Properties
 
 | Name   | Type                             | Readable| Writable| Description            |
 | ------- | --------------------------------- | ---- | ---- | ---------------- |
@@ -450,7 +450,7 @@ Describes the information about a lock.
 
 **System capability**: SystemCapability.Utils.Lang
 
-#### Attributes
+#### Properties
 
 | Name     | Type                           | Readable| Writable| Description                                                     |
 | --------- | ------------------------------- | ---- | ---- | --------------------------------------------------------- |
@@ -466,7 +466,7 @@ A class that implements a signal used to abort an asynchronous operation. An ins
 
 **System capability**: SystemCapability.Utils.Lang
 
-#### Attributes
+#### Properties
 
 | Name   | Type   | Readable| Writable| Description                                                            |
 | ------- | ------- | ---- | ---- | ---------------------------------------------------------------- |
@@ -475,7 +475,7 @@ A class that implements a signal used to abort an asynchronous operation. An ins
 
 ## ArkTSUtils.ASON
 
-A utility class used to parse JSON strings into [sendable data](../../arkts-utils/arkts-sendable.md#sendable-data-types). ASON allows you to parse JSON strings and generate data that can be passed across concurrency domains. It also supports conversion from sendable data into JSON strings.
+A utility class used to parse JSON strings into [sendable data](../../arkts-utils/arkts-sendable.md#sendable-data-types). ASON allows you to parse JSON strings and generate Sendable data for pass-by-reference across concurrent instances. It also supports conversion from Sendable data into JSON strings.
 
 ### ISendable
 
@@ -685,7 +685,7 @@ Checks whether the passed-in value is of the sendable data type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Check result. The value **true** means that the passed-in value is of the sendable data type, and **false** means the opposite.|
+| boolean | Check result. The value **true** is returned if the passed-in value is of the sendable data type; otherwise, **false** is returned.|
 
 **Example**
 

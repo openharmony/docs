@@ -6,11 +6,11 @@ Regular objects are passed by copy between threads. The objects in the two threa
 
 > **NOTE**
 >
-> Regular class instances are passed by copy across threads, which means only data is passed, and any methods associated with the class instances are lost. To enable class instances to retain their methods when being passed across threads, you can use the [@Sendable decorator](./arkts-sendable.md#sendable decorator) to mark the class as Sendable.
+> Regular class instances are passed by copy across threads, which means only data is passed, and any methods associated with the class instances are lost. To enable class instances to retain their methods when being passed across threads, you can use the [@Sendable decorator](arkts-sendable.md#sendable-decorator) to mark the class as Sendable.
 
 ## Usage Example
 
-The following is a simple example of passing a regular object.
+The following is an example of passing a regular object.
 
 ```ts
 // Test.ets

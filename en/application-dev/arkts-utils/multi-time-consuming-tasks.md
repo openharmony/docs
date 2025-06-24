@@ -1,6 +1,6 @@
 # Using TaskPool for Multiple Time-Consuming Tasks
 
-When multiple tasks are executed concurrently, their execution times can vary due to differences in complexity, and the timing of their completion is unpredictable. If the host thread requires the results of all tasks after they are completed, you can use the approach described in this topic.
+When multiple tasks are executed simultaneously, the execution time and the time to return data may vary due to differences in task complexity. If the host thread requires data from all tasks once they are completed, you can use the approach described in this topic.
 
 Additionally, if the volume of data to be processed is large (for example, a list with 10,000 items), processing all the data in a single task can be time-consuming. Instead, you can split the original data into multiple sublists and assign each sublist to an independent task. After all tasks are completed, you can combine the results into a complete dataset. This approach can reduce processing time and enhance user experience.
 

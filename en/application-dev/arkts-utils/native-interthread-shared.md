@@ -1,6 +1,6 @@
 # C++ Inter-Thread Data Sharing
 
-When an application performs multithreaded computations at the C++ layer, ArkTS APIs needs to be executed within the ArkTS environment. To prevent the non-UI main thread from waiting for the API call results within the ArkTS environment of the UI main thread, you need to create an ArkTS execution environment on these C++ threads and directly call the APIs. In addition, you may need to share and manipulate Sendable objects across C++ threads.
+When an application performs multithreaded computations at the C++ layer, ArkTS APIs needs to be executed within the ArkTS environment. To prevent the non-UI main thread from waiting for the API call results within the UI main thread, you need to create an ArkTS execution environment on these C++ threads and directly call the APIs. In addition, you may need to share and manipulate Sendable objects across C++ threads.
 
 To support this scenario, you must create the capabilities to call ArkTS APIs on C++ threads, and share and manipulate Sendable objects across threads.
 
@@ -73,11 +73,11 @@ static void *CreateArkRuntimeFunc(void *arg)
 }
 ```
 
-The process consists of four steps: creating an execution environment, loading modules, searching for and calling functions (or directly creating Sendable objects through Node-API), and finally destroying the execution environment. For details about how to load modules, see [Loading a Module Using Node-API](../napi/use-napi-load-module-with-info.md). For details about how to search for and call functions and more Node-API capabilities, see [Node-API](../reference/native-lib/napi.md).
+The process consists of four steps: creating an execution environment, loading modules, searching for and calling functions (or directly creating Sendable objects through Node-API), and finally destroying the execution environment. For details about how to load modules, see [Loading a Module Using Node-API](../napi/use-napi-load-module-with-info.md). For details about how to search for and call functions and more Node-API capabilities, see [Node-API](../reference/native-lib/napi.md#node-api).
 
 ## Manipulating Sendable Objects Across C++ Threads
 
-After implementing the capabilities to call ArkTS APIs from C++, serialize and deserialize objects for cross-thread transfer. The **napi_value** variable cannot be directly shared across threads because it is not thread-safe.
+After implementing the capabilities to call ArkTS APIs from C++, serialize and deserialize objects for cross-thread transfer. The **napi_value** variable is not thread-safe and therefore cannot be directly shared across threads.
 
 The following code example demonstrates how to serialize and deserialize objects. Since Sendable objects are passed by reference, serialization does not create an additional copy of the data but directly passes the object reference to the deserializing thread. This makes serialization and deserialization more efficient than non-Sendable objects.
 
@@ -200,8 +200,8 @@ static napi_module demoModule = {
     .reserved = {0},
 };
 
-extern "C" __attribute__((constructor)) void RegisterEntryModule(void) { 
-    napi_module_register(&demoModule); 
+extern "C" __attribute__((constructor)) void RegisterEntryModule(void) {
+    napi_module_register(&demoModule);
 }
 ```
 

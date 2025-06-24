@@ -7,11 +7,11 @@ Garbage Collection (GC) is a process that identifies and reclaims memory no long
 ### Types of GC
 
 #### Reference Counting
+
 When object A is referenced by object B, A's reference count increases by 1. Conversely, when the reference is removed, A's reference count decreases by 1. When A's reference count reaches 0, object A is reclaimed.
 
 - Pros: Reference counting is simple to implement and allows for immediate memory reclamation, avoiding a dedicated Stop The World (STW) phase where the application is paused.
 - Cons: The extra counting step during object manipulation increases the overhead of memory allocation and assignment, affecting performance. Most critically, it fails to handle circular references.
-
 ```
 class Parent {
   constructor() {
@@ -34,14 +34,12 @@ function main() {
   child.parent = parent;
 }
 ```
-In the example above, parent holds a reference to child, and child holds a reference to parent. This circular reference means that neither object's reference count will reach zero, even after the **main** function ends, resulting in a memory leak.
-
+In the code above, the **parent** object holds a reference to the **child** object, incrementing the reference count of **parent**. Simultaneously, the **child** object is also held by the **parent** object, incrementing the reference count of **child**. This creates a circular reference, preventing both **parent** and **child** from being released until the **main** function ends, thereby causing a memory leak.
 #### Tracking GC
 
 ![image](./figures/tracing-gc.png)
 
-Tracing GC identifies live objects by traversing the object graph starting from root objects, which include stack objects and global objects that are guaranteed to be alive. Objects referenced by these root objects are also considered live. The traversal marks all reachable objects (blue) as live, whereas unreachable objects (yellow) are considered garbage.
-
+Root objects include stack objects and global objects that are guaranteed to be alive at a given moment during program execution. Objects referenced by root objects are also considered alive. By traversing these references, all live objects can be identified. As illustrated in the diagram, starting from the root objects, objects and their fields are traversed. Objects that are reachable are marked in blue, indicating they are live; the remaining unreachable objects are marked in yellow, indicating they are garbage.
 - Pros: Tracing GC solves the circular reference problem and does not incur additional overhead during memory allocation and assignment.
 - Cons: Tracing GC is more complex than reference counting and introduces a brief STW phase. Additionally, GC can be delayed, leading to floating garbage.
 
@@ -55,14 +53,16 @@ Tracing GC algorithms identify garbage by traversing the object graph. Based on 
 
 ![image](./figures/mark-clearn.png)
 
-After traversing the object graph, the algorithm clears the contents of unreachable objects and places them in a free list for future allocations. 
-This approach is highly efficient as it does not move objects. However, it can lead to memory fragmentation, reducing allocation efficiency and potentially preventing the allocation of large objects despite ample free memory.
+After traversing the object graph, the algorithm erases the contents of unreachable objects and places them in a free queue for future allocations. 
+
+This approach is highly efficient as it does not move objects. However, since the memory addresses of the reclaimed objects are not contiguous, it can lead to memory fragmentation, which in turn reduces allocation efficiency. In extreme cases, even with a large amount of free memory, it may not be possible to allocate space for larger objects. 
 
 #### Mark-Copy Collection
 
 ![image](./figures/mark-copy.png)
 
-During the traversal of the object graph, reachable objects are copied to a new, contiguous memory space. After the traversal, the old memory space is reclaimed entirely.
+During the traversal of the object graph, reachable objects are copied to a new memory space. Once the traversal is complete, the old memory space is reclaimed in one go. 
+
 This approach eliminates memory fragmentation and completes the GC process in a single traversal, making it efficient. However, it requires reserving half of the memory space to ensure all live objects can be copied, resulting in lower space utilization.
 
 #### Mark-Compact Collection
@@ -70,6 +70,7 @@ This approach eliminates memory fragmentation and completes the GC process in a 
 ![image](./figures/mark-shuffle.png)
 
 After the traversal, live objects (blue) are copied to the beginning of the current space (or a designated area), and the copied objects are reclaimed and placed in the free list.
+
 This approach addresses memory fragmentation without wasting half of the memory space, though it incurs higher performance overhead when compared with mark-copy collection.
 
 ### HPP GC
@@ -82,7 +83,7 @@ ArkTS Runtime uses a traditional generational model, categorizing objects based 
 
 ![image](./figures/generational-model.png)
 
-Newly allocated objects are placed in the **from** space of Young Space. After surviving one GC cycle, they are moved to the **to** space, which then swaps roles with the **from** space. Objects surviving another GC cycle are copied to Old Space.
+Newly allocated objects are placed in the **from** space of Young Space. After surviving one GC cycle, they are moved to the **to** space. Objects that survive another GC cycle are then moved to Old Space.
 
 #### Hybrid Algorithm
 
@@ -130,6 +131,7 @@ Each space is managed in regions, which are the units requested from the memory 
 > Parameters not marked as configurable are system-defined and cannot be adjusted by developers.
 
 Based on the total heap size ranges (64 MB to 128 MB, 128 MB to 256 MB, or greater than 256 MB), the system sets different sizes for the following parameters. If a parameter has a single value in the range, it remains constant regardless of the total heap size. The default total heap size for mobile phones is greater than 256 MB.
+
 You can use related APIs to query memory information by referring to [HiDebug API Reference](../reference/apis-performance-analysis-kit/js-apis-hidebug.md).
 
 #### Heap Size Parameters
@@ -150,7 +152,6 @@ You can use related APIs to query memory information by referring to [HiDebug AP
 
 #### Parameters of Semi Space
 The heap contains two Semi Spaces for copying.
-
 | Name| Value or Value Range| Description|
 | --- | --- | --- |
 | semiSpaceSize | 2–4 MB/2–8 MB/2–16 MB| Size of Semi Space. The value varies according to the total heap size.|
@@ -187,7 +188,7 @@ Both spaces are initialized to the remaining unallocated heap size. By default, 
 | MIN_TASKPOOL_THREAD_NUM | 3 | Minimum number of threads in the thread pool.|
 | MAX_TASKPOOL_THREAD_NUM | 7 | Maximum number of threads in the thread pool.|
 
-Note: The thread pool is used to execute concurrent tasks in the GC process. During thread pool initialization, all the three parameters need to be considered. If **gcThreadNum** is negative, the number of threads in the initialized thread pool is the number of CPU cores divided by 2.
+Note: The thread pool is used to execute concurrent tasks in the GC process. During thread pool initialization, all the three parameters need to be considered. If **gcThreadNum** is negative, the number of threads in the initialized thread pool is half of the number of CPU cores.
 
 #### Other Parameters
 
@@ -246,7 +247,7 @@ Subsequent Smart GC or IDLE GC selections are made from the above three types of
 #### Background Switch Triggering
 
 - Functions: **ChangeGCParams**
-- Description: Full GC is triggered when the application switches to the background.
+- Description: Full GC is triggered after the application switches to the background.
 - Log keywords: **app is inBackground**, **app is not inBackground**, and
   **GCReason::SWITCH_BACKGROUND**
 
@@ -282,7 +283,7 @@ Subsequent Smart GC or IDLE GC selections are made from the above three types of
 - Description: selects regions with fewer live objects and lower collection costs for partial GC.
 - Typical Logs
     - Select CSet failure: number is too few
-    - Max evacuation size is 6_MB. The CSet region number
+    - `Max evacuation size is 6_MB. The CSet Region number`
     - Select CSet success: number is
 
 ## SharedHeap
@@ -408,7 +409,7 @@ C03F00/ArkCompiler: Heap average alive rate: 0.635325
 
 - Invocation: **ArkTools.hintGC()**
 - Type: ArkTS interface
-- Description: triggers the VM to assess whether a full GC should be executed. Full GC is initiated in the background or if the expected memory survival rate is below a threshold. It will not trigger in sensitive scenarios.
+- Description: triggers the VM to assess whether a full GC should be executed. Full GC is initiated if the expected memory survival rate is below a threshold. It will not trigger in sensitive scenarios.
 - Use case: developers prompting the system to perform GC.
 - Log keywords: There is no direct log. Only external trigger (**GCReason::TRIGGER_BY_JS**) can be found.
 

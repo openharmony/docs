@@ -167,6 +167,7 @@ This example demonstrates training a simple housing price prediction model using
     After the Worker thread is destroyed, call [onexit()](../reference/apis-arkts/js-apis-worker.md#onexit9) in the host thread to define the logic for handling the destruction.
 
     ```ts
+    // Index.ets
     // After the Worker thread is destroyed, execute the onexit callback.
     workerInstance.onexit = (): void => {
      console.info("main thread terminate");
@@ -176,6 +177,7 @@ This example demonstrates training a simple housing price prediction model using
     Method 1: In the host thread, call [terminate()](../reference/apis-arkts/js-apis-worker.md#terminate9) to destroy the Worker thread and stop it from receiving messages.
 
     ```ts
+    // Index.ets
     // Destroy the Worker thread.
     workerInstance.terminate();
     ```
@@ -183,6 +185,7 @@ This example demonstrates training a simple housing price prediction model using
     Method 2: In the Worker thread, call [close()](../reference/apis-arkts/js-apis-worker.md#close9) to destroy the Worker thread and stop it from receiving messages.
 
     ```ts
+    // MyWorker.ts
     // Destroy the Worker thread.
     workerPort.close();
     ```

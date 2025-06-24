@@ -8,21 +8,46 @@ The figure below illustrates the operating mechanism of TaskPool.
 
 ![image_0000001964858368](figures/image_0000001964858368.png)
 
-With TaskPool, you can encapsulate tasks in the host thread and submit the tasks to the task queue. The system selects appropriate worker threads to distribute and execute the tasks, and then returns the result to the host thread. TaskPool provides APIs to execute and cancel tasks, and set the task priority. It minimizes system resource usage through unified thread management, dynamic scheduling, and load balancing. By default, the system starts a worker thread and increases the thread quantity as the number of tasks increases. The maximum number of worker threads that can be created depends on the number of physical cores of the device. The actual number is managed internally to ensure optimal scheduling and execution efficiency. If no task is distributed for an extended period, the system reduces the number of worker threads.
+With TaskPool, you can submit tasks in the host thread to the task queue. The system selects appropriate worker threads to execute the tasks, and then returns the result to the host thread. TaskPool provides APIs to execute and cancel tasks, and set the task priority. It minimizes system resource usage through unified thread management, dynamic scheduling, and load balancing. By default, the system starts a worker thread and increases the thread quantity as the number of tasks increases. The maximum number of worker threads that can be created depends on the number of physical cores of the device. The actual number is managed internally to ensure optimal scheduling and execution efficiency. If no task is distributed for an extended period, the system reduces the number of worker threads. For details, see [TaskPool Scaling Mechanism](taskpool-introduction.md#taskpool-scaling-mechanism).
 
 ## Precautions for TaskPool
 
 - Functions implementing tasks must be decorated with [\@Concurrent](#concurrent-decorator) and are supported only in .ets files.
 
-- Starting from API version 11, when passing instances with methods across concurrent instances, the class must be decorated with [@Sendable](arkts-sendable.md#sendable) and are supported only in .ets files.
+- Starting from API version 11, when passing instances with methods across concurrent instances, the class must be decorated with [@Sendable](arkts-sendable.md#sendable-decorator) and are supported only in .ets files.
 
-- A task function must finish the execution in a TaskPool worker thread within 3 minutes (excluding the time used for Promise or async/await asynchronous call, such as the duration of I/O tasks like network download and file read/write operation). Otherwise, it is forcibly terminated.
+- A task function must finish the execution in a TaskPool's worker thread within 3 minutes (excluding the time used for Promise or async/await asynchronous call, such as the duration of I/O tasks like network download and file read/write operation). Otherwise, it is forcibly terminated.
 
-- Parameters of functions implementing tasks must be of types supported by serialization. For details, see [Inter-Thread Communication](interthread-communication-overview.md).
+- Parameters of functions implementing tasks must be of types supported by serialization. For details, see [Inter-Thread Communication](interthread-communication-overview.md). Currently, complex types decorated with [@State](../ui/state-management/arkts-state.md), [@Prop](../ui/state-management/arkts-prop.md), and [@Link](../ui/state-management/arkts-link.md) are not supported.
 
-- Parameters of the ArrayBuffer type are transferred in TaskPool by default. You can set the transfer list by calling [setTransferList()](../reference/apis-arkts/js-apis-taskpool.md#settransferlist10).
+- Parameters of the ArrayBuffer type are transferred in TaskPool by default. You can set the transfer list by calling [setTransferList()](../reference/apis-arkts/js-apis-taskpool.md#settransferlist10). If you need to call a task that uses ArrayBuffer as a parameter multiple times, call [setCloneList()](../reference/apis-arkts/js-apis-taskpool.md#setclonelist11) to change the transfer behavior of ArrayBuffer in the thread to pass-by-copy, avoiding affecting the original object.
 
-- The context objects in different threads are different. Therefore, TaskPool worker threads can use only thread-safe libraries. For example, non-thread-safe UI-related libraries cannot be used.
+  ```ts
+  import { taskpool } from '@kit.ArkTS';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  
+  @Concurrent
+  function printArrayBuffer(buffer:ArrayBuffer) {
+    return buffer
+  }
+  
+  function testArrayBuffer() {
+    let buffer = new ArrayBuffer(1);
+    let group = new taskpool.TaskGroup();
+    let task = new taskpool.Task(printArrayBuffer, buffer);
+    group.addTask(task);
+    task.setCloneList([buffer]);
+    for (let i = 0; i < 5; i++) {
+      taskpool.execute(group).then(() => {
+        console.info("execute group success");
+      }).catch((e: BusinessError) => {
+        console.error("execute group error: " + e.message);
+      })
+    }
+  }
+  ```
+
+- The context objects in different threads are different. Therefore, a TaskPool's worker threads can use only thread-safe libraries. For example, non-thread-safe UI-related libraries cannot be used.
 
 - A maximum of 16 MB data can be serialized.
 
@@ -30,11 +55,11 @@ With TaskPool, you can encapsulate tasks in the host thread and submit the tasks
 
 - Promises cannot be transferred across threads. If TaskPool returns a Promise in the pending or rejected state, a failure message is returned. For a Promise in the fulfilled state, TaskPool parses the returned result. If the result can be transferred across threads, a success message is returned.
 
-- [AppStorage](../ui/state-management/arkts-appstorage.md) cannot be used in TaskPool worker threads.
+- [AppStorage](../ui/state-management/arkts-appstorage.md) cannot be used in the TaskPool's worker threads.
 
-- TaskPool allows you to package tasks in the host thread and submit them to the task queue. While it can theoretically handle an unlimited number of tasks, the actual task execution is influenced by the task priority and the availability of system resources. Once the Worker threads reach their maximum capacity, the efficiency of task execution might be compromised.
+- TaskPool allows you to package tasks in the host thread and submit them to the task queue. While it can theoretically handle an unlimited number of tasks, the actual task execution efficiency is influenced by the task priority and system resources. Once the worker threads reach their maximum capacity, the efficiency of task execution might be compromised.
 
-- TaskPool does not allow you to specify the thread where a task runs. Instead, tasks are assigned to run in available threads. If you want to specify the thread for running a task, using [Worker](./worker-introduction.md) is a better approach.
+- TaskPool does not allow you to specify the thread where a task runs. Instead, tasks are assigned to run in available threads. If you want to specify the thread for running a task, using [Worker](worker-introduction.md) is a better approach.
 
 ## \@Concurrent Decorator
 
@@ -117,7 +142,7 @@ struct Index {
 
 #### Concurrent Functions Returning Promises
 
-Pay attention to the behavior of returning Promises in concurrent functions. In the following example, concurrent functions like **testPromise** and **testPromise1** handle these Promises and return results.
+Pay attention to the Promises returned by concurrent functions. In the following example, **testPromise** and **testPromise1** handle these Promises and return results.
 
 Example:
 
@@ -260,9 +285,9 @@ function TestFunc() {
   // Directly call the add() function defined in the same file. The following error message is displayed: "Only imported variables and local variables can be used in @Concurrent decorated functions. <ArkTSCheck>"
   // add(1);
   // Directly use the TestA constructor defined in the same file. The following error message is displayed: "Only imported variables and local variables can be used in @Concurrent decorated functions. <ArkTSCheck>"
-  // let a = new TestA("aaa");
+  // const a = new TestA('aaa');
   // Directly access the nameStr member of TestB defined in the same file. The following error message is displayed: "Only imported variables and local variables can be used in @Concurrent decorated functions. <ArkTSCheck>"
-  // console.info("TestB name is: " + TestB.nameStr);
+  // console.info(`TestB name is: ${TestB.nameStr}`);
 
   // Case 2: In the concurrent function, call classes or functions defined in the Test.ets file and imported into the current file.
 
@@ -400,3 +425,23 @@ struct Index {
   }
 }
 ```
+
+## TaskPool Scaling Mechanism
+
+### Expansion Mechanism
+
+Generally, when you submit tasks to the task queue, an expansion check is triggered. The expansion check first determines whether the number of idle worker threads is greater than the number of tasks. If it is, there are idle worker threads in the thread pool, and no expansion is needed. Otherwise, the required number of worker threads is calculated based on the load, and new threads are created accordingly.
+
+### Contraction Mechanism
+
+After expansion, TaskPool creates multiple worker threads. However, when the number of tasks decreases, these threads become idle, leading to resource wastage. Therefore, TaskPool provides a contraction mechanism. TaskPool employs a timer to periodically check the current load. The timer is triggered every 30 seconds, and each time it attempts to release idle worker threads. A thread can be released if it meets the following conditions:
+
+- The thread has been idle for at least 30 seconds.
+
+- The thread has not executed any [long tasks](../reference/apis-arkts/js-apis-taskpool.md#longtask12).
+
+- There are no service requests or unreleased handles on the thread, such as [Timers](../reference/common/js-apis-timer.md).
+
+- The thread is not in a debugging or optimization phase.
+
+- There are no created but not yet destroyed child Worker thread in the thread.

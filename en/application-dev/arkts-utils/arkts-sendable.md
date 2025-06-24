@@ -64,11 +64,12 @@ A Sendable interface must meet the following requirements:
 
 ### Sendable Data Types
 
-- All ArkTS basic data types: boolean, number, string, bigint, null, and undefined.
+- ArkTS basic data types: boolean, number, string, bigint, null, and undefined.
 
 - [Container types](arkts-collections-introduction.md) defined in ArkTS ([@arkts.collections](../reference/apis-arkts/js-apis-arkts-collections.md) must be explicitly introduced).
 
 - [Asynchronous lock objects](arkts-async-lock-introduction.md) defined in ArkTS ([@arkts.utils](../reference/apis-arkts/js-apis-arkts-utils.md) must be explicitly introduced).
+
 
 - Interfaces that inherit from [ISendable](#isendable).
 
@@ -113,11 +114,11 @@ The \@Sendable decorator declares and verifies Sendable classes and functions.
 | \@Sendable Decorator| Description|
 | -------- | -------- |
 | Parameters| None.|
-| Usage restrictions| It can be used only in projects of the stage model and only in .ets files.|
+| Usage restrictions| This decorator can be used only in .ets files of the stage model.|
 | Supported function types| Only regular functions and async functions can be decorated by @Sendable.|
 | Class inheritance restrictions| Sendable classes can only inherit from other Sendable classes. Regular classes cannot inherit from Sendable classes.|
-| Property type restrictions| 1. The following types are supported: string, number, boolean, bigint, null, undefined, Sendable class, collections.Array, collections.Map, collections.Set, and ArkTSUtils.locks.AsyncLock.<br>2. Closure variables are not allowed.<br>3. Private properties defined with \# are not supported; use **private** instead.<br>4. Computed properties are not supported.|
-| Other property restrictions| Member properties must be initialized explicitly. They cannot be followed by exclamation marks (!).|
+| Property type restrictions| 1. The following types are supported: string, number, boolean, bigint, null, undefined, Sendable class, collections.Array, collections.Map, collections.Set, ArkTSUtils.locks.AsyncLock.<br>2. Closure variables are not allowed.<br>3. Private properties defined with \# are not supported; use **private** instead.<br>4. Computed properties are not supported.|
+| Other property restrictions| Member properties must be initialized explicitly. The exclamation mark (!) cannot be used.<br>|
 | Parameter restrictions for decorated functions or class methods| Local variables, parameters, and variables imported through **import** are allowed. Closure variables are not allowed, except for top-level Sendable classes and functions.|
 | Restrictions for Sendable classes and functions| Adding or deleting properties is not allowed. Modifying properties is allowed, but the type must remain consistent before and after modification. Modifying methods is not supported.|
 | Use scenario| 1. Scenarios where class methods or Sendable functions are used in TaskPool or Worker.<br>2. Scenarios involving large amounts of object data transmission. The time required for serialization increases with the data volume. After transforming data with Sendable, the efficiency of transmitting 100 KB of data is approximately 20 times higher, and for 1 MB of data, it is about 100 times higher.|

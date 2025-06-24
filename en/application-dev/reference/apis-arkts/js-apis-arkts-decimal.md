@@ -1,6 +1,6 @@
 # @arkts.math.Decimal (High-Precision Math Library Decimal)
 
-The Decimal module provides a high-precision math library that offers the capability of high-precision floating-point arithmetic.
+The Decimal module provides high-precision mathematical operation capabilities, supporting high-precision floating-point calculations.
 
 > **NOTE**
 >
@@ -128,7 +128,7 @@ Decimal with any precision.
 | ROUND_HALF_EVEN    | number | 6    | Rounds towards the nearest neighbor, and if both neighbors are equidistant, rounds towards the even neighbor. In the modulo operation, the modulo function in IEEE 754 is used.|
 | ROUND_HALF_CEILING | number | 7    | Rounds towards the nearest neighbor, and if both neighbors are equidistant, rounds towards positive infinity.        |
 | ROUND_HALF_FLOOR   | number | 8    | Rounds towards the nearest neighbor, and if both neighbors are equidistant, rounds towards negative infinity.        |
-| EUCLID             | number | 9    | Always a positive remainder in the modulo operation. The Euclid's division formula is used: q = sign(x) * floor(a / abs(x)).|
+| EUCLID          | number | 9    | Always a positive remainder in the modulo operation. The Euclid's division formula is used: q = sign(x) * floor(a / abs(x)).|
 
 ### constructor
 
@@ -257,7 +257,7 @@ console.info("test Decimal trunc:" + data.toString()); // 'test Decimal trunc:2'
 
 clamp(min: Value, max: Value): Decimal
 
-Returns a **Decimal** object representing the value clamped to the inclusive range of **min** and **max**. If the actual value exceeds the maximum limit, **max** is returned; if it falls below the minimum limit, **min** is returned; otherwise, the actual value is returned.
+Returns a **Decimal** object representing the value clamped to the inclusive range of **min** and **max**. If the value is greater than **max**, **max** is returned. If the value is less than **min**, **min** is returned. Otherwise, the actual value is returned.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1071,7 +1071,7 @@ Checks whether this decimal is equal to the specified number *n*.
 
 | Type   | Description                                            |
 | ------- | ------------------------------------------------ |
-| boolean | Check result. The value **true** means that they are equal, and **false** means the opposite.|
+| boolean | Check result. The value **true** is returned if they are equal; otherwise, **false** is returned.|
 
 **Error codes**
 
@@ -1109,7 +1109,7 @@ Checks whether this decimal is greater than the specified number *n*.
 
 | Type   | Description                                          |
 | ------- | ---------------------------------------------- |
-| boolean | Check result. The value **true** means that the decimal is greater than *n*, and **false** means the opposite.|
+| boolean | Check result. The value **true** is returned if the decimal is greater than *n*; otherwise, **false** is returned.|
 
 **Error codes**
 
@@ -1147,7 +1147,7 @@ Checks whether this decimal is greater than or equal to the specified number *n*
 
 | Type   | Description                                              |
 | ------- | -------------------------------------------------- |
-| boolean | Check result. The value **true** means that the decimal is greater than or equal to *n*, and **false** means the opposite.|
+| boolean | Check result. The value **true** is returned if the decimal is greater than or equal to *n*; otherwise, **false** is returned.|
 
 **Error codes**
 
@@ -1185,7 +1185,7 @@ Checks whether this decimal is less than the specified number *n*.
 
 | Type   | Description                                          |
 | ------- | ---------------------------------------------- |
-| boolean | Check result. The value **true** means that the decimal is less than *n*, and **false** means the opposite.|
+| boolean | Check result. The value **true** is returned if the decimal is less than *n*; otherwise, **false** is returned.|
 
 **Error codes**
 
@@ -1223,7 +1223,7 @@ Checks whether this decimal is less than or equal to the specified number *n*.
 
 | Type   | Description                                              |
 | ------- | -------------------------------------------------- |
-| boolean | Check result. The value **true** means that the decimal is less than or equal to *n*, and **false** means the opposite.|
+| boolean | Check result. The value **true** is returned if the decimal is less than or equal to *n*; otherwise, **false** is returned.|
 
 **Error codes**
 
@@ -1255,7 +1255,7 @@ Checks whether this decimal is finite.
 
 | Type   | Description                                        |
 | ------- | -------------------------------------------- |
-| boolean | Check result. The value **true** means that the decimal is finite, and **false** means the opposite.|
+| boolean | Check result. The value **true** is returned if the decimal is finite; otherwise, **false** is returned.|
 
 **Example**
 
@@ -1279,7 +1279,7 @@ Checks whether this decimal is an integer.
 
 | Type   | Description                                      |
 | ------- | ------------------------------------------ |
-| boolean | Check result. The value **true** means that the decimal is an integer, and **false** means the opposite.|
+| boolean | Check result. The value **true** is returned if the decimal is an integer; otherwise, **false** is returned.|
 
 **Example**
 
@@ -1303,7 +1303,7 @@ Checks whether this decimal is NaN.
 
 | Type   | Description                                     |
 | ------- | ----------------------------------------- |
-| boolean | Check result. The value **true** means that the decimal is NaN, **false** means the opposite.|
+| boolean | Check result. The value **true** is returned if the decimal is NaN; otherwise, **false** is returned.|
 
 **Example**
 
@@ -1327,7 +1327,7 @@ Checks whether this decimal is negative (including a distinction between positiv
 
 | Type   | Description                                      |
 | ------- | ------------------------------------------ |
-| boolean | Check result. The value **true** means that the decimal is negative, and **false** means the opposite.|
+| boolean | Check result. The value **true** is returned if the decimal is negative; otherwise, **false** is returned.|
 
 **Example**
 
@@ -1355,7 +1355,7 @@ Checks whether this decimal is positive (including a distinction between positiv
 
 | Type   | Description                                      |
 | ------- | ------------------------------------------ |
-| boolean | Check result. The value **true** means that the decimal is positive, and **false** means the opposite.|
+| boolean | Check result. The value **true** is returned if the decimal is positive; otherwise, **false** is returned.|
 
 **Example**
 
@@ -1383,7 +1383,7 @@ Returns whether this decimal is zero or minus zero.
 
 | Type   | Description                                         |
 | ------- | --------------------------------------------- |
-| boolean | Check result. The value **true** means that the decimal is zero or minus zero, and **false** means the opposite.|
+| boolean | Check result. The value **true** is returned if the decimal is zero or minus zero; otherwise, **false** is returned.|
 
 **Example**
 
@@ -1438,7 +1438,7 @@ console.info("test Decimal dividedToIntegerBy:" + data2.toString()); // 'test De
 
 negate(): Decimal
 
-Returns a **Decimal** object representing the result of multiplying this decimal by negative one.
+Negates this decimal.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1476,7 +1476,7 @@ You can use [DecimalConfig.precision](#decimalconfig) to specify the precision a
 | ------ | ------------------------ |
 | string | Binary string.|
 
-**Error codes**
+**Example**
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
@@ -1947,8 +1947,8 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 let data: Decimal = new Decimal(45.6);
 let data1: string = data.toExponential(0);
 console.info("test Decimal toExponential:" + data1); // 'test Decimal toExponential:5e+1'
-data1 = data.toExponential(1) // data1: '4.6e+1'
-data1 = data.toExponential(3) // data1: '4.560e+1'
+data1 = data.toExponential(1) // data1£º'4.6e+1'
+data1 = data.toExponential(3) // data1£º'4.560e+1'
 ```
 
 ### toExponential
@@ -2153,12 +2153,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 let pi: Decimal = new Decimal('3.14159265358')
-let data1 = pi.toFraction() // data1: '157079632679,50000000000'
-data1 = pi.toFraction(100000) // data1: '312689, 99532'
-data1 = pi.toFraction(10000) // data1: '355, 113'
-data1 = pi.toFraction(100) // data1: '311, 99'
-data1 = pi.toFraction(10) // data1: '22, 7'
-data1 = pi.toFraction(1) // data1: '3, 1'
+let data1 = pi.toFraction() // data1£º'157079632679,50000000000'
+data1 = pi.toFraction(100000) // data1£º'312689, 99532'
+data1 = pi.toFraction(10000) // data1£º'355, 113'
+data1 = pi.toFraction(100) // data1£º'311, 99'
+data1 = pi.toFraction(10) // data1£º'22, 7'
+data1 = pi.toFraction(1) // data1£º'3, 1'
 ```
 
 ### toNearest
@@ -2187,8 +2187,8 @@ Multiplies the specified number *n* to a value closet to this decimal and return
 
 For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
-| ID| Error Message                                |
-| -------- | ---------------------------------------- |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
 | 10200001 | The value of 'rounding' is out of range. |
 
 **Example**
@@ -2234,8 +2234,8 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 ```ts
 let data: Decimal = new Decimal(9.499)
-let data1 = data.toNearest(0.5, Decimal.ROUND_UP) // data1: '9.5'
-data1 = data.toNearest(0.5, Decimal.ROUND_DOWN) // data1: '9'
+let data1 = data.toNearest(0.5, Decimal.ROUND_UP) // data1£º'9.5'
+data1 = data.toNearest(0.5, Decimal.ROUND_DOWN) // data1£º'9'
 ```
 
 ### toPrecision
@@ -2340,8 +2340,8 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 ```ts
 let data: Decimal = new Decimal(45.6);
-let data1: string = data.toPrecision(2, Decimal.ROUND_UP) // data1: '46'
-data1 = data.toPrecision(2, Decimal.ROUND_DOWN) // data1: '45'
+let data1: string = data.toPrecision(2, Decimal.ROUND_UP) // data1£º'46'
+data1 = data.toPrecision(2, Decimal.ROUND_DOWN) // data1£º'45'
 ```
 
 ### toSignificantDigits
@@ -2592,7 +2592,7 @@ Returns the number of significant digits of this decimal, with **includeZeros** 
 
 | Name      | Type   | Mandatory| Description                                                        |
 | ------------ | ------- | ---- | ------------------------------------------------------------ |
-| includeZeros | boolean | Yes  | Whether to count the number of trailing zeros in the integer part. The value **true** means to count the number of trailing zeros in the integer part, and **false** means the opposite.|
+| includeZeros | boolean \| number | Yes  | Whether to count the number of trailing zeros in the integer part. The value **true** or **1** means to count the number of trailing zeros in the integer part, and **false** or **0** means the opposite.|
 
 **Return value**
 
@@ -2614,7 +2614,7 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 let data: Decimal = new Decimal(987000);
 let data1: number = data.precision();
 console.info("test Decimal precision:" + data1); // 'test Decimal precision:3'
-data1 = data.precision(true) // data1:'6'
+data1 = data.precision(true); // data1:'6'
 ```
 
 ### abs
@@ -2732,7 +2732,7 @@ console.info("test Decimal ceil:" + data.toString()); // 'test Decimal ceil:2'
 
 static trunc(n: Value): Decimal
 
-Returns a **Decimal** object representing the integer part truncated from the specified number *n*.
+Returns a **Decimal** object representing the integer part truncated from this decimal.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -4215,7 +4215,7 @@ let d1 : Decimal = new Decimal(100000) // d1:'Infinity'
 ```
 
 **Example 2**
-
+<!--code_no_check-->
 ```ts
 // /entry/src/main/ets/pages/test.ets
 export function test(){
@@ -4234,7 +4234,7 @@ export function test(){
   console.info("test Decimal set:" + data1.toString()); // 'test Decimal set:1.7346'
 }
 ```
-
+<!--code_no_check-->
 ```ts
 // /entry/src/main/ets/pages/Index.ets
 import {test} from './test'
