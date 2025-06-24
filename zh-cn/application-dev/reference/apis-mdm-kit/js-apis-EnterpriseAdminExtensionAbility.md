@@ -335,7 +335,7 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
 
 onKioskModeEntering(bundleName: string, accountId: number): void
 
-应用进入Kiosk模式(Kiosk模式是一种特殊的设备管理模式，用于将设备转换为单一(组)应用程序模式。在Kiosk模式下，设备只能运行指定的应用，用户无法退出这个应用，也不能访问其他的应用或设备设置。这种模式适用于需要对用户进行限制或控制的场合。)回调，回调中包含应用包名和用户ID。
+应用进入Kiosk模式(Kiosk模式：系统层面提供的一种应用运行模式，将设备锁定在单个应用或者一组应用运行，同时对锁屏状态、状态栏、手势操作和关键功能进行控制，防止用户在设备上启动其它应用或执行其它操作)回调，回调中包含应用包名和用户ID。
 
 **系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -362,7 +362,7 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
 
 onKioskModeExiting(bundleName: string, accountId: number): void
 
-应用退出Kiosk模式(Kiosk模式是一种特殊的设备管理模式，用于将设备转换为单一(组)应用程序模式。在Kiosk模式下，设备只能运行指定的应用，用户无法退出这个应用，也不能访问其他的应用或设备设置。这种模式适用于需要对用户进行限制或控制的场合。)回调，回调中包含应用包名和用户ID。
+应用退出Kiosk模式(Kiosk模式：系统层面提供的一种应用运行模式，将设备锁定在单个应用或者一组应用运行，同时对锁屏状态、状态栏、手势操作和关键功能进行控制，防止用户在设备上启动其它应用或执行其它操作)回调，回调中包含应用包名和用户ID。
 
 **系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
 
