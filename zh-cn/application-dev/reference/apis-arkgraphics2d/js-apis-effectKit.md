@@ -1009,6 +1009,8 @@ getPixelMap(): image.PixelMap
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **返回值：**
 
 | 类型           | 说明                                            |
