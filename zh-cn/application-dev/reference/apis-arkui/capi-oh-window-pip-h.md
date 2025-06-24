@@ -60,6 +60,8 @@
 | [int32_t OH_PictureInPicture_RegisterResizeListener(uint32_t controllerId, WebPipResizeCallback callback)](#oh_pictureinpicture_registerresizelistener) | - | 注册画中画窗口尺寸变化的回调函数。 |
 | [int32_t OH_PictureInPicture_UnregisterResizeListener(uint32_t controllerId, WebPipResizeCallback callback)](#oh_pictureinpicture_unregisterresizelistener) | - | 取消注册画中画窗口单个尺寸变化的回调函数。 |
 | [int32_t OH_PictureInPicture_UnregisterAllResizeListeners(uint32_t controllerId)](#oh_pictureinpicture_unregisterallresizelisteners) | - | 取消注册画中画窗口所有尺寸变化的回调函数。 |
+| [int32_t OH_PictureInPicture_SetPipInitialSurfaceRect(uint32_t controllerId, int32_t positionX, int32_t positionY,uint32_t width, uint32_t height)](#oh_pictureinpicture_setpipinitialsurfacerect) | - | 设置画中画拉起动效开始时的位置和大小，可用于实现一镜到底效果。 |
+| [int32_t OH_PictureInPicture_UnsetPipInitialSurfaceRect(uint32_t controllerId)](#oh_pictureinpicture_unsetpipinitialsurfacerect) | - | 取消已设置的画中画拉起动效的起始位置和大小。 |
 
 ## 枚举类型说明
 
@@ -931,3 +933,55 @@ int32_t OH_PictureInPicture_UnregisterAllResizeListeners(uint32_t controllerId)
 | 类型 | 说明 |
 | -- | -- |
 | int32_t | 返回结果代码。<br>返回OK，表示函数调用成功。<br>返回WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM，表示参数错误。<br>返回WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED，表示设备不支持画中画。<br>返回WINDOW_MANAGER_ERRORCODE_ERRORCODE_PIP_INTERNAL_ERROR，表示画中画内部错误。 |
+
+### OH_PictureInPicture_SetPipInitialSurfaceRect()
+
+```
+int32_t OH_PictureInPicture_SetPipInitialSurfaceRect(uint32_t controllerId, int32_t positionX, int32_t positionY,uint32_t width, uint32_t height)
+```
+
+**描述**
+
+设置画中画拉起动效开始时的位置和大小，可用于实现一镜到底效果。
+
+**起始版本：** 20
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| uint32_t controllerId | 画中画控制器Id，为非负整数。 |
+| int32_t positionX | 拉起时画中画窗口相对页面左上角的X坐标，单位为px。 |
+| int32_t positionY | 拉起时画中画窗口相对页面左上角的Y坐标，单位为px。 |
+| uint32_t width | 拉起时画中画窗口的宽度，该参数值大于0，单位为px。 |
+| uint32_t height | 拉起时画中画窗口的高度，该参数值大于0，单位为px。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int32_t | 返回结果代码。<br>返回OK，表示函数调用成功。<br>返回WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM，表示参数错误。<br>返回WINDOW_MANAGER_ERRORCODE_ERRORCODE_PIP_INTERNAL_ERROR，表示画中画内部错误。 |
+
+### OH_PictureInPicture_UnsetPipInitialSurfaceRect()
+
+```
+int32_t OH_PictureInPicture_UnsetPipInitialSurfaceRect(uint32_t controllerId)
+```
+
+**描述**
+
+取消已设置的画中画拉起动效的起始位置和大小。
+
+**起始版本：** 20
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| uint32_t controllerId | 画中画控制器Id，为非负整数。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int32_t | 返回结果代码。<br>返回OK，表示函数调用成功。<br>返回WINDOW_MANAGER_ERRORCODE_INCORRECT_PARAM，表示参数错误。<br>返回WINDOW_MANAGER_ERRORCODE_ERRORCODE_PIP_INTERNAL_ERROR，表示画中画内部错误。 |
