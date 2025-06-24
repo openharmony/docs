@@ -637,11 +637,11 @@ getInputMethodSetting(): InputMethodSetting
 let inputMethodSetting = inputMethod.getInputMethodSetting();
 ```
 
-## inputMethod.SetSimpleKeyboardEnabled<sup>20+</sup>
+## inputMethod.setSimpleKeyboardEnabled<sup>20+</sup>
 
-SetSimpleKeyboardEnabled(enable: boolean): void
+setSimpleKeyboardEnabled(enable: boolean): void
 
-编辑框应用设置简单键盘标志给当前应用，绑定时会将简单键盘标志通过输入法框架传递给输入法应用。
+编辑框应用设置简单键盘标志。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -649,13 +649,13 @@ SetSimpleKeyboardEnabled(enable: boolean): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| enable | boolean | 否 | 简单键盘标志 |
+| enable | boolean | 否 | 简单键盘标志,原生编辑框组件在下一次点击获焦时生效，自绘控件再下一次调用[attach]js-apis-inputmethod.md#attach10绑定输入法时生效 |
 
 **示例：**
 
 ```ts
   let enable = false;
-  inputMethod.SetSimpleKeyboardEnabled(enable);
+  inputMethod.setSimpleKeyboardEnabled(enable);
 ```
 
 ## TextInputType<sup>10+</sup>
