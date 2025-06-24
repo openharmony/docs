@@ -507,14 +507,13 @@ struct MaskDispersion {
 
   onPageShow(): void {
     resourceMgr.getMediaContent($r("app.media.mask_alpha")).then(val => {
-        let buffer = val.buffer.slice(0, val.buffer.byteLength)
-            let imageSource = image.createImageSource(buffer);
-            imageSource.createPixelMap().then(pixelmap => {
-                this.pixelMap_ = pixelmap
-            })
-    }
-)
-}
+      let buffer = val.buffer.slice(0, val.buffer.byteLength)
+      let imageSource = image.createImageSource(buffer);
+      imageSource.createPixelMap().then(pixelmap => {
+        this.pixelMap_ = pixelmap
+      })
+    })
+  }
   
   build() {
     Stack() {
