@@ -1,12 +1,12 @@
 # @ohos.util.PlainArray (Nonlinear Container PlainArray) 
 
-**PlainArray** stores key-value (KV) pairs. Each key must be unique, be of the number type, and have only one value.
+PlainArray stores key-value (KV) pairs. Each key must be unique, be of the number type, and have only one value.
 
-**PlainArray** is based on generics and uses a lightweight structure. Keys in the array are searched using binary search and are mapped to values in other arrays.
+PlainArray is based on generics and uses a lightweight structure. Keys in the array are searched using binary search and are mapped to values in other arrays.
 
-Both **PlainArray** and **[LightWeightMap](js-apis-lightweightmap.md)** are used to store KV pairs in the lightweight structure. However, the key type of **PlainArray** can only be **number**.
+Both PlainArray and [LightWeightMap](js-apis-lightweightmap.md) are used to store KV pairs in the lightweight structure. However, the keys of PlainArray can only be of the number type.
 
-**Recommended use case**: Use **PlainArray** when you need to store KV pairs whose keys are of the **number** type.
+**Recommended use case**: Use PlainArray when you need to store KV pairs whose keys are of the **number** type.
 
 This topic uses the following to identify the use of generics:
 - T: Type
@@ -25,7 +25,7 @@ import { PlainArray } from '@kit.ArkTS';
 
 ## PlainArray
 
-### Attributes
+### Properties
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -33,7 +33,7 @@ import { PlainArray } from '@kit.ArkTS';
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| length | number | Yes| No| Number of elements in a plain array (called container later).|
+| length | number | Yes| No| Number of elements in a PlainArray.|
 
 
 ### constructor
@@ -65,7 +65,7 @@ let plainArray: PlainArray<string> = new PlainArray();
 
 isEmpty(): boolean
 
-Checks whether this container is empty.
+Checks whether this PlainArray is empty.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -75,7 +75,7 @@ Checks whether this container is empty.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the container is empty; returns **false** otherwise.|
+| boolean | Check result. The value **true** is returned if the PlainArray is empty; otherwise, **false** is returned.|
 
 **Error codes**
 
@@ -97,7 +97,7 @@ let result = plainArray.isEmpty();
 
 has(key: number): boolean
 
-Checks whether this container contains the specified key.
+Checks whether PlainArray has the specified key.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -113,7 +113,7 @@ Checks whether this container contains the specified key.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the specified key is contained; returns **false** otherwise.|
+| boolean | Check result. The value **true** is returned if the specified key is contained; otherwise, **false** is returned.|
 
 **Error codes**
 
@@ -137,7 +137,7 @@ let result = plainArray.has(1);
 
 get(key: number): T
 
-Obtains the value of the specified key in this container.
+Obtains the value of the specified key in this PlainArray.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -178,7 +178,7 @@ let result = plainArray.get(1);
 
 getIndexOfKey(key: number): number
 
-Obtains the index of the element with the specified key in this container.
+Obtains the index of the element with the specified key in this PlainArray.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -194,7 +194,7 @@ Obtains the index of the element with the specified key in this container.
 
 | Type| Description|
 | -------- | -------- |
-| number | Returns the position index if obtained; returns **-1** otherwise.|
+| number | Index of the element. If no match is found, **-1** is returned.|
 
 **Error codes**
 
@@ -219,7 +219,7 @@ let result = plainArray.getIndexOfKey(2);
 
 getIndexOfValue(value: T): number
 
-Obtains the index of the first occurrence of an element with the specified value in this container.
+Obtains the index of the first occurrence of an element with the specified value in this PlainArray.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -235,7 +235,7 @@ Obtains the index of the first occurrence of an element with the specified value
 
 | Type| Description|
 | -------- | -------- |
-| number | Returns the position index if obtained; returns **-1** otherwise.|
+| number | Index of the element. If no match is found, **-1** is returned.|
 
 **Error codes**
 
@@ -259,7 +259,7 @@ let result = plainArray.getIndexOfValue("squirrel");
 
 getKeyAt(index: number): number
 
-Obtains the key of the element at the specified position in this container.
+Obtains the key of the element at the specified position in this PlainArray.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -275,7 +275,7 @@ Obtains the key of the element at the specified position in this container.
 
 | Type| Description|
 | -------- | -------- |
-| number | Returns the key of the element if obtained; returns **-1** otherwise.|
+| number | Key of the element. If no match is found, **-1** is returned.|
 
 **Error codes**
 
@@ -299,7 +299,7 @@ let result = plainArray.getKeyAt(1);
 
 getValueAt(index: number): T
 
-Obtains the value of an element at the specified position in this container.
+Obtains the value of an element at the specified position in this PlainArray.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -307,17 +307,17 @@ Obtains the value of an element at the specified position in this container.
 
 **Parameters**
 
-  | Name| Type | Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | index | number | Yes| Position index of the target element. The value must be less than or equal to int32_max, that is, 2147483647.|
+| Name| Type | Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| index | number | Yes| Position index of the target element. The value must be less than or equal to int32_max, that is, 2147483647.|
 
 **Return value**
 
-  | Type| Description|
-  | -------- | -------- |
-  | T | Returns the value of the element if obtained; returns **undefined** otherwise.|
+| Type| Description|
+| -------- | -------- |
+| T | Value of the element. If no match is found, **undefined** is returned.|
 
-  **Error codes**
+**Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
@@ -340,7 +340,7 @@ let result = plainArray.getValueAt(1);
 
 clone(): PlainArray&lt;T&gt;
 
-Clones this container and returns a copy. The modification to the copy does not affect the original instance.
+Clones this PlainArray and returns a copy. The modification to the copy does not affect the original instance.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -374,7 +374,7 @@ let newPlainArray = plainArray.clone();
 
 add(key: number, value: T): void
 
-Adds an element to this container.
+Adds an element to this PlainArray.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -449,7 +449,7 @@ let result = plainArray.remove(2);
 
 removeAt(index: number): T
 
-Removes an element at the specified position from this container.
+Removes an element at the specified position from this PlainArray.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -490,7 +490,7 @@ let result = plainArray.removeAt(1);
 
 removeRangeFrom(index: number, size: number): number
 
-Removes elements in a specified range from this container.
+Removes elements within the specified range.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -533,7 +533,7 @@ let result = plainArray.removeRangeFrom(1, 3);
 
 setValueAt(index: number, value: T): void
 
-Sets a value for an element at the specified position in this container.
+Sets a value for an element at the specified position in this PlainArray.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -570,7 +570,7 @@ plainArray.setValueAt(1, 3546);
 
 toString(): String
 
-Obtains a string that contains all elements in this container.
+Obtains a string that contains all elements in this PlainArray.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -604,7 +604,7 @@ let result = plainArray.toString();
 
 clear(): void
 
-Clears this container and sets its length to **0**.
+Clears this PlainArray and sets its length to **0**.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -632,7 +632,7 @@ plainArray.clear();
 
 forEach(callbackFn: (value: T, index?: number, PlainArray?: PlainArray&lt;T&gt;) => void, thisArg?: Object): void
 
-Uses a callback to traverse the elements in this container and obtain their position indexes.
+Uses a callback to traverse the elements in this PlainArray and obtain their indexes.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -642,10 +642,10 @@ Uses a callback to traverse the elements in this container and obtain their posi
 
 | Name| Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callbackFn | function | Yes| Callback invoked to traverse the elements in the container.|
+| callbackFn | function | Yes| Callback invoked to traverse the elements in the PlainArray.|
 | thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. The default value is this instance.|
 
-callbackFn
+callbackFn parameters
 | Name| Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | T | Yes| Value of the element that is currently traversed.|
@@ -687,7 +687,7 @@ for(let i = 0;i < 10;i++) {
 
 [Symbol.iterator]\(): IterableIterator&lt;[number, T]&gt;
 
-Obtains an iterator object that contains key-value pairs, where the key is of the number type.
+Returns an iterator object that contains key-value pairs, where the key is of the number type.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
