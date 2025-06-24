@@ -168,7 +168,7 @@ hasOperatorPrivileges\(slotId: number, callback: AsyncCallback\<boolean\>\): voi
 | 参数名   | 类型                     | 必填 | 说明                                     |
 | -------- | ------------------------ | ---- | ---------------------------------------- |
 | slotId   | number                   | 是   | 卡槽ID。<br />- 0：卡槽1。<br />- 1：卡槽2。 |
-| callback | AsyncCallback\<boolean\> | 是   | 回调函数。 返回检查应用(调用者)是否已被授予运营商权限。<br/>- true:是。<br/>- false：否。                              |
+| callback | AsyncCallback\<boolean\> | 是   | 回调函数。 返回检查应用(调用者)是否已被授予运营商权限。<br/>- true:授权。<br/>- false：未授权。                              |
 
 **错误码：**
 
