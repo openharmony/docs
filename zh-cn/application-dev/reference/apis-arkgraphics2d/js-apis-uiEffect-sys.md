@@ -344,8 +344,7 @@ struct ColorGradientExample {
       Row()
         .width("100%")
         .height("100%")
-        .backgroundFilter(uiEffect.createFilter().colorGradient(this.colorsExample, this.positionsExample, this.strengthsExample)
-        )
+        .backgroundFilter(uiEffect.createFilter().colorGradient(this.colorsExample, this.positionsExample, this.strengthsExample))
     }
   }
 }
