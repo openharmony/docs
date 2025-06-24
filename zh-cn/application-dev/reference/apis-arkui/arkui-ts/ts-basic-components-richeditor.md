@@ -4068,7 +4068,7 @@ struct Index {
   }
 
   private deleteBuilderByIndices(): void {
-    let indicesSet = new Set(this.indicesToRemove);
+    let indicesSet: Set<number> = new Set(this.indicesToRemove);
     let newLength = 0;
     for (let i = 0; i < this.builderArray.length; i++) {
       if (!indicesSet.has(i)) {
