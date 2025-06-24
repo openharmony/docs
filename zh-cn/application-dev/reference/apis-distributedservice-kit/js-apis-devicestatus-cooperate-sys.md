@@ -47,13 +47,13 @@ import { BusinessError } from '@ohos.base';
 try {
   cooperate.prepareCooperate((error: BusinessError) => {
     if (error) {
-      console.log(`Keyboard mouse crossing prepareCooperate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`Keyboard mouse crossing prepareCooperate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
-    console.log(`Keyboard mouse crossing prepareCooperate success.`);
+    console.info(`Keyboard mouse crossing prepareCooperate success.`);
   });
 } catch (error) {
-  console.log(`Keyboard mouse crossing prepareCooperate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Keyboard mouse crossing prepareCooperate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -75,7 +75,7 @@ prepareCooperate(): Promise&lt;void&gt;;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.devicestatus错误码](errorcode-devicestatus.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
@@ -89,12 +89,12 @@ prepareCooperate(): Promise&lt;void&gt;;
 import { BusinessError } from '@ohos.base';
 try {
   cooperate.prepareCooperate().then(() => {
-    console.log(`Keyboard mouse crossing prepareCooperate success.`);
+    console.info(`Keyboard mouse crossing prepareCooperate success.`);
   }, (error: BusinessError) => {
-    console.log(`Keyboard mouse crossing prepareCooperate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+    console.error(`Keyboard mouse crossing prepareCooperate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   });
 } catch (error) {
-  console.log(`Keyboard mouse crossing prepareCooperate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Keyboard mouse crossing prepareCooperate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -116,7 +116,7 @@ unprepareCooperate(callback: AsyncCallback&lt;void&gt;): void;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.devicestatus错误码](errorcode-devicestatus.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
@@ -131,13 +131,13 @@ import { BusinessError } from '@ohos.base';
 try {
   cooperate.unprepareCooperate((error: BusinessError) => {
     if (error) {
-      console.log(`Keyboard mouse crossing unprepareCooperate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`Keyboard mouse crossing unprepareCooperate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
-    console.log(`Keyboard mouse crossing unprepareCooperate success.`);
+    console.info(`Keyboard mouse crossing unprepareCooperate success.`);
   });
 } catch (error) {
-  console.log(`Keyboard mouse crossing unprepareCooperate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Keyboard mouse crossing unprepareCooperate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -159,7 +159,7 @@ unprepareCooperate(): Promise&lt;void&gt;;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.devicestatus错误码](errorcode-devicestatus.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
@@ -172,12 +172,12 @@ unprepareCooperate(): Promise&lt;void&gt;;
 import { BusinessError } from '@ohos.base';
 try {
   cooperate.unprepareCooperate().then(() => {
-    console.log(`Keyboard mouse crossing unprepareCooperate success.`);
+    console.info(`Keyboard mouse crossing unprepareCooperate success.`);
   }, (error: BusinessError) => {
-    console.log(`Keyboard mouse crossing unprepareCooperate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+    console.error(`Keyboard mouse crossing unprepareCooperate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   });
 } catch (error) {
-  console.log(`Keyboard mouse crossing unprepareCooperate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Keyboard mouse crossing unprepareCooperate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -203,7 +203,7 @@ activateCooperate(targetNetworkId: string, inputDeviceId: number, callback: Asyn
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.devicestatus错误码](errorcode-devicestatus.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[键鼠穿越管理错误码](errorcode-devicestatus.md)。
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
@@ -221,13 +221,13 @@ let inputDeviceId = 0;
 try {
   cooperate.activateCooperate(targetNetworkId, inputDeviceId, (error: BusinessError) => {
     if (error) {
-      console.log(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
-    console.log(`Start Keyboard mouse crossing success.`);
+    console.info(`Start Keyboard mouse crossing success.`);
   });
 } catch (error) {
-  console.log(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -256,7 +256,7 @@ activateCooperate(targetNetworkId: string, inputDeviceId: number): Promise&lt;vo
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.devicestatus错误码](errorcode-devicestatus.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[键鼠穿越管理错误码](errorcode-devicestatus.md)。
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
@@ -273,12 +273,12 @@ let targetNetworkId = "networkId";
 let inputDeviceId = 0;
 try {
  cooperate.activateCooperate(targetNetworkId, inputDeviceId).then(() => {
-    console.log(`Start Keyboard mouse crossing success.`);
+    console.info(`Start Keyboard mouse crossing success.`);
   }, (error: BusinessError) => {
-    console.log(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+    console.error(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   });
 } catch (error) {
-  console.log(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -303,7 +303,7 @@ deactivateCooperate(isUnchained: boolean, callback: AsyncCallback&lt;void&gt;): 
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.devicestatus错误码](errorcode-devicestatus.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
@@ -318,13 +318,13 @@ import { BusinessError } from '@ohos.base';
 try {
   cooperate.deactivateCooperate(false, (error: BusinessError) => {
     if (error) {
-      console.log(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
-    console.log(`Stop Keyboard mouse crossing success.`);
+    console.info(`Stop Keyboard mouse crossing success.`);
   });
 } catch (error) {
-  console.log(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -352,7 +352,7 @@ deactivateCooperate(isUnchained: boolean): Promise&lt;void&gt;;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.devicestatus错误码](errorcode-devicestatus.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
@@ -365,12 +365,12 @@ deactivateCooperate(isUnchained: boolean): Promise&lt;void&gt;;
 import { BusinessError } from '@ohos.base';
 try {
   cooperate.deactivateCooperate(false).then(() => {
-    console.log(`Stop Keyboard mouse crossing success.`);
+    console.info(`Stop Keyboard mouse crossing success.`);
   }, (error: BusinessError) => {
-    console.log(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+    console.error(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   });
 } catch (error) {
-  console.log(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -395,7 +395,7 @@ getCooperateSwitchState(networkId: string, callback: AsyncCallback&lt;boolean&gt
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.devicestatus错误码](errorcode-devicestatus.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
@@ -411,13 +411,13 @@ let deviceDescriptor = "networkId";
 try {
   cooperate.getCooperateSwitchState(deviceDescriptor, (error: BusinessError, data: boolean) => {
     if (error) {
-      console.log(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
-    console.log(`Get the status success, data: ${JSON.stringify(data)}`);
+    console.info(`Get the status success, data: ${JSON.stringify(data)}`);
   });
 } catch (error) {
-  console.log(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -445,7 +445,7 @@ getCooperateSwitchState(networkId: string): Promise&lt;boolean&gt;;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.devicestatus错误码](errorcode-devicestatus.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
@@ -460,12 +460,12 @@ import { BusinessError } from '@ohos.base';
 let deviceDescriptor = "networkId";
 try {
   cooperate.getCooperateSwitchState(deviceDescriptor).then((data: boolean) => {
-    console.log(`Get the status success, data: ${JSON.stringify(data)}`);
+    console.info(`Get the status success, data: ${JSON.stringify(data)}`);
   }, (error: BusinessError) => {
-    console.log(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+    console.error(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   });
 } catch (error) {
-  console.log(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -490,7 +490,7 @@ on(type: 'cooperateMessage', callback: Callback&lt;CooperateMessage&gt;): void;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.devicestatus错误码](errorcode-devicestatus.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
@@ -502,13 +502,13 @@ on(type: 'cooperateMessage', callback: Callback&lt;CooperateMessage&gt;): void;
 
 ```ts
 function callback(msg: cooperate.CooperateMessage) {
-  console.log(`Keyboard mouse crossing event: ${JSON.stringify(msg)}`);
+  console.info(`Keyboard mouse crossing event: ${JSON.stringify(msg)}`);
   return false;
 }
 try {
   cooperate.on('cooperateMessage', callback);
 } catch (error) {
-  console.log(`Register failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Register failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -533,7 +533,7 @@ off(type: 'cooperateMessage', callback?: Callback&lt;CooperateMessage&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.devicestatus错误码](errorcode-devicestatus.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
@@ -546,32 +546,32 @@ off(type: 'cooperateMessage', callback?: Callback&lt;CooperateMessage&gt;): void
 ```ts
 // 取消注册单个回调函数
 function callbackOn(msgOn: cooperate.CooperateMessage) {
-  console.log(`Keyboard mouse crossing event: ${JSON.stringify(msgOn)}`);
+  console.info(`Keyboard mouse crossing event: ${JSON.stringify(msgOn)}`);
   return false;
 }
 function callbackOff(msgOff: cooperate.CooperateMessage) {
-  console.log(`Keyboard mouse crossing event: ${JSON.stringify(msgOff)}`);
+  console.info(`Keyboard mouse crossing event: ${JSON.stringify(msgOff)}`);
   return false;
 }
 try {
   cooperate.on('cooperateMessage', callbackOn);
   cooperate.off('cooperateMessage', callbackOff);
 } catch (error) {
-  console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
 ```ts
 // 取消注册所有回调函数
 function callbackOn(msg: cooperate.CooperateMessage) {
-  console.log(`Keyboard mouse crossing event: ${JSON.stringify(msg)}`);
+  console.info(`Keyboard mouse crossing event: ${JSON.stringify(msg)}`);
   return false;
 }
 try {
   cooperate.on('cooperateMessage', callbackOn);
   cooperate.off('cooperateMessage');
 } catch (error) {
-  console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -596,7 +596,7 @@ on(type: 'cooperateMouse', networkId: string, callback: Callback&lt;MouseLocatio
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.devicestatus错误码](errorcode-devicestatus.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
@@ -608,14 +608,14 @@ on(type: 'cooperateMouse', networkId: string, callback: Callback&lt;MouseLocatio
 
 ```ts
 function callback(data: cooperate.MouseLocation) {
-  console.log('displayX:' + data.displayX + 'displayY:' + data.displayX + 'displayWidth:' +
+  console.info('displayX:' + data.displayX + 'displayY:' + data.displayX + 'displayWidth:' +
     data.displayWidth + 'displayHeight:' + data.displayHeight );
 }
 try {
   let networkId: string = 'Default';
   cooperate.on('cooperateMouse', networkId, callback);
 } catch (error) {
-  console.log(`Register failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Register failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -641,7 +641,7 @@ off(type: 'cooperateMouse', networkId: string, callback?: Callback&lt;MouseLocat
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.devicestatus错误码](errorcode-devicestatus.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
@@ -654,11 +654,11 @@ off(type: 'cooperateMouse', networkId: string, callback?: Callback&lt;MouseLocat
 ```ts
 // 取消注册单个回调函数
 function callbackOn(data: cooperate.MouseLocation) {
-  console.log('Register mouse location listener');
+  console.info('Register mouse location listener');
   return false;
 }
 function callbackOff(data: cooperate.MouseLocation) {
-  console.log('Unregister mouse location listener');
+  console.info('Unregister mouse location listener');
   return false;
 }
 try {
@@ -666,24 +666,76 @@ try {
   cooperate.on('cooperateMouse', networkId, callbackOn);
   cooperate.off('cooperateMouse', networkId, callbackOff);
 } catch (error) {
-  console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
 ```ts
 // 取消注册所有回调函数
 function callbackOn(data: cooperate.MouseLocation) {
-  console.log('Register mouse location listener');
+  console.info('Register mouse location listener');
 }
 try {
   let networkId: string = 'Default';
   cooperate.on('cooperateMouse', networkId, callbackOn);
   cooperate.off('cooperateMouse', networkId);
 } catch (error) {
-  console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
+## cooperate.activateCooperateWithOptions<sup>20+</sup>
+
+activateCooperateWithOptions(targetNetworkId: string, inputDeviceId: number,
+    cooperateOptions?: CooperateOptions ): Promise&lt;void&gt;
+
+启动键鼠穿越，使用选项开始屏幕跳转。
+
+**需要权限**：ohos.permission.COOPERATE_MANAGER
+
+**系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
+
+**参数**：
+
+| 参数名    | 类型   | 必填 | 说明                     |
+| --------- | ------ | ---- | ------------------------ |
+| targetNetworkId | string | 是   | 键鼠穿越目标设备描述符。 |
+| inputDeviceId   | number | 是   |  发起穿越操作的输入设备ID。   |
+|cooperateOptions | [CooperateOptions](#cooperateoptions20) | 否   | 穿越可选控制参数，用于控制穿出点具体位置等。不设置此参数时，本接口能力与[cooperate.activateCooperate](#cooperateactivatecooperate11-1)相同。 |
+
+**返回值：**
+
+| 参数                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[键鼠穿越管理错误码](errorcode-devicestatus.md)。
+
+| 错误码ID | 错误信息          |
+| -------- | ----------------- |
+| 201 | Permission denied. |
+| 202 | Not system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
+| 20900001 | Service exception. Possible causes: 1. A system error, such as null pointer, container-related exception, or IPC exception. 2. N-API invocation exception or invalid N-API status. |
+
+**示例**：
+
+```ts
+import { BusinessError } from '@ohos.base';
+let targetNetworkId = "networkId";
+let inputDeviceId = 0;
+try {
+ cooperate.activateCooperateWithOptions(targetNetworkId, inputDeviceId).then(() => {
+    console.info(`activateCooperateWithOptions success.`);
+  }, (error: BusinessError) => {
+    console.error(`activateCooperateWithOptions, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  });
+} catch (error) {
+  console.error(`activateCooperateWithOptions, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
 
 
 ## CooperateMessage<sup>11+</sup>
@@ -745,6 +797,18 @@ try {
 | displayHeight | number         | 是   | 否   | 鼠标所在屏幕高度，单位：px。 |
 
 
+## CooperateOptions<sup>20+</sup>
+
+ 键鼠穿越可选控制参数，控制穿出点位置。
+
+**系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
+
+| 名称      | 类型           | 只读 | 可选 | 说明                     |
+| --------- | -------------- | ---- | ---- | ------------------------ |
+| displayX      | number         | 否   | 否   | 鼠标X坐标位置。 |
+| displayY      | number         | 否   | 否   | 鼠标Y坐标位置。 |
+| displayId     | number         | 否   | 否   | 对端设备屏幕标识。 |
+
 ## cooperate.prepare<sup>(deprecated)</sup>
 
 prepare(callback: AsyncCallback&lt;void&gt;): void;
@@ -765,7 +829,7 @@ prepare(callback: AsyncCallback&lt;void&gt;): void;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.devicestatus错误码](errorcode-devicestatus.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
@@ -779,13 +843,13 @@ import { BusinessError } from '@ohos.base';
 try {
   cooperate.prepare((error: BusinessError) => {
     if (error) {
-      console.log(`Keyboard mouse crossing prepare failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`Keyboard mouse crossing prepare failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
-    console.log(`Keyboard mouse crossing prepare success.`);
+    console.info(`Keyboard mouse crossing prepare success.`);
   });
 } catch (error) {
-  console.log(`Keyboard mouse crossing prepare failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Keyboard mouse crossing prepare failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -809,7 +873,7 @@ prepare(): Promise&lt;void&gt;;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.devicestatus错误码](errorcode-devicestatus.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
@@ -822,12 +886,12 @@ prepare(): Promise&lt;void&gt;;
 import { BusinessError } from '@ohos.base';
 try {
   cooperate.prepare().then(() => {
-    console.log(`Keyboard mouse crossing prepare success.`);
+    console.info(`Keyboard mouse crossing prepare success.`);
   }, (error: BusinessError) => {
-    console.log(`Keyboard mouse crossing prepare failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+    console.error(`Keyboard mouse crossing prepare failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   });
 } catch (error) {
-  console.log(`Keyboard mouse crossing prepare failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Keyboard mouse crossing prepare failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -851,7 +915,7 @@ unprepare(callback: AsyncCallback&lt;void&gt;): void;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.devicestatus错误码](errorcode-devicestatus.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
@@ -865,13 +929,13 @@ import { BusinessError } from '@ohos.base';
 try {
   cooperate.unprepare((error: BusinessError) => {
     if (error) {
-      console.log(`Keyboard mouse crossing unprepare failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`Keyboard mouse crossing unprepare failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
-    console.log(`Keyboard mouse crossing unprepare success.`);
+    console.info(`Keyboard mouse crossing unprepare success.`);
   });
 } catch (error) {
-  console.log(`Keyboard mouse crossing unprepare failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Keyboard mouse crossing unprepare failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -895,7 +959,7 @@ unprepare(): Promise&lt;void&gt;;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.devicestatus错误码](errorcode-devicestatus.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
@@ -908,12 +972,12 @@ unprepare(): Promise&lt;void&gt;;
 import { BusinessError } from '@ohos.base';
 try {
   cooperate.unprepare().then(() => {
-    console.log(`Keyboard mouse crossing unprepare success.`);
+    console.info(`Keyboard mouse crossing unprepare success.`);
   }, (error: BusinessError) => {
-    console.log(`Keyboard mouse crossing unprepare failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+    console.error(`Keyboard mouse crossing unprepare failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   });
 } catch (error) {
-  console.log(`Keyboard mouse crossing unprepare failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Keyboard mouse crossing unprepare failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -941,7 +1005,7 @@ activate(targetNetworkId: string, inputDeviceId: number, callback: AsyncCallback
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.devicestatus错误码](errorcode-devicestatus.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[键鼠穿越管理错误码](errorcode-devicestatus.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -958,13 +1022,13 @@ let inputDeviceId = 0;
 try {
   cooperate.activate(targetNetworkId, inputDeviceId, (error: BusinessError) => {
     if (error) {
-      console.log(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
-    console.log(`Start Keyboard mouse crossing success.`);
+    console.info(`Start Keyboard mouse crossing success.`);
   });
 } catch (error) {
-  console.log(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -997,7 +1061,7 @@ activate(targetNetworkId: string, inputDeviceId: number): Promise&lt;void&gt;;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.devicestatus错误码](errorcode-devicestatus.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[键鼠穿越管理错误码](errorcode-devicestatus.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1013,12 +1077,12 @@ let targetNetworkId = "networkId";
 let inputDeviceId = 0;
 try {
  cooperate.activate(targetNetworkId, inputDeviceId).then(() => {
-    console.log(`Start Keyboard mouse crossing success.`);
+    console.info(`Start Keyboard mouse crossing success.`);
   }, (error: BusinessError) => {
-    console.log(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+    console.error(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   });
 } catch (error) {
-  console.log(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1045,7 +1109,7 @@ deactivate(isUnchained: boolean, callback: AsyncCallback&lt;void&gt;): void;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.devicestatus错误码](errorcode-devicestatus.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
@@ -1059,13 +1123,13 @@ import { BusinessError } from '@ohos.base';
 try {
   cooperate.deactivate(false, (error: BusinessError) => {
     if (error) {
-      console.log(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
-    console.log(`Stop Keyboard mouse crossing success.`);
+    console.info(`Stop Keyboard mouse crossing success.`);
   });
 } catch (error) {
-  console.log(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1097,7 +1161,7 @@ deactivate(isUnchained: boolean): Promise&lt;void&gt;;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.devicestatus错误码](errorcode-devicestatus.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
@@ -1109,12 +1173,12 @@ deactivate(isUnchained: boolean): Promise&lt;void&gt;;
 import { BusinessError } from '@ohos.base';
 try {
   cooperate.deactivate(false).then(() => {
-    console.log(`Stop Keyboard mouse crossing success.`);
+    console.info(`Stop Keyboard mouse crossing success.`);
   }, (error: BusinessError) => {
-    console.log(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+    console.error(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   });
 } catch (error) {
-  console.log(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1141,7 +1205,7 @@ getCrossingSwitchState(networkId: string, callback: AsyncCallback&lt;boolean&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.devicestatus错误码](errorcode-devicestatus.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
@@ -1156,13 +1220,13 @@ let deviceDescriptor = "networkId";
 try {
   cooperate.getCrossingSwitchState(deviceDescriptor, (error: BusinessError, data: boolean) => {
     if (error) {
-      console.log(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
-    console.log(`Get the status success, data: ${JSON.stringify(data)}`);
+    console.info(`Get the status success, data: ${JSON.stringify(data)}`);
   });
 } catch (error) {
-  console.log(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1186,7 +1250,7 @@ getCrossingSwitchState(networkId: string): Promise&lt;boolean&gt;;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.devicestatus错误码](errorcode-devicestatus.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
@@ -1208,12 +1272,12 @@ import { BusinessError } from '@ohos.base';
 let deviceDescriptor = "networkId";
 try {
   cooperate.getCrossingSwitchState(deviceDescriptor).then((data: boolean) => {
-    console.log(`Get the status success, data: ${JSON.stringify(data)}`);
+    console.info(`Get the status success, data: ${JSON.stringify(data)}`);
   }, (error: BusinessError) => {
-    console.log(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+    console.error(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   });
 } catch (error) {
-  console.log(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1240,7 +1304,7 @@ on(type: 'cooperate', callback: Callback&lt;{ networkId: string, msg: CooperateM
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.devicestatus错误码](errorcode-devicestatus.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
@@ -1251,13 +1315,13 @@ on(type: 'cooperate', callback: Callback&lt;{ networkId: string, msg: CooperateM
 
 ```ts
 function callback(networkId: string, msg: cooperate.CooperateMsg) {
-  console.log(`Keyboard mouse crossing event: ${JSON.stringify(networkId)}`);
+  console.info(`Keyboard mouse crossing event: ${JSON.stringify(networkId)}`);
   return false;
 }
 try {
   cooperate.on('cooperate', callback);
 } catch (error) {
-  console.log(`Register failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Register failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1284,7 +1348,7 @@ off(type: 'cooperate', callback?: Callback&lt;void&gt;): void;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.devicestatus错误码](errorcode-devicestatus.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
@@ -1296,31 +1360,31 @@ off(type: 'cooperate', callback?: Callback&lt;void&gt;): void;
 ```ts
 // 取消注册单个回调函数
 function callbackOn(networkId: string, msg: cooperate.CooperateMsg) {
-  console.log(`Keyboard mouse crossing event: ${JSON.stringify(networkId)}`);
+  console.info(`Keyboard mouse crossing event: ${JSON.stringify(networkId)}`);
   return false;
 }
 function callbackOff() {
-  console.log(`Keyboard mouse crossing event`);
+  console.info(`Keyboard mouse crossing event`);
   return false;
 }
 try {
   cooperate.on('cooperate', callbackOn);
   cooperate.off('cooperate', callbackOff);
 } catch (error) {
-  console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 ```ts
 // 取消注册所有回调函数
 function callbackOn(networkId: string, msg: cooperate.CooperateMsg) {
-  console.log(`Keyboard mouse crossing event: ${JSON.stringify(networkId)}`);
+  console.info(`Keyboard mouse crossing event: ${JSON.stringify(networkId)}`);
   return false;
 }
 try {
   cooperate.on('cooperate', callbackOn);
   cooperate.off('cooperate');
 } catch (error) {
-  console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
