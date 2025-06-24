@@ -36,14 +36,14 @@ type ProfileConnectionState = constant.ProfileConnectionState
 
 | 名称     | 类型                           | 只读 | 可选 | 说明                            |
 | -------- | ----------------------------- | ---- | ---- | ------------------------------- |
-| deviceId | string                        | 否   | 否   | 表示蓝牙设备地址。   |
-| state    | [ProfileConnectionState](js-apis-bluetooth-constant.md#profileconnectionstate)        | 否   | 否   | 表示蓝牙设备的profile连接状态。 |
-| cause<sup>12+</sup>| [DisconnectCause](#disconnectcause12) | 否 | 否 | 表示连接失败的原因。|
+| deviceId | string                        | 否   | 否   | 蓝牙设备地址，例如："XX:XX:XX:XX:XX:XX"。   |
+| state    | [ProfileConnectionState](js-apis-bluetooth-constant.md#profileconnectionstate)        | 否   | 否   | 蓝牙设备的profile连接状态。 |
+| cause<sup>12+</sup>| [DisconnectCause](#disconnectcause12) | 否 | 否 | 断连的原因。|
 
 
 ## DisconnectCause<sup>12+</sup>
 
-枚举，连接失败原因。
+枚举，断连的原因。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
@@ -114,7 +114,7 @@ getConnectionState(deviceId: string): ProfileConnectionState
 
 | 参数名    | 类型     | 必填   | 说明      |
 | ------ | ------ | ---- | ------- |
-| deviceId | string | 是    | 远端设备地址。 |
+| deviceId | string | 是    | 远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
 
 **返回值：**
 
@@ -164,8 +164,8 @@ on(type: 'connectionStateChange', callback: Callback&lt;StateChangeParam&gt;): v
 
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | 是    | 填写"connectionStateChange"字符串，表示连接状态变化事件。 |
-| callback | Callback&lt;[StateChangeParam](#statechangeparam)&gt; | 是    | 表示回调函数的入参。                               |
+| type     | string                                   | 是    | 事件回调类型，支持的事件为'connectionStateChange'，表示连接状态变化事件。<br>当连接状态变化时，触发该事件。 |
+| callback | Callback&lt;[StateChangeParam](#statechangeparam)&gt; | 是    | 指定订阅的回调函数，会携带蓝牙profile连接状态。                        |
 
 **错误码**：
 
@@ -208,8 +208,8 @@ off(type: 'connectionStateChange', callback?: Callback&lt;[StateChangeParam](#st
 
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | 是    | 填写"connectionStateChange"字符串，表示连接状态变化事件。 |
-| callback | Callback&lt;[StateChangeParam](#statechangeparam)&gt; | 否    | 表示回调函数的入参。                               |
+| type     | string                                   | 是    | 事件回调类型，支持的事件为'connectionStateChange'，表示连接状态变化事件。 |
+| callback | Callback&lt;[StateChangeParam](#statechangeparam)&gt; | 否    | 指定取消订阅的回调函数通知。<br>若传参，则需与[BaseProfile.on('connectionStateChange')](#baseprofileonconnectionstatechange)中的回调函数一致；若无传参，则取消订阅该type对应的所有回调函数通知。                               |
 
 **错误码**：
 
