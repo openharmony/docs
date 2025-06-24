@@ -153,6 +153,8 @@ onChange(callback: Optional\<Callback\<Date>>)
 
 ##  CalendarOptions对象说明
 
+日历选择器组件的参数说明。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -178,11 +180,13 @@ onChange(callback: Optional\<Callback\<Date>>)
 
 ## CalendarAlign枚举说明
 
+对齐方式类型。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   | 描述                     |
+| 名称   | 说明                     |
 | ------ | ------------------------ |
 | START  | 设置选择器与入口组件左对齐的对齐方式。   |
 | CENTER | 设置选择器与入口组件居中对齐的对齐方式。 |
