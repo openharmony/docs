@@ -4930,8 +4930,8 @@ try {
 
 | 名称   | 类型   | 只读 | 可选 | 说明                                                         |
 | ------ | ------ | ---- | ---- | ---------------------------------------------------------- |
-| requestKeyboardReason    | [RequestKeyboardReason](#requestkeyboardreason19) | 否   | 是   | 请求键盘输入原因。 |
-| isSimpleKeyboardEnabled    | boolean | 否   | 是   | 简单键盘标志。 |
+| requestKeyboardReason    | [RequestKeyboardReason](#requestkeyboardreason19) | 否   | 是   | 该属性由编辑框应用设置，如果没有设置或设置非法值，则默认没有特定的原因触发键盘请求。 |
+| isSimpleKeyboardEnabled    | boolean | 否   | 是   | 该属性由编辑框应用设置，如果没有设置或设置非法值，则默认不使能简单键盘。 |
 
 ## WindowInfo<sup>12+</sup>
 
