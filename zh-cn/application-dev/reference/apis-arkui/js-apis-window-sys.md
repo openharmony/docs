@@ -3319,7 +3319,7 @@ promise.then(() => {
 
 isMainWindowFullScreenAcrossDisplays(): Promise&lt;boolean&gt;
 
-判断当前窗口的主窗口是否跨多块屏幕使用全屏模式显示，使用Promise异步回调，仅支持主窗口与应用子窗口。
+判断当前窗口的主窗口是否是跨多块屏幕使用全屏模式显示，使用Promise异步回调，仅支持主窗口与应用子窗口。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3364,7 +3364,7 @@ try {
 
 on(type: 'mainWindowFullScreenAcrossDisplaysChanged', callback: Callback&lt;boolean&gt;): void
 
-监听本窗口的主窗口跨多块屏幕使用全屏模式显示的状态变化。
+监听本窗口的主窗口跨多块屏幕使用全屏模式显示的状态变化事件。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3405,7 +3405,7 @@ try {
 
 off(type: 'mainWindowFullScreenAcrossDisplaysChanged', callback?: Callback&lt;boolean&gt;): void
 
-取消监听本窗口的主窗口跨多块屏幕使用全屏模式显示的状态变化。
+取消监听本窗口的主窗口跨多块屏幕使用全屏模式显示的状态变化事件。
 
 **系统接口：** 此接口为系统接口。
 
