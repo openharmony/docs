@@ -47,7 +47,7 @@
     - [OH_CryptoKdf](capi-cryptokdfapi-oh-cryptokdf.md)
     - [OH_CryptoKdfParams](capi-cryptokdfapi-oh-cryptokdfparams.md)
     - [OH_CryptoKeyAgreement](capi-cryptokeyagreementapi-oh-cryptokeyagreement.md)
-    - [OH_CryptoMac](capi-cryptomacapi-oh-cryptomac.md)
+    - [OH_CryptoMac](capi-cryptomacapi-cryptomacapi-oh-cryptomac.md)
     - [OH_CryptoRand](capi-cryptorandapi-oh-cryptorand.md)
     - [OH_CryptoVerify](capi-cryptosignatureapi-oh-cryptoverify.md)
     - [OH_CryptoSign](capi-cryptosignatureapi-oh-cryptosign.md)

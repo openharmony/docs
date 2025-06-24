@@ -20,14 +20,14 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [OH_CryptoKeyPair](capi-oh-cryptokeypair.md) | OH_CryptoKeyPair | 定义密钥对结构体。 |
-| [OH_CryptoPubKey](capi-oh-cryptopubkey.md) | OH_CryptoPubKey | 定义公钥结构体。 |
-| [OH_CryptoPrivKey](capi-oh-cryptoprivkey.md) | OH_CryptoPrivKey | 定义私钥结构体。 |
-| [OH_CryptoAsymKeyGenerator](capi-oh-cryptoasymkeygenerator.md) | OH_CryptoAsymKeyGenerator | 定义非对称密钥生成器结构体。 |
-| [OH_CryptoPrivKeyEncodingParams](capi-oh-cryptoprivkeyencodingparams.md) | OH_CryptoPrivKeyEncodingParams | 定义私钥编码参数结构体。 |
-| [OH_CryptoAsymKeySpec](capi-oh-cryptoasymkeyspec.md) | OH_CryptoAsymKeySpec | 定义非对称密钥规格结构体。 |
-| [OH_CryptoAsymKeyGeneratorWithSpec](capi-oh-cryptoasymkeygeneratorwithspec.md) | OH_CryptoAsymKeyGeneratorWithSpec | 定义带规格的非对称密钥生成器。 |
-| [OH_CryptoEcPoint](capi-oh-cryptoecpoint.md) | OH_CryptoEcPoint | 定义EC点结构体。 |
+| [OH_CryptoKeyPair](capi-cryptoasymkeyapi-oh-cryptokeypair.md) | OH_CryptoKeyPair | 定义密钥对结构体。 |
+| [OH_CryptoPubKey](capi-cryptoasymkeyapi-oh-cryptopubkey.md) | OH_CryptoPubKey | 定义公钥结构体。 |
+| [OH_CryptoPrivKey](capi-cryptoasymkeyapi-oh-cryptoprivkey.md) | OH_CryptoPrivKey | 定义私钥结构体。 |
+| [OH_CryptoAsymKeyGenerator](capi-cryptoasymkeyapi-oh-cryptoasymkeygenerator.md) | OH_CryptoAsymKeyGenerator | 定义非对称密钥生成器结构体。 |
+| [OH_CryptoPrivKeyEncodingParams](capi-cryptoasymkeyapi-oh-cryptoprivkeyencodingparams.md) | OH_CryptoPrivKeyEncodingParams | 定义私钥编码参数结构体。 |
+| [OH_CryptoAsymKeySpec](capi-cryptoasymkeyapi-oh-cryptoasymkeyspec.md) | OH_CryptoAsymKeySpec | 定义非对称密钥规格结构体。 |
+| [OH_CryptoAsymKeyGeneratorWithSpec](capi-cryptoasymkeyapi-oh-cryptoasymkeygeneratorwithspec.md) | OH_CryptoAsymKeyGeneratorWithSpec | 定义带规格的非对称密钥生成器。 |
+| [OH_CryptoEcPoint](capi-cryptoasymkeyapi-oh-cryptoecpoint.md) | OH_CryptoEcPoint | 定义EC点结构体。 |
 
 ### 枚举
 
@@ -194,7 +194,7 @@ OH_Crypto_ErrCode OH_CryptoAsymKeyGenerator_Create(const char *algoName, OH_Cryp
 | 参数项 | 描述 |
 | -- | -- |
 | const char *algoName |  用于生成生成器的算法名称。<br>例如"RSA1024\|PRIMES_2"。 |
-| [OH_CryptoAsymKeyGenerator](capi-oh-cryptoasymkeygenerator.md) **ctx |  指向非对称密钥生成器上下文的指针。 |
+| [OH_CryptoAsymKeyGenerator](capi-cryptoasymkeyapi-oh-cryptoasymkeygenerator.md) **ctx |  指向非对称密钥生成器上下文的指针。 |
 
 **返回：**
 
@@ -219,8 +219,8 @@ OH_Crypto_ErrCode OH_CryptoAsymKeyGenerator_Generate(OH_CryptoAsymKeyGenerator *
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoAsymKeyGenerator](capi-oh-cryptoasymkeygenerator.md) *ctx |  非对称密钥生成器实例。 |
-| [OH_CryptoKeyPair](capi-oh-cryptokeypair.md) **keyCtx |  指向非对称密钥对实例的指针。 |
+| [OH_CryptoAsymKeyGenerator](capi-cryptoasymkeyapi-oh-cryptoasymkeygenerator.md) *ctx |  非对称密钥生成器实例。 |
+| [OH_CryptoKeyPair](capi-cryptoasymkeyapi-oh-cryptokeypair.md) **keyCtx |  指向非对称密钥对实例的指针。 |
 
 **返回：**
 
@@ -245,11 +245,11 @@ OH_Crypto_ErrCode OH_CryptoAsymKeyGenerator_Convert(OH_CryptoAsymKeyGenerator *c
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoAsymKeyGenerator](capi-oh-cryptoasymkeygenerator.md) *ctx |  非对称密钥生成器实例。 |
+| [OH_CryptoAsymKeyGenerator](capi-cryptoasymkeyapi-oh-cryptoasymkeygenerator.md) *ctx |  非对称密钥生成器实例。 |
 | [Crypto_EncodingType](#crypto_encodingtype) type | 编码格式。 |
-| [Crypto_DataBlob](capi-crypto-datablob.md) *pubKeyData |  公钥数据。 |
-| [Crypto_DataBlob](capi-crypto-datablob.md) *priKeyData |  私钥数据。 |
-| [OH_CryptoKeyPair](capi-oh-cryptokeypair.md) **keyCtx |  指向非对称密钥对实例的指针。 |
+| [Crypto_DataBlob](capi-cryptocommonapi-crypto-datablob.md) *pubKeyData |  公钥数据。 |
+| [Crypto_DataBlob](capi-cryptocommonapi-crypto-datablob.md) *priKeyData |  私钥数据。 |
+| [OH_CryptoKeyPair](capi-cryptoasymkeyapi-oh-cryptokeypair.md) **keyCtx |  指向非对称密钥对实例的指针。 |
 
 **返回：**
 
@@ -274,7 +274,7 @@ const char *OH_CryptoAsymKeyGenerator_GetAlgoName(OH_CryptoAsymKeyGenerator *ctx
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoAsymKeyGenerator](capi-oh-cryptoasymkeygenerator.md) *ctx | 非对称密钥生成器实例。 |
+| [OH_CryptoAsymKeyGenerator](capi-cryptoasymkeyapi-oh-cryptoasymkeygenerator.md) *ctx | 非对称密钥生成器实例。 |
 
 **返回：**
 
@@ -299,7 +299,7 @@ void OH_CryptoAsymKeyGenerator_Destroy(OH_CryptoAsymKeyGenerator *ctx)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoAsymKeyGenerator](capi-oh-cryptoasymkeygenerator.md) *ctx |  非对称密钥生成器实例。 |
+| [OH_CryptoAsymKeyGenerator](capi-cryptoasymkeyapi-oh-cryptoasymkeygenerator.md) *ctx |  非对称密钥生成器实例。 |
 
 ### OH_CryptoKeyPair_Destroy()
 
@@ -318,7 +318,7 @@ void OH_CryptoKeyPair_Destroy(OH_CryptoKeyPair *keyCtx)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoKeyPair](capi-oh-cryptokeypair.md) *keyCtx |  密钥对实例。 |
+| [OH_CryptoKeyPair](capi-cryptoasymkeyapi-oh-cryptokeypair.md) *keyCtx |  密钥对实例。 |
 
 ### OH_CryptoKeyPair_GetPubKey()
 
@@ -337,13 +337,13 @@ OH_CryptoPubKey *OH_CryptoKeyPair_GetPubKey(OH_CryptoKeyPair *keyCtx)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoKeyPair](capi-oh-cryptokeypair.md) *keyCtx | 密钥对实例。 |
+| [OH_CryptoKeyPair](capi-cryptoasymkeyapi-oh-cryptokeypair.md) *keyCtx | 密钥对实例。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_CryptoPubKey](capi-oh-cryptopubkey.md) | 返回从密钥对中得到的公钥实例。 |
+| [OH_CryptoPubKey](capi-cryptoasymkeyapi-oh-cryptopubkey.md) | 返回从密钥对中得到的公钥实例。 |
 
 ### OH_CryptoKeyPair_GetPrivKey()
 
@@ -362,13 +362,13 @@ OH_CryptoPrivKey *OH_CryptoKeyPair_GetPrivKey(OH_CryptoKeyPair *keyCtx)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoKeyPair](capi-oh-cryptokeypair.md) *keyCtx | 密钥对实例。 |
+| [OH_CryptoKeyPair](capi-cryptoasymkeyapi-oh-cryptokeypair.md) *keyCtx | 密钥对实例。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_CryptoPrivKey](capi-oh-cryptoprivkey.md) | 返回从密钥对中得到的私钥实例。 |
+| [OH_CryptoPrivKey](capi-cryptoasymkeyapi-oh-cryptoprivkey.md) | 返回从密钥对中得到的私钥实例。 |
 
 ### OH_CryptoPubKey_Encode()
 
@@ -387,10 +387,10 @@ OH_Crypto_ErrCode OH_CryptoPubKey_Encode(OH_CryptoPubKey *key, Crypto_EncodingTy
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoPubKey](capi-oh-cryptopubkey.md) *key | 公钥实例。 |
+| [OH_CryptoPubKey](capi-cryptoasymkeyapi-oh-cryptopubkey.md) *key | 公钥实例。 |
 | [Crypto_EncodingType](#crypto_encodingtype) type | 编码类型。 |
 | const char *encodingStandard |  编码格式。 |
-| [Crypto_DataBlob](capi-crypto-datablob.md) *out |  输出的公钥结果。 |
+| [Crypto_DataBlob](capi-cryptocommonapi-crypto-datablob.md) *out |  输出的公钥结果。 |
 
 **返回：**
 
@@ -415,9 +415,9 @@ OH_Crypto_ErrCode OH_CryptoPubKey_GetParam(OH_CryptoPubKey *key, CryptoAsymKey_P
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoPubKey](capi-oh-cryptopubkey.md) *key | 公钥实例。 |
+| [OH_CryptoPubKey](capi-cryptoasymkeyapi-oh-cryptopubkey.md) *key | 公钥实例。 |
 | [CryptoAsymKey_ParamType](#cryptoasymkey_paramtype) item | 非对称密钥参数类型。 |
-| [Crypto_DataBlob](capi-crypto-datablob.md) *value |  参数输出值。 |
+| [Crypto_DataBlob](capi-cryptocommonapi-crypto-datablob.md) *value |  参数输出值。 |
 
 **返回：**
 
@@ -442,7 +442,7 @@ OH_Crypto_ErrCode OH_CryptoPrivKeyEncodingParams_Create(OH_CryptoPrivKeyEncoding
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoPrivKeyEncodingParams](capi-oh-cryptoprivkeyencodingparams.md) **ctx |  私钥编码参数。 |
+| [OH_CryptoPrivKeyEncodingParams](capi-cryptoasymkeyapi-oh-cryptoprivkeyencodingparams.md) **ctx |  私钥编码参数。 |
 
 **返回：**
 
@@ -467,9 +467,9 @@ OH_Crypto_ErrCode OH_CryptoPrivKeyEncodingParams_SetParam(OH_CryptoPrivKeyEncodi
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoPrivKeyEncodingParams](capi-oh-cryptoprivkeyencodingparams.md) *ctx |  私钥编码参数。 |
+| [OH_CryptoPrivKeyEncodingParams](capi-cryptoasymkeyapi-oh-cryptoprivkeyencodingparams.md) *ctx |  私钥编码参数。 |
 | [CryptoPrivKeyEncoding_ParamType](#cryptoprivkeyencoding_paramtype) type | 私钥编码参数类型。 |
-| [Crypto_DataBlob](capi-crypto-datablob.md) *value |  私钥编码参数值。 |
+| [Crypto_DataBlob](capi-cryptocommonapi-crypto-datablob.md) *value |  私钥编码参数值。 |
 
 **返回：**
 
@@ -494,7 +494,7 @@ void OH_CryptoPrivKeyEncodingParams_Destroy(OH_CryptoPrivKeyEncodingParams *ctx)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoPrivKeyEncodingParams](capi-oh-cryptoprivkeyencodingparams.md) *ctx |  私钥编码参数。 |
+| [OH_CryptoPrivKeyEncodingParams](capi-cryptoasymkeyapi-oh-cryptoprivkeyencodingparams.md) *ctx |  私钥编码参数。 |
 
 ### OH_CryptoPrivKey_Encode()
 
@@ -513,11 +513,11 @@ OH_Crypto_ErrCode OH_CryptoPrivKey_Encode(OH_CryptoPrivKey *key, Crypto_Encoding
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoPrivKey](capi-oh-cryptoprivkey.md) *key | 私钥。 |
+| [OH_CryptoPrivKey](capi-cryptoasymkeyapi-oh-cryptoprivkey.md) *key | 私钥。 |
 | [Crypto_EncodingType](#crypto_encodingtype) type | 私钥编码类型。 |
 | const char *encodingStandard |  编码标准。\n例如"PKCS8"。 |
-| [OH_CryptoPrivKeyEncodingParams](capi-oh-cryptoprivkeyencodingparams.md) *params | params 私钥编码参数，可以为NULL，如果要加密私钥，则应设置此参数。 |
-| [Crypto_DataBlob](capi-crypto-datablob.md) *out |  编码结果。 |
+| [OH_CryptoPrivKeyEncodingParams](capi-cryptoasymkeyapi-oh-cryptoprivkeyencodingparams.md) *params | params 私钥编码参数，可以为NULL，如果要加密私钥，则应设置此参数。 |
+| [Crypto_DataBlob](capi-cryptocommonapi-crypto-datablob.md) *out |  编码结果。 |
 
 **返回：**
 
@@ -542,9 +542,9 @@ OH_Crypto_ErrCode OH_CryptoPrivKey_GetParam(OH_CryptoPrivKey *key, CryptoAsymKey
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoPrivKey](capi-oh-cryptoprivkey.md) *key | 私钥。 |
+| [OH_CryptoPrivKey](capi-cryptoasymkeyapi-oh-cryptoprivkey.md) *key | 私钥。 |
 | [CryptoAsymKey_ParamType](#cryptoasymkey_paramtype) item | 非对称密钥参数类型。 |
-| [Crypto_DataBlob](capi-crypto-datablob.md) *value |  输出数据。 |
+| [Crypto_DataBlob](capi-cryptocommonapi-crypto-datablob.md) *value |  输出数据。 |
 
 **返回：**
 
@@ -570,7 +570,7 @@ OH_Crypto_ErrCode OH_CryptoAsymKeySpec_GenEcCommonParamsSpec(const char *curveNa
 | 参数项 | 描述 |
 | -- | -- |
 | const char *curveName | curveName ECC曲线名称。 |
-| [OH_CryptoAsymKeySpec](capi-oh-cryptoasymkeyspec.md) **spec |  指向EC通用参数规格的指针。 |
+| [OH_CryptoAsymKeySpec](capi-cryptoasymkeyapi-oh-cryptoasymkeyspec.md) **spec |  指向EC通用参数规格的指针。 |
 
 **返回：**
 
@@ -597,7 +597,7 @@ OH_Crypto_ErrCode OH_CryptoAsymKeySpec_GenDhCommonParamsSpec(int pLen, int skLen
 | -- | -- |
 | int pLen | 素数p的字节长度。 |
 | int skLen | 私钥的字节长度。 |
-| [OH_CryptoAsymKeySpec](capi-oh-cryptoasymkeyspec.md) **spec |  指向DH通用参数规格的指针。 |
+| [OH_CryptoAsymKeySpec](capi-cryptoasymkeyapi-oh-cryptoasymkeyspec.md) **spec |  指向DH通用参数规格的指针。 |
 
 **返回：**
 
@@ -624,7 +624,7 @@ OH_Crypto_ErrCode OH_CryptoAsymKeySpec_Create(const char *algoName, CryptoAsymKe
 | -- | -- |
 | const char *algoName |  用于生成规格的算法名称。<br>例如"RSA"。 |
 | [CryptoAsymKeySpec_Type](#cryptoasymkeyspec_type) type | 非对称密钥规格类型。 |
-| [OH_CryptoAsymKeySpec](capi-oh-cryptoasymkeyspec.md) **spec |  指向非对称密钥规格的指针。 |
+| [OH_CryptoAsymKeySpec](capi-cryptoasymkeyapi-oh-cryptoasymkeyspec.md) **spec |  指向非对称密钥规格的指针。 |
 
 **返回：**
 
@@ -649,9 +649,9 @@ OH_Crypto_ErrCode OH_CryptoAsymKeySpec_SetParam(OH_CryptoAsymKeySpec *spec, Cryp
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoAsymKeySpec](capi-oh-cryptoasymkeyspec.md) *spec |  非对称密钥规格。 |
+| [OH_CryptoAsymKeySpec](capi-cryptoasymkeyapi-oh-cryptoasymkeyspec.md) *spec |  非对称密钥规格。 |
 | [CryptoAsymKey_ParamType](#cryptoasymkey_paramtype) type | 非对称密钥参数类型。 |
-| [Crypto_DataBlob](capi-crypto-datablob.md) *value |  输入数据。 |
+| [Crypto_DataBlob](capi-cryptocommonapi-crypto-datablob.md) *value |  输入数据。 |
 
 **返回：**
 
@@ -676,8 +676,8 @@ OH_Crypto_ErrCode OH_CryptoAsymKeySpec_SetCommonParamsSpec(OH_CryptoAsymKeySpec 
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoAsymKeySpec](capi-oh-cryptoasymkeyspec.md) *spec |  非对称密钥规格。 |
-| [OH_CryptoAsymKeySpec](capi-oh-cryptoasymkeyspec.md) *commonParamsSpec | 通用参数规格。 |
+| [OH_CryptoAsymKeySpec](capi-cryptoasymkeyapi-oh-cryptoasymkeyspec.md) *spec |  非对称密钥规格。 |
+| [OH_CryptoAsymKeySpec](capi-cryptoasymkeyapi-oh-cryptoasymkeyspec.md) *commonParamsSpec | 通用参数规格。 |
 
 **返回：**
 
@@ -702,9 +702,9 @@ OH_Crypto_ErrCode OH_CryptoAsymKeySpec_GetParam(OH_CryptoAsymKeySpec *spec, Cryp
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoAsymKeySpec](capi-oh-cryptoasymkeyspec.md) *spec |  非对称密钥规格。 |
+| [OH_CryptoAsymKeySpec](capi-cryptoasymkeyapi-oh-cryptoasymkeyspec.md) *spec |  非对称密钥规格。 |
 | [CryptoAsymKey_ParamType](#cryptoasymkey_paramtype) type | 非对称密钥参数类型。 |
-| [Crypto_DataBlob](capi-crypto-datablob.md) *value |  输出数据。 |
+| [Crypto_DataBlob](capi-cryptocommonapi-crypto-datablob.md) *value |  输出数据。 |
 
 **返回：**
 
@@ -729,7 +729,7 @@ void OH_CryptoAsymKeySpec_Destroy(OH_CryptoAsymKeySpec *spec)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoAsymKeySpec](capi-oh-cryptoasymkeyspec.md) *spec |  非对称密钥规格。 |
+| [OH_CryptoAsymKeySpec](capi-cryptoasymkeyapi-oh-cryptoasymkeyspec.md) *spec |  非对称密钥规格。 |
 
 ### OH_CryptoAsymKeyGeneratorWithSpec_Create()
 
@@ -748,8 +748,8 @@ OH_Crypto_ErrCode OH_CryptoAsymKeyGeneratorWithSpec_Create(OH_CryptoAsymKeySpec 
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoAsymKeySpec](capi-oh-cryptoasymkeyspec.md) *keySpec | 非对称密钥规格。 |
-| [OH_CryptoAsymKeyGeneratorWithSpec](capi-oh-cryptoasymkeygeneratorwithspec.md) **generator | 带规格的非对称密钥生成器。 |
+| [OH_CryptoAsymKeySpec](capi-cryptoasymkeyapi-oh-cryptoasymkeyspec.md) *keySpec | 非对称密钥规格。 |
+| [OH_CryptoAsymKeyGeneratorWithSpec](capi-cryptoasymkeyapi-oh-cryptoasymkeygeneratorwithspec.md) **generator | 带规格的非对称密钥生成器。 |
 
 **返回：**
 
@@ -774,8 +774,8 @@ OH_Crypto_ErrCode OH_CryptoAsymKeyGeneratorWithSpec_GenKeyPair(OH_CryptoAsymKeyG
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoAsymKeyGeneratorWithSpec](capi-oh-cryptoasymkeygeneratorwithspec.md) *generator | 带规格的非对称密钥生成器。 |
-| [OH_CryptoKeyPair](capi-oh-cryptokeypair.md) **keyPair | 指向密钥对的指针。 |
+| [OH_CryptoAsymKeyGeneratorWithSpec](capi-cryptoasymkeyapi-oh-cryptoasymkeygeneratorwithspec.md) *generator | 带规格的非对称密钥生成器。 |
+| [OH_CryptoKeyPair](capi-cryptoasymkeyapi-oh-cryptokeypair.md) **keyPair | 指向密钥对的指针。 |
 
 **返回：**
 
@@ -800,7 +800,7 @@ void OH_CryptoAsymKeyGeneratorWithSpec_Destroy(OH_CryptoAsymKeyGeneratorWithSpec
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoAsymKeyGeneratorWithSpec](capi-oh-cryptoasymkeygeneratorwithspec.md) *generator | 带规格的非对称密钥生成器。 |
+| [OH_CryptoAsymKeyGeneratorWithSpec](capi-cryptoasymkeyapi-oh-cryptoasymkeygeneratorwithspec.md) *generator | 带规格的非对称密钥生成器。 |
 
 ### OH_CryptoEcPoint_Create()
 
@@ -820,8 +820,8 @@ OH_Crypto_ErrCode OH_CryptoEcPoint_Create(const char *curveName, Crypto_DataBlob
 | 参数项 | 描述 |
 | -- | -- |
 | const char *curveName | curveName 曲线名称。 |
-| [Crypto_DataBlob](capi-crypto-datablob.md) *ecKeyData | EC点数据，支持"04 \|\| x \|\| y"、"02 \|\| x"或"03 \|\| x"格式。如果ecKeyData参数为NULL，将创建一个空的EC点规格。 |
-| [OH_CryptoEcPoint](capi-oh-cryptoecpoint.md) **point |  指向EC点的指针。 |
+| [Crypto_DataBlob](capi-cryptocommonapi-crypto-datablob.md) *ecKeyData | EC点数据，支持"04 \|\| x \|\| y"、"02 \|\| x"或"03 \|\| x"格式。如果ecKeyData参数为NULL，将创建一个空的EC点规格。 |
+| [OH_CryptoEcPoint](capi-cryptoasymkeyapi-oh-cryptoecpoint.md) **point |  指向EC点的指针。 |
 
 **返回：**
 
@@ -846,9 +846,9 @@ OH_Crypto_ErrCode OH_CryptoEcPoint_GetCoordinate(OH_CryptoEcPoint *point, Crypto
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoEcPoint](capi-oh-cryptoecpoint.md) *point |  EC点。 |
-| [Crypto_DataBlob](capi-crypto-datablob.md) *x |  EC点的x坐标,可以为NULL。 |
-| [OH_CryptoEcPoint](capi-oh-cryptoecpoint.md) *y | EC点的y坐标,可以为NULL。 |
+| [OH_CryptoEcPoint](capi-cryptoasymkeyapi-oh-cryptoecpoint.md) *point |  EC点。 |
+| [Crypto_DataBlob](capi-cryptocommonapi-crypto-datablob.md) *x |  EC点的x坐标,可以为NULL。 |
+| [OH_CryptoEcPoint](capi-cryptoasymkeyapi-oh-cryptoecpoint.md) *y | EC点的y坐标,可以为NULL。 |
 
 **返回：**
 
@@ -873,9 +873,9 @@ OH_Crypto_ErrCode OH_CryptoEcPoint_SetCoordinate(OH_CryptoEcPoint *point, Crypto
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoEcPoint](capi-oh-cryptoecpoint.md) *point |  EC点。 |
-| [Crypto_DataBlob](capi-crypto-datablob.md) *x |  EC点的x坐标。 |
-| [OH_CryptoEcPoint](capi-oh-cryptoecpoint.md) *y | EC点的y坐标。 |
+| [OH_CryptoEcPoint](capi-cryptoasymkeyapi-oh-cryptoecpoint.md) *point |  EC点。 |
+| [Crypto_DataBlob](capi-cryptocommonapi-crypto-datablob.md) *x |  EC点的x坐标。 |
+| [OH_CryptoEcPoint](capi-cryptoasymkeyapi-oh-cryptoecpoint.md) *y | EC点的y坐标。 |
 
 **返回：**
 
@@ -900,9 +900,9 @@ OH_Crypto_ErrCode OH_CryptoEcPoint_Encode(OH_CryptoEcPoint *point, const char *f
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoEcPoint](capi-oh-cryptoecpoint.md) *point |  EC点。 |
+| [OH_CryptoEcPoint](capi-cryptoasymkeyapi-oh-cryptoecpoint.md) *point |  EC点。 |
 | const char *format | 编码格式,支持"UNCOMPRESSED"和"COMPRESSED"。 |
-| [Crypto_DataBlob](capi-crypto-datablob.md) *out |  编码后的EC点数据。 |
+| [Crypto_DataBlob](capi-cryptocommonapi-crypto-datablob.md) *out |  编码后的EC点数据。 |
 
 **返回：**
 
@@ -927,6 +927,6 @@ void OH_CryptoEcPoint_Destroy(OH_CryptoEcPoint *point)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoEcPoint](capi-oh-cryptoecpoint.md) *point |  EC点。 |
+| [OH_CryptoEcPoint](capi-cryptoasymkeyapi-oh-cryptoecpoint.md) *point |  EC点。 |
 
 

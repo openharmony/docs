@@ -20,7 +20,7 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [Crypto_DataBlob](capi-crypto-datablob.md) | Crypto_DataBlob | 加解密数据结构体。 |
+| [Crypto_DataBlob](capi-cryptocommonapi-crypto-datablob.md) | Crypto_DataBlob | 加解密数据结构体。 |
 
 ### 枚举
 
@@ -94,6 +94,6 @@ void OH_Crypto_FreeDataBlob(Crypto_DataBlob *dataBlob)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Crypto_DataBlob](capi-crypto-datablob.md) *dataBlob | dataBlob 需要释放的dataBlob数据。 |
+| [Crypto_DataBlob](capi-cryptocommonapi-crypto-datablob.md) *dataBlob | dataBlob 需要释放的dataBlob数据。 |
 
 

@@ -20,7 +20,7 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [OH_CryptoDigest](capi-oh-cryptodigest.md) | OH_CryptoDigest | 定义摘要结构体。 |
+| [OH_CryptoDigest](capi-cryptodigestapi-oh-cryptodigest.md) | OH_CryptoDigest | 定义摘要结构体。 |
 
 ### 函数
 
@@ -53,7 +53,7 @@ OH_Crypto_ErrCode OH_CryptoDigest_Create(const char *algoName, OH_CryptoDigest *
 | 参数项 | 描述 |
 | -- | -- |
 | const char *algoName | 用于生成摘要上下文的算法名称。<br>例如"SHA256"。 |
-| [OH_CryptoDigest](capi-oh-cryptodigest.md) **ctx | 指向摘要实例的指针。 |
+| [OH_CryptoDigest](capi-cryptodigestapi-oh-cryptodigest.md) **ctx | 指向摘要实例的指针。 |
 
 **返回：**
 
@@ -78,8 +78,8 @@ OH_Crypto_ErrCode OH_CryptoDigest_Update(OH_CryptoDigest *ctx, Crypto_DataBlob *
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoDigest](capi-oh-cryptodigest.md) *ctx | 指向摘要实例。 |
-| [Crypto_DataBlob](capi-crypto-datablob.md) *in | 传入的消息。 |
+| [OH_CryptoDigest](capi-cryptodigestapi-oh-cryptodigest.md) *ctx | 指向摘要实例。 |
+| [Crypto_DataBlob](capi-cryptocommonapi-crypto-datablob.md) *in | 传入的消息。 |
 
 **返回：**
 
@@ -108,8 +108,8 @@ OH_Crypto_ErrCode OH_CryptoDigest_Final(OH_CryptoDigest *ctx, Crypto_DataBlob *o
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoDigest](capi-oh-cryptodigest.md) *ctx | 指向摘要实例。 |
-| [Crypto_DataBlob](capi-crypto-datablob.md) *out | 返回的Md的计算结果。 |
+| [OH_CryptoDigest](capi-cryptodigestapi-oh-cryptodigest.md) *ctx | 指向摘要实例。 |
+| [Crypto_DataBlob](capi-cryptocommonapi-crypto-datablob.md) *out | 返回的Md的计算结果。 |
 
 **返回：**
 
@@ -138,7 +138,7 @@ uint32_t OH_CryptoDigest_GetLength(OH_CryptoDigest *ctx)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoDigest](capi-oh-cryptodigest.md) *ctx | 指向摘要实例。 |
+| [OH_CryptoDigest](capi-cryptodigestapi-oh-cryptodigest.md) *ctx | 指向摘要实例。 |
 
 **返回：**
 
@@ -163,7 +163,7 @@ const char *OH_CryptoDigest_GetAlgoName(OH_CryptoDigest *ctx)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoDigest](capi-oh-cryptodigest.md) *ctx | 指向摘要实例。 |
+| [OH_CryptoDigest](capi-cryptodigestapi-oh-cryptodigest.md) *ctx | 指向摘要实例。 |
 
 **返回：**
 
@@ -188,5 +188,5 @@ void OH_DigestCrypto_Destroy(OH_CryptoDigest *ctx)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoDigest](capi-oh-cryptodigest.md) *ctx | 指向摘要实例。 |
+| [OH_CryptoDigest](capi-cryptodigestapi-oh-cryptodigest.md) *ctx | 指向摘要实例。 |
 
