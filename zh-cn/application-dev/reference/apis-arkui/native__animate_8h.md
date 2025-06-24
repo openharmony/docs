@@ -49,7 +49,7 @@
 | -------- | -------- |
 | [ArkUI_AnimateOption](_ark_u_i___native_module.md#arkui_animateoption) \* [OH_ArkUI_AnimateOption_Create](_ark_u_i___native_module.md#oh_arkui_animateoption_create) () | 创建动画效果参数。  | 
 | void [OH_ArkUI_AnimateOption_Dispose](_ark_u_i___native_module.md#oh_arkui_animateoption_dispose) ([ArkUI_AnimateOption](_ark_u_i___native_module.md#arkui_animateoption) \*option) | 销毁动画效果参数指针。  | 
-| int32_t [OH_ArkUI_AnimateOption_GetDuration](_ark_u_i___native_module.md#oh_arkui_animateoption_getduration) ([ArkUI_AnimateOption](_ark_u_i___native_module.md#arkui_animateoption) \*option) | 获取动画持续时间，单位为ms(毫秒)。  | 
+| uint32_t [OH_ArkUI_AnimateOption_GetDuration](_ark_u_i___native_module.md#oh_arkui_animateoption_getduration) ([ArkUI_AnimateOption](_ark_u_i___native_module.md#arkui_animateoption) \*option) | 获取动画持续时间，单位为ms(毫秒)。  | 
 | float [OH_ArkUI_AnimateOption_GetTempo](_ark_u_i___native_module.md#oh_arkui_animateoption_gettempo) ([ArkUI_AnimateOption](_ark_u_i___native_module.md#arkui_animateoption) \*option) | 获取动画播放速度。  | 
 | [ArkUI_AnimationCurve](_ark_u_i___native_module.md#arkui_animationcurve) [OH_ArkUI_AnimateOption_GetCurve](_ark_u_i___native_module.md#oh_arkui_animateoption_getcurve) ([ArkUI_AnimateOption](_ark_u_i___native_module.md#arkui_animateoption) \*option) | 获取动画曲线。  | 
 | int32_t [OH_ArkUI_AnimateOption_GetDelay](_ark_u_i___native_module.md#oh_arkui_animateoption_getdelay) ([ArkUI_AnimateOption](_ark_u_i___native_module.md#arkui_animateoption) \*option) | 获取动画延迟播放时间，单位为ms(毫秒)。  | 
