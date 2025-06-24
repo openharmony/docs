@@ -48,7 +48,7 @@ MDNS管理的典型场景有：
       serviceName: "servicename",
       port: 5555,
       host: {
-        address: "10.14.**.***"
+        address: "10.14.**.**"
       },
       serviceAttribute: [{key: "111", value: [1]}]
     }
