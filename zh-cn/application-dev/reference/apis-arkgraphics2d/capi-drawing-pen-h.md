@@ -17,6 +17,12 @@
 
 ## 汇总
 
+### 结构体
+
+| 名称 | typedef关键字 | 描述 |
+| -- | -- | -- |
+| [OH_NativeColorSpaceManager](capi-nativecolorspacemanager-oh-nativecolorspacemanager.md) | OH_NativeColorSpaceManager | 声明色域管理对象，提供获取色域基础属性的能力。 |
+
 ### 枚举
 
 | 名称 | typedef关键字 | 描述 |
@@ -53,6 +59,11 @@
 | [void OH_Drawing_PenSetBlendMode(OH_Drawing_Pen* pen, OH_Drawing_BlendMode blendMode)](#oh_drawing_pensetblendmode) | 为画笔设置一个混合器，该混合器实现了指定的混合模式枚举。<br>本接口会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](capi-drawing-error-code-h.md#oh_drawing_errorcodeget)查看错误码的取值。<br>pen为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER；<br>blendMode不在枚举范围内时返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE。 |
 | [bool OH_Drawing_PenGetFillPath(OH_Drawing_Pen* pen, const OH_Drawing_Path* src, OH_Drawing_Path* dst,const OH_Drawing_Rect* rect, const OH_Drawing_Matrix* matrix)](#oh_drawing_pengetfillpath) | 获取使用画笔绘制的源路径轮廓，并用目标路径表示。<br>本接口会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](capi-drawing-error-code-h.md#oh_drawing_errorcodeget)查看错误码的取值。<br>pen、src、dst任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。 |
 | [void OH_Drawing_PenReset(OH_Drawing_Pen* pen)](#oh_drawing_penreset) | 将画笔重置至初始值。<br>本接口会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](capi-drawing-error-code-h.md#oh_drawing_errorcodeget)查看错误码的取值。<br>pen为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。 |
+| [OH_Drawing_ErrorCode OH_Drawing_PenSetColor4f(OH_Drawing_Pen* pen, float a, float r, float g, float b,OH_NativeColorSpaceManager* colorSpaceManager)](#oh_drawing_pensetcolor4f) | 用于设置画笔的颜色属性，颜色属性描述了画笔绘制图形轮廓时使用的颜色。<br> 颜色采用浮点数表示的ARGB格式，色彩空间由[OH_NativeColorSpaceManager](capi-nativecolorspacemanager-oh-nativecolorspacemanager.md)指定。<br> 如果colorSpaceManager为nullptr，使用SRGB（基于IEC 61966-2.1：1999的标准红绿蓝色彩空间）色彩空间作为默认值。 |
+| [OH_Drawing_ErrorCode OH_Drawing_PenGetAlphaFloat(const OH_Drawing_Pen* pen, float* a)](#oh_drawing_pengetalphafloat) | 获取画笔颜色的透明度值。 |
+| [OH_Drawing_ErrorCode OH_Drawing_PenGetRedFloat(const OH_Drawing_Pen* pen, float* r)](#oh_drawing_pengetredfloat) | 获取画笔颜色的红色分量。 |
+| [OH_Drawing_ErrorCode OH_Drawing_PenGetGreenFloat(const OH_Drawing_Pen* pen, float* g)](#oh_drawing_pengetgreenfloat) | 获取画笔颜色的绿色分量。 |
+| [OH_Drawing_ErrorCode OH_Drawing_PenGetBlueFloat(const OH_Drawing_Pen* pen, float* b)](#oh_drawing_pengetbluefloat) | 获取画笔颜色的蓝色分量。 |
 
 ## 枚举类型说明
 
@@ -689,5 +700,146 @@ void OH_Drawing_PenReset(OH_Drawing_Pen* pen)
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_Drawing_Pen](capi-drawing-oh-drawing-pen.md)* pen | 指向画笔对象[OH_Drawing_Pen](capi-drawing-oh-drawing-pen.md)的指针。 |
+
+
+### OH_Drawing_PenSetColor4f()
+
+```
+OH_Drawing_ErrorCode OH_Drawing_PenSetColor4f(OH_Drawing_Pen* pen, float a, float r, float g, float b,OH_NativeColorSpaceManager* colorSpaceManager)
+```
+
+**描述**
+
+用于设置画笔的颜色属性，颜色属性描述了画笔绘制图形轮廓时使用的颜色。<br> 颜色采用浮点数表示的ARGB格式，色彩空间由[OH_NativeColorSpaceManager](capi-nativecolorspacemanager-oh-nativecolorspacemanager.md)指定。<br> 如果colorSpaceManager为nullptr，使用SRGB（基于IEC 61966-2.1：1999的标准红绿蓝色彩空间）色彩空间作为默认值。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 20
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| OH_Drawing_Pen* pen | 表示指向[OH_Drawing_Pen](capi-drawing-oh-drawing-pen.md)对象的指针。 |
+| float a | 表示颜色中的透明度值，用0.0 ~ 1.0之间的浮点数表示，大于1.0时，取1.0，小于0.0时，取0.0。 |
+| float r | 表示颜色中的红色分量，用0.0 ~ 1.0之间的浮点数表示，大于1.0时，取1.0，小于0.0时，取0.0。 |
+| float g | 表示颜色中的绿色分量，用0.0 ~ 1.0之间的浮点数表示，大于1.0时，取1.0，小于0.0时，取0.0。 |
+| float b | 表示颜色中的蓝色分量，用0.0 ~ 1.0之间的浮点数表示，大于1.0时，取1.0，小于0.0时，取0.0。 |
+| [OH_NativeColorSpaceManager](capi-nativecolorspacemanager-oh-nativecolorspacemanager.md)* colorSpaceManager | 表示指向[OH_NativeColorSpaceManager](capi-nativecolorspacemanager-oh-nativecolorspacemanager.md)对象的指针。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [OH_Drawing_ErrorCode](capi-drawing-error-code-h.md#oh_drawing_errorcode) | 函数返回执行结果。<br> 返回OH_DRAWING_SUCCESS，表示执行成功。<br> 返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数pen为NULL。 |
+
+### OH_Drawing_PenGetAlphaFloat()
+
+```
+OH_Drawing_ErrorCode OH_Drawing_PenGetAlphaFloat(const OH_Drawing_Pen* pen, float* a)
+```
+
+**描述**
+
+获取画笔颜色的透明度值。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 20
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| const [OH_Drawing_Pen](capi-drawing-oh-drawing-pen.md)* pen | 表示指向[OH_Drawing_Pen](capi-drawing-oh-drawing-pen.md)对象的指针。 |
+| float* a | 表示颜色中的透明度，范围为0.0 ~ 1.0的浮点数。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [OH_Drawing_ErrorCode](capi-drawing-error-code-h.md#oh_drawing_errorcode) | 函数返回执行结果。<br> 返回OH_DRAWING_SUCCESS，表示执行成功。<br> 返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数pen或a为NULL。 |
+
+### OH_Drawing_PenGetRedFloat()
+
+```
+OH_Drawing_ErrorCode OH_Drawing_PenGetRedFloat(const OH_Drawing_Pen* pen, float* r)
+```
+
+**描述**
+
+获取画笔颜色的红色分量。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 20
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| const [OH_Drawing_Pen](capi-drawing-oh-drawing-pen.md)* pen | 表示指向[OH_Drawing_Pen](capi-drawing-oh-drawing-pen.md)对象的指针。 |
+| float* r | 表示颜色中的红色分量，范围为0.0 ~ 1.0的浮点数。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [OH_Drawing_ErrorCode](capi-drawing-error-code-h.md#oh_drawing_errorcode) | 函数返回执行结果。<br> 返回OH_DRAWING_SUCCESS，表示执行成功。<br> 返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数pen或r为NULL。 |
+
+### OH_Drawing_PenGetGreenFloat()
+
+```
+OH_Drawing_ErrorCode OH_Drawing_PenGetGreenFloat(const OH_Drawing_Pen* pen, float* g)
+```
+
+**描述**
+
+获取画笔颜色的绿色分量。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 20
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| const [OH_Drawing_Pen](capi-drawing-oh-drawing-pen.md)* pen | 表示指向[OH_Drawing_Pen](capi-drawing-oh-drawing-pen.md)对象的指针。 |
+| float* g | 表示颜色中的绿色分量，范围为0.0 ~ 1.0的浮点数。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [OH_Drawing_ErrorCode](capi-drawing-error-code-h.md#oh_drawing_errorcode) | 函数返回执行结果。<br> 返回OH_DRAWING_SUCCESS，表示执行成功。<br> 返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数pen或g为NULL。 |
+
+### OH_Drawing_PenGetBlueFloat()
+
+```
+OH_Drawing_ErrorCode OH_Drawing_PenGetBlueFloat(const OH_Drawing_Pen* pen, float* b)
+```
+
+**描述**
+
+获取画笔颜色的蓝色分量。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 20
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| const [OH_Drawing_Pen](capi-drawing-oh-drawing-pen.md)* pen | 表示指向[OH_Drawing_Pen](capi-drawing-oh-drawing-pen.md)对象的指针。 |
+| float* b | 表示颜色中的蓝色分量，范围为0.0 ~ 1.0的浮点数。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [OH_Drawing_ErrorCode](capi-drawing-error-code-h.md#oh_drawing_errorcode) | 函数返回执行结果。<br> 返回OH_DRAWING_SUCCESS，表示执行成功。<br> 返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数pen或b为NULL。 |
+
 
 
