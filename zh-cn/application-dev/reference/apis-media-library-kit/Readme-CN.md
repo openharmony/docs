@@ -1,7 +1,20 @@
 # Media Library Kit（媒体文件管理服务）
 
 - ArkTS API<!--media-library-arkts-->
-  - [@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)
+  - @ohos.file.photoAccessHelper (相册管理模块)<!--js-apis-photoAccessHelper-->
+    - [模块描述](arkts-apis-photoAccessHelper.md)
+    - [Functions](arkts-apis-photoAccessHelper-f.md)
+    - [Class (PhotoViewPicker)](arkts-apis-photoAccessHelper-PhotoViewPicker.md)
+    - [Interface (AbsAlbum)](arkts-apis-photoAccessHelper-AbsAlbum.md)
+    - [Interface (FetchResult)](arkts-apis-photoAccessHelper-FetchResult.md)
+    - [Interface (PhotoAccessHelper)](arkts-apis-photoAccessHelper-PhotoAccessHelper.md)
+    - [Interface (PhotoAsset)](arkts-apis-photoAccessHelper-PhotoAsset.md)
+    - [Interfaces (其他)](arkts-apis-photoAccessHelper-i.md)
+    - [Enums](arkts-apis-photoAccessHelper-e.md)
+    - [Types](arkts-apis-photoAccessHelper-t.md)
+    - [废弃的Interface (AudioPlayer, deprecated)](arkts-apis-photoAccessHelper-AudioPlayer.md)
+    - [废弃的Interface (AudioRecorder, deprecated)](arkts-apis-photoAccessHelper-AudioRecorder.md)
+    - [废弃的Interface (VideoPlayer, deprecated)](arkts-apis-photoAccessHelper-VideoPlayer.md)
   - [@ohos.file.sendablePhotoAccessHelper (基于Sendable对象的相册管理模块)](js-apis-sendablePhotoAccessHelper.md)
   <!--Del-->
   - [@ohos.file.photoAccessHelper (相册管理模块)(系统接口)](js-apis-photoAccessHelper-sys.md)
