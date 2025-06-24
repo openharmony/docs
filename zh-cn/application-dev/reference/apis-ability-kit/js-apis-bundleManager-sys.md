@@ -5814,11 +5814,98 @@ try {
 }
 ```
 
+## PermissionDef
+
+type PermissionDef = _PermissionDef
+
+[module.json5配置文件](../../quick-start/module-configuration-file.md)中定义的权限详细信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_PermissionDef](./js-apis-bundleManager-permissionDef-sys.md#permissiondef) |配置文件中定义的权限详细信息。 |
+
+## SharedBundleInfo<sup>10+</sup>
+
+type SharedBundleInfo = _SharedBundleInfo
+
+共享包信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_SharedBundleInfo](js-apis-bundleManager-sharedBundleInfo-sys.md#sharedbundleinfo) |共享包信息。 |
+
+## AppProvisionInfo<sup>10+</sup>
+
+type AppProvisionInfo = _AppProvisionInfo.AppProvisionInfo
+
+应用[HarmonyAppProvision配置文件](../../security/app-provision-structure.md)中的信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_AppProvisionInfo.AppProvisionInfo](js-apis-bundleManager-AppProvisionInfo-sys.md#appprovisioninfo) |应用[HarmonyAppProvision配置文件](../../security/app-provision-structure.md)中的信息。 |
+
+
+## Validity<sup>10+</sup>
+
+type Validity = _AppProvisionInfo.Validity
+
+配置文件中的有效期。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_AppProvisionInfo.Validity](js-apis-bundleManager-AppProvisionInfo-sys.md#validity) |配置文件中的有效期。 |
+
+## RecoverableApplicationInfo<sup>11+</sup>
+
+type RecoverableApplicationInfo = _RecoverableApplicationInfo
+
+预置应用被卸载后可以恢复的预置应用信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_RecoverableApplicationInfo](js-apis-bundleManager-recoverableApplicationInfo-sys.md#recoverableapplicationinfo) |预置应用被卸载后可以恢复的预置应用信息。 |
+
+## PreinstalledApplicationInfo<sup>12+</sup>
+
+type PreinstalledApplicationInfo = _PreinstalledApplicationInfo
+
+预置应用信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_PreinstalledApplicationInfo](js-apis-bundleManager-ApplicationInfo-sys.md#preinstalledapplicationinfo12) |预置应用信息。 |
+
 ## PluginBundleInfo<sup>19+</sup>
 
 type PluginBundleInfo = _PluginBundleInfo
 
 插件信息。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -5831,6 +5918,8 @@ type PluginBundleInfo = _PluginBundleInfo
 type PluginModuleInfo = _PluginModuleInfo
 
 插件的模块信息。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
