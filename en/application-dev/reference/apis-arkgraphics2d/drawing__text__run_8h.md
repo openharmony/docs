@@ -9,7 +9,7 @@ The **drawing_text_run.h** file declares the capabilities of runs, such as obtai
 
 **Library**: libnative_drawing.so
 
-**Since**: 16
+**Since**: 18
 
 **Related module**: [Drawing](_drawing.md)
 
