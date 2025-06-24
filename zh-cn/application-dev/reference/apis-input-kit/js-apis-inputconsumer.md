@@ -65,9 +65,22 @@ getAllSystemHotkeys(): Promise&lt;Array&lt;HotkeyOptions&gt;&gt;
 **示例：**
 
 ```js
-inputConsumer.getAllSystemHotkeys().then((data: Array<inputConsumer.HotkeyOptions>) => {
-  console.log(`List of system hotkeys : ${JSON.stringify(data)}`);
-});
+import { inputConsumer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          inputConsumer.getAllSystemHotkeys().then((data: Array<inputConsumer.HotkeyOptions>) => {
+            console.log(`List of system hotkeys : ${JSON.stringify(data)}`);
+          });
+        })
+    }
+  }
+}
 ```
 
 ## inputConsumer.on('hotkeyChange')
@@ -100,20 +113,33 @@ on(type: 'hotkeyChange', hotkeyOptions: HotkeyOptions, callback: Callback&lt;Hot
 **示例：**
 
 ```js
-let leftCtrlKey = 2072;
-let zKey = 2042;
-let hotkeyOptions: inputConsumer.HotkeyOptions = {
-  preKeys: [ leftCtrlKey ],
-  finalKey: zKey,
-  isRepeat: true
-};
-let hotkeyCallback = (hotkeyOptions: inputConsumer.HotkeyOptions) => {
-  console.log(`hotkeyOptions: ${JSON.stringify(hotkeyOptions)}`);
-}
-try {
-  inputConsumer.on("hotkeyChange", hotkeyOptions, hotkeyCallback);
-} catch (error) {
-  console.error(`Subscribe failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { inputConsumer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          let leftCtrlKey = 2072;
+          let zKey = 2042;
+          let hotkeyOptions: inputConsumer.HotkeyOptions = {
+            preKeys: [ leftCtrlKey ],
+            finalKey: zKey,
+            isRepeat: true
+          };
+          let hotkeyCallback = (hotkeyOptions: inputConsumer.HotkeyOptions) => {
+            console.log(`hotkeyOptions: ${JSON.stringify(hotkeyOptions)}`);
+          }
+          try {
+            inputConsumer.on("hotkeyChange", hotkeyOptions, hotkeyCallback);
+          } catch (error) {
+            console.error(`Subscribe failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -145,36 +171,62 @@ off(type: 'hotkeyChange', hotkeyOptions: HotkeyOptions, callback?: Callback&lt;H
 **示例：**
 
 ```js
-let leftCtrlKey = 2072;
-let zKey = 2042;
-// 取消订阅单个应用快捷键回调函数
-let hotkeyCallback = (hotkeyOptions: inputConsumer.HotkeyOptions) => {
-  console.log(`hotkeyOptions: ${JSON.stringify(hotkeyOptions)}`);
-}
-let hotkeyOption: inputConsumer.HotkeyOptions = {preKeys: [leftCtrlKey], finalKey: zKey, isRepeat: true};
-try {
-  inputConsumer.on("hotkeyChange", hotkeyOption, hotkeyCallback);
-  inputConsumer.off("hotkeyChange", hotkeyOption, hotkeyCallback);
-  console.log(`Unsubscribe success`);
-} catch (error) {
-  console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { inputConsumer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          let leftCtrlKey = 2072;
+          let zKey = 2042;
+          // 取消订阅单个应用快捷键回调函数
+          let hotkeyCallback = (hotkeyOptions: inputConsumer.HotkeyOptions) => {
+            console.log(`hotkeyOptions: ${JSON.stringify(hotkeyOptions)}`);
+          }
+          let hotkeyOption: inputConsumer.HotkeyOptions = {preKeys: [leftCtrlKey], finalKey: zKey, isRepeat: true};
+          try {
+            inputConsumer.on("hotkeyChange", hotkeyOption, hotkeyCallback);
+            inputConsumer.off("hotkeyChange", hotkeyOption, hotkeyCallback);
+            console.log(`Unsubscribe success`);
+          } catch (error) {
+            console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
 ```js
-let leftCtrlKey = 2072;
-let zKey = 2042;
-// 取消订阅所有应用快捷键回调函数
-let hotkeyCallback = (hotkeyOptions: inputConsumer.HotkeyOptions) => {
-  console.log(`hotkeyOptions: ${JSON.stringify(hotkeyOptions)}`);
-}
-let hotkeyOption: inputConsumer.HotkeyOptions = {preKeys: [leftCtrlKey], finalKey: zKey, isRepeat: true};
-try {
-  inputConsumer.on("hotkeyChange", hotkeyOption, hotkeyCallback);
-  inputConsumer.off("hotkeyChange", hotkeyOption);
-  console.log(`Unsubscribe success`);
-} catch (error) {
-  console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { inputConsumer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          let leftCtrlKey = 2072;
+          let zKey = 2042;
+          // 取消订阅所有应用快捷键回调函数
+          let hotkeyCallback = (hotkeyOptions: inputConsumer.HotkeyOptions) => {
+            console.log(`hotkeyOptions: ${JSON.stringify(hotkeyOptions)}`);
+          }
+          let hotkeyOption: inputConsumer.HotkeyOptions = {preKeys: [leftCtrlKey], finalKey: zKey, isRepeat: true};
+          try {
+            inputConsumer.on("hotkeyChange", hotkeyOption, hotkeyCallback);
+            inputConsumer.off("hotkeyChange", hotkeyOption);
+            console.log(`Unsubscribe success`);
+          } catch (error) {
+            console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -208,17 +260,30 @@ on(type: 'keyPressed', options: KeyPressedConfig, callback: Callback&lt;KeyEvent
 **示例：**
 
 ```js
-try {
-  let options: inputConsumer.KeyPressedConfig = {
-    key: 16,
-    action: 1,
-    isRepeat: false,
+import { inputConsumer, KeyEvent } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            let options: inputConsumer.KeyPressedConfig = {
+              key: 16,
+              action: 1,
+              isRepeat: false,
+            }
+            inputConsumer.on('keyPressed', options, (event: KeyEvent) => {
+              console.log(`Subscribe success ${JSON.stringify(event)}`);
+            });
+          } catch (error) {
+            console.error(`Subscribe execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
   }
-  inputConsumer.on('keyPressed', options, (event: KeyEvent) => {
-    console.log(`Subscribe success ${JSON.stringify(event)}`);
-  });
-} catch (error) {
-  console.error(`Subscribe execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -249,14 +314,27 @@ off(type: 'keyPressed', callback?: Callback&lt;KeyEvent&gt;): void
 **示例：**
 
 ```js
-try {
-  // 取消指定回调函数
-  inputConsumer.off('keyPressed', (event: KeyEvent) => {
-    console.log(`Unsubscribe success ${JSON.stringify(event)}`);
-  });
-  // 取消当前已订阅的所有回调函数
-  inputConsumer.off("keyPressed");
-} catch (error) {
-  console.error(`Unsubscribe execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { inputConsumer, KeyEvent } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            // 取消指定回调函数
+            inputConsumer.off('keyPressed', (event: KeyEvent) => {
+              console.log(`Unsubscribe success ${JSON.stringify(event)}`);
+            });
+            // 取消当前已订阅的所有回调函数
+            inputConsumer.off("keyPressed");
+          } catch (error) {
+            console.error(`Unsubscribe execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
