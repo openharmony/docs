@@ -2429,6 +2429,8 @@
           - [OH_Udmf_ProgressInfo](reference/apis-arkdata/capi-udmf-oh-udmf-progressinfo.md)
           - [OH_UdmfGetDataParams](reference/apis-arkdata/capi-udmf-oh-udmfgetdataparams.md)
           - [OH_UdmfOptions](reference/apis-arkdata/capi-udmf-oh-udmfoptions.md)
+          - [OH_UdmfDataLoadParams](reference/apis-arkdata/capi-udmf-oh-udmfdataloadparams.md)
+          - [OH_UdmfDataLoadInfo](reference/apis-arkdata/capi-udmf-oh-udmfdataloadinfo.md)
           - [OH_UdsPlainText](reference/apis-arkdata/capi-udmf-oh-udsplaintext.md)
           - [OH_UdsHyperlink](reference/apis-arkdata/capi-udmf-oh-udshyperlink.md)
           - [OH_UdsHtml](reference/apis-arkdata/capi-udmf-oh-udshtml.md)

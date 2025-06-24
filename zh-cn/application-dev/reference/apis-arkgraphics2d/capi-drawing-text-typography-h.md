@@ -53,6 +53,7 @@
 | [OH_Drawing_FontWidth](#oh_drawing_fontwidth) | - | 字体宽度的枚举。 |
 | [OH_Drawing_TextHeightBehavior](#oh_drawing_textheightbehavior) | - | 文本高度修饰符模式枚举。 |
 | [OH_Drawing_TextStyleType](#oh_drawing_textstyletype) | - | 文本样式类型枚举。 |
+| [OH_Drawing_TextVerticalAlignment](#oh_drawing_textverticalalignment) | OH_Drawing_TextVerticalAlignment | 垂直对齐方式枚举。 |
 
 ### 函数
 
@@ -261,6 +262,11 @@
 | [void OH_Drawing_SetTypographyTextTrailingSpaceOptimized(OH_Drawing_TypographyStyle* style, bool trailingSpaceOptimized)](#oh_drawing_settypographytexttrailingspaceoptimized) | 设置文本排版时行尾空格是否参与对齐计算。 |
 | [void OH_Drawing_TypographyHandlerAddEncodedText(OH_Drawing_TypographyCreate* handler, const void* text,size_t byteLength, OH_Drawing_TextEncoding textEncodingType)](#oh_drawing_typographyhandleraddencodedtext) | 添加指定编码的文本。 |
 | [void OH_Drawing_SetTypographyTextAutoSpace(OH_Drawing_TypographyStyle *style, bool enableAutoSpace)](#oh_drawing_settypographytextautospace) | 设置文本排版时是否使能自动间距。<br>默认不使能自动间距，一旦使能则会自动调整CJK（中文字符、日文字符、韩文字符）与西文（拉丁字母、西里尔字母、希腊字母）、CJK与数字、CJK与版权符号、版权符号与数字、版权符号与西文之间的间距。 |
+| [void OH_Drawing_TypographyUpdateDecorationColor(OH_Drawing_Typography* typography, uint32_t color)](#oh_drawing_typographyupdatedecorationcolor) | 更新排版对象中的文本装饰线颜色。<br> 使用该接口更新文本装饰线颜色属性后，可直接使用[OH_Drawing_TypographyPaint](capi-drawing-text-typography-h.md#oh_drawing_typographypaint)进行绘制生效。 |
+| [void OH_Drawing_SetTypographyVerticalAlignment(OH_Drawing_TypographyStyle* style,OH_Drawing_TextVerticalAlignment align)](#oh_drawing_settypographyverticalalignment) | 设置文本垂直对齐方式。 |
+| [OH_Drawing_TypographyStyle* OH_Drawing_CopyTypographyStyle(OH_Drawing_TypographyStyle* style)](#oh_drawing_copytypographystyle) | 创建一个段落样式的对象副本，用于拷贝一个已有的段落样式对象。 |
+| [OH_Drawing_TextStyle* OH_Drawing_CopyTextStyle(OH_Drawing_TextStyle* style)](#oh_drawing_copytextstyle) | 创建一个文本样式的对象副本，用于拷贝一个已有的文本样式对象。 |
+| [OH_Drawing_TextShadow* OH_Drawing_CopyTextShadow(OH_Drawing_TextShadow* shadow)](#oh_drawing_copytextshadow) | 创建一个文本阴影的对象副本，用于拷贝一个已有的文本阴影对象。 |
 
 ## 枚举类型说明
 
@@ -388,6 +394,26 @@ enum OH_Drawing_PlaceholderVerticalAlignment
 | ALIGNMENT_TOP_OF_ROW_BOX | 行框顶部对齐。 |
 | ALIGNMENT_BOTTOM_OF_ROW_BOX | 行框底部对齐。 |
 | ALIGNMENT_CENTER_OF_ROW_BOX | 行框中心对齐。 |
+| ALIGNMENT_FOLLOW_PARAGRAPH<sup>20+</sup> | 跟随文本垂直对齐方式。 |
+
+### OH_Drawing_TextVerticalAlignment
+
+```
+enum OH_Drawing_TextVerticalAlignment
+```
+
+**描述**
+
+垂直对齐方式枚举。
+
+**起始版本：** 20
+
+| 枚举项 | 描述 |
+| -- | -- |
+| TEXT_VERTICAL_ALIGNMENT_BASELINE | 基线对齐。 |
+| TEXT_VERTICAL_ALIGNMENT_BOTTOM | 底部对齐。 |
+| TEXT_VERTICAL_ALIGNMENT_CENTER | 居中对齐。 |
+| TEXT_VERTICAL_ALIGNMENT_TOP | 顶部对齐。 |
 
 ### OH_Drawing_TextDecorationStyle
 
@@ -5562,3 +5588,126 @@ void OH_Drawing_SetTypographyTextAutoSpace(OH_Drawing_TypographyStyle *style, bo
 | -- | -- |
 | [OH_Drawing_TypographyStyle](capi-drawing-oh-drawing-typographystyle.md) *style | 表示指向[OH_Drawing_TypographyStyle](capi-drawing-oh-drawing-typographystyle.md)对象的指针，由[OH_Drawing_CreateTypographyStyle](capi-drawing-text-typography-h.md#oh_drawing_createtypographystyle)获取。 |
 | bool enableAutoSpace | 设置文本排版时是否使能自动间距。true表示使能自动间距，false表示不使能自动间距，默认值为false。 |
+
+### OH_Drawing_TypographyUpdateDecorationColor()
+
+```
+void OH_Drawing_TypographyUpdateDecorationColor(OH_Drawing_Typography* typography, uint32_t color)
+```
+
+**描述**
+
+更新排版对象中的文本装饰线颜色。<br> 使用该接口更新文本装饰线颜色属性后，可直接使用[OH_Drawing_TypographyPaint](capi-drawing-text-typography-h.md#oh_drawing_typographypaint)进行绘制生效。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 20
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [OH_Drawing_Typography](capi-drawing-oh-drawing-typography.md)* typography | 表示指向排版对象[OH_Drawing_Typography](capi-drawing-oh-drawing-typography.md)的指针，由[OH_Drawing_CreateTypography](capi-drawing-text-typography-h.md#oh_drawing_createtypography)获取。 |
+| uint32_t color | 表示更新后的文本装饰线颜色。 |
+
+### OH_Drawing_SetTypographyVerticalAlignment()
+
+```
+void OH_Drawing_SetTypographyVerticalAlignment(OH_Drawing_TypographyStyle* style,OH_Drawing_TextVerticalAlignment align)
+```
+
+**描述**
+
+设置文本垂直对齐方式。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 20
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [OH_Drawing_TypographyStyle](capi-drawing-oh-drawing-typographystyle.md)* style | 表示指向[OH_Drawing_TypographyStyle](capi-drawing-oh-drawing-typographystyle.md)对象的指针，由[OH_Drawing_CreateTypographyStyle](capi-drawing-text-typography-h.md#oh_drawing_createtypographystyle)获取。 |
+| [OH_Drawing_TextVerticalAlignment](capi-drawing-text-typography-h.md#oh_drawing_textverticalalignment) align | 设置文本垂直对齐方式。默认为基线对齐，其余对齐方式见[OH_Drawing_TextVerticalAlignment](capi-drawing-text-typography-h.md#oh_drawing_textverticalalignment)。 |
+
+### OH_Drawing_CopyTypographyStyle()
+
+```
+OH_Drawing_TypographyStyle* OH_Drawing_CopyTypographyStyle(OH_Drawing_TypographyStyle* style)
+```
+
+**描述**
+
+创建一个段落样式的对象副本，用于拷贝一个已有的段落样式对象。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 20
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [OH_Drawing_TypographyStyle](capi-drawing-oh-drawing-typographystyle.md)* style | 指向被拷贝对象[OH_Drawing_TypographyStyle](capi-drawing-oh-drawing-typographystyle.md)的指针。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [OH_Drawing_TypographyStyle](capi-drawing-oh-drawing-typographystyle.md)* | 返回拷贝的[OH_Drawing_TypographyStyle](capi-drawing-oh-drawing-typographystyle.md)对象指针。如果返回空指针，表示创建失败；可能的原因是无可用内存，或者style为空指针。不再需要时，请使用[OH_Drawing_DestroyTypographyStyle](capi-drawing-text-typography-h.md#oh_drawing_destroytypographystyle)释放该对象指针。 |
+
+### OH_Drawing_CopyTextStyle()
+
+```
+OH_Drawing_TextStyle* OH_Drawing_CopyTextStyle(OH_Drawing_TextStyle* style)
+```
+
+**描述**
+
+创建一个文本样式的对象副本，用于拷贝一个已有的文本样式对象。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 20
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [OH_Drawing_TextStyle](capi-drawing-oh-drawing-textstyle.md)* style | 指向被拷贝对象[OH_Drawing_TextStyle](capi-drawing-oh-drawing-textstyle.md)的指针。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [OH_Drawing_TextStyle](capi-drawing-oh-drawing-textstyle.md)* | 返回拷贝的[OH_Drawing_TextStyle](capi-drawing-oh-drawing-textstyle.md)对象指针。如果返回空指针，表示创建失败；可能的原因是无可用内存，或者style为空指针。不再需要时，请使用[OH_Drawing_DestroyTextStyle](capi-drawing-text-typography-h.md#oh_drawing_destroytextstyle)释放该对象指针。 |
+
+### OH_Drawing_CopyTextShadow()
+
+```
+OH_Drawing_TextShadow* OH_Drawing_CopyTextShadow(OH_Drawing_TextShadow* shadow)
+```
+
+**描述**
+
+创建一个文本阴影的对象副本，用于拷贝一个已有的文本阴影对象。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 20
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [OH_Drawing_TextShadow](capi-drawing-oh-drawing-textshadow.md)* shadow | 指向被拷贝对象[OH_Drawing_TextShadow](capi-drawing-oh-drawing-textshadow.md)的指针。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [OH_Drawing_TextShadow](capi-drawing-oh-drawing-textshadow.md)* | 返回拷贝的[OH_Drawing_TextShadow](capi-drawing-oh-drawing-textshadow.md)对象指针。如果返回空指针，表示创建失败；可能的原因是无可用内存，或者shadow为空指针。不再需要时，请使用[OH_Drawing_DestroyTextShadow](capi-drawing-text-typography-h.md#oh_drawing_destroytextshadow)释放该对象指针。 |
