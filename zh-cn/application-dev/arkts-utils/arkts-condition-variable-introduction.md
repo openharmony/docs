@@ -51,11 +51,11 @@ struct Index {
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
-            // 创建conditionVariableR对象
+            // 创建conditionVariable对象
             const conditionVariable: ArkTSUtils.locks.ConditionVariable = new ArkTSUtils.locks.ConditionVariable();
             // 将实例conditionVariable传递给wait线程
             taskpool.execute(wait, conditionVariable);
-            // 将实例conditionVariable传递给notify线程，唤醒wait线程，日志输出"TaskPool Thread Wait: success"
+            // 将实例conditionVariable传递给notifyAll线程，唤醒wait线程，日志输出"TaskPool Thread Wait: success"
             taskpool.execute(notifyAll, conditionVariable);
             // 将实例conditionVariable传递给waitFor线程
             taskpool.execute(waitFor, conditionVariable);
@@ -67,7 +67,7 @@ struct Index {
                 ArkTSUtils.locks.ConditionVariable.request("Request1");
             // 将实例conditionVariableRequest传递给wait线程
             taskpool.execute(wait, conditionVariableRequest);
-            // 将实例conditionVariableRequest传递给notify线程，唤醒wait线程，日志输出"TaskPool Thread Wait: success"
+            // 将实例conditionVariableRequest传递给notifyAll线程，唤醒wait线程，日志输出"TaskPool Thread Wait: success"
             taskpool.execute(notifyAll, conditionVariableRequest);
             // 将实例conditionVariableRequest传递给waitFor线程
             taskpool.execute(waitFor, conditionVariableRequest);
