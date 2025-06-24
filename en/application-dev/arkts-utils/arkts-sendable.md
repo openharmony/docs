@@ -10,9 +10,9 @@ Sendable objects are designed to be shareable across threads, maintaining a cons
 
 Unlike other ArkTS objects, Sendable objects must have a fixed type at runtime.
 
-When multiple concurrent instances attempt to update Sendable data at the same time, data races occurs, such as multithreaded operations on [ArkTS shared container](arkts-collections-introduction.md). To prevent data races between concurrent instances, ArkTS provides an [asynchronous lock](arkts-async-lock-introduction.md). Additionally, objects can be frozen using the [object freezing interface](sendable-freeze.md), making them read-only and thereby eliminating the risk of data races.
+When multiple concurrent instances attempt to update Sendable data at the same time, data races occurs, such as multithreaded operations on [ArkTS shared container](arkts-collections-introduction.md). To address data race issues between concurrent instances and manage the timing of multithreaded data processing, ArkTS introduces the mechanism of [asynchronous lock](arkts-async-lock-introduction.md). Additionally, objects can be frozen using the [object freezing interface](sendable-freeze.md), making them read-only and thereby eliminating the risk of data races.
 
-Sendable objects offer efficient communication between concurrent instances by means of pass by reference. They are generally suitable for scenarios where large custom objects need to be transferred between threads, such as when a child thread reads data from a database and returns it to the main thread.
+Sendable objects offer efficient communication between concurrent instances by means of pass by reference. They are generally suitable for scenarios where large custom objects need to be transferred between threads, such as when a child thread reads data from a database and returns it to the main thread. For details about the code implementation, see [Transmitting Large Data Across Concurrent Instances](sendable-guide.md#transmitting-large-data-across-concurrent-instances).
 
 ## Basic Concepts
 
@@ -44,7 +44,9 @@ A Sendable class must meet the following requirements:
 >
 > - Since API version 12, the \@Sendable decorator can be used to verify Sendable functions.
 >
-> - To use a Sendable function in API version 12, you must configure "compatibleSdkVersionStage": "beta3" in the project. Otherwise, the function does not take effect. For details, see [build-profile.json5](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-hvigor-build-profile-V5).
+> - For projects with API version 12, to use the \@Sendable decorator to verify Sendable functions, you must configure "compatibleSdkVersionStage": "beta3" in the project. Otherwise, the Sendable feature does not take effect. For details, see [build-profile.json5](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-hvigor-build-profile-V5).
+>
+> - For projects with API versions later than 12, you can directly use the \@Sendable decorator to verify Sendable functions without any other configuration.
 
 A Sendable function must meet the following requirements:
 
@@ -62,11 +64,12 @@ A Sendable interface must meet the following requirements:
 
 ### Sendable Data Types
 
-- All ArkTS basic data types: boolean, number, string, bigint, null, and undefined.
+- ArkTS basic data types: boolean, number, string, bigint, null, and undefined.
 
 - [Container types](arkts-collections-introduction.md) defined in ArkTS ([@arkts.collections](../reference/apis-arkts/js-apis-arkts-collections.md) must be explicitly introduced).
 
 - [Asynchronous lock objects](arkts-async-lock-introduction.md) defined in ArkTS ([@arkts.utils](../reference/apis-arkts/js-apis-arkts-utils.md) must be explicitly introduced).
+
 
 - Interfaces that inherit from [ISendable](#isendable).
 
@@ -111,13 +114,12 @@ The \@Sendable decorator declares and verifies Sendable classes and functions.
 | \@Sendable Decorator| Description|
 | -------- | -------- |
 | Parameters| None.|
-| Usage restrictions| It can be used only in projects of the stage model and only in .ets files.|
+| Usage restrictions| This decorator can be used only in .ets files of the stage model.|
 | Supported function types| Only regular functions and async functions can be decorated by @Sendable.|
 | Class inheritance restrictions| Sendable classes can only inherit from other Sendable classes. Regular classes cannot inherit from Sendable classes.|
-| Property type restrictions| 1. The following types are supported: string, number, boolean, bigint, null, undefined, Sendable class, collections.Array, collections.Map, collections.Set, and ArkTSUtils.locks.AsyncLock.<br>2. Closure variables are not allowed.<br>3. Private properties defined with \# are not supported; use **private** instead.<br>4. Computed properties are not supported.|
-| Other property restrictions| Member properties must be initialized explicitly. They cannot be followed by exclamation marks (!).|
+| Property type restrictions| 1. The following types are supported: string, number, boolean, bigint, null, undefined, Sendable class, collections, ArkTSUtils.locks.AsyncLoc, and custom Sendable functions.<br>2. Closure variables are not allowed.<br>3. Private properties defined with \# are not supported; use **private** instead.<br>4. Computed properties are not supported.|
+| Other property restrictions| 1. Member properties must be initialized explicitly. The exclamation mark (!) cannot be used.<br>2. Adding or deleting properties is not allowed. Modifying properties is allowed, but the type must remain consistent before and after modification. Modifying methods is not supported.|
 | Parameter restrictions for decorated functions or class methods| Local variables, parameters, and variables imported through **import** are allowed. Closure variables are not allowed, except for top-level Sendable classes and functions.|
-| Restrictions for Sendable classes and functions| Adding or deleting properties is not allowed. Modifying properties is allowed, but the type must remain consistent before and after modification. Modifying methods is not supported.|
 | Use scenario| 1. Scenarios where class methods or Sendable functions are used in TaskPool or Worker.<br>2. Scenarios involving large amounts of object data transmission. The time required for serialization increases with the data volume. After transforming data with Sendable, the efficiency of transmitting 100 KB of data is approximately 20 times higher, and for 1 MB of data, it is about 100 times higher.|
 
 The following is an example of using the decorator on a class:

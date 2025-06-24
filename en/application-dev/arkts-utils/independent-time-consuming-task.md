@@ -23,7 +23,7 @@ This example uses image loading to illustrate the process.
    // IndependentTask.ets
    import { IconItemSource } from './IconItemSource';
     
-   // Methods executed in the task must be decorated by @Concurrent. Otherwise, they cannot be called.
+   // Methods executed in the TaskPool thread must be decorated by @Concurrent. Otherwise, they cannot be called.
    @Concurrent
    export function loadPicture(count: number): IconItemSource[] {
      let iconItemSourceList: IconItemSource[] = [];
@@ -64,9 +64,9 @@ This example uses image loading to illustrate the process.
              .onClick(() => {
                let iconItemSourceList: IconItemSource[] = [];
                // Create a task.
-               let lodePictureTask: taskpool.Task = new taskpool.Task(loadPicture, 30);
+               let loadPictureTask: taskpool.Task = new taskpool.Task(loadPicture, 30);
                // Execute the task and return the result.
-               taskpool.execute(lodePictureTask).then((res: object) => {
+               taskpool.execute(loadPictureTask).then((res: object) => {
                  // Execution result of the loadPicture method.
                  iconItemSourceList = res as IconItemSource[];
                })

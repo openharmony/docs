@@ -1,6 +1,6 @@
 # @ohos.taskpool (Starting the Task Pool)
 
-The task pool provides a multi-thread running environment for applications. It helps reduce resource consumption and improve system performance. It also frees you from caring about the lifecycle of thread instances. You can use the **TaskPool** APIs to create background tasks and perform operations on them, for example, executing or canceling a task. Theoretically, you can create an unlimited number of tasks, but this is not recommended for memory considerations. In addition, you are not advised performing blocking operations in a task, especially indefinite blocking. Long-time blocking operations occupy worker threads and may block other task scheduling, adversely affecting your application performance.
+TaskPool provides a multi-thread running environment for applications. It helps reduce resource consumption and improve system performance. It also frees you from caring about the lifecycle of thread instances. You can use the TaskPool APIs to create background tasks and perform operations on them, for example, executing or canceling a task. Theoretically, you can create an unlimited number of tasks, but this is not recommended due to memory limitations. In addition, you are not advised performing blocking operations in a task, especially indefinite blocking. Long-time blocking operations occupy worker threads and may block other task scheduling, adversely affecting your application performance.
 
 You can determine the execution sequence of tasks with the same priority. They are executed in the same sequence as you call the task execution APIs. The default task priority is **MEDIUM**.
 
@@ -123,9 +123,9 @@ taskpool.execute<[number], number>(printArgs, 100).then((value: number) => { // 
   console.info("taskpool result: " + value);
 });
 
-taskpool.execute<[number, string, number], string>(testWithThreeParams, 100, "test", 100).then((value: string) => {})
+taskpool.execute<[number, string, number], string>(testWithThreeParams, 100, "test", 100).then((value: string) => {});
 
-taskpool.execute<[[number, string]], string>(testWithArray, [100, "test"]).then((value: string) => {})
+taskpool.execute<[[number, string]], string>(testWithArray, [100, "test"]).then((value: string) => {});
 ```
 
 
@@ -201,7 +201,7 @@ Verifies the passed-in parameter types and return value type of a concurrent fun
 
 | Name  | Type                 | Mandatory| Description                                      |
 | -------- | --------------------- | ---- | ---------------------------------------- |
-| task     | [GenericsTask](#genericstask13)         | Yes  | Generic task to be executed.                 |
+| task     | [GenericsTask<A, R>](#genericstask13)         | Yes  | Generic task to be executed.                 |
 | priority | [Priority](#priority) | No  | Priority of the task. The default value is **taskpool.Priority.MEDIUM**.|
 
 **Return value**
@@ -346,7 +346,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 // import BusinessError
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Concurrent
 function printArgs(args: number): void {
@@ -379,7 +379,7 @@ Verifies the passed-in parameter types and return value type of a concurrent fun
 | Name      | Type         | Mandatory| Description                |
 | ----------- | ------------- | ---- | -------------------- |
 | delayTime   | number        | Yes  | Delay, in ms. |
-| task        | [GenericsTask](#genericstask13) | Yes  | Generic task to be executed with a delay.|
+| task        | [GenericsTask\<A, R>](#genericstask13) | Yes  | Generic task to be executed with a delay.|
 | priority    | [Priority](#priority)       | No  | Priority of the task. The default value is **taskpool.Priority.MEDIUM**.|
 
 **Return value**
@@ -428,6 +428,7 @@ Executes a task periodically.
 In this execution mode, you can set the task priority and call **cancel()** to cancel the execution.
 
 A periodic task cannot be a task in a task group or serial queue. It cannot call **execute()** again or have a dependency relationship.
+
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -513,7 +514,7 @@ Verifies the passed-in parameter types and return value type of a concurrent fun
 | Name      | Type         | Mandatory | Description                |
 | -----------  | ------------- | ----- | -------------------- |
 | period       | number        | Yes   | Execution period, in ms. |
-| task         | [GenericsTask](#genericstask13) | Yes   | Generic task to be executed periodically.|
+| task         | [GenericsTask\<A, R>](#genericstask13) | Yes   | Generic task to be executed periodically.|
 | priority     | [Priority](#priority) | No  | Priority of the task. The default value is **taskpool.Priority.MEDIUM**.|
 
 
@@ -576,7 +577,7 @@ taskpoolTest();
 
 cancel(task: Task): void
 
-Cancels a task in the task pool. If the task is in the internal queue of the task pool, the task will not be executed after being canceled, and **undefined** is returned. If the task has been distributed to the worker thread of the task pool, canceling the task does not affect the task execution, and the execution result is returned in the catch branch. You can use **isCanceled()** to check the task cancellation status. In other words, **taskpool.cancel** takes effect before **taskpool.execute** or **taskpool.executeDelayed** is called.
+Cancels a task in the task pool. If the task is in the internal queue of the task pool, the task will not be executed after being canceled, and undefined is returned. If the task has been distributed to the worker thread of the task pool, canceling the task does not affect the task execution, and the execution result is returned in the catch branch. You can use **isCanceled()** to check the task cancellation status. In other words, **taskpool.cancel** takes effect before **taskpool.execute** or **taskpool.executeDelayed** is called.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -629,7 +630,7 @@ function concurrentFunc() {
   let task4: taskpool.Task = new taskpool.Task(inspectStatus, 400); // 400: test number
   let task5: taskpool.Task = new taskpool.Task(inspectStatus, 500); // 500: test number
   let task6: taskpool.Task = new taskpool.Task(inspectStatus, 600); // 600: test number
-  taskpool.execute(task1).then((res: Object)=>{
+  taskpool.execute(task1).then((res: Object) => {
     console.info("taskpool test result: " + res);
   });
   taskpool.execute(task2);
@@ -638,7 +639,7 @@ function concurrentFunc() {
   taskpool.execute(task5);
   taskpool.execute(task6);
   // Cancel the task 1s later.
-  setTimeout(()=>{
+  setTimeout(() => {
     try {
       taskpool.cancel(task1);
     } catch (e) {
@@ -693,13 +694,13 @@ function concurrentFunc() {
   taskGroup1.addTask(printArgs, 10); // 10: test number
   let taskGroup2: taskpool.TaskGroup = new taskpool.TaskGroup();
   taskGroup2.addTask(printArgs, 100); // 100: test number
-  taskpool.execute(taskGroup1).then((res: Array<Object>)=>{
+  taskpool.execute(taskGroup1).then((res: Array<Object>) => {
     console.info("taskGroup1 res is:" + res);
   });
-  taskpool.execute(taskGroup2).then((res: Array<Object>)=>{
+  taskpool.execute(taskGroup2).then((res: Array<Object>) => {
     console.info("taskGroup2 res is:" + res);
   });
-  setTimeout(()=>{
+  setTimeout(() => {
     try {
       taskpool.cancel(taskGroup2);
     } catch (e) {
@@ -750,7 +751,7 @@ function longTask(arg: number): number {
 
 function concurrentFunc() {
   let task1: taskpool.LongTask = new taskpool.LongTask(longTask, 1000); // 1000: sleep time
-  taskpool.execute(task1).then((res: Object)=>{
+  taskpool.execute(task1).then((res: Object) => {
     taskpool.terminateTask(task1);
     console.info("taskpool longTask result: " + res);
   });
@@ -779,7 +780,7 @@ Checks whether a function is a concurrent function.
 
 | Type   | Description                                |
 | ------- | ------------------------------------ |
-| boolean | **true**: The function is a concurrent function, that is, a function decorated with [@Concurrent](../../arkts-utils/taskpool-introduction.md#concurrent-decorator).<br>**false**: The function is not a concurrent function.|
+| boolean | Check result. The value **true** is returned if the function is a concurrent function, that is, a function decorated with [@Concurrent](../../arkts-utils/taskpool-introduction.md#concurrent-decorator); otherwise, **false** is returned.|
 
 **Error codes**
 
@@ -795,8 +796,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 @Concurrent
 function test() {}
 
-let result: Boolean = taskpool.isConcurrent(test)
-console.info("result is: " + result)
+let result: Boolean = taskpool.isConcurrent(test);
+console.info("result is: " + result);
 ```
 
 ## taskpool.getTaskPoolInfo<sup>10+</sup>
@@ -872,23 +873,22 @@ for (let i: number = 0; i < taskArray.length; i+=4) { // 4: Four tasks are execu
 
 ## Task
 
-Implements a task. Before calling any APIs in **Task**, you must use [constructor](#constructor) to create a **Task** instance. A task can be executed for multiple times, placed in a task group or serial queue for execution, or added with dependencies for execution.
+Implements a task, which is created by running [constructor](#constructor). A task can be executed for multiple times, placed in a task group or serial queue for execution, or added with dependencies for execution.
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.Utils.Lang
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-| Name                | Type      | Readable| Writable| Description                                                        |
+| Name                | Type      | Read-Only| Optional| Description                                                        |
 | -------------------- | --------- | ---- | ---- | ------------------------------------------------------------ |
-| function             | Function  | Yes  | Yes  | Function to be passed in during task creation. For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types).|
-| arguments            | Object[]  | Yes  | Yes  | Arguments of the function. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types). |
-| name<sup>11+</sup>   | string    | Yes  | No  | Name of the task specified when the task is created. |
-| totalDuration<sup>11+</sup>  | number    | Yes  | No  | Total execution time of the task. |
-| ioDuration<sup>11+</sup>     | number    | Yes  | No  | Asynchronous I/O time of the task. |
-| cpuDuration<sup>11+</sup>    | number    | Yes  | No  | CPU time of the task. |
-
+| function             | Function  | No  | No  | Function to be passed in during task creation. For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types).|
+| arguments            | Object[]  | No  | Yes  | Arguments of the function. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
+| name<sup>11+</sup>   | string    | Yes  | No  | Name of the task specified when the task is created.|
+| totalDuration<sup>11+</sup>  | number    | Yes  | No  | Total execution time of the task. in ms.|
+| ioDuration<sup>11+</sup>     | number    | Yes  | No  | Asynchronous I/O time of the task. in ms.|
+| cpuDuration<sup>11+</sup>    | number    | Yes  | No  | CPU time of the task. in ms.|
 ### constructor
 
 constructor(func: Function, ...args: Object[])
@@ -982,7 +982,7 @@ Checks whether the running task is canceled. Before using this API, you must cre
 
 | Type   | Description                                |
 | ------- | ------------------------------------ |
-| boolean | Returns **true** if the running task is canceled; returns **false** otherwise.|
+| boolean | Check result. The value **true** is returned if the running task is canceled; otherwise, **false** is returned.|
 
 **Example**
 
@@ -1028,7 +1028,7 @@ function inspectStatus(arg: number): number {
 }
 
 let task: taskpool.Task = new taskpool.Task(inspectStatus, 100); // 100: test number
-taskpool.execute(task).then((res: Object)=>{
+taskpool.execute(task).then((res: Object) => {
   console.info("taskpool test result: " + res);
 }).catch((err: string) => {
   console.error("taskpool test occur error: " + err);
@@ -1088,9 +1088,9 @@ console.info("testTransfer view1 byteLength: " + view1.byteLength);
 
 let task: taskpool.Task = new taskpool.Task(testTransfer, view, view1);
 task.setTransferList([view.buffer, view1.buffer]);
-taskpool.execute(task).then((res: Object)=>{
+taskpool.execute(task).then((res: Object) => {
   console.info("test result: " + res);
-}).catch((e: string)=>{
+}).catch((e: string) => {
   console.error("test catch: " + e);
 })
 console.info("testTransfer view2 byteLength: " + view.byteLength);
@@ -1168,7 +1168,7 @@ export class BaseClass {
     this.num1 = num;
   }
 
-  constructor(){
+  constructor() {
     console.info(this.str);
     this.isDone1 = true;
   }
@@ -1189,10 +1189,10 @@ export class DeriveClass extends BaseClass {
 <!--code_no_check-->
 ```ts
 // index.ets
-// The host thread (UI main thread) calls the methods of BaseClass and DeriveClass in the task pool thread and accesses their attributes.
-import { taskpool } from '@kit.ArkTS'
-import { BusinessError } from '@kit.BasicServicesKit'
-import { BaseClass, DeriveClass } from './sendable'
+// The host thread (UI main thread) calls the methods of BaseClass and DeriveClass in the task pool thread and accesses their properties.
+import { taskpool } from '@kit.ArkTS';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { BaseClass, DeriveClass } from './sendable';
 
 @Concurrent
 function testFunc(arr: Array<BaseClass>, num: number): number {
@@ -1215,7 +1215,7 @@ function printLog(arr: Array<DeriveClass>): void {
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World'
+  @State message: string = 'Hello World';
 
   build() {
     Row() {
@@ -1224,7 +1224,7 @@ struct Index {
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
         Button() {
-          Text("TaskPool Test")
+          Text("TaskPool Test");
         }.onClick(() => {
           // task1 calls BaseClass.str1/BaseClass.SetNum/BaseClass.GetNum/BaseClass.isDone1/BaseClass.publicFunc.
           let baseInstance1: BaseClass = new BaseClass();
@@ -1270,7 +1270,7 @@ Sends data to the host thread and triggers the registered callback. Before using
 > **NOTE**
 >
 > - The API is called in the TaskPool thread.
-> - Do not use this API in a callback function.
+> - Do not use this API in a callback function. Otherwise, messages may fail to be sent to the host thread.
 > - Before calling this API, ensure that the callback function for processing data has been registered in the host thread.
 
 **System capability**: SystemCapability.Utils.Lang
@@ -1425,7 +1425,7 @@ task1.addDependency(task2);
 task2.addDependency(task3);
 console.info("dependency: add dependency end");
 
-console.info("dependency: start execute second")
+console.info("dependency: start execute second");
 taskpool.execute(task1).then(() => {
   console.info("dependency: second task1 success");
 })
@@ -1470,7 +1470,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 function delay(args: number): number {
   let t: number = Date.now();
   while ((Date.now() - t) < 1000) {
-	continue;
+    continue;
   }
   return args;
 }
@@ -1488,7 +1488,7 @@ task1.removeDependency(task2);
 task2.removeDependency(task3);
 console.info("dependency: remove dependency end");
 
-console.info("dependency: start execute")
+console.info("dependency: start execute");
 taskpool.execute(task1).then(() => {
   console.info("dependency: task1 success");
 })
@@ -1535,17 +1535,17 @@ import { taskpool } from '@kit.ArkTS'
 function delay(args: number): number {
   let t: number = Date.now();
   while ((Date.now() - t) < 1000) {
-	continue;
+    continue;
   }
   return args;
 }
 
 let task: taskpool.Task = new taskpool.Task(delay, 1);
-task.onEnqueued(()=>{
-  console.info("taskpool: onEnqueued")
+task.onEnqueued(() => {
+  console.info("taskpool: onEnqueued");
 });
-taskpool.execute(task).then(()=> {
-  console.info("taskpool: execute task success")
+taskpool.execute(task).then(() => {
+  console.info("taskpool: execute task success");
 });
 ```
 
@@ -1578,23 +1578,23 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { taskpool } from '@kit.ArkTS'
+import { taskpool } from '@kit.ArkTS';
 
 @Concurrent
 function delay(args: number): number {
   let t: number = Date.now();
   while ((Date.now() - t) < 1000) {
-	continue;
+	  continue;
   }
   return args;
 }
 
 let task: taskpool.Task = new taskpool.Task(delay, 1);
-task.onStartExecution(()=>{
-  console.info("taskpool: onStartExecution")
+task.onStartExecution(() => {
+  console.info("taskpool: onStartExecution");
 });
-taskpool.execute(task).then(()=> {
-  console.info("taskpool: execute task success")
+taskpool.execute(task).then(() => {
+  console.info("taskpool: execute task success");
 });
 ```
 
@@ -1626,13 +1626,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { taskpool } from '@kit.ArkTS'
-import { BusinessError } from '@kit.BasicServicesKit'
-import { HashMap } from '@kit.ArkTS'
+import { taskpool } from '@kit.ArkTS';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { HashMap } from '@kit.ArkTS';
 
 @Concurrent
-function test(args:number) {
-  let t = Date.now()
+function test(args: number) {
+  let t = Date.now();
   while ((Date.now() - t) < 100) {
     continue;
   }
@@ -1642,12 +1642,12 @@ function test(args:number) {
 }
 
 let task2 = new taskpool.Task(test, 1);
-task2.onExecutionFailed((e:Error)=>{
+task2.onExecutionFailed((e: Error) => {
   console.info("taskpool: onExecutionFailed error is " + e);
 })
-taskpool.execute(task2).then(()=>{
-  console.info("taskpool: execute task success")
-}).catch((e:BusinessError)=>{
+taskpool.execute(task2).then(() => {
+  console.info("taskpool: execute task success");
+}).catch((e:BusinessError) => {
   console.error(`taskpool: error code: ${e.code}, error info: ${e.message}`);
 })
 ```
@@ -1680,7 +1680,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import { taskpool } from '@kit.ArkTS'
+import { taskpool } from '@kit.ArkTS';
 
 @Concurrent
 function delay(args: number): number {
@@ -1692,11 +1692,11 @@ function delay(args: number): number {
 }
 
 let task: taskpool.Task = new taskpool.Task(delay, 1);
-task.onExecutionSucceeded(()=>{
-  console.info("taskpool: onExecutionSucceeded")
+task.onExecutionSucceeded(() => {
+  console.info("taskpool: onExecutionSucceeded");
 });
-taskpool.execute(task).then(()=> {
-  console.info("taskpool: execute task success")
+taskpool.execute(task).then(() => {
+  console.info("taskpool: execute task success");
 });
 ```
 
@@ -1714,7 +1714,7 @@ Checks whether the task is complete.
 
 | Type   | Description                                |
 | ------- | ------------------------------------ |
-| boolean | **true**: The task is complete.<br>**false**: The task is not complete.|
+| boolean | Check result. The value **true** is returned if the task is complete; otherwise, **false** is returned.|
 
 **Example**
 
@@ -1731,13 +1731,13 @@ function inspectStatus(arg: number): number {
 
 async function taskpoolCancel(): Promise<void> {
   let task: taskpool.Task = new taskpool.Task(inspectStatus, 100); // 100: test number
-  taskpool.execute(task).then((res: Object)=>{
+  taskpool.execute(task).then((res: Object) => {
     console.info("taskpool test result: " + res);
   }).catch((err: string) => {
     console.error("taskpool test occur error: " + err);
   });
 
-  setTimeout(()=>{
+  setTimeout(() => {
     if (!task.isDone()) {
       taskpool.cancel(task);
     }
@@ -1767,6 +1767,7 @@ Describes a callback function with an error message.
 **System capability**: SystemCapability.Utils.Lang
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
 **Parameters**
 
 | Name| Type  | Mandatory| Description              |
@@ -1800,7 +1801,6 @@ let task: taskpool.LongTask = new taskpool.LongTask(printArgs, "this is my first
 **System capability**: SystemCapability.Utils.Lang
 
 Implements a generic task. **GenericsTask** inherits from [Task](#task).
-
 During the creation of a generic task, the passed-in parameter types and return value types of concurrent functions are verified in the compilation phase. Other behaviors are the same as those during the creation of a task.
 
 ### constructor<sup>13+</sup>
@@ -1898,7 +1898,7 @@ let name: string = task.name;
 
 ## TaskGroup<sup>10+</sup>
 
-Implements a task group, in which tasks are associated with each other and all tasks are executed at a time. If all the tasks are executed normally, an array of task results is returned asynchronously, and the sequence of elements in the array is the same as the sequence of tasks added by calling [addTask](#addtask10-1). If any task fails, the corresponding exception is thrown. A task group can be executed for multiple times, but no task can be added after the task group is executed. Before calling any APIs in **TaskGroup**, you must use [constructor](#constructor10) to create a **TaskGroup** instance.
+Implements a task group, in which tasks are associated with each other and all tasks are executed at a time. If all the tasks are executed normally, an array of task results is returned asynchronously, and the sequence of elements in the array is the same as the sequence of tasks added by calling [addTask](#addtask10-1). If any task fails, the corresponding exception is thrown. If multiple tasks in the task group fail, the exception of the first failed task is thrown. A task group can be executed for multiple times, but no task can be added after the task group is executed. A task group is created by running [constructor](#constructor10).
 
 ### constructor<sup>10+</sup>
 
@@ -1991,7 +1991,7 @@ taskGroup.addTask(printArgs, 100); // 100: test number
 
 addTask(task: Task): void
 
-Adds a created task to this task group. Before using this API, you must create a **TaskGroup** instance. Tasks in another task group or serial queue, dependent tasks, continuous tasks, tasks that have been executed, and periodic tasks cannot be added to the task group.
+Adds a created task to this task group. Before using this API, you must create a **TaskGroup** instance. Tasks in another task group, serial queue, or asynchronous queue, dependent tasks, continuous tasks, tasks that have been executed, and periodic tasks cannot be added to the task group.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2027,19 +2027,19 @@ let task: taskpool.Task = new taskpool.Task(printArgs, 200); // 200: test number
 taskGroup.addTask(task);
 ```
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.Utils.Lang
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-| Name| Type  | Readable| Writable| Description                        |
+| Name| Type  | Read-Only| Optional| Description                        |
 | ---- | ------ | ---- | ---- | ---------------------------- |
-| name<sup>11+</sup> | string | Yes  | Yes  | Name of the task group specified when the task group is created.|
+| name<sup>11+</sup> | string | No  | No  | Name of the task group specified when the task group is created.|
 
 ## SequenceRunner <sup>11+</sup>
 
-Implements a serial queue, in which all tasks are executed in sequence. Before calling any APIs in **SequenceRunner**, you must use [constructor](#constructor11-3) to create a **SequenceRunner** instance.
+Implements a serial queue, in which all tasks are executed in sequence. A serial queue is created by running [constructor](#constructor11-3).
 
 ### constructor<sup>11+</sup>
 
@@ -2149,7 +2149,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 @Concurrent
-function additionDelay(delay:number): void {
+function additionDelay(delay: number): void {
   let start: number = new Date().getTime();
   while (new Date().getTime() - start < delay) {
     continue;
@@ -2159,8 +2159,7 @@ function additionDelay(delay:number): void {
 function waitForRunner(finalString: string): string {
   return finalString;
 }
-async function seqRunner()
-{
+async function seqRunner() {
   let finalString:string = "";
   let task1:taskpool.Task = new taskpool.Task(additionDelay, 3000);
   let task2:taskpool.Task = new taskpool.Task(additionDelay, 2000);
@@ -2206,11 +2205,11 @@ Describes the internal information about a task.
 
 **System capability**: SystemCapability.Utils.Lang
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name    | Type               | Readable| Writable| Description                                                          |
+| Name    | Type               | Read-Only| Optional| Description                                                          |
 | -------- | ------------------ | ---- | ---- | ------------------------------------------------------------- |
 | name<sup>12+</sup> | string             | Yes  | No  | Task name.<br> **Atomic service API**: This API can be used in atomic services since API version 12.                                                   |
 | taskId   | number             | Yes  | No  | Task ID.<br> **Atomic service API**: This API can be used in atomic services since API version 11.                                                    |
@@ -2223,13 +2222,13 @@ Describes the internal information about a worker thread.
 
 **System capability**: SystemCapability.Utils.Lang
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.Utils.Lang
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-| Name    | Type                   | Readable| Writable| Description                                                     |
+| Name    | Type                   | Read-Only| Optional| Description                                                     |
 | -------- | ---------------------- | ---- | ---- | -------------------------------------------------------- |
 | tid      | number                 | Yes  | No  | ID of the worker thread. If the return value is empty, no task is running.             |
 | taskIds  | number[]               | Yes  | No  | IDs of tasks running on the calling thread. If the return value is empty, no task is running.  |
@@ -2241,13 +2240,13 @@ Describes the internal information about a task pool.
 
 **System capability**: SystemCapability.Utils.Lang
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.Utils.Lang
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-| Name         | Type                             | Readable| Writable| Description                 |
+| Name         | Type                             | Read-Only| Optional| Description                 |
 | ------------- | -------------------------------- | ---- | ---- | -------------------- |
 | threadInfos   | [ThreadInfo[]](#threadinfo10)    | Yes  | No  | Internal information about the worker threads.  |
 | taskInfos     | [TaskInfo[]](#taskinfo10)        | Yes  | No  | Internal information about the tasks.      |
@@ -2554,7 +2553,7 @@ let taskId: number = 0;
 let state: number = 0;
 let duration: number = 0;
 let name: string = "";
-let threadIS = Array.from(taskpoolInfo.threadInfos)
+let threadIS = Array.from(taskpoolInfo.threadInfos);
 for (let threadInfo of threadIS) {
   tid = threadInfo.tid;
   if (threadInfo.taskIds != undefined && threadInfo.priority != undefined) {
@@ -2563,7 +2562,7 @@ for (let threadInfo of threadIS) {
   }
   console.info("taskpool---tid is:" + tid + ", taskIds is:" + taskIds + ", priority is:" + priority);
 }
-let taskIS = Array.from(taskpoolInfo.taskInfos)
+let taskIS = Array.from(taskpoolInfo.taskInfos);
 for (let taskInfo of taskIS) {
   taskId = taskInfo.taskId;
   state = taskInfo.state;

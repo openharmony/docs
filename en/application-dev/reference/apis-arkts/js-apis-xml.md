@@ -1,6 +1,6 @@
 # @ohos.xml (XML Parsing and Generation)
 
-The **XML** module provides a series of APIs for converting XML text into JavaScript objects and generating and parsing XML files.
+The xml module provides APIs for generating and parsing XML files.
 
 > **NOTE**
 >
@@ -35,7 +35,7 @@ A constructor used to create an **XmlSerializer** instance.
 
 | Name  | Type                             | Mandatory| Description                                            |
 | -------- | --------------------------------- | ---- | ------------------------------------------------ |
-| buffer   | ArrayBuffer \| DataView | Yes  | **ArrayBuffer** or **DataView** for storing the XML information to set.|
+| buffer   | ArrayBuffer \| DataView | Yes  | ArrayBuffer or DataView for storing the XML information to set.|
 | encoding | string                            | No  | Encoding format. The default value is **'utf-8'** (the only format currently supported).              |
 
 **Error codes**
@@ -61,7 +61,7 @@ Sets an attribute.
 
 > **NOTE**
 >
-> This API does not perform standard XML verification on the data added. Ensure that the data to add complies with the XML specifications. For example, as stipulated in the specifications, you are not allowed to add an attribute name starting with a digit or add multiple attribute names with the same name.
+> This API does not perform standard XML verification on the data to add. Ensure that the data complies with the XML specifications. For example, as stipulated in the specifications, you are not allowed to add an attribute name starting with a digit or add multiple attributes with the same name.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -105,7 +105,7 @@ Adds an empty element.
 
 > **NOTE**
 >
-> This API does not perform standard XML verification on the data added. Ensure that the data to add complies with the XML specifications. For example, as stipulated in the specifications, you are not allowed to add an attribute name starting with a digit.
+> This API does not perform standard XML verification on the data to add. Ensure that the data complies with the XML specifications. For example, as stipulated in the specifications, you are not allowed to add an attribute name starting with a digit.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -115,7 +115,7 @@ Adds an empty element.
 
 | Name| Type  | Mandatory| Description              |
 | ------ | ------ | ---- | ------------------ |
-| name   | string | Yes  | Name of the empty element to add.|
+| name   | string | Yes  | Name of the element.|
 
 **Error codes**
 
@@ -166,13 +166,13 @@ console.log(result);
 
 startElement(name: string): void
 
-Writes the start tag based on the given element name.
+Adds the start tag based on the given element name.
 
 > **NOTE**
 >
 >- After calling this API, you must call [endElement](#endelement) to write the end flag to ensure that the node is closed correctly.
 >
->- This API does not perform standard XML verification on the data added. Ensure that the data to add complies with the XML specifications. For example, as stipulated in the specifications, you are not allowed to add an attribute name starting with a digit.
+>- This API does not perform standard XML verification on the data to add. Ensure that the data complies with the XML specifications. For example, as stipulated in the specifications, you are not allowed to add an attribute name starting with a digit.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -212,7 +212,7 @@ console.log(result);
 
 endElement(): void
 
-Writes the end tag of the element.
+Adds the end tag of the element.
 
 > **NOTE**
 >
@@ -246,7 +246,7 @@ Sets the namespace for an element tag.
 
 > **NOTE**
 >
-> This API does not perform standard XML verification on the data added. Ensure that the data to add complies with the XML specifications. For example, as stipulated in the specifications, you are not allowed to add a namespace starting with a digit or set multiple namespaces for the same element.
+> This API does not perform standard XML verification on the data to add. Ensure that the data complies with the XML specifications. For example, as stipulated in the specifications, you are not allowed to add a namespace starting with a digit or set multiple namespaces for the same element.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -328,7 +328,7 @@ Adds data to the CDATA tag. The structure of the generated CDATA tag is "\<! <![
 
 > **NOTE**
 >
-> This API does not perform standard XML verification on the data added. Ensure that the data to add complies with the XML specifications. For example, as stipulated in the specifications, you are not allowed to add data that contains the string \]\]\> to the CDATA tag.
+> This API does not perform standard XML verification on the data to add. Ensure that the data complies with the XML specifications. For example, as stipulated in the specifications, you are not allowed to add data that contains the string \]\]\> to the CDATA tag.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -545,7 +545,7 @@ Parses XML information.
 
 | Name| Type                         | Mandatory| Description                            |
 | ------ | ----------------------------- | ---- | -------------------------------- |
-| option | [ParseOptions](#parseoptions) | Yes  | Options for controlling and obtaining the parsed information.|
+| option | [ParseOptions](#parseoptions) | Yes  | XML parsing options.|
 
 **Error codes**
 
@@ -598,8 +598,8 @@ Defines the XML parsing options.
 
 | Name                          | Type                                                        | Mandatory| Description                                   |
 | ------------------------------ | ------------------------------------------------------------ | ---- | --------------------------------------- |
-| supportDoctype                 | boolean                                                      | No  | Whether to ignore the document type. The default value is **false**, indicating that the document type is not parsed.|
-| ignoreNameSpace                | boolean                                                      | No  | Whether to ignore the namespace. The default value is **false**, indicating that the namespace is not ignored.|
+| supportDoctype                 | boolean                                                      | No  | Whether to parse the document type. The value **true** means to parse the document type, and **false** means the opposite. The default value is **false**.|
+| ignoreNameSpace                | boolean                                                      | No  | Whether to ignore the namespace. If the namespace is ignored, it will not be parsed. The value **true** means to ignore the namespace, and **false** means the opposite. The default value is **false**.|
 | tagValueCallbackFunction       | (name: string, value: string) =&gt; boolean | No  | Start tag, tag value, and end tag of parsing. The default value is **undefined**, indicating no parsing.|
 | attributeValueCallbackFunction | (name: string, value: string) =&gt; boolean | No  | Parsing attribute and attribute value. The default value is **undefined**, indicating no parsing.|
 | tokenValueCallbackFunction     | (eventType: [EventType](#eventtype), value: [ParseInfo](#parseinfo)) =&gt; boolean | No  | Parsing element's [EventType](#eventtype) and [ParseInfo](#parseinfo). The default value is **undefined**, indicating no parsing.|
@@ -613,7 +613,7 @@ Provides APIs to manage the parsed XML information.
 
 getColumnNumber(): number
 
-Obtains the column line number, starting from 1.
+Obtains the current column number, starting from 1.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -888,7 +888,7 @@ Checks whether the current element is empty.
 
 | Type   | Description                        |
 | ------- | ---------------------------- |
-| boolean | Returns **true** if the element is empty; returns **false** otherwise.|
+| boolean | Check result. The value **true** is returned if the element is empty; otherwise, **false** is returned.|
 
 **Example**
 
@@ -927,7 +927,7 @@ Checks whether the current event contains only whitespace characters.
 
 | Type   | Description                                  |
 | ------- | -------------------------------------- |
-| boolean | Returns **true** if the text event contains only whitespace characters; returns **false** otherwise.|
+| boolean | Check result. The value **true** is returned if the text event contains only whitespace characters; otherwise, **false** is returned.|
 
 **Example**
 

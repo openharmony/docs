@@ -14,7 +14,7 @@ An XML document is composed of the following components:
 - Content: data or nested elements within an element.
 
 
-XML also supports the use of XML Schema Definition (XSD) or Document Type Definition (DTD) to define the structure of documents. This allows you to create custom validation rules to ensure that XML documents adhere to their intended format.
+XML supports the use of XML Schema Definition (XSD) or Document Type Definition (DTD) to define the structure of documents. This allows you to create custom validation rules to ensure that XML documents adhere to their intended format.
 
 
 Additional features of XML include namespaces, entity references, comments, and processing instructions, which enhance its flexibility and applicability across different data scenarios.

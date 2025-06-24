@@ -68,7 +68,7 @@ To convert an XML document into a JavaScript object and obtain the tag values, p
 
    ```ts
    let conv: convertxml.ConvertXML = new convertxml.ConvertXML();
-   let result: object = conv.convertToJSObject(xml, options);
+   let result: object = conv.fastConvertToJSObject(xml, options);
    let strRes: string = JSON.stringify(result); // Convert the JavaScript object into a JSON string for explicit output.
    console.info(strRes);
    ```
@@ -78,8 +78,8 @@ To convert an XML document into a JavaScript object and obtain the tag values, p
    ```json
    strRes:
    {"_declaration":{"_attributes":{"version":"1.0","encoding":"utf-8"}},"_elements":[{"_type":"element","_name":"note",
-    "_attributes":{"importance":"high","logged":"true"},"_elements":[{"_type":"element","_name":"title",
-    "_elements":[{"_type":"text","_text":"Happy"}]},{"_type":"element","_name":"todo",
-    "_elements":[{"_type":"text","_text":"Work"}]},{"_type":"element","_name":"todo",
-    "_elements":[{"_type":"text","_text":"Play"}]}]}]}
+    "_attributes":{"importance":"high","logged":"true"},"_elements":[{"_type":"element","_name":"title","_parent":"note",
+    "_elements":[{"_type":"text","_text":"Happy"}]},{"_type":"element","_name":"todo","_parent":"note","_elements":
+    [{"_type":"text","_text":"Work"}]},{"_type":"element","_name":"todo","_parent":"note","_elements":[{"_type":"text",
+    "_text":"Play"}]}]}]}
    ```
