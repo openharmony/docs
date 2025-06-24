@@ -4999,3 +4999,17 @@
 **支持设备**：Wearable
 
 **起始版本**：20
+
+## ohos.permission.TRIGGER_LOCAL_WANTAGENT
+
+允许系统应用触发本地WantAgent实例。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：General
+
+**起始版本**：20
