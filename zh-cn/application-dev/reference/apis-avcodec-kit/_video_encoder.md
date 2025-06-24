@@ -40,7 +40,7 @@ VideoEncoder模块提供用于视频编码的接口。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_VideoEncodeBitrateMode](#oh_videoencodebitratemode) { CBR = 0, VBR = 1, CQ = 2 } | 视频编码器的码率控制模式。（API14废弃）  | 
+| [OH_VideoEncodeBitrateMode](#oh_videoencodebitratemode-1) { CBR = 0, VBR = 1, CQ = 2 } | 视频编码器的码率控制模式。（API14废弃）  | 
 
 
 ### 函数
