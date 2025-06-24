@@ -98,6 +98,7 @@ struct WebComponent {
 | zoom=scale    zoom=scale,left,top	| 使用浮点或整数值设置缩放和滚动系数。例如：缩放值100表示缩放值为100%。 向左和向上滚动值位于坐标系中，0,0 表示可见页面的左上角，无论文档如何旋转。 |
 | toolbar=1 \| 0 	| 打开或关闭顶部工具栏。 | 
 | navpanes=1 \| 0 	| 打开或关闭侧边导航窗格。 | 
+| pdfbackgroundcolor=color 	| 指定PDF文档背景色，color为标准的六位十六进制RGB（取值范围为000000~ffffff，例如白色为：ffffff）。 |
 
 
 URL示例:  
@@ -108,5 +109,6 @@ https://example.com/test.pdf#zoom=50
 https://example.com/test.pdf#page=3&zoom=200,250,100  
 https://example.com/test.pdf#toolbar=0  
 https://example.com/test.pdf#navpanes=0  
+https://example.com/test.pdf#pdfbackgroundcolor=ffffff
 ```
 <!--RP1--><!--RP1End-->
