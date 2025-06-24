@@ -5271,6 +5271,8 @@ getAppCloneBundleInfo(bundleName: string, appIndex: number, bundleFlags: number,
 
 根据bundleName、分身索引、[bundleFlags](js-apis-bundleManager.md#bundleflag)以及用户ID查询主应用或分身应用的BundleInfo。使用Promise异步回调。
 
+bundleName是调用方自身时不需要权限。
+
 **系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
