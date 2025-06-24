@@ -2545,6 +2545,7 @@
             - [隐私遮罩](reference/apis-arkui/arkui-ts/ts-universal-attributes-obscured.md)
             - [文本通用](reference/apis-arkui/arkui-ts/ts-universal-attributes-text-style.md)
             - [拖拽控制](reference/apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md)
+            - [拖拽排序](reference/apis-arkui/arkui-ts/ts-universal-attributes-drag-sorting.md)
             - [安全区域](reference/apis-arkui/arkui-ts/ts-universal-attributes-expand-safe-area.md)
             - [组件内容填充方式](reference/apis-arkui/arkui-ts/ts-universal-attributes-renderfit.md)
             - [事件独占控制](reference/apis-arkui/arkui-ts/ts-universal-attributes-monopolize-events.md)
@@ -3650,6 +3651,7 @@
           - [流量管理错误码](reference/apis-network-kit/errorcode-net-statistics.md)
           - [VPN错误码](reference/apis-network-kit/errorcode-net-vpn.md)
           - [NetworkSecurity错误码](reference/apis-network-kit/errorcode-net-networkSecurity.md)
+          - [内核错误码](reference/apis-network-kit/errorcode-kernel.md)
       - Telephony Kit（蜂窝通信服务）<!--telephony-api-->
         - ArkTS API<!--telephony-arkts-->
           - [@ohos.telephony.call (拨打电话)](reference/apis-telephony-kit/js-apis-call.md)
