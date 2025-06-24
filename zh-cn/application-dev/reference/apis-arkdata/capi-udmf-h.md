@@ -36,6 +36,7 @@
 | [Udmf_ShareOption](#udmf_shareoption) | Udmf_ShareOption | UDMF支持的设备内使用范围类型枚举。 |
 | [Udmf_FileConflictOptions](#udmf_fileconflictoptions) | Udmf_FileConflictOptions | 定义文件拷贝冲突时的选项。 |
 | [Udmf_ProgressIndicator](#udmf_progressindicator) | Udmf_ProgressIndicator | 定义进度条指示选项，可选择是否采用系统默认进度显示。 |
+| [Udmf_Visibility](#udmf_visibility) | Udmf_Visibility | 定义数据的可见性等级。 |
 
 ### 函数
 
@@ -114,6 +115,8 @@
 | [void OH_UdmfGetDataParams_SetFileConflictOptions(OH_UdmfGetDataParams* params, const Udmf_FileConflictOptions options)](#oh_udmfgetdataparams_setfileconflictoptions) | - | 设置异步请求参数[OH_UdmfGetDataParams](capi-udmf-oh-udmfgetdataparams.md)中的文件冲突选项。 |
 | [void OH_UdmfGetDataParams_SetProgressIndicator(OH_UdmfGetDataParams* params, const Udmf_ProgressIndicator progressIndicator)](#oh_udmfgetdataparams_setprogressindicator) | - | 设置异步请求参数[OH_UdmfGetDataParams](capi-udmf-oh-udmfgetdataparams.md)中的进度条指示选项。 |
 | [void OH_UdmfGetDataParams_SetDataProgressListener(OH_UdmfGetDataParams* params, const OH_Udmf_DataProgressListener dataProgressListener)](#oh_udmfgetdataparams_setdataprogresslistener) | - | 设置异步请求参数[OH_UdmfGetDataParams](capi-udmf-oh-udmfgetdataparams.md)中的监听回调函数。 |
+| [Udmf_Visibility OH_UdmfOptions_GetVisibility(OH_UdmfOptions* pThis)](#oh_udmfoptions_getvisibility) | - | 从数据操作选项[OH_UdmfOptions](capi-udmf-oh-udmfoptions.md)实例中获取数据可见性等级。 |
+| [int OH_UdmfOptions_SetVisibility(OH_UdmfOptions* pThis, Udmf_Visibility visibility)](#oh_udmfoptions_setvisibility) | - | 设置数据操作选项[OH_UdmfOptions](capi-udmf-oh-udmfoptions.md)实例中的数据可见性等级。 |
 
 ## 枚举类型说明
 
@@ -190,8 +193,74 @@ enum Udmf_ProgressIndicator
 | UDMF_NONE = 0 | 不采用系统默认进度显示。 |
 | UDMF_DEFAULT = 1 | 采用系统默认进度显示，500ms内获取数据完成将不会拉起默认进度条。 |
 
+### Udmf_Visibility
+
+```
+enum Udmf_Visibility
+```
+
+**描述**
+
+定义数据的可见性等级。
+
+**起始版本：** 20
+
+| 枚举项 | 描述 |
+| -- | -- |
+| UDMF_ALL | 可见性等级，所有应用可见。 |
+| UDMF_OWN_PROCESS | 可见性等级，仅数据提供者可见。 |
 
 ## 函数说明
+
+
+### OH_UdmfOptions_GetVisibility()
+
+```
+Udmf_Visibility OH_UdmfOptions_GetVisibility(OH_UdmfOptions* pThis)
+```
+
+**描述**
+
+从数据操作选项[OH_UdmfOptions](capi-udmf-oh-udmfoptions.md)实例中获取数据可见性等级。
+
+**起始版本：** 20
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [OH_UdmfOptions](capi-udmf-oh-udmfoptions.md)* pThis | 指向数据操作选项[OH_UdmfOptions](capi-udmf-oh-udmfoptions.md)实例的指针。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [Udmf_Visibility](capi-udmf-h.md#udmf_visibility) | 返回数据可见性等级[Udmf_Visibility](capi-udmf-h.md#udmf_visibility)的值。 |
+
+### OH_UdmfOptions_SetVisibility()
+
+```
+int OH_UdmfOptions_SetVisibility(OH_UdmfOptions* pThis, Udmf_Visibility visibility)
+```
+
+**描述**
+
+设置数据操作选项[OH_UdmfOptions](capi-udmf-oh-udmfoptions.md)实例中的数据可见性等级。
+
+**起始版本：** 20
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [OH_UdmfOptions](capi-udmf-oh-udmfoptions.md)* pThis | 指向数据操作选项[OH_UdmfOptions](capi-udmf-oh-udmfoptions.md)实例的指针。 |
+| [Udmf_Visibility](capi-udmf-h.md#udmf_visibility) visibility | 数据可见性等级[Udmf_Visibility](capi-udmf-h.md#udmf_visibility)参数。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int | 返回执行结果。请参阅错误码定义[Udmf_ErrCode](capi-udmf-err-code-h.md#udmf_errcode)。<br> 若返回UDMF_E_OK，表示执行成功。<br> 若返回UDMF_E_INVALID_PARAM，表示传入了无效参数。 |
 
 ### UDMF_KEY_BUFFER_LEN()
 
