@@ -83,3 +83,38 @@ shortcutManager.getAllShortcutInfoForSelf()
     console.error(`getAllShortcutInfoForSelf errData is errCode:${err.code}  message:${err.message}`);
   });
 ```
+## ShortcutInfo
+
+type ShortcutInfo = _ShortcutInfo
+
+应用[module.json5配置文件](../../quick-start/module-configuration-file.md#shortcuts标签)中定义的快捷方式信息。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Launcher
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_ShortcutInfo](./js-apis-bundleManager-shortcutInfo.md#shortcutinfo) | 应用module.json5配置文件中定义的快捷方式信息。 |
+
+## ShortcutWant
+
+type ShortcutWant = _ShortcutWant
+
+快捷方式内定义的目标[wants](../../quick-start/module-configuration-file.md#wants标签)信息集合。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Launcher
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_ShortcutWant](./js-apis-bundleManager-shortcutInfo.md#shortcutwant) | 快捷方式内定义的目标[wants](../../quick-start/module-configuration-file.md#wants标签)信息集合。 |
+
+## ParameterItem
+
+type ParameterItem = _ParameterItem
+
+快捷方式配置信息中的自定义数据。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Launcher
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_ParameterItem](./js-apis-bundleManager-shortcutInfo.md#parameteritem) | 快捷方式配置信息中的自定义数据。 |
