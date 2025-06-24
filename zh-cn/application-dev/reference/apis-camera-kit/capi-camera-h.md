@@ -20,28 +20,28 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [Camera_Size](capi-camera-size.md) | Camera_Size | 大小参数。 |
-| [Camera_Profile](capi-camera-profile.md) | Camera_Profile | 相机流的配置文件。 |
-| [Camera_FrameRateRange](capi-camera-frameraterange.md) | Camera_FrameRateRange | 帧速率范围。 |
-| [Camera_VideoProfile](capi-camera-videoprofile.md) | Camera_VideoProfile | 录像配置文件。 |
-| [Camera_OutputCapability](capi-camera-outputcapability.md) | Camera_OutputCapability | 相机输出能力。 |
-| [Camera_Device](capi-camera-device.md) | Camera_Device | 相机设备对象。 |
-| [Camera_StatusInfo](capi-camera-statusinfo.md) | Camera_StatusInfo | 相机状态信息。 |
-| [Camera_Point](capi-camera-point.md) | Camera_Point | 点参数。 |
-| [Camera_Location](capi-camera-location.md) | Camera_Location | 拍照位置。 |
-| [Camera_PhotoCaptureSetting](capi-camera-photocapturesetting.md) | Camera_PhotoCaptureSetting | 要设置的拍照捕获选项。 |
-| [Camera_FrameShutterInfo](capi-camera-frameshutterinfo.md) | Camera_FrameShutterInfo | 帧快门回调信息。 |
-| [Camera_CaptureEndInfo](capi-camera-captureendinfo.md) | Camera_CaptureEndInfo | 捕获结束信息。 |
-| [Camera_Rect](capi-camera-rect.md) | Camera_Rect | 矩形定义。 |
-| [Camera_MetadataObject](capi-camera-metadataobject.md) | Camera_MetadataObject | 元数据对象基础。 |
-| [Camera_TorchStatusInfo](capi-camera-torchstatusinfo.md) | Camera_TorchStatusInfo | 手电筒状态信息。 |
-| [Camera_SmoothZoomInfo](capi-camera-smoothzoominfo.md) | Camera_SmoothZoomInfo | 平滑变焦参数信息。 |
-| [Camera_CaptureStartInfo](capi-camera-capturestartinfo.md) | Camera_CaptureStartInfo | 拍照开始信息。 |
-| [Camera_FrameShutterEndInfo](capi-camera-frameshutterendinfo.md) | Camera_FrameShutterEndInfo | 拍照曝光结束信息。 |
-| [Camera_FoldStatusInfo](capi-camera-foldstatusinfo.md) | Camera_FoldStatusInfo | 折叠状态信息。 |
-| [Camera_AutoDeviceSwitchStatusInfo](capi-camera-autodeviceswitchstatusinfo.md) | Camera_AutoDeviceSwitchStatusInfo | 自动设备切换状态信息。 |
-| [Camera_ConcurrentInfo](capi-camera-concurrentinfo.md) | Camera_ConcurrentInfo | 相机并发能力信息。 |
-| [Camera_Manager](capi-camera-manager.md) | Camera_Manager | 相机管理器对象。<br> 可以使用[OH_Camera_GetCameraManager](#oh_camera_getcameramanager)方法创建指针。 |
+| [Camera_Size](capi-oh-camera-camera-size.md) | Camera_Size | 大小参数。 |
+| [Camera_Profile](capi-oh-camera-camera-profile.md) | Camera_Profile | 相机流的配置文件。 |
+| [Camera_FrameRateRange](capi-oh-camera-camera-frameraterange.md) | Camera_FrameRateRange | 帧速率范围。 |
+| [Camera_VideoProfile](capi-oh-camera-camera-videoprofile.md) | Camera_VideoProfile | 录像配置文件。 |
+| [Camera_OutputCapability](capi-oh-camera-camera-outputcapability.md) | Camera_OutputCapability | 相机输出能力。 |
+| [Camera_Device](capi-oh-camera-camera-device.md) | Camera_Device | 相机设备对象。 |
+| [Camera_StatusInfo](capi-oh-camera-camera-statusinfo.md) | Camera_StatusInfo | 相机状态信息。 |
+| [Camera_Point](capi-oh-camera-camera-point.md) | Camera_Point | 点参数。 |
+| [Camera_Location](capi-oh-camera-camera-location.md) | Camera_Location | 拍照位置。 |
+| [Camera_PhotoCaptureSetting](capi-oh-camera-camera-photocapturesetting.md) | Camera_PhotoCaptureSetting | 要设置的拍照捕获选项。 |
+| [Camera_FrameShutterInfo](capi-oh-camera-camera-frameshutterinfo.md) | Camera_FrameShutterInfo | 帧快门回调信息。 |
+| [Camera_CaptureEndInfo](capi-oh-camera-camera-captureendinfo.md) | Camera_CaptureEndInfo | 捕获结束信息。 |
+| [Camera_Rect](capi-oh-camera-camera-rect.md) | Camera_Rect | 矩形定义。 |
+| [Camera_MetadataObject](capi-oh-camera-camera-metadataobject.md) | Camera_MetadataObject | 元数据对象基础。 |
+| [Camera_TorchStatusInfo](capi-oh-camera-camera-torchstatusinfo.md) | Camera_TorchStatusInfo | 手电筒状态信息。 |
+| [Camera_SmoothZoomInfo](capi-oh-camera-camera-smoothzoominfo.md) | Camera_SmoothZoomInfo | 平滑变焦参数信息。 |
+| [Camera_CaptureStartInfo](capi-oh-camera-camera-capturestartinfo.md) | Camera_CaptureStartInfo | 拍照开始信息。 |
+| [Camera_FrameShutterEndInfo](capi-oh-camera-camera-frameshutterendinfo.md) | Camera_FrameShutterEndInfo | 拍照曝光结束信息。 |
+| [Camera_FoldStatusInfo](capi-oh-camera-camera-foldstatusinfo.md) | Camera_FoldStatusInfo | 折叠状态信息。 |
+| [Camera_AutoDeviceSwitchStatusInfo](capi-oh-camera-camera-autodeviceswitchstatusinfo.md) | Camera_AutoDeviceSwitchStatusInfo | 自动设备切换状态信息。 |
+| [Camera_ConcurrentInfo](capi-oh-camera-camera-concurrentinfo.md) | Camera_ConcurrentInfo | 相机并发能力信息。 |
+| [Camera_Manager](capi-oh-camera-camera-manager.md) | Camera_Manager | 相机管理器对象。<br> 可以使用[OH_Camera_GetCameraManager](#oh_camera_getcameramanager)方法创建指针。 |
 
 ### 枚举
 
@@ -572,7 +572,7 @@ Camera_ErrorCode OH_Camera_GetCameraManager(Camera_Manager** cameraManager)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_Manager](capi-camera-manager.md)** cameraManager | 如果方法调用成功，将创建Camera_Manager实例。 |
+| [Camera_Manager](capi-oh-camera-camera-manager.md)** cameraManager | 如果方法调用成功，将创建Camera_Manager实例。 |
 
 **返回：**
 
@@ -597,7 +597,7 @@ Camera_ErrorCode OH_Camera_DeleteCameraManager(Camera_Manager* cameraManager)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_Manager](capi-camera-manager.md)* cameraManager | 要删除的Camera_Manager实例。 |
+| [Camera_Manager](capi-oh-camera-camera-manager.md)* cameraManager | 要删除的Camera_Manager实例。 |
 
 **返回：**
 

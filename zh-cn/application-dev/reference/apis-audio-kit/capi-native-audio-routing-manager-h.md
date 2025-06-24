@@ -22,7 +22,7 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [OH_AudioRoutingManager](capi-oh-audioroutingmanager.md) | OH_AudioRoutingManager | 声明音频路由管理器，用于路由和设备相关功能的音频路由管理器的句柄。 |
+| [OH_AudioRoutingManager](capi-ohaudio-oh-audioroutingmanager.md) | OH_AudioRoutingManager | 声明音频路由管理器，用于路由和设备相关功能的音频路由管理器的句柄。 |
 
 ### 函数
 
@@ -61,7 +61,7 @@ typedef int32_t (*OH_AudioRoutingManager_OnDeviceChangedCallback)(OH_AudioDevice
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_AudioDevice_ChangeType](capi-native-audio-device-base-h.md#oh_audiodevice_changetype) type      | 设备连接状态类型。 [OH_AudioDevice_ChangeType](capi-native-audio-device-base-h.md#oh_audiodevice_changetype)已连接或断开。    |
-| [OH_AudioDeviceDescriptorArray](capi-oh-audiodevicedescriptorarray.md) *audioDeviceDescriptorArray  | 音频设备描述符数组，指向[OH_AudioDeviceDescriptorArray](capi-oh-audiodevicedescriptorarray.md)设置音频设备描述符值的指针变量，不要单独释放audioDeviceDescriptorArray指针，而是调用[OH_AudioRoutingManager_ReleaseDevices](#oh_audioroutingmanager_releasedevices)来释放DeviceDescriptor数组。 |
+| [OH_AudioDeviceDescriptorArray](capi-ohaudio-oh-audiodevicedescriptorarray.md) *audioDeviceDescriptorArray  | 音频设备描述符数组，指向[OH_AudioDeviceDescriptorArray](capi-ohaudio-oh-audiodevicedescriptorarray.md)设置音频设备描述符值的指针变量，不要单独释放audioDeviceDescriptorArray指针，而是调用[OH_AudioRoutingManager_ReleaseDevices](#oh_audioroutingmanager_releasedevices)来释放DeviceDescriptor数组。 |
 
 ### OH_AudioManager_GetAudioRoutingManager()
 
@@ -80,7 +80,7 @@ OH_AudioCommon_Result OH_AudioManager_GetAudioRoutingManager(OH_AudioRoutingMana
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AudioRoutingManager](capi-oh-audioroutingmanager.md) **audioRoutingManager | 音频路由管理器句柄。通过[OH_AudioManager_GetAudioRoutingManager](capi-native-audio-routing-manager-h.md#oh_audiomanager_getaudioroutingmanager)获取句柄。 |
+| [OH_AudioRoutingManager](capi-ohaudio-oh-audioroutingmanager.md) **audioRoutingManager | 音频路由管理器句柄。通过[OH_AudioManager_GetAudioRoutingManager](capi-native-audio-routing-manager-h.md#oh_audiomanager_getaudioroutingmanager)获取句柄。 |
 
 **返回：**
 
@@ -105,9 +105,9 @@ OH_AudioCommon_Result OH_AudioRoutingManager_GetDevices(OH_AudioRoutingManager *
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AudioRoutingManager](capi-oh-audioroutingmanager.md) *audioRoutingManager | 音频路由管理器句柄。通过[OH_AudioManager_GetAudioRoutingManager](capi-native-audio-routing-manager-h.md#oh_audiomanager_getaudioroutingmanager)获取句柄。                                                     |
+| [OH_AudioRoutingManager](capi-ohaudio-oh-audioroutingmanager.md) *audioRoutingManager | 音频路由管理器句柄。通过[OH_AudioManager_GetAudioRoutingManager](capi-native-audio-routing-manager-h.md#oh_audiomanager_getaudioroutingmanager)获取句柄。                                                     |
 | [OH_AudioDevice_Flag](capi-native-audio-device-base-h.md#oh_audiodevice_flag) deviceFlag | 音频设备标志，用于选择目标设备的滤波器参数。 |
-| [OH_AudioDeviceDescriptorArray](capi-oh-audiodevicedescriptorarray.md) **audioDeviceDescriptorArray | 音频设备描述符数组。设置音频设备描述符值的指针变量，不要单独释放audioDeviceDescriptorArray指针，而是调用[OH_AudioRoutingManager_ReleaseDevices](#oh_audioroutingmanager_releasedevices)来释放DeviceDescriptor数组。 |
+| [OH_AudioDeviceDescriptorArray](capi-ohaudio-oh-audiodevicedescriptorarray.md) **audioDeviceDescriptorArray | 音频设备描述符数组。设置音频设备描述符值的指针变量，不要单独释放audioDeviceDescriptorArray指针，而是调用[OH_AudioRoutingManager_ReleaseDevices](#oh_audioroutingmanager_releasedevices)来释放DeviceDescriptor数组。 |
 
 **返回：**
 
@@ -132,9 +132,9 @@ OH_AudioCommon_Result OH_AudioRoutingManager_GetAvailableDevices(OH_AudioRouting
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AudioRoutingManager](capi-oh-audioroutingmanager.md) *audioRoutingManager | 音频路由管理器句柄。通过[OH_AudioManager_GetAudioRoutingManager](capi-native-audio-routing-manager-h.md#oh_audiomanager_getaudioroutingmanager)获取句柄。 |
+| [OH_AudioRoutingManager](capi-ohaudio-oh-audioroutingmanager.md) *audioRoutingManager | 音频路由管理器句柄。通过[OH_AudioManager_GetAudioRoutingManager](capi-native-audio-routing-manager-h.md#oh_audiomanager_getaudioroutingmanager)获取句柄。 |
 | [OH_AudioDevice_Usage](capi-native-audio-device-base-h.md#oh_audiodevice_usage) deviceUsage | 指向[OH_AudioDevice_Usage](capi-native-audio-device-base-h.md#oh_audiodevice_usage)用于设置要获取的设备种类。 |
-| [OH_AudioDeviceDescriptorArray](capi-oh-audiodevicedescriptorarray.md) **audioDeviceDescriptorArray | 音频设备描述符数组。设置音频设备描述符值的指针变量，不要单独释放audioDeviceDescriptorArray指针，而是调用[OH_AudioRoutingManager_ReleaseDevices](#oh_audioroutingmanager_releasedevices)来释放DeviceDescriptor数组。 |
+| [OH_AudioDeviceDescriptorArray](capi-ohaudio-oh-audiodevicedescriptorarray.md) **audioDeviceDescriptorArray | 音频设备描述符数组。设置音频设备描述符值的指针变量，不要单独释放audioDeviceDescriptorArray指针，而是调用[OH_AudioRoutingManager_ReleaseDevices](#oh_audioroutingmanager_releasedevices)来释放DeviceDescriptor数组。 |
 
 **返回：**
 
@@ -158,9 +158,9 @@ OH_AudioCommon_Result OH_AudioRoutingManager_GetPreferredOutputDevice(OH_AudioRo
 
 | 参数项 | 描述  |
 | -- | -- |
-| [OH_AudioRoutingManager](capi-oh-audioroutingmanager.md) *audioRoutingManager | 指向[OH_AudioManager_GetAudioRoutingManager](capi-native-audio-routing-manager-h.md#oh_audiomanager_getaudioroutingmanager)创建的音频路由管理器实例：[OH_AudioRoutingManager](capi-oh-audioroutingmanager.md)。                                                       |
+| [OH_AudioRoutingManager](capi-ohaudio-oh-audioroutingmanager.md) *audioRoutingManager | 指向[OH_AudioManager_GetAudioRoutingManager](capi-native-audio-routing-manager-h.md#oh_audiomanager_getaudioroutingmanager)创建的音频路由管理器实例：[OH_AudioRoutingManager](capi-ohaudio-oh-audioroutingmanager.md)。                                                       |
 | OH_AudioStream_Usage streamUsage | 指向[OH_AudioStream_Usage](capi-native-audiostream-base-h.md#oh_audiostream_usage)用于设置音频输出流的使用场景。           |
-| [OH_AudioDeviceDescriptorArray](capi-oh-audiodevicedescriptorarray.md) **audioDeviceDescriptorArray | 音频设备描述符数组。设置音频设备描述符值的指针变量，不要单独释放audioDeviceDescriptorArray指针，而是调用[OH_AudioRoutingManager_ReleaseDevices](#oh_audioroutingmanager_releasedevices)来释放DeviceDescriptor数组。 |
+| [OH_AudioDeviceDescriptorArray](capi-ohaudio-oh-audiodevicedescriptorarray.md) **audioDeviceDescriptorArray | 音频设备描述符数组。设置音频设备描述符值的指针变量，不要单独释放audioDeviceDescriptorArray指针，而是调用[OH_AudioRoutingManager_ReleaseDevices](#oh_audioroutingmanager_releasedevices)来释放DeviceDescriptor数组。 |
 
 **返回：**
 
@@ -185,9 +185,9 @@ OH_AudioCommon_Result OH_AudioRoutingManager_GetPreferredInputDevice(OH_AudioRou
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AudioRoutingManager](capi-oh-audioroutingmanager.md) *audioRoutingManager | 指向[OH_AudioManager_GetAudioRoutingManager](capi-native-audio-routing-manager-h.md#oh_audiomanager_getaudioroutingmanager)创建的音频路由管理器实例：[OH_AudioRoutingManager](capi-oh-audioroutingmanager.md)。                                                       |
+| [OH_AudioRoutingManager](capi-ohaudio-oh-audioroutingmanager.md) *audioRoutingManager | 指向[OH_AudioManager_GetAudioRoutingManager](capi-native-audio-routing-manager-h.md#oh_audiomanager_getaudioroutingmanager)创建的音频路由管理器实例：[OH_AudioRoutingManager](capi-ohaudio-oh-audioroutingmanager.md)。                                                       |
 | OH_AudioStream_SourceType sourceType | 指向[OH_AudioStream_SourceType](capi-native-audiostream-base-h.md#oh_audiostream_sourcetype)用于设置音频输入流的使用场景。   |
-| [OH_AudioDeviceDescriptorArray](capi-oh-audiodevicedescriptorarray.md) **audioDeviceDescriptorArray | 音频设备描述符数组。设置音频设备描述符值的指针变量，不要单独释放audioDeviceDescriptorArray指针，而是调用[OH_AudioRoutingManager_ReleaseDevices](#oh_audioroutingmanager_releasedevices)来释放DeviceDescriptor数组。 |
+| [OH_AudioDeviceDescriptorArray](capi-ohaudio-oh-audiodevicedescriptorarray.md) **audioDeviceDescriptorArray | 音频设备描述符数组。设置音频设备描述符值的指针变量，不要单独释放audioDeviceDescriptorArray指针，而是调用[OH_AudioRoutingManager_ReleaseDevices](#oh_audioroutingmanager_releasedevices)来释放DeviceDescriptor数组。 |
 
 **返回：**
 
@@ -211,7 +211,7 @@ OH_AudioCommon_Result OH_AudioRoutingManager_RegisterDeviceChangeCallback(OH_Aud
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AudioRoutingManager](capi-oh-audioroutingmanager.md) *audioRoutingManager | 音频路由管理器句柄。通过[OH_AudioManager_GetAudioRoutingManager](capi-native-audio-routing-manager-h.md#oh_audiomanager_getaudioroutingmanager)获取句柄。 |
+| [OH_AudioRoutingManager](capi-ohaudio-oh-audioroutingmanager.md) *audioRoutingManager | 音频路由管理器句柄。通过[OH_AudioManager_GetAudioRoutingManager](capi-native-audio-routing-manager-h.md#oh_audiomanager_getaudioroutingmanager)获取句柄。 |
 | [OH_AudioDevice_Flag](capi-native-audio-device-base-h.md#oh_audiodevice_flag) deviceFlag | 音频设备标志，用来注册回调。 |
 | [OH_AudioRoutingManager_OnDeviceChangedCallback](#oh_audioroutingmanager_ondevicechangedcallback) callback | 函数指针将指向用于返回更改的音频设备描述符的回调函数。 |
 
@@ -238,7 +238,7 @@ OH_AudioCommon_Result OH_AudioRoutingManager_UnregisterDeviceChangeCallback(OH_A
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AudioRoutingManager](capi-oh-audioroutingmanager.md) *audioRoutingManager | 音频路由管理器句柄。通过[OH_AudioManager_GetAudioRoutingManager](capi-native-audio-routing-manager-h.md#oh_audiomanager_getaudioroutingmanager)获取句柄。 |
+| [OH_AudioRoutingManager](capi-ohaudio-oh-audioroutingmanager.md) *audioRoutingManager | 音频路由管理器句柄。通过[OH_AudioManager_GetAudioRoutingManager](capi-native-audio-routing-manager-h.md#oh_audiomanager_getaudioroutingmanager)获取句柄。 |
 | [OH_AudioRoutingManager_OnDeviceChangedCallback](#oh_audioroutingmanager_ondevicechangedcallback) callback | 函数指针将指向用于返回更改的音频设备描述符的回调函数。 |
 
 **返回：**
@@ -264,8 +264,8 @@ OH_AudioCommon_Result OH_AudioRoutingManager_ReleaseDevices(OH_AudioRoutingManag
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AudioRoutingManager](capi-oh-audioroutingmanager.md) *audioRoutingManager | 音频路由管理器句柄。通过[OH_AudioManager_GetAudioRoutingManager](capi-native-audio-routing-manager-h.md#oh_audiomanager_getaudioroutingmanager)获取句柄。 |
-| [OH_AudioDeviceDescriptorArray](capi-oh-audiodevicedescriptorarray.md) *audioDeviceDescriptorArray | 音频设备描述符数组应当被释放，获取请调用[OH_AudioRoutingManager_GetDevices](capi-native-audio-routing-manager-h.md#oh_audioroutingmanager_getdevices)接口。 |
+| [OH_AudioRoutingManager](capi-ohaudio-oh-audioroutingmanager.md) *audioRoutingManager | 音频路由管理器句柄。通过[OH_AudioManager_GetAudioRoutingManager](capi-native-audio-routing-manager-h.md#oh_audiomanager_getaudioroutingmanager)获取句柄。 |
+| [OH_AudioDeviceDescriptorArray](capi-ohaudio-oh-audiodevicedescriptorarray.md) *audioDeviceDescriptorArray | 音频设备描述符数组应当被释放，获取请调用[OH_AudioRoutingManager_GetDevices](capi-native-audio-routing-manager-h.md#oh_audioroutingmanager_getdevices)接口。 |
 
 **返回：**
 
@@ -290,7 +290,7 @@ typedef void (*OH_AudioRoutingManager_OnDeviceBlockStatusCallback)(OH_AudioDevic
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AudioDeviceDescriptorArray](capi-oh-audiodevicedescriptorarray.md) *audioDeviceDescriptorArray | 音频设备描述符数组应当被释放，获取请调用[OH_AudioRoutingManager_GetDevices](capi-native-audio-routing-manager-h.md#oh_audioroutingmanager_getdevices)接口。设置音频设备描述符值的指针变量，不要单独释放audioDeviceDescriptorArray指针，而是调用[OH_AudioRoutingManager_ReleaseDevices](#oh_audioroutingmanager_releasedevices)来释放DeviceDescriptor数组。 |
+| [OH_AudioDeviceDescriptorArray](capi-ohaudio-oh-audiodevicedescriptorarray.md) *audioDeviceDescriptorArray | 音频设备描述符数组应当被释放，获取请调用[OH_AudioRoutingManager_GetDevices](capi-native-audio-routing-manager-h.md#oh_audioroutingmanager_getdevices)接口。设置音频设备描述符值的指针变量，不要单独释放audioDeviceDescriptorArray指针，而是调用[OH_AudioRoutingManager_ReleaseDevices](#oh_audioroutingmanager_releasedevices)来释放DeviceDescriptor数组。 |
 | [OH_AudioDevice_BlockStatus](capi-native-audio-device-base-h.md#oh_audiodevice_blockstatus) status | 音频设备的堵塞状态。 |
 | void *userData | 用户自定义数据指针。 |
 
@@ -311,7 +311,7 @@ OH_AudioCommon_Result OH_AudioRoutingManager_IsMicBlockDetectionSupported(OH_Aud
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AudioRoutingManager](capi-oh-audioroutingmanager.md) *audioRoutingManager | 音频路由管理器句柄。通过[OH_AudioManager_GetAudioRoutingManager](capi-native-audio-routing-manager-h.md#oh_audiomanager_getaudioroutingmanager)获取句柄。 |
+| [OH_AudioRoutingManager](capi-ohaudio-oh-audioroutingmanager.md) *audioRoutingManager | 音频路由管理器句柄。通过[OH_AudioManager_GetAudioRoutingManager](capi-native-audio-routing-manager-h.md#oh_audiomanager_getaudioroutingmanager)获取句柄。 |
 | bool *supported | 查询结果。 |
 
 **返回：**
@@ -339,7 +339,7 @@ OH_AudioCommon_Result OH_AudioRoutingManager_SetMicBlockStatusCallback(OH_AudioR
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AudioRoutingManager](capi-oh-audioroutingmanager.md) *audioRoutingManager | 音频路由管理器句柄。通过[OH_AudioManager_GetAudioRoutingManager](capi-native-audio-routing-manager-h.md#oh_audiomanager_getaudioroutingmanager)获取句柄。 |
+| [OH_AudioRoutingManager](capi-ohaudio-oh-audioroutingmanager.md) *audioRoutingManager | 音频路由管理器句柄。通过[OH_AudioManager_GetAudioRoutingManager](capi-native-audio-routing-manager-h.md#oh_audiomanager_getaudioroutingmanager)获取句柄。 |
 | [OH_AudioRoutingManager_OnDeviceBlockStatusCallback](#oh_audioroutingmanager_ondeviceblockstatuscallback) callback | 函数指针将指向用于返回接受设备麦克风堵塞状态[OH_AudioRoutingManager_OnDeviceBlockStatusCallback](#oh_audioroutingmanager_ondeviceblockstatuscallback)。 |
 | void *userData | 用户自定义数据指针。 |
 

@@ -20,7 +20,7 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [OH_AudioManager](capi-oh-audiomanager.md) | OH_AudioManager | 声明音频管理器。用于管理音频管理相关功能。 |
+| [OH_AudioManager](capi-ohaudio-oh-audiomanager.md) | OH_AudioManager | 声明音频管理器。用于管理音频管理相关功能。 |
 
 ### 函数
 
@@ -71,7 +71,7 @@ OH_AudioCommon_Result OH_GetAudioManager(OH_AudioManager **audioManager)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AudioManager](capi-oh-audiomanager.md) **audioManager | 指向[OH_AudioManager](capi-oh-audiomanager.md)用于接收创建的音频管理器实例。 |
+| [OH_AudioManager](capi-ohaudio-oh-audiomanager.md) **audioManager | 指向[OH_AudioManager](capi-ohaudio-oh-audiomanager.md)用于接收创建的音频管理器实例。 |
 
 **返回：**
 
@@ -96,7 +96,7 @@ OH_AudioCommon_Result OH_GetAudioScene(OH_AudioManager* manager, OH_AudioScene *
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AudioManager](capi-oh-audiomanager.md)* manager | 指向[OH_GetAudioManager](capi-native-audio-manager-h.md#oh_getaudiomanager)创建的音频管理器实例：[OH_AudioManager](capi-oh-audiomanager.md)。 |
+| [OH_AudioManager](capi-ohaudio-oh-audiomanager.md)* manager | 指向[OH_GetAudioManager](capi-native-audio-manager-h.md#oh_getaudiomanager)创建的音频管理器实例：[OH_AudioManager](capi-ohaudio-oh-audiomanager.md)。 |
 | [OH_AudioScene](capi-native-audio-common-h.md#oh_audioscene) *scene | 指向[OH_AudioScene](capi-native-audio-common-h.md#oh_audioscene)用于接收返回的音频场景模式。 |
 
 **返回：**
@@ -122,7 +122,7 @@ OH_AudioCommon_Result OH_AudioManager_RegisterAudioSceneChangeCallback(OH_AudioM
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AudioManager](capi-oh-audiomanager.md) *manager | 指向[OH_AudioManager](capi-oh-audiomanager.md)用于接收创建的音频管理器实例。 |
+| [OH_AudioManager](capi-ohaudio-oh-audiomanager.md) *manager | 指向[OH_AudioManager](capi-ohaudio-oh-audiomanager.md)用于接收创建的音频管理器实例。 |
 | [OH_AudioManager_OnAudioSceneChangeCallback](capi-native-audio-manager-h.md#oh_audiomanager_onaudioscenechangecallback) callback | 当音频场景切换时，将调用此回调函数[OH_AudioManager_OnAudioSceneChangeCallback](capi-native-audio-manager-h.md#oh_audiomanager_onaudioscenechangecallback)。 |
 | void *userData | 用户自定义数据指针。 |
 
@@ -149,7 +149,7 @@ OH_AudioCommon_Result OH_AudioManager_UnregisterAudioSceneChangeCallback(OH_Audi
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AudioManager](capi-oh-audiomanager.md) *manager | 指向[OH_AudioManager](capi-oh-audiomanager.md)用于接收创建的音频管理器实例。 |
+| [OH_AudioManager](capi-ohaudio-oh-audiomanager.md) *manager | 指向[OH_AudioManager](capi-ohaudio-oh-audiomanager.md)用于接收创建的音频管理器实例。 |
 | [OH_AudioManager_OnAudioSceneChangeCallback](capi-native-audio-manager-h.md#oh_audiomanager_onaudioscenechangecallback) callback | 指向[OH_AudioManager_OnAudioSceneChangeCallback](capi-native-audio-manager-h.md#oh_audiomanager_onaudioscenechangecallback)传入的回调函数，用于取消注册。 |
 
 **返回：**

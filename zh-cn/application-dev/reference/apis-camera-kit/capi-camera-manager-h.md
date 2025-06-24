@@ -20,13 +20,13 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [CameraManager_Callbacks](capi-cameramanager-callbacks.md) | CameraManager_Callbacks | 相机设备状态的回调。 |
+| [CameraManager_Callbacks](capi-oh-camera-cameramanager-callbacks.md) | CameraManager_Callbacks | 相机设备状态的回调。 |
 
 ### 函数
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [typedef void (\*OH_CameraManager_StatusCallback)(Camera_Manager* cameraManager, Camera_StatusInfo* status)](#oh_cameramanager_statuscallback) | OH_CameraManager_StatusCallback | 在[CameraManager_Callbacks](capi-cameramanager-callbacks.md)中被调用的相机管理器状态回调。 |
+| [typedef void (\*OH_CameraManager_StatusCallback)(Camera_Manager* cameraManager, Camera_StatusInfo* status)](#oh_cameramanager_statuscallback) | OH_CameraManager_StatusCallback | 在[CameraManager_Callbacks](capi-oh-camera-cameramanager-callbacks.md)中被调用的相机管理器状态回调。 |
 | [typedef void (\*OH_CameraManager_TorchStatusCallback)(Camera_Manager* cameraManager, Camera_TorchStatusInfo* status)](#oh_cameramanager_torchstatuscallback) | OH_CameraManager_TorchStatusCallback | 手电筒状态变化回调。 |
 | [typedef void (\*OH_CameraManager_OnFoldStatusInfoChange)(Camera_Manager* cameraManager,Camera_FoldStatusInfo* foldStatusInfo)](#oh_cameramanager_onfoldstatusinfochange) | OH_CameraManager_OnFoldStatusInfoChange | 相机管理器折叠状态信息回调。 |
 | [Camera_ErrorCode OH_CameraManager_RegisterCallback(Camera_Manager* cameraManager, CameraManager_Callbacks* callback)](#oh_cameramanager_registercallback) | - | 注册相机状态更改事件回调。 |
@@ -70,7 +70,7 @@ typedef void (*OH_CameraManager_StatusCallback)(Camera_Manager* cameraManager, C
 
 **描述**
 
-在[CameraManager_Callbacks](capi-cameramanager-callbacks.md)中被调用的相机管理器状态回调。
+在[CameraManager_Callbacks](capi-oh-camera-cameramanager-callbacks.md)中被调用的相机管理器状态回调。
 
 **起始版本：** 11
 
@@ -79,8 +79,8 @@ typedef void (*OH_CameraManager_StatusCallback)(Camera_Manager* cameraManager, C
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_Manager](capi-camera-manager.md)* cameraManager | 传递回调的Camera_Manager。 |
-| [Camera_StatusInfo](capi-camera-statusinfo.md)* status | 每个相机设备的状态信息。 |
+| [Camera_Manager](capi-oh-camera-camera-manager.md)* cameraManager | 传递回调的Camera_Manager。 |
+| [Camera_StatusInfo](capi-oh-camera-camera-statusinfo.md)* status | 每个相机设备的状态信息。 |
 
 ### OH_CameraManager_TorchStatusCallback()
 
@@ -99,8 +99,8 @@ typedef void (*OH_CameraManager_TorchStatusCallback)(Camera_Manager* cameraManag
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_Manager](capi-camera-manager.md)* cameraManager | 传递回调的Camera_Manager。 |
-| [Camera_TorchStatusInfo](capi-camera-torchstatusinfo.md)* status | 手电筒的状态信息。 |
+| [Camera_Manager](capi-oh-camera-camera-manager.md)* cameraManager | 传递回调的Camera_Manager。 |
+| [Camera_TorchStatusInfo](capi-oh-camera-camera-torchstatusinfo.md)* status | 手电筒的状态信息。 |
 
 ### OH_CameraManager_OnFoldStatusInfoChange()
 
@@ -119,8 +119,8 @@ typedef void (*OH_CameraManager_OnFoldStatusInfoChange)(Camera_Manager* cameraMa
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_Manager](capi-camera-manager.md)* cameraManager | 传递回调的Camera_Manager。 |
-| [Camera_FoldStatusInfo](capi-camera-foldstatusinfo.md)* foldStatusInfo | 设备的折叠状态信息。 |
+| [Camera_Manager](capi-oh-camera-camera-manager.md)* cameraManager | 传递回调的Camera_Manager。 |
+| [Camera_FoldStatusInfo](capi-oh-camera-camera-foldstatusinfo.md)* foldStatusInfo | 设备的折叠状态信息。 |
 
 ### OH_CameraManager_RegisterCallback()
 
@@ -139,8 +139,8 @@ Camera_ErrorCode OH_CameraManager_RegisterCallback(Camera_Manager* cameraManager
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_Manager](capi-camera-manager.md)* cameraManager | 相机管理器实例。 |
-| [CameraManager_Callbacks](capi-cameramanager-callbacks.md)* callback | 要注册的相机设备状态回调。 |
+| [Camera_Manager](capi-oh-camera-camera-manager.md)* cameraManager | 相机管理器实例。 |
+| [CameraManager_Callbacks](capi-oh-camera-cameramanager-callbacks.md)* callback | 要注册的相机设备状态回调。 |
 
 **返回：**
 
@@ -165,8 +165,8 @@ Camera_ErrorCode OH_CameraManager_UnregisterCallback(Camera_Manager* cameraManag
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_Manager](capi-camera-manager.md)* cameraManager | 相机管理器实例。 |
-| [CameraManager_Callbacks](capi-cameramanager-callbacks.md)* callback | 要注销的相机设备状态回调。 |
+| [Camera_Manager](capi-oh-camera-camera-manager.md)* cameraManager | 相机管理器实例。 |
+| [CameraManager_Callbacks](capi-oh-camera-cameramanager-callbacks.md)* callback | 要注销的相机设备状态回调。 |
 
 **返回：**
 
@@ -191,7 +191,7 @@ Camera_ErrorCode OH_CameraManager_RegisterTorchStatusCallback(Camera_Manager* ca
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_Manager](capi-camera-manager.md)* cameraManager | 相机管理器实例。 |
+| [Camera_Manager](capi-oh-camera-camera-manager.md)* cameraManager | 相机管理器实例。 |
 | [OH_CameraManager_TorchStatusCallback](#oh_cameramanager_torchstatuscallback) torchStatusCallback | 要注册的手电筒状态变化回调。 |
 
 **返回：**
@@ -217,7 +217,7 @@ Camera_ErrorCode OH_CameraManager_UnregisterTorchStatusCallback(Camera_Manager* 
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_Manager](capi-camera-manager.md)* cameraManager | 相机管理器实例。 |
+| [Camera_Manager](capi-oh-camera-camera-manager.md)* cameraManager | 相机管理器实例。 |
 | [OH_CameraManager_TorchStatusCallback](#oh_cameramanager_torchstatuscallback) torchStatusCallback | 要注销的手电筒状态变化回调。 |
 
 **返回：**
@@ -243,7 +243,7 @@ Camera_ErrorCode OH_CameraManager_RegisterFoldStatusInfoCallback(Camera_Manager*
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_Manager](capi-camera-manager.md)* cameraManager | 相机管理器实例。 |
+| [Camera_Manager](capi-oh-camera-camera-manager.md)* cameraManager | 相机管理器实例。 |
 | [OH_CameraManager_OnFoldStatusInfoChange](#oh_cameramanager_onfoldstatusinfochange) foldStatusInfoCallback | 要注册的折叠状态信息变更事件回调。 |
 
 **返回：**
@@ -269,7 +269,7 @@ Camera_ErrorCode OH_CameraManager_UnregisterFoldStatusInfoCallback(Camera_Manage
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_Manager](capi-camera-manager.md)* cameraManager | 相机管理器实例。 |
+| [Camera_Manager](capi-oh-camera-camera-manager.md)* cameraManager | 相机管理器实例。 |
 | [OH_CameraManager_OnFoldStatusInfoChange](#oh_cameramanager_onfoldstatusinfochange) foldStatusInfoCallback | 要注销的折叠状态信息变更事件回调。 |
 
 **返回：**
@@ -295,8 +295,8 @@ Camera_ErrorCode OH_CameraManager_GetSupportedCameras(Camera_Manager* cameraMana
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_Manager](capi-camera-manager.md)* cameraManager | 相机管理器实例。 |
-| [Camera_Device](capi-camera-device.md)** cameras | 如果方法调用成功，将记录支持的Camera_Device列表。 |
+| [Camera_Manager](capi-oh-camera-camera-manager.md)* cameraManager | 相机管理器实例。 |
+| [Camera_Device](capi-oh-camera-camera-device.md)** cameras | 如果方法调用成功，将记录支持的Camera_Device列表。 |
 | uint32_t* size | 如果方法调用成功，将记录支持的Camera_Device列表的大小。 |
 
 **返回：**
@@ -322,8 +322,8 @@ Camera_ErrorCode OH_CameraManager_DeleteSupportedCameras(Camera_Manager* cameraM
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_Manager](capi-camera-manager.md)* cameraManager | 相机管理器实例。 |
-| [Camera_Device](capi-camera-device.md)* cameras | 要删除的Camera_Device列表。 |
+| [Camera_Manager](capi-oh-camera-camera-manager.md)* cameraManager | 相机管理器实例。 |
+| [Camera_Device](capi-oh-camera-camera-device.md)* cameras | 要删除的Camera_Device列表。 |
 
 **返回：**
 
@@ -348,9 +348,9 @@ Camera_ErrorCode OH_CameraManager_GetSupportedCameraOutputCapability(Camera_Mana
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_Manager](capi-camera-manager.md)* cameraManager | 相机管理器实例。 |
-| const [Camera_Device](capi-camera-device.md)* camera | 要查询的Camera_Device。 |
-| [Camera_OutputCapability](capi-camera-outputcapability.md)** cameraOutputCapability | 如果方法调用成功，将记录支持的Camera_OutputCapability。 |
+| [Camera_Manager](capi-oh-camera-camera-manager.md)* cameraManager | 相机管理器实例。 |
+| const [Camera_Device](capi-oh-camera-camera-device.md)* camera | 要查询的Camera_Device。 |
+| [Camera_OutputCapability](capi-oh-camera-camera-outputcapability.md)** cameraOutputCapability | 如果方法调用成功，将记录支持的Camera_OutputCapability。 |
 
 **返回：**
 
@@ -375,10 +375,10 @@ Camera_ErrorCode OH_CameraManager_GetSupportedCameraOutputCapabilityWithSceneMod
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_Manager](capi-camera-manager.md)* cameraManager | 相机管理器实例。 |
-| const [Camera_Device](capi-camera-device.md)* camera | 要查询的Camera_Device。 |
+| [Camera_Manager](capi-oh-camera-camera-manager.md)* cameraManager | 相机管理器实例。 |
+| const [Camera_Device](capi-oh-camera-camera-device.md)* camera | 要查询的Camera_Device。 |
 | [Camera_SceneMode](capi-camera-h.md#camera_scenemode) sceneMode | 指定相机模式。 |
-| [Camera_OutputCapability](capi-camera-outputcapability.md)** cameraOutputCapability | 如果方法调用成功，将记录支持的Camera_OutputCapability列表。 |
+| [Camera_OutputCapability](capi-oh-camera-camera-outputcapability.md)** cameraOutputCapability | 如果方法调用成功，将记录支持的Camera_OutputCapability列表。 |
 
 **返回：**
 
@@ -403,8 +403,8 @@ Camera_ErrorCode OH_CameraManager_DeleteSupportedCameraOutputCapability(Camera_M
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_Manager](capi-camera-manager.md)* cameraManager | 相机管理器实例。 |
-| [Camera_OutputCapability](capi-camera-outputcapability.md)* cameraOutputCapability | 要删除的Camera_OutputCapability。 |
+| [Camera_Manager](capi-oh-camera-camera-manager.md)* cameraManager | 相机管理器实例。 |
+| [Camera_OutputCapability](capi-oh-camera-camera-outputcapability.md)* cameraOutputCapability | 要删除的Camera_OutputCapability。 |
 
 **返回：**
 
@@ -429,7 +429,7 @@ Camera_ErrorCode OH_CameraManager_IsCameraMuted(Camera_Manager* cameraManager, b
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_Manager](capi-camera-manager.md)* cameraManager | 相机管理器实例。 |
+| [Camera_Manager](capi-oh-camera-camera-manager.md)* cameraManager | 相机管理器实例。 |
 | bool* isCameraMuted | 如果方法调用成功，将返回相机是否静音的结果。 |
 
 **返回：**
@@ -455,8 +455,8 @@ Camera_ErrorCode OH_CameraManager_CreateCaptureSession(Camera_Manager* cameraMan
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_Manager](capi-camera-manager.md)* cameraManager | 相机管理器实例。 |
-| [Camera_CaptureSession](capi-camera-capturesession.md)** captureSession | 如果方法调用成功，将创建Camera_CaptureSession。 |
+| [Camera_Manager](capi-oh-camera-camera-manager.md)* cameraManager | 相机管理器实例。 |
+| [Camera_CaptureSession](capi-oh-camera-camera-capturesession.md)** captureSession | 如果方法调用成功，将创建Camera_CaptureSession。 |
 
 **返回：**
 
@@ -483,9 +483,9 @@ Camera_ErrorCode OH_CameraManager_CreateCameraInput(Camera_Manager* cameraManage
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_Manager](capi-camera-manager.md)* cameraManager | 相机管理器实例。 |
-| const [Camera_Device](capi-camera-device.md)* camera | 用于创建Camera_Input实例的Camera_Device。 |
-| [Camera_Input](capi-camera-input.md)** cameraInput | 如果方法调用成功，将创建Camera_Input实例。 |
+| [Camera_Manager](capi-oh-camera-camera-manager.md)* cameraManager | 相机管理器实例。 |
+| const [Camera_Device](capi-oh-camera-camera-device.md)* camera | 用于创建Camera_Input实例的Camera_Device。 |
+| [Camera_Input](capi-oh-camera-camera-input.md)** cameraInput | 如果方法调用成功，将创建Camera_Input实例。 |
 
 **返回：**
 
@@ -512,10 +512,10 @@ Camera_ErrorCode OH_CameraManager_CreateCameraInput_WithPositionAndType(Camera_M
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_Manager](capi-camera-manager.md)* cameraManager | 相机管理器实例。 |
+| [Camera_Manager](capi-oh-camera-camera-manager.md)* cameraManager | 相机管理器实例。 |
 | [Camera_Position](capi-camera-h.md#camera_position) position | 用于创建Camera_Input实例的相机位置。 |
 | [Camera_Type](capi-camera-h.md#camera_type) type | 用于创建Camera_Input实例的相机类型。 |
-| [Camera_Input](capi-camera-input.md)** cameraInput | 如果方法调用成功，将创建Camera_Input实例。 |
+| [Camera_Input](capi-oh-camera-camera-input.md)** cameraInput | 如果方法调用成功，将创建Camera_Input实例。 |
 
 **返回：**
 
@@ -540,10 +540,10 @@ Camera_ErrorCode OH_CameraManager_CreatePreviewOutput(Camera_Manager* cameraMana
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_Manager](capi-camera-manager.md)* cameraManager | 相机管理器实例。 |
-| const [Camera_Profile](capi-camera-profile.md)* profile | 用于创建Camera_PreviewOutput实例的相机流配置文件。 |
+| [Camera_Manager](capi-oh-camera-camera-manager.md)* cameraManager | 相机管理器实例。 |
+| const [Camera_Profile](capi-oh-camera-camera-profile.md)* profile | 用于创建Camera_PreviewOutput实例的相机流配置文件。 |
 | const char* surfaceId | 用于创建Camera_PreviewOutput实例的surfaceId。 |
-| [Camera_PreviewOutput](capi-camera-previewoutput.md)** previewOutput | 如果方法调用成功，将创建Camera_PreviewOutput实例。 |
+| [Camera_PreviewOutput](capi-oh-camera-camera-previewoutput.md)** previewOutput | 如果方法调用成功，将创建Camera_PreviewOutput实例。 |
 
 **返回：**
 
@@ -568,9 +568,9 @@ Camera_ErrorCode OH_CameraManager_CreatePreviewOutputUsedInPreconfig(Camera_Mana
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_Manager](capi-camera-manager.md)* cameraManager | 相机管理器实例。 |
+| [Camera_Manager](capi-oh-camera-camera-manager.md)* cameraManager | 相机管理器实例。 |
 | const char* surfaceId | 用于创建Camera_PreviewOutput实例的surfaceId。 |
-| [Camera_PreviewOutput](capi-camera-previewoutput.md)** previewOutput | 如果方法调用成功，将创建Camera_PreviewOutput实例。 |
+| [Camera_PreviewOutput](capi-oh-camera-camera-previewoutput.md)** previewOutput | 如果方法调用成功，将创建Camera_PreviewOutput实例。 |
 
 **返回：**
 
@@ -595,10 +595,10 @@ Camera_ErrorCode OH_CameraManager_CreatePhotoOutput(Camera_Manager* cameraManage
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_Manager](capi-camera-manager.md)* cameraManager | 相机管理器实例。 |
-| const [Camera_Profile](capi-camera-profile.md)* profile | 用于创建Camera_PhotoOutput实例的相机流配置文件。 |
+| [Camera_Manager](capi-oh-camera-camera-manager.md)* cameraManager | 相机管理器实例。 |
+| const [Camera_Profile](capi-oh-camera-camera-profile.md)* profile | 用于创建Camera_PhotoOutput实例的相机流配置文件。 |
 | const char* surfaceId | 用于创建Camera_PhotoOutput实例的surfaceId。 |
-| [Camera_PhotoOutput](capi-camera-photooutput.md)** photoOutput | 如果方法调用成功，将创建Camera_PhotoOutput实例。 |
+| [Camera_PhotoOutput](capi-oh-camera-camera-photooutput.md)** photoOutput | 如果方法调用成功，将创建Camera_PhotoOutput实例。 |
 
 **返回：**
 
@@ -623,9 +623,9 @@ Camera_ErrorCode OH_CameraManager_CreatePhotoOutputUsedInPreconfig(Camera_Manage
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_Manager](capi-camera-manager.md)* cameraManager | 相机管理器实例。 |
+| [Camera_Manager](capi-oh-camera-camera-manager.md)* cameraManager | 相机管理器实例。 |
 | const char* surfaceId | 用于创建Camera_PhotoOutput实例的surfaceId。 |
-| [Camera_PhotoOutput](capi-camera-photooutput.md)** photoOutput | 如果方法调用成功，将创建Camera_PhotoOutput实例。 |
+| [Camera_PhotoOutput](capi-oh-camera-camera-photooutput.md)** photoOutput | 如果方法调用成功，将创建Camera_PhotoOutput实例。 |
 
 **返回：**
 
@@ -650,9 +650,9 @@ Camera_ErrorCode OH_CameraManager_CreatePhotoOutputWithoutSurface(Camera_Manager
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_Manager](capi-camera-manager.md) *cameraManager | 相机管理器实例。 |
-| const [Camera_Profile](capi-camera-profile.md) *profile | 用于创建Camera_PhotoOutput实例的相机流配置文件。 |
-| [Camera_PhotoOutput](capi-camera-photooutput.md) **photoOutput | 如果方法调用成功，将创建Camera_PhotoOutput实例。 |
+| [Camera_Manager](capi-oh-camera-camera-manager.md) *cameraManager | 相机管理器实例。 |
+| const [Camera_Profile](capi-oh-camera-camera-profile.md) *profile | 用于创建Camera_PhotoOutput实例的相机流配置文件。 |
+| [Camera_PhotoOutput](capi-oh-camera-camera-photooutput.md) **photoOutput | 如果方法调用成功，将创建Camera_PhotoOutput实例。 |
 
 **返回：**
 
@@ -677,10 +677,10 @@ Camera_ErrorCode OH_CameraManager_CreateVideoOutput(Camera_Manager* cameraManage
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_Manager](capi-camera-manager.md)* cameraManager | 相机管理器实例。 |
-| const [Camera_VideoProfile](capi-camera-videoprofile.md)* profile | 用于创建Camera_VideoOutput实例的录像配置文件。 |
+| [Camera_Manager](capi-oh-camera-camera-manager.md)* cameraManager | 相机管理器实例。 |
+| const [Camera_VideoProfile](capi-oh-camera-camera-videoprofile.md)* profile | 用于创建Camera_VideoOutput实例的录像配置文件。 |
 | const char* surfaceId | 用于创建Camera_VideoOutput实例的surfaceId。 |
-| [Camera_VideoOutput](capi-camera-videooutput.md)** videoOutput | 如果方法调用成功，将创建Camera_VideoOutput实例。 |
+| [Camera_VideoOutput](capi-oh-camera-camera-videooutput.md)** videoOutput | 如果方法调用成功，将创建Camera_VideoOutput实例。 |
 
 **返回：**
 
@@ -705,9 +705,9 @@ Camera_ErrorCode OH_CameraManager_CreateVideoOutputUsedInPreconfig(Camera_Manage
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_Manager](capi-camera-manager.md)* cameraManager | 相机管理器实例。 |
+| [Camera_Manager](capi-oh-camera-camera-manager.md)* cameraManager | 相机管理器实例。 |
 | const char* surfaceId | 用于创建Camera_VideoOutput实例的surfaceId。 |
-| [Camera_VideoOutput](capi-camera-videooutput.md)** videoOutput | 如果方法调用成功，将创建Camera_VideoOutput实例。 |
+| [Camera_VideoOutput](capi-oh-camera-camera-videooutput.md)** videoOutput | 如果方法调用成功，将创建Camera_VideoOutput实例。 |
 
 **返回：**
 
@@ -732,9 +732,9 @@ Camera_ErrorCode OH_CameraManager_CreateMetadataOutput(Camera_Manager* cameraMan
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_Manager](capi-camera-manager.md)* cameraManager | 相机管理器实例。 |
+| [Camera_Manager](capi-oh-camera-camera-manager.md)* cameraManager | 相机管理器实例。 |
 | const [Camera_MetadataObjectType](capi-camera-h.md#camera_metadataobjecttype)* profile | 用于创建Camera_MetadataOutput实例的元数据对象类型。 |
-| [Camera_MetadataOutput](capi-camera-metadataoutput.md)** metadataOutput | 如果方法调用成功，将创建Camera_MetadataOutput实例。 |
+| [Camera_MetadataOutput](capi-oh-camera-camera-metadataoutput.md)** metadataOutput | 如果方法调用成功，将创建Camera_MetadataOutput实例。 |
 
 **返回：**
 
@@ -759,7 +759,7 @@ Camera_ErrorCode OH_CameraManager_GetSupportedSceneModes(Camera_Device* camera,C
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_Device](capi-camera-device.md)* camera | 要查询的Camera_Device。 |
+| [Camera_Device](capi-oh-camera-camera-device.md)* camera | 要查询的Camera_Device。 |
 | [Camera_SceneMode](capi-camera-h.md#camera_scenemode)** sceneModes | 如果方法调用成功，将记录支持的场景模式列表。 |
 | uint32_t* size | 如果方法调用成功，将记录支持的场景模式列表大小。 |
 
@@ -786,7 +786,7 @@ Camera_ErrorCode OH_CameraManager_DeleteSceneModes(Camera_Manager* cameraManager
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_Manager](capi-camera-manager.md)* cameraManager | 相机管理器实例。 |
+| [Camera_Manager](capi-oh-camera-camera-manager.md)* cameraManager | 相机管理器实例。 |
 | [Camera_SceneMode](capi-camera-h.md#camera_scenemode)* sceneModes | 要删除的场景模式列表。 |
 
 **返回：**
@@ -812,7 +812,7 @@ Camera_ErrorCode OH_CameraManager_IsTorchSupported(Camera_Manager* cameraManager
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_Manager](capi-camera-manager.md)* cameraManager | 相机管理器实例。 |
+| [Camera_Manager](capi-oh-camera-camera-manager.md)* cameraManager | 相机管理器实例。 |
 | bool* isTorchSupported | 设备是否支持手电筒。 |
 
 **返回：**
@@ -838,7 +838,7 @@ Camera_ErrorCode OH_CameraManager_IsTorchSupportedByTorchMode(Camera_Manager* ca
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_Manager](capi-camera-manager.md)* cameraManager | 相机管理器实例。 |
+| [Camera_Manager](capi-oh-camera-camera-manager.md)* cameraManager | 相机管理器实例。 |
 | [Camera_TorchMode](capi-camera-h.md#camera_torchmode) torchMode | 要检查的相机手电筒模式。 |
 | bool* isTorchSupported | 设备是否支持指定的手电筒模式。 |
 
@@ -865,7 +865,7 @@ Camera_ErrorCode OH_CameraManager_SetTorchMode(Camera_Manager* cameraManager,Cam
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_Manager](capi-camera-manager.md)* cameraManager | 相机管理器实例。 |
+| [Camera_Manager](capi-oh-camera-camera-manager.md)* cameraManager | 相机管理器实例。 |
 | [Camera_TorchMode](capi-camera-h.md#camera_torchmode) torchMode | 要设置的相机手电筒模式。 |
 
 **返回：**
@@ -891,10 +891,10 @@ Camera_ErrorCode OH_CameraManager_GetCameraDevice(Camera_Manager* cameraManager,
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_Manager](capi-camera-manager.md)* cameraManager | 相机管理器实例。 |
+| [Camera_Manager](capi-oh-camera-camera-manager.md)* cameraManager | 相机管理器实例。 |
 | [Camera_Position](capi-camera-h.md#camera_position) position | 要查询的相机位置。 |
 | [Camera_Type](capi-camera-h.md#camera_type) type | 要查询的相机类型。 |
-| [Camera_Device](capi-camera-device.md)* camera | 要查询的Camera_Device。 |
+| [Camera_Device](capi-oh-camera-camera-device.md)* camera | 要查询的Camera_Device。 |
 
 **返回：**
 
@@ -919,10 +919,10 @@ Camera_ErrorCode OH_CameraManager_GetCameraConcurrentInfos(Camera_Manager* camer
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Camera_Manager](capi-camera-manager.md)* cameraManager | 相机管理器实例。 |
-| const [Camera_Device](capi-camera-device.md)* camera | 用于查询的Camera_Device相机设备列表，推荐设置为包含[OH_CameraManager_GetCameraDevice](#oh_cameramanager_getcameradevice)获取的前置与后置两个相机设备的相机设备列表。 |
+| [Camera_Manager](capi-oh-camera-camera-manager.md)* cameraManager | 相机管理器实例。 |
+| const [Camera_Device](capi-oh-camera-camera-device.md)* camera | 用于查询的Camera_Device相机设备列表，推荐设置为包含[OH_CameraManager_GetCameraDevice](#oh_cameramanager_getcameradevice)获取的前置与后置两个相机设备的相机设备列表。 |
 | uint32_t deviceSize | 用于查询的相机设备列表长度, 必须设置为2（表示前置与后置两个用于并发的相机设备）。 |
-| [Camera_ConcurrentInfo](capi-camera-concurrentinfo.md)** cameraConcurrentInfo | 查询到的相机并发能力数组Camera_ConcurrentInfo，作为入参应当默认设置为空。<br> 如果相机支持并发，cameraConcurrentInfo会被赋值为查询到的相机并发能力数组Camera_ConcurrentInfo。<br> 如果相机不支持并发，不会对cameraConcurrentInfo进行更改，并且返回错误码[Camera_ErrorCode](capi-camera-h.md#camera_errorcode).CAMERA_SERVICE_FATAL_ERROR。 |
+| [Camera_ConcurrentInfo](capi-oh-camera-camera-concurrentinfo.md)** cameraConcurrentInfo | 查询到的相机并发能力数组Camera_ConcurrentInfo，作为入参应当默认设置为空。<br> 如果相机支持并发，cameraConcurrentInfo会被赋值为查询到的相机并发能力数组Camera_ConcurrentInfo。<br> 如果相机不支持并发，不会对cameraConcurrentInfo进行更改，并且返回错误码[Camera_ErrorCode](capi-camera-h.md#camera_errorcode).CAMERA_SERVICE_FATAL_ERROR。 |
 | uint32_t* infoSize | 查询到的相机并发能力数组长度，作为入参应当默认设置为0。<br> 如果相机支持并发，infoSize会被赋值为查询到的相机并发能力数组长度。<br> 如果相机不支持并发，不会对infoSize进行更改，并且返回错误码[Camera_ErrorCode](capi-camera-h.md#camera_errorcode).CAMERA_SERVICE_FATAL_ERROR。 |
 
 **返回：**
