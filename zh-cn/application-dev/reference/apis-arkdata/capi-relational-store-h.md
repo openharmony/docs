@@ -18,21 +18,21 @@
 
 ### 结构体
 
-| 名称 | typedef关键字 | 描述                                                                      |
-| -- | -- |-------------------------------------------------------------------------|
-| [OH_Rdb_Config](capi-rdb-oh-rdb-config.md) | - | 管理关系数据库配置。                                                              |
-| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) | OH_Rdb_Store | 表示数据库类型。                                                                |
-| [Rdb_DistributedConfig](capi-rdb-distributedconfig.md) | Rdb_DistributedConfig | 记录表的分布式配置信息。                                                            |
-| [Rdb_KeyInfo](capi-rdb-keyinfo.md) | Rdb_KeyInfo | 描述发生变化的行的主键或者行号。                                                        |
-| [Rdb_KeyData](capi-rdb-keydata.md) | - | 存放变化的具体数据。                                                              |
-| [Rdb_ChangeInfo](capi-rdb-changeinfo.md) | Rdb_ChangeInfo | 记录端云同步过程详情。                                                             |
-| [Rdb_SubscribeCallback](capi-rdb-subscribecallback.md) | Rdb_SubscribeCallback | 表示回调函数。                                                                 |
-| [Rdb_DataObserver](capi-rdb-dataobserver.md) | Rdb_DataObserver | 表示数据观察者。                                                                |
-| [Rdb_Statistic](capi-rdb-statistic.md) | Rdb_Statistic | 描述数据库表的端云同步过程的统计信息。                                                     |
-| [Rdb_TableDetails](capi-rdb-tabledetails.md) | Rdb_TableDetails | 描述数据库表执行端云同步任务上传和下载的统计信息。                                               |
-| [Rdb_ProgressDetails](capi-rdb-progressdetails.md) | Rdb_ProgressDetails | 描述数据库整体执行端云同步任务上传和下载的统计信息。                                              |
-| [Rdb_ProgressObserver](capi-rdb-progressobserver.md) | Rdb_ProgressObserver | 端云同步进度观察者。                                                              |
-| [OH_Rdb_ConfigV2](capi-rdb-oh-rdb-configv2.md) | OH_Rdb_ConfigV2 | 管理关系数据库配置，与[OH_Rdb_Config](capi-rdb-oh-rdb-config.md)的区别是该结构体成员变量不对外暴露，使用一系列方法配置该结构体的属性，支持向量数据库。 |
+| 名称                                                      | typedef关键字 | 描述                                                                      |
+|---------------------------------------------------------| -- |-------------------------------------------------------------------------|
+| [OH_Rdb_Config](capi-rdb-oh-rdb-config.md)              | - | 管理关系数据库配置。                                                              |
+| [OH_Rdb_Store](capi-rdb-oh-rdb-store.md)                | OH_Rdb_Store | 表示数据库类型。                                                                |
+| [Rdb_DistributedConfig](capi-rdb-rdb-distributedconfig.md) | Rdb_DistributedConfig | 记录表的分布式配置信息。                                                            |
+| [Rdb_KeyInfo](capi-rdb-rdb-keyinfo.md)                      | Rdb_KeyInfo | 描述发生变化的行的主键或者行号。                                                        |
+| [Rdb_KeyData](capi-rdb-rdb-keydata.md)                      | - | 存放变化的具体数据。                                                              |
+| [Rdb_ChangeInfo](capi-rdb-rdb-changeinfo.md)                | Rdb_ChangeInfo | 记录端云同步过程详情。                                                             |
+| [Rdb_SubscribeCallback](capi-rdb-rdb-subscribecallback.md)  | Rdb_SubscribeCallback | 表示回调函数。                                                                 |
+| [Rdb_DataObserver](capi-rdb-rdb-dataobserver.md)            | Rdb_DataObserver | 表示数据观察者。                                                                |
+| [Rdb_Statistic](capi-rdb-rdb-statistic.md)                  | Rdb_Statistic | 描述数据库表的端云同步过程的统计信息。                                                     |
+| [Rdb_TableDetails](capi-rdb-rdb-tabledetails.md)            | Rdb_TableDetails | 描述数据库表执行端云同步任务上传和下载的统计信息。                                               |
+| [Rdb_ProgressDetails](capi-rdb-rdb-progressdetails.md)      | Rdb_ProgressDetails | 描述数据库整体执行端云同步任务上传和下载的统计信息。                                              |
+| [Rdb_ProgressObserver](capi-rdb-rdb-progressobserver.md)    | Rdb_ProgressObserver | 端云同步进度观察者。                                                              |
+| [OH_Rdb_ConfigV2](capi-rdb-oh-rdb-configv2.md)          | OH_Rdb_ConfigV2 | 管理关系数据库配置，与[OH_Rdb_Config](capi-rdb-oh-rdb-config.md)的区别是该结构体成员变量不对外暴露，使用一系列方法配置该结构体的属性，支持向量数据库。 |
 
 ### 枚举
 
@@ -1604,7 +1604,7 @@ int OH_Rdb_SetDistributedTables(OH_Rdb_Store *store, const char *tables[], uint3
 | onst char *tables[] |  要设置的分布式数据库表表名。 |
 | uint32_t count | 要设置的分布式数据库表的数量。 |
 | [Rdb_DistributedType](#rdb_distributedtype) type | 表的分布式类型[Rdb_DistributedType](capi-relational-store-h.md#rdb_distributedtype)。 |
-| const [Rdb_DistributedConfig](capi-rdb-distributedconfig.md) *config | 表的分布式配置信息[Rdb_DistributedConfig](capi-rdb-distributedconfig.md)。 |
+| const [Rdb_DistributedConfig](capi-rdb-rdb-distributedconfig.md) *config | 表的分布式配置信息[Rdb_DistributedConfig](capi-rdb-rdb-distributedconfig.md)。 |
 
 **返回：**
 
@@ -1683,7 +1683,7 @@ typedef void (*Rdb_DetailsObserver)(void *context, const Rdb_ChangeInfo **change
 | 参数项 | 描述 |
 | -- | -- |
 | void *context | 表示数据观察者的上下文。 |
-|  const [Rdb_ChangeInfo](capi-rdb-changeinfo.md) **changeInfo | 表示已更改表的信息[Rdb_ChangeInfo](capi-rdb-changeinfo.md)。 |
+|  const [Rdb_ChangeInfo](capi-rdb-rdb-changeinfo.md) **changeInfo | 表示已更改表的信息[Rdb_ChangeInfo](capi-rdb-rdb-changeinfo.md)。 |
 |  uint32_t count | 表示更改的表的数量。 |
 
 ### OH_Rdb_Subscribe()
@@ -1705,7 +1705,7 @@ int OH_Rdb_Subscribe(OH_Rdb_Store *store, Rdb_SubscribeType type, const Rdb_Data
 | -- | -- |
 | [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 表示指向[OH_Rdb_Store](capi-rdb-oh-rdb-store.md)实例的指针。 |
 | [Rdb_SubscribeType](#rdb_subscribetype) type | 表示在[Rdb_SubscribeType](capi-relational-store-h.md#rdb_subscribetype)中定义的订阅类型。如果其值为RDB_SUBSCRIBE_TYPE_LOCAL_DETAILS，则在本地数据库中的数据更改时调用回调。 |
-| const [Rdb_DataObserver](capi-rdb-dataobserver.md) *observer | 数据库中更改事件的观察者[Rdb_DataObserver](capi-rdb-dataobserver.md)。 |
+| const [Rdb_DataObserver](capi-rdb-rdb-dataobserver.md) *observer | 数据库中更改事件的观察者[Rdb_DataObserver](capi-rdb-rdb-dataobserver.md)。 |
 
 **返回：**
 
@@ -1732,7 +1732,7 @@ int OH_Rdb_Unsubscribe(OH_Rdb_Store *store, Rdb_SubscribeType type, const Rdb_Da
 | -- | -- |
 | [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 表示指向[OH_Rdb_Store](capi-rdb-oh-rdb-store.md)实例的指针 |
 | [Rdb_SubscribeType](#rdb_subscribetype) type | 表示在[Rdb_SubscribeType](capi-relational-store-h.md#rdb_subscribetype)中定义的订阅类型。 |
-| const [Rdb_DataObserver](capi-rdb-dataobserver.md) *observer | 数据库中更改事件的观察者[Rdb_DataObserver](capi-rdb-dataobserver.md)。如果这是nullptr，表示删除该类型的所有观察者。 |
+| const [Rdb_DataObserver](capi-rdb-rdb-dataobserver.md) *observer | 数据库中更改事件的观察者[Rdb_DataObserver](capi-rdb-rdb-dataobserver.md)。如果这是nullptr，表示删除该类型的所有观察者。 |
 
 **返回：**
 
@@ -1757,14 +1757,14 @@ Rdb_TableDetails *OH_Rdb_GetTableDetails(Rdb_ProgressDetails *progress, int32_t 
 
 | 参数项 | 描述                                                         |
 | -- |------------------------------------------------------------|
-| [Rdb_ProgressDetails](capi-rdb-progressdetails.md) *progress | 表示指向[OH_ProgressDetails](capi-rdb-progressdetails.md)实例的指针。                           |
-| int32_t version | 表示当前[Rdb_ProgressDetails](capi-rdb-progressdetails.md)的版本。 |
+| [Rdb_ProgressDetails](capi-rdb-rdb-progressdetails.md) *progress | 表示指向[OH_ProgressDetails](capi-rdb-rdb-progressdetails.md)实例的指针。                           |
+| int32_t version | 表示当前[Rdb_ProgressDetails](capi-rdb-rdb-progressdetails.md)的版本。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [Rdb_TableDetails](capi-rdb-tabledetails.md) | 如果操作成功，会返回一个[Rdb_TableDetails](capi-rdb-tabledetails.md)结构体的指针，否则返回NULL。 |
+| [Rdb_TableDetails](capi-rdb-rdb-tabledetails.md) | 如果操作成功，会返回一个[Rdb_TableDetails](capi-rdb-rdb-tabledetails.md)结构体的指针，否则返回NULL。 |
 
 **参考：**
 
@@ -1788,7 +1788,7 @@ typedef void (*Rdb_ProgressCallback)(void *context, Rdb_ProgressDetails *progres
 | 参数项               | 描述           |
 |-------------------|--------------|
 | void *context     |              |
-| [Rdb_ProgressDetails](capi-rdb-progressdetails.md) *progressDetails | 端云同步进度的详细信息。 |
+| [Rdb_ProgressDetails](capi-rdb-rdb-progressdetails.md) *progressDetails | 端云同步进度的详细信息。 |
 
 ### Rdb_SyncCallback()
 
@@ -1807,7 +1807,7 @@ typedef void (*Rdb_SyncCallback)(Rdb_ProgressDetails *progressDetails)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Rdb_ProgressDetails](capi-rdb-progressdetails.md) *progressDetails | 数据库端云同步的统计信息。 |
+| [Rdb_ProgressDetails](capi-rdb-rdb-progressdetails.md) *progressDetails | 数据库端云同步的统计信息。 |
 
 ### OH_Rdb_CloudSync()
 
@@ -1830,7 +1830,7 @@ int OH_Rdb_CloudSync(OH_Rdb_Store *store, Rdb_SyncMode mode, const char *tables[
 | [Rdb_SyncMode](#rdb_syncmode) mode | 表示同步过程的类型[Rdb_SyncMode](capi-relational-store-h.md#rdb_syncmode). |
 | const char *tables[] |  表示需要同步的表名。 |
 | uint32_t count | 同步的表的数量，如果传入的值为0，同步数据库的所有表。 |
-| const [Rdb_ProgressObserver](capi-rdb-progressobserver.md) *observer | 端云同步进度的观察者[Rdb_ProgressObserver](capi-rdb-progressobserver.md)。 |
+| const [Rdb_ProgressObserver](capi-rdb-rdb-progressobserver.md) *observer | 端云同步进度的观察者[Rdb_ProgressObserver](capi-rdb-rdb-progressobserver.md)。 |
 
 **返回：**
 
@@ -1856,7 +1856,7 @@ int OH_Rdb_SubscribeAutoSyncProgress(OH_Rdb_Store *store, const Rdb_ProgressObse
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 表示指向目标[OH_Rdb_Store](capi-rdb-oh-rdb-store.md)实例的指针。 |
-| const [Rdb_ProgressObserver](capi-rdb-progressobserver.md) *observer | 用于自动同步进度的观察者[Rdb_ProgressObserver](capi-rdb-progressobserver.md)。表示调用返回自动同步进度的回调。 |
+| const [Rdb_ProgressObserver](capi-rdb-rdb-progressobserver.md) *observer | 用于自动同步进度的观察者[Rdb_ProgressObserver](capi-rdb-rdb-progressobserver.md)。表示调用返回自动同步进度的回调。 |
 
 **返回：**
 
@@ -1882,7 +1882,7 @@ int OH_Rdb_UnsubscribeAutoSyncProgress(OH_Rdb_Store *store, const Rdb_ProgressOb
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_Rdb_Store](capi-rdb-oh-rdb-store.md) *store | 表示指向目标[OH_Rdb_Store](capi-rdb-oh-rdb-store.md)实例的指针。 |
-| const [Rdb_ProgressObserver](capi-rdb-progressobserver.md) *observer | 表示自动同步进度的观察者[Rdb_ProgressObserver](capi-rdb-progressobserver.md)。如果是空指针，则自动同步进程的所有回调都将被取消注册。 |
+| const [Rdb_ProgressObserver](capi-rdb-rdb-progressobserver.md) *observer | 表示自动同步进度的观察者[Rdb_ProgressObserver](capi-rdb-rdb-progressobserver.md)。如果是空指针，则自动同步进程的所有回调都将被取消注册。 |
 
 **返回：**
 
