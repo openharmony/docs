@@ -25,7 +25,7 @@ import { motion } from '@kit.MultimodalAwarenessKit';
 | LEFT_HAND_OPERATED  | 1    | 表示触控操作手是左手。 |
 | RIGHT_HAND_OPERATED | 2    | 表示触控操作手是右手。 |
 
-## HoldingHandStatus <sup>20+</sup> 
+## HoldingHandStatus<sup>20+</sup>
 
 手机握持手状态信息，表示握持手状态变化感知事件的结果。订阅握持手状态变化感知事件后，返回当前哪个手握持设备。
 
@@ -184,7 +184,7 @@ on(type: 'holdingHandChanged', callback: Callback&lt;HoldingHandStatus&gt;): voi
 | 参数名   | 类型                                              | 必填 | 说明                                   |
 | -------- | ------------------------------------------------- | ---- | -------------------------------------- |
 | type     | string                                            | 是   | 事件类型，type为"holdingHandChanged"。 |
-| callback | Callback&lt;[HoldingHandStatus](#holdinghandstatus)&gt; | 是   | 回调函数，返回握持手状态结果。         |
+| callback | Callback&lt;[HoldingHandStatus](#holdinghandstatus20)&gt; | 是   | 回调函数，返回握持手状态结果。         |
 
 **错误码**
 
@@ -230,7 +230,7 @@ off(type: 'holdingHandChanged', callback?: Callback&lt;HoldingHandStatus&gt;): v
 | 参数名   | 类型                                              | 必填 | 说明                                           |
 | -------- | ------------------------------------------------- | ---- | ---------------------------------------------- |
 | type     | string                                            | 是   | 事件类型，type为"holdingHandChanged"。         |
-| callback | Callback&lt;[HoldingHandStatus](#holdinghandstatus)&gt; | 否   | 需取消的回调函数。省略则移除该事件的所有回调。 |
+| callback | Callback&lt;[HoldingHandStatus](#holdinghandstatus20)&gt; | 否   | 需取消的回调函数。省略则移除该事件的所有回调。 |
 
 **错误码**
 
