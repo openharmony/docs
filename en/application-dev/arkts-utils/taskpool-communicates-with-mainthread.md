@@ -9,7 +9,7 @@ The following example uses multiple image loading tasks that provide real-time u
    ```ts
    // TaskSendDataUsage.ets
    function notice(data: number): void {
-     console.info("Child thread task completed. Total images loaded:", data)
+     console.info("Child thread task completed. Total images loaded:", data);
    }
    ```
 
@@ -72,10 +72,10 @@ The following example uses multiple image loading tasks that provide real-time u
              .fontWeight(FontWeight.Bold)
              .onClick(() => {
                let iconItemSourceList: IconItemSource[];
-               let lodePictureTask: taskpool.Task = new taskpool.Task(loadPictureSendData, 30);
+               let loadPictureTask: taskpool.Task = new taskpool.Task(loadPictureSendData, 30);
                // Use notice to receive messages from the task.
-               lodePictureTask.onReceiveData(notice);
-               taskpool.execute(lodePictureTask).then((res: object) => {
+               loadPictureTask.onReceiveData(notice);
+               taskpool.execute(loadPictureTask).then((res: object) => {
                  iconItemSourceList = res as IconItemSource[];
                })
              })
