@@ -452,7 +452,7 @@ getWithRange(start: NodeIdentity, end: NodeIdentity, isStartRect: boolean, optio
 | ---- | ------ | ---- | ------- |
 | start   | [NodeIdentity](./js-apis-arkui-UIContext.md#nodeidentity20) | 是    | 范围开始的组件的ID。 |
 | end   | [NodeIdentity](./js-apis-arkui-UIContext.md#nodeidentity20) | 是    | 范围结束的组件的ID。 |
-| isStartRect   | boolean | 是    | 范围是否以开始组件的外接矩形为准。 |
+| isStartRect   | boolean | 是    | 范围是否以开始组件的外接矩形为准。<br/>true表示以开始组件的外接矩形为准，false表示以结束组件的外接矩形为准。<br/>默认值为true。 |
 | options       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)            | 否    | 截图相关的自定义参数，不支持region参数。 |
 
 **返回值：**
@@ -502,7 +502,7 @@ struct SnapshotExample {
               .then((pixmap: image.PixelMap) => {
                 this.pixmap = pixmap
               }).catch((err:Error) => {
-              console.log("error: " + err)
+              console.error("error: " + err)
             })
           }).margin(10)
       }.justifyContent(FlexAlign.SpaceAround)
