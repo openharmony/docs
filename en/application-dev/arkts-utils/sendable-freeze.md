@@ -2,6 +2,10 @@
 
 Sendable objects can be frozen, making them read-only and preventing any additions, deletions, or modifications to their properties. Once frozen, these objects can be safely accessed across multiple concurrent instances without the need for locks. This is achieved using the [Object.freeze](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze) method.
 
+> **NOTE**
+> 
+> The **Object.freeze** API cannot be used in .ets files.
+
 ## Usage Example
 
 1. Encapsulate the **Object.freeze** method in a TS file.
@@ -12,6 +16,7 @@ Sendable objects can be frozen, making them read-only and preventing any additio
      Object.freeze(obj);
    }
    ```
+   <!-- @[provide_encapsulate_method](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableObjectRelated/entry/src/main/ets/managers/helper.ts) -->
 
 2. Call the **freeze** method to freeze an object and send it to a child thread.
 
@@ -39,10 +44,10 @@ Sendable objects can be frozen, making them read-only and preventing any additio
            .fontSize(50)
            .fontWeight(FontWeight.Bold)
            .onClick(() => {
-             let gConifg = new GlobalConfig();
-             gConifg.init();
+             let gConfig = new GlobalConfig();
+             gConfig.init();
              const workerInstance = new worker.ThreadWorker('entry/ets/workers/Worker.ets', { name: "Worker1" });
-             workerInstance.postMessage(gConifg);
+             workerInstance.postMessage(gConfig);
            })
        }
        .height('100%')
@@ -50,6 +55,7 @@ Sendable objects can be frozen, making them read-only and preventing any additio
      }
    }
    ```
+   <!-- @[freeze_obj_send_child_thread](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableObjectRelated/entry/src/main/ets/managers/SendableFreeze.ets) -->
 
 3. Perform operations on the frozen object directly in the child thread without locking.
 
@@ -64,3 +70,4 @@ Sendable objects can be frozen, making them read-only and preventing any additio
      // Use the gConfig object.
    }
    ```
+   <!-- @[directly_operate_obj](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableObjectRelated/entry/src/main/ets/workers/Worker.ets) -->

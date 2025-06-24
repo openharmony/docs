@@ -4,7 +4,7 @@
 
 Disassembler is a utility in the ArkTS toolchain designed to convert Ark bytecode files (*.abc) into human-readable assembly instructions. It is particularly useful when you want to analyze or debug issues related to Ark bytecode files.
 
-Disassembler is released with the DevEco Studio SDK. For instance, on Windows, the tool can be found at: [DevEco Studio installation directory]\sdk\[SDK version]\openharmony\toolchains\ark_disasm.exe.
+Disassembler is released with the DevEco Studio SDK. For instance, on Windows, the tool can be found at: DevEco Studio/sdk/default/openharmony/toolchains/ark_disasm.exe.
 
 ## Command-Line Instructions
 
@@ -16,23 +16,23 @@ ark_disasm.exe [options] input_file output_file
 
 Parameters
 
-| Parameter| Optional| Description| 
+| Parameter| Optional| Description|
 | -------- | -------- | -------- |
-| [options] | Yes| Command options. For details, see **Description of options** below.| 
-| input_file | No| Path of the Ark bytecode file to be disassembled.| 
-| output_file | No| Path where the disassembled file will be saved.| 
+| [options] | Yes| Command options. For details, see **Description of options** below.|
+| input_file | No| Path of the Ark bytecode file to be disassembled.|
+| output_file | No| Path where the disassembled file will be saved.|
 
 Description of **options**
 
-| Option| Optional| Argument Carried| Description| 
+| Option| Mandatory| Argument Carried| Description|
 | -------- | -------- | -------- | -------- |
-| --debug | Yes| No| Enables the function of outputting debugging information. By default, debugging information is output to the screen.| 
-| --debug-file | Yes| Yes| Specifies the output file of debugging information if **--debug** is enabled.| 
-| --help | Yes| No| Displays help information.| 
-| --skip-string-literals | Yes| No| Skips disassembly of string literals.| 
-| --quiet | Yes| No| Enables all options prefixed with **--skip-**.| 
-| --verbose | Yes| No| Enables the output of additional information (byte position, ARK bytecode format, and operation code).| 
-| --version | Yes| No| Displays the version of the Ark bytecode file and the minimum supported version.| 
+| --debug | No | No | Enables the function of outputting debugging information. By default, debugging information is output to the screen.|
+| --debug-file | No| Yes| Specifies the output file of debugging information if **--debug** is enabled.|
+| --help | No| No| Displays help information.|
+| --skip-string-literals | No| No| Skips disassembly of string literals.|
+| --quiet | No| No| Enables all options prefixed with **--skip-**.|
+| --verbose | No| No| Enables the output of additional information (byte position, ARK bytecode format, and operation code).|
+| --version | No| No| Displays the version of the Ark bytecode file and the minimum supported version.|
 
 ## Usage Example
 

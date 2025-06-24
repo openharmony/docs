@@ -1,8 +1,8 @@
 # Concurrent Loading of Service Modules
 
-During application launch, multiple service modules need to be loaded. For example, in a mapping application, different modules such as positioning, ride-hailing, and navigation are required. Initializing all these modules in the UI main thread can significantly increase the cold start time. To address this, these modules should be loaded concurrently in separate background threads to reduce launch latency.
+During application launch, multiple service modules need to be loaded. For example, in a mapping application, different modules such as positioning, ride-hailing, and navigation are required. Initializing all these modules in the UI main thread can significantly increase the cold start time of the application. To address this, these modules should be loaded concurrently in separate child threads to reduce launch latency.
 
-By leveraging the TaskPool capabilities provided by ArkTS, different service initialization tasks can be offloaded to background threads. Service modules can be implemented in C++ as [NativeBinding objects](transferabled-object.md) or defined in ArkTS as [Sendable objects](arkts-sendable.md). The initialized modules can then be returned to the UI main thread for use. The implementation involves the following steps:
+By leveraging the TaskPool capabilities provided by ArkTS, different service initialization tasks can be offloaded to child threads. Service modules can be implemented in C++ as [NativeBinding objects](transferabled-object.md) or defined in ArkTS as [Sendable objects](arkts-sendable.md). The initialized modules can then be returned to the UI main thread for use. The implementation involves the following steps:
 
 1. Define each service module (SDK) (using Sendable objects as an example).
    
@@ -64,6 +64,7 @@ By leveraging the TaskPool capabilities provided by ArkTS, different service ini
      }
    }
    ```
+   <!-- @[define_calculator_module](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/PracticalCases/entry/src/main/ets/sdk/Calculator.ets) -->
 
    Define the timer service module as follows:
 
@@ -85,6 +86,7 @@ By leveraging the TaskPool capabilities provided by ArkTS, different service ini
      }
    }
    ```
+   <!-- @[define_timer_module](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/PracticalCases/entry/src/main/ets/sdk/TimerSdk.ets) -->
 
 2. In the UI main thread, trigger the distribution of service modules to child threads, and use them in the UI main thread after loading is complete. The following is an example:
 
@@ -165,3 +167,4 @@ By leveraging the TaskPool capabilities provided by ArkTS, different service ini
      }
    }
    ```
+   <!-- @[distribute_child_thread](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/PracticalCases/entry/src/main/ets/managers/ConcurrentLoadingModulesGuide.ets) -->
