@@ -27,7 +27,7 @@ import { Filter } from '@kit.ArkUI';
 
 ## Filter
 
-Filter({ multiFilters: Array&lt;FilterParams&gt;,  additionFilters?: FilterParams, filterType?: FilterType, onFilterChanged: (Array&lt;FilterResult&gt;) =&gt; void, container: ()=&gt; void })
+Filter({ multiFilters: Array&lt;FilterParams&gt;,  additionFilters?: FilterParams, filterType?: FilterType, onFilterChanged: (filterResults: Array&lt;FilterResult&gt;) =&gt; void, container: ()=&gt; void })
 
 **装饰器类型：**\@Component
 

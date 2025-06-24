@@ -6,14 +6,16 @@
 
 SystemCapability (SysCap) refers to a standalone feature in the operating system, for example, Bluetooth, Wi-Fi, NFC, or camera. Each SysCap corresponds to a set of APIs, whose availability depends on the support of the target device. Such a set of APIs can be provided in DevEco Studio for association.
 
-![image-20220326064841782](figures/image-20220326064841782.png)
+![image-SysCap.png](figures/image-SysCap.png)
 
 For details about the SysCap sets in OpenHarmony, see [SysCap List](syscap-list.md).
 
 ### Supported SysCap Set, Associated SysCap Set, and Required SysCap Set
 
 The supported SysCap set, associated SysCap set, and required SysCap set are collections of SysCaps.
+
 The supported SysCap set covers the device capabilities, and the required SysCap set covers the application capabilities. If the SysCap set required by application A is a subset of the SysCap set supported by device N, application A can be distributed to device N for installation and running. Otherwise, application A cannot be distributed.
+
 The associated SysCap set covers the system capabilities of associated APIs that DevEco Studio offers during application development.
 
 ![image-20220326064913834](figures/image-20220326064913834.png)
@@ -21,6 +23,7 @@ The associated SysCap set covers the system capabilities of associated APIs that
 ### Devices and Supported SysCap Sets
 
 Each device provides a SysCap set that matches its hardware capability.
+
 The SDK classifies devices into general devices and custom devices. The general devices' supported SysCap set is defined by OpenHarmony, and the custom devices' is defined by device vendors.
 
 ![image-20220326064955505](figures/image-20220326064955505.png)
@@ -78,6 +81,7 @@ Exercise caution when modifying the required SysCap set. Incorrect modifications
 	}
 }
 ```
+
 
 ### Single-Device Application Development
 

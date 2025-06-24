@@ -9,7 +9,7 @@
 
 **库：** libnative_drawing.so
 
-**起始版本：** 16
+**起始版本：** 18
 
 **相关模块：**[Drawing](_drawing.md)
 

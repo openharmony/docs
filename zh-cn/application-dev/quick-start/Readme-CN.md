@@ -48,3 +48,4 @@
   - [ArkTS高性能编程实践](arkts-high-performance-programming.md)
   - 面向其他语言的ArkTS迁移指导
     - [从Java到ArkTS的迁移指导](getting-started-with-arkts-for-java-programmers.md)
+    - [从Swift到ArkTS的迁移指导](getting-started-with-arkts-for-swift-programmers.md)

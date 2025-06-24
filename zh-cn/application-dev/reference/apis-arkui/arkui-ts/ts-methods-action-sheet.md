@@ -535,7 +535,7 @@ struct ActionSheetExample {
 @Entry
 @Component
 struct Example1 {
-  @State log:string = 'Log information:';
+  @State log: string = 'Log information:';
   flag: boolean = false;
 
   build() {
@@ -551,11 +551,11 @@ struct Example1 {
             confirm: {
               value: 'button',
               action: () => {
-                console.info('ActionSheet Button-clicking callback')
+                console.info('ActionSheet Button-clicking callback');
               }
             },
             cancel: () => {
-              console.info('ActionSheet Closed callbacks')
+              console.info('ActionSheet Closed callbacks');
             },
             sheets: [
               {
@@ -578,23 +578,23 @@ struct Example1 {
               }
             ],
             onDidAppear: () => {
-              this.log += '# onDidAppear'
-              console.info("ActionSheet,is onDidAppear!")
+              this.log += '# onDidAppear';
+              console.info("ActionSheet,is onDidAppear!");
             },
             onDidDisappear: () => {
-              this.log += '# onDidDisappear'
-              console.info("ActionSheet,is onDidDisappear!")
+              this.log += '# onDidDisappear';
+              console.info("ActionSheet,is onDidDisappear!");
             },
             onWillAppear: () => {
-              this.log = 'Log information:onWillAppear'
-              console.info("ActionSheet,is onWillAppear!")
+              this.log = 'Log information:onWillAppear';
+              console.info("ActionSheet,is onWillAppear!");
             },
             onWillDisappear: () => {
-              this.log += '# onWillDisappear'
-              console.info("ActionSheet,is onWillDisappear!")
+              this.log += '# onWillDisappear';
+              console.info("ActionSheet,is onWillDisappear!");
             }
           })
-        }).backgroundColor(0x317aff).height("60vp")
+        })
       Text(this.log).fontSize(30).margin({ top: 200 })
     }.width('100%').margin({ top: 5 })
   }
