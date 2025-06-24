@@ -47,7 +47,7 @@ Defines the OpenHarmony Universal KeyStore (HUKS) capabilities, including key ma
 ### OH_Huks_AbortSession()
 
 ```
-struct OH_Huks_Result OH_Huks_AbortSession (const struct OH_Huks_Blob * handle, const struct OH_Huks_ParamSet * paramSet )
+struct OH_Huks_Result OH_Huks_AbortSession(const struct OH_Huks_Blob *handle, const struct OH_Huks_ParamSet *paramSet)
 ```
 **Description**
 Aborts a key session.
