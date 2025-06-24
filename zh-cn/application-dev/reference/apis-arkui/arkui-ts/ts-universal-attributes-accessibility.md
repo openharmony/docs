@@ -641,9 +641,10 @@ struct Index {
 }
 ```
 
+<!--Del-->
 ### 示例5（设置无障碍屏幕朗读滚动）
 
-该示例主要演示accessibilityScrollTriggerable设置无障碍节点是否支持屏幕朗读滚动和accessibilityUseSamePage设置UIExtensionComponent的accessibilityUseSamePage属性。
+该示例主要演示accessibilityScrollTriggerable设置无障碍节点是否支持屏幕朗读滚动和accessibilityUseSamePage设置[UIExtensionComponent](ts-container-ui-extension-component-sys.md)的accessibilityUseSamePage属性。
 
 ```ts
 // xxx.ets
@@ -748,3 +749,4 @@ struct Index {
 ```
 
 ![accessibilityUseSamePage](figures/accessibilityUseSamePage.png)
+ <!--DelEnd-->
