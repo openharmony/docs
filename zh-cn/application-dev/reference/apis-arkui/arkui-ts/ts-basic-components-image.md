@@ -871,7 +871,7 @@ struct ImageExample1 {
 
 ![zh-cn_image_0000001592882500](figures/zh-cn_image_0000001592882500.gif)
 
-### 示例2（下载与显示网络图片）
+### 示例2（下载与显示静态网络图片）
 
 加载网络图片时，默认网络超时是5分钟，建议使用alt配置加载时的占位图。使用[HTTP](../../../network/http-request.md)工具包发送网络请求，接着将返回的数据解码为Image组件中的`PixelMap`，加载gif到`PixelMap`时，gif显示为静态图。图片开发可参考[图片处理](../../../media/image/image-overview.md)。
 
@@ -933,7 +933,48 @@ struct ImageExample2 {
 
 ![zh-cn_image_0000001607845173](figures/zh-cn_image_view2.png)
 
-### 示例3（为图片添加事件）
+### 示例3（下载与显示网络gif图片）
+
+该示例使用[cacheDownload.download](../../apis-basic-services-kit/js-apis-request-cacheDownload.md#cachedownloaddownload)接口下载网络gif图片。
+
+使用网络图片时，需要申请权限ohos.permission.INTERNET。具体申请方式请参考[声明权限](../../../security/AccessToken/declare-permissions.md)。
+
+```ts
+import { cacheDownload } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct Index {
+  @State src: string = 'https://www.example.com/xxx.gif'; // 请填写一个具体的网络图片地址。
+
+  async aboutToAppear(): Promise<void> {
+    // 提供缓存下载任务的配置选项。
+    let options: cacheDownload.CacheDownloadOptions = {};
+    try {
+      // 进行缓存下载，资源若下载成功会被缓存到应用内存或应用沙箱目录的特定文件中。
+      cacheDownload.download(this.src, options);
+      console.error(`successs to download the resource. `);
+    } catch (err) {
+      console.error(`Failed to download the resource. err: ${JSON.stringify(err)}`);
+    }
+  }
+
+  build() {
+    Column() {
+      // 若src指定的是网络图片且已成功下载并缓存，则本次显示无需重复下载。
+      Image(this.src)
+        .width(100)
+        .height(100)
+        .objectFit(ImageFit.Cover)
+        .borderWidth(1)
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+### 示例4（为图片添加事件）
 
 该示例为图片添加[onClick](ts-universal-events-click.md#onclick)和[onFinish](#onfinish)事件。
 
@@ -971,7 +1012,7 @@ struct ImageExample3 {
 
 ![zh-cn_image_0000001607845173](figures/zh-cn_image_0000001607845173.gif)
 
-### 示例4（开启图像AI分析）
+### 示例5（开启图像AI分析）
 <!--RP2-->
 该示例使用[enableAnalyzer](#enableanalyzer11)接口开启图像AI分析。
 
@@ -1025,7 +1066,7 @@ struct ImageExample4 {
 
 ![zh-cn_image_0000001607845173](figures/zh-cn_image_view4.gif)
 <!--RP2End-->
-### 示例5（通过slice拉伸图片）
+### 示例6（通过slice拉伸图片）
 
 该示例通过[resizable](#resizable11)属性的slice选项，调整不同方向对图片进行拉伸。
 
@@ -1092,7 +1133,7 @@ struct Index {
 
 ![imageResizable](figures/imageResizable.gif)
 
-### 示例6（通过lattice拉伸图片）
+### 示例7（通过lattice拉伸图片）
 
 该示例使用[resizable](#resizable11)属性的lattice选项，使用矩形网格对象对图片进行拉伸。
 
@@ -1136,7 +1177,7 @@ struct drawingLatticeTest {
 
 ![imageResizableLattice](figures/imageResizableLattice.png)
 
-### 示例7（播放PixelMap数组动画）
+### 示例8（播放PixelMap数组动画）
 
 该示例通过[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)对象播放PixelMap数组动画。
 
@@ -1218,7 +1259,7 @@ struct ImageExample {
 
 ![zh-cn_image_0000001607845173](figures/zh-cn_image_view6.gif)
 
-### 示例8（为图像设置颜色滤镜效果）
+### 示例9（为图像设置颜色滤镜效果）
 
 该示例通过[colorFilter](#colorfilter9)属性实现了给图像设置颜色滤镜效果。
 
@@ -1278,7 +1319,7 @@ struct ImageExample3 {
 ```
 ![imageSetColorFilter](figures/imageSetColorFilter.gif)
 
-### 示例9（为图像设置填充效果）
+### 示例10（为图像设置填充效果）
 
 该示例通过[objectFit](#objectfit)属性为图像设置填充效果。
 
@@ -1325,7 +1366,7 @@ struct ImageExample{
 
 ![imageResizable](figures/imageSetFit.gif)
 
-### 示例10（切换显示不同类型图片）
+### 示例11（切换显示不同类型图片）
 
 该示例展示了[ResourceStr](ts-types.md#resourcestr)类型与[ImageContent](#imagecontent12)类型作为数据源的显示图片效果。
 
@@ -1354,7 +1395,7 @@ struct ImageContentExample {
 
 ![imageContent](figures/zh-cn_image_view9.gif)
 
-### 示例11（配置隐私隐藏）
+### 示例12（配置隐私隐藏）
 
 该示例通过[privacySensitive](#privacysensitive12)属性展示了如何配置隐私隐藏，效果展示需要卡片框架支持。
 
@@ -1378,7 +1419,7 @@ struct ImageExample {
 
 ![imageContent](figures/zh-cn_image_view10.gif)
 
-### 示例12（为图片设置扫光效果）
+### 示例13（为图片设置扫光效果）
 
 该示例通过[linearGradient](./ts-basic-components-datapanel.md#lineargradient10)接口和[animateTo()](./ts-explicit-animation.md)接口实现了给图片设置扫光效果。
 
@@ -1466,7 +1507,7 @@ struct ImageExample11 {
 
 ![imageContent](figures/imageScanEffect.gif)
 
-### 示例13（为图片添加变换效果）
+### 示例14（为图片添加变换效果）
 
 该示例通过[imageMatrix](#imagematrix15)和[objectFit](#objectfit)属性，为图片添加旋转和平移的效果。
 
@@ -1530,7 +1571,7 @@ struct Test {
 
 ![imageMatrix](figures/imageMatrix.jpeg)
 
-### 示例14（通过sourceSize设置图片解码尺寸）
+### 示例15（通过sourceSize设置图片解码尺寸）
 
 该示例通过[sourceSize](ts-basic-components-image.md#sourcesize)接口自定义图片的解码尺寸。
 
@@ -1562,7 +1603,7 @@ struct Index {
 
 ![sourceSizeExample](figures/sourceSizeExample.png)
 
-### 示例15（通过renderMode设置图片的渲染模式）
+### 示例16（通过renderMode设置图片的渲染模式）
 
 该示例通过[renderMode](ts-basic-components-image.md#rendermode)接口设置图片渲染模式为黑白模式。
 
@@ -1588,7 +1629,7 @@ struct Index {
 
 ![renderModeExample](figures/renderModeExample.png)
 
-### 示例16（通过objectRepeat设置图片的重复样式）
+### 示例17（通过objectRepeat设置图片的重复样式）
 
 该示例通过[objectRepeat](ts-basic-components-image.md#objectrepeat)接口在竖直轴上重复绘制图片。
 
@@ -1614,7 +1655,7 @@ struct Index {
 
 ![objectRepeatExample](figures/objectRepeatExample.png)
 
-### 示例17（设置SVG图片的填充颜色）
+### 示例18（设置SVG图片的填充颜色）
 
 该示例通过[fillColor](#fillcolor15)属性为SVG图片设置不同颜色的填充效果。
 
@@ -1660,7 +1701,7 @@ struct Index {
 
 ![fillColorExample](figures/fillColorExample.png)
 
-### 示例18（设置HDR图源动态提亮）
+### 示例19（设置HDR图源动态提亮）
 
 该示例通过[hdrBrightness](#hdrbrightness19)属性调整HDR图源的亮度，将hdrBrightness从0调整到1。
 
@@ -1709,7 +1750,7 @@ struct Index {
 }
 ```
 
-### 示例19（设置图片是否跟随系统语言方向）
+### 示例20（设置图片是否跟随系统语言方向）
 
 该示例通过[matchTextDirection](#matchtextdirection)接口，设置手机语言为维语时图片是否显示镜像翻转显示效果。
 
