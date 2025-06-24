@@ -720,11 +720,11 @@
 | int32_t [OH_ArkUI_AccessibilityValue_GetMax](#oh_arkui_accessibilityvalue_getmax) ([ArkUI_AccessibilityValue](#arkui_accessibilityvalue) \*value) | 获取无障碍最大值信息。  | 
 | void [OH_ArkUI_AccessibilityValue_SetCurrent](#oh_arkui_accessibilityvalue_setcurrent) ([ArkUI_AccessibilityValue](#arkui_accessibilityvalue) \*value, int32_t current) | 设置无障碍当前值信息。  | 
 | int32_t [OH_ArkUI_AccessibilityValue_GetCurrent](#oh_arkui_accessibilityvalue_getcurrent) ([ArkUI_AccessibilityValue](#arkui_accessibilityvalue) \*value) | 获取无障碍当前值信息。  |
-| int32_t [OH_ArkUI_AccessibilityValue_SetRangeMin](#oh_arkui_accessibilityvalue_setrangemin) ([ArkUI_AccessibilityValue](#arkui_accessibilityvalue) \*value) | 用于设置范围组件的无障碍最小值信息。  |
+| int32_t [OH_ArkUI_AccessibilityValue_SetRangeMin](#oh_arkui_accessibilityvalue_setrangemin) ([ArkUI_AccessibilityValue](#arkui_accessibilityvalue) \*value, int32_t rangeMin) | 用于设置范围组件的无障碍最小值信息。  |
 | int32_t [OH_ArkUI_AccessibilityValue_GetRangeMin](#oh_arkui_accessibilityvalue_getrangemin) ([ArkUI_AccessibilityValue](#arkui_accessibilityvalue) \*value) | 用于获取范围组件的无障碍最小值信息。  |
-| int32_t [OH_ArkUI_AccessibilityValue_SetRangeMax](#oh_arkui_accessibilityvalue_setrangemax) ([ArkUI_AccessibilityValue](#arkui_accessibilityvalue) \*value) | 用于设置范围组件的无障碍最大值信息。  |
+| int32_t [OH_ArkUI_AccessibilityValue_SetRangeMax](#oh_arkui_accessibilityvalue_setrangemax) ([ArkUI_AccessibilityValue](#arkui_accessibilityvalue) \*value, int32_t rangeMax) | 用于设置范围组件的无障碍最大值信息。  |
 | int32_t [OH_ArkUI_AccessibilityValue_GetRangeMax](#oh_arkui_accessibilityvalue_getrangemax) ([ArkUI_AccessibilityValue](#arkui_accessibilityvalue) \*value) | 用于获取范围组件的无障碍最大值信息。  |
-| int32_t [OH_ArkUI_AccessibilityValue_SetRangeCurrent](#oh_arkui_accessibilityvalue_setrangecurrent) ([ArkUI_AccessibilityValue](#arkui_accessibilityvalue) \*value) | 用于设置范围组件的无障碍当前值信息。  |
+| int32_t [OH_ArkUI_AccessibilityValue_SetRangeCurrent](#oh_arkui_accessibilityvalue_setrangecurrent) ([ArkUI_AccessibilityValue](#arkui_accessibilityvalue) \*value, int32_t rangeCurrent) | 用于设置范围组件的无障碍当前值信息。  |
 | int32_t [OH_ArkUI_AccessibilityValue_GetRangeCurrent](#oh_arkui_accessibilityvalue_getrangecurrent) ([ArkUI_AccessibilityValue](#arkui_accessibilityvalue) \*value) | 用于获取范围组件的无障碍当前值信息。  | 
 | void [OH_ArkUI_AccessibilityValue_SetText](#oh_arkui_accessibilityvalue_settext) ([ArkUI_AccessibilityValue](#arkui_accessibilityvalue) \*value, const char \*text) | 设置无障碍文本描述信息。  | 
 | const char \* [OH_ArkUI_AccessibilityValue_GetText](#oh_arkui_accessibilityvalue_gettext) ([ArkUI_AccessibilityValue](#arkui_accessibilityvalue) \*value) | 获取无障碍文本描述信息。  | 
@@ -14896,7 +14896,7 @@ float OH_ArkUI_SwiperIndicator_GetSelectedItemHeight (ArkUI_SwiperIndicator * in
 
 **返回：**
 
-圆点导航指示器的高。
+圆点导航指示器的高。单位：vp。
 
 
 ### OH_ArkUI_SwiperIndicator_GetSelectedItemWidth()
@@ -14918,7 +14918,7 @@ float OH_ArkUI_SwiperIndicator_GetSelectedItemWidth (ArkUI_SwiperIndicator * ind
 
 **返回：**
 
-圆点导航指示器的宽。
+圆点导航指示器的宽。单位：vp。
 
 
 ### OH_ArkUI_SwiperIndicator_GetStartPosition()
@@ -14940,7 +14940,7 @@ float OH_ArkUI_SwiperIndicator_GetStartPosition (ArkUI_SwiperIndicator * indicat
 
 **返回：**
 
-导航点距离Swiper组件左边的距离。
+导航点距离Swiper组件左边的距离。单位：vp。
 
 
 ### OH_ArkUI_SwiperIndicator_GetTopPosition()
@@ -14962,7 +14962,7 @@ float OH_ArkUI_SwiperIndicator_GetTopPosition (ArkUI_SwiperIndicator * indicator
 
 **返回：**
 
-导航点距离Swiper组件顶部的距离。
+导航点距离Swiper组件顶部的距离。单位：vp。
 
 
 ### OH_ArkUI_SwiperIndicator_SetBottomPosition()
@@ -14980,8 +14980,8 @@ void OH_ArkUI_SwiperIndicator_SetBottomPosition (ArkUI_SwiperIndicator * indicat
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| indicator | 导航指示器对象指针。  | 
-| value | 导航点距离Swiper组件底部的距离。  | 
+| indicator | 导航指示器对象指针。  |
+| value | 导航点距离Swiper组件底部的距离。默认值：0，单位：vp。  |
 
 
 ### OH_ArkUI_SwiperIndicator_SetColor()
@@ -15018,8 +15018,8 @@ void OH_ArkUI_SwiperIndicator_SetEndPosition (ArkUI_SwiperIndicator * indicator,
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| indicator | 导航指示器对象指针。  | 
-| value | 导航点距离Swiper组件右边的距离。  | 
+| indicator | 导航指示器对象指针。  |
+| value | 导航点距离Swiper组件右边的距离。默认值：0，单位：vp。  |
 
 
 ### OH_ArkUI_SwiperIndicator_SetItemHeight()
@@ -15037,8 +15037,8 @@ void OH_ArkUI_SwiperIndicator_SetItemHeight (ArkUI_SwiperIndicator * indicator, 
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| indicator | 导航指示器对象指针。  | 
-| value | 圆点导航指示器的高。  | 
+| indicator | 导航指示器对象指针。  |
+| value | 圆点导航指示器的高。默认值：6，单位：vp。  |
 
 
 ### OH_ArkUI_SwiperIndicator_SetItemWidth()
@@ -15056,8 +15056,8 @@ void OH_ArkUI_SwiperIndicator_SetItemWidth (ArkUI_SwiperIndicator * indicator, f
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| indicator | 导航指示器对象指针。  | 
-| value | 圆点导航指示器的宽。  | 
+| indicator | 导航指示器对象指针。  |
+| value | 圆点导航指示器的宽。默认值：12，单位：vp。  |
 
 
 ### OH_ArkUI_SwiperIndicator_SetMask()
@@ -15136,8 +15136,8 @@ void OH_ArkUI_SwiperIndicator_SetSelectedItemHeight (ArkUI_SwiperIndicator * ind
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| indicator | 导航指示器对象指针。  | 
-| value | 圆点导航指示器的高。  | 
+| indicator | 导航指示器对象指针。  |
+| value | 圆点导航指示器的高。默认值：6，单位：vp。  |
 
 
 ### OH_ArkUI_SwiperIndicator_SetSelectedItemWidth()
@@ -15155,8 +15155,8 @@ void OH_ArkUI_SwiperIndicator_SetSelectedItemWidth (ArkUI_SwiperIndicator * indi
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| indicator | 导航指示器对象指针。  | 
-| value | 圆点导航指示器的宽。  | 
+| indicator | 导航指示器对象指针。  |
+| value | 圆点导航指示器的宽。默认值：12，单位：vp。  |
 
 
 ### OH_ArkUI_SwiperIndicator_SetStartPosition()
@@ -15174,8 +15174,8 @@ void OH_ArkUI_SwiperIndicator_SetStartPosition (ArkUI_SwiperIndicator * indicato
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| indicator | 导航指示器对象指针。  | 
-| value | 导航点距离Swiper组件左边的距离。  | 
+| indicator | 导航指示器对象指针。  |
+| value | 导航点距离Swiper组件左边的距离。默认值：0，单位：vp。  |
 
 
 ### OH_ArkUI_SwiperIndicator_SetTopPosition()
@@ -15193,8 +15193,8 @@ void OH_ArkUI_SwiperIndicator_SetTopPosition (ArkUI_SwiperIndicator * indicator,
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| indicator | 导航指示器对象指针。  | 
-| value | 导航点距离Swiper组件顶部的距离。  | 
+| indicator | 导航指示器对象指针。  |
+| value | 导航点距离Swiper组件顶部的距离。默认值：0，单位：vp。  |
 
 
 ### OH_ArkUI_SystemFontStyleEvent_GetFontSizeScale()

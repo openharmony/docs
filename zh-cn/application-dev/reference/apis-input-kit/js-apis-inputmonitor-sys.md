@@ -1,12 +1,12 @@
 # @ohos.multimodalInput.inputMonitor (输入监听)(系统接口)
 
-输入监听模块，提供了监听输入设备事件的能力。输入设备事件当前包括触摸（触屏）事件、鼠标输入事件和触控板输入事件。
+输入监听模块，提供了监听输入设备事件的能力。输入设备事件当前包括触屏事件、鼠标输入事件和触控板输入事件。
 
 >**说明：**
 >
 >- 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
->- 文档中“全局”表示整个触控屏或触控板。如监听全局触摸事件，表示触摸触控板任何位置时，整个触控板的触摸事件均被监听。
+>- 文档中“全局”表示整个触控屏或触控板。如监听全局触屏事件，表示触摸触控板任何位置时，整个触控板的触屏事件均被监听。
 >
 >- 本模块接口均为系统接口。
 
@@ -20,7 +20,7 @@ import { inputMonitor } from '@kit.InputKit';
 
 on(type: 'touch', receiver: TouchEventReceiver): void
 
-监听全局触摸（触屏）事件。
+监听全局触屏事件。
 
 **需要权限：** ohos.permission.INPUT_MONITORING
 
@@ -169,7 +169,7 @@ try {
 
 off(type: 'touch', receiver?: TouchEventReceiver): void
 
-取消监听全局触摸（触屏）事件。
+取消监听全局触屏事件。
 
 **需要权限：** ohos.permission.INPUT_MONITORING
 
@@ -293,7 +293,7 @@ try {
 
 (touchEvent: TouchEvent): Boolean
 
-触摸（触屏）输入事件的回调函数。
+触屏输入事件的回调函数。
 
 **需要权限：** ohos.permission.INPUT_MONITORING
 
@@ -303,13 +303,13 @@ try {
 
 | 参数名         | 类型                                       | 必填   | 说明                                       |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| touchEvent | [TouchEvent](js-apis-touchevent.md#touchevent) | 是    | 触摸输入事件。 |
+| touchEvent | [TouchEvent](js-apis-touchevent.md#touchevent) | 是    | 触屏输入事件。 |
 
 **返回值：**
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
-| Boolean | 若返回true，本次触摸后续产生的事件不再分发到窗口；若返回false，本次触摸后续产生的事件还会分发到窗口。 |
+| Boolean | 若返回true，本次触屏后续产生的事件不再分发到窗口；若返回false，本次触屏后续产生的事件还会分发到窗口。 |
 
 **示例：**
 
