@@ -114,7 +114,6 @@ onBeforeUnload(callback: Callback\<OnBeforeUnloadEvent, boolean\>)
             if (event) {
               console.log("event.url:" + event.url);
               console.log("event.message:" + event.message);
-              console.log("event.isReload:" + event?.isReload ?? 'false');
               this.uiContext.showAlertDialog({
                 title: 'onBeforeUnload',
                 message: 'text',
@@ -645,82 +644,6 @@ onPageEnd(callback: Callback\<OnPageEndEvent\>)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onPageEnd((event) => {
-            if (event) {
-              console.log('url:' + event.url);
-            }
-          })
-      }
-    }
-  }
-  ```
-
-## onLoadStarted<sup>20+</sup>
-
-onLoadStarted(callback: Callback\<OnLoadStartedEvent\>)
-
-通知宿主应用页面开始加载。此方法在每次主frame加载时调用一次，因此对于包含iframes或frameset的页面，onLoadStarted仅针对主frame调用一次。这意味着当嵌入式frame的内容发生变化时，如点击iframe中的链接或Fragment跳转（即跳转到#fragment_id的导航）等，不会调用onLoadStarted。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-**参数：**
-
-| 参数名  | 类型   | 必填   | 说明      |
-| ---- | ------ | ---- | --------- |
-| callback  | Callback\<[OnLoadStartedEvent](./arkts-basic-components-web-i.md#onloadstartedevent20)\> | 是    | 网页加载开始时触发。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  import { webview } from '@kit.ArkWeb';
-
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: webview.WebviewController = new webview.WebviewController();
-
-    build() {
-      Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
-          .onLoadStarted((event) => {
-            if (event) {
-              console.log('url:' + event.url);
-            }
-          })
-      }
-    }
-  }
-  ```
-
-## onLoadFinished<sup>20+</sup>
-
-onLoadFinished(callback: Callback\<OnLoadFinishedEvent\>)
-
-通知宿主应用页面已加载完成。此方法仅在主frame加载完成时被调用。对于片段跳转（即导航至#fragment_id），onLoadFinished同样会被触发。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-**参数：**
-
-| 参数名  | 类型   | 必填   | 说明      |
-| ---- | ------ | ---- | --------- |
-| callback  | Callback\<[OnLoadFinishedEvent](./arkts-basic-components-web-i.md#onloadfinishedevent20)\> | 是    | 网页加载结束时触发。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  import { webview } from '@kit.ArkWeb';
-
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: webview.WebviewController = new webview.WebviewController();
-
-    build() {
-      Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
-          .onLoadFinished((event) => {
             if (event) {
               console.log('url:' + event.url);
             }
@@ -1888,33 +1811,6 @@ onContextMenuShow(callback: Callback\<OnContextMenuShowEvent, boolean\>)
       Menu() {
         // 展示菜单Menu中具体的item菜单项。
         MenuItem({
-          content: '撤销',
-        })
-          .width(100)
-          .height(50)
-          .onClick(() => {
-            this.result?.undo();
-            this.showMenu = false;
-          })
-        MenuItem({
-          content: '重做',
-        })
-          .width(100)
-          .height(50)
-          .onClick(() => {
-            this.result?.redo();
-            this.showMenu = false;
-          })
-        MenuItem({
-          content: '粘贴为纯文本',
-        })
-          .width(100)
-          .height(50)
-          .onClick(() => {
-            this.result?.pasteAndMatchStyle();
-            this.showMenu = false;
-          })
-        MenuItem({
           content: '复制图片',
         })
           .width(100)
@@ -2390,108 +2286,6 @@ onWindowNew(callback: Callback\<OnWindowNewEvent\>)
   <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  </head>
-  <body>
-  <a href="#" onclick="openNewWindow('https://www.example.com')">打开新页面</a>
-  <script type="text/javascript">
-      function openNewWindow(url) {
-        window.open(url, 'example');
-        return false;
-      }
-  </script>
-  </body>
-  </html>
-  ```
-
-## onActivateContent<sup>20+</sup>
-
-onActivateContent(callback: Callback\<void>)
-
-当Web页面触发window.open(url, name)时，会根据name查找是否存在已绑定的Web实例。若存在，该实例将收到此回调以通知应用需将其展示至前端；若不存在，则通过[onWindowNew](#onwindownew9)通知应用创建新Web实例。
-
-> **说明：**
->
-> - 通过name绑定Web实例‌：需在[onWindowNew](#onwindownew9)回调中调用event.handler.setWebController方法，并传入新Web实例的controller，以完成绑定。
-> - name‌命名需符合正则表达式[a-zA-Z0-9_]+。当该name被用作\<a>或\<form>标签的target属性值时，已绑定的Web实例同样会触发此回调。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-**参数**
-
-| 参数名        | 类型             | 必填 | 说明                              |
-| ------------- | ---------------- | ---- | --------------------------------- |
-| callback | Callback\<void> | 是   | 再次在原页面触发window.open后，在已打开的新页面触发该回调。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  import { webview } from '@kit.ArkWeb';
-
-  // 在同一page页有两个Web组件。在WebComponent新开窗口时，会跳转到NewWebViewComp。
-  @CustomDialog
-  struct NewWebViewComp {
-    controller?: CustomDialogController;
-    webviewController1: webview.WebviewController = new webview.WebviewController();
-
-    build() {
-      Column() {
-        Web({ src: "https://www.example.com", controller: this.webviewController1 })
-          .javaScriptAccess(true)
-          .multiWindowAccess(false)
-          .onWindowExit(() => {
-            if (this.controller) {
-              this.controller.close();
-            }
-          })
-          .onActivateContent(() => {
-            //该Web需要展示到前面，建议应用在这里进行tab或window切换的动作展示此web
-            console.log("NewWebViewComp onActivateContent")
-          })
-      }.height("50%")
-    }
-  }
-
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: webview.WebviewController = new webview.WebviewController();
-    dialogController: CustomDialogController | null = null;
-
-    build() {
-      Column() {
-        Web({ src: $rawfile("window.html"), controller: this.controller })
-          .javaScriptAccess(true)
-          .allowWindowOpenMethod(true)
-          // 需要使能multiWindowAccess
-          .multiWindowAccess(true)
-          .onWindowNew((event) => {
-            if (this.dialogController) {
-              this.dialogController.close()
-            }
-            let popController: webview.WebviewController = new webview.WebviewController();
-            this.dialogController = new CustomDialogController({
-              builder: NewWebViewComp({ webviewController1: popController }),
-              isModal: false
-            })
-            this.dialogController.open();
-            // 将新窗口对应WebviewController返回给Web内核。
-            // 若不调用event.handler.setWebController接口，会造成render进程阻塞。
-            event.handler.setWebController(popController);
-          })
-      }
-    }
-  }
-  ```
-
-  ```html
-  <!-- window.html页面代码 -->
-  <!DOCTYPE html>
-  <html>
-  <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>ActivateContentEvent</title>
   </head>
   <body>
   <a href="#" onclick="openNewWindow('https://www.example.com')">打开新页面</a>
@@ -3972,7 +3766,7 @@ onInterceptKeyboardAttach(callback: WebKeyboardCallback)
 
 onNativeEmbedVisibilityChange(callback: OnNativeEmbedVisibilityChangeCallback)
 
-当网页中同层标签（例如Embed标签或Object标签）在视口内的可见性发生变化时，将触发该回调。同层标签默认不可见，若在页面首次加载时已可见，则会上报；若不可见，则不会上报。同层标签全部不可见才视为不可见，部分可见或全部可见则视为可见。若要获取因同层标签CSS属性（包括visibility、display以及尺寸变化）导致的可见状态变化，需配置[nativeEmbedOptions](./arkts-basic-components-web-attributes.md#nativeembedoptions16)，并将[EmbedOptions](./arkts-basic-components-web-i.md#embedoptions16)中的supportCssDisplayChange参数设为true。
+当网页中同层标签（例如Embed标签或Object标签）在视口内的可见性发生变化时，将触发该回调。同层标签默认不可见，若在页面首次加载时已可见，则会上报；若不可见，则不会上报。同层标签全部不可见才视为不可见，部分可见或全部可见则视为可见。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 

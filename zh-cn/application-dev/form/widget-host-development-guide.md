@@ -130,14 +130,14 @@ struct formHostSample {
     try {
       // 检查系统是否准备好。
       formHost.isSystemReady().then(() => {
-        console.log('formHost isSystemReady success');
+        console.info('formHost isSystemReady success');
 
         // 订阅通知卡片不可见的事件和卡片可见通知事件。
         let notifyInvisibleCallback = (data: formInfo.RunningFormInfo[]) => {
-          console.log(`form change invisibility, data: ${JSON.stringify(data)}`);
+          console.info(`form change invisibility, data: ${JSON.stringify(data)}`);
         }
         let notifyVisibleCallback = (data: formInfo.RunningFormInfo[]) => {
-          console.log(`form change visibility, data: ${JSON.stringify(data)}`);
+          console.info(`form change visibility, data: ${JSON.stringify(data)}`);
         }
         formObserver.on('notifyInvisible', notifyInvisibleCallback);
         formObserver.on('notifyVisible', notifyVisibleCallback);
@@ -151,7 +151,7 @@ struct formHostSample {
         } catch (errData) {
           let message = (errData as BusinessError).message;
           let errCode = (errData as BusinessError).code;
-          console.log(`errData is errCode:${errCode}  message:${message}`);
+          console.error(`errData is errCode:${errCode}  message:${message}`);
         }
         // 注册监听应用的更新事件。
         try {
@@ -162,7 +162,7 @@ struct formHostSample {
         } catch (errData) {
           let message = (errData as BusinessError).message;
           let errCode = (errData as BusinessError).code;
-          console.log(`errData is errCode:${errCode}  message:${message}`);
+          console.error(`errData is errCode:${errCode}  message:${message}`);
         }
         // 注册监听应用的卸载事件。
         try {
@@ -173,7 +173,7 @@ struct formHostSample {
         } catch (errData) {
           let message = (errData as BusinessError).message;
           let errCode = (errData as BusinessError).code;
-          console.log(`errData is errCode:${errCode}  message:${message}`);
+          console.error(`errData is errCode:${errCode}  message:${message}`);
         }
       }).catch((error: BusinessError) => {
         console.error(`error, code: ${error.code}, message: ${error.message}`);
@@ -187,7 +187,7 @@ struct formHostSample {
   aboutToDisappear(): void {
     // 删除所有卡片。
     this.formIds.forEach((id) => {
-      console.log('delete all form')
+      console.info('delete all form')
       formHost.deleteForm(id);
     });
     // 注销监听应用的安装。
@@ -196,7 +196,7 @@ struct formHostSample {
     } catch (errData) {
       let message = (errData as BusinessError).message;
       let errCode = (errData as BusinessError).code;
-      console.log(`errData is errCode:${errCode}  message:${message}`);
+      console.error(`errData is errCode:${errCode}  message:${message}`);
     }
     // 注销监听应用的更新。
     try {
@@ -204,7 +204,7 @@ struct formHostSample {
     } catch (errData) {
       let message = (errData as BusinessError).message;
       let errCode = (errData as BusinessError).code;
-      console.log(`errData is errCode:${errCode}  message:${message}`);
+      console.error(`errData is errCode:${errCode}  message:${message}`);
     }
     // 注销监听应用的卸载。
     try {
@@ -212,7 +212,7 @@ struct formHostSample {
     } catch (errData) {
       let message = (errData as BusinessError).message;
       let errCode = (errData as BusinessError).code;
-      console.log(`errData is errCode:${errCode}  message:${message}`);
+      console.error(`errData is errCode:${errCode}  message:${message}`);
     }
     // 取消订阅通知卡片不可见和通知卡片可见事件。
     formObserver.off('notifyInvisible');
@@ -226,7 +226,7 @@ struct formHostSample {
     let formHapRecordMap: HashMap<string, formInfo.FormInfo[]> = new HashMap();
     this.formInfoRecord = [];
     formHost.getAllFormsInfo().then((formList: Array<formInfo.FormInfo>) => {
-      console.log('getALlFormsInfo size:' + formList.length)
+      console.info('getALlFormsInfo size:' + formList.length)
       for (let formItemInfo of formList) {
         let formBundleName = formItemInfo.bundleName;
         if (formHapRecordMap.hasKey(formBundleName)) {
@@ -336,12 +336,12 @@ struct formHostSample {
           .borderRadius(10)
           .borderWidth(1)
           .onAcquired((form: FormCallbackInfo) => {
-            console.log(`onAcquired: ${JSON.stringify(form)}`)
+            console.info(`onAcquired: ${JSON.stringify(form)}`)
             this.selectFormId = form.id.toString();
             this.formIds.add(this.selectFormId);
           })
           .onRouter(() => {
-            console.log(`onRouter`)
+            console.info(`onRouter`)
           })
           .onError((error) => {
             console.error(`onError: ${JSON.stringify(error)}`)
@@ -349,7 +349,7 @@ struct formHostSample {
           })
           .onUninstall((info: FormCallbackInfo) => {
             this.showForm = false;
-            console.error(`onUninstall: ${JSON.stringify(info)}`)
+            console.info(`onUninstall: ${JSON.stringify(info)}`)
             this.formIds.remove(this.selectFormId);
           })
 
@@ -394,7 +394,7 @@ struct formHostSample {
                       if (error) {
                         console.error(`deleteForm error, code: ${error.code}, message: ${error.message}`);
                       } else {
-                        console.log('formHost deleteForm success');
+                        console.info('formHost deleteForm success');
                       }
                     });
                   } catch (error) {

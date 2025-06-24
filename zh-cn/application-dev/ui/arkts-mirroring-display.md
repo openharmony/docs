@@ -149,3 +149,21 @@ struct Index {
 | 镜像前          | 镜像后                                  |
 | ----------- | ----------------------------------- |
 |![](figures/mirroring_2-0.jpg)|![](figures/mirroring_2-1.jpg)|
+
+## 镜像状态字符对齐
+[Direction](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#direction)是指文字的方向，即文本在屏幕上呈现时字符的顺序。在从左到右（LTR）文本中，显示顺序是从左向右；在从右到左（RTL）文本中，显示顺序是从右向左。
+
+[TextAlign](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#textalign)是将文本作为一个整体，在布局上的影响，具体位置会受Direction影响，以TextAlign为start为例，当Direction为LTR时，布局位置靠左；当Direction为RTL时，布局位置靠右。
+
+在LTR与RTL文本混排时，如一个英文句子中包含阿拉伯语的单词或短语，显示顺序将变得复杂。下图为数字和维吾尔语混合时对应的字符逻辑顺序。
+
+![alt text](image-8.png)
+
+此时，文本渲染引擎会采用名为“双向算法”或“Unicode双向算法”（Unicode Bidirectional Algorithm）的方法来确定字符的显示顺序。下图展示了LTR与RTL文本混合时对应的字符显示顺序，确定字符方向的基本原则如下：
+1. 强字符的方向性：强字符具有明确的方向性，例如，中文为LTR，阿拉伯语为RTL，这类字符的方向性会影响其周围的中性字符。
+
+2. 弱字符的方向性：弱字符不具备明确的方向性，这些字符不会影响其周围中性字符的方向。
+
+3. 中性字符的方向性：中性字符无固定方向性，它们会继承其最近的强字符的方向；若附近无强字符，则采用全局方向。
+
+![alt text](image-1.png)

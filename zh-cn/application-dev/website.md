@@ -92,7 +92,7 @@
             - [跨端迁移](application-models/hop-cross-device-migration.md)
             - [多端协同](application-models/hop-multi-device-collaboration.md)
           <!--DelEnd-->
-          - [订阅系统环境变量的变化](application-models/subscribe-system-environment-variable-changes.md)
+          - [获取/设置环境变量](application-models/subscribe-system-environment-variable-changes.md)
         - 应用间跳转<!--inter-app-redirection-->
           - [应用间跳转概述](application-models/link-between-apps-overview.md)
           - 拉起指定应用<!--directional-redirection-->
@@ -733,7 +733,6 @@
       - 使用网页多媒体<!--web-use-multimedia-->
         - [使用WebRTC进行Web视频会议](web/web-rtc.md)
         - [托管网页中的媒体播放](web/app-takeovers-web-media.md)
-        - [使用Web组件支持画中画](web/web-picture-in-picture.md)
         - [Web组件支持视频沉浸式全屏播放](web/web_full_screen.md)
       - 处理网页内容<!--web-process-page-content-->
         - [使用Web组件打印前端页面](web/web-print.md)
@@ -805,6 +804,7 @@
         - [创建ArkTS卡片](form/arkts-ui-widget-creation.md)
         - [配置ArkTS卡片的配置文件](form/arkts-ui-widget-configuration.md)
         - [管理ArkTS卡片生命周期](form/arkts-ui-widget-lifecycle.md)
+        - [ArkTS卡片进程模型](form/arkts-ui-widget-process.md)
         - ArkTS卡片提供方开发指导<!--arkts-ui-widget-->
           - ArkTS卡片UI界面开发<!--arkts-ui-widget-page-->
             - [ArkTS卡片界面开发概述](form/arkts-ui-widget-page-overview.md)
@@ -1750,6 +1750,7 @@
       - [日程管理](calendarmanager/calendarmanager-event-developer.md)
     - Contacts Kit（联系人服务）<!--contacts-kit-->
       - [Contacts Kit开发概述](contacts/contacts-intro.md)
+      - [使用picker管理联系人](contacts/contacts-addcontactviaui.md)
     - Location Kit（位置服务）<!--location-kit-->
       - [Location Kit简介](device/location/location-kit-intro.md)
       - [申请位置权限开发指导(ArkTS)](device/location/location-permission-guidelines.md)
@@ -1917,9 +1918,9 @@
         - JSVM-API典型使用场景指导<!--jsvm-scenarios-->
             - [JSVM-API调试&定位](napi/jsvm-debugger-cpuprofiler-heapsnapshot.md)
             - [JSVM-API Tracing](napi/use-jsvm-about-trace.md)
-            - [JSVM 申请JIT权限指导](napi/jsvm-apply-jit-profile.md)
-            - [JSVM 坚盾守护模式](napi/jsvm-secure-shield-mode.md)
-            - [JSVM 定位内存泄漏问题指导](napi/jsvm-locate-memory-leak.md)
+            - [JSVM-API 申请JIT权限指导](napi/jsvm-apply-jit-profile.md)
+            - [JSVM-API 坚盾守护模式](napi/jsvm-secure-shield-mode.md)
+            - [JSVM-API 内存泄漏问题定位指导](napi/jsvm-locate-memory-leak.md)
             - JSVM-API调优&高性能使用示例<!--jsvm-usage-examples-->
               - [使用JSVM-API接口创建多个引擎执行JS代码并销毁](napi/use-jsvm-runtime-task.md)
               - [使用 code cache 加速编译](napi/use-jsvm-about-code-cache.md)
@@ -2651,6 +2652,7 @@
             - [禁用控制](reference/apis-arkui/arkui-ts/ts-universal-attributes-enable.md)
             - [焦点控制](reference/apis-arkui/arkui-ts/ts-universal-attributes-focus.md)
             - [拖拽控制](reference/apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md)
+            - [拖拽排序](reference/apis-arkui/arkui-ts/ts-universal-attributes-drag-sorting.md)
             - [悬浮态效果](reference/apis-arkui/arkui-ts/ts-universal-attributes-hover-effect.md)
             - 触摸交互控制<!--touch-interactions-->
               - [触摸热区设置](reference/apis-arkui/arkui-ts/ts-universal-attributes-touch-target.md)
@@ -3870,6 +3872,7 @@
           - [流量管理错误码](reference/apis-network-kit/errorcode-net-statistics.md)
           - [VPN错误码](reference/apis-network-kit/errorcode-net-vpn.md)
           - [NetworkSecurity错误码](reference/apis-network-kit/errorcode-net-networkSecurity.md)
+          - [内核错误码](reference/apis-network-kit/errorcode-kernel.md)
 
       - Telephony Kit（蜂窝通信服务）<!--telephony-api-->
         - ArkTS API<!--telephony-arkts-->
@@ -4637,7 +4640,7 @@
           - [OH_DecodingOptionsForPicture](reference/apis-image-kit/capi-oh-decodingoptionsforpicture.md)
           - [OH_DecodingOptions](reference/apis-image-kit/capi-oh-decodingoptions.md)
           - [OH_PixelmapNative](reference/apis-image-kit/capi-oh-pixelmapnative.md)
-          - [OH_NativeBuffer](reference/apis-image-kit/capi-oh-nativebuffer.md)
+          - [OH_NativeBuffer](reference/apis-image-kit/capi-image-nativemodule-oh-nativebuffer.md)
           - [OH_Pixelmap_HdrStaticMetadata](reference/apis-image-kit/capi-oh-pixelmap-hdrstaticmetadata.md)
           - [OH_NativeColorSpaceManager](reference/apis-image-kit/capi-oh-nativecolorspacemanager.md)
           - [OH_Pixelmap_HdrDynamicMetadata](reference/apis-image-kit/capi-oh-pixelmap-hdrdynamicmetadata.md)
@@ -4761,7 +4764,7 @@
           - [OH_AVRecorder_Range](reference/apis-media-kit/capi-oh-avrecorder-range.md)
           - [OH_AVRecorder_EncoderInfo](reference/apis-media-kit/capi-oh-avrecorder-encoderinfo.md)
           - [OH_AudioCaptureInfo](reference/apis-media-kit/capi-oh-audiocaptureinfo.md)
-          - [OH_NativeBuffer](reference/apis-media-kit/capi-oh-nativebuffer.md)
+          - [OH_NativeBuffer](reference/apis-media-kit/capi-avscreencapture-oh-nativebuffer.md)
           - [OH_AVScreenCapture](reference/apis-media-kit/capi-oh-avscreencapture.md)
           - [OH_AVScreenCapture_ContentFilter](reference/apis-media-kit/capi-oh-avscreencapture-contentfilter.md)
           - [OH_AVScreenCapture_CaptureStrategy](reference/apis-media-kit/capi-oh-avscreencapture-capturestrategy.md)

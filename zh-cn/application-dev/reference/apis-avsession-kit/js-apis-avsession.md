@@ -2117,8 +2117,6 @@ on(type:'playWithAssetId', callback: Callback\<string>): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
-**ArkTS版本：** 该接口仅适用于ArkTS1.2。
-
 **参数：**
 
 | 参数名   | 类型                 | 必填 | 说明                                                         |
@@ -2154,8 +2152,6 @@ off(type: 'playWithAssetId', callback?: Callback\<string>): void
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
-
-**ArkTS版本：** 该接口仅适用于ArkTS1.2。
 
 **参数：**
 
@@ -2476,7 +2472,7 @@ on(type: 'commonCommand', callback: (command: string, args: {[key: string]: Obje
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 事件回调类型，支持事件`'commonCommand'`：当自定义控制命令变化时，触发该事件。 |
-| callback | (command: string, args: {[key:string]: Object}) => void         | 是   | 回调函数，command为变化的自定义控制命令名，args为自定义控制命令的参数，参数内容与[sendCommonCommand](#sendcommoncommand10)方法设置的参数内容完全一致。          |
+| callback | (command: string, args: {[key: string]: Object}) => void         | 是   | 回调函数，command为变化的自定义控制命令名，args为自定义控制命令的参数，参数内容与[sendCommonCommand](#sendcommoncommand10)方法设置的参数内容完全一致。          |
 
 **错误码：**
 
@@ -4449,7 +4445,7 @@ on(type: 'mediaItemChange', callback: Callback\<AVQueueItem>): void
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 事件回调类型，支持事件`'mediaItemChange'`：当播放的媒体内容变化时，触发该事件。 |
-| callback | Callback<[AVQueueItem](#avqueueitem10)> => void         | 是   | 回调函数，参数AVQueueItem是当前正在播放的媒体内容。                      |
+| callback | Callback<[AVQueueItem](#avqueueitem10)>         | 是   | 回调函数，参数AVQueueItem是当前正在播放的媒体内容。                      |
 
 **错误码：**
 
@@ -4642,7 +4638,7 @@ on(type: 'requestPlay', callback: Callback\<AVQueueItem>): void
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 事件回调类型，支持事件`'requestPlay'`：当请求播放状态变化时，触发该事件。 |
-| callback | Callback\<[AVQueueItem](#avqueueitem10)> => void               | 是   | 回调函数，参数AVQueueItem是当前正在播放的媒体内容。当监听事件注册成功，err为undefined，否则返回错误对象。  | 
+| callback | Callback\<[AVQueueItem](#avqueueitem10)>               | 是   | 回调函数，参数AVQueueItem是当前正在播放的媒体内容。当监听事件注册成功，err为undefined，否则返回错误对象。  | 
 
 **错误码：**
 
@@ -4674,7 +4670,7 @@ off(type: 'requestPlay', callback?: Callback\<AVQueueItem>): void
 | 参数名   | 类型                                                         | 必填 | 说明                                                     |
 | -------- | ------------------------------------------------------------| ---- | ----------------------------------------------------- |
 | type     | string                                                      | 是   | 取消对应的监听事件，支持事件`'requestPlay'`。    |
-| callback | Callback\<[AVQueueItem](#avqueueitem10)> => void              | 否   | 回调函数，参数AVQueueItem是当前正在播放的媒体内容。当监听事件取消成功，err为undefined，否则返回错误对象。该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。|
+| callback | Callback\<[AVQueueItem](#avqueueitem10)>              | 否   | 回调函数，参数AVQueueItem是当前正在播放的媒体内容。当监听事件取消成功，err为undefined，否则返回错误对象。该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。|
 
 **错误码：**
 
@@ -7713,7 +7709,7 @@ avsessionController.off('outputDeviceChange');
 
 ### on('sessionEvent')<sup>10+</sup>
 
-on(type: 'sessionEvent', callback: (sessionEvent: string, args: {[key:string]: Object}) => void): void
+on(type: 'sessionEvent', callback: (sessionEvent: string, args: {[key: string]: Object}) => void): void
 
 媒体控制器设置会话自定义事件变化的监听器。
 
@@ -7726,7 +7722,7 @@ on(type: 'sessionEvent', callback: (sessionEvent: string, args: {[key:string]: O
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 事件回调类型，支持事件`'sessionEvent'`：当会话事件变化时，触发该事件。 |
-| callback | (sessionEvent: string, args: {[key:string]: Object}) => void         | 是   | 回调函数，sessionEvent为变化的会话事件名，args为事件的参数。          |
+| callback | (sessionEvent: string, args: {[key: string]: Object}) => void         | 是   | 回调函数，sessionEvent为变化的会话事件名，args为事件的参数。          |
 
 **错误码：**
 
@@ -7764,7 +7760,7 @@ if (controller !== undefined) {
 
 ### off('sessionEvent')<sup>10+</sup>
 
-off(type: 'sessionEvent', callback?: (sessionEvent: string, args: {[key:string]: Object}) => void): void
+off(type: 'sessionEvent', callback?: (sessionEvent: string, args: {[key: string]: Object}) => void): void
 
 媒体控制器取消监听会话事件的变化通知。
 
@@ -7777,7 +7773,7 @@ off(type: 'sessionEvent', callback?: (sessionEvent: string, args: {[key:string]:
 | 参数名   | 类型                                                         | 必填 | 说明                                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
 | type     | string                                                       | 是   | 取消对应的监听事件，支持事件`'sessionEvent'`。    |
-| callback | (sessionEvent: string, args: {[key:string]: Object}) => void         | 否   | 回调函数，参数sessionEvent是变化的事件名，args为事件的参数。<br>该参数为可选参数，若不填写该参数，则认为取消所有对sessionEvent事件的监听。                      |
+| callback | (sessionEvent: string, args: {[key: string]: Object}) => void         | 否   | 回调函数，参数sessionEvent是变化的事件名，args为事件的参数。<br>该参数为可选参数，若不填写该参数，则认为取消所有对sessionEvent事件的监听。                      |
 
 **错误码：**
 
@@ -8446,8 +8442,6 @@ type AVControlCommandType = 'play' | 'pause' | 'stop' | 'playNext' | 'playPrevio
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
-
-**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 | 类型             | 说明         |
 | ---------------- | ------------ |

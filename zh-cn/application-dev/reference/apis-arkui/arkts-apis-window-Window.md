@@ -1043,7 +1043,7 @@ try {
 
 setTitleAndDockHoverShown(isTitleHoverShown?: boolean, isDockHoverShown?: boolean): Promise&lt;void&gt;
 
-设置主窗口进入全屏沉浸式时鼠标Hover到热区上是否显示窗口标题栏和dock栏，使用Promise异步回调，仅2in1设备可用。
+设置主窗口进入全屏模式时鼠标Hover到热区上是否显示窗口标题栏和dock栏，使用Promise异步回调，仅2in1设备可用。
 
 **系统能力**：SystemCapability.Window.SessionManager
 
@@ -1055,6 +1055,12 @@ setTitleAndDockHoverShown(isTitleHoverShown?: boolean, isDockHoverShown?: boolea
 | ---------- | ------- | ---- | ------------------------------------------------------------ |
 | isTitleHoverShown    | boolean | 否   | 是否显示窗口标题栏。<br>true表示显示窗口标题栏；false表示不显示窗口标题栏。默认值是true。</br> |
 | isDockHoverShown    | boolean | 否   | 是否显示dock栏。<br>true表示显示dock栏；false表示不显示dock栏。默认值是true。</br> |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -1085,7 +1091,7 @@ export default class EntryAbility extends UIAbility {
         data => {
           mainWindow = data;
           console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
-          // 调用maximize接口，设置窗口进入全屏沉浸式。
+          // 调用maximize接口，设置窗口进入全屏模式。
           mainWindow.maximize(window.MaximizePresentation.ENTER_IMMERSIVE);
           // 调用setTitleAndDockHoverShown接口，隐藏标题栏和dock栏。
           mainWindow.setTitleAndDockHoverShown(false, false);
@@ -4437,90 +4443,6 @@ try {
 }
 ```
 
-### on('uiExtensionSecureLimitChange')<sup>20+</sup>
-
-on(type: 'uiExtensionSecureLimitChange', callback: Callback&lt;boolean&gt;): void
-
-开启窗口内uiExtension安全限制变化事件的监听, 建议在窗口创建后立即监听。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.Window.SessionManager
-
-**参数：**
-
-| 参数名   | 类型                           | 必填 | 说明                                                     |
-| -------- | ------------------------------ | ---- | -------------------------------------------------------- |
-| type     | string                         | 是   | 监听事件，固定为'uiExtensionSecureLimitChange'，即窗口内uiExtension安全限制变化事件。 |
-| callback | Callback&lt;boolean&gt; | 是   | 回调函数。当窗口内uiExtension安全限制变化时触发回调。当返回参数为true表示窗口内uiExtension开启了隐藏不安全窗口；当返回参数为false表示窗口内uiExtension关闭了隐藏不安全窗口。若窗口内存在多个uiExtension，当返回参数为true表示窗口内至少一个uiExtension开启了隐藏不安全窗口；当返回参数为false表示窗口内所有uiExtension关闭了隐藏不安全窗口。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 801     | Capability not supported.Function on('uiExtensionSecureLimitChange') can not work correctly due to limited device capabilities. |
-| 1300002 | This window state is abnormal. |
-| 1300003 | This window manager service works abnormally. |
-
-**示例：**
-
-```ts
-try {
-  windowClass.on('uiExtensionSecureLimitChange', (data: boolean) => {
-    console.info(`Window secure limit Change: ${data}`);
-  });
-} catch (exception) {
-  console.error(`Failed to register callback. Cause code: ${exception.code}, message: ${exception.message}`);
-}
-```
-
-### off('uiExtensionSecureLimitChange')<sup>20+</sup>
-
-off(type: 'uiExtensionSecureLimitChange', callback?: Callback&lt;boolean&gt;): void
-
-关闭窗口内uiextension安全限制变化事件的监听。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.Window.SessionManager
-
-**参数：**
-
-| 参数名   | 类型                           | 必填 | 说明                                                         |
-| -------- | ------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                         | 是   | 监听事件，固定为'uiExtensionSecureLimitChange'，即窗口内uiExtension安全限制变化事件。     |
-| callback | Callback&lt;boolean&gt; | 否   | 回调函数。若传入参数，则关闭该监听。若未传入参数，则关闭所有窗口安全限制变化的监听。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------------------- |
-| 801     | Capability not supported.Function off('uiExtensionSecureLimitChange') can not work correctly due to limited device capabilities. |
-| 1300002 | This window state is abnormal. |
-| 1300003 | This window manager service works abnormally. |
-
-**示例：**
-
-```ts
-const callback = (data: boolean) => {
-  // ...
-}
-try {
-  // 通过on接口开启监听
-  windowClass.on('uiExtensionSecureLimitChange', callback);
-  // 关闭指定callback的监听
-  windowClass.off('uiExtensionSecureLimitChange', callback);
-  // 如果通过on开启多个callback进行监听，同时关闭所有监听：
-  windowClass.off('uiExtensionSecureLimitChange');
-} catch (exception) {
-  console.error(`Failed to unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
-}
-```
-
 ### isWindowSupportWideGamut<sup>9+</sup>
 
 isWindowSupportWideGamut(callback: AsyncCallback&lt;boolean&gt;): void
@@ -5786,7 +5708,7 @@ maximize(presentation?: MaximizePresentation): Promise&lt;void&gt;
 
 | 参数名 | 类型  | 必填 | 说明 |
 | ----- | ---------------------------- | -- | --------------------------------- |
-| presentation  | [MaximizePresentation](arkts-apis-window-e.md#maximizepresentation12) | 否 | 主窗口或子窗口最大化时的布局枚举。默认值window.MaximizePresentation.ENTER_IMMERSIVE，即默认最大化时进入沉浸式布局。 |
+| presentation  | [MaximizePresentation](arkts-apis-window-e.md#maximizepresentation12) | 否 | 主窗口或子窗口最大化时的布局枚举。默认值window.MaximizePresentation.ENTER_IMMERSIVE，即默认最大化时进入全屏模式。 |
 
 **返回值：**
 
@@ -7199,6 +7121,11 @@ setWindowTopmost(isWindowTopmost: boolean): Promise&lt;void&gt;
 | --------- | ------- | ---- | --------------------------------------------- |
 | isWindowTopmost | boolean | 是   | 设置主窗口置顶，true为置顶，false为取消置顶。 |
 
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **错误码：**
 
