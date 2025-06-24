@@ -380,8 +380,8 @@ onFormLocationChanged(formId: string, newFormLocation: formInfo.FormLocation): v
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| formId | string | 是 | 发生位置变化的卡片标识 |
-| newFormLocation | [formInfo.FormLocation](js-apis-app-form-formInfo.md#FormLocation20) | 是 | 卡片最新位置的枚举值 |
+| formId | string | 是 | 发生位置变化的卡片标识。 |
+| newFormLocation | [formInfo.FormLocation](js-apis-app-form-formInfo.md#FormLocation20) | 是 | 卡片最新位置的枚举值。 |
 
 **示例：**
 
@@ -397,7 +397,7 @@ export default class EntryFormAbility extends FormExtensionAbility {
     return formBindingData.createFormBindingData(formData);
   }
   onFormLocationChanged(formId: string, newFormLocation: formInfo.FormLocation) {
-    console.info("FormAbility onFormLocationChanged current location: " + newFormLocation);
+    console.info("EntryFormAbility onFormLocationChanged current location: " + newFormLocation);
   }
 }
 ```
