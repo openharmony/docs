@@ -34,7 +34,6 @@ import { UIContext } from '@kit.ArkUI';
 @Entry
 @Component
 struct Index {
-  @build
   build() {
     Column() {
       Button("Button")
