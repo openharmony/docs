@@ -905,7 +905,7 @@
 | void [OH_ArkUI_DestroySnapshotOptions](#oh_arkui_destroysnapshotoptions)(ArkUI_SnapshotOptions* snapshotOptions);| 销毁截图选项指针。|
 | int32_t [OH_ArkUI_SnapshotOptions_SetScale](#oh_arkui_snapshotoptions_setscale)(ArkUI_SnapshotOptions* snapshotOptions, float scale);| 配置截图选项中的缩放属性。|
 | [ArkUI_VisibleAreaEventOptions](#arkui_visibleareaeventoptions) \* [OH_ArkUI_VisibleAreaEventOptions_Create](#oh_arkui_visibleareaeventoptions_create) (void) | 创建可见区域变化监听的参数。  | 
-| void [OH_ArkUI_VisibleAreaEventOptions_Dispose](oh_arkui_visibleareaeventoptions_dispose)(ArkUI_VisibleAreaEventOptions \*option) | 销毁可见区域变化监听的参数。<br/>**起始版本：** 17  | 
+| void [OH_ArkUI_VisibleAreaEventOptions_Dispose](#oh_arkui_visibleareaeventoptions_dispose)(ArkUI_VisibleAreaEventOptions \*option) | 销毁可见区域变化监听的参数。<br/>**起始版本：** 17  | 
 | int32_t [OH_ArkUI_VisibleAreaEventOptions_SetRatios](#oh_arkui_visibleareaeventoptions_setratios) ([ArkUI_VisibleAreaEventOptions](#arkui_visibleareaeventoptions) \*option, float\* value, int32_t size) | 设置阈值数组。<br/>**起始版本：** 17  | 
 | int32_t [OH_ArkUI_VisibleAreaEventOptions_SetExpectedUpdateInterval](#oh_arkui_visibleareaeventoptions_setexpectedupdateinterval) ([ArkUI_VisibleAreaEventOptions](#arkui_visibleareaeventoptions) \*option, int32_t value) | 设置预期更新间隔，单位为ms。定义了开发者期望的更新间隔。<br/>**起始版本：** 17 |
 | int32_t [OH_ArkUI_VisibleAreaEventOptions_GetRatios](#oh_arkui_visibleareaeventoptions_getratios) ([ArkUI_VisibleAreaEventOptions](#arkui_visibleareaeventoptions) \*option, float\* value, int32_t\* size) | 获取阈值数组。<br/>**起始版本：** 17  | 
