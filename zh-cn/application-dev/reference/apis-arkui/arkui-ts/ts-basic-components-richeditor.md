@@ -14,7 +14,7 @@
 
 ## 接口
 
-RichEditor(value: RichEditorOptions)
+### RichEditor(value: RichEditorOptions)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -26,7 +26,7 @@ RichEditor(value: RichEditorOptions)
 | ----- | --------------------------------------- | ---- | ----------- |
 | value | [RichEditorOptions](#richeditoroptions) | 是    | 富文本组件初始化选项。 |
 
-RichEditor(options: RichEditorStyledStringOptions)<sup>12+</sup>
+### RichEditor(options: RichEditorStyledStringOptions)<sup>12+</sup>
 
 
 **参数：**
@@ -43,7 +43,7 @@ RichEditor(options: RichEditorStyledStringOptions)<sup>12+</sup>
 >
 >  align属性只支持上方、中间和下方位置的对齐方式。
 > 
->  不支持borderImage属性。
+>  不支持[borderImage](ts-universal-attributes-border-image.md#borderimage)属性。
 
 ### customKeyboard
 
@@ -61,8 +61,6 @@ customKeyboard(value: CustomBuilder, options?: KeyboardOptions)
 
 如果设备支持拍摄输入，设置自定义键盘后，该输入框会不支持拍摄输入。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -70,7 +68,7 @@ customKeyboard(value: CustomBuilder, options?: KeyboardOptions)
 | 参数名                | 类型                                        | 必填 | 说明                             |
 | --------------------- | ------------------------------------------- | ---- | -------------------------------- |
 | value                 | [CustomBuilder](ts-types.md#custombuilder8) | 是   | 自定义键盘。                     <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| options<sup>12+</sup> | [KeyboardOptions](#keyboardoptions12)       | 否   | 设置自定义键盘是否支持避让功能。 |
+| options<sup>12+</sup> | [KeyboardOptions](#keyboardoptions12)       | 否   | 设置自定义键盘是否支持避让功能。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 ### bindSelectionMenu
 
@@ -256,8 +254,6 @@ editMenuOptions(editMenu: EditMenuOptions)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -389,7 +385,7 @@ stopBackPress(isStopped: Optional&lt;boolean&gt;)
 
 | 参数名 | 类型                                          | 必填  | 说明                                                                                  |
 | ------ | --------------------------------------------- |-----|-------------------------------------------------------------------------------------|
-| isStopped  | Optional&lt;boolean&gt; | 否   | 是否阻止返回键。<br/>默认值：true，表示阻止返回键。<br/>**说明：** <br/>当不设置该属性或设置异常值时，取默认值。|
+| isStopped  | [Optional](ts-universal-attributes-custom-property.md#optional12)&lt;boolean&gt; | 否   | 是否阻止返回键。<br/>默认值：true，true表示阻止返回键，false表示不阻止返回键。<br/>**说明：** <br/>当不设置该属性或设置异常值时，取默认值。|
 
 ## 事件
 
@@ -856,6 +852,8 @@ Span类型信息。
 
 ## RichEditorLayoutStyle<sup>11+</sup> 
 
+图片布局信息。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -890,6 +888,8 @@ RichEditor初始化参数。
 | controller | [RichEditorStyledStringController](#richeditorstyledstringcontroller12) | 是    | 富文本控制器。 |
 
 ## RichEditorChangeValue<sup>12+</sup>
+
+图文变化信息。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2060,38 +2060,38 @@ struct Index {
             this.message = "[" + this.start + ", " + this.end + "]";
           })
           .aboutToIMEInput((value: RichEditorInsertValue) => {
-            console.log("---------------------- aboutToIMEInput ----------------------");
-            console.log("insertOffset:" + value.insertOffset);
-            console.log("insertValue:" + value.insertValue);
+            console.info("---------------------- aboutToIMEInput ----------------------");
+            console.info("insertOffset:" + value.insertOffset);
+            console.info("insertValue:" + value.insertValue);
             return true;
           })
           .onIMEInputComplete((value: RichEditorTextSpanResult) => {
-            console.log("---------------------- onIMEInputComplete ---------------------");
-            console.log("spanIndex:" + value.spanPosition.spanIndex);
-            console.log("spanRange:[" + value.spanPosition.spanRange[0] + "," + value.spanPosition.spanRange[1] + "]");
-            console.log("offsetInSpan:[" + value.offsetInSpan[0] + "," + value.offsetInSpan[1] + "]");
-            console.log("value:" + value.value);
+            console.info("---------------------- onIMEInputComplete ---------------------");
+            console.info("spanIndex:" + value.spanPosition.spanIndex);
+            console.info("spanRange:[" + value.spanPosition.spanRange[0] + "," + value.spanPosition.spanRange[1] + "]");
+            console.info("offsetInSpan:[" + value.offsetInSpan[0] + "," + value.offsetInSpan[1] + "]");
+            console.info("value:" + value.value);
           })
           .aboutToDelete((value: RichEditorDeleteValue) => {
-            console.log("---------------------- aboutToDelete --------------------------");
-            console.log("offset:" + value.offset);
-            console.log("direction:" + value.direction);
-            console.log("length:" + value.length);
+            console.info("---------------------- aboutToDelete --------------------------");
+            console.info("offset:" + value.offset);
+            console.info("direction:" + value.direction);
+            console.info("length:" + value.length);
             value.richEditorDeleteSpans.forEach(item => {
-              console.log("---------------------- item --------------------------");
-              console.log("spanIndex:" + item.spanPosition.spanIndex);
-              console.log("spanRange:[" + item.spanPosition.spanRange[0] + "," + item.spanPosition.spanRange[1] + "]");
-              console.log("offsetInSpan:[" + item.offsetInSpan[0] + "," + item.offsetInSpan[1] + "]");
+              console.info("---------------------- item --------------------------");
+              console.info("spanIndex:" + item.spanPosition.spanIndex);
+              console.info("spanRange:[" + item.spanPosition.spanRange[0] + "," + item.spanPosition.spanRange[1] + "]");
+              console.info("offsetInSpan:[" + item.offsetInSpan[0] + "," + item.offsetInSpan[1] + "]");
               if (typeof(item as RichEditorImageSpanResult)['imageStyle'] != 'undefined') {
-                console.log("image:" + (item as RichEditorImageSpanResult).valueResourceStr);
+                console.info("image:" + (item as RichEditorImageSpanResult).valueResourceStr);
               } else {
-                console.log("text:" + (item as RichEditorTextSpanResult).value);
+                console.info("text:" + (item as RichEditorTextSpanResult).value);
               }
             })
             return true;
           })
           .onDeleteComplete(() => {
-            console.log("---------------------- onDeleteComplete ------------------------");
+            console.info("---------------------- onDeleteComplete ------------------------");
           })
           .placeholder("input...", {
             fontColor: Color.Gray,
@@ -2878,38 +2878,38 @@ struct Index {
             this.message = "[" + this.start + ", " + this.end + "]";
           })
           .aboutToIMEInput((value: RichEditorInsertValue) => {
-            console.log("---------------------- aboutToIMEInput ----------------------");
-            console.log("insertOffset:" + value.insertOffset);
-            console.log("insertValue:" + value.insertValue);
+            console.info("---------------------- aboutToIMEInput ----------------------");
+            console.info("insertOffset:" + value.insertOffset);
+            console.info("insertValue:" + value.insertValue);
             return true;
           })
           .onIMEInputComplete((value: RichEditorTextSpanResult) => {
-            console.log("---------------------- onIMEInputComplete ---------------------");
-            console.log("spanIndex:" + value.spanPosition.spanIndex);
-            console.log("spanRange:[" + value.spanPosition.spanRange[0] + "," + value.spanPosition.spanRange[1] + "]");
-            console.log("offsetInSpan:[" + value.offsetInSpan[0] + "," + value.offsetInSpan[1] + "]");
-            console.log("value:" + value.value);
+            console.info("---------------------- onIMEInputComplete ---------------------");
+            console.info("spanIndex:" + value.spanPosition.spanIndex);
+            console.info("spanRange:[" + value.spanPosition.spanRange[0] + "," + value.spanPosition.spanRange[1] + "]");
+            console.info("offsetInSpan:[" + value.offsetInSpan[0] + "," + value.offsetInSpan[1] + "]");
+            console.info("value:" + value.value);
           })
           .aboutToDelete((value: RichEditorDeleteValue) => {
-            console.log("---------------------- aboutToDelete --------------------------");
-            console.log("offset:" + value.offset);
-            console.log("direction:" + value.direction);
-            console.log("length:" + value.length);
+            console.info("---------------------- aboutToDelete --------------------------");
+            console.info("offset:" + value.offset);
+            console.info("direction:" + value.direction);
+            console.info("length:" + value.length);
             value.richEditorDeleteSpans.forEach(item => {
-              console.log("---------------------- item --------------------------");
-              console.log("spanIndex:" + item.spanPosition.spanIndex);
-              console.log("spanRange:[" + item.spanPosition.spanRange[0] + "," + item.spanPosition.spanRange[1] + "]");
-              console.log("offsetInSpan:[" + item.offsetInSpan[0] + "," + item.offsetInSpan[1] + "]");
+              console.info("---------------------- item --------------------------");
+              console.info("spanIndex:" + item.spanPosition.spanIndex);
+              console.info("spanRange:[" + item.spanPosition.spanRange[0] + "," + item.spanPosition.spanRange[1] + "]");
+              console.info("offsetInSpan:[" + item.offsetInSpan[0] + "," + item.offsetInSpan[1] + "]");
               if (typeof (item as RichEditorImageSpanResult)['imageStyle'] != 'undefined') {
-                console.log("image:" + (item as RichEditorImageSpanResult).valueResourceStr);
+                console.info("image:" + (item as RichEditorImageSpanResult).valueResourceStr);
               } else {
-                console.log("text:" + (item as RichEditorTextSpanResult).value);
+                console.info("text:" + (item as RichEditorTextSpanResult).value);
               }
             })
             return true;
           })
           .onDeleteComplete(() => {
-            console.log("---------------------- onDeleteComplete ------------------------");
+            console.info("---------------------- onDeleteComplete ------------------------");
           })
           .borderWidth(1)
           .borderColor(Color.Green)
@@ -3086,7 +3086,7 @@ struct Index {
         Divider()
         Button("getParagraphs").onClick(() => {
           this.spanParagraphs = this.controller.getParagraphs({ start: -1, end: -1 });
-          console.log("RichEditor getParagraphs:" + JSON.stringify(this.spanParagraphs));
+          console.info("RichEditor getParagraphs:" + JSON.stringify(this.spanParagraphs));
         })
 
         Button("UpdateSpanStyle1").onClick(() => {
@@ -3301,7 +3301,7 @@ struct Index {
         Divider()
         Button("getTypingStyle").onClick(() => {
           this.richEditorTextStyle = this.controller.getTypingStyle();
-          console.log("RichEditor getTypingStyle:" + JSON.stringify(this.richEditorTextStyle));
+          console.info("RichEditor getTypingStyle:" + JSON.stringify(this.richEditorTextStyle));
         })
         Divider()
         Row({ space: 5 }) {
@@ -3668,26 +3668,26 @@ struct Index {
             console.info("onSelect="+JSON.stringify(value));
           })
           .aboutToIMEInput((value: RichEditorInsertValue) => {
-            console.log("---------------------- aboutToIMEInput --------------------");
+            console.info("---------------------- aboutToIMEInput --------------------");
             console.info("aboutToIMEInput="+JSON.stringify(value));
-            console.log("insertOffset:" + value.insertOffset);
-            console.log("insertValue:" + value.insertValue);
+            console.info("insertOffset:" + value.insertOffset);
+            console.info("insertValue:" + value.insertValue);
             return true;
           })
           .onIMEInputComplete((value: RichEditorTextSpanResult) => {
-            console.log("---------------------- onIMEInputComplete --------------------");
+            console.info("---------------------- onIMEInputComplete --------------------");
             console.info("onIMEInputComplete="+JSON.stringify(value));
-            console.log("spanIndex:" + value.spanPosition.spanIndex);
-            console.log("spanRange:[" + value.spanPosition.spanRange[0] + "," + value.spanPosition.spanRange[1] + "]");
-            console.log("offsetInSpan:[" + value.offsetInSpan[0] + "," + value.offsetInSpan[1] + "]");
-            console.log("value:" + value.value);
+            console.info("spanIndex:" + value.spanPosition.spanIndex);
+            console.info("spanRange:[" + value.spanPosition.spanRange[0] + "," + value.spanPosition.spanRange[1] + "]");
+            console.info("offsetInSpan:[" + value.offsetInSpan[0] + "," + value.offsetInSpan[1] + "]");
+            console.info("value:" + value.value);
           })
           .aboutToDelete((value: RichEditorDeleteValue) => {
             value.richEditorDeleteSpans.forEach(item => {
-              console.log("---------------------- item --------------------");
+              console.info("---------------------- item --------------------");
               console.info("spanIndex=" + item.spanPosition.spanIndex);
-              console.log("spanRange:[" + item.spanPosition.spanRange[0] + "," + item.spanPosition.spanRange[1] + "]");
-              console.log("offsetInSpan:[" + item.offsetInSpan[0] + "," + item.offsetInSpan[1] + "]");
+              console.info("spanRange:[" + item.spanPosition.spanRange[0] + "," + item.spanPosition.spanRange[1] + "]");
+              console.info("offsetInSpan:[" + item.offsetInSpan[0] + "," + item.offsetInSpan[1] + "]");
               if (typeof (item as RichEditorImageSpanResult)['imageStyle'] != 'undefined') {
                 if ((item as RichEditorImageSpanResult).valueResourceStr == "") {
                   console.info("builder span index " + (item as RichEditorImageSpanResult).spanPosition.spanIndex + ", range : " + (item as RichEditorImageSpanResult).offsetInSpan[0] + ", " +
@@ -4008,9 +4008,9 @@ struct Index {
               })
           })
           .aboutToDelete((value: RichEditorDeleteValue) => {
-            console.log(TAG, "aboutToDelete = " + JSON.stringify(value));
+            console.info(TAG, "aboutToDelete = " + JSON.stringify(value));
             let isBuilderAboutToDelete = this.isBuilderAboutToDelete(value);
-            console.log(TAG, "aboutToDelete isBuilderAboutToDelete = " + isBuilderAboutToDelete);
+            console.info(TAG, "aboutToDelete isBuilderAboutToDelete = " + isBuilderAboutToDelete);
             this.getIndicesToRemove(value, isBuilderAboutToDelete);
             console.info(TAG, "indicesToRemove = " + this.indicesToRemove.toString());
             this.deleteBuilderByIndices();
@@ -4505,7 +4505,7 @@ struct RichEditor_onEditingChange {
       }
       RichEditor({ controller: this.controller })
         .onEditingChange((isEditing: boolean) => {
-          console.log("Current Editing Status:" + isEditing);
+          console.info("Current Editing Status:" + isEditing);
         })
         .height(400)
         .borderWidth(1)
@@ -4545,51 +4545,51 @@ struct RichEditorExample {
           })
         })
         .onWillChange((value: RichEditorChangeValue) => {
-          console.log('测试log: onWillChange');
-          console.log('rangeBefore: ' + JSON.stringify(value.rangeBefore));
-          console.log('print replacedSpans');
+          console.info('测试log: onWillChange');
+          console.info('rangeBefore: ' + JSON.stringify(value.rangeBefore));
+          console.info('print replacedSpans');
           value.replacedSpans.forEach((item: RichEditorTextSpanResult) => {
-            console.log('spanPosition:' + JSON.stringify(item.spanPosition));
-            console.log('value:' + item.value);
-            console.log('textStyle:' + JSON.stringify(item.textStyle));
-            console.log('offsetInSpan:' + item.offsetInSpan);
-            console.log('valueResource:' + item.valueResource);
-            console.log('paragraphStyle:' + JSON.stringify(item.paragraphStyle));
+            console.info('spanPosition:' + JSON.stringify(item.spanPosition));
+            console.info('value:' + item.value);
+            console.info('textStyle:' + JSON.stringify(item.textStyle));
+            console.info('offsetInSpan:' + item.offsetInSpan);
+            console.info('valueResource:' + item.valueResource);
+            console.info('paragraphStyle:' + JSON.stringify(item.paragraphStyle));
           })
-          console.log('print replacedImageSpans');
+          console.info('print replacedImageSpans');
           value.replacedImageSpans.forEach((item: RichEditorImageSpanResult) => {
-            console.log('spanPosition:' + JSON.stringify(item.spanPosition));
-            console.log('valuePixelMap:' + JSON.stringify(item.valuePixelMap));
-            console.log('valueResourceStr:' + item.valueResourceStr);
-            console.log('imageStyle:' + JSON.stringify(item.imageStyle));
-            console.log('offsetInSpan:' + item.offsetInSpan);
+            console.info('spanPosition:' + JSON.stringify(item.spanPosition));
+            console.info('valuePixelMap:' + JSON.stringify(item.valuePixelMap));
+            console.info('valueResourceStr:' + item.valueResourceStr);
+            console.info('imageStyle:' + JSON.stringify(item.imageStyle));
+            console.info('offsetInSpan:' + item.offsetInSpan);
           })
-          console.log('print replacedSymbolSpans');
+          console.info('print replacedSymbolSpans');
           value.replacedSymbolSpans.forEach((item: RichEditorTextSpanResult) => {
-            console.log('spanPosition:' + JSON.stringify(item.spanPosition));
-            console.log('value:' + item.value);
-            console.log('offsetInSpan:' + item.offsetInSpan);
-            console.log('symbolSpanStyle:' + JSON.stringify(item.symbolSpanStyle));
-            console.log('valueResource:' + item.valueResource);
-            console.log('paragraphStyle:' + JSON.stringify(item.paragraphStyle));
+            console.info('spanPosition:' + JSON.stringify(item.spanPosition));
+            console.info('value:' + item.value);
+            console.info('offsetInSpan:' + item.offsetInSpan);
+            console.info('symbolSpanStyle:' + JSON.stringify(item.symbolSpanStyle));
+            console.info('valueResource:' + item.valueResource);
+            console.info('paragraphStyle:' + JSON.stringify(item.paragraphStyle));
           })
           return true;
         })
         .onDidChange((rangeBefore: TextRange, rangeAfter: TextRange) => {
-          console.log('测试log: onDidChange');
-          console.log('rangeBefore:' + JSON.stringify(rangeBefore));
-          console.log('rangeAfter:' + JSON.stringify(rangeAfter));
+          console.info('测试log: onDidChange');
+          console.info('rangeBefore:' + JSON.stringify(rangeBefore));
+          console.info('rangeAfter:' + JSON.stringify(rangeAfter));
         })
         .onCut((event:CutEvent) => {
           event.preventDefault!()
-          console.log('测试log：onCut');
+          console.info('测试log：onCut');
         })
         .onCopy((event:CopyEvent) => {
           event.preventDefault!()
-          console.log('测试log：onCopy');
+          console.info('测试log：onCopy');
         })
         .onPaste(()=>{
-          console.log('测试log：onPaste');
+          console.info('测试log：onPaste');
         })
       Text('测试文字去Hellow')
         .lineHeight(50)
@@ -4626,7 +4626,7 @@ struct SoftKeyboardEnterTypeExample {
         .width("100%")
         .enterKeyType(EnterKeyType.Search)
         .onSubmit((enterKey: EnterKeyType, event: SubmitEvent) => {
-          console.log("trigger richeditor onsubmit" + enterKey);
+          console.info("trigger richeditor onsubmit" + enterKey);
           this.controller.addTextSpan(" type["+ enterKey +"] triggerred")
           event.keepEditableState()
         })
@@ -4697,7 +4697,7 @@ struct LineBreakStrategyExample {
         Row(){
           Button("获取linebreak属性值").onClick(() => {
             this.spanParagraphs = this.controller.getParagraphs({ start: -1, end: -1 });
-            console.log("RichEditor getParagraphs:" + JSON.stringify(this.spanParagraphs));
+            console.info("RichEditor getParagraphs:" + JSON.stringify(this.spanParagraphs));
             this.spanParagraphs.forEach(item => {
               if(typeof(item as RichEditorParagraphResult)['style'] != 'undefined'){
                 this.attributeValue = "";
@@ -5019,9 +5019,9 @@ struct RichEditorExample {
   options: RichEditorOptions = { controller: this.controller };
 
   onCreateMenu(menuItems: Array<TextMenuItem>) {
-    console.log('menuItems size=' + menuItems.length);
+    console.info('menuItems size=' + menuItems.length);
     menuItems.forEach((value, index) => {
-      console.log('menuItem' + index + ', id=' + JSON.stringify(value));
+      console.info('menuItem' + index + ', id=' + JSON.stringify(value));
     })
     let extensionMenuItems: Array<TextMenuItem> = [
       {
@@ -5041,7 +5041,7 @@ struct RichEditorExample {
   }
   onMenuItemClicked(menuItem: TextMenuItem, textRange: TextRange) {
     if (menuItem.id.equals(TextMenuItemId.of('extension1'))) {
-      console.log('click' + menuItem.content + ', textRange=' + JSON.stringify(textRange));
+      console.info('click' + menuItem.content + ', textRange=' + JSON.stringify(textRange));
       return true;
     }
     return false;
