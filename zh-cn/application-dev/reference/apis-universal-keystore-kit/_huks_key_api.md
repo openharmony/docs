@@ -385,7 +385,7 @@ struct OH_Huks_Result OH_Huks_ListAliases (const struct OH_Huks_ParamSet * param
 **描述**
 批量查询密钥别名集。
 
-**起始版本：** 12
+**起始版本：** 20
 
 **参数:**
 

@@ -137,7 +137,7 @@ void OH_Huks_FreeKeyAliasSet (struct OH_Huks_KeyAliasSet * keyAliasSet)
 **描述**
 销毁参数集。
 
-**起始版本：** 12
+**起始版本：** 20
 
 **参数:**
 
