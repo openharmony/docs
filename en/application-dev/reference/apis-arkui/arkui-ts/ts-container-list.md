@@ -246,7 +246,7 @@ For chained animations to work properly, the following conditions must be met:
 
 multiSelectable(value: boolean)
 
-Sets whether to enable multiselect.
+Sets whether to enable multi-select.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -258,7 +258,7 @@ Sets whether to enable multiselect.
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | Yes  | Whether to enable multiselect.<br>**false** (default): Multiselect is disabled.<br>**true**: Multiselect is enabled. |
+| value  | boolean | Yes  | Whether to enable multi-select.<br>**false** (default): Multi-select is disabled.<br>**true**: Multi-select is enabled. |
 
 ### lanes<sup>9+</sup>
 

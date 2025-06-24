@@ -237,7 +237,7 @@ Describes the swipe action item.<br>For a list in vertical layout, it refers to 
 
 onSelect(event: (isSelected: boolean) =&gt; void)
 
-Triggered when the selected state of the list item for multiselect changes.
+Triggered when the selected state of the list item for multi-select changes.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 

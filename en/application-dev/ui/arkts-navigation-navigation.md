@@ -318,7 +318,7 @@ Navigation-related routing operations are all based on the APIs provided by [Nav
 @Component
 struct Index {
   // Create a NavPathStack object and pass it to Navigation.
-  pageStack: NavPathStack = new NavPathStack()
+  pageStack: NavPathStack = new NavPathStack();
 
   build() {
     Navigation(this.pageStack) {
@@ -335,8 +335,8 @@ struct Index {
 1. Normal navigation: Navigation is conducted by page name and allows for passing of **param**.
 
     ```ts
-    this.pageStack.pushPath({ name: "PageOne", param: "PageOne Param" })
-    this.pageStack.pushPathByName("PageOne", "PageOne Param")
+    this.pageStack.pushPath({ name: "PageOne", param: "PageOne Param" });
+    this.pageStack.pushPathByName("PageOne", "PageOne Param");
     ```
 
 2. Navigation with a return callback: An **onPop** callback is added during navigation to obtain return information and process it upon page popping.
@@ -370,13 +370,13 @@ struct Index {
 
 ```ts
 // Return to the previous page.
-this.pageStack.pop()
+this.pageStack.pop();
 // Return to the previous PageOne page.
-this.pageStack.popToName("PageOne")
+this.pageStack.popToName("PageOne");
 // Return to the page whose index is 1.
-this.pageStack.popToIndex(1)
+this.pageStack.popToIndex(1);
 // Return to the root home page (clear all pages in the stack).
-this.pageStack.clear()
+this.pageStack.clear();
 ```
 
 ### Page Replacement
@@ -385,8 +385,8 @@ this.pageStack.clear()
 
 ```ts
 // Replace the top page of the stack with PageOne.
-this.pageStack.replacePath({ name: "PageOne", param: "PageOne Param" })
-this.pageStack.replacePathByName("PageOne", "PageOne Param")
+this.pageStack.replacePath({ name: "PageOne", param: "PageOne Param" });
+this.pageStack.replacePathByName("PageOne", "PageOne Param");
 // Replacement with an error code: Upon failure, an asynchronous callback is triggered to provide the error code information.
 this.pageStack.replaceDestination({name: "PageOne", param: "PageOne Param"})
   .catch((error: BusinessError) => {
@@ -402,9 +402,9 @@ this.pageStack.replaceDestination({name: "PageOne", param: "PageOne Param"})
 
 ```ts
 // Remove all pages whose name is PageOne from the stack.
-this.pageStack.removeByName("PageOne")
+this.pageStack.removeByName("PageOne");
 // Remove the page with the specified index.
-this.pageStack.removeByIndexes([1,3,5])
+this.pageStack.removeByIndexes([1, 3, 5]);
 // Remove the page with the specified ID.
 this.pageStack.removeByNavDestinationId("1");
 ```
@@ -426,13 +426,13 @@ this.pageStack.moveIndexToTop(1);
 
 ```ts
 // Obtain all page names in the stack.
-this.pageStack.getAllPathName()
+this.pageStack.getAllPathName();
 // Obtain the parameters of the page whose index is 1.
-this.pageStack.getParamByIndex(1)
+this.pageStack.getParamByIndex(1);
 // Obtain the parameters of the PageOne page.
-this.pageStack.getParamByName("PageOne")
+this.pageStack.getParamByName("PageOne");
 // Obtain the index set of the PageOne page.
-this.pageStack.getIndexByName("PageOne")
+this.pageStack.getIndexByName("PageOne");
 ```
 
 ### Route Interception
@@ -477,7 +477,7 @@ this.pageStack.setInterception({
 
 - Standard mode
 
-  By default, subpages in the **NavDestination** component are in standard mode, which corresponds to the **NavDestinationMode.STANDARD** value of the **mode** attribute. The lifecycle of a standard type **NavDestination** follows the changes in its position in the **NavPathStack**.
+  By default, subpages in the [NavDestination](../reference/apis-arkui/arkui-ts/ts-basic-components-navdestination.md) component are in standard mode, which corresponds to the **NavDestinationMode.STANDARD** value of the **mode** attribute. The lifecycle of a standard type **NavDestination** follows the changes in its position in the **NavPathStack**.
 
 - Dialog mode
   
@@ -488,12 +488,12 @@ this.pageStack.setInterception({
   @Entry
   @Component
    struct Index {
-     @Provide('NavPathStack') pageStack: NavPathStack = new NavPathStack()
+     @Provide('NavPathStack') pageStack: NavPathStack = new NavPathStack();
   
      @Builder
      PagesMap(name: string) {
        if (name == 'DialogPage') {
-         DialogPage()
+         DialogPage();
        }
      }
   
@@ -524,7 +524,7 @@ this.pageStack.setInterception({
                .fontSize(20)
                .margin({ bottom: 100 })
              Button("Close").onClick(() => {
-               this.pageStack.pop()
+               this.pageStack.pop();
              }).width('30%')
            }
            .justifyContent(FlexAlign.Center)
@@ -577,7 +577,7 @@ To facilitate the decoupling of components from pages, custom components within 
    // Custom components within NavDestination
    @Component
    struct MyComponent {
-     navDesInfo: uiObserver.NavDestinationInfo | undefined
+     navDesInfo: uiObserver.NavDestinationInfo | undefined;
   
      aboutToAppear(): void {
        this.navDesInfo = this.queryNavDestinationInfo();
@@ -625,20 +625,20 @@ The **Navigation** component provides default transition animations for switchin
   
   To enable or disable all transition animations in the current **Navigation** component, you can use the [disableAnimation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#disableanimation11) API provided in **NavPathStack**.
   ```ts
-  pageStack: NavPathStack = new NavPathStack()
+  pageStack: NavPathStack = new NavPathStack();
   
   aboutToAppear(): void {
-    this.pageStack.disableAnimation(true)
+    this.pageStack.disableAnimation(true);
   }
   ```
 - On a One-time Basis
   
   To disable the transition animation for a single operation (implemented by APIs provided by **NavPathStack**, such as **Push**, **Pop**, and **Replace**), set the **animated** parameter in the API to **false**. This setting does not affect the next transition.
   ```ts
-  pageStack: NavPathStack = new NavPathStack()
+  pageStack: NavPathStack = new NavPathStack();
   
-  this.pageStack.pushPath({ name: "PageOne" }, false)
-  this.pageStack.pop(false)
+  this.pageStack.pushPath({ name: "PageOne" }, false);
+  this.pageStack.pop(false);
   ```
 
 ### Customizing a Transition
@@ -694,7 +694,7 @@ You can implement shared element transitions between navigation destination page
         .onClick(() => {
             this.getUIContext()?.animateTo({ duration: 1000 }, () => {
               this.pageStack.pushPath({ name: 'ToPage' }, false)
-            })
+            });
         })
       }
     }
@@ -766,19 +766,19 @@ The custom route table and system route table can be used together.
      // Entry point function for redirection to the target page
      @Builder
      export function PageOneBuilder() {
-       PageOne()
+       PageOne();
      }
    
      @Component
      struct PageOne {
-       pathStack: NavPathStack = new NavPathStack()
+       pathStack: NavPathStack = new NavPathStack();
    
        build() {
          NavDestination() {
          }
          .title('PageOne')
          .onReady((context: NavDestinationContext) => {
-            this.pathStack = context.pathStack
+            this.pathStack = context.pathStack;
          })
        }
      }

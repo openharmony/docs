@@ -170,7 +170,7 @@ Sets an accessibility virtual child node. For custom drawing components, a **Cus
 
 accessibilityChecked(isCheck: boolean)
 
-Sets the checked state of the accessibility component. This property is used in multiselect scenarios.
+Sets the checked state of the accessibility component. This property is used in multi-select scenarios.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 13.
 
