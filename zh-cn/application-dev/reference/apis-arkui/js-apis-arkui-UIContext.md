@@ -7180,8 +7180,8 @@ openCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>, options
 ```ts
 import { ComponentContent } from '@kit.ArkUI';
 import { AbilityConstant, Configuration, EnvironmentCallback, ConfigurationConstant } from '@kit.AbilityKit';
-import { BusinessError } from "@kit.BasicServicesKit";
-import { resourceManager } from '@kit.LocalizationKit'
+import { BusinessError } from '@kit.BasicServicesKit';
+import { resourceManager } from '@kit.LocalizationKit';
 
 class Params {
   text: string = "";
@@ -7218,10 +7218,10 @@ struct Index {
         console.log("onConfigurationUpdated " + JSON.stringify(config));
         this.getUIContext().getHostContext()?.getApplicationContext().resourceManager.getConfiguration((err,
           config) => {
-          // 调用ComponentContent的update更新colorMode信息。
+          // 调用ComponentContent的update更新colorMode信息
           this.contentNode?.update(new Params(this.message, config.colorMode))
           setTimeout(() => {
-            // 调用ComponentContent的updateConfiguration，触发节点的全量更新。
+            // 调用ComponentContent的updateConfiguration，触发节点的全量更新
             this.contentNode?.updateConfiguration()
           })
         })
