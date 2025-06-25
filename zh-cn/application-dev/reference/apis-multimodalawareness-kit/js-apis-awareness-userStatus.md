@@ -67,7 +67,7 @@ import { userStatus } from '@kit.MultimodalAwarenessKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-    userStatus.on('userAgeGroupDetected', (data: userStatus.DetectionResult) => {
+    userStatus.on('userAgeGroupDetected', (data: userStatus.UserClassification) => {
         console.info('callback success, ageGroup:' + data.ageGroup + ", confidence:" + data.confidence);
     });
     console.info("on succeeded");
