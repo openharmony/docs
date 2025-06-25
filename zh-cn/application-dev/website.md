@@ -552,10 +552,12 @@
             - [自定义组件节点 (FrameNode)](ui/arkts-user-defined-arktsNode-frameNode.md)
             - [自定义渲染节点 (RenderNode)](ui/arkts-user-defined-arktsNode-renderNode.md)
             - [自定义声明式节点 (BuilderNode)](ui/arkts-user-defined-arktsNode-builderNode.md)
+            - [设置自定义节点跨语言属性](ui/arkts-user-defined-arktsNode-crossLanguage.md)
           - 自定义扩展<!--arkts-modifier-->
             - [自定义扩展概述](ui/arkts-user-defined-modifier.md)
             - [属性修改器 (AttributeModifier)](ui/arkts-user-defined-extension-attributeModifier.md)
             - [属性更新器 (AttributeUpdater)](ui/arkts-user-defined-extension-attributeUpdater.md)
+            - [自定义绘制修改器 (DrawModifier)](ui/arkts-user-defined-extension-drawModifier.md)
         - [使用镜像能力](ui/arkts-mirroring-display.md)
         - 无障碍与适老化<!--arkts-support-accessibility-friendliness-->
           - [支持无障碍](ui/arkts-universal-attributes-accessibility.md)
@@ -591,6 +593,7 @@
           - [嵌入ArkTS组件](ui/ndk-embed-arkts-components.md)
           - [通过XComponent接入无障碍](ui/ndk-accessibility-xcomponent.md)
           - [自定义绘制](ui/arkts-user-defined-draw.md)
+          - [查询和操作自定义节点](ui/ndk-node-query-operate.md)
           - [通过EmbeddedComponent拉起EmbeddedUIExtensionAbility](ui/ndk-embedded-component.md)
           - [在NDK中保证多实例场景功能正常](ui/ndk-scope-task.md)
       - UI开发 (兼容JS的类Web开发范式)<!--ui-js-dev-->
