@@ -3,6 +3,10 @@
 [瀑布流](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md)常用于展示图片信息，尤其在购物和资讯类应用中。
 ArkUI提供了WaterFlow容器组件，用于构建瀑布流布局。WaterFlow组件支持条件渲染、循环渲染和懒加载等方式生成子组件。
 
+> **说明：** 
+>
+> 本文仅展示关键代码片段，可运行的完整代码请参考[WaterFlow示例代码](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md#示例)。
+
 ## 布局与约束
 
 瀑布流支持横向和纵向布局。在纵向布局中，可以通过[columnsTemplate](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md#columnstemplate)设置列数；在横向布局中，可以通过[rowsTemplate](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md#rowstemplate)设置行数。
