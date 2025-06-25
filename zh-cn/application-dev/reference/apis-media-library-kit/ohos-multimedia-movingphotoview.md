@@ -36,7 +36,7 @@ MovingPhotoView(options: MovingPhotoViewOptions)
 
 | 参数名      | 参数类型                                                                                         | 必填 | 参数描述                                                                                                                                        |
 | ----------- | ------------------------------------------------------------------------------------------------ | ---- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| movingPhoto | [MovingPhoto](js-apis-photoAccessHelper.md#movingphoto12) | 是   | 支持媒体库MovingPhoto数据源，具体信息详见[MovingPhoto说明](js-apis-photoAccessHelper.md#movingphoto12)。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| movingPhoto | [MovingPhoto](arkts-apis-photoAccessHelper-MovingPhoto.md) | 是   | 支持媒体库MovingPhoto数据源，具体信息详见[MovingPhoto说明](arkts-apis-photoAccessHelper-MovingPhoto.md)。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | controller  | [MovingPhotoViewController](#movingphotoviewcontroller)                                          | 否   | 设置动态照片控制器，可以控制动态照片的播放状态。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                      |
 | imageAIOptions<sup>18+</sup>   | [ImageAIOptions](../apis-arkui/arkui-ts/ts-image-common.md#imageaioptions) | 否   | 设置动态照片AI分析选项，可配置分析类型或绑定一个分析控制器。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 

@@ -4802,7 +4802,26 @@
         - [Media错误码](reference/apis-media-kit/errorcode-media.md)
     - Media Library Kit（媒体文件管理服务）<!--media-library-api-->
       - ArkTS API<!--media-library-arkts-->
-        - [@ohos.file.photoAccessHelper (相册管理模块)](reference/apis-media-library-kit/js-apis-photoAccessHelper.md)
+        - @ohos.file.photoAccessHelper (相册管理模块)<!--js-apis-photoAccessHelper-->
+          - [模块描述](reference/apis-media-library-kit/arkts-apis-photoAccessHelper.md)
+          - [Functions](reference/apis-media-library-kit/arkts-apis-photoAccessHelper-f.md)
+          - [Class (MediaAlbumChangeRequest)](reference/apis-media-library-kit/arkts-apis-photoAccessHelper-MediaAlbumChangeRequest.md)
+          - [Class (MediaAssetChangeRequest)](reference/apis-media-library-kit/arkts-apis-photoAccessHelper-MediaAssetChangeRequest.md)
+          - [Class (MediaAssetManager)](reference/apis-media-library-kit/arkts-apis-photoAccessHelper-MediaAssetManager.md)
+          - [Class (PhotoViewPicker)](reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoViewPicker.md)
+          - [Classes (其他)](reference/apis-media-library-kit/arkts-apis-photoAccessHelper-class.md)
+          - [Interface (AbsAlbum)](reference/apis-media-library-kit/arkts-apis-photoAccessHelper-AbsAlbum.md)
+          - [Interface (Album)](reference/apis-media-library-kit/arkts-apis-photoAccessHelper-Album.md)
+          - [Interface (FetchResult)](reference/apis-media-library-kit/arkts-apis-photoAccessHelper-FetchResult.md)
+          - [Interface (MediaAssetDataHandler)](reference/apis-media-library-kit/arkts-apis-photoAccessHelper-MediaAssetDataHandler.md)
+          - [Interface (MediaAssetProgressHandler)](reference/apis-media-library-kit/arkts-apis-photoAccessHelper-MediaAssetProgressHandler.md)
+          - [Interface (MovingPhoto)](reference/apis-media-library-kit/arkts-apis-photoAccessHelper-MovingPhoto.md)
+          - [Interface (PhotoAccessHelper)](reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md)
+          - [Interface (PhotoAsset)](reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAsset.md)
+          - [Interface (QuickImageDataHandler)](reference/apis-media-library-kit/arkts-apis-photoAccessHelper-QuickImageDataHandler.md)
+          - [Interfaces (其他)](reference/apis-media-library-kit/arkts-apis-photoAccessHelper-i.md)
+          - [Enums](reference/apis-media-library-kit/arkts-apis-photoAccessHelper-e.md)
+          - [Types](reference/apis-media-library-kit/arkts-apis-photoAccessHelper-t.md)
         - [@ohos.file.sendablePhotoAccessHelper (基于Sendable对象的相册管理模块)](reference/apis-media-library-kit/js-apis-sendablePhotoAccessHelper.md)
         <!--Del-->
         - [@ohos.file.photoAccessHelper (相册管理模块)(系统接口)](reference/apis-media-library-kit/js-apis-photoAccessHelper-sys.md)

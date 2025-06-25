@@ -7,12 +7,12 @@ photoAccessHelper提供监听指定媒体资源变更的接口。
 > 在进行功能开发前，请查阅[开发准备](photoAccessHelper-preparation.md)，了解如何获取相册管理模块实例和如何申请相册管理模块功能开发相关权限。
 > 文档中使用到photoAccessHelper的地方默认为使用[开发准备](photoAccessHelper-preparation.md)中获取的对象，如未添加此段代码报photoAccessHelper未定义的错误请自行添加。
 
-媒体资源变更通知相关接口的异步调用仅支持使用callback方式。以下只列出部分接口使用方式，其他使用方式可以查阅[API参考](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md)。
+媒体资源变更通知相关接口的异步调用仅支持使用callback方式。以下只列出部分接口使用方式，其他使用方式可以查阅[API参考](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper.md)。
 如无特别说明，文档中涉及的待获取资源均视为已预置且数据库中存在相应数据。若按示例代码执行后资源为空，请确认文件是否已预置，以及数据库中是否存在该文件的数据。
 
 ## 监听指定URI
 
-通过调用[registerChange](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#registerchange)接口监听指定uri。当被监听对象发生变更时返回监听器回调函数的值。
+通过调用[registerChange](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#registerchange)接口监听指定uri。当被监听对象发生变更时返回监听器回调函数的值。
 
 ### 对指定PhotoAsset注册监听
 
@@ -161,7 +161,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, cont
 
 ## 取消对指定URI的监听
 
-取消对指定uri的监听，通过调用[unRegisterChange](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#unregisterchange)接口取消对指定uri的监听。一个uri可以注册多个监听，存在多个callback监听时，可以取消指定注册的callback的监听；不指定callback时取消该uri的所有监听。
+取消对指定uri的监听，通过调用[unRegisterChange](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#unregisterchange)接口取消对指定uri的监听。一个uri可以注册多个监听，存在多个callback监听时，可以取消指定注册的callback的监听；不指定callback时取消该uri的所有监听。
 
 **前提条件**
 
