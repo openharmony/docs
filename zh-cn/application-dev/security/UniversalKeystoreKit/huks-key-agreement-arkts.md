@@ -383,7 +383,7 @@
   }
 
   async function testAgree() {
-    /* 1.确定密钥别名并集成并集成要参数集 A设备：srcKeyAliasFirst  B设备：srcKeyAliasSecond*/
+    /* 1.确定密钥别名并集成要参数集 A设备：srcKeyAliasFirst  B设备：srcKeyAliasSecond*/
     /* 2.设备A生成密钥 */
     await publicGenKeyFunc(srcKeyAliasFirst, HuksOptions);
     /* 3.设备B生成密钥 */
