@@ -26,7 +26,7 @@ Currently, the following tailoring operations are supported:
 
 - Crops a rounded rectangle.
 
-- Tailor the user-defined path.
+- Crops the user-defined path.
 
 - Crops a region.
 
@@ -71,7 +71,7 @@ let rect: common2D.Rect = { left: 200, top: 200, right: 600, bottom: 600 };
 canvas.clipRect(rect); 
 // Draw a circle on the canvas.
 canvas.drawCircle(300, 300, 300);
-// Remove the padding effect.
+// Remove the filling effect.
 canvas.detachBrush();
 ```
 
@@ -120,11 +120,11 @@ let brush = new drawing.Brush();
 brush.setColor(0xFF, 0xFF, 0x00, 0x00);
 // Set the brush filling effect.
 canvas.attachBrush(brush);
-// Perform the pan operation.
+// Perform the translation operation.
 canvas.translate(300, 300); 
 // Draw a rectangle.
 canvas.drawRect({ left: 200, top: 200, right: 600, bottom: 600 }); 
-// Remove the padding effect.
+// Remove the filling effect.
 canvas.detachBrush();
 ```
 
@@ -153,7 +153,7 @@ canvas.attachBrush(brush);
 canvas.rotate(45, 200, 200);
 // Draw a rectangle.
 canvas.drawRect({ left: 200, top: 200, right: 600, bottom: 600 });
-// Remove the padding effect.
+// Remove the filling effect.
 canvas.detachBrush();
 ```
 
@@ -178,16 +178,16 @@ let brush = new drawing.Brush();
 brush.setColor({ alpha: 0xFF, red: 0xFF, green: 0x00, blue: 0x00 });
 // Set the brush filling effect.
 canvas.attachBrush(brush);
-// Perform the zoom-in operation.
+// Perform the scaling operation.
 canvas.scale(2, 2);
 // Draw a rectangle.
 canvas.drawRect({ left: 200, top: 200, right: 600, bottom: 600 });
-// Remove the padding effect.
+// Remove the filling effect.
 canvas.detachBrush();
 ```
 
 
-| Original image| Effect after resizing|
+| Original image| Effect After Scaling|
 | -------- | -------- |
 | ![Screenshot_20241129145853573](figures/Screenshot_20241129145853573.jpg) | ![Screenshot_20241129151044798](figures/Screenshot_20241129151044798.jpg) |
 
