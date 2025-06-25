@@ -1,6 +1,6 @@
 # 用户状态感知开发指导
 
-UserStatus（用户状态感知）模块提供用户感知能力，可以感知到操作者特定状态，例如：感知用户年龄组）。
+UserStatus（用户状态感知）模块提供用户感知能力，可以感知到操作者特定状态，例如：检测用户年龄组。
 
 详细的接口介绍请参考[userStatus接口](../../reference/apis-multimodalawareness-kit/js-apis-awareness-userStatus.md)。
 
