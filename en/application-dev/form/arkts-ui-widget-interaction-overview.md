@@ -1,6 +1,6 @@
 # Updating Widget Content
 
-The ArkTS widget framework provides the [updateForm](../reference/apis-form-kit/js-apis-app-form-formProvider.md#updateform) API for widget providers and the **requestForm** API for widget hosts to proactively trigger widget page refreshes. It also alerts providers to update widgets based on the scheduled information.
+The ArkTS widget framework provides the updateForm API for widget providers and the **requestForm** API for widget hosts to proactively trigger widget page refreshes. It also alerts providers to update widgets based on the scheduled information.
 
 In widget UI code, you can use [LocalStorageProp](../ui/state-management/arkts-localstorage.md#localstorageprop) to obtain the widget data that requires updating, sent by the provider
 

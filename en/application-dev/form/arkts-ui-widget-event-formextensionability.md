@@ -62,7 +62,7 @@ On the widget page, the [postCardAction](../reference/apis-arkui/js-apis-postCar
   }
   ```
   
-- Call the [updateForm](../reference/apis-form-kit/js-apis-app-form-formProvider.md#updateform) API to update the widget in the **onFormEvent** callback of the FormExtensionAbility.
+- Call the [updateForm](../reference/apis-form-kit/js-apis-app-form-formProvider.md#formproviderupdateform) API to update the widget in the **onFormEvent** callback of the FormExtensionAbility.
   
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
