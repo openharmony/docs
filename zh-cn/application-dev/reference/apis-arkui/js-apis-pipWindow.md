@@ -646,6 +646,8 @@ setAutoStartEnabled(enable: boolean): void
 
 设置是否在返回桌面时自动启动画中画，默认不自动拉起。
 
+应用在首次调用setAutoStartEnabled(true)时，会缓存栈顶的handleId，且后续无法更改。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
@@ -660,7 +662,6 @@ setAutoStartEnabled(enable: boolean): void
 
 ```ts
 let enable: boolean = true;
-//应用在首次调用setAutoStartEnabled(true)时,会缓存栈顶的handleId,且后续无法更改
 this.pipController.setAutoStartEnabled(enable);
 ```
 
