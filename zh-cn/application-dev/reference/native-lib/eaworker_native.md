@@ -2,7 +2,7 @@
 开发者可以通过[AttachCurrentThread](#attachcurrentthread)接口将当前线程提供给ArkTS1.2虚拟机，并获取静态虚拟机的env。开发者可以使用该env在当前执行特定重载/长时任务，避免对于ArkTS1.2虚拟机系统调用造成影响。任务完成后，开发者需要手动调用[DetachCurrentThread](#detachcurrentthread)释放对应的系统资源。
 
 文档中涉及到概念以及解释：
-- 互操作（interop）：ArkTS1.2和ArkTS1.1代码相互操作。
+- 互操作（interop）：ArkTS1.2和ArkTS1.1代码相互操作。由于ArkTS1.1运行时为单线程实例，因此支持互操作的EAWorker会持有不同的ArkTS1.1运行时实例用于执行ArkTS1.1字节码，对应的ArkTS1.1中全局变量在不同的线程中对应不同的实例。
 - ANI：ArkTS1.2 Native Interface，ArkTS1.2的原生操作接口。
 
 ## AttachCurrentThread
