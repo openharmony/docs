@@ -938,6 +938,12 @@ setSystemAvoidAreaEnabled(enabled: boolean): Promise&lt;void&gt;
 | ---- |----------------------------------| -- | ------------------------------------------------------------ |
 | enabled | boolean | 是 | 是否可以获取到避让区。<br> true表示可以获取避让区；false表示不可以获取避让区。默认值是false。 |
 
+**返回值：**
+
+| 类型 | 说明 |
+| ------------------- | ----------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
