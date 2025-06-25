@@ -1340,8 +1340,6 @@ List() {
 
 - [新闻数据加载](https://gitee.com/openharmony/codelabs/tree/master/NetworkManagement/NewsDataArkTS)
 
-- [音乐专辑页](../key-features/multi-device-app-dev/music-album-page.md)
-
 - [常用组件和容器低代码开发示例（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/EfficiencyEnhancementKit/SuperVisualSample)
 
 - [二级联动（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/SecondLevelLinkage)
