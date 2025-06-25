@@ -194,7 +194,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | typedef struct [OH_AVCodecAsyncCallback](_o_h___a_v_codec_async_callback.md) [OH_AVCodecAsyncCallback](#oh_avcodecasynccallback) | OH_AVCodec中所有异步回调函数指针的集合。（API11废弃）| 
 | typedef struct [OH_AVCodecCallback](_o_h___a_v_codec_callback.md) [OH_AVCodecCallback](#oh_avcodeccallback) | OH_AVCodec中所有异步回调函数指针的集合。 | 
 | typedef int32_t(\* [OH_AVDataSourceReadAt](#oh_avdatasourcereadat)) (OH_AVBuffer \*data, int32_t length, int64_t pos) | 函数指针定义，用于提供获取用户自定义媒体数据的能力。  | 
-| typedef int32_t(\* [OH_AVDataSourceReadAtExt](#oh_avdatasourcereadatext)) (OH_AVBuffer \*data, int32_t length, int64_t pos, void *userData) | 函数指针定义，用于提供获取用户自定义媒体数据的能力。  | 
+| typedef int32_t(\* [OH_AVDataSourceReadAtExt](#oh_avdatasourcereadatext)) (OH_AVBuffer \*data, int32_t length, int64_t pos, void *userData) | 函数指针定义，用于提供获取用户自定义媒体数据的能力。回调支持通过userData传递用户自定义数据。  | 
 | typedef struct [OH_AVDataSource](_o_h___a_v_data_source.md) [OH_AVDataSource](#oh_avdatasource) | 用户自定义数据源。  | 
 | typedef enum [OH_MediaType](#oh_mediatype-1) [OH_MediaType](#oh_mediatype) | 媒体类型。 | 
 | typedef enum [OH_AACProfile](#oh_aacprofile-1) [OH_AACProfile](#oh_aacprofile) | AAC档次。 | 
@@ -656,7 +656,7 @@ typedef int32_t(* OH_AVDataSourceReadAt) (OH_AVBuffer *data, int32_t length, int
 typedef struct OH_AVDataSourceExt OH_AVDataSourceExt
 ```
 **描述**
-用户自定义数据源, 支持通过userData传递上下文数据。
+用户自定义数据源, 回调支持通过userData传递用户自定义数据。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -669,7 +669,7 @@ typedef struct OH_AVDataSourceExt OH_AVDataSourceExt
 typedef int32_t(* OH_AVDataSourceReadAtExt) (OH_AVBuffer *data, int32_t length, int64_t pos, void *userData)
 ```
 **描述**
-函数指针定义，用于提供获取用户自定义媒体数据的能力。支持通过userData传递上下文数据。
+函数指针定义，用于提供获取用户自定义媒体数据的能力。回调支持通过userData传递用户自定义数据。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 

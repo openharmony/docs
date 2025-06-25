@@ -3,7 +3,7 @@
 
 ## 概述
 
-用户自定义数据源,支持通过userData传递上下文数据。
+用户自定义数据源,回调支持通过userData传递用户自定义数据。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
