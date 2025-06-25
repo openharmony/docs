@@ -123,7 +123,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | [OH_MD_KEY_AUD_SAMPLE_RATE](#oh_md_key_aud_sample_rate)      | 音频采样率键，值类型为int32_t。                             |
 | [OH_MD_KEY_AUDIO_COMPRESSION_LEVEL](#oh_md_key_audio_compression_level) | 音频编解码压缩水平的键，只在音频编码使用，值类型为int32_t。该键是可选的。     |
 | [OH_MD_KEY_CHANNEL_LAYOUT](#oh_md_key_channel_layout)        | 所需编码通道布局的键。值类型为int64_t，此键仅适用于编码器。请参见[OH_AudioChannelLayout](_core.md#oh_audiochannellayout-1)。  |
-| [OH_MD_KEY_BITS_PER_CODED_SAMPLE](#oh_md_key_bits_per_coded_sample) | 每个编码样本位数的键，值类型为int32_t，支持flac编码器，请参见[OH_BitsPerSample](#oh_bitspersample-1)。该键是可选的。 |
+| [OH_MD_KEY_BITS_PER_CODED_SAMPLE](#oh_md_key_bits_per_coded_sample) | 每个编码样本位数的键，值类型为int32_t。该键是可选的。<br>API 20前，FLAC编码必须设置此参数，设置为1即可；未设置此参数配置FLAC编码器时，调用OH_AudioCodec_Configure会返回错误码AV_ERR_INVALID_VAL。该值无实际作用，不会影响编码结果。从API 20开始，无需设置此参数。|
 | [OH_MD_KEY_SBR](#oh_md_key_sbr)                              | aac sbr模式的键，值类型为int32_t，aac编码器支持。该键是可选的。 |
 | [OH_MD_KEY_COMPLIANCE_LEVEL](#oh_md_key_compliance_level)    | flac兼容性等级的键，值类型为int32_t，仅在音频编码使用。该键是可选的。          |
 | [OH_MD_KEY_AAC_IS_ADTS](#oh_md_key_aac_is_adts)              | aac格式的键，aac格式分为ADTS格式和LATM格式。值类型为int32_t，aac解码器支持。该键是可选的。  |
@@ -334,7 +334,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | const char \* [OH_MD_KEY_AUD_SAMPLE_RATE](#oh_md_key_aud_sample_rate) | 音频采样率键，值类型为int32_t。 |
 | const char \* [OH_MD_KEY_AUDIO_COMPRESSION_LEVEL](#oh_md_key_audio_compression_level) | 音频编解码压缩水平的键，只在音频编码使用，值类型为int32_t。 |
 | const char \* [OH_MD_KEY_CHANNEL_LAYOUT](#oh_md_key_channel_layout) | 所需编码通道布局的键。值类型为int64_t，此键仅适用于编码器。 |
-| const char \* [OH_MD_KEY_BITS_PER_CODED_SAMPLE](#oh_md_key_bits_per_coded_sample) | 每个编码样本位数的键，值类型为int32_t，支持flac编码器，请参见[OH_BitsPerSample](#oh_bitspersample-1)。 |
+| const char \* [OH_MD_KEY_BITS_PER_CODED_SAMPLE](#oh_md_key_bits_per_coded_sample) | 每个编码样本位数的键，值类型为int32_t。<br>API 20前，FLAC编码必须设置此参数，设置为1即可；未设置此参数配置FLAC编码器时，调用OH_AudioCodec_Configure会返回错误码AV_ERR_INVALID_VAL。该值无实际作用，不会影响编码结果。从API 20开始，无需设置此参数。|
 | const char \* [OH_MD_KEY_SBR](#oh_md_key_sbr) | aac sbr模式的键，值类型为int32_t，aac编码器支持。 |
 | const char \* [OH_MD_KEY_COMPLIANCE_LEVEL](#oh_md_key_compliance_level) | flac兼容性等级的键，值类型为int32_t，仅在音频编码使用。 |
 | const char \* [OH_MD_KEY_AAC_IS_ADTS](#oh_md_key_aac_is_adts) | aac格式的键，aac格式分为ADTS格式和LATM格式。值类型为int32_t，aac解码器支持。 |
@@ -2144,7 +2144,9 @@ const char* OH_MD_KEY_BITRATE
 const char* OH_MD_KEY_BITS_PER_CODED_SAMPLE
 ```
 **描述**
-每个编码样本位数的键，值类型为int32_t，支持flac编码器，请参见[OH_BitsPerSample](#oh_bitspersample-1)。
+每个编码样本位数的键，值类型为int32_t。
+
+API 20前，FLAC编码必须设置此参数，设置为1即可；未设置此参数配置FLAC编码器时，调用OH_AudioCodec_Configure会返回错误码AV_ERR_INVALID_VAL。该值无实际作用，不会影响编码结果。从API 20开始，无需设置此参数。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
