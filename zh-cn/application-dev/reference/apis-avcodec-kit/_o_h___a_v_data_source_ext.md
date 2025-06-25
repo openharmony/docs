@@ -28,6 +28,21 @@
 ## 结构体成员变量说明
 
 
+### size
+
+```
+int64_t OH_AVDataSourceExt::size
+```
+
+**描述**
+
+数据源的总大小。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 20
+
+
 ### readAt
 
 ```
@@ -42,17 +57,3 @@ OH_AVDataSourceReadAtExt OH_AVDataSourceExt::readAt
 
 **起始版本：** 20
 
-
-### size
-
-```
-int64_t OH_AVDataSourceExt::size
-```
-
-**描述**
-
-数据源的总大小。
-
-**系统能力：** SystemCapability.Multimedia.Media.CodecBase
-
-**起始版本：** 20

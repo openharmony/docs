@@ -92,7 +92,7 @@ OH_AVSource* OH_AVSource_CreateWithDataSource (OH_AVDataSource * dataSource)
 ### OH_AVSource_CreateWithDataSourceExt()
 
 ```
-OH_AVSource* OH_AVSource_CreateWithDataSourceExt (OH_AVDataSource * dataSource, void *userData)
+OH_AVSource *OH_AVSource_CreateWithDataSourceExt (OH_AVDataSourceExt *dataSource, void *userData)
 ```
 **描述**
 为用户自定义数据源的资源对象创建OH_AVSource实例，可以通过调用OH_AVSource_Destroy接口释放实例。回调支持通过userData传递用户自定义数据。
@@ -118,7 +118,6 @@ OH_AVSource* OH_AVSource_CreateWithDataSourceExt (OH_AVDataSource * dataSource, 
 3. 设置数据源失败；
 4. 内存不足；
 5. 解码器引擎为nullptr；
-6. dataSource-&gt;readAt == nullptr。
 
 
 ### OH_AVSource_CreateWithFD()

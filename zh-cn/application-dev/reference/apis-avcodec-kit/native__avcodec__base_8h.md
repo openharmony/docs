@@ -22,7 +22,7 @@
 | struct  [OH_AVCodecAsyncCallback](_o_h___a_v_codec_async_callback.md) | OH_AVCodec中所有异步回调函数指针的集合。（API11废弃）  | 
 | struct  [OH_AVCodecCallback](_o_h___a_v_codec_callback.md) | OH_AVCodec中所有异步回调函数指针的集合。  | 
 | struct  [OH_AVDataSource](_o_h___a_v_data_source.md) | 用户自定义数据源。  | 
-| struct  [OH_AVDataSourceExt](_o_h___a_v_data_source_ext.md) | 用户自定义数据源, 回调支持通过userData传递用户自定义数据。  | 
+| struct  [OH_AVDataSourceExt](_o_h___a_v_data_source_ext.md) | 用户自定义数据源，回调支持通过userData传递用户自定义数据。  | 
 
 
 ### 类型定义
@@ -38,7 +38,7 @@
 | typedef struct [OH_AVCodecAsyncCallback](_o_h___a_v_codec_async_callback.md) [OH_AVCodecAsyncCallback](_codec_base.md#oh_avcodecasynccallback) | OH_AVCodec中所有异步回调函数指针的集合。（API11废弃） | 
 | typedef struct [OH_AVCodecCallback](_o_h___a_v_codec_callback.md) [OH_AVCodecCallback](_codec_base.md#oh_avcodeccallback) | OH_AVCodec中所有异步回调函数指针的集合。 | 
 | typedef int32_t(\* [OH_AVDataSourceReadAt](_codec_base.md#oh_avdatasourcereadat)) (OH_AVBuffer \*data, int32_t length, int64_t offset) | 函数指针定义，用于提供获取用户自定义媒体数据的能力。  | 
-| typedef int32_t(\* [OH_AVDataSourceReadAtExt](_codec_base.md#oh_avdatasourcereadatext)) (OH_AVBuffer \*data, int32_t length, int64_t offset, void *userData) | 函数指针定义，支持传递userData，用于提供获取用户自定义媒体数据的能力。  | 
+| typedef int32_t(\* [OH_AVDataSourceReadAtExt](_codec_base.md#oh_avdatasourcereadatext)) (OH_AVBuffer \*data, int32_t length, int64_t pos, void *userData) | 函数指针定义，支持传递userData，用于提供获取用户自定义媒体数据的能力。  | 
 | typedef struct [OH_AVDataSource](_o_h___a_v_data_source.md) [OH_AVDataSource](_codec_base.md#oh_avdatasource) | 用户自定义数据源。  | 
 | typedef struct [OH_AVDataSourceExt](_o_h___a_v_data_source_ext.md) [OH_AVDataSourceExt](_codec_base.md#oh_avdatasourceext) | 用户自定义数据源,回调支持通过userData传递用户自定义数据。 | 
 | typedef enum [OH_MediaType](_codec_base.md#oh_mediatype-1) [OH_MediaType](_codec_base.md#oh_mediatype) | 媒体类型。 | 
