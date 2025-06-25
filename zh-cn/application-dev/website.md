@@ -2407,7 +2407,7 @@
           - [Rdb_SubscribeCallback](reference/apis-arkdata/capi-rdb-rdb-subscribecallback.md)
           - [Rdb_DataObserver](reference/apis-arkdata/capi-rdb-rdb-dataobserver.md)
           - [Rdb_Statistic](reference/apis-arkdata/capi-rdb-rdb-statistic.md)
-          - [Rdb_TableDetails](reference/apis-arkdata/capi-rdb-tabledetails.md)
+          - [Rdb_TableDetails](reference/apis-arkdata/capi-rdb-rdb-tabledetails.md)
           - [Rdb_ProgressDetails](reference/apis-arkdata/capi-rdb-rdb-progressdetails.md)
           - [Rdb_ProgressObserver](reference/apis-arkdata/capi-rdb-rdb-progressobserver.md)
           - [OH_Preferences](reference/apis-arkdata/capi-preferences-oh-preferences.md)
