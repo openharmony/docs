@@ -1776,6 +1776,7 @@
     - Neural Network Runtime Kit（Neural Network运行时服务）<!--neural-network-runtime-kit-->
       - [Neural Network Runtime Kit简介](ai/nnrt/Neural-Network-Runtime-Kit-Introduction.md)
       - [Neural Network Runtime对接AI推理框架开发指导](ai/nnrt/neural-network-runtime-guidelines.md)
+  <!--Del-->
   - 一次开发，多端部署<!--free-circulation-->
     - [前言](key-features/multi-device-app-dev/foreword.md)
     - [简介](key-features/multi-device-app-dev/introduction.md)
@@ -1797,10 +1798,9 @@
       - [多态组件](key-features/multi-device-app-dev/polymorphic-controls.md)
       - [资源使用](key-features/multi-device-app-dev/resource-usage.md)
     - [功能开发的一多能力介绍](key-features/multi-device-app-dev/development-intro.md)
-    <!--Del-->
-    - [一多开发实例（短信）](key-features/multi-device-app-dev/case.md)
-    <!--DelEnd-->
+    - [一多开发实例（短信）](key-features/multi-device-app-dev/case.md)  
     - [常见问题](key-features/multi-device-app-dev/multi-faq.md)
+  <!--DelEnd-->
   - NDK开发<!--ndk-development-->
     - [NDK开发导读](napi/ndk-development-overview.md)
     - [创建NDK工程](napi/create-with-ndk.md)
