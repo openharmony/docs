@@ -20,6 +20,8 @@ initializeEnvironment(): Promise\<void>
 
 初始化环境。使用Promise异步回调。
 
+**卡片能力**：从API version 18开始，该接口支持在ArkTS卡片中使用。
+
 **系统能力：** SystemCapability.Multimedia.VideoProcessingEngine
 
 **返回值：**
@@ -55,6 +57,8 @@ deinitializeEnvironment(): Promise\<void>
 
 释放处理资源。使用Promise异步回调。
 
+**卡片能力**：从API version 18开始，该接口支持在ArkTS卡片中使用。
+
 **系统能力：** SystemCapability.Multimedia.VideoProcessingEngine
 
 **返回值：**
@@ -86,6 +90,8 @@ async function deinitializeEnvironment() {
 create(): ImageProcessor
 
 如果操作成功，创建图片处理模块实例，否则返回null。
+
+**卡片能力**：从API version 18开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力：** SystemCapability.Multimedia.VideoProcessingEngine
 
@@ -129,6 +135,8 @@ let imageProcessor = videoProcessingEngine.create() as videoProcessingEngine.Ima
 enhanceDetail(sourceImage: image.PixelMap, width: number, height: number, level?: QualityLevel): Promise\<image.PixelMap\>
 
 细节增强处理异步方法。使用Promise异步回调。
+
+**卡片能力**：从API version 18开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力：** SystemCapability.Multimedia.VideoProcessingEngine
 
@@ -174,6 +182,8 @@ enhanceDetail(sourceImage: image.PixelMap, scale: number, level?: QualityLevel):
 
 细节增强处理异步方法。使用Promise异步回调。
 
+**卡片能力**：从API version 18开始，该接口支持在ArkTS卡片中使用。
+
 **系统能力：** SystemCapability.Multimedia.VideoProcessingEngine
 
 **参数：**
@@ -216,6 +226,8 @@ async function enhanceDetail(sourceImage: image.PixelMap, scale: number) {
 enhanceDetailSync(sourceImage: image.PixelMap, width: number, height: number, level?: QualityLevel): image.PixelMap
 
 细节增强处理同步方法。
+
+**卡片能力**：从API version 18开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力：** SystemCapability.Multimedia.VideoProcessingEngine
 
@@ -263,6 +275,8 @@ enhanceDetailSync(sourceImage: image.PixelMap, scale: number, level?: QualityLev
 
 细节增强处理同步方法。
 
+**卡片能力**：从API version 18开始，该接口支持在ArkTS卡片中使用。
+
 **系统能力：** SystemCapability.Multimedia.VideoProcessingEngine
 
 **参数：**
@@ -305,6 +319,8 @@ sourceImage, scale, videoProcessingEngine.QualityLevel.HIGH);
 ## QualityLevel
 
 枚举，算法档位。
+
+**卡片能力**：从API version 18开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力：** SystemCapability.Multimedia.VideoProcessingEngine
 

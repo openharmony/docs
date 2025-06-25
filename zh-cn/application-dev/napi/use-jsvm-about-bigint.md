@@ -2,11 +2,11 @@
 
 ## 简介
 
-BigInt是JavaScript中用于表示任意精度整数的数据类型，它能够处理比Number类型更大范围的整数值。通过JSVM-API提供的接口，可以在JSVM模块中创建、获取和操作BigInt类型值，从而实现与BigInt相关的功能扩展。
+BigInt是JavaScript中用于表示任意精度整数的数据类型，能够处理比Number类型更大范围的整数值。通过JSVM-API提供的接口，可以在JSVM模块中创建、获取和操作BigInt类型值，从而实现与BigInt相关的功能扩展。
 
 ## 基本概念
 
-在使用JSVM-API接口操作BigInt类型值时，需要理解以下基本概念：
+使用JSVM-API接口操作BigInt类型值时，需要理解以下基本概念：
 
 - **BigInt类型：** BigInt是JavaScript中的一种数据类型，用于表示任意精度的整数。与Number类型不同，BigInt类型可以精确表示非常大的整数，而不会丢失精度或溢出。
 - **BigInt创建：** 使用JSVM-API提供的接口，可以通过传递C的int64或uint64数据来创建对应的JavaScript BigInt。这使得在JSVM模块中可以方便地创建BigInt类型值。
@@ -31,7 +31,7 @@ JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开�
 
 获取给定JavaScript BigInt对象的底层数据，即BigInt数据的字词表示。
 
-cpp部分代码
+cpp部分代码：
 
 ```cpp
 // hello.cpp
@@ -82,7 +82,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char* srcCallNative = R"JS(getValueBigintWords(BigInt(5555555555555555)))JS";
 ```
-<!-- @[oh_jsvm_get_value_bigint_words](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutBigint/getvaluebigintwords/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_get_value_bigint_words](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutBigint/getvaluebigintwords/src/main/cpp/hello.cpp) -->
 
 预期的输出结果
 ```ts
@@ -94,7 +94,7 @@ OH_JSVM_GetValueBigintWords signBit: 0.
 
 根据给定的Uint64_t数组创建一个JavaScript BigInt对象。
 
-cpp部分代码
+cpp部分代码：
 
 ```cpp
 // hello.cpp
@@ -130,7 +130,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char* srcCallNative = R"JS(createBigintWords())JS";
 ```
-<!-- @[oh_jsvm_create_bigint_words](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutBigint/createbigintwords/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_create_bigint_words](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutBigint/createbigintwords/src/main/cpp/hello.cpp) -->
 
 预期的输出结果
 ```ts
@@ -139,9 +139,9 @@ JSVM OH_JSVM_CreateBigintWords success
 
 ### OH_JSVM_CreateBigintUint64
 
-根据Uint64类型对象创建 JavaScript Bigint对象。
+根据给定的Uint64类型对象创建JavaScript Bigint对象。
 
-cpp部分代码
+cpp部分代码：
 
 ```cpp
 // hello.cpp
@@ -175,7 +175,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char* srcCallNative = R"JS(createBigintUint64())JS";
 ```
-<!-- @[oh_jsvm_create_bigint_uint64](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutBigint/createbigintuint64/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_create_bigint_uint64](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutBigint/createbigintuint64/src/main/cpp/hello.cpp) -->
 
 预期的输出结果
 ```ts
@@ -187,7 +187,7 @@ JSVM OH_JSVM_CreateBigintUint64 success
 
 获取给定JavaScript BigInt的Uint64_t基础类型值。
 
-cpp部分代码
+cpp部分代码：
 
 ```cpp
 // hello.cpp
@@ -227,7 +227,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char* srcCallNative = R"JS(getValueBigintUint64(BigInt(5555555555555555)))JS";
 ```
-<!-- @[oh_jsvm_get_value_bigint_uint64](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutBigint/getvaluebigintuint64/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_get_value_bigint_uint64](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutBigint/getvaluebigintuint64/src/main/cpp/hello.cpp) -->
 
 预期的输出结果
 ```ts
@@ -236,9 +236,9 @@ JSVM GetValueBigintUint64 success:1
 
 ### OH_JSVM_CreateBigintInt64
 
-根据Uint64类型对象创建JavaScript Bigint对象。
+根据给定的Uint64类型对象创建JavaScript Bigint对象。
 
-cpp部分代码
+cpp部分代码：
 
 ```cpp
 // hello.cpp
@@ -271,7 +271,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char* srcCallNative = R"JS(createBigintInt64())JS";
 ```
-<!-- @[oh_jsvm_create_bigint_int64](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutBigint/createbigintint64/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_create_bigint_int64](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutBigint/createbigintint64/src/main/cpp/hello.cpp) -->
 
 预期的输出结果
 ```ts
@@ -282,7 +282,7 @@ JSVM OH_JSVM_CreateBigintInt64 success
 
 用于从传入的参数中提取64位整数的BigInt数据，以供后续处理。
 
-cpp部分代码
+cpp部分代码：
 
 ```cpp
 // hello.cpp
@@ -322,7 +322,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char* srcCallNative = R"JS(getBigintInt64(BigInt(-5555555555555555)))JS";
 ```
-<!-- @[oh_jsvm_get_value_bigint_int64](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutBigint/getvaluebigintint64/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_get_value_bigint_int64](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutBigint/getvaluebigintint64/src/main/cpp/hello.cpp) -->
 
 预期的输出结果
 ```ts

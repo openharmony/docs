@@ -20,9 +20,9 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [OH_Filter_ColorMatrix](capi-oh-filter-colormatrix.md) | - | 定义一个用来创建滤镜效果的矩阵。 |
-| [OH_Filter](capi-oh-filter.md) | OH_Filter | 滤镜结构体，用来生成滤镜位图。 |
-| [OH_PixelmapNative](capi-oh-pixelmapnative.md) | OH_PixelmapNative | 定义一个位图。 |
+| [OH_Filter_ColorMatrix](capi-effectkit-oh-filter-colormatrix.md) | - | 定义一个用来创建滤镜效果的矩阵。 |
+| [OH_Filter](capi-effectkit-oh-filter.md) | OH_Filter | 滤镜结构体，用来生成滤镜位图。 |
+| [OH_PixelmapNative](capi-drawing-oh-pixelmapnative.md) | OH_PixelmapNative | 定义一个位图。 |
 
 ### 枚举
 

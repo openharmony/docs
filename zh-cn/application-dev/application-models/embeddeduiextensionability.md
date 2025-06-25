@@ -6,6 +6,17 @@
 
 EmbeddedUIExtensionAbility需要和[EmbeddedComponent](../reference/apis-arkui/arkui-ts/ts-container-embedded-component.md)一起配合使用，开发者可以在[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)的页面中通过EmbeddedComponent嵌入本应用的EmbeddedUIExtensionAbility提供的UI。EmbeddedUIExtensionAbility会在独立于UIAbility的进程中运行，完成其页面的布局和渲染。通常用于有进程隔离诉求的模块化开发场景。
 
+## 生命周期
+
+[EmbeddedUIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md)提供了onCreate、onSessionCreate、onSessionDestroy、onForeground、onBackground和onDestroy生命周期回调，根据需要重写对应的回调方法。以下生命周期回调均继承自[UIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md)。
+
+- **onCreate**：当EmbeddedUIExtensionAbility创建时回调，执行初始化业务逻辑操作。
+- **onSessionCreate**：当EmbeddedUIExtensionAbility界面内容对象创建后调用。
+- **onSessionDestroy**：当EmbeddedUIExtensionAbility界面内容对象销毁后调用。
+- **onForeground**：当EmbeddedUIExtensionAbility从后台转到前台时触发。
+- **onBackground**：当EmbeddedUIExtensionAbility从前台转到后台时触发。
+- **onDestroy**：当EmbeddedUIExtensionAbility销毁时回调，可以执行资源清理等操作。
+
 > **说明：**
 >
 > 1. 当前EmbeddedUIExtensionAbility和EmbeddedComponent仅支持在拥有多进程配置的设备上使用。
@@ -16,26 +27,13 @@ EmbeddedUIExtensionAbility通过[UIExtensionContext](../reference/apis-ability-k
 
 ## 开发EmbeddedUIExtensionAbility提供方
 
-### 生命周期
-
-[EmbeddedUIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md)提供了[onCreate](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md#embeddeduiextensionabilityoncreate)、[onSessionCreate](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md#embeddeduiextensionabilityonsessioncreate)、[onSessionDestroy](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md#embeddeduiextensionabilityonsessiondestroy)、[onForeground](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md#embeddeduiextensionabilityonforeground)、[onBackground](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md#embeddeduiextensionabilityonbackground)和[onDestroy](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md#embeddeduiextensionabilityondestroy)生命周期回调，根据需要重写对应的回调方法。
-
-- **onCreate**：当EmbeddedUIExtensionAbility创建时回调，执行初始化业务逻辑操作。
-- **onSessionCreate**：当EmbeddedUIExtensionAbility界面内容对象创建后调用。
-- **onSessionDestroy**：当EmbeddedUIExtensionAbility界面内容对象销毁后调用。
-- **onForeground**：当EmbeddedUIExtensionAbility从后台转到前台时触发。
-- **onBackground**：当EmbeddedUIExtensionAbility从前台转到后台时触发。
-- **onDestroy**：当EmbeddedUIExtensionAbility销毁时回调，可以执行资源清理等操作。
-
-### 开发步骤
-
 开发者在实现一个[EmbeddedUIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md)提供方时，需要在DevEco Studio工程中手动新建一个EmbeddedUIExtensionAbility，具体步骤如下。
 
 1. 在工程Module对应的ets目录下，右键选择“New &gt; Directory”，新建一个目录并命名为EmbeddedUIExtAbility。
 
 2. 在EmbeddedUIExtAbility目录，右键选择“New &gt; File”，新建一个.ets文件并命名为EmbeddedUIExtAbility.ets。
 
-3. 打开EmbeddedUIExtAbility.ets文件，导入EmbeddedUIExtensionAbility的依赖包，自定义类继承EmbeddedUIExtensionAbility并实现[onCreate](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md#embeddeduiextensionabilityoncreate)、[onSessionCreate](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md#embeddeduiextensionabilityonsessioncreate)、[onSessionDestroy](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md#embeddeduiextensionabilityonsessiondestroy)、[onForeground](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md#embeddeduiextensionabilityonforeground)、[onBackground](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md#embeddeduiextensionabilityonbackground)和[onDestroy](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md#embeddeduiextensionabilityondestroy)生命周期回调。
+3. 打开EmbeddedUIExtAbility.ets文件，导入EmbeddedUIExtensionAbility的依赖包，自定义类继承EmbeddedUIExtensionAbility并实现onCreate、onSessionCreate、onSessionDestroy、onForeground、onBackground和onDestroy生命周期回调。
 
     ```ts
     import { EmbeddedUIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
@@ -74,7 +72,7 @@ EmbeddedUIExtensionAbility通过[UIExtensionContext](../reference/apis-ability-k
     }
     ```
 
-4. EmbeddedUIExtensionAbility的[onSessionCreate](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md#embeddeduiextensionabilityonsessioncreate)中加载了入口页面文件pages/extension.ets内容如下：
+4. EmbeddedUIExtensionAbility的onSessionCreate中加载了入口页面文件pages/extension.ets内容如下：
 
     ```ts
     import { UIExtensionContentSession } from '@kit.AbilityKit';

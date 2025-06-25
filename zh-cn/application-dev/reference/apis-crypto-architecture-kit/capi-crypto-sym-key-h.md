@@ -20,8 +20,8 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [OH_CryptoSymKey](capi-oh-cryptosymkey.md) | OH_CryptoSymKey | 定义对称密钥生成器结构体。 |
-| [OH_CryptoSymKeyGenerator](capi-oh-cryptosymkeygenerator.md) | OH_CryptoSymKeyGenerator | 定义对称密钥结构体。 |
+| [OH_CryptoSymKey](capi-cryptoasymkeyapi-oh-cryptosymkey.md) | OH_CryptoSymKey | 定义对称密钥生成器结构体。 |
+| [OH_CryptoSymKeyGenerator](capi-cryptoasymkeyapi-oh-cryptosymkeygenerator.md) | OH_CryptoSymKeyGenerator | 定义对称密钥结构体。 |
 
 ### 函数
 
@@ -56,7 +56,7 @@ OH_Crypto_ErrCode OH_CryptoSymKeyGenerator_Create(const char *algoName, OH_Crypt
 | 参数项 | 描述 |
 | -- | -- |
 | const char *algoName | algoName 用于生成生成器的算法名称。<br>例如"AES256"、"AES128"、"SM4"等。 |
-| [OH_CryptoSymKeyGenerator](capi-oh-cryptosymkeygenerator.md) **ctx | 指向对称密钥生成器实例的指针。 |
+| [OH_CryptoSymKeyGenerator](capi-cryptoasymkeyapi-oh-cryptosymkeygenerator.md) **ctx | 指向对称密钥生成器实例的指针。 |
 
 **返回：**
 
@@ -81,8 +81,8 @@ OH_Crypto_ErrCode OH_CryptoSymKeyGenerator_Generate(OH_CryptoSymKeyGenerator *ct
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoSymKeyGenerator](capi-oh-cryptosymkeygenerator.md) *ctx | 指向对称密钥生成器实例。 |
-| [OH_CryptoSymKey](capi-oh-cryptosymkey.md) **keyCtx | 指向对称密钥的指针。 |
+| [OH_CryptoSymKeyGenerator](capi-cryptoasymkeyapi-oh-cryptosymkeygenerator.md) *ctx | 指向对称密钥生成器实例。 |
+| [OH_CryptoSymKey](capi-cryptoasymkeyapi-oh-cryptosymkey.md) **keyCtx | 指向对称密钥的指针。 |
 
 **返回：**
 
@@ -107,9 +107,9 @@ OH_Crypto_ErrCode OH_CryptoSymKeyGenerator_Convert(OH_CryptoSymKeyGenerator *ctx
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoSymKeyGenerator](capi-oh-cryptosymkeygenerator.md) *ctx | 指向对称密钥生成器实例。 |
-| const [Crypto_DataBlob](capi-crypto-datablob.md) *keyData | 指向生成对称密钥的数据。 |
-| [OH_CryptoSymKey](capi-oh-cryptosymkey.md) **keyCtx | 指向对称密钥实例的指针。 |
+| [OH_CryptoSymKeyGenerator](capi-cryptoasymkeyapi-oh-cryptosymkeygenerator.md) *ctx | 指向对称密钥生成器实例。 |
+| const [Crypto_DataBlob](capi-cryptocommonapi-crypto-datablob.md) *keyData | 指向生成对称密钥的数据。 |
+| [OH_CryptoSymKey](capi-cryptoasymkeyapi-oh-cryptosymkey.md) **keyCtx | 指向对称密钥实例的指针。 |
 
 **返回：**
 
@@ -134,7 +134,7 @@ const char *OH_CryptoSymKeyGenerator_GetAlgoName(OH_CryptoSymKeyGenerator *ctx)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoSymKeyGenerator](capi-oh-cryptosymkeygenerator.md) *ctx | 指向对称密钥生成器实例的指针。 |
+| [OH_CryptoSymKeyGenerator](capi-cryptoasymkeyapi-oh-cryptosymkeygenerator.md) *ctx | 指向对称密钥生成器实例的指针。 |
 
 **返回：**
 
@@ -159,7 +159,7 @@ void OH_CryptoSymKeyGenerator_Destroy(OH_CryptoSymKeyGenerator *ctx)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoSymKeyGenerator](capi-oh-cryptosymkeygenerator.md) *ctx | 指向对称密钥生成器实例的指针。 |
+| [OH_CryptoSymKeyGenerator](capi-cryptoasymkeyapi-oh-cryptosymkeygenerator.md) *ctx | 指向对称密钥生成器实例的指针。 |
 
 ### OH_CryptoSymKey_GetAlgoName()
 
@@ -178,7 +178,7 @@ const char *OH_CryptoSymKey_GetAlgoName(OH_CryptoSymKey *keyCtx)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoSymKey](capi-oh-cryptosymkey.md) *keyCtx | 指向对称密钥实例。 |
+| [OH_CryptoSymKey](capi-cryptoasymkeyapi-oh-cryptosymkey.md) *keyCtx | 指向对称密钥实例。 |
 
 **返回：**
 
@@ -203,8 +203,8 @@ OH_Crypto_ErrCode OH_CryptoSymKey_GetKeyData(OH_CryptoSymKey *keyCtx, Crypto_Dat
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoSymKey](capi-oh-cryptosymkey.md) *keyCtx | 指向对称密钥实例。 |
-| [Crypto_DataBlob](capi-crypto-datablob.md) *out | 获取到的结果。 |
+| [OH_CryptoSymKey](capi-cryptoasymkeyapi-oh-cryptosymkey.md) *keyCtx | 指向对称密钥实例。 |
+| [Crypto_DataBlob](capi-cryptocommonapi-crypto-datablob.md) *out | 获取到的结果。 |
 
 **返回：**
 
@@ -229,6 +229,6 @@ void OH_CryptoSymKey_Destroy(OH_CryptoSymKey *keyCtx)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoSymKey](capi-oh-cryptosymkey.md) *keyCtx | 指向对称密钥实例。 |
+| [OH_CryptoSymKey](capi-cryptoasymkeyapi-oh-cryptosymkey.md) *keyCtx | 指向对称密钥实例。 |
 
 

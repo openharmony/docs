@@ -1073,24 +1073,24 @@ zh-cn/application-dev/reference/apis-input-kit/ @Brilliantry_Rui @mayunteng @ust
 zh-cn/application-dev/reference/apis-ipc-kit/js-apis-rpc.md @xdx1921 @zhang_yixin13 @zhaopeng_gitee @zhang-yang123321
 
 [API参考-Localization Kit]
-zh-cn/application-dev/reference/apis-Localization-kit  @Brilliantry_Rui  @lpw_work 
-zh-cn/application-dev/reference/apis-Localization-kit/js-apis-i18n.md  @Brilliantry_Rui @yliupy  @sunyaozu @lpw_work 
-zh-cn/application-dev/reference/apis-Localization-kit/js-apis-intl.md  @Brilliantry_Rui @yliupy  @sunyaozu @lpw_work 
-zh-cn/application-dev/reference/apis-Localization-kit/js-apis-i18n-sys.md  @Brilliantry_Rui @yliupy  @sunyaozu @lpw_work 
-zh-cn/application-dev/reference/apis-Localization-kit/errorcode-i18n.md  @Brilliantry_Rui @yliupy @sunyaozu @lpw_work 
+zh-cn/application-dev/reference/apis-localization-kit  @Brilliantry_Rui  @lpw_work 
+zh-cn/application-dev/reference/apis-localization-kit/js-apis-i18n.md  @Brilliantry_Rui @yliupy  @sunyaozu @lpw_work 
+zh-cn/application-dev/reference/apis-localization-kit/js-apis-intl.md  @Brilliantry_Rui @yliupy  @sunyaozu @lpw_work 
+zh-cn/application-dev/reference/apis-localization-kit/js-apis-i18n-sys.md  @Brilliantry_Rui @yliupy  @sunyaozu @lpw_work 
+zh-cn/application-dev/reference/apis-localization-kit/errorcode-i18n.md  @Brilliantry_Rui @yliupy @sunyaozu @lpw_work 
 
-zh-cn/application-dev/reference/apis-Localization-kit/js-apis-resource-manager.md   @Brilliantry_Rui @budda-wang @lpw_work 
-zh-cn/application-dev/reference/apis-Localization-kit/js-apis-sendable-resource-manager.md  @Brilliantry_Rui @budda-wang @lpw_work 
-zh-cn/application-dev/reference/apis-Localization-kit/rawfile.md   @Brilliantry_Rui @budda-wang @lpw_work 
-zh-cn/application-dev/reference/apis-Localization-kit/resourcemanager.md   @Brilliantry_Rui @budda-wang @lpw_work 
-zh-cn/application-dev/reference/apis-Localization-kit/raw__dir_8h.md   @Brilliantry_Rui @budda-wang @lpw_work 
-zh-cn/application-dev/reference/apis-Localization-kit/raw__file__manager_8h.md  @Brilliantry_Rui @budda-wang @lpw_work 
-zh-cn/application-dev/reference/apis-Localization-kit/raw__file_8h.md   @Brilliantry_Rui @budda-wang @lpw_work 
-zh-cn/application-dev/reference/apis-Localization-kit/ohresmgr_8h.md  @Brilliantry_Rui @budda-wang @lpw_work 
-zh-cn/application-dev/reference/apis-Localization-kit/resmgr__common_8h.md  @Brilliantry_Rui @budda-wang @lpw_work 
-zh-cn/application-dev/reference/apis-Localization-kit/_raw_file_descriptor.md   @Brilliantry_Rui @budda-wang @lpw_work 
-zh-cn/application-dev/reference/apis-Localization-kit/_raw_file_descriptor64.md   @Brilliantry_Rui @budda-wang @lpw_work 
-zh-cn/application-dev/reference/apis-Localization-kit/errorcode-resource-manager.md   @Brilliantry_Rui @budda-wang @lpw_work 
+zh-cn/application-dev/reference/apis-localization-kit/js-apis-resource-manager.md   @Brilliantry_Rui @budda-wang @lpw_work 
+zh-cn/application-dev/reference/apis-localization-kit/js-apis-sendable-resource-manager.md  @Brilliantry_Rui @budda-wang @lpw_work 
+zh-cn/application-dev/reference/apis-localization-kit/rawfile.md   @Brilliantry_Rui @budda-wang @lpw_work 
+zh-cn/application-dev/reference/apis-localization-kit/resourcemanager.md   @Brilliantry_Rui @budda-wang @lpw_work 
+zh-cn/application-dev/reference/apis-localization-kit/raw__dir_8h.md   @Brilliantry_Rui @budda-wang @lpw_work 
+zh-cn/application-dev/reference/apis-localization-kit/raw__file__manager_8h.md  @Brilliantry_Rui @budda-wang @lpw_work 
+zh-cn/application-dev/reference/apis-localization-kit/raw__file_8h.md   @Brilliantry_Rui @budda-wang @lpw_work 
+zh-cn/application-dev/reference/apis-localization-kit/ohresmgr_8h.md  @Brilliantry_Rui @budda-wang @lpw_work 
+zh-cn/application-dev/reference/apis-localization-kit/resmgr__common_8h.md  @Brilliantry_Rui @budda-wang @lpw_work 
+zh-cn/application-dev/reference/apis-localization-kit/_raw_file_descriptor.md   @Brilliantry_Rui @budda-wang @lpw_work 
+zh-cn/application-dev/reference/apis-localization-kit/_raw_file_descriptor64.md   @Brilliantry_Rui @budda-wang @lpw_work 
+zh-cn/application-dev/reference/apis-localization-kit/errorcode-resource-manager.md   @Brilliantry_Rui @budda-wang @lpw_work 
 
 [API参考-Location Kit]
 zh-cn/application-dev/reference/apis-location-kit/ @cheng_guohong @RayShih @cheng_guohong @xiangkejin123

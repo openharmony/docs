@@ -2,11 +2,11 @@
 
 ## 简介
 
-在虚拟机内部启动任务队列的运行，检查是否有微任务在队列中等待，这个任务队列可以由外部事件循环执行。
+在虚拟机内部启动运行任务队列，检查是否有微任务在队列中等待，这个任务队列可以由外部事件循环执行。
 
 ## 基本概念
 
-- **任务队列**：管理异步任务的调度和执行，确保任务按顺序处理。
+- **任务队列**：用于管理异步任务的调度和执行，确保任务按顺序处理。
 - **微任务**：微任务是一种任务调度机制，主要用于处理那些需要尽快执行的较小任务，它们通常具有较高的优先级。
 
 ## 接口说明
@@ -26,7 +26,7 @@ JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开�
 
 启动任务队列，执行任务。
 
-cpp代码
+cpp部分代码：
 
 ```cpp
 #include <chrono>
@@ -132,8 +132,8 @@ static int32_t TestJSVM() {
 }
 
 ```
-<!-- @[oh_jsvm_pump_message_loop_and_perform_microtask_checkpoint](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/UsageInstructionsOne/pumpmessageloop/src/main/cpp/hello.cpp) -->
-预期输出结果
+<!-- @[oh_jsvm_pump_message_loop_and_perform_microtask_checkpoint](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/UsageInstructionsOne/pumpmessageloop/src/main/cpp/hello.cpp) -->
+预期输出结果：
 ```
 JSVM API TEST: Called with instance [object Object]
 JSVM API TEST: Called Finally
@@ -232,7 +232,7 @@ static int32_t TestJSVM() {
 }
 ```
 
-预期输出结果
+预期输出结果：
 ```
 Policy :JSVM_MICROTASK_AUTO, evaluateMicrotask : 1
 Policy :JSVM_MICROTASK_AUTO, evaluateMicrotask before calling OH_JSVM_PerformMicrotaskCheckpoint: 0

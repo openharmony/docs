@@ -403,6 +403,9 @@ static napi_value TriggerCrash(napi_env env, napi_callback_info info)
 
 ![cppcrash-demo5](figures/cppcrash_image_009.png)
 
+<!--RP1-->
+<!--RP1End-->
+
 ## 附录
 
 ### 哪些信号会生成CppCrash日志
@@ -433,6 +436,7 @@ SIGILL是一个在Unix和类Unix操作系统中的信号，它表示非法指令
 | 6 | ILL_PRVREG | 特权寄存器异常。 | 发生在普通用户尝试访问特权寄存器时。|
 | 7 | ILL_COPROC | 协处理器异常。 | 发生在程序尝试使用未定义的协处理器指令时。|
 | 8 | ILL_BADSTK | 无效的堆栈异常。 | 发生在程序尝试在无效的堆栈地址上执行操作时，或者是在堆栈溢出时。|
+| 0xacac | ILL_ILLPACCFI | 指针校验异常。 | 发生在程序校验指针失败时。|
 
 SIGTRAP信号通常用于调试和跟踪程序的执行。下面是SIGTRAP信号类别的问题场景介绍：
 

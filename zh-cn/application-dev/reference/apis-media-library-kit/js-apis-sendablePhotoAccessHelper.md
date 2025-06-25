@@ -84,7 +84,7 @@ getAssets(options: photoAccessHelper.FetchOptions): Promise&lt;FetchResult&lt;Ph
 
 | 参数名  | 类型                                                      | 必填 | 说明                 |
 | ------- | --------------------------------------------------------- | ---- | -------------------- |
-| options | [photoAccessHelper.FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | 是   | 图片和视频检索选项。 |
+| options | [photoAccessHelper.FetchOptions](arkts-apis-photoAccessHelper-i.md#fetchoptions) | 是   | 图片和视频检索选项。 |
 
 **返回值：**
 
@@ -147,8 +147,8 @@ getBurstAssets(burstKey: string, options: photoAccessHelper.FetchOptions): Promi
 
 | 参数名   | 类型                                                      | 必填 | 说明                                                         |
 | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| burstKey | string                                                    | 是   | 一组连拍照片的唯一标识：uuid(可传入[PhotoKeys](js-apis-photoAccessHelper.md#photokeys)的BURST_KEY)。字符串长度为36。|
-| options  | [photoAccessHelper.FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | 是   | 连拍照片检索选项。                                           |
+| burstKey | string                                                    | 是   | 一组连拍照片的唯一标识：uuid(可传入[PhotoKeys](arkts-apis-photoAccessHelper-e.md#photokeys)的BURST_KEY)。字符串长度为36。|
+| options  | [photoAccessHelper.FetchOptions](arkts-apis-photoAccessHelper-i.md#fetchoptions) | 是   | 连拍照片检索选项。                                           |
 
 **返回值：**
 
@@ -226,7 +226,7 @@ createAsset(photoType: PhotoType, extension: string, options?: photoAccessHelper
 | --------- | ----------------------------------------------------------- | ---- | ------------------------------------ |
 | photoType | [PhotoType](#phototype)                                     | 是   | 创建的文件类型，IMAGE或者VIDEO类型。 |
 | extension | string                                                      | 是   | 文件名后缀参数，例如：'jpg'。字符串长度为1~255。        |
-| options   | [photoAccessHelper.CreateOptions](js-apis-photoAccessHelper.md#createoptions) | 否   | 创建选项，例如{title: 'testPhoto'}。 |
+| options   | [photoAccessHelper.CreateOptions](arkts-apis-photoAccessHelper-i.md#createoptions) | 否   | 创建选项，例如{title: 'testPhoto'}。 |
 
 **返回值：**
 
@@ -287,7 +287,7 @@ getAlbums(type: AlbumType, subtype: AlbumSubtype, options?: photoAccessHelper.Fe
 | ------- | --------------------------------------------------------- | ---- | -------------------------------------- |
 | type    | [AlbumType](#albumtype)                                   | 是   | 相册类型。                             |
 | subtype | [AlbumSubtype](#albumsubtype)                             | 是   | 相册子类型。                           |
-| options | [photoAccessHelper.FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | 否   | 检索选项，不填时默认根据相册类型检索。 |
+| options | [photoAccessHelper.FetchOptions](arkts-apis-photoAccessHelper-i.md#fetchoptions) | 否   | 检索选项，不填时默认根据相册类型检索。 |
 
 **返回值：**
 
@@ -354,7 +354,7 @@ getAlbums(options: photoAccessHelper.FetchOptions): Promise&lt;FetchResult&lt;Al
 
 | 参数名  | 类型                                                      | 必填 | 说明     |
 | ------- | --------------------------------------------------------- | ---- | -------- |
-| options | [photoAccessHelper.FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | 是   | 检索选项。 |
+| options | [photoAccessHelper.FetchOptions](arkts-apis-photoAccessHelper-i.md#fetchoptions) | 是   | 检索选项。 |
 
 **返回值：**
 
@@ -477,7 +477,7 @@ convertToPhotoAsset():  photoAccessHelper.PhotoAsset
 
 | 类型                         | 说明                                                         |
 | ---------------------------- | ------------------------------------------------------------ |
-| photoAccessHelper.PhotoAsset | 返回非Sendable类型的[PhotoAsset](js-apis-photoAccessHelper.md#photoasset)。 |
+| photoAccessHelper.PhotoAsset | 返回非Sendable类型的[PhotoAsset](arkts-apis-photoAccessHelper-PhotoAsset.md)。 |
 
 **错误码：**
 
@@ -527,13 +527,13 @@ get(member: string): photoAccessHelper.MemberType
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| member | string | 是   | 成员参数名称，在get时，除了'uri'、'media_type'、'subtype'和'display_name'四个属性之外，其他的属性都需要在fetchColumns中填入需要get的[PhotoKeys](js-apis-photoAccessHelper.md#photokeys)，例如：get title属性fetchColumns: ['title']。 |
+| member | string | 是   | 成员参数名称，在get时，除了'uri'、'media_type'、'subtype'和'display_name'四个属性之外，其他的属性都需要在fetchColumns中填入需要get的[PhotoKeys](arkts-apis-photoAccessHelper-e.md#photokeys)，例如：get title属性fetchColumns: ['title']。 |
 
 **返回值：**
 
 | 类型                                                  | 说明                         |
 | ----------------------------------------------------- | ---------------------------- |
-| [photoAccessHelper.MemberType](js-apis-photoAccessHelper.md#membertype) | 获取PhotoAsset成员参数的值。 |
+| [photoAccessHelper.MemberType](arkts-apis-photoAccessHelper-t.md#membertype) | 获取PhotoAsset成员参数的值。 |
 
 **错误码：**
 
@@ -583,8 +583,8 @@ set(member: string, value: string): void
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| member | string | 是   | 成员参数名称例如：[PhotoKeys](js-apis-photoAccessHelper.md#photokeys).TITLE。字符串长度为1~255。 |
-| value  | string | 是   | 设置成员参数名称，只能修改[PhotoKeys](js-apis-photoAccessHelper.md#photokeys).TITLE的值。title的参数规格为：<br>- 不应包含扩展名。<br>- 文件名字符串长度为1~255（资产文件名为标题+扩展名）。<br>- 不允许出现非法字符，包括：. \ / : * ? " ' ` < > \| { } [ ]  |
+| member | string | 是   | 成员参数名称例如：[PhotoKeys](arkts-apis-photoAccessHelper-e.md#photokeys).TITLE。字符串长度为1~255。 |
+| value  | string | 是   | 设置成员参数名称，只能修改[PhotoKeys](arkts-apis-photoAccessHelper-e.md#photokeys).TITLE的值。title的参数规格为：<br>- 不应包含扩展名。<br>- 文件名字符串长度为1~255（资产文件名为标题+扩展名）。<br>- 不允许出现非法字符，包括：. \ / : * ? " ' ` < > \| { } [ ]  |
 
 **错误码：**
 
@@ -1140,7 +1140,7 @@ convertToPhotoAlbum(): photoAccessHelper.Album
 
 | 类型                    | 说明                                                      |
 | ----------------------- | --------------------------------------------------------- |
-| [photoAccessHelper.Album](js-apis-photoAccessHelper.md#album) | 非Sendable类型Album。 |
+| [photoAccessHelper.Album](arkts-apis-photoAccessHelper-Album.md) | 非Sendable类型Album。 |
 
 **错误码：**
 
@@ -1197,7 +1197,7 @@ getAssets(options: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;
 
 | 参数名  | 类型                                                      | 必填 | 说明       |
 | ------- | --------------------------------------------------------- | ---- | ---------- |
-| options | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | 是   | 检索选项。 |
+| options | [FetchOptions](arkts-apis-photoAccessHelper-i.md#fetchoptions) | 是   | 检索选项。 |
 
 **返回值：**
 

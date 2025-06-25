@@ -152,7 +152,7 @@ specified多实例功能实现：specified模式则是根据MyAbilityStage中的
 
 #### 自定义分享
 ##### 介绍
-自定义分享主要是发送方将文本，链接，图片三种类型分享给三方应用,同时能够在三方应用中展示。本示例使用[数据请求](reference/apis-network-kit/js-apis-http.md) 实现网络资源的获取，使用[屏幕截屏](reference/apis-arkui/js-apis-screenshot-sys.md) 实现屏幕的截取，使用[文件管理](reference/apis-core-file-kit/js-apis-fileio.md) 实现对文件，文件目录的管理，使用[相册管理](reference/apis-media-library-kit/js-apis-photoAccessHelper.md) 获取截取的图片，使用[弹窗](reference/apis-arkui/js-apis-promptAction.md) 进行信息的提示。
+自定义分享主要是发送方将文本，链接，图片三种类型分享给三方应用,同时能够在三方应用中展示。本示例使用[数据请求](reference/apis-network-kit/js-apis-http.md) 实现网络资源的获取，使用[屏幕截屏](reference/apis-arkui/js-apis-screenshot-sys.md) 实现屏幕的截取，使用[文件管理](reference/apis-core-file-kit/js-apis-fileio.md) 实现对文件，文件目录的管理，使用[相册管理](reference/apis-media-library-kit/arkts-apis-photoAccessHelper.md) 获取截取的图片，使用[弹窗](reference/apis-arkui/js-apis-promptAction.md) 进行信息的提示。
 ##### 使用
 使用说明：
 
@@ -1086,7 +1086,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-本示例主要展示了相册相关的功能，使用[@ohos.file.photoAccessHelper](reference/apis-media-library-kit/js-apis-photoAccessHelper.md) 接口，实现了查看系统相册、创建用户相册、查看相册照片、用户相册文件添加和删除、以及预览图片、最近删除、收藏夹操作等功能。
+本示例主要展示了相册相关的功能，使用[@ohos.file.photoAccessHelper](reference/apis-media-library-kit/arkts-apis-photoAccessHelper.md) 接口，实现了查看系统相册、创建用户相册、查看相册照片、用户相册文件添加和删除、以及预览图片、最近删除、收藏夹操作等功能。
 
 ##### 使用
 
@@ -1214,7 +1214,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-本示例主要展示了媒体会话（媒体控制方）的相关功能，使用[@ohos.multimedia.avsession](reference/apis-avsession-kit/js-apis-avsession.md)等接口实现媒体提供方与媒体控制方自定义信息的交互功能。
+本示例主要展示了媒体会话（媒体控制方）的相关功能，使用[@ohos.multimedia.avsession](reference/apis-avsession-kit/arkts-apis-avsession.md)等接口实现媒体提供方与媒体控制方自定义信息的交互功能。
 
 ##### 使用
 
@@ -1275,7 +1275,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-本示例主要展示了媒体会话（媒体提供方）的相关功能，使用[@ohos.multimedia.avsession](reference/apis-avsession-kit/js-apis-avsession.md)等接口实现媒体提供方与媒体控制方自定义信息的交互功能。
+本示例主要展示了媒体会话（媒体提供方）的相关功能，使用[@ohos.multimedia.avsession](reference/apis-avsession-kit/arkts-apis-avsession.md)等接口实现媒体提供方与媒体控制方自定义信息的交互功能。
 
 ##### 使用
 
@@ -1795,7 +1795,7 @@ Preferences.flush()保存并刷新文件内容。
 
 ##### 介绍
 
-本示例主要展示了网络视频播放的相关功能。使用[@ohos.multimedia.avsession](reference/apis-avsession-kit/js-apis-avsession.md)等接口实现视频播放的功能。
+本示例主要展示了网络视频播放的相关功能。使用[@ohos.multimedia.avsession](reference/apis-avsession-kit/arkts-apis-avsession.md)等接口实现视频播放的功能。
 
 ##### 使用
 
@@ -2700,7 +2700,7 @@ Preferences.flush()保存并刷新文件内容。
 ##### 基本原理
 
 * 该示例使用startBackgroundRunning方法向系统申请长时任务，stopBackgroundRunning方法向系统申请取消长时任务，getWantAgent方法创建一个WantAgent，createAudioPlayer方法创建一个视频播放实例，createAVSession方法创建一个会话对象，fileIo.open方法打开文件等接口实现后台音乐播放。
-* 接口参考：[@ohos.resourceschedule.backgroundTaskManager](reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md)，[@ohos.multimedia.media](reference/apis-media-kit/arkts-apis-media.md)，[@ohos.multimedia.avsession](reference/apis-avsession-kit/js-apis-avsession.md)，[@ohos.fileio](reference/apis-core-file-kit/js-apis-fileio.md)，[@ohos.app.ability.wantAgent](reference/apis-ability-kit/js-apis-app-ability-wantAgent.md)
+* 接口参考：[@ohos.resourceschedule.backgroundTaskManager](reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md)，[@ohos.multimedia.media](reference/apis-media-kit/arkts-apis-media.md)，[@ohos.multimedia.avsession](reference/apis-avsession-kit/arkts-apis-avsession.md)，[@ohos.fileio](reference/apis-core-file-kit/js-apis-fileio.md)，[@ohos.app.ability.wantAgent](reference/apis-ability-kit/js-apis-app-ability-wantAgent.md)
 
 ##### 约束与限制
 
@@ -4479,7 +4479,7 @@ selectDevice()发起远程设备调用，featureAbility.startAbility()方法拉�
 
 * 从图库中选择图片，使用选择器接口[@ohos.file.picker](reference/apis-core-file-kit/js-apis-file-picker.md)的PhotoViewPicker图库选择器对象选择一张图片并通过writeSrcToDistributedFile(this.uris)将选择的图片的uri写入分布式文件路径filePath。接口参考：[@ohos.file.fs](reference/apis-core-file-kit/js-apis-file-fs.md)
 
-* 使用getImage()方法获取从图库中选择的图片资源PixelMap类型，首先使用photoAccessHelper.getPhotoAccessHelper(context)获取相册管理模块的实例，使用phAccessHelper.getAssets()获取图片资源,使用photoAsset.getThumbnail()获取所选的图片的PixelMap类型数据。接口参考：[ohos.file.photoAccessHelper](reference/apis-media-library-kit/js-apis-photoAccessHelper.md) 
+* 使用getImage()方法获取从图库中选择的图片资源PixelMap类型，首先使用photoAccessHelper.getPhotoAccessHelper(context)获取相册管理模块的实例，使用phAccessHelper.getAssets()获取图片资源,使用photoAsset.getThumbnail()获取所选的图片的PixelMap类型数据。接口参考：[ohos.file.photoAccessHelper](reference/apis-media-library-kit/arkts-apis-photoAccessHelper.md) 
 
 * 在对端设备上迁移显示笔记页内容时，在aboutToAppear()钩子中调用readFromDistributedFile()读取分布式路径里存储的图片文件。首先以同步方法fs.accessSync(filePath)检查分布式路径下文件是否存在，通过image.createImageSource(filePath)传入的uri创建ImageSource实例imageSourceApi,通过imageSourceApi.createPixelMap()来创建PixelMap 并负责流转后展示。接口参考：[@ohos.multimedia.image](reference/apis-image-kit/arkts-apis-image.md)
 
@@ -5863,7 +5863,7 @@ return formInfo.FormState.READY }。
   * 媒体库安全控件模块
   
     * 使用SecSaveButton组件开发保存图片到媒体库功能，在其点击回调onclick事件中调用photoAccessHelper.getPhotoAccessHelper()得到媒体库图片管理器helper；helper.createAsset()得到保存到媒体库图片的uri，resourceManager.getMediaContent()得到存放在Resources/base/media文件下的banner.png图片内容；fs.open()和fs.write()将图片内容通过得到的uri写到媒体库中，最后fs.close()关闭文件。
-    * 接口参考：[@ohos.file.photoAccessHelper](reference/apis-media-library-kit/js-apis-photoAccessHelper.md)，[@ohos.file.fs](reference/apis-core-file-kit/js-apis-file-fs.md)
+    * 接口参考：[@ohos.file.photoAccessHelper](reference/apis-media-library-kit/arkts-apis-photoAccessHelper.md)，[@ohos.file.fs](reference/apis-core-file-kit/js-apis-file-fs.md)
 
 ##### 约束与限制
 

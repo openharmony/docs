@@ -301,7 +301,7 @@ void OH_NativeArkWeb_RegisterAsyncThreadJavaScriptProxy(const char* webTag,const
 | 参数项                                                 | 描述 |
 |-----------------------------------------------------| -- |
 | const char* webTag                                  | Web组件名称。 |
-| const [ArkWeb_ProxyObjectWithResult](capi-arkweb-proxyobjectwithresult.md)* proxyObject | 注册的对象。 |
+| const [ArkWeb_ProxyObjectWithResult](capi-web-arkweb-proxyobjectwithresult.md)* proxyObject | 注册的对象。 |
 | const char* permission                              | json格式字符串，默认值为空。该字符串用来配置JSBridge的权限限制，可以配置对象和方法级别。 |
 
 

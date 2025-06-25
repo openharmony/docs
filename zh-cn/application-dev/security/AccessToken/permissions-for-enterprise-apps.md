@@ -404,6 +404,23 @@
 
 **起始版本**：20
 
+## ohos.permission.QUERY_LOCAL_WORKSPACES
+
+允许企业普通应用查询工作空间和不允许删除的空间列表。
+
+获取此权限后，可查询工作空间的基本信息，以及哪些空间已被设置成不可删除。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**支持设备**：PC/2in1
+
+**起始版本**：20
+
 ## ohos.permission.SET_NET_EXT_ATTRIBUTE
 
 允许应用设置网络扩展属性。

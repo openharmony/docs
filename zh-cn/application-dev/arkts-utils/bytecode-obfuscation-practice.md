@@ -1,6 +1,6 @@
-# 不同包类型的源码混淆建议
+# 不同包类型的字节码混淆建议
 
-由于不同包类型的用途及构建流程的差异，开发者对不同包类型使用混淆有不同的注意事项。本文对[HAP](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/hap-package.md)、[HAR](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/har-package.md)和][HSP](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/in-app-hsp.md)三种包类型分别提供建议，帮助开发者高效使用混淆。
+由于不同包类型的用途及构建流程的差异，开发者对不同包类型使用混淆有不同的注意事项。本文对[HAP](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/hap-package.md)、[HAR](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/har-package.md)和[HSP](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/in-app-hsp.md)三种包类型分别提供建议，帮助开发者高效使用混淆。
 为了对混淆在不同包类型下的行为有更清晰的理解，建议开发者在对不同包类型进行配置前，充分了解混淆原理及混淆开启流程，并优先阅读[Stage模型应用程序包结构](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/application-package-structure-stage.md)（了解不同包类型之间的差异点）。
 
 ## 推荐混淆选项
@@ -79,7 +79,7 @@
 
 ### 发布态字节码HAR包
 
-字节码HAR包的混淆适配流程与发布态源码HAR包基本一致。但是由于ArkGuard是源码混淆工具，因此当release编译构建发布一个字节码HAR包时，在构建本模块HAR时会进行一次混淆，当发布后的HAR包被使用方依赖时，如果使用方开启混淆，ArkGuard不会对字节码HAR包进行二次混淆。
+字节码HAR包的混淆适配流程与发布态源码HAR包基本一致。但是由于ArkGuard是字节码混淆工具，因此当release编译构建发布一个字节码HAR包时，在构建本模块HAR时会进行一次混淆，当发布后的HAR包被使用方依赖时，如果使用方开启混淆，ArkGuard不会对字节码HAR包进行二次混淆。
 
 ## HSP包混淆建议
 

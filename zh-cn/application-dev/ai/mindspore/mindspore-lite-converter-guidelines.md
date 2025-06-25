@@ -13,7 +13,7 @@
 ## 场景介绍
 
 MindSpore Lite AI模型部署流程是：
-1. 开发者首先将原始模型（如：ONNX、CAFFE等）用MindSpore Lite模型转换工具，生成后缀为.ms的模型文件；
+1. 开发者首先将原始模型（如：ONNX、CAFFE等）用MindSpore Lite模型转换工具，生成后缀为.ms的模型文件。MindSpore Lite Kit所支持的ONNX算子，可查询[MindSpore Lite Kit算子支持列表](mindspore-lite-supported-operators.md)，以确保模型转换成功。
 2. 然后在代码中调用MindSpore Lite推理引擎接口，执行[模型推理](mindspore-lite-guidelines.md)。
 
 ## 环境准备

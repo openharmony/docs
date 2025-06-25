@@ -82,7 +82,7 @@ import { worker, MessageEvents } from '@kit.ArkTS';
 const workerPort = worker.workerPort;
 
 workerPort.onmessage = (e : MessageEvents) : void => {
-  console.info("worker:: This is worker thread.")
+  console.info("worker:: This is worker thread.");
   // console.info("worker:: worker tid: "+ process.tid) // Run process.tid. The host thread reports the corresponding error.
 }
 ```

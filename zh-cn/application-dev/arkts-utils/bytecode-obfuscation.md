@@ -106,6 +106,7 @@ test(a2);
 |console打印删除|[`-remove-log`](#-remove-log)|
 |名称缓存输出|[`-print-namecache`](#-print-namecache)|
 |名称缓存复用|[`-apply-namecache`](#-apply-namecache)|
+|合并依赖模块选项|[`-enable-lib-obfuscation-options`](#-enable-lib-obfuscation-options)|
 |开启字节码混淆|[`-enable-bytecode-obfuscation`](#-enable-bytecode-obfuscation)|
 |开启字节码混淆调试能力|[`-enable-bytecode-obfuscation-debugging`](#-enable-bytecode-obfuscation-debugging)|
 

@@ -121,7 +121,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StartScreenCapture(struct OH_AVSc
 
 **描述**
 
-开始录屏，采集原始码流。<br> 调用后可以通过回调的监听（[OH_AVScreenCapture_OnBufferAvailable](capi-native-avscreen-capture-base-h.md#oh_avscreencapture_onbufferavailable)）来监听当前是否有码流的产生,通过回调的监听（[OH_AVScreenCapture_OnStateChange](capi-native-avscreen-capture-base-h.md#oh_avscreencapture_onstatechange)）来监听启动状态。<br> 通过调用获取音频buffer（[OH_AVScreenCapture_AcquireAudioBuffer](#oh_avscreencapture_acquireaudiobuffer)）和视频buffer（[OH_AVScreenCapture_ReleaseVideoBuffer](#oh_avscreencapture_releasevideobuffer)）的接口来获取录屏的原始码流。
+开始录屏，采集原始码流。<br> 调用后可以通过回调的监听（[OH_AVScreenCapture_OnBufferAvailable](capi-native-avscreen-capture-base-h.md#oh_avscreencapture_onbufferavailable)）来监听当前是否有码流的产生,通过回调的监听（[OH_AVScreenCapture_OnStateChange](capi-native-avscreen-capture-base-h.md#oh_avscreencapture_onstatechange)）来监听启动状态。<br> 通过调用获取音频buffer（[OH_AVScreenCapture_AcquireAudioBuffer](#oh_avscreencapture_acquireaudiobuffer)）和视频buffer（[OH_AVScreenCapture_AcquireVideoBuffer](#oh_avscreencapture_acquirevideobuffer)）的接口来获取录屏的原始码流。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
@@ -278,7 +278,7 @@ OH_NativeBuffer* OH_AVScreenCapture_AcquireVideoBuffer(struct OH_AVScreenCapture
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_NativeBuffer](capi-oh-nativebuffer.md) | 执行成功返回OH_NativeBuffer对象，通过OH_NativeBuffer对象相关接口可以获取到视频buffer和分辨率等信息参数。 |
+| [OH_NativeBuffer](capi-avscreencapture-oh-nativebuffer.md) | 执行成功返回OH_NativeBuffer对象，通过OH_NativeBuffer对象相关接口可以获取到视频buffer和分辨率等信息参数。 |
 
 ### OH_AVScreenCapture_ReleaseAudioBuffer()
 
@@ -525,7 +525,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StartScreenCaptureWithSurface(str
 | 参数项 | 描述 |
 | -- | -- |
 | struct [OH_AVScreenCapture](capi-oh-avscreencapture.md) *capture | 指向OH_AVScreenCapture实例的指针。 |
-| [OHNativeWindow](../apis-arkgraphics2d/capi-nativewindow.md) *window | 指向OHNativeWindow实例的指针。 |
+| [OHNativeWindow](../apis-arkgraphics2d/capi-nativewindow-nativewindow.md) *window | 指向OHNativeWindow实例的指针。 |
 
 **返回：**
 

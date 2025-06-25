@@ -49,13 +49,13 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| **JSVM_VERSION_EXPERIMENTAL**&nbsp;&nbsp;&nbsp;2147483647 |  | 
-| **JSVM_VERSION**&nbsp;&nbsp;&nbsp;8 |  | 
-| **JSVM_EXTERN**&nbsp;&nbsp;&nbsp;__attribute__((visibility("default"))) |  | 
-| [JSVM_AUTO_LENGTH](#jsvm_auto_length)&nbsp;&nbsp;&nbsp;SIZE_MAX | 自动长度。 | 
-| **EXTERN_C_START** |  | 
-| **EXTERN_C_END** |  | 
-| **JSVM_CDECL** |  | 
+| **JSVM_VERSION_EXPERIMENTAL**&nbsp;&nbsp;&nbsp;2147483647 | JSVM 实验性版本号。 | 
+| **JSVM_VERSION**&nbsp;&nbsp;&nbsp;8 | JSVM 版本号。 | 
+| **JSVM_EXTERN**&nbsp;&nbsp;&nbsp;__attribute__((visibility("default"))) | 指定符号对外部可见。 | 
+| [JSVM_AUTO_LENGTH](_j_s_v_m.md#jsvm_auto_length)&nbsp;&nbsp;&nbsp;SIZE_MAX | 自动长度。  | 
+| **EXTERN_C_START** | 表示接下来的代码使用 C 语言的链接约定。 | 
+| **EXTERN_C_END** | 表示后续的代码使用 C++ 默认的链接约定。 | 
+| **JSVM_CDECL** | 用于指定函数调用约定（calling convention）的宏 | 
 
 
 ### 类型定义

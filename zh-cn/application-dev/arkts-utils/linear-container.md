@@ -39,7 +39,7 @@ ArrayList支持增、删、改、查操作，常用API如下：
 
 ## List
 
-[List](../reference/apis-arkts/js-apis-list.md)可用来构造一个单向链表对象，即只能通过头结点开始访问到尾节点。List依据泛型定义，在内存中的存储位置可以不连续。
+[List](../reference/apis-arkts/js-apis-list.md)可用来构造一个单向链表对象，若需要查找List中某一个元素，只能从头结点开始遍历。List依据泛型定义，存储的元素在内存中的存储位置可以不连续。
 
 List和[LinkedList](../reference/apis-arkts/js-apis-linkedlist.md)相比，LinkedList是双向链表，支持快速在头部和尾部进行增删操作，而List是单向链表，不支持双向操作。
 
@@ -57,7 +57,7 @@ List和[LinkedList](../reference/apis-arkts/js-apis-linkedlist.md)相比，Linke
 | 访问元素 | getLast() | 获取最后一个元素。 |
 | 访问元素 | getIndexOf(element: T) | 获取第一个匹配指定元素的位置。 |
 | 访问元素 | getLastIndexOf(element: T) | 获取最后一个匹配指定元素的位置。 |
-| 访问元素 | forEach(callbackfn: (value:T, index?: number, list?: List&lt;T&gt;)=&gt; void,thisArg?: Object) | 遍历访问整个List容器的元素。 |
+| 访问元素 | forEach(callbackfn: (value:T, index?: number, list?: List&lt;T&gt;)=&gt; void,thisArg?: Object) | 遍历访问整个List容器中的每个元素，并执行指定的回调函数。 |
 | 访问元素 | \[Symbol.iterator]():IterableIterator&lt;T&gt; | 创建迭代器以进行数据访问。 |
 | 修改元素 | set(index:number, element: T) | 修改指定index位置的元素值为element。 |
 | 修改元素 | list[index] = element | 修改指定index位置的元素值为element素时，不会对链表中的实际节点进行任何更改，仅会在对象上添加一个属性，这将导致程序状态与链表实际内容不一致，从而产生未定义行为。 |
@@ -87,7 +87,7 @@ LinkedList和[ArrayList](../reference/apis-arkts/js-apis-arraylist.md)相比，L
 | 访问元素 | getLast() | 获取最后一个元素。 |
 | 访问元素 | getIndexOf(element: T) | 获取第一个匹配指定元素的位置。 |
 | 访问元素 | getLastIndexOf(element: T) | 获取最后一个匹配指定元素的位置。 |
-| 访问元素 | forEach(callbackFn: (value: T, index?: number, list?: LinkedList&lt;T&gt;) =&gt; void, thisArg?: Object) | 遍历访问整个LinkedList容器的元素。 |
+| 访问元素 | forEach(callbackFn: (value: T, index?: number, list?: LinkedList&lt;T&gt;) =&gt; void, thisArg?: Object) | 遍历访问整个LinkedList容器的的每个元素，并执行指定的回调函数。 |
 | 访问元素 | \[Symbol.iterator]():IterableIterator&lt;T&gt; | 创建迭代器以进行数据访问。 |
 | 修改元素 | set(index:number, element: T) | 修改指定index位置的元素值为element。 |
 | 修改元素 | list[index] = element | 修改指定index位置的元素值为element，但会导致未定义结果。 |
@@ -114,9 +114,8 @@ Deque支持增、删、改、查操作，常用API如下：
 | 增加元素 | insertEnd(element: T) | 在尾部增加一个元素。 |
 | 访问元素 | getFirst() | 获取第一个元素，不进行出队操作。 |
 | 访问元素 | getLast() | 获取最后一个元素，不进行出队操作。 |
-| 访问元素 | forEach(callbackFn:(value: T, index?: number, deque?: Deque&lt;T&gt;) =&gt; void, thisArg?: Object) | 遍历访问整个Deque容器的元素。 |
+| 访问元素 | forEach(callbackFn:(value: T, index?: number, deque?: Deque&lt;T&gt;) =&gt; void, thisArg?: Object) | 遍历访问整个Deque容器的的每个元素，并执行指定的回调函数。 |
 | 访问元素 | \[Symbol.iterator]():IterableIterator&lt;T&gt; | 创建迭代器以进行数据访问。 |
-| 修改元素 | forEach(callbackFn:(value: T, index?: number, deque?: Deque&lt;T&gt;)=&gt; void, thisArg?: Object) | 通过遍历修改整个Deque容器的元素。 |
 | 删除元素 | popFirst() | 将队首元素作为返回值进行返回，并将其出队，如果队列为空，则返回undefined。 |
 | 删除元素 | popLast() | 将队尾元素作为返回值进行返回，并将其出队，如果队列为空，则返回undefined。 |
 
@@ -138,9 +137,8 @@ Queue支持增、删、改、查操作，常用API如下：
 | --------- | ------- | ------- |
 | 增加元素 | add(element: T) | 在尾部增加一个元素。 |
 | 访问元素 | getFirst() | 获取队首元素，不进行出队操作。 |
-| 访问元素 | forEach(callbackFn: (value: T, index?: number, queue?: Queue&lt;T&gt;) =&gt; void,thisArg?: Object) | 遍历访问整个Queue容器的元素。 |
+| 访问元素 | forEach(callbackFn: (value: T, index?: number, queue?: Queue&lt;T&gt;) =&gt; void,thisArg?: Object) | 遍历访问整个Queue容器的每个元素，并执行指定的回调函数。 |
 | 访问元素 | \[Symbol.iterator]():IterableIterator&lt;T&gt; | 创建迭代器以进行数据访问。 |
-| 修改元素 | forEach(callbackFn: (value: T, index?: number, queue?: Queue&lt;T&gt;) =&gt; void,thisArg?: Object) | 通过遍历修改整个Queue容器的元素。 |
 | 删除元素 | pop() | 将队首元素作为返回值进行返回，并将其出队。|
 
 ## Stack
@@ -160,9 +158,8 @@ Stack支持增、删、改、查操作，常用API如下：
 | 增加元素 | push(item: T) | 在栈顶增加一个元素。 |
 | 访问元素 | peek() | 获取栈顶元素，不进行出队操作。 |
 | 访问元素 | locate(element: T) | 获取元素对应的位置。 |
-| 访问元素 | forEach(callbackFn: (value: T, index?: number, stack?: Stack&lt;T&gt;) =&gt; void, thisArg?: Object) | 遍历访问整个Stack容器的元素。 |
+| 访问元素 | forEach(callbackFn: (value: T, index?: number, stack?: Stack&lt;T&gt;) =&gt; void, thisArg?: Object) | 遍历访问整个Stack容器的每个元素，并执行指定的回调函数。 |
 | 访问元素 | \[Symbol.iterator]():IterableIterator&lt;T&gt; | 创建迭代器以进行数据访问。 |
-| 修改元素 | forEach(callbackFn: (value: T, index?: number, stack?: Stack&lt;T&gt;) =&gt; void, thisArg?: Object) | 通过遍历修改整个Stack容器的元素。 |
 | 删除元素 | pop() | 将栈顶元素作为返回值进行返回，并将其出队。|
 
 ## Vector
@@ -187,7 +184,7 @@ Vector支持增、删、改、查操作，常用API如下：
 | 访问元素 | getLastElement() | 获取最后一个元素。 |
 | 访问元素 | getIndexOf(element: T) | 获取第一个匹配指定元素的位置。 |
 | 访问元素 | getLastIndexOf(element: T) | 获取最后一个匹配指定元素的位置。 |
-| 访问元素 | forEach(callbackFn: (value: T, index?: number, Vector?: Vector&lt;T&gt;) =&gt; void, thisArg?: Object) | 遍历访问整个Vector容器的元素。 |
+| 访问元素 | forEach(callbackFn: (value: T, index?: number, Vector?: Vector&lt;T&gt;) =&gt; void, thisArg?: Object) | 遍历访问整个Vector容器的每个元素，并执行指定的回调函数。 |
 | 访问元素 | \[Symbol.iterator]():IterableIterator&lt;T&gt; | 创建迭代器以进行数据访问。 |
 | 修改元素 | set(index:number, element: T) | 修改指定index位置的元素值为element。 |
 | 修改元素 | vec[index] = element | 修改指定index位置的元素值为element。 |

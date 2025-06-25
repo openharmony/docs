@@ -628,6 +628,42 @@ data.setPreferredApn(apnId).then((data: boolean) => {
 });
 ```
 
+## data.getActiveApnName<sup>20+</sup>
+
+getActiveApnName(): Promise\<string\>
+
+异步获取默认移动数据SIM卡对应的处于激活状态的数据业务APN（access point name，接入点名称）name信息，若不处于激活状态，返回为空字符串。
+
+**需要权限**：ohos.permission.GET_NETWORK_INFO
+
+**系统能力**：SystemCapability.Telephony.CellularData
+
+**返回值：**
+
+| 类型              | 说明                                         |
+| ------ |--------------------------------------------|
+| Promise\<string\> | Promise对象，返回默认移动数据SIM卡对应的处于激活状态的数据业务APN name信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+
+**示例：**
+
+```ts
+import { data } from '@kit.TelephonyKit';
+
+data.getActiveApnName().then((data: string) => {
+    console.info(`getActiveApnName success, promise: data->${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+    console.error(`getActiveApnName failed, promise: err->${JSON.stringify(err)}`);
+});
+```
+
 ## DataFlowType
 
 描述蜂窝数据流类型。 

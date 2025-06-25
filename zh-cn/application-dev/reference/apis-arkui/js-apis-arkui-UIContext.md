@@ -34,7 +34,6 @@ import { UIContext } from '@kit.ArkUI';
 @Entry
 @Component
 struct Index {
-  @build
   build() {
     Column() {
       Button("Button")
@@ -1381,7 +1380,7 @@ uiContext.getFocusController();
 
 getFilteredInspectorTree(filters?: Array\<string\>): string
 
-获取组件树及组件属性。
+获取组件树及组件属性。此接口耗时较长，仅适用于测试场景。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1481,7 +1480,7 @@ InsTree ----| type: Button, ID: 18
 
 getFilteredInspectorTreeById(id: string, depth: number, filters?: Array\<string\>): string
 
-获取指定的组件及其子组件的属性。
+获取指定的组件及其子组件的属性。此接口耗时较长，推荐仅在测试场景下使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -7385,8 +7384,8 @@ openCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>, options
 ```ts
 import { ComponentContent } from '@kit.ArkUI';
 import { AbilityConstant, Configuration, EnvironmentCallback, ConfigurationConstant } from '@kit.AbilityKit';
-import { BusinessError } from "@kit.BasicServicesKit";
-import { resourceManager } from '@kit.LocalizationKit'
+import { BusinessError } from '@kit.BasicServicesKit';
+import { resourceManager } from '@kit.LocalizationKit';
 
 class Params {
   text: string = "";
@@ -7423,10 +7422,10 @@ struct Index {
         console.log("onConfigurationUpdated " + JSON.stringify(config));
         this.getUIContext().getHostContext()?.getApplicationContext().resourceManager.getConfiguration((err,
           config) => {
-          // 调用ComponentContent的update更新colorMode信息。
+          // 调用ComponentContent的update更新colorMode信息
           this.contentNode?.update(new Params(this.message, config.colorMode))
           setTimeout(() => {
-            // 调用ComponentContent的updateConfiguration，触发节点的全量更新。
+            // 调用ComponentContent的updateConfiguration，触发节点的全量更新
             this.contentNode?.updateConfiguration()
           })
         })
@@ -8479,7 +8478,7 @@ updateMenu\<T extends Object>(content: ComponentContent\<T>, options: MenuOption
 
 > **说明：**
 >
-> 不支持更新showInSubWindow、preview、previewAnimationOptions、transition、onAppear、aboutToAppear、onDisappear、aboutToDisappear。
+> 不支持更新showInSubWindow、preview、previewAnimationOptions、transition、onAppear、aboutToAppear、onDisappear、aboutToDisappear、onWillAppear、onDidAppear、onWillDisappear和onDidDisappear。
 >
 > 支持mask通过设置[MenuMaskType](./arkui-ts/ts-universal-attributes-menu.md#menumasktype20类型说明)实现更新蒙层样式，不支持mask通过设置boolean实现蒙层从无到有或者从有到无的更新。
 >
@@ -8493,7 +8492,7 @@ updateMenu\<T extends Object>(content: ComponentContent\<T>, options: MenuOption
 | 参数名     | 类型                                       | 必填   | 说明      |
 | ------- | ---------------------------------------- | ---- | ------- |
 | content | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | 是 | menu弹窗中显示的组件内容。 |
-| options | [MenuOptions](./arkui-ts/ts-universal-attributes-menu.md#menuoptions10) | 是 | menu弹窗样式。<br/>**说明：** <br/>1. 不支持更新showInSubWindow、preview、previewAnimationOptions、transition、onAppear、aboutToAppear、onDisappear、aboutToDisappear。<br/>2. 支持mask通过设置[MenuMaskType](./arkui-ts/ts-universal-attributes-menu.md#menumasktype20类型说明)实现更新蒙层样式，不支持mask通过设置boolean实现蒙层从无到有或者从有到无的更新。 |
+| options | [MenuOptions](./arkui-ts/ts-universal-attributes-menu.md#menuoptions10) | 是 | menu弹窗样式。<br/>**说明：** <br/>1. 不支持更新showInSubWindow、preview、previewAnimationOptions、transition、onAppear、aboutToAppear、onDisappear、aboutToDisappear、onWillAppear、onDidAppear、onWillDisappear和onDidDisappear。<br/>2. 支持mask通过设置[MenuMaskType](./arkui-ts/ts-universal-attributes-menu.md#menumasktype20类型说明)实现更新蒙层样式，不支持mask通过设置boolean实现蒙层从无到有或者从有到无的更新。 |
 | partialUpdate | boolean | 否 | menu弹窗更新方式，默认值为false。<br/>**说明：** <br/>1. true为增量更新，保留当前值，更新options中的指定属性。 <br/>2. false为全量更新，除options中的指定属性，其他属性恢复默认值。 |
 
 **返回值：**

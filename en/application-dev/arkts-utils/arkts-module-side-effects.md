@@ -94,7 +94,7 @@ data from module
 ```
 **Side effects produced**
 
-Modules directly change the value of the **global variable globalThis.someGlobalVar**, affecting other modules or code that use this variable.
+Modules directly change the value of the **global variable globalThis.someGlobalVar**, affecting other modules or code that depends on this variable.
 
 **Optimized methods**
 
@@ -174,9 +174,9 @@ test200
 ```
 **Side effects produced**
 
-Modules directly change the value of **SomeAppStorageVar** in AppStorage, affecting other modules or code that use this variable.
+Modules directly change the value of **SomeAppStorageVar** in AppStorage, affecting other modules or code that depends on this variable.
 
-For more information on modifying ArkUI component state variables, see [State Management Overview](../quick-start/arkts-state-management-overview.md).
+For more information on modifying ArkUI component state variables, see [State Management Overview](../ui/state-management/arkts-state-management-overview.md).
 
 **Optimized methods**
 
@@ -217,7 +217,7 @@ test100
 ### Modifying Built-in Global Variables or Prototype Chains (Modifying Object Prototypes or Built-in Methods Is Forbidden in ArkTS)
 **Scenario of side effects**
 
-Some third-party libraries or frameworks may modify built-in global objects or prototype chains to support modern JavaScript features in older browsers or runtime environments. This may affect the execution of other code.
+To support modern JavaScript features in old browsers or runtime environments, third-party libraries or frameworks may modify built-in global objects or prototype chains. This can affect the execution of other code.
 ```typescript
 // modifyPrototype.ts
 export let data = "data from modifyPrototype"
@@ -264,11 +264,11 @@ Stacktrace:
 ```
 **Side effects produced**
 
-Due to mutual dependencies between modules, the execution order of modules may result in undefined exports, affecting the logic flow of the code.
+Due to mutual dependencies between modules, the execution order of modules may result in undefined exports, affecting the logic flow of the code. The specific error message is "Variable name is not initialized."
 
 **Optimized methods**
 
-Avoid circular dependencies between modules whenever possible, and ensure that the loading order of modules is clear and controllable to prevent unexpected side effects. You can use [@security/no-cycle](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide_no-cycle-V5) when detecting circular dependencies.
+Avoid circular dependencies between modules whenever possible, and ensure that the loading order of modules is clear and controllable to prevent unexpected side effects. You can use [@security/no-cycle](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide_no-cycle) when detecting circular dependencies.
 ### Lazy Import Changing the Module Execution Sequence and Leading to Undefined Global Variables
 **Scenario of side effects**
 

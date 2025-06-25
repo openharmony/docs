@@ -21,7 +21,7 @@
 
 1. Buffer模式不支持10bit的图像数据。
 2. 由于硬件编码器资源有限，每个编码器在使用完毕后都必须调用OH_VideoEncoder_Destroy接口来销毁实例并释放资源。
-3. Flush，Reset，Stop，Destroy在非回调线程中执行时，会等待所有回调执行完成后，将执行结果返回给用户。
+3. Flush，Reset，Stop，Destroy在非回调线程中执行时，会等待所有回调执行完成后，将执行结果返回给开发者。
 4. 一旦调用Flush，Reset，Stop接口，会触发系统回收OH_AVBuffer，开发者不应对之前回调函数获取到的OH_AVBuffer继续进行操作。
 5. Buffer模式和Surface模式使用方式一致的接口，所以只提供了Surface模式的示例。
 6. 在Buffer模式下，开发者通过输入回调函数OH_AVCodecOnNeedInputBuffer获取到OH_AVBuffer的指针实例后，必须通过调用OH_VideoEncoder_PushInputBuffer接口来通知系统该实例已被使用完毕。这样系统才能够将该实例里面的数据进行编码。如果开发者在调用OH_AVBuffer_GetNativeBuffer接口时获取到OH_NativeBuffer指针实例，并且该实例的生命周期超过了当前的OH_AVBuffer指针实例，那么需要进行一次数据的拷贝操作。在这种情况下，开发者需要自行管理新生成的OH_NativeBuffer实例的生命周期，确保其正确使用和释放。
@@ -297,7 +297,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     ```c++
     // 配置异步回调，调用 OH_VideoEncoder_RegisterCallback()接口。
     OH_AVCodecCallback cb = {&OnError, &OnStreamChanged, &OnNeedInputBuffer, &OnNewOutputBuffer};
-    int32_t ret = OH_VideoEncoder_RegisterCallback(videoEnc, cb, nullptr); // nullptr:用户特定数据userData为空。
+    int32_t ret = OH_VideoEncoder_RegisterCallback(videoEnc, cb, nullptr); // nullptr:开发者执行回调所依赖的数据userData为空。
     if (ret != AV_ERR_OK) {
         // 异常处理。
     }
@@ -322,7 +322,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
     // 4.2 注册随帧参数回调。
     OH_VideoEncoder_OnNeedInputParameter inParaCb = OnNeedInputParameter;
-    OH_VideoEncoder_RegisterParameterCallback(videoEnc, inParaCb, nullptr); // nullptr:用户特定数据userData为空。
+    OH_VideoEncoder_RegisterParameterCallback(videoEnc, inParaCb, nullptr); // nullptr:开发者执行回调所依赖的数据userData为空。
     ```
     <!--RP7End-->
 
@@ -334,11 +334,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
     参数取值范围可以通过能力查询接口获取，具体示例请参考[获取支持的编解码能力文档](obtain-supported-codecs.md)。
 
-    目前支持的所有格式都必须配置以下选项：视频帧宽度、视频帧高度、视频像素格式。示例中的变量如下：
-
-    - DEFAULT_WIDTH：320像素宽度；
-    - DEFAULT_HEIGHT：240像素高度；
-    - DEFAULT_PIXELFORMAT： 像素格式，因为示例使用YUV的文件保存的像素格式是NV12，所以设置为 AV_PIXEL_FORMAT_NV12。
+    目前支持的所有格式都必须配置以下选项：视频帧宽度、视频帧高度、视频像素格式。
 
     ```c++
     // 配置视频帧速率。
@@ -496,10 +492,11 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
 13. 调用OH_VideoEncoder_FreeOutputBuffer()释放编码帧。
 
-    以下示例中：
+    以下示例中，bufferInfo的成员变量：
 
     - index：回调函数OnNewOutputBuffer传入的参数，与buffer唯一对应的标识；
-    - buffer：回调函数OnNewOutputBuffer传入的参数，可以通过[OH_AVBuffer_GetAddr](../../reference/apis-avcodec-kit/_core.md#oh_avbuffer_getaddr)接口得到共享内存地址的指针。
+    - buffer：回调函数OnNewOutputBuffer传入的参数，可以通过[OH_AVBuffer_GetAddr](../../reference/apis-avcodec-kit/_core.md#oh_avbuffer_getaddr)接口得到共享内存地址的指针；
+    - isValid：bufferInfo中存储的buffer实例是否有效。
 
     <!--RP6-->
     ```c++
@@ -804,10 +801,13 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 8. 调用OH_VideoEncoder_PushInputBuffer()写入编码图像。
 
     送入输入队列进行编码，以下示例中：
-
+    - widthStride: 获取到的buffer数据的跨距。
+    
+    bufferInfo的成员变量：
     - buffer：回调函数OnNeedInputBuffer传入的参数，可以通过[OH_AVBuffer_GetAddr](../../reference/apis-avcodec-kit/_core.md#oh_avbuffer_getaddr)接口得到共享内存地址的指针；
     - index：回调函数OnNeedInputBuffer传入的参数，与buffer唯一对应的标识；
-    - widthStride: 获取到的buffer数据的跨距。
+    - isValid：bufferInfo中存储的buffer实例是否有效。
+    
 
     ```c++
     std::shared_ptr<CodecBufferInfo> bufferInfo = inQueue.Dequeue();
@@ -937,9 +937,10 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
 9. 通知编码器结束。
 
-    以下示例中：
+    以下示例中，bufferInfo的成员变量：
     - index：回调函数OnNeedInputBuffer传入的参数，与buffer唯一对应的标识；
-    - buffer：回调函数OnNeedInputBuffer传入的参数，可以通过[OH_AVBuffer_GetAddr](../../reference/apis-avcodec-kit/_core.md#oh_avbuffer_getaddr)接口得到共享内存地址的指针。
+    - buffer：回调函数OnNeedInputBuffer传入的参数，可以通过[OH_AVBuffer_GetAddr](../../reference/apis-avcodec-kit/_core.md#oh_avbuffer_getaddr)接口得到共享内存地址的指针;
+    - isValid：bufferInfo中存储的buffer实例是否有效。
 
     与“步骤-8. 写入编码图像”一样，使用同一个接口OH_VideoEncoder_PushInputBuffer，通知编码器输入结束，需要将flag标识成AVCODEC_BUFFER_FLAGS_EOS。
 
