@@ -740,10 +740,11 @@ commonEvents示例：
 }
 ```
 
-
-definePermission仅支持系统应用配置，三方应用配置不生效。
-
+<!--Del-->
 ## definePermissions对象内部结构
+
+definePermissions仅支持系统应用配置，三方应用配置不生效。
+
 **表29** **definePermissions对象内部结构说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
@@ -755,3 +756,4 @@ definePermission仅支持系统应用配置，三方应用配置不生效。
 | distributedSceneEnabled | 标识权限是否支持分布式场景下使用该权限。<br/>-&nbsp;true：表示开发者可以在分布式场景下使用该权限。<br/>-&nbsp;false：表示开发者不可以在分布式场景下使用该权限。 | 布尔值 | 可缺省，缺省值为false。 |
 | label | 标识权限的简短描述，配置为对描述内容的资源索引。 | 字符串 | 可缺省，缺省值为空。 |
 | description | 标识权限的详细描述，可以是字符串（最大长度为255字节），或者为对描述内容的资源索引。 | 字符串 | 可缺省，缺省值为空。 |
+<!--DelEnd-->
