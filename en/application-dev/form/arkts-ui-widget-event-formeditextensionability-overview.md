@@ -1,6 +1,6 @@
 # Overview of ArkTs Widget Page Editing Interaction
 
-The home screen provides a unified widget editing page. The widget provider uses the [startSecondPage](../reference/apis-form-kit/js-apis-inner-application-formEditExtensionContext.md#startsecondpage) method provided by FormEditExtensionContext of the [FormEditExtensionAbility](../reference/apis-form-kit/js-apis-app-form-formEditExtensionAbility.md) component to transfer the level-2 editing page information to the home screen. After the home screen opens the level-2 editing page, the page content can be edited.
+The home screen provides a unified widget editing page. The widget provider uses the startSecondPage method provided by FormEditExtensionContext of the FormEditExtensionAbility component to transfer the level-2 editing page information to the home screen. After the home screen opens the level-2 editing page, the page content can be edited.
 
 
 The following figure shows the widget editing process.
