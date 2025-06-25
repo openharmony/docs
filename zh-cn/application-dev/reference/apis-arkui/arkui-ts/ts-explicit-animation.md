@@ -12,7 +12,7 @@
 
 animateTo(value: AnimateParam, event: () => void): void
 
-设置组件的显式动画。
+显式动画接口，在需要动画时显式调用该接口以产生动画。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
