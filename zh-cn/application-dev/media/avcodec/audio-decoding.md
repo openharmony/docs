@@ -42,6 +42,9 @@ target_link_libraries(sample PUBLIC libnative_media_codecbase.so)
 target_link_libraries(sample PUBLIC libnative_media_core.so)
 target_link_libraries(sample PUBLIC libnative_media_acodec.so)
 ```
+> **说明：**
+>
+> 上述'sample'字样仅为示例，此处由开发者根据实际工程目录自定义。
 
 ### 开发步骤
 
@@ -58,23 +61,30 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
 
 2. 创建解码器实例对象，OH_AVCodec *为解码器实例指针。
 
-    ```cpp
-    //c++标准库命名空间。
-    using namespace std;
-    // 通过 codec name 创建解码器。
-    OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_AUDIO_MPEG, false);
-    const char *name = OH_AVCapability_GetName(capability);
-    OH_AVCodec *audioDec_ = OH_AudioCodec_CreateByName(name);
-    ```
+   应用可以通过媒体类型或编解码名称创建解码器。
 
+   方法一：通过 Mimetype 创建解码器。
     ```cpp
     // 设置判定是否为编码；设置false表示当前是解码。
     bool isEncoder = false;
     // 通过 Mimetype 创建解码器。
     OH_AVCodec *audioDec_ = OH_AudioCodec_CreateByMime(OH_AVCODEC_MIMETYPE_AUDIO_MPEG, isEncoder);
     ```
-
+   方法二：通过 codec name 创建解码器。
     ```cpp
+    // 通过 codec name 创建解码器。
+    OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_AUDIO_MPEG, false);
+    const char *name = OH_AVCapability_GetName(capability);
+    OH_AVCodec *audioDec_ = OH_AudioCodec_CreateByName(name);
+    ```
+
+   初始化队列：
+    ```cpp
+    #include <mutex>
+    #include <queue>
+    // c++标准库命名空间。
+    using namespace std;
+
     // 初始化队列。
     class ADecBufferSignal {
     public:
@@ -156,10 +166,14 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
         // 将对应输出buffer的 index 送入outQueue_队列。
         // 将对应解码完成的数据data送入outBufferQueue_队列。
     }
+    ```
+    配置回调
+    ```cpp
     signal_ = new ADecBufferSignal();
     OH_AVCodecCallback cb_ = {&OnError, &OnOutputFormatChanged, &OnInputBufferAvailable, &OnOutputBufferAvailable};
+    // 配置异步回调
     int32_t ret = OH_AudioCodec_RegisterCallback(audioDec_, cb_, signal_);
-    if (ret != AVCS_ERR_OK) {
+    if (ret != AV_ERR_OK) {
         // 异常处理。
     }
     ```
@@ -383,9 +397,9 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     // 若是解码音视频资源文件，则需从解封装OH_AVDemuxer_ReadSampleBuffer的buffer中获取。
     // 若是解码数据流，则需要从数据流的提供者获取。
     // 此处为了介绍解码功能以测试文件中保存的size和pts为示例。
-    inputFile_.read(reinterpret_cast<char *>(&size), sizeof(size));
-    inputFile_.read(reinterpret_cast<char *>(&pts), sizeof(pts));
-    inputFile_.read((char *)OH_AVBuffer_GetAddr(buffer), size);
+    inputFile_->read(reinterpret_cast<char *>(&size), sizeof(size));
+    inputFile_->read(reinterpret_cast<char *>(&pts), sizeof(pts));
+    inputFile_->read((char *)OH_AVBuffer_GetAddr(buffer), size);
     OH_AVCodecBufferAttr attr = {0};
     if (inputFile_->eof()) {
         attr.size = 0;
@@ -417,7 +431,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
         // 异常处理。
     }
     // 将解码完成数据data写入到对应输出文件中。
-    pcmOutputFile_.write(reinterpret_cast<char *>(OH_AVBuffer_GetAddr(data)), attr.size);
+    outFile_->write(reinterpret_cast<char *>(OH_AVBuffer_GetAddr(data)), attr.size);
     ret = OH_AudioCodec_FreeOutputBuffer(audioDec_, index);
     if (ret != AV_ERR_OK) {
         // 异常处理。

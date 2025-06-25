@@ -41,6 +41,9 @@ target_link_libraries(sample PUBLIC libnative_media_codecbase.so)
 target_link_libraries(sample PUBLIC libnative_media_core.so)
 target_link_libraries(sample PUBLIC libnative_media_acodec.so)
 ```
+> **说明：**
+>
+> 上述'sample'字样仅为示例，此处由开发者根据实际工程目录自定义。
 
 ### 开发步骤
 
@@ -57,25 +60,30 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
 
 2. 创建编码器实例对象，OH_AVCodec *为编码器实例指针。
 
-   应用可以通过名称或媒体类型创建编码器。
+   应用可以通过媒体类型或编解码名称创建编码器。
 
-    ```cpp
-    // c++标准库命名空间。
-    using namespace std;
-    // 通过 codecname 创建编码器。
-    OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_AUDIO_AAC, true);
-    const char *name = OH_AVCapability_GetName(capability);
-    OH_AVCodec *audioEnc_ = OH_AudioCodec_CreateByName(name);
-    ```
-
+   方法一：通过 Mimetype 创建编码器。
     ```cpp
     // 设置判定是否为编码；设置true表示当前是编码。
     bool isEncoder = true;
     // 通过媒体类型创建编码器。
     OH_AVCodec *audioEnc_ = OH_AudioCodec_CreateByMime(OH_AVCODEC_MIMETYPE_AUDIO_AAC, isEncoder);
     ```
-    
+   方法二：通过 codec name 创建编码器。
     ```cpp
+    // 通过 codecname 创建编码器。
+    OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_AUDIO_AAC, true);
+    const char *name = OH_AVCapability_GetName(capability);
+    OH_AVCodec *audioEnc_ = OH_AudioCodec_CreateByName(name);
+    ```
+
+   初始化队列：
+    ```cpp
+    #include <mutex>
+    #include <queue>
+    // c++标准库命名空间。
+    using namespace std;
+
     // 初始化队列。
     class AEncBufferSignal {
     public:
@@ -144,6 +152,9 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
         signal->outQueue_.push(index);
         signal->outBufferQueue_.push(data);
     }
+    ```
+    配置回调
+    ```cpp
     signal_ = new AEncBufferSignal();
     OH_AVCodecCallback cb_ = {&OnError, &OnOutputFormatChanged, &OnInputBufferAvailable, &OnOutputBufferAvailable};
     // 配置异步回调。
@@ -190,12 +201,12 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     constexpr uint32_t DEFAULT_MAX_INPUT_SIZE = DEFAULT_SAMPLERATE * TIME_PER_FRAME * DEFAULT_CHANNEL_COUNT * sizeof(short); // aac
     OH_AVFormat *format = OH_AVFormat_Create();
     // 写入format。
-    OH_AVFormat_SetIntValue(format,OH_MD_KEY_AUD_CHANNEL_COUNT, DEFAULT_CHANNEL_COUNT);
-    OH_AVFormat_SetIntValue(format,OH_MD_KEY_AUD_SAMPLE_RATE, DEFAULT_SAMPLERATE);
-    OH_AVFormat_SetLongValue(format,OH_MD_KEY_BITRATE, DEFAULT_BITRATE);
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUD_CHANNEL_COUNT, DEFAULT_CHANNEL_COUNT);
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUD_SAMPLE_RATE, DEFAULT_SAMPLERATE);
+    OH_AVFormat_SetLongValue(format, OH_MD_KEY_BITRATE, DEFAULT_BITRATE);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUDIO_SAMPLE_FORMAT, SAMPLE_FORMAT);
-    OH_AVFormat_SetLongValue(format,OH_MD_KEY_CHANNEL_LAYOUT, CHANNEL_LAYOUT);
-    OH_AVFormat_SetIntValue(format,OH_MD_KEY_MAX_INPUT_SIZE, DEFAULT_MAX_INPUT_SIZE);
+    OH_AVFormat_SetLongValue(format, OH_MD_KEY_CHANNEL_LAYOUT, CHANNEL_LAYOUT);
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_MAX_INPUT_SIZE, DEFAULT_MAX_INPUT_SIZE);
     // 配置编码器。
     ret = OH_AudioCodec_Configure(audioEnc_, format);
     if (ret != AV_ERR_OK) {
@@ -337,7 +348,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
         // 异常处理。
     }
     // 将编码完成数据data写入到对应输出文件中。
-    outputFile_->write(reinterpret_cast<char *>(OH_AVBuffer_GetAddr(avBuffer)), attr.size);
+    outFile_->write(reinterpret_cast<char *>(OH_AVBuffer_GetAddr(avBuffer)), attr.size);
     // 释放已完成写入的数据。
     ret = OH_AudioCodec_FreeOutputBuffer(audioEnc_, index);
     if (ret != AV_ERR_OK) {
