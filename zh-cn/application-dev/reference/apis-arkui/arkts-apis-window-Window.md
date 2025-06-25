@@ -7807,7 +7807,7 @@ struct Index {
         Blank('160')
           .color(Color.Red)
           .onTouch((event: TouchEvent) => {
-            if (event.type === TouchType.Down) {
+            if (event.type === TouchType.Move) {
               try {
                 let windowClass: window.Window = window.findWindow("subWindow");
                 windowClass.startMoving().then(() => {
@@ -7901,7 +7901,7 @@ struct Index {
         Blank('160')
           .color(Color.Red)
           .onTouch((event: TouchEvent) => {
-            if (event.type === TouchType.Down) {
+            if (event.type === TouchType.Move) {
               try {
                 let windowClass: window.Window = window.findWindow("subWindow");
                 windowClass.startMoving().then(() => {
