@@ -478,6 +478,22 @@ stackFromEnd(enabled: boolean)
 > - stackFromEnd属性设置为true后，显示区域内有ListItem变高，或有插入ListItem，内容上方的ListItem往上移动。
 > - stackFromEnd属性设置为true后，initialIndex参数默认值为总item个数-1。
 
+### editMode<sup>(deprecated)</sup>
+
+editMode(value: boolean)
+
+设置当前List组件是否处于可编辑模式。可参考[示例3](#示例3设置编辑模式)实现删除选中的list项。
+
+从API version 9开始废弃不再使用，无替代接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                                               |
+| ------ | ------ | ---- | -------------------------------------------------- |
+| value  | boolean | 是   | 当前List组件是否处于可编辑模式。<br/>默认值：false，当前List组件不处于可编辑模式。 |
+
 ## ListItemAlign<sup>9+</sup>枚举说明
 
 设置子组件在List交叉轴方向的对齐方式。
