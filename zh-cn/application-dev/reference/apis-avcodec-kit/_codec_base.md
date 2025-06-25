@@ -666,7 +666,7 @@ typedef struct OH_AVDataSourceExt OH_AVDataSourceExt
 ### OH_AVDataSourceReadAtExt
 
 ```
-typedef int32_t (*OH_AVDataSourceReadAtExt) (OH_AVBuffer *data, int32_t length, int64_t pos, void *userData)
+typedef int32_t (*OH_AVDataSourceReadAtExt)(OH_AVBuffer *data, int32_t length, int64_t pos, void *userData)
 ```
 **描述**
 函数指针定义，用于提供获取用户自定义媒体数据的能力。

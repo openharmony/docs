@@ -92,7 +92,7 @@ OH_AVSource* OH_AVSource_CreateWithDataSource (OH_AVDataSource * dataSource)
 ### OH_AVSource_CreateWithDataSourceExt()
 
 ```
-OH_AVSource *OH_AVSource_CreateWithDataSourceExt (OH_AVDataSourceExt *dataSource, void *userData)
+OH_AVSource *OH_AVSource_CreateWithDataSourceExt(OH_AVDataSourceExt *dataSource, void *userData)
 ```
 **描述**
 为用户自定义数据源的资源对象创建OH_AVSource实例，可以通过调用OH_AVSource_Destroy接口释放实例。回调支持通过userData传递用户自定义数据。
