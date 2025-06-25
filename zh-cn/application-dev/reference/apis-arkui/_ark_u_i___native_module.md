@@ -16371,7 +16371,7 @@ void OH_ArkUI_SwiperDigitIndicator_SetSelectedFontWeight(ArkUI_SwiperDigitIndica
 | 名称 | 描述 | 
 | -------- | -------- |
 | indicator | 数字导航指示器对象指针。  | 
-| fontWeight | 字体粗细样式[ArkUI_FontWeight](#arkui_fontweight)。  | 
+| selectedFontWeight | 字体粗细样式[ArkUI_FontWeight](#arkui_fontweight)。  |
 
 ### OH_ArkUI_SwiperDigitIndicator_GetSelectedFontWeight()
 
