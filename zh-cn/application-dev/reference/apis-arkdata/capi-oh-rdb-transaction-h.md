@@ -34,8 +34,8 @@
 | 名称                                                         | 描述                                             |
 | ------------------------------------------------------------ | ------------------------------------------------ |
 | [OH_RDB_TransOptions *OH_RdbTrans_CreateOptions(void)](#oh_rdbtrans_createoptions) | 创建事务配置对象。                               |
-| [int OH_RdbTrans_DestroyOptions(OH_RDB_TransOptions *opitons)](#oh_rdbtrans_destroyoptions) | 销毁事务配置对象。                               |
-| [int OH_RdbTransOption_SetType(OH_RDB_TransOptions *opitons, OH_RDB_TransType type)](#oh_rdbtransoption_settype) | 设置关系型数据库事务类型。                       |
+| [int OH_RdbTrans_DestroyOptions(OH_RDB_TransOptions *options)](#oh_rdbtrans_destroyoptions) | 销毁事务配置对象。                               |
+| [int OH_RdbTransOption_SetType(OH_RDB_TransOptions *options, OH_RDB_TransType type)](#oh_rdbtransoption_settype) | 设置关系型数据库事务类型。                       |
 | [int OH_RdbTrans_Commit(OH_Rdb_Transaction *trans)](#oh_rdbtrans_commit) | 提交事务。                                       |
 | [int OH_RdbTrans_Rollback(OH_Rdb_Transaction *trans)](#oh_rdbtrans_rollback) | 回滚事务。                                       |
 | [int OH_RdbTrans_Insert(OH_Rdb_Transaction *trans, const char *table, const OH_VBucket *row, int64_t *rowId)](#oh_rdbtrans_insert) | 将一行数据插入到目标表中。                       |
@@ -94,7 +94,7 @@ OH_RDB_TransOptions *OH_RdbTrans_CreateOptions(void)
 ### OH_RdbTrans_DestroyOptions()
 
 ```
-int OH_RdbTrans_DestroyOptions(OH_RDB_TransOptions *opitons)
+int OH_RdbTrans_DestroyOptions(OH_RDB_TransOptions *options)
 ```
 
 **描述**
@@ -108,7 +108,7 @@ int OH_RdbTrans_DestroyOptions(OH_RDB_TransOptions *opitons)
 
 | 参数项                                                      | 描述                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| [OH_RDB_TransOptions](capi-rdb-oh-rdb-transoptions.md) *opitons | 表示指向[OH_RDB_TransOptions](capi-rdb-oh-rdb-transoptions.md)实例的指针。 |
+| [OH_RDB_TransOptions](capi-rdb-oh-rdb-transoptions.md) *options | 表示指向[OH_RDB_TransOptions](capi-rdb-oh-rdb-transoptions.md)实例的指针。 |
 
 **返回：**
 
@@ -119,7 +119,7 @@ int OH_RdbTrans_DestroyOptions(OH_RDB_TransOptions *opitons)
 ### OH_RdbTransOption_SetType()
 
 ```
-int OH_RdbTransOption_SetType(OH_RDB_TransOptions *opitons, OH_RDB_TransType type)
+int OH_RdbTransOption_SetType(OH_RDB_TransOptions *options, OH_RDB_TransType type)
 ```
 
 **描述**
@@ -133,7 +133,7 @@ int OH_RdbTransOption_SetType(OH_RDB_TransOptions *opitons, OH_RDB_TransType typ
 
 | 参数项                                                      | 描述                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| [OH_RDB_TransOptions](capi-rdb-oh-rdb-transoptions.md) *opitons | 表示指向[OH_RDB_TransOptions](capi-rdb-oh-rdb-transoptions.md)实例的指针。 |
+| [OH_RDB_TransOptions](capi-rdb-oh-rdb-transoptions.md) *options | 表示指向[OH_RDB_TransOptions](capi-rdb-oh-rdb-transoptions.md)实例的指针。 |
 | [OH_RDB_TransType](#oh_rdb_transtype) type                  | 表示关系型数据库事务类型。                                   |
 
 **返回：**

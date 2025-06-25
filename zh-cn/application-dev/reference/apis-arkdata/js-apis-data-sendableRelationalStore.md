@@ -484,15 +484,15 @@ struct Index {
           // 调用toSendableValuesBucket转换数据，用于跨线程传递。
           const sendableItem = sendableRelationalStore.toSendableValuesBucket(item);
           const insertRowId = await taskpool.execute(insert, context, sendableItem) as number;
-          console.log(`Insert data success, row id is: ${insertRowId}`);
+          console.info(`Insert data success, row id is: ${insertRowId}`);
 
           const rowData = await taskpool.execute(queryByName, context, "zhangsan");
           if (rowData) {
             const row =
               sendableRelationalStore.fromSendableValuesBucket(rowData as sendableRelationalStore.ValuesBucket);
-            console.log(`Query success, name is ${row['name']}, age is ${row['age']}.`);
+            console.info(`Query success, name is ${row['name']}, age is ${row['age']}.`);
           } else {
-            console.log(`Query failed.`)
+            console.error(`Query failed.`)
           }
         })
     }
