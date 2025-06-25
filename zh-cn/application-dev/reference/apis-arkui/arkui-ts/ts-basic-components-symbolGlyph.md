@@ -212,7 +212,7 @@ shaderStyle(shaders: Array\<ShaderStyle\>)
 
 设置SymbolGlyph组件的渐变色效果。
 
-可以显示为径向渐变[radialGradient](../arkui-ts/ts-universal-attributes-gradient-color.md#radialgradient)或线性渐变[linearGradient](../arkui-ts/ts-universal-attributes-gradient-color.md#lineargradient)的效果，shaderStyle的优先级高于[fontColor](../arkui-ts/ts-basic-components-symbolSpan.md#fontcolor)和AI识别，纯色建议使用[fontColor](../arkui-ts/ts-basic-components-symbolSpan.md#fontcolor)。
+可以显示为径向渐变[RadialGradientStyle](../arkui-ts/ts-text-common.md#radialgradientstyle20)或线性渐变[LinearGradientStyle](../arkui-ts/ts-text-common.md#lineargradientstyle20)或纯色[ColorShaderStyle](../arkui-ts/ts-text-common.md#colorshaderstyle20)的效果，shaderStyle的优先级高于[fontColor](../arkui-ts/ts-basic-components-symbolSpan.md#fontcolor)和AI识别，纯色建议使用[fontColor](../arkui-ts/ts-basic-components-symbolSpan.md#fontcolor)。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -222,7 +222,7 @@ shaderStyle(shaders: Array\<ShaderStyle\>)
 
 | 参数名     | 类型                                         | 必填                             | 说明                               |
 | -------------- | -------------------------------------------- | ----------------------------------- | ----------------------------------- |
-| shaders | Array[\<ShaderStyle\>](../arkui-ts/ts-text-common.md#shaderstyle20) | 是 | 径向或线性渐变。<br/>根据传入的参数区分处理径向渐变[radialGradient](../arkui-ts/ts-universal-attributes-gradient-color.md#radialgradient)或线性渐变[linearGradient](../arkui-ts/ts-universal-attributes-gradient-color.md#lineargradient)，最终设置到SymbolGlyph组件上显示为渐变色效果。 |
+| shaders | Array[\<ShaderStyle\>](../arkui-ts/ts-text-common.md#shaderstyle20) | 是 | 径向渐变或线性渐变或纯色。<br/>根据传入的参数区分处理径向渐变[RadialGradientStyle](../arkui-ts/ts-text-common.md#radialgradientstyle20)或线性渐变[LinearGradientStyle](../arkui-ts/ts-text-common.md#lineargradientstyle20)或纯色[ColorShaderStyle](../arkui-ts/ts-text-common.md#colorshaderstyle20)，最终设置到SymbolGlyph组件上显示为渐变色效果。 |
 
 ### symbolShadow<sup>20+</sup>
 
@@ -529,7 +529,7 @@ DisableSymbolEffect继承自父类[SymbolEffect](#symboleffect12)。
 
 | 名称 | 类型 | 必填 | 说明  |
 | ---- | ---- | ---- | ---- |
-| scope | [EffectScope](#effectscope12枚举说明) | 否   | 动效范围。<br/>默认值：EffectScope.LAYER |
+| scope | [EffectScope](#effectscope12枚举说明) | 否   | 动效范围。<br/>默认值：EffectScope.LAYER<br/>**说明：** <br/>EffectScope.WHOLE模式不生效。 |
 
 ### constructor<sup>20+</sup>
 
@@ -547,7 +547,7 @@ DisableSymbolEffect的构造函数，禁用动效。
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ---- | ---- | ---- | ---- |
-| scope  | [EffectScope](#effectscope12枚举说明) | 否   | 动效范围。<br/>默认值：EffectScope.LAYER |
+| scope  | [EffectScope](#effectscope12枚举说明) | 否   | 动效范围。<br/>默认值：EffectScope.LAYER<br/>**说明：** <br/>EffectScope.WHOLE模式不生效。 |
 
 ## QuickReplaceSymbolEffect<sup>20+</sup>
 
@@ -798,7 +798,7 @@ struct Index {
       }
     }
     .margin({
-      left: 90,
+      left: 60,
       top: 50
     })
   }
