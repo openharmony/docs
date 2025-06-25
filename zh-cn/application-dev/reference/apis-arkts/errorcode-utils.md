@@ -842,4 +842,22 @@ Decimal函数使用错误。
 
 使用[Decimal.set](js-apis-arkts-decimal.md#set)函数来取消加密算法。
 
-如：Decimal.set({ crypto: false}), 取消加密算法。
+如：Decimal.set({ crypto: false})，取消加密算法。
+
+## 10200067 转换错误
+
+**错误信息**
+
+Transfer Error. The input name is not supported!
+
+**错误描述**
+
+不支持该转换方法。
+
+**可能原因**
+
+转换对象的key值填写不正确。
+
+**处理步骤**
+
+参照[key值列表](js-apis-transfer.md#转换对象key值列表)检查传入的key值是否正确。
