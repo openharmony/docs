@@ -486,7 +486,7 @@ try {
 
 setAllowedKioskApps(admin: Want, bundleNames: Array&lt;string&gt;): void
 
-设置允许在Kiosk模式(Kiosk模式：系统层面提供的一种应用运行模式，将设备锁定在单个应用或者一组应用运行，同时对锁屏状态、状态栏、手势操作和关键功能进行控制，防止用户在设备上启动其它应用或执行其它操作)下运行的应用。
+设置允许在Kiosk模式下运行的应用。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_KIOSK
 
@@ -534,7 +534,7 @@ try {
 
 getAllowedKioskApps(admin: Want): Array&lt;string&gt;
 
-获取允许在Kiosk模式(Kiosk模式：系统层面提供的一种应用运行模式，将设备锁定在单个应用或者一组应用运行，同时对锁屏状态、状态栏、手势操作和关键功能进行控制，防止用户在设备上启动其它应用或执行其它操作)下运行的应用。
+获取允许在Kiosk模式下运行的应用。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_KIOSK
 
@@ -552,7 +552,7 @@ getAllowedKioskApps(admin: Want): Array&lt;string&gt;
 
 | 类型                | 说明                             |
 | ------------------- | -------------------------------- |
-| Array&lt;string&gt; | 允许在Kiosk模式下运行的应用清单。 |
+| Array&lt;string&gt; | 允许在Kiosk模式下运行的应用清单，返回应用包名。 |
 
 **错误码**：
 
@@ -588,7 +588,7 @@ try {
 
 isAppKioskAllowed(bundleName: string): boolean
 
-查询某应用是否允许在Kiosk模式(Kiosk模式：系统层面提供的一种应用运行模式，将设备锁定在单个应用或者一组应用运行，同时对锁屏状态、状态栏、手势操作和关键功能进行控制，防止用户在设备上启动其它应用或执行其它操作)下运行。
+查询某应用是否允许在Kiosk模式下运行。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
