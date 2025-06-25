@@ -232,5 +232,5 @@ import { formInfo } from '@kit.FormKit';
 | FORM_CENTER                  | 1    | 表示卡片位于桌面的卡片中心。     |
 | FORM_MANAGER                 | 2    | 表示卡片位于桌面的卡片管理器。   |
 | NEGATIVE_SCREEN              | 3    | 表示卡片位于负一屏。             |
-| SCREEN_LOCK                  | 6    | 表示卡片位于锁屏。               |
+| SCREEN_LOCK                  | 6    | 表示卡片位于锁屏页面。               |
 | AI_SUGGESTION                | 7    | 表示卡片位于小艺建议推荐区。     |
