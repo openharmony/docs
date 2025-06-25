@@ -2254,54 +2254,65 @@ struct TextExample {
 
 ### 示例15（文本颜色按线性或径向渐变）
 
-该示例通过shaderStyle接口实现了对Text控件显示为渐变色的功能。
+该示例通过shaderStyle接口实现了对Text控件显示为渐变色和纯色的功能。
 
 ```ts
 @Entry
 @Component
-struct shaderStyle {
+struct ShaderColorStyle {
   @State message: string = 'Hello World';
   @State linearGradientOptions1: LinearGradientOptions =
-  {
-    angle: 45,
-    colors: [[Color.Red, 0.0], [Color.Blue, 0.3], [Color.Green, 0.5]]
-  };
+    {
+      angle: 45,
+      colors: [[Color.Red, 0.0], [Color.Blue, 0.3], [Color.Green, 0.5]]
+    };
   @State linearGradientOptions2: LinearGradientOptions =
-  {
-    direction: GradientDirection.LeftTop,
-    colors: [[Color.Red, 0.0], [Color.Blue, 0.3], [Color.Green, 0.5]],
-    repeating: true,
-  };
-  @State radialGradientOptions: RadialGradientOptions = 
-  {
-    center: [50, 50],
-    radius: 20,
-    colors: [[Color.Red, 0.0], [Color.Blue, 0.3], [Color.Green, 0.5]],
-    repeating: true,
-  };
+    {
+      direction: GradientDirection.LeftTop,
+      colors: [[Color.Red, 0.0], [Color.Blue, 0.3], [Color.Green, 0.5]],
+      repeating: true,
+    };
+  @State radialGradientOptions: RadialGradientOptions =
+    {
+      center: [50, 50],
+      radius: 20,
+      colors: [[Color.Red, 0.0], [Color.Blue, 0.3], [Color.Green, 0.5]],
+      repeating: true,
+    };
+  @State colorShaderStyle: ColorShaderStyle =
+    {
+      color: Color.Blue
+    };
   build() {
     Column({ space: 5 }) {
       Text('angle为45°的线性渐变').fontSize(18).width('90%').fontColor(0xCCCCCC)
         .margin({ top: 40, left: 40 })
       Text(this.message)
         .fontSize(50)
-        .shaderStyle(this.linearGradientOptions1)
         .width('80%')
         .height(50)
+        .shaderStyle(this.linearGradientOptions1)
       Text('direction为LeftTop的线性渐变').fontSize(18).width('90%').fontColor(0xCCCCCC)
         .margin({ top: 40, left: 40 })
       Text(this.message)
         .fontSize(50)
-        .shaderStyle(this.linearGradientOptions2)
         .width('80%')
         .height(50)
+        .shaderStyle(this.linearGradientOptions2)
       Text('径向渐变').fontSize(18).width('90%').fontColor(0xCCCCCC)
         .margin({ top: 40, left: 40 })
       Text(this.message)
         .fontSize(50)
-        .shaderStyle(this.radialGradientOptions)
         .width('80%')
         .height(50)
+        .shaderStyle(this.radialGradientOptions)
+      Text('纯色').fontSize(18).width('90%').fontColor(0xCCCCCC)
+        .margin({ top: 40, left: 40 })
+      Text(this.message)
+        .fontSize(50)
+        .width('80%')
+        .height(50)
+        .shaderStyle(this.colorShaderStyle)
     }
   }
 }
