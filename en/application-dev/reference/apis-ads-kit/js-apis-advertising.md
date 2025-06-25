@@ -3,6 +3,7 @@
 The advertising module provides APIs for requesting and displaying ads.
 
 > **NOTE**
+>
 > - The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -800,3 +801,5 @@ Defines the requested ad content.
 | Type                                                        | Description                  |
 |--------------------------------------------------------------|----------------------|
 | [_Advertisement](js-apis-inner-advertising-advertisement.md) | Advertisement object.|
+
+ <!--no_check--> 
