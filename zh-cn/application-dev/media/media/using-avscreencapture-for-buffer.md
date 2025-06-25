@@ -236,6 +236,7 @@ config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.s
     // 错误事件发生回调函数OnError()。
     void OnError(OH_AVScreenCapture *capture, int32_t errorCode, void *userData) {
         (void)capture;
+        // 应用根据错误码进行事件处理。
         (void)errorCode;
         (void)userData;
     }
@@ -406,6 +407,7 @@ config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.s
 // 错误事件发生回调函数OnError()。
 void OnError(OH_AVScreenCapture *capture, int32_t errorCode, void *userData) {
     (void)capture;
+    // 应用根据错误码进行事件处理。
     (void)errorCode;
     (void)userData;
 }
