@@ -23,9 +23,9 @@ The following table lists the common APIs for creating a Canvas. For details, se
 
 ## Obtaining the Canvas That Can Be Directly Displayed
 
-Obtains the canvas that can be directly displayed by using the XComponent.
+Obtain the canvas that can be directly displayed by using the XComponent.
 
-1. Obtains the BufferHandle object from the NativeWindow corresponding to the XComponent. For details about APIs related to NativeWindow, see [_native_window](../reference/apis-arkgraphics2d/_native_window.md).
+1. Obtain the BufferHandle object from the NativeWindow corresponding to the XComponent. For details about APIs related to NativeWindow, see [_native_window](../reference/apis-arkgraphics2d/_native_window.md).
 
    ```c++
    uint64_t widht, height;
@@ -46,7 +46,7 @@ Obtains the canvas that can be directly displayed by using the XComponent.
    BufferHandle* bufferHandle = OH_NativeWindow_GetBufferHandleFromNative(buffer);
    ```
 
-2. Obtains the corresponding memory address from BufferHandle.
+2. Obtain the corresponding memory address from BufferHandle.
 
    ```c++
    uint32_t* mappedAddr = static_cast<uint32_t *>(mmap(bufferHandle->virAddr, bufferHandle->size, PROT_READ | PROT_WRITE, MAP_SHARED, bufferHandle->fd, 0));
