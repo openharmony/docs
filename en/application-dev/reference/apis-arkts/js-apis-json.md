@@ -1,6 +1,6 @@
 # @ohos.util.json (JSON Parsing and Generation)
 
-The JSON module provides a series of APIs for converting JSON text into JSON objects or values and converting objects into JSON strings.
+The JSON module provides a series of APIs for converting JSON text into JSON objects or values and converting objects into JSON text.
 
 >**NOTE**
 >
@@ -17,11 +17,9 @@ import { JSON } from '@kit.ArkTS';
 
 type Transformer = (this: Object, key: string, value: Object) => Object | undefined | null
 
-Defines the type of the conversion result function.
-
+Defines the type of the conversion result function.<br>
 When used as a parameter of [JSON.parse](#jsonparse), the function is called by each member of the object, allowing for custom data processing or conversion during parsing.<br>
-
-When used as a parameter of [JSON.stringify](#jsonstringify-1), the function is used to transfer and handle each property of the object being serialized during serialization.
+When used as a parameter of [JSON.stringify](#jsonstringify-1), the function is used to transfer and handle each property during serialization.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -100,7 +98,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
-
+<!--code_no_check-->
 ```ts
 // /entry/src/main/ets/pages/test.ts
 export function reviverFunc(key, value) {
@@ -137,6 +135,45 @@ console.info((numberObj as object)?.["largeNumber"]);
 // Output: 112233445566778899
 ```
 
+```ts
+import { JSON } from '@kit.ArkTS';
+
+/*
+ * Deserialize JSON strings with nested quotation marks.
+ * */
+
+interface Info {
+  name: string;
+  age: number;
+}
+
+interface TestObj {
+  info: Info;
+}
+
+interface TestStr {
+  info: string;
+}
+
+// The JSON string contains nested quotation marks. This breaks the JSON structure, making it impossible to deserialize properly.
+// let jsonStr = `{"info": "{"name": "zhangsan", "age": 18}"}`;
+
+// The following provides two methods to solve this problem:
+// Method 1: Avoid nested operations. Convert "{"name": "zhangsan", "age": 18}" in the original JSON string to {"name": "zhangsan", "age": 18}.
+let jsonStr = `{"info": {"name": "zhangsan", "age": 18}}`;
+let obj1  = JSON.parse(jsonStr) as TestObj;
+console.info(JSON.stringify(obj1)); //{"info":{"name":"zhangsan","age":18}}
+// Obtain the name property in the JSON string.
+console.info(obj1.info.name); // zhangsan
+
+// Method 2: Escape the nested quotation marks in the JSON string to restore the proper JSON structure.
+jsonStr = `{"info": "{\\"name\\": \\"zhangsan\\", \\"age\\": 18}"}`;
+let obj2 = JSON.parse(jsonStr) as TestStr;;
+console.info(JSON.stringify(obj2)); // {"info":"{\"name\": \"zhangsan\", \"age\": 18}"}
+// Obtain the name property in the JSON string.
+let obj3 = JSON.parse(obj2.info) as Info;
+console.info(obj3.name); // zhangsan
+```
 
 ## JSON.stringify
 
@@ -154,7 +191,7 @@ Converts an ArkTS object or array into a JSON string. In the case of a container
 | -------- | -------- | -------- | -------- |
 | value | Object | Yes| ArkTS object or array. In the case of a container, linear containers are supported, but non-linear containers are not.|
 | replacer | number[] \| string[] \| null | No| If an array is passed in, only the keys in the array are serialized to the final JSON string. If null is passed in, all keys of the object are serialized. The default value is undefined.|
-| space | string \| number | No| Indentation, white space, or line break characters inserted into the output JSON string for readability purposes. If a number is passed in, it indicates the number of space characters to be used as indentation. If a string is passed in, the string is inserted before the output JSON string. If null is passed in, no white space is used. The default value is an empty string.|
+| space | string \| number | No| White spaces or strings inserted into the output JSON string for readability purposes. If the parameter is a number, it represents the number of indentation spaces; if it is a string, it represents the indentation characters. If no parameter is provided, there will be no indentation. The default value is an empty string.|
 
 **Returns**
 
@@ -171,6 +208,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
+<!--code_no_check-->
 ```ts
 // /entry/src/main/ets/pages/test.ts
 export let exportObj = {1: "John", 2: 30, 3: "New York"};
@@ -292,6 +330,65 @@ console.info(rstStrSymbol);
 */
 ```
 
+```ts
+import { JSON } from '@kit.ArkTS';
+
+/*
+ * Serialize BigInt objects.
+ * */
+let bigIntObject = BigInt(112233445566778899)
+
+/*
+ * Scenario 1: Serialize a BigInt object without a custom conversion function.
+ * */
+console.info(JSON.stringify(bigIntObject)); // 112233445566778896
+
+/*
+ * Scenario 2: Use a custom conversion function to serialize a BigInt object.
+ * 2.1 Directly returning a BigInt object in the custom function will cause a JSCrash.
+ * 2.2 Use a custom conversion function to preprocess the BigInt object as a string for serialization.
+ * */
+
+// 2.1 Incorrect serialization approach: Directly return a BigInt object in the custom function.
+// JSON.stringify(bigIntObject, (key: string, value: Object): Object =>{ return value; });
+
+// 2.2 Correct serialization approach: Preprocess the BigInt object as a string in the custom function.
+let result: string = JSON.stringify(bigIntObject, (key: string, value: Object): Object => {
+  if (typeof value === 'bigint') {
+    return value.toString();
+  }
+  return value;
+});
+console.info("result:", result); // result: "112233445566778896"
+```
+
+```ts
+import { JSON } from '@kit.ArkTS';
+
+/*
+ * Serialize floating-point numbers.
+ * */
+let floatNumber1 = 10.12345;
+let floatNumber2 = 10.00;
+
+// Serializing a floating-point number with a non-zero fractional part works as expected.
+let result1 = JSON.stringify(floatNumber1);
+console.info(result1); // 10.12345
+
+// Serializing a floating-point number with a zero fractional part results in the loss of fractional precision for a more concise representation.
+let result11 = JSON.stringify(floatNumber2);
+console.info(result11); // 10
+
+// The following is a method to prevent the loss of floating-point precision:
+let result2 = JSON.stringify(floatNumber2, (key: string, value: Object): Object => {
+  if (typeof value === 'number') {
+    // Customize the fixed precision as needed for your specific use case.
+    return value.toFixed(2);
+  }
+  return value;
+});
+console.info(result2); // "10.00"
+```
 
 ## JSON.has
 
@@ -314,7 +411,7 @@ Checks whether an ArkTS object contains a key. This API can be used for related 
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Check result. The value **true** means that the ArkTS object contains the key, and **false** means the opposite.|
+| boolean | Check result. The value **true** is returned if the ArkTS object contains the key; otherwise, **false** is returned.|
 
 **Error codes**
 

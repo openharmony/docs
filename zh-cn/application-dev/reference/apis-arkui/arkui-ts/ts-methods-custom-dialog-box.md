@@ -31,6 +31,8 @@ constructor(value: CustomDialogControllerOptions)
 
 ## CustomDialogControllerOptions对象说明
 
+自定义弹窗的样式。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称                           | 类型                                     | 必填   | 说明                                     |
@@ -101,7 +103,11 @@ Dialog关闭的信息。
 
 ## CustomDialogController
 
+自定义弹窗的控制器。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### 导入对象
 
@@ -218,7 +224,7 @@ struct CustomDialogExample {
     alignment: DialogAlignment.Bottom,
     onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
       console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
-      console.log("dialog onWillDismiss");
+      console.info("dialog onWillDismiss");
       if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
         dismissDialogAction.dismiss();
       }
@@ -287,7 +293,7 @@ struct CustomDialogUser {
     autoCancel: true,
     onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
       console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
-      console.log("dialog onWillDismiss");
+      console.info("dialog onWillDismiss");
       if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
         dismissDialogAction.dismiss();
       }
@@ -373,7 +379,7 @@ struct CustomDialogUser {
     autoCancel: true,
     onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
       console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
-      console.log("dialog onWillDismiss");
+      console.info("dialog onWillDismiss");
       if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
         dismissDialogAction.dismiss();
       }
@@ -460,7 +466,7 @@ struct CustomDialogUser {
     autoCancel: true,
     onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
       console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
-      console.log("dialog onWillDismiss")
+      console.info("dialog onWillDismiss")
       if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
         dismissDialogAction.dismiss();
       }
@@ -568,7 +574,7 @@ struct CustomDialogUser {
     autoCancel: true,
     onWillDismiss: (dismissDialogAction: DismissDialogAction)=> {
       console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
-      console.log("dialog onWillDismiss");
+      console.info("dialog onWillDismiss");
       if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
         dismissDialogAction.dismiss();
       }
@@ -1054,7 +1060,7 @@ struct Example3 {
     alignment: DialogAlignment.Bottom,
     onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
       console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
-      console.log("dialog onWillDismiss");
+      console.info("dialog onWillDismiss");
       if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
         dismissDialogAction.dismiss();
       }

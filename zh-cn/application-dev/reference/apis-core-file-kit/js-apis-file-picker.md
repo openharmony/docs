@@ -866,11 +866,11 @@ async function example18(context: common.UIAbilityContext) { // 需确保 contex
 
 ## PhotoViewPicker<sup>(deprecated)</sup>
 
-图库选择器对象，用来支撑选择图片/视频和保存图片/视频等用户场景。选择文件推荐使用[PhotoAccessHelper的PhotoViewPicker](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoviewpicker)。在使用前，需要先创建PhotoViewPicker实例。
+图库选择器对象，用来支撑选择图片/视频和保存图片/视频等用户场景。选择文件推荐使用[PhotoAccessHelper的PhotoViewPicker](../apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoViewPicker.md)。在使用前，需要先创建PhotoViewPicker实例。
 
 > **说明：**
 >
-> 从API version 9开始支持，从API version 12开始废弃。建议使用[photoAccessHelper.PhotoViewPicker](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoviewpicker)替代。
+> 从API version 9开始支持，从API version 12开始废弃。建议使用[photoAccessHelper.PhotoViewPicker](../apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoViewPicker.md)替代。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -942,9 +942,9 @@ select(option?: PhotoSelectOptions): Promise&lt;PhotoSelectResult&gt;
 
 > **说明：**
 >
-> 从API version 9开始支持，从API version 12开始废弃。建议使用[photoAccessHelper.PhotoViewPicker#select](../apis-media-library-kit/js-apis-photoAccessHelper.md#select)替代。
+> 从API version 9开始支持，从API version 12开始废弃。建议使用[photoAccessHelper.PhotoViewPicker#select](../apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoViewPicker.md#select)替代。
 
-**注意**：此接口返回的PhotoSelectResult对象中的photoUris只能通过临时授权的方式调用[photoAccessHelper.getAssets接口](../apis-media-library-kit/js-apis-photoAccessHelper.md#getassets)去使用，具体使用方式参见用户文件uri介绍中的[媒体文件uri的使用方式](../../file-management/user-file-uri-intro.md#媒体文件uri的使用方式)。
+**注意**：此接口返回的PhotoSelectResult对象中的photoUris只能通过临时授权的方式调用[photoAccessHelper.getAssets接口](../apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#getassets)去使用，具体使用方式参见用户文件uri介绍中的[媒体文件uri的使用方式](../../file-management/user-file-uri-intro.md#媒体文件uri的使用方式)。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -994,9 +994,9 @@ select(option: PhotoSelectOptions, callback: AsyncCallback&lt;PhotoSelectResult&
 
 > **说明：**
 >
-> 从API version 9开始支持，从API version 12开始废弃。建议使用[photoAccessHelper.PhotoViewPicker#select](../apis-media-library-kit/js-apis-photoAccessHelper.md#select-1)替代。
+> 从API version 9开始支持，从API version 12开始废弃。建议使用[photoAccessHelper.PhotoViewPicker#select](../apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoViewPicker.md#select-1)替代。
 
-**注意**：此接口返回的PhotoSelectResult对象中的photoUris只能通过临时授权的方式调用[photoAccessHelper.getAssets接口](../apis-media-library-kit/js-apis-photoAccessHelper.md#getassets)去使用，具体使用方式参见用户文件uri介绍中的[媒体文件uri的使用方式](../../file-management/user-file-uri-intro.md#媒体文件uri的使用方式)。
+**注意**：此接口返回的PhotoSelectResult对象中的photoUris只能通过临时授权的方式调用[photoAccessHelper.getAssets接口](../apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#getassets)去使用，具体使用方式参见用户文件uri介绍中的[媒体文件uri的使用方式](../../file-management/user-file-uri-intro.md#媒体文件uri的使用方式)。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1043,9 +1043,9 @@ select(callback: AsyncCallback&lt;PhotoSelectResult&gt;): void
 
 > **说明：**
 >
-> 从API version 9开始支持，从API version 12开始废弃。建议使用[photoAccessHelper.PhotoViewPicker#select](../apis-media-library-kit/js-apis-photoAccessHelper.md#select-2)替代。
+> 从API version 9开始支持，从API version 12开始废弃。建议使用[photoAccessHelper.PhotoViewPicker#select](../apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoViewPicker.md#select-2)替代。
 
-**注意**：此接口返回的PhotoSelectResult对象中的photoUris只能通过临时授权的方式调用[photoAccessHelper.getAssets接口](../apis-media-library-kit/js-apis-photoAccessHelper.md#getassets)去使用，具体使用方式参见用户文件uri介绍中的[媒体文件uri的使用方式](../../file-management/user-file-uri-intro.md#媒体文件uri的使用方式)。
+**注意**：此接口返回的PhotoSelectResult对象中的photoUris只能通过临时授权的方式调用[photoAccessHelper.getAssets接口](../apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#getassets)去使用，具体使用方式参见用户文件uri介绍中的[媒体文件uri的使用方式](../../file-management/user-file-uri-intro.md#媒体文件uri的使用方式)。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1224,7 +1224,7 @@ async function example06(context: common.UIAbilityContext) { // 需确保 contex
 
 > **说明：**
 >
-> 从API version 9开始支持，从API version 12开始废弃。建议使用[photoAccessHelper.PhotoViewMIMETypes](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoviewmimetypes)替代。
+> 从API version 9开始支持，从API version 12开始废弃。建议使用[photoAccessHelper.PhotoViewMIMETypes](../apis-media-library-kit/arkts-apis-photoAccessHelper-e.md#photoviewmimetypes)替代。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1242,7 +1242,7 @@ async function example06(context: common.UIAbilityContext) { // 需确保 contex
 
 > **说明：**
 >
-> 从API version 9开始支持，从API version 12开始废弃。建议使用[photoAccessHelper.PhotoSelectOptions](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoselectoptions)替代。
+> 从API version 9开始支持，从API version 12开始废弃。建议使用[photoAccessHelper.PhotoSelectOptions](../apis-media-library-kit/arkts-apis-photoAccessHelper-class.md#photoselectoptions)替代。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1259,7 +1259,7 @@ async function example06(context: common.UIAbilityContext) { // 需确保 contex
 
 > **说明：**
 >
-> 从API version 9开始支持，从API version 12开始废弃。建议使用[photoAccessHelper.PhotoSelectResult](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoselectresult)替代。
+> 从API version 9开始支持，从API version 12开始废弃。建议使用[photoAccessHelper.PhotoSelectResult](../apis-media-library-kit/arkts-apis-photoAccessHelper-class.md#photoselectresult)替代。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1267,7 +1267,7 @@ async function example06(context: common.UIAbilityContext) { // 需确保 contex
 
 | 名称                    | 类型                | 必填 | 说明                           |
 | ----------------------- | ------------------- | ----| ------------------------------ |
-| photoUris        | Array&lt;string&gt;    | 是   | 返回图库选择后的媒体文件的uri数组。此uri数组只能通过临时授权的方式调用[photoAccessHelper.getAssets接口](../apis-media-library-kit/js-apis-photoAccessHelper.md#getassets)去使用，具体使用方式参见用户文件uri介绍中的[媒体文件uri的使用方式](../../file-management/user-file-uri-intro.md#媒体文件uri的使用方式)。  |
+| photoUris        | Array&lt;string&gt;    | 是   | 返回图库选择后的媒体文件的uri数组。此uri数组只能通过临时授权的方式调用[photoAccessHelper.getAssets接口](../apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#getassets)去使用，具体使用方式参见用户文件uri介绍中的[媒体文件uri的使用方式](../../file-management/user-file-uri-intro.md#媒体文件uri的使用方式)。  |
 | isOriginalPhoto        | boolean    | 是   | 返回图库选择后的媒体文件是否为原图。true为原图；false不是原图。  |
 
 ## PhotoSaveOptions<sup>(deprecated)</sup>

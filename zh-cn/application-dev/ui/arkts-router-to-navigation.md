@@ -451,7 +451,7 @@ Navigation也提供了共享元素一镜到底的转场能力，需要配合`geo
 
 Router可以通过命名路由的方式实现跨包跳转。
 
-1. 在想要跳转到的共享包[HAR](../quick-start/har-package.md)或者[HSP](../quick-start/in-app-hsp.md)页面里，给@Entry修饰的自定义组件[EntryOptions](../ui/state-management/arkts-create-custom-components.md#entryoptions10)命名。
+1. 在想要跳转到的共享包[HAR](../quick-start/har-package.md)或者[HSP](../quick-start/in-app-hsp.md)页面里，给@Entry修饰的自定义组件[EntryOptions](../ui/state-management/arkts-create-custom-components.md#entry)命名。
 
    ```ts
    // library/src/main/ets/pages/Index.ets

@@ -64,7 +64,6 @@ IsolatedComponent(options: IsolatedOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-
 | 名称               | 类型                                 | 必填 | 说明                                                                                                      |
 | ----                 | ---------------------------------------- | ---- | ---------------                                                                                               |
 | want | [Want](../../apis-ability-kit/js-apis-app-ability-want.md)                                  | 是   | 要加载的Abc信息。 |

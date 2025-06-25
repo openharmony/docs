@@ -8,7 +8,8 @@
         - [XML Generation](xml-generation.md)
         - [XML Parsing](xml-parsing.md)
         - [XML Conversion](xml-conversion.md)
-    - [Buffer](buffer.md)
+    - [Buffer and FastBuffer](buffer.md)
+    - [JSON Extension Library](arkts-json.md)
     - ArkTS Container Library<!--containers-->
         - [Overview of the ArkTS Container Library](container-overview.md)
         - [Linear Containers](linear-container.md)
@@ -24,6 +25,7 @@
     - Inter-Thread Communication<!--interthead-communication-->
         - [Overview of ArkTS Inter-Thread Communication](interthread-communication-overview.md)
         - Inter-Thread Communication Objects<!--interthead-communication-object-->
+            - [Overview of Inter-Thread Communication Objects](serializable-overview.md)
             - [Regular Object](normal-object.md)
             - [ArrayBuffer Object](arraybuffer-object.md)
             - [SharedArrayBuffer Object](shared-arraybuffer-object.md)
@@ -68,6 +70,10 @@
             - [ArkUI Waterfall Rendering](taskpool-waterflow.md)
             - [Obtaining the Recently Accessed List](sendablelrucache-recent-list.md)
             - [Canceling Tasks in Multithreading with TaskPool](multi-thread-cancel-task.md)
+            - [Multithreaded Operations with Custom Native Transferable Objects](napi-coerce-to-native-binding-object.md)
+            - [Multithreaded Operations with Custom Native Sendable Objects](napi-define-sendable-object.md)
+            - [Persistent Worker Threads Handling Concurrent Tasks via TaskPool](worker-and-taskpool.md)
+    - [Common Concurrency Issues](concurrency-faq.md)
 - [ArkTS Cross-Language Interaction](arkts-cross-language-interaction.md)
 - ArkTS Runtime<!--arkts-runtime-->
     - [Overview of ArkTS Runtime](arkts-runtime-overview.md)
@@ -77,7 +83,7 @@
         - [Dynamic Import](arkts-dynamic-import.md)
         - [Lazy Import](arkts-lazy-import.md)
         - [Dynamically Loading Native Modules in Synchronous Mode](js-apis-load-native-module.md)
-        - [Statically Loading Native Modules](arkts-import-native-module.md).
+        - [Statically Loading Native Modules](arkts-import-native-module.md)
         - [Loading Modules Using Node-API](load-module-base-nodeapi.md)
         - [Side Effects and Optimization of Module Loading](arkts-module-side-effects.md)
 - ArkTS Compilation Toolchain<!--arkts-compilation-tool-chain-->
@@ -89,10 +95,16 @@
         - [Naming Conventions for Ark Bytecode Functions](arkts-bytecode-function-name.md)
         - [Customizing Ark Bytecode During Compilation](customize-bytecode-during-compilation.md)
     - [Disassembler](tool-disassembler.md)
-    - ArkGuard for Code Obfuscation<!--arkts-arkguard-->
-        - [Overview of ArkGuard](source-obfuscation-overview.md)
-        - [Obfuscation Principles and Capabilities of ArkGuard](source-obfuscation.md)
-        - [Using ArkGuard for Obfuscation](source-obfuscation-guide.md)
-        - [Package-specific Obfuscation Recommendations](source-obfuscation-practice.md)
-        - [Common Issues with ArkGuard](source-obfuscation-questions.md)
+    - ArkGuard for Source Code Obfuscation<!--arkts-arkguard-->
+        - [Overview of ArkGuard for Source Code Obfuscation](source-obfuscation-overview.md)
+        - [ArkGuard Principles and Capabilities for Source Code Obfuscation](source-obfuscation.md)
+        - [Using ArkGuard for Source Code Obfuscation](source-obfuscation-guide.md)
+        - [Package-specific Source Code Obfuscation Recommendations](source-obfuscation-practice.md)
+        - [Common Issues with ArkGuard in Source Code Obfuscation](source-obfuscation-questions.md)
+    - ArkGuard for Bytecode Obfuscation<!--arkts-arkguard-bytecode-->
+        - [Overview of ArkGuard for Bytecode Obfuscation](bytecode-obfuscation-overview.md)
+        - [ArkGuard Principles and Capabilities for Bytecode Obfuscation](bytecode-obfuscation.md)
+        - [Using ArkGuard for Bytecode Obfuscation](bytecode-obfuscation-guide.md)
+        - [Package-specific Bytecode Obfuscation Recommendations](bytecode-obfuscation-practice.md)
+        - [Common Issues with ArkGuard in Bytecode Obfuscation](bytecode-obfuscation-questions.md)
     - [Configuring arkOptions in build-profile.json5](arkoptions-guide.md)

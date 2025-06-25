@@ -4,6 +4,12 @@
 > 
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
+## 导入模块
+
+```ts
+import { relationalStore } from '@kit.ArkData';
+```
+
 ## RdbPredicates
 
 表示关系型数据库（RDB）的谓词。该类确定RDB中条件表达式的值是true还是false。谓词间支持多语句拼接，拼接时默认使用and()连接。不支持Sendable跨线程传递。

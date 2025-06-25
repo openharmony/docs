@@ -8,7 +8,7 @@
 
 **开发步骤**
 
-调用[phAccessHelper.getSupportedPhotoFormats](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getsupportedphotoformats18)接口获取支持保存的图片类型资源格式。
+调用[phAccessHelper.getSupportedPhotoFormats](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#getsupportedphotoformats18)接口获取支持保存的图片类型资源格式。
 
 ```ts
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
@@ -60,7 +60,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper){
 
 1. 设置安全控件按钮属性。
 2. 创建安全控件按钮。
-3. 调用[MediaAssetChangeRequest.createImageAssetRequest](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#createimageassetrequest11)和[PhotoAccessHelper.applyChanges](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#applychanges11)接口创建图片资源。
+3. 调用[MediaAssetChangeRequest.createImageAssetRequest](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-MediaAssetChangeRequest.md#createimageassetrequest11)和[PhotoAccessHelper.applyChanges](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#applychanges11)接口创建图片资源。
 
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
@@ -104,7 +104,7 @@ struct Index {
 }
 ```
 
-除了上述通过fileUri从应用沙箱指定资源内容的方式，开发者还可以通过ArrayBuffer的方式添加资源内容，详情请参考[addResource](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#addresource11-1)接口。
+除了上述通过fileUri从应用沙箱指定资源内容的方式，开发者还可以通过ArrayBuffer的方式添加资源内容，详情请参考[addResource](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-MediaAssetChangeRequest.md#addresource11-1)接口。
 
 ## 使用弹窗授权保存媒体库资源
 
@@ -114,7 +114,7 @@ struct Index {
 
 1. 指定待保存到媒体库的[应用文件](../../file-management/app-file-access.md)uri（需为应用沙箱路径）。
 2. 指定待保存照片的创建选项，包括文件后缀和照片类型，标题和照片子类型可选。
-3. 调用[showAssetsCreationDialog](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#showassetscreationdialog12)，基于弹窗授权的方式获取的目标[媒体文件](../../file-management/user-file-uri-intro.md#媒体文件uri)uri。
+3. 调用[showAssetsCreationDialog](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#showassetscreationdialog12)，基于弹窗授权的方式获取的目标[媒体文件](../../file-management/user-file-uri-intro.md#媒体文件uri)uri。
 
    弹框需要显示应用名称，无法直接获取应用名称，依赖于配置项的label和icon，因此调用此接口时请确保module.json5文件中的abilities标签中配置了label和icon项。当传入uri为沙箱路径时，可正常保存图片/视频，但无界面预览。
 4. 将应用沙箱的照片内容写入媒体库的目标uri。

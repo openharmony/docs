@@ -212,13 +212,13 @@ getHiddenAlbums(mode: HiddenPhotosDisplayMode, options?: FetchOptions): Promise&
 | 参数名  | 类型                                                         | 必填 | 说明                                           |
 | ------- | ------------------------------------------------------------ | ---- | ---------------------------------------------- |
 | mode    | [HiddenPhotosDisplayMode](js-apis-photoAccessHelper-sys.md#hiddenphotosdisplaymode11) | 是   | 隐藏文件显示模式。                               |
-| options | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions)    | 否   | 检索选项，不填时默认根据隐藏文件显示模式检索。 |
+| options | [FetchOptions](arkts-apis-photoAccessHelper-i.md#fetchoptions)    | 否   | 检索选项，不填时默认根据隐藏文件显示模式检索。 |
 
 **返回值：**
 
 | 类型                                                         | 说明                                |
 | ------------------------------------------------------------ | ----------------------------------- |
-| Promise&lt;[FetchResult](js-apis-photoAccessHelper.md#fetchresult)&lt;[Album](#album)&gt;&gt; | Promise对象，返回获取相册的结果集。 |
+| Promise&lt;[FetchResult](arkts-apis-photoAccessHelper-FetchResult.md)&lt;[Album](#album)&gt;&gt; | Promise对象，返回获取相册的结果集。 |
 
 **错误码：**
 
