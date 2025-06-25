@@ -12,14 +12,6 @@ The bundleManager module provides APIs for obtaining application information, in
 import { bundleManager } from '@kit.AbilityKit';
 ```
 
-## Required Permissions
-
-| Permission                                      | APL    | Description           |
-| ------------------------------------------ | ------------ | ------------------|
-| ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | Permission to obtain basic information and other sensitive information about a bundle.|
-
-For details about the APL, see [Basic Concepts in the Permission Mechanism](../../security/AccessToken/app-permission-mgmt-overview.md#basic-concepts-in-the-permission-mechanism).
-
 ## BundleFlag
 
 Enumerates the bundle flags, which indicate the type of bundle information to obtain.
@@ -1484,7 +1476,7 @@ Defines the metadata of a module.
 
 | Type                                                        | Description          |
 | ------------------------------------------------------------ | -------------- |
-| [_ModuleMetadata](js-apis-bundleManager-applicationInfo.md#ModuleMetadata10) | Metadata of the module.|
+| [_ModuleMetadata](js-apis-bundleManager-applicationInfo.md#modulemetadata10) | Metadata of the module.|
 
 ## Metadata
 

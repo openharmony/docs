@@ -111,7 +111,7 @@ Common methods for setting the audio playback stream type are as follows:
 
 - **[Using AVPlayer for Audio Playback (C/C++)](../media/using-ndk-avplayer-for-playback.md)**
   
-  Pass [OH_AudioStream_Usage](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostream_usage) in [OH_AVPlayer_SetAudioRendererInfo](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_setaudiorendererinfo) to specify the stream type.
+  Pass [OH_AudioStream_Usage](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostream_usage) in [OH_AVPlayer_SetAudioRendererInfo](../../reference/apis-media-kit/capi-avplayer-h.md#oh_avplayer_setaudiorendererinfo) to specify the stream type.
 
 - **[Using SoundPool for Audio Playback](../media/using-soundpool-for-playback.md)**
   

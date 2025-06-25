@@ -56,7 +56,7 @@ OH_Drawing_FontDestroy(font);
 
 ## Text Stroke
 
-You can also use a pen to implement the text stroke effect based on the basic TextBlob drawing. For details about the stroke effect, see [Stroke Effect](basic-drawing-effect-c.md#stroke-effect).
+You can also use a pen to implement the text stroke effect based on the basic TextBlob drawing. For details about the stroke effect, see [Stroke Effect](basic-drawing-effect-c.md#stroke-effects).
 
 The following figure shows a brief example of text strokes.
 

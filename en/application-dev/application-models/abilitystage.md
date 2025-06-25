@@ -3,7 +3,7 @@
 
 ## Overview
 
-[AbilityStage](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md) is a component container at the [module](../quick-start/application-package-overview.md#multi-module design mechanism) level. When the [HAP](../quick-start/hap-package.md) of an application is loaded for the first time, an AbilityStage instance is created. You can perform operations such as initialization on the instance. An AbilityStage instance corresponds to a module.
+[AbilityStage](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md) is a component container at the [module](../quick-start/application-package-overview.md#multi-module-design-mechanism) level. When the [HAP](../quick-start/hap-package.md) of an application is loaded for the first time, an AbilityStage instance is created. You can perform operations such as initialization on the instance. An AbilityStage instance corresponds to a module.
 
 AbilityStage has the lifecycle callbacks [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageoncreate) and [onDestroy()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageondestroy12) and the event callbacks [onAcceptWant()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageonacceptwant), [onConfigurationUpdate()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageonconfigurationupdate), and [onMemoryLevel()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageonmemorylevel).
 

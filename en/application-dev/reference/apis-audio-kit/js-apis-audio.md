@@ -836,7 +836,7 @@ Describes audio capturer configurations.
 | ----------------------------------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | streamInfo                          | [AudioStreamInfo](#audiostreaminfo8)                      | Yes  | Audio stream information.<br>**System capability**: SystemCapability.Multimedia.Audio.Capturer  |
 | capturerInfo                        | [AudioCapturerInfo](#audiocapturerinfo8)                   | Yes  | Audio capturer information.<br>**System capability**: SystemCapability.Multimedia.Audio.Capturer       |
-| playbackCaptureConfig<sup>(deprecated)</sup> | [AudioPlaybackCaptureConfig](#audioplaybackcaptureconfigdeprecated) | No  | Configuration of internal audio recording.<br>**System capability**: SystemCapability.Multimedia.Audio.PlaybackCapture<br> This API is supported since API version 10 and deprecated since API version 12. The Audio module does not provide APIs for internal recording. You can use [AVScreenCapture](../apis-media-kit/_a_v_screen_capture.md) to perform internal recording.|
+| playbackCaptureConfig<sup>(deprecated)</sup> | [AudioPlaybackCaptureConfig](#audioplaybackcaptureconfigdeprecated) | No  | Configuration of internal audio recording.<br>**System capability**: SystemCapability.Multimedia.Audio.PlaybackCapture<br> This API is supported since API version 10 and deprecated since API version 12. The Audio module does not provide APIs for internal recording. You can use [AVScreenCapture](../apis-media-kit/capi-avscreencapture.md) to perform internal recording.|
 
 ## AudioCapturerInfo<sup>8+</sup>
 
@@ -858,7 +858,7 @@ Enumerates the audio source types.
 | SOURCE_TYPE_INVALID                          | -1     | Invalid audio source.<br>**System capability**: SystemCapability.Multimedia.Audio.Core |
 | SOURCE_TYPE_MIC                              | 0      | Mic source.<br>**System capability**: SystemCapability.Multimedia.Audio.Core|
 | SOURCE_TYPE_VOICE_RECOGNITION<sup>9+</sup>   | 1      | Voice recognition source.<br>**System capability**: SystemCapability.Multimedia.Audio.Core |
-| SOURCE_TYPE_PLAYBACK_CAPTURE<sup>(deprecated)</sup>   | 2 | Internal audio recording source.<br>**System capability**: SystemCapability.Multimedia.Audio.PlaybackCapture<br> This API is supported since API version 10 and deprecated since API version 12. The Audio module does not provide APIs for internal recording. You can use [AVScreenCapture](../apis-media-kit/_a_v_screen_capture.md) to perform internal recording.|
+| SOURCE_TYPE_PLAYBACK_CAPTURE<sup>(deprecated)</sup>   | 2 | Internal audio recording source.<br>**System capability**: SystemCapability.Multimedia.Audio.PlaybackCapture<br> This API is supported since API version 10 and deprecated since API version 12. The Audio module does not provide APIs for internal recording. You can use [AVScreenCapture](../apis-media-kit/capi-avscreencapture.md) to perform internal recording.|
 | SOURCE_TYPE_VOICE_COMMUNICATION              | 7      | Voice communication source.<br>**System capability**: SystemCapability.Multimedia.Audio.Core|
 | SOURCE_TYPE_VOICE_MESSAGE<sup>12+</sup>      | 10     | Voice message source.<br>**System capability**: SystemCapability.Multimedia.Audio.Core|
 | SOURCE_TYPE_CAMCORDER<sup>13+</sup>          | 13     | Video recording source.<br>**System capability**: SystemCapability.Multimedia.Audio.Core|
@@ -870,7 +870,7 @@ Defines the configuration of internal audio recording.
 
 > **NOTE**
 >
-> This API is supported since API version 10 and deprecated since API version 12. The Audio module does not provide APIs for internal recording. You can use [AVScreenCapture](../apis-media-kit/_a_v_screen_capture.md) to perform internal recording.
+> This API is supported since API version 10 and deprecated since API version 12. The Audio module does not provide APIs for internal recording. You can use [AVScreenCapture](../apis-media-kit/capi-avscreencapture.md) to perform internal recording.
 
 **System capability**: SystemCapability.Multimedia.Audio.PlaybackCapture
 
@@ -884,7 +884,7 @@ Defines the options for filtering the played audio streams to be recorded.
 
 > **NOTE**
 >
-> This API is supported since API version 10 and deprecated since API version 12. The Audio module does not provide APIs for internal recording. You can use [AVScreenCapture](../apis-media-kit/_a_v_screen_capture.md) to perform internal recording.
+> This API is supported since API version 10 and deprecated since API version 12. The Audio module does not provide APIs for internal recording. You can use [AVScreenCapture](../apis-media-kit/capi-avscreencapture.md) to perform internal recording.
 
 **System capability**: SystemCapability.Multimedia.Audio.PlaybackCapture
 

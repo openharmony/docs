@@ -1,6 +1,6 @@
 # SendableContext
 
-SendableContext, which complies with the [Sendable protocol](../../arkts-utils/arkts-sendable.md#sendable), can be converted to a Context object to implement data transmission between concurrent ArkTS instances (including the main thread and the worker thread of TaskPool or Worker).
+SendableContext complies with the [Sendable protocol](../../arkts-utils/arkts-sendable.md#sendable-protocol) and inherits from [lang.ISendable](../apis-arkts/js-apis-arkts-lang.md#langisendable).
 
 > **NOTE**
 >

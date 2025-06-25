@@ -780,12 +780,10 @@
               - [Updating Widget Content Through the router or call Event](form/arkts-ui-widget-event-uiability.md)
             - Widget Data Interaction<!--arkts-ui-widget-interaction-->
               - [Updating Widget Content](form/arkts-ui-widget-interaction-overview.md)
-              - [Interval-based Widget Updates](form/arkts-ui-widget-update-by-time.md)
               - [Time-specific Widget Updates](form/arkts-ui-widget-update-by-time-point.md)
               <!--Del-->
               - [Updating Widget Content Through a Proxy](form/arkts-ui-widget-update-by-proxy.md)
               - [Conditional Widget Updates](form/arkts-ui-widget-update-by-conditions.md)
-              - [Updating Widget Content by Widget Host (for System Applications Only)](form/arkts-ui-widget-content-update.md)
               <!--DelEnd-->
               - [Updating Local and Online Images in the Widget](form/arkts-ui-widget-image-update.md)
               - [Updating Widget Content by State](form/arkts-ui-widget-update-by-status.md)
@@ -3949,6 +3947,12 @@
           - [native_audiorenderer.h](reference/apis-audio-kit/native__audiorenderer_8h.md)
           - [native_audiostream_base.h](reference/apis-audio-kit/native__audiostream__base_8h.md)
           - [native_audiostreambuilder.h](reference/apis-audio-kit/native__audiostreambuilder_8h.md)
+        - Structs<!--audio-struct-->
+          - [OH_AudioSession_Strategy](reference/apis-audio-kit/_o_h___audio_session___strategy.md)
+          - [OH_AudioSession_DeactivatedEvent](reference/apis-audio-kit/_o_h___audio_session___deactivated_event.md)
+          - [OH_AudioDeviceDescriptorArray](reference/apis-audio-kit/_o_h___audio_device_descriptor_array.md)
+          - [OH_AudioRenderer_Callbacks_Struct](reference/apis-audio-kit/_o_h___audio_renderer___callbacks___struct.md)
+          - [OH_AudioCapturer_Callbacks_Struct](reference/apis-audio-kit/_o_h___audio_capturer___callbacks___struct.md)
       - Error Codes<!--audio-arkts-errcode-->
         - [Audio Error Codes](reference/apis-audio-kit/errorcode-audio.md)
         - [Ringtone Error Codes](reference/apis-audio-kit/errorcode-ringtone.md)
