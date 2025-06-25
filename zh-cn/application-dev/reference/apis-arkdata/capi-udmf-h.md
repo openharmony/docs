@@ -27,6 +27,8 @@
 | [OH_Udmf_ProgressInfo](capi-udmf-oh-udmf-progressinfo.md) | OH_Udmf_ProgressInfo | 定义进度信息的数据结构。 |
 | [OH_UdmfGetDataParams](capi-udmf-oh-udmfgetdataparams.md) | OH_UdmfGetDataParams | 定义异步获取UDMF数据的请求参数。 |
 | [OH_UdmfOptions](capi-udmf-oh-udmfoptions.md) | OH_UdmfOptions | 数据操作选项，定义数据操作的可选参数。 |
+| [OH_UdmfDataLoadParams](capi-udmf-oh-udmfdataloadparams.md) | OH_UdmfDataLoadParams | 表示数据加载参数结构体。 |
+| [OH_UdmfDataLoadInfo](capi-udmf-oh-udmfdataloadinfo.md) | OH_UdmfDataLoadInfo | 表示数据加载信息结构体。 |
 
 ### 枚举
 
@@ -36,6 +38,7 @@
 | [Udmf_ShareOption](#udmf_shareoption) | Udmf_ShareOption | UDMF支持的设备内使用范围类型枚举。 |
 | [Udmf_FileConflictOptions](#udmf_fileconflictoptions) | Udmf_FileConflictOptions | 定义文件拷贝冲突时的选项。 |
 | [Udmf_ProgressIndicator](#udmf_progressindicator) | Udmf_ProgressIndicator | 定义进度条指示选项，可选择是否采用系统默认进度显示。 |
+| [Udmf_Visibility](#udmf_visibility) | Udmf_Visibility | 定义数据的可见性等级。 |
 
 ### 函数
 
@@ -114,6 +117,19 @@
 | [void OH_UdmfGetDataParams_SetFileConflictOptions(OH_UdmfGetDataParams* params, const Udmf_FileConflictOptions options)](#oh_udmfgetdataparams_setfileconflictoptions) | - | 设置异步请求参数[OH_UdmfGetDataParams](capi-udmf-oh-udmfgetdataparams.md)中的文件冲突选项。 |
 | [void OH_UdmfGetDataParams_SetProgressIndicator(OH_UdmfGetDataParams* params, const Udmf_ProgressIndicator progressIndicator)](#oh_udmfgetdataparams_setprogressindicator) | - | 设置异步请求参数[OH_UdmfGetDataParams](capi-udmf-oh-udmfgetdataparams.md)中的进度条指示选项。 |
 | [void OH_UdmfGetDataParams_SetDataProgressListener(OH_UdmfGetDataParams* params, const OH_Udmf_DataProgressListener dataProgressListener)](#oh_udmfgetdataparams_setdataprogresslistener) | - | 设置异步请求参数[OH_UdmfGetDataParams](capi-udmf-oh-udmfgetdataparams.md)中的监听回调函数。 |
+| [Udmf_Visibility OH_UdmfOptions_GetVisibility(OH_UdmfOptions* pThis)](#oh_udmfoptions_getvisibility) | - | 从数据操作选项[OH_UdmfOptions](capi-udmf-oh-udmfoptions.md)实例中获取数据可见性等级。 |
+| [int OH_UdmfOptions_SetVisibility(OH_UdmfOptions* pThis, Udmf_Visibility visibility)](#oh_udmfoptions_setvisibility) | - | 设置数据操作选项[OH_UdmfOptions](capi-udmf-oh-udmfoptions.md)实例中的数据可见性等级。 |
+| [typedef OH_UdmfData* (\*OH_Udmf_DataLoadHandler)(OH_UdmfDataLoadInfo* acceptableInfo)](#oh_udmf_dataloadhandler) | OH_Udmf_DataLoadHandler | 表示用于加载数据的回调函数。 |
+| [OH_UdmfDataLoadParams* OH_UdmfDataLoadParams_Create()](#oh_udmfdataloadparams_create) | - | 创建指向数据加载参数[OH_UdmfDataLoadParams](capi-udmf-oh-udmfdataloadparams.md)实例的指针。 |
+| [void OH_UdmfDataLoadParams_Destroy(OH_UdmfDataLoadParams* pThis)](#oh_udmfdataloadparams_destroy) | - | 销毁数据加载参数[OH_UdmfDataLoadParams](capi-udmf-oh-udmfdataloadparams.md)指针指向的实例对象。 |
+| [void OH_UdmfDataLoadParams_SetLoadHandler(OH_UdmfDataLoadParams* params, const OH_Udmf_DataLoadHandler dataLoadHandler)](#oh_udmfdataloadparams_setloadhandler) | - | 设置数据加载参数[OH_UdmfDataLoadParams](capi-udmf-oh-udmfdataloadparams.md)中的数据加载处理函数。 |
+| [void OH_UdmfDataLoadParams_SetDataLoadInfo(OH_UdmfDataLoadParams* params, OH_UdmfDataLoadInfo* dataLoadInfo)](#oh_udmfdataloadparams_setdataloadinfo) | - | 设置数据加载参数[OH_UdmfDataLoadParams](capi-udmf-oh-udmfdataloadparams.md)中的数据加载信息。 |
+| [OH_UdmfDataLoadInfo* OH_UdmfDataLoadInfo_Create()](#oh_udmfdataloadinfo_create) | - | 创建指向数据加载信息[OH_UdmfDataLoadInfo](capi-udmf-oh-udmfdataloadinfo.md)实例的指针。 |
+| [void OH_UdmfDataLoadInfo_Destroy(OH_UdmfDataLoadInfo* dataLoadInfo)](#oh_udmfdataloadinfo_destroy) | - | 销毁数据加载信息[OH_UdmfDataLoadInfo](capi-udmf-oh-udmfdataloadinfo.md)指针指向的实例对象。 |
+| [char** OH_UdmfDataLoadInfo_GetTypes(OH_UdmfDataLoadInfo* dataLoadInfo, unsigned int* count)](#oh_udmfdataloadinfo_gettypes) | - | 从数据加载信息[OH_UdmfDataLoadInfo](capi-udmf-oh-udmfdataloadinfo.md)中获取数据类型列表。 |
+| [void OH_UdmfDataLoadInfo_SetType(OH_UdmfDataLoadInfo* dataLoadInfo, const char* type)](#oh_udmfdataloadinfo_settype) | - | 设置数据加载信息[OH_UdmfDataLoadInfo](capi-udmf-oh-udmfdataloadinfo.md)中的数据类型。 |
+| [int OH_UdmfDataLoadInfo_GetRecordCount(OH_UdmfDataLoadInfo* dataLoadInfo)](#oh_udmfdataloadinfo_getrecordcount) | - | 获取数据加载信息[OH_UdmfDataLoadInfo](capi-udmf-oh-udmfdataloadinfo.md)中的记录数量。 |
+| [void OH_UdmfDataLoadInfo_SetRecordCount(OH_UdmfDataLoadInfo* dataLoadInfo, unsigned int recordCount)](#oh_udmfdataloadinfo_setrecordcount) | - | 设置数据加载信息[OH_UdmfDataLoadInfo](capi-udmf-oh-udmfdataloadinfo.md)中的记录数量。 |
 
 ## 枚举类型说明
 
@@ -190,8 +206,314 @@ enum Udmf_ProgressIndicator
 | UDMF_NONE = 0 | 不采用系统默认进度显示。 |
 | UDMF_DEFAULT = 1 | 采用系统默认进度显示，500ms内获取数据完成将不会拉起默认进度条。 |
 
+### Udmf_Visibility
+
+```
+enum Udmf_Visibility
+```
+
+**描述**
+
+定义数据的可见性等级。
+
+**起始版本：** 20
+
+| 枚举项 | 描述 |
+| -- | -- |
+| UDMF_ALL | 可见性等级，所有应用可见。 |
+| UDMF_OWN_PROCESS | 可见性等级，仅数据提供者可见。 |
 
 ## 函数说明
+
+### OH_UdmfGetDataParams_SetAcceptableInfo()
+
+```
+void OH_UdmfGetDataParams_SetAcceptableInfo(OH_UdmfGetDataParams* params, OH_UdmfDataLoadInfo* acceptableInfo)
+```
+
+**描述**
+
+设置异步请求参数[OH_UdmfGetDataParams](capi-udmf-oh-udmfgetdataparams.md)中可接收的数据描述信息。
+
+**起始版本：** 20
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [OH_UdmfGetDataParams](capi-udmf-oh-udmfgetdataparams.md)* params | 表示指向[OH_UdmfGetDataParams](capi-udmf-oh-udmfgetdataparams.md)实例的指针。 |
+| [OH_UdmfDataLoadInfo](capi-udmf-oh-udmfdataloadinfo.md)* acceptableInfo | 表示指向[OH_UdmfDataLoadInfo](capi-udmf-oh-udmfdataloadinfo.md)实例的指针。 |
+
+### OH_UdmfDataLoadParams_Create()
+
+```
+OH_UdmfDataLoadParams* OH_UdmfDataLoadParams_Create()
+```
+
+**描述**
+
+创建指向数据加载参数[OH_UdmfDataLoadParams](capi-udmf-oh-udmfdataloadparams.md)实例的指针。
+
+**起始版本：** 20
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [OH_UdmfDataLoadParams](capi-udmf-oh-udmfdataloadparams.md)* | 如果创建成功，返回一个指向数据加载参数[OH_UdmfDataLoadParams](capi-udmf-oh-udmfdataloadparams.md)实例的指针；否则返回nullptr。 |
+
+### OH_UdmfDataLoadParams_Destroy()
+
+```
+void OH_UdmfDataLoadParams_Destroy(OH_UdmfDataLoadParams* pThis)
+```
+
+**描述**
+
+销毁数据加载参数[OH_UdmfDataLoadParams](capi-udmf-oh-udmfdataloadparams.md)指针指向的实例对象。
+
+**起始版本：** 20
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [OH_UdmfDataLoadParams](capi-udmf-oh-udmfdataloadparams.md)* pThis | 表示指向数据加载参数[OH_UdmfDataLoadParams](capi-udmf-oh-udmfdataloadparams.md)实例的指针。 |
+
+### OH_UdmfDataLoadParams_SetLoadHandler()
+
+```
+void OH_UdmfDataLoadParams_SetLoadHandler(OH_UdmfDataLoadParams* params, const OH_Udmf_DataLoadHandler dataLoadHandler)
+```
+
+**描述**
+
+设置数据加载参数[OH_UdmfDataLoadParams](capi-udmf-oh-udmfdataloadparams.md)中的数据加载处理函数。
+
+**起始版本：** 20
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [OH_UdmfDataLoadParams](capi-udmf-oh-udmfdataloadparams.md)* params | 表示指向数据加载参数[OH_UdmfDataLoadParams](capi-udmf-oh-udmfdataloadparams.md)实例的指针。 |
+| [const OH_Udmf_DataLoadHandler](capi-udmf-h.md#oh_udmf_dataloadhandler) dataLoadHandler | 表示用户定义的数据加载处理函数。 |
+
+### OH_UdmfDataLoadParams_SetDataLoadInfo()
+
+```
+void OH_UdmfDataLoadParams_SetDataLoadInfo(OH_UdmfDataLoadParams* params, OH_UdmfDataLoadInfo* dataLoadInfo)
+```
+
+**描述**
+
+设置数据加载参数[OH_UdmfDataLoadParams](capi-udmf-oh-udmfdataloadparams.md)中的数据加载信息。
+
+**起始版本：** 20
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [OH_UdmfDataLoadParams](capi-udmf-oh-udmfdataloadparams.md)* params | 表示指向数据加载参数[OH_UdmfDataLoadParams](capi-udmf-oh-udmfdataloadparams.md)实例的指针。 |
+| [OH_UdmfDataLoadInfo](capi-udmf-oh-udmfdataloadinfo.md)* dataLoadInfo | 表示指向数据加载信息[OH_UdmfDataLoadInfo](capi-udmf-oh-udmfdataloadinfo.md)实例的指针。 |
+
+### OH_UdmfDataLoadInfo_Create()
+
+```
+OH_UdmfDataLoadInfo* OH_UdmfDataLoadInfo_Create()
+```
+
+**描述**
+
+创建指向数据加载信息[OH_UdmfDataLoadInfo](capi-udmf-oh-udmfdataloadinfo.md)实例的指针。
+
+**起始版本：** 20
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [OH_UdmfDataLoadInfo](capi-udmf-oh-udmfdataloadinfo.md)* | 如果创建成功，返回一个指向数据加载信息[OH_UdmfDataLoadInfo](capi-udmf-oh-udmfdataloadinfo.md)实例的指针；否则返回nullptr。 |
+
+### OH_UdmfDataLoadInfo_Destroy()
+
+```
+void OH_UdmfDataLoadInfo_Destroy(OH_UdmfDataLoadInfo* dataLoadInfo)
+```
+
+**描述**
+
+销毁数据加载信息[OH_UdmfDataLoadInfo](capi-udmf-oh-udmfdataloadinfo.md)指针指向的实例对象。
+
+**起始版本：** 20
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [OH_UdmfDataLoadInfo](capi-udmf-oh-udmfdataloadinfo.md)* dataLoadInfo | 表示指向数据加载信息[OH_UdmfDataLoadInfo](capi-udmf-oh-udmfdataloadinfo.md)实例的指针。 |
+
+### OH_UdmfDataLoadInfo_GetTypes()
+
+```
+char** OH_UdmfDataLoadInfo_GetTypes(OH_UdmfDataLoadInfo* dataLoadInfo, unsigned int* count)
+```
+
+**描述**
+
+从数据加载信息[OH_UdmfDataLoadInfo](capi-udmf-oh-udmfdataloadinfo.md)中获取数据类型列表。
+
+**起始版本：** 20
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [OH_UdmfDataLoadInfo](capi-udmf-oh-udmfdataloadinfo.md)* dataLoadInfo | 表示指向数据加载信息[OH_UdmfDataLoadInfo](capi-udmf-oh-udmfdataloadinfo.md)实例的指针。 |
+| unsigned int* count | 返回的数据类型数量。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| char** | 返回数据类型的字符串数组。 |
+
+### OH_UdmfDataLoadInfo_SetType()
+
+```
+void OH_UdmfDataLoadInfo_SetType(OH_UdmfDataLoadInfo* dataLoadInfo, const char* type)
+```
+
+**描述**
+
+设置数据加载信息[OH_UdmfDataLoadInfo](capi-udmf-oh-udmfdataloadinfo.md)中的数据类型。
+
+**起始版本：** 20
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [OH_UdmfDataLoadInfo](capi-udmf-oh-udmfdataloadinfo.md)* dataLoadInfo | 表示指向数据加载信息[OH_UdmfDataLoadInfo](capi-udmf-oh-udmfdataloadinfo.md)实例的指针。 |
+| const char* type | 表示数据类型的字符串。 |
+
+### OH_UdmfDataLoadInfo_GetRecordCount()
+
+```
+int OH_UdmfDataLoadInfo_GetRecordCount(OH_UdmfDataLoadInfo* dataLoadInfo)
+```
+
+**描述**
+
+获取数据加载信息[OH_UdmfDataLoadInfo](capi-udmf-oh-udmfdataloadinfo.md)中的记录数量。
+
+**起始版本：** 20
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [OH_UdmfDataLoadInfo](capi-udmf-oh-udmfdataloadinfo.md)* dataLoadInfo | 表示指向数据加载信息[OH_UdmfDataLoadInfo](capi-udmf-oh-udmfdataloadinfo.md)实例的指针。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int | 返回记录的数量。 |
+
+### OH_UdmfDataLoadInfo_SetRecordCount()
+
+```
+void OH_UdmfDataLoadInfo_SetRecordCount(OH_UdmfDataLoadInfo* dataLoadInfo, unsigned int recordCount)
+```
+
+**描述**
+
+设置数据加载信息[OH_UdmfDataLoadInfo](capi-udmf-oh-udmfdataloadinfo.md)中的记录数量。
+
+**起始版本：** 20
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [OH_UdmfDataLoadInfo](capi-udmf-oh-udmfdataloadinfo.md)* dataLoadInfo | 表示指向数据加载信息[OH_UdmfDataLoadInfo](capi-udmf-oh-udmfdataloadinfo.md)实例的指针。 |
+| unsigned int recordCount | 表示记录的数量。 |
+
+### OH_Udmf_DataLoadHandler()
+
+```
+typedef OH_UdmfData* (*OH_Udmf_DataLoadHandler)(OH_UdmfDataLoadInfo* acceptableInfo)
+```
+
+**描述**
+
+表示用于加载数据的回调函数。
+
+**起始版本：** 20
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [OH_UdmfDataLoadInfo](capi-udmf-oh-udmfdataloadinfo.md)* acceptableInfo | 表示接收端可接收的数据类型和数量信息。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [OH_UdmfData](capi-udmf-oh-udmfdata.md)* (*OH_Udmf_DataLoadHandler) | 返回待加载的数据。 |
+
+### OH_UdmfOptions_GetVisibility()
+
+```
+Udmf_Visibility OH_UdmfOptions_GetVisibility(OH_UdmfOptions* pThis)
+```
+
+**描述**
+
+从数据操作选项[OH_UdmfOptions](capi-udmf-oh-udmfoptions.md)实例中获取数据可见性等级。
+
+**起始版本：** 20
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [OH_UdmfOptions](capi-udmf-oh-udmfoptions.md)* pThis | 指向数据操作选项[OH_UdmfOptions](capi-udmf-oh-udmfoptions.md)实例的指针。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [Udmf_Visibility](capi-udmf-h.md#udmf_visibility) | 返回数据可见性等级[Udmf_Visibility](capi-udmf-h.md#udmf_visibility)的值。 |
+
+### OH_UdmfOptions_SetVisibility()
+
+```
+int OH_UdmfOptions_SetVisibility(OH_UdmfOptions* pThis, Udmf_Visibility visibility)
+```
+
+**描述**
+
+设置数据操作选项[OH_UdmfOptions](capi-udmf-oh-udmfoptions.md)实例中的数据可见性等级。
+
+**起始版本：** 20
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [OH_UdmfOptions](capi-udmf-oh-udmfoptions.md)* pThis | 指向数据操作选项[OH_UdmfOptions](capi-udmf-oh-udmfoptions.md)实例的指针。 |
+| [Udmf_Visibility](capi-udmf-h.md#udmf_visibility) visibility | 数据可见性等级[Udmf_Visibility](capi-udmf-h.md#udmf_visibility)参数。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int | 返回执行结果。请参阅错误码定义[Udmf_ErrCode](capi-udmf-err-code-h.md#udmf_errcode)。<br> 若返回UDMF_E_OK，表示执行成功。<br> 若返回UDMF_E_INVALID_PARAM，表示传入了无效参数。 |
 
 ### UDMF_KEY_BUFFER_LEN()
 
