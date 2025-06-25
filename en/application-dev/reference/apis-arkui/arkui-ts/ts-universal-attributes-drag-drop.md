@@ -146,7 +146,7 @@ Enumerates the transition effects for switching between the long-press preview (
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| isMultiSelectionEnabled | boolean | No| Whether to enable multiselect for the drag preview. <br>**true**: Enable multiselect for the drag preview.<br>**false**: Disable multiselect for the drag preview.<br> This parameter takes effect only for the [grid items](ts-container-griditem.md) and [list items](ts-container-listitem.md) in the [Grid](ts-container-grid.md) and [List](ts-container-list.md) containers.<br>When multiselect is enabled for an item, the child components of the item cannot be dragged. The precendence levels of drag previews for multiselect, from high to low, are as follows: preview specified through a string value in [dragPreview](#dragpreview11), preview specified through **PixelMap** in **dragPreview**, and component snapshot. The Builder format in **dragPreview** is not supported.<br>The context menu bound to the component through [bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu12) cannot contain the **isShown** parameter.<br>Default value: **false**<br>|
+| isMultiSelectionEnabled | boolean | No| Whether to enable multi-select for the drag preview. <br>**true**: Enable multi-select for the drag preview.<br>**false**: Disable multi-select for the drag preview.<br> This parameter takes effect only for the [grid items](ts-container-griditem.md) and [list items](ts-container-listitem.md) in the [Grid](ts-container-grid.md) and [List](ts-container-list.md) containers.<br>When multi-select is enabled for an item, the child components of the item cannot be dragged. The precendence levels of drag previews for multi-select, from high to low, are as follows: preview specified through a string value in [dragPreview](#dragpreview11), preview specified through **PixelMap** in **dragPreview**, and component snapshot. The Builder format in **dragPreview** is not supported.<br>The context menu bound to the component through [bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu12) cannot contain the **isShown** parameter.<br>Default value: **false**<br>|
 | defaultAnimationBeforeLifting | boolean | No| Whether to enable the default pressed state animation (compressing in size) of the component before a lift animation starts. <br>**true**: Enable the default pressed state animation.<br>**false**: Disable the default pressed state animation.<br>Default value: **false**<br>|
 | isLiftingDisabled<sup>15+</sup> | boolean | No| Whether to disable the lifting effect during dragging. <br>**true**: Disable the lifting effect during dragging.<br>**false**: Enable the lifting effect during dragging.<br>With the value **true**, only the custom menu preview (set using [bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu8)), also known as the long-press preview, is displayed if both the long-press preview and drag preview are configured.<br>Default value: **false**|
 | enableEdgeAutoScroll<sup>18+</sup> | boolean | No| Whether to trigger automatic scrolling for dragging to the edge of a scrollable component. <br>**true**: Trigger automatic scrolling.<br>**false**: Do not trigger automatic scrolling.<br>Default value: **true**|
@@ -375,9 +375,9 @@ struct dragPreviewOptionsDemo{
 ![dragPreviewMode.gif](figures/dragPreviewMode.gif)
 
 
-### Example 4: Enabling Multiselect for Dragging
+### Example 4: Enabling Multi-Select for Dragging
 
-This example demonstrates how to enable multiselect for dragging in a **Grid** component by configuring **isMultiSelectionEnabled**.
+This example demonstrates how to enable multi-select for dragging in a **Grid** component by configuring **isMultiSelectionEnabled**.
 
 ```ts
 @Entry
