@@ -44,10 +44,10 @@ enum DDK_RetCode
 
 | 枚举项 | 描述 |
 | -- | -- |
-| DDK_SUCCESS = 0 | @error 操作成功 |
-| DDK_FAILURE = 28600001 | @error 操作失败 |
-| DDK_INVALID_PARAMETER = 28600002 | @error 无效参数 |
-| DDK_INVALID_OPERATION = 28600003 | @error 无效操作 |
-| DDK_NULL_PTR = 28600004 | @error 空指针异常 |
+| DDK_SUCCESS = 0 | 操作成功 |
+| DDK_FAILURE = 28600001 | 操作失败 |
+| DDK_INVALID_PARAMETER = 28600002 | 无效参数 |
+| DDK_INVALID_OPERATION = 28600003 | 无效操作 |
+| DDK_NULL_PTR = 28600004 | 空指针异常 |
 
 
