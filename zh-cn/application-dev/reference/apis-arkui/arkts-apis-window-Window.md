@@ -7744,7 +7744,7 @@ startMoving(): Promise&lt;void&gt;
 
 仅在[onTouch](./arkui-ts/ts-universal-events-touch.md#touchevent对象说明)事件（其中，事件类型必须为TouchType.Down）的回调方法中调用此接口才会有移动效果，成功调用此接口后，窗口将跟随鼠标或触摸点移动。
 
-在点击拖拽场景下，若不期望在按下时触发拖拽事件，则可以在事件类型为TouchType.Move（需要保证当前行为已经触发TouchType.Down事件）时调用此接口，触发移动效果。
+在点击拖拽场景下，若不期望在按下时触发拖拽事件，则可以在事件类型为[TouchType.Move](./arkui-ts/ts-appendix-enums.md#touchtype)（需要保证当前行为已经触发TouchType.Down事件）时调用此接口，触发移动效果。
 
 手机设备上对子窗、系统窗口生效。
 
@@ -7844,7 +7844,7 @@ startMoving(offsetX: number, offsetY: number): Promise&lt;void&gt;
 
 仅在[onTouch](./arkui-ts/ts-universal-events-touch.md#touchevent对象说明)事件（其中，事件类型必须为TouchType.Down）的回调方法中调用此接口才会有移动效果，成功调用此接口后，窗口将跟随鼠标移动。
 
-在点击拖拽场景下，若不期望在按下时触发拖拽事件，则可以在事件类型为TouchType.Move（需要保证当前行为已经触发TouchType.Down事件）时调用此接口，触发移动效果。
+在点击拖拽场景下，若不期望在按下时触发拖拽事件，则可以在事件类型为[TouchType.Move](./arkui-ts/ts-appendix-enums.md#touchtype)（需要保证当前行为已经触发TouchType.Down事件）时调用此接口，触发移动效果。
 
 <!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
 
