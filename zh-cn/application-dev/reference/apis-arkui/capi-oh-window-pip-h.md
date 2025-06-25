@@ -48,18 +48,18 @@
 | [int32_t OH_PictureInPicture_UpdatePipContentSize(uint32_t controllerId, uint32_t width, uint32_t height)](#oh_pictureinpicture_updatepipcontentsize) | - | 当媒体源切换时，向画中画控制器更新媒体源尺寸信息。 |
 | [int32_t OH_PictureInPicture_UpdatePipControlStatus(uint32_t controllerId, PictureInPicture_PipControlType controlType,PictureInPicture_PipControlStatus status)](#oh_pictureinpicture_updatepipcontrolstatus) | - | 更新画中画控制面板控件功能状态。 |
 | [int32_t OH_PictureInPicture_SetPipControlEnabled(uint32_t controllerId, PictureInPicture_PipControlType controlType,bool enabled)](#oh_pictureinpicture_setpipcontrolenabled) | - | 设置控制面板控件使能状态。 |
-| [int32_t OH_PictureInPicture_RegisterStartPipCallback(uint32_t controllerId, WebPipStartPipCallback callback)](#oh_pictureinpicture_registerstartpipcallback) | - | 注册画中画窗口创建完成的回调函数。 |
-| [int32_t OH_PictureInPicture_UnregisterStartPipCallback(uint32_t controllerId, WebPipStartPipCallback callback)](#oh_pictureinpicture_unregisterstartpipcallback) | - | 取消注册画中画窗口单个创建完成的回调函数。 |
-| [int32_t OH_PictureInPicture_UnregisterAllStartPipCallbacks(uint32_t controllerId)](#oh_pictureinpicture_unregisterallstartpipcallbacks) | - | 取消注册画中画窗口所有创建完成的回调函数。 |
-| [int32_t OH_PictureInPicture_RegisterLifecycleListener(uint32_t controllerId, WebPipLifecycleCallback callback)](#oh_pictureinpicture_registerlifecyclelistener) | - | 注册画中画窗口的生命周期回调函数。 |
-| [int32_t OH_PictureInPicture_UnregisterLifecycleListener(uint32_t controllerId, WebPipLifecycleCallback callback)](#oh_pictureinpicture_unregisterlifecyclelistener) | - | 取消注册画中画窗口的单个生命周期回调函数。 |
-| [int32_t OH_PictureInPicture_UnregisterAllLifecycleListeners(uint32_t controllerId)](#oh_pictureinpicture_unregisteralllifecyclelisteners) | - | 取消注册画中画窗口的所有生命周期回调函数。 |
-| [int32_t OH_PictureInPicture_RegisterControlEventListener(uint32_t controllerId, WebPipControlEventCallback callback)](#oh_pictureinpicture_registercontroleventlistener) | - | 注册画中画窗口的控件点击事件回调函数。 |
-| [int32_t OH_PictureInPicture_UnregisterControlEventListener(uint32_t controllerId, WebPipControlEventCallback callback)](#oh_pictureinpicture_unregistercontroleventlistener) | - | 取消注册画中画窗口的单个控件点击事件回调函数。 |
-| [int32_t OH_PictureInPicture_UnregisterAllControlEventListeners(uint32_t controllerId)](#oh_pictureinpicture_unregisterallcontroleventlisteners) | - | 取消注册画中画窗口的所有控件点击事件回调函数。 |
-| [int32_t OH_PictureInPicture_RegisterResizeListener(uint32_t controllerId, WebPipResizeCallback callback)](#oh_pictureinpicture_registerresizelistener) | - | 注册画中画窗口尺寸变化的回调函数。 |
-| [int32_t OH_PictureInPicture_UnregisterResizeListener(uint32_t controllerId, WebPipResizeCallback callback)](#oh_pictureinpicture_unregisterresizelistener) | - | 取消注册画中画窗口单个尺寸变化的回调函数。 |
-| [int32_t OH_PictureInPicture_UnregisterAllResizeListeners(uint32_t controllerId)](#oh_pictureinpicture_unregisterallresizelisteners) | - | 取消注册画中画窗口所有尺寸变化的回调函数。 |
+| [int32_t OH_PictureInPicture_RegisterStartPipCallback(uint32_t controllerId, WebPipStartPipCallback callback)](#oh_pictureinpicture_registerstartpipcallback) | - | 开启画中画surface创建完成的监听。 |
+| [int32_t OH_PictureInPicture_UnregisterStartPipCallback(uint32_t controllerId, WebPipStartPipCallback callback)](#oh_pictureinpicture_unregisterstartpipcallback) | - | 关闭画中画surface创建完成的监听。 |
+| [int32_t OH_PictureInPicture_UnregisterAllStartPipCallbacks(uint32_t controllerId)](#oh_pictureinpicture_unregisterallstartpipcallbacks) | - | 关闭所有画中画surface创建完成的监听。 |
+| [int32_t OH_PictureInPicture_RegisterLifecycleListener(uint32_t controllerId, WebPipLifecycleCallback callback)](#oh_pictureinpicture_registerlifecyclelistener) | - | 开启画中画生命周期状态的监听。 |
+| [int32_t OH_PictureInPicture_UnregisterLifecycleListener(uint32_t controllerId, WebPipLifecycleCallback callback)](#oh_pictureinpicture_unregisterlifecyclelistener) | - | 关闭画中画生命周期状态的监听。 |
+| [int32_t OH_PictureInPicture_UnregisterAllLifecycleListeners(uint32_t controllerId)](#oh_pictureinpicture_unregisteralllifecyclelisteners) | - | 关闭所有画中画生命周期状态的监听。 |
+| [int32_t OH_PictureInPicture_RegisterControlEventListener(uint32_t controllerId, WebPipControlEventCallback callback)](#oh_pictureinpicture_registercontroleventlistener) | - | 开启画中画控制面板控件动作事件的监听。 |
+| [int32_t OH_PictureInPicture_UnregisterControlEventListener(uint32_t controllerId, WebPipControlEventCallback callback)](#oh_pictureinpicture_unregistercontroleventlistener) | - | 关闭画中画控制面板控件动作事件的监听。 |
+| [int32_t OH_PictureInPicture_UnregisterAllControlEventListeners(uint32_t controllerId)](#oh_pictureinpicture_unregisterallcontroleventlisteners) | - | 关闭所有画中画控制面板控件动作事件的监听。 |
+| [int32_t OH_PictureInPicture_RegisterResizeListener(uint32_t controllerId, WebPipResizeCallback callback)](#oh_pictureinpicture_registerresizelistener) | - | 开启画中画窗口尺寸变化事件的监听。 |
+| [int32_t OH_PictureInPicture_UnregisterResizeListener(uint32_t controllerId, WebPipResizeCallback callback)](#oh_pictureinpicture_unregisterresizelistener) | - | 关闭画中画窗口尺寸变化事件的监听。 |
+| [int32_t OH_PictureInPicture_UnregisterAllResizeListeners(uint32_t controllerId)](#oh_pictureinpicture_unregisterallresizelisteners) | - | 关闭所有画中画窗口尺寸变化事件的监听。 |
 
 ## 枚举类型说明
 
@@ -633,7 +633,7 @@ int32_t OH_PictureInPicture_RegisterStartPipCallback(uint32_t controllerId, WebP
 
 **描述**
 
-注册画中画窗口创建完成的回调函数。
+开启画中画surface创建完成的监听。
 
 **起始版本：** 20
 
@@ -659,7 +659,7 @@ int32_t OH_PictureInPicture_UnregisterStartPipCallback(uint32_t controllerId, We
 
 **描述**
 
-取消注册画中画窗口单个创建完成的回调函数。
+关闭画中画surface创建完成的监听。
 
 **起始版本：** 20
 
@@ -685,7 +685,7 @@ int32_t OH_PictureInPicture_UnregisterAllStartPipCallbacks(uint32_t controllerId
 
 **描述**
 
-取消注册画中画窗口所有创建完成的回调函数。
+关闭所有画中画surface创建完成的监听。
 
 **起始版本：** 20
 
@@ -710,7 +710,7 @@ int32_t OH_PictureInPicture_RegisterLifecycleListener(uint32_t controllerId, Web
 
 **描述**
 
-注册画中画窗口的生命周期回调函数。
+开启画中画生命周期状态的监听。
 
 **起始版本：** 20
 
@@ -736,7 +736,7 @@ int32_t OH_PictureInPicture_UnregisterLifecycleListener(uint32_t controllerId, W
 
 **描述**
 
-取消注册画中画窗口的单个生命周期回调函数。
+关闭画中画生命周期状态的监听。
 
 **起始版本：** 20
 
@@ -762,7 +762,7 @@ int32_t OH_PictureInPicture_UnregisterAllLifecycleListeners(uint32_t controllerI
 
 **描述**
 
-取消注册画中画窗口的所有生命周期回调函数。
+关闭所有画中画生命周期状态的监听。
 
 **起始版本：** 20
 
@@ -787,7 +787,7 @@ int32_t OH_PictureInPicture_RegisterControlEventListener(uint32_t controllerId, 
 
 **描述**
 
-注册画中画窗口的控件点击事件回调函数。
+开启画中画控制面板控件动作事件的监听。
 
 **起始版本：** 20
 
@@ -813,7 +813,7 @@ int32_t OH_PictureInPicture_UnregisterControlEventListener(uint32_t controllerId
 
 **描述**
 
-取消注册画中画窗口的单个控件点击事件回调函数。
+关闭画中画控制面板控件动作事件的监听。
 
 **起始版本：** 20
 
@@ -839,7 +839,7 @@ int32_t OH_PictureInPicture_UnregisterAllControlEventListeners(uint32_t controll
 
 **描述**
 
-取消注册画中画窗口的所有控件点击事件回调函数。
+关闭所有画中画控制面板控件动作事件的监听。
 
 **起始版本：** 20
 
@@ -864,7 +864,7 @@ int32_t OH_PictureInPicture_RegisterResizeListener(uint32_t controllerId, WebPip
 
 **描述**
 
-注册画中画窗口尺寸变化的回调函数。
+开启画中画窗口尺寸变化事件的监听。
 
 **起始版本：** 20
 
@@ -890,7 +890,7 @@ int32_t OH_PictureInPicture_UnregisterResizeListener(uint32_t controllerId, WebP
 
 **描述**
 
-取消注册画中画窗口单个尺寸变化的回调函数。
+关闭画中画窗口尺寸变化事件的监听。
 
 **起始版本：** 20
 
@@ -916,7 +916,7 @@ int32_t OH_PictureInPicture_UnregisterAllResizeListeners(uint32_t controllerId)
 
 **描述**
 
-取消注册画中画窗口所有尺寸变化的回调函数。
+关闭所有画中画窗口尺寸变化事件的监听。
 
 **起始版本：** 20
 
