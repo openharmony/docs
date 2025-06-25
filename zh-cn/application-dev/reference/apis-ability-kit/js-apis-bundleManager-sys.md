@@ -1836,6 +1836,8 @@ getAllBundleCacheSize(): Promise\<number>
 
 获取全局缓存大小，使用Promise异步回调。
 
+有程序运行时的应用的缓存、或者在[应用配置指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-app-privilege-config-guide.md)中已配置“AllowAppDataNotCleared”特权的应用的缓存，无法被获取。
+
 **系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
