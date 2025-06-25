@@ -16,7 +16,7 @@
 
 | 名称 | 描述 |
 | -- | -- |
-| struct [OhosImageSourceSupportedFormat](capi-ohosimagesourcesupportedformat.md)** supportedFormatList = nullptr | 图像源支持的格式字符串列表头地址。 |
+| struct [OhosImageSourceSupportedFormat](capi-image-ohosimagesourcesupportedformat.md)** supportedFormatList = nullptr | 图像源支持的格式字符串列表头地址。 |
 | size_t size = 0 | 图像源支持的格式字符串列表大小。 |
 
 

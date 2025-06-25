@@ -24,7 +24,7 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [OH_EffectFilterInfo *OH_EffectFilterInfo_Create()](#oh_effectfilterinfo_create) | OH_EffectFilterInfo_Create() | 创建OH_EffectFilterInfo实例，调用[OH_EffectFilterInfo_Release](capi-imageeffect-filternames.md#oh_effectfilterinfo_release)进行资源释放。<br>**起始版本：** 12<br>**系统能力：** SystemCapability.Multimedia.ImageEffect.Core |
+| [OH_EffectFilterInfo *OH_EffectFilterInfo_Create()](#oh_effectfilterinfo_create) | OH_EffectFilterInfo_Create() | 创建OH_EffectFilterInfo实例，调用[OH_EffectFilterInfo_Release](capi-imageeffect-imageeffect-filternames.md#oh_effectfilterinfo_release)进行资源释放。<br>**起始版本：** 12<br>**系统能力：** SystemCapability.Multimedia.ImageEffect.Core |
 | [ImageEffect_ErrorCode OH_EffectFilterInfo_SetFilterName(OH_EffectFilterInfo *info, const char *name)](#oh_effectfilterinfo_setfiltername) | OH_EffectFilterInfo_SetFilterName() | 设置滤镜名。<br>**起始版本：** 12<br>**系统能力：** SystemCapability.Multimedia.ImageEffect.Core |
 | [ImageEffect_ErrorCode OH_EffectFilterInfo_GetFilterName(OH_EffectFilterInfo *info, char **name)](#oh_effectfilterinfo_getfiltername) | OH_EffectFilterInfo_GetFilterName() | 获取滤镜名。<br>**起始版本：** 12<br>**系统能力：** SystemCapability.Multimedia.ImageEffect.Core |
 | [ImageEffect_ErrorCode OH_EffectFilterInfo_SetSupportedBufferTypes(OH_EffectFilterInfo *info, uint32_t size,ImageEffect_BufferType *bufferTypeArray)](#oh_effectfilterinfo_setsupportedbuffertypes) | OH_EffectFilterInfo_SetSupportedBufferTypes() | 设置滤镜所支持的内存类型。<br>**起始版本：** 12<br>**系统能力：** SystemCapability.Multimedia.ImageEffect.Core |
@@ -43,7 +43,7 @@ OH_EffectFilterInfo *OH_EffectFilterInfo_Create()
 
 **描述**
 
-创建OH_EffectFilterInfo实例，调用[OH_EffectFilterInfo_Release](capi-imageeffect-filternames.md#oh_effectfilterinfo_release)进行资源释放。
+创建OH_EffectFilterInfo实例，调用[OH_EffectFilterInfo_Release](capi-imageeffect-imageeffect-filternames.md#oh_effectfilterinfo_release)进行资源释放。
 
 **系统能力：** SystemCapability.Multimedia.ImageEffect.Core
 
@@ -53,7 +53,7 @@ OH_EffectFilterInfo *OH_EffectFilterInfo_Create()
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_EffectFilterInfo](capi-oh-effectfilterinfo.md) | 返回一个指向OH_EffectFilterInfo实例的指针，创建失败时返回空指针。 |
+| [OH_EffectFilterInfo](capi-imageeffect-oh-effectfilterinfo.md) | 返回一个指向OH_EffectFilterInfo实例的指针，创建失败时返回空指针。 |
 
 ### OH_EffectFilterInfo_SetFilterName()
 
@@ -73,7 +73,7 @@ ImageEffect_ErrorCode OH_EffectFilterInfo_SetFilterName(OH_EffectFilterInfo *inf
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_EffectFilterInfo](capi-oh-effectfilterinfo.md) *info | 滤镜信息指针。 |
+| [OH_EffectFilterInfo](capi-imageeffect-oh-effectfilterinfo.md) *info | 滤镜信息指针。 |
 | const char *name | 滤镜名，例如：OH_EFFECT_BRIGHTNESS_FILTER。 |
 
 **返回：**
@@ -100,7 +100,7 @@ ImageEffect_ErrorCode OH_EffectFilterInfo_GetFilterName(OH_EffectFilterInfo *inf
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_EffectFilterInfo](capi-oh-effectfilterinfo.md) *info | 滤镜信息指针。 |
+| [OH_EffectFilterInfo](capi-imageeffect-oh-effectfilterinfo.md) *info | 滤镜信息指针。 |
 | char **name | 指向char数组的指针，返回滤镜名。 |
 
 **返回：**
@@ -127,7 +127,7 @@ ImageEffect_ErrorCode OH_EffectFilterInfo_SetSupportedBufferTypes(OH_EffectFilte
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_EffectFilterInfo](capi-oh-effectfilterinfo.md) *info | 滤镜信息指针。 |
+| [OH_EffectFilterInfo](capi-imageeffect-oh-effectfilterinfo.md) *info | 滤镜信息指针。 |
 | uint32_t size | 滤镜所支持内存类型[ImageEffect_BufferType](capi-image-effect-filter-h.md#imageeffect_buffertype)个数。 |
 | ImageEffect_BufferType *bufferTypeArray | 滤镜所支持内存类型[ImageEffect_BufferType](capi-image-effect-filter-h.md#imageeffect_buffertype)数组。 |
 
@@ -155,7 +155,7 @@ ImageEffect_ErrorCode OH_EffectFilterInfo_GetSupportedBufferTypes(OH_EffectFilte
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_EffectFilterInfo](capi-oh-effectfilterinfo.md) *info | 滤镜信息指针。 |
+| [OH_EffectFilterInfo](capi-imageeffect-oh-effectfilterinfo.md) *info | 滤镜信息指针。 |
 | uint32_t *size | 滤镜所支持内存类型[ImageEffect_BufferType](capi-image-effect-filter-h.md#imageeffect_buffertype)个数。 |
 | ImageEffect_BufferType **bufferTypeArray | 滤镜所支持内存类型[ImageEffect_BufferType](capi-image-effect-filter-h.md#imageeffect_buffertype)数组。 |
 
@@ -183,7 +183,7 @@ ImageEffect_ErrorCode OH_EffectFilterInfo_SetSupportedFormats(OH_EffectFilterInf
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_EffectFilterInfo](capi-oh-effectfilterinfo.md) *info | 滤镜信息指针。 |
+| [OH_EffectFilterInfo](capi-imageeffect-oh-effectfilterinfo.md) *info | 滤镜信息指针。 |
 | uint32_t size | 滤镜所支持像素格式[ImageEffect_Format](capi-image-effect-filter-h.md#imageeffect_format)个数。 |
 | ImageEffect_Format *formatArray | 滤镜所支持像素格式[ImageEffect_Format](capi-image-effect-filter-h.md#imageeffect_format)数组。 |
 
@@ -211,7 +211,7 @@ ImageEffect_ErrorCode OH_EffectFilterInfo_GetSupportedFormats(OH_EffectFilterInf
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_EffectFilterInfo](capi-oh-effectfilterinfo.md) *info | 滤镜信息指针。 |
+| [OH_EffectFilterInfo](capi-imageeffect-oh-effectfilterinfo.md) *info | 滤镜信息指针。 |
 | uint32_t *size | 滤镜所支持像素格式[ImageEffect_Format](capi-image-effect-filter-h.md#imageeffect_format)个数。 |
 | ImageEffect_Format **formatArray | 滤镜所支持像素格式[ImageEffect_Format](capi-image-effect-filter-h.md#imageeffect_format)数组。 |
 
@@ -239,7 +239,7 @@ ImageEffect_ErrorCode OH_EffectFilterInfo_Release(OH_EffectFilterInfo *info)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_EffectFilterInfo](capi-oh-effectfilterinfo.md) *info | 滤镜信息指针。 |
+| [OH_EffectFilterInfo](capi-imageeffect-oh-effectfilterinfo.md) *info | 滤镜信息指针。 |
 
 **返回：**
 

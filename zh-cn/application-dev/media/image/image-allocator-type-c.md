@@ -49,8 +49,8 @@
 
 - 解码HDR图片。
 - 解码HEIF格式图片。
-- 解码JPEG格式图片，当原图的宽和高均在1024至8192之间，[desiredPixelFormat](../../reference/apis-image-kit/capi-oh-decodingoptions.md)为RGBA_8888或NV21，同时硬件不繁忙（并发数为3）。
-- 解码其他格式图片。要求[desiredSize](../../reference/apis-image-kit/capi-oh-decodingoptions.md)大于等于512 * 512（未设置desiredSize时按原图尺寸考虑），并且宽度为64的倍数。
+- 解码JPEG格式图片，当原图的宽和高均在1024至8192之间，[desiredPixelFormat](../../reference/apis-image-kit/capi-image-nativemodule-oh-decodingoptions.md)为RGBA_8888或NV21，同时硬件不繁忙（并发数为3）。
+- 解码其他格式图片。要求[desiredSize](../../reference/apis-image-kit/capi-image-nativemodule-oh-decodingoptions.md)大于等于512 * 512（未设置desiredSize时按原图尺寸考虑），并且宽度为64的倍数。
 
 除上述场景外，其余情况均使用SHARE_MEMORY。
 
@@ -58,7 +58,7 @@
 
 默认场景下，由系统选择性能最优的内存分配方式。特定场景支持应用使用指定的内存分配方式。
 
-开发者使用接口[OH_ImageSourceNative_CreatePixelmapUsingAllocator](../../reference/apis-image-kit/capi-image-source-native-h.md#oh_imagesourcenative_createpixelmapusingallocator)进行解码时，系统会根据传入的[解码参数](../../reference/apis-image-kit/capi-oh-decodingoptions.md)和[内存申请类型](../../reference/apis-image-kit/capi-image-source-native-h.md#image_allocator_type)，自动选择硬件解码和软件解码。
+开发者使用接口[OH_ImageSourceNative_CreatePixelmapUsingAllocator](../../reference/apis-image-kit/capi-image-source-native-h.md#oh_imagesourcenative_createpixelmapusingallocator)进行解码时，系统会根据传入的[解码参数](../../reference/apis-image-kit/capi-image-nativemodule-oh-decodingoptions.md)和[内存申请类型](../../reference/apis-image-kit/capi-image-source-native-h.md#image_allocator_type)，自动选择硬件解码和软件解码。
 
 在创建像素图时，将根据用户指定的分配器类型来决定采用DMA_ALLOC分配机制还是SHARE_MEMORY分配机制。
 

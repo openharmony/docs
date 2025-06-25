@@ -2,7 +2,7 @@
 
 ## 概述
 
-定义图像源解码的范围选项。是[OhosImageDecodingOps](capi-ohosimagedecodingops.md)的成员变量。
+定义图像源解码的范围选项。是[OhosImageDecodingOps](capi-image-ohosimagedecodingops.md)的成员变量。
 
 **起始版本：** 10
 
