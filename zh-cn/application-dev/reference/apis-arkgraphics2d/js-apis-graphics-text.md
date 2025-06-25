@@ -229,7 +229,7 @@ getFontDescriptorByFullName(fullName: string, fontType: SystemFontType): Promise
 
 | 参数名 | 类型 | 必填 | 说明 |
 | - | - | - | - |
-| fullName | string | 是 | 指定的字体名称。对应字体文件的name表中的fullName。可以使用[getSystemFontFullNamesByType](#textgetsystemfontfullnamesbytype14)获取。 |
+| fullName | string | 是 | 指定的字体名称。可以使用[getSystemFontFullNamesByType](#textgetsystemfontfullnamesbytype14)获取。 |
 | fontType | [SystemFontType](#systemfonttype14) | 是 | 指定的字体类型。 |
 
 **返回值：**
