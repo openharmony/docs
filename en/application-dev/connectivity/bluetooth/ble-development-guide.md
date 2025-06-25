@@ -1,9 +1,11 @@
-# BLE Advertising and Scanning Development
+# BLE Advertising and Scanning
 
 ## Introduction
+
 Bluetooth advertising and scanning help discover Bluetooth-enabled devices and implement BLE communication. This topic walks you through on how to start and stop Bluetooth advertising and scanning.
 
 ## When to Use
+
 You can use the APIs provided by the **ble** module to:
 
 - Start and stop BLE advertising.

@@ -13,7 +13,7 @@ import { url } from '@kit.ArkTS';
 ```
 ## URLParams<sup>9+</sup>
 
-Defines APIs for handling URL query strings.
+URLParams is a utility class for parsing, constructing, and manipulating URL parameters. This class provides a unified interface for handling parameters across different dimensions, such as query parameters and path parameters.
 
 ### constructor<sup>9+</sup>
 
@@ -168,7 +168,7 @@ console.log(params.getAll('fod').toString()) // Output ["1","3"].
 
 entries(): IterableIterator<[string, string]>
 
-Obtains an ES6 iterator. Each item of the iterator is a JavaScript array, and the first and second fields of each array are the key and value respectively.
+Obtains an ES6 iterator. Each item of the iterator is an array, and the first and second fields of each array are the key and value respectively.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -323,7 +323,9 @@ let result = paramsObject.has('bard');
 
 set(name: string, value: string): void
 
-Sets the value for a key. If key-value pairs matching the specified key exist, the value of the first key-value pair will be set to the specified value and other key-value pairs will be deleted. Otherwise, the key-value pair will be appended to the query string.
+Sets the value for a key.
+
+If key-value pairs matching the specified key exist, the value of the first key-value pair will be set to the specified value and other key-value pairs will be deleted. Otherwise, the key-value pair will be appended to the query string.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -430,7 +432,7 @@ for (let value of values) {
 
 [Symbol.iterator]\(): IterableIterator&lt;[string, string]&gt;
 
-Obtains an ES6 iterator. Each item of the iterator is a JavaScript array, and the first and second fields of each array are the key and value respectively.
+Obtains an ES6 iterator. Each item of the iterator is an array, and the first and second fields of each array are the key and value respectively.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -487,21 +489,21 @@ Provides APIs for parsing, constructing, standardizing, and encoding URL strings
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| hash | string | Yes| Yes| String that contains a harsh mark (#) followed by the fragment identifier of a URL. **Atomic service API**: This API can be used in atomic services since API version 11.|
-| host | string | Yes| Yes| Host information in a URL. **Atomic service API**: This API can be used in atomic services since API version 11.|
-| hostname | string | Yes| Yes| Hostname (without the port) in a URL. **Atomic service API**: This API can be used in atomic services since API version 11.|
-| href | string | Yes| Yes| String that contains the whole URL. **Atomic service API**: This API can be used in atomic services since API version 11.|
+| hash | string | No| No| String that contains a harsh mark (#) followed by the fragment identifier of a URL. **Atomic service API**: This API can be used in atomic services since API version 11.|
+| host | string | No| No| Host information in a URL. **Atomic service API**: This API can be used in atomic services since API version 11.|
+| hostname | string | No| No| Hostname (without the port) in a URL. **Atomic service API**: This API can be used in atomic services since API version 11.|
+| href | string | No| No| String that contains the whole URL. **Atomic service API**: This API can be used in atomic services since API version 11.|
 | origin | string | Yes| No| Read-only string that contains the Unicode serialization of the origin of the represented URL. **Atomic service API**: This API can be used in atomic services since API version 11.|
-| password | string | Yes| Yes| Password in a URL. **Atomic service API**: This API can be used in atomic services since API version 11.|
-| pathname | string | Yes| Yes| Path in a URL. **Atomic service API**: This API can be used in atomic services since API version 11.|
-| port | string | Yes| Yes| Port in a URL. **Atomic service API**: This API can be used in atomic services since API version 11.|
-| protocol | string | Yes| Yes| Protocol in a URL. **Atomic service API**: This API can be used in atomic services since API version 11.|
-| search | string | Yes| Yes| Serialized query string in a URL. **Atomic service API**: This API can be used in atomic services since API version 11.|
+| password | string | No| No| Password in a URL. **Atomic service API**: This API can be used in atomic services since API version 11.|
+| pathname | string | No| No| Path in a URL. **Atomic service API**: This API can be used in atomic services since API version 11.|
+| port | string | No| No| Port in a URL. **Atomic service API**: This API can be used in atomic services since API version 11.|
+| protocol | string | No| No| Protocol in a URL. **Atomic service API**: This API can be used in atomic services since API version 11.|
+| search | string | No| No| Serialized query string in a URL. **Atomic service API**: This API can be used in atomic services since API version 11.|
 | searchParams<sup>(deprecated)</sup> | [URLSearchParams](#urlsearchparamsdeprecated) | Yes| No| **URLSearchParams** object allowing access to the query parameters in a URL.<br>- **NOTE**: This property is supported since API version 7 and is deprecated since API version 9. You are advised to use params<sup>9+</sup> instead.|
 | params<sup>9+</sup> | [URLParams](#urlparams9) | Yes| No| **URLParams** object allowing access to the query parameters in a URL. **Atomic service API**: This API can be used in atomic services since API version 11.|
-| username | string | Yes| Yes| Username in a URL. **Atomic service API**: This API can be used in atomic services since API version 11.|
+| username | string | No| No| Username in a URL. **Atomic service API**: This API can be used in atomic services since API version 11.|
 
 **Example**
 
@@ -584,6 +586,12 @@ Parses a URL.
 | -------- | -------- | -------- | -------- |
 | url | string | Yes| A string representing an absolute or a relative URL.<br>In the case of a relative URL, you must specify **base** to parse the final URL.<br>In the case of an absolute URL, the passed **base** will be ignored.|
 | base | string \| URL | No| Either a string or an object. The default value is **undefined**.<br>- **string**: string. If the first parameter is a relative URL, the parameter must comply with the URL standard.<br>- **URL**: URL object.<br>- This parameter is used when **url** is a relative URL.|
+
+**Return value**
+
+| Type| Description                                             |
+| ---- | ------------------------------------------------- |
+| [URL](#url)  | **URL** object created.|
 
 > **NOTE**
 >
@@ -784,7 +792,7 @@ console.log(params.getAll('fod').toString()) // Output ["1","3"].
 
 entries(): IterableIterator<[string, string]>
 
-Obtains an ES6 iterator. Each item of the iterator is a JavaScript array, and the first and second fields of each array are the key and value respectively.
+Obtains an ES6 iterator. Each item of the iterator is an array, and the first and second fields of each array are the key and value respectively.
 
 > **NOTE**
 >
@@ -1028,7 +1036,7 @@ for (let value of values) {
 
 [Symbol.iterator]\(): IterableIterator&lt;[string, string]&gt;
 
-Obtains an ES6 iterator. Each item of the iterator is a JavaScript array, and the first and second fields of each array are the key and value respectively.
+Obtains an ES6 iterator. Each item of the iterator is an array, and the first and second fields of each array are the key and value respectively.
 
 > **NOTE**
 >

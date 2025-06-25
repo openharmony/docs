@@ -55,7 +55,7 @@ struct Index {
             const conditionVariable: ArkTSUtils.locks.ConditionVariable = new ArkTSUtils.locks.ConditionVariable();
             // Pass the conditionVariable object to the wait thread.
             taskpool.execute(wait, conditionVariable);
-            // Pass the conditionVariable object to the notify thread to wake up the wait thread. The log information "TaskPool Thread Wait: success" is displayed.
+            // Pass the conditionVariable object to the notifyAll thread to wake up the wait thread. The log information "TaskPool Thread Wait: success" is displayed.
             taskpool.execute(notifyAll, conditionVariable);
             // Pass the conditionVariable object to the waitFor thread.
             taskpool.execute(waitFor, conditionVariable);
@@ -67,7 +67,7 @@ struct Index {
                 ArkTSUtils.locks.ConditionVariable.request("Request1");
             // Pass the conditionVariableRequest object to the wait thread.
             taskpool.execute(wait, conditionVariableRequest);
-            // Pass the conditionVariableRequest object to the notify thread to wake up the wait thread. The log information "TaskPool Thread Wait: success" is displayed.
+            // Pass the conditionVariableRequest object to the notifyAll thread to wake up the wait thread. The log information "TaskPool Thread Wait: success" is displayed.
             taskpool.execute(notifyAll, conditionVariableRequest);
             // Pass the conditionVariableRequest object to the waitFor thread.
             taskpool.execute(waitFor, conditionVariableRequest);
