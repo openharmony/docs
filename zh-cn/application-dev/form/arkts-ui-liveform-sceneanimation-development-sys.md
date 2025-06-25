@@ -26,7 +26,12 @@
       // ...
       "sceneAnimationParams": {
         "abilityName": "MySystemLiveFormExtensionAbility",
-        "disabledDesktopBehaviors": "LONG_CLICK|DRAG|SWIPE_DESKTOP|PULL_DOWN_SEARCH"
+        "disabledDesktopBehaviors": [
+          "LONG_CLICK",
+          "DRAG",
+          "SWIPE_DESKTOP",
+          "PULL_DOWN_SEARCH"
+        ]
       }
     }
   ]
