@@ -1481,7 +1481,7 @@ InsTree ----| type: Button, ID: 18
 
 getFilteredInspectorTreeById(id: string, depth: number, filters?: Array\<string\>): string
 
-获取指定的组件及其子组件的属性。此接口耗时较长，推荐仅在测试场景下使用。
+获取指定的组件及其子组件的属性。此接口耗时较长，仅适用于测试场景。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
