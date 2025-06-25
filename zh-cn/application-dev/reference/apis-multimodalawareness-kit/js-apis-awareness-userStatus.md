@@ -1,6 +1,6 @@
 # @ohos.multimodalawareness.userStatus (用户感知)
 
-本模块，提供对用户状态感知能力，包括未成年人检测等。
+本模块，提供对用户状态感知能力，包括年龄群组检测等能力。
 
 > **说明：**
 >
@@ -13,45 +13,43 @@
 import { userStatus } from '@kit.MultimodalAwarenessKit';
 ```
 
-## DetectionStatus
+## UserAgeGroup
 
-未成年人检测状态信息。
+表示具体的年龄群组（例如，儿童、成人）。
 
 **系统能力**：SystemCapability.MultimodalAwareness.UserStatus
 
 | 名称                | 值  | 说明                   |
 | ------------------- | ---- | ---------------------- |
-| ADULT_STATUS  | 0    | 表示是成年人操作。 |
-| CHILD_STATUS  | 1    | 表示是儿童操作。 |
+| OTHERS  | 0    | 表示是成年人操作。 |
+| CHILD  | 1    | 表示是儿童操作。 |
 
-## DetectionResult
+## UserClassification
 
-未成年人检测结果。
+表示年龄群组检测结果。
 
 **系统能力**：SystemCapability.MultimodalAwareness.UserStatus
 
 | 名称                | 类型   | 说明                   |
 | ------------------- | ---- | ---------------------- |
-| result  | [DetectionStatus](#DetectionStatus)   | 表示是未成年人检测结果。 |
-| credibility  | number    | 表示未成年人检测结果的置信度，取值范围为0~1的浮点数，数值越大代表置信度越高。 |
+| ageGroup  | [UserAgeGroup](#UserAgeGroup)   | 表示具体的年龄群组（例如，儿童、成人）。 |
+| confidence  | float    | 表示年龄群组检测结果的置信度，取值范围为0~1的浮点数，数值越大代表置信度越高。 |
 
 
-## userStatus.on('ChildDetection')
+## userStatus.on('userAgeGroupDetected')
 
- on(type: 'ChildDetection', callback: Callback&lt;DetectionResult&gt;): void;
+ on(type: 'userAgeGroupDetected', callback: Callback&lt;UserClassification&gt;): void;
 
-订阅未成年人检测功能。
-
-**需要权限**：ohos.permission.ACCELEROMETER
+订阅年龄群组检测功能。
 
 **系统能力**：SystemCapability.MultimodalAwareness.UserStatus
 
 **参数**：
 
 | 参数名   | 类型                             | 必填 | 说明                                                         |
-| -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                           | 是   | 事件类型。type为“ChildDetection”，表示未成年人检测功能。 |
-| callback | Callback&lt;[DetectionResult](#DetectionResult)&gt; | 是   | 回调函数，返回未成年人检测结果。|
+| -------- | -------------------------------- | ---- |------------------------------------------------------------ |
+| type     | string                           | 是   | 事件类型。type为“userAgeGroupDetected”，表示年龄群组检测功能。 |
+| callback | Callback&lt;[UserClassification](#UserClassification)&gt; | 是   | 回调函数，返回检测结果。|
 
 **错误码**：
 
@@ -59,11 +57,9 @@ import { userStatus } from '@kit.MultimodalAwarenessKit';
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 201      | Permission denied. An attempt was made to subscribe ChildDetection feature forbidden by permission: ohos.permission.ACCELEROMETER. |
-| 401      | Parameter error. Parameter verification failed. |
 | 801      | Capability not supported. Function can not work correctly due to limited device capabilities. |
-| 33500001 | Service exception. Possible causes: 1. A system error, such as null pointer, container-related exception; 2. N-API invocation exception, invalid N-API status. |
-| 33500002 | Subscription failed. Possible causes: 1. Callback registration failure; 2. Failed to bind native object to js wrapper; 3. N-API invocation exception, invalid N-API status; 4. IPC request exception. |
+| 33500001 | Service exception. Possible causes: <br>1. System error, such as a null pointer and container-related exception. <br>2. Node-API invocation exception, such as invalid Node-API status.|
+| 33500002 | Subscription failed. Possible causes: <br>1. Callback registration failure. <br>2. Failed to bind native object to js wrapper. <br>3. N-API invocation exception, invalid N-API status. <br>4. IPC request exception. |
 
 **示例**：
 
@@ -71,8 +67,8 @@ import { userStatus } from '@kit.MultimodalAwarenessKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-    userStatus.on('ChildDetection', (data: userStatus.DetectionResult) => {
-      console.info('callback success' + data);
+    userStatus.on('userAgeGroupDetected', (data: userStatus.DetectionResult) => {
+        console.info('callback success, ageGroup:' + data.ageGroup + ", confidence:" + data.confidence);
     });
     console.info("on succeeded");
 } catch (err) {
@@ -83,13 +79,11 @@ try {
 
 
 
-## userStatus.off('ChildDetection')
+## userStatus.off('userAgeGroupDetected')
 
-off(type: 'ChildDetection', callback?: Callback&lt;DetectionStatus&gt;): void;
+off(type: 'userAgeGroupDetected', callback?: Callback&lt;UserClassification&gt;): void;
 
-取消订阅未成年人检测功能。
-
-**需要权限**：ohos.permission.ACCELEROMETER
+取消订阅年龄群组检测功能。
 
 **系统能力**：SystemCapability.MultimodalAwareness.UserStatus
 
@@ -97,8 +91,8 @@ off(type: 'ChildDetection', callback?: Callback&lt;DetectionStatus&gt;): void;
 
 | 参数名   | 类型                             | 必填 | 说明                                                         |
 | -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                           | 是   | 事件类型。type为“ChildDetection”，表示未成年人检测功能。 |
-| callback | Callback&lt;[DetectionStatus](#DetectionStatus)&gt; | 否   | 回调函数，返回未成年人检测结果。 |
+| type     | string                           | 是   | 事件类型。type为“userAgeGroupDetected”，表示年龄群组检测功能。|
+| callback | Callback&lt;[UserClassification](#UserClassification)&gt; | 否   | 回调函数，返回检测结果。 |
 
 **错误码**：
 
@@ -106,11 +100,9 @@ off(type: 'ChildDetection', callback?: Callback&lt;DetectionStatus&gt;): void;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 201      | Permission denied. An attempt was made to unsubscribe MinorIdentification feature forbidden by permission: ohos.permission.ACCELEROMETER. |
-| 401      | Parameter error. Parameter verification failed. |
 | 801      | Capability not supported. Function can not work correctly due to limited device capabilities. |
-| 33500001 | Service exception. Possible causes: 1. A system error, such as null pointer, container-related exception; 2. N-API invocation exception, invalid N-API status. |
-| 33500003 | Unsubscription failed. Possible causes: 1. Callback failure; 2. N-API invocation exception, invalid N-API status; 3. IPC request exception. |
+| 33500001 | Service exception. Possible causes: <br>1. System error, such as a null pointer and container-related exception. <br>2. Node-API invocation exception, such as invalid Node-API status. |
+| 33500003 | Unsubscription failed. Possible causes: <br>1. Callback failure. <br>2. Node-API invocation exception, such as invalid Node-API status. <br>3. IPC request exception.|
 
 **示例**：
 
@@ -118,7 +110,7 @@ off(type: 'ChildDetection', callback?: Callback&lt;DetectionStatus&gt;): void;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-    userStatus.off('ChildDetection');
+    userStatus.off('userAgeGroupDetected');
     console.info("off succeeded");
 } catch (err) {
     let error = err as BusinessError;

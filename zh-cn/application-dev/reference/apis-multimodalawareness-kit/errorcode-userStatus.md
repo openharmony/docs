@@ -8,11 +8,13 @@
 
 **错误信息**
 
-Service exception. Possible causes: 1. A system error, such as null pointer, container-related exception; 2. N-API invocation exception, invalid N-API status.
+Service exception. Possible causes:
+<br>&emsp;1. System error, such as a null pointer and container-related exception. 
+<br>&emsp;2. Node-API invocation exception, such as invalid Node-API status.
 
 **错误描述**
 
-当调用User Status Awareness模块on、off接口时，若服务异常，会报此错误码。
+当调用userStatus模块on、off接口时，若服务异常，会报此错误码。
 
 **可能原因**
 
@@ -29,11 +31,15 @@ Service exception. Possible causes: 1. A system error, such as null pointer, con
 
 **错误信息**
 
-Subscription failed. Possible causes: 1. Callback registration failure; 2. Failed to bind native object to js wrapper; 3. N-API invocation exception, invalid N-API status; 4. IPC request exception.
+Subscription failed. Possible causes: 
+<br>&emsp;1. Callback registration failed.
+<br>&emsp;2. Failed to bind the native object to the JS wrapper.
+<br>&emsp;3. Node-API invocation exception, such as invalid Node-API status.
+<br>&emsp;4. IPC request exception.
 
 **错误描述**
 
-当调用User Status Awareness模块on接口时，若订阅失败，会报此错误码。
+当调用userStatus模块on接口时，若订阅失败，会报此错误码。
 
 **可能原因**
 
@@ -50,11 +56,14 @@ Subscription failed. Possible causes: 1. Callback registration failure; 2. Faile
 
 **错误信息**
 
-Unsubscription failed. Possible causes: 1. Callback failure; 2. N-API invocation exception, invalid N-API status; 3. IPC request exception.
+Unsubscription failed. Possible causes: 
+<br>&emsp;1. Callback failure.
+<br>&emsp;2. Node-API invocation exception, such as invalid Node-API status.
+<br>&emsp;3. IPC request exception.
 
 **错误描述**
 
-当调用User Status Awareness模块off接口时，若取消订阅失败，会报此错误码。
+当调用userStatus模块off接口时，若取消订阅失败，会报此错误码。
 
 **可能原因**
 
