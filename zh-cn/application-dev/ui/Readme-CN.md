@@ -196,6 +196,7 @@
       - [自定义扩展概述](arkts-user-defined-modifier.md)
       - [属性修改器 (AttributeModifier)](arkts-user-defined-extension-attributeModifier.md)
       - [属性更新器 (AttributeUpdater)](arkts-user-defined-extension-attributeUpdater.md)
+      - [自定义绘制修改器 (DrawModifier)](arkts-user-defined-extension-drawModifier.md)
   - [使用镜像能力](arkts-mirroring-display.md)
   - 无障碍与适老化<!--arkts-support-accessibility-friendliness-->
     - [支持无障碍](arkts-universal-attributes-accessibility.md)
@@ -231,6 +232,7 @@
     - [嵌入ArkTS组件](ndk-embed-arkts-components.md)
     - [通过XComponent接入无障碍](ndk-accessibility-xcomponent.md)
     - [自定义绘制](arkts-user-defined-draw.md)
+    - [查询和操作自定义节点](ndk-node-query-operate.md)
     - [通过EmbeddedComponent拉起EmbeddedUIExtensionAbility](ndk-embedded-component.md)
 - UI开发 (兼容JS的类Web开发范式)<!--ui-js-dev-->
   - [UI开发 (兼容JS的类Web开发范式)概述](ui-js-overview.md)
