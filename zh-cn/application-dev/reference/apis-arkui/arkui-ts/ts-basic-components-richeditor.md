@@ -14,7 +14,9 @@
 
 ## 接口
 
-### RichEditor(value: RichEditorOptions)
+### RichEditor<sup>10+</sup>
+
+RichEditor(value: RichEditorOptions)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -26,8 +28,13 @@
 | ----- | --------------------------------------- | ---- | ----------- |
 | value | [RichEditorOptions](#richeditoroptions) | 是    | 富文本组件初始化选项。 |
 
-### RichEditor(options: RichEditorStyledStringOptions)<sup>12+</sup>
+### RichEditor<sup>12+</sup>
 
+RichEditor(options: RichEditorStyledStringOptions)
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
