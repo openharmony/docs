@@ -2294,6 +2294,9 @@ off(type: SensorId.AMBIENT_LIGHT, sensorInfoParam?: SensorInfoParam, callback?: 
 **示例**：
 
 ```ts
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 enum Ret { OK, Failed = -1 }
 
 // 传感器回调
