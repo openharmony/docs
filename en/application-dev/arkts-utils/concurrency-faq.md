@@ -11,7 +11,7 @@ If a task in a TaskPool is not executed, perform the following steps to quickly 
    If this log is missing, **taskpool.execute** is not actually called. Check whether the service logic preceding this API has been completed.
 
    ```ts
-   console.log("test start");
+   console.info("test start");
    ... // Other service logic.
    taskpool.execute(xxx);
    
@@ -85,7 +85,7 @@ The application has a timing requirement for the execution of a certain task (re
 
 **Solution**
 
-1. Analyze whether the execution duration (3 to 5 seconds) for other tasks are reasonable. 
+1. Analyze whether the execution duration (3 to 5 seconds) for other tasks are reasonable.
 2. Adjust the priority of taskA.
 
 ### Tasks in Serial Queue Delayed by Slow Predecessors
@@ -128,9 +128,17 @@ The first execution of TaskPool tasks is slow, with a delay of several hundred m
 **Symptom**
 
 1. JavaScript exception
+   
+   Reading the input parameters in serialization fails.
 
    ```ts
    Error message:An exception occurred during serialization, taskpool: failed to serialize arguments.
+   ```
+
+   Failed to deserialize the return value.
+
+   ```ts
+   Error message:An exception occurred during serialization, taskpool: failed to serialize result.
    ```
 
 2. HiLog error log
@@ -142,15 +150,79 @@ The first execution of TaskPool tasks is slow, with a delay of several hundred m
 
 **Cause**
 
-The input parameters of the concurrent function used by the TaskPool to implement tasks must meet the types supported by inter-thread communication. For details, see [Inter-thread Communication Objects](../reference/apis-arkts/js-apis-taskpool.md#sequenceable-data-types). When unsupported communication objects are passed into the concurrent function, the above phenomena occur. Further check whether the parameters meet the requirements based on the object type printed in HiLog logs.
+The input parameters and return value of the concurrent function used by the TaskPool to implement tasks must meet the types supported by inter-thread communication. For details, see [Inter-thread Communication Objects](../reference/apis-arkts/js-apis-taskpool.md#sequenceable-data-types). When unsupported communication objects are passed into or returned by the concurrent function, the above phenomena occur. Further check whether the communication objects meet the requirements based on the object type printed in HiLog logs.
 
 **Scenario Example**
 
-1. The application throws a serialization failure exception when starting a task because it passes an unsupported object type for inter-thread communication into the concurrent function. 
+1. The application throws an exception indicating input parameter serialization failure when starting a task because it passes an unsupported object type for inter-thread communication into the concurrent function. 
 **Solution**: Check the input parameters of the concurrent function based on [Inter-thread Communication Objects](../reference/apis-arkts/js-apis-taskpool.md#sequenceable-data-types).
 
-2. The application throws a serialization failure exception when starting a task, and HiLog prints the error log **Unsupport serialize object type: Proxy**. Based on the error log, the application passes a proxy object into the concurrent function. The parameter uses the @State decorator, causing the original object to become a Proxy object, which is not a supported object type for inter-thread communication. 
+2. The application throws an exception indicating input parameter serialization failure when starting a task, and HiLog prints the error log **Unsupport serialize object type: Proxy**. Based on the error log, the application passes a proxy object into the concurrent function. The parameter uses the @State decorator, causing the original object to become a Proxy object, which is not a supported object type for inter-thread communication. 
 **Solution**: TaskPool does not support complex types decorated with @State and @Prop. For details, see [Precautions for TaskPool](taskpool-introduction.md#precautions-for-taskpool). The application should remove the @State decorator.
+
+3. The application throws an exception indicating return value serialization failure when executing a task. The code check shows that the return value of the concurrent function is an unsupported serialization type.
+   
+   ```ts
+   // utils.ets
+   @Concurrent
+   export function printArgs(args: number) {
+     return args;
+   }
+
+   // index.ets
+   import { taskpool } from '@kit.ArkTS'
+   import { BusinessError } from '@kit.BasicServicesKit'
+   import { printArgs} from './utils'
+   @Concurrent
+   function createTask(a: number, b:number) {
+     let sum = a + b;
+     // task1: unsupported serialization type
+     let task: taskpool.Task = new taskpool.Task(printArgs, sum);
+     return task;
+   }
+
+   function executeTask() {
+     // task2
+     let task: taskpool.Task = new taskpool.Task(createTask, 1, 2);
+     taskpool.execute(task).then((res) => {
+     }).catch((e: BusinessError) => {
+       // Print the error message "Failed to serialize the returned result."
+       console.error("execute task failed " + e.message);
+     })
+   }
+   ```
+
+   **Solution**: Create and execute task 1 within **.then**. Set the return value of the concurrent function to a serializable type.
+
+   ```ts
+   // utils.ets
+   @Concurrent
+   export function printArgs(args: number) {
+     return args;
+   }
+
+   // index.ets
+   import { taskpool } from '@kit.ArkTS'
+   import { BusinessError } from '@kit.BasicServicesKit'
+   import { printArgs} from './utils'
+   @Concurrent
+   function createTask(a: number, b:number) {
+     // Supported serialization types
+     let sum = a + b;
+     return sum;
+   }
+
+   function executeTask() {
+     // task2
+     let task: taskpool.Task = new taskpool.Task(createTask, 1, 2);
+     taskpool.execute(task).then((res) => {
+       // task1
+       let task: taskpool.Task = new taskpool.Task(printArgs, res);
+     }).catch((e: BusinessError) => {
+       console.error("execute task failed " + e.message);
+     })
+   }
+   ```
 
 ## Using instanceof with Sendable Objects in Child Threads Returns False
 
@@ -167,13 +239,13 @@ function testInstanceof() {
   let a = new A();
   if (a instanceof A) {
     // Print "test instanceof in main thread success".
-    console.log("test instanceof in main thread success");
+    console.info("test instanceof in main thread success");
   } else {
-    console.log("test instanceof in main thread fail");
+    console.info("test instanceof in main thread fail");
   }
   workerInstance.postMessageWithSharedSendable(a);
   workerInstance.onerror = (err: ErrorEvent) => {
-    console.log("worker err :" + err.message)
+    console.error("worker err :" + err.message)
   }
 }
 
@@ -200,9 +272,9 @@ workerPort.onmessage = (e: MessageEvents) => {
     let a : A = e.data as A;
     if (a instanceof A) {
         // Print "test instanceof in worker thread success".
-        console.log("test instanceof in worker thread success");
+        console.info("test instanceof in worker thread success");
     } else {
-        console.log("test instanceof in worker thread fail");
+        console.info("test instanceof in worker thread fail");
     }
 }
 ```
@@ -225,7 +297,7 @@ ArkTS runtime strictly checks type consistency during property assignment. If th
 
 **Scenario Example**
 
-1. A type mismatch exception is thrown when the application passes an instance of Sendable class A to a child thread. Based on the JavaScript stack, the problem occurs when creating an instance of class A. It is found that when the application is integrated with other modules, the other modules do not use Sendable class B to encapsulate the dataset. 
+1. A type mismatch exception is thrown when the application passes an instance of Sendable class A to a child thread. Based on the JavaScript stack, the problem occurs when creating an instance of class A. It is found that when the application is integrated with other modules, the other modules do not use Sendable class B to encapsulate the dataset.
 
    **Solution**: Use a Sendable class to re-encapsulate the data passed by other modules into the current module.
    
@@ -271,12 +343,42 @@ Since the layout of Sendable classes is fixed and does not allow adding or remov
 3. An exception is thrown when the application attempts to add a new property while using the Sendable feature in Local Test or Previewer. Since the Sendable feature is currently not supported in Local Test and Previewer, the exception is thrown. 
 **Solution**: Due to specification limitations, this is currently not supported.
 
-## What is the Principle Behind ArkTS Promise?
+## What Is the Principle Behind ArkTS Promise?
 
 Promise is the asynchronous concurrency capability provided by ArkTS and is a standard JavaScript syntax. For details, see [Promise](async-concurrency-overview.md#promise).
 
-## Can Taskpool Threads Execute JavaScript Closure Functions That Do Not Require @Concurrent and @Sendable Decorators?
+## Can TaskPool Threads Execute JavaScript Closure Functions That Do Not Require @Concurrent and @Sendable Decorators?
 
 Task functions executed by the TaskPool must be decorated with @Concurrent. Since concurrent functions cannot access closures, they cannot call other regular functions within the same file. For details, see [Precautions for TaskPool](taskpool-introduction.md#precautions-for-taskpool). However, you can pass @Sendable-decorated regular functions and async functions as parameters to concurrent functions and call Sendable functions within the concurrent functions.
 
 TaskPool threads do not support executing regular JavaScript closure functions. If necessary, you can use the [Worker](worker-introduction.md) concurrency capability to reconstruct your services.
+
+## How Do I Save the Execution Result of a TaskPool Task to a Custom Data Structure?
+
+**Symptom**
+
+The execution function (concurrent function) of a TaskPool task can only use local variables and function parameters. How should I save its execution result of a TaskPool task to a custom data structure?
+
+**Solution**
+
+1. Custom Sendable class: [Sendable objects](arkts-sendable.md) can be shared across different threads. You can save the task execution results within these objects.
+
+2. Returning results in **.then**: The execution result of a TaskPool task can be returned within **.then**. If the data to be saved is only used in the current thread, the execution result can be stored in a custom data structure within **.then**.
+
+   ```ts
+   import { taskpool } from '@kit.ArkTS'
+   import { BusinessError } from '@kit.BasicServicesKit'
+   @Concurrent
+   function createTask(a: number) {
+     return a;
+   }
+   function executeTask() {
+     let task: taskpool.Task = new taskpool.Task(createTask, 1)
+     taskpool.execute(task).then((res) => {
+       console.info('execute task success');
+       // Save the data to the custom data structure.
+     }).catch((e: BusinessError) => {
+       console.error('execute task error: ${e.message}');
+     })
+    }
+   ```

@@ -18,7 +18,7 @@ A non-shared module is loaded once in the same thread and multiple times in diff
 
   A shared module is loaded only once within a single process and can be used across multiple threads.
 
-  When a shared module is loaded, non-shared modules that it imports are not loaded immediately. Instead, these non-shared modules are lazy-imported within the current thread when their exported variables are accessed. This lazy loading ensures that non-shared modules remain isolated between threads, with each thread potentially loading the module once if needed.
+  When a shared module is loaded, non-shared modules that it imports are not loaded immediately. Instead, these non-shared modules are lazy-imported within the current thread when their exported variables are accessed. This lazy import feature ensures that non-shared modules remain isolated between threads, with each thread potentially loading the non-shared modules once if needed.<br>
 
   side-effects-import, which does not involve exported variables, is never loaded and therefore is not supported.
 

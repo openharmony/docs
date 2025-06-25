@@ -9,6 +9,7 @@ The **ffrt_task_attr_t** struct describes a task attribute.
 
 **Related module**: [FFRT](_f_f_r_t.md)
 
+**Header file**: [type_def.h](type__def_8h.md)
 
 ## Summary
 
