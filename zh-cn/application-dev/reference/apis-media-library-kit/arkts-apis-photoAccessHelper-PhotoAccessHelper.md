@@ -20,8 +20,8 @@ getAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;Photo
 
 | 参数名   | 类型                     | 必填 | 说明                      |
 | -------- | ------------------------ | ---- | ------------------------- |
-| options  | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions)        | 是   | 图片和视频检索选项。              |
-| callback |  AsyncCallback&lt;[FetchResult](js-apis-photoAccessHelper.md#fetchresult)&lt;[PhotoAsset](js-apis-photoAccessHelper.md#photoasset)&gt;&gt; | 是   | callback返回图片和视频检索结果集。 |
+| options  | [FetchOptions](arkts-apis-photoAccessHelper-i.md#fetchoptions)        | 是   | 图片和视频检索选项。              |
+| callback |  AsyncCallback&lt;[FetchResult](arkts-apis-photoAccessHelper-FetchResult.md)&lt;[PhotoAsset](arkts-apis-photoAccessHelper-PhotoAsset.md)&gt;&gt; | 是   | callback返回图片和视频检索结果集。 |
 
 **错误码：**
 
@@ -38,7 +38,7 @@ getAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;Photo
 
 **示例：**
 
-phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -81,13 +81,13 @@ getAssets(options: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;
 
 | 参数名  | 类型                | 必填 | 说明             |
 | ------- | ------------------- | ---- | ---------------- |
-| options | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions)   | 是   | 图片和视频检索选项。     |
+| options | [FetchOptions](arkts-apis-photoAccessHelper-i.md#fetchoptions)   | 是   | 图片和视频检索选项。     |
 
 **返回值：**
 
 | 类型                        | 说明           |
 | --------------------------- | -------------- |
-| Promise&lt;[FetchResult](js-apis-photoAccessHelper.md#fetchresult)&lt;[PhotoAsset](js-apis-photoAccessHelper.md#photoasset)&gt;&gt; | Promise对象，返回图片和视频数据结果集。 |
+| Promise&lt;[FetchResult](arkts-apis-photoAccessHelper-FetchResult.md)&lt;[PhotoAsset](arkts-apis-photoAccessHelper-PhotoAsset.md)&gt;&gt; | Promise对象，返回图片和视频数据结果集。 |
 
 **错误码：**
 
@@ -104,7 +104,7 @@ getAssets(options: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;
 
 **示例：**
 
-phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -145,14 +145,14 @@ getBurstAssets(burstKey: string, options: FetchOptions): Promise&lt;FetchResult&
 
 | 参数名  | 类型                | 必填 | 说明             |
 | ------- | ------------------- | ---- | ---------------- |
-| burstKey | string   | 是   | 一组连拍照片的唯一标识：uuid(可传入[PhotoKeys](js-apis-photoAccessHelper.md#photokeys)的BURST_KEY)。字符串长度为36。 |
-| options | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions)   | 是   | 连拍照片检索选项。     |
+| burstKey | string   | 是   | 一组连拍照片的唯一标识：uuid(可传入[PhotoKeys](arkts-apis-photoAccessHelper-e.md#photokeys)的BURST_KEY)。字符串长度为36。 |
+| options | [FetchOptions](arkts-apis-photoAccessHelper-i.md#fetchoptions)   | 是   | 连拍照片检索选项。     |
 
 **返回值：**
 
 | 类型                        | 说明           |
 | --------------------------- | -------------- |
-| Promise&lt;[FetchResult](js-apis-photoAccessHelper.md#fetchresult)&lt;[PhotoAsset](js-apis-photoAccessHelper.md#photoasset)&gt;&gt; | Promise对象，返回连拍照片数据结果集。 |
+| Promise&lt;[FetchResult](arkts-apis-photoAccessHelper-FetchResult.md)&lt;[PhotoAsset](arkts-apis-photoAccessHelper-PhotoAsset.md)&gt;&gt; | Promise对象，返回连拍照片数据结果集。 |
 
 **错误码：**
 
@@ -166,7 +166,7 @@ getBurstAssets(burstKey: string, options: FetchOptions): Promise&lt;FetchResult&
 
 **示例：**
 
-phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -214,9 +214,9 @@ createAsset(photoType: PhotoType, extension: string, options: CreateOptions, cal
 
 | 参数名   | 类型                     | 必填 | 说明                      |
 | -------- | ------------------------ | ---- | ------------------------- |
-| photoType  | [PhotoType](js-apis-photoAccessHelper.md#phototype)        | 是   | 创建的文件类型，IMAGE或者VIDEO类型。              |
+| photoType  | [PhotoType](arkts-apis-photoAccessHelper-e.md#phototype)        | 是   | 创建的文件类型，IMAGE或者VIDEO类型。              |
 | extension  | string        | 是   | 文件名后缀参数，例如：'jpg'。              |
-| options  | [CreateOptions](js-apis-photoAccessHelper.md#createoptions)        | 是   | 创建选项，当前仅支持'title'，例如{title: 'testPhoto'}。              |
+| options  | [CreateOptions](arkts-apis-photoAccessHelper-i.md#createoptions)        | 是   | 创建选项，当前仅支持'title'，例如{title: 'testPhoto'}。              |
 | callback |  AsyncCallback&lt;string&gt; | 是   | callback返回创建的图片和视频的uri。 |
 
 **错误码：**
@@ -234,7 +234,7 @@ createAsset(photoType: PhotoType, extension: string, options: CreateOptions, cal
 
 **示例：**
 
-phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
@@ -273,7 +273,7 @@ createAsset(photoType: PhotoType, extension: string, callback: AsyncCallback&lt;
 
 | 参数名   | 类型                     | 必填 | 说明                      |
 | -------- | ------------------------ | ---- | ------------------------- |
-| photoType  | [PhotoType](js-apis-photoAccessHelper.md#phototype)        | 是   | 创建的文件类型，IMAGE或者VIDEO类型。              |
+| photoType  | [PhotoType](arkts-apis-photoAccessHelper-e.md#phototype)        | 是   | 创建的文件类型，IMAGE或者VIDEO类型。              |
 | extension  | string        | 是   | 文件名后缀参数，例如：'jpg'。              |
 | callback |  AsyncCallback&lt;string&gt; | 是   | callback返回创建的图片和视频的uri。 |
 
@@ -292,7 +292,7 @@ createAsset(photoType: PhotoType, extension: string, callback: AsyncCallback&lt;
 
 **示例：**
 
-phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
@@ -328,9 +328,9 @@ createAsset(photoType: PhotoType, extension: string, options?: CreateOptions): P
 
 | 参数名   | 类型                     | 必填 | 说明                      |
 | -------- | ------------------------ | ---- | ------------------------- |
-| photoType  | [PhotoType](js-apis-photoAccessHelper.md#phototype)        | 是   | 创建的文件类型，IMAGE或者VIDEO类型。              |
+| photoType  | [PhotoType](arkts-apis-photoAccessHelper-e.md#phototype)        | 是   | 创建的文件类型，IMAGE或者VIDEO类型。              |
 | extension  | string        | 是   | 文件名后缀参数，例如：'jpg'。              |
-| options  | [CreateOptions](js-apis-photoAccessHelper.md#createoptions)        | 否   | 创建选项，当前仅支持'title'，例如{title: 'testPhoto'}。              |
+| options  | [CreateOptions](arkts-apis-photoAccessHelper-i.md#createoptions)        | 否   | 创建选项，当前仅支持'title'，例如{title: 'testPhoto'}。              |
 
 **返回值：**
 
@@ -353,7 +353,7 @@ createAsset(photoType: PhotoType, extension: string, options?: CreateOptions): P
 
 **示例：**
 
-phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
@@ -389,10 +389,10 @@ getAlbums(type: AlbumType, subtype: AlbumSubtype, options: FetchOptions, callbac
 
 | 参数名   | 类型                     | 必填 | 说明                      |
 | -------- | ------------------------ | ---- | ------------------------- |
-| type  | [AlbumType](js-apis-photoAccessHelper.md#albumtype)         | 是   | 相册类型。              |
-| subtype  | [AlbumSubtype](js-apis-photoAccessHelper.md#albumsubtype)         | 是   | 相册子类型。              |
-| options  | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions)         | 是   |  检索选项。              |
-| callback |  AsyncCallback&lt;[FetchResult](js-apis-photoAccessHelper.md#fetchresult)&lt;[Album](js-apis-photoAccessHelper.md#album)&gt;&gt; | 是   | callback返回获取相册的结果集。 |
+| type  | [AlbumType](arkts-apis-photoAccessHelper-e.md#albumtype)         | 是   | 相册类型。              |
+| subtype  | [AlbumSubtype](arkts-apis-photoAccessHelper-e.md#albumsubtype)         | 是   | 相册子类型。              |
+| options  | [FetchOptions](arkts-apis-photoAccessHelper-i.md#fetchoptions)         | 是   |  检索选项。              |
+| callback |  AsyncCallback&lt;[FetchResult](arkts-apis-photoAccessHelper-FetchResult.md)&lt;[Album](arkts-apis-photoAccessHelper-Album.md)&gt;&gt; | 是   | callback返回获取相册的结果集。 |
 
 **错误码：**
 
@@ -409,7 +409,7 @@ getAlbums(type: AlbumType, subtype: AlbumSubtype, options: FetchOptions, callbac
 
 **示例：**
 
-phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -455,9 +455,9 @@ getAlbums(type: AlbumType, subtype: AlbumSubtype, callback: AsyncCallback&lt;Fet
 
 | 参数名   | 类型                     | 必填 | 说明                      |
 | -------- | ------------------------ | ---- | ------------------------- |
-| type  | [AlbumType](js-apis-photoAccessHelper.md#albumtype)         | 是   | 相册类型。              |
-| subtype  | [AlbumSubtype](js-apis-photoAccessHelper.md#albumsubtype)         | 是   | 相册子类型。              |
-| callback |  AsyncCallback&lt;[FetchResult](js-apis-photoAccessHelper.md#fetchresult)&lt;[Album](js-apis-photoAccessHelper.md#album)&gt;&gt; | 是   | callback返回获取相册的结果集。 |
+| type  | [AlbumType](arkts-apis-photoAccessHelper-e.md#albumtype)         | 是   | 相册类型。              |
+| subtype  | [AlbumSubtype](arkts-apis-photoAccessHelper-e.md#albumsubtype)         | 是   | 相册子类型。              |
+| callback |  AsyncCallback&lt;[FetchResult](arkts-apis-photoAccessHelper-FetchResult.md)&lt;[Album](arkts-apis-photoAccessHelper-Album.md)&gt;&gt; | 是   | callback返回获取相册的结果集。 |
 
 **错误码：**
 
@@ -474,7 +474,7 @@ getAlbums(type: AlbumType, subtype: AlbumSubtype, callback: AsyncCallback&lt;Fet
 
 **示例：**
 
-phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
@@ -512,15 +512,15 @@ getAlbums(type: AlbumType, subtype: AlbumSubtype, options?: FetchOptions): Promi
 
 | 参数名   | 类型                     | 必填 | 说明                      |
 | -------- | ------------------------ | ---- | ------------------------- |
-| type  | [AlbumType](js-apis-photoAccessHelper.md#albumtype)         | 是   | 相册类型。              |
-| subtype  | [AlbumSubtype](js-apis-photoAccessHelper.md#albumsubtype)         | 是   | 相册子类型。              |
-| options  | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions)         | 否   |  检索选项，不填时默认根据相册类型检索。              |
+| type  | [AlbumType](arkts-apis-photoAccessHelper-e.md#albumtype)         | 是   | 相册类型。              |
+| subtype  | [AlbumSubtype](arkts-apis-photoAccessHelper-e.md#albumsubtype)         | 是   | 相册子类型。              |
+| options  | [FetchOptions](arkts-apis-photoAccessHelper-i.md#fetchoptions)         | 否   |  检索选项，不填时默认根据相册类型检索。              |
 
 **返回值：**
 
 | 类型                        | 说明           |
 | --------------------------- | -------------- |
-| Promise&lt;[FetchResult](js-apis-photoAccessHelper.md#fetchresult)&lt;[Album](js-apis-photoAccessHelper.md#album)&gt;&gt; | Promise对象，返回获取相册的结果集。 |
+| Promise&lt;[FetchResult](arkts-apis-photoAccessHelper-FetchResult.md)&lt;[Album](arkts-apis-photoAccessHelper-Album.md)&gt;&gt; | Promise对象，返回获取相册的结果集。 |
 
 **错误码：**
 
@@ -537,7 +537,7 @@ getAlbums(type: AlbumType, subtype: AlbumSubtype, options?: FetchOptions): Promi
 
 **示例：**
 
-phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -578,9 +578,9 @@ registerChange(uri: string, forChildUris: boolean, callback: Callback&lt;ChangeD
 
 | 参数名    | 类型                                        | 必填 | 说明                                                         |
 | --------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| uri       | string                                      | 是   | PhotoAsset的uri, Album的uri或[DefaultChangeUri](js-apis-photoAccessHelper.md#defaultchangeuri)的值。 |
+| uri       | string                                      | 是   | PhotoAsset的uri, Album的uri或[DefaultChangeUri](arkts-apis-photoAccessHelper-e.md#defaultchangeuri)的值。 |
 | forChildUris | boolean                                     | 是   | 是否模糊监听。uri为相册uri时：forChildUris为true，能监听到相册中文件的变化。如果是false，只能监听相册本身变化；uri为photoAsset时：forChildUris为true、false没有区别；uri为DefaultChangeUri时：forChildUris必须为true，如果为false将找不到该uri，收不到任何消息。 |
-| callback  | Callback&lt;[ChangeData](js-apis-photoAccessHelper.md#changedata)&gt; | 是   | 返回要监听的[ChangeData](js-apis-photoAccessHelper.md#changedata)。注：uri可以注册多个不同的callback监听，[unRegisterChange](js-apis-photoAccessHelper.md#unregisterchange)可以关闭该uri所有监听，也可以关闭指定callback的监听。 |
+| callback  | Callback&lt;[ChangeData](arkts-apis-photoAccessHelper-i.md#changedata)&gt; | 是   | 返回要监听的[ChangeData](arkts-apis-photoAccessHelper-i.md#changedata)。注：uri可以注册多个不同的callback监听，[unRegisterChange](#unregisterchange)可以关闭该uri所有监听，也可以关闭指定callback的监听。 |
 
 **错误码：**
 
@@ -596,7 +596,7 @@ registerChange(uri: string, forChildUris: boolean, callback: Callback&lt;ChangeD
 
 **示例：**
 
-phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -642,8 +642,8 @@ unRegisterChange(uri: string, callback?: Callback&lt;ChangeData&gt;): void
 
 | 参数名   | 类型                                        | 必填 | 说明                                                         |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| uri      | string                                      | 是   | PhotoAsset的uri, Album的uri或[DefaultChangeUri](js-apis-photoAccessHelper.md#defaultchangeuri)的值。 |
-| callback | Callback&lt;[ChangeData](js-apis-photoAccessHelper.md#changedata)&gt; | 否   | 取消[registerChange](js-apis-photoAccessHelper.md#registerchange)注册时的callback的监听，不填时，取消该uri的所有监听。注：off指定注册的callback后不会进入此回调。 |
+| uri      | string                                      | 是   | PhotoAsset的uri, Album的uri或[DefaultChangeUri](arkts-apis-photoAccessHelper-e.md#defaultchangeuri)的值。 |
+| callback | Callback&lt;[ChangeData](arkts-apis-photoAccessHelper-i.md#changedata)&gt; | 否   | 取消[registerChange](#registerchange)注册时的callback的监听，不填时，取消该uri的所有监听。注：off指定注册的callback后不会进入此回调。 |
 
 **错误码：**
 
@@ -659,7 +659,7 @@ unRegisterChange(uri: string, callback?: Callback&lt;ChangeData&gt;): void
 
 **示例：**
 
-phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -710,7 +710,7 @@ applyChanges(mediaChangeRequest: MediaChangeRequest): Promise&lt;void&gt;
 
 | 参数名   | 类型                     | 必填 | 说明                      |
 | -------- | ------------------------ | ---- | ------------------------- |
-| mediaChangeRequest  | [MediaChangeRequest](js-apis-photoAccessHelper.md#mediachangerequest11)  | 是  |  媒体变更请求，支持资产变更请求和相册变更请求。 |
+| mediaChangeRequest  | [MediaChangeRequest](arkts-apis-photoAccessHelper-i.md#mediachangerequest11)  | 是  |  媒体变更请求，支持资产变更请求和相册变更请求。 |
 
 **返回值：**
 
@@ -730,7 +730,7 @@ applyChanges(mediaChangeRequest: MediaChangeRequest): Promise&lt;void&gt;
 
 **示例：**
 
-该接口依赖于[MediaChangeRequest](js-apis-photoAccessHelper.md#mediachangerequest11)对象，详细代码示例请参见[MediaAssetChangeRequest](js-apis-photoAccessHelper.md#mediaassetchangerequest11)和[MediaAlbumChangeRequest](js-apis-photoAccessHelper.md#mediaalbumchangerequest11)中的接口示例。
+该接口依赖于[MediaChangeRequest](arkts-apis-photoAccessHelper-i.md#mediachangerequest11)对象，详细代码示例请参见[MediaAssetChangeRequest](arkts-apis-photoAccessHelper-MediaAssetChangeRequest.md)和[MediaAlbumChangeRequest](arkts-apis-photoAccessHelper-MediaAlbumChangeRequest.md)中的接口示例。
 
 ## release
 
@@ -759,7 +759,7 @@ release(callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
@@ -801,7 +801,7 @@ release(): Promise&lt;void&gt;
 
 **示例：**
 
-phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
@@ -833,7 +833,7 @@ showAssetsCreationDialog(srcFileUris: Array&lt;string&gt;, photoCreationConfigs:
 | 参数名   | 类型                                                                   | 必填 | 说明                      |
 | -------- |----------------------------------------------------------------------| ---- | ------------------------- |
 | srcFileUris | Array&lt;string&gt; | 是 | 需保存到媒体库中的图片/视频文件对应的[媒体库uri](../../file-management/user-file-uri-intro.md#媒体文件uri)。<br>**注意：**<br>- 一次弹窗最多保存100张图片。<br>- 仅支持处理图片、视频uri。<br>- 不支持手动拼接的uri，需调用接口获取，获取方式参考[媒体文件uri获取方式](../../file-management/user-file-uri-intro.md#媒体文件uri获取方式)。  |
-| photoCreationConfigs | Array&lt;[PhotoCreationConfig](js-apis-photoAccessHelper.md#photocreationconfig12)&gt; | 是 | 保存图片或视频到媒体库的配置，包括文件名等，与srcFileUris保持一一对应。 |
+| photoCreationConfigs | Array&lt;[PhotoCreationConfig](arkts-apis-photoAccessHelper-i.md#photocreationconfig12)&gt; | 是 | 保存图片或视频到媒体库的配置，包括文件名等，与srcFileUris保持一一对应。 |
 
 **返回值：**
 
@@ -852,7 +852,7 @@ showAssetsCreationDialog(srcFileUris: Array&lt;string&gt;, photoCreationConfigs:
 
 **示例：**
 
-phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -896,7 +896,7 @@ createAssetWithShortTermPermission(photoCreationConfig: PhotoCreationConfig): Pr
 
 | 参数名   | 类型                                                                   | 必填 | 说明                      |
 | -------- |----------------------------------------------------------------------| ---- | ------------------------- |
-| photoCreationConfig | [PhotoCreationConfig](js-apis-photoAccessHelper.md#photocreationconfig12); | 是 | 保存图片/视频到媒体库的配置，包括保存的文件名等。 |
+| photoCreationConfig | [PhotoCreationConfig](arkts-apis-photoAccessHelper-i.md#photocreationconfig12); | 是 | 保存图片/视频到媒体库的配置，包括保存的文件名等。 |
 
 **返回值：**
 
@@ -916,7 +916,7 @@ createAssetWithShortTermPermission(photoCreationConfig: PhotoCreationConfig): Pr
 
 **示例：**
 
-phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { fileIo } from '@kit.CoreFileKit';
@@ -989,7 +989,7 @@ requestPhotoUrisReadPermission(srcFileUris: Array&lt;string&gt;): Promise&lt;Arr
 
 **示例：**
 
-phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -1023,7 +1023,7 @@ getSupportedPhotoFormats(photoType: PhotoType): Promise&lt;Array&lt;string&gt;&g
 
 | 参数名   | 类型                   | 必填 | 说明      |
 |-----------|-------------------------|-----------|-----------------|
-| photoType | [PhotoType](js-apis-photoAccessHelper.md#phototype) | 是   | 媒体文件类型。 |
+| photoType | [PhotoType](arkts-apis-photoAccessHelper-e.md#phototype) | 是   | 媒体文件类型。 |
 
 **返回值：**
 
@@ -1042,7 +1042,7 @@ getSupportedPhotoFormats(photoType: PhotoType): Promise&lt;Array&lt;string&gt;&g
 
 **示例：**
 
-phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, photoTypeNumber: number){
@@ -1086,7 +1086,7 @@ on(type: 'photoChange', callback: Callback&lt;PhotoAssetChangeInfos&gt;): void
 | 参数名   | 类型                   | 必填 | 说明      |
 |-----------|-------------------------|-----------|-----------------|
 | type | string | 是   | 注册监听媒体资产，取值为'photoChange'。注册完成后，有资产发生变化时，通过callback返回变更信息。 |
-| callback  | Callback&lt;[PhotoAssetChangeInfos](js-apis-photoAccessHelper.md#photoassetchangeinfos20)&gt; | 是   | 返回变更的媒体资产信息[PhotoAssetChangeInfos](js-apis-photoAccessHelper.md#photoassetchangeinfos20)。<br>**注意：** 该接口可以注册多个不同的callback监听，[off('photoChange')](js-apis-photoAccessHelper.md#offphotochange20)即可以关闭所有监听，也可以关闭指定callback监听。 |
+| callback  | Callback&lt;[PhotoAssetChangeInfos](arkts-apis-photoAccessHelper-i.md#photoassetchangeinfos20)&gt; | 是   | 返回变更的媒体资产信息[PhotoAssetChangeInfos](arkts-apis-photoAccessHelper-i.md#photoassetchangeinfos20)。<br>**注意：** 该接口可以注册多个不同的callback监听，[off('photoChange')](#offphotochange20)即可以关闭所有监听，也可以关闭指定callback监听。 |
 
 **错误码：**
 
@@ -1100,7 +1100,7 @@ on(type: 'photoChange', callback: Callback&lt;PhotoAssetChangeInfos&gt;): void
 
 **示例：**
 
-phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData'
@@ -1143,7 +1143,7 @@ off(type: 'photoChange', callback?: Callback&lt;PhotoAssetChangeInfos&gt;): void
 | 参数名   | 类型                   | 必填 | 说明      |
 |-----------|-------------------------|-----------|-----------------|
 | type | string | 是   | 取消监听媒体资产，取值为'photoChange'。取消监听后，有资产发生变化时，不再通过callback返回变更信息。 |
-| callback | Callback&lt;[PhotoAssetChangeInfos](js-apis-photoAccessHelper.md#photoassetchangeinfos20)&gt; | 否   | 取消[on('photoChange')](js-apis-photoAccessHelper.md#onphotochange20)注册时指定的callback监听；不填时，则取消对'photoChange'的所有监听。<br>**注意：** 取消注册的callback后，有资产发生变化时，不会进入此回调。 |
+| callback | Callback&lt;[PhotoAssetChangeInfos](arkts-apis-photoAccessHelper-i.md#photoassetchangeinfos20)&gt; | 否   | 取消[on('photoChange')](#onphotochange20)注册时指定的callback监听；不填时，则取消对'photoChange'的所有监听。<br>**注意：** 取消注册的callback后，有资产发生变化时，不会进入此回调。 |
 
 **错误码：**
 
@@ -1157,7 +1157,7 @@ off(type: 'photoChange', callback?: Callback&lt;PhotoAssetChangeInfos&gt;): void
 
 **示例：**
 
-phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData'
@@ -1203,7 +1203,7 @@ on(type: 'photoAlbumChange', callback: Callback&lt;AlbumChangeInfos&gt;): void
 | 参数名   | 类型                   | 必填 | 说明      |
 |-----------|-------------------------|-----------|-----------------|
 | type | string | 是   | 注册监听相册，取值为'photoAlbumChange'。注册完成后，有相册发生变化时，通过callback返回变更信息。 |
-| callback  | Callback&lt;[AlbumChangeInfos](js-apis-photoAccessHelper.md#albumchangeinfos20)&gt; | 是   | 返回变更的相册信息[AlbumChangeInfos](js-apis-photoAccessHelper.md#albumchangeinfos20)。<br>**注意：** 该接口可以注册多个不同的callback监听，[off('photoAlbumChange')](js-apis-photoAccessHelper.md#offphotoalbumchange20)即可以关闭所有监听，也可以关闭指定callback监听。 |
+| callback  | Callback&lt;[AlbumChangeInfos](arkts-apis-photoAccessHelper-i.md#albumchangeinfos20)&gt; | 是   | 返回变更的相册信息[AlbumChangeInfos](arkts-apis-photoAccessHelper-i.md#albumchangeinfos20)。<br>**注意：** 该接口可以注册多个不同的callback监听，[off('photoAlbumChange')](#offphotoalbumchange20)即可以关闭所有监听，也可以关闭指定callback监听。 |
 
 **错误码：**
 
@@ -1217,7 +1217,7 @@ on(type: 'photoAlbumChange', callback: Callback&lt;AlbumChangeInfos&gt;): void
 
 **示例：**
 
-phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData'
@@ -1260,7 +1260,7 @@ off(type: 'photoAlbumChange', callback?: Callback&lt;AlbumChangeInfos&gt;): void
 | 参数名   | 类型                   | 必填 | 说明      |
 |-----------|-------------------------|-----------|-----------------|
 | type | string | 是   | 取消监听相册，取值为'photoAlbumChange'。取消监听后，有相册发生变化时，不再通过callback返回变更信息。 |
-| callback | Callback&lt;[AlbumChangeInfos](js-apis-photoAccessHelper.md#albumchangeinfos20)&gt; | 否   | 取消[on('photoAlbumChange')](js-apis-photoAccessHelper.md#onphotoalbumchange20)注册时指定的callback监听；不填时，则取消对'photoAlbumChange'的所有监听。<br>**注意：** 取消注册的callback后，有相册发生变化时，不会进入此回调。 |
+| callback | Callback&lt;[AlbumChangeInfos](arkts-apis-photoAccessHelper-i.md#albumchangeinfos20)&gt; | 否   | 取消[on('photoAlbumChange')](#onphotoalbumchange20)注册时指定的callback监听；不填时，则取消对'photoAlbumChange'的所有监听。<br>**注意：** 取消注册的callback后，有相册发生变化时，不会进入此回调。 |
 
 **错误码：**
 
@@ -1274,7 +1274,7 @@ off(type: 'photoAlbumChange', callback?: Callback&lt;AlbumChangeInfos&gt;): void
 
 **示例：**
 
-phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData'
@@ -1313,7 +1313,7 @@ createDeleteRequest(uriList: Array&lt;string&gt;, callback: AsyncCallback&lt;voi
 
 > **说明：** 
 >
-> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest.deleteAssets](js-apis-photoAccessHelper.md#deleteassets11-1)替代。
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest.deleteAssets](arkts-apis-photoAccessHelper-MediaAssetChangeRequest.md#deleteassets11-1)替代。
 
 **需要权限**：ohos.permission.WRITE_IMAGEVIDEO
 
@@ -1341,7 +1341,7 @@ createDeleteRequest(uriList: Array&lt;string&gt;, callback: AsyncCallback&lt;voi
 
 **示例：**
 
-phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -1381,7 +1381,7 @@ createDeleteRequest(uriList: Array&lt;string&gt;): Promise&lt;void&gt;
 
 > **说明：**
 >
-> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest.deleteAssets](js-apis-photoAccessHelper.md#deleteassets11-1)替代。
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest.deleteAssets](arkts-apis-photoAccessHelper-MediaAssetChangeRequest.md#deleteassets11-1)替代。
 
 **需要权限**：ohos.permission.WRITE_IMAGEVIDEO
 
@@ -1414,7 +1414,7 @@ createDeleteRequest(uriList: Array&lt;string&gt;): Promise&lt;void&gt;
 
 **示例：**
 
-phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';

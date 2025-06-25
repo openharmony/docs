@@ -8,7 +8,7 @@
 
 媒体变更请求，资产变更请求和相册变更请求的父类型。
 
-**注意**：媒体变更请求必须在调用[applyChanges](js-apis-photoAccessHelper.md#applychanges11)后才会生效。
+**注意**：媒体变更请求必须在调用[applyChanges](arkts-apis-photoAccessHelper-PhotoAccessHelper.md#applychanges11)后才会生效。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -27,7 +27,7 @@ title参数的规格如下：
 | 名称                   | 类型                | 必填 | 说明                                              |
 | ---------------------- | ------------------- | ---- | ------------------------------------------------ |
 | title                  | string                          | 否  | 图片或者视频的标题。  |
-| subtype<sup>12+</sup>  | [PhotoSubtype](js-apis-photoAccessHelper.md#photosubtype12) | 否  | 图片或者视频的文件子类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
+| subtype<sup>12+</sup>  | [PhotoSubtype](arkts-apis-photoAccessHelper-e.md#photosubtype12) | 否  | 图片或者视频的文件子类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
 
 ## FetchOptions
 
@@ -37,7 +37,7 @@ title参数的规格如下：
 
 | 名称                   | 类型                | 可读 | 可写 | 说明                                              |
 | ---------------------- | ------------------- | ---- |---- | ------------------------------------------------ |
-| fetchColumns           | Array&lt;string&gt; | 是   | 是   | 检索条件，指定列名查询。<br>对于照片，如果该参数为空，默认查询'uri'、'media_type'、'subtype'和'display_name'，使用[get](js-apis-photoAccessHelper.md#get)接口获取当前对象的其他属性时将会报错。示例：fetchColumns: ['uri', 'title']。<br>对于相册，如果该参数为空，默认查询'uri'和'album_name'。 |
+| fetchColumns           | Array&lt;string&gt; | 是   | 是   | 检索条件，指定列名查询。<br>对于照片，如果该参数为空，默认查询'uri'、'media_type'、'subtype'和'display_name'，使用[get](arkts-apis-photoAccessHelper-PhotoAsset.md#get)接口获取当前对象的其他属性时将会报错。示例：fetchColumns: ['uri', 'title']。<br>对于相册，如果该参数为空，默认查询'uri'和'album_name'。 |
 | predicates           | [dataSharePredicates.DataSharePredicates](../apis-arkdata/js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 是   | 谓词查询，显示过滤条件。 |
 
 ## RequestOptions<sup>11+</sup>
@@ -48,9 +48,9 @@ title参数的规格如下：
 
 | 名称                   | 类型                        | 只读 | 可选 | 说明                                         |
 | ---------------------- |----------------------------| ---- | ---- | ------------------------------------------- |
-| deliveryMode           | [DeliveryMode](js-apis-photoAccessHelper.md#deliverymode11) | 否   | 否   | 请求资源分发模式，可以指定对于该资源的请求策略，可被配置为快速模式，高质量模式，均衡模式三种策略。 |
-| compatibleMode<sup>15+</sup>      | [CompatibleMode](js-apis-photoAccessHelper.md#compatiblemode15) | 否   | 是   | 配置HDR视频资源转码模式，可指定配置为转码和不转码两种策略。默认为原视频资源内容模式即不转码。 |
-| mediaAssetProgressHandler<sup>15+</sup> | [MediaAssetProgressHandler](js-apis-photoAccessHelper.md#mediaassetprogresshandler15) | 否   | 是   | 配置HDR视频转码为SDR视频时的进度级回调。 |
+| deliveryMode           | [DeliveryMode](arkts-apis-photoAccessHelper-e.md#deliverymode11) | 否   | 否   | 请求资源分发模式，可以指定对于该资源的请求策略，可被配置为快速模式，高质量模式，均衡模式三种策略。 |
+| compatibleMode<sup>15+</sup>      | [CompatibleMode](arkts-apis-photoAccessHelper-e.md#compatiblemode15) | 否   | 是   | 配置HDR视频资源转码模式，可指定配置为转码和不转码两种策略。默认为原视频资源内容模式即不转码。 |
+| mediaAssetProgressHandler<sup>15+</sup> | [MediaAssetProgressHandler](arkts-apis-photoAccessHelper-MediaAssetProgressHandler.md) | 否   | 是   | 配置HDR视频转码为SDR视频时的进度级回调。 |
 
 ## ChangeData
 
@@ -60,8 +60,8 @@ title参数的规格如下：
 
 | 名称    | 类型                        | 可读 | 可写 | 说明                                                         |
 | ------- | --------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| type    | [NotifyType](js-apis-photoAccessHelper.md#notifytype) | 是   | 否   | ChangeData的通知类型。                                       |
-| uris    | Array&lt;string&gt;         | 是   | 否   | 相同[NotifyType](js-apis-photoAccessHelper.md#notifytype)的所有uri，可以是PhotoAsset或Album。 |
+| type    | [NotifyType](arkts-apis-photoAccessHelper-e.md#notifytype) | 是   | 否   | ChangeData的通知类型。                                       |
+| uris    | Array&lt;string&gt;         | 是   | 否   | 相同[NotifyType](arkts-apis-photoAccessHelper-e.md#notifytype)的所有uri，可以是PhotoAsset或Album。 |
 | extraUris | Array&lt;string&gt;         | 是   | 否   | 相册中变动文件的uri数组。可能为undefined，使用前需要检查是否为undefined。                           |
 
 ## TextContextInfo<sup>12+</sup>
@@ -118,8 +118,8 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 | ---------------------- | ------------------- | ---- | ------------------------------------------------ |
 | title | string | 否  | 图片或者视频的标题，不传入时由系统生成。参数规格为：<br>- 不应包含扩展名。<br>- 文件名字符串长度为1~255（资产文件名为标题+扩展名）。<br>- 不允许出现非法字符，包括：. \ / : * ? " ' ` < > \| { } [ ]|
 | fileNameExtension | string | 是  | 文件扩展名，例如'jpg'。|
-| photoType | [PhotoType](js-apis-photoAccessHelper.md#phototype) | 是  | 创建的文件类型[PhotoType](js-apis-photoAccessHelper.md#phototype)，IMAGE或者VIDEO。|
-| subtype | [PhotoSubtype](js-apis-photoAccessHelper.md#photosubtype12) | 否  | 图片或者视频的文件子类型[PhotoSubtype](js-apis-photoAccessHelper.md#photosubtype12)，当前仅支持DEFAULT。|
+| photoType | [PhotoType](arkts-apis-photoAccessHelper-e.md#phototype) | 是  | 创建的文件类型[PhotoType](arkts-apis-photoAccessHelper-e.md#phototype)，IMAGE或者VIDEO。|
+| subtype | [PhotoSubtype](arkts-apis-photoAccessHelper-e.md#photosubtype12) | 否  | 图片或者视频的文件子类型[PhotoSubtype](arkts-apis-photoAccessHelper-e.md#photosubtype12)，当前仅支持DEFAULT。|
 
 ## PhotoAssetChangeInfo<sup>20+</sup>
 
@@ -130,7 +130,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 | 名称 |   类型   | 只读 |  可选 | 说明      |
 | ---- | ------- | ---- |  ---- | ----- |
 | uri       | string  | 否 | 否 | 媒体文件资源uri。 |
-| mediaType | [PhotoType](js-apis-photoAccessHelper.md#phototype) | 否 | 否  | 媒体资产的类型（图片/视频）。 |
+| mediaType | [PhotoType](arkts-apis-photoAccessHelper-e.md#phototype) | 否 | 否  | 媒体资产的类型（图片/视频）。 |
 | albumUri  | string  | 否 | 否 | 媒体资产（图片/视频）所属相册的uri。  |
 
 ## PhotoAssetChangeData<sup>20+</sup>
@@ -141,8 +141,8 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 
 | 名称     | 类型                | 只读 | 可选 | 说明  |
 | ---- | ------- | ---- |  ---- | ----- |
-| assetBeforeChange | [PhotoAssetChangeInfo](js-apis-photoAccessHelper.md#photoassetchangeinfo20)  | 否 | 否 | 变更前的媒体资产（图片/视频）数据。 |
-| assetAfterChange  | [PhotoAssetChangeInfo](js-apis-photoAccessHelper.md#photoassetchangeinfo20) | 否 | 否  | 变更后的媒体资产（图片/视频）数据。 |
+| assetBeforeChange | [PhotoAssetChangeInfo](#photoassetchangeinfo20)  | 否 | 否 | 变更前的媒体资产（图片/视频）数据。 |
+| assetAfterChange  | [PhotoAssetChangeInfo](#photoassetchangeinfo20) | 否 | 否  | 变更后的媒体资产（图片/视频）数据。 |
 | isContentChanged  |boolean  | 否 | 否 | 媒体资产（图片/视频）内容是否变化。true表示文件内容发生变化，false表示文件内容未发生变化。  |
 | isDeleted         |boolean  | 否 | 否 | 媒体资产（图片/视频）是否被删除。true表示资产被彻底删除，false表示资产未被彻底删除。  |
 
@@ -154,8 +154,8 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 
 | 名称                   | 类型                | 只读 | 可选 | 说明    |
 | ---- | ------- | ---- |  ---- | ----- |
-| type       | [NotifyChangeType](js-apis-photoAccessHelper.md#notifychangetype20)  | 否 | 否 | 媒体资产（图片/视频）变更的通知类型。 |
-| assetChangeDatas | [PhotoAssetChangeData](js-apis-photoAccessHelper.md#photoassetchangedata20)[]  | 否 |  否 | 变更的媒体资产（图片/视频）数组。  |
+| type       | [NotifyChangeType](arkts-apis-photoAccessHelper-e.md#notifychangetype20)  | 否 | 否 | 媒体资产（图片/视频）变更的通知类型。 |
+| assetChangeDatas | [PhotoAssetChangeData](#photoassetchangedata20)[]  | 否 |  否 | 变更的媒体资产（图片/视频）数组。  |
 | isForRecheck    | boolean  | 否 | 否 | 应用是否应该重新查询所有媒体资产（图片/视频）信息。true表示需要重新查询所有资产，false表示无需查询所有资产。<br>**注意：** 在特殊情况或者异常通知的场景下，应用收到的isForRecheck为true，表示重新查询所有资产信息。  |
 
 ## AlbumChangeInfo<sup>20+</sup>
@@ -166,8 +166,8 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 
 | 名称  | 类型                | 只读 | 可选 | 说明                                              |
 | ---- | ------- | ---- |  ---- | ----- |
-| albumType | [AlbumType](js-apis-photoAccessHelper.md#albumtype)  | 否 | 否 | 相册类型。 |
-| albumSubtype  | [AlbumSubtype](js-apis-photoAccessHelper.md#albumsubtype) | 否 | 否  | 相册子类型。 |
+| albumType | [AlbumType](arkts-apis-photoAccessHelper-e.md#albumtype)  | 否 | 否 | 相册类型。 |
+| albumSubtype  | [AlbumSubtype](arkts-apis-photoAccessHelper-e.md#albumsubtype) | 否 | 否  | 相册子类型。 |
 | albumName  | string  |否 |否 | 相册名。  |
 | albumUri  | string  |否 |否 | 相册uri。  |
 | imageCount  | number  |否 |否 | 相册中的图片数量。  |
@@ -183,8 +183,8 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 
 | 名称                   | 类型                | 只读 | 可选 | 说明                |
 | ---- | ------- | ---- |  ---- | ----- |
-| albumBeforeChange | [AlbumChangeInfo](js-apis-photoAccessHelper.md#albumchangeinfo20)  | 否 | 否 | 变更前的相册数据。 |
-| albumAfterChange  | [AlbumChangeInfo](js-apis-photoAccessHelper.md#albumchangeinfo20) | 否 | 否  | 变更后的相册数据。 |
+| albumBeforeChange | [AlbumChangeInfo](#albumchangeinfo20)  | 否 | 否 | 变更前的相册数据。 |
+| albumAfterChange  | [AlbumChangeInfo](#albumchangeinfo20) | 否 | 否  | 变更后的相册数据。 |
 | isDeleted         | boolean  | 否 | 否 | 相册是否被删除。true表示相册被删除，false表示相册未被删除。  |
 
 ## AlbumChangeInfos<sup>20+</sup>
@@ -195,6 +195,6 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 
 | 名称                   | 类型                | 只读 | 可选 | 说明           |
 | ---- | ------- | ---- |  ---- | ----- |
-| type       | [NotifyChangeType](js-apis-photoAccessHelper.md#notifychangetype20)  | 否 | 否 | 相册变更的通知类型。 |
-| albumChangeDatas   | [AlbumChangeData](js-apis-photoAccessHelper.md#albumchangedata20)[]  | 否 | 否 | 变更的相册数组。  |
+| type       | [NotifyChangeType](arkts-apis-photoAccessHelper-e.md#notifychangetype20)  | 否 | 否 | 相册变更的通知类型。 |
+| albumChangeDatas   | [AlbumChangeData](#albumchangedata20)[]  | 否 | 否 | 变更的相册数组。  |
 | isForRecheck          | boolean  | 否 | 否 | 应用是否应该重新查询所有相册信息。true表示需要重新查询所有相册，false表示无需查询所有相册。<br>**注意：** 在特殊情况或者异常通知的场景下，应用收到的isForRecheck为true，表示重新查询所有相册信息。  |

@@ -24,7 +24,7 @@ constructor(asset: PhotoAsset)
 
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
-| asset | [PhotoAsset](js-apis-photoAccessHelper.md#photoasset) | 是   | 需要变更的资产。 |
+| asset | [PhotoAsset](arkts-apis-photoAccessHelper-PhotoAsset.md) | 是   | 需要变更的资产。 |
 
 **错误码：**
 
@@ -37,7 +37,7 @@ constructor(asset: PhotoAsset)
 
 **示例：**
 
-phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -78,7 +78,7 @@ static createImageAssetRequest(context: Context, fileUri: string): MediaAssetCha
 
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
-| [MediaAssetChangeRequest](js-apis-photoAccessHelper.md#mediaassetchangerequest11) | 返回创建资产的变更请求。 |
+| [MediaAssetChangeRequest](arkts-apis-photoAccessHelper-MediaAssetChangeRequest.md) | 返回创建资产的变更请求。 |
 
 **错误码：**
 
@@ -92,7 +92,7 @@ static createImageAssetRequest(context: Context, fileUri: string): MediaAssetCha
 
 **示例：**
 
-phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
@@ -130,7 +130,7 @@ static createVideoAssetRequest(context: Context, fileUri: string): MediaAssetCha
 
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
-| [MediaAssetChangeRequest](js-apis-photoAccessHelper.md#mediaassetchangerequest11) | 返回创建资产的变更请求。 |
+| [MediaAssetChangeRequest](arkts-apis-photoAccessHelper-MediaAssetChangeRequest.md) | 返回创建资产的变更请求。 |
 
 **错误码：**
 
@@ -144,7 +144,7 @@ static createVideoAssetRequest(context: Context, fileUri: string): MediaAssetCha
 
 **示例：**
 
-phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
@@ -176,15 +176,15 @@ static createAssetRequest(context: Context, photoType: PhotoType, extension: str
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 传入Ability实例的上下文。 |
-| photoType  | [PhotoType](js-apis-photoAccessHelper.md#phototype)        | 是   | 待创建的文件类型，IMAGE或者VIDEO类型。              |
+| photoType  | [PhotoType](arkts-apis-photoAccessHelper-e.md#phototype)        | 是   | 待创建的文件类型，IMAGE或者VIDEO类型。              |
 | extension  | string        | 是   | 文件扩展名，例如：'jpg'。              |
-| options  | [CreateOptions](js-apis-photoAccessHelper.md#createoptions)        | 否   | 创建选项，例如：{title: 'testPhoto'}。              |
+| options  | [CreateOptions](arkts-apis-photoAccessHelper-i.md#createoptions)        | 否   | 创建选项，例如：{title: 'testPhoto'}。              |
 
 **返回值：**
 
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
-| [MediaAssetChangeRequest](js-apis-photoAccessHelper.md#mediaassetchangerequest11) | 返回创建资产的变更请求。 |
+| [MediaAssetChangeRequest](arkts-apis-photoAccessHelper-MediaAssetChangeRequest.md) | 返回创建资产的变更请求。 |
 
 **错误码：**
 
@@ -197,7 +197,7 @@ static createAssetRequest(context: Context, photoType: PhotoType, extension: str
 
 **示例：**
 
-phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
@@ -235,7 +235,7 @@ static deleteAssets(context: Context, assets: Array&lt;PhotoAsset&gt;): Promise&
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 传入Ability实例的上下文。 |
-| assets | Array&lt;[PhotoAsset](js-apis-photoAccessHelper.md#photoasset)&gt; | 是   | 待删除的媒体文件数组。 |
+| assets | Array&lt;[PhotoAsset](arkts-apis-photoAccessHelper-PhotoAsset.md)&gt; | 是   | 待删除的媒体文件数组。 |
 
 **返回值：**
 
@@ -255,7 +255,7 @@ static deleteAssets(context: Context, assets: Array&lt;PhotoAsset&gt;): Promise&
 
 **示例：**
 
-phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -314,7 +314,7 @@ static deleteAssets(context: Context, uriList: Array&lt;string&gt;): Promise&lt;
 
 **示例：**
 
-phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -343,7 +343,7 @@ getAsset(): PhotoAsset
 
 获取当前资产变更请求中的资产。
 
-**注意**：对于创建资产的变更请求，在调用[applyChanges](js-apis-photoAccessHelper.md#applychanges11)提交生效之前，该接口返回null。
+**注意**：对于创建资产的变更请求，在调用[applyChanges](arkts-apis-photoAccessHelper-PhotoAccessHelper.md#applychanges11)提交生效之前，该接口返回null。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -353,7 +353,7 @@ getAsset(): PhotoAsset
 
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
-| [PhotoAsset](js-apis-photoAccessHelper.md#photoasset) | 返回当前资产变更请求中的资产。 |
+| [PhotoAsset](arkts-apis-photoAccessHelper-PhotoAsset.md) | 返回当前资产变更请求中的资产。 |
 
 **错误码：**
 
@@ -366,7 +366,7 @@ getAsset(): PhotoAsset
 
 **示例：**
 
-phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
@@ -416,7 +416,7 @@ title参数规格为：
 
 **示例：**
 
-phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -473,7 +473,7 @@ getWriteCacheHandler(): Promise&lt;number&gt;
 
 **示例：**
 
-phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { fileIo } from '@kit.CoreFileKit';
@@ -511,7 +511,7 @@ addResource(type: ResourceType, fileUri: string): void
 
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
-| type | [ResourceType](js-apis-photoAccessHelper.md#resourcetype11) | 是   | 待添加资源的类型。 |
+| type | [ResourceType](arkts-apis-photoAccessHelper-e.md#resourcetype11) | 是   | 待添加资源的类型。 |
 | fileUri | string | 是   | 待添加资源的数据来源，在应用沙箱下的uri。示例fileUri：'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.jpg'。 |
 
 **错误码：**
@@ -527,7 +527,7 @@ addResource(type: ResourceType, fileUri: string): void
 
 **示例：**
 
-phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
@@ -563,7 +563,7 @@ addResource(type: ResourceType, data: ArrayBuffer): void
 
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
-| type | [ResourceType](js-apis-photoAccessHelper.md#resourcetype11) | 是   | 待添加资源的类型。 |
+| type | [ResourceType](arkts-apis-photoAccessHelper-e.md#resourcetype11) | 是   | 待添加资源的类型。 |
 | data | ArrayBuffer | 是   | 待添加资源的数据。 |
 
 **错误码：**
@@ -578,7 +578,7 @@ addResource(type: ResourceType, data: ArrayBuffer): void
 
 **示例：**
 
-phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
@@ -616,7 +616,7 @@ saveCameraPhoto(): void
 
 **示例：**
 
-phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, asset: photoAccessHelper.PhotoAsset) {
@@ -644,7 +644,7 @@ saveCameraPhoto(imageFileType: ImageFileType): void
 
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
-| imageFileType | [ImageFileType](js-apis-photoAccessHelper.md#imagefiletype13)  | 是   | 需要保存的类型。 |
+| imageFileType | [ImageFileType](arkts-apis-photoAccessHelper-e.md#imagefiletype13)  | 是   | 需要保存的类型。 |
 
 **错误码：**
 
@@ -657,7 +657,7 @@ saveCameraPhoto(imageFileType: ImageFileType): void
 
 **示例：**
 
-phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -696,7 +696,7 @@ discardCameraPhoto(): void
 
 **示例：**
 
-phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, asset: photoAccessHelper.PhotoAsset) {
@@ -737,7 +737,7 @@ setOrientation(orientation: number): void
 
 **示例：**
 
-phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';

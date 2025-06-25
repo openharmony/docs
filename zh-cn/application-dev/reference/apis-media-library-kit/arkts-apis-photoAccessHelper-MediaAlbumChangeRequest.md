@@ -22,7 +22,7 @@ constructor(album: Album)
 
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
-| album | [Album](js-apis-photoAccessHelper.md#album) | 是   | 需要变更的相册。 |
+| album | [Album](arkts-apis-photoAccessHelper-Album.md) | 是   | 需要变更的相册。 |
 
 **错误码：**
 
@@ -35,7 +35,7 @@ constructor(album: Album)
 
 **示例：**
 
-phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -59,7 +59,7 @@ getAlbum(): Album
 
 获取当前相册变更请求中的相册。
 
-**注意**：对于创建相册的变更请求，在调用[applyChanges](js-apis-photoAccessHelper.md#applychanges11)提交生效之前，该接口返回null。
+**注意**：对于创建相册的变更请求，在调用[applyChanges](arkts-apis-photoAccessHelper-PhotoAccessHelper.md#applychanges11)提交生效之前，该接口返回null。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -67,7 +67,7 @@ getAlbum(): Album
 
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
-| [Album](js-apis-photoAccessHelper.md#album) | 返回当前相册变更请求中的相册。 |
+| [Album](arkts-apis-photoAccessHelper-Album.md) | 返回当前相册变更请求中的相册。 |
 
 **错误码：**
 
@@ -80,7 +80,7 @@ getAlbum(): Album
 
 **示例：**
 
-phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
@@ -129,7 +129,7 @@ setAlbumName(name: string): void
 
 **示例：**
 
-phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
@@ -160,7 +160,7 @@ addAssets(assets: Array&lt;PhotoAsset&gt;): void
 
 | 参数名        | 类型      | 必填   | 说明                                 |
 | ---------- | ------- | ---- | ---------------------------------- |
-| assets | Array&lt;[PhotoAsset](js-apis-photoAccessHelper.md#photoasset)&gt; | 是   | 待添加到相册中的资产数组。 |
+| assets | Array&lt;[PhotoAsset](arkts-apis-photoAccessHelper-PhotoAsset.md)&gt; | 是   | 待添加到相册中的资产数组。 |
 
 **错误码：**
 
@@ -174,7 +174,7 @@ addAssets(assets: Array&lt;PhotoAsset&gt;): void
 
 **示例：**
 
-phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -214,7 +214,7 @@ removeAssets(assets: Array&lt;PhotoAsset&gt;): void
 
 | 参数名        | 类型      | 必填   | 说明                                 |
 | ---------- | ------- | ---- | ---------------------------------- |
-| assets | Array&lt;[PhotoAsset](js-apis-photoAccessHelper.md#photoasset)&gt; | 是   | 待从相册中移除的资产数组。 |
+| assets | Array&lt;[PhotoAsset](arkts-apis-photoAccessHelper-PhotoAsset.md)&gt; | 是   | 待从相册中移除的资产数组。 |
 
 **错误码：**
 
@@ -228,7 +228,7 @@ removeAssets(assets: Array&lt;PhotoAsset&gt;): void
 
 **示例：**
 
-phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';

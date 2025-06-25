@@ -26,15 +26,15 @@ static requestImage(context: Context, asset: PhotoAsset, requestOptions: Request
 | 参数名            | 类型                                                                                                        | 必填 | 说明                      |
 |----------------|-----------------------------------------------------------------------------------------------------------| ---- | ------------------------- |
 | context        | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                                                           | 是   | 传入Ability实例的上下文。 |
-| asset         | [PhotoAsset](js-apis-photoAccessHelper.md#photoasset)                                                                                | 是   | 待请求的的媒体文件对象。 |
-| requestOptions | [RequestOptions](js-apis-photoAccessHelper.md#requestoptions11)                                                                        | 是   | 图片请求策略模式配置项。|       
-| dataHandler    | [MediaAssetDataHandler](js-apis-photoAccessHelper.md#mediaassetdatahandler11)&lt;[image.ImageSource](../apis-image-kit/arkts-apis-image-ImageSource.md)&gt; | 是   | 媒体资源处理器，请求完成时触发回调。|
+| asset         | [PhotoAsset](arkts-apis-photoAccessHelper-PhotoAsset.md)                                                                                | 是   | 待请求的的媒体文件对象。 |
+| requestOptions | [RequestOptions](arkts-apis-photoAccessHelper-i.md#requestoptions11)                                                                        | 是   | 图片请求策略模式配置项。|
+| dataHandler    | [MediaAssetDataHandler](arkts-apis-photoAccessHelper-MediaAssetDataHandler.md)&lt;[image.ImageSource](../apis-image-kit/arkts-apis-image-ImageSource.md)&gt; | 是   | 媒体资源处理器，请求完成时触发回调。|
 
 **返回值：**
 
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
-| Promise\<string> | Promise对象，返回请求id，可用于[cancelRequest](js-apis-photoAccessHelper.md#cancelrequest12)取消请求。 |
+| Promise\<string> | Promise对象，返回请求id，可用于[cancelRequest](#cancelrequest12)取消请求。 |
 
 **错误码：**
 
@@ -48,7 +48,7 @@ static requestImage(context: Context, asset: PhotoAsset, requestOptions: Request
 
 **示例：**
 
-phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -103,15 +103,15 @@ static requestImageData(context: Context, asset: PhotoAsset, requestOptions: Req
 | 参数名   | 类型                                                                   | 必填 | 说明                      |
 | -------- |----------------------------------------------------------------------| ---- | ------------------------- |
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                      | 是   | 传入Ability实例的上下文。 |
-| asset | [PhotoAsset](js-apis-photoAccessHelper.md#photoasset)                                            | 是   | 待请求的的媒体文件对象。 |
-| requestOptions  | [RequestOptions](js-apis-photoAccessHelper.md#requestoptions11)                                  | 是   | 图片请求策略模式配置项。 |      
-| dataHandler  | [MediaAssetDataHandler](js-apis-photoAccessHelper.md#mediaassetdatahandler11)&lt;ArrayBuffer&gt; | 是   | 媒体资源处理器，当所请求的图片资源准备完成时会触发回调。|
+| asset | [PhotoAsset](arkts-apis-photoAccessHelper-PhotoAsset.md)                                            | 是   | 待请求的的媒体文件对象。 |
+| requestOptions  | [RequestOptions](arkts-apis-photoAccessHelper-i.md#requestoptions11)                                  | 是   | 图片请求策略模式配置项。 |      
+| dataHandler  | [MediaAssetDataHandler](arkts-apis-photoAccessHelper-MediaAssetDataHandler.md)&lt;ArrayBuffer&gt; | 是   | 媒体资源处理器，当所请求的图片资源准备完成时会触发回调。|
 
 **返回值：**
 
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
-| Promise\<string> | Promise对象，返回请求id，可用于[cancelRequest](js-apis-photoAccessHelper.md#cancelrequest12)取消请求。 |
+| Promise\<string> | Promise对象，返回请求id，可用于[cancelRequest](#cancelrequest12)取消请求。 |
 
 **错误码：**
 
@@ -125,7 +125,7 @@ static requestImageData(context: Context, asset: PhotoAsset, requestOptions: Req
 
 **示例：**
 
-phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -179,15 +179,15 @@ static requestMovingPhoto(context: Context, asset: PhotoAsset, requestOptions: R
 | 参数名   | 类型                                                                   | 必填 | 说明                      |
 | -------- |----------------------------------------------------------------------| ---- | ------------------------- |
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                      | 是   | 传入Ability实例的上下文。 |
-| asset | [PhotoAsset](js-apis-photoAccessHelper.md#photoasset)                                            | 是   | 待请求的的媒体文件对象。 |
-| requestOptions  | [RequestOptions](js-apis-photoAccessHelper.md#requestoptions11)                                  | 是   | 图片请求策略模式配置项。|       
-| dataHandler  | [MediaAssetDataHandler](js-apis-photoAccessHelper.md#mediaassetdatahandler11)&lt;[MovingPhoto](js-apis-photoAccessHelper.md#movingphoto12)&gt; | 是   | 媒体资源处理器，当所请求的图片资源准备完成时会触发回调。|
+| asset | [PhotoAsset](arkts-apis-photoAccessHelper-PhotoAsset.md)                                            | 是   | 待请求的的媒体文件对象。 |
+| requestOptions  | [RequestOptions](arkts-apis-photoAccessHelper-i.md#requestoptions11)                                  | 是   | 图片请求策略模式配置项。|       
+| dataHandler  | [MediaAssetDataHandler](arkts-apis-photoAccessHelper-MediaAssetDataHandler.md)&lt;[MovingPhoto](arkts-apis-photoAccessHelper-MovingPhoto.md)&gt; | 是   | 媒体资源处理器，当所请求的图片资源准备完成时会触发回调。|
 
 **返回值：**
 
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
-| Promise\<string> | Promise对象，返回请求id，可用于[cancelRequest](js-apis-photoAccessHelper.md#cancelrequest12)取消请求。 |
+| Promise\<string> | Promise对象，返回请求id，可用于[cancelRequest](#cancelrequest12)取消请求。 |
 
 **错误码：**
 
@@ -202,7 +202,7 @@ static requestMovingPhoto(context: Context, asset: PhotoAsset, requestOptions: R
 
 **示例：**
 
-phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -259,16 +259,16 @@ static requestVideoFile(context: Context, asset: PhotoAsset, requestOptions: Req
 | 参数名   | 类型                                                                   | 必填 | 说明                      |
 | -------- |----------------------------------------------------------------------| ---- | ------------------------- |
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                      | 是   | 传入Ability实例的上下文。|
-| asset | [PhotoAsset](js-apis-photoAccessHelper.md#photoasset)                                            | 是   | 待请求的的媒体文件对象。 |
-| requestOptions  | [RequestOptions](js-apis-photoAccessHelper.md#requestoptions11)                                  | 是   | 视频请求策略模式配置项。|
+| asset | [PhotoAsset](arkts-apis-photoAccessHelper-PhotoAsset.md)                                            | 是   | 待请求的的媒体文件对象。 |
+| requestOptions  | [RequestOptions](arkts-apis-photoAccessHelper-i.md#requestoptions11)                                  | 是   | 视频请求策略模式配置项。|
 | fileUri| string                                                              | 是 | 目标写入沙箱路径uri。示例fileUri：'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.mp4'。 |
-| dataHandler  | [MediaAssetDataHandler](js-apis-photoAccessHelper.md#mediaassetdatahandler11)&lt;boolean&gt; | 是   | 媒体资源处理器，当所请求的视频资源写入完成时会触发回调。|
+| dataHandler  | [MediaAssetDataHandler](arkts-apis-photoAccessHelper-MediaAssetDataHandler.md)&lt;boolean&gt; | 是   | 媒体资源处理器，当所请求的视频资源写入完成时会触发回调。|
 
 **返回值：**
 
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
-| Promise\<string> | Promise对象，返回请求id，可用于[cancelRequest](js-apis-photoAccessHelper.md#cancelrequest12)取消请求。 |
+| Promise\<string> | Promise对象，返回请求id，可用于[cancelRequest](#cancelrequest12)取消请求。 |
 
 **错误码：**
 
@@ -283,7 +283,7 @@ static requestVideoFile(context: Context, asset: PhotoAsset, requestOptions: Req
 
 **示例：**
 
-phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -387,7 +387,7 @@ static loadMovingPhoto(context: Context, imageFileUri: string, videoFileUri: str
 
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
-| Promise\<MovingPhoto> | Promise对象，返回[MovingPhoto](js-apis-photoAccessHelper.md#movingphoto12)实例。 |
+| Promise\<MovingPhoto> | Promise对象，返回[MovingPhoto](arkts-apis-photoAccessHelper-MovingPhoto.md)实例。 |
 
 **错误码：**
 
@@ -430,15 +430,15 @@ static quickRequestImage(context: Context, asset: PhotoAsset, requestOptions: Re
 | 参数名            | 类型                                                                                                        | 必填 | 说明                      |
 |----------------|-----------------------------------------------------------------------------------------------------------| ---- | ------------------------- |
 | context        | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                                                           | 是   | 传入Ability实例的上下文。 |
-| asset         | [PhotoAsset](js-apis-photoAccessHelper.md#photoasset)                                                                                | 是   | 待请求的的媒体文件对象。 |
-| requestOptions | [RequestOptions](js-apis-photoAccessHelper.md#requestoptions11)                                                                        | 是   | 图片请求策略模式配置项。|
-| dataHandler    | [QuickImageDataHandler](js-apis-photoAccessHelper.md#quickimagedatahandler13)&lt;[image.Picture](../apis-image-kit/arkts-apis-image-Picture.md)&gt; | 是   | 媒体资源处理器，当所请求的图片资源准备完成时会触发回调。|
+| asset         | [PhotoAsset](arkts-apis-photoAccessHelper-PhotoAsset.md)                                                                                | 是   | 待请求的的媒体文件对象。 |
+| requestOptions | [RequestOptions](arkts-apis-photoAccessHelper-i.md#requestoptions11)                                                                        | 是   | 图片请求策略模式配置项。|
+| dataHandler    | [QuickImageDataHandler](arkts-apis-photoAccessHelper-QuickImageDataHandler.md)&lt;[image.Picture](../apis-image-kit/arkts-apis-image-Picture.md)&gt; | 是   | 媒体资源处理器，当所请求的图片资源准备完成时会触发回调。|
 
 **返回值：**
 
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
-| Promise\<string> | Promise对象，返回请求id，可用于[cancelRequest](js-apis-photoAccessHelper.md#cancelrequest12)取消请求。 |
+| Promise\<string> | Promise对象，返回请求id，可用于[cancelRequest](#cancelrequest12)取消请求。 |
 
 **错误码：**
 
@@ -452,7 +452,7 @@ static quickRequestImage(context: Context, asset: PhotoAsset, requestOptions: Re
 
 **示例：**
 
-phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';

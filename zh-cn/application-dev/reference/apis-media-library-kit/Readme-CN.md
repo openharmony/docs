@@ -8,7 +8,7 @@
     - [Class (MediaAssetChangeRequest)](arkts-apis-photoAccessHelper-MediaAssetChangeRequest.md)
     - [Class (MediaAssetManager)](arkts-apis-photoAccessHelper-MediaAssetManager.md)
     - [Class (PhotoViewPicker)](arkts-apis-photoAccessHelper-PhotoViewPicker.md)
-    - [Classes (其他)](arkts-apis-photoAccessHelper-cl.md)
+    - [Classes (其他)](arkts-apis-photoAccessHelper-class.md)
     - [Interface (AbsAlbum)](arkts-apis-photoAccessHelper-AbsAlbum.md)
     - [Interface (Album)](arkts-apis-photoAccessHelper-Album.md)
     - [Interface (FetchResult)](arkts-apis-photoAccessHelper-FetchResult.md)

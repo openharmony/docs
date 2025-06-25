@@ -47,7 +47,7 @@ commitModify(callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -102,7 +102,7 @@ commitModify(): Promise&lt;void&gt;
 
 **示例：**
 
-phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -134,7 +134,7 @@ addAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt;):
 
 > **说明：** 
 >
-> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest.addAssets](js-apis-photoAccessHelper.md#addassets11)替代。
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest.addAssets](arkts-apis-photoAccessHelper-MediaAlbumChangeRequest.md#addassets11)替代。
 
 **需要权限**：ohos.permission.WRITE_IMAGEVIDEO
 
@@ -144,7 +144,7 @@ addAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt;):
 
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
-| assets | Array&lt;[PhotoAsset](js-apis-photoAccessHelper.md#photoasset)&gt; | 是   | 待添加到相册中的图片或视频数组。 |
+| assets | Array&lt;[PhotoAsset](arkts-apis-photoAccessHelper-PhotoAsset.md)&gt; | 是   | 待添加到相册中的图片或视频数组。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | callback返回void。 |
 
 **错误码：**
@@ -161,7 +161,7 @@ addAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt;):
 
 **示例：**
 
-phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -199,7 +199,7 @@ addAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;
 
 > **说明：** 
 >
-> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest.addAssets](js-apis-photoAccessHelper.md#addassets11)替代。
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest.addAssets](arkts-apis-photoAccessHelper-MediaAlbumChangeRequest.md#addassets11)替代。
 
 **需要权限**：ohos.permission.WRITE_IMAGEVIDEO
 
@@ -209,7 +209,7 @@ addAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;
 
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
-| assets | Array&lt;[PhotoAsset](js-apis-photoAccessHelper.md#photoasset)&gt; | 是   | 待添加到相册中的图片或视频数组。 |
+| assets | Array&lt;[PhotoAsset](arkts-apis-photoAccessHelper-PhotoAsset.md)&gt; | 是   | 待添加到相册中的图片或视频数组。 |
 
 **返回值：**
 
@@ -231,7 +231,7 @@ addAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;
 
 **示例：**
 
-phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -268,7 +268,7 @@ removeAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt
 
 > **说明：** 
 >
-> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest.removeAssets](js-apis-photoAccessHelper.md#removeassets11)替代。
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest.removeAssets](arkts-apis-photoAccessHelper-MediaAlbumChangeRequest.md#removeassets11)替代。
 
 **需要权限**：ohos.permission.WRITE_IMAGEVIDEO
 
@@ -278,7 +278,7 @@ removeAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt
 
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
-| assets | Array&lt;[PhotoAsset](js-apis-photoAccessHelper.md#photoasset)&gt; | 是   | 相册中待移除的图片或视频数组。 |
+| assets | Array&lt;[PhotoAsset](arkts-apis-photoAccessHelper-PhotoAsset.md)&gt; | 是   | 相册中待移除的图片或视频数组。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | callback返回void。 |
 
 **错误码：**
@@ -295,7 +295,7 @@ removeAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt
 
 **示例：**
 
-phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -333,7 +333,7 @@ removeAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;
 
 > **说明：** 
 >
-> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest.removeAssets](js-apis-photoAccessHelper.md#removeassets11)替代。
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAlbumChangeRequest.removeAssets](arkts-apis-photoAccessHelper-MediaAlbumChangeRequest.md#removeassets11)替代。
 
 **需要权限**：ohos.permission.WRITE_IMAGEVIDEO
 
@@ -343,7 +343,7 @@ removeAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;
 
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
-| assets | Array&lt;[PhotoAsset](js-apis-photoAccessHelper.md#photoasset)&gt; | 是   | 相册中待移除的图片或视频数组。 |
+| assets | Array&lt;[PhotoAsset](arkts-apis-photoAccessHelper-PhotoAsset.md)&gt; | 是   | 相册中待移除的图片或视频数组。 |
 
 **返回值：**
 
@@ -365,7 +365,7 @@ removeAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;
 
 **示例：**
 
-phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';

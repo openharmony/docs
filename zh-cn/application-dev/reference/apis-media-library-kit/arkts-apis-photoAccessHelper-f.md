@@ -26,7 +26,7 @@ getPhotoAccessHelper(context: Context): PhotoAccessHelper
 
 | 类型                            | 说明    |
 | ----------------------------- | :---- |
-| [PhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelper) | 相册管理模块的实例。 |
+| [PhotoAccessHelper](arkts-apis-photoAccessHelper-PhotoAccessHelper.md) | 相册管理模块的实例。 |
 
 **错误码：**
 

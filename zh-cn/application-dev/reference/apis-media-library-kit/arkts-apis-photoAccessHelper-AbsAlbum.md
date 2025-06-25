@@ -10,8 +10,8 @@
 
 | 名称           | 类型    | 可读   | 可写  | 说明   |
 | ------------ | ------ | ---- | ---- | ------- |
-| albumType | [AlbumType](js-apis-photoAccessHelper.md#albumtype) | 是    | 否    | 相册类型。    |
-| albumSubtype | [AlbumSubtype](js-apis-photoAccessHelper.md#albumsubtype) | 是    | 否   | 相册子类型。    |
+| albumType | [AlbumType](arkts-apis-photoAccessHelper-e.md#albumtype) | 是    | 否    | 相册类型。    |
+| albumSubtype | [AlbumSubtype](arkts-apis-photoAccessHelper-e.md#albumsubtype) | 是    | 否   | 相册子类型。    |
 | albumName | string | 是    | 预置相册不可写，用户相册可写   | 相册名称。    |
 | albumUri | string | 是    | 否    | 相册uri。   |
 | count | number | 是    | 否    |  相册中文件数量。 |
@@ -31,8 +31,8 @@ getAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;Photo
 
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
-| options | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | 是   | 检索选项。 |
-| callback | AsyncCallback&lt;[FetchResult](js-apis-photoAccessHelper.md#fetchresult)&lt;[PhotoAsset](js-apis-photoAccessHelper.md#photoasset)&gt;&gt; | 是   | callback返回图片和视频数据结果集。 |
+| options | [FetchOptions](arkts-apis-photoAccessHelper-i.md#fetchoptions) | 是   | 检索选项。 |
+| callback | AsyncCallback&lt;[FetchResult](arkts-apis-photoAccessHelper-FetchResult.md)&lt;[PhotoAsset](arkts-apis-photoAccessHelper-PhotoAsset.md)&gt;&gt; | 是   | callback返回图片和视频数据结果集。 |
 
 **错误码：**
 
@@ -49,7 +49,7 @@ getAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;Photo
 
 **示例：**
 
-phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -91,13 +91,13 @@ getAssets(options: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;
 
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
-| options | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | 是   | 检索选项。 |
+| options | [FetchOptions](arkts-apis-photoAccessHelper-i.md#fetchoptions) | 是   | 检索选项。 |
 
 **返回值：**
 
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
-| Promise&lt;[FetchResult](js-apis-photoAccessHelper.md#fetchresult)&lt;[PhotoAsset](js-apis-photoAccessHelper.md#photoasset)&gt;&gt; | Promise对象，返回图片和视频数据结果集。 |
+| Promise&lt;[FetchResult](arkts-apis-photoAccessHelper-FetchResult.md)&lt;[PhotoAsset](arkts-apis-photoAccessHelper-PhotoAsset.md)&gt;&gt; | Promise对象，返回图片和视频数据结果集。 |
 
 **错误码：**
 
@@ -114,7 +114,7 @@ getAssets(options: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;
 
 **示例：**
 
-phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';

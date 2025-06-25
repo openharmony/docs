@@ -17,14 +17,14 @@
    ```
 
 3. 配置可选的媒体文件类型和媒体文件的最大数目。
-   以下示例以图片选择为例，媒体文件类型请参见[PhotoViewMIMETypes](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#photoviewmimetypes)。
+   以下示例以图片选择为例，媒体文件类型请参见[PhotoViewMIMETypes](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-e.md#photoviewmimetypes)。
 
    ```ts
    photoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE; // 过滤选择媒体文件类型为IMAGE。
    photoSelectOptions.maxSelectNumber = 5; // 选择媒体文件的最大数目。
    ```
 
-4. 创建图库选择器实例，调用[PhotoViewPicker.select](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#select)接口拉起图库界面进行文件选择。文件选择成功后，返回[PhotoSelectResult](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#photoselectresult)结果集。
+4. 创建图库选择器实例，调用[PhotoViewPicker.select](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoViewPicker.md#select)接口拉起图库界面进行文件选择。文件选择成功后，返回[PhotoSelectResult](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-class.md#photoselectresult)结果集。
 
    ```ts
    let uris: Array<string> = [];

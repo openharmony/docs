@@ -19,7 +19,7 @@
 
 ## PhotoSubtype<sup>12+</sup>
 
-PhotoSubtype是不同[PhotoAsset](js-apis-photoAccessHelper.md#photoasset)类型的枚举。
+PhotoSubtype是不同[PhotoAsset](arkts-apis-photoAccessHelper-PhotoAsset.md)类型的枚举。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

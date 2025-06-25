@@ -35,7 +35,7 @@ getUri(): string
 
 **示例：**
 
-phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -113,7 +113,7 @@ requestContent(imageFileUri: string, videoFileUri: string): Promise\<void>
 
 **示例：**
 
-phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -178,7 +178,7 @@ requestContent(resourceType: ResourceType, fileUri: string): Promise\<void>
 
 | 参数名   | 类型                                                                   | 必填 | 说明                      |
 | -------- |----------------------------------------------------------------------| ---- | ------------------------- |
-| resourceType | [ResourceType](js-apis-photoAccessHelper.md#resourcetype11)                      | 是   | 所请求动态照片内容的资源类型。 |
+| resourceType | [ResourceType](arkts-apis-photoAccessHelper-e.md#resourcetype11)                      | 是   | 所请求动态照片内容的资源类型。 |
 | fileUri | string                                                    | 是   |待写入动态照片内容的uri。 |
 
 **返回值：**
@@ -199,7 +199,7 @@ requestContent(resourceType: ResourceType, fileUri: string): Promise\<void>
 
 **示例：**
 
-phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -263,7 +263,7 @@ requestContent(resourceType: ResourceType): Promise\<ArrayBuffer>
 
 | 参数名   | 类型                                                                   | 必填 | 说明                      |
 | -------- |----------------------------------------------------------------------| ---- | ------------------------- |
-| resourceType | [ResourceType](js-apis-photoAccessHelper.md#resourcetype11)                      | 是   | 所请求动态照片内容的资源类型。 |
+| resourceType | [ResourceType](arkts-apis-photoAccessHelper-e.md#resourcetype11)                      | 是   | 所请求动态照片内容的资源类型。 |
 
 **返回值：**
 
@@ -283,7 +283,7 @@ requestContent(resourceType: ResourceType): Promise\<ArrayBuffer>
 
 **示例：**
 
-phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
