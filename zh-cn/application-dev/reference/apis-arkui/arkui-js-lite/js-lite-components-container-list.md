@@ -106,7 +106,7 @@ export default {
 }
 .todo-wrapper {
   width: 454px;
-  height: 300px;
+  height: 500px;
 }
 .todo-item {
   width: 454px;
