@@ -66,11 +66,11 @@ The **Navigation** component uses the **mode** attribute to set the page display
     @Builder
     PageMap(name: string) {
       if (name === "NavDestinationTitle1") {
-        pageOneTmp()
+        pageOneTmp();
       } else if (name === "NavDestinationTitle2") {
-        pageTwoTmp()
+        pageTwoTmp();
       } else if (name === "NavDestinationTitle3") {
-        pageThreeTmp()
+        pageThreeTmp();
       }
     }
 
@@ -592,7 +592,7 @@ To facilitate the decoupling of components from pages, custom components within 
   ```
 - Page status listening
   
-  You can register a listener for **NavDestination** lifecycle changes using the [observer.on('navDestinationUpdate')](../reference/apis-arkui/js-apis-arkui-observer.md#observeronnavdestinationupdate) API.
+  You can register a listener for **NavDestination** lifecycle changes using the [observer.on('navDestinationUpdate')](../reference/apis-arkui/js-apis-arkui-observer.md#uiobserveronnavdestinationupdate) API.
   
   ```ts
   uiObserver.on('navDestinationUpdate', (info) => {

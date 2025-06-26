@@ -95,10 +95,6 @@ struct LengthMetricsUnitDemo {
 
 ## Attributes
 
-**Widget capability**: This API can be used in ArkTS widgets since API version 9.
-
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name| Type| Read Only| Optional| Description|
@@ -331,31 +327,11 @@ struct MiterLimit {
 
 ### font
 
-Before using the **font** property to load custom fonts, you must first register the custom font in the **EntryAbility.ets** file located in the **src/main/ets/entryability/** directory. The following is an example of how to do this.
-
-> The value of **familyName** must be a continuous string without spaces, for example, **"customFont"**. Otherwise, the **font** property will fail to load the custom font.
-> 
-> The **familySrc** path should point to the font file located in the **font** folder, which is at the same level as the **pages** folder.
-
-```ts
-onWindowStageCreate(windowStage: window.WindowStage): void {
-  windowStage.loadContent('pages/Index', (err) => {
-    windowStage.getMainWindow().then(res => {
-      const uiCtc = res.getUIContext()
-      uiCtc.getFont().registerFont({
-        familyName: 'customFont',
-        familySrc: '/font/myFont.ttf'
-      })
-    })
-  });
-}
-```
-
 ```ts
 // xxx.ets
 @Entry
 @Component
-struct Fonts {
+struct FontDemo {
   private settings: RenderingContextSettings = new RenderingContextSettings(true)
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
 
@@ -365,14 +341,13 @@ struct Fonts {
         .width('100%')
         .height('100%')
         .backgroundColor('rgb(213,213,213)')
-        .onReady(() =>{
-          this.context.font = '30px sans-serif'
+        .onReady(() => {
+          // Regular font style, normal weight, font size 30px, font family sans-serif
+          this.context.font = 'normal normal 30px sans-serif'
           this.context.fillText("Hello px", 20, 60)
-          this.context.font = '30vp sans-serif'
+          // Italic style, bold weight, font size 30vp, font family monospace
+          this.context.font = 'italic bold 30vp monospace'
           this.context.fillText("Hello vp", 20, 100)
-          // Use a custom font by specifying its familyName.
-          this.context.font = '30vp customFont'
-          this.context.fillText("Hello", 20, 140)
         })
     }
     .width('100%')
@@ -381,7 +356,7 @@ struct Fonts {
 }
 ```
 
-![new_font](figures/new_font.jpeg)
+![font](figures/canvasFont.jpeg)
 
 ### textAlign
 
@@ -423,7 +398,7 @@ struct CanvasExample {
 }
 ```
 
-![en-us_image_0000001256978351](figures/en-us_image_0000001256978351.png)
+![en-us_image_0000001238832385](figures/en-us_image_0000001238832385.png)
 
 
 ### textBaseline
@@ -443,7 +418,7 @@ struct TextBaseline {
         .height('100%')
         .backgroundColor('rgb(213,213,213)')
         .onReady(() => {
-          this.context.strokeStyle = 'rgb(213,213,213)'
+          this.context.strokeStyle = 'rgb(0,0,255)'
           this.context.moveTo(0, 120)
           this.context.lineTo(400, 120)
           this.context.stroke()
@@ -2189,6 +2164,7 @@ Sets the current path to a clipping area.
 
   ![en-us_image_0000001194032462](figures/en-us_image_0000001194032462.png)
 
+### clip
 
 clip(path: Path2D, fillRule?: CanvasFillRule): void
 
@@ -2498,11 +2474,12 @@ Defines a transformation matrix. To transform a graph, you only need to set para
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 > **NOTE**
-> The following formulas calculate coordinates of the transformed graph. **x** and **y** represent coordinates before transformation, and **x'** and **y'** represent coordinates after transformation.
 >
-> - x' = scaleX \* x + skewY \* y + translateX
+> The following formulas calculate coordinates of the transformed graph, where **x** and **y** represent coordinates before transformation, and **x'** and **y'** represent coordinates after transformation.
 >
-> - y' = skewX \* x + scaleY \* y + translateY
+> - x' = a \* x + c \* y + e
+>
+> - y' = b \* x + d \* y + f
 
 **Parameters**
 
@@ -2530,15 +2507,15 @@ Defines a transformation matrix. To transform a graph, you only need to set para
         Canvas(this.context)
           .width('100%')
           .height('100%')
-          .backgroundColor('#ffff00')
+          .backgroundColor('rgb(213,213,213)')
           .onReady(() => {
-            this.context.fillStyle = 'rgb(0,0,0)'
+            this.context.fillStyle = 'rgb(112,112,112)'
             this.context.fillRect(0, 0, 100, 100)
             this.context.transform(1, 0.5, -0.5, 1, 10, 10)
-            this.context.fillStyle = 'rgb(255,0,0)'
+            this.context.fillStyle = 'rgb(0,74,175)'
             this.context.fillRect(0, 0, 100, 100)
             this.context.transform(1, 0.5, -0.5, 1, 10, 10)
-            this.context.fillStyle = 'rgb(0,0,255)'
+            this.context.fillStyle = 'rgb(39,135,217)'
             this.context.fillRect(0, 0, 100, 100)
           })
       }
@@ -2562,6 +2539,14 @@ Resets the existing transformation matrix and creates a new transformation matri
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+> **NOTE**
+>
+> The following formulas calculate coordinates of the transformed graph, where **x** and **y** represent coordinates before transformation, and **x'** and **y'** represent coordinates after transformation.
+>
+> - x' = a \* x + c \* y + e
+>
+> - y' = b \* x + d \* y + f
 
 **Parameters**
 
@@ -2620,7 +2605,7 @@ Resets the current transformation to the identity matrix, and then creates a new
 
 | Name | Type| Mandatory| Description |
 | --------- | ---------------------------------------- | ---- | ----- |
-| transform | [Matrix2D](ts-components-canvas-matrix2d.md#Matrix2D) | No| Transformation matrix.<br>Default value: **null**|
+| transform | [Matrix2D](ts-components-canvas-matrix2d.md#matrix2d) | No| Transformation matrix.<br>Default value: **null**|
 
 **Example**
 
@@ -2681,7 +2666,7 @@ Obtains the current transformation matrix being applied to the context.
 
 | Type                                      | Description   |
 | ---------------------------------------- | ----- |
-| [Matrix2D](ts-components-canvas-matrix2d.md#Matrix2D) | **Matrix2D** object.|
+| [Matrix2D](ts-components-canvas-matrix2d.md#matrix2d) | **Matrix2D** object.|
 
 **Example**
 
@@ -2894,6 +2879,11 @@ Creates a blank [ImageData](ts-components-canvas-imagedata.md) object of a speci
 | sw   | number | Yes| Width of the **ImageData** object.<br>Default unit: vp|
 | sh   | number | Yes| Height of the **ImageData** object.<br>Default unit: vp|
 
+  **Return value**
+
+| Type                                      | Description            |
+| ---------------------------------------- | ------------- |
+| [ImageData](ts-components-canvas-imagedata.md) | New **ImageData** object. |
 
 createImageData(imageData: ImageData): ImageData
 
@@ -3074,6 +3064,44 @@ Puts an [ImageData](ts-components-canvas-imagedata.md) object onto a rectangular
 | dx          | number \| string<sup>10+</sup> | Yes   | X-axis offset of the rectangular area on the canvas.<br>Default unit: vp|
 | dy          | number \| string<sup>10+</sup> | Yes   | Y-axis offset of the rectangular area on the canvas.<br>Default unit: vp|
 
+**Example**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct PutImageData {
+    private settings: RenderingContextSettings = new RenderingContextSettings(true)
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+
+    build() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+        Canvas(this.context)
+          .width('100%')
+          .height('100%')
+          .backgroundColor('rgb(213,213,213)')
+          .onReady(() => {
+            let imageDataNum = this.context.createImageData(100, 100)
+            let imageData = this.context.createImageData(imageDataNum)
+            for (let i = 0; i < imageData.data.length; i += 4) {
+              imageData.data[i + 0] = 112
+              imageData.data[i + 1] = 112
+              imageData.data[i + 2] = 112
+              imageData.data[i + 3] = 255
+            }
+            this.context.putImageData(imageData, 10, 10)
+          })
+      }
+      .width('100%')
+      .height('100%')
+    }
+  }
+  ```
+
+  ![PutImageData](figures/PutImageData.png)
+
+### putImageData
+
 putImageData(imageData: ImageData, dx: number | string, dy: number | string, dirtyX: number | string, dirtyY: number | string, dirtyWidth: number | string, dirtyHeight: number | string): void
 
 Puts an **[ImageData](ts-components-canvas-imagedata.md)** object onto a rectangular area on the canvas.
@@ -3111,18 +3139,17 @@ Puts an **[ImageData](ts-components-canvas-imagedata.md)** object onto a rectang
         Canvas(this.context)
           .width('100%')
           .height('100%')
-          .backgroundColor('#ffff00')
+          .backgroundColor('rgb(213,213,213)')
           .onReady(() => {
             let imageDataNum = this.context.createImageData(100, 100)
             let imageData = this.context.createImageData(imageDataNum)
             for (let i = 0; i < imageData.data.length; i += 4) {
-              imageData.data[i + 0] = 255
-              imageData.data[i + 1] = 0
-              imageData.data[i + 2] = 255
+              imageData.data[i + 0] = 112
+              imageData.data[i + 1] = 112
+              imageData.data[i + 2] = 112
               imageData.data[i + 3] = 255
             }
-            this.context.putImageData(imageData, 10, 10)
-            this.context.putImageData(imageData, 150, 10, 0, 0, 50, 50)
+            this.context.putImageData(imageData, 10, 10, 0, 0, 100, 50)
           })
       }
       .width('100%')
@@ -3131,7 +3158,7 @@ Puts an **[ImageData](ts-components-canvas-imagedata.md)** object onto a rectang
   }
   ```
 
-  ![en-us_image_0000001238952387](figures/en-us_image_0000001238952387.png)
+  ![PutImageData](figures/PutImageData2.png)
 
 
 ### setLineDash
@@ -3655,7 +3682,7 @@ Subscribes to the event when a **CanvasRenderingContext2D** object is bound to a
 > The **onAttach** callback is triggered when:<br>
 > 1. A **Canvas** component is created and bound to a **CanvasRenderingContext2D** object.<br>
 > 2. A **CanvasRenderingContext2D** object is bound to a new **Canvas** component.<br>
-  
+
 
 ### on('onDetach')<sup>13+</sup>
 
@@ -3829,7 +3856,7 @@ Starts AI image analysis in the given settings. Before calling this API, make su
 
 **Error codes**
 
-For details about the error codes, see [AI Analysis Error Codes](../errorcode-image-analyzer.md).
+For details about the error codes, see [AI Analysis Error Codes](errorcode-image-analyzer.md).
 
 | ID| Error Message                                     |
 | -------- | -------------------------------------------- |
@@ -3865,7 +3892,7 @@ struct ImageAnalyzerExample {
   private config: ImageAnalyzerConfig = {
     types: [ImageAnalyzerType.SUBJECT, ImageAnalyzerType.TEXT]
   }
-  private img = new ImageBitmap('page/common/test.jpg')
+  private img = new ImageBitmap('common/images/example.png')
   private aiController: ImageAnalyzerController = new ImageAnalyzerController()
   private options: ImageAIOptions = {
     types: [ImageAnalyzerType.SUBJECT, ImageAnalyzerType.TEXT],
@@ -3875,8 +3902,9 @@ struct ImageAnalyzerExample {
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Button('start')
-        .width(80)
-        .height(80)
+        .width(100)
+        .height(50)
+        .margin(5)
         .onClick(() => {
           this.context.startImageAnalyzer(this.config)
             .then(() => {
@@ -3887,14 +3915,16 @@ struct ImageAnalyzerExample {
             })
         })
       Button('stop')
-        .width(80)
-        .height(80)
+        .width(100)
+        .height(50)
+        .margin(5)
         .onClick(() => {
           this.context.stopImageAnalyzer()
         })
       Button('getTypes')
-        .width(80)
-        .height(80)
+        .width(100)
+        .height(50)
+        .margin(5)
         .onClick(() => {
           this.aiController.getImageAnalyzerSupportTypes()
         })
@@ -3911,6 +3941,8 @@ struct ImageAnalyzerExample {
   }
 }
 ```
+
+![canvasImageAnalyzer](figures/canvasImageAnalyzer.png)
 
 ## CanvasDirection
 

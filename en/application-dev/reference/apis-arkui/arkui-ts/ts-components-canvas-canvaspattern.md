@@ -24,7 +24,7 @@ Uses a **Matrix2D** object as a parameter to perform matrix transformation on th
 
 | Name     | Type | Mandatory| Description  |
 | --------- | -------------- | ------ | ---------- |
-| transform | [Matrix2D](ts-components-canvas-matrix2d.md#Matrix2D) | No | Transformation matrix.<br>Default value: **null**|
+| transform | [Matrix2D](ts-components-canvas-matrix2d.md#matrix2d) | No | Transformation matrix.<br>Default value: **null**|
 
 ## Example
 
@@ -35,11 +35,11 @@ This example demonstrates how to apply matrix transformations to a **CanvasPatte
 @Entry
 @Component
 struct CanvasPatternPage {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private matrix: Matrix2D = new Matrix2D()
-  private img: ImageBitmap = new ImageBitmap("common/pattern.jpg")
-  private pattern: CanvasPattern | null = null
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+  private matrix: Matrix2D = new Matrix2D();
+  private img: ImageBitmap = new ImageBitmap("common/pattern.jpg");
+  private pattern: CanvasPattern | null = null;
 
   build() {
       Column() {

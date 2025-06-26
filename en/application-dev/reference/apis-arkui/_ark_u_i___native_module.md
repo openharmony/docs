@@ -17208,6 +17208,28 @@ Unregisters the drawing completion callback function for a specific component.
 Returns **ARKUI_ERROR_CODE_NO_ERROR** if the operation is successful.
 Returns **ARKUI_ERROR_CODE_PARAM_INVALID** if a parameter error occurs.
 
+### OH_ArkUI_NodeEvent_GetTextChangeEvent()
+
+```
+ArkUI_TextChangeEvent* OH_ArkUI_NodeEvent_GetTextChangeEvent(ArkUI_NodeEvent* event)
+```
+**Description**
+
+Obtains the **ArkUI_TextChangeEvent** data from a component event.
+
+**Since**: 15
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| event | Pointer to the component event. This should not be null.  |
+
+**Returns**
+
+Returns [ArkUI_TextChangeEvent*](_ark_u_i___text_change_event.md), the pointer to the **ArkUI_TextChangeEvent** object.
+
+
 
 ### OH_ArkUI_ProgressLinearStyleOption_Create
 
