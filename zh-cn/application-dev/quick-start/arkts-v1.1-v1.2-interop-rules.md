@@ -1,6 +1,8 @@
 # ArkTS1.2与ArkTS1.1互操作规范
 
-## ArkTS1.2导出ArkTS1.1实体
+## ArkTS1.1中使用ArkTS1.2
+
+### ArkTS1.2导出ArkTS1.1实体
 
 **规则：** arkts-interop-d2s-export-entity
 
@@ -28,13 +30,14 @@ export class X {}
 export interface Y {}
 
 // file2.ets ArkTS1.2
+'use static'
 import { foo } from './file1';
 export { foo }; // 编译报错
 
 export { X, Y } from './file2'; // 编译报错
 ```
 
-## ArkTS1.2判断ArkTS1.1 boxed type类型
+### ArkTS1.2判断ArkTS1.1 boxed type类型
 
 **规则：** arkts-interop-d2s-boxed-type
 
@@ -60,6 +63,7 @@ typeof c; // 'object'
 **ArkTS1.2**
 ```typescript
 // file1.ets ArkTS1.2
+'use static'
 export let a = new Number(123);
 export let b = new Boolean(true);
 export let c = new String('hello');
@@ -93,6 +97,7 @@ function foo() {}
 **ArkTS1.2**
 ```typescript
 // file1.ets
+'use static'
 class X {}
 
 function foo() {}
@@ -107,19 +112,11 @@ function foo() {}
 **ArkTS1.1**
 ```typescript
 // file1.ets
-export function foo(prx: ESValue) {
-  Object.getOwnPropertyDescriptor(prx, 'a'); // not undefined
-  Object.getOwnPropertyDescriptors(prx); // not {}
+export function foo(prx: Object) {
   Object.getOwnPropertyNames(prx); // ["a"]
   Object.hasOwn(prx, 'a'); // true
-  Object.isExtensible(prx); // true
-  Object.isFrozen(prx); // false
-  Object.isSealed(prx); // false
   Object.keys(prx); // ["a"]
-  Object.setPrototypeOf(prx, {}); // OK
   Object.values(prx); // [1]
-  prx.hasOwnProperty('a'); // true
-  prx.propertyIsEnumerable('a'); // true
 }
 
 // file2.ets
@@ -134,6 +131,7 @@ foo(new X());
 ```typescript
 // Object.keys的解决方案，与Object.values的情况类似
 // file0.ets  ArkTS1.2
+'use static'
 export function getKeys(prx: Object | ESValue): string[] | undefined {
   if (prx instanceof Object) {
     return Object.keys(prx);
@@ -143,7 +141,7 @@ export function getKeys(prx: Object | ESValue): string[] | undefined {
 
 // file1.ets ArkTS1.1
 import { getKeys } from './file0';
-function myGetKeys(prx: ESValue) {
+function myGetKeys(prx: Object) {
   let ret = getKeys(prx);
   if (ret == undefined) {
     // prx is dynamic
@@ -152,22 +150,15 @@ function myGetKeys(prx: ESValue) {
   return ret;
 }
 export function foo(prx: Object) {
-  Object.getOwnPropertyDescriptor(prx, 'a'); // undefined
-  Object.getOwnPropertyDescriptors(prx); // {}
   Object.getOwnPropertyNames(prx); // []
   Object.hasOwn(prx, 'a'); // false
-  Object.isExtensible(prx); // false
-  Object.isFrozen(prx); // true
-  Object.isSealed(prx); // true
   Object.keys(prx); // []
   myGetKeys(prx); // ['a']
-  Object.setPrototypeOf(prx, {}); // 运行时报错
   Object.values(prx); // []
-  prx.hasOwnProperty('a'); // false
-  prx.propertyIsEnumerable('a'); // false
 }
 
 // file2.ets  ArkTS1.2
+'use static'
 import { foo } from './file1';
 class X {
   a = 1;
@@ -194,15 +185,9 @@ export class X {
 
 // file2.ets
 import { X } from './file1';
-function foo(prx: ESValue) {
-  Reflect.apply(prx.getName, { a: 12 }); // 12
-  Reflect.defineProperty(prx, 'newField', { value: 7 }); // true
-  Reflect.deleteProperty(prx, 'a'); // true
-  Reflect.getOwnPropertyDescriptor(prx, 'a'); // not undefined
+function foo(prx: Object) {
   Reflect.ownKeys(prx); // ['a']
-  Reflect.isExtensible(prx); // true
   Reflect.set(prx, 'newField', 7); // true
-  Reflect.setPrototypeOf(prx, {}); // true
 }
 foo(new X());
 ```
@@ -211,6 +196,7 @@ foo(new X());
 ```typescript
 // static ownKeys的解决方案
 // file0.ets ArkTS1.2
+'use static'
 export getOwnKeys(prx: Object | ESValue): string[] | undefined {
     if (prx instanceof Object) { return Reflect.ownKeys(prx) }
     return undefined
@@ -218,7 +204,7 @@ export getOwnKeys(prx: Object | ESValue): string[] | undefined {
 
 // file1.ets ArkTS1.1
 import { getOwnKeys } from './file0'
-export function myOwnKeys(prx: ESValue) {
+export function myOwnKeys(prx: Object) {
     let ret = getOwnKeys(prx)
     if (ret == undefined) {  // prx是动态对象
         return Reflect.ownKeys(prx)
@@ -226,19 +212,14 @@ export function myOwnKeys(prx: ESValue) {
     return ret
 }
 
-export function foo(prx: ESValue) {
-    Reflect.apply(prx.getName, { a: 12 }) // 运行时报错
-    Reflect.defineProperty(prx, 'newField', { value: 7 })  // false
-    Reflect.deleteProperty(prx, "a")  // false
-    Reflect.getOwnPropertyDescriptor(prx, "a")  // undefined
+export function foo(prx: Object) {
     Reflect.ownKeys(prx)  // []
     myOwnKeys(prx)  // ['a']
-    Reflect.isExtensible(prx) // false
     Reflect.set(prx, 'newField', 7)  // false
-    Reflect.setPrototypeOf(prx, {})  // false
 }
 
 // file2.ets  ArkTS1.2
+'use static'
 import { foo } from './file1'
 export class X {
     a: string = 'hello'
@@ -247,7 +228,7 @@ export class X {
 foo(new X())
 ```
 
-### ArkTS1.2 Object内置方法作用在ArkTS1.2对象
+### ArkTS1.2Object内置方法作用在ArkTS1.1对象
 
 **规则：** arkts-interop-d2s-static-object-on-dynamic-instance
 
@@ -263,11 +244,9 @@ export class X {
 // file2.ets
 import { X } from 'file1';
 export function foo(prx: Object) {
-  Object.assign({}, prx); // OK
   Object.entries(prx); // [a, 1]
   Object.keys(prx); // ["a"]
   Object.values(prx); // [1]
-  prx.hasOwnProperty('a'); // true
 }
 foo(new X());
 ```
@@ -280,18 +259,17 @@ export class X {
 }
 
 // file2.ets  ArkTS 1.2
+'use static'
 import { X } from 'file1';
 export function foo(prx: Object) {
-  Object.assign({}, prx); // OK
   Object.entries(prx); // [a, 1]
   Object.keys(prx); // ["a"]
   Object.values(prx); // [1]
-  prx.hasOwnProperty('a'); // true
 }
 foo(new X()); // 编译报错
 ```
 
-### 1.2 Reflect内置方法作用在ArkTS1.1对象
+### ArkTS1.2Reflect内置方法作用在ArkTS1.1对象
 
 **规则：** arkts-interop-d2s-static-reflect-on-dynamic-instance
 
@@ -308,6 +286,7 @@ class X {
 }
 
 // file2.ets  ArkTS1.2
+'use static'
 import { X } from './file1';
 export function foo(prx: Object) {
   Reflect.get(prx, 'a'); // 'hello'
@@ -328,6 +307,7 @@ class X {
 }
 
 // file2.ets  ArkTS1.2
+'use static'
 import { X } from './file1';
 export function foo(prx: Object) {
   Reflect.get(prx, 'a'); // 'hello'
@@ -362,6 +342,7 @@ let a = new A() as A;
 export class A {}
 
 // file2.ets   ArkTS1.2
+'use static'
 let mod = ESValue.load('./file1');
 let A: ESValue = mod.getProperty('A');
 let a = A.instantiate() as A;
@@ -384,7 +365,7 @@ export class X {
 }
 // file2.ets
 import { X } from './file1';
-let x: X = { name: 'hello' };
+let x = new X('hello');
 ```
 
 **ArkTS1.2**
@@ -397,8 +378,9 @@ export class X {
   }
 }
 // file2.ets  ArkTS1.2
+'use static'
 import { X } from './file1';
-let x: X = { name: 'hello' }; // 编译报错
+let x: X = new X('hello') // 编译报错
 ```
 
 ### ArkTS1.2创建ArkTS1.1具有二义性的对象字面量
@@ -437,8 +419,10 @@ export interface Y {
 }
 
 // file2.ets  // 1.2
+'use static'
 import { X, Y } from './file1';
-let x: X | Y = { name: 'hello' }; // 编译报错
+let x: X | Y = { name: 'hello' }; //编译报错
+let x: X | Y = new X('hello'); // OK
 ```
 
 ### ArkTS1.2创建ArkTS1.1的类的对象字面量
@@ -469,11 +453,14 @@ export class A {
 }
 
 // file2.ets ArkTS1.2
+'use static'
 import { A } from './file1';
 let a: A = { name: 'hello' }; // a是创建的对象
 
 a instanceof A; // true
 ```
+
+## ArkTS1.2中使用ArkTS1.1
 
 ### ArkTS1.1判断ArkTS1.2 boxed类型
 
@@ -501,6 +488,7 @@ typeof c; // 'object'
 **ArkTS1.2**
 ```typescript
 // file1.ets ArkTS1.2
+'use static'
 export let a = new Number(123);
 export let b = new Boolean(true);
 export let c = new String('hello');
@@ -539,7 +527,7 @@ export function bar(arg: Y) {}
 
 // file2.ets
 import { X, Y } from './file1';
-let x: X = { name: 'hello' };
+let x = { name: 'hello' };
 let y: Y = { data: 123 };
 foo({ name: 'world' });
 bar({ data: 456 });
@@ -548,17 +536,18 @@ bar({ data: 456 });
 interface Z {
   x: X;
 }
-let z: Z = { x: { name: 'hello' } };
+let z: Z = {x: { name: 'hello' }};
 ```
 
 **ArkTS1.2**
 ```typescript
 // file1.ets ArkTS1.2
+'use static'
 export class X { name: string = '' }
 export interface Y { data: number }
 export function foo(arg: X) { }
 export function bar(arg: Y) { }
-export createY(d: number): Y {
+export function createY(d: number): Y {
   let y: Y = { data: d }
   return y
 }
@@ -602,6 +591,7 @@ a.data = y;
 **ArkTS1.2**
 ```typescript
 // file1.ets ArkTS1.2
+'use static'
 export function foo(obj: Object) {}
 // solution: export function foo(obj: ESValue | Object) {}
 export class A {
@@ -622,7 +612,7 @@ let a = new A();
 a.data = y; // 运行时报错
 ```
 
-### ArkTS1.1Object内置方法作用在ArkTS1.2对象
+### ArkTS1.1 Object内置方法作用在ArkTS1.2对象
 
 **规则：** arkts-interop-s2d-dynamic-object-on-static-instance
 
@@ -638,18 +628,10 @@ export class X {
 // file1.ets
 import { X } from './file2';
 function foo(prx: Object) {
-  Object.getOwnPropertyDescriptor(prx, 'a'); // not undefined
-  Object.getOwnPropertyDescriptors(prx); // not {}
   Object.getOwnPropertyNames(prx); // ["a"]
   Object.hasOwn(prx, 'a'); // true
-  Object.isExtensible(prx); // true
-  Object.isFrozen(prx); // false
-  Object.isSealed(prx); // false
   Object.keys(prx); // ["a"]
-  Object.setPrototypeOf(prx, {}); // OK
   Object.values(prx); // [1]
-  prx.hasOwnProperty('a'); // true
-  prx.propertyIsEnumerable('a'); // true
 }
 
 foo(new X());
@@ -658,6 +640,7 @@ foo(new X());
 **ArkTS1.2**
 ```typescript
 // file2.ets ArkTS1.2
+'use static'
 export class X {
   a = 1;
 }
@@ -679,19 +662,11 @@ function myGetKeys(prx: Object) {
   return ret;
 }
 export function foo(prx: Object) {
-  Object.getOwnPropertyDescriptor(prx, 'a'); // undefined
-  Object.getOwnPropertyDescriptors(prx); // {}
   Object.getOwnPropertyNames(prx); // []
   Object.hasOwn(prx, 'a'); // false
-  Object.isExtensible(prx); // false
-  Object.isFrozen(prx); // true
-  Object.isSealed(prx); // true
   Object.keys(prx); // []
   myGetKeys(prx); // ['a']
-  Object.setPrototypeOf(prx, {}); // 运行时报错
   Object.values(prx); // []
-  prx.hasOwnProperty('a'); // false
-  prx.propertyIsEnumerable('a'); // false
 }
 
 foo(new X());
@@ -716,14 +691,8 @@ export class X {
 // file1.ets
 import { X } from './file2';
 function foo(prx: Object) {
-  Reflect.apply(prx.getName, { a: 12 }); // 12
-  Reflect.defineProperty(prx, 'newField', { value: 7 }); // true
-  Reflect.deleteProperty(prx, 'a'); // true
-  Reflect.getOwnPropertyDescriptor(prx, 'a'); // not undefined
   Reflect.ownKeys(prx); // ['a']
-  Reflect.isExtensible(prx); // true
   Reflect.set(prx, 'newField', 7); // true
-  Reflect.setPrototypeOf(prx, {}); // true
 }
 
 foo(new X());
@@ -732,6 +701,7 @@ foo(new X());
 **ArkTS1.2**
 ```typescript
 // file2.ets  ArkTS1.2
+'use static'
 export class X {
   a: string = 'hello'
   getName() { return this.a }
@@ -754,21 +724,15 @@ function myOwnKeys(prx: Object) {
 }
 
 function foo(prx: Object) {
-  Reflect.apply(prx.getName, { a: 12 }) // 运行时报错
-  Reflect.defineProperty(prx, 'newField', { value: 7 })  // false
-  Reflect.deleteProperty(prx, "a")  // false
-  Reflect.getOwnPropertyDescriptor(prx, "a")  // undefined
   Reflect.ownKeys(prx)  // []
   myOwnKeys(prx)  // ['a']
-  Reflect.isExtensible(prx) // false
   Reflect.set(prx, 'newField', 7)  // false
-  Reflect.setPrototypeOf(prx, {})  // false
 }
 
 foo(new X())
 ```
 
-### ArkTS1.2 Object内置方法作用在ArkTS1.1对象
+### ArkTS1.2Object内置方法作用在ArkTS1.1对象
 
 **规则：** arkts-interop-s2d-static-object-on-dynamic-instance
 
@@ -778,11 +742,9 @@ foo(new X())
 ```typescript
 // file1.ets
 export function foo(prx: Object) {
-  Object.assign({}, prx); // OK
   Object.entries(prx); // [a, 1]
   Object.keys(prx); // ["a"]
   Object.values(prx); // [1]
-  prx.hasOwnProperty('a'); // true
 }
 
 // file2.ets
@@ -796,12 +758,11 @@ foo(new X());
 **ArkTS1.2**
 ```typescript
 // file1.ets  ArkTS1.2
+'use static'
 export function foo(prx: Object) {
-  Object.assign({}, prx); // OK
   Object.entries(prx); // [a, 1]
   Object.keys(prx); // ["a"]
   Object.values(prx); // [1]
-  prx.hasOwnProperty('a'); // true
 }
 
 // file2.ets  ArkTS1.1
@@ -812,7 +773,7 @@ class X {
 foo(new X()); // 运行时报错
 ```
 
-### ArkTS1.2 Reflect内置方法作用在ArkTS1.1对象
+### ArkTS1.2Reflect内置方法作用在ArkTS1.1对象
 
 **规则：** arkts-interop-s2d-static-reflect-on-dynamic-instance
 
@@ -841,6 +802,7 @@ foo(new X());
 **ArkTS1.2**
 ```typescript
 // file1.ets  ArkTS1.2
+'use static'
 export function foo(prx: Object) {
   Reflect.get(prx, 'a'); // 'hello'
   Reflect.set(prx, 'a', 'world'); // true
@@ -869,19 +831,18 @@ foo(new X()); // 运行时报错
 **ArkTS1.1**
 ```typescript
 // file1.ets ArkTS 1.1
-let arr: Array<number> = new Array<number>(1, 2, 3);
-export  arr1;
+export let arr: Array<number> = new Array<number>(1, 2, 3);
 
 // file2.ets ArkTS 1.1
 import {arr} from "./file1"
 
 class C {
-base: number;
-constructor(base:number) {
-this.base = base;
+  base: number;
+  constructor(base:number) {
+  this.base = base;
 }
 compare(value: number, index: number, arr: Array<number>) {
-return value >= this.base
+  return value >= this.base
 }
 }
 let a = new C(2);
@@ -892,20 +853,20 @@ arr.find(a.compare, b) // Result: 3
 
 **ArkTS1.2**
 ```typescript
-// file1.ets ArkTS 1.1
-let arr: Array<number> = new Array<number>(1, 2, 3);
-export  arr1;
+// file1.ets ArkTS 1.2
+'use static'
+export let arr: Array<number> = new Array<number>(1, 2, 3);
 
 // file2.ets ArkTS 1.1
 import {arr} from "./file1"
 
 class C {
-base: number;
-constructor(base:number) {
-this.base = base;
+  base: number;
+  constructor(base:number) {
+  this.base = base;
 }
 compare(value: number, index: number, arr: Array<number>) {
-return value >= this.base
+  return value >= this.base
 }
 }
 let a = new C(2);
@@ -913,6 +874,8 @@ let b = new C(3);
 arr.find(a.compare, a) // 运行时报错
 arr.find(a.compare, b) // 运行时报错
 ```
+
+## ArkTS1.2中使用TS
 
 ### ArkTS1.2使用TS装饰器
 
@@ -980,7 +943,7 @@ TS独有类型包括如下类型：
 **ArkTS1.1**
 ```typescript
 // file1.ts
-export let obj: SomeType; // SomeType是某个TS独有类型
+export let obj: Symbol;
 
 // file2.ets
 import { obj } from './file1';
@@ -993,16 +956,17 @@ let item = obj[0];
 **ArkTS1.2**
 ```typescript
 // file1.ts
-export let obj: SomeType;
+export let obj: Symbol;
 // 从ArkTS1.2看来，这个声明为
 // export let obj: ESValue
 
 // file2.ets ArkTS1.2
+'use static'
 import { obj } from './file1';
 obj.setProperty('prop', ESValue.wrap(1));
 ```
 
-### Object内置方法作用在ArkTS对象
+### ArkTS1.1Object内置方法作用在ArkTS1.2对象
 
 **规则：** arkts-interop-ts2s-ts-object-on-static-instance
 
@@ -1012,18 +976,10 @@ obj.setProperty('prop', ESValue.wrap(1));
 ```typescript
 // file1.ts
 export function foo(prx: any) {
-  Object.getOwnPropertyDescriptor(prx, 'a'); // not undefined
-  Object.getOwnPropertyDescriptors(prx); // not {}
   Object.getOwnPropertyNames(prx); // ["a"]
   Object.hasOwn(prx, 'a'); // true
-  Object.isExtensible(prx); // true
-  Object.isFrozen(prx); // false
-  Object.isSealed(prx); // false
   Object.keys(prx); // ["a"]
-  Object.setPrototypeOf(prx, {}); // OK
   Object.values(prx); // [1]
-  prx.hasOwnProperty('a'); // true
-  prx.propertyIsEnumerable('a'); // true
 }
 
 // file2.ets
@@ -1038,28 +994,20 @@ foo(new X());
 ```typescript
 // file1.ts
 export function foo(prx: any) {
-Object.getOwnPropertyDescriptor(prx, "a") // undefined
-Object.getOwnPropertyDescriptors(prx) // {}
-Object.getOwnPropertyNames(prx) // []
-Object.getOwnPropertySymbols(prx)) // []
-Object.hasOwn(prx, "a")  // false
-Object.isExtensible(prx)  // false
-Object.isFrozen(prx)  // true
-Object.isSealed(prx)  // true
-Object.keys(prx)  // []
-Object.setPrototypeOf(prx, {})  // 运行时报错
-Object.values(prx)  // []
-prx.hasOwnProperty("a")  // false
-prx.propertyIsEnumerable("a")  // false
+  Object.getOwnPropertyNames(prx) // []
+  Object.hasOwn(prx, "a")  // false
+  Object.keys(prx)  // []
+  Object.values(prx)  // []
 }
 
 // file2.ets
+'use static'
 import {foo} from "./file1"
 class X { a = 1 }
 foo(ESValue.wrap(new X()))
 ```
 
-### Reflect内置方法作用在ArkTS对象
+### ArkTS1.1Reflect内置方法作用在ArkTS1.2对象
 
 **规则：** arkts-interop-ts2s-ts-reflect-on-static-instance
 
@@ -1069,14 +1017,8 @@ foo(ESValue.wrap(new X()))
 ```typescript
 // file1.ts
 export function foo(prx: any) {
-  Reflect.apply(prx.getName, { a: 12 }); // 12
-  Reflect.defineProperty(prx, 'newField', { value: 7 }); // true
-  Reflect.deleteProperty(prx, 'a'); // true
-  Reflect.getOwnPropertyDescriptor(prx, 'a'); // not undefined
   Reflect.ownKeys(prx); // ['a']
-  Reflect.isExtensible(prx); // true
   Reflect.set(prx, 'newField', 7); // true
-  Reflect.setPrototypeOf(prx, {}); // true
 }
 
 // file2.ets
@@ -1094,17 +1036,12 @@ foo(new X());
 ```typescript
 // file1.ts
 export function foo(prx: any) {
-  Reflect.apply(prx.getName, { a: 12 }); // 运行时报错
-  Reflect.defineProperty(prx, 'newField', { value: 7 }); // false
-  Reflect.deleteProperty(prx, 'a'); // false
-  Reflect.getOwnPropertyDescriptor(prx, 'a'); // undefined
   Reflect.ownKeys(prx); // []
-  Reflect.isExtensible(prx); // false
   Reflect.set(prx, 'newField', 7); // false
-  Reflect.setPrototypeOf(prx, {}); // false
 }
 
 // file2.ets
+'use static'
 import { foo } from './file1';
 class X {
   a: string = 'hello';
@@ -1115,7 +1052,7 @@ class X {
 foo(ESValue.wrap(new X()));
 ```
 
-### ArkTS处理TS非常规异常
+### ArkTS1.2处理TS非常规异常
 
 **规则：** arkts-interop-ts2s-ts-exception
 
@@ -1134,7 +1071,7 @@ import { foo } from './file1';
 try {
   foo();
 } catch (e) {
-  console.log(e as number); // 123
+  console.log("result is " + (e as number)); // 123
 }
 ```
 
@@ -1146,6 +1083,7 @@ export function foo() {
 }
 
 // file2.ets  // ArkTS1.2
+'use static'
 import { foo } from './file1';
 
 try {
@@ -1173,7 +1111,7 @@ typeof b; // 'object'
 typeof c; // 'object'
 
 //file2.ets
-import { a, b, c, d, e } from './fiel1';
+import { a, b, c } from './fiel1';
 typeof a; // 'object'
 typeof b; // 'object'
 typeof c; // 'object'
@@ -1190,12 +1128,12 @@ typeof b; // 'object'
 typeof c; // 'object'
 
 //file2.ets  ArkTS1.2
-import { a, b, c, d, e } from './fiel1';
+'use static'
+import { a, b, c } from './fiel1';
 typeof a; // 'number'
 typeof b; // 'boolean'
 typeof c; // 'string'
 ```
-
 ### ArkTS1.2动态导入TS
 
 **规则：** arkts-interop-ts2s-dynamic-import-ts
@@ -1219,6 +1157,7 @@ let a = new A() as A;
 export class A {}
 
 // file2.ets   ArkTS1.2
+'use static'
 let mod = ESValue.load('./file1');
 let A: ESValue = mod.getProperty('A');
 let a = A.instantiate() as A;
@@ -1252,11 +1191,14 @@ export class A {
 }
 
 // file2.ets ArkTS1.2
+'use static'
 import { A } from './file1';
 let a: A = { name: 'hello' };
 
 a instanceof A; // true
 ```
+
+## ArkTS1.2中使用JS
 
 ### ArkTS1.2导入js文件
 
@@ -1279,11 +1221,12 @@ import { foo } from './file1';
 export function foo() {}
 
 // file2.ets  // ArkTS1.2
+'use static'
 let mod = ESValue.load('./file1');
 let foo = mod.getProperty('foo');
 ```
 
-### ArkTS导出js实体
+### ArkTS1.2导出js实体
 
 **规则：** arkts-interop-js2s-export-js
 
@@ -1311,6 +1254,7 @@ export function foo() {}
 export class A {}
 
 // file2.ets  // ArkTS1.2
+'use static'
 let mod = ESValue.load('./file1');
 let foo = mod.getProperty('foo');
 let A = mod.getProperty('A');
@@ -1318,7 +1262,7 @@ let A = mod.getProperty('A');
 export { foo, A };
 ```
 
-### ArkTS调用js函数和传参
+### ArkTS1.2调用js函数和传参
 
 **规则：** arkts-interop-js2s-call-js-func
 
@@ -1343,6 +1287,7 @@ export function foo() {}
 export function bar(a) {}
 
 // file2.ets  // ArkTS1.2
+'use static'
 let mod = ESValue.load('./file1');
 let foo = mod.getProperty('foo');
 let bar = mod.getProperty('bar');
@@ -1350,7 +1295,7 @@ foo.invoke();
 bar.invoke(ESValue.wrap(123));
 ```
 
-### ArkTS实例化js对象
+### ArkTS1.2实例化js对象
 
 **规则：** arkts-interop-js2s-create-js-instance
 
@@ -1375,12 +1320,13 @@ class foo {
 }
 
 // file2.ets  // ArkTS1.2
+'use static'
 let mod = ESValue.load('./file1');
 let foo = mod.getProperty('foo');
 foo.instantiate(ESValue.wrap(123));
 ```
 
-### ArkTS访问js属性
+### ArkTS1.2访问js属性
 
 **规则：** arkts-interop-js2s-access-js-prop
 
@@ -1402,13 +1348,14 @@ foo.name = '456';
 export let foo = {name: "123"}
 
 // file2.ets  // ArkTS1.2
+'use static'
 let mod = ESValue.load('./file1')
 let foo = mod.getProperty('foo')
 foo.getProperty('name')
 foo.setProperty('name', ESValue.wrap("456")）
 ```
 
-### ArkTS调用js方法和传参
+### ArkTS1.2调用js方法和传参
 
 **规则：** arkts-interop-js2s-call-js-method
 
@@ -1434,12 +1381,13 @@ class Foo {
 }
 
 // file2.ets  // ArkTS1.2
+'use static'
 let mod = ESValue.load('./file1');
 let foo = mod.getProperty('foo');
 foo.invokeMethod('bar', ESValue.wrap(123));
 ```
 
-### ArkTS访问js索引
+### ArkTS1.2访问js索引
 
 **规则：** arkts-interop-js2s-access-js-index
 
@@ -1462,6 +1410,7 @@ arr[3] = 4;
 export let foo = [1, 2, 3];
 
 // file2.ets  // ArkTS1.2
+'use static'
 let mod = ESValue.load('./file1');
 let foo = mod.getProperty('foo');
 let arr = foo.getProperty('arr');
@@ -1469,7 +1418,7 @@ arr.getProperty(1);
 arr.setProperty(3, ESValue.wrap(4));
 ```
 
-### ArkTS转换js对象类型
+### ArkTS1.2转换js对象类型
 
 **规则：** arkts-interop-js2s-convert-js-type
 
@@ -1486,9 +1435,9 @@ export let foo4 = { big: 123n };
 // file2.ets
 import { foo } from './file1';
 let a: number = foo1.num as number;
-let a: boolean = foo2.bool as boolean;
-let a: string = foo3.str as string;
-let a: bigint = foo4.big as bigint;
+let b: boolean = foo2.bool as boolean;
+let c: string = foo3.str as string;
+let d: bigint = foo4.big as bigint;
 ```
 
 **ArkTS1.2**
@@ -1500,13 +1449,14 @@ export let foo3 = { str: '123' };
 export let foo4 = { big: 123n };
 
 // file2.ets  // ArkTS1.2
+'use static'
 let mod = ESValue.load('./file1');
 let foo1 = mod.getProperty('foo1');
-let num = foo.getProperty('num');
+let num = foo1.getProperty('num');
 let a1: number = num.toNumber();
 
 let foo2 = mod.getProperty('foo2');
-let bool = foo.getProperty('bool');
+let bool = foo2.getProperty('bool');
 let a2: boolean = bool.toBoolean();
 
 let foo3 = mod.getProperty('foo3');
@@ -1514,11 +1464,11 @@ let str = foo3.getProperty('str');
 let a3: string = str.toString();
 
 let foo4 = mod.getProperty('foo4');
-let big = foo.getProperty('big');
+let big = foo4.getProperty('big');
 let a4: bigint = big.toBigInt();
 ```
 
-### ArkTS获取js对象类型
+### ArkTS1.2获取js对象类型
 
 **规则：** arkts-interop-js2s-typeof-js-type
 
@@ -1540,6 +1490,7 @@ typeof foo.num; // 'number'
 export let foo = 123;
 
 // file2.ets  // ArkTS1.2
+'use static'
 let mod = ESValue.load('./file1');
 let foo = mod.getProperty('foo');
 let num = foo.getProperty('num');
@@ -1547,7 +1498,7 @@ let num = foo.getProperty('num');
 num.typeOf(); // 'number'
 ```
 
-### ArkTS判断js对象类型
+### ArkTS1.2判断js对象类型
 
 **规则：** arkts-interop-js2s-instanceof-js-type
 
@@ -1571,6 +1522,7 @@ export class Foo {}
 export let foo = new Foo();
 
 // file2.ets  // ArkTS1.2
+'use static'
 let mod = ESValue.load('./file1');
 let Foo = mod.getProperty('Foo');
 let foo = mod.getProperty('foo');
@@ -1578,7 +1530,7 @@ let foo = mod.getProperty('foo');
 foo.isInstanceOf(Foo);
 ```
 
-### ArkTS对js对象自增自减
+### ArkTS1.2对js对象自增自减
 
 **规则：** arkts-interop-js2s-self-addtion-reduction
 
@@ -1604,6 +1556,7 @@ a = --foo.num;
 export let foo = { num: 0 };
 
 // file2.ets  // ArkTS1.2
+'use static'
 let mod = ESValue.load('./file1');
 let foo = mod.getProperty('foo');
 let a: number = 0;
@@ -1624,9 +1577,9 @@ a = tmp;
 // the cases "foo.num--" and "--foo.num" are similar
 ```
 
-### ArkTS对js对象进行一元运算
+### ArkTS1.2对js对象进行一元运算
 
-**规则：** arkts-interop-js2s-binary-op
+**规则：** arkts-interop-js2s-unary-op
 
 **级别：** error
 
@@ -1636,7 +1589,8 @@ a = tmp;
 export let foo = { num: 0 };
 // file2.ets
 import { foo } from './file1';
-+foo.num - foo.num;
++foo.num;
+-foo.num;
 !foo.num;
 ~foo.num;
 ```
@@ -1647,23 +1601,23 @@ import { foo } from './file1';
 export let foo = { num: 0 };
 
 // file2.ets  // ArkTS1.2
+'use static'
 let mod = ESValue.load('./file1');
 let foo = mod.getProperty('foo');
-let num =
-  foo.getProperty('num') +
-  // +foo.num
-  num.toNumber() -
-  // -foo.num
-  num.toNumber();
+let num = foo.getProperty('num');
+// +foo.num
++num.toNumber();
+// -foo.num
+-num.toNumber();
 // !foo.num
 !num.toNumber();
 // ~foo.num
 ~num.toNumber();
 ```
 
-### ArkTS对js对象进行二元运算
+### ArkTS1.2对js对象进行二元运算
 
-**规则：** arkts-interop-js2s-await-js-promise
+**规则：** arkts-interop-js2s-binary-op
 
 **级别：** error
 
@@ -1690,6 +1644,7 @@ a ** b;
 export let foo = { a: 1, b: 2 };
 
 // file2.ets  // ArkTS1.2
+'use static'
 let mod = ESValue.load('./file1');
 let foo = mod.getProperty('foo');
 let a = foo.getProperty('a').toNumber();
@@ -1702,9 +1657,9 @@ a % b;
 a ** b;
 ```
 
-### ArkTSawait js Promise对象
+### ArkTS1.2 await js Promise对象
 
-**规则：** arkts-interop-js2s-compare-js-data
+**规则：** arkts-interop-js2s-await-js-promise
 
 **级别：** error
 
@@ -1712,12 +1667,12 @@ a ** b;
 ```typescript
 // file1.js
 async function foo(){}
-export p = foo()
+export let p = foo()
 
 // file2.ets
 import {p} from "./file1"
 async function bar() {
-  await p
+  await p.toPromise();
 }
 ```
 
@@ -1725,20 +1680,21 @@ async function bar() {
 ```typescript
 // file1.js
 async function foo(){}
-export p = foo()
+export let p = foo()
 
 // file2.ets  // ArkTS1.2
+'use static'
 let mod = ESValue.load('./file1')
 let p = mod.getProperty('p')
 
 async function bar() {
-  await p.toPromise()
+  await p.toPromise();
 }
 ```
 
-### ArkTS对js数据进行比较
+### ArkTS1.2对js数据进行比较
 
-**规则：** arkts-interop-js2s-equality-judgment
+**规则：** arkts-interop-js2s-compare-js-data
 
 **级别：** error
 
@@ -1764,6 +1720,7 @@ export let a = 1;
 export let b = 2;
 
 // file2.ets  // ArkTS1.2
+'use static'
 let mod = ESValue.load('./file1');
 let foo = mod.getProperty('foo');
 let a = foo.getProperty('a').toNumber();
@@ -1775,9 +1732,9 @@ a >= b;
 a <= b;
 ```
 
-### ArkTS对js数据进行相等判断
+### ArkTS1.2对js数据进行相等判断
 
-**规则：** arkts-interop-js2s-condition-judgment
+**规则：** arkts-interop-js2s-equality-judgment
 
 **级别：** error
 
@@ -1804,19 +1761,20 @@ export let a = new A();
 export let b = new A();
 
 // file2.ets  // ArkTS1.2
+'use static'
 let mod = ESValue.load('./file1');
 let a = mod.getProperty('a');
 let b = mod.getProperty('b');
 
-a.areEqual(b);
-!a.areEqual(b);
-a.areStrictlyEqual(b);
-!a.areStrictlyEqual(b);
+a.isEqualTo(b);
+!a.isEqualTo(b);
+a.isStrictlyEqualTo(b);
+!a.isStrictlyEqualTo(b);
 ```
 
-### ArkTS对js对象进行条件判断
+### ArkTS1.2对js对象进行条件判断
 
-**规则：** arkts-interop-js2s-inherit-js-class
+**规则：** arkts-interop-js2s-condition-judgment
 
 **级别：** error
 
@@ -1837,6 +1795,7 @@ if (foo.isGood) {}
 export let foo = { isGood: true };
 
 // file2.ets
+'use static'
 let mod = ESValue.load('./file1');
 let foo = mod.getProperty('foo');
 
@@ -1844,9 +1803,9 @@ let isGood = foo.getProperty('isGood').toBoolean();
 if (isGood) {}
 ```
 
-### ArkTS继承js的类
+### ArkTS1.2继承js的类
 
-**规则：** arkts-interop-js2s-js-exception
+**规则：** arkts-interop-js2s-inherit-js-class
 
 **级别：** error
 
@@ -1867,16 +1826,20 @@ let b = new B();
 export class A {}
 
 // file2.ets  // ArkTS1.2
+'use static'
 let mod = ESValue.load('./file1');
 let A = mod.getProperty('A');
-
-let B: ESValue = ESValue.defineClass('B', () => {}, undefined, undefined, A);
+let fixArr: FixedArray<ESValue> = [];
+let esvalueCB = (argThis: ESValue, argNewTgt: ESValue, args: FixedArray<ESValue>, data?: ESValueCallbackData) => {
+  return ESValue.Undefined;
+};
+let B: ESValue = ESValue.defineClass('B', esvalueCB, undefined, undefined, A);
 let b = B.instantiate();
 ```
 
-### ArkTS处理js非常规异常
+### ArkTS1.2处理js非常规异常
 
-**规则：** arkts-interop-js2s-boxed-type
+**规则：** arkts-interop-js2s-js-exception
 
 **级别：** error
 
@@ -1893,7 +1856,7 @@ import { foo } from './file1';
 try {
   foo();
 } catch (e) {
-  console.log(e as number); //123
+  console.log("result is " + (e as number)); //123
 }
 ```
 
@@ -1905,6 +1868,7 @@ export function foo() {
 }
 
 // file2.ets
+'use static'
 let mod = ESValue.load('./file1');
 let foo = mod.getProperty('foo');
 
@@ -1916,9 +1880,9 @@ try {
 }
 ```
 
-### ArkTS访问js的boxed对象
+### ArkTS1.2访问js的boxed对象
 
-**规则：** arkts-interop-js2s-traverse-js-instance
+**规则：** arkts-interop-js2s-boxed-type
 
 **级别：** error
 
@@ -1948,6 +1912,7 @@ export let foo = {
 };
 
 // file2.ets
+'use static'
 let mod = ESValue.load('./file1');
 let foo = mod.getProperty('foo');
 
@@ -1956,9 +1921,9 @@ foo.getProperty('bool').typeOf(); // 'boolean'
 foo.getProperty('str').typeOf(); // 'string'
 ```
 
-### ArkTS遍历js对象
+### ArkTS1.2遍历js对象
 
-**规则：** arkts-interop-js2s-js-call-static-func
+**规则：** arkts-interop-js2s-traverse-js-instance
 
 **级别：** error
 
@@ -1982,19 +1947,20 @@ for (let i = 0; i < len; ++i) {
 export let foo = { arr: [1, 2, 3] };
 
 // file2.ets  ArkTS1.2
+'use static'
 let mod = ESValue.load('./file1');
 let foo = mod.getProperty('foo');
-let arr = foo.getProerptyByName('arr');
-let len = arr.getProerptyByName('length').toNumber();
+let arr = foo.getProerpty('arr');
+let len = arr.getProerpty('length').toNumber();
 for (let i = 0; i < len; ++i) {
   arr.getProperty(i).toNumber();
   arr.setProperty(i, ESValue.wrap(0));
 }
 ```
 
-### js调用ArkTS函数和传参
+### js调用ArkTS1.2函数和传参
 
-**规则：** arkts-interop-js2s-js-add-delete-static-prop
+**规则：** arkts-interop-js2s-js-call-static-func
 
 **级别：** error
 
@@ -2028,6 +1994,7 @@ export function handle(cb) {
 }
 
 // file2.ets
+'use static'
 let mod = ESValue.load('./file1');
 let handle = mod.getProperty('handle');
 interface Person {
@@ -2042,7 +2009,7 @@ handle.invoke(ESValue.wrap(foo));
 handle.invoke(ESValue.wrap(lambda));
 ```
 
-### js增删改ArkTS对象属性
+### js增删改ArkTS1.2对象属性
 
 **规则：** arkts-interop-js2s-js-add-delete-static-prop
 
@@ -2078,6 +2045,7 @@ export function foo(obj) {
 }
 
 // file2.ets  // ArkTS1.2
+'use static'
 let mod = ESValue.load('./file1');
 let foo = mod.getProperty('foo');
 class X {
@@ -2087,7 +2055,7 @@ class X {
 foo.invoke(ESValue.wrap(new X()));
 ```
 
-### js Object内置方法作用在ArkTS对象
+### js Object内置方法作用在ArkTS1.2对象
 
 **规则：** arkts-interop-js2s-js-object-on-static-instance
 
@@ -2097,18 +2065,10 @@ foo.invoke(ESValue.wrap(new X()));
 ```typescript
 // file1.js
 export function foo(prx) {
-  Object.getOwnPropertyDescriptor(prx, 'a'); // not undefined
-  Object.getOwnPropertyDescriptors(prx); // not {}
   Object.getOwnPropertyNames(prx); // ["a"]
   Object.hasOwn(prx, 'a'); // true
-  Object.isExtensible(prx); // true
-  Object.isFrozen(prx); // false
-  Object.isSealed(prx); // false
   Object.keys(prx); // ["a"]
-  Object.setPrototypeOf(prx, {}); // OK
   Object.values(prx); // [1]
-  prx.hasOwnProperty('a'); // true
-  prx.propertyIsEnumerable('a'); // true
 }
 
 // file2.ets
@@ -2123,29 +2083,21 @@ foo(new X());
 ```typescript
 // file1.js
 export function foo(prx) {
-Object.getOwnPropertyDescriptor(prx, "a") // undefined
-Object.getOwnPropertyDescriptors(prx) // {}
-Object.getOwnPropertyNames(prx) // []
-Object.getOwnPropertySymbols(prx)) // []
-Object.hasOwn(prx, "a")  // false
-Object.isExtensible(prx)  // false
-Object.isFrozen(prx)  // true
-Object.isSealed(prx)  // true
-Object.keys(prx)  // []
-Object.setPrototypeOf(prx, {})  // 运行时报错
-Object.values(prx)  // []
-prx.hasOwnProperty("a")  // false
-prx.propertyIsEnumerable("a")  // false
+  Object.getOwnPropertyNames(prx) // []
+  Object.hasOwn(prx, "a")  // false
+  Object.keys(prx)  // []
+  Object.values(prx)  // []
 }
 
 // file2.ets  // ArkTS1.2
+'use static'
 let mod = ESValue.load('./file1')
 let foo = mod.getProperty('foo')
 class X { a = 1 }
 foo.invoke(ESValue.wrap(new X()))
 ```
 
-### js Reflect内置方法作用在ArkTS对象
+### js Reflect内置方法作用在ArkTS1.2对象
 
 **规则：** arkts-interop-js2s-js-reflect-on-static-instance
 
@@ -2155,14 +2107,8 @@ foo.invoke(ESValue.wrap(new X()))
 ```typescript
 // file1.js
 export function foo(prx) {
-  Reflect.apply(prx.getName, { a: 12 }); // 12
-  Reflect.defineProperty(prx, 'newField', { value: 7 }); // true
-  Reflect.deleteProperty(prx, 'a'); // true
-  Reflect.getOwnPropertyDescriptor(prx, 'a'); // not undefined
   Reflect.ownKeys(prx); // ['a']
-  Reflect.isExtensible(prx); // true
   Reflect.set(prx, 'newField', 7); // true
-  Reflect.setPrototypeOf(prx, {}); // true
 }
 
 // file2.ets
@@ -2180,17 +2126,12 @@ foo(new X());
 ```typescript
 // file1.js
 export function foo(prx) {
-  Reflect.apply(prx.getName, { a: 12 }); // 运行时报错
-  Reflect.defineProperty(prx, 'newField', { value: 7 }); // false
-  Reflect.deleteProperty(prx, 'a'); // false
-  Reflect.getOwnPropertyDescriptor(prx, 'a'); // undefined
   Reflect.ownKeys(prx); // []
-  Reflect.isExtensible(prx); // false
   Reflect.set(prx, 'newField', 7); // false
-  Reflect.setPrototypeOf(prx, {}); // false
 }
 
 // file2.ets  // ArkTS1.2
+'use static'
 let mod = ESValue.load('./file1');
 let foo = mod.getProperty('foo');
 class X {
@@ -2202,7 +2143,7 @@ class X {
 foo.invoke(ESValue.wrap(new X()));
 ```
 
-### js对ArkTS对象进行展开语法
+### js对ArkTS1.2对象进行展开语法
 
 **规则：** arkts-interop-js2s-js-expand-static-instance
 
@@ -2234,13 +2175,14 @@ let {a, b, ...rest} = obj  // a会是1，b会是2，rest会是空对象{}，因�
 // 解决方案: let rest = {c: obj.c}
 
 // file2.ets  // ArkTS1.2
+'use static'
 let mod = ESValue.load('./file1')
 let foo = mod.getProperty('foo')
 class X { a = 1; b = 2; c = 3 }
 foo.invoke(ESValue.wrap(new X()))
 ```
 
-### ArkTS1.2动态导入TS
+### ArkTS1.2动态导入JS
 
 **规则：** arkts-interop-js2s-dynamic-import-js
 
@@ -2262,7 +2204,8 @@ new A()
 // file1.js
 export class A {}
 
-// file2.ets ArkTS1.1
+// file2.ets ArkTS1.2
+'use static'
 let mod: ESValue = ESValue.load('./file1')
 let A: ESValue = mod.getProperty('A')
 A.instantiate()

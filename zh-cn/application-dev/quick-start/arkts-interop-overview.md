@@ -34,7 +34,7 @@ AnyObject
 Object
     |
 ESValue  -|- (static) load(path: string): ESValue                            // 模块加载
-          |- wrap(arg: Any)                                                  // 将对象包装成ESObject实例
+          |- wrap(arg: Any)                                                  // 将对象包装成ESValue实例
           |- getProperty(key: string | number): ESValue                      // 读属性
           |- setProperty(key: string | number, newVal: ESValue): void        // 写属性
           |- instantiate(...args: ESValue[]): ESValue                        // 实例化
@@ -76,6 +76,7 @@ export function foo(arg) {
 
 ```typescript
 // file2.ets ArkTS1.2
+'use static'
 // 加载模块
 let module: ESValue = ESValue.load('./file1')
 let foo: ESValue = module.getProperty('foo')
@@ -89,7 +90,7 @@ let msg: ESValue = a.getProperty('msg')
 let msgStr: string = msg.toString()  // 'hello'
 let data: ESValue = a.getProperty('data')
 // 写属性
-let newMsgValue: ESValue = ESValue.wrap('world')  // 将对象包装成ESObject实例
+let newMsgValue: ESValue = ESValue.wrap('world')  // 将对象包装成ESValue实例
 a.setProperty('msg', newMsgValue)
 // 调用方法
 a.invokeMethod('say', ESValue.wrap(' cup'))  // 打印'world cup'
@@ -121,6 +122,7 @@ export function foo(arg: A): A {
 
 ```typescript
 // file2.ets ArkTS1.2
+'use static'
 // 加载模块
 import { A, foo } from "./file1";
 // 实例化

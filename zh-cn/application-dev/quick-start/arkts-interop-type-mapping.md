@@ -102,7 +102,6 @@ ArkTS1.2采用递归的方式定义类型映射，例如以下的类型映射。
 | ---------------------- | ---------------------------------------------- | -------------------------------------------------------------- |
 | 普通函数               | `function foo(arg1: K1, arg2: K2): R`          | `function foo(arg1: f(K1), arg2: f(K2)): f(R)`                 |
 | 可选参数               | `function foo(arg1: K1, arg2​?​: K2): R`       | `function foo(arg1: f(K1), arg2​?​: f(K2)): f(R)`              |
-| 只读参数               | `function foo(arg1: K1, readonly arg2: K2): R` | `function foo(arg1: f(K1), readonly arg2: f(K2)): f(R)`        |
 | 剩余参数               | `function foo(arg1: K1, ...​arg2: K2): R`      | `function foo(arg1: f(K1), ...​arg2: f1.2 type (T)(K2)): f(R)` |
 | 普通lambda             | `(arg1: K1, arg2: K2) => R`                    | `(arg1: f(K1), arg2: f(K2)) => f(R)`                           |
 | function with receiver | `function foo(​this​: K1, arg2: K): R`         | `function foo(this: f(K1), arg2: f(K2)): f(R)`                 |
@@ -234,7 +233,6 @@ TODO: 美化表格
 | ---------- | ---------------------------------------------- | ------------------------------------------------------- |
 | 普通函数   | `function foo(arg1: K1, arg2: K2): R`          | `function foo(arg1: f(K1), arg2: f(K2)): f(R)`          |
 | 可选参数   | `function foo(arg1: K1, arg2?​: K2): R`        | `function foo(arg1: f(K1), arg2​​: f(K2)): f(R)`        |
-| 只读参数   | `function foo(arg1: K1, readonly arg2: K2): R` | `function foo(arg1: f(K1), readonly arg2: f(K2)): f(R)` |
 | 剩余参数   | `function foo(arg1: K1, ...arg2: K2): R`       | `function foo(arg1: f(K1), ...​arg2: f(K2)): f(R)`      |
 | 普通lambda | `(arg1: K1, arg2: K2) => R`                    | `(arg1: f(K1), arg2: f(K2)) => f(R)`                    |
 
@@ -506,6 +504,7 @@ MyArray = [{ name: "Alice", age: 15 }];
 export type Person = (typeof MyArray)[number];
 
 // declaration in ArkTS 1.2 is
+'use static'
 export type Person = Any;
 ```
 
@@ -528,6 +527,7 @@ export type Person = Any;
 export type A<T> = { [K in keyof T]: T[K] };
 
 // declaration in 1.2 is
+'use static'
 export type A<T> = Any;
 ```
 
@@ -545,6 +545,7 @@ export type AB = "A" | "B";
 export type AllLocaleIDs = `${AB}_id`;
 
 // declaration in 1.2 is
+'use static'
 export type AB = "A" | "B";
 export type AllLocaleIDs = Any;
 ```
