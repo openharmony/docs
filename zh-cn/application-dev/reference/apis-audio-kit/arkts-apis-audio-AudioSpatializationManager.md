@@ -7,6 +7,12 @@
 
 在使用AudioSpatializationManager的接口之前，需先通过[getSpatializationManager](arkts-apis-audio-AudioManager.md#getspatializationmanager18)获取AudioSpatializationManager实例。
 
+## 导入模块
+
+```ts
+import { audio } from '@kit.AudioKit';
+```
+
 ## isSpatializationEnabledForCurrentDevice<sup>18+</sup>
 
 isSpatializationEnabledForCurrentDevice(): boolean

@@ -6,6 +6,12 @@
 
 提供查询设备是否支持相机微距拍摄的方法。
 
+## 导入模块
+
+```ts
+import { camera } from '@kit.CameraKit';
+```
+
 ## isMacroSupported<sup>19+</sup>
 
 isMacroSupported(): boolean

@@ -14,6 +14,12 @@ Audio/Video播放demo可参考：[音频播放开发指导](../../media/media/us
 > - [on('stateChange')](#onstatechange9)：监听播放状态机AVPlayerState切换。
 > - [on('error')](#onerror9)：监听错误事件。
 
+## 导入模块
+
+```ts
+import { media } from '@kit.MediaKit';
+```
+
 ## 属性
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer

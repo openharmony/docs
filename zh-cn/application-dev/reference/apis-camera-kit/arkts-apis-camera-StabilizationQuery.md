@@ -7,6 +7,12 @@
 
 提供了查询设备在录像模式下是否支持对应的视频防抖模式的能力。
 
+## 导入模块
+
+```ts
+import { camera } from '@kit.CameraKit';
+```
+
 ## isVideoStabilizationModeSupported<sup>11+</sup>
 
 isVideoStabilizationModeSupported(vsMode: VideoStabilizationMode): boolean

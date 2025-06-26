@@ -7,6 +7,12 @@
 
 提供了针对设备的自动曝光特性提供了一系列查询功能。
 
+## 导入模块
+
+```ts
+import { camera } from '@kit.CameraKit';
+```
+
 ## isExposureModeSupported<sup>11+</sup>
 
 isExposureModeSupported(aeMode: ExposureMode): boolean
