@@ -1737,7 +1737,10 @@
     - ArkGraphics 3D（方舟3D图形）<!--arkgraphics-3d-->
       - [ArkGraphics 3D简介](graphics3d/arkgraphics3D-overview.md)
       - [ArkGraphics 3D场景搭建以及管理](graphics3d/arkgraphics3D-scene.md)
-      - [ArkGraphics 3D资源创建以及使用](graphics3d/arkgraphics3D-resource.md)
+      - ArkGraphics 3D资源创建以及使用<!--arkgraphics3D-resource-->
+        - [创建并使用材质资源](graphics3d/arkgraphics3D-resource-material.md)
+        - [创建并使用图片资源](graphics3d/arkgraphics3D-resource-image.md)
+        - [创建并使用环境资源](graphics3d/arkgraphics3D-resource-environment.md)
       - [ArkGraphics 3D场景动画控制以及管理](graphics3d/arkgraphics3D-animation.md)
   - 应用服务<!--gapp-service-->
     - Ads Kit（广告服务）<!--ads-kit-->
