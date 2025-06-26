@@ -60,7 +60,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
 
 2. 创建编码器实例对象，OH_AVCodec *为编码器实例指针。
 
-   应用可以通过媒体类型或编解码名称创建编码器。
+   应用可以通过媒体类型或编解码器名称创建编码器。
 
    方法一：通过 Mimetype 创建编码器。
     ```cpp

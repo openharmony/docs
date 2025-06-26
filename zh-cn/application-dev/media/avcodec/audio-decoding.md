@@ -61,7 +61,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
 
 2. 创建解码器实例对象，OH_AVCodec *为解码器实例指针。
 
-   应用可以通过媒体类型或编解码名称创建解码器。
+   应用可以通过媒体类型或编解码器名称创建解码器。
 
    方法一：通过 Mimetype 创建解码器。
     ```cpp
@@ -390,7 +390,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     ```c++
     uint32_t index = signal_->inQueue_.front();
     auto buffer = signal_->inBufferQueue_.front();
-    int64_t size;
+    int32_t size;
     int64_t pts;
     // size是待解码数据的每帧帧长度。pts是每帧的时间戳，用于指示音频应该何时被播放。
     // size和pts的获取来源：音视频资源文件或者待解码的数据流。
