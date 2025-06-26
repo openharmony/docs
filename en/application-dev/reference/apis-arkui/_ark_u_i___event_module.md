@@ -11,7 +11,7 @@ Declares the UI input event capabilities provided by ArkUI on the native side.
 ## Summary
 
 
-### File
+### Files
 
 | Name| Description| 
 | -------- | -------- |

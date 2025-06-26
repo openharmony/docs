@@ -9,6 +9,7 @@ Defines the translation options for component transition.
 
 **Related module**: [ArkUI_NativeModule](_ark_u_i___native_module.md)
 
+**Header file**: [native_type.h](native__type_8h.md)
 
 ## Summary
 
@@ -34,7 +35,6 @@ float ArkUI_TranslationOptions::x
 
 Translation distance along the x-axis.
 
-
 ### y
 
 ```
@@ -43,7 +43,6 @@ float ArkUI_TranslationOptions::y
 **Description**
 
 Translation distance along the y-axis.
-
 
 ### z
 

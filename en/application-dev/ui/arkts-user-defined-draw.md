@@ -1,4 +1,4 @@
-# Custom Drawing
+# Implementing Custom Drawing
 When the registered event is detected as a drawing type, you can use the custom drawing feature to implement your own drawing logic and render custom content.
 > **NOTE**
 > - During event registration, you must register the event as a drawing event (for example, **ARKUI_NODE_CUSTOM_EVENT_ON_DRAW**). You can find the event types and their meanings by referring to the [ArkUI_NodeCustomEventType](../reference/apis-arkui/_ark_u_i___native_module.md#arkui_nodecustomeventtype) enum.

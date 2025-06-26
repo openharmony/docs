@@ -1,4 +1,4 @@
-# Dialog Box Controller
+# Dialog Controller
 The dialog controller in ArkUI provides the capability to operate on a bound dialog box. Currently, it supports the close functionality. You can pass the controller into the dialog box content area to perform operations.
 
 Since API version 18, you can set the [controller](../reference/apis-arkui/js-apis-promptAction.md#dialogcontroller18) parameter to bind the controller, and operate the dialog box through the controller.
@@ -364,4 +364,4 @@ The example demonstrates how to use both the externally passed dialog controller
     }
   }
   ```
-![dialog-controller-demo1](figures/dialog-controller-demo1.gif)
+

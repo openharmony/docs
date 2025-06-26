@@ -33,12 +33,12 @@ Defines a set of animation APIs of ArkUI on the native side.
 | Name| Description| 
 | -------- | -------- |
 | typedef struct [ArkUI_AnimateOption](_ark_u_i___native_module.md#arkui_animateoption) [ArkUI_AnimateOption](_ark_u_i___native_module.md#arkui_animateoption) | Defines a struct for the animation configuration. |
-| typedef struct [ArkUI_Curve](_ark_u_i___native_module.md#arkui_curve) [ArkUI_Curve](_ark_u_i___native_module.md#arkui_curve) | Defines an interpolation curve. | 
-| typedef struct [ArkUI_Curve](_ark_u_i___native_module.md#arkui_curve) \* [ArkUI_CurveHandle](_ark_u_i___native_module.md#arkui_curvehandle) | Defines a struct for the pointer to an interpolation curve. | 
+| typedef struct [ArkUI_Curve](_ark_u_i___native_module.md) [ArkUI_Curve](_ark_u_i___native_module.md) | Defines an interpolation curve. | 
+| typedef struct [ArkUI_Curve](_ark_u_i___native_module.md) \* [ArkUI_CurveHandle](_ark_u_i___native_module.md#arkui_curvehandle) | Defines a struct for the pointer to an interpolation curve. | 
 | typedef struct [ArkUI_KeyframeAnimateOption](_ark_u_i___native_module.md#arkui_keyframeanimateoption) [ArkUI_KeyframeAnimateOption](_ark_u_i___native_module.md#arkui_keyframeanimateoption) | Defines the keyframe animation parameter object. | 
 | typedef struct [ArkUI_AnimatorOption](_ark_u_i___native_module.md#arkui_animatoroption) [ArkUI_AnimatorOption](_ark_u_i___native_module.md#arkui_animatoroption) | Defines the animator parameter object. | 
-| typedef struct [ArkUI_AnimatorEvent](_ark_u_i___native_module.md#arkui_animatorevent) [ArkUI_AnimatorEvent](_ark_u_i___native_module.md#arkui_animatorevent) | Defines the animator callback event object. |
-| typedef struct [ArkUI_AnimatorOnFrameEvent](_ark_u_i___native_module.md#arkui_animatoronframeevent) [ArkUI_AnimatorOnFrameEvent](_ark_u_i___native_module.md#arkui_animatoronframeevent) | Defines the callback object when the animator receives a frame. |
+| typedef struct [ArkUI_AnimatorEvent](_ark_u_i___native_module.md) [ArkUI_AnimatorEvent](_ark_u_i___native_module.md) | Defines the animator callback event object. |
+| typedef struct [ArkUI_AnimatorOnFrameEvent](_ark_u_i___native_module.md) [ArkUI_AnimatorOnFrameEvent](_ark_u_i___native_module.md) | Defines the callback object when the animator receives a frame. |
 | typedef struct ArkUI_Animator \* [ArkUI_AnimatorHandle](_ark_u_i___native_module.md#arkui_animatorhandle) | Defines the pointer to an animator object. | 
 | typedef struct [ArkUI_TransitionEffect](_ark_u_i___native_module.md#arkui_transitioneffect) [ArkUI_TransitionEffect](_ark_u_i___native_module.md#arkui_transitioneffect) | Defines the transition effect. | 
 

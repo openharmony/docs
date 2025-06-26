@@ -1,4 +1,4 @@
-#  Using Component Snapshot (ComponentSnapshot)
+# Using Component Snapshot (ComponentSnapshot)
 ## Overview
 Component snapshot is the capability to generate a pixel map ([PixelMap](../reference/apis-image-kit/js-apis-image.md#pixelmap7)) from the rendering result of a component node tree within an application. It supports two approaches:
 
