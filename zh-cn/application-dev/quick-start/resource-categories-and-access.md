@@ -284,7 +284,7 @@ string资源配置attr属性示例如下，其中string1字符串被标记为不
 
 ### 单HAP包应用资源
 
- - 通过`$r`或`$rawfile`访问资源。<br/>对于color、float、string、plural、media、profile等类型的资源，通过`$r('app.type.name')`形式访问。其中，app为resources目录中定义的资源，type为资源类型，name为资源名，由开发者定义资源时确定。<br/>对于string.json中使用多个占位符的情况，通过`$r('app.string.label','aaa','bbb',444)`形式访问。<br/>对于rawfile目录资源，通过`$rawfile('filename')`形式访问。其中，filename为rawfile目录下文件的相对路径，文件名需要包含后缀，路径开头不可以"/"开头。
+ - 通过`$r`或`$rawfile`访问资源。<br/>对于color、float、string、plural、media、profile等类型的资源，通过`$r('app.type.name')`形式访问。其中，app为resources目录中定义的资源，type为资源类型，name为资源名，由开发者定义资源时确定。<br/>对于string.json中使用多个占位符的情况，例如资源值value中存在`$s`和`$d`两个占位符，需要通过`$r('app.string.label', 'aaa', 444)`形式访问。其中label为资源名称name，'aaa'和444用来替代占位符。<br/>对于rawfile目录资源，通过`$rawfile('filename')`形式访问。其中，filename为rawfile目录下文件的相对路径，文件名需要包含后缀，路径开头不可以"/"开头。
 
    > **说明：**
    >
@@ -312,8 +312,9 @@ string资源配置attr属性示例如下，其中string1字符串被标记为不
     .height(200)
     .width(300)
 
-    //对占位符，通过$r('app.string.label','aaa','bbb',444)访问
-    Text($r('app.string.message_notification','LiHua',2))
+    // 对于string.json中name为"message_notification"，value为"Hello, %1$s!,You have %2$d new messages."
+    // 该资源存在$s、$d两个占位符，需要替代为'LiHua'、2，则采用如下方式访问
+    Text($r('app.string.message_notification', 'LiHua', 2))
   ```
 
 - 通过本应用上下文获取ResourceManager后，可调用不同[资源管理接口](../reference/apis-localization-kit/js-apis-resource-manager.md)通过资源ID值或资源名称访问各类资源。例如：<br/>`getContext().resourceManager.getStringByNameSync('test')`可获取字符串资源。<br/>`getContext().resourceManager.getRawFd('rawfilepath')`可获取Rawfile所在hap包的descriptor信息，访问rawfile文件时需{fd, offset, length}一起使用。
@@ -486,34 +487,33 @@ Image($r('sys.media.ohos_app_icon'))
 在`Index.ets`中，分别获取三种语言的资源并显示在文本框中，运行设备当前系统语言为中文，`entry/src/main/ets/pages/Index.ets`的代码如下：
 
 ```ts
-import { common } from '@kit.AbilityKit'
+import { common } from '@kit.AbilityKit';
 
 @Entry
 @Component
 struct Index {
-  @State englishString: string = ""
-  @State germanString: string = ""
+  @State englishString: string = "";
+  @State germanString: string = "";
 
   getString(): string {
-    let context = this.getUIContext().getHostContext() as common.UIAbilityContext
-    let resMgr = context.resourceManager
-    let resId = $r('app.string.greetings').id
+    let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+    let resMgr = context.resourceManager;
+    let resId = $r('app.string.greetings').id;
 
     //获取符合当前系统语言地区、颜色模式、分辨率等配置的资源
-    let currentLanguageString = resMgr.getStringSync(resId)
+    let currentLanguageString = resMgr.getStringSync(resId);
 
     //获取符合当前系统颜色模式、分辨率等配置的英文资源
-    let overrideConfig = resMgr.getOverrideConfiguration()
-    overrideConfig.locale = "en_US" //指定资源的语言为英语，地区为美国
-    let overrideResMgr = resMgr.getOverrideResourceManager(overrideConfig)
-    this.englishString = overrideResMgr.getStringSync(resId)
+    let overrideConfig = resMgr.getOverrideConfiguration();
+    overrideConfig.locale = "en_US"; //指定资源的语言为英语，地区为美国
+    let overrideResMgr = resMgr.getOverrideResourceManager(overrideConfig);
+    this.englishString = overrideResMgr.getStringSync(resId);
 
     //获取符合当前系统颜色模式、分辨率等配置的德文资源
-    overrideConfig.locale = "de_DE" //指定资源的语言为德语，地区为德国
-    overrideResMgr.updateOverrideConfiguration(overrideConfig) //等效于resMgr.updateOverrideConfiguration(overrideConfig)
-    this.germanString = overrideResMgr.getStringSync(resId)
-
-    return currentLanguageString
+    overrideConfig.locale = "de_DE"; //指定资源的语言为德语，地区为德国
+    overrideResMgr.updateOverrideConfiguration(overrideConfig); //等效于resMgr.updateOverrideConfiguration(overrideConfig)
+    this.germanString = overrideResMgr.getStringSync(resId);
+    return currentLanguageString;
   }
 
   build() {
@@ -549,7 +549,8 @@ overlay是一种资源替换机制，针对不同品牌、产品的显示风格�
 ### 静态overlay配置方式
 
 包内overlay资源包中的配置文件app.json5中支持的字段：
-```{
+```
+{
   "app":{
     "bundleName": "com.example.myapplication.overlay",
     "vendor" : "example",
@@ -561,7 +562,8 @@ overlay是一种资源替换机制，针对不同品牌、产品的显示风格�
 }
 ```
 包内overlay资源包中的配置文件module.json5中支持的字段：
-```{
+```
+{
   "module":{
     "name": "entry_overlay_module_name",
     "type": "shared",
@@ -571,7 +573,6 @@ overlay是一种资源替换机制，针对不同品牌、产品的显示风格�
       "tablet",
     ],
     "deliverywithInstall": true,
-
     "targetModuleName": "entry_module_name",
     "targetPriority": 1,
   }
@@ -579,7 +580,8 @@ overlay是一种资源替换机制，针对不同品牌、产品的显示风格�
 ```
 <!--Del-->
 包间overlay资源包中的配置文件app.json5中支持的字段，仅对系统应用开放：
-```{
+```
+{
   "app":{
     "bundleName": "com.example.myapplication.overlay",
     "vendor" : "example",
@@ -593,7 +595,8 @@ overlay是一种资源替换机制，针对不同品牌、产品的显示风格�
 }
 ```
 包间overlay资源包中的配置文件module.json5中支持的字段，仅对系统应用开放：
-```{
+```
+{
   "module":{
     "name": "entry_overlay_module_name",
     "type": "shared",
@@ -603,7 +606,6 @@ overlay是一种资源替换机制，针对不同品牌、产品的显示风格�
       "tablet",
     ],
     "deliverywithInstall": true,
-
     "targetModuleName": "entry_module_name",
     "targetPriority": 1,
   }
@@ -611,9 +613,9 @@ overlay是一种资源替换机制，针对不同品牌、产品的显示风格�
 ```
 <!--DelEnd-->
 > **说明：**
-<!--Del-->>
+><!--Del-->
 > - targetBundleName: 字符串类型，指定要overlay的bundleName。
-<!--DelEnd-->>
+><!--DelEnd-->
 > - targetModuleName: 字符串类型，指定要overlay的应用中的目标module。
 >
 > - targetPriority： 整数类型，指定overlay优先级。

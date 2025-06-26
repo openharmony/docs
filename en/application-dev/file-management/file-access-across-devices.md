@@ -7,7 +7,29 @@ The distributed file system provides applications the capability for accessing f
 1. Connect the devices to form a Super Device.<br>
    Log in to the same account on two devices and ensure that Bluetooth and Wi-Fi are enabled. Bluetooth does not require a physical connection, and Wi-Fi does not need to be connected to the same LAN.
 
-2. Implement cross-device access to the files of your application.<br>
+2. Grant the distributed data synchronization permission.
+   Use **requestPermissionsFromUser** to request user authorization for the ohos.permission.DISTRIBUTED_DATASYNC permission in the form of a dialog box. For details about how to obtain the application context, see [Obtaining the Context of UIAbility](../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+   ```ts
+   import { common, abilityAccessCtrl } from '@kit.AbilityKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+   let context = this.getUIContext().getHostContext() as common.UIAbilityContext; 
+   let atManager = abilityAccessCtrl.createAtManager();
+   try {
+     // Request the permission from users in the form of a dialog box.
+     atManager.requestPermissionsFromUser(context, ['ohos.permission.DISTRIBUTED_DATASYNC']).then((result) => {
+       console.info(`request permission result: ${JSON.stringify(result)}`);
+     }).catch((err: BusinessError) => {
+       console.error(`Failed to request permissions from user. Code: ${err.code}, message: ${err.message}`);
+     })
+   } catch (error) {
+     let err: BusinessError = error as BusinessError;
+     console.error(`Catch err. Failed to request permissions from user. Code: ${err.code}, message: ${err.message}`);
+   }
+   ```
+
+3. Implement cross-device access to the files of your application.<br>
    Place the files in the **distributedfiles/** directory of the application sandbox directory to implement access from difference devices.
 
    For example, create a file in the **distributedfiles/** directory on device A and write data to the file. For details about how to obtain the application context, see [Obtaining the Context of UIAbility](../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
@@ -17,7 +39,8 @@ The distributed file system provides applications the capability for accessing f
    import { common } from '@kit.AbilityKit';
    import { BusinessError } from '@kit.BasicServicesKit';
  
-   let context = getContext(this) as common.UIAbilityContext; // Obtain the UIAbilityContext of device A.
+   // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+   let context = this.getUIContext().getHostContext() as common.UIAbilityContext; 
    let pathDir: string = context.distributedFilesDir;
    // Obtain the file path of the distributed directory.
    let filePath: string = pathDir + '/test.txt';
@@ -46,73 +69,74 @@ The distributed file system provides applications the capability for accessing f
    import { common } from '@kit.AbilityKit';
    import { BusinessError } from '@kit.BasicServicesKit';
    import { buffer } from '@kit.ArkTS';
-   import { distributedDeviceManager } from '@kit.DistributedServiceKit'
+   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
  
-   // Obtain the network ID of device A.
+   // Obtain the network ID of device A by calling distributed device management APIs.
    let dmInstance = distributedDeviceManager.createDeviceManager("com.example.hap");
    let deviceInfoList: Array<distributedDeviceManager.DeviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
-   let networkId = deviceInfoList[0].networkId;
- 
-   // Define the callback for accessing the user directory.
-   let listeners : fs.DfsListeners = {
-     onStatus: (networkId: string, status: number): void => {
-       console.info('Failed to access public directory');
-     }
-   }
- 
-   // Access and mount the user directory.
-   fs.connectDfs(networkId, listeners).then(() => {
-     console.info("Success to connectDfs");
-     let context = getContext(); // Obtain the UIAbilityContext information of device B.
-     let pathDir: string = context.distributedFilesDir;
-     // Obtain the file path of the distributed directory.
-     let filePath: string = pathDir + '/test.txt';
-   
-     try {
-       // Open the file in the distributed directory.
-       let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE);
-       // Set the buffer for receiving the read data.
-       let arrayBuffer = new ArrayBuffer(4096);
-       // Read the file. The return value is the number of read bytes.
-       class Option {
-           public offset: number = 0;
-           public length: number = 0;
+   if (deviceInfoList && deviceInfoList.length > 0) {
+     console.info(`Success to get available device list`);
+     let networkId = deviceInfoList[0].networkId;
+     // Define the callback for accessing the user directory.
+     let listeners : fs.DfsListeners = {
+       onStatus: (networkId: string, status: number): void => {
+         console.info('Failed to access public directory');
        }
-       let option = new Option();
-       option.length = arrayBuffer.byteLength;
-       let num = fs.readSync(file.fd, arrayBuffer, option);
-       // Print the read data.
-       let buf = buffer.from(arrayBuffer, 0, num);
-       console.info('read result: ' + buf.toString());
-     } catch (error) {
+     };
+     // Start to access files cross devices.
+     fs.connectDfs(networkId, listeners).then(() => {
+       console.info("Success to connect dfs");
+       // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+       let context = this.getUIContext().getHostContext() as common.UIAbilityContext; 
+       let pathDir: string = context.distributedFilesDir;
+       // Obtain the file path of the distributed directory.
+       let filePath: string = pathDir + '/test.txt';
+       try {
+         // Open the file in the distributed directory.
+         let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE);
+         // Set the buffer for receiving the read data.
+         let arrayBuffer = new ArrayBuffer(4096);
+         // Read the file. The return value is the number of read bytes.
+         class Option {
+             public offset: number = 0;
+             public length: number = 0;
+         };
+         let option = new Option();
+         option.length = arrayBuffer.byteLength;
+         let num = fs.readSync(file.fd, arrayBuffer, option);
+         // Print the read data.
+         let buf = buffer.from(arrayBuffer, 0, num);
+         console.info('read result: ' + buf.toString());
+         fs.closeSync(file);
+       } catch (error) {
+         let err: BusinessError = error as BusinessError;
+         console.error(`Failed to openSync / readSync. Code: ${err.code}, message: ${err.message}`);
+       }
+     }).catch((error: BusinessError) => {
        let err: BusinessError = error as BusinessError;
-       console.error(`Failed to openSync / readSync. Code: ${err.code}, message: ${err.message}`);
-     }
-   }).catch((error: BusinessError) => {
-     let err: BusinessError = error as BusinessError;
-     console.error(`Failed to connectDfs Code: ${err.code}, message: ${err.message}`);
-   });
+       console.error(`Failed to connect dfs. Code: ${err.code}, message: ${err.message}`);
+     });
+   }
    ```
 
 3. Disconnect the link for device B.
 
    ```ts
    import { BusinessError } from '@kit.BasicServicesKit';
-   import { distributedDeviceManager } from '@kit.DistributedServiceKit'
+   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
    import { fileIo as fs } from '@kit.CoreFileKit';
-   
+
    // Obtain the network ID of device A.
    let dmInstance = distributedDeviceManager.createDeviceManager("com.example.hap");
    let deviceInfoList: Array<distributedDeviceManager.DeviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
-   let networkId = deviceInfoList[0].networkId;
- 
-   // Disconnect from the user directory.
-   fs.disconnectDfs(networkId).then(() => {
-     console.info("Success to disconnectDfs");
-   }).catch((error: BusinessError) => {
-     let err: BusinessError = error as BusinessError;
-     console.error(`Failed to disconnectDfs Code: ${err.code}, message: ${err.message}`)
-   })
+   if (deviceInfoList && deviceInfoList.length > 0) {
+     console.info(`Success to get available device list`);
+     let networkId = deviceInfoList[0].networkId;
+    // Disable cross-device file access.
+     fs.disconnectDfs(networkId).then(() => {
+       console.info("Success to disconnect dfs");
+     }).catch((err: BusinessError) => {
+       console.error(`Failed to disconnect dfs. Code: ${err.code}, message: ${err.message}`);
+     })
+   }
    ```
-
- <!--no_check--> 

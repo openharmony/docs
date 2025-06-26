@@ -10,7 +10,7 @@ Implements a common event callback. If the input parameter of an API is **undefi
 
 setOnClick(callback: Callback\<ClickEvent> | undefined): void
 
-Set the callback for the [click event](./ts-universal-events-click.md#click-event).
+Set the callback for the [click event](./ts-universal-events-click.md).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -124,7 +124,7 @@ Sets the callback for the [onBlur](./ts-universal-focus-event.md#onblur) event.
 
 setOnHover(callback: HoverCallback | undefined): void
 
-Sets the callback for the [onHover](./ts-universal-mouse-key.md#onhover) event.
+Sets the callback for the [onHover](./ts-universal-events-hover.md#onhover) event.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 

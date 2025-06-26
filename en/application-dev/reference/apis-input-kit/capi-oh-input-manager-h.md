@@ -1265,7 +1265,7 @@ Sets the action for an axis event.
 | Parameter| Description|
 | -- | -- |
 | [Input_AxisEvent](capi-input-axisevent.md)* axisEvent | Axis event object.|
-| [InputEvent_AxisAction](capi-oh-axis-type-h.md#inputevent_axisaction) action | Axis event action. For details, see [InputEvent_AxisAction](capi-oh-axis-type-h.md#inputevent_axis).|
+| [InputEvent_AxisAction](capi-oh-axis-type-h.md#inputevent_axisaction) action | Axis event action. |
 
 **Return value**
 

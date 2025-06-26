@@ -10,7 +10,7 @@ When an application runs in the background, factors such as system resource cont
 
 ## Working Mechanism
 - UIAbility data backup: After an application transitions to the [onBackground](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonbackground) lifecycle, the system automatically calls [onSaveState](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonsavestate) to back up data.
-- UIAbility data restore: The restored [Want](../reference/apis-ability-kit/js-apis-app-ability-want.md) data can be obtained from the [onCreate](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate) lifecycle of the application, and the page stack data can be restored in the [onWindowStageCreate](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate) lifecycle of the application.
+- UIAbility data restore: The restored [Want](../reference/apis-ability-kit/js-apis-app-ability-want.md) data can be obtained from the [onCreate](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate) lifecycle of the application, and the page stack data can be restored in the [onWindowStageCreate](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onwindowstagecreate) lifecycle of the application.
 
 ## Constraints
 
@@ -30,7 +30,7 @@ The UIAbility backup and restore API is provided by the [UIAbilityContext](../re
 | ------------------------------------------------------------ | ---------------------------------------------------- |
 | setRestoreEnabled(enabled: boolean): void | Sets whether to enable restore when the UIAbility is switched back from the background.|
 
-[setRestoreEnabled](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetrestoreenabled14) must be called during application initialization (before [onForeground](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonforeground) is invoked). For example, it can be called in the [onCreate](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate) callback of the UIAbility.
+[setRestoreEnabled](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetrestoreenabled14) must be called during application initialization (before [onForeground](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onforeground) is invoked). For example, it can be called in the [onCreate](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate) callback of the UIAbility.
 
 
 ## How to Develop

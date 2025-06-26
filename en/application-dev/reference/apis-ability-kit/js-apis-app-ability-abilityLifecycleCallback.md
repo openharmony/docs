@@ -222,7 +222,7 @@ See [Usage of AbilityLifecycleCallback](#usage-of-abilitylifecyclecallback).
 
 onWindowStageWillCreate?(ability: UIAbility, windowStage: window.WindowStage): void
 
-Called before the [onWindowStageCreate](js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate) callback of the UIAbility is triggered.
+Called before the [onWindowStageCreate](js-apis-app-ability-uiAbility.md#onwindowstagecreate) callback of the UIAbility is triggered.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -264,7 +264,7 @@ See [Usage of AbilityLifecycleCallback](#usage-of-abilitylifecyclecallback).
 
 onAbilityWillForeground?(ability: UIAbility): void
 
-Called before the [onForeground](js-apis-app-ability-uiAbility.md#uiabilityonforeground) callback of the UIAbility is triggered.
+Called before the [onForeground](js-apis-app-ability-uiAbility.md#onforeground) callback of the UIAbility is triggered.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 

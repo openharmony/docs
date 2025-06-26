@@ -19,7 +19,7 @@ onTouchIntercept(callback: Callback<TouchEvent, HitTestMode>)
 
 | Name       | Type                   | Mandatory | Description                         |
 | ---------- | -------------------------- | ------- | ----------------------------- |
-| callback      | Callback<[TouchEvent](ts-universal-events-touch.md#touchevent), [HitTestMode](ts-universal-attributes-hit-test-behavior.md#HitTestMode)>| Yes    |  Custom event interception callback to bind to the component, which is called during hit testing.|
+| callback      | Callback<[TouchEvent](ts-universal-events-touch.md#touchevent), [HitTestMode](ts-universal-attributes-hit-test-behavior.md#hittestmode)>| Yes    |  Custom event interception callback to bind to the component, which is called during hit testing.|
 
 
 ## Example
@@ -35,30 +35,37 @@ struct Index {
     return true;
   }
 
-  build(){
-    Row(){
-      Column(){
+  build() {
+    Row() {
+      Column() {
         Text("hello world")
           .backgroundColor(Color.Blue)
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
-          .onClick(()=>{
+          .onClick(() => {
             console.log("Text click");
           })
       }
       .width(400)
       .height(300)
       .backgroundColor(Color.Pink)
-      .onClick(()=>{
+      .onClick(() => {
         console.log("Column click");
       })
       // Call onTouchIntercept to modify the HitTestMode attribute of the component.
-      .onTouchIntercept((event : TouchEvent) => {
+      .onTouchIntercept((event: TouchEvent) => {
         console.log("OnTouchIntercept + " + JSON.stringify(event));
-        if (this.isPolygon(event)) {
-          return HitTestMode.None
+        // Validate touches before using it.
+        if (event && event.touches) {
+          let touches = event.touches;
+          for(let i = 0; touches[i] != null; i++) {
+            console.info('onTouchIntercept touches:', JSON.stringify(touches[i]));
+          }
         }
-        return HitTestMode.Default
+        if (this.isPolygon(event)) {
+          return HitTestMode.None;
+        }
+        return HitTestMode.Default;
       })
     }
     .width('100%')

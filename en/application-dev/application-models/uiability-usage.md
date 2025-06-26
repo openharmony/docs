@@ -6,7 +6,7 @@ When using the [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiA
 
 ## Specifying the Startup Page of UIAbility
 
-If no startup page is specified, a white screen occurs after the application is started. You can use [loadContent()](../reference/apis-arkui/js-apis-window.md#loadcontent9) of [WindowStage](../reference/apis-arkui/js-apis-window.md#windowstage9) to set the startup page in the [onWindowStageCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate) callback of the [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) instance.
+If no startup page is specified, a white screen occurs after the application is started. You can use [loadContent()](../reference/apis-arkui/js-apis-window.md#loadcontent9) of [WindowStage](../reference/apis-arkui/js-apis-window.md#windowstage9) to set the startup page in the [onWindowStageCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onwindowstagecreate) callback of the [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) instance.
 
 
 ```ts
@@ -138,7 +138,7 @@ The [getContext](../reference/apis-arkui/js-apis-getContext.md#getcontext) API e
 
 ## Obtaining Information About the UIAbility Launcher
 
-When the launcher ability (UIAbilityA) starts the target ability (UIAbilityB) using **startAbility**, UIAbilityB can obtain information about UIAbilityA, such as its PID, bundle name, and ability name, through the [parameters](../reference/apis-ability-kit/js-apis-app-ability-want.md#properties) parameter.
+When the launcher ability (UIAbilityA) starts the target ability (UIAbilityB) using **startAbility**, UIAbilityB can obtain information about UIAbilityA, such as its PID, bundle name, and ability name, through the [parameters](../reference/apis-ability-kit/js-apis-app-ability-want.md) parameter.
 
 
 1. Tap the **Start UIAbilityB** button in UIAbilityA to start UIAbilityB.

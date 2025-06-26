@@ -1,6 +1,6 @@
 # @ohos.fileshare (File Sharing)
 
-The **fileShare** module provides APIs for granting permissions on a user file to another application based on the file Uniform Resource Identifier (URI). Then, the authorized application can call [@ohos.file.fs](js-apis-file-fs.md) APIs to access the file.
+The **FileShare** module provides APIs for granting permissions on a user file to another application based on the file Uniform Resource Identifier (URI). Then, the authorized application can call [@ohos.file.fs](js-apis-file-fs.md) APIs to access the file.
 
 > **NOTE**
 >
@@ -38,7 +38,7 @@ Enumerates the error codes for a permission policy.
 
 ## PolicyErrorResult<sup>11+</sup>
 
-Represents the detailed permission policy error information, which can be used when **persistPermission**, **revokePermission**, **activatePermission**, or **deactivatePermission** throws an error.
+Represents the detailed permission policy error result, which can be used when **persistPermission**, **revokePermission**, **activatePermission**, or **deactivatePermission** throws an error.
 
 **System capability**: SystemCapability.FileManagement.AppFileService.FolderAuthorization
 
@@ -46,7 +46,7 @@ Represents the detailed permission policy error information, which can be used w
 |--------|--------|--------|---------|
 | uri     | string| Yes | URI of the file, on which the permission fails to be granted or activated.|
 | code    | [PolicyErrorCode](#policyerrorcode11) | Yes | Error code.|
-| message | string| Yes  | Cause of the error. |
+| message | string| Yes  | Error message. |
 
 ## PolicyInfo<sup>11+</sup>
 
@@ -57,18 +57,18 @@ Represents a permission policy, that is, a policy for granting or activating the
 | Name | Type | Mandatory | Description                                                  |
 |------|-------|------|------------------------------------------------------|
 | uri| string | Yes  | URI of the file, on which the permission is to be granted or activated.                                      |
-| operationMode | number | Yes  | Permission on the URI. For details, see [OperationMode](#operationmode11).|
+| operationMode | number | Yes  | URI operation mode. For details, see [OperationMode](#operationmode11).|
 
 ## PathPolicyInfo<sup>15+</sup>
 
-Information about the file or directory to be queried.
+Represents the information about the file or directory to be queried.
 
 **System capability**: SystemCapability.FileManagement.AppFileService.FolderAuthorization
 
 | Name| Type | Mandatory | Description |
 |------|-------|-----|--------|
 | path          | string        | Yes  | Path to be queried.|
-| operationMode | OperationMode | Yes  | Access mode of the path to be queried. For details, see [OperationMode](#operationmode11).|
+| operationMode | OperationMode | Yes  | Operation mode of the path to be queried. For details, see [OperationMode](#operationmode11).|
 
 ## PolicyType<sup>15+</sup>
 
@@ -105,7 +105,7 @@ Checks persistent permissions. This API uses a promise to return the result. Thi
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).\n
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md). 
 If the permission persistence of some URIs fails, error code 13900001 will be returned and the **data** field provides error information of these URIs in the Array<[PolicyErrorResult](#policyerrorresult11)> format.
 
 | ID   | Error Message      |
@@ -155,7 +155,7 @@ If the permission persistence of some URIs fails, error code 13900001 will be re
 
 revokePermission(policies: Array&lt;PolicyInfo&gt;): Promise&lt;void&gt;
 
-Revokes permissions from multiple files or folders. This API uses a promise to return the result. This API is available only to the devices with the required system capability. (This API does not support persistent permissions for media URIs and remote URIs.)
+Revokes permissions from multiple files or directories. This API uses a promise to return the result. This API is available only to the devices with the required system capability. (This API does not support persistent permissions for media URIs and remote URIs.)
 
 **Required permissions**: ohos.permission.FILE_ACCESS_PERSIST
 
@@ -175,7 +175,7 @@ Revokes permissions from multiple files or folders. This API uses a promise to r
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).\n
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md). 
 If the permission revocation of some URIs fails, error code 13900001 will be returned and the **data** field provides error information of these URIs in the Array<[PolicyErrorResult](#policyerrorresult11)> format.
 
 | ID| Error Message|
@@ -225,7 +225,7 @@ If the permission revocation of some URIs fails, error code 13900001 will be ret
 
 activatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
-Activates the permissions that have been persisted on multiple files or folders. This API uses a promise to return the result. This API is available only to the devices with the required system capability. (This API does not support persistent permissions for media URIs and remote URIs.)
+Activates the permissions that have been persisted on multiple files or directories. This API uses a promise to return the result. This API is available only to the devices with the required system capability. (This API does not support persistent permissions for media URIs and remote URIs.)
 
 **Required permissions**: ohos.permission.FILE_ACCESS_PERSIST
 
@@ -245,7 +245,7 @@ Activates the permissions that have been persisted on multiple files or folders.
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).\n
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md). 
 If the permission activation of some URIs fails, error code 13900001 will be returned and the **data** field provides error information of these URIs in the Array<[PolicyErrorResult](#policyerrorresult11)> format.
 
 | ID   | Error Message      |
@@ -296,7 +296,7 @@ If the permission activation of some URIs fails, error code 13900001 will be ret
 
 deactivatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
-Deactivates the permissions on multiple files or folders. This API uses a promise to return the result. This API is available only to the devices with the required system capability. (This API does not support persistent permissions for media URIs and remote URIs.)
+Deactivates the permissions on multiple files or directories. This API uses a promise to return the result. This API is available only to the devices with the required system capability. (This API does not support persistent permissions for media URIs and remote URIs.)
 
 **Required permissions**: ohos.permission.FILE_ACCESS_PERSIST
 
@@ -316,7 +316,7 @@ Deactivates the permissions on multiple files or folders. This API uses a promis
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).\n
+For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md). 
 If the permission deactivation of some URIs fails, error code 13900001 will be returned and the **data** field provides error information of these URIs in the Array<[PolicyErrorResult](#policyerrorresult11)> format.
 
 | ID   | Error Message      |
@@ -366,8 +366,6 @@ checkPersistentPermission(policies: Array&lt;PolicyInfo>): Promise&lt;Array&lt;b
 
 Checks persistent permissions. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.FILE_ACCESS_PERSIST
-
 **System capability**: SystemCapability.FileManagement.AppFileService.FolderAuthorization
 
 **Parameters**
@@ -388,7 +386,6 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 | ID   | Error Message      |
 |----------| --------- |
-| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801      | Capability not supported. |
 | 13900042 | Unknown error.|

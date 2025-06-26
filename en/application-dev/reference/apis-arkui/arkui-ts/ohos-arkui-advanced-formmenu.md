@@ -14,6 +14,8 @@ This component facilitates the quick addition of service widgets to the home scr
 > **NOTE**
 >
 > This component is supported since API version 12. Updates will be marked with a superscript to indicate their earliest API version.
+>
+> This component is not supported on wearables.
 
 
 ## Modules to Import
@@ -110,9 +112,9 @@ struct Index {
           bundleName: 'com.example.myapplication', // Bundle name
           abilityName: 'EntryFormAbility', // Module ability name.
           parameters: {
-            'ohos.extra.param.key.form_dimension': 2,
-            'ohos.extra.param.key.form_name': 'widget',
-            'ohos.extra.param.key.module_name': 'entry'
+            'ohos.extra.param.key.form_dimension': 2, // Widget size: 1 for 1 x 2, 2 for 2 x 2, 3 for 2 x 4, 4 for 4 x 4, 7 for 6 x 4, 6 for 1 x 1.
+            'ohos.extra.param.key.form_name': 'widget', // Widget name.
+            'ohos.extra.param.key.module_name': 'entry' // Module name of the widget.
           },
         },
         this.compId,

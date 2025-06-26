@@ -19,7 +19,7 @@ The meanings of T and S in this topic are as follows:
 ## Modules to Import
 
 ```ts
-import { AppStorageV2,PersistenceV2,UIUtils} from '@kit.ArkUI';
+import { AppStorageV2, PersistenceV2, UIUtils } from '@kit.ArkUI';
 ```
 
 ## AppStorageV2
@@ -66,7 +66,7 @@ Stores key-value pair data in the application memory. If the given key already e
 
 | Type                                  | Description                                                        |
 | -------------------------------------- | ------------------------------------------------------------ |
-| T | Returns data if the creation or data acquisition from AppStorageV2 is successful; returns **undefined** otherwise.|
+| T \| undefined | Returns data if the creation or data acquisition from AppStorageV2 is successful; returns **undefined** otherwise.|
 
 **Example**
 
@@ -201,6 +201,7 @@ Stores key-value pair data on the application disk. If the given key already exi
 > 9. To enable EL5 encryption, configure the **ohos.permission.PROTECT_SCREEN_LOCK_DATA** field in the **module.json** file. For details, see [Declaring Permissions](../../security/AccessToken/declare-permissions.md).
 
 **Example**
+This example is provided for you to understand the usage of **globalConnect**. You need to write your own @Entry component for complete usage.
 
 <!--code_no_check-->
 ```ts
@@ -221,16 +222,26 @@ export class Sample {
 }
 
 // If no key is provided, the type name is used as the key. If the encryption level is not specified, the default EL2 level is used.
-@Local p: Sample = PersistenceV2.globalConnect({type: Sample, defaultCreator:() => new Sample()})!;
+const p: Sample = PersistenceV2.globalConnect({ type: Sample, defaultCreator: () => new Sample() })!;
 
 // Use the key 'global1' with an encryption level of EL1 for connection.
-@Local p1: Sample = PersistenceV2.globalConnect({type: Sample, key:'global1', defaultCreator:() => new Sample(), areaMode: contextConstant.AreaMode.EL1})!;
+const p1: Sample = PersistenceV2.globalConnect({
+  type: Sample,
+  key: 'global1',
+  defaultCreator: () => new Sample(),
+  areaMode: contextConstant.AreaMode.EL1
+})!;
 
 // Use the key 'global2' with the constructor function for connection. If no encryption level is specified, the default EL2 level is used.
-@Local p2: Sample = PersistenceV2.globalConnect({type: Sample, key: 'global2', defaultCreator:() => new Sample()})!;
+const p2: Sample = PersistenceV2.globalConnect({ type: Sample, key: 'global2', defaultCreator: () => new Sample() })!;
 
 // Use the key 'global3' with an explicit encryption level value (3 in this example) for connection. Note that values outside the valid range of 0-4 will cause application crashes.
-@Local p3: Sample = PersistenceV2.globalConnect({type: Sample, key:'global3', defaultCreator:() => new Sample(), areaMode: 3})!;
+const p3: Sample = PersistenceV2.globalConnect({
+  type: Sample,
+  key: 'global3',
+  defaultCreator: () => new Sample(),
+  areaMode: 3
+})!;
 
 ```
 
@@ -261,14 +272,19 @@ Persists the specified key-value pair data once.
 <!--code_no_check-->
 
 ```ts
+@ObservedV2
+class SampleClass {
+  @Trace p: number = 0;
+}
+
 // Assuming there is a key named key_as2 in PersistenceV2, the following will persist the data for this key-value pair.
 PersistenceV2.save('key_as2');
 
 // Assuming there is a key named SampleClass in PersistenceV2, the following will persist the data for this key-value pair.
-PersistenceV2.remove(SampleClass);
+PersistenceV2.save(SampleClass);
 
 // Assuming there is no key named key_as1 in PersistenceV2, this operation is meaningless.
-PersistenceV2.remove('key_as1');
+PersistenceV2.save('key_as1');
 ```
 
 ### notifyOnError
@@ -297,6 +313,8 @@ PersistenceV2.notifyOnError((key: string, reason: string, msg: string) => {
 ```
 
 ## ConnectOptions<sup>18+</sup>
+
+Defines the parameter type for **globalConnect**.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -604,6 +622,8 @@ Represents a class constructor that accepts arbitrary arguments.
 
 new(...args: any): T
 
+Creates and returns an instance of the specified type T.
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -725,15 +745,17 @@ Class constructor.
 
 new(): T
 
+Creates and returns an instance of the specified type T.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Return value**
 
 | Type| Description                                            |
 | ---- | ------------------------------------------------ |
 | T    | Instance of the T type.|
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Example**
 

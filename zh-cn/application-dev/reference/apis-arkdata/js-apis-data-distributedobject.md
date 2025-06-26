@@ -298,7 +298,7 @@ on(type: 'change', callback: (sessionId: string, fields: Array&lt;string&gt;) =>
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 事件类型，固定为'change'，表示数据变更。 |
-| callback | Function | 是 | 变更回调对象实例。<br>sessionId：标识变更对象的sessionId； <br>fields：标识对象变更的属性名。 |
+| callback | (sessionId: string, fields: Array&lt;string&gt;) => void  | 是 | 变更回调对象实例。<br>sessionId：标识变更对象的sessionId； <br>fields：标识对象变更的属性名。 |
 
 **错误码：**
 
@@ -334,7 +334,7 @@ off(type: 'change', callback?: (sessionId: string, fields: Array&lt;string&gt;) 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 事件类型，固定为'change'，表示数据变更。 |
-| callback | Function | 否 | 需要删除的数据变更回调，若不设置则删除该对象所有的数据变更回调。<br>sessionId：标识变更对象的sessionId； <br>fields：标识对象变更的属性名。 |
+| callback | (sessionId: string, fields: Array&lt;string&gt;) => void  | 否 | 需要删除的数据变更回调，若不设置则删除该对象所有的数据变更回调。<br>sessionId：标识变更对象的sessionId； <br>fields：标识对象变更的属性名。 |
 
 **错误码：**
 
@@ -373,7 +373,7 @@ on(type: 'status', callback: (sessionId: string, networkId: string, status: 'onl
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 事件类型，固定为'status'，表示对象上下线。 |
-| callback | Function | 是 | 监听上下线回调实例。<br>sessionId：标识变更对象的sessionId； <br>networkId：标识对象设备； <br>status：标识对象为'online'(上线)或'offline'(下线)的状态。 |
+| callback | (sessionId: string, networkId: string, status: 'online' \| 'offline' ) => void | 是 | 监听上下线回调实例。<br>sessionId：标识变更对象的sessionId； <br>networkId：标识对象设备； <br>status：标识对象为'online'(上线)或'offline'(下线)的状态。 |
 
 **错误码：**
 
@@ -404,7 +404,7 @@ off(type: 'status', callback?:(sessionId: string, networkId: string, status: 'on
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 事件类型，固定为'status'，表示对象上下线。 |
-| callback | Function | 否 | 需要删除的上下线回调，若不设置则删除该对象所有的上下线回调。<br>sessionId：标识变更对象的sessionId； <br>networkId：标识变更对象； <br>status：标识对象为'online'(上线)或'offline'(下线)的状态。 |
+| callback | (sessionId: string, networkId: string, status: 'online' \| 'offline' ) => void | 否 | 需要删除的上下线回调，若不设置则删除该对象所有的上下线回调。<br>sessionId：标识变更对象的sessionId； <br>networkId：标识变更对象； <br>status：标识对象为'online'(上线)或'offline'(下线)的状态。 |
 
 **错误码：**
 
@@ -911,7 +911,7 @@ on(type: 'change', callback: (sessionId: string, fields: Array&lt;string&gt;) =>
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 事件类型，固定为'change'，表示数据变更。 |
-| callback | Function | 是 | 变更回调对象实例。<br>sessionId：标识变更对象的sessionId； <br>fields：标识对象变更的属性名。 |
+| callback | (sessionId: string, fields: Array&lt;string&gt;) => void  | 是 | 变更回调对象实例。<br>sessionId：标识变更对象的sessionId； <br>fields：标识对象变更的属性名。 |
 
 **示例：**
 
@@ -957,7 +957,7 @@ off(type: 'change', callback?: (sessionId: string, fields: Array&lt;string&gt;) 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 事件类型，固定为'change'，表示数据变更。 |
-| callback | Function | 否 | 需要删除的数据变更回调，若不设置则删除该对象所有的数据变更回调。<br>sessionId：标识变更对象的sessionId； <br>fields：标识对象变更的属性名。 |
+| callback | (sessionId: string, fields: Array&lt;string&gt;) => void  | 否 | 需要删除的数据变更回调，若不设置则删除该对象所有的数据变更回调。<br>sessionId：标识变更对象的sessionId； <br>fields：标识对象变更的属性名。 |
 
 **示例：**
 
@@ -1006,7 +1006,7 @@ on(type: 'status', callback: (sessionId: string, networkId: string, status: 'onl
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 事件类型，固定为'status'，表示对象上下线。 |
-| callback | Function | 是 | 监听上下线回调实例。<br>sessionId：标识变更对象的sessionId； <br>networkId：标识对象设备； <br>status：标识对象为'online'(上线)或'offline'(下线)的状态。 |
+| callback | (sessionId: string, networkId: string, status: 'online' \| 'offline' ) => void | 是 | 监听上下线回调实例。<br>sessionId：标识变更对象的sessionId； <br>networkId：标识对象设备； <br>status：标识对象为'online'(上线)或'offline'(下线)的状态。 |
 
 **示例：**
 
@@ -1048,7 +1048,7 @@ off(type: 'status', callback?: (sessionId: string, networkId: string, status: 'o
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 事件类型，固定为'status'，表示对象上下线。 |
-| callback | Function | 否 | 需要删除的上下线回调，若不设置则删除该对象所有的上下线回调。<br>sessionId：标识变更对象的sessionId； <br>networkId：标识变更对象； <br>status：标识对象为'online'(上线)或'offline'(下线)的状态。 |
+| callback | (sessionId: string, networkId: string, status: 'online' \| 'offline' ) => void | 否 | 需要删除的上下线回调，若不设置则删除该对象所有的上下线回调。<br>sessionId：标识变更对象的sessionId； <br>networkId：标识变更对象； <br>status：标识对象为'online'(上线)或'offline'(下线)的状态。 |
 
 
 **示例：**

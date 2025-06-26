@@ -144,8 +144,6 @@ Since API version 12, the [universal events](ts-universal-events-click.md) are s
 >
 > When the **libraryname** parameter is set, [click events](ts-universal-events-click.md), [touch events](ts-universal-events-touch.md), [show/hide events](ts-universal-events-show-hide.md), [key events](ts-universal-events-key.md), [focus events](ts-universal-focus-event.md), and [mouse events](ts-universal-mouse-key.md) only respond to event APIs on the C-API side.
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
 The following events are effective only when **type** is set to **SURFACE** or **TEXTURE**.
 
 ### onLoad
@@ -204,19 +202,15 @@ Defines the controller of the **XComponent**. You can bind the controller to the
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-### Creating an Object
-
-```
-xcomponentController: XComponentController = new XComponentController()
-```
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
 ### constructor
 
 constructor()
 
 A constructor used to create a **XComponentController** instance.
+
+```ts
+xcomponentController: XComponentController = new XComponentController();
+```
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -404,7 +398,7 @@ Starts AI image analysis in the given settings. Before calling this API, make su
 
 **Error codes**
 
-For details about the error codes, see [AI Image Analyzer Error Codes](../errorcode-image-analyzer.md).
+For details about the error codes, see [AI Image Analyzer Error Codes](errorcode-image-analyzer.md).
 
 | ID| Error Message                                     |
 | -------- | -------------------------------------------- |
@@ -507,17 +501,151 @@ Describes the rectangle of the surface held by the **XComponent**.
 
 You can preview how this component looks on a real device, but not in DevEco Studio Previewer.
 
-
 ### Example 1: Enabling AI Image Analyzer
 
 This example shows how to use the **enableAnalyzer** attribute to enable AI image analyzer. You can use **XComponentController** to start or stop AI analysis on images.
 
+<!--RP1-->
+> **NOTE**
+>
+> For the specific implementation of the drawing logic (related to **nativeRender** functions), see [ArkTSXComponent Example](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/ArkTSXComponent).
+<!--RP1End-->
+
 ```ts
 // xxx.ets
 import { BusinessError } from '@kit.BasicServicesKit';
-import nativeRender from 'libnativerender.so';
+import nativeRender from 'libnativerender.so';// Custom implementation of the .so file. See the above note.
 
 class CustomXComponentController extends XComponentController {
+  onSurfaceCreated(surfaceId: string): void {
+    console.info(`onSurfaceCreated surfaceId: ${surfaceId}`);
+    nativeRender.SetSurfaceId(BigInt(surfaceId));
+  }
+
+  onSurfaceChanged(surfaceId: string, rect: SurfaceRect): void {
+    console.info(`onSurfaceChanged surfaceId: ${surfaceId}, rect: ${JSON.stringify(rect)}}`);
+    nativeRender.ChangeSurface(BigInt(surfaceId), rect.surfaceWidth, rect.surfaceHeight);
+  }
+
+  onSurfaceDestroyed(surfaceId: string): void {
+    console.info(`onSurfaceDestroyed surfaceId: ${surfaceId}`);
+    nativeRender.DestroySurface(BigInt(surfaceId));
+  }
+}
+
+@Entry
+@Component
+struct XComponentExample {
+  xComponentController: XComponentController = new CustomXComponentController();
+  private config: ImageAnalyzerConfig = {
+    types: [ImageAnalyzerType.SUBJECT, ImageAnalyzerType.TEXT]
+  };
+  private aiController: ImageAnalyzerController = new ImageAnalyzerController();
+  private options: ImageAIOptions = {
+    types: [ImageAnalyzerType.SUBJECT, ImageAnalyzerType.TEXT],
+    aiController: this.aiController
+  };
+  @State xcWidth: string = "720px";
+  @State xcHeight: string = "720px";
+  @State currentStatus: string = "index";
+
+  build() {
+    Column({ space: 5 }) {
+      Row() {
+        Text('Native XComponent Sample')
+          .fontSize('24fp')
+          .fontWeight(500)
+          .margin({
+            left: 24,
+            top: 12
+          })
+      }
+      .margin({ top: 24 })
+      .width('100%')
+      .height(56)
+
+      XComponent({
+        type: XComponentType.SURFACE,
+        controller: this.xComponentController,
+        imageAIOptions: this.options
+      })
+        .width(this.xcWidth)
+        .height(this.xcHeight)
+        .enableAnalyzer(true)
+        .onClick(() => {
+          let surfaceId = this.xComponentController.getXComponentSurfaceId();
+          nativeRender.ChangeColor(BigInt(surfaceId));
+          let hasChangeColor: boolean = false;
+          if (nativeRender.GetXComponentStatus(BigInt(surfaceId))) {
+            hasChangeColor = nativeRender.GetXComponentStatus(BigInt(surfaceId)).hasChangeColor;
+          }
+          if (hasChangeColor) {
+            this.currentStatus = "change color";
+          }
+        })
+      Text(this.currentStatus)
+        .fontSize('24fp')
+        .fontWeight(500)
+      Column() {
+        Button('start AI analyze')
+          .onClick(() => {
+            this.xComponentController.startImageAnalyzer(this.config)
+              .then(() => {
+                console.info("analysis complete");
+              })
+              .catch((error: BusinessError) => {
+                console.error("error code: " + error.code);
+              })
+          })
+          .margin(2)
+        Button('stop AI analyze')
+          .onClick(() => {
+            this.xComponentController.stopImageAnalyzer();
+          })
+          .margin(2)
+        Button('get analyzer types')
+          .onClick(() => {
+            this.aiController.getImageAnalyzerSupportTypes();
+          })
+          .margin(2)
+        Button('Draw Star')
+          .fontSize('16fp')
+          .fontWeight(500)
+          .margin({ bottom: 24 })
+          .onClick(() => {
+            let surfaceId = this.xComponentController.getXComponentSurfaceId();
+            this.xComponentController.getXComponentSurfaceRect();
+            nativeRender.DrawPattern(BigInt(surfaceId));
+            let hasDraw: boolean = false;
+            if (nativeRender.GetXComponentStatus(BigInt(surfaceId))) {
+              hasDraw = nativeRender.GetXComponentStatus(BigInt(surfaceId)).hasDraw;
+            }
+            if (hasDraw) {
+              this.currentStatus = "draw star";
+            }
+          })
+          .margin(2)
+      }.justifyContent(FlexAlign.Center)
+    }
+    .width("100%")
+  }
+}
+```
+![AI Image Analysis](./figures/AIXComponent.gif)
+
+### Example 2: Locking the Surface Orientation During Screen Rotation
+
+This example shows how to use **setXComponentSurfaceRotation** to lock the surface orientation during screen rotation so that the surface does not rotate with the screen.
+
+> **NOTE**
+>
+> For the specific implementation of the drawing logic (related to **nativeRender** functions), see <!--RP2-->[ArkTSXComponent Example](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/ArkTSXComponent)<!--RP2End-->.
+
+```ts
+// xxx.ets
+import nativeRender from 'libnativerender.so';
+
+class MyXComponentController extends XComponentController {
   onSurfaceCreated(surfaceId: string): void {
     console.log(`onSurfaceCreated surfaceId: ${surfaceId}`);
     nativeRender.SetSurfaceId(BigInt(surfaceId));
@@ -536,112 +664,34 @@ class CustomXComponentController extends XComponentController {
 
 @Entry
 @Component
-struct XComponentExample {
-  xComponentController: XComponentController = new CustomXComponentController();
-  private config: ImageAnalyzerConfig = {
-    types: [ImageAnalyzerType.SUBJECT, ImageAnalyzerType.TEXT]
-  };
-  private aiController: ImageAnalyzerController = new ImageAnalyzerController();
-  private options: ImageAIOptions = {
-    types: [ImageAnalyzerType.SUBJECT, ImageAnalyzerType.TEXT],
-    aiController: this.aiController
-  };
-  @State xcWidth: string = "320px";
-  @State xcHeight: string = "480px";
-  @State currentStatus: string = "index";
-
-  build() {
-    Column({ space: 5 }) {
-      Button("change size")
-        .onClick(() => {
-          this.xcWidth = "640px";
-          this.xcHeight = "720px";
-        })
-      Button('start AI analyze')
-        .onClick(() => {
-          this.xComponentController.startImageAnalyzer(this.config)
-            .then(() => {
-              console.log("analysis complete");
-            })
-            .catch((error: BusinessError) => {
-              console.log("error code: " + error.code);
-            })
-        })
-      Button('stop AI analyze')
-        .onClick(() => {
-          this.xComponentController.stopImageAnalyzer();
-        })
-      Button('get analyzer types')
-        .onClick(() => {
-          this.aiController.getImageAnalyzerSupportTypes();
-        })
-      Button('Draw Star')
-        .fontSize('16fp')
-        .fontWeight(500)
-        .margin({ bottom: 24 })
-        .onClick(() => {
-          let surfaceId = this.xComponentController.getXComponentSurfaceId();
-          this.xComponentController.getXComponentSurfaceRect();
-          nativeRender.DrawPattern(BigInt(surfaceId));
-          let hasDraw: boolean = false;
-          if (nativeRender.GetXComponentStatus(BigInt(surfaceId))) {
-            hasDraw = nativeRender.GetXComponentStatus(BigInt(surfaceId)).hasDraw;
-          }
-          if (hasDraw) {
-            this.currentStatus = "draw star";
-          }
-        })
-      XComponent({
-        type: XComponentType.SURFACE,
-        controller: this.xComponentController,
-        imageAIOptions: this.options
-      })
-        .width(this.xcWidth)
-        .height(this.xcHeight)
-        .enableAnalyzer(true)
-      Text(this.currentStatus)
-        .fontSize('24fp')
-        .fontWeight(500)
-    }
-    .width("100%")
-  }
-}
-```
-<!--RP1--><!--RP1End-->
-
-### Example 2: Locking the Surface Orientation During Screen Rotation
-
-This example shows how to use **setXComponentSurfaceRotation** to lock the surface orientation during screen rotation so that the surface does not rotate with the screen.
-
-```ts
-// xxx.ets
-@Entry
-@Component
-struct Index{
+struct Index {
   @State isLock: boolean = true;
   @State xc_width: number = 500;
   @State xc_height: number = 700;
-  myXComponentController: XComponentController = new XComponentController();
+  myXComponentController: XComponentController = new MyXComponentController();
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
       XComponent({
-        id: 'xComponentId',
+        id: "XComponent",
         type: XComponentType.SURFACE,
-        libraryname: 'nativerender',
         controller: this.myXComponentController
       })
-      .width(this.xc_width)
-      .height(this.xc_height)
-      .onLoad(() => {
-        let surfaceRotation: SurfaceRotationOptions = { lock: this.isLock };
-        this.myXComponentController.setXComponentSurfaceRotation(surfaceRotation);
-        console.log("Surface getXComponentSurfaceRotation lock = " +
+        .onLoad(() => {
+          let surfaceRotation: SurfaceRotationOptions = { lock: this.isLock };
+          this.myXComponentController.setXComponentSurfaceRotation(surfaceRotation);
+          console.log("Surface getXComponentSurfaceRotation lock = " +
           this.myXComponentController.getXComponentSurfaceRotation().lock);
-      })
+        })
+        .width(this.xc_width)
+        .height(this.xc_height)
+      Button("Draw")
+        .onClick(() => {
+          let surfaceId = this.myXComponentController.getXComponentSurfaceId();
+          nativeRender.DrawPattern(BigInt(surfaceId));
+        })
     }
-    .width('100%')
-    .height('100%')
   }
 }
 ```
+

@@ -141,6 +141,12 @@ Called when the file is ready for sending to the client. If the callback is invo
 
 **System capability**: SystemCapability.FileManagement.StorageService.Backup
 
+**Return value**
+
+| Name    | Type         | Mandatory| Description                                                       |
+| ---------- | ------------- | ---- | ----------------------------------------------------------- |
+| File | [File](#file)     | Yes  | [File](#file) content.                      |
+
 **Error codes**
 
 For details about the error codes, see [File Management Error Codes](errorcode-filemanagement.md).
@@ -172,7 +178,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 ### onBundleBegin
 
-onBundleBegin : AsyncCallback&lt;string, void | string&gt;
+onBundleBegin: AsyncCallback&lt;string, void | string&gt;
 
 Called when the application backup or restore starts. If the callback is successfully invoked, **bundleName** is returned. Otherwise, an **err** object is returned. Since API version 12, **err** and **bundleName** are returned.
 
@@ -197,7 +203,6 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | 13600001 | IPC error.                                             |
 | 13900005 | I/O error.                                             |
 | 13900011 | Out of memory.                                         |
-| 13900020 | Invalid argument.                                     |
 | 13900025 | No space left on device.                               |
 | 13900042 | Unknown error.                                         |
 
@@ -229,7 +234,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 ### onBundleEnd
 
-onBundleEnd : AsyncCallback&lt;string, void | string&gt;
+onBundleEnd: AsyncCallback&lt;string, void | string&gt;
 
 Called when the application backup or restore ends. If the callback is successfully invoked, **bundleName** is returned. Otherwise, an **err** object is returned. Since API version 12, **err** and **bundleName** are returned.
 
@@ -286,7 +291,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 ### onAllBundlesEnd
 
-onAllBundlesEnd : AsyncCallback&lt;undefined&gt;
+onAllBundlesEnd: AsyncCallback&lt;undefined&gt;
 
 Called when the backup or restore of all applications ends. If the callback fails to be invoked, an **err** object is returned.
 
@@ -321,7 +326,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 ### onBackupServiceDied
 
-onBackupServiceDied : Callback&lt;undefined&gt;
+onBackupServiceDied: Callback&lt;undefined&gt;
 
 Called when the backup service is suspended. If this callback fails to be invoked, an **err** object is returned.
 
@@ -389,9 +394,9 @@ Called to report the backup or restore progress information. If the callback is 
 
 ## backup.getBackupVersion<sup>18+</sup>
 
-getBackupVersion(): string;
+getBackupVersion(): string
 
-Obtain the backup or restore version information.
+Obtains the backup or restore version information.
 
 **Required permissions**: ohos.permission.BACKUP
 
@@ -633,7 +638,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 ## backup.getBackupInfo<sup>12+</sup>
 
-getBackupInfo(bundleToBackup: string): string;
+getBackupInfo(bundleToBackup: string): string
 
 Obtains information about the application to back up.
 
@@ -659,13 +664,9 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 | ID| Error Message               |
 | -------- | ----------------------- |
-| 13600001 | IPC error.               |
-| 13900001 | Operation not permitted. |
-| 13900005 | I/O error.               |
-| 13900011 | Out of memory.           |
-| 13900020 | Invalid argument.        |
-| 13900025 | No space left on device. |
-| 13900042 | Unknown error.           |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 202      | Permission verification failed, application which is not a system application uses system API. |
+| 401      | The input parameter is invalid. |
 
 **Example**
 
@@ -688,7 +689,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 ## backup.updateTimer<sup>12+</sup>
 
-updateTimer(bundleName: string, timeout: number): void;
+updateTimer(bundleName: string, timeout: number): boolean
 
 Called after **onBundleBegin** and before **onBundleEnd** to set the backup or restore timer.
 
@@ -742,7 +743,7 @@ Called after **onBundleBegin** and before **onBundleEnd** to set the backup or r
 
 ## backup.updateSendRate<sup>12+</sup>
 
-updateSendRate(bundleName: string, sendRate: number): boolean;
+updateSendRate(bundleName: string, sendRate: number): boolean
 
 Called after **onBundleBegin** and before **onBundleEnd** to set the backup or restore timer.
 
@@ -796,15 +797,15 @@ Called after **onBundleBegin** and before **onBundleEnd** to set the backup or r
 
 ## OnBackupSizeReport<sup>18+</sup>
 
-type OnBackupSizeReport = (reportInfo: string) => void;
+type OnBackupSizeReport = (reportInfo: string) => void
 
-Called to return the size of the application data to be backed up.
+Reports the size of the application data to be backed up.
 
 **System capability**: SystemCapability.FileManagement.StorageService.Backup
 
 | Name  | Type                                 | Mandatory| Description                |
 | -------- | ------------------------------------- | ---- | -------------------- |
-| reportInfo | string | Yes  | Called to return the size of the application data to be backed up.|
+| reportInfo | string | Yes  | Size of the application data to be backed up.|
 
 **Example**
 
@@ -823,7 +824,7 @@ Provides a backup process object to support the application backup process. Befo
 
 ### constructor
 
-constructor(callbacks: GeneralCallbacks);
+constructor(callbacks: GeneralCallbacks)
 
 A constructor used to create a **SessionBackup** instance.
 
@@ -919,7 +920,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-```ts
+  ```ts
   import fs from '@ohos.file.fs';
   import { BusinessError } from '@ohos.base';
 
@@ -988,7 +989,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   let basePath = '/data/storage/el2/base/backup'; 
   let path = basePath + '/localCapabilities.json'; // Local path for storing capability files.
   try {
-    let fileData = await sessionBackup.getLocalCapabilities(); //: obtain the local capability file.
+    let fileData = await sessionBackup.getLocalCapabilities(); // Obtain the local capability file.
     if (fileData) {
       console.info('getLocalCapabilities success');
       console.info('fileData info:' + fileData.fd);
@@ -1021,7 +1022,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   } catch (error) {
     console.error('parse failed with err: ' + JSON.stringify(error));
   }
-```
+  ```
 
 The capability file can be obtained by using [fs.stat](js-apis-file-fs.md#fsstat-1) of the [@ohos.file.fs](js-apis-file-fs.md) module. The following is an example of the capability file.
 
@@ -1061,6 +1062,12 @@ Obtains the amount of data to be backed up. This method is called before **appen
 | isPreciseScan | boolean                                                  | Yes  | Whether to perform accurate scanning. The value **true** means to perform accurate scanning; the value **false** means to perform inaccurate scanning. Inaccurate scanning is fast and is used to estimate the data size. Accurate scanning is slow and returns more accurate result. However, the data to be backed up may change. Therefore, the precise scanning result may not match the actual backup data size.|
 | dataList      | Array<[IncrementalBackupTime](#incrementalbackuptime12)> | Yes  | Backup application list, which describes the application whose data size is to be obtained and the last backup time. For a full backup, set this parameter to **0**.|
 
+**Return value**
+
+| Type               | Description                   |
+| ------------------- | ----------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](errorcode-filemanagement.md).
@@ -1077,7 +1084,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-```ts
+  ```ts
   import fs from '@ohos.file.fs';
   import { BusinessError } from '@ohos.base';
 
@@ -1158,7 +1165,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
     let err: BusinessError = error as BusinessError;
     console.error('getBackupDataSize failed with err: ' + JSON.stringify(err));
   }
-```
+  ```
 
 **Example of a JSON string returned asynchronously:**
 
@@ -1496,22 +1503,15 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
     }
   };
   let sessionBackup = new backup.SessionBackup(generalCallbacks); // Create a backup process.
-  async function release() {
-    try {
-      await sessionBackup.release();
-      console.info('release success');
-    } catch (error) {
-    let err: BusinessError = error as BusinessError;
-    console.error('release failed with err: ' + JSON.stringify(err));
-    }
-  }
+  sessionBackup.release(); // Release the backup session when the backup process is complete.
+  console.info('release success');
   ```
 
 ### cancel<sup>18+</sup>
 
-cancel(bundleName: string): number;
+cancel(bundleName: string): number
 
-Called to cancel the backup of an application when data exceptions occur.
+Cancels the backup of an application when data exceptions occur.
 
 **Required permissions**: ohos.permission.BACKUP
 
@@ -1546,13 +1546,11 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   import { BusinessError } from '@ohos.base';
   import backup from '@ohos.file.backup';
 
-  sessionBackup?: backup.SessionBackup;
-
   let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
         // If the FD fails to be passed, call the cancel API to cancel the backup task of the application.
-        let result = this.sessionBackup.cancel("com.example.myapplication");
+        let result = sessionBackup.cancel(err.name);
         console.info('cancel result:' + result);
         console.error('onFileReady failed with err: ' + JSON.stringify(err));
         return;
@@ -1591,7 +1589,9 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
       console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
     }
   };
-  this.sessionBackup = new backup.SessionBackup(generalCallbacks); // Backup creation process.
+  let sessionBackup = new backup.SessionBackup(generalCallbacks); // Create a backup process.
+  let backupBundles: Array<string> = ["com.example.helloWorld"];
+  sessionBackup.appendBundles(backupBundles);
   ```
 
 ## SessionRestore
@@ -1600,7 +1600,7 @@ Provides an object to support the application restore process. Before using the 
 
 ### constructor
 
-constructor(callbacks: GeneralCallbacks);
+constructor(callbacks: GeneralCallbacks)
 
 A constructor used to create a **SessionRestore** instance.
 
@@ -1667,7 +1667,7 @@ A constructor used to create a **SessionRestore** instance.
 
 getLocalCapabilities(): Promise&lt;FileData&gt;
 
-Called to obtain a JSON file that describes local capabilities during restore service. This API uses a promise to return the result.
+Obtains a JSON file that describes local capabilities in the restore service. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.BACKUP
 
@@ -1696,7 +1696,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-```ts
+  ```ts
   import fs from '@ohos.file.fs';
   import { BusinessError } from '@ohos.base';
 
@@ -1765,7 +1765,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   let basePath = '/data/storage/el2/base/backup';
   let path = basePath + '/localCapabilities.json'; // Local path for storing capability files.
   try {
-    let fileData = await sessionRestore.getLocalCapabilities(); //: obtain the local capability file.
+    let fileData = await sessionRestore.getLocalCapabilities(); // Obtain the local capability file.
     if (fileData) {
       console.info('getLocalCapabilities success');
       console.info('fileData info:' + fileData.fd);
@@ -1798,7 +1798,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   } catch (error) {
     console.error('parse failed with err: ' + JSON.stringify(error));
   }
-```
+  ```
 
 The capability file can be obtained by using [fs.stat](js-apis-file-fs.md#fsstat-1) of the [@ohos.file.fs](js-apis-file-fs.md) module. The following is an example of the capability file.
 
@@ -2079,7 +2079,7 @@ Obtains the handle to the shared file from the service. This API uses an asynchr
 > - Before using **getFileHandle**, you need to obtain a **SessionRestore** instance and add the applications with data to be restored by using **appendBundles**.
 > - You can use **onFileReady** to obtain the file handle. When file operations are completed at the client, you need to use **publishFile** to publish the file.
 > - **getFileHandle** can be called multiple times based on the number of files to be restored.
-> - File to be restored cannot be a relative path (**../**) or soft link.
+> - File to be restored cannot be a relative path (../) or soft link.
 
 **Required permissions**: ohos.permission.BACKUP
 
@@ -2174,7 +2174,7 @@ Obtains the handle to the shared file from the service. This API uses a promise 
 > - Before using **getFileHandle**, you need to obtain a **SessionRestore** instance and add the applications with data to be restored by using **appendBundles**.
 > - You can use **onFileReady** to obtain the file handle. When file operations are completed at the client, you need to use **publishFile** to publish the file.
 > - **getFileHandle** can be called multiple times based on the number of files to be restored.
-> - File to be restored cannot be a relative path (**../**) or soft link.
+> - File to be restored cannot be a relative path (../) or soft link.
 
 **Required permissions**: ohos.permission.BACKUP
 
@@ -2595,9 +2595,9 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 ### cancel<sup>18+</sup>
 
-cancel(bundleName: string): number;
+cancel(bundleName: string): number
 
-Called to cancel the restoration of an application when data exceptions occur.
+Cancels the restoration of an application when data exceptions occur.
 
 **Required permissions**: ohos.permission.BACKUP
 
@@ -2632,13 +2632,11 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   import { BusinessError } from '@ohos.base';
   import backup from '@ohos.file.backup';
 
-  sessionRestore?: backup.SessionRestore;
-
   let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
         // If the FD fails to be passed, call the cancel API to cancel the restoration task of the application.
-        let result = this.sessionRestore.cancel("com.example.myapplication");
+        let result = sessionRestore.cancel(err.name);
         console.info('cancel result:' + result);
         console.error('onFileReady failed with err: ' + JSON.stringify(err));
         return;
@@ -2677,7 +2675,13 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
       console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
     }
   };
-  this.sessionRestore = new backup.SessionRestore(generalCallbacks); // Create a restore process.
+  let sessionRestore = new backup.SessionRestore(generalCallbacks); // Create a restore process.
+  let fileData: backup.FileData = {
+    fd: -1
+  }
+  fileData = await backup.getLocalCapabilities(); // Call getLocalCapabilities provided by the backup and restore framework to obtain the capability set file.
+  let backupBundles: Array<string> = ["com.example.helloWorld"];
+  sessionRestore.appendBundles(fileData.fd, backupBundles);
   ```
 
 ## IncrementalBackupSession<sup>12+</sup>
@@ -2686,7 +2690,7 @@ An object used to implement the incremental backup of applications. Before using
 
 ### constructor<sup>12+</sup>
 
-constructor(callbacks: GeneralCallbacks);
+constructor(callbacks: GeneralCallbacks)
 
 A constructor used to create an **IncrementalBackupSession** instance.
 
@@ -2792,7 +2796,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-```ts
+  ```ts
   import fs from '@ohos.file.fs';
   import { BusinessError } from '@ohos.base';
 
@@ -2894,7 +2898,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   } catch (error) {
     console.error('parse failed with err: ' + JSON.stringify(error));
   }
-```
+  ```
 
 The capability file can be obtained by using [fs.stat](js-apis-file-fs.md#fsstat-1) of the [@ohos.file.fs](js-apis-file-fs.md) module. The following is an example of the capability file.
 
@@ -2931,8 +2935,14 @@ Obtains the amount of data to be backed up. This method is called before **appen
 
 | Name       | Type                                                    | Mandatory| Description                                                        |
 | ------------- | -------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| isPreciseScan | boolean                                                  | Yes  | Whether to perform accurate scanning. Inaccurate scanning is fast and is used to estimate the data size. Accurate scanning is slow and returns more accurate result. However, the data to be backed up may change. Therefore, the precise scanning result may not match the actual backup data size.|
+| isPreciseScan | boolean                                                  | Yes  | Whether to perform accurate scanning. The value **true** means to perform accurate scanning; the value **false** means to perform inaccurate scanning. Inaccurate scanning is fast and is used to estimate the data size. Accurate scanning is slow and returns more accurate result. However, the data to be backed up may change. Therefore, the precise scanning result may not match the actual backup data size.|
 | dataList      | Array<[IncrementalBackupTime](#incrementalbackuptime12)> | Yes  | Backup application list, which describes the application whose data size is to be obtained and the last backup time. For a full backup, set this parameter to **0**.|
+
+**Return value**
+
+| Type               | Description                   |
+| ------------------- | ----------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -2950,7 +2960,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-```ts
+  ```ts
   import fs from '@ohos.file.fs';
   import { BusinessError } from '@ohos.base';
 
@@ -3032,7 +3042,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
     let err: BusinessError = error as BusinessError;
     console.error('getBackupDataSize failed with err: ' + JSON.stringify(err));
   }
-```
+  ```
 
 **Example of a JSON string returned asynchronously:**
 
@@ -3293,6 +3303,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
     console.error('appendBundles failed with err: ' + JSON.stringify(err));
   }); 
   ```
+
 ### release<sup>12+</sup>
 
 release(): Promise&lt;void&gt;
@@ -3377,9 +3388,9 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 ### cancel<sup>18+</sup>
 
-cancel(bundleName: string): number;
+cancel(bundleName: string): number
 
-Called to cancel the incremental backup of an application when data exceptions occur.
+Cancels the incremental backup of an application when data exceptions occur.
 
 **Required permissions**: ohos.permission.BACKUP
 
@@ -3414,13 +3425,11 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   import { BusinessError } from '@ohos.base';
   import backup from '@ohos.file.backup';
 
-  incrementalBackupSession?: backup.IncrementalBackupSession;
-
   let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
         // If the FD fails to be passed, call the cancel API to cancel the incremental backup task of the application.
-        let result = this.incrementalBackupSession.cancel("com.example.myapplication");
+        let result = incrementalBackupSession.cancel(err.name);
         console.info('cancel result:' + result);
         console.error('onFileReady failed with err: ' + JSON.stringify(err));
         return;
@@ -3459,5 +3468,14 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
       console.info('onProcess success, bundleName: ' + bundleName +'process: ' + process);
     }
   };
-  this.incrementalBackupSession = new backup.IncrementalBackupSession(generalCallbacks); // Create a session for an incremental backup.
+  let incrementalBackupSession = new backup.IncrementalBackupSession(generalCallbacks); // Create a session for an incremental backup.
+  let backupBundles: Array<backup.IncrementalBackupData> = [];
+  let bundleData: backup.IncrementalBackupData = {
+    bundleName: "com.example.helloWorld",
+    lastIncrementalTime: 1700107870, // Timestamp of the last backup.
+    manifestFd: 1 // FD of the manifest file of the last backup.
+  }
+  backupBundles.push(bundleData);
+  incrementalBackupSession.appendBundles(backupBundles);
+
   ```

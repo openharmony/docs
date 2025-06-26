@@ -14,6 +14,8 @@ Not supported
 
 ## APIs
 
+### RichEditor<sup>10+</sup>
+
 RichEditor(value: RichEditorOptions)
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
@@ -26,8 +28,13 @@ RichEditor(value: RichEditorOptions)
 | ----- | --------------------------------------- | ---- | ----------- |
 | value | [RichEditorOptions](#richeditoroptions) | Yes   | Options for initializing the component.|
 
-RichEditor(options: RichEditorStyledStringOptions)<sup>12+</sup>
+### RichEditor<sup>12+</sup>
 
+RichEditor(options: RichEditorStyledStringOptions)
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
@@ -43,7 +50,7 @@ In addition to the [universal attributes](ts-component-general-attributes.md), t
 >
 >  The **align** attribute supports only the start, center, and end options.
 > 
->  The **borderImage** attribute is not supported.
+>  The [borderImage](ts-universal-attributes-border-image.md#borderimage) attribute is not supported.
 
 ### customKeyboard
 
@@ -60,8 +67,6 @@ The custom keyboard cannot obtain focus, but it blocks gesture events.
 By default, the custom keyboard is closed when the input component loses the focus.
 
 When a custom keyboard is set, the text box does not support camera input, even when the device supports.
-
-**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -253,8 +258,6 @@ Sets the background color of the selected text. If the opacity is not set, a 20%
 editMenuOptions(editMenu: EditMenuOptions)
 
 Sets the extended options of the custom context menu on selection, including the text content, icon, and callback.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1051,7 +1054,7 @@ Obtains a **LayoutManager** object.
 
 | Type                                      | Description     |
 | ---------------------------------------- | ------- |
-| [LayoutManager](ts-text-common.md#LayoutManager12) | **LayoutManager** object.|
+| [LayoutManager](ts-text-common.md#layoutmanager12) | **LayoutManager** object.|
 
 ### getPreviewText<sup>12+</sup>
 
@@ -1919,8 +1922,8 @@ struct Index {
   options: RichEditorOptions = { controller: this.controller };
   private start: number = -1;
   private end: number = -1;
-  @State message: string = "[-1, -1]"
-  @State content: string = ""
+  @State message: string = "[-1, -1]";
+  @State content: string = "";
 
   build() {
     Column() {
@@ -1958,14 +1961,14 @@ struct Index {
           }).forEach(item => {
             if(typeof(item as RichEditorImageSpanResult)['imageStyle'] != 'undefined'){
               this.content += (item as RichEditorImageSpanResult).valueResourceStr;
-              this.content += "\n"
+              this.content += "\n";
             } else {
               if(typeof(item as RichEditorTextSpanResult)['symbolSpanStyle'] != 'undefined') {
                 this.content += (item as RichEditorTextSpanResult).symbolSpanStyle?.fontSize;
-                this.content += "\n"
+                this.content += "\n";
               }else {
                 this.content += (item as RichEditorTextSpanResult).value;
-                this.content += "\n"
+                this.content += "\n";
               }
             }
           })
@@ -1977,7 +1980,7 @@ struct Index {
           })
           this.start = -1;
           this.end = -1;
-          this.message = "[" + this.start + ", " + this.end + "]"
+          this.message = "[" + this.start + ", " + this.end + "]";
         })
       }
       .borderWidth(1)
@@ -2022,41 +2025,41 @@ struct Index {
           .onSelect((value: RichEditorSelection) => {
             this.start = value.selection[0];
             this.end = value.selection[1];
-            this.message = "[" + this.start + ", " + this.end + "]"
+            this.message = "[" + this.start + ", " + this.end + "]";
           })
           .aboutToIMEInput((value: RichEditorInsertValue) => {
-            console.log("---------------------- aboutToIMEInput ----------------------")
-            console.log("insertOffset:" + value.insertOffset)
-            console.log("insertValue:" + value.insertValue)
+            console.info("---------------------- aboutToIMEInput ----------------------");
+            console.info("insertOffset:" + value.insertOffset);
+            console.info("insertValue:" + value.insertValue);
             return true;
           })
           .onIMEInputComplete((value: RichEditorTextSpanResult) => {
-            console.log("---------------------- onIMEInputComplete ---------------------")
-            console.log("spanIndex:" + value.spanPosition.spanIndex)
-            console.log("spanRange:[" + value.spanPosition.spanRange[0] + "," + value.spanPosition.spanRange[1] + "]")
-            console.log("offsetInSpan:[" + value.offsetInSpan[0] + "," + value.offsetInSpan[1] + "]")
-            console.log("value:" + value.value)
+            console.info("---------------------- onIMEInputComplete ---------------------");
+            console.info("spanIndex:" + value.spanPosition.spanIndex);
+            console.info("spanRange:[" + value.spanPosition.spanRange[0] + "," + value.spanPosition.spanRange[1] + "]");
+            console.info("offsetInSpan:[" + value.offsetInSpan[0] + "," + value.offsetInSpan[1] + "]");
+            console.info("value:" + value.value);
           })
           .aboutToDelete((value: RichEditorDeleteValue) => {
-            console.log("---------------------- aboutToDelete --------------------------")
-            console.log("offset:" + value.offset)
-            console.log("direction:" + value.direction)
-            console.log("length:" + value.length)
+            console.info("---------------------- aboutToDelete --------------------------");
+            console.info("offset:" + value.offset);
+            console.info("direction:" + value.direction);
+            console.info("length:" + value.length);
             value.richEditorDeleteSpans.forEach(item => {
-              console.log("---------------------- item --------------------------")
-              console.log("spanIndex:" + item.spanPosition.spanIndex)
-              console.log("spanRange:[" + item.spanPosition.spanRange[0] + "," + item.spanPosition.spanRange[1] + "]")
-              console.log("offsetInSpan:[" + item.offsetInSpan[0] + "," + item.offsetInSpan[1] + "]")
+              console.info("---------------------- item --------------------------");
+              console.info("spanIndex:" + item.spanPosition.spanIndex);
+              console.info("spanRange:[" + item.spanPosition.spanRange[0] + "," + item.spanPosition.spanRange[1] + "]");
+              console.info("offsetInSpan:[" + item.offsetInSpan[0] + "," + item.offsetInSpan[1] + "]");
               if (typeof(item as RichEditorImageSpanResult)['imageStyle'] != 'undefined') {
-                console.log("image:" + (item as RichEditorImageSpanResult).valueResourceStr)
+                console.info("image:" + (item as RichEditorImageSpanResult).valueResourceStr);
               } else {
-                console.log("text:" + (item as RichEditorTextSpanResult).value)
+                console.info("text:" + (item as RichEditorTextSpanResult).value);
               }
             })
             return true;
           })
           .onDeleteComplete(() => {
-            console.log("---------------------- onDeleteComplete ------------------------")
+            console.info("---------------------- onDeleteComplete ------------------------");
           })
           .placeholder("input...", {
             fontColor: Color.Gray,

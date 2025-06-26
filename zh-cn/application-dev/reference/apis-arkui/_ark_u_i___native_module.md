@@ -1714,7 +1714,7 @@ typedef struct ArkUI_WaterFlowSectionOption ArkUI_WaterFlowSectionOption
 ### OH_PixelmapNative
 
 ```
-typedef struct OH_PixelmapNative OH_PixelmapNative
+struct OH_PixelmapNative OH_PixelmapNative
 ```
 **描述：**
 
@@ -15188,7 +15188,7 @@ void* OH_ArkUI_QueryModuleInterfaceByName (ArkUI_NativeAPIVariantKind type, cons
 ```
 **描述：**
 
-需调用该函数初始化C-API环境，并获取指定类型的Native模块接口集合。
+需调用该函数[初始化](../../ui/ndk-access-the-arkts-page.md#ndk组件模块)C-API环境，并获取指定类型的Native模块接口集合。
 
 **起始版本：** 12
 
