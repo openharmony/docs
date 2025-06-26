@@ -82,14 +82,14 @@ This error code is reported when the input file path, file descriptor, or file a
 
 **Solution**
 
-1. Check whether the **.gz** file path or file descriptor is correct. If a **.gz** file is created, ensure that the file access is in compression mode (such as **w** or **wb**).
+1. Check whether the .gz file path or file descriptor is correct. If a .gz file is created, ensure that the file access is in compression mode (such as **w** or **wb**).
 2. Check whether the file access mode is **w**, **wb**, **r**, **rb**, **a**, and **ab**.
 
 ## 17800004 Compressed or Decompressed Flow Error
 
 **Error Message**
 
-ZStream error.
+Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure.
 
 **Description**
 
@@ -98,20 +98,20 @@ This error code is reported when an error occurs in compression or decompression
 **Possible Causes**
 
 1. When the **deflate** or **inflate** API is called, the **deflateInit** or **inflateInit** API is not used to initialize the compression or decompression stream.
-2. When the **gzsetparams**, **gzclose**, or **gzflush** API is called, the input refresh mode is incorrect. When the API for opening a **.gz** file is called, the input file access mode is incorrect.
+2. When the **gzsetparams**, **gzclose**, or **gzflush** API is called, the input refresh mode is incorrect. When the API for opening a .gz file is called, the input file access mode is incorrect.
 
 **Solution**
 
 1. Before calling the **deflate** or **inflate** API, use the **deflateInit** or **inflateInit** API to initialize the compression or decompression stream.
-2. Check whether the API for opening the **.gz** file is not called or fails to be called.
-3. Check whether the input access mode matches the API when the API for opening the **.gz** file is called. For example, **gzprintf** is a compression API. When the API for opening a **.gz** file is called, the input access mode must be the compression mode (such as **w** or **wb**).
+2. Check whether the API for opening the .gz file is not called or fails to be called.
+3. Check whether the input access mode matches the API when the API for opening the .gz file is called. For example, **gzprintf** is a compression API. When the API for opening a .gz file is called, the input access mode must be the compression mode (such as **w** or **wb**).
 4. Check whether the input enum parameter is correct.
 
 ## 17800005 Incorrect Input Data
 
 **Error Message**
 
-Data error.
+The input data is incorrect. For example, the data does not conform to the zlib compression format, the compressed data is corrupted, or the data is not compressed.
 
 **Description**
 
@@ -147,7 +147,7 @@ Check the whether the **gzsetparams** API is called and pass in the correct comp
 
 **Error Message**
 
-Buffer error.
+The input buffer is incorrect, and the output buffer is too small to accommodate the compressed or decompressed data.
 
 **Description**
 
@@ -171,20 +171,20 @@ Internal structure error.
 
 **Description**
 
-This error code is reported when the input parameter is incorrect when the **gzputc**, **gzwrite**, or **gzread** API is called, or when the input file access mode is incorrect when the API for opening the **.gz** file is called.
+This error code is reported when the input parameter is incorrect when the **gzputc**, **gzwrite**, or **gzread** API is called, or when the input file access mode is incorrect when the API for opening the .gz file is called.
 
 **Possible Causes**
 
-1. The API for opening the **.gz** file is not called or fails to be called.
-2. When the API for opening the **.gz** file is called, the input file access mode is incorrect.
+1. The API for opening the .gz file is not called or fails to be called.
+2. When the API for opening the .gz file is called, the input file access mode is incorrect.
 3. When the **gzwrite** API is called, the length of the input uncompressed byte is 0.
 4. When the **gzfwrite** or **gzfread** API is called, the size or number of input data blocks is 0.
 5. When the **gzprintf** API is called, the input format descriptor and plain text are empty strings.
 6. When the **gzgets** API is called, the input **ArrayBuffer** is empty.
-7. When the **gzgetc** API is called, the **.gz** file is empty.
+7. When the **gzgetc** API is called, the .gz file is empty.
 
 **Solution**
 
-1. Check whether the API for opening the **.gz** file is not called or fails to be called.
-2. Check whether the input access mode matches the API when the API for opening the **.gz** file is called. For example, **gzgetc** is a decompression API, so the input access mode should be decompression mode (such **r** or **rb**).
+1. Check whether the API for opening the .gz file is not called or fails to be called.
+2. Check whether the input access mode matches the API when the API for opening the .gz file is called. For example, **gzgetc** is a decompression API, so the input access mode should be decompression mode (such **r** or **rb**).
 3. Check whether the input parameter is correct.

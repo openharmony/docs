@@ -12,7 +12,7 @@ Currently, only the following types of system accounts can be created:
 | ADMIN  | 0      | Administrator account.|
 | NORMAL | 1      | Normal account.  |
 | GUEST  | 2      | Guest account.  |
-| PRIVATE<sup>12+</sup> | 1024  | Private account. |
+| PRIVATE<sup>12+</sup> | 1024  | Private account.  |
 
 ### Account Information
 
@@ -110,7 +110,7 @@ Change the profile photo and nickname of a system account as required.
    let newName: string = 'Tom';
    accountManager.setOsAccountName(localId, newName, (err: BusinessError) => {
      if (err) {
-       console.log('setOsAccountName failed, error: ' + JSON.stringify(err));
+       console.error('setOsAccountName failed, error: ' + JSON.stringify(err));
      } else {
        console.log('setOsAccountName successfully');
      }
@@ -148,7 +148,7 @@ Use [removeOsAccount](../../reference/apis-basic-services-kit/js-apis-osAccount-
 let localId: number = 101;
 accountManager.removeOsAccount(localId, (err: BusinessError)=>{
   if (err) {
-      console.log('removeOsAccount failed, error: ' + JSON.stringify(err));
+      console.error('removeOsAccount failed, error: ' + JSON.stringify(err));
   } else {
       console.log('removeOsAccount successfully');
   }

@@ -4,7 +4,7 @@
 >
 > This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-The following includes the error codes for system accounts, distributed accounts, and app accounts.
+The following includes the error codes for system accounts, distributed accounts, and application accounts.
 
 ## 12300001 System Service Abnormal
 
@@ -14,7 +14,7 @@ The system service works abnormally.
 
 **Possible Causes**
 
- 
+
 1. The account management service cannot start properly.
 2. The IPC object for account management cannot be obtained.
 3. The services on which the account management depends cannot start properly, or the IPC object on which the account management depends cannot be obtained.
@@ -37,7 +37,7 @@ Invalid parameter.
 
 **Possible Causes**
 
- 
+
 1. The user name is empty.
 2. The user name of the system account exceeds 1024 characters.
 3. The user name of the distributed account exceeds 256 characters.
@@ -75,7 +75,7 @@ The account does not exist.
 
 **Possible Causes**
 
- 
+
 1. The account to query, activate, or delete is not created.
 2. The account to query, activate, or delete has been deleted.
 3. The constraint, user name, or profile photo is set for an account that has been deleted.
@@ -100,7 +100,7 @@ The account already exists.
 
 **Possible Causes**
 
- 
+
 The account to create already exists.
 
 **Solution**
@@ -115,7 +115,7 @@ Multi-user is not supported.
 
 **Possible Causes**
 
- 
+
 The device does not support multiple users.
 
 **Solution**
@@ -130,7 +130,6 @@ The account type is not supported.
 
 **Possible Causes**
 
- 
 The device does not support the account type.
 
 **Solution**
@@ -145,7 +144,6 @@ The number of accounts has reached the upper limit.
 
 **Possible Causes**
 
- 
 The number of system accounts or application accounts has reached 1000.
 
 **Solution**
@@ -160,7 +158,7 @@ The specified account is restricted.
 
 **Possible Causes**
 
- 
+
 1. The account to delete is a reserved account of the system.
 2. The constraint source type to query belongs to a reserved account.
 3. The ID of the account to create is 0 to 100.
@@ -177,7 +175,7 @@ The account has been activated.
 
 **Possible Causes**
 
- 
+
 The account to activate is already activated.
 
 **Solution**
@@ -192,9 +190,9 @@ The account service does not respond.
 
 **Possible Causes**
 
- 
+
 1. Repeated requests, such as the requests for activating an account or applying the same settings, are submitted in a short period of time.
-2. When the number of authentication sessions for app accounts reaches 256, new authentication requests cannot be processed.
+2. When the number of authentication sessions for application accounts reaches 256, new authentication requests cannot be processed.
 
 **Solution**
 
@@ -208,7 +206,7 @@ The event listener has been registered.
 
 **Possible Causes**
 
- 
+
 The listener to register has been registered with the system already.
 
 **Solution**
@@ -223,7 +221,7 @@ The event listener has not been registered.
 
 **Possible Causes**
 
- 
+
 The event listener to unregister has not been registered.
 
 **Solution**
@@ -238,7 +236,7 @@ Network exception.
 
 **Possible Causes**
 
- 
+
 1. The device is not connected to the network.
 2. The network connection is abnormal.
 3. The app does not have the network access permission.
@@ -301,7 +299,7 @@ The credential is incorrect.
 
 **Possible Causes**
 
- 
+
 1. An incorrect password is entered.
 2. The biological feature does not match the feature enrolled.
 3. The token is invalid.
@@ -318,7 +316,7 @@ The credential does not exist.
 
 **Possible Causes**
 
- 
+
 1. The credential to authenticate has not been enrolled.
 2. The credential to query has not been enrolled.
 3. The credential to delete has not been enrolled.
@@ -335,7 +333,7 @@ The credential inputer already exists.
 
 **Possible Causes**
 
- 
+
 The PIN inputer has been registered and cannot be registered again before deregistration.
 
 **Solution**
@@ -350,7 +348,7 @@ The credential inputer is not found.
 
 **Possible Causes**
 
- 
+
 No credential inputer is registered when a credential is authenticated, added or modified.
 
 **Solution**
@@ -365,7 +363,7 @@ The trust level is not supported.
 
 **Possible Causes**
 
- 
+
 The trust level passed in is not supported.
 
 **Solution**
@@ -380,7 +378,7 @@ The authentication type is not supported.
 
 **Possible Causes**
 
- 
+
 The authentication type passed in is not supported.
 
 **Solution**
@@ -395,7 +393,7 @@ The authentication type does not exist.
 
 **Possible Causes**
 
- 
+
 The specified authentication type does not exist when a token is queried or deleted.
 
 **Solution**
@@ -409,8 +407,6 @@ Use an existing authentication type.
 The authentication session does not exist.
 
 **Possible Causes**
-
- 
 
 The session callback to query does not exist.
 
@@ -426,7 +422,6 @@ The authentication, enrollment, or update operation is canceled.
 
 **Possible Causes**
 
- 
 The user cancels the authentication.
 The user canceled the credential enrollment.
 The user canceled the update during the credential enrollment process.
@@ -443,7 +438,6 @@ The authentication is locked.
 
 **Possible Causes**
 
- 
 The number of authentication type errors exceeds the limit.
 
 **Solution**
@@ -458,7 +452,6 @@ The authentication time out.
 
 **Possible Causes**
 
- 
 1. The authentication or credential enrollment of a system account takes more than three minutes.
 2. The authentication service does not respond in time due to network problems.
 
@@ -475,7 +468,6 @@ The authentication service is busy.
 
 **Possible Causes**
 
- 
 The total number of system accounts being authenticated exceeds 5.
 The authentication service of the third-party app does not respond.
 
@@ -491,7 +483,6 @@ The account authentication service does not exist.
 
 **Possible Causes**
 
- 
 For application accounts:
 1. When an authentication is requested, the app does not support the authentication service.
 2. When an account is added implicitly, the app does not support the authentication service.
@@ -511,7 +502,6 @@ The account authentication service works abnormally.
 
 **Possible Causes**
 
- 
 1. An unknown error occurs in the identity authentication service.
 2. The app authenticator does not comply with specifications.
 
@@ -572,7 +562,7 @@ The application does not exist.
 
 **Possible Causes**
 
- 
+
 1. The target app does not exist when the app permission is set.
 2. The target app does not exist when the app permission is authorized.
 
@@ -588,7 +578,6 @@ The custom data does not exist.
 
 **Possible Causes**
 
- 
 The key does not exist when you query the custom data of the account.
 
 **Solution**
@@ -603,7 +592,6 @@ The number of custom data records reaches the upper limit.
 
 **Possible Causes**
 
- 
 The number of custom data records of the target account has reached 512.
 
 **Solution**
@@ -618,7 +606,6 @@ The number of tokens reaches the upper limit.
 
 **Possible Causes**
 
- 
 The number of tokens of the target account has reached 1024.
 
 **Solution**
@@ -633,9 +620,8 @@ The size of the authorization list reaches the upper limit.
 
 **Possible Causes**
 
- 
 The number of bundles in the authorization list has reached 1024.
 
 **Solution**
 
-1. Revoke authorization from the apps that do not require the authorization and try again.
+Revoke authorization from the applications that do not require the authorization and try again.

@@ -30,4 +30,4 @@ Check whether the system services are running properly.
     > hdc shell hidumper -ls
     ```
 
-2. Check whether **Battery-info** is included in the system service list.
+2. Check whether **BatteryService** is present on the system service list.
