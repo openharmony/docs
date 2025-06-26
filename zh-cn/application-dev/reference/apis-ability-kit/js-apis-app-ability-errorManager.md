@@ -115,7 +115,7 @@ function errorFunc(observer: errorManager.GlobalError) {
     console.info("result message :" + observer.message);
     console.info("result stack :" + observer.stack);
     console.info("result instanceName :" + observer.instanceName);
-    console.info("result instaceType :" + observer.instanceType);
+    console.info("result instanceType :" + observer.instanceType);
 }
 
 try {
