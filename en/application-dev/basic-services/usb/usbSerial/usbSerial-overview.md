@@ -30,7 +30,7 @@ The USB serial port service consists of two phases:
   Receiving data:
   The device receives the data from the physical serial port. → The device packages and uploads data to the USB host. → The driver receives and stores data in the serial port buffer. → The application layer reads the data.
 
-
+ 
 **Figure 1** Process of transmitting and receiving data
 
 ![Data Receiving and Transmission Through the Serial Port](../figures/en-us_image_22989BBB5490.png)
@@ -55,8 +55,6 @@ The USB serial port service consists of two phases:
 
 ### Environment Setup
 
-- Install [DevEco Studio](https://developer.huawei.com/consumer/cn/download/deveco-studio) 4.1 or later on the PC.
-- Update the public-SDK to API version 18 or later. For details, see [OpenHarmony SDK Upgrade Assistant](../../../tools/openharmony_sdk_upgrade_assistant.md).
+- Install [DevEco Studio](https://developer.huawei.com/consumer/en/download/deveco-studio) 4.1 or later on the PC.
+- Update the public SDK to API version 18 or later.
 - Prepare a USB-to-serial cable. Connect the USB port and the serial port of the cable to that of the OpenHarmony device.
-
-<!--no_check-->

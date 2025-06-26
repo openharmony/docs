@@ -1,6 +1,6 @@
 # System Common Events (System API)
 
-This document provides a list of common events defined by the system.
+This topic provides a list of common events defined by the system.
 
 Common event types are defined in [Support enumeration of the ohos.commonEventManager module](../js-apis-commonEventManager.md#support).
 
@@ -16,13 +16,13 @@ Common event types are defined in [Support enumeration of the ohos.commonEventMa
 
 Indicates that the boot is complete and the system is loaded.
 
-When the specified user finishes the boot process on the device, the event notification service is triggered to publish this event.
+When the specified user finishes the boot process on the device, the common event service is triggered to publish this event.
 
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.RECEIVER_STARTUP_COMPLETED (for system applications only)
+**Required permissions**: ohos.permission.RECEIVER_STARTUP_COMPLETED (for system applications only)
 
 **Value**: "usual.event.BOOT_COMPLETED"
 
@@ -30,13 +30,13 @@ When the specified user finishes the boot process on the device, the event notif
 
 Indicates that a package is sent by the system verifier when the package is verified.
 
-When a new application starts to be installed by a specified user on the device, the event notification service is triggered to publish this event.
+When a new application starts to be installed by a specified user on the device, the common event service is triggered to publish this event.
 
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.PACKAGE_INSTALLATION_STARTED"
 
@@ -51,7 +51,7 @@ This common event is sent when the bundle management resource data is updated in
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.GET_BUNDLE_RESOURCES
+**Required permissions**: ohos.permission.GET_BUNDLE_RESOURCES
 
 **Value**: "usual.event.BUNDLE_RESOURCES_CHANGED"
 
@@ -63,7 +63,7 @@ This common event is sent when the bundle management resource data is updated in
 
 Indicates that the exemption list for resource usage restrictions has been updated in idle mode.
 
-When the exemption list for resource usage restrictions is updated, the event notification service is triggered to publish this event.
+When the exemption list for resource usage restrictions is updated, the common event service is triggered to publish this event.
 Resources include application network access, Timer usage, and WorkScheduler task usage.
 
 System applications can call JavaScript APIs to apply for removing resource usage restrictions.
@@ -72,10 +72,9 @@ System applications can call JavaScript APIs to apply for removing resource usag
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.DEVICE_IDLE_EXEMPTION_LIST_UPDATED"
-
 
 
 
@@ -85,13 +84,13 @@ System applications can call JavaScript APIs to apply for removing resource usag
 
 Indicates that the system charging type has changed.
 
-When the system charging type changes, the event notification service is triggered to publish this event.
+When the system charging type changes, the common event service is triggered to publish this event.
 
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: "usual.event.CHARGE_TYPE_CHANGED"
 
@@ -100,7 +99,7 @@ When the system charging type changes, the event notification service is trigger
 
 Indicates that a user has been added to the system.
 
-When a system account is created, the event notification service is triggered to publish this event carrying the system account ID.
+When a system account is created, the common event service is triggered to publish this event carrying the system account ID.
 
 APIs related to this event: **createOsAccount** and **createOsAccountForDomain**. These APIs are system APIs. For details, see [@ohos.account.osAccount (System Account Management)](../js-apis-osAccount.md).
 
@@ -108,7 +107,7 @@ APIs related to this event: **createOsAccount** and **createOsAccountForDomain**
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS (for system applications only)
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS (for system applications only)
 
 **Value**: "usual.event.USER_ADDED"
 
@@ -117,7 +116,7 @@ APIs related to this event: **createOsAccount** and **createOsAccountForDomain**
 
 Indicates that a user has been removed from the system.
 
-When a system account is removed, the event notification service is triggered to publish this event carrying the system account ID.
+When a system account is removed, the common event service is triggered to publish this event carrying the system account ID.
 
 APIs related to this event: **removeOsAccount**. This API is a system API. For details, see [@ohos.account.osAccount (System Account Management)](../js-apis-osAccount.md).
 
@@ -125,7 +124,7 @@ APIs related to this event: **removeOsAccount**. This API is a system API. For d
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS (for system applications only)
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS (for system applications only)
 
 **Value**: "usual.event.USER_REMOVED"
 
@@ -134,7 +133,7 @@ APIs related to this event: **removeOsAccount**. This API is a system API. For d
 
 Indicates that the status of the domain account status changes.
 
-When a domain user account is authenticated, deleted, or has the token updated, the event notification service is triggered to publish this event carrying the system account ID, domain name, and account status.
+When a domain user account is authenticated, deleted, or has the token updated, the common event service is triggered to publish this event carrying the system account ID, domain name, and account status.
 
 APIs related to this event: **removeOsAccount**, **DomainAccountManager.auth**, and **updateAccountToken**. These APIs are system APIs. For details, see [@ohos.account.osAccount (System Account Management)](../js-apis-osAccount.md).
 
@@ -142,7 +141,7 @@ APIs related to this event: **removeOsAccount**, **DomainAccountManager.auth**, 
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.GET_LOCAL_ACCOUNTS (for system applications only)
+**Required permissions**: ohos.permission.GET_LOCAL_ACCOUNTS (for system applications only)
 
 **Value**: "usual.event.DOMAIN_ACCOUNT_STATUS_CHANGED"
 
@@ -151,7 +150,7 @@ APIs related to this event: **removeOsAccount**, **DomainAccountManager.auth**, 
 
 Indicates that a user switchover is complete.
 
-When a system account is switched, the event notification service is triggered to publish this event carrying the system account ID.
+When a system account is switched, the common event service is triggered to publish this event carrying the system account ID.
 
 APIs related to this event: **activateOsAccount**. This API is a system API. For details, see [@ohos.account.osAccount (System Account Management)](../js-apis-osAccount.md).
 
@@ -159,7 +158,7 @@ APIs related to this event: **activateOsAccount**. This API is a system API. For
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS (for system applications only)
+**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS (for system applications only)
 
 **Value**: "usual.event.USER_SWITCHED"
 
@@ -181,7 +180,7 @@ This common event is triggered when an external storage device is removed.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.STORAGE_MANAGER
+**Required permissions**: ohos.permission.STORAGE_MANAGER
 
 **Value**: "usual.event.data.VOLUME_REMOVED"
 
@@ -195,7 +194,7 @@ This common event is triggered when an external storage device is successfully u
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.STORAGE_MANAGER
+**Required permissions**: ohos.permission.STORAGE_MANAGER
 
 **Value**: "usual.event.data.VOLUME_UNMOUNTED"
 
@@ -210,7 +209,7 @@ This common event is triggered when an external storage device is successfully m
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.STORAGE_MANAGER
+**Required permissions**: ohos.permission.STORAGE_MANAGER
 
 **Value**: "usual.event.data.VOLUME_MOUNTED"
 
@@ -225,7 +224,7 @@ This common event is triggered when an external storage device is directly remov
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.STORAGE_MANAGER
+**Required permissions**: ohos.permission.STORAGE_MANAGER
 
 **Value**: "usual.event.data.VOLUME_BAD_REMOVAL"
 
@@ -240,7 +239,7 @@ This common event is triggered when the user calls the **unmount** API on a moun
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.STORAGE_MANAGER
+**Required permissions**: ohos.permission.STORAGE_MANAGER
 
 **Value**: "usual.event.data.VOLUME_EJECT"
 
@@ -249,13 +248,13 @@ This common event is triggered when the user calls the **unmount** API on a moun
 
 Indicates the common event that an application starts to be restored.
 
-When a data migration application starts the backup and restore framework to perform a restoration task, the event notification service is triggered to publish this event.
+When a data migration application starts the backup and restore framework to perform a restoration task, the common event service is triggered to publish this event.
 
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.START_RESTORE_NOTIFICATION
+**Required permissions**: ohos.permission.START_RESTORE_NOTIFICATION
 
 **Value**: "usual.event.RESTORE_START"
 
@@ -268,13 +267,13 @@ When a data migration application starts the backup and restore framework to per
 
 Indicates that an SMS message is received.
 
-When the device receives an SMS message, the event notification service is triggered to publish this event.
+When the device receives an SMS message, the common event service is triggered to publish this event.
 
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.RECEIVE_SMS (for system apps only)
+**Required permissions**: ohos.permission.RECEIVE_SMS (for system applications only)
 
 **Value**: usual.event.SMS_RECEIVED_COMPLETED
 
@@ -283,13 +282,13 @@ When the device receives an SMS message, the event notification service is trigg
 
 Indicates that an emergency cell broadcast message is received.
 
-When the device receives an emergency cell broadcast message, the event notification service is triggered to publish this event.
+When the device receives an emergency cell broadcast message, the common event service is triggered to publish this event.
 
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.RECEIVE_SMS (for system apps only)
+**Required permissions**: ohos.permission.RECEIVE_SMS (for system applications only)
 
 **Value**: usual.event.SMS_EMERGENCY_CB_RECEIVE_COMPLETED
 
@@ -298,13 +297,13 @@ When the device receives an emergency cell broadcast message, the event notifica
 
 Indicates that a cell broadcast message is received.
 
-When the device receives a cell broadcast message, the event notification service is triggered to publish this event.
+When the device receives a cell broadcast message, the common event service is triggered to publish this event.
 
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.RECEIVE_SMS (for system apps only)
+**Required permissions**: ohos.permission.RECEIVE_SMS (for system applications only)
 
 **Value**: usual.event.SMS_CB_RECEIVE_COMPLETED
 
@@ -312,13 +311,13 @@ When the device receives a cell broadcast message, the event notification servic
 
 Indicates that the carrier configuration has been updated.
 
-When the carrier configuration of the device is updated, the event notification service is triggered to publish this event.
+When the carrier configuration of the device is updated, the common event service is triggered to publish this event.
 
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: usual.event.OPERATOR_CONFIG_CHANGED
 
@@ -327,13 +326,13 @@ When the carrier configuration of the device is updated, the event notification 
 
 Indicates that the default primary SIM card for the SMS service has been updated.
 
-When the default primary SIM card for the SMS service is updated, the event notification service is triggered to publish this event.
+When the default primary SIM card for the SMS service is updated, the common event service is triggered to publish this event.
 
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: usual.event.DEFAULT_SMS_SUBSCRIPTION_CHANGED
 
@@ -342,13 +341,13 @@ When the default primary SIM card for the SMS service is updated, the event noti
 
 Indicates that the default primary SIM card for the data service has been updated.
 
-When the default primary SIM card for the data service is updated, the event notification service is triggered to publish this event.
+When the default primary SIM card for the data service is updated, the common event service is triggered to publish this event.
 
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: usual.event.DEFAULT_DATA_SUBSCRIPTION_CHANGED
 
@@ -357,13 +356,13 @@ When the default primary SIM card for the data service is updated, the event not
 
 Indicates that the default primary SIM card of the device has been updated.
 
-When the default primary SIM card of the device is updated, the event notification service is triggered to publish this event.
+When the default primary SIM card of the device is updated, the common event service is triggered to publish this event.
 
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: usual.event.SIM.DEFAULT_MAIN_SUBSCRIPTION_CHANGED
 
@@ -372,13 +371,13 @@ When the default primary SIM card of the device is updated, the event notificati
 
 Indicates that the status of the action for setting the primary SIM card changes.
 
-When the status of the action for setting the primary SIM card changes (for example, when the status is updated to executing or completed), the event notification service is triggered to publish this event.
+When the status of the action for setting the primary SIM card changes (for example, when the status is updated to executing or completed), the common event service is triggered to publish this event.
 
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: usual.event.SET_PRIMARY_SLOT_STATUS
 
@@ -387,13 +386,13 @@ When the status of the action for setting the primary SIM card changes (for exam
 
 Indicates that the roaming status of the default primary SIM card is updated.
 
-When the roaming status of the default primary SIM card changes, the event notification service is triggered to publish this event.
+When the roaming status of the default primary SIM card changes, the common event service is triggered to publish this event.
 
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: usual.event.PRIMARY_SLOT_ROAMING
 
@@ -402,13 +401,13 @@ When the roaming status of the default primary SIM card changes, the event notif
 
 Indicates that the default primary SIM card for the voice service has been updated. 
 
-When the default primary SIM card for the voice service is updated, the event notification service is triggered to publish this event.
+When the default primary SIM card for the voice service is updated, the common event service is triggered to publish this event.
 
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: usual.event.DEFAULT_VOICE_SUBSCRIPTION_CHANGED
 
@@ -417,13 +416,13 @@ When the default primary SIM card for the voice service is updated, the event no
 
 Indicates that the cellular data status has been updated.
 
-When the cellular data status of the device is updated, the event notification service is triggered to publish this event.
+When the cellular data status of the device is updated, the common event service is triggered to publish this event.
 
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: usual.event.CELLULAR_DATA_STATE_CHANGED
 
@@ -432,13 +431,13 @@ When the cellular data status of the device is updated, the event notification s
 
 Indicates that an incoming call is missed.
 
-When an incoming call is missed on the device, the event notification service is triggered to publish this event.
+When an incoming call is missed on the device, the common event service is triggered to publish this event.
 
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.GET_TELEPHONY_STATE (for system apps only)
+**Required permissions**: ohos.permission.GET_TELEPHONY_STATE (for system applications only)
 
 **Value**: usual.event.INCOMING_CALL_MISSED
 
@@ -447,13 +446,13 @@ When an incoming call is missed on the device, the event notification service is
 
 Indicates that the radio status of the device has changed.
 
-When there is a change in the radio status of the device, the event notification service is triggered to publish this event.
+When there is a change in the radio status of the device, the common event service is triggered to publish this event.
 
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: usual.event.RADIO_STATE_CHANGE
 
@@ -462,13 +461,13 @@ When there is a change in the radio status of the device, the event notification
 
 Indicates that a secret code is sent successfully.
 
-When a secret code is successfully sent on the device, the event notification service is triggered to publish this event.
+When a secret code is successfully sent on the device, the common event service is triggered to publish this event.
 
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: usual.event.DIALER_SPECIAL_CODE
 
@@ -477,13 +476,13 @@ When a secret code is successfully sent on the device, the event notification se
 
 Indicates that the audio quality has changed.
 
-When there is a change in the audio quality of the device, the event notification service is triggered to publish this event.
+When there is a change in the audio quality of the device, the common event service is triggered to publish this event.
 
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: usual.event.AUDIO_QUALITY_CHANGE
 
@@ -498,13 +497,13 @@ Below are reserved common events that are not supported yet.
 
 (Reserved, not supported yet) Indicates that an STK command is sent.
 
-When an STK command is sent, the event notification service is triggered to publish this event.
+When an STK command is sent, the common event service is triggered to publish this event.
 
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: usual.event.STK_COMMAND
 
@@ -513,13 +512,13 @@ When an STK command is sent, the event notification service is triggered to publ
 
 (Reserved, not supported yet) Indicates that an STK session has ended.
 
-When an STK session ends, the event notification service is triggered to publish this event.
+When an STK session ends, the common event service is triggered to publish this event.
 
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: usual.event.STK_SESSION_END
 
@@ -528,13 +527,13 @@ When an STK session ends, the event notification service is triggered to publish
 
 (Reserved, not supported yet) Indicates that the STK card status has been updated.
 
-When the STK card status is updated, the event notification service is triggered to publish this event.
+When the STK card status is updated, the common event service is triggered to publish this event.
 
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 
 **Value**: usual.event.STK_CARD_STATE_CHANGED
@@ -543,13 +542,13 @@ When the STK card status is updated, the event notification service is triggered
 
 (Reserved, not supported yet) Indicates that an STK Alpha identifier is sent.
 
-When an STK Alpha identifier is sent, the event notification service is triggered to publish this event.
+When an STK Alpha identifier is sent, the common event service is triggered to publish this event.
 
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: none
+**Required permissions**: none
 
 **Value**: usual.event.STK_ALPHA_IDENTIFIER
 
@@ -558,12 +557,12 @@ When an STK Alpha identifier is sent, the event notification service is triggere
 
 (Reserved, not supported yet) Indicates that a WAP push message is received.
 
-When the device receives a WAP push message, the event notification service is triggered to publish this event.
+When the device receives a WAP push message, the common event service is triggered to publish this event.
 
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-**Required subscriber permissions**: ohos.permission.RECEIVE_SMS (for system apps only)
+**Required permissions**: ohos.permission.RECEIVE_SMS (for system applications only)
 
 **Value**: usual.event.SMS_WAPPUSH_RECEIVE_COMPLETED

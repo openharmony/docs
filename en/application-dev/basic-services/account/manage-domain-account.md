@@ -38,7 +38,11 @@ Before adding a domain account, the user may need to check whether the domain ac
 2. Use [hasAccount](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#hasaccount10) to check whether the domain account exists.
 
    ```ts
-   let isAccountExisted: boolean = await osAccount.DomainAccountManager.hasAccount(domainAccountInfo);
+   osAccount.DomainAccountManager.hasAccount(domainAccountInfo).then((isAccountExisted: boolean)=>{
+     console.log('execute hasAccount successfully, isAccountExisted:' + JSON.stringify(isAccountExisted));
+   }).catch((err: BusinessError)=>{
+     console.error('execute hasAccount err:' + JSON.stringify(err));
+   });
    ```
 
 ## Adding a Domain Account
@@ -66,7 +70,7 @@ The user can add a domain account in **Settings** to allow the domain account us
        console.log('createOsAccountForDomain osAccountInfo:' + JSON.stringify(osAccountInfo));
    });
    } catch (e) {
-   console.log('createOsAccountForDomain exception: ' + JSON.stringify(e));
+   console.error('createOsAccountForDomain exception: ' + JSON.stringify(e));
    }
    ```
 
@@ -88,7 +92,7 @@ The user can remove the domain account that is not required. Since a domain acco
    try {
      localId = await osAccountMgr.getOsAccountLocalIdForDomain(domainInfo);
    } catch (err) {
-     console.log('getOsAccountLocalIdForDomain exception: ' + JSON.stringify(err));
+     console.error('getOsAccountLocalIdForDomain exception: ' + JSON.stringify(err));
    }
    ```
 
@@ -98,13 +102,13 @@ The user can remove the domain account that is not required. Since a domain acco
    try {
      osAccountMgr.removeOsAccount(localId, (err: BusinessError)=>{
        if (err) {
-           console.log('removeOsAccount failed, error: ' + JSON.stringify(err));
+           console.error('removeOsAccount failed, error: ' + JSON.stringify(err));
        } else {
            console.log('removeOsAccount successfully');
        }
      });
    } catch (err) {
-     console.log('removeOsAccount exception: ' + JSON.stringify(err));
+     console.error('removeOsAccount exception: ' + JSON.stringify(err));
    }
    ```
 
@@ -130,12 +134,12 @@ After passing the authentication, the user can query their own or others' domain
      osAccount.DomainAccountManager.getAccountInfo(options,
        (err: BusinessError, result: osAccount.DomainAccountInfo) => {
        if (err) {
-           console.log('call getAccountInfo failed, error: ' + JSON.stringify(err));
+           console.error('call getAccountInfo failed, error: ' + JSON.stringify(err));
        } else {
            console.log('getAccountInfo result: ' + result);
        }
      });
    } catch (err) {
-       console.log('getAccountInfo exception = ' + JSON.stringify(err));
+       console.error('getAccountInfo exception = ' + JSON.stringify(err));
    }
    ```

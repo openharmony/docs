@@ -1,8 +1,8 @@
 # @ohos.ai.intelligentVoice (Intelligent Voice) (System API)
 
-The **intelligentVoice** module provides the intelligent voice enrollment and voice wakeup functions.
+The **intelligentVoice** module provides the intelligent voice enrollment and voice wakeup functions. 
 
-Its functions are implemented by:
+Its features are implemented by:
 
 - [IntelligentVoiceManager](#intelligentvoicemanager): intelligent voice manager class, which declares the functions provided by the module. Currently, voice enrollment and voice wakeup are supported. Before developing intelligent voice functions, call [getIntelligentVoiceManager()](#intelligentvoicegetintelligentvoicemanager) to check whether they are supported.
 - [EnrollIntelligentVoiceEngine](#enrollintelligentvoiceengine): class that implements voice enrollment. You need to perform voice enrollment before using voice wakeup.
@@ -31,7 +31,7 @@ Obtains an instance of the intelligent voice manager.
 
 **System capability**: SystemCapability.AI.IntelligentVoice.Core
 
-**Return value**
+**Returns**
 
 | Type                         | Description        |
 | ----------------------------- | ------------ |
@@ -71,7 +71,7 @@ Obtains an instance of the **WakeupManager** class.
 
 **System capability**: SystemCapability.AI.IntelligentVoice.Core
 
-**Return value**
+**Returns**
 
 | Type                         | Description        |
 | ----------------------------- | ------------ |
@@ -167,7 +167,7 @@ Creates an instance of the intelligent voice enrollment engine. This API uses a 
 | -------- | ----------------------------------- | ---- | ---------------------- |
 | descriptor    | [EnrollIntelligentVoiceEngineDescriptor](#enrollintelligentvoiceenginedescriptor)                              | Yes  | Descriptor of the intelligent voice enrollment engine.  |
 
-**Return value**
+**Returns**
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
@@ -268,7 +268,7 @@ Creates an instance of the intelligent voice wakeup engine. This API uses a prom
 | -------- | ----------------------------------- | ---- | ---------------------- |
 | descriptor    | [WakeupIntelligentVoiceEngineDescriptor](#wakeupintelligentvoiceenginedescriptor)                              | Yes  | Descriptor of the intelligent voice wakeup engine.  |
 
-**Return value**
+**Returns**
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
@@ -318,7 +318,7 @@ Obtains the list of supported intelligent voice engine types.
 
 **System capability**: SystemCapability.AI.IntelligentVoice.Core
 
-**Return value**
+**Returns**
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
@@ -430,7 +430,7 @@ Sets the specified wakeup parameter. This API uses a promise to return the resul
 | key     | string                           | Yes  | Key, which corresponds to the wakeup keyword. Currently, only **wakeup_phrase** is supported.|
 | value     | string                           | Yes  | Value.|
 
-**Return value**
+**Returns**
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
@@ -478,7 +478,7 @@ Obtains specified intelligent voice parameters. This API uses a promise to retur
 | -------- | -------------------------------- | --- | ------------------------------------------- |
 | key     | string                           | Yes  | Key, which corresponds to the registration information. Currently, only **isEnrolled** is supported.|
 
-**Return value**
+**Returns**
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
@@ -527,7 +527,7 @@ Obtain the saved wakeup keyword files. This API uses a promise to return the res
 | -------- | -------------------------------- | --- | ------------------------------------------- |
 | maxCount     | number                           | Yes  | Number of obtained files.|
 
-**Return value**
+**Returns**
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
@@ -572,7 +572,7 @@ Obtains wakeup resource files, such as registration corpus and path. This API us
 
 **System capability**: SystemCapability.AI.IntelligentVoice.Core
 
-**Return value**
+**Returns**
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
@@ -622,7 +622,7 @@ Registers with wakeup resource files to obtain wakeup word evaluation results. T
 | wakeupFiles     | Array\<[WakeupSourceFile](#wakeupsourcefile12)\>                           | Yes  | Wakeup resource files.|
 | wakeupInfo     | string                           | Yes  | Wakeup information, including the type and version of the source and target devices.|
 
-**Return value**
+**Returns**
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
@@ -672,7 +672,7 @@ Clears user data. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.AI.IntelligentVoice.Core
 
-**Return value**
+**Returns**
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
@@ -839,7 +839,7 @@ A sensibility type maps to a wakeup threshold. A higher sensibility indicates a 
 
 ## WakeupHapInfo
 
-Defines the HAP information for an wakeup application.
+Defines the HAP information for a wakeup application.
 
 **System capability**: SystemCapability.AI.IntelligentVoice.Core
 
@@ -986,7 +986,7 @@ Obtains the list of supported countries/regions. This API uses a promise to retu
 
 **System capability**: SystemCapability.AI.IntelligentVoice.Core
 
-**Return value**
+**Returns**
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
@@ -1082,7 +1082,7 @@ Initializes the intelligent voice enrollment engine. This API uses a promise to 
 | -------- | -------------------------------- | --- | ------------------------------------------- |
 | config     | [EnrollEngineConfig](#enrollengineconfig)                           | Yes  | Configuration of the intelligent voice enrollment engine.|
 
-**Return value**
+**Returns**
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
@@ -1180,7 +1180,7 @@ Obtains the enrollment result. This API uses a promise to return the result.
 | -------- | -------------------------------- | --- | ------------------------------------------- |
 | isLast     | boolean                           | Yes  | Whether this is the last enrollment. The value **true** indicates the last enrollment, and the value **false** indicates the opposite.|
 
-**Return value**
+**Returns**
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
@@ -1261,7 +1261,7 @@ Stops the enrollment. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.AI.IntelligentVoice.Core
 
-**Return value**
+**Returns**
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
@@ -1342,7 +1342,7 @@ Commits the enrollment. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.AI.IntelligentVoice.Core
 
-**Return value**
+**Returns**
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
@@ -1430,7 +1430,7 @@ Sets the HAP information for the wakeup application. This API uses a promise to 
 
 **System capability**: SystemCapability.AI.IntelligentVoice.Core
 
-**Return value**
+**Returns**
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
@@ -1525,7 +1525,7 @@ Sets the wakeup sensibility. This API uses a promise to return the result.
 | -------- | -------------------------------- | --- | ------------------------------------------- |
 | sensibility     | [SensibilityType](#sensibilitytype)                           | Yes  | Sensibility type.|
 
-**Return value**
+**Returns**
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
@@ -1618,7 +1618,7 @@ Sets specified intelligent voice parameters. This API uses a promise to return t
 | key     | string                           | Yes  | Key.|
 | value     | string                           | Yes  | Value.|
 
-**Return value**
+**Returns**
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
@@ -1710,7 +1710,7 @@ Obtains specified intelligent voice parameters. This API uses a promise to retur
 | -------- | -------------------------------- | --- | ------------------------------------------- |
 | key     | string                           | Yes  | Key.|
 
-**Return value**
+**Returns**
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
@@ -1758,7 +1758,7 @@ Evaluates whether a custom wakeup keyword is effective. This API uses a promise 
 | -------- | -------------------------------- | --- | ------------------------------------------- |
 | word     | string                           | Yes  | Custom wakeup keyword.|
 
-**Return value**
+**Returns**
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
@@ -1842,7 +1842,7 @@ Releases the intelligent voice enrollment engine. This API uses a promise to ret
 
 **System capability**: SystemCapability.AI.IntelligentVoice.Core
 
-**Return value**
+**Returns**
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
@@ -1925,7 +1925,7 @@ Obtains the list of supported countries/regions. This API uses a promise to retu
 
 **System capability**: SystemCapability.AI.IntelligentVoice.Core
 
-**Return value**
+**Returns**
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
@@ -2020,7 +2020,7 @@ Sets the HAP information for the wakeup application. This API uses a promise to 
 | -------- | -------------------------------- | --- | ------------------------------------------- |
 | info     | [WakeupHapInfo](#wakeuphapinfo)                           | Yes  | HAP information for the wakeup application.|
 
-**Return value**
+**Returns**
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
@@ -2115,7 +2115,7 @@ Sets the wakeup sensibility. This API uses a promise to return the result.
 | -------- | -------------------------------- | --- | ------------------------------------------- |
 | sensibility     | [SensibilityType](#sensibilitytype)                           | Yes  | Sensibility type.|
 
-**Return value**
+**Returns**
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
@@ -2208,7 +2208,7 @@ Sets specified intelligent voice parameters. This API uses a promise to return t
 | key     | string                           | Yes  | Key.|
 | value     | string                           | Yes  | Value.|
 
-**Return value**
+**Returns**
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
@@ -2300,7 +2300,7 @@ Obtains specified intelligent voice parameters. This API uses a promise to retur
 | -------- | -------------------------------- | --- | ------------------------------------------- |
 | key     | string                           | Yes  | Key.|
 
-**Return value**
+**Returns**
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
@@ -2342,7 +2342,7 @@ Obtains the Pulse Code Modulation (PCM) of audio signals. This API uses a promis
 
 **System capability**: SystemCapability.AI.IntelligentVoice.Core
 
-**Return value**
+**Returns**
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
@@ -2390,7 +2390,7 @@ Starts the capturer. This API uses a promise to return the result.
 | -------- | -------------------------------- | --- | ------------------------------------------- |
 | channels     | number                           | Yes  | Number of audio channels.|
 
-**Return value**
+**Returns**
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
@@ -2433,7 +2433,7 @@ Reads audio data. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.AI.IntelligentVoice.Core
 
-**Return value**
+**Returns**
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
@@ -2476,7 +2476,7 @@ Stops the capturer. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.AI.IntelligentVoice.Core
 
-**Return value**
+**Returns**
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |
@@ -2557,7 +2557,7 @@ Releases the intelligent voice wakeup engine. This API uses a promise to return 
 
 **System capability**: SystemCapability.AI.IntelligentVoice.Core
 
-**Return value**
+**Returns**
 
 | Type                                            | Description                          |
 | ----------------------------------------------- | ---------------------------- |

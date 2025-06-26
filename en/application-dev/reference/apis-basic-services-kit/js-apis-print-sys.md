@@ -13,7 +13,7 @@ import { print } from '@kit.BasicServicesKit';
 ```
 
 
-## print.PrintMargin
+## PrintMargin
 
 Defines the page margins for printing.
 
@@ -24,12 +24,12 @@ Defines the page margins for printing.
 **Attributes**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| top | number | No| Top margin of the page.|
-| bottom | number | No| Bottom margin of the page.|
-| left | number | No| Left margin of the page.|
-| right | number | No| Right margin of the page.|
+| top | number | No| Top margin of the page. The default value is **0**.|
+| bottom | number | No| Bottom margin of the page. The default value is **0**.|
+| left | number | No| Left margin of the page. The default value is **0**.|
+| right | number | No| Right margin of the page. The default value is **0**.|
 
-## print.PrinterRange
+## PrinterRange
 
 Defines the print range.
 
@@ -40,11 +40,11 @@ Defines the print range.
 **Attributes**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| startPage | number | No| Start page.|
-| endPage | number | No| End page.|
-| pages | Array&lt;number&gt; | No| Discrete pages.|
+| startPage | number | No| Start page. The default value is **1**.|
+| endPage | number | No| End page. The default value is the maximum number of pages of the file to be printed.|
+| pages | Array&lt;number&gt; | No| Page range set of the file to print. The default value is empty.|
 
-## print.PreviewAttribute
+## PreviewAttribute
 
 Defines the print preview attributes.
 
@@ -55,10 +55,10 @@ Defines the print preview attributes.
 **Attributes**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| previewRange | [PrinterRange](#printprinterrange) | Yes| Preview page range.|
-| result | number | No| Print preview result.|
+| previewRange | [PrinterRange](#printerrange) | Yes| Preview page range.|
+| result | number | No| Print preview result. The default value is **-1**.|
 
-## print.PrintResolution
+## PrintResolution
 
 Defines the resolution for printing.
 
@@ -73,7 +73,9 @@ Defines the resolution for printing.
 | horizontalDpi | number | Yes| Horizontal DPI.|
 | verticalDpi | number | Yes| Vertical DPI.|
 
-## print.PrinterCapability
+
+
+## PrinterCapability
 
 Defines the printer capabilities.
 
@@ -86,12 +88,12 @@ Defines the printer capabilities.
 | -------- | -------- | -------- | -------- |
 | colorMode | number | Yes| Color mode.|
 | duplexMode | number | Yes| Single-sided or double-sided printing mode.|
-| pageSize | Array&lt;[PrintPageSize](./js-apis-print.md#printprintpagesize11)&gt; | Yes| List of page sizes supported by the printer.|
-| resolution | Array&lt;[PrintResolution](#printprintresolution)&gt; | No| List of resolutions supported by the printer.|
-| minMargin | [PrintMargin](#printprintmargin) | No| Minimum margin of the printer.|
+| pageSize | Array&lt;[PrintPageSize](./js-apis-print.md#printpagesize11)&gt; | Yes| List of page sizes supported by the printer.|
+| resolution | Array&lt;[PrintResolution](#printresolution)&gt; | No| List of resolutions supported by the printer.|
+| minMargin | [PrintMargin](#printmargin) | No| Minimum margin of the printer.|
 | options<sup>11+</sup> | Object | No| Printer options. The value is a JSON object string.|
 
-## print.PrinterInfo
+## PrinterInfo
 
 Provides the printer information.
 
@@ -104,13 +106,13 @@ Provides the printer information.
 | -------- | -------- | -------- | -------- |
 | printerId | string | Yes| Printer ID.|
 | printerName | string | Yes| Printer name.|
-| printerState | [PrinterState](./js-apis-print.md#printprinterstate14) | Yes| Printer state.|
-| printerIcon | number | No| Resource ID of the printer icon.|
+| printerState | [PrinterState](./js-apis-print.md#printerstate14) | Yes| Printer state.|
+| printerIcon | number | No| Resource ID of the printer icon. The default value is **-1**.|
 | description | string | No| Printer description.|
-| capability | [PrinterCapability](#printprintercapability) | No| Printer capability.|
+| capability | [PrinterCapability](#printercapability) | No| Printer capability.|
 | options | Object | No| Printer options. The value is a JSON object string.|
 
-## print.PrintJob
+## PrintJob
 
 Defines a print job.
 
@@ -124,20 +126,20 @@ Defines a print job.
 | fdList | Array&lt;number&gt; | Yes| FD list of files to print.|
 | jobId | string | Yes| ID of the print job.|
 | printerId | string | Yes| ID of the printer used for printing.|
-| jobState | [PrintJobState](./js-apis-print.md#printprintjobstate14) | Yes| State of the print job.|
-| jobSubstate<sup>11+</sup> | [PrintJobSubState](./js-apis-print.md#printprintjobsubstate14) | Yes| Substate of the print job.|
+| jobState | [PrintJobState](./js-apis-print.md#printjobstate14) | Yes| State of the print job.|
+| jobSubstate<sup>11+</sup> | [PrintJobSubState](./js-apis-print.md#printjobsubstate14) | Yes| Substate of the print job.|
 | copyNumber | number | Yes| Copy of the file list.|
-| pageRange | [PrinterRange](#printprinterrange) | Yes| Print range.|
+| pageRange | [PrinterRange](#printerrange) | Yes| Print range.|
 | isSequential | boolean | Yes| Whether the printing is sequential. The value **true** means that the printing is sequential; the value **false** means the opposite. The default value is **false**.|
-| pageSize | [PrintPageSize](./js-apis-print.md#printprintpagesize11) | Yes| Selected page size.|
+| pageSize | [PrintPageSize](./js-apis-print.md#printpagesize11) | Yes| Selected page size.|
 | isLandscape | boolean | Yes| Whether the printing is in landscape mode. The value **true** means that the printing is in landscape mode; the value **false** means the printing is in portrait mode The default value is **false**.|
 | colorMode | number | Yes| Color mode.|
 | duplexMode | number | Yes| Single-sided or double-sided printing mode.|
-| margin | [PrintMargin](#printprintmargin) | No| Current page margin.|
-| preview | [PreviewAttribute](#printpreviewattribute) | No| Preview settings.|
+| margin | [PrintMargin](#printmargin) | No| Current page margin.|
+| preview | [PreviewAttribute](#previewattribute) | No| Preview settings.|
 | options | Object | No| Printer options. The value is a JSON object string.|
 
-## print.PrinterExtensionInfo
+## PrinterExtensionInfo
 
 Provides the printer extension information.
 
@@ -169,7 +171,7 @@ Obtains the information of all installed printer extensions. This API uses an as
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;Array&lt;[PrinterExtensionInfo](#printprinterextensioninfo)&gt;&gt; | Yes| Callback used to return the result.|
+| callback | AsyncCallback&lt;Array&lt;[PrinterExtensionInfo](#printerextensioninfo)&gt;&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
 
@@ -188,7 +190,7 @@ import { BusinessError } from '@ohos.base';
 
 print.queryAllPrinterExtensionInfos((err: BusinessError, extensionInfos: print.PrinterExtensionInfo[]) => {
     if (err) {
-        console.log('queryAllPrinterExtensionInfos err ' + JSON.stringify(err));
+        console.error('queryAllPrinterExtensionInfos err ' + JSON.stringify(err));
     } else {
         console.log('queryAllPrinterExtensionInfos success ' + JSON.stringify(extensionInfos));
     }
@@ -210,7 +212,7 @@ Obtains the information of all installed printer extensions. This API uses a pro
 **Return value**
 | **Type**| **Description**|
 | -------- | -------- |
-| Promise&lt;Array&lt;[PrinterExtensionInfo](#printprinterextensioninfo)&gt;&gt; | Promise used to return the result.used to return the result.|
+| Promise&lt;Array&lt;[PrinterExtensionInfo](#printerextensioninfo)&gt;&gt; | Promise used to return the result.used to return the result.|
 
 **Error codes**
 
@@ -231,7 +233,7 @@ print.queryAllPrinterExtensionInfos().then((extensionInfos: print.PrinterExtensi
     console.log('queryAllPrinterExtensionInfos success ' + JSON.stringify(extensionInfos));
     // ...
 }).catch((error: BusinessError) => {
-    console.log('failed to get AllPrinterExtension bacause ' + JSON.stringify(error));
+    console.error('failed to get AllPrinterExtension because ' + JSON.stringify(error));
 })
 ```
 
@@ -273,7 +275,7 @@ let extensionList: string[] = [];
 // If there is no information in extensionList, all extensions are used for printer discovery.
 print.startDiscoverPrinter(extensionList, (err: BusinessError, data : void) => {
     if (err) {
-        console.log('failed to start Discover Printer because : ' + JSON.stringify(err));
+        console.error('failed to start Discover Printer because : ' + JSON.stringify(err));
     } else {
         console.log('start Discover Printer success data : ' + JSON.stringify(data));
     }
@@ -323,7 +325,7 @@ let extensionList: string[] = [];
 print.startDiscoverPrinter(extensionList).then((data : void) => {
     console.log('start Discovery success data : ' + JSON.stringify(data));
 }).catch((error: BusinessError) => {
-    console.log('failed to start Discovery because : ' + JSON.stringify(error));
+    console.error('failed to start Discovery because : ' + JSON.stringify(error));
 })
 ```
 
@@ -361,7 +363,7 @@ import { BusinessError } from '@ohos.base';
 
 print.stopDiscoverPrinter((err: BusinessError, data : void) => {
     if (err) {
-        console.log('failed to stop Discover Printer because : ' + JSON.stringify(err));
+        console.error('failed to stop Discover Printer because : ' + JSON.stringify(err));
     } else {
         console.log('stop Discover Printer success data : ' + JSON.stringify(data));
     }
@@ -403,7 +405,7 @@ import { BusinessError } from '@ohos.base';
 print.stopDiscoverPrinter().then((data : void) => {
     console.log('stop Discovery success data : ' + JSON.stringify(data));
 }).catch((error: BusinessError) => {
-    console.log('failed to stop Discovery because : ' + JSON.stringify(error));
+    console.error('failed to stop Discovery because : ' + JSON.stringify(error));
 })
 ```
 
@@ -444,7 +446,7 @@ import { BusinessError } from '@ohos.base';
 let printerId: string = 'printerId_32';
 print.connectPrinter(printerId, (err: BusinessError, data : void) => {
     if (err) {
-        console.log('failed to connect Printer because : ' + JSON.stringify(err));
+        console.error('failed to connect Printer because : ' + JSON.stringify(err));
     } else {
         console.log('start connect Printer success data : ' + JSON.stringify(data));
     }
@@ -493,7 +495,7 @@ let printerId: string = 'printerId_32';
 print.connectPrinter(printerId).then((data : void) => {
     console.log('start connect Printer success data : ' + JSON.stringify(data));
 }).catch((error: BusinessError) => {
-    console.log('failed to connect Printer because : ' + JSON.stringify(error));
+    console.error('failed to connect Printer because : ' + JSON.stringify(error));
 })
 ```
 
@@ -534,7 +536,7 @@ import { BusinessError } from '@ohos.base';
 let printerId: string = 'printerId_32';
 print.disconnectPrinter(printerId, (err: BusinessError, data : void) => {
     if (err) {
-        console.log('failed to disconnect Printer because : ' + JSON.stringify(err));
+        console.error('failed to disconnect Printer because : ' + JSON.stringify(err));
     } else {
         console.log('start disconnect Printer success data : ' + JSON.stringify(data));
     }
@@ -583,7 +585,7 @@ let printerId: string = 'printerId_32';
 print.disconnectPrinter(printerId).then((data : void) => {
     console.log('start disconnect Printer success data : ' + JSON.stringify(data));
 }).catch((error: BusinessError) => {
-    console.log('failed to disconnect Printer because : ' + JSON.stringify(error));
+    console.error('failed to disconnect Printer because : ' + JSON.stringify(error));
 })
 ```
 
@@ -624,7 +626,7 @@ import { BusinessError } from '@ohos.base';
 let printerId: string = 'printerId_32';
 print.queryPrinterCapability(printerId, (err: BusinessError, data : void) => {
     if (err) {
-        console.log('failed to query Printer Capability because : ' + JSON.stringify(err));
+        console.error('failed to query Printer Capability because : ' + JSON.stringify(err));
     } else {
         console.log('start query Printer Capability success data : ' + JSON.stringify(data));
     }
@@ -673,7 +675,7 @@ let printerId: string = 'printerId_32';
 print.queryPrinterCapability(printerId).then((data : void) => {
     console.log('start query Printer success data : ' + JSON.stringify(data));
 }).catch((error: BusinessError) => {
-    console.log('failed to query Printer Capability because : ' + JSON.stringify(error));
+    console.error('failed to query Printer Capability because : ' + JSON.stringify(error));
 })
 ```
 
@@ -692,7 +694,7 @@ Starts the specified print job. This API uses an asynchronous callback to return
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| jobInfo | [PrintJob](#printprintjob) | Yes| Information about the print job.|
+| jobInfo | [PrintJob](#printjob) | Yes| Information about the print job.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -730,7 +732,7 @@ let jobInfo : print.PrintJob = {
 };
 print.startPrintJob(jobInfo, (err: BusinessError, data : void) => {
     if (err) {
-        console.log('failed to start Print Job because : ' + JSON.stringify(err));
+        console.error('failed to start Print Job because : ' + JSON.stringify(err));
     } else {
         console.log('start Print Job success data : ' + JSON.stringify(data));
     }
@@ -752,7 +754,7 @@ Starts the specified print job. This API uses a promise to return the result.
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| jobInfo | [PrintJob](#printprintjob) | Yes| Information about the print job.|
+| jobInfo | [PrintJob](#printjob) | Yes| Information about the print job.|
 
 **Return value**
 | **Type**| **Description**|
@@ -795,7 +797,7 @@ let jobInfo : print.PrintJob = {
 print.startPrintJob(jobInfo).then((data : void) => {
     console.log('start Print success data : ' + JSON.stringify(data));
 }).catch((error: BusinessError) => {
-    console.log('failed to start Print because : ' + JSON.stringify(error));
+    console.error('failed to start Print because : ' + JSON.stringify(error));
 })
 ```
 
@@ -836,7 +838,7 @@ import { BusinessError } from '@ohos.base';
 let jobId : string = '121212';
 print.cancelPrintJob(jobId, (err: BusinessError, data : void) => {
     if (err) {
-        console.log('cancelPrintJob failed, because : ' + JSON.stringify(err));
+        console.error('cancelPrintJob failed, because : ' + JSON.stringify(err));
     } else {
         console.log('cancelPrintJob success, data: ' + JSON.stringify(data));
     }
@@ -885,7 +887,7 @@ let jobId : string = '121212';
 print.cancelPrintJob(jobId).then((data : void) => {
     console.log('cancelPrintJob success, data : ' + JSON.stringify(data));
 }).catch((error: BusinessError) => {
-    console.log('cancelPrintJob failed, because : ' + JSON.stringify(error));
+    console.error('cancelPrintJob failed, because : ' + JSON.stringify(error));
 })
 ```
 
@@ -904,7 +906,7 @@ Requests print preview data. This API uses a callback to return the result.
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| jobInfo | [PrintJob](#printprintjob) | Yes| Information about the print job.|
+| jobInfo | [PrintJob](#printjob) | Yes| Information about the print job.|
 | callback | Callback&lt;number&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -960,7 +962,7 @@ Requests print preview data. This API uses a promise to return the result.
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| jobInfo | [PrintJob](#printprintjob) | Yes| Information about the print job.|
+| jobInfo | [PrintJob](#printjob) | Yes| Information about the print job.|
 
 **Return value**
 | **Type**| **Description**|
@@ -1003,7 +1005,7 @@ let jobInfo : print.PrintJob = {
 print.requestPrintPreview(jobInfo).then((num: number) => {
     console.log('requestPrintPreview success, num : ' + JSON.stringify(num));
 }).catch((error: BusinessError) => {
-    console.log('requestPrintPreview failed, because : ' + JSON.stringify(error));
+    console.error('requestPrintPreview failed, because : ' + JSON.stringify(error));
 })
 ```
 
@@ -1023,7 +1025,7 @@ Registers a listener for printer state change events. This API uses a callback t
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | type | 'printerStateChange' | Yes| Listening type. The value is fixed at **'printerStateChange'**.|
-| callback | (state: [PrinterState](./js-apis-print.md#printprinterstate14), info: [PrinterInfo](#printprinterinfo)) => void | Yes| Callback used to return the result.|
+| callback | (state: [PrinterState](./js-apis-print.md#printerstate14), info: [PrinterInfo](#printerinfo)) => void | Yes| Callback used to return the result.|
 
 **Error codes**
 
@@ -1042,7 +1044,7 @@ import { print } from '@kit.BasicServicesKit';
 
 print.on('printerStateChange', (state: print.PrinterState, info: print.PrinterInfo) => {
     if (state === null || info === null) {
-        console.log('printer state changed state is null or info is null');
+        console.error('printer state changed state is null or info is null');
         return;
     } else {
         console.log('on printer state changed, state : ' + JSON.stringify(state));
@@ -1105,7 +1107,7 @@ Registers a listener for print job state change events. This API uses a callback
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | type | 'jobStateChange' | Yes| Listening type. The value is fixed at **'jobStateChange'**.|
-| callback | (state: [PrintJobState](./js-apis-print.md#printprintjobstate14), job: [PrintJob](#printprintjob)) => void | Yes| Callback used to return the result.|
+| callback | (state: [PrintJobState](./js-apis-print.md#printjobstate14), job: [PrintJob](#printjob)) => void | Yes| Callback used to return the result.|
 
 **Error codes**
 
@@ -1256,7 +1258,7 @@ Adds printers. This API uses an asynchronous callback to return the result.
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| printers | Array&lt;[PrinterInfo](#printprinterinfo)&gt; | Yes| List of printers to add.|
+| printers | Array&lt;[PrinterInfo](#printerinfo)&gt; | Yes| List of printers to add.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -1286,7 +1288,7 @@ let printerInfo : print.PrinterInfo = {
 };
 print.addPrinters([printerInfo], (err: BusinessError, data : void) => {
     if (err) {
-        console.log('addPrinters failed, because : ' + JSON.stringify(err));
+        console.error('addPrinters failed, because : ' + JSON.stringify(err));
     } else {
         console.log('addPrinters success, data : ' + JSON.stringify(data));
     }
@@ -1308,7 +1310,7 @@ Adds printers. This API uses a promise to return the result.
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| printers | Array&lt;[PrinterInfo](#printprinterinfo)&gt; | Yes| List of printers to add.|
+| printers | Array&lt;[PrinterInfo](#printerinfo)&gt; | Yes| List of printers to add.|
 
 **Return value**
 | **Type**| **Description**|
@@ -1343,7 +1345,7 @@ let printerInfo : print.PrinterInfo = {
 print.addPrinters([printerInfo]).then((data : void) => {
     console.log('add printers data : ' + JSON.stringify(data));
 }).catch((error: BusinessError) => {
-    console.log('add printers error : ' + JSON.stringify(error));
+    console.error('add printers error : ' + JSON.stringify(error));
 })
 ```
 
@@ -1384,7 +1386,7 @@ import { BusinessError } from '@ohos.base';
 let printerId : string = '1212';
 print.removePrinters([printerId], (err: BusinessError, data : void) => {
     if (err) {
-        console.log('removePrinters failed, because : ' + JSON.stringify(err));
+        console.error('removePrinters failed, because : ' + JSON.stringify(err));
     } else {
         console.log('removePrinters success, data : ' + JSON.stringify(data));
     }
@@ -1433,7 +1435,7 @@ let printerId : string = '1212';
 print.removePrinters([printerId]).then((data : void) => {
     console.log('remove printers data : ' + JSON.stringify(data));
 }).catch((error: BusinessError) => {
-    console.log('remove printers error : ' + JSON.stringify(error));
+    console.error('remove printers error : ' + JSON.stringify(error));
 })
 ```
 
@@ -1452,7 +1454,7 @@ Updates information about the specified printers. This API uses an asynchronous 
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| printers | Array&lt;[PrinterInfo](#printprinterinfo)&gt; | Yes| List of printers whose information is to be updated.|
+| printers | Array&lt;[PrinterInfo](#printerinfo)&gt; | Yes| List of printers whose information is to be updated.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -1482,7 +1484,7 @@ let printerInfo : print.PrinterInfo = {
 };
 print.updatePrinters([printerInfo], (err: BusinessError, data : void) => {
     if (err) {
-        console.log('updataPrinters failed, because : ' + JSON.stringify(err));
+        console.error('updataPrinters failed, because : ' + JSON.stringify(err));
     } else {
         console.log('updataPrinters success, data : ' + JSON.stringify(data));
     }
@@ -1504,7 +1506,7 @@ Updates information about the specified printers. This API uses a promise to ret
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| printers | Array&lt;[PrinterInfo](#printprinterinfo)&gt; | Yes| List of printers whose information is to be updated.|
+| printers | Array&lt;[PrinterInfo](#printerinfo)&gt; | Yes| List of printers whose information is to be updated.|
 
 **Return value**
 | **Type**| **Description**|
@@ -1539,7 +1541,7 @@ let printerInfo : print.PrinterInfo = {
 print.updatePrinters([printerInfo]).then((data : void) => {
     console.log('update printers data : ' + JSON.stringify(data));
 }).catch((error: BusinessError) => {
-    console.log('update printers error : ' + JSON.stringify(error));
+    console.error('update printers error : ' + JSON.stringify(error));
 })
 ```
 
@@ -1559,7 +1561,7 @@ Updates the printer state. This API uses an asynchronous callback to return the 
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | printerId | string | Yes| Printer ID.|
-| state | [PrinterState](./js-apis-print.md#printprinterstate14) | Yes| Printer state.|
+| state | [PrinterState](./js-apis-print.md#printerstate14) | Yes| Printer state.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -1582,7 +1584,7 @@ let printerId : string = '1212';
 let state : print.PrinterState = print.PrinterState.PRINTER_CONNECTED;
 print.updatePrinterState(printerId, state, (err: BusinessError, data : void) => {
     if (err) {
-        console.log('updataPrinterState failed, because : ' + JSON.stringify(err));
+        console.error('updataPrinterState failed, because : ' + JSON.stringify(err));
     } else {
         console.log('updataPrinterState success, data : ' + JSON.stringify(data));
     }
@@ -1605,7 +1607,7 @@ Updates the printer state. This API uses a promise to return the result.
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | printerId | string | Yes| Printer ID.|
-| state | [PrinterState](./js-apis-print.md#printprinterstate14) | Yes| Printer state.|
+| state | [PrinterState](./js-apis-print.md#printerstate14) | Yes| Printer state.|
 
 **Return value**
 | **Type**| **Description**|
@@ -1633,7 +1635,7 @@ let state : print.PrinterState = print.PrinterState.PRINTER_CONNECTED;
 print.updatePrinterState(printerId, state).then((data : void) => {
     console.log('update printer state data : ' + JSON.stringify(data));
 }).catch((error: BusinessError) => {
-    console.log('update printer state error : ' + JSON.stringify(error));
+    console.error('update printer state error : ' + JSON.stringify(error));
 })
 ```
 
@@ -1653,8 +1655,8 @@ Updates the print job state. This API uses an asynchronous callback to return th
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | jobId | string | Yes| ID of the print job.|
-| state | [PrintJobState](./js-apis-print.md#printprintjobstate14) | Yes| State of the print job.|
-| subState | [PrintJobSubState](./js-apis-print.md#printprintjobsubstate14) | Yes| Substate of the print job.|
+| state | [PrintJobState](./js-apis-print.md#printjobstate14) | Yes| State of the print job.|
+| subState | [PrintJobSubState](./js-apis-print.md#printjobsubstate14) | Yes| Substate of the print job.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -1678,7 +1680,7 @@ let state : print.PrintJobState = print.PrintJobState.PRINT_JOB_PREPARE;
 let subState : print.PrintJobSubState = print.PrintJobSubState.PRINT_JOB_COMPLETED_SUCCESS;
 print.updatePrintJobState(jobId, state, subState, (err: BusinessError, data : void) => {
     if (err) {
-        console.log('updataPrintJobState failed, because : ' + JSON.stringify(err));
+        console.error('updataPrintJobState failed, because : ' + JSON.stringify(err));
     } else {
         console.log('updatePrintJobState success, data : ' + JSON.stringify(data));
     }
@@ -1701,8 +1703,8 @@ Updates the print job state. This API uses a promise to return the result.
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | jobId | string | Yes| ID of the print job.|
-| state | [PrintJobState](./js-apis-print.md#printprintjobstate14) | Yes| State of the print job.|
-| subState | [PrintJobSubState](./js-apis-print.md#printprintjobsubstate14) | Yes| Substate of the print job.|
+| state | [PrintJobState](./js-apis-print.md#printjobstate14) | Yes| State of the print job.|
+| subState | [PrintJobSubState](./js-apis-print.md#printjobsubstate14) | Yes| Substate of the print job.|
 
 **Return value**
 | **Type**| **Description**|
@@ -1731,7 +1733,7 @@ let subState : print.PrintJobSubState = print.PrintJobSubState.PRINT_JOB_COMPLET
 print.updatePrintJobState(jobId, state, subState).then((data : void) => {
     console.log('update print job state data : ' + JSON.stringify(data));
 }).catch((error: BusinessError) => {
-    console.log('update print job state error : ' + JSON.stringify(error));
+    console.error('update print job state error : ' + JSON.stringify(error));
 })
 ```
 
@@ -1772,7 +1774,7 @@ import { BusinessError } from '@ohos.base';
 let info : string = 'WIFI_INACTIVE';
 print.updateExtensionInfo(info, (err: BusinessError, data : void) => {
     if (err) {
-        console.log('updateExtensionInfo failed, because : ' + JSON.stringify(err));
+        console.error('updateExtensionInfo failed, because : ' + JSON.stringify(err));
     } else {
         console.log('updateExtensionInfo success, data : ' + JSON.stringify(data));
     }
@@ -1821,7 +1823,7 @@ let info : string = 'WIFI_INACTIVE';
 print.updateExtensionInfo(info).then((data : void) => {
     console.log('update print job state data : ' + JSON.stringify(data));
 }).catch((error: BusinessError) => {
-    console.log('update print job state error : ' + JSON.stringify(error));
+    console.error('update print job state error : ' + JSON.stringify(error));
 })
 ```
 
@@ -1862,7 +1864,7 @@ import { BusinessError } from '@ohos.base';
 
 print.queryAllPrintJobs((err: BusinessError, data : void) => {
     if (err) {
-        console.log('queryAllPrintJobs failed, because : ' + JSON.stringify(err));
+        console.error('queryAllPrintJobs failed, because : ' + JSON.stringify(err));
     } else {
         console.log('queryAllPrintJobs success, data : ' + JSON.stringify(data));
     }
@@ -1907,7 +1909,7 @@ import { BusinessError } from '@ohos.base';
 print.queryAllPrintJobs().then((data : void) => {
     console.log('queryAllPrintJobs success, data : ' + JSON.stringify(data));
 }).catch((error: BusinessError) => {
-    console.log('queryAllPrintJobs failed, error : ' + JSON.stringify(error));
+    console.error('queryAllPrintJobs failed, error : ' + JSON.stringify(error));
 })
 ```
 
@@ -1926,7 +1928,7 @@ Queries all print jobs. This API uses an asynchronous callback to return the res
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;Array&lt;[PrintJob](#printprintjob)&gt;&gt; | Yes| Callback used to return the result.|
+| callback | AsyncCallback&lt;Array&lt;[PrintJob](#printjob)&gt;&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
 
@@ -1945,7 +1947,7 @@ import { BusinessError } from '@ohos.base';
 
 print.queryPrintJobList((err: BusinessError, printJobs : print.PrintJob[]) => {
     if (err) {
-        console.log('queryPrintJobList failed, because : ' + JSON.stringify(err));
+        console.error('queryPrintJobList failed, because : ' + JSON.stringify(err));
     } else {
         console.log('queryPrintJobList success, data : ' + JSON.stringify(printJobs));
     }
@@ -1967,7 +1969,7 @@ Queries all print jobs. This API uses a promise to return the result.
 **Return value**
 | **Type**| **Description**|
 | -------- | -------- |
-| Promise&lt;Array&lt;[PrintJob](#printprintjob)&gt;&gt; | Promise used to return the result.|
+| Promise&lt;Array&lt;[PrintJob](#printjob)&gt;&gt; | Promise used to return the result.|
 
 **Error codes**
 
@@ -1987,7 +1989,7 @@ import { BusinessError } from '@ohos.base';
 print.queryPrintJobList().then((printJobs : print.PrintJob[]) => {
     console.log('queryPrintJobList success, data : ' + JSON.stringify(printJobs));
 }).catch((error: BusinessError) => {
-    console.log('queryPrintJobList failed, error : ' + JSON.stringify(error));
+    console.error('queryPrintJobList failed, error : ' + JSON.stringify(error));
 })
 ```
 
@@ -2007,7 +2009,7 @@ Queries a print job by ID. This API uses an asynchronous callback to return the 
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | jobId | string | Yes| ID of the print job.|
-| callback | AsyncCallback&lt;[PrintJob](#printprintjob)&gt; | Yes| Callback used to return the result.|
+| callback | AsyncCallback&lt;[PrintJob](#printjob)&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
 
@@ -2028,7 +2030,7 @@ import { BusinessError } from '@ohos.base';
 let jobId : string = '1';
 print.queryPrintJobById(jobId, (err: BusinessError, printJob : print.PrintJob) => {
     if (err) {
-        console.log('queryPrintJobById failed, because : ' + JSON.stringify(err));
+        console.error('queryPrintJobById failed, because : ' + JSON.stringify(err));
     } else {
         console.log('queryPrintJobById success, data : ' + JSON.stringify(printJob));
     }
@@ -2055,7 +2057,7 @@ Queries a print job by ID. This API uses a promise to return the result.
 **Return value**
 | **Type**| **Description**|
 | -------- | -------- |
-| Promise&lt;[PrintJob](#printprintjob)&gt; | Promise used to return the result.|
+| Promise&lt;[PrintJob](#printjob)&gt; | Promise used to return the result.|
 
 **Error codes**
 
@@ -2077,7 +2079,7 @@ let jobId : string = '1';
 print.queryPrintJobById(jobId).then((printJob : print.PrintJob) => {
     console.log('queryPrintJobById data : ' + JSON.stringify(printJob));
 }).catch((error: BusinessError) => {
-    console.log('queryPrintJobById error : ' + JSON.stringify(error));
+    console.error('queryPrintJobById error : ' + JSON.stringify(error));
 })
 ```
 
@@ -2097,9 +2099,9 @@ Starts to obtain the print file. This API uses an asynchronous callback to retur
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | jobId | string | Yes| ID of the print job.|
-| printAttributes | [PrintAttributes](./js-apis-print.md#printprintattributes11) | Yes| Print attributes.|
+| printAttributes | [PrintAttributes](./js-apis-print.md#printattributes11) | Yes| Print attributes.|
 | fd | number | Yes| File descriptor.|
-| onFileStateChanged | Callback&lt;[PrintFileCreationState](./js-apis-print.md#printprintfilecreationstate11)&gt; | Yes| Callback for updating the file state.|
+| onFileStateChanged | Callback&lt;[PrintFileCreationState](./js-apis-print.md#printfilecreationstate11)&gt; | Yes| Callback for updating the file state.|
 
 **Error codes**
 
@@ -2195,7 +2197,7 @@ import { BusinessError } from '@ohos.base';
 let jobId : string = '1';
 print.notifyPrintService(jobId, 'spooler_closed_for_started', (err: BusinessError, data : void) => {
     if (err) {
-        console.log('notifyPrintService failed, because : ' + JSON.stringify(err));
+        console.error('notifyPrintService failed, because : ' + JSON.stringify(err));
     } else {
         console.log('notifyPrintService success, data : ' + JSON.stringify(data));
     }
@@ -2245,47 +2247,7 @@ let jobId : string = '1';
 print.notifyPrintService(jobId, 'spooler_closed_for_started').then((data : void) => {
     console.log('notifyPrintService data : ' + JSON.stringify(data));
 }).catch((error: BusinessError) => {
-    console.log('notifyPrintService error : ' + JSON.stringify(error));
-})
-```
-
-## print.getAddedPrinters<sup>12+</sup>
-
-getAddedPrinters(): Promise&lt;Array&lt;string&gt;&gt;
-
-Obtains the list of printers that have been added to the CUPS. This API uses a promise to return the result.
-
-**Required permissions**: ohos.permission.MANAGE_PRINT_JOB
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.Print.PrintFramework
-
-**Return value**
-| **Type**| **Description**|
-| -------- | -------- |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the result.|
-
-**Error codes**
-
-For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
-
-| ID| Error Message                                   |
-| -------- | ------------------------------------------- |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application |
-
-**Example**
-
-```ts
-import { print } from '@kit.BasicServicesKit';
-import { BusinessError } from '@ohos.base';
-
-print.getAddedPrinters().then((printers: string[]) => {
-    console.log('getAddedPrinters success ' + JSON.stringify(printers));
-    // ...
-}).catch((error: BusinessError) => {
-    console.log('failed to getAddedPrinters bacause ' + JSON.stringify(error));
+    console.error('notifyPrintService error : ' + JSON.stringify(error));
 })
 ```
 
@@ -2309,7 +2271,7 @@ Obtains printer information based on the printer ID. This API uses a promise to 
 **Return value**
 | **Type**| **Description**|
 | -------- | -------- |
-| Promise&lt;[PrinterInfo](#printprinterinfo)&gt; | Promise used to return the result.|
+| Promise&lt;[PrinterInfo](#printerinfo)&gt; | Promise used to return the result.|
 
 **Error codes**
 
@@ -2331,7 +2293,7 @@ let printerId : string = '1';
 print.getPrinterInfoById(printerId).then((printerInfo : print.PrinterInfo) => {
     console.log('getPrinterInfoById data : ' + JSON.stringify(printerInfo));
 }).catch((error: BusinessError) => {
-    console.log('getPrinterInfoById error : ' + JSON.stringify(error));
+    console.error('getPrinterInfoById error : ' + JSON.stringify(error));
 })
 ```
 
@@ -2350,7 +2312,7 @@ Notifies the print service of the print application events. This API uses a prom
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| event | [ApplicationEvent](./js-apis-print.md#printapplicationevent14) | Yes| Print application events.|
+| event | [ApplicationEvent](./js-apis-print.md#applicationevent14) | Yes| Print application events.|
 
 **Return value**
 | **Type**| **Description**|
@@ -2377,6 +2339,263 @@ let event : print.ApplicationEvent = print.ApplicationEvent.APPLICATION_CREATED;
 print.notifyPrintServiceEvent(event).then((data : void) => {
     console.log('notifyPrintServiceEvent data : ' + JSON.stringify(data));
 }).catch((error: BusinessError) => {
-    console.log('notifyPrintServiceEvent error : ' + JSON.stringify(error));
+    console.error('notifyPrintServiceEvent error : ' + JSON.stringify(error));
+})
+```
+
+## print.updatePrinterInformation<sup>18+</sup>
+
+updatePrinterInformation(printerInformation: PrinterInformation): Promise&lt;void&gt;
+
+Updates the information of a printer in the system. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.MANAGE_PRINT_JOB
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Print.PrintFramework
+
+**Parameters**
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| printerInformation | [PrinterInformation](./js-apis-print.md#printerinformation14) | Yes| Printer whose information is to be updated.|
+
+**Return value**
+| **Type**| **Description**|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise used to return the result of updating the printer information to the printer discovery list.|
+
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
+**Example**
+
+```ts
+import { print } from '@kit.BasicServicesKit';
+import { BusinessError } from '@ohos.base';
+
+let testPageSize : print.PrintPageSize = {
+    id : 'ISO_A4',
+    name : 'iso_a4_210x297mm',
+    width : 8268,
+    height : 11692
+};
+
+let testCapability : print.PrinterCapabilities = {
+    supportedPageSizes : [testPageSize],
+    supportedColorModes : [print.PrintColorMode.COLOR_MODE_MONOCHROME],
+    supportedDuplexModes : [print.PrintDuplexMode.DUPLEX_MODE_NONE],
+    supportedMediaTypes : ['stationery'],
+    supportedQualities : [print.PrintQuality.QUALITY_NORMAL],
+    supportedOrientations : [print.PrintOrientationMode.ORIENTATION_MODE_PORTRAIT],
+    options : 'testOptions'
+};
+
+let printerInformation : print.PrinterInformation = {
+    printerId : 'testPrinterId',
+    printerName : 'testPrinterName',
+    printerStatus : 0,
+    description : 'testDesc',
+    capability : testCapability,
+    uri : 'testUri',
+    printerMake : 'testPrinterMake',
+    options : 'testOptions'
+};
+print.updatePrinterInformation(printerInformation).then((data : void) => {
+    console.log('updatePrinterInformation data : ' + JSON.stringify(data));
+}).catch((error: BusinessError) => {
+    console.error('updatePrinterInformation error : ' + JSON.stringify(error));
+})
+```
+
+## print.setPrinterPreferences<sup>18+</sup>
+
+setPrinterPreferences(printerId: string, printerPreferences: PrinterPreferences): Promise&lt;void&gt;
+
+Sets the printer preferences. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.MANAGE_PRINT_JOB
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Print.PrintFramework
+
+**Parameters**
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| printerId | string | Yes| Printer ID.|
+| printerPreferences | [PrinterPreferences](./js-apis-print.md#printerpreferences18) | Yes| Printer preferences.|
+
+**Return value**
+| **Type**| **Description**|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise used to return the result of setting printer preferences.|
+
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
+**Example**
+
+```ts
+import { print } from '@kit.BasicServicesKit';
+import { BusinessError } from '@ohos.base';
+
+let printerId : string = 'testPrinterId';
+let preferences : print.PrinterPreferences = {
+    defaultDuplexMode: print.PrintDuplexMode.DUPLEX_MODE_NONE
+};
+print.setPrinterPreferences(printerId, preferences).then((data : void) => {
+    console.log('setPrinterPreferences data : ' + JSON.stringify(data));
+}).catch((error: BusinessError) => {
+    console.error('setPrinterPreferences error : ' + JSON.stringify(error));
+})
+```
+
+## print.discoverUsbPrinters<sup>18+</sup>
+
+discoverUsbPrinters(): Promise&lt;Array&lt;PrinterInformation&gt;&gt;
+
+Discovers USB printers. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.MANAGE_PRINT_JOB
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Print.PrintFramework
+
+**Return value**
+| **Type**| **Description**|
+| -------- | -------- |
+| Promise&lt;Array&lt;[PrinterInformation](./js-apis-print.md#printerinformation14)&gt;&gt; | Promise used to return the discovered USB printer list.|
+
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
+
+**Example**
+
+```ts
+import { print } from '@kit.BasicServicesKit';
+import { BusinessError } from '@ohos.base';
+
+print.discoverUsbPrinters().then((printers : print.PrinterInformation[]) => {
+    console.log('discoverUsbPrinters data : ' + JSON.stringify(printers));
+}).catch((error: BusinessError) => {
+    console.error('discoverUsbPrinters error : ' + JSON.stringify(error));
+})
+```
+
+## print.setDefaultPrinter<sup>18+</sup>
+
+setDefaultPrinter(printerId: string, type: DefaultPrinterType): Promise&lt;void&gt;
+
+Sets the default printer. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.MANAGE_PRINT_JOB
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Print.PrintFramework
+
+**Parameters**
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| printerId | string | Yes| Printer ID.|
+| type | [DefaultPrinterType](./js-apis-print.md#defaultprintertype18) | Yes| Default printer type.|
+
+**Return value**
+| **Type**| **Description**|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise used to return the result of setting the default printer.|
+
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
+**Example**
+
+```ts
+import { print } from '@kit.BasicServicesKit';
+import { BusinessError } from '@ohos.base';
+
+let printerId : string = '1';
+let type : print.DefaultPrinterType = print.DefaultPrinterType.DEFAULT_PRINTER_TYPE_SET_BY_USER;
+print.setDefaultPrinter(printerId, type).then((data : void) => {
+    console.log('setDefaultPrinter data : ' + JSON.stringify(data));
+}).catch((error: BusinessError) => {
+    console.error('setDefaultPrinter error : ' + JSON.stringify(error));
+})
+```
+
+## print.notifyPrintServiceEvent<sup>18+</sup>
+
+notifyPrintServiceEvent(event: ApplicationEvent, jobId: string): Promise&lt;void&gt;
+
+Notifies the print service of the print application events. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.MANAGE_PRINT_JOB
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Print.PrintFramework
+
+**Parameters**
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| event | [ApplicationEvent](./js-apis-print.md#applicationevent14) | Yes| Print application events.|
+| jobId | string | Yes| ID of the print job.|
+
+**Return value**
+| **Type**| **Description**|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+| 202 | not system application |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
+**Example**
+
+```ts
+import { print } from '@kit.BasicServicesKit';
+import { BusinessError } from '@ohos.base';
+
+let event : print.ApplicationEvent = print.ApplicationEvent.APPLICATION_CREATED;
+let jobId : string = '1';
+print.notifyPrintServiceEvent(event, jobId).then((data : void) => {
+    console.log('notifyPrintServiceEvent data : ' + JSON.stringify(data));
+}).catch((error: BusinessError) => {
+    console.error('notifyPrintServiceEvent error : ' + JSON.stringify(error));
 })
 ```
