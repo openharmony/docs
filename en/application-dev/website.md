@@ -251,6 +251,7 @@
           - [XML Parsing](arkts-utils/xml-parsing.md)
           - [XML Conversion](arkts-utils/xml-conversion.md)
         - [Buffer](arkts-utils/buffer.md)
+        - [JSON Extension Library](arkts-utils/arkts-json.md)
         - ArkTS Container Library<!--containers-->
           - [Overview of the ArkTS Container Library](arkts-utils/container-overview.md)
           - [Linear Containers](arkts-utils/linear-container.md)
@@ -266,6 +267,7 @@
         - Inter-Thread Communication<!--interthead-communication-->
           - [Overview of ArkTS Inter-Thread Communication](arkts-utils/interthread-communication-overview.md)
           - Inter-Thread Communication Objects<!--interthead-communication-object-->
+            - [Overview of Inter-Thread Communication Objects](arkts-utils/serializable-overview.md)
             - [Regular Object](arkts-utils/normal-object.md)
             - [ArrayBuffer Object](arkts-utils/arraybuffer-object.md)
             - [SharedArrayBuffer Object](arkts-utils/shared-arraybuffer-object.md)
@@ -310,6 +312,10 @@
             - [ArkUI Waterfall Rendering](arkts-utils/taskpool-waterflow.md)
             - [Obtaining the Recently Accessed List](arkts-utils/sendablelrucache-recent-list.md)
             - [Canceling Tasks in Multithreading with TaskPool](arkts-utils/multi-thread-cancel-task.md)
+            - [Multithreaded Operations with Custom Native Transferable Objects](arkts-utils/napi-coerce-to-native-binding-object.md)
+            - [Multithreaded Operations with Custom Native Sendable Objects](arkts-utils/napi-define-sendable-object.md)
+            - [Persistent Worker Threads Handling Concurrent Tasks via TaskPool](arkts-utils/worker-and-taskpool.md)
+        - [Common Concurrency Issues](arkts-utils/concurrency-faq.md)
       - [ArkTS Cross-Language Interaction](arkts-utils/arkts-cross-language-interaction.md)
       - ArkTS Runtime<!--arkts-runtime-->
         - [Overview of ArkTS Runtime](arkts-utils/arkts-runtime-overview.md)
@@ -331,12 +337,12 @@
           - [Naming Conventions for Ark Bytecode Functions](arkts-utils/arkts-bytecode-function-name.md)
           - [Customizing Ark Bytecode During Compilation](arkts-utils/customize-bytecode-during-compilation.md)
         - [Disassembler](arkts-utils/tool-disassembler.md)
-        - ArkGuard for Code Obfuscation<!--arkts-arkguard-->
-          - [Overview of ArkGuard](arkts-utils/source-obfuscation-overview.md)
-          - [Obfuscation Principles and Capabilities of ArkGuard](arkts-utils/source-obfuscation.md)
-          - [Using ArkGuard for Obfuscation](arkts-utils/source-obfuscation-guide.md)
-          - [Package-specific Obfuscation Recommendations](arkts-utils/source-obfuscation-practice.md)
-          - [Common Issues with ArkGuard](arkts-utils/source-obfuscation-questions.md)
+        - ArkGuard for Source Code Obfuscation<!--arkts-arkguard-->
+          - [Overview of ArkGuard for Source Code Obfuscation](arkts-utils/source-obfuscation-overview.md)
+          - [ArkGuard Principles and Capabilities for Source Code Obfuscation](arkts-utils/source-obfuscation.md)
+          - [Using ArkGuard for Source Code Obfuscation](arkts-utils/source-obfuscation-guide.md)
+          - [Package-specific Source Code Obfuscation Recommendations](arkts-utils/source-obfuscation-practice.md)
+          - [Common Issues with ArkGuard in Source Code Obfuscation](arkts-utils/source-obfuscation-questions.md)
         - [Configuring arkOptions in build-profile.json5](arkts-utils/arkoptions-guide.md)
     - ArkUI<!--arkui-->
       - [Introduction to ArkUI](ui/arkui-overview.md)
@@ -703,18 +709,13 @@
         - [Debugging Frontend Pages by Using DevTools](web/web-debugging-with-devtools.md)
         - [Using Crashpad to Collect Web Component Crash Information](web/web-crashpad.md)
     - Background Tasks Kit<!--background-task-kit-->
-      <!--Del-->
-      - Background Task Management<!--background-task-management--><!--DelEnd-->
-        - [Background Task Overview](task-management/background-task-overview.md)
-        - [Transient Task (ArkTS)](task-management/transient-task.md)
-        - [Transient Task (C/C++)](task-management/native-transient-task.md)
-        - [Continuous Task (ArkTS)](task-management/continuous-task.md)
-        - [Deferred Task (ArkTS)](task-management/work-scheduler.md)
-        - [Agent-powered Reminder (ArkTS)](task-management/agent-powered-reminder.md)
-        <!--Del-->
-        - [Requesting Efficiency Resources (ArkTS) (for Privileged System Applications Only)](task-management/efficiency-resource-request.md)
-        <!--DelEnd-->
-      <!--Del-->
+      - [Background Task Overview](task-management/background-task-overview.md)
+      - [Transient Task (ArkTS)](task-management/transient-task.md)
+      - [Transient Task (C/C++)](task-management/native-transient-task.md)
+      - [Continuous Task (ArkTS)](task-management/continuous-task.md)
+      - [Deferred Task (ArkTS)](task-management/work-scheduler.md)
+      - [Agent-powered Reminder (ArkTS)](task-management/agent-powered-reminder.md)<!--Del-->
+      - [Requesting Efficiency Resources (ArkTS) (for Privileged System Applications Only)](task-management/efficiency-resource-request.md)
       - Device Usage Statistics (for System Applications Only)<!--device-usage-statistics-->
         - [Device Usage Statistics Overview](device-usage-statistics/device-usage-statistics-overview.md)
         - [Device Usage Statistics Development](device-usage-statistics/device-usage-statistics-use-guide.md)
@@ -788,6 +789,7 @@
         <!--Del--> 
         - [Widget Host Development (for System Applications Only)](form/widget-host-development-guide.md)
         <!--DelEnd-->
+      - JS Widget Provider Development<!--form-js-ui-->
         - [Developing a JS Widget](form/js-ui-widget-development.md)
       - [Service Widget Development in FA Model](form/widget-development-fa.md)
     - IME Kit<!--ime-kit-->
@@ -1338,12 +1340,10 @@
           - [hisysevent](dfx/hisysevent.md)
           - [uinput](dfx/uinput.md)
         <!--DelEnd-->
-      <!--Del-->
       - Test Kit<!--test-kit-->
         - [arkXtest User Guide](application-test/arkxtest-guidelines.md)
         - [SmartPerf User Guide](application-test/smartperf-guidelines.md)
         - [wukong User Guide](application-test/wukong-guidelines.md)
-      <!--DelEnd-->
       - Debugging Commands<!--debugging-commands-->
         - [Ability Assistant](tools/aa-tool.md)
         - [Bundle Manager](tools/bm-tool.md)
@@ -1639,6 +1639,7 @@
       - [Event Management](calendarmanager/calendarmanager-event-developer.md)
     - Contacts Kit<!--contacts-kit-->
       - [Contacts Kit Development](contacts/contacts-intro.md)
+    <!--Del-->
     - Location Kit<!--location-kit-->
       - [Introduction to Location Kit](device/location/location-kit-intro.md)
       - [Applying for Location Permissions (ArkTS)](device/location/location-permission-guidelines.md)
@@ -1648,6 +1649,7 @@
       - [Geofencing (ArkTS)](device/location/geofence-guidelines.md)
       - [FenceExtensionAbility](device/location/fenceExtensionAbility.md)
       - [Samples](device/location/app-samples.md)
+    <!--DelEnd-->
     - Notification Kit<!--notification-kit-->
       - [Introduction to Notification Kit](notification/notification-overview.md)
       - [Requesting Notification Authorization](notification/notification-enable.md)
@@ -2356,6 +2358,7 @@
             - [Hover Effect](reference/apis-arkui/arkui-ts/ts-universal-attributes-hover-effect.md)
             - [Component ID](reference/apis-arkui/arkui-ts/ts-universal-attributes-component-id.md)
             - [Reuse ID](reference/apis-arkui/arkui-ts/ts-universal-attributes-reuse-id.md)
+            - [Reuse Options](reference/apis-arkui/arkui-ts/ts-universal-attributes-reuse.md)
             - [Polymorphic Style](reference/apis-arkui/arkui-ts/ts-universal-attributes-polymorphic-style.md)
             - [restoreId](reference/apis-arkui/arkui-ts/ts-universal-attributes-restoreId.md)
             - [Foreground Color](reference/apis-arkui/arkui-ts/ts-universal-attributes-foreground-color.md)
@@ -2930,14 +2933,19 @@
           - [Sheet Error Codes](reference/apis-arkui/errorcode-bindSheet.md)
           - [Scrollable Component Error Codes](reference/apis-arkui/errorcode-scroll.md)
           - [Snapshot Error Codes](reference/apis-arkui/errorcode-snapshot.md)
+          - [Styled String Error Codes](reference/apis-arkui/errorcode-styled-string.md)
           - [UI Context Error Codes](reference/apis-arkui/errorcode-uicontext.md)
+          - [Interaction Event Error Codes](reference/apis-arkui/errorcode-event.md)
           <!--Del-->
           - [UI Appearance Error Codes](reference/apis-arkui/errorcode-uiappearance.md)
+          - [UIExtension Error Codes](reference/apis-arkui/errorcode-uiextension.md)
+          - [NodeAdapter Error Codes](reference/apis-arkui/errorcode-nodeadapter.md)
           <!--DelEnd-->
         - Graphics<!--arkui-graphics-images-arkts-errcode-->
           - [Display Error Codes](reference/apis-arkui/errorcode-display.md)
           - [Window Error Codes](reference/apis-arkui/errorcode-window.md)
         - UI Compilation<!--arkui-compile-arkts-errcode-->
+          - [Compilation Error Codes](reference/apis-arkui/_ark_ui_compile.md)
     - ArkWeb<!--arkweb-api-->
       - ArkTS APIs<!--arkweb-arkts-->
         - [@ohos.web.webview (Webview)](reference/apis-arkweb/js-apis-webview.md)
@@ -4361,7 +4369,7 @@
           - [SceneType](reference/apis-arkgraphics3d/js-apis-inner-scene-types.md)
           - [SceneResources](reference/apis-arkgraphics3d/js-apis-inner-scene-resources.md)
           - [ScenePostProcessSettings](reference/apis-arkgraphics3d/js-apis-inner-scene-post-process-settings.md)
-    - Application Services<!--application-service-reference-->
+  - Application Services<!--application-service-reference-->
     <!--Del-->
     - Ads Kit<!--ads-api-->
       - ArkTS APIs<!--ads-arkts-->
