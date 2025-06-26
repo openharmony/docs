@@ -41,7 +41,7 @@ For details about how to use the APIs, see [BackupExtensionAbility](../reference
                // In the BackupExtension.ets file, define BackupExtensionAbility in extensionAbilities and override onBackup or onBackupEx
                // and onRestore or onRestoreEx methods. The onBackupEx and onRestoreEx methods are recommended.
                // Empty implementation can be used if there is no special requirement. In this case, the backup and restore service backs up or restores data based on the unified backup and restore rules.
-               "srcEntry": "./ets/BackupExtension/BackupExtension.ets", 
+               "srcEntry": "./ets/BackupExtension/BackupExtension.ets"
            }      
        ]
    }
@@ -49,7 +49,7 @@ For details about how to use the APIs, see [BackupExtensionAbility](../reference
 
 2. Add a metadata profile.
 
-   The metadata profile defines the files to be transferred during the backup and restore process. The profile is located in the **resources/base/profile** directory of the project, and the file name must be the same as the value of **metadata.resource**, for example, **backup_config.json** in the **module.json5** file.
+   The metadata profile defines the files to be transferred during the backup and restore process. The profile is located in the `resources/base/profile` directory of the project, and the file name must be the same as the value of `metadata.resource, for example, backup_config.json` in the `module.json5` file.
 
    Metadata profile example:
 
@@ -67,7 +67,7 @@ For details about how to use the APIs, see [BackupExtensionAbility](../reference
    }
    ```
 
-3. Customize **BackupExtensionAbility** in the **BackupExtension.ets** file and override **onBackup**/**onBackupEx** or **onRestore**/**onRestoreEx** to back up preprocessed application data or process the data to be restored.
+3. Customize `BackupExtensionAbility` in the `BackupExtension.ets` file and override `onBackup/onBackupEx` or `onRestore/onRestoreEx` to back up preprocessed application data or process the data to be restored.
 
    Empty implementation can be used if there is no special requirement. In this case, the backup and restore service backs up or restores data based on the unified backup and restore rules.
 
@@ -86,7 +86,6 @@ For details about how to use the APIs, see [BackupExtensionAbility](../reference
       }
       //onRestore
       async onRestore (bundleVersion : BundleVersion) {
-        hilog.info(0x0000, TAG, `onRestore ok ${JSON.stringify(bundleVersion)}`);
         hilog.info(0x0000, TAG, `onRestore end`);
       }
     }
@@ -105,7 +104,7 @@ For details about how to use the APIs, see [BackupExtensionAbility](../reference
     class BackupExt extends BackupExtensionAbility {
       //onBackupEx
       async onBackupEx(backupInfo: string): Promise<string> {
-        console.log(`onBackupEx ok`);
+        console.info(`onBackupEx ok`);
         let errorInfo: ErrorInfo = {
           type: "ErrorInfo",
           errorCode: 0,
@@ -116,7 +115,7 @@ For details about how to use the APIs, see [BackupExtensionAbility](../reference
 
       // onRestoreEx
       async onRestoreEx(bundleVersion : BundleVersion, restoreInfo: string): Promise<string> {
-        console.log(`onRestoreEx ok ${JSON.stringify(bundleVersion)}`);
+        console.info(`onRestoreEx begin`);
         let errorInfo: ErrorInfo = {
           type: "ErrorInfo",
           errorCode: 0,
@@ -131,7 +130,7 @@ For details about how to use the APIs, see [BackupExtensionAbility](../reference
 
 | Field            | Type  | Mandatory| Description                                                        |
 | -------------------- | ---------- | ---- | ------------------------------------------------------------ |
-| allowToBackupRestore | Boolean    | Yes  | Whether to enable backup and restore. The default value is **false**.                             |
+| allowToBackupRestore | Boolean    | Yes  | Whether to enable backup and restore. The value **true** means backup and restore are enabled; the value **false** (default) means the opposite.                             |
 | includes             | String array| No  | Files and directories to be backed up in the application sandbox directory.<br>The pattern string that does not start with a slash (/) indicates a relative path.<br>When configuring `includes`, ensure that the configured path range is included in the supported paths listed in the following code snippet.<br>If `includes` is not configured, the backup and restore framework uses the **includes** default (as listed in the code snippet below).|
 | excludes             | String array| No  | Items in `includes` that do not need to be backed up. The value is in the same format as `includes`.<br>When configuring `excludes`, ensure that it is within the subset of `includes`.<br>If `excludes` is not configured, the backup and restore framework uses an empty array by default.|
 | fullBackupOnly       | Boolean    | No  | Whether to use the default restore directory of the application. The default value is **false**. If the value is **true**, data will be cached in a temporary directory obtained by [backupDir](../reference/apis-core-file-kit/js-apis-file-backupextensioncontext.md) in the data restore process. If it is **false** or not specified, the restored data is decompressed in **/**.|
