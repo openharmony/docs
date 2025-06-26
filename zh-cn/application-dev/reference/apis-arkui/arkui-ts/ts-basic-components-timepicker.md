@@ -39,13 +39,13 @@ TimePicker(options?: TimePickerOptions)
 | 名称                 | 类型                                            | 必填 | 说明                                                         |
 | -------------------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | selected             | Date                                            | 否   | 设置选中项的时间。<br/>默认值：当前系统时间<br />从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| format<sup>11+</sup> | [TimePickerFormat](#timepickerformat11枚举说明) | 否   | 指定需要显示的TimePicker的格式。<br/>默认值：TimePickerFormat.HOUR_MINUTE <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| format<sup>11+</sup> | [TimePickerFormat](#timepickerformat11枚举说明) | 否   | 指定需要显示的[TimePicker](#timepicker)的格式。<br/>默认值：TimePickerFormat.HOUR_MINUTE <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | start<sup>18+</sup>  | Date | 否   | 指定时间选择组件的起始时间。<br/>默认值：Date(0, 0, 0, 0, 0, 0)，仅生效设置日期的小时和分钟。<br/>设定了start、end，且为非默认值的场景下，loop不生效。 <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | end<sup>18+</sup>    | Date | 否   | 指定时间选择组件的结束时间。<br/>默认值：Date(0, 0, 0, 23, 59, 59)，仅生效设置日期的小时和分钟。<br/>设定了start、end，且为非默认值的场景下，loop不生效。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 
 >  **说明：**
 >
->  在TimePicker组件滑动过程中修改TimePickerOptions中的属性（selected、start、end），会导致这些属性无法生效。  
+>  在[TimePicker](#timepicker)组件滑动过程中修改TimePickerOptions中的属性（selected、start、end），会导致这些属性无法生效。  
 >  Date对象用于处理日期和时间。
 >
 >  **方式1：** new Date()
@@ -368,7 +368,7 @@ digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
 
 onChange(callback:&nbsp;(value:&nbsp;TimePickerResult )&nbsp;=&gt;&nbsp;void)
 
-滑动TimePicker后，时间选项归位至选中项位置时，触发该回调。不能通过双向绑定的状态变量触发。
+滑动[TimePicker](#timepicker)后，时间选项归位至选中项位置时，触发该回调。不能通过双向绑定的状态变量触发。
 
 回调会在滑动动画结束后触发，如果需要快速获取索引值变化，建议使用[onEnterSelectedArea](#onenterselectedarea18)接口。
 
@@ -386,7 +386,7 @@ onChange(callback:&nbsp;(value:&nbsp;TimePickerResult )&nbsp;=&gt;&nbsp;void)
 
 onChange(callback: Optional\<OnTimePickerChangeCallback>)
 
-滑动TimePicker后，时间选项归位至选中项位置时，触发该回调。不能通过双向绑定的状态变量触发。与[onChange](#onchange)相比，callback参数新增了对undefined类型的支持。
+滑动[TimePicker](#timepicker)后，时间选项归位至选中项位置时，触发该回调。不能通过双向绑定的状态变量触发。与[onChange](#onchange)相比，callback参数新增了对undefined类型的支持。
 
 回调会在滑动动画结束后触发，如果需要快速获取索引值变化，建议使用[onEnterSelectedArea](#onenterselectedarea18)接口。
 
@@ -406,7 +406,7 @@ onEnterSelectedArea(callback: Callback\<TimePickerResult>)
 
 滑动TimePicker过程中，选项进入分割线区域内，触发该回调。
 
-与onChange事件的差别在于，该事件的触发时机早于onChange事件，当当前滑动列滑动距离超过选中项高度的一半时，选项此时已经进入分割线区域内，会触发该事件。当enableCascade设置为true时，由于上午/下午列与小时列存在联动关系，不建议使用该回调。该回调标识的是滑动过程中选项进入分割线区域内的节点，而联动变化的选项并不涉及滑动，因此，回调的返回值中，仅当前滑动列的值会正常变化，其余未滑动列的值保持不变。
+与[onChange](#onchange)事件的差别在于，该事件的触发时机早于[onChange](#onchange)事件，当当前滑动列滑动距离超过选中项高度的一半时，选项此时已经进入分割线区域内，会触发该事件。当[enableCascade](#enablecascade18)设置为true时，由于上午/下午列与小时列存在联动关系，不建议使用该回调。该回调标识的是滑动过程中选项进入分割线区域内的节点，而联动变化的选项并不涉及滑动，因此，回调的返回值中，仅当前滑动列的值会正常变化，其余未滑动列的值保持不变。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -416,7 +416,7 @@ onEnterSelectedArea(callback: Callback\<TimePickerResult>)
 
 | 参数名   | 类型                       | 必填 | 说明                                       |
 | -------- | -------------------------- | ---- | ------------------------------------------ |
-| callback | Callback\<[TimePickerResult](#timepickerresult对象说明)> | 是   | 滑动TimePicker过程中，选项进入分割线区域时触发的回调。 |
+| callback | Callback\<[TimePickerResult](#timepickerresult对象说明)> | 是   | 滑动[TimePicker](#timepicker)过程中，选项进入分割线区域时触发的回调。 |
 
 ## OnTimePickerChangeCallback<sup>18+</sup>
 
@@ -454,7 +454,7 @@ type OnTimePickerChangeCallback = (value: TimePickerResult) => void
 
 ### 示例1（设置文本样式）
 
-该示例通过配置disappearTextStyle、textStyle和selectedTextStyle实现文本选择器中的文本样式。
+该示例通过配置[disappearTextStyle](#disappeartextstyle10)、[textStyle](#textstyle10)和[selectedTextStyle](#selectedtextstyle10)实现文本选择器中的文本样式。
 
 ```ts
 // xxx.ets
@@ -555,7 +555,7 @@ struct TimePickerExample {
 
 ### 示例4（设置循环滚动）
 
-该示例通过配置loop设置TimePicker是否循环滚动。
+该示例通过配置[loop](#loop11)设置TimePicker是否循环滚动。
 
 ```ts
 // xxx.ets
@@ -659,7 +659,7 @@ struct TimePickerExample {
 
 ### 示例7（设置上午下午跟随时间联动）
 
-该示例通过配置enableCascade、loop实现12小时制时上午下午跟随时间联动。
+该示例通过配置[enableCascade](#enablecascade18)、[loop](#loop11)实现12小时制时上午下午跟随时间联动。
 
 ```ts
 // xxx.ets
