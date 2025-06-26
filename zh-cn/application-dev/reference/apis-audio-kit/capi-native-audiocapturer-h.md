@@ -376,8 +376,8 @@ OH_AudioStream_Result OH_AudioCapturer_GetCapturerInfo(OH_AudioCapturer* capture
 
 | 参数项 | 描述 |
 | -- | -- |
-|  [OH_AudioCapturer](capi-ohaudio-oh-audiocapturerstruct.md)* capturer | 指向[OH_AudioStreamBuilder_GenerateCapturer](capi-native-audiostreambuilder-h.md#oh_audiostreambuilder_generatecapturer)创建的音频流实例。|
-| [OH_AudioStream_SourceType](capi-native-audiostream-base-h.md#oh_audiostream_sourcetype)* sourceType | 指向一个用来接收输入类型音频流的使用场景的变量。 |
+| [OH_AudioCapturer](capi-ohaudio-oh-audiocapturerstruct.md)* capturer | 指向[OH_AudioStreamBuilder_GenerateCapturer](capi-native-audiostreambuilder-h.md#oh_audiostreambuilder_generatecapturer)创建的音频流实例。 |
+| [OH_AudioStream_SourceType](capi-native-audiostream-base-h.md#oh_audiostream_sourcetype)* sourceType | 指向一个用来接收输入类型音频流的工作场景的变量。 |
 
 **返回：**
 
