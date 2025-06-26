@@ -16,7 +16,6 @@
     - [Interfaces (其他)](arkts-apis-image-i.md)
     - [Enums](arkts-apis-image-e.md)
     - [Types](arkts-apis-image-t.md)
-    - [SVG标签说明](arkts-apis-image-svg-tag.md)
   - [@ohos.multimedia.sendableImage (基于Sendable对象的图片处理)](js-apis-sendableImage.md)
   - [@ohos.multimedia.videoProcessingEngine (视频处理引擎)](js-apis-videoProcessingEngine.md)
   <!--Del-->

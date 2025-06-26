@@ -1,7 +1,13 @@
 # DRM Kit（数字版权保护服务）
 
 - ArkTS API<!--drm-arkts-->
-  - [@ohos.multimedia.drm (数字版权保护)](js-apis-drm.md)
+  - @ohos.multimedia.drm (数字版权保护)<!--js-apis-drm-->
+    - [模块描述](arkts-apis-drm.md)
+    - [Functions](arkts-apis-drm-f.md)
+    - [Interface (MediaKeySession)](arkts-apis-drm-MediaKeySession.md)
+    - [Interface (MediaKeySystem)](arkts-apis-drm-MediaKeySystem.md)
+    - [Interfaces (其他)](arkts-apis-drm-i.md)
+    - [Enums](arkts-apis-drm-e.md)
 - C API<!--drm-c-->
   - 模块<!--drm-module-->
     - [Drm](_drm.md)

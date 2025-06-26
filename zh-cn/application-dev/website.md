@@ -4586,7 +4586,13 @@
         - [Camera错误码](reference/apis-camera-kit/errorcode-camera.md)
     - DRM Kit（数字版权保护服务）<!--drm-api-->
       - ArkTS API<!--drm-arkts-->
-        - [@ohos.multimedia.drm (数字版权保护)](reference/apis-drm-kit/js-apis-drm.md)
+        - @ohos.multimedia.drm (数字版权保护)<!--js-apis-drm-->
+          - [模块描述](reference/apis-drm-kit/arkts-apis-drm.md)
+          - [Functions](reference/apis-drm-kit/arkts-apis-drm-f.md)
+          - [Interface (MediaKeySession)](reference/apis-drm-kit/arkts-apis-drm-MediaKeySession.md)
+          - [Interface (MediaKeySystem)](reference/apis-drm-kit/arkts-apis-drm-MediaKeySystem.md)
+          - [Interfaces (其他)](reference/apis-drm-kit/arkts-apis-drm-i.md)
+          - [Enums](reference/apis-drm-kit/arkts-apis-drm-e.md)
       - C API<!--drm-c-->
         - 模块<!--drm-module-->
           - [Drm](reference/apis-drm-kit/_drm.md)
@@ -4626,7 +4632,6 @@
           - [Interfaces (其他)](reference/apis-image-kit/arkts-apis-image-i.md)
           - [Enums](reference/apis-image-kit/arkts-apis-image-e.md)
           - [Types](reference/apis-image-kit/arkts-apis-image-t.md)
-          - [SVG标签说明](reference/apis-image-kit/arkts-apis-image-svg-tag.md)
         - [@ohos.multimedia.sendableImage (基于Sendable对象的图片处理)](reference/apis-image-kit/js-apis-sendableImage.md)
         - [@ohos.multimedia.videoProcessingEngine (视频处理引擎)](reference/apis-image-kit/js-apis-videoProcessingEngine.md)
         <!--Del-->

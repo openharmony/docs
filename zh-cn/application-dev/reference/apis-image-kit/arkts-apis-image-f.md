@@ -944,7 +944,7 @@ createImageSource(uri: string): ImageSource
 
 | 参数名 | 类型   | 必填 | 说明                               |
 | ------ | ------ | ---- | ---------------------------------- |
-| uri    | string | 是   | 图片路径，当前仅支持应用沙箱路径。</br>当前支持格式有：.jpg .png .gif .bmp .webp .dng .heic<sup>12+</sup>（不同硬件设备支持情况不同） [.svg<sup>10+</sup>](arkts-apis-image-svg-tag.md) .ico<sup>11+</sup>。 |
+| uri    | string | 是   | 图片路径，当前仅支持应用沙箱路径。</br>当前支持格式有：.jpg .png .gif .bmp .webp .dng .heic<sup>12+</sup>（不同硬件设备支持情况不同） [.svg<sup>10+</sup>](#svg标签说明) .ico<sup>11+</sup>。 |
 
 **返回值：**
 
@@ -981,7 +981,7 @@ createImageSource(uri: string, options: SourceOptions): ImageSource
 
 | 参数名  | 类型                            | 必填 | 说明                                |
 | ------- | ------------------------------- | ---- | ----------------------------------- |
-| uri     | string                          | 是   | 图片路径，当前仅支持应用沙箱路径。</br>当前支持格式有：.jpg .png .gif .bmp .webp .dng .heic<sup>12+</sup>（不同硬件设备支持情况不同）[.svg<sup>10+</sup>](arkts-apis-image-svg-tag.md) .ico<sup>11+</sup>。 |
+| uri     | string                          | 是   | 图片路径，当前仅支持应用沙箱路径。</br>当前支持格式有：.jpg .png .gif .bmp .webp .dng .heic<sup>12+</sup>（不同硬件设备支持情况不同）[.svg<sup>10+</sup>](#svg标签说明) .ico<sup>11+</sup>。 |
 | options | [SourceOptions](arkts-apis-image-i.md#sourceoptions9) | 是   | 图片属性，包括图片像素密度、像素格式和图片尺寸。|
 
 **返回值：**
@@ -1566,3 +1566,46 @@ createImageCreator(width: number, height: number, format: number, capacity: numb
 ```ts
 let creator: image.ImageCreator = image.createImageCreator(8192, 8, image.ImageFormat.JPEG, 8);
 ```
+
+## SVG标签说明
+
+从API version 10开始支持SVG标签，使用版本为(SVG) 1.1，SVG标签需设置width，height。SVG文件可添加xml声明，应以“<?xml”开头，当前支持的标签列表有：
+
+- a
+- circla
+- clipPath
+- defs
+- ellipse
+- feBlend
+- feColorMatrix
+- feComposite
+- feDiffuseLighting
+- feDisplacementMap
+- feDistantLight
+- feFlood
+- feGaussianBlur
+- feImage
+- feMorphology
+- feOffset
+- fePointLight
+- feSpecularLighting
+- feSpotLight
+- feTurbulence
+- filter
+- g
+- image
+- line
+- linearGradient
+- mask
+- path
+- pattern
+- polygon
+- polyline
+- radialGradient
+- rect
+- stop
+- svg
+- text
+- textPath
+- tspan
+- use
