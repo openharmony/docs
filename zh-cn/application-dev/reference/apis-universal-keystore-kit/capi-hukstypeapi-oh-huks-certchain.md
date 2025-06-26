@@ -16,7 +16,7 @@
 
 | 名称 | 描述 |
 | -- | -- |
-| struct OH_Huks_Blob* certs | 指向证书数据的指针。 |
+| [struct OH_Huks_Blob](capi-hukstypeapi-oh-huks-blob.md)* certs | 指向证书数据的指针。 |
 | uint32_t certsCount | 证书本数。 |
 
 

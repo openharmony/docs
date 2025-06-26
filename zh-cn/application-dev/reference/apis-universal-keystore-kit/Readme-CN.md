@@ -18,7 +18,6 @@
     - [OH_Huks_Result](capi-hukstypeapi-oh-huks-result.md)
     - [OH_Huks_Blob](capi-hukstypeapi-oh-huks-blob.md)
     - [OH_Huks_Param](capi-hukstypeapi-oh-huks-param.md)
-    - [](capi-.md)
     - [OH_Huks_ParamSet](capi-hukstypeapi-oh-huks-paramset.md)
     - [OH_Huks_CertChain](capi-hukstypeapi-oh-huks-certchain.md)
     - [OH_Huks_KeyInfo](capi-hukstypeapi-oh-huks-keyinfo.md)

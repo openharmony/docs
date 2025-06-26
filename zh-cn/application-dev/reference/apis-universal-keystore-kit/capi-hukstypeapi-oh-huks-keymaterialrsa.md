@@ -16,7 +16,7 @@
 
 | 名称 | 描述 |
 | -- | -- |
-| OH_Huks_KeyAlg keyAlg |  |
+| enum [OH_Huks_KeyAlg](capi-native-huks-type-h.md#oh_huks_keyalg) keyAlg | 密钥的算法类型。 |
 | uint32_t keySize | 密钥的长度。 |
 | uint32_t nSize | n值的长度。 |
 | uint32_t eSize | e值的长度。 |

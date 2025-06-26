@@ -16,7 +16,7 @@
 
 | 名称 | 描述 |
 | -- | -- |
-| int32_t errorCode | 状态返回码。 |
+| int32_t errorCode | 状态返回码，参考[OH_Huks_ErrCode](capi-native-huks-type-h.md#oh_huks_errcode)。 |
 | const char* errorMsg | 对状态返回码的说明信息。 |
 | uint8_t* data | 其他返回数据。 |
 

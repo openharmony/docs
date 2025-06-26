@@ -18,6 +18,6 @@
 | -- | -- |
 | uint32_t paramSetSize | 参数集的内存大小。 |
 | uint32_t paramsCnt | 参数的个数。 |
-| struct OH_Huks_Param params | 参数数组。 |
+| [struct OH_Huks_Param](capi-hukstypeapi-oh-huks-param.md) params | 参数数组。 |
 
 
