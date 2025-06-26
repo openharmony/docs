@@ -25,7 +25,7 @@ The service status is abnormal.
 
 
 
-## 33800002 Subscription Exception
+## 33800002 Subscription Failed
 
 **Error Message**
 
@@ -46,7 +46,7 @@ Subscription to change events has failed.
 
 
 
-## 31500003 Unsubscription Exception
+## 31500003 Unsubscription Failed
 
 **Error Message**
 
@@ -67,7 +67,7 @@ Unsubscription from change events has failed.
 
 
 
-## 31500004 SetDevicesInfos Exception
+## 31500004 Failed to set device information
 
 **Error Message**
 
@@ -75,7 +75,7 @@ Failed to set device information.
 
 **Symptom**
 
-This error code is reported if unsubscription fails when the **setDevicesInfos** API of the roomLocation module is called.
+This error code is reported if unsubscription fails when the **setDeviceInfos** API of the roomLocation module is called.
 
 **Possible Causes**
 
@@ -88,7 +88,7 @@ Failed to set device information.
 
 
 
-## 31500005 GetRoomLocationResult Exception
+## 31500005 Failed to obtain room-level location information
 
 **Error Message**
 

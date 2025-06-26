@@ -27,13 +27,11 @@ Defines the room result.
 
 
 
-## roomLocation.on('roomLocation')
+## roomLocation.on('onRoomLocated')
 
- on(type: 'roomLocation', callback: Callback&lt;RoomLocateResponse&gt;): void;
+ on(type: 'onRoomLocated', callback: Callback&lt;RoomLocateResponse&gt;): void;
 
 Subscribe to room location events.
-
-**Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **System capability**: SystemCapability.MultimodalAwareness.RoomLocation
 
@@ -58,16 +56,16 @@ For details about the error codes, see [Room Location Error Codes](errorcode-roo
 **Example**
 
 ```ts
-roomLocation.on('roomLocation', (data:roomLocation.RoomLocateResponse) => {
+roomLocation.on('onRoomLocated', (data:roomLocation.RoomLocateResponse) => {
     console.info('on success' + data);
 })
 ```
 
 
 
-## roomLocation.off('roomLocation')
+## roomLocation.off('onRoomLocated')
 
-off(type: 'roomLocation', callback?: Callback&lt;RoomLocateResponse&gt;): void;
+off(type: 'onRoomLocated', callback?: Callback&lt;RoomLocateResponse&gt;): void;
 
 Unsubscribes from room location events.
 
@@ -96,18 +94,18 @@ For details about the error codes, see [Room Location Error Codes](errorcode-roo
 **Example**
 
 ```ts
-roomLocation.off('roomLocation', (data:roomLocation.RoomLocateResponse) => {
+roomLocation.off('onRoomLocated', (data:roomLocation.RoomLocateResponse) => {
     console.info('off success' + data);
 })
 ```
 
 
 
-## roomLocation.setDevicesInfos()
+## roomLocation.setDeviceInfos()
 
-setDevicesInfos(devicesInfos: string): Promise<boolean>;
+setDeviceInfos(deviceInfos: string): Promise<boolean>;
 
-Set devices informations.
+Set device informations.
 
 **System capability**: SystemCapability.MultimodalAwareness.RoomLocation
 
@@ -115,7 +113,7 @@ Set devices informations.
 
 | Name  | Type                            | Mandatory| Description                                                        |
 | -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
-| devicesInfos| string                           | Yes  | devices informations. |
+| deviceInfos| string                           | Yes  | device informations. |
 
 **Error codes**
 
@@ -131,7 +129,7 @@ For details about the error codes, see [Room Location Error Codes](errorcode-roo
 
 ```ts
 const jsonstr: string = '[{"mac":"11:11:11:11:11:11","roomId":"1","prodId":"1","devId":"1","power":"","type":"1"}]';
-roomLocation.setDevicesInfos(jsonstr);
+roomLocation.setDeviceInfos(jsonstr);
 ```
 
 

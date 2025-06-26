@@ -29,7 +29,7 @@ Service exception.
 
 **错误信息**
 
-Subscribe exception.
+Subscription failed.
 
 **错误描述**
 
@@ -50,7 +50,7 @@ Subscribe exception.
 
 **错误信息**
 
-UnSubscribe exception.
+UnSubscription failed.
 
 **错误描述**
 
@@ -71,11 +71,11 @@ UnSubscribe exception.
 
 **错误信息**
 
-SetDevicesInfos exception.
+Failed to set device information.
 
 **错误描述**
 
-当调用roomLocation模块setDevicesInfos接口时，若设置失败，会报此错误码。
+当调用roomLocation模块setDeviceInfos接口时，若设置失败，会报此错误码。
 
 **可能原因**
 
@@ -92,7 +92,7 @@ SetDevicesInfos exception.
 
 **错误信息**
 
-GetRoomLocationResult exception.
+Failed to obtain room-level location information.
 
 **错误描述**
 

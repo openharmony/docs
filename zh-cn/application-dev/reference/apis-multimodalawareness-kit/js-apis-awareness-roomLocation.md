@@ -27,13 +27,11 @@ import { roomLocation } from '@kit.MultimodalAwarenessKit';
 
 
 
-## roomLocationon('roomLocation')
+## roomLocationon('onRoomLocated')
 
- on(type: 'roomLocation', callback: Callback&lt;RoomLocateResponse&gt;): void;
+ on(type: 'onRoomLocated', callback: Callback&lt;RoomLocateResponse&gt;): void;
 
 订阅房间级定位事件。
-
-**需要权限**：ohos.permission.ACTIVITY_MOTION
 
 **系统能力**：SystemCapability.MultimodalAwareness.RoomLocation
 
@@ -41,7 +39,7 @@ import { roomLocation } from '@kit.MultimodalAwarenessKit';
 
 | 参数名   | 类型                             | 必填 | 说明                                                         |
 | -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                           | 是   | 事件类型。type为"roomLocation"表示房间级定位。 |
+| type     | string                           | 是   | 事件类型。type为"onRoomLocated"表示房间级定位。 |
 | callback | Callback&lt;[RoomLocateResponse](#roomlocateresponse)&gt; | 是   | 回调函数，返回定位结果。                                   |
 
 **错误码**：
@@ -58,20 +56,18 @@ import { roomLocation } from '@kit.MultimodalAwarenessKit';
 **示例**：
 
 ```ts
-roomLocation.on('roomLocation', (data:roomLocation.RoomLocateResponse) => {
+roomLocation.on('onRoomLocated', (data:roomLocation.RoomLocateResponse) => {
     console.info('on success' + data);
 })
 ```
 
 
 
-## roomLocation.off('roomLocation')
+## roomLocation.off('onRoomLocated')
 
-off(type: 'roomLocation', callback?: Callback&lt;RoomLocateResponse&gt;): void;
+off(type: 'onRoomLocated', callback?: Callback&lt;RoomLocateResponse&gt;): void;
 
 取消订阅房间级定位事件。
-
-**需要权限**：ohos.permission.ACTIVITY_MOTION
 
 **系统能力**：SystemCapability.MultimodalAwareness.RoomLocation
 
@@ -79,7 +75,7 @@ off(type: 'roomLocation', callback?: Callback&lt;RoomLocateResponse&gt;): void;
 
 | 参数名   | 类型                             | 必填 | 说明                                                         |
 | -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                           | 是   | 事件类型。type为"roomLocation"表示房间级定位。 |
+| type     | string                           | 是   | 事件类型。type为"onRoomLocated"表示房间级定位。 |
 | callback | Callback&lt;[RoomLocateResponse](#roomlocateresponse)&gt; | 否  | 回调函数，返回定位结果。                                   |
 
 **错误码**：
@@ -96,16 +92,16 @@ off(type: 'roomLocation', callback?: Callback&lt;RoomLocateResponse&gt;): void;
 **示例**：
 
 ```ts
-roomLocation.off('roomLocation', (data:roomLocation.RoomLocateResponse) => {
+roomLocation.off('onRoomLocated', (data:roomLocation.RoomLocateResponse) => {
     console.info('off success' + data);
 })
 ```
 
 
 
-## roomLocation.setDevicesInfos()
+## roomLocation.setDeviceInfos()
 
-setDevicesInfos(devicesInfos: string): Promise<boolean>;
+setDeviceInfos(deviceInfos: string): Promise<boolean>;
 
 设置设备信息。
 
@@ -115,7 +111,7 @@ setDevicesInfos(devicesInfos: string): Promise<boolean>;
 
 | 参数名  | 类型                            | 必填| 说明                                                        |
 | -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
-| devicesInfos| string                           | Yes  | 设备信息。 |
+| deviceInfos| string                           | Yes  | 设备信息。 |
 
 **错误码**：
 
@@ -131,7 +127,7 @@ setDevicesInfos(devicesInfos: string): Promise<boolean>;
 
 ```ts
 const jsonstr: string = '[{"mac":"11:11:11:11:11:11","roomId":"1","prodId":"1","devId":"1","power":"","type":"1"}]';
-roomLocation.setDevicesInfos(jsonstr);
+roomLocation.setDeviceInfos(jsonstr);
 ```
 
 
