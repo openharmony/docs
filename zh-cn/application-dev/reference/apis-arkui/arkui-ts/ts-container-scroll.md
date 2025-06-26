@@ -529,6 +529,10 @@ Scroll每帧滚动前触发的回调。
 
 [OnScrollFrameBeginCallback](#onscrollframebegincallback18)返回的实际滚动偏移量。
 
+> **说明：**
+>
+> 为规范匿名对象的定义，API 18版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
+
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -918,6 +922,10 @@ getItemIndex(x: number, y: number): number
 ## ScrollOptions<sup>18+</sup>对象说明
 
 滚动到指定位置的参数选项。
+
+> **说明：**
+>
+> 为规范匿名对象的定义，API 18版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
