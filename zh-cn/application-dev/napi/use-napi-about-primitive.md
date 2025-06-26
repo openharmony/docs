@@ -2,32 +2,32 @@
 
 ## 简介
 
-在使用Node-API接口时，开发人员可以实现在Node-API模块中与ArkTS对象的交互，并进行数据转换和获取特定对象的操作，它们在不同的场景中发挥着重要的作用，使开发人员能够更灵活地处理ArkTS值和对象。
+使用Node-API接口，开发人员可以在Node-API模块中与ArkTS对象交互，进行数据转换和获取特定对象。这些操作在不同场景中发挥重要作用，使开发人员能够更灵活地处理ArkTS值和对象。
 
 ## 基本概念
 
-在使用Node-API操作ArkTS对象时，有一些基本概念需要了解：
+使用Node-API操作ArkTS对象时，需要了解一些基本概念。
 
 - **ArkTS值到C/C++类型的转换：** 在Node-API模块中，可以使用Node-API函数将ArkTS值转换为C/C++的数据类型，如将ArkTS数值转换为C/C++的整数、将ArkTS字符串转换为C/C++的字符数组等。同样，也可以将C/C++的数据类型转换为ArkTS值，以便将结果返回给ArkTS代码。
 
 ## 场景和功能介绍
 
-以下接口用于从C/C++代码中与ArkTS进行交互，传递数据并执行操作，它们的使用场景如下：
+以下接口用于从C/C++代码中与ArkTS交互，传递数据并执行操作
 | 接口 | 描述 |
 | -------- | -------- |
-| napi_coerce_to_bool | 用于将给定的ArkTS value强转成ArkTS boolean值。 |
-| napi_coerce_to_number | 用于将给定的ArkTS value强转成ArkTS number。 |
-| napi_coerce_to_object | 用于将给定的ArkTS value强转成ArkTS Object。 |
-| napi_coerce_to_string | 用于将给定的ArkTS value强转成ArkTS string。 |
-| napi_get_boolean | 用于根据给定的C boolean值，获取ArkTS boolean值。 |
-| napi_get_value_bool | 用于根据给定的ArkTS boolean值，获取等价的C/C++布尔值。 |
-| napi_get_global | 用于获取全局ArkTS对象，以便在C/C++中访问和操纵全局对象。 |
-| napi_get_null | 用于获取ArkTS null。 |
-| napi_get_undefined | 用于获取ArkTS undefined。 |
+| napi_coerce_to_bool | 将给定的ArkTS value强转为ArkTS boolean值。 |
+| napi_coerce_to_number | 将给定的ArkTS value强转成ArkTS number。 |
+| napi_coerce_to_object | 将给定的ArkTS value强转成ArkTS Object。 |
+| napi_coerce_to_string | 将给定的ArkTS value强转成ArkTS string。 |
+| napi_get_boolean | 将给定的C boolean值，获取ArkTS boolean值。 |
+| napi_get_value_bool | 根据给定的ArkTS boolean值，获取等价的C/C++布尔值。 |
+| napi_get_global | 获取全局ArkTS对象，以便在C/C++中访问和操纵全局对象。 |
+| napi_get_null | 获取ArkTS null。 |
+| napi_get_undefined | 获取ArkTS undefined。 |
 
 ## 使用示例
 
-Node-API接口开发流程参考[使用Node-API实现跨语言交互开发流程](use-napi-process.md)，本文仅对接口对应C++及ArkTS相关代码进行展示。
+Node-API接口开发流程请参考[使用Node-API实现跨语言交互开发流程](use-napi-process.md)，本文仅展示接口对应的C++及ArkTS相关代码。
 
 ### napi_coerce_to_bool
 
@@ -85,7 +85,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API napi_coerce_to_bool:%{public}s', re
 
 ### napi_coerce_to_number
 
-用于将给定的ArkTS value强转成ArkTS number。
+将给定的ArkTS value强转成ArkTS number。
 
 cpp部分代码
 
@@ -228,7 +228,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API napi_coerce_to_string:%{public}s', 
 
 ### napi_get_boolean
 
-用于根据给定的C boolean值，获取等价的ArkTS Boolean对象。
+根据给定的C boolean值，获取等价的ArkTS boolean值。
 
 cpp部分代码
 
@@ -278,7 +278,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_boolean:%{public}s', data)
 
 ### napi_get_value_bool
 
-使用这个函数将ArkTS中的布尔值转为等价的C布尔值。
+使用此函数将ArkTS中的布尔值转换为等价的C布尔值。
 
 cpp部分代码
 
@@ -327,7 +327,7 @@ hilog.info(0x0000, 'Node-API', 'get_value_bool_false %{public}s', testNapi.getVa
 
 ### napi_get_global
 
-用于获取全局ArkTS对象。该函数的主要作用是获取表示ArkTS全局对象的napi_value，使得C/C++模块能够与ArkTS运行时的全局对象进行交互。
+获取全局ArkTS对象。此函数用于获取表示ArkTS全局对象的napi_value，使C/C++模块能与ArkTS运行时的全局对象交互。
 
 cpp部分代码
 
@@ -366,7 +366,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_global:%{public}s', global
 
 ### napi_get_null
 
-用于获取ArkTS中的null。
+获取ArkTS中的null值。
 
 cpp部分代码
 
@@ -403,7 +403,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_null:%{public}s', value);
 
 ### napi_get_undefined
 
-用于获取ArkTS中的undefined。
+获取ArkTS中的undefined值。
 
 cpp部分代码
 
