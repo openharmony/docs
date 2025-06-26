@@ -16,9 +16,9 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [OH_PictureNative](capi-oh-picturenative.md) | OH_PictureNative | Picture结构体类型，用于执行picture相关操作。 |
-| [OH_AuxiliaryPictureNative](capi-oh-auxiliarypicturenative.md) | OH_AuxiliaryPictureNative | AuxiliaryPicture结构体类型，用于执行AuxiliaryPicture相关操作。 |
-| [OH_AuxiliaryPictureInfo](capi-oh-auxiliarypictureinfo.md) | OH_AuxiliaryPictureInfo | AuxiliaryPictureInfo结构体类型，用于执行AuxiliaryPictureInfo相关操作。 |
+| [OH_PictureNative](capi-image-nativemodule-oh-picturenative.md) | OH_PictureNative | Picture结构体类型，用于执行picture相关操作。 |
+| [OH_AuxiliaryPictureNative](capi-image-nativemodule-oh-auxiliarypicturenative.md) | OH_AuxiliaryPictureNative | AuxiliaryPicture结构体类型，用于执行AuxiliaryPicture相关操作。 |
+| [OH_AuxiliaryPictureInfo](capi-image-nativemodule-oh-auxiliarypictureinfo.md) | OH_AuxiliaryPictureInfo | AuxiliaryPictureInfo结构体类型，用于执行AuxiliaryPictureInfo相关操作。 |
 
 ### 枚举
 
@@ -101,8 +101,8 @@ Image_ErrorCode OH_PictureNative_CreatePicture(OH_PixelmapNative *mainPixelmap, 
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PictureNative](capi-oh-picturenative.md) *mainPixelmap | 主图的OH_PixelmapNative指针。 |
-| [OH_PictureNative](capi-oh-picturenative.md) **picture | 被创建的OH_PictureNative指针。 |
+| [OH_PictureNative](capi-image-nativemodule-oh-picturenative.md) *mainPixelmap | 主图的OH_PixelmapNative指针。 |
+| [OH_PictureNative](capi-image-nativemodule-oh-picturenative.md) **picture | 被创建的OH_PictureNative指针。 |
 
 **返回：**
 
@@ -127,8 +127,8 @@ Image_ErrorCode OH_PictureNative_GetMainPixelmap(OH_PictureNative *picture, OH_P
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PictureNative](capi-oh-picturenative.md) *picture | 被操作的OH_PictureNative指针。 |
-| [OH_PictureNative](capi-oh-picturenative.md) **mainPixelmap | 获取的OH_PixelmapNative指针。 |
+| [OH_PictureNative](capi-image-nativemodule-oh-picturenative.md) *picture | 被操作的OH_PictureNative指针。 |
+| [OH_PictureNative](capi-image-nativemodule-oh-picturenative.md) **mainPixelmap | 获取的OH_PixelmapNative指针。 |
 
 **返回：**
 
@@ -153,8 +153,8 @@ Image_ErrorCode OH_PictureNative_GetHdrComposedPixelmap(OH_PictureNative *pictur
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PictureNative](capi-oh-picturenative.md) *picture | 被操作的OH_PictureNative指针。 |
-| [OH_PictureNative](capi-oh-picturenative.md) **hdrPixelmap | 获取的hdr图OH_PixelmapNative指针。 |
+| [OH_PictureNative](capi-image-nativemodule-oh-picturenative.md) *picture | 被操作的OH_PictureNative指针。 |
+| [OH_PictureNative](capi-image-nativemodule-oh-picturenative.md) **hdrPixelmap | 获取的hdr图OH_PixelmapNative指针。 |
 
 **返回：**
 
@@ -179,8 +179,8 @@ Image_ErrorCode OH_PictureNative_GetGainmapPixelmap(OH_PictureNative *picture, O
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PictureNative](capi-oh-picturenative.md) *picture | 被操作的OH_PictureNative指针。 |
-| [OH_PictureNative](capi-oh-picturenative.md) **gainmapPixelmap | 获取的增益图OH_PixelmapNative指针。 |
+| [OH_PictureNative](capi-image-nativemodule-oh-picturenative.md) *picture | 被操作的OH_PictureNative指针。 |
+| [OH_PictureNative](capi-image-nativemodule-oh-picturenative.md) **gainmapPixelmap | 获取的增益图OH_PixelmapNative指针。 |
 
 **返回：**
 
@@ -205,9 +205,9 @@ Image_ErrorCode OH_PictureNative_SetAuxiliaryPicture(OH_PictureNative *picture, 
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PictureNative](capi-oh-picturenative.md) *picture | 被操作的OH_PictureNative指针。 |
+| [OH_PictureNative](capi-image-nativemodule-oh-picturenative.md) *picture | 被操作的OH_PictureNative指针。 |
 | [Image_AuxiliaryPictureType](#image_auxiliarypicturetype) type | 辅助图的类型。 |
-| [OH_AuxiliaryPictureNative](capi-oh-auxiliarypicturenative.md) *auxiliaryPicture | 设置的OH_AuxiliaryPictureNative指针。 |
+| [OH_AuxiliaryPictureNative](capi-image-nativemodule-oh-auxiliarypicturenative.md) *auxiliaryPicture | 设置的OH_AuxiliaryPictureNative指针。 |
 
 **返回：**
 
@@ -232,9 +232,9 @@ Image_ErrorCode OH_PictureNative_GetAuxiliaryPicture(OH_PictureNative *picture, 
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PictureNative](capi-oh-picturenative.md) *picture | 被操作的OH_PictureNative指针。 |
+| [OH_PictureNative](capi-image-nativemodule-oh-picturenative.md) *picture | 被操作的OH_PictureNative指针。 |
 | [Image_AuxiliaryPictureType](#image_auxiliarypicturetype) type | 辅助图类型。 |
-| [OH_AuxiliaryPictureNative](capi-oh-auxiliarypicturenative.md) **auxiliaryPicture | 获取的OH_AuxiliaryPictureNative指针。 |
+| [OH_AuxiliaryPictureNative](capi-image-nativemodule-oh-auxiliarypicturenative.md) **auxiliaryPicture | 获取的OH_AuxiliaryPictureNative指针。 |
 
 **返回：**
 
@@ -259,9 +259,9 @@ Image_ErrorCode OH_PictureNative_GetMetadata(OH_PictureNative *picture, Image_Me
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PictureNative](capi-oh-picturenative.md) *picture | 被操作的OH_PictureNative指针。 |
+| [OH_PictureNative](capi-image-nativemodule-oh-picturenative.md) *picture | 被操作的OH_PictureNative指针。 |
 | [Image_MetadataType](capi-image-common-h.md#image_metadatatype) metadataType | 元数据类型。 |
-| [OH_PictureMetadata](capi-oh-picturemetadata.md) **metadata | 主图的元数据。 |
+| [OH_PictureMetadata](capi-image-nativemodule-oh-picturemetadata.md) **metadata | 主图的元数据。 |
 
 **返回：**
 
@@ -286,9 +286,9 @@ Image_ErrorCode OH_PictureNative_SetMetadata(OH_PictureNative *picture, Image_Me
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PictureNative](capi-oh-picturenative.md) *picture | 被操作的OH_PictureNative指针。 |
+| [OH_PictureNative](capi-image-nativemodule-oh-picturenative.md) *picture | 被操作的OH_PictureNative指针。 |
 | [Image_MetadataType](capi-image-common-h.md#image_metadatatype) metadataType | 元数据类型。 |
-| [OH_PictureMetadata](capi-oh-picturemetadata.md) *metadata | 将设置的元数据。 |
+| [OH_PictureMetadata](capi-image-nativemodule-oh-picturemetadata.md) *metadata | 将设置的元数据。 |
 
 **返回：**
 
@@ -313,7 +313,7 @@ Image_ErrorCode OH_PictureNative_Release(OH_PictureNative *picture)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PictureNative](capi-oh-picturenative.md) *picture | 被操作的OH_PictureNative指针。 |
+| [OH_PictureNative](capi-image-nativemodule-oh-picturenative.md) *picture | 被操作的OH_PictureNative指针。 |
 
 **返回：**
 
@@ -340,9 +340,9 @@ Image_ErrorCode OH_AuxiliaryPictureNative_Create(uint8_t *data, size_t dataLengt
 | -- | -- |
 | uint8_t *data | 图像数据。 |
 | size_t dataLength | 图像数据长度。 |
-| [Image_Size](capi-image-size.md) *size | 辅助图尺寸。 |
+| [Image_Size](capi-image-nativemodule-image-size.md) *size | 辅助图尺寸。 |
 | [Image_AuxiliaryPictureType](#image_auxiliarypicturetype) type | 辅助图类型。 |
-| [OH_AuxiliaryPictureNative](capi-oh-auxiliarypicturenative.md) **auxiliaryPicture | 被创建的OH_AuxiliaryPictureNative指针。 |
+| [OH_AuxiliaryPictureNative](capi-image-nativemodule-oh-auxiliarypicturenative.md) **auxiliaryPicture | 被创建的OH_AuxiliaryPictureNative指针。 |
 
 **返回：**
 
@@ -367,7 +367,7 @@ Image_ErrorCode OH_AuxiliaryPictureNative_WritePixels(OH_AuxiliaryPictureNative 
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AuxiliaryPictureNative](capi-oh-auxiliarypicturenative.md) *auxiliaryPicture | 被操作的OH_AuxiliaryPictureNative指针。 |
+| [OH_AuxiliaryPictureNative](capi-image-nativemodule-oh-auxiliarypicturenative.md) *auxiliaryPicture | 被操作的OH_AuxiliaryPictureNative指针。 |
 | uint8_t *source | 将被写入的图像像素数据。 |
 | size_t bufferSize | 图像像素数据长度。 |
 
@@ -394,7 +394,7 @@ Image_ErrorCode OH_AuxiliaryPictureNative_ReadPixels(OH_AuxiliaryPictureNative *
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AuxiliaryPictureNative](capi-oh-auxiliarypicturenative.md) *auxiliaryPicture | 被操作的OH_AuxiliaryPictureNative指针。 |
+| [OH_AuxiliaryPictureNative](capi-image-nativemodule-oh-auxiliarypicturenative.md) *auxiliaryPicture | 被操作的OH_AuxiliaryPictureNative指针。 |
 | uint8_t *destination | 缓冲区，获取的辅助图像素数据写入到该内存区域内。 |
 | size_t *bufferSize | 缓冲区大小。 |
 
@@ -421,7 +421,7 @@ Image_ErrorCode OH_AuxiliaryPictureNative_GetType(OH_AuxiliaryPictureNative *aux
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AuxiliaryPictureNative](capi-oh-auxiliarypicturenative.md) *auxiliaryPicture | 被操作的OH_AuxiliaryPictureNative指针。 |
+| [OH_AuxiliaryPictureNative](capi-image-nativemodule-oh-auxiliarypicturenative.md) *auxiliaryPicture | 被操作的OH_AuxiliaryPictureNative指针。 |
 | [Image_AuxiliaryPictureType](#image_auxiliarypicturetype) *type | 辅助图类型。 |
 
 **返回：**
@@ -447,8 +447,8 @@ Image_ErrorCode OH_AuxiliaryPictureNative_GetInfo(OH_AuxiliaryPictureNative *aux
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AuxiliaryPictureNative](capi-oh-auxiliarypicturenative.md) *auxiliaryPicture | 被操作的OH_AuxiliaryPictureNative指针。 |
-| [OH_AuxiliaryPictureInfo](capi-oh-auxiliarypictureinfo.md) **info | 辅助图信息。 |
+| [OH_AuxiliaryPictureNative](capi-image-nativemodule-oh-auxiliarypicturenative.md) *auxiliaryPicture | 被操作的OH_AuxiliaryPictureNative指针。 |
+| [OH_AuxiliaryPictureInfo](capi-image-nativemodule-oh-auxiliarypictureinfo.md) **info | 辅助图信息。 |
 
 **返回：**
 
@@ -473,8 +473,8 @@ Image_ErrorCode OH_AuxiliaryPictureNative_SetInfo(OH_AuxiliaryPictureNative *aux
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AuxiliaryPictureNative](capi-oh-auxiliarypicturenative.md) *auxiliaryPicture | 将操作的OH_AuxiliaryPictureNative指针。 |
-| [OH_AuxiliaryPictureInfo](capi-oh-auxiliarypictureinfo.md) *info | 将要设置的辅助图信息。 |
+| [OH_AuxiliaryPictureNative](capi-image-nativemodule-oh-auxiliarypicturenative.md) *auxiliaryPicture | 将操作的OH_AuxiliaryPictureNative指针。 |
+| [OH_AuxiliaryPictureInfo](capi-image-nativemodule-oh-auxiliarypictureinfo.md) *info | 将要设置的辅助图信息。 |
 
 **返回：**
 
@@ -499,9 +499,9 @@ Image_ErrorCode OH_AuxiliaryPictureNative_GetMetadata(OH_AuxiliaryPictureNative 
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AuxiliaryPictureNative](capi-oh-auxiliarypicturenative.md) *auxiliaryPicture | 将操作的OH_AuxiliaryPictureNative指针。 |
+| [OH_AuxiliaryPictureNative](capi-image-nativemodule-oh-auxiliarypicturenative.md) *auxiliaryPicture | 将操作的OH_AuxiliaryPictureNative指针。 |
 | [Image_MetadataType](capi-image-common-h.md#image_metadatatype) metadataType | 元数据类型。 |
-| [OH_PictureMetadata](capi-oh-picturemetadata.md) **metadata | 获取的元数据。 |
+| [OH_PictureMetadata](capi-image-nativemodule-oh-picturemetadata.md) **metadata | 获取的元数据。 |
 
 **返回：**
 
@@ -526,9 +526,9 @@ Image_ErrorCode OH_AuxiliaryPictureNative_SetMetadata(OH_AuxiliaryPictureNative 
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AuxiliaryPictureNative](capi-oh-auxiliarypicturenative.md) *auxiliaryPicture | 将操作的OH_AuxiliaryPictureNative指针。 |
+| [OH_AuxiliaryPictureNative](capi-image-nativemodule-oh-auxiliarypicturenative.md) *auxiliaryPicture | 将操作的OH_AuxiliaryPictureNative指针。 |
 | [Image_MetadataType](capi-image-common-h.md#image_metadatatype) metadataType | 元数据类型。 |
-| [OH_PictureMetadata](capi-oh-picturemetadata.md) *metadata | 将要设置的元数据。 |
+| [OH_PictureMetadata](capi-image-nativemodule-oh-picturemetadata.md) *metadata | 将要设置的元数据。 |
 
 **返回：**
 
@@ -553,7 +553,7 @@ Image_ErrorCode OH_AuxiliaryPictureNative_Release(OH_AuxiliaryPictureNative *pic
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AuxiliaryPictureNative](capi-oh-auxiliarypicturenative.md) *picture | 将操作的OH_AuxiliaryPictureNative指针。 |
+| [OH_AuxiliaryPictureNative](capi-image-nativemodule-oh-auxiliarypicturenative.md) *picture | 将操作的OH_AuxiliaryPictureNative指针。 |
 
 **返回：**
 
@@ -578,7 +578,7 @@ Image_ErrorCode OH_AuxiliaryPictureInfo_Create(OH_AuxiliaryPictureInfo **info)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AuxiliaryPictureInfo](capi-oh-auxiliarypictureinfo.md) **info | 将操作的OH_AuxiliaryPictureInfo指针。 |
+| [OH_AuxiliaryPictureInfo](capi-image-nativemodule-oh-auxiliarypictureinfo.md) **info | 将操作的OH_AuxiliaryPictureInfo指针。 |
 
 **返回：**
 
@@ -603,7 +603,7 @@ Image_ErrorCode OH_AuxiliaryPictureInfo_GetType(OH_AuxiliaryPictureInfo *info, I
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AuxiliaryPictureInfo](capi-oh-auxiliarypictureinfo.md) *info | 将操作的OH_AuxiliaryPictureInfo指针。 |
+| [OH_AuxiliaryPictureInfo](capi-image-nativemodule-oh-auxiliarypictureinfo.md) *info | 将操作的OH_AuxiliaryPictureInfo指针。 |
 | [Image_AuxiliaryPictureType](#image_auxiliarypicturetype) *type | 获取的辅助图类型。 |
 
 **返回：**
@@ -629,7 +629,7 @@ Image_ErrorCode OH_AuxiliaryPictureInfo_SetType(OH_AuxiliaryPictureInfo *info, I
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AuxiliaryPictureInfo](capi-oh-auxiliarypictureinfo.md) *info | 将操作的OH_AuxiliaryPictureInfo指针。 |
+| [OH_AuxiliaryPictureInfo](capi-image-nativemodule-oh-auxiliarypictureinfo.md) *info | 将操作的OH_AuxiliaryPictureInfo指针。 |
 | [Image_AuxiliaryPictureType](#image_auxiliarypicturetype) type | 将要设置的辅助图类型。 |
 
 **返回：**
@@ -655,8 +655,8 @@ Image_ErrorCode OH_AuxiliaryPictureInfo_GetSize(OH_AuxiliaryPictureInfo *info, I
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AuxiliaryPictureInfo](capi-oh-auxiliarypictureinfo.md) *info | 将操作的OH_AuxiliaryPictureInfo指针。 |
-| [Image_Size](capi-image-size.md) *size | 获取的图片尺寸。 |
+| [OH_AuxiliaryPictureInfo](capi-image-nativemodule-oh-auxiliarypictureinfo.md) *info | 将操作的OH_AuxiliaryPictureInfo指针。 |
+| [Image_Size](capi-image-nativemodule-image-size.md) *size | 获取的图片尺寸。 |
 
 **返回：**
 
@@ -681,8 +681,8 @@ Image_ErrorCode OH_AuxiliaryPictureInfo_SetSize(OH_AuxiliaryPictureInfo *info, I
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AuxiliaryPictureInfo](capi-oh-auxiliarypictureinfo.md) *info | 将操作的OH_AuxiliaryPictureInfo指针。 |
-| [Image_Size](capi-image-size.md) *size | 将要设置的图片尺寸。 |
+| [OH_AuxiliaryPictureInfo](capi-image-nativemodule-oh-auxiliarypictureinfo.md) *info | 将操作的OH_AuxiliaryPictureInfo指针。 |
+| [Image_Size](capi-image-nativemodule-image-size.md) *size | 将要设置的图片尺寸。 |
 
 **返回：**
 
@@ -707,7 +707,7 @@ Image_ErrorCode OH_AuxiliaryPictureInfo_GetRowStride(OH_AuxiliaryPictureInfo *in
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AuxiliaryPictureInfo](capi-oh-auxiliarypictureinfo.md) *info | 将操作的OH_AuxiliaryPictureInfo指针。 |
+| [OH_AuxiliaryPictureInfo](capi-image-nativemodule-oh-auxiliarypictureinfo.md) *info | 将操作的OH_AuxiliaryPictureInfo指针。 |
 | uint32_t *rowStride | 跨距，内存中每行像素所占的空间。 |
 
 **返回：**
@@ -733,7 +733,7 @@ Image_ErrorCode OH_AuxiliaryPictureInfo_SetRowStride(OH_AuxiliaryPictureInfo *in
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AuxiliaryPictureInfo](capi-oh-auxiliarypictureinfo.md) *info | 将操作的OH_AuxiliaryPictureInfo指针。 |
+| [OH_AuxiliaryPictureInfo](capi-image-nativemodule-oh-auxiliarypictureinfo.md) *info | 将操作的OH_AuxiliaryPictureInfo指针。 |
 | uint32_t rowStride | 跨距，内存中每行像素所占的空间。 |
 
 **返回：**
@@ -759,7 +759,7 @@ Image_ErrorCode OH_AuxiliaryPictureInfo_GetPixelFormat(OH_AuxiliaryPictureInfo *
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AuxiliaryPictureInfo](capi-oh-auxiliarypictureinfo.md) *info | 将操作的OH_AuxiliaryPictureInfo指针。 |
+| [OH_AuxiliaryPictureInfo](capi-image-nativemodule-oh-auxiliarypictureinfo.md) *info | 将操作的OH_AuxiliaryPictureInfo指针。 |
 | [PIXEL_FORMAT](capi-pixelmap-native-h.md#pixel_format) *pixelFormat | 获取的像素格式。 |
 
 **返回：**
@@ -785,7 +785,7 @@ Image_ErrorCode OH_AuxiliaryPictureInfo_SetPixelFormat(OH_AuxiliaryPictureInfo *
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AuxiliaryPictureInfo](capi-oh-auxiliarypictureinfo.md) *info | 将操作的OH_AuxiliaryPictureInfo指针。 |
+| [OH_AuxiliaryPictureInfo](capi-image-nativemodule-oh-auxiliarypictureinfo.md) *info | 将操作的OH_AuxiliaryPictureInfo指针。 |
 | [PIXEL_FORMAT](capi-pixelmap-native-h.md#pixel_format) pixelFormat | 将要设置的像素格式。 |
 
 **返回：**
@@ -811,7 +811,7 @@ Image_ErrorCode OH_AuxiliaryPictureInfo_Release(OH_AuxiliaryPictureInfo *info)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AuxiliaryPictureInfo](capi-oh-auxiliarypictureinfo.md) *info | 将操作的OH_AuxiliaryPictureInfo指针。 |
+| [OH_AuxiliaryPictureInfo](capi-image-nativemodule-oh-auxiliarypictureinfo.md) *info | 将操作的OH_AuxiliaryPictureInfo指针。 |
 
 **返回：**
 

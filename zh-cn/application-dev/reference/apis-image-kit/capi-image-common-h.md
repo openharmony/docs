@@ -20,10 +20,10 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [Image_Size](capi-image-size.md) | Image_Size | 图像大小结构体。 |
-| [Image_Region](capi-image-region.md) | Image_Region | 声明要解码的图像源区域结构体类型名称。 |
-| [Image_String](capi-image-string.md) | Image_String/Image_MimeType | 字符串结构。<br>Image_String：声明字符串结构的名称。<br>Image_MimeType：声明一个图片格式类型的名称。 |
-| [OH_PictureMetadata](capi-oh-picturemetadata.md) | OH_PictureMetadata | 声明用于Picture的元数据。 |
+| [Image_Size](capi-image-nativemodule-image-size.md) | Image_Size | 图像大小结构体。 |
+| [Image_Region](capi-image-nativemodule-image-region.md) | Image_Region | 声明要解码的图像源区域结构体类型名称。 |
+| [Image_String](capi-image-nativemodule-image-string.md) | Image_String/Image_MimeType | 字符串结构。<br>Image_String：声明字符串结构的名称。<br>Image_MimeType：声明一个图片格式类型的名称。 |
+| [OH_PictureMetadata](capi-image-nativemodule-oh-picturemetadata.md) | OH_PictureMetadata | 声明用于Picture的元数据。 |
 
 ### 枚举
 
@@ -303,7 +303,7 @@ Image_ErrorCode OH_PictureMetadata_Create(Image_MetadataType metadataType, OH_Pi
 | 参数项 | 描述 |
 | -- | -- |
 | [Image_MetadataType](#image_metadatatype) metadataType | 元数据的类型。 |
-| [OH_PictureMetadata](capi-oh-picturemetadata.md) **metadata | 被操作的OH_PictureMetadata指针。 |
+| [OH_PictureMetadata](capi-image-nativemodule-oh-picturemetadata.md) **metadata | 被操作的OH_PictureMetadata指针。 |
 
 **返回：**
 
@@ -328,9 +328,9 @@ Image_ErrorCode OH_PictureMetadata_GetProperty(OH_PictureMetadata *metadata, Ima
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PictureMetadata](capi-oh-picturemetadata.md) *metadata | 被操作的OH_PictureMetadata指针。 |
-| [Image_String](capi-image-string.md) *key | 属性的键。 |
-| [Image_String](capi-image-string.md) *value | 属性的值。 |
+| [OH_PictureMetadata](capi-image-nativemodule-oh-picturemetadata.md) *metadata | 被操作的OH_PictureMetadata指针。 |
+| [Image_String](capi-image-nativemodule-image-string.md) *key | 属性的键。 |
+| [Image_String](capi-image-nativemodule-image-string.md) *value | 属性的值。 |
 
 **返回：**
 
@@ -355,9 +355,9 @@ Image_ErrorCode OH_PictureMetadata_SetProperty(OH_PictureMetadata *metadata, Ima
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PictureMetadata](capi-oh-picturemetadata.md) *metadata | 被操作的OH_PictureMetadata指针。 |
-| [Image_String](capi-image-string.md) *key | 属性的键。 |
-| [Image_String](capi-image-string.md) *value | 属性的值。 |
+| [OH_PictureMetadata](capi-image-nativemodule-oh-picturemetadata.md) *metadata | 被操作的OH_PictureMetadata指针。 |
+| [Image_String](capi-image-nativemodule-image-string.md) *key | 属性的键。 |
+| [Image_String](capi-image-nativemodule-image-string.md) *value | 属性的值。 |
 
 **返回：**
 
@@ -382,9 +382,9 @@ Image_ErrorCode OH_PictureMetadata_GetPropertyWithNull(OH_PictureMetadata *metad
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PictureMetadata](capi-oh-picturemetadata.md) *metadata | 将被操作的PictureMetadata指针。 |
-| [Image_String](capi-image-string.md) *key | 属性键指针。 |
-| [Image_String](capi-image-string.md) *value | 属性值指针。 |
+| [OH_PictureMetadata](capi-image-nativemodule-oh-picturemetadata.md) *metadata | 将被操作的PictureMetadata指针。 |
+| [Image_String](capi-image-nativemodule-image-string.md) *key | 属性键指针。 |
+| [Image_String](capi-image-nativemodule-image-string.md) *value | 属性值指针。 |
 
 **返回：**
 
@@ -409,7 +409,7 @@ Image_ErrorCode OH_PictureMetadata_Release(OH_PictureMetadata *metadata)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PictureMetadata](capi-oh-picturemetadata.md) *metadata | 被操作的OH_PictureMetadata指针。 |
+| [OH_PictureMetadata](capi-image-nativemodule-oh-picturemetadata.md) *metadata | 被操作的OH_PictureMetadata指针。 |
 
 **返回：**
 
@@ -434,8 +434,8 @@ Image_ErrorCode OH_PictureMetadata_Clone(OH_PictureMetadata *oldMetadata, OH_Pic
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PictureMetadata](capi-oh-picturemetadata.md) *oldMetadata | 被操作的OH_PictureMetadata指针。 |
-| [OH_PictureMetadata](capi-oh-picturemetadata.md) **newMetadata | 拷贝得到的OH_PictureMetadata指针。 |
+| [OH_PictureMetadata](capi-image-nativemodule-oh-picturemetadata.md) *oldMetadata | 被操作的OH_PictureMetadata指针。 |
+| [OH_PictureMetadata](capi-image-nativemodule-oh-picturemetadata.md) **newMetadata | 拷贝得到的OH_PictureMetadata指针。 |
 
 **返回：**
 
