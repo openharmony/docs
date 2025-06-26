@@ -269,7 +269,8 @@ off(type: SensorId.SAR, callback?: Callback&lt;SarResponse&gt;): void
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 202      | Permission check failed. A non-system application uses the system API. |
-| 14500101      | Service exception. Possible causes: 1. Sensor hdf service exception. |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+
 **示例**：
 
 ```ts
