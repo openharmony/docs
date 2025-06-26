@@ -7,6 +7,12 @@
 
 在使用AudioRenderer的接口之前，需先通过[createAudioRenderer](arkts-apis-audio-f.md#audiocreateaudiorenderer8)获取AudioRenderer实例。
 
+## 导入模块
+
+```ts
+import { audio } from '@kit.AudioKit';
+```
+
 ## 属性
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
