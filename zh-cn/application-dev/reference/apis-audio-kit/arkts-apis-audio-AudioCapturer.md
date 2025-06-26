@@ -387,7 +387,7 @@ audioCapturer.stop((err: BusinessError) => {
 
 stop(): Promise<void\>
 
-停止输入音频流。使用Promise异步回调。
+停止音频采集器，停止输入音频流。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -553,7 +553,7 @@ try {
 
 getAudioTimestampInfo(): Promise\<AudioTimestampInfo>
 
-获取输入音频流时间戳和当前数据帧位置信息。使用Promise异步回调。
+获取输入音频流时间戳和当前数据帧位置信息。
 
 该接口可以获取到音频通道实际录制位置（framePosition）以及录制到该位置时候的时间戳（timestamp），时间戳单位为纳秒。
 
