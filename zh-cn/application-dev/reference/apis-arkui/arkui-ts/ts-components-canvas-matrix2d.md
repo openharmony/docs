@@ -264,6 +264,7 @@ struct Rotate {
           this.matrix.rotate(5, 5)
           this.context.setTransform(this.matrix)
           this.context.fillRect(50, 110, 50, 50)
+        })
     }
     .width('100%')
     .height('100%')
