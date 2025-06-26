@@ -7,7 +7,7 @@
 - HiAppEvent<!--hiappevent-->
   - [Introduction to HiAppEvent](hiappevent-intro.md)
   - Event Subscription<!--event-subscription-->
-    - Application Events<!--app-event-->
+    - Application Events<!--app-events-->
       - [Subscribing to Application Events (ArkTS)](hiappevent-watcher-app-events-arkts.md)
       - [Subscribing to Application Events (C/C++)](hiappevent-watcher-app-events-ndk.md)
     - System Events<!--system-events-->
@@ -57,13 +57,13 @@
   - [Development of Application Recovery](apprecovery-guidelines.md)
 - Fault Analysis<!--fault-analysis-->
   - [Analyzing JS Crash](jscrash-guidelines.md)
-  - [Analyzing Cpp Crash](cppcrash-guidelines.md)
-  - [Analyzing App Freeze](appfreeze-guidelines.md)
+  - [Analyzing C++ Crash](cppcrash-guidelines.md)
+  - [Analyzing Application Freeze](appfreeze-guidelines.md)
 - Command Line Tools<!--perform-command-line-utilities-->
   - [hdc](hdc.md)
-  - [hilog](hilog.md)
+  - [HiLog](hilog.md)
   - [hidumper](hidumper.md)
-  - [hitrace](hitrace.md)
+  - [HiTrace](hitrace.md)
   - [hiperf](hiperf.md)
   <!--Del-->
   - [hisysevent](hisysevent.md)

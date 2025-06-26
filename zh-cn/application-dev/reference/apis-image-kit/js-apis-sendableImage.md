@@ -25,7 +25,7 @@ createPixelMap(colors: ArrayBuffer, options: image.InitializationOptions): Promi
 | 参数名  | 类型                                             | 必填 | 说明                                                             |
 | ------- | ------------------------------------------------ | ---- | ---------------------------------------------------------------- |
 | colors  | ArrayBuffer                                      | 是   | 默认按照BGRA_8888格式处理的颜色数组。                                        |
-| options | [image.InitializationOptions](js-apis-image.md#initializationoptions8) | 是   | 创建像素的属性，包括透明度，尺寸，缩略值，像素格式和是否可编辑。 |
+| options | [image.InitializationOptions](arkts-apis-image-i.md#initializationoptions8) | 是   | 创建像素的属性，包括透明度，尺寸，缩略值，像素格式和是否可编辑。 |
 
 **返回值：**
 
@@ -159,7 +159,7 @@ createPixelMapFromSurface(surfaceId: string, region: image.Region): Promise\<Pix
 | 参数名                 | 类型                 | 必填 | 说明                                     |
 | ---------------------- | -------------       | ---- | ---------------------------------------- |
 | surfaceId              | string              | 是   | 从[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件获取的surfaceId。|
-| region                 | [image.Region](../apis-image-kit/js-apis-image.md#region8)  | 是   | 裁剪的尺寸。                         |
+| region                 | [image.Region](../apis-image-kit/arkts-apis-image-i.md#region8)  | 是   | 裁剪的尺寸。                         |
 
 **返回值：**
 | 类型                             | 说明                  |
@@ -205,7 +205,7 @@ createPixelMapSync(colors: ArrayBuffer, options: image.InitializationOptions): P
 | 参数名  | 类型                                             | 必填 | 说明                                                             |
 | ------- | ------------------------------------------------ | ---- | ---------------------------------------------------------------- |
 | colors  | ArrayBuffer                                      | 是   | BGRA_8888格式的颜色数组。                                        |
-| options | [image.InitializationOptions](js-apis-image.md#initializationoptions8) | 是   | 创建像素的属性，包括透明度，尺寸，缩略值，像素格式和是否可编辑。 |
+| options | [image.InitializationOptions](arkts-apis-image-i.md#initializationoptions8) | 是   | 创建像素的属性，包括透明度，尺寸，缩略值，像素格式和是否可编辑。 |
 
 **返回值：**
 | 类型                             | 说明                  |
@@ -246,7 +246,7 @@ convertFromPixelMap(pixelMap: image.PixelMap): PixelMap
 
 | 参数名  | 类型                                             | 必填 | 说明                                                             |
 | ------- | ------------------------------------------------ | ---- | ---------------------------------------------------------------- |
-| pixelMap | [image.PixelMap](js-apis-image.md#pixelmap7) | 是   | image下的非sendable的PixelMap。 |
+| pixelMap | [image.PixelMap](arkts-apis-image-PixelMap.md) | 是   | image下的非sendable的PixelMap。 |
 
 **返回值：**
 | 类型                             | 说明                  |
@@ -294,7 +294,7 @@ convertToPixelMap(pixelMap: PixelMap): image.PixelMap
 **返回值：**
 | 类型                             | 说明                  |
 | -------------------------------- | --------------------- |
-| [PixelMap](js-apis-image.md#pixelmap7) | 成功同步返回image下的非sendable的PixelMap对象，失败抛出异常。 |
+| [PixelMap](arkts-apis-image-PixelMap.md) | 成功同步返回image下的非sendable的PixelMap对象，失败抛出异常。 |
 
 **错误码：**
 
@@ -332,7 +332,7 @@ sendableImage下的PixelMap支持sendable属性，支持worker线程共享。sen
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
-| 名称              | 类型    | 可读 | 可写 | 说明                       |
+| 名称              | 类型    | 只读 | 可选 | 说明                       |
 | -----------------| ------- | ---- | ---- | -------------------------- |
 | isEditable        | boolean | 是   | 否   | true表示图像像素可被编辑，false表示不可被编辑。 <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | isStrideAlignment | boolean | 是   | 否   | true表示图像内存为DMA内存，false表示非DMA内存。DMA内存的PixelMap会做256字节内存对齐，行末会存在padding区域。 |
@@ -429,7 +429,7 @@ readPixels(area: image.PositionArea): Promise\<void>
 
 | 参数名 | 类型                           | 必填 | 说明                     |
 | ------ | ------------------------------ | ---- | ------------------------ |
-| area   | [image.PositionArea](js-apis-image.md#positionarea7) | 是   | 区域大小，根据区域读取。 |
+| area   | [image.PositionArea](arkts-apis-image-i.md#positionarea7) | 是   | 区域大小，根据区域读取。 |
 
 **返回值：**
 
@@ -474,7 +474,7 @@ readPixelsSync(area: image.PositionArea): void
 
 | 参数名 | 类型                           | 必填 | 说明                     |
 | ------ | ------------------------------ | ---- | ------------------------ |
-| area   | [image.PositionArea](js-apis-image.md#positionarea7) | 是   | 区域大小，根据区域读取。 |
+| area   | [image.PositionArea](arkts-apis-image-i.md#positionarea7) | 是   | 区域大小，根据区域读取。 |
 
 **错误码：**
 
@@ -518,7 +518,7 @@ writePixels(area: image.PositionArea): Promise\<void>
 
 | 参数名 | 类型                           | 必填 | 说明                 |
 | ------ | ------------------------------ | ---- | -------------------- |
-| area   | [image.PositionArea](js-apis-image.md#positionarea7) | 是   | 区域，根据区域写入。 |
+| area   | [image.PositionArea](arkts-apis-image-i.md#positionarea7) | 是   | 区域，根据区域写入。 |
 
 **返回值：**
 
@@ -567,7 +567,7 @@ writePixelsSync(area: image.PositionArea): void
 
 | 参数名 | 类型                           | 必填 | 说明                 |
 | ------ | ------------------------------ | ---- | -------------------- |
-| area   | [image.PositionArea](js-apis-image.md#positionarea7) | 是   | 区域，根据区域写入。 |
+| area   | [image.PositionArea](arkts-apis-image-i.md#positionarea7) | 是   | 区域，根据区域写入。 |
 
 **错误码：**
 
@@ -700,7 +700,7 @@ getImageInfo(): Promise\<image.ImageInfo>
 
 | 类型                              | 说明                                                        |
 | --------------------------------- | ----------------------------------------------------------- |
-| Promise\<[ImageInfo](js-apis-image.md#imageinfo)> | Promise实例，用于异步获取图像像素信息，失败时返回错误信息。 |
+| Promise\<[ImageInfo](arkts-apis-image-i.md#imageinfo)> | Promise实例，用于异步获取图像像素信息，失败时返回错误信息。 |
 
 **示例：**
 
@@ -735,7 +735,7 @@ getImageInfoSync(): image.ImageInfo
 
 | 类型                              | 说明                                                        |
 | --------------------------------- | ----------------------------------------------------------- |
-| [ImageInfo](js-apis-image.md#imageinfo)           | 图像像素信息。                                                |
+| [ImageInfo](arkts-apis-image-i.md#imageinfo)           | 图像像素信息。                                                |
 
 **错误码：**
 
@@ -1306,7 +1306,7 @@ crop(region: image.Region): Promise\<void>
 
 | 参数名 | 类型               | 必填 | 说明        |
 | ------ | ------------------ | ---- | ----------- |
-| region | [Region](../apis-image-kit/js-apis-image.md#region8) | 是   | 裁剪的尺寸。|
+| region | [Region](../apis-image-kit/arkts-apis-image-i.md#region8) | 是   | 裁剪的尺寸。|
 
 **返回值：**
 
@@ -1347,7 +1347,7 @@ cropSync(region: image.Region): void
 
 | 参数名   | 类型                 | 必填 | 说明                          |
 | -------- | -------------------- | ---- | ----------------------------- |
-| region   | [Region](../apis-image-kit/js-apis-image.md#region8)   | 是   | 裁剪的尺寸。                  |
+| region   | [Region](../apis-image-kit/arkts-apis-image-i.md#region8)   | 是   | 裁剪的尺寸。                  |
 
 **错误码：**
 
@@ -1740,7 +1740,7 @@ createImageSource(uri: string): ImageSource
 
 | 参数名 | 类型   | 必填 | 说明                               |
 | ------ | ------ | ---- | ---------------------------------- |
-| uri    | string | 是   | 图片路径，当前仅支持应用沙箱路径。</br>当前支持格式有：.jpg .png .gif .bmp .webp .dng [SVG](./js-apis-image.md#svg标签说明) .ico。 |
+| uri    | string | 是   | 图片路径，当前仅支持应用沙箱路径。</br>当前支持格式有：.jpg .png .gif .bmp .webp .dng [SVG](./arkts-apis-image-svg-tag.md) .ico。 |
 
 **返回值：**
 
@@ -1750,6 +1750,7 @@ createImageSource(uri: string): ImageSource
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { common } from '@kit.AbilityKit';
 
@@ -1783,6 +1784,7 @@ createImageSource(fd: number): ImageSource
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { common } from '@kit.AbilityKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
@@ -1838,8 +1840,8 @@ createImageReceiver(size: image.Size, format: image.ImageFormat, capacity: numbe
 
 | 参数名   | 类型   | 必填 | 说明                   |
 | -------- | ------ | ---- | ---------------------- |
-| size    | [image.Size](./js-apis-image.md#size)  | 是   | 图像的默认大小。       |
-| format   | [image.ImageFormat](./js-apis-image.md#imageformat9) | 是   | 图像格式，取值为image.ImageFormat常量，目前仅支持 ImageFormat:JPEG。             |
+| size    | [image.Size](./arkts-apis-image-i.md#size)  | 是   | 图像的默认大小。       |
+| format   | [image.ImageFormat](./arkts-apis-image-e.md#imageformat9) | 是   | 图像格式，取值为image.ImageFormat常量，目前仅支持 ImageFormat:JPEG。             |
 | capacity | number | 是   | 同时访问的最大图像数。 |
 
 **返回值：**
@@ -1889,7 +1891,7 @@ createPixelMap(options?: image.DecodingOptions): Promise\<PixelMap>
 
 | 参数名  | 类型                                 | 必填 | 说明       |
 | ------- | ------------------------------------ | ---- | ---------- |
-| options | [image.DecodingOptions](./js-apis-image.md#decodingoptions7) | 否   | 解码参数。 |
+| options | [image.DecodingOptions](./arkts-apis-image-i.md#decodingoptions7) | 否   | 解码参数。 |
 
 **返回值：**
 
@@ -1899,6 +1901,7 @@ createPixelMap(options?: image.DecodingOptions): Promise\<PixelMap>
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -1930,6 +1933,7 @@ release(): Promise\<void>
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -1958,7 +1962,7 @@ sendableImageSourceApi.release().then(() => {
 | clipRect | [Region](#region) | 否   | 否   | 要裁剪的图像区域。                                 |
 | size     | [Size](#size)      | 是   | 否   | 图像大小。如果image对象所存储的是相机预览流数据，即YUV图像数据，那么获取到的size中的宽高分别对应YUV图像的宽高； 如果image对象所存储的是相机拍照流数据，即JPEG图像，由于已经是编码后的文件，size中的宽等于JPEG文件大小，高等于1。image对象所存储的数据是预览流还是拍照流，取决于应用将receiver中的surfaceId传给相机的previewOutput还是captureOutput。相机预览与拍照最佳实践请参考[双路预览(ArkTS)](../../media/camera/camera-dual-channel-preview.md)与[拍照实现方案(ArkTS)](../../media/camera/camera-shooting-case.md)。                                         |
 | format   | number             | 是   | 否   | 图像格式，参考[OH_NativeBuffer_Format](../apis-arkgraphics2d/capi-native-buffer-h.md#oh_nativebuffer_format)。 |
-| timestamp<sup>12+</sup> | number         | 是      | 否   | 图像时间戳。时间戳以纳秒为单位，通常是单调递增的。时间戳的具体含义和基准取决于图像的生产者，在相机预览/拍照场景，生产者就是相机。来自不同生产者的图像的时间戳可能有不同的含义和基准，因此可能无法进行比较。如果要获取某张照片的生成时间，可以通过[getImageProperty](js-apis-image.md#getimageproperty11)接口读取相关的EXIF信息。|
+| timestamp<sup>12+</sup> | number         | 是      | 否   | 图像时间戳。时间戳以纳秒为单位，通常是单调递增的。时间戳的具体含义和基准取决于图像的生产者，在相机预览/拍照场景，生产者就是相机。来自不同生产者的图像的时间戳可能有不同的含义和基准，因此可能无法进行比较。如果要获取某张照片的生成时间，可以通过[getImageProperty](arkts-apis-image-ImageSource.md#getimageproperty11)接口读取相关的EXIF信息。|
 
 ### getComponent
 
@@ -1972,13 +1976,13 @@ getComponent(componentType: image.ComponentType): Promise\<image.Component>
 
 | 参数名        | 类型                             | 必填 | 说明             |
 | ------------- | -------------------------------- | ---- | ---------------- |
-| componentType | [image.ComponentType](./js-apis-image.md#componenttype9) | 是   | 图像的组件类型。 |
+| componentType | [image.ComponentType](./arkts-apis-image-e.md#componenttype9) | 是   | 图像的组件类型。 |
 
 **返回值：**
 
 | 类型                              | 说明                              |
 | --------------------------------- | --------------------------------- |
-| Promise<[image.Component](./js-apis-image.md#component9)> | Promise实例，用于异步返回组件缓冲区。 |
+| Promise<[image.Component](./arkts-apis-image-i.md#component9)> | Promise实例，用于异步返回组件缓冲区。 |
 
 **示例：**
 
@@ -2051,9 +2055,9 @@ async function Demo() {
 
 | 名称     | 类型                         | 只读 | 可选 | 说明               |
 | -------- | ---------------------------- | ---- | ---- | ------------------ |
-| size     | [image.Size](./js-apis-image.md#size)                | 是   | 否   | 图片大小。         |
+| size     | [image.Size](./arkts-apis-image-i.md#size)                | 是   | 否   | 图片大小。         |
 | capacity | number                       | 是   | 否   | 同时访问的图像数。 |
-| format   | [image.ImageFormat](./js-apis-image.md#imageformat9) | 是   | 否   | 图像格式。         |
+| format   | [image.ImageFormat](./arkts-apis-image-e.md#imageformat9) | 是   | 否   | 图像格式。         |
 
 ### getReceivingSurfaceId
 

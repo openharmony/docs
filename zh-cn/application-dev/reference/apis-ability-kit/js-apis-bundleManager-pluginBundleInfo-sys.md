@@ -8,6 +8,12 @@
 >
 > 本模块为系统接口。
 
+## 导入模块
+
+```ts
+import { bundleManager } from '@kit.AbilityKit';
+```
+
 ## PluginBundleInfo
 插件信息。
 
@@ -17,14 +23,14 @@
 
 | 名称           | 类型   | 只读 | 可选 | 说明           |
 | -------------- | ------ | ---- | ---- | -------------- |
-| label   | string | 是   | 是   | 插件的名称。   |
-| labelId   | number | 是   | 是   | 插件名称的资源id值。   |
-| icon   | string | 是   | 是   | 插件的图标。   |
-| iconId   | number | 是   | 是   | 插件图标的资源id值。   |
-| pluginBundleName   | string | 是   | 是   | 安装插件的应用包名。   |
-| versionCode   | string | 是   | 是   | 插件的版本号。   |
-| versionName   | string | 是   | 是   | 插件的版本名称。   |
-| pluginModuleInfos   | Array<[PluginModuleInfo](js-apis-bundleManager-pluginBundleInfo-sys.md#pluginmoduleinfo)> | 是   | 是   | 插件的模块信息。   |
+| label   | string | 是   | 否   | 插件的名称。   |
+| labelId   | number | 是   | 否   | 插件名称的资源id值。   |
+| icon   | string | 是   | 否   | 插件的图标。   |
+| iconId   | number | 是   | 否   | 插件图标的资源id值。   |
+| pluginBundleName   | string | 是   | 否   | 安装插件的应用包名。   |
+| versionCode   | string | 是   | 否   | 插件的版本号。   |
+| versionName   | string | 是   | 否   | 插件的版本名称。   |
+| pluginModuleInfos   | Array<[PluginModuleInfo](js-apis-bundleManager-pluginBundleInfo-sys.md#pluginmoduleinfo)> | 是   | 否   | 插件的模块信息。   |
 
 ## PluginModuleInfo
 插件的模块信息。
@@ -35,6 +41,6 @@
 
 | 名称           | 类型   | 只读 | 可选 | 说明           |
 | -------------- | ------ | ---- | ---- | -------------- |
-| moduleName   | string | 是   | 是   |  插件模块的名称。  |
-| descriptionId   | number | 是   | 是   |  插件模块描述的资源id值。  |
-| description   | string | 是   | 是   |  插件模块的描述信息。  |
+| moduleName   | string | 是   | 否   |  插件模块的名称。  |
+| descriptionId   | number | 是   | 否   |  插件模块描述的资源id值。  |
+| description   | string | 是   | 否   |  插件模块的描述信息。  |

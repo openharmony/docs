@@ -112,6 +112,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | [OH_MD_KEY_SQR_FACTOR](#oh_md_key_sqr_factor)     | 描述SQR码控模式的质量参数，值越小，编码输出文件越大，质量越好，值类型为int32_t。该键值是可选的且只用于视频编码。 |
 | [OH_MD_KEY_MAX_BITRATE](#oh_md_key_max_bitrate)     | 描述SQR码控模式的最大码率，单位bps，值类型为int64_t。该键值是可选的且只用于视频编码。 |
 | [OH_MD_KEY_VIDEO_ENCODER_ROI_PARAMS](#oh_md_key_video_encoder_roi_params)    | 描述ROI编码参数，包括ROI区域和deltaQp，值类型为string。该键值是可选的且只用于视频编码。 |
+| [OH_MD_KEY_VIDEO_ENCODER_ENABLE_PTS_BASED_RATECONTROL](#oh_md_key_video_encoder_enable_pts_based_ratecontrol)    | 使能基于显示时间戳(PTS)的码控模式的键，值类型为int32_t，1表示使能，0表示其它情况。该键值是可选的且只用于视频编码，默认值为0。如果使能，则必须在每个视频帧中携带PTS信息，并发送到编码器。在Configure阶段使用。 |
 
 音频专有的键值对：
 
@@ -194,6 +195,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | typedef struct [OH_AVCodecAsyncCallback](_o_h___a_v_codec_async_callback.md) [OH_AVCodecAsyncCallback](#oh_avcodecasynccallback) | OH_AVCodec中所有异步回调函数指针的集合。（API11废弃）| 
 | typedef struct [OH_AVCodecCallback](_o_h___a_v_codec_callback.md) [OH_AVCodecCallback](#oh_avcodeccallback) | OH_AVCodec中所有异步回调函数指针的集合。 | 
 | typedef int32_t(\* [OH_AVDataSourceReadAt](#oh_avdatasourcereadat)) (OH_AVBuffer \*data, int32_t length, int64_t pos) | 函数指针定义，用于提供获取用户自定义媒体数据的能力。  | 
+| typedef int32_t(\* [OH_AVDataSourceReadAtExt](#oh_avdatasourcereadatext)) (OH_AVBuffer \*data, int32_t length, int64_t pos, void *userData) | 函数指针定义，用于提供获取用户自定义媒体数据的能力。回调支持通过userData传递用户自定义数据。  | 
 | typedef struct [OH_AVDataSource](_o_h___a_v_data_source.md) [OH_AVDataSource](#oh_avdatasource) | 用户自定义数据源。  | 
 | typedef enum [OH_MediaType](#oh_mediatype-1) [OH_MediaType](#oh_mediatype) | 媒体类型。 | 
 | typedef enum [OH_AACProfile](#oh_aacprofile-1) [OH_AACProfile](#oh_aacprofile) | AAC档次。 | 
@@ -308,6 +310,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | const char \* [OH_MD_KEY_VIDEO_PIC_WIDTH](#oh_md_key_video_pic_width) | 描述视频帧真实宽度的键，值类型为int32_t。  | 
 | const char \* [OH_MD_KEY_VIDEO_PIC_HEIGHT](#oh_md_key_video_pic_height) | 描述视频帧真实高度的键，值类型为int32_t。  | 
 | const char \* [OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY](#oh_md_key_video_enable_low_latency) | 使能低时延视频编解码的键，值类型为int32_t，1表示使能，0表示其它情况。如果使能，则视频编码器或视频解码器持有的输入和输出数据不会超过编解码器标准所要求的数量。   | 
+| const char \* [OH_MD_KEY_VIDEO_ENCODER_ENABLE_PTS_BASED_RATECONTROL](#oh_md_key_video_encoder_enable_pts_based_ratecontrol) | 使能基于显示时间戳(PTS)的码控模式的键，值类型为int32_t，1表示使能，0表示其它情况。如果使能，则必须在每个视频帧中携带PTS信息，并发送到编码器。 |
 | const char \* [OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE](#oh_md_key_video_encode_bitrate_mode) | 视频编码码率模式，值类型为int32_t，请参见[OH_BitrateMode](#oh_bitratemode-1)。 |
 | const char \* [OH_MD_KEY_QUALITY](#oh_md_key_quality) | 所需编码质量的键。值类型为int32_t，此键仅适用于配置在恒定质量模式下的编码器。 |
 | const char \* [OH_MD_KEY_REQUEST_I_FRAME](#oh_md_key_request_i_frame) | 请求立即编码I帧的键。值类型为int32_t。 |
@@ -477,7 +480,7 @@ typedef void(* OH_AVCodecOnError) (OH_AVCodec *codec, int32_t errorCode, void *u
 | -------- | -------- |
 | codec | OH_AVCodec实例。  | 
 | errorCode | 特定错误代码。在不同场景下返回的错误码不同，详情可见上述描述中的表格。  | 
-| userData | 用户执行回调所依赖的数据。  |
+| userData | 开发者执行回调所依赖的数据。  |
 
 
 ### OH_AVCodecOnNeedInputBuffer
@@ -499,7 +502,7 @@ typedef void(* OH_AVCodecOnNeedInputBuffer) (OH_AVCodec *codec, uint32_t index, 
 | codec | OH_AVCodec实例。  | 
 | index | 与新可用的输入缓冲区相对应的索引。  | 
 | buffer | 新的可用输入缓冲区。  | 
-| userData | 用户执行回调所依赖的数据。  | 
+| userData | 开发者执行回调所依赖的数据。  | 
 
 
 ### OH_AVCodecOnNeedInputData
@@ -525,7 +528,7 @@ typedef void(* OH_AVCodecOnNeedInputData) (OH_AVCodec *codec, uint32_t index, OH
 | codec | OH_AVCodec实例。  | 
 | index | 与新可用的输入缓冲区相对应的索引。  | 
 | data | 新的可用输入缓冲区。  | 
-| userData | 用户执行回调所依赖的数据。  | 
+| userData | 开发者执行回调所依赖的数据。  | 
 
 
 ### OH_AVCodecOnNewOutputBuffer
@@ -547,7 +550,7 @@ typedef void(* OH_AVCodecOnNewOutputBuffer) (OH_AVCodec *codec, uint32_t index, 
 | codec | OH_AVCodec实例。  | 
 | index | 与新输出缓冲区对应的索引。  | 
 | buffer | 包含新输出数据的缓冲区。  | 
-| userData | 用户执行回调所依赖的数据。  | 
+| userData | 开发者执行回调所依赖的数据。  | 
 
 
 ### OH_AVCodecOnNewOutputData
@@ -574,7 +577,7 @@ typedef void(* OH_AVCodecOnNewOutputData) (OH_AVCodec *codec, uint32_t index, OH
 | index | 与新输出缓冲区对应的索引。  | 
 | data | 包含新输出数据的缓冲区。  | 
 | attr | 新输出缓冲区的说明，请参见[OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md)。  | 
-| userData | 用户执行回调所依赖的数据。  | 
+| userData | 开发者执行回调所依赖的数据。  | 
 
 
 ### OH_AVCodecOnStreamChanged
@@ -595,7 +598,7 @@ typedef void(* OH_AVCodecOnStreamChanged) (OH_AVCodec *codec, OH_AVFormat *forma
 | -------- | -------- |
 | codec | OH_AVCodec实例。  |
 | format | 新输出流描述信息。  |
-| userData | 用户执行回调所依赖的数据。  |
+| userData | 开发者执行回调所依赖的数据。  |
 
 
 ### OH_AVCProfile
@@ -643,6 +646,45 @@ typedef int32_t(* OH_AVDataSourceReadAt) (OH_AVBuffer *data, int32_t length, int
 | data | 要填充的缓冲区。  | 
 | length | 要读取的数据长度。  | 
 | pos | 从偏移量位置读取。  | 
+
+**返回：**
+
+读取到缓冲区的数据的实际长度。
+
+
+### OH_AVDataSourceExt
+
+```
+typedef struct OH_AVDataSourceExt OH_AVDataSourceExt
+```
+**描述**
+用户自定义数据源。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 20
+
+
+### OH_AVDataSourceReadAtExt
+
+```
+typedef int32_t (*OH_AVDataSourceReadAtExt)(OH_AVBuffer *data, int32_t length, int64_t pos, void *userData)
+```
+**描述**
+函数指针定义，用于提供获取用户自定义媒体数据的能力。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| data | 要填充的缓冲区。  | 
+| length | 要读取的数据长度。  | 
+| pos | 从偏移量位置读取。  | 
+| userData | 用户自定义数据。  | 
 
 **返回：**
 
@@ -2742,7 +2784,7 @@ const char* OH_MD_KEY_VIDEO_ENCODER_QP_MAX
 **描述**
 描述视频编码器允许的最大量化参数的键，值类型为int32_t。 
 
-在Configure/setparameter阶段使用，或随帧立即生效。
+在Configure/SetParameter阶段使用，或随帧立即生效。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -2757,7 +2799,7 @@ const char* OH_MD_KEY_VIDEO_ENCODER_QP_MIN
 **描述**
 描述视频编码器允许的最小量化参数的键，值类型为int32_t。 
 
-在Configure/setparameter阶段使用，或随帧立即生效。
+在Configure/SetParameter阶段使用，或随帧立即生效。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -3148,6 +3190,24 @@ const char* OH_MD_KEY_VIDEO_ENCODER_ROI_PARAMS
 参数需满足"Top1,Left1-Bottom1,Right1=Offset1;Top2,Left2-Bottom2,Right2=Offset2;"的格式，多个ROI参数之间使用";"连接。
 
 Top、Left、Bottom、Right指定一个ROI区域的上、左、下、右边界，Offset指定deltaQP，“=Offset”可以省略，省略时使用默认值（-3）。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 20
+
+### OH_MD_KEY_VIDEO_ENCODER_ENABLE_PTS_BASED_RATECONTROL
+
+```
+const char* OH_MD_KEY_VIDEO_ENCODER_ENABLE_PTS_BASED_RATECONTROL
+```
+**描述**
+使能基于显示时间戳(PTS)的码控模式的键，值类型为int32_t，1表示使能，0表示其它情况。
+
+该键值是可选的且只用于视频编码，默认值为0。
+
+如果使能，则必须在每个视频帧中携带PTS信息，并发送到编码器。Surface模式下，通过[OH_NativeWindow_NativeWindowHandleOpt](../apis-arkgraphics2d/capi-external-window-h.md#oh_nativewindow_nativewindowhandleopt)接口设置PTS，时间单位为纳秒(ns)；Buffer模式下，通过[OH_AVBuffer_SetBufferAttr](_core.md#oh_avbuffer_setbufferattr)接口设置PTS，时间单位为微秒(us)。
+
+在Configure阶段使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 

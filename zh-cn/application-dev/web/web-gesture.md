@@ -1,4 +1,4 @@
-# Web组件手势事件
+# 使用Web组件的手势与应用交互
 在移动端或支持触控的Web应用中，用户通过触摸屏与页面交互，Web组件支持了常见的手势识别，例如长按、滑动、点击等，以支持丰富的用户交互体验。
 ## ArkWeb手势识别
 ArkWeb接收ArkUI的[触摸事件](../ui/arkts-common-events-touch-screen-event.md#触摸事件)，并识别出手势（触摸事件的分发策略详见[事件分发](../ui/arkts-common-events-distribute.md)）。ArkWeb手势符合W3c标准：Touch Events、UI Events、Pointer Events。
@@ -85,7 +85,7 @@ struct Index {
 ## 常见问题
 
 ### 如何禁用缩放手势
-Web组件提供了接口[zoomAccess](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#zoomaccess)，控制是否可以缩放。网页上有user-scalable属性也会影响缩放。
+Web组件提供了接口[zoomAccess](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#zoomaccess)，控制是否可以缩放。网页上有user-scalable属性也会影响缩放。详见[使用Web组件管理网页缩放](web-scale-zoom.md)。
 ### Web组件中如何通过手势滑动返回上一个Web页面
 
 **解决措施**

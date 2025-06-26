@@ -264,7 +264,7 @@ struct ArticleListView {
     new Article('004','Article 4','Abstract'),
     new Article('005','Article 5','Abstract'),
     new Article ('006','Article 6','Abstract')
-  ]
+  ];
 
   loadMoreArticles() {
     this.articleList.push(new Article('007','New article','Abstract');
@@ -585,7 +585,7 @@ struct Parent {
       }
       .onClick(() => {
         this.simpleList.splice(1, 0, 'new item');
-        console.log(`[onClick]: simpleList is ${JSON.stringify(this.simpleList)}`);
+        console.info(`[onClick]: simpleList is [${this.simpleList.join(', ')}]`);
       })
 
       ForEach(this.simpleList, (item: string) => {
@@ -604,7 +604,7 @@ struct ChildItem {
   @Prop item: string;
 
   aboutToAppear() {
-    console.log(`[aboutToAppear]: item is ${this.item}`);
+    console.info(`[aboutToAppear]: item is ${this.item}`);
   }
 
   build() {

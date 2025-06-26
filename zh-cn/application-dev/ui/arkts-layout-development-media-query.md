@@ -147,6 +147,7 @@ Stage模型下的示例：
 
 
 ```ts
+<!--deprecated_code_no_check-->
 import { mediaquery, window } from '@kit.ArkUI';
 import { common } from '@kit.AbilityKit';
 
@@ -213,6 +214,7 @@ FA模型下的示例：
 
 
 ```ts
+<!--deprecated_code_no_check-->
 import { mediaquery } from '@kit.ArkUI';
 import { featureAbility } from '@kit.AbilityKit';
 

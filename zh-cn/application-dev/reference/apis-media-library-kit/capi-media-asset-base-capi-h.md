@@ -171,6 +171,7 @@ enum MediaLibrary_ImageFileType
 | 枚举项 | 描述 |
 | -- | -- |
 | MEDIA_LIBRARY_IMAGE_JPEG = 1 | JPEG类型。 |
+| MEDIA_LIBRARY_FILE_VIDEO = 3 | MPEG类型。<br>**起始版本：** 19 |
 
 ### MediaLibrary_MediaQuality
 
@@ -258,7 +259,7 @@ typedef void (*OH_MediaLibrary_OnImageDataPrepared)(MediaLibrary_ErrorCode resul
 | [MediaLibrary_RequestId](capi-medialibrary-requestid.md) requestId | 请求的[MediaLibrary_RequestId](capi-medialibrary-requestid.md)。 |
 |  [MediaLibrary_MediaQuality](capi-media-asset-base-capi-h.md#medialibrary_mediaquality) mediaQuality | 请求源的[MediaLibrary_MediaQuality](capi-media-asset-base-capi-h.md#medialibrary_mediaquality)。 |
 |  [MediaLibrary_MediaContentType](capi-media-asset-base-capi-h.md#medialibrary_mediacontenttype) type | 请求源的[MediaLibrary_MediaContentType](capi-media-asset-base-capi-h.md#medialibrary_mediacontenttype)。 |
-| [OH_ImageSourceNative](../apis-image-kit/capi-oh-imagesourcenative.md)* imageSourceNative | 当请求的图像源准备就绪时获取[OH_ImageSourceNative](../apis-image-kit/capi-oh-imagesourcenative.md)。 |
+| [OH_ImageSourceNative](../apis-image-kit/capi-image-nativemodule-oh-imagesourcenative.md)* imageSourceNative | 当请求的图像源准备就绪时获取[OH_ImageSourceNative](../apis-image-kit/capi-image-nativemodule-oh-imagesourcenative.md)。 |
 
 ### OH_MediaLibrary_OnMovingPhotoDataPrepared()
 

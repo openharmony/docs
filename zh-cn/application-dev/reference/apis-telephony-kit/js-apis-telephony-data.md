@@ -1,6 +1,6 @@
 # @ohos.telephony.data (蜂窝数据)
 
-蜂窝数据提供了移动数据管理能力，包括获取默认移动数据的SIM卡、获取蜂窝数据业务的上下行和分组交换域(PS域)的连接状态，以及检查蜂窝数据业务和漫游是否启用等。
+蜂窝数据提供了移动数据管理能力，包括获取默认移动数据的SIM卡、获取蜂窝数据业务的上下行数据流状态、蜂窝数据业务链路连接状态，以及检查蜂窝数据业务和漫游是否启用等。
 
 > **说明：**
 >
@@ -625,6 +625,42 @@ data.setPreferredApn(apnId).then((data: boolean) => {
     console.info(`setPreferredApn success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`setPreferredApn failed, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## data.getActiveApnName<sup>20+</sup>
+
+getActiveApnName(): Promise\<string\>
+
+异步获取默认移动数据SIM卡对应的处于激活状态的数据业务APN（access point name，接入点名称）name信息，若不处于激活状态，返回为空字符串。
+
+**需要权限**：ohos.permission.GET_NETWORK_INFO
+
+**系统能力**：SystemCapability.Telephony.CellularData
+
+**返回值：**
+
+| 类型              | 说明                                         |
+| ------ |--------------------------------------------|
+| Promise\<string\> | Promise对象，返回默认移动数据SIM卡对应的处于激活状态的数据业务APN name信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+
+**示例：**
+
+```ts
+import { data } from '@kit.TelephonyKit';
+
+data.getActiveApnName().then((data: string) => {
+    console.info(`getActiveApnName success, promise: data->${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+    console.error(`getActiveApnName failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 

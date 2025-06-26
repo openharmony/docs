@@ -38,7 +38,7 @@ To implement an embedded application, manually create a WindowExtensionAbility i
    ```ts
     import { WindowExtensionAbility, window } from '@kit.ArkUI';
     import { Want } from '@kit.AbilityKit';
-    import { BusinessError } from '@kit.BasicServiceKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
     export default class WindowExtAbility extends WindowExtensionAbility {
         onWindowReady(window: window.Window) {
@@ -95,7 +95,7 @@ System applications can load the created WindowExtensionAbility through the UIEx
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World'
+  @State message: string = 'Hello World';
 
   build() {
     Row() {

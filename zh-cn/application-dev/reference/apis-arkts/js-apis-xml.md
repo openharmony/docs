@@ -539,7 +539,7 @@ setAttributes(name: string, value: string): void
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200062 | The cumulative length of xml has exceeded the upper limit 100000. |
-| 10200063 | illegal position for xml. |
+| 10200063 | Illegal position for xml. |
 | 10200064 | Cannot be an empty string. |
 
 **示例：**
@@ -616,7 +616,7 @@ setDeclaration(): void
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 10200062 | The cumulative length of xml has exceeded the upper limit 100000. |
-| 10200063 | illegal position for xml. |
+| 10200063 | Illegal position for xml. |
 
 **示例：**
 

@@ -60,12 +60,12 @@ The pattern tags include the following: \<pattern\>
 
 ### Gradients
 
-The gradient tags include the following: \<linearGradient\>, \<racialGradient\>, \<stop\>.
+The gradient tags include the following: \<linearGradient\>, \<radialGradient\>, \<stop\>.
 
 | Element| Description| Unique Attribute|
 | :-------- | :-------- | :-------- |
 | \<linearGradient\> | Linear gradient.| x1, y1, x2, y2|
-| \<racialGradient\> | Radial gradient.| fx, fy, cx, cy, r|
+| \<radialGradient\> | Radial gradient.| fx, fy, cx, cy, r|
 | \<stop\> | Color stop.| offset, stop-color|
 
 ## Static Images

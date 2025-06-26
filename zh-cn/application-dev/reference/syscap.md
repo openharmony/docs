@@ -8,12 +8,14 @@ SysCap，全称SystemCapability，即系统能力，指操作系统中每一个�
 
 ![image-SysCap.png](figures/image-SysCap.png)
 
-开发者可以在[SysCap列表](syscap-list.md)中查询OpenHarmony的能力集。
+<!--Del-->开发者可以在[SysCap列表](syscap-list.md)中查询OpenHarmony的能力集。<!--DelEnd-->
 
 ### 支持能力集，联想能力集与要求能力集
 
 支持能力集，联想能力集与要求能力集都是系统能力的集合。
+
 支持能力集描述的是设备能力，要求能力集描述的是应用能力。若应用A的要求能力集是设备N的支持能力集的子集，则应用A可分发到设备N上安装运行，否则不能分发。
+
 联想能力集是该应用开发时，DevEco Studio可联想的API所在的系统能力集合。
 
 ![image-20220326064913834](figures/image-20220326064913834.png)
@@ -21,6 +23,7 @@ SysCap，全称SystemCapability，即系统能力，指操作系统中每一个�
 ### 设备与支持能力集
 
 每个设备根据其硬件能力，对应不同的支持能力集。
+
 SDK将设备分为两组，典型设备和自定义设备，典型设备的支持能力集由OpenHarmony来定义，自定义设备由设备厂商给出。
 
 ![image-20220326064955505](figures/image-20220326064955505.png)
@@ -33,6 +36,7 @@ SDK向DevEco Studio提供全量API，DevEco Studio识别开发者项目中选择
 
 ## SysCap开发指导
 
+<!--Del-->
 ### PCID获取
 
 PCID，全称Product Compatibility ID，包含当前设备支持的SysCap信息。获取所有设备PCID的认证中心正在建设中，目前需要找对应设备的厂商获取该设备的PCID。
@@ -78,6 +82,9 @@ DevEco Studio会根据创建的工程所支持的设置自动配置联想能力�
 	}
 }
 ```
+<!--DelEnd-->
+
+<!--RP1--><!--RP1End-->
 
 ### 单设备应用开发
 
@@ -168,13 +175,13 @@ try {
 
 ![image-20220326072448840](figures/image-20220326072448840.png)
 
-1. 一套 OpenHarmony 源码由可选和必选部件集组成，不同的部件为对外体现的系统能力不同，即部件与 SysCap 之间映射关系。
+1. 一套操作系统源码由可选和必选部件集组成，不同的部件为对外体现的系统能力不同，即部件与 SysCap 之间映射关系。
 
 2. 发布归一化的SDK，API与SysCap之间存在映射关系。
 
 3. 产品解决方案厂商按硬件能力和产品诉求，可按需拼装部件。
 
-4. 产品配置的部件可以是OpenHarmony的部件，也可以是三方开发的私有部件，由于部件与SysCap间存在映射，所有拼装后即可得到该产品的SysCap集合。
+4. 产品配置的部件可以是系统部件，也可以是三方开发的私有部件，由于部件与SysCap间存在映射，所有拼装后即可得到该产品的SysCap集合。
 
 5. SysCap集编码生成 PCID (Product Compatibility ID， 产品兼容性标识)，应用开发者可将PCID导入IDE解码成SysCap，开发时对设备的SysCap差异做兼容性处理。
 

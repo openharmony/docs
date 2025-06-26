@@ -5,7 +5,7 @@
 > **说明：**
 >
 > - 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> - 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.multimedia.media (媒体服务)](js-apis-media.md)。
+> - 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.multimedia.media (媒体服务)](arkts-apis-media.md)。
 
 ## 导入模块
 
@@ -197,7 +197,7 @@ createParallelSoundPool(maxStreams: number, audioRenderInfo: audio.AudioRenderer
 
 创建音频池实例，通过Promise获取返回值。
 
-使用[createSoundPool](js-apis-media.md#mediacreatesoundpool10)创建的音频池实例，在重复播放相同音频时，会停止之前的播放并重新开始；而使用createParallelSoundPool创建的实例，在重复播放相同音频时，不会停止之前的音频，而是并行播放。
+使用[createSoundPool](arkts-apis-media-f.md#mediacreatesoundpool10)创建的音频池实例，在重复播放相同音频时，会停止之前的播放并重新开始；而使用createParallelSoundPool创建的实例，在重复播放相同音频时，不会停止之前的音频，而是并行播放。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -206,7 +206,7 @@ createParallelSoundPool(maxStreams: number, audioRenderInfo: audio.AudioRenderer
 | 参数名   | 类型                                            | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | maxStreams | number | 是   | soundPool实例的最大播放的流数，设置范围为1-32的正整数。 |
-| audioRenderInfo | [audio.AudioRendererInfo](../apis-audio-kit/js-apis-audio.md#audiorendererinfo8)  | 是   | 音频播放参数信息。 |
+| audioRenderInfo | [audio.AudioRendererInfo](../apis-audio-kit/arkts-apis-audio-i.md#audiorendererinfo8)  | 是   | 音频播放参数信息。 |
 
 **返回值：**
 
@@ -272,8 +272,9 @@ media.createParallelSoundPool(5, audioRendererInfo).then((soundpool_: media.Soun
 | RGB_888        | 5    | 表示RGB_888颜色格式。                 |
 
 ## AVMetadataExtractor<sup>11+</sup>
+
 > **说明：**
-> 元数据获取类，用于从媒体资源中获取元数据。在调用AVMetadataExtractor的方法前，需要先通过[createAVMetadataExtractor()](js-apis-media.md#mediacreateavmetadataextractor11)构建一个AVMetadataExtractor实例。
+> 元数据获取类，用于从媒体资源中获取元数据。在调用AVMetadataExtractor的方法前，需要先通过[createAVMetadataExtractor()](arkts-apis-media-f.md#mediacreateavmetadataextractor11)构建一个AVMetadataExtractor实例。
 
 ### getTimeByFrameIndex<sup>12+</sup>
 
@@ -367,7 +368,7 @@ avMetadataExtractor.getFrameIndexByTime(0).then((index: number) => {
 
 ## AVRecorder<sup>9+</sup>
 
-音视频录制管理类，用于音视频媒体录制。在调用AVRecorder的方法前，需要先通过[createAVRecorder()](js-apis-media.md#mediacreateavrecorder9)构建一个AVRecorder实例。
+音视频录制管理类，用于音视频媒体录制。在调用AVRecorder的方法前，需要先通过[createAVRecorder()](arkts-apis-media-f.md#mediacreateavrecorder9)构建一个AVRecorder实例。
 
 > **说明：**
 >
@@ -379,7 +380,7 @@ isWatermarkSupported(): Promise\<boolean>
 
 检查当前设备录制是否支持硬件数字水印能力。通过Promise获取返回值。
 
-可在[prepare()](js-apis-media.md#prepare9-3)、[start()](js-apis-media.md#start9)、[paused()](js-apis-media.md#pause9)事件成功触发后调用。
+可在[prepare()](arkts-apis-media-AVRecorder.md#prepare9-1)、[start()](arkts-apis-media-AVRecorder.md#start9)、[paused()](arkts-apis-media-AVRecorder.md#pause9)事件成功触发后调用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
@@ -409,7 +410,7 @@ setWatermark(watermark: image.PixelMap, config: WatermarkConfig): Promise\<void>
 
 给AVRecorder设置水印图像。通过Promise获取返回值。
 
-当且仅当[prepare()](js-apis-media.md#prepare9-3)事件成功触发后，且在[start()](js-apis-media.md#start9)之前，才能调用setWatermark方法。
+当且仅当[prepare()](arkts-apis-media-AVRecorder.md#prepare9-1)事件成功触发后，且在[start()](arkts-apis-media-AVRecorder.md#start9)之前，才能调用setWatermark方法。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
@@ -419,7 +420,7 @@ setWatermark(watermark: image.PixelMap, config: WatermarkConfig): Promise\<void>
 
 | 参数名   | 类型                  | 必填 | 说明                         |
 | -------- | -------------------- | ---- | --------------------------- |
-| watermark | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)      | 是   | 图像PixelMap数据。<br>当前支持规格:<br>-当前仅支持pixelformat为RGBA8888。<br>-原图像为8K时->水印图像限制范围3072x288,原图像为4K时->水印图像限制范围1536x144。 |
+| watermark | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)      | 是   | 图像PixelMap数据。<br>当前支持规格:<br>-当前仅支持pixelformat为RGBA8888。<br>-原图像为8K时->水印图像限制范围3072x288,原图像为4K时->水印图像限制范围1536x144。 |
 | config    | [WatermarkConfig](#watermarkconfig13)   | 是   | 水印的相关配置参数。 |
 
 **返回值：**
@@ -458,7 +459,7 @@ setMetadata(metadata: Record\<string, string\>): void
 
 给AVRecorder的录制文件中设置自定义meta数据。
 
-只有当[prepare()](js-apis-media.md#prepare9-3)事件成功触发后，并在调用[stop()](js-apis-media.md#stop9-3)方法之前，才能调用setMetadata方法。
+只有当[prepare()](arkts-apis-media-AVRecorder.md#prepare9-1)事件成功触发后，并在调用[stop()](arkts-apis-media-AVRecorder.md#stop9)方法之前，才能调用setMetadata方法。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
@@ -510,7 +511,7 @@ avRecorder.setMetadata(meta);
 ## VideoRecorder<sup>9+</sup>
 
 > **说明：**
-> AVRecorder<sup>9+</sup>发布后，VideoRecorder停止维护，建议使用[AVRecorder](js-apis-media.md#avrecorder9)替代。
+> AVRecorder<sup>9+</sup>发布后，VideoRecorder停止维护，建议使用[AVRecorder](arkts-apis-media-AVRecorder.md)替代。
 
 视频录制管理类，用于录制视频媒体。在调用VideoRecorder的方法前，需要先通过[createVideoRecorder()](#mediacreatevideorecorder9)构建一个[VideoRecorder](#videorecorder9)实例。
 
@@ -1303,7 +1304,7 @@ videoRecorder.on('error', (error: BusinessError) => { // 设置'error'事件回�
 
 表示视频录制的参数设置。
 
-通过audioSourceType和videoSourceType区分纯视频录制和音视频录制（纯音频录制请使用[AVRecorder](js-apis-media.md#avrecorder9)或[AudioRecorder](js-apis-media.md#audiorecorderdeprecated)）。纯视频录制时，仅需要设置videoSourceType；音视频录制时，audioSourceType和videoSourceType均需要设置。
+通过audioSourceType和videoSourceType区分纯视频录制和音视频录制（纯音频录制请使用[AVRecorder](arkts-apis-media-AVRecorder.md)或[AudioRecorder](arkts-apis-media-AudioRecorder.md)）。纯视频录制时，仅需要设置videoSourceType；音视频录制时，audioSourceType和videoSourceType均需要设置。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -1311,11 +1312,11 @@ videoRecorder.on('error', (error: BusinessError) => { // 设置'error'事件回�
 
 | 名称            | 类型                                           | 必填 | 说明                                                         |
 | --------------- | ---------------------------------------------- | ---- | ------------------------------------------------------------ |
-| audioSourceType | [AudioSourceType](js-apis-media.md#audiosourcetype9)           | 否   | 视频录制的音频源类型，选择音频录制时必填。                      |
-| videoSourceType | [VideoSourceType](js-apis-media.md#videosourcetype9)           | 是   | 视频录制的视频源类型。                                       |
+| audioSourceType | [AudioSourceType](arkts-apis-media-e.md#audiosourcetype9)           | 否   | 视频录制的音频源类型，选择音频录制时必填。                      |
+| videoSourceType | [VideoSourceType](arkts-apis-media-e.md#videosourcetype9)           | 是   | 视频录制的视频源类型。                                       |
 | profile         | [VideoRecorderProfile](#videorecorderprofile9) | 是   | 视频录制的profile。                                          |
 | rotation        | number                                         | 否   | 录制的视频旋转角度，仅支持0，90，180，270，默认值为0。       |
-| location        | [Location](js-apis-media.md#location)                          | 否   | 录制视频的地理位置，默认不记录地理位置信息。                 |
+| location        | [Location](arkts-apis-media-i.md#location)                          | 否   | 录制视频的地理位置，默认不记录地理位置信息。                 |
 | url             | string                                         | 是   | 视频输出URL：fd://xx&nbsp;(fd&nbsp;number)<br/>![](figures/zh-cn_image_url.png) |
 
 ## VideoRecorderProfile<sup>9+</sup>
@@ -1330,11 +1331,11 @@ videoRecorder.on('error', (error: BusinessError) => { // 设置'error'事件回�
 | ---------------- | -------------------------------------------- | ---- | ---------------- |
 | audioBitrate     | number                                       | 否   | 音频编码比特率，选择音频录制时必填。 |
 | audioChannels    | number                                       | 否   | 音频采集声道数，选择音频录制时必填。 |
-| audioCodec       | [CodecMimeType](js-apis-media.md#codecmimetype8)             | 否   | 音频编码格式，选择音频录制时必填。   |
+| audioCodec       | [CodecMimeType](arkts-apis-media-e.md#codecmimetype8)             | 否   | 音频编码格式，选择音频录制时必填。   |
 | audioSampleRate  | number                                       | 否   | 音频采样率，选择音频录制时必填。     |
-| fileFormat       | [ContainerFormatType](js-apis-media.md#containerformattype8) | 是   | 文件的容器格式。 |
+| fileFormat       | [ContainerFormatType](arkts-apis-media-e.md#containerformattype8) | 是   | 文件的容器格式。 |
 | videoBitrate     | number                                       | 是   | 视频编码比特率。 |
-| videoCodec       | [CodecMimeType](js-apis-media.md#codecmimetype8)             | 是   | 视频编码格式。   |
+| videoCodec       | [CodecMimeType](arkts-apis-media-e.md#codecmimetype8)             | 是   | 视频编码格式。   |
 | videoFrameWidth  | number                                       | 是   | 录制视频帧的宽。 |
 | videoFrameHeight | number                                       | 是   | 录制视频帧的高。 |
 | videoFrameRate   | number                                       | 是   | 录制视频帧率。   |

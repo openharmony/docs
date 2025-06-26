@@ -8,16 +8,28 @@ HiCollie provides APIs for detecting service thread stuck and jank events and re
 
 | API                         | Description                             |
 | ------------------------------- | --------------------------------- |
-| OH_HiCollie_Init_StuckDetection | Registers a callback to periodically detect service thread stuck events.           |
-| OH_HiCollie_Init_StuckDetectionWithTimeout | Registers a callback to periodically detect service thread stuck events.  You can set the detection time.|
-| OH_HiCollie_Init_JankDetection | Registers a callback to detect service thread jank events. To monitor service thread jank events, you can implement two callbacks as instrumentation functions, placing them before and after the service thread event.                  |
-| OH_HiCollie_Report | Reports service thread stuck events and generates timeout logs to help locate application timeout events. This API is used together with **OH_HiCollie_Init_StuckDetection()**, which initializes the stuck event detection at first, and then **OH_HiCollie_Report()** reports the stuck event when it occurs.|
+| OH_HiCollie_Init_StuckDetection | Registers a callback to periodically detect service thread stuck events.  <br>By default, the **BUSSINESS_THREAD_BLOCK_3S** event is reported when the thread is blocked for 3s and the **BUSSINESS_THREAD_BLOCK_6S** event is reported when the thread is blocked for 6s.|
+| OH_HiCollie_Init_StuckDetectionWithTimeout | Registers a callback to periodically detect service thread stuck events.  <br>You can set the interval for the stuck event detection. The value range is [3, 15], in seconds.|
+| OH_HiCollie_Init_JankDetection | Registers a callback to detect service thread jank events.<br>To monitor service thread jank events, you can implement two callbacks as instrumentation functions, placing them before and after the service thread event.  |
+| OH_HiCollie_Report | Reports a service thread stuck event and generates logs to help locate application stuck issues.<br>Call **OH_HiCollie_Init_StuckDetection()** or **OH_HiCollie_Init_StuckDetectionWithTimeout()** to initialize the detection task.<br>If the task times out, call **OH_HiCollie_Report()** to report the stuck event based on the service logic.|
 
-The usage of HiCollie:
+For details (such as parameter usage and value ranges), see [HiCollie](../reference/apis-performance-analysis-kit/_hi_collie.md).
 
-- For details (such as parameter usage and value ranges), see [HiCollie](../reference/apis-performance-analysis-kit/_hi_collie.md).
-- The service thread stuck faultlog starts with **appfreeze-** and is generated in **Device/data/log/faultlog/faultlogger/**. The log files are named in the format of **appfreeze-application bundle name-application UID-time (seconds)**. For details, see [appfreeze Log Analysis](./appfreeze-guidelines.md#appfreeze-log-analysis).
-- For details about the specifications of service thread jank event logs, see [Main Thread Jank Event Specifications](./hiappevent-watcher-mainthreadjank-events.md#main-thread-jank-event-specifications).
+### Detection Principles
+
+1. For details about the specifications of the service thread jank event, see [Default Main Thread Jank Event Time Specifications](./hiappevent-watcher-mainthreadjank-events.md#default-main-thread-jank-event-time-specifications).
+
+2. Service thread stuck events:
+
+- Principles of **OH_HiCollie_Init_StuckDetection**: The watchdog thread of the application periodically performs activation detection on service threads. If the activation detection is not executed within 3 seconds, a **BUSSINESS_THREAD_BLOCK_3S** warning event is reported. If the activation detection is not executed within 6 seconds, a **BUSSINESS_THREAD_BLOCK_6S** stuck event is reported. The two events constitute AppFreeze fault logs.
+
+- Principles of **OH_HiCollie_Init_StuckDetectionWithTimeout**: The watchdog thread of the application periodically performs activation detection on service threads. If the activation detection is not executed within the time specified by **stuckTimeout**, the **BUSSINESS_THREAD_BLOCK_3S** warning event is reported. If the activation detection is not executed within the time specified by **stuckTimeout** x 2, the **BUSSINESS_THREAD_BLOCK_6S** stuck event is reported. The two events constitute AppFreeze fault logs.
+
+### Log Specifications
+
+1. The fault log file of the service thread stuck event starts with **appfreeze-** and is generated in **Device/data/log/faultlog/faultlogger/**. The log files are named in the format of **appfreeze-application bundle name-application UID-time (seconds)**. For details, see [AppFreeze Log Analysis](./appfreeze-guidelines.md#appfreeze-log-analysis).
+
+2. For details about the specifications of the service thread stuck event, see [Log Specifications of the Main Thread Jank Event](./hiappevent-watcher-mainthreadjank-events.md#log-specifications-of-the-main-thread-jank-event).
 
 ## How to Develop
 
@@ -45,7 +57,7 @@ The following describes how to add a button in the application and click the but
 2. In the **CMakeLists.txt** file, add the source file and dynamic libraries.
 
    ```cmake
-   # Add libhilog_ndk.z.so (log output).
+   #Add libhilog_ndk.z.so (log output).
    target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so libohhicollie.so)
    ```
 

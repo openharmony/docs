@@ -20,12 +20,12 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [Asset_Blob](capi-asset-blob.md) | Asset_Blob | 二进制数组类型，即不定长的字节数组。 |
-| [Asset_Value](capi-asset-value.md) | Asset_Value | 关键资产属性内容。 |
-| [Asset_Attr](capi-asset-attr.md) | Asset_Attr | 关键资产属性。 |
-| [Asset_Result](capi-asset-result.md) | Asset_Result | 关键资产查询结果，用于定义一条关键资产。 |
-| [Asset_ResultSet](capi-asset-resultset.md) | Asset_ResultSet | 关键资产查询结果集合，用于定义多条关键资产。 |
-| [Asset_SyncResult](capi-asset-syncresult.md) | Asset_SyncResult | 关键资产同步结果。 |
+| [Asset_Blob](capi-assettype-asset-blob.md) | Asset_Blob | 二进制数组类型，即不定长的字节数组。 |
+| [Asset_Value](capi-assettype-asset-value.md) | Asset_Value | 关键资产属性内容。 |
+| [Asset_Attr](capi-assettype-asset-attr.md) | Asset_Attr | 关键资产属性。 |
+| [Asset_Result](capi-assettype-asset-result.md) | Asset_Result | 关键资产查询结果，用于定义一条关键资产。 |
+| [Asset_ResultSet](capi-assettype-asset-resultset.md) | Asset_ResultSet | 关键资产查询结果集合，用于定义多条关键资产。 |
+| [Asset_SyncResult](capi-assettype-asset-syncresult.md) | Asset_SyncResult | 关键资产同步结果。 |
 
 ### 枚举
 

@@ -84,6 +84,7 @@ class BufferQueue {
     if (this.mutex.lock()) {
       if (this.queue.empty()) {
         res = 1;
+        return res;
       }
       let num: number = this.queue.pop(value);
       this.mutex.unlock();
@@ -194,7 +195,7 @@ struct Index {
   }
 }
 ```
-<!-- @[actor_model](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/MultithreadedConcurrency/MultiThreadConcurrencyOverview/entry/src/main/ets/pages/Index.ets) -->
+<!-- @[actor_model](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/MultiThreadConcurrencyOverview/entry/src/main/ets/pages/Index.ets) -->
 
 也可以等待生产者完成所有生产任务，通过序列化通信将结果发送给UI线程。UI线程接收完毕后，由消费者统一消费结果。
 

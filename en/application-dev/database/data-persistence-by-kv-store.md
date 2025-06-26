@@ -21,15 +21,15 @@ The key-value (KV) database stores data in the form of KV pairs. You can use KV 
 
 The following table lists the APIs used for KV data persistence. Most of the APIs are executed asynchronously, using a callback or promise to return the result. The following table uses the callback-based APIs as an example. For more information about the APIs, see [Distributed KV Store](../reference/apis-arkdata/js-apis-distributedKVStore.md).
 
-| API| Description| 
+| API| Description|
 | -------- | -------- |
-| createKVManager(config: KVManagerConfig): KVManager | Creates a **KvManager** instance to manage database objects.| 
-| getKVStore&lt;T&gt;(storeId: string, options: Options, callback: AsyncCallback&lt;T&gt;): void | Obtains a KV store of the specified type.| 
-| put(key: string, value: Uint8Array \| string \| number \| boolean, callback: AsyncCallback&lt;void&gt;): void | Adds a KV pair of the specified type to this KV store.| 
-| get(key: string, callback: AsyncCallback\<boolean \| string \| number \| Uint8Array>): void | Obtains the value of the specified key.| 
-| delete(key: string, callback: AsyncCallback&lt;void&gt;): void | Deletes a KV pair based on the specified key.| 
-| closeKVStore(appId: string, storeId: string, callback: AsyncCallback&lt;void&gt;): void | Closes the distributed KV store of the given **storeId**.| 
-| deleteKVStore(appId: string, storeId: string, callback: AsyncCallback&lt;void&gt;): void | Deletes the distributed KV store of the given **storeId**.| 
+| createKVManager(config: KVManagerConfig): KVManager | Creates a **KvManager** instance to manage database objects.|
+| getKVStore&lt;T&gt;(storeId: string, options: Options, callback: AsyncCallback&lt;T&gt;): void | Obtains a KV store of the specified type.|
+| put(key: string, value: Uint8Array \| string \| number \| boolean, callback: AsyncCallback&lt;void&gt;): void | Adds a KV pair of the specified type to this KV store.|
+| get(key: string, callback: AsyncCallback\<boolean \| string \| number \| Uint8Array>): void | Obtains the value of the specified key.|
+| delete(key: string, callback: AsyncCallback&lt;void&gt;): void | Deletes a KV pair based on the specified key.|
+| closeKVStore(appId: string, storeId: string, callback: AsyncCallback&lt;void&gt;): void | Closes the distributed KV store of the given **storeId**.|
+| deleteKVStore(appId: string, storeId: string, callback: AsyncCallback&lt;void&gt;): void | Deletes the distributed KV store of the given **storeId**.|
 
 
 ## How to Develop
@@ -165,7 +165,7 @@ The following table lists the APIs used for KV data persistence. Most of the API
 
    > **NOTE**
    >
-   > The **put()** method adds a KV pair if the specified key does not exists and changes the value if the the specified key already exists.
+   > The **put()** method adds a KV pair if the specified key does not exists and changes the value if the specified key already exists.
 
 4. Call **get()** to obtain the value of a key. <br>Example:
 

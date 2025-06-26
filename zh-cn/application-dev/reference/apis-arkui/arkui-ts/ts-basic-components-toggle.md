@@ -28,6 +28,8 @@ Toggle(options: ToggleOptions)
 
 ## ToggleOptions<sup>18+</sup>对象说明
 
+Toggle的信息。
+
 **卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
@@ -40,6 +42,8 @@ Toggle(options: ToggleOptions)
 | isOn<sup>8+</sup> | boolean                           | 否   | 开关是否打开，值为true表示打开，值为false表示关闭。<br/>默认值：false<br />该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。<br />该属性支持[!!](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## ToggleType枚举说明
+
+Toggle的样式。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -126,6 +130,8 @@ contentModifier(modifier: ContentModifier\<ToggleConfiguration>)
 | modifier  | [ContentModifier\<ToggleConfiguration>](#toggleconfiguration12对象说明) | 是   | 在Toggle组件上，定制内容区的方法。<br/>modifier：内容修改器，开发者需要自定义class实现ContentModifier接口。 |
 
 ## SwitchStyle<sup>12+</sup>对象说明
+
+Switch类型的样式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

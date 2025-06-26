@@ -47,7 +47,7 @@ Defines the OpenHarmony Universal KeyStore (HUKS) capabilities, including key ma
 ### OH_Huks_AbortSession()
 
 ```
-struct OH_Huks_Result OH_Huks_AbortSession (const struct OH_Huks_Blob * handle, const struct OH_Huks_ParamSet * paramSet )
+struct OH_Huks_Result OH_Huks_AbortSession(const struct OH_Huks_Blob *handle, const struct OH_Huks_ParamSet *paramSet)
 ```
 **Description**
 Aborts a key session.
@@ -77,7 +77,7 @@ Returns [OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode) if the operation is
 ### OH_Huks_AnonAttestKeyItem()
 
 ```
-struct OH_Huks_Result OH_Huks_AnonAttestKeyItem (const struct OH_Huks_Blob * keyAlias, const struct OH_Huks_ParamSet * paramSet, struct OH_Huks_CertChain * certChain )
+struct OH_Huks_Result OH_Huks_AnonAttestKeyItem(const struct OH_Huks_Blob *keyAlias, const struct OH_Huks_ParamSet *paramSet, struct OH_Huks_CertChain *certChain)
 ```
 **Description**
 Obtains the certificate chain of a key.
@@ -106,7 +106,7 @@ This function involves time-consuming network operation. The caller can obtain t
 ### OH_Huks_AttestKeyItem()
 
 ```
-struct OH_Huks_Result OH_Huks_AttestKeyItem (const struct OH_Huks_Blob * keyAlias, const struct OH_Huks_ParamSet * paramSet, struct OH_Huks_CertChain * certChain )
+struct OH_Huks_Result OH_Huks_AttestKeyItem(const struct OH_Huks_Blob *keyAlias, const struct OH_Huks_ParamSet *paramSet, struct OH_Huks_CertChain *certChain)
 ```
 
 **Description**
@@ -133,7 +133,7 @@ Returns [OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode) if the operation is
 ### OH_Huks_DeleteKeyItem()
 
 ```
-struct OH_Huks_Result OH_Huks_DeleteKeyItem (const struct OH_Huks_Blob * keyAlias, const struct OH_Huks_ParamSet * paramSet )
+struct OH_Huks_Result OH_Huks_DeleteKeyItem(const struct OH_Huks_Blob *keyAlias, const struct OH_Huks_ParamSet *paramSet)
 ```
 **Description**
 Deletes a key.
@@ -145,7 +145,7 @@ Deletes a key.
 | Name| Description| 
 | -------- | -------- |
 | keyAlias | Pointer to the alias of the key to delete. It must be the same as the alias used for generating the key. | 
-| paramSet | Pointer to the properties of the key to delete. If this parameter is not specified, the key of the [OH_HUKS_AUTH_STORAGE_LEVEL_CE](_huks_type_api.md#OH_Huks_AuthStorageLevel) level is deleted by default.| 
+| paramSet | Pointer to the properties of the key to delete. If this parameter is not specified, the key of the [OH_HUKS_AUTH_STORAGE_LEVEL_CE](_huks_type_api.md#oh_huks_authstoragelevel) level is deleted by default.| 
 
 **Returns**
 
@@ -155,7 +155,7 @@ Returns [OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode) if the operation is
 ### OH_Huks_ExportPublicKeyItem()
 
 ```
-struct OH_Huks_Result OH_Huks_ExportPublicKeyItem (const struct OH_Huks_Blob * keyAlias, const struct OH_Huks_ParamSet * paramSet, struct OH_Huks_Blob * key )
+struct OH_Huks_Result OH_Huks_ExportPublicKeyItem(const struct OH_Huks_Blob *keyAlias, const struct OH_Huks_ParamSet *paramSet, struct OH_Huks_Blob *key)
 ```
 **Description**
 Exports a public key.
@@ -178,7 +178,7 @@ Returns [OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode) if the operation is
 ### OH_Huks_FinishSession()
 
 ```
-struct OH_Huks_Result OH_Huks_FinishSession (const struct OH_Huks_Blob * handle, const struct OH_Huks_ParamSet * paramSet, const struct OH_Huks_Blob * inData, struct OH_Huks_Blob * outData )
+struct OH_Huks_Result OH_Huks_FinishSession(const struct OH_Huks_Blob *handle, const struct OH_Huks_ParamSet *paramSet, const struct OH_Huks_Blob *inData, struct OH_Huks_Blob *outData)
 ```
 **Description**
 Finishes a key session.
@@ -210,7 +210,7 @@ Returns [OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode) if the operation is
 ### OH_Huks_GenerateKeyItem()
 
 ```
-struct OH_Huks_Result OH_Huks_GenerateKeyItem (const struct OH_Huks_Blob * keyAlias, const struct OH_Huks_ParamSet * paramSetIn, struct OH_Huks_ParamSet * paramSetOut )
+struct OH_Huks_Result OH_Huks_GenerateKeyItem(const struct OH_Huks_Blob *keyAlias, const struct OH_Huks_ParamSet *paramSetIn, struct OH_Huks_ParamSet *paramSetOut)
 ```
 **Description**
 Generates a key.
@@ -233,7 +233,7 @@ Returns [OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode) if the operation is
 ### OH_Huks_GetKeyItemParamSet()
 
 ```
-struct OH_Huks_Result OH_Huks_GetKeyItemParamSet (const struct OH_Huks_Blob * keyAlias, const struct OH_Huks_ParamSet * paramSetIn, struct OH_Huks_ParamSet * paramSetOut )
+struct OH_Huks_Result OH_Huks_GetKeyItemParamSet(const struct OH_Huks_Blob *keyAlias, const struct OH_Huks_ParamSet *paramSetIn, struct OH_Huks_ParamSet *paramSetOut)
 ```
 **Description**
 Obtains the properties of a key.
@@ -277,7 +277,7 @@ Returns [OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode) if the operation is
 ### OH_Huks_ImportKeyItem()
 
 ```
-struct OH_Huks_Result OH_Huks_ImportKeyItem (const struct OH_Huks_Blob * keyAlias, const struct OH_Huks_ParamSet * paramSet, const struct OH_Huks_Blob * key )
+struct OH_Huks_Result OH_Huks_ImportKeyItem(const struct OH_Huks_Blob *keyAlias, const struct OH_Huks_ParamSet *paramSet, const struct OH_Huks_Blob *key)
 ```
 **Description**
 Imports a key in plaintext.
@@ -300,7 +300,7 @@ Returns [OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode) if the operation is
 ### OH_Huks_ImportWrappedKeyItem()
 
 ```
-struct OH_Huks_Result OH_Huks_ImportWrappedKeyItem (const struct OH_Huks_Blob * keyAlias, const struct OH_Huks_Blob * wrappingKeyAlias, const struct OH_Huks_ParamSet * paramSet, const struct OH_Huks_Blob * wrappedKeyData )
+struct OH_Huks_Result OH_Huks_ImportWrappedKeyItem(const struct OH_Huks_Blob *keyAlias, const struct OH_Huks_Blob *wrappingKeyAlias, const struct OH_Huks_ParamSet *paramSet, const struct OH_Huks_Blob *wrappedKeyData)
 ```
 **Description**
 Imports a key in ciphertext.
@@ -324,7 +324,7 @@ Returns [OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode) if the operation is
 ### OH_Huks_InitSession()
 
 ```
-struct OH_Huks_Result OH_Huks_InitSession (const struct OH_Huks_Blob * keyAlias, const struct OH_Huks_ParamSet * paramSet, struct OH_Huks_Blob * handle, struct OH_Huks_Blob * token )
+struct OH_Huks_Result OH_Huks_InitSession(const struct OH_Huks_Blob *keyAlias, const struct OH_Huks_ParamSet *paramSet, struct OH_Huks_Blob *handle, struct OH_Huks_Blob *token)
 ```
 **Description**
 Initializes a key session. This function returns a handle (mandatory) and a challenge value (optional).
@@ -356,7 +356,7 @@ Returns [OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode) if the operation is
 ### OH_Huks_IsKeyItemExist()
 
 ```
-struct OH_Huks_Result OH_Huks_IsKeyItemExist (const struct OH_Huks_Blob * keyAlias, const struct OH_Huks_ParamSet * paramSet )
+struct OH_Huks_Result OH_Huks_IsKeyItemExist(const struct OH_Huks_Blob *keyAlias, const struct OH_Huks_ParamSet *paramSet)
 ```
 **Description**
 Checks whether a key exists.
@@ -381,7 +381,7 @@ Returns other errors in other cases.
 ### OH_Huks_ListAliases()
 
 ```
-struct OH_Huks_Result OH_Huks_ListAliases (const struct OH_Huks_ParamSet * paramSet, struct OH_Huks_KeyAliasSet ** outData )
+struct OH_Huks_Result OH_Huks_ListAliases(const struct OH_Huks_ParamSet *paramSet, struct OH_Huks_KeyAliasSet **outData)
 ```
 **Description**
 Lists key aliases.
@@ -403,7 +403,7 @@ Returns [OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode) if the operation is
 ### OH_Huks_UpdateSession()
 
 ```
-struct OH_Huks_Result OH_Huks_UpdateSession (const struct OH_Huks_Blob * handle, const struct OH_Huks_ParamSet * paramSet, const struct OH_Huks_Blob * inData, struct OH_Huks_Blob * outData )
+struct OH_Huks_Result OH_Huks_UpdateSession(const struct OH_Huks_Blob *handle, const struct OH_Huks_ParamSet *paramSet, const struct OH_Huks_Blob *inData, struct OH_Huks_Blob *outData)
 ```
 **Description**
 Adds and processes data by segment for a key operation, and outputs the processed data.

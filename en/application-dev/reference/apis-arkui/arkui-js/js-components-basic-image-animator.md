@@ -118,61 +118,61 @@ export default {
   data: {
     frames: [
       {
-        src: "/common/asserts/heart78.png",
+        src: "/common/assets/heart78.png",
       },
       {
-        src: "/common/asserts/heart79.png",
+        src: "/common/assets/heart79.png",
       },
       {
-        src: "/common/asserts/heart80.png",
+        src: "/common/assets/heart80.png",
       },
       {
-        src: "/common/asserts/heart81.png",
+        src: "/common/assets/heart81.png",
       },
       {
-        src: "/common/asserts/heart82.png",
+        src: "/common/assets/heart82.png",
       },
       {
-        src: "/common/asserts/heart83.png",
+        src: "/common/assets/heart83.png",
       },
       {
-        src: "/common/asserts/heart84.png",
+        src: "/common/assets/heart84.png",
       },
       {
-        src: "/common/asserts/heart85.png",
+        src: "/common/assets/heart85.png",
       },
       {
-        src: "/common/asserts/heart86.png",
+        src: "/common/assets/heart86.png",
       },
       {
-        src: "/common/asserts/heart87.png",
+        src: "/common/assets/heart87.png",
       },
       {
-        src: "/common/asserts/heart88.png",
+        src: "/common/assets/heart88.png",
       },
       {
-        src: "/common/asserts/heart89.png",
+        src: "/common/assets/heart89.png",
       },
       {
-        src: "/common/asserts/heart90.png",
+        src: "/common/assets/heart90.png",
       },
       {
-        src: "/common/asserts/heart91.png",
+        src: "/common/assets/heart91.png",
       },
       {
-        src: "/common/asserts/heart92.png",
+        src: "/common/assets/heart92.png",
       },
       {
-        src: "/common/asserts/heart93.png",
+        src: "/common/assets/heart93.png",
       },
       {
-        src: "/common/asserts/heart94.png",
+        src: "/common/assets/heart94.png",
       },
       {
-        src: "/common/asserts/heart95.png",
+        src: "/common/assets/heart95.png",
       },
       {
-        src: "/common/asserts/heart96.png",
+        src: "/common/assets/heart96.png",
       },
     ],
   },

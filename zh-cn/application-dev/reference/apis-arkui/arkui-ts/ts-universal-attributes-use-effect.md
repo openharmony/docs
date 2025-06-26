@@ -9,7 +9,7 @@
 
 ## useEffect
 
-useEffect(value: boolean)
+useEffect(value: boolean): T
 
 用于对背景模糊等特效进行绘制合并。
 
@@ -23,9 +23,15 @@ useEffect(value: boolean)
 | -------- | -------- | -------- | -------- |
 | value | boolean | 是 | 控制组件是否继承EffectComponent组件的特效属性参数，从而合并绘制特效。<br/>useEffect为true时子组件继承EffectComponent组件的特效属性参数，为false时子组件不继承EffectComponent组件的特效属性参数。<br/>默认值：false|
 
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
+
 ## useEffect<sup>14+</sup>
 
-useEffect(useEffect: boolean, effectType: EffectType)
+useEffect(useEffect: boolean, effectType: EffectType): T
 
 用于设置组件是否应用<!--Del-->父级[EffectComponent](ts-container-effectcomponent-sys.md)或<!--DelEnd-->窗口定义的效果模板。
 
@@ -40,9 +46,15 @@ useEffect(useEffect: boolean, effectType: EffectType)
 | useEffect  | boolean                                                      | 是   | 控制组件是否应用<!--Del-->父级EffectComponent或<!--DelEnd-->窗口定义的效果模板。<br/>useEffect为true时表示应用<!--Del-->父级EffectComponent或<!--DelEnd-->窗口定义的效果模板。<br/>默认值：false |
 | effectType | [EffectType](ts-universal-attributes-use-effect.md#effecttype14) | 是   | 设置组件应用<!--Del-->父级EffectComponent或<!--DelEnd-->窗口定义的效果模板。<br/>默认值：EffectType.DEFAULT |
 
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
+
 ## useEffect<sup>18+</sup>
 
-useEffect(useEffect: Optional\<boolean>, effectType?: EffectType)
+useEffect(useEffect: Optional\<boolean>, effectType?: EffectType): T
 
 用于设置组件是否应用<!--Del-->父级[EffectComponent](ts-container-effectcomponent-sys.md)或<!--DelEnd-->窗口定义的效果模板。与[useEffect<sup>14+</sup>](#useeffect)相比，useEffect参数新增了对undefined类型的支持。
 
@@ -56,6 +68,12 @@ useEffect(useEffect: Optional\<boolean>, effectType?: EffectType)
 | -------- | -------- | -------- | -------- |
 | useEffect | Optional\<boolean> | 是 | 控制组件是否应用<!--Del-->父级EffectComponent或<!--DelEnd-->窗口定义的效果模板。<br/>useEffect为true时表示应用<!--Del-->父级EffectComponent或<!--DelEnd-->窗口定义的效果模板。<br/>默认值：false<br/>当useEffect的值为undefined时，维持之前取值。 |
 | effectType | [EffectType](ts-universal-attributes-use-effect.md#effecttype14) | 否 | 设置组件应用<!--Del-->父级EffectComponent或<!--DelEnd-->窗口定义的效果模板。<br/>默认值：EffectType.DEFAULT|
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
 
 ## EffectType<sup>14+</sup>
 

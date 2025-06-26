@@ -12,6 +12,7 @@
      console.info("子线程任务已执行完，共加载图片: ", data);
    }
    ```
+   <!-- @[receive_task_message](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationScenario/entry/src/main/ets/managers/TaskSendDataUsage.ets) -->
 
 2. 然后，在需要执行的Task中，添加sendData()接口将消息发送给宿主线程。
 
@@ -27,6 +28,7 @@
      }
    }
    ```
+   <!-- @[implement_child_thread_task](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationScenario/entry/src/main/ets/managers/IconItemSource.ets) -->
 
    ```ts
    // TaskSendDataUsage.ets
@@ -53,6 +55,7 @@
      return iconItemSourceList;
    }
    ```
+   <!-- @[implement_child_thread_task](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationScenario/entry/src/main/ets/managers/TaskSendDataUsage.ets) -->
 
 3. 最后，在宿主线程通过onReceiveData()接口接收消息。
    这样宿主线程就可以通过notice()接口接收到Task发送的数据。
@@ -86,3 +89,4 @@
      }
    }
    ```
+   <!-- @[receive_task_data](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationScenario/entry/src/main/ets/managers/TaskSendDataUsage.ets) -->

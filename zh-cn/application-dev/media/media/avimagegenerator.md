@@ -6,9 +6,10 @@
 
 ## 开发步骤及注意事项
 
-详细的API说明请参考[AVImageGenerator API参考](../../reference/apis-media-kit/js-apis-media.md#avimagegenerator12)。
+详细的API说明请参考[AVImageGenerator API参考](../../reference/apis-media-kit/arkts-apis-media-AVImageGenerator.md)。
 
 1. 使用createAVImageGenerator()创建实例。
+
    ```ts
    import { media } from '@kit.MediaKit';
    let avImageGenerator: media.AVImageGenerator = await media.createAVImageGenerator();
@@ -22,7 +23,7 @@
    >
    > - 也可以使用应用沙箱路径访问对应资源（必须确认资源文件可用），参考[获取应用文件路径](../../application-models/application-context-stage.md#获取应用文件路径)。应用沙箱的介绍及如何向应用沙箱推送文件，请参考[文件管理](../../file-management/app-sandbox-directory.md)。
    >
-   > - 不同AVImageGenerator或者[AVMetadataExtractor](../../reference/apis-media-kit/js-apis-media.md#avmetadataextractor11)，如果需要操作同一资源，需要多次打开文件描述符，不要共用同一文件描述符。
+   > - 不同AVImageGenerator或者[AVMetadataExtractor](../../reference/apis-media-kit/arkts-apis-media-AVMetadataExtractor.md)，如果需要操作同一资源，需要多次打开文件描述符，不要共用同一文件描述符。
 
    ```ts
    import { common } from '@kit.AbilityKit';

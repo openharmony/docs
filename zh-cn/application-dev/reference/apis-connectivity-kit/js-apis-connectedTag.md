@@ -100,7 +100,7 @@ readNdefTag(): Promise&lt;string&gt;
 
 > **说明：**
 >
-> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用[connectedTag.read](#connectedtagread9)替代。
+> 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用[connectedTag.read](#connectedtagread9)替代。
 
 **需要权限**：ohos.permission.NFC_TAG
 
@@ -172,7 +172,7 @@ readNdefTag(callback: AsyncCallback&lt;string&gt;): void
 
 > **说明：**
 >
-> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用[connectedTag.read](#connectedtagread9)替代。
+> 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用[connectedTag.read](#connectedtagread9)替代。
 
 **需要权限**：ohos.permission.NFC_TAG
 
@@ -246,7 +246,7 @@ writeNdefTag(data: string): Promise&lt;void&gt;
 
 > **说明：**
 >
-> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用[connectedTag.write](#connectedtagwrite9)替代。
+> 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用[connectedTag.write](#connectedtagwrite9)替代。
 
 **需要权限**：ohos.permission.NFC_TAG
 
@@ -333,7 +333,7 @@ writeNdefTag(data: string, callback: AsyncCallback&lt;void&gt;): void
 
 > **说明：**
 >
-> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用[connectedTag.write](#connectedtagwrite9)替代。
+> 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用[connectedTag.write](#connectedtagwrite9)替代。
 
 **需要权限**：ohos.permission.NFC_TAG
 

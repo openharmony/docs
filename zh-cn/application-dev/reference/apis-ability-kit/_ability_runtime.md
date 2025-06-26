@@ -29,7 +29,7 @@
 | [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) {<br>    ABILITY_RUNTIME_ERROR_CODE_NO_ERROR = 0,<br>    ABILITY_RUNTIME_ERROR_CODE_PERMISSION_DENIED = 201,<br>    ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID = 401,<br>    ABILITY_RUNTIME_ERROR_CODE_NOT_SUPPORTED = 801,<br>    ABILITY_RUNTIME_ERROR_CODE_NO_SUCH_ABILITY = 16000001,<br>    ABILITY_RUNTIME_ERROR_CODE_INCORRECT_ABILITY_TYPE = 16000002,<br>    ABILITY_RUNTIME_ERROR_CODE_CROWDTEST_EXPIRED = 16000008,<br>    ABILITY_RUNTIME_ERROR_CODE_WUKONG_MODE = 16000009,<br>    ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST = 16000011,<br>    ABILITY_RUNTIME_ERROR_CODE_CONTROLLED = 16000012,<br>    ABILITY_RUNTIME_ERROR_CODE_EDM_CONTROLLED = 16000013,<br>    ABILITY_RUNTIME_ERROR_CODE_CROSS_APP = 16000018,<br>    ABILITY_RUNTIME_ERROR_CODE_INTERNAL = 16000050,<br>    ABILITY_RUNTIME_ERROR_CODE_NOT_TOP_ABILITY = 16000053,<br>    ABILITY_RUNTIME_ERROR_VISIBILITY_SETTING_DISABLED = 16000067,<br>    ABILITY_RUNTIME_ERROR_CODE_MULTI_APP_NOT_SUPPORTED = 16000072,<br>    ABILITY_RUNTIME_ERROR_CODE_INVALID_APP_INSTANCE_KEY = 16000076,<br>    ABILITY_RUNTIME_ERROR_CODE_UPPER_LIMIT_REACHED = 16000077,<br>    ABILITY_RUNTIME_ERROR_MULTI_INSTANCE_NOT_SUPPORTED = 16000078,<br>    ABILITY_RUNTIME_ERROR_CODE_APP_INSTANCE_KEY_NOT_SUPPORTED = 16000079<br/>} | 定义元能力模块错误码。 |
 | [AbilityRuntime_AreaMode](#abilityruntime_areamode) {<br/>    ABILITY_RUNTIME_AREA_MODE_EL1 = 0,<br/>    ABILITY_RUNTIME_AREA_MODE_EL2 = 1,<br/>    ABILITY_RUNTIME_AREA_MODE_EL3 = 2,<br/>    ABILITY_RUNTIME_AREA_MODE_EL4 = 3,<br/>    ABILITY_RUNTIME_AREA_MODE_EL5 = 4<br/>} | 定义数据加密等级。     |
 | [AbilityRuntime_StartVisibility](#abilityruntime_startvisibility) {<br/>    ABILITY_RUNTIME_HIDE_UPON_START = 0,<br/>    ABILITY_RUNTIME_SHOW_UPON_START = 1<br/>} | 定义启动Ability时的窗口和dock栏图标显示模式。     |
-| [AbilityRuntime_WindowMode](#abilityruntime_supportedwindowmode) {<br/>    ABILITY_RUNTIME_WINDOW_MODE_UNDEFINED = 0,</br>    ABILITY_RUNTIME_WINDOW_MODE_FULL_SCREEN = 1<br/>} | 定义启动应用时支持的窗口模式。     |
+| [AbilityRuntime_WindowMode](#abilityruntime_windowmode) {<br/>    ABILITY_RUNTIME_WINDOW_MODE_UNDEFINED = 0,</br>    ABILITY_RUNTIME_WINDOW_MODE_FULL_SCREEN = 1<br/>} | 定义启动应用时支持的窗口模式。     |
 | [AbilityRuntime_SupportedWindowMode](#abilityruntime_supportedwindowmode) {<br/>    ABILITY_RUNTIME_SUPPORTED_WINDOW_MODE_FULL_SCREEN = 0,<br/>    ABILITY_RUNTIME_SUPPORTED_WINDOW_MODE_SPLIT = 1,<br/>    ABILITY_RUNTIME_SUPPORTED_WINDOW_MODE_FLOATING = 2<br/>} | 定义启动应用时支持的窗口模式。     |
 
 ### 函数
@@ -66,8 +66,8 @@
 | [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_GetStartOptionsWindowWidth](#oh_abilityruntime_getstartoptionswindowwidth)([AbilityRuntime_StartOptions](#abilityruntime_startoptions) *startOptions, int32_t &windowWidth) | 获取启动Ability时的窗口宽度，单位为px。 |
 | [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_SetStartOptionsStartVisibility](#oh_abilityruntime_setstartoptionsstartvisibility)([AbilityRuntime_StartOptions](#abilityruntime_startoptions) *startOptions, [AbilityRuntime_StartVisibility](#abilityruntime_startvisibility) startVisibility) | 设置启动Ability时窗口和dock栏图标的显示模式。 |
 | [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_GetStartOptionsStartVisibility](#oh_abilityruntime_getstartoptionsstartvisibility)([AbilityRuntime_StartOptions](#abilityruntime_startoptions) *startOptions, [AbilityRuntime_StartVisibility](#abilityruntime_startvisibility) &startVisibility) | 获取启动Ability时窗口和dock栏图标的显示模式。|
-| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_SetStartOptionsStartWindowIcon](#oh_abilityruntime_setstartoptionsstartwindowicon)([AbilityRuntime_StartOptions](#abilityruntime_startoptions) *startOptions, [OH_PixelmapNative](../apis-image-kit/capi-oh-pixelmapnative.md) *startWindowIcon) | 设置启动Ability时的窗口启动图标。 |
-| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_GetStartOptionsStartWindowIcon](#oh_abilityruntime_getstartoptionsstartwindowicon)([AbilityRuntime_StartOptions](#abilityruntime_startoptions) *startOptions, [OH_PixelmapNative](../apis-image-kit/capi-oh-pixelmapnative.md) **startWindowIcon) | 获取启动Ability时的窗口启动图标。 |
+| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_SetStartOptionsStartWindowIcon](#oh_abilityruntime_setstartoptionsstartwindowicon)([AbilityRuntime_StartOptions](#abilityruntime_startoptions) *startOptions, [OH_PixelmapNative](../apis-image-kit/capi-image-nativemodule-oh-pixelmapnative.md) *startWindowIcon) | 设置启动Ability时的窗口启动图标。 |
+| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_GetStartOptionsStartWindowIcon](#oh_abilityruntime_getstartoptionsstartwindowicon)([AbilityRuntime_StartOptions](#abilityruntime_startoptions) *startOptions, [OH_PixelmapNative](../apis-image-kit/capi-image-nativemodule-oh-pixelmapnative.md) **startWindowIcon) | 获取启动Ability时的窗口启动图标。 |
 | [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_SetStartOptionsStartWindowBackgroundColor](#oh_abilityruntime_setstartoptionsstartwindowbackgroundcolor)([AbilityRuntime_StartOptions](#abilityruntime_startoptions) *startOptions, const char *startWindowBackgroundColor) | 设置启动Ability时的窗口背景颜色。 |
 | [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_GetStartOptionsStartWindowBackgroundColor](#oh_abilityruntime_getstartoptionsstartwindowbackgroundcolor)([AbilityRuntime_StartOptions](#abilityruntime_startoptions) *startOptions, char **startWindowBackgroundColor, size_t &size) | 获取启动Ability时的窗口背景颜色。 |
 | [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_SetStartOptionsSupportedWindowModes](#oh_abilityruntime_setstartoptionssupportedwindowmodes)([AbilityRuntime_StartOptions](#abilityruntime_startoptions) *startOptions, [AbilityRuntime_SupportedWindowMode](#abilityruntime_supportedwindowmode) *supportedWindowModes, size_t size) | 设置启动Ability时组件所支持的窗口模式。 |
@@ -683,7 +683,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_SetStartOptionsWindowMode(AbilityRunt
 | 名称        | 描述                                                         |
 | ----------- | ------------------------------------------------------------ |
 | startOptions     | StartOptions结构体。                           |
-| windowMode     | 需要设置的窗口模式。                           |
+| windowMode     | 需要设置的窗口模式。取值范围参见[AbilityRuntime_WindowMode](_ability_runtime.md#abilityruntime_windowmode)。                           |
 
 **起始版本：** 17
 
@@ -731,7 +731,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_GetStartOptionsWindowMode(AbilityRunt
 | 名称        | 描述                                                         |
 | ----------- | ------------------------------------------------------------ |
 | startOptions     | StartOptions结构体。                           |
-| windowMode     | 获取到的窗口模式。                           |
+| windowMode     | 获取到的窗口模式。取值范围参见[AbilityRuntime_WindowMode](_ability_runtime.md#abilityruntime_windowmode)。                           |
 
 **起始版本：** 17
 
@@ -871,7 +871,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_SetStartOptionsWithAnimation(AbilityR
 | 名称        | 描述                                                         |
 | ----------- | ------------------------------------------------------------ |
 | startOptions     | StartOptions结构体。                           |
-| withAnimation     | 启动Ability时是否具有动画效果。                           |
+| withAnimation     | 启动Ability时是否具有动画效果。<br>**说明**：<br>true表示启动Ability时具有动画效果；<br>false表示启动Ability时不具有动画效果。</br>          |
 
 **起始版本：** 17
 
@@ -917,7 +917,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_GetStartOptionsWithAnimation(AbilityR
 | 名称        | 描述                                                         |
 | ----------- | ------------------------------------------------------------ |
 | startOptions     | StartOptions结构体。                           |
-| withAnimation     | 启动Ability时是否具有动画效果。                           |
+| withAnimation     | 启动Ability时是否具有动画效果。<br>**说明**：<br>true表示启动Ability时具有动画效果；<br>false表示启动Ability时不具有动画效果。</br>                           |
 
 **起始版本：** 17
 
@@ -1419,7 +1419,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_SetStartOptionsStartVisibility(Abilit
 | 名称        | 描述                                                         |
 | ----------- | ------------------------------------------------------------ |
 | startOptions     | StartOptions结构体。                           |
-| startVisibility     | 需要设置的显示模式。                           |
+| startVisibility     | 需要设置的显示模式。取值范围参见[AbilityRuntime_StartVisibility](#abilityruntime_startvisibility)。                           |
 
 **起始版本：** 17
 
@@ -1466,7 +1466,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_GetStartOptionsStartVisibility(Abilit
 | 名称        | 描述                                                         |
 | ----------- | ------------------------------------------------------------ |
 | startOptions     | StartOptions结构体。                           |
-| startVisibility     | 获取到的显示模式。                           |
+| startVisibility     | 获取到的显示模式。取值范围参见[AbilityRuntime_StartVisibility](#abilityruntime_startvisibility)。                           |
 
 **起始版本：** 17
 
@@ -1674,7 +1674,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_SetStartOptionsSupportedWindowModes(A
 | 名称        | 描述                                                         |
 | ----------- | ------------------------------------------------------------ |
 | startOptions     | StartOptions结构体。                           |
-| supportedWindowModes     | 需要设置的组件所支持的窗口模式。                           |
+| supportedWindowModes     | 需要设置的组件所支持的窗口模式。取值范围参见[AbilityRuntime_SupportedWindowMode](#abilityruntime_supportedwindowmode)。                           |
 | size     | 组件所支持的窗口模式的大小。                           |
 
 **起始版本：** 17
@@ -1730,7 +1730,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_GetStartOptionsSupportedWindowModes(A
 | 名称        | 描述                                                         |
 | ----------- | ------------------------------------------------------------ |
 | startOptions     | StartOptions结构体。                           |
-| supportedWindowModes     | 获取到的组件所支持的窗口模式。                           |
+| supportedWindowModes     | 获取到的组件所支持的窗口模式。取值范围参见[AbilityRuntime_SupportedWindowMode](#abilityruntime_supportedwindowmode)。                           |
 | size     | 获取到的组件所支持的窗口模式的大小。                           |
 
 **起始版本：** 17

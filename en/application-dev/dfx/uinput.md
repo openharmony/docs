@@ -6,7 +6,7 @@ uinput can simulate users to operate devices such as the mouse, keyboard, and to
 
 - The [environment setup](hdc.md#environment-setup) is complete.
 
-- The devices are properly connected.
+- The devices are properly connected and **hdc shell** is executed.
 
 ## Features
 
@@ -94,7 +94,7 @@ uinput -M -m 100 100 200 200 1500 --trace
 ```
 
 ### Mouse Down Event
-Presses a mouse button. This command is used with the mouse up command. For details about key values, see [Mouse Buttons](#mouse-buttons)
+Presses a mouse button. This command is used with the mouse up command. For details about key values, see [Mouse Buttons](#mouse-buttons).
 
 **Command**
 ```bash
@@ -103,7 +103,7 @@ uinput --mouse --down <key>
 ```
 
 ### Mouse Up Event
-Releases a mouse button. This command is used with the mouse down command. For details about key values, see [Mouse Buttons](#mouse-buttons)
+Releases a mouse button. This command is used with the mouse down command. For details about key values, see [Mouse Buttons](#mouse-buttons).
 
 **Command**
 ```bash
@@ -118,7 +118,7 @@ uinput -M -d 0 -u 0
 ```
 
 ### Click Event
-Clicks a mouse button. For details about key values, see [Mouse Buttons](#mouse-buttons)
+Clicks a mouse button. For details about key values, see [Mouse Buttons](#mouse-buttons).
 
 **Command**
 ```bash
@@ -133,7 +133,7 @@ uinput -M -c 0
 ```
 
 ### Double-Click Event
-Double-clicks a mouse button. For details about key values, see [Mouse Buttons](#mouse-buttons)
+Double-clicks a mouse button. For details about values of **id**, see [Mouse Buttons](#mouse-buttons).
 
 **Command**
 ```bash
@@ -324,7 +324,7 @@ uinput --stylus --up <dx> <dy>
 
 **Example**
 ```bash
-# Press and lift a stylus at coordinates (100, 100).
+# Press and lift the stylus at coordinates (100, 100).
 uinput -S -d 100 100 -u 100 100
 ```
 
@@ -476,7 +476,7 @@ The value of [Press time] cannot be less than 500 ms.
 
 **Example**
 ```bash
-# Use a finger to drag from coordinates (100, 150) to coordinates (500, 300) after 1100 ms.
+# Simulate a finger to drag from coordinates (100, 150) to coordinates (500, 300) after 1100 ms.
 uinput -T -g 100 150 500 300 500 1100
 ```
 

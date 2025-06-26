@@ -2,7 +2,7 @@
 
 A shared module, marked with **use shared**, is loaded only once in a process.
 
-A non-shared module is loaded once in the same thread and multiple times in different threads, creating a new module object in each thread. Shared modules, however, can be used to implement process-wide singletons.
+A non-shared module is loaded once in the same thread and multiple times in different threads, creating a new module object in each thread. Currently, only shared modules can be used to implement process-wide singletons.
 
 
 ## Constraints
@@ -24,12 +24,12 @@ A non-shared module is loaded once in the same thread and multiple times in diff
 
   ```ts
   // side-effects-import is not allowed.
-  import "./sharedModule"
+  import "./sharedModule";
   ```
 
 - All variables exported by shared modules must be Sendable objects.
 
-  Since shared modules are shared across concurrent instances, all exported objects must be Sendable. For details, see [Usage Rules and Constraints for Sendable](sendable-constraints.md).
+  Since shared modules are shared across concurrent instances, all exported objects must be Sendable. For details, see [Sendable Data Types](arkts-sendable.md#sendable-data-types).
 
 - Modules cannot be directly exported from a shared module.
 
@@ -37,10 +37,12 @@ A non-shared module is loaded once in the same thread and multiple times in diff
   // test.ets
   export let num = 1;
   export let str = 'aaa';
-  
+  ```
+
+  ```ts
+  // share.ets
   // Shared module
   'use shared'
-  
   export * from './test'; // A compile-time error is reported. The module cannot be directly exported.
   export {num, str} from './test'; // Correct example. Export the object set.
   ```
@@ -48,9 +50,19 @@ A non-shared module is loaded once in the same thread and multiple times in diff
 
 - Shared modules can import or be imported by both shared and non-shared modules. There are no restrictions on importing or being imported by shared modules.
 
-- **napi_load_module** and **napi_load_module_with_info** support loading of shared modules.
+- Only static loading, **napi_load_module**, or **napi_load_module_with_info** can be used to load shared modules.
+  ```ts
+  // test.ets
+  import { num } from './A'; // Static loading is supported.
 
-- Dynamic loading does not support loading of shared modules.
+  import worker from '@ohos.worker';
+  let wk = new worker.ThreadWorker("./A"); // Other methods of loading shared modules are not supported and will result in runtime errors.
+  
+  // A.ets
+  'use shared'
+  
+  export {num, str} from './test';
+  ```
 
 ## Usage Example
 
@@ -84,6 +96,7 @@ A non-shared module is loaded once in the same thread and multiple times in diff
    
    export let singletonA = new SingletonA();
    ```
+   <!-- @[export_sendable_object](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableObjectRelated/entry/src/main/ets/managers/sharedModule.ets) -->
 
 2. Operate an object exported from the shared module across multiple threads.
 
@@ -133,3 +146,4 @@ A non-shared module is loaded once in the same thread and multiple times in diff
      }
    }
    ```
+   <!-- @[ multi_thread_operate_exported_obj](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableObjectRelated/entry/src/main/ets/managers/ArktsSendableModule.ets) -->

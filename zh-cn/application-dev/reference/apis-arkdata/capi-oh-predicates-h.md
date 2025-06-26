@@ -20,7 +20,7 @@
 
 | 名称                                   | typedef关键字 | 描述       |
 | -------------------------------------- | ------------- | ---------- |
-| [OH_Predicates](capi-oh-predicates.md) | OH_Predicates | 表示谓词。 |
+| [OH_Predicates](capi-rdb-oh-predicates.md) | OH_Predicates | 表示谓词。 |
 
 ### 枚举
 
@@ -76,7 +76,7 @@ int OH_Predicates_NotLike(OH_Predicates *predicates, const char *field, const ch
 
 | 参数项                                             | 描述                                                       |
 | -------------------------------------------------- | ---------------------------------------------------------- |
-| [OH_Predicates](capi-oh-predicates.md) *predicates | 表示指向[OH_Predicates](capi-oh-predicates.md)实例的指针。 |
+| [OH_Predicates](capi-rdb-oh-predicates.md) *predicates | 表示指向[OH_Predicates](capi-rdb-oh-predicates.md)实例的指针。 |
 | const char *field                                  | 表示数据库表中的列名。                                     |
 | const char *pattern                                | 表示谓词不匹配的模式。                                     |
 
@@ -103,7 +103,7 @@ int OH_Predicates_Glob(OH_Predicates *predicates, const char *field, const char 
 
 | 参数项                                             | 描述                                                       |
 | -------------------------------------------------- | ---------------------------------------------------------- |
-| [OH_Predicates](capi-oh-predicates.md) *predicates | 表示指向[OH_Predicates](capi-oh-predicates.md)实例的指针。 |
+| [OH_Predicates](capi-rdb-oh-predicates.md) *predicates | 表示指向[OH_Predicates](capi-rdb-oh-predicates.md)实例的指针。 |
 | const char *field                                  | 表示数据库表中的列名。                                     |
 | const char *pattern                                | 表示谓词匹配的样式。                                       |
 
@@ -130,7 +130,7 @@ int OH_Predicates_NotGlob(OH_Predicates *predicates, const char *field, const ch
 
 | 参数项                                             | 描述                                                       |
 | -------------------------------------------------- | ---------------------------------------------------------- |
-| [OH_Predicates](capi-oh-predicates.md) *predicates | 表示指向[OH_Predicates](capi-oh-predicates.md)实例的指针。 |
+| [OH_Predicates](capi-rdb-oh-predicates.md) *predicates | 表示指向[OH_Predicates](capi-rdb-oh-predicates.md)实例的指针。 |
 | const char *field                                  | 表示数据库表中的列名。                                     |
 | const char *pattern                                | 表示谓词不匹配的样式。                                     |
 
@@ -157,9 +157,9 @@ int OH_Predicates_Having(OH_Predicates *predicates, const char *conditions, cons
 
 | 参数项                                                 | 描述                                                         |
 | ------------------------------------------------------ | ------------------------------------------------------------ |
-| [OH_Predicates](capi-oh-predicates.md) *predicates     | 表示指向[OH_Predicates](capi-oh-predicates.md)实例的指针。   |
+| [OH_Predicates](capi-rdb-oh-predicates.md) *predicates     | 表示指向[OH_Predicates](capi-rdb-oh-predicates.md)实例的指针。   |
 | const char *conditions                                 | 表示having子句中的过滤条件。                                 |
-| const [OH_Data_Values](capi-oh-data-values.md) *values | 表示指向[OH_Data_Values](capi-oh-data-values.md)实例的指针。 |
+| const [OH_Data_Values](capi-rdb-oh-data-values.md) *values | 表示指向[OH_Data_Values](capi-rdb-oh-data-values.md)实例的指针。 |
 
 **返回：**
 

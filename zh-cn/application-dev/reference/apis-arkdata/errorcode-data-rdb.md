@@ -33,7 +33,7 @@ Inner error.
 
 **错误信息**
 
-Invalid args.
+Invalid arguments. Possible causes: 1. Empty conditions; 2. Missing GROUP BY clause.
 
 **错误描述**
 

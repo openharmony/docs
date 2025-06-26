@@ -6,7 +6,8 @@
 
 ## 开发步骤及注意事项
 
-详细的API说明请参考[AVTranscoder API参考](../../reference/apis-media-kit/js-apis-media.md#avtranscoder12)。
+详细的API说明请参考[AVTranscoder API参考](../../reference/apis-media-kit/arkts-apis-media-AVTranscoder.md)。
+
 > **说明：**
 >
 > 如需对转码后的文件进行转发、上传、转存等处理，应用须收到complete事件后调用系统接口await avTranscoder.release()，以保证视频文件完整性。

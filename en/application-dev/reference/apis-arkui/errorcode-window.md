@@ -14,12 +14,12 @@ Repeated operation.
 This error code is reported when a repeated operation is performed.
 
 **Possible Causes**
-
-The window to create already exists.
+1. The window has been created.
+2. The window is in the current state.
 
 **Solution**
 
-Before creating a window, check whether the window already exists. If it already exists, use it directly.
+Before creating a window, check whether the window has been created or is in the current state.
 
 ## 1300002 Abnormal Window State
 **Error Message**
@@ -83,7 +83,7 @@ This error code is reported when you operate a window stage in the abnormal stat
 
 **Possible Causes**
 
-The window stage has been destroyed when being operated.
+The window stage is not created or has been destroyed.
 
 **Solution**
 
@@ -251,8 +251,8 @@ PiP internal error.
 This error code is reported when an internal error occurs in PiP.
 
 **Possible Causes**
-
-An internal error occurs.
+1. The window on which the PiP feature depends is abnormal. The window may be empty.
+2. The PiP controller is abnormal.
 
 **Solution**
 
@@ -270,11 +270,75 @@ This error code is reported when a repeated PiP operation is performed.
 
 **Possible Causes**
 
-You attempt to start PiP when it is already started or stop it when it is already stopped.
+The PiP window has been started or closed.
 
 **Solution**
 
 Do not start or stop PiP repeatedly.
+
+## 1300016 Parameter Verification Error
+
+**Error Message**
+
+Parameter validation error.
+
+**Description**
+
+This error code is reported when parameters are incorrect. For example, the parameter value exceeds the allowed range, the length of the string or array does not meet the requirements, or the parameter format is incorrect.
+
+**Possible Causes**
+
+1. The parameter value is out of range.
+
+2. The parameter length exceeds the allowed length.
+
+3. The parameter format is incorrect.
+
+**Solution**
+
+Verify that the parameters adhere to the required standards.
+
+## 1300017 Filter Controller Calling Error
+
+**Error Message**
+
+Incorrect filter calling.
+
+**Description**
+
+The filter controller is invalidly invoked, for example, the invoking sequence is incorrect.
+
+**Possible Causes**
+
+**setBackgroundFilter** is called after **animateBackgroungFilter**.
+
+**Solution**
+
+Check the order of operations to ensure that **setBackgroundFilter** is called before **animateBackgroungFilter**.
+
+## 1300018 API Call Timeout
+
+**Error Message**
+
+API call timed out.
+
+**Description**
+
+This error code is reported when the API call times out.
+
+**Possible Causes**
+
+The wait time for a synchronous API call exceeds the upper limit.
+
+**Solution**
+
+The solution will vary based on the specific context. Typical approaches are:
+
+1. Retry the API call a limited number of times.
+
+2. Implement fallback measures, such as using cached data or alternative logic.
+
+3. Abort the current processing logic.
 
 ## 1001 Window Null Pointer Exception<sup>(deprecated)</sup>
 **Error Message**
@@ -304,7 +368,7 @@ This error code is reported when the window type is invalid.
 
 **Possible Causes**
 
-An invalid window type is used. For details about valid window types, see [WindowType](js-apis-window.md#windowtype7).
+An invalid window type is used. For details about valid window types, see [WindowType](arkts-apis-window-e.md#windowtype7).
 
 **Solution**
 

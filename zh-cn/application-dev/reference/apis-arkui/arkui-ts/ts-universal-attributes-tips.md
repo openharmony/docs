@@ -9,7 +9,7 @@
 >  目前支持通过外接鼠标、手写笔以及触控板触发。
 
 ## bindTips
-bindTips(message: TipsMessageType, options?: TipsOptions)
+bindTips(message: TipsMessageType, options?: TipsOptions): T
 
 为组件绑定Tips悬浮气泡。
 
@@ -27,6 +27,12 @@ bindTips(message: TipsMessageType, options?: TipsOptions)
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | message|  [TipsMessageType](#tipsmessagetype)                                                     | 是   | 弹窗信息内容。 |
 | options  | [TipsOptions](#tipsoptions类型说明) | 否   | 配置悬浮气泡的参数。<br/>默认值：<br/>{<br/>appearingTime: 700,<br/>disappearingTime: 300,<br/>appearingTimeWithContinuousOperation: 300,<br/>disappearingTimeWithContinuousOperation: 0, enableArrow: true,<br/>arrowPointPosition: ArrowPointPosition.CENTER,<br/>arrowWidth: 16,arrowHeight: 8vp,<br/>showAtAnchor: TipsAnchorType.TARGET<br/>} |
+
+**返回值：** 
+
+|类型|说明|
+|---|---|
+|T|返回当前组件。|
 
 ## TipsOptions类型说明
 

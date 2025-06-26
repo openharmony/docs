@@ -1,7 +1,7 @@
 # &lt;dialog&gt; Development
 
 
-The **&lt;dialog&gt;** component is custom pop-up container for showing critical information or calling for an action. For details, see [dialog](../reference/apis-arkui/arkui-js/js-components-container-dialog.md).
+The **&lt;dialog&gt;** component is a custom pop-up container for showing critical information or calling for an action. For details, see [dialog](../reference/apis-arkui/arkui-js/js-components-container-dialog.md).
 
 
 ## Creating a &lt;dialog&gt; Component

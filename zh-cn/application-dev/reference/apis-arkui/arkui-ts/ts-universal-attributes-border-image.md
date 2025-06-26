@@ -8,7 +8,7 @@
 
 ## borderImage
 
-borderImage(value: BorderImageOption)
+borderImage(value: BorderImageOption): T
 
 设置组件的图片边框。
 
@@ -23,6 +23,12 @@ borderImage(value: BorderImageOption)
 | 参数名      | 类型                                            | 必填 | 描述                             |
 | ----------- | ----------------------------------------------- | ---- | -------------------------------- |
 | value | [BorderImageOption](#borderimageoption对象说明) | 是   | 图片边框或者渐变色边框设置接口。 |
+
+**返回值：**
+
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| T | 返回当前组件。 |
 
 ## BorderImageOption对象说明
 
@@ -201,7 +207,7 @@ struct BorderImage {
 
 ### 示例3（使用LocalizedEdgeWidths类型值）
 
-borderImage接口中的slice、width、outset属性值使用[LocalizedEdgeWidths](ts-types.md#localizededgewidths12)类型。
+borderImage接口中的slice、width和outset属性值使用[LocalizedEdgeWidths](ts-types.md#localizededgewidths12)类型。
 
 ```ts
 // xxx.ets

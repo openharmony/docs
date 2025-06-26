@@ -197,32 +197,37 @@ struct MouseExample {
 
 
 ```ts
-class ish{
-  isHovered:boolean = false
-  set(val:boolean){
+class HoverConfig {
+  isHovered: boolean = false
+
+  set(val: boolean) {
     this.isHovered = val;
   }
 }
-class butf{
-  buttonText:string = ''
-  set(val:string){
+
+class ButtonConfig {
+  buttonText: string = ''
+
+  set(val: string) {
     this.buttonText = val
   }
 }
+
 @Entry
 @Component
 struct MouseExample {
-  @State isHovered:ish = new ish()
-  build(){
-    Column(){
+  @State isHovered: HoverConfig = new HoverConfig()
+
+  build() {
+    Column() {
       Button(this.isHovered ? 'Hovered!' : 'Not Hover')
         .width(200)
         .height(100)
         .backgroundColor(this.isHovered ? Color.Green : Color.Gray)
         .onHover((isHover?: boolean) => {
-          if(isHover) {
-            let ishset = new ish()
-            ishset.set(isHover)
+          if (isHover) {
+            let ishSet = new HoverConfig()
+            ishSet.set(isHover)
           }
         })
         .onMouse((event?: MouseEvent) => {
@@ -230,8 +235,8 @@ struct MouseExample {
             if (event.stopPropagation) {
               event.stopPropagation(); // 在Button的onMouse事件中设置阻止冒泡
             }
-            let butset = new butf()
-            butset.set('Button onMouse:\n' + '' +
+            let butSet = new ButtonConfig()
+            butSet.set('Button onMouse:\n' + '' +
               'button = ' + event.button + '\n' +
               'action = ' + event.action + '\n' +
               'x,y = (' + event.x + ',' + event.y + ')' + '\n' +

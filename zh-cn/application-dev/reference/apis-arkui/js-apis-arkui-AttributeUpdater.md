@@ -41,9 +41,9 @@ type Initializer\<T> = () => T
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## AttributeUpdater<T, C = Initializer\<T>>
-为[AttributeModifier](arkui-ts/ts-universal-attributes-attribute-modifier.md#AttributeModifier)的实现类，开发者需要自定义class继承AttributeUpdater。
+为[AttributeModifier](arkui-ts/ts-universal-attributes-attribute-modifier.md#attributemodifiert)的实现类，开发者需要自定义class继承AttributeUpdater。
 
-其中C代表组件的构造函数类型，比如Text组件的TextInterface，Image组件的ImageInterface等，需要使用updateConstructorParams时才需要传递C类型。
+其中C代表组件的构造函数类型，比如Text组件的TextInterface，Image组件的ImageInterface等，仅在使用updateConstructorParams时才需要传递C类型。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -179,7 +179,7 @@ updateConstructorParams: C
 
 **示例：** 
 
-使用updateConstructorParams更新组件构造入参。
+使用updateConstructorParams更新组件的构造入参。
 
 ```ts
 // xxx.ets

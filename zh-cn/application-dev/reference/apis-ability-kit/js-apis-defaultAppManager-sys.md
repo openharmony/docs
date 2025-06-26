@@ -14,15 +14,6 @@
 import { defaultAppManager } from '@kit.AbilityKit';
 ```
 
-## 权限列表
-
-| 权限                                    | 权限等级    | 描述             |
-| --------------------------------------- | ----------- | ---------------- |
-| ohos.permission.GET_DEFAULT_APPLICATION | system_core | 默认应用相关权限。 |
-| ohos.permission.SET_DEFAULT_APPLICATION | system_core | 允许应用设置、重置默认应用。 |
-
-权限等级参考[权限APL等级说明](../../security/AccessToken/app-permission-mgmt-overview.md#权限机制中的基本概念)。
-
 ## defaultAppManager.getDefaultApplication
 
 getDefaultApplication(type: string, userId?: number): Promise\<BundleInfo>

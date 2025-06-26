@@ -121,7 +121,7 @@ The connection between the target application and accessibility services failed.
 
 **错误信息**
 
-Failed to trigger amplification.
+Trigger magnification failed.
 
 **错误描述**
 
@@ -129,9 +129,9 @@ Failed to trigger amplification.
 
 **可能原因**
 
-1. 设置中未开启放大功能。
+1. 未开启放大手势功能。
 2. 放大模式未配置。
 
 **处理步骤**
 
-先开启放大功能开关并配置放大模式。
+先开启放大手势功能并配置放大模式。

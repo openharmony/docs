@@ -20,7 +20,7 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [OH_CryptoRand](capi-oh-cryptorand.md) | OH_CryptoRand | 定义随机数生成器结构。 |
+| [OH_CryptoRand](capi-cryptorandapi-oh-cryptorand.md) | OH_CryptoRand | 定义随机数生成器结构。 |
 
 ### 函数
 
@@ -51,7 +51,7 @@ OH_Crypto_ErrCode OH_CryptoRand_Create(OH_CryptoRand **ctx)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoRand](capi-oh-cryptorand.md) **ctx | 指向随机数生成器实例的指针。 |
+| [OH_CryptoRand](capi-cryptorandapi-oh-cryptorand.md) **ctx | 指向随机数生成器实例的指针。 |
 
 **返回：**
 
@@ -76,9 +76,9 @@ OH_Crypto_ErrCode OH_CryptoRand_GenerateRandom(OH_CryptoRand *ctx, int len, Cryp
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoRand](capi-oh-cryptorand.md) *ctx | 随机数生成器实例。 |
+| [OH_CryptoRand](capi-cryptorandapi-oh-cryptorand.md) *ctx | 随机数生成器实例。 |
 | int len | 表示生成随机数的长度，单位为byte，范围在[1, INT_MAX]。 |
-| [Crypto_DataBlob](capi-crypto-datablob.md) *out | 用于获取随机数的指针。 |
+| [Crypto_DataBlob](capi-cryptocommonapi-crypto-datablob.md) *out | 用于获取随机数的指针。 |
 
 **返回：**
 
@@ -103,7 +103,7 @@ const char *OH_CryptoRand_GetAlgoName(OH_CryptoRand *ctx)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoRand](capi-oh-cryptorand.md) *ctx | 指向随机数生成器实例。 |
+| [OH_CryptoRand](capi-cryptorandapi-oh-cryptorand.md) *ctx | 指向随机数生成器实例。 |
 
 **返回：**
 
@@ -128,8 +128,8 @@ OH_Crypto_ErrCode OH_CryptoRand_SetSeed(OH_CryptoRand *ctx, Crypto_DataBlob *see
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoRand](capi-oh-cryptorand.md) *ctx | 随机数生成器实例。 |
-| [Crypto_DataBlob](capi-crypto-datablob.md) *seed | 种子数据。 |
+| [OH_CryptoRand](capi-cryptorandapi-oh-cryptorand.md) *ctx | 随机数生成器实例。 |
+| [Crypto_DataBlob](capi-cryptocommonapi-crypto-datablob.md) *seed | 种子数据。 |
 
 **返回：**
 
@@ -154,6 +154,6 @@ void OH_CryptoRand_Destroy(OH_CryptoRand *ctx)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoRand](capi-oh-cryptorand.md) *ctx | 随机数生成器实例。 |
+| [OH_CryptoRand](capi-cryptorandapi-oh-cryptorand.md) *ctx | 随机数生成器实例。 |
 
 

@@ -77,8 +77,8 @@ import { geoLocationManager } from '@kit.LocationKit';
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| location |  [ReverseGeoCodeRequest](js-apis-geoLocationManager.md#reversegeocoderequest) | 否 | 否 | 表示经纬度信息。 |
-| geoAddress |  [GeoAddress](#geoaddress) | 否 | 否 |表示地名信息。 |
+| location |  [ReverseGeoCodeRequest](js-apis-geoLocationManager.md#reversegeocoderequest) | 否 | 否 | 表示经纬度信息。 **系统API**：此接口为系统接口。|
+| geoAddress |  [GeoAddress](#geoaddress) | 否 | 否 |表示地名信息。 **系统API**：此接口为系统接口。|
 
 
 ## LocationMockConfig
@@ -91,8 +91,8 @@ import { geoLocationManager } from '@kit.LocationKit';
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| timeInterval | number | 否 | 否 | 表示模拟位置上报的时间间隔，单位是秒。 |
-| locations | Array&lt;[Location](#location)&gt; | 否 | 否 | 表示模拟位置数组。 |
+| timeInterval | number | 否 | 否 | 表示模拟位置上报的时间间隔，单位是秒。 **系统API**：此接口为系统接口。|
+| locations | Array&lt;[Location](#location)&gt; | 否 | 否 | 表示模拟位置数组。 **系统API**：此接口为系统接口。|
 
 ## LocatingRequiredDataConfig<sup>10+</sup>
 
@@ -104,10 +104,23 @@ import { geoLocationManager } from '@kit.LocationKit';
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| type | [LocatingRequiredDataType](#locatingrequireddatatype10) | 否 | 否 | 表示请求获取数据的类型。 |
-| needStartScan |  boolean | 否 | 否 | true：需要发起扫描。<br/>false：不需要发起扫描。 |
-| scanInterval |  number | 否 | 是 | 表示扫描的时间间隔。单位是毫秒，默认值是10000毫秒，取值范围为大于0。 |
-| scanTimeout |  number | 否 | 是 | 表示单次扫描的超时时间。单位是毫秒，默认值是10000毫秒，取值范围为大于0小于600000。 |
+| type | [LocatingRequiredDataType](#locatingrequireddatatype10) | 否 | 否 | 表示请求获取数据的类型。 **系统API**：此接口为系统接口。|
+| needStartScan |  boolean | 否 | 否 | true：需要发起扫描。<br/>false：不需要发起扫描。 **系统API**：此接口为系统接口。|
+| scanInterval |  number | 否 | 是 | 表示扫描的时间间隔。单位是毫秒，默认值是10000毫秒，取值范围为大于0。 **系统API**：此接口为系统接口。|
+| scanTimeout |  number | 否 | 是 | 表示单次扫描的超时时间。单位是毫秒，默认值是10000毫秒，取值范围为大于0小于600000。 **系统API**：此接口为系统接口。|
+
+
+## ContinuousLocationRequest<sup>12+</sup>
+
+持续定位的请求参数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| sportsType<sup>18+</sup> | [SportsType](#sportstype18) | 否 | 是 | 表示运动类型。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。**系统API**：此接口为系统接口。|
 
 
 ## LocatingRequiredData<sup>10+</sup>
@@ -120,8 +133,8 @@ import { geoLocationManager } from '@kit.LocationKit';
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| wifiData | [WifiScanInfo](#wifiscaninfo10) | 否 | 是 | 表示WiFi扫描结果。 |
-| bluetoothData |  [BluetoothScanInfo](#bluetoothscaninfo10) | 否 | 是 | 表示蓝牙扫描结果。 |
+| wifiData | [WifiScanInfo](#wifiscaninfo10) | 否 | 是 | 表示WiFi扫描结果。 **系统API**：此接口为系统接口。|
+| bluetoothData |  [BluetoothScanInfo](#bluetoothscaninfo10) | 否 | 是 | 表示蓝牙扫描结果。 **系统API**：此接口为系统接口。|
 
 
 ## WifiScanInfo<sup>10+</sup>
@@ -134,11 +147,11 @@ WiFi扫描信息，包含扫描到的WiFi热点的ssid、bssid和rssi等信息�
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| ssid | string | 否 | 否 | WiFi热点的SSID，编码格式为UTF-8。 |
-| bssid | string | 否 | 否 | WiFi热点的BSSID。 |
-| rssi | number | 否 | 否 | WiFi热点的信号强度(dBm)。 |
-| frequency | number | 否 | 否 | WiFi热点的频率。单位是赫兹。 |
-| timestamp | number | 否 | 否 | 时间戳。 |
+| ssid | string | 否 | 否 | WiFi热点的SSID，编码格式为UTF-8。 **系统API**：此接口为系统接口。|
+| bssid | string | 否 | 否 | WiFi热点的BSSID。 **系统API**：此接口为系统接口。|
+| rssi | number | 否 | 否 | WiFi热点的信号强度(dBm)。 **系统API**：此接口为系统接口。|
+| frequency | number | 否 | 否 | WiFi热点的频率。单位是赫兹。 **系统API**：此接口为系统接口。|
+| timestamp | number | 否 | 否 | 时间戳。 **系统API**：此接口为系统接口。|
 
 
 ## BluetoothScanInfo<sup>10+</sup>
@@ -151,10 +164,10 @@ WiFi扫描信息，包含扫描到的WiFi热点的ssid、bssid和rssi等信息�
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| deviceName | string | 否 | 否 | 蓝牙设备名称。 |
-| macAddress | string | 否 | 否 | 蓝牙设备的MAC地址。 |
-| rssi | number | 否 | 否 | 蓝牙设备的信号强度(dBm)。 |
-| timestamp | number | 否 | 否 | 时间戳。 |
+| deviceName | string | 否 | 否 | 蓝牙设备名称。 **系统API**：此接口为系统接口。|
+| macAddress | string | 否 | 否 | 蓝牙设备的MAC地址。 **系统API**：此接口为系统接口。|
+| rssi | number | 否 | 否 | 蓝牙设备的信号强度(dBm)。 **系统API**：此接口为系统接口。|
+| timestamp | number | 否 | 否 | 时间戳。 **系统API**：此接口为系统接口。|
 
 ## LocationPrivacyType
 
@@ -166,9 +179,9 @@ WiFi扫描信息，包含扫描到的WiFi热点的ssid、bssid和rssi等信息�
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| OTHERS | 0 | 其他场景。预留字段。 |
-| STARTUP | 1 | 开机向导场景下的隐私协议。在开机时弹出协议，提醒用户阅读并选择是否授权。 |
-| CORE_LOCATION | 2 | 开启网络定位时弹出的隐私协议。 |
+| OTHERS | 0 | 其他场景。预留字段。 **系统API**：此接口为系统接口。|
+| STARTUP | 1 | 开机向导场景下的隐私协议。在开机时弹出协议，提醒用户阅读并选择是否授权。 **系统API**：此接口为系统接口。|
+| CORE_LOCATION | 2 | 开启网络定位时弹出的隐私协议。 **系统API**：此接口为系统接口。|
 
 ## LocatingRequiredDataType<sup>10+</sup>
 
@@ -180,8 +193,8 @@ WiFi扫描信息，包含扫描到的WiFi热点的ssid、bssid和rssi等信息�
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| WIFI  | 1 | 表示WiFi扫描信息。 |
-| BLUETOOTH | 2 | 表示蓝牙扫描信息。 |
+| WIFI  | 1 | 表示WiFi扫描信息。 **系统API**：此接口为系统接口。|
+| BLUETOOTH | 2 | 表示蓝牙扫描信息。 **系统API**：此接口为系统接口。|
 
 
 ## LocationIconStatus<sup>12+</sup>
@@ -194,9 +207,24 @@ WiFi扫描信息，包含扫描到的WiFi热点的ssid、bssid和rssi等信息�
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| LOCATING_NOT_STARTED  | 0 | 表示当前无定位业务，无需显示定位图标。 |
-| LOCATING_STARTED | 1 | 表示当前在进行普通定位业务，需要显示普通定位图标。 |
-| HD_LOCATING_STARTED | 2 | 表示当前正在进行高精度定位业务，需要显示高精度定位图标。 |
+| LOCATING_NOT_STARTED  | 0 | 表示当前无定位业务，无需显示定位图标。 **系统API**：此接口为系统接口。|
+| LOCATING_STARTED | 1 | 表示当前在进行普通定位业务，需要显示普通定位图标。 **系统API**：此接口为系统接口。|
+| HD_LOCATING_STARTED | 2 | 表示当前正在进行高精度定位业务，需要显示高精度定位图标。 **系统API**：此接口为系统接口。|
+
+
+## SportsType<sup>18+</sup>
+
+运动类型。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| RUNNING   | 1 |  表示跑步。 |
+| WALKING    | 2 | 表示步行。 |
+| CYCLING     | 3 | 表示骑行。 |
 
 
 ## geoLocationManager.on('locatingRequiredDataChange')<sup>10+</sup>
@@ -1062,7 +1090,7 @@ isLocationEnabledByUserId(userId: number): boolean
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 |202 | Permission verification failed. A non-system application calls a system API. |
-|801 | Capability not supported. Failed to call ${geoLocationManager.isLocationEnabled} due to limited device capabilities.          |
+|801 | Capability not supported. Failed to call ${geoLocationManager.isLocationEnabledByUserId} due to limited device capabilities.          |
 |3301000 | The location service is unavailable. |
 
 **示例**
@@ -1107,7 +1135,7 @@ setLocationSwitchIgnored(isIgnored: boolean): void
 | -------- | ---------------------------------------- |
 |201 | Permission verification failed. The application does not have the permission required to call the API.                 |
 |202 | Permission verification failed. A non-system application calls a system API. |
-|801 | Capability not supported. Failed to call ${geoLocationManager.disableLocationByUserId} due to limited device capabilities.          |
+|801 | Capability not supported. Failed to call ${geoLocationManager.setLocationSwitchIgnored} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                            |
 
 **示例**

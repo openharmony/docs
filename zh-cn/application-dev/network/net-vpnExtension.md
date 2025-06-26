@@ -10,6 +10,8 @@ OpenHarmony为开发者提供了用于创建VPN的API解决方案。当前提供
 >
 > 为了保证应用的运行效率，所有API调用都是异步的，对于异步调用的API均提供了Promise的方式，以下示例均采用Promise方式，更多方式可以查阅[API参考](../reference/apis-network-kit/js-apis-net-vpnExtension.md)。
 
+完整的JS API说明以及示例代码请参考：[VPN扩展应用API](../reference/apis-network-kit/js-apis-net-vpnExtension.md)。
+
 ## VPN应用的显示体验
 
 借助系统提供的VPN Extension接口开发者可以构建支持不同协议的VPN服务。OpenHarmony系统提供了界面 (UI) 使用户可以了解当前VPN应用服务的启动和连接：
@@ -22,16 +24,15 @@ OpenHarmony为开发者提供了用于创建VPN的API解决方案。当前提供
 - 用于手动启动和停止连接的控件。
 - 当VPN启动连接时，在通知栏显示VPN应用的连接状态或提供网络统计信息 (如连接时长、流量等) 。点击该通知能够将您的VPN应用调入前台。
 
-## 接口说明
 
-完整的JS API说明以及示例代码请参考：[VPN扩展应用API](../reference/apis-network-kit/js-apis-net-vpnExtension.md)。
+## 开发步骤
 
-## 创建VPN Extension Ability
+### 创建VPN Extension Ability
 
 如果想使您的应用支持VPN能力，首先您需要创建一个继承于VpnExtensionAbility的extensionAbilities。
 
 ```ts
-// 举例：在应用的module.json5中定义MyVpnExtAbility
+// 举例：在应用的module.json5中定义MyVpnExtAbility。
 "extensionAbilities": [
   {
     "name": "MyVpnExtAbility",
@@ -54,8 +55,7 @@ OpenHarmony为开发者提供了用于创建VPN的API解决方案。当前提供
 - 通过VpnConnection.[create](../reference/apis-network-kit/js-apis-net-vpnExtension.md#create)建立VPN网络连接；
 - 处理虚拟网卡的数据，如：读写操作。
 
-
-## 启动VPN Extension Ability
+### 启动VPN Extension Ability
 
 当VPN应用启动VPN连接时，需要调用startVpnExtensionAbility接口，携带需要启动的VpnExtensionAbility信息，其中bundleName需要与您的VPN应用bundleName一致，abilityName为您在前面创建的VpnExtensionAbility名。您可参考如下示例：
 
@@ -96,7 +96,7 @@ struct Index {
 
 
 
-## 停止VPN Extension Ability
+### 停止VPN Extension Ability
 
 当VPN应用需要停止VPN连接时，需要调用stopVpnExtensionAbility接口，携带需要停止的VpnExtensionAbility信息。系统会对调用方做权限校验，stopVpnExtensionAbility的调用方应用必须获取了用户的VPN信任授权，且只允许停止应用自己启动的VpnExtensionAbility，所以接口传入的参数中bundleName需要与您的VPN应用bundleName一致，abilityName为指定停止VPN的VpnExtensionAbility名。
 
@@ -188,7 +188,7 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
 import { vpnExtension} from '@kit.NetworkKit';
 
 let vpnConfig: vpnExtension.VpnConfig = {
-  // 配置VPN虚拟网卡的IP地址
+  // 配置VPN虚拟网卡的IP地址。
   addresses: [{
     address: {
       address:'192.x.x.5',
@@ -196,9 +196,9 @@ let vpnConfig: vpnExtension.VpnConfig = {
     },
     prefixLength:24
   }],
-  // 配置路由参数
+  // 配置路由参数。
   routes: [{
-    // VPN虚拟网卡接口名固定为“vpn-tun”
+    // VPN虚拟网卡接口名固定为“vpn-tun”。
     interface: 'vpn-tun',
     destination: {
       address: {
@@ -216,13 +216,13 @@ let vpnConfig: vpnExtension.VpnConfig = {
     hasGateway: false,
     isDefaultRoute: false,
   }],
-  // 配置最大传输单元值
+  // 配置最大传输单元值。
   mtu: 1400,
-  // 配置VPN使用的DNS服务器，
+  // 配置VPN使用的DNS服务器。
   dnsAddresses: ['223.x.x.5', '223.x.x.6'],
-  // VPN生效白名单的应用
+  // VPN生效白名单的应用。
   trustedApplications: ['com.test.browser'],
-  // 不生效VPN黑名单的应用
+  // 不生效VPN黑名单的应用。
   blockedApplications: ['com.test.games'],
 }
 let context: vpnExtension.VpnExtensionContext;

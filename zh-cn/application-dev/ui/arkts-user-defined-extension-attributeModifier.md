@@ -75,7 +75,7 @@ AttributeModifier可以分离UI与样式，支持参数传递及业务逻辑编�
 
     // 通过构造函数，创建时传参
     constructor(dark?: boolean) {
-      this.isDark = dark ? dark : false
+      this.isDark = dark ?? false
     }
 
     applyNormalAttribute(instance: ButtonAttribute): void {
@@ -128,7 +128,7 @@ AttributeModifier可以分离UI与样式，支持参数传递及业务逻辑编�
     isDark: boolean = false
 
     constructor(dark?: boolean) {
-      this.isDark = dark ? dark : false
+      this.isDark = dark ?? false
     }
 
     applyNormalAttribute(instance: ButtonAttribute): void {
@@ -178,7 +178,7 @@ AttributeModifier可以分离UI与样式，支持参数传递及业务逻辑编�
     isDark: boolean = false
 
     constructor(dark?: boolean) {
-      this.isDark = dark ? dark : false
+      this.isDark = dark ?? false
     }
 
     applyNormalAttribute(instance: ButtonAttribute): void {

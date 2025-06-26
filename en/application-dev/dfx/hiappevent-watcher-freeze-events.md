@@ -12,18 +12,18 @@ The **params** parameter in the freeze event information is described as follows
 | Name   | Type  | Description                      |
 | ------- | ------ | ------------------------- |
 | time     | number | Event triggering time, in ms.|
-| foreground | boolean | Whether the application is running in the foreground.|
+| foreground | boolean | Whether the application is running in the foreground. The value **true** indicates that the application is in the foreground, and the value **false** indicates the opposite.|
 | bundle_version | string | Application version.|
 | bundle_name | string | Application name.|
 | process_name | string | Process name of the application.|
 | pid | number | Process ID of the application.|
 | uid | number | User ID of the application.|
-| uuid | string | Error ID.|
+| uuid | string | Error ID, which is generated based on fault information and uniquely identifies crash faults of the same type.|
 | exception | object | Exception information. For details, see **exception**.|
 | hilog | string[] | Log information.|
 | event_handler | string[] | Events not yet handled by the main thread.|
-| event_handler_size_3s | string | Number of tasks in the task stack when the THREAD_BLOCK event lasts for 3s.|
-| event_handler_size_6s | string | Number of tasks in the task stack when the THREAD_BLOCK event lasts for 6s.|
+| event_handler_size_3s | string | Number of tasks in the task stack at 3s during the [THREAD_BLOCK_6S event](appfreeze-guidelines.md#application-main-thread-timeout). This parameter is valid only in the **THREAD_BLOCK_6S** event.|
+| event_handler_size_6s | string | Number of tasks in the task stack at 6s during the **THREAD_BLOCK_6S** event.|
 | peer_binder | string[] | Binder call information.|
 | threads | object[] | Full thread call stack. For details, see **thread**.|
 | memory | object | Memory information. For details, see **memory**.|

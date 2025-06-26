@@ -2,7 +2,7 @@
 
 ## Overview
 
-The FFRT concurrent queue provides the capability of setting the priority and queue concurrency. Tasks in the queue can be executed on multiple threads at the same time, achieving better effect.
+The FFRT concurrent queue provides the capability of setting the priority and queue concurrency. Tasks in the queue can be executed on multiple threads at the same time, achieving better effects.
 
 - **Queue concurrency**: You can set the maximum concurrency of a queue to control the number of tasks that can be executed at the same time. This avoids system resource impact caused by excessive concurrent tasks, ensuring system stability and performance.
 - **Task priority**: You can set a priority for each task. Different tasks are scheduled and executed strictly based on the priority. Tasks with the same priority are executed in sequence. Tasks with higher priorities are executed prior to those with lower priorities to ensure that key tasks can be processed in a timely manner.
@@ -21,8 +21,7 @@ The implementation code is as follows:
 ```cpp
 #include <iostream>
 #include <unistd.h>
-#include "ffrt/cpp/queue.h"
-#include "ffrt/cpp/task.h"
+#include "ffrt/ffrt.h"
 
 class BankQueueSystem {
 private:
@@ -77,22 +76,18 @@ int main()
 {
     BankQueueSystem bankQueue("Bank", 2);
 
-    bankQueue.Enter(BankBusiness, "customer1", ffrt_queue_priority_low, 0);
-    bankQueue.Enter(BankBusiness, "customer2", ffrt_queue_priority_low, 0);
-    bankQueue.Enter(BankBusiness, "customer3", ffrt_queue_priority_low, 0);
-    bankQueue.Enter(BankBusiness, "customer4", ffrt_queue_priority_low, 0);
-
+    auto task1 = bankQueue.Enter(BankBusiness, "customer1", ffrt_queue_priority_low, 0);
+    auto task2 = bankQueue.Enter(BankBusiness, "customer2", ffrt_queue_priority_low, 0);
     // VIP customers have the priority to enjoy services.
-    bankQueue.Enter(BankBusinessVIP, "vip", ffrt_queue_priority_high, 0);
+    auto task3 = bankQueue.Enter(BankBusinessVIP, "customer3 vip", ffrt_queue_priority_high, 0);
+    auto task4 = bankQueue.Enter(BankBusiness, "customer4", ffrt_queue_priority_low, 0);
+    auto task5 = bankQueue.Enter(BankBusiness, "customer5", ffrt_queue_priority_low, 0);
 
-    ffrt::task_handle handle = bankQueue.Enter(BankBusiness, "customer5", ffrt_queue_priority_low, 0);
-    ffrt::task_handle handleLast = bankQueue.Enter(BankBusiness, "customer6", ffrt_queue_priority_low, 0);
-
-    // Cancel the service for customer 5.
-    bankQueue.Exit(handle);
+    // Cancel the service for customer 4.
+    bankQueue.Exit(task4);
 
     // Wait until all customer services are complete.
-    bankQueue.Wait(handleLast);
+    bankQueue.Wait(task5);
     return 0;
 }
 ```
@@ -109,7 +104,8 @@ The main FFRT APIs involved in the preceding example are as follows:
 
 > **NOTE**
 >
-> For details about how to use FFRT C++ APIs, see [Using FFRT C++ APIs](ffrt-development-guideline.md#using-ffrt-c-api-1).
+> - For details about how to use FFRT C++ APIs, see [Using FFRT C++ APIs](ffrt-development-guideline.md#using-ffrt-c-api-1).
+> - When using FFRT C or C++ APIs, you can use the FFRT C++ API third-party library to simplify the header file inclusion, that is, use the `#include "ffrt/ffrt.h"` header file to include statements.
 
 ## Constraints
 
