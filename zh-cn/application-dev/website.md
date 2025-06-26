@@ -3203,7 +3203,7 @@
           - [OH_NativeXComponent_HistoricalPoint](reference/apis-arkui/_o_h___native_x_component___historical_point.md)
           - [PictureInPicture_PipConfig](reference/apis-arkui/capi-pictureinpicture-pipconfig.md)
           - [WindowManager_Rect](reference/apis-arkui/capi-windowmanager-rect.md)
-          - [struct](reference/apis-arkui/capi-struct.md)
+          - [OH_PixelmapNative](reference/apis-arkui/capi-struct.md)
           - [WindowManager_WindowProperties](reference/apis-arkui/capi-windowmanager-windowproperties.md)
           - [WindowManager_AvoidArea](reference/apis-arkui/capi-windowmanager-avoidarea.md)
           - [NativeDisplayManager_Rect](reference/apis-arkui/capi-nativedisplaymanager-rect.md)
