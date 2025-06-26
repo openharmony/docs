@@ -36,6 +36,12 @@ Adds the device access permission for the application. System applications are g
 | deviceName | string | Yes  | Device name.  |
 | bundleName | string | Yes  | Bundle name of the application.|
 
+**Return value**
+
+| Type   | Description                                                                     |
+| ------- | ------------------------------------------------------------------------- |
+| boolean | Permission addition result. The value **true** indicates that the access permission is added successfully; and the value **false** indicates the opposite.|
+
 **Error codes**
 
 For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
@@ -44,12 +50,6 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | -------- | ------------------------------------------------------------------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 202      | Permission denied. Normal application do not have permission to use system api.                         |
-
-**Return value**
-
-| Type   | Description                                                                     |
-| ------- | ------------------------------------------------------------------------- |
-| boolean | Permission addition result. The value **true** indicates that the access permission is added successfully; and the value **false** indicates the opposite.|
 
 **Example**
 
@@ -81,6 +81,12 @@ Converts the USB function list in the string format to a numeric mask in Device 
 | ------ | ------ | ---- | ---------------------- |
 | funcs  | string | Yes  | Function list in string format.|
 
+**Return value**
+
+| Type  | Description              |
+| ------ | ------------------ |
+| number | Function list in numeric mask format.|
+
 **Error codes**
 
 For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
@@ -89,12 +95,6 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | -------- | ------------------------------------------------------------------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 202      | Permission denied. Normal application do not have permission to use system api.                         |
-
-**Return value**
-
-| Type  | Description              |
-| ------ | ------------------ |
-| number | Function list in numeric mask format.|
 
 **Example**
 
@@ -123,6 +123,12 @@ Converts the USB function list in the numeric mask format to a string in Device 
 | ------ | ----------------------------- | ---- | ----------------- |
 | funcs  | [FunctionType](#functiontype) | Yes  | USB function list in numeric mask format.|
 
+**Return value**
+
+| Type  | Description                          |
+| ------ | ------------------------------ |
+| string | Function list in string format.|
+
 **Error codes**
 
 For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
@@ -131,12 +137,6 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | -------- | ------------------------------------------------------------------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 202      | Permission denied. Normal application do not have permission to use system api.                         |
-
-**Return value**
-
-| Type  | Description                          |
-| ------ | ------------------------------ |
-| string | Function list in string format.|
 
 **Example**
 
@@ -165,6 +165,12 @@ Sets the current USB function list in Device mode.
 | ------ | ----------------------------- | ---- | ----------------- |
 | funcs  | [FunctionType](#functiontype) | Yes  | USB function list in numeric mask format.|
 
+**Return value**
+
+| Type               | Description         |
+| ------------------- | ------------- |
+| Promise\<void\> | Promise used to return the result.|
+
 **Error codes**
 
 For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
@@ -173,12 +179,6 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | -------- | ------------------------------------------------------------------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 14400002 | Permission denied. The HDC is disabled by the system.                                                   |
-
-**Return value**
-
-| Type               | Description         |
-| ------------------- | ------------- |
-| Promise\<void\> | Promise used to return the result.|
 
 **Example**
 
@@ -206,6 +206,12 @@ Obtains the numeric mask combination for the USB function list in Device mode. W
 
 **System capability**: SystemCapability.USB.USBManager
 
+**Return value**
+
+| Type                         | Description                             |
+| ----------------------------- | --------------------------------- |
+| [FunctionType](#functiontype) | Numeric mask combination for the USB function list.|
+
 **Error codes**
 
 For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
@@ -214,12 +220,6 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | -------- | ------------------------------------------------------------------------------- |
 | 401      | Parameter error. No parameters are required.                                    |
 | 202      | Permission denied. Normal application do not have permission to use system api. |
-
-**Return value**
-
-| Type                         | Description                             |
-| ----------------------------- | --------------------------------- |
-| [FunctionType](#functiontype) | Numeric mask combination for the USB function list.|
 
 **Example**
 
@@ -241,6 +241,12 @@ Obtains the list of all physical USB ports. When the developer mode is disabled,
 
 **System capability**: SystemCapability.USB.USBManager
 
+**Return value**
+
+| Type                      | Description                 |
+| -------------------------- | --------------------- |
+| Array<[USBPort](#usbport)> | List of physical USB ports.|
+
 **Error codes**
 
 For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
@@ -249,12 +255,6 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | -------- | ------------------------------------------------------------------------------- |
 | 401      | Parameter error. No parameters are required.                                    |
 | 202      | Permission denied. Normal application do not have permission to use system api. |
-
-**Return value**
-
-| Type                      | Description                 |
-| -------------------------- | --------------------- |
-| Array<[USBPort](#usbport)> | List of physical USB ports.|
 
 **Example**
 
@@ -282,6 +282,12 @@ Obtains the mask combination for the supported mode list of a given USB port.
 | ------ | ------ | ---- | -------- |
 | portId | number | Yes  | Port number.|
 
+**Return value**
+
+| Type                         | Description                      |
+| ----------------------------- | -------------------------- |
+| [PortModeType](#portmodetype) | Mask combination for the supported mode list.|
+
 **Error codes**
 
 For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
@@ -290,12 +296,6 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | -------- | ------------------------------------------------------------------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 202      | Permission denied. Normal application do not have permission to use system api.                         |
-
-**Return value**
-
-| Type                         | Description                      |
-| ----------------------------- | -------------------------- |
-| [PortModeType](#portmodetype) | Mask combination for the supported mode list.|
 
 **Example**
 
@@ -325,6 +325,12 @@ Sets the role types supported by a specified port, which can be **powerRole** (f
 | powerRole | [PowerRoleType](#powerroletype) | Yes  | Role for charging.    |
 | dataRole  | [DataRoleType](#dataroletype)   | Yes  | Role for data transfer.|
 
+**Return value**
+
+| Type               | Description         |
+| ------------------- | ------------- |
+| Promise\<void\> | Promise used to return the result.|
+
 **Error codes**
 
 For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
@@ -332,12 +338,6 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | ID| Error Message                                                                                               |
 | -------- | ------------------------------------------------------------------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-
-**Return value**
-
-| Type               | Description         |
-| ------------------- | ------------- |
-| Promise\<void\> | Promise used to return the result.|
 
 **Example**
 
@@ -376,6 +376,12 @@ Adds the device access permission for the application. System applications are g
 | deviceName | string | Yes  | Device name.     |
 | tokenId    | string | Yes  | Token ID of the software package.|
 
+**Return value**
+
+| Type   | Description                                                                     |
+| ------- | ------------------------------------------------------------------------- |
+| boolean | Permission addition result. The value **true** indicates that the access permission is added successfully; and the value **false** indicates the opposite.|
+
 **Error codes**
 
 For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
@@ -386,12 +392,6 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 202      | Permission denied. Normal application do not have permission to use system api.                         |
 | 801      | Capability not supported.                                    |
-
-**Return value**
-
-| Type   | Description                                                                     |
-| ------- | ------------------------------------------------------------------------- |
-| boolean | Permission addition result. The value **true** indicates that the access permission is added successfully; and the value **false** indicates the opposite.|
 
 **Example**
 
@@ -440,6 +440,12 @@ Converts the USB function list in the string format to a numeric mask in Device 
 | ------ | ------ | ---- | ---------------------- |
 | funcs  | string | Yes  | Function list in string format.|
 
+**Return value**
+
+| Type  | Description              |
+| ------ | ------------------ |
+| number | Function list in numeric mask format.|
+
 **Error codes**
 
 For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
@@ -450,12 +456,6 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 202      | Permission denied. Normal application do not have permission to use system api. |
 | 801      | Capability not supported.                                    |
-
-**Return value**
-
-| Type  | Description              |
-| ------ | ------------------ |
-| number | Function list in numeric mask format.|
 
 **Example**
 
@@ -486,6 +486,12 @@ Converts the USB function list in the numeric mask format to a string in Device 
 | ------ | ----------------------------- | ---- | ----------------- |
 | funcs  | [FunctionType](#functiontype) | Yes  | USB function list in numeric mask format.|
 
+**Return value**
+
+| Type  | Description                          |
+| ------ | ------------------------------ |
+| string | Function list in string format.|
+
 **Error codes**
 
 For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
@@ -496,12 +502,6 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 202      | Permission denied. Normal application do not have permission to use system api.                         |
 | 801      | Capability not supported.                                    |
-
-**Return value**
-
-| Type  | Description                          |
-| ------ | ------------------------------ |
-| string | Function list in string format.|
 
 **Example**
 
@@ -532,6 +532,12 @@ Sets the current USB function list in Device mode.
 | ------ | ----------------------------- | ---- | ----------------- |
 | funcs  | [FunctionType](#functiontype) | Yes  | USB function list in numeric mask format.|
 
+**Return value**
+
+| Type               | Description         |
+| ------------------- | ------------- |
+| Promise\<void\> | Promise used to return the result.|
+
 **Error codes**
 
 For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
@@ -544,12 +550,6 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | 801      | Capability not supported.                                    |
 | 14400002 | Permission denied. The HDC is disabled by the system.                                                   |
 | 14400006 | Unsupported operation. The function is not supported.                                                   |
-
-**Return value**
-
-| Type               | Description         |
-| ------------------- | ------------- |
-| Promise\<void\> | Promise used to return the result.|
 
 **Example**
 
@@ -579,6 +579,12 @@ Obtains the numeric mask combination for the USB function list in Device mode. W
 
 **System capability**: SystemCapability.USB.USBManager
 
+**Return value**
+
+| Type                         | Description                             |
+| ----------------------------- | --------------------------------- |
+| [FunctionType](#functiontype) | Numeric mask combination for the USB function list.|
+
 **Error codes**
 
 For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
@@ -589,12 +595,6 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 202      | Permission denied. Normal application do not have permission to use system api. |
 | 801      | Capability not supported.                                    |
-
-**Return value**
-
-| Type                         | Description                             |
-| ----------------------------- | --------------------------------- |
-| [FunctionType](#functiontype) | Numeric mask combination for the USB function list.|
 
 **Example**
 
@@ -618,6 +618,12 @@ Obtains the list of all physical USB ports. When the developer mode is disabled,
 
 **System capability**: SystemCapability.USB.USBManager
 
+**Return value**
+
+| Type                      | Description                 |
+| -------------------------- | --------------------- |
+| Array<[USBPort](#usbport)> | List of physical USB ports.|
+
 **Error codes**
 
 For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
@@ -626,13 +632,8 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | -------- | ------------------------------------------------------------------------------------------------------- |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 202      | Permission denied. Normal application do not have permission to use system api.                         |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801      | Capability not supported.                                    |
-
-**Return value**
-
-| Type                      | Description                 |
-| -------------------------- | --------------------- |
-| Array<[USBPort](#usbport)> | List of physical USB ports.|
 
 **Example**
 
@@ -658,6 +659,12 @@ Obtains the mask combination for the supported mode list of a given USB port.
 | ------ | ------ | ---- | -------- |
 | portId | number | Yes  | Port number.|
 
+**Return value**
+
+| Type                         | Description                      |
+| ----------------------------- | -------------------------- |
+| [PortModeType](#portmodetype) | Mask combination for the supported mode list.|
+
 **Error codes**
 
 For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
@@ -668,12 +675,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 202      | Permission denied. Normal application do not have permission to use system api.                         |
 | 801      | Capability not supported.                                    |
-
-**Return value**
-
-| Type                         | Description                      |
-| ----------------------------- | -------------------------- |
-| [PortModeType](#portmodetype) | Mask combination for the supported mode list.|
+| 14400003 | Unsupported operation. The current device does not support port role switching.                         |
 
 **Example**
 
@@ -705,6 +707,12 @@ Sets the role types supported by a specified port, which can be **powerRole** (f
 | powerRole | [PowerRoleType](#powerroletype) | Yes  | Role for charging.    |
 | dataRole  | [DataRoleType](#dataroletype)   | Yes  | Role for data transfer.|
 
+**Return value**
+
+| Type               | Description         |
+| ------------------- | ------------- |
+| Promise\<void\> | Promise used to return the result.|
+
 **Error codes**
 
 For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
@@ -716,12 +724,6 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | 202      | Permission denied. Normal application do not have permission to use system api.                         |
 | 801      | Capability not supported.                                    |
 | 14400003 | Unsupported operation. The current device does not support port role switching.                         |
-
-**Return value**
-
-| Type               | Description         |
-| ------------------- | ------------- |
-| Promise\<void\> | Promise used to return the result.|
 
 **Example**
 
@@ -776,7 +778,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 import { bundleManager } from '@kit.AbilityKit';
 try {
   let accList: usbManager.USBAccessory[] = usbManager.getAccessoryList()
-  let flags = bundleManager.BundleFlah.GET_BUNDLE_INFO_WITH_APPLICATION | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY
+  let flags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY
   let bundleInfo = await bundleManager.getBundleInfoForSelf(flags)
   let tokenId: number = bundleInfo.appInfo.accessTokenId
   usbManager.addAccessoryRight(tokenId, accList[0])

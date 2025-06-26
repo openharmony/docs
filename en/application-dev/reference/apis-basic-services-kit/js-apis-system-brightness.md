@@ -105,7 +105,7 @@ Obtains the screen brightness adjustment mode.
 
 setMode(options?: SetBrightnessModeOptions): void
 
-Sets the screen brightness adjustment mode.
+Sets the screen brightness mode.
 
 **System capability**: SystemCapability.PowerManager.DisplayPowerManager.Lite
 
@@ -133,7 +133,7 @@ Sets the screen brightness adjustment mode.
 
 setKeepScreenOn(options?: SetKeepScreenOnOptions): void
 
->This API is no longer maintained since API version 7. You are advised to use [window.setWindowKeepScreenOn()](../apis-arkui/js-apis-window.md#setwindowkeepscreenon9).
+>This API is no longer maintained since API version 7. You are advised to use [window.setWindowKeepScreenOn()](../apis-arkui/arkts-apis-window-Window.md#setwindowkeepscreenon9).
 
 Sets whether to always keep the screen on. Call this API in **onShow()**.
 
@@ -195,7 +195,7 @@ Defines a response that returns the screen brightness.
 
 ## GetBrightnessModeOptions<sup>(deprecated)</sup>
 
-Defines the options for obtaining the screen brightness mode.
+Options for obtaining the screen brightness mode.
 
 **System capability**: SystemCapability.PowerManager.DisplayPowerManager.Lite
 
