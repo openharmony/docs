@@ -2,7 +2,7 @@
 
 AbilityStage是一个[Module](../../../application-dev/quick-start/application-package-overview.md#应用的多module设计机制)级别的组件容器，应用的[HAP](../../../application-dev/quick-start/hap-package.md)/[HSP](../../../application-dev/quick-start/in-app-hsp.md)在首次加载时会创建一个AbilityStage实例，开发者可以通过该实例进行Module级别的资源预加载、线程创建等初始化操作。AbilityStage与Module一一对应，即一个Module拥有一个AbilityStage。
 
-AbilityStage拥有[onCreate()](#abilitystageoncreate)、[onDestroy()](#abilitystageondestroy12)生命周期回调和[onAcceptWant()](#abilitystageonacceptwant)、[onConfigurationUpdate()](#abilitystageonconfigurationupdate)、[onMemoryLevel()](#abilitystageonmemorylevel)事件回调等。
+AbilityStage拥有[onCreate()](#oncreate)、[onDestroy()](#ondestroy12)生命周期回调和[onAcceptWant()](#onacceptwant)、[onConfigurationUpdate()](#onconfigurationupdate)、[onMemoryLevel()](#onmemorylevel)事件回调等。
 
 > **说明：**
 >
@@ -16,7 +16,9 @@ AbilityStage拥有[onCreate()](#abilitystageoncreate)、[onDestroy()](#abilityst
 import { AbilityStage } from '@kit.AbilityKit';
 ```
 
-## 属性
+## AbilityStage
+
+### 属性
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -26,7 +28,7 @@ import { AbilityStage } from '@kit.AbilityKit';
 | -------- | -------- | -------- | -------- | -------- |
 | context  | [AbilityStageContext](js-apis-inner-application-abilityStageContext.md) | 否 | 否 | AbilityStage上下文。 |
 
-## AbilityStage.onCreate
+### onCreate
 
 onCreate(): void
 
@@ -51,7 +53,7 @@ export default class MyAbilityStage extends AbilityStage {
 ```
 
 
-## AbilityStage.onAcceptWant
+### onAcceptWant
 
 onAcceptWant(want: Want): string
 
@@ -61,7 +63,7 @@ onAcceptWant(want: Want): string
 
 > **说明：**
 >
-> 从API version 20开始，当[AbilityStage.onAcceptWantAsync](#abilitystageonacceptwantasync20)实现时，本回调函数将不执行。
+> 从API version 20开始，当[AbilityStage.onAcceptWantAsync](#onacceptwantasync20)实现时，本回调函数将不执行。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -93,7 +95,7 @@ export default class MyAbilityStage extends AbilityStage {
 }
 ```
 
-## AbilityStage.onNewProcessRequest<sup>11+</sup>
+### onNewProcessRequest<sup>11+</sup>
 
 onNewProcessRequest(want: Want): string
 
@@ -101,7 +103,7 @@ onNewProcessRequest(want: Want): string
 
 > **说明：**
 >
-> 从API version 20开始，当[AbilityStage.onNewProcessRequestAsync](#abilitystageonnewprocessrequestasync20)实现时，本回调函数将不执行。
+> 从API version 20开始，当[AbilityStage.onNewProcessRequestAsync](#onnewprocessrequestasync20)实现时，本回调函数将不执行。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -131,7 +133,7 @@ export default class MyAbilityStage extends AbilityStage {
 ```
 
 
-## AbilityStage.onConfigurationUpdate
+### onConfigurationUpdate
 
 onConfigurationUpdate(newConfig: Configuration): void
 
@@ -159,7 +161,7 @@ export default class MyAbilityStage extends AbilityStage {
 }
 ```
 
-## AbilityStage.onMemoryLevel
+### onMemoryLevel
 
 onMemoryLevel(level: AbilityConstant.MemoryLevel): void
 
@@ -189,7 +191,7 @@ export default class MyAbilityStage extends AbilityStage {
 }
 ```
 
-## AbilityStage.onDestroy<sup>12+<sup>
+### onDestroy<sup>12+<sup>
 
 onDestroy(): void
 
@@ -211,7 +213,7 @@ export default class MyAbilityStage extends AbilityStage {
 }
 ```
 
-## AbilityStage.onPrepareTermination<sup>15+<sup>
+### onPrepareTermination<sup>15+<sup>
 
 onPrepareTermination(): AbilityConstant.PrepareTermination
 
@@ -223,7 +225,7 @@ onPrepareTermination(): AbilityConstant.PrepareTermination
 >
 > - 仅当应用正常退出（例如，通过doc栏/托盘关闭应用，或者应用随设备关机而退出）时会调用该接口。如果应用被强制关闭，则不会调用该接口。
 >
-> - 当[AbilityStage.onPrepareTerminationAsync](#abilitystageonprepareterminationasync15)实现时，本回调函数将不执行。
+> - 当[AbilityStage.onPrepareTerminationAsync](#onprepareterminationasync15)实现时，本回调函数将不执行。
 
 **需要权限**：ohos.permission.PREPARE_APP_TERMINATE
 
@@ -250,7 +252,7 @@ export default class MyAbilityStage extends AbilityStage {
 }
 ```
 
-## AbilityStage.onPrepareTerminationAsync<sup>15+<sup>
+### onPrepareTerminationAsync<sup>15+<sup>
 
 onPrepareTerminationAsync(): Promise\<AbilityConstant.PrepareTermination>
 
@@ -291,7 +293,7 @@ export default class MyAbilityStage extends AbilityStage {
 }
 ```
 
-## AbilityStage.onAcceptWantAsync<sup>20+</sup>
+### onAcceptWantAsync<sup>20+</sup>
 
 onAcceptWantAsync(want: Want): Promise\<string\>
 
@@ -330,7 +332,7 @@ class MyAbilityStage extends AbilityStage {
 }
 ```
 
-## AbilityStage.onNewProcessRequestAsync<sup>20+</sup>
+### onNewProcessRequestAsync<sup>20+</sup>
 
 onNewProcessRequestAsync(want: Want): Promise\<string\>
 
@@ -339,6 +341,8 @@ onNewProcessRequestAsync(want: Want): Promise\<string\>
 如果该应用已有相同标识的进程存在，则待启动的UIAbility运行在此进程中，否则创建新的进程。
 
 该接口仅在2in1和tablet设备上生效。
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

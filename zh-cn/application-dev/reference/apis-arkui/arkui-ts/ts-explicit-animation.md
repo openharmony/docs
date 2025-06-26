@@ -71,6 +71,8 @@ animateTo(value: AnimateParam, event: () => void): void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称  | 类型     | 说明      |
 |-----|--------|---------|
 | min | number | 期望的最小帧率，单位为FPS，取值范围为(0, 设备最大帧率]。 |

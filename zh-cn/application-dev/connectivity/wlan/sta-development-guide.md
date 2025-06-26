@@ -45,7 +45,7 @@ Wi-Fi STA模式（Station Mode，站点模式）是无线设备作为客户端�
     let wifiState = "";
       switch (result) {
       case 0:
-      wifiState += 'DISABLEING';
+      wifiState += 'DISABLING';
       break;
       case 1:
       wifiState += 'DISABLED';
@@ -61,12 +61,12 @@ Wi-Fi STA模式（Station Mode，站点模式）是无线设备作为客户端�
       break;
     }
   }
-    // 监听wifi当前状态
+    // 监听Wi-Fi当前状态
     wifiManager.on("wifiStateChange", recvPowerNotifyFunc);
-    // 判断wifi是否打开
+    // 判断Wi-Fi是否打开
     let isWifiActive = wifiManager.isWifiActive();
     if (!isWifiActive) {
-      console.info("wifi not enable"); // 请先手动打开WiFi
+      console.info("Wi-Fi not enabled"); // 请先手动打开Wi-Fi
       return;
     }
 
@@ -96,7 +96,7 @@ Wi-Fi STA模式（Station Mode，站点模式）是无线设备作为客户端�
       securityType : 0
 	  }
 
-      // 更新当前WiFi连接状态
+      // 更新当前Wi-Fi连接状态
     wifiManager.on("wifiConnectionChange", recvWifiConnectionChangeFunc);
       // 添加候选网络配置
 	  wifiManager.addCandidateConfig(config).then(result => {
@@ -105,19 +105,19 @@ Wi-Fi STA模式（Station Mode，站点模式）是无线设备作为客户端�
     });
 
     if (!wifiManager.isConnected()) {
-        console.info("wifi not conneted");
+        console.info("Wi-Fi not connected");
     }
     // 获取连接信息
     wifiManager.getLinkedInfo().then(data => {
-      console.info("get wifi linked info: " + JSON.stringify(data));
+      console.info("get Wi-Fi linked info: " + JSON.stringify(data));
     })
     // 查询信号强度
     let level = wifiManager.getSignalLevel(rssi,band);
     console.info("level:" + JSON.stringify(level));
 
-    // 取消注册，停止更新当前WiFi连接状态
+    // 取消注册，停止更新当前Wi-Fi连接状态
     wifiManager.off("wifiConnectionChange", recvWifiConnectionChangeFunc);
   }
 ```
-6. WiFi连接状态值，详情请参考[ConnState](../../reference/apis-connectivity-kit/js-apis-wifiManager.md#connstate9)。
+6. Wi-Fi连接状态值，详情请参考[ConnState](../../reference/apis-connectivity-kit/js-apis-wifiManager.md#connstate9)。
 7. 错误码详情请参见[WIFI错误码](../../reference/apis-connectivity-kit/errorcode-wifi.md)。

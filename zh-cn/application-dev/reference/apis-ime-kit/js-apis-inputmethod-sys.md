@@ -47,7 +47,7 @@ switchInputMethod(bundleName: string, subtypeId?: string): Promise&lt;void&gt;
 | 202      | not system application.  |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800005 | configuration persistence error.        |
-| 12800008 | input method manager service error. |
+| 12800008 | input method manager service error. Possible cause: a system error, such as null pointer, IPC exception. |
 
 **示例：**
 
@@ -239,7 +239,7 @@ isPanelShown(panelInfo: PanelInfo): boolean
 | -------- | ----------------------------------- |
 | 202      | not system application.  |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12800008 | input method manager service error. |
+| 12800008 | input method manager service error. Possible cause: a system error, such as null pointer, IPC exception. |
 
 **示例：**
 

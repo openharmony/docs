@@ -285,7 +285,7 @@ createPixelMapFromParcel(sequence: rpc.MessageSequence): PixelMap
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096 | Operation failed.Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.|
+| 62980096 | Operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.|
 | 62980097 | IPC error. Possible cause: 1.IPC communication failed. 2. Image upload exception. 3. Decode process exception. 4. Insufficient memory.|
 | 62980115 | Invalid input parameter.|
 | 62980105 | Failed to get the data.|
@@ -1301,7 +1301,7 @@ getImageSourceSupportedFormats(): string[]
 
 获取支持解码的图片格式，图片格式以mime type表示。
 
-**系统能力：** SystemCapability.Multimedia.Image.Core
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 **返回值：**
 
@@ -1347,7 +1347,7 @@ getImagePackerSupportedFormats(): string[]
 
 获取支持编码的图片格式，图片格式以mime type表示。
 
-**系统能力：** SystemCapability.Multimedia.Image.Core
+**系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
 **返回值：**
 

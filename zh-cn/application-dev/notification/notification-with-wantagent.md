@@ -132,3 +132,9 @@
      hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in publishing notification.');
    });
    ```
+<!--RP1-->
+
+## 示例代码
+
+  - [自定义通知](https://gitee.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/Notification/CustomNotification/README_zh.md)
+<!--RP1End-->

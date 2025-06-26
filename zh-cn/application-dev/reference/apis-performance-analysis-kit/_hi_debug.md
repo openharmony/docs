@@ -5,7 +5,7 @@
 
 提供调试功能。
 
-本模块函数可用于获取cpu uage、memory、heap、capture trace等。
+本模块函数可用于获取cpu usage、memory、heap、capture trace等。
 
 **起始版本：** 12
 
@@ -558,7 +558,7 @@ typedef struct HiDebug_Backtrace_Object__* HiDebug_Backtrace_Object
 ### HiDebug_ErrorCode
 
 ```
-typedef enum HiDebug_ErrorCodeHiDebug_ErrorCode
+typedef enum HiDebug_ErrorCode HiDebug_ErrorCode
 ```
 
 **描述**
@@ -571,7 +571,7 @@ typedef enum HiDebug_ErrorCodeHiDebug_ErrorCode
 ### HiDebug_JsStackFrame
 
 ```
-typedef struct HiDebug_JsStackFrameHiDebug_JsStackFrame
+typedef struct HiDebug_JsStackFrame HiDebug_JsStackFrame
 ```
 
 **描述**
@@ -584,7 +584,7 @@ js栈帧内容的定义。
 ### HiDebug_MemoryLimit
 
 ```
-typedef struct HiDebug_MemoryLimitHiDebug_MemoryLimit
+typedef struct HiDebug_MemoryLimit HiDebug_MemoryLimit
 ```
 
 **描述**
@@ -597,7 +597,7 @@ typedef struct HiDebug_MemoryLimitHiDebug_MemoryLimit
 ### HiDebug_NativeMemInfo
 
 ```
-typedef struct HiDebug_NativeMemInfoHiDebug_NativeMemInfo
+typedef struct HiDebug_NativeMemInfo HiDebug_NativeMemInfo
 ```
 
 **描述**
@@ -610,7 +610,7 @@ typedef struct HiDebug_NativeMemInfoHiDebug_NativeMemInfo
 ### HiDebug_NativeStackFrame
 
 ```
-typedef struct HiDebug_NativeStackFrameHiDebug_NativeStackFrame
+typedef struct HiDebug_NativeStackFrame HiDebug_NativeStackFrame
 ```
 
 **描述**
@@ -623,7 +623,7 @@ native栈帧内容的定义。
 ### HiDebug_StackFrame
 
 ```
-typedef struct HiDebug_StackFrameHiDebug_StackFrame
+typedef struct HiDebug_StackFrame HiDebug_StackFrame
 ```
 
 **描述**
@@ -636,7 +636,7 @@ typedef struct HiDebug_StackFrameHiDebug_StackFrame
 ### HiDebug_StackFrameType
 
 ```
-typedef enum HiDebug_StackFrameTypeHiDebug_StackFrameType
+typedef enum HiDebug_StackFrameType HiDebug_StackFrameType
 ```
 
 **描述**
@@ -649,7 +649,7 @@ typedef enum HiDebug_StackFrameTypeHiDebug_StackFrameType
 ### HiDebug_SystemMemInfo
 
 ```
-typedef struct HiDebug_SystemMemInfoHiDebug_SystemMemInfo
+typedef struct HiDebug_SystemMemInfo HiDebug_SystemMemInfo
 ```
 
 **描述**
@@ -662,7 +662,7 @@ typedef struct HiDebug_SystemMemInfoHiDebug_SystemMemInfo
 ### HiDebug_ThreadCpuUsage
 
 ```
-typedef struct HiDebug_ThreadCpuUsageHiDebug_ThreadCpuUsage
+typedef struct HiDebug_ThreadCpuUsage HiDebug_ThreadCpuUsage
 ```
 
 **描述**
@@ -688,7 +688,7 @@ HiDebug_ThreadCpuUsage指针定义。
 ### HiDebug_TraceFlag
 
 ```
-typedef enum HiDebug_TraceFlagHiDebug_TraceFlag
+typedef enum HiDebug_TraceFlag HiDebug_TraceFlag
 ```
 
 **描述**
@@ -742,7 +742,7 @@ enum HiDebug_ErrorCode
 | HIDEBUG_NO_PERMISSION | 没有写文件的权限。 | 
 | HIDEBUG_TRACE_ABNORMAL | 系统内部错误。 | 
 | HIDEBUG_NO_TRACE_RUNNING | 当前没有trace正在运行。 | 
-| HIDEBUG_INVALID_SYMBOLIC_PC_ADDRESS | 传入符号解析函数的pc地址是无效的。<br/>自从<br/>20 | 
+| HIDEBUG_INVALID_SYMBOLIC_PC_ADDRESS | 传入符号解析函数的pc地址是无效的。</br>**说明**：从API version 20开始支持。 | 
 
 
 ### HiDebug_StackFrameType
@@ -879,7 +879,7 @@ double OH_HiDebug_GetAppCpuUsage ()
 
 **返回：**
 
-返回进程的CPU使用率百分比。如果返回结果为0，可能的原因是当前应用的cpu使用率过低。
+返回进程的CPU使用率百分比。如果返回结果为0，可能因当前应用的CPU使用率过低导致。
 
 
 ### OH_HiDebug_GetAppMemoryLimit()
@@ -898,7 +898,7 @@ void OH_HiDebug_GetAppMemoryLimit (HiDebug_MemoryLimit * memoryLimit)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| memoryLimit | 表示指向[HiDebug_MemoryLimit](_hi_debug___memory_limit.md)。 经过该函数调用，如果结构体里的数据为空，说明调用失败。 | 
+| memoryLimit | 表示指向[HiDebug_MemoryLimit](_hi_debug___memory_limit.md)。 函数调用后，若结构体数据为空，则表明调用失败。 | 
 
 
 ### OH_HiDebug_GetAppNativeMemInfo()
@@ -917,7 +917,7 @@ void OH_HiDebug_GetAppNativeMemInfo (HiDebug_NativeMemInfo * nativeMemInfo)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| nativeMemInfo | 表示指向[HiDebug_NativeMemInfo](_hi_debug___native_mem_info.md)。 经过该函数调用，如果结构体里的数据为空，说明调用失败。 | 
+| nativeMemInfo | 表示指向[HiDebug_NativeMemInfo](_hi_debug___native_mem_info.md)。 函数调用后，若结构体数据为空，则表明调用失败。 | 
 
 
 ### OH_HiDebug_GetAppThreadCpuUsage()
@@ -934,7 +934,7 @@ HiDebug_ThreadCpuUsagePtr OH_HiDebug_GetAppThreadCpuUsage ()
 
 **返回：**
 
-返回所有线程CPU使用情况，见[HiDebug_ThreadCpuUsagePtr](#hidebug_threadcpuusageptr)。 如果返回的结果是null，可能的原因是未获取到线程相关的数据。
+返回所有线程CPU使用情况，见[HiDebug_ThreadCpuUsagePtr](#hidebug_threadcpuusageptr)。 若返回结果为null，可能因未获取到线程相关数据所致。
 
 
 ### OH_HiDebug_GetGraphicsMemory()
@@ -997,7 +997,7 @@ void OH_HiDebug_GetSystemMemInfo (HiDebug_SystemMemInfo * systemMemInfo)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| systemMemInfo | 表示指向[HiDebug_SystemMemInfo](_hi_debug___system_mem_info.md)。 经过该函数调用，如果结构体里的数据为空，说明调用失败。 | 
+| systemMemInfo | 表示指向[HiDebug_SystemMemInfo](_hi_debug___system_mem_info.md)。 函数调用后，若结构体数据为空，则表明调用失败。 | 
 
 
 ### OH_HiDebug_StartAppTraceCapture()

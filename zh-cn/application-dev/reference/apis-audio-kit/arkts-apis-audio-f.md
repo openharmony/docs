@@ -231,3 +231,56 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
   console.error(`AudioCapturer Created : ERROR : ${err}`);
 });
 ```
+
+## audio.createAudioLoopback<sup>20+</sup>
+
+createAudioLoopback(mode: AudioLoopbackMode): Promise<AudioLoopback\>
+
+创建音频返听器。使用Promise异步回调。
+
+在使用createAudioLoopback接口之前，需先通过[isAudioLoopbackSupported](arkts-apis-audio-AudioStreamManager.md#isaudioloopbacksupported20)查询系统返听能力。
+
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+**需要权限：** ohos.permission.MICROPHONE
+
+**参数：**
+
+| 参数名  | 类型                                           | 必填 | 说明             |
+| :------ | :--------------------------------------------- | :--- | :--------------- |
+| mode | [AudioLoopbackMode](arkts-apis-audio-e.md#audioloopbackmode20) | 是   | 音频返听模式。 |
+
+**返回值：**
+
+| 类型                                      | 说明                   |
+| ----------------------------------------- |----------------------|
+| Promise<[AudioLoopback](arkts-apis-audio-AudioLoopback.md)> | Promise对象，成功将返回音频返听器对象，异常将返回error对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------|
+|     201 | Permission denied.             |
+|     801 | Unsupported API.               |
+| 6800101 | Parameter verification failed. |
+| 6800104 | Loopback mode is unsupported.  |
+
+**示例：**
+
+```ts
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let audioLoopback: audio.AudioLoopback;
+let mode: audio.AudioLoopbackMode.HARDWARE;
+
+audio.createAudioLoopback(mode).then((data) => {
+  audioLoopback = data;
+  console.info('AudioLoopback Created : Success : Stream Type: SUCCESS');
+}).catch((err: BusinessError) => {
+  console.error(`AudioLoopback Created : ERROR : ${err}`);
+});
+```

@@ -95,7 +95,7 @@
 
 在相机应用开发过程中，可以随时监听手电筒状态，包括手电筒打开、手电筒关闭、手电筒不可用、手电筒恢复可用。手电筒状态发生变化，可通过回调函数获取手电筒模式的变化。
 
-   通过注册torchStatus事件，通过回调返回监听结果，callback返回Camera_TorchStatusInfo参数，参数的具体内容可参考相机管理器回调接口实例[Camera_TorchStatusInfo](../../reference/apis-camera-kit/capi-camera-torchstatusinfo.md)。
+   通过注册torchStatus事件，通过回调返回监听结果，callback返回Camera_TorchStatusInfo参数，参数的具体内容可参考相机管理器回调接口实例[Camera_TorchStatusInfo](../../reference/apis-camera-kit/capi-oh-camera-camera-torchstatusinfo.md)。
 
    ```c++
    void TorchStatusCallback(Camera_Manager *cameraManager, Camera_TorchStatusInfo* torchStatus)

@@ -18,7 +18,7 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [OH_Drawing_RunBuffer](capi-oh-drawing-runbuffer.md) | OH_Drawing_RunBuffer | 结构体用于描述一块内存，描述文字和位置信息。 |
+| [OH_Drawing_RunBuffer](capi-drawing-oh-drawing-runbuffer.md) | OH_Drawing_RunBuffer | 结构体用于描述一块内存，描述文字和位置信息。 |
 
 ### 函数
 
@@ -55,7 +55,7 @@ OH_Drawing_TextBlobBuilder* OH_Drawing_TextBlobBuilderCreate(void)
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_TextBlobBuilder](capi-oh-drawing-textblobbuilder.md)* | 函数会返回一个指针，指针指向创建的文本构造器对象。 |
+| [OH_Drawing_TextBlobBuilder](capi-drawing-oh-drawing-textblobbuilder.md)* | 函数会返回一个指针，指针指向创建的文本构造器对象。 |
 
 ### OH_Drawing_TextBlobCreateFromText()
 
@@ -78,14 +78,14 @@ OH_Drawing_TextBlob* OH_Drawing_TextBlobCreateFromText(const void* text, size_t 
 | -- | -- |
 | const void* text | 指向文本的指针。 |
 | size_t byteLength | 文本的字节长度。 |
-| const [OH_Drawing_Font](capi-oh-drawing-font.md)* font | 指向字体对象[OH_Drawing_Font](capi-oh-drawing-font.md)的指针。 |
+| const [OH_Drawing_Font](capi-drawing-oh-drawing-font.md)* font | 指向字体对象[OH_Drawing_Font](capi-drawing-oh-drawing-font.md)的指针。 |
 | [OH_Drawing_TextEncoding](capi-drawing-types-h.md#oh_drawing_textencoding) textEncoding | 文本编码类型[OH_Drawing_TextEncoding](capi-drawing-types-h.md#oh_drawing_textencoding)。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_TextBlob](capi-oh-drawing-textblob.md)* | 函数返回一个指针，指针指向创建的文本对象[OH_Drawing_TextBlob](capi-oh-drawing-textblob.md)。 |
+| [OH_Drawing_TextBlob](capi-drawing-oh-drawing-textblob.md)* | 函数返回一个指针，指针指向创建的文本对象[OH_Drawing_TextBlob](capi-drawing-oh-drawing-textblob.md)。 |
 
 ### OH_Drawing_TextBlobCreateFromPosText()
 
@@ -108,15 +108,15 @@ OH_Drawing_TextBlob* OH_Drawing_TextBlobCreateFromPosText(const void* text, size
 | -- | -- |
 | const void* text | 指向文本的指针。 |
 | size_t byteLength | 文本的字节长度。 |
-| [OH_Drawing_Point2D](capi-oh-drawing-point2d.md)* point2D | 二维点[OH_Drawing_Point2D](capi-oh-drawing-point2d.md)数组首地址，数组个数由[OH_Drawing_FontCountText](capi-drawing-font-h.md#oh_drawing_fontcounttext)计算结果决定。 |
-| const [OH_Drawing_Font](capi-oh-drawing-font.md)* font | 指向字体对象[OH_Drawing_Font](capi-oh-drawing-font.md)的指针。 |
+| [OH_Drawing_Point2D](capi-drawing-oh-drawing-point2d.md)* point2D | 二维点[OH_Drawing_Point2D](capi-drawing-oh-drawing-point2d.md)数组首地址，数组个数由[OH_Drawing_FontCountText](capi-drawing-font-h.md#oh_drawing_fontcounttext)计算结果决定。 |
+| const [OH_Drawing_Font](capi-drawing-oh-drawing-font.md)* font | 指向字体对象[OH_Drawing_Font](capi-drawing-oh-drawing-font.md)的指针。 |
 | [OH_Drawing_TextEncoding](capi-drawing-types-h.md#oh_drawing_textencoding) textEncoding | 文本编码类型[OH_Drawing_TextEncoding](capi-drawing-types-h.md#oh_drawing_textencoding)。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_TextBlob](capi-oh-drawing-textblob.md)* | 函数返回一个指针，指针指向创建的文本对象[OH_Drawing_TextBlob](capi-oh-drawing-textblob.md)。 |
+| [OH_Drawing_TextBlob](capi-drawing-oh-drawing-textblob.md)* | 函数返回一个指针，指针指向创建的文本对象[OH_Drawing_TextBlob](capi-drawing-oh-drawing-textblob.md)。 |
 
 ### OH_Drawing_TextBlobCreateFromString()
 
@@ -138,14 +138,14 @@ OH_Drawing_TextBlob* OH_Drawing_TextBlobCreateFromString(const char* str,const O
 | 参数项 | 描述 |
 | -- | -- |
 | const char* str | 指向字符串的指针。 |
-| const [OH_Drawing_Font](capi-oh-drawing-font.md)* font | 指向字体对象[OH_Drawing_Font](capi-oh-drawing-font.md)的指针。 |
+| const [OH_Drawing_Font](capi-drawing-oh-drawing-font.md)* font | 指向字体对象[OH_Drawing_Font](capi-drawing-oh-drawing-font.md)的指针。 |
 | [OH_Drawing_TextEncoding](capi-drawing-types-h.md#oh_drawing_textencoding) textEncoding | 文本编码类型[OH_Drawing_TextEncoding](capi-drawing-types-h.md#oh_drawing_textencoding)。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_TextBlob](capi-oh-drawing-textblob.md)* | 函数返回一个指针，指针指向创建的文本对象[OH_Drawing_TextBlob](capi-oh-drawing-textblob.md)。 |
+| [OH_Drawing_TextBlob](capi-drawing-oh-drawing-textblob.md)* | 函数返回一个指针，指针指向创建的文本对象[OH_Drawing_TextBlob](capi-drawing-oh-drawing-textblob.md)。 |
 
 ### OH_Drawing_TextBlobGetBounds()
 
@@ -166,8 +166,8 @@ void OH_Drawing_TextBlobGetBounds(OH_Drawing_TextBlob* textBlob, OH_Drawing_Rect
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_TextBlob](capi-oh-drawing-textblob.md)* textBlob | 指向文本对象[OH_Drawing_TextBlob](capi-oh-drawing-textblob.md)的指针。 |
-| [OH_Drawing_Rect](capi-oh-drawing-rect.md)* rect | 指向矩形对象[OH_Drawing_Rect](capi-oh-drawing-rect.md)的指针，开发者可调用[OH_Drawing_Rect](capi-oh-drawing-rect.md)接口创建。 |
+| [OH_Drawing_TextBlob](capi-drawing-oh-drawing-textblob.md)* textBlob | 指向文本对象[OH_Drawing_TextBlob](capi-drawing-oh-drawing-textblob.md)的指针。 |
+| [OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)* rect | 指向矩形对象[OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)的指针，开发者可调用[OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)接口创建。 |
 
 ### OH_Drawing_TextBlobUniqueID()
 
@@ -188,7 +188,7 @@ uint32_t OH_Drawing_TextBlobUniqueID(const OH_Drawing_TextBlob* textBlob)
 
 | 参数项 | 描述 |
 | -- | -- |
-| const [OH_Drawing_TextBlob](capi-oh-drawing-textblob.md)* textBlob | 指向文本对象[OH_Drawing_TextBlob](capi-oh-drawing-textblob.md)的指针。 |
+| const [OH_Drawing_TextBlob](capi-drawing-oh-drawing-textblob.md)* textBlob | 指向文本对象[OH_Drawing_TextBlob](capi-drawing-oh-drawing-textblob.md)的指针。 |
 
 **返回：**
 
@@ -215,10 +215,10 @@ const OH_Drawing_RunBuffer* OH_Drawing_TextBlobBuilderAllocRunPos(OH_Drawing_Tex
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_TextBlobBuilder](capi-oh-drawing-textblobbuilder.md)* textBlobBuilder | 指向文本构造器对象的指针。 |
-| const [OH_Drawing_Font](capi-oh-drawing-font.md)* font | 指向字体对象的指针。 |
+| [OH_Drawing_TextBlobBuilder](capi-drawing-oh-drawing-textblobbuilder.md)* textBlobBuilder | 指向文本构造器对象的指针。 |
+| const [OH_Drawing_Font](capi-drawing-oh-drawing-font.md)* font | 指向字体对象的指针。 |
 | int32_t count | 文字的数量。 |
-| const [OH_Drawing_Rect](capi-oh-drawing-rect.md)* rect | 文本的边界框，为NULL表示不设置边界框。 |
+| const [OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)* rect | 文本的边界框，为NULL表示不设置边界框。 |
 
 ### OH_Drawing_TextBlobBuilderMake()
 
@@ -239,13 +239,13 @@ OH_Drawing_TextBlob* OH_Drawing_TextBlobBuilderMake(OH_Drawing_TextBlobBuilder* 
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_TextBlobBuilder](capi-oh-drawing-textblobbuilder.md)* textBlobBuilder | 指向文本构造器对象的指针。 |
+| [OH_Drawing_TextBlobBuilder](capi-drawing-oh-drawing-textblobbuilder.md)* textBlobBuilder | 指向文本构造器对象的指针。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_TextBlob](capi-oh-drawing-textblob.md)* | 返回一个指针，指针指向创建的文本对象。 |
+| [OH_Drawing_TextBlob](capi-drawing-oh-drawing-textblob.md)* | 返回一个指针，指针指向创建的文本对象。 |
 
 ### OH_Drawing_TextBlobDestroy()
 
@@ -266,7 +266,7 @@ void OH_Drawing_TextBlobDestroy(OH_Drawing_TextBlob* textBlob)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_TextBlob](capi-oh-drawing-textblob.md)* textBlob | 指向文本对象的指针。 |
+| [OH_Drawing_TextBlob](capi-drawing-oh-drawing-textblob.md)* textBlob | 指向文本对象的指针。 |
 
 ### OH_Drawing_TextBlobBuilderDestroy()
 
@@ -287,6 +287,6 @@ void OH_Drawing_TextBlobBuilderDestroy(OH_Drawing_TextBlobBuilder* textBlobBuild
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_TextBlobBuilder](capi-oh-drawing-textblobbuilder.md)* textBlobBuilder | 指向文本构造器对象的指针。 |
+| [OH_Drawing_TextBlobBuilder](capi-drawing-oh-drawing-textblobbuilder.md)* textBlobBuilder | 指向文本构造器对象的指针。 |
 
 

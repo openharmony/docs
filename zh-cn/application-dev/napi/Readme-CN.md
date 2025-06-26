@@ -94,8 +94,9 @@
     - JSVM-API典型使用场景指导<!--jsvm-scenarios-->
       - [JSVM-API调试&定位](jsvm-debugger-cpuprofiler-heapsnapshot.md)
       - [JSVM-API Tracing](use-jsvm-about-trace.md)
-      - [JSVM 申请JIT权限指导](jsvm-apply-jit-profile.md)
-      - [JSVM 定位内存泄漏问题指导](jsvm-locate-memory-leak.md)
+      - [JSVM-API 申请JIT权限指导](jsvm-apply-jit-profile.md)
+      - [JSVM-API 坚盾守护模式](jsvm-secure-shield-mode.md)
+      - [JSVM-API 内存泄漏问题定位指导](jsvm-locate-memory-leak.md)
       - JSVM-API调优&高性能使用示例<!--jsvm-usage-examples-->
         - [使用JSVM-API接口创建多个引擎执行JS代码并销毁](use-jsvm-runtime-task.md)
         - [使用 code cache 加速编译](use-jsvm-about-code-cache.md)

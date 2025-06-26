@@ -5,7 +5,7 @@
 
 [AbilityStage](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md)是一个[Module](../quick-start/application-package-overview.md#应用的多module设计机制)级别的组件容器，应用的[HAP](../quick-start/hap-package.md)在首次加载时会创建一个AbilityStage实例，可以对该Module进行初始化等操作。AbilityStage与Module一一对应，即一个Module拥有一个AbilityStage。
 
-AbilityStage拥有[onCreate()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageoncreate)、[onDestroy()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageondestroy12)生命周期回调和[onAcceptWant()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageonacceptwant)、[onConfigurationUpdate()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageonconfigurationupdate)、[onMemoryLevel()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageonmemorylevel)、[onNewProcessRequest()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageonnewprocessrequest11)、[onPrepareTermination()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageonpreparetermination15)等事件回调。
+AbilityStage拥有[onCreate()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#oncreate)、[onDestroy()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#ondestroy12)生命周期回调和[onAcceptWant()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#onacceptwant)、[onConfigurationUpdate()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#onconfigurationupdate)、[onMemoryLevel()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#onmemorylevel)、[onNewProcessRequest()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#onnewprocessrequest11)、[onPrepareTermination()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#onpreparetermination15)等事件回调。
 
 - onCreate()生命周期回调：在开始加载对应Module的第一个应用组件（如[UIAbility组件](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)或具体扩展能力的[ExtensionAbility组件](../reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md)）实例之前会先创建AbilityStage，并在AbilityStage创建完成之后执行其onCreate()生命周期回调。AbilityStage模块提供在Module加载的时候，通知开发者，可以在此进行该Module的初始化（如资源预加载、线程创建等）。
 
@@ -33,7 +33,7 @@ DevEco Studio默认工程中未自动生成AbilityStage，如需要使用Ability
 
 2. 在myabilitystage目录，右键选择“New &gt; ArkTS File”，新建一个文件并命名为MyAbilityStage.ets。
 
-3. 打开MyAbilityStage.ets文件，导入AbilityStage的依赖包，自定义类继承AbilityStage并加上需要的生命周期回调，示例中增加了一个[onCreate()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageoncreate)生命周期回调。
+3. 打开MyAbilityStage.ets文件，导入AbilityStage的依赖包，自定义类继承AbilityStage并加上需要的生命周期回调，示例中增加了一个[onCreate()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#oncreate)生命周期回调。
 
     ```ts
     import { AbilityStage, Want } from '@kit.AbilityKit';

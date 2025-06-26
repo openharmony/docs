@@ -16,7 +16,7 @@ This error code is reported when an API of the package manager, such as **getInp
 
 **Possible Causes**
 
-The package manager is not working correctly.
+The package manager is not working correctly when APIs such as **getInputMethods** and **listCurrentInputMethodSubtype** are called to obtain the input method subtype.
 
 **Solution**
 
@@ -26,15 +26,18 @@ None
 
 **Error Message**
 
-Input method engine error.
+Input method engine error. Possible causes:
+1. input method panel not created.
+2. the input method application does not subscribe to related events.
 
 **Description**
 
-This error code is reported when an input method API fails to be called.
+The input method process is suspended in operations such as displaying and hiding the keyboard.
 
 **Possible Causes**
 
-The input method process is suspended.
+1. The input method panel is not created.
+2. The input method application does not subscribe to related events.
 
 **Solution**
 
@@ -44,27 +47,29 @@ Check whether the input method process is running properly. For example, click t
 
 **Error Message**
 
-Input method client error.
+Input method client error. Possible causes: 
+1. the edit box is not focused.
+2. no edit box is bound to current input method application.
 
 **Description**
 
-This error code is reported when the API for showing or hiding the keyboard fails to be called by a third-party application.
+This error code is reported when the API for showing or hiding the keyboard fails to be called by an application.
 
 **Possible Causes**
 
-1. The input method is disconnected from the third-party application due to a service error with the application.
-2. The third-party application is not focused.
+1. The application is not focused.
+2. The input method is disconnected from the application due to a service error with the application.
 
 **Solution**
 
-1. Bind the input method to the third-party application again: Close the background process of the third-party application, start the application again, and touch a text input box. If the keyboard is displayed properly, the issue is resolved.
-2. Place the third-party application in the foreground and ensure that it is not covered by other applications or windows. Enable the input method by touching a text input box.
+1. Bind the input method to the application again: Close the background process of the application, start the application again, and touch a text input box. If the keyboard is displayed properly, the issue is resolved.
+2. Place the application in the foreground and ensure that it is not covered by other applications or windows. Then touch the text input box to display the input method.
 
 ## 12800004 Not an Input Method
 
 **Error Message**
 
-Not an input method.
+Not an input method application.
 
 **Description**
 
@@ -94,13 +99,13 @@ An exception occurs with the system parameter configuration module.
 
 **Solution**
 
-Run the **hdc shell param get persist.sys.default_ime** command to check the default input method parameters. If the parameters are displayed, the system parameter configuration module is working properly. In this case, restart the device and try again.
+Run `hdc shell param get persist.sys.default_ime` to view the default input method parameters. If the parameters are displayed, the system parameter configuration module is working properly. In this case, restart the device and try again.
 
 ## 12800006 Input Method Controller Error
 
 **Error Message**
 
-Input method controller error.
+Input method controller error. Possible cause: create InputmethodController object failed.
 
 **Description**
 
@@ -118,7 +123,7 @@ None
 
 **Error Message**
 
-Input method setter error.
+Input method setter error. Possible cause: create InputmethodSetting object failed.
 
 **Description**
 
@@ -136,7 +141,7 @@ None
 
 **Error Message**
 
-Input method manager service error.
+Input method manager service error. Possible cause: a system error, such as null pointer, IPC exception.
 
 **Description**
 
@@ -148,7 +153,7 @@ The input method manager service fails to be found.
 
 **Solution**
 
-Run the **ps -A|grep inputmethod** command to check for the process ID of the input method service. If the process ID is found, the service is working properly.
+Run `ps -A | grep inputmethod` to check the process ID of the input method service. If the process ID is found, the service is working properly.
 
 ## 12800009 Input Method Client Detached
 
@@ -166,7 +171,7 @@ The current application calls **showTextInput** or **hideTextInput** when not at
 
 **Solution**
 
-Call the **attach** API and then try again.
+Call the `attach` API and then try again.
 
 ## 12800010 Not Preconfigured Default Input Method
 
@@ -244,7 +249,7 @@ Restart the device and try again.
 
 **Error Message**
 
-The intput method is basic mode.
+The input method is in basic mode.
 
 **Description**
 
@@ -262,7 +267,7 @@ Enable the full access mode of the input method in **Settings**.
 
 **Error Message**
 
-The another side does not accept the request.
+The other side does not accept the request.
 
 **Description**
 
@@ -280,7 +285,7 @@ To receive custom communication data, register a **MessageHandler** for the mess
 
 **Error Message**
 
-The edit mode need enable.
+Input method client is not editable.
 
 **Description**
 
@@ -288,7 +293,7 @@ The input method client is not in edit mode.
 
 **Possible Causes**
 
-The input method client exits the edit mode after being attached. For example, [hideTextInput](js-apis-inputmethod.md#hidetextinput10) is called after the self-drawing component is attached to the input method through **Attach**.
+The input method client exits the edit mode after being attached. For example, [hideTextInput](js-apis-inputmethod.md#hidetextinput10) is called after the self-drawing component is attached to the input method through `Attach`.
 
 **Solution**
 
@@ -310,4 +315,95 @@ This error is thrown if the [panel type](js-apis-inputmethodengine.md#paneltype1
 
 **Solution**
 
-Read the API usage description and call the API if you need to adjust the panel type or panel flag of the input method, and input parameters. Otherwise, do not call the API.
+Read the API usage description and adjust the input method panel type or panel status as required.
+
+## 12800018 Input Method Not Found
+
+**Error Message**
+
+The input method is not found.
+
+**Description**
+
+The input method is not found.
+
+**Possible Causes**
+
+The input method is not installed.
+
+**Solution**
+
+Call the [getAllInputMethods](js-apis-inputmethod.md#getallinputmethods11) to query all installed input methods.
+
+<!--Del-->
+## 12800019 Unsupported Operation by Default Input Method
+
+**Error Message**
+
+Current operation cannot be applied to the preconfigured default input method.
+
+**Description**
+
+The default input method configured in the system does not support this operation.
+
+**Possible Causes**
+
+[enableInputMethod](js-apis-inputmethod-sys.md#enableinputmethod20) or [EnabledState](js-apis-inputmethod.md#enabledstate15) is called to enable or disable the default input method.
+
+**Solution**
+
+Call the [getDefaultInputMethod](js-apis-inputmethod.md#inputmethodgetdefaultinputmethod11) API to query the default input method configured in the system, and check whether the input method in use is the default input method. If yes, no processing is performed.
+
+<!--DelEnd-->
+
+## 12800020 Invalid Immersive Effect
+
+**Error Message**
+
+invalid immersive effect.
+1. The gradient mode and the fluid light mode can only be used when the immersive mode is enabled.
+2. The fluid light mode can only be used when the gradient mode is enabled.
+3. When the gradient mode is not enabled, the gradient height can only be 0.
+
+**Description**
+
+1. Gradient mode and fluid light mode can be used only when the immersive mode is enabled.
+2. The fluid light mode can be used only when the gradient mode is enabled.
+3. If the gradient mode is disabled, the gradient height can only be 0 px.
+
+**Possible Causes**
+
+The input parameters do not meet the preceding requirements when the [setImmersiveEffect](js-apis-inputmethodengine.md#setimmersiveeffect20) API is called to set the [ImmersiveEffect](js-apis-inputmethodengine.md#immersiveeffect20).
+
+**Solution**
+1. Enable the immersive mode, and then set the gradient mode and fluid light mode.
+2. Enable the gradient mode and then set the fluid light mode.
+3. If the gradient mode is disabled, set the gradient height to 0 px.
+
+
+## 12800021 Unsupported Operation by Default Input Method
+
+**Error Message**
+
+this operation is allowed only after adjustPanelRect or resize is called.
+
+**Description**
+
+The current API can be called only after any of the following APIs is called:
+  - [adjustPanelRect](js-apis-inputmethodengine.md#adjustpanelrect12) (available since API version 12)
+  - [adjustPanelRect](js-apis-inputmethodengine.md#adjustpanelrect15) (available since API version 15)
+  - [resize](js-apis-inputmethodengine.md#resize10) (available since API version 10)
+
+**Possible Causes**
+
+The [setImmersiveEffect](js-apis-inputmethodengine.md#setimmersiveeffect20) API can be called only after any of the following APIs is called:
+  - [adjustPanelRect](js-apis-inputmethodengine.md#adjustpanelrect12) (available since API version 12)
+  - [adjustPanelRect](js-apis-inputmethodengine.md#adjustpanelrect15) (available since API version 15)
+  - [resize](js-apis-inputmethodengine.md#resize10) (available since API version 10)
+
+**Solution**
+
+The **setImmersiveEffect** API can be called only after any of the following APIs is called:
+  - [adjustPanelRect](js-apis-inputmethodengine.md#adjustpanelrect12) (available since API version 12)
+  - [adjustPanelRect](js-apis-inputmethodengine.md#adjustpanelrect15) (available since API version 15)
+  - [resize](js-apis-inputmethodengine.md#resize10) (available since API version 10)

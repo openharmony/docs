@@ -90,7 +90,7 @@ struct Child {
 | \@Param变量装饰器  | 说明                                                         |
 | ------------------ | ------------------------------------------------------------ |
 | 装饰器参数         | 无。                                                         |
-| 能否本地修改       | 否。可使用@Param搭配[\@Once](./arkts-new-once.md)修改子组件的本地值。|
+| 能否本地修改       | 否。若需要修改值，可使用\@Param搭配[\@Once](./arkts-new-once.md)修改子组件的本地值。或通过[\@Event](./arkts-new-event.md)装饰器，修改\@Param数据源的值。|
 | 同步类型           | 由父到子单向同步。                                           |
 | 允许装饰的变量类型 | Object、class、string、number、boolean、enum等基本类型以及Array、Date、Map、Set等内嵌类型。支持null、undefined以及联合类型。 |
 | 被装饰变量的初始值 | 允许本地初始化，若不在本地初始化，则需要和[\@Require](./arkts-require.md)装饰器一起使用，要求必须从外部传入初始化。 |

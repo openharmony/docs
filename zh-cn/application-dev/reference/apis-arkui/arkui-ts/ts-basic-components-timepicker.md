@@ -32,6 +32,8 @@ TimePicker(options?: TimePickerOptions)
 
 ## TimePickerOptions对象说明
 
+时间选择器组件的参数说明。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称                 | 类型                                            | 必填 | 说明                                                         |
@@ -69,6 +71,8 @@ TimePicker(options?: TimePickerOptions)
 >  | ms          | number | 否   | 设置毫秒，例如10。|
 
 ## TimePickerFormat<sup>11+</sup>枚举说明
+
+时间选择器的数据格式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -348,7 +352,7 @@ digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名   | 参数类型                                     | 必填   | 参数描述                      |
+| 参数名   | 类型                                     | 必填   | 说明                      |
 | ----- | ---------------------------------------- | ---- | ------------------------- |
 | sensitivity | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[CrownSensitivity](ts-appendix-enums.md#crownsensitivity18)> | 是    | 表冠响应灵敏度。<br/>默认值：CrownSensitivity.MEDIUM，表示响应速度适中。                    |
 
@@ -364,7 +368,9 @@ digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
 
 onChange(callback:&nbsp;(value:&nbsp;TimePickerResult )&nbsp;=&gt;&nbsp;void)
 
-滑动TimePicker后，时间选项归位至选中项位置时，触发该回调。
+滑动TimePicker后，时间选项归位至选中项位置时，触发该回调。不能通过双向绑定的状态变量触发。
+
+回调会在滑动动画结束后触发，如果需要快速获取索引值变化，建议使用[onEnterSelectedArea](#onenterselectedarea18)接口。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -380,7 +386,7 @@ onChange(callback:&nbsp;(value:&nbsp;TimePickerResult )&nbsp;=&gt;&nbsp;void)
 
 onChange(callback: Optional\<OnTimePickerChangeCallback>)
 
-滑动TimePicker后，时间选项归位至选中项位置时，触发该回调。与[onChange](#onchange)相比，callback参数新增了对undefined类型的支持。
+滑动TimePicker后，时间选项归位至选中项位置时，触发该回调。不能通过双向绑定的状态变量触发。与[onChange](#onchange)相比，callback参数新增了对undefined类型的支持。
 
 回调会在滑动动画结束后触发，如果需要快速获取索引值变化，建议使用[onEnterSelectedArea](#onenterselectedarea18)接口。
 

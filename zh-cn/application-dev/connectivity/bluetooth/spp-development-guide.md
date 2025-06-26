@@ -30,7 +30,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 // 设备地址可以通过查找设备流程获取
 let peerDevice = 'XX:XX:XX:XX:XX:XX';
 
-// 定义客户端scoket id
+// 定义客户端socket id
 let clientNumber = -1;
 
 // 配置连接参数
@@ -117,7 +117,7 @@ try {
 #### 1. 创建服务端套接字
 服务端需通过创建套接字的方式，在蓝牙子系统中注册指定的UUID服务。该UUID服务的名称无限制，可使用应用名称。当客户端发起连接请求时，会携带一个UUID以表示所需连接的服务。只有服务端与客户端的UUID一致时，连接才能成功建立。
 ```ts
-// 定义服务端scoket id
+// 定义服务端socket id
 let serverNumber = -1;
 
 // 配置监听参数
@@ -128,7 +128,7 @@ let option: socket.SppOptions = {
 };
 
 // 创建服务端监听socket，将在蓝牙子系统中注册该UUID服务
-socket.sppListen("Demo", option, (err, num: number) => {
+socket.sppListen("demonstration", option, (err, num: number) => {
   if (err) {
     console.error('sppListen errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
   } else {
@@ -143,7 +143,7 @@ socket.sppListen("Demo", option, (err, num: number) => {
 ```ts
 let serverNumber = 1; // 注意：该值需要的是创建服务端套接字时，异步callback获取到的服务端socket id，此处是伪代码id
 
-// 定义客户端scoket id
+// 定义客户端socket id
 let clientNumber = -1;
 
 socket.sppAccept(serverNumber, (err, num: number) => {
@@ -175,7 +175,7 @@ try {
 ```
 
 **3.2 接收数据**<br>
-待服务端和客户端的连接建立成功后，即可接收客户端的数据。通过订阅读取数据接口[socket.on('sppRead')](../../reference/apis-connectivity-kit/js-apis-bluetooth-socket.md#socketonsppread)实现。
+待服务端和客户端的连接建立成功后，即可接收客户端的数据。通过订阅读取数据接口[socket.on('sppRead')](../../reference/apis-connectivity-kit/js-apis-bluetooth-socket.md#socketonsppread)实现
 ```ts
 let clientNumber = 1; // 注意：该值需要的是服务端监听连接时，异步callback获取到的客户端socket id，此处是伪代码id
 
@@ -351,7 +351,7 @@ class SppServerManager {
     };
 
     // 创建服务端监听socket，将在蓝牙子系统中注册该UUID服务
-    socket.sppListen("Demo", option, (err, num: number) => {
+    socket.sppListen("demonstration", option, (err, num: number) => {
       if (err) {
         console.error('sppListen errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
       } else {

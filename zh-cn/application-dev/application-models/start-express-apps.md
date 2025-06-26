@@ -27,7 +27,7 @@ startAbilityByType接口中type字段为express，支持查询快递意图，对
     @Entry
     @Component
     struct Index {
-        @State hideAbility: string = 'hideAbility'
+        @State hideAbility: string = 'hideAbility';
 
         build() {
             Row() {
@@ -105,7 +105,7 @@ startAbilityByType接口中type字段为express，支持查询快递意图，对
     UIAbility.onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void
     ```
 
-    在参数**want.uri**中会携带目标方配置的linkFeature对应的uri;
+    在参数**want.uri**中会携带目标方配置的linkFeature对应的uri。
 
     在参数**want.parameters**中会携带Caller方传入的参数，如下所示：
     
@@ -122,7 +122,7 @@ import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 
-const TAG = 'EntryAbility'
+const TAG = 'EntryAbility';
 
 export default class EntryAbility extends UIAbility {
     windowStage: window.WindowStage | null = null;

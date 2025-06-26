@@ -482,7 +482,11 @@ let localWantAgentInfo: wantAgent.LocalWantAgentInfo = {
   requestCode: 0
 };
 // 创建本地WantAgent实例
-wantAgentData = wantAgent.createLocalWantAgent(localWantAgentInfo);
+try {
+  wantAgentData = wantAgent.createLocalWantAgent(localWantAgentInfo);
+} catch (err) {
+  console.error('createLocalWantAgent failed');
+}
 ```
 
 ## wantAgent.isLocalWantAgent<sup>20+</sup>
@@ -551,10 +555,14 @@ let localWantAgentInfo: wantAgent.LocalWantAgentInfo = {
   operationType: wantAgent.OperationType.START_ABILITY,
   requestCode: 0
 };
-// 创建本地WantAgent实例
-wantAgentData = wantAgent.createLocalWantAgent(localWantAgentInfo);
-// 获取WantAgent实例是否为本地WantAgent实例
-bool isLocal = wantAgent.isLocalWantAgent(wantAgentData);
+
+// 创建WantAgent实例并获取是否为本地WantAgent实例
+try {
+  wantAgentData = wantAgent.createLocalWantAgent(localWantAgentInfo);
+  let isLocal: boolean = wantAgent.isLocalWantAgent(wantAgentData);
+} catch (err) {
+  console.error('call isLocalWantAgent failed');
+}
 ```
 
 ## OperationType

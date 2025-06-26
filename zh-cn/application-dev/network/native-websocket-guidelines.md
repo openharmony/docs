@@ -11,7 +11,7 @@ WebSocket常用接口如下表所示，详细的接口说明请参考[net_websoc
 
 | 接口名 | 描述 |
 | -------- | -------- |
-| OH_WebSocketClient_Constructor(WebSocket_OnOpenCallback onOpen, WebSocket_OnMessageCallback onMessage, WebSocket_OnErrorCallback onError, WebSocket_OnCloseCallback onclose) | Websocket客户端的构造函数。  |
+| OH_WebSocketClient_Constructor(WebSocket_OnOpenCallback onOpen, WebSocket_OnMessageCallback onMessage, WebSocket_OnErrorCallback onError, WebSocket_OnCloseCallback onclose) | WebSocket客户端的构造函数。  |
 | OH_WebSocketClient_AddHeader(struct WebSocket \*client, struct WebSocket_Header header) | 将header头信息添加到client客户端request中。  |
 | OH_WebSocketClient_Connect(struct WebSocket \*client, const char \*url, struct WebSocket_RequestOptions options) | 客户端连接服务端。  |
 | OH_WebSocketClient_Send(struct WebSocket \*client, char \*data, size_t length) | 客户端向服务端发送数据。  |
@@ -22,9 +22,9 @@ WebSocket常用接口如下表所示，详细的接口说明请参考[net_websoc
 
 ### 开发步骤
 
-使用本文档涉及接口创建并连接到WebSocket服务器时，需先创建Native C++工程，在源文件中将相关接口封装，再在ArkTS层对封装的接口进行调用，使用hilog或者console.log等手段选择打印在控制台或者生成设备日志。
+使用本文档涉及接口创建并连接到WebSocket服务器时，需先创建Native C++工程，在源文件中封装相关接口，然后在ArkTS层调用封装好的接口，使用hilog或console.info等方法将日志打印到控制台或生成设备日志。
 
-本文以实现建立与WebSocket服务器的连接、发送消息给WebSocket服务器、关闭WebSocket连接为例，给出具体的开发指导。
+本文以建立与WebSocket服务器的连接、向WebSocket服务器发送消息、关闭WebSocket连接为例，提供具体的开发指导。
 
 ### 添加开发依赖
 
@@ -189,7 +189,7 @@ static napi_value CloseWebsocket(napi_env env, napi_callback_info info)
 
 ```
 
-简要说明：ConnectWebsocket函数接收一个WebSocket URL，并尝试连接，如果能连接成功，则返回true，否则返回false。在创建WebSocket结构体指针代表WebSocket客户端前，需要定义好该客户端在接收连接开启消息时的回调onOpen、接收到普通消息的回调onMessage、接收到错误消息时的回调onError、接收到关闭消息时的回调onClose。在示例代码中，还调用了`OH_WebSocketClient_Send`、`OH_WebSocketClient_Close`等函数向服务器发送消息，主动关闭WebSocket连接。
+ConnectWebsocket函数接收一个WebSocket URL并尝试连接，连接成功返回true，否则返回false。在创建代表WebSocket客户端的WebSocket结构体指针前，需要定义以下回调函数：连接开启时的onOpen回调、接收普通消息的onMessage回调、接收错误消息的onError回调、接收关闭消息的onClose回调。在示例代码中，还调用了`OH_WebSocketClient_Send`、`OH_WebSocketClient_Close`等函数向服务器发送消息，主动关闭WebSocket连接。
 
 
 2、将通过napi封装好的`napi_value`类型对象初始化导出，通过外部函数接口，将函数暴露给JavaScript使用。示例代码中，ConnectWebsocket函数就会作为外部函数Connect暴露出去；SendMessage函数作为外部函数Send暴露出去；CloseWebsocket函数作为外部函数Close暴露出去。

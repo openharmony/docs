@@ -39,7 +39,7 @@ init(config: AVScreenCaptureRecordConfig): Promise\<void>
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let avCaptureConfig: media.AVScreenCaptureRecordConfig = {
-    fd: 0, // 文件需要先有调用者创建，赋予写权限，将文件fd传给此参数。
+    fd: 0, // 文件需要先由调用者创建，通常是MP4文件，赋予写权限，将文件fd传给此参数。
     frameWidth: 640,
     frameHeight: 480
     // 补充其他参数。

@@ -1010,6 +1010,49 @@ try {
 }
 ```
 
+### sensorStatusChange<sup>19+</sup>
+
+on(type: 'sensorStatusChange', callback: Callback&lt;SensorStatusEvent&gt;): void
+
+监听传感器上线下线状态的变化，callback返回传感器状态事件数据。
+
+**系统能力**：SystemCapability.Sensors.Sensor
+
+**参数**：
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
+| sensorStatusChange     |  固定传入'sensorStatusChange'         | 是   | 状态监听固定参数。             |
+| callback | Callback&lt;[SensorStatusEvent](#sensorstatusevent19)&gt; | 是   | 回调函数，异步上报的传感器事件数据SensorStatusEvent。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
+
+**示例**：
+
+```ts
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  sensor.on('sensorStatusChange', (data: sensor.SensorStatusEvent) => {
+    console.info('sensorStatusChange : ' + JSON.stringify(data));
+  });
+  setTimeout(() => {
+    sensor.off('sensorStatusChange');
+  }, 5000);
+} catch (error) {
+  let e: BusinessError = error as BusinessError;
+  console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
+}
+```
+
+
 ## sensor.once<sup>9+</sup>
 
 ### ACCELEROMETER<sup>9+</sup>
@@ -1910,7 +1953,7 @@ try {
 
 ### ACCELEROMETER<sup>9+</sup> 
 
-off(type: SensorId.ACCELEROMETER, callback?: Callback&lt;AccelerometerResponse&gt;): void
+off(type: SensorId.ACCELEROMETER, sensorInfoParam?: SensorInfoParam, callback?: Callback&lt;AccelerometerResponse&gt;): void
 
 取消订阅加速度传感器数据。
 
@@ -1922,10 +1965,11 @@ off(type: SensorId.ACCELEROMETER, callback?: Callback&lt;AccelerometerResponse&g
 
 **参数**：
 
-| 参数名   | 类型                                                         | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9).ACCELEROMETER                         | 是   | 传感器类型，该值固定为SensorId.ACCELEROMETER。               |
-| callback | Callback&lt;[AccelerometerResponse](#accelerometerresponse)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
+| 参数名                           | 类型                                                         | 必填 | 说明                                                         |
+|-------------------------------| ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type                          | [SensorId](#sensorid9).ACCELEROMETER                         | 是   | 传感器类型，该值固定为SensorId.ACCELEROMETER。               |
+| sensorInfoParam<sup>19+</sup> | [SensorInfoParam](#sensorinfoparam19) |  否 | 传感器传入设置参数，可指定deviceId、sensorIndex |
+| callback                      | Callback&lt;[AccelerometerResponse](#accelerometerresponse)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **错误码**：
 
@@ -1965,7 +2009,7 @@ try {
 
 ### ACCELEROMETER_UNCALIBRATED<sup>9+</sup>  
 
-off(type: SensorId.ACCELEROMETER_UNCALIBRATED, callback?: Callback&lt;AccelerometerUncalibratedResponse&gt;): void
+off(type: SensorId.ACCELEROMETER_UNCALIBRATED, sensorInfoParam?: SensorInfoParam, callback?: Callback&lt;AccelerometerUncalibratedResponse&gt;): void
 
 取消订阅未校准加速度传感器数据。
 
@@ -1978,6 +2022,7 @@ off(type: SensorId.ACCELEROMETER_UNCALIBRATED, callback?: Callback&lt;Accelerome
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).ACCELEROMETER_UNCALIBRATED            | 是   | 传感器类型，该值固定为SensorId.ACCELEROMETER_UNCALIBRATED。  |
+| sensorInfoParam<sup>19+</sup> | [SensorInfoParam](#sensorinfoparam19) |  否 | 传感器传入设置参数，可指定deviceId、sensorIndex |
 | callback | Callback&lt;[AccelerometerUncalibratedResponse](#accelerometeruncalibratedresponse)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **错误码**：
@@ -2018,7 +2063,7 @@ try {
 
 ### AMBIENT_LIGHT<sup>9+</sup> 
 
-off(type: SensorId.AMBIENT_LIGHT, callback?: Callback&lt;LightResponse&gt;): void
+off(type: SensorId.AMBIENT_LIGHT, sensorInfoParam?: SensorInfoParam, callback?: Callback&lt;LightResponse&gt;): void
 
 取消订阅环境光传感器数据。
 
@@ -2029,6 +2074,7 @@ off(type: SensorId.AMBIENT_LIGHT, callback?: Callback&lt;LightResponse&gt;): voi
 | 参数名   | 类型                                            | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).AMBIENT_LIGHT            | 是   | 传感器类型，该值固定为SensorId.AMBIENT_LIGHT。               |
+| sensorInfoParam<sup>19+</sup> | [SensorInfoParam](#sensorinfoparam19) |  否 | 传感器传入设置参数，可指定deviceId、sensorIndex |
 | callback | Callback&lt;[LightResponse](#lightresponse)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **错误码**：
@@ -2068,7 +2114,7 @@ try {
 
 ### AMBIENT_TEMPERATURE<sup>9+</sup> 
 
-off(type: SensorId.AMBIENT_TEMPERATURE, callback?: Callback&lt;AmbientTemperatureResponse&gt;): void
+off(type: SensorId.AMBIENT_TEMPERATURE, sensorInfoParam?: SensorInfoParam, callback?: Callback&lt;AmbientTemperatureResponse&gt;): void
 
 取消订阅温度传感器数据。
 
@@ -2079,6 +2125,7 @@ off(type: SensorId.AMBIENT_TEMPERATURE, callback?: Callback&lt;AmbientTemperatur
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).AMBIENT_TEMPERATURE                   | 是   | 传感器类型，该值固定为SensorId.AMBIENT_TEMPERATURE。         |
+| sensorInfoParam<sup>19+</sup> | [SensorInfoParam](#sensorinfoparam19) |  否 | 传感器传入设置参数，可指定deviceId、sensorIndex |
 | callback | Callback&lt;[AmbientTemperatureResponse](#ambienttemperatureresponse)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **错误码**：
@@ -2118,7 +2165,7 @@ try {
 
 ### BAROMETER<sup>9+</sup>  
 
-off(type: SensorId.BAROMETER, callback?: Callback&lt;BarometerResponse&gt;): void
+off(type: SensorId.BAROMETER, sensorInfoParam?: SensorInfoParam, callback?: Callback&lt;BarometerResponse&gt;): void
 
 取消订阅气压计传感器数据。
 
@@ -2129,6 +2176,7 @@ off(type: SensorId.BAROMETER, callback?: Callback&lt;BarometerResponse&gt;): voi
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).BAROMETER                        | 是   | 传感器类型，该值固定为SensorId.BAROMETER。                   |
+| sensorInfoParam<sup>19+</sup> | [SensorInfoParam](#sensorinfoparam19) |  否 | 传感器传入设置参数，可指定deviceId、sensorIndex |
 | callback | Callback&lt;[BarometerResponse](#barometerresponse)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **错误码**：
@@ -2168,7 +2216,7 @@ try {
 
 ### GRAVITY<sup>9+</sup> 
 
-off(type: SensorId.GRAVITY, callback?: Callback&lt;GravityResponse&gt;): void
+off(type: SensorId.GRAVITY, sensorInfoParam?: SensorInfoParam, callback?: Callback&lt;GravityResponse&gt;): void
 
 取消订阅重力传感器数据。
 
@@ -2179,6 +2227,7 @@ off(type: SensorId.GRAVITY, callback?: Callback&lt;GravityResponse&gt;): void
 | 参数名   | 类型                                                | 必填 | 说明                                                         |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).GRAVITY                      | 是   | 传感器类型，该值固定为SensorId.GRAVITY。                     |
+| sensorInfoParam<sup>19+</sup> | [SensorInfoParam](#sensorinfoparam19) |  否 | 传感器传入设置参数，可指定deviceId、sensorIndex |
 | callback | Callback&lt;[GravityResponse](#gravityresponse)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **错误码**：
@@ -2219,7 +2268,7 @@ try {
 
 ### GYROSCOPE<sup>9+</sup> 
 
-off(type: SensorId.GYROSCOPE, callback?: Callback&lt;GyroscopeResponse&gt;): void
+off(type: SensorId.GYROSCOPE, sensorInfoParam?: SensorInfoParam, callback?: Callback&lt;GyroscopeResponse&gt;): void
 
 取消订阅陀螺仪传感器数据。
 
@@ -2234,6 +2283,7 @@ off(type: SensorId.GYROSCOPE, callback?: Callback&lt;GyroscopeResponse&gt;): voi
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).GYROSCOPE                        | 是   | 传感器类型，该值固定为SensorId.GYROSCOPE。                   |
+| sensorInfoParam<sup>19+</sup> | [SensorInfoParam](#sensorinfoparam19) |  否 | 传感器传入设置参数，可指定deviceId、sensorIndex |
 | callback | Callback&lt;[GyroscopeResponse](#gyroscoperesponse)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **错误码**：
@@ -2274,7 +2324,7 @@ try {
 
 ### GYROSCOPE_UNCALIBRATED<sup>9+</sup> 
 
-off(type: SensorId.GYROSCOPE_UNCALIBRATED, callback?: Callback&lt;GyroscopeUncalibratedResponse&gt;): void
+off(type: SensorId.GYROSCOPE_UNCALIBRATED, sensorInfoParam?: SensorInfoParam, callback?: Callback&lt;GyroscopeUncalibratedResponse&gt;): void
 
  取消订阅未校准陀螺仪传感器数据。
 
@@ -2287,6 +2337,7 @@ off(type: SensorId.GYROSCOPE_UNCALIBRATED, callback?: Callback&lt;GyroscopeUncal
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).GYROSCOPE_UNCALIBRATED                | 是   | 传感器类型，该值固定为SensorId.GYROSCOPE_UNCALIBRATED。      |
+| sensorInfoParam<sup>19+</sup> | [SensorInfoParam](#sensorinfoparam19) |  否 | 传感器传入设置参数，可指定deviceId、sensorIndex |
 | callback | Callback&lt;[GyroscopeUncalibratedResponse](#gyroscopeuncalibratedresponse)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **错误码**：
@@ -2327,7 +2378,7 @@ try {
 
 ### HALL<sup>9+</sup> 
 
-off(type: SensorId.HALL, callback?: Callback&lt;HallResponse&gt;): void
+off(type: SensorId.HALL, sensorInfoParam?: SensorInfoParam, callback?: Callback&lt;HallResponse&gt;): void
 
 取消订阅霍尔传感器数据。
 
@@ -2338,6 +2389,7 @@ off(type: SensorId.HALL, callback?: Callback&lt;HallResponse&gt;): void
 | 参数名   | 类型                                          | 必填 | 说明                                                         |
 | -------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).HALL                   | 是   | 传感器类型，该值固定为SensorId.HALL。                        |
+| sensorInfoParam<sup>19+</sup> | [SensorInfoParam](#sensorinfoparam19) |  否 | 传感器传入设置参数，可指定deviceId、sensorIndex |
 | callback | Callback&lt;[HallResponse](#hallresponse)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **错误码**：
@@ -2377,7 +2429,7 @@ try {
 
 ### HEART_RATE<sup>9+</sup> 
 
-off(type: SensorId.HEART_RATE, callback?: Callback&lt;HeartRateResponse&gt;): void
+off(type: SensorId.HEART_RATE, sensorInfoParam?: SensorInfoParam, callback?: Callback&lt;HeartRateResponse&gt;): void
 
 取消订阅心率传感器数据。
 
@@ -2390,6 +2442,7 @@ off(type: SensorId.HEART_RATE, callback?: Callback&lt;HeartRateResponse&gt;): vo
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).HEART_RATE                       | 是   | 传感器类型，该值固定为SensorId.HEART_RATE。                  |
+| sensorInfoParam<sup>19+</sup> | [SensorInfoParam](#sensorinfoparam19) |  否 | 传感器传入设置参数，可指定deviceId、sensorIndex |
 | callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **错误码**：
@@ -2430,7 +2483,7 @@ try {
 
 ### HUMIDITY<sup>9+</sup> 
 
-off(type: SensorId.HUMIDITY, callback?: Callback&lt;HumidityResponse&gt;): void
+off(type: SensorId.HUMIDITY, sensorInfoParam?: SensorInfoParam, callback?: Callback&lt;HumidityResponse&gt;): void
 
 取消订阅湿度传感器数据。
 
@@ -2441,6 +2494,7 @@ off(type: SensorId.HUMIDITY, callback?: Callback&lt;HumidityResponse&gt;): void
 | 参数名   | 类型                                                  | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).HUMIDITY                       | 是   | 传感器类型，该值固定为SensorId.HUMIDITY。                    |
+| sensorInfoParam<sup>19+</sup> | [SensorInfoParam](#sensorinfoparam19) |  否 | 传感器传入设置参数，可指定deviceId、sensorIndex |
 | callback | Callback&lt;[HumidityResponse](#humidityresponse)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **错误码**：
@@ -2480,7 +2534,7 @@ try {
 
 ### LINEAR_ACCELEROMETER<sup>9+</sup> 
 
-off(type: SensorId.LINEAR_ACCELEROMETER, callback?: Callback&lt;LinearAccelerometerResponse&gt;): void
+off(type: SensorId.LINEAR_ACCELEROMETER, sensorInfoParam?: SensorInfoParam, callback?: Callback&lt;LinearAccelerometerResponse&gt;): void
 
 取消订阅线性加速度传感器数据。
 
@@ -2493,6 +2547,7 @@ off(type: SensorId.LINEAR_ACCELEROMETER, callback?: Callback&lt;LinearAccelerome
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).LINEAR_ACCELEROMETER                  | 是   | 传感器类型，该值固定为SensorId.LINEAR_ACCELERATION。         |
+| sensorInfoParam<sup>19+</sup> | [SensorInfoParam](#sensorinfoparam19) |  否 | 传感器传入设置参数，可指定deviceId、sensorIndex |
 | callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **错误码**：
@@ -2533,7 +2588,7 @@ try {
 
 ### MAGNETIC_FIELD<sup>9+</sup> 
 
-off(type: SensorId.MAGNETIC_FIELD, callback?: Callback&lt;MagneticFieldResponse&gt;): void
+off(type: SensorId.MAGNETIC_FIELD, sensorInfoParam?: SensorInfoParam, callback?: Callback&lt;MagneticFieldResponse&gt;): void
 
 取消订阅磁场传感器数据。
 
@@ -2544,6 +2599,7 @@ off(type: SensorId.MAGNETIC_FIELD, callback?: Callback&lt;MagneticFieldResponse&
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).MAGNETIC_FIELD                        | 是   | 传感器类型，该值固定为SensorId.MAGNETIC_FIELD。              |
+| sensorInfoParam<sup>19+</sup> | [SensorInfoParam](#sensorinfoparam19) |  否 | 传感器传入设置参数，可指定deviceId、sensorIndex |
 | callback | Callback&lt;[MagneticFieldResponse](#magneticfieldresponse)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **错误码**：
@@ -2583,7 +2639,7 @@ try {
 
 ### MAGNETIC_FIELD_UNCALIBRATED<sup>9+</sup> 
 
-off(type: SensorId.MAGNETIC_FIELD_UNCALIBRATED, callback?: Callback&lt;MagneticFieldUncalibratedResponse&gt;): void
+off(type: SensorId.MAGNETIC_FIELD_UNCALIBRATED, sensorInfoParam?: SensorInfoParam, callback?: Callback&lt;MagneticFieldUncalibratedResponse&gt;): void
 
 取消订阅未校准的磁场传感器数据。
 
@@ -2594,6 +2650,7 @@ off(type: SensorId.MAGNETIC_FIELD_UNCALIBRATED, callback?: Callback&lt;MagneticF
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).MAGNETIC_FIELD_UNCALIBRATED           | 是   | 传感器类型，该值固定为SensorId.MAGNETIC_FIELD_UNCALIBRATED。 |
+| sensorInfoParam<sup>19+</sup> | [SensorInfoParam](#sensorinfoparam19) |  否 | 传感器传入设置参数，可指定deviceId、sensorIndex |
 | callback | Callback&lt;[MagneticFieldUncalibratedResponse](#magneticfielduncalibratedresponse)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **错误码**：
@@ -2633,7 +2690,7 @@ try {
 
 ### ORIENTATION<sup>9+</sup> 
 
-off(type: SensorId.ORIENTATION, callback?: Callback&lt;OrientationResponse&gt;): void
+off(type: SensorId.ORIENTATION, sensorInfoParam?: SensorInfoParam, callback?: Callback&lt;OrientationResponse&gt;): void
 
 取消订阅方向传感器数据。
 
@@ -2646,6 +2703,7 @@ off(type: SensorId.ORIENTATION, callback?: Callback&lt;OrientationResponse&gt;):
 | 参数名   | 类型                                                        | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).ORIENTATION                          | 是   | 传感器类型，该值固定为SensorId.ORIENTATION。                 |
+| sensorInfoParam<sup>19+</sup> | [SensorInfoParam](#sensorinfoparam19) |  否 | 传感器传入设置参数，可指定deviceId、sensorIndex |
 | callback | Callback&lt;[OrientationResponse](#orientationresponse)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **错误码**：
@@ -2685,7 +2743,7 @@ try {
 
 ### PEDOMETER<sup>9+</sup>
 
-off(type: SensorId.PEDOMETER, callback?: Callback&lt;PedometerResponse&gt;): void
+off(type: SensorId.PEDOMETER, sensorInfoParam?: SensorInfoParam, callback?: Callback&lt;PedometerResponse&gt;): void
 
 取消订阅计步器传感器数据。
 
@@ -2698,6 +2756,7 @@ off(type: SensorId.PEDOMETER, callback?: Callback&lt;PedometerResponse&gt;): voi
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).PEDOMETER                        | 是   | 传感器类型，该值固定为SensorId.PEDOMETER。                   |
+| sensorInfoParam<sup>19+</sup> | [SensorInfoParam](#sensorinfoparam19) |  否 | 传感器传入设置参数，可指定deviceId、sensorIndex |
 | callback | Callback&lt;[PedometerResponse](#pedometerresponse)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **错误码**：
@@ -2738,7 +2797,7 @@ try {
 
 ### PEDOMETER_DETECTION<sup>9+</sup> 
 
-off(type: SensorId.PEDOMETER_DETECTION, callback?: Callback&lt;PedometerDetectionResponse&gt;): void
+off(type: SensorId.PEDOMETER_DETECTION, sensorInfoParam?: SensorInfoParam, callback?: Callback&lt;PedometerDetectionResponse&gt;): void
 
 取消订阅计步检测器传感器数据。
 
@@ -2751,6 +2810,7 @@ off(type: SensorId.PEDOMETER_DETECTION, callback?: Callback&lt;PedometerDetectio
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).PEDOMETER_DETECTION                   | 是   | 传感器类型，该值固定为SensorId.PEDOMETER_DETECTION。         |
+| sensorInfoParam<sup>19+</sup> | [SensorInfoParam](#sensorinfoparam19) |  否 | 传感器传入设置参数，可指定deviceId、sensorIndex |
 | callback | Callback&lt;[PedometerDetectionResponse](#pedometerdetectionresponse)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **错误码**：
@@ -2791,7 +2851,7 @@ try {
 
 ### PROXIMITY<sup>9+</sup>  
 
-off(type: SensorId.PROXIMITY, callback?: Callback&lt;ProximityResponse&gt;): void
+off(type: SensorId.PROXIMITY, sensorInfoParam?: SensorInfoParam, callback?: Callback&lt;ProximityResponse&gt;): void
 
 取消订阅接近光传感器数据。
 
@@ -2802,6 +2862,7 @@ off(type: SensorId.PROXIMITY, callback?: Callback&lt;ProximityResponse&gt;): voi
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).PROXIMITY                        | 是   | 传感器类型，该值固定为SensorId.PROXIMITY。                   |
+| sensorInfoParam<sup>19+</sup> | [SensorInfoParam](#sensorinfoparam19) |  否 | 传感器传入设置参数，可指定deviceId、sensorIndex |
 | callback | Callback&lt;[ProximityResponse](#proximityresponse)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **错误码**：
@@ -2841,7 +2902,7 @@ try {
 
 ### ROTATION_VECTOR<sup>9+</sup> 
 
-off(type: SensorId.ROTATION_VECTOR, callback?: Callback&lt;RotationVectorResponse&gt;): void
+off(type: SensorId.ROTATION_VECTOR, sensorInfoParam?: SensorInfoParam, callback?: Callback&lt;RotationVectorResponse&gt;): void
 
 取消订阅旋转矢量传感器数据。
 
@@ -2852,6 +2913,7 @@ off(type: SensorId.ROTATION_VECTOR, callback?: Callback&lt;RotationVectorRespons
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).ROTATION_VECTOR                       | 是   | 传感器类型，该值固定为SensorId.ROTATION_VECTOR。             |
+| sensorInfoParam<sup>19+</sup> | [SensorInfoParam](#sensorinfoparam19) |  否 | 传感器传入设置参数，可指定deviceId、sensorIndex |
 | callback | Callback&lt;[RotationVectorResponse](#rotationvectorresponse)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **错误码**：
@@ -2891,7 +2953,7 @@ try {
 
 ### SIGNIFICANT_MOTION<sup>9+</sup> 
 
-off(type: SensorId.SIGNIFICANT_MOTION, callback?: Callback&lt;SignificantMotionResponse&gt;): void
+off(type: SensorId.SIGNIFICANT_MOTION, sensorInfoParam?: SensorInfoParam, callback?: Callback&lt;SignificantMotionResponse&gt;): void
 
 取消订阅有效运动传感器数据。
 
@@ -2902,6 +2964,7 @@ off(type: SensorId.SIGNIFICANT_MOTION, callback?: Callback&lt;SignificantMotionR
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).SIGNIFICANT_MOTION                    | 是   | 传感器类型，该值固定为SensorId.SIGNIFICANT_MOTION。          |
+| sensorInfoParam<sup>19+</sup> | [SensorInfoParam](#sensorinfoparam19) |  否 | 传感器传入设置参数，可指定deviceId、sensorIndex |
 | callback | Callback&lt;[SignificantMotionResponse](#significantmotionresponse)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **错误码**：
@@ -2941,7 +3004,7 @@ try {
 
 ### WEAR_DETECTION<sup>9+</sup> 
 
-off(type: SensorId.WEAR_DETECTION, callback?: Callback&lt;WearDetectionResponse&gt;): void
+off(type: SensorId.WEAR_DETECTION, sensorInfoParam?: SensorInfoParam, callback?: Callback&lt;WearDetectionResponse&gt;): void
 
 取消订阅佩戴检测传感器数据。
 
@@ -2952,6 +3015,7 @@ off(type: SensorId.WEAR_DETECTION, callback?: Callback&lt;WearDetectionResponse&
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).WEAR_DETECTION                        | 是   | 传感器类型，该值固定为SensorId.WEAR_DETECTION。              |
+| sensorInfoParam<sup>19+</sup> | [SensorInfoParam](#sensorinfoparam19) |  否 | 传感器传入设置参数，可指定deviceId、sensorIndex |
 | callback | Callback&lt;[WearDetectionResponse](#weardetectionresponse)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **错误码**：
@@ -2988,6 +3052,144 @@ try {
   console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
+
+### sensorStatusChange<sup>19+<sup>
+
+off(type: 'sensorStatusChange', callback?: Callback&lt;SensorStatusEvent&gt;): void
+
+取消监听传感器变化。
+
+**系统能力**：SystemCapability.Sensors.Sensor
+
+**参数**：
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
+| sensorStatusChange     |  固定传入'sensorStatusChange'         | 是   | 状态监听固定参数。             |
+| callback | Callback&lt;[SensorStatusEvent](#sensorstatusevent19)&gt; | 否   | sensor.on传入的回调函数，不传则取消所有监听。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
+
+**示例**：
+
+```ts
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  const statusChangeCallback = (data: sensor.SensorStatusEvent) => {
+    console.info('sensorStatusChange : ' + JSON.stringify(data));
+  }
+  const statusChangeCallback2 = (data: sensor.SensorStatusEvent) => {
+    console.info('sensorStatusChange2 : ' + JSON.stringify(data));
+  }
+  // 注册两个设备上线消息监听回调
+  sensor.on('sensorStatusChange', statusChangeCallback);
+  sensor.on('sensorStatusChange', statusChangeCallback2);
+  
+  // 3秒后注销第一个监听
+  setTimeout(() => {
+    sensor.off('sensorStatusChange', statusChangeCallback);
+  }, 3000);
+  // 5秒后注销所有监听
+  setTimeout(() => {
+    sensor.off('sensorStatusChange');
+  }, 5000);
+} catch (error) {
+  let e: BusinessError = error as BusinessError;
+  console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
+}
+```
+
+
+## sensor.getSensorListByDeviceSync<sup>19+</sup> 
+
+getSensorListByDeviceSync(deviceId?: number): Array&lt;Sensor&gt; 
+
+同步获取设备的所有传感器信息。
+
+**系统能力**：SystemCapability.Sensors.Sensor
+
+**参数**：
+
+| 参数名          | 类型                                                         | 必填 | 说明     |
+| --------------- | ------------------------------------------------------------ | ---- |--------|
+| deviceId | number                 | 否   | 设备ID，默认为查询本地设备。 |
+
+
+**返回值**：
+
+| 类型                                                       | 说明           |
+| ---------------------------------------------------------- | -------------- |
+| Array&lt;[Sensor](#sensor9)&gt;           | 传感器属性列表。                  |
+
+
+**示例**：
+
+```ts
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  const deviceId = 1;
+  // 第一个参数deviceId 非必填
+  const sensorList: sensor.Sensor[] = sensor.getSensorListByDeviceSync(deviceId);
+  console.log(`sensorList length: ${sensorList.length}`);
+  console.log(`sensorList: ${JSON.stringify(sensorList)}`);
+} catch (error) {
+  let e: BusinessError = error as BusinessError;
+  console.error(`Failed to get sensorList. Code: ${e.code}, message: ${e.message}`);
+}
+```
+
+
+## sensor.getSingleSensorByDeviceSync<sup>19+</sup> 
+
+getSingleSensorByDeviceSync(type: SensorId, deviceId?: number): Array&lt;Sensor&gt;
+
+同步获取指定设备和类型的传感器信息。
+
+**系统能力**：SystemCapability.Sensors.Sensor
+
+**参数**：
+
+| 参数名          | 类型                                                         | 必填 | 说明       |
+| --------------- | ------------------------------------------------------------ | ---- |----------|
+| type     | [SensorId](#sensorid9) | 是   | 指定传感器类型。 |
+| deviceId | number                 | 否   | 设备ID，默认为查询本地设备。   |
+
+
+**返回值**：
+
+| 类型                                                       | 说明           |
+| ---------------------------------------------------------- | -------------- |
+| Array&lt;[Sensor](#sensor9)&gt;           | 传感器属性列表。                  |
+
+
+**示例**：
+
+```ts
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  const deviceId = 1;
+  // 第二个参数deviceId 非必填
+  const sensorList: sensor.Sensor[] = sensor.getSingleSensorByDeviceSync(sensor.SensorId.ACCELEROMETER, deviceId);
+  console.log(`sensorList length: ${sensorList.length}`);
+  console.log(`sensorList Json: ${JSON.stringify(sensorList)}`);
+} catch (error) {
+  let e: BusinessError = error as BusinessError;
+  console.error(`Failed to get sensorList. Code: ${e.code}, message: ${e.message}`);
+}
+```
+
 
 ## sensor.getGeomagneticInfo<sup>9+</sup> 
 
@@ -4232,6 +4434,36 @@ try {
 | WEAR_DETECTION              | 280  | 佩戴检测传感器。                                             |
 | ACCELEROMETER_UNCALIBRATED  | 281  | 未校准加速度计传感器。                                       |
 
+
+## SensorInfoParam<sup>19+</sup>
+
+传感器传入设置参数，多传感器情况下通过deviceId、sensorIndex控制指定传感器。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+
+
+| 参数名 | 类型                   | 必填 | 说明                      |
+| ------ | ---------------------- | ---- |-------------------------|
+| deviceId   | number | 否   | 设备ID：默认值为-1，表示本地设备，其它设备Id需通过[getSensorListByDeviceSync](#sensorgetsensorlistbydevicesync19)查询。     |
+| sensorIndex   | number | 否   | 传感器索引：默认值为0，为设备上的默认传感器，其它传感器Id需通过[getSensorListByDeviceSync](#sensorgetsensorlistbydevicesync19)查询。 |
+
+
+## SensorStatusEvent<sup>19+</sup>
+
+设备状态变化事件数据。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+
+
+| 参数名 | 类型                    | 说明         |
+| ------ | ---------------------- | ------------ |
+| timestamp   | number  | 事件发生的时间戳。 |
+| sensorId   | number   | 传感器ID。 |
+| sensorIndex   | number   | 传感器索引。 |
+| isSensorOnline   | boolean   | 传感器上线或者下线，true为上线，false为下线。 |
+| deviceId   | number   | 设备ID。 |
+| deviceName   | string   | 设备名称。 |
+
 ## SensorType<sup>(deprecated)</sup>
 
 表示要订阅或取消订阅的传感器类型。
@@ -4297,18 +4529,22 @@ try {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
 
-| 名称            | 类型 | 只读 | 可选 | 说明                   |
-| --------------- | -------- | ---------------------- | ---------------------- | ---------------------- |
-| sensorName      | string   | 是  | 否  | 传感器名称。            |
-| vendorName      | string   | 是  | 否  | 传感器供应商。         |
-| firmwareVersion | string   | 是  | 否  | 传感器固件版本。       |
-| hardwareVersion | string   | 是  | 否  | 传感器硬件版本。       |
-| sensorId        | number   | 是  | 否  | 传感器类型id。         |
-| maxRange        | number   | 是  | 否  | 传感器测量范围的最大值。 |
-| minSamplePeriod | number   | 是  | 否  | 允许的最小采样周期。   |
-| maxSamplePeriod | number   | 是  | 否  | 允许的最大采样周期。   |
-| precision       | number   | 是  | 否  | 传感器精度。           |
-| power           | number   | 是  | 否  | 传感器功率的估计值，单位：mA。  |
+| 名称                          | 类型      | 只读 | 可选 | 说明               |
+|-----------------------------|---------|----|----|------------------|
+| sensorName                  | string  | 是  | 否  | 传感器名称。           |
+| vendorName                  | string  | 是  | 否  | 传感器供应商。          |
+| firmwareVersion             | string  | 是  | 否  | 传感器固件版本。         |
+| hardwareVersion             | string  | 是  | 否  | 传感器硬件版本。         |
+| sensorId                    | number  | 是  | 否  | 传感器类型id。         |
+| maxRange                    | number  | 是  | 否  | 传感器测量范围的最大值。     |
+| minSamplePeriod             | number  | 是  | 否  | 允许的最小采样周期。       |
+| maxSamplePeriod             | number  | 是  | 否  | 允许的最大采样周期。       |
+| precision                   | number  | 是  | 否  | 传感器精度。           |
+| power                       | number  | 是  | 否  | 传感器功率的估计值，单位：mA。 |
+| sensorIndex<sup>19+</sup>   | number  | 是  | 是  | 传感器索引。           |
+| deviceId<sup>19+</sup>      | number  | 是  | 是  | 设备ID。            |
+| deviceName<sup>19+</sup>    | string  | 是  | 是  | 设备名称。            |
+| isLocalSensor<sup>19+</sup> | boolean | 是  | 是  | 是否本地传感器。         |
 
 ## AccelerometerResponse
 
@@ -4611,6 +4847,7 @@ try {
 | 名称     | 类型                                                        | 只读 | 可选 | 说明                                                         |
 | -------- | ----------------------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
 | interval | number\|[SensorFrequency](#sensorfrequency11)<sup>11+</sup> | 是   | 是   | 表示传感器的上报频率，默认值为200000000ns。该属性有最小值和最大值的限制，由硬件支持的上报频率决定，当设置频率大于最大值时以最大值上报数据，小于最小值时以最小值上报数据。 |
+| sensorInfoParam<sup>19+</sup> | [SensorInfoParam](#sensorinfoparam19) | 是 | 是 | 传感器传入设置参数，可指定deviceId、sensorIndex |
 
 ## SensorFrequency<sup>11+</sup>
 
