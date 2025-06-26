@@ -16,7 +16,7 @@
 
 ## 使用方式
 
-开发者可以利用诸如<!--Del-->[<!--DelEnd-->Trace<!--Del-->](../performance/common-trace-using-instructions.md)<!--DelEnd-->工具或日志记录等手段，识别冷启动期间未被实际调用的文件<!--RP1-->，分析方法可参考[延迟加载lazy-import使用指导](../performance/Lazy-Import-Instructions.md)<!--RP1End-->。通过对这些数据的分析，开发者可以精准定位启动阶段不必预先加载的文件列表，并在这些文件的调用点增加lazy标识。但需要注意，后续执行的加载是同步加载，可能阻塞任务执行（如单击任务，触发了延迟加载，那么运行时会去执行冷启动未加载的文件，从而增加耗时），因此是否使用lazy需要开发者自行评估。
+开发者可以利用[可延迟加载文件检测](#可延迟加载文件检测)、<!--Del-->[<!--DelEnd-->Trace<!--Del-->](../performance/common-trace-using-instructions.md)<!--DelEnd-->工具或日志记录等手段，识别冷启动期间未被实际调用的文件<!--RP1-->，分析方法可参考[可延迟加载文件检测](#可延迟加载文件检测)、[延迟加载lazy-import使用指导](../performance/Lazy-Import-Instructions.md)<!--RP1End-->。通过对这些数据的分析，开发者可以精准定位启动阶段不必预先加载的文件列表，并在这些文件的调用点增加lazy标识。但需要注意，后续执行的加载是同步加载，可能阻塞任务执行（如单击任务，触发了延迟加载，那么运行时会去执行冷启动未加载的文件，从而增加耗时），因此是否使用lazy需要开发者自行评估。
 
 > **说明：**
 >
@@ -55,7 +55,7 @@ mod2 executed
 main executed
 ```
 
-- 同时对同一模块引用lazy-import与原生import。
+- 同时对同一模块引用lazy-import与import。
 
 ```typescript    
 // main.ets   
@@ -216,3 +216,208 @@ ReferenceError: module environment is undefined
 - 使用导出对象时，触发延迟加载的耗时导致对应特性的功能劣化。
 - 使用lazy特性导致模块未执行，从而引发bug。
 
+## 可延迟加载文件检测
+
+本工具用于应用开发时本地检测冷启动文件加载情况，可打印应用启动后固定时间段内使用和未使用的文件名，帮助开发者筛选可延迟加载的文件。  
+
+> **说明：**
+>
+> 可延迟加载文件检测在API 20版本开始支持。
+
+### 检测步骤
+
+1. 打开工具：获取[hdc工具](../dfx/hdc.md#环境准备)，连接设备，在终端直接输入下方命令执行。
+
+    ```shell
+    hdc shell param set persist.ark.properties 0x200105c
+    ```
+
+2. 可选项：设置抓取应用启动阶段的时间，单位为ms，范围为[100-30000]，默认为2s。设置范围外的数字无法保证工具的计时准确性。
+
+    ```shell
+    hdc shell param set persist.ark.importDuration 1000
+    ```
+
+3. 清除应用后台进程后，重新启动应用进程，等待抓取时间结束后，会在应用沙箱下（data/app/el2/100/base/${bundlename}/files/）生成主/子线程对应文件。  
+
+    > **注意：**
+    >
+    > 1. 该工具仅支持本地安装的应用。
+    > 2. 生成文件的操作需在当前进程存活时执行。
+    > 3. 如果抓取过程中进程退出，那么没有对应文件生成。
+
+4. 关闭工具  
+工具常开会损耗性能，使用后应及时关闭。  
+
+    ```shell
+    hdc shell param set persist.ark.properties 0x000105c
+    ```
+
+### 生成文件介绍
+
+工具会根据设置的抓取时间，分别记录主线程和子线程在该时间内的文件加载情况。各线程独立计时。  
+例如，设置时间为1秒，工具将记录主线程和子线程各自启动后1秒内的文件执行情况。  
+
+文件生成路径：`data/app/el2/100/base/${bundleName}/files`  
+主线程文件名：`${bundleName}_redundant_file.txt`  
+子线程文件名：`${bundleName}_${tId}_redundant_file.txt`  
+
+> **说明：**
+>
+> 1. 主线程文件名不带线程号信息，因此写入文件会发生覆盖刷新。
+> 2. 子线程文件名带线程号tId，并且tId不重复，因此每个子线程对应单独一个文件。如需查找对应线程文件，可通过日志中的线程号打印或者trace工具查看线程号进行对应。
+
+**示例**  
+当前测试应用bundleName为com.example.myapplication，应用内创建了一个子线程，线程号为18089（随机）。  
+文件生成路径：data/app/el2/100/base/com.example.myapplication/files  
+主线程文件名：data/app/el2/100/base/com.example.myapplication/files/com.example.myapplication_redundant_file.txt  
+子线程文件名：data/app/el2/100/base/com.example.myapplication/files/com.example.myapplication_18089_redundant_file.txt  
+![deferrable-tool-file](figures/deferrable-tool-file.png)
+
+### 检测原理
+
+如下例所示，A文件，B文件，同时被Index文件依赖，那么A、B会随着Index文件的加载被直接加载执行。  
+A文件执行过程完成了变量定义赋值并进行导出，对应A文件的耗时。B文件定义了一个函数并导出，对应B文件的耗时。  
+在Index文件执行时，B文件的导出函数func被顶层执行，因此B文件的导出是无法优化的，在工具侧就会显示used。但是A文件的导出变量a在Index文件的myFunc函数被调用时才使用，如果冷启动阶段，没有其他文件调用myFunc函数，那么B文件在工具侧就会显示unused，即可以延迟加载。
+
+ ```ts
+// Index.ets
+import { a } from './A';
+import { func } from './B';
+func(); // 使用B文件变量
+export function myFunc() {
+    return a; // a变量未被使用
+} 
+// A.ets
+export let a = 10;
+
+// B.ets
+export function func() {
+    return 20;
+}
+```
+
+### 加载情况总结
+
+总结加载时间内所有文件及耗时，包括使用的文件及其耗时和未使用的文件及其耗时。
+例：
+
+```text
+<----Summary----> Total file number: 13, total time: 2ms, including used file:12, cost time: 1ms, and unused file: 1, cost time: 1ms
+```
+
+上述信息表示应用当前线程，冷启动抓取时间段内加载了13个文件，共花费2ms。其中，有12个文件导出内容被其他文件加载使用，执行这12个文件共花费1ms；有1个文件执行完成，但是其导出内容没有被其他文件在冷启阶段用到，花费1ms。  
+
+### 被使用文件
+
+在冷启动阶段，导出内容被其他文件使用的文件称为used file。  
+
+- 场景1：通过静态加载加载的文件，其父文件（parentModule）代表该文件的引入方。
+
+    ```text
+    used file 1: &entry/src/main/ets/pages/1&, cost time: 0.248ms
+        parentModule 1: &entry/src/main/ets/pages/outter& a
+    ```  
+
+    对应写法示例：
+
+    ```ts
+    // entry/src/main/ets/pages/outter.ets
+    import { a } from './1' // outter文件从1文件中加载了a变量
+    console.log("example ", a); // a变量在outter文件执行时就被使用
+    ```  
+
+- 场景2：通过静态加载加载的文件，存在多个父文件。  
+
+    ```text
+    // 说明：显示顺序不代表父文件的加载顺序。
+    used file 1: &entry/src/main/ets/pages/1&, cost time: 0.248ms
+       parentModule 1: &entry/src/main/ets/pages/outter& a
+       parentModule 2: &entry/src/main/ets/pages/innerinner& a
+    ```
+
+    对应写法示例：
+
+    ```ts
+    // entry/src/main/ets/pages/outter.ets
+    import { a } from './1' // outter文件从1文件中加载了a变量
+    console.log("example ", a); // a变量在outter文件执行时就被使用
+
+    // entry/src/main/ets/pages/innerinner.ets
+    import { a } from './1' // innerinner文件从1文件中加载了a变量
+    console.log("example ", a); // a变量在innerinner文件执行时就被使用
+    ```  
+
+- 场景3：通过静态加载加载的文件，存在多个导出，但是只显示了一部分。
+
+    ```text
+    used file 1: &entry/src/main/ets/pages/1&, cost time: 0.248ms
+       parentModule 1: &entry/src/main/ets/pages/outter& a
+    ```
+
+    对应写法示例：
+
+    ```ts
+    // entry/src/main/ets/pages/outter.ets
+    import { a , b } from './1' // 加载1文件的多个变量
+    console.log("example ", a); // a被使用
+    export function myFunc() {
+     return b; // b未被使用
+    }
+    // entry/src/main/ets/pages/1.ets
+    export let a = 10;
+    export let b = 100;
+    ```  
+
+- 场景4：动态加载或使用napi接口加载，暂未支持父文件打印，因此无父文件显示。
+
+    ```text
+    unused file 1: &entry/src/main/ets/pages/1&, cost time: 0.07ms
+    ```
+
+    对应写法示例：
+
+    ```ts
+    import("./1").then((ns:ESObject) => {
+        console.info('import file 1 success');
+    });
+    ```
+
+- 场景5：通过loadContent，pushUrl等接口加载的文件，这些入口文件的父文件（parentModule）统一显示为EntryPoint。
+
+    ```text
+    used file 1: &entry/src/main/ets/pages/Index&, cost time: 0.545ms
+    parentModule 1: EntryPoint
+    ```
+
+### 未被使用文件
+
+在冷启动阶段，导出内容没有被其他文件使用的文件，代表可以延迟加载。  
+场景与被使用文件场景一致，但未被使用文件没有变量被使用信息。
+
+- 场景：文件被这些父文件引用，但是变量没有被使用到。可在引入未使用文件处（父文件）使用延迟加载方式加载该文件。
+
+    ```text
+    unused file 1: &entry/src/main/ets/pages/under1&, cost time: 0.001ms
+        parentModule 1: &entry/src/main/ets/pages/1&
+    ```
+
+    对应写法示例：
+
+    ```ts
+    // entry/src/main/ets/pages/1.ets
+    import { a } from './under1' // 加载under1文件的变量
+    export function myFunc() {
+     return a; // a未被使用
+    }
+    ```  
+
+    可使用延迟加载：
+
+    ```ts
+    // entry/src/main/ets/pages/1.ets
+    import lazy { a } from './under1' // 不在此处触发under1文件的加载
+    export function myFunc() {
+     return a; // 此时触发under1文件的加载
+    }
+    ```
