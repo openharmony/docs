@@ -14,9 +14,9 @@ import { statfs } from '@kit.CoreFileKit';
 
 ## statfs.getFreeSize
 
-getFreeSize(path:string):Promise&lt;number&gt;
+getFreeSize(path:string): Promise&lt;number&gt;
 
-Obtains the free size of the specified file system in bytes. This API uses a promise to return the result.
+Obtains the free size of the specified file system, in bytes. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -36,13 +36,31 @@ Obtains the free size of the specified file system in bytes. This API uses a pro
 
 For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes).
 
+| ID| Error Message|
+| -------- | -------- |
+| 13900002 | No such file or directory. |
+| 13900004 | Interrupted system call. |
+| 13900005 | I/O error. |
+| 13900008 | Bad file descriptor. |
+| 13900011 | Out of memory. |
+| 13900012 | Permission denied. |
+| 13900013 | Bad address. |
+| 13900018 | Not a directory. |
+| 13900030 | File name too long. |
+| 13900031 | Function not implemented. |
+| 13900033 | Too many symbolic links encountered. |
+| 13900038 | Value too large for defined data type. |
+| 13900042 | Unknown error. |
+
 **Example**
 
+<!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
-  
-  let context = getContext(this) as common.UIAbilityContext;
+
+  // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let path = context.filesDir;
   statfs.getFreeSize(path).then((number: number) => {
     console.info("getFreeSize succeed, Size: " + number);
@@ -55,7 +73,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 getFreeSize(path:string, callback:AsyncCallback&lt;number&gt;): void
 
-Obtains the free size of the specified file system in bytes. This API uses an asynchronous callback to return the result.
+Obtains the free size of the specified file system, in bytes. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -70,13 +88,31 @@ Obtains the free size of the specified file system in bytes. This API uses an as
 
 For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes).
 
+| ID| Error Message|
+| -------- | -------- |
+| 13900002 | No such file or directory. |
+| 13900004 | Interrupted system call. |
+| 13900005 | I/O error. |
+| 13900008 | Bad file descriptor. |
+| 13900011 | Out of memory. |
+| 13900012 | Permission denied. |
+| 13900013 | Bad address. |
+| 13900018 | Not a directory. |
+| 13900030 | File name too long. |
+| 13900031 | Function not implemented. |
+| 13900033 | Too many symbolic links encountered. |
+| 13900038 | Value too large for defined data type. |
+| 13900042 | Unknown error. |
+
 **Example**
 
+<!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
-  
-  let context = getContext(this) as common.UIAbilityContext;
+
+  // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let path = context.filesDir;
   statfs.getFreeSize(path, (err: BusinessError, number: number) => {
     if (err) {
@@ -91,7 +127,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 getFreeSizeSync(path:string): number
 
-Obtains the free size of the specified file system in bytes. This API returns the result synchronously.
+Obtains the free size of the specified file system, in bytes. This API returns the result synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -111,12 +147,30 @@ Obtains the free size of the specified file system in bytes. This API returns th
 
 For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes).
 
+| ID| Error Message|
+| -------- | -------- |
+| 13900002 | No such file or directory. |
+| 13900004 | Interrupted system call. |
+| 13900005 | I/O error. |
+| 13900008 | Bad file descriptor. |
+| 13900011 | Out of memory. |
+| 13900012 | Permission denied. |
+| 13900013 | Bad address. |
+| 13900018 | Not a directory. |
+| 13900030 | File name too long. |
+| 13900031 | Function not implemented. |
+| 13900033 | Too many symbolic links encountered. |
+| 13900038 | Value too large for defined data type. |
+| 13900042 | Unknown error. |
+
 **Example**
 
+<!--code_no_check-->
   ```ts
   import { common } from '@kit.AbilityKit';
-  
-  let context = getContext(this) as common.UIAbilityContext;
+
+  // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let path = context.filesDir;
   let number = statfs.getFreeSizeSync(path);
   console.info("getFreeSizeSync succeed, Size: " + number);
@@ -126,7 +180,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 getTotalSize(path: string): Promise&lt;number&gt;
 
-Obtains the total size of the specified file system in bytes. This API uses a promise to return the result.
+Obtains the total size of the specified file system, in bytes. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -146,13 +200,31 @@ Obtains the total size of the specified file system in bytes. This API uses a pr
 
 For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes).
 
+| ID| Error Message|
+| -------- | -------- |
+| 13900002 | No such file or directory. |
+| 13900004 | Interrupted system call. |
+| 13900005 | I/O error. |
+| 13900008 | Bad file descriptor. |
+| 13900011 | Out of memory. |
+| 13900012 | Permission denied. |
+| 13900013 | Bad address. |
+| 13900018 | Not a directory. |
+| 13900030 | File name too long. |
+| 13900031 | Function not implemented. |
+| 13900033 | Too many symbolic links encountered. |
+| 13900038 | Value too large for defined data type. |
+| 13900042 | Unknown error. |
+
 **Example**
 
+<!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
-  
-  let context = getContext(this) as common.UIAbilityContext;
+
+  // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let path = context.filesDir;
   statfs.getTotalSize(path).then((number: number) => {
     console.info("getTotalSize succeed, Size: " + number);
@@ -165,7 +237,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 getTotalSize(path: string, callback: AsyncCallback&lt;number&gt;): void
 
-Obtains the total size of the specified file system in bytes. This API uses an asynchronous callback to return the result.
+Obtains the total size of the specified file system, in bytes. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -180,13 +252,31 @@ Obtains the total size of the specified file system in bytes. This API uses an a
 
 For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes).
 
+| ID| Error Message|
+| -------- | -------- |
+| 13900002 | No such file or directory. |
+| 13900004 | Interrupted system call. |
+| 13900005 | I/O error. |
+| 13900008 | Bad file descriptor. |
+| 13900011 | Out of memory. |
+| 13900012 | Permission denied. |
+| 13900013 | Bad address. |
+| 13900018 | Not a directory. |
+| 13900030 | File name too long. |
+| 13900031 | Function not implemented. |
+| 13900033 | Too many symbolic links encountered. |
+| 13900038 | Value too large for defined data type. |
+| 13900042 | Unknown error. |
+
 **Example**
 
+<!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
-  
-  let context = getContext(this) as common.UIAbilityContext;
+
+  // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let path = context.filesDir;
   statfs.getTotalSize(path, (err: BusinessError, number: number) => {
     if (err) {
@@ -201,7 +291,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 getTotalSizeSync(path: string): number
 
-Obtains the total size of the specified file system in bytes. This API returns the result synchronously.
+Obtains the total size of the specified file system, in bytes. This API returns the result synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -221,14 +311,31 @@ Obtains the total size of the specified file system in bytes. This API returns t
 
 For details about the error codes, see [Basic File IO Error Codes](errorcode-filemanagement.md#basic-file-io-error-codes).
 
+| ID| Error Message|
+| -------- | -------- |
+| 13900002 | No such file or directory. |
+| 13900004 | Interrupted system call. |
+| 13900005 | I/O error. |
+| 13900008 | Bad file descriptor. |
+| 13900011 | Out of memory. |
+| 13900012 | Permission denied. |
+| 13900013 | Bad address. |
+| 13900018 | Not a directory. |
+| 13900030 | File name too long. |
+| 13900031 | Function not implemented. |
+| 13900033 | Too many symbolic links encountered. |
+| 13900038 | Value too large for defined data type. |
+| 13900042 | Unknown error. |
+
 **Example**
 
+<!--code_no_check-->
   ```ts
   import { common } from '@kit.AbilityKit';
-  
-  let context = getContext(this) as common.UIAbilityContext;
+
+  // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let path = context.filesDir;
   let number = statfs.getTotalSizeSync(path);
   console.info("getTotalSizeSync succeed, Size: " + number);
   ```
-  

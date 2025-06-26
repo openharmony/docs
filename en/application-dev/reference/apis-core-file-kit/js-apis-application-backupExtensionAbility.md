@@ -39,7 +39,7 @@ Implements backup and restore for application access data. You can use [onBackup
 
 ### onBackup
 
-onBackup(): void;
+onBackup(): void
 
 Called when data is being backed up. You need to implement extended data backup operations.
 
@@ -59,9 +59,9 @@ Called when data is being backed up. You need to implement extended data backup 
 
 onBackupEx(backupInfo: string): string | Promise&lt;string&gt;
 
-Called to pass parameters to the application during the application backup or restore process.<br>
-**onBackupEx()** and **onBackup()** are mutually exclusive. If **onBackupEx()** needs to be overridden, call **onBackupEx()** preferentially.<br>
-The return value of **onBackupEx()** cannot be an empty string. If an empty string is returned, **onRestore** will be called.
+Called to pass parameters to the application during the application backup or restore process. It uses a promise to return the result.<br>
+**onBackupEx** and **onBackup** are mutually exclusive. Call **onBackupEx** preferentially if it is overridden.<br>
+The return value of **onBackupEx** cannot be an empty string. If an empty string is returned, **onBackup** will be called.
 
 **System capability**: SystemCapability.FileManagement.StorageService.Backup
 
@@ -69,7 +69,13 @@ The return value of **onBackupEx()** cannot be an empty string. If an empty stri
 
 | Name          | Type                           | Mandatory| Description                         |
 |---------------| ------------------------------- | ---- |-----------------------------|
-| backupInfo    |string | Yes  | Package information to be passed by the third-party application.|
+| backupInfo    |string | Yes  | Package information to be passed by the third-party application.<br>When it is an empty string, you need to determine how to handle this scenario.|
+
+**Return value**
+
+| Type                           | Description   |
+| ----------------------------- | :---- |
+|string \| Promise&lt;string&gt; |Information about the custom backup operation executed by the application, including the backup result and error information. The return value is in JSON format.<br>A promise object is returned for asynchronous operations.<br>A string is returned for synchronous operations.|
 
 > **NOTE**
 >
@@ -77,17 +83,21 @@ The return value of **onBackupEx()** cannot be an empty string. If an empty stri
 
 **Example**
 
-  ```ts
-  import { BackupExtensionAbility, BundleVersion } from '@kit.CoreFileKit';
+```ts
+import { BackupExtensionAbility, BundleVersion } from '@kit.CoreFileKit';
 
-  interface ErrorInfo {
-    type: string,
-    errorCode: number,
-    errorInfo: string
-  }
-
-  class BackupExt extends BackupExtensionAbility {
-    onBackupEx(backupInfo: string): string {
+interface ErrorInfo {
+  type: string,
+  errorCode: number,
+  errorInfo: string
+}
+class BackupExt extends BackupExtensionAbility {
+  onBackupEx(backupInfo: string): string {
+    try {
+      if (backupInfo == "") {
+        // When backupInfo is empty, you need to handle this based on the service logic of the application.
+        console.info("backupInfo is empty");
+      }
       console.log(`onBackupEx ok`);
       let errorInfo: ErrorInfo = {
         type: "ErrorInfo",
@@ -95,9 +105,13 @@ The return value of **onBackupEx()** cannot be an empty string. If an empty stri
         errorInfo: "app customized error info"
       }
       return JSON.stringify(errorInfo);
+    } catch (err) {
+      console.error(`BackupExt error. Code:${err.code}, message:${err.message}`);
     }
+    return "";
   }
-  ```
+} 
+```
 
 > **NOTE**
 >
@@ -105,18 +119,22 @@ The return value of **onBackupEx()** cannot be an empty string. If an empty stri
 
 **Example**
 
-  ```ts
-  import { BackupExtensionAbility, BundleVersion } from '@kit.CoreFileKit';
+```ts
+import { BackupExtensionAbility, BundleVersion } from '@kit.CoreFileKit';
 
-  interface ErrorInfo {
-    type: string,
-    errorCode: number,
-    errorInfo: string
-  }
-
-  class BackupExt extends BackupExtensionAbility {
-    // Asynchronous implementation.
-    async onBackupEx(backupInfo: string): Promise<string> {
+interface ErrorInfo {
+  type: string,
+  errorCode: number,
+  errorInfo: string
+}
+class BackupExt extends BackupExtensionAbility {
+  // Asynchronous implementation.
+  async onBackupEx(backupInfo: string): Promise<string> {
+    try {
+      if (backupInfo == "") {
+        // When backupInfo is empty, you need to handle this based on the service logic of the application.
+        console.info("backupInfo is empty");
+      }
       console.log(`onBackupEx ok`);
       let errorInfo: ErrorInfo = {
         type: "ErrorInfo",
@@ -124,13 +142,17 @@ The return value of **onBackupEx()** cannot be an empty string. If an empty stri
         errorInfo: "app customized error info"
       }
       return JSON.stringify(errorInfo);
+    } catch (err) {
+      console.error(`BackupExt error. Code:${err.code}, message:${err.message}`);
     }
+    return "";
   }
-  ```
+} 
+```
 
 ### onRestore
 
-onRestore(bundleVersion: BundleVersion): void;
+onRestore(bundleVersion: BundleVersion): void
 
 Called when data is being restored. You need to implement the extended data restore operation.
 
@@ -158,10 +180,10 @@ Called when data is being restored. You need to implement the extended data rest
 
 onRestoreEx(bundleVersion: BundleVersion, restoreInfo: string): string | Promise&lt;string&gt;
 
-Called when data is being restored. You need to implement the extended data restore operation. Asynchronous implementation is supported.<br>
+Called when data is being restored. You need to implement the extended data restore operation. It uses a promise to return the result.<br>
 **onRestoreEx** and **onRestore** are mutually exclusive. Call **onRestoreEx** preferentially if it is overridden.<br>
 The return value of **onRestoreEx** cannot be an empty string. If an empty string is returned, the system will attempt to call **onRestore**.<br>
-The return value of **onRestoreEx()** is in JSON format. For details, see the sample code.
+The return value of **onRestoreEx** is in JSON format. For details, see the sample code.
 
 **System capability**: SystemCapability.FileManagement.StorageService.Backup
 
@@ -170,7 +192,13 @@ The return value of **onRestoreEx()** is in JSON format. For details, see the sa
 | Name       | Type                           | Mandatory| Description                          |
 | ------------- | ------------------------------- | ---- | ------------------------------ |
 | bundleVersion | [BundleVersion](#bundleversion) | Yes  | Version information of the application data to be restored.|
-| restoreInfo |string | Yes  | Parameter to be passed in the restore process. This field is reserved.|
+| restoreInfo |string | Yes  | Parameter to be passed in the restore process. This field is reserved.<br>It may be an empty string in some cases.|
+
+**Return value**
+
+| Type                           | Description   |
+| ----------------------------- | :---- |
+| string \| Promise&lt;string&gt; |Information about the custom restore operation executed by the application, including the restore result and error information. The return value is in JSON format.<br>A promise object is returned for asynchronous operations.<br>A string is returned for synchronous operations.|
 
 > **NOTE**
 >
@@ -178,17 +206,21 @@ The return value of **onRestoreEx()** is in JSON format. For details, see the sa
 
 **Example**
 
-  ```ts
-  import { BackupExtensionAbility, BundleVersion } from '@kit.CoreFileKit';
-  interface ErrorInfo {
-    type: string,
-    errorCode: number,
-    errorInfo: string
-  }
-
-  class BackupExt extends BackupExtensionAbility {
-    // Asynchronous implementation
-    async onRestoreEx(bundleVersion : BundleVersion, restoreInfo: string): Promise<string> {
+```ts
+import { BackupExtensionAbility, BundleVersion } from '@kit.CoreFileKit';
+interface ErrorInfo {
+  type: string,
+  errorCode: number,
+  errorInfo: string
+}
+class BackupExt extends BackupExtensionAbility {
+  // Asynchronous implementation
+  async onRestoreEx(bundleVersion : BundleVersion, restoreInfo: string): Promise<string> {
+    try {
+      if (restoreInfo == "") {
+        // When restoreInfo is empty, you need to handle this based on the service logic of the application.
+        console.info("restoreInfo is empty");
+      }
       console.log(`onRestoreEx ok ${JSON.stringify(bundleVersion)}`);
       let errorInfo: ErrorInfo = {
         type: "ErrorInfo",
@@ -196,9 +228,13 @@ The return value of **onRestoreEx()** is in JSON format. For details, see the sa
         errorInfo: "app customized error info"
       }
       return JSON.stringify(errorInfo);
+    } catch (err) {
+      console.error(`onRestoreEx error. Code:${err.code}, message:${err.message}`);
     }
+    return "";
   }
-  ```
+}
+```
 
 > **NOTE**
 >
@@ -207,16 +243,21 @@ The return value of **onRestoreEx()** is in JSON format. For details, see the sa
 **Example**
 
 ```ts
-  import { BackupExtensionAbility, BundleVersion } from '@kit.CoreFileKit';
-  interface ErrorInfo {
-    type: string,
-    errorCode: number,
-    errorInfo: string
-  }
+import { BackupExtensionAbility, BundleVersion } from '@kit.CoreFileKit';
+interface ErrorInfo {
+  type: string,
+  errorCode: number,
+  errorInfo: string
+}
 
-  class BackupExt extends BackupExtensionAbility {
-    // Synchronous implementation
-    onRestoreEx(bundleVersion : BundleVersion, restoreInfo: string): string {
+class BackupExt extends BackupExtensionAbility {
+  // Synchronous implementation
+  onRestoreEx(bundleVersion : BundleVersion, restoreInfo: string): string {
+    try {
+      if (restoreInfo == "") {
+        // When restoreInfo is empty, you need to handle this based on the service logic of the application.
+        console.info("restoreInfo is empty");
+      }
       console.log(`onRestoreEx ok ${JSON.stringify(bundleVersion)}`);
       let errorInfo: ErrorInfo = {
         type: "ErrorInfo",
@@ -224,22 +265,34 @@ The return value of **onRestoreEx()** is in JSON format. For details, see the sa
         errorInfo: "app customized error info"
       }
       return JSON.stringify(errorInfo);
+    } catch (err) {
+      console.error(`onRestoreEx error. Code:${err.code}, message:${err.message}`);
     }
+    return "";
   }
-  ```
+}
+
+```
 
 ### onProcess<sup>12+</sup>
 
-onProcess(): string;
+onProcess(): string
 
 Called to return the progress information. This callback is executed synchronously and implemented during the execution of **onBackup/onBackupEx** or **onRestore/onRestoreEx**. This callback returns the service processing progress of the application. The return value is in JSON format. For details, see the sample code.
 
 **System capability**: SystemCapability.FileManagement.StorageService.Backup
 
+**Return value**
+
+| Type                  | Description   |
+| --------------------- | :---- |
+| string |Progress information during the execution of **onBackup** or **onRestore**. The return value is in JSON format.|
+
 > **NOTE**
+>
 > - The system provides the default processing mechanism if **onProcess** is not implemented. If **onProcess** is used, the return value must strictly comply with that in the sample code.
 > - If **onProcess** is used, **onBackup/onBackupEx** and **onRestore/onRestoreEx** must be asynchronously executed in a dedicated thread. Otherwise, **onProcess** cannot run properly. For details, see the sample code.
-> - The following example shows the recommended use of **onProcess**.
+> - The following example shows the recommended use of **onProcess()**.
 
 **Example**
 
@@ -265,7 +318,7 @@ Called to return the progress information. This callback is executed synchronous
       } catch (error) {
         console.error("onBackup error." + error.message);
       }
-      taskpool.terminateTask (jobTask); // Manually destroy the task.
+      taskpool.terminateTask(jobTask); // Manually destroy the task.
       console.log(`onBackup end`);
     }
 
@@ -278,7 +331,7 @@ Called to return the progress information. This callback is executed synchronous
       } catch (error) {
         console.error("onRestore error." + error.message);
       }
-      taskpool.terminateTask (jobTask); // Manually destroy the task.
+      taskpool.terminateTask(jobTask); // Manually destroy the task.
       console.log(`onRestore end`);
     }
  
