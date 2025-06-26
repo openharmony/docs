@@ -102,7 +102,7 @@ recordInputEventTime(type: ActionType, sourceType: sourceType, time: number): vo
 | -- | -- | -- | -- |
 | type | [ActionType](#actiontype)| 是 | 用户场景触发模式。 |
 | sourceType | [SourceType](#sourcetype12) | 是 | 用户场景触发源。 |
-| time | number | 是 | 场景触发时间。 |
+| time | number | 是 | 场景触发时间（ms）。 |
 
 **错误码：**
 
@@ -118,10 +118,13 @@ recordInputEventTime(type: ActionType, sourceType: sourceType, time: number): vo
 import { systemDateTime, BusinessError } from '@kit.BasicServicesKit';
 import { performanceMonitor } from '@kit.ArkUI';
 
+// 获取当前系统时间
 let time = systemDateTime.getTime(false);
 try {
+  // 更新用户触发事件类型与时间
   performanceMonitor.recordInputEventTime(performanceMonitor.ActionType.LAST_UP, performanceMonitor.SourceType.PERF_MOUSE_EVENT, time);
 } catch (paramError) {
+  // 异常处理
   let code: number = (paramError as BusinessError).code;
   let message: string = (paramError as BusinessError).message;
   console.error(`error.code: ${code}, error.message: ${message}`);
