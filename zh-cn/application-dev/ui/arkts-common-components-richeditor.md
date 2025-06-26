@@ -181,7 +181,7 @@ SystemMenu() {
 
 ```ts
 controller: RichEditorController = new RichEditorController();
-options: RichEditorOptions = { controller: this.controller }；
+options: RichEditorOptions = { controller: this.controller };
 
 RichEditor(this.options)
   .onReady(() => {
