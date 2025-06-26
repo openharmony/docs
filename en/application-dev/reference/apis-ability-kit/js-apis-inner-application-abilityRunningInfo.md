@@ -27,7 +27,7 @@ The ability running information is obtained by calling [getAbilityRunningInfos](
 | uid | number | Yes| No| User ID. |
 | processName | string | Yes| No| Process name. |
 | startTime | number | Yes| No| Ability start time. |
-| abilityState | [abilityManager.AbilityState](js-apis-app-ability-abilityManager.md#abilitystate) | Yes| No| Ability state. |
+| abilityState | [abilityManager.AbilityState](js-apis-app-ability-abilityManager.md#abilitystate14) | Yes| No| Ability state. |
 
 **Example**
 

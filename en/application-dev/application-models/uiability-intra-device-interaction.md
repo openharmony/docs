@@ -379,7 +379,7 @@ struct Page_UIAbilityComponentsInteractive {
 
 ### Cold Starting UIAbility
 
-In cold start mode, obtain the parameters from the initiator [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) through the [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate) callback of the target UIAbility. Then, in the [onWindowStageCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate) callback of the target UIAbility, parse the [want](../reference/apis-ability-kit/js-apis-app-ability-want.md) parameter passed by the EntryAbility to obtain the URL of the page to be loaded, and pass the URL to the [windowStage.loadContent()](../reference/apis-arkui/js-apis-window.md#loadcontent9) method.
+In cold start mode, obtain the parameters from the initiator [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) through the [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate) callback of the target UIAbility. Then, in the [onWindowStageCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onwindowstagecreate) callback of the target UIAbility, parse the [want](../reference/apis-ability-kit/js-apis-app-ability-want.md) parameter passed by the EntryAbility to obtain the URL of the page to be loaded, and pass the URL to the [windowStage.loadContent()](../reference/apis-arkui/js-apis-window.md#loadcontent9) method.
 
 
 ```ts
@@ -424,7 +424,7 @@ An example scenario is as follows:
 2. The user returns to the home screen, and the SMS application switches to the background.
 3. The user opens the Contacts application and finds a contact.
 4. The user touches the SMS button next to the contact. The UIAbility instance of the SMS application is restarted.
-5. Since the UIAbility instance of the SMS application has been started, the onNewWant() callback of the UIAbility is triggered, and the initialization logic such as [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate) and [onWindowStageCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate) is skipped.
+5. Since the UIAbility instance of the SMS application has been started, the onNewWant() callback of the UIAbility is triggered, and the initialization logic such as [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate) and [onWindowStageCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onwindowstagecreate) is skipped.
 
 **Figure 1** Hot starting the target UIAbility
 
@@ -432,7 +432,7 @@ An example scenario is as follows:
 
 The development procedure is as follows:
 
-1. When the UIAbility instance of the SMS application is cold started, call [getUIContext()](../reference/apis-arkui/js-apis-window.md#getuicontext10) in the [onWindowStageCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate) lifecycle callback to obtain the [UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md).
+1. When the UIAbility instance of the SMS application is cold started, call [getUIContext()](../reference/apis-arkui/js-apis-window.md#getuicontext10) in the [onWindowStageCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onwindowstagecreate) lifecycle callback to obtain the [UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md).
 
     ```ts
     import { hilog } from '@kit.PerformanceAnalysisKit';

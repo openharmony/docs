@@ -1045,7 +1045,7 @@ Adds a polygon to this path.
 
 | Name| Type  | Mandatory| Description                   |
 | ------ | ------ | ---- | ----------------------- |
-| points | Array\<[common2D.Point](js-apis-graphics-common2D.md#point)>   | Yes  | Array that holds the vertex coordinates of the polygon.|
+| points | Array\<[common2D.Point](js-apis-graphics-common2D.md#point12)>   | Yes  | Array that holds the vertex coordinates of the polygon.|
 | close  | boolean                                                        | Yes  | Whether to close the path, that is, whether to add a line segment from the start point to the end point of the path. The value **true** means to close the path, and **false** means the opposite.|
 
 **Error codes**
@@ -1237,8 +1237,8 @@ Obtains the coordinates and tangent at a distance from the start point of this p
 | -------- | -------------------------------------------- | ---- | ------------------------------- |
 | forceClosed | boolean | Yes  | Whether the path is measured as a closed path. The value **true** means that the path is considered closed during measurement, and **false** means that the path is measured based on the actual closed status.                |
 | distance | number | Yes  | Distance from the start point. If a negative number is passed in, the value **0** is used. If a value greater than the path length is passed in, the path length is used. The value is a floating point number.              |
-| position | [common2D.Point](js-apis-graphics-common2D.md#point) | Yes  | Coordinates obtained.                 |
-| tangent | [common2D.Point](js-apis-graphics-common2D.md#point) | Yes  | Tangent obtained, where **tangent.x** and **tangent.y** represent the cosine and sine of the tangent of the point, respectively.                |
+| position | [common2D.Point](js-apis-graphics-common2D.md#point12) | Yes  | Coordinates obtained.                 |
+| tangent | [common2D.Point](js-apis-graphics-common2D.md#point12) | Yes  | Tangent obtained, where **tangent.x** and **tangent.y** represent the cosine and sine of the tangent of the point, respectively.                |
 
 **Return value**
 
@@ -2493,7 +2493,7 @@ Draws a group of points, line segments, or polygons on the canvas, with the spec
 
 | Name | Type                                      | Mandatory  | Description       |
 | ---- | ---------------------------------------- | ---- | --------- |
-| points  | Array\<[common2D.Point](js-apis-graphics-common2D.md#point)> | Yes   | Array that holds the points to draw. The length cannot be 0.  |
+| points  | Array\<[common2D.Point](js-apis-graphics-common2D.md#point12)> | Yes   | Array that holds the points to draw. The length cannot be 0.  |
 | mode | [PointMode](#pointmode12)                  | No   | Mode in which the points are drawn. The default value is **drawing.PointMode.POINTS**.|
 
 **Error codes**
@@ -4003,7 +4003,7 @@ Creates a **TextBlob** object from the text. The coordinates of each font in the
 | -------- | ----------------------------- | ---- | -------------------------------------- |
 | text     | string             | Yes  | Content to be used for drawing the text blob.                  |
 | len      | number             | Yes  | Number of fonts. The value is an integer and is obtained from [countText](#counttext12).|
-| points   |[common2D.Point](js-apis-graphics-common2D.md#point)[]     | Yes  |Array of points, which are used to specify the coordinates of each font. The array length must be the same as the value of **len**.|
+| points   |[common2D.Point](js-apis-graphics-common2D.md#point12)[]     | Yes  |Array of points, which are used to specify the coordinates of each font. The array length must be the same as the value of **len**.|
 | font     | [Font](#font)      | Yes  | **Font** object.|
 
 **Return value**
@@ -8455,13 +8455,13 @@ Maps a source point array to a destination point array by means of matrix transf
 
 | Name         | Type   | Mandatory| Description                                                       |
 | --------------- | ------- | ---- | ----------------------------------------------------------- |
-| src | Array\<[common2D.Point](js-apis-graphics-common2D.md#point)> | Yes  | Array of source points.|
+| src | Array\<[common2D.Point](js-apis-graphics-common2D.md#point12)> | Yes  | Array of source points.|
 
 **Return value**
 
 | Type                 | Description          |
 | --------------------- | -------------- |
-| Array\<[common2D.Point](js-apis-graphics-common2D.md#point)> | Array of points obtained.|
+| Array\<[common2D.Point](js-apis-graphics-common2D.md#point12)> | Array of points obtained.|
 
 **Error codes**
 
@@ -8609,8 +8609,8 @@ Sets this matrix to a transformation matrix that maps the source point array to 
 
 | Name         | Type   | Mandatory| Description                                                       |
 | --------------- | ------- | ---- | ----------------------------------------------------------- |
-| src | Array\<[common2D.Point](js-apis-graphics-common2D.md#point)> | Yes  | Array of source points. The array length must be the same as the value of **count**.|
-| dst | Array\<[common2D.Point](js-apis-graphics-common2D.md#point)> | Yes  | Array of destination points. The array length must be the same as the value of **count**.|
+| src | Array\<[common2D.Point](js-apis-graphics-common2D.md#point12)> | Yes  | Array of source points. The array length must be the same as the value of **count**.|
+| dst | Array\<[common2D.Point](js-apis-graphics-common2D.md#point12)> | Yes  | Array of destination points. The array length must be the same as the value of **count**.|
 | count | number | Yes  | Number of points in each array. The value is an integer.|
 
 **Return value**
@@ -8727,7 +8727,7 @@ Obtains the radii of the specified rounded corner in this rounded rectangle.
 
 | Type                 | Description          |
 | --------------------- | -------------- |
-| [common2D.Point](js-apis-graphics-common2D.md#point)  | Point. The horizontal coordinate indicates the radius of the rounded corner on the X axis, and the vertical coordinate indicates the radius on the Y axis.|
+| [common2D.Point](js-apis-graphics-common2D.md#point12)  | Point. The horizontal coordinate indicates the radius of the rounded corner on the X axis, and the vertical coordinate indicates the radius on the Y axis.|
 
 **Error codes**
 
@@ -9178,8 +9178,8 @@ Creates a **ShaderEffect** object that generates a linear gradient between two p
 
 | Name| Type                                              | Mandatory| Description          |
 | ------ | -------------------------------------------------- | ---- | -------------- |
-| startPt  | [common2D.Point](js-apis-graphics-common2D.md#point)  | Yes  | Start point.|
-| endPt   | [common2D.Point](js-apis-graphics-common2D.md#point)  | Yes  | End point.|
+| startPt  | [common2D.Point](js-apis-graphics-common2D.md#point12)  | Yes  | Start point.|
+| endPt   | [common2D.Point](js-apis-graphics-common2D.md#point12)  | Yes  | End point.|
 | colors | Array\<number> | Yes  | Array of colors to distribute between the two points. The values in the array are 32-bit (ARGB) unsigned integers.|
 | mode  | [TileMode](#tilemode12) | Yes  | Tile mode of the shader effect.|
 | pos | Array\<number> \|null| No  | Relative position of each color in the color array. The array length must be the same as that of **colors**. The first element in the array must be 0.0, the last element must be 1.0, and the middle elements must be between 0.0 and 1.0 and increase by index. The default value is null, indicating that colors are evenly distributed between the two points.|
@@ -9225,7 +9225,7 @@ Creates a **ShaderEffect** object that generates a radial gradient based on the 
 
 | Name| Type                                              | Mandatory| Description          |
 | ------ | -------------------------------------------------- | ---- | -------------- |
-| centerPt  | [common2D.Point](js-apis-graphics-common2D.md#point)  | Yes  | Center of the circle.|
+| centerPt  | [common2D.Point](js-apis-graphics-common2D.md#point12)  | Yes  | Center of the circle.|
 | radius   | number  | Yes  | Radius of the gradient. A negative number is invalid. The value is a floating point number.|
 | colors | Array\<number> | Yes  | Array of colors to distribute between the center and ending shape of the circle. The values in the array are 32-bit (ARGB) unsigned integers.|
 | mode  | [TileMode](#tilemode12) | Yes  | Tile mode of the shader effect.|
@@ -9273,7 +9273,7 @@ Creates a **ShaderEffect** object that generates a color sweep gradient around a
 
 | Name| Type                                              | Mandatory| Description          |
 | ------ | -------------------------------------------------- | ---- | -------------- |
-| centerPt  | [common2D.Point](js-apis-graphics-common2D.md#point)  | Yes  | Center of the circle.|
+| centerPt  | [common2D.Point](js-apis-graphics-common2D.md#point12)  | Yes  | Center of the circle.|
 | colors | Array\<number> | Yes  | Array of colors to distribute between the start angle and end angle. The values in the array are 32-bit (ARGB) unsigned integers.|
 | mode  | [TileMode](#tilemode12) | Yes  | Tile mode of the shader effect.|
 | startAngle | number | Yes  | Start angle of the sweep gradient, in degrees. The value 0 indicates the positive direction of the X axis. A positive number indicates an offset towards the positive direction, and a negative number indicates an offset towards the negative direction. The value is a floating point number.|
@@ -9321,9 +9321,9 @@ Creates a **ShaderEffect** object that generates a conical gradient between two 
 
 | Name| Type                                              | Mandatory| Description          |
 | ------ | -------------------------------------------------- | ---- | -------------- |
-| startPt  | [common2D.Point](js-apis-graphics-common2D.md#point)  | Yes  |Center of the start circle of the gradient.|
+| startPt  | [common2D.Point](js-apis-graphics-common2D.md#point12)  | Yes  |Center of the start circle of the gradient.|
 | startRadius | number | Yes  | Radius of the start circle of the gradient. A negative number is invalid. The value is a floating point number.|
-| endPt  | [common2D.Point](js-apis-graphics-common2D.md#point)  | Yes  | Center of the end circle of the gradient.|
+| endPt  | [common2D.Point](js-apis-graphics-common2D.md#point12)  | Yes  | Center of the end circle of the gradient.|
 | endRadius | number | Yes  | Radius of the end circle of the gradient. A negative value is invalid. The value is a floating point number.|
 | colors | Array\<number> | Yes  | Array of colors to distribute between the start circle and end circle. The values in the array are 32-bit (ARGB) unsigned integers.|
 | mode  | [TileMode](#tilemode12) | Yes  | Tile mode of the shader effect.|
