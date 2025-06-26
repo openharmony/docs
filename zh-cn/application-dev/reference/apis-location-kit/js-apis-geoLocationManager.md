@@ -577,7 +577,7 @@ on(type: 'locationChange', request: LocationRequest | ContinuousLocationRequest,
   // 方式一：使用LocationRequest作为入参
   let requestInfo:geoLocationManager.LocationRequest = {'priority': geoLocationManager.LocationRequestPriority.FIRST_FIX, 'scenario': geoLocationManager.LocationRequestScenario.UNSET, 'timeInterval': 1, 'distanceInterval': 0, 'maxAccuracy': 0};
   let locationChange = (location:geoLocationManager.Location):void => {
-      console.info('locationChanger: data: ' + JSON.stringify(location));
+      console.info('locationChange: data: ' + JSON.stringify(location));
   };
   try {
       geoLocationManager.on('locationChange', requestInfo, locationChange);
@@ -635,7 +635,7 @@ off(type: 'locationChange', callback?: Callback&lt;Location&gt;): void
 
   let requestInfo:geoLocationManager.LocationRequest = {'priority': geoLocationManager.LocationRequestPriority.FIRST_FIX, 'scenario': geoLocationManager.LocationRequestScenario.UNSET, 'timeInterval': 1, 'distanceInterval': 0, 'maxAccuracy': 0};
   let locationChange = (location:geoLocationManager.Location):void => {
-    console.info('locationChanger: data: ' + JSON.stringify(location));
+    console.info('locationChange: data: ' + JSON.stringify(location));
   };
   try {
       geoLocationManager.on('locationChange', requestInfo, locationChange);
@@ -683,7 +683,7 @@ on(type: 'locationError', callback: Callback&lt;LocationError&gt;): void
 
   let requestInfo:geoLocationManager.LocationRequest = {'priority': geoLocationManager.LocationRequestPriority.FIRST_FIX, 'scenario': geoLocationManager.LocationRequestScenario.UNSET, 'timeInterval': 1, 'distanceInterval': 0, 'maxAccuracy': 0};
   let locationChange = (location:geoLocationManager.Location):void => {
-      console.info('locationChanger: data: ' + JSON.stringify(location));
+      console.info('locationChange: data: ' + JSON.stringify(location));
   };
   try {
       geoLocationManager.on('locationChange', requestInfo, locationChange);
@@ -1398,10 +1398,10 @@ getCurrentLocation(request: CurrentLocationRequest | SingleLocationRequest, call
   let requestInfo:geoLocationManager.CurrentLocationRequest = {'priority': geoLocationManager.LocationRequestPriority.FIRST_FIX, 'scenario': geoLocationManager.LocationRequestScenario.UNSET,'maxAccuracy': 0};
   let locationChange = (err:BusinessError, location:geoLocationManager.Location):void => {
       if (err) {
-          console.error('locationChanger: err=' + JSON.stringify(err));
+          console.error('locationChange: err=' + JSON.stringify(err));
       }
       if (location) {
-          console.info('locationChanger: location=' + JSON.stringify(location));
+          console.info('locationChange: location=' + JSON.stringify(location));
       }
   };
 
@@ -1415,10 +1415,10 @@ getCurrentLocation(request: CurrentLocationRequest | SingleLocationRequest, call
   let request:geoLocationManager.SingleLocationRequest = {'locatingTimeoutMs': 10000, 'locatingPriority': geoLocationManager.LocatingPriority.PRIORITY_ACCURACY};
   let locationCallback = (err:BusinessError, location:geoLocationManager.Location):void => {
       if (err) {
-          console.error('locationChanger: err=' + JSON.stringify(err));
+          console.error('locationChange: err=' + JSON.stringify(err));
       }
       if (location) {
-          console.info('locationChanger: location=' + JSON.stringify(location));
+          console.info('locationChange: location=' + JSON.stringify(location));
       }
   };
 
@@ -1467,10 +1467,10 @@ getCurrentLocation(callback: AsyncCallback&lt;Location&gt;): void
   import { BusinessError } from '@kit.BasicServicesKit';
   let locationChange = (err:BusinessError, location:geoLocationManager.Location) => {
       if (err) {
-          console.error('locationChanger: err=' + JSON.stringify(err));
+          console.error('locationChange: err=' + JSON.stringify(err));
       }
       if (location) {
-          console.info('locationChanger: location=' + JSON.stringify(location));
+          console.info('locationChange: location=' + JSON.stringify(location));
       }
   };
 
