@@ -235,7 +235,7 @@ This process is the same as that of [Rendering and Drawing XComponent+AVPlayer a
    }
    ```
 
-For details about how to dynamically create components and draw them on the surface, see [Rendering and Drawing XComponent+AVPlayer and Button Components at the Same Layer](web-same-layer.md#).
+For details about how to dynamically create components and draw them on the surface, see [Rendering and Drawing XComponent+AVPlayer and Button Components at the Same Layer](web-same-layer.md).
 
 ### Executing Playback Control Commands Sent by ArkWeb Kernel to the Native Media Player
 
