@@ -15,7 +15,7 @@ target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
 
 2. 初始化密钥属性集。
 
-3. 调用[OH_Huks_GenerateKeyItem](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_generatekeyitem)生成密钥，HMAC支持的规格请参考[密钥生成](huks-key-generation-overview.md#支持的算法)。
+3. 调用[OH_Huks_GenerateKeyItem](../../reference/apis-universal-keystore-kit/capi-native-huks-api-h.md#oh_huks_generatekeyitem)生成密钥，HMAC支持的规格请参考[密钥生成](huks-key-generation-overview.md#支持的算法)。
 
 除此之外，开发者也可以参考[密钥导入](huks-key-import-overview.md#支持的算法)的规格介绍，导入已有的密钥。
 
@@ -25,11 +25,11 @@ target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
 
 2. 获取待运算的数据。
 
-3. 调用[OH_Huks_InitParamSet](../../reference/apis-universal-keystore-kit/_huks_param_set_api.md#oh_huks_initparamset)指定算法参数配置。
+3. 调用[OH_Huks_InitParamSet](../../reference/apis-universal-keystore-kit/capi-native-huks-param-h.md#oh_huks_initparamset)指定算法参数配置。
    
-4. 调用[OH_Huks_InitSession](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_initsession)初始化密钥会话，并获取会话的句柄handle。
+4. 调用[OH_Huks_InitSession](../../reference/apis-universal-keystore-kit/capi-native-huks-api-h.md#oh_huks_initsession)初始化密钥会话，并获取会话的句柄handle。
 
-5. 调用[OH_Huks_FinishSession](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_finishsession)结束密钥会话，获取哈希后的数据。
+5. 调用[OH_Huks_FinishSession](../../reference/apis-universal-keystore-kit/capi-native-huks-api-h.md#oh_huks_finishsession)结束密钥会话，获取哈希后的数据。
 
 ```c++
 #include "huks/native_huks_api.h"
