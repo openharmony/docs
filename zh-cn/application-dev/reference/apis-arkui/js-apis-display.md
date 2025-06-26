@@ -319,8 +319,11 @@ getDefaultDisplaySync(): Display
 import { display } from '@kit.ArkUI';
 
 let displayClass: display.Display | null = null;
-
-displayClass = display.getDefaultDisplaySync();
+try {
+  displayClass = display.getDefaultDisplaySync();
+} catch (exception) {
+  console.error(`Failed to get default display. Code: ${exception.code}, message: ${exception.message}`);
+}
 ```
 
 ## display.getPrimaryDisplaySync<sup>14+</sup>
