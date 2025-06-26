@@ -6,6 +6,12 @@
 
 调用[avSession.createAVSession](arkts-apis-avsession-f.md#avsessioncreateavsession10)后，返回会话的实例，可以获得会话ID，完成设置元数据，播放状态信息等操作。
 
+## 导入模块
+
+```ts
+import { avSession } from '@kit.AVSessionKit';
+```
+
 ## 属性
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。

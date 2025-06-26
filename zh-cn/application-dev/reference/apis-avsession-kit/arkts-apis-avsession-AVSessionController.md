@@ -6,6 +6,12 @@
 
 AVSessionController控制器可查看会话ID，并可完成对会话发送命令及事件，获取会话元数据，播放状态信息等操作。
 
+## 导入模块
+
+```ts
+import { avSession } from '@kit.AVSessionKit';
+```
+
 ## 属性
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
