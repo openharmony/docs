@@ -184,7 +184,7 @@ export default {
 Options of a single location request.
 
 > **NOTE**<br>
-> This API is deprecated since API version 9. You are advised to use [geoLocationManager.CurrentLocationRequest](js-apis-geoLocationManager.md#CurrentLocationRequest).
+> This API is deprecated since API version 9. You are advised to use [geoLocationManager.CurrentLocationRequest](js-apis-geoLocationManager.md#currentlocationrequest).
 
 **Required permissions**: ohos.permission.LOCATION
 

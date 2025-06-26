@@ -8563,7 +8563,7 @@ Enumerates the modes in which the layout responds when the keyboard is displayed
 
 
 ## FocusController<sup>12+</sup>
-In the following API examples, you must first use [getFocusController()](js-apis-arkui-UIContext.md#getFocusController12) in **UIContext** to obtain a **UIContext** instance, and then call the APIs using the obtained instance.
+In the following API examples, you must first use [getFocusController()](js-apis-arkui-UIContext.md#getfocuscontroller12) in **UIContext** to obtain a **UIContext** instance, and then call the APIs using the obtained instance.
 
 ### clearFocus<sup>12+</sup>
 

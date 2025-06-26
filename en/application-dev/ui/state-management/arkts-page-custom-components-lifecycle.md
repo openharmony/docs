@@ -234,7 +234,7 @@ In the preceding example, the **Index** page contains two custom components. One
 
 ## Custom Component's Listening for Page Changes
 
-You can use the listener API in [Observer](../../reference/apis-arkui/js-apis-arkui-observer.md#observeronrouterpageupdate11) to listen for page changes in custom components.
+You can use the listener API in [Observer](../../reference/apis-arkui/js-apis-arkui-observer.md#uiobserveronrouterpageupdate11) to listen for page changes in custom components.
 
 ```ts
 // Index.ets

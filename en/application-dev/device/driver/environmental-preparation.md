@@ -8,7 +8,7 @@ DevEco Studio, as the driver development tool, allows you to develop, debug, and
 
 ## SDK Version Configuration
 
-The ArkTs APIs for peripheral management can be used only when the SDK is of API version 10 or later. For details about how to update the SDK, see [OpenHarmony SDK Upgrade Assistant](../../tools/openharmony_sdk_upgrade_assistant.md).
+The ArkTs APIs for peripheral management can be used only when the SDK is of API version 10 or later.
 
 The SDK version must meet the following requirements when you develop dedicated peripheral drivers or enhanced peripheral drivers based on the DDK.
 

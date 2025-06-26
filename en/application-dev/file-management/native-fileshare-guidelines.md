@@ -2,7 +2,7 @@
 
 ## When to Use
 
-If an application accesses a file by using Picker, the permission for accessing the file will be automatically invalidated after the application exits or the device restarts. To retain the permission for accessing the file, you need to [persist the permission](file-persistPermission.md#when-to-use). You can use the **FileShare** module to persist permissions on files or folders based on their URI, activate or deactivate persistent permissions on files or folders, and check the persistent permissions.
+If an application accesses a file by using Picker, the permission for accessing the file will be automatically invalidated after the application exits or the device restarts. To retain the permission for accessing the file, you need to [persist the permission](file-persistPermission.md#when-to-use). You can use the **FileShare** module to manage persistent permissions on files or directories based on their URIs, including activating, deactivating, and checking these permissions.
 
 ## Available APIs
 
@@ -10,11 +10,11 @@ For details about the APIs, see [FileShare](../reference/apis-core-file-kit/file
 
 | API| Description|
 | -------- | -------- |
-| OH_FileShare_PersistPermission(const FileShare_PolicyInfo *policies, unsigned int policyNum, FileShare_PolicyErrorResult **result, unsigned int *resultNum) | Persists the permissions on files or folders.|
-| OH_FileShare_RevokePermission(const FileShare_PolicyInfo *policies, unsigned int policyNum, FileShare_PolicyErrorResult **result, unsigned int *resultNum) | Revokes the permissions from files or folders.|
-| OH_FileShare_ActivatePermission(const FileShare_PolicyInfo *policies, unsigned int policyNum, FileShare_PolicyErrorResult **result, unsigned int *resultNum) | Activates the persistent permissions on files or folders.|
-| OH_FileShare_DeactivatePermission(const FileShare_PolicyInfo *policies, unsigned int policyNum, FileShare_PolicyErrorResult **result, unsigned int *resultNum) | Deactivates the persistent permissions on files or folders.|
-| OH_FileShare_CheckPersistentPermission(const FileShare_PolicyInfo *policies, unsigned int policyNum, bool **result, unsigned int *resultNum) | Checks the persistent permissions on files or folders.|
+| OH_FileShare_PersistPermission(const FileShare_PolicyInfo *policies, unsigned int policyNum, FileShare_PolicyErrorResult **result, unsigned int *resultNum) | Persists the permissions on files or directories.|
+| OH_FileShare_RevokePermission(const FileShare_PolicyInfo *policies, unsigned int policyNum, FileShare_PolicyErrorResult **result, unsigned int *resultNum) | Revokes the permissions from files or directories.|
+| OH_FileShare_ActivatePermission(const FileShare_PolicyInfo *policies, unsigned int policyNum, FileShare_PolicyErrorResult **result, unsigned int *resultNum) | Activates the persistent permissions on files or directories.|
+| OH_FileShare_DeactivatePermission(const FileShare_PolicyInfo *policies, unsigned int policyNum, FileShare_PolicyErrorResult **result, unsigned int *resultNum) | Deactivates the persistent permissions on files or directories.|
+| OH_FileShare_CheckPersistentPermission(const FileShare_PolicyInfo *policies, unsigned int policyNum, bool **result, unsigned int *resultNum) | Checks the persistent permissions on files or directories.|
 | OH_FileShare_ReleasePolicyErrorResult(FileShare_PolicyErrorResult *errorResult, unsigned int resultNum) | Releases the memory allocated for **FileShare_PolicyErrorResult**.|
 
 ## Constraints

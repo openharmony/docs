@@ -123,11 +123,13 @@ Bad file descriptor
 **Possible Causes**
 
 1. This file descriptor is closed.
+
 2. The read and write permissions on the file do not match the settings.
 
 **Solution**
 
 1. Check whether the file descriptor is closed.
+
 2. Check that the permissions on the file match the settings.
 
 ### 13900009 Child Process Not Exist
@@ -840,7 +842,7 @@ Check whether the current volume state is correct.
 
 **Error Message**
 
-Failed to create the drectory or node
+Failed to create the directory or node
 
 **Possible Causes**
 
@@ -854,7 +856,7 @@ Check whether the directory or node to be created already exists.
 
 **Error Message**
 
-Failed to delete the drectory or node
+Failed to delete the directory or node
 
 **Possible Causes**
 
@@ -960,7 +962,7 @@ Check the data returned by the server.
 
 **Error Message**
 
-Failed to register Notify
+Failed to register notify
 
 **Possible Causes**
 
@@ -976,7 +978,7 @@ Check that the server service exists.
 
 **Error Message**
 
-Failed to unregister Notify
+Failed to unregister notify
 
 **Possible Causes**
 
@@ -992,7 +994,7 @@ Check that the server service exists.
 
 **Error Message**
 
-Failed to initialize the Notify agent
+Failed to initialize the notify agent
 
 **Possible Causes**
 
@@ -1065,3 +1067,65 @@ The battery level is low.
 **Solution**
 
 Perform the operation after the battery is being charged or the battery level is restored.
+
+### 22400004 Maximum Number of Input Parameters Reached
+
+**Error Message**
+
+Exceeded the maximum limit
+
+**Possible Causes**
+
+The number of requests exceeds the upper limit defined by API specifications.
+
+**Solution**
+
+Check the input parameters and ensure that the number of requests meets the specifications.
+
+### 22400005 Internal Error
+
+**Error Message**
+
+Inner error
+
+**Possible Causes**
+
+1. The internal database request fails or the SQL statement fails to be executed.
+
+2. An exception such as a null pointer occurs in the system.
+
+3. The system memory is insufficient or abnormal.
+
+4. The JS framework is abnormal.
+
+**Solution**
+
+Check for basic system capability errors. <!--RP1-->Please contact the OpenHarmony team for support.<!--RP1End-->
+
+### 22400006 Task Running of the Same Type
+
+**Error Message**
+
+The same task is already in progress
+
+**Possible Causes**
+
+A task of the same type is running.
+
+**Solution**
+
+Wait until the existing tasks of the same type are complete, or call **stop()** to stop the existing tasks and trigger a new task.
+
+### 22400007 Historical File Specified to Replace the Original File Not Exist
+
+**Error Message**
+
+The version file specified to replace the original file does not exist
+
+**Possible Causes**
+
+The files of earlier versions are not downloaded or have been deleted.
+
+**Solution**
+
+Download the specified historical version file again. Ensure that the file exists.

@@ -4,8 +4,8 @@ Basic Services Kit provides basic capabilities for application developers, from 
 
 ## When to Use
 
-Basic Services Kit is typically used in the following:
- 
+Basic Services Kit is typically used in the following scenarios:
+
 
 - Pasteboard read/write
   - Intra-device copy and paste: For example, copy a piece of text in application A and paste it to another application.

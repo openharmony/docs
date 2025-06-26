@@ -163,7 +163,7 @@ When the state variables listened by \@Monitor change, the callback is triggered
         Text(`name: ${this.info.name}, age: ${this.info.age}`)
         Button("change info")
           .onClick(() => {
-            this.info = new Info ("Lucy", 18); // Can listen for the change.
+            this.info = new Info("Lucy", 18); // Can listen for the change.
           })
         Button("change info.name")
           .onClick(() => {

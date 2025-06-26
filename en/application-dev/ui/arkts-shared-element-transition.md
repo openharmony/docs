@@ -69,7 +69,7 @@ struct Index {
         // When a post is clicked, other posts disappear from the tree.
         if (!this.isExpand || this.selectedIndex === index) {
           Column() {
-            Post({ data: postData, selecteIndex: this.selectedIndex, index: index })
+            Post({ data: postData, selectedIndex: this.selectedIndex, index: index })
           }
           .width('100%')
           // Apply opacity and translate transition effects to the disappearing posts.
@@ -86,7 +86,7 @@ struct Index {
 
 @Component
 export default struct  Post {
-  @Link selecteIndex: number;
+  @Link selectedIndex: number;
 
   @Prop data: PostData;
   @Prop index: number;
@@ -139,8 +139,8 @@ export default struct  Post {
     .alignItems(HorizontalAlign.Start)
     .padding({ left: 10, top: 10 })
     .onClick(() => {
-      this.selecteIndex = -1;
-      this.selecteIndex = this.index;
+      this.selectedIndex = -1;
+      this.selectedIndex = this.index;
       this.getUIContext()?.animateTo({
         duration: 350,
         curve: Curve.Friction
@@ -161,7 +161,7 @@ export default struct  Post {
 
 ## Creating a Container and Migrating Components Across Containers
 
-Use [NodeContainer](../reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md) and [custom placeholder nodes](arkts-user-defined-place-hoder.md) with [NodeController](../reference/apis-arkui/js-apis-arkui-nodeController.md) for migrating components across different nodes. Then combine the migration with the property animations to achieve shared element transition. This method can be integrated with various transition styles, including navigation transitions ([Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md)) and sheet transitions ([bindSheet](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet)).
+Use [NodeContainer](../reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md) and [custom placeholder nodes](arkts-user-defined-place-holder.md) with [NodeController](../reference/apis-arkui/js-apis-arkui-nodeController.md) for migrating components across different nodes. Then combine the migration with the property animations to achieve shared element transition. This method can be integrated with various transition styles, including navigation transitions ([Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md)) and sheet transitions ([bindSheet](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet)).
 
 ### Using with Stack
 
