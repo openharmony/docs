@@ -507,7 +507,8 @@
             - [绑定全模态页面 (bindContentCover)](ui/arkts-contentcover-page.md)
           - [即时反馈 (Toast)](ui/arkts-create-toast.md)
           - [设置浮层 (OverlayManager)](ui/arkts-create-overlaymanager.md)
-        - 显示图形<!--arkts-draw-graphics-->
+        - 几何图形绘制<!--arkts-draw-graphics-->
+          - [几何图形绘制概述](ui/arkts-shape-overview.md)
           - [绘制几何图形 (Shape)](ui/arkts-geometric-shape-drawing.md)
           - [形状裁剪 (clipShape)](ui/arkts-clip-shape.md)
           - [使用画布绘制自定义图形 (Canvas)](ui/arkts-drawing-customization-on-canvas.md)
