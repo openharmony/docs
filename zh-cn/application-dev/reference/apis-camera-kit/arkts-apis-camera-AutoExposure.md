@@ -8,6 +8,12 @@ AutoExposure extends [AutoExposureQuery](arkts-apis-camera-AutoExposureQuery.md)
 
 自动曝光类，对设备自动曝光（AE）操作。
 
+## 导入模块
+
+```ts
+import { camera } from '@kit.CameraKit';
+```
+
 ## getExposureMode<sup>11+</sup>
 
 getExposureMode(): ExposureMode

@@ -12,6 +12,12 @@ VideoSession extends [Session](arkts-apis-camera-Session.md), [Flash](arkts-apis
 >
 > 默认的视频录制模式，适用于一般场景。支持720P、1080p等多种分辨率的录制，可选择不同帧率（如30fps、60fps）。
 
+## 导入模块
+
+```ts
+import { camera } from '@kit.CameraKit';
+```
+
 ## canPreconfig<sup>12+</sup>
 
 canPreconfig(preconfigType: PreconfigType, preconfigRatio?: PreconfigRatio): boolean
