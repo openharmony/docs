@@ -15,7 +15,7 @@ import { userStatus } from '@kit.MultimodalAwarenessKit';
 
 ## UserAgeGroup
 
-表示具体的年龄群组（例如，儿童、成人）。
+表示用户具体的年龄分类群组，例如，儿童或成年人。
 
 **系统能力**：SystemCapability.MultimodalAwareness.UserStatus
 
@@ -26,7 +26,7 @@ import { userStatus } from '@kit.MultimodalAwarenessKit';
 
 ## UserClassification
 
-表示年龄群组检测结果。
+表示用户年龄群组分类检测结果。
 
 **系统能力**：SystemCapability.MultimodalAwareness.UserStatus
 
