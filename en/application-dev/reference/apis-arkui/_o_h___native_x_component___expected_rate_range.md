@@ -9,6 +9,7 @@ Defines the expected frame rate range.
 
 **Related module**: [Native XComponent](_o_h___native_x_component.md)
 
+**Header file**: [native_interface_xcomponent.h](native__interface__xcomponent_8h.md)
 
 ## Summary
 

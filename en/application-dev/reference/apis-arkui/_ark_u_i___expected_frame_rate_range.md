@@ -9,6 +9,7 @@ Defines the expected frame rate range of the animation.
 
 **Related module**: [ArkUI_NativeModule](_ark_u_i___native_module.md)
 
+**Header file**: [native_animate.h](native__animate_8h.md)
 
 ## Summary
 

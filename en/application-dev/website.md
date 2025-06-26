@@ -356,6 +356,7 @@
             - [Custom Component Layout](ui/state-management/arkts-page-custom-components-layout.md)
             - [Constraints on Access Modifiers of Custom Component Member Variables](ui/state-management/arkts-custom-components-access-restrictions.md)
           - Component Extension<!--arkts-extend-components-->
+            - [Component Extension Overview](ui/state-management/arkts-extend-components-overview.md)  
             - [\@Builder Decorator: Custom Builder Function](ui/state-management/arkts-builder.md)
             - [\@LocalBuilder Decorator: Maintaining the Parent-Child Relationship Between Component and State Management](ui/state-management/arkts-localBuilder.md)
             - [\@BuilderParam Decorator: @Builder Function Reference](ui/state-management/arkts-builderparam.md)
@@ -416,6 +417,7 @@
             - [MVVM (V2)](ui/state-management/arkts-mvvm-V2.md)
           - Mixed Use and Migration Guide for V1 and V2<!--v1v2-migration-->
             - [Mixing Use of Custom Components](ui/state-management/arkts-custom-component-mixed-scenarios.md)
+            - [Mixing Use of State Management V1 and V2](ui/state-management/arkts-v1-v2-mixusage.md)
             - [Migrating Applications from V1 to V2](ui/state-management/arkts-v1-v2-migration.md)
         - UI Paradigm Rendering Control<!--arkts-rendering-control-->
           - [Rendering Control Overview](ui/state-management/arkts-rendering-control-overview.md)
@@ -435,6 +437,7 @@
             - [Creating a List (List)](ui/arkts-layout-development-create-list.md)
             - [Creating an Arc List (ArcList) (Recommended for Circular Screens)](ui/arkts-layout-development-create-arclist.md)
             - [Creating a Grid (Grid/GridItem)](ui/arkts-layout-development-create-grid.md)
+            - [Creating a Waterfall Flow (WaterFlow)](ui/arkts-layout-development-create-waterflow.md)
             - [Creating a Swiper (Swiper)](ui/arkts-layout-development-create-looping.md)
             - [Creating an Arc Carousel Component (ArcSwiper) (Recommended for Circular Screens)](ui/arkts-layout-development-arcswiper.md)
             - [Tabs](ui/arkts-navigation-tabs.md)
@@ -469,6 +472,8 @@
             - [Fixed Style Dialog Box](ui/arkts-fixes-style-dialog.md)
             - [Page-Level Dialog Box](ui/arkts-embedded-dialog.md)
             - [Dialog Box Layer Management](ui/arkts-dialog-levelorder.md)
+            - [Dialog Controller](ui/arkts-dialog-controller.md)
+            - [Dialog Box Focus Policy](ui/arkts-dialog-focusable.md)
           - Using a Menu<!--arkts-use-menu-->
             - [Menu Overview](ui/arkts-menu-overview.md)
             - [Menu Control (Menu)](ui/arkts-popup-and-menu-components-menu.md)
@@ -539,15 +544,20 @@
             - [Attribute Modifier (AttributeModifier)](ui/arkts-user-defined-extension-attributeModifier.md)
             - [Attribute Updater (AttributeUpdater)](ui/arkts-user-defined-extension-attributeUpdater.md)
         - [Using the Mirroring Capability](ui/arkts-mirroring-display.md)
-        - [Supporting Aging-Friendly Design](ui/arkui-support-for-aging-adaptation.md)
+        - Implementing Accessibility and Aging-Friendly Design<!--arkts-support-accessibility-friendliness-->
+          - [Supporting Accessibility](ui/arkts-universal-attributes-accessibility.md)
+          - [Supporting Aging-Friendly Design](ui/arkui-support-for-aging-adaptation.md)
         - Theme Settings<!--arkts-theme-->
           - [Dark and Light Mode Adaptation](ui/ui-dark-light-color-adaptation.md)
           - [Configuring In-Application Theme Skinning](ui/theme_skinning.md)
         - [Using the UI Context API for UI Operations (UIContext)](ui/arkts-global-interface.md)
+        - [Using Component Snapshot (ComponentSnapshot)](ui/arkts-uicontext-component-snapshot.md)
         - Launching Pages Across Processes<!--arkts-ui-cross-process-->
           - [Atomic Service Full Screen Launch Component (FullScreenLaunchComponent)](ui/arkts-FullScreenComponent.md)
+          - [In-Application Embedded Component (EmbeddedComponent)](ui/arkts-embedded-components.md)
           <!--Del-->
-           - [Cross-Process Application Capability Extension (UIExtension, for System Applications Only)](ui/arkts-ui-extension-components.md)
+          - [Cross-Process Application Capability Extension (UIExtension, for System Applications Only)](ui/arkts-ui-extension-components.md)
+          - [Cross-Thread Embedded Component (IsolatedComponent, for System Applications Only)](ui/arkts-isolated-components.md)
           <!--DelEnd-->
         - Using NDK APIs to Build UIs<!--arkts-use-ndk-->
           - [NDK API Overview](ui/ndk-build-ui-overview.md)
@@ -557,11 +567,17 @@
             - [Binding Gesture Events](ui/ndk-bind-gesture-events.md)
             - [Drag Event](ui/ndk-drag-event.md)
           - [Using Animations](ui/ndk-use-animation.md)
-          - [Developing a Long List with Lazy Loading](ui/ndk-loading-long-list.md)
+          - Building a Layout<!--arkts-build-layout-ndk-->
+            - [Implementing a List Layout](ui/ndk-loading-long-list.md)
+            - [Implementing a Waterfall Flow Layout](ui/ndk-waterflow.md)
+          - Using Text<!--arkts-build-text-ndk-->
+            - [Drawing and Displaying Text in Text Components](ui/ndk-styled-string.md)
+            - [Listening for Text Box Events](ui/ndk-textarea-event.md)
           - [Building Dialog Boxes](ui/ndk-build-pop-up-window.md)
           - [Building Custom Components](ui/ndk-build-custom-components.md)
           - [Embedded ArkTS Component](ui/ndk-embed-arkts-components.md)
           - [Integrating Accessibility Through XComponent](ui/ndk-accessibility-xcomponent.md)
+          - [Implementing Custom Drawing](ui/arkts-user-defined-draw.md)
       - UI Development (JavaScript-compatible Web-like Development Paradigm)<!--ui-js-dev-->
         - [UI Development (JavaScript-compatible Web-like Development Paradigm) Overview](ui/ui-js-overview.md)
         - Framework Overview<!--js-framework-overview-->
@@ -779,8 +795,7 @@
               - [Updating Widget Content Through the message Event](form/arkts-ui-widget-event-formextensionability.md)
               - [Updating Widget Content Through the router or call Event](form/arkts-ui-widget-event-uiability.md)
             - Widget Data Interaction<!--arkts-ui-widget-interaction-->
-              - [Updating Widget Content](form/arkts-ui-widget-interaction-overview.md)
-              - [Time-specific Widget Updates](form/arkts-ui-widget-update-by-time-point.md)
+              - [Updating Widget Content](form/arkts-ui-widget-interaction-overview.md)              
               <!--Del-->
               - [Updating Widget Content Through a Proxy](form/arkts-ui-widget-update-by-proxy.md)
               - [Conditional Widget Updates](form/arkts-ui-widget-update-by-conditions.md)
@@ -2357,11 +2372,13 @@
             - [Shape Clipping](reference/apis-arkui/arkui-ts/ts-universal-attributes-sharp-clipping.md)
             - [Gradient Color](reference/apis-arkui/arkui-ts/ts-universal-attributes-gradient-color.md)
             - [Popup Control](reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md)
+            - [Tooltip Control](reference/apis-arkui/arkui-ts/ts-universal-attributes-tips.md)
             - [Menu Control](reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md)
             - [Focus Control](reference/apis-arkui/arkui-ts/ts-universal-attributes-focus.md)
             - [Hover Effect](reference/apis-arkui/arkui-ts/ts-universal-attributes-hover-effect.md)
             - [Component ID](reference/apis-arkui/arkui-ts/ts-universal-attributes-component-id.md)
             - [Reuse ID](reference/apis-arkui/arkui-ts/ts-universal-attributes-reuse-id.md)
+            - [Reuse Options](reference/apis-arkui/arkui-ts/ts-universal-attributes-reuse.md)
             - [Polymorphic Style](reference/apis-arkui/arkui-ts/ts-universal-attributes-polymorphic-style.md)
             - [restoreId](reference/apis-arkui/arkui-ts/ts-universal-attributes-restoreId.md)
             - [Foreground Color](reference/apis-arkui/arkui-ts/ts-universal-attributes-foreground-color.md)
@@ -2590,7 +2607,7 @@
           - [SaveButton (System API)](reference/apis-arkui/arkui-ts/ts-security-components-savebutton-sys.md)
           <!--DelEnd-->
         - Themes<!--themes-->
-          - [WithTheme](reference/apis-arkui/arkui-ts/ts-container-with-theme.md)
+          - [WithTheme](reference/apis-arkui/arkui-ts/ts-container-with-theme.md) 
         - Atomic Services<!--atomic-services-->
           - [AtomicServiceNavigation](reference/apis-arkui/arkui-ts/ohos-atomicservice-AtomicServiceNavigation.md)
           - [AtomicServiceSearch](reference/apis-arkui/arkui-ts/ohos-atomicservice-AtomicServiceSearch.md)
@@ -2640,6 +2657,7 @@
           - [TreeView](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-TreeView.md)
         - State Management and Rendering Control<!--state-management-and-rendering-control-->
           - [State Management with Application-level Variables](reference/apis-arkui/arkui-ts/ts-state-management.md)
+          - [State Variable Change Listening](reference/apis-arkui/arkui-ts/ts-state-management-watch-monitor.md)
           - [ForEach](reference/apis-arkui/arkui-ts/ts-rendering-control-foreach.md)
           - [LazyForEach](reference/apis-arkui/arkui-ts/ts-rendering-control-lazyforeach.md)
           - [Repeat](reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md)
@@ -2887,7 +2905,9 @@
           - [ArkUI_AnimateCompleteCallback](reference/apis-arkui/_ark_u_i___animate_complete_callback.md)
           - [ArkUI_AttributeItem](reference/apis-arkui/_ark_u_i___attribute_item.md)
           - [ArkUI_ColorStop](reference/apis-arkui/_ark_u_i___color_stop.md)
+          - [ArkUI_Context](reference/apis-arkui/_ark_ui__context.md)
           - [ArkUI_ContextCallback](reference/apis-arkui/_ark_u_i___context_callback.md)
+          - [ArkUI_NativeDialog](reference/apis-arkui/_ark_ui__native_dialog.md)
           - [ArkUI_ExpectedFrameRateRange](reference/apis-arkui/_ark_u_i___expected_frame_rate_range.md)
           - [ArkUI_IntOffset](reference/apis-arkui/_ark_u_i___int_offset.md)
           - [ArkUI_IntSize](reference/apis-arkui/_ark_u_i___int_size.md)
@@ -2895,9 +2915,11 @@
           - [ArkUI_NativeAnimateAPI_1](reference/apis-arkui/_ark_u_i___native_animate_a_p_i__1.md)
           - [ArkUI_NativeDialogAPI_1](reference/apis-arkui/_ark_u_i___native_dialog_a_p_i__1.md)
           - [ArkUI_NativeDialogAPI_2](reference/apis-arkui/_ark_u_i___native_dialog_a_p_i__2.md)
+          - [ArkUI_NativeDialogAPI_3](reference/apis-arkui/_ark_u_i___native_dialog_a_p_i__3.md)
           - [ArkUI_NativeGestureAPI_1](reference/apis-arkui/_ark_u_i___native_gesture_a_p_i__1.md)
           - [ArkUI_NativeGestureAPI_2](reference/apis-arkui/_ark_u_i___native_gesture_a_p_i__2.md)
           - [ArkUI_NativeNodeAPI_1](reference/apis-arkui/_ark_u_i___native_node_a_p_i__1.md)
+          - [ArkUI_Node](reference/apis-arkui/_ark_ui__node.md)
           - [ArkUI_NodeComponentEvent](reference/apis-arkui/_ark_u_i___node_component_event.md)
           - [ArkUI_NumberValue](reference/apis-arkui/union_ark_u_i___number_value.md)
           - [ArkUI_Rect](reference/apis-arkui/_ark_u_i___rect.md)
@@ -2914,6 +2936,7 @@
           - [OH_NativeXComponent_MouseEvent_Callback](reference/apis-arkui/_o_h___native_x_component___mouse_event___callback.md)
           - [OH_NativeXComponent_TouchEvent](reference/apis-arkui/_o_h___native_x_component___touch_event.md)
           - [OH_NativeXComponent_TouchPoint](reference/apis-arkui/_o_h___native_x_component___touch_point.md)
+          - [OH_NativeXComponent_HistoricalPoint](reference/apis-arkui/_o_h___native_x_component___historical_point.md)
           - [NativeDisplayManager_CutoutInfo](reference/apis-arkui/_native_display_manager___cutout_info.md)
           - [NativeDisplayManager_DisplayColorSpace](reference/apis-arkui/_native_display_manager___display_color_space.md)
           - [NativeDisplayManager_DisplayHdrFormat](reference/apis-arkui/_native_display_manager___display_hdr_format.md)
@@ -2936,12 +2959,19 @@
           - [Sheet Error Codes](reference/apis-arkui/errorcode-bindSheet.md)
           - [Scrollable Component Error Codes](reference/apis-arkui/errorcode-scroll.md)
           - [Snapshot Error Codes](reference/apis-arkui/errorcode-snapshot.md)
+          - [Styled String Error Codes](reference/apis-arkui/errorcode-styled-string.md)
+          - [UI Context Error Codes](reference/apis-arkui/errorcode-uicontext.md)
+          - [Interaction Event Error Codes](reference/apis-arkui/errorcode-event.md)          
+          - [NodeAdapter Error Codes](reference/apis-arkui/errorcode-nodeadapter.md)
           <!--Del-->
           - [UI Appearance Error Codes](reference/apis-arkui/errorcode-uiappearance.md)
+          - [UIExtension Error Codes](reference/apis-arkui/errorcode-uiextension.md)
           <!--DelEnd-->
         - Graphics<!--arkui-graphics-images-arkts-errcode-->
           - [Display Error Codes](reference/apis-arkui/errorcode-display.md)
           - [Window Error Codes](reference/apis-arkui/errorcode-window.md)
+        - UI Compilation<!--arkui-compile-arkts-errcode-->
+          - [Compilation Error Codes](reference/apis-arkui/_ark_ui_compile.md)
     - ArkWeb<!--arkweb-api-->
       - ArkTS APIs<!--arkweb-arkts-->
         - [@ohos.web.webview (Webview)](reference/apis-arkweb/js-apis-webview.md)

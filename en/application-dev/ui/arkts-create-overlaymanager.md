@@ -18,16 +18,18 @@ You can use the [getOverlayManager](../reference/apis-arkui/js-apis-arkui-UICont
 With **OverlayManager**, you can add a specified node ([addComponentContent](../reference/apis-arkui/js-apis-arkui-UIContext.md#addcomponentcontent12)), remove a specified node ([removeComponentContent](../reference/apis-arkui/js-apis-arkui-UIContext.md#removecomponentcontent12)), show all nodes ([showAllComponentContents](../reference/apis-arkui/js-apis-arkui-UIContext.md#showallcomponentcontents12)), and hide all nodes ([hideAllComponentContents](../reference/apis-arkui/js-apis-arkui-UIContext.md#hideallcomponentcontents12)).
 
 ```ts
-import { ComponentContent, OverlayManager, router } from '@kit.ArkUI';
+import { ComponentContent, OverlayManager } from '@kit.ArkUI';
 
 class Params {
-  text: string = ""
-  offset: Position
+  text: string = "";
+  offset: Position;
+
   constructor(text: string, offset: Position) {
-    this.text = text
-    this.offset = offset
+    this.text = text;
+    this.offset = offset;
   }
 }
+
 @Builder
 function builderText(params: Params) {
   Column() {
@@ -41,68 +43,68 @@ function builderText(params: Params) {
 @Component
 struct OverlayExample {
   @State message: string = 'ComponentContent';
-  private uiContext: UIContext = this.getUIContext()
-  private overlayNode: OverlayManager = this.uiContext.getOverlayManager()
-  @StorageLink('contentArray') contentArray: ComponentContent<Params>[] = []
-  @StorageLink('componentContentIndex') componentContentIndex: number = 0
-  @StorageLink('arrayIndex') arrayIndex: number = 0
-  @StorageLink("componentOffset") componentOffset: Position = {x: 0, y: 80}
+  private uiContext: UIContext = this.getUIContext();
+  private overlayNode: OverlayManager = this.uiContext.getOverlayManager();
+  @StorageLink('contentArray') contentArray: ComponentContent<Params>[] = [];
+  @StorageLink('componentContentIndex') componentContentIndex: number = 0;
+  @StorageLink('arrayIndex') arrayIndex: number = 0;
+  @StorageLink("componentOffset") componentOffset: Position = { x: 0, y: 80 };
 
   build() {
-    Column({space:10}) {
+    Column({ space: 10 }) {
       Button("Increment componentContentIndex: " + this.componentContentIndex).onClick(()=>{
-        ++this.componentContentIndex
+        ++this.componentContentIndex;
       })
       Button("Decrement componentContentIndex: " + this.componentContentIndex).onClick(()=>{
-        --this.componentContentIndex
+        --this.componentContentIndex;
       })
       Button("Add ComponentContent" + this.contentArray.length).onClick(()=>{
         let componentContent = new ComponentContent(
           this.uiContext, wrapBuilder<[Params]>(builderText),
           new Params(this.message + (this.contentArray.length), this.componentOffset)
-        )
-        this.contentArray.push(componentContent)
-        this.overlayNode.addComponentContent(componentContent, this.componentContentIndex)
+        );
+        this.contentArray.push(componentContent);
+        this.overlayNode.addComponentContent(componentContent, this.componentContentIndex);
       })
       Button("Increment arrayIndex: " + this.arrayIndex).onClick(()=>{
-        ++this.arrayIndex
+        ++this.arrayIndex;
       })
       Button("Decrement arrayIndex: " + this.arrayIndex).onClick(()=>{
-        --this.arrayIndex
+        --this.arrayIndex;
       })
       Button("Delete ComponentContent" + this.arrayIndex).onClick(()=>{
         if (this.arrayIndex >= 0 && this.arrayIndex < this.contentArray.length) {
-          let componentContent = this.contentArray.splice(this.arrayIndex, 1)
-          this.overlayNode.removeComponentContent(componentContent.pop())
+          let componentContent = this.contentArray.splice(this.arrayIndex, 1);
+          this.overlayNode.removeComponentContent(componentContent.pop());
         } else {
-          console.info("Invalid arrayIndex.")
+          console.info("Invalid arrayIndex.");
         }
       })
       Button("Show ComponentContent" + this.arrayIndex).onClick(()=>{
         if (this.arrayIndex >= 0 && this.arrayIndex < this.contentArray.length) {
-          let componentContent = this.contentArray[this.arrayIndex]
-          this.overlayNode.showComponentContent(componentContent)
+          let componentContent = this.contentArray[this.arrayIndex];
+          this.overlayNode.showComponentContent(componentContent);
         } else {
-          console.info("Invalid arrayIndex.")
+          console.info("Invalid arrayIndex.");
         }
       })
       Button("Hide ComponentContent" + this.arrayIndex).onClick(()=>{
         if (this.arrayIndex >= 0 && this.arrayIndex < this.contentArray.length) {
-          let componentContent = this.contentArray[this.arrayIndex]
-          this.overlayNode.hideComponentContent(componentContent)
+          let componentContent = this.contentArray[this.arrayIndex];
+          this.overlayNode.hideComponentContent(componentContent);
         } else {
-          console.info("Invalid arrayIndex.")
+          console.info("Invalid arrayIndex.");
         }
       })
-      Button("Show All ComponentContent").onClick(()=>{
-          this.overlayNode.showAllComponentContents()
+      Button("��ʾ����ComponentContent").onClick(() => {
+        this.overlayNode.showAllComponentContents();
       })
       Button("Hide All ComponentContent").onClick(()=>{
-        this.overlayNode.hideAllComponentContents()
+        this.overlayNode.hideAllComponentContents();
       })
 
       Button("Go").onClick(()=>{
-        router.pushUrl({
+        this.getUIContext().getRouter().pushUrl({
           url: 'pages/Second'
         })
       })
@@ -120,11 +122,11 @@ The following example shows how to display a floating bubble that always stays o
 import { ComponentContent, OverlayManager } from '@kit.ArkUI';
 
 class Params {
-  context: UIContext
-  offset: Position
+  context: UIContext;
+  offset: Position;
   constructor(context: UIContext, offset: Position) {
-    this.context = context
-    this.offset = offset
+    this.context = context;
+    this.offset = offset;
   }
 }
 @Builder
@@ -155,24 +157,24 @@ function builderOverlay(params: Params) {
 @Component
 struct OverlayExample {
   @State message: string = 'ComponentContent';
-  private uiContext: UIContext = this.getUIContext()
-  private overlayNode: OverlayManager = this.uiContext.getOverlayManager()
-  private overlayContent:ComponentContent<Params>[] = []
-  controller: TextInputController = new TextInputController()
+  private uiContext: UIContext = this.getUIContext();
+  private overlayNode: OverlayManager = this.uiContext.getOverlayManager();
+  private overlayContent:ComponentContent<Params>[] = [];
+  controller: TextInputController = new TextInputController();
 
   aboutToAppear(): void {
     let uiContext = this.getUIContext();
     let componentContent = new ComponentContent(
       this.uiContext, wrapBuilder<[Params]>(builderOverlay),
       new Params(uiContext, {x:0, y: 100})
-    )
-    this.overlayNode.addComponentContent(componentContent, 0)
-    this.overlayContent.push(componentContent)
+    );
+    this.overlayNode.addComponentContent(componentContent, 0);
+    this.overlayContent.push(componentContent);
   }
 
   aboutToDisappear(): void {
-    let componentContent = this.overlayContent.pop()
-    this.overlayNode.removeComponentContent(componentContent)
+    let componentContent = this.overlayContent.pop();
+    this.overlayNode.removeComponentContent(componentContent);
   }
 
   build() {
@@ -193,11 +195,11 @@ Since API version 18, you can use the **getOverlayManager** API in **UIContext**
 import { ComponentContent, LevelOrder, OverlayManager } from '@kit.ArkUI';
 
 class Params {
-  text: string = ""
-  offset: Position
+  text: string = "";
+  offset: Position;
   constructor(text: string, offset: Position) {
-    this.text = text
-    this.offset = offset
+    this.text = text;
+    this.offset = offset;
   }
 }
 
@@ -226,12 +228,12 @@ function builderNormalText(params: Params) {
 @Entry
 @Component
 struct Index {
-  private ctx: UIContext = this.getUIContext()
-  private overlayManager: OverlayManager = this.ctx.getOverlayManager()
-  @StorageLink('contentArray') contentArray: ComponentContent<Params>[] = []
-  @StorageLink('componentContentIndex') componentContentIndex: number = 0
-  @StorageLink('arrayIndex') arrayIndex: number = 0
-  @StorageLink('componentOffset') componentOffset: Position = {x: 0, y: 80}
+  private ctx: UIContext = this.getUIContext();
+  private overlayManager: OverlayManager = this.ctx.getOverlayManager();
+  @StorageLink('contentArray') contentArray: ComponentContent<Params>[] = [];
+  @StorageLink('componentContentIndex') componentContentIndex: number = 0;
+  @StorageLink('arrayIndex') arrayIndex: number = 0;
+  @StorageLink('componentOffset') componentOffset: Position = {x: 0, y: 80};
 
   build() {
     Row() {
@@ -241,25 +243,25 @@ struct Index {
             let componentContent = new ComponentContent(
               this.ctx, wrapBuilder<[Params]>(builderTopText),
               new Params('I am a top-level dialog box', this.componentOffset)
-            )
-            this.contentArray.push(componentContent)
-            this.overlayManager.addComponentContentWithOrder(componentContent, LevelOrder.clamp(100000))
+            );
+            this.contentArray.push(componentContent);
+            this.overlayManager.addComponentContentWithOrder(componentContent, LevelOrder.clamp(100000));
           })
         Button('Open Normal Dialog Box')
           .onClick(() => {
             let componentContent = new ComponentContent(
               this.ctx, wrapBuilder<[Params]>(builderNormalText),
               new Params('I am a normal dialog box', this.componentOffset)
-            )
-            this.contentArray.push(componentContent)
-            this.overlayManager.addComponentContentWithOrder(componentContent, LevelOrder.clamp(0))
+            );
+            this.contentArray.push(componentContent);
+            this.overlayManager.addComponentContentWithOrder(componentContent, LevelOrder.clamp(0));
           })
         Button("Remove Dialog Box").onClick(()=>{
           if (this.arrayIndex >= 0 && this.arrayIndex < this.contentArray.length) {
-            let componentContent = this.contentArray.splice(this.arrayIndex, 1)
-            this.overlayManager.removeComponentContent(componentContent.pop())
+            let componentContent = this.contentArray.splice(this.arrayIndex, 1);
+            this.overlayManager.removeComponentContent(componentContent.pop());
           } else {
-            console.info("Invalid arrayIndex.")
+            console.info("Invalid arrayIndex.");
           }
         })
       }.width('100%')
@@ -267,4 +269,4 @@ struct Index {
   }
 }
 ```
-![overlayManager-demo3](figures/overlaymanager-demo_3.gif)
+

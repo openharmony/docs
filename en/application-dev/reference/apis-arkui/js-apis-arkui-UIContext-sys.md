@@ -50,7 +50,7 @@ struct Index {
       Image($r('app.media.testImage')).width(500).height(800).id("test")
     }.width("100%").height("100%").onClick(()=>{
       this.getUIContext().setDynamicDimming("test",1)
-      animateTo({duration:5000 },()=>{
+      this.getUIContext()?.animateTo({duration:5000 },()=>{
         this.getUIContext().setDynamicDimming("test",0)
       })
     })
@@ -153,7 +153,7 @@ Sets whether to freeze a specific component by **id** to prevent it from marking
 | Name    | Type   | Mandatory  | Description     |
 | --- | --- | --- | --- |
 | id | string | Yes| ID of the target component.|
-| isFrozen | boolean | Yes| Whether to freeze the component.<br>Default value: **false**|
+| isFrozen | boolean | Yes| Whether to freeze the component.The value **true** means to freeze the component, and **false** means the opposite.<br>Default value: **false**|
 
 **Error codes**
 
