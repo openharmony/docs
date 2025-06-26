@@ -60,8 +60,7 @@ HiLog模块实现日志打印功能。
 | int [OH_LOG_VPrint](#oh_log_vprint) ([LogType](#logtype) type, [LogLevel](#loglevel) level, unsigned int domain, const char \*tag, const char \*fmt, va_list ap) __attribute__((__format__(os_log | 写日志接口。指定日志类型、日志级别、业务领域、TAG，按照类printf格式类型和隐私指示确定需要输出的变参，变参为va_list类型。  | 
 | bool [OH_LOG_IsLoggable](#oh_log_isloggable) (unsigned int domain, const char \*tag, [LogLevel](#loglevel) level) | 检查指定业务领域、TAG、级别的日志是否可以打印。  | 
 | void [OH_LOG_SetCallback](#oh_log_setcallback) ([LogCallback](#logcallback) callback) | 注册函数。  | 
-| void [OH_LOG_SetMinLogLevel](#oh_log_setminloglevel) ([LogLevel](#loglevel) level) | 设置应用日志打印的最低日志级别。 进程在打印日志时，需要同时校验该日志级别和全局日志级别，<br/>所以设置的日志级别不能低于全局日志级别，[全局日志级别](../../dfx/hilog.md#查看和设置日志级别)默认为Info。 | 
-
+| void [OH_LOG_SetMinLogLevel](#oh_log_setminloglevel) ([LogLevel](#loglevel) level) | 设置应用日志打印的最低日志级别，用于拦截低级别日志打印。<br/>需要注意：如果设置的日志级别低于[全局日志级别](../../dfx/hilog.md#查看和设置日志级别)，设置不生效。 |
 
 ## 宏定义说明
 
@@ -426,9 +425,10 @@ void OH_LOG_SetCallback (LogCallback callback)
 void OH_LOG_SetMinLogLevel (LogLevel level)
 ```
 **描述**
-设置应用日志打印的最低日志级别。 进程在打印日志时，需要同时校验该日志级别和全局日志级别，
 
-所以设置的日志级别不能低于全局日志级别，[全局日志级别](../../dfx/hilog.md#查看和设置日志级别)默认为Info。
+设置应用日志打印的最低日志级别，用于拦截低级别日志打印。
+
+需要注意：如果设置的日志级别低于[全局日志级别](../../dfx/hilog.md#查看和设置日志级别)，设置不生效。
 
 **起始版本：** 15
 

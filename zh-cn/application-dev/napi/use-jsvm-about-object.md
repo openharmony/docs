@@ -36,7 +36,7 @@ JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开�
 
 获取给定JavaScript对象的原型。
 
-cpp部分代码
+cpp部分代码：
 
 ```cpp
 // hello.cpp
@@ -74,9 +74,9 @@ const char* srcCallNative = R"JS(const myObject = {};
     const proto = getPrototype(myObject);
     console.log(proto === Object.prototype);)JS";
 ```
-<!-- @[oh_jsvm_get_prototype](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/getprototype/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_get_prototype](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/getprototype/src/main/cpp/hello.cpp) -->
 
-预期的输出结果
+预期的输出结果：
 ```ts
 JSVM GetPrototype success
 ```
@@ -85,7 +85,7 @@ JSVM GetPrototype success
 
 创建一个默认的JavaScript Object对象。
 
-cpp部分代码
+cpp部分代码：
 
 ```cpp
 // hello.cpp
@@ -127,9 +127,9 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char* srcCallNative = R"JS(createObject())JS";
 ```
-<!-- @[oh_jsvm_create_object](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/createobject/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_create_object](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/createobject/src/main/cpp/hello.cpp) -->
 
-预期的输出结果
+预期的输出结果：
 ```ts
 JSVM CreateObject success
 ```
@@ -138,7 +138,7 @@ JSVM CreateObject success
 
 冻结给定的对象，防止向其添加新属性，删除现有属性，防止更改现有属性的可枚举性、可配置性或可写性，并防止更改现有属性的值。
 
-cpp部分代码
+cpp部分代码：
 
 ```cpp
 // hello.cpp
@@ -177,9 +177,9 @@ static JSVM_PropertyDescriptor descriptor[] = {
 const char* srcCallNative = R"JS(let obj = { data: 55, message: "hello world"};
   objectFreeze(obj))JS";
 ```
-<!-- @[oh_jsvm_object_freeze](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/objectfreeze/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_object_freeze](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/objectfreeze/src/main/cpp/hello.cpp) -->
 
-预期的输出结果
+预期的输出结果：
 ```ts
 Test JSVM OH_JSVM_ObjectFreeze success
 ```
@@ -188,7 +188,7 @@ Test JSVM OH_JSVM_ObjectFreeze success
 
 密封给定的对象。这可以防止向其添加新属性，以及将所有现有属性标记为不可配置。
 
-cpp部分代码
+cpp部分代码：
 
 ```cpp
 // hello.cpp
@@ -240,9 +240,9 @@ static JSVM_PropertyDescriptor descriptor[] = {
 const char* srcCallNative = R"JS( let obj = { data: 55, message: "hello world"};
   objectSeal(obj))JS";
 ```
-<!-- @[oh_jsvm_object_seal](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/objectseal/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_object_seal](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/objectseal/src/main/cpp/hello.cpp) -->
 
-预期的输出结果
+预期的输出结果：
 ```ts
 Test JSVM OH_JSVM_ObjectSeal success
 ```
@@ -251,7 +251,7 @@ Test JSVM OH_JSVM_ObjectSeal success
 
 返回JavaScript对象的类型。
 
-cpp部分代码
+cpp部分代码：
 
 ```cpp
 // hello.cpp
@@ -326,9 +326,9 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char* srcCallNative = R"JS(getTypeof(true);)JS";
 ```
-<!-- @[oh_jsvm_typeof](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/typeof/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_typeof](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/typeof/src/main/cpp/hello.cpp) -->
 
-预期的输出结果
+预期的输出结果：
 ```ts
 JSVM Input type is boolean
 ```
@@ -337,7 +337,7 @@ JSVM Input type is boolean
 
 判断一个对象是否是某个构造函数的实例。
 
-cpp部分代码
+cpp部分代码：
 
 ```cpp
 // hello.cpp
@@ -383,9 +383,9 @@ const char* srcCallNative = R"JS(class Person {
      instanceOf(new Person('Alice', 30), Person);
      ;)JS";
 ```
-<!-- @[oh_jsvm_instanceof](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/instanceof/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_instanceof](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/instanceof/src/main/cpp/hello.cpp) -->
 
-预期的输出结果
+预期的输出结果：
 ```ts
 JSVM InstanceOf：1
 ```
@@ -398,7 +398,7 @@ JSVM InstanceOf：1
 
 检查给定的类型标签是否与对象上的类型标签匹配。
 
-cpp部分代码
+cpp部分代码：
 
 ```cpp
 // hello.cpp
@@ -480,9 +480,9 @@ const char* srcCallNative = R"JS(
          setTypeTagToObject(obj, 0);
          checkObjectTypeTag(obj,0);)JS";
 ```
-<!-- @[oh_jsvm_check_object_type_tag](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/checkobjecttypetag/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_check_object_type_tag](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/checkobjecttypetag/src/main/cpp/hello.cpp) -->
 
-预期的输出结果
+预期的输出结果：
 ```ts
 JSVM SetTypeTagToObject success
 JSVM SetTypeTagToObject:1
@@ -493,7 +493,7 @@ JSVM SetTypeTagToObject:1
 创建一个包装了外部指针的JavaScript对象。
 **注意**：JavaScript对象被垃圾回收时，包装的外部指针指向的内容不被GC直接管理，仅调用传入的第三个参数对应的函数（如果传入时不为nullptr）。
 
-cpp部分代码
+cpp部分代码：
 
 ```cpp
 // hello.cpp
@@ -537,9 +537,9 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char* srcCallNative = R"JS(createExternal())JS";
 ```
-<!-- @[oh_jsvm_create_external](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/createexternal/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_create_external](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/createexternal/src/main/cpp/hello.cpp) -->
 
-预期的输出结果
+预期的输出结果：
 ```ts
 JSVM CreateExternal success
 ```
@@ -548,7 +548,7 @@ JSVM CreateExternal success
 
 OH_JSVM_CreateExternal可以创建包装自定义的C/C++对象并将其公开给JavaScript代码，而OH_JSVM_GetValueExternal就是用来获得OH_JSVM_CreateExternal所包装的外部对象的指针。
 
-cpp部分代码
+cpp部分代码：
 
 ```cpp
 // hello.cpp
@@ -591,9 +591,9 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char* srcCallNative = R"JS(getValueExternal())JS";
 ```
-<!-- @[oh_jsvm_get_value_external](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/getvalueexternal/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_get_value_external](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/getvalueexternal/src/main/cpp/hello.cpp) -->
 
-预期的输出结果
+预期的输出结果：
 ```ts
 JSVM OH_JSVM_CreateExternal success
 JSVM GetValueExternal success
@@ -603,7 +603,7 @@ JSVM GetValueExternal success
 
 用于创建一个新的Symbol。Symbol是一种特殊的数据类型，用于表示唯一的标识符。与字符串或数字不同，符号的值是唯一的，即使两个符号具有相同的描述，它们也是不相等的。符号通常用作对象属性的键，以确保属性的唯一性。
 
-cpp部分代码
+cpp部分代码：
 
 ```cpp
 // hello.cpp
@@ -639,9 +639,9 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char* srcCallNative = R"JS(createSymbol())JS";
 ```
-<!-- @[oh_jsvm_create_symbol](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/createsymbol/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_create_symbol](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/createsymbol/src/main/cpp/hello.cpp) -->
 
-预期的输出结果
+预期的输出结果：
 ```ts
 JSVM CreateSymbol Success
 ```
@@ -650,7 +650,7 @@ JSVM CreateSymbol Success
 
 在全局注册表中搜索具有给定描述的现有Symbol，如果该Symbol已经存在，它将被返回，否则将在注册表中创建一个新Symbol。
 
-cpp部分代码
+cpp部分代码：
 
 ```cpp
 // hello.cpp
@@ -692,9 +692,9 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char* srcCallNative = R"JS(symbolFor())JS";
 ```
-<!-- @[oh_jsvm_symbol_for](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/symbolfor/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_symbol_for](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/symbolfor/src/main/cpp/hello.cpp) -->
 
-预期的输出结果
+预期的输出结果：
 ```ts
 JSVM OH_JSVM_SymbolFor success
 ```
