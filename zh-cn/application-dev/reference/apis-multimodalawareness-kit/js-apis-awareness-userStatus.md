@@ -32,13 +32,13 @@ import { userStatus } from '@kit.MultimodalAwarenessKit';
 
 | 名称                | 类型   | 说明                   |
 | ------------------- | ---- | ---------------------- |
-| ageGroup  | [UserAgeGroup](#UserAgeGroup)   | 表示具体的年龄群组（例如，儿童、成人）。 |
+| ageGroup  | [UserAgeGroup](#useragegroup)   | 表示具体的年龄群组（例如，儿童、成人）。 |
 | confidence  | float    | 表示年龄群组检测结果的置信度，取值范围为0~1的浮点数，数值越大代表置信度越高。 |
 
 
 ## userStatus.on('userAgeGroupDetected')
 
- on(type: 'userAgeGroupDetected', callback: Callback&lt;UserClassification&gt;): void;
+ on(type: 'userAgeGroupDetected', callback: Callback&lt;userclassification&gt;): void;
 
 订阅年龄群组检测功能。
 
@@ -51,7 +51,7 @@ import { userStatus } from '@kit.MultimodalAwarenessKit';
 | 参数名   | 类型                             | 必填 | 说明                                                         |
 | -------- | -------------------------------- | ---- |------------------------------------------------------------ |
 | type     | string                           | 是   | 事件类型。type为“userAgeGroupDetected”，表示年龄群组检测功能。 |
-| callback | Callback&lt;[UserClassification](#UserClassification)&gt; | 是   | 回调函数，返回检测结果。|
+| callback | Callback&lt;[UserClassification](#userclassification)&gt; | 是   | 回调函数，返回检测结果。|
 
 **错误码**：
 
@@ -94,7 +94,7 @@ off(type: 'userAgeGroupDetected', callback?: Callback&lt;UserClassification&gt;)
 | 参数名   | 类型                             | 必填 | 说明                                                         |
 | -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                           | 是   | 事件类型。type为“userAgeGroupDetected”，表示年龄群组检测功能。|
-| callback | Callback&lt;[UserClassification](#UserClassification)&gt; | 否   | 回调函数，返回检测结果。 |
+| callback | Callback&lt;[UserClassification](#userclassification)&gt; | 否   | 回调函数，返回检测结果。 |
 
 **错误码**：
 
