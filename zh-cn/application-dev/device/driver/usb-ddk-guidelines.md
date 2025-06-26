@@ -60,7 +60,7 @@ USB DDK（USB Driver Develop Kit）是为开发者提供的USB驱动程序开发
 | OH_Usb_DestroyDeviceMemMap(UsbDeviceMemMap *devMmap) | 销毁缓冲区。请在缓冲区使用完后及时销毁缓冲区，否则会造成资源泄露。 |
 | OH_Usb_GetDevices(struct Usb_DeviceArray *devices) | 获取USB设备ID列表。请保证传入的指针参数是有效的，申请设备的数量不要超过128个，在使用完结构之后，释放成员内存，否则造成资源泄露。获取到的USB设备ID，已通过驱动配置信息中的vid进行筛选过滤。 |
 
-详细的接口说明请参考[USB DDK](../../reference/apis-driverdevelopment-kit/_usb_ddk.md)。
+详细的接口说明请参考[USB DDK](../../reference/apis-driverdevelopment-kit/capi-usbddk.md)。
 
 ### 开发步骤
 
