@@ -30,7 +30,9 @@ The **type_def.h** file declares the common types.
 | struct&nbsp;&nbsp;[ffrt_queue_attr_t](ffrt__queue__attr__t.md) | Describes a queue attribute. | 
 | struct&nbsp;&nbsp;[ffrt_condattr_t](ffrt__condattr__t.md) | Describes a condition variable attribute. | 
 | struct&nbsp;&nbsp;[ffrt_mutexattr_t](ffrt__mutexattr__t.md) | Describes a mutex attribute. | 
+| struct&nbsp;&nbsp;[ffrt_rwlockattr_t](ffrt__rwlockattr__t.md) | Describes a read-write lock attribute. | 
 | struct&nbsp;&nbsp;[ffrt_mutex_t](ffrt__mutex__t.md) | Describes a mutex. | 
+| struct&nbsp;&nbsp;[ffrt_rwlock_t](ffrt__rwlock__t.md) | Describes a read-write lock. | 
 | struct&nbsp;&nbsp;[ffrt_cond_t](ffrt__cond__t.md) | Describes a condition variable. | 
 
 

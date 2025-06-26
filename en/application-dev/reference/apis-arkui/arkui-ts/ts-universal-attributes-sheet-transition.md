@@ -10,7 +10,7 @@ You can bind a sheet to a component through the **bindSheet** attribute. You can
 
 ## bindSheet
 
-bindSheet(isShow: Optional\<boolean\>, builder: CustomBuilder, options?: SheetOptions)
+bindSheet(isShow: Optional\<boolean\>, builder: CustomBuilder, options?: SheetOptions): T
 
 Binds a sheet to the component, which is displayed when the component is touched.
 
@@ -25,6 +25,12 @@ Binds a sheet to the component, which is displayed when the component is touched
 | isShow  | Optional\<boolean\>                          | Yes  | Whether to display the sheet.<br>Since API version 10, this parameter supports two-way binding through [$$](../../../ui/state-management/arkts-two-way-sync.md).<br>Since API version 18, this parameter supports two-way binding through [!!](../../../ui/state-management/arkts-new-binding.md#two-way-binding-between-built-in-component-parameters).|
 | builder | [CustomBuilder](ts-types.md#custombuilder8) | Yes  | Content of the sheet.                                        |
 | options | [SheetOptions](#sheetoptions)               | No  | Optional attributes of the sheet.                                  |
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| T | Current component.|
 
 > **NOTE**
 >
@@ -72,12 +78,12 @@ Inherits from [BindOptions](#bindoptions).
 | keyboardAvoidMode<sup>13+</sup> | [SheetKeyboardAvoidMode](#sheetkeyboardavoidmode13) | No| How the sheet avoids the soft keyboard when it is brought up.<br> Default value: **TRANSLATE_AND_SCROLL**<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
 | enableHoverMode<sup>14+</sup>              | boolean | No  | Whether to enable the hover mode.<br>Default value: **false**, meaning not to enable the hover mode.<br>**NOTE**<br>The bottom and popup sheets do not respond in the hover mode.|
 | hoverModeArea<sup>14+</sup>              | [HoverModeAreaType](ts-appendix-enums.md#hovermodeareatype14) | No  | Display area of the dialog box in hover mode.<br>Default value: **HoverModeAreaType.BOTTOM_SCREEN**|
-| radius<sup>15+</sup> | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [BorderRadiuses](ts-types.md#borderradiuses9) \| [LocalizedBorderRadiuses](ts-types.md#LocalizedBorderRadiuses12) | No| Corner radius of the sheet.<br>To deliver the optimal experience, use the same radius for the four corners.<br>Default value: **32vp**<br>**NOTE**<br>1. The corner radius is displayed based on the set value. If it is not set, the default value is used. The bottom sheet does not display the bottom two corners, even if they are set.<br>2. If different corner radii are set for the four corners and one of the values is invalid, the corner pertaining to the invalid value is reset to the default value, while the other corners retain their set values. If a uniform corner radius is set for all four corners and the value is invalid, all four corners are reset to the default value.<br>3. When the corner radius is set as a percentage, the width of the sheet is used as the reference.<br>4. If the corner radius is greater than half the width of the sheet, it is set to half the width of the sheet.<br>5. If the height of the sheet is too small and the corner radius is set too large, it may cause display issues.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
+| radius<sup>15+</sup> | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [BorderRadiuses](ts-types.md#borderradiuses9) \| [LocalizedBorderRadiuses](ts-types.md#localizedborderradiuses12) | No| Corner radius of the sheet.<br>To deliver the optimal experience, use the same radius for the four corners.<br>Default value: **32vp**<br>**NOTE**<br>1. The corner radius is displayed based on the set value. If it is not set, the default value is used. The bottom sheet does not display the bottom two corners, even if they are set.<br>2. If different corner radii are set for the four corners and one of the values is invalid, the corner pertaining to the invalid value is reset to the default value, while the other corners retain their set values. If a uniform corner radius is set for all four corners and the value is invalid, all four corners are reset to the default value.<br>3. When the corner radius is set as a percentage, the width of the sheet is used as the reference.<br>4. If the corner radius is greater than half the width of the sheet, it is set to half the width of the sheet.<br>5. If the height of the sheet is too small and the corner radius is set too large, it may cause display issues.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
 | detentSelection<sup>15+</sup>         <br>| [SheetSize](#sheetsize) \| [Length](ts-types.md#length) | No   | Initial detent (position) for non-gesture switching.<br>Default value: **detents[0]**<br>**NOTE**<br>1. The value must be within the range of the **detents** array. If the value is outside this range, this API has no effect.<br>2. When **SheetSize.FIT_CONTENT** is used, this API has no effect.<br>3. Avoid calling this API when gesture-based detent switching is used.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
 | placement<sup>18+</sup> | [Placement](ts-appendix-enums.md#placement8) | No| Display position of the sheet popup relative to the target.<br>Default value: **Placement.Bottom**<br>**NOTE**<br> 1. The system attempts to display the popup at the specified position if the popup fits within the window. If this is not feasible, it tries vertical flipping first, followed by a 90-degree horizontal rotation.<br>2. If the alignment causes the popup to exceed the window bounds, it will be adjusted horizontally or vertically until fully visible.<br>3. If none of the four directions can accommodate the popup, the behavior depends on the value of the **placementOnTarget** property:<br>(1) If the property value is **true**, the popup moves in the mirror direction of the specified placement until fully visible.<br>(2) If the property value is **false**, the system selects the direction that can fully display the popup width and has the most remaining height. It then adjusts the sheet height to fit this direction, ensuring that the popup is displayed while maintaining the alignment specified by the **placement** setting.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 | placementOnTarget<sup>18+</sup> | Boolean | No| Whether the sheet popup can overlap the target if none of the four directions can accommodate the popup.<br> Default value: **true**<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 | effectEdge<sup>18+</sup> | number | No| Edge effect used when the boundary of the scrolling area in reached in the sheet. Single-edge activation is supported.<br>Default value: [EffectEdge](ts-container-scrollable-common.md#effectedge18).START \| [EffectEdge](ts-container-scrollable-common.md#effectedge18).END (that is, value **3**)<br>**NOTE**<br>1. Only start edge: [EffectEdge](ts-container-scrollable-common.md#effectedge18).START<br>2. Only end edge: [EffectEdge](ts-container-scrollable-common.md#effectedge18).END<br>3. Both edges: [EffectEdge](ts-container-scrollable-common.md#effectedge18).START \| [EffectEdge](ts-container-scrollable-common.md#effectedge18).END (that is, value **3**)<br>4. Neither edge: [EffectEdge](ts-container-scrollable-common.md#effectedge18).START & [EffectEdge](ts-container-scrollable-common.md#effectedge18).END (that is, value **0**)<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
-| showInSubWindow<sup>18+</sup> | boolean                                  | No   | Whether to show the sheet in a subwindow.<br>Default value: **false**, meaning the sheet is displayed within the application, not in a separate subwindow<br>**NOTE**<br>1. A dialog box whose **showInSubWindow** attribute is **true** cannot trigger the display of another dialog box whose **showInSubWindow** attribute is also **true**.<br>2. Avoid using picker components (such as **CalendarPicker**, **CalendarPickerDialog**, **DatePickerDialog**, **TextPickerDialog**, and **TimePickerDialog**) in the dialog box where **showInSubWindow** is set to **true**, as the dialog box may affect the behavior of these components.<br>3. This property cannot be dynamically changed when the sheet is displayed.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
+| showInSubWindow<sup>19+</sup> | boolean                                  | No   | Whether to show the sheet in a subwindow.<br>Default value: **false**, meaning the sheet is displayed within the application, not in a separate subwindow<br>**NOTE**<br>1. A dialog box whose **showInSubWindow** attribute is **true** cannot trigger the display of another dialog box whose **showInSubWindow** attribute is also **true**.<br>2. Avoid using picker components (such as **CalendarPicker**, **CalendarPickerDialog**, **DatePickerDialog**, **TextPickerDialog**, and **TimePickerDialog**) in the dialog box where **showInSubWindow** is set to **true**, as the dialog box may affect the behavior of these components.<br>3. This property cannot be dynamically changed when the sheet is displayed.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 
 ## SheetSize
 
@@ -192,7 +198,7 @@ This example demonstrates how to set different heights for sheets using the **he
 @Entry
 @Component
 struct SheetTransitionExample {
-  @State isShow: boolean = false
+  @State isShow: boolean = false;
   @State sheetHeight: number = 300;
 
   @Builder
@@ -227,7 +233,7 @@ struct SheetTransitionExample {
     Column() {
       Button("transition modal 1")
         .onClick(() => {
-          this.isShow = true
+          this.isShow = true;
         })
         .fontSize(20)
         .margin(10)
@@ -235,16 +241,16 @@ struct SheetTransitionExample {
           height: this.sheetHeight,
           backgroundColor: Color.Green,
           onWillAppear: () => {
-            console.log("BindSheet onWillAppear.")
+            console.log("BindSheet onWillAppear.");
           },
           onAppear: () => {
-            console.log("BindSheet onAppear.")
+            console.log("BindSheet onAppear.");
           },
           onWillDisappear: () => {
-            console.log("BindSheet onWillDisappear.")
+            console.log("BindSheet onWillDisappear.");
           },
           onDisappear: () => {
-            console.log("BindSheet onDisappear.")
+            console.log("BindSheet onDisappear.");
           }
         })
     }
@@ -269,7 +275,7 @@ This example demonstrates how to use the **detents** property of **bindSheet** t
 @Entry
 @Component
 struct SheetTransitionExample {
-  @State isShow: boolean = false
+  @State isShow: boolean = false;
 
   @Builder
   myBuilder() {
@@ -289,13 +295,12 @@ struct SheetTransitionExample {
     Column() {
       Button("transition modal 1")
         .onClick(() => {
-          this.isShow = true
+          this.isShow = true;
         })
         .fontSize(20)
         .margin(10)
         .bindSheet($$this.isShow, this.myBuilder(), {
           detents: [SheetSize.MEDIUM, SheetSize.LARGE, 200],
-          backgroundColor: Color.Gray,
           blurStyle: BlurStyle.Thick,
           showClose: true,
           title: { title: "title", subtitle: "subtitle" },
@@ -316,12 +321,12 @@ This example demonstrates how to use the **borderWidth** and **borderColor** pro
 
 ```ts
 // xxx.ets
-import { LengthMetrics } from '@kit.ArkUI'
+import { LengthMetrics } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct SheetTransitionExample {
-  @State isShow: boolean = false
+  @State isShow: boolean = false;
 
   @Builder
   myBuilder() {
@@ -341,7 +346,7 @@ struct SheetTransitionExample {
     Column() {
       Button("transition modal 1")
         .onClick(() => {
-          this.isShow = true
+          this.isShow = true;
         })
         .fontSize(20)
         .margin(10)
@@ -384,9 +389,9 @@ struct bindSheetExample {
   @Builder
   myBuilder() {
     Column() {
-      Button() {
-        Text("CONTEXT")
-      }.height(50)
+      Button("CONTEXT")
+        .margin(10)
+        .fontSize(20)
     }
   }
 
@@ -394,7 +399,7 @@ struct bindSheetExample {
     Column() {
       Button("NoRegisterSpringback")
         .onClick(() => {
-          this.isShow = true
+          this.isShow = true;
         })
         .fontSize(20)
         .margin(10)
@@ -405,16 +410,15 @@ struct bindSheetExample {
           title: { title: "title", subtitle: "subtitle" },
           preferType: SheetType.CENTER,
 
-
           onWillDismiss: ((DismissSheetAction: DismissSheetAction) => {
             if (DismissSheetAction.reason == DismissReason.SLIDE_DOWN) {
-              DismissSheetAction.dismiss() // Register the dismiss behavior.
+              DismissSheetAction.dismiss(); // Register the dismiss behavior.
             }
           }),
 
           onWillSpringBackWhenDismiss: ((SpringBackAction: SpringBackAction) => {
             // If springBack is not registered, the sheet will not exhibit a spring back effect when pulled down.
-            //SpringBackAction.springBack()
+            //SpringBackAction.springBack();
           }),
         })
     }
@@ -498,7 +502,7 @@ struct ListenKeyboardHeightChange {
 
   aboutToAppear(): void {
     try {
-      window.getLastWindow(getContext(this), (err: BusinessError, data) => {
+      window.getLastWindow(this.getUIContext().getHostContext(), (err: BusinessError, data) => {
         const errCode: number = err.code;
         if (errCode) {
           console.error(`Failed to obtain the top window, Cause code: ${err.code}, message: ${err.message}`);
@@ -573,7 +577,7 @@ struct ListenKeyboardHeightChange {
     Column() {
       Button("transition modal 1")
         .onClick(() => {
-          this.isShow = true
+          this.isShow = true;
         })
         .fontSize(20)
         .margin(10)
@@ -606,7 +610,7 @@ import { LengthMetrics } from '@kit.ArkUI';
 @Entry
 @Component
 struct SheetTransitionExample {
-  @State isShow: boolean = false
+  @State isShow: boolean = false;
 
   @Builder
   myBuilder() {
@@ -626,7 +630,7 @@ struct SheetTransitionExample {
     Column() {
       Button("transition modal 1")
         .onClick(() => {
-          this.isShow = true
+          this.isShow = true;
         })
         .fontSize(20)
         .margin(10)

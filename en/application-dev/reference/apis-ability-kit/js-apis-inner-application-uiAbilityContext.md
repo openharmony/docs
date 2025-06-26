@@ -2588,7 +2588,7 @@ struct Index {
 }
 ```
 
-## UIAbilityContext.connectUIServiceExtensionAbility<sup>14+<sup>
+## connectUIServiceExtensionAbility<sup>14+<sup>
 
 connectUIServiceExtensionAbility(want: Want, callback: UIServiceExtensionConnectCallback) : Promise&lt;UIServiceProxy&gt;
 
@@ -2720,7 +2720,7 @@ Disconnects from a UIServiceExtensionAbility. This API uses a promise to return 
 
 | Name| Type| Mandatory| Description                |
 | ------ | ---- | ---- | -------------------- |
-| proxy   | [UIServiceProxy](js-apis-inner-application-uiserviceproxy.md) | Yes| Proxy returned after [connectUIServiceExtensionAbility](#uiabilitycontextconnectuiserviceextensionability13) is called.|
+| proxy   | [UIServiceProxy](js-apis-inner-application-uiserviceproxy.md) | Yes| Proxy returned after [connectUIServiceExtensionAbility](#connectuiserviceextensionability14) is called.|
 
 **Return value**
 

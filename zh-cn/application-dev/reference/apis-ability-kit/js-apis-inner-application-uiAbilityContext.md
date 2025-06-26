@@ -69,7 +69,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
-| 16000018 | Redirection to a third-party application is not allowed in API version greater than 11. |
+| 16000018 | Redirection to a third-party application is not allowed in API version 11 or later. |
 | 16000019 | No matching ability is found. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
@@ -157,7 +157,7 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
-| 16000018 | Redirection to a third-party application is not allowed in API version greater than 11. |
+| 16000018 | Redirection to a third-party application is not allowed in API version 11 or later. |
 | 16000019 | No matching ability is found. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
@@ -259,7 +259,7 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
-| 16000018 | Redirection to a third-party application is not allowed in API version greater than 11. |
+| 16000018 | Redirection to a third-party application is not allowed in API version 11 or later. |
 | 16000019 | No matching ability is found. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
@@ -358,7 +358,7 @@ UIAbility被启动后，有如下情况：
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
-| 16000018 | Redirection to a third-party application is not allowed in API version greater than 11. |
+| 16000018 | Redirection to a third-party application is not allowed in API version 11 or later. |
 | 16000019 | No matching ability is found. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
@@ -451,7 +451,7 @@ UIAbility被启动后，有如下情况：
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
-| 16000018 | Redirection to a third-party application is not allowed in API version greater than 11. |
+| 16000018 | Redirection to a third-party application is not allowed in API version 11 or later. |
 | 16000019 | No matching ability is found. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
@@ -556,7 +556,7 @@ UIAbility被启动后，有如下情况：
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
-| 16000018 | Redirection to a third-party application is not allowed in API version greater than 11. |
+| 16000018 | Redirection to a third-party application is not allowed in API version 11 or later. |
 | 16000019 | No matching ability is found. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
@@ -1171,7 +1171,7 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
-| 16000018 | Redirection to a third-party application is not allowed in API version greater than 11. |
+| 16000018 | Redirection to a third-party application is not allowed in API version 11 or later. |
 | 16000050 | Internal error. |
 | 16000071 | App clone is not supported. |
 | 16000072 | App clone or multi-instance is not supported. |
@@ -2951,6 +2951,7 @@ setColorMode(colorMode: ConfigurationConstant.ColorMode): void
 设置UIAbility的深浅色模式。调用该接口前需要保证该UIAbility对应页面已完成加载。仅支持主线程调用。
 
 > **说明**：
+> - 调用该接口前，需要确保窗口已完成创建、且UIAbility对应的页面已完成加载，即在[onWindowStageCreate()](js-apis-app-ability-uiAbility.md#onwindowstagecreate)生命周期中通过[loadContent](../apis-arkui/js-apis-window.md#loadcontent9)方法加载页面之后调用。
 > - 调用该接口后会创建新的资源管理器对象，如果此前有缓存资源管理器，需要进行更新。
 > - 深浅色模式生效的优先级：UIAbility的深浅色模式 > 应用的深浅色模式（[ApplicationContext.setColorMode](js-apis-inner-application-applicationContext.md#applicationcontextsetcolormode11)）> 系统的深浅色模式。
 

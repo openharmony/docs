@@ -39,12 +39,12 @@ Defines the values of **deviceFlags** used in **RootInfo**. **deviceFlags** is u
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
-### Attributes
+### Properties
 
-  | Name| Type  | Read-Only| Writable| Description    |
+  | Name| Type  | Read-Only| Optional| Description    |
   | ------ | ------ | ---- | ---- | -------- |
-  | SUPPORTS_READ   | number | Yes  | No  | The device supports read.|
-  | SUPPORTS_WRITE   | number | Yes  | No  | The device supports write.|
+  | SUPPORTS_READ   | number | No  | No  | The device supports read.|
+  | SUPPORTS_WRITE   | number | No  | No  | The device supports write.|
 
 ## fileExtensionInfo.DocumentFlag
 
@@ -54,12 +54,12 @@ Defines the values of **mode** used in **FileInfo**.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
-### Attributes
+### Properties
 
-  | Name| Type  | Read-Only| Writable| Description    |
+  | Name| Type  | Read-Only| Optional| Description    |
   | ------ | ------ | ---- | ---- | -------- |
-  | REPRESENTS_FILE   | number | Yes  | No  | File.|
-  | REPRESENTS_DIR   | number | Yes  | No  | Directory.|
-  | SUPPORTS_READ   | number | Yes  | No  | This file is readable.|
-  | SUPPORTS_WRITE   | number | Yes  | No  | This file is writable.|
+  | REPRESENTS_FILE   | number | No  | No  | File.|
+  | REPRESENTS_DIR   | number | No  | No  | Directory.|
+  | SUPPORTS_READ   | number | No  | No  | This file is readable.|
+  | SUPPORTS_WRITE   | number | No  | No  | This file is writable.|
   

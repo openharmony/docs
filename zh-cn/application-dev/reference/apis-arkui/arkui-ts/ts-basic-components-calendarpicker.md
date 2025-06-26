@@ -123,7 +123,7 @@ markToday(enabled: boolean)
 
 onChange(callback: Callback\<Date>)
 
-选择日期时触发该事件。
+选择日期时触发该事件。不能通过双向绑定的状态变量触发。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -139,7 +139,7 @@ onChange(callback: Callback\<Date>)
 
 onChange(callback: Optional\<Callback\<Date>>)
 
-选择日期时触发该事件。与[onChange](#onchange)相比，callback参数新增了对undefined类型的支持。
+选择日期时触发该事件。不能通过双向绑定的状态变量触发。与[onChange](#onchange)相比，callback参数新增了对undefined类型的支持。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -152,6 +152,8 @@ onChange(callback: Optional\<Callback\<Date>>)
 | callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[Callback](ts-types.md#callback12)\<Date>> | 是   | 选中的日期值。<br>当callback的值为undefined时，不使用回调函数。 |
 
 ##  CalendarOptions对象说明
+
+日历选择器组件的参数说明。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -178,11 +180,13 @@ onChange(callback: Optional\<Callback\<Date>>)
 
 ## CalendarAlign枚举说明
 
+对齐方式类型。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   | 描述                     |
+| 名称   | 说明                     |
 | ------ | ------------------------ |
 | START  | 设置选择器与入口组件左对齐的对齐方式。   |
 | CENTER | 设置选择器与入口组件居中对齐的对齐方式。 |

@@ -30,16 +30,16 @@ Common APIs for adding, removing, modifying, and accessing elements in ArrayList
 | --------- | ------- | ------- |
 | Adding elements| add(element: T) | Adds an element to the end of the array.|
 | Adding elements| insert(element: T, index: number) | Inserts an element at the specified index.|
-| Accessing elements| arr\[index: number] | Obtains the value at the specified index, ensuring fast access.|
-| Accessing elements| forEach(callbackFn: (value: T, index?: number, arrlist?: ArrayList&lt;T&gt;) =&gt; void, thisArg?: Object) | Iterates over all elements in the ArrayList.|
+| Accessing elements| arr[index: number] | Obtains the value at the specified index.|
+| Accessing elements| forEach(callbackFn: (value: T, index?: number, arrlist?: ArrayList&lt;T&gt;) =&gt; void, thisArg?: Object) | Iterates over all elements in the ArrayList. **callbackFn** is a callback function used to process each element in the **forEach** method. It receives the current element, index, and original list as parameters.|
 | Accessing elements| \[Symbol.iterator]():IterableIterator&lt;T&gt; | Creates an iterator for data access.|
-| Modifying elements| arr\[index] = xxx | Modifies the value at the specified index.|
+| Modifying elements| arr[index] = xxx | Modifies the value at the specified index.|
 | Removing elements| remove(element: T) | Removes the first matching element.|
 | Removing elements| removeByRange(fromIndex: number, toIndex:number) | Removes elements within the specified range.|
 
 ## List
 
-[List](../reference/apis-arkts/js-apis-list.md) is used to construct a singly linked list, which supports access only through the head node to the tail node. Defined by generics, List's storage locations in memory can be non-contiguous.
+[List](../reference/apis-arkts/js-apis-list.md) is used to construct a singly linked list. To search for a specific element within the List, traversal must start from the head node. Defined by generics, the storage locations of elements in the Link can be non-contiguous in memory.
 
 Unlike [LinkedList](../reference/apis-arkts/js-apis-linkedlist.md), which is a doubly linked list and allows quick insertions and deletions at both ends, List is a singly linked list and does not support bidirectional operations.
 
@@ -50,24 +50,24 @@ Common APIs for adding, removing, modifying, and accessing elements in List are 
 | Operation| API| Description|
 | --------- | ------- | ------- |
 | Adding elements| add(element: T) | Adds an element to the end of the array.|
-| Adding elements| insert(element: T, index: number) | Inserts an element at the specified index.|
+| Adding elements| insert(element: T, index: number) | Adds an element at the specified index.|
 | Accessing elements| get(index: number) | Obtains the element at the specified index.|
-| Accessing elements| list\[index: number] | Obtains the element at the specified index. However, this will result in undefined behavior.|
+| Accessing elements| list[index: number] | Obtains the element at the specified index. However, this will result in undefined behavior.|
 | Accessing elements| getFirst() | Obtains the first element.|
 | Accessing elements| getLast() | Obtains the last element.|
 | Accessing elements| getIndexOf(element: T) | Obtains the index of the first matching element.|
 | Accessing elements| getLastIndexOf(element: T) | Obtains the index of the last matching element.|
-| Accessing elements| forEach(callbackfn: (value:T, index?: number, list?: List&lt;T&gt;)=&gt; void,thisArg?: Object) | Iterates over all elements in the List.|
+| Accessing elements| forEach(callbackfn: (value:T, index?: number, list?: List&lt;T&gt;)=&gt; void,thisArg?: Object) | Iterates over each element in the List and executes the specified callback function.|
 | Accessing elements| \[Symbol.iterator]():IterableIterator&lt;T&gt; | Creates an iterator for data access.|
 | Modifying elements| set(index:number, element: T) | Modifies the element at the specified index.|
-| Modifying elements| list\[index] = element | Modifies the element at the specified index. However, this will result in undefined behavior.|
+| Modifying elements| list[index] = element | Modifies the element at the specified index. This API does not make any actual changes to the nodes in the linked list. Instead, it simply adds a property to the object. This can cause the program's state to become inconsistent with the actual contents of the linked list, leading to undefined behavior.|
 | Modifying elements| replaceAllElements(callbackFn:(value: T,index?: number,list?: List&lt;T&gt;)=&gt;T,thisArg?: Object) | Replaces all elements in the List.|
-| Removing elements| remove(element: T) | Removes the first matching element.|
-| Removing elements| removeByIndex(index:number) | Removes the element at the specified index.|
+| Removing elements| remove(element: T) | Compares each element in the linked list using the === operator and removes the first node that matches. For object types, the element will only be removed if the provided object reference is identical to the node's reference in the linked list.|
+| Removing elements| removeByIndex(index:number) | Removes the element at the specified index. If the index is out of range, an "out of range" error is reported|
 
 ## LinkedList
 
-[LinkedList](../reference/apis-arkts/js-apis-linkedlist.md) is used to construct a doubly linked list, which can be traversed in both directions from any node. Defined by generics, LinkedList's storage locations in memory can be non-contiguous.
+[LinkedList](../reference/apis-arkts/js-apis-linkedlist.md) is used to construct a doubly linked list, which can be traversed in both directions from any node. Defined by generics, the storage locations of elements in LinkedList can be non-contiguous in memory.
 
 Unlike [List](../reference/apis-arkts/js-apis-list.md), which is a singly linked list and does not support bidirectional operations, LinkedList is a doubly linked list and allows quick insertions and deletions at both ends.
 
@@ -82,15 +82,15 @@ Common APIs for adding, removing, modifying, and accessing elements in LinkedLis
 | Adding elements| add(element: T) | Adds an element to the end of the array.|
 | Adding elements| insert(element: T, index: number) | Inserts an element at the specified index.|
 | Accessing elements| get(index: number) | Obtains the element at the specified index.|
-| Accessing elements| list\[index: number] | Obtains the element at the specified index. However, this will result in undefined behavior.|
+| Accessing elements| list[index: number] | Obtains the element at the specified index. However, this will result in undefined behavior.|
 | Accessing elements| getFirst() | Obtains the first element.|
 | Accessing elements| getLast() | Obtains the last element.|
 | Accessing elements| getIndexOf(element: T) | Obtains the index of the first matching element.|
 | Accessing elements| getLastIndexOf(element: T) | Obtains the index of the last matching element.|
-| Accessing elements| forEach(callbackFn: (value: T, index?: number, list?: LinkedList&lt;T&gt;) =&gt; void, thisArg?: Object) | Iterates over all elements in the LinkedList.|
+| Accessing elements| forEach(callbackFn: (value: T, index?: number, list?: LinkedList&lt;T&gt;) =&gt; void, thisArg?: Object) | Iterates over each element in the LinkedList and executes the specified callback function.|
 | Accessing elements| \[Symbol.iterator]():IterableIterator&lt;T&gt; | Creates an iterator for data access.|
 | Modifying elements| set(index:number, element: T) | Modifies the element at the specified index.|
-| Modifying elements| list\[index] = element | Modifies the element at the specified index. However, this will result in undefined behavior.|
+| Modifying elements| list[index] = element | Modifies the element at the specified index. However, this will result in undefined behavior.|
 | Removing elements| remove(element: T) | Removes the first matching element.|
 | Removing elements| removeByIndex(index:number) | Deletes the element at the specified index.|
 
@@ -114,13 +114,10 @@ Common APIs for adding, removing, modifying, and accessing elements in Deque are
 | Adding elements| insertEnd(element: T) | Adds an element to the end of the Deque.|
 | Accessing elements| getFirst() | Obtains the first element without dequeuing.|
 | Accessing elements| getLast() | Obtains the last element without dequeuing.|
-| Accessing elements| popFirst() | Obtains and removes the first element.|
-| Accessing elements| popLast() | Obtains and removes the last element.|
-| Accessing elements| forEach(callbackFn:(value: T, index?: number, deque?: Deque&lt;T&gt;) =&gt; void, thisArg?: Object) | Iterates over all elements in the Deque.|
+| Accessing elements| forEach(callbackFn:(value: T, index?: number, deque?: Deque&lt;T&gt;) =&gt; void, thisArg?: Object) | Iterates over each element in the Deque and executes the specified callback function.|
 | Accessing elements| \[Symbol.iterator]():IterableIterator&lt;T&gt; | Creates an iterator for data access.|
-| Modifying elements| forEach(callbackFn:(value: T, index?: number, deque?: Deque&lt;T&gt;)=&gt; void, thisArg?: Object) | Modifies all elements in the Deque through iteration.|
-| Removing elements| popFirst() | Removes and returns the first element.|
-| Removing elements| popLast() | Removes and returns the last element.|
+| Removing elements| popFirst() | Removes the first element from the Queue and returns it. If the Queue is empty, undefined is returned.|
+| Removing elements| popLast() | Removes the last element from the Queue and returns it. If the Queue is empty, undefined is returned.|
 
 ## Queue
 
@@ -140,11 +137,9 @@ Common APIs for adding, removing, modifying, and accessing elements in Queue are
 | --------- | ------- | ------- |
 | Adding elements| add(element: T) | Adds an element to the end of the Queue.|
 | Accessing elements| getFirst() | Obtains the first element without dequeuing.|
-| Accessing elements| pop() | Obtains and removes the first element.|
-| Accessing elements| forEach(callbackFn: (value: T, index?: number, queue?: Queue&lt;T&gt;) =&gt; void,thisArg?: Object) | Iterates over all elements in the Queue.|
+| Accessing elements| forEach(callbackFn: (value: T, index?: number, queue?: Queue&lt;T&gt;) =&gt; void,thisArg?: Object) | Iterates over each element in the Queue and executes the specified callback function.|
 | Accessing elements| \[Symbol.iterator]():IterableIterator&lt;T&gt; | Creates an iterator for data access.|
-| Modifying elements| forEach(callbackFn: (value: T, index?: number, queue?: Queue&lt;T&gt;) =&gt; void,thisArg?: Object) | Modifies all elements in the Queue through iteration.|
-| Removing elements| pop() | Removes and returns the first element.|
+| Removing elements| pop() | Removes the first element from the Queue and returns it.|
 
 ## Stack
 
@@ -152,7 +147,7 @@ Common APIs for adding, removing, modifying, and accessing elements in Queue are
 
 Defined by generics, Stack requires a contiguous block of memory for storage, with an initial capacity of 8 and supports dynamic resizing, increasing its size by 1.5 times the original capacity each time. Stack is implemented using an array, with all operations performed at one end.
 
-Unlike [Queue](../reference/apis-arkts/js-apis-queue.md), which is implemented using a circular queue and allows insertion at one end and removal at the other, Stack supports insertion and removal at one end.
+Unlike [Queue](../reference/apis-arkts/js-apis-queue.md), which is implemented using a circular queue and allows removal only from the front and addition only at the rear, Stack supports insertion and removal at one end.
 
 Stack is suitable for LOFI scenarios.
 
@@ -162,12 +157,10 @@ Common APIs for adding, removing, modifying, and accessing elements in Stack are
 | --------- | ------- | ------- |
 | Adding elements| push(item: T) | Adds an element to the top of the Stack.|
 | Accessing elements| peek() | Obtains the top element of the Stack without dequeuing.|
-| Accessing elements| pop() | Obtains and removes the top element of the Stack.|
 | Accessing elements| locate(element: T) | Obtains the position of an element.|
-| Accessing elements| forEach(callbackFn: (value: T, index?: number, stack?: Stack&lt;T&gt;) =&gt; void, thisArg?: Object) | Iterates over all elements in the Stack.|
+| Accessing elements| forEach(callbackFn: (value: T, index?: number, stack?: Stack&lt;T&gt;) =&gt; void, thisArg?: Object) | Iterates over each element in the Stack and executes the specified callback function.|
 | Accessing elements| \[Symbol.iterator]():IterableIterator&lt;T&gt; | Creates an iterator for data access.|
-| Modifying elements| forEach(callbackFn: (value: T, index?: number, stack?: Stack&lt;T&gt;) =&gt; void, thisArg?: Object) | Modifies all elements in the Stack through iteration.|
-| Removing elements| pop() | Removes and returns the top element.|
+| Removing elements| pop() | Removes the first element from the Stack and returns it.|
 
 ## Vector
 
@@ -186,16 +179,16 @@ Common APIs for adding, removing, modifying, and accessing elements in Vector ar
 | Adding elements| add(element: T) | Adds an element to the end of the array.|
 | Adding elements| insert(element: T, index: number) | Inserts an element at the specified index.|
 | Accessing elements| get(index: number) | Obtains the element at the specified index.|
-| Accessing elements| vec\[index: number] | Obtains the element at the specified index, ensuring fast access.|
+| Accessing elements| vec[index: number] | Obtains the element at the specified index, ensuring fast access.|
 | Accessing elements| getFirst() | Obtains the first element.|
 | Accessing elements| getLastElement() | Obtains the last element.|
 | Accessing elements| getIndexOf(element: T) | Obtains the index of the first matching element.|
 | Accessing elements| getLastIndexOf(element: T) | Obtains the index of the last matching element.|
-| Accessing elements| forEach(callbackFn: (value: T, index?: number, Vector?: Vector&lt;T&gt;) =&gt; void, thisArg?: Object) | Iterates over all elements in the Vector.|
+| Accessing elements| forEach(callbackFn: (value: T, index?: number, Vector?: Vector&lt;T&gt;) =&gt; void, thisArg?: Object) | Iterates over each element in the Stack and executes the specified callback function.|
 | Accessing elements| \[Symbol.iterator]():IterableIterator&lt;T&gt; | Creates an iterator for data access.|
 | Modifying elements| set(index:number, element: T) | Modifies the element at the specified index.|
-| Modifying elements| vec\[index] = element | Modifies the element at the specified index.|
-| Modifying elements| replaceAllElements(callbackFn:(value: T,index?: number,list?: List&lt;T&gt;)=&gt;T,thisArg?: Object) | Replaces all elements in the Vector.|
+| Modifying elements| vec[index] = element | Modifies the element at the specified index.|
+| Modifying elements| replaceAllElements(callbackFn: (value: T, index?: number, vector?: Vector&lt;T&gt;) => T, thisArg?: Object) | Replaces all elements in the Vector.|
 | Modifying elements| setLength(newSize:number) | Sets the length of the Vector.|
 | Removing elements| remove(element: T) | Removes the first matching element.|
 | Removing elements| removeByIndex(index:number) | Removes the element at the specified index.|

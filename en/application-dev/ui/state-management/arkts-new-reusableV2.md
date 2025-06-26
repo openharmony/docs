@@ -437,7 +437,7 @@ struct ReusableV2Component {
         Text(`paramOnce: ${this.paramOnce}`).onClick(()=>{this.paramOnce++;})
       }.borderWidth(2)
       Column() {
-        Text ('Depending on the parent component')
+        Text('Depending on the parent component')
         Text(`inheritConsumer: ${this.inheritConsumer}`).onClick(()=>{this.inheritConsumer++;})
         Text(`plusParam: ${this.plusParam}`)
       }.borderWidth(2)

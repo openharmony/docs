@@ -8,7 +8,7 @@ After the errorManager API is used to listen for exceptions and errors, the appl
 
 ## Available APIs
 
-Application error management APIs are provided by the [errorManager](../reference/apis-ability-kit/js-apis-app-ability-errorManager.md#) module. For details about how to import the module, see [Development Example](#development-example).
+Application error management APIs are provided by the [errorManager](../reference/apis-ability-kit/js-apis-app-ability-errorManager.md) module. For details about how to import the module, see [Development Example](#development-example).
 
 **Application Error Management APIs**
 

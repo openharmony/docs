@@ -1,6 +1,6 @@
 # Analyzing Error Logs and Crashes Triggered by Using Node-API
 
-The maintenance and debugging measures mentioned in this topic rely on the Ark runtime multi-thread check. Therefore, you are advised to enable this feature before debugging. For details about how to enable Ark runtime multi-thread check, see [Analyzing CPP Crash](../dfx/cppcrash-guidelines.md#tool-2-ark-runtime-multi-thread-check).
+The maintenance and debugging measures mentioned in this topic rely on the Ark runtime multi-thread check. Therefore, you are advised to enable this feature before debugging. For details about how to enable Ark runtime multi-thread check, see [ArkCompiler Runtime Detection](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-multi-thread-check).
 
 Unless otherwise specified, the maintenance and debugging measures used in this topic will interrupt the process once the Ark runtime multi-thread check is enabled.
 

@@ -82,7 +82,7 @@ static show(options?: DatePickerDialogOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-|  参数名  | 类型                 | 必填 | 说明       |
+|  名称  | 类型                 | 必填 | 说明       |
 | ------ |-------------------|-----|----------|
 | selectedColor| [ResourceColor](ts-types.md#resourcecolor) | 否   | 设置开关开启时开关的背景颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_primary_actived')。 |
 | unselectedColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | 设置开关未开启时开关的边框颜色。<br/>默认值：$r('sys.color.ohos_id_color_switch_outline_off')。 |
@@ -94,7 +94,7 @@ static show(options?: DatePickerDialogOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名   | 参数类型                                     | 必填   | 参数描述                      |
+| 名称   | 类型                                     | 必填   | 说明                      |
 | ----- | ---------------------------------------- | ---- | ------------------------- |
 | type | [ButtonType](ts-basic-components-button.md#buttontype枚举说明) | 否    | 按钮显示样式。                     |
 | style  | [ButtonStyleMode](ts-basic-components-button.md#buttonstylemode11枚举说明)                 | 否    | 按钮的样式和重要程度。 |
@@ -159,26 +159,26 @@ struct DatePickerDialogExample {
             dateTimeOptions: { hour: "numeric", minute: "2-digit" },
             onDateAccept: (value: Date) => {
               // 通过Date的setFullYear方法设置按下确定按钮时的日期，这样当弹窗再次弹出时显示选中的是上一次确定的日期
-              this.selectedDate = value
-              console.info("DatePickerDialog:onDateAccept()" + value.toString())
+              this.selectedDate = value;
+              console.info("DatePickerDialog:onDateAccept()" + value.toString());
             },
             onCancel: () => {
-              console.info("DatePickerDialog:onCancel()")
+              console.info("DatePickerDialog:onCancel()");
             },
             onDateChange: (value: Date) => {
-              console.info("DatePickerDialog:onDateChange()" + value.toString())
+              console.info("DatePickerDialog:onDateChange()" + value.toString());
             },
             onDidAppear: () => {
-              console.info("DatePickerDialog:onDidAppear()")
+              console.info("DatePickerDialog:onDidAppear()");
             },
             onDidDisappear: () => {
-              console.info("DatePickerDialog:onDidDisappear()")
+              console.info("DatePickerDialog:onDidDisappear()");
             },
             onWillAppear: () => {
-              console.info("DatePickerDialog:onWillAppear()")
+              console.info("DatePickerDialog:onWillAppear()");
             },
             onWillDisappear: () => {
-              console.info("DatePickerDialog:onWillDisappear()")
+              console.info("DatePickerDialog:onWillDisappear()");
             }
           })
         })

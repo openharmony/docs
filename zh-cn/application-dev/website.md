@@ -94,7 +94,7 @@
             - [跨端迁移](application-models/hop-cross-device-migration.md)
             - [多端协同](application-models/hop-multi-device-collaboration.md)
           <!--DelEnd-->
-          - [订阅系统环境变量的变化](application-models/subscribe-system-environment-variable-changes.md)
+          - [获取/设置环境变量](application-models/subscribe-system-environment-variable-changes.md)
         - 应用间跳转<!--inter-app-redirection-->
           - [应用间跳转概述](application-models/link-between-apps-overview.md)
           - 拉起指定应用<!--directional-redirection-->
@@ -796,6 +796,7 @@
         - [创建ArkTS卡片](form/arkts-ui-widget-creation.md)
         - [配置ArkTS卡片的配置文件](form/arkts-ui-widget-configuration.md)
         - [管理ArkTS卡片生命周期](form/arkts-ui-widget-lifecycle.md)
+        - [ArkTS卡片进程模型](form/arkts-ui-widget-process.md)
         - ArkTS卡片提供方开发指导<!--arkts-ui-widget-->
           - ArkTS卡片UI界面开发<!--arkts-ui-widget-page-->
             - [ArkTS卡片界面开发概述](form/arkts-ui-widget-page-overview.md)
@@ -2545,6 +2546,7 @@
             - [隐私遮罩](reference/apis-arkui/arkui-ts/ts-universal-attributes-obscured.md)
             - [文本通用](reference/apis-arkui/arkui-ts/ts-universal-attributes-text-style.md)
             - [拖拽控制](reference/apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md)
+            - [拖拽排序](reference/apis-arkui/arkui-ts/ts-universal-attributes-drag-sorting.md)
             - [安全区域](reference/apis-arkui/arkui-ts/ts-universal-attributes-expand-safe-area.md)
             - [组件内容填充方式](reference/apis-arkui/arkui-ts/ts-universal-attributes-renderfit.md)
             - [事件独占控制](reference/apis-arkui/arkui-ts/ts-universal-attributes-monopolize-events.md)
@@ -3650,6 +3652,7 @@
           - [流量管理错误码](reference/apis-network-kit/errorcode-net-statistics.md)
           - [VPN错误码](reference/apis-network-kit/errorcode-net-vpn.md)
           - [NetworkSecurity错误码](reference/apis-network-kit/errorcode-net-networkSecurity.md)
+          - [内核错误码](reference/apis-network-kit/errorcode-kernel.md)
       - Telephony Kit（蜂窝通信服务）<!--telephony-api-->
         - ArkTS API<!--telephony-arkts-->
           - [@ohos.telephony.call (拨打电话)](reference/apis-telephony-kit/js-apis-call.md)

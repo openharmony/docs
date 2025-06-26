@@ -1,24 +1,32 @@
-# Common Issues with ArkGuard
+# Common Issues with ArkGuard in Source Code Obfuscation
 
 ## Troubleshooting Functional Issues
 
 ### Procedure
 1. Configure the **-disable-obfuscation** option in the **obfuscation-rules.txt** file to disable obfuscation, and check whether the issue is caused by obfuscation.
-2. If the issue is related to obfuscation, review the documentation for the following options and understand when to configure trustlists to avoid issues:   
+2. If the issue is related to obfuscation, review the documentation for the following options and understand when to configure trustlists to avoid issues: The following briefly describes the four retention options that are enabled by default. For details about the four retention options, see the complete description of the corresponding options. 
     1. [-enable-toplevel-obfuscation](source-obfuscation.md#-enable-toplevel-obfuscation): obfuscates top-level scope names.
+
     2. [-enable-property-obfuscation](source-obfuscation.md#-enable-property-obfuscation): obfuscates property names. Use [-keep-property-name](source-obfuscation.md#-keep-property-name) to configure a trustlist for property names used in network calls, JSON field, dynamic accesses, and so library interfaces.
+
     3. [-enable-export-obfuscation](source-obfuscation.md#-enable-export-obfuscation): obfuscates exported names. Generally, it is used together with **-enable-toplevel-obfuscation** and **-enable-property-obfuscation**. Use [-keep-global-name](source-obfuscation.md#-keep-global-name) to configure a trustlist for exported/imported interfaces.
+
     4. [-enable-filename-obfuscation](source-obfuscation.md#-enable-filename-obfuscation): obfuscates file names. Use [-keep-file-name](source-obfuscation.md#-keep-file-name) to configure a trustlist for file paths and names in dynamically import or runtime loading scenarios.
 3. If your issue matches any cases listed below, apply the suggested solutions.
 4. If the issue is not covered, use a positive approach to identify the problem (remove specific configuration items if the corresponding functionality is not needed).
 5. Analyze runtime crashes as follows:
-    1. Open the application runtime logs or the **Crash** dialog box in DevEco Studio to find the crash stack.
+    1. Open the application runtime logs or click the **Crash** dialog box in DevEco Studio to find the crash stack.
+
     2. The line numbers in the crash stack match the [compiled product](source-obfuscation-guide.md#viewing-obfuscation-effects), and method names might be obfuscated. Therefore, you are advised to check the compiled product based on the crash stack, analyze the names that cannot be obfuscated, and add them to the trustlist.
 6. Analyze functional exceptions (for example, white screens) as follows:
     1. Opening the application runtime logs: Select HiLog and search for logs directly related to the exceptions.
+
     2. Locating the problematic code segment: Identify the specific code block causing the exceptions through log analysis.
+
     3. Enhancing log output: Add log records for data fields in the suspected code segment.
+
     4. Analyzing and identifying critical fields: Determine if the data exception is caused by obfuscation through the enhanced log output.
+
     5. Configuring a trustlist for critical fields: Add fields that directly affect application functionality after obfuscation to the trustlist.
 
 #### Troubleshooting Unexpected Obfuscation Behavior
@@ -35,7 +43,7 @@ If **-compact** is not configured for the current module, but the code in the ob
 
 > **NOTE**
 > 
-> You are not advised to configure the following options in the **obfuscation.txt** file of third-party libraries, as they can cause unexpected behavior or crashes when the main module is obfuscated. Contact the library providers to remove these options and repackage the libraries. 
+> You are not advised to configure the following options in the **consumer-rules.txt** file of third-party libraries. These options will take effect when obfuscation is enabled in the main module, potentially causing unexpected obfuscation results and even application crashes at runtime. If you find that the **obfuscation.txt** file of a third-party library includes these options, you are advised to contact the team that released the third-party library to remove these options and repackage and release the library. 
 > -enable-property-obfuscation  
 > -enable-string-property-obfuscation  
 > -enable-toplevel-obfuscation  
@@ -150,7 +158,7 @@ const person: MyInfo = {
 
 **Possible Causes**
 
-The **-keep** option retains the code in the **file1.ts** file, but properties within exported types (for example, **address**) are not automatically added to the property trustlist. Therefore, these properties are obfuscated when being used in other files.
+The **-keep** option retains the code in the **file1.ts** file, but properties within exported types (for example, **address**) are not automatically added to the trustlist. Therefore, these properties are obfuscated when being used in other files.
 
 **Solution**
 
@@ -194,7 +202,7 @@ A dependent module may have enabled string property name obfuscation, affecting 
 
 **Solution**
 
-Solution 1: Check whether any dependent modules have enabled string property name obfuscation. If yes, disable it.
+Solution 1: Check whether any dependent modules have enabled string property name obfuscation. If yes, disable it. For details, see [Troubleshooting Unexpected Obfuscation Behavior](source-obfuscation-questions.md#troubleshooting-unexpected-obfuscation-behavior). 
 
 Solution 2: If the problematic module cannot be identified, add the string literal property names to the trustlist directly.
 
@@ -264,7 +272,7 @@ let person1 = new a3.person1();
 
 **Solution**
 
-Solution 1: Configure the **-enable-property-obfuscation** option.  
+Solution 1: Configure the **-enable-property-obfuscation** option.
 Solution 2: Use the **-keep-global-name** option to add the methods exported from the namespace to the trustlist.
 
 ## Inter-Module Dependency Issues
@@ -322,6 +330,6 @@ The HAP and HSP modules execute independent build and obfuscation processes, res
 
 **Solution**
 
-Solution 1: Change the shared local source code HAR to a [bytecode HAR](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5#section179161312181613). This prevents the HAR from being re-obfuscated when being depended upon.
+Solution 1: Change the shared local source code HAR to a [bytecode HAR](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-hvigor-build-har#section16598338112415). This prevents the HAR from being re-obfuscated when being depended upon.
 
-Solution 2: Build the shared local source code HAR in [release mode](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5#section19788284410). This ensures that file names and exported interfaces are not obfuscated when the HAR is depended upon.
+Solution 2: Build the shared local source code HAR in [release mode](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-hvigor-build-har#section19788284410). This ensures that file names and exported interfaces are not obfuscated when the HAR is depended upon.

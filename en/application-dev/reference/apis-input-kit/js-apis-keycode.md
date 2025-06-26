@@ -109,7 +109,7 @@ Keycode value.
 | KEYCODE_MENU                     |  2067 | Menu key                        |
 | KEYCODE_PAGE_UP                  |  2068 | Page Up key                      |
 | KEYCODE_PAGE_DOWN                |  2069 | Page Down key                      |
-| KEYCODE_ESCAPE                   |  2070 | ESC key                       |
+| KEYCODE_ESCAPE                   |  2070 | Esc key                       |
 | KEYCODE_FORWARD_DEL              |  2071 | Forward Delete key                        |
 | KEYCODE_CTRL_LEFT                |  2072 | Left Ctrl key               |
 | KEYCODE_CTRL_RIGHT               |  2073 | Right Ctrl key              |
@@ -364,6 +364,6 @@ Keycode value.
 | KEYCODE_BTN_7                    |  3107 | Button 7                        |
 | KEYCODE_BTN_8                    |  3108 | Button 8                        |
 | KEYCODE_BTN_9                    |  3109 | Button 9                        |
-| KEYCODE_DAGGER_CLICK<sup>18+</sup> | 3211 | Single-click action on the smart watch's dagger button |
-| KEYCODE_DAGGER_DOUBLE_CLICK<sup>18+</sup> | 3212 | Double-click action on the smart watch's dagger button |
-| KEYCODE_DAGGER_LONG_PRESS<sup>18+</sup> | 3213 | Long-press action on the smart watch's dagger button |
+| KEYCODE_DAGGER_CLICK<sup>18+</sup> | 3211 | Single tapping the smart watch's X-TAP sensor |
+| KEYCODE_DAGGER_DOUBLE_CLICK<sup>18+</sup> | 3212 | Double tapping the smart watch's X-TAP sensor |
+| KEYCODE_DAGGER_LONG_PRESS<sup>18+</sup> | 3213 | Long-pressing the smart watch's X-TAP sensor |

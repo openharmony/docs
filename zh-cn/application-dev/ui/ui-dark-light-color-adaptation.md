@@ -188,7 +188,7 @@ onCreate(): void {
 
 - 建议方法
 
-  当应用跟随系统深色或浅色模式时，建议采用[AbilityStage的监听回调](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageonconfigurationupdate)或[Ability的监听回调](../reference/apis-ability-kit/js-apis-app-ability-ability.md#abilityonconfigurationupdate)方式，主动监听系统深浅色模式变化。一旦颜色模式发生变化，应通过绑定状态变量等方法，执行特定的业务逻辑。
+  当应用跟随系统深色或浅色模式时，建议采用[AbilityStage的监听回调](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#onconfigurationupdate)或[Ability的监听回调](../reference/apis-ability-kit/js-apis-app-ability-ability.md#abilityonconfigurationupdate)方式，主动监听系统深浅色模式变化。一旦颜色模式发生变化，应通过绑定状态变量等方法，执行特定的业务逻辑。
 
 - 不推荐方法
 

@@ -1460,7 +1460,7 @@ Defines the callback invoked when a photo asset is available.
 | Name| Description| 
 | -------- | -------- |
 | photoOutput | Pointer to the [Camera_PhotoOutput](#camera_photooutput) instance that transfers the callback.| 
-| photoAsset | Pointer to [OH_MediaAsset](../apis-media-library-kit/_media_asset_manager.md#oh_mediaasset) passed by the callback.| 
+| photoAsset | Pointer to [OH_MediaAsset](../apis-media-library-kit/capi-oh-mediaasset.md) passed by the callback.| 
 
 
 ### OH_PhotoOutput_PhotoAvailable

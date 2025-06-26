@@ -1,6 +1,6 @@
 # @ohos.convertxml (XML-to-JavaScript Conversion)
 
-The **convertxml** module provides APIs for converting XML text into JavaScript objects.
+The convertxml module provides APIs for converting XML text into JavaScript objects.
 
 > **NOTE**
 >
@@ -61,7 +61,7 @@ try {
     '   <title>Hello\r\nWorld</title>' +
     '   <todo><![CDATA[Work\r\n]]></todo>' +
     '</note>';
-  let conv = new convertxml.ConvertXML()
+  let conv = new convertxml.ConvertXML();
   let options: convertxml.ConvertOptions = {
     trim: false, declarationKey: "_declaration",
     instructionKey: "_instruction", attributesKey: "_attributes",
@@ -125,7 +125,7 @@ try {
       '    <todo>Work</todo>' +
       '    <todo>Play</todo>' +
       '</note>';
-  let conv = new convertxml.ConvertXML()
+  let conv = new convertxml.ConvertXML();
   let options: convertxml.ConvertOptions = {
     trim: false, declarationKey: "_declaration",
     instructionKey: "_instruction", attributesKey: "_attributes",
@@ -199,7 +199,7 @@ Options for conversion.
 
 | Name             | Type| Mandatory| Description                                                       |
 | ----------------- | -------- | ---- | ----------------------------------------------------------- |
-| trim              | boolean  | Yes  | Whether to trim the whitespace characters before and after the text. The value **true** means to trim the whitespace characters before and after the text, and **false** means to keep them.                |
+| trim              | boolean  | Yes  | Whether to trim the whitespace characters before and after the text. The value **true** means to trim the whitespace characters before and after the text, and **false** means to keep them.  |
 | ignoreDeclaration | boolean  | No  | Whether to ignore the XML declaration. The value **true** means to ignore the XML declaration, and **false** means the opposite. The default value is **false**.                       |
 | ignoreInstruction | boolean  | No  | Whether to ignore the XML processing instruction. The value **true** means to ignore the XML processing instruction, and **false** means the opposite. The default value is **false**.                     |
 | ignoreAttributes  | boolean  | No  | Whether to ignore the element's attribute information. The value **true** means to ignore the element's attribute information, and **false** means the opposite. The default value is **false**.                  |

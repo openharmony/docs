@@ -50,7 +50,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   ```ts
   import { wantConstant } from '@kit.AbilityKit';
   import { BusinessError } from '@kit.BasicServicesKit';
-  let uri: string = 'file://docs/storage/Users/currentUser/Document/1.txt';  // You are advised to use the system API to generate a URI using fileUri.getUriFromPath("Sandbox path");
+  let uri: string = 'file://docs/storage/Users/currentUser/Document/1.txt';  // You are advised to use the system API fileUri.getUriFromPath("Sandbox path") to generate a URI.;
   let bundleName: string = 'com.demo.test';
   try {
     fileShare.grantUriPermission(uri, bundleName, wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION |
@@ -128,9 +128,9 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 checkPathPermission(tokenID: number, policies: Array&lt;PathPolicyInfo&gt;, policyType: PolicyType): Promise&lt;Array&lt;boolean&gt;&gt;
 
-Checks whether the selected files or folders have temporary or persistent permissions. This API uses a promise to return the result.
+Checks whether the selected files or directories have temporary or persistent permissions. This API uses a promise to return the result.
 
-**Required permission**: ohos.permission.CHECK_SANDBOX_POLICY
+**Required permissions**: ohos.permission.CHECK_SANDBOX_POLICY
 
 **System API**: This is a system API.
 
@@ -148,7 +148,7 @@ Checks whether the selected files or folders have temporary or persistent permis
 
 |Type|Description|
 | ------ | ------ |
-| Promise&lt;Array&lt;boolean&gt;&gt; | Promise used to return the result. The value **true** means that a policy type is used. Otherwise, **false** is returned.|
+| Promise&lt;Array&lt;boolean&gt;&gt; | Promise used to return the result. The value **true** means that a policy type is used; the value **false** means the opposite.|
 
 **Error codes**
 

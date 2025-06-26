@@ -3,12 +3,13 @@
 
 ## Overview
 
-Represents a permission policy, that is, a policy for granting or activating the permission on a file.
+Represents the permission policy information.
 
 **Since**: 12
 
 **Related module**: [FileShare](file_share.md)
 
+**Header file**: [oh_file_share.h](oh__file__share_8h.md)
 
 ## Summary
 
@@ -17,9 +18,9 @@ Represents a permission policy, that is, a policy for granting or activating the
 
 | Name| Description| 
 | -------- | -------- |
-| char \* [uri](#uri) | Pointer to the URI of the file, on which the permission is to be granted or activated.| 
+| char \* [uri](#uri) | Pointer to the URI, on which the permission is to be granted or activated.| 
 | unsigned int [length](#length) | Length of the URI, in bytes.| 
-| unsigned int [operationMode](#operationmode) | Permission on the URI.| 
+| unsigned int [operationMode](#operationmode) | URI operation mode.| 
 
 
 ## Member Variable Description
@@ -44,7 +45,7 @@ unsigned int FileShare_PolicyInfo::operationMode
 
 **Description**
 
-Permission on the URI.
+URI operation mode.
 
 Example:
 
@@ -63,4 +64,4 @@ char* FileShare_PolicyInfo::uri
 
 **Description**
 
-Pointer to the URI of the file, on which the permission is to be granted or activated.
+Pointer to the URI, on which the permission is to be granted or activated.

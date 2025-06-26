@@ -530,7 +530,7 @@ getAbilityState(ability: UIAbility): number
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
-| number | 指定ability的生命周期状态。状态枚举值使用AbilityLifecycleState。 |
+| number | 指定ability的生命周期状态。状态枚举值使用[AbilityLifecycleState](js-apis-app-ability-abilityDelegatorRegistry.md#abilitylifecyclestate)。 |
 
 **错误码**：
 
@@ -777,7 +777,7 @@ doAbilityForeground(ability: UIAbility, callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                    | 必填 | 说明                                                    |
 | -------- | ----------------------- | ---- | ------------------------------------------------------- |
-| ability  | UIAbility               | 是   | 指定Ability对象。                                         |
+| ability  | [UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)  | 是   | 指定Ability对象。                                         |
 | callback | AsyncCallback\<void>    | 是   | 回调函数。当调度指定Ability生命周期状态到Foreground状态成功，err为undefined，否则为错误对象。  |
 
 **错误码**：
@@ -823,7 +823,7 @@ doAbilityForeground(ability: UIAbility): Promise\<void>
 
 | 参数名  | 类型    | 必填 | 说明            |
 | ------- | ------- | ---- | --------------- |
-| ability | UIAbility | 是   | 指定Ability对象。 |
+| ability | [UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md) | 是   | 指定Ability对象。 |
 
 **返回值：**
 
@@ -874,7 +874,7 @@ doAbilityBackground(ability: UIAbility, callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                    | 必填 | 说明                                                    |
 | -------- | ----------------------- | ---- | ------------------------------------------------------- |
-| ability  | UIAbility                 | 是   | 指定Ability对象。                                         |
+| ability  | [UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)  | 是   | 指定Ability对象。                                         |
 | callback | AsyncCallback\<void> | 是   | 回调函数。当调度指定Ability生命周期状态到Background状态成功，err为undefined，否则为错误对象。  |
 
 **错误码**：
@@ -920,7 +920,7 @@ doAbilityBackground(ability: UIAbility): Promise\<void>
 
 | 参数名  | 类型    | 必填 | 说明            |
 | ------- | ------- | ---- | --------------- |
-| ability | UIAbility | 是   | 指定Ability对象。 |
+| ability | [UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md) | 是   | 指定Ability对象。 |
 
 **返回值：**
 

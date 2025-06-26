@@ -1,8 +1,8 @@
 # Synchronous Calls to Host Thread Interfaces from Worker
 
-If an interface is already implemented in the host thread and needs to be called by Worker, you can achieve this by using the approach described in this topic.
+This topic describes the approach that Worker uses to call an interface that is already implemented in the host thread.
 
-The following example demonstrates how Worker can synchronously call an interface implemented in the host thread.
+The example below demonstrates how Worker can synchronously call an interface from the host thread.
 
 1. Implement the interface in the host thread and create a Worker object. Register the interface to be called on the Worker object.
 

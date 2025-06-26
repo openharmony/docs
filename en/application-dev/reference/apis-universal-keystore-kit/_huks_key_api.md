@@ -145,7 +145,7 @@ Deletes a key.
 | Name| Description| 
 | -------- | -------- |
 | keyAlias | Pointer to the alias of the key to delete. It must be the same as the alias used for generating the key. | 
-| paramSet | Pointer to the properties of the key to delete. If this parameter is not specified, the key of the [OH_HUKS_AUTH_STORAGE_LEVEL_CE](_huks_type_api.md#OH_Huks_AuthStorageLevel) level is deleted by default.| 
+| paramSet | Pointer to the properties of the key to delete. If this parameter is not specified, the key of the [OH_HUKS_AUTH_STORAGE_LEVEL_CE](_huks_type_api.md#oh_huks_authstoragelevel) level is deleted by default.| 
 
 **Returns**
 

@@ -12,8 +12,7 @@ The AbilityManager module provides APIs for obtaining ability information and ru
 import { abilityManager } from '@kit.AbilityKit';
 ```
 
-
-## AbilityState
+## AbilityState<sup>14+</sup>
 
 Enumerates the ability states. This enum can be used together with [AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md) to return the ability state.
 
@@ -29,7 +28,7 @@ Enumerates the ability states. This enum can be used together with [AbilityRunni
 | BACKGROUNDING | 12 | The ability is in the state of being switched to the background. | 
 
 
-## abilityManager.getAbilityRunningInfos
+## abilityManager.getAbilityRunningInfos<sup>14+</sup>
 
 getAbilityRunningInfos(): Promise\<Array\<AbilityRunningInfo>>
 

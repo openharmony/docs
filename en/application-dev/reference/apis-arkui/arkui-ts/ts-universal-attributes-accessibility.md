@@ -170,7 +170,7 @@ Sets an accessibility virtual child node. For custom drawing components, a **Cus
 
 accessibilityChecked(isCheck: boolean)
 
-Sets the checked state of the accessibility component. This property is used in multiselect scenarios.
+Sets the checked state of the accessibility component. This property is used in multi-select scenarios.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 13.
 
@@ -218,7 +218,7 @@ Sets the role type of the accessibility component, which affects how the compone
 
 | Name  | Type   | Mandatory| Description                                                        |
 | -------- | ------- | ---- | ------------------------------------------------------------ |
-| role | [AccessibilityRoleType](ts-universal-attributes-accessibility.md#AccessibilityRoleType18) | Yes  | Role of the component as announced by screen readers (for example, button or chart). You can define custom roles.|
+| role | [AccessibilityRoleType](ts-universal-attributes-accessibility.md#accessibilityroletype18) | Yes  | Role of the component as announced by screen readers (for example, button or chart). You can define custom roles.|
 
 ## onAccessibilityFocus<sup>18+</sup>
 
@@ -236,7 +236,7 @@ Triggered when the accessibility component gains or loses focus. Callback trigge
 
 | Name  | Type   | Mandatory| Description                                                        |
 | -------- | ------- | ---- | ------------------------------------------------------------ |
-| callback | [AccessibilityFocusCallback](ts-universal-attributes-accessibility.md#AccessibilityFocusCallback18) | Yes  | Callback that notifies the registered component of focus and blur events.|
+| callback | [AccessibilityFocusCallback](ts-universal-attributes-accessibility.md#accessibilityfocuscallback18) | Yes  | Callback that notifies the registered component of focus and blur events.|
 
 ## AccessibilityFocusCallback<sup>18+</sup>
 
@@ -493,12 +493,13 @@ Sets the text hint for the component, which can be queried by accessibility serv
 | -------------- | ------- | ---- | ------------------------------------------------------------ |
 | value  | string | Yes  | Text hint for the component, which can be queried by accessibility services.|
 
+## Example
 
-## Example 1: Setting Accessibility Text and Description
+### Example 1: Setting Accessibility Text and Description
 
 This example demonstrates how to use **accessibilityText** and **accessibilityDescription** to customize the content announced by screen readers.
 
-```
+```ts
 // xxx.ets
 @Entry
 @Component
@@ -536,11 +537,11 @@ struct Index {
 }
 ```
 
-## Example 2: Setting the Accessibility Group
+### Example 2: Setting the Accessibility Group
 
 This example shows how to use **accessibilityGroup** to prioritize reading the accessibility text of child components.
 
-```
+```ts
 // xxx.ets
 @Entry
 @Component
@@ -555,11 +556,10 @@ struct Focus {
       Button().accessibilityLevel("yes").accessibilityText("Accessibility text is announced if no text is present")
       Button("Text content is announced if no accessibility text is present").accessibilityLevel("yes")
       Button()
-      Button('btnl23').accessibilityText("Button with both accessibility text and text").accessibilityLevel("yes")
+      Button('btn123').accessibilityText("Button with both accessibility text and text").accessibilityLevel("yes")
       Button('btn123').accessibilityLevel("yes")
     }
     .accessibilityGroup(true, { accessibilityPreferred: true })
-    //.accessibilityGroup(true)
     .borderWidth(5)
     .width('100%')
     .height('100%')

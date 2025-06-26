@@ -61,7 +61,7 @@ Fault management is an important way for applications to deliver a better user e
 
 - Fault query is the process of calling APIs of [faultLogger](../reference/apis-performance-analysis-kit/js-apis-faultLogger.md) to obtain the fault information.
 
-The figure below does not illustrate the time when [faultLogger](../reference/apis-performance-analysis-kit/js-apis-faultLogger.md) is called. You can refer to the [LastExitReason](../reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md#abilityconstantlastexitreason) passed during application initialization to determine whether to call [faultLogger](../reference/apis-performance-analysis-kit/js-apis-faultLogger.md) to query information about the previous fault.
+The figure below does not illustrate the time when [faultLogger](../reference/apis-performance-analysis-kit/js-apis-faultLogger.md) is called. You can refer to the [LastExitReason](../reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md#lastexitreason) passed during application initialization to determine whether to call [faultLogger](../reference/apis-performance-analysis-kit/js-apis-faultLogger.md) to query information about the previous fault.
 
 ![Fault rectification process](./figures/fault_rectification.png)
 

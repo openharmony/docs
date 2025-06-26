@@ -977,7 +977,7 @@ Sets the font for this application. This API can be called only by the main thre
 
 > **NOTE**
 >
-> This API can be called only after a page window is created. That is, this API must be called after the lifecycle callback [onWindowStageCreate()](js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate).
+> This API can be called only after a page window is created. That is, this API must be called after the lifecycle callback [onWindowStageCreate()](js-apis-app-ability-uiAbility.md#onwindowstagecreate).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 

@@ -14,7 +14,7 @@ import { abilityManager } from '@kit.AbilityKit';
 
 ## Usage
 
-The ability running information is obtained by calling [getAbilityRunningInfos](js-apis-app-ability-abilityManager.md#getabilityrunninginfos) in **abilityManager**.
+The ability running information is obtained by calling [getAbilityRunningInfos](js-apis-app-ability-abilityManager.md#abilitymanagergetabilityrunninginfos14) in **abilityManager**.
 
 ## Properties
 
@@ -27,7 +27,7 @@ The ability running information is obtained by calling [getAbilityRunningInfos](
 | uid | number | Yes| No| User ID. |
 | processName | string | Yes| No| Process name. |
 | startTime | number | Yes| No| Ability start time. |
-| abilityState | [abilityManager.AbilityState](js-apis-app-ability-abilityManager.md#abilitystate) | Yes| No| Ability state. |
+| abilityState | [abilityManager.AbilityState](js-apis-app-ability-abilityManager.md#abilitystate14) | Yes| No| Ability state. |
 
 **Example**
 

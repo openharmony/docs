@@ -23,7 +23,7 @@ The relational database (RDB) store manages data based on relational models. The
 | [oh_data_values_buckets.h](oh__data__values__buckets_8h.md) | Defines structs, APIs, and enums related to stored data values.<br>**File to include**: <database/rdb/oh_data_values_buckets.h><br>**Library**: libnative_rdb_ndk.z.so<br>|
 | [oh_predicates.h](oh__predicates_8h.md) | Defines the predicates for RDB store operations.<br>**File to include**: <database/rdb/oh_predicates.h><br>**Library**: libnative_rdb_ndk.z.so<br>|
 | [oh_rdb_transaction.h](oh__rdb__transaction_8h.md) | Defines APIs and enums related to transactions.<br>**File to include**: <database/rdb/oh_rdb_transaction.h><br>**Library**: libnative_rdb_ndk.z.so<br>|
-| [oh_rdb_types.h](oh__rdb__types_8h.md) | Defines types related to data values.<br>**File to include**: <database/rdb/oh_rdb_types.h><br>**Library**: libnative_rdb_ndk.z.so<br>| 
+| [oh_rdb_types.h](oh__rdb__types_8h.md) | Defines types related to data values.<br>**File to include**: <database/rdb/oh_rdb_types.h><br>**Library**: libnative_rdb_ndk.z.so<br>|
 | [oh_value_object.h](oh__value__object_8h.md) | Defines the APIs for type conversion.<br>**File to include**: <database/rdb/oh_value_object.h><br>**Library**: libnative_rdb_ndk.z.so<br>|
 | [oh_values_bucket.h](oh__values__bucket_8h.md) | Defines the types of the key and value in a key-value (KV) pair.<br>**File to include**: <database/rdb/oh_values_bucket.h><br>**Library**: libnative_rdb_ndk.z.so<br>|
 | [relational_store.h](relational__store_8h.md) | Provides APIs for managing data in an RDB store. The APIs not marked as supporting vector stores are available only to RDB stores.<br>**File to include**: <database/rdb/relational_store.h><br>**Library**: libnative_rdb_ndk.z.so<br>|
@@ -110,7 +110,7 @@ The relational database (RDB) store manages data based on relational models. The
 | Name| Description|
 | -------- | -------- |
 | [Rdb_DBType](#rdb_dbtype-1) { RDB_SQLITE = 1, RDB_CAYLEY = 2, DBTYPE_BUTT = 64 } | Enumerates the database kernel types.|
-| [OH_OrderType](#oh_ordertype-1) { ASC = 0, DESC = 1 } | Enumerates the sorting types.|
+| [OH_OrderType](#oh_ordertype) { ASC = 0, DESC = 1 } | Enumerates the sorting types.|
 | [OH_Rdb_SecurityLevel](#oh_rdb_securitylevel-1) { S1 = 1, S2, S3, S4 } | Enumerates the RDB store security levels.|
 | [Rdb_SecurityArea](#rdb_securityarea-1) { RDB_SECURITY_AREA_EL1 = 1, RDB_SECURITY_AREA_EL2, RDB_SECURITY_AREA_EL3, RDB_SECURITY_AREA_EL4 } | Enumerates the encryption levels of database files.|
 | [Rdb_DistributedType](#rdb_distributedtype-1) { RDB_DISTRIBUTED_CLOUD } | Enumerates the distributed types.|
@@ -122,17 +122,17 @@ The relational database (RDB) store manages data based on relational models. The
 | [OH_ColumnType](#oh_columntype-1) {<br>TYPE_NULL = 0, TYPE_INT64, TYPE_REAL, TYPE_TEXT,<br>TYPE_BLOB, TYPE_ASSET, TYPE_ASSETS, TYPE_FLOAT_VECTOR,<br>TYPE_UNLIMITED_INT<br>} | Enumerates the column types.|
 | [OH_RDB_TransType](#oh_rdb_transtype-1) { RDB_TRANS_DEFERRED = 0, RDB_TRANS_IMMEDIATE, RDB_TRANS_EXCLUSIVE, RDB_TRANS_BUTT } | Enumerates the transaction types of an RDB store.|
 | [Rdb_Tokenizer](#rdb_tokenizer-1) { RDB_NONE_TOKENIZER = 1, RDB_ICU_TOKENIZER = 2, RDB_CUSTOM_TOKENIZER = 3 } | Enumerates the database tokenizer types.|
-| [Rdb_ConflictResolution](#rdb_conflictresolution-1) {<br>RDB_CONFLICT_NONE = 1, RDB_CONFLICT_ROLLBACK, RDB_CONFLICT_ABORT, RDB_CONFLICT_FAIL,<br>RDB_CONFLICT_IGNORE, RDB_CONFLICT_REPLACE<br>} | Enumerates the conflict resolution policies.| 
-| [OH_Rdb_ErrCode](#oh_rdb_errcode-1) {<br>RDB_ERR = -1, RDB_OK = 0, E_BASE = 14800000, RDB_E_NOT_SUPPORTED = 801,<br>RDB_E_ERROR = E_BASE, RDB_E_INVALID_ARGS = (E_BASE + 1), RDB_E_CANNOT_UPDATE_READONLY = (E_BASE + 2), RDB_E_REMOVE_FILE = (E_BASE + 3),<br>RDB_E_EMPTY_TABLE_NAME = (E_BASE + 5), RDB_E_EMPTY_VALUES_BUCKET = (E_BASE + 6), RDB_E_EXECUTE_IN_STEP_QUERY = (E_BASE + 7), RDB_E_INVALID_COLUMN_INDEX = (E_BASE + 8),<br>RDB_E_INVALID_COLUMN_TYPE = (E_BASE + 9), RDB_E_EMPTY_FILE_NAME = (E_BASE + 10), RDB_E_INVALID_FILE_PATH = (E_BASE + 11), RDB_E_TRANSACTION_IN_EXECUTE = (E_BASE + 12),<br>RDB_E_INVALID_STATEMENT = (E_BASE + 13), RDB_E_EXECUTE_WRITE_IN_READ_CONNECTION = (E_BASE + 14), RDB_E_BEGIN_TRANSACTION_IN_READ_CONNECTION = (E_BASE + 15), RDB_E_NO_TRANSACTION_IN_SESSION = (E_BASE + 16),<br>RDB_E_MORE_STEP_QUERY_IN_ONE_SESSION = (E_BASE + 17), RDB_E_NO_ROW_IN_QUERY = (E_BASE + 18), RDB_E_INVALID_BIND_ARGS_COUNT = (E_BASE + 19), RDB_E_INVALID_OBJECT_TYPE = (E_BASE + 20),<br>RDB_E_INVALID_CONFLICT_FLAG = (E_BASE + 21), RDB_E_HAVING_CLAUSE_NOT_IN_GROUP_BY = (E_BASE + 22), RDB_E_NOT_SUPPORTED_BY_STEP_RESULT_SET = (E_BASE + 23), RDB_E_STEP_RESULT_SET_CROSS_THREADS = (E_BASE + 24),<br>RDB_E_STEP_RESULT_QUERY_NOT_EXECUTED = (E_BASE + 25), RDB_E_STEP_RESULT_IS_AFTER_LAST = (E_BASE + 26), RDB_E_STEP_RESULT_QUERY_EXCEEDED = (E_BASE + 27), RDB_E_STATEMENT_NOT_PREPARED = (E_BASE + 28),<br>RDB_E_EXECUTE_RESULT_INCORRECT = (E_BASE + 29), RDB_E_STEP_RESULT_CLOSED = (E_BASE + 30), RDB_E_RELATIVE_PATH = (E_BASE + 31), RDB_E_EMPTY_NEW_ENCRYPT_KEY = (E_BASE + 32),<br>RDB_E_CHANGE_UNENCRYPTED_TO_ENCRYPTED = (E_BASE + 33), RDB_E_CHANGE_ENCRYPT_KEY_IN_BUSY = (E_BASE + 34), RDB_E_STEP_STATEMENT_NOT_INIT = (E_BASE + 35), RDB_E_NOT_SUPPORTED_ATTACH_IN_WAL_MODE = (E_BASE + 36),<br>RDB_E_CREATE_FOLDER_FAIL = (E_BASE + 37), RDB_E_SQLITE_SQL_BUILDER_NORMALIZE_FAIL = (E_BASE + 38), RDB_E_STORE_SESSION_NOT_GIVE_CONNECTION_TEMPORARILY = (E_BASE + 39), RDB_E_STORE_SESSION_NO_CURRENT_TRANSACTION = (E_BASE + 40),<br>RDB_E_NOT_SUPPORT = (E_BASE + 41), RDB_E_INVALID_PARCEL = (E_BASE + 42), RDB_E_QUERY_IN_EXECUTE = (E_BASE + 43), RDB_E_SET_PERSIST_WAL = (E_BASE + 44),<br>RDB_E_DB_NOT_EXIST = (E_BASE + 45), RDB_E_ARGS_READ_CON_OVERLOAD = (E_BASE + 46), RDB_E_WAL_SIZE_OVER_LIMIT = (E_BASE + 47), RDB_E_CON_OVER_LIMIT = (E_BASE + 48),<br>RDB_E_ALREADY_CLOSED = (E_BASE + 50), RDB_E_DATABASE_BUSY = (E_BASE + 51), RDB_E_SQLITE_CORRUPT = (E_BASE + 52), RDB_E_SQLITE_PERM = (E_BASE + 53),<br>RDB_E_SQLITE_BUSY = (E_BASE + 54), RDB_E_SQLITE_LOCKED = (E_BASE + 55), RDB_E_SQLITE_NOMEM = (E_BASE + 56), RDB_E_SQLITE_READONLY = (E_BASE + 57),<br>RDB_E_SQLITE_IOERR = (E_BASE + 58), RDB_E_SQLITE_FULL = (E_BASE + 59), RDB_E_SQLITE_CANT_OPEN = (E_BASE + 60), RDB_E_SQLITE_TOO_BIG = (E_BASE + 61),<br>RDB_E_SQLITE_MISMATCH = (E_BASE + 62), RDB_E_DATA_TYPE_NULL = (E_BASE + 63), RDB_E_TYPE_MISMATCH = (E_BASE + 64), RDB_E_SQLITE_CONSTRAINT = (E_BASE + 65)<br>} | Enumerates the RDB store error codes.| 
+| [Rdb_ConflictResolution](#rdb_conflictresolution-1) {<br>RDB_CONFLICT_NONE = 1, RDB_CONFLICT_ROLLBACK, RDB_CONFLICT_ABORT, RDB_CONFLICT_FAIL,<br>RDB_CONFLICT_IGNORE, RDB_CONFLICT_REPLACE<br>} | Enumerates the conflict resolution policies.|
+| [OH_Rdb_ErrCode](#oh_rdb_errcode-1) {<br>RDB_ERR = -1, RDB_OK = 0, E_BASE = 14800000, RDB_E_NOT_SUPPORTED = 801,<br>RDB_E_ERROR = E_BASE, RDB_E_INVALID_ARGS = (E_BASE + 1), RDB_E_CANNOT_UPDATE_READONLY = (E_BASE + 2), RDB_E_REMOVE_FILE = (E_BASE + 3),<br>RDB_E_EMPTY_TABLE_NAME = (E_BASE + 5), RDB_E_EMPTY_VALUES_BUCKET = (E_BASE + 6), RDB_E_EXECUTE_IN_STEP_QUERY = (E_BASE + 7), RDB_E_INVALID_COLUMN_INDEX = (E_BASE + 8),<br>RDB_E_INVALID_COLUMN_TYPE = (E_BASE + 9), RDB_E_EMPTY_FILE_NAME = (E_BASE + 10), RDB_E_INVALID_FILE_PATH = (E_BASE + 11), RDB_E_TRANSACTION_IN_EXECUTE = (E_BASE + 12),<br>RDB_E_INVALID_STATEMENT = (E_BASE + 13), RDB_E_EXECUTE_WRITE_IN_READ_CONNECTION = (E_BASE + 14), RDB_E_BEGIN_TRANSACTION_IN_READ_CONNECTION = (E_BASE + 15), RDB_E_NO_TRANSACTION_IN_SESSION = (E_BASE + 16),<br>RDB_E_MORE_STEP_QUERY_IN_ONE_SESSION = (E_BASE + 17), RDB_E_NO_ROW_IN_QUERY = (E_BASE + 18), RDB_E_INVALID_BIND_ARGS_COUNT = (E_BASE + 19), RDB_E_INVALID_OBJECT_TYPE = (E_BASE + 20),<br>RDB_E_INVALID_CONFLICT_FLAG = (E_BASE + 21), RDB_E_HAVING_CLAUSE_NOT_IN_GROUP_BY = (E_BASE + 22), RDB_E_NOT_SUPPORTED_BY_STEP_RESULT_SET = (E_BASE + 23), RDB_E_STEP_RESULT_SET_CROSS_THREADS = (E_BASE + 24),<br>RDB_E_STEP_RESULT_QUERY_NOT_EXECUTED = (E_BASE + 25), RDB_E_STEP_RESULT_IS_AFTER_LAST = (E_BASE + 26), RDB_E_STEP_RESULT_QUERY_EXCEEDED = (E_BASE + 27), RDB_E_STATEMENT_NOT_PREPARED = (E_BASE + 28),<br>RDB_E_EXECUTE_RESULT_INCORRECT = (E_BASE + 29), RDB_E_STEP_RESULT_CLOSED = (E_BASE + 30), RDB_E_RELATIVE_PATH = (E_BASE + 31), RDB_E_EMPTY_NEW_ENCRYPT_KEY = (E_BASE + 32),<br>RDB_E_CHANGE_UNENCRYPTED_TO_ENCRYPTED = (E_BASE + 33), RDB_E_CHANGE_ENCRYPT_KEY_IN_BUSY = (E_BASE + 34), RDB_E_STEP_STATEMENT_NOT_INIT = (E_BASE + 35), RDB_E_NOT_SUPPORTED_ATTACH_IN_WAL_MODE = (E_BASE + 36),<br>RDB_E_CREATE_FOLDER_FAIL = (E_BASE + 37), RDB_E_SQLITE_SQL_BUILDER_NORMALIZE_FAIL = (E_BASE + 38), RDB_E_STORE_SESSION_NOT_GIVE_CONNECTION_TEMPORARILY = (E_BASE + 39), RDB_E_STORE_SESSION_NO_CURRENT_TRANSACTION = (E_BASE + 40),<br>RDB_E_NOT_SUPPORT = (E_BASE + 41), RDB_E_INVALID_PARCEL = (E_BASE + 42), RDB_E_QUERY_IN_EXECUTE = (E_BASE + 43), RDB_E_SET_PERSIST_WAL = (E_BASE + 44),<br>RDB_E_DB_NOT_EXIST = (E_BASE + 45), RDB_E_ARGS_READ_CON_OVERLOAD = (E_BASE + 46), RDB_E_WAL_SIZE_OVER_LIMIT = (E_BASE + 47), RDB_E_CON_OVER_LIMIT = (E_BASE + 48),<br>RDB_E_ALREADY_CLOSED = (E_BASE + 50), RDB_E_DATABASE_BUSY = (E_BASE + 51), RDB_E_SQLITE_CORRUPT = (E_BASE + 52), RDB_E_SQLITE_PERM = (E_BASE + 53),<br>RDB_E_SQLITE_BUSY = (E_BASE + 54), RDB_E_SQLITE_LOCKED = (E_BASE + 55), RDB_E_SQLITE_NOMEM = (E_BASE + 56), RDB_E_SQLITE_READONLY = (E_BASE + 57),<br>RDB_E_SQLITE_IOERR = (E_BASE + 58), RDB_E_SQLITE_FULL = (E_BASE + 59), RDB_E_SQLITE_CANT_OPEN = (E_BASE + 60), RDB_E_SQLITE_TOO_BIG = (E_BASE + 61),<br>RDB_E_SQLITE_MISMATCH = (E_BASE + 62), RDB_E_DATA_TYPE_NULL = (E_BASE + 63), RDB_E_TYPE_MISMATCH = (E_BASE + 64), RDB_E_SQLITE_CONSTRAINT = (E_BASE + 65)<br>} | Enumerates the RDB store error codes.|
 
 
 ### Functions
 
 | Name| Description|
 | -------- | -------- |
-| int [OH_RdbTrans_BatchInsert](#oh_rdbtrans_batchinsert) ([OH_Rdb_Transaction](#oh_rdb_transaction) \*trans, const char \*table, const [OH_Data_VBuckets](#oh_data_vbuckets) \*rows, [Rdb_ConflictResolution](#rdb_conflictresolution) resolution, int64_t \*changes) | Inserts a batch of data into a table.| 
-| int [OH_Rdb_BatchInsert](#oh_rdb_batchinsert) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*table, const [OH_Data_VBuckets](#oh_data_vbuckets) \*rows, [Rdb_ConflictResolution](#rdb_conflictresolution) resolution, int64_t \*changes) | Inserts a batch of data into a table.| 
-| int [OH_Rdb_SetPersistent](#oh_rdb_setpersistent) ([OH_Rdb_ConfigV2](#oh_rdb_configv2) \*config, bool isPersistent) | Sets whether to persist an RDB store.| 
+| int [OH_RdbTrans_BatchInsert](#oh_rdbtrans_batchinsert) ([OH_Rdb_Transaction](#oh_rdb_transaction) \*trans, const char \*table, const [OH_Data_VBuckets](#oh_data_vbuckets) \*rows, [Rdb_ConflictResolution](#rdb_conflictresolution) resolution, int64_t \*changes) | Inserts a batch of data into a table.|
+| int [OH_Rdb_BatchInsert](#oh_rdb_batchinsert) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*table, const [OH_Data_VBuckets](#oh_data_vbuckets) \*rows, [Rdb_ConflictResolution](#rdb_conflictresolution) resolution, int64_t \*changes) | Inserts a batch of data into a table.|
+| int [OH_Rdb_SetPersistent](#oh_rdb_setpersistent) ([OH_Rdb_ConfigV2](#oh_rdb_configv2) \*config, bool isPersistent) | Sets whether to persist an RDB store.|
 | int [OH_Rdb_IsTokenizerSupported](#oh_rdb_istokenizersupported) ([Rdb_Tokenizer](#rdb_tokenizer) tokenizer, bool \*isSupported) | Checks whether the specified tokenizer is supported.|
 | int [OH_Rdb_SetTokenizer](#oh_rdb_settokenizer) ([OH_Rdb_ConfigV2](#oh_rdb_configv2) \*config, [Rdb_Tokenizer](#rdb_tokenizer) tokenizer) | Sets the tokenizer type.|
 | int [OH_Cursor_GetFloatVectorCount](#oh_cursor_getfloatvectorcount) ([OH_Cursor](_o_h___cursor.md) \*cursor, int32_t columnIndex, size_t \*length) | Obtains the length of the float array in the specified column of the current row.|
@@ -948,14 +948,14 @@ Enumerates the conflict resolution policies.
 
 **Since**: 18
 
-| Value| Description| 
+| Value| Description|
 | -------- | -------- |
-| RDB_CONFLICT_NONE | No operation is performed when a conflict occurs.| 
-| RDB_CONFLICT_ROLLBACK | Throw an error and roll back the transaction.| 
-| RDB_CONFLICT_ABORT | Throw an error and roll back the current change.| 
-| RDB_CONFLICT_FAIL | Throw an error and abort the current change without rolling back the modifications before the conflict.| 
-| RDB_CONFLICT_IGNORE | Ignore the conflicted data and resolve the conflict later.| 
-| RDB_CONFLICT_REPLACE | Delete the data and then insert the data. If the conflict persists, apply **RDB_CONFLICT_ABORT**.| 
+| RDB_CONFLICT_NONE | No operation is performed when a conflict occurs.|
+| RDB_CONFLICT_ROLLBACK | Throw an error and roll back the transaction.|
+| RDB_CONFLICT_ABORT | Throw an error and roll back the current change.|
+| RDB_CONFLICT_FAIL | Throw an error and abort the current change without rolling back the modifications before the conflict.|
+| RDB_CONFLICT_IGNORE | Ignore the conflicted data and resolve the conflict later.|
+| RDB_CONFLICT_REPLACE | Delete the data and then insert the data. If the conflict persists, apply **RDB_CONFLICT_ABORT**.|
 
 ### OH_Rdb_ErrCode
 
@@ -969,76 +969,76 @@ Enumerates the error codes.
 
 **Since**: 10
 
-| Value| Description| 
+| Value| Description|
 | -------- | -------- |
-| RDB_ERR | Execution failed.| 
-| RDB_OK | Execution successful.| 
-| E_BASE | Base of the error code.| 
-| RDB_E_NOT_SUPPORTED | The RDB store does not have this capability.| 
-| RDB_E_ERROR | Common exception.| 
-| RDB_E_INVALID_ARGS | Invalid parameter.| 
-| RDB_E_CANNOT_UPDATE_READONLY | Failed to update data because the RDB store is read-only.| 
-| RDB_E_REMOVE_FILE | Failed to delete the file.| 
-| RDB_E_EMPTY_TABLE_NAME | The table name is empty.| 
-| RDB_E_EMPTY_VALUES_BUCKET | The content of the KV pair is empty.| 
-| RDB_E_EXECUTE_IN_STEP_QUERY | The SQL statement executed during the query is incorrect.| 
-| RDB_E_INVALID_COLUMN_INDEX | The column index is invalid.| 
-| RDB_E_INVALID_COLUMN_TYPE | The column type is invalid.| 
-| RDB_E_EMPTY_FILE_NAME | The file name is empty.| 
-| RDB_E_INVALID_FILE_PATH | The file path is invalid.| 
-| RDB_E_TRANSACTION_IN_EXECUTE | Failed to start the transaction.| 
-| RDB_E_INVALID_STATEMENT | Failed to precompile the SQL statements.| 
-| RDB_E_EXECUTE_WRITE_IN_READ_CONNECTION | Failed to perform a write operation in a read connection.| 
-| RDB_E_BEGIN_TRANSACTION_IN_READ_CONNECTION | Failed to start the transaction in a read connection.| 
-| RDB_E_NO_TRANSACTION_IN_SESSION | The transaction to start does not exist in the database session.| 
-| RDB_E_MORE_STEP_QUERY_IN_ONE_SESSION | Multiple queries are executed in a database session.| 
-| RDB_E_NO_ROW_IN_QUERY | The result set does not contain any record.| 
-| RDB_E_INVALID_BIND_ARGS_COUNT | The number of parameters bound in the SQL statement is invalid.| 
-| RDB_E_INVALID_OBJECT_TYPE | The object type is invalid.| 
-| RDB_E_INVALID_CONFLICT_FLAG | The conflict resolution type is invalid.| 
-| RDB_E_HAVING_CLAUSE_NOT_IN_GROUP_BY | The **HAVING** keyword can be used only after **GROUP BY**.| 
-| RDB_E_NOT_SUPPORTED_BY_STEP_RESULT_SET | The result set by step is not supported.| 
-| RDB_E_STEP_RESULT_SET_CROSS_THREADS | Failed to obtain the result set.| 
-| RDB_E_STEP_RESULT_QUERY_NOT_EXECUTED | The result set query statement is not executed.| 
-| RDB_E_STEP_RESULT_IS_AFTER_LAST | The pointer of the result set is already in the last row.| 
-| RDB_E_STEP_RESULT_QUERY_EXCEEDED | The number of result set query times exceeds the limit.| 
-| RDB_E_STATEMENT_NOT_PREPARED | The SQL statement is not precompiled.| 
-| RDB_E_EXECUTE_RESULT_INCORRECT | The database execution result is incorrect.| 
-| RDB_E_STEP_RESULT_CLOSED | The result set has been closed.| 
-| RDB_E_RELATIVE_PATH | The file path is a relative path.| 
-| RDB_E_EMPTY_NEW_ENCRYPT_KEY | The new encrypt key is empty.| 
-| RDB_E_CHANGE_UNENCRYPTED_TO_ENCRYPTED | The RDB store is non-encrypted and cannot be changed.| 
-| RDB_E_CHANGE_ENCRYPT_KEY_IN_BUSY | The database does not respond when the database key is updated.| 
-| RDB_E_STEP_STATEMENT_NOT_INIT | The precompiled SQL statement is not initialized.| 
-| RDB_E_NOT_SUPPORTED_ATTACH_IN_WAL_MODE | The WAL mode does not support the ATTACH operation.| 
-| RDB_E_CREATE_FOLDER_FAIL | Failed to create the folder.| 
-| RDB_E_SQLITE_SQL_BUILDER_NORMALIZE_FAIL | Failed to build the SQL statement.| 
-| RDB_E_STORE_SESSION_NOT_GIVE_CONNECTION_TEMPORARILY | The database session does not provide a connection.| 
-| RDB_E_STORE_SESSION_NO_CURRENT_TRANSACTION | The transaction does not exist in the database session.| 
-| RDB_E_NOT_SUPPORT | The current operation is not supported.| 
-| RDB_E_INVALID_PARCEL | The current PARCEL is invalid.| 
-| RDB_E_QUERY_IN_EXECUTE | Failed to execute query.| 
-| RDB_E_SET_PERSIST_WAL | Failed to set the persistence of the database file in WAL mode.| 
-| RDB_E_DB_NOT_EXIST | The database does not exist.| 
-| RDB_E_ARGS_READ_CON_OVERLOAD | The number of read connections to set is greater than the limit.| 
-| RDB_E_WAL_SIZE_OVER_LIMIT | The WAL log file size exceeds the default value.| 
-| RDB_E_CON_OVER_LIMIT | The number of database connections has reached the limit.| 
-| RDB_E_ALREADY_CLOSED<sup>18+</sup> | The RDB store is already closed.| 
-| RDB_E_DATABASE_BUSY<sup>18+</sup> | The database does not respond.| 
-| RDB_E_SQLITE_CORRUPT<sup>18+</sup> | The database is corrupted.| 
-| RDB_E_SQLITE_PERM<sup>18+</sup> | SQLite: access denied.| 
-| RDB_E_SQLITE_BUSY<sup>18+</sup> | SQLite: database file locked.| 
-| RDB_E_SQLITE_LOCKED<sup>18+</sup> | SQLite: database table locked.| 
-| RDB_E_SQLITE_NOMEM<sup>18+</sup> | SQLite: insufficient database memory.| 
-| RDB_E_SQLITE_READONLY<sup>18+</sup> | SQLite: attempt to write a read-only database.| 
-| RDB_E_SQLITE_IOERR<sup>18+</sup> | SQLite: disk I/O error.| 
-| RDB_E_SQLITE_FULL<sup>18+</sup> | SQLite: database is full.| 
-| RDB_E_SQLITE_CANT_OPEN<sup>18+</sup> | SQLite: unable to open the database file.| 
-| RDB_E_SQLITE_TOO_BIG<sup>18+</sup> | SQLite: TEXT or BLOB exceeds the limit.| 
-| RDB_E_SQLITE_MISMATCH<sup>18+</sup> | SQLite: data types mismatch.| 
-| RDB_E_DATA_TYPE_NULL<sup>18+</sup> | The data to be stored is empty.| 
-| RDB_E_TYPE_MISMATCH<sup>18+</sup> | The data type is incorrect.| 
-| RDB_E_SQLITE_CONSTRAINT<sup>18+</sup> | SQLite error code: SQLite constraint.| 
+| RDB_ERR | Execution failed.|
+| RDB_OK | Execution successful.|
+| E_BASE | Base of the error code.|
+| RDB_E_NOT_SUPPORTED | The RDB store does not have this capability.|
+| RDB_E_ERROR | Common exception.|
+| RDB_E_INVALID_ARGS | Invalid parameter.|
+| RDB_E_CANNOT_UPDATE_READONLY | Failed to update data because the RDB store is read-only.|
+| RDB_E_REMOVE_FILE | Failed to delete the file.|
+| RDB_E_EMPTY_TABLE_NAME | The table name is empty.|
+| RDB_E_EMPTY_VALUES_BUCKET | The content of the KV pair is empty.|
+| RDB_E_EXECUTE_IN_STEP_QUERY | The SQL statement executed during the query is incorrect.|
+| RDB_E_INVALID_COLUMN_INDEX | The column index is invalid.|
+| RDB_E_INVALID_COLUMN_TYPE | The column type is invalid.|
+| RDB_E_EMPTY_FILE_NAME | The file name is empty.|
+| RDB_E_INVALID_FILE_PATH | The file path is invalid.|
+| RDB_E_TRANSACTION_IN_EXECUTE | Failed to start the transaction.|
+| RDB_E_INVALID_STATEMENT | Failed to precompile the SQL statements.|
+| RDB_E_EXECUTE_WRITE_IN_READ_CONNECTION | Failed to perform a write operation in a read connection.|
+| RDB_E_BEGIN_TRANSACTION_IN_READ_CONNECTION | Failed to start the transaction in a read connection.|
+| RDB_E_NO_TRANSACTION_IN_SESSION | The transaction to start does not exist in the database session.|
+| RDB_E_MORE_STEP_QUERY_IN_ONE_SESSION | Multiple queries are executed in a database session.|
+| RDB_E_NO_ROW_IN_QUERY | The result set does not contain any record.|
+| RDB_E_INVALID_BIND_ARGS_COUNT | The number of parameters bound in the SQL statement is invalid.|
+| RDB_E_INVALID_OBJECT_TYPE | The object type is invalid.|
+| RDB_E_INVALID_CONFLICT_FLAG | The conflict resolution type is invalid.|
+| RDB_E_HAVING_CLAUSE_NOT_IN_GROUP_BY | The **HAVING** keyword can be used only after **GROUP BY**.|
+| RDB_E_NOT_SUPPORTED_BY_STEP_RESULT_SET | The result set by step is not supported.|
+| RDB_E_STEP_RESULT_SET_CROSS_THREADS | Failed to obtain the result set.|
+| RDB_E_STEP_RESULT_QUERY_NOT_EXECUTED | The result set query statement is not executed.|
+| RDB_E_STEP_RESULT_IS_AFTER_LAST | The pointer of the result set is already in the last row.|
+| RDB_E_STEP_RESULT_QUERY_EXCEEDED | The number of result set query times exceeds the limit.|
+| RDB_E_STATEMENT_NOT_PREPARED | The SQL statement is not precompiled.|
+| RDB_E_EXECUTE_RESULT_INCORRECT | The database execution result is incorrect.|
+| RDB_E_STEP_RESULT_CLOSED | The result set has been closed.|
+| RDB_E_RELATIVE_PATH | The file path is a relative path.|
+| RDB_E_EMPTY_NEW_ENCRYPT_KEY | The new encrypt key is empty.|
+| RDB_E_CHANGE_UNENCRYPTED_TO_ENCRYPTED | The RDB store is non-encrypted and cannot be changed.|
+| RDB_E_CHANGE_ENCRYPT_KEY_IN_BUSY | The database does not respond when the database key is updated.|
+| RDB_E_STEP_STATEMENT_NOT_INIT | The precompiled SQL statement is not initialized.|
+| RDB_E_NOT_SUPPORTED_ATTACH_IN_WAL_MODE | The WAL mode does not support the ATTACH operation.|
+| RDB_E_CREATE_FOLDER_FAIL | Failed to create the folder.|
+| RDB_E_SQLITE_SQL_BUILDER_NORMALIZE_FAIL | Failed to build the SQL statement.|
+| RDB_E_STORE_SESSION_NOT_GIVE_CONNECTION_TEMPORARILY | The database session does not provide a connection.|
+| RDB_E_STORE_SESSION_NO_CURRENT_TRANSACTION | The transaction does not exist in the database session.|
+| RDB_E_NOT_SUPPORT | The current operation is not supported.|
+| RDB_E_INVALID_PARCEL | The current PARCEL is invalid.|
+| RDB_E_QUERY_IN_EXECUTE | Failed to execute query.|
+| RDB_E_SET_PERSIST_WAL | Failed to set the persistence of the database file in WAL mode.|
+| RDB_E_DB_NOT_EXIST | The database does not exist.|
+| RDB_E_ARGS_READ_CON_OVERLOAD | The number of read connections to set is greater than the limit.|
+| RDB_E_WAL_SIZE_OVER_LIMIT | The WAL log file size exceeds the default value.|
+| RDB_E_CON_OVER_LIMIT | The number of database connections has reached the limit.|
+| RDB_E_ALREADY_CLOSED<sup>18+</sup> | The RDB store is already closed.|
+| RDB_E_DATABASE_BUSY<sup>18+</sup> | The database does not respond.|
+| RDB_E_SQLITE_CORRUPT<sup>18+</sup> | The database is corrupted.|
+| RDB_E_SQLITE_PERM<sup>18+</sup> | SQLite: access denied.|
+| RDB_E_SQLITE_BUSY<sup>18+</sup> | SQLite: database file locked.|
+| RDB_E_SQLITE_LOCKED<sup>18+</sup> | SQLite: database table locked.|
+| RDB_E_SQLITE_NOMEM<sup>18+</sup> | SQLite: insufficient database memory.|
+| RDB_E_SQLITE_READONLY<sup>18+</sup> | SQLite: attempt to write a read-only database.|
+| RDB_E_SQLITE_IOERR<sup>18+</sup> | SQLite: disk I/O error.|
+| RDB_E_SQLITE_FULL<sup>18+</sup> | SQLite: database is full.|
+| RDB_E_SQLITE_CANT_OPEN<sup>18+</sup> | SQLite: unable to open the database file.|
+| RDB_E_SQLITE_TOO_BIG<sup>18+</sup> | SQLite: TEXT or BLOB exceeds the limit.|
+| RDB_E_SQLITE_MISMATCH<sup>18+</sup> | SQLite: data types mismatch.|
+| RDB_E_DATA_TYPE_NULL<sup>18+</sup> | The data to be stored is empty.|
+| RDB_E_TYPE_MISMATCH<sup>18+</sup> | The data type is incorrect.|
+| RDB_E_SQLITE_CONSTRAINT<sup>18+</sup> | SQLite error code: SQLite constraint.|
 
 ### OH_ColumnType
 
@@ -1290,13 +1290,13 @@ Inserts a batch of data into a table.
 
 **Parameters**
 
-| Name| Description| 
+| Name| Description|
 | -------- | -------- |
-| trans | Pointer to the [OH_Rdb_Transaction](#oh_rdb_transaction) instance.| 
-| table | Pointer to the target table.| 
-| rows | Pointer to the rows of data to insert.| 
-| resolution | Policy used to resolve file conflicts.| 
-| changes | Pointer to the number of successful insertions.| 
+| trans | Pointer to the [OH_Rdb_Transaction](#oh_rdb_transaction) instance.|
+| table | Pointer to the target table.|
+| rows | Pointer to the rows of data to insert.|
+| resolution | Policy used to resolve file conflicts.|
+| changes | Pointer to the number of successful insertions.|
 
 **Returns**
 
@@ -1349,13 +1349,13 @@ Inserts a batch of data into a table.
 
 **Parameters**
 
-| Name| Description| 
+| Name| Description|
 | -------- | -------- |
-| store | Pointer to the [OH_Rdb_Store](_o_h___rdb___store.md) instance.| 
-| tables | Pointer to the names of the distributed tables to set.| 
-| rows | Pointer to the rows of data to insert.| 
-| resolution | Policy used to resolve file conflicts.| 
-| changes | Pointer to the number of successful insertions.| 
+| store | Pointer to the [OH_Rdb_Store](_o_h___rdb___store.md) instance.|
+| tables | Pointer to the names of the distributed tables to set.|
+| rows | Pointer to the rows of data to insert.|
+| resolution | Policy used to resolve file conflicts.|
+| changes | Pointer to the number of successful insertions.|
 
 **Returns**
 
@@ -1406,7 +1406,7 @@ Sets whether to persist an RDB store.
 
 **Parameters**
 
-| Name| Description| 
+| Name| Description|
 | -------- | -------- |
 | config | Pointer to the target **OH_Rdb_ConfigV2** instance, which specifies the database configuration.|
 | isPersistent | Whether to persist the database data.|
