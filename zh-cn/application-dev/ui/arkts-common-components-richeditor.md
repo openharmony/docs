@@ -121,6 +121,9 @@ export const defaultTheme: SelectionMenuTheme = {
 }
 // 定义defaultTheme变量
 
+controller: RichEditorController = new RichEditorController();
+options: RichEditorOptions = { controller: this.controller };
+
 RichEditor(this.options)
   .onReady(() => {
     this.controller.addTextSpan('组件设置了自定义菜单，长按可触发。', {
@@ -205,6 +208,9 @@ RichEditor(this.options)
 例如，在用户登录界面采用提示文本，有助于用户区分用户名与密码的输入框。又如，在文本编辑框中，使用提示文本明确输入要求，如“限输入100字以内”，以此指导用户正确操作。
 
 ```ts
+controller: RichEditorController = new RichEditorController();
+options: RichEditorOptions = { controller: this.controller };
+
 RichEditor(this.options)
   .placeholder("此处为提示文本...", {
     fontColor: Color.Gray,
@@ -231,6 +237,9 @@ RichEditor(this.options)
 该回调可以用于执行一些组件的初始化逻辑。例如在使用富文本组件展示新闻的场景中，可以在该回调中从服务器获取图文数据，并将其添加到组件中，从而实现进入应用页面后即呈现完整新闻内容的功能。
 
 ```ts
+controller: RichEditorController = new RichEditorController();
+options: RichEditorOptions = { controller: this.controller };
+
 RichEditor(this.options)
   .onReady(() => {
     this.controller.addTextSpan('onReady回调内容是组件内预置文本。', {
@@ -250,6 +259,12 @@ RichEditor(this.options)
 该回调可用于实时监听组件内容选中区域变化，例如实现实时更新工具栏状态（显示字体、段落格式等）、统计选中内容长度或生成选中内容摘要。实时响应选中状态，动态联动交互元素，提升富文本编辑的操作反馈体验和功能的灵活性。
 
 ```ts
+controller: RichEditorController = new RichEditorController();
+options: RichEditorOptions = { controller: this.controller };
+
+controller1: RichEditorController = new RichEditorController();
+options1: RichEditorOptions = { controller: this.controller1 };
+
 RichEditor(this.options)
   .onReady(() => {
     this.controller.addTextSpan('改变内容选择区域或编辑状态下的光标位置，触发onSelectionChange回调。', {
@@ -286,6 +301,12 @@ RichEditor(this.options1)
 使用[RichEditorStyledStringOptions](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#richeditorstyledstringoptions12)构建的RichEditor组件不支持上述两种回调。
 
 ```ts
+controller: RichEditorController = new RichEditorController();
+options: RichEditorOptions = { controller: this.controller };
+
+controller1: RichEditorController = new RichEditorController();
+options1: RichEditorOptions = { controller: this.controller1 };
+
 RichEditor(this.options)
   .onReady(() => {
     this.controller.addTextSpan('组件内图文变化前，触发回调。\n图文变化后，触发回调。', {
@@ -331,6 +352,12 @@ RichEditor(this.options1)
 使用[RichEditorStyledStringOptions](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#richeditorstyledstringoptions12)构建的组件并不支持上述两种回调功能。
 
 ```ts
+controller: RichEditorController = new RichEditorController();
+options: RichEditorOptions = { controller: this.controller };
+
+controller1: RichEditorController = new RichEditorController();
+options1: RichEditorOptions = { controller: this.controller1 };
+
 RichEditor(this.options)
   .onReady(() => {
     this.controller.addTextSpan('输入法输入内容前，触发回调。\n输入法完成输入后，触发回调。', {
@@ -455,6 +482,12 @@ struct on_cut_copy_paste {
 由于组件默认的剪切行为仅限于纯文本，无法处理图片剪切，开发者可利用此方法实现图文并茂的剪切功能，从而替代组件原有的剪切行为。
 
 ```ts
+controller: RichEditorController = new RichEditorController();
+options: RichEditorOptions = { controller: this.controller };
+
+controller1: RichEditorController = new RichEditorController();
+options1: RichEditorOptions = { controller: this.controller1 };
+
 RichEditor(this.options)
   .onReady(() => {
     this.controller.addTextSpan('对此处文本进行复制粘贴操作可触发对应回调。', {
@@ -484,6 +517,12 @@ RichEditor(this.options)
 组件默认的复制行为仅限于纯文本，无法处理图片。开发者可利用此方法实现图文并茂的复制功能，替代组件的默认行为。
 
 ```ts
+controller: RichEditorController = new RichEditorController();
+options: RichEditorOptions = { controller: this.controller };
+
+controller1: RichEditorController = new RichEditorController();
+options1: RichEditorOptions = { controller: this.controller1 };
+
 RichEditor(this.options)
   .onReady(() => {
     this.controller.addTextSpan('对此处文本进行复制粘贴操作可触发对应回调。', {
@@ -516,6 +555,9 @@ RichEditor(this.options)
 此接口可用于个性化的写作体验，例如可以使用此接口让输入的不同层级标题自动应用相应格式（如一级、二级标题）。
 
 ```ts
+controller: RichEditorController = new RichEditorController();
+options: RichEditorOptions = { controller: this.controller };
+
 RichEditor(this.options)
   .onReady(() => {
     this.controller.addTextSpan('点击按钮，改变预设文本样式。', {
@@ -556,6 +598,9 @@ Button('setTypingStyle', {
 当组件内未获焦出现光标时，调用该接口不产生选中效果。
 
 ```ts
+controller: RichEditorController = new RichEditorController();
+options: RichEditorOptions = { controller: this.controller };
+
 RichEditor(this.options)
   .onReady(() => {
     this.controller.addTextSpan('点击按钮在此处选中0-2位置的文本。', {
@@ -591,7 +636,7 @@ Button('setSelection(0,2)', {
 @Component
 struct add_text_span {
   controller: RichEditorController = new RichEditorController();
-  options: RichEditorOptions = { controller: this.controller }
+  options: RichEditorOptions = { controller: this.controller };
 
   build() {
     Column() {
@@ -633,6 +678,9 @@ struct add_text_span {
 如果组件是获焦状态，有光标在闪烁，那么通过addImageSpan添加图片内容后，光标位置会更新，在新添加图片内容的右侧闪烁。
 
 ```ts
+controller: RichEditorController = new RichEditorController();
+options: RichEditorOptions = { controller: this.controller };
+
 RichEditor(this.options)
   .onReady(() => {
     this.controller.addTextSpan('点击按钮在此处添加image。', {
@@ -683,6 +731,9 @@ TextBuilder() {
   .width(220)
 }
 
+controller: RichEditorController = new RichEditorController();
+options: RichEditorOptions = { controller: this.controller };
+
 Button('addBuilderSpan', {
   buttonStyle: ButtonStyleMode.NORMAL
 })
@@ -704,6 +755,9 @@ Button('addBuilderSpan', {
 Symbol内容暂不支持手势、复制、拖拽处理。
 
 ```ts
+controller: RichEditorController = new RichEditorController();
+options: RichEditorOptions = { controller: this.controller };
+
 RichEditor(this.options)
   .onReady(() => {
     this.controller.addTextSpan('点击按钮在此处添加symbol。', {
