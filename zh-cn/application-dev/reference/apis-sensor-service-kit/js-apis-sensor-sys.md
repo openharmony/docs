@@ -192,7 +192,7 @@ off(type: SensorId.COLOR, sensorInfoParam?: SensorInfoParam, callback?: Callback
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 202      | Permission check failed. A non-system application uses the system API. |
-| 14500101      | Service exception. Possible causes: 1. Sensor hdf service exception. |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **示例**：
 
@@ -320,10 +320,10 @@ off(type: SensorId.SAR, sensorInfoParam?: SensorInfoParam, callback?: Callback&l
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 202      | Permission check failed. A non-system application uses the system API. |
-| 14500101      | Service exception. Possible causes: 1. Sensor hdf service exception. |
+| 错误码ID | 错误信息                                                                                                                                    |
+| -------- |-----------------------------------------------------------------------------------------------------------------------------------------|
+| 202      | Permission check failed. A non-system application uses the system API.                                                                  |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **示例**：
 
