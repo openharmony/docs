@@ -8,6 +8,12 @@ Album extends [AbsAlbum](arkts-apis-photoAccessHelper-AbsAlbum.md)
 
 实体相册。
 
+## 导入模块
+
+```ts
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+```
+
 ## 属性
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core

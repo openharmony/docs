@@ -6,6 +6,12 @@
 
 媒体资产进度处理器，应用在onProgress方法中获取媒体资产进度。
 
+## 导入模块
+
+```ts
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+```
+
 ## onProgress<sup>15+</sup>
 
 onProgress(progress: number): void

@@ -11,6 +11,12 @@
 >
 > 使用相机进行视频录制时，需要与相机模块配合，相机模块接口的使用详情见[相机管理](../apis-camera-kit/arkts-apis-camera.md)。
 
+## 导入模块
+
+```ts
+import { media } from '@kit.MediaKit';
+```
+
 ## 属性
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder

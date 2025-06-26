@@ -8,6 +8,12 @@
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
+## 导入模块
+
+```ts
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+```
+
 ## getUri<sup>12+</sup>
 
 getUri(): string

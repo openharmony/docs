@@ -12,6 +12,12 @@
 
 开发原子化服务请通过[ImageSoure](arkts-apis-image-ImageSource.md)构建PixelMap对象。
 
+## 导入模块
+
+```ts
+import { image } from '@kit.ImageKit';
+```
+
 ## 属性
 
 **系统能力：** SystemCapability.Multimedia.Image.Core

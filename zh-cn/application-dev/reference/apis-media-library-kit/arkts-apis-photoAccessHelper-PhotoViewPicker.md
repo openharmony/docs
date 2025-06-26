@@ -16,6 +16,12 @@
 let photoPicker = new photoAccessHelper.PhotoViewPicker();
 ```
 
+## 导入模块
+
+```ts
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+```
+
 ## select
 
 select(option?: PhotoSelectOptions) : Promise&lt;PhotoSelectResult&gt;

@@ -6,6 +6,12 @@
 
 图片编码器类，用于图片压缩和编码。在调用ImagePacker的方法前，需要先通过[createImagePacker](arkts-apis-image-f.md#imagecreateimagepacker)构建一个ImagePacker实例，当前支持格式有：jpeg、webp、png、heif<sup>12+</sup>（不同硬件设备支持情况不同）。
 
+## 导入模块
+
+```ts
+import { image } from '@kit.ImageKit';
+```
+
 ## 属性
 
 **系统能力：** SystemCapability.Multimedia.Image.ImagePacker

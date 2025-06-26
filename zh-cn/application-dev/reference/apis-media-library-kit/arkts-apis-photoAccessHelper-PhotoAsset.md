@@ -6,6 +6,12 @@
 
 提供封装文件属性的方法。
 
+## 导入模块
+
+```ts
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+```
+
 ## 属性
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core

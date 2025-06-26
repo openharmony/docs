@@ -8,6 +8,12 @@
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
+## 导入模块
+
+```ts
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+```
+
 ## requestImage<sup>11+</sup>
 
 static requestImage(context: Context, asset: PhotoAsset, requestOptions: RequestOptions, dataHandler: MediaAssetDataHandler&lt;image.ImageSource&gt;): Promise&lt;string&gt;

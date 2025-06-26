@@ -12,6 +12,12 @@ PhotoSession extends [Session](arkts-apis-camera-Session.md), [Flash](arkts-apis
 >
 > 默认的拍照模式，用于拍摄标准照片。支持多种照片格式和分辨率，适合大多数日常拍摄场景。
 
+## 导入模块
+
+```ts
+import { camera } from '@kit.CameraKit';
+```
+
 ## canPreconfig<sup>12+</sup>
 
 canPreconfig(preconfigType: PreconfigType, preconfigRatio?: PreconfigRatio): boolean

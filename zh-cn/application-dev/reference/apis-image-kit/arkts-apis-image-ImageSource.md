@@ -6,6 +6,12 @@
 
 ImageSource类，用于获取图片相关信息。在调用ImageSource的方法前，需要先通过[createImageSource](arkts-apis-image-f.md#imagecreateimagesource)构建一个ImageSource实例。
 
+## 导入模块
+
+```ts
+import { image } from '@kit.ImageKit';
+```
+
 ## 属性
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource

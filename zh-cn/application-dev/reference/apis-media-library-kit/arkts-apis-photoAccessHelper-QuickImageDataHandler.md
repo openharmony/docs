@@ -8,6 +8,12 @@
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
+## 导入模块
+
+```ts
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+```
+
 ## onDataPrepared<sup>13+</sup>
 
 onDataPrepared(data: T, imageSource: image.ImageSource, map: Map<string, string>): void

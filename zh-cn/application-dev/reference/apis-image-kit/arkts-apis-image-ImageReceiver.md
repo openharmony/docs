@@ -8,6 +8,12 @@
 
 在调用以下方法前需要先创建ImageReceiver实例。
 
+## 导入模块
+
+```ts
+import { image } from '@kit.ImageKit';
+```
+
 ## 属性
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
