@@ -108,7 +108,7 @@ class B implements I {};  // I是sendable interface，B不能实现，编译报�
 
 ### 必须是Sendable支持的数据类型
 
-Sendable数据不能持有非Sendable数据，因此Sendable类或接口的成员变量必须是Sendable支持的数据类型。
+Sendable数据不能持有非Sendable数据，因此Sendable类或接口的成员变量必须是[Sendable支持的数据类型](arkts-sendable.md#sendable支持的数据类型)。
 
 **正例：**
 
