@@ -34,7 +34,7 @@ nodeApi->setAttribute(text, NODE_HEIGHT, &textHeightItem);
     
     > **NOTE**
     > 
-    > The **OH_Drawing_** prefixed APIs are provided by the Ark text engine. For details, see [Simple Text Drawing and Display (C/C++)++)](../graphics/simple-text-c.md) and [Complex Text Drawing and Display (C/C++)](../graphics/complex-text-c.md).
+    > The **OH_Drawing_** prefixed APIs are provided by the Ark text engine.
     ```c++
     OH_Drawing_TypographyStyle *typographyStyle = OH_Drawing_CreateTypographyStyle();
     OH_Drawing_SetTypographyTextAlign(typographyStyle, OH_Drawing_TextAlign::TEXT_ALIGN_CENTER);
@@ -52,7 +52,7 @@ nodeApi->setAttribute(text, NODE_HEIGHT, &textHeightItem);
     > 
     > The **OH_ArkUI_StyledString_** prefixed APIs are provided by the **Text** component.
     >
-    > The **OH_Drawing_** prefixed APIs are provided by the Ark text engine. For details, see [Simple Text Drawing and Display (C/C++)++)](../graphics/simple-text-c.md)、[Complex Text Drawing and Display (C/C++)](../graphics/complex-text-c.md).
+    > The **OH_Drawing_** prefixed APIs are provided by the Ark text engine.
 
     Create a text style with **OH_Drawing_CreateTextStyle**. Set the font size of **"Hello"** to 28 px and the color to **0xFF707070**. Set the font size of **"World!"** to 28 px and the color to **0xFF2787D9**.
     ```c++
@@ -118,8 +118,6 @@ The text engine APIs involved all have corresponding destruction methods.
 **OH_Drawing_DestroyTextStyle(OH_Drawing_TextStyle *style)**: destroys the text style object.
 
 **OH_Drawing_DestroyTypographyStyle(OH_Drawing_TypographyStyle *style)**: destroys the paragraph style object.
-
-For details about more text engine destruction APIs, see [Simple Text Drawing and Display (C/C++)++)](../graphics/simple-text-c.md)、[Complex Text Drawing and Display (C/C++)](../graphics/complex-text-c.md).
 
 The **Text** component provides **OH_ArkUI_StyledString_Destroy** to destroy the styled string object.
 

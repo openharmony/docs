@@ -1455,7 +1455,7 @@ Disconnects a UIServiceExtensionAbility.
 
 | Name              | Type                            | Mandatory| Description                |
 | -------------------- | -------------------------------- | ---- | -------------------- |
-| proxy  | [UIServiceProxy](js-apis-inner-application-uiserviceproxy.md)  | Yes | Proxy used returned by calling [connectUIServiceExtensionAbility](#connectuiserviceextensionability14).|
+| proxy  | [UIServiceProxy](js-apis-inner-application-uiserviceproxy.md)  | Yes | Proxy used returned by calling [connectUIServiceExtensionAbility](#uiextensioncontextconnectuiserviceextensionability14).|
 
 **Return value**
 
