@@ -6,6 +6,12 @@
 
 文件检索结果集。
 
+## 导入模块
+
+```ts
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+```
+
 ## getCount
 
 getCount(): number
