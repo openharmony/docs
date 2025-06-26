@@ -426,7 +426,7 @@ struct Index {
 
 ### 下载图片或视频类文件
 
-开发者可以通过调用[PhotoAccessHelper](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md)的[createAsset()](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#createasset-2)接口创建媒体文件并获得用户文件的uri，将此uri作为[Config](../../reference/apis-basic-services-kit/js-apis-request.md#config10)的saveas字段值进行下载。
+开发者可以通过调用[PhotoAccessHelper](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper.md)的[createAsset()](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#createasset-2)接口创建媒体文件并获得用户文件的uri，将此uri作为[Config](../../reference/apis-basic-services-kit/js-apis-request.md#config10)的saveas字段值进行下载。
 
 需要权限：[ohos.permission.WRITE_IMAGEVIDEO](../../security/AccessToken/permissions-for-all-user.md#ohospermissionwrite_media)
 

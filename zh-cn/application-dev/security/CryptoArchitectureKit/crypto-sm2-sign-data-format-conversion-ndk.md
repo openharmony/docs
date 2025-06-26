@@ -4,7 +4,7 @@
 开发者可指定SM2密文的参数，将其转换成DER格式密文。反之，也可以从DER格式密文中提取出SM2的具体密文参数。
 
 **指定密文参数，转换为DER格式**
-1. 调用[OH_CryptoEccSignatureSpec_Create](../../reference/apis-crypto-architecture-kit/capi-crypto-signature-h.md#oh_cryptoeccsignaturespec_create)，创建[OH_CryptoEccSignatureSpec](../../reference/apis-crypto-architecture-kit/capi-oh-cryptoeccsignaturespec.md#oh_cryptoeccsignaturespec)对象，用于设置SM2密文参数。
+1. 调用[OH_CryptoEccSignatureSpec_Create](../../reference/apis-crypto-architecture-kit/capi-crypto-signature-h.md#oh_cryptoeccsignaturespec_create)，创建[OH_CryptoEccSignatureSpec](../../reference/apis-crypto-architecture-kit/capi-cryptosignatureapi-oh-cryptoeccsignaturespec.md#oh_cryptoeccsignaturespec)对象，用于设置SM2密文参数。
 
 2. 调用[OH_CryptoEccSignatureSpec_SetRAndS](../../reference/apis-crypto-architecture-kit/capi-crypto-signature-h.md#oh_cryptoeccsignaturespec_setrands)，将R、S设置到OH_CryptoEccSignatureSpec对象中。
 
@@ -62,7 +62,7 @@ static OH_Crypto_ErrCode doTestSm2DataChange()
 
 **指定DER格式，转换为r、s格式**
 
-1. 调用[OH_CryptoEccSignatureSpec_Create](../../reference/apis-crypto-architecture-kit/capi-crypto-signature-h.md#oh_cryptoeccsignaturespec_create)传入签名数据，创建[OH_CryptoEccSignatureSpec](../../reference/apis-crypto-architecture-kit/capi-oh-cryptoeccsignaturespec.md#oh_cryptoeccsignaturespec)对象，用于获取转换后的数据。
+1. 调用[OH_CryptoEccSignatureSpec_Create](../../reference/apis-crypto-architecture-kit/capi-crypto-signature-h.md#oh_cryptoeccsignaturespec_create)传入签名数据，创建[OH_CryptoEccSignatureSpec](../../reference/apis-crypto-architecture-kit/capi-cryptosignatureapi-oh-cryptoeccsignaturespec.md#oh_cryptoeccsignaturespec)对象，用于获取转换后的数据。
 
 2. 调用[OH_CryptoEccSignatureSpec_GetRAndS](../../reference/apis-crypto-architecture-kit/capi-crypto-signature-h.md#oh_cryptoeccsignaturespec_getrands)拿到转换后的数据r、s。
 

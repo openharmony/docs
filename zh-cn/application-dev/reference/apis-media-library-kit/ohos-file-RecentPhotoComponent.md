@@ -54,7 +54,7 @@ RecentPhotoComponent，是最近图片组件，可用于访问公共目录下的
 | 名称                    | 类型                                                                                      | 必填  | 说明   |
 |-------------------------|-----------------------------------------------------------------------------------------|-------|--------|
 | period                  | number                                                                                  | 否    | 配置显示多久时间段内的最近图片，单位为秒。最长可配置时长为1天(86400)。<br/>当值小于等于0、大于86400或者未配置时，默认按最长时间段1天显示最近图片。当配置时间段内无符合的图片或视频时，组件不显示。|
-| MIMEType                | [photoAccessHelper.PhotoViewMIMETypes](js-apis-photoAccessHelper.md#photoviewmimetypes) | 否    | 最近图片控件显示的文件类型，默认为PhotoViewMIMETypes.IMAGE_VIDEO_TYPE。                         |
+| MIMEType                | [photoAccessHelper.PhotoViewMIMETypes](arkts-apis-photoAccessHelper-e.md#photoviewmimetypes) | 否    | 最近图片控件显示的文件类型，默认为PhotoViewMIMETypes.IMAGE_VIDEO_TYPE。                         |
 | photoSource             | [PhotoSource](#photosource)                                                             | 否    | 配置最近图片视频显示内容的来源，比如拍照、截屏等。默认不限制来源。                               |
 
 ## RecentPhotoInfo<sup>13+</sup>
