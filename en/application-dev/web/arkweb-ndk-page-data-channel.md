@@ -39,7 +39,7 @@ If an application is developed using both ArkTS and C++, or the application arch
 
 ### Obtaining API Struct Using the Native API
 
-To invoke the native APIs in the API structs, obtain the API structs on the ArkWeb native side first. You can pass different types of parameters in the [OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb/_web.md#oh_arkweb_getnativeapi()) function to obtain the corresponding function pointer structs. The following APIs are provided: [ArkWeb_ControllerAPI](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#arkweb_controllerapi), [ArkWeb_WebMessageAPI](../reference/apis-arkweb/_ark_web___web_message_a_p_i.md#arkweb_webmessageapi) and [ArkWeb_WebMessagePortAPI](../reference/apis-arkweb/_ark_web___web_message_port_a_p_i.md#arkweb_webmessageportapi).
+To invoke the native APIs in the API structs, obtain the API structs on the ArkWeb native side first. You can pass different types of parameters in the [OH_ArkWeb_GetNativeAPI](../reference/apis-arkweb/_web.md#oh_arkweb_getnativeapi) function to obtain the corresponding function pointer structs. The following APIs are provided: [ArkWeb_ControllerAPI](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#arkweb_controllerapi), [ArkWeb_WebMessageAPI](../reference/apis-arkweb/_ark_web___web_message_a_p_i.md#arkweb_webmessageapi) and [ArkWeb_WebMessagePortAPI](../reference/apis-arkweb/_ark_web___web_message_port_a_p_i.md#arkweb_webmessageportapi).
 
   ```c++
   static ArkWeb_ControllerAPI *controller = nullptr;

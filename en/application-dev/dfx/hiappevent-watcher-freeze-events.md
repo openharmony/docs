@@ -22,7 +22,7 @@ The **params** parameter in the freeze event information is described as follows
 | exception | object | Exception information. For details, see **exception**.|
 | hilog | string[] | Log information.|
 | event_handler | string[] | Events not yet handled by the main thread.|
-| event_handler_size_3s | string | Number of tasks in the task stack at 3s during the [THREAD_BLOCK_6S event](appfreeze-guidelines.md#application-main-thread-timeout). This parameter is valid only in the **THREAD_BLOCK_6S** event.|
+| event_handler_size_3s | string | Number of tasks in the task stack at 3s during the [THREAD_BLOCK_6S event](appfreeze-guidelines.md#thread_block_6s-application-main-thread-timeout). This parameter is valid only in the **THREAD_BLOCK_6S** event.|
 | event_handler_size_6s | string | Number of tasks in the task stack at 6s during the **THREAD_BLOCK_6S** event.|
 | peer_binder | string[] | Binder call information.|
 | threads | object[] | Full thread call stack. For details, see **thread**.|
