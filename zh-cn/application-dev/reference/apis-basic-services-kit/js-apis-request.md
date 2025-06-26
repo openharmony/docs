@@ -2526,8 +2526,6 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | extras | object | 否 | 配置的附加功能，默认为空。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | multipart<sup>15+</sup> | boolean | 否 | 是否使用单个请求进行上传，单个请求上传时必定使用multipart/form-data。<br/>- false：每个文件使用一个请求传输。 <br/>- true：使用多文件单请求上传。 <br/>默认值为false。 |
 | notification<sup>15+</sup> | [Notification](#notification15) | 否 | 通知栏自定义设置。默认值为`{}`。|
-| minSpeed<sup>20+</sup> | [MinSpeed](#minspeed20) | 否 | 最低限速自定义设置，默认不启用最低限速。|
-| timeout<sup>20+</sup> | [Timeout](#timeout20) | 否 | 超时时间自定义设置，连接超时时间默认60秒，总超时时间默认604800秒（1周）。|
 
 ## State<sup>10+</sup>  
 
@@ -2570,23 +2568,20 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 定义任务失败的原因。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力**：SystemCapability.Request.FileTransferAgent
 
 | 名称 | 值 | 说明                                                                             |
 | -------- | -------- |--------------------------------------------------------------------------------|
-| OTHERS | 0xFF | 表示其他故障。                                                                        |
-| DISCONNECTED | 0x00 | 表示网络断开连接。                                                                      |
-| TIMEOUT | 0x10 | 表示任务超时。                                                                        |
-| PROTOCOL | 0x20 | 表示协议错误，例如：服务器内部错误（500）、无法处理的数据区间（416）等。                                        |
+| OTHERS | 0xFF | 表示其他故障。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                        |
+| DISCONNECTED | 0x00 | 表示网络断开连接。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                      |
+| TIMEOUT | 0x10 | 表示任务超时。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                        |
+| PROTOCOL | 0x20 | 表示协议错误，例如：服务器内部错误（500）、无法处理的数据区间（416）等。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                        |
 | PARAM<sup>12+</sup> | 0x30 | 表示参数错误，例如：url格式错误等。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。          |
-| FSIO | 0x40 | 表示文件系统io错误，例如：打开/查找/读取/写入/关闭。                                                   |
+| FSIO | 0x40 | 表示文件系统io错误，例如：打开/查找/读取/写入/关闭。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                   |
 | DNS<sup>12+</sup> | 0x50 | 表示DNS解析错误。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                  |
 | TCP<sup>12+</sup> | 0x60 | 表示TCP连接错误。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。              |
 | SSL<sup>12+</sup> | 0x70 | 表示SSL连接错误，例如：证书错误、证书校验失败错误等。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | REDIRECT<sup>12+</sup> | 0x80 | 表示重定向错误。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                    |
-| LOW_SPEED<sup>20+</sup>  | 0x90 | 表示任务速度过低。                    |
 
 > **说明：**
 >
@@ -2680,29 +2675,6 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | NETWORK_NOT_MATCH | 0x01 | 表示任务因所需网络条件不满足而进入等待状态。   |
 | APP_BACKGROUND | 0x02 | 表示任务因应用长时间处于后台而进入等待状态。   |
 | USER_INACTIVATED | 0x03 | 表示任务因所属用户处于非激活状态而进入等待状态。 |
-
-## MinSpeed<sup>20+</sup>
-
-任务的最低限速配置。若任务速度持续低于设定值并达到指定时长，则任务失败，失败原因为[LOW_SPEED](#faults10)。
-
-**系统能力**：SystemCapability.Request.FileTransferAgent
-
-| 名称      | 类型   | 只读 | 可选 | 说明                                                           |
-|---------|----------|----|----|--------------------------------------------------------------|
-| speed   | number   | 否  | 否  | 任务最低速度，单位为字节每秒（B/s）。若任务速度持续低于该值达到指定时长，则任务失败。设置为0表示不启用最低速度限制。 |
-| duration    | number   | 否  | 否  | 允许低于最低速度的持续时间，单位为秒。若任务速度持续低于设定值达到该时长，则任务失败。设置为0表示不启用最低速度限制。  |
-
-## Timeout<sup>20+</sup>
-
-任务的超时配置。
-
-**系统能力**：SystemCapability.Request.FileTransferAgent
-
-| 名称      | 类型     | 只读 | 可选 | 说明                                      |
-|---------|--------|----|----|-----------------------------------------|
-| connectionTimeout   | number | 否  | 是  | 任务连接超时时间，单位为秒。连接超时是指客户端与服务器建立连接的最大耗时。若不设置则使用默认值60秒，允许设置的最小值为1秒。 |
-| totalTimeout    | number | 否  | 是  |任务总超时时间，单位为秒。总超时包括建立连接、发送请求和接收响应的全部时间。未指定时使用默认值604800秒（1周）。允许设置的最小值为1秒，最大值为604800秒（1周）。  |
-
 
 ## Task<sup>10+</sup> 
 上传或下载任务。使用该方法前需要先获取Task对象，promise形式通过[request.agent.create<sup>10+</sup>](#requestagentcreate10-1)获取，callback形式通过[request.agent.create<sup>10+</sup>](#requestagentcreate10)获取。
@@ -3322,8 +3294,16 @@ on(event: 'faultOccur', callback: Callback&lt;Faults&gt;): void
 | event | string                              | 是 | 订阅的事件类型。<br>- 取值为'faultOccur'，表示任务失败。 |
 | callback | Callback&lt;[Faults](#faults10)&gt; | 是 | 发生相关的事件时触发该回调方法，返回任务失败的原因。 |
 
-**示例：**
+**错误码：**
 
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+
+**示例：**
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -3390,8 +3370,16 @@ on(event: 'wait', callback: Callback&lt;WaitingReason&gt;): void
 | event | string                                            | 是 | 订阅的事件类型。<br>- 取值为'wait'，表示任务等待。 |
 | callback | Callback&lt;[WaitingReason](#waitingreason20)&gt; | 是 | 发生相关的事件时触发该回调方法，返回任务等待的原因。      |
 
-**示例：**
+**错误码：**
 
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+
+**示例：**
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -4093,8 +4081,16 @@ off(event: 'faultOccur', callback?: Callback&lt;Faults&gt;): void
 | event | string                     | 是 | 订阅的事件类型。<br>- 取值为'faultOccur'，表示任务失败。      |
 | callback | Callback&lt;[Faults](#faults10)&gt; | 否 | 需要取消订阅的回调函数。若无此参数，则默认取消订阅当前类型的所有回调函数。 |
 
-**示例：**
+**错误码：**
 
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+
+**示例：**
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -4170,8 +4166,16 @@ off(event: 'wait', callback?: Callback&lt;WaitingReason&gt;): void
 | event | string                            | 是 | 订阅的事件类型。<br>- 取值为'wait'，表示任务等待。       |
 | callback | Callback&lt;[WaitingReason](#waitingreason20)&gt; | 否 | 需要取消订阅的回调函数。若无此参数，则默认取消订阅当前类型的所有回调函数。 |
 
-**示例：**
+**错误码：**
 
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
+
+**示例：**
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -4207,11 +4211,11 @@ off(event: 'wait', callback?: Callback&lt;WaitingReason&gt;): void
     precise: false,
     token: "it is a secret"
   };
-  let waitOffCallback1 = (progress: request.agent.HttpResponse) => {
-    console.info('upload task failed.');
+  let waitOffCallback1 = (reason: request.agent.WaitingReason) => {
+    console.info('upload task waiting.');
   };
-  let waitOffCallback2 = (progress: request.agent.HttpResponse) => {
-    console.info('upload task failed.');
+  let waitOffCallback2 = (reason: request.agent.WaitingReason) => {
+    console.info('upload task waiting.');
   };
   request.agent.create(context, config).then((task: request.agent.Task) => {
     task.on('wait', waitOffCallback1);
@@ -4820,9 +4824,9 @@ setMaxSpeed(speed: number): Promise\<void\>
 
 **参数：**
 
-| 参数名   | 类型     | 必填 | 说明                                                                           |
-|-------|--------|----|------------------------------------------------------------------------------|
-| speed | number | 是  | 设置任务每秒能传输的字节数上限，单位为字节（B），最小值为16384字节，同时该值不得低于[MinSpeed](#minspeed20)设置的最低速度。 |
+| 参数名   | 类型     | 必填 | 说明                                 |
+|-------|--------|----|------------------------------------|
+| speed | number | 是  | 设置任务每秒能传输的字节数上限，单位为字节（B），最小值为16384字节。 |
 
 **返回值：**
 

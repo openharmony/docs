@@ -8,6 +8,12 @@
 >
 > 当前页面仅包含本模块的系统接口，其他公开接口参见（[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)）。
 
+## 导入模块
+
+```ts
+import { bundleManager } from '@kit.AbilityKit';
+```
+
 ## ApplicationInfo
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core

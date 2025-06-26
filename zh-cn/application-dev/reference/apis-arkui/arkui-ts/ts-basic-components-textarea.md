@@ -49,7 +49,7 @@ TextArea(value?: TextAreaOptions)
 >
 >  [通用属性padding](ts-universal-attributes-size.md#padding)的默认值为：<br>{<br>&nbsp;top: '8vp',<br>&nbsp;right: '16vp',<br>&nbsp;bottom: '8vp',<br>&nbsp;left: '16vp'<br> }
 >
->  从API version 11开始，多行输入框可设置.width('auto')使组件宽度自适应文本宽度，自适应时组件宽度受constraintSize属性以及父容器传递的最大最小宽度限制，其余使用方式参考[尺寸设置](ts-universal-attributes-size.md#属性)。
+>  从API version 11开始，多行输入框可设置.width('auto')使组件宽度自适应文本宽度，自适应时组件宽度受constraintSize属性以及父容器传递的最大最小宽度限制，其余使用方式参考[尺寸设置](ts-universal-attributes-size.md)。
 
 ### placeholderColor
 
@@ -204,7 +204,7 @@ fontFamily(value: ResourceStr)
 
 | 参数名 | 类型                                   | 必填 | 说明                                                         |
 | ------ | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [ResourceStr](ts-types.md#resourcestr) | 是   | 字体列表。默认字体'HarmonyOS Sans'。<br>应用当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。<br>卡片当前仅支持'HarmonyOS Sans'字体。 |
+| value  | [ResourceStr](ts-types.md#resourcestr) | 是   | 字体列表。默认字体'HarmonyOS Sans'。<br>使用多个字体时，请用逗号','分隔，字体的优先级按顺序生效。例如：'Arial, HarmonyOS Sans'。<br>应用当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。<br>卡片当前仅支持'HarmonyOS Sans'字体。 |
 
 ### inputFilter<sup>8+</sup>
 
@@ -275,7 +275,7 @@ showCounter(value: boolean, options?: InputCounterOptions)
 
 | 参数名                | 类型                                                         | 必填 | 说明             |
 | --------------------- | ------------------------------------------------------------ | ---- | ---------------- |
-| value                 | boolean                                                      | 是   | 是否显示计数器。 |
+| value                 | boolean                                                      | 是   | 是否显示计数器。<br/>true表示显示计时器，false表示不显示。 |
 | options<sup>11+</sup> | [InputCounterOptions](ts-types.md#inputcounteroptions11对象说明) | 否   | 计数器的配置项。 |
 
 ### style<sup>10+</sup>
@@ -362,9 +362,9 @@ maxLines(value: number)
 
 ### maxLines<sup>20+</sup>
 
-maxLines(value: number, options?: MaxLinesOptions)
+maxLines(lines: number, options: MaxLinesOptions)
 
-配置[textOverflow](ts-basic-components-textarea.md#textoverflow12)一起使用时，maxLines为可显示行数，超出可配置为截断或滚动。未配置[textOverflow](ts-basic-components-textarea.md#textoverflow12)时，内联模式获焦状态下内容超出maxLines时，文本可滚动显示。内联模式非获焦状态下，maxLines不生效。
+配置[textOverflow](#textoverflow12)一起使用时，maxLines为可显示行数，超出可配置为截断或滚动。未配置textOverflow时，内联模式获焦状态下内容超出maxLines时，文本可滚动显示。内联模式非获焦状态下，maxLines不生效。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -374,8 +374,8 @@ maxLines(value: number, options?: MaxLinesOptions)
 
 | 参数名 | 类型                                      | 必填 | 说明                                                         |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | number | 是   | 内联输入风格编辑态时文本可显示的最大行数。<br/>默认值：3，非内联模式下，默认值为+∞，不限制最大行数。 <br/>取值范围：(0, +∞) |
-|options | [MaxLinesOptions](ts-types.md#maxlinesoptions20对象说明) | 否   | 文本超长时显示效果。<br/>默认值：MaxLinesMode.CLIP |
+| lines  | number | 是   | 内联输入风格编辑态时文本可显示的最大行数。<br/>默认值：3，非内联模式下，默认值为+∞，不限制最大行数。 <br/>取值范围：(0, +∞) |
+|options | [MaxLinesOptions](ts-text-common.md#maxlinesoptions20对象说明) | 是   | 文本超长时显示效果。<br/>默认值：MaxLinesMode.CLIP |
 
 ### minLines<sup>20+</sup>
 
@@ -504,6 +504,10 @@ lineHeight(value: number | string | Resource)
 | ------ | ------------------------------------------------------------ | ---- | ---------------- |
 | value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本的文本行高。 |
 
+>  **说明：**
+>  
+>  特殊字符字体高度远超出同行的其他字符高度时，文本框出现截断、遮挡、内容相对位置发生变化等不符合预期的显示异常，需要开发者调整组件高度、行高等属性，修改对应的页面布局。
+
 ### decoration<sup>12+</sup>
 
 decoration(value: TextDecorationOptions)
@@ -527,6 +531,8 @@ letterSpacing(value: number | string | Resource)
 设置文本字符间距。设置该值为百分比时，按默认值显示。当设置该值为0时，使用默认值。string类型支持number类型取值的字符串形式，可以附带单位，例如"10"、"10fp"。
 
 当取值为负值时，文字会发生压缩，负值过小时会将组件内容区大小压缩为0，导致无内容显示。
+
+对每个字符生效，包括行尾字符。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -754,7 +760,7 @@ lineSpacing(value: LengthMetrics, options?: LineSpacingOptions)
 | 参数名 | 类型                                                         | 必填 | 说明             |
 | ------ | ------------------------------------------------------------ | ---- | ---------------- |
 | value  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 是   | 文本的行间距。设置值不大于0时，取默认值0。 |
-| options  | [LineSpacingOptions](ts-basic-components-text.md#linespacingoptions20对象说明) | 否   | 设置行间距配置项。<br/>默认值：{&nbsp;onlyBetweenLines:&nbsp;false&nbsp;} |
+| options  | [LineSpacingOptions](ts-text-common.md#linespacingoptions20对象说明) | 否   | 设置行间距配置项。<br/>默认值：{&nbsp;onlyBetweenLines:&nbsp;false&nbsp;} |
 
 ### lineBreakStrategy<sup>12+</sup>
 
@@ -805,6 +811,10 @@ enablePreviewText(enable: boolean)
 | 参数名 | 类型    | 必填 | 说明                               |
 | ------ | ------- | ---- | ---------------------------------- |
 | enable | boolean | 是   | 是否开启输入预上屏。<br/>true表示开启，false表示不开启。<br/>默认值：true |
+
+>  **说明：**
+>  
+>  “预上屏”描述的是一种文字暂存状态。需要在输入法中开启预上屏功能，在输入文本过程中，未确认输入候选词时，文本框中显示标记文本。例如，通过拼音输入中文时，未确定候选词之前，在输入框中显示拼音字母，该状态称为文字预上屏。
 
 ### enableHapticFeedback<sup>13+</sup>
 
@@ -978,22 +988,6 @@ EllipsisMode.START和EllipsisMode.CENTER仅在maxLines设置为1生效。
 | 参数名 | 类型                                                | 必填 | 说明                                      |
 | ------ | --------------------------------------------------- | ---- | ----------------------------------------- |
 | mode  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[EllipsisMode](ts-appendix-enums.md#ellipsismode11)> | 是   | 省略位置。 <br />默认值：EllipsisMode.END |
-
-### enableAutoSpacing<sup>20+</sup>
-
-enableAutoSpacing(enable: Optional\<boolean>)
-
-设置是否开启中文与西文的自动间距。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型    | 必填 | 说明                               |
-| ------ | ------- | ---- | ---------------------------------- |
-| enable | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否开启中文与西文的自动间距。<br/>true为开启自动间距，false为不开启。<br />默认值：false |
 
 ## 事件
 
@@ -1211,6 +1205,10 @@ onDidDelete(callback: Callback\<DeleteValue>)
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
 | callback  | Callback\<[DeleteValue](ts-text-common.md#deletevalue12对象说明)> | 是   | 在删除完成时调用的回调。<br/>仅支持系统输入法输入的场景。 |
+
+>  **说明：**
+>
+>  点击清除按钮不触发onDidDelete回调。
 
 ### onWillChange<sup>15+</sup>
 
@@ -2230,6 +2228,8 @@ struct TextAreaExample {
 
 ```ts
 // xxx.ets
+import { LengthMetrics } from '@kit.ArkUI';
+
 @Entry
 @Component
 struct TextAreaExample {
@@ -2238,14 +2238,23 @@ struct TextAreaExample {
       Column() {
         Text('stroke feature').fontSize(9).fontColor(0xCCCCCC)
 
-        TextArea({text: 'StrokeSet123'})
-          .width('80%').height(90).borderWidth(1).fontSize(40)
-        TextArea({text: 'StrokeSet123'})
-          .width('80%').height(90).borderWidth(1).fontSize(40)
+        TextArea({ text: 'Text without stroke' })
+          .width('100%')
+          .height(60)
+          .borderWidth(1)
+          .fontSize(40)
+        TextArea({ text: 'Text with stroke' })
+          .width('100%')
+          .height(60)
+          .borderWidth(1)
+          .fontSize(40)
           .strokeWidth(LengthMetrics.px(-3.0))
           .strokeColor(Color.Red)
-        TextArea({text: 'StrokeSet123'})
-          .width('80%').height(90).borderWidth(1).fontSize(40)
+        TextArea({ text: 'Text with stroke' })
+          .width('100%')
+          .height(60)
+          .borderWidth(1)
+          .fontSize(40)
           .strokeWidth(LengthMetrics.px(3.0))
           .strokeColor(Color.Red)
       }.height('90%')
@@ -2257,30 +2266,3 @@ struct TextAreaExample {
 ```
 
 ![textAreaSetStroke](figures/textAreaSetStroke.png)
-
-### 示例20（设置中西文自动间距）
-
-该示例通过enableAutoSpacing属性设置中西文自动间距。
-
-```ts
-// xxx.ets
-@Entry
-@Component
-struct TextAreaExample {
-  build() {
-    Row() {
-      Column() {
-        Text('开启中西文自动间距').margin(5)
-        TextArea({text: '中西文Auto Spacing自动间距'})
-          .enableAutoSpacing(true)
-        Text('关闭中西文自动间距').margin(5)
-        TextArea({text: '中西文Auto Spacing自动间距'})
-          .enableAutoSpacing(false)
-      }.height('100%')
-    }
-    .width('60%')
-  }
-}
-```
-
-![textAreaEnableAutoSpacing](figures/textAreaEnableAutoSpacing.png)

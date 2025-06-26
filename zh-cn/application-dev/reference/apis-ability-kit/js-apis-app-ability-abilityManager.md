@@ -1,4 +1,4 @@
-# @ohos.app.ability.abilityManager (AbilityManager)
+# @ohos.app.ability.abilityManager (Ability信息管理)
 
 AbilityManager模块提供获取Ability相关信息和运行状态信息的能力。
 
@@ -28,7 +28,7 @@ Ability的状态，该类型为枚举，可配合[AbilityRunningInfo](js-apis-in
 | BACKGROUNDING | 12 | 表示ability为后台调度中状态。  | 
 
 
-## abilityManager.getAbilityRunningInfos
+## abilityManager.getAbilityRunningInfos<sup>14+</sup>
 
 getAbilityRunningInfos(): Promise\<Array\<AbilityRunningInfo>>
 
@@ -73,53 +73,14 @@ try {
 }
 ```
 
-## abilityManager.restartSelfAtomicService<sup>20+</sup>
+## AbilityRunningInfo<sup>14+</sup>
 
-restartSelfAtomicService(context: Context): void
+type AbilityRunningInfo = _AbilityRunningInfo
 
-重启当前原子化服务。
-
-> **说明：**
->
-> - 当前仅支持以独立窗口方式拉起原子化服务。
->
-> - 该接口的两次调用时间间隔不能低于3秒。
+Ability运行的相关信息和状态的定义。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
-
-**参数**：
-
-| 参数名        | 类型                                       | 必填   | 说明             |
-| --------- | ---------------------------------------- | ---- | -------------- |
-| context    | [Context](./js-apis-inner-application-context.md)   | 是    | 当前Ability的上下文。<br>**说明**：当前仅支持[UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)。</br> |
-
-**错误码**：
-
-以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------- |
-| 16000050 | Internal error. |
-| 16000053 | The ability is not on the top of the UI. |
-| 16000064 | Restart too frequently. Try again at least 3s later. |
-| 16000086 | The context is not UIAbilityContext. |
-| 16000090 | The caller is not an atomic service. |
-
-**示例**：
-
-```ts
-import { AbilityConstant, EmbeddableUIAbility, Want, abilityManager } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends EmbeddableUIAbility {
-  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-    try {
-      abilityManager.restartSelfAtomicService(this.context);
-    } catch (e) {
-      console.error(`restartSelfAtomicService error: ${JSON.stringify(e as BusinessError)}`);
-    }
-  }
-}
-```
+| 类型 | 说明 |
+| --- | ---- |
+| [_AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md) | Ability运行的相关信息和状态的定义。 |

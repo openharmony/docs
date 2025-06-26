@@ -12,6 +12,8 @@
 
 **相关模块：** [AVScreenCapture](capi-avscreencapture.md)
 
+**相关示例：** [NativeAvScreenCapture](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Media/ScreenCapture/ScreenCaptureSample)
+
 ## 汇总
 
 ### 函数
@@ -126,7 +128,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StartScreenCapture(struct OH_AVSc
 
 调用后可以通过回调的监听（[OH_AVScreenCapture_OnBufferAvailable](capi-native-avscreen-capture-base-h.md#oh_avscreencapture_onbufferavailable)）来监听当前是否有码流的产生,通过回调的监听（[OH_AVScreenCapture_OnStateChange](capi-native-avscreen-capture-base-h.md#oh_avscreencapture_onstatechange)）来监听启动状态。
 
-通过调用获取音频buffer（[OH_AVScreenCapture_AcquireAudioBuffer](#oh_avscreencapture_acquireaudiobuffer)）和视频buffer（[OH_AVScreenCapture_ReleaseVideoBuffer](#oh_avscreencapture_releasevideobuffer)）的接口来获取录屏的原始码流。
+通过调用获取音频buffer（[OH_AVScreenCapture_AcquireAudioBuffer](#oh_avscreencapture_acquireaudiobuffer)）和视频buffer（[OH_AVScreenCapture_AcquireVideoBuffer](#oh_avscreencapture_acquirevideobuffer)）的接口来获取录屏的原始码流。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
@@ -290,7 +292,7 @@ buffer使用完成后，调用OH_AVScreenCapture_ReleaseVideoBuffer接口进行�
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_NativeBuffer](capi-oh-nativebuffer.md) | 执行成功返回OH_NativeBuffer对象，通过OH_NativeBuffer对象相关接口可以获取到视频buffer和分辨率等信息参数。 |
+| [OH_NativeBuffer](capi-avscreencapture-oh-nativebuffer.md) | 执行成功返回OH_NativeBuffer对象，通过OH_NativeBuffer对象相关接口可以获取到视频buffer和分辨率等信息参数。 |
 
 ### OH_AVScreenCapture_ReleaseAudioBuffer()
 
@@ -569,7 +571,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StartScreenCaptureWithSurface(str
 | 参数项 | 描述 |
 | -- | -- |
 | struct [OH_AVScreenCapture](capi-oh-avscreencapture.md) *capture |指向OH_AVScreenCapture实例的指针。 |
-| [OHNativeWindow](../apis-arkgraphics2d/capi-nativewindow.md) *window | 指向OHNativeWindow实例的指针。 |
+| [OHNativeWindow](../apis-arkgraphics2d/capi-nativewindow-nativewindow.md) *window | 指向OHNativeWindow实例的指针。 |
 
 **返回：**
 
@@ -867,7 +869,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ShowCursor(struct OH_AVScreenCapt
 
 | 类型 | 说明 |
 | -- | -- |
-| OH_AVSCREEN_CAPTURE_ErrCode | 函数结果代码：   <br>         AV_SCREEN_CAPTURE_ERR_OK：执行成功。<br>         AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数capture为空指针。<br>         AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT：不允许操作，设置光标失败。 |
+| [OH_AVSCREEN_CAPTURE_ErrCode](capi-native-avscreen-capture-errors-h.md#oh_avscreen_capture_errcode) | AV_SCREEN_CAPTURE_ERR_OK：执行成功。<br>         AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数capture为空指针。<br>         AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT：不允许操作，设置光标失败。 |
 
 ### OH_AVScreenCapture_SetDisplayCallback()
 
@@ -1032,6 +1034,6 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetCaptureContentChangedCallback(
 
 | 类型 | 说明 |
 | -- | -- |
-| OH_AVSCREEN_CAPTURE_ErrCode | AV_SCREEN_CAPTURE_ERR_OK：操作成功。<br>         AV_SCREEN_CAPTURE_ERR_INVALID_VAL：参数无效，输入参数capture或callback为空指针。<br>         AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT：不允许操作，设置录屏内容回调失败。 |
+| [OH_AVSCREEN_CAPTURE_ErrCode](capi-native-avscreen-capture-errors-h.md#oh_avscreen_capture_errcode) | AV_SCREEN_CAPTURE_ERR_OK：操作成功。<br>         AV_SCREEN_CAPTURE_ERR_INVALID_VAL：参数无效，输入参数capture或callback为空指针。<br>         AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT：不允许操作，设置录屏内容回调失败。 |
 
 

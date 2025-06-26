@@ -19,7 +19,7 @@
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
 | [OH_AudioCaptureInfo](capi-oh-audiocaptureinfo.md) | OH_AudioCaptureInfo | 音频采样信息。<br>当audioSampleRate和audioChannels同时为0时，忽略该类型音频相关参数，不录制该类型音频数据。 |
-| [OH_NativeBuffer](capi-oh-nativebuffer.md) | OH_NativeBuffer | 提供录屏的视频原始码流类。 |
+| [OH_NativeBuffer](capi-avscreencapture-oh-nativebuffer.md) | OH_NativeBuffer | 提供录屏的视频原始码流类。 |
 | [OH_AVScreenCapture](capi-oh-avscreencapture.md) | OH_AVScreenCapture | 通过OH_AVScreenCapture可以获取视频与音频的原始码流。 |
 | [OH_AVScreenCapture_ContentFilter](capi-oh-avscreencapture-contentfilter.md) | OH_AVScreenCapture_ContentFilter | 通过OH_AVScreenCapture_ContentFilter过滤音视频内容。 |
 | [OH_AVScreenCapture_CaptureStrategy](capi-oh-avscreencapture-capturestrategy.md) | OH_AVScreenCapture_CaptureStrategy | 通过OH_AVScreenCapture_CaptureStrategy设置录屏策略。 |

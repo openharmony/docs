@@ -66,7 +66,7 @@ font.setSize(100);
 // 添加画笔描边效果
 canvas.attachPen(pen);
 // 创建字块对象
-const textBlob = drawing.TextBlob.makeFromString("Hello world", font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
+const textBlob = drawing.TextBlob.makeFromString('Hello world', font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
 // 绘制字块
 canvas.drawTextBlob(textBlob, 200, 300);
 // 去除描边效果
@@ -98,7 +98,7 @@ const font = new drawing.Font();
 // 设置字体大小
 font.setSize(200);
 // 创建字块
-const textBlob = drawing.TextBlob.makeFromString("Hello world", font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
+const textBlob = drawing.TextBlob.makeFromString('Hello world', font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
 // 绘制字块
 canvas.drawTextBlob(textBlob, 100, 300);
 // 去除填充效果
@@ -121,7 +121,7 @@ font.setSize(100);
 // 设置跟随主题字体
 font.setThemeFontFollowed(true);
 // 创建字块对象
-const textBlob = drawing.TextBlob.makeFromString("Hello World", font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
+const textBlob = drawing.TextBlob.makeFromString('Hello World', font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
 // 绘制字块
 canvas.drawTextBlob(textBlob, 200, 300);
 ```
@@ -147,7 +147,7 @@ const font = new drawing.Font();
 font.setSize(100);
 let startX = 100;
 let startY = 100;
-let text = ["H", "e", "l", "l", "o"];
+let text = ['H', 'e', 'l', 'l', 'o'];
 for (let s of text) {
   // 单字绘制
   canvas.drawSingleCharacter(s, font, startX, startY);

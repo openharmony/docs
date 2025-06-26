@@ -181,7 +181,7 @@ OH_Crypto_ErrCode OH_CryptoSymCipher_Init(OH_CryptoSymCipher *ctx, Crypto_Cipher
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_CryptoSymCipher](capi-oh-cryptosymcipher.md) *ctx | 对称密钥加密实例。 |
-| [Crypto_CipherMode](capi-crypto-common-h#crypto_ciphermode) mod | 加解密模式。 |
+| [Crypto_CipherMode](capi-crypto-common-h.md#crypto_ciphermode) mod | 加解密模式。 |
 | [OH_CryptoSymKey](capi-oh-cryptosymkey.md) *key | 对称密钥。 |
 | [OH_CryptoSymCipherParams](capi-oh-cryptosymcipherparams.md) *params | 指向对称密钥参数实例。 |
 

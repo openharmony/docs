@@ -30,7 +30,7 @@ import { formInfo } from '@kit.FormKit';
 | descriptionId<sup>10+</sup>      | number               | 是    | 否     | 卡片描述id。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | type        | [FormType](#formtype)             | 是    | 否     | 卡片类型。当前支持JS卡片、ArkTS卡片。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | jsComponentName      | string               | 是    | 否     | js卡片的组件名。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| colorMode  | [ColorMode](#colormode) | 是    | 否     | 卡片颜色模式。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| colorMode<sup>(deprecated)</sup>  | [ColorMode](#colormodedeprecated) | 是    | 否     | 卡片颜色模式。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | isDefault    | boolean      | 是    | 否     | 卡片是否是默认卡片。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | updateEnabled  | boolean               | 是    | 否     | 卡片是否使能更新。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | formVisibleNotify  | boolean        | 是    | 否     | 卡片是否使能可见通知。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -57,7 +57,9 @@ import { formInfo } from '@kit.FormKit';
 | JS      | 1    | 卡片类型为JS。   |
 | eTS     | 2    | 卡片类型为ArkTS。 |
 
-## ColorMode
+## ColorMode<sup>(deprecated)</sup>
+
+从API version 11开始支持，从API version 20开始废弃，卡片主题样式统一跟随系统的颜色模式。
 
 卡片支持的颜色模式枚举。
 
@@ -107,11 +109,11 @@ import { formInfo } from '@kit.FormKit';
 | 名称        | 值   | 说明         |
 | ----------- | ---- | ------------ |
 | IDENTITY_KEY     | 'ohos.extra.param.key.form_identity'    | 卡片标识。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| DIMENSION_KEY      | 'ohos.extra.param.key.form_dimension'  | 卡片规格样式。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| DIMENSION_KEY      | 'ohos.extra.param.key.form_dimension'  | 卡片规格，规格尺寸参考[FormDimension](#formdimension)。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | NAME_KEY       | 'ohos.extra.param.key.form_name'   | 卡片名称。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | MODULE_NAME_KEY        | 'ohos.extra.param.key.module_name'   | 卡片所属模块名称。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| WIDTH_KEY        | 'ohos.extra.param.key.form_width'   | 卡片宽度。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| HEIGHT_KEY         | 'ohos.extra.param.key.form_height'   | 卡片高度。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| WIDTH_KEY        | 'ohos.extra.param.key.form_width'   | 卡片宽度，单位px。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| HEIGHT_KEY         | 'ohos.extra.param.key.form_height'   | 卡片高度，单位px。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | TEMPORARY_KEY          | 'ohos.extra.param.key.form_temporary'   | 临时卡片。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | ABILITY_NAME_KEY   | 'ohos.extra.param.key.ability_name'   | ability名称。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | BUNDLE_NAME_KEY    | 'ohos.extra.param.key.bundle_name'   | Bundle名称。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
@@ -122,6 +124,8 @@ import { formInfo } from '@kit.FormKit';
 | FORM_LOCATION_KEY<sup>12+</sup>    | 'ohos.extra.param.key.form_location'   | 卡片位置。 <br>OTHER                         -1    （其他位置） <br>DESKTOP                       0     （桌面） <br>FORM_CENTER                   1     （桌面的卡片中心） <br>FORM_MANAGER                  2     （桌面的卡片管理器） <br>NEGATIVE_SCREEN               3     （负一屏） <br>FORM_CENTER_NEGATIVE_SCREEN   4     （负一屏的服务中心） <br>FORM_MANAGER_NEGATIVE_SCREEN  5     （负一屏的卡片管理器） <br>SCREEN_LOCK                   6     （锁屏） <br>AI_SUGGESTION                 7     （小艺建议推荐区）|
 | FORM_PERMISSION_NAME_KEY<sup>12+</sup> | 'ohos.extra.param.key.permission_name' | 用户授权权限名称。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | FORM_PERMISSION_GRANTED_KEY<sup>12+</sup> | 'ohos.extra.param.key.permission_granted' | 用户是否授权。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| FORM_WIDTH_VP_KEY<sup>20+</sup> | 'ohos.extra.param.key.form_width_vp'   | 卡片宽度，单位vp。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
+| FORM_HEIGHT_VP_KEY<sup>20+</sup> | 'ohos.extra.param.key.form_height_vp'   | 卡片高度，单位vp。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
 
 ## FormDimension
 
@@ -200,10 +204,10 @@ import { formInfo } from '@kit.FormKit';
 
 **系统能力：** SystemCapability.Ability.Form
 
-| 名称 | 类型 | 只读 | 可选  | 说明                                |
-|-----|-----|------|-----|-----------------------------------|
-| area     | [Rect](#rect20) | 是 | 否   | 描述溢出动效区域范围，以卡片左上角为原点，单位为vp。       |
-| duration | number | 是 | 否   | 溢出动效持续时长。取值为大于0、小于等于3500的整数，单位ms。 |
+| 名称 | 类型 | 只读 | 可选  | 说明                              |
+|-----|-----|------|-----|---------------------------------|
+| area     | [Rect](#rect20) | 是 | 否   | 描述互动卡片动效区域范围，以卡片左上角为原点，单位为vp。   |
+| duration | number | 是 | 否   | 互动卡片动效持续时长。取值为大于0、小于等于3500的整数，单位ms。 |
 
 ## Rect<sup>20+</sup>
 

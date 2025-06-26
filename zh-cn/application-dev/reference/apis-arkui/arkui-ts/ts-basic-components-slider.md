@@ -30,6 +30,8 @@ Slider(options?: SliderOptions)
 
 ## SliderOptions对象说明
 
+滑动条的信息。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -48,6 +50,8 @@ Slider(options?: SliderOptions)
 
 ## SliderStyle枚举说明
 
+滑动条滑块在滑轨上显示的样式。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 说明 |
@@ -55,6 +59,12 @@ Slider(options?: SliderOptions)
 | OutSet | 滑块在滑轨上。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | InSet | 滑块在滑轨内。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | NONE<sup>12+</sup> | 无滑块 <br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+
+>  **说明：** 
+>
+>  - Slider无默认padding。
+>  - 当Slider为水平滑动条时，默认高度为40vp，宽度为父容器的宽度，滑动条居中显示，当滑动条的style为SliderStyle.OutSet时，左右间距分别为10vp，当滑动条的style为SliderStyle.InSet时，左右间距分别为6vp，若设置padding，padding不会覆盖左右间距。
+>  - 当Slider为竖直滑动条时，默认宽度为40vp，高度为父容器的高度，滑动条居中显示，当滑动条的style为SliderStyle.OutSet时，上下间距分别为10vp，当滑动条的style为SliderStyle.InSet时，上下间距分别为6vp，若设置padding，padding不会覆盖上下间距。
 
 ## 属性
 
@@ -387,12 +397,6 @@ maxLabel(value: string)
 | ------ | ------ | ---- | -------- |
 | value  | string | 是   | 最大值。 |
 
->  **说明：** 
->
->  - Slider无默认padding。
->  - 当Slider为水平滑动条时，默认高度为40vp，宽度为父容器的宽度，滑动条居中显示，左右间距为分别为10vp，若设置padding，padding不会覆盖左右间距。
->  - 当Slider为竖直滑动条时，默认宽度为40vp，高度为父容器的高度，滑动条居中显示，上下间距为分别为6vp，若设置padding，padding不会覆盖上下间距。
-
 ### sliderInteractionMode<sup>12+</sup>
 
 sliderInteractionMode(value: SliderInteraction)
@@ -423,7 +427,7 @@ minResponsiveDistance(value: number)
 
 | 参数名 | 类型    | 必填 | 说明                                       |
 | ------ | ------- | ---- | ------------------------------------------ |
-| value  | number | 是   | 设置滑动响应的最小距离，滑动超过此距离后才响应使滑块滑动。<br/>**说明：** <br/>单位与参数[min](#slideroptions对象说明)和[max](#slideroptions对象说明)一致。<br/>当value小于0、大于MAX-MIN或非法值时，取默认值。<br/>默认值：0  |
+| value  | number | 是   | 设置滑动响应的最小距离，滑动超过此距离后滑块才开始滑动。<br/>**说明：** <br/>单位与参数[min](#slideroptions对象说明)和[max](#slideroptions对象说明)一致。<br/>当value小于0、大于MAX-MIN或非法值时，取默认值。<br/>默认值：0  |
 
 ### contentModifier<sup>12+</sup>
 
@@ -549,7 +553,7 @@ Slider前后缀组件无障碍信息参数。
 | accessibilityText        | [ResourceStr](ts-types.md#resourcestr) | 否   | 用于提供辅助功能的文本，供屏幕阅读器等工具读取，增强无障碍功能。 <br/>默认值："" |
 | accessibilityDescription | [ResourceStr](ts-types.md#resourcestr) | 否   | 用于提供辅助功能的详细描述，描述滑块前缀或后缀的功能或用途，供屏幕阅读器等工具使用。 <br/>默认值为“单指双击即可执行”。 |
 | accessibilityLevel       | string      | 否   | 用于控制某个组件是否可被无障碍辅助服务所识别。<br>支持的值为:<br>"auto"：当前组件会转换为“yes”。<br>"yes"：当前组件可被无障碍辅助服务所识别。<br>"no"：当前组件不可被无障碍辅助服务所识别。<br>"no-hide-descendants"：当前组件及其所有子组件不可被无障碍辅助服务所识别。<br>默认值："auto"。 |
-| accessibilityGroup       | boolean     | 否   | 用于标识该元素是否属于一个无障碍的组，帮助屏幕阅读器等工具将相关元素进行分组处理。设置为true时表示该组件及其所有子组件为一整个可以选中的组件，无障碍服务将不再关注其子组件内容。<br/>默认值：false |
+| accessibilityGroup       | boolean     | 否   | 用于标识该元素是否属于一个无障碍的组，帮助屏幕阅读器等工具将相关元素进行分组处理。设置为true时表示该组件及其所有子组件为一整个可以选中的组件，无障碍服务将不再关注其子组件内容；设置为false表示不启用无障碍分组。<br/>默认值：false |
 
 ## SliderPrefixOptions<sup>20+</sup>
 
@@ -662,6 +666,8 @@ Begin和End状态当手势点击时都会触发，Moving和Click状态当value�
 | mode   | [SliderChangeMode](#sliderchangemode枚举说明) | 是   | 事件触发的相关状态值。                                       |
 
 ## SliderChangeMode枚举说明
+
+滑块的状态值。包括按下、拖动、离开以及点击滑动条使滑块位置时。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 

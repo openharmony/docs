@@ -2441,7 +2441,7 @@ getVolumeGroupManager(groupId: number, callback: AsyncCallback<AudioVolumeGroupM
 
 | 参数名     | 类型                                                         | 必填 | 说明                                                        |
 | ---------- | ------------------------------------------------------------ | ---- |-----------------------------------------------------------|
-| groupId    | number                                    | 是   | 音量组id，默认使用LOCAL_VOLUME_GROUP_ID。                          |
+| groupId    | number                                    | 是   | 音量组id，默认使用DEFAULT_VOLUME_GROUP_ID。                          |
 | callback   | AsyncCallback&lt;[AudioVolumeGroupManager](#audiovolumegroupmanager9)&gt; | 是   | 回调函数。当获取音频组管理器成功，err为undefined，data为获取到的音频组管理器对象；否则为错误对象。 |
 
 **示例：**
@@ -2473,7 +2473,7 @@ getVolumeGroupManager(groupId: number\): Promise<AudioVolumeGroupManager\>
 
 | 参数名     | 类型                                      | 必填 | 说明                               |
 | ---------- | ---------------------------------------- | ---- |----------------------------------|
-| groupId    | number                                   | 是   | 音量组id，默认使用LOCAL_VOLUME_GROUP_ID。 |
+| groupId    | number                                   | 是   | 音量组id，默认使用DEFAULT_VOLUME_GROUP_ID。 |
 
 **返回值：**
 
@@ -2507,7 +2507,7 @@ getVolumeGroupManagerSync(groupId: number\): AudioVolumeGroupManager
 
 | 参数名     | 类型                                      | 必填 | 说明                               |
 | ---------- | ---------------------------------------- | ---- |----------------------------------|
-| groupId    | number                                   | 是   | 音量组id，默认使用LOCAL_VOLUME_GROUP_ID。 |
+| groupId    | number                                   | 是   | 音量组id，默认使用DEFAULT_VOLUME_GROUP_ID。 |
 
 **返回值：**
 
@@ -2690,7 +2690,7 @@ on(type: 'appVolumeChange', callback: Callback\<VolumeEvent>): void
 | 参数名   | 类型                                   | 必填 | 说明                                                         |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                 | 是   | 事件回调类型，支持的事件为'appVolumeChange'，当应用级音量发生变化时，触发该事件。 |
-| callback | Callback<[VolumeEvent](js-apis-audio.md#volumeevent9)> | 是   | 回调函数，返回变化后的音量信息。 |
+| callback | Callback<[VolumeEvent](#volumeevent9)> | 是   | 回调函数，返回变化后的音量信息。 |
 
 **错误码：**
 
@@ -2723,7 +2723,7 @@ off(type: 'appVolumeChange', callback?: Callback\<VolumeEvent>): void
 | 参数名   | 类型                                   | 必填 | 说明                                                         |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                 | 是   | 事件回调类型，支持的事件为'appVolumeChange'，当取消监听当前应用应用级音量变化事件时，触发该事件。 |
-| callback | Callback<[VolumeEvent](js-apis-audio.md#volumeevent9)> | 否   | 回调函数，返回变化后的音量信息。 |
+| callback | Callback<[VolumeEvent](#volumeevent9)> | 否   | 回调函数，返回变化后的音量信息。 |
 
 **错误码：**
 
@@ -3805,7 +3805,7 @@ audio.getAudioManager().getRoutingManager().getPreferredInputDeviceForCapturerIn
 
 getMaxAmplitudeForOutputDevice(outputDevice: AudioDeviceDescriptor): Promise&lt;number&gt;
 
-获取输入设备音频流的最大电平值，取值范围为[0, 1]。使用Promise异步回调。
+获取输出设备音频流的最大电平值，取值范围为[0, 1]。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -4945,7 +4945,7 @@ getAvailableDevices(deviceUsage: DeviceUsage): AudioDeviceDescriptors
 
 | 类型                                                         | 说明                      |
 | ------------------------------------------------------------ | ------------------------- |
-| [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors) | 返回设备列表。 |
+| [AudioDeviceDescriptors](arkts-apis-audio-t.md#audiodevicedescriptors) | 返回设备列表。 |
 
 **错误码：**
 
@@ -4984,7 +4984,7 @@ on(type: 'availableDeviceChange', deviceUsage: DeviceUsage, callback: Callback<D
 | :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
 | type     | string                                               | 是   | 事件回调类型，支持的事件为'availableDeviceChange'，当音频可选设备连接状态发生变化时，触发该事件。 |
 | deviceUsage | [DeviceUsage](#deviceusage12)                       | 是   | 音频设备类型（根据用途分类）。     |
-| callback | Callback<[DeviceChangeAction](js-apis-audio.md#devicechangeaction)\> | 是   | 回调函数，返回设备更新详情。 |
+| callback | Callback<[DeviceChangeAction](#devicechangeaction)\> | 是   | 回调函数，返回设备更新详情。 |
 
 **错误码：**
 
@@ -5019,7 +5019,7 @@ off(type: 'availableDeviceChange', callback?: Callback<DeviceChangeAction\>): vo
 | 参数名   | 类型                                                | 必填 | 说明                                       |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
 | type     | string                                              | 是   | 事件回调类型，支持的事件为'availableDeviceChange'，当取消监听音频可选设备连接变化事件时，触发该事件。 |
-| callback | Callback<[DeviceChangeAction](js-apis-audio.md#devicechangeaction)> | 否   | 回调函数，返回可选设备更新详情。 |
+| callback | Callback<[DeviceChangeAction](#devicechangeaction)> | 否   | 回调函数，返回可选设备更新详情。 |
 
 **错误码：**
 
@@ -6870,7 +6870,7 @@ audioRenderer.getBufferSize().then((data: number)=> {
   // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let path = context.cacheDir;
-  let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+  let filePath = path + '/StarWars10s-2C-48000-4SW.pcm';
   let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
   fs.stat(filePath).then(async (stat: fs.Stat) => {
     let buf = new ArrayBuffer(bufferSize);
@@ -6939,7 +6939,7 @@ audioRenderer.getBufferSize().then((data: number) => {
   // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let path = context.cacheDir;
-  let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+  let filePath = path + '/StarWars10s-2C-48000-4SW.pcm';
   let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
   fs.stat(filePath).then(async (stat: fs.Stat) => {
     let buf = new ArrayBuffer(bufferSize);
@@ -8668,7 +8668,7 @@ let bufferSize: number = 0;
 let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let path = context.cacheDir;
 // 确保该沙箱路径下存在该资源。
-let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+let filePath = path + '/StarWars10s-2C-48000-4SW.pcm';
 let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
 let writeDataCallback = (buffer: ArrayBuffer) => {
   let options: Options = {

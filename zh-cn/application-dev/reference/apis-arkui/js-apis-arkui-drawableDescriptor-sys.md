@@ -22,7 +22,7 @@ import { DrawableDescriptor, LayeredDrawableDescriptor } from '@kit.ArkUI';
 
 constructor()
 
-创建DrawableDescriptor或LayeredDrawableDescriptor对象。对象构造需要使用全球化接口[getDrawableDescriptor](../apis-localization-kit/js-apis-resource-manager.md#getdrawabledescriptor)或[getDrawableDescriptorByName](../apis-localization-kit/js-apis-resource-manager.md#getdrawabledescriptorbyname)。
+创建DrawableDescriptor或LayeredDrawableDescriptor对象。对象构造需要使用全球化接口[getDrawableDescriptor](../apis-localization-kit/js-apis-resource-manager.md#getdrawabledescriptor10)或[getDrawableDescriptorByName](../apis-localization-kit/js-apis-resource-manager.md#getdrawabledescriptorbyname10)。
 
 **系统接口：** 此接口为系统接口。
 

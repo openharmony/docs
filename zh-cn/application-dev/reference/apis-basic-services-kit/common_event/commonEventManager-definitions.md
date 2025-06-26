@@ -234,7 +234,7 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**取值：** usual.event.SPLIT_SCREEN"
+**取值：** "usual.event.SPLIT_SCREEN"
 
 
 

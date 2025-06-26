@@ -202,7 +202,7 @@ struct Index {
 
 reuse(param?: Object): void
 
-传递reuse事件到ComponentContent中的自定义组件。
+触发ComponentContent中的自定义组件的复用。组件复用请参见[@Reusable装饰器：组件复用](../../ui/state-management/arkts-reusable.md)。关于ComponentContent的解绑场景请参见[解除实体节点引用关系](../../ui/arkts-user-defined-arktsNode-builderNode.md#解除实体节点引用关系)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -218,7 +218,8 @@ reuse(param?: Object): void
 
 recycle(): void
 
-传递recycle事件到ComponentContent中的自定义组件。
+- 触发ComponentContent中自定义组件的回收。自定义组件的回收是组件复用机制中的环节，具体信息请参见[@Reusable装饰器：组件复用](../../ui/state-management/arkts-reusable.md)。
+- ComponentContent通过reuse和recycle完成其内外自定义组件之间的复用事件传递，具体使用场景请参见[节点复用能力](../../ui/arkts-user-defined-arktsNode-builderNode.md#节点复用能力)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -400,11 +401,15 @@ struct Index {
 
 dispose(): void
 
-立即释放当前ComponentContent，即ComponentContent对象与后端实体节点解除引用关系。
+立即释放当前ComponentContent对象对[基本概念：实体节点](../../ui/arkts-user-defined-node.md#基本概念)的引用关系。关于ComponentContent的解绑场景请参见[解除实体节点引用关系](../../ui/arkts-user-defined-arktsNode-builderNode.md#解除实体节点引用关系)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+> **说明：**
+>
+> 当ComponentContent对象调用dispose之后，会与后端实体节点解除引用关系。若前端对象ComponentContent无法释放，容易导致内存泄漏。建议在不再需要操作该ComponentContent对象时，开发者主动调用dispose释放后端节点，以减少引用关系的复杂性，降低内存泄漏的风险。
 
 **示例：** 
 
@@ -484,7 +489,7 @@ updateConfiguration(): void
 
 **示例：**
 ```ts
-import { NodeController, FrameNode, ComponentContent } from '@kit.ArkUI';
+import { NodeController, FrameNode, ComponentContent, UIContext, FrameCallback } from '@kit.ArkUI';
 import { AbilityConstant, Configuration, EnvironmentCallback, ConfigurationConstant } from '@kit.AbilityKit';
 
 @Builder
@@ -523,6 +528,12 @@ class MyNodeController extends NodeController {
   }
 }
 
+class MyFrameCallback extends FrameCallback {
+  onFrame() {
+    updateColorMode();
+  }
+}
+
 function updateColorMode() {
   componentContentMap.forEach((value, index) => {
     value.updateConfiguration();
@@ -541,7 +552,7 @@ struct FrameNodeTypeTest {
       },
       onConfigurationUpdated: (config: Configuration): void => {
         console.log('onConfigurationUpdated ' + JSON.stringify(config));
-        updateColorMode();
+        this.getUIContext()?.postFrameCallback(new MyFrameCallback());
       }
     }
     // 注册监听回调
@@ -574,3 +585,92 @@ struct FrameNodeTypeTest {
   }
 }
 ```
+
+### isDisposed<sup>20+</sup>
+
+isDisposed(): boolean
+
+查询当前ComponentContent对象是否已解除与后端实体节点的引用关系。前端节点均绑定有相应的后端实体节点，当节点调用dispose接口解除绑定后，再次调用接口可能会出现crash、返回默认值的情况。由于业务需求，可能存在节点在dispose后仍被调用接口的情况。为此，提供此接口以供开发者在操作节点前检查其有效性，避免潜在风险。
+
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型    | 说明               |
+| ------- | ------------------ |
+| boolean | 后端实体节点是否解除引用。true为节点已与后端实体节点解除引用，false为节点未与后端实体节点解除引用。
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { ComponentContent } from '@kit.ArkUI';
+
+class Params {
+  text: string = "";
+  constructor(text: string) {
+    this.text = text;
+  }
+}
+
+@Builder
+function buildText(params: Params) {
+  Column() {
+    Text(params.text)
+      .fontSize(50)
+      .fontWeight(FontWeight.Bold)
+      .margin({ bottom: 36 })
+  }.backgroundColor('#FFF0F0F0')
+}
+
+@Entry
+@Component
+struct Index {
+  @State message: string = "hello";
+  @State beforeDispose: string = ''
+  @State afterDispose: string = ''
+
+  build() {
+    Row() {
+      Column() {
+        Button("click me")
+          .onClick(() => {
+            let uiContext = this.getUIContext();
+            let promptAction = uiContext.getPromptAction();
+            let contentNode = new ComponentContent(uiContext, wrapBuilder(buildText), new Params(this.message));
+            promptAction.openCustomDialog(contentNode);
+
+            setTimeout(() => {
+              promptAction.closeCustomDialog(contentNode)
+                .then(() => {
+                  console.info('customDialog closed.');
+                  if (contentNode !== null) {
+                    this.beforeDispose = contentNode.isDisposed() ? 'before dispose componentContent isDisposed is true' : 'before dispose componentContent isDisposed is false';
+                    contentNode.dispose();   //释放contentNode
+                    this.afterDispose = contentNode.isDisposed() ? 'after dispose componentContent isDisposed is true' : 'after dispose componentContent isDisposed is false';
+                  }
+                }).catch((error: BusinessError) => {
+                let message = (error as BusinessError).message;
+                let code = (error as BusinessError).code;
+                console.error(`closeCustomDialog args error code is ${code}, message is ${message}`);
+              })
+            }, 1000);     //1秒后自动关闭
+          })
+        Text(this.beforeDispose)
+          .fontSize(25)
+          .margin({ top: 10, bottom: 10 })
+        Text(this.afterDispose)
+          .fontSize(25)
+      }
+      .width('100%')
+      .height('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+![](figures/component_content_isDisposed.gif)

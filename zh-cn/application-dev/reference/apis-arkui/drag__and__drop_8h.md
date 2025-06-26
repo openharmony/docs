@@ -30,9 +30,6 @@
 | typedef struct [ArkUI_DragPreviewOption](_ark_u_i___native_module.md#arkui_dragpreviewoption) [ArkUI_DragPreviewOption](_ark_u_i___native_module.md#arkui_dragpreviewoption) | 设置拖拽跟手图的相关自定义参数。  | 
 | typedef struct [ArkUI_DragAction](_ark_u_i___native_module.md#arkui_dragaction) [ArkUI_DragAction](_ark_u_i___native_module.md#arkui_dragaction) | 拖拽行为，用于主动发起拖拽。  | 
 | typedef struct [ArkUI_DragAndDropInfo](_ark_u_i___native_module.md#arkui_draganddropinfo) [ArkUI_DragAndDropInfo](_ark_u_i___native_module.md#arkui_draganddropinfo) | 主动发起拖拽后，通过拖拽状态监听返回的系统拖拽相关数据。  | 
-| typedef struct [OH_UdmfData](_ark_u_i___native_module.md#oh_udmfdata) [OH_UdmfData](_ark_u_i___native_module.md#oh_udmfdata) | UDMF 统一数据定义。  | 
-| typedef struct [OH_PixelmapNative](_ark_u_i___native_module.md#oh_pixelmapnative) [OH_PixelmapNative](_ark_u_i___native_module.md#oh_pixelmapnative) | Pixelmap结构体类型，用于执行Pixelmap相关操作。  | 
-| typedef struct [OH_UdmfGetDataParams](_ark_u_i___native_module.md#oh_udmfgetdataparams) [OH_UdmfGetDataParams](_ark_u_i___native_module.md#oh_udmfgetdataparams) | 从UDMF获取数据时的参数。  | 
 
 
 ### 枚举
@@ -42,8 +39,8 @@
 | [ArkUI_DragResult](_ark_u_i___native_module.md#arkui_dragresult) { ARKUI_DRAG_RESULT_SUCCESSFUL, ARKUI_DRAG_RESULT_FAILED, ARKUI_DRAG_RESULT_CANCELED } | 拖拽结果定义，由数据接收方设置，并由系统传递给数据拖出方，拖出方可感知接收方对数据的处理结果。  | 
 | [ArkUI_DropOperation](_ark_u_i___native_module.md#arkui_dropoperation) { ARKUI_DROP_OPERATION_COPY, ARKUI_DROP_OPERATION_MOVE } | 定义拖拽释放时的数据处理方式，可影响角标的显示。  | 
 | [ArkUI_PreDragStatus](_ark_u_i___native_module.md#arkui_predragstatus) {<br/>ARKUI_PRE_DRAG_STATUS_UNKNOWN = -1, ARKUI_PRE_DRAG_STATUS_ACTION_DETECTING, ARKUI_PRE_DRAG_STATUS_READY_TO_TRIGGER_DRAG, ARKUI_PRE_DRAG_STATUS_PREVIEW_LIFT_STARTED,<br/>ARKUI_PRE_DRAG_STATUS_PREVIEW_LIFT_FINISHED, ARKUI_PRE_DRAG_STATUS_PREVIEW_LANDING_STARTED, ARKUI_PRE_DRAG_STATUS_PREVIEW_LANDING_FINISHED, ARKUI_PRE_DRAG_STATUS_CANCELED_BEFORE_DRAG<br/>} | 定义拖拽发起前的长按交互阶段的变化状态。  | 
-| [ArkUI_DragPreviewScaleMode](_ark_u_i___native_module.md#arkui_dragpreviewscalemode) { ARKUI_DRAG_PREVIEW_SCALE_AUTO, ARKUI_DRAG_PREVIEW_SCALE_DISABLED } | 拖拽预览缩放模式。  | 
-| [ArkUI_DragStatus](_ark_u_i___native_module.md#arkui_dragstatus) { ArkUI_DRAG_STATUS_UNKNOWN, ArkUI_DRAG_STATUS_STARTED, ArkUI_DRAG_STATUS_ENDED } | 拖拽状态。  | 
+| [ArkUI_DragPreviewScaleMode](_ark_u_i___native_module.md#arkui_dragpreviewscalemode) { ARKUI_DRAG_PREVIEW_SCALE_AUTO = 0, ARKUI_DRAG_PREVIEW_SCALE_DISABLED } | 拖拽预览缩放模式。  | 
+| [ArkUI_DragStatus](_ark_u_i___native_module.md#arkui_dragstatus) { ArkUI_DRAG_STATUS_UNKNOWN = -1, ArkUI_DRAG_STATUS_STARTED, ArkUI_DRAG_STATUS_ENDED } | 拖拽状态。  | 
 
 
 ### 函数
@@ -73,8 +70,6 @@
 | float [OH_ArkUI_DragEvent_GetVelocityY](_ark_u_i___native_module.md#oh_arkui_dragevent_getvelocityy) ([ArkUI_DragEvent](_ark_u_i___native_module.md#arkui_dragevent) \*event) | 获取当前拖拽的y轴方向拖动速度。  | 
 | float [OH_ArkUI_DragEvent_GetVelocity](_ark_u_i___native_module.md#oh_arkui_dragevent_getvelocity) ([ArkUI_DragEvent](_ark_u_i___native_module.md#arkui_dragevent) \*event) | 获取当前拖拽的主方向拖动速度。  | 
 | int32_t [OH_ArkUI_DragEvent_GetModifierKeyStates](_ark_u_i___native_module.md#oh_arkui_dragevent_getmodifierkeystates) ([ArkUI_DragEvent](_ark_u_i___native_module.md#arkui_dragevent) \*event, uint64_t \*keys) | 获取功能键按压状态。  | 
-| ArkUI_ErrorCode [OH_ArkUI_DragEvent_GetDragSource](_ark_u_i___native_module.md#oh_arkui_dragevent_getdragsource) ([ArkUI_DragEvent](_ark_u_i___native_module.md#arkui_dragevent) \*event, char \*bundleName, int32_t length) | 获取拖起方包名。 | 
-| ArkUI_ErrorCode [OH_ArkUI_DragEvent_IsRemote](_ark_u_i___native_module.md#oh_arkui_dragevent_isremote) ([ArkUI_DragEvent](_ark_u_i___native_module.md#arkui_dragevent) \*event, bool \*isRemote) |  获取是否是跨设备拖拽，跨设备拖拽时为true。 |
 | [ArkUI_ErrorCode](_ark_u_i___native_module.md#arkui_errorcode) [OH_ArkUI_DragEvent_GetDisplayId](_ark_u_i___native_module.md#oh_arkui_dragevent_getdisplayid) ([ArkUI_DragEvent](_ark_u_i___native_module.md#arkui_dragevent) \*event, int32_t \*displayId) | 获取当前拖拽事件发生时所在的屏幕ID，不支持当eventType为NODE_ON_DRAG_END时获取。<br/>**起始版本：** 20  | 
 | int32_t [OH_ArkUI_SetDragEventStrictReportWithNode](_ark_u_i___native_module.md#oh_arkui_setdrageventstrictreportwithnode) ([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, bool enabled) | 控制是否使能严格dragEvent上报，建议开启；默认是不开启的； 当不开启时，从父组件拖移进子组件时，父组件并不会收到leave的通知；而开启之后，只要前后两个组件发生变化，上一个组件就会收到 leave，新的组件收到enter通知；该配置与具体的UI实例相关，需要通过传入一个当前UI实例上的一个具体的组件节点来关联。  | 
 | int32_t [OH_ArkUI_SetDragEventStrictReportWithContext](_ark_u_i___native_module.md#oh_arkui_setdrageventstrictreportwithcontext) ([ArkUI_ContextHandle](_ark_u_i___native_module.md#arkui_contexthandle-12) uiContext, bool enabled) | 控制是否使能严格dragEvent上报，建议开启；默认是不开启的; 当不开启时，从父组件拖移进子组件时，父组件并不会收到leave的通知；而开启之后，只要前后两个组件发生变化，上一个组件就会收到 leave，新的组件收到enter通知；该配置与具体的UI实例相关，可通过传入一个UI实例进行关联。  | 

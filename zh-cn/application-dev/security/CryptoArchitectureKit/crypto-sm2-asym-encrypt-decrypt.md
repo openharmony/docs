@@ -16,8 +16,7 @@
 
 4. 调用[Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1)，传入明文，获取加密后的数据。
 
-   - doFinal输出结果可能为null，在访问具体数据前，需要先判断结果是否为null，避免产生异常。
-   - 当数据量较大时，可以多次调用doFinal，即分段加解密。
+   doFinal输出结果可能为null，在访问具体数据前，需要先判断结果是否为null，避免产生异常。
 
 **解密**
 

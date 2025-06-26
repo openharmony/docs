@@ -1940,7 +1940,7 @@ Input_Result OH_Input_SetAxisEventAction(Input_AxisEvent* axisEvent, InputEvent_
 | 参数项 | 描述 |
 | -- | -- |
 | [Input_AxisEvent](capi-input-axisevent.md)* axisEvent | 轴事件对象，通过[OH_Input_CreateAxisEvent](#oh_input_createaxisevent)接口可以创建轴事件对象。<br>使用完需使用[OH_Input_DestroyAxisEvent](#oh_input_destroyaxisevent)接口销毁轴事件对象。 |
-| [InputEvent_AxisAction](capi-oh-axis-type-h.md#inputevent_axisaction) action | 轴事件动作，具体请参考[InputEvent_AxisAction](capi-oh-axis-type-h.md#inputevent_axis)。 |
+| [InputEvent_AxisAction](capi-oh-axis-type-h.md#inputevent_axisaction) action | 轴事件动作，具体请参考[InputEvent_AxisAction](capi-oh-axis-type-h.md#inputevent_axisaction)。 |
 
 **返回：**
 

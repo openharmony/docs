@@ -32,7 +32,7 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 
 创建一个设备管理器实例。
 
-> 从API version 11 开始废弃。建议使用[deviceManager.createDeviceManager](js-apis-distributedDeviceManager.md#devicemanagercreatedevicemanager)替代。
+> 从API version 11 开始废弃。建议使用[distributedDeviceManager.createDeviceManager](js-apis-distributedDeviceManager.md#distributeddevicemanagercreatedevicemanager)替代。
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
@@ -268,7 +268,7 @@ release(): void
 
 设备管理实例不再使用后，通过该方法释放DeviceManager实例。
 
-> 从API version 11 开始废弃。建议使用[deviceManager.releaseDeviceManager](js-apis-distributedDeviceManager.md#devicemanagerreleasedevicemanager)替代。
+> 从API version 11 开始废弃。建议使用[distributedDeviceManager.releaseDeviceManager](js-apis-distributedDeviceManager.md#distributeddevicemanagerreleasedevicemanager)替代。
 
 **需要权限**：ohos.permission.ACCESS_SERVICE_DM
 

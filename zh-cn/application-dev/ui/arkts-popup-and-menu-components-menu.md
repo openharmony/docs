@@ -129,4 +129,23 @@ Button('click for Menu')
     .bindContextMenu(this.MyMenu, ResponseType.RightClick)
   ```
 
+## 菜单弹出时振动效果
+
+菜单从API version 18开始支持振动效果。菜单弹出时，默认不振动。若希望菜单弹出时有振动效果，可以通过[ContextMenuOptions](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#contextmenuoptions10)的hapticFeedbackMode属性，设置菜单弹出时的振动模式。
+
+- 只有一级菜单可配置弹出时振动效果。
+- 仅当应用具备ohos.permission.VIBRATE权限，且用户启用了触感反馈时才会生效。开启触控反馈时，需要在工程的module.json5中配置[声明权限](../security/AccessToken/declare-permissions.md#声明权限)的requestPermissions字段开启振动权限，配置如下：
+
+  ```json
+  "requestPermissions": [
+    {
+      "name": "ohos.permission.VIBRATE",
+    }
+  ]
+  ```
+
+```ts
+  Button('click for Menu')
+    .bindContextMenu(this.MyMenu, ResponseType.RightClick, { hapticFeedbackMode: HapticFeedbackMode.ENABLED })
+```
 

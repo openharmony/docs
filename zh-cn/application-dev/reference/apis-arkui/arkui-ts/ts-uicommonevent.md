@@ -124,7 +124,7 @@ setOnBlur(callback: Callback\<void> | undefined): void
 
 setOnHover(callback: HoverCallback | undefined): void
 
-设置[onHover](./ts-universal-mouse-key.md#onhover)事件的回调。
+设置[onHover](./ts-universal-events-hover.md#onhover)事件的回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

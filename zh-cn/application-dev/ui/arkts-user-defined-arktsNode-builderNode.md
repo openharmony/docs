@@ -22,7 +22,7 @@ BuilderNode仅可作为叶子节点进行使用。如有更新需要，建议通
 > 
 > - BuilderNode只支持一个由[wrapBuilder](../ui/state-management/arkts-wrapBuilder.md)包装的[全局自定义构建函数](../ui/state-management/arkts-builder.md#全局自定义构建函数)@Builder。
 > 
-> - 一个新建的BuildNode在[build](../reference/apis-arkui/js-apis-arkui-builderNode.md#build)之后才能通过[getFrameNode](../reference/apis-arkui/js-apis-arkui-builderNode.md#getframenode)获取到一个指向根节点的FrameNode对象，否则返回null。
+> - 一个新建的BuilderNode在[build](../reference/apis-arkui/js-apis-arkui-builderNode.md#build)之后才能通过[getFrameNode](../reference/apis-arkui/js-apis-arkui-builderNode.md#getframenode)获取到一个指向根节点的FrameNode对象，否则返回null。
 > 
 > - 如果传入的Builder的根节点为语法节点（if/else/foreach/...），需要额外生成一个FrameNode，在节点树中的显示为“BuilderProxyNode”。
 > 
@@ -309,7 +309,7 @@ BuilderNode中提供了[postTouchEvent](../reference/apis-arkui/js-apis-arkui-bu
 
 通过postTouchEvent向BuilderNode对应的节点树中注入触摸事件。
 
-向BuilderNode中的Column组件转发另一个Column的接收事件，即点击下方的Column组件，上方的Colum组件也会收到同样的触摸事件。当Button中的事件被成功识别的时候，返回值为true。
+向BuilderNode中的Column组件转发另一个Column接收的事件，即点击下方的Column组件，上方的Column组件也会收到同样的触摸事件。当Button中的事件被成功识别的时候，返回值为true。
 
 ```ts
 import { NodeController, BuilderNode, FrameNode, UIContext } from '@kit.ArkUI';
@@ -997,6 +997,87 @@ struct Child {
     Text(this.PropB)
       .fontSize(50)
       .fontWeight(FontWeight.Bold)
+  }
+}
+```
+
+## 查询当前BuilderNode是否解除引用
+
+前端节点均绑定有相应的后端实体节点，当节点调用dispose接口解除绑定后，再次调用接口可能会出现crash、返回默认值的情况。
+
+从API version 20开始，使用[isDisposed](../reference/apis-arkui/js-apis-arkui-builderNode.md#isdisposed20)接口查询当前BuilderNode对象是否已解除与后端实体节点的引用关系，从而可以在操作节点前检查其有效性，避免潜在风险。
+
+```ts
+import { NodeController, FrameNode, BuilderNode } from '@kit.ArkUI';
+
+@Builder
+function buildText() {
+  Text("Test")
+    .fontSize(20)
+    .fontWeight(FontWeight.Bold)
+}
+
+class MyNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+  private builderNode: BuilderNode<[]> | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+    this.rootNode.commonAttribute.width(100).height(100).backgroundColor(Color.Pink);
+    this.builderNode = new BuilderNode<[]>(uiContext);
+    this.builderNode.build(wrapBuilder<[]>(buildText));
+
+    // 挂载BuilderNode
+    this.rootNode.appendChild(this.builderNode.getFrameNode());
+    return this.rootNode;
+  }
+
+  disposeBuilderNode() {
+    // 解除BuilderNode与后端实体节点的引用关系
+    this.builderNode?.dispose();
+  }
+
+  isDisposed() : string {
+    if (this.builderNode !== null) {
+      // 查询BuilderNode是否解除引用
+      if (this.builderNode.isDisposed()) {
+        return 'builderNode isDisposed is true';
+      }
+      else {
+        return 'builderNode isDisposed is false';
+      }
+    }
+    return 'builderNode is null';
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @State text: string = ''
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Column({ space: 4 }) {
+      NodeContainer(this.myNodeController)
+      Button('BuilderNode dispose')
+        .onClick(() => {
+          this.myNodeController.disposeBuilderNode();
+          this.text = '';
+        })
+        .width(200)
+        .height(50)
+      Button('BuilderNode isDisposed')
+        .onClick(() => {
+          this.text = this.myNodeController.isDisposed();
+        })
+        .width(200)
+        .height(50)
+      Text(this.text)
+        .fontSize(25)
+    }
+    .width('100%')
+    .height('100%')
   }
 }
 ```

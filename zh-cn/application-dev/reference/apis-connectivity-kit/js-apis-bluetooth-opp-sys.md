@@ -543,11 +543,11 @@ try {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
-| 名称              | 类型                                     | 可读   | 可写   | 说明                                       |
+| 名称              | 类型                                     | 只读   | 可选   | 说明                                       |
 | --------------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
-| filePath     | string                                   | 是    | 是    | 待传输文件的URI，例如：file://media/Photo/1/IMG_1739266559_000/test.jpg 。 |
-| fileSize       | number                                  | 是    | 是    | 待传输文件的大小，以字节为单位。          |
-| fileFd | number | 是    | 是    | 待传输文件的已打开的文件描述符（传输过程中需要保持打开直到传输完成）。                                    |
+| filePath     | string                                   | 否    | 否    | 待传输文件的URI，例如：file://media/Photo/1/IMG_1739266559_000/test.jpg 。 |
+| fileSize       | number                                  | 否    | 否    | 待传输文件的大小，以字节为单位。          |
+| fileFd | number | 否    | 否    | 待传输文件的已打开的文件描述符（传输过程中需要保持打开直到传输完成）。                                    |
 
 ## OppTransferInformation
 
@@ -557,18 +557,18 @@ try {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
-| 名称              | 类型                                     | 可读   | 可写   | 说明                                       |
+| 名称              | 类型                                     | 只读   | 可选   | 说明                                       |
 | --------------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
-| filePath     | string                                   | 是    | 是    | 待传输文件的URI，例如：file://media/Photo/1/IMG_1739266559_000/test.jpg 。 |
-| remoteDeviceName       | string                                  | 是    | 是    | 传输对端设备名。                |
-| remoteDeviceId | number | 是    | 是    | 传输对端MAC地址。                |
-| direction | [DirectionType](#directiontype) | 是    | 是    | 传输方向。                |
-| status | [TransferStatus](#transferstatus) | 是    | 是    | 传输状态。                |
-| result | [TransferResult](#transferresult) | 是    | 是    | 传输结果。                |
-| currentBytes | number | 是    | 是    | 当前传输的字节数。                |
-| totalBytes | number | 是    | 是    | 需要传输的总字节数。                |
-| currentCount | number | 是    | 是    | 本次传输当前文件序列。                |
-| totalCount | number | 是    | 是    | 本次传输总传输的文件个数。                |
+| filePath     | string                                   | 否    | 否    | 待传输文件的URI，例如：file://media/Photo/1/IMG_1739266559_000/test.jpg 。 |
+| remoteDeviceName       | string                                  | 否    | 否    | 传输对端设备名。                |
+| remoteDeviceId | string | 否    | 否    | 传输对端MAC地址。                |
+| direction | [DirectionType](#directiontype) | 否    | 否    | 传输方向。                |
+| status | [TransferStatus](#transferstatus) | 否    | 否    | 传输状态。                |
+| result | [TransferResult](#transferresult) | 否    | 否    | 传输结果。                |
+| currentBytes | number | 否    | 否    | 当前传输的字节数。                |
+| totalBytes | number | 否    | 否    | 需要传输的总字节数。                |
+| currentCount | number | 否    | 否    | 本次传输当前文件序列。                |
+| totalCount | number | 否    | 否    | 本次传输总传输的文件个数。                |
 
 ## DirectionType
 

@@ -65,7 +65,7 @@
 | [ImageEffect_ErrorCode OH_EffectBufferInfo_GetEffectFormat(OH_EffectBufferInfo *info, ImageEffect_Format *format)](#oh_effectbufferinfo_geteffectformat) | - | 获取图像的像素格式。 |
 | [ImageEffect_ErrorCode OH_EffectBufferInfo_Release(OH_EffectBufferInfo *info)](#oh_effectbufferinfo_release) | - | 销毁OH_EffectBufferInfo实例。 |
 | [typedef bool (\*OH_EffectFilterDelegate_SetValue)(OH_EffectFilter *filter, const char *key,const ImageEffect_Any *value)](#oh_effectfilterdelegate_setvalue) | OH_EffectFilterDelegate_SetValue | 自定义滤镜设置参数的回调函数，用于开发者校验参数及参数值。 |
-| [typedef void (\*OH_EffectFilterDelegate_PushData)(OH_EffectFilter *filter, OH_EffectBufferInfo *info)](#oh_effectfilterdelegate_pushdata) | OH_EffectFilterDelegate_PushData | 自定义滤镜传递图像信息到下一级滤镜的函数指针。需要在[OH_EffectFilterDelegate_Render](capi-imageeffect-filterdelegate.md#oh_effectfilterdelegate_render)的回调中主动调用该函数指针。 |
+| [typedef void (\*OH_EffectFilterDelegate_PushData)(OH_EffectFilter *filter, OH_EffectBufferInfo *info)](#oh_effectfilterdelegate_pushdata) | OH_EffectFilterDelegate_PushData | 自定义滤镜传递图像信息到下一级滤镜的函数指针。需要在[OH_EffectFilterDelegate_Render](capi-image-effect-filter-h.md#oh_effectfilterdelegate_render)的回调中主动调用该函数指针。 |
 | [typedef bool (\*OH_EffectFilterDelegate_Render)(OH_EffectFilter *filter, OH_EffectBufferInfo *info,OH_EffectFilterDelegate_PushData pushData)](#oh_effectfilterdelegate_render) | OH_EffectFilterDelegate_Render | 自定义滤镜渲染图像的回调函数。 |
 | [typedef bool (\*OH_EffectFilterDelegate_Save)(OH_EffectFilter *filter, char **info)](#oh_effectfilterdelegate_save) | OH_EffectFilterDelegate_Save | 自定义滤镜序列化的回调函数，按照JSON格式进行滤镜序列化处理。 |
 | [typedef OH_EffectFilter *(\*OH_EffectFilterDelegate_Restore)(const char *info)](#oh_effectfilterdelegate_restore) | OH_EffectFilterDelegate_Restore | 自定义滤镜反序列化的回调函数。 |
@@ -736,7 +736,7 @@ typedef void (*OH_EffectFilterDelegate_PushData)(OH_EffectFilter *filter, OH_Eff
 
 **描述**
 
-自定义滤镜传递图像信息到下一级滤镜的函数指针。需要在[OH_EffectFilterDelegate_Render](capi-imageeffect-filterdelegate.md#oh_effectfilterdelegate_render)的回调中主动调用该函数指针。
+自定义滤镜传递图像信息到下一级滤镜的函数指针。需要在[OH_EffectFilterDelegate_Render](capi-image-effect-filter-h.md#oh_effectfilterdelegate_render)的回调中主动调用该函数指针。
 
 **系统能力：** SystemCapability.Multimedia.ImageEffect.Core
 

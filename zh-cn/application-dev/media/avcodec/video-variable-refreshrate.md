@@ -23,7 +23,7 @@
    
    示例中的变量说明如下：
    
-   • videoDec：视频解码器实例的指针。创建方式参考[Surface模式下创建解码器实例对象](video-decoding.md#Surface模式)。
+   • videoDec：视频解码器实例的指针。创建方式参考[Surface模式下创建解码器实例对象](video-decoding.md#surface模式)。
 
     ```cpp
     OH_AVFormat *format = OH_AVFormat_Create();

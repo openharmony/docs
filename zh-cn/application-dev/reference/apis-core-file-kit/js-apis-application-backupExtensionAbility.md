@@ -255,7 +255,7 @@ class BackupExt extends BackupExtensionAbility {
   onRestoreEx(bundleVersion : BundleVersion, restoreInfo: string): string {
     try {
       if (restoreInfo == "") {
-        //当backupInfo为空时，应用根据业务自行做处理。
+        //当restoreInfo为空时，应用根据业务自行做处理。
         console.info("restoreInfo is empty");
       }
       console.log(`onRestoreEx ok ${JSON.stringify(bundleVersion)}`);

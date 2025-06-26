@@ -5,6 +5,8 @@ Popup属性可绑定在组件上显示气泡弹窗提示，设置弹窗内容、
 
 气泡可以通过配置[mask](../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md#popupoptions类型说明)来实现模态和非模态窗口，mask为true或者颜色值的时候，气泡为模态窗口，mask为false时，气泡为非模态窗口。
 
+多个气泡同时弹出时，子窗内显示的气泡比主窗内显示的气泡层级高，所处窗口相同时，后面弹出的气泡层级比先弹出的气泡层级高。
+
 ## 文本提示气泡
 
 文本提示气泡常用于展示带有文本的信息提示，适用于无交互的场景。Popup属性需绑定组件，当bindPopup属性的参数show为true时，会弹出气泡提示。
@@ -306,3 +308,93 @@ struct PopupExample {
 ![image](figures/avoidKeyboard.gif)
 
 
+## 设置气泡内的多态效果
+
+目前使用@Builder自定义气泡内容时，默认不支持多态样式，可以使用@Component新建一个组件实现按下气泡中的内容时背景变色。
+
+```ts
+@Entry
+@Component
+struct PopupPage {
+  private menus: Array<string> = ["扫一扫", "创建群聊", "电子工卡"]
+
+  // popup构造器定义弹框内容
+  @Builder
+  popupItemBuilder(name: string, action: string) {
+    PopupItemChild({ childName: name, childAction: action })
+  }
+
+  // popup构造器定义弹框内容
+  @Builder
+  popupBuilder() {
+    Column() {
+      ForEach(
+        this.menus,
+        (item: string, index) => {
+          this.popupItemBuilder(item, String(index))
+        },
+        (item: string, index) => {
+          return item
+        })
+    }
+    .padding(8)
+  }
+
+  @State customPopup: boolean = false;
+
+  build() {
+    Column() {
+      Button('click me')
+        .onClick(() => {
+          this.customPopup = !this.customPopup
+        })
+        .bindPopup(
+          this.customPopup,
+          {
+            builder: this.popupBuilder, // 气泡的内容
+            placement: Placement.Bottom, // 气泡的弹出位置
+            popupColor: Color.White, // 气泡的背景色
+            onStateChange: (event) => {
+              if (!event.isVisible) {
+                this.customPopup = false
+              }
+            }
+          })
+    }
+    .width('100%')
+    .justifyContent(FlexAlign.Center)
+  }
+}
+
+@Component
+struct PopupItemChild {
+  @Prop childName: string = '';
+  @Prop childAction: string = '';
+
+  build() {
+    Row({ space: 8 }) {
+      Image($r('app.media.startIcon'))
+        .width(24)
+        .height(24)
+      Text(this.childName)
+        .fontSize(16)
+    }
+    .width(130)
+    .height(50)
+    .padding(8)
+    .onClick(() => {
+      this.getUIContext().getPromptAction().showToast({ message: '选中了' + this.childName })
+    })
+    .stateStyles({
+      normal: {
+        .backgroundColor(Color.White)
+      },
+      pressed: {
+        .backgroundColor('#1fbb7d')
+      }
+    })
+  }
+}
+```
+
+![popupStateStyle](figures/popupStateStyle.gif)

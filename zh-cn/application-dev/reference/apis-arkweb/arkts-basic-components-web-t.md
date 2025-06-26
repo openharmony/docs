@@ -4,7 +4,7 @@
 >
 > - 本模块接口从API version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
-> - 示例效果请以真机运行为准，当前IDE预览器不支持。
+> - 示例效果请以真机运行为准，当前DevEco Studio预览器不支持。
 
 ## WebviewController<sup>9+</sup>
 
@@ -75,34 +75,6 @@ type OnRenderProcessRespondingCallback = () => void
 渲染进程由无响应状态变回正常运行状态时触发该回调。
 
 **系统能力：** SystemCapability.Web.Webview.Core
-
-## OnViewportFitChangedCallback<sup>12+</sup>
-
-type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
-
-网页meta中viewport-fit配置项更改时触发的回调。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-**参数：**
-
-| 参数名    | 类型   | 必填   | 说明                  |
-| ------ | ------ | ---- | --------------------- |
-| viewportFit | [ViewportFit](./arkts-basic-components-web-e.md#viewportfit12) | 是 | 网页meta中viewport-fit配置的视口类型。 |
-
-## OnNativeEmbedVisibilityChangeCallback<sup>12+</sup>
-
-type OnNativeEmbedVisibilityChangeCallback = (nativeEmbedVisibilityInfo: NativeEmbedVisibilityInfo) => void
-
-当同层标签可见性变化时触发该回调。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-**参数：**
-
-| 参数名    | 类型   | 必填   | 说明                  |
-| ------ | ------ | ---- | --------------------- |
-| nativeEmbedVisibilityInfo | [NativeEmbedVisibilityInfo](./arkts-basic-components-web-i.md#nativeembedvisibilityinfo12)  | 是 | 提供同层标签的可见性信息。 |
 
 ## OnFullScreenEnterCallback<sup>12+</sup>
 
@@ -256,25 +228,3 @@ type OnNativeEmbedVisibilityChangeCallback = (nativeEmbedVisibilityInfo: NativeE
 | 参数名    | 类型   | 必填   | 说明                  |
 | ------ | ------ | ---- | --------------------- |
 | nativeEmbedVisibilityInfo | [NativeEmbedVisibilityInfo](./arkts-basic-components-web-i.md#nativeembedvisibilityinfo12)  | 是 | 提供同层标签的可见性信息。 |
-
-## OnRenderProcessNotRespondingCallback<sup>12+</sup>
-
-type OnRenderProcessNotRespondingCallback = (data : RenderProcessNotRespondingData) => void
-
-渲染进程无响应时触发的回调。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-**参数：**
-
-| 参数名    | 类型   | 必填   | 说明                  |
-| ------ | ------ | ---- | --------------------- |
-| data | [RenderProcessNotRespondingData](./arkts-basic-components-web-i.md#renderprocessnotrespondingdata12) | 是 | 渲染进程无响应的详细信息。 |
-
-## OnRenderProcessRespondingCallback<sup>12+</sup>
-
-type OnRenderProcessRespondingCallback = () => void
-
-渲染进程由无响应状态变回正常运行状态时触发该回调。
-
-**系统能力：** SystemCapability.Web.Webview.Core

@@ -31,7 +31,6 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
 | --ipc pid/-a --start-stat/stop-stat/stat | 统计一段时间进程IPC信息，如果使用-a则统计所有进程IPC数据，--start-stat开始统计，--stat获取统计数据，--stop-stat结束统计。 |
 | --mem-smaps pid [-v] | 获取pid内存统计信息，数据来源于/proc/pid/smaps，使用-v指定更多详细信息。 (仅限制debug版本使用) |
 | --mem-jsheap pid [-T tid] [--gc] [--leakobj] | pid 必选参数。命令触发所有线程gc和快照导出。如果指定线程的tid，只触发该线程gc和快照导出；如果指定--gc，只触发gc不做快照导出；如果指定--leakobj，则获取泄露对象的列表。 |
-| --mem-cjheap pid [--gc] | pid 必选参数。命令触发所有线程gc和快照导出。如果指定--gc，只触发gc不做快照导出。 <br/>**说明**：从API version 20开始。支持该参数。 |
 
 ## 常用命令
 
@@ -64,7 +63,6 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
     --zip                       |compress output to /data/log/hidumper
     --mem-smaps pid [-v]        |display statistic in /proc/pid/smaps, use -v specify more details
     --mem-jsheap pid [-T tid] [--gc] [--leakobj]  |triggerGC, dumpHeapSnapshot and dumpLeakList under pid and tid
-    --mem-cjheap pid [--gc]     |triggerGC and dumpHeapSnapshot under pid
     --ipc pid ARG               |ipc load statistic; pid must be specified or set to -a dump all processes. ARG must be one of --start-stat | --stop-stat | --stat
     --cpuusage [pid]            |dump cpu usage by processes and category; if PID is specified, dump category usage of specified pid
     ```
@@ -571,6 +569,45 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
                 Dma:0 kB
     ```
 
+    获取设备中简易的内存信息，只获取进程内存使用信息。
+
+    ```shell
+    hidumper --mem --prune
+    ```
+
+    **使用样例：**
+
+    ```text
+    $ hidumper --mem --prune
+
+    -------------------------------[memory]-------------------------------
+    Total Memory Usage by PID:
+    PID        Total Pss(xxx in SwapPss)           GL     AdjLabel     Name
+    1              1546(0 in SwapPss) kB         0 kB        -1000     init
+    170             691(0 in SwapPss) kB         0 kB         -900     ueventd
+    ...
+    ```
+
+    采集进程内存变化信息。
+
+    ```shell
+    hidumper --mem pid -t timeInterval
+    ```
+    timeInterval为间隔时长，单位为s。
+
+    **使用样例：**
+
+    ```text
+    $ hidumper --mem 1 -t 1
+
+    -------------------------------[memory]-------------------------------
+    StartTime           EndTime              Count                MaxMem              Change
+    2017-09-19 01:14:43 2017-09-19 01:14:58  15                   1517kB               0kB
+    ********************      times1: PSS=1517kB
+    ********************      times2: PSS=1517kB
+    ...
+    ```
+
     **Graph字段统计方式为：计算/proc/process_dmabuf_info节点下该进程使用的内存大小。**
    
 16. 保存命令输出到/data/log/hidumper下的压缩文件。
@@ -685,7 +722,6 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
     --zip                       |compress output to /data/log/hidumper
     --mem-smaps pid [-v]        |display statistic in /proc/pid/smaps, use -v specify more details
     --mem-jsheap pid [-T tid] [--gc] [--leakobj]  |triggerGC, dumpHeapSnapshot and dumpLeakList under pid and tid
-    --mem-cjheap pid [--gc]     |triggerGC and dumpHeapSnapshot under pid
     --ipc pid ARG               |ipc load statistic; pid must be specified or set to -a dump all processes. ARG must be one of --start-stat | --stop-stat | --stat
     --cpuusage [pid]            |dump cpu usage by processes and category; if PID is specified, dump category usage of specified pid
     
@@ -709,7 +745,6 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
     --zip                       |compress output to /data/log/hidumper
     --mem-smaps pid [-v]        |display statistic in /proc/pid/smaps, use -v specify more details
     --mem-jsheap pid [-T tid] [--gc] [--leakobj]  |triggerGC, dumpHeapSnapshot and dumpLeakList under pid and tid
-    --mem-cjheap pid [--gc]     |triggerGC and dumpHeapSnapshot under pid
     --ipc pid ARG               |ipc load statistic; pid must be specified or set to -a dump all processes. ARG must be one of --start-stat | --stop-stat | --stat
     --cpuusage [pid]            |dump cpu usage by processes and category; if PID is specified, dump category usage of specified pid
     ```
@@ -742,33 +777,6 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
     $ ls |grep hidumper
     hidumper-jsheap-64949-64949-1730873174145
     hidumper-leaklist-64949-1730873210483
-    ```
-
-20. 导出指定进程快照信息。
-
-    ```shell
-    hidumper --mem-cjheap pid [--gc]
-    ```
-
-    > **注意：**
-    >
-    > 该命令在release版本只支持导出debug应用的快照信息。
-    >
-    > pid 必选参数。命令触发所有线程gc和快照导出。如果指定--gc，只触发gc不做快照导出。(仅限debug版本使用)
-    >
-    > 如何区分debug和release版本：请查看`hidumper -p`中说明。
-    >
-    > 导出的jsheap文件一般位于/data/log/faultlog/temp或/data/log/reliability/resource_leak/memory_leak下。
-
-    **使用样例：**
-
-    ```shell
-    $ hidumper --mem-cjheap 64949
-    $ ls |grep hidumper
-    hidumper-jsheap-64949-64949-1730872962493
-    $ hidumper --mem-cjheap 64949 --gc
-    $ ls |grep hidumper
-    hidumper-jsheap-64949-64949-1730873174145
     ```
     
 ## 常用ArkUI基础信息显示能力

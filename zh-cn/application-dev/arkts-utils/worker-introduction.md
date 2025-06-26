@@ -19,7 +19,7 @@ Worker的主要作用是为应用程序提供一个多线程的运行环境，�
 - Worker创建后需要手动管理生命周期。同时运行的Worker子线程数量最多为64个，并且与[napi_create_ark_runtime](../reference/native-lib/napi.md#napi_create_ark_runtime)创建的runtime总数不超过80。详情请参见[生命周期注意事项](#生命周期注意事项)。
 - 不同线程中上下文对象是不同的，因此Worker线程只能使用线程安全的库，例如UI相关的非线程安全库不能在Worker子线程中使用。
 - 单次序列化传输的数据量大小限制为16MB。
-- 使用Worker模块时，API version 18及之后的版本建议在宿主线程中注册onAllErrors回调，以捕获Worker线程生命周期内的各种异常。API version 18之前的版本应注册onerror回调。如果未注册onAllErrors或onerror接口，当Worker线程出现异常时会发生jscrash问题。需要注意的是，onerror接口仅能捕获onmessage回调中的同步异常，捕获异常后，Worker线程将进入销毁流程，无法继续使用。详情请参见[onAllErrors接口与onerror接口之间的行为差异](#onallerrors接口与onerror接口之间的行为差异)。
+- 使用Worker模块时，API version 18及之后的版本建议在宿主线程中注册onAllErrors回调，以捕获Worker线程生命周期内的各种异常。API version 18之前的版本应注册onerror回调。如果未注册onAllErrors或onerror回调，当Worker线程出现异常时会发生jscrash问题。需要注意的是，onerror接口仅能捕获onmessage回调中的同步异常，捕获异常后，Worker线程将进入销毁流程，无法继续使用。详情请参见[onAllErrors接口与onerror接口之间的行为差异](#onallerrors接口与onerror接口之间的行为差异)。
 - 不支持跨HAP使用Worker线程文件。
 - 引用HAR/HSP中的worker前，需要先配置对HAR/HSP的依赖，详见[引用共享包](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-har-import)。
 - 不支持在Worker工作线程中使用[AppStorage](../ui/state-management/arkts-appstorage.md)。
@@ -227,12 +227,12 @@ const workerFA3: worker.ThreadWorker = new worker.ThreadWorker('ThreadFile/worke
 
                 // 注册onAllErrors回调，可以捕获Worker线程的onmessage回调、timer回调以及文件执行等流程产生的全局异常，在宿主线程执行
                 workerInstance.onAllErrors = (err: ErrorEvent) => {
-                  console.info('workerInstance onAllErrors message is: ' + err.message);
+                  console.error('workerInstance onAllErrors message is: ' + err.message);
                 }
 
                 // 注册onmessageerror回调，当Worker对象接收到无法序列化的消息时被调用，在宿主线程执行
                 workerInstance.onmessageerror = () => {
-                  console.info('workerInstance onmessageerror');
+                  console.error('workerInstance onmessageerror');
                 }
 
                 // 注册onexit回调，当Worker销毁时被调用，在宿主线程执行
@@ -271,12 +271,12 @@ const workerFA3: worker.ThreadWorker = new worker.ThreadWorker('ThreadFile/worke
 
       // 注册onmessageerror回调，当Worker对象接收到一条无法被序列化的消息时被调用，在Worker线程执行
       workerPort.onmessageerror = () => {
-        console.info('workerPort onmessageerror');
+        console.error('workerPort onmessageerror');
       }
 
       // 注册onerror回调，当Worker在执行过程中发生异常被调用，在Worker线程执行
       workerPort.onerror = (err: ErrorEvent) => {
-        console.info('workerPort onerror err is: ', err.message);
+        console.error('workerPort onerror err is: ', err.message);
       }
       ```
       <!-- @[register_callback_function](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/entry/src/main/ets/workers/worker.ets) -->
@@ -376,7 +376,7 @@ parentworker.onexit = () => {
 }
 
 parentworker.onAllErrors = (err: ErrorEvent) => {
-  console.info('主线程接收到父worker报错 ' + err);
+  console.error('主线程接收到父worker报错 ' + err);
 }
 
 parentworker.postMessage('主线程发送消息给父worker-推荐示例');
@@ -408,7 +408,7 @@ workerPort.onmessage = (e : MessageEvents) => {
     }
 
     childworker.onAllErrors = (err: ErrorEvent) => {
-      console.info('子Worker发生报错 ' + err);
+      console.error('子Worker发生报错 ' + err);
     }
 
     childworker.postMessage('父Worker向子Worker发送信息-推荐示例');
@@ -454,7 +454,7 @@ parentworker.onexit = () => {
 }
 
 parentworker.onAllErrors = (err: ErrorEvent) => {
-  console.info('主线程接收到父Worker报错 ' + err);
+  console.error('主线程接收到父Worker报错 ' + err);
 }
 
 parentworker.postMessage('主线程发送消息给父Worker');
@@ -482,7 +482,7 @@ workerPort.onmessage = (e : MessageEvents) => {
   }
 
   childworker.onAllErrors = (err: ErrorEvent) => {
-    console.info('子Worker发生报错 ' + err);
+    console.error('子Worker发生报错 ' + err);
   }
 
   childworker.postMessage('父Worker向子Worker发送信息');
@@ -528,7 +528,7 @@ parentworker.onexit = () => {
 }
 
 parentworker.onAllErrors = (err: ErrorEvent) => {
-  console.info('主线程接收到父Worker报错 ' + err);
+  console.error('主线程接收到父Worker报错 ' + err);
 }
 
 parentworker.postMessage('主线程发送消息给父Worker');
@@ -562,7 +562,7 @@ workerPort.onmessage = (e : MessageEvents) => {
   }
 
   childworker.onAllErrors = (err: ErrorEvent) => {
-    console.info('子Worker发生报错 ' + err);
+    console.error('子Worker发生报错 ' + err);
   }
 
   childworker.postMessage('父Worker向子Worker发送信息');

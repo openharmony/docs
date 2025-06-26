@@ -23,8 +23,8 @@
     ```
     Star({ value: this.value, $value: (val: number) => { this.value = val }})
     ```
-2. 点击改变Index中的Button，改变value，父组件Index和子组件Star中Text更新。
-3. 点击改变子组件Star中的Button，调用`this.$value(10)`，父组件Index和子组件Star中Text更新。
+2. 点击Index中的Button以改变value值，父组件Index和子组件Star中的Text将同步更新。
+3. 点击子组件Star中的Button，调用`this.$value(10)`方法，父组件Index和子组件Star中的Text将同步更新。
 
 ```ts
 @Entry
@@ -71,11 +71,11 @@ struct Star {
 
 !!运算符为系统组件提供TS变量的引用，使得TS变量和系统组件的内部状态保持同步。添加方式是在变量名后添加，例如isShow!!。
 
-内部状态的含义由组件决定。例如：[bindMenu](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md)组件的isShow参数。
+内部状态的含义由组件决定。例如：[bindMenu](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindmenu11)组件的isShow参数。
 
 #### 使用规则
 
-- 当前!!支持以下接口参数基础类型变量的双向绑定，也就是参数同步当前弹出菜单或气泡状态。!!双向绑定支持基础类型变量，当该变量使用状态管理V2[\@Local](arkts-new-local.md)或状态管理V1[\@State](arkts-state.md)装饰时，变量值的变化会触发UI刷新。
+- 当前!!支持以下接口参数基础类型变量的双向绑定，即参数同步当前弹出菜单或气泡状态。!!双向绑定支持基础类型变量，当该变量使用状态管理V2[\@Local](arkts-new-local.md)或状态管理V1[\@State](arkts-state.md)装饰时，变量值的变化会触发UI刷新。
 
   | 属性                                                         | 支持的参数 | 起始API版本 |
   | ------------------------------------------------------------ | --------------- | ----------- |
@@ -85,8 +85,8 @@ struct Star {
   | [TextInput](../../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md#textinputoptions对象说明) | text | 18   |
   | [TextArea](../../reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md#textareaoptions对象说明) | text | 18   |
   | [Search](../../reference/apis-arkui/arkui-ts/ts-basic-components-search.md#searchoptions18对象说明) | value | 18   |
-  | [BindSheet](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md) | isShow | 18   |
-  | [BindContentCover](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md) | isShow | 18   |
+  | [BindSheet](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet) | isShow | 18   |
+  | [BindContentCover](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md#bindcontentcover) | isShow | 18   |
   | [SideBarContainer](../../reference/apis-arkui/arkui-ts/ts-container-sidebarcontainer.md#sidebarwidth) | sideBarWidth | 18   |
   | [Navigation](../../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navbarwidth9) | navBarWidth | 18   |
   | [Toggle](../../reference/apis-arkui/arkui-ts/ts-basic-components-toggle.md#toggleoptions18对象说明) | isOn | 18   |

@@ -88,7 +88,7 @@ int32_t (*OH_AudioRenderer_OnStreamEvent)(OH_AudioRenderer* renderer, void* user
 | -- | -- |
 | [OH_AudioRenderer](capi-oh-audiorendererstruct.md)* renderer | 指向[OH_AudioStreamBuilder_GenerateRenderer](capi-native-audiostreambuilder-h.md#oh_audiostreambuilder_generaterenderer)创建的音频流实例。 |
 | void* userData | 指向应用自定义的数据存储区域。 |
-| [OH_AudioStream_Event](capi-native-audiostream-base-h#oh_audiostream_event) event | 音频事件。 |
+| [OH_AudioStream_Event](capi-native-audiostream-base-h.md#oh_audiostream_event) event | 音频事件。 |
 
 ### OH_AudioRenderer_OnInterruptEvent()
 

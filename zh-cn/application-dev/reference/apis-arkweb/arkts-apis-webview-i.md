@@ -4,7 +4,7 @@
 >
 > - 本模块接口从API version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
-> - 示例效果请以真机运行为准，当前IDE预览器不支持。
+> - 示例效果请以真机运行为准，当前DevEco Studio预览器不支持。
 
 ## WebStorageOrigin
 
@@ -28,18 +28,6 @@ Web组件返回的请求/响应头对象。
 | ----------- | ------ | -----|------|------------------- |
 | headerKey   | string | 否 | 否 | 请求/响应头的key。   |
 | headerValue | string | 否 | 否 | 请求/响应头的value。 |
-
-
-## BackForwardList
-
-当前Webview的历史信息列表。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-| 名称         | 类型   | 只读 | 可选 | 说明                                                         |
-| ------------ | ------ | ---- | ---- | ------------------------------------------------------------ |
-| currentIndex | number | 否   | 否   | 当前在页面历史列表中的索引。                                 |
-| size         | number | 否   | 否   | 历史列表中索引的数量，最多保存50条，超过时起始记录会被覆盖。 |
 
 ## WebCustomScheme
 
@@ -95,12 +83,6 @@ Web组件预编译JavaScript生成字节码缓存的配置对象，用于控制�
 ## SnapshotResult<sup>12+</sup>
 
 全量绘制回调结果。
-
-> **说明：**
->
-> 仅支持对渲染进程上的资源进行截图：静态图片和文本。
-> 
-> 不支持动态视频，如果页面有视频则截图时会显示该视频的占位图片。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -166,17 +148,6 @@ createPdf函数输入参数。
 | ---- | ---- | ---- | ---- |---- |
 | type | [WebHitTestType](./arkts-apis-webview-e.md#webhittesttype) | 否 | 否 | 当前被点击区域的元素类型。|
 | extra | string        | 否 | 否 |点击区域的附加参数信息。若被点击区域为图片或链接，则附加参数信息为其url地址。 |
-
-## ControllerAttachState<sup>20+</sup>
-
-WebViewController与Web组件的绑定状态。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-| 名称 | 值 | 说明 |
-| ------------------------------- | - | ---------- |
-| UNATTACHED | 0 | 未绑定状态。 |
-| ATTACHED   | 1 | 已绑定状态。 |
 
 ## HistoryItem
 

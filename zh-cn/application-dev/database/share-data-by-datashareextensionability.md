@@ -1,4 +1,4 @@
-# 通过DataShareExtensionAbility实现数据共享
+# 通过DataShareExtensionAbility实现数据共享 (ArkTS)
 
 
 ## 场景介绍

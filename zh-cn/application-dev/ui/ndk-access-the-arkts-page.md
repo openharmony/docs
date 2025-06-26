@@ -70,6 +70,9 @@
 
 NDK提供的UI组件能力如组件创建、树操作、属性设置、事件注册等是通过函数指针结构体（如[ArkUI_NativeNodeAPI_1](../reference/apis-arkui/_ark_u_i___native_node_a_p_i__1.md)）进行暴露，该函数指针结构体可以通过[模块查询接口](../reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_getmoduleinterface)获取。
 
+> **说明：**
+> - [模块查询接口](../reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_getmoduleinterface)带有初始化NDK的逻辑，建议先调用该接口进行全局初始化，再使用NDK进行UI构造。
+
 ```
 ArkUI_NativeNodeAPI_1* arkUINativeNodeApi = nullptr;
 OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, arkUINativeNodeApi);

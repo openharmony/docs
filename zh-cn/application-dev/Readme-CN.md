@@ -73,7 +73,7 @@
   - [Native API的相关指导](napi/Readme-CN.md)
   - [性能](performance/Readme-CN.md)
 - 工具
-  - [DevEco Studio（OpenHarmony）使用指南](quick-start/deveco-studio-user-guide-for-openharmony.md)
+  - [DevEco Studio（OpenHarmony）使用指南](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-tools-overview)
   - [调试工具](tools/Readme-CN.md)
 - 示例教程
   - [示例代码](https://gitee.com/openharmony/applications_app_samples/blob/master/README_zh.md)

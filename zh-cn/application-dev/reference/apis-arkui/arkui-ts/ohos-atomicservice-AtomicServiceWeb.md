@@ -284,7 +284,7 @@ accessStep(step: number): boolean
 
 | 类型      | 说明        |
 |---------|-----------|
-| boolean | 页面是否可前进或者后退给定的step步 |
+| boolean | 页面是否可前进或者后退给定的step步。返回true表示可以前进或者后退，返回false表示不可以前进或后退。 |
 
 **错误码：**
 
@@ -331,10 +331,10 @@ Web组件返回的请求/响应头对象。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称          | 类型     | 可读 | 可写 | 说明            |
+| 名称          | 类型     | 只读 | 可选 | 说明            |
 |-------------|--------|----|----|---------------|
-| headerKey   | string | 是  | 是  | 请求/响应头的key。   |
-| headerValue | string | 是  | 是  | 请求/响应头的value。 |
+| headerKey   | string | 否  | 否  | 请求/响应头的key。   |
+| headerValue | string | 否  | 否  | 请求/响应头的value。 |
 
 ## OnMessageEvent
 

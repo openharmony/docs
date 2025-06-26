@@ -71,7 +71,7 @@
    // 在段落生成器中设置文本样式
    paragraphBuilder.pushStyle(myTextStyle);
    // 在段落生成器中设置文本内容
-   paragraphBuilder.addText("测试自定义字体");
+   paragraphBuilder.addText("Custom font test");
    // 通过段落生成器生成段落
    let paragraph = paragraphBuilder.build();
    ```
@@ -87,6 +87,8 @@
 import { NodeController, FrameNode, RenderNode, DrawContext } from '@kit.ArkUI'
 import { UIContext } from '@kit.ArkUI'
 import { text } from '@kit.ArkGraphics2D'
+
+// 创建一个自定义的渲染节点类，用于绘制文本
 class MyRenderNode extends RenderNode {
   async draw(context: DrawContext) {
     // 创建画布canvas对象
@@ -94,13 +96,13 @@ class MyRenderNode extends RenderNode {
     // 获取全局字体集实例
     let fontCollection = text.FontCollection.getGlobalInstance() //获取Arkui全局FC
     // 注册自定义字体
-    fontCollection.loadFontSync('myFamilyName', 'file:///system/fonts/myFontFile .ttf')
+    fontCollection.loadFontSync('myFamilyName', 'file:///system/fonts/NotoSansMalayalamUI-SemiBold.ttf')
     // 使用自定义字体
     let myFontFamily: Array<string> = ["myFamilyName"] // 如果已经注册自定义字体，填入自定义字体的字体家族名
     // 设置文本样式
     let myTextStyle: text.TextStyle = {
       color: { alpha: 255, red: 255, green: 0, blue: 0 },
-      fontSize: 100,
+      fontSize: 30,
       // 在文本样式中加入可使用的自定义字体
       fontFamilies: myFontFamily
     };
@@ -111,31 +113,25 @@ class MyRenderNode extends RenderNode {
       wordBreak:text.WordBreak.NORMAL
     };
     // 创建一个段落生成器
-    let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection)
+    let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection)
     // 在段落生成器中设置文本样式
-    paragraphBuilder.pushStyle(myTextStyle);
+    ParagraphGraphBuilder.pushStyle(myTextStyle);
     // 在段落生成器中设置文本内容
-    paragraphBuilder.addText("Custom font test");
+    ParagraphGraphBuilder.addText("Custom font test");
     // 通过段落生成器生成段落
-    let paragraph = paragraphBuilder.build();
-    // 布局
+    let paragraph = ParagraphGraphBuilder.build();
+    // 设置段落宽度为1000px
     paragraph.layoutSync(1000);
-    paragraph.paint(canvas, 0, 800);
+    paragraph.paint(canvas, 0, 400);
   }
 }
-// 创建一个MyRenderNode对象
-function getNewRenderNode() {
-  const textNodeTest = new MyRenderNode();
-  textNodeTest.frame = { x: 0, y: 0, width: 500, height: 500 }
-  textNodeTest.pivot = { x: 0.5, y: 0.5 }
-  textNodeTest.scale = { x: 1, y: 1 }
-  return textNodeTest;
-}
-const textNode = new MyRenderNode();
-// 定义newNode的像素格式
-textNode.frame = { x: 0, y: 0, width: 500, height: 500 }
-textNode.pivot = { x: 0.5, y: 0.5 }
-textNode.scale = { x: 1, y: 1 }
+
+// 创建并初始化渲染节点实例
+const newNode = new MyRenderNode();
+// 设置渲染节点的位置和尺寸
+newNode.frame = { x: 0, y: 0, width: 400, height: 600 };
+
+
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
   makeNode(uiContext: UIContext): FrameNode {
@@ -189,17 +185,17 @@ struct RenderTest {
           .margin({ bottom: 24, right: 12 })
           .onClick(() => {
             this.myNodeController.clearNodes()
-            this.myNodeController.addNode(getNewRenderNode())
+            this.myNodeController.addNode(newNode)
           })
           .width('50%')
           .height(40)
           .shadow(ShadowStyle.OUTER_DEFAULT_LG)
       }
       .width('100%')
-      .justifyContent(FlexAlign.Center)
-      .shadow(ShadowStyle.OUTER_DEFAULT_SM)
-      .alignItems(VerticalAlign.Bottom)
-      .layoutWeight(1)
+      .justifyContent(FlexAlign.Center) // 设置当前Row容器内子元素在主轴上居中对齐
+      .shadow(ShadowStyle.OUTER_DEFAULT_SM) // 设置Row容器外阴影效果
+      .alignItems(VerticalAlign.Bottom) // 设置当前Row容器内子元素在交叉轴（垂直方向）上的对齐方式为底部对齐
+      .layoutWeight(1) // 设置当前Row在父容器Column中的布局权重为1
     }
   }
 }
@@ -207,4 +203,4 @@ struct RenderTest {
 
 ## 效果展示
 
-![zh-cn_image_0000002211603692](figures/zh-cn_image_0000002211603692.png)
+![zh-cn_image_0000002211603692](figures/customFont.PNG)

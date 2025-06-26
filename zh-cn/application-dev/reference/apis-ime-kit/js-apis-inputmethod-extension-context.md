@@ -137,7 +137,7 @@ startAbility(want: Want): Promise&lt;void&gt;;
 | 16000011 | The context does not exist.                             |
 | 16000012 | The application is controlled.                          |
 | 16000013 | The application is controlled by EDM.                   |
-| 16000019 | Can not match any component.                            |
+| 16000019 | No matching ability is found.                            |
 | 16000050 | Internal error.                                         |
 | 16000053 | The ability is not on the top of the UI.                |
 | 16000055 | Installation-free timed out.                            |

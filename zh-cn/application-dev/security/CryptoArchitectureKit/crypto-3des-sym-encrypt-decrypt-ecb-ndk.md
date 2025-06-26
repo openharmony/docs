@@ -1,4 +1,4 @@
-# 使用3DES对称密钥（ECB模式）加解密(C/C++)
+# 使用3DES对称密钥加解密(C/C++)
 
 对应的算法规格请查看[对称密钥加解密算法规格：3DES](crypto-sym-encrypt-decrypt-spec.md#3des)。
 

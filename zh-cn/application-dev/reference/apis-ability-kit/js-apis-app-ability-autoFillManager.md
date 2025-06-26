@@ -1,4 +1,4 @@
-# @ohos.app.ability.autoFillManager (autoFillManager)
+# @ohos.app.ability.autoFillManager (自动填充框架)
 
 autoFillManager模块提供账号密码保存等功能。
 
@@ -55,10 +55,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let uiContext = AppStorage.get<UIContext>("uiContext");
 let callback: autoFillManager.AutoSaveCallback = {
   onSuccess: () => {
-    console.log("save request on success");
+    console.info(`save request on success.`);
   },
   onFailure: () => {
-    console.log("save request on failure");
+    console.error(`save request on failure.`);
   }
 };
 
@@ -171,15 +171,15 @@ struct Index {
       Button('requestAutoSave')
         .onClick(() => {
           let uiContext = AppStorage.get<UIContext>("uiContext");
-          console.log("uiContext: ", JSON.stringify(uiContext));
+          console.info("uiContext: ", JSON.stringify(uiContext));
           try {
             // 发起保存请求
             autoFillManager.requestAutoSave(uiContext, {
               onSuccess: () => {
-                console.log("save request on success");
+                console.info(`save request on success.`);
               },
               onFailure: () => {
-                console.log("save request on failure");
+                console.error(`save request on failure.`);
               }
             });
           } catch (error) {

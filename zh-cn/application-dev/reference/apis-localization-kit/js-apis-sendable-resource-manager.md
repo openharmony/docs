@@ -58,7 +58,7 @@ try {
 
 ## sendableResourceManager.sendableResourceToResource
 
-sendableResourceToResource(sendableResource: SendableResource): Resource
+sendableResourceToResource(resource: SendableResource): Resource
 
 将SendableResource对象转换为Resource对象。
 
@@ -68,7 +68,7 @@ sendableResourceToResource(sendableResource: SendableResource): Resource
 
 | 参数名      | 类型                                       | 必填   | 说明                            |
 | -------- | ---------------------------------------- | ---- | ----------------------------- |
-| sendableResource | [SendableResource](#sendableresource) | 是    | SendableResource对象。 |
+| resource | [SendableResource](#sendableresource) | 是    | SendableResource对象。 |
 
 **返回值：**
 

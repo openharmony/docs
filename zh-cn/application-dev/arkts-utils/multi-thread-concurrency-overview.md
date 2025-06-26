@@ -84,6 +84,7 @@ class BufferQueue {
     if (this.mutex.lock()) {
       if (this.queue.empty()) {
         res = 1;
+        return res;
       }
       let num: number = this.queue.pop(value);
       this.mutex.unlock();

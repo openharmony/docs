@@ -380,7 +380,7 @@ onStartLayoutWrite(jobId: string, oldAttrs: PrintAttributes, newAttrs: PrintAttr
 | oldAttrs | [PrintAttributes](#printattributes11) | 是 | 表示旧打印参数。 |
 | newAttrs | [PrintAttributes](#printattributes11) | 是 | 表示新打印参数。 |
 | fd | number | 是 | 表示打印文件传给接口调用方的pdf文件的文件描述符。 |
-| writeResultCallback | (jobId: string, writeResult: [PrintFileCreationState](#printfilecreationstate11)) | 是 | 表示三方应用使用新的打印参数更新待打印文件完成后的回调。 |
+| writeResultCallback | (jobId: string, writeResult: [PrintFileCreationState](#printfilecreationstate11)) => void | 是 | 表示三方应用使用新的打印参数更新待打印文件完成后的回调。 |
 
 **错误码：**
 

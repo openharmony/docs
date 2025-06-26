@@ -36,6 +36,24 @@ Permission verification failed. A non-system application calls a system API.
 
 请检查是否调用了系统API，并且去掉。
 
+## 203 企业管理策略禁止使用此系统功能
+
+**错误信息**
+
+This function is prohibited by enterprise management policies.
+
+**错误描述**
+
+企业管理策略禁止使用此系统功能。
+
+**可能原因**
+
+试图操作已被设备管理应用禁用的系统功能。
+
+**处理步骤**
+
+请使用[getDisallowedPolicy](./apis-mdm-kit/js-apis-enterprise-restrictions.md#restrictionsgetdisallowedpolicy)接口检查该系统功能是否被禁用，并使用[setDisallowedPolicy](./apis-mdm-kit/js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)接口解除禁用状态。
+
 ## 401 参数检查失败
 
 **错误信息**

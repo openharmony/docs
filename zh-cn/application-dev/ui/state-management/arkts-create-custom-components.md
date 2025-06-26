@@ -118,13 +118,13 @@ build()函数用于定义自定义组件的声明式UI描述，自定义组件�
 
 ### \@Entry
 
-\@Entry装饰的自定义组件将作为UI页面的入口。在单个UI页面中，最多可以使用\@Entry装饰一个自定义组件。\@Entry可以接受一个可选的[LocalStorage](arkts-localstorage.md)的参数。
+\@Entry装饰的自定义组件将作为UI页面的入口。在单个UI页面中，仅允许存在一个由@Entry装饰的自定义组件作为页面的入口。\@Entry可以接受一个可选的[LocalStorage](arkts-localstorage.md)的参数。
 
   > **说明：**
   >
   > 从API version 9开始，该装饰器支持在ArkTS卡片中使用。
   >
-  > 从API version 10开始，\@Entry可以接受一个可选的[LocalStorage](arkts-localstorage.md)的参数或者一个可选的[EntryOptions](#entryoptions10)参数。
+  > 从API version 10开始，\@Entry可以接受一个可选的[LocalStorage](arkts-localstorage.md)的参数或者一个可选的EntryOptions<sup>10+</sup>参数。
   >
   > 从API version 11开始，该装饰器支持在原子化服务中使用。
 

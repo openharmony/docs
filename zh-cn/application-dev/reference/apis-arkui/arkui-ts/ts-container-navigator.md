@@ -73,7 +73,7 @@ params(value: object)
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | object | 是   | 跳转时要同时传递到目标页面的数据，可在目标页面使用[router.getParams()](../js-apis-router.md#routergetparams)获得。 |
+| value  | object | 是   | 跳转时要同时传递到目标页面的数据，可在目标页面使用[router.getParams()](../js-apis-router.md#routergetparamsdeprecated)获得。 |
 
 ### target
 

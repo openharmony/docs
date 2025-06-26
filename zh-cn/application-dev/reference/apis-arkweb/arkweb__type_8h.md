@@ -65,5 +65,5 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [ArkWeb_WebMessageType](_web.md#arkweb_webmessagetype) { [ARKWEB_NONE](_web.md) = 0, [ARKWEB_STRING](_web.md), [ARKWEB_BUFFER](_web.md) } | Post Message数据类型。  | 
-| [ArkWeb_JavaScriptValueType](_web.md#arkweb_javascriptvaluetype) { [ARKWEB_JAVASCRIPT_NONE](_web.md) = 0, [ARKWEB_JAVASCRIPT_STRING](_web.md), [ARKWEB_JAVASCRIPT_BOOL](_web.md) } | JavaScript数据类型。  | 
+| [ArkWeb_WebMessageType](_web.md#arkweb_webmessagetype) { ARKWEB_NONE = 0, ARKWEB_STRING, ARKWEB_BUFFER } | Post Message数据类型。  | 
+| [ArkWeb_JavaScriptValueType](_web.md#arkweb_javascriptvaluetype) { ARKWEB_JAVASCRIPT_NONE = 0, ARKWEB_JAVASCRIPT_STRING, ARKWEB_JAVASCRIPT_BOOL } | JavaScript数据类型。  | 

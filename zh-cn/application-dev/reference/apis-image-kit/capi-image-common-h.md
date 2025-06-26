@@ -4,6 +4,8 @@
 
 声明图像接口使用的公共枚举和结构体。
 
+**引用文件：** <multimedia/image_framework/image/image_common.h>
+
 **库：** libimage_common.so
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
@@ -20,8 +22,8 @@
 | -- | -- | -- |
 | [Image_Size](capi-image-size.md) | Image_Size | 图像大小结构体。 |
 | [Image_Region](capi-image-region.md) | Image_Region | 声明要解码的图像源区域结构体类型名称。 |
+| [Image_String](capi-image-string.md) | Image_String/Image_MimeType | 字符串结构。<br>Image_String：声明字符串结构的名称。<br>Image_MimeType：声明一个图片格式类型的名称。 |
 | [OH_PictureMetadata](capi-oh-picturemetadata.md) | OH_PictureMetadata | 声明用于Picture的元数据。 |
-| [Image_String](capi-image-string.md) | Image_String / Image_MimeType | 字符串结构。<br>Image_String：声明字符串结构的名称。<br>Image_MimeType：声明一个图片格式类型的名称。 |
 
 ### 枚举
 
@@ -29,6 +31,7 @@
 | -- | -- | -- |
 | [Image_ErrorCode](#image_errorcode) | Image_ErrorCode | 错误码。 |
 | [Image_MetadataType](#image_metadatatype) | Image_MetadataType | 定义元数据类型。 |
+| [IMAGE_ALLOCATOR_MODE](#image_allocator_mode) | IMAGE_ALLOCATOR_MODE | pixelmap内存分配类型。 |
 
 ### 函数
 
@@ -230,6 +233,7 @@ enum Image_ErrorCode
 | IMAGE_ALLOC_FAILED = 7600301 | 申请内存失败。 |
 | IMAGE_COPY_FAILED = 7600302 | 内存拷贝失败。 |
 | IMAGE_LOCK_UNLOCK_FAILED = 7600303 |  内存加锁或解锁失败。<br>**起始版本：** 15 |
+| IMAGE_ALLOCATOR_MODE_UNSUPPORTED = 7600501 |  不支持的内存分配器类型。例如，使用共享内存创建hdr图像。<br> DMA内存支持hdr元数据。<br>**起始版本：** 20 |
 | IMAGE_UNKNOWN_ERROR = 7600901 | 未知错误。 |
 | IMAGE_BAD_SOURCE = 7700101 | 解码数据源异常。 |
 | IMAGE_SOURCE_UNSUPPORTED_MIME_TYPE = 7700102 |  图片解码中不支持的MIME类型。<br>**起始版本：** 15 |
@@ -260,6 +264,24 @@ enum Image_MetadataType
 | EXIF_METADATA = 1 | EXIF元数据。 |
 | FRAGMENT_METADATA = 2 | 水印裁剪图元数据。 |
 
+### IMAGE_ALLOCATOR_MODE
+
+```
+enum IMAGE_ALLOCATOR_MODE
+```
+
+**描述**
+
+pixelmap内存分配类型。
+
+**起始版本：** 20
+
+| 枚举项 | 描述 |
+| -- | -- |
+| IMAGE_ALLOCATOR_MODE_AUTO = 0 | 系统决定创建pixelmap时分配内存的类型。 |
+| IMAGE_ALLOCATOR_MODE_DMA = 1 | 分配DMA类型的内存Buffer。 |
+| IMAGE_ALLOCATOR_MODE_DMA = 2 | 使用共享内存创建pixelmap。 |
+
 
 ## 函数说明
 
@@ -287,7 +309,7 @@ Image_ErrorCode OH_PictureMetadata_Create(Image_MetadataType metadataType, OH_Pi
 
 | 类型 | 说明 |
 | -- | -- |
-| [Image_ErrorCode](#image_errorcode) | IMAGE_SUCCESS：执行成功。<br>        IMAGE_BAD_PARAMETER：参数错误。 |
+| [Image_ErrorCode](#image_errorcode) | IMAGE_SUCCESS：执行成功。<br>         IMAGE_BAD_PARAMETER：参数错误。 |
 
 ### OH_PictureMetadata_GetProperty()
 
@@ -314,7 +336,7 @@ Image_ErrorCode OH_PictureMetadata_GetProperty(OH_PictureMetadata *metadata, Ima
 
 | 类型 | 说明 |
 | -- | -- |
-| [Image_ErrorCode](#image_errorcode) | IMAGE_SUCCESS：执行成功。<br>        IMAGE_BAD_PARAMETER：参数错误。 <br>IMAGE_UNSUPPORTED_METADATA：不支持的元数据类型，或元数据类型与辅助图片类型不匹配。|
+| [Image_ErrorCode](#image_errorcode) | IMAGE_SUCCESS：执行成功。<br>         IMAGE_BAD_PARAMETER：参数错误。<br>         IMAGE_UNSUPPORTED_METADATA：不支持的元数据类型，或元数据类型与辅助图片类型不匹配。 |
 
 ### OH_PictureMetadata_SetProperty()
 
@@ -341,7 +363,7 @@ Image_ErrorCode OH_PictureMetadata_SetProperty(OH_PictureMetadata *metadata, Ima
 
 | 类型 | 说明 |
 | -- | -- |
-| [Image_ErrorCode](#image_errorcode) | IMAGE_SUCCESS：执行成功。<br>        IMAGE_BAD_PARAMETER：参数错误。 <br>IMAGE_UNSUPPORTED_METADATA：不支持的元数据类型，或元数据类型与辅助图片类型不匹配。|
+| [Image_ErrorCode](#image_errorcode) | IMAGE_SUCCESS：执行成功。<br>         IMAGE_BAD_PARAMETER：参数错误。<br>         IMAGE_UNSUPPORTED_METADATA：不支持的元数据类型，或元数据类型与辅助图片类型不匹配。 |
 
 ### OH_PictureMetadata_GetPropertyWithNull()
 
@@ -360,7 +382,7 @@ Image_ErrorCode OH_PictureMetadata_GetPropertyWithNull(OH_PictureMetadata *metad
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_PictureMetadata](capi-oh-picturemetadata.md) *metadata | 将被操作的 PictureMetadata 指针。 |
+| [OH_PictureMetadata](capi-oh-picturemetadata.md) *metadata | 将被操作的PictureMetadata指针。 |
 | [Image_String](capi-image-string.md) *key | 属性键指针。 |
 | [Image_String](capi-image-string.md) *value | 属性值指针。 |
 
@@ -393,7 +415,7 @@ Image_ErrorCode OH_PictureMetadata_Release(OH_PictureMetadata *metadata)
 
 | 类型 | 说明 |
 | -- | -- |
-| [Image_ErrorCode](#image_errorcode) | IMAGE_SUCCESS：执行成功。<br>         IMAGE_INVALID_PARAMETER：参数错误。 |
+| [Image_ErrorCode](#image_errorcode) | IMAGE_SUCCESS：执行成功。<br>         IMAGE_BAD_PARAMETER：参数错误。 |
 
 ### OH_PictureMetadata_Clone()
 
@@ -419,6 +441,6 @@ Image_ErrorCode OH_PictureMetadata_Clone(OH_PictureMetadata *oldMetadata, OH_Pic
 
 | 类型 | 说明 |
 | -- | -- |
-| [Image_ErrorCode](#image_errorcode) |IMAGE_SUCCESS：执行成功。<br>         IMAGE_BAD_PARAMETER：参数错误。<br>         IMAGE_ALLOC_FAILED：内存分配失败。<br>         IMAGE_COPY_FAILED：内存拷贝失败。 |
+| [Image_ErrorCode](#image_errorcode) | IMAGE_SUCCESS：执行成功。<br>         IMAGE_BAD_PARAMETER：参数错误。<br>         IMAGE_ALLOC_FAILED：内存分配失败。<br>         IMAGE_COPY_FAILED：内存拷贝失败。 |
 
 

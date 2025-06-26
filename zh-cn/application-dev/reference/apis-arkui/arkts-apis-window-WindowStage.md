@@ -4,6 +4,12 @@
 >
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
+## 导入模块
+
+```ts
+import { window } from '@kit.ArkUI';
+```
+
 ## WindowStage<sup>9+</sup>
 
 窗口管理器。管理各个基本窗口单元，即[Window](arkts-apis-window-Window.md)实例。
@@ -801,7 +807,7 @@ export struct Index {
 
 ### loadContentByName<sup>11+</sup>
 
-loadContentByName(name: string, storage?: LocalStorage): Promise&lt;void&gt;;
+loadContentByName(name: string, storage?: LocalStorage): Promise&lt;void&gt;
 
 根据指定路由页面名称为当前WindowStage加载[命名路由](../../ui/arkts-routing.md#命名路由)页面，通过LocalStorage传递状态属性至加载页面，使用promise异步回调。建议在UIAbility启动过程中使用该接口，重复调用该接口将先销毁旧的页面内容（即UIContent）再加载新的页面内容，请谨慎使用。
 
@@ -1116,7 +1122,9 @@ setDefaultDensityEnabled(enabled: boolean): void
 
 设置应用主窗口是否使用系统默认Density，子窗和系统窗口会跟随主窗生效。调用此接口前，需先调用[WindowStage.loadContent()](#loadcontent9)初始化布局，确保接口调用时序正确。
 
-不调用此接口进行设置，则表示不使用系统默认Density，即窗口会跟随系统显示大小变化重新布局。
+不调用此接口进行设置，则表示不使用系统默认Density。
+
+不使用系统默认Density时，若调用过[setCustomDensity()](#setcustomdensity15)，则窗口会跟随用户自定义的显示大小变化重新布局，否则跟随系统显示大小变化重新布局。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -1516,7 +1524,7 @@ isWindowRectAutoSave(): Promise&lt;boolean&gt;
 | ------- | ------------------------------ |
 | 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal. |
-| 1300003 | This window manager services works abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 

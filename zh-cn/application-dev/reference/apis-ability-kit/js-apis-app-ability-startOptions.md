@@ -1,4 +1,4 @@
-# @ohos.app.ability.StartOptions (StartOptions)
+# @ohos.app.ability.StartOptions (startAbility的可选参数)
 
 StartOptions可以作为[startAbility()](js-apis-inner-application-uiAbilityContext.md#startability-1)的入参，用于指定目标Ability的窗口模式。
 
@@ -36,7 +36,7 @@ import { StartOptions } from '@kit.AbilityKit';
 | minWindowHeight<sup>17+</sup> | number | 否 | 是 | 窗口最小的高度，单位为px，可以通过[getWindowLimits](../apis-arkui/arkts-apis-window-Window.md#getwindowlimits11)获得当前窗口的尺寸限制。<br>**约束：**<br/>仅在2in1和tablet设备上生效。 |
 | maxWindowWidth<sup>17+</sup> | number | 否 | 是 | 窗口最大的宽度，单位为px，可以通过[getWindowLimits](../apis-arkui/arkts-apis-window-Window.md#getwindowlimits11)获得当前窗口的尺寸限制。<br>**约束：**<br/>仅在2in1和tablet设备上生效。 |
 | maxWindowHeight<sup>17+</sup> | number | 否 | 是 | 窗口最大的高度，单位为px，可以通过[getWindowLimits](../apis-arkui/arkts-apis-window-Window.md#getwindowlimits11)获得当前窗口的尺寸限制。<br>**约束：**<br/>仅在2in1和tablet设备上生效。 |
-| completionHandler<sup>20+</sup> | [CompletionHandler](js-apis-app-ability-completionHandler.md) | 否 | 是 | 拉端结果操作类，用于处理拉端结果。 |
+| completionHandler<sup>20+</sup> | [CompletionHandler](js-apis-app-ability-completionHandler.md) | 否 | 是 | 拉端结果操作类，用于处理拉端结果。<br/>**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。 |
 
 **示例：**
 

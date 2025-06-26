@@ -10,12 +10,13 @@ AVRecorder支持开发音频或视频单独录制，集成了音频捕获，音�
 
 ![Recording status change](figures/recording-status-change-ndk.png)
 
-状态的详细说明请参考[AVRecorderState](../../reference/apis-media-kit/js-apis-media.md#avrecorderstate9)。
+状态的详细说明请参考[AVRecorderState](../../reference/apis-media-kit/arkts-apis-media-t.md#avrecorderstate9)。
 
 
 ## 申请权限
 
 在开发此功能前，开发者应根据实际需求申请相关权限：
+
 - 当需要使用麦克风时，需要申请**ohos.permission.MICROPHONE**麦克风权限。申请方式请参考：[向用户申请授权](../../security/AccessToken/request-user-authorization.md)。
 - 当需要读取和保存音频文件时，请优先使用[AudioViewPicker音频选择器对象](../../reference/apis-core-file-kit/js-apis-file-picker.md#audioviewpicker)。
 

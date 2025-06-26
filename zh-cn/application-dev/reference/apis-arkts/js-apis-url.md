@@ -13,7 +13,7 @@ import { url } from '@kit.ArkTS';
 ```
 ## URLParams<sup>9+</sup>
 
-URLParams接口定义了一些处理URL查询字符串的实用方法。
+URLParams是一个用于解析、构造和操作URL参数的实用类。该类提供了统一的接口来处理参数维度（如查询参数、路径参数等）。
 
 ### constructor<sup>9+</sup>
 
@@ -168,7 +168,7 @@ console.log(params.getAll('fod').toString()) // Output ["1","3"].
 
 entries(): IterableIterator<[string, string]>
 
-返回一个ES6的迭代器，迭代器的每一项都是一个JavaScript Array。Array的第一项是name，Array的第二项是value。
+返回一个ES6的迭代器，迭代器的每一项都是一个Array。Array的第一项是name，Array的第二项是value。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -323,7 +323,9 @@ let result = paramsObject.has('bard');
 
 set(name: string, value: string): void
 
-将与name关联的URLSearchParams对象中的值设置为value。如果存在名称为name的键值对，请将第一个键值对的值设置为value并删除所有其他值。如果不是，则将键值对附加到查询字符串。
+将与name关联的URLSearchParams对象中的值设置为value。
+
+如果存在名称为name的键值对，请将第一个键值对的值设置为value并删除所有其他值。如果不是，则将键值对附加到查询字符串。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -430,7 +432,7 @@ for (let value of values) {
 
 [Symbol.iterator]\(): IterableIterator&lt;[string, string]&gt;
 
-返回一个ES6的迭代器，迭代器的每一项都是一个JavaScript Array。Array的第一项是name，Array的第二项是value。
+返回一个ES6的迭代器，迭代器的每一项都是一个Array。Array的第一项是name，Array的第二项是value。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -487,21 +489,21 @@ console.log(params.toString()); // Output 'fod=1&bard=2&fod=3'
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| hash | string | 是 | 是 | 获取和设置URL的片段部分。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| host | string | 是 | 是 | 获取和设置URL的主机部分。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| hostname | string | 是 | 是 | 获取和设置URL的主机名部分，不带端口。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| href | string | 是 | 是 | 获取和设置序列化的URL。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| hash | string | 否 | 否 | 获取和设置URL的片段部分。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| host | string | 否 | 否 | 获取和设置URL的主机部分。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| hostname | string | 否 | 否 | 获取和设置URL的主机名部分，不带端口。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| href | string | 否 | 否 | 获取和设置序列化的URL。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | origin | string | 是 | 否 | 获取URL源的只读序列化。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| password | string | 是 | 是 | 获取和设置URL的密码部分。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| pathname | string | 是 | 是 | 获取和设置URL的路径部分。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| port | string | 是 | 是 | 获取和设置URL的端口部分。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| protocol | string | 是 | 是 | 获取和设置URL的协议部分。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| search | string | 是 | 是 | 获取和设置URL的序列化查询部分。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| password | string | 否 | 否 | 获取和设置URL的密码部分。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| pathname | string | 否 | 否 | 获取和设置URL的路径部分。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| port | string | 否 | 否 | 获取和设置URL的端口部分。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| protocol | string | 否 | 否 | 获取和设置URL的协议部分。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| search | string | 否 | 否 | 获取和设置URL的序列化查询部分。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | searchParams<sup>(deprecated)</sup> | [URLSearchParams](#urlsearchparamsdeprecated) | 是 | 否 | 获取URLSearchParams表示URL查询参数的对象。<br/>- **说明：** 此属性从API version 7开始支持，从API version 9开始被废弃。建议使用params<sup>9+</sup>替代。 |
 | params<sup>9+</sup> | [URLParams](#urlparams9) | 是 | 否 | 获取URLParams表示URL查询参数的对象。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| username | string | 是 | 是 | 获取和设置URL的用户名部分。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| username | string | 否 | 否 | 获取和设置URL的用户名部分。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 
 **示例：**
 
@@ -584,6 +586,12 @@ URL静态成员函数。
 | -------- | -------- | -------- | -------- |
 | url | string | 是 | 一个表示绝对URL或相对URL的字符串。 <br/>如果 url 是相对URL，则需要指定 base，用于解析最终的URL。 <br/>如果 url 是绝对URL，则给定的 base 将不会生效。 |
 | base | string \| URL | 否 | 入参字符串或者对象，默认值是undefined。<br/>- string：字符串。当第一个参数是相对URL时，该参数需符合URL标准。<br/>- URL：URL对象。<br/>- 在url是相对URL时使用。 |
+
+**返回值：**
+
+| 类型 | 说明                                              |
+| ---- | ------------------------------------------------- |
+| [URL](#url)  | 返回创建的URL对象。 |
 
 > **说明：**
 >
@@ -782,7 +790,7 @@ console.log(params.getAll('fod').toString()) // Output ["1","3"].
 
 entries(): IterableIterator<[string, string]>
 
-返回一个ES6的迭代器，迭代器的每一项都是一个JavaScript Array。Array的第一项是name，Array的第二项是value。
+返回一个ES6的迭代器，迭代器的每一项都是一个Array。Array的第一项是name，Array的第二项是value。
 
 > **说明：**
 >
@@ -1025,7 +1033,7 @@ for (let value of values) {
 
 [Symbol.iterator]\(): IterableIterator&lt;[string, string]&gt;
 
-返回一个ES6的迭代器，迭代器的每一项都是一个JavaScript Array。Array的第一项是name，Array的第二项是value。
+返回一个ES6的迭代器，迭代器的每一项都是一个Array。Array的第一项是name，Array的第二项是value。
 
 > **说明：**
 >

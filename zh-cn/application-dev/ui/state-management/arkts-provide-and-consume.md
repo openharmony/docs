@@ -42,7 +42,7 @@
 | -------------- | ---------------------------------------- |
 | 装饰器参数          | 别名：常量字符串，可选。<br/>如果指定了别名，则通过别名来绑定变量；如果未指定别名，则通过变量名绑定变量。 |
 | 同步类型           | 双向同步。<br/>从\@Provide变量到所有\@Consume变量以及相反的方向的数据同步。双向同步的操作与\@State和\@Link的组合相同。 |
-| 允许装饰的变量类型      | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。<br/>API version 11及以上支持Map、Set类型。<br/>支持ArkUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。<br/>必须指定类型。<br/>\@Provide变量和\@Consume变量的类型必须相同。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>不支持any类型。<br/>API version 11及以上支持上述支持类型的联合类型。例如：string \| number, string \| undefined或者ClassA \| null，示例见[@Provide和Consume支持联合类型实例](#provide和consume支持联合类型实例)。 <br/>**注意：**<br/>当使用undefined和null的时候，建议显示指定类型，遵循TypeScript类型校验。例如：推荐`@Provide a : string \| undefined = undefined`，不推荐`@Provide a: string = undefined`。
+| 允许装饰的变量类型      | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。<br/>支持ArkUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。<br/>必须指定类型。<br/>\@Provide变量和\@Consume变量的类型必须相同。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>不支持any类型。<br/>API version 11及以上支持Map、Set类型以及上述支持类型的联合类型。例如：string \| number, string \| undefined或者ClassA \| null，示例见[@Provide和Consume支持联合类型实例](#provide和consume支持联合类型实例)。 <br/>**注意：**<br/>当使用undefined和null的时候，建议显示指定类型，遵循TypeScript类型校验。例如：推荐`@Provide a : string \| undefined = undefined`，不推荐`@Provide a: string = undefined`。
 | 被装饰变量的初始值      | 必须指定。                                    |
 | 支持allowOverride参数          | 允许重写，只要声明了allowOverride，则别名和属性名都可以被Override。示例见[\@Provide支持allowOverride参数](#provide支持allowoverride参数)。 |
 
@@ -50,7 +50,7 @@
 | -------------- | ---------------------------------------- |
 | 装饰器参数          | 别名：常量字符串，可选。<br/>如果提供了别名，则必须有\@Provide的变量和其有相同的别名才可以匹配成功；否则，则需要变量名相同才能匹配成功。 |
 | 同步类型           | 双向同步：从\@Provide变量（具体请参见\@Provide）到所有\@Consume变量，以及相反的方向。双向同步操作与\@State和\@Link的组合相同。 |
-| 允许装饰的变量类型      | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。<br/>支持ArkUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。<br/>必须指定类型。<br/>\@Provide变量和\@Consume变量的类型必须相同。<br/>\@Consume装饰的变量，在其父组件或者祖先组件上，必须有对应的属性和别名的\@Provide装饰的变量。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>不支持any类型。<br/>API version 11及以上支持上述支持类型的联合类型。例如：string \| number, string \| undefined或者ClassA \| null，示例见[@Provide和Consume支持联合类型实例](#provide和consume支持联合类型实例)。 <br/>**注意：**<br/>当使用undefined和null的时候，建议显示指定类型，遵循TypeScript类型校验。例如：`@Consume a : string \| undefined`。
+| 允许装饰的变量类型      | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。<br/>支持ArkUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。<br/>必须指定类型。<br/>\@Provide变量和\@Consume变量的类型必须相同。<br/>\@Consume装饰的变量，在其父组件或者祖先组件上，必须有对应的属性和别名的\@Provide装饰的变量。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>不支持any类型。<br/>API version 11及以上支持Map、Set类型以及上述支持类型的联合类型。例如：string \| number, string \| undefined或者ClassA \| null，示例见[@Provide和Consume支持联合类型实例](#provide和consume支持联合类型实例)。 <br/>**注意：**<br/>当使用undefined和null的时候，建议显示指定类型，遵循TypeScript类型校验。例如：`@Consume a : string \| undefined`。
 | 被装饰变量的初始值      | 无，禁止本地初始化。                               |
 
 ## 变量的传递/访问规则说明
@@ -169,145 +169,145 @@ struct Parent {
 
 1. \@Provide/\@Consume的参数key必须为string类型，否则编译期会报错。
 
-  ```ts
-  // 错误写法，编译报错
-  let change: number = 10;
-  @Provide(change) message: string = 'Hello';
-
-  // 正确写法
-  let change: string = 'change';
-  @Provide(change) message: string = 'Hello';
-  ```
+    ```ts
+    // 错误写法，编译报错
+    let change: number = 10;
+    @Provide(change) message: string = 'Hello';
+  
+    // 正确写法
+    let change: string = 'change';
+    @Provide(change) message: string = 'Hello';
+    ```
 
 2. \@Consume装饰的变量不能本地初始化，也不能在构造参数中传入初始化，否则编译期会报错。\@Consume仅能通过key来匹配对应的\@Provide变量进行初始化。
 
-  【反例】
-
-  ```ts
-  @Component
-  struct Child {
-    @Consume msg: string;
-    // 错误写法，不允许本地初始化
-    @Consume msg1: string = 'Hello';
-
-    build() {
-      Text(this.msg)
-    }
-  }
-
-  @Entry
-  @Component
-  struct Parent {
-    @Provide message: string = 'Hello';
-
-    build() {
-      Column() {
-        // 错误写法，不允许外部传入初始化
-        Child({msg: 'Hello'})
+    【反例】
+  
+    ```ts
+    @Component
+    struct Child {
+      @Consume msg: string;
+      // 错误写法，不允许本地初始化
+      @Consume msg1: string = 'Hello';
+  
+      build() {
+        Text(this.msg)
       }
     }
-  }
-  ```
-
-  【正例】
-
-  ```ts
-  @Component
-  struct Child {
-    @Consume num: number;
-
-    build() {
-      Column() {
-        Text(`num的值: ${this.num}`)
+  
+    @Entry
+    @Component
+    struct Parent {
+      @Provide message: string = 'Hello';
+  
+      build() {
+        Column() {
+          // 错误写法，不允许外部传入初始化
+          Child({msg: 'Hello'})
+        }
       }
     }
-  }
+    ```
 
-  @Entry
-  @Component
-  struct Parent {
-    @Provide num: number = 10;
-
-    build() {
-      Column() {
-        Text(`num的值: ${this.num}`)
-        Child()
+    【正例】
+  
+    ```ts
+    @Component
+    struct Child {
+      @Consume num: number;
+  
+      build() {
+        Column() {
+          Text(`num的值: ${this.num}`)
+        }
       }
     }
-  }
-  ```
-
+  
+    @Entry
+    @Component
+    struct Parent {
+      @Provide num: number = 10;
+  
+      build() {
+        Column() {
+          Text(`num的值: ${this.num}`)
+          Child()
+        }
+      }
+    }
+    ```
+  
 3. \@Provide的key重复定义时，框架会抛出运行时错误，提醒开发者重复定义key，如果开发者需要重复key，可以使用[allowoverride](#provide支持allowoverride参数)。
 
-  ```ts
-  // 错误写法，a重复定义
-  @Provide('a') count: number = 10;
-  @Provide('a') num: number = 10;
-
-  // 正确写法
-  @Provide('a') count: number = 10;
-  @Provide('b') num: number = 10;
-  ```
-
+    ```ts
+    // 错误写法，a重复定义
+    @Provide('a') count: number = 10;
+    @Provide('a') num: number = 10;
+  
+    // 正确写法
+    @Provide('a') count: number = 10;
+    @Provide('b') num: number = 10;
+    ```
+  
 4. 在初始化\@Consume变量时，如果开发者没有定义对应key的\@Provide变量，框架会抛出运行时错误，提示开发者初始化\@Consume变量失败，原因是无法找到其对应key的\@Provide变量。
 
-  【反例】
-
-  ```ts
-  @Component
-  struct Child {
-    @Consume num: number;
-
-    build() {
-      Column() {
-        Text(`num的值: ${this.num}`)
+    【反例】
+  
+    ```ts
+    @Component
+    struct Child {
+      @Consume num: number;
+  
+      build() {
+        Column() {
+          Text(`num的值: ${this.num}`)
+        }
       }
     }
-  }
-
-  @Entry
-  @Component
-  struct Parent {
-    // 错误写法，缺少@Provide
-    num: number = 10;
-
-    build() {
-      Column() {
-        Text(`num的值: ${this.num}`)
-        Child()
+  
+    @Entry
+    @Component
+    struct Parent {
+      // 错误写法，缺少@Provide
+      num: number = 10;
+  
+      build() {
+        Column() {
+          Text(`num的值: ${this.num}`)
+          Child()
+        }
       }
     }
-  }
-  ```
+    ```
 
-  【正例】
-
-  ```ts
-  @Component
-  struct Child {
-    @Consume num: number;
-
-    build() {
-      Column() {
-        Text(`num的值: ${this.num}`)
+    【正例】
+  
+    ```ts
+    @Component
+    struct Child {
+      @Consume num: number;
+  
+      build() {
+        Column() {
+          Text(`num的值: ${this.num}`)
+        }
       }
     }
-  }
-
-  @Entry
-  @Component
-  struct Parent {
-    // 正确写法
-    @Provide num: number = 10;
-
-    build() {
-      Column() {
-        Text(`num的值: ${this.num}`)
-        Child()
+  
+    @Entry
+    @Component
+    struct Parent {
+      // 正确写法
+      @Provide num: number = 10;
+  
+      build() {
+        Column() {
+          Text(`num的值: ${this.num}`)
+          Child()
+        }
       }
     }
-  }
-  ```
+    ```
 
 5. \@Provide与\@Consume不支持装饰Function类型的变量，框架会抛出运行时错误。
 
@@ -609,7 +609,7 @@ struct GrandParent {
 
 ### \@BuilderParam尾随闭包情况下\@Provide未定义错误
 
-在此场景下，CustomWidget执行this.builder()创建子组件CustomWidgetChild时，this指向的是HomePage。因此找不到CustomWidget的\@Provide变量，所以下面示例会报找不到\@Provide错误，和\@BuilderParam连用的时候要谨慎this的指向。
+在此[尾随闭包](arkts-builderparam.md#尾随闭包初始化组件)场景下，CustomWidget执行this.builder()创建子组件CustomWidgetChild时，this指向的是HomePage。因此找不到CustomWidget的\@Provide变量，所以下面示例会报找不到\@Provide错误，和\@BuilderParam连用的时候要谨慎this的指向。
 
 错误示例：
 

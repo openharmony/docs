@@ -22,12 +22,12 @@ import { common } from '@kit.AbilityKit';
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| abilityInfo | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | 是 | 否 | UIAbility的相关信息。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| currentHapModuleInfo | [HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md) | 是 | 否 | 当前UIAbility所属HAP的信息。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| config | [Configuration](js-apis-app-ability-configuration.md) | 是 | 否 | 与UIAbility相关的配置信息，如语言、颜色模式等。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
-| windowStage<sup>12+</sup> | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md#windowstage9) | 是 | 否 | 当前WindowStage对象。仅支持在主线程调用。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。|
+| abilityInfo | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | 否 | 否 | UIAbility的相关信息。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| currentHapModuleInfo | [HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md) | 否 | 否 | 当前UIAbility所属HAP的信息。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| config | [Configuration](js-apis-app-ability-configuration.md) | 否 | 否 | 与UIAbility相关的配置信息，如语言、颜色模式等。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| windowStage<sup>12+</sup> | [window.WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md#windowstage9) | 否 | 否 | 当前WindowStage对象。仅支持在主线程调用。<br>**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。|
 
 ### startAbility
 
@@ -1740,7 +1740,7 @@ export default class EntryAbility extends UIAbility {
         console.error(`reportDrawnCompleted failed, code is ${code}, message is ${message}`);
       }
     });
-    console.log("MainAbility onWindowStageCreate");
+    console.info("MainAbility onWindowStageCreate");
   }
 };
 ```
@@ -1786,10 +1786,10 @@ export default class EntryAbility extends UIAbility {
     };
     let abilityStartCallback: common.AbilityStartCallback = {
       onError: (code: number, name: string, message: string) => {
-        console.log(`code:` + code + `name:` + name + `message:` + message);
+        console.info(`code:` + code + `name:` + name + `message:` + message);
       },
       onResult: (abilityResult: common.AbilityResult) => {
-        console.log(`resultCode:` + abilityResult.resultCode + `bundleName:` + abilityResult.want?.bundleName);
+        console.info(`resultCode:` + abilityResult.resultCode + `bundleName:` + abilityResult.want?.bundleName);
       }
     };
 
@@ -1797,7 +1797,7 @@ export default class EntryAbility extends UIAbility {
       if (err) {
         console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
       } else {
-        console.log(`success`);
+        console.info(`success`);
       }
     });
   }
@@ -1851,15 +1851,15 @@ export default class EntryAbility extends UIAbility {
     };
     let abilityStartCallback: common.AbilityStartCallback = {
       onError: (code: number, name: string, message: string) => {
-        console.log(`code:` + code + `name:` + name + `message:` + message);
+        console.info(`code:` + code + `name:` + name + `message:` + message);
       },
       onResult: (abilityResult: common.AbilityResult) => {
-        console.log(`resultCode:` + abilityResult.resultCode + `bundleName:` + abilityResult.want?.bundleName);
+        console.info(`resultCode:` + abilityResult.resultCode + `bundleName:` + abilityResult.want?.bundleName);
       }
     };
 
     this.context.startAbilityByType("photoEditor", wantParam, abilityStartCallback).then(() => {
-      console.log(`startAbilityByType success`);
+      console.info(`startAbilityByType success`);
     }).catch((err: BusinessError) => {
       console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
     });
@@ -1915,7 +1915,7 @@ struct Index {
             let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
             context.showAbility().then(() => {
-              console.log(`showAbility success`);
+              console.info(`showAbility success`);
             }).catch((err: BusinessError) => {
               console.error(`showAbility fail, err: ${JSON.stringify(err)}`);
             });
@@ -2013,7 +2013,7 @@ struct Index {
             let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
             context.hideAbility().then(() => {
-              console.log(`hideAbility success`);
+              console.info(`hideAbility success`);
             }).catch((err: BusinessError) => {
               console.error(`hideAbility fail, err: ${JSON.stringify(err)}`);
             });
@@ -2111,9 +2111,9 @@ struct Index {
             let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
             context.moveAbilityToBackground().then(() => {
-              console.log(`moveAbilityToBackground success.`);
+              console.info(`moveAbilityToBackground success.`);
             }).catch((err: BusinessError) => {
-              console.log(`moveAbilityToBackground error: ${JSON.stringify(err)}.`);
+              console.info(`moveAbilityToBackground error: ${JSON.stringify(err)}.`);
             });
           });
       }
@@ -2579,12 +2579,12 @@ struct Index {
             try {
               // 启动UIServiceExtensionAbility
               context.startUIServiceExtensionAbility(startWant).then(() => {
-                console.log('startUIServiceExtensionAbility success');
+                console.info('startUIServiceExtensionAbility success');
               }).catch((error: BusinessError) => {
-                console.log('startUIServiceExtensionAbility error', JSON.stringify(error));
+                console.info('startUIServiceExtensionAbility error', JSON.stringify(error));
               })
             } catch (err) {
-              console.log('startUIServiceExtensionAbility failed', JSON.stringify(err));
+              console.info('startUIServiceExtensionAbility failed', JSON.stringify(err));
             }
           })
       }
@@ -2654,11 +2654,11 @@ struct UIServiceExtensionAbility {
   dataCallBack : common.UIServiceExtensionConnectCallback = {
     // 接收数据
     onData: (data: Record<string, Object>) => {
-      console.log(`dataCallBack received data`, JSON.stringify(data));
+      console.info(`dataCallBack received data`, JSON.stringify(data));
     },
     // 连接断开
     onDisconnect: () => {
-      console.log(`dataCallBack onDisconnect`);
+      console.info(`dataCallBack onDisconnect`);
     }
   }
 
@@ -2675,16 +2675,16 @@ struct UIServiceExtensionAbility {
       // 连接服务
       context.connectUIServiceExtensionAbility(startWant, this.dataCallBack)
         .then((proxy: common.UIServiceProxy) => {
-          console.log(TAG + `try to connectUIServiceExtensionAbility`, JSON.stringify(proxy));
+          console.info(TAG + `try to connectUIServiceExtensionAbility`, JSON.stringify(proxy));
         }).catch((err: Error) => {
         let code = (err as BusinessError).code;
         let message = (err as BusinessError).message;
-        console.log(TAG + `connectUIServiceExtensionAbility failed, code is ${code}, message is ${message}`);
+        console.info(TAG + `connectUIServiceExtensionAbility failed, code is ${code}, message is ${message}`);
       });
     } catch (err) {
       let code = (err as BusinessError).code;
       let message = (err as BusinessError).message;
-      console.log(TAG + `connectUIServiceExtensionAbility failed, code is ${code}, message is ${message}`);
+      console.info(TAG + `connectUIServiceExtensionAbility failed, code is ${code}, message is ${message}`);
     };
   }
 
@@ -2787,16 +2787,16 @@ struct UIServiceExtensionAbility {
       // 断开UIServiceExtension连接
       context.disconnectUIServiceExtensionAbility(this.comProxy)
         .then(() => {
-          console.log(TAG + `disconnectUIServiceExtensionAbility succeed ${this.comProxy}}`);
+          console.info(TAG + `disconnectUIServiceExtensionAbility succeed ${this.comProxy}}`);
         }).catch((err: Error) => {
         let code = (err as BusinessError).code;
         let message = (err as BusinessError).message;
-        console.log(TAG + `disconnectUIServiceExtensionAbility failed, code is ${code}, message is ${message}`);
+        console.info(TAG + `disconnectUIServiceExtensionAbility failed, code is ${code}, message is ${message}`);
       });
     } catch (err) {
       let code = (err as BusinessError).code;
       let message = (err as BusinessError).message;
-      console.log(TAG + `disconnectUIServiceExtensionAbility failed, code is ${code}, message is ${message}`);
+      console.info(TAG + `disconnectUIServiceExtensionAbility failed, code is ${code}, message is ${message}`);
     }
   }
 }
@@ -2914,10 +2914,10 @@ revokeDelegator() : Promise&lt;void&gt;
 
 1. 设置DelegatorAbility。
 
-    在[module.json5](../../quick-start/module-configuration-file.md#modulejson5配置文件)配置文件标签中配置abilitySrcEntryDelegator和abilityStageSrcEntryDelegator。当Module下首个UIAbility冷启动时，系统优先启动abilitySrcEntryDelegator指向的UIAbility。
+    在[module.json5](../../quick-start/module-configuration-file.md)配置文件标签中配置abilitySrcEntryDelegator和abilityStageSrcEntryDelegator。当Module下首个UIAbility冷启动时，系统优先启动abilitySrcEntryDelegator指向的UIAbility。
     > **说明**：
     >
-    >  - 当UIAbility是通过[startAbilityByCall](#startabilitybycall)启动时，系统会忽略在[module.json5](../../quick-start/module-configuration-file.md#modulejson5配置文件)配置文件标签中配置的abilitySrcEntryDelegator和abilityStageSrcEntryDelegator。
+    >  - 当UIAbility是通过[startAbilityByCall](#startabilitybycall)启动时，系统会忽略在[module.json5](../../quick-start/module-configuration-file.md)配置文件标签中配置的abilitySrcEntryDelegator和abilityStageSrcEntryDelegator。
     >  - abilityStageSrcEntryDelegator指定的ModuleName不能与当前ModuleName相同。
     ```json
     {
@@ -2955,6 +2955,7 @@ setColorMode(colorMode: ConfigurationConstant.ColorMode): void
 设置UIAbility的深浅色模式。调用该接口前需要保证该UIAbility对应页面已完成加载。仅支持主线程调用。
 
 > **说明**：
+> - 调用该接口前，需要确保窗口已完成创建、且UIAbility对应的页面已完成加载，即在[onWindowStageCreate()](js-apis-app-ability-uiAbility.md#onwindowstagecreate)生命周期中通过[loadContent](../apis-arkui/arkts-apis-window-WindowStage.md#loadcontent9)方法加载页面之后调用。
 > - 调用该接口后会创建新的资源管理器对象，如果此前有缓存资源管理器，需要进行更新。
 > - 深浅色模式生效的优先级：UIAbility的深浅色模式 > 应用的深浅色模式（[ApplicationContext.setColorMode](js-apis-inner-application-applicationContext.md#applicationcontextsetcolormode11)）> 系统的深浅色模式。
 
@@ -3028,7 +3029,7 @@ startAppServiceExtensionAbility(want: Want): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 801 | Capability not support. |
+| 801 | Capability not supported. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Cannot start an invisible component. |
@@ -3107,7 +3108,7 @@ stopAppServiceExtensionAbility(want: Want): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 801 | Capability not support. |
+| 801 | Capability not supported. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Cannot start an invisible component. |
@@ -3183,7 +3184,7 @@ connectAppServiceExtensionAbility(want: Want, options: ConnectOptions): number
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 801 | Capability not support. |
+| 801 | Capability not supported. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Cannot start an invisible component. |
@@ -3267,7 +3268,7 @@ disconnectAppServiceExtensionAbility(connection: number): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 801 | Capability not support. |
+| 801 | Capability not supported. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 

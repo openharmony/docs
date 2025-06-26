@@ -1,7 +1,23 @@
 # Media Kit（媒体服务）
 
 - ArkTS API<!--media-arkts-->
-  - [@ohos.multimedia.media (媒体服务)](js-apis-media.md)
+  - @ohos.multimedia.media (媒体服务)<!--js-apis-media-->
+    - [模块描述](arkts-apis-media.md)
+    - [Functions](arkts-apis-media-f.md)
+    - [Interface (AVImageGenerator)](arkts-apis-media-AVImageGenerator.md)
+    - [Interface (AVMetadataExtractor)](arkts-apis-media-AVMetadataExtractor.md)
+    - [Interface (AVPlayer)](arkts-apis-media-AVPlayer.md)
+    - [Interface (AVRecorder)](arkts-apis-media-AVRecorder.md)
+    - [Interface (AVScreenCaptureRecorder)](arkts-apis-media-AVScreenCaptureRecorder.md)
+    - [Interface (AVTranscoder)](arkts-apis-media-AVTranscoder.md)
+    - [Interface (MediaSource)](arkts-apis-media-MediaSource.md)
+    - [Interface (MediaSourceLoadingRequest)](arkts-apis-media-MediaSourceLoadingRequest.md)
+    - [Interfaces (其他)](arkts-apis-media-i.md)
+    - [Enums](arkts-apis-media-e.md)
+    - [Types](arkts-apis-media-t.md)
+    - [废弃的Interface (AudioPlayer, deprecated)](arkts-apis-media-AudioPlayer.md)
+    - [废弃的Interface (AudioRecorder, deprecated)](arkts-apis-media-AudioRecorder.md)
+    - [废弃的Interface (VideoPlayer, deprecated)](arkts-apis-media-VideoPlayer.md)
   <!--Del-->
   - [@ohos.multimedia.media (媒体服务)(系统接口)](js-apis-media-sys.md)
   <!--DelEnd-->
@@ -48,7 +64,7 @@
     - [OH_AVRecorder_Range](capi-oh-avrecorder-range.md)
     - [OH_AVRecorder_EncoderInfo](capi-oh-avrecorder-encoderinfo.md)
     - [OH_AudioCaptureInfo](capi-oh-audiocaptureinfo.md)
-    - [OH_NativeBuffer](capi-oh-nativebuffer.md)
+    - [OH_NativeBuffer](capi-avscreencapture-oh-nativebuffer.md)
     - [OH_AVScreenCapture](capi-oh-avscreencapture.md)
     - [OH_AVScreenCapture_ContentFilter](capi-oh-avscreencapture-contentfilter.md)
     - [OH_AVScreenCapture_CaptureStrategy](capi-oh-avscreencapture-capturestrategy.md)

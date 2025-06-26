@@ -133,6 +133,17 @@
 | prepareTime<sup>12+</sup>    | number                        | 是   |   否   | 表示准备SQL和绑定参数的时间，单位为μs。                                 |
 | executeTime<sup>12+</sup>    | number                        | 是   |   否   | 表示执行SQL语句的时间，单位为μs。 |
 
+## SqlInfo<sup>20+</sup>
+
+描述数据库执行的SQL语句的详细信息。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+| 名称     | 类型                                               | 只读 | 可选  |说明                                                         |
+| -------- | ------------------------------------------------- | ---- | ---- | -------------------------------------------------------- |
+| sql<sup>20+</sup>           | string           | 是   |   否   | 表示执行的sql语句。      |
+| args<sup>20+</sup>      | Array&lt;[ValueType](arkts-apis-data-relationalStore-t.md#valuetype)&gt;                        | 是   |   否   | 表示执行SQL中的参数信息。                                    |
+
 ## ExceptionMessage<sup>20+</sup>
 
 描述数据库执行的SQL语句的错误信息。

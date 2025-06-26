@@ -167,7 +167,7 @@ try {
   ```
 
 
-## uiAppearance.setFontScale<sup>12+<sup>
+## uiAppearance.setFontScale<sup>12+</sup>
 
 setFontScale(fontScale: number): Promise\<void>
 
@@ -223,7 +223,7 @@ try {
   ```
 
 
-## uiAppearance.getFontScale<sup>12+<sup>
+## uiAppearance.getFontScale<sup>12+</sup>
 
 getFontScale(): number
 
@@ -266,7 +266,7 @@ try {
 }
   ```
 
-## uiAppearance.setFontWeightScale<sup>12+<sup>
+## uiAppearance.setFontWeightScale<sup>12+</sup>
 
 setFontWeightScale(fontWeightScale: number): Promise\<void>
 
@@ -322,11 +322,11 @@ try {
   ```
 
 
-## uiAppearance.getFontWeightScale<sup>12+<sup>
+## uiAppearance.getFontWeightScale<sup>12+</sup>
 
 getFontWeightScale(): number
 
-获取系统字体大小。
+获取系统字体粗细。
 
 **需要权限：** ohos.permission.UPDATE_CONFIGURATION
 

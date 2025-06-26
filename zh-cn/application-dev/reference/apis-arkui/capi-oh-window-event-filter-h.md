@@ -49,7 +49,7 @@ typedef bool (*OH_NativeWindowManager_KeyEventFilter)(Input_KeyEvent* keyEvent)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Input_KeyEvent](../apis-input-kit/capi-oh-input-manager-h.md#input_keyevent)* keyEvent | 多模按键事件，具体可见[Input_KeyEvent](../apis-input-kit/capi-oh-input-manager-h.md#input_keyevent)，事件定义在oh_input_manager中。 |
+| [Input_KeyEvent](../apis-input-kit/capi-input-keyevent.md)* keyEvent | 多模按键事件，具体可见[Input_KeyEvent](../apis-input-kit/capi-input-keyevent.md)，事件定义在oh_input_manager中。 |
 
 **返回：**
 
@@ -125,7 +125,7 @@ typedef bool (*OH_NativeWindowManager_MouseEventFilter)(Input_MouseEvent* mouseE
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Input_MouseEvent](../apis-input-kit/capi-oh-input-manager-h.md#input_mouseevent)* mouseEvent | 多模鼠标事件，具体可见[Input_MouseEvent](../apis-input-kit/capi-oh-input-manager-h.md#input_mouseevent)，事件定义在oh_input_manager中。 |
+| [Input_MouseEvent](../apis-input-kit/capi-input-mouseevent.md)* mouseEvent | 多模鼠标事件，具体可见[Input_MouseEvent](../apis-input-kit/capi-input-mouseevent.md)，事件定义在oh_input_manager中。 |
 
 **返回：**
 
@@ -201,7 +201,7 @@ typedef bool (*OH_NativeWindowManager_TouchEventFilter)(Input_TouchEvent* touchE
 
 | 参数项 | 描述 |
 | -- | -- |
-| [Input_TouchEvent](../apis-input-kit/capi-oh-input-manager-h.md#input_touchevent)* touchEvent | 多模触摸事件，具体可见[Input_TouchEvent](../apis-input-kit/capi-oh-input-manager-h.md#input_touchevent)，事件定义在oh_input_manager中。 |
+| [Input_TouchEvent](../apis-input-kit/capi-input-touchevent.md)* touchEvent | 多模触摸事件，具体可见[Input_TouchEvent](../apis-input-kit/capi-input-touchevent.md)，事件定义在oh_input_manager中。 |
 
 **返回：**
 

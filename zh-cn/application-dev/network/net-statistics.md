@@ -15,103 +15,105 @@
 
 以下分别介绍具体开发方式。
 
-## 接口说明
+## 开发步骤
 
-完整的 JS API 说明以及实例代码请参考：[statistics 链接](../reference/apis-network-kit/js-apis-net-statistics.md)。
+1. 导入statistics、socket以及错误码模块。
 
-| 接口名                                                       | 描述                                                         |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| getIfaceRxBytes(nic: string, callback: AsyncCallback\<number>): void; | 获取指定网卡实时下行流量数据。                               |
-| getIfaceTxBytes(nic: string, callback: AsyncCallback\<number>): void; | 获取指定网卡实时上行流量数据。                               |
-| getCellularRxBytes(callback: AsyncCallback\<number>): void;  | 获取蜂窝实时下行流量数据。                                   |
-| getCellularTxBytes(callback: AsyncCallback\<number>): void;  | 获取蜂窝实时上行流量数据。                                   |
-| getAllRxBytes(callback: AsyncCallback\<number>): void;       | 获取所有网卡实时下行流量数据。                               |
-| getAllTxBytes(callback: AsyncCallback\<number>): void;       | 获取所有网卡实时上行流量数据。                               |
-| getUidRxBytes(uid: number, callback: AsyncCallback\<number>): void; | 获取指定应用实时下行流量数据。                               |
-| getUidTxBytes(uid: number, callback: AsyncCallback\<number>): void; | 获取指定应用实时上行流量数据。                               |
-| <!--DelRow-->getTrafficStatsByIface(ifaceInfo: IfaceInfo, callback: AsyncCallback\<NetStatsInfo>): void; | 获取指定网卡历史流量信息。系统接口，[详情参考文档](../reference/apis-network-kit/js-apis-net-statistics-sys.md#statisticsgettrafficstatsbyiface10) |
-| <!--DelRow-->getTrafficStatsByUid(uidInfo: UidInfo, callback: AsyncCallback\<NetStatsInfo>): void; | 获取指定应用历史流量信息。系统接口，[详情参考文档](../reference/apis-network-kit/js-apis-net-statistics-sys.md#statisticsgettrafficstatsbyuid10) |
-| getSockfdRxBytes(sockfd: number, callback: AsyncCallback\<number>): void; | 获取指定socket实时下行流量数据。                             |
-| getSockfdTxBytes(sockfd: number, callback: AsyncCallback\<number>): void; | 获取指定socket实时上行流量数据。                             |
-| <!--DelRow-->on(type: 'netStatsChange', callback: Callback\<{ iface: string, uid?: number }>): void; | 订阅流量改变事件通知。系统接口，[详情参考文档](../reference/apis-network-kit/js-apis-net-statistics-sys.md#statisticsonnetstatschange10) |
-| <!--DelRow-->off(type: 'netStatsChange', callback?: Callback\<{ iface: string, uid?: number }>): void; | 取消订阅流量改变事件通知。系统接口，[详情参考文档](../reference/apis-network-kit/js-apis-net-statistics-sys.md#statisticsoffnetstatschange10) |
-| <!--DelRow-->getTrafficStatsByNetwork(networkInfo: NetworkInfo): Promise\<UidNetStatsInfo\>; | 获取指定时间段内所有应用在指定网络中的流量使用详情。系统接口，[详情参考文档](../reference/apis-network-kit/js-apis-net-statistics-sys.md#statisticsgettrafficstatsbynetwork12) |
-| <!--DelRow-->getTrafficStatsByUidNetwork(uid: number, networkInfo: NetworkInfo): Promise\<NetStatsInfoSequence\>; | 获取指定时间段内，应用在指定网络中的流量使用详情。系统接口，[详情参考文档](../reference/apis-network-kit/js-apis-net-statistics-sys.md#statisticsgettrafficstatsbynetwork12) |
+    ```ts
+    import { statistics, socket } from '@kit.NetworkKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
+    ```
 
-## 获取网卡/UID 的实时流量统计数据
+2. 获取指定网卡实时流量数据
 
-1. 获取指定网卡实时流量数据。
-2. 获取蜂窝实时流量数据。
-3. 获取所有网卡实时流量数据。
-4. 获取指定应用实时流量数据。
-5. 获取指定socket实时流量数据。
+    调用getIfaceRxBytes接口传入网卡名获取实时下行流量数据。
 
-```ts
-// 从@kit.NetworkKit中导入statistics命名空间
-import { statistics, socket } from '@kit.NetworkKit';
-import { BusinessError } from '@kit.BasicServicesKit';
+    ```ts
+    // wlan0为主WiFi网卡名，获取主WiFi实时下行流量数据。
+    statistics.getIfaceRxBytes("wlan0").then((stats: number) => {
+      console.log(JSON.stringify(stats));
+    });
 
-// 获取指定网卡实时下行流量数据。
-statistics.getIfaceRxBytes("wlan0").then((stats: number) => {
-  console.log(JSON.stringify(stats));
-});
+    // wlan0为主WiFi网卡名，获取主WiFi实时上行流量数据。
+    statistics.getIfaceTxBytes("wlan0").then((stats: number) => {
+      console.log(JSON.stringify(stats));
+    });
+    ```
 
-// 获取指定网卡实时上行流量数据。
-statistics.getIfaceTxBytes("wlan0").then((stats: number) => {
-  console.log(JSON.stringify(stats));
-});
+3. 获取蜂窝实时流量数据
 
-// 获取蜂窝实时下行流量数据。
-statistics.getCellularRxBytes().then((stats: number) => {
-  console.log(JSON.stringify(stats));
-});
+    调用getCellularRxBytes接口获取蜂窝实时上下行流量数据。
 
-// 获取蜂窝实时上行流量数据。
-statistics.getCellularTxBytes().then((stats: number) => {
-  console.log(JSON.stringify(stats));
-});
+    ```ts
+    // 获取蜂窝实时下行流量数据。
+    statistics.getCellularRxBytes().then((stats: number) => {
+      console.log(JSON.stringify(stats));
+    });
 
-// 获取所有网卡实时下行流量数据。
-statistics.getAllRxBytes().then((stats: number) => {
-  console.log(JSON.stringify(stats));
-});
+    // 获取蜂窝实时上行流量数据。
+    statistics.getCellularTxBytes().then((stats: number) => {
+      console.log(JSON.stringify(stats));
+    });
+    ```
 
-// 获取所有网卡实时上行流量数据。
-statistics.getAllTxBytes().then((stats: number) => {
-  console.log(JSON.stringify(stats));
-});
+4. 获取所有网卡实时流量数据
 
-// 获取指定应用实时下行流量数据。
-let uid = 20010038;
-statistics.getUidRxBytes(uid).then((stats: number) => {
-  console.log(JSON.stringify(stats));
-});
+    调用getAllRxBytes接口获取所有网卡实时上下行流量数据。
 
-// 获取指定应用实时上行流量数据。
-let uids = 20010038;
-statistics.getUidTxBytes(uids).then((stats: number) => {
-  console.log(JSON.stringify(stats));
-});
+    ```ts
+    // 获取所有网卡实时下行流量数据。
+    statistics.getAllRxBytes().then((stats: number) => {
+      console.log(JSON.stringify(stats));
+    });
 
-// 获取指定socket实时下行流量数据。
-let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
-tcp.getSocketFd().then((sockfd: number) => {
-  statistics.getSockfdRxBytes(sockfd).then((stats: number) => {
-    console.log(JSON.stringify(stats));
-  }).catch((err: BusinessError) => {
-    console.error(JSON.stringify(err));
-  });
-});
+    // 获取所有网卡实时上行流量数据。
+    statistics.getAllTxBytes().then((stats: number) => {
+      console.log(JSON.stringify(stats));
+    });
+    ```
 
-// 获取指定socket实时上行流量数据。
-tcp.getSocketFd().then((sockfd: number) => {
-  statistics.getSockfdTxBytes(sockfd).then((stats: number) => {
-    console.log(JSON.stringify(stats));
-  }).catch((err: BusinessError) => {
-    console.error(JSON.stringify(err));
-  });
-});
-```
+5. 获取指定应用实时流量数据
+
+    调用getUidRxBytes接口，传入UID获取指定应用实时上下行流量数据。
+
+    ```ts
+    // 获取指定应用实时下行流量数据。
+    let uid = 20010038;
+    statistics.getUidRxBytes(uid).then((stats: number) => {
+      console.log(JSON.stringify(stats));
+    });
+
+    // 获取指定应用实时上行流量数据。
+    let uids = 20010038;
+    statistics.getUidTxBytes(uids).then((stats: number) => {
+      console.log(JSON.stringify(stats));
+    });
+    ```
+
+6. 获取指定socket实时流量数据
+
+    调用getSockfdRxBytes接口，传入指定的sockFd获取指定socket实时上下行流量数据。
+
+    ```ts
+    // 获取指定socket实时下行流量数据。
+    let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+    tcp.getSocketFd().then((sockfd: number) => {
+      statistics.getSockfdRxBytes(sockfd).then((stats: number) => {
+        console.log(JSON.stringify(stats));
+      }).catch((err: BusinessError) => {
+        console.error(JSON.stringify(err));
+      });
+    });
+
+    // 获取指定socket实时上行流量数据。
+    tcp.getSocketFd().then((sockfd: number) => {
+      statistics.getSockfdTxBytes(sockfd).then((stats: number) => {
+        console.log(JSON.stringify(stats));
+      }).catch((err: BusinessError) => {
+        console.error(JSON.stringify(err));
+      });
+    });
+    ```
 
 <!--Del-->
 ## 获取网卡/UID 的历史流量统计数据

@@ -3,6 +3,7 @@
 - ArkTS API<!--image-arkts-->
   - [@ohos.multimedia.image (图片处理)](js-apis-image.md)
   - [@ohos.multimedia.sendableImage (基于Sendable对象的图片处理)](js-apis-sendableImage.md)
+  - [@ohos.multimedia.videoProcessingEngine (视频处理引擎)](js-apis-videoProcessingEngine.md) 
   <!--Del-->
   - [@ohos.multimedia.image (图片处理)(系统接口)](js-apis-image-sys.md)
   <!--DelEnd-->
@@ -38,7 +39,7 @@
     - [OH_DecodingOptionsForPicture](capi-oh-decodingoptionsforpicture.md)
     - [OH_DecodingOptions](capi-oh-decodingoptions.md)
     - [OH_PixelmapNative](capi-oh-pixelmapnative.md)
-    - [OH_NativeBuffer](capi-oh-nativebuffer.md)
+    - [OH_NativeBuffer](capi-image-nativemodule-oh-nativebuffer.md)
     - [OH_Pixelmap_HdrStaticMetadata](capi-oh-pixelmap-hdrstaticmetadata.md)
     - [OH_NativeColorSpaceManager](capi-oh-nativecolorspacemanager.md)
     - [OH_Pixelmap_HdrDynamicMetadata](capi-oh-pixelmap-hdrdynamicmetadata.md)
@@ -96,3 +97,4 @@
     - [OH_ImageProcessing](capi-oh-imageprocessing.md)
 - 错误码<!--image-arkts-errcode-->
   - [Image错误码](errorcode-image.md)
+  - [视频处理引擎错误码](errorcode-videoprocessingengine.md)

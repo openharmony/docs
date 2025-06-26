@@ -7,7 +7,7 @@
     - [声明式UI描述](../ui/state-management/arkts-declarative-ui-description.md)
     - 自定义组件<!--arkts-custom-components-->
       - [创建自定义组件](../ui/state-management/arkts-create-custom-components.md)
-      - [页面和自定义组件生命周期](../ui/state-management/arkts-page-custom-components-lifecycle.md)
+      - [router页面和自定义组件生命周期](../ui/state-management/arkts-page-custom-components-lifecycle.md)
       - [自定义组件的自定义布局](../ui/state-management/arkts-page-custom-components-layout.md)
       - [自定义组件成员属性访问限定符使用限制](../ui/state-management/arkts-custom-components-access-restrictions.md)
     - 组件扩展<!--arkts-extend-components-->
@@ -196,6 +196,7 @@
       - [自定义扩展概述](arkts-user-defined-modifier.md)
       - [属性修改器 (AttributeModifier)](arkts-user-defined-extension-attributeModifier.md)
       - [属性更新器 (AttributeUpdater)](arkts-user-defined-extension-attributeUpdater.md)
+      - [自定义绘制修改器 (DrawModifier)](arkts-user-defined-extension-drawModifier.md)
   - [使用镜像能力](arkts-mirroring-display.md)
   - 无障碍与适老化<!--arkts-support-accessibility-friendliness-->
     - [支持无障碍](arkts-universal-attributes-accessibility.md)
@@ -231,6 +232,7 @@
     - [嵌入ArkTS组件](ndk-embed-arkts-components.md)
     - [通过XComponent接入无障碍](ndk-accessibility-xcomponent.md)
     - [自定义绘制](arkts-user-defined-draw.md)
+    - [查询和操作自定义节点](ndk-node-query-operate.md)
     - [通过EmbeddedComponent拉起EmbeddedUIExtensionAbility](ndk-embedded-component.md)
 - UI开发 (兼容JS的类Web开发范式)<!--ui-js-dev-->
   - [UI开发 (兼容JS的类Web开发范式)概述](ui-js-overview.md)

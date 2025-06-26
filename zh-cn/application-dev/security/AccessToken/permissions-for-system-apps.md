@@ -4244,18 +4244,6 @@
 
 **起始版本**：18
 
-## ohos.permission.DLP_GET_HIDE_STATUS
-
-允许系统应用使用信息隐藏接口，获取信息隐藏状态的能力。
-
-**权限级别**：system_basic
-
-**授权方式**：系统授权（system_grant）
-
-**ACL使能**：true
-
-**起始版本**：18
-
 ## ohos.permission.GET_ANIM_POLICY
 
 允许系统应用注册动效插件，获取动效使用策略。
@@ -4327,25 +4315,6 @@
 **授权方式**：系统授权（system_grant）
 
 **ACL使能**：true
-
-**起始版本**：18
-
-## ohos.permission.ACCESS_DDK_DRIVERS
-
-允许扩展外设驱动客户端绑定到扩展外设驱动服务端。
-
-该权限针对扩展外设客户端绑定到扩展外设服务端权限校验，具体规则：
-
-1. 外设扩展驱动客户端权限声明中的value字段中描述的目标扩展驱动服务端已上架或一并上架。
-2. 被申请目标扩展驱动服务端对外提供能力与扩展外设驱动客户端业务诉求一致。
-
-**权限级别**：system_basic
-
-**授权方式**：系统授权（system_grant）
-
-**ACL使能**：true
-
-**携带额外数据**：是，配置方法请见[Driver Development Kit开发指导](../../device/driver/externaldevice-guidelines.md#应用签名)。
 
 **起始版本**：18
 
@@ -4683,7 +4652,7 @@
 
 **起始版本**：18
 
-### ohos.permission.UPDATE_FONT
+## ohos.permission.UPDATE_FONT
 
 允许应用安装和卸载字体。
 
@@ -4692,6 +4661,34 @@
 **授权方式**：system_grant
 
 **ACL使能**：true
+
+**起始版本**：19
+
+## ohos.permission.READ_PARENT_CONTROL_DATA
+
+允许应用读取家长管控网站的配置。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：Phone | Tablet | 2in1
+
+**起始版本**：19
+
+## ohos.permission.WRITE_PARENT_CONTROL_DATA
+
+允许应用写入家长管控网站的配置。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：Phone | Tablet | 2in1
 
 **起始版本**：19
 

@@ -1,4 +1,4 @@
-# @ohos.app.ability.contextConstant (ContextConstant)
+# @ohos.app.ability.contextConstant (Context相关常量)
 
 ContextConstant提供Context相关的枚举，当前仅包含数据加密等级的枚举。
 

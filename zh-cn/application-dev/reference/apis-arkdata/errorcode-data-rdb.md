@@ -33,7 +33,7 @@ Inner error.
 
 **错误信息**
 
-Invalid args.
+Invalid arguments.
 
 **错误描述**
 

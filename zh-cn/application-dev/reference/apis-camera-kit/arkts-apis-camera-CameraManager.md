@@ -411,7 +411,7 @@ createVideoOutput(profile: VideoProfile, surfaceId: string): VideoOutput
 | 参数名     | 类型                                        | 必填 | 说明                              |
 | -------- | ------------------------------------------- | ---- | ------------------------------ |
 | profile  | [VideoProfile](arkts-apis-camera-i.md#videoprofile)               | 是   | 支持的录像配置信息，通过[getSupportedOutputCapability](#getsupportedoutputcapability11)接口获取。 |
-| surfaceId| string          | 是   | 从[AVRecorder](../apis-media-kit/js-apis-media.md#avrecorder9)获取的surfaceId。|
+| surfaceId| string          | 是   | 从[AVRecorder](../apis-media-kit/arkts-apis-media-AVRecorder.md)获取的surfaceId。|
 
 **返回值：**
 
@@ -461,7 +461,7 @@ createVideoOutput(surfaceId: string): VideoOutput
 
 | 参数名       | 类型     | 必填    | 说明                                                                         |
 |-----------|--------|-------|----------------------------------------------------------------------------|
-| surfaceId | string | 是     | 从[AVRecorder](../apis-media-kit/js-apis-media.md#avrecorder9)获取的surfaceId。 |
+| surfaceId | string | 是     | 从[AVRecorder](../apis-media-kit/arkts-apis-media-AVRecorder.md)获取的surfaceId。 |
 
 **返回值：**
 

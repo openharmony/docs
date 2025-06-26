@@ -107,7 +107,7 @@ class EntryAbility extends ServiceExtensionAbility {
           return;
         }
         // 执行正常业务
-        console.log('startAbility succeed');
+        console.info('startAbility succeed');
       });
     } catch (paramError) {
       // 处理入参错误异常
@@ -193,7 +193,7 @@ class EntryAbility extends ServiceExtensionAbility {
       this.context.startAbility(want, options)
         .then((data: void) => {
           // 执行正常业务
-          console.log('startAbility succeed');
+          console.info('startAbility succeed');
         })
         .catch((error: BusinessError) => {
           // 处理业务逻辑错误
@@ -283,7 +283,7 @@ class EntryAbility extends ServiceExtensionAbility {
           return;
         }
         // 执行正常业务
-        console.log('startAbility succeed');
+        console.info('startAbility succeed');
       });
     } catch (paramError) {
       // 处理入参错误异常
@@ -374,7 +374,7 @@ class EntryAbility extends ServiceExtensionAbility {
           return;
         }
         // 执行正常业务
-        console.log('startAbilityWithAccount succeed');
+        console.info('startAbilityWithAccount succeed');
       });
     } catch (paramError) {
       // 处理入参错误异常
@@ -469,7 +469,7 @@ class EntryAbility extends ServiceExtensionAbility {
           return;
         }
         // 执行正常业务
-        console.log('startAbilityWithAccount succeed');
+        console.info('startAbilityWithAccount succeed');
       });
     } catch (paramError) {
       // 处理入参错误异常
@@ -566,7 +566,7 @@ class EntryAbility extends ServiceExtensionAbility {
       this.context.startAbilityWithAccount(want, accountId, options)
         .then((data: void) => {
           // 执行正常业务
-          console.log('startAbilityWithAccount succeed');
+          console.info('startAbilityWithAccount succeed');
         })
         .catch((error: BusinessError) => {
           // 处理业务逻辑错误
@@ -641,7 +641,7 @@ class EntryAbility extends ServiceExtensionAbility {
           return;
         }
         // 执行正常业务
-        console.log('startServiceExtensionAbility succeed');
+        console.info('startServiceExtensionAbility succeed');
       });
     } catch (paramError) {
       // 处理入参错误异常
@@ -713,7 +713,7 @@ class EntryAbility extends ServiceExtensionAbility {
       this.context.startServiceExtensionAbility(want)
         .then((data) => {
           // 执行正常业务
-          console.log('startServiceExtensionAbility succeed');
+          console.info('startServiceExtensionAbility succeed');
         })
         .catch((error: BusinessError) => {
           // 处理业务逻辑错误
@@ -797,7 +797,7 @@ class EntryAbility extends ServiceExtensionAbility {
           return;
         }
         // 执行正常业务
-        console.log('startServiceExtensionAbilityWithAccount succeed');
+        console.info('startServiceExtensionAbilityWithAccount succeed');
       });
     } catch (paramError) {
       // 处理入参错误异常
@@ -878,7 +878,7 @@ class EntryAbility extends ServiceExtensionAbility {
       this.context.startServiceExtensionAbilityWithAccount(want, accountId)
         .then((data: void) => {
           // 执行正常业务
-          console.log('startServiceExtensionAbilityWithAccount succeed');
+          console.info('startServiceExtensionAbilityWithAccount succeed');
         })
         .catch((error: BusinessError) => {
           // 处理业务逻辑错误
@@ -964,7 +964,7 @@ class EntryAbility extends ServiceExtensionAbility {
       if (err && err.code != 0) {
         console.error('startAbilityAsCaller failed, err:' + JSON.stringify(err));
       } else {
-        console.log('startAbilityAsCaller success.');
+        console.info('startAbilityAsCaller success.');
       }
     })
   }
@@ -1046,7 +1046,7 @@ class EntryAbility extends ServiceExtensionAbility {
       if (err && err.code != 0) {
         console.error('startAbilityAsCaller failed, err:' + JSON.stringify(err));
       } else {
-        console.log('startAbilityAsCaller success.');
+        console.info('startAbilityAsCaller success.');
       }
     })
   }
@@ -1134,7 +1134,7 @@ class EntryAbility extends ServiceExtensionAbility {
     // 使用启动方的Caller身份信息启动新Ability
     this.context.startAbilityAsCaller(localWant, option)
       .then(() => {
-        console.log('startAbilityAsCaller success.');
+        console.info('startAbilityAsCaller success.');
       })
       .catch((err: BusinessError) => {
         console.error('startAbilityAsCaller failed, err:' + JSON.stringify(err));
@@ -1200,7 +1200,7 @@ class EntryAbility extends ServiceExtensionAbility {
           return;
         }
         // 执行正常业务
-        console.log('stopServiceExtensionAbility succeed');
+        console.info('stopServiceExtensionAbility succeed');
       });
     } catch (paramError) {
       // 处理入参错误异常
@@ -1268,7 +1268,7 @@ class EntryAbility extends ServiceExtensionAbility {
       this.context.stopServiceExtensionAbility(want)
         .then(() => {
           // 执行正常业务
-          console.log('stopServiceExtensionAbility succeed');
+          console.info('stopServiceExtensionAbility succeed');
         })
         .catch((error: BusinessError) => {
           // 处理业务逻辑错误
@@ -1347,7 +1347,7 @@ class EntryAbility extends ServiceExtensionAbility {
           return;
         }
         // 执行正常业务
-        console.log('stopServiceExtensionAbilityWithAccount succeed');
+        console.info('stopServiceExtensionAbilityWithAccount succeed');
       });
     } catch (paramError) {
       // 处理入参错误异常
@@ -1423,7 +1423,7 @@ class EntryAbility extends ServiceExtensionAbility {
       this.context.stopServiceExtensionAbilityWithAccount(want, accountId)
         .then(() => {
           // 执行正常业务
-          console.log('stopServiceExtensionAbilityWithAccount succeed');
+          console.info('stopServiceExtensionAbilityWithAccount succeed');
         })
         .catch((error: BusinessError) => {
           // 处理业务逻辑错误
@@ -1460,9 +1460,6 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 16000001 | The specified ability does not exist. |
-| 16000004 | Cannot start an invisible component. |
-| 16000005 | The specified process does not have the permission. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
@@ -1482,7 +1479,7 @@ class EntryAbility extends ServiceExtensionAbility {
         return;
       }
       // 执行正常业务
-      console.log('terminateSelf succeed');
+      console.info('terminateSelf succeed');
     });
   }
 }
@@ -1510,9 +1507,6 @@ terminateSelf(): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 16000001 | The specified ability does not exist. |
-| 16000004 | Cannot start an invisible component. |
-| 16000005 | The specified process does not have the permission. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
@@ -1527,7 +1521,7 @@ class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
     this.context.terminateSelf().then(() => {
       // 执行正常业务
-      console.log('terminateSelf succeed');
+      console.info('terminateSelf succeed');
     }).catch((error: BusinessError) => {
       // 处理业务逻辑错误
       console.error(`terminateSelf failed, error.code: ${error.code}, error.message: ${error.message}`);
@@ -1600,10 +1594,10 @@ class EntryAbility extends ServiceExtensionAbility {
     let options: common.ConnectOptions = {
       onConnect(elementName, remote) {
         commRemote = remote;
-        console.log('----------- onConnect -----------');
+        console.info('----------- onConnect -----------');
       },
       onDisconnect(elementName) {
-        console.log('----------- onDisconnect -----------');
+        console.info('----------- onDisconnect -----------');
       },
       onFailed(code) {
         console.error('----------- onFailed -----------');
@@ -1694,13 +1688,13 @@ class EntryAbility extends ServiceExtensionAbility {
     let options: common.ConnectOptions = {
       onConnect(elementName, remote) {
         commRemote = remote;
-        console.log('----------- onConnect -----------');
+        console.info('----------- onConnect -----------');
       },
       onDisconnect(elementName) {
-        console.log('----------- onDisconnect -----------');
+        console.info('----------- onDisconnect -----------');
       },
       onFailed(code) {
-        console.log('----------- onFailed -----------');
+        console.info('----------- onFailed -----------');
       }
     };
     let connection: number;
@@ -1764,7 +1758,7 @@ class EntryAbility extends ServiceExtensionAbility {
           return;
         }
         // 执行正常业务
-        console.log('disconnectServiceExtensionAbility succeed');
+        console.info('disconnectServiceExtensionAbility succeed');
       });
     } catch (paramError) {
       commRemote = null;
@@ -1825,7 +1819,7 @@ class EntryAbility extends ServiceExtensionAbility {
         .then(() => {
           commRemote = null;
           // 执行正常业务
-          console.log('disconnectServiceExtensionAbility succeed');
+          console.info('disconnectServiceExtensionAbility succeed');
         })
         .catch((error: BusinessError) => {
           commRemote = null;
@@ -1883,7 +1877,6 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Cannot start an invisible component. |
-| 16000005 | Static permission denied. The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000011 | The context does not exist. |
@@ -1914,7 +1907,7 @@ class EntryAbility extends ServiceExtensionAbility {
         .then((obj: Caller) => {
           // 执行正常业务
           caller = obj;
-          console.log('startAbilityByCall succeed');
+          console.info('startAbilityByCall succeed');
         }).catch((error: BusinessError) => {
         // 处理业务逻辑错误
         console.error(`startAbilityByCall failed, error.code: ${error.code}, error.message: ${error.message}`);
@@ -1952,7 +1945,7 @@ class EntryAbility extends ServiceExtensionAbility {
         .then((obj: Caller) => {
           // 执行正常业务
           caller = obj;
-          console.log('startAbilityByCall succeed');
+          console.info('startAbilityByCall succeed');
         }).catch((error: BusinessError) => {
         // 处理业务逻辑错误
         console.error(`startAbilityByCall failed, error.code: ${error.code}, error.message: ${error.message}`);
@@ -2005,6 +1998,14 @@ startRecentAbility(want: Want, callback: AsyncCallback\<void>): void
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
+| 16000071 | App clone is not supported.  |
+| 16000072 | App clone or multi-instance is not supported. |
+| 16000073 | The app clone index is invalid.  |
+| 16000076 | The app instance key is invalid.  |
+| 16000077 | The number of app instances reaches the limit.  |
+| 16000078 | The multi-instance is not supported.  |
+| 16000079 | The APP_INSTANCE_KEY cannot be specified.  |
+| 16000080 | Creating a new instance is not supported.  |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -2072,17 +2073,23 @@ startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback\<v
 | 201 | The application does not have permission to call the interface. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
-| 16000002 | Incorrect ability type. |
 | 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation and prepare continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
+| 16000071 | App clone is not supported.  |
+| 16000072 | App clone or multi-instance is not supported. |
+| 16000073 | The app clone index is invalid.  |
+| 16000076 | The app instance key is invalid.  |
+| 16000077 | The number of app instances reaches the limit.  |
+| 16000078 | The multi-instance is not supported.  |
+| 16000079 | The APP_INSTANCE_KEY cannot be specified.  |
+| 16000080 | Creating a new instance is not supported.  |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -2162,6 +2169,14 @@ startRecentAbility(want: Want, options?: StartOptions): Promise\<void>
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
+| 16000071 | App clone is not supported.  |
+| 16000072 | App clone or multi-instance is not supported. |
+| 16000073 | The app clone index is invalid.  |
+| 16000076 | The app instance key is invalid.  |
+| 16000077 | The number of app instances reaches the limit.  |
+| 16000078 | The multi-instance is not supported.  |
+| 16000079 | The APP_INSTANCE_KEY cannot be specified.  |
+| 16000080 | Creating a new instance is not supported.  |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -2282,7 +2297,7 @@ class EntryAbility extends ServiceExtensionAbility {
         .then((obj: Caller) => {
           // 执行正常业务
           caller = obj;
-          console.log('startAbilityByCallWithAccount succeed');
+          console.info('startAbilityByCallWithAccount succeed');
         }).catch((error: BusinessError) => {
         // 处理业务逻辑错误
         console.error(`startAbilityByCallWithAccount failed, error.code: ${error.code}, error.message: ${error.message}`);

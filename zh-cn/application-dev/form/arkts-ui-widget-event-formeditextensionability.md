@@ -1,9 +1,9 @@
-# 编辑刷新卡片页面内容
+# 卡片编辑开发指导
 
 桌面提供统一的卡片编辑页，卡片提供方使用卡片框架提供的[FormEditExtensionAbility](../reference/apis-form-kit/js-apis-app-form-formEditExtensionAbility.md)开发卡片编辑功能。
 
 ## 开发步骤
-1. 在工程的entry模块中，新建名为EntryFormEditAbility的代码文件。在EntryFormEditAbility文件中，实现[startSecondPage](../reference/apis-form-kit/js-apis-inner-application-formEditExtensionContext.md#startsecondpage)方法，在[onSessionCreate](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#onsessioncreate)回调方法中，加载一级卡片编辑页，并将startSecondPage方法的实现传递给一级卡片编辑页。
+1. 在工程的entry模块中，新建名为EntryFormEditAbility的代码文件。在EntryFormEditAbility文件中，实现[startSecondPage](../reference/apis-form-kit/js-apis-inner-application-formEditExtensionContext.md#formeditextensioncontextstartsecondpage)方法，在[onSessionCreate](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#onsessioncreate)回调方法中，加载一级卡片编辑页，并将startSecondPage方法的实现传递给一级卡片编辑页。
 
 ```ts
 // src/main/ets/entryformeditability/EntryFormEditAbility.ets
@@ -15,19 +15,19 @@ import { ExtensionEvent } from '../pages/model/ExtensionEvent';
 const TAG: string = 'FormEditDemo[EntryFormEditAbility] -->';
 export default class EntryFormEditAbility extends FormEditExtensionAbility {
   onCreate() {
-    console.log(`${TAG} onCreate`);
+    console.info(`${TAG} onCreate`);
   }
   onForeground(): void {
-    console.log(`${TAG} EntryFormEditAbility onForeground.....`);
+    console.info(`${TAG} EntryFormEditAbility onForeground.....`);
   }
   onBackground(): void {
-    console.log(`${TAG} EntryFormEditAbility onBackground......`);
+    console.info(`${TAG} EntryFormEditAbility onBackground......`);
   }
   onDestroy(): void {
-    console.log(`${TAG} EntryFormEditAbility onDestroy......`);
+    console.info(`${TAG} EntryFormEditAbility onDestroy......`);
   }
   onSessionCreate(want: Want, session: UIExtensionContentSession) {
-    console.log(`${TAG} onSessionCreate start..... want: ${JSON.stringify(want)}`);
+    console.info(`${TAG} onSessionCreate start..... want: ${JSON.stringify(want)}`);
     let storage: LocalStorage = new LocalStorage();
     let extensionEvent: ExtensionEvent = new ExtensionEvent();
     extensionEvent.setStartSecondPage(() => this.startSecondPage());
@@ -36,16 +36,16 @@ export default class EntryFormEditAbility extends FormEditExtensionAbility {
       session.loadContent('pages/Extension', storage);
       session.setWindowBackgroundColor('#00000000');
     } catch (e) {
-      console.log(`${TAG} EntryFormEditAbility loadContent err, want: ${JSON.stringify(e)}`);
+      console.error(`${TAG} EntryFormEditAbility loadContent err, want: ${JSON.stringify(e)}`);
     }
   }
   onSessionDestroy(session: UIExtensionContentSession) {
-    console.log(`${TAG} onSessionDestroy`);
+    console.info(`${TAG} onSessionDestroy`);
   }
   private startSecondPage(): void {
     const bundleName: string = this.context.extensionAbilityInfo.bundleName;
     const secPageAbilityName: string = 'FormEditSecPageAbility';
-    console.log(`${TAG} startSecondPage. bundleName: ${bundleName}, secPageAbilityName: ${secPageAbilityName}.`);
+    console.info(`${TAG} startSecondPage. bundleName: ${bundleName}, secPageAbilityName: ${secPageAbilityName}.`);
     try {
       this.context.startSecondPage({
         bundleName: bundleName,
@@ -54,7 +54,7 @@ export default class EntryFormEditAbility extends FormEditExtensionAbility {
         }
       });
     } catch (err) {
-      console.log(`${TAG} startSecondPage failed: ${err}`);
+      console.error(`${TAG} startSecondPage failed: ${err}`);
     }
   }
 };
@@ -77,7 +77,7 @@ struct Extension {
   private session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
   private extensionEvent: ExtensionEvent | undefined = storage.get<ExtensionEvent>('extensionEvent');
   onPageShow() {
-    console.log(`${TAG} onPageShow. extensionEvent: ${JSON.stringify(this.extensionEvent)}, session: ${JSON.stringify(this.session)}.`);
+    console.info(`${TAG} onPageShow. extensionEvent: ${JSON.stringify(this.extensionEvent)}, session: ${JSON.stringify(this.session)}.`);
   }
   build() {
     Row() {
@@ -93,7 +93,7 @@ struct Extension {
             top: 20
           })
           .onClick(() => {
-            console.log(`${TAG} Button onClick`);
+            console.info(`${TAG} Button onClick`);
             this.extensionEvent?.startFormEditSecondPage();
           })
       }
@@ -104,7 +104,7 @@ struct Extension {
 }
 ```
 
-3. 新增ExtensionEvent文件，使用startFormEditSecondPage方法调用[startSecondPage](../reference/apis-form-kit/js-apis-inner-application-formEditExtensionContext.md#startsecondpage)方法。
+3. 新增ExtensionEvent文件，使用startFormEditSecondPage方法调用[startSecondPage](../reference/apis-form-kit/js-apis-inner-application-formEditExtensionContext.md#formeditextensioncontextstartsecondpage)方法。
 
 ```ts
 // src/main/ets/widget/pages/model/ExtensionEvent.ets
@@ -112,14 +112,14 @@ struct Extension {
 const TAG: string = 'FormEditDemo[ExtensionEvent] -->';
 export class ExtensionEvent {
   private startSecondPage: () => void = () => {
-    console.log(`${TAG} startSecondPage is empty!`);
+    console.info(`${TAG} startSecondPage is empty!`);
   };
   public setStartSecondPage(startSecondPage: () => void) {
-    console.log(`${TAG} setStartSecondPage`);
+    console.info(`${TAG} setStartSecondPage`);
     this.startSecondPage = startSecondPage;
   }
   public startFormEditSecondPage(): void {
-    console.log(`${TAG} startFormEditSecondPage`);
+    console.info(`${TAG} startFormEditSecondPage`);
     this.startSecondPage();
   }
 }
