@@ -3111,6 +3111,7 @@
           - [用户界面外观服务错误码](reference/apis-arkui/errorcode-uiappearance.md)
           - [UIExtension错误码](reference/apis-arkui/errorcode-uiextension.md)
           <!--DelEnd-->
+          - [XComponent组件错误码](reference/apis-arkui/errorcode-xcomponent.md)
         - 图形图像<!--arkui-graphics-images-arkts-errcode-->
           - [屏幕错误码](reference/apis-arkui/errorcode-display.md)
           - [窗口错误码](reference/apis-arkui/errorcode-window.md)
