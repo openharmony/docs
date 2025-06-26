@@ -20,9 +20,9 @@ The system is not running properly due to a common kernel error, such as a memor
 
 **Solution**
 
-Make sure the memory is sufficient.
+Make sure that the memory is sufficient.
 
-## 13000001 Network or Operating System Error
+## 13000001 Network or OS Error
 
 **Error Message**
 
@@ -30,11 +30,11 @@ Network connection error or OS error.
 
 **Description**
 
-This error code is reported when the network or operating system error occurs.
+This error code is reported when the network or OS error occurs.
 
 **Possible Cause**
 
-The network or operating system is not running properly due to a system error, such as network connection failure or socket creation failure.
+The network or OS is not running properly due to a system error, such as network connection failure or socket creation failure.
 
 **Solution**
 
@@ -45,15 +45,15 @@ Make sure the network is connected and the system resources are sufficient.
 
 **Error Message**
 
-NTP update failed.
+The local NTP time of the system is invalid.
 
 **Description**
 
-This error code is reported when the NTP time is not updated.
+This error code is reported when the NTP time is invalid.
 
 **Possible Cause**
 
-Fail to update the NTP time before obtain it.
+The local NTP time has not been updated and becomes invalid.
 
 **Solution**
 

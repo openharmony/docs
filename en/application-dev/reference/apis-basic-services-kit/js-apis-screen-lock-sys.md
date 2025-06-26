@@ -294,11 +294,11 @@ For details about error codes, see [Universal Error Codes](../errorcode-universa
   
   try {
     let isSuccess = screenLock.onSystemEvent((event: screenLock.SystemEvent) => {
-      console.log(`Succeeded in Registering the system event which related to screenlock. eventType: ${event.eventType}`)
+      console.info(`Succeeded in Registering the system event which related to screenlock. eventType: ${event.eventType}`);
     });
   } catch (err) {
     let error = err as BusinessError;
-    console.error(`Failed to register the system event which related to screenlock, Code: ${error.code}, message: ${error.message}`)
+    console.error(`Failed to register the system event which related to screenlock, Code: ${error.code}, message: ${error.message}`);
   }
   ```
 
@@ -319,7 +319,7 @@ Sends an event to the screen lock service. This API can be called only by screen
 | Name   | Type           | Mandatory| Description                                                                                                               |
 | --------- | ------------------------ | ---- |-------------------------------------------------------------------------------------------------------------------|
 | event     | String                   | Yes  | Event type. Options are as follows:<br>- **"unlockScreenResult"**: Screen unlock result.<br>- **"lockScreenResult"**: Screen lock result.<br>- **"screenDrawDone"**: Screen drawing is complete.|
-| parameter | number                   | Yes  | Result.<br>- **0**: The operation is successful. For example, the screen is locked or unlocked successfully.<br>- **1**, the operation fails. For example, screen locking or unlocking fails.<br>- **2**: The operation is canceled. For example, screen locking or unlocking is canceled.|
+| parameter | number                   | Yes  | Result.<br>- **0**: The operation is successful. For example, the screen is locked or unlocked successfully.<br>- **1**: The operation fails. For example, screen locking or unlocking fails.<br>- **2**: The operation is canceled. For example, screen locking or unlocking is canceled. |
 | callback  | AsyncCallback\<boolean> | Yes  | Callback used to return the result. The **value** true means that the event is sent successfully, and **false** means the opposite.                                                                             |
 
 **Error codes**
@@ -364,7 +364,7 @@ Sends an event to the screen lock service. This API can be called only by screen
 | Name   | Type  | Mandatory| Description                                                                                                               |
 | --------- | ------ | ---- |-------------------------------------------------------------------------------------------------------------------|
 | event     | String | Yes  | Event type. Options are as follows:<br>- **"unlockScreenResult"**: Screen unlock result.<br>- **"lockScreenResult"**: Screen lock result.<br>- **"screenDrawDone"**: Screen drawing is complete.|
-| parameter | number | Yes  | Result.<br>- **0**: The operation is successful. For example, the screen is locked or unlocked successfully.<br>- **1**, the operation fails. For example, screen locking or unlocking fails.<br>- **2**: The operation is canceled. For example, screen locking or unlocking is canceled.|
+| parameter | number | Yes  | Result.<br>- **0**: The operation is successful. For example, the screen is locked or unlocked successfully.<br>- **1**: The operation fails. For example, screen locking or unlocking fails.<br>- **2**: The operation is canceled. For example, screen locking or unlocking is canceled. |
 
 **Return value**
 
