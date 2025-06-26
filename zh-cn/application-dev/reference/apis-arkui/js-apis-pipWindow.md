@@ -242,11 +242,11 @@ promise.then((data: PiPWindow.PiPController) => {
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-| 名称   | 类型 | 可读 | 可写 | 说明       |
-| ------ | -------- | ---- | ---- | ---------- |
-| width  | number   | 是   | 否   | 窗口宽度，单位为px，该参数应为正整数，不大于屏幕宽。 |
-| height | number   | 是   | 否   | 窗口高度，单位为px，该参数应为正整数，不大于屏幕高。 |
-| scale  | number   | 是   | 否   | 窗口缩放比，显示大小相对于width和height的缩放比，该参数为浮点数，取值范围大于0.0，小于等于1.0。等于1表示与width和height一样大。 |
+| 名称   | 类型 | 只读 | 可选 | 说明       |
+| ------ | -------- |----|----| ---------- |
+| width  | number   | 是  | 否  | 窗口宽度，单位为px，该参数应为正整数，不大于屏幕宽。 |
+| height | number   | 是  | 否  | 窗口高度，单位为px，该参数应为正整数，不大于屏幕高。 |
+| scale  | number   | 是  | 否  | 窗口缩放比，显示大小相对于width和height的缩放比，该参数为浮点数，取值范围大于0.0，小于等于1.0。等于1表示与width和height一样大。 |
 
 ## PiPWindowInfo<sup>15+</sup>
 
@@ -256,10 +256,10 @@ promise.then((data: PiPWindow.PiPController) => {
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-| 名称   | 类型 | 可读 | 可写 | 说明       |
-| ------ | -------- | ---- | ---- | ---------- |
-| windowId  | number   | 是   | 否   | 画中画窗口ID。 |
-| size  | [PiPWindowSize](#pipwindowsize15)  | 是   | 否   | 画中画窗口大小。 |
+| 名称   | 类型 | 只读 | 可选 | 说明       |
+| ------ | -------- |----|----| ---------- |
+| windowId  | number   | 是  | 否  | 画中画窗口ID。 |
+| size  | [PiPWindowSize](#pipwindowsize15)  | 是  | 否  | 画中画窗口大小。 |
 
 ## PiPTemplateType
 

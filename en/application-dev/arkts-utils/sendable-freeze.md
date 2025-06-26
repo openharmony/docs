@@ -2,6 +2,10 @@
 
 Sendable objects can be frozen, making them read-only and preventing any additions, deletions, or modifications to their properties. Once frozen, these objects can be safely accessed across multiple concurrent instances without the need for locks. This is achieved using the [Object.freeze](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze) method.
 
+> **NOTE**
+> 
+> The **Object.freeze** API cannot be used in .ets files.
+
 ## Usage Example
 
 1. Encapsulate the **Object.freeze** method in a TS file.

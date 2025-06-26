@@ -1784,7 +1784,7 @@ Hello world!
 
 layoutMode(mode: WebLayoutMode)
 
-设置Web布局模式。
+设置Web布局模式。常见问题请参考[Web组件大小自适应页面内容布局](../../web/web-fit-content.md)。
 
 > **说明：**
 >
@@ -1796,7 +1796,7 @@ layoutMode(mode: WebLayoutMode)
 > - Web组件宽高规格：指定`RenderMode.SYNC_RENDER`模式时，分别不超过50万px；指定`RenderMode.ASYNC_RENDER`模式时，分别不超过7680px。
 > - 频繁更改页面宽高会触发Web组件重新布局，影响体验。
 > - 不支持瀑布流网页（下拉到底部加载更多）。
-> - 不支持宽度自适应，仅支持高度自适应（不支持vh单位）。
+> - 不支持宽度自适应，仅支持高度自适应。
 > - 由于高度自适应网页高度，您无法通过修改组件高度属性来修改组件高度。
 
 **系统能力：** SystemCapability.Web.Webview.Core

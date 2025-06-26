@@ -440,16 +440,16 @@
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 类型                                       | 必填   | 说明      |
-| ------ | ---------------------------------------- | ---- | ------- |
-| width  | [Length](#length)  \| [EdgeWidths](#edgewidths9)<sup>9+</sup> \| [LocalizedEdgeWidths](#localizededgewidths12)<sup>12+</sup> | 否    | 边框宽度。   |
-| color  | [ResourceColor](#resourcecolor) \| [EdgeColors](#edgecolors9)<sup>9+</sup> | 否    | 边框颜色。   |
-| radius | [Length](#length) \| [BorderRadiuses](#borderradiuses9)<sup>9+</sup> | 否    | 边框圆角半径。 |
-| style  | [BorderStyle](ts-appendix-enums.md#borderstyle)  \| [EdgeStyles](#edgestyles9)<sup>9+</sup>| 否    | 边框样式。   |
+| 名称   | 参数类型                                                     | 必填 | 说明               |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| width  | [Length](ts-types.md#length)&nbsp;\|&nbsp;[EdgeWidths](ts-universal-attributes-border.md#edgewidths9对象说明)<sup>9+</sup>&nbsp;\|&nbsp;[LocalizedEdgeWidths](ts-universal-attributes-border.md#localizededgewidths12对象说明)<sup>12+</sup> | 否   | 设置边框宽度。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。     |
+| color  | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](ts-universal-attributes-border.md#edgecolors9对象说明)<sup>9+</sup>&nbsp;\|&nbsp;[LocalizedEdgeColors](ts-universal-attributes-border.md#localizededgecolors12对象说明)<sup>12+</sup> | 否   | 设置边框颜色。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。     |
+| radius | [Length](ts-types.md#length)&nbsp;\|&nbsp;[BorderRadiuses](ts-universal-attributes-border.md#borderradiuses9对象说明)<sup>9+</sup>&nbsp;\|&nbsp;[LocalizedBorderRadiuses](ts-universal-attributes-border.md#localizedborderradiuses12对象说明)<sup>12+</sup> | 否   | 设置边框圆角半径。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| style  | [BorderStyle](ts-appendix-enums.md#borderstyle)&nbsp;\|&nbsp;[EdgeStyles](ts-universal-attributes-border.md#edgestyles9对象说明)<sup>9+</sup> | 否   | 设置边框样式。<br/>从API version 11开始，该接口支持在原子化服务中使用。     |
+| dashGap<sup>12+</sup>  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)&nbsp;\|&nbsp;[EdgeWidths](ts-universal-attributes-border.md#edgewidths9对象说明)&nbsp;\|&nbsp;[LocalizedEdgeWidths](ts-universal-attributes-border.md#localizededgewidths12对象说明) | 否  | 设置虚线的线段间距，仅在边框样式为虚线时生效。<br/>不支持设置百分比。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>该接口不支持在ArkTS卡片中使用。|
+| dashWidth<sup>12+</sup>  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)&nbsp;\|&nbsp;[EdgeWidths](ts-universal-attributes-border.md#edgewidths9对象说明)&nbsp;\|&nbsp;[LocalizedEdgeWidths](ts-universal-attributes-border.md#localizededgewidths12对象说明) | 否   | 设置虚线的线段长度，仅在边框样式为虚线时生效。<br/>不支持设置百分比。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>该接口不支持在ArkTS卡片中使用。     |
 
 ## ColorFilter<sup>9+</sup>
 

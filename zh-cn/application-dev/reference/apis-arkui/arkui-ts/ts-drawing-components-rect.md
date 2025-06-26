@@ -69,7 +69,7 @@ radiusWidth(value: number | string)
 
 设置圆角的宽度，仅设置宽时宽高一致。 异常值按照默认值处理。
 
-**卡片能力：** 从API version 7开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -87,7 +87,7 @@ radiusHeight(value: number | string)
 
 设置圆角的高度，仅设置高时宽高一致。  异常值按照默认值处理。
 
-**卡片能力：** 从API version 7开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
