@@ -11,15 +11,15 @@ The **print** module provides APIs for basic print operations.
 import { print } from '@kit.BasicServicesKit';
 ```
 
-## print.PrintTask
+## PrintTask
 
 Implements event listeners for print tasks.
 
-### on
+### PrintTask.on
 
 on(type: 'block', callback: Callback&lt;void&gt;): void
 
-Registers a listener for the print task blocking event. This API uses a callback to return the result.
+Registers a listener for the print task block event. This API uses a callback to return the result.
 
 **Required permissions**: ohos.permission.PRINT
 
@@ -45,23 +45,24 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 ```ts
 import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
+import { fileUri } from '@kit.CoreFileKit';
 
-let file = ['file://data/print/a.png', 'file://data/print/b.png'];
-print.print(file).then((printTask: print.PrintTask) => {
+let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
+print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask) => {
     printTask.on('block', () => {
         console.log('print state is block');
     })
     // ...
 }).catch((error: BusinessError) => {
-    console.log('print err ' + JSON.stringify(error));
+    console.error('print err ' + JSON.stringify(error));
 })
 ```
 
-### on
+### PrintTask.on
 
 on(type: 'succeed', callback: Callback&lt;void&gt;): void
 
-Registers a listener for the print task blocking event. This API uses a callback to return the result.
+Registers a listener for the print task success event. This API uses a callback to return the result.
 
 **Required permissions**: ohos.permission.PRINT
 
@@ -87,23 +88,24 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 ```ts
 import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
+import { fileUri } from '@kit.CoreFileKit';
 
-let file = ['file://data/print/a.png', 'file://data/print/b.png'];
-print.print(file).then((printTask: print.PrintTask) => {
+let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
+print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask) => {
     printTask.on('succeed', () => {
         console.log('print state is succeed');
     })
     // ...
 }).catch((error: BusinessError) => {
-    console.log('print err ' + JSON.stringify(error));
+    console.error('print err ' + JSON.stringify(error));
 })
 ```
 
-### on
+### PrintTask.on
 
 on(type: 'fail', callback: Callback&lt;void&gt;): void
 
-Registers a listener for the print task blocking event. This API uses a callback to return the result.
+Registers a listener for the print task failure event. This API uses a callback to return the result.
 
 **Required permissions**: ohos.permission.PRINT
 
@@ -129,23 +131,24 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 ```ts
 import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
+import { fileUri } from '@kit.CoreFileKit';
 
-let file = ['file://data/print/a.png', 'file://data/print/b.png'];
-print.print(file).then((printTask: print.PrintTask) => {
+let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
+print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask) => {
     printTask.on('fail', () => {
         console.log('print state is fail');
     })
     // ...
 }).catch((error: BusinessError) => {
-    console.log('print err ' + JSON.stringify(error));
+    console.error('print err ' + JSON.stringify(error));
 })
 ```
 
-### on
+### PrintTask.on
 
 on(type: 'cancel', callback: Callback&lt;void&gt;): void
 
-Registers a listener for the print task blocking event. This API uses a callback to return the result.
+Registers a listener for the print task cancellation event. This API uses a callback to return the result.
 
 **Required permissions**: ohos.permission.PRINT
 
@@ -154,7 +157,7 @@ Registers a listener for the print task blocking event. This API uses a callback
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Listening type.<br>The value is fixed at **'cancel'**,<br>indicating canceling of the print task.|
+| type | string | Yes| Listening type.<br>The value is fixed at **'cancel'**,<br>indicating cancellation of the print task.|
 | callback | Callback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -171,23 +174,24 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 ```ts
 import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
+import { fileUri } from '@kit.CoreFileKit';
 
-let file = ['file://data/print/a.png', 'file://data/print/b.png'];
-print.print(file).then((printTask: print.PrintTask) => {
+let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
+print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask) => {
     printTask.on('cancel', () => {
         console.log('print state is cancel');
     })
     // ...
 }).catch((error: BusinessError) => {
-    console.log('print err ' + JSON.stringify(error));
+    console.error('print err ' + JSON.stringify(error));
 })
 ```
 
-### off
+### PrintTask.off
 
 off(type: 'block', callback?: Callback&lt;void&gt;): void
 
-Unregisters the listener for the print task blocking event. This API uses a callback to return the result.
+Unregisters the listener for the print task block event. This API uses a callback to return the result.
 
 **Required permissions**: ohos.permission.PRINT
 
@@ -213,23 +217,24 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 ```ts
 import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
+import { fileUri } from '@kit.CoreFileKit';
 
-let file = ['file://data/print/a.png', 'file://data/print/b.png'];
-print.print(file).then((printTask: print.PrintTask) => {
+let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
+print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask) => {
     printTask.off('block', () => {
         console.log('unregister state block');
     })
     // ...
 }).catch((error: BusinessError) => {
-    console.log('print err ' + JSON.stringify(error));
+    console.error('print err ' + JSON.stringify(error));
 })
 ```
 
-### off
+### PrintTask.off
 
 off(type: 'succeed', callback?: Callback&lt;void&gt;): void
 
-Unregisters the listener for the print task blocking event. This API uses a callback to return the result.
+Unregisters the listener for the print task success event. This API uses a callback to return the result.
 
 **Required permissions**: ohos.permission.PRINT
 
@@ -255,23 +260,24 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 ```ts
 import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
+import { fileUri } from '@kit.CoreFileKit';
 
-let file = ['file://data/print/a.png', 'file://data/print/b.png'];
-print.print(file).then((printTask: print.PrintTask) => {
+let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
+print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask) => {
     printTask.off('succeed', () => {
         console.log('unregister state succeed');
     })
     // ...
 }).catch((error: BusinessError) => {
-    console.log('print err ' + JSON.stringify(error));
+    console.error('print err ' + JSON.stringify(error));
 })
 ```
 
-### off
+### PrintTask.off
 
 off(type: 'fail', callback?: Callback&lt;void&gt;): void
 
-Unregisters the listener for the print task blocking event. This API uses a callback to return the result.
+Unregisters the listener for the print task failure event. This API uses a callback to return the result.
 
 **Required permissions**: ohos.permission.PRINT
 
@@ -297,23 +303,24 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 ```ts
 import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
+import { fileUri } from '@kit.CoreFileKit';
 
-let file = ['file://data/print/a.png', 'file://data/print/b.png'];
-print.print(file).then((printTask: print.PrintTask) => {
+let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
+print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask) => {
     printTask.off('fail', () => {
         console.log('unregister state fail');
     })
     // ...
 }).catch((error: BusinessError) => {
-    console.log('print err ' + JSON.stringify(error));
+    console.error('print err ' + JSON.stringify(error));
 })
 ```
 
-### off
+### PrintTask.off
 
 off(type: 'cancel', callback?: Callback&lt;void&gt;): void
 
-Unregisters the listener for the print task blocking event. This API uses a callback to return the result.
+Unregisters the listener for the print task cancellation event. This API uses a callback to return the result.
 
 **Required permissions**: ohos.permission.PRINT
 
@@ -322,7 +329,7 @@ Unregisters the listener for the print task blocking event. This API uses a call
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Listening type.<br>The value is fixed at **'cancel'**,<br>indicating canceling of the print task.|
+| type | string | Yes| Listening type.<br>The value is fixed at **'cancel'**,<br>indicating cancellation of the print task.|
 | callback | Callback&lt;void&gt; | No| Callback used to return the result.|
 
 **Error codes**
@@ -339,19 +346,20 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 ```ts
 import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
+import { fileUri } from '@kit.CoreFileKit';
 
-let file = ['file://data/print/a.png', 'file://data/print/b.png'];
-print.print(file).then((printTask: print.PrintTask) => {
+let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
+print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask) => {
     printTask.off('cancel', () => {
         console.log('unregister state cancel');
     })
     // ...
 }).catch((error: BusinessError) => {
-    console.log('print err ' + JSON.stringify(error));
+    console.error('print err ' + JSON.stringify(error));
 })
 ```
 
-## print.PrintDocumentAdapter<sup>11+</sup>
+## PrintDocumentAdapter<sup>11+</sup>
 
 Provides information about the document to print. This API must be implemented by a third-party application.
 
@@ -369,10 +377,10 @@ Sends an empty PDF file descriptor to a third-party application. The third-party
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | jobId | string | Yes| ID of the print job.|
-| oldAttrs | [PrintAttributes](#printprintattributes11) | Yes| Old print attributes.|
-| newAttrs | [PrintAttributes](#printprintattributes11) | Yes| New print attributes.|
+| oldAttrs | [PrintAttributes](#printattributes11) | Yes| Old print attributes.|
+| newAttrs | [PrintAttributes](#printattributes11) | Yes| New print attributes.|
 | fd | number | Yes| PDF file descriptor sent to the API caller.|
-| writeResultCallback | (jobId: string, writeResult: [PrintFileCreationState](#printprintfilecreationstate11)) | Yes| Callback used to print the updated file.|
+| writeResultCallback | (jobId: string, writeResult: [PrintFileCreationState](#printfilecreationstate11)) => void | Yes| Callback used to print the updated file.|
 
 **Error codes**
 
@@ -424,7 +432,7 @@ Registers a listener for print job state changes.
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | jobId | string | Yes| ID of the print job.|
-| state | [PrintDocumentAdapterState](#printprintdocumentadapterstate11) | Yes| New state of the print job.|
+| state | [PrintDocumentAdapterState](#printdocumentadapterstate11) | Yes| New state of the print job.|
 
 **Error codes**
 
@@ -475,8 +483,8 @@ Prints files. This API uses an asynchronous callback to return the result.
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| files | Array&lt;string&gt; | Yes| List of files to print. Images (in .jpg, .png, .gif, .bmp, or .webp format) and PDF files are supported. Before a system application passes in the URI, it needs to call **uriPermissionManager.grantUriPermission()** to authorize the print application. This API is a system API. [print](#printprint11-2) is recommended for third-party application.|
-| callback | AsyncCallback&lt;[PrintTask](#printprinttask)&gt; | Yes| Callback used to return the result.|
+| files | Array&lt;string&gt; | Yes| List of files to print. Images (in .jpg, .png, .gif, .bmp, or .webp format) and PDF files are supported. You should save the files to the application sandbox, obtain the sandbox URI through **fileUri.getUriFromPath**, and then pass this URI as a parameter to this API.|
+| callback | AsyncCallback&lt;[PrintTask](#printtask)&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
 
@@ -492,14 +500,13 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 ```ts
 import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
+import { fileUri } from '@kit.CoreFileKit';
 
 // Pass in the URIs of the files.
-let files = ['file://data/print/a.png', 'file://data/print/b.png'];
-// Alternatively, pass in the fd.
-//let files = ['fd://1', 'fd://2'];
-print.print(files, (err: BusinessError, printTask: print.PrintTask) => {
+let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
+print.print([fileUri.getUriFromPath(filePath)], (err: BusinessError, printTask: print.PrintTask) => {
     if (err) {
-        console.log('print err ' + JSON.stringify(err));
+        console.error('print err ' + JSON.stringify(err));
     } else {
         printTask.on('succeed', () => {
             console.log('print state is succeed');
@@ -522,12 +529,12 @@ Prints files. This API uses a promise to return the result.
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| files | Array&lt;string&gt; | Yes| List of files to print. Images (in .jpg, .png, .gif, .bmp, or .webp format) and PDF files are supported. Before a system application passes in the URI, it needs to call **uriPermissionManager.grantUriPermission()** to authorize the print application. This API is a system API. [print](#printprint11-2) is recommended for third-party application.|
+| files | Array&lt;string&gt; | Yes| List of files to print. Images (in .jpg, .png, .gif, .bmp, or .webp format) and PDF files are supported. You should save the files to the application sandbox, obtain the sandbox URI through **fileUri.getUriFromPath**, and then pass this URI as a parameter to this API.|
 
 **Return value**
 | **Type**| **Description**|
 | -------- | -------- |
-| Promise&lt;[PrintTask](#printprinttask)&gt; | Print result.|
+| Promise&lt;[PrintTask](#printtask)&gt; | Print result.|
 
 **Error codes**
 
@@ -543,18 +550,17 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 ```ts
 import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
+import { fileUri } from '@kit.CoreFileKit';
 
 // Pass in the URIs of the files.
-let files = ['file://data/print/a.png', 'file://data/print/b.png'];
-// Alternatively, pass in the fd.
-//let files = ['fd://1', 'fd://2'];
-print.print(files).then((printTask: print.PrintTask) => {
+let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
+print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask) => {
     printTask.on('succeed', () => {
         console.log('print state is succeed');
     })
     // ...
 }).catch((error: BusinessError) => {
-    console.log('print err ' + JSON.stringify(error));
+    console.error('print err ' + JSON.stringify(error));
 })
 ```
 
@@ -571,9 +577,9 @@ Prints files. This API uses an asynchronous callback to return the result.
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| files | Array&lt;string&gt; | Yes| List of files to print. Images (in .jpg, .png, .gif, .bmp, or .webp format) and PDF files are supported. Before a system application passes in the URI, it needs to call **uriPermissionManager.grantUriPermission()** to authorize the print application. This API is a system API. [print](#printprint11-2) is recommended for third-party application.|
+| files | Array&lt;string&gt; | Yes| List of files to print. Images (in .jpg, .png, .gif, .bmp, or .webp format) and PDF files are supported. You should save the files to the application sandbox, obtain the sandbox URI through **fileUri.getUriFromPath**, and then pass this URI as a parameter to this API.|
 | context | Context | Yes| UIAbilityContext used to start the system print UI.|
-| callback | AsyncCallback&lt;[PrintTask](#printprinttask)&gt; | Yes| Callback used to return the result.|
+| callback | AsyncCallback&lt;[PrintTask](#printtask)&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
 
@@ -589,22 +595,36 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 ```ts
 import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
+import { fileUri } from '@kit.CoreFileKit';
 
-// Pass in the URIs of the files.
-let files = ['file://data/print/a.png', 'file://data/print/b.png'];
-// Alternatively, pass in the fd.
-//let files = ['fd://1', 'fd://2'];
-let context = getContext(this);
-print.print(files, context, (err: BusinessError, printTask: print.PrintTask) => {
-    if (err) {
-        console.log('print err ' + JSON.stringify(err));
-    } else {
-        printTask.on('succeed', () => {
-            console.log('print state is succeed');
-        })
-        // ...
+@Entry
+@Component
+struct Index {
+    build() {
+        Scroll() {
+            Column({ space: 10 }) {
+                Button("Print").width('90%').height(50).onClick(() => {
+                    let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
+                    let context = this.getUIContext().getHostContext();
+                    print.print([fileUri.getUriFromPath(filePath)], context, (err: BusinessError, printTask: print.PrintTask) => {
+                        if (err) {
+                            console.error('print err ' + JSON.stringify(err));
+                        } else {
+                            printTask.on('succeed', () => {
+                                console.log('print state is succeed');
+                            })
+                            // ...
+                        }
+                    })
+                })
+            }
+            .justifyContent(FlexAlign.Center)
+            .constraintSize({ minHeight: '100%' })
+            .width('100%')
+        }
+        .height('100%')
     }
-})
+}
 ```
 
 ## print.print<sup>11+</sup>
@@ -620,13 +640,13 @@ Prints files. This API uses a promise to return the result.
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| files | Array&lt;string&gt; | Yes| List of files to print. Images (in .jpg, .png, .gif, .bmp, or .webp format) and PDF files are supported. Before a system application passes in the URI, it needs to call **uriPermissionManager.grantUriPermission()** to authorize the print application. This API is a system API. [print](#printprint11-2) is recommended for third-party application.|
+| files | Array&lt;string&gt; | Yes| List of files to print. Images (in .jpg, .png, .gif, .bmp, or .webp format) and PDF files are supported. You should save the files to the application sandbox, obtain the sandbox URI through **fileUri.getUriFromPath**, and then pass this URI as a parameter to this API.|
 | context | Context | Yes| UIAbilityContext used to start the system print UI.|
 
 **Return value**
 | **Type**| **Description**|
 | -------- | -------- |
-| Promise&lt;[PrintTask](#printprinttask)&gt; | Print result.|
+| Promise&lt;[PrintTask](#printtask)&gt; | Print result.|
 
 **Error codes**
 
@@ -642,20 +662,34 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 ```ts
 import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
+import { fileUri } from '@kit.CoreFileKit';
 
-// Pass in the URIs of the files.
-let files = ['file://data/print/a.png', 'file://data/print/b.png'];
-// Alternatively, pass in the fd.
-//let files = ['fd://1', 'fd://2'];
-let context = getContext(this);
-print.print(files, context).then((printTask: print.PrintTask) => {
-    printTask.on('succeed', () => {
-        console.log('print state is succeed');
-    })
-    // ...
-}).catch((error: BusinessError) => {
-    console.log('print err ' + JSON.stringify(error));
-})
+@Entry
+@Component
+struct Index {
+    build() {
+        Scroll() {
+            Column({ space: 10 }) {
+                Button("Print").width('90%').height(50).onClick(() => {
+                    let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
+                    let context = this.getUIContext().getHostContext();
+                    print.print([fileUri.getUriFromPath(filePath)], context).then((printTask: print.PrintTask) => {
+                        printTask.on('succeed', () => {
+                            console.log('print state is succeed');
+                        })
+                        // ...
+                    }).catch((error: BusinessError) => {
+                        console.error('print err ' + JSON.stringify(error));
+                    })
+                })
+            }
+            .justifyContent(FlexAlign.Center)
+            .constraintSize({ minHeight: '100%' })
+            .width('100%')
+        }
+        .height('100%')
+    }
+}
 ```
 
 ## print.print<sup>11+</sup>
@@ -672,14 +706,14 @@ Prints a file. This API uses a promise to return the result.
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | jobName | string | Yes| Name of the file to print, for example, **test.pdf**. The printer uses the [onStartLayoutWrite](#onstartlayoutwrite) API to send the **fd** of the empty PDF file to the API caller. The API caller uses the new print attributes to update the file to print.|
-| printAdapter | [PrintDocumentAdapter](#printprintdocumentadapter11) | Yes| [PrintDocumentAdapter](#printprintdocumentadapter11) API instance implemented by a third-party application.|
-| printAttributes | [PrintAttributes](#printprintattributes11) | Yes| Print attributes.|
+| printAdapter | [PrintDocumentAdapter](#printdocumentadapter11) | Yes| [PrintDocumentAdapter](#printdocumentadapter11) API instance implemented by a third-party application.|
+| printAttributes | [PrintAttributes](#printattributes11) | Yes| Print attributes.|
 | context | Context | Yes| UIAbilityContext used to start the system print UI.|
 
 **Return value**
 | **Type**| **Description**|
 | -------- | -------- |
-| Promise&lt;[PrintTask](#printprinttask)&gt; | Print result.|
+| Promise&lt;[PrintTask](#printtask)&gt; | Print result.|
 
 **Error codes**
 
@@ -696,33 +730,49 @@ For details about the error codes, see [Error Codes of the Print Service](./erro
 import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
-let jobName : string = "jobName";
-let printAdapter : print.PrintDocumentAdapter | null = null;
-let printAttributes : print.PrintAttributes = {
-    copyNumber: 1,
-    pageRange: {
-        startPage: 0,
-        endPage: 5,
-        pages: []
-    },
-    pageSize: print.PrintPageType.PAGE_ISO_A3,
-    directionMode: print.PrintDirectionMode.DIRECTION_MODE_AUTO,
-    colorMode: print.PrintColorMode.COLOR_MODE_MONOCHROME,
-    duplexMode: print.PrintDuplexMode.DUPLEX_MODE_NONE
-}
-let context = getContext();
+@Entry
+@Component
+struct Index {
+    build() {
+        Scroll() {
+            Column({ space: 10 }) {
+                Button("Print").width('90%').height(50).onClick(() => {
+                    let jobName : string = "jobName";
+                    let printAdapter : print.PrintDocumentAdapter | null = null;
+                    let printAttributes : print.PrintAttributes = {
+                        copyNumber: 1,
+                        pageRange: {
+                            startPage: 0,
+                            endPage: 5,
+                            pages: []
+                        },
+                        pageSize: print.PrintPageType.PAGE_ISO_A3,
+                        directionMode: print.PrintDirectionMode.DIRECTION_MODE_AUTO,
+                        colorMode: print.PrintColorMode.COLOR_MODE_MONOCHROME,
+                        duplexMode: print.PrintDuplexMode.DUPLEX_MODE_NONE
+                    }
+                    let context = this.getUIContext().getHostContext();
 
-print.print(jobName, printAdapter, printAttributes, context).then((printTask: print.PrintTask) => {
-    printTask.on('succeed', () => {
-        console.log('print state is succeed');
-    })
-    // ...
-}).catch((error: BusinessError) => {
-    console.log('print err ' + JSON.stringify(error));
-})
+                    print.print(jobName, printAdapter, printAttributes, context).then((printTask: print.PrintTask) => {
+                        printTask.on('succeed', () => {
+                            console.log('print state is succeed');
+                        })
+                        // ...
+                    }).catch((error: BusinessError) => {
+                        console.error('print err ' + JSON.stringify(error));
+                    })
+                })
+            }
+            .justifyContent(FlexAlign.Center)
+            .constraintSize({ minHeight: '100%' })
+            .width('100%')
+        }
+        .height('100%')
+    }
+}
 ```
 
-## print.PrintAttributes<sup>11+</sup>
+## PrintAttributes<sup>11+</sup>
 
 Defines the print attributes.
 
@@ -731,14 +781,14 @@ Defines the print attributes.
 **Attributes**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| copyNumber | number | No| Number of printed file copies.|
-| pageRange | [PrintPageRange](#printprintpagerange11) | No| Page range of the file to print.|
-| pageSize | [PrintPageSize](#printprintpagesize11) \| [PrintPageType](#printprintpagetype11) | No| Page size of the file to print.|
-| directionMode | [PrintDirectionMode](#printprintdirectionmode11) | No| Print direction mode.|
-| colorMode | [PrintColorMode](#printprintcolormode11) | No| Color mode of the files to print.|
-| duplexMode | [PrintDuplexMode](#printprintduplexmode11) | No| Duplex mode of the files to print.|
+| copyNumber | number | No| Number of printed file copies. The default value is **1**.|
+| pageRange | [PrintPageRange](#printpagerange11) | No| Page range of the file to print.|
+| pageSize | [PrintPageSize](#printpagesize11) \| [PrintPageType](#printpagetype11) | No| Page size of the file to print.|
+| directionMode | [PrintDirectionMode](#printdirectionmode11) | No| Print direction mode.|
+| colorMode | [PrintColorMode](#printcolormode11) | No| Color mode of the files to print.|
+| duplexMode | [PrintDuplexMode](#printduplexmode11) | No| Duplex mode of the files to print.|
 
-## print.PrintPageRange<sup>11+</sup>
+## PrintPageRange<sup>11+</sup>
 
 Defines the print range.
 
@@ -747,12 +797,12 @@ Defines the print range.
 **Attributes**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| startPage | number | No| Start page.|
-| endPage | number | No| End page.|
-| pages | Array&lt;number&gt; | No| Page range set of the file to print.|
+| startPage | number | No| Start page. The default value is **1**.|
+| endPage | number | No| End page. The default value is the maximum number of pages of the file to be printed.|
+| pages | Array&lt;number&gt; | No| Page range set of the file to print. The default value is empty.|
 
 
-## print.PrintPageSize<sup>11+</sup>
+## PrintPageSize<sup>11+</sup>
 
 Defines the size of the printed page.
 
@@ -768,7 +818,7 @@ Defines the size of the printed page.
 
 
 
-## print.PrintDirectionMode<sup>11+</sup>
+## PrintDirectionMode<sup>11+</sup>
 
 Enumerates the print direction modes.
 
@@ -780,7 +830,7 @@ Enumerates the print direction modes.
 | DIRECTION_MODE_PORTRAIT | 1 | Portrait mode.|
 | DIRECTION_MODE_LANDSCAPE | 2 | Landscape mode.|
 
-## print.PrintColorMode<sup>11+</sup>
+## PrintColorMode<sup>11+</sup>
 
 Enumerates the color modes.
 
@@ -791,7 +841,7 @@ Enumerates the color modes.
 | COLOR_MODE_MONOCHROME | 0 | Black and white.|
 | COLOR_MODE_COLOR | 1 | Color.|
 
-## print.PrintDuplexMode<sup>11+</sup>
+## PrintDuplexMode<sup>11+</sup>
 
 Enumerates the duplex modes.
 
@@ -803,7 +853,7 @@ Enumerates the duplex modes.
 | DUPLEX_MODE_LONG_EDGE | 1 | Duplex (double-sided) with flipping on long edge.|
 | DUPLEX_MODE_SHORT_EDGE | 2 | Duplex (double-sided) with flipping on short edge.|
 
-## print.PrintPageType<sup>11+</sup>
+## PrintPageType<sup>11+</sup>
 
 Enumerates the print page types.
 
@@ -824,7 +874,7 @@ Enumerates the print page types.
 | PAGE_INT_DL_ENVELOPE | 10 | International envelope DL.|
 | PAGE_B_TABLOID | 11 | B Tabloid.|
 
-## print.PrintDocumentAdapterState<sup>11+</sup>
+## PrintDocumentAdapterState<sup>11+</sup>
 
 Enumerates the print job states.
 
@@ -838,7 +888,7 @@ Enumerates the print job states.
 | PRINT_TASK_CANCEL | 3 | The print job is canceled.|
 | PRINT_TASK_BLOCK | 4 | The print job is blocked.|
 
-## print.PrintFileCreationState<sup>11+</sup>
+## PrintFileCreationState<sup>11+</sup>
 
 Enumerates the print file creation status.
 
@@ -850,7 +900,7 @@ Enumerates the print file creation status.
 | PRINT_FILE_CREATION_FAILED | 1 | The print file fails to be created.|
 | PRINT_FILE_CREATED_UNRENDERED | 2 | The print file is successfully created but not rendered.|
 
-## print.PrinterState<sup>14+</sup>
+## PrinterState<sup>14+</sup>
 
 Enumerates the printer states.
 
@@ -865,7 +915,7 @@ Enumerates the printer states.
 | PRINTER_DISCONNECTED | 4 | The printer is disconnected.|
 | PRINTER_RUNNING | 5 | The printer is running.|
 
-## print.PrintJobState<sup>14+</sup>
+## PrintJobState<sup>14+</sup>
 
 Enumerates the print job states.
 
@@ -879,7 +929,7 @@ Enumerates the print job states.
 | PRINT_JOB_BLOCKED | 3 | The print job is blocked.|
 | PRINT_JOB_COMPLETED | 4 | The print job is complete.|
 
-## print.PrintJobSubState<sup>14+</sup>
+## PrintJobSubState<sup>14+</sup>
 
 Enumerates the print job substates.
 
@@ -914,9 +964,10 @@ Enumerates the print job substates.
 | PRINT_JOB_BLOCK_SLOW_FILE_CONVERSION | 25 | The file conversion is slow.|
 | PRINT_JOB_RUNNING_UPLOADING_FILES | 26 | The file is uploading.|
 | PRINT_JOB_RUNNING_CONVERTING_FILES | 27 | The file is converting.|
+| PRINT_JOB_BLOCK_FILE_UPLOADING_ERROR<sup>18+</sup> | 30 | The file fails to be uploaded.|
 | PRINT_JOB_BLOCK_UNKNOWN | 99 | There is an unknown error with the printer.|
 
-## print.PrintErrorCode<sup>14+</sup>
+## PrintErrorCode<sup>14+</sup>
 
 Enumerates the print error codes.
 
@@ -934,8 +985,9 @@ Enumerates the print error codes.
 | E_PRINT_INVALID_PRINTER | 13100005 | Invalid printer.|
 | E_PRINT_INVALID_PRINT_JOB | 13100006 | Invalid print job.|
 | E_PRINT_FILE_IO | 13100007 | Incorrect file input/output.|
+| E_PRINT_TOO_MANY_FILES<sup>18+</sup> | 13100010 | Excessive files. Maximum number: 99.|
 
-## print.ApplicationEvent<sup>14+</sup>
+## ApplicationEvent<sup>14+</sup>
 
 Enumerates print application events.
 
@@ -960,7 +1012,7 @@ Adds a printer to the printer discovery list. This API uses a promise to return 
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| printerInformation | [PrinterInformation](#printprinterinformation14) | Yes| The added printer.|
+| printerInformation | [PrinterInformation](#printerinformation14) | Yes| The added printer.|
 
 **Return value**
 | **Type**| **Description**|
@@ -994,7 +1046,7 @@ let printerInformation : print.PrinterInformation = {
 print.addPrinterToDiscovery(printerInformation).then((data : void) => {
     console.log('addPrinterToDiscovery data : ' + JSON.stringify(data));
 }).catch((error: BusinessError) => {
-    console.log('addPrinterToDiscovery error : ' + JSON.stringify(error));
+    console.error('addPrinterToDiscovery error : ' + JSON.stringify(error));
 })
 ```
 
@@ -1011,7 +1063,7 @@ Updates the printer capabilities to the printer discovery list. This API uses a 
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| printerInformation | [PrinterInformation](#printprinterinformation14) | Yes| Printer whose capability is to be updated.|
+| printerInformation | [PrinterInformation](#printerinformation14) | Yes| Printer whose capability is to be updated.|
 
 **Return value**
 | **Type**| **Description**|
@@ -1063,7 +1115,7 @@ let printerInformation : print.PrinterInformation = {
 print.updatePrinterInDiscovery(printerInformation).then((data : void) => {
     console.log('updatePrinterInDiscovery data : ' + JSON.stringify(data));
 }).catch((error: BusinessError) => {
-    console.log('updatePrinterInDiscovery error : ' + JSON.stringify(error));
+    console.error('updatePrinterInDiscovery error : ' + JSON.stringify(error));
 })
 ```
 
@@ -1106,7 +1158,7 @@ let printerId : string = 'testPrinterId';
 print.removePrinterFromDiscovery(printerId).then((data : void) => {
     console.log('removePrinterFromDiscovery data : ' + JSON.stringify(data));
 }).catch((error: BusinessError) => {
-    console.log('removePrinterFromDiscovery error : ' + JSON.stringify(error));
+    console.error('removePrinterFromDiscovery error : ' + JSON.stringify(error));
 })
 ```
 
@@ -1128,7 +1180,7 @@ Obtains printer information based on the printer ID. This API uses a promise to 
 **Return value**
 | **Type**| **Description**|
 | -------- | -------- |
-| Promise&lt;[PrinterInformation](#printprinterinformation14)&gt; | Printer information obtained based on the printer ID.|
+| Promise&lt;[PrinterInformation](#printerinformation14)&gt; | Printer information obtained based on the printer ID.|
 
 **Error codes**
 
@@ -1149,11 +1201,11 @@ let printerId : string = 'testPrinterId';
 print.getPrinterInformationById(printerId).then((printerInformation : print.PrinterInformation) => {
     console.log('getPrinterInformationById data : ' + JSON.stringify(printerInformation));
 }).catch((error: BusinessError) => {
-    console.log('getPrinterInformationById error : ' + JSON.stringify(error));
+    console.error('getPrinterInformationById error : ' + JSON.stringify(error));
 })
 ```
 
-## print.PrinterInformation<sup>14+</sup>
+## PrinterInformation<sup>14+</sup>
 
 Defines the printer information.
 
@@ -1164,14 +1216,16 @@ Defines the printer information.
 | -------- | -------- | -------- | -------- |
 | printerId | string | Yes| Printer ID.|
 | printerName | string | Yes| Printer name.|
-| printerStatus | [PrinterStatus](#printprinterstatus14) | Yes| Printer state.|
+| printerStatus | [PrinterStatus](#printerstatus14) | Yes| Printer state.|
 | description | string | No| Printer description.|
-| capability | [PrinterCapabilities](#printprintercapabilities14) | No| Printer capabilities.|
+| capability | [PrinterCapabilities](#printercapabilities14) | No| Printer capabilities.|
 | uri | string | No| Printer URI.|
 | printerMake | string | No| Printer model.|
+| preferences<sup>18+</sup> | [PrinterPreferences](#printerpreferences18) | No| Printer preferences.|
+| alias<sup>18+</sup> | string | No| Printer alias.|
 | options | string | No| Printer details.|
 
-## print.PrinterCapabilities<sup>14+</sup>
+## PrinterCapabilities<sup>14+</sup>
 
 Defines the printer capabilities.
 
@@ -1180,15 +1234,15 @@ Defines the printer capabilities.
 **Attributes**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| supportedPageSizes | Array&lt;[PrintPageSize](#printprintpagesize11)&gt; | Yes| List of paper sizes supported by the printer.|
-| supportedColorModes | Array&lt;[PrintColorMode](#printprintcolormode11)&gt; | Yes| List of color modes supported by the printer.|
-| supportedDuplexModes | Array&lt;[PrintDuplexMode](#printprintduplexmode11)&gt; | Yes| List of single- and double-sided modes supported by the printer.|
+| supportedPageSizes | Array&lt;[PrintPageSize](#printpagesize11)&gt; | Yes| List of paper sizes supported by the printer.|
+| supportedColorModes | Array&lt;[PrintColorMode](#printcolormode11)&gt; | Yes| List of color modes supported by the printer.|
+| supportedDuplexModes | Array&lt;[PrintDuplexMode](#printduplexmode11)&gt; | Yes| List of single- and double-sided modes supported by the printer.|
 | supportedMediaTypes | Array&lt;string&gt; | No| List of paper types supported by the printer.|
-| supportedQualities | Array&lt;[PrintQuality](#printprintquality14)&gt; | No| List of print quality supported by the printer.|
-| supportedOrientations | Array&lt;[PrintOrientationMode](#printprintorientationmode14)&gt; | No| List of print directions supported by the printer.|
+| supportedQualities | Array&lt;[PrintQuality](#printquality14)&gt; | No| List of print quality supported by the printer.|
+| supportedOrientations | Array&lt;[PrintOrientationMode](#printorientationmode14)&gt; | No| List of print directions supported by the printer.|
 | options | string | No| Printer capability details.|
 
-## print.PrintQuality<sup>14+</sup>
+## PrintQuality<sup>14+</sup>
 
 Enumerates the print qualities.
 
@@ -1200,7 +1254,7 @@ Enumerates the print qualities.
 | QUALITY_NORMAL | 4 | Standard|
 | QUALITY_HIGH | 5 | High|
 
-## print.PrintOrientationMode<sup>14+</sup>
+## PrintOrientationMode<sup>14+</sup>
 
 Enumerates the print directions.
 
@@ -1214,7 +1268,7 @@ Enumerates the print directions.
 | ORIENTATION_MODE_REVERSE_PORTRAIT | 3 | Reverse portrait mode.|
 | ORIENTATION_MODE_NONE | 4 | Adaptive mode.|
 
-## print.PrinterStatus<sup>14+</sup>
+## PrinterStatus<sup>14+</sup>
 
 Enumerates the printer states.
 
@@ -1225,3 +1279,174 @@ Enumerates the printer states.
 | PRINTER_IDLE | 0 | The printer is idle.|
 | PRINTER_BUSY | 1 | The printer is busy.|
 | PRINTER_UNAVAILABLE | 2 | The printer is unavailable.|
+
+## PrinterPreferences<sup>18+</sup>
+
+Defines the printer preferences.
+
+**System capability**: SystemCapability.Print.PrintFramework
+
+**Attributes**
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| defaultDuplexMode | [PrintDuplexMode](#printduplexmode11) | No| Default duplex mode.|
+| defaultPrintQuality | [PrintQuality](#printquality14) | No| Default print quality.|
+| defaultMediaType | string | No| Default paper type.|
+| defaultPageSizeId | string | No| ID of the default paper size. The value can be a standard paper size defined by the International Organization for Standardization (ISO), for example, ISO_A4, or a non-standard paper size defined in the system, for example, Custom.178 × 254 mm.|
+| defaultOrientation | [PrintOrientationMode](#printorientationmode14) | No| Default print orientation.|
+| borderless | boolean | No| Whether to print without margins.<br>- **true**: Print without margins.<br>- **false** (default): Print with margins.|
+| options | string | No| Other fields in the printer preferences. The fields are queried from the printer or obtained from the printer driver and stored in the string in JSON format.|
+
+## PrinterEvent<sup>18+</sup>
+
+Enumerates printer-related events.
+
+**System capability**: SystemCapability.Print.PrintFramework
+
+| **Name**| **Value**| **Description**|
+| -------- | -------- | -------- |
+| PRINTER_EVENT_ADDED | 0 | Printer added.|
+| PRINTER_EVENT_DELETED | 1 | Printer deleted.|
+| PRINTER_EVENT_STATE_CHANGED | 2 | Printer state changed.|
+| PRINTER_EVENT_INFO_CHANGED | 3 | Printer information changed.|
+| PRINTER_EVENT_PREFERENCE_CHANGED | 4 | Printer preferences changed.|
+| PRINTER_EVENT_LAST_USED_PRINTER_CHANGED | 5 | The last used printer changed.|
+
+## DefaultPrinterType<sup>18+</sup>
+
+Enumerates default printer types.
+
+**System capability**: SystemCapability.Print.PrintFramework
+
+| **Name**| **Value**| **Description**|
+| -------- | -------- | -------- |
+| DEFAULT_PRINTER_TYPE_SET_BY_USER | 0 | The printer set by the user serves as the default printer.|
+| DEFAULT_PRINTER_TYPE_LAST_USED_PRINTER | 1 | The printer used last time serves as the default printer.|
+
+## print.getAddedPrinters<sup>18+</sup>
+
+getAddedPrinters(): Promise&lt;Array&lt;string&gt;&gt;
+
+Obtains the list of printers added to the system. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.MANAGE_PRINT_JOB or ohos.permission.PRINT
+
+**System capability**: SystemCapability.Print.PrintFramework
+
+**Return value**
+| **Type**| **Description**|
+| -------- | -------- |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+
+**Example**
+
+```ts
+import { print } from '@kit.BasicServicesKit';
+import { BusinessError } from '@ohos.base';
+
+print.getAddedPrinters().then((printers: string[]) => {
+    console.log('getAddedPrinters success ' + JSON.stringify(printers));
+    // ...
+}).catch((error: BusinessError) => {
+    console.error('failed to getAddedPrinters because ' + JSON.stringify(error));
+})
+```
+
+## PrinterChangeCallback<sup>18+</sup>
+
+type PrinterChangeCallback = (event: PrinterEvent, printerInformation: PrinterInformation) => void
+
+Defines a callback that takes the printer event and printer information as parameters.
+
+**System capability**: SystemCapability.Print.PrintFramework
+
+**Parameters**
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| event | [PrinterEvent](#printerevent18) | Yes| Printer event.|
+| printerInformation | PrinterInformation | Yes| Printer information.|
+
+## print.on<sup>18+</sup>
+
+on(type: 'printerChange', callback: PrinterChangeCallback): void
+
+Registers a listener for the printer change events.
+
+**Required permissions**: ohos.permission.PRINT
+
+**System capability**: SystemCapability.Print.PrintFramework
+
+**Parameters**
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | 'printerChange' | Yes| Printer change event.|
+| callback | [PrinterChangeCallback](#printerchangecallback18) | Yes| Callback to be invoked when the printer changes.|
+
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
+**Example**
+
+```ts
+import { print } from '@kit.BasicServicesKit';
+
+// Trigger this callback when an added printer is changed.
+let onPrinterChange =
+    (event: print.PrinterEvent, printerInformation: print.PrinterInformation) => {
+        console.log('printerChange, event: ' + event + ', printerInformation: ' + JSON.stringify(printerInformation));
+    };
+print.on('printerChange', onPrinterChange);
+```
+
+## print.off<sup>18+</sup>
+
+off(type: 'printerChange', callback?: PrinterChangeCallback): void
+
+Unregisters the listener for printer state change events. This API uses a callback to return the result.
+
+**Required permissions**: ohos.permission.PRINT
+
+**System capability**: SystemCapability.Print.PrintFramework
+
+**Parameters**
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| type | 'printerChange' | Yes| Printer change event.|
+| callback | [PrinterChangeCallback](#printerchangecallback18) | No| Callback to unregister.|
+
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
+**Example**
+
+```ts
+import { print } from '@kit.BasicServicesKit';
+
+// Trigger this callback when an added printer is changed.
+let onPrinterChange =
+    (event: print.PrinterEvent, printerInformation: print.PrinterInformation) => {
+        console.log('printerChange, event: ' + event + ', printerInformation: ' + JSON.stringify(printerInformation));
+    };
+print.on('printerChange', onPrinterChange);
+print.off('printerChange');
+```

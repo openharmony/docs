@@ -2,7 +2,7 @@
 
 - ArkTS APIs<!--basic-services-arkts-->
   - Account Management<!--account-management-arkts-->
-    - [@ohos.account.appAccount (App Account Management)](js-apis-appAccount.md)
+    - [@ohos.account.appAccount (Application Account Management)](js-apis-appAccount.md)
     - [@ohos.account.distributedAccount (Distributed Account Management)](js-apis-distributed-account.md)
     - [@ohos.account.osAccount (OS Account Management)](js-apis-osAccount.md)
     <!--Del-->
@@ -16,6 +16,7 @@
     - [@ohos.runningLock (Running Lock)](js-apis-runninglock.md)
     - [@ohos.thermal (Thermal Management)](js-apis-thermal.md)
     - [@ohos.usbManager (USB Manager)](js-apis-usbManager.md)
+    - [@ohos.usbManager.serial (Serial Port Management)](js-apis-serialManager.md)
     <!--Del-->
     - [@ohos.batteryInfo (Battery Information) (System API)](js-apis-battery-info-sys.md)
     - [@ohos.batteryStatistics (Battery Statistics) (System API)](js-apis-batteryStatistics-sys.md)
@@ -27,6 +28,7 @@
     - [@ohos.systemParameterEnhance (System Parameter) (System API)](js-apis-system-parameterEnhance-sys.md)
     - [@ohos.screenLock (Screen Lock) (System API)](js-apis-screen-lock-sys.md)
     - [@ohos.usbManager (USB Management) (System API)](js-apis-usbManager-sys.md)
+    - [@ohos.usbManager.serial (Serial Port Management) (system API)](js-apis-serialManager-sys.md)
     - [@ohos.update (Update) (System API)](js-apis-update-sys.md)
     <!--DelEnd-->
   - Data File Processing<!--data-file-processing-arkts-->
@@ -95,8 +97,7 @@
   - Modules<!--basic-services-module-->
     - [CommonEvent](capi-common-event.md)
     - [DeviceInfo](_device_info.md)
-    - [InitSync](_init_sync.md)
-    - [OsAccount](_os_account.md)
+    - [OsAccount](capi-osaccount.md)
     - [OH_BatteryInfo](oh__batteryinfo.md)
     - [OH_Scan](c-apis-scan.md)
     - [OH_Print](_o_h___print.md)
@@ -104,14 +105,13 @@
     - [TimeService](_time_service.md)
   - Header Files<!--basic-services-headerfile-->
     - [deviceinfo.h](deviceinfo_8h.md)
-    - [init_sync.h](init__sync_8h.md)
     - [ohbattery_info.h](ohbattery__info_8h.md)
     - [oh_commonevent.h](oh_commonevent_8h.md)
     - [oh_commonevnt_support.h](oh_commonevent_support_8h.md)
     - [oh_pasteboard.h](oh__pasteboard_8h.md)
     - [oh_pasteboard_err_code.h](oh__pasteboard__err__code_8h.md)
-    - [os_account.h](os__account_8h.md)
-    - [os_account_common.h](os__account__common_8h.md)
+    - [os_account.h](capi-os-account-h.md)
+    - [os_account_common.h](capi-os-account-common-h.md)
     - [ohprint.h](ohprint_8h.md)
     - [time_service.h](time__service_8h.md)
   - Structs<!--basic-services-struct-->
@@ -144,4 +144,5 @@
   - [Screen Lock Management Error Codes](errorcode-screenlock.md)
   - [Device Attestation Error Codes](errorcode-deviceAttest.md)
   - [Intelligent Voice Error Codes](errorcode-intelligentVoice.md)
+  - [Settings Error Codes](errorcode-settings.md)
   <!--DelEnd-->

@@ -25,7 +25,7 @@ Before developing the USB serial port, you should have a basic understanding of 
 
 - Stop bit
 
-  The stop bit is located at the end of a data frame. It is a logic high-level signal and is used to identify the end of a character (data packet) transfer. Its length can be 1 bit, 1.5 bits, or 2 bits. (In actual development, 1 bit is most commonly used, and 1.5 bits and 2 bits are mainly used in anti-interference scenarios.) A core function of this bit is to provide a space to tolerate the errors that may occur during time-sequence synchronization for a receiver and ensure data integrity.
+  The stop bit is located at the end of a data frame. It is a logic high-level signal and is used to identify the end of a character (data packet) transfer. Its length can be 1 bit or 2 bits. (In actual development, 1 bit is most commonly used and 2 bits are mainly used in anti-interference scenarios.) A core function of this bit is to provide a space to tolerate the errors that may occur during time-sequence synchronization for a receiver and ensure data integrity.
 
 
 ## Preparing the Environment
@@ -45,21 +45,25 @@ For details, see [Preparing the Environment](usbSerial-overview.md#preparing-the
 
 You can obtain and set the serial port configuration as follows:
 
+> **NOTE**
+>
+> The following sample code shows only a basic process. You should execute the code in a specific method.
+
 1. Import the **usbManager** module.
 
     ```ts
     // Import the usbManager module.
     import serial from '@ohos.usbManager.serial';
-    ``` 
+    ```
 
 2. Obtain the USB device list.
 
     ```ts
     // Obtain the list of USB devices connected to the host.
     let portList: serial.SerialPort[] = serial.getPortList();
-    console.info('usbSerial portList: ' + JSON.stringify(portList));
+    console.info(`usbSerial portList: ${portList}`);
     if (portList === undefined || portList.length === 0) {
-      console.info('usbSerial portList is empty');
+      console.error('usbSerial portList is empty');
       return;
     }
     ```
@@ -73,7 +77,7 @@ You can obtain and set the serial port configuration as follows:
       await serial.requestSerialRight(portId).then(result => {
         if(!result) {
           // If the device does not have the access permission and is not granted by the user, the device exits.
-          console.info('usbSerial user is not granted the operation permission');
+          console.error('The user does not have permission to perform this operation');
           return;
         }
       });
@@ -85,9 +89,9 @@ You can obtain and set the serial port configuration as follows:
     ```ts
     try {
       serial.open(portId)
-      console.info('open usbSerial success, portId: ' + portId);
+      console.info(`open usbSerial success, portId: ${portId}`);
     } catch (error) {
-      console.error('open usbSerial error, ' + JSON.stringify(error));
+      console.error(`open usbSerial error: ${error}`);
     }
     ```
 
@@ -100,12 +104,12 @@ You can obtain and set the serial port configuration as follows:
       if (attribute === undefined) {
         console.error('getAttribute usbSerial error, attribute is undefined');
       } else {
-        console.info('getAttribute usbSerial success, attribute: ' + JSON.stringify(attribute));
+        console.info(`getAttribute usbSerial success, attribute: ${attribute}`);
       }
     } catch (error) {
-      console.error('getAttribute usbSerial error, ' + JSON.stringify(error));
+      console.error(`getAttribute usbSerial error: ${error}`);
     }
-   
+      
     // Set the serial port configuration.
     try {
       let attribute: serial.SerialAttribute = {
@@ -115,9 +119,9 @@ You can obtain and set the serial port configuration as follows:
         stopBits: serial.StopBits.STOPBIT_1
       }
       serial.setAttribute(portId, attribute);
-      console.info('setAttribute usbSerial success, attribute: ' + JSON.stringify(attribute));
+      console.info(`setAttribute usbSerial success, attribute: ${attribute}`);
     } catch (error) {
-      console.error('setAttribute usbSerial error, ' + JSON.stringify(error));
+      console.error(`setAttribute usbSerial error: ${error}`);
     }
     ```
 

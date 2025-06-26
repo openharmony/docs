@@ -39,8 +39,6 @@ Defines the data structure of the task information for query. The fields availab
 | uid | string | No| UID of the application. It is only available for query by system applications.<br>**System API**: This is a system API.|
 | bundle | string | No| Bundle name of the application. It is only available for query by system applications.<br>**System API**: This is a system API.|
 
-
-
 ## request.agent.query<sup>10+</sup>
 
 query(id: string, callback: AsyncCallback&lt;TaskInfo&gt;): void
@@ -82,7 +80,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
       console.error(`Failed to query a upload task, Code: ${err.code}, message: ${err.message}`);
       return;
     }
-    console.info(`Succeeded in querying the upload task. Result: ${taskInfo.uid}`);
+    console.info(`Succeeded in querying a upload task. result: ${taskInfo.uid}`);
   });
   ```
 
@@ -129,7 +127,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   import { BusinessError } from '@kit.BasicServicesKit';
 
   request.agent.query("123456").then((taskInfo: request.agent.TaskInfo) => {
-    console.info(`Succeeded in querying the upload task. Result: ${taskInfo.uid}`);
+    console.info(`Succeeded in querying a upload task. result: ${taskInfo.uid}`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to query a upload task, Code: ${err.code}, message: ${err.message}`);
   });

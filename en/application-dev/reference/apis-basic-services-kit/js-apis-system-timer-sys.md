@@ -35,11 +35,11 @@ Defines the initialization options for **createTimer**.
 
 | Name       | Type                                         | Mandatory| Description                                                                                                                                                                                                  |
 |-----------| --------------------------------------------- | ---- |------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| type      | number                                        | Yes  | Timer types. Use pipe (\|) symbol to combine two or more types.<br>**1**: CPU time type. (The start time of the timer cannot be later than the current system time.)<br>**2**: wakeup type.<br>**4**: exact type. (If an application is frozen, the timer is also frozen. In addition, the timer is controlled by a unified heartbeat. Therefore, even a timer of the exact type cannot be triggered at specified time.)<br>**8**: idle timer type (supported only for system services, but not applications).|
+| type      | number                                        | Yes  | Timer types. Use pipe (\|) symbol|to combine two or more types.<br>**1**: CPU time type. (The start time of the timer cannot be later than the current system time.)<br>**2**: wakeup type.<br>**4**: exact type. (If an application is frozen, the timer is also frozen. In addition, the timer is controlled by a unified heartbeat. Therefore, even a timer of the exact type cannot be triggered at specified time.)<br>**8**: idle timer type (supported only for system services, but not applications).|
 | repeat    | boolean                                       | Yes  | Whether the timer is a repeating timer.<br>The value **true** means that the timer is a repeating timer, and **false** means that the timer is a one-shot timer.                                                                                                                                                                |
-| autoRestore<sup>15+<sup> | boolean                                     | No  | Whether the timer is restored after the device is restarted.<br>The value **true** means that the timer is restored after the restart, and the value **false** means the opposite.<br>This parameter can be set to **true** only for timers that are not of the **TIMER_TYPE_REALTIME** type and have **wantAgent** configured.                                                                                                     |                                               |     |                                                                                                                                                                                                      |
-| name<sup>15+<sup> | string | No| Timer name, with a maximum length of 64 bytes.<br>A UID cannot contain two timers with the same name. If a timer with the same name as an existing timer is created, the existing timer is destroyed.|
-| interval  | number                                        | No  | Repeat interval.<br>For a repeating timer, the minimum value of **interval** is 1s and the maximum value is 365 days. It is recommended that the value be greater than or equal to 5000 ms.<br>For a one-shot timer, the value is **0**.                                                                                                              |
+| autoRestore<sup>15+</sup> | boolean                                     | No  | Whether the timer is restored after the device is restarted.<br>The value **true** means that the timer is restored after the restart, and the value **false** means the opposite.<br>This parameter can be set to **true** only for timers that are not of the **TIMER_TYPE_REALTIME** type and have **wantAgent** configured.                                                                                                     |                                               |     |                                                                                                                                                                                                      |
+| name<sup>15+</sup> | string | No| Timer name, with a maximum length of 64 bytes.<br>A UID cannot contain two timers with the same name. If a timer with the same name as an existing timer is created, the existing timer is destroyed.|
+| interval  | number                                        | No  | Repeat interval. Default value: **0**.<br>For a repeating timer, the minimum value of **interval** is 1s and the maximum value is 365 days. It is recommended that the value be greater than or equal to 5000 ms.<br>For a one-shot timer, the value is **0**.                                                                                                              |
 | wantAgent | WantAgent | No  | **WantAgent** object of the notification to be sent when the timer expires. (An application MainAbility can be started, but not a Service ability.)                                                                                                                                    |
 | callback  | void                                          | No | Callback to be executed by the user.                                                                                                                                                                                         |
 
@@ -82,14 +82,14 @@ let options: systemTimer.TimerOptions = {
 try {
   systemTimer.createTimer(options, (error: BusinessError, timerId: Number) => {
     if (error) {
-      console.info(`Failed to create a timer. Message: ${error.message}, code: ${error.code}`);
+      console.error(`Failed to create timer. message: ${error.message}, code: ${error.code}`);
       return;
     }
     console.info(`Succeeded in creating a timer. timerId: ${timerId}`);
   });
 } catch(e) {
   let error = e as BusinessError;
-  console.info(`Failed to create a timer. Message: ${error.message}, code: ${error.code}`);
+  console.error(`Failed to create timer. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -137,11 +137,11 @@ try {
   systemTimer.createTimer(options).then((timerId: Number) => {
     console.info(`Succeeded in creating a timer. timerId: ${timerId}`);
   }).catch((error: BusinessError) => {
-    console.info(`Failed to create a timer. Message: ${error.message}, code: ${error.code}`);
+    console.error(`Failed to create timer. message: ${error.message}, code: ${error.code}`);
   });
 } catch(e) {
   let error = e as BusinessError;
-  console.info(`Failed to create a timer. Message: ${error.message}, code: ${error.code}`);
+  console.error(`Failed to create timer. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -186,18 +186,18 @@ try {
   systemTimer.createTimer(options).then((timerId: number) => {
     systemTimer.startTimer(timerId, triggerTime, (error: BusinessError) => {
       if (error) {
-        console.info(`Failed to start the timer. Message: ${error.message}, code: ${error.code}`);
+        console.error(`Failed to start timer. message: ${error.message}, code: ${error.code}`);
         return;
       }
       console.info(`Succeeded in starting the timer.`);
     });
     console.info(`Succeeded in creating a timer. timerId: ${timerId}`);
   }).catch((error: BusinessError) => {
-    console.info(`Failed to create a timer. Message: ${error.message}, code: ${error.code}`);
+    console.error(`Failed to create timer. message: ${error.message}, code: ${error.code}`);
   });
 } catch(e) {
   let error = e as BusinessError;
-  console.info(`Failed to create a timer. Message: ${error.message}, code: ${error.code}`);
+  console.error(`Failed to create timer. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -248,15 +248,15 @@ try {
     systemTimer.startTimer(timerId, triggerTime).then(() => {
       console.info(`Succeeded in starting the timer.`);
     }).catch((error: BusinessError) => {
-      console.info(`Failed to start the timer. Message: ${error.message}, code: ${error.code}`);
+      console.error(`Failed to start timer. message: ${error.message}, code: ${error.code}`);
     });
     console.info(`Succeeded in creating a timer. timerId: ${timerId}`);
   }).catch((error: BusinessError) => {
-    console.info(`Failed to create a timer. Message: ${error.message}, code: ${error.code}`);
+    console.error(`Failed to create timer. message: ${error.message}, code: ${error.code}`);
   });
 } catch(e) {
   let error = e as BusinessError;
-  console.info(`Failed to create a timer. Message: ${error.message}, code: ${error.code}`);
+  console.error(`Failed to create timer. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -301,18 +301,18 @@ try {
     systemTimer.startTimer(timerId, triggerTime);
     systemTimer.stopTimer(timerId, (error: BusinessError) => {
       if (error) {
-        console.info(`Failed to stop the timer. Message: ${error.message}, code: ${error.code}`);
+        console.error(`Failed to stop timer. message: ${error.message}, code: ${error.code}`);
         return;
       }
     console.info(`Succeeded in stopping the timer.`);
     });
     console.info(`Succeeded in creating a timer. timerId: ${timerId}`);
   }).catch((error: BusinessError) => {
-    console.info(`Failed to create a timer. Message: ${error.message}, code: ${error.code}`);
+    console.error(`Failed to create timer. message: ${error.message}, code: ${error.code}`);
   });
 } catch(e) {
   let error = e as BusinessError;
-  console.info(`Failed to create a timer. Message: ${error.message}, code: ${error.code}`);
+  console.error(`Failed to create timer. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -363,15 +363,15 @@ try {
     systemTimer.stopTimer(timerId).then(() => {
       console.info(`Succeeded in stopping the timer.`);
     }).catch((error: BusinessError) => {
-      console.info(`Failed to stop the timer. Message: ${error.message}, code: ${error.code}`);
+      console.error(`Failed to stop timer. message: ${error.message}, code: ${error.code}`);
     });
     console.info(`Succeeded in creating a timer. timerId: ${timerId}`);
   }).catch((error: BusinessError) => {
-    console.info(`Failed to create a timer. Message: ${error.message}, code: ${error.code}`);
+    console.error(`Failed to create timer. message: ${error.message}, code: ${error.code}`);
   });
 } catch(e) {
   let error = e as BusinessError;
-  console.info(`Failed to create a timer. Message: ${error.message}, code: ${error.code}`);
+  console.error(`Failed to create timer. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -417,18 +417,18 @@ try {
     systemTimer.stopTimer(timerId);
     systemTimer.destroyTimer(timerId, (error: BusinessError) => {
       if (error) {
-        console.info(`Failed to destroy the timer. Message: ${error.message}, code: ${error.code}`);
+        console.error(`Failed to destroy timer. message: ${error.message}, code: ${error.code}`);
         return;
       }
     console.info(`Succeeded in destroying the timer.`);
     });
     console.info(`Succeeded in creating a timer. timerId: ${timerId}`);
   }).catch((error: BusinessError) => {
-    console.info(`Failed to create a timer. Message: ${error.message}, code: ${error.code}`);
+    console.error(`Failed to create timer. message: ${error.message}, code: ${error.code}`);
   });
 } catch(e) {
   let error = e as BusinessError;
-  console.info(`Failed to create a timer. Message: ${error.message}, code: ${error.code}`);
+  console.error(`Failed to create timer. message: ${error.message}, code: ${error.code}`);
 }
 ```
 
@@ -480,14 +480,14 @@ try {
     systemTimer.destroyTimer(timerId).then(() => {
       console.info(`Succeeded in destroying the timer.`);
     }).catch((error: BusinessError) => {
-      console.info(`Failed to destroy the timer. Message: ${error.message}, code: ${error.code}`);
+      console.error(`Failed to destroy timer. message: ${error.message}, code: ${error.code}`);
     });
     console.info(`Succeeded in creating a timer. timerId: ${timerId}`);
   }).catch((error: BusinessError) => {
-    console.info(`Failed to create a timer. Message: ${error.message}, code: ${error.code}`);
+    console.error(`Failed to create timer. message: ${error.message}, code: ${error.code}`);
   });
 } catch(e) {
   let error = e as BusinessError;
-  console.info(`Failed to create a timer. Message: ${error.message}, code: ${error.code}`);
+  console.error(`Failed to create timer. message: ${error.message}, code: ${error.code}`);
 }
 ```

@@ -105,7 +105,7 @@ Obtains the screen brightness adjustment mode.
 
 setMode(options?: SetBrightnessModeOptions): void
 
-Sets the screen brightness adjustment mode.
+Sets the screen brightness mode.
 
 **System capability**: SystemCapability.PowerManager.DisplayPowerManager.Lite
 
@@ -195,7 +195,7 @@ Defines a response that returns the screen brightness.
 
 ## GetBrightnessModeOptions<sup>(deprecated)</sup>
 
-Defines the options for obtaining the screen brightness mode.
+Options for obtaining the screen brightness mode.
 
 **System capability**: SystemCapability.PowerManager.DisplayPowerManager.Lite
 

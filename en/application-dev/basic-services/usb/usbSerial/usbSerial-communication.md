@@ -29,22 +29,26 @@ For details, see [Preparing the Environment](usbSerial-overview.md#preparing-the
 
 You can read and write data as follows:
 
+> **NOTE**
+>
+> The following sample code shows only a basic process. You should execute the code in a specific method.
+
 1. Import the **usbManager** module.
 
     ```ts
     // Import the usbManager module.
     import serial from '@ohos.usbManager.serial';
     import { buffer } from '@kit.ArkTS';
-    ``` 
+    ```
 
 2. Obtain the USB device list.
 
     ```ts
     // Obtain the list of USB devices connected to the host.
     let portList: serial.SerialPort[] = serial.getPortList();
-    console.info('usbSerial portList: ' + JSON.stringify(portList));
+    console.info(`usbSerial portList: ${portList}`);
     if (portList === undefined || portList.length === 0) {
-      console.info('usbSerial portList is empty');
+      console.error('usbSerial portList is empty');
       return;
     }
     ```
@@ -58,7 +62,7 @@ You can read and write data as follows:
       await serial.requestSerialRight(portId).then(result => {
         if(!result) {
           // If the device does not have the access permission and is not granted by the user, the device exits.
-          console.info('usbSerial user is not granted the operation permission');
+          console.error('The user does not have permission to perform this operation');
           return;
         }
       });
@@ -70,9 +74,9 @@ You can read and write data as follows:
     ```ts
     try {
       serial.open(portId)
-      console.info('open usbSerial success, portId: ' + portId);
+      console.info(`open usbSerial success, portId: ${portId}`);
     } catch (error) {
-      console.error('open usbSerial error, ' + JSON.stringify(error));
+      console.error(`open usbSerial error: ${error}`);
     }
     ```
 
@@ -82,18 +86,18 @@ You can read and write data as follows:
     // Read data asynchronously.
     let readBuffer: Uint8Array = new Uint8Array(64);
     serial.read(portId, readBuffer, 2000).then((size: number) => {
-      console.info('read usbSerial success, readBuffer: ' + readBuffer.toString());
+      console.info(`read usbSerial success, readBuffer: ${readBuffer}`);
     }).catch((error: Error) => {
-      console.error('read usbSerial error, ' + JSON.stringify(error));
+      console.error(`read usbSerial error: ${error}`);
     })
 
     // Read data synchronously.
     let readSyncBuffer: Uint8Array = new Uint8Array(64);
     try {
       serial.readSync(portId, readSyncBuffer, 2000);
-      console.info('readSync usbSerial success, readSyncBuffer: ' + readSyncBuffer.toString());
+      console.info(`readSync usbSerial success, readSyncBuffer: ${readSyncBuffer}`);
     } catch (error) {
-      console.error('readSync usbSerial error, ' + JSON.stringify(error));
+      console.error(`readSync usbSerial error: ${error}`);
     }
     ```
 
@@ -103,18 +107,18 @@ You can read and write data as follows:
     // Write data asynchronously.
     let writeBuffer: Uint8Array = new Uint8Array(buffer.from('Hello World', 'utf-8').buffer)
     serial.write(portId, writeBuffer, 2000).then((size: number) => {
-      console.info('write usbSerial success, writeBuffer: ' + writeBuffer.toString());
+      console.info(`write usbSerial success, writeBuffer: ${writeBuffer}`);
     }).catch((error: Error) => {
-      console.error('write usbSerial error, ' + JSON.stringify(error));
+      console.error(`write usbSerial error: ${error}`);
     })
 
     // Write data synchronously.
     let writeSyncBuffer: Uint8Array = new Uint8Array(buffer.from('Hello World', 'utf-8').buffer)
     try {
       serial.writeSync(portId, writeSyncBuffer, 2000);
-      console.info('writeSync usbSerial success, writeSyncBuffer: ' + writeSyncBuffer.toString());
+      console.info(`writeSync usbSerial success, writeSyncBuffer: ${writeSyncBuffer}`);
     } catch (error) {
-      console.error('writeSync usbSerial error, ' + JSON.stringify(error));
+      console.error(`writeSync usbSerial error: ${error}`);
     }
     ```
    
@@ -123,9 +127,9 @@ You can read and write data as follows:
     ```ts
     try {
       serial.close(portId);
-      console.info('close usbSerial success, portId: ' + portId);
+      console.info(`close usbSerial success, portId: ${portId}`);
     } catch (error) {
-      console.error('close usbSerial error, ' + JSON.stringify(error));
+      console.error(`close usbSerial error: ${error}`);
     }
     ```
 

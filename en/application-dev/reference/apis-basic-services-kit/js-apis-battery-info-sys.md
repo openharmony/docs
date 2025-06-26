@@ -40,7 +40,7 @@ Sets the battery configuration based on the specified scenario.
 
 **Error codes**
 
-For details about the error codes, see [Battery Information Error Codes](errorcode-battery-info.md).
+For details about the error codes, see [Power Manager Error Codes](errorcode-power.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID  | Error Message   |
 |---------|---------|
@@ -84,7 +84,7 @@ Obtains the battery configuration based on the specified scenario.
 
 **Error codes**
 
-For details about the error codes, see [Battery Information Error Codes](errorcode-battery-info.md).
+For details about the error codes, see [Power Manager Error Codes](errorcode-power.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID  | Error Message   |
 |---------|---------|
@@ -127,7 +127,7 @@ Checks whether the battery configuration is enabled based on the specified scena
 
 **Error codes**
 
-For details about the error codes, see [Battery Information Error Codes](errorcode-battery-info.md).
+For details about the error codes, see [Power Manager Error Codes](errorcode-power.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID  | Error Message   |
 |---------|---------|
@@ -146,7 +146,7 @@ For details about the error codes, see [Battery Information Error Codes](errorco
   console.info("The result is: " + result);
   ```
 
-## Attributes
+## Properties
 
 Describes battery information.
 

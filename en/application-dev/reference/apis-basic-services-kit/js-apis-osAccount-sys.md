@@ -47,6 +47,7 @@ Activates a system account. This API uses an asynchronous callback to return the
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
+| 12300010 | Service busy. Possible causes: The target account is being operated. |
 | 12300016 | The number of logged in accounts reaches the upper limit. |
 
 **Example**: Activate system account 100.
@@ -63,7 +64,7 @@ Activates a system account. This API uses an asynchronous callback to return the
       }
     });
   } catch (err) {
-    console.log('activateOsAccount failed, error:' + JSON.stringify(err));
+    console.error('activateOsAccount failed, error:' + JSON.stringify(err));
   }
   ```
 
@@ -102,6 +103,7 @@ Activates a system account. This API uses a promise to return the result.
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
+| 12300010 | Service busy. Possible causes: The target account is being operated. |
 | 12300016 | The number of logged in accounts reaches the upper limit. |
 
 **Example**: Activate system account 100.
@@ -113,10 +115,10 @@ Activates a system account. This API uses a promise to return the result.
     accountManager.activateOsAccount(localId).then(() => {
       console.log('activateOsAccount successfully');
     }).catch((err: BusinessError) => {
-      console.log('activateOsAccount failed, err:' + JSON.stringify(err));
+      console.error('activateOsAccount failed, err:' + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('activateOsAccount exception: ' + JSON.stringify(e));
+    console.error('activateOsAccount exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -154,6 +156,7 @@ Deactivates (logs out of) a system account. This API uses a promise to return th
 | 12300001 | The system service works abnormally. |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
+| 12300010 | Service busy. Possible causes: The target account is being operated. |
 
 **Example**: Deactivate system account 100.
   ```ts
@@ -164,10 +167,10 @@ Deactivates (logs out of) a system account. This API uses a promise to return th
     accountManager.deactivateOsAccount(localId).then(() => {
       console.log('deactivateOsAccount successfully');
     }).catch((err: BusinessError) => {
-      console.log('deactivateOsAccount failed, err:' + JSON.stringify(err));
+      console.error('deactivateOsAccount failed, err:' + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('deactivateOsAccount exception: ' + JSON.stringify(e));
+    console.error('deactivateOsAccount exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -215,10 +218,10 @@ Checks whether a system account is activated. This API uses a promise to return 
     accountManager.isOsAccountActivated(localId).then((isActivated: boolean) => {
       console.log('isOsAccountActivated successfully, isActivated: ' + isActivated);
     }).catch((err: BusinessError) => {
-      console.log('isOsAccountActivated failed, error: ' + JSON.stringify(err));
+      console.error('isOsAccountActivated failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('isOsAccountActivated exception: ' + JSON.stringify(err));
+    console.error('isOsAccountActivated exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -268,10 +271,10 @@ Checks whether a constraint is enabled for a system account. This API uses a pro
     accountManager.isOsAccountConstraintEnabled(localId, constraint).then((isEnabled: boolean) => {
       console.log('isOsAccountConstraintEnabled successfully, isEnabled: ' + isEnabled);
     }).catch((err: BusinessError) => {
-      console.log('isOsAccountConstraintEnabled failed, error: ' + JSON.stringify(err));
+      console.error('isOsAccountConstraintEnabled failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('isOsAccountConstraintEnabled exception: ' + JSON.stringify(err));
+    console.error('isOsAccountConstraintEnabled exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -319,10 +322,10 @@ Checks whether a system account has been verified. This API uses a promise to re
     accountManager.isOsAccountUnlocked(localId).then((isVerified: boolean) => {
       console.log('isOsAccountUnlocked successfully, isVerified: ' + isVerified);
     }).catch((err: BusinessError) => {
-      console.log('isOsAccountUnlocked failed, error: ' + JSON.stringify(err));
+      console.error('isOsAccountUnlocked failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('isOsAccountUnlocked exception: ' + JSON.stringify(err));
+    console.error('isOsAccountUnlocked exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -369,14 +372,14 @@ Removes a system account. This API uses an asynchronous callback to return the r
       (err: BusinessError, osAccountInfo: osAccount.OsAccountInfo) => {
         accountManager.removeOsAccount(osAccountInfo.localId, (err: BusinessError)=>{
           if (err) {
-            console.log('removeOsAccount failed, error: ' + JSON.stringify(err));
+            console.error('removeOsAccount failed, error: ' + JSON.stringify(err));
           } else {
             console.log('removeOsAccount successfully');
           }
       });
     });
   } catch (err) {
-    console.log('removeOsAccount exception: ' + JSON.stringify(err));
+    console.error('removeOsAccount exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -429,11 +432,11 @@ Removes a system account. This API uses a promise to return the result.
         accountManager.removeOsAccount(osAccountInfo.localId).then(() => {
           console.log('removeOsAccount successfully');
         }).catch((err: BusinessError) => {
-            console.log('removeOsAccount failed, error: ' + JSON.stringify(err));
+            console.error('removeOsAccount failed, error: ' + JSON.stringify(err));
         });
     });
   } catch (err) {
-    console.log('removeOsAccount exception: ' + JSON.stringify(err));
+    console.error('removeOsAccount exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -480,13 +483,13 @@ Sets or removes constraints for a system account. This API uses an asynchronous 
   try {
     accountManager.setOsAccountConstraints(localId, [constraint], true, (err: BusinessError) => {
       if (err) {
-        console.log('setOsAccountConstraints failed, error: ' + JSON.stringify(err));
+        console.error('setOsAccountConstraints failed, error: ' + JSON.stringify(err));
       } else {
         console.log('setOsAccountConstraints successfully');
       }
     });
   } catch (err) {
-    console.log('setOsAccountConstraints exception: ' + JSON.stringify(err));
+    console.error('setOsAccountConstraints exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -538,10 +541,10 @@ Sets or removes constraints for a system account. This API uses a promise to ret
     accountManager.setOsAccountConstraints(localId, ['constraint.location.set'], false).then(() => {
       console.log('setOsAccountConstraints succsuccessfully');
     }).catch((err: BusinessError) => {
-      console.log('setOsAccountConstraints failed, error: ' + JSON.stringify(err));
+      console.error('setOsAccountConstraints failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('setOsAccountConstraints exception: ' + JSON.stringify(err));
+    console.error('setOsAccountConstraints exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -587,13 +590,13 @@ Sets the name of a system account. This API uses an asynchronous callback to ret
   try {
     accountManager.setOsAccountName(localId, name, (err: BusinessError) => {
       if (err) {
-        console.log('setOsAccountName failed, error: ' + JSON.stringify(err));
+        console.error('setOsAccountName failed, error: ' + JSON.stringify(err));
       } else {
         console.log('setOsAccountName successfully');
       }
     });
   } catch (err) {
-    console.log('setOsAccountName exception: ' + JSON.stringify(err));
+    console.error('setOsAccountName exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -645,10 +648,10 @@ Sets the name of a system account. This API uses a promise to return the result.
     accountManager.setOsAccountName(localId, name).then(() => {
       console.log('setOsAccountName successfully');
     }).catch((err: BusinessError) => {
-      console.log('setOsAccountName failed, error: ' + JSON.stringify(err));
+      console.error('setOsAccountName failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('setOsAccountName exception: ' + JSON.stringify(err));
+    console.error('setOsAccountName exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -684,13 +687,13 @@ Queries the maximum number of system accounts that can be created. This API uses
   try {
     accountManager.queryMaxOsAccountNumber((err: BusinessError, maxCnt: number) => {
       if (err) {
-        console.log('queryMaxOsAccountNumber failed, error:' + JSON.stringify(err));
+        console.error('queryMaxOsAccountNumber failed, error:' + JSON.stringify(err));
       } else {
         console.log('queryMaxOsAccountNumber successfully, maxCnt:' + maxCnt);
       }
     });
   } catch (err) {
-    console.log('queryMaxOsAccountNumber exception: ' + JSON.stringify(err));
+    console.error('queryMaxOsAccountNumber exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -708,7 +711,7 @@ Queries the maximum number of system accounts that can be created. This API uses
 
 | Type                 | Description                                        |
 | --------------------- | ------------------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the maximum number of system accounts that can be created.|
+| Promise&lt;number&gt; | Promise used to return the result.|
 
 **Error codes**
 
@@ -726,10 +729,10 @@ Queries the maximum number of system accounts that can be created. This API uses
     accountManager.queryMaxOsAccountNumber().then((maxCnt: number) => {
       console.log('queryMaxOsAccountNumber successfully, maxCnt: ' + maxCnt);
     }).catch((err: BusinessError) => {
-      console.log('queryMaxOsAccountNumber failed, error: ' + JSON.stringify(err));
+      console.error('queryMaxOsAccountNumber failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('queryMaxOsAccountNumber exception: ' + JSON.stringify(err));
+    console.error('queryMaxOsAccountNumber exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -765,10 +768,10 @@ Queries the maximum number of system accounts allowed to log in to the system. T
     accountManager.queryMaxLoggedInOsAccountNumber().then((maxNum: number) => {
       console.log('queryMaxLoggedInOsAccountNumber successfully, maxNum: ' + maxNum);
     }).catch((err: BusinessError) => {
-      console.log('queryMaxLoggedInOsAccountNumber failed, error: ' + JSON.stringify(err));
+      console.error('queryMaxLoggedInOsAccountNumber failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('queryMaxLoggedInOsAccountNumber exception: ' + JSON.stringify(err));
+    console.error('queryMaxLoggedInOsAccountNumber exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -816,10 +819,10 @@ Obtains all the enabled constraints of a system account. This API uses a promise
     accountManager.getEnabledOsAccountConstraints(localId).then((constraints: string[]) => {
       console.log('getEnabledOsAccountConstraints, constraints: ' + constraints);
     }).catch((err: BusinessError) => {
-      console.log('getEnabledOsAccountConstraints err: ' + JSON.stringify(err));
+      console.error('getEnabledOsAccountConstraints err: ' + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('getEnabledOsAccountConstraints exception: ' + JSON.stringify(e));
+    console.error('getEnabledOsAccountConstraints exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -861,7 +864,7 @@ Queries information about all the system accounts created. This API uses an asyn
       console.log('queryAllCreatedOsAccounts accountArr:' + JSON.stringify(accountArr));
     });
   } catch (e) {
-    console.log('queryAllCreatedOsAccounts exception: ' + JSON.stringify(e));
+    console.error('queryAllCreatedOsAccounts exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -900,10 +903,10 @@ Queries information about all the system accounts created. This API uses a promi
     accountManager.queryAllCreatedOsAccounts().then((accountArr: osAccount.OsAccountInfo[]) => {
       console.log('queryAllCreatedOsAccounts, accountArr: ' + JSON.stringify(accountArr));
     }).catch((err: BusinessError) => {
-      console.log('queryAllCreatedOsAccounts err: ' + JSON.stringify(err));
+      console.error('queryAllCreatedOsAccounts err: ' + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('queryAllCreatedOsAccounts exception: ' + JSON.stringify(e));
+    console.error('queryAllCreatedOsAccounts exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -953,7 +956,7 @@ Creates a system account. This API uses an asynchronous callback to return the r
       console.log('createOsAccount osAccountInfo:' + JSON.stringify(osAccountInfo));
     });
   } catch (e) {
-    console.log('createOsAccount exception: ' + JSON.stringify(e));
+    console.error('createOsAccount exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1011,10 +1014,10 @@ Creates a system account. This API uses a promise to return the result.
       (accountInfo: osAccount.OsAccountInfo) => {
       console.log('createOsAccount, accountInfo: ' + JSON.stringify(accountInfo));
     }).catch((err: BusinessError) => {
-      console.log('createOsAccount err: ' + JSON.stringify(err));
+      console.error('createOsAccount err: ' + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('createOsAccount exception: ' + JSON.stringify(e));
+    console.error('createOsAccount exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1067,7 +1070,7 @@ Creates a system account and associates it with the specified domain account. Th
       console.log('createOsAccountForDomain osAccountInfo:' + JSON.stringify(osAccountInfo));
     });
   } catch (e) {
-    console.log('createOsAccountForDomain exception: ' + JSON.stringify(e));
+    console.error('createOsAccountForDomain exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1128,10 +1131,10 @@ Creates a system account and associates it with the specified domain account. Th
       (accountInfo: osAccount.OsAccountInfo) => {
       console.log('createOsAccountForDomain, account info: ' + JSON.stringify(accountInfo));
     }).catch((err: BusinessError) => {
-      console.log('createOsAccountForDomain err: ' + JSON.stringify(err));
+      console.error('createOsAccountForDomain err: ' + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('createOsAccountForDomain exception: ' + JSON.stringify(e));
+    console.error('createOsAccountForDomain exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1170,10 +1173,10 @@ Obtains information about the system account to which the current process belong
     accountManager.queryOsAccount().then((accountInfo: osAccount.OsAccountInfo) => {
       console.log('queryOsAccount, accountInfo: ' + JSON.stringify(accountInfo));
     }).catch((err: BusinessError) => {
-      console.log('queryOsAccount err: ' + JSON.stringify(err));
+      console.error('queryOsAccount err: ' + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('queryOsAccount exception: ' + JSON.stringify(e));
+    console.error('queryOsAccount exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1219,7 +1222,7 @@ Queries information about the system account of the given ID. This API uses an a
       console.log('queryOsAccountById accountInfo:' + JSON.stringify(accountInfo));
     });
   } catch (e) {
-    console.log('queryOsAccountById exception: ' + JSON.stringify(e));
+    console.error('queryOsAccountById exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1268,10 +1271,10 @@ Queries information about the system account of the given ID. This API uses a pr
     accountManager.queryOsAccountById(localId).then((accountInfo: osAccount.OsAccountInfo) => {
       console.log('queryOsAccountById, accountInfo: ' + JSON.stringify(accountInfo));
     }).catch((err: BusinessError) => {
-      console.log('queryOsAccountById err: ' + JSON.stringify(err));
+      console.error('queryOsAccountById err: ' + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('queryOsAccountById exception: ' + JSON.stringify(e));
+    console.error('queryOsAccountById exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1317,7 +1320,7 @@ Obtains the profile photo of a system account. This API uses an asynchronous cal
       console.log('get photo:' + photo + ' by localId: ' + localId);
     });
   } catch (e) {
-    console.log('getOsAccountProfilePhoto exception: ' + JSON.stringify(e));
+    console.error('getOsAccountProfilePhoto exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1366,10 +1369,10 @@ Obtains the profile photo of a system account. This API uses a promise to return
     accountManager.getOsAccountProfilePhoto(localId).then((photo: string) => {
       console.log('getOsAccountProfilePhoto: ' + photo);
     }).catch((err: BusinessError) => {
-      console.log('getOsAccountProfilePhoto err: ' + JSON.stringify(err));
+      console.error('getOsAccountProfilePhoto err: ' + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('getOsAccountProfilePhoto exception: ' + JSON.stringify(e));
+    console.error('getOsAccountProfilePhoto exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1420,7 +1423,7 @@ Sets a profile photo for a system account. This API uses an asynchronous callbac
       console.log('setOsAccountProfilePhoto err:' + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('setOsAccountProfilePhoto exception: ' + JSON.stringify(e));
+    console.error('setOsAccountProfilePhoto exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1475,10 +1478,10 @@ Sets a profile photo for a system account. This API uses a promise to return the
     accountManager.setOsAccountProfilePhoto(localId, photo).then(() => {
       console.log('setOsAccountProfilePhoto success');
     }).catch((err: BusinessError) => {
-      console.log('setOsAccountProfilePhoto err: ' + JSON.stringify(err));
+      console.error('setOsAccountProfilePhoto err: ' + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('setOsAccountProfilePhoto exception: ' + JSON.stringify(e));
+    console.error('setOsAccountProfilePhoto exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1522,7 +1525,7 @@ Subscribes to the system account activation states, including the states of the 
   try {
     accountManager.on('activating', 'osAccountOnOffNameA', onCallback);
   } catch (e) {
-    console.log('receive localId exception: ' + JSON.stringify(e));
+    console.error('receive localId exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1566,7 +1569,7 @@ Unsubscribes from the system account activation states, including the states of 
   try {
     accountManager.off('activating', 'osAccountOnOffNameA', offCallback);
   } catch (e) {
-    console.log('off exception: ' + JSON.stringify(e));
+    console.error('off exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1609,7 +1612,7 @@ Subscribes to the switchover between a foreground system account and a backgroun
   try {
     accountManager.on('switching', onSwitchingCallback);
   } catch (e) {
-    console.log('receive eventData exception: ' + JSON.stringify(e));
+    console.error('receive eventData exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1649,7 +1652,7 @@ Unsubscribes from the switchover between a foreground system account and a backg
   try {
     accountManager.off('switching');
   } catch (e) {
-    console.log('off exception: ' + JSON.stringify(e));
+    console.error('off exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1692,7 +1695,7 @@ Subscribes to the end of a switchover between a foreground system account and a 
   try {
     accountManager.on('switched', onSwitchedCallback);
   } catch (e) {
-    console.log('receive eventData exception: ' + JSON.stringify(e));
+    console.error('receive eventData exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1732,7 +1735,7 @@ Unsubscribes from the end of a switchover between a foreground system account an
   try {
     accountManager.off('switched');
   } catch (e) {
-    console.log('off exception: ' + JSON.stringify(e));
+    console.error('off exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1774,7 +1777,7 @@ Obtains the bundle ID based on the UID. This API uses an asynchronous callback t
       console.info('getBundleIdForUid bundleId:' + JSON.stringify(bundleId));
     });
   } catch (e) {
-    console.info('getBundleIdForUid exception: ' + JSON.stringify(e));
+    console.error('getBundleIdForUid exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1819,10 +1822,10 @@ Obtains the bundle ID based on the UID. This API uses a promise to return the re
     accountManager.getBundleIdForUid(testUid).then((result: number) => {
       console.info('getBundleIdForUid bundleId:' + JSON.stringify(result));
     }).catch((err: BusinessError) => {
-      console.info('getBundleIdForUid errInfo:' + JSON.stringify(err));
+      console.error('getBundleIdForUid errInfo:' + JSON.stringify(err));
     });
   } catch (e) {
-    console.info('getBundleIdForUid exception: ' + JSON.stringify(e));
+    console.error('getBundleIdForUid exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -2112,8 +2115,6 @@ Provides APIs for user authentication.
 
 ### constructor<sup>8+</sup>
 
-constructor()
-
 A constructor used to create an instance for user authentication.
 
 **System API**: This is a system API.
@@ -2204,7 +2205,7 @@ Obtains the available status of the authentication capability corresponding to t
     let status: number = userAuth.getAvailableStatus(authType, authTrustLevel);
     console.log('getAvailableStatus status = ' + status);
   } catch (e) {
-    console.log('getAvailableStatus exception = ' + JSON.stringify(e));
+    console.error('getAvailableStatus exception = ' + JSON.stringify(e));
   }
   ```
 
@@ -2257,7 +2258,7 @@ Obtains the executor property based on the request. This API uses an asynchronou
       console.log('getProperty result = ' + JSON.stringify(result));
     });
   } catch (e) {
-    console.log('getProperty exception = ' + JSON.stringify(e));
+    console.error('getProperty exception = ' + JSON.stringify(e));
   }
   ```
 
@@ -2313,10 +2314,10 @@ Obtains the executor property based on the request. This API uses a promise to r
     userAuth.getProperty(request).then((result: osAccount.ExecutorProperty) => {
       console.log('getProperty result = ' + JSON.stringify(result));
     }).catch((err: BusinessError) => {
-      console.log('getProperty error = ' + JSON.stringify(err));
+      console.error('getProperty error = ' + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('getProperty exception = ' + JSON.stringify(e));
+    console.error('getProperty exception = ' + JSON.stringify(e));
   }
   ```
 
@@ -2361,31 +2362,33 @@ Obtains the specified property information of the associated executor based on t
   import { BusinessError } from '@kit.BasicServicesKit';
   let userIDM = new osAccount.UserIdentityManager();
   let credInfo: osAccount.EnrolledCredInfo[] = [];
-  try {
-    credInfo = await userIDM.getAuthInfo(osAccount.AuthType.PRIVATE_PIN);
-  } catch (e) {
-    console.log('getAuthInfo exception = ' + JSON.stringify(e));
-    return;
-  }
-  if (credInfo.length == 0) {
-    console.log('no credential infos');
-    return;
-  }
-  let testCredentialId: Uint8Array = credInfo[0].credentialId;
-  let keys: Array<osAccount.GetPropertyType> = [
-    osAccount.GetPropertyType.AUTH_SUB_TYPE,
-    osAccount.GetPropertyType.REMAIN_TIMES,
-    osAccount.GetPropertyType.FREEZING_TIME
-  ];
-  try {
-    let userAuth = new osAccount.UserAuth();
-    userAuth.getPropertyByCredentialId(testCredentialId, keys).then((result: osAccount.ExecutorProperty) => {
-      console.log('getPropertyByCredentialId result = ' + JSON.stringify(result));
-    }).catch((err: BusinessError) => {
-      console.log('getPropertyByCredentialId error = ' + JSON.stringify(err));
-    });
-  } catch (e) {
-    console.log('getPropertyByCredentialId exception = ' + JSON.stringify(e));
+  async function getProperty() {
+    try {
+      credInfo = await userIDM.getAuthInfo(osAccount.AuthType.PRIVATE_PIN);
+    } catch (e) {
+      console.error('getAuthInfo exception = ' + JSON.stringify(e));
+      return;
+    }
+    if (credInfo.length == 0) {
+      console.log('no credential infos');
+      return;
+    }
+    let testCredentialId: Uint8Array = credInfo[0].credentialId;
+    let keys: Array<osAccount.GetPropertyType> = [
+      osAccount.GetPropertyType.AUTH_SUB_TYPE,
+      osAccount.GetPropertyType.REMAIN_TIMES,
+      osAccount.GetPropertyType.FREEZING_TIME
+    ];
+    try {
+      let userAuth = new osAccount.UserAuth();
+      userAuth.getPropertyByCredentialId(testCredentialId, keys).then((result: osAccount.ExecutorProperty) => {
+        console.log('getPropertyByCredentialId result = ' + JSON.stringify(result));
+      }).catch((err: BusinessError) => {
+        console.error('getPropertyByCredentialId error = ' + JSON.stringify(err));
+      });
+    } catch (e) {
+      console.error('getPropertyByCredentialId exception = ' + JSON.stringify(e));
+    }
   }
   ```
 
@@ -2430,13 +2433,13 @@ Sets the property for the initialization algorithm. This API uses an asynchronou
   try {
     userAuth.setProperty(request, (err: BusinessError) => {
       if (err) {
-        console.log('setProperty failed, error = ' + JSON.stringify(err));
+        console.error('setProperty failed, error = ' + JSON.stringify(err));
       } else {
         console.log('setProperty successfully');
       }
     });
   } catch (e) {
-    console.log('setProperty exception = ' + JSON.stringify(e));
+    console.error('setProperty exception = ' + JSON.stringify(e));
   }
   ```
 
@@ -2487,10 +2490,10 @@ Sets the property for the initialization algorithm. This API uses a promise to r
     userAuth.setProperty(request).then(() => {
       console.log('setProperty successfully');
     }).catch((err: BusinessError) => {
-      console.log('setProperty failed, error = ' + JSON.stringify(err));
+      console.error('setProperty failed, error = ' + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('setProperty exception = ' + JSON.stringify(e));
+    console.error('setProperty exception = ' + JSON.stringify(e));
   }
   ```
 
@@ -2541,11 +2544,11 @@ Prepares for remote authentication. This API uses a promise to return the result
           userAuth.prepareRemoteAuth(data[0].networkId).then(() => {
             console.log('prepareRemoteAuth successfully');
           }).catch((err: BusinessError) => {
-            console.log('prepareRemoteAuth failed, error = ' + JSON.stringify(err));
+            console.error('prepareRemoteAuth failed, error = ' + JSON.stringify(err));
           });
         }
       } catch (e) {
-        console.log('prepareRemoteAuth exception = ' + JSON.stringify(e));
+        console.error('prepareRemoteAuth exception = ' + JSON.stringify(e));
       }
     }
   )
@@ -2615,7 +2618,7 @@ Performs authentication of the current user. This API uses an asynchronous callb
       }
     });
   } catch (e) {
-    console.log('auth exception = ' + JSON.stringify(e));
+    console.error('auth exception = ' + JSON.stringify(e));
   }
   ```
 
@@ -2688,7 +2691,7 @@ Starts user authentication based on the specified challenge value, authenticatio
       }
     });
   } catch (e) {
-    console.log('auth exception = ' + JSON.stringify(e));
+    console.error('auth exception = ' + JSON.stringify(e));
   }
   ```
 
@@ -2759,7 +2762,7 @@ Performs authentication of the specified user. This API uses an asynchronous cal
       }
     });
   } catch (e) {
-    console.log('authUser exception = ' + JSON.stringify(e));
+    console.error('authUser exception = ' + JSON.stringify(e));
   }
   ```
 
@@ -2779,7 +2782,7 @@ Cancels an authentication.
 
 | Name   | Type      | Mandatory | Description                                       |
 | ----------| ---------- | ---- | ------------------------------------------ |
-| contextId | Uint8Array | Yes  | ID of the authentication context. The context ID is dynamically generated.|
+| contextID | Uint8Array | Yes  | ID of the authentication context. The context ID is dynamically generated.|
 
 **Error codes**
 
@@ -2792,6 +2795,7 @@ Cancels an authentication.
 | 12300002 | Invalid contextId. |
 
 **Example**
+
   ```ts
   let userAuth = new osAccount.UserAuth();
   let pinAuth: osAccount.PINAuth = new osAccount.PINAuth();
@@ -2805,7 +2809,7 @@ Cancels an authentication.
   try {
     userAuth.cancelAuth(contextId);
   } catch (e) {
-    console.log('cancelAuth exception = ' + JSON.stringify(e));
+    console.error('cancelAuth exception = ' + JSON.stringify(e));
   }
   ```
 
@@ -2816,8 +2820,6 @@ Provides APIs for PIN authentication.
 **System API**: This is a system API.
 
 ### constructor<sup>8+</sup>
-
-constructor()
 
 Creates a PIN authentication instance.
 
@@ -2877,7 +2879,7 @@ Registers a PIN inputer.
     });
     console.log('registerInputer success.');
   } catch (e) {
-    console.log('registerInputer exception = ' + JSON.stringify(e));
+    console.error('registerInputer exception = ' + JSON.stringify(e));
   }
   ```
 
@@ -2953,7 +2955,7 @@ Registers a credential inputer.
     });
     console.log('registerInputer success.');
   } catch (e) {
-    console.log('registerInputer exception = ' + JSON.stringify(e));
+    console.error('registerInputer exception = ' + JSON.stringify(e));
   }
   ```
 
@@ -2991,7 +2993,7 @@ Unregisters this credential inputer.
     osAccount.InputerManager.unregisterInputer(authType);
     console.log('unregisterInputer success.');
   } catch(err) {
-    console.log('unregisterInputer err:' + JSON.stringify(err));
+    console.error('unregisterInputer err:' + JSON.stringify(err));
   }
   ```
 
@@ -3062,7 +3064,7 @@ Authenticates a domain account.
       }
     });
   } catch (err) {
-    console.log('auth exception = ' + JSON.stringify(err));
+    console.error('auth exception = ' + JSON.stringify(err));
   }
   ```
 
@@ -3390,7 +3392,7 @@ Checks whether the specified domain account token is valid.
 | ---------- | --------------------------------------- | ---- | --------------- |
 | domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information.|
 | token | Uint8Array | Yes| Domain account token to check.|
-| callback   | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.|
+| callback   | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result.
 
 **Example**
   ```ts
@@ -3503,7 +3505,8 @@ Registers a domain plug-in.
 | -------- | --------------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
-| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.|
 | 12300201 | The domain plugin has been registered. |
 
 **Example**
@@ -3531,7 +3534,7 @@ Registers a domain plug-in.
     osAccount.DomainAccountManager.registerPlugin(plugin);
     console.log('registerPlugin success.');
   } catch(err) {
-    console.log('registerPlugin err:' + JSON.stringify(err));
+    console.error('registerPlugin err:' + JSON.stringify(err));
   }
   ```
 
@@ -3553,6 +3556,7 @@ Unregisters this domain plug-in.
 | -------- | --------------------------- |
 | 201 | Permission denied.|
 | 202 | Not system application.|
+| 801 | Capability not supported.|
 
 **Example**
   ```ts
@@ -3560,7 +3564,7 @@ Unregisters this domain plug-in.
     osAccount.DomainAccountManager.unregisterPlugin();
     console.log('unregisterPlugin success.');
   } catch(err) {
-    console.log('unregisterPlugin err:' + JSON.stringify(err));
+    console.error('unregisterPlugin err:' + JSON.stringify(err));
   }
   ```
 
@@ -3620,7 +3624,7 @@ Authenticates a domain account.
       }
     });
   } catch (err) {
-    console.log('auth exception = ' + JSON.stringify(err));
+    console.error('auth exception = ' + JSON.stringify(err));
   }
   ```
 
@@ -3674,7 +3678,7 @@ No permission is required since API version 11. Use the SDK of the latest versio
       }
     })
   } catch (err) {
-    console.log('auth exception = ' + JSON.stringify(err));
+    console.error('auth exception = ' + JSON.stringify(err));
   }
   ```
 
@@ -3730,7 +3734,7 @@ No permission is required since API version 11. Use the SDK of the latest versio
       }
     })
   } catch (err) {
-    console.log('authWithPopup exception = ' + JSON.stringify(err));
+    console.error('authWithPopup exception = ' + JSON.stringify(err));
   }
   ```
 
@@ -3751,7 +3755,7 @@ Checks whether a domain account exists.
 | Name     | Type                                   | Mandatory| Description            |
 | ---------- | --------------------------------------- | ---- | --------------- |
 | domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information.|
-| callback   | AsyncCallback&lt;boolean&gt;  | Yes  | Callback used to return the result. |
+| callback   | AsyncCallback&lt;boolean&gt;  | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -3779,13 +3783,13 @@ Checks whether a domain account exists.
   try {
     osAccount.DomainAccountManager.hasAccount(domainAccountInfo, (err: BusinessError, result: boolean) => {
       if (err) {
-        console.log('call hasAccount failed, error: ' + JSON.stringify(err));
+        console.error('call hasAccount failed, error: ' + JSON.stringify(err));
       } else {
         console.log('hasAccount result: ' + result);
       }
     });
   } catch (err) {
-    console.log('hasAccount exception = ' + JSON.stringify(err));
+    console.error('hasAccount exception = ' + JSON.stringify(err));
   }
   ```
 
@@ -3840,10 +3844,10 @@ Checks whether a domain account exists.
     osAccount.DomainAccountManager.hasAccount(domainAccountInfo).then((result: boolean) => {
       console.log('hasAccount result: ' + result);
     }).catch((err: BusinessError) => {
-        console.log('call hasAccount failed, error: ' + JSON.stringify(err));
+        console.error('call hasAccount failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('hasAccount exception = ' + JSON.stringify(err));
+    console.error('hasAccount exception = ' + JSON.stringify(err));
   }
   ```
 
@@ -3865,7 +3869,7 @@ Updates the token of a domain account. An empty token means an invalid token. Th
 | ---------- | --------------------------------------- | ---- | --------------- |
 | domainAccountInfo | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information.|
 | token | Uint8Array  | Yes  | New domain account token.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the token is successfully updated, **err** is **null**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -3890,13 +3894,13 @@ Updates the token of a domain account. An empty token means an invalid token. Th
   try {
     osAccount.DomainAccountManager.updateAccountToken(domainAccountInfo, token, (err: BusinessError) => {
       if (err != null) {
-        console.log('updateAccountToken failed, error: ' + JSON.stringify(err));
+        console.error('updateAccountToken failed, error: ' + JSON.stringify(err));
       } else {
         console.log('updateAccountToken successfully');
       }
     })
   } catch (err) {
-    console.log('updateAccountToken exception = ' + JSON.stringify(err));
+    console.error('updateAccountToken exception = ' + JSON.stringify(err));
   }
   ```
 
@@ -3949,59 +3953,10 @@ Updates the token of a domain account. An empty token means an invalid token. Th
     osAccount.DomainAccountManager.updateAccountToken(domainAccountInfo, token).then(() => {
       console.log('updateAccountToken successfully');
     }).catch((err: BusinessError) => {
-        console.log('updateAccountToken failed, error: ' + JSON.stringify(err));
+        console.error('updateAccountToken failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('updateAccountToken exception = ' + JSON.stringify(err));
-  }
-  ```
-### updateAccountInfo<sup>12+</sup>
-
-updateAccountInfo(oldAccountInfo: DomainAccountInfo, newAccountInfo: DomainAccountInfo): Promise&lt;void&gt;
-
-Updates information about the specified domain account. This API uses a promise to return the result.
-
-**System API**: This is a system API.
-
-**Required permissions**: ohos.permission.MANAGE_LOCAL_ACCOUNTS
-
-**System capability**: SystemCapability.Account.OsAccount
-
-**Parameters**
-
-| Name     | Type                                   | Mandatory| Description            |
-| ---------- | --------------------------------------- | ---- | --------------- |
-| oldAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes   | Domain account information. |
-| newAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes   | New domain account information. |
-
-**Error codes**
-
-| ID| Error Message                    |
-| -------- | --------------------------- |
-| 201 | Permission denied.|
-| 202 | Not system application.|
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 801 | Capability not supported.|
-| 12300001 | The system service works abnormally. |
-| 12300002 | The new account info is invalid. |
-| 12300003 | The old account not found. |
-| 12300004 | The new account already exists. |
-
-**Example**
-  ```ts
-  import { BusinessError } from '@kit.BasicServicesKit';
-  let oldDomainInfo: osAccount.DomainAccountInfo =
-    {domain: 'testDomain', accountName: 'oldtestAccountName'};
-  let newDomainInfo: osAccount.DomainAccountInfo =
-    {domain: 'testDomain', accountName: 'newtestAccountName'};
-  try {
-    osAccount.DomainAccountManager.updateAccountInfo(oldDomainInfo, newDomainInfo).then(() => {
-      console.log('updateAccountInfo, success');
-    }).catch((err: BusinessError) => {
-      console.log('updateAccountInfo err: ' + err);
-    });
-  } catch (e) {
-    console.log('updateAccountInfo exception: ' + e);
+    console.error('updateAccountToken exception = ' + JSON.stringify(err));
   }
   ```
 
@@ -4051,13 +4006,13 @@ Obtains information about the specified domain account. This API uses an asynchr
     osAccount.DomainAccountManager.getAccountInfo(domainAccountInfo,
       (err: BusinessError, result: osAccount.DomainAccountInfo) => {
       if (err) {
-        console.log('call getAccountInfo failed, error: ' + JSON.stringify(err));
+        console.error('call getAccountInfo failed, error: ' + JSON.stringify(err));
       } else {
         console.log('getAccountInfo result: ' + result);
       }
     });
   } catch (err) {
-    console.log('getAccountInfo exception = ' + JSON.stringify(err));
+    console.error('getAccountInfo exception = ' + JSON.stringify(err));
   }
   ```
 
@@ -4113,10 +4068,10 @@ Obtains information about the specified domain account. This API uses a promise 
       .then((result: osAccount.DomainAccountInfo) => {
       console.log('getAccountInfo result: ' + result);
     }).catch((err: BusinessError) => {
-      console.log('call getAccountInfo failed, error: ' + JSON.stringify(err));
+      console.error('call getAccountInfo failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('getAccountInfo exception = ' + JSON.stringify(err));
+    console.error('getAccountInfo exception = ' + JSON.stringify(err));
   }
   ```
 
@@ -4164,13 +4119,13 @@ Obtains the service access token of this domain account. This API uses an asynch
     osAccount.DomainAccountManager.getAccessToken(businessParams,
       (err: BusinessError, result: Uint8Array) => {
       if (err) {
-        console.log('getAccessToken failed, error: ' + JSON.stringify(err));
+        console.error('getAccessToken failed, error: ' + JSON.stringify(err));
       } else {
         console.log('getAccessToken result: ' + result);
       }
     });
   } catch (err) {
-    console.log('getAccessToken exception = ' + JSON.stringify(err));
+    console.error('getAccessToken exception = ' + JSON.stringify(err));
   }
   ```
 
@@ -4224,10 +4179,10 @@ Obtains the service access token of this domain account. This API uses a promise
       .then((result: Uint8Array) => {
       console.log('getAccessToken result: ' + result);
     }).catch((err: BusinessError) => {
-      console.log('getAccessToken failed, error: ' + JSON.stringify(err));
+      console.error('getAccessToken failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('getAccessToken exception = ' + JSON.stringify(err));
+    console.error('getAccessToken exception = ' + JSON.stringify(err));
   }
   ```
 
@@ -4275,10 +4230,10 @@ Checks whether the authentication of a domain account has expired. This API uses
     osAccount.DomainAccountManager.isAuthenticationExpired(domainInfo).then((result: boolean) => {
       console.log('isAuthenticationExpired, result: ' + result);
     }).catch((err: BusinessError) => {
-      console.log('isAuthenticationExpired err: ' + err);
+      console.error('isAuthenticationExpired err: ' + err);
     });
   } catch (e) {
-    console.log('isAuthenticationExpired exception: ' + e);
+    console.error('isAuthenticationExpired exception: ' + e);
   }
   ```
 
@@ -4344,7 +4299,7 @@ Opens a session to obtain the challenge value. This API uses an asynchronous cal
         console.log('openSession challenge = ' + JSON.stringify(challenge));
     });
   } catch (e) {
-    console.log('openSession exception = ' + JSON.stringify(e));
+    console.error('openSession exception = ' + JSON.stringify(e));
   }
   ```
 
@@ -4392,10 +4347,10 @@ Opens a session. This API returns a challenge value, which can be used to determ
     userIDM.openSession(accountId).then((challenge: Uint8Array) => {
         console.info('openSession challenge = ' + JSON.stringify(challenge));
     }).catch((err: BusinessError) => {
-        console.info('openSession error = ' + JSON.stringify(err));
+        console.error('openSession error = ' + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('openSession exception = ' + JSON.stringify(e));
+    console.error('openSession exception = ' + JSON.stringify(e));
   }
   ```
 
@@ -4461,7 +4416,7 @@ Adds credential information, including the credential type, subtype, and token (
       }
     });
     } catch (e) {
-      console.log('addCredential exception = ' + JSON.stringify(e));
+      console.error('addCredential exception = ' + JSON.stringify(e));
     }
   });
   ```
@@ -4536,7 +4491,7 @@ Updates credential information. This API uses an asynchronous callback to return
             }
           });
         } catch (e) {
-          console.log('updateCredential exception = ' + JSON.stringify(e));
+          console.error('updateCredential exception = ' + JSON.stringify(e));
         }
       }
     });
@@ -4614,7 +4569,7 @@ Cancels an entry based on the challenge value.
   try {
     userIDM.cancel(challenge);
   } catch(err) {
-    console.log('cancel err:' + JSON.stringify(err));
+    console.error('cancel err:' + JSON.stringify(err));
   }
   ```
 
@@ -4659,7 +4614,7 @@ Deletes a user based on the authentication token. This API uses a callback to re
       }
     });
   } catch (e) {
-    console.log('delUser exception = ' + JSON.stringify(e));
+    console.error('delUser exception = ' + JSON.stringify(e));
   }
   ```
 
@@ -4708,7 +4663,7 @@ Deletes user credential information.
       }
     });
   } catch (e) {
-    console.log('delCred exception = ' + JSON.stringify(e));
+    console.error('delCred exception = ' + JSON.stringify(e));
   }
   ```
 
@@ -4749,7 +4704,7 @@ Obtains authentication information. This API uses an asynchronous callback to re
       console.log('getAuthInfo result = ' + JSON.stringify(result));
     });
   } catch (e) {
-    console.log('getAuthInfo exception = ' + JSON.stringify(e));
+    console.error('getAuthInfo exception = ' + JSON.stringify(e));
   }
   ```
 
@@ -4793,7 +4748,7 @@ Obtains authentication information of the specified type. This API uses an async
       console.log('getAuthInfo result = ' + JSON.stringify(result));
     });
   } catch (e) {
-    console.log('getAuthInfo exception = ' + JSON.stringify(e));
+    console.error('getAuthInfo exception = ' + JSON.stringify(e));
   }
   ```
 
@@ -4839,10 +4794,10 @@ Obtains authentication information. This API uses a promise to return the result
     userIDM.getAuthInfo(osAccount.AuthType.PIN).then((result: osAccount.EnrolledCredInfo[]) => {
       console.log('getAuthInfo result = ' + JSON.stringify(result))
     }).catch((err: BusinessError) => {
-      console.log('getAuthInfo error = ' + JSON.stringify(err));
+      console.error('getAuthInfo error = ' + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('getAuthInfo exception = ' + JSON.stringify(e));
+    console.error('getAuthInfo exception = ' + JSON.stringify(e));
   }
   ```
 
@@ -4862,7 +4817,7 @@ Obtains authentication information. This API uses a promise to return the result
 
 | Name   | Type                               | Mandatory| Description     |
 | -------- | ----------------------------------- | ---- | -------- |
-| options | [GetAuthInfoOptions](#getauthinfooptions12)          | No  | Optional parameters for obtaining authentication information.|
+| options | [GetAuthInfoOptions](#getauthinfooptions12)          | No  | Optional parameters for obtaining authentication information. This parameter is left empty by default, indicating that all enrolled credential information of the current user is obtained.|
 
 **Return value**
 
@@ -4893,10 +4848,10 @@ Obtains authentication information. This API uses a promise to return the result
     userIDM.getAuthInfo(options).then((result: osAccount.EnrolledCredInfo[]) => {
       console.log('getAuthInfo result = ' + JSON.stringify(result))
     }).catch((err: BusinessError) => {
-      console.log('getAuthInfo error = ' + JSON.stringify(err));
+      console.error('getAuthInfo error = ' + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('getAuthInfo exception = ' + JSON.stringify(e));
+    console.error('getAuthInfo exception = ' + JSON.stringify(e));
   }
   ```
 
@@ -4948,10 +4903,10 @@ Obtains the ID of the enrolled credential based on the credential type and accou
     userIDM.getEnrolledId(authType, accountId).then((enrolledId: Uint8Array) => {
         console.info('getEnrolledId enrolledId = ' + JSON.stringify(enrolledId));
     }).catch((err: BusinessError) => {
-        console.info('getEnrolledId error = ' + JSON.stringify(err));
+        console.error('getEnrolledId error = ' + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('getEnrolledId exception = ' + JSON.stringify(e));
+    console.error('getEnrolledId exception = ' + JSON.stringify(e));
   }
   ```
 
@@ -5212,15 +5167,15 @@ Defines the executor property.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name        | Type                        |  Readable| Writable| Description             |
+| Name        | Type                        |  Read-Only| Optional| Description             |
 | ------------ | ---------------------------- | ----- | -----|----------------- |
-| result       | number                       | Yes   | Yes  | Result.        |
-| authSubType  | [AuthSubType](#authsubtype8) | Yes   | Yes  | Authentication credential subtype.|
-| remainTimes  | number                       | Yes   | Yes  | Number of remaining authentication times.    |
-| freezingTime | number                       | Yes   | Yes  | Freezing time.    |
-| enrollmentProgress<sup>10+</sup> | string   | Yes   | Yes  | Enrollment progress. By default, no value is passed in.|
-| sensorInfo<sup>10+</sup> | string           | Yes   | Yes  | Sensor information. By default, no value is passed in.|
-| nextPhaseFreezingTime<sup>12+</sup> | number | Yes   | Yes  | Next freezing time, which is **undefined** by default.|
+| result       | number                       | No   | No  | Result.        |
+| authSubType  | [AuthSubType](#authsubtype8) | No   | No  | Authentication credential subtype.|
+| remainTimes  | number                       | No   | Yes  | Number of remaining authentication times.    |
+| freezingTime | number                       | No   | Yes  | Freezing time.    |
+| enrollmentProgress<sup>10+</sup> | string   | No   | Yes  | Enrollment progress, which is left blank by default.|
+| sensorInfo<sup>10+</sup> | string           | No   | Yes  | Sensor information, which is left blank by default.|
+| nextPhaseFreezingTime<sup>12+</sup> | number | No   | Yes  | Next freezing time, which is **undefined** by default.|
 
 ## AuthResult<sup>8+</sup>
 
@@ -5232,8 +5187,8 @@ Defines the authentication result information.
 
 | Name       | Type       | Mandatory  | Description             |
 | ------------ | ----------- | ----- | ----------------- |
-| token        | Uint8Array  | No   | Authentication token. By default, no value is passed in.     |
-| remainTimes  | number      | No   | Number of remaining authentication times. By default, no value is passed in.     |
+| token        | Uint8Array  | No   | Authentication token, which is left blank by default.     |
+| remainTimes  | number      | No   | Number of remaining authentication times, which is left blank by default.     |
 | freezingTime | number      | No   | Freezing time. By default, no value is passed in.     |
 | nextPhaseFreezingTime<sup>12+</sup> | number | No   | Next freezing time, which is **undefined** by default.|
 | credentialId<sup>12+</sup> | Uint8Array  | No   | Credential ID, which is left blank by default.|
@@ -5265,7 +5220,7 @@ Defines the request result information.
 
 | Name       | Type       | Mandatory  | Description             |
 | ------------ | ----------- | ----- | ----------------- |
-| credentialId | Uint8Array  | No   | Credential ID. By default, no value is passed in.     |
+| credentialId | Uint8Array  | No   | Credential ID, which is left blank by default.     |
 
 ## EnrolledCredInfo<sup>8+</sup>
 
@@ -5578,7 +5533,9 @@ Represents the optional parameter used to create a system account.
 
 | Name     | Type  | Mandatory| Description      |
 | ----------- | ------ | ---- | ---------- |
-| shortName | string | Yes  | Short name of the account (used as the name of the personal folder).<br>**The short name cannot**:<br>Contain any of the following characters: \< \>\| : " * ? / \\<br>Contain any of the following: . or ..<br>Exceed 255 characters. |
+| shortName | string | Yes  | Short name of the account (used as the name of the personal folder).<br>**The short name cannot**:<br>Contain any of the following characters: \< \>\| : " * ? / \\<br>Contain any of the following: . or ..<br>Exceed 255 characters.|
+| disallowedPreinstalledBundles<sup>19+</sup> | Array&lt;string&gt; | No  | Forbidden list of the preinstalled applications, which cannot be installed on the device.|
+| allowedPreinstalledBundles<sup>19+</sup> | Array&lt;string&gt; | No  | Trustlist of the preinstalled applications, which can be installed on the device.|
 
 ## CreateOsAccountForDomainOptions<sup>12+</sup>
 
@@ -5590,7 +5547,7 @@ Represents a set of optional parameters for creating a system account bound to t
 
 | Name     | Type  | Mandatory| Description      |
 | ----------- | ------ | ---- | ---------- |
-| shortName | string | Yes  | Short name of the account (used as the name of the personal folder).<br>**The short name cannot**:<br>Contain any of the following characters: \< \>\| : " * ? / \\<br>Contain any of the following: . or ..<br>Exceed 255 characters. |
+| shortName | string | Yes  | Short name of the account (used as the name of the personal folder).<br>**The short name cannot**:<br>Contain any of the following characters: \< \>\| : " * ? / \\<br>Contain any of the following: . or ..<br>Exceed 255 characters.|
 
 ## GetAuthInfoOptions<sup>12+</sup>
 

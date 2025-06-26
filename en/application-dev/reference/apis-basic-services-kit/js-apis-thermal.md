@@ -18,7 +18,7 @@ registerThermalLevelCallback(callback: Callback&lt;ThermalLevel&gt;): void
 
 Subscribes to thermal level changes.
 
-**System capability:** SystemCapability.PowerManager.ThermalManager
+**System capability**: SystemCapability.PowerManager.ThermalManager
 
 **Parameters**
 
@@ -28,12 +28,12 @@ Subscribes to thermal level changes.
 
 **Error codes**
 
-For details about the error codes, see [Thermal Manager Error Codes](errorcode-thermal.md).
+For details about the error codes, see [Thermal Manager Error Codes](errorcode-thermal.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID  | Error Message   |
 |---------|---------|
 | 4800101 | Failed to connect to the service. |
-| 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
+| 401     | Parameter error. Possible causes: 1. Incorrect parameter types. |
 
 **Example**
 
@@ -54,22 +54,22 @@ unregisterThermalLevelCallback(callback?: Callback\<void>): void
 
 Unsubscribes from thermal level changes.
 
-**System capability:** SystemCapability.PowerManager.ThermalManager
+**System capability**: SystemCapability.PowerManager.ThermalManager
 
 **Parameters**
 
 | Name  | Type                | Mandatory| Description                                          |
 | -------- | -------------------- | ---- | ---------------------------------------------- |
-| callback | Callback&lt;void&gt; | No  | Callback that returns no value. If this parameter is not set, all callbacks will be unregistered.|
+| callback | Callback&lt;void&gt; | No  | (Optional) Callback that returns no value. If this parameter is not set, all callbacks will be unregistered. |
 
 **Error codes**
 
-For details about the error codes, see [Thermal Manager Error Codes](errorcode-thermal.md).
+For details about the error codes, see [Thermal Manager Error Codes](errorcode-thermal.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID  | Error Message   |
 |---------|---------|
 | 4800101 | Failed to connect to the service. |
-| 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
+| 401     | Parameter error. Possible causes: 1. Incorrect parameter types. |
 
 **Example**
 
@@ -90,7 +90,7 @@ getLevel(): ThermalLevel
 
 Obtains the current thermal level.
 
-**System capability:** SystemCapability.PowerManager.ThermalManager
+**System capability**: SystemCapability.PowerManager.ThermalManager
 
 **Return value**
 
@@ -102,7 +102,7 @@ Obtains the current thermal level.
 
 For details about the error codes, see [Thermal Manager Error Codes](errorcode-thermal.md).
 
-| ID  | Error Message   |
+| ID   | Description    |
 |---------|---------|
 | 4800101 | Failed to connect to the service. |
 
@@ -125,7 +125,7 @@ subscribeThermalLevel(callback: AsyncCallback&lt;ThermalLevel&gt;): void
 
 Subscribes to thermal level changes.
 
-**System capability:** SystemCapability.PowerManager.ThermalManager
+**System capability**: SystemCapability.PowerManager.ThermalManager
 
 **Parameters**
 
@@ -149,7 +149,7 @@ unsubscribeThermalLevel(callback?: AsyncCallback\<void>): void
 
 Unsubscribes from thermal level changes.
 
-**System capability:** SystemCapability.PowerManager.ThermalManager
+**System capability**: SystemCapability.PowerManager.ThermalManager
 
 **Parameters**
 
@@ -173,7 +173,7 @@ getThermalLevel(): ThermalLevel
 
 Obtains the current thermal level.
 
-**System capability:** SystemCapability.PowerManager.ThermalManager
+**System capability**: SystemCapability.PowerManager.ThermalManager
 
 **Return value**
 
@@ -192,7 +192,7 @@ console.info('thermal level is: ' + level);
 
 Enumerates thermal levels.
 
-**System capability:** SystemCapability.PowerManager.ThermalManager
+**System capability**: SystemCapability.PowerManager.ThermalManager
 
 | Name      | Value  | Description                                                        |
 | ---------- | ---- | ------------------------------------------------------------ |

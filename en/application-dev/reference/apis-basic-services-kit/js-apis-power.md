@@ -1,7 +1,6 @@
 # @ohos.power (Power Management)
 
-The **power** module provides APIs for rebooting and shutting down the system, as well as querying the screen status.
-
+The **power** module provides APIs for rebooting and shutting down the system, as well as querying the screen status. You can use these APIs to obtain the device activity status, power mode, and screen on/off status.
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -16,15 +15,23 @@ import {power} from '@kit.BasicServicesKit';
 
 isActive(): boolean
 
-Checks whether the current device is active. In the active state, the screen is on if the device has a screen and the device is not in sleep state if the device does not have a screen.
+Checks whether the current device is active.
+- A device with a screen is active when the screen is on and inactive when the screen is off.
+- A device without a screen is active when it exits the sleep mode and inactive when it enters the sleep mode.
 
-**System capability:** SystemCapability.PowerManager.PowerManager.Core
+**System capability**: SystemCapability.PowerManager.PowerManager.Core
+
+**Returns**
+
+| Type               | Description                                  |
+| ------------------- | -------------------------------------- |
+| boolean | Returns **true** if the device is active; returns **false** otherwise.|
 
 **Error codes**
 
-For details about the error codes, see [Power Manager Error Codes](errorcode-power.md).
+For details about the error codes, see [Power Manager Error Codes](errorcode-power.md)¡£
 
-| ID  | Error Message   |
+| ID   | Description    |
 |---------|---------|
 | 4900101 | Failed to connect to the service. |
 
@@ -49,7 +56,7 @@ Reboots a device.
 
 **Required permissions**: ohos.permission.REBOOT (available only for system applications)
 
-**System capability:** SystemCapability.PowerManager.PowerManager.Core
+**System capability**: SystemCapability.PowerManager.PowerManager.Core
 
 
 **Parameters**
@@ -70,9 +77,9 @@ getPowerMode(): DevicePowerMode
 
 Obtains the power mode of this device.
 
-**System capability:** SystemCapability.PowerManager.PowerManager.Core
+**System capability**: SystemCapability.PowerManager.PowerManager.Core
 
-**Return value**
+**Returns**
 
 | Type                                | Description      |
 | ------------------------------------ | ---------- |
@@ -80,9 +87,9 @@ Obtains the power mode of this device.
 
 **Error codes**
 
-For details about the error codes, see [Power Manager Error Codes](errorcode-power.md).
+For details about the error codes, see [Power Manager Error Codes](errorcode-power.md)¡£
 
-| ID  | Error Message   |
+| ID   | Description    |
 |---------|---------|
 | 4900101 | Failed to connect to the service. |
 
@@ -103,9 +110,9 @@ isStandby(): boolean
 
 Checks whether the device is in standby mode.
 
-**System capability:** SystemCapability.PowerManager.PowerManager.Core
+**System capability**: SystemCapability.PowerManager.PowerManager.Core
 
-**Return value**
+**Returns**
 
 | Type               | Description                                  |
 | ------------------- | -------------------------------------- |
@@ -138,7 +145,7 @@ isScreenOn(callback: AsyncCallback&lt;boolean&gt;): void
 
 Checks the screen status of the current device. This API uses an asynchronous callback to return the result.
 
-**System capability:** SystemCapability.PowerManager.PowerManager.Core
+**System capability**: SystemCapability.PowerManager.PowerManager.Core
 
 **Parameters**
 
@@ -166,9 +173,9 @@ isScreenOn(): Promise&lt;boolean&gt;
 
 Checks the screen status of the current device. This API uses a promise to return the result.
 
-**System capability:** SystemCapability.PowerManager.PowerManager.Core
+**System capability**: SystemCapability.PowerManager.PowerManager.Core
 
-**Return value**
+**Returns**
 | Type                  | Description                                              |
 | ---------------------- | -------------------------------------------------- |
 | Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the screen is on, and the value **false** indicates the opposite.|
@@ -189,7 +196,7 @@ power.isScreenOn()
 
 Enumerates power modes.
 
-**System capability:** SystemCapability.PowerManager.PowerManager.Core
+**System capability**: SystemCapability.PowerManager.PowerManager.Core
 
 | Name                   | Value  | Description                  |
 | ----------------------- | ---- | ---------------------- |
