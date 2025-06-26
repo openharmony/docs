@@ -8,7 +8,7 @@
 
 <!--RP1End-->
 
-当前HTTP请求支持的场景如下，以下功能对应的选项可以在HTTP请求的[HttpResponseOptions](../reference/apis-network-kit/js-apis-http.md#httprequestoptions)中进行设置：
+当前HTTP请求支持的场景如下，以下功能对应的选项可以在HTTP请求的[HttpRequestOptions](../reference/apis-network-kit/js-apis-http.md#httprequestoptions)中进行设置：
 
 | 功能分类     | 功能名称                           |功能描述                      | 开始支持的版本         |
 | ----------- | -----------------------------------|-----------------------------|------------------------|
