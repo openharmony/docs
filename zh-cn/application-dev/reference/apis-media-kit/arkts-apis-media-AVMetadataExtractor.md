@@ -7,6 +7,12 @@
 
 获取音频或视频元数据的demo可参考：[获取音视频元数据开发指导](../../media/media/avmetadataextractor.md)。
 
+## 导入模块
+
+```ts
+import { media } from '@kit.MediaKit';
+```
+
 ## 属性
 
 **系统能力：** SystemCapability.Multimedia.Media.AVMetadataExtractor
