@@ -93,7 +93,7 @@
 
 ### 静默访问开关
 
-适用于动态关闭/打开静默访问通道的场景。例如：升级过程中为了保证数据正确性可以动态关闭静默访问，升级结束后再调用相关接口打开静默访问。调用接口生成的开启关闭状态，设备重启之后会清除。只限于调用enableSilentProxy和disableSilentProxy接口设置的状态。
+适用于动态关闭/打开静默访问通道的场景。例如：升级过程中为了保证数据正确性可以动态关闭静默访问，升级结束后再调用相关接口打开静默访问。调用接口生成的开启关闭状态，设备重启之后会清除。只限于调用enableSilentProxy和disableSilentProxy接口设置的状态。支持静默访问开关能力的uri格式为`datashare:///{bundleName}/{moduleName}/{storeName}/{tableName}`，不满足格式要求的该功能不生效。
 
 | 接口名称                                     | 描述                 |
 | ---------------------------------------- | ------------------ |
@@ -390,7 +390,7 @@
 2. 定义与数据提供方通信的URI字符串。
 
    ```ts
-   let dseUri = ('datashareproxy:///com.ohos.settingsdata/entry/DB00/TBL00');
+   let dseUri = ('datashare:///com.ohos.settingsdata/entry/DB00/TBL00');
    ```
 
 3. 创建工具接口类对象。
