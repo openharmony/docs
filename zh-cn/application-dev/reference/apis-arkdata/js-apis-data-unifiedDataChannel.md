@@ -87,7 +87,7 @@ type ValueType = number | string | boolean | image.PixelMap | Want | ArrayBuffer
 | number | 表示number的类型。 |
 | string | 表示string的类型。 |
 | boolean | 表示boolean的类型。 |
-| image.PixelMap | 表示[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)的类型。 |
+| image.PixelMap | 表示[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)的类型。 |
 | Want | 表示[Want](../apis-ability-kit/js-apis-app-ability-want.md)的类型。 |
 | ArrayBuffer | 表示ArrayBuffer的类型。 |
 | object | 表示object的类型。 |
@@ -437,7 +437,7 @@ let unifiedRecord = new unifiedDataChannel.UnifiedRecord();
 
 constructor(type: string, value: ValueType)
 
-用于创建指定类型和值的数据记录。<br/>当参数value为[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)类型时，参数type必须对应为[UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype)中OPENHARMONY_PIXEL_MAP的值；<br/>当参数value为[Want](../apis-ability-kit/js-apis-app-ability-want.md)类型时，参数type必须对应为[UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype)中OPENHARMONY_WANT的值。
+用于创建指定类型和值的数据记录。<br/>当参数value为[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)类型时，参数type必须对应为[UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype)中OPENHARMONY_PIXEL_MAP的值；<br/>当参数value为[Want](../apis-ability-kit/js-apis-app-ability-want.md)类型时，参数type必须对应为[UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype)中OPENHARMONY_WANT的值。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1159,7 +1159,7 @@ let unifiedData = new unifiedDataChannel.UnifiedData(appItem);
 
 ## SystemDefinedPixelMap
 
-与系统侧定义的[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)数据类型对应的图片数据类型，是[SystemDefinedRecord](#systemdefinedrecord)的子类，仅保存PixelMap的二进制数据。
+与系统侧定义的[PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)数据类型对应的图片数据类型，是[SystemDefinedRecord](#systemdefinedrecord)的子类，仅保存PixelMap的二进制数据。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

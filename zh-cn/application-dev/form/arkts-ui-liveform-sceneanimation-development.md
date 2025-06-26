@@ -157,20 +157,30 @@ struct MyLiveFormPage {
       {
         "name": "MyLiveFormExtensionAbility",
         "srcEntry": "./ets/myliveformextensionability/MyLiveFormExtensionAbility.ets",
-        "description": "$string:MyLiveFormExtensionAbility_desc",
-        "label": "$string:MyLiveFormExtensionAbility_label",
+        "description": "MyLiveFormExtensionAbility",
         "type": "liveForm"
       }
     ]
     ...
 ```
 
+同时在 main_pages.json 文件中声明互动卡片页面。
+
+```ts
+// entry/src/main/resources/base/profile/main_pages.json
+{
+  "src": [
+    "pages/Index",
+    "myliveformextensionability/pages/MyLiveFormPage"
+  ]
+}
+```
 
 ### 卡片非激活态UI开发
 
 1. 非激活态卡片页面实现
 
-非激活态卡片页面开发同普通卡片开发流程完全一致，在widgetCard.ets中完成。在非激活态卡片页面实现，点击卡片时，请求卡片动效。
+非激活态卡片页面开发同普通卡片开发流程完全一致，在widgetCard.ets中完成。widgetCard.ets文件在卡片创建时自动生成，卡片创建流程可以参考[创建ArkTS卡片](arkts-ui-widget-creation.md)。在非激活态卡片页面实现点击卡片时，请求卡片动效。
 
 ```ts
 // entry/src/main/ets/widget/pages/WidgetCard.ets

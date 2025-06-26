@@ -2,7 +2,7 @@
 
 ## 简介
 
-JSVM-API中用于判断给定的两个JavaScript值是否严格相等，类似于JavaScript中的===操作符。使用这个函数可以避免类型转换和松散相等性比较，确保两个值不仅在值上相等，而且在类型上也相等。
+JSVM-API中用于判断给定的两个JavaScript值是否严格相等，类似于JavaScript中的===操作符。使用这个函数可以避免类型转换和松散相等性比较，确保值和类型均相等。
 
 ## 基本概念
 
@@ -22,7 +22,7 @@ JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开�
 
 判断给定的两个JS value是否严格相等。
 
-cpp部分代码
+cpp部分代码：
 
 ```cpp
 // hello.cpp
@@ -60,9 +60,9 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char* srcCallNative = R"JS(data = '123';value = '123';isStrictEquals(data,value);)JS";
 ```
-<!-- @[oh_jsvm_strict_equals](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/UsageInstructionsTwo/strictequals/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_strict_equals](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/UsageInstructionsTwo/strictequals/src/main/cpp/hello.cpp) -->
 
-预期的输出结果
+预期的输出结果：
 
 ```ts
 JSVM OH_JSVM_StrictEquals: success: 1

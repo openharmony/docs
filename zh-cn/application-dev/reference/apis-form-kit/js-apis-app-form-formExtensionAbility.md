@@ -56,7 +56,7 @@ onAddForm(want: Want): formBindingData.FormBindingData
 
 | 参数名 | 类型                                   | 必填 | 说明                                                         |
 | ------ | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| want   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 当前卡片相关的Want类型信息，其中Want中的parameters为自定义取值，取值包括卡片的[参数枚举](./js-apis-app-form-formInfo.md#formparam)，如卡片ID、卡片名称、卡片样式等。这些卡片信息必须作为持久数据进行管理，以便后续更新和删除卡片。 |
+| want   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 当前卡片相关的Want类型信息，其中Want中的parameters为自定义取值，取值可以包含[卡片参数枚举](./js-apis-app-form-formInfo.md#formparam)中的一个或多个，如卡片ID、卡片名称、卡片样式等。这些卡片信息必须作为持久数据进行管理，以便后续更新和删除卡片。 |
 
 **返回值：**
 
@@ -321,6 +321,12 @@ onAcquireFormState?(want: Want): formInfo.FormState
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是 | want表示获取卡片状态的描述。描述包括Bundle名称、能力名称、模块名称、卡片名和卡片维度。 |
+
+**返回值：**
+
+| 类型                                                         | 说明                                                        |
+| ------------------------------------------------------------ | ----------------------------------------------------------- |
+| [formInfo.FormState](js-apis-app-form-formInfo.md#formstate) | formInfo.FormState枚举，表示卡片当前的状态。 |
 
 **示例：**
 

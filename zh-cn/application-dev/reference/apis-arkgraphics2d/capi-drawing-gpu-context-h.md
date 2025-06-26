@@ -18,7 +18,7 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [OH_Drawing_GpuContextOptions](capi-oh-drawing-gpucontextoptions.md) | OH_Drawing_GpuContextOptions | 定义有关图形处理器上下文的选项。 |
+| [OH_Drawing_GpuContextOptions](capi-drawing-oh-drawing-gpucontextoptions.md) | OH_Drawing_GpuContextOptions | 定义有关图形处理器上下文的选项。 |
 
 ### 函数
 
@@ -53,13 +53,13 @@ OH_Drawing_GpuContext* OH_Drawing_GpuContextCreateFromGL(OH_Drawing_GpuContextOp
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_GpuContextOptions](capi-oh-drawing-gpucontextoptions.md) gpuContextOptions | 图形处理器上下文选项[OH_Drawing_GpuContextOptions](capi-oh-drawing-gpucontextoptions.md)。 |
+| [OH_Drawing_GpuContextOptions](capi-drawing-oh-drawing-gpucontextoptions.md) gpuContextOptions | 图形处理器上下文选项[OH_Drawing_GpuContextOptions](capi-drawing-oh-drawing-gpucontextoptions.md)。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_GpuContext](capi-oh-drawing-gpucontext.md)* | 返回一个指针，指针指向创建的图形处理器上下文对象[OH_Drawing_GpuContext](capi-oh-drawing-gpucontext.md)。 |
+| [OH_Drawing_GpuContext](capi-drawing-oh-drawing-gpucontext.md)* | 返回一个指针，指针指向创建的图形处理器上下文对象[OH_Drawing_GpuContext](capi-drawing-oh-drawing-gpucontext.md)。 |
 
 ### OH_Drawing_GpuContextCreate()
 
@@ -79,7 +79,7 @@ OH_Drawing_GpuContext* OH_Drawing_GpuContextCreate(void)
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_GpuContext](capi-oh-drawing-gpucontext.md)* | 返回一个指针，指针指向创建的图形处理器上下文对象[OH_Drawing_GpuContext](capi-oh-drawing-gpucontext.md)。 |
+| [OH_Drawing_GpuContext](capi-drawing-oh-drawing-gpucontext.md)* | 返回一个指针，指针指向创建的图形处理器上下文对象[OH_Drawing_GpuContext](capi-drawing-oh-drawing-gpucontext.md)。 |
 
 ### OH_Drawing_GpuContextDestroy()
 
@@ -100,6 +100,6 @@ void OH_Drawing_GpuContextDestroy(OH_Drawing_GpuContext* gpuContext)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_GpuContext](capi-oh-drawing-gpucontext.md)* gpuContext | 指向图形处理器上下文对象的指针[OH_Drawing_GpuContext](capi-oh-drawing-gpucontext.md)。 |
+| [OH_Drawing_GpuContext](capi-drawing-oh-drawing-gpucontext.md)* gpuContext | 指向图形处理器上下文对象的指针[OH_Drawing_GpuContext](capi-drawing-oh-drawing-gpucontext.md)。 |
 
 

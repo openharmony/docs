@@ -24,7 +24,7 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [OH_ImageEffect](capi-oh-imageeffect.md) | OH_ImageEffect | 定义效果器结构类型。 |
+| [OH_ImageEffect](capi-imageeffect-oh-imageeffect.md) | OH_ImageEffect | 定义效果器结构类型。 |
 
 ### 函数
 
@@ -85,7 +85,7 @@ OH_ImageEffect *OH_ImageEffect_Create(const char *name)
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_ImageEffect](capi-oh-imageeffect.md) | 返回一个指向OH_ImageEffect实例的指针，创建失败时返回空指针。 |
+| [OH_ImageEffect](capi-imageeffect-oh-imageeffect.md) | 返回一个指向OH_ImageEffect实例的指针，创建失败时返回空指针。 |
 
 ### OH_ImageEffect_AddFilter()
 
@@ -106,14 +106,14 @@ OH_EffectFilter *OH_ImageEffect_AddFilter(OH_ImageEffect *imageEffect, const cha
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_ImageEffect](capi-oh-imageeffect.md) *imageEffect | 效果器指针。 |
+| [OH_ImageEffect](capi-imageeffect-oh-imageeffect.md) *imageEffect | 效果器指针。 |
 | const char *filterName | 滤镜名。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_EffectFilter](capi-oh-effectfilter.md) | 返回一个指向OH_EffectFilter实例的指针，滤镜名无效时返回空指针。 |
+| [OH_EffectFilter](capi-imageeffect-oh-effectfilter.md) | 返回一个指向OH_EffectFilter实例的指针，滤镜名无效时返回空指针。 |
 
 ### OH_ImageEffect_AddFilterByFilter()
 
@@ -134,8 +134,8 @@ ImageEffect_ErrorCode OH_ImageEffect_AddFilterByFilter(OH_ImageEffect *imageEffe
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_ImageEffect](capi-oh-imageeffect.md) *imageEffect | 效果器指针。 |
-| [OH_EffectFilter](capi-oh-effectfilter.md) *filter | 滤镜指针。 |
+| [OH_ImageEffect](capi-imageeffect-oh-imageeffect.md) *imageEffect | 效果器指针。 |
+| [OH_EffectFilter](capi-imageeffect-oh-effectfilter.md) *filter | 滤镜指针。 |
 
 **返回：**
 
@@ -162,7 +162,7 @@ OH_EffectFilter *OH_ImageEffect_InsertFilter(OH_ImageEffect *imageEffect, uint32
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_ImageEffect](capi-oh-imageeffect.md) *imageEffect | 效果器指针。 |
+| [OH_ImageEffect](capi-imageeffect-oh-imageeffect.md) *imageEffect | 效果器指针。 |
 | uint32_t index | 插入滤镜位置索引。 |
 | const char *filterName | 滤镜名。 |
 
@@ -170,7 +170,7 @@ OH_EffectFilter *OH_ImageEffect_InsertFilter(OH_ImageEffect *imageEffect, uint32
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_EffectFilter](capi-oh-effectfilter.md) | 返回一个指向OH_EffectFilter实例的指针，参数无效时返回空指针。 |
+| [OH_EffectFilter](capi-imageeffect-oh-effectfilter.md) | 返回一个指向OH_EffectFilter实例的指针，参数无效时返回空指针。 |
 
 ### OH_ImageEffect_InsertFilterByFilter()
 
@@ -191,9 +191,9 @@ ImageEffect_ErrorCode OH_ImageEffect_InsertFilterByFilter(OH_ImageEffect *imageE
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_ImageEffect](capi-oh-imageeffect.md) *imageEffect | 效果器指针。 |
+| [OH_ImageEffect](capi-imageeffect-oh-imageeffect.md) *imageEffect | 效果器指针。 |
 | uint32_t index | 插入滤镜位置索引。 |
-| [OH_EffectFilter](capi-oh-effectfilter.md) *filter | 滤镜指针。 |
+| [OH_EffectFilter](capi-imageeffect-oh-effectfilter.md) *filter | 滤镜指针。 |
 
 **返回：**
 
@@ -220,7 +220,7 @@ int32_t OH_ImageEffect_RemoveFilter(OH_ImageEffect *imageEffect, const char *fil
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_ImageEffect](capi-oh-imageeffect.md) *imageEffect | 效果器指针。 |
+| [OH_ImageEffect](capi-imageeffect-oh-imageeffect.md) *imageEffect | 效果器指针。 |
 | const char *filterName | 滤镜名。 |
 
 **返回：**
@@ -248,7 +248,7 @@ ImageEffect_ErrorCode OH_ImageEffect_RemoveFilterByIndex(OH_ImageEffect *imageEf
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_ImageEffect](capi-oh-imageeffect.md) *imageEffect | 效果器指针。 |
+| [OH_ImageEffect](capi-imageeffect-oh-imageeffect.md) *imageEffect | 效果器指针。 |
 | uint32_t index | 移除滤镜位置索引。 |
 
 **返回：**
@@ -276,14 +276,14 @@ OH_EffectFilter *OH_ImageEffect_ReplaceFilter(OH_ImageEffect *imageEffect, uint3
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_ImageEffect](capi-oh-imageeffect.md) *imageEffect | 效果器指针。 |
+| [OH_ImageEffect](capi-imageeffect-oh-imageeffect.md) *imageEffect | 效果器指针。 |
 | const char *filterName | 滤镜名。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_EffectFilter](capi-oh-effectfilter.md) | 返回一个指向OH_EffectFilter实例的指针，替换失败时返回空指针。 |
+| [OH_EffectFilter](capi-imageeffect-oh-effectfilter.md) | 返回一个指向OH_EffectFilter实例的指针，替换失败时返回空指针。 |
 
 ### OH_ImageEffect_ReplaceFilterByFilter()
 
@@ -304,7 +304,7 @@ ImageEffect_ErrorCode OH_ImageEffect_ReplaceFilterByFilter(OH_ImageEffect *image
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_ImageEffect](capi-oh-imageeffect.md) *imageEffect | 效果器指针。 |
+| [OH_ImageEffect](capi-imageeffect-oh-imageeffect.md) *imageEffect | 效果器指针。 |
 | uint32_t index | 替换滤镜位置索引。 |
 | const char *filterName | 滤镜名。 |
 
@@ -333,7 +333,7 @@ int32_t OH_ImageEffect_GetFilterCount(OH_ImageEffect *imageEffect)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_ImageEffect](capi-oh-imageeffect.md) *imageEffect | 效果器指针。 |
+| [OH_ImageEffect](capi-imageeffect-oh-imageeffect.md) *imageEffect | 效果器指针。 |
 
 **返回：**
 
@@ -360,14 +360,14 @@ OH_EffectFilter *OH_ImageEffect_GetFilter(OH_ImageEffect *imageEffect, uint32_t 
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_ImageEffect](capi-oh-imageeffect.md) *imageEffect | 效果器指针。 |
+| [OH_ImageEffect](capi-imageeffect-oh-imageeffect.md) *imageEffect | 效果器指针。 |
 | uint32_t index | 待查询滤镜位置索引。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_EffectFilter](capi-oh-effectfilter.md) | 返回一个指向OH_EffectFilter实例的指针，参数无效时返回空指针。 |
+| [OH_EffectFilter](capi-imageeffect-oh-effectfilter.md) | 返回一个指向OH_EffectFilter实例的指针，参数无效时返回空指针。 |
 
 ### OH_ImageEffect_Configure()
 
@@ -388,7 +388,7 @@ ImageEffect_ErrorCode OH_ImageEffect_Configure(OH_ImageEffect *imageEffect, cons
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_ImageEffect](capi-oh-imageeffect.md) *imageEffect | 效果器指针。 |
+| [OH_ImageEffect](capi-imageeffect-oh-imageeffect.md) *imageEffect | 效果器指针。 |
 | const char *key | 配置参数。 |
 | const ImageEffect_Any *value | 配置参数值。 |
 
@@ -417,7 +417,7 @@ ImageEffect_ErrorCode OH_ImageEffect_SetOutputSurface(OH_ImageEffect *imageEffec
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_ImageEffect](capi-oh-imageeffect.md) *imageEffect | 效果器指针。 |
+| [OH_ImageEffect](capi-imageeffect-oh-imageeffect.md) *imageEffect | 效果器指针。 |
 | OHNativeWindow *nativeWindow | 指向OHNativeWindow实例的指针。 |
 
 **返回：**
@@ -445,7 +445,7 @@ ImageEffect_ErrorCode OH_ImageEffect_GetInputSurface(OH_ImageEffect *imageEffect
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_ImageEffect](capi-oh-imageeffect.md) *imageEffect | 效果器指针。 |
+| [OH_ImageEffect](capi-imageeffect-oh-imageeffect.md) *imageEffect | 效果器指针。 |
 | OHNativeWindow **nativeWindow | 指向OHNativeWindow实例的指针。 |
 
 **返回：**
@@ -473,8 +473,8 @@ ImageEffect_ErrorCode OH_ImageEffect_SetInputPixelmap(OH_ImageEffect *imageEffec
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_ImageEffect](capi-oh-imageeffect.md) *imageEffect | 效果器指针。 |
-| [OH_PixelmapNative](capi-oh-pixelmapnative.md) *pixelmap | 指向OH_PixelmapNative实例的指针。 |
+| [OH_ImageEffect](capi-imageeffect-oh-imageeffect.md) *imageEffect | 效果器指针。 |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | 指向OH_PixelmapNative实例的指针。 |
 
 **返回：**
 
@@ -501,8 +501,8 @@ ImageEffect_ErrorCode OH_ImageEffect_SetOutputPixelmap(OH_ImageEffect *imageEffe
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_ImageEffect](capi-oh-imageeffect.md) *imageEffect | 效果器指针。 |
-| [OH_PixelmapNative](capi-oh-pixelmapnative.md) *pixelmap | 指向OH_PixelmapNative实例的指针。 |
+| [OH_ImageEffect](capi-imageeffect-oh-imageeffect.md) *imageEffect | 效果器指针。 |
+| [OH_PixelmapNative](capi-image-nativemodule-oh-pixelmapnative.md) *pixelmap | 指向OH_PixelmapNative实例的指针。 |
 
 **返回：**
 
@@ -529,8 +529,8 @@ ImageEffect_ErrorCode OH_ImageEffect_SetInputNativeBuffer(OH_ImageEffect *imageE
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_ImageEffect](capi-oh-imageeffect.md) *imageEffect | 效果器指针。 |
-| [OH_NativeBuffer](../apis-arkgraphics2d/capi-oh-nativebuffer.md) *nativeBuffer | 指向OH_NativeBuffer实例的指针。 |
+| [OH_ImageEffect](capi-imageeffect-oh-imageeffect.md) *imageEffect | 效果器指针。 |
+| [OH_NativeBuffer](../apis-arkgraphics2d/capi-oh-nativebuffer-oh-nativebuffer.md) *nativeBuffer | 指向OH_NativeBuffer实例的指针。 |
 
 **返回：**
 
@@ -557,8 +557,8 @@ ImageEffect_ErrorCode OH_ImageEffect_SetOutputNativeBuffer(OH_ImageEffect *image
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_ImageEffect](capi-oh-imageeffect.md) *imageEffect | 效果器指针。 |
-| [OH_NativeBuffer](../apis-arkgraphics2d/capi-oh-nativebuffer.md) *nativeBuffer | 指向OH_NativeBuffer实例的指针，允许为空，当输入为空时渲染结果返回到输入的OH_NativeBuffer对象上。 |
+| [OH_ImageEffect](capi-imageeffect-oh-imageeffect.md) *imageEffect | 效果器指针。 |
+| [OH_NativeBuffer](../apis-arkgraphics2d/capi-oh-nativebuffer-oh-nativebuffer.md) *nativeBuffer | 指向OH_NativeBuffer实例的指针，允许为空，当输入为空时渲染结果返回到输入的OH_NativeBuffer对象上。 |
 
 **返回：**
 
@@ -585,7 +585,7 @@ ImageEffect_ErrorCode OH_ImageEffect_SetInputUri(OH_ImageEffect *imageEffect, co
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_ImageEffect](capi-oh-imageeffect.md) *imageEffect | 效果器指针。 |
+| [OH_ImageEffect](capi-imageeffect-oh-imageeffect.md) *imageEffect | 效果器指针。 |
 | const char *uri | 图片URI（只支持Jpeg，Heif）。 |
 
 **返回：**
@@ -613,7 +613,7 @@ ImageEffect_ErrorCode OH_ImageEffect_SetOutputUri(OH_ImageEffect *imageEffect, c
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_ImageEffect](capi-oh-imageeffect.md) *imageEffect | 效果器指针。 |
+| [OH_ImageEffect](capi-imageeffect-oh-imageeffect.md) *imageEffect | 效果器指针。 |
 | const char *uri | 图片URI。输出URI的格式和输入保持一致，如果不支持Heif编码能力，则进行Jpeg编码。 |
 
 **返回：**
@@ -641,8 +641,8 @@ ImageEffect_ErrorCode OH_ImageEffect_SetInputPicture(OH_ImageEffect *imageEffect
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_ImageEffect](capi-oh-imageeffect.md) *imageEffect | 效果器指针。 |
-| [OH_PictureNative](capi-oh-picturenative.md) *picture | 指向OH_PictureNative实例的指针。 |
+| [OH_ImageEffect](capi-imageeffect-oh-imageeffect.md) *imageEffect | 效果器指针。 |
+| [OH_PictureNative](capi-image-nativemodule-oh-picturenative.md) *picture | 指向OH_PictureNative实例的指针。 |
 
 **返回：**
 
@@ -669,8 +669,8 @@ ImageEffect_ErrorCode OH_ImageEffect_SetOutputPicture(OH_ImageEffect *imageEffec
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_ImageEffect](capi-oh-imageeffect.md) *imageEffect | 效果器指针。 |
-| [OH_PictureNative](capi-oh-picturenative.md) *picture | 指向OH_PictureNative实例的指针，允许为空，当输入为空时渲染结果返回到输入的OH_PictureNative对象上。 |
+| [OH_ImageEffect](capi-imageeffect-oh-imageeffect.md) *imageEffect | 效果器指针。 |
+| [OH_PictureNative](capi-image-nativemodule-oh-picturenative.md) *picture | 指向OH_PictureNative实例的指针，允许为空，当输入为空时渲染结果返回到输入的OH_PictureNative对象上。 |
 
 **返回：**
 
@@ -697,7 +697,7 @@ ImageEffect_ErrorCode OH_ImageEffect_Start(OH_ImageEffect *imageEffect)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_ImageEffect](capi-oh-imageeffect.md) *imageEffect | 效果器指针。 |
+| [OH_ImageEffect](capi-imageeffect-oh-imageeffect.md) *imageEffect | 效果器指针。 |
 
 **返回：**
 
@@ -724,7 +724,7 @@ ImageEffect_ErrorCode OH_ImageEffect_Stop(OH_ImageEffect *imageEffect)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_ImageEffect](capi-oh-imageeffect.md) *imageEffect | 效果器指针。 |
+| [OH_ImageEffect](capi-imageeffect-oh-imageeffect.md) *imageEffect | 效果器指针。 |
 
 **返回：**
 
@@ -751,7 +751,7 @@ ImageEffect_ErrorCode OH_ImageEffect_Release(OH_ImageEffect *imageEffect)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_ImageEffect](capi-oh-imageeffect.md) *imageEffect | 效果器指针。 |
+| [OH_ImageEffect](capi-imageeffect-oh-imageeffect.md) *imageEffect | 效果器指针。 |
 
 **返回：**
 
@@ -778,7 +778,7 @@ ImageEffect_ErrorCode OH_ImageEffect_Save(OH_ImageEffect *imageEffect, char **in
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_ImageEffect](capi-oh-imageeffect.md) *imageEffect | 效果器指针。 |
+| [OH_ImageEffect](capi-imageeffect-oh-imageeffect.md) *imageEffect | 效果器指针。 |
 | char **info | 指向char数组的指针，返回序列化JSON字符串。 |
 
 **返回：**
@@ -812,6 +812,6 @@ OH_ImageEffect *OH_ImageEffect_Restore(const char *info)
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_ImageEffect](capi-oh-imageeffect.md) | 反序列化成功时返回OH_ImageEffect实例，否则返回空指针。 |
+| [OH_ImageEffect](capi-imageeffect-oh-imageeffect.md) | 反序列化成功时返回OH_ImageEffect实例，否则返回空指针。 |
 
 

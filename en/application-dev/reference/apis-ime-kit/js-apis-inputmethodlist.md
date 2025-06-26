@@ -9,7 +9,7 @@ The **inputMethodList** module is oriented to system applications and input meth
 ## Modules to Import
 
 ```ts
-import { inputMethod } from '@kit.IMEKit';
+import { InputMethodListDialog } from '@kit.IMEKit';
 ```
 
 ## Child Components
@@ -42,9 +42,9 @@ Implements a dialog box showing the input method list.
 
 | Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| defaultSelected<sup>11+</sup>  | number | No| Yes| Optional. Default selected pattern.|
-| patterns<sup>11+</sup>    | Array<[Pattern](#pattern)> | No| No| Mandatory. Resource of the pattern option.|
-| action<sup>9+</sup> | function | No| No| Mandatory. Callback invoked when the pattern option changes.|
+| defaultSelected | number | No| Yes| Optional. Default selected pattern.|
+| patterns   | Array<[Pattern](#pattern)> | No| No| Mandatory. Resource of the pattern option.|
+| action | function | No| No| Mandatory. Callback invoked when the pattern option changes.|
 
 ## Pattern
 
@@ -52,8 +52,8 @@ Implements a dialog box showing the input method list.
 
 | Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| icon<sup>11+</sup>  | [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | No| No| Mandatory. Default icon.|
-| selectedIcon<sup>11+</sup>    | [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | No| No| Mandatory. Icon for the selected option.|
+| icon | [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | No| No| Mandatory. Default icon.|
+| selectedIcon | [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | No| No| Mandatory. Icon for the selected option.|
 
 ##  Events
 
@@ -62,12 +62,12 @@ The [universal events](../apis-arkui/arkui-ts/ts-component-general-events.md) ar
 ##  Example
 
 ```ts
-import { InputMethodListDialog, Pattern, PatternOptions } from '@kit.IMEKit';
+import { Pattern, PatternOptions } from '@kit.IMEKit';
 
 @Entry
 // Configure the component.
 @Component
-export struct settingsItem {
+struct settingsItem {
   @State defaultPattern: number = 1;
   private oneHandAction: PatternOptions = {
     defaultSelected: this.defaultPattern,

@@ -50,7 +50,7 @@ InnerFullScreenLaunchComponent({ content: Callback\<void>, controller: LaunchCon
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 类型 | 必填 | 说明 |
-| ---- | ---------- | ------ |
+| -------- | -------- | -------- | -------- |
 |launchAtomicService | [LaunchAtomicServiceCallback](#launchatomicservicecallback) | 是 | 拉起原子化服务。 |
 
 ## LaunchAtomicServiceCallback

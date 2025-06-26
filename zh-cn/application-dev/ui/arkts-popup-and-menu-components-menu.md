@@ -129,4 +129,164 @@ Button('click for Menu')
     .bindContextMenu(this.MyMenu, ResponseType.RightClick)
   ```
 
+## 菜单弹出时振动效果
 
+菜单从API version 18开始支持振动效果。菜单弹出时，默认不振动。若希望菜单弹出时有振动效果，可以通过[ContextMenuOptions](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#contextmenuoptions10)的hapticFeedbackMode属性，设置菜单弹出时的振动模式。
+
+- 只有一级菜单可配置弹出时振动效果。
+- 仅当应用具备ohos.permission.VIBRATE权限，且用户启用了触感反馈时才会生效。开启触控反馈时，需要在工程的module.json5中配置[声明权限](../security/AccessToken/declare-permissions.md#声明权限)的requestPermissions字段开启振动权限，配置如下：
+
+  ```json
+  "requestPermissions": [
+    {
+      "name": "ohos.permission.VIBRATE",
+    }
+  ]
+  ```
+
+```ts
+  Button('click for Menu')
+    .bindContextMenu(this.MyMenu, ResponseType.RightClick, { hapticFeedbackMode: HapticFeedbackMode.ENABLED })
+```
+
+## 菜单支持避让中轴
+
+从API version 18起，菜单支持中轴避让功能。从API version 20开始，在2in1设备上默认启用（仅在窗口处于瀑布模式时产生避让）。开发者可通过[ContextMenuOptions](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#contextmenuoptions10)中的enableHoverMode属性，控制菜单是否启用中轴避让。
+
+> **说明：**
+> - 如果菜单的点击位置在中轴区域，则菜单不会避让。
+> - 2in1设备上需同时满足窗口处于瀑布模式才会产生避让。
+
+```ts
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+  private iconStr: Resource = $r('app.media.startIcon');
+  @State index: number = 0;
+  @State arrayStr: Array<string> = ['上半屏', '中轴', '下半屏'];
+  @State enableHoverMode: boolean | undefined = true;
+  @State showInSubwindow: boolean = false;
+  @State placement: Placement | undefined = undefined;
+
+  @Builder
+  MyMenu1() {
+    Menu() {
+      MenuItem({ startIcon: this.iconStr, content: '菜单选项' })
+      MenuItem({ startIcon: this.iconStr, content: '菜单选项' })
+      MenuItem({ startIcon: this.iconStr, content: '菜单选项' })
+      MenuItem({ startIcon: this.iconStr, content: '菜单选项' })
+    }
+  }
+
+  @State isShow: boolean = false;
+
+  build() {
+    RelativeContainer() {
+      Column() {
+        Button('区域:' + this.arrayStr[this.index])
+          .onClick(() => {
+            if (this.index < 2) {
+              this.index++
+            } else {
+              this.index = 0
+            }
+          })
+
+        Button('hoverMode开启:' + this.enableHoverMode)
+          .onClick(() => {
+            if (this.enableHoverMode == undefined) {
+              this.enableHoverMode = true
+            } else if (this.enableHoverMode == true) {
+              this.enableHoverMode = false
+            } else {
+              this.enableHoverMode = undefined
+            }
+          })
+
+        Button('MenuPlacement:' + this.placement)
+          .onClick(() => {
+            if (this.placement == undefined) {
+              this.placement = Placement.Bottom
+            } else if (this.placement == Placement.Bottom) {
+              this.placement = Placement.Top
+            } else {
+              this.placement = undefined
+            }
+          })
+      }
+
+      Row() {
+        Button('Menu')
+          .fontWeight(FontWeight.Bold)
+          .bindMenu(this.MyMenu1(), {
+            enableHoverMode: this.enableHoverMode,
+            showInSubWindow: this.showInSubwindow,
+            placement: this.placement
+          })
+
+        Select([{ value: 'text1' }, { value: 'text2' }, { value: 'text3' }, { value: 'text4' }, { value: 'text5' },
+          { value: 'text6' }, { value: 'text7' }, { value: 'text8' }, { value: 'text9' }, { value: 'text10' }, { value: 'text11' },
+          { value: 'text12' }])
+          .value("Select")
+
+      }
+      .alignRules({
+        center: { anchor: '__container__', align: VerticalAlign.Center },
+        middle: { anchor: '__container__', align: HorizontalAlign.Center }
+      })
+      .margin({
+        top: this.index == 2 ? 330 : this.index == 1 ? 50 : 0,
+        bottom: this.index == 0 ? 330 : 0
+      })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+
+```
+
+## 控制子窗菜单的事件透传
+
+当菜单在子窗口中弹出时，默认情况下，菜单周围的事件会传递至所在窗口。从API version 20开始，开发者可通过[ContextMenuOptions](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#contextmenuoptions10)的modalMode属性设置子菜单弹出时的模态模式，以控制菜单周围事件是否传递。将modalMode设置为ModalMode.TARGET_WINDOW时，菜单周围的事件将不再传递，菜单下方的控件也不会响应事件。
+
+```ts
+@Entry
+@Component
+struct Index2 {
+  build() {
+    Column() {
+    }
+    .bindContextMenu(this.contextMenuBuilder, ResponseType.RightClick, {
+      modalMode: ModalMode.TARGET_WINDOW
+    })
+    .onClick(() => {
+      this.getUIContext().getPromptAction().showToast({
+        message: 'Clicked!'
+      })
+    })
+    .width('100%')
+    .height('100%')
+  }
+
+  @Builder
+  bindMenuBuilder() {
+    Menu() {
+      MenuItem({ content: 'bindMenu item' }) {
+
+      }
+    }
+  }
+
+  @Builder
+  contextMenuBuilder() {
+    Menu() {
+      MenuItem({ content: 'contextMenu item' }) {
+
+      }
+    }
+  }
+}
+
+```

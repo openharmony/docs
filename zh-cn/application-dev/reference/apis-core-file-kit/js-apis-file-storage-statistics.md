@@ -24,7 +24,7 @@ getCurrentBundleStats(): Promise&lt;BundleStats&gt;
 
   | 类型                                        | 说明                       |
   | ------------------------------------------ | -------------------------- |
-  | Promise&lt;[Bundlestats](#bundlestats9)&gt; | Promise对象，返回指定卷上的应用存储空间大小（单位为Byte）。      |
+  | Promise&lt;[BundleStats](#bundlestats9)&gt; | Promise对象，返回指定卷上的应用存储空间大小（单位为Byte）。      |
 
 **错误码：**
 

@@ -34,6 +34,8 @@ Radio(options: RadioOptions)
 
 ## RadioOptions对象说明
 
+单选框的信息。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 类型 | 必填 | 说明 |
@@ -44,6 +46,8 @@ Radio(options: RadioOptions)
 | indicatorBuilder<sup>12+</sup> | [CustomBuilder](ts-types.md#custombuilder8) | 否 | 配置单选框的选中样式为自定义组件。自定义组件与Radio组件为中心点对齐显示。indicatorBuilder设置为undefined时，按照RadioIndicatorType.TICK进行显示。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## RadioIndicatorType<sup>12+</sup>枚举说明
+
+单选框的样式。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -210,6 +214,8 @@ type OnRadioChangeCallback = (isChecked: boolean) => void
 
 ## RadioStyle<sup>10+</sup>对象说明
 
+单选框的颜色。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -254,7 +260,7 @@ struct RadioExample {
           .height(50)
           .width(50)
           .onChange((isChecked: boolean) => {
-            console.log('Radio1 status is ' + isChecked);
+            console.info('Radio1 status is ' + isChecked);
           })
       }
       Column() {
@@ -266,7 +272,7 @@ struct RadioExample {
           .height(50)
           .width(50)
           .onChange((isChecked: boolean) => {
-            console.log('Radio2 status is ' + isChecked);
+            console.info('Radio2 status is ' + isChecked);
           })
       }
       Column() {
@@ -278,7 +284,7 @@ struct RadioExample {
           .height(50)
           .width(50)
           .onChange((isChecked: boolean) => {
-            console.log('Radio3 status is ' + isChecked);
+            console.info('Radio3 status is ' + isChecked);
           })
       }
     }.padding({ top: 30 })
@@ -307,7 +313,7 @@ struct RadioExample {
           .height(50)
           .width(80)
           .onChange((isChecked: boolean) => {
-            console.log('Radio1 status is ' + isChecked);
+            console.info('Radio1 status is ' + isChecked);
           })
       }
       Column() {
@@ -318,7 +324,7 @@ struct RadioExample {
           .height(50)
           .width(80)
           .onChange((isChecked: boolean) => {
-            console.log('Radio2 status is ' + isChecked);
+            console.info('Radio2 status is ' + isChecked);
           })
       }
       Column() {
@@ -330,7 +336,7 @@ struct RadioExample {
           .height(50)
           .width(80)
           .onChange((isChecked: boolean) => {
-            console.log('Radio3 status is ' + isChecked);
+            console.info('Radio3 status is ' + isChecked);
           })
       }
     }.padding({ top: 30 })

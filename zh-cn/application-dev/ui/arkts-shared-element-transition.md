@@ -453,10 +453,9 @@ function PostBuilder(data: Data) {
       offsetX: 20,
       offsetY: 10
     })
-
 }
 
-class __InternalValue__{
+class __InternalValue__ {
   flag:boolean =false;
 };
 
@@ -752,7 +751,7 @@ export function PageTwoBuilder() {
 @Component
 export struct PageTwo {
   @State pageInfos: NavPathStack = new NavPathStack();
-  @State AnimationProperties: AnimationProperties = new AnimationProperties();
+  @State AnimationProperties: AnimationProperties = new AnimationProperties(this.getUIContext());
   @State myNodeController: MyNodeController | undefined = new MyNodeController(false);
 
   private pageId: number = -1;
@@ -957,7 +956,7 @@ export class AnimationProperties {
       initTranslateX = this.uiContext.px2vp(cardItemInfo_px.left - (WindowUtils.windowWidth_px - cardItemInfo_px.width) / 2);
       initClipWidth = '100%';
       initClipHeight = this.uiContext.px2vp((cardItemInfo_px.height) / initScale);
-      initTranslateY = this.uiContext.px2vp(cardItemInfo_px.top - ((vp2px(initClipHeight) - vp2px(initClipHeight) * initScale) / 2));
+      initTranslateY = this.uiContext.px2vp(cardItemInfo_px.top - ((this.uiContext.vp2px(initClipHeight) - this.uiContext.vp2px(initClipHeight) * initScale) / 2));
     } else {
       initTranslateY = this.uiContext.px2vp(cardItemInfo_px.top - (WindowUtils.windowHeight_px - cardItemInfo_px.height) / 2);
       initClipHeight = '100%';

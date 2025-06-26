@@ -7,6 +7,12 @@
 
 在使用AudioCapturer的接口之前，需先通过[createAudioCapturer](arkts-apis-audio-f.md#audiocreateaudiocapturer8)获取AudioCapturer实例。
 
+## 导入模块
+
+```ts
+import { audio } from '@kit.AudioKit';
+```
+
 ## 属性
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer

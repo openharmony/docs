@@ -66,7 +66,7 @@ enhancedImageQuality(imageQuality: ResolutionQuality)
 
 设置图像解码时的图像解码分辨率选项。
 
-该属性不支持 svg、[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)和[DrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#drawabledescriptor) 等非解码图片类型。
+该属性不支持 svg、[PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md)和[DrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#drawabledescriptor) 等非解码图片类型。
 
 **系统接口：** 此接口为系统接口。
 

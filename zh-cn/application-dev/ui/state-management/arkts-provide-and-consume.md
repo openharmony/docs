@@ -11,6 +11,8 @@
 > 从API version 9开始，这两个装饰器支持在ArkTS卡片中使用。
 >
 > 从API version 11开始，这两个装饰器支持在原子化服务中使用。
+>
+> 从API version 20开始，@Consume装饰的变量支持设置默认值。当查找不到@Provide的匹配结果时，@Consume装饰的变量会使用默认值进行初始化；当查找到@Provide的匹配结果时，@Consume装饰的变量会优先使用@Provide匹配结果的值，默认值不生效。
 
 ## 概述
 
@@ -50,8 +52,8 @@
 | -------------- | ---------------------------------------- |
 | 装饰器参数          | 别名：常量字符串，可选。<br/>如果提供了别名，则必须有\@Provide的变量和其有相同的别名才可以匹配成功；否则，则需要变量名相同才能匹配成功。 |
 | 同步类型           | 双向同步：从\@Provide变量（具体请参见\@Provide）到所有\@Consume变量，以及相反的方向。双向同步操作与\@State和\@Link的组合相同。 |
-| 允许装饰的变量类型      | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。<br/>支持ArkUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。<br/>必须指定类型。<br/>\@Provide变量和\@Consume变量的类型必须相同。<br/>\@Consume装饰的变量，在其父组件或者祖先组件上，必须有对应的属性和别名的\@Provide装饰的变量。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>不支持any类型。<br/>API version 11及以上支持Map、Set类型以及上述支持类型的联合类型。例如：string \| number, string \| undefined或者ClassA \| null，示例见[@Provide和Consume支持联合类型实例](#provide和consume支持联合类型实例)。 <br/>**注意：**<br/>当使用undefined和null的时候，建议显示指定类型，遵循TypeScript类型校验。例如：`@Consume a : string \| undefined`。
-| 被装饰变量的初始值      | 无，禁止本地初始化。                               |
+| 允许装饰的变量类型      | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date类型。<br/>支持ArkUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。<br/>必须指定类型。<br/>\@Provide变量和\@Consume变量的类型必须相同。<br/>API version 20之前，\@Consume装饰的变量，在其父组件或者祖先组件上，必须有对应的属性和别名的\@Provide装饰的变量。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>不支持any类型。<br/>API version 11及以上支持Map、Set类型以及上述支持类型的联合类型。例如：string \| number, string \| undefined或者ClassA \| null，示例见[@Provide和Consume支持联合类型实例](#provide和consume支持联合类型实例)。 <br/>**注意：**<br/>当使用undefined和null的时候，建议显示指定类型，遵循TypeScript类型校验。例如：`@Consume a : string \| undefined`。
+| 被装饰变量的初始值      | 从API version 20开始，\@Consume支持设置默认值。若存在匹配成功的\@Provide，则会使用\@Provide的变量值作为初始值。示例见[\@Consume装饰的变量支持设置默认值](#consume装饰的变量支持设置默认值)。                            |
 
 ## 变量的传递/访问规则说明
 
@@ -69,7 +71,7 @@
 
 | \@Consume传递/访问 | 说明                                       |
 | -------------- | ---------------------------------------- |
-| 从父组件初始化和更新     | 禁止。通过相同的变量名和alias（别名）从\@Provide初始化。      |
+| 从父组件初始化和更新     | 禁止。      |
 | 用于初始化子组件       | 允许，可用于初始化\@State、\@Link、\@Prop、\@Provide。 |
 | 和祖先组件同步        | 和\@Provide双向同步。                          |
 | 是否支持组件外访问      | 私有，仅可以在所属组件内访问                           |
@@ -152,8 +154,9 @@ struct Parent {
 
 1. 初始渲染：
    1. \@Provide装饰的变量会以Map的形式，传递给当前\@Provide所属组件的所有子组件。
-   2. 子组件中如果使用\@Consume变量，则会在Map中查找是否有该变量名/alias（别名）对应的\@Provide的变量，如果查找不到，框架会抛出JS ERROR。
-   3. 在初始化\@Consume变量时，和\@State/\@Link的流程类似，\@Consume变量会在Map中查找到对应的\@Provide变量进行保存，并把自己注册给\@Provide。
+   2. 子组件中如果使用\@Consume变量，则会在Map中查找是否有该变量名/alias（别名）对应的\@Provide的变量。在API version 20之前，如果查找不到，框架会抛出JS ERROR。从API version 20开始，如果查找不到，会判断\@Consume装饰的变量是否设置了默认值，如果没有设置默认值，框架会抛出JS ERROR。
+   3. 在初始化\@Consume变量时，如果在Map中有该变量名/alias（别名）对应的\@Provide的变量，则和\@State/\@Link的流程类似，\@Consume变量会在Map中查找到对应的\@Provide变量进行保存，并把自己注册给\@Provide。
+   4. 从API version 20开始，在初始化\@Consume变量时，如果在Map中没有该变量名/alias（别名）对应的\@Provide的变量，而\@Consume的变量设置了默认值时，\@Consume变量会利用默认值创建一个临时的数据源，保证通知链路的连续性。
 
 2. 当\@Provide装饰的数据变化时：
    1. 通过初始渲染的步骤可知，子组件\@Consume已把自己注册给父组件。父组件\@Provide变量变更后，会遍历更新所有依赖它的系统组件（elementid）和状态变量（\@Consume）。
@@ -163,151 +166,155 @@ struct Parent {
 
    通过初始渲染的步骤可知，子组件\@Consume持有\@Provide的实例。在\@Consume更新后调用\@Provide的更新方法，将更新的数值同步回\@Provide，以此实现\@Consume向\@Provide的同步更新。
 
-![Provide_Consume_framework_behavior](figures/Provide_Consume_framework_behavior.png)
+![Provide_Consume_framework_behavior_withDefault](figures/Provide_Consume_framework_behavior_withDefault.png)
 
 ## 限制条件
 
 1. \@Provide/\@Consume的参数key必须为string类型，否则编译期会报错。
 
-  ```ts
-  // 错误写法，编译报错
-  let change: number = 10;
-  @Provide(change) message: string = 'Hello';
+    ```ts
+    // 错误写法，编译报错
+    let change: number = 10;
+    @Provide(change) message: string = 'Hello';
+  
+    // 正确写法
+    let change: string = 'change';
+    @Provide(change) message: string = 'Hello';
+    ```
 
-  // 正确写法
-  let change: string = 'change';
-  @Provide(change) message: string = 'Hello';
-  ```
+2. \@Consume装饰的变量不能在构造参数中传入初始化，否则编译期会报错。\@Consume仅能通过key来匹配对应的\@Provide变量或者从API version 20开始设置默认值进行初始化。
 
-2. \@Consume装饰的变量不能本地初始化，也不能在构造参数中传入初始化，否则编译期会报错。\@Consume仅能通过key来匹配对应的\@Provide变量进行初始化。
-
-  【反例】
-
-  ```ts
-  @Component
-  struct Child {
-    @Consume msg: string;
-    // 错误写法，不允许本地初始化
-    @Consume msg1: string = 'Hello';
-
-    build() {
-      Text(this.msg)
-    }
-  }
-
-  @Entry
-  @Component
-  struct Parent {
-    @Provide message: string = 'Hello';
-
-    build() {
-      Column() {
-        // 错误写法，不允许外部传入初始化
-        Child({msg: 'Hello'})
+    【反例】
+  
+    ```ts
+    @Component
+    struct Child {
+      @Consume msg: string;
+  
+      build() {
+        Text(this.msg)
       }
     }
-  }
-  ```
-
-  【正例】
-
-  ```ts
-  @Component
-  struct Child {
-    @Consume num: number;
-
-    build() {
-      Column() {
-        Text(`num的值: ${this.num}`)
+  
+    @Entry
+    @Component
+    struct Parent {
+      @Provide message: string = 'Hello';
+  
+      build() {
+        Column() {
+          // 错误写法，不允许外部传入初始化
+          Child({msg: 'Hello'})
+        }
       }
     }
-  }
+    ```
 
-  @Entry
-  @Component
-  struct Parent {
-    @Provide num: number = 10;
-
-    build() {
-      Column() {
-        Text(`num的值: ${this.num}`)
-        Child()
+    【正例】
+  
+    ```ts
+    @Component
+    struct Child {
+      @Consume num: number;
+      // 从API version 20开始，@Consume装饰的变量支持设置默认值
+      @Consume num1: number = 17;
+  
+      build() {
+        Column() {
+          Text(`num的值: ${this.num}`)
+          Text(`num1的值：${this.num1}`)
+        }
       }
     }
-  }
-  ```
-
+  
+    @Entry
+    @Component
+    struct Parent {
+      @Provide num: number = 10;
+  
+      build() {
+        Column() {
+          Text(`num的值: ${this.num}`)
+          Child()
+        }
+      }
+    }
+    ```
+  
 3. \@Provide的key重复定义时，框架会抛出运行时错误，提醒开发者重复定义key，如果开发者需要重复key，可以使用[allowoverride](#provide支持allowoverride参数)。
 
-  ```ts
-  // 错误写法，a重复定义
-  @Provide('a') count: number = 10;
-  @Provide('a') num: number = 10;
-
-  // 正确写法
-  @Provide('a') count: number = 10;
-  @Provide('b') num: number = 10;
-  ```
-
-4. 在初始化\@Consume变量时，如果开发者没有定义对应key的\@Provide变量，框架会抛出运行时错误，提示开发者初始化\@Consume变量失败，原因是无法找到其对应key的\@Provide变量。
-
-  【反例】
-
-  ```ts
-  @Component
-  struct Child {
-    @Consume num: number;
-
-    build() {
-      Column() {
-        Text(`num的值: ${this.num}`)
-      }
-    }
-  }
-
-  @Entry
-  @Component
-  struct Parent {
-    // 错误写法，缺少@Provide
-    num: number = 10;
-
-    build() {
-      Column() {
-        Text(`num的值: ${this.num}`)
-        Child()
-      }
-    }
-  }
-  ```
-
-  【正例】
-
-  ```ts
-  @Component
-  struct Child {
-    @Consume num: number;
-
-    build() {
-      Column() {
-        Text(`num的值: ${this.num}`)
-      }
-    }
-  }
-
-  @Entry
-  @Component
-  struct Parent {
+    ```ts
+    // 错误写法，a重复定义
+    @Provide('a') count: number = 10;
+    @Provide('a') num: number = 10;
+  
     // 正确写法
-    @Provide num: number = 10;
+    @Provide('a') count: number = 10;
+    @Provide('b') num: number = 10;
+    ```
+  
+4. 在API version 20之前，初始化\@Consume变量时，如果开发者没有定义对应key的\@Provide变量，框架会抛出运行时错误，提示开发者初始化\@Consume变量失败，原因是无法找到其对应key的\@Provide变量。从API version 20开始，初始化\@Consume变量时，如果开发者没有定义对应key的\@Provide变量，同时没有设置默认值，框架会抛出运行时错误，提示开发者初始化\@Consume变量失败，原因是无法找到其对应key的\@Provide变量同时也没有设置默认值。
 
-    build() {
-      Column() {
-        Text(`num的值: ${this.num}`)
-        Child()
+    【反例】
+  
+    ```ts
+    @Component
+    struct Child {
+      @Consume num: number;
+  
+      build() {
+        Column() {
+          Text(`num的值: ${this.num}`)
+        }
       }
     }
-  }
-  ```
+  
+    @Entry
+    @Component
+    struct Parent {
+      // 错误写法，缺少@Provide
+      num: number = 10;
+  
+      build() {
+        Column() {
+          Text(`num的值: ${this.num}`)
+          Child()
+        }
+      }
+    }
+    ```
+
+    【正例】
+  
+    ```ts
+    @Component
+    struct Child {
+      @Consume num: number;
+      // 正确写法 从API version 20开始，@Consume装饰的变量支持设置默认值
+      @Consume num_with_defaultValue: number = 6;
+  
+      build() {
+        Column() {
+          Text(`num的值: ${this.num}`)
+          Text(`num_with_defaultValue的值：${this.num_with_defaultValue}`)
+        }
+      }
+    }
+  
+    @Entry
+    @Component
+    struct Parent {
+      // 正确写法
+      @Provide num: number = 10;
+
+      build() {
+        Column() {
+          Text(`num的值: ${this.num}`)
+          Child()
+        }
+      }
+    }
+    ```
 
 5. \@Provide与\@Consume不支持装饰Function类型的变量，框架会抛出运行时错误。
 
@@ -605,11 +612,99 @@ struct GrandParent {
 - GrandSon查找到相同属性名的@Provide在祖先Child中，所以@Consume("reviewVotes") reviewVotes: number初始化数值为10。如果Child中没有定义与@Consume同名的@Provide，则继续向上寻找Parent中的同名@Provide值为20，以此类推。
 - 如果查找到根节点还没有找到key对应的@Provide，则会报初始化@Consume找不到@Provide的报错。
 
+### \@Consume装饰的变量支持设置默认值
+
+> **说明：**
+>
+> 从API version 20开始，\@Consume装饰的变量支持设置默认值。
+
+```ts
+@Component
+struct MyComponent {
+  @Consume('withDefault') defaultValue: number = 10;
+}
+```
+
+完整示例如下：
+
+```ts
+@Entry
+@Component
+struct Parent {
+  @Provide('firstKey') provideOne: string | undefined = undefined;
+  @Provide('secondKey') provideTwo: string = 'the second provider';
+
+  build(){
+    Column(){
+      Row(){
+        Column() {
+          Text(`${this.provideOne}`)
+          Text(`${this.provideTwo}`)
+        }
+
+        Column(){
+          // 点击change provideOne按钮，provideOne和子组件中的textOne属性会同时变化
+          Button('change provideOne')
+            .onClick(() => {
+              this.provideOne = undefined; 
+            })
+          // 点击change provideTwo按钮，provideTwo和子组件中的textTwo属性会同时变化
+          Button('change provideTwo')
+            .onClick(() => {
+              this.provideTwo = 'the next provider';
+            })
+        }
+      }
+
+      Row(){
+        Column() {
+          Child()
+        }
+      }
+    }
+  }
+}
+
+@Component
+struct Child {
+  // @Consume装饰的变量通过相同的别名绑定其祖先内的@Provide装饰的变量，同时设置默认值
+  @Consume('firstKey') textOne: string | undefined = 'child';
+  // @Consume装饰的变量通过相同的别名绑定其祖先内的@Provide装饰的变量，没有设置默认值
+  @Consume('secondKey') textTwo: string;
+  // @Consume装饰的变量在祖先内没有匹配成功的@Provide装饰的变量，但设置了默认值
+  @Consume('thirdKey') textThree: string = 'defaultValue';
+
+  build(){
+    Column() {
+      Text(`${this.textOne}`)
+      Text(`${this.textTwo}`)
+      Text(`${this.textThree}`)
+      // 点击change textOne按钮，textOne和父组件的provideOne会同时变化
+      Button('change textOne')
+        .onClick(() => {
+          this.textOne = 'not undefined';
+        })
+      // 点击change textTwo按钮，textTwo和父组件的provideTwo会同时变化
+      Button('change textTwo')
+        .onClick(() => {
+          this.textTwo = 'change textTwo';
+        })
+    }
+  }
+}
+```
+
+在上面的示例中：
+- Parent声明了@Provide('firstKey') provideOne: string | undefined = undefined 与 @Provide('secondKey') provideTwo: string = 'the second provider'。
+- Child声明了@Consume('firstKey') textOne: string | undefined = 'child'，@Consume('secondKey') textTwo: string 与 @Consume('thirdKey') textThree: string = 'defaultValue'。
+- Child是Parent的子组件，Child在初始化@Consume装饰的三个属性时，textOne根据'firstKey'别名绑定Parent中的provideOne属性，provideOne的值会覆盖textOne的默认值，所以textOne初始化的值为undefined；textTwo根据'secondKey'别名绑定Parent中的providedTwo属性，textTwo初始化的值为'the second provider'；textThree在祖先组件中不存在匹配结果，如果@Consume没有设置默认值，则会抛出运行时错误，示例中textThree有默认值'defaultValue'，所以textThree初始化的值为'defaultValue'。
+- @Consume装饰的属性设置的默认值仅在祖先组件没有匹配结果时才生效，有匹配结果时无影响。
+
 ## 常见问题
 
 ### \@BuilderParam尾随闭包情况下\@Provide未定义错误
 
-在此场景下，CustomWidget执行this.builder()创建子组件CustomWidgetChild时，this指向的是HomePage。因此找不到CustomWidget的\@Provide变量，所以下面示例会报找不到\@Provide错误，和\@BuilderParam连用的时候要谨慎this的指向。
+在此[尾随闭包](arkts-builderparam.md#尾随闭包初始化组件)场景下，CustomWidget执行this.builder()创建子组件CustomWidgetChild时，this指向的是HomePage。因此找不到CustomWidget的\@Provide变量，所以下面示例会报找不到\@Provide错误，和\@BuilderParam连用的时候要谨慎this的指向。
 
 错误示例：
 

@@ -121,7 +121,7 @@ ignoreLayoutSafeArea(types?: Array&lt;LayoutSafeAreaType&gt;, edges?: Array&lt;L
 >
 > 设置ignoreLayoutSafeArea([], [])时，相当于参数为空数组，此时设置ignoreLayoutSafeArea属性的效果等同于未生效。
 >
-> 对于自适应宽高（即设置了[width](./ts-universal-attributes-size.md#width15)属性或[height](./ts-universal-attributes-size.md#height15)属性为[LayoutPolicy.matchParent](ts-types.md#LayoutPolicy15)）的组件，ignoreLayoutSafeArea将使组件尺寸自适应地撑满父容器安全区；对于非自适应宽高的组件，ignoreLayoutSafeArea将使组件保持原有尺寸，基于扩展后的安全区域计算位置布局。
+> 对于自适应宽高（即设置了[width](./ts-universal-attributes-size.md#width15)属性或[height](./ts-universal-attributes-size.md#height15)属性为[LayoutPolicy.matchParent](ts-types.md#layoutpolicy15)）的组件，ignoreLayoutSafeArea将使组件尺寸自适应地撑满父容器安全区；对于非自适应宽高的组件，ignoreLayoutSafeArea将使组件保持原有尺寸，基于扩展后的安全区域计算位置布局。
 >
 > 与[expandSafeArea](#expandsafearea)的区别在于：expandSafeArea仅扩展组件的渲染区域，后代组件不受当前组件expandSafeArea设置的影响；ignoreLayoutSafeArea扩展组件的布局区域，后代组件能够感知当前组件ignoreLayoutSafeArea设置的效果，即后代节点将基于当前组件经过ignoreLayoutSafeArea布局后的实际结果进行布局。具体对比可参考[示例10](#示例10expandsafearea与ignorelayoutsafearea的区别)。
 >

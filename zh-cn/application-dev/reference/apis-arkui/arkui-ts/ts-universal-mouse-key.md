@@ -34,8 +34,8 @@ onMouse(event: (event: MouseEvent) => void)
 | ---------------------- | ---------------------------------------- | ---------------------------- |
 | x                      | number                                   | 鼠标位置相对于当前组件左上角的x轴坐标。<br/>单位：vp<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。         |
 | y                      | number                                   | 鼠标位置相对于当前组件左上角的y轴坐标。<br/>单位：vp<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。         |
-| button                 | [MouseButton](ts-appendix-enums.md#mousebutton8) | 鼠标按键。<br/>单位：vp<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                        |
-| action                 | [MouseAction](ts-appendix-enums.md#mouseaction8) | 鼠标动作。<br/>单位：vp<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                        |
+| button                 | [MouseButton](ts-appendix-enums.md#mousebutton8) | 鼠标按键。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                        |
+| action                 | [MouseAction](ts-appendix-enums.md#mouseaction8) | 鼠标动作。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                        |
 | stopPropagation        | () => void                               | 阻塞事件冒泡。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                      |
 | windowX<sup>10+</sup> | number                          | 鼠标位置相对于应用窗口左上角的x轴坐标。<br/>单位：vp<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | windowY<sup>10+</sup> | number                          | 鼠标位置相对于应用窗口左上角的y轴坐标。<br/>单位：vp<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -50,6 +50,7 @@ onMouse(event: (event: MouseEvent) => void)
 ## 示例
 
 该示例通过按钮设置了鼠标事件，通过鼠标点击按钮可以触发onMouse事件，获取鼠标事件相关参数。
+鼠标滚轮的处理请参考[轴事件示例](ts-universal-events-axis.md#示例)。
 
 ```ts
 // xxx.ets

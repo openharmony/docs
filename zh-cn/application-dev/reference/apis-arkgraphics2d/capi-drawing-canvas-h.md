@@ -208,8 +208,8 @@ OH_Drawing_ErrorCode OH_Drawing_CanvasDrawRecordCmdNesting(OH_Drawing_Canvas* ca
 
 | 参数项 | 描述 |
 | -- | -- |
-| OH_Drawing_Canvas* canvas | 指向画布对象[OH_Drawing_Canvas](capi-oh-drawing-canvas.md)的指针，仅支持录制类型画布。 |
-| OH_Drawing_RecordCmd* recordCmd | 指向录制指令对象[OH_Drawing_RecordCmd](capi-oh-drawing-recordcmd.md)的指针。 |
+| OH_Drawing_Canvas* canvas | 指向画布对象[OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)的指针，仅支持录制类型画布。 |
+| OH_Drawing_RecordCmd* recordCmd | 指向录制指令对象[OH_Drawing_RecordCmd](capi-drawing-oh-drawing-recordcmd.md)的指针。 |
 
 **返回：**
 
@@ -235,7 +235,7 @@ OH_Drawing_Canvas* OH_Drawing_CanvasCreate(void)
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* | 函数会返回一个指针，指针指向创建的画布对象。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* | 函数会返回一个指针，指针指向创建的画布对象。 |
 
 ### OH_Drawing_CanvasCreateWithPixelMap()
 
@@ -256,13 +256,13 @@ OH_Drawing_Canvas* OH_Drawing_CanvasCreateWithPixelMap(OH_Drawing_PixelMap* pixe
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_PixelMap](capi-oh-drawing-pixelmap.md)* pixelMap | 指向像素图[OH_Drawing_PixelMap](capi-oh-drawing-pixelmap.md)的指针。 |
+| [OH_Drawing_PixelMap](capi-drawing-oh-drawing-pixelmap.md)* pixelMap | 指向像素图[OH_Drawing_PixelMap](capi-drawing-oh-drawing-pixelmap.md)的指针。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* | 函数会返回一个指针，指针指向创建的画布对象[OH_Drawing_Canvas](capi-oh-drawing-canvas.md)，如果对象返回为NULL，则创建失败，原因可能是可用内存不足或者像素图对象为空。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* | 函数会返回一个指针，指针指向创建的画布对象[OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)，如果对象返回为NULL，则创建失败，原因可能是可用内存不足或者像素图对象为空。 |
 
 ### OH_Drawing_CanvasDestroy()
 
@@ -283,7 +283,7 @@ void OH_Drawing_CanvasDestroy(OH_Drawing_Canvas* canvas)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
 
 ### OH_Drawing_CanvasBind()
 
@@ -304,8 +304,8 @@ void OH_Drawing_CanvasBind(OH_Drawing_Canvas* canvas, OH_Drawing_Bitmap* bitmap)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
-| [OH_Drawing_Bitmap](capi-oh-drawing-bitmap.md)* bitmap | 指向位图对象的指针。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
+| [OH_Drawing_Bitmap](capi-drawing-oh-drawing-bitmap.md)* bitmap | 指向位图对象的指针。 |
 
 ### OH_Drawing_CanvasAttachPen()
 
@@ -326,8 +326,8 @@ void OH_Drawing_CanvasAttachPen(OH_Drawing_Canvas* canvas, const OH_Drawing_Pen*
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
-| const [OH_Drawing_Pen](capi-oh-drawing-pen.md)* pen | 指向画笔对象的指针。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
+| const [OH_Drawing_Pen](capi-drawing-oh-drawing-pen.md)* pen | 指向画笔对象的指针。 |
 
 ### OH_Drawing_CanvasDetachPen()
 
@@ -348,7 +348,7 @@ void OH_Drawing_CanvasDetachPen(OH_Drawing_Canvas* canvas)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
 
 ### OH_Drawing_CanvasAttachBrush()
 
@@ -369,8 +369,8 @@ void OH_Drawing_CanvasAttachBrush(OH_Drawing_Canvas* canvas, const OH_Drawing_Br
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
-| const [OH_Drawing_Brush](capi-oh-drawing-brush.md)* brush | 指向画刷对象的指针。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
+| const [OH_Drawing_Brush](capi-drawing-oh-drawing-brush.md)* brush | 指向画刷对象的指针。 |
 
 ### OH_Drawing_CanvasDetachBrush()
 
@@ -391,7 +391,7 @@ void OH_Drawing_CanvasDetachBrush(OH_Drawing_Canvas* canvas)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
 
 ### OH_Drawing_CanvasSave()
 
@@ -412,7 +412,7 @@ void OH_Drawing_CanvasSave(OH_Drawing_Canvas* canvas)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
 
 ### OH_Drawing_CanvasSaveLayer()
 
@@ -433,9 +433,9 @@ void OH_Drawing_CanvasSaveLayer(OH_Drawing_Canvas* canvas, const OH_Drawing_Rect
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象[OH_Drawing_Canvas](capi-oh-drawing-canvas.md)的指针。 |
-| const [OH_Drawing_Rect](capi-oh-drawing-rect.md)* rect | 指向矩形对象[OH_Drawing_Rect](capi-oh-drawing-rect.md)的指针，用于限制图层大小，为NULL表示无限制。 |
-| const [OH_Drawing_Brush](capi-oh-drawing-brush.md)* brush | 指向画刷对象[OH_Drawing_Brush](capi-oh-drawing-brush.md)的指针，绘制位图时会应用画刷对象的透明度，滤波器效果，混合模式，为NULL表示不应用任何效果。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向画布对象[OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)的指针。 |
+| const [OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)* rect | 指向矩形对象[OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)的指针，用于限制图层大小，为NULL表示无限制。 |
+| const [OH_Drawing_Brush](capi-drawing-oh-drawing-brush.md)* brush | 指向画刷对象[OH_Drawing_Brush](capi-drawing-oh-drawing-brush.md)的指针，绘制位图时会应用画刷对象的透明度，滤波器效果，混合模式，为NULL表示不应用任何效果。 |
 
 ### OH_Drawing_CanvasRestore()
 
@@ -456,7 +456,7 @@ void OH_Drawing_CanvasRestore(OH_Drawing_Canvas* canvas)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
 
 ### OH_Drawing_CanvasGetSaveCount()
 
@@ -477,7 +477,7 @@ uint32_t OH_Drawing_CanvasGetSaveCount(OH_Drawing_Canvas* canvas)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
 
 **返回：**
 
@@ -504,7 +504,7 @@ void OH_Drawing_CanvasRestoreToCount(OH_Drawing_Canvas* canvas, uint32_t saveCou
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
 | uint32_t saveCount | 要恢复的画布状态深度。小于等于1时，恢复为初始状态；大于已保存的画布状态数量时，不执行任何操作。 |
 
 ### OH_Drawing_CanvasDrawLine()
@@ -526,7 +526,7 @@ void OH_Drawing_CanvasDrawLine(OH_Drawing_Canvas* canvas, float x1, float y1, fl
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
 | float x1 | 线段起始点的横坐标。 |
 | float y1 | 线段起始点的纵坐标。 |
 | float x2 | 线段结束点的横坐标。 |
@@ -551,8 +551,8 @@ void OH_Drawing_CanvasDrawPath(OH_Drawing_Canvas* canvas, const OH_Drawing_Path*
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
-| const [OH_Drawing_Path](capi-oh-drawing-path.md)* path | 指向路径对象的指针。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
+| const [OH_Drawing_Path](capi-drawing-oh-drawing-path.md)* path | 指向路径对象的指针。 |
 
 ### OH_Drawing_CanvasDrawPixelMapNine()
 
@@ -573,10 +573,10 @@ OH_Drawing_ErrorCode OH_Drawing_CanvasDrawPixelMapNine(OH_Drawing_Canvas* canvas
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象[OH_Drawing_Canvas](capi-oh-drawing-canvas.md)的指针。 |
-| [OH_Drawing_PixelMap](capi-oh-drawing-pixelmap.md)* pixelMap | 指向像素图[OH_Drawing_PixelMap](capi-oh-drawing-pixelmap.md)的指针。 |
-| const [OH_Drawing_Rect](capi-oh-drawing-rect.md)* center | 指向矩形对象[OH_Drawing_Rect](capi-oh-drawing-rect.md)的指针，表示分割像素图的中心矩形。矩形四条边所在的直线将像素图分成了9个部分。 |
-| const [OH_Drawing_Rect](capi-oh-drawing-rect.md)* dst | 指向矩形对象[OH_Drawing_Rect](capi-oh-drawing-rect.md)的指针，表示画布上的目标区域。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向画布对象[OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)的指针。 |
+| [OH_Drawing_PixelMap](capi-drawing-oh-drawing-pixelmap.md)* pixelMap | 指向像素图[OH_Drawing_PixelMap](capi-drawing-oh-drawing-pixelmap.md)的指针。 |
+| const [OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)* center | 指向矩形对象[OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)的指针，表示分割像素图的中心矩形。矩形四条边所在的直线将像素图分成了9个部分。 |
+| const [OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)* dst | 指向矩形对象[OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)的指针，表示画布上的目标区域。 |
 | [OH_Drawing_FilterMode](capi-drawing-sampling-options-h.md#oh_drawing_filtermode) mode | 过滤模式枚举[OH_Drawing_FilterMode](capi-drawing-sampling-options-h.md#oh_drawing_filtermode)。 |
 
 **返回：**
@@ -604,11 +604,11 @@ void OH_Drawing_CanvasDrawPixelMapRect(OH_Drawing_Canvas* canvas, OH_Drawing_Pix
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象[OH_Drawing_Canvas](capi-oh-drawing-canvas.md)的指针。 |
-| [OH_Drawing_PixelMap](capi-oh-drawing-pixelmap.md)* pixelMap | 指向像素图[OH_Drawing_PixelMap](capi-oh-drawing-pixelmap.md)的指针。 |
-| const [OH_Drawing_Rect](capi-oh-drawing-rect.md)* src | 像素图指定矩形区域，为NULL将指定整个像素图区域。 |
-| const [OH_Drawing_Rect](capi-oh-drawing-rect.md)* dst | 目标画布指定矩形区域。 |
-| const [OH_Drawing_SamplingOptions](capi-oh-drawing-samplingoptions.md)* samplingOptions | 指向采样选项对象[OH_Drawing_SamplingOptions](capi-oh-drawing-samplingoptions.md)的指针，为NULL将使用默认采样选项。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向画布对象[OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)的指针。 |
+| [OH_Drawing_PixelMap](capi-drawing-oh-drawing-pixelmap.md)* pixelMap | 指向像素图[OH_Drawing_PixelMap](capi-drawing-oh-drawing-pixelmap.md)的指针。 |
+| const [OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)* src | 像素图指定矩形区域，为NULL将指定整个像素图区域。 |
+| const [OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)* dst | 目标画布指定矩形区域。 |
+| const [OH_Drawing_SamplingOptions](capi-drawing-oh-drawing-samplingoptions.md)* samplingOptions | 指向采样选项对象[OH_Drawing_SamplingOptions](capi-drawing-oh-drawing-samplingoptions.md)的指针，为NULL将使用默认采样选项。 |
 
 ### OH_Drawing_CanvasDrawBackground()
 
@@ -629,8 +629,8 @@ void OH_Drawing_CanvasDrawBackground(OH_Drawing_Canvas* canvas, const OH_Drawing
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
-| const [OH_Drawing_Brush](capi-oh-drawing-brush.md)* brush | 指向画刷对象的指针。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
+| const [OH_Drawing_Brush](capi-drawing-oh-drawing-brush.md)* brush | 指向画刷对象的指针。 |
 
 ### OH_Drawing_CanvasDrawRegion()
 
@@ -651,8 +651,8 @@ void OH_Drawing_CanvasDrawRegion(OH_Drawing_Canvas* canvas, const OH_Drawing_Reg
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
-| const [OH_Drawing_Region](capi-oh-drawing-region.md)* region | 指向区域对象的指针。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
+| const [OH_Drawing_Region](capi-drawing-oh-drawing-region.md)* region | 指向区域对象的指针。 |
 
 ### OH_Drawing_CanvasDrawPoint()
 
@@ -673,8 +673,8 @@ OH_Drawing_ErrorCode OH_Drawing_CanvasDrawPoint(OH_Drawing_Canvas* canvas, const
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象[OH_Drawing_Canvas](capi-oh-drawing-canvas.md)的指针。 |
-| const [OH_Drawing_Point2D](capi-oh-drawing-point2d.md)* point | 指向点对象[OH_Drawing_Point2D](capi-oh-drawing-point2d.md)的指针。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向画布对象[OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)的指针。 |
+| const [OH_Drawing_Point2D](capi-drawing-oh-drawing-point2d.md)* point | 指向点对象[OH_Drawing_Point2D](capi-drawing-oh-drawing-point2d.md)的指针。 |
 
 **返回：**
 
@@ -701,10 +701,10 @@ void OH_Drawing_CanvasDrawPoints(OH_Drawing_Canvas* canvas, OH_Drawing_PointMode
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
 | [OH_Drawing_PointMode](#oh_drawing_pointmode) mode | 绘制多个点的方式，支持方式参考[OH_Drawing_PointMode](capi-drawing-canvas-h.md#oh_drawing_pointmode)。 |
 | uint32_t count | 点的数量，即点数组中点的个数。 |
-| const [OH_Drawing_Point2D](capi-oh-drawing-point2d.md)* point2D | 指向多个点的数组。 |
+| const [OH_Drawing_Point2D](capi-drawing-oh-drawing-point2d.md)* point2D | 指向多个点的数组。 |
 
 ### OH_Drawing_CanvasDrawBitmap()
 
@@ -725,8 +725,8 @@ void OH_Drawing_CanvasDrawBitmap(OH_Drawing_Canvas* canvas, const OH_Drawing_Bit
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
-| const [OH_Drawing_Bitmap](capi-oh-drawing-bitmap.md)* bitmap | 指向位图对象的指针。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
+| const [OH_Drawing_Bitmap](capi-drawing-oh-drawing-bitmap.md)* bitmap | 指向位图对象的指针。 |
 | float left | 位图对象左上角的横坐标。 |
 | float top | 位图对象左上角的纵坐标。 |
 
@@ -749,11 +749,11 @@ void OH_Drawing_CanvasDrawBitmapRect(OH_Drawing_Canvas* canvas, const OH_Drawing
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象[OH_Drawing_Canvas](capi-oh-drawing-canvas.md)的指针。 |
-| const [OH_Drawing_Bitmap](capi-oh-drawing-bitmap.md)* bitmap | 指向位图对象[OH_Drawing_Bitmap](capi-oh-drawing-bitmap.md)的指针。 |
-| const [OH_Drawing_Rect](capi-oh-drawing-rect.md)* src | 源位图指定矩形区域，为NULL将指定整个源位图区域。 |
-| const [OH_Drawing_Rect](capi-oh-drawing-rect.md)* dst | 目标画布指定矩形区域。 |
-| const [OH_Drawing_SamplingOptions](capi-oh-drawing-samplingoptions.md)* samplingOptions | 指向采样选项对象[OH_Drawing_SamplingOptions](capi-oh-drawing-samplingoptions.md)的指针，为NULL将使用默认采样选项。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向画布对象[OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)的指针。 |
+| const [OH_Drawing_Bitmap](capi-drawing-oh-drawing-bitmap.md)* bitmap | 指向位图对象[OH_Drawing_Bitmap](capi-drawing-oh-drawing-bitmap.md)的指针。 |
+| const [OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)* src | 源位图指定矩形区域，为NULL将指定整个源位图区域。 |
+| const [OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)* dst | 目标画布指定矩形区域。 |
+| const [OH_Drawing_SamplingOptions](capi-drawing-oh-drawing-samplingoptions.md)* samplingOptions | 指向采样选项对象[OH_Drawing_SamplingOptions](capi-drawing-oh-drawing-samplingoptions.md)的指针，为NULL将使用默认采样选项。 |
 
 ### OH_Drawing_CanvasDrawRect()
 
@@ -774,8 +774,8 @@ void OH_Drawing_CanvasDrawRect(OH_Drawing_Canvas* canvas, const OH_Drawing_Rect*
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
-| const [OH_Drawing_Rect](capi-oh-drawing-rect.md)* rect | 指向矩形对象的指针。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
+| const [OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)* rect | 指向矩形对象的指针。 |
 
 ### OH_Drawing_CanvasDrawCircle()
 
@@ -796,8 +796,8 @@ void OH_Drawing_CanvasDrawCircle(OH_Drawing_Canvas* canvas, const OH_Drawing_Poi
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
-| const [OH_Drawing_Point](capi-oh-drawing-point.md)* point | 指向坐标点对象的指针，表示圆心。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
+| const [OH_Drawing_Point](capi-drawing-oh-drawing-point.md)* point | 指向坐标点对象的指针，表示圆心。 |
 | float radius | 圆形的半径，小于等于0时无效。 |
 
 ### OH_Drawing_CanvasDrawColor()
@@ -819,7 +819,7 @@ OH_Drawing_ErrorCode OH_Drawing_CanvasDrawColor(OH_Drawing_Canvas* canvas, uint3
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象[OH_Drawing_Canvas](capi-oh-drawing-canvas.md)的指针。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向画布对象[OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)的指针。 |
 | uint32_t color | 表示指定的颜色，用一个32位（ARGB）的变量表示。 |
 | [OH_Drawing_BlendMode](capi-drawing-types-h.md#oh_drawing_blendmode) blendMode | 表示指定的混合模式。 |
 
@@ -848,8 +848,8 @@ void OH_Drawing_CanvasDrawOval(OH_Drawing_Canvas* canvas, const OH_Drawing_Rect*
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
-| const [OH_Drawing_Rect](capi-oh-drawing-rect.md)* rect | 指向矩形对象的指针。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
+| const [OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)* rect | 指向矩形对象的指针。 |
 
 ### OH_Drawing_CanvasDrawArc()
 
@@ -870,8 +870,8 @@ void OH_Drawing_CanvasDrawArc(OH_Drawing_Canvas* canvas,const OH_Drawing_Rect* r
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
-| const [OH_Drawing_Rect](capi-oh-drawing-rect.md)* rect | 指向矩形对象的指针。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
+| const [OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)* rect | 指向矩形对象的指针。 |
 | float startAngle | 弧的起始角度，0度时起始点位于椭圆的右端点，正数时以顺时针方向放置起始点，负数时以逆时针方向放置起始点。 |
 | float sweepAngle | 弧的扫描角度，正数时顺时针扫描，负数时逆时针扫描。它的有效范围在-360度到360度之间，当绝对值大于360度时，该函数绘制的是一个椭圆。 |
 
@@ -894,8 +894,8 @@ OH_Drawing_ErrorCode OH_Drawing_CanvasDrawArcWithCenter(OH_Drawing_Canvas* canva
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象[OH_Drawing_Canvas](capi-oh-drawing-canvas.md)的指针。 |
-| const [OH_Drawing_Rect](capi-oh-drawing-rect.md)* rect | 指向矩形对象[OH_Drawing_Rect](capi-oh-drawing-rect.md)的指针。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向画布对象[OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)的指针。 |
+| const [OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)* rect | 指向矩形对象[OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)的指针。 |
 | float startAngle | 弧的起始角度，单位为度，该参数为浮点数。0度时起始点位于椭圆的右端点，为正数时以顺时针方向放置起始点，为负数时以逆时针方向放置起始点。 |
 | float sweepAngle | 弧的扫描角度，单位为度，该参数为浮点数。为正数时顺时针扫描，为负数时逆时针扫描。扫描角度可以超过360度，将绘制一个完整的椭圆。 |
 | bool useCenter | 表示绘制时弧形的起点和终点是否连接弧形的中心点。true表示连接，false表示不连接。 |
@@ -925,8 +925,8 @@ void OH_Drawing_CanvasDrawRoundRect(OH_Drawing_Canvas* canvas, const OH_Drawing_
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
-| const [OH_Drawing_RoundRect](capi-oh-drawing-roundrect.md)* roundRect | 指向圆角矩形对象的指针。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
+| const [OH_Drawing_RoundRect](capi-drawing-oh-drawing-roundrect.md)* roundRect | 指向圆角矩形对象的指针。 |
 
 ### OH_Drawing_CanvasDrawNestedRoundRect()
 
@@ -947,9 +947,9 @@ OH_Drawing_ErrorCode OH_Drawing_CanvasDrawNestedRoundRect(OH_Drawing_Canvas* can
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象[OH_Drawing_Canvas](capi-oh-drawing-canvas.md)的指针。 |
-| const [OH_Drawing_RoundRect](capi-oh-drawing-roundrect.md)* outer | 指向圆角矩形对象[OH_Drawing_RoundRect](capi-oh-drawing-roundrect.md)的指针，表示外部圆角矩形边界。 |
-| const [OH_Drawing_RoundRect](capi-oh-drawing-roundrect.md)* inner | 指向圆角矩形对象[OH_Drawing_RoundRect](capi-oh-drawing-roundrect.md)的指针，表示内部圆角矩形边界。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向画布对象[OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)的指针。 |
+| const [OH_Drawing_RoundRect](capi-drawing-oh-drawing-roundrect.md)* outer | 指向圆角矩形对象[OH_Drawing_RoundRect](capi-drawing-oh-drawing-roundrect.md)的指针，表示外部圆角矩形边界。 |
+| const [OH_Drawing_RoundRect](capi-drawing-oh-drawing-roundrect.md)* inner | 指向圆角矩形对象[OH_Drawing_RoundRect](capi-drawing-oh-drawing-roundrect.md)的指针，表示内部圆角矩形边界。 |
 
 **返回：**
 
@@ -976,9 +976,9 @@ OH_Drawing_ErrorCode OH_Drawing_CanvasDrawSingleCharacter(OH_Drawing_Canvas* can
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象[OH_Drawing_Canvas](capi-oh-drawing-canvas.md)的指针。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向画布对象[OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)的指针。 |
 | const char* str | 待绘制的单个字符。可以传入字符串，但只会以UTF-8编码解析并绘制字符串中的首个字符。 |
-| const [OH_Drawing_Font](capi-oh-drawing-font.md)* font | 指向字型对象[OH_Drawing_Font](capi-oh-drawing-font.md)的指针。 |
+| const [OH_Drawing_Font](capi-drawing-oh-drawing-font.md)* font | 指向字型对象[OH_Drawing_Font](capi-drawing-oh-drawing-font.md)的指针。 |
 | float x | 字符对象基线左端点（靠近字符左下角）的横坐标。 |
 | float y | 字符对象基线左端点（靠近字符左下角）的纵坐标。 |
 
@@ -1007,8 +1007,8 @@ void OH_Drawing_CanvasDrawTextBlob(OH_Drawing_Canvas* canvas, const OH_Drawing_T
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
-| const [OH_Drawing_TextBlob](capi-oh-drawing-textblob.md)* textBlob | 指向文本对象的指针。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
+| const [OH_Drawing_TextBlob](capi-drawing-oh-drawing-textblob.md)* textBlob | 指向文本对象的指针。 |
 | float x | 文本对象基线左端点（靠近文本左下角）的横坐标。 |
 | float y | 文本对象基线左端点（靠近文本左下角）的纵坐标。 |
 
@@ -1031,8 +1031,8 @@ void OH_Drawing_CanvasClipRect(OH_Drawing_Canvas* canvas, const OH_Drawing_Rect*
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
-| const [OH_Drawing_Rect](capi-oh-drawing-rect.md)* rect | 指向矩形对象的指针。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
+| const [OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)* rect | 指向矩形对象的指针。 |
 | [OH_Drawing_CanvasClipOp](#oh_drawing_canvasclipop) clipOp | 裁剪方式。支持可选的具体裁剪方式可见@{link OH_Drawing_CanvasClipOp}枚举。 |
 | bool doAntiAlias | 值为true则做抗锯齿处理，反之不做。 |
 
@@ -1055,8 +1055,8 @@ void OH_Drawing_CanvasClipRoundRect(OH_Drawing_Canvas* canvas, const OH_Drawing_
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
-| const [OH_Drawing_RoundRect](capi-oh-drawing-roundrect.md)* roundRect | 指向圆角矩形对象的指针。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
+| const [OH_Drawing_RoundRect](capi-drawing-oh-drawing-roundrect.md)* roundRect | 指向圆角矩形对象的指针。 |
 | [OH_Drawing_CanvasClipOp](#oh_drawing_canvasclipop) clipOp | 裁剪方式。支持可选的具体裁剪方式可见@{link OH_Drawing_CanvasClipOp}枚举。 |
 | bool doAntiAlias | 表示是否需要做抗锯齿处理，值为true时为需要，为false时为不需要。 |
 
@@ -1079,8 +1079,8 @@ void OH_Drawing_CanvasClipPath(OH_Drawing_Canvas* canvas, const OH_Drawing_Path*
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
-| const [OH_Drawing_Path](capi-oh-drawing-path.md)* path | 指向路径对象的指针。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
+| const [OH_Drawing_Path](capi-drawing-oh-drawing-path.md)* path | 指向路径对象的指针。 |
 | [OH_Drawing_CanvasClipOp](#oh_drawing_canvasclipop) clipOp | 裁剪方式。支持可选的具体裁剪方式可见@{link OH_Drawing_CanvasClipOp}枚举。 |
 | bool doAntiAlias | 真为抗锯齿，假则不做抗锯齿处理。 |
 
@@ -1103,8 +1103,8 @@ OH_Drawing_ErrorCode OH_Drawing_CanvasClipRegion(OH_Drawing_Canvas* canvas, cons
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象[OH_Drawing_Canvas](capi-oh-drawing-canvas.md)的指针。 |
-| const [OH_Drawing_Region](capi-oh-drawing-region.md)* region | 指向区域对象[OH_Drawing_Region](capi-oh-drawing-region.md)的指针。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向画布对象[OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)的指针。 |
+| const [OH_Drawing_Region](capi-drawing-oh-drawing-region.md)* region | 指向区域对象[OH_Drawing_Region](capi-drawing-oh-drawing-region.md)的指针。 |
 | [OH_Drawing_CanvasClipOp](#oh_drawing_canvasclipop) clipOp | 表示裁剪类型。支持可选的具体裁剪方式可见@{link OH_Drawing_CanvasClipOp}枚举。 |
 
 **返回：**
@@ -1132,7 +1132,7 @@ void OH_Drawing_CanvasRotate(OH_Drawing_Canvas* canvas, float degrees, float px,
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
 | float degrees | 旋转角度。 |
 | float px | 旋转中心的横坐标。 |
 | float py | 旋转中心的纵坐标。 |
@@ -1156,7 +1156,7 @@ void OH_Drawing_CanvasTranslate(OH_Drawing_Canvas* canvas, float dx, float dy)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
 | float dx | 轴方向的移动距离。 |
 | float dy | 轴方向的移动距离。 |
 
@@ -1179,7 +1179,7 @@ void OH_Drawing_CanvasScale(OH_Drawing_Canvas* canvas, float sx, float sy)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
 | float sx | 轴方向的缩放比例。 |
 | float sy | 轴方向的缩放比例。 |
 
@@ -1202,7 +1202,7 @@ void OH_Drawing_CanvasSkew(OH_Drawing_Canvas* canvas, float sx, float sy)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
 | float sx | 沿x轴的倾斜量。正值会使绘制沿y轴增量方向向右倾斜；负值会使绘制沿y轴增量方向向左倾斜。 |
 | float sy | 沿y轴的倾斜量。正值会使绘制沿x轴增量方向向下倾斜；负值会使绘制沿x轴增量方向向上倾斜。 |
 
@@ -1225,7 +1225,7 @@ int32_t OH_Drawing_CanvasGetWidth(OH_Drawing_Canvas* canvas)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象[OH_Drawing_Canvas](capi-oh-drawing-canvas.md)的指针。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向画布对象[OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)的指针。 |
 
 **返回：**
 
@@ -1252,7 +1252,7 @@ int32_t OH_Drawing_CanvasGetHeight(OH_Drawing_Canvas* canvas)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象[OH_Drawing_Canvas](capi-oh-drawing-canvas.md)的指针。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向画布对象[OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)的指针。 |
 
 **返回：**
 
@@ -1279,8 +1279,8 @@ void OH_Drawing_CanvasGetLocalClipBounds(OH_Drawing_Canvas* canvas, OH_Drawing_R
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象[OH_Drawing_Canvas](capi-oh-drawing-canvas.md)的指针。 |
-| [OH_Drawing_Rect](capi-oh-drawing-rect.md)* rect | 指向矩形对象[OH_Drawing_Rect](capi-oh-drawing-rect.md)的指针，开发者可调用[OH_Drawing_RectCreate](capi-drawing-rect-h.md#oh_drawing_rectcreate)接口创建。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向画布对象[OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)的指针。 |
+| [OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)* rect | 指向矩形对象[OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)的指针，开发者可调用[OH_Drawing_RectCreate](capi-drawing-rect-h.md#oh_drawing_rectcreate)接口创建。 |
 
 ### OH_Drawing_CanvasGetTotalMatrix()
 
@@ -1301,8 +1301,8 @@ void OH_Drawing_CanvasGetTotalMatrix(OH_Drawing_Canvas* canvas, OH_Drawing_Matri
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象[OH_Drawing_Canvas](capi-oh-drawing-canvas.md)的指针。 |
-| [OH_Drawing_Matrix](capi-oh-drawing-matrix.md)* matrix | 指向矩阵对象[OH_Drawing_Matrix](capi-oh-drawing-matrix.md)的指针，开发者可调用[OH_Drawing_MatrixCreate](capi-drawing-matrix-h.md#oh_drawing_matrixcreate)接口创建。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向画布对象[OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)的指针。 |
+| [OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)* matrix | 指向矩阵对象[OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)的指针，开发者可调用[OH_Drawing_MatrixCreate](capi-drawing-matrix-h.md#oh_drawing_matrixcreate)接口创建。 |
 
 ### OH_Drawing_CanvasConcatMatrix()
 
@@ -1323,8 +1323,8 @@ void OH_Drawing_CanvasConcatMatrix(OH_Drawing_Canvas* canvas, OH_Drawing_Matrix*
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象[OH_Drawing_Canvas](capi-oh-drawing-canvas.md)的指针。 |
-| [OH_Drawing_Matrix](capi-oh-drawing-matrix.md)* matrix | 指向矩阵对象[OH_Drawing_Matrix](capi-oh-drawing-matrix.md)的指针。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向画布对象[OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)的指针。 |
+| [OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)* matrix | 指向矩阵对象[OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)的指针。 |
 
 ### OH_Drawing_CanvasDrawShadow()
 
@@ -1345,10 +1345,10 @@ void OH_Drawing_CanvasDrawShadow(OH_Drawing_Canvas* canvas, OH_Drawing_Path* pat
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象[OH_Drawing_Canvas](capi-oh-drawing-canvas.md)的指针。 |
-| [OH_Drawing_Path](capi-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-oh-drawing-path.md)的指针，用于生成阴影。 |
-| [OH_Drawing_Point3D](capi-oh-drawing-point3d.md) planeParams | 表示遮挡物相对于画布在Z轴上的偏移量，其值取决于x与y坐标。 |
-| [OH_Drawing_Point3D](capi-oh-drawing-point3d.md) devLightPos | 光线相对于画布的位置。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向画布对象[OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)的指针。 |
+| [OH_Drawing_Path](capi-drawing-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-drawing-oh-drawing-path.md)的指针，用于生成阴影。 |
+| [OH_Drawing_Point3D](capi-drawing-oh-drawing-point3d.md) planeParams | 表示遮挡物相对于画布在Z轴上的偏移量，其值取决于x与y坐标。 |
+| [OH_Drawing_Point3D](capi-drawing-oh-drawing-point3d.md) devLightPos | 光线相对于画布的位置。 |
 | float lightRadius | 光源半径，需大于或等于0。 |
 | uint32_t ambientColor | 环境阴影颜色，用一个32位（ARGB）的变量表示。 |
 | uint32_t spotColor | 点阴影颜色，用一个32位（ARGB）的变量表示。 |
@@ -1373,7 +1373,7 @@ void OH_Drawing_CanvasClear(OH_Drawing_Canvas* canvas, uint32_t color)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
 | uint32_t color | 描述颜色的32位（ARGB）变量。 |
 
 ### OH_Drawing_CanvasSetMatrix()
@@ -1395,8 +1395,8 @@ void OH_Drawing_CanvasSetMatrix(OH_Drawing_Canvas* canvas, OH_Drawing_Matrix* ma
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象[OH_Drawing_Canvas](capi-oh-drawing-canvas.md)的指针。 |
-| [OH_Drawing_Matrix](capi-oh-drawing-matrix.md)* matrix | 指向矩阵对象[OH_Drawing_Matrix](capi-oh-drawing-matrix.md)的指针，开发者可调用[OH_Drawing_MatrixCreate](capi-drawing-matrix-h.md#oh_drawing_matrixcreate)接口创建。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向画布对象[OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)的指针。 |
+| [OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)* matrix | 指向矩阵对象[OH_Drawing_Matrix](capi-drawing-oh-drawing-matrix.md)的指针，开发者可调用[OH_Drawing_MatrixCreate](capi-drawing-matrix-h.md#oh_drawing_matrixcreate)接口创建。 |
 
 ### OH_Drawing_CanvasResetMatrix()
 
@@ -1417,7 +1417,7 @@ void OH_Drawing_CanvasResetMatrix(OH_Drawing_Canvas* canvas)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象[OH_Drawing_Canvas](capi-oh-drawing-canvas.md)的指针。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向画布对象[OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)的指针。 |
 
 ### OH_Drawing_CanvasDrawImageRectWithSrc()
 
@@ -1438,11 +1438,11 @@ void OH_Drawing_CanvasDrawImageRectWithSrc(OH_Drawing_Canvas* canvas, const OH_D
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象[OH_Drawing_Canvas](capi-oh-drawing-canvas.md)的指针。 |
-| const [OH_Drawing_Image](capi-oh-drawing-image.md)* image | 指向图片对象[OH_Drawing_Image](capi-oh-drawing-image.md)的指针。 |
-| const [OH_Drawing_Rect](capi-oh-drawing-rect.md)* src | 指向源矩形对象[OH_Drawing_Rect](capi-oh-drawing-rect.md)的指针。 |
-| const [OH_Drawing_Rect](capi-oh-drawing-rect.md)* dst | 指向目标矩形对象[OH_Drawing_Rect](capi-oh-drawing-rect.md)的指针。 |
-| const [OH_Drawing_SamplingOptions](capi-oh-drawing-samplingoptions.md)* samplingOptions | 指向采样选项对象[OH_Drawing_SamplingOptions](capi-oh-drawing-samplingoptions.md)的指针，为NULL将使用默认采样选项。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向画布对象[OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)的指针。 |
+| const [OH_Drawing_Image](capi-drawing-oh-drawing-image.md)* image | 指向图片对象[OH_Drawing_Image](capi-drawing-oh-drawing-image.md)的指针。 |
+| const [OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)* src | 指向源矩形对象[OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)的指针。 |
+| const [OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)* dst | 指向目标矩形对象[OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)的指针。 |
+| const [OH_Drawing_SamplingOptions](capi-drawing-oh-drawing-samplingoptions.md)* samplingOptions | 指向采样选项对象[OH_Drawing_SamplingOptions](capi-drawing-oh-drawing-samplingoptions.md)的指针，为NULL将使用默认采样选项。 |
 | [OH_Drawing_SrcRectConstraint](#oh_drawing_srcrectconstraint) srcRectConstraint | 约束类型，支持可选的具体类型可见[OH_Drawing_SrcRectConstraint](capi-drawing-canvas-h.md#oh_drawing_srcrectconstraint)枚举。 |
 
 ### OH_Drawing_CanvasDrawImageRect()
@@ -1464,10 +1464,10 @@ void OH_Drawing_CanvasDrawImageRect(OH_Drawing_Canvas* canvas, OH_Drawing_Image*
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象[OH_Drawing_Canvas](capi-oh-drawing-canvas.md)的指针。 |
-| [OH_Drawing_Image](capi-oh-drawing-image.md)* image | 指向图片对象[OH_Drawing_Image](capi-oh-drawing-image.md)的指针。 |
-| [OH_Drawing_Rect](capi-oh-drawing-rect.md)* rect | 指向矩形对象[OH_Drawing_Rect](capi-oh-drawing-rect.md)的指针。 |
-| [OH_Drawing_SamplingOptions](capi-oh-drawing-samplingoptions.md)* samplingOptions | 指向采样选项对象[OH_Drawing_SamplingOptions](capi-oh-drawing-samplingoptions.md)的指针，为NULL将使用默认采样选项。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向画布对象[OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)的指针。 |
+| [OH_Drawing_Image](capi-drawing-oh-drawing-image.md)* image | 指向图片对象[OH_Drawing_Image](capi-drawing-oh-drawing-image.md)的指针。 |
+| [OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)* rect | 指向矩形对象[OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)的指针。 |
+| [OH_Drawing_SamplingOptions](capi-drawing-oh-drawing-samplingoptions.md)* samplingOptions | 指向采样选项对象[OH_Drawing_SamplingOptions](capi-drawing-oh-drawing-samplingoptions.md)的指针，为NULL将使用默认采样选项。 |
 
 ### OH_Drawing_CanvasDrawVertices()
 
@@ -1488,11 +1488,11 @@ void OH_Drawing_CanvasDrawVertices(OH_Drawing_Canvas* canvas, OH_Drawing_VertexM
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向画布对象的指针。 |
 | [OH_Drawing_VertexMode](#oh_drawing_vertexmode) vertexMmode | 绘制顶点的连接方式，支持方式参考[OH_Drawing_VertexMode](capi-drawing-canvas-h.md#oh_drawing_vertexmode)。 |
 | int32_t vertexCount | 顶点数组元素的数量，值必须大于等于3。 |
-| const [OH_Drawing_Point2D](capi-oh-drawing-point2d.md)* positions | 描述顶点位置的数组指针，不能为空，其长度必须等于vertexCount。 |
-| const [OH_Drawing_Point2D](capi-oh-drawing-point2d.md)* texs | 描述顶点对应纹理空间坐标的数组指针，可以为空，若不为空其长度必须等于vertexCount。 |
+| const [OH_Drawing_Point2D](capi-drawing-oh-drawing-point2d.md)* positions | 描述顶点位置的数组指针，不能为空，其长度必须等于vertexCount。 |
+| const [OH_Drawing_Point2D](capi-drawing-oh-drawing-point2d.md)* texs | 描述顶点对应纹理空间坐标的数组指针，可以为空，若不为空其长度必须等于vertexCount。 |
 | const uint32_t* colors | 描述顶点对应颜色的数组指针，用于在三角形中进行插值，可以为空，若不为空其长度必须等于vertexCount。 |
 | int32_t indexCount | 索引的数量，可以为0，若不为0则值必须大于等于3。 |
 | const uint16_t* indices | 描述顶点对应索引的数组指针，可以为空，若不为空其长度必须等于indexCount。 |
@@ -1517,8 +1517,8 @@ bool OH_Drawing_CanvasReadPixels(OH_Drawing_Canvas* canvas, OH_Drawing_Image_Inf
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象[OH_Drawing_Canvas](capi-oh-drawing-canvas.md)的指针。 |
-| [OH_Drawing_Image_Info](capi-oh-drawing-image-info.md)* imageInfo | 指向图片信息[OH_Drawing_Image_Info](capi-oh-drawing-image-info.md)的指针。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向画布对象[OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)的指针。 |
+| [OH_Drawing_Image_Info](capi-drawing-oh-drawing-image-info.md)* imageInfo | 指向图片信息[OH_Drawing_Image_Info](capi-drawing-oh-drawing-image-info.md)的指针。 |
 | void* dstPixels | 目标像素存储首地址。 |
 | uint32_t dstRowBytes | 一行像素的大小，小于等于0时无效。 |
 | int32_t srcX | 画布像素的x轴偏移量，单位为像素。 |
@@ -1549,8 +1549,8 @@ bool OH_Drawing_CanvasReadPixelsToBitmap(OH_Drawing_Canvas* canvas,OH_Drawing_Bi
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象[OH_Drawing_Canvas](capi-oh-drawing-canvas.md)的指针。 |
-| [OH_Drawing_Bitmap](capi-oh-drawing-bitmap.md)* bitmap | 指向位图对象[OH_Drawing_Bitmap](capi-oh-drawing-bitmap.md)的指针。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向画布对象[OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)的指针。 |
+| [OH_Drawing_Bitmap](capi-drawing-oh-drawing-bitmap.md)* bitmap | 指向位图对象[OH_Drawing_Bitmap](capi-drawing-oh-drawing-bitmap.md)的指针。 |
 | int32_t srcX | 画布像素的x轴偏移量，单位为像素。 |
 | int32_t srcY | 画布像素的y轴偏移量，单位为像素。 |
 
@@ -1579,7 +1579,7 @@ OH_Drawing_ErrorCode OH_Drawing_CanvasIsClipEmpty(OH_Drawing_Canvas* canvas, boo
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象[OH_Drawing_Canvas](capi-oh-drawing-canvas.md)的指针。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向画布对象[OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)的指针。 |
 | bool* isClipEmpty | 表示裁剪后可绘制区域是否为空。true表示为空，false表示不为空。 |
 
 **返回：**
@@ -1607,8 +1607,8 @@ OH_Drawing_ErrorCode OH_Drawing_CanvasGetImageInfo(OH_Drawing_Canvas* canvas, OH
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象[OH_Drawing_Canvas](capi-oh-drawing-canvas.md)的指针。 |
-| [OH_Drawing_Image_Info](capi-oh-drawing-image-info.md)* imageInfo | 指向图像信息对象[OH_Drawing_Image_Info](capi-oh-drawing-image-info.md)的指针。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向画布对象[OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)的指针。 |
+| [OH_Drawing_Image_Info](capi-drawing-oh-drawing-image-info.md)* imageInfo | 指向图像信息对象[OH_Drawing_Image_Info](capi-drawing-oh-drawing-image-info.md)的指针。 |
 
 **返回：**
 
@@ -1635,8 +1635,8 @@ OH_Drawing_ErrorCode OH_Drawing_CanvasDrawRecordCmd(OH_Drawing_Canvas* canvas, O
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象[OH_Drawing_Canvas](capi-oh-drawing-canvas.md)的指针，仅支持录制类型画布。 |
-| [OH_Drawing_RecordCmd](capi-oh-drawing-recordcmd.md)* recordCmd | 指向录制指令对象[OH_Drawing_RecordCmd](capi-oh-drawing-recordcmd.md)的指针。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向画布对象[OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)的指针，仅支持录制类型画布。 |
+| [OH_Drawing_RecordCmd](capi-drawing-oh-drawing-recordcmd.md)* recordCmd | 指向录制指令对象[OH_Drawing_RecordCmd](capi-drawing-oh-drawing-recordcmd.md)的指针。 |
 
 **返回：**
 
@@ -1663,8 +1663,8 @@ OH_Drawing_ErrorCode OH_Drawing_CanvasQuickRejectPath(OH_Drawing_Canvas* canvas,
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象[OH_Drawing_Canvas](capi-oh-drawing-canvas.md)的指针。 |
-| const [OH_Drawing_Path](capi-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-oh-drawing-path.md)的指针。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向画布对象[OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)的指针。 |
+| const [OH_Drawing_Path](capi-drawing-oh-drawing-path.md)* path | 指向路径对象[OH_Drawing_Path](capi-drawing-oh-drawing-path.md)的指针。 |
 | bool* quickReject | 表示路径与画布区域是否不相交，true表示路径与画布区域不相交，false表示路径与画布区域相交。 |
 
 **返回：**
@@ -1692,8 +1692,8 @@ OH_Drawing_ErrorCode OH_Drawing_CanvasQuickRejectRect(OH_Drawing_Canvas* canvas,
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象[OH_Drawing_Canvas](capi-oh-drawing-canvas.md)的指针。 |
-| const [OH_Drawing_Rect](capi-oh-drawing-rect.md)* rect | 指向矩形对象[OH_Drawing_Rect](capi-oh-drawing-rect.md)的指针。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* canvas | 指向画布对象[OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)的指针。 |
+| const [OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)* rect | 指向矩形对象[OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)的指针。 |
 | bool* quickReject | 表示矩形与画布区域是否不相交，true表示矩形与画布区域不相交，false表示矩形与画布区域相交。 |
 
 **返回：**

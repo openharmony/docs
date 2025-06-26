@@ -32,7 +32,7 @@ getPixelMap(): image.PixelMap
 
 | 类型                                       | 说明       |
 | ---------------------------------------- | -------- |
-| [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | PixelMap |
+| [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | PixelMap |
 
 **示例：**
   ```ts
@@ -63,7 +63,7 @@ PixelMapDrawableDescriptor的构造函数。
 
 | 参数名     | 类型              | 必填  | 说明                                       |
 | --------- | ---------------- | ---- | ------------------------------------------ |
-| src | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)  | 否 | PixelMap类型参数，存储 PixelMap 图片数据。 |
+| src | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)  | 否 | PixelMap类型参数，存储 PixelMap 图片数据。 |
 
 
 ## LayeredDrawableDescriptor
@@ -422,7 +422,7 @@ AnimatedDrawableDescriptor的构造函数。
 
 | 参数名     | 类型              | 必填  | 说明                                       |
 | --------- | ---------------- | ---- | ------------------------------------------ |
-| pixelMaps | Array\<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)>  | 是   | PixelMap 数组类型参数，存储 PixelMap 图片数据。 |
+| pixelMaps | Array\<[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)>  | 是   | PixelMap 数组类型参数，存储 PixelMap 图片数据。 |
 | options   | [AnimationOptions](#animationoptions12) | 否   | 动画控制选项。                               |
 
 **示例：**

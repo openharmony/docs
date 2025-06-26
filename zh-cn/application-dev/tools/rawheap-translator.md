@@ -2,7 +2,7 @@
 
 ## 使用场景
 
-为方便开发者定位问题，当前应用在ArkTS内存OOM时会自动进行Heapdump，虚拟机会扫描并保存当前堆上的所有对象信息，生成rawheap文件。该文件以二进制形式保存，开发者可从SDK中toolchains路径下获取rawheap_translator工具进行解析，转换成heapsnapshot文件，可通过[DevEco Studio](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-snapshot-basic-operations-V5#section6760173514388)打开查看。
+为方便开发者定位问题，当前应用在ArkTS内存OOM（Out of Memory）时会自动进行Heapdump（由于内存限制，并非总是能够成功完成Heapdump），虚拟机会扫描并保存当前堆上的所有对象信息，生成rawheap文件。该文件以二进制形式保存，开发者可从SDK中toolchains路径下获取rawheap_translator工具进行解析，转换成heapsnapshot文件，可通过[DevEco Studio](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-snapshot-basic-operations#section6760173514388)或Chrome浏览器打开查看。
 
 ## 使用指导
 
@@ -11,8 +11,7 @@
 当前工具适配了OHOS、Windows、Linux、MacOS平台，获取方法如下：
 
 - 设备内获取：/bin/rawheap_translator，可在oh设备使用；
-
-- SDK中获取：不同平台工具在SDK路径下toolchains目录获取，可在对应平台下使用。
+- SDK中获取：不同平台工具在SDK路径下sdk/default/openharmony/toolchains目录下获取rawheap_translator.exe，可在对应平台下使用。
 
 ### 环境配置
 

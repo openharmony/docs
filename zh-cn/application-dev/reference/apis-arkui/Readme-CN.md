@@ -24,6 +24,7 @@
     - [@ohos.pluginComponent (PluginComponentManager)](js-apis-plugincomponent.md)
     - [@ohos.promptAction (弹窗)](js-apis-promptAction.md)
     - [@ohos.router (页面路由)(不推荐)](js-apis-router.md)
+    - [@ohos.uiAppearance (用户界面外观)](js-apis-uiappearance.md)
     - [getContext](js-apis-getContext.md)
     - [postCardAction](js-apis-postCardAction.md)
     <!--Del-->
@@ -274,6 +275,7 @@
     - [属性字符串](arkui-ts/ts-universal-styled-string.md)
     - [文本组件公共接口](arkui-ts/ts-text-common.md)
     <!--Del-->
+    - [文本组件公共接口 (系统接口)](arkui-ts/ts-text-common-sys.md)
     - [TextInput (系统接口)](arkui-ts/ts-basic-components-textinput-sys.md)
     - [属性字符串 (系统接口)](arkui-ts/ts-universal-styled-string-sys.md)
     - [RichEditor(系统接口)](arkui-ts/ts-basic-components-richeditor-sys.md)
@@ -498,7 +500,9 @@
     - [ArkUI_AnimateCompleteCallback](_ark_u_i___animate_complete_callback.md)
     - [ArkUI_AttributeItem](_ark_u_i___attribute_item.md)
     - [ArkUI_ColorStop](_ark_u_i___color_stop.md)
+    - [ArkUI_Context](_ark_ui__context.md)
     - [ArkUI_ContextCallback](_ark_u_i___context_callback.md)
+    - [ArkUI_NativeDialog](_ark_ui__native_dialog.md)
     - [ArkUI_ExpectedFrameRateRange](_ark_u_i___expected_frame_rate_range.md)
     - [ArkUI_IntOffset](_ark_u_i___int_offset.md)
     - [ArkUI_IntSize](_ark_u_i___int_size.md)
@@ -510,6 +514,7 @@
     - [ArkUI_NativeGestureAPI_1](_ark_u_i___native_gesture_a_p_i__1.md)
     - [ArkUI_NativeGestureAPI_2](_ark_u_i___native_gesture_a_p_i__2.md)
     - [ArkUI_NativeNodeAPI_1](_ark_u_i___native_node_a_p_i__1.md)
+    - [ArkUI_Node](_ark_ui__node.md)
     - [ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)
     - [ArkUI_NumberValue](union_ark_u_i___number_value.md)
     - [ArkUI_Rect](_ark_u_i___rect.md)
@@ -526,6 +531,7 @@
     - [OH_NativeXComponent_MouseEvent_Callback](_o_h___native_x_component___mouse_event___callback.md)
     - [OH_NativeXComponent_TouchEvent](_o_h___native_x_component___touch_event.md)
     - [OH_NativeXComponent_TouchPoint](_o_h___native_x_component___touch_point.md)
+    - [OH_NativeXComponent_HistoricalPoint](_o_h___native_x_component___historical_point.md)
     - [PictureInPicture_PipConfig](capi-pictureinpicture-pipconfig.md)
     - [WindowManager_Rect](capi-windowmanager-rect.md)
     - [struct](capi-struct.md)
@@ -557,9 +563,7 @@
     - [Canvas错误码](errorcode-canvas.md)
     - [自定义节点错误码](errorcode-node.md)   
     - [UIExtension错误码](errorcode-uiextension.md)
-    <!--Del-->
     - [用户界面外观服务错误码](errorcode-uiappearance.md)
-    <!--DelEnd-->
     - [NodeAdapter错误码](errorcode-nodeadapter.md)
   - 图形图像<!--arkui-graphics-images-arkts-errcode-->
     - [屏幕错误码](errorcode-display.md)

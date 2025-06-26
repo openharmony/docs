@@ -24,7 +24,7 @@ Obtains the storage space (in bytes) of this application. This API uses a promis
 
   | Type                                       | Description                      |
   | ------------------------------------------ | -------------------------- |
-  | Promise&lt;[Bundlestats](#bundlestats9)&gt; | Promise used to return the application storage space obtained.     |
+  | Promise&lt;[BundleStats](#bundlestats9)&gt; | Promise used to return the application storage space obtained.     |
 
 **Error codes**
 

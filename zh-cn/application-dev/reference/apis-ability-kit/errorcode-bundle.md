@@ -948,10 +948,10 @@ The launch want is not found.
 Launch Want不存在。
 
 **可能原因**<br/>
-应用没有Ability，或者没有entities配置为entity.system.home和actions配置为action.system.home的Ability。
+应用没有Ability，或者没有entities配置为entity.system.home和actions配置为ohos.want.action.home的Ability。
 
 **处理步骤**<br/>
-应用需要有entities配置为entity.system.home并且actions配置为action.system.home的Ability。
+应用需要有entities配置为entity.system.home并且actions配置为ohos.want.action.home的Ability。
 
 <!--Del-->
 ## 17700073 由于设备上存在具有相同包名称但不同签名信息的应用程序，导致安装失败
@@ -1163,7 +1163,7 @@ Failed to install the plugin because the host application lacks ohos.permission.
 
 **处理步骤**<br/>
 1. 参考[权限申请指导](../../security/AccessToken/declare-permissions.md)申请[ohos.permission.kernel.SUPPORT_PLUGIN权限](../../security/AccessToken/restricted-permissions.md#ohospermissionkernelsupport_plugin)。
-2. 该权限等级为system_basic，若[应用APL等级](../../security/AccessToken/app-permission-mgmt-overview.md#权限机制)低于system_basic，请[申请受限权限](../../security/AccessToken/declare-permissions-in-acl.md)。
+2. 该权限等级为system_basic，若[应用APL等级](../../security/AccessToken/app-permission-mgmt-overview.md#权限机制中的基本概念)低于system_basic，请[申请受限权限](../../security/AccessToken/declare-permissions-in-acl.md)。
 
 ## 17700089 插件的 pluginDistributionIDs 解析失败
 
@@ -1249,16 +1249,19 @@ Bundle manager service is excepted.
 1. 重启手机后再次尝试请求接口。
 
 2. 重复上述步骤3到5次后依旧请求失败，请查询设备的/data/log/faultlog/faultlogger/目录下是否存在包含foundation字样的crash文件。
-```
-hdc shell
-cd /data/log/faultlog/faultlogger/
-ls -ls
-```
+
+    ```
+    hdc shell
+    cd /data/log/faultlog/faultlogger/
+    ls -ls
+    ```
+
 3. 导出crash文件和日志文件提[在线工单](https://developer.huawei.com/consumer/cn/support/feedback/#/)获取帮助。
-```
-hdc file recv /data/log/faultlog/faultlogger/
-hdc file recv /data/log/hilog/
-```
+
+    ```
+    hdc file recv /data/log/faultlog/faultlogger/
+    hdc file recv /data/log/hilog/
+    ```
 
 <!--Del-->
 ## 17700201 abc文件校验失败
@@ -1363,4 +1366,18 @@ Failed to obtain the dynamic icon.
 bundleName没有动态图标。
 
 **处理步骤**<br/>
-查询动态图标前确保bundleName存在动态图标。<!--DelEnd-->
+查询动态图标前确保bundleName存在动态图标。
+
+## 17700307 由于存在自定义主题，动态图标无法生效
+**错误信息**<br/>
+Dynamic icons cannot take effect due to existing custom themes.
+
+**错误描述**<br/>
+由于存在自定义主题，动态图标无法生效。
+
+**可能原因**<br/>
+用户使用了自定义主题（例如在主题应用中设置了非官方的主题），主题包内包含了相应应用的图标资源。此时接口调用方来使能对应应用的动态图标会失败，抛出17700307错误码。
+
+**处理步骤**<br/>
+1. 检查当前使用的主题是否为自定义主题。<br/>
+2. 可以切换为官方主题后重新调用使能接口。<!--DelEnd-->

@@ -5085,7 +5085,7 @@ VoIP通话信息。
 | --------------- | ------------------- | ---- | -------------- |
 | voipCallId   | string    | 是   | VoIP通话唯一Id。       |
 | userName  | string    | 是   | 用户昵称。 |
-| userProfile       | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)    | 是   | 用户头像图片。  |
+| userProfile       | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)    | 是   | 用户头像图片。  |
 | extensionId      | string     | 是   |  三方应用进程Id。  |
 | abilityName      | string     | 是   |  需加载的三方应用的界面ability。  |
 | voipBundleName    | string     | 是   |  三方应用包名。  |

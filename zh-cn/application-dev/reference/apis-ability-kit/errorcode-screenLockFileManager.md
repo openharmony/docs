@@ -40,7 +40,7 @@ The system ability work abnormally.
 
 **错误信息**
 
-The application is not enabled the data protection under lock screen.
+The application has not enabled the data protection under lock screen.
 
 **可能原因**
 

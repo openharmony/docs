@@ -188,7 +188,7 @@ createMesh(params: SceneResourceParameters, geometry: GeometryDefinition): Promi
 **返回值：**
 | 类型 | 说明 |
 | ---- | ---- |
-| Promise\<[MeshResource](js-apis-inner-scene-resources.md#meshresource)> | Promise对象，返回创建的网格资源对象。 |
+| Promise\<[MeshResource](js-apis-inner-scene-resources.md#meshresource18)> | Promise对象，返回创建的网格资源对象。 |
 
 **示例：**
 ```ts
@@ -280,7 +280,7 @@ createSampler(params:SceneResourceParameters): Promise\<Sampler>
 **返回值：**
 | 类型 | 说明 |
 | ---- | ---- |
-| Promise\<[Sampler](js-apis-inner-scene-resources.md#sampler)> | Promise对象，返回创建的采样器对象。 |
+| Promise\<[Sampler](js-apis-inner-scene-resources.md#sampler20)> | Promise对象，返回创建的采样器对象。 |
 
 **示例：**
 ```ts

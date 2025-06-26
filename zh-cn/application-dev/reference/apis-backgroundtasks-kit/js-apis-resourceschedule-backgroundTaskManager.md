@@ -60,8 +60,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let myReason = 'test requestSuspendDelay';
 try {
     let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
-    // 回调函数。应用申请的短时任务即将超时，通过此函数回调应用，执行一些清理和标注工作，并取消短时任务。
-    // 此处回调与应用的业务功能不耦合，短时任务申请成功后，正常执行应用本身的业务。
+    // 回调函数。应用申请的短时任务即将超时，通过此函数回调应用，执行一些清理和标注工作，并取消短时任务
+    // 此处回调与应用的业务功能不耦合，短时任务申请成功后，正常执行应用本身的业务
         console.info("Request suspension delay will time out.");
     })
     let id = delayInfo.requestId;
@@ -87,7 +87,7 @@ getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;):
 | 参数名       | 类型                          | 必填   | 说明                                       |
 | --------- | --------------------------- | ---- | ---------------------------------------- |
 | requestId | number                      | 是    | 短时任务的请求ID。                               |
-| callback  | AsyncCallback&lt;number&gt; | 是    | 回调函数，返回本次短时任务的剩余时间，单位为毫秒。 |
+| callback  | AsyncCallback&lt;number&gt; | 是    | 回调函数，返回本次短时任务的剩余时间，单位：ms。 |
 
 **错误码**：
 
@@ -138,7 +138,7 @@ getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 
 | 类型                    | 说明                                       |
 | --------------------- | ---------------------------------------- |
-| Promise&lt;number&gt; | Promise对象，返回本次短时任务的剩余时间，单位为毫秒。 |
+| Promise&lt;number&gt; | Promise对象，返回本次短时任务的剩余时间，单位：ms。 |
 
 **错误码**：
 
@@ -570,7 +570,7 @@ startBackgroundRunning(context: Context, bgModes: string[], wantAgent: WantAgent
 
 | 类型             | 说明               |
 | -------------- | ---------------- |
-| Promise\<ContinuousTaskNotification> | 返回[ContinuousTaskNotification](#continuoustasknotification12)类型的Promise对象。 |
+| Promise\<ContinuousTaskNotification> | Promise对象，返回[ContinuousTaskNotification](#continuoustasknotification12)类型对象。 |
 
 **错误码**：
 
@@ -625,7 +625,7 @@ export default class EntryAbility extends UIAbility {
           let list: Array<string> = ["dataTransfer"];
           backgroundTaskManager.startBackgroundRunning(this.context, list, wantAgentObj).then((res: backgroundTaskManager.ContinuousTaskNotification) => {
             console.info("Operation startBackgroundRunning succeeded");
-            // 对于上传下载类的长时任务，应用可以使用res中返回的notificationId来更新通知，比如发送带进度条的模板通知。
+            // 对于上传下载类的长时任务，应用可以使用res中返回的notificationId来更新通知，比如发送带进度条的模板通知
             this.id = res.notificationId;
           }).catch((error: BusinessError) => {
             console.error(`Operation startBackgroundRunning failed. code is ${error.code} message is ${error.message}`);
@@ -645,9 +645,9 @@ export default class EntryAbility extends UIAbility {
     let downLoadTemplate: notificationManager.NotificationTemplate = {
       name: 'downloadTemplate', // 当前只支持downloadTemplate，保持不变
       data: {
-        title: '文件下载：music.mp4', // 必填。
-        fileName: 'senTemplate', // 必填。
-        progressValue: process, // 应用更新进度值，自定义。
+        title: '文件下载：music.mp4', // 必填
+        fileName: 'senTemplate', // 必填
+        progressValue: process, // 应用更新进度值，自定义
       }
     };
     let request: notificationManager.NotificationRequest = {
@@ -660,7 +660,7 @@ export default class EntryAbility extends UIAbility {
           text: "test", // 应用自定义
         }
       },
-      id: this.id, // 必须是申请长时任务返回的id，否则应用更新通知失败。
+      id: this.id, // 必须是申请长时任务返回的id，否则应用更新通知失败
       notificationSlotType: notificationManager.SlotType.LIVE_VIEW, // 实况窗类型，保持不变
       template: downLoadTemplate // 应用需要设置的模版名称
     };
@@ -701,7 +701,7 @@ updateBackgroundRunning(context: Context, bgModes: string[]): Promise&lt;Continu
 
 | 类型             | 说明               |
 | -------------- | ---------------- |
-| Promise\<ContinuousTaskNotification> | 返回[ContinuousTaskNotification](#continuoustasknotification12)类型的Promise对象。 |
+| Promise\<ContinuousTaskNotification> | Promise对象，返回[ContinuousTaskNotification](#continuoustasknotification12)类型对象。 |
 
 **错误码**：
 
@@ -730,7 +730,7 @@ export default class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
         try {
                 try {
-                    // 必须先执行startBackgroundRunning，才能调用updateBackgroundRunning。这里假设已经申请过。
+                    // 必须先执行startBackgroundRunning，才能调用updateBackgroundRunning，这里假设已经申请过
                     let list: Array<string> = ["audioPlayback"];
                     backgroundTaskManager.updateBackgroundRunning(this.context, list).then(() => {
                         console.info("Operation updateBackgroundRunning succeeded");
@@ -1106,7 +1106,7 @@ export default class EntryAbility extends UIAbility {
 | 名称             | 类型     | 必填   | 说明                                       |
 | --------------- | ------ | ---- | ---------------------------------------- |
 | requestId       | number | 是    | 短时任务的请求ID。                               |
-| actualDelayTime | number | 是    | 应用实际申请的短时任务时间，单位为毫秒。<br/> **说明** ：申请时间最长为3分钟，[低电量](../apis-basic-services-kit/js-apis-battery-info.md)时最长为1分钟。 |
+| actualDelayTime | number | 是    | 应用实际申请的短时任务时间，单位：ms。<br/> **说明** ：申请时间最长为3分钟，[低电量](../apis-basic-services-kit/js-apis-battery-info.md)时最长为1分钟。 |
 
 ## TransientTaskInfo<sup>20+</sup>
 

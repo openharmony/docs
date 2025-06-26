@@ -83,7 +83,7 @@
    import { fileIo as fs } from '@kit.CoreFileKit';
 
    let avProfile: media.AVRecorderProfile = {
-     audioBitrate: 100000, // 音频比特率。
+     audioBitrate: 112000, // 音频比特率。
      audioChannels: 2, // 音频声道数。
      audioCodec: media.CodecMimeType.AUDIO_AAC, // 音频编码格式，当前支持ACC，MP3，G711MU。
      audioSampleRate: 48000, // 音频采样率。
@@ -162,7 +162,7 @@ import { fileIo as fs } from '@kit.CoreFileKit';
 export class AudioRecorderDemo extends CustomComponent {
   private avRecorder: media.AVRecorder | undefined = undefined;
   private avProfile: media.AVRecorderProfile = {
-    audioBitrate: 100000, // 音频比特率。
+    audioBitrate: 112000, // 音频比特率。
     audioChannels: 2, // 音频声道数。
     audioCodec: media.CodecMimeType.AUDIO_AAC, // 音频编码格式，当前支持ACC，MP3，G711MU。
     audioSampleRate: 48000, // 音频采样率。

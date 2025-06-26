@@ -33,7 +33,9 @@ class AppServiceExtension extends AppServiceExtensionAbility {
 }
 ```
 
-## AppServiceExtensionContext.startAbility
+## AppServiceExtensionContext
+
+### startAbility
 
 startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 
@@ -119,7 +121,7 @@ export default class MyAppServiceExtensionAbility extends AppServiceExtensionAbi
 }
 ```
 
-## AppServiceExtensionContext.connectServiceExtensionAbility
+### connectServiceExtensionAbility
 
 connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 
@@ -138,7 +140,7 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 返回连接id，客户端可以通过[disconnectServiceExtensionAbility](#appserviceextensioncontextdisconnectserviceextensionability)传入该连接id来断开连接。 |
+| number | 返回连接id，客户端可以通过[disconnectServiceExtensionAbility](#disconnectserviceextensionability)传入该连接id来断开连接。 |
 
 **错误码：**
 
@@ -196,7 +198,7 @@ class AppServiceExtension extends AppServiceExtensionAbility {
 }
 ```
 
-## AppServiceExtensionContext.disconnectServiceExtensionAbility
+### disconnectServiceExtensionAbility
 
 disconnectServiceExtensionAbility(connection: number): Promise&lt;void&gt;
 
@@ -208,7 +210,7 @@ disconnectServiceExtensionAbility(connection: number): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| connection | number | 是 | 在[connectServiceExtensionAbility](#appserviceextensioncontextconnectserviceextensionability)中返回的连接id。 |
+| connection | number | 是 | 在[connectServiceExtensionAbility](#connectserviceextensionability)中返回的连接id。 |
 
 **返回值：**
 
@@ -261,7 +263,7 @@ class AppServiceExtension extends AppServiceExtensionAbility {
 }
 ```
 
-## AppServiceExtensionContext.terminateSelf
+### terminateSelf
 
 terminateSelf(): Promise&lt;void&gt;
 

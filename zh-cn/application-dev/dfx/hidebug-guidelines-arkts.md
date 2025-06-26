@@ -1,6 +1,6 @@
 # 使用HiDebug获取调试信息（ArkTS）
 
-为应用提供多种以供调试、调优的方法。包括但不限于内存、CPU、GPU、GC等相关数据的获取，进程trace、profiler采集，VM堆快照转储等。由于该模块的接口大多比较耗费性能，接口调用较为耗时，且基于HiDebug模块定义，该模块内的接口仅建议在应用调试，调优阶段使用。若需要在其他场景使用时，请认真评估所需调用的接口对应用性能的影响。
+为应用提供多种调试和调优方法。包括但不限于内存、CPU、GPU、GC等相关数据的获取，进程trace、profiler采集，VM堆快照转储等。由于该模块的接口大多比较耗费性能，接口调用较为耗时，且基于HiDebug模块定义，该模块内的接口仅建议在应用调试，调优阶段使用。若需要在其他场景使用时，请认真评估所需调用的接口对应用性能的影响。
 
 ## 接口说明
 
@@ -41,7 +41,7 @@ HiDebug的具体用法可查看API参考[API参考文档](../reference/apis-perf
 
 ## 开发示例
 
-下文将展示如何在应用内增加一个按钮，并单击该按钮以调用hidebug接口。
+下文展示如何在应用内添加按钮，并通过点击该按钮调用hidebug接口。
 
 1. 新建一个工程，选择“Empty Ability”。
 
@@ -49,7 +49,7 @@ HiDebug的具体用法可查看API参考[API参考文档](../reference/apis-perf
 
 3. 在**Project**窗口单击entry &gt; src &gt; main &gt; ets &gt; pages，打开工程中的Index.ets文件。
 
-   新增一个方法调用hidebug接口，本文以hidebug.getSystemCpuUsage()为例，其他接口可参考[API参考文档](../reference/apis-performance-analysis-kit/js-apis-hidebug.md)。
+   添加一个调用hidebug接口的方法，本文以hidebug.getSystemCpuUsage()为例，其他接口可参考[API参考文档](../reference/apis-performance-analysis-kit/js-apis-hidebug.md)。
 
    ```ts
    import { hidebug } from '@kit.PerformanceAnalysisKit';
@@ -86,7 +86,7 @@ HiDebug的具体用法可查看API参考[API参考文档](../reference/apis-perf
    }
    ```
 
-4. 在真机上运行该工程，单击应用/服务界面上的“Hello World”文本。
+4. 在真机上运行工程，点击应用/服务界面中的“Hello World”文本。
 
 5. 在DevEco Studio的底部，切换到“Log”窗口，设置日志的过滤条件为“testTag”。
 

@@ -18,7 +18,7 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [OhosPixelMapInfo](capi-ohospixelmapinfo.md) | - | 用于定义PixelMap的相关信息。 |
+| [OhosPixelMapInfo](capi-image-ohospixelmapinfo.md) | - | 用于定义PixelMap的相关信息。 |
 
 ### 枚举
 
@@ -32,7 +32,7 @@
 
 | 名称 | 描述 |
 | -- | -- |
-| [int32_t OH_GetImageInfo(napi_env env, napi_value value, OhosPixelMapInfo *info)](#oh_getimageinfo) | 获取PixelMap的信息，并记录信息到[OhosPixelMapInfo](capi-ohospixelmapinfo.md)结构中。 |
+| [int32_t OH_GetImageInfo(napi_env env, napi_value value, OhosPixelMapInfo *info)](#oh_getimageinfo) | 获取PixelMap的信息，并记录信息到[OhosPixelMapInfo](capi-image-ohospixelmapinfo.md)结构中。 |
 | [int32_t OH_AccessPixels(napi_env env, napi_value value, void** addrPtr)](#oh_accesspixels) | 获取PixelMap对象数据的内存地址，并锁定该内存。<br>函数执行成功后，\*addrPtr就是获取的待访问的内存地址。访问操作完成后，必须要使用[OH_UnAccessPixels](#oh_unaccesspixels)来释放锁，否则的话资源无法被释放。待解锁后，内存地址就不可以再被访问和操作。 |
 | [int32_t OH_UnAccessPixels(napi_env env, napi_value value)](#oh_unaccesspixels) | 释放PixelMap对象数据的内存锁，用于匹配方法[OH_AccessPixels](#oh_accesspixels)。 |
 
@@ -105,7 +105,7 @@ int32_t OH_GetImageInfo(napi_env env, napi_value value, OhosPixelMapInfo *info)
 
 **描述**
 
-获取PixelMap的信息，并记录信息到[OhosPixelMapInfo](capi-ohospixelmapinfo.md)结构中。
+获取PixelMap的信息，并记录信息到[OhosPixelMapInfo](capi-image-ohospixelmapinfo.md)结构中。
 
 **起始版本：** 8
 
@@ -118,7 +118,7 @@ int32_t OH_GetImageInfo(napi_env env, napi_value value, OhosPixelMapInfo *info)
 | -- | -- |
 | napi_env env | napi的环境指针。 |
 | napi_value value | 应用层的PixelMap对象。 |
-| [OhosPixelMapInfo](capi-ohospixelmapinfo.md) *info | 用于保存信息的指针对象。 |
+| [OhosPixelMapInfo](capi-image-ohospixelmapinfo.md) *info | 用于保存信息的指针对象。 |
 
 **返回：**
 

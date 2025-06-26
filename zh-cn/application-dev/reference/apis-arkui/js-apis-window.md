@@ -1,4 +1,4 @@
-# @ohos.window (窗口)
+# (已废弃)(不再使用)@ohos.window (窗口)
 
 窗口提供管理窗口的一些基础能力，包括对当前窗口的创建、销毁、各属性设置，以及对各窗口间的管理调度。
 
@@ -10,6 +10,8 @@
 > **说明：**
 >
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+> 本文件已废弃，请勿再修改或链接到此页面。最新内容已按规则拆分，具体可见[拆分后的文件](arkts-apis-window.md)。
 
 ## 导入模块
 
@@ -7130,7 +7132,7 @@ snapshot(callback: AsyncCallback&lt;image.PixelMap&gt;): void
 
 | 参数名      | 类型                      | 必填 | 说明                 |
 | ----------- | ------------------------- | ---- | -------------------- |
-| callback    | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 是   | 回调函数。  |
+| callback    | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | 是   | 回调函数。  |
 
 **错误码：**
 
@@ -7171,7 +7173,7 @@ snapshot(): Promise&lt;image.PixelMap&gt;
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Promise对象。返回当前窗口截图。 |
+| Promise&lt;[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | Promise对象。返回当前窗口截图。 |
 
 **错误码：**
 
@@ -7210,7 +7212,7 @@ snapshotIgnorePrivacy(): Promise&lt;image.PixelMap&gt;
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Promise对象。返回当前窗口截图。 |
+| Promise&lt;[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | Promise对象。返回当前窗口截图。 |
 
 **错误码：**
 

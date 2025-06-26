@@ -463,6 +463,8 @@ requestInStream(url: string, callback: AsyncCallback\<number\>): void
 
 **需要权限**：ohos.permission.INTERNET
 
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -536,6 +538,8 @@ requestInStream(url: string, options: HttpRequestOptions, callback: AsyncCallbac
 根据URL地址和相关配置项，发起HTTP网络请求并返回流式响应，使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.INTERNET
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -633,6 +637,8 @@ requestInStream(url: string, options? : HttpRequestOptions): Promise\<number\>
 根据URL地址，发起HTTP网络请求并返回流式响应，使用Promise方式作为异步方法。
 
 **需要权限**：ohos.permission.INTERNET
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -839,6 +845,8 @@ once(type: "headersReceive", callback: Callback\<Object\>): void
 
 订阅HTTP Response Header 事件，只能触发一次。触发之后，订阅器就会被移除。使用callback方式作为异步方法。
 
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -865,6 +873,8 @@ on(type: "dataReceive", callback: Callback\<ArrayBuffer\>): void
 
 订阅HTTP流式响应数据接收事件。
 
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -872,7 +882,7 @@ on(type: "dataReceive", callback: Callback\<ArrayBuffer\>): void
 | 参数名   | 类型                    | 必填 | 说明                              |
 | -------- | ----------------------- | ---- | --------------------------------- |
 | type     | string                  | 是   | 订阅的事件类型，'dataReceive'。 |
-| callback | AsyncCallback\<ArrayBuffer\> | 是   | 回调函数。当订阅成功时，error为undefined，data为获取到的HTTP流式数据接收数据，类型为ArrayBuffer；否则为错误对象。 |
+| callback | Callback\<ArrayBuffer\> | 是   | 回调函数。当订阅成功时，error为undefined，data为获取到的HTTP流式数据接收数据，类型为ArrayBuffer；否则为错误对象。 |
 
 **示例：**
 
@@ -891,6 +901,8 @@ httpRequest.off("dataReceive");
 off(type: "dataReceive", callback?: Callback\<ArrayBuffer\>): void
 
 取消订阅HTTP流式响应数据接收事件。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -919,6 +931,8 @@ on(type: "dataEnd", callback: Callback\<void\>): void
 
 订阅HTTP流式响应数据接收完毕事件。
 
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -926,7 +940,7 @@ on(type: "dataEnd", callback: Callback\<void\>): void
 | 参数名   | 类型                    | 必填 | 说明                              |
 | -------- | ----------------------- | ---- | --------------------------------- |
 | type     | string                  | 是   | 订阅的事件类型，'dataEnd'。 |
-| callback | AsyncCallback\<void\>   | 是   | 回调函数。当订阅成功时，err为undefined，否则为错误对象。                        |
+| callback | Callback\<void\>   | 是   | 回调函数。当订阅成功时，err为undefined，否则为错误对象。                        |
 
 **示例：**
 
@@ -945,6 +959,8 @@ httpRequest.off("dataEnd");
 off(type: "dataEnd", callback?: Callback\<void\>): void
 
 取消订阅HTTP流式响应数据接收完毕事件。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -973,6 +989,8 @@ on(type: 'dataReceiveProgress', callback: Callback\<DataReceiveProgressInfo\>): 
 
 订阅HTTP流式响应数据接收进度事件。
 
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -980,7 +998,7 @@ on(type: 'dataReceiveProgress', callback: Callback\<DataReceiveProgressInfo\>): 
 | 参数名   | 类型                    | 必填 | 说明                              |
 | -------- | ----------------------- | ---- | --------------------------------- |
 | type     | string                  | 是   | 订阅的事件类型，'dataReceiveProgress'。 |
-| callback | AsyncCallback\<[DataReceiveProgressInfo](#datareceiveprogressinfo11)\>   | 是   | 回调函数。当订阅成功时，回调内容是[DataReceiveProgressInfo](#datareceiveprogressinfo11)，订阅失败时为undefined。 |
+| callback | Callback\<[DataReceiveProgressInfo](#datareceiveprogressinfo11)\>   | 是   | 回调函数。当订阅成功时，回调内容是[DataReceiveProgressInfo](#datareceiveprogressinfo11)，订阅失败时为undefined。 |
 
 **示例：**
 
@@ -999,6 +1017,8 @@ httpRequest.off("dataReceiveProgress");
 off(type: 'dataReceiveProgress', callback?: Callback\<DataReceiveProgressInfo\>): void
 
 取消订阅HTTP流式响应数据接收进度事件。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -1036,7 +1056,7 @@ on(type: 'dataSendProgress', callback: Callback\<DataSendProgressInfo\>): void
 | 参数名   | 类型                    | 必填 | 说明                              |
 | -------- | ----------------------- | ---- | --------------------------------- |
 | type     | string                  | 是   | 订阅的事件类型，'dataSendProgress'。 |
-| callback | AsyncCallback\<[DataSendProgressInfo](#datasendprogressinfo11)\>   | 是   | 回调函数。当订阅成功时，回调内容是[DataSendProgressInfo](#datasendprogressinfo11)，订阅失败时为undefined。|
+| callback | Callback\<[DataSendProgressInfo](#datasendprogressinfo11)\>   | 是   | 回调函数。当订阅成功时，回调内容是[DataSendProgressInfo](#datasendprogressinfo11)，订阅失败时为undefined。|
 
 **示例：**
 
@@ -1225,6 +1245,8 @@ request方法回调函数的返回值类型。
 ## DataReceiveProgressInfo<sup>11+</sup>
 
 数据接收信息。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -1562,21 +1584,6 @@ type HttpProxy = connection.HttpProxy
 | DEFAULT | CURL_IPRESOLVE_WHATEVER | 设置此选项后，系统将自行选择目标域名的IPv4地址或IPv6地址。     |
 | ONLY_V4 | CURL_IPRESOLVE_V4 | 设置此选项后，系统仅解析目标域名的IPv4地址，忽略IPv6地址。     |
 | ONLY_V6 | CURL_IPRESOLVE_V6 | 设置此选项后，系统仅解析目标域名的IPv6地址，忽略IPv4地址。     |
-
-## RemoteValidation<sup>18+</sup>
-
-type RemoteValidation = 'system' | 'skip'
-
-证书颁发机构（CA），用于验证远程服务器的身份，可以通过RemoteValidation配置使用系统CA或跳过验证远程服务器CA。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力**：SystemCapability.Communication.NetStack
-
-|       类型       | 说明            |
-| ---------------- |---------------|
-| 'system' | 表示使用系统CA配置验证。 |
-| 'skip' | 跳过验证远程服务器CA。  |
 
 ## Credential<sup>18+</sup>
 

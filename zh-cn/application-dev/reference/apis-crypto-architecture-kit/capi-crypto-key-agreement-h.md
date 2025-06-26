@@ -20,7 +20,7 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [OH_CryptoKeyAgreement](capi-oh-cryptokeyagreement.md) | OH_CryptoKeyAgreement | 定义密钥协商结构。 |
+| [OH_CryptoKeyAgreement](capi-cryptokeyagreementapi-oh-cryptokeyagreement.md) | OH_CryptoKeyAgreement | 定义密钥协商结构。 |
 
 ### 函数
 
@@ -50,7 +50,7 @@ OH_Crypto_ErrCode OH_CryptoKeyAgreement_Create(const char *algoName, OH_CryptoKe
 | 参数项 | 描述 |
 | -- | -- |
 | const char *algoName | 用于生成密钥协商实例的算法名称。<br>例如"ECC"、"X25519"。 |
-| [OH_CryptoKeyAgreement](capi-oh-cryptokeyagreement.md) **ctx |密钥协商实例。 |
+| [OH_CryptoKeyAgreement](capi-cryptokeyagreementapi-oh-cryptokeyagreement.md) **ctx |密钥协商实例。 |
 
 **返回：**
 
@@ -75,10 +75,10 @@ OH_Crypto_ErrCode OH_CryptoKeyAgreement_GenerateSecret(OH_CryptoKeyAgreement *ct
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoKeyAgreement](capi-oh-cryptokeyagreement.md) *ctx |密钥协商实例。 |
-| [OH_CryptoPrivKey](capi-oh-cryptoprivkey.md) *privkey | 私钥。 |
-| [OH_CryptoPubKey](capi-oh-cryptopubkey.md) *pubkey | 公钥。 |
-| [Crypto_DataBlob](capi-crypto-datablob.md) *secret | 秘密值。 |
+| [OH_CryptoKeyAgreement](capi-cryptokeyagreementapi-oh-cryptokeyagreement.md) *ctx |密钥协商实例。 |
+| [OH_CryptoPrivKey](capi-cryptoasymkeyapi-oh-cryptoprivkey.md) *privkey | 私钥。 |
+| [OH_CryptoPubKey](capi-cryptoasymkeyapi-oh-cryptopubkey.md) *pubkey | 公钥。 |
+| [Crypto_DataBlob](capi-cryptocommonapi-crypto-datablob.md) *secret | 秘密值。 |
 
 **返回：**
 
@@ -103,6 +103,6 @@ void OH_CryptoKeyAgreement_Destroy(OH_CryptoKeyAgreement *ctx)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoKeyAgreement](capi-oh-cryptokeyagreement.md) *ctx |密钥协商实例。 |
+| [OH_CryptoKeyAgreement](capi-cryptokeyagreementapi-oh-cryptokeyagreement.md) *ctx |密钥协商实例。 |
 
 

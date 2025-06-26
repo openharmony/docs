@@ -1,4 +1,4 @@
-# 基于标准化数据结构的控件
+# 基于标准化数据结构的控件 (ArkTS)
 
 ## 场景介绍
 
@@ -21,7 +21,6 @@
 ```ts
 // 1. 导入需要的模块
 import { ContentFormCard, FormType, uniformDataStruct } from '@kit.ArkData'
-import { common } from '@kit.AbilityKit';
 
 @Entry
 @Component
@@ -38,7 +37,10 @@ struct Index {
   }
 
   async initData() {
-    let context = getContext(this) as common.UIAbilityContext;
+    let context = this.getUIContext().getHostContext();
+    if (!context) {
+      return;
+    }
     try {
       let appIcon = await context.resourceManager.getMediaContent($r('app.media.startIcon').id);
       let thumbImage = await context.resourceManager.getMediaContent($r('app.media.foreground').id);

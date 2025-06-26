@@ -29,7 +29,7 @@ A shared element transition is a transition animation applied to a component tha
 | Name             | Type     | Mandatory      | Description                                                     |
 | ----------------- | -------------|-------------- | --------------------------------------------------------------|
 | duration          |     number   |  No          | Animation duration.<br>Default value: **1000**<br>Unit: ms<br>Value range: [0, +∞)|
-| curve             |      [Curve](ts-appendix-enums.md#curve) \| string \| [ICurve](../js-apis-curve.md#icurve9)<sup>10+</sup>  | No| Animation curve.<br>You are advised to specify the curve using the **Curve** or** ICurve** type.<br>For the string type, this parameter indicates an animation interpolation curve. For available values, see the **curve** parameter in [AnimateParam](./ts-explicit-animation.md#animateparam).<br>Default value: **Curve.Linear**|
+| curve             |      [Curve](ts-appendix-enums.md#curve) \| string \| [ICurve](../js-apis-curve.md#icurve9)<sup>10+</sup>  | No| Animation curve.<br>You are advised to specify the curve using the **Curve** or **ICurve** type.<br>For the string type, this parameter indicates an animation interpolation curve. For available values, see the **curve** parameter in [AnimateParam](./ts-explicit-animation.md#animateparam).<br>Default value: **Curve.Linear**|
 | delay          |     number   |  No          | Delay of animation playback.<br>Default value: **0**<br>Unit: ms|
 | motionPath          | [MotionPathOptions](./ts-motion-path-animation.md)  |  No          | Motion path.|
 | zIndex          |     number   |  No             | Z-axis.<br>Value range: (-∞, +∞)|

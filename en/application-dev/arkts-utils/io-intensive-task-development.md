@@ -20,6 +20,7 @@ The performance focus of I/O intensive tasks is not the CPU processing capabilit
       fileIo.close(file);
     }
     ```
+    <!-- @[define_concurrent_function](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/managers/write.ets) -->
 
 	```ts
     // Index.ets
@@ -47,6 +48,7 @@ The performance focus of I/O intensive tasks is not the CPU processing capabilit
       return true;
     }
 	```
+  <!-- @[define_concurrent_function](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/managers/IoIntensiveTaskDevelopment.ets) -->
 
 2. Use **TaskPool** to execute the concurrent function with frequent intensive I/O operations. Specifically, call [execute()](../reference/apis-arkts/js-apis-taskpool.md#taskpoolexecute) to execute the tasks and process the scheduling result in the callback. For details about how to obtain **filePath1** and **filePath2** in the example, see [Obtaining Application File Paths](../application-models/application-context-stage.md#obtaining-application-file-paths). When using context in TaskPool, it must be prepared outside the concurrent function and passed as an argument.
 
@@ -63,7 +65,7 @@ The performance focus of I/O intensive tasks is not the CPU processing capabilit
               .fontSize(50)
               .fontWeight(FontWeight.Bold)
               .onClick(() => {
-                let context = getContext() as common.UIAbilityContext;
+                let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
     
                 // Use TaskPool to execute the concurrent function with frequent I/O operations.
                 // In the case of a large array, the distribution of I/O intensive tasks can block the UI main thread. Therefore, multithreading is necessary.
@@ -79,3 +81,4 @@ The performance focus of I/O intensive tasks is not the CPU processing capabilit
       }
     }
     ```
+    <!-- @[taskpool_execute_concurrent_function](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/ApplicationMultithreading/entry/src/main/ets/managers/IoIntensiveTaskDevelopment.ets) -->

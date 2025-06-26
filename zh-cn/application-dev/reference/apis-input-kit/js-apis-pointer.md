@@ -39,16 +39,29 @@ setPointerVisible(visible: boolean, callback: AsyncCallback&lt;void&gt;): void
 **示例**：
 
 ```js
-try {
-  pointer.setPointerVisible(true, (error: Error) => {
-    if (error) {
-      console.error(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-      return;
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.setPointerVisible(true, (error: Error) => {
+              if (error) {
+                console.error(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+                return;
+              }
+              console.log(`Set pointer visible success`);
+            });
+          } catch (error) {
+            console.error(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
     }
-    console.log(`Set pointer visible success`);
-  });
-} catch (error) {
-  console.error(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  }
 }
 ```
 
@@ -84,12 +97,25 @@ setPointerVisible(visible: boolean): Promise&lt;void&gt;
 **示例**：
 
 ```js
-try {
-  pointer.setPointerVisible(false).then(() => {
-    console.log(`Set pointer visible success`);
-  });
-} catch (error) {
-  console.error(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.setPointerVisible(false).then(() => {
+              console.log(`Set pointer visible success`);
+            });
+          } catch (error) {
+            console.error(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -118,11 +144,24 @@ setPointerVisibleSync(visible: boolean): void
 **示例**：
 
 ```js
-try {
-  pointer.setPointerVisibleSync(false);
-  console.log(`Set pointer visible success`);
-} catch (error) {
-  console.error(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.setPointerVisibleSync(false);
+            console.log(`Set pointer visible success`);
+          } catch (error) {
+            console.error(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -151,16 +190,29 @@ isPointerVisible(callback: AsyncCallback&lt;boolean&gt;): void
 **示例**：
 
 ```js
-try {
-  pointer.isPointerVisible((error: Error, visible: boolean) => {
-    if (error) {
-      console.error(`Get pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-      return;
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.isPointerVisible((error: Error, visible: boolean) => {
+              if (error) {
+                console.error(`Get pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+                return;
+              }
+              console.log(`Get pointer visible success, visible: ${JSON.stringify(visible)}`);
+            });
+          } catch (error) {
+            console.error(`Get pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
     }
-    console.log(`Get pointer visible success, visible: ${JSON.stringify(visible)}`);
-  });
-} catch (error) {
-  console.error(`Get pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  }
 }
 ```
 
@@ -181,12 +233,25 @@ isPointerVisible(): Promise&lt;boolean&gt;
 **示例**：
 
 ```js
-try {
-  pointer.isPointerVisible().then((visible: boolean) => {
-    console.log(`Get pointer visible success, visible: ${JSON.stringify(visible)}`);
-  });
-} catch (error) {
-  console.error(`Get pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.isPointerVisible().then((visible: boolean) => {
+              console.log(`Get pointer visible success, visible: ${JSON.stringify(visible)}`);
+            });
+          } catch (error) {
+            console.error(`Get pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -207,11 +272,24 @@ isPointerVisibleSync(): boolean
 **示例**：
 
 ```js
-try {
-  let visible: boolean = pointer.isPointerVisibleSync();
-  console.log(`Get pointer visible success, visible: ${JSON.stringify(visible)}`);
-} catch (error) {
-  console.error(`Get pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            let visible: boolean = pointer.isPointerVisibleSync();
+            console.log(`Get pointer visible success, visible: ${JSON.stringify(visible)}`);
+          } catch (error) {
+            console.error(`Get pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -241,27 +319,39 @@ getPointerStyle(windowId: number, callback: AsyncCallback&lt;PointerStyle&gt;): 
 **示例**：
 
 ```js
+import { pointer } from '@kit.InputKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { window } from '@kit.ArkUI';
 
-window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
-  if (error.code) {
-    console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
-    return;
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
+            if (error.code) {
+              console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
+              return;
+            }
+            let windowId = win.getWindowProperties().id;
+            if (windowId < 0) {
+              console.log(`Invalid windowId`);
+              return;
+            }
+            try {
+              pointer.getPointerStyle(windowId, (error: Error, style: pointer.PointerStyle) => {
+                console.log(`Get pointer style success, style: ${JSON.stringify(style)}`);
+              });
+            } catch (error) {
+              console.error(`Get pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+            }
+          });
+        })
+    }
   }
-  let windowId = win.getWindowProperties().id;
-  if (windowId < 0) {
-    console.log(`Invalid windowId`);
-    return;
-  }
-  try {
-    pointer.getPointerStyle(windowId, (error: Error, style: pointer.PointerStyle) => {
-      console.log(`Get pointer style success, style: ${JSON.stringify(style)}`);
-    });
-  } catch (error) {
-    console.error(`Get pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-  }
-});
+}
 ```
 
 ## pointer.getPointerStyle
@@ -295,27 +385,39 @@ getPointerStyle(windowId: number): Promise&lt;PointerStyle&gt;
 **示例**：
 
 ```js
+import { pointer } from '@kit.InputKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { window } from '@kit.ArkUI';
 
-window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
-  if (error.code) {
-    console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
-    return;
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
+            if (error.code) {
+              console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
+              return;
+            }
+            let windowId = win.getWindowProperties().id;
+            if (windowId < 0) {
+              console.log(`Invalid windowId`);
+              return;
+            }
+            try {
+              pointer.getPointerStyle(windowId).then((style: pointer.PointerStyle) => {
+                console.log(`Get pointer style success, style: ${JSON.stringify(style)}`);
+              });
+            } catch (error) {
+              console.error(`Get pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+            }
+          });
+        })
+    }
   }
-  let windowId = win.getWindowProperties().id;
-  if (windowId < 0) {
-    console.log(`Invalid windowId`);
-    return;
-  }
-  try {
-    pointer.getPointerStyle(windowId).then((style: pointer.PointerStyle) => {
-      console.log(`Get pointer style success, style: ${JSON.stringify(style)}`);
-    });
-  } catch (error) {
-    console.error(`Get pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-  }
-});
+}
 ```
 
 ## pointer.getPointerStyleSync<sup>10+</sup>
@@ -351,12 +453,23 @@ getPointerStyleSync(windowId: number): PointerStyle
 ```js
 import { pointer } from '@kit.InputKit';
 
-let windowId = -1;
-try {
-  let style: pointer.PointerStyle = pointer.getPointerStyleSync(windowId);
-  console.log(`Get pointer style success, style: ${JSON.stringify(style)}`);
-} catch (error) {
-  console.error(`Get pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          let windowId = -1;
+          try {
+            let style: pointer.PointerStyle = pointer.getPointerStyleSync(windowId);
+            console.log(`Get pointer style success, style: ${JSON.stringify(style)}`);
+          } catch (error) {
+            console.error(`Get pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -387,27 +500,39 @@ setPointerStyle(windowId: number, pointerStyle: PointerStyle, callback: AsyncCal
 **示例**：
 
 ```js
+import { pointer } from '@kit.InputKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { window } from '@kit.ArkUI';
 
-window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
-  if (error.code) {
-    console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
-    return;
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
+            if (error.code) {
+              console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
+              return;
+            }
+            let windowId = win.getWindowProperties().id;
+            if (windowId < 0) {
+              console.log(`Invalid windowId`);
+              return;
+            }
+            try {
+              pointer.setPointerStyle(windowId, pointer.PointerStyle.CROSS, error => {
+                console.log(`Set pointer style success`);
+              });
+            } catch (error) {
+              console.error(`Set pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+            }
+          });
+        })
+    }
   }
-  let windowId = win.getWindowProperties().id;
-  if (windowId < 0) {
-    console.log(`Invalid windowId`);
-    return;
-  }
-  try {
-    pointer.setPointerStyle(windowId, pointer.PointerStyle.CROSS, error => {
-      console.log(`Set pointer style success`);
-    });
-  } catch (error) {
-    console.error(`Set pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-  }
-});
+}
 ```
 ## pointer.setPointerStyle
 
@@ -441,27 +566,39 @@ setPointerStyle(windowId: number, pointerStyle: PointerStyle): Promise&lt;void&g
 **示例**：
 
 ```js
+import { pointer } from '@kit.InputKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { window } from '@kit.ArkUI';
 
-window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
-  if (error.code) {
-    console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
-    return;
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
+            if (error.code) {
+              console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
+              return;
+            }
+            let windowId = win.getWindowProperties().id;
+            if (windowId < 0) {
+              console.log(`Invalid windowId`);
+              return;
+            }
+            try {
+              pointer.setPointerStyle(windowId, pointer.PointerStyle.CROSS).then(() => {
+                console.log(`Set pointer style success`);
+              });
+            } catch (error) {
+              console.error(`Set pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+            }
+          });
+        })
+    }
   }
-  let windowId = win.getWindowProperties().id;
-  if (windowId < 0) {
-    console.log(`Invalid windowId`);
-    return;
-  }
-  try {
-    pointer.setPointerStyle(windowId, pointer.PointerStyle.CROSS).then(() => {
-      console.log(`Set pointer style success`);
-    });
-  } catch (error) {
-    console.error(`Set pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-  }
-});
+}
 ```
 
 ## pointer.setPointerStyleSync<sup>10+</sup>
@@ -489,26 +626,38 @@ setPointerStyleSync(windowId: number, pointerStyle: PointerStyle): void
 
 **示例**：
 ```js
+import { pointer } from '@kit.InputKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { window } from '@kit.ArkUI';
 
-window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
-  if (error.code) {
-    console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
-    return;
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
+            if (error.code) {
+              console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
+              return;
+            }
+            let windowId = win.getWindowProperties().id;
+            if (windowId < 0) {
+              console.log(`Invalid windowId`);
+              return;
+            }
+            try {
+              pointer.setPointerStyleSync(windowId, pointer.PointerStyle.CROSS);
+              console.log(`Set pointer style success`);
+            } catch (error) {
+              console.error(`getPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+            }
+          });
+        })
+    }
   }
-  let windowId = win.getWindowProperties().id;
-  if (windowId < 0) {
-    console.log(`Invalid windowId`);
-    return;
-  }
-  try {
-    pointer.setPointerStyleSync(windowId, pointer.PointerStyle.CROSS);
-    console.log(`Set pointer style success`);
-  } catch (error) {
-    console.error(`getPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-  }
-});
+}
 ```
 
 ## PrimaryButton<sup>10+</sup>
@@ -603,7 +752,7 @@ setCustomCursor(windowId: number, pixelMap: image.PixelMap, focusX?: number, foc
 | 参数名    | 类型     | 必填   | 说明                                  |
 | ----- | ------ | ---- | ----------------------------------- |
 | windowId  | number  | 是    | 窗口id。                          |
-| pixelMap  | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是    | 自定义光标资源。 |
+| pixelMap  | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 是    | 自定义光标资源。 |
 | focusX  | number | 否    | 自定义光标焦点x，取值范围：大于等于0，默认为0。 |
 | focusY  | number | 否    | 自定义光标焦点y，取值范围：大于等于0，默认为0。 |
 
@@ -624,28 +773,40 @@ setCustomCursor(windowId: number, pixelMap: image.PixelMap, focusX?: number, foc
 **示例**：
 
 ```js
+import { pointer } from '@kit.InputKit';
 import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { window } from '@kit.ArkUI';
 
-// app_icon为示例资源，请开发者根据实际需求配置资源文件。
-this.getUIContext()?.getHostContext()?.resourceManager.getMediaContent($r("app.media.app_icon")).then((svgFileData) => {
-  const svgBuffer: ArrayBuffer = svgFileData.buffer.slice(0);
-  let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
-  let svgDecodingOptions: image.DecodingOptions = {desiredSize: { width: 50, height:50 }};
-  svgImagesource.createPixelMap(svgDecodingOptions).then((pixelMap) => {
-    window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
-      let windowId = win.getWindowProperties().id;
-        try {
-          pointer.setCustomCursor(windowId, pixelMap).then(() => {
-            console.log(`setCustomCursor success`);
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          // app_icon为示例资源，请开发者根据实际需求配置资源文件。
+          this.getUIContext()?.getHostContext()?.resourceManager.getMediaContent($r("app.media.app_icon")).then((svgFileData) => {
+            const svgBuffer: ArrayBuffer = svgFileData.buffer.slice(0);
+            let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
+            let svgDecodingOptions: image.DecodingOptions = {desiredSize: { width: 50, height:50 }};
+            svgImagesource.createPixelMap(svgDecodingOptions).then((pixelMap) => {
+              window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
+                let windowId = win.getWindowProperties().id;
+                try {
+                  pointer.setCustomCursor(windowId, pixelMap).then(() => {
+                    console.log(`setCustomCursor success`);
+                  });
+                } catch (error) {
+                  console.error(`setCustomCursor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+                }
+              });
+            });
           });
-        } catch (error) {
-          console.error(`setCustomCursor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-        }
-      });
-  });
-});
+        })
+    }
+  }
+}
 ```
 ## CustomCursor<sup>15+</sup>
 
@@ -654,7 +815,7 @@ this.getUIContext()?.getHostContext()?.resourceManager.getMediaContent($r("app.m
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 | 名称     | 类型     | 只读     | 可选     | 说明     |
 | -------- | ------- | -------- | -------- | ------- |
-| pixelMap  | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 否   | 否   | 自定义光标。最小限制为资源图本身的最小限制。最大限制为256 x 256px。 |
+| pixelMap  | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 否   | 否   | 自定义光标。最小限制为资源图本身的最小限制。最大限制为256 x 256px。 |
 | focusX  | number | 否   | 是   | 自定义光标焦点的水平坐标。该坐标受自定义光标大小的限制。最小值为0，最大值为资源图的宽度最大值，该参数缺省时默认为0。 |
 | focusY  | number | 否   | 是   | 自定义光标焦点的垂直坐标。该坐标受自定义光标大小的限制。最小值为0，最大值为资源图的高度最大值，该参数缺省时默认为0。 |
 
@@ -703,28 +864,40 @@ setCustomCursor(windowId: number, cursor: CustomCursor, config: CursorConfig): P
 **示例**：
 
 ```js
+import { pointer } from '@kit.InputKit';
 import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { window } from '@kit.ArkUI';
 
-// app_icon为示例资源，请开发者根据实际需求配置资源文件。
-this.getUIContext()?.getHostContext()?.resourceManager.getMediaContent($r("app.media.app_icon")).then((svgFileData) => {
-  const svgBuffer: ArrayBuffer = svgFileData.buffer.slice(0);
-  let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
-  let svgDecodingOptions: image.DecodingOptions = {desiredSize: { width: 50, height:50 }};
-  svgImagesource.createPixelMap(svgDecodingOptions).then((pixelMap) => {
-    window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
-      let windowId = win.getWindowProperties().id;
-        try {
-          pointer.setCustomCursor(windowId, {pixelMap: pixelMap, focusX: 25, focusY: 25}, {followSystem: false}).then(() => {
-            console.log(`setCustomCursor success`);
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          // app_icon为示例资源，请开发者根据实际需求配置资源文件。
+          this.getUIContext()?.getHostContext()?.resourceManager.getMediaContent($r("app.media.app_icon")).then((svgFileData) => {
+            const svgBuffer: ArrayBuffer = svgFileData.buffer.slice(0);
+            let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
+            let svgDecodingOptions: image.DecodingOptions = {desiredSize: { width: 50, height:50 }};
+            svgImagesource.createPixelMap(svgDecodingOptions).then((pixelMap) => {
+              window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
+                let windowId = win.getWindowProperties().id;
+                try {
+                  pointer.setCustomCursor(windowId, {pixelMap: pixelMap, focusX: 25, focusY: 25}, {followSystem: false}).then(() => {
+                    console.log(`setCustomCursor success`);
+                  });
+                } catch (error) {
+                  console.error(`setCustomCursor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+                }
+              });
+            });
           });
-        } catch (error) {
-          console.error(`setCustomCursor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-        }
-      });
-  });
-});
+        })
+    }
+  }
+}
 ```
 
 ## pointer.setCustomCursorSync<sup>11+</sup>
@@ -740,7 +913,7 @@ setCustomCursorSync(windowId: number, pixelMap: image.PixelMap, focusX?: number,
 | 参数名    | 类型     | 必填   | 说明                                  |
 | ----- | ------ | ---- | ----------------------------------- |
 | windowId  | number  | 是    | 窗口id。取值为大于0的整数。                          |
-| pixelMap  | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是    | 自定义光标资源。 |
+| pixelMap  | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 是    | 自定义光标资源。 |
 | focusX  | number | 否    | 自定义光标焦点x，取值范围：大于等于0，默认为0。 |
 | focusY  | number | 否    | 自定义光标焦点y，取值范围：大于等于0，默认为0。 |
 
@@ -755,25 +928,37 @@ setCustomCursorSync(windowId: number, pixelMap: image.PixelMap, focusX?: number,
 **示例**：
 
 ```js
+import { pointer } from '@kit.InputKit';
 import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { window } from '@kit.ArkUI';
 
-// app_icon为示例资源，请开发者根据实际需求配置资源文件。
-const svgFileData = this.getUIContext()?.getHostContext()?.resourceManager.getMediaContent($r("app.media.app_icon")).then((svgFileData) => {
-  const svgBuffer: ArrayBuffer = svgFileData.buffer.slice(0);
-  let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
-  let svgDecodingOptions: image.DecodingOptions = {desiredSize: { width: 50, height:50 }};
-  svgImagesource.createPixelMap(svgDecodingOptions).then((pixelMap) => {
-    window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
-      let windowId = win.getWindowProperties().id;
-        try {
-          pointer.setCustomCursorSync(windowId, pixelMap, 25, 25);
-          console.log(`setCustomCursorSync success`);
-        } catch (error) {
-          console.error(`setCustomCursorSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-        }
-    });
-  });
-});
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          // app_icon为示例资源，请开发者根据实际需求配置资源文件。
+          const svgFileData = this.getUIContext()?.getHostContext()?.resourceManager.getMediaContent($r("app.media.app_icon")).then((svgFileData) => {
+            const svgBuffer: ArrayBuffer = svgFileData.buffer.slice(0);
+            let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
+            let svgDecodingOptions: image.DecodingOptions = {desiredSize: { width: 50, height:50 }};
+            svgImagesource.createPixelMap(svgDecodingOptions).then((pixelMap) => {
+              window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, win: window.Window) => {
+                let windowId = win.getWindowProperties().id;
+                try {
+                  pointer.setCustomCursorSync(windowId, pixelMap, 25, 25);
+                  console.log(`setCustomCursorSync success`);
+                } catch (error) {
+                  console.error(`setCustomCursorSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+                }
+              });
+            });
+          });
+        })
+    }
+  }
+}
 ```

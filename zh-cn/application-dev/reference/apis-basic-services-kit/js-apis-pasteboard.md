@@ -40,7 +40,7 @@ type ValueType = string | image.PixelMap | Want | ArrayBuffer
 | 类型 | 说明 |
 | -------- | -------- |
 | string | 表示string的类型。 |
-| image.PixelMap | 表示[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)的类型。 |
+| image.PixelMap | 表示[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)的类型。 |
 | Want | 表示[Want](../apis-ability-kit/js-apis-app-ability-want.md)的类型。 |
 | ArrayBuffer | 表示ArrayBuffer的类型。 |
 
@@ -622,7 +622,7 @@ struct PasteboardTest {
 | mimeType<sup>7+</sup> | string | 是 | 否 | 默认数据类型。 |
 | plainText<sup>7+</sup> | string | 是 | 否 | 纯文本内容。 |
 | uri<sup>7+</sup> | string | 是 | 否 | URI内容。 |
-| pixelMap<sup>9+</sup> | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是 | 否 | PixelMap内容。 |
+| pixelMap<sup>9+</sup> | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 是 | 否 | PixelMap内容。 |
 | data<sup>9+</sup> | {[mimeType:&nbsp;string]:&nbsp;ArrayBuffer} | 是 | 否 | 自定义数据内容。 |
 
 ### toPlainText<sup>9+</sup>
@@ -985,7 +985,7 @@ getPrimaryPixelMap(): image.PixelMap
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | PixelMap内容。剪贴板内容对象中没有PixelMap内容时，默认返回为undefined。 |
+| [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | PixelMap内容。剪贴板内容对象中没有PixelMap内容时，默认返回为undefined。 |
 
 **示例：**
 

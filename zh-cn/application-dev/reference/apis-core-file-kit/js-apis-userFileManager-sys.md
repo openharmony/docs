@@ -41,8 +41,20 @@ getUserFileMgr(context: Context): UserFileManager
 // 此处获取的userFileManager实例mgr为全局对象，后续使用到mgr的地方默认为使用此处获取的对象，如未添加此段代码报mgr未定义的错误请自行添加
 // 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
 import { common } from '@kit.AbilityKit';
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let mgr = userFileManager.getUserFileMgr(context);
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Button("example").onClick(async () => {
+        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+        let mgr = userFileManager.getUserFileMgr(context);
+      }).width('100%')
+    }
+    .height('90%')
+  }
+}
 ```
 
 ## UserFileManager
@@ -2289,7 +2301,7 @@ getThumbnail(callback: AsyncCallback&lt;image.PixelMap&gt;): void
 
 | 参数名      | 类型                                  | 必填   | 说明               |
 | -------- | ----------------------------------- | ---- | ---------------- |
-| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 是    | callback返回缩略图的PixelMap。 |
+| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | 是    | callback返回缩略图的PixelMap。 |
 
 **示例：**
 
@@ -2332,8 +2344,8 @@ getThumbnail(size: image.Size, callback: AsyncCallback&lt;image.PixelMap&gt;): v
 
 | 参数名      | 类型                                  | 必填   | 说明               |
 | -------- | ----------------------------------- | ---- | ---------------- |
-| size     | [image.Size](../apis-image-kit/js-apis-image.md#size) | 是    | 缩略图尺寸。            |
-| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 是    | callback返回缩略图的PixelMap。 |
+| size     | [image.Size](../apis-image-kit/arkts-apis-image-i.md#size) | 是    | 缩略图尺寸。            |
+| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | 是    | callback返回缩略图的PixelMap。 |
 
 **示例：**
 
@@ -2378,13 +2390,13 @@ getThumbnail(size?: image.Size): Promise&lt;image.PixelMap&gt;
 
 | 参数名  | 类型             | 必填   | 说明    |
 | ---- | -------------- | ---- | ----- |
-| size | [image.Size](../apis-image-kit/js-apis-image.md#size) | 否    | 缩略图尺寸。 |
+| size | [image.Size](../apis-image-kit/arkts-apis-image-i.md#size) | 否    | 缩略图尺寸。 |
 
 **返回值：**
 
 | 类型                            | 说明                    |
 | ----------------------------- | --------------------- |
-| Promise&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Promise对象，返回缩略图的PixelMap。 |
+| Promise&lt;[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | Promise对象，返回缩略图的PixelMap。 |
 
 **示例：**
 
@@ -2641,7 +2653,7 @@ getExif(): Promise&lt;string&gt;
 
 **支持Exif标签列表**：
 
-Exif标签的详细信息请参考[image.PropertyKey](../apis-image-kit/js-apis-image.md#propertykey7)。
+Exif标签的详细信息请参考[image.PropertyKey](../apis-image-kit/arkts-apis-image-e.md#propertykey7)。
 
 | 标签key值                                    | 标签说明              |
 | --------------------------------------- | ----------------- |
@@ -2733,7 +2745,7 @@ getExif(callback: AsyncCallback&lt;string&gt;): void
 
 **支持Exif标签列表**：
 
-Exif标签的详细信息请参考[image.PropertyKey](../apis-image-kit/js-apis-image.md#propertykey7)。
+Exif标签的详细信息请参考[image.PropertyKey](../apis-image-kit/arkts-apis-image-e.md#propertykey7)。
 
 | 标签key值                                    | 标签说明              |
 | --------------------------------------- | ----------------- |

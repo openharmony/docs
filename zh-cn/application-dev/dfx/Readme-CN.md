@@ -34,6 +34,10 @@
       - 任务执行超时事件
         - [任务执行超时事件介绍](hiappevent-watcher-apphicollie-events.md)
         - [订阅任务执行超时事件（C/C++）](hiappevent-watcher-apphicollie-events-ndk.md)
+      - 应用查杀事件<!--app-killed-events-->
+        - [应用查杀事件介绍](hiappevent-watcher-app-killed-events.md)
+        - [订阅应用查杀事件（ArkTS）](hiappevent-watcher-app-killed-events-arkts.md)
+        - [订阅应用查杀事件（C/C++）](hiappevent-watcher-app-killed-events-ndk.md)
   <!--Del-->
   - [事件上报](hiappevent-event-reporting.md)
   <!--DelEnd-->
@@ -69,4 +73,3 @@
   - [hisysevent](hisysevent.md)
   - [uinput](uinput.md)
   <!--DelEnd-->
-  
