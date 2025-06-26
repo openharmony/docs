@@ -781,3 +781,4 @@ After you tap the **Play Audio** button on the device screen, the sample audio f
 | :-----------------------: | :-----------------------: |
 | ![asr1](figures/asr1.png) | ![asr2](figures/asr2.png) |
 
+<!--no_check-->
