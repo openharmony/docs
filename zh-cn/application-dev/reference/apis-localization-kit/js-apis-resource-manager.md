@@ -283,15 +283,15 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 **系统能力：** SystemCapability.Global.ResourceManager
 
-| 名称                        | 类型                            | 可读 | 可写 | 说明               |
+| 名称                        | 类型                            | 只读 | 可选 | 说明               |
 | --------------------------- | ------------------------------- | ---- | ---- | ------------------ |
-| direction                   | [Direction](#direction)         | 是   | 是   | 屏幕方向。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。         |
-| locale                      | string                          | 是   | 是   | 语言文字国家地区。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| deviceType<sup>12+</sup>    | [DeviceType](#devicetype)       | 是   | 是   | 设备类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-| screenDensity<sup>12+</sup> | [ScreenDensity](#screendensity) | 是   | 是   | 屏幕密度。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
-| colorMode<sup>12+</sup>     | [ColorMode](#colormode12)       | 是   | 是   | 颜色模式。 <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。        |
-| mcc<sup>12+</sup>           | number                          | 是   | 是   | 移动国家码。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。       |
-| mnc<sup>12+</sup>           | number                          | 是   | 是   | 移动网络码。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。       |
+| direction                   | [Direction](#direction)         | 否   | 否   | 屏幕方向。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。         |
+| locale                      | string                          | 否   | 否   | 语言文字国家地区。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| deviceType<sup>12+</sup>    | [DeviceType](#devicetype)       | 否   | 否   | 设备类型。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| screenDensity<sup>12+</sup> | [ScreenDensity](#screendensity) | 否   | 否   | 屏幕密度。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+| colorMode<sup>12+</sup>     | [ColorMode](#colormode12)       | 否   | 否   | 颜色模式。 <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。        |
+| mcc<sup>12+</sup>           | number                          | 否   | 否   | 移动国家码。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。       |
+| mnc<sup>12+</sup>           | number                          | 否   | 否   | 移动网络码。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。       |
 
 
 
@@ -303,10 +303,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 **系统能力：** SystemCapability.Global.ResourceManager
 
-| 名称            | 类型                            | 可读   | 可写   | 说明       |
+| 名称            | 类型                            | 只读   | 可选   | 说明       |
 | ------------- | ------------------------------- | ---- | ---- | -------- |
-| screenDensity | [ScreenDensity](#screendensity) | 是    | 否    | 当前设备屏幕密度。 |
-| deviceType    | [DeviceType](#devicetype)       | 是    | 否    | 当前设备类型。   |
+| screenDensity | [ScreenDensity](#screendensity) | 否    | 否    | 当前设备屏幕密度。 |
+| deviceType    | [DeviceType](#devicetype)       | 否    | 否    | 当前设备类型。   |
 
 
 ## RawFileDescriptor<sup>9+</sup>
