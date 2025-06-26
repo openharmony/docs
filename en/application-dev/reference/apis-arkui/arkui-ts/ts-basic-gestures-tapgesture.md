@@ -5,6 +5,8 @@
 >  **NOTE**
 >
 >  This gesture is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+>
+>  When both double-tap and single-tap gestures are bound to a component with the double-tap gesture bound first, the single-tap gesture will have a 300 ms delay.
 
 
 ## APIs
@@ -58,7 +60,7 @@ This example demonstrates the recognition of a double-tap gesture using **TapGes
 @Entry
 @Component
 struct TapGestureExample {
-  @State value: string = ''
+  @State value: string = '';
 
   build() {
     Column() {

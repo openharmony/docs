@@ -5,6 +5,8 @@
 >  **说明：**
 >
 >  该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+>  组件内部已绑定手势实现跟手滚动等功能，需要增加自定义手势操作时请参考[手势拦截增强](ts-gesture-blocking-enhancement.md)进行处理。
 
 
 ## 子组件
@@ -451,7 +453,7 @@ enableScrollInteraction(value: boolean)
 
 nestedScroll(value: NestedScrollOptions)
 
-设置嵌套滚动选项。设置前后两个方向的嵌套滚动模式，实现与父组件的滚动联动。
+设置嵌套滚动选项。设置前后两个方向的嵌套滚动模式，实现与父组件的滚动联动。当组件内容大小小于组件自身，且[edgeEffect](#edgeeffect10)的options为{ alwaysEnabled: false }时，组件自身滑动手势不会触发，嵌套滚动属性不会生效，如果其父滚动组件有滑动手势，则会触发父组件的滑动手势。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

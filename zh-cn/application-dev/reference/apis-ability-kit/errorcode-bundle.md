@@ -1154,16 +1154,19 @@ Bundle manager service is excepted.
 1. 重启手机后再次尝试请求接口。
 
 2. 重复上述步骤3到5次后依旧请求失败，请查询设备的/data/log/faultlog/faultlogger/目录下是否存在包含foundation字样的crash文件。
-```
-hdc shell
-cd /data/log/faultlog/faultlogger/
-ls -ls
-```
+
+    ```
+    hdc shell
+    cd /data/log/faultlog/faultlogger/
+    ls -ls
+    ```
+
 3. 导出crash文件和日志文件提[在线工单](https://developer.huawei.com/consumer/cn/support/feedback/#/)获取帮助。
-```
-hdc file recv /data/log/faultlog/faultlogger/
-hdc file recv /data/log/hilog/
-```
+
+    ```
+    hdc file recv /data/log/faultlog/faultlogger/
+    hdc file recv /data/log/hilog/
+    ```
 
 <!--Del-->
 ## 17700201 abc文件校验失败

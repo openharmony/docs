@@ -129,7 +129,6 @@ Sets optional attributes for the search area.
 | onWillDelete             | Callback&lt;DeleteValue, boolean&gt; | No| Callback triggered when text is about to be deleted. The default value is **undefined**.  |
 | onDidDelete              | Callback&lt;DeleteValue&gt; | No| Callback triggered when text is deleted. The default value is **undefined**.  |
 
-
 ## OperationParams
 
 Sets initialization parameters of the function area.
@@ -218,7 +217,7 @@ Called when a paste operation is performed.
 | Name  | Type                                                        | Mandatory| Description                                                    |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------------------------- |
 | pasteValue | string | Yes| Text to be pasted.|
-| event | [PasteEvent](ts-basic-components-richeditor.md#pasteevent) | Yes| Custom paste event.|
+| event | [PasteEvent](ts-basic-components-richeditor.md#pasteevent11) | Yes| Custom paste event.|
 
 
 ## OnTextSelectionChangeCallback
@@ -274,7 +273,7 @@ struct Index {
         type: TextDecorationType.Underline,
         color: Color.Black,
         style: TextDecorationStyle.SOLID
-      }).margin({top:20, bottom: 20})
+      }).margin({ top: 20, bottom: 20 })
 
       AtomicServiceSearch({
         select: {
@@ -303,9 +302,7 @@ struct Index {
   }
 
   private alert(message: string): void {
-    AlertDialog.show({
-      message: message
-    })
+    this.getUIContext().showAlertDialog({ message: message });
   }
 }
 ```
@@ -329,7 +326,7 @@ struct Index {
         type: TextDecorationType.Underline,
         color: Color.Black,
         style: TextDecorationStyle.SOLID
-      }).margin({top:20, bottom: 20})
+      }).margin({ top: 20, bottom: 20 })
       
       AtomicServiceSearch({
         operation: {
@@ -353,9 +350,7 @@ struct Index {
   }
 
   private alert(message: string): void {
-    AlertDialog.show({
-      message: message
-    })
+    this.getUIContext().showAlertDialog({ message: message });
   }
 }
 ```
@@ -379,7 +374,7 @@ struct Index {
         type: TextDecorationType.Underline,
         color: Color.Black,
         style: TextDecorationStyle.SOLID
-      }).margin({top:20, bottom: 20})
+      }).margin({ top: 20, bottom: 20 })
 
       AtomicServiceSearch({
         select: {
@@ -422,9 +417,7 @@ struct Index {
   }
 
   private alert(message: string): void {
-    AlertDialog.show({
-      message: message
-    })
+    this.getUIContext().showAlertDialog({ message: message });
   }
 }
 ```
@@ -464,7 +457,7 @@ struct Index {
         type: TextDecorationType.Underline,
         color: Color.Black,
         style: TextDecorationStyle.SOLID
-      }).margin({top:20, bottom: 20})
+      }).margin({ top: 20, bottom: 20 })
 
       Column({ space: 6 }) {
         Text('editing: ' + this.value).width('100%').height(25).borderRadius(15).padding({ left: 15 })
@@ -556,9 +549,7 @@ struct Index {
   }
 
   private alert(message: string): void {
-    AlertDialog.show({
-      message: message
-    })
+    this.getUIContext().showAlertDialog({ message: message });
   }
 }
 ```
@@ -570,7 +561,7 @@ struct Index {
 This example demonstrates how to use the **search**, **select**, **value**, and **placeholder** parameters to customize the style of the **AtomicServiceSearch** component.
 
 ```ts
-import { AtomicServiceSearch } from '@kit.ArkUI';
+import { AtomicServiceSearch, SearchParams, SelectParams } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -679,9 +670,7 @@ struct Index {
   }
 
   private alert(message: string): void {
-    AlertDialog.show({
-      message: message
-    })
+    this.getUIContext().showAlertDialog({ message: message });
   }
 }
 ```
@@ -709,7 +698,7 @@ struct Index {
         type: TextDecorationType.Underline,
         color: Color.Black,
         style: TextDecorationStyle.SOLID
-      }).margin({top:20, bottom: 20})
+      }).margin({ top: 20, bottom: 20 })
 
       AtomicServiceSearch(
         {
@@ -737,9 +726,7 @@ struct Index {
   }
 
   public alert(message: string): void {
-    AlertDialog.show({
-      message: message,
-    })
+    this.getUIContext().showAlertDialog({ message: message });
   }
 }
 ```
@@ -767,7 +754,7 @@ struct Index {
         type: TextDecorationType.Underline,
         color: Color.Black,
         style: TextDecorationStyle.SOLID
-      }).margin({top:20, bottom: 20})
+      }).margin({ top: 20, bottom: 20 })
 
       AtomicServiceSearch({
         placeholder: 'Enter key type as search',
@@ -784,9 +771,7 @@ struct Index {
   }
 
   public alert(message: string): void {
-    AlertDialog.show({
-      message: message,
-    })
+    this.getUIContext().showAlertDialog({ message: message });
   }
 }
 ```
@@ -799,7 +784,7 @@ struct Index {
 This example demonstrates how to use the **fontFeature** attribute to display text with various typographic features.
 
 ```ts
-import { AtomicServiceSearch } from '@kit.ArkUI';
+​​​​import { AtomicServiceSearch } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -810,33 +795,45 @@ struct Index {
         type: TextDecorationType.Underline,
         color: Color.Black,
         style: TextDecorationStyle.SOLID
-      }).margin({top:20, bottom: 20})
+      }).margin({ top: 20, bottom: 20 })
 
       AtomicServiceSearch({
         value: 'This is ss01 on : 0123456789',
         search: {
-          fontFeature: "\"ss012\" on"
+          fontFeature: "\"ss01\" on"
         }
       });
-      
+
       AtomicServiceSearch({
         value: 'This is ss01 off : 0123456789',
         search: {
           fontFeature: "\"ss01\" off"
         }
       });
+
+      AtomicServiceSearch({
+        value: 'fiabc1234567DEFGHIJKLMN',
+        search: {
+          fontFeature: "\"frac\" on"
+        }
+      });
+
+      AtomicServiceSearch({
+        value: 'fiabc1234567DEFGHIJKLMN',
+        search: {
+          fontFeature: "\"frac\" off"
+        }
+      });
     }.padding({ left: 16, right: 16 })
   }
 
   public alert(message: string): void {
-    AlertDialog.show({
-      message: message,
-    })
+    this.getUIContext().showAlertDialog({ message: message });
   }
 }
 ```
 
-![](figures/AtomicServiceSearchDemo08.png)
+![](figures/AtomicServiceSearchDemo08_frac.png)
 
 
 
@@ -855,7 +852,7 @@ struct Index {
         type: TextDecorationType.Underline,
         color: Color.Black,
         style: TextDecorationStyle.SOLID
-      }).margin({top:20, bottom: 20})
+      }).margin({ top: 20, bottom: 20 })
 
       AtomicServiceSearch({
         value: 'This is the text without the adaptive font',
@@ -872,9 +869,7 @@ struct Index {
   }
 
   public alert(message: string): void {
-    AlertDialog.show({
-      message: message,
-    })
+    this.getUIContext().showAlertDialog({ message: message });
   }
 }
 ```
@@ -934,7 +929,7 @@ struct Index {
         type: TextDecorationType.Underline,
         color: Color.Black,
         style: TextDecorationStyle.SOLID
-      }).margin({top:20, bottom: 20})
+      }).margin({ top: 20, bottom: 20 })
 
       AtomicServiceSearch({
         value:'Default input',
@@ -946,9 +941,7 @@ struct Index {
   }
 
   public alert(message: string): void {
-    AlertDialog.show({
-      message: message,
-    })
+    this.getUIContext().showAlertDialog({ message: message });
   }
 }
 ```
@@ -974,7 +967,7 @@ struct Index {
         type: TextDecorationType.Underline,
         color: Color.Black,
         style: TextDecorationStyle.SOLID
-      }).margin({top:20, bottom: 20})
+      }).margin({ top: 20, bottom: 20 })
 
       AtomicServiceSearch({
         value: 'Search textAlign sample',
@@ -988,9 +981,7 @@ struct Index {
   }
 
   public alert(message: string): void {
-    AlertDialog.show({
-      message: message,
-    })
+    this.getUIContext().showAlertDialog({ message: message });
   }
 }
 ```
@@ -1017,7 +1008,7 @@ struct Index {
           type: TextDecorationType.Underline,
           color: Color.Black,
           style: TextDecorationStyle.SOLID
-        }).margin({top:20, bottom: 20})
+        }).margin({ top: 20, bottom: 20 })
         AtomicServiceSearch({
           placeholder: 'please enter...',
           search: {
@@ -1034,9 +1025,7 @@ struct Index {
   }
 
   public alert(message: string): void {
-    AlertDialog.show({
-      message: message,
-    })
+    this.getUIContext().showAlertDialog({ message: message });
   }
 }
 ```

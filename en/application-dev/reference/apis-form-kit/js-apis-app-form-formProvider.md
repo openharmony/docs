@@ -297,7 +297,7 @@ Obtains the application's widget information that meets a filter criterion on th
 
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| filter | [formInfo.FormInfoFilter](js-apis-app-form-formInfo.md#forminfofilter) | Yes| Filter criterion.|
+| filter | [formInfo.FormInfoFilter](js-apis-app-form-formInfo.md) | Yes| Filter criterion.|
 | callback | AsyncCallback&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Yes| Callback used to return the information obtained.|
 
 **Error codes**
@@ -348,7 +348,7 @@ Obtains the application's widget information on the device. This API uses a prom
 
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| filter | [formInfo.FormInfoFilter](js-apis-app-form-formInfo.md#forminfofilter) | No| Filter criterion. By default, no value is passed, indicating that no filtering is performed.|
+| filter | [formInfo.FormInfoFilter](js-apis-app-form-formInfo.md) | No| Filter criterion. By default, no value is passed, indicating that no filtering is performed.|
 
 **Return value**
 

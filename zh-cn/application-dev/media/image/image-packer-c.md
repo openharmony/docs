@@ -40,17 +40,6 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so libimage
 #define LOG_DOMAIN 0x3200
 #define LOG_TAG "MY_TAG"
 
-static std::set<std::string> g_encodeSupportedFormats;
-
-Image_MimeType GetMimeTypeIfEncodable(const char *format)
-{
-    auto it = g_encodeSupportedFormats.find(format);
-    if (it == g_encodeSupportedFormats.end()) {
-        return {"", 0};
-    }
-    return {const_cast<char *>(format), strlen(format)};
-}
-
 Image_ErrorCode packToFileFromImageSourceTest(int fd)
 {
     //创建ImagePacker实例。
@@ -60,20 +49,7 @@ Image_ErrorCode packToFileFromImageSourceTest(int fd)
         OH_LOG_ERROR(LOG_APP, "ImagePackerNativeCTest CreatePacker OH_ImagePackerNative_Create failed, errCode: %{public}d.", errCode);
         return errCode;
     }
-// 获取编码能力范围。
-    Image_MimeType* mimeType = nullptr;
-    size_t length = 0;
-    errCode = OH_ImagePackerNative_GetSupportedFormats(&mimeType, &length);
-    if (errCode != IMAGE_SUCCESS) {
-        OH_LOG_ERROR(LOG_APP, "ImagePackerNativeCTest OH_ImagePackerNative_GetSupportedFormats failed, errCode: %{public}d.", errCode);
-        return errCode;
-    }
-    for (size_t count = 0; count < length; count++) {
-        OH_LOG_INFO(LOG_APP, "Encode supportedFormats:%{public}s", mimeType[count].data);
-        if (mimeType[count].data != nullptr) {
-            g_encodeSupportedFormats.insert(std::string(mimeType[count].data));
-        }
-    }
+
     // 创建ImageSource实例。
     OH_ImageSourceNative* imageSource = nullptr;
     errCode = OH_ImageSourceNative_CreateFromFd(fd, &imageSource);
@@ -85,7 +61,8 @@ Image_ErrorCode packToFileFromImageSourceTest(int fd)
     // 指定编码参数，将ImageSource直接编码进文件。
     OH_PackingOptions *option = nullptr;
     OH_PackingOptions_Create(&option);
-    Image_MimeType image_MimeType = GetMimeTypeIfEncodable(MIME_TYPE_JPEG);
+    char type[] = "image/jpeg";
+    Image_MimeType image_MimeType = {type, strlen(type)};
     if (image_MimeType.data == nullptr || image_MimeType.size == 0) {
         OH_LOG_ERROR(LOG_APP, "ImagePackerNativeCTest GetMimeTypeIfEncodable failed, format can't support encode.");
         return IMAGE_BAD_PARAMETER;

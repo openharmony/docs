@@ -580,7 +580,7 @@ struct Child {
   @Require @Param set: Set<number>;
   build() {
     Column() {
-      Text(`child message:${this.message}`) // Display the string.
+      Text(`child message:${this.message}`) //  Display the string.
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
         .onClick(() => {
@@ -588,15 +588,15 @@ struct Child {
         })
       Divider()
         .color(Color.Blue)
-      Text ('undefineVal:${this.undefineVal}') // Display undefineVal.
+      Text(`undefinedVal:${this.undefinedVal}`) // Display undefinedVal.
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
         .onClick(() => {
-          this.undefineVal = "change to define";
+          this.undefinedVal = "change to define";
         })
       Divider()
         .color(Color.Blue)
-      Text('info id:${this.info.myId}') // Display info:myId.
+      Text(`info id:${this.info.myId}`) // Display info:myId.
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
         .onClick(() => {
@@ -617,7 +617,7 @@ struct Child {
 @Component
 struct Index {
   @State message: string = 'Hello World';       // Simple type data can be passed.
-  @State undefineVal: undefined = undefined;    // Simple type data, undefined, can be passed.
+  @State undefinedVal: undefined = undefined;    // Simple type data, undefined, can be passed.
   @State info: Info = new Info();               // Class type cannot be passed. Otherwise, an error is reported during compilation. Remove @State to eliminate the error.
   @State set: Set<number> = new Set([10, 20]);  // Built-in type cannot be passed. Otherwise, an error is reported during compilation. Remove @State to eliminate the error.
 
@@ -668,7 +668,7 @@ struct Child {
   // State variable received by V1 from V2. Only @State, @Prop, and @Provide decorators can be used.
   @State  message: string = "hello";	         // Changes are observable.
   @State info: Info = new Info();		      	// Top-level class property changes are observable.
-  @Prop undefineVal: undefined | string = undefined;   
+  @Prop undefinedVal: undefined | string = undefined;   
   @Provide setMap: Set<number> = new Set();
   build() {
     Column() {
@@ -680,11 +680,11 @@ struct Child {
         })
       Divider()
         .color(Color.Blue)
-      Text(`undefineVal:${this.undefineVal}`) 	// Display undefineVal.
+      Text(`undefinedVal:${this.undefinedVal}`) 	// Display undefinedVal.
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
         .onClick(() => {
-          this.undefineVal = "change to define";
+          this.undefinedVal = "change to define";
         })
       Divider()
         .color(Color.Blue)
@@ -709,7 +709,7 @@ struct Child {
 @ComponentV2
 struct Index {
   message: string = 'Hello World';       // Simple type.
-  undefineVal: undefined = undefined;    // Simple type: undefined.
+  undefinedVal: undefined = undefined;    // Simple type: undefined.
   info: Info = new Info();               // Class type.
   set: Set<number> = new Set([10, 20]);  // Built-in type.
 
@@ -725,7 +725,7 @@ struct Index {
         .color(Color.Blue)
       Child({
         message: this.message,
-        undefineVal: this.undefineVal,
+        undefinedVal: this.undefinedVal,
         info: this.info,
         setMap: this.set
       })
@@ -760,7 +760,7 @@ struct Child {
   // State variable received by V1 from V2. Only @State, @Prop, and @Provide can be used.
   @State  message: string = "hello";	        // Changes are observable.
   @State info: Info = new Info();		        // Top-level class property changes are observable.
-  @Prop undefineVal: undefined | string = undefined;
+  @Prop undefinedVal: undefined | string = undefined;
   @Provide set: Set<number> = new Set();
   build() {
     Column() {
@@ -772,11 +772,11 @@ struct Child {
         })
       Divider()
         .color(Color.Blue)
-      Text(`undefineVal:${this.undefineVal}`) 	// Display undefineVal.
+      Text(`undefinedVal:${this.undefinedVal}`) 	// Display undefinedVal.
         .fontSize(30)
         .fontWeight(FontWeight.Bold)
         .onClick(() => {
-          this.undefineVal = "change to define";
+          this.undefinedVal = "change to define";
         })
       Divider()
         .color(Color.Blue)
@@ -802,7 +802,7 @@ struct Child {
 @ComponentV2
 struct Index {
   @Local message: string = 'Hello World';       	// Simple type data can be passed.
-  @Provider() undefineVal: undefined = undefined;   // Simple type data, undefined, can be passed.
+  @Provider() undefinedVal: undefined = undefined;   // Simple type data, undefined, can be passed.
   @Consumer() info: Info = new Info();          	// Class type can be passed.
   @Param set: Set<number> = new Set([10, 20]);  	// Built-in type cannot be passed. Otherwise, an error is reported during compilation. Remove @Param to eliminate the error.
 
@@ -819,7 +819,7 @@ struct Index {
         .color(Color.Blue)
       Child({
         message: this.message,
-        undefineVal: this.undefineVal,
+        undefinedVal: this.undefinedVal,
         info: this.info,
         set: this.set
       })

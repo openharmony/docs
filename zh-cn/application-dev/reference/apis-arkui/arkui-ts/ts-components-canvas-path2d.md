@@ -5,6 +5,8 @@
 >  **说明：**
 >
 >  从 API version 8 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+>  Path2D对象的方法无法对[CanvasRenderingContext2D](./ts-canvasrenderingcontext2d.md)和[OffscreenCanvasRenderingContext2D](./ts-offscreencanvasrenderingcontext2d.md)对象中设置的路径生效。
 
 ## 接口
 

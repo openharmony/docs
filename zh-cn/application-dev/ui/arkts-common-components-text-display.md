@@ -368,100 +368,146 @@ Text('点我')
 
 ## 设置选中菜单
 
-- 设置Text被选中时，会弹出包含复制、翻译、搜索的菜单。
+### 弹出选中菜单
 
-  Text组件需要设置[copyOption](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#copyoption9)属性才可以被选中。
+  - 设置Text被选中时，会弹出包含复制、翻译、搜索的菜单。
 
-  ```ts
-  Text("这是一段文本，用来展示选中菜单")
-    .fontSize(30)
-    .copyOption(CopyOptions.InApp)
-  ```
-  ![Text_select_menu](figures/Text_select_menu.jpg)
+    Text组件需要设置[copyOption](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#copyoption9)属性才可以被选中。
 
-- Text组件通过设置[bindSelectionMenu](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#bindselectionmenu11)属性绑定自定义选择菜单。
+    ```ts
+    Text("这是一段文本，用来展示选中菜单")
+      .fontSize(30)
+      .copyOption(CopyOptions.InApp)
+    ```
+    ![Text_select_menu](figures/Text_select_menu.jpg)
 
-  ```ts
-  Text("这是一段文本，用来展示选中菜单", this.options)
-    .fontSize(30)
-    .copyOption(CopyOptions.InApp)
-    .bindSelectionMenu(TextSpanType.TEXT, this.RightClickTextCustomMenu, TextResponseType.RIGHT_CLICK, {
-      onAppear: () => {
-        console.info('自定义选择菜单弹出时触发该回调');
-      },
-      onDisappear: () => {
-        console.info('自定义选择菜单关闭时触发该回调');
-      }
-    })
-  ```
+  - Text组件通过设置[bindSelectionMenu](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#bindselectionmenu11)属性绑定自定义选择菜单。
 
-  ```ts
-  // 定义菜单项
-  @Builder
-  RightClickTextCustomMenu() {
-    Column() {
-      Menu() {
-        MenuItemGroup() {
-          MenuItem({ startIcon: $r('app.media.app_icon'), content: "CustomMenu One", labelInfo: "" })
-            .onClick(() => {
-              // 使用closeSelectionMenu接口关闭菜单
-              this.controller.closeSelectionMenu();
-            })
-          MenuItem({ startIcon: $r('app.media.app_icon'), content: "CustomMenu Two", labelInfo: "" })
-          MenuItem({ startIcon: $r('app.media.app_icon'), content: "CustomMenu Three", labelInfo: "" })
+    ```ts
+    Text("这是一段文本，用来展示选中菜单", this.options)
+      .fontSize(30)
+      .copyOption(CopyOptions.InApp)
+      .bindSelectionMenu(TextSpanType.TEXT, this.RightClickTextCustomMenu, TextResponseType.RIGHT_CLICK, {
+        onAppear: () => {
+          console.info('自定义选择菜单弹出时触发该回调');
+        },
+        onDisappear: () => {
+          console.info('自定义选择菜单关闭时触发该回调');
         }
-      }.backgroundColor('#F0F0F0')
-    }
-  }
-  ```
-  ![text_bindselectionmenu](figures/text_bindselectionmenu.gif)
+      })
+    ```
 
-- Text组件通过设置[editMenuOptions](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#editmenuoptions12)属性扩展自定义选择菜单，可以设置扩展项的文本内容、图标以及回调方法。
-
-  ```ts
-  Text('这是一段文本，用来展示选中菜单')
-    .fontSize(20)
-    .copyOption(CopyOptions.LocalDevice)
-    .editMenuOptions({
-      onCreateMenu: this.onCreateMenu, onMenuItemClick: this.onMenuItemClick
-    })
-  ```
-
-  ```ts
-  // 定义onCreateMenu，onMenuItemClick
-  onCreateMenu = (menuItems: Array<TextMenuItem>) => {
-    let item1: TextMenuItem = {
-      content: 'customMenu1',
-      icon: $r('app.media.app_icon'),
-      id: TextMenuItemId.of('customMenu1'),
-    };
-    let item2: TextMenuItem = {
-      content: 'customMenu2',
-      id: TextMenuItemId.of('customMenu2'),
-      icon: $r('app.media.app_icon'),
-    };
-    menuItems.push(item1);
-    menuItems.unshift(item2);
-    return menuItems;
-  }
-  
-  onMenuItemClick = (menuItem: TextMenuItem, textRange: TextRange) => {
-    if (menuItem.id.equals(TextMenuItemId.of("customMenu2"))) {
-      console.log("拦截 id: customMenu2 start:" + textRange.start + "; end:" + textRange.end);
-      return true;
+    ```ts
+    // 定义菜单项
+    @Builder
+    RightClickTextCustomMenu() {
+      Column() {
+        Menu() {
+          MenuItemGroup() {
+            MenuItem({ startIcon: $r('app.media.app_icon'), content: "CustomMenu One", labelInfo: "" })
+              .onClick(() => {
+                // 使用closeSelectionMenu接口关闭菜单
+                this.controller.closeSelectionMenu();
+              })
+            MenuItem({ startIcon: $r('app.media.app_icon'), content: "CustomMenu Two", labelInfo: "" })
+            MenuItem({ startIcon: $r('app.media.app_icon'), content: "CustomMenu Three", labelInfo: "" })
+          }
+        }.backgroundColor('#F0F0F0')
+      }
     }
-    if (menuItem.id.equals(TextMenuItemId.COPY)) {
-      console.log("拦截 COPY start:" + textRange.start + "; end:" + textRange.end);
-      return true;
+    ```
+    ![text_bindselectionmenu](figures/text_bindselectionmenu.gif)
+
+  - Text组件通过设置[editMenuOptions](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#editmenuoptions12)属性扩展自定义选择菜单，可以设置扩展项的文本内容、图标以及回调方法。
+
+    ```ts
+    Text('这是一段文本，用来展示选中菜单')
+      .fontSize(20)
+      .copyOption(CopyOptions.LocalDevice)
+      .editMenuOptions({
+        onCreateMenu: this.onCreateMenu, onMenuItemClick: this.onMenuItemClick
+      })
+    ```
+
+    ```ts
+    // 定义onCreateMenu，onMenuItemClick
+    onCreateMenu = (menuItems: Array<TextMenuItem>) => {
+      let item1: TextMenuItem = {
+        content: 'customMenu1',
+        icon: $r('app.media.app_icon'),
+        id: TextMenuItemId.of('customMenu1'),
+      };
+      let item2: TextMenuItem = {
+        content: 'customMenu2',
+        id: TextMenuItemId.of('customMenu2'),
+        icon: $r('app.media.app_icon'),
+      };
+      menuItems.push(item1);
+      menuItems.unshift(item2);
+      return menuItems;
     }
-    if (menuItem.id.equals(TextMenuItemId.SELECT_ALL)) {
-      console.log("不拦截 SELECT_ALL start:" + textRange.start + "; end:" + textRange.end);
+    
+    onMenuItemClick = (menuItem: TextMenuItem, textRange: TextRange) => {
+      if (menuItem.id.equals(TextMenuItemId.of("customMenu2"))) {
+        console.log("拦截 id: customMenu2 start:" + textRange.start + "; end:" + textRange.end);
+        return true;
+      }
+      if (menuItem.id.equals(TextMenuItemId.COPY)) {
+        console.log("拦截 COPY start:" + textRange.start + "; end:" + textRange.end);
+        return true;
+      }
+      if (menuItem.id.equals(TextMenuItemId.SELECT_ALL)) {
+        console.log("不拦截 SELECT_ALL start:" + textRange.start + "; end:" + textRange.end);
+        return false;
+      }
       return false;
+    };
+    ```
+    ![text_editmenuoptions](figures/text_editmenuoptions.gif)
+
+### 关闭选中菜单
+
+  使用Text组件时，若需要实现点击空白处关闭选中的场景，分为以下两种情况：
+
+  - 在Text组件区域内点击空白处，会正常关闭选中态和菜单；
+  - 在Text组件区域外点击空白处，前提是Text组件设置[selection](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#selection11)属性，具体示例如下：
+
+    ```ts
+    // xxx.ets
+    @Entry
+    @Component
+    struct Index {
+      @State text: string =
+        'This is set selection to Selection text content This is set selection to Selection text content.';
+      @State start: number = 0;
+      @State end: number = 20;
+
+      build() {
+        Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.Start }) {
+          Text(this.text)
+            .fontSize(12)
+            .border({ width: 1 })
+            .lineHeight(20)
+            .margin(30)
+            .copyOption(CopyOptions.InApp)
+            .selection(this.start, this.end)
+            .onTextSelectionChange((selectionStart, selectionEnd) => {
+              // 更新选中态位置
+              this.start = selectionStart;
+              this.end = selectionEnd;
+            })
+        }
+        .height(600)
+        .width(335)
+        .borderWidth(1)
+        .onClick(() => {
+          // 监听父组件的点击事件，将选中首尾位置均设置为-1，即可清除选中
+          this.start = -1;
+          this.end = -1;
+        })
+      }
     }
-    return false;
-  };
-  ```
-  ![text_editmenuoptions](figures/text_editmenuoptions.gif)
+    ```
 
 ## 场景示例
 

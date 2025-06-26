@@ -39,7 +39,7 @@ struct Index {
           .height(40)
           .margin(20)
           .onClick(() => {
-            router.pushUrl({
+            this.getUIContext().getRouter().pushUrl({
               url: 'pages/pageOne' // Target URL.
             }, router.RouterMode.Standard, (err) => {
               if (err) {
@@ -77,7 +77,7 @@ struct pageOne {
           .height(40)
           .margin(20)
           .onClick(() => {
-            router.back();
+            this.getUIContext().getRouter().back();
           })
       }
       .width('100%')
@@ -96,7 +96,7 @@ The following is an example of the navigation page using **Navigation**.
 @Entry
 @Component
 struct Index {
-  pathStack: NavPathStack = new NavPathStack()
+  pathStack: NavPathStack = new NavPathStack();
 
   build() {
     Navigation(this.pathStack) {
@@ -106,7 +106,7 @@ struct Index {
           .height(40)
           .margin(20)
           .onClick(() => {
-            this.pathStack.pushPathByName('pageOne', null)
+            this.pathStack.pushPathByName('pageOne', null);
           })
       }.width('100%').height('100%')
     }
@@ -122,12 +122,12 @@ The following is an example of a subpage using **Navigation**.
 
 @Builder
 export function PageOneBuilder() {
-  PageOne()
+  PageOne();
 }
 
 @Component
 export struct PageOne {
-  pathStack: NavPathStack = new NavPathStack()
+  pathStack: NavPathStack = new NavPathStack();
 
   build() {
     NavDestination() {
@@ -137,12 +137,12 @@ export struct PageOne {
           .height(40)
           .margin(20)
           .onClick(() => {
-            this.pathStack.clear()
+            this.pathStack.clear();
           })
       }.width('100%').height('100%')
     }.title('PageOne')
     .onReady((context: NavDestinationContext) => {
-      this.pathStack = context.pathStack
+      this.pathStack = context.pathStack;
     })
   }
 }
@@ -172,25 +172,23 @@ Each subpage also needs to be configured in the system configuration file **rout
 To use the **Router** for page operations, you must import the **@ohos.router** module.
 
 ```ts
-import { router } from '@kit.ArkUI';
-
 // push page
-router.pushUrl({ url:"pages/pageOne", params: null })
+router.pushUrl({ url:"pages/pageOne", params: null });
 
 // pop page
-router.back({ url: "pages/pageOne" })
+this.getUIContext().getRouter().back({ url: "pages/pageOne" });
 
 // replace page
-router.replaceUrl({ url: "pages/pageOne" })
+router.replaceUrl({ url: "pages/pageOne" });
 
 // clear all page
-router.clear()
+this.getUIContext().getRouter().clear();
 
 // Obtain the size of the page stack.
-let size = router.getLength()
+let size = this.getUIContext().getRouter().getLength();
 
 // Obtain the page state.
-let pageState = router.getState()
+let pageState = this.getUIContext().getRouter().getState();
 ```
 
 To use the **Navigation** component for page operations, call APIs of the [NavPathStack](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navpathstack10) object. You need to first create a **NavPathStack** object and pass it into **Navigation**.
@@ -199,7 +197,7 @@ To use the **Navigation** component for page operations, call APIs of the [NavPa
 @Entry
 @Component
 struct Index {
-  pathStack: NavPathStack = new NavPathStack()
+  pathStack: NavPathStack = new NavPathStack();
 
   build() {
     // Set NavPathStack and pass it to Navigation.
@@ -213,39 +211,39 @@ struct Index {
 
 
 // push page
-this.pathStack.pushPath({ name: 'pageOne' })
+this.pathStack.pushPath({ name: 'pageOne' });
 
 // pop page
-this.pathStack.pop()
-this.pathStack.popToIndex(1)
-this.pathStack.popToName('pageOne')
+this.pathStack.pop();
+this.pathStack.popToIndex(1);
+this.pathStack.popToName('pageOne');
 
 // replace page
-this.pathStack.replacePath({ name: 'pageOne' })
+this.pathStack.replacePath({ name: 'pageOne' });
 
 // clear all page
-this.pathStack.clear()
+this.pathStack.clear();
 
 // Obtain the size of the page stack.
-let size: number = this.pathStack.size()
+let size: number = this.pathStack.size();
 
 // Remove all pages whose name is PageOne from the stack.
-this.pathStack.removeByName("pageOne")
+this.pathStack.removeByName("pageOne");
 
 // Remove the page with the specified index.
-this.pathStack.removeByIndexes([1, 3, 5])
+this.pathStack.removeByIndexes([1, 3, 5]);
 
 // Obtain all page names in the stack.
-this.pathStack.getAllPathName()
+this.pathStack.getAllPathName();
 
 // Obtain the parameters of the page whose index is 1.
 this.pathStack.getParamByIndex(1)
 
 // Obtain the parameters of the PageOne page.
-this.pathStack.getParamByName("pageOne")
+this.pathStack.getParamByName("pageOne");
 
 // Obtain the index set of the PageOne page.
-this.pathStack.getIndexByName("pageOne")
+this.pathStack.getIndexByName("pageOne");
 // ...
 ```
 
@@ -259,7 +257,7 @@ this.pathStack.getIndexByName("pageOne")
 @Component
 struct Index {
   // Navigation creates a NavPathStack object decorated by @Provide.
- @Provide('pathStack') pathStack: NavPathStack = new NavPathStack()
+ @Provide('pathStack') pathStack: NavPathStack = new NavPathStack();
 
   build() {
     Navigation(this.pathStack) {
@@ -290,14 +288,14 @@ export struct PageOne {
 ```ts
 @Component
 export struct PageOne {
-  pathStack: NavPathStack = new NavPathStack()
+  pathStack: NavPathStack = new NavPathStack();
 
   build() {
     NavDestination() {
       // ...
     }.title('PageOne')
     .onReady((context: NavDestinationContext) => {
-      this.pathStack = context.pathStack
+      this.pathStack = context.pathStack;
     })
   }
 }
@@ -309,11 +307,11 @@ export struct PageOne {
 @Entry
 @Component
 struct Index {
-  pathStack: NavPathStack = new NavPathStack()
+  pathStack: NavPathStack = new NavPathStack();
 
   // Set a NavPathStack object globally.
   aboutToAppear(): void {
-     AppStorage.setOrCreate("PathStack", this.pathStack)
+     AppStorage.setOrCreate("PathStack", this.pathStack);
    }
 
   build() {
@@ -328,7 +326,7 @@ struct Index {
 @Component
 export struct PageOne {
   // The subpage obtains the global NavPathStack object.
-  pathStack: NavPathStack = AppStorage.get("PathStack") as NavPathStack
+  pathStack: NavPathStack = AppStorage.get("PathStack") as NavPathStack;
 
   build() {
     NavDestination() {
@@ -345,11 +343,11 @@ export struct PageOne {
 // Custom component on the subpage
 @Component
 struct CustomNode {
-  pathStack: NavPathStack = new NavPathStack()
+  pathStack: NavPathStack = new NavPathStack();
 
   aboutToAppear() {
     // query navigation info
-    let navigationInfo: NavigationInfo = this.queryNavigationInfo() as NavigationInfo
+    let navigationInfo: NavigationInfo = this.queryNavigationInfo() as NavigationInfo;
     this.pathStack = navigationInfo.pathStack;
   }
 
@@ -357,7 +355,7 @@ struct CustomNode {
     Row() {
       Button('Go to PageTwo')
         .onClick(() => {
-          this.pathStack.pushPath({ name: 'pageTwo' })
+          this.pathStack.pushPath({ name: 'pageTwo' });
         })
     }
   }
@@ -486,7 +484,7 @@ To implement cross-package routing, with **Router**, use named routes.
            .backgroundColor('#ccc')
            .onClick(() => { // Click to go to a page in another shared package.
              try {
-               router.pushNamedRoute({
+               this.getUIContext().getRouter().pushNamedRoute({
                  name: 'myPage',
                  params: {
                    data1: 'message',
@@ -538,12 +536,12 @@ As a routing component, **Navigation** natively supports cross-package navigatio
    @Entry
    @Component
    struct mainPage {
-    pageStack: NavPathStack = new NavPathStack()
+    pageStack: NavPathStack = new NavPathStack();
    
     @Builder pageMap(name: string) {
       if (name === 'PageInHSP') {
    	    // 2. Define the route mapping table.
-   	    PageInHSP()
+   	    PageInHSP();
       }
     }
 
@@ -601,7 +599,7 @@ For details, see [System Routing Table](arkts-navigation-navigation.md#system-ro
 
 ## Lifecycle Listening
 
-You can use the observer to register for lifecycle events with the **Router**. For details about the APIs, see [observer.on('routerPageUpdate')](../reference/apis-arkui/js-apis-arkui-observer.md#observeronrouterpageupdate11).
+You can use the observer to register for lifecycle events with the **Router**. For details about the APIs, see [observer.on('routerPageUpdate')](../reference/apis-arkui/js-apis-arkui-observer.md#uiobserveronrouterpageupdate11).
 
 
 ```ts
@@ -700,7 +698,7 @@ import { uiObserver } from '@kit.ArkUI';
 export struct NavDestinationExample {
   build() {
     NavDestination() {
-      MyComponent()
+      MyComponent();
     }
   }
 }

@@ -82,7 +82,7 @@ getPlayingState(deviceId: string): PlayingState
 
 | 参数名    | 类型     | 必填   | 说明      |
 | ------ | ------ | ---- | ------- |
-| deviceId | string | 是    | 远端设备地址。 |
+| deviceId | string | 是    | 远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
 
 **返回值：**
 

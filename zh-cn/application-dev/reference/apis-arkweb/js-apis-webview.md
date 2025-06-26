@@ -7,6 +7,8 @@
 > - 本模块接口从API version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 > - 示例效果请以真机运行为准，当前DevEco Studio预览器不支持。
+>
+> - 静态方法必须在用户界面（UI）线程上使用。
 
 ## 需要权限
 
@@ -4144,6 +4146,14 @@ BackForwardCacheOptions的构造函数。
 ## AdsBlockManager<sup>12+</sup>
 
 通过AdsBlockManager可以向Web组件中设置自定义的广告过滤配置、关闭特定网站的广告过滤功能，其中每个应用中的所有Web组件都共享一个AdsBlockManager实例。
+
+> **说明：**
+>
+> - 本模块接口从API version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> - 示例效果请以真机运行为准，当前DevEco Studio预览器不支持。
+>
+> - 静态方法必须在用户界面（UI）线程上使用。
 
 ### setAdsBlockRules<sup>12+</sup>
 

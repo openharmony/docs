@@ -1,4 +1,4 @@
-#  @ohos.multimodalInput.shortKey (Shortcut Key) (System API)
+#  @ohos.multimodalInput.shortKey (Preset Global Shortcut Keys) (System API)
 
 The **shortKey** module provides APIs to set the delay for starting an ability using a shortcut key. For example, you can set the delay to 3 seconds so that a screenshot is taken when you press and hold the shortcut key for 3 seconds.
 
@@ -7,6 +7,7 @@ The **shortKey** module provides APIs to set the delay for starting an ability u
 > - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
 > - The APIs provided by this module are system APIs.
+
 
 ##  Modules to Import
 
@@ -28,7 +29,7 @@ Sets the delay for starting an ability using shortcut keys. This API uses an asy
 | ---------- | ------------------- | ---- | ------------------------------------------------------------ |
 | businessKey| string              | Yes  | Unique service ID registered on the multimodal side. It corresponds to **businessId** in the **ability_launch_config.json** file. You need to query this parameter on your own before calling the API.|
 | delay      | number              | Yes  | Delay for starting an ability using shortcut keys, in milliseconds. This field is invalid only when shortcut keys are used.|
-| callback   | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |                                               
+| callback   | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -42,17 +43,16 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-import { shortKey } from '@kit.InputKit';
 try {
   shortKey.setKeyDownDuration("businessId", 500, (error) => {
     if (error) {
-      console.log(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`Set key down duration success`);
   });
 } catch (error) {
-  console.log(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -89,13 +89,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-import { shortKey } from '@kit.InputKit';
 try {
   shortKey.setKeyDownDuration("businessId", 500).then(() => {
     console.log(`Set key down duration success`);
   });
 } catch (error) {
-  console.log(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 

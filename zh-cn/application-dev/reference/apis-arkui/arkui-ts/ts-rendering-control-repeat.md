@@ -203,22 +203,6 @@ List() {
 }
 ```
 
-### onMove<sup>19+</sup>
-
-onMove(handler: Optional\<OnMoveHandler\>)
-
-拖拽排序数据移动回调。当父容器组件为[List](./ts-container-list.md)时生效。
-
-**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型      | 必填 | 说明       |
-| ------ | --------- | ---- | ---------- |
-| handler  | Optional\<[OnMoveHandler](./ts-rendering-control-foreach.md#onmovehandler)\> | 是   | 拖拽动作。 |
-
 ## RepeatArray\<T\><sup>18+</sup>
 
 type RepeatArray\<T\> = Array\<T\> | ReadonlyArray\<T\> | Readonly\<Array\<T\>\>

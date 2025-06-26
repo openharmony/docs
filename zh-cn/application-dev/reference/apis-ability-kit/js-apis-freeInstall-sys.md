@@ -460,3 +460,171 @@ try {
     console.error('Operation failed:' + JSON.stringify(err));
 }
 ```
+
+## DispatchInfo
+
+type DispatchInfo = _DispatchInfo
+
+免安装结构体和接口版本信息类。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.FreeInstall
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_DispatchInfo](js-apis-bundleManager-dispatchInfo-sys.md#dispatchinfo) |免安装结构体和接口版本信息类。 |
+
+## BundlePackInfo
+
+type BundlePackInfo = _PackInfo.BundlePackInfo
+
+应用包信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.FreeInstall
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_PackInfo.BundlePackInfo](js-apis-bundleManager-BundlePackInfo-sys.md#bundlepackinfo) |应用包信息。 |
+
+## PackageConfig
+
+type PackageConfig = _PackInfo.PackageConfig
+
+pack.info的包信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.FreeInstall
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_PackInfo.PackageConfig](js-apis-bundleManager-BundlePackInfo-sys.md#packageconfig) |pack.info的包信息。 |
+
+## PackageSummary
+
+type PackageSummary = _PackInfo.PackageSummary
+
+pack.info中的包摘要信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.FreeInstall
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_PackInfo.PackageSummary](js-apis-bundleManager-BundlePackInfo-sys.md#packagesummary) |pack.info中的包摘要信息。 |
+
+## BundleConfigInfo
+
+type BundleConfigInfo = _PackInfo.BundleConfigInfo
+
+包的配置信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.FreeInstall
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_PackInfo.BundleConfigInfo](js-apis-bundleManager-BundlePackInfo-sys.md#bundleconfiginfo) |包的配置信息。 |
+
+## ExtensionAbility
+
+type ExtensionAbility = _PackInfo.ExtensionAbility
+
+extensionAbilities的配置信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.FreeInstall
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_PackInfo.ExtensionAbility](js-apis-bundleManager-BundlePackInfo-sys.md#extensionability) |extensionAbilities的配置信息。 |
+
+## ModuleConfigInfo
+
+type ModuleConfigInfo = _PackInfo.ModuleConfigInfo
+
+包的module配置信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.FreeInstall
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_PackInfo.ModuleConfigInfo](js-apis-bundleManager-BundlePackInfo-sys.md#moduleconfiginfo) |包的module配置信息。 |
+
+## ModuleDistroInfo
+
+type ModuleDistroInfo = _PackInfo.ModuleDistroInfo
+
+module发行版信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.FreeInstall
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_PackInfo.ModuleDistroInfo](js-apis-bundleManager-BundlePackInfo-sys.md#moduledistroinfo) |module发行版信息。 |
+
+## ModuleAbilityInfo
+
+type ModuleAbilityInfo = _PackInfo.ModuleAbilityInfo
+
+module包含的ability组件信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.FreeInstall
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_PackInfo.ModuleAbilityInfo](js-apis-bundleManager-BundlePackInfo-sys.md#moduleabilityinfo) |module包含的ability组件信息。 |
+
+## AbilityFormInfo
+
+type AbilityFormInfo = _PackInfo.AbilityFormInfo
+
+卡片信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.FreeInstall
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_PackInfo.AbilityFormInfo](js-apis-bundleManager-BundlePackInfo-sys.md#abilityforminfo) |卡片信息。 |
+
+## Version
+
+type Version = _PackInfo.Version
+
+包的版本。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.FreeInstall
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_PackInfo.Version](js-apis-bundleManager-BundlePackInfo-sys.md#version) |包的版本。 |
+
+## ApiVersion
+
+type ApiVersion = _PackInfo.ApiVersion
+
+module的api版本。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.FreeInstall
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_PackInfo.ApiVersion](js-apis-bundleManager-BundlePackInfo-sys.md#apiversion) |module的api版本。 |

@@ -43,16 +43,29 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  pointer.setPointerSpeed(5, (error: Error) => {
-    if (error) {
-      console.log(`Set pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-      return;
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.setPointerSpeed(5, (error: Error) => {
+              if (error) {
+                console.error(`Set pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+                return;
+              }
+              console.log(`Set pointer speed success`);
+            });
+          } catch (error) {
+            console.error(`Set pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
     }
-    console.log(`Set pointer speed success`);
-  });
-} catch (error) {
-  console.log(`Set pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  }
 }
 ```
 
@@ -90,12 +103,25 @@ For details about the following error codes, see [Screen Hopping Error Codes](..
 **Example**
 
 ```js
-try {
-  pointer.setPointerSpeed(5).then(() => {
-    console.log(`Set pointer speed success`);
-  });
-} catch (error) {
-  console.log(`Set pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.setPointerSpeed(5).then(() => {
+              console.log(`Set pointer speed success`);
+            });
+          } catch (error) {
+            console.error(`Set pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -127,11 +153,24 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  let speed = pointer.setPointerSpeedSync(5);
-  console.log(`Set pointer speed success`);
-} catch (error) {
-  console.log(`Set pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            let speed = pointer.setPointerSpeedSync(5);
+            console.log(`Set pointer speed success`);
+          } catch (error) {
+            console.error(`Set pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -163,16 +202,29 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  pointer.getPointerSpeed((error: Error, speed: number) => {
-    if (error) {
-      console.log(`Get pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-      return;
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.getPointerSpeed((error: Error, speed: number) => {
+              if (error) {
+                console.error(`Get pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+                return;
+              }
+              console.log(`Get pointer speed success, speed: ${JSON.stringify(speed)}`);
+            });
+          } catch (error) {
+            console.error(`Get pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
     }
-    console.log(`Get pointer speed success, speed: ${JSON.stringify(speed)}`);
-  });
-} catch (error) {
-  console.log(`Get pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  }
 }
 ```
 
@@ -195,12 +247,25 @@ Obtains the moving speed of the mouse pointer. This API uses a promise to return
 **Example**
 
 ```js
-try {
-  pointer.getPointerSpeed().then(speed => {
-    console.log(`Get pointer speed success, speed: ${JSON.stringify(speed)}`);
-  });
-} catch (error) {
-  console.log(`Get pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.getPointerSpeed().then(speed => {
+              console.log(`Get pointer speed success, speed: ${JSON.stringify(speed)}`);
+            });
+          } catch (error) {
+            console.error(`Get pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -232,11 +297,24 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  let speed = pointer.getPointerSpeedSync();
-  console.log(`Get pointer speed success, speed: ${JSON.stringify(speed)}`);
-} catch (error) {
-  console.log(`Get pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            let speed = pointer.getPointerSpeedSync();
+            console.log(`Get pointer speed success, speed: ${JSON.stringify(speed)}`);
+          } catch (error) {
+            console.error(`Get pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -269,16 +347,29 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  pointer.setHoverScrollState(true, (error: Error) => {
-    if (error) {
-      console.log(`Set the mouse hover scroll failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-      return;
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.setHoverScrollState(true, (error: Error) => {
+              if (error) {
+                console.error(`Set the mouse hover scroll failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+                return;
+              }
+              console.log(`Set the mouse hover scroll success`);
+            });
+          } catch (error) {
+            console.error(`Set the mouse hover scroll failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
     }
-    console.log(`Set the mouse hover scroll success`);
-  });
-} catch (error) {
-  console.log(`Set the mouse hover scroll failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  }
 }
 ```
 
@@ -316,12 +407,25 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  pointer.setHoverScrollState(true).then(() => {
-    console.log(`Set the mouse hover scroll success`);
-  });
-} catch (error) {
-  console.log(`Set the mouse hover scroll failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.setHoverScrollState(true).then(() => {
+              console.log(`Set the mouse hover scroll success`);
+            });
+          } catch (error) {
+            console.error(`Set the mouse hover scroll failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -353,12 +457,25 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  pointer.getHoverScrollState((error: Error, state: boolean) => {
-    console.log(`Get the mouse hover scroll success, state: ${JSON.stringify(state)}`);
-  });
-} catch (error) {
-  console.log(`Get the mouse hover scroll failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.getHoverScrollState((error: Error, state: boolean) => {
+              console.log(`Get the mouse hover scroll success, state: ${JSON.stringify(state)}`);
+            });
+          } catch (error) {
+            console.error(`Get the mouse hover scroll failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -390,12 +507,25 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  pointer.getHoverScrollState().then((state: boolean) => {
-    console.log(`Get the mouse hover scroll success, state: ${JSON.stringify(state)}`);
-  });
-} catch (error) {
-  console.log(`Get the mouse hover scroll failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.getHoverScrollState().then((state: boolean) => {
+              console.log(`Get the mouse hover scroll success, state: ${JSON.stringify(state)}`);
+            });
+          } catch (error) {
+            console.error(`Get the mouse hover scroll failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -428,16 +558,29 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  pointer.setMousePrimaryButton(pointer.PrimaryButton.RIGHT, (error: Error) => {
-    if (error) {
-      console.log(`Set mouse primary button failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-      return;
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.setMousePrimaryButton(pointer.PrimaryButton.RIGHT, (error: Error) => {
+              if (error) {
+                console.error(`Set mouse primary button failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+                return;
+              }
+              console.log(`Set mouse primary button success`);
+            });
+          } catch (error) {
+            console.error(`Set mouse primary button failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
     }
-    console.log(`Set mouse primary button success`);
-  });
-} catch (error) {
-  console.log(`Set mouse primary button failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  }
 }
 ```
 
@@ -475,12 +618,25 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  pointer.setMousePrimaryButton(pointer.PrimaryButton.RIGHT).then(() => {
-    console.log(`Set mouse primary button success`);
-  });
-} catch (error) {
-  console.log(`Set mouse primary button failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.setMousePrimaryButton(pointer.PrimaryButton.RIGHT).then(() => {
+              console.log(`Set mouse primary button success`);
+            });
+          } catch (error) {
+            console.error(`Set mouse primary button failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -512,12 +668,25 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  pointer.getMousePrimaryButton((error: Error, primary: pointer.PrimaryButton) => {
-    console.log(`Get mouse primary button success, primary: ${JSON.stringify(primary)}`);
-  });
-} catch (error) {
-  console.log(`Get mouse primary button failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.getMousePrimaryButton((error: Error, primary: pointer.PrimaryButton) => {
+              console.log(`Get mouse primary button success, primary: ${JSON.stringify(primary)}`);
+            });
+          } catch (error) {
+            console.error(`Get mouse primary button failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -549,12 +718,25 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  pointer.getMousePrimaryButton().then((primary: pointer.PrimaryButton) => {
-    console.log(`Get mouse primary button success, primary: ${JSON.stringify(primary)}`);
-  });
-} catch (error) {
-  console.log(`Get mouse primary button failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.getMousePrimaryButton().then((primary: pointer.PrimaryButton) => {
+              console.log(`Get mouse primary button success, primary: ${JSON.stringify(primary)}`);
+            });
+          } catch (error) {
+            console.error(`Get mouse primary button failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -587,16 +769,29 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  pointer.setMouseScrollRows(1, (error: Error) => {
-    if (error) {
-      console.log(`setMouseScrollRows failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-      return;
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.setMouseScrollRows(1, (error: Error) => {
+              if (error) {
+                console.error(`setMouseScrollRows failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+                return;
+              }
+              console.log(`setMouseScrollRows success`);
+            });
+          } catch (error) {
+            console.error(`setMouseScrollRows failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
     }
-    console.log(`setMouseScrollRows success`);
-  });
-} catch (error) {
-  console.log(`setMouseScrollRows failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  }
 }
 ```
 
@@ -634,12 +829,25 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  pointer.setMouseScrollRows(20).then(() => {
-    console.log(`setMouseScrollRows success`);
-  });
-} catch (error) {
-  console.log(`setMouseScrollRows failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.setMouseScrollRows(20).then(() => {
+              console.log(`setMouseScrollRows success`);
+            });
+          } catch (error) {
+            console.error(`setMouseScrollRows failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -671,12 +879,25 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  pointer.getMouseScrollRows((error: Error, rows: number) => {
-    console.log(`getMouseScrollRows success, rows: ${JSON.stringify(rows)}`);
-  });
-} catch (error) {
-  console.log(`getMouseScrollRows failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.getMouseScrollRows((error: Error, rows: number) => {
+              console.log(`getMouseScrollRows success, rows: ${JSON.stringify(rows)}`);
+            });
+          } catch (error) {
+            console.error(`getMouseScrollRows failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -708,12 +929,25 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  pointer.getMouseScrollRows().then((rows: number) => {
-    console.log(`getMouseScrollRows success, rows: ${JSON.stringify(rows)}`);
-  });
-} catch (error) {
-  console.log(`getMouseScrollRows failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.getMouseScrollRows().then((rows: number) => {
+              console.log(`getMouseScrollRows success, rows: ${JSON.stringify(rows)}`);
+            });
+          } catch (error) {
+            console.error(`getMouseScrollRows failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -746,16 +980,29 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  pointer.setTouchpadScrollSwitch(true, (error: Error) => {
-    if (error) {
-      console.log(`setTouchpadScrollSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-      return;
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.setTouchpadScrollSwitch(true, (error: Error) => {
+              if (error) {
+                console.error(`setTouchpadScrollSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+                return;
+              }
+              console.log(`setTouchpadScrollSwitch success`);
+            });
+          } catch (error) {
+            console.error(`setTouchpadScrollSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
     }
-    console.log(`setTouchpadScrollSwitch success`);
-  });
-} catch (error) {
-  console.log(`setTouchpadScrollSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  }
 }
 ```
 
@@ -793,12 +1040,25 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  pointer.setTouchpadScrollSwitch(false).then(() => {
-    console.log(`setTouchpadScrollSwitch success`);
-  });
-} catch (error) {
-  console.log(`setTouchpadScrollSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.setTouchpadScrollSwitch(false).then(() => {
+              console.log(`setTouchpadScrollSwitch success`);
+            });
+          } catch (error) {
+            console.error(`setTouchpadScrollSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -830,12 +1090,25 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  pointer.getTouchpadScrollSwitch((error: Error, state: boolean) => {
-    console.log(`getTouchpadScrollSwitch success, state: ${JSON.stringify(state)}`);
-  });
-} catch (error) {
-  console.log(`getTouchpadScrollSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.getTouchpadScrollSwitch((error: Error, state: boolean) => {
+              console.log(`getTouchpadScrollSwitch success, state: ${JSON.stringify(state)}`);
+            });
+          } catch (error) {
+            console.error(`getTouchpadScrollSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -867,12 +1140,25 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  pointer.getTouchpadScrollSwitch().then((state) => {
-    console.log(`getTouchpadScrollSwitch success, state: ${JSON.stringify(state)}`);
-  });
-} catch (error) {
-  console.log(`getTouchpadScrollSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.getTouchpadScrollSwitch().then((state) => {
+              console.log(`getTouchpadScrollSwitch success, state: ${JSON.stringify(state)}`);
+            });
+          } catch (error) {
+            console.error(`getTouchpadScrollSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -905,16 +1191,29 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  pointer.setTouchpadScrollDirection(true, (error: Error) => {
-    if (error) {
-      console.log(`setTouchpadScrollDirection failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-      return;
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.setTouchpadScrollDirection(true, (error: Error) => {
+              if (error) {
+                console.error(`setTouchpadScrollDirection failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+                return;
+              }
+              console.log(`setTouchpadScrollDirection success`);
+            });
+          } catch (error) {
+            console.error(`setTouchpadScrollDirection failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
     }
-    console.log(`setTouchpadScrollDirection success`);
-  });
-} catch (error) {
-  console.log(`setTouchpadScrollDirection failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  }
 }
 ```
 
@@ -952,12 +1251,25 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  pointer.setTouchpadScrollDirection (false).then(() => {
-    console.log(`setTouchpadScrollDirection success`);
-  });
-} catch (error) {
-  console.log(`setTouchpadScrollDirection failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.setTouchpadScrollDirection (false).then(() => {
+              console.log(`setTouchpadScrollDirection success`);
+            });
+          } catch (error) {
+            console.error(`setTouchpadScrollDirection failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -989,12 +1301,25 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  pointer.getTouchpadScrollDirection ((error: Error, state: boolean) => {
-    console.log(`getTouchpadScrollDirection success, state: ${JSON.stringify(state)}`);
-  });
-} catch (error) {
-  console.log(`getTouchpadScrollDirection failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.getTouchpadScrollDirection ((error: Error, state: boolean) => {
+              console.log(`getTouchpadScrollDirection success, state: ${JSON.stringify(state)}`);
+            });
+          } catch (error) {
+            console.error(`getTouchpadScrollDirection failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -1026,12 +1351,25 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  pointer.getTouchpadScrollDirection().then((state: boolean) => {
-    console.log(`getTouchpadScrollDirection success, state: ${JSON.stringify(state)}`);
-  });
-} catch (error) {
-  console.log(`getTouchpadScrollDirection failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.getTouchpadScrollDirection().then((state: boolean) => {
+              console.log(`getTouchpadScrollDirection success, state: ${JSON.stringify(state)}`);
+            });
+          } catch (error) {
+            console.error(`getTouchpadScrollDirection failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -1064,16 +1402,29 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  pointer.setTouchpadTapSwitch(true, (error: Error) => {
-    if (error) {
-      console.log(`setTouchpadTapSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-      return;
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.setTouchpadTapSwitch(true, (error: Error) => {
+              if (error) {
+                console.error(`setTouchpadTapSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+                return;
+              }
+              console.log(`setTouchpadTapSwitch success`);
+            });
+          } catch (error) {
+            console.error(`setTouchpadTapSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
     }
-    console.log(`setTouchpadTapSwitch success`);
-  });
-} catch (error) {
-  console.log(`setTouchpadTapSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  }
 }
 ```
 
@@ -1111,12 +1462,25 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  pointer.setTouchpadTapSwitch(false).then(() => {
-    console.log(`setTouchpadTapSwitch success`);
-  });
-} catch (error) {
-  console.log(`setTouchpadTapSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.setTouchpadTapSwitch(false).then(() => {
+              console.log(`setTouchpadTapSwitch success`);
+            });
+          } catch (error) {
+            console.error(`setTouchpadTapSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -1148,12 +1512,25 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  pointer.getTouchpadTapSwitch((error: Error, state: boolean) => {
-    console.log(`getTouchpadTapSwitch success, state: ${JSON.stringify(state)}`);
-  });
-} catch (error) {
-  console.log(`getTouchpadTapSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.getTouchpadTapSwitch((error: Error, state: boolean) => {
+              console.log(`getTouchpadTapSwitch success, state: ${JSON.stringify(state)}`);
+            });
+          } catch (error) {
+            console.error(`getTouchpadTapSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -1185,12 +1562,25 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  pointer.getTouchpadTapSwitch().then((state: boolean) => {
-    console.log(`getTouchpadTapSwitch success, state: ${JSON.stringify(state)}`);
-  });
-} catch (error) {
-  console.log(`getTouchpadTapSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.getTouchpadTapSwitch().then((state: boolean) => {
+              console.log(`getTouchpadTapSwitch success, state: ${JSON.stringify(state)}`);
+            });
+          } catch (error) {
+            console.error(`getTouchpadTapSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -1223,16 +1613,29 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  pointer.setTouchpadPointerSpeed(1, (error: Error) => {
-    if (error) {
-      console.log(`setTouchpadPointerSpeedfailed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-      return;
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.setTouchpadPointerSpeed(1, (error: Error) => {
+              if (error) {
+                console.error(`setTouchpadPointerSpeedfailed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+                return;
+              }
+              console.log(`setTouchpadPointerSpeed success`);
+            });
+          } catch (error) {
+            console.error(`setTouchpadPointerSpeed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
     }
-    console.log(`setTouchpadPointerSpeed success`);
-  });
-} catch (error) {
-  console.log(`setTouchpadPointerSpeed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  }
 }
 ```
 
@@ -1270,12 +1673,25 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  pointer.setTouchpadPointerSpeed(10).then(() => {
-    console.log(`setTouchpadPointerSpeed success`);
-  });
-} catch (error) {
-  console.log(`setTouchpadPointerSpeed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.setTouchpadPointerSpeed(10).then(() => {
+              console.log(`setTouchpadPointerSpeed success`);
+            });
+          } catch (error) {
+            console.error(`setTouchpadPointerSpeed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -1307,12 +1723,25 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  pointer.getTouchpadPointerSpeed((error: Error, speed: number) => {
-    console.log(`getTouchpadPointerSpeed success, speed: ${JSON.stringify(speed)}`);
-  });
-} catch (error) {
-  console.log(`getTouchpadPointerSpeed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.getTouchpadPointerSpeed((error: Error, speed: number) => {
+              console.log(`getTouchpadPointerSpeed success, speed: ${JSON.stringify(speed)}`);
+            });
+          } catch (error) {
+            console.error(`getTouchpadPointerSpeed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -1344,12 +1773,25 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  pointer.getTouchpadPointerSpeed().then((speed: number) => {
-    console.log(`getTouchpadPointerSpeed success, speed: ${JSON.stringify(speed)}`);
-  });
-} catch (error) {
-  console.log(`getTouchpadPointerSpeed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.getTouchpadPointerSpeed().then((speed: number) => {
+              console.log(`getTouchpadPointerSpeed success, speed: ${JSON.stringify(speed)}`);
+            });
+          } catch (error) {
+            console.error(`getTouchpadPointerSpeed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -1382,16 +1824,29 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  pointer.setTouchpadTapSwitch(true, (error: Error) => {
-    if (error) {
-      console.log(`setTouchpadPinchSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-      return;
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.setTouchpadTapSwitch(true, (error: Error) => {
+              if (error) {
+                console.error(`setTouchpadPinchSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+                return;
+              }
+              console.log(`setTouchpadPinchSwitch success`);
+            });
+          } catch (error) {
+            console.error(`setTouchpadPinchSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
     }
-    console.log(`setTouchpadPinchSwitch success`);
-  });
-} catch (error) {
-  console.log(`setTouchpadPinchSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  }
 }
 ```
 
@@ -1429,12 +1884,25 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  pointer.setTouchpadPinchSwitch(false).then(() => {
-    console.log(`setTouchpadPinchSwitch success`);
-  });
-} catch (error) {
-  console.log(`setTouchpadPinchSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.setTouchpadPinchSwitch(false).then(() => {
+              console.log(`setTouchpadPinchSwitch success`);
+            });
+          } catch (error) {
+            console.error(`setTouchpadPinchSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -1466,12 +1934,25 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  pointer.getTouchpadPinchSwitch((error: Error, state: boolean) => {
-    console.log(`getTouchpadPinchSwitch success, state: ${JSON.stringify(state)}`);
-  });
-} catch (error) {
-  console.log(`getTouchpadPinchSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.getTouchpadPinchSwitch((error: Error, state: boolean) => {
+              console.log(`getTouchpadPinchSwitch success, state: ${JSON.stringify(state)}`);
+            });
+          } catch (error) {
+            console.error(`getTouchpadPinchSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -1503,12 +1984,25 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  pointer.getTouchpadPinchSwitch().then((state: boolean) => {
-    console.log(`getTouchpadPinchSwitch success, state: ${JSON.stringify(state)}`);
-  });
-} catch (error) {
-  console.log(`getTouchpadPinchSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.getTouchpadPinchSwitch().then((state: boolean) => {
+              console.log(`getTouchpadPinchSwitch success, state: ${JSON.stringify(state)}`);
+            });
+          } catch (error) {
+            console.error(`getTouchpadPinchSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -1541,16 +2035,29 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  pointer.setTouchpadSwipeSwitch(true, (error: Error) => {
-    if (error) {
-      console.log(`setTouchpadSwipeSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-      return;
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.setTouchpadSwipeSwitch(true, (error: Error) => {
+              if (error) {
+                console.error(`setTouchpadSwipeSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+                return;
+              }
+              console.log(`setTouchpadSwipeSwitch success`);
+            });
+          } catch (error) {
+            console.error(`setTouchpadSwipeSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
     }
-    console.log(`setTouchpadSwipeSwitch success`);
-  });
-} catch (error) {
-  console.log(`setTouchpadSwipeSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  }
 }
 ```
 
@@ -1588,12 +2095,25 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  pointer.setTouchpadSwipeSwitch(false).then(() => {
-    console.log(`setTouchpadSwipeSwitch success`);
-  });
-} catch (error) {
-  console.log(`setTouchpadSwipeSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.setTouchpadSwipeSwitch(false).then(() => {
+              console.log(`setTouchpadSwipeSwitch success`);
+            });
+          } catch (error) {
+            console.error(`setTouchpadSwipeSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -1625,12 +2145,25 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  pointer.getTouchpadSwipeSwitch((error: Error, state: boolean) => {
-    console.log(`getTouchpadSwipeSwitch success, state: ${JSON.stringify(state)}`);
-  });
-} catch (error) {
-  console.log(`getTouchpadSwipeSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.getTouchpadSwipeSwitch((error: Error, state: boolean) => {
+              console.log(`getTouchpadSwipeSwitch success, state: ${JSON.stringify(state)}`);
+            });
+          } catch (error) {
+            console.error(`getTouchpadSwipeSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -1662,12 +2195,25 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  pointer.getTouchpadSwipeSwitch().then((state: boolean) => {
-    console.log(`getTouchpadSwipeSwitch success, state: ${JSON.stringify(state)}`);
-  });
-} catch (error) {
-  console.log(`getTouchpadSwipeSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.getTouchpadSwipeSwitch().then((state: boolean) => {
+              console.log(`getTouchpadSwipeSwitch success, state: ${JSON.stringify(state)}`);
+            });
+          } catch (error) {
+            console.error(`getTouchpadSwipeSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -1685,7 +2231,7 @@ Sets the shortcut menu type of the touchpad. This API uses an asynchronous callb
 
 | Name      | Type                       | Mandatory  | Description                                   |
 | -------- | ------------------------- | ---- | ------------------------------------- |
-| type| [RightClickType](js-apis-pointer.md#rightclicktype10)| Yes   |Shortcut menu type of the touchpad.<br>- TOUCHPAD_RIGHT_BUTTON: tapping the right-button area of the touchpad.<br>- TOUCHPAD_LEFT_BUTTON: tapping the left-button area of the touchpad.<br>- TOUCHPAD_TWO_FINGER_TAP: tapping or pressing the touchpad with two fingers.<br>The default value is **TOUCHPAD_RIGHT_BUTTON**. |
+| type| [RightClickType](js-apis-pointer.md#rightclicktype10)| Yes   |Shortcut menu type of the touchpad.<br>- TOUCHPAD_RIGHT_BUTTON: Tapping the right-button area of the touchpad.<br>- TOUCHPAD_LEFT_BUTTON: Tapping the left-button area of the touchpad.<br>- TOUCHPAD_TWO_FINGER_TAP: Tapping or pressing the touchpad with two fingers.<br>- TOUCHPAD_TWO_FINGER_TAP_OR_LEFT_BUTTON<sup>20+</sup>: Tapping or pressing the touchpad with two fingers, or tapping the left-button area of the touchpad.<br>The default value is **TOUCHPAD_TWO_FINGER_TAP_OR_RIGHT_BUTTON**.|
 | callback | AsyncCallback\<void> | Yes   | Callback used to return the result.|
 
 **Error codes**
@@ -1700,16 +2246,29 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  pointer.setTouchpadRightClickType(pointer.RightClickType.TOUCHPAD_RIGHT_BUTTON , (error: Error) => {
-    if (error) {
-      console.log(`setTouchpadRightClickType, error: ${JSON.stringify(error, [`code`, `message`])}`);
-      return;
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.setTouchpadRightClickType(pointer.RightClickType.TOUCHPAD_RIGHT_BUTTON , (error: Error) => {
+              if (error) {
+                console.error(`setTouchpadRightClickType, error: ${JSON.stringify(error, [`code`, `message`])}`);
+                return;
+              }
+              console.log(`setTouchpadRightClickType success`);
+            });
+          } catch (error) {
+            console.error(`setTouchpadRightClickType failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
     }
-    console.log(`setTouchpadRightClickType success`);
-  });
-} catch (error) {
-  console.log(`setTouchpadRightClickType failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  }
 }
 ```
 
@@ -1725,9 +2284,9 @@ Sets the shortcut menu type of the touchpad. This API uses a promise to return t
 
 **Parameters**
 
-| Name   | Type    | Mandatory  | Description                                 |
-| ----- | ------ | ---- | ----------------------------------- |
-| type| [RightClickType](js-apis-pointer.md#rightclicktype10)| Yes   | Shortcut menu type of the touchpad.<br>- TOUCHPAD_RIGHT_BUTTON: tapping the right-button area of the touchpad.<br>- TOUCHPAD_LEFT_BUTTON: tapping the left-button area of the touchpad.<br>- TOUCHPAD_TWO_FINGER_TAP: tapping or pressing the touchpad with two fingers.<br>The default value is **TOUCHPAD_RIGHT_BUTTON**.|
+| Name      | Type                       | Mandatory  | Description                                   |
+| -------- | ------------------------- | ---- | ------------------------------------- |
+| type| [RightClickType](js-apis-pointer.md#rightclicktype10)| Yes   |Shortcut menu type of the touchpad.<br>- TOUCHPAD_RIGHT_BUTTON: Tapping the right-button area of the touchpad.<br>- TOUCHPAD_LEFT_BUTTON: Tapping the left-button area of the touchpad.<br>- TOUCHPAD_TWO_FINGER_TAP: Tapping or pressing the touchpad with two fingers.<br>- TOUCHPAD_TWO_FINGER_TAP_OR_LEFT_BUTTON<sup>20+</sup>: Tapping or pressing the touchpad with two fingers, or tapping the left-button area of the touchpad.<br>The default value is **TOUCHPAD_TWO_FINGER_TAP_OR_RIGHT_BUTTON**.|
 
 **Return value**
 
@@ -1747,12 +2306,25 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  pointer.setTouchpadRightClickType(pointer.RightClickType.TOUCHPAD_RIGHT_BUTTON).then(() => {
-    console.log(`setTouchpadRightClickType success`);
-  });
-} catch (error) {
-  console.log(`setTouchpadRightClickType failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.setTouchpadRightClickType(pointer.RightClickType.TOUCHPAD_RIGHT_BUTTON).then(() => {
+              console.log(`setTouchpadRightClickType success`);
+            });
+          } catch (error) {
+            console.error(`setTouchpadRightClickType failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -1784,12 +2356,25 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  pointer.getTouchpadRightClickType((error: Error, type: pointer.RightClickType) => {
-    console.log(`getTouchpadRightClickType success, type: ${JSON.stringify(type)}`);
-  });
-} catch (error) {
-  console.log(`getTouchpadRightClickType failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.getTouchpadRightClickType((error: Error, type: pointer.RightClickType) => {
+              console.log(`getTouchpadRightClickType success, type: ${JSON.stringify(type)}`);
+            });
+          } catch (error) {
+            console.error(`getTouchpadRightClickType failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -1821,12 +2406,25 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  pointer.getTouchpadRightClickType().then((type: pointer.RightClickType) => {
-    console.log(`getTouchpadRightClickType success, typeed: ${JSON.stringify(type)}`);
-  });
-} catch (error) {
-  console.log(`getTouchpadRightClickType failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.getTouchpadRightClickType().then((type: pointer.RightClickType) => {
+              console.log(`getTouchpadRightClickType success, typeed: ${JSON.stringify(type)}`);
+            });
+          } catch (error) {
+            console.error(`getTouchpadRightClickType failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -1859,16 +2457,29 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  pointer.setPointerSize(1, (error: Error) => {
-    if (error) {
-      console.log(`setPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-      return;
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.setPointerSize(1, (error: Error) => {
+              if (error) {
+                console.error(`setPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+                return;
+              }
+              console.log(`setPointerSize success`);
+            });
+          } catch (error) {
+            console.error(`setPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
     }
-    console.log(`setPointerSize success`);
-  });
-} catch (error) {
-  console.log(`setPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  }
 }
 ```
 
@@ -1906,12 +2517,25 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  pointer.setPointerSize(3).then(() => {
-    console.log(`setPointerSize success`);
-  });
-} catch (error) {
-  console.log(`setPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.setPointerSize(3).then(() => {
+              console.log(`setPointerSize success`);
+            });
+          } catch (error) {
+            console.error(`setPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -1943,11 +2567,24 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  pointer.setPointerSizeSync(5);
-  console.log(`setPointerSizeSync success`);
-} catch (error) {
-  console.log(`setPointerSizeSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.setPointerSizeSync(5);
+            console.log(`setPointerSizeSync success`);
+          } catch (error) {
+            console.error(`setPointerSizeSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -1979,12 +2616,25 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  pointer.getPointerSize((error: Error, size: number) => {
-    console.log(`getPointerSize success, size: ${JSON.stringify(size)}`);
-  });
-} catch (error) {
-  console.log(`getPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.getPointerSize((error: Error, size: number) => {
+              console.log(`getPointerSize success, size: ${JSON.stringify(size)}`);
+            });
+          } catch (error) {
+            console.error(`getPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -2016,12 +2666,25 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  pointer.getPointerSize().then((size: number) => {
-    console.log(`getPointerSize success, size: ${JSON.stringify(size)}`);
-  });
-} catch (error) {
-  console.log(`getPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.getPointerSize().then((size: number) => {
+              console.log(`getPointerSize success, size: ${JSON.stringify(size)}`);
+            });
+          } catch (error) {
+            console.error(`getPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -2053,11 +2716,24 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  let pointerSize = pointer.getPointerSizeSync();
-  console.log(`getPointerSizeSync success, pointerSize: ${JSON.stringify(pointerSize)}`);
-} catch (error) {
-  console.log(`getPointerSizeSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            let pointerSize = pointer.getPointerSizeSync();
+            console.log(`getPointerSizeSync success, pointerSize: ${JSON.stringify(pointerSize)}`);
+          } catch (error) {
+            console.error(`getPointerSizeSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -2094,16 +2770,29 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  pointer.setPointerColor(0xF6C800, (error: Error) => {
-    if (error) {
-      console.log(`setPointerColor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-      return;
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.setPointerColor(0xF6C800, (error: Error) => {
+              if (error) {
+                console.error(`setPointerColor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+                return;
+              }
+              console.log(`setPointerColor success`);
+            });
+          } catch (error) {
+            console.error(`setPointerColor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
     }
-    console.log(`setPointerColor success`);
-  });
-} catch (error) {
-  console.log(`setPointerColor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  }
 }
 ```
 
@@ -2145,12 +2834,25 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  pointer.setPointerColor(0xF6C800).then(() => {
-    console.log(`setPointerColor success`);
-  });
-} catch (error) {
-  console.log(`setPointerColor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.setPointerColor(0xF6C800).then(() => {
+              console.log(`setPointerColor success`);
+            });
+          } catch (error) {
+            console.error(`setPointerColor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -2186,11 +2888,24 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  pointer.setPointerColorSync(0xF6C800);
-  console.log(`setPointerColorSync success`);
-} catch (error) {
-  console.log(`setPointerColorSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.setPointerColorSync(0xF6C800);
+            console.log(`setPointerColorSync success`);
+          } catch (error) {
+            console.error(`setPointerColorSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -2222,12 +2937,25 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  pointer.getPointerColor((error: Error, color: number) => {
-    console.log(`getPointerColor success, color: ${JSON.stringify(color)}`);
-  });
-} catch (error) {
-  console.log(`getPointerColor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.getPointerColor((error: Error, color: number) => {
+              console.log(`getPointerColor success, color: ${JSON.stringify(color)}`);
+            });
+          } catch (error) {
+            console.error(`getPointerColor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -2259,12 +2987,25 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  pointer.getPointerColor().then((color: number) => {
-    console.log(`getPointerColor success, color: ${JSON.stringify(color)}`);
-  });
-} catch (error) {
-  console.log(`getPointerColor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.getPointerColor().then((color: number) => {
+              console.log(`getPointerColor success, color: ${JSON.stringify(color)}`);
+            });
+          } catch (error) {
+            console.error(`getPointerColor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -2296,11 +3037,24 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  let pointerColor = pointer.getPointerColorSync();
-  console.log(`getPointerColorSync success, pointerColor: ${JSON.stringify(pointerColor)}`);
-} catch (error) {
-  console.log(`getPointerColorSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            let pointerColor = pointer.getPointerColorSync();
+            console.log(`getPointerColorSync success, pointerColor: ${JSON.stringify(pointerColor)}`);
+          } catch (error) {
+            console.error(`getPointerColorSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -2333,16 +3087,29 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  pointer.setTouchpadDoubleTapAndDragState(true, (error: Error) => {
-    if (error) {
-      console.log(`setTouchpadDoubleTapAndDragState failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-      return;
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.setTouchpadDoubleTapAndDragState(true, (error: Error) => {
+              if (error) {
+                console.error(`setTouchpadDoubleTapAndDragState failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+                return;
+              }
+              console.log(`setTouchpadDoubleTapAndDragState success`);
+            });
+          } catch (error) {
+            console.error(`setTouchpadDoubleTapAndDragState failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
     }
-    console.log(`setTouchpadDoubleTapAndDragState success`);
-  });
-} catch (error) {
-  console.log(`setTouchpadDoubleTapAndDragState failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  }
 }
 ```
 
@@ -2380,12 +3147,25 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  pointer.setTouchpadDoubleTapAndDragState(false).then(() => {
-    console.log(`setTouchpadDoubleTapAndDragState success`);
-  });
-} catch (error) {
-  console.log(`setTouchpadDoubleTapAndDragState failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.setTouchpadDoubleTapAndDragState(false).then(() => {
+              console.log(`setTouchpadDoubleTapAndDragState success`);
+            });
+          } catch (error) {
+            console.error(`setTouchpadDoubleTapAndDragState failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -2417,12 +3197,25 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  pointer.getTouchpadDoubleTapAndDragState((error: Error, state: boolean) => {
-    console.log(`getTouchpadDoubleTapAndDragState success, state: ${JSON.stringify(state)}`);
-  });
-} catch (error) {
-  console.log(`getTouchpadDoubleTapAndDragState failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.getTouchpadDoubleTapAndDragState((error: Error, state: boolean) => {
+              console.log(`getTouchpadDoubleTapAndDragState success, state: ${JSON.stringify(state)}`);
+            });
+          } catch (error) {
+            console.error(`getTouchpadDoubleTapAndDragState failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -2453,11 +3246,24 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-try {
-  pointer.getTouchpadDoubleTapAndDragState().then((state) => {
-    console.log(`getTouchpadDoubleTapAndDragState success, state: ${JSON.stringify(state)}`);
-  });
-} catch (error) {
-  console.log(`getTouchpadDoubleTapAndDragState failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { pointer } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            pointer.getTouchpadDoubleTapAndDragState().then((state) => {
+              console.log(`getTouchpadDoubleTapAndDragState success, state: ${JSON.stringify(state)}`);
+            });
+          } catch (error) {
+            console.error(`getTouchpadDoubleTapAndDragState failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```

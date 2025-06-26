@@ -5,6 +5,7 @@
   - [创建ArkTS卡片](arkts-ui-widget-creation.md)
   - [配置ArkTS卡片的配置文件](arkts-ui-widget-configuration.md)
   - [管理ArkTS卡片生命周期](arkts-ui-widget-lifecycle.md)
+  - [ArkTS卡片进程模型](arkts-ui-widget-process.md)
   - ArkTS卡片提供方开发指导<!--arkts-ui-widget-->
     - ArkTS卡片UI界面开发<!--arkts-ui-widget-page-->
       - [ArkTS卡片界面开发概述](arkts-ui-widget-page-overview.md)
@@ -24,9 +25,9 @@
       <!--DelEnd-->
       - [刷新本地图片和网络图片](arkts-ui-widget-image-update.md)
       - [根据卡片状态刷新不同内容](arkts-ui-widget-update-by-status.md)
-    - ArkTS卡片页面编辑<!--arkts-ui-widget-edit-->
-      - [ArkTS卡片页面编辑交互概述](arkts-ui-widget-event-formeditextensionability-overview.md)
-      - [编辑刷新卡片页面内容](arkts-ui-widget-event-formeditextensionability.md)
+    - ArkTS卡片编辑<!--arkts-ui-widget-edit-->
+      - [ArkTS卡片编辑概述](arkts-ui-widget-event-formeditextensionability-overview.md)
+      - [卡片编辑开发指导](arkts-ui-widget-event-formeditextensionability.md)
     - 应用内请求卡片加桌<!--arkts-ui-widget-add-->
       - [应用内拉起卡片管理加桌](arkts-ui-widget-open-formmanager.md)
   <!--Del--> 

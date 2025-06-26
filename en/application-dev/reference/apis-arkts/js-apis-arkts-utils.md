@@ -36,13 +36,13 @@ A supplementary type alias that represents the callback in all the overloads of 
 
 A class that implements an asynchronous lock and allows asynchronous operations to be performed under a lock. This class is decorated by [@Sendable](../../arkts-utils/arkts-sendable.md).
 
-#### Attributes
+#### Properties
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name| Type  | Readable| Writable| Description      |
+| Name| Type  | Read-Only| Optional| Description      |
 | ---- | ------ | ---- | ---- | ---------- |
 | name | string | Yes  | No  | Name of the lock.|
 
@@ -153,9 +153,9 @@ Queries information about an asynchronous lock.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description      |
-| ---- | ------ | ---- | ---------- |
-| name | string | Yes  | Name of the lock.|
+| Name| Type  | Mandatory| Description                                                                                                                    |
+| ---- | ------ | ---- | ------------------------------------------------------------------------------------------------------------------------ |
+| name | string | Yes  | Name of the lock. Only locks obtained through the [request](#request) API can be queried, meaning that the lock name must match the parameter passed to the [request](#request) API.|
 
 **Return value**
 
@@ -205,7 +205,7 @@ Queries information about all existing asynchronous locks.
 
 ```ts
 let states: ArkTSUtils.locks.AsyncLockState[] = ArkTSUtils.locks.AsyncLock.queryAll();
-if (states.length == 0) {
+if (states.length === 0) {
     throw new Error('Test failed: At least one state is expected, but what got is ' + states.length);
 }
 ```
@@ -214,7 +214,7 @@ if (states.length == 0) {
 
 lockAsync\<T>(callback: AsyncLockCallback\<T>): Promise\<T>
 
-Performs an operation exclusively under a lock. This API acquires the lock, executes the callback, and releases the lock. The callback is executed asynchronously in the same thread where [lockAsync](#lockasync) was called.
+Performs an operation under a lock. This API acquires the lock, executes the callback, and releases the lock. The callback is executed asynchronously in the same thread where [lockAsync](#lockasync) was called.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -224,7 +224,7 @@ Performs an operation exclusively under a lock. This API acquires the lock, exec
 
 | Name    | Type                                   | Mandatory| Description                  |
 | -------- | --------------------------------------- | ---- | ---------------------- |
-| callback | [AsyncLockCallback](#asynclockcallback) | Yes  | Callback to be executed after a lock is acquired.|
+| callback | [AsyncLockCallback\<T>](#asynclockcallback) | Yes  | Callback to be executed after a lock is acquired.|
 
 **Return value**
 
@@ -264,7 +264,7 @@ Performs an operation under a lock. This API acquires the lock, executes the cal
 
 | Name    | Type                                   | Mandatory| Description                  |
 | -------- | --------------------------------------- | ---- | ---------------------- |
-| callback | [AsyncLockCallback](#asynclockcallback) | Yes  | Callback to be executed after a lock is acquired.|
+| callback | [AsyncLockCallback\<T>](#asynclockcallback) | Yes  | Callback to be executed after a lock is acquired.|
 | mode     | [AsyncLockMode](#asynclockmode)         | Yes  | Mode of the lock.        |
 
 **Return value**
@@ -305,7 +305,7 @@ Performs an operation under a lock. This API acquires the lock, executes the cal
 
 | Name    | Type                                     | Mandatory| Description                  |
 | -------- | ----------------------------------------- | ---- | ---------------------- |
-| callback | [AsyncLockCallback](#asynclockcallback)   | Yes  | Callback to be executed after a lock is acquired.|
+| callback | [AsyncLockCallback\<T>](#asynclockcallback)   | Yes  | Callback to be executed after a lock is acquired.|
 | mode     | [AsyncLockMode](#asynclockmode)           | Yes  | Mode of the lock.        |
 | options  | [AsyncLockOptions\<U>](#asynclockoptions) | Yes  | Options of the lock.        |
 
@@ -398,7 +398,7 @@ Class that implements the asynchronous lock options.
 
 constructor()
 
-Default constructor used to create an **AsyncLockOptions** instance with the default values for all attributes.
+Default constructor used to create an **AsyncLockOptions** instance with the default values for all properties.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -419,13 +419,13 @@ options.isAvailable = false;
 options.signal = s;
 ```
 
-#### Attributes
+#### Properties
 
-| Name       | Type                                 | Readable| Writable| Description                                                                                                                     |
+| Name       | Type                                 | Read-Only| Optional| Description                                                                                                                     |
 | ----------- | ------------------------------------- | ---- | ---- | ------------------------------------------------------------------------------------------------------------------------- |
-| isAvailable | boolean                               | Yes  | Yes  | Whether the lock is available. If the value is **true**, a lock is granted only when it is not held. If the value is **false**, a lock is granted once it is released. The default value is **false**.|
-| signal      | [AbortSignal\<T>](#abortsignal)\|null | Yes  | Yes  | Signal used to abort an asynchronous operation. If **signal.aborted** is **true**, the lock request is discarded. If **signal.aborted** is **false**, the request keeps waiting. If **signal.aborted** is **null**, the request is queued normally. The default value is **null**.              |
-| timeout     | number                                | Yes  | Yes  | Timeout interval of the lock request, in milliseconds. If the value is greater than zero and a lock is not acquired before time, [lockAsync](#lockasync) returns a rejected Promise. The default value is **0**.     |
+| isAvailable | boolean                               | No  | No  | Whether the lock is available. If the value is **true**, a lock is granted only when it is not held. If the value is **false**, a lock is granted once it is released. The default value is **false**.|
+| signal      | [AbortSignal\<T>](#abortsignal)\|null | No  | No  | Signal used to abort an asynchronous operation. If **signal.aborted** is **true**, the lock request is discarded. If **signal.aborted** is **false**, the request keeps waiting. If **signal.aborted** is **null**, the request is queued normally. The default value is **null**.              |
+| timeout     | number                                | No  | No  | Timeout duration for the lock operation, in milliseconds. If the value is greater than zero and the operation exceeds this duration, [lockAsync](#lockasync) returns a rejected Promise. The default value is **0**.     |
 
 ### AsyncLockState
 
@@ -435,12 +435,12 @@ A class used to store information about all lock operations currently performed 
 
 **System capability**: SystemCapability.Utils.Lang
 
-#### Attributes
+#### Properties
 
-| Name   | Type                             | Readable| Writable| Description            |
+| Name   | Type                             | Read-Only| Optional| Description            |
 | ------- | --------------------------------- | ---- | ---- | ---------------- |
-| held    | [AsyncLockInfo[]](#asynclockinfo) | Yes  | Yes  | Information about the lock being held.  |
-| pending | [AsyncLockInfo[]](#asynclockinfo) | Yes  | Yes  | Information about the lock in the waiting state.|
+| held    | [AsyncLockInfo[]](#asynclockinfo) | No  | No  | Information about the lock being held.  |
+| pending | [AsyncLockInfo[]](#asynclockinfo) | No  | No  | Information about the lock in the waiting state.|
 
 ### AsyncLockInfo
 
@@ -450,13 +450,13 @@ Describes the information about a lock.
 
 **System capability**: SystemCapability.Utils.Lang
 
-#### Attributes
+#### Properties
 
-| Name     | Type                           | Readable| Writable| Description                                                     |
+| Name     | Type                           | Read-Only| Optional| Description                                                     |
 | --------- | ------------------------------- | ---- | ---- | --------------------------------------------------------- |
-| name      | string                          | Yes  | Yes  | Name of the lock.                                               |
-| mode      | [AsyncLockMode](#asynclockmode) | Yes  | Yes  | Mode of the lock.                                               |
-| contextId | number                          | Yes  | Yes  | Context identifier of the caller of [AsyncLockMode](#asynclockmode).|
+| name      | string                          | No  | No  | Name of the lock.                                               |
+| mode      | [AsyncLockMode](#asynclockmode) | No  | No  | Mode of the lock.                                               |
+| contextId | number                          | No  | No  | Context identifier of the caller of [AsyncLockMode](#asynclockmode).|
 
 ### AbortSignal
 
@@ -466,16 +466,16 @@ A class that implements a signal used to abort an asynchronous operation. An ins
 
 **System capability**: SystemCapability.Utils.Lang
 
-#### Attributes
+#### Properties
 
-| Name   | Type   | Readable| Writable| Description                                                            |
+| Name   | Type   | Read-Only| Optional| Description                                                            |
 | ------- | ------- | ---- | ---- | ---------------------------------------------------------------- |
-| aborted | boolean | Yes  | Yes  | Whether to abort the asynchronous operation. The value **true** means to abort the asynchronous operation, and **false** means the opposite.    |
-| reason  | \<T>    | Yes  | Yes  | Reason for abort. This value will be used in the rejected Promise returned by [lockAsync](#lockasync).|
+| aborted | boolean | No  | No  | Whether to abort the asynchronous operation. The value **true** means to abort the asynchronous operation, and **false** means the opposite.    |
+| reason  | \<T>    | No  | No  | Reason for abort. This value will be used in the rejected Promise returned by [lockAsync](#lockasync).|
 
 ### ConditionVariable<sup>18+</sup>
 
-A class that implements asynchronous waiting, enabling asynchronous wait and notify operations.
+A class that implements asynchronous waiting, supporting asynchronous wait and notify operations. This class is decorated by [@Sendable](../../arkts-utils/arkts-sendable.md).
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -519,14 +519,6 @@ Looks up or creates (if not found) an object for asynchronous wait and notify op
 | ----------------------- | -------------------------------- |
 | [ConditionVariable](#conditionvariable18) | Object for asynchronous wait and notify operations.|
 
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID| Error Message         |
-| -------- | ----------------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-
 **Example**
 
 ```ts
@@ -552,7 +544,7 @@ Asynchronously waits until notified. This API uses a promise to return the resul
 **Example**
 
 ```ts
-let conditionVariable = ArkTSUtils.locks.AsyncLock.ConditionVariable();
+const conditionVariable: ArkTSUtils.locks.ConditionVariable = new ArkTSUtils.locks.ConditionVariable();
 conditionVariable.wait().then(() => {
   console.info(`Thread being awakened, then continue...`); // Output logs upon awakening.
 });
@@ -580,18 +572,10 @@ Asynchronously waits for a specified duration or until notified. This API uses a
 | ----------- | --------------------------- |
 | Promise\<void> | Promise that returns no value.|
 
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID| Error Message         |
-| -------- | ----------------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-
 **Example**
 
 ```ts
-let conditionVariable = ArkTSUtils.locks.AsyncLock.ConditionVariable();
+const conditionVariable: ArkTSUtils.locks.ConditionVariable = new ArkTSUtils.locks.ConditionVariable();
 conditionVariable.waitFor(3000).then(() => {
   console.info(`Thread being awakened, then continue...`); // Output logs upon awakening.
 });
@@ -610,7 +594,7 @@ Notifies all waiting threads.
 **Example**
 
 ```ts
-let conditionVariable = ArkTSUtils.locks.AsyncLock.ConditionVariable();
+const conditionVariable: ArkTSUtils.locks.ConditionVariable = new ArkTSUtils.locks.ConditionVariable();
 conditionVariable.waitFor(3000).then(() => {
   console.info(`Thread being awakened, then continue...`); // Output logs upon awakening.
 });
@@ -630,19 +614,16 @@ Notifies the first waiting thread.
 **Example**
 
 ```ts
-let conditionVariable = ArkTSUtils.locks.AsyncLock.ConditionVariable();
+const conditionVariable: ArkTSUtils.locks.ConditionVariable = new ArkTSUtils.locks.ConditionVariable();
 conditionVariable.waitFor(3000).then(() => {
   console.info(`Thread a being awakened, then continue...`); // Output logs upon awakening.
-});
-conditionVariable.waitFor().then(() => {
-  console.info(`Thread twob being awakened, then continue...`); // Output logs upon awakening.
 });
 conditionVariable.notifyOne();
 ```
 
 ## ArkTSUtils.ASON
 
-A utility class used to parse JSON strings into [sendable data](../../arkts-utils/arkts-sendable.md#sendable-data-types). ASON allows you to parse JSON strings and generate data that can be passed across concurrency domains. It also supports conversion from sendable data into JSON strings.
+A utility class used to parse JSON strings into [sendable data](../../arkts-utils/arkts-sendable.md#sendable-data-types). ASON allows you to parse JSON strings and generate Sendable data for pass-by-reference across concurrent instances. It also supports conversion from Sendable data into JSON strings.
 
 ### ISendable
 
@@ -674,7 +655,7 @@ Defines the type of the conversion result function.
 | ------ | ------ | ---- | --------------- |
 | this   | [ISendable](#isendable) | Yes| Object to which the key-value pair to parse belongs.|
 | key  | string | Yes| Key to parse.|
-| value  | [ISendable](#isendable) | Yes| Value of the key.|
+| value  | [ISendable](#isendable) \| undefined \| null| Yes| Value of the key.|
 
 **Return value**
 
@@ -744,6 +725,14 @@ Parses a JSON string to generate ISendable data or null.
 | -------- | -------- |
 | [ISendable](#isendable) \| null | ISendable data or **null** (if **null** is passed in).|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401      | Parameter error. Invalid JSON string. |
+
 **Example**
 
 ```ts
@@ -782,44 +771,16 @@ console.info("largeNumber is " + (map as collections.Map<string,bigint>).get("la
 // Expected output: largeNumber is 112233445566778899
 ```
 
+
 ### stringify
-
-stringify(value: ISendable | null | undefined): string
-
-Converts ISendable data into a JSON string.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-**System capability**: SystemCapability.Utils.Lang
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| value | [ISendable](#isendable) \| null \| undefined  | Yes| ISendable data.|
-
-**Return value**
-
-| Type| Description|
-| -------- | -------- |
-| string | JSON string.|
-
-**Example**
-
-```ts
-import { collections } from '@kit.ArkTS';
-
-let arr = new collections.Array(1, 2, 3);
-let str = ArkTSUtils.ASON.stringify(arr);
-console.info(str);
-// Expected output: '[1,2,3]'
-```
-
-### stringify<sup>18+</sup>
 
 stringify(value: Object | null | undefined): string
 
 Converts ArkTS object data into a JSON string, with additional support for Map and Set types.
+
+> **NOTE**
+>
+> Since API 18, the parameter type is changed to Object. In versions earlier than API 18, only the ISendable type is supported.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -836,6 +797,14 @@ Converts ArkTS object data into a JSON string, with additional support for Map a
 | Type| Description|
 | -------- | -------- |
 | string | JSON string.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401      | Parameter error. Invalid ArkTS value. |
 
 **Example**
 
@@ -906,16 +875,16 @@ Checks whether the passed-in value is of the sendable data type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Check result. The value **true** means that the passed-in value is of the sendable data type, and **false** means the opposite.|
+| boolean | Check result. The value **true** is returned if the passed-in value is of the sendable data type; otherwise, **false** is returned.|
 
 **Example**
 
 ```ts
-import { ArkTSUtils } from '@kit.ArkTS'
+import { ArkTSUtils } from '@kit.ArkTS';
 
 @Sendable
 function sendableFunc() {
-  console.info("sendableFunc")
+  console.info("sendableFunc");
 }
 
 if (ArkTSUtils.isSendable(sendableFunc)) {
@@ -928,15 +897,15 @@ if (ArkTSUtils.isSendable(sendableFunc)) {
 
 ## SendableLruCache<K, V><sup>18+</sup>
 
-Provides APIs to discard the least recently used data to make rooms for new elements when the cache is full. This class uses the Least Recently Used (LRU) algorithm, which believes that the recently used data may be accessed again in the near future and the least accessed data is the least valuable data and should be removed from the cache. **SendableLruCache** supports the Sendable feature, allowing it to store Sendable objects, which can be accessed safely across threads.
+Provides APIs to discard the least recently used data to make rooms for new elements when the cache is full. This class uses the Least Recently Used (LRU) algorithm, which believes that the recently used data may be accessed again in the near future and the least accessed data is the least valuable data and should be removed from the cache. **SendableLruCache** supports the Sendable feature, allowing it to store Sendable objects and ensuring safe cross-thread access.
 
-### Attributes
+### Properties
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name  | Type  | Readable| Writable| Description                  |
+| Name  | Type  | Read-Only| Optional| Description                  |
 | ------ | ------ | ---- | ---- | ---------------------- |
 | length | number | Yes  | No  | Total number of values in this cache.|
 
@@ -977,7 +946,7 @@ let pro = new ArkTSUtils.SendableLruCache<number, number>();
 
 updateCapacity(newCapacity: number): void
 
-Changes the cache capacity. If the total number of values in the cache is greater than the specified capacity, the least used key-value pairs are deleted.
+Changes the cache capacity. If the total number of values in the cache exceeds the specified capacity, the least recently used key-value pairs are removed.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -1085,7 +1054,7 @@ console.info('res = ' + res);
 
 getCreateCount(): number
 
-Obtains the number of times that the **createDefault** API is called to create objects.
+Obtains the number of times that the default internal API is called to create objects.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -1095,7 +1064,7 @@ Obtains the number of times that the **createDefault** API is called to create o
 
 | Type  | Description               |
 | ------ | -------------------|
-| number | Number of times that the **createDefault** API is called.|
+| number | Number of times that the default internal API is called.|
 
 **Example**
 
@@ -1243,7 +1212,7 @@ Checks whether this cache is empty.
 
 | Type   | Description                                    |
 | ------- | ---------------------------------------- |
-| boolean | Check result. The value **true** means that the cache is empty and does not contain any key-value pairs, and **false** means the opposite.|
+| boolean | Check result. The value **true** is returned if the cache is empty and does not contain any key-value pairs; otherwise, **false** is returned.|
 
 **Example**
 
@@ -1275,15 +1244,7 @@ Obtains the value of a key.
 
 | Type                    | Description                                                        |
 | ------------------------ | ------------------------------------------------------------ |
-| V \| undefined | If the specified key exists in the cache, the return value is the value associated with that key. If not, the **createDefault** API is called. If **createDefault** returns undefined, the return value is undefined; otherwise, the return value is whatever **createDefault** comes up with.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID| Error Message|
-| -------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| V \| undefined | If the specified key exists in the cache, the return value is the value associated with that key. If not, the default internal API is called. If the default internal API returns **undefined**, the return value is **undefined**; otherwise, the return value is whatever that API comes up with.|
 
 **Example**
 
@@ -1316,15 +1277,7 @@ Adds a key-value pair to this cache and returns the value associated with the ke
 
 | Type| Description                                                        |
 | ---- | ------------------------------------------------------------ |
-| V    | Value of the key-value pair added. If the key or value is empty, error code 401 is thrown.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID| Error Message|
-| -------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| V    | Value of the key-value pair added.|
 
 **Example**
 
@@ -1349,7 +1302,7 @@ Obtains all values in this cache, listed from the most to the least recently acc
 
 | Type     | Description                                                        |
 | --------- | ------------------------------------------------------------ |
-| V&nbsp;[] | All values in the cache, listed from the most to the least recently accessed.|
+| V&nbsp;[] | All values in the cache, listed from the most to the least recently used.|
 
 **Example**
 
@@ -1377,7 +1330,7 @@ Obtains all keys in this cache, listed from the most to the least recently acces
 
 | Type     | Description                                                        |
 | --------- | ------------------------------------------------------------ |
-| K&nbsp;[] | All keys in the cache, listed from the most to the least recently accessed.|
+| K&nbsp;[] | All keys in the cache, listed from the most to the least recently used.|
 
 **Example**
 
@@ -1412,14 +1365,6 @@ Removes a key and its associated value from this cache and returns the value ass
 | ------------------------ | ------------------------------------------------------------ |
 | V&nbsp;\|&nbsp;undefined | Returns an **Optional** object containing the removed key-value pair if the key exists in the cache; returns undefined if the key does not exist; throws an error if **null** is passed in for **key**.|
 
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID| Error Message|
-| -------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-
 **Example**
 
 ```ts
@@ -1450,15 +1395,7 @@ Checks whether the cache contains the specified key.
 
 | Type   | Description                                      |
 | ------- | ------------------------------------------ |
-| boolean | Check result. The value **true** means that the cache contains the specified key, and **false** means the opposite.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID| Error Message|
-| -------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| boolean | Check result. The value **true** is returned if the cache contains the specified key; otherwise, **false** is returned.|
 
 **Example**
 
