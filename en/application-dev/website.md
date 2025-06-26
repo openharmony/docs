@@ -3614,8 +3614,7 @@
           - Modules<!--basic-services-module-->
             - [CommonEvent](reference/apis-basic-services-kit/capi-common-event.md)
             - [DeviceInfo](reference/apis-basic-services-kit/_device_info.md)
-            - [InitSync](reference/apis-basic-services-kit/_init_sync.md)
-            - [OsAccount](reference/apis-basic-services-kit/_os_account.md)
+            - [OsAccount](reference/apis-basic-services-kit/capi-osaccount.md)
             - [OH_BatteryInfo](reference/apis-basic-services-kit/oh__batteryinfo.md)
             - [OH_Scan](reference/apis-basic-services-kit/c-apis-scan.md)
             - [OH_Print](reference/apis-basic-services-kit/_o_h___print.md)
@@ -3623,14 +3622,13 @@
             - [TimeService](reference/apis-basic-services-kit/_time_service.md)
           - Header Files<!--basic-services-headerfile-->
             - [deviceinfo.h](reference/apis-basic-services-kit/deviceinfo_8h.md)
-            - [init_sync.h](reference/apis-basic-services-kit/init__sync_8h.md)
             - [ohbattery_info.h](reference/apis-basic-services-kit/ohbattery__info_8h.md)
             - [oh_commonevent.h](reference/apis-basic-services-kit/oh_commonevent_8h.md)
             - [oh_commonevnt_support.h](reference/apis-basic-services-kit/oh_commonevent_support_8h.md)
             - [oh_pasteboard.h](reference/apis-basic-services-kit/oh__pasteboard_8h.md)
             - [oh_pasteboard_err_code.h](reference/apis-basic-services-kit/oh__pasteboard__err__code_8h.md)
-            - [os_account.h](reference/apis-basic-services-kit/os__account_8h.md)
-            - [os_account_common.h](reference/apis-basic-services-kit/os__account__common_8h.md)
+            - [os_account.h](reference/apis-basic-services-kit/capi-os-account-h.md)
+            - [os_account_common.h](reference/apis-basic-services-kit/capi-os-account-common-h.md)
             - [ohprint.h](reference/apis-basic-services-kit/ohprint_8h.md)
             - [time_service.h](reference/apis-basic-services-kit/time__service_8h.md)
           - Structs<!--basic-services-struct-->
