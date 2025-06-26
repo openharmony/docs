@@ -187,3 +187,5 @@ If the security component cannot be called to save images and videos in your dev
      console.error(`Invoke documentViewPicker.save failed, code is ${err.code}, message is ${err.message}`);
    })
    ```
+
+ <!--no_check--> 

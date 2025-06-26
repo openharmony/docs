@@ -1283,3 +1283,5 @@ Defines the options for saving images or videos.
 | Name                   | Type               | Mandatory|  Description                          |
 | ----------------------- | ------------------- | ---- | ---------------------------- |
 | newFileNames              | Array&lt;string&gt;    | No | File name of the image or video to save. If this parameter is not specified, the user needs to enter the file name.|
+
+<!--no_check-->
