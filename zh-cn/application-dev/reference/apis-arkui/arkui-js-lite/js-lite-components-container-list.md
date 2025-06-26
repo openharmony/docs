@@ -66,10 +66,12 @@
 ```html
 <!-- index.hml -->
 <div class="container">
-    <list class="todo-wraper" ref="listObj">
+    <list class="todo-wrapper">
         <list-item for="{{todolist}}" class="todo-item">
-            <text class="todo-title">{{$item.title}}</text>
-            <text class="todo-title">{{$item.date}}</text>
+            <div style="flex-direction: column;align-items: center;justify-content: center;">
+                <text class="todo-title">{{$item.title}}</text>
+                <text class="todo-title">{{$item.date}}</text>
+            </div>
         </list-item>
     </list>
 </div>
@@ -120,7 +122,7 @@ export default {
 }
 .todo-wrapper {
   width: 454px;
-  height: 300px;
+  height: 500px;
 }
 .todo-item {
   width: 454px;
