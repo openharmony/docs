@@ -60,7 +60,7 @@ class MyUIAbility extends UIAbility {
 ```
 
 
-## UIAbility.onWindowStageCreate
+## onWindowStageCreate
 
 onWindowStageCreate(windowStage: window.WindowStage): void
 
@@ -214,7 +214,7 @@ class MyUIAbility extends UIAbility {
 }
 ```
 
-## UIAbility.onForeground
+## onForeground
 
 onForeground(): void
 
@@ -456,7 +456,7 @@ class MyUIAbility extends UIAbility {
 }
 ```
 
-## UIAbility.onPrepareToTerminate<sup>10+</sup>
+## onPrepareToTerminate<sup>10+</sup>
 
 onPrepareToTerminate(): boolean
 
@@ -594,7 +594,7 @@ Callback invoked to return the collaboration result in multi-device collaboratio
  **NOTE**
 - This callback does not support ability launch in specified mode.
 - When you use methods such as **startAbility()** to start an application, you must include **FLAG_ABILITY_ON_COLLABORATE** in [Flags](js-apis-ability-wantConstant.md#flags) in the Want object.
-- During a cold start, this callback must be invoked before [onForeground](#uiabilityonforeground) or after [onBackground](#uiabilityonbackground). During a hot start, this callback must be invoked before [onNewWant](#uiabilityonnewwant).
+- During a cold start, this callback must be invoked before [onForeground](#onforeground) or after [onBackground](#uiabilityonbackground). During a hot start, this callback must be invoked before [onNewWant](#uiabilityonnewwant).
 
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore

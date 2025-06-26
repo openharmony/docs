@@ -263,7 +263,7 @@ VideoProcessing_ErrorCode OH_VideoProcessing_GetSurface(OH_VideoProcessing* vide
 
 Obtains a surface for video processing.
 
-An input surface must be created before video processing starts, and it must be destroyed by calling [OH_NativeWindow_DestroyNativeWindow](../apis-arkgraphics2d/capi-external-window-h.md#oh_nativewindow_destroynativewindow) when it is no longer needed.
+An input surface must be created before video processing starts, and it must be destroyed by calling [OH_NativeWindow_DestroyNativeWindow](../apis-arkgraphics2d/_native_window.md#oh_nativewindow_destroynativewindow) when it is no longer needed.
 
 **Since**: 12
 
