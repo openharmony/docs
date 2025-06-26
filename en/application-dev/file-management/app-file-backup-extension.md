@@ -49,7 +49,7 @@ For details about how to use the APIs, see [BackupExtensionAbility](../reference
 
 2. Add a metadata profile.
 
-   The metadata profile defines the files to be transferred during the backup and restore process. The profile is located in the **resources/base/profile** directory of the project, and the file name must be the same as the value of **metadata.resource**, for example, **backup_config.json** in the **module.json5** file.
+   The metadata profile defines the files to be transferred during the backup and restore process. The profile is located in the `resources/base/profile` directory of the project, and the file name must be the same as the value of `metadata.resource, for example, backup_config.json` in the `module.json5` file.
 
    Metadata profile example:
 
@@ -67,7 +67,7 @@ For details about how to use the APIs, see [BackupExtensionAbility](../reference
    }
    ```
 
-3. Customize **BackupExtensionAbility** in the **BackupExtension.ets** file and override **onBackup**/**onBackupEx** or **onRestore**/**onRestoreEx** to back up preprocessed application data or process the data to be restored.
+3. Customize `BackupExtensionAbility` in the `BackupExtension.ets` file and override `onBackup/onBackupEx` or `onRestore/onRestoreEx` to back up preprocessed application data or process the data to be restored.
 
    Empty implementation can be used if there is no special requirement. In this case, the backup and restore service backs up or restores data based on the unified backup and restore rules.
 
@@ -126,11 +126,47 @@ For details about how to use the APIs, see [BackupExtensionAbility](../reference
     }
     ```
 
+4. To perform special operations after application backup and restore, such as cleaning up temporary files created during these processes, you can customize `BackupExtensionAbility` inherited by the class in the `BackupExtension.ets` file. When the backup or restore is complete, the `onRelease` method is executed to perform the custom operations.
+
+   `onRelease` has a timeout mechanism. If the `onRelease` operation is not completed within 5 seconds, the application process exits when the backup and restoration are complete.
+
+   The following example shows how to implement `onRelease` when the temporary file directory needs to be removed.
+
+    ```ts
+    import { BackupExtensionAbility, fileIo } from '@kit.CoreFileKit';
+
+    const SCENARIO_BACKUP: number = 1;
+    const SCENARIO_RESTORE: number = 2;
+    // Temporary directory to be removed.
+    let filePath: string = '/data/storage/el2/base/.temp/';
+
+    class BackupExt extends BackupExtensionAbility {
+      async onRelease(scenario: number): Promise<void> {
+        try {
+          if (scenario == SCENARIO_BACKUP) {
+            // In the backup scenario, the application implements the processing. The following describes how to delete temporary files generated during backup.
+            console.info(`onRelease begin`);
+            await fileIo.rmdir(filePath);
+            console.info(`onRelease end, rmdir succeed`);
+          }
+          if (scenario == SCENARIO_RESTORE) {
+            // In the restore scenario, the application implements the processing. The following describes how to remove temporary files generated during restoration.
+            console.info(`onRelease begin`);
+            await fileIo.rmdir(filePath);
+            console.info(`onRelease end, rmdir succeed`);
+          }
+        } catch (error) {
+          console.error(`onRelease failed with error. Code: ${error.code}, message: ${error.message}`);
+        }
+      }
+    }
+    ```
+
 ### Description of the Metadata Profile
 
 | Field            | Type  | Mandatory| Description                                                        |
 | -------------------- | ---------- | ---- | ------------------------------------------------------------ |
-| allowToBackupRestore | Boolean    | Yes  | Whether to enable backup and restore. The default value is **false**.                             |
+| allowToBackupRestore | Boolean    | Yes  | Whether to enable backup and restore. The value **true** means backup and restore are enabled; the value **false** (default) means the opposite.                             |
 | includes             | String array| No  | Files and directories to be backed up in the application sandbox directory.<br>The pattern string that does not start with a slash (/) indicates a relative path.<br>When configuring `includes`, ensure that the configured path range is included in the supported paths listed in the following code snippet.<br>If `includes` is not configured, the backup and restore framework uses the **includes** default (as listed in the code snippet below).|
 | excludes             | String array| No  | Items in `includes` that do not need to be backed up. The value is in the same format as `includes`.<br>When configuring `excludes`, ensure that it is within the subset of `includes`.<br>If `excludes` is not configured, the backup and restore framework uses an empty array by default.|
 | fullBackupOnly       | Boolean    | No  | Whether to use the default restore directory of the application. The default value is **false**. If the value is **true**, data will be cached in a temporary directory obtained by [backupDir](../reference/apis-core-file-kit/js-apis-file-backupextensioncontext.md) in the data restore process. If it is **false** or not specified, the restored data is decompressed in **/**.|
