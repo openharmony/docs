@@ -649,7 +649,7 @@ setSimpleKeyboardEnabled(enable: boolean): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| enable | boolean | 否 | 简单键盘标志,原生编辑框组件在下一次点击获焦时生效，自绘控件再下一次调用[attach](#attach10)绑定输入法时生效 |
+| enable | boolean | 是 | 简单键盘标志,原生编辑框组件在下一次点击获焦时生效，自绘控件再下一次调用[attach](#attach10)绑定输入法时生效 |
 
 **示例：**
 
