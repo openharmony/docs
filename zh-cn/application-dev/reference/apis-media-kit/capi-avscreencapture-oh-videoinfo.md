@@ -16,7 +16,7 @@
 
 | 名称 | 描述 |
 | -- | -- |
-| [OH_VideoCaptureInfo](capi-oh-videocaptureinfo.md) videoCapInfo | 视频采集信息。 |
-| [OH_VideoEncInfo](capi-oh-videoencinfo.md) videoEncInfo | 视频编码参数。 |
+| [OH_VideoCaptureInfo](capi-avscreencapture-oh-videocaptureinfo.md) videoCapInfo | 视频采集信息。 |
+| [OH_VideoEncInfo](capi-avscreencapture-oh-videoencinfo.md) videoEncInfo | 视频编码参数。 |
 
 

@@ -18,8 +18,8 @@
 
 | 名称 | 描述 |
 | -- | -- |
-| [OH_AudioCaptureInfo](capi-oh-audiocaptureinfo.md) micCapInfo | 音频麦克风采样信息。 |
-| [OH_AudioCaptureInfo](capi-oh-audiocaptureinfo.md) innerCapInfo | 音频内录采样信息。 |
-| [OH_AudioEncInfo](capi-oh-audioencinfo.md) audioEncInfo | 音频编码信息，原始码流时不需要设置。 |
+| [OH_AudioCaptureInfo](capi-avscreencapture-oh-audiocaptureinfo.md) micCapInfo | 音频麦克风采样信息。 |
+| [OH_AudioCaptureInfo](capi-avscreencapture-oh-audiocaptureinfo.md) innerCapInfo | 音频内录采样信息。 |
+| [OH_AudioEncInfo](capi-avscreencapture-oh-audioencinfo.md) audioEncInfo | 音频编码信息，原始码流时不需要设置。 |
 
 
