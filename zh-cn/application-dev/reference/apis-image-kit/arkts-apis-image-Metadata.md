@@ -6,6 +6,12 @@
 
 图像元数据类，用于存储图像的元数据。目前支持的元数据类型可参考[MetadataType](arkts-apis-image-e.md#metadatatype13)。
 
+## 导入模块
+
+```ts
+import { image } from '@kit.ImageKit';
+```
+
 ## getProperties<sup>13+</sup>
 
 getProperties(key: Array\<string>): Promise\<Record\<string, string | null>>
