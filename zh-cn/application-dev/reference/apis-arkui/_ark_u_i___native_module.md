@@ -1714,7 +1714,7 @@ typedef struct ArkUI_WaterFlowSectionOption ArkUI_WaterFlowSectionOption
 ### OH_PixelmapNative
 
 ```
-typedef struct OH_PixelmapNative OH_PixelmapNative
+struct OH_PixelmapNative OH_PixelmapNative
 ```
 **描述：**
 
