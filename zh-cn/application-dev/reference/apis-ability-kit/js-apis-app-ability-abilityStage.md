@@ -99,11 +99,14 @@ export default class MyAbilityStage extends AbilityStage {
 
 onNewProcessRequest(want: Want): string
 
-在指定进程中启动UIAbility时，会触发该回调。同步接口，不支持异步回调。
+在指定进程中启动UIAbility或UIExtensionAbility时，会触发该回调。同步接口，不支持异步回调。
+
+被启动的UIAbility/UIExtensionAbility需要在[module.json5配置文件](../../quick-start/module-configuration-file.md)中，将对应的isolationProcess字段取值配置为true，该接口方可生效。
 
 > **说明：**
 >
-> 从API version 20开始，当[AbilityStage.onNewProcessRequestAsync](#onnewprocessrequestasync20)实现时，本回调函数将不执行。
+> - 在API version 19及之前版本，仅支持在指定进程中启动UIAbility。从API version 20开始，新增支持在指定进程中启动UIExtensionAbility。
+> - 从API version 20开始，当[AbilityStage.onNewProcessRequestAsync](#onnewprocessrequestasync20)实现时，本回调函数将不执行。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -111,7 +114,7 @@ onNewProcessRequest(want: Want): string
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | 是 | Want类型参数，此处表示调用方传入的启动参数，如Ability名称，Bundle名称等。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | Want类型参数，此处表示调用方传入的启动参数，如UIAbility或UIExtensionAbility名称、Bundle名称等。 |
 
 **返回值：**
 
@@ -336,9 +339,9 @@ class MyAbilityStage extends AbilityStage {
 
 onNewProcessRequestAsync(want: Want): Promise\<string\>
 
-如果UIAbility配置了在独立进程中运行（即[module.json5配置文件](../../quick-start/module-configuration-file.md)中UIAbility的isolationProcess字段取值为true），当该UIAbility被拉起时，会触发该回调，并返回一个string作为进程唯一标识。使用Promise异步回调。
+如果UIAbility或UIExtensionAbility配置了在独立进程中运行（即[module.json5配置文件](../../quick-start/module-configuration-file.md)中UIAbility或UIExtensionAbility的isolationProcess字段取值为true），当该UIAbility或UIExtensionAbility被拉起时，会触发该回调，并返回一个string作为进程唯一标识。使用Promise异步回调。
 
-如果该应用已有相同标识的进程存在，则待启动的UIAbility运行在此进程中，否则创建新的进程。
+如果该应用已有相同标识的进程存在，则待启动的UIAbility或UIExtensionAbility运行在此进程中，否则创建新的进程。
 
 该接口仅在2in1和tablet设备上生效。
 
@@ -350,13 +353,13 @@ onNewProcessRequestAsync(want: Want): Promise\<string\>
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | 是 | Want类型参数，传入需要启动的UIAbility的信息，如UIAbility名称、Bundle名称等。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | Want类型参数，此处表示调用方传入的启动参数，如UIAbility或UIExtensionAbility名称、Bundle名称等。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<string\> | Promise对象，返回一个由开发者自定义的进程字符串标识。如果该应用已有相同标识的进程存在，则UIAbility在此进程中运行，否则创建新的进程。 |
+| Promise\<string\> | Promise对象，返回一个由开发者自定义的进程字符串标识。如果该应用已有相同标识的进程存在，则UIAbility或UIExtensionAbility在此进程中运行，否则创建新的进程。 |
 
 **示例：**
 
