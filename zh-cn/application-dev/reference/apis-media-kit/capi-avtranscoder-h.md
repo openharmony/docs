@@ -92,8 +92,7 @@ OH_AVErrCode OH_AVTranscoderConfig_Release(OH_AVTranscoder_Config* config)
 | -- | -- |
 | [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1) | AV_ERR_OK：释放成功。<br>         AV_ERR_INVALID_VAL：config是空指针。 |
 
-### 
-()
+### OH_AVTranscoderConfig_SetSrcFD()
 
 ```
 OH_AVErrCode OH_AVTranscoderConfig_SetSrcFD(OH_AVTranscoder_Config *config, int32_t srcFd, int64_t srcOffset, int64_t length)
