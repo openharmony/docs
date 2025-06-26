@@ -2548,9 +2548,9 @@ export struct PageTwo {
 }
 ```
 ```ts
-// CustomNavigationUtils.ets
-// 自定义接口，用来保存某个页面相关的转场动画回调和参数
 // src/main/pages/CustomNavigationUtils.ets
+// 自定义接口，用来保存某个页面相关的转场动画回调和参数
+
 export interface AnimateCallback {
   finish: ((isPush: boolean, isExit: boolean) => void | undefined) | undefined;
   start: ((isPush: boolean, isExit: boolean) => void | undefined) | undefined;
@@ -4263,9 +4263,8 @@ export struct PageContainer {
 }
 ```
 ```ts
-// CustomNavigationUtils.ts 工具类，用来管理所有页面的自定义动画参数注册和获取等
+// src/main/pages/CustomNavigationUtils.ts 工具类，用来管理所有页面的自定义动画参数注册和获取等
 // 自定义接口，用来保存某个页面相关的转场动画回调和参数
-// src/main/pages/CustomNavigationUtils.ts
 export interface AnimateCallback {
   start: ((isPush: boolean, isExit: boolean) => void | undefined) | undefined;
   finish: ((isPush: boolean, isExit: boolean) => void | undefined) | undefined;

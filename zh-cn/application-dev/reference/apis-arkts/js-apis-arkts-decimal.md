@@ -71,7 +71,7 @@ type Modulo = Rounding | 9
 | 类型                   | 说明                                                         |
 | ---------------------- | ------------------------------------------------------------ |
 | [Rounding](#rounding) | 模运算下的舍入类型。与[Rounding](#常量)表示的舍入模式相同。  |
-| 9                      | 余模运算下，余数始终为正。欧几里得除法。与[Decimal.EUCLIDEAN](#常量)一致。 |
+| 9                      | 余模运算下，余数始终为正。欧几里得除法，与[Decimal.EUCLID](#常量)一致。 |
 
 ## DecimalConfig
 
@@ -288,8 +288,14 @@ clamp(min: Value, max: Value): Decimal
 **示例：**
 
 ```ts
-let data: Decimal = new Decimal(10.1).clamp(0, 10);
-console.info("test Decimal clamp:" + data.toString()); // 'test Decimal clamp:10'
+let data1: Decimal = new Decimal(10.1).clamp(0, 10);
+console.info("test Decimal clamp:" + data1.toString()); // 'test Decimal clamp:10'
+
+let data2: Decimal = new Decimal(-5).clamp(0, 10);
+console.info("test Decimal clamp:" + data2.toString()); // 'test Decimal clamp:0'
+
+let data3: Decimal = new Decimal(7.5).clamp(0, 10);
+console.info("test Decimal clamp:" + data3.toString()); // 'test Decimal clamp:7.5'
 ```
 
 
@@ -616,7 +622,7 @@ console.info("test Decimal exp:" + data.toString()); // 'test Decimal exp:7.3890
 
 log(n: Value): Decimal
 
-返回一个以n为底的指定对数运算的Decimal对象。
+返回一个对数运算后的Decimal对象，其值是以n为底的对数值。
 
 使用[DecimalConfig.precision](#decimalconfig)的值进行有效数字的保留，使用[DecimalConfig.rounding](#decimalconfig)的值设置舍入模式。
 
@@ -1023,7 +1029,7 @@ Decimal的比较方法。
 
 | 参数名 | 类型            | 必填 | 说明                  |
 | ------ | --------------- | ---- | --------------------- |
-| n      | [Value](#value) | 是   | 待比较的值或Decimal。 |
+| n      | [Value](#value) | 是   | 待比较的值。 |
 
 **返回值：**
 
@@ -1065,7 +1071,7 @@ equals(n: Value): boolean
 
 | 参数名 | 类型            | 必填 | 说明                  |
 | ------ | --------------- | ---- | --------------------- |
-| n      | [Value](#value) | 是   | 待比较的值或Decimal。 |
+| n      | [Value](#value) | 是   | 待比较的值。 |
 
 **返回值：**
 
@@ -1103,7 +1109,7 @@ greaterThan(n: Value): boolean
 
 | 参数名 | 类型            | 必填 | 说明                  |
 | ------ | --------------- | ---- | --------------------- |
-| n      | [Value](#value) | 是   | 待比较的值或Decimal。 |
+| n      | [Value](#value) | 是   | 待比较的值。 |
 
 **返回值：**
 
@@ -1141,7 +1147,7 @@ greaterThanOrEqualTo(n: Value): boolean
 
 | 参数名 | 类型            | 必填 | 说明                  |
 | ------ | --------------- | ---- | --------------------- |
-| n      | [Value](#value) | 是   | 待比较的值或Decimal。 |
+| n      | [Value](#value) | 是   | 待比较的值。 |
 
 **返回值：**
 
@@ -1179,7 +1185,7 @@ lessThan(n: Value): boolean
 
 | 参数名 | 类型            | 必填 | 说明                  |
 | ------ | --------------- | ---- | --------------------- |
-| n      | [Value](#value) | 是   | 待比较的值或Decimal。 |
+| n      | [Value](#value) | 是   | 待比较的值。 |
 
 **返回值：**
 
@@ -1217,7 +1223,7 @@ lessThanOrEqualTo(n: Value): boolean
 
 | 参数名 | 类型            | 必填 | 说明                  |
 | ------ | --------------- | ---- | --------------------- |
-| n      | [Value](#value) | 是   | 待比较的值或Decimal。 |
+| n      | [Value](#value) | 是   | 待比较的值。 |
 
 **返回值：**
 
@@ -4084,8 +4090,33 @@ static sign(n: Value): number
 **示例：**
 
 ```ts
-let data: number = Decimal.sign(2);
-console.info("test Decimal sign:" + data); // 'test Decimal sign:1'
+let data1: number = Decimal.sign(2);
+console.info("test Decimal sign:" + data1); // 'test Decimal sign:1'
+
+let data2: number = Decimal.sign(-3);
+console.info("test Decimal sign:" + data2); // 'test Decimal sign:-1'
+
+let data3: number = Decimal.sign(0);
+console.info("test Decimal sign:" + data3); // 'test Decimal sign:0'
+
+let data4: number = Decimal.sign(-0);
+console.info("test Decimal sign:" + data4); // 'test Decimal sign:0'
+
+let data5: number = Decimal.sign(3.14);
+console.info("test Decimal sign:" + data5); // 'test Decimal sign:1'
+
+let data6: number = Decimal.sign(-1.618);
+console.info("test Decimal sign:" + data6); // 'test Decimal sign:-1'
+
+let data7: number = Decimal.sign("100");
+console.info("test Decimal sign:" + data7); // 'test Decimal sign:1'
+
+let data8: number = Decimal.sign("-50");
+console.info("test Decimal sign:" + data8); // 'test Decimal sign:-1'
+
+let data9: number = Decimal.sign(NaN);
+console.info("test Decimal sign:" + data9); // 'test Decimal sign:NaN'
+
 ```
 
 ### round

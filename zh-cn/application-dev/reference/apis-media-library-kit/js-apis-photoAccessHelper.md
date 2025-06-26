@@ -280,7 +280,7 @@ createAsset(photoType: PhotoType, extension: string, options: CreateOptions, cal
 | -------- | ------------------------ | ---- | ------------------------- |
 | photoType  | [PhotoType](#phototype)        | 是   | 创建的文件类型，IMAGE或者VIDEO类型。              |
 | extension  | string        | 是   | 文件名后缀参数，例如：'jpg'。              |
-| options  | [CreateOptions](#createoptions)        | 是   | 创建选项，例如{title: 'testPhoto'}。              |
+| options  | [CreateOptions](#createoptions)        | 是   | 创建选项，当前仅支持'title'，例如{title: 'testPhoto'}。              |
 | callback |  AsyncCallback&lt;string&gt; | 是   | callback返回创建的图片和视频的uri。 |
 
 **错误码：**
@@ -394,7 +394,7 @@ createAsset(photoType: PhotoType, extension: string, options?: CreateOptions): P
 | -------- | ------------------------ | ---- | ------------------------- |
 | photoType  | [PhotoType](#phototype)        | 是   | 创建的文件类型，IMAGE或者VIDEO类型。              |
 | extension  | string        | 是   | 文件名后缀参数，例如：'jpg'。              |
-| options  | [CreateOptions](#createoptions)        | 否   | 创建选项，例如{title: 'testPhoto'}。              |
+| options  | [CreateOptions](#createoptions)        | 否   | 创建选项，当前仅支持'title'，例如{title: 'testPhoto'}。              |
 
 **返回值：**
 

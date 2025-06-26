@@ -130,7 +130,7 @@ markAnchor(value: Position | LocalizedPosition): T
 
 offset(value: Position | Edges | LocalizedEdges): T
 
-相对偏移，组件相对原本的布局位置进行偏移。
+相对偏移，组件相对原本的布局位置进行偏移。和position一起使用时，position生效，offset不生效。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 

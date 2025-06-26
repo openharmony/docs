@@ -39,6 +39,10 @@ SegmentButton({ options: SegmentButtonOptions, selectedIndexes: number[], onItem
 
 ## SegmentButtonOptions
 
+>**说明：** 
+> 
+> 不支持设置字体类型。
+
 分段按钮选项类，用于为分段按钮提供初始数据和自定义属性。
 
 **装饰器类型：** @Observed

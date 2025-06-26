@@ -19,7 +19,7 @@
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
 | [OH_PixelmapNative](capi-oh-pixelmapnative.md) | OH_PixelmapNative | OH_PixelmapNative结构体是native层封装的图像解码后无压缩的位图格式结构体。 |
-| [OH_NativeBuffer](capi-oh-nativebuffer.md) | OH_NativeBuffer | NativeBuffer结构体类型，用于执行NativeBuffer相关操作。 |
+| [OH_NativeBuffer](capi-image-nativemodule-oh-nativebuffer.md) | OH_NativeBuffer | NativeBuffer结构体类型，用于执行NativeBuffer相关操作。 |
 | [OH_Pixelmap_HdrStaticMetadata](capi-oh-pixelmap-hdrstaticmetadata.md) | OH_Pixelmap_HdrStaticMetadata | HDR_STATIC_METADATA关键字对应的静态元数据值。 |
 | [OH_NativeColorSpaceManager](capi-oh-nativecolorspacemanager.md) | OH_NativeColorSpaceManager | NativeColorSpaceManager结构体类型，用于执行NativeColorSpaceManager相关操作。 |
 | [OH_Pixelmap_HdrDynamicMetadata](capi-oh-pixelmap-hdrdynamicmetadata.md) | OH_Pixelmap_HdrDynamicMetadata | DR_DYNAMIC_METADATA关键字对应的动态元数据值。 |
@@ -1490,7 +1490,7 @@ Image_ErrorCode OH_PixelmapNative_GetNativeBuffer(OH_PixelmapNative *pixelmap, O
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_PixelmapNative](capi-oh-pixelmapnative.md) *pixelmap | 要获取NativeBuffer的源PixelMap。 |
-| [OH_NativeBuffer](capi-oh-nativebuffer.md) **nativeBuffer | 被创建的NativeBuffer对象指针。 |
+| [OH_NativeBuffer](capi-image-nativemodule-oh-nativebuffer.md) **nativeBuffer | 被创建的NativeBuffer对象指针。 |
 
 **返回：**
 

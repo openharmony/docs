@@ -92,7 +92,7 @@
             - [跨端迁移](application-models/hop-cross-device-migration.md)
             - [多端协同](application-models/hop-multi-device-collaboration.md)
           <!--DelEnd-->
-          - [订阅系统环境变量的变化](application-models/subscribe-system-environment-variable-changes.md)
+          - [获取/设置环境变量](application-models/subscribe-system-environment-variable-changes.md)
         - 应用间跳转<!--inter-app-redirection-->
           - [应用间跳转概述](application-models/link-between-apps-overview.md)
           - 拉起指定应用<!--directional-redirection-->
@@ -557,6 +557,7 @@
             - [自定义扩展概述](ui/arkts-user-defined-modifier.md)
             - [属性修改器 (AttributeModifier)](ui/arkts-user-defined-extension-attributeModifier.md)
             - [属性更新器 (AttributeUpdater)](ui/arkts-user-defined-extension-attributeUpdater.md)
+            - [自定义绘制修改器 (DrawModifier)](ui/arkts-user-defined-extension-drawModifier.md)
         - [使用镜像能力](ui/arkts-mirroring-display.md)
         - 无障碍与适老化<!--arkts-support-accessibility-friendliness-->
           - [支持无障碍](ui/arkts-universal-attributes-accessibility.md)
@@ -592,6 +593,7 @@
           - [嵌入ArkTS组件](ui/ndk-embed-arkts-components.md)
           - [通过XComponent接入无障碍](ui/ndk-accessibility-xcomponent.md)
           - [自定义绘制](ui/arkts-user-defined-draw.md)
+          - [查询和操作自定义节点](ui/ndk-node-query-operate.md)
           - [通过EmbeddedComponent拉起EmbeddedUIExtensionAbility](ui/ndk-embedded-component.md)
       - UI开发 (兼容JS的类Web开发范式)<!--ui-js-dev-->
         - [UI开发 (兼容JS的类Web开发范式)概述](ui/ui-js-overview.md)
@@ -733,7 +735,6 @@
       - 使用网页多媒体<!--web-use-multimedia-->
         - [使用WebRTC进行Web视频会议](web/web-rtc.md)
         - [托管网页中的媒体播放](web/app-takeovers-web-media.md)
-        - [使用Web组件支持画中画](web/web-picture-in-picture.md)
         - [Web组件支持视频沉浸式全屏播放](web/web_full_screen.md)
       - 处理网页内容<!--web-process-page-content-->
         - [使用Web组件打印前端页面](web/web-print.md)
@@ -999,8 +1000,8 @@
             - [使用AES对称密钥（GCM模式）分段加解密(C/C++)](security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-gcm-by-segment-ndk.md)
             - [使用DES对称密钥（ECB模式）加解密(ArkTS)](security/CryptoArchitectureKit/crypto-des-sym-encrypt-decrypt-ecb.md)
             - [使用DES对称密钥（ECB模式）加解密(C/C++)](security/CryptoArchitectureKit/crypto-des-sym-encrypt-decrypt-ecb-ndk.md)
-            - [使用3DES对称密钥（ECB模式）加解密(ArkTS)](security/CryptoArchitectureKit/crypto-3des-sym-encrypt-decrypt-ecb.md)
-            - [使用3DES对称密钥（ECB模式）加解密(C/C++)](security/CryptoArchitectureKit/crypto-3des-sym-encrypt-decrypt-ecb-ndk.md)
+            - [使用3DES对称密钥加解密(ArkTS)](security/CryptoArchitectureKit/crypto-3des-sym-encrypt-decrypt-ecb.md)
+            - [使用3DES对称密钥加解密(C/C++)](security/CryptoArchitectureKit/crypto-3des-sym-encrypt-decrypt-ecb-ndk.md)
             - [使用SM4对称密钥（ECB模式）加解密(ArkTS)](security/CryptoArchitectureKit/crypto-sm4-sym-encrypt-decrypt-ecb.md)
             - [使用SM4对称密钥（ECB模式）加解密(C/C++)](security/CryptoArchitectureKit/crypto-sm4-sym-encrypt-decrypt-ecb-ndk.md)
             - [使用SM4对称密钥（CBC模式）加解密(ArkTS)](security/CryptoArchitectureKit/crypto-sm4-sym-encrypt-decrypt-cbc.md)
@@ -1736,7 +1737,10 @@
     - ArkGraphics 3D（方舟3D图形）<!--arkgraphics-3d-->
       - [ArkGraphics 3D简介](graphics3d/arkgraphics3D-overview.md)
       - [ArkGraphics 3D场景搭建以及管理](graphics3d/arkgraphics3D-scene.md)
-      - [ArkGraphics 3D资源创建以及使用](graphics3d/arkgraphics3D-resource.md)
+      - ArkGraphics 3D资源创建以及使用<!--arkgraphics3D-resource-->
+        - [创建并使用材质资源](graphics3d/arkgraphics3D-resource-material.md)
+        - [创建并使用图片资源](graphics3d/arkgraphics3D-resource-image.md)
+        - [创建并使用环境资源](graphics3d/arkgraphics3D-resource-environment.md)
       - [ArkGraphics 3D场景动画控制以及管理](graphics3d/arkgraphics3D-animation.md)
   - 应用服务<!--gapp-service-->
     - Ads Kit（广告服务）<!--ads-kit-->
@@ -1799,6 +1803,7 @@
     - Neural Network Runtime Kit（Neural Network运行时服务）<!--neural-network-runtime-kit-->
       - [Neural Network Runtime Kit简介](ai/nnrt/Neural-Network-Runtime-Kit-Introduction.md)
       - [Neural Network Runtime对接AI推理框架开发指导](ai/nnrt/neural-network-runtime-guidelines.md)
+  <!--Del-->
   - 一次开发，多端部署<!--free-circulation-->
     - [前言](key-features/multi-device-app-dev/foreword.md)
     - [简介](key-features/multi-device-app-dev/introduction.md)
@@ -1820,10 +1825,9 @@
       - [多态组件](key-features/multi-device-app-dev/polymorphic-controls.md)
       - [资源使用](key-features/multi-device-app-dev/resource-usage.md)
     - [功能开发的一多能力介绍](key-features/multi-device-app-dev/development-intro.md)
-    <!--Del-->
     - [一多开发实例（短信）](key-features/multi-device-app-dev/case.md)
-    <!--DelEnd-->
     - [常见问题](key-features/multi-device-app-dev/multi-faq.md)
+  <!--DelEnd-->
   - NDK开发<!--ndk-development-->
     - [NDK开发导读](napi/ndk-development-overview.md)
     - [创建NDK工程](napi/create-with-ndk.md)
@@ -2241,7 +2245,7 @@
             - [SharedBundleInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-sharedBundleInfo-sys.md)
             - [shortcutInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-shortcutInfo-sys.md)
             <!--DelEnd-->
-          - continuation<!--continuation-->
+          - continuation<!--ability-continuation-->
             - [continuationExtraParams](reference/apis-ability-kit/js-apis-continuation-continuationExtraParams.md)
             - [continuationResult](reference/apis-ability-kit/js-apis-continuation-continuationResult.md)
           - security<!--ability-security-->
@@ -3873,6 +3877,7 @@
           - [流量管理错误码](reference/apis-network-kit/errorcode-net-statistics.md)
           - [VPN错误码](reference/apis-network-kit/errorcode-net-vpn.md)
           - [NetworkSecurity错误码](reference/apis-network-kit/errorcode-net-networkSecurity.md)
+          - [内核错误码](reference/apis-network-kit/errorcode-kernel.md)
 
       - Telephony Kit（蜂窝通信服务）<!--telephony-api-->
         - ArkTS API<!--telephony-arkts-->
@@ -4182,58 +4187,61 @@
             - [DriverExtensionContext](reference/apis-driverdevelopment-kit/js-apis-inner-application-driverExtensionContext.md)
         - C API<!--driver-development-c-->
           - 模块<!--driver-development-module-->
-            - [BASE DDK](reference/apis-driverdevelopment-kit/_base_ddk.md)
-            - [HID DDK](reference/apis-driverdevelopment-kit/_hid_ddk.md)
-            - [SCSI Peripheral DDK](reference/apis-driverdevelopment-kit/_s_c_s_i.md)
-            - [Serial DDK](reference/apis-driverdevelopment-kit/_serial_ddk.md)
-            - [USB DDK](reference/apis-driverdevelopment-kit/_usb_ddk.md)
+            - [BaseDdk](reference/apis-driverdevelopment-kit/capi-baseddk.md)
+            - [HidDdk](reference/apis-driverdevelopment-kit/capi-hidddk.md)
+            - [SCSIPeripheralDDK](reference/apis-driverdevelopment-kit/capi-scsiperipheralddk.md)
+            - [UsbDDK](reference/apis-driverdevelopment-kit/capi-usbddk.md)
+            - [SerialDdk](reference/apis-driverdevelopment-kit/capi-serialddk.md)
           - 头文件<!--driver-development-headerfile-->
-            - [ddk_api.h](reference/apis-driverdevelopment-kit/ddk_api.md)
-            - [ddk_types.h](reference/apis-driverdevelopment-kit/ddk_types.md)
-            - [hid_ddk_api.h](reference/apis-driverdevelopment-kit/hid__ddk__api_8h.md)
-            - [hid_ddk_types.h](reference/apis-driverdevelopment-kit/hid__ddk__types_8h.md)
-            - [scsi_peripheral_api.h](reference/apis-driverdevelopment-kit/scsi__peripheral__api_8h.md)
-            - [scsi_peripheral_types.h](reference/apis-driverdevelopment-kit/scsi__peripheral__types_8h.md)
-            - [usb_ddk_api.h](reference/apis-driverdevelopment-kit/usb__ddk__api_8h.md)
-            - [usb_ddk_types.h](reference/apis-driverdevelopment-kit/usb__ddk__types_8h.md)
-            - [usb_serial_api.h](reference/apis-driverdevelopment-kit/usb__serial__ddk__api_8h.md)
-            - [usb_serial_types.h](reference/apis-driverdevelopment-kit/usb__serial__ddk__types_8h.md)
+            - [ddk_api.h](reference/apis-driverdevelopment-kit/capi-ddk-api-h.md)
+            - [ddk_types.h](reference/apis-driverdevelopment-kit/capi-ddk-types-h.md)
+            - [hid_ddk_api.h](reference/apis-driverdevelopment-kit/capi-hid-ddk-api-h.md)
+            - [hid_ddk_types.h](reference/apis-driverdevelopment-kit/capi-hid-ddk-types-h.md)
+            - [scsi_peripheral_api.h](reference/apis-driverdevelopment-kit/capi-scsi-peripheral-api-h.md)
+            - [scsi_peripheral_types.h](reference/apis-driverdevelopment-kit/capi-scsi-peripheral-types-h.md)
+            - [usb_ddk_api.h](reference/apis-driverdevelopment-kit/capi-usb-ddk-api-h.md)
+            - [usb_ddk_types.h](reference/apis-driverdevelopment-kit/capi-usb-ddk-types-h.md)
+            - [usb_serial_api.h](reference/apis-driverdevelopment-kit/capi-usb-serial-api-h.md)
+            - [usb_serial_types.h](reference/apis-driverdevelopment-kit/capi-usb-serial-types-h.md)
           - 结构体<!--driver-development-struct-->
-            - [DDK_Ashmem](reference/apis-driverdevelopment-kit/_ddk_ashmem.md)
-            - [Hid_AbsAxesArray](reference/apis-driverdevelopment-kit/_hid___abs_axes_array.md)
-            - [Hid_Device](reference/apis-driverdevelopment-kit/_hid___device.md)
-            - [Hid_EmitItem](reference/apis-driverdevelopment-kit/_hid___emit_item.md)
-            - [Hid_EventProperties](reference/apis-driverdevelopment-kit/_hid___event_properties.md)
-            - [Hid_EventTypeArray](reference/apis-driverdevelopment-kit/_hid___event_type_array.md)
-            - [Hid_KeyCodeArray](reference/apis-driverdevelopment-kit/_hid___key_code_array.md)
-            - [Hid_MscEventArray](reference/apis-driverdevelopment-kit/_hid___msc_event_array.md)
-            - [Hid_RawDevInfo](reference/apis-driverdevelopment-kit/_hid___raw_dev_info.md)
-            - [Hid_RelAxesArray](reference/apis-driverdevelopment-kit/_hid___rel_axes_array.md)
-            - [ScsiPeripheral_BasicSenseInfo](reference/apis-driverdevelopment-kit/_scsi_peripheral___basic_sense_info.md)
-            - [ScsiPeripheral_CapacityInfo](reference/apis-driverdevelopment-kit/_scsi_peripheral___capacity_info.md)
-            - [ScsiPeripheral_DeviceMemMap](reference/apis-driverdevelopment-kit/_scsi_peripheral___device_mem_map.md)
-            - [ScsiPeripheral_InquiryInfo](reference/apis-driverdevelopment-kit/_scsi_peripheral___inquiry_info.md)
-            - [ScsiPeripheral_InquiryRequest](reference/apis-driverdevelopment-kit/_scsi_peripheral___inquiry_request.md)
-            - [ScsiPeripheral_IORequest](reference/apis-driverdevelopment-kit/_scsi_peripheral___i_o_request.md)
-            - [ScsiPeripheral_ReadCapacityRequest](reference/apis-driverdevelopment-kit/_scsi_peripheral___read_capacity_request.md)
-            - [ScsiPeripheral_Request](reference/apis-driverdevelopment-kit/_scsi_peripheral___request.md)
-            - [ScsiPeripheral_RequestSenseRequest](reference/apis-driverdevelopment-kit/_scsi_peripheral___request_sense_request.md)
-            - [ScsiPeripheral_Response](reference/apis-driverdevelopment-kit/_scsi_peripheral___response.md)
-            - [ScsiPeripheral_TestUnitReadyRequest](reference/apis-driverdevelopment-kit/_scsi_peripheral___test_unit_ready_request.md)
-            - [ScsiPeripheral_VerifyRequest](reference/apis-driverdevelopment-kit/_scsi_peripheral___verify_request.md)
-            - [UsbConfigDescriptor](reference/apis-driverdevelopment-kit/_usb_config_descriptor.md)
-            - [UsbControlRequestSetup](reference/apis-driverdevelopment-kit/_usb_control_request_setup.md)
-            - [UsbDdkConfigDescriptor](reference/apis-driverdevelopment-kit/_usb_ddk_config_descriptor.md)
-            - [UsbDdkEndpointDescriptor](reference/apis-driverdevelopment-kit/_usb_ddk_endpoint_descriptor.md)
-            - [UsbDdkInterface](reference/apis-driverdevelopment-kit/_usb_ddk_interface.md)
-            - [UsbDdkInterfaceDescriptor](reference/apis-driverdevelopment-kit/_usb_ddk_interface_descriptor.md)
-            - [UsbDeviceDescriptor](reference/apis-driverdevelopment-kit/_usb_device_descriptor.md)
-            - [UsbDeviceMemMap](reference/apis-driverdevelopment-kit/_usb_device_mem_map.md)
-            - [UsbEndpointDescriptor](reference/apis-driverdevelopment-kit/_usb_endpoint_descriptor.md)
-            - [UsbInterfaceDescriptor](reference/apis-driverdevelopment-kit/_usb_interface_descriptor.md)
-            - [UsbRequestPipe](reference/apis-driverdevelopment-kit/_usb_request_pipe.md)
-            - [Usb_DeviceArray](reference/apis-driverdevelopment-kit/_usb_device_array.md)
-            - [UsbSerial_Params](reference/apis-driverdevelopment-kit/_usb_serial___params.md)
+            - [DDK_Ashmem](reference/apis-driverdevelopment-kit/capi-baseddk-ddk-ashmem.md)
+            - [Hid_EmitItem](reference/apis-driverdevelopment-kit/capi-hidddk-hid-emititem.md)
+            - [Hid_Device](reference/apis-driverdevelopment-kit/capi-hidddk-hid-device.md)
+            - [Hid_EventTypeArray](reference/apis-driverdevelopment-kit/capi-hidddk-hid-eventtypearray.md)
+            - [Hid_KeyCodeArray](reference/apis-driverdevelopment-kit/capi-hidddk-hid-keycodearray.md)
+            - [Hid_AbsAxesArray](reference/apis-driverdevelopment-kit/capi-hidddk-hid-absaxesarray.md)
+            - [Hid_RelAxesArray](reference/apis-driverdevelopment-kit/capi-hidddk-hid-relaxesarray.md)
+            - [Hid_MscEventArray](reference/apis-driverdevelopment-kit/capi-hidddk-hid-msceventarray.md)
+            - [Hid_EventProperties](reference/apis-driverdevelopment-kit/capi-hidddk-hid-eventproperties.md)
+            - [Hid_RawDevInfo](reference/apis-driverdevelopment-kit/capi-hidddk-hid-rawdevinfo.md)
+            - [Hid_DeviceHandle](reference/apis-driverdevelopment-kit/capi-hidddk-hid-devicehandle.md)
+            - [ScsiPeripheral_DeviceMemMap](reference/apis-driverdevelopment-kit/capi-scsiperipheralddk-scsiperipheral-devicememmap.md)
+            - [ScsiPeripheral_IORequest](reference/apis-driverdevelopment-kit/capi-scsiperipheralddk-scsiperipheral-iorequest.md)
+            - [ScsiPeripheral_Request](reference/apis-driverdevelopment-kit/capi-scsiperipheralddk-scsiperipheral-request.md)
+            - [ScsiPeripheral_Response](reference/apis-driverdevelopment-kit/capi-scsiperipheralddk-scsiperipheral-response.md)
+            - [ScsiPeripheral_TestUnitReadyRequest](reference/apis-driverdevelopment-kit/capi-scsiperipheralddk-scsiperipheral-testunitreadyrequest.md)
+            - [ScsiPeripheral_InquiryRequest](reference/apis-driverdevelopment-kit/capi-scsiperipheralddk-scsiperipheral-inquiryrequest.md)
+            - [ScsiPeripheral_InquiryInfo](reference/apis-driverdevelopment-kit/capi-scsiperipheralddk-scsiperipheral-inquiryinfo.md)
+            - [ScsiPeripheral_ReadCapacityRequest](reference/apis-driverdevelopment-kit/capi-scsiperipheralddk-scsiperipheral-readcapacityrequest.md)
+            - [ScsiPeripheral_CapacityInfo](reference/apis-driverdevelopment-kit/capi-scsiperipheralddk-scsiperipheral-capacityinfo.md)
+            - [ScsiPeripheral_RequestSenseRequest](reference/apis-driverdevelopment-kit/capi-scsiperipheralddk-scsiperipheral-requestsenserequest.md)
+            - [ScsiPeripheral_BasicSenseInfo](reference/apis-driverdevelopment-kit/capi-scsiperipheralddk-scsiperipheral-basicsenseinfo.md)
+            - [ScsiPeripheral_VerifyRequest](reference/apis-driverdevelopment-kit/capi-scsiperipheralddk-scsiperipheral-verifyrequest.md)
+            - [ScsiPeripheral_Device](reference/apis-driverdevelopment-kit/capi-scsiperipheralddk-scsiperipheral-device.md)
+            - [UsbControlRequestSetup](reference/apis-driverdevelopment-kit/capi-usbddk-usbcontrolrequestsetup.md)
+            - [UsbDeviceDescriptor](reference/apis-driverdevelopment-kit/capi-usbddk-usbdevicedescriptor.md)
+            - [UsbConfigDescriptor](reference/apis-driverdevelopment-kit/capi-usbddk-usbconfigdescriptor.md)
+            - [UsbInterfaceDescriptor](reference/apis-driverdevelopment-kit/capi-usbddk-usbinterfacedescriptor.md)
+            - [UsbEndpointDescriptor](reference/apis-driverdevelopment-kit/capi-usbddk-usbendpointdescriptor.md)
+            - [UsbDdkEndpointDescriptor](reference/apis-driverdevelopment-kit/capi-usbddk-usbddkendpointdescriptor.md)
+            - [UsbDdkInterfaceDescriptor](reference/apis-driverdevelopment-kit/capi-usbddk-usbddkinterfacedescriptor.md)
+            - [UsbDdkInterface](reference/apis-driverdevelopment-kit/capi-usbddk-usbddkinterface.md)
+            - [UsbDdkConfigDescriptor](reference/apis-driverdevelopment-kit/capi-usbddk-usbddkconfigdescriptor.md)
+            - [UsbRequestPipe](reference/apis-driverdevelopment-kit/capi-usbddk-usbrequestpipe.md)
+            - [UsbDeviceMemMap](reference/apis-driverdevelopment-kit/capi-usbddk-usbdevicememmap.md)
+            - [Usb_DeviceArray](reference/apis-driverdevelopment-kit/capi-usbddk-usb-devicearray.md)
+            - [UsbSerial_Params](reference/apis-driverdevelopment-kit/capi-serialddk-usbserial-params.md)
+            - [UsbSerial_DeviceHandle](reference/apis-driverdevelopment-kit/capi-serialddk-usbserial-devicehandle.md)
       - Multimodal Awareness Kit（多模态融合感知服务）<!--multimodal-awareness-api-->
         - ArkTS API<!--multimodal-awareness-arkts-->
           - [@ohos.stationary (设备状态感知框架)](reference/apis-multimodalawareness-kit/js-apis-stationary.md)
@@ -4640,7 +4648,7 @@
           - [OH_DecodingOptionsForPicture](reference/apis-image-kit/capi-oh-decodingoptionsforpicture.md)
           - [OH_DecodingOptions](reference/apis-image-kit/capi-oh-decodingoptions.md)
           - [OH_PixelmapNative](reference/apis-image-kit/capi-oh-pixelmapnative.md)
-          - [OH_NativeBuffer](reference/apis-image-kit/capi-oh-nativebuffer.md)
+          - [OH_NativeBuffer](reference/apis-image-kit/capi-image-nativemodule-oh-nativebuffer.md)
           - [OH_Pixelmap_HdrStaticMetadata](reference/apis-image-kit/capi-oh-pixelmap-hdrstaticmetadata.md)
           - [OH_NativeColorSpaceManager](reference/apis-image-kit/capi-oh-nativecolorspacemanager.md)
           - [OH_Pixelmap_HdrDynamicMetadata](reference/apis-image-kit/capi-oh-pixelmap-hdrdynamicmetadata.md)
@@ -4764,7 +4772,7 @@
           - [OH_AVRecorder_Range](reference/apis-media-kit/capi-oh-avrecorder-range.md)
           - [OH_AVRecorder_EncoderInfo](reference/apis-media-kit/capi-oh-avrecorder-encoderinfo.md)
           - [OH_AudioCaptureInfo](reference/apis-media-kit/capi-oh-audiocaptureinfo.md)
-          - [OH_NativeBuffer](reference/apis-media-kit/capi-oh-nativebuffer.md)
+          - [OH_NativeBuffer](reference/apis-media-kit/capi-avscreencapture-oh-nativebuffer.md)
           - [OH_AVScreenCapture](reference/apis-media-kit/capi-oh-avscreencapture.md)
           - [OH_AVScreenCapture_ContentFilter](reference/apis-media-kit/capi-oh-avscreencapture-contentfilter.md)
           - [OH_AVScreenCapture_CaptureStrategy](reference/apis-media-kit/capi-oh-avscreencapture-capturestrategy.md)

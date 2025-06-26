@@ -243,7 +243,7 @@ fontFamily(value: ResourceStr)
 
 inputFilter(value: ResourceStr, error?: Callback\<string>)
 
-通过正则表达式设置输入过滤器。匹配表达式的输入允许显示，不匹配的输入将被过滤。仅支持单个字符匹配，不支持字符串匹配。
+通过正则表达式设置输入过滤器。匹配表达式的输入允许显示，不匹配的输入将被过滤。
 
 从API version 11开始，设置inputFilter且输入的字符不为空字符，会导致设置输入框类型(即type接口)附带的文本过滤效果失效。
 
@@ -296,7 +296,7 @@ showPasswordIcon(value: boolean)
 
 style(value: TextInputStyle &nbsp;|&nbsp;TextContentStyle)
 
-设置输入框为默认风格或内联输入风格，内联输入风格只支持InputType.Normal类型。
+设置输入框为默认风格或内联输入风格，内联输入风格只支持InputType.Normal类型。<br>输入框类型介绍请参考[type](#type)接口。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -327,6 +327,10 @@ textAlign(value: TextAlign)
 | 参数名 | 类型                                        | 必填 | 说明                                                       |
 | ------ | ------------------------------------------- | ---- | ---------------------------------------------------------- |
 | value  | [TextAlign](ts-appendix-enums.md#textalign) | 是   | 文本在输入框中的水平对齐方式。<br/>默认值：TextAlign.Start |
+
+>  **说明：**  
+>
+>  textAlign只能调整文本整体的布局，不影响字符的显示顺序。若需要调整字符的显示顺序，请参考[镜像状态字符对齐](../../../ui/arkts-mirroring-display.md#镜像状态字符对齐)。
 
 ### selectedBackgroundColor<sup>10+</sup>
 
@@ -786,7 +790,7 @@ textOverflow(value: TextOverflow)
 
 | 参数名 | 类型                                                          | 必填 | 说明                                                                                                |
 | ------ | ------------------------------------------------------------ | ---- | -------------------------------------------------------------------------------------------------- |
-| value  | [TextOverflow](ts-appendix-enums.md#textoverflow)            | 是   | 文本超长时的显示方式。<br/>内联模式非编辑态下默认值：TextOverflow.Ellipsis <br/>内联模式编辑态下默认值：TextOverflow.Clip<br/>内联模式介绍见[TextInputstyle枚举说明](#textinputstyle9枚举说明)。                     |
+| value  | [TextOverflow](ts-appendix-enums.md#textoverflow)            | 是   | 文本超长时的显示方式。<br/>内联模式非编辑态下默认值：TextOverflow.Ellipsis <br/>内联模式编辑态下默认值：TextOverflow.Clip<br/>内联模式介绍见[style](#style9)。                     |
 
 >  **说明：**  
 >   TextInput组件不支持设置TextOverflow.MARQUEE模式，当设置为TextOverflow.MARQUEE模式时，内联模式非编辑态下显示为TextOverflow.Ellipsis，内联模式编辑态下以及非内联模式下显示为TextOverflow.Clip。

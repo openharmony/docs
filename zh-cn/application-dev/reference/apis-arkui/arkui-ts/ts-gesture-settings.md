@@ -20,6 +20,9 @@
 | priorityGesture | gesture:&nbsp;[GestureType](#gesturetype),<br/>mask?:&nbsp;[GestureMask](#gesturemask枚举说明) | gesture:&nbsp;-，<br/>mask:&nbsp;GestureMask.Normal | 绑定优先识别手势。<br/>- gesture: 绑定的手势类型。 <br/>- mask: 事件响应设置。<br/>1、默认情况下，子组件优先识别通过gesture绑定的手势，当父组件配置priorityGesture时，父组件优先识别priorityGesture绑定的手势。<br/>2、长按手势时，设置触发长按的最短时间小的组件会优先响应，会忽略priorityGesture设置。|
 | parallelGesture | gesture:&nbsp;[GestureType](#gesturetype),<br/>mask?:&nbsp;[GestureMask](#gesturemask枚举说明) | gesture:&nbsp;-，<br/>mask:&nbsp;GestureMask.Normal | 绑定可与子组件手势同时触发的手势。<br/>- gesture:&nbsp;绑定的手势类型。&nbsp;<br>- mask:&nbsp;事件响应设置。<br/>手势事件为非冒泡事件。父组件设置parallelGesture时，父子组件相同的手势事件都可以触发，实现类似冒泡效果。 |
 
+>  **说明：**
+>
+>  gesture、priorityGesture和parallelGesture当前不支持使用三目运算符（条件? 表达式1 : 表达式2）切换手势绑定。
 
 ## GestureType
 

@@ -5,6 +5,12 @@
 
 视频播放管理类，用于管理和播放视频媒体。在调用VideoPlayer的方法前，需要先通过[createVideoPlayer()](arkts-apis-media-f.md#mediacreatevideoplayerdeprecated)构建一个VideoPlayer实例。
 
+## 导入模块
+
+```ts
+import { media } from '@kit.MediaKit';
+```
+
 ## 属性
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer

@@ -160,16 +160,20 @@ struct OnAccessibilityHoverEventExample {
 struct TestExample {
   @State text: string = '';
   @State eventType: string = '';
+
   build() {
-    Column({space: 50}) {
+    Column({ space: 50 }) {
       Column() {
         Button("Test Button")
           .accessibilityLevel("no")
-      }.margin({top: 20})
+      }.margin({ top: 20 })
+
       Text(this.text)
-    }.width('100%').height('100%')
+    }
+    .width('100%')
+    .height('100%')
     .onAccessibilityHoverTransparent((event?: TouchEvent) => {
-      if(event){
+      if (event) {
         if (event.type === TouchType.HOVER_ENTER) {
           this.eventType = 'HOVER_ENTER';
         }

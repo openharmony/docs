@@ -5,6 +5,12 @@
 
 用于定义加载请求的对象。应用程序通过该对象来获取请求的资源位置，通过该对象和播放器进行数据交互。
 
+## 导入模块
+
+```ts
+import { media } from '@kit.MediaKit';
+```
+
 ## 属性
 
 **系统能力：** SystemCapability.Multimedia.Media.Core

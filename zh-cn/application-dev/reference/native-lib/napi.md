@@ -1462,13 +1462,14 @@ napi_status napi_create_ark_context(napi_env env, napi_env* newEnv);
 
 **描述：**
 
-创建一个新的运行时上下文环境。通过napi_create_ark_context接口创建的运行时上下文环境暂时不支持console、timer、intl等模块能力。
+创建一个新的运行时上下文环境。
 使用该接口需要注意以下几点：
 1. 只支持通过最初的上下文环境创建的新的上下文环境，禁止通过该接口创建的上下文环境去创建新的上下文环境。
 2. 当前该接口不支持在非主线程的ArkTS线程中调用。
 3. 调用该接口前，调用者需要保证当前上下文环境不存在异常，否则会导致该接口调用失败。
-4. 该接口创建的上下文环境暂时不支持加载应用自带的so。
+4. 该接口创建的上下文环境暂时只支持加载部分ArkUI的native so文件，对于加载应用自带的native so和加载公共基础库的native so暂时不支持。
 5. 多上下文运行时环境不支持sendable特性。
+6. 通过napi_create_ark_context接口创建的运行时上下文环境暂时不支持console、timer等模块能力。
 
 **参数：**
 

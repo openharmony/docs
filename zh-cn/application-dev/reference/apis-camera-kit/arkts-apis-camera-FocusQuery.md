@@ -7,6 +7,12 @@
 
 提供了查询是否支持当前对焦模式的方法。
 
+## 导入模块
+
+```ts
+import { camera } from '@kit.CameraKit';
+```
+
 ## isFocusModeSupported<sup>11+</sup>
 
 isFocusModeSupported(afMode: FocusMode): boolean

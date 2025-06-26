@@ -202,7 +202,7 @@ struct Index {
 
 reuse(param?: Object): void
 
-传递reuse事件到ComponentContent中的自定义组件。
+触发ComponentContent中的自定义组件的复用。组件复用请参见[@Reusable装饰器：组件复用](../../ui/state-management/arkts-reusable.md)。关于ComponentContent的解绑场景请参见[解除实体节点引用关系](../../ui/arkts-user-defined-arktsNode-builderNode.md#解除实体节点引用关系)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -218,7 +218,8 @@ reuse(param?: Object): void
 
 recycle(): void
 
-传递recycle事件到ComponentContent中的自定义组件。
+- 触发ComponentContent中自定义组件的回收。自定义组件的回收是组件复用机制中的环节，具体信息请参见[@Reusable装饰器：组件复用](../../ui/state-management/arkts-reusable.md)。
+- ComponentContent通过reuse和recycle完成其内外自定义组件之间的复用事件传递，具体使用场景请参见[节点复用能力](../../ui/arkts-user-defined-arktsNode-builderNode.md#节点复用能力)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -400,7 +401,7 @@ struct Index {
 
 dispose(): void
 
-立即释放当前ComponentContent，即ComponentContent对象与后端实体节点解除引用关系。
+立即释放当前ComponentContent对象对[基本概念：实体节点](../../ui/arkts-user-defined-node.md#基本概念)的引用关系。关于ComponentContent的解绑场景请参见[解除实体节点引用关系](../../ui/arkts-user-defined-arktsNode-builderNode.md#解除实体节点引用关系)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -408,7 +409,7 @@ dispose(): void
 
 > **说明：**
 >
-> ComponentContent的组件在挂载时，调用dispose会触发组件的aboutToDisappear回调。
+> 当ComponentContent对象调用dispose之后，会与后端实体节点解除引用关系。若前端对象ComponentContent无法释放，容易导致内存泄漏。建议在不再需要操作该ComponentContent对象时，开发者主动调用dispose释放后端节点，以减少引用关系的复杂性，降低内存泄漏的风险。
 
 **示例：** 
 

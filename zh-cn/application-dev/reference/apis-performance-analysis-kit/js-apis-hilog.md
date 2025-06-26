@@ -229,9 +229,9 @@ hilog.fatal(0x0001, "testTag", "%{public}s World %{private}d", "hello", 3);
 
 setMinLogLevel(level: LogLevel): void
 
-设置应用日志打印的最低日志级别。
+设置应用日志打印的最低日志级别，用于拦截低级别日志打印。
 
-用于拦截低级别日志打印，需要注意日志级别低于全局日志级别会导致日志打印失败，参考[全局日志级别查询方式](../../dfx/hilog.md#查看和设置日志级别)。
+需要注意：如果设置的日志级别低于[全局日志级别](../../dfx/hilog.md#查看和设置日志级别)，设置不生效。
 
 **原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -263,12 +263,14 @@ hilog.info(0x0001, "testTag", 'this is an info level log, id: %{public}d', 5);
 
 在设置进程最低日志级别为DEBUG后，但是此时全局日志级别为INFO，所以第四条日志不满足全局日志级别，打印失败，第五条日志可以打印。
 
+<!--RP1-->
 最终打印结果如下所示：
 ```
-08-07 23:50:01.532   13694-13694   A00001/testTag                  com.example.hilogemo  I     this is an info level log, id: 1
-08-07 23:50:01.532   13694-13694   A00001/testTag                  com.example.hilogemo  E     this is an error level log, id: 3
-08-07 23:50:01.532   13694-13694   A00001/testTag                  com.example.hilogemo  I     this is an info level log, id: 5
+08-07 23:50:01.532   13694-13694   A00001/testTag                  com.example.hilogDemo  I     this is an info level log, id: 1
+08-07 23:50:01.532   13694-13694   A00001/testTag                  com.example.hilogDemo  E     this is an error level log, id: 3
+08-07 23:50:01.532   13694-13694   A00001/testTag                  com.example.hilogDemo  I     this is an info level log, id: 5
 ```
+<!--RP1End-->
 
 ## 参数格式符
 
@@ -286,7 +288,7 @@ hilog.info(0x0001, "testTag", 'this is an info level log, id: %{public}d', 5);
 | ------------ | ---- | ---- |
 |      d/i      | 支持打印number和bigint类型。 | 123 |
 |   s     | 支持打印string undefined bool 和null类型。 | "123" |
-| o/O | 支持打印object、undefined和null类型。<br>从API version 20开始，支持该能力。 | obj |
+| o/O | 支持打印object、undefined和null类型。<br>从API version 20开始，支持该能力。 | { 'name': "Jack", 'age': 22 } |
 
 **示例：**
 ```js

@@ -32,6 +32,8 @@ DatePicker(options?: DatePickerOptions)
 
 ## DatePickerOptions对象说明
 
+日期选择器组件的参数说明。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -251,7 +253,7 @@ digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名   | 参数类型                                     | 必填   | 参数描述                      |
+| 参数名   | 类型                                     | 必填   | 说明                      |
 | ----- | ---------------------------------------- | ---- | ------------------------- |
 | sensitivity | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[CrownSensitivity](ts-appendix-enums.md#crownsensitivity18)> | 是    | 表冠响应灵敏度。<br/>默认值：CrownSensitivity.MEDIUM，响应速度适中。                    |
 
@@ -261,9 +263,11 @@ digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
 
 ## PickerTextStyle<sup>10+</sup>类型说明
 
+选择器组件的文本样式。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 参数名   | 参数类型                                     | 必填   | 参数描述                      |
+| 参数名   | 类型                                     | 必填   | 说明                      |
 | ----- | ---------------------------------------- | ---- | ------------------------- |
 | color | [ResourceColor](ts-types.md#resourcecolor) | 否    | 文本颜色。                     |
 | font  | [Font](ts-types.md#font)                 | 否    | 文本样式。 |
@@ -276,7 +280,7 @@ digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
 
 onChange(callback: (value: DatePickerResult) => void)
 
-选择日期时触发该事件。
+选择日期时触发该事件。不能通过双向绑定的状态变量触发。
 
 从API version 8 开始支持，从 API version 10 开始废弃，建议使用[onDateChange](#ondatechange10)。
 
@@ -292,7 +296,7 @@ onChange(callback: (value: DatePickerResult) => void)
 
 onDateChange(callback: (value: Date) => void)
 
-选择日期时触发该事件。
+选择日期时触发该事件。不能通过双向绑定的状态变量触发。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -321,6 +325,8 @@ onDateChange(callback: Optional\<Callback\<Date>>)
 | callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[Callback](ts-types.md#callback12)\<Date>> | 是   | 返回选中的时间，年月日为选中的日期，时分取决于当前系统时间的时分，秒恒为00。<br/>当callback的值为undefined时，不使用回调函数。 |
 
 ## DatePickerResult对象说明
+
+日期选择器返回的时间格式。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

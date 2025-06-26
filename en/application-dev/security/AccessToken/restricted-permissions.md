@@ -604,3 +604,21 @@ Allows an application to use the Native Development Kit (NDK) of the passkey ser
 **Supported devices**: Phone | PC/2in1 | Tablet
 
 **Valid since**: 20
+
+## ohos.permission.DLP_GET_HIDE_STATUS
+
+Allows an application to use the information hiding APIs to obtain the information hiding status.
+
+With this permission, the application can obtain the current screen peeping state, that is, whether the screen is being peeped by others.
+
+<!--RP44--><!--RP44End-->
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Supported devices**: Phone
+
+**Valid since**: 18
+
+**Changelog**: This permission is available only to system applications in API versions 18 to 19. From API version 20, it's also available to normal applications.

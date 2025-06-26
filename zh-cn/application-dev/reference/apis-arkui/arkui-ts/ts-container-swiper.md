@@ -675,6 +675,9 @@ changeIndex(index: number, useAnimation?: boolean)
 changeIndex(index: number, animationMode?: SwiperAnimationMode | boolean)
 
 翻页至指定页面。
+>**说明：**
+>
+>该接口本身提供了不带动画跳转页面的能力（animationMode设置为false或者SwiperAnimationMode.NO_ANIMATION），不建议使用changeIndex接口启动动画后，直接使用finishAnimation接口打断来实现页面不带动画跳转。
 
 **卡片能力：** 从API version 15开始，该接口支持在ArkTS卡片中使用。
 

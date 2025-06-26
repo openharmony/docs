@@ -10,7 +10,7 @@
 >
 > 该模块不支持在[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)的文件声明处使用，即不能在UIAbility的生命周期中调用，需要在创建组件实例后使用。
 >
-> 本模块功能依赖UI的执行上下文，不可在[UI上下文不明确](../../ui/arkts-global-interface.md)的地方使用，参见[UIContext](js-apis-arkui-UIContext.md#uicontext)说明。
+> 本模块功能依赖UI的执行上下文，不可在[UI上下文不明确](../../ui/arkts-global-interface.md#ui上下文不明确)的地方使用，参见[UIContext](js-apis-arkui-UIContext.md#uicontext)说明。
 >
 > 自定义组件中一般会持有一个[create](#create18)接口返回的[AnimatorResult](#animatorresult)对象，以保证动画对象不在动画过程中析构，而这个对象也通过回调捕获了自定义组件对象。则需要在自定义组件销毁时的[aboutToDisappear](../apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttodisappear)中释放动画对象，来避免因为循环依赖导致内存泄漏。
 

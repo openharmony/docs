@@ -68,7 +68,7 @@ Failed to set value to contacts data.
 
 **错误信息**
 
-User cancel.
+User canceled.
 
 **错误描述**
 

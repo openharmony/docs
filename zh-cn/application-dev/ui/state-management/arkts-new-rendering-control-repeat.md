@@ -26,6 +26,7 @@ Repeat根据容器组件的**有效加载范围**（屏幕可视区域+预加载
 - Repeat不支持V1装饰器，混用V1装饰器会导致渲染异常。
 - 滚动容器组件内只能包含一个Repeat。以List为例，同时包含ListItem、ForEach、LazyForEach的场景是不推荐的；同时包含多个Repeat也是不推荐的。
 - 当Repeat与自定义组件或[@Builder](./arkts-builder.md)函数混用时，必须将RepeatItem类型整体进行传参，组件才能监听到数据变化。详见[Repeat与@Builder混用](#repeat与builder混用)。
+- Repeat不支持NodeController。
 
 ## 循环渲染能力说明
 

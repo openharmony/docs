@@ -49,20 +49,20 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| **JSVM_VERSION_EXPERIMENTAL**&nbsp;&nbsp;&nbsp;2147483647 |  | 
-| **JSVM_VERSION**&nbsp;&nbsp;&nbsp;8 |  | 
-| **JSVM_EXTERN**&nbsp;&nbsp;&nbsp;__attribute__((visibility("default"))) |  | 
-| [JSVM_AUTO_LENGTH](#jsvm_auto_length)&nbsp;&nbsp;&nbsp;SIZE_MAX | 自动长度。 | 
-| **EXTERN_C_START** |  | 
-| **EXTERN_C_END** |  | 
-| **JSVM_CDECL** |  | 
+| **JSVM_VERSION_EXPERIMENTAL**&nbsp;&nbsp;&nbsp;2147483647 | JSVM 实验性版本号。 | 
+| **JSVM_VERSION**&nbsp;&nbsp;&nbsp;8 | JSVM 版本号。 | 
+| **JSVM_EXTERN**&nbsp;&nbsp;&nbsp;__attribute__((visibility("default"))) | 指定符号对外部可见。 | 
+| [JSVM_AUTO_LENGTH](_j_s_v_m.md#jsvm_auto_length)&nbsp;&nbsp;&nbsp;SIZE_MAX | 自动长度。  | 
+| **EXTERN_C_START** | 表示接下来的代码使用 C 语言的链接约定。 | 
+| **EXTERN_C_END** | 表示后续的代码使用 C++ 默认的链接约定。 | 
+| **JSVM_CDECL** | 用于指定函数调用约定（calling convention）的宏 | 
 
 
 ### 类型定义
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| typedef uint16_t **char16_t** |  | 
+| typedef uint16_t **char16_t** | 在旧版本的C++编译器中，如果char16_t类型未被定义（如C++11前的标准），则使用此语句将其定义为uint16_t类型，以实现兼容性支持。|
 | typedef struct JSVM_VM__ \* [JSVM_VM](#jsvm_vm) | 表示JavaScript虚拟机实例。 | 
 | typedef struct JSVM_VMScope__ \* [JSVM_VMScope](#jsvm_vmscope) | 表示JavaScript虚拟机作用域。 | 
 | typedef struct JSVM_EnvScope__ \* [JSVM_EnvScope](#jsvm_envscope) | 表示用于控制附加到当前虚拟机实例的环境。只有当线程通过 OH_JSVM_OpenEnvScope进入该环境的JSVM_EnvScope后，该环境才 对线程的虚拟机实例可用。 | 

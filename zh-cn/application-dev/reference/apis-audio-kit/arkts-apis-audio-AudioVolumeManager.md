@@ -7,6 +7,12 @@
 
 在使用AudioVolumeManager的接口之前，需先通过[getVolumeManager](arkts-apis-audio-AudioManager.md#getvolumemanager9)获取AudioVolumeManager实例。
 
+## 导入模块
+
+```ts
+import { audio } from '@kit.AudioKit';
+```
+
 ## getVolumeGroupManager<sup>9+</sup>
 
 getVolumeGroupManager(groupId: number, callback: AsyncCallback<AudioVolumeGroupManager\>\): void

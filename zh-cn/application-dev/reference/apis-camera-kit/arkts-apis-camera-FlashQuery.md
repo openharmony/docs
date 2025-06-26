@@ -7,6 +7,12 @@
 
 提供了查询设备的闪光灯状态和模式的能力。
 
+## 导入模块
+
+```ts
+import { camera } from '@kit.CameraKit';
+```
+
 ## hasFlash<sup>11+</sup>
 
 hasFlash(): boolean

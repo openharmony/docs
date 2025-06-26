@@ -199,7 +199,7 @@ static queryAll(): AsyncLockState[]
 
 | 类型                                | 说明                             |
 | ----------------------------------- | -------------------------------- |
-| [AsyncLockState](#asynclockstate)[] | 包含锁状态信息的异步锁状态数组。 |
+| [AsyncLockState](#asynclockstate)[] | 包含状态描述的异步锁状态实例数组。 |
 
 **示例：**
 
@@ -517,7 +517,7 @@ static request(name: string): ConditionVariable
 
 | 类型                    | 说明                             |
 | ----------------------- | -------------------------------- |
-| [ConditionVariable](#conditionvariable18) | 返回查找到或创建后的异步等待通知操作的实例。 |
+| [ConditionVariable](#conditionvariable18) | 返回查找或创建(如果未找到)的异步等待通知操作的实例。 |
 
 **示例：**
 

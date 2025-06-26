@@ -4244,18 +4244,6 @@
 
 **起始版本**：18
 
-## ohos.permission.DLP_GET_HIDE_STATUS
-
-允许系统应用使用信息隐藏接口，获取信息隐藏状态的能力。
-
-**权限级别**：system_basic
-
-**授权方式**：系统授权（system_grant）
-
-**ACL使能**：true
-
-**起始版本**：18
-
 ## ohos.permission.GET_ANIM_POLICY
 
 允许系统应用注册动效插件，获取动效使用策略。

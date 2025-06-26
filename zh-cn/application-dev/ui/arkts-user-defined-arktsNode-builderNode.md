@@ -1000,3 +1000,84 @@ struct Child {
   }
 }
 ```
+
+## 查询当前BuilderNode是否解除引用
+
+前端节点均绑定有相应的后端实体节点，当节点调用dispose接口解除绑定后，再次调用接口可能会出现crash、返回默认值的情况。
+
+从API version 20开始，使用[isDisposed](../reference/apis-arkui/js-apis-arkui-builderNode.md#isdisposed20)接口查询当前BuilderNode对象是否已解除与后端实体节点的引用关系，从而可以在操作节点前检查其有效性，避免潜在风险。
+
+```ts
+import { NodeController, FrameNode, BuilderNode } from '@kit.ArkUI';
+
+@Builder
+function buildText() {
+  Text("Test")
+    .fontSize(20)
+    .fontWeight(FontWeight.Bold)
+}
+
+class MyNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+  private builderNode: BuilderNode<[]> | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+    this.rootNode.commonAttribute.width(100).height(100).backgroundColor(Color.Pink);
+    this.builderNode = new BuilderNode<[]>(uiContext);
+    this.builderNode.build(wrapBuilder<[]>(buildText));
+
+    // 挂载BuilderNode
+    this.rootNode.appendChild(this.builderNode.getFrameNode());
+    return this.rootNode;
+  }
+
+  disposeBuilderNode() {
+    // 解除BuilderNode与后端实体节点的引用关系
+    this.builderNode?.dispose();
+  }
+
+  isDisposed() : string {
+    if (this.builderNode !== null) {
+      // 查询BuilderNode是否解除引用
+      if (this.builderNode.isDisposed()) {
+        return 'builderNode isDisposed is true';
+      }
+      else {
+        return 'builderNode isDisposed is false';
+      }
+    }
+    return 'builderNode is null';
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @State text: string = ''
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Column({ space: 4 }) {
+      NodeContainer(this.myNodeController)
+      Button('BuilderNode dispose')
+        .onClick(() => {
+          this.myNodeController.disposeBuilderNode();
+          this.text = '';
+        })
+        .width(200)
+        .height(50)
+      Button('BuilderNode isDisposed')
+        .onClick(() => {
+          this.text = this.myNodeController.isDisposed();
+        })
+        .width(200)
+        .height(50)
+      Text(this.text)
+        .fontSize(25)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```

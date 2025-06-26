@@ -32,6 +32,8 @@ TimePicker(options?: TimePickerOptions)
 
 ## TimePickerOptions对象说明
 
+时间选择器组件的参数说明。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称                 | 类型                                            | 必填 | 说明                                                         |
@@ -69,6 +71,8 @@ TimePicker(options?: TimePickerOptions)
 >  | ms          | number | 否   | 设置毫秒，例如10。|
 
 ## TimePickerFormat<sup>11+</sup>枚举说明
+
+时间选择器的数据格式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -348,7 +352,7 @@ digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名   | 参数类型                                     | 必填   | 参数描述                      |
+| 参数名   | 类型                                     | 必填   | 说明                      |
 | ----- | ---------------------------------------- | ---- | ------------------------- |
 | sensitivity | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[CrownSensitivity](ts-appendix-enums.md#crownsensitivity18)> | 是    | 表冠响应灵敏度。<br/>默认值：CrownSensitivity.MEDIUM，表示响应速度适中。                    |
 
