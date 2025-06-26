@@ -4,6 +4,8 @@
 
 提供NativeBuffer模块的公共类型定义。<br>从API version 12开始，部分类型定义从native_buffer.h移动至此头文件统一呈现，对于此类类型，API version 12之前即支持使用，各版本均可正常使用。
 
+**引用文件：** <native_buffer/buffer_common.h>
+
 **库：** libnative_buffer.so
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeBuffer
@@ -18,10 +20,10 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [OH_NativeBuffer_ColorXY](capi-oh-nativebuffer-colorxy.md) | OH_NativeBuffer_ColorXY | 表示基色的X和Y坐标。 |
-| [OH_NativeBuffer_Smpte2086](capi-oh-nativebuffer-smpte2086.md) | OH_NativeBuffer_Smpte2086 | 表示smpte2086静态元数据。 |
-| [OH_NativeBuffer_Cta861](capi-oh-nativebuffer-cta861.md) | OH_NativeBuffer_Cta861 | 表示CTA-861.3静态元数据。 |
-| [OH_NativeBuffer_StaticMetadata](capi-oh-nativebuffer-staticmetadata.md) | OH_NativeBuffer_StaticMetadata | 表示HDR静态元数据。 |
+| [OH_NativeBuffer_ColorXY](capi-oh-nativebuffer-oh-nativebuffer-colorxy.md) | OH_NativeBuffer_ColorXY | 表示基色的X和Y坐标。 |
+| [OH_NativeBuffer_Smpte2086](capi-oh-nativebuffer-oh-nativebuffer-smpte2086.md) | OH_NativeBuffer_Smpte2086 | 表示smpte2086静态元数据。 |
+| [OH_NativeBuffer_Cta861](capi-oh-nativebuffer-oh-nativebuffer-cta861.md) | OH_NativeBuffer_Cta861 | 表示CTA-861.3静态元数据。 |
+| [OH_NativeBuffer_StaticMetadata](capi-oh-nativebuffer-oh-nativebuffer-staticmetadata.md) | OH_NativeBuffer_StaticMetadata | 表示HDR静态元数据。 |
 
 ### 枚举
 
@@ -120,7 +122,7 @@ enum OH_NativeBuffer_MetadataKey
 | 枚举项 | 描述 |
 | -- | -- |
 | OH_HDR_METADATA_TYPE | 元数据类型，其值见[OH_NativeBuffer_MetadataType](capi-buffer-common-h.md#oh_nativebuffer_metadatatype)，size为OH_NativeBuffer_MetadataType大小。 |
-| OH_HDR_STATIC_METADATA | 静态元数据，其值见[OH_NativeBuffer_StaticMetadata](capi-oh-nativebuffer-staticmetadata.md)，size为OH_NativeBuffer_StaticMetadata大小。 |
+| OH_HDR_STATIC_METADATA | 静态元数据，其值见[OH_NativeBuffer_StaticMetadata](capi-oh-nativebuffer-oh-nativebuffer-staticmetadata.md)，size为OH_NativeBuffer_StaticMetadata大小。 |
 | OH_HDR_DYNAMIC_METADATA | 动态元数据，其值见视频流中SEI的字节流，size的取值范围为1-3000。 |
 
 

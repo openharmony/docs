@@ -6,6 +6,8 @@
 <!--RP1-->
 **相关示例：** [NDKNativeImage](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkNativeImage)<!--RP1End-->
 
+**引用文件：** <native_vsync/native_vsync.h>
+
 **库：** libnative_vsync.so
 
 **起始版本：** 9
@@ -18,8 +20,8 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [OH_NativeVSync_ExpectedRateRange](capi-oh-nativevsync-expectedraterange.md) | OH_NativeVSync_ExpectedRateRange | 期望帧率范围结构体。 |
-| [OH_NativeVSync](capi-oh-nativevsync.md) | OH_NativeVSync | 提供OH_NativeVSync结构体声明。 |
+| [OH_NativeVSync_ExpectedRateRange](capi-nativevsync-oh-nativevsync-expectedraterange.md) | OH_NativeVSync_ExpectedRateRange | 期望帧率范围结构体。 |
+| [OH_NativeVSync](capi-nativevsync-oh-nativevsync.md) | OH_NativeVSync | 提供OH_NativeVSync结构体声明。 |
 
 ### 函数
 
@@ -85,7 +87,7 @@ OH_NativeVSync* OH_NativeVSync_Create(const char* name, unsigned int length)
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_NativeVSync](capi-oh-nativevsync.md)* | 返回一个指向OH_NativeVSync实例的指针。 |
+| [OH_NativeVSync](capi-nativevsync-oh-nativevsync.md)* | 返回一个指向OH_NativeVSync实例的指针。 |
 
 ### OH_NativeVSync_Create_ForAssociatedWindow()
 
@@ -114,7 +116,7 @@ OH_NativeVSync* OH_NativeVSync_Create_ForAssociatedWindow(uint64_t windowID, con
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_NativeVSync](capi-oh-nativevsync.md)* | 返回一个指向OH_NativeVSync实例的指针。 |
+| [OH_NativeVSync](capi-nativevsync-oh-nativevsync.md)* | 返回一个指向OH_NativeVSync实例的指针。 |
 
 ### OH_NativeVSync_Destroy()
 
@@ -135,7 +137,7 @@ void OH_NativeVSync_Destroy(OH_NativeVSync* nativeVsync)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_NativeVSync](capi-oh-nativevsync.md)* nativeVsync | 一个指向OH_NativeVSync实例的指针。 |
+| [OH_NativeVSync](capi-nativevsync-oh-nativevsync.md)* nativeVsync | 一个指向OH_NativeVSync实例的指针。 |
 
 ### OH_NativeVSync_RequestFrame()
 
@@ -156,7 +158,7 @@ int OH_NativeVSync_RequestFrame(OH_NativeVSync* nativeVsync, OH_NativeVSync_Fram
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_NativeVSync](capi-oh-nativevsync.md)* nativeVsync | 一个指向OH_NativeVSync实例的指针。 |
+| [OH_NativeVSync](capi-nativevsync-oh-nativevsync.md)* nativeVsync | 一个指向OH_NativeVSync实例的指针。 |
 | [OH_NativeVSync_FrameCallback](#oh_nativevsync_framecallback) callback | 一个OH_NativeVSync_FrameCallback类型的函数指针，当下一次vsync信号到来时会被调用。 |
 | void* data | 一个指向用户自定义数据结构的指针，类型是void。 |
 
@@ -185,7 +187,7 @@ int OH_NativeVSync_RequestFrameWithMultiCallback(OH_NativeVSync* nativeVsync, OH
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_NativeVSync](capi-oh-nativevsync.md)* nativeVsync | 一个指向OH_NativeVSync实例的指针。 |
+| [OH_NativeVSync](capi-nativevsync-oh-nativevsync.md)* nativeVsync | 一个指向OH_NativeVSync实例的指针。 |
 | [OH_NativeVSync_FrameCallback](#oh_nativevsync_framecallback) callback | 一个OH_NativeVSync_FrameCallback类型的函数指针，当下一次vsync信号到来时会被调用。 |
 | void* data | 一个指向用户自定义数据结构的指针，类型是void。 |
 
@@ -214,7 +216,7 @@ int OH_NativeVSync_GetPeriod(OH_NativeVSync* nativeVsync, long long* period)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_NativeVSync](capi-oh-nativevsync.md)* nativeVsync | 一个指向OH_NativeVSync实例的指针。 |
+| [OH_NativeVSync](capi-nativevsync-oh-nativevsync.md)* nativeVsync | 一个指向OH_NativeVSync实例的指针。 |
 | long long* period | 表示vsync周期，作为出参使用。 |
 
 **返回：**
@@ -242,7 +244,7 @@ int OH_NativeVSync_DVSyncSwitch(OH_NativeVSync* nativeVsync, bool enable)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_NativeVSync](capi-oh-nativevsync.md)* nativeVsync | 一个指向OH_NativeVSync实例的指针。 |
+| [OH_NativeVSync](capi-nativevsync-oh-nativevsync.md)* nativeVsync | 一个指向OH_NativeVSync实例的指针。 |
 | bool enable | 表示打开或者关闭DVSync，true表示打开，false表示关闭。 |
 
 **返回：**
@@ -270,8 +272,8 @@ int OH_NativeVSync_SetExpectedFrameRateRange(OH_NativeVSync* nativeVsync, OH_Nat
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_NativeVSync](capi-oh-nativevsync.md)* nativeVsync | 指向[OH_NativeVSync](capi-oh-nativevsync.md)实例的指针。 |
-| [OH_NativeVSync_ExpectedRateRange](capi-oh-nativevsync-expectedraterange.md)* range | 指向[OH_NativeVSync_ExpectedRateRange](capi-oh-nativevsync-expectedraterange.md)实例的指针。<br>有效的期望帧率范围为：0 <= 最小值 <= 期望帧率 <= 最大值 <= 144。<br>期望帧率为0时，表示取消设置期望帧率。<br>此指针需开发者自行管理生命周期。 |
+| [OH_NativeVSync](capi-nativevsync-oh-nativevsync.md)* nativeVsync | 指向[OH_NativeVSync](capi-nativevsync-oh-nativevsync.md)实例的指针。 |
+| [OH_NativeVSync_ExpectedRateRange](capi-nativevsync-oh-nativevsync-expectedraterange.md)* range | 指向[OH_NativeVSync_ExpectedRateRange](capi-nativevsync-oh-nativevsync-expectedraterange.md)实例的指针。<br>有效的期望帧率范围为：0 <= 最小值 <= 期望帧率 <= 最大值 <= 144。<br>期望帧率为0时，表示取消设置期望帧率。<br>此指针需开发者自行管理生命周期。 |
 
 **返回：**
 

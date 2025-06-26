@@ -2,7 +2,6 @@
 
 为了实现对\@ComponentV2装饰的自定义组件中变量变化的观测，开发者可以使用\@Local装饰器装饰变量。
 
-
 在阅读本文档前，建议提前阅读：[\@ComponentV2](./arkts-new-componentV2.md)。
 
 >**说明：**
@@ -26,7 +25,7 @@
 
 ## 状态管理V1版本\@State装饰器的局限性
 
-状态管理V1使用[\@State装饰器](arkts-state.md)定义类中的状态变量。但由于\@State装饰器能够从外部初始化，因此\@State无法准确表达组件内部状态不能被外面修改的语义。
+状态管理V1使用[\@State装饰器](arkts-state.md)定义类中的状态变量。但由于\@State装饰器能够从外部初始化，因此无法确保\@State装饰的变量一定为组件内部的状态。
 
 ```ts
 class ComponentInfo {
@@ -630,5 +629,3 @@ struct Index {
 原理为使用一个duration为0的[animateToImmediately](../../reference/apis-arkui/arkui-ts/ts-explicit-animatetoimmediately.md)将额外的修改先刷新，再执行原来的动画达成预期的效果。
 
 ![arkts-new-local-animateTo-2](figures/arkts-new-local-animateTo-2.gif)
-
-建议在状态管理V2中谨慎使用animateTo接口。

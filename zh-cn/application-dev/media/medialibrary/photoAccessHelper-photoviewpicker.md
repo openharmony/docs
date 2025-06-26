@@ -17,14 +17,14 @@
    ```
 
 3. 配置可选的媒体文件类型和媒体文件的最大数目。
-   以下示例以图片选择为例，媒体文件类型请参见[PhotoViewMIMETypes](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#photoviewmimetypes)。
+   以下示例以图片选择为例，媒体文件类型请参见[PhotoViewMIMETypes](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-e.md#photoviewmimetypes)。
 
    ```ts
    photoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE; // 过滤选择媒体文件类型为IMAGE。
    photoSelectOptions.maxSelectNumber = 5; // 选择媒体文件的最大数目。
    ```
 
-4. 创建图库选择器实例，调用[PhotoViewPicker.select](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#select)接口拉起图库界面进行文件选择。文件选择成功后，返回[PhotoSelectResult](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#photoselectresult)结果集。
+4. 创建图库选择器实例，调用[PhotoViewPicker.select](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoViewPicker.md#select)接口拉起图库界面进行文件选择。文件选择成功后，返回[PhotoSelectResult](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-class.md#photoselectresult)结果集。
 
    ```ts
    let uris: Array<string> = [];
@@ -56,6 +56,7 @@
 2. 通过fd使用[fileIo.readSync](../../reference/apis-core-file-kit/js-apis-file-fs.md#readsync)接口读取这个文件内的数据，读取完成后关闭fd。
 
    ```ts
+   // buffer为缓冲区长度，由开发者自定义。
    let buffer = new ArrayBuffer(4096);
    let readLen = fileIo.readSync(file.fd, buffer);
    console.info('readSync data to file succeed and buffer size is:' + readLen);
@@ -71,10 +72,6 @@ import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { dataSharePredicates } from '@kit.ArkData';
 import { common } from '@kit.AbilityKit';
 
-// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-
 class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayBuffer> {
   onDataPrepared(data: ArrayBuffer) {
     if (data === undefined) {
@@ -86,7 +83,7 @@ class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayB
   }
 }
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let uri = 'file://media/Photo/1/IMG_datetime_0001/displayName.jpg' // 需保证此uri已存在。
   predicates.equalTo(photoAccessHelper.PhotoKeys.URI, uri.toString());

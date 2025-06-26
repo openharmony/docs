@@ -838,6 +838,84 @@ waitTime表示的是本次ipc通信时长，如果该值远小于故障检测时
 
 上图案例为：OHOS::AppExecFwk::FormMgrAdapter::GetFormsInfoByApp接口执行时长达到8s。
 
+### 结合 hitraceId
+
+从API verrsion 20开始，发生THREAD_BLOCK_6S故障时，日志中新增[HiTraceId](../reference/apis-performance-analysis-kit/js-apis-hitracechain.md#hitraceid)信息打印。HitraceId是HiTraceChain提供的唯一跟踪标识，用于跟踪业务流程调用链。可以协助开发者查看故障时间段内，故障流程的hilog日志，分析日志查看应用的执行状态。
+
+> **注意：**
+>
+> HitraceId生效前提，应用在其内部可能发生故障的方法前，接入begin方法。
+
+提供可以输出HitraceId信息的参考案例，具体如下：
+
+新建一个ets应用工程，编辑工程中的“entry > src > main > ets  > pages > index.ets”文件，添加一个按钮，完整示例代码如下：
+
+```js
+import { hiTraceChain } from '@kit.PerformanceAnalysisKit';
+
+function wait15s() {
+    hiTraceChain.begin("freeze", 0);
+    console.log('run');
+    let t = Date.now();
+    while(Date.now() - t <= 15000){
+    }
+}
+
+@Entry
+@Component
+struct Index {
+build() {
+    RelativeContainer() {
+    Column() {
+        // 添加点击事件，触发THREAD_BLOCK_6S故障。
+        Button("appfreeze-beginHitraceId", { stateEffect:true, type: ButtonType.Capsule})
+        .width('75%')
+        .height(50)
+        .margin(15)
+        .fontSize(20)
+        .fontWeight(FontWeight.Bold)
+        .onClick(() => {
+            // 开启hitrace
+            hiTraceChain.begin("freeze", 0);
+            setTimeout(wait15s, 5000);
+        });
+    }.width('100%')
+    }
+    .height('100%')
+    .width('100%')
+}
+}
+```
+
+上述案例流水打印如下图：
+
+![appfreeze_hitraceId打印](figures/appfreeze_hitraceId_hilog_print.png)
+
+上述案例appfreeze日志头信息如下，HitraceId内容可以参考HitraceIdInfo后的信息：
+
+```txt
+Device info:OpenHarmony 3.2
+Build info:OpenHarmony 6.0.0.37
+Fingerprint:565fc356420747886d7c9d8d49cfcd1b18b6149f8b86e50a44b76dfe7757a5c3
+Module name:com.example.freeze
+Version:1.0.0
+VersionCode:1000000
+PreInstalled:No
+Foreground:Yes
+Pid:2522
+Uid:20010044
+Reason:THREAD_BLOCK_6S
+appfreeze: com.example.freeze THREAD_BLOCK_6S at 20171029141634
+DisplayPowerInfo:powerState:UNKNOWN
+HitraceIdInfo: hitrace_id: a92ab27238f409a, span_id: 1cd61c9, parent_span_id: 3072e, trace_flag: 0
+```
+
+hitrace_id：跟踪链ID，属于HitraceId的一部分，用于标识当前跟踪的业务流程。
+
+span_id：分支ID，属于HitraceId的一部分，用于标识业务流程在某个服务中的一个具体任务，可以为每个任务创建一个唯一的spanId，用于区分不同的任务。
+
+parent_span_id：父分支ID，属于HitraceId的一部分，用于标识当前任务的父任务，可以建立不同任务之间的层级关系，显示任务之间的从属关系。
+
 ## 分析案例
 
 ### ThreadBlock 类典型案例——未正确使用锁

@@ -2,7 +2,7 @@
 
 ## 简介
 
-JSVM-API中Well-known symbols相关接口可以通过不同API直接拿到对应的11个Well-known symbols。
+JSVM-API中Well-known symbols相关接口可以通过不同API直接获取对应的11个Well-known symbols。
 
 ## 基本概念
 
@@ -26,11 +26,11 @@ JSVM-API中Well-known symbols相关接口可以通过不同API直接拿到对应
 
 ## 使用示例
 
-JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅对接口对应C++相关代码进行展示。
+JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅展示接口对应C++相关代码。
 
 ### 使用接口获取Well-known symbols（以OH_JSVM_GetSymbolToStringTag为例）
 
-cpp部分代码
+cpp部分代码：
 
 ```cpp
 #include <string>
@@ -75,7 +75,7 @@ const char *srcCallNative = R"JS(wellKnownSymbols();)JS";
 
 ```
 
-预期输出
+预期输出：
 ```
 JSVM OH_JSVM_GetSymbolToStringTag result is correct : 1
 ```

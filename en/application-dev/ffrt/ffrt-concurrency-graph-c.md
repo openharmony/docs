@@ -78,19 +78,7 @@ The FFRT provides task graph that can describe the task dependency and paralleli
 
 ```c
 #include <stdio.h>
-#include "ffrt/task.h"
-
-static inline void ffrt_submit_c(ffrt_function_t func, const ffrt_function_t after_func,
-    void* arg, const ffrt_deps_t* in_deps, const ffrt_deps_t* out_deps, const ffrt_task_attr_t* attr)
-{
-    ffrt_submit_base(ffrt_create_function_wrapper(func, after_func, arg), in_deps, out_deps, attr);
-}
-
-static inline ffrt_task_handle_t ffrt_submit_h_c(ffrt_function_t func, const ffrt_function_t after_func,
-    void* arg, const ffrt_deps_t* in_deps, const ffrt_deps_t* out_deps, const ffrt_task_attr_t* attr)
-{
-    return ffrt_submit_h_base(ffrt_create_function_wrapper(func, after_func, arg), in_deps, out_deps, attr);
-}
+#include "ffrt/ffrt.h"
 
 void func_TaskA(void* arg)
 {
@@ -120,70 +108,32 @@ void func_TaskE(void* arg)
 int main()
 {
     // Submit task A.
-    ffrt_task_handle_t hTaskA = ffrt_submit_h_c(func_TaskA, NULL, NULL, NULL, NULL, NULL);
+    ffrt_task_handle_t hTaskA = ffrt_submit_h_f(func_TaskA, NULL, NULL, NULL, NULL);
 
     // Submit tasks B and C.
     ffrt_dependence_t taskA_deps[] = {{ffrt_dependence_task, hTaskA}};
     ffrt_deps_t dTaskA = {1, taskA_deps};
-    ffrt_task_handle_t hTaskB = ffrt_submit_h_c(func_TaskB, NULL, NULL, &dTaskA, NULL, NULL);
-    ffrt_task_handle_t hTaskC = ffrt_submit_h_c(func_TaskC, NULL, NULL, &dTaskA, NULL, NULL);
+    ffrt_task_handle_t hTaskB = ffrt_submit_h_f(func_TaskB, NULL, &dTaskA, NULL, NULL);
+    ffrt_task_handle_t hTaskC = ffrt_submit_h_f(func_TaskC, NULL, &dTaskA, NULL, NULL);
 
     // Submit task D.
     ffrt_dependence_t taskBC_deps[] = {{ffrt_dependence_task, hTaskB}, {ffrt_dependence_task, hTaskC}};
     ffrt_deps_t dTaskBC = {2, taskBC_deps};
-    ffrt_task_handle_t hTaskD = ffrt_submit_h_c(func_TaskD, NULL, NULL, &dTaskBC, NULL, NULL);
+    ffrt_task_handle_t hTaskD = ffrt_submit_h_f(func_TaskD, NULL, &dTaskBC, NULL, NULL);
 
     // Submit task E.
     ffrt_dependence_t taskD_deps[] = {{ffrt_dependence_task, hTaskD}};
     ffrt_deps_t dTaskD = {1, taskD_deps};
-    ffrt_submit_c(func_TaskE, NULL, NULL, &dTaskD, NULL, NULL);
+    ffrt_submit_f(func_TaskE, NULL, &dTaskD, NULL, NULL);
 
     // Wait until all tasks are complete.
     ffrt_wait();
+
+    ffrt_task_handle_destroy(hTaskA);
+    ffrt_task_handle_destroy(hTaskB);
+    ffrt_task_handle_destroy(hTaskC);
+    ffrt_task_handle_destroy(hTaskD);
     return 0;
-}
-```
-
-C-style FFRT construction requires additional encapsulation using common code and is irrelevant to specific service scenarios.
-
-```c
-typedef struct {
-    ffrt_function_header_t header;
-    ffrt_function_t func;
-    ffrt_function_t after_func;
-    void* arg;
-} c_function_t;
-
-static inline void ffrt_exec_function_wrapper(void* t)
-{
-    c_function_t* f = (c_function_t *)t;
-    if (f->func) {
-        f->func(f->arg);
-    }
-}
-
-static inline void ffrt_destroy_function_wrapper(void* t)
-{
-    c_function_t* f = (c_function_t *)t;
-    if (f->after_func) {
-        f->after_func(f->arg);
-    }
-}
-
-#define FFRT_STATIC_ASSERT(cond, msg) int x(int static_assertion_##msg[(cond) ? 1 : -1])
-static inline ffrt_function_header_t *ffrt_create_function_wrapper(const ffrt_function_t func,
-    const ffrt_function_t after_func, void *arg)
-{
-    FFRT_STATIC_ASSERT(sizeof(c_function_t) <= ffrt_auto_managed_function_storage_size,
-        size_of_function_must_be_less_than_ffrt_auto_managed_function_storage_size);
-
-    c_function_t* f = (c_function_t *)ffrt_alloc_auto_managed_function_storage_base(ffrt_function_kind_general);
-    f->header.exec = ffrt_exec_function_wrapper;
-    f->header.destroy = ffrt_destroy_function_wrapper;
-    f->func = func;
-    f->after_func = after_func;
-    f->arg = arg;
-    return (ffrt_function_header_t *)f;
 }
 ```
 
@@ -203,18 +153,12 @@ Each number in the Fibonacci sequence is the sum of the first two numbers. The p
 
 ```c
 #include <stdio.h>
-#include "ffrt/task.h"
+#include "ffrt/ffrt.h"
 
 typedef struct {
     int x;
     int* y;
 } fib_ffrt_s;
-
-static inline void ffrt_submit_c(ffrt_function_t func, const ffrt_function_t after_func,
-    void* arg, const ffrt_deps_t* in_deps, const ffrt_deps_t* out_deps, const ffrt_task_attr_t* attr)
-{
-    ffrt_submit_base(ffrt_create_function_wrapper(func, after_func, arg), in_deps, out_deps, attr);
-}
 
 void fib_ffrt(void* arg)
 {
@@ -240,8 +184,8 @@ void fib_ffrt(void* arg)
         ffrt_deps_t dy12 = {2, dy12_deps};
 
         // Submit tasks separately.
-        ffrt_submit_c(fib_ffrt, NULL, &s1, &dx, &dy1, NULL);
-        ffrt_submit_c(fib_ffrt, NULL, &s2, &dx, &dy2, NULL);
+        ffrt_submit_f(fib_ffrt, &s1, &dx, &dy1, NULL);
+        ffrt_submit_f(fib_ffrt, &s2, &dx, &dy2, NULL);
 
         // Wait until the task is complete.
         ffrt_wait_deps(&dy12);
@@ -255,7 +199,7 @@ int main()
     fib_ffrt_s s = {5, &r};
     ffrt_dependence_t dr_deps[] = {{ffrt_dependence_data, &r}};
     ffrt_deps_t dr = {1, dr_deps};
-    ffrt_submit_c(fib_ffrt, NULL, &s, NULL, &dr, NULL);
+    ffrt_submit_f(fib_ffrt, &s, NULL, &dr, NULL);
 
     // Wait until the task is complete.
     ffrt_wait_deps(&dr);
@@ -280,11 +224,16 @@ Each task forms a call tree in the FFRT.
 
 The main FFRT APIs involved in the preceding example are as follows:
 
-| Name                                                            | Description                                  |
-| ---------------------------------------------------------------- | -------------------------------------- |
-| [ffrt_submit_base](ffrt-api-guideline-c.md#ffrt_submit_base)     | Submits a task.                    |
-| [ffrt_submit_h_base](ffrt-api-guideline-c.md#ffrt_submit_h_base) | Submits a task, and obtains the task handle.      |
-| [ffrt_wait_deps](ffrt-api-guideline-c.md#ffrt_wait_deps)         | Waits until the dependent tasks are complete.|
+| Name                                                      | Description                            |
+| ---------------------------------------------------------- | -------------------------------- |
+| [ffrt_submit_f](ffrt-api-guideline-c.md#ffrt_submit_f)     | Submits a task.              |
+| [ffrt_submit_h_f](ffrt-api-guideline-c.md#ffrt_submit_h_f) | Submits a task, and obtains the task handle.|
+| [ffrt_wait_deps](ffrt-api-guideline-c.md#ffrt_wait_deps)   | Waits until the dependent tasks are complete.            |
+
+> **NOTE**
+>
+> - For details about how to use FFRT C++ APIs, see [Using FFRT C++ APIs](ffrt-development-guideline.md#using-ffrt-c-api-1).
+> - When using FFRT C or C++ APIs, you can use the FFRT C++ API third-party library to simplify the header file inclusion, that is, use the `#include "ffrt/ffrt.h"` header file to include statements.
 
 ## Constraints
 

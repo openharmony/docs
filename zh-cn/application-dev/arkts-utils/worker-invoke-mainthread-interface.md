@@ -18,6 +18,7 @@
      }
    }
    ```
+   <!-- @[implement_child_thread_task](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationScenario/entry/src/main/ets/managers/IconItemSource.ets) -->
 
    ```ts
    // WorkerCallGlobalUsage.ets
@@ -51,6 +52,7 @@
    workerInstance.registerGlobalCallObject("picData", picData);
    workerInstance.postMessage("run setUp in picData");
    ```
+   <!-- @[create_worker_obj](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationScenario/entry/src/main/ets/managers/WorkerCallGlobalUsage.ets) -->
 
 2. 然后，在Worker中通过callGlobalCallObjectMethod接口可以调用宿主线程中的setUp()方法。
 
@@ -67,3 +69,4 @@
      console.error("worker: error code is " + error.code + " error message is " + error.message);
    }
    ```
+   <!-- @[call_main_method](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationScenario/entry/src/main/ets/workers/Worker.ets) -->

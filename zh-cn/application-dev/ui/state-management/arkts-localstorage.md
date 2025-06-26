@@ -20,7 +20,7 @@ LocalStorage还提供了API接口，可以让开发者通过接口在自定义�
 
 LocalStorage是ArkTS为构建页面级别状态变量提供存储的内存内的“数据库”。
 
-- 应用程序可以创建多个LocalStorage实例，LocalStorage实例可以在页面内共享，也可以通过getSharedLocalStorage接口，实现跨页面、UIAbility实例内共享。
+- 应用程序可以创建多个LocalStorage实例，LocalStorage实例可以在页面内共享，也可以通过getSharedLocalStorage接口，实现跨页面、跨UIAbility实例共享。
 
 - 组件树的根节点，即被\@Entry装饰的\@Component，可以被分配一个LocalStorage实例，此组件的所有子组件实例将自动获得对该LocalStorage实例的访问权限。
 
@@ -51,10 +51,10 @@ LocalStorage根据与\@Component装饰的组件的同步类型不同，提供了
 >
 > 从API version 11开始，该装饰器支持在原子化服务中使用。
 
-\@LocalStorageProp(key)是和LocalStorage中key对应的属性建立单向数据同步，ArkUI框架支持修改@LocalStorageProp(key)在本地的值，但是对本地值的修改不会同步回LocalStorage中。相反，如果LocalStorage中key对应的属性值发生改变，例如通过set接口对LocalStorage中的值进行修改，改变会同步给\@LocalStorageProp(key)，并覆盖掉本地的值。
+\@LocalStorageProp(key)和LocalStorage中key对应的属性建立单向数据同步，ArkUI框架支持修改\@LocalStorageProp(key)在本地的值，但是对本地值的修改不会同步回LocalStorage中。相反，如果LocalStorage中key对应的属性值发生改变，例如通过set接口对LocalStorage中的值进行修改，改变会同步给\@LocalStorageProp(key)，并覆盖掉本地的值。
 
 
-### 装饰器使用规则说明
+### 装饰器使用规则
 
 | \@LocalStorageProp变量装饰器 | 说明                                       |
 | ----------------------- | ---------------------------------------- |
@@ -64,18 +64,18 @@ LocalStorage根据与\@Component装饰的组件的同步类型不同，提供了
 | 被装饰变量的初始值               | 必须指定，如果LocalStorage实例中不存在属性，则用该初始值初始化该属性，并存入LocalStorage中。 |
 
 
-### 变量的传递/访问规则说明
+### 变量的传递/访问规则
 
-| 传递/访问      | 说明                                       |
-| ---------- | ---------------------------------------- |
-| 从父节点初始化和更新 | 禁止，\@LocalStorageProp不支持从父节点初始化，只能从LocalStorage中key对应的属性初始化，如果没有对应key的话，将使用本地默认值初始化。 |
-| 初始化子节点     | 支持，可用于初始化\@State、\@Link、\@Prop、\@Provide。 |
-| 是否支持组件外访问  | 否。                                       |
+| 传递/访问规则    | 说明                                                                                  |
+| ---------- |-------------------------------------------------------------------------------------|
+| 从父节点初始化和更新 | 禁止，\@LocalStorageProp不支持从父节点初始化，只能从LocalStorage中key对应的属性初始化，如果没有对应的key，将使用本地默认值初始化。 |
+| 初始化子节点     | 支持，可用于初始化\@State、\@Link、\@Prop、\@Provide。                                           |
+| 是否支持组件外访问  | 否。                                                                                  |
 
-  **图1** \@LocalStorageProp初始化规则图示  
 
 ![zh-cn_image_0000001501936014](figures/zh-cn_image_0000001501936014.png)
 
+  **图1** \@LocalStorageProp初始化规则图示
 
 ### 观察变化和行为表现
 
@@ -98,14 +98,15 @@ LocalStorage根据与\@Component装饰的组件的同步类型不同，提供了
 **框架行为**
 
 
-- 被\@LocalStorageProp装饰的变量的值的变化不会同步回LocalStorage里。
+1. 使用\@LocalStorageProp(key)装饰的变量更新时，不会写回LocalStorage，但会触发当前自定义组件的重新渲染。
 
-- \@LocalStorageProp装饰的变量变化会使当前自定义组件中关联的组件刷新。
+2. 当LocalStorage中对应key的值发生变化时，所有使用\@LocalStorageProp(key)装饰的变量都会同步更新，覆盖本地修改。
 
-- LocalStorage(key)中值的变化会引发所有被\@LocalStorageProp对应key装饰的变量的变化，会覆盖\@LocalStorageProp本地的改变。
+**LocalStorage与\@LocalStorageProp数据同步如下图所示**
 
 ![LocalStorageProp_framework_behavior](figures/LocalStorageProp_framework_behavior.png)
 
+  **图2** LocalStorage与\@LocalStorageProp数据同步图示
 
 ## \@LocalStorageLink
 
@@ -121,7 +122,7 @@ LocalStorage根据与\@Component装饰的组件的同步类型不同，提供了
 
 2. LocalStorage中的修改发生后，该修改会被同步到所有绑定LocalStorage对应key的属性上，包括单向（\@LocalStorageProp和通过prop创建的单向绑定变量）、双向（\@LocalStorageLink和通过link创建的双向绑定变量）变量。
 
-### 装饰器使用规则说明
+### 装饰器使用规则
 
 | \@LocalStorageLink变量装饰器 | 说明                                       |
 | ----------------------- | ---------------------------------------- |
@@ -131,20 +132,18 @@ LocalStorage根据与\@Component装饰的组件的同步类型不同，提供了
 | 被装饰变量的初始值               | 必须指定，如果LocalStorage实例中不存在属性，则用该初始值初始化该属性，并存入LocalStorage中。 |
 
 
-### 变量的传递/访问规则说明
+### 变量的传递/访问规则
 
-| 传递/访问      | 说明                                       |
-| ---------- | ---------------------------------------- |
-| 从父节点初始化和更新 | 禁止，\@LocalStorageLink不支持从父节点初始化，只能从LocalStorage中key对应的属性初始化，如果没有对应key的话，将使用本地默认值初始化。 |
-| 初始化子节点     | 支持，可用于初始化\@State、\@Link、\@Prop、\@Provide。 |
-| 是否支持组件外访问  | 否。                                       |
-
-
-  **图2** \@LocalStorageLink初始化规则图示  
+| 传递/访问规则      | 说明                                                                                  |
+| ---------- |-------------------------------------------------------------------------------------|
+| 从父节点初始化和更新 | 禁止，\@LocalStorageLink不支持从父节点初始化，只能从LocalStorage中key对应的属性初始化，如果没有对应的key，将使用本地默认值初始化。 |
+| 初始化子节点     | 支持，可用于初始化\@State、\@Link、\@Prop、\@Provide。                                           |
+| 是否支持组件外访问  | 否。                                                                                  |
 
 
 ![zh-cn_image_0000001552855957](figures/zh-cn_image_0000001552855957.png)
 
+  **图3** \@LocalStorageLink初始化规则图示
 
 ### 观察变化和行为表现
 
@@ -167,14 +166,15 @@ LocalStorage根据与\@Component装饰的组件的同步类型不同，提供了
 **框架行为**
 
 
-1. 当\@LocalStorageLink(key)装饰的数值改变被观察到时，修改将被同步回LocalStorage对应属性键值key的属性中。
+1. 使用\@LocalStorageLink(key)装饰的变量更新时，会同步写回LocalStorage对应的key，还会引起所属的自定义组件的重新渲染。
 
-2. LocalStorage中属性键值key对应的数据一旦改变，属性键值key绑定的所有的数据（包括双向\@LocalStorageLink和单向\@LocalStorageProp）都将同步修改。
+2. 当LocalStorage中对应key的值发生变化时，所有绑定该key的数据（包括双向\@LocalStorageLink和单向\@LocalStorageProp）都会同步更新。
 
-3. 当\@LocalStorageLink(key)装饰的数据本身是状态变量，它的改变不仅仅会同步回LocalStorage中，还会引起所属的自定义组件的重新渲染。
+**LocalStorage与\@LocalStorageLink数据同步如下图所示**
 
 ![LocalStorageLink_framework_behavior](figures/LocalStorageLink_framework_behavior.png)
 
+  **图4** LocalStorage与\@LocalStorageLink数据同步图示
 
 ## 限制条件
 
@@ -197,7 +197,7 @@ LocalStorage根据与\@Component装饰的组件的同步类型不同，提供了
 
 3. LocalStorage创建后，命名属性的类型不可更改。后续调用Set时必须使用相同类型的值。
 
-4. LocalStorage是页面级存储，[getSharedLocalStorage](../../reference/apis-arkui/js-apis-arkui-UIContext.md#getsharedlocalstorage12)接口仅能获取当前Stage通过[windowStage.loadContent](../../reference/apis-arkui/js-apis-window.md#loadcontent9)传入的LocalStorage实例，否则返回undefined。例子可见[将LocalStorage实例从UIAbility共享到一个或多个页面](#将localstorage实例从uiability共享到一个或多个页面)。
+4. LocalStorage是页面级存储，[getSharedLocalStorage](../../reference/apis-arkui/js-apis-arkui-UIContext.md#getsharedlocalstorage12)接口仅能获取当前Stage通过[windowStage.loadContent](../../reference/apis-arkui/arkts-apis-window-Window.md#loadcontent9)传入的LocalStorage实例，否则返回undefined。例子可见[将LocalStorage实例从UIAbility共享到一个或多个页面](#将localstorage实例从uiability共享到一个或多个页面)。
 
 
 ## 使用场景
@@ -253,12 +253,13 @@ struct Child {
 
   build() {
     Column({ space: 15 }) {
-      Button(`Child from LocalStorage ${this.childLinkNumber}`) // 更改将同步至LocalStorage中的'PropA'以及Parent.parentLinkNumber
+      // 更改将同步至LocalStorage中的'PropA'以及Parent.parentLinkNumber
+      Button(`Child from LocalStorage ${this.childLinkNumber}`)
         .onClick(() => {
           this.childLinkNumber += 1;
         })
-
-      Button(`Child from LocalStorage ${this.childLinkObject.code}`) // 更改将同步至LocalStorage中的'PropB'以及Parent.parentLinkObject.code
+      // 更改将同步至LocalStorage中的'PropB'以及Parent.parentLinkObject.code
+      Button(`Child from LocalStorage ${this.childLinkObject.code}`)
         .onClick(() => {
           this.childLinkObject.code += 1;
         })
@@ -276,12 +277,13 @@ struct Parent {
 
   build() {
     Column({ space: 15 }) {
-      Button(`Parent from LocalStorage ${this.parentLinkNumber}`) // 由于LocalStorage中PropA已经被初始化，因此this.parentLinkNumber的值为47
+      // 由于LocalStorage中PropA已经被初始化，因此this.parentLinkNumber的值为47
+      Button(`Parent from LocalStorage ${this.parentLinkNumber}`)
         .onClick(() => {
           this.parentLinkNumber += 1;
         })
-
-      Button(`Parent from LocalStorage ${this.parentLinkObject.code}`) // 由于LocalStorage中PropB已经被初始化，因此this.parentLinkObject.code的值为50
+      // 由于LocalStorage中PropB已经被初始化，因此this.parentLinkObject.code的值为50
+      Button(`Parent from LocalStorage ${this.parentLinkObject.code}`)
         .onClick(() => {
           this.parentLinkObject.code += 1;
         })
@@ -295,7 +297,7 @@ struct Parent {
 
 ### \@LocalStorageProp和LocalStorage单向同步的简单场景
 
-在下面的示例中，Parent 组件和Child组件分别在本地创建了与storage的'PropA'对应属性的单向同步的数据，我们可以看到：
+本示例展示了Parent和Child组件各自在本地创建与storage中'PropA'属性的单向数据同步：
 
 - Parent中对this.storageProp1的修改，只会在Parent中生效，并没有同步回storage。
 
@@ -455,7 +457,7 @@ struct Parent {
 
 ### 将LocalStorage实例从UIAbility共享到一个或多个页面
 
-上面的实例中，LocalStorage的实例仅仅在一个\@Entry装饰的组件和其所属的子组件（一个页面）中共享，如果希望其在多个页面中共享，可以在所属UIAbility中创建LocalStorage实例，并调用windowStage.[loadContent](../../reference/apis-arkui/js-apis-window.md#loadcontent9)。
+上面的实例中，LocalStorage的实例仅仅在一个\@Entry装饰的组件和其所属的子组件（一个页面）中共享，如果希望其在多个页面中共享，可以在所属UIAbility中创建LocalStorage实例，并调用windowStage.[loadContent](../../reference/apis-arkui/arkts-apis-window-Window.md#loadcontent9)。
 
 
 ```ts
@@ -577,7 +579,7 @@ struct Page {
 
 ### 自定义组件接收LocalStorage实例
 
-除了根节点可通过@Entry来接收LocalStorage实例，自定义组件（子节点）也可以通过构造参数来传递LocalStorage实例。
+除了根节点可通过\@Entry来接收LocalStorage实例，自定义组件（子节点）也可以通过构造参数来传递LocalStorage实例。
 
 本示例以\@LocalStorageLink为例，展示了：
 
@@ -626,7 +628,7 @@ struct Index {
 @Component
 struct Child {
   @Link count: number;
-  //  'Hello World'，和localStorage2中'PropB'的双向同步，如果localStorage2中没有'PropB'，则使用默认值'Hello World'
+  //  'Hello World'和localStorage2中'PropB'的双向同步，如果localStorage2中没有'PropB'，则使用默认值'Hello World'
   @LocalStorageLink('PropB') PropB: string = 'Hello World';
 
   build() {
@@ -959,7 +961,7 @@ struct Index {
 >
 > 从API version 12开始，LocalStorage支持Date类型。
 
-在下面的示例中，@LocalStorageLink装饰的selectedDate类型为Date，点击Button改变selectedDate的值，UI会随之刷新。
+在下面的示例中，\@LocalStorageLink装饰的selectedDate类型为Date，点击Button改变selectedDate的值，UI会随之刷新。
 
 ```ts
 @Entry
@@ -1006,7 +1008,7 @@ struct LocalDateSample {
 >
 > 从API version 12开始，LocalStorage支持Map类型。
 
-在下面的示例中，@LocalStorageLink装饰的message类型为Map\<number, string\>，点击Button改变message的值，UI会随之刷新。
+在下面的示例中，\@LocalStorageLink装饰的message类型为Map\<number, string\>，点击Button改变message的值，UI会随之刷新。
 
 ```ts
 @Entry
@@ -1052,7 +1054,7 @@ struct LocalMapSample {
 >
 > 从API version 12开始，LocalStorage支持Set类型。
 
-在下面的示例中，@LocalStorageLink装饰的memberSet类型为Set\<number\>，点击Button改变memberSet的值，UI会随之刷新。
+在下面的示例中，\@LocalStorageLink装饰的memberSet类型为Set\<number\>，点击Button改变memberSet的值，UI会随之刷新。
 
 ```ts
 @Entry

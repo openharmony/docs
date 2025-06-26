@@ -4,7 +4,9 @@
 
 >  **说明：**
 >
->  该组件从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 该组件从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> - 该组件不建议开发者在动效过程中修改属性数据。
 
 
 ## 子组件
@@ -30,6 +32,8 @@ DatePicker(options?: DatePickerOptions)
 
 ## DatePickerOptions对象说明
 
+日期选择器组件的参数说明。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -44,7 +48,7 @@ DatePicker(options?: DatePickerOptions)
 >  **说明：**
 >
 >  Date的使用请参考[TimePickerOptions](ts-basic-components-timepicker.md)。  
->  在DatePicker组件滑动过程中修改DatePickerOptions中的属性（start、end、selected）,会导致这些属性无法生效。
+>  在DatePicker组件滑动过程中修改DatePickerOptions中的属性（start、end、selected、mode），会导致这些属性无法生效。
 
 
 ## DatePickerMode<sup>18+</sup>枚举说明
@@ -249,7 +253,7 @@ digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名   | 参数类型                                     | 必填   | 参数描述                      |
+| 参数名   | 类型                                     | 必填   | 说明                      |
 | ----- | ---------------------------------------- | ---- | ------------------------- |
 | sensitivity | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[CrownSensitivity](ts-appendix-enums.md#crownsensitivity18)> | 是    | 表冠响应灵敏度。<br/>默认值：CrownSensitivity.MEDIUM，响应速度适中。                    |
 
@@ -271,13 +275,15 @@ canLoop(isLoop: Optional\<boolean>)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| isLoop  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否可循环滚动。<br/>true：可循环，false：不可循环。<br/>当isLoop的值为undefined时，默认值：true |
+| isLoop  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否可循环滚动。<br/>true：可循环，年份随着月份的循环滚动进行联动加减，月份随着日的循环滚动进行联动加减。<br/>false：不可循环，年/月/日到达本列的顶部或底部时，无法再进行滚动，年/月/日之间也无法再联动加减。<br/>当isLoop的值为undefined时，默认值：true |
 
 ## PickerTextStyle<sup>10+</sup>类型说明
 
+选择器组件的文本样式。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 参数名   | 参数类型                                     | 必填   | 参数描述                      |
+| 参数名   | 类型                                     | 必填   | 说明                      |
 | ----- | ---------------------------------------- | ---- | ------------------------- |
 | color | [ResourceColor](ts-types.md#resourcecolor) | 否    | 文本颜色。                     |
 | font  | [Font](ts-types.md#font)                 | 否    | 文本样式。 |
@@ -290,7 +296,7 @@ canLoop(isLoop: Optional\<boolean>)
 
 onChange(callback: (value: DatePickerResult) => void)
 
-选择日期时触发该事件。
+选择日期时触发该事件。不能通过双向绑定的状态变量触发。
 
 从API version 8 开始支持，从 API version 10 开始废弃，建议使用[onDateChange](#ondatechange10)。
 
@@ -306,7 +312,7 @@ onChange(callback: (value: DatePickerResult) => void)
 
 onDateChange(callback: (value: Date) => void)
 
-选择日期时触发该事件。
+选择日期时触发该事件。不能通过双向绑定的状态变量触发。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -335,6 +341,8 @@ onDateChange(callback: Optional\<Callback\<Date>>)
 | callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[Callback](ts-types.md#callback12)\<Date>> | 是   | 返回选中的时间，年月日为选中的日期，时分取决于当前系统时间的时分，秒恒为00。<br/>当callback的值为undefined时，不使用回调函数。 |
 
 ## DatePickerResult对象说明
+
+日期选择器返回的时间格式。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

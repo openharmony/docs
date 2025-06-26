@@ -192,7 +192,7 @@ start和end对应的@builder函数中顶层必须是单个组件，不能是if/e
 | start                        | [CustomBuilder](ts-types.md#custombuilder8)&nbsp;\|&nbsp;[SwipeActionItem](#swipeactionitem10对象说明) | 否   | ListItem向右划动时item左边的组件（List垂直布局时）或ListItem向下划动时item上方的组件（List水平布局时）。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | end                          | [CustomBuilder](ts-types.md#custombuilder8)&nbsp;\|&nbsp;[SwipeActionItem](#swipeactionitem10对象说明) | 否   | ListItem向左划动时item右边的组件（List垂直布局时）或ListItem向上划动时item下方的组件（List水平布局时）。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | edgeEffect                   | [SwipeEdgeEffect](#swipeedgeeffect9枚举说明)                 | 否   | 滑动效果。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                |
-| onOffsetChange<sup>11+</sup> | (offset: number) => void                                     | 否   | 滑动操作偏移量更改时调用。 <br/>**说明：** <br/> 当列表项向左或向右滑动（当列表方向为“垂直”时），向上或向下滑动（当列方向为“水平”时）位置发生变化触发，以vp为单位。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| onOffsetChange<sup>11+</sup> | (offset: number) => void                                     | 否   | 滑动操作偏移量更改时调用。 <br/>**说明：** <br/> 当列表项向左或向右滑动（当列表方向为“垂直”时），向上或向下滑动（当列表方向为“水平”时）位置发生变化触发，以vp为单位。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 ## SwipeActionItem<sup>10+</sup>对象说明
 
@@ -207,8 +207,8 @@ List垂直布局，ListItem向右滑动，item左边的长距离滑动删除选�
 | onAction | () => void | 否 | 组件进入长距删除区后删除ListItem时调用，进入长距删除区后抬手时触发。<br/>**说明：** <br/> 滑动后松手的位置超过或等于设置的距离阈值，并且设置的距离阈值有效时才会触发。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | onEnterActionArea | () => void | 否 | 在滑动条目进入删除区域时调用，只触发一次，当再次进入时仍触发。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | onExitActionArea | () => void | 否 |当滑动条目退出删除区域时调用，只触发一次，当再次退出时仍触发。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| builder |  [CustomBuilder](ts-types.md#custombuilder8) | 否 |当列表项向左或向右滑动（当列表方向为“垂直”时），向上或向下滑动（当列方向为“水平”时）时显示的操作项。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| builderComponent<sup>18+</sup> |  [ComponentContent](../js-apis-arkui-ComponentContent.md) | 否 |当列表项向左或向右滑动（当列表方向为“垂直”时），向上或向下滑动（当列方向为“水平”时）时显示的操作项。 <br/>**说明：** <br/>该参数的优先级高于参数builder。即同时设置builder和builderComponent时，以builderComponent设置的值为准。<br/> 同一个builderComponent不推荐同时给不同的start/end使用，否则会导致显示问题。 <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
+| builder |  [CustomBuilder](ts-types.md#custombuilder8) | 否 |当列表项向左或向右滑动（当列表方向为“垂直”时），向上或向下滑动（当列表方向为“水平”时）时显示的操作项。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| builderComponent<sup>18+</sup> |  [ComponentContent](../js-apis-arkui-ComponentContent.md) | 否 |当列表项向左或向右滑动（当列表方向为“垂直”时），向上或向下滑动（当列表方向为“水平”时）时显示的操作项。 <br/>**说明：** <br/>该参数的优先级高于参数builder。即同时设置builder和builderComponent时，以builderComponent设置的值为准。<br/> 同一个builderComponent不推荐同时给不同的start/end使用，否则会导致显示问题。 <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
 | onStateChange<sup>11+</sup> | (state:[SwipeActionState](#swipeactionstate11枚举说明)) => void | 否 |当列表项滑动状态变化时候触发。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 ## ListItemOptions<sup>10+</sup>对象说明
 
@@ -245,8 +245,8 @@ List组件卡片样式枚举。
 
 | 名称      | 值     | 说明                                                       |
 | --------- | --------- | ------------------------------------------------------------ |
-| COLLAPSED | 0 | 收起状态，当ListItem向左或向右滑动（当列表方向为“垂直”时），<br/>向上或向下滑动（当列方向为“水平”时）时操作项处于隐藏状态。 |
-| EXPANDED  | 1 | 展开状态，当ListItem向左或向右滑动（当列表方向为“垂直”时），<br/>向上或向下滑动（当列方向为“水平”时）时操作项处于显示状态。<br/>**说明：**<br/>需要ListItem设置向左或向右滑动（当列表方向为“垂直”时），<br/>向上或向下滑动（当列方向为“水平”时）时显示的操作项。 |
+| COLLAPSED | 0 | 收起状态，当ListItem向左或向右滑动（当列表方向为“垂直”时），<br/>向上或向下滑动（当列表方向为“水平”时）时操作项处于隐藏状态。 |
+| EXPANDED  | 1 | 展开状态，当ListItem向左或向右滑动（当列表方向为“垂直”时），<br/>向上或向下滑动（当列表方向为“水平”时）时操作项处于显示状态。<br/>**说明：**<br/>需要ListItem设置向左或向右滑动（当列表方向为“垂直”时），<br/>向上或向下滑动（当列表方向为“水平”时）时显示的操作项。 |
 | ACTIONING | 2 | 长距离状态，当ListItem进入长距删除区后删除ListItem的状态。<br/>**说明：**<br/>滑动后松手的位置超过或等于设置的距离阈值，并且设置的距离阈值有效时才能进入该状态。 |
 
 ## 事件
@@ -272,7 +272,7 @@ ListItem元素被鼠标框选的状态改变时触发回调。
 ## 示例
 
 ### 示例1（创建ListItem）
-该实例实现了创建ListItem的基本用法。
+该示例实现了创建ListItem的基本用法。
 
 ```ts
 // xxx.ets

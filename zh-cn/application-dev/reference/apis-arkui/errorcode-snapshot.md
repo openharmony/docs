@@ -48,7 +48,7 @@ ComponentSnapshot timeout.
 
 **错误描述**
 
-图像超时。
+图像加载超时。
 
 **可能原因**
 

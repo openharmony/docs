@@ -219,7 +219,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
     }
     ```
 
-    编辑"index.d.ts"文件，定义ArkTS接口：
+    编辑"index.d.ts"文件，定义相关的ArkTS接口：
 
     ```typescript
     export const RegisterWatcher: () => void;
@@ -230,6 +230,28 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
     编辑"napi_init.cpp"文件，将testHiCollieTimerNdk注册为ArkTS接口：
 
     ```c++
+    // 引入hicollie.h头文件
+    #include "hicollie/hicollie.h"
+    #include <unistd.h>
+
+    static napi_value TestHiCollieTimerNdk(napi_env env, napi_callback_info info)
+    {
+        // 定义执行任务超时id值
+        int id;  
+        // 定义任务超时检测参数：超时时间阈值1s，动作级别为生成日志
+        HiCollie_SetTimerParam param = {"testTimer", 1, nullptr, nullptr, HiCollie_Flag::HICOLLIE_FLAG_LOG};
+        // 设置检测
+        HiCollie_ErrorCode errorCode = OH_HiCollie_SetTimer(param, &id);
+        if (errorCode == HICOLLIE_SUCCESS) {
+            OH_LOG_INFO(LogType::LOG_APP, "Timer Id is %{public}d", id);
+            // 构造超时2s
+            sleep(2);
+            OH_HiCollie_CancelTimer(id);
+        }
+        return 0; 
+    }
+
+    EXTERN_C_START
     static napi_value Init(napi_env env, napi_value exports)
     {
         napi_property_descriptor desc[] = {
@@ -239,25 +261,14 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
         napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
         return exports;
     }
+    EXTERN_C_END
+    ```
 
-    // 引入hicollie.h头文件
-    #include "hicollie/hicollie.h"
-    static napi_value TestHiCollieTimerNdk(napi_env env, napi_value exports)
-    {
-        // 定义执行任务超时id值
-        int id;  
-        // 定义任务超时检测参数：超时时间阈值1s，动作级别为生成日志
-        HiCollie_SetTimerParam param = {"testTimer", 1, nullptr, nullptr, HiCollie_Flag::HICOLLIE_FLAG_LOG};
-        // 设置检测
-        HiCollie_ErrorCode = OH_HiCollie_SetTimer(param, &id);
-        if (errorCode == HICOLLIE_SUCCESS) {
-            OH_LOG_INFO(LogType::LOG_APP, "Timer Id is %{public}d", id);
-            // 构造超时2s
-            sleep(2);
-            OH_HiCollie_CancelTimer(id);
-        }
-        return 0; 
-    }
+    编辑"index.d.ts"文件，定义相关的ArkTS接口：
+
+    ```typescript
+    export const RegisterWatcher: () => void;
+    export const TestHiCollieTimerNdk: () => void;
     ```
 
 7. 编辑"EntryAbility.ets"文件，在onCreate()函数中新增接口调用：
@@ -273,12 +284,28 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 
 8. 编辑"Index.ets"文件，新增按钮触发任务执行超时事件：
 
-    ```typescript
-    Button("TestHiCollieTimerNdk")
-      .fontSize(50)
-      .fontWeight(FontWeight.Bold)
-      .onClick(testNapi.TestHiCollieTimerNdk);
-    ```
+   ```ts
+   import testNapi from 'libentry.so';
+   
+   @Entry
+   @Component
+   struct Index {
+     @State message: string = 'Hello World';
+   
+     build() {
+       Row() {
+         Column() {
+           Button("TestHiCollieTimerNdk")
+             .fontSize(50)
+             .fontWeight(FontWeight.Bold)
+             .onClick(testNapi.TestHiCollieTimerNdk);  //添加点击事件，触发TestHiCollieTimerNdk方法。
+         }
+         .width('100%')
+       }
+       .height('100%')
+     }
+   }
+   ```
 
 9. 点击DevEco Studio界面中的运行按钮，运行应用工程，然后在应用界面中点击按钮“testHiCollieTimerNdk”，触发任务执行超时事件。
 

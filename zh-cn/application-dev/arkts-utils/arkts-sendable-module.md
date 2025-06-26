@@ -2,7 +2,7 @@
 
 共享模块是进程内只会加载一次的模块，使用"use shared"这一指令来标记一个模块是否为共享模块。
 
-非共享模块在同一线程内只加载一次，而在不同线程中会加载多次，每个线程都会生成新的模块对象。因此，可以使用共享模块来实现进程单例。
+非共享模块在同一线程内只加载一次，而在不同线程中会加载多次，每个线程都会生成新的模块对象。因此，目前只能使用共享模块来实现进程单例。
 
 
 ## 约束限制
@@ -17,12 +17,12 @@
 - 共享模块内不允许使用side-effects-import。
 
   共享模块在同一进程内只加载一次，可在不同线程间共享。<br/>
-  共享模块加载时，导入的非共享模块不会立刻加载。在共享模块内访问依赖的非共享模块导出变量时，会在当前线程懒加载对应的非共享模块，非共享模块在线程间是隔离的，不同线程访问时会进行至多一次的模块懒加载。<br/>
+  共享模块加载时，导入的非共享模块不会立刻加载。在共享模块内访问依赖的非共享模块导出变量时，会在当前线程懒加载对应的非共享模块，非共享模块在线程间是隔离的，不同线程访问时会进行至多一次的非共享模块懒加载。<br/>
   由于side-effects-import不涉及导出变量，所以永远不会被加载，因此不支持。
 
   ```ts
   // 不允许使用side-effects-import
-  import "./sharedModule"
+  import "./sharedModule";
   ```
 
 - 共享模块导出的变量必须是可共享对象。
@@ -94,6 +94,7 @@
    
    export let singletonA = new SingletonA();
    ```
+   <!-- @[export_sendable_object](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableObjectRelated/entry/src/main/ets/managers/sharedModule.ets) -->
 
 2. 在多个线程中操作共享模块导出的对象。
 
@@ -143,3 +144,4 @@
      }
    }
    ```
+   <!-- @[ multi_thread_operate_exported_obj](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/SendableObjectRelated/entry/src/main/ets/managers/ArktsSendableModule.ets) -->

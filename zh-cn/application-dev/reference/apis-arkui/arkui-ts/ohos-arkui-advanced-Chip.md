@@ -42,7 +42,7 @@ ChipOptions定义chip的样式及具体式样参数。
 
 | 名称            | 类型                                                         | 必填 | 说明                                                         |
 | --------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| size            | [ChipSize](#chipsize) \| [SizeOptions](ts-types.md#sizeoptions) | 否   | 操作块尺寸。<br/>默认值：ChipSize：ChipSize.NORMAL，<br/>   SizeOptions类型参数不支持百分比设置。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| size            | [ChipSize](#chipsize) \| [SizeOptions](ts-types.md#sizeoptions) | 否   | 操作块尺寸。<br/>默认值：ChipSize.NORMAL<br/>SizeOptions类型参数不支持百分比设置。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | enabled         | boolean                                                      | 否   | 操作块是否可选中。<br>默认值：true。<br>true：操作块可选中；false：操作块不可选中。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | activated<sup>12+</sup>    | boolean                                        | 否   | 操作块是否为激活态。<br>默认值：false。<br>true：操作块为激活态；false：操作块为非激活态。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                      |
 | prefixIcon      | [PrefixIconOptions](#prefixiconoptions)                      | 否   | 前缀图标属性。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -54,7 +54,7 @@ ChipOptions定义chip的样式及具体式样参数。
 | backgroundColor | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | 操作块背景颜色。<br/>默认值：$r('sys.color.ohos_id_color_button_normal')。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | activatedBackgroundColor<sup>12+</sup> | [ResourceColor](ts-types.md#resourcecolor)          | 否   | 操作块激活时的背景颜色。<br/>默认值：$r('sys.color.ohos_id_color_emphasize')。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | borderRadius    | [Dimension](ts-types.md#dimension10)                         | 否   | 操作块背景圆角半径大小，不支持百分比。<br/>默认值：$r('sys.float.ohos_id_corner_radius_button')。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| allowClose      | boolean                                                      | 否   | 删除图标是否显示。<br/>默认值：true。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| allowClose      | boolean                                                      | 否   | 删除图标是否显示。<br/>默认值：true<br>true：删除图标显示；false：删除图标不显示。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | onClose         | ()=>void                                                     | 否   | 默认删除图标点击事件。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | onClicked<sup>12+</sup>     | Callback\<void> | 否   | 操作块点击事件。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                       |
 | direction<sup>12+</sup> | [Direction](ts-appendix-enums.md#direction) | 否 | 布局方向。<br/>默认值：Direction.Auto。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -65,15 +65,15 @@ ChipOptions定义chip的样式及具体式样参数。
 
 > **说明：**
 >
-> 1.suffixSymbol有传入参数时，suffixIcon和allowClose不生效；suffixSymbol没有传入参数、suffixIcon有传入参数时，allowClose不生效；suffixSymbol和suffixIcon都没有传入参数时，allowClose决定是否显示删除图标。
+> 1. suffixSymbol有传入值时，suffixIcon和allowClose不生效；suffixSymbol没有传入值、suffixIcon有传入值时，allowClose不生效；suffixSymbol和suffixIcon都没有传入值时，allowClose决定是否显示删除图标。
 >
-> 2.backgroundColor和activatedBackgroundColor赋值undefined时，显示默认背景颜色，赋值非法值时，背景色透明。
+> 2. backgroundColor和activatedBackgroundColor赋值undefined时，显示默认背景颜色，赋值非法值时，背景色透明。
 >
-> 3.prefixSymbol/suffixSymbol的fontColor默认值，normalFontColor: `[$r('sys.color.ohos_id_color_primary')]`、activatedFontColor: `[$r('sys.color.ohos_id_color_text_primary_contrary')]`。fontColor默认值为16。
+> 3. prefixSymbol/suffixSymbol的fontColor默认值，normalFontColor: `[$r('sys.color.ohos_id_color_primary')]`、activatedFontColor: `[$r('sys.color.ohos_id_color_text_primary_contrary')]`。fontColor默认值为16。
 >
-> 4.prefixIcon的fillColor默认值：`$r('sys.color.ohos_id_color_secondary')`，suffixIcon的fillColor默认值：`$r('sys.color.ohos_id_color_primary')`。fillColor对颜色的解析与Image组件保持一致。
+> 4. prefixIcon的fillColor默认值：`$r('sys.color.ohos_id_color_secondary')`，suffixIcon的fillColor默认值：`$r('sys.color.ohos_id_color_primary')`。fillColor对颜色的解析与Image组件保持一致。
 >
-> 5.prefixIcon的activatedFillColor默认值：`$r('sys.color.ohos_id_color_text_primary_contrary')`，suffixIcon的activatedFillColor默认值：`$r('sys.color.ohos_id_color_text_primary_contrary')`。activatedFillColor对颜色的解析与Image组件保持一致。
+> 5. prefixIcon的activatedFillColor默认值：`$r('sys.color.ohos_id_color_text_primary_contrary')`，suffixIcon的activatedFillColor默认值：`$r('sys.color.ohos_id_color_text_primary_contrary')`。activatedFillColor对颜色的解析与Image组件保持一致。
 
 ## ChipSize
 
@@ -113,7 +113,7 @@ IconCommonOptions定义图标的共通属性。
 | 名称      | 类型                                       | 必填 | 说明                                                         |
 | --------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
 | src       | [ResourceStr](ts-types.md#resourcestr)     | 是   | 图标图片或图片地址引用。 |
-| size      | [SizeOptions](ts-types.md#sizeoptions)     | 否   | 图标大小，不支持百分比。<br/>默认值：{width: 16,height: 16} |
+| size      | [SizeOptions](ts-types.md#sizeoptions)     | 否   | 图标大小，不支持百分比。<br/>默认值：{width: 16, height: 16} |
 | fillColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | 图标填充颜色。 |
 | activatedFillColor<sup>12+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 否   | 操作块激活时图标填充颜色。                            |
 
@@ -185,8 +185,8 @@ ChipSymbolGlyphOptions定义前缀图标和后缀图标的属性。
 
 | 名称   | 类型       | 必填 | 说明               |
 | ------ | ---------- | ---- | ------------------ |
-| normal | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否   | 图标设定事件。 |
-| activated | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否   | 激活时图标设定事件。 |
+| normal | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否   | 图标设定。 |
+| activated | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否   | 激活时图标设定。 |
 
 > **说明：**
 >
@@ -209,7 +209,7 @@ LabelOptions定义文本的属性。
 | activatedFontColor<sup>12+</sup>   | [ResourceColor](ts-types.md#resourcecolor) | 否   | 操作块激活时的文字颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_primary_contrary') |
 | fontFamily  | string                                     | 否   | 文字字体。<br/>默认值："HarmonyOS Sans" |
 | labelMargin | [LabelMarginOptions](#labelmarginoptions)  | 否   | 文本与左右侧图标之间间距。 |
-| localizedLabelMargin<sup>12+</sup> | [LocalizedLabelMarginOptions](#localizedlabelmarginoptions12) | 否 | 本地化文本与左右侧图标之间间距。<br/>默认值：{<br/>start:  LengthMetrics.vp(6), end: LengthMetrics.vp(6)<br/>} |
+| localizedLabelMargin<sup>12+</sup> | [LocalizedLabelMarginOptions](#localizedlabelmarginoptions12) | 否 | 本地化文本与左右侧图标之间间距。<br/>默认值：{<br/>start: LengthMetrics.vp(6), end: LengthMetrics.vp(6)<br/>} |
 
 ## CloseOptions<sup>14+</sup>
 

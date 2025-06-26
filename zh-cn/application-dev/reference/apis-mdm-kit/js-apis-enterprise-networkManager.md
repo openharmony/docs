@@ -795,11 +795,102 @@ let domainFilterRule: Array<networkManager.DomainFilterRule>;
 domainFilterRule = networkManager.getDomainFilterRules(wantTemp);
 ```
 
+## networkManager.turnOnMobileData<sup>20+</sup>
+
+turnOnMobileData(admin: Want, isForce: boolean): void
+
+开启移动数据网络。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+
+**参数：**
+
+| 参数名 | 类型                                                    | 必填 | 说明           |
+| ------ | ------------------------------------------------------- | ---- | -------------- |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
+| isForce  | boolean | 是   | 是否强制打开移动数据网络。true表示强制开启，强制开启后不支持用户在设备上手动关闭，必须采用[turnOffMobileData](#networkmanagerturnoffmobiledata20)接口关闭。false表示非强制开启，此时用户可以在设备上手动操作关闭移动数据网络。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+import { networkManager } from '@kit.MDMKit';
+
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+try {
+  networkManager.turnOnMobileData(wantTemp, true);
+  console.info(`Turn on mobile data succeeded`);
+} catch (err) {
+  console.error(`Failed to turn on mobile data. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
+## networkManager.turnOffMobileData<sup>20+</sup>
+
+turnOffMobileData(admin: Want): void
+
+关闭移动数据网络。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+
+**参数：**
+
+| 参数名 | 类型                                                    | 必填 | 说明           |
+| ------ | ------------------------------------------------------- | ---- | -------------- |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+import { networkManager } from '@kit.MDMKit';
+
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+try {
+  networkManager.turnOffMobileData(wantTemp);
+  console.info(`Turn off mobile data succeeded`);
+} catch (err) {
+  console.error(`Failed to turn off mobile data. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
 ## networkManager.addApn<sup>20+</sup>
 
 addApn(admin: Want, apnInfo: Record\<string, string>): void
 
-添加apn。
+添加APN（access point name，接入点名称）。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APN
 
@@ -811,7 +902,7 @@ addApn(admin: Want, apnInfo: Record\<string, string>): void
 | 参数名 | 类型                                                    | 必填 | 说明           |
 | ------ | ------------------------------------------------------- | ---- | -------------- |
 | admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
-| apnInfo  | Record\<string, string> | 是   | 需要添加的apn参数信息。<br/>- apnName：apn配置的名称标识符，必选。<br/>- mcc：3位数字的移动国家代码，必选。<br/>- mnc：2-3位数字的移动网络代码，必选。<br/>- apn：接入点名称，必选。<br/>- type：apn的服务类型，可选。<br/>- user：apn身份验证的用户名，可选。<br/>- pwd：apn身份验证的密码，可选。<br/>- proxy：普通数据连接的代理服务器地址，可选。<br/>- mmsproxy：彩信服务的专用代理地址，可选。<br/>- authType：apn的认证协议类型，可选。 |
+| apnInfo  | Record\<string, string> | 是   | 需要添加的APN参数信息。<br/>- apnName：APN配置的名称标识符，必选。<br/>- mcc：3位数字的移动国家代码，必选。<br/>- mnc：2-3位数字的移动网络代码，必选。<br/>- apn：接入点名称，必选。<br/>- type：APN的服务类型，可选。<br/>- user：APN身份验证的用户名，可选。<br/>- pwd：APN身份验证的密码，可选。<br/>- proxy：普通数据连接的代理服务器地址，可选。<br/>- mmsproxy：彩信服务的专用代理地址，可选。<br/>- authType：APN的认证协议类型，可选。 |
 
 **错误码**：
 
@@ -833,10 +924,11 @@ let wantTemp: Want = {
   abilityName: 'EntryAbility',
 };
 let apnInfo: Record<string, string> = {
-  "apnName": "",
-  "apn": "",
-  "mnc": "",
-  "mcc": "",
+  //需根据实际情况进行替换
+  "apnName": "CTNET",
+  "apn": "CTNET",
+  "mnc": "11",
+  "mcc": "460",
 };
 try {
   networkManager.addApn(wantTemp, apnInfo);
@@ -850,7 +942,7 @@ try {
 
 deleteApn(admin: Want, apnId: string): void
 
-删除apn。
+删除APN。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APN
 
@@ -862,7 +954,7 @@ deleteApn(admin: Want, apnId: string): void
 | 参数名 | 类型                                                    | 必填 | 说明           |
 | ------ | ------------------------------------------------------- | ---- | -------------- |
 | admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
-| apnId  | string | 是   | 需要删除的apn ID。 |
+| apnId  | string | 是   | 需要删除的APN ID。 |
 
 **错误码**：
 
@@ -896,7 +988,7 @@ try {
 
 updateApn(admin: Want, apnInfo: Record\<string, string>, apnId: string): void
 
-更新apn。
+更新APN。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APN
 
@@ -908,8 +1000,8 @@ updateApn(admin: Want, apnInfo: Record\<string, string>, apnId: string): void
 | 参数名 | 类型                                                    | 必填 | 说明           |
 | ------ | ------------------------------------------------------- | ---- | -------------- |
 | admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
-| apnInfo  | Record\<string, string> | 是   | 需要更新的apn参数信息。<br/>- apnName：apn配置的名称标识符，可选。<br/>- mcc：3位数字的移动国家代码，可选。<br/>- mnc：2-3位数字的移动网络代码，可选。<br/>- apn：接入点名称，可选。<br/>- type：apn的服务类型，可选。<br/>- user：apn身份验证的用户名，可选。<br/>- proxy：普通数据连接的代理服务器地址，可选。<br/>- mmsproxy：彩信服务的专用代理地址，可选。<br/>- authType：apn的认证协议类型，可选。 |
-| apnId  | string | 是   | 需要更新的apn ID。 |
+| apnInfo  | Record\<string, string> | 是   | 需要更新的APN参数信息。<br/>- apnName：APN配置的名称标识符，可选。<br/>- mcc：3位数字的移动国家代码，可选。<br/>- mnc：2-3位数字的移动网络代码，可选。<br/>- APN：接入点名称，可选。<br/>- type：APN的服务类型，可选。<br/>- user：APN身份验证的用户名，可选。<br/>- proxy：普通数据连接的代理服务器地址，可选。<br/>- mmsproxy：彩信服务的专用代理地址，可选。<br/>- authType：APN的认证协议类型，可选。 |
+| apnId  | string | 是   | 需要更新的APN ID。 |
 
 **错误码**：
 
@@ -931,10 +1023,11 @@ let wantTemp: Want = {
   abilityName: 'EntryAbility',
 };
 let apnInfo: Record<string, string> = {
-  "apnName": "",
-  "apn": "",
-  "mnc": "",
-  "mcc": "",
+  //需根据实际情况进行替换
+  "apnName": "CTNET",
+  "apn": "CTNET",
+  "mnc": "11",
+  "mcc": "460",
 };
 let apnId: string = "1";
 try {
@@ -949,7 +1042,7 @@ try {
 
 setPreferredApn(admin: Want, apnId: string): void
 
-设置优选apn。
+设置优选APN。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APN
 
@@ -961,7 +1054,7 @@ setPreferredApn(admin: Want, apnId: string): void
 | 参数名 | 类型                                                    | 必填 | 说明           |
 | ------ | ------------------------------------------------------- | ---- | -------------- |
 | admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
-| apnId  | string | 是   | 需要设置成优选的apn ID。 |
+| apnId  | string | 是   | 需要设置成优选的APN ID。 |
 
 **错误码**：
 
@@ -995,7 +1088,7 @@ try {
 
 queryApn(admin: Want, apnInfo: Record\<string, string>): Array\<string>
 
-查询符合特定apn信息的apn ID。
+查询符合特定APN信息的APN ID。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APN
 
@@ -1007,13 +1100,13 @@ queryApn(admin: Want, apnInfo: Record\<string, string>): Array\<string>
 | 参数名 | 类型                                                    | 必填 | 说明           |
 | ------ | ------------------------------------------------------- | ---- | -------------- |
 | admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
-| apnInfo  | Record\<string, string> | 是   | apn的查询条件。<br/>- apnName：apn配置的名称标识符，可选。<br/>- mcc：3位数字的移动国家代码，可选。<br/>- mnc：2-3位数字的移动网络代码，可选。<br/>- apn：接入点名称，可选。<br/>- type：apn的服务类型，可选。<br/>- user：apn身份验证的用户名，可选。<br/>- proxy：普通数据连接的代理服务器地址，可选。<br/>- mmsproxy：彩信服务的专用代理地址，可选。<br/>- authType：apn的认证协议类型，可选。 |
+| apnInfo  | Record\<string, string> | 是   | APN的查询条件。<br/>- apnName：APN配置的名称标识符，可选。<br/>- mcc：3位数字的移动国家代码，可选。<br/>- mnc：2-3位数字的移动网络代码，可选。<br/>- apn：接入点名称，可选。<br/>- type：APN的服务类型，可选。<br/>- user：APN身份验证的用户名，可选。<br/>- proxy：普通数据连接的代理服务器地址，可选。<br/>- mmsproxy：彩信服务的专用代理地址，可选。<br/>- authType：APN的认证协议类型，可选。 |
 
 **返回值：**
 
 | 类型                                          | 说明                                                         |
 | --------------------------------------------- | ------------------------------------------------------------ |
-| Array\<string> | 满足要求的apn ID。 |
+| Array\<string> | 满足要求的APN ID。 |
 
 **错误码**：
 
@@ -1035,10 +1128,11 @@ let wantTemp: Want = {
   abilityName: 'EntryAbility',
 };
 let apnInfo: Record<string, string> = {
-  "apnName": "",
-  "apn": "",
-  "mnc": "",
-  "mcc": "",
+  //需根据实际情况进行替换
+  "apnName": "CTNET",
+  "apn": "CTNET",
+  "mnc": "11",
+  "mcc": "460",
 };
 try {
   let queryResult: Array<string> = networkManager.queryApn(wantTemp, apnInfo);
@@ -1052,7 +1146,7 @@ try {
 
 queryApn(admin: Want, apnId: string): Record\<string, string>
 
-查询特定apn ID的apn参数信息。
+查询特定APN ID的APN参数信息。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APN
 
@@ -1064,13 +1158,13 @@ queryApn(admin: Want, apnId: string): Record\<string, string>
 | 参数名 | 类型                                                    | 必填 | 说明           |
 | ------ | ------------------------------------------------------- | ---- | -------------- |
 | admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
-| apnId  | string | 是   | 指定的apn ID。 |
+| apnId  | string | 是   | 指定的APN ID。 |
 
 **返回值：**
 
 | 类型                                          | 说明                                                         |
 | --------------------------------------------- | ------------------------------------------------------------ |
-| Record\<string, string> | 指定apn ID的apn参数信息。<br/>- apnName：apn配置的名称标识符。<br/>- mcc：3位数字的移动国家代码。<br/>- mnc：2-3位数字的移动网络代码。<br/>- apn：接入点名称。<br/>- type：apn的服务类型。<br/>- user：apn身份验证的用户名。<br/>- proxy：普通数据连接的代理服务器地址。<br/>- mmsproxy：彩信服务的专用代理地址。<br/>- authType：apn的认证协议类型。 |
+| Record\<string, string> | 指定APN ID的APN参数信息。<br/>- apnName：APN配置的名称标识符。<br/>- mcc：3位数字的移动国家代码。<br/>- mnc：2-3位数字的移动网络代码。<br/>- apn：接入点名称。<br/>- type：APN的服务类型。<br/>- user：APN身份验证的用户名。<br/>- proxy：普通数据连接的代理服务器地址。<br/>- mmsproxy：彩信服务的专用代理地址。<br/>- authType：APN的认证协议类型。 |
 
 **错误码**：
 

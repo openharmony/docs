@@ -1,5 +1,5 @@
 # 开发参考
-- [开发说明](development-intro.md)
+- [开发说明](development-intro-api.md)
 - [系统能力SystemCapability使用指南](syscap.md)
 - [系统能力SystemCapability列表](syscap-list.md)
 - [通用错误码](errorcode-universal.md)

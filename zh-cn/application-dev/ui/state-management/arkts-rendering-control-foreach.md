@@ -460,7 +460,7 @@ struct ArticleCard {
 2. `article`实例是`@ObjectLink`装饰的状态变量，其属性值变化，会触发`ArticleCard`组件渲染，此时读取的`isLiked`和`likesCount`为修改后的新值。
 
 ### 拖拽排序
-在List组件下使用ForEach，并设置onMove事件，每次迭代生成一个ListItem时，可以使能拖拽排序。拖拽排序离手后，如果数据位置发生变化，将触发onMove事件，上报数据移动原始索引号和目标索引号。在onMove事件中，需要根据上报的起始索引号和目标索引号修改数据源。数据源修改前后，要保持每个数据的键值不变，只是顺序发生变化，才能保证落位动画正常执行。
+在List组件下使用ForEach，并设置[onMove](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-drag-sorting.md#onmove)事件，每次迭代生成一个ListItem时，可以使能拖拽排序。拖拽排序离手后，如果数据位置发生变化，将触发onMove事件，上报数据移动原始索引号和目标索引号。在onMove事件中，需要根据上报的起始索引号和目标索引号修改数据源。数据源修改前后，要保持每个数据的键值不变，只是顺序发生变化，才能保证落位动画正常执行。
 
 ```ts
 @Entry
@@ -525,6 +525,7 @@ struct ForEachSort {
 - 基本类型数组的数据项没有唯一`ID`属性。如果使用数据项作为键值，必须确保数据项无重复。对于数据源会变化的场景，建议将基本类型数组转换为具有唯一`ID`属性的Object类型数组，再使用唯一`ID`属性作为键值。
 - 对于以上限制规则，`index`参数存在的意义为：index是开发者保证键值唯一性的最终手段；对数据项进行修改时，由于`itemGenerator`中的`item`参数是不可修改的，所以须用index索引值对数据源进行修改，进而触发UI重新渲染。
 - ForEach在下列容器组件 [List](../../reference/apis-arkui/arkui-ts/ts-container-list.md)、[Grid](../../reference/apis-arkui/arkui-ts/ts-container-grid.md)、[Swiper](../../reference/apis-arkui/arkui-ts/ts-container-swiper.md)以及[WaterFlow](../../reference/apis-arkui/arkui-ts/ts-container-waterflow.md) 内使用的时候，不要与[LazyForEach](./arkts-rendering-control-lazyforeach.md) 混用。 以List为例，同时包含ForEach、LazyForEach的情形是不推荐的。
+- 在大量子组件的的场景下，ForEach可能会导致卡顿。请考虑使用[LazyForEach](./arkts-rendering-control-lazyforeach.md)替代。最佳实践请参考[使用懒加载优化性能](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-lazyforeach-optimization)。
 - 当数组项为对象类型时，不建议用内容相同的数组项替换旧项。若数组项发生变更但键值未变，会导致[数据变化不渲染](#数据变化不渲染)。
 ## 不推荐案例
 
@@ -777,3 +778,117 @@ struct ArticleCard {
 ```
 **图13** 数据变化不渲染  
 ![ForEach-StateVarNoRender](figures/ForEach-StateVarNoRender.PNG)
+
+### 非必要内存消耗
+如果开发者没有定义`keyGenerator`函数，则ArkUI框架会使用默认的键值生成函数，即`(item: Object, index: number) => { return index + '__' + JSON.stringify(item); }`。当`item`是复杂对象时，将其JSON序列化会得到长字符串，占用更多的内存。
+
+```ts
+class Data {
+  longStr: string;
+  key: string;
+
+  constructor(longStr: string, key: string) {
+    this.longStr = longStr;
+    this.key = key;
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @State simpleList: Array<Data> = [];
+
+  aboutToAppear(): void {
+    let longStr = '';
+    for (let i = 0; i < 2000; i++) {
+      longStr += i.toString();
+    }
+    for (let index = 0; index < 3000; index++) {
+      let data: Data = new Data(longStr, 'a' + index.toString());
+      this.simpleList.push(data);
+    }
+  }
+
+  build() {
+    List() {
+      ForEach(this.simpleList, (item: Data) => {
+        ListItem() {
+          Text(item.key)
+        }
+      }
+        // 如果不定义下面的keyGenerator函数，则ArkUI框架会使用默认的键值生成函数
+        , (item: Data) => {
+          return item.key;
+        }
+      )
+    }.height('100%')
+    .width('100%')
+  }
+}
+```
+
+对比自定义`keyGenerator`函数和使用默认键值生成函数两种情况下的内存占用。自定义`keyGenerator`函数，这个示例代码的内存占用降低了约70MB。  
+
+**图14** 使用默认键值生成函数下的内存占用  
+![ForEach-StateVarNoRender](figures/ForEach-default-keyGenerator.PNG)
+  
+**图15** 自定义键值生成函数下的内存占用  
+![ForEach-StateVarNoRender](figures/ForEach-defined-keyGenerator.PNG)
+
+### 键值生成失败
+如果开发者没有定义`keyGenerator`函数，则ArkUI框架会使用默认的键值生成函数，即`(item: Object, index: number) => { return index + '__' + JSON.stringify(item); }`。然而，`JSON.stringify`序列化在某些数据结构上会失败，导致应用发生jscrash并退出。例如，`bigint`无法被`JSON.stringify`序列化：
+
+```ts
+class Data {
+  content: bigint;
+
+  constructor(content: bigint) {
+    this.content = content;
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @State simpleList: Array<Data> = [new Data(1234567890123456789n), new Data(2345678910987654321n)];
+
+  build() {
+    Row() {
+      Column() {
+        ForEach(this.simpleList, (item: Data) => {
+          ChildItem({ item: item.content.toString() })
+        }
+          // 如果不定义下面的keyGenerator函数，则ArkUI框架会使用默认的键值生成函数
+          // Data中的content: bigint在JSON序列化时失败
+          , (item: Data) => item.content.toString()
+        )
+      }
+      .width('100%')
+      .height('100%')
+    }
+    .height('100%')
+    .backgroundColor(0xF1F3F5)
+  }
+}
+
+@Component
+struct ChildItem {
+  @Prop item: string;
+
+  build() {
+    Text(this.item)
+      .fontSize(50)
+  }
+}
+```
+
+开发者定义`keyGenerator`函数，应用正常启动：  
+![ForEach-StateVarNoRender](figures/ForEach-defined-keyGenerator2.PNG)  
+
+使用默认的键值生成函数，应用发生jscrash： 
+```
+Error message:@Component 'Parent'[4]: ForEach id 7: use of default id generator function not possible on provided data structure. Need to specify id generator function (ForEach 3rd parameter). Application Error!
+Stacktrace:
+    ...
+    at anonymous (entry/src/main/ets/pages/Index.ets:18:52)
+```

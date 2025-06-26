@@ -91,13 +91,17 @@ java -jar app_packing_tool.jar --mode hsp --json-path <path> [--resources-path <
 
 开发者可以使用打包工具的jar包对应用进行打包，通过传入打包选项、文件路径，生成所需的App包。App包用于上架应用市场。
 
-**App打包时HAP/HSP合法性校验：** 在对工程内的HAP/HSP包打包生成App包时，需要保证被打包的每个HAP/HSP在module.json文件中配置的bundleName、versionCode、debug、minAPIVersion相同，moduleName唯一。对于FA模型，还需要保证config.json文件中配置的package唯一。此外从API version 20开始，HAP模块之间需要保证minCompatibleVersionCode、targetAPIVersion、apiReleaseType相同，HSP模块之间不做校验。HAP模块targetAPIVersion、minCompatibleVersionCode需大于等于HSP模块targetAPIVersion、minCompatibleVersionCode。
-
-**打包App时的压缩规则：** 打包App时，对release模式的HAP、HSP包会进行压缩，对debug模式的HAP、HSP包不会压缩。
+**App打包时合法性校验：**
+- 在打包生成App包时，需要保证被打包的每个HAP和HSP在pack.info/module.json文件中配置的bundleName、bundleType、versionCode、debug相同，moduleName唯一。
+- 所有HAP的minCompatibleVersionCode、targetAPIVersion、minAPIVersion保持一致，且分别不低于所有HSP对应字段的最大值。
 
 >**说明：**
 >
->从API version 12开始，App打包不再对versionName校验。
+> - 从API version 12开始，App打包不再对versionName校验。
+> - 在API version 16之前，App打包时要求所有HAP/HSP的minCompatibleVersionCode、targetAPIVersion一致。
+> - 在API version 20之前，App打包时要求所有HAP/HSP的minAPIVersion一致。
+
+**打包App时的压缩规则：** 打包App时，对release模式的HAP、HSP包会进行压缩，对debug模式的HAP、HSP包不会压缩。
 
 示例：
 
@@ -127,11 +131,15 @@ java -jar app_packing_tool.jar --mode app [--hap-path <path>] [--hsp-path <path>
 
 多工程打包适用于多个团队开发同一个应用，但不方便共享代码的情况。开发者通过传入已经打好的HAP、HSP和App包，将多个包打成一个最终的App包，并上架应用市场。
 
-**多工程打包HAP/HSP合法性校验：** 需要保证被打包的每个HAP/HSP在module.json文件中配置的bundleName、versionCode、debug属性相同，minAPIVersion、compileSdkVersion、compileSdkType相同，moduleName唯一，同一设备entry唯一。对于FA模型，还需要保证config.json文件中配置的package唯一。此外从API version 20开始，HAP模块之间需要保证minCompatibleVersionCode、targetAPIVersion、apiReleaseType相同，HSP模块之间不做校验。HAP模块targetAPIVersion、minCompatibleVersionCode需大于等于HSP模块targetAPIVersion、minCompatibleVersionCode。
+**多工程打包合法性校验：**
+- 在打包生成App包时，需要保证被打包的每个HAP和HSP在pack.info/module.json文件中配置的bundleName、bundleType、versionCode、debug相同，moduleName唯一。
+- 所有HAP的minCompatibleVersionCode、targetAPIVersion、minAPIVersion保持一致，且分别不低于所有HSP对应字段的最大值。
 
 >**说明：**
 >
->从API version 12开始，多工程打包不再对versionName校验。
+> - 从API version 12开始，多工程打包不再对versionName校验。
+> - 在API version 16之前，App打包时要求所有HAP/HSP的minCompatibleVersionCode、targetAPIVersion一致。
+> - 在API version 20之前，App打包时要求所有HAP/HSP的minAPIVersion一致。
 
 示例：
 
@@ -240,7 +248,7 @@ apiReleaseType/bundleTypes/installationFree/deliveryWithInstall参数，并在�
 
 >**说明：**
 >
->从API version 20开始支持通用归一化指令。
+> - 从API version 20开始支持通用归一化指令。
 
 示例：
 
@@ -255,11 +263,11 @@ java -jar app_packing_tool.jar --mode generalNormalize --input-list 1.hsp,2.hsp 
 | --mode                        | 是         | generalNormalize                                   | 指令类型，表示通用归一化指令。                               |
 | --input-list                  | 是         | HAP或HSP的路径                                     | 1. HAP或HSP包文件路径，文件名必须以.hap或.hsp为后缀。多个HAP或HSP包文件路径之间使用“,”分隔。<br/>2. 传入目录时，会读取目录下所有的HAP和HSP文件。 |
 | --bundle-name                 | 否         | 包名                                               | 指定的Bundle名称，传入的包的Bundle名称会被修改为该Bundle名称。指定的值不能为空，该字段的详细定义和规格请参考[app.json5](../quick-start/app-configuration-file.md#配置文件标签)中的bundleName字段。 |
-| --version-code                | 否         | 版本号                                             | 指定的版本号，传入的包的版本号会被修改为该版本号。取值范围为0~2147483647的整数，指定的值不能为空值。 |
+| --version-code                | 否         | 版本号                                             | 指定的版本号，传入的包的版本号会被修改为该版本号。取值范围为0~2147483647的整数，指定的值不能为空值，该字段的详细定义和规格请参考[app.json5](../quick-start/app-configuration-file.md#配置文件标签)中的versionCode字段。 |
 | --version-name                | 否         | 版本名称                                           | 指定的版本名称，传入的包的版本名称会被修改为该版本名称。指定的值不能为空，该字段的详细定义和规格请参考[app.json5](../quick-start/app-configuration-file.md#配置文件标签)中的versionName字段。 |
-| --min-compatible-version-code | 否         | 能够兼容的最低历史版本号                           | 指定的最低历史版本号，传入的包的最低历史版本号会被修改为该版本号。取值范围为0~2147483647的整数，指定的值不能为空值。 |
-| --min-api-version             | 否         | SDK的API最小版本                                   | 指定的SDK的API最小版本，传入的包的SDK的API最小版本会被修改为该版本。取值范围为0~2147483647的整数，指定的值不能为空值。 |
-| --target-api-version          | 否         | API目标版本                                        | 指定的API目标版本，传入的包的API目标版本会被修改为该版本。取值范围为0~2147483647的整数，指定的值不能为空值。 |
+| --min-compatible-version-code | 否         | 能够兼容的最低历史版本号                           | 指定的最低历史版本号，传入的包的最低历史版本号会被修改为该版本号。取值范围为0~2147483647的整数，指定的值不能为空值，该字段的详细定义和规格请参考[app.json5](../quick-start/app-configuration-file.md#配置文件标签)中的minCompatibleVersionCode字段。 |
+| --min-api-version             | 否         | SDK的API最小版本                                   | 指定的SDK的API最小版本，传入的包的SDK的API最小版本会被修改为该版本。取值范围为0~2147483647的整数，指定的值不能为空值，该字段的详细定义和规格请参考[app.json5](../quick-start/app-configuration-file.md#配置文件标签)中的minAPIVersion字段。 |
+| --target-api-version          | 否         | API目标版本                                        | 指定的API目标版本，传入的包的API目标版本会被修改为该版本。取值范围为0~2147483647的整数，指定的值不能为空值，该字段的详细定义和规格请参考[app.json5](../quick-start/app-configuration-file.md#配置文件标签)中的targetAPIVersion字段。 |
 | --api-release-type            | 否         | API目标版本的类型                                  | 指定的API目标版本的类型，传入的包的API目标版本的类型会被修改为该类型。指定的值不能为空，该字段的详细定义和规格请参考[app.json5](../quick-start/app-configuration-file.md#配置文件标签)中的apiReleaseType字段。 |
 | --bundle-type                 | 否         | Bundle类型                                         | 指定的Bundle类型，传入的包的Bundle类型会被修改为该类型。指定的值不能为空，该字段的详细定义和规格请参考[app.json5](../quick-start/app-configuration-file.md#配置文件标签)中的bundleType字段。 |
 | --installation-free           | 否         | 是否支持免安装特性                                 | 指定的免安装特性，传入的包的免安装特性会被修改为该类型。指定的值不能为空，该字段的详细定义和规格请参考Stage模型[module.json5](../quick-start/module-configuration-file.md#配置文件标签)/Fa模型[config.json](../quick-start/application-configuration-file-overview-fa.md)中的installationFree字段。 |
@@ -291,7 +299,14 @@ java -jar app_packing_tool.jar --mode res --entrycard-path <path> --pack-info-pa
 
 开发者可以使用打包工具的jar包对应用进行打包，通过传入打包选项、HAP、HSP包文件目录路径，生成所需的App包。App包用于上架应用市场。
 
-**App打包时HAP/HSP合法性校验：** 在对工程内的HAP/HSP包打包生成App包时，需要保证被打包的每个HAP/HSP在module.json文件中配置的bundleName、versionCode、debug、minAPIVersion相同，moduleName唯一。此外从API version 20开始，HAP模块之间需要保证minCompatibleVersionCode、targetAPIVersion、apiReleaseType相同，HSP模块之间不做校验。HAP模块targetAPIVersion、minCompatibleVersionCode需大于等于HSP模块targetAPIVersion、minCompatibleVersionCode。
+**App打包时合法性校验：**
+- 在打包生成App包时，需要保证被打包的每个HAP和HSP在pack.info/module.json文件中配置的bundleName、bundleType、versionCode、debug相同，moduleName唯一。
+- 所有HAP的minCompatibleVersionCode、targetAPIVersion、minAPIVersion保持一致，且分别不低于所有HSP对应字段的最大值。
+
+>**说明：**
+>
+> - 在API version 16之前，App打包时要求所有HAP/HSP的minCompatibleVersionCode、targetAPIVersion一致。
+> - 在API version 20之前，App打包时要求所有HAP/HSP的minAPIVersion一致。
 
 **打包App时的压缩规则：** 打包App时，对release模式的HAP、HSP包会进行压缩，对debug模式的HAP、HSP包不会压缩。
 

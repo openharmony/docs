@@ -12,7 +12,7 @@
 
 ## 概述
 
-和[\@Component装饰器](arkts-create-custom-components.md)一样，\@ComponentV2装饰器用于装饰自定义组件：
+和[\@Component装饰器](arkts-create-custom-components.md#component)一样，\@ComponentV2装饰器用于装饰自定义组件：
 
 - 在\@ComponentV2装饰的自定义组件中，开发者仅可以使用全新的状态变量装饰器，包括\@Local、\@Param、\@Once、\@Event、\@Provider、\@Consumer等。
 - \@ComponentV2装饰的自定义组件暂不支持LocalStorage等现有自定义组件的能力。

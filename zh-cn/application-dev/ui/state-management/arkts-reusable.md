@@ -1,5 +1,7 @@
 # \@Reusable装饰器：组件复用
 
+\@Reusable装饰器标记的自定义组件支持视图节点、组件实例和状态上下文的复用，避免重复创建和销毁，提升性能。
+
 ## 概述
 
 使用\@Reusable装饰器时，表示该自定义组件可以复用。与\@Component结合使用，标记为\@Reusable的自定义组件在从组件树中移除时，组件及其对应的JS对象将被放入复用缓存中。后续创建新自定义组件节点时，将复用缓存中的节点，从而节约组件重新创建的时间。
@@ -9,6 +11,11 @@
 > API version 10开始支持@Reusable，支持在ArkTS中使用。
 >
 > 关于组件复用的原理与使用、优化方法、适用场景，请参考最佳实践[组件复用最佳实践](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-component-reuse)。
+>
+> \@Reusable标识之后，在组件上下树时ArkUI框架会调用该组件的[aboutToReuse](../../../application-dev/reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttoreuse10)方法和[aboutToRecycle](../../../application-dev/reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttorecycle10)方法，因此，开发者在实现复用时，大部分代码都集中在这两个生命周期方法中。
+>
+> 如果一个组件里可复用的组件不止一个，可以使用[reuseId](../../../application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-reuse-id.md)来区分不同结构的复用组件。
+>
 
 ## 限制条件
 
@@ -129,110 +136,6 @@ struct Index {
 
 - \@Reusable装饰器不建议嵌套使用，会增加内存，降低复用效率，加大维护难度。嵌套使用会导致额外缓存池的生成，各缓存池拥有相同树状结构，复用效率低下。此外，嵌套使用会使生命周期管理复杂，资源和变量共享困难。
 
-```ts
-
-// 以下示例中PlayButton形成的复用缓存池，并不能在PlayButton02的复用缓存池中使用。而PlayButton02自己形成的复用缓存可以相互使用。
-// 在PlayButton隐藏时已经触发PlayButton02的aboutToRecycle，但是在PlayButton02单独显示时却无法执行aboutToReuse，组件复用的生命周期方法存在无法成对调用问题。
-@Entry
-@Component
-struct Index {
-  @State isPlaying: boolean = false;
-  @State isPlaying02: boolean = true;
-  @State isPlaying01: boolean = false;
-
-  build() {
-    Column() {
-      if (this.isPlaying02) {
-
-        // 初始态是显示的按钮。
-        Text("Default shown childbutton")
-          .fontSize(14)
-        PlayButton02({ isPlaying02: $isPlaying02 })
-      }
-
-      // 初始态是隐藏的按钮。
-      if (this.isPlaying01) {
-        Text("Default hidden childbutton")
-          .fontSize(14)
-        PlayButton02({ isPlaying02: $isPlaying01 })
-      }
-
-      // 父子嵌套。
-      if (this.isPlaying) {
-        Text("parent child 嵌套")
-          .fontSize(14)
-        PlayButton({ buttonPlaying: $isPlaying })
-      }
-
-      // 父子嵌套控制。
-      Text(`Parent=child==is ${this.isPlaying ? '' : 'not'} playing`).fontSize(14)
-      Button('Parent=child===controll=' + this.isPlaying)
-        .margin(14)
-        .onClick(() => {
-          this.isPlaying = !this.isPlaying;
-        })
-
-      //  默认隐藏按钮控制。
-      Text(`Hiddenchild==is ${this.isPlaying01 ? '' : 'not'} playing`).fontSize(14)
-      Button('Button===hiddenchild==control==' + this.isPlaying01)
-        .margin(14)
-        .onClick(() => {
-          this.isPlaying01 = !this.isPlaying01;
-        })
-
-      // 默认显示按钮控制。
-      Text(`shownchid==is ${this.isPlaying02 ? '' : 'not'} playing`).fontSize(14)
-      Button('Button===shownchid==control==:' + this.isPlaying02)
-        .margin(15)
-        .onClick(() => {
-          this.isPlaying02 = !this.isPlaying02;
-        })
-    }
-  }
-}
-
-@Reusable
-@Component
-struct PlayButton {
-  @Link buttonPlaying: boolean;
-
-  build() {
-    Column() {
-
-      // 复用
-      PlayButton02({ isPlaying02: $buttonPlaying })
-      Button(this.buttonPlaying ? 'parent_pause' : 'parent_play')
-        .margin(12)
-        .onClick(() => {
-          this.buttonPlaying = !this.buttonPlaying;
-        })
-    }
-  }
-}
-
-//  不建议嵌套使用
-@Reusable
-@Component
-struct PlayButton02 {
-  @Link isPlaying02: boolean;
-
-  aboutToRecycle(): void {
-    console.log("=====aboutToRecycle====PlayButton02====");
-  }
-
-// 当一个可复用的自定义组件从复用缓存中重新加入到节点树时，触发aboutToReuse生命周期回调，并将组件的构造参数传递给aboutToReuse。
-  aboutToReuse(params: ESObject): void {
-    console.log("=====aboutToReuse====PlayButton02====");
-  }
-
-  build() {
-    Column() {
-      Button('===commonbutton=====')
-        .margin(12)
-    }
-  }
-}
-```
 
 ## 使用场景
 
@@ -298,9 +201,9 @@ struct Child {
 
 ### 列表滚动配合LazyForEach使用
 
-当应用展示大量数据的列表并进行滚动操作时，频繁创建和销毁列表项视图可能导致卡顿和性能问题。使用列表组件的组件复用机制可以重用已创建的列表项视图，提高滚动流畅度。
+- 当应用展示大量数据的列表并进行滚动操作时，频繁创建和销毁列表项视图可能导致卡顿和性能问题。使用列表组件的组件复用机制可以重用已创建的列表项视图，提高滚动流畅度。
 
-以下示例代码将CardView自定义组件标记为复用组件，List上下滑动，触发CardView复用。
+- 以下示例代码将CardView自定义组件标记为复用组件，List上下滑动，触发CardView复用。
 
 ```ts
 class MyDataSource implements IDataSource {
@@ -379,7 +282,7 @@ export struct CardView {
 }
 ```
 
-### if使用场景
+### 列表滚动-if使用场景
 
 以下示例代码将OneMoment自定义组件标记为复用组件。当List上下滑动时，会触发OneMoment的复用。设置reuseId可为复用组件分配复用组，相同reuseId的组件将在同一复用组中复用。单个复用组件无需设置reuseId。使用reuseId标识复用组件，可避免重复执行if语句的删除和重新创建逻辑，提高复用效率和性能。
 
@@ -508,7 +411,7 @@ export class MyDataSource<T> extends BasicDataSource<T> {
 }
 ```
 
-### Foreach使用场景
+### 列表滚动-Foreach使用场景
 
 使用Foreach创建可复用的自定义组件，由于Foreach渲染控制语法的全展开属性，导致复用组件无法复用。示例中点击update，数据刷新成功，但滑动列表时，ListItemView无法复用。点击clear，再次点击update，ListItemView复用成功，因为一帧内重复创建多个已被销毁的自定义组件。
 
@@ -1023,7 +926,7 @@ export class MyDataSource<T> extends BasicDataSource<T> {
 }
 ```
 
-### ListItemGroup使用场景
+### 列表滚动-ListItemGroup使用场景
 
 - 可以视作特殊List滑动场景，将ListItem需要移除重建的子组件封装成自定义组件，并使用\@Reusable装饰器修饰，使其具备组件复用能力。
 
@@ -1272,6 +1175,7 @@ struct Index {
         LazyForEach(this.data, (item: number) => {
           ListItem() {
             ReusableComponent({ item: item })
+              // 设置两种有限变化的reuseId
               .reuseId(item % 2 === 0 ? 'ReusableComponentOne' : 'ReusableComponentTwo')
           }
           .backgroundColor(Color.Orange)
@@ -1294,6 +1198,7 @@ struct ReusableComponent {
 
   build() {
     Column() {
+      // 组件内部根据类型差异渲染
       if (this.item % 2 === 0) {
         Text(`Item ${this.item} ReusableComponentOne`)
           .fontSize(20)

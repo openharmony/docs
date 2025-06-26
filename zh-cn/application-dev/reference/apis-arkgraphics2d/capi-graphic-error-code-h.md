@@ -4,6 +4,8 @@
 
 定义错误码。
 
+**引用文件：** <native_window/graphic_error_code.h>
+
 **库：** libnative_window.so
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow

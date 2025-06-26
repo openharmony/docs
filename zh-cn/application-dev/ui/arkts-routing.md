@@ -324,9 +324,9 @@ message：string类型，表示询问框的内容。
 import { promptAction} from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-function onBackClick() {
+onBackClick() {
   // 弹出自定义的询问框
-  promptAction.showDialog({
+  this.getUIContext().getPromptAction().showDialog({
     message: '您还没有完成支付，确定要返回吗？',
     buttons: [
       {

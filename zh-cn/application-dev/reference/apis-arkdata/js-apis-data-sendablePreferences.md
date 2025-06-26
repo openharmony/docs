@@ -27,10 +27,10 @@ import { sendablePreferences } from '@kit.ArkData';
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
-| 名称             | 参数类型 | 可读 | 可写 | 说明                                    |
-| ---------------- | -------- | ---- | ---- | --------------------------------------- |
-| MAX_KEY_LENGTH   | number   | 是   | 否   | Key的最大长度限制为1024个字节。     |
-| MAX_VALUE_LENGTH | number   | 是   | 否   | Value的最大长度限制为16MB。 |
+| 名称             | 类型      | 只读 | 说明                                    |
+| ---------------- | -------- | ---- | --------------------------------------- |
+| MAX_KEY_LENGTH   | number   | 是   | Key的最大长度限制为1024个字节。     |
+| MAX_VALUE_LENGTH | number   | 是   | Value的最大长度限制为16MB。 |
 
 ## sendablePreferences.getPreferences
 

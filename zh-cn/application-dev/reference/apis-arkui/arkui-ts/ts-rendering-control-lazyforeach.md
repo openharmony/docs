@@ -5,6 +5,7 @@
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 开发者指南见：[LazyForEach开发者指南](../../../ui/state-management/arkts-rendering-control-lazyforeach.md)。
+在大量子组件的的场景下，LazyForEach与缓存列表项、动态预加载、组件复用等方法配合使用，可以进一步提升滑动帧率并降低应用内存占用。最佳实践请参考[优化长列表加载慢丢帧问题](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-best-practices-long-list)。
 
 ## 接口
 
@@ -20,15 +21,15 @@ LazyForEach从提供的数据源中按需迭代数据，并在每次迭代过程
 
 | 参数名        | 类型                                                      | 必填 | 说明                                                         |
 | ------------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| dataSource    | [IDataSource](#idatasource10)                       | 是   | LazyForEach数据源，需要开发者实现相关接口。                  |
+| dataSource    | [IDataSource](#idatasource)                       | 是   | LazyForEach数据源，需要开发者实现相关接口。                  |
 | itemGenerator | (item:&nbsp;Object, index: number)&nbsp;=&gt;&nbsp;void   | 是   | 子组件生成函数，为数组中的每一个数据项创建一个子组件。<br/>**说明：**<br/>- item是当前数据项，index是数据项索引值。<br/>- itemGenerator的函数体必须使用大括号{...}。<br />- itemGenerator每次迭代只能并且必须生成一个子组件。<br />- itemGenerator中可以使用if语句，但是必须保证if语句每个分支都会创建一个相同类型的子组件。 |
 | keyGenerator  | (item:&nbsp;Object, index: number)&nbsp;=&gt;&nbsp;string | 否   | 键值生成函数，用于给数据源中的每一个数据项生成唯一且固定的键值。修改数据源中的一个数据项若不影响其生成的键值，则对应组件不会被更新，否则此处组件就会被重建更新。`keyGenerator`参数是可选的，但是，为了使开发框架能够更好地识别数组更改并正确更新组件，建议提供。<br/>**说明：**<br/>- item是当前数据项，index是数据项索引值。<br/>- 数据源中的每一个数据项生成的键值不能重复。<br/>- `keyGenerator`缺省时，使用默认的键值生成函数，即`(item: Object, index: number) => { return viewId + '-' + index.toString(); }`，生成键值仅受索引值index影响。 |
 
-## 属性
+> **说明：** 
+>
+> 应避免在`keyGenerator`和`itemGenerator`函数中执行耗时操作，以此来减少应用滑动时卡顿丢帧问题，最佳实践请参考[主线程耗时操作优化-循环渲染](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-time-optimization-of-the-main-thread#section4551193714439)。例如，不推荐使用JSON.stringify函数。在复杂的业务场景中，使用JSON.stringify会对item对象进行序列化，该过程会消耗大量时间与计算资源，从而降低页面性能，最佳实践请参考[懒加载优化性能-键值生成规则](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-lazyforeach-optimization#section68711519072)。
 
-继承自[DynamicNode](./ts-rendering-control-foreach.md#dynamicnode12)。
-
-## IDataSource<sup>10+</sup>
+## IDataSource
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -43,6 +44,12 @@ totalCount(): number
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                | 说明        |
+| ------------------- | --------- |
+| number | 获得数据总数，由数据源决定实际大小。 |
 
 ### getData
 
@@ -60,6 +67,16 @@ getData(index:&nbsp;number): any
 | ------ | ------ | ---- | -------------------- |
 | index  | number | 是   | 获取数据对应的索引值。取值范围是[0, 数据源长度-1]。 |
 
+**返回值：**
+
+| 类型                | 说明        |
+| ------------------- | --------- |
+| any | 获取索引值index对应的数据，由数据源决定具体类型。 |
+
+> **说明：** 
+>
+> 应避免在`getData`函数中执行执行耗时操作，以此来减少应用滑动时卡顿丢帧问题，最佳实践请参考[主线程耗时操作优化-循环渲染](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-time-optimization-of-the-main-thread#section4551193714439)。
+
 ### registerDataChangeListener
 
 registerDataChangeListener(listener: DataChangeListener): void
@@ -74,7 +91,7 @@ registerDataChangeListener(listener: DataChangeListener): void
 
 | 参数名   | 类型                                        | 必填 | 说明           |
 | -------- | ------------------------------------------- | ---- | -------------- |
-| listener | [DataChangeListener](#datachangelistener10) | 是   | 数据变化监听器。 |
+| listener | [DataChangeListener](#datachangelistener7) | 是   | 数据变化监听器。 |
 
 ### unregisterDataChangeListener
 
@@ -90,9 +107,9 @@ unregisterDataChangeListener(listener: DataChangeListener): void
 
 | 参数名   | 类型                                        | 必填 | 说明           |
 | -------- | ------------------------------------------- | ---- | -------------- |
-| listener | [DataChangeListener](#datachangelistener10) | 是   | 数据变化监听器。 |
+| listener | [DataChangeListener](#datachangelistener7) | 是   | 数据变化监听器。 |
 
-## DataChangeListener<sup>10+</sup>
+## DataChangeListener<sup>7+</sup>
 
 数据变化监听器。
 
@@ -120,7 +137,7 @@ onDataAdded(index: number): void
 
 通知组件index的位置有数据添加。添加数据完成后调用。
 
-> 从API 8开始，建议使用[onDataAdd](#ondataadd8)。
+> 从API version 8开始，建议使用[onDataAdd](#ondataadd8)。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -136,7 +153,7 @@ onDataMoved(from: number, to: number): void
 
 通知组件数据有移动。将from和to位置的数据进行交换。
 
-> 从API 8开始，建议使用[onDataMove](#ondatamove8)。
+> 从API version 8开始，建议使用[onDataMove](#ondatamove8)。
 
 > **说明：** 
 >
@@ -157,7 +174,7 @@ onDataDeleted(index: number): void
 
 通知组件删除index位置的数据并刷新LazyForEach的展示内容。删除数据完成后调用。
 
-> 从API 8开始，建议使用[onDataDelete](#ondatadelete8)。
+> 从API version 8开始，建议使用[onDataDelete](#ondatadelete8)。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -171,9 +188,9 @@ onDataDeleted(index: number): void
 
 onDataChanged(index: number): void
 
-通知组件index的位置有数据有变化。改变数据完成后调用。
+通知组件index的位置有数据变化。改变数据完成后调用。
 
-> 从API 8开始，建议使用[onDataChange](#ondatachange8)。
+> 从API version 8开始，建议使用[onDataChange](#ondatachange8)。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -410,7 +427,7 @@ onDatasetChange(dataOperations: DataOperation[]): void
 
 ### DataReloadOperation
 
-重载所有数据操作。当onDatasetChange含有DataOperationType.RELOAD操作时，其余操作全部失效，框架会自己调用keygenerator进行键值比对。
+重载所有数据操作。当onDatasetChange含有DataOperationType.RELOAD操作时，其余操作全部失效，框架会自己调用keyGenerator进行键值比对。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

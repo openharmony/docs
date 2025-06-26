@@ -6,7 +6,7 @@ FileUri提供了关于文件uri的基本操作，将uri转换成对应的沙箱�
 
 ## 基本概念
 
-**结果集**：满足使用场景正确的路径或者uri。
+**结果集**：满足使用场景的路径或uri。
 
 ## 约束限制
 
@@ -20,8 +20,8 @@ FileUri提供了关于文件uri的基本操作，将uri转换成对应的沙箱�
 
 | 接口名称 | 描述 |
 | -------- |-------|
-| FileManagement_ErrCode OH_FileUri_GetUriFromPath(const char *path, unsigned int length, char **result)| 通过传入的路径path生成应用自己的uri；将path转uri时，路径中的中文及非数字字母的特殊字符将会被编译成对应的ASCII码，拼接在uri中。|
-| FileManagement_ErrCode OH_FileUri_GetPathFromUri(const char *uri, unsigned int length, char **result) | 将uri转换成对应的沙箱路径path。 <br>1、uri转path过程中会将uri中存在的ASCII码进行解码后拼接在原处，非系统接口生成的uri中可能存在ASCII码解析范围之外的字符，导致字符串无法正常拼接；<br>2、转换处理为系统约定的字符串替换规则（规则随系统演进可能会发生变化），转换过程中不进行路径校验操作，无法保证转换结果的一定可以访问。 |
+| FileManagement_ErrCode OH_FileUri_GetUriFromPath(const char *path, unsigned int length, char **result)| 通过传入的路径path生成应用自己的uri；将path转uri时，路径中的中文及非数字字母的特殊字符会被编码为对应的ASCII码，并拼接在uri中。|
+| FileManagement_ErrCode OH_FileUri_GetPathFromUri(const char *uri, unsigned int length, char **result) | 将uri转换成对应的沙箱路径path。 <br>1、uri转path过程中会将uri中存在的ASCII码进行解码后拼接在原处，非系统接口生成的uri中可能存在ASCII码解析范围之外的字符，导致字符串无法正常拼接；<br>2、转换处理遵循系统约定的字符串替换规则（规则可能随系统演进而变化），转换过程中不进行路径校验操作，无法保证转换结果的可访问性。 |
 | FileManagement_ErrCode OH_FileUri_GetFullDirectoryUri(const char *uri, unsigned int length, char **result) | 获取所在路径uri。<br>uri指向文件则返回所在路径的uri，uri指向目录则不处理直接返回原串；<br>uri指向的文件不存在或属性获取失败则返回空串。|
 | bool OH_FileUri_IsValidUri(const char *uri, unsigned int length) | 判断传入的uri的格式是否正确。仅校验uri是否满足系统定义的格式规范，不校验uri的有效性。|
 | FileManagement_ErrCode OH_FileUri_GetFileName(const char *uri, unsigned int length, char **result) | 通过传入的uri获取到对应的文件名称。（如果文件名中存在ASCII码将会被解码处理后拼接在原处）。|
@@ -108,7 +108,7 @@ target_link_libraries(sample PUBLIC libohfileuri.so)
         char *uri = "file://com.example.demo/data/storage/el2/base/files/test.txt";
         unsigned int length = strlen(uri);
         bool falgs = OH_FileUri_IsValidUri(uri, length);
-        printf("The URI is valid? falgs=%d", falgs);
+        printf("The URI is valid? flags=%d", flags);
     }
    ```
 

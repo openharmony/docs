@@ -136,21 +136,21 @@ async function example(context: common.UIAbilityContext) {
 
 ### 媒体文件uri获取方式
 
-1. 通过[PhotoAccessHelper的PhotoViewPicker](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#photoviewpicker)选择媒体文件，返回选择的媒体文件文件的uri。
+1. 通过[PhotoAccessHelper的PhotoViewPicker](../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoViewPicker.md)选择媒体文件，返回选择的媒体文件文件的uri。
 
-2. 通过[photoAccessHelper模块](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md)中的[getAssets](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getassets)或[createAsset](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#createasset)接口获取媒体文件对应文件的uri。<!--Del-->
+2. 通过[photoAccessHelper模块](../reference/apis-media-library-kit/arkts-apis-photoAccessHelper.md)中的[getAssets](../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#getassets)或[createAsset](../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#createasset)接口获取媒体文件对应文件的uri。<!--Del-->
 
 3. 通过[userFileManager模块](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md)中的[getPhotoAssets](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md#getphotoassets)、[getAudioAssets](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md#getaudioassets)、[createAudioAsset](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md#createaudioasset10)或[createPhotoAsset](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md#createphotoasset)接口获取媒体文件对应文件的uri。
 <!--DelEnd-->
 
 ### 媒体文件uri的使用方式
 
-normal等级的应用使用此类uri可以通过[photoAccessHelper模块](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md)进行进一步处理。示例代码参见媒体资源使用指导中的[指定URI获取图片或视频资源](../media/medialibrary/photoAccessHelper-photoviewpicker.md#指定uri获取图片或视频资源)。此接口需要申请相册管理模块读权限（ohos.permission.READ_IMAGEVIDEO），在使用中需要注意应用是否有此权限。<!--Del-->
+normal等级的应用使用此类uri可以通过[photoAccessHelper模块](../reference/apis-media-library-kit/arkts-apis-photoAccessHelper.md)进行进一步处理。示例代码参见媒体资源使用指导中的[指定URI获取图片或视频资源](../media/medialibrary/photoAccessHelper-photoviewpicker.md#指定uri获取图片或视频资源)。此接口需要申请相册管理模块读权限（ohos.permission.READ_IMAGEVIDEO），在使用中需要注意应用是否有此权限。<!--Del-->
 
 system_basic等级及以上的应用使用此类uri的方式除了上述通过photoAccessHelper模块外还可以通过[userFileManager模块](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md)进行进一步处理，接口详细使用方式见接口文档。
 <!--DelEnd-->
 
-若normal等级的应用不想申请权限也可以通过临时授权的方式使用[PhotoAccessHelper的PhotoViewPicker](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#photoviewpicker)得到的uri使用[photoAccessHelper.getAssets接口](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getassets)获取对应uri的PhotoAsset对象。通过此方式获取的PhotoAsset对象可调用[getThumbnail](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getthumbnail)方法获取缩略图，并通过[get接口](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#get)方法读取[PhotoKeys](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#photokeys)中的部分信息。
+若normal等级的应用不想申请权限也可以通过临时授权的方式使用[PhotoAccessHelper的PhotoViewPicker](../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoViewPicker.md)得到的uri使用[photoAccessHelper.getAssets接口](../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#getassets)获取对应uri的PhotoAsset对象。通过此方式获取的PhotoAsset对象可调用[getThumbnail](../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAsset.md#getthumbnail)方法获取缩略图，并通过[get接口](../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAsset.md#get)方法读取[PhotoKeys](../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-e.md#photokeys)中的部分信息。
 
 以下为PhotoKeys中支持临时授权方式可以读取的信息：
 

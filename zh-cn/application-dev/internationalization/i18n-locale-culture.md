@@ -49,43 +49,4 @@
 
 ## 开发步骤
 
-以时间日期格式化为例，[DateTimeFormat](../reference/apis-localization-kit/js-apis-intl.md#datetimeformat)类的详细说明请参考API文档。
-
-1. 导入模块。
-   ```ts
-   import { intl } from '@kit.LocalizationKit';
-   ```
-
-2. 创建区域对象，下面介绍三种方法：
-   - 按照实现原理中给出的格式，通过区域ID构造区域对象。
-   - 在LocaleOptions中配置区域特性，然后使用区域ID字符串和LocaleOptions创建区域对象。通过LocaleOptions对象设置的属性会自动覆盖字符串中对应的属性值。
-   - 使用默认的区域对象构造函数创建区域对象。通过默认区域对象构造函数创建的区域对象表示当前系统区域。
-
-   ```ts
-   let zhLocale: intl.Locale = new intl.Locale('zh-Hans-CN-u-nu-latn');
-
-   // 方法二：通过区域ID字符串和LocaleOptions对象创建区域对象
-   let enLocale: intl.Locale = new intl.Locale('en', { numberingSystem: 'latn' });
-
-   // 方法三：通过默认Locale函数创建系统区域对象
-   let systemLocale: intl.Locale = new intl.Locale();
-   ```
-
-3. 格式化时间日期。
-   创建区域对象后，将其传入时间日期格式类的构造函数，创建指定区域ID的时间日期格式化类并实现格式化。与步骤2对应，步骤3呈现了三种实现时间日期格式化的方法。
-
-   ```ts
-   let date: Date = new Date(2023, 9, 15);
-
-   // 方法一
-   let zhDateTimeFmt: intl.DateTimeFormat = new intl.DateTimeFormat(zhLocale.toString());
-   let formattedResult: string = zhDateTimeFmt.format(date); // formattedResult = '2023/10/15'
-
-   // 方法二
-   let enDateTimeFmt: intl.DateTimeFormat = new intl.DateTimeFormat(enLocale.toString());
-   formattedResult = enDateTimeFmt.format(date); // formattedResult = '10/15/23'
-
-   // 方法三
-   let systemDateTimeFmt: intl.DateTimeFormat = new intl.DateTimeFormat(systemLocale.toString());
-   formattedResult = systemDateTimeFmt.format(date); // formattedResult = '2023/10/15' （具体显示效果依赖于当前系统环境）
-   ```
+具体可参考[Intl.Locale](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale)。

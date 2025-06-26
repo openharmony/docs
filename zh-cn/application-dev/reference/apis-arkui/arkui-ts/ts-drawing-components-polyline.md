@@ -62,7 +62,7 @@ points(value: Array&lt;any&gt;)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                |
 | ------ | ------------------------------------------------------------ | ---- | ----------------------------------- |
-| value  | Array&lt;[Point](ts-drawing-components-polyline.md#point)&gt; | 是   | 折线经过坐标点列表。<br/>默认值：[]<br/>默认单位：vp |
+| value  | Array&lt;any&gt; | 是   | 折线经过坐标点列表。<br/>默认值：[]<br/>默认单位：vp |
 
 ### fill
 
@@ -104,7 +104,7 @@ fillOpacity(value: number | string | Resource)
 
 stroke(value: ResourceColor)
 
-设置边框颜色，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法，不设置时，默认没有边框线条。异常值不会绘制边框线条。
+设置边框颜色，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法，不设置时，默认无边框。异常值不绘制边框。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -138,7 +138,7 @@ strokeDashArray(value: Array&lt;any&gt;)
 
 ### strokeDashOffset
 
-strokeDashOffset(value: number | string)
+strokeDashOffset(value: Length)
 
 设置线条绘制起点的偏移量，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。异常值按照默认值处理。
 
@@ -152,7 +152,7 @@ strokeDashOffset(value: number | string)
 
 | 参数名 | 类型                       | 必填 | 说明                                 |
 | ------ | -------------------------- | ---- | ------------------------------------ |
-| value  | number&nbsp;\|&nbsp;string | 是   | 线条绘制起点的偏移量。<br/>默认值：0<br/>默认单位：vp |
+| value  | [Length](ts-types.md#length) | 是   | 线条绘制起点的偏移量。<br/>默认值：0<br/>默认单位：vp |
 
 ### strokeLineCap
 
@@ -192,11 +192,9 @@ strokeLineJoin(value: LineJoinStyle)
 
 ### strokeMiterLimit
 
-strokeMiterLimit(value: number | string)
+strokeMiterLimit(value: Length)
 
-设置斜接长度与边框宽度比值的极限值，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。斜接长度表示外边框外边交点到内边交点的距离，边框宽度即strokeWidth属性的值。该属性取值需在strokeLineJoin属性取值LineJoinStyle.Miter时生效。
-
-该属性的合法值范围应当大于等于1.0，当取值范围在[0,1)时按1.0处理，其余异常值按默认值处理。
+设置斜接长度与边框宽度比值的极限值，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。斜接长度表示外边框外边交点到内边交点的距离，边框宽度即strokeWidth属性的值。该属性取值仅在strokeLineJoin属性取值LineJoinStyle.Miter时生效。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -208,13 +206,13 @@ strokeMiterLimit(value: number | string)
 
 | 参数名 | 类型                       | 必填 | 说明                                           |
 | ------ | -------------------------- | ---- | ---------------------------------------------- |
-| value  | number&nbsp;\|&nbsp;string | 是   | 斜接长度与边框宽度比值的极限值。<br/>默认值：4 |
+| value  | [Length](ts-types.md#length) | 是   | 斜接长度与边框宽度比值的极限值。<br/>默认值：4<br>该属性的合法值应当大于等于1.0，当取值范围在[0,1)时按1.0处理，其余异常值按默认值处理。|
 
 ### strokeOpacity
 
 strokeOpacity(value: number | string | Resource)
 
-设置线条透明度，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。该属性的取值范围是[0.0, 1.0]，若给定值小于0.0，则取值为0.0；若给定值大于1.0，则取值为1.0，其余异常值按1.0处理 。
+设置线条透明度，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -226,7 +224,7 @@ strokeOpacity(value: number | string | Resource)
 
 | 参数名 | 类型                                                         | 必填 | 说明                       |
 | ------ | ------------------------------------------------------------ | ---- | -------------------------- |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 线条透明度。<br/>默认值：1 |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 线条透明度，取值范围是[0.0, 1.0]。<br>默认值：1<br>若给定值小于0.0，则取值为0.0；若给定值大于1.0，则取值为1.0，其余异常值按1.0处理。 |
 
 ### strokeWidth
 
@@ -263,16 +261,6 @@ antiAlias(value: boolean)
 | 参数名 | 类型    | 必填 | 说明                                  |
 | ------ | ------- | ---- | ------------------------------------- |
 | value  | boolean | 是   | 是否开启抗锯齿效果。<br/>true：开启抗锯齿；false：关闭抗锯齿。<br/>默认值：true |
-
-## Point
-
-点坐标类型。
-
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-
-| 名称      | 类型定义             | 描述                                                         |
-| --------- | -------------------- | ------------------------------------------------------------ |
-| Point | [number,&nbsp;number] | 第一个参数为x轴坐标，第二个参数为y轴坐标（相对坐标）。 |
 
 ## 示例
 

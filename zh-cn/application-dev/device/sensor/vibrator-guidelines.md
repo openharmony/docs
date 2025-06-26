@@ -10,16 +10,21 @@
 
 ## 接口说明
 
-| 名称                                                         | 描述                                                         |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| startVibration(effect: VibrateEffect, attribute: VibrateAttribute): Promise&lt;void&gt; | 根据指定振动效果和振动属性触发马达振动，使用Promise异步回调。 |
-| startVibration(effect: VibrateEffect, attribute: VibrateAttribute, callback: AsyncCallback&lt;void&gt;): void | 根据指定振动效果和振动属性触发马达振动，使用Callback异步回调。 |
-| stopVibration(stopMode: VibratorStopMode): Promise&lt;void&gt; | 按照指定模式停止马达的振动，使用Promise异步回调。            |
-| stopVibration(stopMode: VibratorStopMode, callback: AsyncCallback&lt;void&gt;): void | 按照指定模式停止马达的振动，使用Callback异步回调。           |
-| stopVibration(): Promise&lt;void&gt;                         | 停止所有模式的马达振动，使用Promise异步回调。                |
-| stopVibration(callback: AsyncCallback&lt;void&gt;): void     | 停止所有模式的马达振动，使用Callback异步回调。               |
-| isSupportEffect(effectId: string): Promise&lt;boolean&gt;    | 查询是否支持传入的参数effectId。返回true则表示支持，否则不支持，使用Promise异步回调。 |
-| isSupportEffect(effectId: string, callback: AsyncCallback&lt;boolean&gt;): void | 查询是否支持传入的参数effectId。返回true则表示支持，否则不支持，使用Callback异步回调。 |
+| 名称                                                         | 描述                                                                          |
+| ------------------------------------------------------------ |-----------------------------------------------------------------------------|
+| startVibration(effect: VibrateEffect, attribute: VibrateAttribute): Promise&lt;void&gt; | 根据指定振动效果和振动属性触发马达振动，使用Promise异步回调。                                          |
+| startVibration(effect: VibrateEffect, attribute: VibrateAttribute, callback: AsyncCallback&lt;void&gt;): void | 根据指定振动效果和振动属性触发马达振动，使用Callback异步回调。                                         |
+| stopVibration(stopMode: VibratorStopMode): Promise&lt;void&gt; | 按照指定模式停止马达的振动，使用Promise异步回调。                                                |
+| stopVibration(stopMode: VibratorStopMode, callback: AsyncCallback&lt;void&gt;): void | 按照指定模式停止马达的振动，使用Callback异步回调。                                               |
+| stopVibration(): Promise&lt;void&gt;                         | 停止所有模式的马达振动，使用Promise异步回调。                                                  |
+| stopVibration(param?: VibratorInfoParam): Promise&lt;void&gt; | 不传参则停止本地设备所有马达的振动，也可传参停止指定马达振动，使用Promise异步回调。                                 |
+| stopVibration(callback: AsyncCallback&lt;void&gt;): void     | 停止所有模式的马达振动，使用Callback异步回调。                                                 |
+| isSupportEffect(effectId: string): Promise&lt;boolean&gt;    | 查询是否支持传入的参数effectId。返回true则表示支持，否则不支持，使用Promise异步回调。                        |
+| isSupportEffect(effectId: string, callback: AsyncCallback&lt;boolean&gt;): void | 查询是否支持传入的参数effectId。返回true则表示支持，否则不支持，使用Callback异步回调。                       |
+| getEffectInfoSync(effectId: string, param?: VibratorInfoParam): EffectInfo | 同步查询是否支持传入的参数effectId，param可指定具体马达。返回EffectInfo中isEffectSupported字段可判断是否支持。 |
+| getVibratorInfoSync(param?: VibratorInfoParam): Array&lt;VibratorInfo&gt; | 同步查询一个或所有设备的马达信息列表。返回VibratorInfo包含设备ID、马达ID、设备名称、是否支持高清振动、是否本地设备等信息。       |
+| on(type: 'vibratorStateChange', callback: Callback&lt;VibratorStatusEvent&gt;): void | 注册马达设备上线下状态变化的监听。callback参数VibratorStatusEvent可返回事件时间戳、设备ID、马达数量、上线或下线等信息。  |
+| off(type: 'vibratorStateChange', callback?: Callback&lt;VibratorStatusEvent&gt;): void | 注销马达设备上线下状态变化的监听。                                                           |
 
 
 ## 振动效果说明
@@ -151,7 +156,42 @@ Json文件共包含3个属性。
 
 1. 控制设备上的振动器，需要申请权限ohos.permission.VIBRATE。具体配置方式请参考[声明权限](../../security/AccessToken/declare-permissions.md)。
 
-2. 根据指定振动效果和振动属性触发马达振动。
+2. 振动器查询。
+
+  **情形一** 查询所有马达信息：
+  
+  ```ts
+   import { vibrator } from '@kit.SensorServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+
+  try {
+    const vibratorInfoList: vibrator.VibratorInfo[] = vibrator.getVibratorInfoSync();
+    console.log(`vibratorInfoList: ${JSON.stringify(vibratorInfoList)}`);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+  }
+  ```
+
+  **情形二** 查询指定设备的一个或多个马达信息：
+  
+  ```ts
+   import { vibrator } from '@kit.SensorServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+
+  try {
+    const vibratorParam: vibrator.VibratorInfoParam = {
+      deviceId: 1    // deviceid 需要是查询出来真实存在的设备
+    }
+    const vibratorInfoList: vibrator.VibratorInfo[] = vibrator.getVibratorInfoSync(vibratorParam);
+    console.log(`vibratorInfoList: ${JSON.stringify(vibratorInfoList)}`);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+  }
+  ```
+
+3. 根据指定振动效果和振动属性触发马达振动。
 
    **情形一** 按照指定持续时间触发马达振动：
 
@@ -276,7 +316,7 @@ Json文件共包含3个属性。
    }
    ```
 
-3. 停止马达的振动。
+4. 停止马达的振动。
 
    **方式一** 按照指定模式停止对应的马达振动，自定义振动不支持此类停止方式：
 
@@ -343,6 +383,68 @@ Json文件共包含3个属性。
    }
    ```
 
+   **方式三** 停止指定设备的振动：
+
+   ```ts
+   import { vibrator } from '@kit.SensorServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+  
+   const vibratorInfoParam: vibrator.VibratorInfoParam = {
+     deviceId: 1   // deviceid 需要是查询出来真实存在的设备
+   }
+   try {
+     vibrator.stopVibration(vibratorInfoParam).then(() => {
+       console.info('Succeed in stopping vibration');
+     }, (error: BusinessError) => {
+       console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
+     });
+   } catch (error) {
+     let e: BusinessError = error as BusinessError;
+     console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+   }
+   ```
+
+
+5. 动态马达状态变化监听。
+
+   注册监听。
+   ```ts
+   import { vibrator } from '@kit.SensorServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+
+   // 回调函数 
+   const vibratorStateChangeCallback = (data: vibrator.VibratorStatusEvent) => {
+     console.log('vibrator state callback info:', JSON.stringify(data));
+   }
+
+   try {
+     // 订阅 vibratorStateChange事件
+     vibrator.on('vibratorStateChange', vibratorStateChangeCallback);
+   } catch (error) {
+     let e: BusinessError = error as BusinessError;
+     console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+   }
+   ```
+
+   取消监听,取消传入的callback需与注册的一致。
+   ```ts
+   import { vibrator } from '@kit.SensorServiceKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+
+   // 回调函数 
+   const vibratorStateChangeCallback = (data: vibrator.VibratorStatusEvent) => {
+     console.log('vibrator state callback info:', JSON.stringify(data));
+   }
+   try {
+     // 取消订阅 vibratorStateChange事件
+     vibrator.off('vibratorStateChange', vibratorStateChangeCallback);
+     // 取消订阅所有 vibratorStateChange事件
+     // vibrator.off('vibratorStateChange');
+   } catch (error) {
+     let e: BusinessError = error as BusinessError;
+     console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+   }
+   ```
 
 ## 相关实例
 

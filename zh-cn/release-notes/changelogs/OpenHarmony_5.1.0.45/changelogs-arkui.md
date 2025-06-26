@@ -1,45 +1,6 @@
 # ArkUI子系统Changelog
 
-## cl.arkui.1 带标题栏窗口应用内菜单弹出位置变更
-
-**访问级别**
-
-公开接口
-
-**变更原因**
-
-对于带标题栏窗口使用非子窗的Menu组件场景，菜单默认弹出位置调整，UX体验更佳。
-
-
-**变更影响**
-
-此变更不涉及应用适配。
-
-变更前：带标题栏窗口应用内弹出菜单位置偏移4vp，菜单没有和按钮对齐。
-
-变更后：带标题栏窗口应用内弹出菜单位置正确，菜单和按钮对齐。
-
-| 变更前 | 变更后 |
-|---------|---------|
-|  ![变更前](figures/menu-item-4vp-before.png)       |  ![变更后](figures/menu-item-4vp-after.png)       |
-
-**起始API Level**
-
-API 11
-
-**变更发生版本**
-
-从OpenHarmony SDK 5.1.0.45开始。
-
-**变更的接口/组件**
-
-Menu组件。
-
-**适配指导**
-
-Menu UX默认效果变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则应自定义修改效果控制变量以达到预期。
-
-## cl.arkui.2 V1和V2组件冻结能力增强
+## cl.arkui.1 V1和V2组件冻结能力增强
 
 **访问级别**
 
@@ -169,7 +130,7 @@ struct ChildComponent {
 
 - V2自定义组件的冻结场景：在状态管理V2组件冻结从父组件激活冻结状态的场景中，如果仅子组件开启了冻结，父组件未开启冻结，子组件也能冻结。例子可见[仅子组件开启组件冻结](../../../application-dev/ui/state-management/arkts-custom-components-freezeV2.md#仅子组件开启组件冻结)。
 
-## cl.arkui.3 ImageSpan组件borderRadius边框圆角属性Modifier设置变更
+## cl.arkui.2 ImageSpan组件borderRadius边框圆角属性Modifier设置变更
 
 **访问级别**
 
@@ -203,7 +164,7 @@ ImageSpanModifier接口的borderRadius属性
 
 无需应用适配，变更后ImageSpan组件的borderRadius边框圆角在Modifier接口设置生效，效果与开发者实际设置的圆角值显示一致。
 
-## cl.arkui.4 Search组件回车键类型为EnterKeyType.NEW_LINE（换行）时onSubmit回调中执行keepEditableState()函数，参数缺省时的行为变更
+## cl.arkui.3 Search组件回车键类型为EnterKeyType.NEW_LINE（换行）时onSubmit回调中执行keepEditableState()函数，参数缺省时的行为变更
 
 **访问级别**
 
@@ -262,7 +223,7 @@ struct EnterKeyTypeIsNewLineDemo {
 }
 ```
 
-## cl.arkui.5 TextInput/TextArea组件border属性dashGap、dashWidth参数Modifier设置变更
+## cl.arkui.4 TextInput/TextArea组件border属性dashGap、dashWidth参数Modifier设置变更
 
 **访问级别**
 

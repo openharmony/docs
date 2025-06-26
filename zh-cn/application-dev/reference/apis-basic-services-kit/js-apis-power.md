@@ -27,23 +27,11 @@ isActive(): boolean
 | ------------------- | -------------------------------------- |
 | boolean | 活动状态返回true，非活动状态返回false。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)。
-
-| 错误码ID   | 错误信息    |
-|---------|---------|
-| 4900101 | Failed to connect to the service. |
-
 **示例：**
 
 ```js
-try {
-    let isActive = power.isActive();
-    console.info('power is active: ' + isActive);
-} catch(err) {
-    console.error('check active status failed, err: ' + err);
-}
+let isActive = power.isActive();
+console.info('power is active: ' + isActive);
 ```
 
 ## power.rebootDevice<sup>(deprecated)</sup>
@@ -85,23 +73,11 @@ getPowerMode(): DevicePowerMode
 | ------------------------------------ | ---------- |
 | [DevicePowerMode](#devicepowermode9) | 电源模式。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)。
-
-| 错误码ID   | 错误信息    |
-|---------|---------|
-| 4900101 | Failed to connect to the service. |
-
 **示例：**
 
 ```js
-try {
-    let mode = power.getPowerMode();
-    console.info('power mode: ' + mode);
-} catch(err) {
-    console.error('get power mode failed, err: ' + err);
-}
+let mode = power.getPowerMode();
+console.info('power mode: ' + mode);
 ```
 
 ## power.isStandby<sup>10+</sup>

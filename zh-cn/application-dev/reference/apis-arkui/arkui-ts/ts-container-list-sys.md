@@ -22,9 +22,9 @@ chainAnimationOptions(value: ChainAnimationOptions)
 
 **参数：**
 
-| 名称    | 参数类型                                     | 描述                           |
-| ------ | ---------------------------------------- | ---------------------------------- |
-| value  | [ChainAnimationOptions](#chainanimationoptions10对象说明) | 链式联动动效参数。|
+| 参数名    | 类型                                     | 必填   | 说明                           |
+| ------ | ---------------------------------------- | ---- | ---------------------------------- |
+| value  | [ChainAnimationOptions](#chainanimationoptions10对象说明) | 是   | 链式联动动效参数。|
 
 ## ChainEdgeEffect<sup>10+</sup>枚举说明
 
@@ -34,12 +34,12 @@ chainAnimationOptions(value: ChainAnimationOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      |  枚举值  | 描述                                       |
+| 名称      |  值  | 说明                                       |
 | ------- | ------ | ---------------------------------------- |
 | DEFAULT | 0 | 默认效果，列表滚动到边缘以后继续拖动，拖拽方向上的列表项间距缩小，<br/>拖拽反方向上的列表项间距扩大。 |
 | STRETCH | 1 | 列表滚动到边缘以后继续拖动，所有列表项间距扩大。                 |
 
-## chainAnimationOptions<sup>10+</sup>对象说明
+## ChainAnimationOptions<sup>10+</sup>对象说明
 
 链式联动动效属性集合，用于设置List最大间距、最小间距、动效强度、传导系数和边缘效果。
 

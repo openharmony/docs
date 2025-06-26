@@ -79,10 +79,10 @@ ohos.permission.DISTRIBUTED_DATASYNC：分布式数据同步权限
      atManager.requestPermissionsFromUser(context, ['ohos.permission.DISTRIBUTED_DATASYNC']).then((data) => {
        console.log('data: ' + JSON.stringify(data));
      }).catch((err: object) => {
-       console.log('err: ' + JSON.stringify(err));
+       console.error('err: ' + JSON.stringify(err));
      })
    } catch (err) {
-     console.log('catch err->' + JSON.stringify(err));
+     console.error('catch err->' + JSON.stringify(err));
    }
    ```
 

@@ -4,7 +4,7 @@
 
 声明与绘图模块中的对象相关的函数。
 
-**引用文件：** drawing_mask_filter.h
+**引用文件：** <native_drawing/drawing_mask_filter.h>
 
 **库：** libnative_drawing.so
 
@@ -78,7 +78,7 @@ OH_Drawing_MaskFilter* OH_Drawing_MaskFilterCreateBlur(OH_Drawing_BlurType blurT
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_MaskFilter](capi-oh-drawing-maskfilter.md)* | 返回创建的蒙版滤波器对象的指针。 |
+| [OH_Drawing_MaskFilter](capi-drawing-oh-drawing-maskfilter.md)* | 返回创建的蒙版滤波器对象的指针。 |
 
 ### OH_Drawing_MaskFilterDestroy()
 
@@ -99,6 +99,6 @@ void OH_Drawing_MaskFilterDestroy(OH_Drawing_MaskFilter* maskFilter)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_MaskFilter](capi-oh-drawing-maskfilter.md)* maskFilter | 表示指向蒙版滤波器对象的指针。 |
+| [OH_Drawing_MaskFilter](capi-drawing-oh-drawing-maskfilter.md)* maskFilter | 表示指向蒙版滤波器对象的指针。 |
 
 

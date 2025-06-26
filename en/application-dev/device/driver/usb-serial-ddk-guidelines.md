@@ -2,7 +2,7 @@
 
 ## Overview
 
-Non-standard serial port devices, such as temperature and humidity meters and special identity card readers, are used in industrial scenarios and on some legacy devices. If the system does not have a driver that adapts to the devices, the devices cannot be used after being connected. The USB Serial Driver Development Kit (DDK) is a toolset that helps you develop USB serial drivers at the application layer based on the user mode. The USB Serial DDK provides a series of APIs for the host to access devices, including APIs for enabling and disabling devices on the host and read/write data through serial ports. With the driver development APIs provided by OpenHarmony, third-party peripherals are able to access the ecosystem conveniently.
+Non-standard serial port devices, such as temperature and humidity meters and special identity card readers, are used in industrial scenarios and on some legacy devices. If the system does not have a driver that adapts to the devices, the devices cannot be used after being connected. The USB Serial Driver Development Kit (DDK) is a toolset that helps you develop USB serial drivers at the application layer based on the user mode. The USB Serial DDK provides a series of APIs for the host to access devices, including APIs for enabling and disabling devices on the host and read/write data through serial ports. With these APIs, third-party peripheral devices can seamlessly integrate with the OpenHarmony ecosystem.
 
 ### Basic Concepts
 

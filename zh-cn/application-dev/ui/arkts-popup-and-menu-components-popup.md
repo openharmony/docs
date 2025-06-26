@@ -1,9 +1,11 @@
 # 气泡提示（Popup）
 Popup属性可绑定在组件上显示气泡弹窗提示，设置弹窗内容、交互逻辑和显示状态。主要用于屏幕录制、信息弹出提醒等显示状态。
 
-气泡分为两种类型，一种是系统提供的气泡[PopupOptions](../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md#popupoptions类型说明)，一种是开发者可以自定义的气泡[CustomPopupOptions](../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md#custompopupoptions8类型说明)。其中，PopupOptions通过配置primaryButton和secondaryButton来设置带按钮的气泡，CustomPopupOptions通过配置[builder](../../application-dev/ui/state-management/arkts-builder.md)来设置自定义的气泡。
+气泡分为两种类型，一种是系统提供的气泡[PopupOptions](../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md#popupoptions类型说明)，一种是开发者可以自定义的气泡[CustomPopupOptions](../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md#custompopupoptions8类型说明)。其中，PopupOptions通过配置primaryButton和secondaryButton来设置带按钮的气泡；CustomPopupOptions通过配置[builder](../../application-dev/ui/state-management/arkts-builder.md)来设置自定义的气泡。
 
 气泡可以通过配置[mask](../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md#popupoptions类型说明)来实现模态和非模态窗口，mask为true或者颜色值的时候，气泡为模态窗口，mask为false时，气泡为非模态窗口。
+
+多个气泡同时弹出时，子窗内显示的气泡比主窗内显示的气泡层级高，所处窗口相同时，后面弹出的气泡层级比先弹出的气泡层级高。
 
 ## 文本提示气泡
 
@@ -306,3 +308,169 @@ struct PopupExample {
 ![image](figures/avoidKeyboard.gif)
 
 
+## 设置气泡内的多态效果
+
+目前使用@Builder自定义气泡内容时，默认不支持多态样式，可以使用@Component新建一个组件实现按下气泡中的内容时背景变色。
+
+```ts
+@Entry
+@Component
+struct PopupPage {
+  private menus: Array<string> = ["扫一扫", "创建群聊", "电子工卡"]
+
+  // popup构造器定义弹框内容
+  @Builder
+  popupItemBuilder(name: string, action: string) {
+    PopupItemChild({ childName: name, childAction: action })
+  }
+
+  // popup构造器定义弹框内容
+  @Builder
+  popupBuilder() {
+    Column() {
+      ForEach(
+        this.menus,
+        (item: string, index) => {
+          this.popupItemBuilder(item, String(index))
+        },
+        (item: string, index) => {
+          return item
+        })
+    }
+    .padding(8)
+  }
+
+  @State customPopup: boolean = false;
+
+  build() {
+    Column() {
+      Button('click me')
+        .onClick(() => {
+          this.customPopup = !this.customPopup
+        })
+        .bindPopup(
+          this.customPopup,
+          {
+            builder: this.popupBuilder, // 气泡的内容
+            placement: Placement.Bottom, // 气泡的弹出位置
+            popupColor: Color.White, // 气泡的背景色
+            onStateChange: (event) => {
+              if (!event.isVisible) {
+                this.customPopup = false
+              }
+            }
+          })
+    }
+    .width('100%')
+    .justifyContent(FlexAlign.Center)
+  }
+}
+
+@Component
+struct PopupItemChild {
+  @Prop childName: string = '';
+  @Prop childAction: string = '';
+
+  build() {
+    Row({ space: 8 }) {
+      Image($r('app.media.startIcon'))
+        .width(24)
+        .height(24)
+      Text(this.childName)
+        .fontSize(16)
+    }
+    .width(130)
+    .height(50)
+    .padding(8)
+    .onClick(() => {
+      this.getUIContext().getPromptAction().showToast({ message: '选中了' + this.childName })
+    })
+    .stateStyles({
+      normal: {
+        .backgroundColor(Color.White)
+      },
+      pressed: {
+        .backgroundColor('#1fbb7d')
+      }
+    })
+  }
+}
+```
+
+![popupStateStyle](figures/popupStateStyle.gif)
+
+## 气泡支持避让中轴
+
+从API version 18起，气泡支持中轴避让功能。从API version 20开始，在2in1设备上默认启用（仅在窗口处于瀑布模式时产生避让）。开发者可通过[PopupOptions](../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md#popupoptions类型说明)中的enableHoverMode属性，控制气泡是否启用中轴避让。
+
+> **说明：** 
+> - 如果气泡的点击位置在中轴区域，则气泡不会避让。
+> - 2in1设备上需同时满足窗口处于瀑布模式才会产生避让。
+
+```ts
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+  @State index: number = 0;
+  @State arrayStr: Array<string> = ['上半屏', '中轴', '下半屏'];
+  @State enableHoverMode: boolean | undefined = true;
+  @State showInSubwindow: boolean = false;
+  @State placement: Placement | undefined = undefined;
+  @State isShow: boolean = false;
+
+  build() {
+    RelativeContainer() {
+      Column() {
+        Button('区域:' + this.arrayStr[this.index])
+          .onClick(() => {
+            if (this.index < 2) {
+              this.index++
+            } else {
+              this.index = 0
+            }
+          })
+
+        Button('子窗显示:' + (this.showInSubwindow ? '子窗' : '非子窗'))
+          .onClick(() => {
+            this.showInSubwindow = !this.showInSubwindow
+          })
+
+        Button('hoverMode开启:' + this.enableHoverMode)
+          .onClick(() => {
+            if (this.enableHoverMode == undefined) {
+              this.enableHoverMode = true
+            } else if (this.enableHoverMode == true) {
+              this.enableHoverMode = false
+            } else {
+              this.enableHoverMode = undefined
+            }
+          })
+      }
+
+      Row() {
+        Button('Popup')
+          .fontWeight(FontWeight.Bold)
+          .bindPopup(this.isShow, {
+            message: 'popup',
+            enableHoverMode: this.enableHoverMode,
+            showInSubWindow: this.showInSubwindow,
+          })
+          .onClick(() => {
+            this.isShow = !this.isShow
+          })
+      }
+      .alignRules({
+        center: { anchor: '__container__', align: VerticalAlign.Center },
+        middle: { anchor: '__container__', align: HorizontalAlign.Center }
+      })
+      .margin({
+        top: this.index == 2 ? 330 : this.index == 1 ? 50 : 0,
+        bottom: this.index == 0 ? 330 : 0
+      })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```

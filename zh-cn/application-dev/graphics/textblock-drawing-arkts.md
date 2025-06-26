@@ -37,7 +37,7 @@ const font = new drawing.Font();
 // 设置字体大小
 font.setSize(100);
 // 创建字块对象
-const textBlob = drawing.TextBlob.makeFromString("Hello world", font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
+const textBlob = drawing.TextBlob.makeFromString('Hello world', font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
 // 绘制字块
 canvas.drawTextBlob(textBlob, 200, 300);
 ```
@@ -66,7 +66,7 @@ font.setSize(100);
 // 添加画笔描边效果
 canvas.attachPen(pen);
 // 创建字块对象
-const textBlob = drawing.TextBlob.makeFromString("Hello world", font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
+const textBlob = drawing.TextBlob.makeFromString('Hello world', font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
 // 绘制字块
 canvas.drawTextBlob(textBlob, 200, 300);
 // 去除描边效果
@@ -98,7 +98,7 @@ const font = new drawing.Font();
 // 设置字体大小
 font.setSize(200);
 // 创建字块
-const textBlob = drawing.TextBlob.makeFromString("Hello world", font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
+const textBlob = drawing.TextBlob.makeFromString('Hello world', font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
 // 绘制字块
 canvas.drawTextBlob(textBlob, 100, 300);
 // 去除填充效果
@@ -121,7 +121,7 @@ font.setSize(100);
 // 设置跟随主题字体
 font.setThemeFontFollowed(true);
 // 创建字块对象
-const textBlob = drawing.TextBlob.makeFromString("Hello World", font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
+const textBlob = drawing.TextBlob.makeFromString('Hello World', font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
 // 绘制字块
 canvas.drawTextBlob(textBlob, 200, 300);
 ```
@@ -136,7 +136,7 @@ canvas.drawTextBlob(textBlob, 200, 300);
 
 ## 单字绘制
 
-相比字块绘制，单字绘制的优势在于能够利用字体退化机制，在当前字体无法显示某字符时，自动退化到使用系统字体绘制字符，从而提升对特殊字符的兼容性，避免字符缺失，增强用户体验。
+相比字块绘制，单字绘制的优势在于能够利用字体退化机制，在当前字体无法显示某字符时，自动退化到使用系统字体绘制字符，从而提升对特殊字符的兼容性，避免字符缺失，增强用户体验。详细API说明请见[drawing.Canvas](../reference/apis-arkgraphics2d/js-apis-graphics-drawing.md#drawsinglecharacter12)。
 
 单字绘制的示例代码和效果图如下：
 
@@ -147,7 +147,7 @@ const font = new drawing.Font();
 font.setSize(100);
 let startX = 100;
 let startY = 100;
-let text = ["H", "e", "l", "l", "o"];
+let text = ['H', 'e', 'l', 'l', 'o'];
 for (let s of text) {
   // 单字绘制
   canvas.drawSingleCharacter(s, font, startX, startY);

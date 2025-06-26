@@ -83,7 +83,7 @@ radius(value: Dimension | BorderRadiuses)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[BorderRadiuses](ts-types.md#borderradiuses9) | 是   | Menu边框圆角半径。<br/>默认值：2in1设备上默认值为8vp，其他设备上默认值为20vp。<br/> 从API version 12开始，当水平方向两个圆角半径之和的最大值大于菜单宽度，或垂直方向两个圆角半径之和的最大值大于菜单高度时，菜单四个圆角均采用菜单默认圆角半径值。 |
+| value  | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[BorderRadiuses](ts-types.md#borderradiuses9) | 是   | Menu边框圆角半径。<br/>默认值：2in1设备上默认值为8vp，其他设备上默认值为20vp。<br/> 从API version 12开始，当水平方向两个圆角半径之和的最大值大于菜单宽度，或垂直方向两个圆角半径之和的最大值大于菜单高度时，菜单四个圆角均采用菜单默认圆角半径值。<br/>当设置Dimension类型且传参为异常值时，菜单圆角取默认值。<br/>当设置BorderRadiuses类型且传参为异常值时，菜单默认没有圆角。 |
 
 ### menuItemDivider<sup>12+</sup>
 
@@ -391,3 +391,51 @@ struct Index {
 ```
 
 ![image](figures/menu-arrow.gif)
+
+### 示例4（设置分割线样式）
+
+该示例通过设置menuItemGroupDivider属性实现分割线样式。
+
+```ts
+import { LengthMetrics } from '@kit.ArkUI'
+
+@Entry
+@Component
+struct Index {
+
+  @Builder
+  MyMenu() {
+    Menu() {
+      MenuItem({ content: "Item Content" })
+      MenuItem({ content: "Item Content" })
+      MenuItem({ content: "Item Content" })
+      MenuItemGroup() {
+        MenuItem({ content: "Group Child" })
+        MenuItem({ content: "Group Child" })
+      }
+      MenuItem({ content: "Item Content" })
+    }
+    .menuItemDivider({
+      strokeWidth: LengthMetrics.vp(5),
+      color: '#d5d5d5',
+      mode: DividerMode.EMBEDDED_IN_MENU
+    })
+    .menuItemGroupDivider({
+      strokeWidth: LengthMetrics.vp(5),
+      color: '#707070',
+      mode: DividerMode.EMBEDDED_IN_MENU
+    })
+  }
+
+  build() {
+    RelativeContainer() {
+      Button("show menu")
+        .bindMenu(this.MyMenu())
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+![dividerStyleMode](figures/MenudividerStyleMode.png)

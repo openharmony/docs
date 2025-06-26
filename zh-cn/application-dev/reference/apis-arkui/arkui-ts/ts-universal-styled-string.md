@@ -7,6 +7,8 @@
 >  从API version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 >  属性字符串目前不支持在worker线程中使用。
+>
+>  属性字符串通过controller绑定时，需要等待布局完成后，绑定生效。当[measure](../js-apis-arkui-frameNode.md#measure12)和setStyledString同时使用，开发者需要通过[@ohos.arkui.inspector (布局回调)](../js-apis-arkui-inspector.md)判断布局完成，再绑定属性字符串。
 
 ## 规则说明
 
@@ -31,7 +33,7 @@ constructor(value: string | ImageAttachment | CustomSpan , styles?: Array\<Style
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | string \| [ImageAttachment](#imageattachment) \| [CustomSpan](#customspan) | 是 | 属性字符串文本内容。<br/>**说明：** <br/>当value值为ImageAttachment或CustomSpan时，styles参数不生效。  |
+| value | string \| [ImageAttachment](#imageattachment) \| [CustomSpan](#customspan) | 是 | 属性字符串文本内容。<br/>**说明：** <br/>当value值为ImageAttachment或CustomSpan时，styles参数不生效。<br/>需要设置styles时，通过[insertStyledString](#insertstyledstring)实现。 |
 | styles | Array<[StyleOptions](#styleoptions对象说明)> | 否 | 属性字符串初始化选项。<br/>**说明：** <br/>start为异常值时，按默认值0处理。<br/>当start的值合法且length为异常值时，length的值为属性字符串长度与start的值的差值。<br/>StyledStringKey与StyledStringValue不匹配时，不生效。<br/>styledKey参数无默认值。 |
 
 ### 属性
@@ -84,7 +86,7 @@ equals(other: StyledString): boolean
 
 ### subStyledString
 
-subStyledString(start: number , length?: number): StyledString
+subStyledString(start: number, length?: number): StyledString
 
 获取属性字符串的子字符串。
 
@@ -151,6 +153,25 @@ static fromHtml(html: string): Promise\<StyledString>
 
 将HTML格式字符串转换成属性字符串，当前支持转换的HTML标签范围：\<p>、\<span>、\<img>、\<br>、\<strong>、\<b>、\<a>、\<i>、\<em>、\<s>、\<u>、\<del>、\<sup>、\<sub>。支持将标签中的style属性样式转换成对应的属性字符串样式。
 
+使用方法参考[示例8（支持转换HTML格式字符串）](#示例8支持转换html格式字符串)。
+
+| 标签名称 | 说明                   |
+|-------------|----------------------------|
+| \<p\>       | 段落，分隔文本段落         |
+| \<span\>    | 行内文本，支持样式设置     |
+| \<img\>     | 插入图片                   |
+| \<strong\>  | 加粗文本                   |
+| \<br\><sup>20+</sup>      | 换行                       |
+| \<b\><sup>20+</sup>       | 加粗文本                   |
+| \<a\><sup>20+</sup>       | 超链接                     |
+| \<i\><sup>20+</sup>       | 斜体文本                   |
+| \<em\><sup>20+</sup>      | 斜体文本                   |
+| \<s\><sup>20+</sup>       | 删除线（中划线）           |
+| \<u\><sup>20+</sup>       | 下划线                     |
+| \<del\><sup>20+</sup>     | 删除线（中划线）           |
+| \<sup\><sup>20+</sup>     | 上标文本                   |
+| \<sub\><sup>20+</sup>     | 下标文本                   |
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -181,6 +202,8 @@ static fromHtml(html: string): Promise\<StyledString>
 static toHtml(styledString: StyledString): string
 
 将属性字符串转换成HTML格式字符串。支持转换的属性字符串[StyledStringKey](#styledstringkey枚举说明)包括：StyledStringKey.FONT、StyledStringKey.DECORATION、StyledStringKey.LETTER_SPACING、StyledStringKey.TEXT_SHADOW、StyledStringKey.LINE_HEIGHT、StyledStringKey.IMAGE。
+
+使用方法参考[示例8（支持转换HTML格式字符串）](#示例8支持转换html格式字符串)。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
@@ -550,10 +573,10 @@ TextShadowStyle | GestureStyle | ImageAttachment | ParagraphStyle | LineHeightSt
 | ----------- | ---------------------------------------- | ---- | ---- | --------------------------------------------------------------------------------------------------------------------------------- |
 | fontColor   | [ResourceColor](ts-types.md#resourcecolor)  | 是   | 是   | 获取属性字符串的文本颜色。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                               |
 | fontFamily  | string                                   | 是   | 是   | 获取属性字符串的文本字体。<br/>默认返回undefined。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                       |
-| fontSize    | number                                   | 是   | 是   | 获取属性字符串的文本字体大小。<br/>单位：[fp](ts-pixel-units.md#像素单位) <br/>**原子化服务API：**从API version 12开始，该接口支持在原子化服务中使用。 |
+| fontSize    | number                                   | 是   | 是   | 获取属性字符串的文本字体大小。<br/>单位：[fp](ts-pixel-units.md#像素单位) <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | fontWeight  | number                                   | 是   | 是   | 获取属性字符串的文本字体粗细。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                           |
 | fontStyle   | [FontStyle](ts-appendix-enums.md#fontstyle) | 是   | 是   | 获取属性字符串的文本字体样式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                           |
-| strokeWidth<sup>20+</sup> | number                                   | 是   | 是   | 获取属性字符串的文本描边宽度。<br/>默认返回0，单位为[px](ts-pixel-units.md#像素单位)。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。                                           |
+| strokeWidth<sup>20+</sup> | number                                   | 是   | 是   | 获取属性字符串的文本描边宽度。<br/>默认返回0，单位为[vp](ts-pixel-units.md#像素单位)。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。                                           |
 | strokeColor<sup>20+</sup> | [ResourceColor](ts-types.md#resourcecolor)  | 是   | 是   | 获取属性字符串的文本描边颜色。<br/>默认返回字体颜色。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。                                           |
 | superscript<sup>20+</sup> | [SuperscriptStyle](ts-text-common.md#superscriptstyle20枚举说明)  | 是   | 是   | 获取属性字符串的文本上下角标。<br/>默认值：SuperscriptStyle.NORMAL。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。                                           |
 
@@ -584,7 +607,7 @@ constructor(value?: TextStyleInterface)
 | fontSize    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)    | 否   | 字体大小。如果LengthMetrics的unit值是percent，当前设置不生效，处理为16fp。<br/>单位：[fp](ts-pixel-units.md#像素单位) <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                        |
 | fontWeight  | number\| [FontWeight](ts-appendix-enums.md#fontweight) \| string | 否   | 字体粗细。<br/>number类型取值[100,&nbsp;900]，取值间隔为100，默认为400，取值越大，字体越粗。string类型仅支持number类型取值的字符串形式，例如"400"，以及"bold"、"bolder"、"lighter"、"regular"、"medium"，分别对应FontWeight中相应的枚举值。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | fontStyle   | [FontStyle](ts-appendix-enums.md#fontstyle)                      | 否   | 字体样式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                  |
-| strokeWidth<sup>20+</sup> | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)    | 否   | 文本描边宽度。如果LengthMetrics的unit值是percent，当前设置不生效，处理为0px。<br/>设置值小于0时为实心字，大于0时为空心字。默认值为0，单位为[px](ts-pixel-units.md#像素单位)。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。                                                                                                                                                                      |
+| strokeWidth<sup>20+</sup> | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)    | 否   | 文本描边宽度。如果LengthMetrics的unit值是percent，当前设置不生效，处理为0。<br/>设置值小于0时为实心字，大于0时为空心字。<br/>默认值为0。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。                                                                                                                                                                      |
 | strokeColor<sup>20+</sup> | [ResourceColor](ts-types.md#resourcecolor)                       | 否   | 文本描边颜色。<br/>默认值为字体颜色，设置异常值时取字体颜色。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                              |
 | superscript<sup>20+</sup> | [SuperscriptStyle](ts-text-common.md#superscriptstyle20枚举说明)                       | 否   | 文本上下角标。<br/>默认值：SuperscriptStyle.NORMAL。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                              |
 
@@ -838,7 +861,7 @@ ShadowOptions对象中不支持fill字段。
 
 | 名称           | 类型              | 只读   | 可选   | 说明     |
 | ------------ |---------------------| ---- | ---- | ------ |
-| value  | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) |  是  |  否  | 获取属性字符串的图片数据源。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| value  | [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) |  是  |  否  | 获取属性字符串的图片数据源。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | size  | [SizeOptions](ts-types.md#sizeoptions) |  是  |  是  | 获取属性字符串的图片尺寸。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>返回number类型值的单位为`px`。 |
 | verticalAlign  | [ImageSpanAlignment](ts-appendix-enums.md#imagespanalignment10) |  是  |  是  | 获取属性字符串的图片对齐方式。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | objectFit  | [ImageFit](ts-appendix-enums.md#imagefit) |  是  |  是  | 获取属性字符串的图片缩放类型。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -913,7 +936,7 @@ type ColorFilterType = ColorFilter | DrawingColorFilter
 
 | 名称  | 类型                              | 必填 | 说明   |
 | ------- | --------------------------------- | ---- | --------------------------------- |
-| value | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) |  是  | 设置图片数据源。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| value | [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) |  是  | 设置图片数据源。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | size | [SizeOptions](ts-types.md#sizeoptions) | 否   | 设置图片大小。 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>size的默认值与objectFit的值有关，不同的objectFit的值对应size的默认值不同。比如当objectFit的值为Cover时，图片高度为组件高度减去组件上下的内边距，图片宽度为组件宽度减去组件左右的内边距。 |
 | verticalAlign | [ImageSpanAlignment](ts-appendix-enums.md#imagespanalignment10) | 否   | 设置图片基于文本的对齐方式。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>默认值：ImageSpanAlignment.BOTTOM |
 | objectFit | [ImageFit](ts-appendix-enums.md#imagefit) | 否   | 设置图片的缩放类型。 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>默认值：ImageFit.Cover |
@@ -997,7 +1020,7 @@ abstract onDraw(context: DrawContext, drawInfo: CustomSpanDrawInfo): void
 | context | [DrawContext](../js-apis-arkui-graphics.md#drawcontext) | 是   | 图形绘制上下文。<br/>**说明：** <br/>DrawContext的canvas方法获取的画布是Text组件的画布，绘制时不会超出Text组件的范围。 |
 | drawInfo | [CustomSpanDrawInfo](#customspandrawinfo对象说明) | 是   | 自定义绘制Span的绘制信息。 |
 
-### invalidate<sup>13+<sup>
+### invalidate<sup>13+</sup>
 
 invalidate(): void
 
@@ -1064,6 +1087,7 @@ invalidate(): void
 | wordBreak   | [WordBreak](ts-appendix-enums.md#wordbreak11) | 是    | 是    | 获取属性字符串文本段落的断行规则。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | leadingMargin   | number \| [LeadingMarginPlaceholder](ts-basic-components-richeditor.md#leadingmarginplaceholder11) | 是    | 是   | 获取属性字符串文本段落的缩进。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | paragraphSpacing<sup>19+</sup>  | number | 是    | 是   | 获取属性字符串文本段落的段落间距。单位VP。<br/>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。 |
+| textVerticalAlign<sup>20+</sup>  | [TextVerticalAlign](ts-text-common.md#textverticalalign20) | 是    | 是   | 获取属性字符串文本段落在垂直方向的对齐方式。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 >  **说明：**
 >
@@ -1098,6 +1122,7 @@ constructor(value?: ParagraphStyleInterface)
 | wordBreak   | [WordBreak](ts-appendix-enums.md#wordbreak11) | 否    | 设置文本段落的断行规则。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | leadingMargin   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [LeadingMarginPlaceholder](ts-basic-components-richeditor.md#leadingmarginplaceholder11) | 否    | 设置文本段落的缩进。不支持百分比。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | paragraphSpacing<sup>19+</sup>   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否  | 设置文本段落的段落间距。<br/>段落间距默认大小为0。不支持百分比。<br/>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。 |
+| textVerticalAlign<sup>20+</sup>   | [TextVerticalAlign](ts-text-common.md#textverticalalign20) |  否  | 设置文本段落在垂直方向的对齐方式。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## UserDataSpan
 
@@ -1837,6 +1862,7 @@ struct Index {
   //第三段落不设置缩进配置最大行数及超长显示方式
   paragraphStyleAttr3: ParagraphStyle = new ParagraphStyle({
     textAlign: TextAlign.End,
+    textVerticalAlign：TextVerticalAlign.BASELINE,
     maxLines: 1,
     wordBreak: WordBreak.BREAK_ALL,
     overflow: TextOverflow.Ellipsis
@@ -2533,3 +2559,75 @@ struct HtmlSpanStringDemo {
 
 ![](figures/styledString_13.gif)
 
+### 示例14（多装饰线与加粗装饰线）
+
+该示例通过enableMultiType、thicknessScale接口，实现多装饰线显示与加粗装饰线的效果。
+
+``` ts
+// xxx.ets
+import { LengthMetrics } from '@kit.ArkUI'
+@Entry
+@Component
+struct Index {
+  @State styledString : StyledString | undefined = undefined
+  controller : TextController = new TextController
+  thickness: number = 2.0
+  mutableStyledString1: MutableStyledString = new MutableStyledString("1234567890", [
+    {
+      start: 0,
+      length: 10,
+      styledKey: StyledStringKey.FONT,
+      styledValue: new TextStyle({ fontColor: Color.Orange, fontSize: LengthMetrics.vp(30) })
+    },
+    {
+      start: 0,
+      length: 4,
+      styledKey: StyledStringKey.DECORATION,
+      styledValue: new DecorationStyle({type: TextDecorationType.LineThrough, thicknessScale: this.thickness}, {enableMultiType: true})
+    },
+    {
+      start: 2,
+      length: 5,
+      styledKey: StyledStringKey.DECORATION,
+      styledValue: new DecorationStyle({type: TextDecorationType.Underline, thicknessScale: this.thickness}, {enableMultiType: true})
+    },
+    {
+      start: 0,
+      length: 4,
+      styledKey: StyledStringKey.DECORATION,
+      styledValue: new DecorationStyle({type: TextDecorationType.Overline, thicknessScale: this.thickness}, {enableMultiType: true})
+    },
+    {
+      start: 6,
+      length: 2,
+      styledKey: StyledStringKey.DECORATION,
+      styledValue: new DecorationStyle({type: TextDecorationType.LineThrough})
+    },
+    {
+      start: 7,
+      length: 2,
+      styledKey: StyledStringKey.DECORATION,
+      styledValue: new DecorationStyle({type: TextDecorationType.LineThrough, color: Color.Green}, {enableMultiType: true})
+    },
+    {
+      start: 8,
+      length: 2,
+      styledKey: StyledStringKey.DECORATION,
+      styledValue: new DecorationStyle({type: TextDecorationType.Overline, color: Color.Green}, {enableMultiType: true})
+    }
+  ]);
+  build() {
+    Column({ space:3 }) {
+      Text(undefined, { controller: this.controller })
+        .height(100)
+        .copyOption(CopyOptions.LocalDevice)
+        .onAppear(()=>{
+          this.styledString = this.mutableStyledString1
+          this.controller.setStyledString(this.mutableStyledString1)
+        })
+    }.width("100%")
+  }
+}
+```
+
+![](figures/styledString_14.png)

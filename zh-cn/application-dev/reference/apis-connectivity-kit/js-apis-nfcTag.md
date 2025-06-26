@@ -82,7 +82,7 @@ export default class EntryAbility extends UIAbility {
             console.error("tag.getTagInfo catch error: " + error);
         }
         if (tagInfo == null || tagInfo == undefined) {
-            console.log("no TagInfo to be created, ignore it.");
+            console.error("no TagInfo to be created, ignore it.");
             return;
         }
 
@@ -351,7 +351,7 @@ getNfcV(tagInfo: [TagInfo](#taginfo)): [NfcVTag](js-apis-nfctech.md#nfcvtag)
 
 ## tag.getIsoDep<sup>9+</sup>
 
-getIsoDep(tagInfo: [TagInfo](#taginfo)): [IsoDepTag](js-apis-nfctech.md#isoDepTag9 )
+getIsoDep(tagInfo: [TagInfo](#taginfo)): [IsoDepTag](js-apis-nfctech.md#isodeptag9 )
 
 获取IsoDep类型Tag对象，通过该对象可访问支持IsoDep技术类型的Tag。
 
@@ -495,7 +495,7 @@ getNdefFormatable(tagInfo: [TagInfo](#taginfo)): [NdefFormatableTag](js-apis-nfc
 
 | **类型**                                                  | **说明**                                                                  |
 | --------------------------------------------------------- | ------------------------------------------------------------------------- |
-| [NdefFormatableTag](js-apis-nfctech.md#ndefformatabletag) | NDEF Formatable类型Tag对象，通过该对象访问NDEF Formatable类型的相关接口。 |
+| [NdefFormatableTag](js-apis-nfctech.md#ndefformatabletag9) | NDEF Formatable类型Tag对象，通过该对象访问NDEF Formatable类型的相关接口。 |
 
 **错误码：**
 
@@ -650,7 +650,7 @@ function foregroundCb(err : BusinessError, tagInfo : tag.TagInfo) {
     if (!err) {
         console.log("foreground callback: tag found tagInfo = ", JSON.stringify(tagInfo));
     } else {
-        console.log("foreground callback err: " + err.message);
+        console.error("foreground callback err: " + err.message);
         return;
     }
   // taginfo的其他操作
@@ -1248,15 +1248,15 @@ NFC Tag有多种不同的技术类型，定义常量描述不同的技术类型�
 
 | **名称**                     |**类型**| **值** | **说明**                    |
 | ---------------------------- | ------ | ------ | --------------------------- |
-| NFC_A<sup>12+</sup>                        |  number | 1      | NFC-A (ISO 14443-3A)技术。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
-| NFC_B<sup>12+</sup>                        |  number | 2      | NFC-B (ISO 14443-3B)技术。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
-| ISO_DEP<sup>12+</sup>                      |  number | 3      | ISO-DEP (ISO 14443-4)技术。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| NFC_F<sup>12+</sup>                        |  number | 4      | NFC-F (JIS 6319-4)技术。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。    |
-| NFC_V<sup>12+</sup>                        |  number | 5      | NFC-V (ISO 15693)技术。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。     |
-| NDEF<sup>12+</sup>                         |  number | 6      | NDEF技术。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                  |
+| NFC_A<sup>7+</sup>                        |  number | 1      | NFC-A (ISO 14443-3A)技术。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
+| NFC_B<sup>7+</sup>                        |  number | 2      | NFC-B (ISO 14443-3B)技术。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
+| ISO_DEP<sup>7+</sup>                      |  number | 3      | ISO-DEP (ISO 14443-4)技术。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| NFC_F<sup>7+</sup>                        |  number | 4      | NFC-F (JIS 6319-4)技术。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。    |
+| NFC_V<sup>7+</sup>                        |  number | 5      | NFC-V (ISO 15693)技术。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。     |
+| NDEF<sup>7+</sup>                         |  number | 6      | NDEF技术。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                  |
 | NDEF_FORMATABLE<sup>9+</sup> |  number | 7      | 可以格式化的NDEF技术。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。       |
-| MIFARE_CLASSIC<sup>12+</sup>               |  number | 8      | MIFARE Classic技术。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。        |
-| MIFARE_ULTRALIGHT<sup>12+</sup>            |  number | 9      | MIFARE Utralight技术。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。      |
+| MIFARE_CLASSIC<sup>7+</sup>               |  number | 8      | MIFARE Classic技术。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。        |
+| MIFARE_ULTRALIGHT<sup>7+</sup>            |  number | 9      | MIFARE Utralight技术。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。      |
 | NFC_BARCODE<sup>18+</sup>    |  number | 10     | BARCODE技术。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。               |
 
 ## TnfType<sup>9+</sup>
@@ -1412,7 +1412,7 @@ type IsoDepTag = _IsoDepTag
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
-| [_IsoDepTag](./js-apis-nfctech.md#isodeptag9) | IsoDepTag 提供 ISO-DEP(ISO 14443-4)技术的属性和I/O操作的访问。 |
+| [_IsoDepTag](js-apis-nfctech.md#isodeptag9) | IsoDepTag 提供 ISO-DEP(ISO 14443-4)技术的属性和I/O操作的访问。 |
 
 ## NdefTag<sup>9+</sup>
 
@@ -1468,7 +1468,7 @@ type NdefFormatableTag = _NdefFormatableTag
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
-| [_NdefFormatableTag](./js-apis-nfctech.md#ndefformatabletag9) | NdefFormatableTag为NDEF Formattable的标签提供格式化操作。 |
+| [_NdefFormatableTag](js-apis-nfctech.md#ndefformatabletag9) | NdefFormatableTag为NDEF Formattable的标签提供格式化操作。 |
 
 ## BarcodeTag<sup>18+</sup>
 

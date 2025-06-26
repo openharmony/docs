@@ -107,7 +107,7 @@ type NavDestinationBuilder = (name: string, param?: Object) => void
 | 参数名 | 类型 | 必填 | 描述 |
 | --------------- | ------ | ---- | ---------- |
 | name | string | 是 | [NavDestination](ts-basic-components-navdestination.md)页面名称。 |
-| param | Object | 是 | [NavDestination](ts-basic-components-navdestination.md)页面详细参数。 |
+| param | Object | 否 | [NavDestination](ts-basic-components-navdestination.md)页面详细参数。 |
 
 ## MixMode<sup>18+</sup>
 背景色颜色混合模式的可选项。

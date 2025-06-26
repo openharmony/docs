@@ -1,7 +1,7 @@
 # Ads Service Framework Error Codes
 
 > **NOTE**
-> This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](../errorcode-universal.md).
+> - This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 ## 21800001 Internal System Error
 
@@ -85,7 +85,7 @@ Check the ad response data.
 
 **Error Message**
 
-Invalid input parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed
+Invalid input parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.
 
 **Description**
 

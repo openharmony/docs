@@ -1,6 +1,6 @@
 # Using AVMetadataExtractor to Extract Audio and Video Metadata (ArkTS)
 
-You can use the [AVMetadataExtractor](media-kit-intro.md#avmetadataextractor) to obtain metadata from a raw media asset. This topc walks you through on how to obtain the metadata of an audio asset. The process of obtaining the metadata of a video asset is similar. The only difference is that the process of obtaining the album cover is not required for a video asset, because no album cover is available in the video asset.
+You can use the [AVMetadataExtractor](media-kit-intro.md#avmetadataextractor) to obtain metadata from a raw media asset. This topic walks you through on how to obtain the metadata of an audio asset. The process of obtaining the metadata of a video asset is similar. The only difference is that the process of obtaining the album cover is not required for a video asset, because no album cover is available in the video asset.
 
 The full process of obtaining the metadata of an audio asset includes creating an AVMetadataExtractor instance, setting resources, obtaining the metadata, obtaining the album cover, and releasing the instance.
 
@@ -27,7 +27,7 @@ Read [AVMetadataExtractor](../../reference/apis-media-kit/js-apis-media.md#avmet
 
 5. Call **release()** to release the AVMetadataExtractor instance.
 
-## Sample Code
+## Development Example
 
 Refer to the sample code below to set the file descriptor and obtain the metadata and album cover of an audio asset.
 

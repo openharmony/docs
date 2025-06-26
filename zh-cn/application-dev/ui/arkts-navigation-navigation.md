@@ -4,7 +4,7 @@
 
 [Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md)是路由导航的根视图容器，一般作为页面（@Entry）的根容器，包括单栏（Stack）、分栏（Split）和自适应（Auto）三种显示模式。Navigation组件适用于模块内和跨模块的路由切换，通过组件级路由能力实现更加自然流畅的转场体验，并提供多种标题栏样式来呈现更好的标题和内容联动效果。一次开发，多端部署场景下，Navigation组件能够自动适配窗口显示大小，在窗口较大的场景下自动切换分栏展示效果。
 
-Navigation组件主要包含​导航页和子页。导航页由标题栏（包含菜单栏）、内容区和工具栏组成，可以通过[hideNavBar](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#hidenavbar9)属性进行隐藏，导航页不存在页面栈中，与子页，以及子页之间可以通过路由操作进行切换。
+Navigation组件主要包含​导航页和子页。导航页由标题栏（包含菜单栏）、内容区和工具栏组成，可以通过[hideNavBar](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#hidenavbar9)属性进行隐藏，导航页不存在[页面栈](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navpathstack10)中，与子页，以及子页之间可以通过路由操作进行切换。
 
 在API version 9上，Navigation需要配合[NavRouter](../reference/apis-arkui/arkui-ts/ts-basic-components-navrouter.md)组件实现页面路由。从API version 10开始，更推荐使用[NavPathStack](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navpathstack10)实现页面路由。
 
@@ -27,6 +27,8 @@ Navigation组件通过mode属性设置页面的显示模式。
 
 - 单页面模式
 
+  单页面模式适用于窄屏设备，发生路由跳转时，整个页面都会被替换。
+
     **图1** 单页面布局示意图  
 
   ![zh-cn_image_0000001511740532](figures/zh-cn_image_0000001511740532.png)
@@ -44,6 +46,8 @@ Navigation组件通过mode属性设置页面的显示模式。
   ![导航单栏模式](figures/导航单栏模式.jpg)
 
 - 分栏模式
+
+  分栏模式适用于宽屏设备，分为左右两部分，发生路由跳转时，只有右边子页会被替换。
 
   **图2** 分栏布局示意图
 
@@ -310,7 +314,9 @@ Navigation路由相关的操作都是基于页面栈[NavPathStack](../reference/
 
 > **说明：**
 >
-> 不建议开发者通过监听生命周期的方式管理自己的页面栈。
+> 1.不建议开发者通过监听生命周期的方式管理自己的页面栈。
+>
+> 2.在应用处于后台状态下，调用NavPathStack的栈操作方法，会在应用再次回到前台状态时触发刷新。
 
 ```ts
 @Entry
@@ -421,7 +427,27 @@ this.pageStack.moveIndexToTop(1);
 
 ### 参数获取
 
-NavPathStack通过Get相关接口去获取页面的一些参数。
+NavDestination子页第一次创建时会触发[onReady](../reference/apis-arkui/arkui-ts/ts-basic-components-navdestination.md#onready11)回调，可以获取此页面对应的参数。
+
+```ts
+@Component
+struct Page01 {
+  pathStack: NavPathStack | undefined = undefined;
+  pageParam: string = '';
+
+  build() {
+    NavDestination() {
+...
+    }.title('Page01')
+    .onReady((context: NavDestinationContext) => {
+      this.pathStack = context.pathStack;
+      this.pageParam = context.pathInfo.param as string;
+    })
+  }
+}
+```
+
+其他业务场景，可以通过主动调用NavPathStack的Get相关接口去获取指定页面的参数。
 
 ```ts
 // 获取栈中所有页面name集合
@@ -475,7 +501,7 @@ this.pageStack.setInterception({
 1. 当指定为LaunchMode.MOVE_TO_TOP_SINGLETON时，系统会从栈底到栈顶查找具有指定名称的NavDestination。找到后，该页面将被移动到栈顶（replace操作会用指定的NavDestination替换当前栈顶）。
 2. 若指定为LaunchMode.POP_TO_SINGLETON，系统同样会从栈底到栈顶查找具有指定名称的NavDestination。找到后，便会移除该NavDestination上方的所有页面（replace操作会用指定的NavDestination替换当前栈顶）。
 
-当栈中存在的NavDestination页面通过单实例方式移动到栈顶时，将触发[onNewParam](../reference/apis-arkui/arkui-ts/ts-basic-components-navdestination.md#onnewparam18)回调。
+当栈中存在的NavDestination页面通过单实例方式移动到栈顶时，将触发[onNewParam](../reference/apis-arkui/arkui-ts/ts-basic-components-navdestination.md#onnewparam19)回调。
 
 有关单实例路由栈操作的示例代码，可以参考[Navigation单例跳转示例](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#示例2使用路由栈方法)。
 
@@ -604,7 +630,7 @@ Navigation作为路由容器，其生命周期承载在NavDestination组件上�
   ```
 - 页面状态监听
   
-  通过[observer.on('navDestinationUpdate')](../reference/apis-arkui/js-apis-arkui-observer.md#observeronnavdestinationupdate)提供的注册接口可以注册NavDestination生命周期变化的监听，使用方式如下：
+  通过[observer.on('navDestinationUpdate')](../reference/apis-arkui/js-apis-arkui-observer.md#uiobserveronnavdestinationupdate)提供的注册接口可以注册NavDestination生命周期变化的监听，使用方式如下：
   
   ```ts
   uiObserver.on('navDestinationUpdate', (info) => {
@@ -746,7 +772,7 @@ NavDestination之间切换时可以通过[geometryTransition](../reference/apis-
 
 ### 系统路由表
 
-系统路由表是动态路由的一种实现方式。从API version 12开始，Navigation支持使用系统路由表的方式进行动态路由。各业务模块（[HSP](../quick-start/in-app-hsp.md)/[HAR](../quick-start/har-package.md)）中需要独立配置route_map.json文件，在触发路由跳转时，应用只需要通过NavPathStack提供的路由方法，传入需要路由的页面配置名称，此时系统会自动完成路由模块的动态加载、页面组件构建，并完成路由跳转，从而实现了开发层面的模块解耦。系统路由表不支持预览器及模拟器。其主要步骤如下：
+系统路由表是动态路由的一种实现方式。从API version 12开始，Navigation支持使用系统路由表的方式进行动态路由。各业务模块（[HSP](../quick-start/in-app-hsp.md)/[HAR](../quick-start/har-package.md)）中需要独立配置route_map.json文件，在触发路由跳转时，应用只需要通过NavPathStack提供的路由方法，传入需要路由的页面配置名称，此时系统会自动完成路由模块的动态加载、页面组件构建，并完成路由跳转，从而实现了开发层面的模块解耦。系统路由表支持模拟器但不支持预览器。其主要步骤如下：
 
 1. 在跳转目标模块的配置文件module.json5添加路由表配置：
    
@@ -778,7 +804,7 @@ NavDestination之间切换时可以通过[geometryTransition](../reference/apis-
 
    | 配置项 | 说明 |
    |---|---|
-   | name | 跳转页面名称。|
+   | name | 可自定义的跳转页面名称。|
    | pageSourceFile | 跳转目标页在包内的路径，相对src目录的相对路径。|
    | buildFunction | 跳转目标页的入口函数名称，必须以@Builder修饰。 |
    | data | 应用自定义字段。可以通过配置项读取接口getConfigInRouteMap获取。|

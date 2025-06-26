@@ -72,9 +72,9 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char *srcCallNative = R"JS(isPromise())JS";
 ```
-<!-- @[oh_jsvm_ispromise](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutPromise/ispromise/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_ispromise](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutPromise/ispromise/src/main/cpp/hello.cpp) -->
 
-预期结果
+预期结果：
 ```
 JSVM OH_JSVM_IsPromise success:0
 ```
@@ -159,9 +159,9 @@ const char *srcCallNative = R"JS(createPromise();
                                  resolveRejectDeferred('success', 'fail', true);
                                  resolveRejectDeferred('success', 'fail', false);)JS";
 ```
-<!-- @[oh_jsvm_resolvedeferred_and_rejectdeferred](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutPromise/resolvereject/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_resolvedeferred_and_rejectdeferred](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmAboutPromise/resolvereject/src/main/cpp/hello.cpp) -->
 
-预期结果
+预期结果：
 ```
 JSVM CreatePromise success:1
 OH_JSVM_ResolveDeferred resolve
@@ -229,11 +229,11 @@ static int PromiseRegisterHandler(JSVM_VM vm, JSVM_Env env) {
     // 获取 promise 解析前 x1 和 x2 的值
     JSVM_Value x1;
     CHECK_RET(OH_JSVM_GetNamedProperty(env, global, "x1", &x1));
-    int32_t x1Int;
+    int32_t x1Int = 0;
     CHECK_RET(OH_JSVM_GetValueInt32(env, x1, &x1Int));
     JSVM_Value x2;
     CHECK_RET(OH_JSVM_GetNamedProperty(env, global, "x2", &x2));
-    int32_t x2Int;
+    int32_t x2Int = 0;
     CHECK_RET(OH_JSVM_GetValueInt32(env, x2, &x2Int));
     OH_LOG_INFO(LOG_APP, "Before promise resolved, x1: %{public}d, x2: %{public}d", x1Int, x2Int);
 
@@ -260,7 +260,7 @@ static void RunDemo(JSVM_VM vm, JSVM_Env env) {
 }
 ```
 
-预期结果
+预期结果：
 ```
 Before promise resolved, x1: 0, x2: 0
 After promise resolved, x1: 2, x2: 3

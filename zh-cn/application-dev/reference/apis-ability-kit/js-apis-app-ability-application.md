@@ -1,4 +1,4 @@
-#  @ohos.app.ability.application (Application)
+#  @ohos.app.ability.application (应用基础能力)
 
 开发者可以通过该模块创建[Context](../../application-models/application-context-stage.md)。
 
@@ -138,14 +138,6 @@ createPluginModuleContext(context: Context, pluginBundleName: string, pluginModu
 | 类型               | 说明                |
 | ------------------ | ------------------- |
 | Promise\<[Context](../../reference/apis-ability-kit/js-apis-inner-application-context.md)> | Promise对象。返回创建的Context。 |
-
-**错误码：**
-
-以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
-
-| 错误码ID | 错误信息        |
-| -------- | --------------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 
 **示例：**
 

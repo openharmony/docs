@@ -22,6 +22,10 @@
       {
       "branch": "master",
       "sdkVersion": "20"
+      },
+      {
+        "branch": "OpenHarmony-5.1.0-Release",
+        "sdkVersion": "18"
       }
     ],
     "CI": [

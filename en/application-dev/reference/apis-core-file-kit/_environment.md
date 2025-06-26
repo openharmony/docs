@@ -22,9 +22,9 @@ Provides the capability of obtaining the root directory of user files.
 
 | Name| Description|
 | -------- | -------- |
-| [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode) [OH_Environment_GetUserDownloadDir](#oh_environment_getuserdownloaddir) (char \*\*result) | Obtains the sandbox path of the **Download** root directory. This function is available only for 2-in-1 devices.|
-| [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode) [OH_Environment_GetUserDesktopDir](#oh_environment_getuserdesktopdir) (char \*\*result) | Obtains the sandbox path of the **Desktop** root directory. This function is available only for 2-in-1 devices.|
-| [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode) [OH_Environment_GetUserDocumentDir](#oh_environment_getuserdocumentdir) (char \*\*result) | Obtains the sandbox path of the **Documents** root directory. This function is available only for 2-in-1 devices.|
+| [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode) [OH_Environment_GetUserDownloadDir](#oh_environment_getuserdownloaddir) (char \*\*result) | Obtains the sandbox path of the **Download** root directory. Only 2-in-1 devices are supported.|
+| [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode) [OH_Environment_GetUserDesktopDir](#oh_environment_getuserdesktopdir) (char \*\*result) | Obtains the sandbox path of the **Desktop** root directory. Only 2-in-1 devices are supported.|
+| [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode) [OH_Environment_GetUserDocumentDir](#oh_environment_getuserdocumentdir) (char \*\*result) | Obtains the sandbox path of the **Document** root directory. Only 2-in-1 devices are supported.|
 
 
 ## Function Description
@@ -44,11 +44,15 @@ Obtains the sandbox path of the **Desktop** root directory.
 
 | Name| Description|
 | -------- | -------- |
-| result | Pointer to the sandbox path of the **Desktop** root directory obtained. You also need to include **malloc.h** and use **free()** to release the memory allocated. |
+| result | Double pointer to the sandbox path of the **Desktop** root directory obtained. You also need to include **malloc.h** and use **free()** to release the memory allocated. |
 
-**Returns**
+**Required permissions**
 
-Returns [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode).
+ohos.permission.READ_WRITE_DESKTOP_DIRECTORY
+
+**Return value**
+
+[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode)
 
 
 ### OH_Environment_GetUserDocumentDir()
@@ -57,7 +61,7 @@ Returns [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode).
 FileManagement_ErrCode OH_Environment_GetUserDocumentDir (char ** result)
 ```
 **Description**
-Obtains the sandbox path of the **Documents** root directory.
+Obtains the sandbox path of the **Document** root directory.
 
 **Since**: 12
 
@@ -65,11 +69,15 @@ Obtains the sandbox path of the **Documents** root directory.
 
 | Name| Description|
 | -------- | -------- |
-| result | Pointer to the sandbox path of the **Documents** root directory obtained. You also need to include **malloc.h** and use **free()** to release the memory allocated. |
+| result | Double pointer to the sandbox path of the **Document** root directory obtained. You also need to include **malloc.h** and use **free()** to release the memory allocated. |
 
-**Returns**
+**Required permissions**
 
-Returns [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode).
+ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY
+
+**Return value**
+
+[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode)
 
 
 ### OH_Environment_GetUserDownloadDir()
@@ -86,8 +94,12 @@ Obtains the sandbox path of the **Download** root directory.
 
 | Name| Description|
 | -------- | -------- |
-| result | Pointer to the path of the **Download** root directory obtained. You also need to include **malloc.h** and use **free()** to release the memory allocated. |
+| result | Double pointer to the path of the **Download** root directory obtained. You also need to include **malloc.h** and use **free()** to release the memory allocated. |
 
-**Returns**
+**Required permissions**
 
-Returns [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode).
+ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY
+
+**Return value**
+
+[FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode)

@@ -32,7 +32,7 @@
 
 #### 播放音频
 
-1. 调用[@ohos.multimedia.media](../../reference/apis-media-kit/js-apis-media.md)、[@ohos.multimedia.audio](../../reference/apis-audio-kit/js-apis-audio.md)，实现播放音频的功能。
+1. 调用[@ohos.multimedia.media](../../reference/apis-media-kit/arkts-apis-media.md)、[@ohos.multimedia.audio](../../reference/apis-audio-kit/arkts-apis-audio.md)，实现播放音频的功能。
 
    ```ts
    // player.ets
@@ -775,11 +775,11 @@ struct Index {
 
 ### 效果示意
 
-在设备上，点击`播放示例音频`按钮，会播放本示例音频文件。点击`识别示例音频`按钮，设备屏幕显示本示例音频文件的中文内容。
+在设备上，点击**播放示例音频**按钮，会播放本示例音频文件。点击**识别示例音频**按钮，设备屏幕显示本示例音频文件的中文内容。
 
-<img src="figures/asr1.png" width="20%"/>                                    
-
-<img src="figures/asr2.png" width="20%"/>                           
+|         初始页面          |  点击识别示例音频按钮后   |
+| :-----------------------: | :-----------------------: |
+| ![asr1](figures/asr1.png) | ![asr2](figures/asr2.png) |
 
 
 ## 相关实例

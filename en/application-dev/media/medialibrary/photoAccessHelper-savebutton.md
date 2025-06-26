@@ -47,7 +47,7 @@ struct Index {
 
 For details about the **SaveButton** component, see [SaveButton](../../reference/apis-arkui/arkui-ts/ts-security-components-savebutton.md).
 
-This following walks you through on how to create an image using the **SaveButton** security component.
+The following walks you through on how to create an image using the **SaveButton** security component.
 
 **How to Develop**
 
@@ -101,11 +101,11 @@ In addition to specifying the asset in the application sandbox directory using *
 
 ## Saving a Media Asset Using an Authorization Pop-Up
 
-This following walks you through on how to save an image using an authorization pop-up.
+The following walks you through on how to save an image using an authorization pop-up.
 
 **How to Develop**
 
-1. Specify the URI of the [application file](../../file-management/app-file-access.md) in the application sandbox.
+1. Specify the URI of the [application file](../../file-management/app-file-access.md) to be saved to the media library. (The file must be in the application sandbox.)
 2. Set parameters such as the file name extension, image file type, title (optional) and image subtype (optional) of the image to save.
 3. Call [showAssetsCreationDialog](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#showassetscreationdialog12) to obtain the target [media file URI](../../file-management/user-file-uri-intro.md#media-file-uri) through an authorization pop-up.
 4. Write the image content from the application sandbox directory to the file specified by the target URI in the media library.

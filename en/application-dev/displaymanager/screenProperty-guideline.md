@@ -25,7 +25,7 @@ The following table lists the common APIs related to display properties. For det
 | off(type: 'captureStatusChange', callback?: Callback\<boolean>): void | Unsubscribes from screen capture, casting, or recording status change events.                    |
 | on(type: 'availableAreaChange', callback: Callback\<Rect>): void | Subscribes to change events of the available area on the display of the current device. This API uses an asynchronous callback to return the result.|
 | off(type: 'availableAreaChange', callback?: Callback\<Rect>): void | Unsubscribes from change events of the available area on the display of the current device.                        |
-| isFoldable(): boolean                                        | Checks whether the current device is foldable.                                        |
+| isFoldable(): boolean                                        | Checks whether the device is foldable. The value **true** means that the device is foldable, and **false** means the opposite.                         |
 | on(type: 'foldStatusChange', callback: Callback\<FoldStatus>): void | Subscribes to fold status change events of the foldable device.                            |
 | off(type: 'foldStatusChange', callback?: Callback\<FoldStatus>): void | Unsubscribes from fold status change events of the foldable device.                            |
 
@@ -58,7 +58,7 @@ displayClass = display.getDefaultDisplaySync();
    displayClass = display.getDefaultDisplaySync();
    
    // Obtain the display ID.
-   console.info(`The scree Id is ${displayClass.id}.`);
+   console.info(`The screen Id is ${displayClass.id}.`);
    // Obtain the refresh rate.
    console.info(`The screen is ${displayClass.refreshRate}.`);
    // Obtain the display width.
@@ -89,7 +89,7 @@ displayClass = display.getDefaultDisplaySync();
 3. Call **display.isCaptured()** to determine whether the device is engaged in activities such as screen capture, casting, or recording.
 
    ```ts
-   console.info(`The sceeen is captured or not : ${display.isCaptured()}`);
+   console.info(`The screen is captured or not : ${display.isCaptured()}`);
    ```
 
 ## Listening for Display Status Changes
@@ -157,7 +157,7 @@ displayClass = display.getDefaultDisplaySync();
    ret = display.isFoldable();
    ```
 
-2. If the device is a foldable device, call **display.on('foldStatusChange')** to listen for folding state changes. To end the listening, call **display.on('foldStatusChange')**.
+2. If the device is a foldable device, call **display.on('foldStatusChange')** to listen for folding state changes. To end the listening, call **display.off('foldStatusChange')**.
 
    ```ts
    import { Callback } from '@kit.BasicServicesKit';

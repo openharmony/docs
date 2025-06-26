@@ -1,6 +1,6 @@
 # @ohos.app.ability.UIExtensionContentSession (带界面扩展能力界面操作类)(系统接口)
 
-UIExtensionContentSession是[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)加载界面内容时创建的实例对象，当UIExtensionComponent控件拉起指定的UIExtensionAbility时，UIExtensionAbility会创建UIExtensionContentSession对象，并通过[onSessionCreate](js-apis-app-ability-uiExtensionAbility.md#uiextensionabilityonsessioncreate)回调传递给开发者。一个UIExtensionComponent控件对应一个UIExtensionContentSession对象，提供界面加载，结果通知等方法。每个UIExtensionAbility的UIExtensionContentSession之间互不影响，可以各自进行操作。
+UIExtensionContentSession是[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)加载界面内容时创建的实例对象，当UIExtensionComponent控件拉起指定的UIExtensionAbility时，UIExtensionAbility会创建UIExtensionContentSession对象，并通过[onSessionCreate](js-apis-app-ability-uiExtensionAbility.md#onsessioncreate)回调传递给开发者。一个UIExtensionComponent控件对应一个UIExtensionContentSession对象，提供界面加载，结果通知等方法。每个UIExtensionAbility的UIExtensionContentSession之间互不影响，可以各自进行操作。
 
 > **说明：**
 >
@@ -16,7 +16,9 @@ UIExtensionContentSession是[UIExtensionAbility](js-apis-app-ability-uiExtension
 import { UIExtensionContentSession } from '@kit.AbilityKit';
 ```
 
-## UIExtensionContentSession.sendData
+## UIExtensionContentSession
+
+### sendData
 
 sendData(data: Record\<string, Object>): void
 
@@ -76,7 +78,7 @@ struct Index {
 }
 ```
 
-## UIExtensionContentSession.setReceiveDataCallback
+### setReceiveDataCallback
 
 setReceiveDataCallback(callback: (data: Record\<string, Object>) => void): void
 
@@ -129,7 +131,7 @@ struct Index {
 }
 ```
 
-## UIExtensionContentSession.setReceiveDataForResultCallback<sup>11+</sup>
+### setReceiveDataForResultCallback<sup>11+</sup>
 
 setReceiveDataForResultCallback(callback: (data: Record<string, Object>) => Record<string, Object>): void
 
@@ -184,7 +186,7 @@ struct Index {
 }
 ```
 
-## UIExtensionContentSession.startAbility
+### startAbility
 
 startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
@@ -254,7 +256,7 @@ export default class UIExtAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContentSession.startAbility
+### startAbility
 
 startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void
 
@@ -327,7 +329,7 @@ export default class UIExtAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContentSession.startAbility
+### startAbility
 
 startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 
@@ -407,16 +409,16 @@ export default class UIExtAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContentSession.startAbilityForResult
+### startAbilityForResult
 
 startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;): void
 
 启动一个Ability，在Ability终止后返回结果给调用方。使用callback异步回调。
 
 Ability的终止方式包括以下几种情况：
- - 正常情况下可通过调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用方。
+ - 正常情况下可通过调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#terminateselfwithresult)接口使之终止并且返回结果给调用方。
  - 异常情况下比如杀死Ability会返回异常信息给调用方，异常信息中resultCode为-1。
- - 如果被启动的Ability模式是单实例模式，不同应用多次调用该接口启动这个Ability，当这个Ability调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方，其他调用方返回异常信息，异常信息中resultCode为-1。
+ - 如果被启动的Ability模式是单实例模式，不同应用多次调用该接口启动这个Ability，当这个Ability调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#terminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方，其他调用方返回异常信息，异常信息中resultCode为-1。
 
 > **说明：**
 >
@@ -482,16 +484,16 @@ export default class UIExtAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContentSession.startAbilityForResult
+### startAbilityForResult
 
 startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback&lt;AbilityResult&gt;): void
 
 启动一个Ability，在Ability终止后返回结果给调用方。使用callback异步回调。
 
 Ability的终止方式包括以下几种情况：
- - 正常情况下可通过调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用方。
+ - 正常情况下可通过调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#terminateselfwithresult)接口使之终止并且返回结果给调用方。
  - 异常情况下比如杀死Ability会返回异常信息给调用方，异常信息中resultCode为-1。
- - 如果被启动的Ability模式是单实例模式，不同应用多次调用该接口启动这个Ability，当这个Ability调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方，其他调用方返回异常信息，异常信息中resultCode为-1。
+ - 如果被启动的Ability模式是单实例模式，不同应用多次调用该接口启动这个Ability，当这个Ability调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#terminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方，其他调用方返回异常信息，异常信息中resultCode为-1。
 
 > **说明：**
 >
@@ -560,16 +562,16 @@ export default class UIExtAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContentSession.startAbilityForResult
+### startAbilityForResult
 
 startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityResult&gt;
 
 启动一个Ability，在Ability终止后返回结果给调用方。使用Promise异步回调。
 
 Ability的终止方式包括以下几种情况：
- - 正常情况下可通过调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用方。
+ - 正常情况下可通过调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#terminateselfwithresult)接口使之终止并且返回结果给调用方。
  - 异常情况下比如杀死Ability会返回异常信息给调用方，异常信息中resultCode为-1。
- - 如果被启动的Ability模式是单实例模式，不同应用多次调用该接口启动这个Ability，当这个Ability调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方，其他调用方返回异常信息，异常信息中resultCode为-1。
+ - 如果被启动的Ability模式是单实例模式，不同应用多次调用该接口启动这个Ability，当这个Ability调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#terminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方，其他调用方返回异常信息，异常信息中resultCode为-1。
 
 > **说明：**
 >
@@ -646,11 +648,11 @@ export default class UIExtAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContentSession.setWindowBackgroundColor
+### setWindowBackgroundColor
 
 setWindowBackgroundColor(color: string): void
 
-设置UIExtensionAbility加载界面的背景色。该接口需要在[loadContent()](js-apis-app-ability-uiExtensionContentSession.md#uiextensioncontentsessionloadcontent)调用生效后使用。
+设置UIExtensionAbility加载界面的背景色。该接口需要在[loadContent()](js-apis-app-ability-uiExtensionContentSession.md#loadcontent)调用生效后使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -701,7 +703,7 @@ export default class UIExtAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContentSession.startAbilityAsCaller<sup>11+</sup>
+### startAbilityAsCaller<sup>11+</sup>
 
 startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void
 
@@ -771,7 +773,7 @@ export default class UIExtAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContentSession.startAbilityAsCaller<sup>11+</sup>
+### startAbilityAsCaller<sup>11+</sup>
 
 startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\<void>): void
 
@@ -844,7 +846,7 @@ export default class UIExtAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContentSession.startAbilityAsCaller<sup>11+</sup>
+### startAbilityAsCaller<sup>11+</sup>
 
 startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>
 
@@ -924,7 +926,7 @@ export default class UIExtAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContentSession.getUIExtensionHostWindowProxy<sup>11+</sup>
+### getUIExtensionHostWindowProxy<sup>11+</sup>
 
 getUIExtensionHostWindowProxy(): uiExtensionHost.UIExtensionHostWindowProxy
 

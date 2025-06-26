@@ -4,8 +4,9 @@ The **MovingPhotoView** component is used to play moving photos and control the 
 
 > **NOTE**
 >
-> - This component is supported since API version 12. Updates will be marked with a superscript to indicate their earliest API version.
-> - Currently, the **MovingPhotoView** component cannot be used in Previewer.
+> This component is supported since API version 12. Updates will be marked with a superscript to indicate their earliest API version.
+>
+> Currently, the **MovingPhotoView** component cannot be used in Previewer.
 
 ## Modules to Import
 
@@ -20,7 +21,7 @@ import { MovingPhotoView, MovingPhotoViewController, MovingPhotoViewAttribute } 
 > - Currently, live attributes cannot be set.
 > - Currently, **expandSafeArea** in the ArkUI common attribute **ComponentOptions** cannot be set.
 > - When this component is long pressed to trigger playback, the component area is zoomed in to 1.1 times.
-> - This component uses [AVPlayer](../apis-media-kit/_a_v_player.md#avplayer) to play moving photos. A maximum of three [AVPlayers](../apis-media-kit/_a_v_player.md#avplayer) can be used at the same time. Otherwise, frame freezing may occur during the playback.
+> - This component uses [AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9) to play moving photos. A maximum of three AVPlayers can be used at the same time. Otherwise, frame freezing may occur.
 
 MovingPhotoView(options: MovingPhotoViewOptions)
 

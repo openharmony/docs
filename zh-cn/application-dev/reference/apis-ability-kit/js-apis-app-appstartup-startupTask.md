@@ -1,4 +1,4 @@
-# @ohos.app.appstartup.StartupTask
+# @ohos.app.appstartup.StartupTask (启动框架任务)
 
 本模块提供启动任务的相关能力。
 
@@ -14,9 +14,11 @@
 import { StartupTask } from '@kit.AbilityKit';
 ```
 
-## StartupTask.onDependencyCompleted
+## StartupTask
 
-onDependencyCompleted?(dependency: string, result: ESObject): void
+### onDependencyCompleted
+
+onDependencyCompleted?(dependency: string, result: Object): void
 
 当依赖的启动任务执行完成时该方法将会被调用。
 
@@ -32,15 +34,15 @@ onDependencyCompleted?(dependency: string, result: ESObject): void
 **示例：**
 
 ```ts
-import StartupTask from '@ohos.app.appstartup.StartupTask';
-import common from '@ohos.app.ability.common';
-import hilog from '@ohos.hilog';
+import { StartupTask, common } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 @Sendable
 export default class StartupTask_001 extends StartupTask {
   constructor() {
     super();
   }
+
   async init(context: common.AbilityStageContext) {
     // ...
   }
@@ -54,9 +56,9 @@ export default class StartupTask_001 extends StartupTask {
 ```
 
 
-## StartupTask.init
+### init
 
-init(context: AbilityStageContext): Promise\<ESObject\>
+init(context: AbilityStageContext): Promise\<Object \| void\>
 
 启动任务执行的初始化业务。
 

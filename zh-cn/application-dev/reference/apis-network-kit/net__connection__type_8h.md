@@ -26,7 +26,7 @@
 | [NetConn_NetAddr](_net_conn___net_addr.md) | 网络地址。 | 
 | [NetConn_Route](_net_conn___route.md) | 路由配置信息。 | 
 | [NetConn_HttpProxy](_net_conn___http_proxy.md) | 代理配置信息。 | 
-| [NetConn_ConnectionProperties](_net_conn___connection_properties.md) | 网络链接信息。 | 
+| [NetConn_ConnectionProperties](_net_conn___connection_properties.md) | 网络连接信息。 | 
 | [NetConn_NetHandleList](_net_conn___net_handle_list.md) | 网络列表。 | 
 | [NetConn_NetConnCallback](_net_conn___net_conn_callback.md) | 网络状态监听回调集合。  | 
 | [NetConn_NetSpecifier](_net_conn___net_specifier.md) | 网络的特征集，包含网络的能力集与网络的标识符。  | 
@@ -56,7 +56,7 @@
 | [NetConn_NetAddr](_net_connection.md#netconn_netaddr) | 网络地址。 | 
 | [NetConn_Route](_net_connection.md#netconn_route) | 路由配置信息。 | 
 | [NetConn_HttpProxy](_net_connection.md#netconn_httpproxy) | 代理配置信息。 | 
-| [NetConn_ConnectionProperties](_net_connection.md#netconn_connectionproperties) | 网络链接信息。 | 
+| [NetConn_ConnectionProperties](_net_connection.md#netconn_connectionproperties) | 网络连接信息。 | 
 | [NetConn_NetHandleList](_net_connection.md#netconn_nethandlelist) | 网络列表。 | 
 | (\*[OH_NetConn_CustomDnsResolver](_net_connection.md#oh_netconn_customdnsresolver)) (const char \*host, const char \*serv, const struct addrinfo \*hint, struct addrinfo \*\*res) | 指向自定义 DNS 解析器的指针。 | 
 | [NetConn_ErrorCode](_net_connection.md#netconn_errorcode) | 网络连接返回值错误码。 |
@@ -67,5 +67,5 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | [NetConn_NetCap](_net_connection.md#netconn_netcap) {<br/>NETCONN_NET_CAPABILITY_MMS = 0,<br/>NETCONN_NET_CAPABILITY_NOT_METERED = 11,<br/>NETCONN_NET_CAPABILITY_INTERNET = 12,<br/>NETCONN_NET_CAPABILITY_NOT_VPN = 15,<br/>NETCONN_NET_CAPABILITY_VALIDATED = 16<br/>} | 网络能力集。 | 
-| [NetConn_NetBearerType](_net_connection.md#netconn_netbearertype) {<br/>NETCONN_BEARER_CELLULAR = 0,<br/>NETCONN_BEARER_WIFI = 1,<br/>NETCONN_BEARER_ETHERNET = 3<br/>NETCONN_BEARER_VPN = 4<br/>} | 网络载体类型。 |
+| [NetConn_NetBearerType](_net_connection.md#netconn_netbearertype) {<br/>NETCONN_BEARER_CELLULAR = 0,<br/>NETCONN_BEARER_WIFI = 1,<br/>NETCONN_BEARER_ETHERNET = 3, <br/>NETCONN_BEARER_VPN = 4<br/>} | 网络载体类型。 |
 | [NetConn_ErrorCode](_net_connection.md#netconn_errorcode) {<br/>NETCONN_SUCCESS = 0,<br/>NETCONN_PERMISSION_DENIED = 201,<br/>NETCONN_PARAMETER_ERROR = 401,<br/>NETCONN_OPERATION_FAILED = 2100002,<br/>NETCONN_INTERNAL_ERROR = 2100003<br/>} | 网络连接返回值错误码。 |

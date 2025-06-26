@@ -36,7 +36,7 @@ startWork(work: WorkInfo): void
 | ---- | --------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9700001 | Memory operation failed. |
-| 9700002 | Parcel operation failed. |
+| 9700002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9700003 | System service operation failed. |
 | 9700004 | Check on workInfo failed. |
 | 9700005 | Calling startWork failed. |
@@ -91,7 +91,7 @@ stopWork(work: WorkInfo, needCancel?: boolean): void
 | ---- | --------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9700001 | Memory operation failed. |
-| 9700002 | Parcel operation failed. |
+| 9700002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9700003 | System service operation failed. |
 | 9700004 | Check on workInfo failed. |
 
@@ -145,7 +145,7 @@ getWorkStatus(workId: number, callback : AsyncCallback\<WorkInfo>): void
 | ---- | --------------------- |
 | 401 | Parameter error. Possible causes: Parameter verification failed. |
 | 9700001 | Memory operation failed. |
-| 9700002 | Parcel operation failed. |
+| 9700002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9700003 | System service operation failed. |
 | 9700004 | Check on workInfo failed. |
 
@@ -191,7 +191,7 @@ getWorkStatus(workId: number): Promise\<WorkInfo>
 | ---- | --------------------- |
 | 401 | Parameter error. Possible causes: Parameter verification failed. |
 | 9700001 | Memory operation failed. |
-| 9700002 | Parcel operation failed. |
+| 9700002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9700003 | System service operation failed. |
 | 9700004 | Check on workInfo failed. |
 
@@ -230,7 +230,7 @@ obtainAllWorks(callback : AsyncCallback\<void>) : Array\<WorkInfo>
 | ---- | --------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 9700001 | Memory operation failed. |
-| 9700002 | Parcel operation failed. |
+| 9700002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9700003 | System service operation failed. |
 
 ## workScheduler.obtainAllWorks<sup>10+<sup>
@@ -255,7 +255,7 @@ obtainAllWorks(callback : AsyncCallback&lt;Array&lt;WorkInfo&gt;&gt;): void
 | ---- | --------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 9700001 | Memory operation failed. |
-| 9700002 | Parcel operation failed. |
+| 9700002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9700003 | System service operation failed. |
 
 **示例**：
@@ -294,7 +294,7 @@ obtainAllWorks(): Promise\<Array\<WorkInfo>>
 | ---- | --------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 9700001 | Memory operation failed. |
-| 9700002 | Parcel operation failed. |
+| 9700002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9700003 | System service operation failed. |
 
 **示例**：
@@ -325,7 +325,7 @@ stopAndClearWorks(): void
 | ---- | --------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 9700001 | Memory operation failed. |
-| 9700002 | Parcel operation failed. |
+| 9700002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9700003 | System service operation failed. |
 
 **示例**：
@@ -366,7 +366,7 @@ isLastWorkTimeOut(workId: number, callback : AsyncCallback\<void>): boolean
 | ---- | --------------------- |
 | 401 | Parameter error. Possible causes: Parameter verification failed. |
 | 9700001 | Memory operation failed. |
-| 9700002 | Parcel operation failed. |
+| 9700002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9700003 | System service operation failed. |
 | 9700004 | Check on workInfo failed. |
 
@@ -393,7 +393,7 @@ isLastWorkTimeOut(workId: number, callback : AsyncCallback\<boolean>): void
 | ---- | --------------------- |
 | 401 | Parameter error. Possible causes: Parameter verification failed. |
 | 9700001 | Memory operation failed. |
-| 9700002 | Parcel operation failed. |
+| 9700002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9700003 | System service operation failed. |
 | 9700004 | Check on workInfo failed. |
 
@@ -439,7 +439,7 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 | ---- | --------------------- |
 | 401 | Parameter error. Possible causes: Parameter verification failed. |
 | 9700001 | Memory operation failed. |
-| 9700002 | Parcel operation failed. |
+| 9700002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9700003 | System service operation failed. |
 | 9700004 | Check on workInfo failed. |
 

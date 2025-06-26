@@ -24,7 +24,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 
 ## 开发步骤
 
-### 使用HiDebug获取系统CPU使用率。
+### 使用HiDebug获取系统CPU使用率
 下文将展示如何在应用内增加一个按钮，并单击该按钮以调用HiDebug Ndk接口获取系统CPU使用率。
 
 1. 新建Native C++工程，目录结构如下：
@@ -125,7 +125,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    09-10 09:40:26.755 17221-17221/com.example.myapplication I A00000/testTag: GetSystemCpuUsage: 0.083904
    ```
 
-### 使用HiDebug对应用主线程进行栈回溯。
+### 使用HiDebug对应用主线程进行栈回溯
 1. 新建Native C++工程，并新增文件“test_backtrace.cpp”与“test_backtrace.h”，目录结构如下：
 
    ```yml
@@ -276,7 +276,11 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
     }
     
     void SignalHandler(int sig, siginfo_t *si, void* context) { // 信号处理函数。
+        if (sig != SIGUSR1) {
+            return;
+        }
         auto startFp = reinterpret_cast<ucontext_t *>(context)->uc_mcontext.regs[29]; // 读取寄存器X29中存放的fp地址。
+        std::unique_lock<std::mutex> lock(mutex_);
         pcSize = BackTraceObject::GetInstance().BackTraceFromFp(reinterpret_cast<void*>(startFp), MAX_FRAME_SIZE); // 该函数异步信号安全，仅异步信号安全函数可在信号处理函数内使用。
         cv_.notify_all(); // 栈回溯结束，通知给请求回栈的线程。
     }
@@ -291,6 +295,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 
     void BacktraceFrames() { // 该接口非线程安全，同一时刻仅能使用一个线程进行回栈。
         if (!BackTraceObject::GetInstance().Init(MAX_FRAME_SIZE)) { // 注意：栈回溯前，需申请资源，且不可重复初始化。
+            BackTraceObject::GetInstance().Release();         
             OH_LOG_Print(LOG_APP, LOG_WARN, LOG_PRINT_DOMAIN, "TestTag", "failed init backtrace object.");
             return;
         }
@@ -298,10 +303,14 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
         siginfo_t si{0};
         si.si_signo = SIGUSR1;
         if (syscall(SYS_rt_sigqueueinfo, getpid(), si.si_signo, &si) != 0) { // 发送信号给主线程以触发信号处理函数。
+            BackTraceObject::GetInstance().Release();   
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "TestTag", "failed send sig");
+            return;
         }
-        std::unique_lock<std::mutex> lock(mutex_);
-        cv_.wait(lock, []{return pcSize >= 0;}); // 等待主线程在信号处理函数内进行栈回溯。
+        {
+            std::unique_lock<std::mutex> lock(mutex_);
+            cv_.wait(lock, []{return pcSize >= 0;}); // 等待主线程在信号处理函数内进行栈回溯。
+        }
         for (int i = 0; i < pcSize; i++) {
             BackTraceObject::GetInstance().SymbolicAddress(i); // 主线程获取pc后，对pc值进行栈解析。
         }

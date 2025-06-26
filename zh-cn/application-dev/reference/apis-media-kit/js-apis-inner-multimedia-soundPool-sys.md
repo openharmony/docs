@@ -2,7 +2,7 @@
 
 音频池加载播放实例，音频池提供了系统声音的加载、播放、音量设置、循环设置、停止播放、资源卸载等功能。
 
-SoundPool需要和@ohos.multimedia.media配合使用，需要先通过[media.createSoundPool](js-apis-media.md#mediacreatesoundpool10)完成音频池实例的创建。
+SoundPool需要和@ohos.multimedia.media配合使用，需要先通过[media.createSoundPool](arkts-apis-media-f.md#mediacreatesoundpool10)完成音频池实例的创建。
 
 > **说明：**
 >

@@ -55,7 +55,7 @@ async function persistPermissionExample() {
         });
     } catch (error) {
         let err: BusinessError = error as BusinessError;
-        console.error('persistPermission failed with err: ' + JSON.stringify(err));
+        console.error(`persistPermission failed with err, Error code: ${err.code}, message: ${err.message}`);
     }
 }
 ```
@@ -70,8 +70,7 @@ For details about how to persist a temporary permission using C/C++ APIs, see [O
 
 You can use [ohos.fileshare.revokePermission](../reference/apis-core-file-kit/js-apis-fileShare.md#filesharerevokepermission11) to revoke the persistent permission from a file, and update the data stored in the application to delete the file URI from the recently accessed data.
 
-**Required Permissions**
-
+**Required Permissions**<br>
 ohos.permission.FILE_ACCESS_PERSIST. For details about how to request the permission, see [Workflow for Requesting Permissions](../security/AccessToken/determine-application-mode.md).
 
 **Example**
@@ -103,7 +102,7 @@ async function revokePermissionExample() {
         });
     } catch (error) {
         let err: BusinessError = error as BusinessError;
-        console.error('revokePermission failed with err: ' + JSON.stringify(err));
+        console.error(`revokePermission failed with err, Error code: ${err.code}, message: ${err.message}`);
     }
 }
 ```
@@ -119,8 +118,7 @@ For details about how to revoke a persistent permission using C/C++ APIs, see [O
 
 Each time an application is started, its persistent permissions have not been loaded to the memory. To make a persistent permission still valid after the application is restarted, use [ohos.fileshare.activatePermission](../reference/apis-core-file-kit/js-apis-fileShare.md#fileshareactivatepermission11) to activate the permission.
 
-**Required Permissions**
-
+**Required Permissions**<br>
 ohos.permission.FILE_ACCESS_PERSIST. For details about how to request the permission, see [Workflow for Requesting Permissions](../security/AccessToken/determine-application-mode.md).
 
 **Example**
@@ -155,10 +153,11 @@ async function activatePermissionExample() {
         });
     } catch (error) {
         let err: BusinessError = error as BusinessError;
-        console.error('activatePermission failed with err: ' + JSON.stringify(err));
+        console.error(`activatePermission failed with err, Error code: ${err.code}, message: ${err.message}`);
     }
 }
 ```
+
 **NOTE**
 > - The URI in the example comes from the permission persistence data stored for the application.
 > - You are advised to activate the persistent permissions based on service requirements. Do not activate all persistent permissions.

@@ -13,14 +13,14 @@ CompletionHandler作为[StartOptions](js-apis-app-ability-startOptions.md)的可
 ## 约束限制
 
 当前支持使用该模块的接口包括：
-- [startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-2)
-- [startAbilityForResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-2)
+- [startAbility](js-apis-inner-application-uiAbilityContext.md#startability-2)
+- [startAbilityForResult](js-apis-inner-application-uiAbilityContext.md#startabilityforresult-2)
 
 <!--Del-->
-- [startAbilityForResultWithAccount](js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstartabilityforresultwithaccount-2)
-- [startAbilityWithAccount](js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstartabilitywithaccount-2)
-- [startRecentAbility](js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstartrecentability-2)
-- [startAbilityAsCaller](js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstartabilityascaller10-2)
+- [startAbilityForResultWithAccount](js-apis-inner-application-uiAbilityContext-sys.md#startabilityforresultwithaccount-2)
+- [startAbilityWithAccount](js-apis-inner-application-uiAbilityContext-sys.md#startabilitywithaccount-2)
+- [startRecentAbility](js-apis-inner-application-uiAbilityContext-sys.md#startrecentability-2)
+- [startAbilityAsCaller](js-apis-inner-application-uiAbilityContext-sys.md#startabilityascaller10-2)
 <!--DelEnd-->
 
 ## 导入模块
@@ -38,6 +38,8 @@ CompletionHandler提供了[onRequestSuccess](#onrequestsuccess)和[onRequestFail
 onRequestSuccess(elementName: ElementName, message: string): void
 
 拉端成功时的回调函数。
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -57,6 +59,8 @@ onRequestSuccess(elementName: ElementName, message: string): void
 onRequestFailure(elementName: ElementName, message: string): void
 
 拉端失败时的回调函数。
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

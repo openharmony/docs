@@ -18,6 +18,7 @@
     ```json
     {
       "app": {
+        //  ...
         "multiAppMode": {
           "multiAppModeType": "multiInstance",
           "maxCount": 5

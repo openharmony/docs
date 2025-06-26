@@ -1,8 +1,10 @@
 # Usage Rules and Constraints for Sendable
 
-## Sendable Classes Must Inherit Only from Other Sendable Classes
+## Inheritance Rules
 
-The layout and prototype chain of Sendable objects are immutable. Non-Sendable objects can modify their layout in special ways, but they cannot inherit from or be inherited by Sendable classes. This rule applies to classes, not variables. In other words, Sendable classes cannot inherit from variables.
+### Sendable Classes Must Inherit Only from Other Sendable Classes
+
+The layout and prototype chain of Sendable objects are immutable, whereas the layout of non-Sendable objects can be modified through special means. Therefore, mutual inheritance is not allowed. Note that this rule applies to classes, not variables; a Sendable class cannot inherit from a variable.
 
 **Correct Example**
 
@@ -20,6 +22,7 @@ class B extends A {
   }
 }
 ```
+<!-- @[counter_example](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/RulesAndRestrictions/inheritonly/src/main/ets/pages/Index.ets) -->
 
 **Incorrect Example**
 
@@ -30,7 +33,7 @@ class A {
 }
 
 @Sendable
-class B extends A {
+class B extends A { // A is not a Sendable class. B cannot inherit it. A compilation error is reported.
   constructor() {
     super()
   }
@@ -38,9 +41,9 @@ class B extends A {
 ```
 
 
-## Non-Sendable Classes Must Inherit Only from Other Non-Sendable Classes
+### Non-Sendable Classes Must Inherit Only from Other Non-Sendable Classes
 
-The layout and prototype chain of Sendable objects are immutable. Since non-Sendable objects can modify their layout in special ways, they cannot inherit from or be inherited by Sendable classes.
+The layout and prototype chain of Sendable objects are immutable, whereas the layout of non-Sendable objects can be modified through special means. Therefore, mutual inheritance is not allowed.
 
 **Correct Example**
 
@@ -56,6 +59,7 @@ class B extends A {
   }
 }
 ```
+<!-- @[counter_example](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/RulesAndRestrictions/inheritedfromnon/src/main/ets/pages/Index.ets) -->
 
 **Incorrect Example**
 
@@ -66,15 +70,16 @@ class A {
   }
 }
 
-class B extends A {
+class B extends A { // A is a Sendable class. B cannot inherit it. A compilation error is reported.
   constructor() {
     super()
   }
 }
 ```
 
+## Interface Implementation Rules
 
-## Non-Sendable Classes Can Only Implement Non-Sendable Interfaces
+### Non-Sendable Classes Cannot Implement Sendable Interfaces
 
 If a non-Sendable class implements a Sendable interface, it may be mistakenly considered as Sendable, leading to incorrect usage.
 
@@ -85,6 +90,7 @@ interface I {};
 
 class B implements I {};
 ```
+<!-- @[counter_example_achieve_non](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/RulesAndRestrictions/achievenon/src/main/ets/pages/Index.ets) -->
 
 **Incorrect Example**
 
@@ -95,13 +101,14 @@ type ISendable = lang.ISendable;
 
 interface I extends ISendable {};
 
-class B implements I {};
+class B implements I {}; // I is a Sendable interface. B cannot implement it. A compilation error is reported.
 ```
 
+## Rules for Member Variables of Sendable Classes/Interfaces
 
-## Member Variables of Sendable Classes/Interfaces Must Be Sendable Data Types 
+### Member Variables Must Be Sendable Data Types
 
-Sendable objects cannot hold non-Sendable data. Therefore, member properties of Sendable objects must be of Sendable data types.
+Sendable objects cannot hold non-Sendable data. Therefore, member properties of Sendable classes or interfaces must be of Sendable data types.
 
 **Correct Example**
 
@@ -113,6 +120,7 @@ class A {
   a: number = 0;
 }
 ```
+<!-- @[counter_example](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/RulesAndRestrictions/variablesupport/src/main/ets/pages/Index.ets) -->
 
 **Incorrect Example**
 
@@ -121,12 +129,12 @@ class A {
 class A {
   constructor() {
   }
-  b: Array<number> = [1, 2, 3] // collections.Array must be used.
+  b: Array<number> = [1, 2, 3] // A compilation error is reported. Use collections.Array instead.
 }
 ```
 
 
-## Member Variables of Sendable Classes/Interfaces Cannot Use the Exclamation Mark (!) for Assertion
+### Member Variables Cannot Use the Exclamation Mark (!) for Assertion
 
 Member properties of Sendable objects must be initialized. The assertion using the exclamation mark (!) allows variables to remain uninitialized. Therefore, using the exclamation mark (!) for assertion is not supported.
 
@@ -140,6 +148,7 @@ class A {
   a: number = 0;
 }
 ```
+<!-- @[counter_example](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/RulesAndRestrictions/variablenotsupported/src/main/ets/pages/Index.ets) -->
 
 **Incorrect Example**
 
@@ -148,12 +157,12 @@ class A {
 class A {
   constructor() {
   }
-  a!: number;
+  a!: number; // A compilation error is reported. The exclamation mark (!) is not supported.
 }
 ```
 
 
-## Member Variables of Sendable Classes/Interfaces Cannot Use Computed Property Names
+### Member Variables Cannot Use Computed Property Names
 
 The layout of Sendable objects is immutable. Computed properties cannot statically determine the object layout, and therefore they cannot be used for Sendable objects.
 
@@ -169,6 +178,7 @@ class A {
     }
 }
 ```
+<!-- @[counter_example](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/RulesAndRestrictions/nocalculationsupport/src/main/ets/pages/Index.ets) -->
 
 **Incorrect Example**
 
@@ -178,13 +188,14 @@ enum B {
 }
 @Sendable
 class A {
-    ["aaa"]: number = 1; // ["aaa"] is allowed in other classes in ets files
-    [B.b1]: number = 2; // [B.b1] is allowed in other classes in ets files
+    ["aaa"]: number = 1; // A compilation error is reported. ["aaa"] is not supported.
+    [B.b1]: number = 2; // A compilation error is reported. [B.b1] is not supported.
 }
 ```
 
+## Generic Rules
 
-## Template Types for Sendable Classes, collections.Array, collections.Map, and collections.Set Must Be Sendable
+### Template Types for Sendable Classes, SendableLruCache, collections.Array, collections.Map, and collections.Set Must Be Sendable
 
 Sendable objects cannot hold non-Sendable data. Therefore, template types for Sendable data in generic classes must be Sendable.
 
@@ -201,6 +212,7 @@ try {
   console.error(`taskpool execute: Code: ${e.code}, message: ${e.message}`);
 }
 ```
+<!-- @[counter_example](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/RulesAndRestrictions/templatetype/src/main/ets/pages/Index.ets) -->
 
 **Incorrect Example**
 
@@ -208,7 +220,7 @@ try {
 import { collections } from '@kit.ArkTS';
 
 try {
-  let arr1: collections.Array<Array<number>> = new collections.Array<Array<number>>();
+  let arr1: collections.Array<Array<number>> = new collections.Array<Array<number>>(); // A compilation error is reported. The template type must be Sendable.
   let arr2: Array<number> = new Array<number>();
   arr2.push(1);
   arr1.push(arr2);
@@ -218,7 +230,9 @@ try {
 ```
 
 
-## Sendable Classes Cannot Use Variables Defined in the Context of the Current Module
+## Context Access Rules
+
+### Sendable Classes Cannot Use Variables Defined in the Context of the Current Module
 
 Sendable objects operate in different concurrent instances with distinct context environments within a single virtual machine instance. Direct access to variables defined in the context of the current module can lead to unexpected behavior. Therefore, Sendable objects cannot use variables defined in the context of the current module. Violations will result in compile-time errors.
 
@@ -253,6 +267,7 @@ class C {
   }
 }
 ```
+<!-- @[counter_example](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/RulesAndRestrictions/notallowedInside/src/main/ets/pages/Index.ets) -->
 
 **Incorrect Example**
 
@@ -288,10 +303,41 @@ let b = new B();
 }
 ```
 
+## Rules for Using the \@Sendable Decorator
 
-## Sendable Classes and Functions Cannot Use Decorators Other Than @Sendable
+### The @Sendable Decorator Can Only Be Used to Decorate Classes and Functions
 
-If a class decorator modifies the class layout and is defined in a .ts file, it can cause runtime errors.
+Currently, only classes and functions can be decorated.
+
+**Correct Example**
+
+```ts
+@Sendable
+type SendableFuncType = () => void;
+
+@Sendable
+class C {}
+
+@Sendable
+function SendableFunc() {
+  console.info("Sendable func");
+}
+```
+<!-- @[counter_example_only_support](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/RulesAndRestrictions/achievenon/src/main/ets/pages/Index.ets) -->
+
+**Incorrect Example**
+
+```ts
+@Sendable
+type A = number; // A compile-time error is reported.
+
+@Sendable
+type D = C; // A compile-time error is reported.
+```
+
+### Sendable Classes and Functions Cannot Use Decorators Other Than @Sendable
+
+If a class decorator is defined in a TS file, the class layout may be modified, causing runtime errors.
 
 **Correct Example**
 
@@ -301,21 +347,23 @@ class A {
   num: number = 1;
 }
 ```
+<!-- @[counter_example](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/RulesAndRestrictions/cannotbeused/src/main/ets/pages/Index.ets) -->
 
 **Incorrect Example**
 
 ```ts
 @Sendable
-@Observed
+@Observed // A compilation error is reported.
 class C {
   num: number = 1;
 }
 ```
 
+## Initialization Rules
 
-## Object Literals/Array Literals Cannot Be Used to Initialize Sendable Types 
+### Object Literals/Array Literals Cannot Be Used to Initialize Sendable Objects
 
-Object literals and array literals are non-Sendable types. Sendable data types can only be created using **new** expressions of Sendable types.
+Object literals and array literals are not Sendable types. Sendable data types must be created using **new** expressions of Sendable types.
 
 **Correct Example**
 
@@ -324,6 +372,7 @@ import { collections } from '@kit.ArkTS';
 
 let arr1: collections.Array<number> = new collections.Array<number>(1, 2, 3); // The type is Sendable.
 ```
+<!-- @[counter_example](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/RulesAndRestrictions/objectliterals/src/main/ets/pages/Index.ets) -->
 
 **Incorrect Example**
 
@@ -335,10 +384,11 @@ let arr3: number[] = [1, 2, 3]; // The type is not Sendable. No error is reporte
 let arr4: number[] = new collections.Array<number>(1, 2, 3); // A compile-time error is reported.
 ```
 
+## Type Conversion Rules
 
-## Non-Sendable Types Cannot Be Cast to Sendable Types Using **as**
+### Non-Sendable Types Cannot Be Cast to Sendable Types
 
-Except for the Object type, non-Sendable types cannot be cast to Sendable types using **as**. Using **as** to cast a non-Sendable type to a Sendable type results in an object that is still non-Sendable, leading to incorrect usage. Sendable types, however, can be cast to non-Sendable types using **as** to maintain compatibility, provided they do not violate Sendable rules.
+Except for the Object type, non-Sendable types cannot be forcibly converted to Sendable types. Using **as** to cast a non-Sendable type to a Sendable type results in an object that is still non-Sendable, leading to incorrect usage. Sendable types, however, can be cast to non-Sendable types using **as** to maintain compatibility, provided they do not violate Sendable rules.
 
 **Correct Example**
 
@@ -354,6 +404,7 @@ class SendableA {
 
 let a1: A = new SendableA() as A;
 ```
+<!-- @[counter_example](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/RulesAndRestrictions/typecannot/src/main/ets/pages/Index.ets) -->
 
 **Incorrect Example**
 
@@ -367,11 +418,12 @@ class SendableA {
   state: number = 0;
 }
 
-let a2: SendableA = new A() as SendableA;
+let a2: SendableA = new A() as SendableA; // A compilation error is reported.
 ```
 
+## Function Rules
 
-## Arrow Functions Are Not Supported for Sharing
+### Arrow Functions Cannot Be Marked as Sendable
 
 Arrow functions do not support the @Sendable decorator and are non-Sendable. Therefore, they cannot be shared.
 
@@ -396,6 +448,7 @@ class SendableClass {
 
 let sendableClass = new SendableClass(SendableFunc);
 ```
+<!-- @[counter_example](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/RulesAndRestrictions/arrowfunctions/src/main/ets/pages/Index.ets) -->
 
 **Incorrect Example**
 
@@ -410,40 +463,7 @@ class SendableClass {
 }
 ```
 
-
-## @Sendable Can Only Be Applied to Function Types
-
-Currently, The @Sendable decorator only supports declaring Sendable function types.
-
-**Correct Example**
-
-```ts
-@Sendable
-type SendableFuncType = () => void;
-```
-
-**Incorrect Example**
-
-```ts
-@Sendable
-type A = number; // A compile-time error is reported.
-
-@Sendable
-class C {}
-
-@Sendable
-type D = C; // A compile-time error is reported.
-```
-
-
-## Notice
-
-
-When using Sendable in HAR, you must enable the configuration for compiling and generating TS files. For details, see [Building TS Files](../quick-start/har-package.md#building-ts-files).
-
-
 ## Rules for Interaction with TS/JS
-
 
 ### ArkTS General Rules (Only for Sendable Objects Currently)
 
@@ -460,6 +480,8 @@ When using Sendable in HAR, you must enable the configuration for compiling and 
 
 ### NAPI Rules (Only for Sendable Objects Currently)
 
+For details about Node-APIs, see [Sendable-related Operations](../napi/use-napi-about-extension.md#sendable-related-operations). For details about how to use the Node-APIs, see [Wrapping a Native Object in a Sendable ArkTS Object](../napi/use-sendable-napi.md).
+
 | Rule|
 | -------- |
 | Do not delete properties. Prohibited interfaces: **napi_delete_property**.|
@@ -470,4 +492,11 @@ When using Sendable in HAR, you must enable the configuration for compiling and 
 
 ## Rules for Interaction with the UI
 
-To observe data changes in Sendable objects when interacting with UI, Sendable data must be used in conjunction with [makeObserved](../quick-start/arkts-new-makeObserved.md). For more information, see [Using makeObserved and @Sendable Decorated Class Together](../quick-start/arkts-new-makeObserved.md#using-makeobserved-and-sendable-decorated-class-together).
+To observe data changes in Sendable objects when interacting with UI, Sendable data must be used in conjunction with [makeObserved](../ui/state-management/arkts-new-makeObserved.md). For more information, see [Using makeObserved and @Sendable Decorated Class Together](../ui/state-management/arkts-new-makeObserved.md#using-makeobserved-and-sendable-decorated-class-together).
+
+
+## Rules for Using Sendable in HARs
+
+When using Sendable in HAR, you must enable the configuration for compiling and generating TS files. For details, see [Building TS Files](../quick-start/har-package.md#building-ts-files).
+
+<!--no_check-->

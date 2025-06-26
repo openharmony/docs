@@ -12,10 +12,10 @@ The **metadataBinding** module provides metadata binding–specific functions su
 import { metadataBinding } from '@kit.MultimodalAwarenessKit';
 ```
 
-## submitMetadata(string)
+## metadataBinding.submitMetadata
 function submitMetadata(metadata: string): void;  
 Transfers the metadata to be encoded to the MSDP. The MSDP determines whether to transfer the metadata to the system application or service that calls the encoding API. 
-**System capability**: SystemCapability.MultimodalAwarness.metadataBinding
+**System capability**: SystemCapability.MultimodalAwareness.metadataBinding
 
 **Parameters**
 
@@ -29,7 +29,7 @@ For details about the error codes, see [Metadata Binding Error Codes](errorcode-
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-|32100001|Internal handling failed. Set Meta data to screenshot app fail.|
+|32100001|Internal handling failed. File creation failed.|
 
 **Example**
 
@@ -45,11 +45,11 @@ try {
 }
 ```
 
-## metadataBinding.on('operationSubmitMetadata', string,  Callback\<number\>)
+## metadataBinding.on('operationSubmitMetadata')
 metadataBinding.on(type: 'operationSubmitMetadata', bundleName: string, callback: Callback\<number\>): void;  
 
 Subscribes to a system event to obtain the encoded metadata. The application needs to register a callback to return the encoded metadata when the registered system event occurs. 
-**System capability**: SystemCapability.MultimodalAwarness.metadataBinding 
+**System capability**: SystemCapability.MultimodalAwareness.metadataBinding 
 **Parameters**
 
 | Name  | Type                            | Mandatory| Description                                                        |
@@ -64,8 +64,8 @@ For details about the error codes, see [Metadata Binding Error Codes](errorcode-
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-|32100001|Internal handling failed. Service exception.|
-|32100004|Subscribe Failed. Possible causes: 1. Abnormal system capability; 2. IPC communication abnormality; 3. Algorithm loading exception.|
+|32100001|Internal handling failed. File creation failed.|
+|32100004|Subscription failed. Possible causes: 1. Abnormal system capability; 2. IPC exception; 3. Algorithm loading exception.|
 
 **Example** 
 ```ts
@@ -85,10 +85,10 @@ try {
 ```
 
 
-## metadataBinding.off('operationSubmitMetadata', string,  Callback\<number\>)
+## metadataBinding.off('operationSubmitMetadata')
 metadataBinding.off(type: 'operationSubmitMetadata', bundleName: string, callback?: Callback\<number>): void;  
 Unsubscribes from system events that are used to obtain the encoded metadata. The respective callback will be unregistered. 
-**System capability**: SystemCapability.MultimodalAwarness.metadataBinding 
+**System capability**: SystemCapability.MultimodalAwareness.metadataBinding 
 **Parameters**
 
 | Name  | Type                            | Mandatory| Description                                                        |
@@ -103,8 +103,8 @@ For details about the error codes, see [Metadata Binding Error Codes](errorcode-
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-|32100001|Internal handling failed. Service exception.|
-|32100005|Unsubscribe Failed. Possible causes: 1. Abnormal system capability; 2. IPC communication abnormality.|
+|32100001|Internal handling failed. File creation failed.|
+|32100005|Unsubscription failed. Possible causes: 1. Abnormal system capability; 2. IPC exception.|
 
 **Example**
 

@@ -109,7 +109,7 @@
 
 2. 获取预览流截图。
 
-   预览流截图通过图形提供的[image.createPixelMapFromSurface](../../reference/apis-image-kit/js-apis-image.md#imagecreatepixelmapfromsurface11)接口实现，surfaceId为当前预览流的surfaceId，size为当前预览流profile的宽高。创建截图工具类(ts文件)，导入依赖，导出获取截图方法供页面使用，截图工具类实现参考：
+   预览流截图通过图形提供的[image.createPixelMapFromSurface](../../reference/apis-image-kit/arkts-apis-image-f.md#imagecreatepixelmapfromsurface11)接口实现，surfaceId为当前预览流的surfaceId，size为当前预览流profile的宽高。创建截图工具类(ts文件)，导入依赖，导出获取截图方法供页面使用，截图工具类实现参考：
 
    ```ts
    export class BlurAnimateUtil {
@@ -241,7 +241,7 @@
 
 5. 实现模糊消失动效。
 
-   模糊消失动效：由新模式预览流首帧回调[on('frameStart')](../../reference/apis-camera-kit/js-apis-camera.md#onframestart)触发，截图组件模糊到清晰，显示新预览流。
+   模糊消失动效：由新模式预览流首帧回调[on('frameStart')](../../reference/apis-camera-kit/arkts-apis-camera-PreviewOutput.md#onframestart)触发，截图组件模糊到清晰，显示新预览流。
 
    ```ts
    hideBlurAnim(): void {
@@ -426,7 +426,7 @@
    }
    ```
 
-   模糊消失动效触发：监听预览流首帧回调[on('frameStart')](../../reference/apis-camera-kit/js-apis-camera.md#onframestart)，更新StorageLink绑定frameStart的值，触发onFrameStart方法，开始动效。
+   模糊消失动效触发：监听预览流首帧回调[on('frameStart')](../../reference/apis-camera-kit/arkts-apis-camera-PreviewOutput.md#onframestart)，更新StorageLink绑定frameStart的值，触发onFrameStart方法，开始动效。
 
    ```ts
    onFrameStart(): void {

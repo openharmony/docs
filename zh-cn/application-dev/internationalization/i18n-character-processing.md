@@ -184,16 +184,16 @@ let breakText: string = iterator.getLineBreakText(); // breakText = 'Apple is my
 
 ### 文件路径镜像处理
 
-文件路径镜像处理是指传入镜像语言时，对文件路径字符串进行本地化处理，实现镜像语言下文件路径的镜像显示效果。使用I18NUtil类的[getUnicodeWrappedFilePath](../reference/apis-localization-kit/js-apis-i18n.md#getunicodewrappedfilepath18)接口可以实现文件路径镜像处理，具体开发步骤如下：
+文件路径镜像处理是指传入镜像语言时，对文件路径字符串进行本地化处理，实现镜像语言下文件路径的镜像显示效果。使用I18NUtil类的[getUnicodeWrappedFilePath](../reference/apis-localization-kit/js-apis-i18n.md#getunicodewrappedfilepath20)接口可以实现文件路径镜像处理，具体开发步骤如下：
 
 1. 导入模块。
    ```ts
-   import { i18n, intl } from '@kit.LocalizationKit';
+   import { i18n } from '@kit.LocalizationKit';
    ```
 
 2. 文件路径镜像处理。
    ```ts
-   let mirrorPath: string = i18n.I18NUtil.getUnicodeWrappedFilePath(path: string, delimiter?: string, locale?: intl.Locale);
+   let mirrorPath: string = i18n.I18NUtil.getUnicodeWrappedFilePath(path: string, delimiter?: string, locale?: Intl.Locale);
    ```
 
 
@@ -201,18 +201,18 @@ let breakText: string = iterator.getLineBreakText(); // breakText = 'Apple is my
 ```ts
 // 导入模块
 import { BusinessError } from '@kit.BasicServicesKit';
-import { i18n, intl } from '@kit.LocalizationKit';
+import { i18n } from '@kit.LocalizationKit';
 
 try {
   // 传入镜像语言，对路径进行镜像处理
   let path: string = 'data/out/tmp';
   let delimiter: string = '/';
-  let locale: intl.Locale = new intl.Locale('ar');
+  let locale: Intl.Locale = new Intl.Locale('ar');
   // mirrorPath = 'tmp/out/data/'
   let mirrorPath: string = i18n.I18NUtil.getUnicodeWrappedFilePath(path, delimiter, locale);
 
   // 传入非镜像语言，不处理路径
-  let localeZh: intl.Locale = new intl.Locale('zh');
+  let localeZh: Intl.Locale = new Intl.Locale('zh');
   // unMirrorPath = '/data/out/tmp'
   let unMirrorPath: string = i18n.I18NUtil.getUnicodeWrappedFilePath(path, delimiter, localeZh);
 } catch (error) {

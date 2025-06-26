@@ -38,7 +38,7 @@ GridCol(option?: GridColOptions)
 
 | 名称 | 类型                                                  | 必填 | 说明                                                         |
 | ------ | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| span   | number \| [GridColColumnOption](#gridcolcolumnoption) | 否   | 栅格子组件占用栅格容器组件的列数。span为0表示该元素不参与布局计算，即不会被渲染。<br/>取值为大于0的整数，默认值为1。|
+| span   | number \| [GridColColumnOption](#gridcolcolumnoption) | 否   | 栅格子组件占用栅格容器组件的列数。span为0表示该元素不参与布局计算，即不会被渲染。<br/>取值为非负整数，默认值为1。|
 | offset | number \| [GridColColumnOption](#gridcolcolumnoption) | 否   | 栅格子组件相对于原本位置偏移的列数。<br/>取值为非负整数，默认值为0。|
 | order  | number \| [GridColColumnOption](#gridcolcolumnoption) | 否   | 元素的序号，根据栅格子组件的序号，从小到大对栅格子组件做排序。<br/>取值为非负整数，默认值为0。<br/>**说明：**<br/>当子组件不设置order或者设置相同的order，子组件按照代码顺序展示。<br/>当子组件部分设置order，部分不设置order时，未设置order的子组件依次排序靠前，设置了order的子组件按照数值从小到大排列。|
 
@@ -63,7 +63,7 @@ span(value: number | GridColColumnOption)
 
 | 参数名 | 类型                                                         | 必填 | 说明                     |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------ |
-| value  | number&nbsp;\|&nbsp;[GridColColumnOption](#gridcolcolumnoption) | 是   | 占用列数。<br/>取值为大于0的整数，默认值为1。 |
+| value  | number&nbsp;\|&nbsp;[GridColColumnOption](#gridcolcolumnoption) | 是   | 占用列数。<br/>取值为非负整数，默认值为1。 |
 
 ### gridColOffset
 
@@ -81,7 +81,7 @@ gridColOffset(value: number | GridColColumnOption)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                             |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------ |
-| value  | number&nbsp;\|&nbsp;[GridColColumnOption](#gridcolcolumnoption) | 是   | 相对于前一个栅格子组件偏移的列数。<br/>取值为大于0的整数，默认值：0 |
+| value  | number&nbsp;\|&nbsp;[GridColColumnOption](#gridcolcolumnoption) | 是   | 相对于前一个栅格子组件偏移的列数。<br/>取值为非负整数，默认值：0 |
 
 ### order
 
@@ -99,7 +99,7 @@ order(value: number | GridColColumnOption)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | number&nbsp;\|&nbsp;[GridColColumnOption](#gridcolcolumnoption) | 是   | 元素的序号，根据栅格子组件的序号，从小到大对栅格子组件做排序。<br/>取值为大于0的整数，默认值：0 |
+| value  | number&nbsp;\|&nbsp;[GridColColumnOption](#gridcolcolumnoption) | 是   | 元素的序号，根据栅格子组件的序号，从小到大对栅格子组件做排序。<br/>取值为非负整数，默认值：0 |
 
 ## GridColColumnOption
 

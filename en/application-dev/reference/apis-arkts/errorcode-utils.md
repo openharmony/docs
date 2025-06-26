@@ -842,3 +842,111 @@ When [crypto](js-apis-arkts-decimal.md#decimalconfig) of **Decimal** is set or t
 Use [Decimal.set](js-apis-arkts-decimal.md#set) to cancel the encryption algorithm.
 
 Example: Decimal.set({crypto: false})
+
+## 10200062 XML Cumulative Length Exceeded
+
+**Error Message**
+
+The cumulative length of xml has exceeded the upper limit 100000.
+
+**Description**
+
+The cumulative length of XML characters has exceeded the upper limit of 100,000.
+
+**Possible Causes**
+
+The total length of parameters set in the called API exceeds the upper limit of 100,000.
+
+**Solution**
+
+Reduce the length of the parameters set in the current API.
+
+## 10200063 XML Declaration or Attribute Position Error
+
+**Error Message**
+
+Illegal position for xml.
+
+**Description**
+
+The XML file declaration or attribute position is incorrect.
+
+**Possible Causes**
+
+The element positions are not set according to the XML standard format.
+
+**Solution**
+
+Set the element positions according to the XML standard.
+
+## 10200064 Input String Cannot Be Empty
+
+**Error Message**
+
+Cannot be an empty string.
+
+**Description**
+
+The input string cannot be empty.
+
+**Possible Causes**
+
+The input string is empty.
+
+**Solution**
+
+Provide a valid non-empty string as input.
+
+## 10200065 Mismatched Element Start and End Tags
+
+**Error Message**
+
+There is no match between the startElement and the endElement.
+
+**Description**
+
+The start tag and end tag of an element are not properly matched.
+
+**Possible Causes**
+
+The end tag is written before the start tag.
+
+**Solution**
+
+Write the start tag before the end tag.
+
+## 10200066 Incorrect Encoding Format
+
+**Error Message**
+
+Incorrect encoding format, only support utf-8.
+
+**Description**
+
+The encoding format is incorrect. Only UTF-8 is supported.
+
+**Possible Causes**
+
+The encoding format is not UTF-8.
+
+**Solution**
+
+Change the encoding format to UTF-8.
+
+## 10200068 Using a Released or Detached ArrayBuffer
+
+**Error Message**
+
+The underlying ArrayBuffer is null or detach.
+
+**Description**
+
+An ArrayBuffer that has been released or detached is being used.
+
+**Possible Causes**
+
+The ArrayBuffer has been detached, or the ArrayBuffer is null.
+
+**Solution**
+
+Ensure that the ArrayBuffer being used is available. If you are not sure, capture exceptions.

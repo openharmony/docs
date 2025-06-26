@@ -85,7 +85,7 @@
         Location_BasicInfo baseInfo = OH_LocationInfo_GetBasicInfo(location);
         char additionalInfo[1024] = "";
         Location_ResultCode result = OH_LocationInfo_GetAdditionalInfo(location, additionalInfo, sizeof(additionalInfo));
-        if (mydata == userdata) {
+        if (mydata == userData) {
             OH_LOG_INFO(LOG_APP, "userData is mydata");
         }
         return;

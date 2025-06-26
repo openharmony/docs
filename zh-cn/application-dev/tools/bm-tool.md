@@ -65,6 +65,8 @@ bm install -p /data/app/ohos.app.hap -r
 bm install -s xxx.hsp
 # 同时安装使用方应用和其依赖的应用间共享库
 bm install -p aaa.hap -s xxx.hsp yyy.hsp
+# 同时安装HAP和应用内共享库
+bm install -p /data/app/
 # 安装一个hap,等待时间为10s
 bm install -p /data/app/ohos.app.hap -w 10
 ```
@@ -106,7 +108,7 @@ bm uninstall -n com.ohos.app -k
 ## 查询应用信息命令（dump）
 
 ```bash
-bm dump [-h] [-a] [-g] [-n bundleName] [-s shortcutInfo] [-d deviceId]
+bm dump [-h] [-a] [-g] [-n bundleName] [-s shortcutInfo] [-d deviceId] [-l label]
 ```
 
   **查询命令参数列表**
@@ -119,6 +121,7 @@ bm dump [-h] [-a] [-g] [-n bundleName] [-s shortcutInfo] [-d deviceId]
 | -n | 可选参数，查询指定Bundle名称的详细信息。 |
 | -s | 可选参数，查询指定Bundle名称下的快捷方式信息。 |
 | -d | 可选参数，查询指定设备中的包信息。默认查询当前设备。 |
+| -l | 可选参数，查询指定Bundle名称的label值（应用的名称），需要与-n或者-a参数组合使用。 |
 
 
 示例：
@@ -134,6 +137,10 @@ bm dump -n com.ohos.app
 bm dump -s -n com.ohos.app
 # 查询跨设备应用信息
 bm dump -n com.ohos.app -d xxxxx
+# 查询该应用的label值（应用的名称）
+bm dump -n com.ohos.app -l
+# 显示所有已安装应用的bundle名称和label值（应用的名称）
+bm dump -a -l
 ```
 
 ## 清理命令（clean）
@@ -453,7 +460,7 @@ bm install-plugin -n com.ohos.app -p /data/plugin.hsp
 > **说明：**
 >
 > 在同一个应用中安装同一个插件，则视作插件版本更新，插件不支持降级安装；插件版本更新后，需要重启应用插件才能生效。
-> 
+>
 > 不推荐安装与宿主应用模块同名的插件，目前运行态暂不支持。
 
 
@@ -962,11 +969,11 @@ error: signature verification failed due to not trusted app source.
       //UDID获取命令
       hdc shell bm get -u
     ```
-    
-    2. 打开IDE安装路径，在sdk目录下找到UnsgnedDebugProfileTemplate.json配置文件。
+
+    2. 打开DevEco Studio安装路径，在sdk目录下找到UnsgnedDebugProfileTemplate.json配置文件。
 
     ```
-      IDE安装路径\sdk\版本号或者default\openharmony\toolchains\lib\
+      DevEco Studio安装路径\sdk\版本号或者default\openharmony\toolchains\lib\
 
       例如：xxxx\Huawei\DevEco Studio\sdk\HarmonyOS-NEXT-DB1\openharmony\toolchains\lib\
       例如：xxxx\Huawei\DevEco Studio\sdk\default\openharmony\toolchains\lib\
@@ -1012,12 +1019,13 @@ error: install failed due to insufficient disk memory.
 **处理步骤**
 
 查看设备存储空间并清理，保证满足安装所需空间，再重试安装应用。
-
+<!--RP4-->
 ```bash
 # 查看磁盘空间使用情况
 hdc shell df -h /system
 hdc shell df -h /data
 ```
+<!--RP4End-->
 
 
 ### 9568289 权限请求失败导致安装失败
@@ -1099,7 +1107,7 @@ error: install failed due to apptype not same.
 应用已安装HAP包和待安装HAP包包名一致，但签名文件中app-feature配置不一致。
 
 **处理步骤**
-  
+
 * 方案1：卸载已安装的HAP包，再安装新的HAP包。
 * 方案2：修改待安装HAP包的签名文件中的app-feature字段，确保与已安装包配置一致，重新打包、签名[应用/元服务签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing)，再重试安装。<!--DelEnd-->
 
@@ -1161,8 +1169,8 @@ error: install sign info inconsistent.
 
 **可能原因**
 
-1. 设备上已安装的应用与新安装的应用中签名不一致或者多个包（HAP和HSP）之间的签名存在差异。如果在“Edit Configurations”中勾选了“Keep Application Data”（即不卸载应用，直接覆盖安装），并且重新进行了签名，将导致该报错。
-2. 如果某个应用被卸载但是保留了数据，那么后面安装相同包名的应用时，需要校验其身份信息的一致性。如果两者的签名信息皆不一致，则会导致该报错。
+1. 设备上已安装的应用与新安装的应用中签名不一致或者多个包（HAP和HSP）之间的签名存在差异。若两个应用的签名[密钥](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section462703710326)或[APP ID](https://developer.huawei.com/consumer/cn/doc/app/agc-help-createharmonyapp-0000001945392297)中至少有一项相同，则认为它们的签名一致。如果在DevEco Studio的“Edit Configurations”中勾选了“Keep Application Data”（即不卸载应用，直接覆盖安装），并且重新进行了签名，将导致该报错。
+2. 如果某个应用被卸载但是保留了数据，那么后面安装相同包名的应用时，需要校验其签名信息的一致性。如果两者签名信息中的[密钥](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section462703710326)和[APP ID](https://developer.huawei.com/consumer/cn/doc/app/agc-help-createharmonyapp-0000001945392297)都不一致，则会导致该报错。
 
 
 **处理步骤**
@@ -1227,16 +1235,18 @@ error: install parse unexpected.
 
 **可能原因**
 
-* 场景一：设备system分区存储空间已满，导致hdc file send文件后，因存储空间不足导致设备中文件损坏。
+* 场景一：设备存储空间已满，导致hdc file send文件后，因存储空间不足导致设备中文件损坏。
 
 * 场景二：推送HAP包到设备过程HAP包损坏。
 
 **处理步骤**
 
-* 场景一：查看设备system分区存储空间，若已满，清理存储满足安装所需空间。
+* 场景一：查看设备存储空间，若已满，清理存储满足安装所需空间。
+<!--RP4-->
   ```bash
   hdc shell df -h /system
   ```
+<!--RP4End-->
 
 * 场景二：查看本地HAP与推送到设备上HAP的md5值，若不一致则表示推送过程HAP损毁，请尝试重传。
 
@@ -2340,7 +2350,7 @@ error: bundle cannot be installed because the appId is not same with preinstalle
 **处理步骤**
 
 1. 重新签名，保证应用签名信息中的[密钥](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section462703710326)和[APP ID](https://developer.huawei.com/consumer/cn/doc/app/agc-help-createharmonyapp-0000001945392297)任意一个与预置应用的一致。
-2. 修改安装应用的[bundleName](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/app-configuration-file.md)，确保与预置应用的不一致。
+2. 修改安装应用的[bundleName](../quick-start/app-configuration-file.md)，确保与预置应用的不一致。
 
 ### 9568418 应用设置了卸载处置规则，不允许直接卸载
 **错误信息**
@@ -2489,7 +2499,8 @@ error: Failed to install the plugin because host application check permission fa
 **处理步骤**
 
 1. 参考[权限申请指导](../security/AccessToken/declare-permissions.md)申请[ohos.permission.kernel.SUPPORT_PLUGIN权限](../security/AccessToken/restricted-permissions.md#ohospermissionkernelsupport_plugin)。
-<!--Del-->2. 该权限等级为system_basic，若[应用APL等级](../security/AccessToken/app-permission-mgmt-overview.md#权限机制)低于system_basic，请[申请受限权限](../security/AccessToken/declare-permissions-in-acl.md)。
+<!--Del-->
+2. 该权限等级为system_basic，若[应用APL等级](../security/AccessToken/app-permission-mgmt-overview.md#权限机制中的基本概念)低于system_basic，请[申请受限权限](../security/AccessToken/declare-permissions-in-acl.md)。
 <!--DelEnd-->
 
 
@@ -2510,7 +2521,7 @@ error: Install failed due to hap moduleName is empty.
 
 检查[module.json5](../quick-start/module-configuration-file.md)的name字段是否为空。
 
-### 9568331 签名信息不一致 
+### 9568331 签名信息不一致
 **错误信息**
 
 error: Install incompatible signature info.
@@ -2657,23 +2668,29 @@ error: install parse native so failed.
 
 1. 将设备或模拟器与DevEco Studio进行连接，具体指导及要求可查看[运行应用/元服务](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-running-app)。
 
-2. 在命令行执行如下[hdc命令](#环境要求hdc工具)，查询设备支持的Abi列表，返回结果为default/armeabi-v7a/armeabi/arm64-v8a/x86/x86_64中的一个或多个Abi类型。
+2. 在命令行执行如下[hdc命令](#环境要求hdc工具)，查询设备支持的Abi列表。
 
     ```
     hdc shell
     param get const.product.cpu.abilist
     ```
 3. 根据查询返回结果，检查[模块级build-profile.json5](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-hvigor-build-profile)文件中的[“abiFilters”参数](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ohos-abi#%E5%9C%A8%E7%BC%96%E8%AF%91%E6%9E%B6%E6%9E%84%E4%B8%AD%E6%8C%87%E5%AE%9Aabi)中的配置，规则如下：
+
+    <!--Del-->
     * 若返回结果为default，请执行如下命令，查询是否存在lib64文件夹。
+    <!--RP4-->
       ```
       cd /system/
       ls
       ```
+    <!--RP4End-->
       ![示例图](figures/zh-cn_image_0000001609001262.png)
       * 存在lib64文件夹：则“abiFilters”参数中需要包含arm64-v8a类型。
-      * 不存在lib64文件夹：则“abiFilters”参数中需要至少包含armeabi/armeabi-v7a中的一个类型。
-    * 若返回结果为armeabi-v7a/armeabi/arm64-v8a/x86/x86_64中的一个或多个，需要在“abiFilters”参数中至少包含返回结果中的一个Abi类型。
+      * 不存在lib64文件夹：则“abiFilters”参数中需要至少包含armeabi/armeabi-v7a中的一个类型。<!--DelEnd-->
 
+
+
+    * 若返回结果为armeabi-v7a/armeabi/arm64-v8a/x86/x86_64中的一个或多个，需要在“abiFilters”参数中至少包含返回结果中的一个Abi类型。
 
 ### 9568348 解析 ark native SO文件失败
 
@@ -2864,3 +2881,21 @@ error: Install failed due to the U1Enabled is not same in all haps.
 **处理步骤**
 
 重新签名，签名过程中，请参考[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section9786111152213)的支持ACL权限、或者[手动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section157591551175916)的使用ACL的签名配置指导进行配置，使多个HAP包签名信息中allowed-acls的U1Enabled信息一致。
+
+<!--Del-->
+## 常见问题
+
+### 1. 预置系统应用已经卸载，重新安装应用时在特定场景下会报错：降级安装或者签名信息不一致
+
+**问题描述**
+
+应用已经卸载了，重新安装时报错降级安装或者签名信息不一致，但桌面上会出现对应的应用图标，能正常拉起。
+
+**可能原因**
+
+针对已卸载的预置系统应用增强了安全管控能力，安装一个相同bundleName的应用时，系统侧会先恢复预置镜像版本中的应用，然后再继续安装传入的应用。
+
+**处理步骤**
+
+根据报错信息和错误码进行处理。
+<!--DelEnd-->

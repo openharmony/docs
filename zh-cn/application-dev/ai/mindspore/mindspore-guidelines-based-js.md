@@ -51,7 +51,7 @@
 
 1. 此处以获取相册图片为例，调用[@ohos.file.picker](../../reference/apis-core-file-kit/js-apis-file-picker.md) 实现相册图片文件的选择。
 
-2. 根据模型的输入尺寸，调用[@ohos.multimedia.image](../../reference/apis-image-kit/js-apis-image.md) （实现图片处理）、[@ohos.file.fs](../../reference/apis-core-file-kit/js-apis-file-fs.md) （实现基础文件操作） API对选择图片进行裁剪、获取图片buffer数据，并进行标准化处理。
+2. 根据模型的输入尺寸，调用[@ohos.multimedia.image](../../reference/apis-image-kit/arkts-apis-image.md) （实现图片处理）、[@ohos.file.fs](../../reference/apis-core-file-kit/js-apis-file-fs.md) （实现基础文件操作） API对选择图片进行裁剪、获取图片buffer数据，并进行标准化处理。
 
    ```ts
    // Index.ets
@@ -359,7 +359,9 @@ struct Index {
 
 在设备上，点击photo按钮，选择相册中的一张图片，点击确定。在图片下方显示此图片占比前4的分类信息。
 
-<img src="figures/step1.png" width="20%"/>     <img src="figures/step2.png" width="20%"/>     <img src="figures/step3.png" width="20%"/>     <img src="figures/step4.png" width="20%"/>
+![step1](figures/step1.png)         ![step2](figures/step2.png)  
+
+![step3](figures/step3.png)         ![step4](figures/step4.png) 
 
 ## 相关实例
 

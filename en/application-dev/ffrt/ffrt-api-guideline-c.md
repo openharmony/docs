@@ -537,6 +537,50 @@ Submits a common task that supports attribute settings. After the input dependen
     }
     ```
 
+### ffrt_submit_f
+
+#### Declaration
+
+```c
+FFRT_C_API void ffrt_submit_f(ffrt_function_t func, void* arg, const ffrt_deps_t* in_deps, const ffrt_deps_t* out_deps, const ffrt_task_attr_t* attr);
+```
+
+#### Parameters
+
+- `func`: specified task function.
+- `arg`: parameter passed to the task function.
+- `in_deps`: input data dependency of a task. It is usually expressed as the actual data address. `ffrt_task_handle_t` can also be used as a special input dependency.
+- `out_deps`: output data dependency of a task. It is usually expressed as the actual data address. `ffrt_task_handle_t` is not supported.
+- `attr`: task attribute.
+
+#### Description
+
+`ffrt_submit_f` is a simplified form of `ffrt_submit_base`. When the callback function does not need to be destroyed, the API packages the task function and its parameters into a common task structure. Then, `ffrt_submit_base` is called to submit the task.
+
+#### Example
+
+```cpp
+#include <stdio.h>
+#include "ffrt/task.h"
+
+// Function to be submitted for execution.
+void OnePlusForTest(void* arg)
+{
+    (*static_cast<int*>(arg)) += 1;
+}
+
+int main()
+{
+    int a = 0;
+    ffrt_submit_f(OnePlusForTest, &a, NULL, NULL, NULL);
+
+    ffrt_wait();
+
+    printf("a = %d\n", a);
+    return 0;
+}
+```
+
 ### ffrt_submit_h_base
 
 #### Declaration
@@ -572,6 +616,59 @@ func->destroy = after_foo;
 ffrt_task_handle_t t = ffrt_submit_h_base(func, NULL, NULL, NULL);
 // Note that ffrt_task_handle_t of the C API needs to be explicitly destroyed by calling ffrt_task_handle_destroy.
 ffrt_task_handle_destroy(t);
+```
+
+### ffrt_submit_h_f
+
+#### Declaration
+
+```c
+typedef void* ffrt_task_handle_t;
+
+FFRT_C_API ffrt_task_handle_t ffrt_submit_h_f(ffrt_function_t func, void* arg, const ffrt_deps_t* in_deps, const ffrt_deps_t* out_deps, const ffrt_task_attr_t* attr);
+```
+
+#### Parameters
+
+- `func`: specified task function.
+- `arg`: parameter passed to the task function.
+- `in_deps`: input data dependency of a task. It is usually expressed as the actual data address. `ffrt_task_handle_t` can also be used as a special input dependency.
+- `out_deps`: output data dependency of a task. It is usually expressed as the actual data address. `ffrt_task_handle_t` is not supported.
+- `attr`: task attribute.
+
+#### Return Values
+
+- `ffrt_task_handle_t` task handle.
+
+#### Description
+
+Adds the return value of the task handle compared with `ffrt_submit_f`.
+
+#### Example
+
+```cpp
+#include <stdio.h>
+#include <vector>
+#include "ffrt/task.h"
+
+// Function to be submitted for execution.
+void OnePlusForTest(void* arg)
+{
+    (*static_cast<int*>(arg)) += 1;
+}
+
+int main()
+{
+    int a = 0;
+    ffrt_task_handle_t task = ffrt_submit_h_f(OnePlusForTest, &a, NULL, NULL, NULL);
+
+    const std::vector<ffrt_dependence_t> wait_deps = {{ffrt_dependence_task, task}};
+    ffrt_deps_t wait{static_cast<uint32_t>(wait_deps.size()), wait_deps.data()};
+    ffrt_wait_deps(&wait);
+
+    printf("a = %d\n", a);
+    return 0;
+}
 ```
 
 ### ffrt_task_handle_inc_ref
@@ -795,7 +892,7 @@ Configures queue attributes, such as the QoS, timeout, callback function, and ma
 ##### ffrt_queue_attr_init
 
 ```c
-int ffrt_queue_attr_init(ffrt_queue_attr_t* attr)
+int ffrt_queue_attr_init(ffrt_queue_attr_t* attr);
 ```
 
 Parameters
@@ -813,7 +910,7 @@ Description
 ##### ffrt_queue_attr_destroy
 
 ```c
-void ffrt_queue_attr_destroy(ffrt_queue_attr_t* attr)
+void ffrt_queue_attr_destroy(ffrt_queue_attr_t* attr);
 ```
 
 Parameters
@@ -827,7 +924,7 @@ Description
 ##### ffrt_queue_attr_set_qos
 
 ```c
-void ffrt_queue_attr_set_qos(ffrt_queue_attr_t* attr, ffrt_qos_t qos)
+void ffrt_queue_attr_set_qos(ffrt_queue_attr_t* attr, ffrt_qos_t qos);
 ```
 
 Parameters
@@ -842,7 +939,7 @@ Description
 ##### ffrt_queue_attr_get_qos
 
 ```c
-ffrt_qos_t ffrt_queue_attr_get_qos(const ffrt_queue_attr_t* attr)
+ffrt_qos_t ffrt_queue_attr_get_qos(const ffrt_queue_attr_t* attr);
 ```
 
 Parameters
@@ -860,7 +957,7 @@ Description
 ##### ffrt_queue_attr_set_timeout
 
 ```c
-void ffrt_queue_attr_set_timeout(ffrt_queue_attr_t* attr, uint64_t timeout_us)
+void ffrt_queue_attr_set_timeout(ffrt_queue_attr_t* attr, uint64_t timeout_us);
 ```
 
 Parameters
@@ -875,7 +972,7 @@ Description
 ##### ffrt_queue_attr_get_timeout
 
 ```c
-uint64_t ffrt_queue_attr_get_timeout(const ffrt_queue_attr_t* attr)
+uint64_t ffrt_queue_attr_get_timeout(const ffrt_queue_attr_t* attr);
 ```
 
 Parameters
@@ -893,7 +990,7 @@ Description
 ##### ffrt_queue_attr_set_callback
 
 ```c
-void ffrt_queue_attr_set_callback(ffrt_queue_attr_t* attr, ffrt_function_header_t* f)
+void ffrt_queue_attr_set_callback(ffrt_queue_attr_t* attr, ffrt_function_header_t* f);
 ```
 
 Parameters
@@ -908,7 +1005,7 @@ Description
 ##### ffrt_queue_attr_get_callback
 
 ```c
-ffrt_function_header_t* ffrt_queue_attr_get_callback(const ffrt_queue_attr_t* attr)
+ffrt_function_header_t* ffrt_queue_attr_get_callback(const ffrt_queue_attr_t* attr);
 ```
 
 Parameters
@@ -926,7 +1023,7 @@ Description
 ##### ffrt_queue_attr_set_max_concurrency
 
 ```c
-void ffrt_queue_attr_set_max_concurrency(ffrt_queue_attr_t* attr, const int max_concurrency)
+void ffrt_queue_attr_set_max_concurrency(ffrt_queue_attr_t* attr, const int max_concurrency);
 ```
 
 Parameters
@@ -941,7 +1038,7 @@ Description
 ##### ffrt_queue_attr_get_max_concurrency
 
 ```c
-int ffrt_queue_attr_get_max_concurrency(const ffrt_queue_attr_t* attr)
+int ffrt_queue_attr_get_max_concurrency(const ffrt_queue_attr_t* attr);
 ```
 
 Parameters
@@ -1001,7 +1098,7 @@ Pointer to queues. It provides a series of C APIs for submitting, canceling, and
 ##### ffrt_queue_create
 
 ```c
-ffrt_queue_t ffrt_queue_create(ffrt_queue_type_t type, const char* name, const ffrt_queue_attr_t* attr)
+ffrt_queue_t ffrt_queue_create(ffrt_queue_type_t type, const char* name, const ffrt_queue_attr_t* attr);
 ```
 
 Parameters
@@ -1021,7 +1118,7 @@ Description
 ##### ffrt_queue_destroy
 
 ```c
-void ffrt_queue_destroy(ffrt_queue_t queue)
+void ffrt_queue_destroy(ffrt_queue_t queue);
 ```
 
 Parameters
@@ -1035,7 +1132,7 @@ Description
 ##### ffrt_queue_submit
 
 ```c
-void ffrt_queue_submit(ffrt_queue_t queue, ffrt_function_header_t* f, const ffrt_task_attr_t* attr)
+void ffrt_queue_submit(ffrt_queue_t queue, ffrt_function_header_t* f, const ffrt_task_attr_t* attr);
 ```
 
 Parameters
@@ -1048,10 +1145,27 @@ Description
 
 - Submits a task to a queue.
 
+##### ffrt_queue_submit_f
+
+```c
+void ffrt_queue_submit_f(ffrt_queue_t queue, ffrt_function_t func, void* arg, const ffrt_task_attr_t* attr);
+```
+
+Parameters
+
+- `queue`: queue handle.
+- `func`: specified task function.
+- `arg`: parameter passed to the task function.
+- `attr`: task attribute.
+
+Description
+
+- Submits a task to the queue when the callback function does not need to be destroyed.
+
 ##### ffrt_queue_submit_h
 
 ```c
-ffrt_task_handle_t ffrt_queue_submit_h(ffrt_queue_t queue, ffrt_function_header_t* f, const ffrt_task_attr_t* attr)
+ffrt_task_handle_t ffrt_queue_submit_h(ffrt_queue_t queue, ffrt_function_header_t* f, const ffrt_task_attr_t* attr);
 ```
 
 Parameters
@@ -1068,10 +1182,31 @@ Description
 
 - Submits a task to a queue and returns a task handle.
 
+##### ffrt_queue_submit_h_f
+
+```c
+ffrt_task_handle_t ffrt_queue_submit_h_f(ffrt_queue_t queue, ffrt_function_t func, void* arg, const ffrt_task_attr_t* attr);
+```
+
+Parameters
+
+- `queue`: queue handle.
+- `func`: specified task function.
+- `arg`: parameter passed to the task function.
+- `attr`: task attribute.
+
+Return Values
+
+- `ffrt_task_handle_t`: If the function is called successfully, a non-null task handle is returned. Otherwise, a null pointer is returned.
+
+Description
+
+- Submits a task to the queue and returns the task handle when the callback function does not need to be destroyed.
+
 ##### ffrt_queue_wait
 
 ```c
-void ffrt_queue_wait(ffrt_task_handle_t handle)
+void ffrt_queue_wait(ffrt_task_handle_t handle);
 ```
 
 Parameters
@@ -1085,7 +1220,7 @@ Description
 ##### ffrt_queue_cancel
 
 ```c
-int ffrt_queue_cancel(ffrt_task_handle_t handle)
+int ffrt_queue_cancel(ffrt_task_handle_t handle);
 ```
 
 Parameters
@@ -1493,8 +1628,8 @@ FFRT_C_API int ffrt_rwlock_init(ffrt_rwlock_t* rwlock, const ffrt_rwlockattr_t* 
 
 Parameters
 
-- `rwlock`: pointer to the operated RW lock.
-- `attr`: pointer to the RW lock attribute.
+- `rwlock`: pointer to the operated read-write lock.
+- `attr`: pointer to the read-write lock attribute.
 
 Return Values
 
@@ -1502,7 +1637,7 @@ Return Values
 
 Description
 
-- Initializes the RW lock.
+- Initializes the read-write lock.
 
 ##### ffrt_rwlock_wrlock
 
@@ -1512,7 +1647,7 @@ FFRT_C_API int ffrt_rwlock_wrlock(ffrt_rwlock_t* rwlock);
 
 Parameters
 
-- `rwlock`: pointer to the operated RW lock.
+- `rwlock`: pointer to the operated read-write lock.
 
 Return Values
 
@@ -1520,7 +1655,7 @@ Return Values
 
 Description
 
-- Adds a write lock to the specified RW lock.
+- Adds a write lock to the specified read-write lock.
 
 ##### ffrt_rwlock_rdlock
 
@@ -1530,7 +1665,7 @@ FFRT_C_API int ffrt_rwlock_rdlock(ffrt_rwlock_t* rwlock);
 
 Parameters
 
-- `rwlock`: pointer to the operated RW lock.
+- `rwlock`: pointer to the operated read-write lock.
 
 Return Values
 
@@ -1538,7 +1673,7 @@ Return Values
 
 Description
 
-- Adds a read lock to the specified RW lock.
+- Adds a read lock to the specified read-write lock.
 
 ##### ffrt_rwlock_trywrlock
 
@@ -1548,15 +1683,15 @@ FFRT_C_API int ffrt_rwlock_trywrlock(ffrt_rwlock_t* rwlock);
 
 Parameters
 
-- `rwlock`: pointer to the operated RW lock.
+- `rwlock`: pointer to the operated read-write lock.
 
 Return Values
 
-- `ffrt_success` is returned if `rwlock` is not empty and no other thread holds the RW lock. Otherwise, `ffrt_error_inval` is returned.
+- `ffrt_success` is returned if `rwlock` is not empty and no other thread holds the read-write lock. Otherwise, `ffrt_error_inval` is returned.
 
 Description
 
-- Adds a write lock to the specified RW lock.
+- Adds a write lock to the specified read-write lock.
 
 ##### ffrt_rwlock_tryrdlock
 
@@ -1566,7 +1701,7 @@ FFRT_C_API int ffrt_rwlock_tryrdlock(ffrt_rwlock_t* rwlock);
 
 Parameters
 
-- `rwlock`: pointer to the operated RW lock.
+- `rwlock`: pointer to the operated read-write lock.
 
 Return Values
 
@@ -1574,7 +1709,7 @@ Return Values
 
 Description
 
-- Adds a read lock to the specified RW lock.
+- Adds a read lock to the specified read-write lock.
 
 ##### ffrt_rwlock_unlock
 
@@ -1584,7 +1719,7 @@ FFRT_C_API int ffrt_rwlock_unlock(ffrt_rwlock_t* rwlock);
 
 Parameters
 
-- `rwlock`: pointer to the operated RW lock.
+- `rwlock`: pointer to the operated read-write lock.
 
 Return Values
 
@@ -1592,7 +1727,7 @@ Return Values
 
 Description
 
-- Unlocks the specified RW lock.
+- Unlocks the specified read-write lock.
 
 ##### ffrt_rwlock_destroy
 
@@ -1602,7 +1737,7 @@ FFRT_C_API int ffrt_rwlock_destroy(ffrt_rwlock_t* rwlock);
 
 Parameters
 
-- `rwlock`: pointer to the operated RW lock.
+- `rwlock`: pointer to the operated read-write lock.
 
 Return Values
 
@@ -1610,7 +1745,7 @@ Return Values
 
 Description
 
-- Destroys a specified RW lock.
+- Destroys a specified read-write lock.
 
 #### Example
 

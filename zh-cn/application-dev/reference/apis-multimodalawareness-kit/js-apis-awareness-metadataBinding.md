@@ -12,10 +12,10 @@
 import { metadataBinding } from '@kit.MultimodalAwarenessKit';
 ```
 
-## submitMetadata(string)
+## metadataBinding.submitMetadata
 function submitMetadata(metadata: string): void;  
 第三方应用将需要编码的内容传递给MSDP，MSDP决定适时将内容传递给调用编码接口的系统应用或服务。  
-**系统能力**：SystemCapability.MultimodalAwarness.metadataBinding
+**系统能力**：SystemCapability.MultimodalAwareness.metadataBinding
 
 **参数**：
 
@@ -29,7 +29,7 @@ function submitMetadata(metadata: string): void;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-|32100001|Internal handling failed. Set Meta data to screenshot app fail.|
+|32100001|Internal handling failed. File creation failed.|
 
 **示例**：
 
@@ -45,11 +45,11 @@ try {
 }
 ```
 
-## metadataBinding.on('operationSubmitMetadata', string,  Callback\<number\>)
+## metadataBinding.on('operationSubmitMetadata')
 metadataBinding.on(type: 'operationSubmitMetadata', bundleName: string, callback: Callback\<number\>): void;  
 
 订阅系统事件以获取编码内容，应用注册回调，事件发生时回传编码内容。  
-**系统能力**：SystemCapability.MultimodalAwarness.metadataBinding  
+**系统能力**：SystemCapability.MultimodalAwareness.metadataBinding  
 **参数**： 
 
 | 参数名   | 类型                             | 必填 | 说明                                                         |
@@ -64,8 +64,8 @@ metadataBinding.on(type: 'operationSubmitMetadata', bundleName: string, callback
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-|32100001|Internal handling failed. Service exception.|
-|32100004|Subscribe Failed. Possible causes: 1. Abnormal system capability; 2. IPC communication abnormality; 3. Algorithm loading exception.|
+|32100001|Internal handling failed. File creation failed.|
+|32100004|Subscription failed. Possible causes: 1. Abnormal system capability; 2. IPC exception; 3. Algorithm loading exception.|
 
 **示例：**  
 ```ts
@@ -85,10 +85,10 @@ try {
 ```
 
 
-## metadataBinding.off('operationSubmitMetadata', string,  Callback\<number\>)
+## metadataBinding.off('operationSubmitMetadata')
 metadataBinding.off(type: 'operationSubmitMetadata', bundleName: string, callback?: Callback\<number>): void;  
 取消订阅系统获取编码内容的事件。取消注册回调接口。  
-**系统能力**：SystemCapability.MultimodalAwarness.metadataBinding  
+**系统能力**：SystemCapability.MultimodalAwareness.metadataBinding  
 **参数**：
 
 | 参数名   | 类型                             | 必填 | 说明                                                         |
@@ -103,8 +103,8 @@ metadataBinding.off(type: 'operationSubmitMetadata', bundleName: string, callbac
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-|32100001|Internal handling failed. Service exception.|
-|32100005|Unsubscribe Failed. Possible causes: 1. Abnormal system capability; 2. IPC communication abnormality.|
+|32100001|Internal handling failed. File creation failed.|
+|32100005|Unsubscription failed. Possible causes: 1. Abnormal system capability; 2. IPC exception.|
 
 **示例**：
 

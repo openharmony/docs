@@ -20,7 +20,7 @@ ContentSlot(content: Content)
 
 **参数：**
 
-| 参数名  | 类型 | 必填 | 参数描述                                                     |
+| 参数名  | 类型 | 必填 | 说明                                                     |
 | ------- | -------- | ---- | ------------------------------------------------------------ |
 | content | [Content](#content)  | 是   | Content作为ContentSlot的管理器，通过Native侧提供的接口，可以注册并触发ContentSlot的上下树事件回调以及管理ContentSlot的子组件。 |
 

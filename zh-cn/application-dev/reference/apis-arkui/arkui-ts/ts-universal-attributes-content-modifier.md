@@ -8,7 +8,7 @@
 
 ## contentModifier
 
-contentModifier(modifier: ContentModifier\<T>)
+contentModifier(modifier: ContentModifier\<T>): T
 
 定制内容区的方法。
 
@@ -19,6 +19,12 @@ contentModifier(modifier: ContentModifier\<T>)
 | 参数名   | 类型               | 必填 | 说明                                                         |
 | -------- | ------------------ | ---- | ------------------------------------------------------------ |
 | modifier | ContentModifier\<T> | 是   | 在当前组件上，定制内容区的方法。<br/>modifier: 内容修改器，开发者需要自定义class实现ContentModifier接口。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| --- | --- |
+| T | 返回当前组件。 |
 
 ## ContentModifier\<T>
 

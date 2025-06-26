@@ -19,7 +19,7 @@ OpenHarmony系统预置的播控中心，作为媒体会话控制方与音视频
 
 异步的JavaScript接口返回值有两种返回形式：callback和promise，本说明仅提供callback形式接口，promise和callback只是返回值方式不一样，功能相同。
 
-更多API说明请参见[API文档](../../reference/apis-avsession-kit/js-apis-avsession.md)。
+更多API说明请参见[API文档](../../reference/apis-avsession-kit/arkts-apis-avsession.md)。
 
 ### 直接通过AVSessionManager调用的接口
 

@@ -65,215 +65,352 @@ Read [AVPlayer](../../reference/apis-media-kit/js-apis-media.md#avplayer9) for t
 
 7. Call **release()** to switch the AVPlayer to the **released** state. Now your application exits the playback.
 
-## Sample Code
+## Running the Sample Project
 
 Refer to the sample code below to play a complete piece of music. In this example, 3 seconds after the playback starts, the playback is paused for 3 seconds and then resumed.
 
-```ts
-import { media } from '@kit.MediaKit';
-import { fileIo as fs } from '@kit.CoreFileKit';
-import { common } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-import { audio } from '@kit.AudioKit';
+1. Create a project, download the [sample project](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Media/AVPlayer/AVPlayerArkTSAudio), and copy the following resources of the sample project to the corresponding directories.
+    ```
+    AVPlayerArkTSAudio
+    entry/src/main/ets/
+    └── pages
+        └── Index.ets (playback page)
+    entry/src/main/resources/
+    ├── base
+    │   ├── element
+    │   │   ├── color.json
+    │   │   ├── float.json
+    │   │   └── string.json
+    │   └── media
+    │       ├── ic_video_play.svg (play button image resource)
+    │       └── ic_video_pause.svg (pause button image resource)
+    └── rawfile
+        └── test_01.mp3 (audio resource)
+    ```
+2. Compile and run the project.
 
-export class AVPlayerDemo {
-  private count: number = 0;
-  private isSeek: boolean = true; // Specify whether the seek operation is supported.
-  private fileSize: number = -1;
-  private fd: number = 0;
-  private context: Context | undefined;
-  constructor(context: Context) {
-    this.context = context; // this.getUIContext().getHostContext();
+## Development Example
+
+```ts
+import display from '@ohos.display';
+import emitter from '@ohos.events.emitter';
+import { common } from '@kit.AbilityKit';
+import media from '@ohos.multimedia.media';
+
+...
+
+@Entry
+@Component
+struct Index {
+  private avPlayer: media.AVPlayer | null = null;
+  private context: common.UIAbilityContext | undefined = undefined;
+  @State fileName: string = 'test_01.mp3';
+  ...
+
+  getDurationTime(): number {
+    return this.durationTime;
   }
+
+  getCurrentTime(): number {
+    return this.currentTime;
+  }
+
+  timeConvert(time: number): string {
+    let min: number = Math.floor(time / TIME_ONE);
+    let second: string = ((time % TIME_ONE) / TIME_TWO).toFixed(0);
+    // return `${min}:${(+second < TIME_THREE ? '0' : '') + second}`;
+    second = second.padStart(2, '0');
+    return `${min}:${second}`;
+  }
+
+  async msleepAsync(ms: number): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(true)
+      }, ms)
+    })
+  }
+
+  async avSetupAudio() {
+    // Call getRawFd of the resourceManager member of UIAbilityContext to obtain the media asset URL.
+    // The return type is {fd,offset,length}, where fd indicates the file descriptor address of the HAP file, offset indicates the media asset offset, and length indicates the duration of the media asset to play.
+    if (this.context == undefined) return;
+    let fileDescriptor = await this.context.resourceManager.getRawFd(this.fileName);
+    let avFileDescriptor: media.AVFileDescriptor =
+      { fd: fileDescriptor.fd, offset: fileDescriptor.offset, length: fileDescriptor.length };
+
+    if (this.avPlayer) {
+      console.info(`${this.tag}: init avPlayer release2createNew`);
+      this.avPlayer.release();
+      await this.msleepAsync(1500);
+    }
+    // Create an AVPlayer instance.
+    this.avPlayer = await media.createAVPlayer();
+
+    // Set a callback function for state changes.
+    await this.setAVPlayerCallback((avPlayer: media.AVPlayer) => {
+      this.percent = avPlayer.width / avPlayer.height;
+      this.setVideoWH();
+      this.durationTime = this.getDurationTime();
+      setInterval(() => { // Update the current time.
+        if (!this.isSwiping) {
+          this.currentTime = this.getCurrentTime();
+        }
+      }, SET_INTERVAL);
+    });
+
+    // Assign a value to fdSrc to trigger the reporting of the initialized state.
+    this.avPlayer.fdSrc = avFileDescriptor;
+  }
+
+  avPlay(): void {
+    if (this.avPlayer) {
+      try {
+        this.avPlayer.play();
+      } catch (e) {
+        console.error(`${this.tag}: avPlay = ${JSON.stringify(e)}`);
+      }
+    }
+  }
+
+  avPause(): void {
+    if (this.avPlayer) {
+      try {
+        this.avPlayer.pause();
+        console.info(`${this.tag}: avPause==`);
+      } catch (e) {
+        console.info(`${this.tag}: avPause== ${JSON.stringify(e)}`);
+      }
+    }
+  }
+
+  async avSeek(seekTime: number, mode: SliderChangeMode): Promise<void> {
+    if (this.avPlayer) {
+      try {
+        console.info(`${this.tag}: videoSeek  seekTime== ${seekTime}`);
+        this.avPlayer.seek(seekTime, 2);
+        this.currentTime = seekTime;
+      } catch (e) {
+        console.info(`${this.tag}: videoSeek== ${JSON.stringify(e)}`);
+      }
+    }
+  }
+
+  avSetSpeed(speed: number): void {
+    if (this.avPlayer) {
+      try {
+        this.avPlayer.setSpeed(speed);
+        console.info(`${this.tag}: avSetSpeed enum ${speed}`);
+      } catch (e) {
+        console.info(`${this.tag}: avSetSpeed == ${JSON.stringify(e)}`);
+      }
+    }
+  }
+
   // Set AVPlayer callback functions.
-  setAVPlayerCallback(avPlayer: media.AVPlayer) {
+  async setAVPlayerCallback(callback: (avPlayer: media.AVPlayer) => void, vType?: number): Promise<void> {
     // Callback function for the seek operation.
-    avPlayer.on('seekDone', (seekDoneTime: number) => {
-      console.info(`AVPlayer seek succeeded, seek time is ${seekDoneTime}`);
+    if (this.avPlayer == null) {
+      console.info(`${this.tag}: avPlayer has not init!`);
+      return;
+    }
+    this.avPlayer.on('seekDone', (seekDoneTime) => {
+      console.info(`${this.tag}: setAVPlayerCallback AVPlayer seek succeeded, seek time is ${seekDoneTime}`);
+    });
+    this.avPlayer.on('speedDone', (speed) => {
+      console.info(`${this.tag}: setAVPlayerCallback AVPlayer speedDone, speed is ${speed}`);
     });
     // Callback function for errors. If an error occurs during the operation on the AVPlayer, reset() is called to reset the AVPlayer.
-    avPlayer.on('error', (err: BusinessError) => {
-      console.error(`Invoke avPlayer failed, code is ${err.code}, message is ${err.message}`);
-      avPlayer.reset(); // Call reset() to reset the AVPlayer, which enters the idle state.
+    this.avPlayer.on('error', (err) => {
+      console.error(`${this.tag}: setAVPlayerCallback Invoke avPlayer failed ${JSON.stringify(err)}`);
+      if (this.avPlayer == null) {
+        console.info(`${this.tag}: avPlayer has not init on error`);
+        return;
+      }
+      this.avPlayer.reset();
     });
-    // Callback for state changes.
-    avPlayer.on('stateChange', async (state: string, reason: media.StateChangeReason) => {
+    // Callback function for state changes.
+    this.avPlayer.on('stateChange', async (state, reason) => {
+      if (this.avPlayer == null) {
+        console.info(`${this.tag}: avPlayer has not init on state change`);
+        return;
+      }
       switch (state) {
         case 'idle': // This state is reported upon a successful callback of reset().
-          console.info('AVPlayer state idle called.');
-          avPlayer.release(); // Call release() to release the instance.
+          console.info(`${this.tag}: setAVPlayerCallback AVPlayer state idle called.`);
           break;
         case 'initialized': // This state is reported when the AVPlayer sets the playback source.
-          console.info('AVPlayer state initialized called.');
-          avPlayer.audioRendererInfo = {
-            usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // Audio stream usage type: music. Set this parameter based on the service scenario.
-            rendererFlags: 0 // AudioRenderer flag.
-          };
-          avPlayer.prepare();
+          console.info(`${this.tag}: setAVPlayerCallback AVPlayer state initialized called.`);
+          if (this.surfaceId) {
+            this.avPlayer.surfaceId = this.surfaceId; // Set the window to display the video. This setting is not required when a pure audio asset is to be played.
+            console.info(`${this.tag}: setAVPlayerCallback this.avPlayer.surfaceId = ${this.avPlayer.surfaceId}`);
+            this.avPlayer.prepare();
+          }
           break;
         case 'prepared': // This state is reported upon a successful callback of prepare().
-          console.info('AVPlayer state prepared called.');
-          avPlayer.play(); // Call play() to start playback.
+          console.info(`${this.tag}: setAVPlayerCallback AVPlayer state prepared called.`);
+          this.avPlayer.on('bufferingUpdate', (infoType: media.BufferingInfoType, value: number) => {
+            console.info(`${this.tag}: bufferingUpdate called, infoType value: ${infoType}, value:${value}}`);
+          })
+          this.durationTime = this.avPlayer.duration;
+          this.currentTime = this.avPlayer.currentTime;
+          this.avPlayer.play(); // Call play() to start playback.
+          console.info(`${this.tag}:
+            setAVPlayerCallback speedSelect: ${this.speedSelect}, duration: ${this.durationTime}`);
+          if (this.speedSelect != -1) {
+            switch (this.speedSelect) {
+              case SPEED_ZERO:
+                this.avSetSpeed(media.PlaybackSpeed.SPEED_FORWARD_1_00_X);
+                break;
+              case SPEED_ONE:
+                this.avSetSpeed(media.PlaybackSpeed.SPEED_FORWARD_1_25_X);
+                break;
+              case SPEED_TWO:
+                this.avSetSpeed(media.PlaybackSpeed.SPEED_FORWARD_1_75_X);
+                break;
+              case SPEED_THREE:
+                this.avSetSpeed(media.PlaybackSpeed.SPEED_FORWARD_2_00_X);
+                break;
+            }
+          }
+          callback(this.avPlayer);
           break;
         case 'playing': // This state is reported upon a successful callback of play().
-          console.info('AVPlayer state playing called.');
+          console.info(`${this.tag}: setAVPlayerCallback AVPlayer state playing called.`);
           if (this.count !== 0) {
-            if (this.isSeek) {
-              console.info('AVPlayer start to seek.');
-              avPlayer.seek(avPlayer.duration); // Call seek() to seek to the end of the audio clip.
-            } else {
-              // When the seek operation is not supported, the playback continues until it reaches the end.
-              console.info('AVPlayer wait to play end.');
+            if (this.intervalID != -1) {
+              clearInterval(this.intervalID)
             }
+            this.intervalID = setInterval(() => { // Update the current time.
+              AppStorage.setOrCreate('durationTime', this.durationTime);
+              AppStorage.setOrCreate('currentTime', this.currentTime);
+            }, 100);
+            let eventDataTrue: emitter.EventData = {
+              data: {
+                'flag': true
+              }
+            };
+            let innerEventTrue: emitter.InnerEvent = {
+              eventId: 2,
+              priority: emitter.EventPriority.HIGH
+            };
+            emitter.emit(innerEventTrue, eventDataTrue);
           } else {
             setTimeout(() => {
               console.info('AVPlayer playing wait to pause');
-              avPlayer.pause(); // Call the pause API to pause the playback 3 seconds later.
+              this.avPlayer?.pause(); // Call the pause API to pause the playback 3 seconds later.
             }, 3000);
           }
           this.count++;
           break;
-        case 'paused': // This state is reported upon a successful callback of pause().
-          console.info('AVPlayer state paused called.');
-          setTimeout(() => {
-              console.info('AVPlayer paused wait to play again');
-              avPlayer.play(); // After the playback is paused for 3 seconds, call the play API again to start playback.
-            }, 3000);
-          break;
         case 'completed': // This state is reported upon the completion of the playback.
-          console.info('AVPlayer state completed called.');
-          avPlayer.stop(); // Call stop() to stop the playback.
-          break;
-        case 'stopped': // This state is reported upon a successful callback of stop().
-          console.info('AVPlayer state stopped called.');
-          avPlayer.reset(); // Call reset() to reset the AVPlayer.
+          console.info(`${this.tag}: setAVPlayerCallback AVPlayer state completed called.`);
+          let eventDataFalse: emitter.EventData = {
+            data: {
+              'flag': false
+            }
+          };
+          let innerEvent: emitter.InnerEvent = {
+            eventId: 1,
+            priority: emitter.EventPriority.HIGH
+          };
+          emitter.emit(innerEvent, eventDataFalse);
+          if (this.intervalID != -1) {
+            clearInterval(this.intervalID)
+          }
+          this.avPlayer.off('bufferingUpdate')
+          AppStorage.setOrCreate('currentTime', this.durationTime);
           break;
         case 'released':
-          console.info('AVPlayer state released called.');
-          break;
+          console.info(`${this.tag}: setAVPlayerCallback released called.`);
+          break
+        case 'stopped':
+          console.info(`${this.tag}: setAVPlayerCallback AVPlayer state stopped called.`);
+          break
+        case 'error':
+          console.info(`${this.tag}: setAVPlayerCallback AVPlayer state error called.`);
+          break
+        case 'paused':
+          console.info(`${this.tag}: setAVPlayerCallback AVPlayer state paused called.`);
+          setTimeout(() => {
+            console.info('AVPlayer paused wait to play again');
+            this.avPlayer?.play(); // After the playback is paused for 3 seconds, call the play API again to start playback.
+          }, 3000);
+          break
         default:
-          console.info('AVPlayer state unknown called.');
+          console.info(`${this.tag}: setAVPlayerCallback AVPlayer state unknown called.`);
           break;
+      }
+    });
+    // Callback function for time updates.
+    this.avPlayer.on('timeUpdate', (time: number) => {
+      this.currentTime = time;
+    });
+  }
+
+  aboutToAppear() {
+    this.windowWidth = display.getDefaultDisplaySync().width;
+    this.windowHeight = display.getDefaultDisplaySync().height;
+    this.surfaceW = this.windowWidth * SURFACE_W;
+    this.surfaceH = this.surfaceW / SURFACE_H;
+    this.isPaused = true;
+    this.context = getContext(this) as common.UIAbilityContext;
+  }
+
+  aboutToDisappear() {
+    if (this.avPlayer == null) {
+      console.info(`${this.tag}: avPlayer has not init aboutToDisappear`);
+      return;
+    }
+    this.avPlayer.release((err) => {
+      if (err == null) {
+        console.info(`${this.tag}: videoRelease release success`);
+      } else {
+        console.error(`${this.tag}: videoRelease release filed,error message is = ${JSON.stringify(err.message)}`);
+      }
+    });
+    emitter.off(innerEventFalse.eventId);
+  }
+
+  onPageHide() {
+    this.avPause();
+    this.isPaused = false;
+  }
+
+  onPageShow() {
+    emitter.on(innerEventTrue, (res: emitter.EventData) => {
+      if (res.data) {
+        this.isPaused = res.data.flag;
+        this.XComponentFlag = res.data.flag;
+      }
+    });
+    emitter.on(innerEventFalse, (res: emitter.EventData) => {
+      if (res.data) {
+        this.isPaused = res.data.flag;
+      }
+    });
+    emitter.on(innerEventWH, (res: emitter.EventData) => {
+      if (res.data) {
+        this.windowWidth = res.data.width;
+        this.windowHeight = res.data.height;
+        this.setVideoWH();
       }
     });
   }
 
-  // The following demo shows how to use the file system to open the sandbox address, obtain the media file address, and play the media file using the URL attribute.
-  async avPlayerUrlDemo() {
-    // Create an AVPlayer instance.
-    let avPlayer: media.AVPlayer = await media.createAVPlayer();
-    // Set a callback for state changes.
-    this.setAVPlayerCallback(avPlayer);
-    let fdPath = 'fd://';
-    // Obtain the sandbox address filesDir through UIAbilityContext. The stage model is used as an example.
-    if (this.context != undefined) {
-      let pathDir = this.context.filesDir;
-      let path = pathDir + '/01.mp3';
-      // Open the corresponding file address to obtain the file descriptor and assign a value to the URL to trigger the reporting of the initialized state.
-      let file = await fs.open(path);
-      fdPath = fdPath + '' + file.fd;
-      this.isSeek = true; // The seek operation is supported.
-      avPlayer.url = fdPath;
+  setVideoWH(): void {
+    if (this.percent >= 1) { // Horizontal video.
+      this.surfaceW = Math.round(this.windowWidth * PROPORTION);
+      this.surfaceH = Math.round(this.surfaceW / this.percent);
+    } else { // Vertical video.
+      this.surfaceH = Math.round(this.windowHeight * PROPORTION);
+      this.surfaceW = Math.round(this.surfaceH * this.percent);
     }
   }
 
-  // The following demo shows how to use resourceManager to obtain the media file packed in the HAP file and play the media file by using the fdSrc attribute.
-  async avPlayerFdSrcDemo() {
-    // Create an AVPlayer instance.
-    let avPlayer: media.AVPlayer = await media.createAVPlayer();
-    // Set a callback for state changes.
-    this.setAVPlayerCallback(avPlayer);
-    // Call getRawFd of the resourceManager member of UIAbilityContext to obtain the media asset URL.
-    // The return type is {fd,offset,length}, where fd indicates the file descriptor address of the HAP file, offset indicates the media asset offset, and length indicates the duration of the media asset to play.
-    if (this.context != undefined) {
-      let fileDescriptor = await this.context.resourceManager.getRawFd('01.mp3');
-      let avFileDescriptor: media.AVFileDescriptor =
-        { fd: fileDescriptor.fd, offset: fileDescriptor.offset, length: fileDescriptor.length };
-      this.isSeek = true; // The seek operation is supported.
-      // Assign a value to fdSrc to trigger the reporting of the initialized state.
-      avPlayer.fdSrc = avFileDescriptor;
-    }
-  }
+  @Builder
+  CoverXComponent() {...}
 
-  // The following demo shows how to use the file system to open the sandbox address, obtain the media file address, and play the media file with the seek operation using the dataSrc attribute.
-  async avPlayerDataSrcSeekDemo() {
-    // Create an AVPlayer instance.
-    let avPlayer: media.AVPlayer = await media.createAVPlayer();
-    // Set a callback for state changes.
-    this.setAVPlayerCallback(avPlayer);
-    // dataSrc indicates the playback source address. When the seek operation is supported, fileSize indicates the size of the file to be played. The following describes how to assign a value to fileSize.
-    let src: media.AVDataSrcDescriptor = {
-      fileSize: -1,
-      callback: (buf: ArrayBuffer, length: number, pos: number | undefined) => {
-        let num = 0;
-        if (buf == undefined || length == undefined || pos == undefined) {
-          return -1;
-        }
-        num = fs.readSync(this.fd, buf, { offset: pos, length: length });
-        if (num > 0 && (this.fileSize >= pos)) {
-          return num;
-        }
-        return -1;
-      }
-    };
-    // Obtain the sandbox address filesDir through UIAbilityContext. The stage model is used as an example.
-    if (this.context != undefined) {
-      let pathDir = this.context.filesDir;
-      let path = pathDir  + '/01.mp3';
-      await fs.open(path).then((file: fs.File) => {
-        this.fd = file.fd;
-      });
-    }
-    // Obtain the size of the file to be played.
-    this.fileSize = fs.statSync(path).size;
-    src.fileSize = this.fileSize;
-    this.isSeek = true; // The seek operation is supported.
-    avPlayer.dataSrc = src;
-  }
-
-  // The following demo shows how to use the file system to open the sandbox address, obtain the media file address, and play the media file without the seek operation using the dataSrc attribute.
-  async avPlayerDataSrcNoSeekDemo() {
-    // Create an AVPlayer instance.
-    let avPlayer: media.AVPlayer = await media.createAVPlayer();
-    // Set a callback for state changes.
-    this.setAVPlayerCallback(avPlayer);
-    let src: media.AVDataSrcDescriptor = {
-      fileSize: -1,
-      callback: (buf: ArrayBuffer, length: number) => {
-        let num = 0;
-        if (buf == undefined || length == undefined) {
-          return -1;
-        }
-        num = fs.readSync(this.fd, buf);
-        if (num > 0) {
-          return num;
-        }
-        return -1;
-      }
-    };
-    // Obtain the sandbox address filesDir through UIAbilityContext. The stage model is used as an example.
-    if (this.context != undefined) {
-        let pathDir = this.context.filesDir;
-        let path = pathDir  + '/01.mp3';
-        await fs.open(path).then((file: fs.File) => {
-          this.fd = file.fd;
-        });
-        this.isSeek = false; // The seek operation is not supported.
-        avPlayer.dataSrc = src;
-      }
-  }
-
-  // The following demo shows how to play live streams by setting the network address through the URL.
-  async avPlayerLiveDemo() {
-    // Create an AVPlayer instance.
-    let avPlayer: media.AVPlayer = await media.createAVPlayer();
-    // Set a callback for state changes.
-    this.setAVPlayerCallback(avPlayer);
-    this.isSeek = false; // The seek operation is not supported.
-    avPlayer.url = 'http://xxx.xxx.xxx.xxx:xx/xx/index.m3u8';
-  }
+  build() {...}
 }
 ```
-
-<!--RP1-->
-<!--RP1End-->

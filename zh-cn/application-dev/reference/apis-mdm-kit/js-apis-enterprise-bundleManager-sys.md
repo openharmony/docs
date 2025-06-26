@@ -1691,7 +1691,7 @@ bundleManager.install(wantTemp, hapFilePaths, (err) => {
 
 install(admin: Want, hapFilePaths: Array\<string>, installParam: InstallParam, callback: AsyncCallback\<void>): void
 
-安装指定路径下的指定安装参数的应用包,。使用callback异步回调。
+安装指定路径下的指定安装参数的应用包。使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_INSTALL_BUNDLE
 

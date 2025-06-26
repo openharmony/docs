@@ -1,22 +1,17 @@
 # 应用级变量的状态管理
 
-
 状态管理模块提供了应用程序的数据存储能力、持久化数据管理能力、UIAbility数据存储能力和应用程序需要的环境状态。
-
 
 >**说明：**
 >
 >本模块首批接口从API version 7开始支持，后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-
 本文中T和S的含义如下：
-
 
 | 类型   | 说明                                     |
 | ---- | -------------------------------------- |
 | T    | Class，number，boolean，string和这些类型的数组形式。 |
 | S    | number，boolean，string。                 |
-
 
 ## AppStorage
 
@@ -95,7 +90,6 @@ let ref1: AbstractProperty<number> = AppStorage.setAndRef('PropB', 49); // 用�
 let ref2: AbstractProperty<number> = AppStorage.setAndRef('PropA', 50); // PropA已存在，值为47
 ```
 
-
 ### link<sup>10+</sup>
 
 static link&lt;T&gt;(propName: string): SubscribedAbstractProperty&lt;T&gt;
@@ -130,7 +124,6 @@ let linkToPropA2: SubscribedAbstractProperty<number> = AppStorage.link('PropA');
 linkToPropA1.set(48); // 双向同步: linkToPropA1.get() == linkToPropA2.get() == 48
 ```
 
-
 ### setAndLink<sup>10+</sup>
 
 static setAndLink&lt;T&gt;(propName: string, defaultValue: T): SubscribedAbstractProperty&lt;T&gt;
@@ -155,7 +148,7 @@ static setAndLink&lt;T&gt;(propName: string, defaultValue: T): SubscribedAbstrac
 
 | 类型                                  | 说明                                       |
 | ----------------------------------- | ---------------------------------------- |
-| [SubscribedAbstractProperty&lt;T&gt;](#subscribedabstractproperty) | SubscribedAbstractProperty&lt;T&gt;的实例，和AppStorage中propName对应属性的双向绑定的数据。 |
+| [SubscribedAbstractProperty&lt;T&gt;](#subscribedabstractproperty) | SubscribedAbstractProperty&lt;T&gt;的实例，为AppStorage中propName对应属性的双向绑定的数据。 |
 
 **示例：**
 ```ts
@@ -163,7 +156,6 @@ AppStorage.setOrCreate('PropA', 47);
 let link1: SubscribedAbstractProperty<number> = AppStorage.setAndLink('PropB', 49); // 用默认值49创建PropB
 let link2: SubscribedAbstractProperty<number> = AppStorage.setAndLink('PropA', 50); // PropA已存在，值为47
 ```
-
 
 ### prop<sup>10+</sup>
 
@@ -195,7 +187,6 @@ let prop1: SubscribedAbstractProperty<number> = AppStorage.prop('PropA');
 let prop2: SubscribedAbstractProperty<number> = AppStorage.prop('PropA');
 prop1.set(1); // 单向同步：prop1.get()的值为1，prop2.get()的值为47
 ```
-
 
 ### setAndProp<sup>10+</sup>
 
@@ -229,7 +220,6 @@ AppStorage.setOrCreate('PropA', 47);
 let prop: SubscribedAbstractProperty<number> = AppStorage.setAndProp('PropB', 49); // PropA -> 47, PropB -> 49
 ```
 
-
 ### has<sup>10+</sup>
 
 static has(propName: string): boolean
@@ -256,7 +246,6 @@ static has(propName: string): boolean
 ```ts
 AppStorage.has('simpleProp');
 ```
-
 
 ### get<sup>10+</sup>
 
@@ -285,7 +274,6 @@ static get&lt;T&gt;(propName: string): T | undefined
 AppStorage.setOrCreate('PropA', 47);
 let value: number = AppStorage.get('PropA') as number; // 47
 ```
-
 
 ### set<sup>10+</sup>
 
@@ -320,7 +308,6 @@ let res: boolean = AppStorage.set('PropA', 47) // true
 let res1: boolean = AppStorage.set('PropB', 47) // false
 ```
 
-
 ### setOrCreate<sup>10+</sup>
 
 static setOrCreate&lt;T&gt;(propName: string, newValue: T): void
@@ -347,14 +334,13 @@ static setOrCreate&lt;T&gt;(propName: string, newValue: T): void
 AppStorage.setOrCreate('simpleProp', 121);
 ```
 
-
 ### delete<sup>10+</sup>
 
 static delete(propName: string): boolean
 
 在[AppStorage](../../../ui/state-management/arkts-appstorage.md)中删除propName对应的属性。
 
-在AppStorage中删除该属性的前提是必须保证该属性没有订阅者。如果有订阅者，则返回false。如果没有订阅者则删除成功并返回true。
+在AppStorage中删除该属性的前提是必须保证该属性没有订阅者。如果有订阅者，则返回false。如果没有订阅者，则删除成功并返回true。
 
 属性的订阅者为：
 
@@ -394,7 +380,6 @@ AppStorage.setOrCreate('PropB', 48);
 let res1: boolean = AppStorage.delete('PropB'); // true，PropB 已从AppStorage成功删除
 ```
 
-
 ### keys<sup>10+</sup>
 
 static keys(): IterableIterator&lt;string&gt;
@@ -417,7 +402,6 @@ AppStorage.setOrCreate('PropB', 48);
 let keys: IterableIterator<string> = AppStorage.keys();
 ```
 
-
 ### clear<sup>10+</sup>
 
 static clear(): boolean
@@ -434,14 +418,13 @@ static clear(): boolean
 
 | 类型    | 说明                                                         |
 | ------- | ------------------------------------------------------------ |
-| boolean | 如果AppStorage中的属性已经没有订阅者则删除成功，返回true。否则返回false。 |
+| boolean | 如果AppStorage中的属性已经没有订阅者则删除成功，返回true；如果当前仍有订阅者，返回false。|
 
 **示例：**
 ```ts
 AppStorage.setOrCreate('PropA', 47);
 let res: boolean = AppStorage.clear(); // true，已经没有订阅者
 ```
-
 
 ### size<sup>10+</sup>
 
@@ -464,7 +447,6 @@ static size(): number
 AppStorage.setOrCreate('PropB', 48);
 let res: number = AppStorage.size(); // 1
 ```
-
 
 ### Link<sup>(deprecated)</sup>
 
@@ -531,7 +513,6 @@ AppStorage.SetOrCreate('PropA', 47);
 let link1: SubscribedAbstractProperty<number> = AppStorage.SetAndLink('PropB', 49); // 用默认值49创建PropB
 let link2: SubscribedAbstractProperty<number> = AppStorage.SetAndLink('PropA', 50); // PropA已存在，值为47
 ```
-
 
 ### Prop<sup>(deprecated)</sup>
 
@@ -839,7 +820,7 @@ static IsMutable(propName: string): boolean
 
 | 类型      | 说明                               |
 | ------- | -------------------------------- |
-| boolean | 返回AppStorage中propNam对应的属性是否是可变的。当前该返回值恒为true。 |
+| boolean | 返回AppStorage中propName对应的属性是否是可变的。当前该返回值恒为true。 |
 
 **示例：**
 ```ts
@@ -933,10 +914,6 @@ static getShared(): LocalStorage
 | 类型                             | 说明                |
 | ------------------------------ | ----------------- |
 | [LocalStorage](#localstorage9) | 返回LocalStorage实例。 |
-
-**示例：**
-getShared具体使用，见[在UI页面通过getShared接口获取在通过loadContent共享的LocalStorage实例](../../../ui/state-management/arkts-localstorage.md#将localstorage实例从uiability共享到一个或多个页面)。
-
 
 ### has<sup>9+</sup>
 
@@ -1194,7 +1171,7 @@ linkToPropA1.set(48); // 双向同步: linkToPropA1.get() == linkToPropA2.get() 
 
 setAndLink&lt;T&gt;(propName: string, defaultValue: T): SubscribedAbstractProperty&lt;T&gt;
 
-与[link](#link9)接口类似，如果给定的propName在[LocalStorage](../../../ui/state-management/arkts-localstorage.md)中存在，则返回该propName对应的属性的双向绑定数据。如果不存在，则使用defaultValue在LocalStorage中创建和初始化propName对应的属性，返回其双向绑定数据。defaultValue必须为T类型，从API开始defaultValue可以为null或undefined。
+与[link](#link9)接口类似，如果给定的propName在[LocalStorage](../../../ui/state-management/arkts-localstorage.md)中存在，则返回该propName对应的属性的双向绑定数据。如果不存在，则使用defaultValue在LocalStorage中创建和初始化propName对应的属性，返回其双向绑定数据。defaultValue必须为T类型，从API version 12开始defaultValue可以为null或undefined。
 
 > **说明：** 
 > 
@@ -1945,8 +1922,7 @@ static envProp&lt;S&gt;(key: string, value: S): boolean
 
 **示例：**
 
-
-envProp具体使用，见[从UI中访问Environment参数](../../../ui/state-management/arkts-environment.md#从ui中访问environment参数)
+envProp具体使用，详见[从UI中访问Environment参数](../../../ui/state-management/arkts-environment.md#从ui中访问environment参数)。
 
 
 ### envProps<sup>10+</sup>

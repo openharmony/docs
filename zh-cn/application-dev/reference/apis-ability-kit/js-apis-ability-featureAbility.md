@@ -778,7 +778,7 @@ getWindow(callback: AsyncCallback\<window.Window>): void
 
 | 参数名     | 类型                          | 必填 | 说明                          |
 | -------- | ----------------------------- | ---- | ----------------------------- |
-| callback | AsyncCallback\<[window.Window](../apis-arkui/js-apis-window.md#window)> | 是   | 回调函数，返回当前Ability对应的窗口。 |
+| callback | AsyncCallback\<[window.Window](../apis-arkui/arkts-apis-window-Window.md)> | 是   | 回调函数，返回当前Ability对应的窗口。 |
 
 **示例：**
 
@@ -811,7 +811,7 @@ getWindow(): Promise\<window.Window>
 
 | 类型                    | 说明                          |
 | ----------------------- | ----------------------------- |
-| Promise\<[window.Window](../apis-arkui/js-apis-window.md#window)> | Promise对象，返回当前Ability对应的窗口。 |
+| Promise\<[window.Window](../apis-arkui/arkts-apis-window-Window.md)> | Promise对象，返回当前Ability对应的窗口。 |
 
 **示例：**
 

@@ -4,14 +4,14 @@ A moving photo is a photo form that combines an image and a video, empowering a 
 
 The media library provides the capabilities of accessing and managing moving photo assets, including:
 
-- [Saves Moving Photo Assets using SaveButton](#saves-moving-photo-assets)
+- [Saving Moving Photo Assets](#saving-moving-photo-assets)
 - [Obtaining a Moving Photo Object](#obtaining-a-moving-photo-object)
 - [Playing Moving Photos with MovingPhotoView](movingphotoview-guidelines.md)
 - [Reading Moving Photo Assets](#reading-moving-photo-assets)
 
 Camera Kit provides the capability of taking moving photos. For details, see [Moving Photos](../camera/camera-moving-photo.md).
 
-## Saves Moving Photo Assets
+## Saving Moving Photo Assets
 
 Use the **SaveButton** security component to save the assets (image and video) of a moving photo.
 
@@ -24,7 +24,7 @@ For details, see [SaveButton](../../reference/apis-arkui/arkui-ts/ts-security-co
 1. Set the properties of the **SaveButton** security component.
 2. Create a button with **SaveButton**.
 3. Call [MediaAssetChangeRequest.createAssetRequest](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#createassetrequest11) to create an asset change request with **PhotoSubtype** set to **MOVING_PHOTO**.
-4. Call [MediaAssetChangeRequest.addResource](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#addresource11) to set the image and video of the moving photo.
+4. Call [MediaAssetChangeRequest.addResource](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#addresource11) to set the image and video of the moving photo. The video duration of the moving photo cannot exceed 10s.
    
    In the following example, the image and video of the moving photo are specified by **fileUri** of the [application file](../../file-management/app-file-access.md) in the application sandbox.
    

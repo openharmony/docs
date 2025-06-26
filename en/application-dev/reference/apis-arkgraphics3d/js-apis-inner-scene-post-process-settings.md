@@ -7,7 +7,7 @@ The ScenePostProcessSettings module provides image post-processing methods (for 
 
 ## Modules to Import
 ```ts
-import { ToneMappingType, ToneMappingSettings, PostProcessSettings } from '@kit.ArkGraphics3D';
+import { ToneMappingType, ToneMappingSettings, BloomSettings, PostProcessSettings } from '@kit.ArkGraphics3D';
 ```
 
 ## ToneMappingType
@@ -30,7 +30,20 @@ Describes the tone mapping settings.
 | Name| Type| Read Only| Optional| Description|
 | ---- | ---- | ---- | ---- | ---- |
 | type | [ToneMappingType](#tonemappingtype) | No| Yes| Tone mapping type. The default value is undefined.|
-| exposure | number | No| Yes| Exposure. The value is greater than 0. The default value is undefined.|
+| exposure | number | No| Yes| Exposure. The value must be greater than 0. The default value is undefined.|
+
+## BloomSettings<sup>18+</sup>
+Describes the bloom settings.
+### Properties
+
+**System capability**: SystemCapability.ArkUi.Graphics3D
+
+| Name| Type| Read Only| Optional| Description|
+| ---- | ---- | ---- | ---- | ---- |
+| thresholdHard | number | No| Yes| Hard threshold. The value is a non-negative number. The default value is **1.0**.|
+| thresholdSoft | number | No| Yes| Soft threshold. The value is a non-negative number. The default value is **2.0**.|
+| scaleFactor | number | No| Yes| Scale factor. The value must be greater than 0. The default value is **1.0**.|
+| scatter | number | No| Yes| Scatter amount. The value must be greater than 0. The default value is **1.0**.|
 
 ## PostProcessSettings
 Describes the post-processing settings.
@@ -39,4 +52,5 @@ Describes the post-processing settings.
 
 | Name| Type| Read Only| Optional| Description|
 | ---- | ---- | ---- | ---- | ---- |
-| toneMapping | [ToneMappingSettings](#tonemappingsettings) | No| Yes| Tone mapping settings. The default value is undefined.|
+| toneMapping | [ToneMappingSettings](#tonemappingsettings) | No| Yes| Tone mapping. The default value is undefined.|
+| bloom<sup>18+</sup> | [BloomSettings](#bloomsettings18) | No| Yes| Bloom. The default value is undefined.|

@@ -2,9 +2,9 @@
 
 ## 概述
 
-为媒体源提供播放能力的API。
+提供用于播放媒体源的API。
 
-开发者可根据实际的开发需求，参考对应的开发指南及样例：
+根据实际的开发需求，参考对应的开发指南及样例。
 
 - [使用AVPlayer播放音频](../../media/media/using-ndk-avplayer-for-playback.md)
 - [使用AVPlayer播放视频](../../media/media/using-ndk-avplayer-for-video-playback.md)

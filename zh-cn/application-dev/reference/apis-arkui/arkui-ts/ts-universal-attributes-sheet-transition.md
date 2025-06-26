@@ -10,7 +10,7 @@
 
 ## bindSheet
 
-bindSheet(isShow: Optional\<boolean\>, builder: CustomBuilder, options?: SheetOptions)
+bindSheet(isShow: Optional\<boolean\>, builder: CustomBuilder, options?: SheetOptions): T
 
 给组件绑定半模态页面，点击后显示模态页面。
 
@@ -22,15 +22,21 @@ bindSheet(isShow: Optional\<boolean\>, builder: CustomBuilder, options?: SheetOp
 
 | 参数名  | 类型                                        | 必填 | 说明                                                         |
 | ------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| isShow  | Optional\<boolean\>                          | 是   | 是否显示半模态页面。<br/>true：显示半模态页面。<br/>false：隐藏半模态页面。<br/>从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。<br />从API version 18开始，该参数支持[!!](../../../ui/state-management/arkts-new-binding.md#组件参数双向绑定)双向绑定变量。|
+| isShow  | Optional\<boolean\>                          | 是   | 是否显示半模态页面。<br/>true：显示半模态页面。<br/>false：隐藏半模态页面。<br/>从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。<br />从API version 18开始，该参数支持[!!](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。|
 | builder | [CustomBuilder](ts-types.md#custombuilder8) | 是   | 配置半模态页面内容。                                         |
 | options | [SheetOptions](#sheetoptions)               | 否   | 配置半模态页面的可选属性。                                   |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
 
 > **说明：**
 >
 > 1. 在非双向绑定情况下，以拖拽方式关闭半模态页面不会改变isShow参数的值。
 >
-> 2. 为了使isShow参数值与半模态界面的状态同步，建议使用[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定isShow参数。从API version 18开始，该参数支持[!!](../../../ui/state-management/arkts-new-binding.md#组件参数双向绑定)双向绑定变量。
+> 2. 为了使isShow参数值与半模态界面的状态同步，建议使用[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定isShow参数。从API version 18开始，该参数支持[!!](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。
 >
 > 3. 在半模态单挡位向上拖拽或是多挡位上滑换挡情况下，内容在拖拽结束或换挡结束后更新显示区域。
 >
@@ -48,10 +54,10 @@ bindSheet(isShow: Optional\<boolean\>, builder: CustomBuilder, options?: SheetOp
 | height          | [SheetSize](#sheetsize枚举说明)&nbsp;\|&nbsp;[Length](ts-types.md#length) | 否    | 半模态高度，默认是LARGE。<br/>**说明：**<br/>API version 12之前，底部弹窗横屏时该属性设置无效，高度为距离屏幕顶部8vp。<br/>API version 12开始，底部弹窗横屏时该属性设置生效，最大高度为距离屏幕顶部8vp。<br/>API version 14开始，底部弹窗横屏时，无状态栏则最大高度为距离屏幕顶部8vp，有状态栏则最大高度为距离状态栏8vp。<br/>底部弹窗时，当设置detents时，该属性设置无效。<br/>底部弹窗竖屏时，最大高度为距离状态栏8vp。<br />居中弹窗和跟手弹窗设置类型为SheetSize.LARGE和SheetSize.MEDIUM无效，显示默认高度560vp。居中弹窗和跟手弹窗最小高度为320vp，最大高度为窗口短边的90%。当使用Length设置的高度和使用SheetSize.FIT_CONTENT自适应的高度大于最大高度，则显示最大高度，小于最小高度，则显示最小高度。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | detents<sup>11+</sup> | [([SheetSize](#sheetsize枚举说明) \| [Length](ts-types.md#length)), ( [SheetSize](#sheetsize枚举说明) \| [Length](ts-types.md#length))?, ([SheetSize](#sheetsize枚举说明) \| [Length](ts-types.md#length))?] | 否 | 半模态页面的切换高度档位。<br/>**说明：**<br/>从API version 12开始，底部弹窗横屏时该属性设置生效。<br/>底部弹窗竖屏生效，元组中第一个高度为初始高度。<br />面板可跟手滑动切换档位，松手后是否滑动至目标档位有两个判断条件：速度和距离。速度超过阈值，则执行滑动至与手速方向一致的目标档位；速度小于阈值，则引入距离判断条件，当位移距离>当前位置与目标位置的1/2，滑动至与手速方向一致的目标档位，位移距离当前位置与目标位置的1/2，返回至当前档位。速度阈值：1000，距离阈值：50%。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | preferType<sup>11+</sup> | [SheetType](#sheettype11枚举说明) | 否 | 半模态页面的样式。<br/>**说明：**<br/>半模态在不同窗口所支持的显示类型：<br/>1. 宽度 < 600vp：底部。<br/>2. 600vp <= 宽度 < 840vp：底部、居中、跟手、侧边。默认居中样式。<br/>3. 宽度 >= 840vp：底部、居中、跟手、侧边。默认跟手样式。<br/>4. API version 20开始，窗口宽度大于600vp时，preferType支持设置为SheetType.SIDE侧边样式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| showClose<sup>11+</sup> | boolean \| [Resource](ts-types.md#resource) | 否 | 是否显示关闭图标，默认显示。<br/> 2in1设备默认无按钮底板。<br/>**说明：**<br/>Resource需要为boolean类型。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| showClose<sup>11+</sup> | boolean \| [Resource](ts-types.md#resource) | 否 | 是否显示关闭图标。<br/> 2in1设备默认无按钮底板。<br/> 默认值：true。<br/> true：显示关闭图标。<br/> false：不显示关闭图标。<br/>**说明：**<br/>Resource需要为boolean类型。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | dragBar         | boolean                                  | 否    | 是否显示控制条。<br/>**说明：**<br/>半模态面板的detents属性设置多个不同高度并且设置生效时，默认显示控制条。否则不显示控制条。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | blurStyle<sup>11+</sup> | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | 否 | 半模态面板的模糊背景。默认无模糊背景。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| maskColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 半模态页面的背景蒙层颜色。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| maskColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 半模态页面的背景蒙层颜色。<br/> 默认值：Color.Gery。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | title<sup>11+</sup> | [SheetTitleOptions](#sheettitleoptions11) \| [CustomBuilder](ts-types.md#custombuilder8) | 否 | 半模态面板的标题。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | enableOutsideInteractive<sup>11+</sup> | boolean | 否 | 半模态所在页面是否允许交互。<br/>**说明：**<br/>设置为true时允许交互，不显示蒙层；设置为false时不允许交互，显示蒙层；若不进行设置，默认底部弹窗与居中弹窗不允许交互，跟手弹窗允许交互。当设置为true时，maskColor设置无效。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | shouldDismiss<sup>11+</sup> | (sheetDismiss: [SheetDismiss](#sheetdismiss11)) => void | 否 | 半模态页面交互式关闭回调函数。<br/>**说明：**<br/>当用户执行下拉关闭、侧拉关闭、触发back事件、点击遮罩层关闭或关闭按钮的交互操作时，如果已注册回调函数，模态窗口将不会立即关闭。要关闭半模态，需在回调函数中调用shouldDismiss.dismiss()方法来实现。<br/>如果不注册该回调函数，则用户执行下拉关闭、侧拉关闭、触发back事件、点击遮罩层关闭或关闭按钮的交互操作时，正常关闭半模态，无其他行为。<br/>建议在[二次确认](../../../ui/arkts-sheet-page.md#二次确认能力)场景使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -70,14 +76,15 @@ bindSheet(isShow: Optional\<boolean\>, builder: CustomBuilder, options?: SheetOp
 | mode<sup>12+</sup> | [SheetMode](#sheetmode12枚举说明)   | 否 | 设置半模态页面的显示层级。<br/>默认值：SheetMode.OVERLAY<br />**说明：**<br /> 1. 半模态显示期间mode属性不支持动态切换，两种模式的显示层级完全不同，无法做到显示期间同一个半模态从一个层级变换到另一个层级。建议在使用时明确诉求固定mode值。 <br/> 2. 设置SheetMode.EMBEDDED时不支持设置UIContext属性，两者对应的半模态显示层级效果互相冲突。<br />3. 使用[openBindSheet](../js-apis-arkui-UIContext.md#openbindsheet12)启动半模态页面，若未传入有效的targetId，则不支持设置为SheetMode.EMBEDDED，默认为SheetMode.OVERLAY。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | scrollSizeMode<sup>12+</sup> | [ScrollSizeMode](#scrollsizemode12枚举说明)   | 否 | 设置半模态面板滑动时，内容区域刷新时机。<br/>默认值：ScrollSizeMode.FOLLOW_DETENT |
 | keyboardAvoidMode<sup>13+</sup> | [SheetKeyboardAvoidMode](#sheetkeyboardavoidmode13枚举说明) | 否 | 设置半模态激活输入法时对软键盘的避让方式。<br/> **默认值：** TRANSLATE_AND_SCROLL<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
-| enableHoverMode<sup>14+</sup>              | boolean | 否   | 是否响应悬停态。<br />默认值：false，默认不响应。<br />**说明：**<br />底部弹窗样式和跟手弹窗样式不响应悬停态。|
-| hoverModeArea<sup>14+</sup>              | [HoverModeAreaType](ts-appendix-enums.md#hovermodeareatype14) | 否   | 悬停态下弹窗默认展示区域。<br />默认值：HoverModeAreaType.BOTTOM_SCREEN |
-| radius<sup>15+</sup> | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)&nbsp;\|&nbsp;[BorderRadiuses](ts-types.md#borderradiuses9)&nbsp;\|&nbsp;[LocalizedBorderRadiuses](ts-types.md#LocalizedBorderRadiuses12) | 否 | 设置半模态页面圆角半径。<br/>不建议设置4个圆角大小不相等，圆角大小相等时面板视觉体验最佳。<br/>**默认值**：32vp<br/>**说明：**<br/>1. 根据设置的圆角半径值显示，如果未设置，则使用默认值。底部样式不显示半模态底部2个圆角，即使设置了底部2个圆角也不生效。<br/>2. 分别设置4个方向的圆角半径后，如果某个方向的值异常，异常方向的圆角值重置为默认值，非异常方向的圆角值为已设置的值。统一设置4个方向的圆角时，如果设置的值异常，4个方向的圆角都重置为默认值。<br/>3. 半径设置为百分比时，以半模态页面的宽度为基准。<br/>4. 当圆角的半径大于半模态页面宽度一半时，圆角的半径取值为半模态页面宽度的一半。<br/>5. 当半模态页面高度过小且圆角半径设置过大时，可能导致显示异常。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
+| enableHoverMode<sup>14+</sup>              | boolean | 否   | 是否响应悬停态。<br />默认值：false，默认不响应。<br /> 2in1设备默认值：true <br />**说明：**<br />底部弹窗样式和跟手弹窗样式不响应悬停态。子窗模式不支持悬停态。|
+| hoverModeArea<sup>14+</sup>              | [HoverModeAreaType](ts-appendix-enums.md#hovermodeareatype14) | 否   | 悬停态下弹窗默认展示区域。<br />默认值：HoverModeAreaType.BOTTOM_SCREEN <br /> 2in1设备默认值：HoverModeAreaType.TOP_SCREEN |
+| radius<sup>15+</sup> | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)&nbsp;\|&nbsp;[BorderRadiuses](ts-types.md#borderradiuses9)&nbsp;\|&nbsp;[LocalizedBorderRadiuses](ts-types.md#localizedborderradiuses12) | 否 | 设置半模态页面圆角半径。<br/>不建议设置4个圆角大小不相等，圆角大小相等时面板视觉体验最佳。<br/>**默认值**：32vp<br/>**说明：**<br/>1. 根据设置的圆角半径值显示，如果未设置，则使用默认值。底部样式不显示半模态底部2个圆角，即使设置了底部2个圆角也不生效。<br/>2. 分别设置4个方向的圆角半径后，如果某个方向的值异常，异常方向的圆角值重置为默认值，非异常方向的圆角值为已设置的值。统一设置4个方向的圆角时，如果设置的值异常，4个方向的圆角都重置为默认值。<br/>3. 半径设置为百分比时，以半模态页面的宽度为基准。<br/>4. 当圆角的半径大于半模态页面宽度一半时，圆角的半径取值为半模态页面宽度的一半。<br/>5. 当半模态页面高度过小且圆角半径设置过大时，可能导致显示异常。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 | detentSelection<sup>15+</sup>         <br> | [SheetSize](#sheetsize枚举说明)&nbsp;\|&nbsp;[Length](ts-types.md#length) | 否    | 支持非手势切换挡位。<br />**默认值：** detents[0]。<br/>**说明：**<br/>1. 该接口取值范围为detents数组范围，若设值非detents范围，该接口无效。<br/>2. 当设置SheetSize.FIT_CONTENT时，该接口无效。<br>3. 不建议手势切换挡位与该接口切换挡位同时生效使用。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 | placement<sup>18+</sup> | [Placement](ts-appendix-enums.md#placement8) | 否 | 设置半模态popup样式弹窗相对于目标的显示位置。<br />默认值：Placement.Bottom<br />**说明：** <br /> 1. popup样式弹窗在确保指定位置能容纳弹窗尺寸的前提下，优先依据设定的placement展示弹窗。若不可行，则遵循先垂直翻转，后尝试90°水平旋转的规则调整显示位置，以预设方向为下方为例，调整顺序依次为：下、上、右、左。<br />2. 如果设置的对齐方式导致组件布局超出窗口范围，将根据该对齐方式在水平或垂直方向上进行位移，直至组件完全显示在窗口内。<br />3. 如果在四个方向上均无法容纳当前的popup样式弹窗，处理方式遵循开发者设置的placementOnTarget属性：<br />1）若属性值为true，将依据设定的placement，向其镜像方向平移，直至弹窗能够完全显示。<br />2）若属性值为false，则在四个方向中，选择能够完全展示弹窗宽度且剩余高度最大的方向，通过调整半模态高度以适应当前方向，确保弹窗能够放下，同时保持预设placement对应的对齐方式不变。 <br />**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | placementOnTarget<sup>18+</sup> | boolean | 否 | 半模态popup样式弹窗在当前窗口下，四个方向均无法容纳该弹窗大小时，设置是否允许其覆盖在目标节点上。<br /> 默认值：true <br />**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
-| effectEdge<sup>18+</sup> | number | 否 | 设置半模态面板边缘滚动，支持单边生效。<br/>**默认值**：默认双边生效，即[EffectEdge](ts-container-scrollable-common.md#effectedge18枚举说明).START \| [EffectEdge](ts-container-scrollable-common.md#effectedge18枚举说明).END（即数值3）。<br />**说明：**<br />1. 仅上边缘生效：[EffectEdge](ts-container-scrollable-common.md#effectedge18枚举说明).START。<br/>2. 仅下边缘生效：[EffectEdge](ts-container-scrollable-common.md#effectedge18枚举说明).END。<br/>3. 双边生效：[EffectEdge](ts-container-scrollable-common.md#effectedge18枚举说明).START \| [EffectEdge](ts-container-scrollable-common.md#effectedge18枚举说明).END（即数值3）。<br/>4. 双边不生效：[EffectEdge](ts-container-scrollable-common.md#effectedge18枚举说明).START & [EffectEdge](ts-container-scrollable-common.md#effectedge18枚举说明).END（即数值0）。<br />**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| effectEdge<sup>18+</sup> | number | 否 | 设置半模态面板内容区边缘回弹效果，支持单边生效。<br/>**默认值**：默认双边生效，即[EffectEdge](ts-container-scrollable-common.md#effectedge18枚举说明).START \| [EffectEdge](ts-container-scrollable-common.md#effectedge18枚举说明).END（即数值3）。<br />**说明：**<br />1. 仅上边缘生效：[EffectEdge](ts-container-scrollable-common.md#effectedge18枚举说明).START。<br/>2. 仅下边缘生效：[EffectEdge](ts-container-scrollable-common.md#effectedge18枚举说明).END。<br/>3. 双边生效：[EffectEdge](ts-container-scrollable-common.md#effectedge18枚举说明).START \| [EffectEdge](ts-container-scrollable-common.md#effectedge18枚举说明).END（即数值3）。<br/>4. 双边不生效：[EffectEdge](ts-container-scrollable-common.md#effectedge18枚举说明).START & [EffectEdge](ts-container-scrollable-common.md#effectedge18枚举说明).END（即数值0）。<br />**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | showInSubWindow<sup>19+</sup> | boolean                                  | 否    | 半模态是否在独立子窗中显示。<br>默认值：false<br>**说明：** <br>1. 若属性值为true，半模态可以在独立子窗口中展示，并且可以超过应用窗口范围。<br>2. 若属性值为false，半模态只能在应用窗口范围内展示。<br>3. 不建议在showInSubWindow为true的弹窗嵌套显示另一个showInSubWindow为true的弹窗，半模态可能会影响其他组件行为。<br>4. 不建议在showInSubWindow为true的弹窗中使用CalendarPicker、CalendarPickerDialog、DatePickerDialog、TextPickerDialog、TimePickerDialog等picker组件，半模态会影响上述组件行为。<br>5. 半模态显示期间该属性不支持动态切换。<br/>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。 |
+| enableFloatingDragBar<sup>20+</sup>              | boolean | 否   | 控制条是否悬浮显示，true为悬浮显示，false为不悬浮显示。<br />默认值：false <br /> **说明：** <br>悬浮效果只在控制条显示的场景生效，且控制条不占位。<br /> title传入[CustomBuilder](ts-types.md#custombuilder8)时enableFloatingDragBar始终为false。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## SheetSize枚举说明
 
@@ -209,12 +216,22 @@ bindSheet(isShow: Optional\<boolean\>, builder: CustomBuilder, options?: SheetOp
 
 ## SheetKeyboardAvoidMode<sup>13+</sup>枚举说明
 
+半模态激活输入法时对软键盘的避让方式。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称           | 值   | 说明                         |
 | ------------------------- | ---- | -------------------------------- |
-| NONE | 0    | 设置半模态不避让软键盘。   |
-| TRANSLATE_AND_RESIZE    | 1    | 设置半模态先上抬面板避让软键盘；<br/>当上抬至最大高度仍不足以避让软键盘时，则通过压缩整体内容完成避让。|
-| RESIZE_ONLY    | 2    | 设置半模态通过压缩整体内容避让软键盘。|
-| TRANSLATE_AND_SCROLL    | 3    | 设置半模态先上抬面板避让软键盘；<br/>当上抬至最大高度仍不足以避让软键盘时，则通过滚动内容完成避让。|
+| NONE | 0    | 设置半模态不避让软键盘。<br />**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
+| TRANSLATE_AND_RESIZE    | 1    | 设置半模态先上抬面板避让软键盘；<br/>当上抬至最大高度仍不足以避让软键盘时，则通过压缩整体内容完成避让。<br />**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。|
+| RESIZE_ONLY    | 2    | 设置半模态通过压缩整体内容避让软键盘。<br />**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。|
+| TRANSLATE_AND_SCROLL    | 3    | 设置半模态先上抬面板避让软键盘；<br/>当上抬至最大高度仍不足以避让软键盘时，则通过滚动内容完成避让。<br />**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。|
+| POPUP_SHEET<sup>20+</sup>    | 4    | 设置半模态popup样式弹窗避让软键盘。<br /> 1. 避让软键盘时，在popup样式弹窗当前显示位置无法容纳弹窗尺寸的前提下，遵循先垂直翻转避让，后尝试90°水平旋转避让的规则调整显示位置，以预设方向为下方为例，调整避让顺序依次为：下、上、右、左。<br />2. 如果设置的对齐方式导致组件布局超出窗口范围，将根据该对齐方式在水平或垂直方向上进行位移，直至组件完全显示在窗口内。<br />3. 避让软键盘时，如果在四个方向上均无法容纳当前的popup样式弹窗，处理方式遵循开发者设置的placementOnTarget属性：<br />（1）若属性值为true，将依据设定的placement，向其镜像方向平移，直至弹窗能够完全显示。<br />（2）若属性值为false，则在四个方向中，选择能够完全展示弹窗宽度且剩余高度最大的方向，通过调整半模态高度以适应当前方向，确保弹窗能够放下，同时保持预设placement对应的对齐方式不变。<br />**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
+
+> **说明：**
+>
+> 设置POPUP_SHEET避让方式时，半模态只避让由面板内的文本框组件拉起的软键盘场景，其他场景半模态无需避让。
+>
 
 ## 示例
 ### 示例1（不同高度的半模态弹窗）

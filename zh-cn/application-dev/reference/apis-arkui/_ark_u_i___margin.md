@@ -5,7 +5,7 @@
 
 外边距属性，用于描述组件的外边距属性。
 
-**起始版本：** 12。
+**起始版本：** 12
 
 **相关模块：**[ArkUI_NativeModule](_ark_u_i___native_module.md)
 

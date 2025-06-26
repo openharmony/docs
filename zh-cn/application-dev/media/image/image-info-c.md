@@ -14,7 +14,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libohimage.so libimage_rece
 
 ### Native接口调用
 
-具体接口说明请参考[API文档](../../reference/apis-image-kit/_image___native_module.md)。
+具体接口说明请参考[API文档](../../reference/apis-image-kit/capi-image-nativemodule.md)。
 
 在Deveco Studio新建Native C++应用，默认生成的项目中包含index.ets文件，在entry\src\main\cpp目录下会自动生成一个cpp文件（hello.cpp或napi_init.cpp，本示例以hello.cpp文件名为例）。在hello.cpp中实现C API接口调用逻辑，示例代码如下：
 
@@ -47,7 +47,7 @@ static void ImageNativeCTest()
     imgSize.width = IMAGE_WIDTH;
     imgSize.height = IMAGE_HEIGHT;
 
-    // 设置 OH_ImageReceiverOptions 的 size 属性。
+    // 设置 OH_ImageReceiverOptions 的 size 属性。该属性仅为必要入参，实际上不会生效，图片属性由生产者决定，如相机。
     errCode = OH_ImageReceiverOptions_SetSize(options, imgSize);
     if (errCode != IMAGE_SUCCESS) {
         OH_LOG_ERROR(LOG_APP, "ImageReceiverNativeCTest set image receiver options size failed, errCode: %{public}d.", errCode);
@@ -81,7 +81,8 @@ static void ImageNativeCTest()
         return;
     }
 
-    // 读取 OH_ImageNative 的 size 属性。
+    // 读取 OH_ImageNative 的 size 属性。该属性实际上不会生效，图片属性由生产者决定，如相机。
+    Image_Size imgSizeRead;
     errCode = OH_ImageNative_GetImageSize(image, &imgSizeRead);
     if (errCode != IMAGE_SUCCESS) {
         OH_LOG_ERROR(LOG_APP, "ImageReceiverNativeCTest get image size failed, errCode: %{public}d.", errCode);

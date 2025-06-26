@@ -436,7 +436,7 @@ reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).
 按钮的类型。
 
 > **说明：**
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[reminderAgentManager.ActionButtonType](js-apis-reminderAgentManager.md#ActionButtonType)替代。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[reminderAgentManager.ActionButtonType](js-apis-reminderAgentManager.md#actionbuttontype)替代。
 
 **系统能力**：SystemCapability.Notification.ReminderAgent
 
@@ -451,7 +451,7 @@ reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).
 提醒的类型。
 
 > **说明：**
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[reminderAgentManager.ReminderType](js-apis-reminderAgentManager.md#ReminderType)替代。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[reminderAgentManager.ReminderType](js-apis-reminderAgentManager.md#remindertype)替代。
 
 **系统能力**：SystemCapability.Notification.ReminderAgent
 
@@ -467,7 +467,7 @@ reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).
 用于设置弹出的提醒通知信息上显示的按钮类型和标题。
 
 > **说明：**
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[reminderAgentManager.ActionButton](js-apis-reminderAgentManager.md#ActionButton)替代。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[reminderAgentManager.ActionButton](js-apis-reminderAgentManager.md#actionbutton)替代。
 
 **系统能力**：SystemCapability.Notification.ReminderAgent
 
@@ -482,7 +482,7 @@ reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).
 点击提醒通知后跳转的目标ability信息。
 
 > **说明：**
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[reminderAgentManager.WantAgent](js-apis-reminderAgentManager.md#WantAgent)替代。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[reminderAgentManager.WantAgent](js-apis-reminderAgentManager.md#wantagent)替代。
 
 **系统能力**：SystemCapability.Notification.ReminderAgent
 
@@ -512,7 +512,7 @@ reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).
 提醒实例对象，用于设置提醒类型、响铃时长等具体信息。
 
 > **说明：**
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[reminderAgentManager.ReminderRequest](js-apis-reminderAgentManager.md#ReminderRequest)替代。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[reminderAgentManager.ReminderRequest](js-apis-reminderAgentManager.md#reminderrequest)替代。
 
 **系统能力**：SystemCapability.Notification.ReminderAgent
 
@@ -539,7 +539,7 @@ reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).
 日历实例对象，用于设置提醒的时间。
 
 > **说明：**
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[reminderAgentManager.ReminderRequestCalendar](js-apis-reminderAgentManager.md#ReminderRequestCalendar)替代。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[reminderAgentManager.ReminderRequestCalendar](js-apis-reminderAgentManager.md#reminderrequestcalendar)替代。
 
 **系统能力**：SystemCapability.Notification.ReminderAgent
 
@@ -556,7 +556,7 @@ reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).
 闹钟实例对象，用于设置提醒的时间。
 
 > **说明：**
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[reminderAgentManager.ReminderRequestAlarm](js-apis-reminderAgentManager.md#ReminderRequestAlarm)替代。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[reminderAgentManager.ReminderRequestAlarm](js-apis-reminderAgentManager.md#reminderrequestalarm)替代。
 
 **系统能力**：SystemCapability.Notification.ReminderAgent
 
@@ -572,7 +572,7 @@ reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).
 倒计时实例对象，用于设置提醒的时间。
 
 > **说明：**
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[reminderAgentManager.ReminderRequestTimer](js-apis-reminderAgentManager.md#ReminderRequestTimer)替代。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[reminderAgentManager.ReminderRequestTimer](js-apis-reminderAgentManager.md#reminderrequesttimer)替代。
 
 **系统能力**：SystemCapability.Notification.ReminderAgent
 
@@ -586,7 +586,7 @@ reminderAgent.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).
 用于日历类提醒设置时指定时间信息。
 
 > **说明：**
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[reminderAgentManager.LocalDateTime](js-apis-reminderAgentManager.md#LocalDateTime)替代。
+> 从 API version 7开始支持，从API version 9开始废弃。建议使用[reminderAgentManager.LocalDateTime](js-apis-reminderAgentManager.md#localdatetime)替代。
 
 **系统能力**：SystemCapability.Notification.ReminderAgent
 

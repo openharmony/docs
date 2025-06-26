@@ -107,7 +107,7 @@ Read [AVRecorder](../../reference/apis-media-kit/js-apis-media.md#avrecorder9) f
    let avConfig: media.AVRecorderConfig = {
      videoSourceType: media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV, // Video source type. YUV and ES are supported.
      profile : avProfile,
-     url: 'fd://' + fileFd.toString(), // Create, read, and write a video file by referring to the sample code in Application File Access and Management.
+     url: 'fd://' + fileFd.toString(), // Create, read, and write a video file by referring to the sample code in Accessing Application Files.
      rotation: 0 // Video rotation angle. The default value is 0, indicating that the video is not rotated. The value can be 0, 90, 180, or 270.
    };
    this.avRecorder.prepare(avConfig).then(() => {
@@ -152,7 +152,7 @@ Read [AVRecorder](../../reference/apis-media-kit/js-apis-media.md#avrecorder9) f
 11. Call **release()** to release the resources. The AVRecorder enters the **released** state. In addition, release the video data input source resources (camera resources in this example).
 
 
-## Sample Code
+## Development Example
 
 Refer to the sample code below to complete the process of starting, pausing, resuming, and stopping recording.
 
@@ -184,7 +184,7 @@ export class VideoRecorderDemo extends CustomComponent {
   private avConfig: media.AVRecorderConfig = {
     videoSourceType: media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV, // Video source type. YUV and ES are supported.
     profile : this.avProfile,
-    url: 'fd://35', // Create, read, and write a file by referring to the sample code in Application File Access and Management.
+    url: 'fd://35', // Create, read, and write a file by referring to the sample code in Accessing Application Files.
     rotation: 0 // Video rotation angle. The default value is 0, indicating that the video is not rotated. The value can be 0, 90, 180, or 270.
   };
   

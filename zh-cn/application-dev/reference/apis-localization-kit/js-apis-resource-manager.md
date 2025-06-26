@@ -335,15 +335,17 @@ type Resource = _Resource
 
 ## ResourceManager
 
-提供访问应用资源的能力。
+提供访问应用资源和系统资源的能力。
 
 > **说明：**
 >
 > - ResourceManager涉及到的方法，仅限基于TS扩展的声明式开发范式使用。
 >
-> - 资源文件在工程的resources目录中定义，通过resId、resName、resource对象等可以获取对应的字符串、字符串数组等，resId可通过`$r(资源地址).id`的方式获取，例如`$r('app.string.test').id`。
+> - 资源文件在工程的resources目录中定义，通过resId、resName、resource对象等可以获取对应的字符串、字符串数组、颜色等资源值，resId可通过`$r(资源地址).id`的方式获取，例如`$r('app.string.test').id`。
 >
 > - [resource](#resource9)对象适用于多工程应用内的跨包访问，因resource对象需创建对应module的context获取资源，故相比于入参为resId、resName的接口耗时更长。
+>
+> - 单HAP包获取自身资源，推荐使用参数为resId或resName的接口。跨HAP/HSP包获取资源，推荐使用[createModuleContext](../apis-ability-kit/js-apis-app-ability-application.md#applicationcreatemodulecontext12)创建对应module的context，再调用参数为resId或resName的接口。
 >
 > - 单HAP包和跨HAP/HSP包资源的访问方式具体请参考[资源访问](../../quick-start/resource-categories-and-access.md#资源访问)。
 >
@@ -4131,7 +4133,7 @@ getNumber(resource: Resource): number
 
 > **说明**
 >
-> 使用接口获取单位为"vp"的float值时，通过resId和resource对象获取到的值不一致，resId获取的值是准确的。该问题正在优化改进。
+> 该接口获取单位为"vp"的float值时，与参数为resId的接口获取到的值不一致，通过resId获取的值是准确的。该问题正在优化改进，推荐优先使用[getNumber](#getnumber9)或[getNumberByName](#getnumberbyname9)接口。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -4376,6 +4378,10 @@ getColorSync(resource: Resource): number
 
 获取指定resource对象对应的颜色值，使用同步方式返回。
 
+> **说明**
+>
+> 该接口在深色模式下会返回浅色资源，与参数为resId的接口返回值不一致。该问题正在优化改进，推荐优先使用[getColorSync](#getcolorsync10)或[getColorByNameSync](#getcolorbynamesync10)接口。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Global.ResourceManager
@@ -4613,6 +4619,10 @@ getColor(resource: Resource, callback: _AsyncCallback&lt;number&gt;): void
 
 获取指定resource对象对应的颜色值，使用callback异步回调。
 
+> **说明**
+>
+> 该接口在深色模式下会返回浅色资源，与参数为resId的接口返回值不一致。该问题正在优化改进，推荐优先使用[getColor](#getcolor10)接口。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Global.ResourceManager
@@ -4673,6 +4683,10 @@ getColor(resource: Resource, callback: _AsyncCallback&lt;number&gt;): void
 getColor(resource: Resource): Promise&lt;number&gt;
 
 获取指定resource对象对应的颜色值，使用Promise异步回调。
+
+> **说明**
+>
+> 该接口在深色模式下会返回浅色资源，与参数为resId的接口返回值不一致。该问题正在优化改进，推荐优先使用[getColor](#getcolor10-1)接口。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -5921,10 +5935,15 @@ isRawDir(path: string): boolean
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    // 假设rawfile根目录下存在test.txt文件
-    let isRawDir = this.context.resourceManager.isRawDir("test.txt");
-    console.log(`test.txt isRawDir, result: ${isRawDir}`);
+    // 假设rawfile根目录下存在非空文件夹sub，则isRawDir返回结果为true
+    let isRawDir = this.context.resourceManager.isRawDir("sub");
+    // 打印输出结果: sub isRawDir, result: true
+    console.log(`sub isRawDir, result: ${isRawDir}`);
+
+    // 假设rawfile根目录下存在test.txt文件，则isRawDir返回结果为false
+    isRawDir = this.context.resourceManager.isRawDir("test.txt");
     // 打印输出结果: test.txt isRawDir, result: false
+    console.log(`test.txt isRawDir, result: ${isRawDir}`);
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;

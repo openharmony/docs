@@ -32,7 +32,7 @@ getBatteryStats(): Promise<Array&lt;BatteryStatsInfo&gt;>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[耗电统计错误码](errorcode-batteryStatistics.md)。
+以下错误码的详细介绍请参见[耗电统计错误码](errorcode-batteryStatistics.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
@@ -69,7 +69,7 @@ getBatteryStats(callback: AsyncCallback<Array&lt;BatteryStatsInfo&gt;>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[耗电统计错误码](errorcode-batteryStatistics.md)。
+以下错误码的详细介绍请参见[耗电统计错误码](errorcode-batteryStatistics.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
@@ -113,7 +113,7 @@ getAppPowerValue(uid: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[耗电统计错误码](errorcode-batteryStatistics.md)。
+以下错误码的详细介绍请参见[耗电统计错误码](errorcode-batteryStatistics.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
@@ -156,7 +156,7 @@ getAppPowerPercent(uid: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[耗电统计错误码](errorcode-batteryStatistics.md)。
+以下错误码的详细介绍请参见[耗电统计错误码](errorcode-batteryStatistics.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
@@ -199,7 +199,7 @@ getHardwareUnitPowerValue(type: ConsumptionType): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[耗电统计错误码](errorcode-batteryStatistics.md)。
+以下错误码的详细介绍请参见[耗电统计错误码](errorcode-batteryStatistics.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
@@ -242,7 +242,7 @@ getHardwareUnitPowerPercent(type: ConsumptionType): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[耗电统计错误码](errorcode-batteryStatistics.md)。
+以下错误码的详细介绍请参见[耗电统计错误码](errorcode-batteryStatistics.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
@@ -271,7 +271,7 @@ try {
 
 ### 属性
 
-| 名称  | 类型                                | 可读 | 可写 | 说明                   |
+| 名称  | 类型                                | 只读 | 可选 | 说明                   |
 | ----- | ----------------------------------- | ---- | ---- | ---------------------- |
 | uid   | number                              | 是   | 否   | 耗电信息相关的UID。    |
 | type  | [ConsumptionType](#consumptiontype) | 是   | 否   | 耗电信息相关的类型。   |

@@ -197,32 +197,37 @@ struct MouseExample {
 
 
 ```ts
-class ish{
-  isHovered:boolean = false
-  set(val:boolean){
+class HoverConfig {
+  isHovered: boolean = false
+
+  set(val: boolean) {
     this.isHovered = val;
   }
 }
-class butf{
-  buttonText:string = ''
-  set(val:string){
+
+class ButtonConfig {
+  buttonText: string = ''
+
+  set(val: string) {
     this.buttonText = val
   }
 }
+
 @Entry
 @Component
 struct MouseExample {
-  @State isHovered:ish = new ish()
-  build(){
-    Column(){
+  @State isHovered: HoverConfig = new HoverConfig()
+
+  build() {
+    Column() {
       Button(this.isHovered ? 'Hovered!' : 'Not Hover')
         .width(200)
         .height(100)
         .backgroundColor(this.isHovered ? Color.Green : Color.Gray)
         .onHover((isHover?: boolean) => {
-          if(isHover) {
-            let ishset = new ish()
-            ishset.set(isHover)
+          if (isHover) {
+            let ishSet = new HoverConfig()
+            ishSet.set(isHover)
           }
         })
         .onMouse((event?: MouseEvent) => {
@@ -230,8 +235,8 @@ struct MouseExample {
             if (event.stopPropagation) {
               event.stopPropagation(); // 在Button的onMouse事件中设置阻止冒泡
             }
-            let butset = new butf()
-            butset.set('Button onMouse:\n' + '' +
+            let butSet = new ButtonConfig()
+            butSet.set('Button onMouse:\n' + '' +
               'button = ' + event.button + '\n' +
               'action = ' + event.action + '\n' +
               'x,y = (' + event.x + ',' + event.y + ')' + '\n' +
@@ -319,7 +324,7 @@ Button默认的悬浮态效果就是Highlight效果，因此Auto和Highlight的�
 
 1. 首先分发给ArkUI框架用于触发获焦组件绑定的onKeyPreIme回调和页面快捷键。
 2. 再向输入法分发，输入法会消费按键用作输入。
-3. 再次将事件发给ArkUI框架，用于响应系统默认Key事件（例如走焦），以及获焦组件绑定的onKeyEvent回调。
+3. 再次将事件发给ArkUI框架，用于响应系统默认Key事件（例如走焦）以及获焦组件绑定的onKeyEvent回调。
 
 因此，当某输入框组件获焦，且打开了输入法，此时大部分按键事件均会被输入法消费。例如字母键会被输入法用来往输入框中输入对应字母字符、方向键会被输入法用来切换选中备选词。如果在此基础上给输入框组件绑定了快捷键，那么快捷键会优先响应事件，事件也不再会被输入法消费。
 

@@ -1,13 +1,13 @@
 # 适配不同折叠状态的摄像头变更(ArkTS)
 折叠设备形态各异，在相机应用的开发过程中需要统一的摄像头切换方案，以确保用户在拍照、录像过程中获得更好的体验。
 
-一台可折叠设备在不同折叠状态下，可使用不同的相机。系统会标识所有摄像头，每个摄像头与一个折叠状态相对应，表示该摄像头可在对应的折叠状态下使用。应用可调用[CameraManager.on('foldStatusChange')](../../reference/apis-camera-kit/js-apis-camera.md#onfoldstatuschange12)或[display.on('foldStatusChange')](../../reference/apis-arkui/js-apis-display.md#displayonfoldstatuschange10)监听设备的折叠状态变化，并调用[CameraManager.getSupportedCameras](../../reference/apis-camera-kit/js-apis-camera.md#getsupportedcameras)获取当前状态下可用相机，完成相应适配，确保应用在折叠状态变更时的用户体验。
+一台可折叠设备在不同折叠状态下，可使用不同的相机。系统会标识所有摄像头，每个摄像头与一个折叠状态相对应，表示该摄像头可在对应的折叠状态下使用。应用可调用[CameraManager.on('foldStatusChange')](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#onfoldstatuschange12)或[display.on('foldStatusChange')](../../reference/apis-arkui/js-apis-display.md#displayonfoldstatuschange10)监听设备的折叠状态变化，并调用[CameraManager.getSupportedCameras](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#getsupportedcameras)获取当前状态下可用相机，完成相应适配，确保应用在折叠状态变更时的用户体验。
 
 不同折叠设备在不同折叠状态下支持的摄像头数量不同。
 
-例如，折叠设备A拥有三颗摄像头：B（后置）、C（前置）、D（前置）。在展开状态下，通过[CameraManager.getSupportedCameras](../../reference/apis-camera-kit/js-apis-camera.md#getsupportedcameras)接口可获取到B（后置）和C（前置）两颗摄像头，而在折叠状态下，仅可获取到D（前置）摄像头。因此，在使用后置摄像头或需要切换摄像头的场景下，需先判断是否存在后置摄像头。
+例如，折叠设备A拥有三颗摄像头：B（后置）、C（前置）、D（前置）。在展开状态下，通过[CameraManager.getSupportedCameras](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#getsupportedcameras)接口可获取到B（后置）和C（前置）两颗摄像头，而在折叠状态下，仅可获取到D（前置）摄像头。因此，在使用后置摄像头或需要切换摄像头的场景下，需先判断是否存在后置摄像头。
 
-详细的API说明请参考[Camera API参考](../../reference/apis-camera-kit/js-apis-camera.md)。
+详细的API说明请参考[Camera API参考](../../reference/apis-camera-kit/arkts-apis-camera.md)。
 
 Context获取方式请参考：[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
@@ -62,7 +62,7 @@ Context获取方式请参考：[获取UIAbility的上下文信息](../../applica
 
 此处提供两种方案供开发者选择。
 
-- **方案一：使用相机框架提供的[CameraManager.on('foldStatusChange')](../../../application-dev/reference/apis-camera-kit/js-apis-camera.md#onfoldstatuschange12)监听设备折叠态变化。**
+- **方案一：使用相机框架提供的[CameraManager.on('foldStatusChange')](../../../application-dev/reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#onfoldstatuschange12)监听设备折叠态变化。**
     ```ts
     import { camera } from '@kit.CameraKit';
     import { BusinessError } from '@kit.BasicServicesKit';
@@ -98,7 +98,28 @@ Context获取方式请参考：[获取UIAbility的上下文信息](../../applica
       AppStorage.setOrCreate<number>('foldStatus', foldStatus);
     })
     ```
-
+## 判断是否存在对应位置摄像头
+通过[CameraManager.getSupportedCameras](../../reference/apis-camera-kit/arkts-apis-camera-CameraManager.md#getsupportedcameras)接口可获取到当前设备折叠状态下支持的所有镜头，遍历获取到的结果，通过[CameraPosition](../../reference/apis-camera-kit/arkts-apis-camera-e.md#cameraposition)判断镜头是否存在。
+```ts
+// connectionType默认为camera.ConnectionType.CAMERA_CONNECTION_BUILT_IN，表示设备的板载镜头。
+function hasCameraAt(cameraManager: camera.CameraManager, cameraPosition: camera.CameraPosition,
+  connectionType: camera.ConnectionType = camera.ConnectionType.CAMERA_CONNECTION_BUILT_IN): boolean {
+  let cameraArray: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
+  if (cameraArray.length <= 0) {
+    console.error('cameraManager.getSupportedCameras error');
+    return false;
+  }
+  for (let index = 0; index < cameraArray.length; index++) {
+    if (cameraArray[index].cameraPosition === cameraPosition &&
+      cameraArray[index].connectionType === connectionType) {
+      return true;
+    }
+  }
+  return false;
+}
+```
+## 摄像头切换逻辑
+在监听到折叠状态发生变化时通过设置被@StorageLink修饰的foldStatus变量改变，触发reloadXComponent方法重新加载XComponent组件，从而实现相机的切换逻辑。
 ## 完整示例
 ```ts
 import { camera } from '@kit.CameraKit';
@@ -290,7 +311,8 @@ struct Index {
     return previewProfiles[index];
   }
 
-  async initCamera(surfaceId: string, cameraPosition: camera.CameraPosition): Promise<void> {
+  async initCamera(surfaceId: string, cameraPosition: camera.CameraPosition,
+    connectionType: camera.ConnectionType = camera.ConnectionType.CAMERA_CONNECTION_BUILT_IN): Promise<void> {
     await this.releaseCamera();
     // 创建CameraManager对象。
     if (!this.mCameraManager) {
@@ -313,7 +335,7 @@ struct Index {
     }
 
     let deviceIndex = cameraArray.findIndex((cameraDevice: camera.CameraDevice) => {
-      return cameraDevice.cameraPosition === cameraPosition;
+      return cameraDevice.cameraPosition === cameraPosition && cameraDevice.connectionType === connectionType;
     })
     // 没有找到对应位置的摄像头，可选择其他摄像头，具体场景具体对待。
     if (deviceIndex === -1) {

@@ -40,11 +40,11 @@ Authentication unavailable.
 
 **Possible Causes**
 
-The last authentication service is still in progress.
+The previous authentication service is still in progress.
 
 **Solution**
 
-Wait until the last authentication service is complete and call the authentication API again.
+Wait until the previous authentication service is complete and call the authentication API again.
 
 ## 11600104 Discovery Unavailable
 
@@ -54,11 +54,11 @@ Discovery unavailable.
 
 **Possible Causes**
 
-The last discovery service is still in progress.
+The previous discovery service is still in progress.
 
 **Solution**
 
-Wait until the last discovery service is complete and call the discovery API again.
+Wait until the previous discovery service is complete and call the discovery API again.
 
 ## 11600105 Publish Unavailable
 
@@ -68,11 +68,53 @@ Publish unavailable.
 
 **Possible Causes**
 
-The last publish service is still in progress.
+The previous publish service is still in progress.
 
 **Solution**
 
-Wait until the last publish service is complete and call the publish API again.
+Wait until the previous publish service is complete and call the publish API again.
+
+## 11600106 Failed to Obtain Data from the Cloud
+
+**Error Message**
+
+Failed to get data from the cloud.
+
+**Possible Causes**
+
+The network connection is abnormal, or the network request returns an error.
+
+**Solution**
+
+Ensure that the network connection is normal and call the API again with correct parameters.
+
+## 11600107 Login Account Required
+
+**Error Message**
+
+A login account is required.
+
+**Possible Causes**
+
+No login account is available on the device.
+
+**Solution**
+
+Use the correct account to log in to the device and call the API again.
+
+## 11600108 Unlawful Information in Device Name
+
+**Error Message**
+
+The device name contains non-compliant content.
+
+**Possible Causes**
+
+The new device name contains unlawful information.
+
+**Solution**
+
+Ensure that the device name complies with laws and regulations.
 
 ## 32300001 Transport Stream Repeatedly Created
 

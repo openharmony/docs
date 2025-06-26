@@ -4,7 +4,7 @@
 
 提供窗口的公共枚举、公共定义等。
 
-**引用文件：** oh_window_comm.h
+**引用文件：** <window_manager/oh_window_comm.h>
 
 **库：** libnative_window_manager.so
 
@@ -21,7 +21,7 @@
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
 | [WindowManager_Rect](capi-windowmanager-rect.md) | WindowManager_Rect | 定义窗口矩形结构体，包含窗口位置和宽高信息。 |
-| [struct](capi-struct.md) | OH_PixelmapNative | 定义原生像素图片信息。 |
+| [struct](capi-struct.md) | OH_PixelmapNative | 定义像素图片信息。 |
 | [WindowManager_WindowProperties](capi-windowmanager-windowproperties.md) | WindowManager_WindowProperties | 窗口属性。 |
 | [WindowManager_AvoidArea](capi-windowmanager-avoidarea.md) | WindowManager_AvoidArea | 定义避让区域结构体。 |
 

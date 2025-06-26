@@ -43,11 +43,11 @@
 
   [@ohos.backgroundTaskManager (后台任务管理)](../reference/apis-backgroundtasks-kit/js-apis-backgroundTaskManager.md)
 
-  [@ohos.multimedia.camera (相机管理)](../reference/apis-camera-kit/js-apis-camera.md)
+  [@ohos.multimedia.camera (相机管理)](../reference/apis-camera-kit/arkts-apis-camera.md)
 
-  [@ohos.multimedia.audio (音频管理)](../reference/apis-audio-kit/js-apis-audio.md)
+  [@ohos.multimedia.audio (音频管理)](../reference/apis-audio-kit/arkts-apis-audio.md)
 
-  [@ohos.multimedia.media (媒体服务)](../reference/apis-media-kit/js-apis-media.md)
+  [@ohos.multimedia.media (媒体服务)](../reference/apis-media-kit/arkts-apis-media.md)
 
 
 ## 接口说明

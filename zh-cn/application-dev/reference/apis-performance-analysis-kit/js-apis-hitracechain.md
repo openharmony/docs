@@ -65,9 +65,9 @@ import { hiTraceChain } from '@kit.PerformanceAnalysisKit';
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | chainId      | bigint | 是 | 跟踪链标识。   |
-| spanId      | number | 否 | 分支标识。     |
-| parentSpanId | number | 否 | 父分支标识。   |
-| flags        | number | 否 | 跟踪标志组合。 |
+| spanId      | number | 否 | 分支标识，默认值为0。     |
+| parentSpanId | number | 否 | 父分支标识，默认值为0。   |
+| flags        | number | 否 | 跟踪标志组合，默认值为0。 |
 
 ## hiTraceChain.begin
 
@@ -82,7 +82,7 @@ begin(name: string, flags?: number): HiTraceId
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | name  | string | 是 | 跟踪业务名。 |
-| flags | number | 否 | 跟踪标志组合，具体可参考[HiTraceFlag](#hitraceflag)。 |
+| flags | number | 否 | 跟踪标志组合，具体可参考[HiTraceFlag](#hitraceflag)，默认值为0。 |
 
 **返回值：**
 

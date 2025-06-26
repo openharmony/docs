@@ -8,7 +8,7 @@ JSVM 提供了生成并使用 code cache 加速编译过程的方法，其获取
 - 使用 OH_JSVM_CreateCodeCache 接口，传入编译完成后生成的 JSVM_Script
 - 将 OH_JSVM_CreateCodeCache 生成的 code cache 保存，等待下一次编译时，作为参数传递给 compile 系列接口
 
-通过上述流程，将会在使用 code cache 的那次编译中，极大减少编译时间，其原理为将编译完成的 script 序列化，然后使用 code cache 编译时就不再需要重新解析/编译已经被序列化的函数，只需要进行一次反序列化即可，编译就简化为了一次数据读取。
+通过上述流程，将会在使用 code cache 的那次编译中，极大减少编译时间，其原理为将编译完成的 script 序列化，然后使用 code cache 编译时就不再需要重新解析/编译已经被序列化的函数，只需要进行一次反序列化即可，这样编译就简化为了一次数据读取。
 
 ## code cache 校验规格说明
 | 规格       | 规格说明                                            |
@@ -105,7 +105,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char* srcCallNative = R"JS(globalThis.UseCodeCache())JS";
 ```
-<!-- @[jsvm_code_cache](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmDebug/aboutcodecache/src/main/cpp/hello.cpp) -->
+<!-- @[jsvm_code_cache](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmDebug/aboutcodecache/src/main/cpp/hello.cpp) -->
 
 预期输出结果
 ```

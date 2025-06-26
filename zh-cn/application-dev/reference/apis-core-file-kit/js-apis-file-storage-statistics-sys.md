@@ -626,11 +626,11 @@ getUserStorageStats(userId: number, callback: AsyncCallback&lt;StorageStats&gt;)
 
 **系统接口**：该接口为系统接口。
 
-| 名称      | 类型   | 只读  | 可写  | 说明           |
+| 名称      | 类型   | 只读  | 可选  | 说明           |
 | --------- | ------ | ---- | ----- | -------------- |
-| total   | number | 是 | 否 | 内置存储总空间大小（单位为Byte）。    |
-| audio | number  |是 | 否 | 音频数据大小 （单位为Byte）。  |
-| video  | number | 是 | 否 | 视频数据大小（单位为Byte）。 |
-| image   | number | 是 | 否 | 图像数据大小 （单位为Byte）。   |
-| file | number | 是 | 否 | 文件数据大小 （单位为Byte）。  |
-| app  | number | 是 | 否 | 应用数据大小（单位为Byte）。 |
+| total   | number | 否 | 否 | 内置存储总空间大小，单位为Byte。    |
+| audio | number  |否 | 否 | 音频数据大小，单位为Byte。  |
+| video  | number | 否 | 否 | 视频数据大小，单位为Byte。 |
+| image   | number | 否 | 否 | 图像数据大小，单位为Byte。   |
+| file | number | 否 | 否 | 文件数据大小，单位为Byte。  |
+| app  | number | 否 | 否 | 应用数据大小，单位为Byte。 |

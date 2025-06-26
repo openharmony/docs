@@ -2103,7 +2103,7 @@ Converts the input text from the source format to the target format.
 
 | Name | Type    | Mandatory  | Description    |
 | ---- | ------ | ---- | ------ |
-| text | string | Yes   | Input text.|
+| text | string | Yes   | **text** object.|
 
 **Return value**
 
@@ -2775,7 +2775,7 @@ Normalizes input strings.
 
 | Name   | Type    | Mandatory  | Description                       |
 | ------ | ------ | ---- | ------------------------- |
-| text | string | Yes   | Input strings.|
+| text | string | Yes   | **text** object.|
 
 **Return value**
 
@@ -2825,7 +2825,7 @@ Enumerates text normalization modes.
 
 ### constructor<sup>11+</sup>
 
-constructor(icsPath: string)
+constructor(icsPath: String)
 
 Creates a **HolidayManager** object for parsing holiday data.
 
@@ -2837,7 +2837,7 @@ Creates a **HolidayManager** object for parsing holiday data.
 
 |   Name |      Type     | Mandatory|     Description     |
 | --------- | ------------- | ---- | ------------- |
-| icsPath   | string | Yes  | Path of the **.ics** file with the read permission granted for applications. |
+| icsPath   | String | Yes  | Path of the **.ics** file with the read permission granted for applications. |
 
 **Error codes**
 

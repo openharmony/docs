@@ -20,21 +20,21 @@
 
 | 名称                     | typedef关键字 | 描述                 |
 | ------------------------ | ------------- | -------------------- |
-| [OH_Utd](capi-oh-utd.md) | OH_Utd        | 统一数据类型描述符。 |
+| [OH_Utd](capi-udmf-oh-utd.md) | OH_Utd        | 统一数据类型描述符。 |
 
 ### 函数
 
 | 名称                                                         | 描述                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [OH_Utd* OH_Utd_Create(const char* typeId)](#oh_utd_create)  | 创建统一数据类型[OH_Utd](capi-oh-utd.md)指针及实例对象。     |
-| [void OH_Utd_Destroy(OH_Utd* pThis)](#oh_utd_destroy)        | 销毁统一数据类型[OH_Utd](capi-oh-utd.md)指针指向的实例对象。 |
-| [const char* OH_Utd_GetTypeId(OH_Utd* pThis)](#oh_utd_gettypeid) | 获取统一数据类型[OH_Utd](capi-oh-utd.md)中的类型ID。         |
-| [const char* OH_Utd_GetDescription(OH_Utd* pThis)](#oh_utd_getdescription) | 获取统一数据类型[OH_Utd](capi-oh-utd.md)中的描述信息。       |
-| [const char* OH_Utd_GetReferenceUrl(OH_Utd* pThis)](#oh_utd_getreferenceurl) | 获取统一数据类型[OH_Utd](capi-oh-utd.md)中的URL信息。        |
-| [const char* OH_Utd_GetIconFile(OH_Utd* pThis)](#oh_utd_geticonfile) | 获取统一数据类型[OH_Utd](capi-oh-utd.md)中的默认图标文件路径。 |
-| [const char** OH_Utd_GetBelongingToTypes(OH_Utd* pThis, unsigned int* count)](#oh_utd_getbelongingtotypes) | 获取统一数据类型[OH_Utd](capi-oh-utd.md)中的归属关系结果集。 |
-| [const char** OH_Utd_GetFilenameExtensions(OH_Utd* pThis, unsigned int* count)](#oh_utd_getfilenameextensions) | 获取统一数据类型[OH_Utd](capi-oh-utd.md)所关联的的文件名后缀结果集。 |
-| [const char** OH_Utd_GetMimeTypes(OH_Utd* pThis, unsigned int* count)](#oh_utd_getmimetypes) | 获取[OH_Utd](capi-oh-utd.md)所关联的MIME类型结果集。         |
+| [OH_Utd* OH_Utd_Create(const char* typeId)](#oh_utd_create)  | 创建统一数据类型[OH_Utd](capi-udmf-oh-utd.md)指针及实例对象。     |
+| [void OH_Utd_Destroy(OH_Utd* pThis)](#oh_utd_destroy)        | 销毁统一数据类型[OH_Utd](capi-udmf-oh-utd.md)指针指向的实例对象。 |
+| [const char* OH_Utd_GetTypeId(OH_Utd* pThis)](#oh_utd_gettypeid) | 获取统一数据类型[OH_Utd](capi-udmf-oh-utd.md)中的类型ID。         |
+| [const char* OH_Utd_GetDescription(OH_Utd* pThis)](#oh_utd_getdescription) | 获取统一数据类型[OH_Utd](capi-udmf-oh-utd.md)中的描述信息。       |
+| [const char* OH_Utd_GetReferenceUrl(OH_Utd* pThis)](#oh_utd_getreferenceurl) | 获取统一数据类型[OH_Utd](capi-udmf-oh-utd.md)中的URL信息。        |
+| [const char* OH_Utd_GetIconFile(OH_Utd* pThis)](#oh_utd_geticonfile) | 获取统一数据类型[OH_Utd](capi-udmf-oh-utd.md)中的默认图标文件路径。 |
+| [const char** OH_Utd_GetBelongingToTypes(OH_Utd* pThis, unsigned int* count)](#oh_utd_getbelongingtotypes) | 获取统一数据类型[OH_Utd](capi-udmf-oh-utd.md)中的归属关系结果集。 |
+| [const char** OH_Utd_GetFilenameExtensions(OH_Utd* pThis, unsigned int* count)](#oh_utd_getfilenameextensions) | 获取统一数据类型[OH_Utd](capi-udmf-oh-utd.md)所关联的的文件名后缀结果集。 |
+| [const char** OH_Utd_GetMimeTypes(OH_Utd* pThis, unsigned int* count)](#oh_utd_getmimetypes) | 获取[OH_Utd](capi-udmf-oh-utd.md)所关联的MIME类型结果集。         |
 | [const char** OH_Utd_GetTypesByFilenameExtension(const char* extension, unsigned int* count)](#oh_utd_gettypesbyfilenameextension) | 通过文件名后缀获取关联的统一标准数据描述类型结果集。         |
 | [const char** OH_Utd_GetTypesByMimeType(const char* mimeType, unsigned int* count)](#oh_utd_gettypesbymimetype) | 通过MIME类型获取所关联的标准数据类型结果集。                 |
 | [bool OH_Utd_BelongsTo(const char* srcTypeId, const char* destTypeId)](#oh_utd_belongsto) | 判断两个标准化数据描述类型是否存在归属关系。                 |
@@ -53,7 +53,7 @@ OH_Utd* OH_Utd_Create(const char* typeId)
 
 **描述**
 
-创建统一数据类型[OH_Utd](capi-oh-utd.md)指针及实例对象。
+创建统一数据类型[OH_Utd](capi-udmf-oh-utd.md)指针及实例对象。
 
 **起始版本：** 12
 
@@ -68,7 +68,7 @@ OH_Utd* OH_Utd_Create(const char* typeId)
 
 | 类型                      | 说明                                                         |
 | ------------------------- | ------------------------------------------------------------ |
-| [OH_Utd](capi-oh-utd.md)* | 执行成功则返回一个指向统一数据类型[OH_Utd](capi-oh-utd.md)实例对象的指针，否则返回nullptr。<br>当不再需要使用指针时，请使用[OH_Utd_Destroy](capi-utd-h.md#oh_utd_destroy)销毁实例对象，否则会导致内存泄漏。 |
+| [OH_Utd](capi-udmf-oh-utd.md)* | 执行成功则返回一个指向统一数据类型[OH_Utd](capi-udmf-oh-utd.md)实例对象的指针，否则返回nullptr。<br>当不再需要使用指针时，请使用[OH_Utd_Destroy](capi-utd-h.md#oh_utd_destroy)销毁实例对象，否则会导致内存泄漏。 |
 
 ### OH_Utd_Destroy()
 
@@ -78,7 +78,7 @@ void OH_Utd_Destroy(OH_Utd* pThis)
 
 **描述**
 
-销毁统一数据类型[OH_Utd](capi-oh-utd.md)指针指向的实例对象。
+销毁统一数据类型[OH_Utd](capi-udmf-oh-utd.md)指针指向的实例对象。
 
 **起始版本：** 12
 
@@ -87,7 +87,7 @@ void OH_Utd_Destroy(OH_Utd* pThis)
 
 | 参数项                          | 描述                                                     |
 | ------------------------------- | -------------------------------------------------------- |
-| [OH_Utd](capi-oh-utd.md)* pThis | 表示指向统一数据类型[OH_Utd](capi-oh-utd.md)实例的指针。 |
+| [OH_Utd](capi-udmf-oh-utd.md)* pThis | 表示指向统一数据类型[OH_Utd](capi-udmf-oh-utd.md)实例的指针。 |
 
 ### OH_Utd_GetTypeId()
 
@@ -97,7 +97,7 @@ const char* OH_Utd_GetTypeId(OH_Utd* pThis)
 
 **描述**
 
-获取统一数据类型[OH_Utd](capi-oh-utd.md)中的类型ID。
+获取统一数据类型[OH_Utd](capi-udmf-oh-utd.md)中的类型ID。
 
 **起始版本：** 12
 
@@ -106,7 +106,7 @@ const char* OH_Utd_GetTypeId(OH_Utd* pThis)
 
 | 参数项                          | 描述                                                         |
 | ------------------------------- | ------------------------------------------------------------ |
-| [OH_Utd](capi-oh-utd.md)* pThis | 表示一个指向统一数据类型[OH_Utd](capi-oh-utd.md)对象的指针。 |
+| [OH_Utd](capi-udmf-oh-utd.md)* pThis | 表示一个指向统一数据类型[OH_Utd](capi-udmf-oh-utd.md)对象的指针。 |
 
 **返回：**
 
@@ -122,7 +122,7 @@ const char* OH_Utd_GetDescription(OH_Utd* pThis)
 
 **描述**
 
-获取统一数据类型[OH_Utd](capi-oh-utd.md)中的描述信息。
+获取统一数据类型[OH_Utd](capi-udmf-oh-utd.md)中的描述信息。
 
 **起始版本：** 12
 
@@ -131,7 +131,7 @@ const char* OH_Utd_GetDescription(OH_Utd* pThis)
 
 | 参数项                          | 描述                                                         |
 | ------------------------------- | ------------------------------------------------------------ |
-| [OH_Utd](capi-oh-utd.md)* pThis | 表示一个指向统一数据类型[OH_Utd](capi-oh-utd.md)对象的指针。 |
+| [OH_Utd](capi-udmf-oh-utd.md)* pThis | 表示一个指向统一数据类型[OH_Utd](capi-udmf-oh-utd.md)对象的指针。 |
 
 **返回：**
 
@@ -147,7 +147,7 @@ const char* OH_Utd_GetReferenceUrl(OH_Utd* pThis)
 
 **描述**
 
-获取统一数据类型[OH_Utd](capi-oh-utd.md)中的URL信息。
+获取统一数据类型[OH_Utd](capi-udmf-oh-utd.md)中的URL信息。
 
 **起始版本：** 12
 
@@ -156,7 +156,7 @@ const char* OH_Utd_GetReferenceUrl(OH_Utd* pThis)
 
 | 参数项                          | 描述                                                         |
 | ------------------------------- | ------------------------------------------------------------ |
-| [OH_Utd](capi-oh-utd.md)* pThis | 表示一个指向统一数据类型[OH_Utd](capi-oh-utd.md)对象的指针。 |
+| [OH_Utd](capi-udmf-oh-utd.md)* pThis | 表示一个指向统一数据类型[OH_Utd](capi-udmf-oh-utd.md)对象的指针。 |
 
 **返回：**
 
@@ -172,7 +172,7 @@ const char* OH_Utd_GetIconFile(OH_Utd* pThis)
 
 **描述**
 
-获取统一数据类型[OH_Utd](capi-oh-utd.md)中的默认图标文件路径。
+获取统一数据类型[OH_Utd](capi-udmf-oh-utd.md)中的默认图标文件路径。
 
 **起始版本：** 12
 
@@ -181,7 +181,7 @@ const char* OH_Utd_GetIconFile(OH_Utd* pThis)
 
 | 参数项                          | 描述                                                         |
 | ------------------------------- | ------------------------------------------------------------ |
-| [OH_Utd](capi-oh-utd.md)* pThis | 表示一个指向统一数据类型[OH_Utd](capi-oh-utd.md)对象的指针。 |
+| [OH_Utd](capi-udmf-oh-utd.md)* pThis | 表示一个指向统一数据类型[OH_Utd](capi-udmf-oh-utd.md)对象的指针。 |
 
 **返回：**
 
@@ -197,7 +197,7 @@ const char** OH_Utd_GetBelongingToTypes(OH_Utd* pThis, unsigned int* count)
 
 **描述**
 
-获取统一数据类型[OH_Utd](capi-oh-utd.md)中的归属关系结果集。
+获取统一数据类型[OH_Utd](capi-udmf-oh-utd.md)中的归属关系结果集。
 
 **起始版本：** 12
 
@@ -206,7 +206,7 @@ const char** OH_Utd_GetBelongingToTypes(OH_Utd* pThis, unsigned int* count)
 
 | 参数项                          | 描述                                                         |
 | ------------------------------- | ------------------------------------------------------------ |
-| [OH_Utd](capi-oh-utd.md)* pThis | 表示一个指向统一数据类型[OH_Utd](capi-oh-utd.md)对象的指针。 |
+| [OH_Utd](capi-udmf-oh-utd.md)* pThis | 表示一个指向统一数据类型[OH_Utd](capi-udmf-oh-utd.md)对象的指针。 |
 | unsigned int* count             | 该参数是输出参数，结果集中的类型数量会写入该变量。           |
 
 **返回：**
@@ -223,7 +223,7 @@ const char** OH_Utd_GetFilenameExtensions(OH_Utd* pThis, unsigned int* count)
 
 **描述**
 
-获取统一数据类型[OH_Utd](capi-oh-utd.md)所关联的的文件名后缀结果集。
+获取统一数据类型[OH_Utd](capi-udmf-oh-utd.md)所关联的的文件名后缀结果集。
 
 **起始版本：** 12
 
@@ -232,7 +232,7 @@ const char** OH_Utd_GetFilenameExtensions(OH_Utd* pThis, unsigned int* count)
 
 | 参数项                          | 描述                                                         |
 | ------------------------------- | ------------------------------------------------------------ |
-| [OH_Utd](capi-oh-utd.md)* pThis | 表示一个指向统一数据类型[OH_Utd](capi-oh-utd.md)对象的指针。 |
+| [OH_Utd](capi-udmf-oh-utd.md)* pThis | 表示一个指向统一数据类型[OH_Utd](capi-udmf-oh-utd.md)对象的指针。 |
 | unsigned int* count             | 该参数是输出参数，结果集中的文件后缀名数量会写入该变量。     |
 
 **返回：**
@@ -249,7 +249,7 @@ const char** OH_Utd_GetMimeTypes(OH_Utd* pThis, unsigned int* count)
 
 **描述**
 
-获取[OH_Utd](capi-oh-utd.md)所关联的MIME类型结果集。
+获取[OH_Utd](capi-udmf-oh-utd.md)所关联的MIME类型结果集。
 
 **起始版本：** 12
 
@@ -258,7 +258,7 @@ const char** OH_Utd_GetMimeTypes(OH_Utd* pThis, unsigned int* count)
 
 | 参数项                          | 描述                                                         |
 | ------------------------------- | ------------------------------------------------------------ |
-| [OH_Utd](capi-oh-utd.md)* pThis | 表示一个指向统一数据类型[OH_Utd](capi-oh-utd.md)对象的指针。 |
+| [OH_Utd](capi-udmf-oh-utd.md)* pThis | 表示一个指向统一数据类型[OH_Utd](capi-udmf-oh-utd.md)对象的指针。 |
 | unsigned int* count             | 该参数是输出参数，结果集中的MIME类型数量会写入该变量。       |
 
 **返回：**
@@ -414,8 +414,8 @@ bool OH_Utd_Equals(OH_Utd* utd1, OH_Utd* utd2)
 
 | 参数项                         | 描述                                                         |
 | ------------------------------ | ------------------------------------------------------------ |
-| [OH_Utd](capi-oh-utd.md)* utd1 | 表示一个指向标准化数据描述类型[OH_Utd](capi-oh-utd.md)对象的指针。 |
-| [OH_Utd](capi-oh-utd.md)* utd2 | 表示一个指向标准化数据描述类型[OH_Utd](capi-oh-utd.md)对象的指针。 |
+| [OH_Utd](capi-udmf-oh-utd.md)* utd1 | 表示一个指向标准化数据描述类型[OH_Utd](capi-udmf-oh-utd.md)对象的指针。 |
+| [OH_Utd](capi-udmf-oh-utd.md)* utd2 | 表示一个指向标准化数据描述类型[OH_Utd](capi-udmf-oh-utd.md)对象的指针。 |
 
 **返回：**
 

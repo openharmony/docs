@@ -192,7 +192,7 @@ contentModifier(modifier: Optional<ContentModifier\<RatingConfiguration>>)
 
 onChange(callback:(value:&nbsp;number)&nbsp;=&gt;&nbsp;void)
 
-当评分条的评星发生改变时，将触发该回调。
+当评分条的评星变化时触发该回调。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -210,7 +210,7 @@ onChange(callback:(value:&nbsp;number)&nbsp;=&gt;&nbsp;void)
 
 onChange(callback:Optional\<OnRatingChangeCallback>)
 
-当评分条的评星发生改变时，将触发该回调。与[onChange](#onchange)相比，callback:参数新增了对undefined类型的支持。
+当评分条的评星变化时触发该回调。与[onChange](#onchange)相比，callback参数新增了对undefined类型的支持。
 
 **卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
@@ -222,13 +222,13 @@ onChange(callback:Optional\<OnRatingChangeCallback>)
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[OnRatingChangeCallback](#onratingchangecallback18)> | 是   | 操作评分条的评星发生改变时触发该回调。<br/>当callback的值为undefined时，不使用回调函数。 |
+| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[OnRatingChangeCallback](#onratingchangecallback18)> | 是   | 操作评分条的评星变化时触发该回调。<br/>当callback的值为undefined时，不使用回调函数。 |
 
 ## OnRatingChangeCallback<sup>18+</sup>
 
 type OnRatingChangeCallback = (rating: number) => void
 
-操作评分条的评星发生改变时触发该回调。
+操作评分条的评星变化时触发该回调。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -267,6 +267,8 @@ type OnRatingChangeCallback = (rating: number) => void
 
 ## RatingOptions<sup>18+</sup>对象说明
 
+评分组件的信息。
+
 **卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
@@ -276,9 +278,11 @@ type OnRatingChangeCallback = (rating: number) => void
 | 名称                   | 类型    | 必填 | 说明                                                         |
 | ---------------------- | ------- | ---- | ------------------------------------------------------------ |
 | rating<sup>7+</sup>    | number  | 是   | 设置并接收评分值。<br/>默认值：0<br/>取值范围： [0, stars]<br/>小于0取0，大于[stars](#stars)取最大值stars。<br />该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| indicator<sup>7+</sup> | boolean | 否   | 设置评分组件作为指示器使用，不可改变评分。<br/>默认值：false，可进行评分<br/>**说明：** <br/>indicator=true时，默认组件高度height=12.0vp，组件width=height * stars。 <br/>indicator=false时，默认组件高度height=28.0vp，组件width=height * stars。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| indicator<sup>7+</sup> | boolean | 否   | 设置评分组件作为指示器使用，值为true时，不可改变评分。<br/>默认值：false，可进行评分<br/>**说明：** <br/>indicator=true时，默认组件高度height=12.0vp，组件width=height * stars。 <br/>indicator=false时，默认组件高度height=28.0vp，组件width=height * stars。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 
 ## StarStyleOptions<sup>18+</sup>对象说明
+
+评分组件选中、未选中以及部分选中的星级样式。
 
 **卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
@@ -291,6 +295,10 @@ type OnRatingChangeCallback = (rating: number) => void
 | backgroundUri<sup>7+</sup> | [ResourceStr](ts-types.md#resourcestr) | 是   | 未选中的星级的图片链接，可由用户自定义或使用系统默认图片。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>从API version 20开始，该接口支持设置Resource资源。参考[示例4（通过Resource资源设置评分的样式）](#示例4通过resource资源设置评分的样式)代码。|
 | foregroundUri<sup>7+</sup> | [ResourceStr](ts-types.md#resourcestr) | 是   | 选中的星级的图片路径，可由用户自定义或使用系统默认图片。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>从API version 20开始，该接口支持设置Resource资源。参考[示例4（通过Resource资源设置评分的样式）](#示例4通过resource资源设置评分的样式)代码。|
 | secondaryUri<sup>7+</sup>  | [ResourceStr](ts-types.md#resourcestr) | 否   | 部分选中的星级的图片路径，可由用户自定义或使用系统默认图片。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>从API version 20开始，该接口支持设置Resource资源。参考[示例4（通过Resource资源设置评分的样式）](#示例4通过resource资源设置评分的样式)代码。|
+
+> **说明：** 
+>
+> string格式可用于加载网络图片和本地图片。当使用相对路径引用本地图片时，例如Image("common/test.jpg")，其中common目录与pages同级，同时支持Base64字符串。
 
 ## 示例
 

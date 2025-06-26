@@ -3,7 +3,7 @@
 Modal pages are interactive popups with a large panel and expansive view, designed to present critical information or perform operations without navigating away from the current context. Unlike standard dialog boxes, modal pages offer a larger canvas for content, which you can populate using custom components. By default, user interaction is required to exit the modal page. ArkUI offers two distinct types of modal pages: semi-modal and full-modal, each serving different interaction patterns.
 
 * Semi-modal: ideal for multi-form effects, allowing for various styles across different device widths. Users can dismiss the semi-modal page through side swiping, touching the mask, touching the close button, or pulling down.
-* Full-modal: designed for full-screen modal dialog boxes that demand user attention. By default, side swiping is required to dismiss the full-model page.
+* Full-modal: designed for full-screen modal dialog boxes that demand user attention. By default, side swiping is required to dismiss the full-modal page.
 
 ## Available APIs
 

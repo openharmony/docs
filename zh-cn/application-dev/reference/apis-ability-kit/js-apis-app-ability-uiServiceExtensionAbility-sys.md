@@ -19,8 +19,9 @@ UIServiceExtensionAbility提供浮窗组件相关扩展能力，继承自[Extens
 import { UIServiceExtensionAbility } from '@kit.AbilityKit';
 ```
 
+## UIServiceExtensionAbility
 
-## 属性
+### 属性
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -28,10 +29,10 @@ import { UIServiceExtensionAbility } from '@kit.AbilityKit';
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| context | [UIServiceExtensionContext](js-apis-inner-application-uiserviceExtensionContext-sys.md) | 是 | 否 | [UIServiceExtension](js-apis-app-ability-uiServiceExtensionAbility-sys.md)的上下文环境，继承自[ExtensionContext](js-apis-inner-application-extensionContext.md)。 |
+| context | [UIServiceExtensionContext](js-apis-inner-application-uiserviceExtensionContext-sys.md) | 否 | 否 | [UIServiceExtension](js-apis-app-ability-uiServiceExtensionAbility-sys.md)的上下文环境，继承自[ExtensionContext](js-apis-inner-application-extensionContext.md)。 |
 
 
-## UIServiceExtensionAbility.onCreate
+### onCreate
 
 onCreate(want: Want): void
 
@@ -55,17 +56,17 @@ import { UIServiceExtensionAbility, Want } from '@kit.AbilityKit';
 class UIServiceExt extends UIServiceExtensionAbility {
   // 创建UIServiceExtensionAbility
   onCreate(want: Want) {
-    console.log(`onCreate, want: ${want.abilityName}`);
+    console.info(`onCreate, want: ${want.abilityName}`);
   }
 }
 ```
 
 
-## UIServiceExtensionAbility.onRequest
+### onRequest
 
 onRequest(want: Want, startId: number): void
 
-请求拉起[UIServiceExtension](js-apis-app-ability-uiServiceExtensionAbility-sys.md)服务处理。如果是[startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)	或者[startUIServiceExtensionAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartuiserviceextensionability14)拉起的服务，会在[onCreate](#uiserviceextensionabilityoncreate)之后回调。每次拉起服务都会回调，startId会递增。
+请求拉起[UIServiceExtension](js-apis-app-ability-uiServiceExtensionAbility-sys.md)服务处理。如果是[startAbility](js-apis-inner-application-uiAbilityContext.md#startability)或者[startUIServiceExtensionAbility](js-apis-inner-application-uiAbilityContext.md#startuiserviceextensionability14)拉起的服务，会在[onCreate](#oncreate)之后回调。每次拉起服务都会回调，startId会递增。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -85,17 +86,17 @@ import { UIServiceExtensionAbility, Want} from '@kit.AbilityKit';
 
 class UIServiceExt extends UIServiceExtensionAbility {
   onRequest(want: Want, startId: number) {
-    console.log('onRequest, want:' + want.abilityName + ', startId:' + startId);
+    console.info('onRequest, want:' + want.abilityName + ', startId:' + startId);
   }
 }
 ```
 
 
-## UIServiceExtensionAbility.onConnect
+### onConnect
 
 onConnect(want: Want, proxy: UIServiceHostProxy): void
 
-[UIServiceExtension](js-apis-app-ability-uiServiceExtensionAbility-sys.md)生命周期回调。如果是[connectUIServiceExtensionAbility()](js-apis-inner-application-uiExtensionContext.md#uiextensioncontextconnectuiserviceextensionability14)拉起的服务，会在[onCreate()](#uiserviceextensionabilityoncreate)之后回调。接收一个[UIServiceHostProxy](js-apis-inner-application-uiservicehostproxy-sys.md)对象，用于客户端和服务端进行通信。
+[UIServiceExtension](js-apis-app-ability-uiServiceExtensionAbility-sys.md)生命周期回调。如果是[connectUIServiceExtensionAbility()](js-apis-inner-application-uiExtensionContext.md#connectuiserviceextensionability14)拉起的服务，会在[onCreate()](#oncreate)之后回调。接收一个[UIServiceHostProxy](js-apis-inner-application-uiservicehostproxy-sys.md)对象，用于客户端和服务端进行通信。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -116,13 +117,13 @@ import { UIServiceExtensionAbility, Want, common} from '@kit.AbilityKit';
 
 class UIServiceExt extends UIServiceExtensionAbility {
   onConnect(want: Want, proxy: common.UIServiceHostProxy){
-    console.log('onConnect, want:' + want.abilityName + '');
+    console.info('onConnect, want:' + want.abilityName + '');
   }
 }
 ```
 
 
-## UIServiceExtensionAbility.onDisconnect
+### onDisconnect
 
 onDisconnect(want: Want, proxy: UIServiceHostProxy): void
 
@@ -146,13 +147,13 @@ import { UIServiceExtensionAbility, Want, common } from '@kit.AbilityKit';
 
 class UIServiceExt extends UIServiceExtensionAbility {
   onDisconnect(want: Want, proxy: common.UIServiceHostProxy) {
-    console.log('onDisconnect, want: ${want.abilityName}');
+    console.info('onDisconnect, want: ${want.abilityName}');
   }
 }
 ```
 
 
-## UIServiceExtensionAbility.onWindowWillCreate
+### onWindowWillCreate
 
 onWindowWillCreate(config: window.ExtensionWindowConfig): void
 
@@ -176,16 +177,16 @@ import { window } from '@kit.ArkUI';
 
 class UIServiceExt extends UIServiceExtensionAbility {
   onWindowWillCreate(config : window.ExtensionWindowConfig){
-    console.log('onWindowWillCreate');
+    console.info('onWindowWillCreate');
   }
 }
 ```
 
-## UIServiceExtensionAbility.onWindowDidCreate
+### onWindowDidCreate
 
 onWindowDidCreate(window: window.Window): void
 
-[UIServiceExtension](js-apis-app-ability-uiServiceExtensionAbility-sys.md)创建后回调。[UIServiceExtension](js-apis-app-ability-uiServiceExtensionAbility-sys.md)服务创建窗口成功后，通过[onWindowDidCreate](#uiserviceextensionabilityonwindowdidcreate)接口把创建的窗口对象传递给前台应用。
+[UIServiceExtension](js-apis-app-ability-uiServiceExtensionAbility-sys.md)创建后回调。[UIServiceExtension](js-apis-app-ability-uiServiceExtensionAbility-sys.md)服务创建窗口成功后，通过[onWindowDidCreate](#onwindowdidcreate)接口把创建的窗口对象传递给前台应用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -205,12 +206,12 @@ import { window } from '@kit.ArkUI';
 
 class ServiceExt extends UIServiceExtensionAbility {
   onWindowDidCreate(window : window.Window){
-    console.log('onWindowDidCreate');
+    console.info('onWindowDidCreate');
   }
 }
 ```
 
-## UIServiceExtensionAbility.onData
+### onData
 
 onData(proxy: UIServiceHostProxy, data: Record&lt;string, Object&gt;): void
 
@@ -234,12 +235,12 @@ import { UIServiceExtensionAbility, common} from '@kit.AbilityKit';
 
 class ServiceExt extends UIServiceExtensionAbility {
   onData(proxy : common.UIServiceHostProxy, data : Record<string, Object> ){
-    console.log('onData');
+    console.info('onData');
   }
 }
 ```
 
-## UIServiceExtensionAbility.onDestroy
+### onDestroy
 
 onDestroy(): void
 
@@ -256,7 +257,7 @@ import { UIServiceExtensionAbility } from '@kit.AbilityKit';
 
 class ServiceExt extends UIServiceExtensionAbility {
   onDestroy() {
-    console.log('onDestroy');
+    console.info('onDestroy');
   }
 }
 ```

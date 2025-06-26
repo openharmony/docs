@@ -540,7 +540,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 **系统接口**：此接口为系统接口。
 
-| 名称   | 类型    | 可读 | 可写 | 说明             |
+| 名称   | 类型    | 只读 | 可选 | 说明             |
 | ------ | ------- | ---- | --- | ---------------- |
 | bundle | string  | 是  | 否  | 应用的包名。       |
 | uid    | number  | 是  | 否  | 应用的uid。        |
@@ -553,13 +553,13 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 **系统接口**：此接口为系统接口。
 
-| 名称        | 类型   | 可读 | 可写 | 说明         |
+| 名称        | 类型   | 只读 | 可选 | 说明         |
 | ----------- | ------ | ---- | ---- | ------------ |
 | bundle      | string | 是   | 否   | 应用的包名。 |
 | uid         | number | 是   | 否   | 应用的uid。  |
 | badgeNumber | number | 是   | 否   | 角标个数。   |
-| instanceKey<sup>(deprecated)</sup>  | number | 是   | 否   | 应用实例键值。   |
-| appInstanceKey<sup>15+</sup>  | string | 是   | 否   | 应用实例键值。   |
+| instanceKey<sup>(deprecated)</sup>  | number | 是   | 是   | 应用实例键值。   |
+| appInstanceKey<sup>15+</sup>  | string | 是   | 是   | 应用实例键值。   |
 
 
 ## BadgeEnabledChangedCallback<sup>12+</sup>

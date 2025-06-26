@@ -28,11 +28,10 @@ registerThermalLevelCallback(callback: Callback&lt;ThermalLevel&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[热管理错误码](errorcode-thermal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4800101 | Failed to connect to the service. |
 | 401     | Parameter error. Possible causes: 1. Incorrect parameter types. |
 
 **示例：**
@@ -60,15 +59,14 @@ unregisterThermalLevelCallback(callback?: Callback\<void>): void
 
 | 参数名   | 类型                 | 必填 | 说明                                           |
 | -------- | -------------------- | ---- | ---------------------------------------------- |
-| callback | Callback&lt;void&gt; | 否   | 回调函数，无返回值。不填该参数则取消所有回调。 |
+| callback | Callback&lt;void&gt; | 否   | 可选参数，回调函数，无返回值。|
 
 **错误码：**
 
-以下错误码的详细介绍请参见[热管理错误码](errorcode-thermal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4800101 | Failed to connect to the service. |
 | 401     | Parameter error. Possible causes: 1. Incorrect parameter types. |
 
 **示例：**
@@ -98,23 +96,11 @@ getLevel(): ThermalLevel
 | ------------ | ------------ |
 | ThermalLevel | 热档位信息。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[热管理错误码](errorcode-thermal.md)。
-
-| 错误码ID   | 错误信息    |
-|---------|---------|
-| 4800101 | Failed to connect to the service. |
-
 **示例：**
 
 ```js
-try {
-    let level = thermal.getLevel();
-    console.info('thermal level is: ' + level);
-} catch(err) {
-    console.error('get thermal level failed, err: ' + err);
-}
+let level = thermal.getLevel();
+console.info('thermal level is: ' + level);
 ```
 
 ## thermal.subscribeThermalLevel<sup>(deprecated)</sup>

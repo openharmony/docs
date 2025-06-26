@@ -1,6 +1,6 @@
 # 拦截Web组件发起的网络请求
 
-[网络拦截接口(arkweb_scheme_handler.h)](../reference/apis-arkweb/arkweb__scheme__handler_8h.md)可以对Web组件发出的请求进行拦截，并为被拦截的请求提供自定义的响应头以及响应体。
+[网络拦截接口(arkweb_scheme_handler.h)](../reference/apis-arkweb/capi-arkweb-scheme-handler-h.md)可以对Web组件发出的请求进行拦截，并为被拦截的请求提供自定义的响应头以及响应体。
 
 ## 为Web组件设置网络拦截器
 
@@ -8,7 +8,7 @@
 
 请求开始时回调ArkWeb_OnRequestStart，请求结束时回调ArkWeb_OnRequestStop。
 
-若想要拦截Web组件发出的第一个请求，可以通过[initializeWebEngine](../reference/apis-arkweb/js-apis-webview-WebviewController.md#initializewebengine)方法提前进行初始化Web组建，再设置拦截器实现拦截。
+若想要拦截Web组件发出的第一个请求，可以通过[initializeWebEngine](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#initializewebengine)方法提前进行初始化Web组建，再设置拦截器实现拦截。
 
   ```c++
     // 创建一个ArkWeb_SchemeHandler对象。
@@ -56,7 +56,7 @@
   ```
 
 由于注册scheme需要在Web组件初始化前完成，而网络拦截器需要在Web组件初始化之后设置，建议在EntryAbility的onCreate方法中调用c++接口注册scheme。
-完成scheme注册后，通过[initializeWebEngine](../reference/apis-arkweb/js-apis-webview-WebviewController.md#initializewebengine)初始化Web组建，然后设置网络拦截器。
+完成scheme注册后，通过[initializeWebEngine](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#initializewebengine)初始化Web组建，然后设置网络拦截器。
 
   ```ts
     export default class EntryAbility extends UIAbility {
@@ -74,7 +74,7 @@
 
 > **说明：**
 >
-> registerCustomSchemes必须在[initializeWebEngine](../reference/apis-arkweb/js-apis-webview-WebviewController.md#initializewebengine)方法调用前注册。
+> registerCustomSchemes必须在[initializeWebEngine](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#initializewebengine)方法调用前注册。
 
 ## 获取被拦截请求的请求信息
 
@@ -110,7 +110,7 @@
 
 ## 为被拦截的请求提供自定义的响应体
 
-网络拦截支持在worker线程以流方式为被拦截的请求提供自定义的响应体。也可用特定的[网络错误码(arkweb_net_error_list.h)](../reference/apis-arkweb/arkweb__net__error__list_8h.md)结束当前被拦截的请求。
+网络拦截支持在worker线程以流方式为被拦截的请求提供自定义的响应体。也可用特定的[网络错误码(arkweb_net_error_list.h)](../reference/apis-arkweb/capi-arkweb-net-error-list-h.md)结束当前被拦截的请求。
 
   ```c++
     // 为被拦截的请求创建一个响应头。

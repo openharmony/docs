@@ -72,7 +72,7 @@ sharing.on('sharingStateChange', (data: boolean) => {
 sharing.startSharing(sharing.SharingIfaceType.SHARING_WIFI).then(() => {
   console.log('start wifi sharing successful');
 }).catch((error: BusinessError) => {
-  console.log('start wifi sharing failed');
+  console.error('start wifi sharing failed');
 });
 ```
 
@@ -99,7 +99,7 @@ sharing.on('sharingStateChange', (data: boolean) => {
 sharing.stopSharing(sharing.SharingIfaceType.SHARING_WIFI).then(() => {
   console.log('start wifi sharing successful');
 }).catch((error: BusinessError) => {
-  console.log('start wifi sharing failed');
+  console.error('start wifi sharing failed');
 });
 ```
 
@@ -121,27 +121,27 @@ import { BusinessError } from '@kit.BasicServicesKit';
 sharing.startSharing(sharing.SharingIfaceType.SHARING_WIFI).then(() => {
   console.log('start wifi sharing successful');
 }).catch((error: BusinessError) => {
-  console.log('start wifi sharing failed');
+  console.error('start wifi sharing failed');
 });
 
 // 调用getStatsTotalBytes方法，来获取共享网络数据量
 sharing.getStatsTotalBytes().then((data: number) => {
   console.log(JSON.stringify(data));
 }).catch((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 
 // 调用stopSharing方法，来停止指定类型共享，共享网络数据量清零
 sharing.stopSharing(sharing.SharingIfaceType.SHARING_WIFI).then(() => {
   console.log('start wifi sharing successful');
 }).catch((error: BusinessError) => {
-  console.log('start wifi sharing failed');
+  console.error('start wifi sharing failed');
 });
 
 // 再次调用getStatsTotalBytes方法，共享网络数据量已清零
 sharing.getStatsTotalBytes().then((data: number) => {
   console.log(JSON.stringify(data));
 }).catch((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```

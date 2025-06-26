@@ -533,7 +533,7 @@ on(type: 'error', callback: ErrorCallback): void
 | 参数名   | 类型          | 必填 | 说明                                 |
 | -------- | ------------- | ---- | ------------------------------------ |
 | type     | string        | 是   | 事件回调类型，支持的事件为'error'，当铃音播放过程中发生错误时，触发该事件。 |
-| callback | ErrorCallback | 是   | 回调函数，返回错误码和错误信息。错误码请参考AVPlayer的[on('error')](../apis-media-kit/js-apis-media.md#onerror9)。 |
+| callback | ErrorCallback | 是   | 回调函数，返回错误码和错误信息。错误码请参考AVPlayer的[on('error')](../apis-media-kit/arkts-apis-media-AVPlayer.md#onerror9)。 |
 
 **错误码：**
 

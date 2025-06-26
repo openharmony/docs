@@ -5,14 +5,69 @@
 > **说明：**
 >
 > - 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> - 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)。
+> - 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper.md)。
 
 ## 导入模块
 
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 ```
+## photoAccessHelper.getPhotoAccessHelper<sup>19+</sup>
 
+getPhotoAccessHelper(context: Context, userId: number): PhotoAccessHelper
+
+支持跨用户获取相册管理模块的实例，用于访问和修改相册中的媒体文件。
+
+​**模型约束**：此接口仅可在Stage模型下使用。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名  | 类型    | 必填 | 说明                       |
+| ------- | ------- | ---- | -------------------------- |
+| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 传入Ability实例的上下文。 |
+| userId | number | 是   | 传入待访问用户的id。 |
+
+**返回值：**
+
+| 类型                            | 说明    |
+| ----------------------------- | :---- |
+| [PhotoAccessHelper](#photoaccesshelper) | 相册管理模块的实例。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+
+**示例：**
+
+```ts
+// 此处获取的phAccessHelper实例为全局对象，后续使用到phAccessHelper的地方默认为使用此处获取的对象，如未添加此段代码报phAccessHelper未定义的错误请自行添加。
+// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
+import { common } from '@kit.AbilityKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Button("example").onClick(async () => {
+        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+        // 此处101表示其他用户空间的userid
+        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context, 101);
+      }).width('100%')
+    }
+    .height('90%')
+  }
+}
+```
+​
 ## PhotoAccessHelper
 
 ### createAsset
@@ -58,10 +113,10 @@ createAsset(displayName: string, callback: AsyncCallback&lt;PhotoAsset&gt;): voi
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('createAssetDemo');
   let testFileName: string = 'testFile' + Date.now() + '.jpg';
   phAccessHelper.createAsset(testFileName, (err, photoAsset) => {
@@ -123,10 +178,10 @@ createAsset(displayName: string): Promise&lt;PhotoAsset&gt;
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('createAssetDemo');
   try {
     let testFileName: string = 'testFile' + Date.now() + '.jpg';
@@ -183,10 +238,10 @@ createAsset(displayName: string, options: PhotoCreateOptions, callback: AsyncCal
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('createAssetDemo');
   let testFileName: string = 'testFile' + Date.now() + '.jpg';
   let createOption: photoAccessHelper.PhotoCreateOptions = {
@@ -252,10 +307,10 @@ createAsset(displayName: string, options: PhotoCreateOptions): Promise&lt;PhotoA
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('createAssetDemo');
   try {
     let testFileName:string = 'testFile' + Date.now() + '.jpg';
@@ -317,10 +372,10 @@ createAlbum(name: string, callback: AsyncCallback&lt;Album&gt;): void
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('createAlbumDemo');
   let albumName: string = 'newAlbumName' + new Date().getTime();
   phAccessHelper.createAlbum(albumName, (err, album) => {
@@ -384,12 +439,12 @@ createAlbum(name: string): Promise&lt;Album&gt;
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('createAlbumDemo');
   let albumName: string = 'newAlbumName' + new Date().getTime();
   phAccessHelper.createAlbum(albumName).then((album) => {
@@ -441,12 +496,12 @@ deleteAlbums(albums: Array&lt;Album&gt;, callback: AsyncCallback&lt;void&gt;): v
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   // 示例代码为删除相册名为newAlbumName的相册。
   console.info('deleteAlbumsDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -514,13 +569,13 @@ deleteAlbums(albums: Array&lt;Album&gt;): Promise&lt;void&gt;
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   // 示例代码为删除相册名为newAlbumName的相册。
   console.info('deleteAlbumsDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -557,8 +612,8 @@ getHiddenAlbums(mode: HiddenPhotosDisplayMode, options: FetchOptions, callback: 
 | 参数名   | 类型                     | 必填 | 说明                      |
 | -------- | ------------------------ | ---- | ------------------------- |
 | mode  | [HiddenPhotosDisplayMode](#hiddenphotosdisplaymode11)         | 是   | 隐藏文件显示模式。  |
-| options  | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions)         | 是   |  检索选项。  |
-| callback |  AsyncCallback&lt;[FetchResult](js-apis-photoAccessHelper.md#fetchresult)&lt;[Album](#album)&gt;&gt; | 是   |  callback返回获取相册的结果集。 |
+| options  | [FetchOptions](arkts-apis-photoAccessHelper-i.md#fetchoptions)         | 是   |  检索选项。  |
+| callback |  AsyncCallback&lt;[FetchResult](arkts-apis-photoAccessHelper-FetchResult.md)&lt;[Album](#album)&gt;&gt; | 是   |  callback返回获取相册的结果集。 |
 
 **错误码：**
 
@@ -573,13 +628,13 @@ getHiddenAlbums(mode: HiddenPhotosDisplayMode, options: FetchOptions, callback: 
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
 // 获取系统中包含隐藏文件且相册名为'newAlbumName'的相册
-async function getHiddenAlbumsView() {
+async function getHiddenAlbumsView(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('getHiddenAlbumsViewDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   predicates.equalTo('album_name', 'newAlbumName');
@@ -617,7 +672,7 @@ getHiddenAlbums(mode: HiddenPhotosDisplayMode, callback: AsyncCallback&lt;FetchR
 | 参数名   | 类型                     | 必填 | 说明                      |
 | -------- | ------------------------ | ---- | ------------------------- |
 | mode  | [HiddenPhotosDisplayMode](#hiddenphotosdisplaymode11)         | 是   | 隐藏文件显示模式。  |
-| callback |  AsyncCallback&lt;[FetchResult](js-apis-photoAccessHelper.md#fetchresult)&lt;[Album](#album)&gt;&gt; | 是   | callback返回获取相册的结果集。 |
+| callback |  AsyncCallback&lt;[FetchResult](arkts-apis-photoAccessHelper-FetchResult.md)&lt;[Album](#album)&gt;&gt; | 是   | callback返回获取相册的结果集。 |
 
 **错误码：**
 
@@ -632,13 +687,13 @@ getHiddenAlbums(mode: HiddenPhotosDisplayMode, callback: AsyncCallback&lt;FetchR
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
 // 获取系统预置的隐藏相册
-async function getSysHiddenAlbum() {
+async function getSysHiddenAlbum(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('getSysHiddenAlbumDemo');
   phAccessHelper.getHiddenAlbums(photoAccessHelper.HiddenPhotosDisplayMode.ASSETS_MODE, async (err, fetchResult) => {
     if (fetchResult === undefined) {
@@ -652,7 +707,7 @@ async function getSysHiddenAlbum() {
 }
 
 // 获取隐藏相册-相册视图，即系统中包含隐藏文件的相册（不包含系统预置的隐藏相册本身和回收站相册）
-async function getHiddenAlbumsView() {
+async function getHiddenAlbumsView(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('getHiddenAlbumsViewDemo');
   phAccessHelper.getHiddenAlbums(photoAccessHelper.HiddenPhotosDisplayMode.ALBUMS_MODE, async (err, fetchResult) => {
     if (fetchResult === undefined) {
@@ -695,13 +750,13 @@ getHiddenAlbums(mode: HiddenPhotosDisplayMode, options?: FetchOptions): Promise&
 | 参数名   | 类型                     | 必填 | 说明                      |
 | -------- | ------------------------ | ---- | ------------------------- |
 | mode  | [HiddenPhotosDisplayMode](#hiddenphotosdisplaymode11)         | 是   | 隐藏文件显示模式。  |
-| options  | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions)         | 否   |  检索选项，不填时默认根据隐藏文件显示模式检索。      |
+| options  | [FetchOptions](arkts-apis-photoAccessHelper-i.md#fetchoptions)         | 否   |  检索选项，不填时默认根据隐藏文件显示模式检索。      |
 
 **返回值：**
 
 | 类型                        | 说明           |
 | --------------------------- | -------------- |
-| Promise&lt;[FetchResult](js-apis-photoAccessHelper.md#fetchresult)&lt;[Album](#album)&gt;&gt; | Promise对象，返回获取相册的结果集。
+| Promise&lt;[FetchResult](arkts-apis-photoAccessHelper-FetchResult.md)&lt;[Album](#album)&gt;&gt; | Promise对象，返回获取相册的结果集。
 
 **错误码：**
 
@@ -716,14 +771,14 @@ getHiddenAlbums(mode: HiddenPhotosDisplayMode, options?: FetchOptions): Promise&
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // 获取系统预置的隐藏相册
-async function getSysHiddenAlbum() {
+async function getSysHiddenAlbum(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('getSysHiddenAlbumDemo');
   phAccessHelper.getHiddenAlbums(photoAccessHelper.HiddenPhotosDisplayMode.ASSETS_MODE)
     .then( async (fetchResult) => {
@@ -740,7 +795,7 @@ async function getSysHiddenAlbum() {
 }
 
 // 获取隐藏相册-相册视图，即系统中包含隐藏文件的相册（不包含系统预置的隐藏相册本身和回收站相册）
-async function getHiddenAlbumsView() {
+async function getHiddenAlbumsView(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('getHiddenAlbumsViewDemo');
   phAccessHelper.getHiddenAlbums(photoAccessHelper.HiddenPhotosDisplayMode.ALBUMS_MODE).then( async (fetchResult) => {
     if (fetchResult === undefined) {
@@ -778,7 +833,7 @@ deleteAssets(uriList: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;):
 
 > **说明：** 
 >
-> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest.deleteAssets](js-apis-photoAccessHelper.md#deleteassets11)替代。
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest.deleteAssets](arkts-apis-photoAccessHelper-MediaAssetChangeRequest.md#deleteassets11)替代。
 
 **系统接口**：此接口为系统接口。
 
@@ -810,12 +865,12 @@ deleteAssets(uriList: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;):
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('deleteAssetDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -850,7 +905,7 @@ deleteAssets(uriList: Array&lt;string&gt;): Promise&lt;void&gt;
 
 > **说明：** 
 >
-> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest.deleteAssets](js-apis-photoAccessHelper.md#deleteassets11)替代。
+> 从API version 10开始支持，从API version 11开始废弃。建议使用[MediaAssetChangeRequest.deleteAssets](arkts-apis-photoAccessHelper-MediaAssetChangeRequest.md#deleteassets11)替代。
 
 **系统接口**：此接口为系统接口。
 
@@ -887,12 +942,12 @@ deleteAssets(uriList: Array&lt;string&gt;): Promise&lt;void&gt;
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('deleteDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -932,7 +987,7 @@ getPhotoIndex(photoUri: string, albumUri: string, options: FetchOptions, callbac
 | -------- | ------------------------- | ---- | ---------- |
 | photoUri | string | 是   | 所查询的图库资源的uri。 |
 | albumUri | string | 是   | 相册uri，可以为空字符串，为空字符串时默认查询全部图库资源。   |
-| options  | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions)       | 是   |  检索选项，predicates中必须设置一种检索排序方式，不设置或多设置均会导致接口调用异常。      |
+| options  | [FetchOptions](arkts-apis-photoAccessHelper-i.md#fetchoptions)       | 是   |  检索选项，predicates中必须设置一种检索排序方式，不设置或多设置均会导致接口调用异常。      |
 | callback | AsyncCallback&lt;number&gt;| 是   | callback返回相册中资源的索引。 |
 
 **错误码：**
@@ -951,12 +1006,12 @@ getPhotoIndex(photoUri: string, albumUri: string, options: FetchOptions, callbac
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('getPhotoIndexDemo');
     let predicatesForGetAsset: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -1009,7 +1064,7 @@ getPhotoIndex(photoUri: string, albumUri: string, options: FetchOptions): Promis
 | -------- | ------------------------- | ---- | ---------- |
 | photoUri | string | 是   | 所查询的图库资源的uri。 |
 | albumUri | string | 是   | 相册uri，可以为空字符串，为空字符串时默认查询全部图库资源。   |
-| options  | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions)       | 是   |  检索选项，predicates中必须设置一种检索排序方式，不设置或多设置均会导致接口调用异常。      |
+| options  | [FetchOptions](arkts-apis-photoAccessHelper-i.md#fetchoptions)       | 是   |  检索选项，predicates中必须设置一种检索排序方式，不设置或多设置均会导致接口调用异常。      |
 
 **返回值：**
 
@@ -1033,13 +1088,13 @@ getPhotoIndex(photoUri: string, albumUri: string, options: FetchOptions): Promis
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('getPhotoIndexDemo');
     let predicatesForGetAsset: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -1104,13 +1159,13 @@ saveFormInfo(info:FormInfo, callback: AsyncCallback&lt;void&gt;):void
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('saveFormInfoDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -1173,13 +1228,13 @@ saveFormInfo(info:FormInfo):Promise&lt;void&gt;
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('saveFormInfoDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -1235,12 +1290,12 @@ removeFormInfo(info:FormInfo, callback: AsyncCallback&lt;void&gt;):void
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('removeFormInfoDemo');
   let info: photoAccessHelper.FormInfo = {
     //formId是一个由纯数字组成的字符串，移除卡片的时候uri填空即可。
@@ -1295,12 +1350,12 @@ removeFormInfo(info:FormInfo):Promise&lt;void&gt;
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('removeFormInfoDemo');
   let info: photoAccessHelper.FormInfo = {
     //formId是一个由纯数字组成的字符串，移除卡片的时候uri填空即可。
@@ -1316,9 +1371,9 @@ async function example() {
 }
 ```
 
-### createAssetsForApp<sup>12+</sup>
+### createAssetsForApp<sup>19+</sup>
 
-createAssetsForApp(bundleName: string, appName: string, appId: string, photoCreationConfigs: Array&lt;PhotoCreationConfig&gt;): Promise&lt;Array&lt;string&gt;&gt;
+createAssetsForApp(bundleName: string, appName: string, tokenId: number, photoCreationConfigs: Array&lt;PhotoCreationConfig&gt;): Promise&lt;Array&lt;string&gt;&gt;
 
 调用接口代替应用创建媒体库uri列表。Uri已对appId对应的应用授权，支持应用使用uri写入图片/视频。
 
@@ -1335,7 +1390,7 @@ createAssetsForApp(bundleName: string, appName: string, appId: string, photoCrea
 | bundleName | string | 是 | 需保存图片/视频文件的应用bundle name。 |
 | appName | string | 是 | 需保存图片/视频文件的应用app name。 |
 | appId | string | 是 | 需保存图片/视频文件的应用app id。 |
-| photoCreationConfigs | Array&lt;[PhotoCreationConfig](./js-apis-photoAccessHelper.md#photocreationconfig12)&gt; | 是 | 保存图片/视频到媒体库的配置。 |
+| photoCreationConfigs | Array&lt;[PhotoCreationConfig](arkts-apis-photoAccessHelper-i.md#photocreationconfig12)&gt; | 是 | 保存图片/视频到媒体库的配置。 |
 
 **返回值：**
 
@@ -1356,16 +1411,16 @@ createAssetsForApp(bundleName: string, appName: string, appId: string, photoCrea
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('createAssetsForAppDemo.');
 
   try {
     let bundleName: string = 'testBundleName';
     let appName: string = 'testAppName';
-    let appId: string = 'testAppId';
+    let tokenId: number = 537197950;
     let photoCreationConfigs: Array<photoAccessHelper.PhotoCreationConfig> = [
       {
         title: 'test',
@@ -1374,7 +1429,7 @@ async function example() {
         subtype: photoAccessHelper.PhotoSubtype.DEFAULT,
       }
     ];
-    let desFileUris: Array<string> = await phAccessHelper.createAssetsForApp(bundleName, appName, appId, photoCreationConfigs);
+    let desFileUris: Array<string> = await phAccessHelper.createAssetsForApp(bundleName, appName, tokenId, photoCreationConfigs);
     console.info('createAssetsForApp success, data is ' + desFileUris);
   } catch (err) {
     console.error(`createAssetsForApp failed with error: ${err.code}, ${err.message}`);
@@ -1422,10 +1477,10 @@ grantPhotoUriPermission(tokenId: number, uri: string, photoPermissionType: Photo
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('grantPhotoUriPermissionDemo');
 
   try {
@@ -1482,10 +1537,10 @@ grantPhotoUrisPermission(tokenId: number, uriList: Array&lt;string&gt;, photoPer
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('grantPhotoUrisPermissionDemo');
 
   try {
@@ -1544,10 +1599,10 @@ cancelPhotoUriPermission(tokenId: number, uri: string, photoPermissionType: Phot
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('cancelPhotoUriPermissionDemo');
 
   try {
@@ -1559,6 +1614,169 @@ async function example() {
     console.info('cancelPhotoUriPermission success, result=' + result);
   } catch (err) {
     console.error('cancelPhotoUriPermission failed, error=' + err);
+  }
+}
+```
+
+### startThumbnailCreationTask<sup>13+</sup>
+
+startThumbnailCreationTask(predicate: dataSharePredicates.DataSharePredicates, callback: AsyncCallback\<void\>): number
+
+按指定规则生成缩略图。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限：** ohos.permission.READ_IMAGEVIDEO
+
+**参数：**
+
+| 参数名      | 类型                                    | 必填 | 说明             |
+| ---------  | --------------------------------------- | ---- | --------------- |
+| predicates | [dataSharePredicates.DataSharePredicates](../apis-arkdata/js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 生成缩略图选项。  |
+| callback   | AsyncCallback&lt;void&gt;               | 是   | 回调函数。当成功时标识通知任务结束，err为undefined，否则为错误对象。|
+
+**返回值：**
+
+| 类型                  | 说明                  |
+| --------------------- | -------------------- |
+| Promise&lt;number&gt; | 返回缩略图生成任务id。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201 |  Permission denied.         |
+| 202 |  Called by non-system application.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
+| 14000011       | Internal system error.         |
+
+**示例：**
+
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData'
+
+function testCallBack() {
+
+}
+
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+
+  try {
+    console.info('startThumbnailCreationTask test start');
+    phAccessHelper.startThumbnailCreationTask(predicates, testCallBack);
+  } catch (err) {
+    console.error(`startThumbnailCreationTask failed, error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### stopThumbnailCreationTask<sup>13+</sup>
+
+stopThumbnailCreationTask(taskId: number): void
+
+停止生成缩略图。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限：** ohos.permission.READ_IMAGEVIDEO
+
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明                     |
+| -----  | ------ | ---- | ------------------------ |
+| taskId | number | 是   | 需要停止的缩略图生成任务id。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201 |  Permission denied.         |
+| 202 |  Called by non-system application.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
+| 14000011       | Internal system error.         |
+
+**示例：**
+
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
+
+```ts
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
+  try {
+    console.info('stopThumbnailCreationTask test start');
+    let taskId: number = 75983;
+    phAccessHelper.stopThumbnailCreationTask(taskId);
+  } catch (err) {
+    console.error(`stopThumbnailCreationTask failed, error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### getSharedPhotoAssets<sup>13+</sup>
+
+getSharedPhotoAssets(options: FetchOptions): Array\<SharedPhotoAsset\>
+
+获取共享的照片资产。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限：** ohos.permission.ACCESS_MEDIALIB_THUMB_DB
+
+**参数：**
+
+| 参数名      | 类型         | 必填 | 说明     |
+| ---------  | ------------ | ---- | ------- |
+| options    | [FetchOptions](arkts-apis-photoAccessHelper-i.md#fetchoptions) | 是   | 获取共享的照片资产选项。 |
+
+**返回值：**
+
+| 类型                    | 说明                |
+| ----------------------- | ------------------ |
+| Array\<[SharedPhotoAsset](#sharedphotoasset13)\> | 返回共享的照片资产。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201 |  Permission denied.         |
+| 202 |  Called by non-system application.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
+| 14000011       | Internal system error.         |
+
+**示例：**
+
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData'
+
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+
+  try {
+    console.info('getSharedPhotoAssets test start');
+    phAccessHelper.getSharedPhotoAssets(fetchOptions);
+    console.info('getSharedPhotoAssets test end');
+  } catch (err) {
+    console.error(`getSharedPhotoAssets failed, error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -1600,15 +1818,10 @@ startAssetAnalysis(type: AnalysisType, assetUris?: Array&lt;string&gt;): Promise
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
-import { common } from '@kit.AbilityKit';
-
-// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-
-async function example() {
+async function example(context: Context) {
   console.info('startAssetAnalysisDemo');
   try {
     let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
@@ -1644,7 +1857,7 @@ createAssetsForAppWithMode(boundleName: string, appName: string, appId: string, 
 | appId| string | 是 | 需要保存图片/视频文件的应用app id。 |
 | tokenId| number| 是 | 需要短时授权应用的唯一标识。 |
 | authorizationMode| [AuthorizationMode](#authorizationmode12)| 是 | 授权模式。授予应用短期内再次保存无需重复弹框确认。 |
-| PhotoCreationConfig| Array\<[PhotoCreationConfig](js-apis-photoAccessHelper.md#photocreationconfig12)> | 是 | 保存图片/视频到媒体库的配置。|
+| PhotoCreationConfig| Array\<[PhotoCreationConfig](arkts-apis-photoAccessHelper-i.md#photocreationconfig12)> | 是 | 保存图片/视频到媒体库的配置。|
 
 **返回值：**
 
@@ -1665,10 +1878,10 @@ createAssetsForAppWithMode(boundleName: string, appName: string, appId: string, 
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('createAssetsForAppWithModeDemo.');
 
   try {
@@ -1717,7 +1930,7 @@ getKeyFrameThumbnail(beginFrameTimeMs: number, type: ThumbnailType): Promise<ima
 
 | 类型                            | 说明                    |
 | ----------------------------- | --------------------- |
-| Promise&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Promise对象，返回缩略图的PixelMap。若获取不到，默认返回封面帧 |
+| Promise&lt;[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | Promise对象，返回缩略图的PixelMap。若获取不到，默认返回封面帧 |
 
 **错误码：**
 
@@ -1732,18 +1945,14 @@ getKeyFrameThumbnail(beginFrameTimeMs: number, type: ThumbnailType): Promise<ima
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { common }  from '@kit.AbilityKit';
-import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { dataSharePredicates } from '@kit.ArkData';
 import { image } from '@kit.ImageKit';
 
-// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-
-async function example() {
+async function example(context: Context) {
   try{
     console.info('getKeyFrameThumbnail demo');
     let phAccessHelper:photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
@@ -1803,14 +2012,8 @@ saveGalleryFormInfo(info:GalleryFormInfo):Promise&lt;void&gt;
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
-import {photoAccessHelper} from '@kit.MediaLibraryKit';
-import { common } from '@kit.AbilityKit';
 
-// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('saveGalleryFormInfoDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -1876,14 +2079,8 @@ updateGalleryFormInfo(info:GalleryFormInfo):Promise&lt;void&gt;
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
-import {photoAccessHelper} from '@kit.MediaLibraryKit';
-import { common } from '@kit.AbilityKit';
 
-// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('updateGalleryFormInfoDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -1950,14 +2147,8 @@ removeGalleryFormInfo(info:GalleryFormInfo):Promise&lt;void&gt;
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import {photoAccessHelper} from '@kit.MediaLibraryKit';
-import { common } from '@kit.AbilityKit';
 
-// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('removeGalleryFormInfoDemo');
   let info: photoAccessHelper.GalleryFormInfo = {
     // formId是一个由纯数字组成的字符串，移除卡片时assertUris不填。
@@ -2010,10 +2201,10 @@ getAlbumsByIds(albumIds: Array&lt;number&gt;): Promise&lt;Map&lt;number, Album&g
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('startGetAlbumsByIdsDemo');
 
   try {
@@ -2048,7 +2239,7 @@ createAssetsForAppWithAlbum(source: PhotoCreationSource, albumUri: string, isAut
 | source  | [PhotoCreationSource](#photocreationsource18)         | 是   | 代替应用创建资产传入的应用信息。                                     |
 | albumUri  | string             | 是   | 相册uri。                                     |
 | isAuthorized  |  boolean              | 是   | 是否授权其他应用。true表示授权，false表示不授权。                                     |
-| PhotoCreationConfigs| Array\<[PhotoCreationConfig](js-apis-photoAccessHelper.md#photocreationconfig12)> | 是 | 保存图片/视频到媒体库的配置。|
+| PhotoCreationConfigs| Array\<[PhotoCreationConfig](arkts-apis-photoAccessHelper-i.md#photocreationconfig12)> | 是 | 保存图片/视频到媒体库的配置。|
 
 **返回值：**
 
@@ -2069,10 +2260,10 @@ createAssetsForAppWithAlbum(source: PhotoCreationSource, albumUri: string, isAut
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('createAssetsForAppWithAlbumDemo.');
 
   try {
@@ -2096,6 +2287,498 @@ async function example() {
     console.info('createAssetsForAppWithAlbum success, data is ' + desFileUris);
   } catch (err) {
     console.error(`createAssetsForAppWithAlbum failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### on('hiddenPhotoChange')<sup>20+</sup> 
+
+on(type: 'hiddenPhotoChange', callback: Callback&lt;PhotoAssetChangeInfos&gt;): void
+
+注册'hiddenPhotoChange'监听隐藏的媒体资产，并通过callback方式返回隐藏资产变化结果，可以注册多个callback。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO 和 ohos.permission.MANAGE_PRIVATE_PHOTOS
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明      |
+|-----------|-------------------------|-----------|-----------------|
+| type | string | 是   | 注册监听隐藏资产，取值为'hiddenPhotoChange'。注册完成后，有隐藏资产发生变化时，通过callback返回变更信息。 |
+| callback  | Callback&lt;[PhotoAssetChangeInfos](arkts-apis-photoAccessHelper-i.md#photoassetchangeinfos20)&gt; | 是   | 返回变更的隐藏媒体资产信息[PhotoAssetChangeInfos](arkts-apis-photoAccessHelper-i.md#photoassetchangeinfos20)。<br>**注意：** 该接口可以注册多个不同的callback监听，[off('hiddenPhotoChange')](#offhiddenphotochange20)即可以关闭所有监听，也可以关闭指定callback监听。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Called by non-system application. |
+| 13900020 | Invalid argument. |
+| 14000011 | Internal system error. |
+
+**示例：**
+
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData'
+
+let onCallback1 = (changeData: photoAccessHelper.PhotoAssetChangeInfos) => {
+    console.info('onCallback1 success, changData: ' + JSON.stringify(changeData));
+  // file had changed, do something.
+}
+let onCallback2 = (changeData: photoAccessHelper.PhotoAssetChangeInfos) => {
+    console.info('onCallback2 success, changData: ' + JSON.stringify(changeData));
+  // file had changed, do something.
+}
+
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper){
+  console.info('onHiddenPhotoChangeDemo.');
+
+  try {
+    // 注册onCallback1监听。
+    phAccessHelper.on('hiddenPhotoChange', onCallback1);
+    // 注册onCallback2监听。
+    phAccessHelper.on('hiddenPhotoChange', onCallback2);
+  } catch (error) {
+    console.error('onHiddenPhotoChange failed, errCode is', error);
+  }
+}
+```
+
+### off('hiddenPhotoChange')<sup>20+</sup> 
+
+off(type: 'hiddenPhotoChange', callback?: Callback&lt;PhotoAssetChangeInfos&gt;): void
+
+取消对'hiddenPhotoChange'隐藏资产的监听。存在多个callback监听时，可以取消指定注册的callback监听；不指定callback时取消所有监听。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO 和 ohos.permission.MANAGE_PRIVATE_PHOTOS
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明      |
+|-----------|-------------------------|-----------|-----------------|
+| type | string | 是   | 取消监听隐藏资产，取值为'hiddenPhotoChange'。取消监听后，有隐藏资产发生变化时，不再通过callback返回变更信息。 |
+| callback | Callback&lt;[PhotoAssetChangeInfos](arkts-apis-photoAccessHelper-i.md#photoassetchangeinfos20)&gt; | 否   | 取消[on('hiddenPhotoChange')](#onhiddenphotochange20)注册时指定的callback监听；不填时，则取消对'hiddenPhotoChange'的所有监听。<br>**注意：** 取消注册的callback后，有隐藏资产发生变化时，不会进入此回调。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Called by non-system application. |
+| 13900020 | Invalid argument. |
+| 14000011 | Internal system error. |
+
+**示例：**
+
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData'
+
+let onCallback1 = (changeData: photoAccessHelper.PhotoAssetChangeInfos) => {
+    console.info('onCallback1 success, changData: ' + JSON.stringify(changeData));
+  // file had changed, do something.
+}
+let onCallback2 = (changeData: photoAccessHelper.PhotoAssetChangeInfos) => {
+    console.info('onCallback2 success, changData: ' + JSON.stringify(changeData));
+  // file had changed, do something.
+}
+
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper){
+  console.info('offHiddenPhotoChangeDemo.');
+
+  try {
+    // 注册onCallback1监听。
+    phAccessHelper.on('hiddenPhotoChange', onCallback1);
+    // 注册onCallback2监听。
+    phAccessHelper.on('hiddenPhotoChange', onCallback2);
+
+    // 关闭onCallback1监听，onCallback2继续监听。
+    phAccessHelper.off('hiddenPhotoChange', onCallback1);
+  } catch (error) {
+    console.error('offHiddenPhotoChange failed, errCode is', error);
+  }
+}
+```
+
+### on('trashedPhotoChange')<sup>20+</sup> 
+
+on(type: 'trashedPhotoChange', callback: Callback&lt;PhotoAssetChangeInfos&gt;): void
+
+注册'trashedPhotoChange'监听回收站的媒体资产，并通过callback方式返回回收站资产变化结果，可以注册多个callback。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明      |
+|-----------|-------------------------|-----------|-----------------|
+| type | string | 是   | 注册监听回收站资产，取值为'trashedPhotoChange'。注册完成后，有回收站资产发生变化时，通过callback返回变更信息。 |
+| callback  | Callback&lt;[PhotoAssetChangeInfos](arkts-apis-photoAccessHelper-i.md#photoassetchangeinfos20)&gt; | 是   | 返回变更的回收站媒体资产信息[PhotoAssetChangeInfos](arkts-apis-photoAccessHelper-i.md#photoassetchangeinfos20)。<br>**注意：** 该接口可以注册多个不同的callback监听，[off('trashedPhotoChange')](#offtrashedphotochange20)即可以关闭所有监听，也可以关闭指定callback监听。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Called by non-system application. |
+| 13900020 | Invalid argument. |
+| 14000011 | Internal system error. |
+
+**示例：**
+
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData'
+
+let onCallback1 = (changeData: photoAccessHelper.PhotoAssetChangeInfos) => {
+    console.info('onCallback1 success, changData: ' + JSON.stringify(changeData));
+  // file had changed, do something.
+}
+let onCallback2 = (changeData: photoAccessHelper.PhotoAssetChangeInfos) => {
+    console.info('onCallback2 success, changData: ' + JSON.stringify(changeData));
+  // file had changed, do something.
+}
+
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context){
+  console.info('onTrashedPhotoChangeDemo.');
+
+  try {
+    // 注册onCallback1监听。
+    phAccessHelper.on('trashedPhotoChange', onCallback1);
+    // 注册onCallback2监听。
+    phAccessHelper.on('trashedPhotoChange', onCallback2);
+  } catch (error) {
+    console.error('onTrashedPhotoChangeDemo failed, errCode is', error);
+  }
+}
+```
+
+### off('trashedPhotoChange')<sup>20+</sup> 
+
+off(type: 'trashedPhotoChange', callback?: Callback&lt;PhotoAssetChangeInfos&gt;): void
+
+取消对'trashedPhotoChange'回收站资产的监听。存在多个callback监听时，可以取消指定注册的callback监听；不指定callback时取消所有监听。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明      |
+|-----------|-------------------------|-----------|-----------------|
+| type | string | 是   | 取消监听回收站资产，取值为'trashedPhotoChange'。取消监听后，有回收站资产发生变化时，不再通过callback返回变更信息。 |
+| callback | Callback&lt;[PhotoAssetChangeInfos](arkts-apis-photoAccessHelper-i.md#photoassetchangeinfos20)&gt; | 否   | 取消[on('trashedPhotoChange')](#ontrashedphotochange20)注册时指定的callback监听；不填时，则取消对'trashedPhotoChange'的所有监听。<br>**注意：** 取消注册的callback后，有回收站资产发生变化时，不会进入此回调。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Called by non-system application. |
+| 13900020 | Invalid argument. |
+| 14000011 | Internal system error. |
+
+**示例：**
+
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData'
+
+let onCallback1 = (changeData: photoAccessHelper.PhotoAssetChangeInfos) => {
+    console.info('onCallback1 success, changData: ' + JSON.stringify(changeData));
+  // file had changed, do something.
+}
+let onCallback2 = (changeData: photoAccessHelper.PhotoAssetChangeInfos) => {
+    console.info('onCallback2 success, changData: ' + JSON.stringify(changeData));
+  // file had changed, do something.
+}
+
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context){
+  console.info('offTrashedPhotoChangeDemo.');
+
+  try {
+    // 注册onCallback1监听。
+    phAccessHelper.on('trashedPhotoChange', onCallback1);
+    // 注册onCallback2监听。
+    phAccessHelper.on('trashedPhotoChange', onCallback2);
+
+    // 关闭onCallback1监听，onCallback2继续监听。
+    phAccessHelper.off('trashedPhotoChange', onCallback1);
+  } catch (error) {
+    console.error('offTrashedPhotoChangeDemo failed, errCode is', error);
+  }
+}
+```
+
+### on('hiddenAlbumChange')<sup>20+</sup> 
+
+on(type: 'hiddenAlbumChange', callback: Callback&lt;AlbumChangeInfos&gt;): void
+
+注册'hiddenAlbumChange'监听隐藏相册，并通过callback方式返回相册变化结果，可以注册多个callback。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO 和 ohos.permission.MANAGE_PRIVATE_PHOTOS
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明      |
+|-----------|-------------------------|-----------|-----------------|
+| type | string | 是   | 注册监听隐藏相册，取值为'hiddenAlbumChange'。注册完成后，有隐藏相册发生变化时，通过callback返回变更信息。 |
+| callback  | Callback&lt;[AlbumChangeInfos](arkts-apis-photoAccessHelper-i.md#albumchangeinfos20)&gt; | 是   | 返回变更的隐藏相册信息[AlbumChangeInfos](arkts-apis-photoAccessHelper-i.md#albumchangeinfos20)。<br>**注意：** 该接口可以注册多个不同的callback监听，[off('hiddenAlbumChange')](#offhiddenalbumchange20)即可以关闭所有监听，也可以关闭指定callback监听。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Called by non-system application. |
+| 13900020 | Invalid argument. |
+| 14000011 | Internal system error. |
+
+**示例：**
+
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData'
+
+let onCallback1 = (changeData: photoAccessHelper.AlbumChangeInfos) => {
+    console.info('onCallback1 success, changData: ' + JSON.stringify(changeData));
+  // file had changed, do something.
+}
+let onCallback2 = (changeData: photoAccessHelper.AlbumChangeInfos) => {
+    console.info('onCallback2 success, changData: ' + JSON.stringify(changeData));
+  // file had changed, do something.
+}
+
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper){
+  console.info('onHiddenAlbumChangeDemo.');
+
+  try {
+    // 注册onCallback1监听。
+    phAccessHelper.on('hiddenAlbumChange', onCallback1);
+    // 注册onCallback2监听。
+    phAccessHelper.on('hiddenAlbumChange', onCallback2);
+  } catch (error) {
+    console.error('onHiddenAlbumChangeDemo failed, errCode is', error);
+  }
+}
+```
+
+### off('hiddenAlbumChange')<sup>20+</sup> 
+
+off(type: 'hiddenAlbumChange', callback?: Callback&lt;AlbumChangeInfos&gt;): void
+
+取消对'hiddenAlbumChange'隐藏相册的监听。存在多个callback监听时，可以取消指定注册的callback监听；不指定callback时取消所有监听。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO 和 ohos.permission.MANAGE_PRIVATE_PHOTOS
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明      |
+|-----------|-------------------------|-----------|-----------------|
+| type | string | 是   | 取消监听隐藏相册，取值为'hiddenAlbumChange'。取消监听后，有隐藏相册发生变化时，不再通过callback返回变更信息。 |
+| callback | Callback&lt;[AlbumChangeInfos](arkts-apis-photoAccessHelper-i.md#albumchangeinfos20)&gt; | 否   | 取消[on('hiddenAlbumChange')](#onhiddenalbumchange20)注册时指定的callback监听；不填时，则取消对'hiddenAlbumChange'的所有监听。<br>**注意：** 取消注册的callback后，有隐藏相册发生变化时，不会进入此回调。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Called by non-system application. |
+| 13900020 | Invalid argument. |
+| 14000011 | Internal system error. |
+
+**示例：**
+
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData'
+
+let onCallback1 = (changeData: photoAccessHelper.AlbumChangeInfos) => {
+    console.info('onCallback1 success, changData: ' + JSON.stringify(changeData));
+  // file had changed, do something.
+}
+let onCallback2 = (changeData: photoAccessHelper.AlbumChangeInfos) => {
+    console.info('onCallback2 success, changData: ' + JSON.stringify(changeData));
+  // file had changed, do something.
+}
+
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper){
+  console.info('onHiddenAlbumChangeDemo.');
+
+  try {
+    // 注册onCallback1监听。
+    phAccessHelper.on('hiddenAlbumChange', onCallback1);
+    // 注册onCallback2监听。
+    phAccessHelper.on('hiddenAlbumChange', onCallback2);
+
+    // 关闭onCallback1监听，onCallback2继续监听。
+    phAccessHelper.off('hiddenAlbumChange', onCallback1);
+  } catch (error) {
+    console.error('onHiddenAlbumChangeDemo failed, errCode is', error);
+  }
+}
+```
+
+### on('trashedAlbumChange')<sup>20+</sup> 
+
+on(type: 'trashedAlbumChange', callback: Callback&lt;AlbumChangeInfos&gt;): void
+
+注册'trashedAlbumChange'监听回收站相册，并通过callback方式返回相册变化结果，可以注册多个callback。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明      |
+|-----------|-------------------------|-----------|-----------------|
+| type | string | 是   | 注册监听回收站相册，取值为'trashedAlbumChange'。注册完成后，有回收站相册发生变化时，通过callback返回变更信息。 |
+| callback  | Callback&lt;[AlbumChangeInfos](arkts-apis-photoAccessHelper-i.md#albumchangeinfos20)&gt; | 是   | 返回变更的相册信息[AlbumChangeInfos](arkts-apis-photoAccessHelper-i.md#albumchangeinfos20)。<br>**注意：** 该接口可以注册多个不同的callback监听，[off('trashedAlbumChange')](#offtrashedalbumchange20)即可以关闭所有监听，也可以关闭指定callback监听。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Called by non-system application. |
+| 13900020 | Invalid argument. |
+| 14000011 | Internal system error. |
+
+**示例：**
+
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData'
+
+let onCallback1 = (changeData: photoAccessHelper.AlbumChangeInfos) => {
+    console.info('onCallback1 success, changData: ' + JSON.stringify(changeData));
+  // file had changed, do something.
+}
+let onCallback2 = (changeData: photoAccessHelper.AlbumChangeInfos) => {
+    console.info('onCallback2 success, changData: ' + JSON.stringify(changeData));
+  // file had changed, do something.
+}
+
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context){
+  console.info('onTrashedAlbumChangeDemo.');
+
+  try {
+    // 注册onCallback1监听。
+    phAccessHelper.on('trashedAlbumChange', onCallback1);
+    // 注册onCallback2监听。
+    phAccessHelper.on('trashedAlbumChange', onCallback2);
+  } catch (error) {
+    console.error('onTrashedAlbumChangeDemo failed, errCode is', error);
+  }
+}
+```
+
+### off('trashedAlbumChange')<sup>20+</sup> 
+
+off(type: 'trashedAlbumChange', callback?: Callback&lt;AlbumChangeInfos&gt;): void
+
+取消对'trashedAlbumChange'回收站相册的监听。存在多个callback监听时，可以取消指定注册的callback监听；不指定callback时取消所有监听。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明      |
+|-----------|-------------------------|-----------|-----------------|
+| type | string | 是   | 取消监听回收站相册，取值为'trashedAlbumChange'。取消监听后，有回收站相册发生变化时，不再通过callback返回变更信息。 |
+| callback | Callback&lt;[AlbumChangeInfos](arkts-apis-photoAccessHelper-i.md#albumchangeinfos20)&gt; | 否   | 取消[on('trashedAlbumChange')](#ontrashedalbumchange20)注册时指定的callback监听；不填时，则取消对'trashedAlbumChange'的所有监听。<br>**注意：** 取消注册的callback后，有回收站相册发生变化时，不会进入此回调。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Called by non-system application. |
+| 13900020 | Invalid argument. |
+| 14000011 | Internal system error. |
+
+**示例：**
+
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData'
+
+let onCallback1 = (changeData: photoAccessHelper.AlbumChangeInfos) => {
+    console.info('onCallback1 success, changData: ' + JSON.stringify(changeData));
+  // file had changed, do something.
+}
+let onCallback2 = (changeData: photoAccessHelper.AlbumChangeInfos) => {
+    console.info('onCallback2 success, changData: ' + JSON.stringify(changeData));
+  // file had changed, do something.
+}
+
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context){
+  console.info('onTrashedAlbumChangeDemo.');
+
+  try {
+    // 注册onCallback1监听。
+    phAccessHelper.on('trashedAlbumChange', onCallback1);
+    // 注册onCallback2监听。
+    phAccessHelper.on('trashedAlbumChange', onCallback2);
+
+    // 关闭onCallback1监听，onCallback2继续监听。
+    phAccessHelper.off('trashedAlbumChange', onCallback1);
+  } catch (error) {
+    console.error('onTrashedAlbumChangeDemo failed, errCode is', error);
   }
 }
 ```
@@ -2145,10 +2828,10 @@ open(mode: string, callback: AsyncCallback&lt;number&gt;): void
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('Open demo');
   let testFileName: string = 'testFile' + Date.now() + '.jpg';
   let photoAsset: photoAccessHelper.PhotoAsset = await phAccessHelper.createAsset(testFileName);
@@ -2209,10 +2892,10 @@ open(mode: string): Promise&lt;number&gt;
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('Open demo');
   try {
     let testFileName: string = 'testFile' + Date.now() + '.jpg';
@@ -2269,12 +2952,12 @@ setFavorite(favoriteState: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('setFavoriteDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -2337,13 +3020,13 @@ setFavorite(favoriteState: boolean): Promise&lt;void&gt;
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('setFavoriteDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -2401,12 +3084,12 @@ setHidden(hiddenState: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('setHiddenDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -2471,13 +3154,13 @@ setHidden(hiddenState: boolean): Promise&lt;void&gt;
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   // 示例代码为将文件从隐藏相册中恢复，需要先在隐藏相册预置资源。
   console.info('setHiddenDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -2503,7 +3186,7 @@ getExif(): Promise&lt;string&gt;
 
 返回jpg格式图片Exif标签组成的json格式的字符串，该方法使用Promise方式返回结果。
 
-此接口中获取的Exif标签信息是由[image](../apis-image-kit/js-apis-image.md)模块提供。Exif标签详细信息请参考[image.PropertyKey](../apis-image-kit/js-apis-image.md#propertykey7)。
+此接口中获取的Exif标签信息是由[image](../apis-image-kit/arkts-apis-image.md)模块提供。Exif标签详细信息请参考[image.PropertyKey](../apis-image-kit/arkts-apis-image-e.md#propertykey7)。
 
 **注意**：此接口返回的是Exif标签组成的json格式的字符串，完整Exif信息由all_exif与[PhotoKeys.USER_COMMENT](#photokeys)组成，fetchColumns需要传入这两个字段。
 
@@ -2535,12 +3218,12 @@ getExif(): Promise&lt;string&gt;
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('getExifDemo');
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -2567,7 +3250,7 @@ getExif(callback: AsyncCallback&lt;string&gt;): void
 
 返回jpg格式图片Exif标签组成的json格式的字符串，使用callback方式返回异步结果。
 
-此接口中获取的Exif标签信息是由[image](../apis-image-kit/js-apis-image.md)模块提供。Exif标签详细信息请参考[image.PropertyKey](../apis-image-kit/js-apis-image.md#propertykey7)。
+此接口中获取的Exif标签信息是由[image](../apis-image-kit/arkts-apis-image.md)模块提供。Exif标签详细信息请参考[image.PropertyKey](../apis-image-kit/arkts-apis-image-e.md#propertykey7)。
 
 **注意**：此接口返回的是Exif标签组成的json格式的字符串，完整Exif信息由all_exif与[PhotoKeys.USER_COMMENT](#photokeys)组成，fetchColumns需要传入这两个字段。
 
@@ -2599,12 +3282,12 @@ getExif(callback: AsyncCallback&lt;string&gt;): void
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('getExifDemo');
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -2678,12 +3361,12 @@ setUserComment(userComment: string): Promise&lt;void&gt;
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('setUserCommentDemo')
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -2742,12 +3425,12 @@ setUserComment(userComment: string, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('setUserCommentDemo')
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -2807,10 +3490,10 @@ setPending(pendingState: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('setPendingCallbackDemo');
     let testFileName: string = 'testFile' + Date.now() + '.jpg';
@@ -2875,10 +3558,10 @@ setPending(pendingState: boolean): Promise&lt;void&gt;
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('setPendingPromiseDemo');
     let testFileName: string = 'testFile' + Date.now() + '.jpg';
@@ -2923,12 +3606,12 @@ isEdited(callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('isEditedCallbackDemo')
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -2987,12 +3670,12 @@ isEdited(): Promise&lt;boolean&gt;
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('isEditedPromiseDemo')
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -3047,12 +3730,12 @@ requestEditData(callback: AsyncCallback&lt;string&gt;): void
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('requestEditDataCallbackDemo')
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -3109,12 +3792,12 @@ requestEditData(): Promise&lt;string&gt;
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('requestEditDataPromiseDemo')
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -3165,12 +3848,12 @@ getEditData(): Promise&lt;MediaAssetEditData&gt;
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('getEditDataDemo')
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -3220,12 +3903,12 @@ requestSource(callback: AsyncCallback&lt;number&gt;): void
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('requsetSourceCallbackDemo')
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -3279,12 +3962,12 @@ requestSource(): Promise&lt;number&gt;
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('requsetSourcePromiseDemo')
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -3339,12 +4022,12 @@ commitEditedAsset(editData: string, uri: string, callback: AsyncCallback&lt;void
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('commitEditedAssetCallbackDemo')
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -3411,12 +4094,12 @@ commitEditedAsset(editData: string, uri: string): Promise&lt;void&gt;
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('commitEditedAssetPromiseDemo')
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -3469,12 +4152,12 @@ revertToOriginal(callback: AsyncCallback&lt;void&gt;)
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('revertToOriginalCallbackDemo')
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -3530,12 +4213,12 @@ revertToOriginal(): Promise&lt;void&gt;
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('revertToOriginalPromiseDemo')
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -3571,7 +4254,7 @@ requestPhoto(callback: AsyncCallback&lt;image.PixelMap&gt;): string
 
 | 参数名        | 类型      | 必填   | 说明                                 |
 | ---------- | ------- | ---- | ---------------------------------- |
-| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 是    | Callback对象，返回获取的缩略图，调用2次。 |
+| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | 是    | Callback对象，返回获取的缩略图，调用2次。 |
 
 **返回值：**
 
@@ -3592,13 +4275,13 @@ requestPhoto(callback: AsyncCallback&lt;image.PixelMap&gt;): string
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { image } from '@kit.ImageKit';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('requestPhotoDemo')
     let options: photoAccessHelper.FetchOptions = {
@@ -3638,7 +4321,7 @@ requestPhoto(options: RequestPhotoOptions, callback: AsyncCallback&lt;image.Pixe
 | 参数名        | 类型      | 必填   | 说明                                 |
 | ---------- | ------- | ---- | ---------------------------------- |
 | options | [RequestPhotoOptions](#requestphotooptions11) | 是    | 获取资源缩略图的选项。 |
-| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 是    | Callback对象，返回获取的缩略图，根据选项的设置可能调用超过1次。 |
+| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | 是    | Callback对象，返回获取的缩略图，根据选项的设置可能调用超过1次。 |
 
 **返回值：**
 
@@ -3659,13 +4342,13 @@ requestPhoto(options: RequestPhotoOptions, callback: AsyncCallback&lt;image.Pixe
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { image } from '@kit.ImageKit';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('requestPhotoDemo')
     let options: photoAccessHelper.FetchOptions = {
@@ -3725,13 +4408,13 @@ cancelPhotoRequest(requestId: string): void
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { image } from '@kit.ImageKit';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('cancelPhotoRequestDemo')
     let options: photoAccessHelper.FetchOptions = {
@@ -3792,12 +4475,12 @@ getAnalysisData(analysisType: AnalysisType): Promise\<string>
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('getAnalysisDataDemo')
     let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -3860,14 +4543,8 @@ getThumbnailData(type: ThumbnailType): Promise&lt;ArrayBuffer&gt;
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
-import {photoAccessHelper} from '@kit.MediaLibraryKit';
-import { common } from '@kit.AbilityKit';
 
-// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('getThumbnailDataDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -3884,6 +4561,53 @@ async function example() {
   });
 }
 ```
+
+## SharedPhotoAsset<sup>13+</sup>
+
+共享图片资产。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+### 属性
+
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| ---- | --- | ---- | ---- | --- |
+| fileId | number | 否 | 否 | 图片资产标识id。<br>**系统接口**：此接口为系统接口。|
+| uri | string | 否 | 否 | 图片资产uri。<br>**系统接口**：此接口为系统接口。|
+| data | string | 否 | 否 | 图片资产的路径数据。<br>**系统接口**：此接口为系统接口。|
+| mediaType | [PhotoType](arkts-apis-photoAccessHelper-e.md#phototype) | 否 | 否 | 图片资产的媒体类型。<br>**系统接口**：此接口为系统接口。|
+| displayName | string | 否 | 否 | 图片资产的显示名称。<br>**系统接口**：此接口为系统接口。|
+| size | number  | 否 | 否 | 图片资产文件大小。<br>**系统接口**：此接口为系统接口。|
+| dataAdded | number | 否 | 否 | 添加了图片资产数据。<br>**系统接口**：此接口为系统接口。|
+| dataModified | number | 否 | 否 | 更改了图片资产数据。<br>**系统接口**：此接口为系统接口。|
+| duration | number | 否 | 否 | 视频类型的图片资产时长。<br>**系统接口**：此接口为系统接口。|
+| width | number | 否 | 否 | 图片资产的像素宽度。<br>**系统接口**：此接口为系统接口。|
+| height | number | 否 | 否 | 图片资产的像素高度。<br>**系统接口**：此接口为系统接口。|
+| dataTaken | number | 否 | 否 | 图片资产拍照后存入本地时间。<br>**系统接口**：此接口为系统接口。|
+| orientation | number | 否 | 否 | 图片资产的旋转角度。<br>**系统接口**：此接口为系统接口。|
+| isFavorite | boolean | 否 | 否 | 是否收藏了此图片。<br>**系统接口**：此接口为系统接口。|
+| title | string | 否 | 否 | 图片资产的标题。<br>**系统接口**：此接口为系统接口。|
+| position | [PositionType](arkts-apis-photoAccessHelper-e.md#positiontype16) | 否 | 否 | 图片资产存在位置。<br>**系统接口**：此接口为系统接口。|
+| dataTrashed | number | 否 | 否 | 图片资产是否在回收站中。<br>**系统接口**：此接口为系统接口。|
+| hidden | boolean | 否 | 否 | 图片资产是否隐藏。<br>**系统接口**：此接口为系统接口。|
+| userComment | string | 否 | 否 | 图片资产的用户评论信息。<br>**系统接口**：此接口为系统接口。|
+| cameraShotKey | string | 否 | 否 | 图片资产相机拍摄信息。<br>**系统接口**：此接口为系统接口。|
+| dateYear | string | 否 | 否 | 图片资产创建年份时间。<br>**系统接口**：此接口为系统接口。|
+| dateMonth | string | 否 | 否 | 图片资产创建月份时间。<br>**系统接口**：此接口为系统接口。|
+| dateDay | string | 否 | 否 | 图片资产创建日时间。<br>**系统接口**：此接口为系统接口。|
+| pending | boolean | 否 | 否 | 图片资产等待状态，true为等待。<br>**系统接口**：此接口为系统接口。|
+| dateAddedMs | number | 否 | 否 | 图片资产数据添加后经过时间。<br>**系统接口**：此接口为系统接口。|
+| dateTrashedMs | number | 否 | 否 | 图片资产数据进回收站后经过时间。<br>**系统接口**：此接口为系统接口。|
+| subtype | [PhotoSubtype](#photosubtype) | 否 | 否 | 图片资产子类型。<br>**系统接口**：此接口为系统接口。|
+| movingPhotoEffectMode | [MovingPhotoEffectMode](#movingphotoeffectmode12) | 否 | 否 | 动态照片效果模式。<br>**系统接口**：此接口为系统接口。|
+| dynamicRangeType | [DynamicRangeType](arkts-apis-photoAccessHelper-e.md#dynamicrangetype12) | 否 | 否 | 媒体文件的动态范围类型。<br>**系统接口**：此接口为系统接口。|
+| thumbnailReady | boolean | 否 | 否 | 图片资产的缩略图是否准备好。<br>**系统接口**：此接口为系统接口。|
+| lcdSize | string | 否 | 否 | 图片资产的lcd缩略图宽高信息。<br>**系统接口**：此接口为系统接口。|
+| thmSize | string | 否 | 否 | 图片资产的thumb缩略图宽高信息。<br>**系统接口**：此接口为系统接口。|
+| thumbnailModifiedMs<sup>14+</sup> | number | 否 | 是 | 图片资产的缩略图状态改变后经过时间。<br>**系统接口**：此接口为系统接口。|
+| thumbnailVisible<sup>14+</sup> | [ThumbnailVisibility](#thumbnailvisibility14) | 否 | 否 | 图片资产的缩略图是否可见。<br>**系统接口**：此接口为系统接口。|
 
 ## Album
 
@@ -3938,12 +4662,12 @@ recoverAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&g
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('recoverAssetsDemoCallback');
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -4012,13 +4736,13 @@ recoverAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('recoverAssetsDemoPromise');
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -4082,12 +4806,12 @@ deleteAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('deleteAssetsDemoCallback');
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -4116,7 +4840,7 @@ async function example() {
 
 deleteAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;
 
-从回收站中彻底删除图片或者视频，需要先在回收站中预置文件资源。该方法使用Promise来返回结果。
+从回收站中彻底删除图片或者视频，需要先在回收站中预置文件资源，建议删除数量不超过1000张。该方法使用Promise来返回结果。
 
 > **说明：** 
 >
@@ -4158,13 +4882,13 @@ deleteAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('deleteAssetsDemoPromise');
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -4228,12 +4952,12 @@ setCoverUri(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('setCoverUriDemoCallback');
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -4303,13 +5027,13 @@ setCoverUri(uri: string): Promise&lt;void&gt;
 | 14000011       | System inner fail.         |
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('setCoverUriDemoPromise');
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -4431,10 +5155,10 @@ static createAssetRequest(context: Context, displayName: string, options?: Photo
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   console.info('createAssetRequestDemo');
   try {
     let testFileName: string = 'testFile' + Date.now() + '.jpg';
@@ -4478,13 +5202,13 @@ setFavorite(favoriteState: boolean): void
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('setFavoriteDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -4531,13 +5255,13 @@ setHidden(hiddenState: boolean): void
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('setHiddenDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -4584,13 +5308,13 @@ setUserComment(userComment: string): void
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('setUserCommentDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -4638,13 +5362,13 @@ setEditData(editData: MediaAssetEditData): void
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('setEditDataDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -4700,14 +5424,14 @@ addResource(type: ResourceType, proxy: PhotoProxy): void
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 class PhotoProxyImpl implements photoAccessHelper.PhotoProxy {
   // 应用实现PhotoProxy。
 }
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, asset: photoAccessHelper.PhotoAsset) {
   console.info('addResourceByPhotoProxyDemo');
   try {
     let photoType: photoAccessHelper.PhotoType = photoAccessHelper.PhotoType.IMAGE;
@@ -4752,13 +5476,13 @@ setLocation(longitude: number, latitude: number): void
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('setLocationDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -4805,10 +5529,10 @@ setCameraShotKey(cameraShotKey: string): void
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
-async function example(asset: photoAccessHelper.PhotoAsset) {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, asset: photoAccessHelper.PhotoAsset) {
   console.info('setCameraShotKeyDemo');
   try {
     let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
@@ -4851,10 +5575,10 @@ setEffectMode(mode: MovingPhotoEffectMode): void
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
-async function example(asset: photoAccessHelper.PhotoAsset) {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, asset: photoAccessHelper.PhotoAsset) {
   console.info('setEffectModeDemo');
   try {
     let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
@@ -4902,14 +5626,8 @@ setSupportedWatermarkType(watermarkType: WatermarkType): void
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-import { photoAccessHelper } from '@kit.MediaLibraryKit';
-import { common } from '@kit.AbilityKit';
 
-// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('setSupportedWatermarkTypeDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -4972,27 +5690,20 @@ static deleteLocalAssetsPermanently(context: Context, assets: Array\<PhotoAsset>
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { common } from '@kit.AbilityKit';
 
-struct Index {
-  // 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
-  public context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-  public phAccessHelper = photoAccessHelper.getPhotoAccessHelper(this.context);
-
-  async function example() {
-    console.info('deleteAssetsPermanentlyDemo');
-    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-    let fetchOptions: photoAccessHelper.FetchOptions = {
-      fetchColumns: [],
-      predicates: predicates
-    };
-    try {
-      let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await this.phAccessHelper.getAssets(fetchOptions);
-      let photoAssetList: Array<photoAccessHelper.PhotoAsset> = await fetchResult.getAllObjects();
-      await photoAccessHelper.MediaAssetChangeRequest.deleteLocalAssetsPermanently(this.context, photoAssetList);
-    } catch (err) {
-      console.error(`deleteAssetsPermanentlyDemo failed with error: ${err.code}, ${err.message}`);
-    }
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
+  console.info('deleteAssetsPermanentlyDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  try {
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let photoAssetList: Array<photoAccessHelper.PhotoAsset> = await fetchResult.getAllObjects();
+    await photoAccessHelper.MediaAssetChangeRequest.deleteLocalAssetsPermanently(context, photoAssetList);
+  } catch (err) {
+    console.error(`deleteAssetsPermanentlyDemo failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -5041,7 +5752,7 @@ static deleteLocalAssetsPermanentlyWithUri(context: Context, assetUris: Array&lt
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
     console.info('deleteLocalAssetsPermanentlyWithUriDemo');
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
     let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -5062,6 +5773,7 @@ async function example() {
         await photoAccessHelper.MediaAssetChangeRequest.deleteLocalAssetsPermanentlyWithUri(context, photoUris);
     } catch (err) {
     console.error(`deleteLocalAssetsPermanentlyWithUriDemo failed with error: ${err.code}, ${err.message}`);
+}
 }
 ```
 
@@ -5101,12 +5813,12 @@ constructor(assets: Array&lt;PhotoAsset&gt;)
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('MediaAssetsChangeRequest constructorDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -5147,13 +5859,13 @@ setFavorite(favoriteState: boolean): void
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('setFavoriteDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -5200,13 +5912,13 @@ setHidden(hiddenState: boolean): void
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('setHiddenDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -5253,13 +5965,13 @@ setUserComment(userComment: string): void
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('setUserCommentDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -5306,13 +6018,13 @@ setIsRecentShow(isRencentShow: boolean): void
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('setIsRecentShowDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -5378,10 +6090,10 @@ static createAlbumRequest(context: Context, name: string): MediaAlbumChangeReque
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   console.info('createAlbumRequestDemo');
   try {
     let albumName: string = 'newAlbumName' + new Date().getTime();
@@ -5434,12 +6146,12 @@ static deleteAlbums(context: Context, albums: Array&lt;Album&gt;): Promise&lt;vo
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   console.info('deleteAlbumsDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -5496,9 +6208,7 @@ static deleteAlbumsWithUri(context: Context, albumUris: Array&lt;string&gt;): Pr
 **示例：**
 
 ```ts
-import { photoAccessHelper } from '@kit.MediaLibraryKit';
-
-async function example(albumUri: string) {
+async function example(context: Context, albumUri: string) {
   console.info('deleteAlbumsWithUriDemo');
   try {
     await photoAccessHelper.MediaAlbumChangeRequest.deleteAlbumsWithUri(context, [albumUri]);
@@ -5537,12 +6247,12 @@ setCoverUri(coverUri: string): void
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('setCoverUriDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -5595,12 +6305,12 @@ moveAssets(assets: Array&lt;PhotoAsset&gt;, targetAlbum: Album): void
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('moveAssetsDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -5657,12 +6367,12 @@ moveAssetsWithUri(assetUris: Array&lt;String&gt;, targetAlbum: Album): void
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('moveAssetsWithUriDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -5720,12 +6430,12 @@ recoverAssets(assets: Array&lt;PhotoAsset&gt;): void
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('recoverAssetsDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -5777,12 +6487,12 @@ recoverAssetsWithUri(assetUris: Array&lt;String&gt;): void
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('recoverAssetsWithUriDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -5836,12 +6546,12 @@ deleteAssets(assets: Array&lt;PhotoAsset&gt;): void
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('deleteAssetsPermanentlyDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -5896,12 +6606,12 @@ deleteAssetsWithUri(assetUris: Array&lt;String&gt;): void
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('deleteAssetsWithUriDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -5952,12 +6662,12 @@ setDisplayLevel(displayLevel: number): void
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ``` ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('setDisplayLevel Example')
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -5999,12 +6709,12 @@ setIsMe(): void
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ``` ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('setIsMe Example')
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -6053,12 +6763,12 @@ dismissAssets(assets: Array&lt;PhotoAsset&gt;): void
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ``` ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('dismissAssets Example')
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -6116,12 +6826,12 @@ mergeAlbum(target: Album): void
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ``` ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('mergeAlbum Example')
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -6176,10 +6886,10 @@ placeBefore(album: Album): void;
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('placeBeforeDemo');
   try {
     let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC);
@@ -6221,12 +6931,12 @@ dismiss(): void
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('dismissDemo');
   try {
     let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.GROUP_PHOTO);
@@ -6281,14 +6991,14 @@ constructor(album: Album)
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('HighlightAlbum constructorDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
   };
-  let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await photoAccessHelper.getAlbums(
+  let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(
     photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.HIGHLIGHT, fetchOption);
   let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
   let highlightAlbum: photoAccessHelper.HighlightAlbum = new photoAccessHelper.HighlightAlbum(album);
@@ -6337,15 +7047,15 @@ getHighlightAlbumInfo(type: HighlightAlbumInfoType): Promise&lt;string&gt;
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('getHighlightAlbumInfoDemo')
     let fetchOptions: photoAccessHelper.FetchOptions = {
       fetchColumns: [],
       predicates: new dataSharePredicates.DataSharePredicates()
     }
-    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await photoAccessHelper.getAlbums(
-    photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.HIGHLIGHT, fetchOption);
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(
+      photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.HIGHLIGHT, fetchOptions);
     let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
     if (album != undefined) {
       let highlightAlbum: photoAccessHelper.HighlightAlbum = new photoAccessHelper.HighlightAlbum(album);
@@ -6353,7 +7063,7 @@ async function example() {
         photoAccessHelper.HighlightAlbumInfoType.COVER_INFO);
       console.info('get cover info result: ' + JSON.stringify(coverInfo));
     }
-    
+
     albumFetchResult.close();
   } catch (err) {
     console.error(`getHighlightAlbumInfoDemofailed with error: ${err.code}, ${err.message}`);
@@ -6401,16 +7111,16 @@ getHighlightResource(resourceUri: string): Promise&lt;ArrayBuffer&gt;
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('getHighlightResourceDemo')
     let fetchOptions: photoAccessHelper.FetchOptions = {
       fetchColumns: [],
       predicates: new dataSharePredicates.DataSharePredicates()
     }
-    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await photoAccessHelper.getAlbums(
-    photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.HIGHLIGHT, fetchOption);
-    let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();、
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(
+      photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.HIGHLIGHT, fetchOptions);
+    let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
     if (album != undefined) {
       let highlightAlbum: photoAccessHelper.HighlightAlbum = new photoAccessHelper.HighlightAlbum(album);
       let uri: string = 'file://media/highlight/cover/10/1_1/background.png?oper=highlight'
@@ -6464,15 +7174,15 @@ setHighlightUserActionData(type: HighlightUserActionType, actionData: number): P
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('setHighlightUserActionDataDemo')
     let fetchOptions: photoAccessHelper.FetchOptions = {
       fetchColumns: [],
       predicates: new dataSharePredicates.DataSharePredicates()
     }
-    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await photoAccessHelper.getAlbums(
-    photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.HIGHLIGHT, fetchOption);
+    let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(
+      photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.HIGHLIGHT, fetchOptions);
     let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
     if (album != undefined) {
       let highlightAlbum: photoAccessHelper.HighlightAlbum = new photoAccessHelper.HighlightAlbum(album);
@@ -6524,12 +7234,8 @@ setSubTitle(title: string): void
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-import { common } from '@kit.AbilityKit';
 
-// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-
-async function example() {
+async function example(context: Context) {
   try {
     console.info('setSubTitle');
     let helper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
@@ -6594,13 +7300,8 @@ static deleteHighlightAlbums(context: Context, albums: Array&lt;Album&gt;): Prom
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
-import { common } from '@kit.AbilityKit';
 
-// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-
-async function example() {
+async function example(context: Context) {
   try {
     console.info('deleteHighlightAlbums');
     let helper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
@@ -6659,12 +7360,8 @@ constructor(album: Album)
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-import { common } from '@kit.AbilityKit';s
 
-// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-
-async function example() {
+async function example(context: Context) {
   console.info('MediaAnalysisAlbumChangeRequest constructorDemo');
   let helper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
   let albumFetchOption: photoAccessHelper.FetchOptions = {
@@ -6718,12 +7415,8 @@ setOrderPosition(assets: Array&lt;PhotoAsset&gt;, position: Array&lt;number&gt;)
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-import { common } from '@kit.AbilityKit';
 
-// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-
-async function example() {
+async function example(context: Context) {
   try {
     console.info('setOrderPosition');
     let helper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
@@ -6797,12 +7490,8 @@ constructor(album: Album)
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-import { common } from '@kit.AbilityKit';
 
-// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-
-async function example() {
+async function example(context: Context) {
   console.info('AnalysisAlbum constructorDemo');
   let helper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
   let albumFetchOption: photoAccessHelper.FetchOptions = {
@@ -6860,12 +7549,8 @@ getOrderPosition(assets: Array&lt;PhotoAsset&gt;): Promise&lt;Array&lt;number&gt
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-import { common } from '@kit.AbilityKit';
 
-// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-
-async function example() {
+async function example(context: Context) {
   try {
     console.info('getOrderPosition');
     let helper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
@@ -6942,12 +7627,8 @@ static getCloudEnhancementInstance(context: Context): CloudEnhancement
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-import { common } from '@kit.AbilityKit';
 
-// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-
-async function example() {
+async function example(context: Context) {
   console.info('getCloudEnhancementInstanceDemo');
   let photoPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let photoFetchOptions: photoAccessHelper.FetchOptions = {
@@ -7006,12 +7687,12 @@ submitCloudEnhancementTasks(photoAssets: Array&lt;PhotoAsset&gt;, hasCloudWaterm
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(context: Context) {
   console.info('submitCloudEnhancementTasksDemo');
   let photoPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let photoFetchOptions: photoAccessHelper.FetchOptions = {
@@ -7071,12 +7752,12 @@ submitCloudEnhancementTasks(photoAssets: Array&lt;PhotoAsset&gt;, hasCloudWaterm
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(context: Context) {
   console.info('submitCloudEnhancementTasksDemo');
   let photoPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let photoFetchOptions: photoAccessHelper.FetchOptions = {
@@ -7135,12 +7816,12 @@ prioritizeCloudEnhancementTask(photoAsset: PhotoAsset): Promise&lt;void&gt;
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(context: Context) {
   console.info('prioritizeCloudEnhancementTaskDemo');
   let photoPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   // 查询进行中的云增强任务。
@@ -7200,12 +7881,12 @@ cancelCloudEnhancementTasks(photoAssets: Array&lt;PhotoAsset&gt;): Promise&lt;vo
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(context: Context) {
   console.info('cancelCloudEnhancementTasksDemo');
   let photoPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   // 查询进行中的云增强任务。
@@ -7260,12 +7941,12 @@ cancelAllCloudEnhancementTasks(): Promise&lt;void&gt;
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(context: Context) {
   console.info('cancelAllCloudEnhancementTasksDemo');
   try {
     let cloudEnhancementInstance: photoAccessHelper.CloudEnhancement
       = photoAccessHelper.CloudEnhancement.getCloudEnhancementInstance(context);
-    await cloudEnhancementInstance.cancelCloudEnhancementTasks();
+    await cloudEnhancementInstance.cancelAllCloudEnhancementTasks();
   } catch (err) {
     console.error(`cancelAllCloudEnhancementTasksDemo failed with error: ${err.code}, ${err.message}`);
   }
@@ -7309,12 +7990,12 @@ queryCloudEnhancementTaskState(photoAsset: PhotoAsset): Promise&lt;CloudEnhancem
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(context: Context) {
   console.info('queryCloudEnhancementTaskStateDemo');
   let photoPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   // 查询进行中的云增强任务。
@@ -7396,7 +8077,7 @@ syncCloudEnhancementTaskStatus(): Promise&lt;void&gt;
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(context: Context) {
   console.info('syncCloudEnhancementTaskStatusDemo');
   try {
     let cloudEnhancementInstance: photoAccessHelper.CloudEnhancement
@@ -7445,12 +8126,12 @@ getCloudEnhancementPair(asset: PhotoAsset): Promise&lt;PhotoAsset&gt;
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(context: Context) {
   console.info('getCloudEnhancementPairDemo');
   let photoPredicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   // 查询已完成的云增强任务。
@@ -7511,10 +8192,10 @@ setVideoEnhancementAttr(videoEnhancementType: VideoEnhancementType, photoId: str
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
-async function example(asset: photoAccessHelper.PhotoAsset) {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, asset: photoAccessHelper.PhotoAsset) {
   try {
     let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
     let photoId = "202410011800";
@@ -7556,12 +8237,12 @@ getFaceId(): Promise\<string>
 
 **示例：**
 
-phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](js-apis-photoAccessHelper.md)的示例使用。
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('getFaceIdDemo');
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -7626,13 +8307,7 @@ static getCloudMediaAssetManagerInstance(context: Context): CloudMediaAssetManag
 **示例：**
 
 ```ts
-import { photoAccessHelper } from '@kit.MediaLibraryKit';
-import { common } from '@kit.AbilityKit';
-
-// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-
-async function example() {
+async function example(context: Context) {
   console.info('getCloudMediaAssetManagerInstanceDemo');
   try {
     let cloudMediaAssetManagerInstance: photoAccessHelper.CloudMediaAssetManager
@@ -7653,6 +8328,8 @@ startDownloadCloudMedia(downloadType: CloudMediaDownloadType): Promise&lt;void&g
 **系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限**：ohos.permission.CLOUDFILE_SYNC_MANAGER
 
 **参数：**
 
@@ -7680,13 +8357,7 @@ startDownloadCloudMedia(downloadType: CloudMediaDownloadType): Promise&lt;void&g
 **示例：**
 
 ```ts
-import { photoAccessHelper } from '@kit.MediaLibraryKit';
-import { common } from '@kit.AbilityKit';
-
-// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-
-async function example() {
+async function example(context: Context) {
   console.info('startDownloadCloudMediaDemo');
   try {
     let cloudMediaAssetManagerInstance: photoAccessHelper.CloudMediaAssetManager
@@ -7708,6 +8379,8 @@ pauseDownloadCloudMedia(): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
+**需要权限**：ohos.permission.CLOUDFILE_SYNC_MANAGER
+
 **返回值：**
 
 | 类型                                    | 说明              |
@@ -7727,13 +8400,7 @@ pauseDownloadCloudMedia(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { photoAccessHelper } from '@kit.MediaLibraryKit';
-import { common } from '@kit.AbilityKit';
-
-// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-
-async function example() {
+async function example(context: Context) {
   console.info('pauseDownloadCloudMediaDemo');
   try {
     let cloudMediaAssetManagerInstance: photoAccessHelper.CloudMediaAssetManager
@@ -7755,6 +8422,8 @@ cancelDownloadCloudMedia(): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
+**需要权限**：ohos.permission.CLOUDFILE_SYNC_MANAGER
+
 **返回值：**
 
 | 类型                                    | 说明              |
@@ -7774,13 +8443,7 @@ cancelDownloadCloudMedia(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { photoAccessHelper } from '@kit.MediaLibraryKit';
-import { common } from '@kit.AbilityKit';
-
-// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-
-async function example() {
+async function example(context: Context) {
   console.info('cancelDownloadCloudMediaDemo');
   try {
     let cloudMediaAssetManagerInstance: photoAccessHelper.CloudMediaAssetManager
@@ -7801,6 +8464,8 @@ retainCloudMediaAsset(retainType: CloudMediaRetainType): Promise&lt;void&gt;
 **系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限**：ohos.permission.CLOUDFILE_SYNC_MANAGER
 
 **参数：**
 
@@ -7828,13 +8493,7 @@ retainCloudMediaAsset(retainType: CloudMediaRetainType): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { photoAccessHelper } from '@kit.MediaLibraryKit';
-import { common } from '@kit.AbilityKit';
-
-// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-
-async function example() {
+async function example(context: Context) {
   console.info('retainCloudMediaAssetDemo');
   try {
     let cloudMediaAssetManagerInstance: photoAccessHelper.CloudMediaAssetManager
@@ -7856,6 +8515,8 @@ getCloudMediaAssetStatus(): Promise&lt;CloudMediaAssetStatus&gt;
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
 **返回值：**
 
 | 类型                                    | 说明              |
@@ -7875,13 +8536,7 @@ getCloudMediaAssetStatus(): Promise&lt;CloudMediaAssetStatus&gt;
 **示例：**
 
 ```ts
-import { photoAccessHelper } from '@kit.MediaLibraryKit';
-import { common } from '@kit.AbilityKit';
-
-// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-
-async function example() {
+async function example(context: Context) {
   console.info('getCloudMediaAssetStatusDemo');
   try {
     let cloudMediaAssetManagerInstance: photoAccessHelper.CloudMediaAssetManager
@@ -7898,6 +8553,83 @@ async function example() {
 }
 ```
 
+## MovingPhoto<sup>12+</sup>
+
+动态照片对象。
+
+### isVideoReady<sup>20+</sup>
+
+isVideoReady(): Promise&lt;boolean&gt;
+
+查询动态照片的视频是否已生成。使用Promise异步回调。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示动态照片视频已生成; 返回false表示动态照片视频未生成完成。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201      | Permission denied |
+| 202      | Called by non-system application |
+| 23800301 | Internal system error. It is recommended to retry and check the logs. Possible causes: 1. Database corrupted; 2. The file system is abnormal; 3. The IPC request timed out. |
+
+**示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](./js-apis-photoAccessHelper.md#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+
+class MovingPhotoHandler implements photoAccessHelper.MediaAssetDataHandler<photoAccessHelper.MovingPhoto> {
+  async onDataPrepared(movingPhoto: photoAccessHelper.MovingPhoto) {
+    if (movingPhoto === undefined) {
+      console.error('Error occurred when preparing data');
+      return;
+    }
+    try {
+    let isVideoReady = await movingPhoto.isVideoReady()
+      console.info("moving photo video ready:" + `${isVideoReady}`);
+    } catch (err) {
+      console.error(`failed to get isVideoReady, error code is ${err.code}, message is ${err.message}`)
+    }
+  }
+}
+
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  predicates.equalTo(photoAccessHelper.PhotoKeys.PHOTO_SUBTYPE, photoAccessHelper.PhotoSubtype.MOVING_PHOTO);
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  // 请确保图库内存在动态照片。
+  let assetResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+  let asset: photoAccessHelper.PhotoAsset = await assetResult.getFirstObject();
+  let requestOptions: photoAccessHelper.RequestOptions = {
+    deliveryMode: photoAccessHelper.DeliveryMode.FAST_MODE,
+  }
+  const handler = new MovingPhotoHandler();
+  try {
+    let requestId: string = await photoAccessHelper.MediaAssetManager.requestMovingPhoto(context, asset, requestOptions, handler);
+    console.info("moving photo requested successfully, requestId: " + requestId);
+  } catch (err) {
+    console.error(`failed to request moving photo, error code is ${err.code}, message is ${err.message}`);
+  }
+}
+```
+
 ## PhotoSelectOptions
 
 图库选择选项子类，继承于BaseSelectOptions。用于拉起对应userId空间的picker。
@@ -7906,12 +8638,12 @@ async function example() {
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| userId<sup>18+</sup> | number  | 否   | 指定访问空间的Id。默认值为-1。<br>当需要作为[PhotoViewPicker.select](js-apis-photoAccessHelper.md#select)的选择参数时，请申请ohos.permission.INTERACTA_CROSS_LOCAL_ACCOUNTS。<br>**系统接口**：此接口为系统接口。 |
+| userId<sup>18+</sup> | number  | 否   | 指定访问空间的Id。默认值为-1。<br>当需要作为[PhotoViewPicker.select](arkts-apis-photoAccessHelper-PhotoViewPicker.md#select)的选择参数时，请申请ohos.permission.INTERACTA_CROSS_LOCAL_ACCOUNTS。<br>**系统接口**：此接口为系统接口。 |
 
 **示例：**
 
 ```ts
-  private photoPicker() {
+  async function photoPicker() {
     let picker = new photoAccessHelper.PhotoViewPicker();
     let option = new photoAccessHelper.PhotoSelectOptions();
     option.userId = 101;
@@ -8039,6 +8771,7 @@ async function example() {
 | ---------------------- | ------------------- | ---- | ------------------------------------------------ |
 | subtype           | [PhotoSubtype](#photosubtype) | 否  | 图片或者视频的子类型。  |
 | cameraShotKey           | string | 否  | 锁屏相机拍照或录像的标记字段（仅开放给系统相机,其key值由系统相机定义）。   |
+| userId<sup>19+</sup>           | number | 否  | 用户id。  |
 
 ## RequestPhotoOptions<sup>11+</sup>
 
@@ -8050,7 +8783,7 @@ async function example() {
 
 | 名称                   | 类型                | 必填 | 说明                                              |
 | ---------------------- | ------------------- | ---- | ------------------------------------------------ |
-| size           | [image.Size](../apis-image-kit/js-apis-image.md#size) | 否  | 获取缩略图的尺寸。  |
+| size           | [image.Size](../apis-image-kit/arkts-apis-image-i.md#size) | 否  | 获取缩略图的尺寸。  |
 | requestPhotoType    | [RequestPhotoType](#requestphototype11) | 否  | 获取的操作类型。  |
 
 ## PhotoCreationSource<sup>18+</sup>
@@ -8090,7 +8823,7 @@ async function example() {
 
 媒体变更请求，资产变更请求和相册变更请求的父类型。
 
-**注意**：媒体变更请求需要在调用[applyChanges](js-apis-photoAccessHelper.md#applychanges11)后才会提交生效。
+**注意**：媒体变更请求需要在调用[applyChanges](arkts-apis-photoAccessHelper-PhotoAccessHelper.md#applychanges11)后才会提交生效。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -8222,6 +8955,19 @@ async function example() {
 | RENDER\_VIEWED\_DURATION      | 101  | 轮播观看总时长类别。   |
 | ART\_LAYOUT\_VIEWED\_TIMES    | 102  | 二级界面观看次数类别。   |
 | ART\_LAYOUT\_VIEWED\_DURATION | 103  | 二级界面观看总时长类别。    |
+
+## ThumbnailVisibility<sup>14+</sup>
+
+枚举，缩略图是否可访问。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称                           | 值  | 说明       |
+| :---------------------------- | :- | :------- |
+| INVISIBLE        | 0  | 缩略图不可访问。    |
+| VISIBLE         | 1  | 缩略图可访问。    |
 
 ## MovingPhotoEffectMode<sup>12+</sup>
 
@@ -8437,3 +9183,95 @@ async function example() {
 |taskStatus       |[CloudMediaAssetTaskStatus](#cloudmediaassettaskstatus14)  |是 | 云端媒体资产下载任务状态。 |
 |taskInfo          |string  |是 | 下载资产的的总个数和总大小(byte)，以及未下载的总个数和总大小(byte)。  |
 |errorCode       |[CloudMediaTaskPauseCause](#cloudmediataskpausecause14)  |是 | 云端媒体资产下载任务暂停类型。 |
+
+## RecommendationType<sup>11+</sup>
+
+枚举，推荐的图片类型。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称  |  值 |  说明 |
+| ----- |  ---- | ---- |
+| COLOR_STYLE_PHOTO<sup>18+</sup> |  12 | 推荐风格 **系统接口**：此接口为系统接口。|
+
+## ThumbnailChangeStatus<sup>20+</sup>
+
+枚举，表示缩略图（包括图片/视频）更新的状态。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称                      | 值   | 说明                             |
+| ------------------------- | ---- | -------------------------------- |
+| THUMBNAIL_NOT_EXISTS      | 0    | 缩略图不存在。     |
+| THUMBNAIL_ADD             | 1    | 缩略图已重新创建。     |
+| THUMBNAIL_UPDATE          | 2    | 缩略图已更新。     |
+| THUMBNAIL_NOT_CHANGE      | 3    | 缩略图没有变化。     |
+
+## StrongAssociationType<sup>20+</sup>
+
+枚举，表示图片的强关联类型。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称                      | 值   | 说明                             |
+| ------------------------- | ---- | -------------------------------- |
+| NORMAL                    | 0    | 普通图片类型。     |
+| CLOUD_ENHANCEMENT         | 1    | 云增强图片类型。     |
+
+## PhotoAssetChangeInfo<sup>20+</sup>
+
+媒体资产（图片/视频）信息。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称  | 类型                | 只读 | 可选 | 说明                                              |
+| ---- | ------- | ---- |  ---- | ----- |
+| fileId | number  | 否 | 否 | 媒体资产（图片/视频）的id。<br>**系统接口**：此接口为系统接口。  |
+| dateDay | string  | 否 | 否 | 创建媒体文件的日期。<br>**系统接口**：此接口为系统接口。  |
+| isFavorite | boolean  | 否 | 否 | 表示媒体资产（图片/视频）的收藏状态。true表示资产已收藏，false表示资产未收藏。<br>**系统接口**：此接口为系统接口。  |
+| isHidden | boolean  | 否 | 否 | 表示媒体资产（图片/视频）的隐藏状态。true表示资产已隐藏，false表示资产未隐藏。<br>**系统接口**：此接口为系统接口。  |
+| strongAssociation | [StrongAssociationType](#strongassociationtype20)  | 否 | 否 | 图片的强关联类型。<br>**系统接口**：此接口为系统接口。  |
+| thumbnailVisible | [ThumbnailVisibility](#thumbnailvisibility14)  | 否 | 否 | 缩略图的可访问性。<br>**系统接口**：此接口为系统接口。  |
+| dateTrashedMs |number  |否 | 否 | 文件删除时的Unix时间戳（单位：毫秒）。<br>**系统接口**：此接口为系统接口。  |
+| dateAddedMs | number  | 否 | 否 | 文件创建时的Unix时间戳（单位：毫秒）。<br>**系统接口**：此接口为系统接口。  |
+| dateTakenMs | number  | 否 | 否 | 文件拍摄时的Unix时间戳（单位：毫秒）。<br>**系统接口**：此接口为系统接口。  |
+
+## PhotoAssetChangeData<sup>20+</sup>
+
+媒体资产（图片/视频）的具体变更数据。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称                   | 类型                | 只读 | 可选 | 说明          |
+| ---- | ------- | ---- |  ---- | ----- |
+| thumbnailChangeStatus | [ThumbnailChangeStatus](#thumbnailchangestatus20)  | 否 | 否 | 缩略图（图片/视频）更新的状态。<br>**系统接口**：此接口为系统接口。 |
+| version       |  number  | 否 | 否 | 媒体资产（图片/视频）信息通知的版本号，用于确定通知的顺序。<br>**系统接口**：此接口为系统接口。  |
+
+## AlbumChangeInfo<sup>20+</sup>
+
+相册信息。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称  | 类型                | 只读 | 可选 | 说明                                              |
+| ---- | ------- | ---- |  ---- | ----- |
+| hiddenCount | number  | 否 | 否 | 相册中的隐藏资产数量。<br>**系统接口**：此接口为系统接口。 |
+| hiddenCoverUri | string  | 否 | 否 | 相册中隐藏封面资产的uri。<br>**系统接口**：此接口为系统接口。 |
+| isCoverChanged | boolean  | 否 | 否 | 相册封面文件内容是否变化。true表示封面文件内容发生变化，false表示封面文件内容未发生变化。<br>**系统接口**：此接口为系统接口。 |
+| isHiddenCoverChanged | boolean  | 否 | 否 | 相册隐藏封面文件内容是否变化。true表示隐藏封面文件内容发生变化，false表示隐藏封面文件内容未发生变化。<br>**系统接口**：此接口为系统接口。 |
+| coverInfo | [PhotoAssetChangeInfo](#photoassetchangeinfo20)  | 否 | 是 | 相册封面资产的信息。<br>**系统接口**：此接口为系统接口。 |
+| hiddenCoverInfo | [PhotoAssetChangeInfo](#photoassetchangeinfo20)  | 否 | 是 | 相册隐藏封面资产的信息。<br>**系统接口**：此接口为系统接口。 |
+
+## AlbumChangeData<sup>20+</sup>
+
+相册的具体变更数据。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称                   | 类型                | 只读 | 可选 | 说明       |
+| ---- | ------- | ---- |  ---- | ----- |
+| version | number  | 否 | 否 | 相册信息通知的版本号，用于确定通知的顺序。<br>**系统接口**：此接口为系统接口。 |

@@ -1,7 +1,7 @@
 # 使用列表
 
 
-ArkUI开发框架在NDK接口提供了列表组件，使用列表可以轻松高效地显示结构化、可滚动的信息。列表组件支持控制滚动位置、支持分组显示内容、持使用NodeAdapter实现懒加载以提升列表创建性能。
+ArkUI开发框架在NDK接口提供了列表组件，使用列表可以轻松高效地显示结构化、可滚动的信息。列表组件支持控制滚动位置、支持分组显示内容、支持使用NodeAdapter实现懒加载以提升列表创建性能。
 
 ## 创建列表
 
@@ -205,7 +205,7 @@ NDK提供了[NodeAdapter](../reference/apis-arkui/_ark_u_i___native_module.md#ar
 
 ### 在列表中应用懒加载适配器 
 
-1. 在ArkUIListNode中添加SetLazyAdapter函数，给列表节设置NODE_LIST_NODE_ADAPTER属性，并将NodeAdapter作为属性入参传入。
+1. 在ArkUIListNode中添加SetLazyAdapter函数，给列表节点设置NODE_LIST_NODE_ADAPTER属性，并将NodeAdapter作为属性入参传入。
    ```c++
    // ArkUIListNode.h
    // 列表封装对象。
@@ -403,8 +403,8 @@ NDK提供了[NodeAdapter](../reference/apis-arkui/_ark_u_i___native_module.md#ar
     ```c++
     // ArkUIListItemNode.h 
     //提供列表项的封装类。 
-    #ifndef MYAPPLICATION ARKUISTACKNODE_H 
-    #define MYAPPLICATION ARKUISTACKNODE_H 
+    #ifndef MYAPPLICATION_ARKUISTACKNODE_H 
+    #define MYAPPLICATION_ARKUISTACKNODE_H 
     #include "ArkUINode.h" 
     namespace NativeModule{ 
     class ArkUIListItemNode : public ArkUINode { 
@@ -510,7 +510,7 @@ NDK提供了[NodeAdapter](../reference/apis-arkui/_ark_u_i___native_module.md#ar
         void RemoveItem(size_t index) { 
             //删除第index个数据。 
             data_.erase(data_.begin() + index); 
-            //如果index会导致可视区域元素发生可见性变化，则会回调NODE_ADAPTER_EVENT_ON_REMOVE_NODE_FROM_DAPTER事件删除元素， 
+            //如果index会导致可视区域元素发生可见性变化，则会回调NODE_ADAPTER_EVENT_ON_REMOVE_NODE_FROM_ADAPTER事件删除元素， 
             //根据是否有新增元素回调NODE_ADAPTER_EVENT_ON_GET_NODE_ID和NODE_ADAPTER_EVENT_ON_ADD_NODE_TO_ADAPTER事件。 
             OH_ArkUI_NodeAdapter_RemoveItem(handle_, index, 1); 
             //更新新的数量。 

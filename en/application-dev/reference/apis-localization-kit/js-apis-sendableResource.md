@@ -1,6 +1,6 @@
 # SendableResource
 
-Provides sendable resource information, such as the application bundle name, application module name, and resource ID.
+The **SendableResource** module provides sendable resource information, such as the application bundle name, application module name, and resource ID.
 
 > **NOTE**
 >
@@ -9,7 +9,7 @@ Provides sendable resource information, such as the application bundle name, app
 ## Import a module.
 
 ```js
-import { resourceManager } from '@kit.LocalizationKit'
+import { resourceManager } from '@kit.LocalizationKit';
 ```
 
 ## SendableResource

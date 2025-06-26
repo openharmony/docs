@@ -8,7 +8,7 @@
 
 ## pixelRound
 
-pixelRound(value: PixelRoundPolicy)
+pixelRound(value: PixelRoundPolicy): T
 
 指定当前组件在指定方向上的像素取整对齐方式，某方向不设置时默认在该方向进行四舍五入取整。
 
@@ -33,6 +33,12 @@ pixelRound(value: PixelRoundPolicy)
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | value | [PixelRoundPolicy](ts-types.md#pixelroundpolicy11) | 是 | 指定当前组件边界取整策略。<br/>**说明：**<br/>该属性用于因浮点数绘制产生视觉异常的场景。取整结果不仅和组件的宽高有关，也与组件的位置有关。即使设置组件的宽高相同，由于以浮点数描述的组件位置不同，舍入后组件的最终宽高也可能不同。|
+
+**返回值：**
+
+| 类型 | 说明 |
+| --- | --- |
+|  T | 返回当前组件。 |
 
 ## 常见问题
 

@@ -12,7 +12,7 @@ Access to script at 'xxx' from origin 'xxx' has been blocked by CORS policy: Cro
 
 - 方法一
 
-  开发者应使用http或https协议替代file或resource协议，使Web组件成功访问跨域资源。替代的URL域名为自定义构造，仅供个人或组织使用，避免与互联网上的实际域名冲突。同时，开发者需利用Web组件的[onInterceptRequest](../reference/apis-arkweb/ts-basic-components-web-events.md#oninterceptrequest9)方法，对本地资源进行拦截和相应的替换。
+  开发者应使用http或https协议替代file或resource协议，使Web组件成功访问跨域资源。替代的URL域名为自定义构造，仅供个人或组织使用，避免与互联网上的实际域名冲突。同时，开发者需利用Web组件的[onInterceptRequest](../reference/apis-arkweb/arkts-basic-components-web-events.md#oninterceptrequest9)方法，对本地资源进行拦截和相应的替换。
 
   以下结合示例说明如何使用http或者https等协议解决本地资源跨域访问失败的问题。其中，index.html和js/script.js置于工程中的rawfile目录下。当使用resource协议访问index.html时，js/script.js将因跨域而被拦截，无法加载。在示例中，使用https:\//www\.example.com/域名替换了原本的resource协议，同时利用onInterceptRequest接口替换资源，使得js/script.js可以成功加载，从而解决了跨域拦截的问题。
 
@@ -100,7 +100,7 @@ Access to script at 'xxx' from origin 'xxx' has been blocked by CORS policy: Cro
 
 - 方法二
 
-  通过[setPathAllowingUniversalAccess](../reference/apis-arkweb/js-apis-webview-WebviewController.md#setpathallowinguniversalaccess12)设置一个路径列表。当使用file协议访问该列表中的资源时，允许进行跨域访问本地文件。此外，一旦设置了路径列表，file协议将仅限于访问列表内的资源(此时，[fileAccess](../reference/apis-arkweb/ts-basic-components-web-attributes.md#fileaccess)的行为将会被此接口行为覆盖)。路径列表中的路径应符合以下任一路径格式：
+  通过[setPathAllowingUniversalAccess](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#setpathallowinguniversalaccess12)设置一个路径列表。当使用file协议访问该列表中的资源时，允许进行跨域访问本地文件。此外，一旦设置了路径列表，file协议将仅限于访问列表内的资源(此时，[fileAccess](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#fileaccess)的行为将会被此接口行为覆盖)。路径列表中的路径应符合以下任一路径格式：
 
   1.应用文件目录通过[Context.filesDir](../reference/apis-ability-kit/js-apis-inner-application-context.md#context)获取，其子目录示例如下：
 
@@ -112,7 +112,7 @@ Access to script at 'xxx' from origin 'xxx' has been blocked by CORS policy: Cro
   * /data/storage/el1/bundle/entry/resource/resfile
   * /data/storage/el1/bundle/entry/resource/resfile/example
 
-  当路径列表中的任一路径不满足上述条件时，系统将抛出异常码401，并判定路径列表设置失败。如果路径列表设置为空，file协议的可访问范围将遵循[fileAccess](../reference/apis-arkweb/ts-basic-components-web-attributes.md#fileaccess)规则，具体示例如下。
+  当路径列表中的任一路径不满足上述条件时，系统将抛出异常码401，并判定路径列表设置失败。如果路径列表设置为空，file协议的可访问范围将遵循[fileAccess](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#fileaccess)规则，具体示例如下。
 
   ```ts
   // main/ets/pages/index.ets

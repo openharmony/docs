@@ -29,7 +29,7 @@ The service status is abnormal.
 
 **Error Message**
 
-Subscribe Failed. Possible causes: 1. Callback registration failure; 2. Failed to bind native object to js wrapper; 3. N-API invocation exception, invalid N-API status; 4. IPC request exception.
+Subscription failed. Possible causes: 1. Callback registration failure; 2. Failed to bind native object to js wrapper; 3. N-API invocation exception, invalid N-API status; 4. IPC request exception.
 
 **Symptom**
 
@@ -50,7 +50,7 @@ Subscription to change events has failed.
 
 **Error Message**
 
-Unsubscribe Failed. Possible causes: 1. Callback removal failure; 2. N-API invocation exception, invalid N-API status; 3. IPC request exception.
+Unsubscription failed. Possible causes: 1. Callback failure; 2. N-API invocation exception, invalid N-API status; 3. IPC request exception.
 
 **Symptom**
 

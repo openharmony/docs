@@ -6,7 +6,7 @@ You can use WebSocket to establish a bidirectional connection between a server a
 
 If an error occurs in any of the preceding processes, the client will receive a callback of the **error** event.
 
-The WebSocket module supports the heartbeat detection mechanism. After a WebSocket connection is established between the client and server, the client sends a ping frame to the server at a specified interval. On receiving the ping frame, the server immediately returns a Pong frame.
+The WebSocket module supports the heartbeat detection mechanism. After a WebSocket connection is established between the client and server, the client sends a ping frame to the server every 30 seconds. On receiving the ping frame, the server immediately returns a Pong frame. You are not allowed to disable this mechanism.
 
 ## Available APIs
 

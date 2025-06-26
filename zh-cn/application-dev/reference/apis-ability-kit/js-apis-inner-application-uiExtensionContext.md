@@ -14,7 +14,9 @@ UIExtensionContext是[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility
 import { common } from '@kit.AbilityKit';
 ```
 
-## UIExtensionContext.startAbility
+## UIExtensionContext
+
+### startAbility
 
 startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
@@ -52,7 +54,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
-| 16000018 | Redirection to a third-party application is not allowed in API version 11 or later. |
+| 16000018 | Redirection to a third-party application is not allowed in API version greater than 11. |
 | 16000019 | No matching ability is found. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
@@ -72,10 +74,11 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { UIExtensionAbility, Want } from '@kit.AbilityKit';
+// UIExtensionAbility不支持三方应用直接继承，故以派生类ShareExtensionAbility举例说明。
+import { ShareExtensionAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class EntryAbility extends UIExtensionAbility {
+export default class ShareExtAbility extends ShareExtensionAbility {
 
   onForeground() {
     let want: Want = {
@@ -103,7 +106,7 @@ export default class EntryAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContext.startAbility
+### startAbility
 
 startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void
 
@@ -140,7 +143,7 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
-| 16000018 | Redirection to a third-party application is not allowed in API version 11 or later. |
+| 16000018 | Redirection to a third-party application is not allowed in API version greater than 11. |
 | 16000019 | No matching ability is found. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
@@ -160,10 +163,11 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 **示例：**
 
 ```ts
-import { UIExtensionAbility, Want, StartOptions } from '@kit.AbilityKit';
+// UIExtensionAbility不支持三方应用直接继承，故以派生类ShareExtensionAbility举例说明。
+import { ShareExtensionAbility, Want, StartOptions } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class EntryAbility extends UIExtensionAbility {
+export default class ShareExtAbility extends ShareExtensionAbility {
   onForeground() {
     let want: Want = {
       deviceId: '',
@@ -194,7 +198,7 @@ export default class EntryAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContext.startAbility
+### startAbility
 
 startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 
@@ -238,7 +242,7 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
-| 16000018 | Redirection to a third-party application is not allowed in API version 11 or later. |
+| 16000018 | Redirection to a third-party application is not allowed in API version greater than 11. |
 | 16000019 | No matching ability is found. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
@@ -258,10 +262,11 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { UIExtensionAbility, Want, StartOptions } from '@kit.AbilityKit';
+// UIExtensionAbility不支持三方应用直接继承，故以派生类ShareExtensionAbility举例说明。
+import { ShareExtensionAbility, Want, StartOptions } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class EntryAbility extends UIExtensionAbility {
+export default class ShareExtAbility extends ShareExtensionAbility {
   onForeground() {
     let want: Want = {
       bundleName: 'com.example.myapplication',
@@ -291,14 +296,14 @@ export default class EntryAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContext.startAbilityForResult
+### startAbilityForResult
 
 startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;): void
 
 启动一个UIAbility，开发者可以通过回调函数接收被拉起的UIAbility退出时的返回结果。使用callback异步回调。UIAbility被启动后，有如下情况:
- - 正常情况下可通过调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用方。
+ - 正常情况下可通过调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#terminateselfwithresult)接口使之终止并且返回结果给调用方。
  - 异常情况下比如杀死UIAbility会返回异常信息给调用方, 异常信息中resultCode为-1。
- - 如果被启动的UIAbility模式是单实例模式, 不同应用多次调用该接口启动这个UIAbility，当这个UIAbility调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方, 其它调用方返回异常信息, 异常信息中resultCode为-1。
+ - 如果被启动的UIAbility模式是单实例模式, 不同应用多次调用该接口启动这个UIAbility，当这个UIAbility调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#terminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方, 其它调用方返回异常信息, 异常信息中resultCode为-1。
 
 > **说明：**
 >
@@ -332,7 +337,7 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
-| 16000018 | Redirection to a third-party application is not allowed in API version 11 or later. |
+| 16000018 | Redirection to a third-party application is not allowed in API version greater than 11. |
 | 16000019 | No matching ability is found. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
@@ -352,10 +357,11 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 **示例：**
 
 ```ts
-import { UIExtensionAbility, Want, common } from '@kit.AbilityKit';
+// UIExtensionAbility不支持三方应用直接继承，故以派生类ShareExtensionAbility举例说明。
+import { ShareExtensionAbility, Want, common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class EntryAbility extends UIExtensionAbility {
+export default class ShareExtAbility extends ShareExtensionAbility {
   onForeground() {
     let want: Want = {
       deviceId: '',
@@ -382,14 +388,14 @@ export default class EntryAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContext.startAbilityForResult
+### startAbilityForResult
 
 startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback&lt;AbilityResult&gt;): void
 
 启动一个UIAbility，开发者可以通过回调函数接收被拉起的UIAbility退出时的返回结果。使用callback异步回调。UIAbility被启动后，有如下情况:
- - 正常情况下可通过调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用方。
+ - 正常情况下可通过调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#terminateselfwithresult)接口使之终止并且返回结果给调用方。
  - 异常情况下比如杀死UIAbility会返回异常信息给调用方，异常信息中resultCode为-1。
- - 如果被启动的UIAbility模式是单实例模式, 不同应用多次调用该接口启动这个UIAbility，当这个UIAbility调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方，其它调用方返回异常信息, 异常信息中resultCode为-1。
+ - 如果被启动的UIAbility模式是单实例模式, 不同应用多次调用该接口启动这个UIAbility，当这个UIAbility调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#terminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方，其它调用方返回异常信息, 异常信息中resultCode为-1。
 
 > **说明：**
 >
@@ -422,7 +428,7 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
-| 16000018 | Redirection to a third-party application is not allowed in API version 11 or later. |
+| 16000018 | Redirection to a third-party application is not allowed in API version greater than 11. |
 | 16000019 | No matching ability is found. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
@@ -442,10 +448,11 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 **示例：**
 
 ```ts
-import { UIExtensionAbility, Want, common, StartOptions } from '@kit.AbilityKit';
+// UIExtensionAbility不支持三方应用直接继承，故以派生类ShareExtensionAbility举例说明。
+import { ShareExtensionAbility, Want, common, StartOptions } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class EntryAbility extends UIExtensionAbility {
+export default class ShareExtAbility extends ShareExtensionAbility {
   onForeground() {
     let want: Want = {
       deviceId: '',
@@ -476,14 +483,14 @@ export default class EntryAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContext.startAbilityForResult
+### startAbilityForResult
 
 startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityResult&gt;
 
 启动一个UIAbility，开发者可以通过回调函数接收被拉起的UIAbility退出时的返回结果。使用Promise异步回调。UIAbility被启动后，有如下情况:
- - 正常情况下可通过调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用方。
+ - 正常情况下可通过调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#terminateselfwithresult)接口使之终止并且返回结果给调用方。
  - 异常情况下比如杀死UIAbility会返回异常信息给调用方, 异常信息中resultCode为-1。
- - 如果被启动的UIAbility模式是单实例模式, 不同应用多次调用该接口启动这个UIAbility，当这个UIAbility调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方, 其它调用方返回异常信息, 异常信息中resultCode为-1。
+ - 如果被启动的UIAbility模式是单实例模式, 不同应用多次调用该接口启动这个UIAbility，当这个UIAbility调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#terminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方, 其它调用方返回异常信息, 异常信息中resultCode为-1。
 
 > **说明：**
 >
@@ -524,7 +531,7 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
-| 16000018 | Redirection to a third-party application is not allowed in API version 11 or later. |
+| 16000018 | Redirection to a third-party application is not allowed in API version greater than 11. |
 | 16000019 | No matching ability is found. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
@@ -544,10 +551,11 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 **示例：**
 
 ```ts
-import { UIExtensionAbility, Want, common, StartOptions } from '@kit.AbilityKit';
+// UIExtensionAbility不支持三方应用直接继承，故以派生类ShareExtensionAbility举例说明。
+import { ShareExtensionAbility, Want, common, StartOptions } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class EntryAbility extends UIExtensionAbility {
+export default class ShareExtAbility extends ShareExtensionAbility {
   onForeground() {
     let want: Want = {
       bundleName: 'com.example.myapplication',
@@ -578,7 +586,7 @@ export default class EntryAbility extends UIExtensionAbility {
 ```
 
 
-## UIExtensionContext.connectServiceExtensionAbility
+### connectServiceExtensionAbility
 
 connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 
@@ -603,7 +611,7 @@ ServiceExtensionAbility是一类特殊的[ExtensionAbility](../../application-mo
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 返回连接id，客户端可以通过[disconnectServiceExtensionAbility](#uiextensioncontextdisconnectserviceextensionability)传入该连接id来断开连接。 |
+| number | 返回连接id，客户端可以通过[disconnectServiceExtensionAbility](#disconnectserviceextensionability)传入该连接id来断开连接。 |
 
 **错误码：**
 
@@ -628,11 +636,12 @@ ServiceExtensionAbility是一类特殊的[ExtensionAbility](../../application-mo
 **示例：**
 
 ```ts
-import { UIExtensionAbility, Want, common } from '@kit.AbilityKit';
+// UIExtensionAbility不支持三方应用直接继承，故以派生类ShareExtensionAbility举例说明。
+import { ShareExtensionAbility, Want, common } from '@kit.AbilityKit';
 import { rpc } from '@kit.IPCKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class EntryAbility extends UIExtensionAbility {
+export default class ShareExtAbility extends ShareExtensionAbility {
   onForeground() {
     let want: Want = {
       deviceId: '',
@@ -643,13 +652,13 @@ export default class EntryAbility extends UIExtensionAbility {
     let options: common.ConnectOptions = {
       onConnect(elementName, remote) {
         commRemote = remote;
-        console.info('onConnect...')
+        console.info('onConnect...');
       },
       onDisconnect(elementName) {
-        console.info('onDisconnect...')
+        console.info('onDisconnect...');
       },
       onFailed(code) {
-        console.info('onFailed...')
+        console.error(`onFailed, err code: ${code}.`);
       }
     };
     let connection: number;
@@ -665,7 +674,7 @@ export default class EntryAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContext.disconnectServiceExtensionAbility
+### disconnectServiceExtensionAbility
 
 disconnectServiceExtensionAbility(connection: number): Promise\<void>
 
@@ -679,7 +688,7 @@ ServiceExtensionAbility是一类特殊的[ExtensionAbility](../../application-mo
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| connection | number | 是 | 连接的ServiceExtensionAbility的标识Id，即[connectServiceExtensionAbility](#uiextensioncontextconnectserviceextensionability)返回的connectionId。 |
+| connection | number | 是 | 连接的ServiceExtensionAbility的标识Id，即[connectServiceExtensionAbility](#connectserviceextensionability)返回的connectionId。 |
 
 **返回值：**
 
@@ -700,11 +709,12 @@ ServiceExtensionAbility是一类特殊的[ExtensionAbility](../../application-mo
 **示例：**
 
 ```ts
-import { UIExtensionAbility } from '@kit.AbilityKit';
+// UIExtensionAbility不支持三方应用直接继承，故以派生类ShareExtensionAbility举例说明。
+import { ShareExtensionAbility } from '@kit.AbilityKit';
 import { rpc } from '@kit.IPCKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class EntryAbility extends UIExtensionAbility {
+export default class ShareExtAbility extends ShareExtensionAbility {
   onForeground() {
     // connection为connectServiceExtensionAbility中的返回值
     let connection = 1;
@@ -730,7 +740,7 @@ export default class EntryAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContext.disconnectServiceExtensionAbility
+### disconnectServiceExtensionAbility
 
 disconnectServiceExtensionAbility(connection: number, callback: AsyncCallback\<void>): void
 
@@ -760,11 +770,12 @@ ServiceExtensionAbility是一类特殊的[ExtensionAbility](../../application-mo
 **示例：**
 
 ```ts
-import { UIExtensionAbility } from '@kit.AbilityKit';
+// UIExtensionAbility不支持三方应用直接继承，故以派生类ShareExtensionAbility举例说明。
+import { ShareExtensionAbility } from '@kit.AbilityKit';
 import { rpc } from '@kit.IPCKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class EntryAbility extends UIExtensionAbility {
+export default class ShareExtAbility extends ShareExtensionAbility {
   onForeground() {
     // connection为connectServiceExtensionAbility中的返回值
     let connection = 1;
@@ -792,7 +803,7 @@ export default class EntryAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContext.terminateSelf<sup>12+</sup>
+### terminateSelf<sup>12+</sup>
 
 terminateSelf(callback: AsyncCallback&lt;void&gt;): void
 
@@ -817,10 +828,11 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { UIExtensionAbility } from '@kit.AbilityKit';
+// UIExtensionAbility不支持三方应用直接继承，故以派生类ShareExtensionAbility举例说明。
+import { ShareExtensionAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class EntryAbility extends UIExtensionAbility {
+export default class ShareExtAbility extends ShareExtensionAbility {
   onForeground() {
     try {
       this.context.terminateSelf((err: BusinessError) => {
@@ -842,7 +854,7 @@ export default class EntryAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContext.terminateSelf<sup>12+</sup>
+### terminateSelf<sup>12+</sup>
 
 terminateSelf(): Promise&lt;void&gt;
 
@@ -859,10 +871,11 @@ terminateSelf(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { UIExtensionAbility } from '@kit.AbilityKit';
+// UIExtensionAbility不支持三方应用直接继承，故以派生类ShareExtensionAbility举例说明。
+import { ShareExtensionAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class EntryAbility extends UIExtensionAbility {
+export default class ShareExtAbility extends ShareExtensionAbility {
   onForeground() {
     try {
       this.context.terminateSelf()
@@ -884,7 +897,7 @@ export default class EntryAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContext.terminateSelfWithResult<sup>12+</sup>
+### terminateSelfWithResult<sup>12+</sup>
 
 terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;void&gt;): void
 
@@ -910,10 +923,11 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;voi
 **示例：**
 
 ```ts
-import { UIExtensionAbility, Want, common } from '@kit.AbilityKit';
+// UIExtensionAbility不支持三方应用直接继承，故以派生类ShareExtensionAbility举例说明。
+import { ShareExtensionAbility, Want, common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class EntryAbility extends UIExtensionAbility {
+export default class ShareExtAbility extends ShareExtensionAbility {
   onForeground() {
     let want: Want = {
       bundleName: 'com.example.myapplication',
@@ -946,7 +960,7 @@ export default class EntryAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContext.terminateSelfWithResult<sup>12+</sup>
+### terminateSelfWithResult<sup>12+</sup>
 
 terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;
 
@@ -975,10 +989,11 @@ terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 
 ```ts
-import { UIExtensionAbility, Want, common } from '@kit.AbilityKit';
+// UIExtensionAbility不支持三方应用直接继承，故以派生类ShareExtensionAbility举例说明。
+import { ShareExtensionAbility, Want, common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class EntryAbility extends UIExtensionAbility {
+export default class ShareExtAbility extends ShareExtensionAbility {
   onForeground() {
     let want: Want = {
       bundleName: 'com.example.myapplication',
@@ -1011,7 +1026,7 @@ export default class EntryAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContext.reportDrawnCompleted<sup>12+<sup>
+### reportDrawnCompleted<sup>12+<sup>
 
 reportDrawnCompleted(callback: AsyncCallback\<void>): void
 
@@ -1037,12 +1052,13 @@ reportDrawnCompleted(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { UIExtensionAbility, Want, UIExtensionContentSession } from '@kit.AbilityKit';
+// UIExtensionAbility不支持三方应用直接继承，故以派生类ShareExtensionAbility举例说明。
+import { ShareExtensionAbility, Want, UIExtensionContentSession } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const TAG: string = '[testTag] UIExtAbility';
+const TAG: string = '[testTag] ShareExtAbility';
 
-export default class UIExtAbility extends UIExtensionAbility {
+export default class ShareExtAbility extends ShareExtensionAbility {
   onSessionCreate(want: Want, session: UIExtensionContentSession) {
     console.info(TAG, `onSessionCreate, want: ${JSON.stringify(want)}`);
     let data: Record<string, UIExtensionContentSession> = {
@@ -1070,15 +1086,15 @@ export default class UIExtAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContext.openAtomicService<sup>12+<sup>
+### openAtomicService<sup>12+<sup>
 
 openAtomicService(appId: string, options?: AtomicServiceOptions): Promise&lt;AbilityResult&gt;
 
 打开一个独立窗口的原子化服务，并返回结果。使用Promise异步回调。
 分为以下几种情况：
- - 正常情况下可通过调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用方。
+ - 正常情况下可通过调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#terminateselfwithresult)接口使之终止并且返回结果给调用方。
  - 异常情况下比如杀死原子化服务会返回异常信息给调用方，异常信息中resultCode为-1。
- - 如果不同应用多次调用该接口启动同一个原子化服务，当这个原子化服务调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方, 其它调用方返回异常信息，异常信息中resultCode为-1。
+ - 如果不同应用多次调用该接口启动同一个原子化服务，当这个原子化服务调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#terminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方, 其它调用方返回异常信息，异常信息中resultCode为-1。
 
 > **说明：**
 >
@@ -1120,10 +1136,11 @@ openAtomicService(appId: string, options?: AtomicServiceOptions): Promise&lt;Abi
 **示例：**
 
 ```ts
-import { UIExtensionAbility, common, AtomicServiceOptions } from '@kit.AbilityKit';
+// UIExtensionAbility不支持三方应用直接继承，故以派生类ShareExtensionAbility举例说明。
+import { ShareExtensionAbility, common, AtomicServiceOptions } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class EntryAbility extends UIExtensionAbility {
+export default class ShareExtAbility extends ShareExtensionAbility {
   onForeground() {
     let appId: string = '6918661953712445909';
     let options: AtomicServiceOptions = {
@@ -1150,18 +1167,18 @@ export default class EntryAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContext.openLink<sup>12+<sup>
+### openLink<sup>12+<sup>
 
 openLink(link:string, options?: OpenLinkOptions, callback?: AsyncCallback&lt;AbilityResult&gt;): Promise&lt;void&gt;
 
-通过[AppLinking](../../application-models/app-linking-startup.md)或[DeepLinking](../../application-models/deep-linking-startup.md)方式启动UIAbility。使用Promise异步回调。
+通过App Linking或Deep Linking方式启动UIAbility。使用Promise异步回调。
 
-通过在link字段中传入标准格式的URL，基于隐式want匹配规则拉起目标UIAbility。目标方必须具备以下过滤器特征，才能处理AppLinking链接：
+通过在link字段中传入标准格式的URL，基于隐式want匹配规则拉起目标UIAbility。目标方必须具备以下过滤器特征，才能处理App Linking链接：
 - "actions"列表中包含"ohos.want.action.viewData"。
 - "entities"列表中包含"entity.system.browsable"。
 - "uris"列表中包含"scheme"为"https"且"domainVerify"为true的元素。
 
-如果希望获取被拉起方终止后的结果，可以设置callback参数，此参数的使用可参照[startAbilityForResult](#uiextensioncontextstartabilityforresult)接口。
+如果希望获取被拉起方终止后的结果，可以设置callback参数，此参数的使用可参照[startAbilityForResult](#startabilityforresult)接口。
 传入的参数不合法时，如未设置必选参数或link字符串不是标准格式的URL，接口会直接抛出异常。参数校验通过，拉起目标方时出现的错误通过promise返回错误信息。
 
 > **说明：**
@@ -1211,33 +1228,30 @@ openLink(link:string, options?: OpenLinkOptions, callback?: AsyncCallback&lt;Abi
 **示例：**
 
 ```ts
-import { UIExtensionAbility, Want, UIExtensionContentSession, OpenLinkOptions } from '@kit.AbilityKit';
+// UIExtensionAbility不支持三方应用直接继承，故以派生类ShareExtensionAbility举例说明。
+import { ShareExtensionAbility, Want, UIExtensionContentSession, OpenLinkOptions } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-function log(info: string) {
-  console.error(`MyUIExtension:: ${JSON.stringify(info)}`);
-}
-
-export default class UIExtAbility extends UIExtensionAbility {
+export default class ShareExtAbility extends ShareExtensionAbility {
   onCreate() {
-    log(`UIExtAbility onCreate`);
+    console.info(`UIExtAbility onCreate`);
   }
 
   onForeground() {
-    log(`UIExtAbility onForeground`);
+    console.info(`UIExtAbility onForeground`);
   }
 
   onBackground() {
-    log(`UIExtAbility onBackground`);
+    console.info(`UIExtAbility onBackground`);
   }
 
   onDestroy() {
-    log(`UIExtAbility onDestroy`);
+    console.info(`UIExtAbility onDestroy`);
   }
 
   onSessionCreate(want: Want, session: UIExtensionContentSession) {
-    log(`UIExtAbility onSessionCreate`);
-    log(`UIExtAbility onSessionCreate, want: ${JSON.stringify(want)}`);
+    console.info(`UIExtAbility onSessionCreate`);
+    console.info(`UIExtAbility onSessionCreate, want: ${JSON.stringify(want)}`);
     let record: Record<string, UIExtensionContentSession> = {
       'session': session
     };
@@ -1253,29 +1267,31 @@ export default class UIExtAbility extends UIExtensionAbility {
         link,
         openLinkOptions,
         (err, result) => {
-          log(`openLink callback error.code: ${JSON.stringify(err)}`);
-          log(`openLink callback result: ${JSON.stringify(result.resultCode)}`);
-          log(`openLink callback result data: ${JSON.stringify(result.want)}`);
+          if (err) {
+            console.error(`openLink callback failed, err code: ${err.code}, err msg: ${err.message}.`);
+            return;
+          }
+          console.info(`openLink success, resule code: ${result.resultCode} result data: ${result.want}.`);
         }
       ).then(() => {
-        log(`open link success.`);
+        console.info(`open link success.`);
       }).catch((err: BusinessError) => {
-        log(`open link failed, errCode ${JSON.stringify(err.code)}`);
+        console.error(`open link failed, err code: ${err.code}, err msg: ${err.message}.`);
       });
+    } catch (err) {
+      let code = (err as BusinessError).code;
+      let msg = (err as BusinessError).message;
+      console.error(`openLink failed, err code: ${code}, err msg: ${msg}.`);
     }
-    catch (e) {
-      log(`exception occured, errCode ${JSON.stringify(e.code)}`);
-    }
-
   }
 
   onSessionDestroy(session: UIExtensionContentSession) {
-    log(`UIExtAbility onSessionDestroy`);
+    console.info(`UIExtAbility onSessionDestroy`);
   }
 }
 ```
 
-## UIExtensionContext.startUIServiceExtensionAbility<sup>14+<sup>
+### startUIServiceExtensionAbility<sup>14+<sup>
 
 startUIServiceExtensionAbility(want: Want): Promise&lt;void&gt;
 
@@ -1345,12 +1361,14 @@ struct Index {
             try {
               // 启动UIServiceExtensionAbility
               context.startUIServiceExtensionAbility(startWant).then(() => {
-                console.log('startUIServiceExtensionAbility success');
+                console.info(`startUIServiceExtensionAbility success.`);
               }).catch((error: BusinessError) => {
-                console.log('startUIServiceExtensionAbility error', JSON.stringify(error));
+                console.error(`startUIServiceExtensionAbility failed, err code: ${error.code}, err msg: ${error.message}.`);
               })
             } catch (err) {
-              console.log('startUIServiceExtensionAbility failed', JSON.stringify(err));
+              let code = (err as BusinessError).code;
+              let msg = (err as BusinessError).message;
+              console.error(`startUIServiceExtensionAbility failed, err code: ${code}, err msg: ${msg}.`);
             }
           })
       }
@@ -1359,7 +1377,7 @@ struct Index {
 }
 ```
 
-## UIExtensionContext.connectUIServiceExtensionAbility<sup>14+<sup>
+### connectUIServiceExtensionAbility<sup>14+<sup>
 
 connectUIServiceExtensionAbility(want: Want, callback: UIServiceExtensionConnectCallback) : Promise&lt;UIServiceProxy&gt;
 
@@ -1430,18 +1448,18 @@ struct Page_UIServiceExtensionAbility {
         // 定义回调
         const callback: common.UIServiceExtensionConnectCallback = {
           onData: (data: Record<string, Object>): void => {
-            console.log('onData:', JSON.stringify(data));
+            console.info(`onData, data: ${JSON.stringify(data)}.`);
           },
           onDisconnect: (): void => {
-            console.log('onDisconnect');
+            console.info(`onDisconnect`);
           }
         };
         // 连接UIServiceExtensionAbility
         context.connectUIServiceExtensionAbility(want, callback).then((uiServiceProxy: common.UIServiceProxy) => {
           this.uiServiceProxy = uiServiceProxy;
-          console.log('connectUIServiceExtensionAbility success');
+          console.info(`connectUIServiceExtensionAbility success`);
         }).catch((error: BusinessError) => {
-          console.log('connectUIServiceExtensionAbility failed', JSON.stringify(error));
+          console.error(`connectUIServiceExtensionAbility failed, err code: ${error.code}, err msg: ${error.message}.`);
         })
       })
     }
@@ -1449,7 +1467,7 @@ struct Page_UIServiceExtensionAbility {
 }
 ```
 
-## UIExtensionContext.disconnectUIServiceExtensionAbility<sup>14+<sup>
+### disconnectUIServiceExtensionAbility<sup>14+<sup>
 
 disconnectUIServiceExtensionAbility(proxy: UIServiceProxy): Promise&lt;void&gt;
 
@@ -1461,7 +1479,7 @@ disconnectUIServiceExtensionAbility(proxy: UIServiceProxy): Promise&lt;void&gt;
 
 | 参数名               | 类型                             | 必填 | 说明                 |
 | -------------------- | -------------------------------- | ---- | -------------------- |
-| proxy  | [UIServiceProxy](js-apis-inner-application-uiserviceproxy.md)  | 是  | [connectUIServiceExtensionAbility](#uiextensioncontextconnectuiserviceextensionability13)返回的Proxy。 |
+| proxy  | [UIServiceProxy](js-apis-inner-application-uiserviceproxy.md)  | 是  | [connectUIServiceExtensionAbility](#connectuiserviceextensionability14)返回的Proxy。 |
 
 **返回值：**
 
@@ -1499,9 +1517,9 @@ struct Page_UIServiceExtensionAbility {
         const context = this.getUIContext().getHostContext() as common.UIExtensionContext;
         // this.uiServiceProxy是连接时保存的proxy对象
         context.disconnectUIServiceExtensionAbility(this.uiServiceProxy).then(() => {
-          console.log('disconnectUIServiceExtensionAbility success');
+          console.info(`disconnectUIServiceExtensionAbility success.`);
         }).catch((error: BusinessError) => {
-          console.log('disconnectUIServiceExtensionAbility failed', JSON.stringify(error));
+          console.info(`disconnectUIServiceExtensionAbility failed, err code: ${error.code}, err msg: ${error.message}.`);
         })
       })
     }
@@ -1509,7 +1527,7 @@ struct Page_UIServiceExtensionAbility {
 }
 ```
 
-## UIExtensionContext.setColorMode<sup>18+</sup>
+### setColorMode<sup>18+</sup>
 
 setColorMode(colorMode: ConfigurationConstant.ColorMode): void
 
@@ -1529,19 +1547,19 @@ setColorMode(colorMode: ConfigurationConstant.ColorMode): void
 
 **错误码**：
 
-以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
 
 **示例**：
 
 ```ts
-import { UIExtensionAbility, ConfigurationConstant } from '@kit.AbilityKit';
+// UIExtensionAbility不支持三方应用直接继承，故以派生类ShareExtensionAbility举例说明。
+import { ShareExtensionAbility, ConfigurationConstant } from '@kit.AbilityKit';
 
-export default class MyAbility extends UIExtensionAbility {
+export default class MyAbility extends ShareExtensionAbility {
   onForeground() {
     let uiExtensionContext = this.context;
     uiExtensionContext.setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_DARK);

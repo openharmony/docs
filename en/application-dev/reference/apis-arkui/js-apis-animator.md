@@ -641,9 +641,9 @@ Animator options.
 | delay      | number                                                      | Yes  | Animation delay duration, in milliseconds. Value **0** means that there is no delay. If the value specified is a negative number, the animation starts playing ahead of its scheduled time. If the amount of time by which the playback is advanced is greater than the total duration of the animation, the animation skips to the end state immediately.         |
 | fill       | 'none' \| 'forwards' \| 'backwards' \| 'both'               | Yes  | State of the animated target after the animation is executed.<br>**'none'**: No style is applied to the target before or after the animation is executed.<br>**'forwards'**: The target keeps the state at the end of the animation (defined in the last key frame) after the animation is executed.<br>**'backwards'**: The animation uses the value defined in the first key frame during the **animation-delay**. When **animation-direction** is set to **'normal'** or **'alternate'**, the value in the **from** key frame is used. When **animation-direction** is set to **'reverse'** or **'alternate-reverse'**, the value in the **to** key frame is used.<br>**'both'**: The animation follows the **'forwards'** and **'backwards'** rules.|
 | direction  | 'normal' \| 'reverse' \| 'alternate' \| 'alternate-reverse' | Yes  | Animation playback mode.<br>**'normal'**: plays the animation in forward loop mode.<br>**'reverse'**: plays the animation in reverse loop mode.<br>**'alternate'**: plays the animation in alternating loop mode. When the animation is played for an odd number of times, the playback is in forward direction. When the animation is played for an even number of times, the playback is in reverse direction.<br>**'alternate-reverse'**: plays the animation in reverse alternating loop mode. When the animation is played for an odd number of times, the playback is in reverse direction. When the animation is played for an even number of times, the playback is in forward direction.|
-| iterations | number                                                      | Yes  | Number of times that the animation is played. The value **0** means not to play the animation, **-1** means to play the animation for an unlimited number of times, and a positive integer means the animation is played that specific number of times.<br>**NOTE**<br>Any negative value other than **-1** is considered invalid. For invalid values, the animation is played once.|
-| begin      | number                                                      | Yes  | Start point of the animation interpolation.                                              |
-| end        | number                                                      | Yes  | End point of animation interpolation.                                              |
+| iterations | number                                                      | Yes  | Number of times that the animation is played. The value **0** means the animation is not played, **-1** means the animation is played for an unlimited number of times, and a positive integer means the animation is played that specific number of times.<br>**NOTE**<br>Any negative value other than **-1** is considered invalid. For invalid values, the animation is played once.|
+| begin      | number                                                      | Yes  | Start point of the animation interpolation.<br>**NOTE**<br>This setting affects the input parameter value of the [onFrame](#onframe12) callback.                                              |
+| end        | number                                                      | Yes  | End point of animation interpolation.<br>**NOTE**<br>This setting affects the input parameter value of the [onFrame](#onframe12) callback.                                              |
 
 ## SimpleAnimatorOptions<sup>18+</sup>
 
@@ -985,12 +985,12 @@ struct AnimatorTest {
       fill: "forwards",
       direction: "normal",
       iterations: 1,
-      begin: 100,
-      end: 200
+      begin: 100, // Start point of the animation interpolation.
+      end: 200 // End point of the animation interpolation.
     })
     this.backAnimator.onFinish = () => {
       this.flag = true
-      console.info(this.TAG, 'backAnimator onfinish')
+      console.info(this.TAG, 'backAnimator onFinish')
     }
     this.backAnimator.onRepeat = () => {
       console.info(this.TAG, 'backAnimator repeat')
@@ -1005,8 +1005,10 @@ struct AnimatorTest {
   }
 
   aboutToDisappear() {
-    // Because backAnimator references this in onframe, backAnimator is saved in this.
-    // When the custom component disappears, leave backAnimator empty to avoid memory leak.
+    // When the custom component disappears, call finish to end incomplete animations and prevent them from continuing.
+    // Since backAnimator references this in onFrame, and this holds backAnimator,
+    // set backAnimator stored in the custom component to undefined when the component disappears to avoid memory leak.
+    this.backAnimator?.finish();
     this.backAnimator = undefined;
   }
 
@@ -1145,7 +1147,7 @@ struct AnimatorTest {
     )
     this.backAnimator.onFinish = ()=> {
       this.flag = true
-      console.info(this.TAG, 'backAnimator onfinish')
+      console.info(this.TAG, 'backAnimator onFinish')
     }
     this.backAnimator.onFrame = (value:number)=> {
       this.translate_ = value
@@ -1153,8 +1155,10 @@ struct AnimatorTest {
   }
 
   aboutToDisappear() {
-    // Because backAnimator references this in onFrame and is saved in the component,
-    // it must be set undefined when the custom component disappears to avoid memory leaks.
+    // When the custom component disappears, call finish to end incomplete animations and prevent them from continuing.
+    // Since backAnimator references this in onFrame, and this holds backAnimator,
+    // set backAnimator stored in the custom component to undefined when the component disappears to avoid memory leak.
+    this.backAnimator?.finish();
     this.backAnimator = undefined;
   }
 

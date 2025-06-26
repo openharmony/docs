@@ -7,7 +7,7 @@ ArkUI的弹出框默认设置为全局级别，弹窗节点作为页面根节点
 > 
 > 当且仅当弹出框为非子窗模式时，页面级能力才会生效。即showInSubWindow参数不设置或设置为false。
 >
-> 页面级弹出框一般和导航路由能力结合使用，可以通过[组件导航和页面路由概述](arkts-navigation-introduction.md)了解相关术语。
+> 页面级弹出框通常与导航路由能力结合使用，可以参考[组件导航和页面路由概述](arkts-navigation-introduction.md)了解相关术语。
 >
 > 页面级弹出框的使用方式是在当前弹出框的入参之中新增了相关属性能力，使用前可以通过[弹出框概述](arkts-base-dialog-overview.md)了解基础的弹出框使用方法。
 
@@ -18,7 +18,7 @@ ArkUI的弹出框默认设置为全局级别，弹窗节点作为页面根节点
 > 
 > 详细变量定义请参考[完整示例](#完整示例)。
 
-在弹出框的options入参中设置[levelMode](../reference/apis-arkui/js-apis-promptAction.md#levelmode15)属性，值为LevelMode.EMBEDDED表示开启页面级弹出框能力。
+在弹出框的options入参中设置[levelMode](../reference/apis-arkui/js-apis-promptAction.md#levelmode15枚举说明)属性，值为LevelMode.EMBEDDED表示开启页面级弹出框能力。
 
 当弹出框弹出时，会自动获取当前显示的Page页面并将弹出框节点挂载在此页面下。此时弹出框的显示层级高于此Page页面下的所有Navigation页面。
 
@@ -53,7 +53,7 @@ Text(this.message).id("test_text")
 
 ## 设置页面级弹出框蒙层样式
 
-如果弹出框配置了蒙层，蒙层的遮盖范围会根据页面层级的变化进行调整，默认遮罩范围为弹出框父节点的显示区域（Page页面或者Navigation页面）。此时，状态栏和导航条不会被蒙层遮挡。若希望遮挡状态栏和导航条，可将[immersiveMode](../reference/apis-arkui/js-apis-promptAction.md#immersivemode15)参数的值设为ImmersiveMode.EXTEND。
+如果弹出框配置了蒙层，蒙层的遮盖范围会根据页面层级的变化进行调整，默认遮罩范围为弹出框父节点的显示区域（Page页面或者Navigation页面）。此时，状态栏和导航条不会被蒙层遮挡。若希望遮挡状态栏和导航条，可将[immersiveMode](../reference/apis-arkui/js-apis-promptAction.md#immersivemode15枚举说明)参数的值设为ImmersiveMode.EXTEND。
 
 ```ts
 Text(this.message).id("test_text")
@@ -74,7 +74,7 @@ Text(this.message).id("test_text")
 
 页面内弹出框在部分交互逻辑上依然遵循部分弹出框指定的交互策略：
 
-1. 侧滑时先关闭弹出框。通过侧滑手势返回上一页时，如果页面上存在弹出框，弹出框会优先关闭并结束本次手势行为。如果期望返回上一页，需要再次出发侧滑手势。
+1. 侧滑时先关闭弹出框。通过侧滑手势返回上一页时，如果页面上存在弹出框，弹出框会优先关闭并结束本次手势行为。如果期望返回上一页，需要再次触发侧滑手势。
 
 2. 点击弹出框的蒙层，默认会关闭弹出框，点击蒙层以外的区域则不会。
 

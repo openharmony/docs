@@ -5,6 +5,10 @@
 
 可以通过使用[UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)中的[getPromptAction](../reference/apis-arkui/js-apis-arkui-UIContext.md#getpromptaction)方法获取当前UI上下文关联的[PromptAction](../reference/apis-arkui/js-apis-arkui-UIContext.md#promptaction)对象，再通过该对象调用[showToast](../reference/apis-arkui/js-apis-arkui-UIContext.md#showtoast)创建并显示文本提示框。
 
+> **说明：** 
+>
+> 为了安全考虑，例如Toast恶意遮挡其他页面，Toast只能显示在当前的UI实例中，应用退出后，不会单独显示在桌面上。
+
 ## 使用建议
 
  - 合理使用弹出场景，避免过度提醒用户。

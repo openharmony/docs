@@ -330,7 +330,7 @@ function getNode() : void {
 ```
 
 ## Geometry
-几何类型，继承自[Node](#node)。
+几何节点类型，用于承载可渲染的网格数据，并支持可选的形变功能，继承自[Node](#node)。
 
 ### 属性
 
@@ -339,7 +339,7 @@ function getNode() : void {
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
 | mesh | [Mesh](js-apis-inner-scene-resources.md#mesh) | 是 | 否 | 网格属性。 |
-
+| morpher<sup>20+</sup> | [Morpher](js-apis-inner-scene-resources.md#morpher20) | 是 | 是 | 可选的形变器，用于为几何体添加基于顶点的形变或动画效果。若未设置，则该几何体不支持形变功能。 |
 
 ## LightType
 光源类型枚举。

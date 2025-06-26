@@ -5,14 +5,19 @@
 > **说明：**
 >
 > 该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-> 如果在处理大量子组件时遇到卡顿问题，请考虑采用懒加载、缓存列表项、动态预加载、组件复用和布局优化等方法来进行优化。最佳实践请参考[优化长列表加载慢丢帧问题](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-best-practices-long-list)。
+>
+> 组件内部已绑定手势实现跟手滚动等功能，需要增加自定义手势操作时请参考[手势拦截增强](ts-gesture-blocking-enhancement.md)进行处理。
+
 
 
 ## 子组件
 
-仅支持[ListItem](ts-container-listitem.md)、[ListItemGroup](ts-container-listitemgroup.md)子组件，支持通过渲染控制类型（[if/else](../../../ui/state-management/arkts-rendering-control-ifelse.md)、[ForEach](../../../ui/state-management/arkts-rendering-control-foreach.md)、[LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md)和[Repeat](../../../ui/state-management/arkts-new-rendering-control-repeat.md)）动态生成子组件，更推荐使用LazyForEach或Repeat以优化性能。
+仅支持[ListItem](ts-container-listitem.md)、[ListItemGroup](ts-container-listitemgroup.md)子组件和自定义组件。自定义组件在List下使用时，建议使用ListItem或ListItemGroup作为自定组件的顶层组件，不建议给自定义组件设置属性和事件方法。
+支持通过渲染控制类型（[if/else](../../../ui/state-management/arkts-rendering-control-ifelse.md)、[ForEach](../../../ui/state-management/arkts-rendering-control-foreach.md)、[LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md)和[Repeat](../../../ui/state-management/arkts-new-rendering-control-repeat.md)）动态生成子组件，更推荐使用LazyForEach或Repeat以优化性能。
 
 > **说明：**
+>
+> 如果在处理大量子组件时遇到卡顿问题，请考虑采用懒加载、缓存列表项、动态预加载、组件复用和布局优化等方法来进行优化。最佳实践请参考[优化长列表加载慢丢帧问题](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-best-practices-long-list)。
 >
 > List的子组件的索引值计算规则：
 >
@@ -50,6 +55,10 @@ List(options?: [ListOptions](#listoptions18对象说明))
 ## ListOptions<sup>18+</sup>对象说明
 
 用于设置List组件参数。
+
+> **说明：**
+>
+> 为规范匿名对象的定义，API 18版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
 
 **卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
@@ -179,22 +188,6 @@ List设置cachedCount后，显示区域外上下各会预加载并布局cachedCo
 | count  | number | 是   | 预加载的ListItem的数量。<br/>默认值：根据屏幕内显示的节点个数设置，最大值为16。 <br/>取值范围：[0, +∞) |
 | show  | boolean | 是   | 被预加载的ListItem是否需要显示。设置为true时显示预加载的ListItem，设置为false时不显示预加载的ListItem。 <br/> 默认值：false |
 
-### editMode<sup>(deprecated)</sup>
-
-editMode(value: boolean)
-
-设置当前List组件是否处于可编辑模式。可参考[示例3](#示例3设置编辑模式)实现删除选中的list项。
-
-从API version 9开始废弃不再使用，无替代接口。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型   | 必填 | 说明                                               |
-| ------ | ------ | ---- | -------------------------------------------------- |
-| value  | boolean | 是   | 当前List组件是否处于可编辑模式。<br/>默认值：false，当前List组件不处于可编辑模式。 |
-
 ### edgeEffect
 
 edgeEffect(value: EdgeEffect, options?: EdgeEffectOptions)
@@ -205,8 +198,6 @@ edgeEffect(value: EdgeEffect, options?: EdgeEffectOptions)
 >
 > 当List组件的内容区小于一屏时，默认没有回弹效果。若要启用回弹效果，可以通过设置edgeEffect属性的options参数来实现。
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -215,8 +206,8 @@ edgeEffect(value: EdgeEffect, options?: EdgeEffectOptions)
 
 | 参数名                | 类型                                                         | 必填 | 说明                                                         |
 | --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value                 | [EdgeEffect](ts-appendix-enums.md#edgeeffect)                | 是   | List组件的边缘滑动效果，支持弹簧效果和阴影效果。<br/>默认值：EdgeEffect.Spring |
-| options<sup>11+</sup> | [EdgeEffectOptions](ts-container-scrollable-common.md#edgeeffectoptions11对象说明) | 否   | 组件内容大小小于组件自身时，是否开启滑动效果。设置为{ alwaysEnabled: true }会开启滑动效果，{ alwaysEnabled: false }不开启。<br/>默认值：{ alwaysEnabled: false } |
+| value                 | [EdgeEffect](ts-appendix-enums.md#edgeeffect)                | 是   | List组件的边缘滑动效果，支持弹簧效果和阴影效果。<br/>默认值：EdgeEffect.Spring<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| options<sup>11+</sup> | [EdgeEffectOptions](ts-container-scrollable-common.md#edgeeffectoptions11对象说明) | 否   | 组件内容大小小于组件自身时，是否开启滑动效果。设置为{ alwaysEnabled: true }会开启滑动效果，{ alwaysEnabled: false }不开启。<br/>默认值：{ alwaysEnabled: false }<br/>**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。 |
 
 ### chainAnimation
 
@@ -276,8 +267,6 @@ lanes(value: number | LengthConstrain, gutter?: Dimension)
 - &nbsp;ListItemGroup在多列模式下也是独占一行，ListItemGroup中的ListItem按照List组件的lanes属性设置值来布局。
 - lanes设置了{minLength，maxLength}时，计算ListItemGroup中的列数时会按照ListItemGroup的交叉轴尺寸计算。当ListItemGroup交叉轴尺寸与List交叉轴尺寸不一致时ListItemGroup中的列数与List中的列数可能不一样。
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -286,8 +275,8 @@ lanes(value: number | LengthConstrain, gutter?: Dimension)
 
 | 参数名               | 类型                                                         | 必填 | 说明                                     |
 | -------------------- | ------------------------------------------------------------ | ---- | ---------------------------------------- |
-| value                | number&nbsp;\|&nbsp;[LengthConstrain](ts-types.md#lengthconstrain) | 是   | List组件的布局列数或行数。<br/>默认值：1 <br/>取值范围：[1, +∞) |
-| gutter<sup>10+</sup> | [Dimension](ts-types.md#dimension10)                         | 否   | 列间距。<br />默认值：0 <br/>取值范围：[0, +∞) |
+| value                | number&nbsp;\|&nbsp;[LengthConstrain](ts-types.md#lengthconstrain) | 是   | List组件的布局列数或行数。<br/>默认值：1 <br/>取值范围：[1, +∞)<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| gutter<sup>10+</sup> | [Dimension](ts-types.md#dimension10)                         | 否   | 列间距。<br />默认值：0 <br/>取值范围：[0, +∞)<br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。 |
 
 ### alignListItem<sup>9+</sup>
 
@@ -362,6 +351,10 @@ enableScrollInteraction(value: boolean)
 | 参数名 | 类型    | 必填 | 说明                                |
 | ------ | ------- | ---- | ----------------------------------- |
 | value  | boolean | 是   | 是否支持滚动手势。设置为true时可以通过手指或者鼠标滚动，设置为false时无法通过手指或者鼠标滚动，但不影响控制器[Scroller](ts-container-scroll.md#scroller)的滚动接口。<br/>默认值：true |
+
+> **说明：** 
+>
+> 组件无法通过鼠标按下拖动操作进行滚动。
 
 ### nestedScroll<sup>10+</sup>
 
@@ -496,6 +489,54 @@ stackFromEnd(enabled: boolean)
 > - stackFromEnd属性设置为true后，显示区域内有ListItem变高，或有插入ListItem，内容上方的ListItem往上移动。
 > - stackFromEnd属性设置为true后，initialIndex参数默认值为总item个数-1。
 
+### focusWrapMode<sup>20+</sup>
+
+focusWrapMode(mode: Optional\<FocusWrapMode\>)
+
+设置方向键走焦模式。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| mode   | Optional\<[FocusWrapMode](ts-appendix-enums.md#focuswrapmode20)\> | 是   | 交叉轴方向键走焦模式。<br/>默认值：FocusWrapMode.DEFAULT<br/>**说明：** <br/>异常值按默认值处理，即交叉轴方向键不能换行。 |
+
+### syncLoad<sup>20+</sup>
+
+syncLoad(enable: boolean)
+
+设置是否同步加载List区域内所有子组件。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| enable   | boolean | 是   | 是否同步加载子组件。<br/>true表示同步加载，false表示异步加载。<br/>**说明：** <br/>设置为fasle时，异步加载仅在首次显示等非滑动场景生效。 |
+
+### editMode<sup>(deprecated)</sup>
+
+editMode(value: boolean)
+
+设置当前List组件是否处于可编辑模式。可参考[示例3](#示例3设置编辑模式)实现删除选中的list项。
+
+从API version 9开始废弃不再使用，无替代接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                                               |
+| ------ | ------ | ---- | -------------------------------------------------- |
+| value  | boolean | 是   | 当前List组件是否处于可编辑模式。<br/>默认值：false，当前List组件不处于可编辑模式。 |
+
 ## ListItemAlign<sup>9+</sup>枚举说明
 
 设置子组件在List交叉轴方向的对齐方式。
@@ -560,6 +601,10 @@ ListItemGroup吸顶或吸底效果枚举。
 
 用于设置List或ListItemGroup组件的分割线样式。
 
+> **说明：**
+>
+> 为规范匿名对象的定义，API 18版本修改了此处的元素定义。其中，保留了历史匿名对象的起始版本信息，会出现外层元素@since版本号高于内层元素版本号的情况，但这不影响接口的使用。
+
 **卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
@@ -576,28 +621,6 @@ ListItemGroup吸顶或吸底效果枚举。
 ## 事件
 
 除支持[通用事件](ts-component-general-events.md)和[滚动组件通用事件](ts-container-scrollable-common.md#事件)外，还支持以下事件：
-
-### onItemDelete<sup>(deprecated)</sup>
-
-onItemDelete(event: (index: number) => boolean)
-
-当List组件在编辑模式时，点击ListItem右边出现的删除按钮时触发。
-
-从API version 9开始废弃不再使用，无替代接口。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型   | 必填 | 说明                     |
-| ------ | ------ | ---- | ------------------------ |
-| index  | number | 是   | 被删除的列表项的索引值。 |
-
-**返回值：** 
-
-| 类型    | 说明           |
-| ------- | -------------- |
-| boolean | 是否已经删除。 |
 
 ### onScrollIndex
 
@@ -643,7 +666,7 @@ List初始化时如果initialIndex为0会触发一次，List滚动到起始位�
 
 onReachEnd(event: () => void)
 
-列表到达末尾位置时触发。
+列表到达末尾位置时触发。不满一屏并且最后一个子组件末端在List内时触发。
 
 List边缘效果为弹簧效果时，划动经过末尾位置时触发一次，回弹回末尾位置时再触发一次。
 
@@ -657,11 +680,21 @@ List边缘效果为弹簧效果时，划动经过末尾位置时触发一次，�
 
 onScrollFrameBegin(event: (offset: number, state: ScrollState) => { offsetRemain: number })
 
-列表开始滑动时触发，事件参数传入即将发生的滑动量，事件处理函数中可根据应用场景计算实际需要的滑动量并作为事件处理函数的返回值返回，列表将按照返回值的实际滑动量进行滑动。
+该接口回调时，事件参数传入即将发生的滑动量，事件处理函数中可根据应用场景计算实际需要的滑动量并作为事件处理函数的返回值返回，列表将按照返回值的实际滑动量进行滑动。
 
 当listDirection的值为Axis.Vertical时，返回垂直方向滑动量，当listDirection的值为Axis.Horizontal时，返回水平方向滑动量。
 
-触发该事件的条件：手指拖动List、List惯性划动时每帧开始时触发；List超出边缘回弹、调用除fling接口外的其他滚动控制接口和拖动滚动条的滚动不会触发。
+满足以下任一条件时触发该事件：
+
+1. 用户交互（如手指滑动、键鼠操作等）触发滚动。
+2. List惯性滚动。
+3. 调用[fling](ts-container-scroll.md#fling12)接口触发滚动。
+
+不触发该事件的条件：
+
+1. 调用除[fling](ts-container-scroll.md#fling12)接口外的其他滚动控制接口。
+2. 越界回弹。
+3. 拖动滚动条。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -818,6 +851,46 @@ onItemDrop(event: (event: ItemDragInfo, itemIndex: number, insertIndex: number, 
 | insertIndex | number                                                    | 是   | 拖拽插入位置。 |
 | isSuccess   | boolean                                                   | 是   | 是否成功释放。返回值为true时列表元素成功释放，返回值为false时列表元素没有成功释放。  |
 
+### onScrollVisibleContentChange<sup>12+</sup>
+onScrollVisibleContentChange(handler: OnScrollVisibleContentChangeCallback)
+
+有子组件划入或划出List显示区域时触发。计算触发条件时，每一个ListItem、ListItemGroup中的header或footer都算一个子组件。
+
+List的边缘效果为弹簧效果时，在List划动到边缘继续划动和松手回弹过程不会触发onScrollVisibleContentChange事件。
+
+触发该事件的条件：列表初始化时会触发一次，List显示区域内第一个子组件的索引值或最后一个子组件的索引值有变化时会触发。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ------ | ------|
+| handler | [OnScrollVisibleContentChangeCallback](#onscrollvisiblecontentchangecallback12) | 是 | 当前显示内容发生改变的时候触发回调。 |
+
+### onItemDelete<sup>(deprecated)</sup>
+
+onItemDelete(event: (index: number) => boolean)
+
+当List组件在编辑模式时，点击ListItem右边出现的删除按钮时触发。
+
+从API version 9开始废弃不再使用，无替代接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                     |
+| ------ | ------ | ---- | ------------------------ |
+| index  | number | 是   | 被删除的列表项的索引值。 |
+
+**返回值：** 
+
+| 类型    | 说明           |
+| ------- | -------------- |
+| boolean | 是否已经删除。 |
 
 ### onScroll<sup>(deprecated)</sup>
 onScroll(event: (scrollOffset: number, scrollState: [ScrollState](#scrollstate枚举说明)) => void)
@@ -837,25 +910,6 @@ onScroll(event: (scrollOffset: number, scrollState: [ScrollState](#scrollstate�
 | ------ | ------ | ------ | ------|
 | scrollOffset | number | 是 | 每帧滚动的偏移量，List的内容向上滚动时偏移量为正，向下滚动时偏移量为负。<br/>单位vp。 |
 | scrollState | [ScrollState](ts-container-list.md#scrollstate枚举说明) | 是 | 当前滑动状态。 |
-
-### onScrollVisibleContentChange<sup>12+</sup>
-onScrollVisibleContentChange(handler: OnScrollVisibleContentChangeCallback)
-
-有子组件划入或划出List显示区域时触发。计算触发条件时，每一个ListItem、ListItemGroup中的header或footer都算一个子组件。
-
-List的边缘效果为弹簧效果时，在List划动到边缘继续划动和松手回弹过程不会触发onScrollVisibleContentChange事件。
-
-触发该事件的条件：列表初始化时会触发一次，List显示区域内第一个子组件的索引值或最后一个子组件的索引值有变化时会触发。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| ------ | ------ | ------ | ------|
-| handler | [OnScrollVisibleContentChangeCallback](#onscrollvisiblecontentchangecallback12) | 是 | 当前显示内容发生改变的时候触发回调。 |
 
 ## ScrollState枚举说明
 
@@ -878,6 +932,9 @@ List的边缘效果为弹簧效果时，在List划动到边缘继续划动和松
 
 List组件的滚动控制器，通过它控制List组件的滚动，仅支持一对一绑定到List组件。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 >  **说明：**
 >
@@ -1000,7 +1057,7 @@ scrollToItemInGroup(index: number, indexInGroup: number, smooth?: boolean, align
 
 ### closeAllSwipeActions<sup>11+</sup>
 
-closeAllSwipeActions(options?: [CloseSwipeActionOptions](#closeswipeactionoptions11对象说明)): void
+closeAllSwipeActions(options?: CloseSwipeActionOptions): void
 
 将[EXPANDED](ts-container-listitem.md#swipeactionstate11枚举说明)状态的[ListItem](ts-container-listitem.md)收起，并设置回调事件。
 
@@ -1033,6 +1090,10 @@ closeAllSwipeActions(options?: [CloseSwipeActionOptions](#closeswipeactionoption
 type OnScrollVisibleContentChangeCallback = (start: VisibleListContentInfo, end: VisibleListContentInfo) => void
 
 有子组件划入或划出List显示区域时触发。
+
+start和end的index同时返回-1，代表List从有数据变成空的List。
+
+start和end的index同时返回0，代表List内只有一个子组件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1210,10 +1271,23 @@ export class ListDataSource implements IDataSource {
     });
   }
 
+  // 通知控制器添加数据
+  notifyDataAdd(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataAdd(index);
+    });
+  }
+
   // 在指定索引位置删除一个元素
   public deleteItem(index: number): void {
     this.list.splice(index, 1);
     this.notifyDataDelete(index);
+  }
+
+  // 在指定索引位置插入一个元素
+  public insertItem(index: number, data: number): void {
+    this.list.splice(index, 0, data);
+    this.notifyDataAdd(index);
   }
 }
 ```
@@ -1250,10 +1324,10 @@ struct ListExample {
         console.info('center' + centerIndex);
       })
       .onScrollVisibleContentChange((start: VisibleListContentInfo, end: VisibleListContentInfo) => {
-        console.log(' start index: ' + start.index +
+        console.info(' start index: ' + start.index +
                     ' start item group area: ' + start.itemGroupArea +
                     ' start index in group: ' + start.itemIndexInGroup);
-        console.log(' end index: ' + end.index +
+        console.info(' end index: ' + end.index +
                     ' end item group area: ' + end.itemGroupArea +
                     ' end index in group: ' + end.itemIndexInGroup);
       })
@@ -1743,3 +1817,94 @@ struct ListExample {
 ```
 
 ![edgeEffect_list](figures/edgeEffect_list.gif)
+
+### 示例9（设置折行走焦）
+
+该示例通过focusWrapMode接口，实现了List组件方向键走焦换行效果。
+
+```ts
+@Entry
+@Component
+struct ListExample {
+  @State arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+  build() {
+    Stack({ alignContent: Alignment.TopStart }) {
+      Column() {
+        List({ space: 40, initialIndex: 0 }) {
+          ForEach(this.arr, (item: number, index?: number) => {
+            ListItem() {
+              Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) {
+                Text('' + item)
+                  .width(150)
+                  .height(93)
+                  .fontSize(30)
+                  .textAlign(TextAlign.Center)
+                  .borderRadius(10)
+                  .backgroundColor(0xFFFFFF)
+                  .flexShrink(1)
+                  .focusable(true)
+                  .offset({left:5})
+              }
+            }
+          }, (item: string) => item)
+        }
+        .lanes(2)
+        .contentStartOffset(20)
+        .contentEndOffset(20)
+        .width('100%')
+        .scrollBar(BarState.Off)
+        .friction(0.6)
+        .focusWrapMode(FocusWrapMode.WRAP_WITH_ARROW)
+        .alignListItem(ListItemAlign.Center)
+        .offset({left:20})
+      }.width('90%')
+    }.width('100%').height('100%').backgroundColor(0xDCDCDC).padding({ top: 5 })
+  }
+}
+```
+
+![edgeEffect_list](figures/focusWrapMode_list.gif)
+
+### 示例10（设置显示区域外插入数据时，保持显示内容不变）
+
+该示例通过maintainVisibleContentPosition接口，实现了上滑无限加载历史消息场景。
+
+```ts
+import { ListDataSource } from './ListDataSource';
+
+@Entry
+@Component
+struct ListExample {
+  private arr: ListDataSource = new ListDataSource([990, 991, 992, 993, 994, 995, 996, 997, 998, 999]);
+  build() {
+    Column() {
+      List({ space: 20, initialIndex: 9 }) {
+        LazyForEach(this.arr, (item: number) => {
+          ListItem() {
+            Text('message:' + item)
+              .width('100%').height(100)
+              .fontSize(16)
+              .textAlign(TextAlign.Center)
+              .borderRadius(10)
+              .backgroundColor(0xFFFFFF)
+          }
+        }, (item: string) => item)
+      }
+      .maintainVisibleContentPosition(true)
+      .onScrollIndex((start:number)=>{
+        if (start < 5) {
+          for (let i = 0; i < 10; i++) {
+            this.arr.insertItem(0, this.arr.getData(0) - 1);
+          }
+        }
+      })
+    }
+    .width('100%')
+    .height('100%')
+    .backgroundColor(0xDCDCDC)
+    .padding(12)
+  }
+}
+```
+
+![edgeEffect_list](figures/list_maintainvisiblecontentposition.gif)

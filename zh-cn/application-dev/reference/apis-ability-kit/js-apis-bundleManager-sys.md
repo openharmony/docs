@@ -14,42 +14,14 @@
 import { bundleManager } from '@kit.AbilityKit';
 ```
 
-## 权限列表
-
-| 权限                                       | 权限等级     | 描述            |
-| ------------------------------------------ | ------------ | ------------------|
-| ohos.permission.GET_BUNDLE_INFO            | normal       | 允许查询应用的基本信息。   |
-| ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | 允许查询应用的基本信息和其他敏感信息。 |
-| ohos.permission.REMOVE_CACHE_FILES         | system_basic | 清理应用缓存。       |
-| ohos.permission.CHANGE_ABILITY_ENABLED_STATE| system_basic | 设置禁用使能所需的权限。  |
-| ohos.permission.GET_INSTALLED_BUNDLE_LIST | system_basic | 读取已安装应用列表。 |
-| ohos.permission.RUN_DYN_CODE | normal | 允许系统方舟运行时引擎在受限模式下执行动态下发的方舟字节码。 |
-| ohos.permission.MIGRATE_DATA | system_core | 允许应用迁移传入路径下的数据到指定目录。 |
-| ohos.permission.ACCESS_DYNAMIC_ICON | system_basic | 允许应用使用动态图标。 |
-| ohos.permission.CHANGE_BUNDLE_UNINSTALL_STATE | system_core | 允许系统应用改变指定应用的可卸载状态。 |
-
-权限等级参考[权限APL等级说明](../../security/AccessToken/app-permission-mgmt-overview.md#权限机制中的基本概念)。
-
 ## BundleFlag
 
-包信息标志，指示需要获取的包信息的内容。
+包信息标志，指示需要获取的包信息的内容，当前页面仅包含本模块的系统接口，其他公开类型参见[BundleFlag](./js-apis-bundleManager.md#bundleflag)。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
 | 名称                                          | 值         | 说明                                                         |
 | --------------------------------------------- | ---------- | ------------------------------------------------------------ |
-| GET_BUNDLE_INFO_DEFAULT                       | 0x00000000 | 用于获取默认bundleInfo，获取的bundleInfo不包含signatureInfo、applicationInfo、hapModuleInfo、ability、extensionAbility和permission的信息。 |
-| GET_BUNDLE_INFO_WITH_APPLICATION              | 0x00000001 | 用于获取包含applicationInfo的bundleInfo，获取的bundleInfo不包含signatureInfo、hapModuleInfo、ability、extensionAbility和permission的信息。 |
-| GET_BUNDLE_INFO_WITH_HAP_MODULE               | 0x00000002 | 用于获取包含hapModuleInfo的bundleInfo，获取的bundleInfo不包含signatureInfo、applicationInfo、ability、extensionAbility和permission的信息。 |
-| GET_BUNDLE_INFO_WITH_ABILITY                  | 0x00000004 | 用于获取包含ability的bundleInfo，获取的bundleInfo不包含signatureInfo、applicationInfo、extensionAbility和permission的信息。它不能单独使用，需要与GET_BUNDLE_INFO_WITH_HAP_MODULE一起使用。 |
-| GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY        | 0x00000008 | 用于获取包含extensionAbility的bundleInfo，获取的bundleInfo不包含signatureInfo、applicationInfo、ability 和permission的信息。它不能单独使用，需要与GET_BUNDLE_INFO_WITH_HAP_MODULE一起使用。 |
-| GET_BUNDLE_INFO_WITH_REQUESTED_PERMISSION     | 0x00000010 | 用于获取包含permission的bundleInfo。获取的bundleInfo不包含signatureInfo、applicationInfo、hapModuleInfo、extensionAbility和ability的信息。 |
-| GET_BUNDLE_INFO_WITH_METADATA                 | 0x00000020 | 用于获取applicationInfo、moduleInfo和abilityInfo中包含的metadata。它不能单独使用，它需要与GET_BUNDLE_INFO_WITH_APPLICATION、GET_BUNDLE_INFO_WITH_HAP_MODULE、GET_BUNDLE_INFO_WITH_ABILITY、GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY一起使用。 |
-| GET_BUNDLE_INFO_WITH_DISABLE                  | 0x00000040 | 用于获取application被禁用的BundleInfo和被禁用的Ability信息。获取的bundleInfo不包含signatureInfo、applicationInfo、hapModuleInfo、ability、extensionAbility和permission的信息。 |
-| GET_BUNDLE_INFO_WITH_SIGNATURE_INFO           | 0x00000080 | 用于获取包含signatureInfo的bundleInfo。获取的bundleInfo不包含applicationInfo、hapModuleInfo、extensionAbility、ability和permission的信息。 |
-| GET_BUNDLE_INFO_WITH_MENU<sup>11+</sup>       | 0x00000100 | 用于获取包含fileContextMenuConfig的bundleInfo。它不能单独使用，需要与GET_BUNDLE_INFO_WITH_HAP_MODULE一起使用。 |
-| GET_BUNDLE_INFO_WITH_ROUTER_MAP<sup>12+</sup> | 0x00000200 | 用于获取包含routerMap的bundleInfo。它不能单独使用，需要与GET_BUNDLE_INFO_WITH_HAP_MODULE一起使用。 |
-| GET_BUNDLE_INFO_WITH_SKILL<sup>12+</sup>      | 0x00000800 | 用于获取包含skills的bundleInfo。它不能单独使用，需要与GET_BUNDLE_INFO_WITH_HAP_MODULE、GET_BUNDLE_INFO_WITH_ABILITY、GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY一起使用。 |
 | GET_BUNDLE_INFO_ONLY_WITH_LAUNCHER_ABILITY<sup>12+</sup> | 0x00001000 | 用于获取仅包含有桌面图标的应用的bundleInfo。它仅在[getAllBundleInfo](#bundlemanagergetallbundleinfo)接口中生效。 <br/>**系统API：** 该标记仅支持在系统API中使用。|
 | GET_BUNDLE_INFO_OF_ANY_USER<sup>12+</sup>      | 0x00002000 | 用于获取任意用户安装的bundleInfo。它不能单独使用，需要与GET_BUNDLE_INFO_WITH_APPLICATION一起使用。它仅在[getBundleInfo](#bundlemanagergetbundleinfo14)、[getAllBundleInfo](#bundlemanagergetallbundleinfo)接口生效。<br/>**系统API：** 该标记仅支持在系统API中使用。 |
 | GET_BUNDLE_INFO_EXCLUDE_CLONE<sup>12+</sup> | 0x00004000 | 用于获取去除分身应用而仅包含主应用的bundleInfo。它仅在[getAllBundleInfo](#bundlemanagergetallbundleinfo)接口中生效。 <br/>**系统API：** 该标记仅支持在系统API中使用。|
@@ -98,7 +70,7 @@ Ability组件信息标志，指示需要获取的Ability组件信息的内容。
 
 | 名称                                        | 值         | 说明                                                         |
 | ------------------------------------------- | ---------- | ------------------------------------------------------------ |
-| GET_EXTENSION_ABILITY_INFO_DEFAULT          | 0x00000000 | 用于获取默认extensionAbilityInfo。获取的extensionAbilityInfo不包含permission、metadata 和禁用的abilityInfo。 |
+| GET_EXTENSION_ABILITY_INFO_DEFAULT          | 0x00000000 | 用于获取默认extensionAbilityInfo。获取的extensionAbilityInfo不包含permission、metadata 和禁用的extensionAbilityInfo。 |
 | GET_EXTENSION_ABILITY_INFO_WITH_PERMISSION  | 0x00000001 | 用于获取包含permission的extensionAbilityInfo。               |
 | GET_EXTENSION_ABILITY_INFO_WITH_APPLICATION | 0x00000002 | 用于获取包含applicationInfo的extensionAbilityInfo。         |
 | GET_EXTENSION_ABILITY_INFO_WITH_METADATA    | 0x00000004 | 用于获取包含metadata的extensionAbilityInfo。                 |
@@ -1863,6 +1835,8 @@ try {
 getAllBundleCacheSize(): Promise\<number>
 
 获取全局缓存大小，使用Promise异步回调。
+
+有程序运行时的应用的缓存、或者在[应用配置指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-app-privilege-config-guide.md)中已配置“AllowAppDataNotCleared”特权的应用的缓存，无法被获取。
 
 **系统接口：** 此接口为系统接口。
 
@@ -4916,7 +4890,7 @@ try {
 
 ## bundleManager.getDeveloperIds<sup>12+</sup>
 
-getDeveloperIds(appDistributionType?: number): Array\<String>
+getDeveloperIds(appDistributionType?: number): Array\<string>
 
 根据给定的应用[分发类型](#appdistributiontype12)获取当前用户下的所有的开发者ID列表。
 
@@ -4936,7 +4910,7 @@ getDeveloperIds(appDistributionType?: number): Array\<String>
 
 | 类型                                                         | 说明                                   |
 | ------------------------------------------------------------ | -------------------------------------- |
-| Array\<String>    | 同步返回Array\<String>。 |
+| Array\<string>    | 同步返回Array\<string>。 |
 
 **错误码：**
 
@@ -5182,6 +5156,7 @@ enableDynamicIcon(bundleName: string, moduleName: string): Promise\<void>;
 | 17700001 | The specified bundleName is not found. |
 | 17700002 | The specified moduleName is not found. |
 | 17700304 | Failed to enable the dynamic icon. |
+| 17700307 | Dynamic icons cannot take effect due to existing custom themes. |
 
 **示例：**
 
@@ -5248,6 +5223,7 @@ enableDynamicIcon(bundleName: string, moduleName: string, option?: BundleOptions
 | 17700004 | The specified user ID is not found. |
 | 17700061 | AppIndex not in valid range. |
 | 17700304 | Failed to enable the dynamic icon. |
+| 17700307 | Dynamic icons cannot take effect due to existing custom themes. |
 
 **示例：**
 
@@ -5577,8 +5553,8 @@ getSandboxDataDir(bundleName: string, appIndex: number): string
 
 | 参数名     | 类型   | 必填 | 说明                       |
 | ---------- | ------ | ---- | ---------------------------|
-| bundleName | string |  是  |   表示要查询的应用包名。   |
-| appIndex | number |  是  |   表示分身索引。取值范围0~5，取值为0表示主应用。当查询的应用是元服务时，该参数无效。   |
+| bundleName | string |  是  |   表示要查询的应用包名。当前用户下有此应用或者分身才可查询，否则返回错误码17700001。   |
+| appIndex | number |  是  |   表示分身索引。取值范围0~5，取值为0表示主应用。   |
 
 **返回值：**
 
@@ -5594,6 +5570,7 @@ getSandboxDataDir(bundleName: string, appIndex: number): string
 | -------- | --------------------------------------|
 | 201 | Permission denied. |
 | 202 | Permission denied, non-system app called system api. |
+| 17700001 | The specified bundleName is not found. |
 | 17700061 | The appIndex is invalid. |
 
 **示例：**
@@ -5619,6 +5596,8 @@ try {
 getAppCloneBundleInfo(bundleName: string, appIndex: number, bundleFlags: number, userId?: number): Promise\<BundleInfo>;
 
 根据bundleName、分身索引、[bundleFlags](js-apis-bundleManager.md#bundleflag)以及用户ID查询主应用或分身应用的BundleInfo。使用Promise异步回调。
+
+bundleName是调用方自身时不需要权限。
 
 **系统接口：** 此接口为系统接口。
 
@@ -5972,30 +5951,6 @@ try {
 }
 ```
 
-## PluginBundleInfo<sup>19+</sup>
-
-type PluginBundleInfo = _PluginBundleInfo
-
-插件信息。
-
-**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
-
-| 类型                                                         | 说明           |
-| ------------------------------------------------------------ | -------------- |
-| [_PluginBundleInfo](js-apis-bundleManager-pluginBundleInfo-sys.md#pluginbundleinfo) |插件信息。 |
-
-## PluginModuleInfo<sup>19+</sup>
-
-type PluginModuleInfo = _PluginModuleInfo
-
-插件的模块信息。
-
-**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
-
-| 类型                                                         | 说明           |
-| ------------------------------------------------------------ | -------------- |
-| [_PluginModuleInfo](js-apis-bundleManager-pluginBundleInfo-sys.md#pluginmoduleinfo) |插件的模块信息。 |
-
 ## bundleManager.getDynamicIconInfo<sup>20+</sup>
 
 getDynamicIconInfo(bundleName: string): Promise\<Array\<DynamicIconInfo>>
@@ -6111,3 +6066,144 @@ try {
     hilog.error(0x0000, 'testTag', 'getAllDynamicIconInfo failed. Cause: %{public}s', message);
 }
 ```
+
+## PermissionDef
+
+type PermissionDef = _PermissionDef
+
+[module.json5配置文件](../../quick-start/module-configuration-file.md)中定义的权限详细信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_PermissionDef](./js-apis-bundleManager-permissionDef-sys.md#permissiondef) |配置文件中定义的权限详细信息。 |
+
+## SharedBundleInfo<sup>10+</sup>
+
+type SharedBundleInfo = _SharedBundleInfo
+
+共享包信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_SharedBundleInfo](js-apis-bundleManager-sharedBundleInfo-sys.md#sharedbundleinfo) |共享包信息。 |
+
+## AppProvisionInfo<sup>10+</sup>
+
+type AppProvisionInfo = _AppProvisionInfo.AppProvisionInfo
+
+应用[HarmonyAppProvision配置文件](../../security/app-provision-structure.md)中的信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_AppProvisionInfo.AppProvisionInfo](js-apis-bundleManager-AppProvisionInfo-sys.md#appprovisioninfo) |应用[HarmonyAppProvision配置文件](../../security/app-provision-structure.md)中的信息。 |
+
+
+## Validity<sup>10+</sup>
+
+type Validity = _AppProvisionInfo.Validity
+
+配置文件中的有效期。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_AppProvisionInfo.Validity](js-apis-bundleManager-AppProvisionInfo-sys.md#validity) |配置文件中的有效期。 |
+
+## RecoverableApplicationInfo<sup>11+</sup>
+
+type RecoverableApplicationInfo = _RecoverableApplicationInfo
+
+预置应用被卸载后可以恢复的预置应用信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_RecoverableApplicationInfo](js-apis-bundleManager-recoverableApplicationInfo-sys.md#recoverableapplicationinfo) |预置应用被卸载后可以恢复的预置应用信息。 |
+
+## PreinstalledApplicationInfo<sup>12+</sup>
+
+type PreinstalledApplicationInfo = _PreinstalledApplicationInfo
+
+预置应用信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_PreinstalledApplicationInfo](js-apis-bundleManager-ApplicationInfo-sys.md#preinstalledapplicationinfo12) |预置应用信息。 |
+
+## PluginBundleInfo<sup>19+</sup>
+
+type PluginBundleInfo = _PluginBundleInfo
+
+插件信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_PluginBundleInfo](js-apis-bundleManager-pluginBundleInfo-sys.md#pluginbundleinfo) |插件信息。 |
+
+## PluginModuleInfo<sup>19+</sup>
+
+type PluginModuleInfo = _PluginModuleInfo
+
+插件的模块信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_PluginModuleInfo](js-apis-bundleManager-pluginBundleInfo-sys.md#pluginmoduleinfo) |插件的模块信息。 |
+
+## DynamicIconInfo<sup>20+</sup>
+
+type DynamicIconInfo = _BundleInfo.DynamicIconInfo
+
+应用的动态图标信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_BundleInfo.DynamicIconInfo](js-apis-bundleManager-BundleInfo-sys.md#dynamiciconinfo) |应用的动态图标信息。 |
+
+## BundleOptions<sup>20+</sup>
+
+type BundleOptions = _BundleInfo.BundleOptions
+
+应用包选项，用于设置或查询应用相关信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_BundleInfo.BundleOptions](js-apis-bundleManager-BundleInfo-sys.md#bundleoptions) |应用包选项，用于设置或查询应用相关信息。 |

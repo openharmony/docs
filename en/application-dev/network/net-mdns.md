@@ -44,13 +44,17 @@ For the complete list of JS APIs and example code, see, see [MDNS Management](..
 4. (Optional) Call **resolveLocalService** to resolve the local service for the IP address of the local network.
 5. Call **removeLocalService** to remove the local service.
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain the UIAbilityContext, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
 ```ts
 // Import the mdns namespace from @kit.NetworkKit.
 import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { featureAbility } from '@kit.AbilityKit';
+import { featureAbility, common } from '@kit.AbilityKit';
 
-let context = getContext(this) as Context;
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
 class ServiceAttribute {
   key: string = "111"

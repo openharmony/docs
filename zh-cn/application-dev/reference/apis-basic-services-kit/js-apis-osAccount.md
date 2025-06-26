@@ -131,9 +131,9 @@ checkOsAccountActivated(localId: number, callback: AsyncCallback&lt;boolean&gt;)
 
 > **说明：**
 >
-> 从 API version 9开始支持，从API version 11开始废弃。替代方法仅向系统应用开放。
+> 从API version 9开始支持，从API version 11开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS或ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -181,9 +181,9 @@ checkOsAccountActivated(localId: number): Promise&lt;boolean&gt;
 
 > **说明：**
 >
-> 从 API version 9开始支持，从API version 11开始废弃。替代方法仅向系统应用开放。
+> 从API version 9开始支持，从API version 11开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS或ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -278,9 +278,9 @@ checkOsAccountConstraintEnabled(localId: number, constraint: string, callback: A
 
 > **说明：**
 >
-> 从 API version 9开始支持，从API version 11开始废弃。替代方法仅向系统应用开放。
+> 从API version 9开始支持，从API version 11开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS或ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -330,9 +330,9 @@ checkOsAccountConstraintEnabled(localId: number, constraint: string): Promise&lt
 
 > **说明：**
 >
-> 从 API version 9开始支持，从API version 11开始废弃。替代方法仅向系统应用开放。
+> 从API version 9开始支持，从API version 11开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS或ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -496,7 +496,7 @@ checkOsAccountVerified(callback: AsyncCallback&lt;boolean&gt;): void
 
 > **说明：**
 >
-> 从 API version 9开始支持，从API version 11开始废弃。建议使用[isOsAccountUnlocked](#isosaccountunlocked11)替代。
+> 从API version 9开始支持，从API version 11开始废弃。建议使用[isOsAccountUnlocked](#isosaccountunlocked11)替代。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -538,7 +538,7 @@ checkOsAccountVerified(): Promise&lt;boolean&gt;
 
 > **说明：**
 >
-> 从 API version 9开始支持，从API version 11开始废弃。建议使用[isOsAccountUnlocked](#isosaccountunlocked11)替代。
+> 从API version 9开始支持，从API version 11开始废弃。建议使用[isOsAccountUnlocked](#isosaccountunlocked11)替代。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -578,9 +578,9 @@ checkOsAccountVerified(localId: number, callback: AsyncCallback&lt;boolean&gt;):
 
 > **说明：**
 >
-> 从 API version 9开始支持，从API version 11开始废弃。替代方法仅向系统应用开放。
+> 从API version 9开始支持，从API version 11开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS或ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -628,9 +628,9 @@ checkOsAccountVerified(localId: number): Promise&lt;boolean&gt;
 
 > **说明：**
 >
-> 从 API version 9开始支持，从API version 11开始废弃。替代方法仅向系统应用开放。
+> 从API version 9开始支持，从API version 11开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS或ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1056,7 +1056,7 @@ getOsAccountConstraints(localId: number, callback: AsyncCallback&lt;Array&lt;str
 
 > **说明：**
 >
-> 从 API version 9开始支持，从API version 11开始废弃。替代方法仅向系统应用开放。
+> 从API version 9开始支持，从API version 11开始废弃。替代方法仅向系统应用开放。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
@@ -1106,7 +1106,7 @@ getOsAccountConstraints(localId: number): Promise&lt;Array&lt;string&gt;&gt;
 
 > **说明：**
 >
-> 从 API version 9开始支持，从API version 11开始废弃。替代方法仅向系统应用开放。
+> 从API version 9开始支持，从API version 11开始废弃。替代方法仅向系统应用开放。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
@@ -1179,10 +1179,13 @@ getActivatedOsAccountLocalIds(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;
   let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   try {
     accountManager.getActivatedOsAccountLocalIds((err: BusinessError, idArray: number[])=>{
-      console.log('getActivatedOsAccountLocalIds err:' + JSON.stringify(err));
-      console.log('getActivatedOsAccountLocalIds idArray length:' + idArray.length);
-      for(let i=0;i<idArray.length;i++) {
-        console.info('activated os account id: ' + idArray[i]);
+      if (err) {
+        console.error('getActivatedOsAccountLocalIds err:' + JSON.stringify(err));
+      } else {
+        console.log('getActivatedOsAccountLocalIds idArray length:' + idArray.length);
+        for(let i=0;i<idArray.length;i++) {
+          console.info('activated os account id: ' + idArray[i]);
+        }
       }
     });
   } catch (e) {
@@ -1234,9 +1237,9 @@ getCurrentOsAccount(callback: AsyncCallback&lt;OsAccountInfo&gt;): void
 
 > **说明：**
 >
-> 从 API version 9开始支持，从API version 11开始废弃。替代方法仅向系统应用开放。
+> 从API version 9开始支持，从API version 11开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.GET_LOCAL_ACCOUNTS<sup>10+</sup>，以上权限仅系统应用可申请。
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS或ohos.permission.GET_LOCAL_ACCOUNTS<sup>10+</sup>，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1261,8 +1264,11 @@ getCurrentOsAccount(callback: AsyncCallback&lt;OsAccountInfo&gt;): void
   let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   try {
     accountManager.getCurrentOsAccount((err: BusinessError, curAccountInfo: osAccount.OsAccountInfo)=>{
-      console.log('getCurrentOsAccount err:' + JSON.stringify(err));
-      console.log('getCurrentOsAccount curAccountInfo:' + JSON.stringify(curAccountInfo));
+      if (err) {
+        console.error('getCurrentOsAccount err:' + JSON.stringify(err));
+      } else {
+        console.log('getCurrentOsAccount curAccountInfo:' + JSON.stringify(curAccountInfo));
+      }
     });
   } catch (e) {
     console.error('getCurrentOsAccount exception: ' + JSON.stringify(e));
@@ -1277,9 +1283,9 @@ getCurrentOsAccount(): Promise&lt;OsAccountInfo&gt;
 
 > **说明：**
 >
-> 从 API version 9开始支持，从API version 11开始废弃。替代方法仅向系统应用开放。
+> 从API version 9开始支持，从API version 11开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.GET_LOCAL_ACCOUNTS<sup>10+</sup>，以上权限仅系统应用可申请。
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS或ohos.permission.GET_LOCAL_ACCOUNTS<sup>10+</sup>，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1340,8 +1346,11 @@ getOsAccountType(callback: AsyncCallback&lt;OsAccountType&gt;): void
   let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   try {
     accountManager.getOsAccountType((err: BusinessError, accountType: osAccount.OsAccountType) => {
-      console.log('getOsAccountType err: ' + JSON.stringify(err));
-      console.log('getOsAccountType accountType: ' + accountType);
+      if (err) {
+        console.error('getOsAccountType err: ' + JSON.stringify(err));
+      } else {
+        console.log('getOsAccountType accountType: ' + accountType);
+      }
     });
   } catch (e) {
     console.error('getOsAccountType exception: ' + JSON.stringify(e));
@@ -1415,8 +1424,11 @@ queryDistributedVirtualDeviceId(callback: AsyncCallback&lt;string&gt;): void
   let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   try {
     accountManager.queryDistributedVirtualDeviceId((err: BusinessError, virtualID: string) => {
-      console.log('queryDistributedVirtualDeviceId err: ' + JSON.stringify(err));
-      console.log('queryDistributedVirtualDeviceId virtualID: ' + virtualID);
+      if (err) {
+        console.error('queryDistributedVirtualDeviceId err: ' + JSON.stringify(err));
+      } else {
+        console.log('queryDistributedVirtualDeviceId virtualID: ' + virtualID);
+      }
     });
   } catch (e) {
     console.error('queryDistributedVirtualDeviceId exception: ' + JSON.stringify(e));
@@ -1494,8 +1506,11 @@ getOsAccountLocalIdForSerialNumber(serialNumber: number, callback: AsyncCallback
   let serialNumber: number = 12345;
   try {
     accountManager.getOsAccountLocalIdForSerialNumber(serialNumber, (err: BusinessError, localId: number)=>{
-      console.log('ger localId err:' + JSON.stringify(err));
-      console.log('get localId:' + localId + ' by serialNumber: ' + serialNumber);
+      if (err) {
+        console.error('ger localId err:' + JSON.stringify(err));
+      } else {
+        console.log('get localId:' + localId + ' by serialNumber: ' + serialNumber);
+      }
     });
   } catch (e) {
     console.error('ger localId exception: ' + JSON.stringify(e));
@@ -1580,8 +1595,11 @@ getSerialNumberForOsAccountLocalId(localId: number, callback: AsyncCallback&lt;n
   let localId: number = 100;
   try {
     accountManager.getSerialNumberForOsAccountLocalId(localId, (err: BusinessError, serialNumber: number)=>{
-      console.log('ger serialNumber err:' + JSON.stringify(err));
-      console.log('get serialNumber:' + serialNumber + ' by localId: ' + localId);
+      if (err) {
+        console.error('ger serialNumber err:' + JSON.stringify(err));
+      } else {
+        console.log('get serialNumber:' + serialNumber + ' by localId: ' + localId);
+      }
     });
   } catch (e) {
     console.error('ger serialNumber exception: ' + JSON.stringify(e));
@@ -1642,7 +1660,7 @@ isMultiOsAccountEnable(callback: AsyncCallback&lt;boolean&gt;): void
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[checkMultiOsAccountEnabled](#checkmultiosaccountenabled9)。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用[checkMultiOsAccountEnabled](#checkmultiosaccountenabled9)。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1674,7 +1692,7 @@ isMultiOsAccountEnable(): Promise&lt;boolean&gt;
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[checkMultiOsAccountEnabled](#checkmultiosaccountenabled9-1)。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用[checkMultiOsAccountEnabled](#checkmultiosaccountenabled9-1)。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1704,9 +1722,9 @@ isOsAccountActived(localId: number, callback: AsyncCallback&lt;boolean&gt;): voi
 
 > **说明：**
 >
-> 从 API version 7开始支持从API version 9开始废弃。替代方法仅向系统应用开放。
+> 从API version 7开始支持从API version 9开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS或ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1740,9 +1758,9 @@ isOsAccountActived(localId: number): Promise&lt;boolean&gt;
 
 > **说明：**
 >
-> 从 API version 7开始支持从API version 9开始废弃。替代方法仅向系统应用开放。
+> 从API version 7开始支持从API version 9开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS或ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1779,7 +1797,7 @@ isOsAccountConstraintEnable(localId: number, constraint: string, callback: Async
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃。替代方法仅向系统应用开放。
+> 从API version 7开始支持，从API version 9开始废弃。替代方法仅向系统应用开放。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，该权限仅系统应用可申请。
 
@@ -1817,7 +1835,7 @@ isOsAccountConstraintEnable(localId: number, constraint: string): Promise&lt;boo
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃。替代方法仅向系统应用开放。
+> 从API version 7开始支持，从API version 9开始废弃。替代方法仅向系统应用开放。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，该权限仅系统应用可申请。
 
@@ -1858,7 +1876,7 @@ isTestOsAccount(callback: AsyncCallback&lt;boolean&gt;): void
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[checkOsAccountTestable](#checkosaccounttestable9)。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用[checkOsAccountTestable](#checkosaccounttestable9)。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1890,7 +1908,7 @@ isTestOsAccount(): Promise&lt;boolean&gt;
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[checkOsAccountTestable](#checkosaccounttestable9-1)。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用[checkOsAccountTestable](#checkosaccounttestable9-1)。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1920,9 +1938,9 @@ isOsAccountVerified(callback: AsyncCallback&lt;boolean&gt;): void
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[checkOsAccountVerified](#checkosaccountverifieddeprecated)。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用[checkOsAccountVerified](#checkosaccountverifieddeprecated)。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS或ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1954,9 +1972,9 @@ isOsAccountVerified(localId: number, callback: AsyncCallback&lt;boolean&gt;): vo
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃。替代方法仅向系统应用开放。
+> 从API version 7开始支持，从API version 9开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS或ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1990,9 +2008,9 @@ isOsAccountVerified(localId?: number): Promise&lt;boolean&gt;
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃。替代方法仅向系统应用开放。
+> 从API version 7开始支持，从API version 9开始废弃。替代方法仅向系统应用开放。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS或ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，以上权限仅系统应用可申请。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2028,7 +2046,7 @@ getCreatedOsAccountsCount(callback: AsyncCallback&lt;number&gt;): void
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[getOsAccountCount](#getosaccountcount9)。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用[getOsAccountCount](#getosaccountcount9)。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，该权限仅系统应用可申请。
 
@@ -2062,7 +2080,7 @@ getCreatedOsAccountsCount(): Promise&lt;number&gt;
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[getOsAccountCount](#getosaccountcount9-1)。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用[getOsAccountCount](#getosaccountcount9-1)。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，该权限仅系统应用可申请。
 
@@ -2094,7 +2112,7 @@ getOsAccountLocalIdFromProcess(callback: AsyncCallback&lt;number&gt;): void
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[getOsAccountLocalId](#getosaccountlocalid9)。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用[getOsAccountLocalId](#getosaccountlocalid9)。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2113,7 +2131,7 @@ getOsAccountLocalIdFromProcess(callback: AsyncCallback&lt;number&gt;): void
     if (err) {
       console.error('getOsAccountLocalIdFromProcess failed, error: ' + JSON.stringify(err));
     } else {
-      console.log('getOsAccountLocalIdFromProcess failed, error: ' + localId);
+      console.log('getOsAccountLocalIdFromProcess id:: ' + localId);
     }
   });
   ```
@@ -2126,7 +2144,7 @@ getOsAccountLocalIdFromProcess(): Promise&lt;number&gt;
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[getOsAccountLocalId](#getosaccountlocalid9-1)。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用[getOsAccountLocalId](#getosaccountlocalid9-1)。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2156,7 +2174,7 @@ getOsAccountLocalIdFromUid(uid: number, callback: AsyncCallback&lt;number&gt;): 
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[getOsAccountLocalIdForUid](#getosaccountlocalidforuid9)。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用[getOsAccountLocalIdForUid](#getosaccountlocalidforuid9)。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2190,7 +2208,7 @@ getOsAccountLocalIdFromUid(uid: number): Promise&lt;number&gt;
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[getOsAccountLocalIdForUid](#getosaccountlocalidforuid9-1)。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用[getOsAccountLocalIdForUid](#getosaccountlocalidforuid9-1)。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2227,7 +2245,7 @@ getOsAccountLocalIdFromDomain(domainInfo: DomainAccountInfo, callback: AsyncCall
 
 > **说明：**
 >
-> 从 API version 8开始支持，从API version 9开始废弃。建议使用[getOsAccountLocalIdForDomain](#getosaccountlocalidfordomain9)。
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[getOsAccountLocalIdForDomain](#getosaccountlocalidfordomain9)。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，该权限仅系统应用可申请。
 
@@ -2263,7 +2281,7 @@ getOsAccountLocalIdFromDomain(domainInfo: DomainAccountInfo): Promise&lt;number&
 
 > **说明：**
 >
-> 从 API version 8开始支持，从API version 9开始废弃。建议使用[getOsAccountLocalIdForDomain](#getosaccountlocalidfordomain9-1)。
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[getOsAccountLocalIdForDomain](#getosaccountlocalidfordomain9-1)。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，该权限仅系统应用可申请。
 
@@ -2302,7 +2320,7 @@ getOsAccountAllConstraints(localId: number, callback: AsyncCallback&lt;Array&lt;
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃。替代方法仅向系统应用开放。
+> 从API version 7开始支持，从API version 9开始废弃。替代方法仅向系统应用开放。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，该权限仅系统应用可申请。
 
@@ -2322,8 +2340,11 @@ getOsAccountAllConstraints(localId: number, callback: AsyncCallback&lt;Array&lt;
   let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let localId: number = 100;
   accountManager.getOsAccountAllConstraints(localId, (err: BusinessError, constraints: string[])=>{
-    console.log('getOsAccountAllConstraints err:' + JSON.stringify(err));
-    console.log('getOsAccountAllConstraints:' + JSON.stringify(constraints));
+    if (err) {
+      console.error('getOsAccountAllConstraints err:' + JSON.stringify(err));
+    } else {
+      console.log('getOsAccountAllConstraints:' + JSON.stringify(constraints));
+    }
   });
   ```
 
@@ -2335,7 +2356,7 @@ getOsAccountAllConstraints(localId: number): Promise&lt;Array&lt;string&gt;&gt;
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃。替代方法仅向系统应用开放。
+> 从API version 7开始支持，从API version 9开始废弃。替代方法仅向系统应用开放。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，该权限仅系统应用可申请。
 
@@ -2374,7 +2395,7 @@ queryActivatedOsAccountIds(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): 
 
 > **说明：**
 >
-> 从 API version 8开始支持，从API version 9开始废弃。建议使用[getActivatedOsAccountLocalIds](#getactivatedosaccountlocalids9)。
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[getActivatedOsAccountLocalIds](#getactivatedosaccountlocalids9)。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2390,11 +2411,14 @@ queryActivatedOsAccountIds(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): 
   import { BusinessError } from '@kit.BasicServicesKit';
   let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   accountManager.queryActivatedOsAccountIds((err: BusinessError, idArray: number[])=>{
-    console.log('queryActivatedOsAccountIds err:' + JSON.stringify(err));
-    console.log('queryActivatedOsAccountIds idArray length:' + idArray.length);
-    for(let i=0;i<idArray.length;i++) {
-      console.info('activated os account id: ' + idArray[i]);
-    }
+      if (err) {
+        console.error('queryActivatedOsAccountIds err:' + JSON.stringify(err));
+      } else {
+        console.log('queryActivatedOsAccountIds idArray length:' + idArray.length);
+        for(let i=0;i<idArray.length;i++) {
+          console.info('activated os account id: ' + idArray[i]);
+        }
+      }
   });
   ```
 
@@ -2404,7 +2428,7 @@ queryActivatedOsAccountIds(): Promise&lt;Array&lt;number&gt;&gt;
 
 > **说明：**
 >
-> 从 API version 8开始支持，从API version 9开始废弃。建议使用[getActivatedOsAccountLocalIds](#getactivatedosaccountlocalids9-1)。
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[getActivatedOsAccountLocalIds](#getactivatedosaccountlocalids9-1)。
 
 查询当前处于激活状态的系统账号的ID列表。使用Promise异步回调。
 
@@ -2436,7 +2460,7 @@ queryCurrentOsAccount(callback: AsyncCallback&lt;OsAccountInfo&gt;): void
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃。替代方法仅向系统应用开放。
+> 从API version 7开始支持，从API version 9开始废弃。替代方法仅向系统应用开放。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，该权限仅系统应用可申请。
 
@@ -2454,8 +2478,11 @@ queryCurrentOsAccount(callback: AsyncCallback&lt;OsAccountInfo&gt;): void
   import { BusinessError } from '@kit.BasicServicesKit';
   let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   accountManager.queryCurrentOsAccount((err: BusinessError, curAccountInfo: osAccount.OsAccountInfo)=>{
-    console.log('queryCurrentOsAccount err:' + JSON.stringify(err));
-    console.log('queryCurrentOsAccount curAccountInfo:' + JSON.stringify(curAccountInfo));
+    if (err) {
+      console.error('queryCurrentOsAccount err:' + JSON.stringify(err));
+    } else {
+      console.log('queryCurrentOsAccount curAccountInfo:' + JSON.stringify(curAccountInfo));
+    }
   });
   ```
 
@@ -2467,7 +2494,7 @@ queryCurrentOsAccount(): Promise&lt;OsAccountInfo&gt;
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃。替代方法仅向系统应用开放。
+> 从API version 7开始支持，从API version 9开始废弃。替代方法仅向系统应用开放。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS，该权限仅系统应用可申请。
 
@@ -2499,7 +2526,7 @@ getOsAccountTypeFromProcess(callback: AsyncCallback&lt;OsAccountType&gt;): void
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[getOsAccountType](#getosaccounttype9)。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用[getOsAccountType](#getosaccounttype9)。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2515,8 +2542,11 @@ getOsAccountTypeFromProcess(callback: AsyncCallback&lt;OsAccountType&gt;): void
   import { BusinessError } from '@kit.BasicServicesKit';
   let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   accountManager.getOsAccountTypeFromProcess((err: BusinessError, accountType: osAccount.OsAccountType) => {
-    console.log('getOsAccountTypeFromProcess err: ' + JSON.stringify(err));
-    console.log('getOsAccountTypeFromProcess accountType: ' + accountType);
+    if (err) {
+      console.error('getOsAccountTypeFromProcess err: ' + JSON.stringify(err));
+    } else {
+      console.log('getOsAccountTypeFromProcess accountType: ' + accountType);
+    }
   });
   ```
 
@@ -2528,7 +2558,7 @@ getOsAccountTypeFromProcess(): Promise&lt;OsAccountType&gt;
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[getOsAccountType](#getosaccounttype9-1)。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用[getOsAccountType](#getosaccounttype9-1)。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2558,7 +2588,7 @@ getDistributedVirtualDeviceId(callback: AsyncCallback&lt;string&gt;): void
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[queryDistributedVirtualDeviceId](#querydistributedvirtualdeviceid9)。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用[queryDistributedVirtualDeviceId](#querydistributedvirtualdeviceid9)。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS（仅系统应用可申请）或 ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -2576,8 +2606,11 @@ getDistributedVirtualDeviceId(callback: AsyncCallback&lt;string&gt;): void
   import { BusinessError } from '@kit.BasicServicesKit';
   let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   accountManager.getDistributedVirtualDeviceId((err: BusinessError, virtualID: string) => {
-    console.log('getDistributedVirtualDeviceId err: ' + JSON.stringify(err));
-    console.log('getDistributedVirtualDeviceId virtualID: ' + virtualID);
+    if (err) {
+      console.error('getDistributedVirtualDeviceId err: ' + JSON.stringify(err));
+    } else {
+      console.log('getDistributedVirtualDeviceId virtualID: ' + virtualID);
+    }
   });
   ```
 
@@ -2589,9 +2622,9 @@ getDistributedVirtualDeviceId(): Promise&lt;string&gt;
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[queryDistributedVirtualDeviceId](#querydistributedvirtualdeviceid9-1)。
+> 从API version 7开始支持，从API version 9开始废弃。建议使用[queryDistributedVirtualDeviceId](#querydistributedvirtualdeviceid9-1)。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS（仅系统应用可申请）或 ohos.permission.DISTRIBUTED_DATASYNC
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS（仅系统应用可申请）或ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2621,7 +2654,7 @@ getOsAccountLocalIdBySerialNumber(serialNumber: number, callback: AsyncCallback&
 
 > **说明：**
 >
-> 从 API version 8开始支持，从API version 9开始废弃。建议使用[getOsAccountLocalIdForSerialNumber](#getosaccountlocalidforserialnumber9)。
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[getOsAccountLocalIdForSerialNumber](#getosaccountlocalidforserialnumber9)。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2639,8 +2672,11 @@ getOsAccountLocalIdBySerialNumber(serialNumber: number, callback: AsyncCallback&
   let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let serialNumber: number = 12345;
   accountManager.getOsAccountLocalIdBySerialNumber(serialNumber, (err: BusinessError, localId: number)=>{
-    console.log('ger localId err:' + JSON.stringify(err));
-    console.log('get localId:' + localId + ' by serialNumber: ' + serialNumber);
+    if (err) {
+      console.error('ger localId err:' + JSON.stringify(err));
+    } else {
+      console.log('get localId:' + localId + ' by serialNumber: ' + serialNumber);
+    }
   });
   ```
 
@@ -2652,7 +2688,7 @@ getOsAccountLocalIdBySerialNumber(serialNumber: number): Promise&lt;number&gt;
 
 > **说明：**
 >
-> 从 API version 8开始支持，从API version 9开始废弃。建议使用[getOsAccountLocalIdForSerialNumber](#getosaccountlocalidforserialnumber9-1)。
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[getOsAccountLocalIdForSerialNumber](#getosaccountlocalidforserialnumber9-1)。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2689,7 +2725,7 @@ getSerialNumberByOsAccountLocalId(localId: number, callback: AsyncCallback&lt;nu
 
 > **说明：**
 >
-> 从 API version 8开始支持，从API version 9开始废弃。建议使用[getSerialNumberForOsAccountLocalId](#getserialnumberforosaccountlocalid9)。
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[getSerialNumberForOsAccountLocalId](#getserialnumberforosaccountlocalid9)。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2707,8 +2743,11 @@ getSerialNumberByOsAccountLocalId(localId: number, callback: AsyncCallback&lt;nu
   let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let localId: number = 100;
   accountManager.getSerialNumberByOsAccountLocalId(localId, (err: BusinessError, serialNumber: number)=>{
-    console.log('ger serialNumber err:' + JSON.stringify(err));
-    console.log('get serialNumber:' + serialNumber + ' by localId: ' + localId);
+    if (err) {
+      console.error('ger serialNumber err:' + JSON.stringify(err));
+    } else {
+      console.log('get serialNumber:' + serialNumber + ' by localId: ' + localId);
+    }
   });
   ```
 
@@ -2720,7 +2759,7 @@ getSerialNumberByOsAccountLocalId(localId: number): Promise&lt;number&gt;
 
 > **说明：**
 >
-> 从 API version 8开始支持，从API version 9开始废弃。建议使用[getSerialNumberForOsAccountLocalId](#getserialnumberforosaccountlocalid9-1)。
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[getSerialNumberForOsAccountLocalId](#getserialnumberforosaccountlocalid9-1)。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2830,6 +2869,12 @@ getOsAccountDomainInfo(localId: number): Promise&lt;DomainAccountInfo&gt;;
 
 **系统能力：** SystemCapability.Account.OsAccount
 
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明          |
+| ------- | ------ | ---- | ----------- |
+| localId | number | 是   | 系统账号ID。 |
+
 **返回值：**
 
 | 类型                   | 说明                                                               |
@@ -2873,7 +2918,7 @@ updateAccountInfo(oldAccountInfo: DomainAccountInfo, newAccountInfo: DomainAccou
 
 修改指定域账号信息。使用Promise异步回调。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.MANAGE_DOMAIN_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS或ohos.permission.MANAGE_DOMAIN_ACCOUNTS
 
 **系统能力：** SystemCapability.Account.OsAccount
 

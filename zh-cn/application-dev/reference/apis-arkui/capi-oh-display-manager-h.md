@@ -4,7 +4,7 @@
 
 提供屏幕管理的一些基础能力，包括获取默认显示设备的信息，以及监听显示设备的旋转、折叠、展开等状态变化的能力。
 
-**引用文件：** oh_display_manager.h
+**引用文件：** <window_manager/oh_display_manager.h>
 
 **库：** libnative_display_manager.so.
 
@@ -47,6 +47,19 @@
 | [NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CreateDisplayById(uint32_t displayId,NativeDisplayManager_DisplayInfo **displayInfo)](#oh_nativedisplaymanager_createdisplaybyid) | - | 获取指定屏幕的信息对象。 |
 | [void OH_NativeDisplayManager_DestroyDisplay(NativeDisplayManager_DisplayInfo *displayInfo)](#oh_nativedisplaymanager_destroydisplay) | - | 销毁指定屏幕的信息对象。 |
 | [NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CreatePrimaryDisplay(NativeDisplayManager_DisplayInfo **displayInfo)](#oh_nativedisplaymanager_createprimarydisplay) | - | 获取主屏信息对象。除2in1之外的设备获取的是设备自带屏幕的屏幕信息；2in1设备外接屏幕时获取的是当前主屏幕的屏幕信息；2in1设备没有外接屏幕时获取的是自带屏幕的屏幕信息。 |
+| [typedef void (\*OH_NativeDisplayManager_AvailableAreaChangeCallback)(uint64_t displayId)](#oh_nativedisplaymanager_availableareachangecallback) | OH_NativeDisplayManager_AvailableAreaChangeCallback | 注册屏幕可用区域变化的回调函数。 |
+| [NativeDisplayManager_ErrorCode OH_NativeDisplayManager_RegisterAvailableAreaChangeListener(OH_NativeDisplayManager_AvailableAreaChangeCallback availableAreaChangeCallback, uint32_t *listenerIndex)](#oh_nativedisplaymanager_registeravailableareachangelistener) | - | 注册屏幕可用区域变化监听。 |
+| [NativeDisplayManager_ErrorCode OH_NativeDisplayManager_UnregisterAvailableAreaChangeListener(uint32_t listenerIndex)](#oh_nativedisplaymanager_unregisteravailableareachangelistener) | - | 取消屏幕可用区域变化的监听。 |
+| [NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CreateAvailableArea(uint64_t displayId, NativeDisplayManager_Rect **availableArea)](#oh_nativedisplaymanager_createavailablearea) | - | 获取屏幕的可用区域。 |
+| [NativeDisplayManager_ErrorCode OH_NativeDisplayManager_DestroyAvailableArea(NativeDisplayManager_Rect *availableArea)](#oh_nativedisplaymanager_destroyavailablearea) | - | 销毁屏幕的可用区域。 |
+| [typedef void (\*OH_NativeDisplayManager_DisplayAddCallback)(uint64_t displayId)](#oh_nativedisplaymanager_displayaddcallback) | OH_NativeDisplayManager_DisplayAddCallback | 注册屏幕连接的回调函数。 |
+| [NativeDisplayManager_ErrorCode OH_NativeDisplayManager_RegisterDisplayAddListener(OH_NativeDisplayManager_DisplayAddCallback displayAddCallback, uint32_t *listenerIndex)](#oh_nativedisplaymanager_registerdisplayaddlistener) | - | 注册屏幕连接变化监听（如插入显示器）。 |
+| [NativeDisplayManager_ErrorCode OH_NativeDisplayManager_UnregisterDisplayAddListener(uint32_t listenerIndex)](#oh_nativedisplaymanager_unregisterdisplayaddlistener) | - | 取消屏幕连接的监听。 |
+| [typedef void (\*OH_NativeDisplayManager_DisplayRemoveCallback)(uint64_t displayId)](#oh_nativedisplaymanager_displayremovecallback) | OH_NativeDisplayManager_DisplayRemoveCallback | 注册屏幕移除的回调函数。 |
+| [NativeDisplayManager_ErrorCode OH_NativeDisplayManager_RegisterDisplayRemoveListener(OH_NativeDisplayManager_DisplayRemoveCallback displayRemoveCallback, uint32_t *listenerIndex)](#oh_nativedisplaymanager_registerdisplayremovelistener) | - | 注册屏幕移除变化监听（如移除显示器）。 |
+| [NativeDisplayManager_ErrorCode OH_NativeDisplayManager_UnregisterDisplayRemoveListener(uint32_t listenerIndex)](#oh_nativedisplaymanager_unregisterdisplayremovelistener) | - | 取消屏幕移除的监听。 |
+| [NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDisplaySourceMode(uint64_t displayId, NativeDisplayManager_SourceMode *sourceMode)](#oh_nativedisplaymanager_getdisplaysourcemode) | - | 获取屏幕的显示模式。 |
+| [NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDisplayPosition(uint64_t displayId, int32_t *x, int32_t *y)](#oh_nativedisplaymanager_getdisplayposition) | - | 获取屏幕的位置信息。 |
 
 ## 函数说明
 
@@ -515,7 +528,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_RegisterDisplayChangeList
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_NativeDisplayManager_DisplayChangeCallback](#oh_nativedisplaymanager_displaychangecallback) displayChangeCallback | 屏幕状态变化后触发的回调函数，回调函数定义见[OH_NativeDisplayManager_DisplayChangeCallback](capi-oh-display-manager-h.md#oh_nativedisplaymanager_displaychangecallback)。 |
+| [OH_NativeDisplayManager_DisplayChangeCallback](capi-oh-display-manager-h.md#oh_nativedisplaymanager_displaychangecallback) displayChangeCallback | 屏幕状态变化后触发的回调函数，回调函数定义见[OH_NativeDisplayManager_DisplayChangeCallback](capi-oh-display-manager-h.md#oh_nativedisplaymanager_displaychangecallback)。 |
 | uint32_t *listenerIndex | 注册成功后返回的监听编号，调用取消注册函数[OH_NativeDisplayManager_UnregisterDisplayChangeListener](capi-oh-display-manager-h.md#oh_nativedisplaymanager_unregisterdisplaychangelistener)时作为入参使用，此处作为出参返回。 |
 
 **返回：**
@@ -591,7 +604,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_RegisterFoldDisplayModeCh
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_NativeDisplayManager_FoldDisplayModeChangeCallback](#oh_nativedisplaymanager_folddisplaymodechangecallback) displayModeChangeCallback | 屏幕展开和折叠变化后触发的回调函数，回调函数定义见[OH_NativeDisplayManager_FoldDisplayModeChangeCallback](capi-oh-display-manager-h.md#oh_nativedisplaymanager_folddisplaymodechangecallback)。 |
+| [OH_NativeDisplayManager_FoldDisplayModeChangeCallback](capi-oh-display-manager-h.md#oh_nativedisplaymanager_folddisplaymodechangecallback) displayModeChangeCallback | 屏幕展开和折叠变化后触发的回调函数，回调函数定义见[OH_NativeDisplayManager_FoldDisplayModeChangeCallback](capi-oh-display-manager-h.md#oh_nativedisplaymanager_folddisplaymodechangecallback)。 |
 | uint32_t *listenerIndex | 注册成功后返回的监听编号，调用取消注册函数[OH_NativeDisplayManager_UnregisterFoldDisplayModeChangeListener](capi-oh-display-manager-h.md#oh_nativedisplaymanager_unregisterfolddisplaymodechangelistener)时作为入参使用，此处作为出参返回。 |
 
 **返回：**
@@ -750,5 +763,319 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CreatePrimaryDisplay(Nati
 | 类型 | 说明 |
 | -- | -- |
 | [NativeDisplayManager_ErrorCode](capi-oh-display-info-h.md#nativedisplaymanager_errorcode) | 返回屏幕管理接口的通用状态码，具体可见[NativeDisplayManager_ErrorCode](capi-oh-display-info-h.md#nativedisplaymanager_errorcode)。 |
+
+### OH_NativeDisplayManager_AvailableAreaChangeCallback()
+
+```
+typedef void (*OH_NativeDisplayManager_AvailableAreaChangeCallback)(uint64_t displayId)
+```
+
+**描述**
+
+注册屏幕可用区域变化的回调函数。
+
+**起始版本：** 20
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| uint64_t displayId | 屏幕的id号，非负整数。 |
+
+### OH_NativeDisplayManager_RegisterAvailableAreaChangeListener()
+
+```
+NativeDisplayManager_ErrorCode OH_NativeDisplayManager_RegisterAvailableAreaChangeListener(OH_NativeDisplayManager_AvailableAreaChangeCallback availableAreaChangeCallback, uint32_t *listenerIndex)
+```
+
+**描述**
+
+注册屏幕可用区域变化监听。
+
+**起始版本：** 20
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [OH_NativeDisplayManager_AvailableAreaChangeCallback](capi-oh-display-manager-h.md#oh_nativedisplaymanager_availableareachangecallback) availableAreaChangeCallback | 屏幕可用区域变化后触发的回调函数，<br>回调函数定义见[OH_NativeDisplayManager_AvailableAreaChangeCallback](capi-oh-display-manager-h.md#oh_nativedisplaymanager_availableareachangecallback)。 |
+| uint32_t *listenerIndex | 注册成功后返回的监听编号，<br>调用取消注册函数[OH_NativeDisplayManager_UnregisterAvailableAreaChangeListener](capi-oh-display-manager-h.md#oh_nativedisplaymanager_unregisteravailableareachangelistener)时作为入参使用，此处作为出参返回。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [NativeDisplayManager_ErrorCode](capi-oh-display-info-h.md#nativedisplaymanager_errorcode) | 返回屏幕管理接口的通用状态码，具体可见[NativeDisplayManager_ErrorCode](capi-oh-display-info-h.md#nativedisplaymanager_errorcode)。 |
+
+### OH_NativeDisplayManager_UnregisterAvailableAreaChangeListener()
+
+```
+NativeDisplayManager_ErrorCode OH_NativeDisplayManager_UnregisterAvailableAreaChangeListener(uint32_t listenerIndex)
+```
+
+**描述**
+
+取消屏幕可用区域变化的监听。
+
+**起始版本：** 20
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| uint32_t listenerIndex | 调用注册函数<br>[OH_NativeDisplayManager_RegisterAvailableAreaChangeListener](capi-oh-display-manager-h.md#oh_nativedisplaymanager_registeravailableareachangelistener)时获取到的监听编号。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [NativeDisplayManager_ErrorCode](capi-oh-display-info-h.md#nativedisplaymanager_errorcode) | 返回屏幕管理接口的通用状态码，具体可见[NativeDisplayManager_ErrorCode](capi-oh-display-info-h.md#nativedisplaymanager_errorcode)。 |
+
+### OH_NativeDisplayManager_CreateAvailableArea()
+
+```
+NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CreateAvailableArea(uint64_t displayId, NativeDisplayManager_Rect **availableArea)
+```
+
+**描述**
+
+获取屏幕的可用区域。该接口仅可在2in1设备使用。
+
+**起始版本：** 20
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| uint64_t displayId | 查询屏幕的id号，非负整数。 |
+| [NativeDisplayManager_Rect](capi-nativedisplaymanager-rect.md) **availableArea | 屏幕可用区域，具体可见[NativeDisplayManager_Rect](capi-nativedisplaymanager-rect.md)，此处作为出参返回。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [NativeDisplayManager_ErrorCode](capi-oh-display-info-h.md#nativedisplaymanager_errorcode) | 返回屏幕管理接口的通用状态码，具体可见[NativeDisplayManager_ErrorCode](capi-oh-display-info-h.md#nativedisplaymanager_errorcode)。 |
+
+### OH_NativeDisplayManager_DestroyAvailableArea()
+
+```
+NativeDisplayManager_ErrorCode OH_NativeDisplayManager_DestroyAvailableArea(NativeDisplayManager_Rect *availableArea)
+```
+
+**描述**
+
+销毁屏幕的可用区域。该接口仅可在2in1设备使用。
+
+**起始版本：** 20
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [NativeDisplayManager_Rect](capi-nativedisplaymanager-rect.md) *availableArea | 销毁通过[OH_NativeDisplayManager_CreateAvailableArea](capi-oh-display-manager-h.md#oh_nativedisplaymanager_createavailablearea)获取的屏幕可用区域，<br>可用区域定义具体可见[NativeDisplayManager_Rect](capi-nativedisplaymanager-rect.md)。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [NativeDisplayManager_ErrorCode](capi-oh-display-info-h.md#nativedisplaymanager_errorcode) | 返回屏幕管理接口的通用状态码，具体可见[NativeDisplayManager_ErrorCode](capi-oh-display-info-h.md#nativedisplaymanager_errorcode)。 |
+
+### OH_NativeDisplayManager_DisplayAddCallback()
+
+```
+typedef void (*OH_NativeDisplayManager_DisplayAddCallback)(uint64_t displayId)
+```
+
+**描述**
+
+注册屏幕连接的回调函数。
+
+**起始版本：** 20
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| uint64_t displayId | 新增屏幕的id号，非负整数。 |
+
+### OH_NativeDisplayManager_RegisterDisplayAddListener()
+
+```
+NativeDisplayManager_ErrorCode OH_NativeDisplayManager_RegisterDisplayAddListener(OH_NativeDisplayManager_DisplayAddCallback displayAddCallback, uint32_t *listenerIndex)
+```
+
+**描述**
+
+注册屏幕连接变化监听（如插入显示器）。
+
+**起始版本：** 20
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [OH_NativeDisplayManager_DisplayAddCallback](capi-oh-display-manager-h.md#oh_nativedisplaymanager_displayaddcallback) displayAddCallback | 屏幕连接后触发的回调函数，回调函数定义见[OH_NativeDisplayManager_DisplayAddCallback](capi-oh-display-manager-h.md#oh_nativedisplaymanager_displayaddcallback)。 |
+| uint32_t *listenerIndex | 注册成功后返回的监听编号，<br>调用取消注册函数[OH_NativeDisplayManager_UnregisterDisplayAddListener](capi-oh-display-manager-h.md#oh_nativedisplaymanager_unregisterdisplayaddlistener)时作为入参使用，此处作为出参返回。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [NativeDisplayManager_ErrorCode](capi-oh-display-info-h.md#nativedisplaymanager_errorcode) | 返回屏幕管理接口的通用状态码，具体可见[NativeDisplayManager_ErrorCode](capi-oh-display-info-h.md#nativedisplaymanager_errorcode)。 |
+
+### OH_NativeDisplayManager_UnregisterDisplayAddListener()
+
+```
+NativeDisplayManager_ErrorCode OH_NativeDisplayManager_UnregisterDisplayAddListener(uint32_t listenerIndex)
+```
+
+**描述**
+
+取消屏幕连接的监听。
+
+**起始版本：** 20
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| uint32_t listenerIndex | 调用注册函数[OH_NativeDisplayManager_RegisterDisplayAddListener](capi-oh-display-manager-h.md#oh_nativedisplaymanager_registerdisplayaddlistener)时获取到的监听编号。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [NativeDisplayManager_ErrorCode](capi-oh-display-info-h.md#nativedisplaymanager_errorcode) | 返回屏幕管理接口的通用状态码，具体可见[NativeDisplayManager_ErrorCode](capi-oh-display-info-h.md#nativedisplaymanager_errorcode)。 |
+
+### OH_NativeDisplayManager_DisplayRemoveCallback()
+
+```
+typedef void (*OH_NativeDisplayManager_DisplayRemoveCallback)(uint64_t displayId)
+```
+
+**描述**
+
+注册屏幕移除的回调函数。
+
+**起始版本：** 20
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| uint64_t displayId | 被移除屏幕的id号，非负整数。 |
+
+### OH_NativeDisplayManager_RegisterDisplayRemoveListener()
+
+```
+NativeDisplayManager_ErrorCode OH_NativeDisplayManager_RegisterDisplayRemoveListener(OH_NativeDisplayManager_DisplayRemoveCallback displayRemoveCallback, uint32_t *listenerIndex)
+```
+
+**描述**
+
+注册屏幕移除变化监听（如移除显示器）。
+
+**起始版本：** 20
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [OH_NativeDisplayManager_DisplayRemoveCallback](capi-oh-display-manager-h.md#oh_nativedisplaymanager_displayremovecallback) displayRemoveCallback | 屏幕移除后触发的回调函数，回调函数定义见[OH_NativeDisplayManager_DisplayRemoveCallback](capi-oh-display-manager-h.md#oh_nativedisplaymanager_displayremovecallback)。 |
+| uint32_t *listenerIndex | 注册成功后返回的监听编号，<br>调用取消注册函数[OH_NativeDisplayManager_UnregisterDisplayRemoveListener](capi-oh-display-manager-h.md#oh_nativedisplaymanager_unregisterdisplayremovelistener)时作为入参使用，此处作为出参返回。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [NativeDisplayManager_ErrorCode](capi-oh-display-info-h.md#nativedisplaymanager_errorcode) | 返回屏幕管理接口的通用状态码，具体可见[NativeDisplayManager_ErrorCode](capi-oh-display-info-h.md#nativedisplaymanager_errorcode)。 |
+
+### OH_NativeDisplayManager_UnregisterDisplayRemoveListener()
+
+```
+NativeDisplayManager_ErrorCode OH_NativeDisplayManager_UnregisterDisplayRemoveListener(uint32_t listenerIndex)
+```
+
+**描述**
+
+取消屏幕移除的监听。
+
+**起始版本：** 20
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| uint32_t listenerIndex | 调用注册函数[OH_NativeDisplayManager_RegisterDisplayRemoveListener](capi-oh-display-manager-h.md#oh_nativedisplaymanager_registerdisplayremovelistener)时获取到的监听编号。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [NativeDisplayManager_ErrorCode](capi-oh-display-info-h.md#nativedisplaymanager_errorcode) | 返回屏幕管理接口的通用状态码，具体可见[NativeDisplayManager_ErrorCode](capi-oh-display-info-h.md#nativedisplaymanager_errorcode)。 |
+
+### OH_NativeDisplayManager_GetDisplaySourceMode()
+
+```
+NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDisplaySourceMode(uint64_t displayId, NativeDisplayManager_SourceMode *sourceMode)
+```
+
+**描述**
+
+获取屏幕的显示模式。
+
+**起始版本：** 20
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| uint64_t displayId | 查询屏幕的id号，非负整数。 |
+| [NativeDisplayManager_SourceMode](capi-oh-display-info-h.md#nativedisplaymanager_sourcemode) *sourceMode | 屏幕当前的显示模式，具体可见[NativeDisplayManager_SourceMode](capi-oh-display-info-h.md#nativedisplaymanager_sourcemode)，此处作为出参返回。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [NativeDisplayManager_ErrorCode](capi-oh-display-info-h.md#nativedisplaymanager_errorcode) | 返回屏幕管理接口的通用状态码，具体可见[NativeDisplayManager_ErrorCode](capi-oh-display-info-h.md#nativedisplaymanager_errorcode)。 |
+
+### OH_NativeDisplayManager_GetDisplayPosition()
+
+```
+NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDisplayPosition(uint64_t displayId, int32_t *x, int32_t *y)
+```
+
+**描述**
+
+获取屏幕的位置信息。
+
+**起始版本：** 20
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| uint64_t displayId | 查询屏幕的id号，非负整数。 |
+| int32_t *x | 相对于主屏左上角的x方向坐标，此处作为出参返回。 |
+| int32_t *y | 相对于主屏左上角的y方向坐标，此处作为出参返回。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [NativeDisplayManager_ErrorCode](capi-oh-display-info-h.md#nativedisplaymanager_errorcode) | 返回屏幕管理接口的通用状态码，具体可见[NativeDisplayManager_ErrorCode](capi-oh-display-info-h.md#nativedisplaymanager_errorcode)。<br>当前仅支持主屏幕和扩展屏幕查询屏幕位置信息，其他屏幕查询会返回DISPLAY_MANAGER_ERROR_ILLEGAL_PARAM。 |
 
 

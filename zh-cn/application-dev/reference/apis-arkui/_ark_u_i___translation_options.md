@@ -18,9 +18,9 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| float [x](#x) | 横向的平移距离。  | 
-| float [y](#y) | 纵向的平移距离。  | 
-| float [z](#z) | 竖向的平移距离。  | 
+| float [x](#x) | 横向的平移距离。| 
+| float [y](#y) | 纵向的平移距离。| 
+| float [z](#z) | 竖向的平移距离。| 
 
 
 ## 结构体成员变量说明
@@ -35,7 +35,6 @@ float ArkUI_TranslationOptions::x
 
 横向的平移距离。
 
-
 ### y
 
 ```
@@ -44,7 +43,6 @@ float ArkUI_TranslationOptions::y
 **描述：**
 
 纵向的平移距离。
-
 
 ### z
 

@@ -24,6 +24,7 @@ HiAppEvent提供接口用于订阅系统踩内存事件。
 
 | 取值    | 说明                       |
 | ------- | ------------------------- |
+| FDSAN | 由fdsan触发的错误的错误类型。[开发者可以查看FDSAN使用指导获取帮助](../napi/fdsan.md)。 |
 | alloc-dealloc-mismatch | 内存分配和释放方式不匹配。 |
 | allocation-size-too-big | 当分配对堆来说太大时发现的错误。 |
 | calloc-overflow | calloc分配内存错误。 |

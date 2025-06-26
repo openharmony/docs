@@ -50,8 +50,20 @@ getPhotoAccessHelper(context: Context): PhotoAccessHelper
 // 此处获取的phAccessHelper实例为全局对象，后续使用到phAccessHelper的地方默认为使用此处获取的对象，如未添加此段代码报phAccessHelper未定义的错误请自行添加。
 // 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
 import { common } from '@kit.AbilityKit';
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Button("example").onClick(async () => {
+        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+      }).width('100%')
+    }
+    .height('90%')
+  }
+}
 ```
 
 ## PhotoAccessHelper
@@ -79,12 +91,12 @@ getAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;Photo
 
 接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
 
-错误码13900012，请参考[开发准备](../../media/medialibrary/photoAccessHelper-preparation.md)。
+在API 13及之前的版本，无相关权限返回错误码13900012；从API 14开始，无相关权限返回错误码201。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
-| 13900012     | Permission denied.         |
+| 201     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
@@ -95,7 +107,7 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('getAssets');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -145,12 +157,12 @@ getAssets(options: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;
 
 接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
 
-错误码13900012，请参考[开发准备](../../media/medialibrary/photoAccessHelper-preparation.md)。
+在API 13及之前的版本，无相关权限返回错误码13900012；从API 14开始，无相关权限返回错误码201。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
-| 13900012     | Permission denied.         |
+| 201     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
@@ -161,7 +173,7 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('getAssets');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -221,10 +233,9 @@ getBurstAssets(burstKey: string, options: FetchOptions): Promise&lt;FetchResult&
 phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
-import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('getBurstAssets');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -269,19 +280,19 @@ createAsset(photoType: PhotoType, extension: string, options: CreateOptions, cal
 | -------- | ------------------------ | ---- | ------------------------- |
 | photoType  | [PhotoType](#phototype)        | 是   | 创建的文件类型，IMAGE或者VIDEO类型。              |
 | extension  | string        | 是   | 文件名后缀参数，例如：'jpg'。              |
-| options  | [CreateOptions](#createoptions)        | 是   | 创建选项，例如{title: 'testPhoto'}。              |
+| options  | [CreateOptions](#createoptions)        | 是   | 创建选项，当前仅支持'title'，例如{title: 'testPhoto'}。              |
 | callback |  AsyncCallback&lt;string&gt; | 是   | callback返回创建的图片和视频的uri。 |
 
 **错误码：**
 
 接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
 
-错误码13900012，请参考[开发准备](../../media/medialibrary/photoAccessHelper-preparation.md)。
+在API 13及之前的版本，无相关权限返回错误码13900012；从API 14开始，无相关权限返回错误码201。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
-| 13900012     | Permission denied.         |
+| 201     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
@@ -290,7 +301,7 @@ createAsset(photoType: PhotoType, extension: string, options: CreateOptions, cal
 phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('createAssetDemo');
   let photoType: photoAccessHelper.PhotoType = photoAccessHelper.PhotoType.IMAGE;
   let extension:string = 'jpg';
@@ -334,12 +345,12 @@ createAsset(photoType: PhotoType, extension: string, callback: AsyncCallback&lt;
 
 接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
 
-错误码13900012，请参考[开发准备](../../media/medialibrary/photoAccessHelper-preparation.md)。
+在API 13及之前的版本，无相关权限返回错误码13900012；从API 14开始，无相关权限返回错误码201。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
-| 13900012     | Permission denied.         |
+| 201     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
@@ -348,7 +359,7 @@ createAsset(photoType: PhotoType, extension: string, callback: AsyncCallback&lt;
 phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('createAssetDemo');
   let photoType: photoAccessHelper.PhotoType = photoAccessHelper.PhotoType.IMAGE;
   let extension: string = 'jpg';
@@ -383,7 +394,7 @@ createAsset(photoType: PhotoType, extension: string, options?: CreateOptions): P
 | -------- | ------------------------ | ---- | ------------------------- |
 | photoType  | [PhotoType](#phototype)        | 是   | 创建的文件类型，IMAGE或者VIDEO类型。              |
 | extension  | string        | 是   | 文件名后缀参数，例如：'jpg'。              |
-| options  | [CreateOptions](#createoptions)        | 否   | 创建选项，例如{title: 'testPhoto'}。              |
+| options  | [CreateOptions](#createoptions)        | 否   | 创建选项，当前仅支持'title'，例如{title: 'testPhoto'}。              |
 
 **返回值：**
 
@@ -395,12 +406,12 @@ createAsset(photoType: PhotoType, extension: string, options?: CreateOptions): P
 
 接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
 
-错误码13900012，请参考[开发准备](../../media/medialibrary/photoAccessHelper-preparation.md)。
+在API 13及之前的版本，无相关权限返回错误码13900012；从API 14开始，无相关权限返回错误码201。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
-| 13900012     | Permission denied.         |
+| 201     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
@@ -409,7 +420,7 @@ createAsset(photoType: PhotoType, extension: string, options?: CreateOptions): P
 phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('createAssetDemo');
   try {
     let photoType: photoAccessHelper.PhotoType = photoAccessHelper.PhotoType.IMAGE;
@@ -451,12 +462,12 @@ getAlbums(type: AlbumType, subtype: AlbumSubtype, options: FetchOptions, callbac
 
 接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
 
-错误码13900012，请参考[开发准备](../../media/medialibrary/photoAccessHelper-preparation.md)。
+在API 13及之前的版本，无相关权限返回错误码13900012；从API 14开始，无相关权限返回错误码201。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
-| 13900012     | Permission denied.         |
+| 201     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
@@ -467,7 +478,7 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   // 示例代码中为获取相册名为newAlbumName的相册。
   console.info('getAlbumsDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -516,12 +527,12 @@ getAlbums(type: AlbumType, subtype: AlbumSubtype, callback: AsyncCallback&lt;Fet
 
 接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
 
-错误码13900012，请参考[开发准备](../../media/medialibrary/photoAccessHelper-preparation.md)。
+在API 13及之前的版本，无相关权限返回错误码13900012；从API 14开始，无相关权限返回错误码201。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
-| 13900012     | Permission denied.         |
+| 201     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
@@ -530,7 +541,7 @@ getAlbums(type: AlbumType, subtype: AlbumSubtype, callback: AsyncCallback&lt;Fet
 phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   // 示例代码中为获取统相册VIDEO，默认已预置。
   console.info('getAlbumsDemo');
   phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.VIDEO, async (err, fetchResult) => {
@@ -584,7 +595,7 @@ getAlbums(type: AlbumType, subtype: AlbumSubtype, options?: FetchOptions): Promi
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
-| 13900012     | Permission denied.         |
+| 201     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
@@ -596,7 +607,7 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   // 示例代码中为获取相册名为newAlbumName的相册。
   console.info('getAlbumsDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -654,7 +665,7 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   console.info('registerChangeDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -717,7 +728,7 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   console.info('offDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -786,7 +797,7 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('createDeleteRequestDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -859,7 +870,7 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('createDeleteRequestDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -951,7 +962,7 @@ release(callback: AsyncCallback&lt;void&gt;): void
 phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('releaseDemo');
   phAccessHelper.release((err) => {
     if (err !== undefined) {
@@ -993,7 +1004,7 @@ release(): Promise&lt;void&gt;
 phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('releaseDemo');
   try {
     await phAccessHelper.release();
@@ -1021,7 +1032,7 @@ showAssetsCreationDialog(srcFileUris: Array&lt;string&gt;, photoCreationConfigs:
 
 | 参数名   | 类型                                                                   | 必填 | 说明                      |
 | -------- |----------------------------------------------------------------------| ---- | ------------------------- |
-| srcFileUris | Array&lt;string&gt; | 是 | 需保存到媒体库中的图片/视频文件对应的[媒体库uri](../../file-management/user-file-uri-intro.md#媒体文件uri)。<br>**注意：**<br>- 仅支持处理图片、视频uri。<br>- 不支持手动拼接的uri，需调用接口获取，获取方式参考[媒体文件uri获取方式](../../file-management/user-file-uri-intro.md#媒体文件uri获取方式)。  |
+| srcFileUris | Array&lt;string&gt; | 是 | 需保存到媒体库中的图片/视频文件对应的[媒体库uri](../../file-management/user-file-uri-intro.md#媒体文件uri)。<br>**注意：**<br>- 一次弹窗最多保存100张图片。<br>- 仅支持处理图片、视频uri。<br>- 不支持手动拼接的uri，需调用接口获取，获取方式参考[媒体文件uri获取方式](../../file-management/user-file-uri-intro.md#媒体文件uri获取方式)。  |
 | photoCreationConfigs | Array&lt;[PhotoCreationConfig](#photocreationconfig12)&gt; | 是 | 保存图片或视频到媒体库的配置，包括文件名等，与srcFileUris保持一一对应。 |
 
 **返回值：**
@@ -1045,9 +1056,8 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('ShowAssetsCreationDialogDemo.');
 
   try {
@@ -1111,7 +1121,7 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { fileIo } from '@kit.CoreFileKit';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
     console.info('createAssetWithShortTermPermissionDemo.');
     
     try {
@@ -1183,9 +1193,8 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   console.info('requestPhotoUrisReadPermissionDemo.');
 
   try {
@@ -1207,8 +1216,6 @@ async function example() {
 getSupportedPhotoFormats(photoType: PhotoType): Promise&lt;Array&lt;string&gt;&gt;
 
 接口提供给应用调用，获取媒体库支持的图片或者视频后缀列表。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -1238,9 +1245,7 @@ getSupportedPhotoFormats(photoType: PhotoType): Promise&lt;Array&lt;string&gt;&g
 phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
-
-async function example(photoTypeNumber: number){
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, photoTypeNumber: number){
   console.info('getSupportedPhotoFormatsDemo.');
 
   try {
@@ -1262,6 +1267,240 @@ async function example(photoTypeNumber: number){
     console.info('getSupportedPhotoFormats success, data is ' + outputText);
   } catch (error) {
     console.error('getSupportedPhotoFormats failed, errCode is', error);
+  }
+}
+```
+
+### on('photoChange')<sup>20+</sup> 
+
+on(type: 'photoChange', callback: Callback&lt;PhotoAssetChangeInfos&gt;): void
+
+注册'photoChange'监听媒体资产，并通过callback方式返回资产变化结果，可以注册多个callback。
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明      |
+|-----------|-------------------------|-----------|-----------------|
+| type | string | 是   | 注册监听媒体资产，取值为'photoChange'。注册完成后，有资产发生变化时，通过callback返回变更信息。 |
+| callback  | Callback&lt;[PhotoAssetChangeInfos](#photoassetchangeinfos20)&gt; | 是   | 返回变更的媒体资产信息[PhotoAssetChangeInfos](#photoassetchangeinfos20)。<br>**注意：** 该接口可以注册多个不同的callback监听，[off('photoChange')](#offphotochange20)即可以关闭所有监听，也可以关闭指定callback监听。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201 | Permission denied. |
+| 13900020 | Invalid argument. |
+| 14000011 | Internal system error. |
+
+**示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData'
+
+let onCallback1 = (changeData: photoAccessHelper.PhotoAssetChangeInfos) => {
+    console.info('onCallback1 success, changData: ' + JSON.stringify(changeData));
+  // file had changed, do something.
+}
+let onCallback2 = (changeData: photoAccessHelper.PhotoAssetChangeInfos) => {
+    console.info('onCallback2 success, changData: ' + JSON.stringify(changeData));
+  // file had changed, do something.
+}
+
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context){
+  console.info('onPhotoChangeDemo.');
+
+  try {
+    // 注册onCallback1监听。
+    phAccessHelper.on('photoChange', onCallback1);
+    // 注册onCallback2监听。
+    phAccessHelper.on('photoChange', onCallback2);
+  } catch (error) {
+    console.error('onPhotoChangeDemo failed, errCode is', error);
+  }
+}
+```
+
+### off('photoChange')<sup>20+</sup> 
+
+off(type: 'photoChange', callback?: Callback&lt;PhotoAssetChangeInfos&gt;): void
+
+取消对'photoChange'媒体资产的监听。存在多个callback监听时，可以取消指定注册的callback监听；不指定callback时取消所有监听。
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明      |
+|-----------|-------------------------|-----------|-----------------|
+| type | string | 是   | 取消监听媒体资产，取值为'photoChange'。取消监听后，有资产发生变化时，不再通过callback返回变更信息。 |
+| callback | Callback&lt;[PhotoAssetChangeInfos](#photoassetchangeinfos20)&gt; | 否   | 取消[on('photoChange')](#onphotochange20)注册时指定的callback监听；不填时，则取消对'photoChange'的所有监听。<br>**注意：** 取消注册的callback后，有资产发生变化时，不会进入此回调。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201 | Permission denied. |
+| 13900020 | Invalid argument. |
+| 14000011 | Internal system error. |
+
+**示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData'
+
+let onCallback1 = (changeData: photoAccessHelper.PhotoAssetChangeInfos) => {
+    console.info('onCallback1 success, changData: ' + JSON.stringify(changeData));
+  // file had changed, do something.
+}
+let onCallback2 = (changeData: photoAccessHelper.PhotoAssetChangeInfos) => {
+    console.info('onCallback2 success, changData: ' + JSON.stringify(changeData));
+  // file had changed, do something.
+}
+
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context){
+  console.info('offPhotoChangeDemo.');
+
+  try {
+    // 注册onCallback1监听。
+    phAccessHelper.on('photoChange', onCallback1);
+    // 注册onCallback2监听。
+    phAccessHelper.on('photoChange', onCallback2);
+
+    // 关闭onCallback1监听，onCallback2继续监听。
+    phAccessHelper.off('photoChange', onCallback1);
+  } catch (error) {
+    console.error('offPhotoChangeDemo failed, errCode is', error);
+  }
+}
+```
+
+### on('photoAlbumChange')<sup>20+</sup> 
+
+on(type: 'photoAlbumChange', callback: Callback&lt;AlbumChangeInfos&gt;): void
+
+注册'photoAlbumChange'监听相册，并通过callback方式返回相册变化结果，可以注册多个callback。
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明      |
+|-----------|-------------------------|-----------|-----------------|
+| type | string | 是   | 注册监听相册，取值为'photoAlbumChange'。注册完成后，有相册发生变化时，通过callback返回变更信息。 |
+| callback  | Callback&lt;[AlbumChangeInfos](#albumchangeinfos20)&gt; | 是   | 返回变更的相册信息[AlbumChangeInfos](#albumchangeinfos20)。<br>**注意：** 该接口可以注册多个不同的callback监听，[off('photoAlbumChange')](#offphotoalbumchange20)即可以关闭所有监听，也可以关闭指定callback监听。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201 | Permission denied. |
+| 13900020 | Invalid argument. |
+| 14000011 | Internal system error. |
+
+**示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData'
+
+let onCallback1 = (changeData: photoAccessHelper.AlbumChangeInfos) => {
+    console.info('onCallback1 success, changData: ' + JSON.stringify(changeData));
+  // file had changed, do something.
+}
+let onCallback2 = (changeData: photoAccessHelper.AlbumChangeInfos) => {
+    console.info('onCallback2 success, changData: ' + JSON.stringify(changeData));
+  // file had changed, do something.
+}
+
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context){
+  console.info('onPhotoAlbumChangeDemo.');
+
+  try {
+    // 注册onCallback1监听。
+    phAccessHelper.on('photoAlbumChange', onCallback1);
+    // 注册onCallback2监听。
+    phAccessHelper.on('photoAlbumChange', onCallback2);
+  } catch (error) {
+    console.error('onPhotoAlbumChangeDemo failed, errCode is', error);
+  }
+}
+```
+
+### off('photoAlbumChange')<sup>20+</sup> 
+
+off(type: 'photoAlbumChange', callback?: Callback&lt;AlbumChangeInfos&gt;): void
+
+取消对'photoAlbumChange'相册的监听。存在多个callback监听时，可以取消指定注册的callback监听；不指定callback时取消所有监听。
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明      |
+|-----------|-------------------------|-----------|-----------------|
+| type | string | 是   | 取消监听相册，取值为'photoAlbumChange'。取消监听后，有相册发生变化时，不再通过callback返回变更信息。 |
+| callback | Callback&lt;[AlbumChangeInfos](#albumchangeinfos20)&gt; | 否   | 取消[on('photoAlbumChange')](#onphotoalbumchange20)注册时指定的callback监听；不填时，则取消对'photoAlbumChange'的所有监听。<br>**注意：** 取消注册的callback后，有相册发生变化时，不会进入此回调。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201 | Permission denied. |
+| 13900020 | Invalid argument. |
+| 14000011 | Internal system error. |
+
+**示例：**
+
+phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData'
+
+let onCallback1 = (changeData: photoAccessHelper.AlbumChangeInfos) => {
+    console.info('onCallback1 success, changData: ' + JSON.stringify(changeData));
+  // file had changed, do something.
+}
+let onCallback2 = (changeData: photoAccessHelper.AlbumChangeInfos) => {
+    console.info('onCallback2 success, changData: ' + JSON.stringify(changeData));
+  // file had changed, do something.
+}
+
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context){
+  console.info('onPhotoAlbumChangeDemo.');
+
+  try {
+    // 注册onCallback1监听。
+    phAccessHelper.on('photoAlbumChange', onCallback1);
+    // 注册onCallback2监听。
+    phAccessHelper.on('photoAlbumChange', onCallback2);
+
+    // 关闭onCallback1监听，onCallback2继续监听。
+    phAccessHelper.off('photoAlbumChange', onCallback1);
+  } catch (error) {
+    console.error('onPhotoAlbumChangeDemo failed, errCode is', error);
   }
 }
 ```
@@ -1317,7 +1556,7 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('photoAssetGetDemo');
   try {
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -1368,7 +1607,7 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('photoAssetSetDemo');
   try {
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -1415,7 +1654,7 @@ commitModify(callback: AsyncCallback&lt;void&gt;): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 13900012     | Permission denied.         |
+| 201     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000001      | Invalid display name.         |
 | 14000011       | System inner fail.         |
@@ -1427,7 +1666,7 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('commitModifyDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -1475,12 +1714,12 @@ commitModify(): Promise&lt;void&gt;
 
 错误码14000001，请参考 [PhotoKeys](#photokeys)获取有关文件名的格式和长度要求。
 
-错误码13900012，请参考[开发准备](../../media/medialibrary/photoAccessHelper-preparation.md)。
+在API 13及之前的版本，无相关权限返回错误码13900012；从API 14开始，无相关权限返回错误码201。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 13900012     | Permission denied.         |
+| 201     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000001      | Invalid display name.         |
 | 14000011       | System inner fail.         |
@@ -1492,7 +1731,7 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('commitModifyDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -1541,12 +1780,12 @@ getReadOnlyFd(callback: AsyncCallback&lt;number&gt;): void
 
 接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
 
-错误码13900012，请参考[开发准备](../../media/medialibrary/photoAccessHelper-preparation.md)。
+在API 13及之前的版本，无相关权限返回错误码13900012；从API 14开始，无相关权限返回错误码201。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 13900012     | Permission denied.         |
+| 201     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
@@ -1555,7 +1794,7 @@ getReadOnlyFd(callback: AsyncCallback&lt;number&gt;): void
 phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('getReadOnlyFdDemo');
   // 需要保证设备中存在可读取图片视频文件。
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -1602,12 +1841,12 @@ getReadOnlyFd(): Promise&lt;number&gt;
 
 接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
 
-错误码13900012，请参考[开发准备](../../media/medialibrary/photoAccessHelper-preparation.md)。
+在API 13及之前的版本，无相关权限返回错误码13900012；从API 14开始，无相关权限返回错误码201。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 13900012     | Permission denied.         |
+| 201     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
@@ -1616,7 +1855,7 @@ getReadOnlyFd(): Promise&lt;number&gt;
 phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('getReadOnlyFdDemo');
   try {
     // 需要保证设备中存在可读取图片视频文件。
@@ -1676,7 +1915,7 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('closeDemo');
   try {
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -1742,7 +1981,7 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('closeDemo');
   try {
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -1776,7 +2015,7 @@ getThumbnail(callback: AsyncCallback&lt;image.PixelMap&gt;): void
 
 | 参数名      | 类型                                  | 必填   | 说明               |
 | -------- | ----------------------------------- | ---- | ---------------- |
-| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 是    | callback返回缩略图的PixelMap。 |
+| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | 是    | callback返回缩略图的PixelMap。 |
 
 **错误码：**
 
@@ -1798,7 +2037,7 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('getThumbnailDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -1832,8 +2071,8 @@ getThumbnail(size: image.Size, callback: AsyncCallback&lt;image.PixelMap&gt;): v
 
 | 参数名      | 类型                                  | 必填   | 说明               |
 | -------- | ----------------------------------- | ---- | ---------------- |
-| size     | [image.Size](../apis-image-kit/js-apis-image.md#size) | 是    | 缩略图尺寸。            |
-| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 是    | callback返回缩略图的PixelMap。 |
+| size     | [image.Size](../apis-image-kit/arkts-apis-image-i.md#size) | 是    | 缩略图尺寸。            |
+| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | 是    | callback返回缩略图的PixelMap。 |
 
 **错误码：**
 
@@ -1856,7 +2095,7 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 import { dataSharePredicates } from '@kit.ArkData';
 import { image } from '@kit.ImageKit';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('getThumbnailDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -1891,13 +2130,13 @@ getThumbnail(size?: image.Size): Promise&lt;image.PixelMap&gt;
 
 | 参数名  | 类型             | 必填   | 说明    |
 | ---- | -------------- | ---- | ----- |
-| size | [image.Size](../apis-image-kit/js-apis-image.md#size) | 否    | 缩略图尺寸。 |
+| size | [image.Size](../apis-image-kit/arkts-apis-image-i.md#size) | 否    | 缩略图尺寸。 |
 
 **返回值：**
 
 | 类型                            | 说明                    |
 | ----------------------------- | --------------------- |
-| Promise&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Promise对象，返回缩略图的PixelMap。 |
+| Promise&lt;[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | Promise对象，返回缩略图的PixelMap。 |
 
 **错误码：**
 
@@ -1921,7 +2160,7 @@ import { dataSharePredicates } from '@kit.ArkData';
 import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('getThumbnailDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -1980,7 +2219,7 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 import { dataSharePredicates } from '@kit.ArkData';
 import { systemDateTime } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: photoAccessHelper.FetchOptions = {
     fetchColumns: [],
@@ -2049,7 +2288,8 @@ select(option?: PhotoSelectOptions) : Promise&lt;PhotoSelectResult&gt;
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-async function example01() {
+
+async function example01(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     let PhotoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
     PhotoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE;
@@ -2099,7 +2339,8 @@ select(option: PhotoSelectOptions, callback: AsyncCallback&lt;PhotoSelectResult&
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-async function example02() {
+
+async function example02(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     let PhotoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
     PhotoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE;
@@ -2150,7 +2391,8 @@ select(callback: AsyncCallback&lt;PhotoSelectResult&gt;) : void
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-async function example03() {
+
+async function example03(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     let photoPicker = new photoAccessHelper.PhotoViewPicker();
     photoPicker.select((err: BusinessError, PhotoSelectResult: photoAccessHelper.PhotoSelectResult) => {
@@ -2202,7 +2444,7 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('getCountDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -2246,7 +2488,7 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
     fetchColumns: [],
@@ -2289,7 +2531,7 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('fetchResultCloseDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -2337,7 +2579,7 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('getFirstObjectDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -2386,7 +2628,7 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('getFirstObjectDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -2431,7 +2673,7 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('getNextObjectDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -2484,7 +2726,7 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('getNextObjectDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -2531,7 +2773,7 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('getLastObjectDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -2580,7 +2822,7 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('getLastObjectDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -2625,7 +2867,7 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('getObjectByPositionDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -2680,7 +2922,7 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('getObjectByPositionDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -2724,7 +2966,7 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('getAllObjectDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -2773,7 +3015,7 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('getAllObjectDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -2826,12 +3068,12 @@ getAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;Photo
 
 接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
 
-错误码13900012，请参考[开发准备](../../media/medialibrary/photoAccessHelper-preparation.md)。
+在API 13及之前的版本，无相关权限返回错误码13900012；从API 14开始，无相关权限返回错误码201。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
-| 13900012     | Permission denied.         |
+| 201     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
@@ -2842,7 +3084,7 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('albumGetAssetsDemoCallback');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let albumFetchOptions: photoAccessHelper.FetchOptions = {
@@ -2891,12 +3133,12 @@ getAssets(options: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;
 
 接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
 
-错误码13900012，请参考[开发准备](../../media/medialibrary/photoAccessHelper-preparation.md)。
+在API 13及之前的版本，无相关权限返回错误码13900012；从API 14开始，无相关权限返回错误码201。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
-| 13900012     | Permission denied.         |
+| 201     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
@@ -2908,7 +3150,7 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('albumGetAssetsDemoPromise');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let albumFetchOptions: photoAccessHelper.FetchOptions = {
@@ -2949,12 +3191,11 @@ commitModify(callback: AsyncCallback&lt;void&gt;): void
 
 接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
 
-错误码13900012，请参考[开发准备](../../media/medialibrary/photoAccessHelper-preparation.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 13900012     | Permission denied.         |
+| 201     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
@@ -2965,7 +3206,7 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('albumCommitModifyDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let albumFetchOptions: photoAccessHelper.FetchOptions = {
@@ -3005,12 +3246,11 @@ commitModify(): Promise&lt;void&gt;
 
 接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
 
-错误码13900012，请参考[开发准备](../../media/medialibrary/photoAccessHelper-preparation.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 13900012     | Permission denied.         |
+| 201     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
@@ -3022,7 +3262,7 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('albumCommitModifyDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let albumFetchOptions: photoAccessHelper.FetchOptions = {
@@ -3065,12 +3305,11 @@ addAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt;):
 
 接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
 
-错误码13900012，请参考[开发准备](../../media/medialibrary/photoAccessHelper-preparation.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
-| 13900012     | Permission denied.         |
+| 201     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
@@ -3081,7 +3320,7 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('addAssetsDemoCallback');
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -3136,12 +3375,11 @@ addAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;
 
 接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
 
-错误码13900012，请参考[开发准备](../../media/medialibrary/photoAccessHelper-preparation.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
-| 13900012     | Permission denied.         |
+| 201     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
@@ -3153,7 +3391,7 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('addAssetsDemoPromise');
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -3201,12 +3439,11 @@ removeAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt
 
 接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
 
-错误码13900012，请参考[开发准备](../../media/medialibrary/photoAccessHelper-preparation.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
-| 13900012     | Permission denied.         |
+| 201     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
@@ -3217,7 +3454,7 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('removeAssetsDemoCallback');
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -3272,12 +3509,11 @@ removeAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;
 
 接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
 
-错误码13900012，请参考[开发准备](../../media/medialibrary/photoAccessHelper-preparation.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
-| 13900012     | Permission denied.         |
+| 201     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
@@ -3289,7 +3525,7 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('removeAssetsDemoPromise');
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -3350,7 +3586,7 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('MediaAssetChangeRequest constructorDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -3403,7 +3639,7 @@ static createImageAssetRequest(context: Context, fileUri: string): MediaAssetCha
 phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   console.info('createImageAssetRequestDemo');
   try {
     // 需要确保fileUri对应的资源存在。
@@ -3455,7 +3691,7 @@ static createVideoAssetRequest(context: Context, fileUri: string): MediaAssetCha
 phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   console.info('createVideoAssetRequestDemo');
   try {
     // 需要确保fileUri对应的资源存在。
@@ -3508,7 +3744,7 @@ static createAssetRequest(context: Context, photoType: PhotoType, extension: str
 phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   console.info('createAssetRequestDemo');
   try {
     let photoType: photoAccessHelper.PhotoType = photoAccessHelper.PhotoType.IMAGE;
@@ -3568,7 +3804,7 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   console.info('deleteAssetsDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -3627,7 +3863,7 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   console.info('deleteAssetsDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -3677,7 +3913,7 @@ getAsset(): PhotoAsset
 phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   console.info('getAssetDemo');
   try {
     // 需要确保fileUri对应的资源存在。
@@ -3730,7 +3966,7 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('setTitleDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -3786,7 +4022,7 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { fileIo } from '@kit.CoreFileKit';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   console.info('getWriteCacheHandlerDemo');
   try {
     let photoType: photoAccessHelper.PhotoType = photoAccessHelper.PhotoType.VIDEO;
@@ -3838,7 +4074,7 @@ addResource(type: ResourceType, fileUri: string): void
 phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   console.info('addResourceByFileUriDemo');
   try {
     let photoType: photoAccessHelper.PhotoType = photoAccessHelper.PhotoType.IMAGE;
@@ -3889,7 +4125,7 @@ addResource(type: ResourceType, data: ArrayBuffer): void
 phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   console.info('addResourceByArrayBufferDemo');
   try {
     let photoType: photoAccessHelper.PhotoType = photoAccessHelper.PhotoType.IMAGE;
@@ -3927,7 +4163,7 @@ saveCameraPhoto(): void
 phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
-async function example(asset: photoAccessHelper.PhotoAsset) {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, asset: photoAccessHelper.PhotoAsset) {
   console.info('saveCameraPhotoDemo');
   try {
     let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
@@ -3968,11 +4204,10 @@ saveCameraPhoto(imageFileType: ImageFileType): void
 phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
-import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { dataSharePredicates } from '@kit.ArkData';
 import { image } from '@kit.ImageKit';
 
-async function example(asset: photoAccessHelper.PhotoAsset) {
+async function example(context: Context, asset: photoAccessHelper.PhotoAsset) {
   console.info('saveCameraPhotoDemo');
   try {
     let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
@@ -4008,7 +4243,7 @@ discardCameraPhoto(): void
 phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
-async function example(asset: photoAccessHelper.PhotoAsset) {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, asset: photoAccessHelper.PhotoAsset) {
   console.info('discardCameraPhotoDemo');
   try {
     let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
@@ -4052,7 +4287,7 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('setOrientationDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: photoAccessHelper.FetchOptions = {
@@ -4107,7 +4342,7 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('MediaAlbumChangeRequest constructorDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -4150,7 +4385,7 @@ getAlbum(): Album
 phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('getAlbumDemo');
   try {
     // 请确保图库内存在用户相册。
@@ -4199,7 +4434,7 @@ setAlbumName(name: string): void
 phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('setAlbumNameDemo');
   try {
     let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC);
@@ -4246,7 +4481,7 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('addAssetsDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -4300,7 +4535,7 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   console.info('removeAssetsDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -4349,7 +4584,7 @@ static requestImage(context: Context, asset: PhotoAsset, requestOptions: Request
 | context        | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                                                           | 是   | 传入Ability实例的上下文。 |
 | asset         | [PhotoAsset](#photoasset)                                                                                | 是   | 待请求的的媒体文件对象。 |
 | requestOptions | [RequestOptions](#requestoptions11)                                                                        | 是   | 图片请求策略模式配置项。|       
-| dataHandler    | [MediaAssetDataHandler](#mediaassetdatahandler11)&lt;[image.ImageSource](../apis-image-kit/js-apis-image.md#imagesource)&gt; | 是   | 媒体资源处理器，请求完成时触发回调。|
+| dataHandler    | [MediaAssetDataHandler](#mediaassetdatahandler11)&lt;[image.ImageSource](../apis-image-kit/arkts-apis-image-ImageSource.md)&gt; | 是   | 媒体资源处理器，请求完成时触发回调。|
 
 **返回值：**
 
@@ -4385,7 +4620,7 @@ class MediaHandler implements photoAccessHelper.MediaAssetDataHandler<image.Imag
   }
 }
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   console.info('requestImage');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -4450,6 +4685,7 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
+
 class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayBuffer> {
   onDataPrepared(data: ArrayBuffer) {
     if (data === undefined) {
@@ -4460,7 +4696,7 @@ class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayB
   }
 }
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   console.info('requestImageData');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -4537,7 +4773,7 @@ class MovingPhotoHandler implements photoAccessHelper.MediaAssetDataHandler<phot
   }
 }
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   predicates.equalTo(photoAccessHelper.PhotoKeys.PHOTO_SUBTYPE, photoAccessHelper.PhotoSubtype.MOVING_PHOTO);
   let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -4607,13 +4843,14 @@ phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoa
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
+
 class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<boolean> {
     onDataPrepared(data: boolean) {
         console.info('on video request status prepared');
     }
 }
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   console.info('requestVideoFile');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -4672,7 +4909,7 @@ static cancelRequest(context: Context, requestId: string): Promise\<void>
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(context: Context) {
   try {
     let requestId: string = 'xxx-xxx'; // 应用需使用requestImage等接口返回的有效requestId
     await photoAccessHelper.MediaAssetManager.cancelRequest(context, requestId);
@@ -4720,7 +4957,7 @@ static loadMovingPhoto(context: Context, imageFileUri: string, videoFileUri: str
 **示例：**
 
 ```ts
-async function example() {
+async function example(context: Context) {
   try {
     let imageFileUri: string = 'file://com.example.temptest/data/storage/el2/base/haps/ImageFile.jpg'; // 应用沙箱动态照片的图片uri。
     let videoFileUri: string = 'file://com.example.temptest/data/storage/el2/base/haps/VideoFile.mp4'; // 应用沙箱动态照片的视频uri。
@@ -4751,7 +4988,7 @@ static quickRequestImage(context: Context, asset: PhotoAsset, requestOptions: Re
 | context        | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                                                           | 是   | 传入Ability实例的上下文。 |
 | asset         | [PhotoAsset](#photoasset)                                                                                | 是   | 待请求的的媒体文件对象。 |
 | requestOptions | [RequestOptions](#requestoptions11)                                                                        | 是   | 图片请求策略模式配置项。|
-| dataHandler    | [QuickImageDataHandler](#quickimagedatahandler13)&lt;[image.Picture](../apis-image-kit/js-apis-image.md#picture13)&gt; | 是   | 媒体资源处理器，当所请求的图片资源准备完成时会触发回调。|
+| dataHandler    | [QuickImageDataHandler](#quickimagedatahandler13)&lt;[image.Picture](../apis-image-kit/arkts-apis-image-Picture.md)&gt; | 是   | 媒体资源处理器，当所请求的图片资源准备完成时会触发回调。|
 
 **返回值：**
 
@@ -4774,7 +5011,6 @@ static quickRequestImage(context: Context, asset: PhotoAsset, requestOptions: Re
 phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
-import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { dataSharePredicates } from '@kit.ArkData';
 import { image } from '@kit.ImageKit';
 
@@ -4784,7 +5020,7 @@ class MediaHandler implements photoAccessHelper.QuickImageDataHandler<image.Pict
   }
 }
 
-async function example() {
+async function example(context: Context) {
   console.info('quickRequestImage');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -4816,7 +5052,7 @@ async function example() {
 onDataPrepared(data: T, map?: Map<string, string>): void
 
 媒体资源就绪通知，系统在资源准备就绪时回调此方法。若资源准备出错，回调的data为undefined。资源请求与回调一一对应。
-T支持ArrayBuffer, [ImageSource](../apis-image-kit/js-apis-image.md#imagesource), [MovingPhoto](#movingphoto12)和boolean四种数据类型。其中，ArrayBuffer表示图片/视频资源数据，[ImageSource](../apis-image-kit/js-apis-image.md#imagesource)表示图片源，[MovingPhoto](#movingphoto12)表示动态照片对象，boolean表示图片/视频资源是否成功写入应用沙箱。
+T支持ArrayBuffer, [ImageSource](../apis-image-kit/arkts-apis-image-ImageSource.md), [MovingPhoto](#movingphoto12)和boolean四种数据类型。其中，ArrayBuffer表示图片/视频资源数据，[ImageSource](../apis-image-kit/arkts-apis-image-ImageSource.md)表示图片源，[MovingPhoto](#movingphoto12)表示动态照片对象，boolean表示图片/视频资源是否成功写入应用沙箱。
 
 map支持返回的信息：
 | map键名  | 值说明 |
@@ -4829,7 +5065,7 @@ map支持返回的信息：
 
 | 参数名  | 类型 | 必填 | 说明                                                                            |
 |------|---| ---- |-------------------------------------------------------------------------------|
-| data | T | 是   | 已就绪的图片资源数据。泛型，支持ArrayBuffer, [ImageSource](../apis-image-kit/js-apis-image.md#imagesource), [MovingPhoto](#movingphoto12)和boolean四种数据类型。 |
+| data | T | 是   | 已就绪的图片资源数据。泛型，支持ArrayBuffer, [ImageSource](../apis-image-kit/arkts-apis-image-ImageSource.md), [MovingPhoto](#movingphoto12)和boolean四种数据类型。 |
 | map<sup>12+</sup> | Map<string, string> | 否   | 用于获取图片资源的额外信息，如图片质量。当前仅支持'quality'。 |
 
 **示例**
@@ -4893,7 +5129,7 @@ map支持返回的信息：
 
 | 参数名  | 类型 | 必填 | 说明                                                                            |
 |------|---| ---- |-------------------------------------------------------------------------------|
-| data | T | 是   | 已就绪的图片资源数据。泛型，支持[Picture](../apis-image-kit/js-apis-image.md#picture13)数据类型。 |
+| data | T | 是   | 已就绪的图片资源数据。泛型，支持[Picture](../apis-image-kit/arkts-apis-image-Picture.md)数据类型。 |
 | imageSource | image.ImageSource | 是   | 已就绪的图片资源数据。 |
 | map<sup>13+</sup> | Map<string, string> | 是   | 用于获取图片资源的额外信息，如图片质量。仅支持'quality'。 |
 
@@ -4958,7 +5194,7 @@ class MovingPhotoHandler implements photoAccessHelper.MediaAssetDataHandler<phot
   }
 }
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   predicates.equalTo(photoAccessHelper.PhotoKeys.PHOTO_SUBTYPE, photoAccessHelper.PhotoSubtype.MOVING_PHOTO);
   let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -5044,7 +5280,7 @@ class MovingPhotoHandler implements photoAccessHelper.MediaAssetDataHandler<phot
   }
 }
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   predicates.equalTo(photoAccessHelper.PhotoKeys.PHOTO_SUBTYPE, photoAccessHelper.PhotoSubtype.MOVING_PHOTO);
   let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -5129,7 +5365,7 @@ class MovingPhotoHandler implements photoAccessHelper.MediaAssetDataHandler<phot
   }
 }
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   predicates.equalTo(photoAccessHelper.PhotoKeys.PHOTO_SUBTYPE, photoAccessHelper.PhotoSubtype.MOVING_PHOTO);
   let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -5211,7 +5447,7 @@ class MovingPhotoHandler implements photoAccessHelper.MediaAssetDataHandler<phot
   }
 }
 
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, context: Context) {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   predicates.equalTo(photoAccessHelper.PhotoKeys.PHOTO_SUBTYPE, photoAccessHelper.PhotoSubtype.MOVING_PHOTO);
   let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -5335,7 +5571,7 @@ PhotoSubtype是不同[PhotoAsset](#photoasset)类型的枚举。
 | ------------- | ------------------- | ---------------------------------------------------------- |
 | URI           | 'uri'                 | 文件uri。<br>注意：查询照片时，该字段仅支持使用[DataSharePredicates.equalTo](../apis-arkdata/js-apis-data-dataSharePredicates.md#equalto10)谓词。            |
 | PHOTO_TYPE    | 'media_type'           | 媒体文件类型。                                              |
-| DISPLAY_NAME  | 'display_name'        | 显示名字。规格为：<br>- 应包含有效文件主名和图片或视频扩展名。<br>- 文件名字符串长度为1~255。<br>- 文件主名中不允许出现的非法英文字符。<br>API18开始，非法字符包括： \ / : * ? " < > \| <br>API10-17，非法字符包括：. .. \ / : * ? " ' ` < > \| { } [ ]                                                   |
+| DISPLAY_NAME  | 'display_name'        | 显示名字。规格为：<br>- 应包含有效文件主名和图片或视频扩展名。<br>- 文件名字符串长度为1~255。<br>- 文件主名中不允许出现的非法英文字符。<br>- 不允许出现非法字符，包括：. .. \ / : * ? " ' ` < > \| { } [ ]。                 |
 | SIZE          | 'size'                | 文件大小（单位：字节）。动态照片的size包括图片和视频的总大小。    |
 | DATE_ADDED    | 'date_added'          | 文件创建时的Unix时间戳（单位：秒）。             |
 | DATE_MODIFIED | 'date_modified'       | 文件修改时的Unix时间戳（单位：秒）。修改文件名不会改变此值，当文件内容发生修改时才会更新。 |
@@ -5516,13 +5752,12 @@ title参数的规格如下：
 | DRIVER_LICENSE<sup>12+</sup> |  8 | 驾驶证。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | DRIVING_LICENSE<sup>12+</sup> |  9 | 行驶证。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | FEATURED_SINGLE_PORTRAIT<sup>12+</sup> |  10 | 推荐人像。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| COLOR_STYLE_PHOTO<sup>18+</sup> |  12 | 推荐风格。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 
 **示例：**
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     let recommendOptions: photoAccessHelper.RecommendationOptions = {
       recommendationType: photoAccessHelper.RecommendationType.ID_CARD
@@ -5561,7 +5796,7 @@ async function example() {
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-async function example() {
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     let textInfo: photoAccessHelper.TextContextInfo = {
       text: '上海野生动物园的大熊猫'
@@ -5706,6 +5941,8 @@ async function example() {
 
 枚举，支持进行过滤的操作符。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 | 名称  |  值 |  说明 |
@@ -5787,3 +6024,93 @@ onProgress(progress: number): void
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
 | progress | number | 是   | 返回的进度百分比，范围为0~100。 |
+
+## NotifyChangeType<sup>20+</sup>
+
+枚举，媒体资产（图片/视频）或相册变更事件的通知类型。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称                      | 值   | 说明                             |
+| ------------------------- | ---- | -------------------------------- |
+| NOTIFY_CHANGE_ADD         | 0    | 媒体资产（图片/视频）或相册已经创建。     |
+| NOTIFY_CHANGE_UPDATE      | 1    | 媒体资产（图片/视频）或相册已经修改。     |
+| NOTIFY_CHANGE_REMOVE      | 2    | 媒体资产（图片/视频）或相册已经删除。     |
+
+## PhotoAssetChangeInfo<sup>20+</sup>
+
+媒体资产（图片/视频）信息。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称 |   类型   | 只读 |  可选 | 说明      |
+| ---- | ------- | ---- |  ---- | ----- |
+| uri       | string  | 否 | 否 | 媒体文件资源uri。 |
+| mediaType | [PhotoType](#phototype) | 否 | 否  | 媒体资产的类型（图片/视频）。 |
+| albumUri  | string  | 否 | 否 | 媒体资产（图片/视频）所属相册的uri。  |
+
+## PhotoAssetChangeData<sup>20+</sup>
+
+媒体资产（图片/视频）的具体变更数据。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称     | 类型                | 只读 | 可选 | 说明  |
+| ---- | ------- | ---- |  ---- | ----- |
+| assetBeforeChange | [PhotoAssetChangeInfo](#photoassetchangeinfo20)  | 否 | 否 | 变更前的媒体资产（图片/视频）数据。 |
+| assetAfterChange  | [PhotoAssetChangeInfo](#photoassetchangeinfo20) | 否 | 否  | 变更后的媒体资产（图片/视频）数据。 |
+| isContentChanged  |boolean  | 否 | 否 | 媒体资产（图片/视频）内容是否变化。true表示文件内容发生变化，false表示文件内容未发生变化。  |
+| isDeleted         |boolean  | 否 | 否 | 媒体资产（图片/视频）是否被删除。true表示资产被彻底删除，false表示资产未被彻底删除。  |
+
+## PhotoAssetChangeInfos<sup>20+</sup>
+
+媒体资产（图片/视频）的变更通知信息。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称                   | 类型                | 只读 | 可选 | 说明    |
+| ---- | ------- | ---- |  ---- | ----- |
+| type       | [NotifyChangeType](#notifychangetype20)  | 否 | 否 | 媒体资产（图片/视频）变更的通知类型。 |
+| assetChangeDatas | [PhotoAssetChangeData](#photoassetchangedata20)[]  | 否 |  否 | 变更的媒体资产（图片/视频）数组。  |
+| isForRecheck    | boolean  | 否 | 否 | 应用是否应该重新查询所有媒体资产（图片/视频）信息。true表示需要重新查询所有资产，false表示无需查询所有资产。<br>**注意：** 在特殊情况或者异常通知的场景下，应用收到的isForRecheck为true，表示重新查询所有资产信息。  |
+
+## AlbumChangeInfo<sup>20+</sup>
+
+相册信息。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称  | 类型                | 只读 | 可选 | 说明                                              |
+| ---- | ------- | ---- |  ---- | ----- |
+| albumType | [AlbumType](#albumtype)  | 否 | 否 | 相册类型。 |
+| albumSubtype  | [AlbumSubtype](#albumsubtype) | 否 | 否  | 相册子类型。 |
+| albumName  | string  |否 |否 | 相册名。  |
+| albumUri  | string  |否 |否 | 相册uri。  |
+| imageCount  | number  |否 |否 | 相册中的图片数量。  |
+| videoCount  | number  |否 |否 | 相册中的视频数量。  |
+| count       | number  |否 |否 | 相册中的资产总数，包括图片和视频。  |
+| coverUri  | string  |否 |否 | 相册封面资产的uri。  |
+
+## AlbumChangeData<sup>20+</sup>
+
+相册的具体变更数据。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称                   | 类型                | 只读 | 可选 | 说明                |
+| ---- | ------- | ---- |  ---- | ----- |
+| albumBeforeChange | [AlbumChangeInfo](#albumchangeinfo20)  | 否 | 否 | 变更前的相册数据。 |
+| albumAfterChange  | [AlbumChangeInfo](#albumchangeinfo20) | 否 | 否  | 变更后的相册数据。 |
+| isDeleted         | boolean  | 否 | 否 | 相册是否被删除。true表示相册被删除，false表示相册未被删除。  |
+
+## AlbumChangeInfos<sup>20+</sup>
+
+相册的变更通知信息。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称                   | 类型                | 只读 | 可选 | 说明           |
+| ---- | ------- | ---- |  ---- | ----- |
+| type       | [NotifyChangeType](#notifychangetype20)  | 否 | 否 | 相册变更的通知类型。 |
+| albumChangeDatas   | [AlbumChangeData](#albumchangedata20)[]  | 否 | 否 | 变更的相册数组。  |
+| isForRecheck          | boolean  | 否 | 否 | 应用是否应该重新查询所有相册信息。true表示需要重新查询所有相册，false表示无需查询所有相册。<br>**注意：** 在特殊情况或者异常通知的场景下，应用收到的isForRecheck为true，表示重新查询所有相册信息。  |

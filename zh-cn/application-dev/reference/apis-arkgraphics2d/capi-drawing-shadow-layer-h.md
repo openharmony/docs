@@ -4,7 +4,7 @@
 
 声明与绘图模块中的阴影层对象相关的函数。
 
-**引用文件：** drawing_shadow_layer.h
+**引用文件：** <native_drawing/drawing_shadow_layer.h>
 
 **库：** libnative_drawing.so
 
@@ -51,7 +51,7 @@ OH_Drawing_ShadowLayer* OH_Drawing_ShadowLayerCreate(float blurRadius, float x, 
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_ShadowLayer](capi-oh-drawing-shadowlayer.md)* | 返回创建的阴影层对象的指针。 |
+| [OH_Drawing_ShadowLayer](capi-drawing-oh-drawing-shadowlayer.md)* | 返回创建的阴影层对象的指针。 |
 
 ### OH_Drawing_ShadowLayerDestroy()
 
@@ -72,6 +72,6 @@ void OH_Drawing_ShadowLayerDestroy(OH_Drawing_ShadowLayer* shadowLayer)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_ShadowLayer](capi-oh-drawing-shadowlayer.md)* shadowLayer | 表示指向阴影层对象的指针。 |
+| [OH_Drawing_ShadowLayer](capi-drawing-oh-drawing-shadowlayer.md)* shadowLayer | 表示指向阴影层对象的指针。 |
 
 

@@ -45,7 +45,7 @@ import { connection } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getGlobalHttpProxy((error: BusinessError, data: connection.HttpProxy) => {
-  console.info(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.info(JSON.stringify(data));
 });
 ```
@@ -83,7 +83,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 connection.getGlobalHttpProxy().then((data: connection.HttpProxy) => {
   console.info(JSON.stringify(data));
 }).catch((error: BusinessError) => {
-  console.info(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -189,7 +189,7 @@ connection.setGlobalHttpProxy({
 } as connection.HttpProxy).then(() => {
   console.info("success");
 }).catch((error: BusinessError) => {
-  console.info(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -229,7 +229,7 @@ import { connection } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.enableAirplaneMode((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -266,7 +266,7 @@ enableAirplaneMode(): Promise\<void>
 import { connection } from '@kit.NetworkKit';
 
 connection.enableAirplaneMode().then((error: void) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -305,7 +305,7 @@ import { connection } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.disableAirplaneMode((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -342,7 +342,7 @@ disableAirplaneMode(): Promise\<void>
 import { connection } from '@kit.NetworkKit';
 
 connection.disableAirplaneMode().then((error: void) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -383,6 +383,6 @@ import { BusinessError } from '@kit.BasicServicesKit';
 connection.factoryReset().then(() => {
     console.log("success");
 }).catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
 })
 ```

@@ -556,7 +556,6 @@ clean(accountId: string, appActions: Record<string, Action>, callback: AsyncCall
 | 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
 | 202 | Permission verification failed, application which is not a system application uses system API. |
 | 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 13600001  | IPC error. |
 
 **示例：**
 
