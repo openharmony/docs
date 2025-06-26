@@ -42,6 +42,8 @@ import { userStatus } from '@kit.MultimodalAwarenessKit';
 
 订阅年龄群组检测功能。
 
+订阅成功后，可以获取用户年龄群组的分类结果，应用可根据此结果做相应的内容推荐。
+
 **系统能力**：SystemCapability.MultimodalAwareness.UserStatus
 
 **参数**：
