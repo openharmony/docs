@@ -1787,7 +1787,7 @@ struct ListExample {
 
 ![edgeEffect_list](figures/edgeEffect_list.gif)
 
-### 示例10（设置显示区域外插入数据时，保持显示内容不变）
+### 示例9（设置显示区域外插入数据时，保持显示内容不变）
 
 该示例通过maintainVisibleContentPosition接口，实现了上滑无限加载历史消息场景。
 
