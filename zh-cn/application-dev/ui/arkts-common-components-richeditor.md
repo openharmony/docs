@@ -180,6 +180,9 @@ SystemMenu() {
 设置不同颜色的光标和手柄可以提高视觉辨识度，特别是在包含多个输入区域的复杂界面中，独特的光标颜色能帮助快速定位当前操作的输入区域。这一特性也可以提升用户体验，使光标颜色与应用页面整体的风格相协调。
 
 ```ts
+controller: RichEditorController = new RichEditorController();
+options: RichEditorOptions = { controller: this.controller };
+
 RichEditor(this.options)
   .onReady(() => {
     this.controller.addTextSpan('组件设置了光标手柄颜色。', {

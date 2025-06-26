@@ -422,6 +422,8 @@ onSelect(callback:Callback\<[RichEditorSelection](#richeditorselection)\>)
 
 手指长按选中内容触发回调；松开手指再次触发回调。
 
+通过手指或鼠标连续修改选中区、三击选段场景，不回调onSelect。
+
 需要实时感知选中区变化的场景和使用[RichEditorStyledStringOptions](#richeditorstyledstringoptions12)构建的RichEditor组件，请使用onSelectionChange接口。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -999,7 +1001,7 @@ setSelection(selectionStart:&nbsp;number, selectionEnd:&nbsp;number, options?:&n
 
 支持设置组件内的内容选中，选中部分背板高亮。
 
-selectionStart和selectionEnd均为-1时表示全选。
+selectionStart和selectionEnd均为-1时表示全选，均为0时可以清空选中区。
 
 未获焦时调用该接口不产生选中效果。
 
