@@ -269,6 +269,12 @@ string资源配置attr属性示例如下，其中string1字符串被标记为不
 
 ## 资源访问
 
+### 导入模块（ArkTS1.2）
+
+```ts
+import { $r, $rawfile } from '@kit.ArkUI';
+```
+
 ### 单HAP包应用资源
 
  - 通过```$r```或```$rawfile```访问资源。<br/>对于color、float、string、plural、media、profile等类型的资源，通过```$r('app.type.name')```形式访问。其中，app为resources目录中定义的资源；type为资源类型；name为资源名，开发者定义资源时确定。<br/>对于string.json中使用多个占位符的情况，通过```$r('app.string.label','aaa','bbb',444)```形式访问。<br/>对于rawfile目录资源，通过```"$rawfile('filename')"```形式访问。其中，filename为rawfile目录下文件的相对路径，文件名需要包含后缀，路径开头不可以"/"开头。
