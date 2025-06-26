@@ -2652,7 +2652,7 @@ enum ArkUI_ErrorCode
 | ARKUI_ERROR_CODE_PARAM_INVALID  | 参数错误。  |
 | ARKUI_ERROR_CODE_CAPI_INIT_ERROR  | 接口初始化错误。<br/>起始版本：18  |
 | ARKUI_ERROR_CODE_INTERNAL_ERROR  | 出现内部错误，例如内部环境错误导致失败，或者由于内部执行失败导致操作失败。<br/>起始版本：15  |
-| ARKUI_ERROR_CODE_XCOMPONENT_STATE_INVALID = 103501  | 当前XComponent状态异常，方法调用失败。<br/>起始版本：19  |
+| ARKUI_ERROR_CODE_XCOMPONENT_STATE_INVALID = 103501  | 当前XComponent状态异常，方法调用失败。<br/>起始版本：19<br/>错误码的详细介绍请参见[XComponent组件错误码](../apis-arkui/errorcode-xcomponent.md)。  |
 | ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED = 106102  | 组件不支持特定的属性或者事件。<br/>错误码的详细介绍请参见[交互事件错误码](../apis-arkui/errorcode-event.md)。  |
 | ARKUI_ERROR_CODE_ARKTS_NODE_NOT_SUPPORTED = 106103  | 对应的操作不支持ArkTS创建的节点。<br/>错误码的详细介绍请参见[自定义节点错误码](../apis-arkui/errorcode-node.md)。  |
 | ARKUI_ERROR_CODE_ADAPTER_NOT_BOUND = 106104 | 懒加载适配器未绑定到组件上，错误码详细参见[编译错误码](../apis-arkui/errorcode-nodeadapter.md#106104-适配器未绑定)。  |
