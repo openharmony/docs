@@ -4660,7 +4660,7 @@ async function example(mgr: userFileManager.UserFileManager) {
 
 | 名称                   | 类型                | 只读 | 可选 | 说明                                              |
 | ---------------------- | ------------------- | ---- |---- | ------------------------------------------------ |
-| fetchColumns           | Array&lt;string&gt; | 否   | 否   | 检索条件，指定列名查询，如果该参数为空时默认查询uri、name、fileType（具体字段名称以检索对象定义为准）且使用[get](#get)接口去获取当前对象的其他属性时将会报错。示例：<br ></div>fetchColumns: ['uri', 'title']。 |
+| fetchColumns           | Array&lt;string&gt; | 否   | 否   | 检索条件，指定列名查询，如果该参数为空时默认查询uri、name、fileType（具体字段名称以检索对象定义为准）且使用[get](#get)接口去获取当前对象的其他属性时将会报错。示例：<br />fetchColumns: ['uri', 'title']。 |
 | predicates           | [dataSharePredicates.DataSharePredicates](../apis-arkdata/js-apis-data-dataSharePredicates-sys.md) | 否   | 否   | 谓词查询，显示过滤条件。 |
 
 ## AlbumFetchOptions
@@ -4681,9 +4681,9 @@ async function example(mgr: userFileManager.UserFileManager) {
 
 | 名称    | 类型                        | 只读 | 可选 | 说明                                                         |
 | ------- | --------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| type    | [NotifyType](#notifytype10) | 是   | 否   | ChangeData的通知类型。                                       |
-| uris    | Array&lt;string&gt;         | 是   | 否   | 相同[NotifyType](#notifytype10)的所有uri，可以是FileAsset或Album。 |
-| subUris | Array&lt;string&gt;         | 是   | 否   | 相册中变动文件的uri数组。可能为undefined，使用前需要检查是否为undefined。|
+| type    | [NotifyType](#notifytype10) | 否   | 否   | ChangeData的通知类型。                                       |
+| uris    | Array&lt;string&gt;         | 否   | 否   | 相同[NotifyType](#notifytype10)的所有uri，可以是FileAsset或Album。 |
+| subUris | Array&lt;string&gt;         | 否   | 否   | 相册中变动文件的uri数组。可能为undefined，使用前需要检查是否为undefined。|
 
 ## NotifyType<sup>10+</sup>
 
