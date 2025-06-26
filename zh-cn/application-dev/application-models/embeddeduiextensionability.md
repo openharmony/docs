@@ -6,7 +6,11 @@
 
 EmbeddedUIExtensionAbility需要和[EmbeddedComponent](../reference/apis-arkui/arkui-ts/ts-container-embedded-component.md)一起配合使用，开发者可以在[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)的页面中通过EmbeddedComponent嵌入本应用的EmbeddedUIExtensionAbility提供的UI。EmbeddedUIExtensionAbility会在独立于UIAbility的进程中运行，完成其页面的布局和渲染。通常用于有进程隔离诉求的模块化开发场景。
 
-## 生命周期
+## 约束限制
+
+当前EmbeddedUIExtensionAbility和EmbeddedComponent仅支持在拥有多进程配置的设备上使用，目前支持多进程配置的设备有2in1与tablet。
+
+## 生命周期 
 
 [EmbeddedUIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md)提供了onCreate、onSessionCreate、onSessionDestroy、onForeground、onBackground和onDestroy生命周期回调，根据需要重写对应的回调方法。以下生命周期回调均继承自[UIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md)。
 
@@ -19,9 +23,9 @@ EmbeddedUIExtensionAbility需要和[EmbeddedComponent](../reference/apis-arkui/a
 
 > **说明：**
 >
-> 1. 当前EmbeddedUIExtensionAbility和EmbeddedComponent仅支持在拥有多进程配置的设备上使用。
-> 2. EmbeddedComponent只能在UIAbility中使用，且被拉起的EmbeddedUIExtensionAbility需与UIAbility属于同一应用。<!--Del-->
-> 3. 当前提供的EmbeddedUIExtensionAbility支持多实例场景，并且继承了UIExtensionAbility的进程模型，UIExtensionAbility的多实例及进程配置相关介绍可参见[UIExtensionAbility](uiextensionability.md)。<!--DelEnd-->
+> EmbeddedComponent只能在UIAbility中使用，且被拉起的EmbeddedUIExtensionAbility需与UIAbility属于同一应用。
+> 
+> <!--Del-->当前提供的EmbeddedUIExtensionAbility支持多实例场景，并且继承了UIExtensionAbility的进程模型，UIExtensionAbility的多实例及进程配置相关介绍可参见[UIExtensionAbility](uiextensionability.md)。<!--DelEnd-->
 
 EmbeddedUIExtensionAbility通过[UIExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-uiExtensionContext.md)和[UIExtensionContentSession](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionContentSession.md)提供相关能力。本文描述中称被启动的EmbeddedUIExtensionAbility为提供方，称启动EmbeddedUIExtensionAbility的EmbeddedComponent组件为使用方。
 
