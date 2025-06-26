@@ -396,7 +396,7 @@ accessibilityDefaultFocus(focus: boolean)
 
 accessibilityUseSamePage(pageMode: AccessibilitySamePageMode)
 
-针对UIExtensionComponent等子树场景中可能出现的跳焦问题，可以通过设置accessibilityUseSamePage属性来解决。由于UEApage事件（由UIExtensionComponent拉起来的进程的page事件）和宿主page事件发送时序的问题，可能会导致焦点从当前组件移动到另一个组件，这种现象即为"跳焦"。
+针对跨进程嵌入式显示的组件，例如EmbeddedComponent，其子树场景中出现的跳焦问题，可通过设置accessibilityUseSamePage属性解决。因跨进程嵌入式显示的组件启动进程的page事件与宿主page事件发送时序不一致，可能导致焦点从当前组件移至另一组件，此现象称为“跳焦”。
 
 **卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
@@ -408,11 +408,11 @@ accessibilityUseSamePage(pageMode: AccessibilitySamePageMode)
 
 | 参数名   | 类型                                                         | 必填 | 说明                                             |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------ |
-| pageMode | [AccessibilitySamePageMode](#accessibilitysamepagemode18枚举说明) | 是   | 当前UIExtensionComponent和宿主应用的同page模式。 |
+| pageMode | [AccessibilitySamePageMode](#accessibilitysamepagemode18枚举说明) | 是   | 当前跨进程嵌入式显示的组件和宿主应用的同page模式。 |
 
 ## AccessibilitySamePageMode<sup>18+</sup>枚举说明
 
-当前UIExtensionComponent和宿主应用的同page模式。
+当前跨进程嵌入式显示的组件和宿主应用的同page模式。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -420,8 +420,8 @@ accessibilityUseSamePage(pageMode: AccessibilitySamePageMode)
 
 | 名称        | 值   | 说明                                                         |
 | ----------- | ---- | ------------------------------------------------------------ |
-| SEMI_SILENT | 0    | UEA（由UIExtensionComponent拉起来的进程的page事件）中如果是首次加载页面或者UEA页面的根节点发送的page事件会被忽略。 |
-| FULL_SILENT | 1    | UEA将忽略所有的page事件。                                      |
+| SEMI_SILENT | 0    | 跨进程嵌入式显示的组件拉起来的进程的page事件中如果是首次加载页面或者该事件页面的根节点发送的page事件会被忽略。 |
+| FULL_SILENT | 1    | 跨进程嵌入式显示的组件将忽略所有的page事件。                                      |
 
 ## accessibilityScrollTriggerable<sup>18+</sup>
 
@@ -634,90 +634,87 @@ struct Index {
 
 ### 示例5（设置无障碍屏幕朗读滚动和焦点绿框绘制）
 
-该示例主要演示accessibilityScrollTriggerable设置无障碍节点是否支持屏幕朗读滚动、accessibilityFocusDrawLevel设置无障碍焦点绿框的绘制层级和accessibilityUseSamePage设置UIExtensionComponent的accessibilityUseSamePage属性。
+该示例主要演示accessibilityScrollTriggerable设置无障碍节点是否支持屏幕朗读滚动、accessibilityFocusDrawLevel设置无障碍焦点绿框的绘制层级和accessibilityUseSamePage设置跨进程嵌入式显示的组件,如[EmbeddedComponent](ts-container-embedded-component.md)的accessibilityUseSamePage属性。
 
 ```ts
 // xxx.ets
-import { ComponentContent } from '@kit.ArkUI';
+import { Want } from '@kit.AbilityKit';
 
-class Params {
-}
-@Builder
-function LoadingBuilder(params: Params) {
-  Column() {
-    LoadingProgress()
-      .color('#4A90E2')
-  }
-}
 @Entry
 @Component
 struct Index {
-  private contentNode = new ComponentContent(this.getUIContext(), wrapBuilder(LoadingBuilder), new Params);
+  @State message: string = 'Message: ';
+  private want: Want = {
+    bundleName: 'com.example.embeddeddemo',
+    abilityName: 'ExampleEmbeddedAbility',
+  }
 
   build() {
     Row() {
       List() {
         ListItem() {
           Column() {
-            Stack() {
-              Column() {
-                Text('文本1')
-                  .fontSize(18)
-                  .fontColor('#2D2D2D')
-                  .fontWeight(FontWeight.Medium)
-                Text('文本1')
-                  .fontSize(18)
-                  .fontColor('#2D2D2D')
-                  .fontWeight(FontWeight.Medium)
-                  .accessibilityFocusDrawLevel(FocusDrawLevel.TOP)
-              }
-              .padding({ top: 8, bottom: 8 })
-              Column() {
-                Text('文本2')
-                  .fontSize(18)
-                  .fontColor('#FFFFFF')
-                  .fontWeight(FontWeight.Medium)
-                Text('文本2')
-                  .fontSize(18)
-                  .fontColor('#FFFFFF')
-                  .fontWeight(FontWeight.Medium)
-              }
-              .backgroundColor('#4A90E2')
-              .padding({ left: 12, right: 12, top: 10, bottom: 10 })
-              .borderRadius(6)
-            }
-            .width('100%')
-            .margin({ top: 10, bottom: 10 })
+            Text(this.message)
+              .fontSize(18)
+              .fontColor('#2D2D2D')
+              .fontWeight(FontWeight.Medium)
             Column() {
-              UIExtensionComponent({
-                bundleName: 'com.example.provide',
-                abilityName: 'EmptyUIExtensionAbility',
-                parameters: {
-                  'ability.want.params.uiExtensionType': 'sys/commonUI'
-                }
-              },
-                {
-                  placeholder: this.contentNode,
-                  dpiFollowStrategy: DpiFollowStrategy.FOLLOW_UI_EXTENSION_ABILITY_DPI
+              EmbeddedComponent(this.want, EmbeddedType.EMBEDDED_UI_EXTENSION)
+                .width('100%')
+                .height('90%')
+                .onTerminated((info) => {
+                  this.message = 'Termination: code = ' + info.code + ', want = ' + JSON.stringify(info.want);
                 })
-                .onReceive((err) => {
-                  console.error('onReceive' + JSON.stringify(err));
-                })
-                .onError((err) => {
-                  console.error('onError code :' + err.code + ', name: ' + err.name + ', msg: ' + err.message);
-                  console.error('onError' + JSON.stringify(err));
+                .onError((error) => {
+                  this.message = 'Error: code = ' + error.code;
                 })
                 .accessibilityUseSamePage(AccessibilitySamePageMode.FULL_SILENT)
-                .width('50%')
+                .width('90%')
                 .height('50%')
                 .backgroundColor('#F0F0F0')
                 .borderRadius(8)
                 .borderWidth(1)
                 .borderColor('#D9D9D9')
+
+              Stack() {
+                Column() {
+                  Text('文本1')
+                    .fontSize(18)
+                    .fontColor('#2D2D2D')
+                    .fontWeight(FontWeight.Medium)
+                  Text('文本1')
+                    .fontSize(18)
+                    .fontColor('#2D2D2D')
+                    .fontWeight(FontWeight.Medium)
+                    .accessibilityFocusDrawLevel(FocusDrawLevel.TOP)
+                }
+                .padding({ top: 8, bottom: 8 })
+
+                Column() {
+                  Text('文本2')
+                    .fontSize(18)
+                    .fontColor('#FFFFFF')
+                    .fontWeight(FontWeight.Medium)
+                  Text('文本2')
+                    .fontSize(18)
+                    .fontColor('#FFFFFF')
+                    .fontWeight(FontWeight.Medium)
+                }
+                .backgroundColor('#4A90E2')
+                .padding({
+                  left: 12,
+                  right: 12,
+                  top: 10,
+                  bottom: 10
+                })
+                .borderRadius(6)
+              }
+              .width('100%')
+              .margin({ top: 10, bottom: 10 })
             }
             .width('100%')
             .height('100%')
-            .margin({ top: 50 })
+            .margin({ top: 15 })
             .accessibilityText($r('app.string.app_name'))
             .accessibilityDescription($r('app.string.module_desc'))
             Column() {
