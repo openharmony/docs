@@ -434,6 +434,6 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 |OH_MD_KEY_AUDIO_SAMPLE_FORMAT|音频流样本格式的键|-|√|-|√|
 |OH_MD_KEY_AAC_IS_ADTS|aac格式的键，只针对 aac 码流使用|-|√|-|√|
 |OH_MD_KEY_BITS_PER_CODED_SAMPLE|音频流每个编码样本位数的键|-|√|-|√|
-|OH_MD_KEY_REFERENCE_TRACK_IDS|√|√|√|√|
-|OH_MD_KEY_TRACK_REFERENCE_TYPE|-|-|-|√|
-|OH_MD_KEY_TRACK_DESCRIPTION|-|-|-|√|
+|OH_MD_KEY_REFERENCE_TRACK_IDS|媒体文件轨道间参考、被参考关系|√|√|√|√|
+|OH_MD_KEY_TRACK_REFERENCE_TYPE|媒体文件辅助轨类型|-|-|-|√|
+|OH_MD_KEY_TRACK_DESCRIPTION|媒体文件辅助轨描述信息|-|-|-|√|
