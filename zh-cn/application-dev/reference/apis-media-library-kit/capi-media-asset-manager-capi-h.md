@@ -26,7 +26,7 @@
 | [bool OH_MediaAssetManager_CancelRequest(OH_MediaAssetManager* manager, const MediaLibrary_RequestId requestId)](#oh_mediaassetmanager_cancelrequest) | 通过请求Id取消请求。 |
 | [MediaLibrary_ErrorCode OH_MediaAssetManager_RequestMovingPhoto(OH_MediaAssetManager* manager,OH_MediaAsset* mediaAsset, MediaLibrary_RequestOptions requestOptions, MediaLibrary_RequestId* requestId,OH_MediaLibrary_OnMovingPhotoDataPrepared callback)](#oh_mediaassetmanager_requestmovingphoto) | 根据不同的策略模式请求动态照片资源。 |
 | [MediaLibrary_ErrorCode OH_MediaAssetManager_RequestImage(OH_MediaAssetManager* manager, OH_MediaAsset* mediaAsset,MediaLibrary_RequestOptions requestOptions, MediaLibrary_RequestId* requestId,OH_MediaLibrary_OnImageDataPrepared callback)](#oh_mediaassetmanager_requestimage) | 根据不同的策略模式请求图像资源。 |
-| [MediaLibrary_ErrorCode OH_MediaAssetManager_Release(OH_MediaAssetManager* manager)](#oh_mediaassetmanager_release) | 释放[OH_MediaAssetManager](capi-oh-mediaassetmanager.md)实例。 |
+| [MediaLibrary_ErrorCode OH_MediaAssetManager_Release(OH_MediaAssetManager* manager)](#oh_mediaassetmanager_release) | 释放[OH_MediaAssetManager](capi-mediaassetmanager-oh-mediaassetmanager.md)实例。 |
 
 ## 函数说明
 
@@ -46,7 +46,7 @@ OH_MediaAssetManager* OH_MediaAssetManager_Create(void)
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_MediaAssetManager](capi-oh-mediaassetmanager.md)* | 返回一个指向OH_MediaAssetManager实例的指针。 |
+| [OH_MediaAssetManager](capi-mediaassetmanager-oh-mediaassetmanager.md)* | 返回一个指向OH_MediaAssetManager实例的指针。 |
 
 ### OH_MediaAssetManager_RequestImageForPath()
 
@@ -67,9 +67,9 @@ MediaLibrary_RequestId OH_MediaAssetManager_RequestImageForPath(OH_MediaAssetMan
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_MediaAssetManager](capi-oh-mediaassetmanager.md)* manager | 指向OH_MediaAssetManager实例的指针。 |
+| [OH_MediaAssetManager](capi-mediaassetmanager-oh-mediaassetmanager.md)* manager | 指向OH_MediaAssetManager实例的指针。 |
 | const char* uri | 请求的图像资源的uri。 |
-| [MediaLibrary_RequestOptions](capi-medialibrary-requestoptions.md) requestOptions | 请求策略模式配置项。 |
+| [MediaLibrary_RequestOptions](capi-mediaassetmanager-medialibrary-requestoptions.md) requestOptions | 请求策略模式配置项。 |
 | const char* destPath | 请求资源的目标地址。 |
 | [OH_MediaLibrary_OnDataPrepared](capi-media-asset-base-capi-h.md#oh_medialibrary_ondataprepared) callback | 媒体资源处理器，当所请求的媒体资源准备完成时会触发回调。 |
 
@@ -77,7 +77,7 @@ MediaLibrary_RequestId OH_MediaAssetManager_RequestImageForPath(OH_MediaAssetMan
 
 | 类型 | 说明 |
 | -- | -- |
-| [MediaLibrary_RequestId](capi-medialibrary-requestid.md) | 返回请求Id。 |
+| [MediaLibrary_RequestId](capi-mediaassetmanager-medialibrary-requestid.md) | 返回请求Id。 |
 
 ### OH_MediaAssetManager_RequestVideoForPath()
 
@@ -98,9 +98,9 @@ MediaLibrary_RequestId OH_MediaAssetManager_RequestVideoForPath(OH_MediaAssetMan
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_MediaAssetManager](capi-oh-mediaassetmanager.md)* manager | 指向OH_MediaAssetManager实例的指针。 |
+| [OH_MediaAssetManager](capi-mediaassetmanager-oh-mediaassetmanager.md)* manager | 指向OH_MediaAssetManager实例的指针。 |
 | const char* uri | 请求的视频资源的uri。 |
-| [MediaLibrary_RequestOptions](capi-medialibrary-requestoptions.md) requestOptions | 请求策略模式配置项。 |
+| [MediaLibrary_RequestOptions](capi-mediaassetmanager-medialibrary-requestoptions.md) requestOptions | 请求策略模式配置项。 |
 | const char* destPath | 请求资源的目标地址。 |
 | [OH_MediaLibrary_OnDataPrepared](capi-media-asset-base-capi-h.md#oh_medialibrary_ondataprepared) callback | 媒体资源处理器，当所请求的媒体资源准备完成时会触发回调。 |
 
@@ -108,7 +108,7 @@ MediaLibrary_RequestId OH_MediaAssetManager_RequestVideoForPath(OH_MediaAssetMan
 
 | 类型 | 说明 |
 | -- | -- |
-| [MediaLibrary_RequestId](capi-medialibrary-requestid.md) | 返回请求Id。 |
+| [MediaLibrary_RequestId](capi-mediaassetmanager-medialibrary-requestid.md) | 返回请求Id。 |
 
 ### OH_MediaAssetManager_CancelRequest()
 
@@ -129,8 +129,8 @@ bool OH_MediaAssetManager_CancelRequest(OH_MediaAssetManager* manager, const Med
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_MediaAssetManager](capi-oh-mediaassetmanager.md)* manager | 指向OH_MediaAssetManager实例的指针。 |
-| const [MediaLibrary_RequestId](capi-medialibrary-requestid.md) requestId | 待取消的请求Id。 |
+| [OH_MediaAssetManager](capi-mediaassetmanager-oh-mediaassetmanager.md)* manager | 指向OH_MediaAssetManager实例的指针。 |
+| const [MediaLibrary_RequestId](capi-mediaassetmanager-medialibrary-requestid.md) requestId | 待取消的请求Id。 |
 
 **返回：**
 
@@ -157,10 +157,10 @@ MediaLibrary_ErrorCode OH_MediaAssetManager_RequestMovingPhoto(OH_MediaAssetMana
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_MediaAssetManager](capi-oh-mediaassetmanager.md)* manager | [OH_MediaAssetManager](capi-oh-mediaassetmanager.md)实例指针。 |
-| [OH_MediaAsset](capi-oh-mediaasset.md)* mediaAsset | 要请求的媒体文件对象的[OH_MediaAsset](capi-oh-mediaasset.md)实例。 |
-| [MediaLibrary_RequestOptions](capi-medialibrary-requestoptions.md) requestOptions | 用于图像请求策略模式的[MediaLibrary_RequestOptions](capi-medialibrary-requestoptions.md)。 |
-| [MediaLibrary_RequestId](capi-medialibrary-requestid.md)* requestId | 请求的[MediaLibrary_RequestId](capi-medialibrary-requestid.md)，出参。 |
+| [OH_MediaAssetManager](capi-mediaassetmanager-oh-mediaassetmanager.md)* manager | [OH_MediaAssetManager](capi-mediaassetmanager-oh-mediaassetmanager.md)实例指针。 |
+| [OH_MediaAsset](capi-mediaassetmanager-oh-mediaasset.md)* mediaAsset | 要请求的媒体文件对象的[OH_MediaAsset](capi-mediaassetmanager-oh-mediaasset.md)实例。 |
+| [MediaLibrary_RequestOptions](capi-mediaassetmanager-medialibrary-requestoptions.md) requestOptions | 用于图像请求策略模式的[MediaLibrary_RequestOptions](capi-mediaassetmanager-medialibrary-requestoptions.md)。 |
+| [MediaLibrary_RequestId](capi-mediaassetmanager-medialibrary-requestid.md)* requestId | 请求的[MediaLibrary_RequestId](capi-mediaassetmanager-medialibrary-requestid.md)，出参。 |
 | [OH_MediaLibrary_OnMovingPhotoDataPrepared](capi-media-asset-base-capi-h.md#oh_medialibrary_onmovingphotodataprepared) callback | 当请求的动态照片准备就绪时调用[OH_MediaLibrary_OnMovingPhotoDataPrepared](capi-media-asset-base-capi-h.md#oh_medialibrary_onmovingphotodataprepared)。 |
 
 **返回：**
@@ -188,10 +188,10 @@ MediaLibrary_ErrorCode OH_MediaAssetManager_RequestImage(OH_MediaAssetManager* m
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_MediaAssetManager](capi-oh-mediaassetmanager.md)* manager | [OH_MediaAssetManager](capi-oh-mediaassetmanager.md)实例指针。 |
-| [OH_MediaAsset](capi-oh-mediaasset.md)* mediaAsset | 要请求的媒体文件对象的[OH_MediaAsset](capi-oh-mediaasset.md)实例。 |
-| [MediaLibrary_RequestOptions](capi-medialibrary-requestoptions.md) requestOptions | 用于图像请求策略模式的[MediaLibrary_RequestOptions](capi-medialibrary-requestoptions.md)。 |
-| [MediaLibrary_RequestId](capi-medialibrary-requestid.md)* requestId | 请求的[MediaLibrary_RequestId](capi-medialibrary-requestid.md)，出参。 |
+| [OH_MediaAssetManager](capi-mediaassetmanager-oh-mediaassetmanager.md)* manager | [OH_MediaAssetManager](capi-mediaassetmanager-oh-mediaassetmanager.md)实例指针。 |
+| [OH_MediaAsset](capi-mediaassetmanager-oh-mediaasset.md)* mediaAsset | 要请求的媒体文件对象的[OH_MediaAsset](capi-mediaassetmanager-oh-mediaasset.md)实例。 |
+| [MediaLibrary_RequestOptions](capi-mediaassetmanager-medialibrary-requestoptions.md) requestOptions | 用于图像请求策略模式的[MediaLibrary_RequestOptions](capi-mediaassetmanager-medialibrary-requestoptions.md)。 |
+| [MediaLibrary_RequestId](capi-mediaassetmanager-medialibrary-requestid.md)* requestId | 请求的[MediaLibrary_RequestId](capi-mediaassetmanager-medialibrary-requestid.md)，出参。 |
 | [OH_MediaLibrary_OnImageDataPrepared](capi-media-asset-base-capi-h.md#oh_medialibrary_onimagedataprepared) callback | 当请求的图像源准备就绪时调用[OH_MediaLibrary_OnImageDataPrepared](capi-media-asset-base-capi-h.md#oh_medialibrary_onimagedataprepared)。 |
 
 **返回：**
@@ -208,7 +208,7 @@ MediaLibrary_ErrorCode OH_MediaAssetManager_Release(OH_MediaAssetManager* manage
 
 **描述**
 
-释放[OH_MediaAssetManager](capi-oh-mediaassetmanager.md)实例。
+释放[OH_MediaAssetManager](capi-mediaassetmanager-oh-mediaassetmanager.md)实例。
 
 **起始版本：** 13
 
@@ -217,7 +217,7 @@ MediaLibrary_ErrorCode OH_MediaAssetManager_Release(OH_MediaAssetManager* manage
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_MediaAssetManager](capi-oh-mediaassetmanager.md)* manager | 要释放的[OH_MediaAssetManager](capi-oh-mediaassetmanager.md)实例。 |
+| [OH_MediaAssetManager](capi-mediaassetmanager-oh-mediaassetmanager.md)* manager | 要释放的[OH_MediaAssetManager](capi-mediaassetmanager-oh-mediaassetmanager.md)实例。 |
 
 **返回：**
 
