@@ -1212,7 +1212,6 @@
           - [分布式相机开发指南](distributedservice/camera-distributed.md)
       - Network Kit（网络服务）<!--network-kit-->
         - [Network Kit简介](network/net-mgmt-overview.md)
-        - [术语](network/terminology.md)
         - 访问网络<!--network-kit-data-transmission-->
             - [使用HTTP访问网络](network/http-request.md)
             - [使用WebSocket访问网络](network/websocket-connection.md)
@@ -1231,6 +1230,7 @@
             - [以太网连接管理（仅对系统应用开放）](network/net-ethernet.md)
             - [VPN管理（仅对系统应用开放）](network/net-vpn.md)
             <!--DelEnd-->
+        - [Network Kit术语](network/terminology.md)
       - Telephony Kit（蜂窝通信服务）<!--telephony-kit-->
         - [Telephony Kit简介](telephony/telephony-overview.md)
         - [拨打电话](telephony/telephony-call.md)
