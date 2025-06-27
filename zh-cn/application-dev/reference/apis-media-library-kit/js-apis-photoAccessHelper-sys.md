@@ -8630,6 +8630,374 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, cont
 }
 ```
 
+## PhotoAssetCustomRecordManager<sup>20+</sup>
+
+媒体库支持图库自定义用户统计行为接口。
+
+**系统接口**：此接口为系统接口。
+
+### getCustomRecordManagerInstance<sup>20+</sup>
+
+static getCustomRecordManagerInstance(context: Context): PhotoAssetCustomRecordManager
+
+获取图库自定义用户统计行为实例。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**： SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| --- | --- | --- | --- |
+| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md#context) | 是 | 传入Ability实例的上下文。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| --- | --- |
+| [PhotoAssetCustomRecordManager](#photoassetcustomrecordmanager20) | 用户自定义行为统计实例。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[媒体库错误码](errcode-medialibrary.md)。
+
+| 错误码ID | 错误信息 |
+| --- | --- |
+| 202 | Called by non-system application. |
+| 23800107 | Context is invalid. |
+
+**示例：**
+
+```ts
+import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async example(context: Context) {
+  console.info('getCustomRecordManagerInstance');
+  try {
+    let context = getContext(this);
+    let crManager = photoAccessHelper.PhotoAssetCustomRecordManager.getCustomRecordManagerInstance(context);
+  } catch(err) {
+    console.error(`getCustomRecordManagerInstance failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### createCustomRecords<sup>20+</sup>
+
+createCustomRecords(customRecords: Array&lt;PhotoAssetCustomRecord&gt;): Promise&lt;void&gt;
+
+新增自定义用户统计行为数据。使用Promise异步回调。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**： SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| --- | --- | --- | --- |
+| customRecords | Array&lt;[PhotoAssetCustomRecord](#photoassetcustomrecord20)&gt; | 是 | 新增自定义用户统计行为数据。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| --- | --- |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[媒体库错误码](errcode-medialibrary.md)。
+
+| 错误码ID | 错误信息 |
+| --- | --- |
+| 202 | Called by non-system application. |
+| 23800151 | Scenario parameters fail to pass the verification. Possible causes: 1. The value range of mandatory parameters in photoAssetCustomRecord does not meet the requirements. 2. The transferred record already exists. 3. The number of transferred records exceeds 200. |
+| 23800301 | Internal system error. It is recommended to retry and check the logs. Possible causes: 1. Database corrupted; 2. The file system is abnormal; 3. The IPC request timed out. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async example() {
+  console.info('createCustomRecords');
+  let context = getContext(this);
+  let crManager = photoAccessHelper.PhotoAssetCustomRecordManager.getCustomRecordManagerInstance(context);
+  let crArray:Array<photoAccessHelper.PhotoAssetCustomRecord> = [
+    {fileId:1,shareCount:1,lcdJumpCount:1}
+  ];
+  crManager.createCustomRecords(crArray).then(() => {
+    console.info('createCustomRecords successful');
+  }).catch((err: BusinessError) => {
+    console.error('createCustomRecords fail with error: ${err.code}, ${err.message}');
+  });
+}
+```
+
+### getCustomRecords<sup>20+</sup>
+
+getCustomRecords(optionCheck: FetchOptions): Promise&lt;FetchResult&lt;PhotoAssetCustomRecord&gt;&gt;
+
+根据检索选项获取自定义用户统计行为数据。使用Promise异步回调。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**： SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| --- | --- | --- | --- |
+| optionCheck | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | 是 | 检索选项。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| --- | --- |
+| Promise&lt;FetchResult&lt;[PhotoAssetCustomRecord](#photoassetcustomrecord20)&gt;&gt; | Promise对象，返回自定义用户统计行为数据集合。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[媒体库错误码](errcode-medialibrary.md)。
+
+| 错误码ID | 错误信息 |
+| --- | --- |
+| 202 | Called by non-system application. |
+| 23800151 | Scenario parameters fail to pass the verification. Possible causes: 1. The fileter criteria or fetchColumns that are not supported by options are transferred. |
+| 23800301 | Internal system error. It is recommended to retry and check the logs. Possible causes: 1. Database corrupted; 2. The file system is abnormal; 3. The IPC request timed out. |
+
+**示例：**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async example() {
+  console.info('getCustomRecords');
+  let context = getContext(this);
+  let crManager = photoAccessHelper.PhotoAssetCustomRecordManager.getCustomRecordManagerInstance(context);
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  predicates.equalTo('file_id', 1);
+  let fetchOption: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  crManager.getCustomRecords(fetchOption).then(async (fetchResult) => {
+    let record = await fetchResult.getFirstObject();
+    console.info('record file id is ' + record.fileId);
+  }).catch((err: BusinessError) => {
+    console.error('getCustomRecords fail with error: ${err.code}, ${err.message}');
+  });
+}
+```
+
+### setCustomRecords<sup>20+</sup>
+
+setCustomRecords(customRecords: Array&lt;PhotoAssetCustomRecord&gt;): Promise&lt;Array&lt;number&gt;&gt;
+
+根据自定义用户统计行为数据，更新已存在的数据库字段。使用Promise异步回调。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**： SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| --- | --- | --- | --- |
+| customRecords | Array&lt;[PhotoAssetCustomRecord](#photoassetcustomrecord20)&gt; | 是 | 自定义用户统计行为数据。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| --- | --- |
+| Promise&lt;Array&lt;number&gt;&gt; | 更新失败的自定义用户统计行为数据中的fileId。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[媒体库错误码](errcode-medialibrary.md)。
+
+| 错误码ID | 错误信息 |
+| --- | --- |
+| 202 | Called by non-system application. |
+| 23800151 | Scenario parameters fail to pass the verification. Possible causes: 1. The value range of mandatory parameters in photoAssetCustomRecord does not meet the requirements. 2. The number of transferred records exceeds 200. |
+| 23800301 | Internal system error. It is recommended to retry and check the logs. Possible causes: 1. Database corrupted; 2. The file system is abnormal; 3. The IPC request timed out. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async example() {
+  console.info('setCustomRecords');
+  let context = getContext(this);
+  let crManager = photoAccessHelper.PhotoAssetCustomRecordManager.getCustomRecordManagerInstance(context);
+  let UpdateArray: Array<photoAccessHelper.PhotoAssetCustomRecord> = [
+    {fileId:1,shareCount:2,lcdJumpCount:3},
+    {fileId:2,shareCount:2,lcdJumpCount:3}
+  ];
+  crManager.setCustomRecords(UpdateArray).then((failIds) => {
+    console.info('setCustomRecords successful');
+  }).catch((err: BusinessError) => {
+    console.error('setCustomRecords file with err: ${err.code}, ${err.message}');
+  });
+}
+```
+
+### removeCustomRecords<sup>20+</sup>
+
+removeCustomRecords(optionCheck: FetchOptions): Promise&lt;void&gt;
+
+根据检索选项删除自定义用户统计行为数据。使用Promise异步回调。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**： SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| --- | --- | --- | --- |
+| optionCheck | [FetchOptions](js-apis-photoAccessHelper.md#fetchoptions) | 是 | 检索选项。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| --- | --- |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[媒体库错误码](errcode-medialibrary.md)。
+
+| 错误码ID | 错误信息 |
+| --- | --- |
+| 202 | Called by non-system application. |
+| 23800151 | Scenario parameters fail to pass the verification. Possible causes: 1. The fileter criteria or fetchColumns that are not supported by options are transferred |
+| 23800301 | Internal system error. It is recommended to retry and check the logs. Possible causes: 1. Database corrupted; 2. The file system is abnormal; 3. The IPC request timed out. |
+
+**示例：**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async example() {
+  console.info('removeCustomRecords');
+  let context = getContext(this);
+  let crManager = photoAccessHelper.PhotoAssetCustomRecordManager.getCustomRecordManagerInstance(context);
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  predicates.equalTo('file_id', 1);
+  let fetchOption: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  crManager.removeCustomRecords(fetchOption).then(() => {
+    console.info('removeCustomRecords successful');
+  }).catch((err: BusinessError) => {
+    console.error('removeCustomRecords fail with error: ${err.code}, ${err.message}');
+  });
+}
+```
+
+### addShareCount<sup>20+</sup>
+
+addShareCount(ids: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
+
+根据[PhotoAssetCustomRecord](#photoassetcustomrecord20)中的fileId给数据库中对应数据的shareCount加1。使用Promise异步回调。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**： SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| --- | --- | --- | --- |
+| ids | Array&lt;number&gt; | 是 | [PhotoAssetCustomRecord](#photoassetcustomrecord20)中的fileId集合。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| --- | --- |
+| Promise&lt;Array&lt;number&gt;&gt; | 更新失败的自定义用户统计行为数据中的fileId。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[媒体库错误码](errcode-medialibrary.md)。
+
+| 错误码ID | 错误信息 |
+| --- | --- |
+| 202 | Called by non-system application. |
+| 23800151 | Scenario parameters fail to pass the verification. Possible causes: 1. The ids list is empty; 2. The number of ids lists exceeds 500. |
+| 23800301 | Internal system error. It is recommended to retry and check the logs. Possible causes: 1. Database corrupted; 2. The file system is abnormal; 3. The IPC request timed out. |
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async example() {
+  console.info('addShareCount');
+  let context = getContext(this);
+  let crManager = photoAccessHelper.PhotoAssetCustomRecordManager.getCustomRecordManagerInstance(context);
+  let ids: Array<number> = [1, 2];
+  crManager.addShareCount(ids).then((failIds) => {
+    console.info('addShareCount successful');
+  }).catch((err: BusinessError) => {
+    console.error('addShareCount fail with error: ${err.code}, ${err.message}');
+  });
+}
+```
+
+### addLcdJumpCount<sup>20+</sup>
+
+addLcdJumpCount(ids: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
+
+根据[PhotoAssetCustomRecord](#photoassetcustomrecord20)中的fileId给数据库中对应数据的LcdJumpCount加1。使用Promise异步回调。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**： SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| --- | --- | --- | --- |
+| ids | Array&lt;number&gt; | 是 | [PhotoAssetCustomRecord](#photoassetcustomrecord20)中的fileId集合。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| --- | --- |
+| Promise&lt;Array&lt;number&gt;&gt; | 更新失败的自定义用户统计行为数据中的fileId。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[媒体库错误码](errcode-medialibrary.md)。
+
+| 错误码ID | 错误信息 |
+| --- | --- |
+| 202 | Called by non-system application. |
+| 23800151 | Scenario parameters fail to pass the verification. Possible causes: 1. The ids list is empty; 2. The number of ids lists exceeds 500. |
+| 23800301 | Internal system error. It is recommended to retry and check the logs. Possible causes: 1. Database corrupted; 2. The file system is abnormal; 3. The IPC request timed out. |
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async example() {
+  console.info('addLcdJumpCount');
+  let context = getContext(this);
+  let crManager = photoAccessHelper.PhotoAssetCustomRecordManager.getCustomRecordManagerInstance(context);
+  let ids: Array<number> = [1, 2];
+  crManager.addLcdJumpCount(ids).then((failIds) => {
+    console.info('addLcdJumpCount successful');
+  }).catch((err: BusinessError) => {
+    console.error('addLcdJumpCount fail with error: ${err.code}, ${err.message}');
+  });
+}
+```
+
 ## PhotoSelectOptions
 
 图库选择选项子类，继承于BaseSelectOptions。用于拉起对应userId空间的picker。
@@ -9275,3 +9643,17 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, cont
 | 名称                   | 类型                | 只读 | 可选 | 说明       |
 | ---- | ------- | ---- |  ---- | ----- |
 | version | number  | 否 | 否 | 相册信息通知的版本号，用于确定通知的顺序。<br>**系统接口**：此接口为系统接口。 |
+
+## PhotoAssetCustomRecord<sup>20+</sup>
+
+媒体库支持图库自定义用户统计行为。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| --- | --- | --- | --- | --- |
+| fileId | number | 是 | 否 | 图片id，必须为大于0的整数。 |
+| shareCount | number | 是 | 否 | 图片和视频被分享的次数，必须为大于0的整数。 |
+| lcdJumpCount | number | 是 | 否 | 大图跳转分享等次数，必须为大于0的整数。 |
