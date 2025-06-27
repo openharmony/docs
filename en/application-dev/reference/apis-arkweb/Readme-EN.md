@@ -2,9 +2,21 @@
 
 - ArkTS API<!--arkweb-arkts-->
   - [@ohos.web.webview (Webview)](js-apis-webview.md)
+    - [Class (WebviewController)](js-apis-webview-WebviewController.md)
+    - [Class (WebMessageExt)](js-apis-webview-WebMessageExt.md)
+    - [Interface (BackForwardList)](js-apis-webview-BackForwardList.md)
+    - [Interface (WebMessagePort)](js-apis-webview-WebMessagePort.md)
+    - [Interfaces (Others)] (js-apis-webview-i.md)
+    - [Enums](js-apis-webview-e.md)
+    - [Types](js-apis-webview-t.md)
   - [@ohos.web.netErrorList](js-apis-netErrorList.md)
 - ArkTS Components<!--arkweb-comp-->
   - [Web](ts-basic-components-web.md)
+    - [Attributes](ts-basic-components-web-attributes.md)
+    - [Events](ts-basic-components-web-events.md)
+    - [Interfaces (Others)](ts-basic-components-web-i.md)
+    - [Enums](ts-basic-components-web-e.md)
+    - [Types](ts-basic-components-web-t.md)
 - C API<!--arkweb-c-->
   - Modules<!--arkweb-module-->
     - [Web](_web.md)
