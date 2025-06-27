@@ -228,7 +228,7 @@ MethodIndexData是一个无符号32位整数，划分为3个部分。
 | **位** | **名称** | **格式** | **说明**                                               |
 | ------------ | -------------- | -------------- | ------------------------------------------------------------ |
 | 0 - 15       | `header_index`   | `uint16_t`       | 指向一个在[IndexSection](#indexsection)中的位置，该位置的值是[IndexHeader](#indexheader)。通过IndexHeader可以找到该方法引用的所有方法（[Method](#method)）、[字符串](#字符串)或字面量数组（[LiteralArray](#literalarray)）的偏移量。 |
-| 16 - 23      | `function_kind`  | `uint8_t`        | 表示方法的函数类型（[FunctionKind](#functionkind)）。 |
+| 16 - 23      | `function_kind`  | `uint8_t`        | 表示方法的函数类型（FunctionKind）。 |
 | 24 - 31      | `reserved`       | `uint8_t`        | 方舟字节码文件内部使用的保留字段。                           |
 
 
@@ -375,7 +375,7 @@ MethodIndexData是一个无符号32位整数，划分为3个部分。
 
 
 ### DebugInfo
-调试信息（DebugInfo）包含方法的程序计数器与源代码中的行列号之间的映射以及有关局部变量的信息。调试信息的格式由[DWARF调试信息格式第3版](https://dwarfstd.org/dwarf3std.html)（见第6.2项）的内容演变形成。基于状态机（[State machine](#state-machine)）的执行模型对行号程序（[Line number program](#line-number-program))进行解释，可得到映射和局部变量信息编码。为对不同方法的相同行号程序进行去重，程序中引用的所有常量都被移动到了常量池（[Constant pool](#constant-pool)）中。
+调试信息（DebugInfo）包含方法的程序计数器与源代码中的行列号之间的映射以及有关局部变量的信息。调试信息的格式由[DWARF调试信息格式第3版](https://dwarfstd.org/dwarf3std.html)（见第6.2项）的内容演变形成。基于状态机（State machine）的执行模型对行号程序（Line number program)进行解释，可得到映射和局部变量信息编码。为对不同方法的相同行号程序进行去重，程序中引用的所有常量都被移动到了常量池（Constant pool）中。
 
 - 对齐方式：单字节对齐。
 - 格式：
