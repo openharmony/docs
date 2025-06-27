@@ -4705,18 +4705,6 @@ getAttachOptions(): AttachOptions
 | ---- | ------------ |
 | [AttachOptions](#attachoptions19) | 返回绑定输入法时的附加选项内容。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息         |
-| -------- | ---------------- |
-| 801      | Capability not supported. |
-
-> **注意：**
->
-> 从API version 20 开始，错误码`801 Capability not supported.`被移除。
-
 **示例：**
 
 ```ts
@@ -4742,18 +4730,6 @@ on(type: 'attachOptionsDidChange', callback: Callback\<AttachOptions>): void
 | -------- | ------------------------------------------- | ---- | ---------------------------------------------- |
 | type     | string                                      | 是   | 绑定输入法时的附加选项变更事件，固定取值为'attachOptionsDidChange'。 |
 | callback | Callback\<[AttachOptions](#attachoptions19)> | 是   | 回调函数，返回绑定输入法时的附加选项。       |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息         |
-| -------- | ---------------- |
-| 801      | Capability not supported. |
-
-> **注意：**
->
-> 从API version 20 开始，错误码`801 Capability not supported.`被移除。
 
 **示例：**
 
