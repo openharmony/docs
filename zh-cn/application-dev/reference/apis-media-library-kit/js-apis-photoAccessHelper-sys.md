@@ -1722,6 +1722,125 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 }
 ```
 
+### GetIndexConstructProgress
+
+GetIndexConstructProgress(): Promise&lt;string&gt;
+
+获取索引构建进度，使用Promise方式返回结果。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
+
+**返回值：**
+
+| 类型                        | 说明           |
+| --------------------------- | -------------- |
+| Promise&lt;string&gt; | Promise对象，返回一个json格式的字符串。表示已经完成智慧分析的图片的数量，图片总数；已经完成智慧分析的视频的数量，视频总数。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201      | Permission denied.                                           |
+| 202      | Called by non-system application.                            |
+| 14000011       | Internal system error.         |
+
+**示例：**
+
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
+
+```ts
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
+
+  class indexProgress {
+    finishedImageCount: number = 0;
+    totalImageCount: number = 0;
+    finishedVideoCount: number = 0;
+    totalVideoCount: number = 0;
+  }
+
+  try {
+    console.info('getIndexConstructProgress test start');
+    let photoType: photoAccessHelper.PhotoType = photoAccessHelper.PhotoType.IMAGE;
+    let extension: string = 'jpg';
+    let options: photoAccessHelper.CreateOptions = {
+        title: 'testPhoto'；
+    }
+
+    let uri: string = await phAccessHelper.createAsset(photoType, extension, options);
+    console.info('getAssets' + uri);
+
+    let result: string = await phAccessHelper.getIndexConstructProgress();
+    console.info('getIndexProgress:' + result);
+
+    let jsonObj: indexProgress = JSON.parse(result);
+    // ...使用获取到的索引构建进度数据
+  } catch (err) {
+    console.error(`getIndexConstructProgress failed, error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### GetDataAnalysisProgress<sup>12+</sup>
+
+GetDataAnalysisProgress(analysisType: AnalysisType): Promise&lt;string&gt;
+
+获取资产的分析进度，使用Promise方式返回结果。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
+**参数：**
+
+| 参数名  | 类型             | 必填   | 说明    |
+| ---- | -------------- | ---- | ----- |
+| analysisType | [AnalysisType](#analysistype11) | 是    | 需要获取的智慧分析类型。 |
+
+**返回值：**
+
+| 类型                        | 说明           |
+| --------------------------- | -------------- |
+| Promise&lt;string&gt; | Promise对象，返回一个json格式的字符串。表示资产分析的进度。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201      | Permission denied.                                           |
+| 202      | Called by non-system application.                            |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011       | Internal system error.         |
+
+**示例：**
+
+phAccessHelper的创建请参考[@ohos.file.photoAccessHelper (相册管理模块)](arkts-apis-photoAccessHelper-f.md)的示例使用。
+
+```ts
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
+  try {
+    console.info('GetDataAnalysisProgress test start');
+
+    let result: string = await phAccessHelper.GetDataAnalysisProgress(AnalysisType.ANALYSIS_HIGHLIGHT);
+    console.info('GetDataAnalysisProgress:' + result);
+
+  } catch (err) {
+    console.error(`GetDataAnalysisProgress failed, error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
 ### getSharedPhotoAssets<sup>13+</sup>
 
 getSharedPhotoAssets(options: FetchOptions): Array\<SharedPhotoAsset\>
@@ -8352,6 +8471,7 @@ async function example(context: Context) {
 | ANALYSIS\_HEAD\_POSITION<sup>12+</sup>      | 11 | 人头、宠物头位置分析类别。**系统接口**：此接口为系统接口。    |
 | ANALYSIS\_BONE\_POSE<sup>12+</sup>        | 12 | 人体骨骼点信息分析类别。**系统接口**：此接口为系统接口。    |
 | ANALYSIS\_VIDEO\_LABEL<sup>12+</sup>        | 13 | 视频标签。**系统接口**：此接口为系统接口。    |
+| ANALYSIS\_HIGHLIGHT<sup>12+</sup>        | 14 | 时刻标签。**系统接口**：此接口为系统接口。    |
 
 ## HighlightAlbumInfoType<sup>12+</sup>
 
