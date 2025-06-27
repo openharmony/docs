@@ -566,8 +566,8 @@ RichEditor(this.options)
   .width(300)
   .height(70)
 RichEditor(this.options1)
-          .width(300)
-          .height(70) 
+  .width(300)
+  .height(70) 
 ```
 
 ### 添加完成复制前可触发的回调
