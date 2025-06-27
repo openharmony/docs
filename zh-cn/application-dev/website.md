@@ -1188,9 +1188,13 @@
         - 蓝牙<!--bluetooth-->
           - [蓝牙服务开发概述](connectivity/bluetooth/bluetooth-overview.md)
           - [蓝牙设置](connectivity/bluetooth/br-development-guide.md)
-          - [广播与扫描](connectivity/bluetooth/ble-development-guide.md)
-          - [通用属性协议](connectivity/bluetooth/gatt-development-guide.md)
-          - [串行通信](connectivity/bluetooth/spp-development-guide.md)
+          - 传统蓝牙<!--bluetooth-br-->
+            - [查找设备](connectivity/bluetooth/br-discovery-development-guide.md)
+            - [配对连接设备](connectivity/bluetooth/br-pair-device-development-guide.md)
+            - [连接和传输数据](connectivity/bluetooth/spp-development-guide.md)
+          - 低功耗蓝牙<!--bluetooth-ble-->
+            - [查找设备](connectivity/bluetooth/ble-development-guide.md)
+            - [连接和传输数据](connectivity/bluetooth/gatt-development-guide.md)
         - NFC<!--nfc-->
           - [NFC标签读写开发指南](connectivity/nfc/nfc-tag-access-guide.md)
           - [HCE卡模拟开发指南](connectivity/nfc/nfc-hce-guide.md)
@@ -1198,6 +1202,8 @@
         - WLAN<!--wlan-->
           - [WLAN服务开发概述](connectivity/wlan/wlan-overview.md)
           - [P2P模式开发指南](connectivity/wlan/p2p-development-guide.md)
+          - [STA模式开发指南](connectivity/wlan/sta-development-guide.md)
+          - [Wi-Fi扫描开发指南](connectivity/wlan/scan-development-guide.md)
         - [Connectivity Kit术语](connectivity/terminology.md)
       - Distributed Service Kit（分布式管理服务）<!--distributed-service-kit-->
         - [Distributed Service Kit简介](distributedservice/distributedservice-kit-intro.md)
@@ -2684,6 +2690,7 @@
             - [禁用控制](reference/apis-arkui/arkui-ts/ts-universal-attributes-enable.md)
             - [焦点控制](reference/apis-arkui/arkui-ts/ts-universal-attributes-focus.md)
             - [拖拽控制](reference/apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md)
+            - [拖拽排序](reference/apis-arkui/arkui-ts/ts-universal-attributes-drag-sorting.md)
             - [悬浮态效果](reference/apis-arkui/arkui-ts/ts-universal-attributes-hover-effect.md)
             - 触摸交互控制<!--touch-interactions-->
               - [触摸热区设置](reference/apis-arkui/arkui-ts/ts-universal-attributes-touch-target.md)
