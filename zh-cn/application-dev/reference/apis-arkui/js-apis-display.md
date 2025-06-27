@@ -1374,6 +1374,7 @@ display.makeUnique(screenId).then(() => {
 | sourceMode<sup>19+</sup> | [DisplaySourceMode](#displaysourcemode19) | 是 | 是 | 屏幕显示内容的显示模式枚举。<br/>**系统能力：** SystemCapability.Window.SessionManager <br>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。                                                                                    |
 | x<sup>19+</sup> | number | 是 | 是 | 屏幕左上角相对于原点的x轴坐标，原点为主屏左上角，单位为px，该参数为整数。仅DisplaySourceMode为MAIN和EXTEND时返回。<br/>**系统能力：** SystemCapability.Window.SessionManager<br>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。                                                                                    |
 | y<sup>19+</sup> | number | 是 | 是 | 屏幕左上角相对于原点的y轴坐标，原点为主屏左上角，单位为px，该参数为整数。仅DisplaySourceMode为MAIN和EXTEND时返回。<br/>**系统能力：** SystemCapability.Window.SessionManager<br>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。                                                                                    |
+| supportedRefreshRates<sup>20+</sup> | Array&lt;number&gt; | 是 | 是 | 显示设备支持的所有刷新率，从小到大排序。刷新率值为正整数，单位为Hz。默认为空。<br/>**系统能力：** SystemCapability.Window.SessionManager<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。                                                  |
 
 
 ### getCutoutInfo<sup>9+</sup>
