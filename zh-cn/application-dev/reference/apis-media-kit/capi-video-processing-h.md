@@ -109,8 +109,8 @@ bool OH_VideoProcessing_IsColorSpaceConversionSupported(const VideoProcessing_Co
 
 | 参数项 | 描述 |
 | -- | -- |
-| const [VideoProcessing_ColorSpaceInfo](capi-videoprocessing-colorspaceinfo.md)* sourceVideoInfo | 输入视频颜色空间信息。 |
-| const [VideoProcessing_ColorSpaceInfo](capi-videoprocessing-colorspaceinfo.md)* destinationVideoInfo | 输出视频颜色空间信息。 |
+| const [VideoProcessing_ColorSpaceInfo](capi-videoprocessing-videoprocessing-colorspaceinfo.md)* sourceVideoInfo | 输入视频颜色空间信息。 |
+| const [VideoProcessing_ColorSpaceInfo](capi-videoprocessing-videoprocessing-colorspaceinfo.md)* destinationVideoInfo | 输出视频颜色空间信息。 |
 
 **返回：**
 
@@ -135,7 +135,7 @@ bool OH_VideoProcessing_IsMetadataGenerationSupported(const VideoProcessing_Colo
 
 | 参数项 | 描述 |
 | -- | -- |
-| const [VideoProcessing_ColorSpaceInfo](capi-videoprocessing-colorspaceinfo.md)* sourceVideoInfo | 输入视频颜色空间信息。 |
+| const [VideoProcessing_ColorSpaceInfo](capi-videoprocessing-videoprocessing-colorspaceinfo.md)* sourceVideoInfo | 输入视频颜色空间信息。 |
 
 **返回：**
 
@@ -160,7 +160,7 @@ VideoProcessing_ErrorCode OH_VideoProcessing_Create(OH_VideoProcessing** videoPr
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_VideoProcessing](capi-oh-videoprocessing.md)** videoProcessor | 输出参数。指向视频处理对象的指针的指针。输入前\*videoProcessor必须是空指针。 |
+| [OH_VideoProcessing](capi-videoprocessing-oh-videoprocessing.md)** videoProcessor | 输出参数。指向视频处理对象的指针的指针。输入前\*videoProcessor必须是空指针。 |
 | int type | 使用VIDEO_PROCESSING_TYPE_XXX来指定处理类型。实例的处理类型不能改变。 |
 
 **返回：**
@@ -188,7 +188,7 @@ VideoProcessing_ErrorCode OH_VideoProcessing_Destroy(OH_VideoProcessing* videoPr
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_VideoProcessing](capi-oh-videoprocessing.md)* videoProcessor | 指向视频处理实例的指针，建议在实例销毁之后将其设置为空指针。 |
+| [OH_VideoProcessing](capi-videoprocessing-oh-videoprocessing.md)* videoProcessor | 指向视频处理实例的指针，建议在实例销毁之后将其设置为空指针。 |
 
 **返回：**
 
@@ -215,8 +215,8 @@ VideoProcessing_ErrorCode OH_VideoProcessing_RegisterCallback(OH_VideoProcessing
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_VideoProcessing](capi-oh-videoprocessing.md)* videoProcessor | 指向视频处理实例的指针。 |
-| const [VideoProcessing_Callback](capi-videoprocessing-callback.md)* callback | 回调函数指针。 |
+| [OH_VideoProcessing](capi-videoprocessing-oh-videoprocessing.md)* videoProcessor | 指向视频处理实例的指针。 |
+| const [VideoProcessing_Callback](capi-videoprocessing-videoprocessing-callback.md)* callback | 回调函数指针。 |
 | void* userData | 指向用户特定数据的指针。 |
 
 **返回：**
@@ -244,7 +244,7 @@ VideoProcessing_ErrorCode OH_VideoProcessing_SetSurface(OH_VideoProcessing* vide
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_VideoProcessing](capi-oh-videoprocessing.md)* videoProcessor | 指向视频处理实例的指针。 |
+| [OH_VideoProcessing](capi-videoprocessing-oh-videoprocessing.md)* videoProcessor | 指向视频处理实例的指针。 |
 | const [OHNativeWindow](../apis-arkgraphics2d/capi-nativewindow-nativewindow.md)* window | 指向输出surface的指针。 |
 
 **返回：**
@@ -272,7 +272,7 @@ VideoProcessing_ErrorCode OH_VideoProcessing_GetSurface(OH_VideoProcessing* vide
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_VideoProcessing](capi-oh-videoprocessing.md)* videoProcessor | 指向视频处理实例的指针。 |
+| [OH_VideoProcessing](capi-videoprocessing-oh-videoprocessing.md)* videoProcessor | 指向视频处理实例的指针。 |
 | [OHNativeWindow](../apis-arkgraphics2d/capi-nativewindow-nativewindow.md)** window | 指向输入surface的指针。例如，此输入surface指针可以指向视频解码器输出surface。 |
 
 **返回：**
@@ -298,7 +298,7 @@ VideoProcessing_ErrorCode OH_VideoProcessing_SetParameter(OH_VideoProcessing* vi
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_VideoProcessing](capi-oh-videoprocessing.md)* videoProcessor | 指向视频处理实例的指针。 |
+| [OH_VideoProcessing](capi-videoprocessing-oh-videoprocessing.md)* videoProcessor | 指向视频处理实例的指针。 |
 | const [OH_AVFormat](../apis-avcodec-kit/_core.md#oh_avformat)* parameter | 指向视频处理参数实例的指针。 |
 
 **返回：**
@@ -324,7 +324,7 @@ VideoProcessing_ErrorCode OH_VideoProcessing_GetParameter(OH_VideoProcessing* vi
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_VideoProcessing](capi-oh-videoprocessing.md)* videoProcessor | 指向视频处理实例的指针。 |
+| [OH_VideoProcessing](capi-videoprocessing-oh-videoprocessing.md)* videoProcessor | 指向视频处理实例的指针。 |
 | [OH_AVFormat](../apis-avcodec-kit/_core.md#oh_avformat)* parameter | 指向视频处理参数实例的指针。 |
 
 **返回：**
@@ -352,7 +352,7 @@ VideoProcessing_ErrorCode OH_VideoProcessing_Start(OH_VideoProcessing* videoProc
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_VideoProcessing](capi-oh-videoprocessing.md)* videoProcessor | 指向视频处理实例的指针。 |
+| [OH_VideoProcessing](capi-videoprocessing-oh-videoprocessing.md)* videoProcessor | 指向视频处理实例的指针。 |
 
 **返回：**
 
@@ -379,7 +379,7 @@ VideoProcessing_ErrorCode OH_VideoProcessing_Stop(OH_VideoProcessing* videoProce
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_VideoProcessing](capi-oh-videoprocessing.md)* videoProcessor | 指向视频处理实例的指针。 |
+| [OH_VideoProcessing](capi-videoprocessing-oh-videoprocessing.md)* videoProcessor | 指向视频处理实例的指针。 |
 
 **返回：**
 
@@ -406,7 +406,7 @@ VideoProcessing_ErrorCode OH_VideoProcessing_RenderOutputBuffer(OH_VideoProcessi
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_VideoProcessing](capi-oh-videoprocessing.md)* videoProcessor | 指向视频处理实例的指针。 |
+| [OH_VideoProcessing](capi-videoprocessing-oh-videoprocessing.md)* videoProcessor | 指向视频处理实例的指针。 |
 | uint32_t index | 输出buffer的索引。 |
 
 **返回：**
@@ -432,7 +432,7 @@ VideoProcessing_ErrorCode OH_VideoProcessingCallback_Create(VideoProcessing_Call
 
 | 参数项 | 描述 |
 | -- | -- |
-| [VideoProcessing_Callback](capi-videoprocessing-callback.md)** callback | 输出参数。\*callback是指向回调函数对象的指针。在创建回调函数对象之前\*callback必须为空指针。 |
+| [VideoProcessing_Callback](capi-videoprocessing-videoprocessing-callback.md)** callback | 输出参数。\*callback是指向回调函数对象的指针。在创建回调函数对象之前\*callback必须为空指针。 |
 
 **返回：**
 
@@ -457,7 +457,7 @@ VideoProcessing_ErrorCode OH_VideoProcessingCallback_Destroy(VideoProcessing_Cal
 
 | 参数项 | 描述 |
 | -- | -- |
-| [VideoProcessing_Callback](capi-videoprocessing-callback.md)* callback | 指向回调对象的指针，建议在回调对象销毁之后将其设置为空指针。 |
+| [VideoProcessing_Callback](capi-videoprocessing-videoprocessing-callback.md)* callback | 指向回调对象的指针，建议在回调对象销毁之后将其设置为空指针。 |
 
 **返回：**
 
@@ -482,7 +482,7 @@ VideoProcessing_ErrorCode OH_VideoProcessingCallback_BindOnError(VideoProcessing
 
 | 参数项 | 描述 |
 | -- | -- |
-| [VideoProcessing_Callback](capi-videoprocessing-callback.md)* callback | 指向回调对象的指针。 |
+| [VideoProcessing_Callback](capi-videoprocessing-videoprocessing-callback.md)* callback | 指向回调对象的指针。 |
 | [OH_VideoProcessingCallback_OnError](capi-video-processing-types-h.md#oh_videoprocessingcallback_onerror) onError | 回调函数。 |
 
 **返回：**
@@ -508,7 +508,7 @@ VideoProcessing_ErrorCode OH_VideoProcessingCallback_BindOnState(VideoProcessing
 
 | 参数项 | 描述 |
 | -- | -- |
-| [VideoProcessing_Callback](capi-videoprocessing-callback.md)* callback | 指向回调对象的指针。 |
+| [VideoProcessing_Callback](capi-videoprocessing-videoprocessing-callback.md)* callback | 指向回调对象的指针。 |
 | [OH_VideoProcessingCallback_OnState](capi-video-processing-types-h.md#oh_videoprocessingcallback_onstate) onState | 回调函数。 |
 
 **返回：**
@@ -534,7 +534,7 @@ VideoProcessing_ErrorCode OH_VideoProcessingCallback_BindOnNewOutputBuffer(Video
 
 | 参数项 | 描述 |
 | -- | -- |
-| [VideoProcessing_Callback](capi-videoprocessing-callback.md)* callback | 指向回调对象的指针。 |
+| [VideoProcessing_Callback](capi-videoprocessing-videoprocessing-callback.md)* callback | 指向回调对象的指针。 |
 | [OH_VideoProcessingCallback_OnNewOutputBuffer](capi-video-processing-types-h.md#oh_videoprocessingcallback_onnewoutputbuffer) onNewOutputBuffer | 回调函数。 |
 
 **返回：**
