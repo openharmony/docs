@@ -75,7 +75,7 @@ The **Web** component supports the intelligent tracking prevention. That is, whe
 
     build() {
       Column() {
-        // The onIntelligentTrackingPreventionResult callback is triggered only when the intelligent tracking prenvention is enabled.
+        // The onIntelligentTrackingPreventionResult callback is triggered only when the intelligent tracking prevention is enabled.
         Button('enableIntelligentTrackingPrevention')
           .onClick(() => {
             try {

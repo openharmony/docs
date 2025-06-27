@@ -41,7 +41,7 @@ The following describes how to subscribe to a crash event triggered by a button 
     };
     // Set custom parameters for the crash event.
     hiAppEvent.setEventParam(params, hiAppEvent.domain.OS, hiAppEvent.event.APP_CRASH).then(() => {
-      hilog.info(0x0000, 'testTag', `HiAppEvent success to set svent param`);
+      hilog.info(0x0000, 'testTag', `HiAppEvent success to set event param`);
     }).catch((err: BusinessError) => {
       hilog.error(0x0000, 'testTag', `HiAppEvent code: ${err.code}, message: ${err.message}`);
     });
@@ -113,7 +113,7 @@ The following describes how to subscribe to a crash event triggered by a button 
 
 6. If the application does not capture the crash event, the application exits after the system crashes. When the application is restarted, HiAppEvent reports the crash event to the registered watcher.
 <br>If the application captures the crash event. HiAppEvent reports the event before the application exits in the following scenarios:
-<br>&emsp;&emsp;Scenario 1: The application does not exit during exception handling. For example, when [errorManger.on](../reference/apis-ability-kit/js-apis-app-ability-errorManager.md#errormanageronerror) is used to capture JsError, the application registers the NativeCrash signal processing function and does not exit.<br>&emsp;&emsp;Scenario 2: Exception handling takes a long time, and the application exit time is delayed.
+<br>Scenario 1: The application does not exit during exception handling. For example, when [errorManger.on](../reference/apis-ability-kit/js-apis-app-ability-errorManager.md#errormanageronerror) is used to capture JsError, the application registers the NativeCrash signal processing function and does not exit.<br>Scenario 2: Exception handling takes a long time, and the application exit time is delayed.
 <br>After HiAppEvent reports the event, you can view the processing logs of the system event data in the **Log** window.
 
    ```text

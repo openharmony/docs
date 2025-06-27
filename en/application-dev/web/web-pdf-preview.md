@@ -2,7 +2,7 @@
 
 The **Web** component provides the capability of previewing PDF files on web pages. The [src](../reference/apis-arkweb/ts-basic-components-web.md#web) parameter of the **Web** component and the [loadUrl()](../reference/apis-arkweb/js-apis-webview.md#loadurl) API can be used to transfer and load PDF files on the application side. Based on the source of PDF files, there are three common scenarios: loading online PDF files, loading local PDF files, and loading in-application resource PDF files.
 
-When preview and load an online PDF file, declare the network access permission in the **module.json5** file. For details, see [Declaring Permissions](../security/AccessToken/declare-permissions.md).
+When previewing and loading an online PDF file, declare the network access permission in the **module.json5** file. For details, see [Declaring Permissions](../security/AccessToken/declare-permissions.md).
 
   ```
   "requestPermissions":[

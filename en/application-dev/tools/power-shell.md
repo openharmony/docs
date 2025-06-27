@@ -107,7 +107,7 @@ power-shell timeout
 **timeout commands**
 | Parameter      | Description                      |
 | ---------- | -------------------------- |
-| -o \<time\> | Sets the automatic screen-off time. This parameter is mandatory. in milliseconds.|
+| -o \<time\> | Sets the automatic screen-off time. This parameter is mandatory, in milliseconds.|
 | -r | Restores the automatic screen-off time in the current system settings. This parameter is mandatory.|
 
 Example:

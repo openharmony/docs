@@ -61,7 +61,7 @@ The following describes how to add a button in the application and click the but
    target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so libohhicollie.so)
    ```
 
-3. Import the dependencies to the **napi_init.cpp** file, and define **LOG_TAG**. The following code steps are used to simulate the jank and stuck scenarios. Use the code based on service requirements. The sample code is as follows:
+3. Import the dependencies to the **napi_init.cpp** file, and define **LOG_TAG**. The following code are used to simulate the jank and stuck scenarios. Use the code based on service requirements. The sample code is as follows:
 
   (1) **OH_HiCollie_Init_JankDetection**:
 
@@ -180,7 +180,7 @@ The following describes how to add a button in the application and click the but
   const int64_t CHECK_BUSSINESS_THREAD_IS_ALIVE = 1;
   // Simulate a thread stuck event by putting the thread to sleep for a custom time.
   const int64_t BLOCK_TIME = 3; 
-  // Set the task execution status flag of the application thread. The value true indicates the thread is normal and the value false indicates the thread is stuck.
+  // Set the task execution status flag of the application thread. The value true indicates that the thread is normal and the value false indicates that the thread is stuck.
   std::shared_ptr<std::atomic<bool>> appThreadIsAlive_ = std::make_shared<std::atomic<bool>>(true);
   // Set the flag for reporting the application thread stuck event.
   std::shared_ptr<std::atomic<bool>> isSixSecondEvent_ = std::make_shared<std::atomic<bool>>(false);
@@ -284,7 +284,7 @@ The following describes how to add a button in the application and click the but
   const int64_t CHECK_BUSSINESS_THREAD_IS_ALIVE = 1;
   // Simulate a thread stuck event by putting the thread to sleep for a custom time.
   const int64_t BLOCK_TIME = 5; 
-  // Set the task execution status flag of the application thread. The value true indicates the thread is normal and the value false indicates the thread is stuck.
+  // Set the task execution status flag of the application thread. The value true indicates that the thread is normal and the value false indicates that the thread is stuck.
   std::shared_ptr<std::atomic<bool>> appThreadIsAlive_ = std::make_shared<std::atomic<bool>>(true);
   // Set the flag for reporting the application thread stuck event.
   std::shared_ptr<std::atomic<bool>> isSixSecondEvent_ = std::make_shared<std::atomic<bool>>(false);
