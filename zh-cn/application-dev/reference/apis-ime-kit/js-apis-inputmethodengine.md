@@ -4713,9 +4713,9 @@ getAttachOptions(): AttachOptions
 | -------- | ---------------- |
 | 801      | Capability not supported. |
 
-> **说明：**
+> **注意：**
 >
-> 在 api20 版本起 ` 801 Capability not supported.` 这个错误码被移除。
+> 从API version 20 开始，错误码`801 Capability not supported.`被移除。
 
 **示例：**
 
@@ -4751,9 +4751,9 @@ on(type: 'attachOptionsDidChange', callback: Callback\<AttachOptions>): void
 | -------- | ---------------- |
 | 801      | Capability not supported. |
 
-> **说明：**
+> **注意：**
 >
-> 在 api20版本起  ` 801 Capability not supported.` 这个错误码被移除。
+> 从API version 20 开始，错误码`801 Capability not supported.`被移除。
 
 **示例：**
 
@@ -4931,7 +4931,7 @@ try {
 | 名称   | 类型   | 只读 | 可选 | 说明                                                         |
 | ------ | ------ | ---- | ---- | ---------------------------------------------------------- |
 | requestKeyboardReason    | [RequestKeyboardReason](#requestkeyboardreason19) | 否   | 是   | 该属性由编辑框应用设置，如果没有设置或设置非法值，则默认没有特定的原因触发键盘请求。 |
-| isSimpleKeyboardEnabled    | boolean | 否   | 是   | 该属性由编辑框应用设置，如果没有设置或设置非法值，则默认不使能简单键盘。 |
+| isSimpleKeyboardEnabled<sup>20+</sup>    | boolean | 否   | 是   | 是否使能简单键盘，该属性由编辑框应用设置，true表示使能简单键盘，false表示不使能简单键盘。<br/> 如果没有设置或设置非法值，则默认不使能简单键盘。 |
 
 ## WindowInfo<sup>12+</sup>
 
