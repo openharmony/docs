@@ -3458,10 +3458,11 @@ async function example(mgr: userFileManager.UserFileManager) {
 | ------------ | ------ | ---- | ---- | ------- |
 | albumType<sup>10+</sup> | [AlbumType]( #albumtype10) | 是    | 否    | 相册类型。    |
 | albumSubType<sup>10+</sup> | [AlbumSubType]( #albumsubtype10) | 是    | 否   | 相册子类型。    |
-| albumName | string | 否    | 用户相册可写，预置相册不可写   | 相册名称。    |
+| albumName | string | 否    | 否   | 相册名称。<br>用户相册可写，预置相册不可写。    |
 | albumUri | string | 是    | 否    | 相册Uri。   |
+| dateModified  | number | 是    | 否    |  相册的修改时间。 |
 | count | number | 是    | 否    |  相册中文件数量。 |
-| coverUri | string | 否    | 用户相册可写，预置相册不可写	    | 封面文件Uri。 |
+| coverUri | string | 否    | 否	    | 封面文件Uri。<br>用户相册可写，预置相册不可写。 |
 
 ### getPhotoAssets
 
@@ -4485,14 +4486,14 @@ async function example(mgr: userFileManager.UserFileManager) {
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
-| 名称  |  类型 |  只读  |  可选  |  说明 |
-| ----- |  ---- |  ---- |  ---- |  ---- |
-| deviceChange |  string | 是 | 是 |  设备。 |
-| albumChange |  string | 是 | 是 |  相册。 |
-| imageChange |  string | 是 | 是 |  图片。 |
-| audioChange |  string | 是 | 是 |  音频。 |
-| videoChange |  string | 是 | 是 |  视频。 |
-| remoteFileChange |  string | 是 | 是 |  远程文件。 |
+| 参数名   | 类型                     | 必填 | 说明                      |
+| -------- | ------------------------- | ---- | ----- |
+| deviceChange | string | 是    | 设备。 |
+| albumChange | string | 是    | 相册。 |
+| imageChange | string | 是    | 图片。 |
+| audioChange | string | 是    | 音频。 |
+| videoChange | string | 是    | 视频。 |
+| remoteFileChange | string | 是    | 远程文件。 |
 
 ## PeerInfo
 
