@@ -124,6 +124,7 @@ didFail(code: WebNetErrorList, completeIfNoResponse: boolean): void
 | 参数名   | 类型    |  必填  | 说明                       |
 | --------| ------- | ---- | ---------------------------|
 |  code | [WebNetErrorList](arkts-apis-netErrorList.md#webneterrorlist) | 是   | 网络错误码。 |
+|  completeIfNoResponse | boolean | 是   | 调用当前接口时，若之前未调用过[didReceiveResponse](#didreceiveresponse12)，是否完成此次网络请求；值为true时，若之前未调用过[didReceiveResponse](#didreceiveresponse12)，则会自动生成一个response以完成此次网络请求，网络错误码为-104；值为false时，将等待应用调用[didReceiveResponse](#didreceiveresponse12)并传入response，不会直接完成此次网络请求。 |
 
 **错误码：**
 
