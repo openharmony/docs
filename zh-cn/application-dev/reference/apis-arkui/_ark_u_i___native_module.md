@@ -151,7 +151,7 @@
 | typedef struct [ArkUI_CustomProperty](#arkui_customproperty) [ArkUI_CustomProperty](#arkui_customproperty) | 定义自定义属性的CustomProperty类信息。  |
 | typedef struct [ArkUI_HostWindowInfo](#arkui_hostwindowinfo) [ArkUI_HostWindowInfo](#arkui_hostwindowinfo) | 定义窗口属性的HostWindowInfo类信息。  |
 | typedef struct [ArkUI_ActiveChildrenInfo](#arkui_activechildreninfo) [ArkUI_ActiveChildrenInfo](#arkui_activechildreninfo) | 定义ActiveChildrenInfo类信息。  |
-
+| typedef struct [AbilityBase_Want](#abilitybase_want) [AbilityBase_Want](#abilitybase_want) | 声明want。 |
 
 ### 枚举
 
@@ -802,11 +802,11 @@
 | int32_t [OH_ArkUI_AccessibilityValue_GetMax](#oh_arkui_accessibilityvalue_getmax) ([ArkUI_AccessibilityValue](#arkui_accessibilityvalue) \*value) | 获取无障碍最大值信息。  |
 | void [OH_ArkUI_AccessibilityValue_SetCurrent](#oh_arkui_accessibilityvalue_setcurrent) ([ArkUI_AccessibilityValue](#arkui_accessibilityvalue) \*value, int32_t current) | 设置无障碍当前值信息。  |
 | int32_t [OH_ArkUI_AccessibilityValue_GetCurrent](#oh_arkui_accessibilityvalue_getcurrent) ([ArkUI_AccessibilityValue](#arkui_accessibilityvalue) \*value) | 获取无障碍当前值信息。  |
-| int32_t [OH_ArkUI_AccessibilityValue_SetRangeMin](#oh_arkui_accessibilityvalue_setrangemin) ([ArkUI_AccessibilityValue](#arkui_accessibilityvalue) \*value, int32_t rangeMin) | 用于设置范围组件的无障碍最小值信息。  |
+| void [OH_ArkUI_AccessibilityValue_SetRangeMin](#oh_arkui_accessibilityvalue_setrangemin) ([ArkUI_AccessibilityValue](#arkui_accessibilityvalue) \*value, int32_t rangeMin) | 用于设置范围组件的无障碍最小值信息。  |
 | int32_t [OH_ArkUI_AccessibilityValue_GetRangeMin](#oh_arkui_accessibilityvalue_getrangemin) ([ArkUI_AccessibilityValue](#arkui_accessibilityvalue) \*value) | 用于获取范围组件的无障碍最小值信息。  |
-| int32_t [OH_ArkUI_AccessibilityValue_SetRangeMax](#oh_arkui_accessibilityvalue_setrangemax) ([ArkUI_AccessibilityValue](#arkui_accessibilityvalue) \*value, int32_t rangeMax) | 用于设置范围组件的无障碍最大值信息。  |
+| void [OH_ArkUI_AccessibilityValue_SetRangeMax](#oh_arkui_accessibilityvalue_setrangemax) ([ArkUI_AccessibilityValue](#arkui_accessibilityvalue) \*value, int32_t rangeMax) | 用于设置范围组件的无障碍最大值信息。  |
 | int32_t [OH_ArkUI_AccessibilityValue_GetRangeMax](#oh_arkui_accessibilityvalue_getrangemax) ([ArkUI_AccessibilityValue](#arkui_accessibilityvalue) \*value) | 用于获取范围组件的无障碍最大值信息。  |
-| int32_t [OH_ArkUI_AccessibilityValue_SetRangeCurrent](#oh_arkui_accessibilityvalue_setrangecurrent) ([ArkUI_AccessibilityValue](#arkui_accessibilityvalue) \*value, int32_t rangeCurrent) | 用于设置范围组件的无障碍当前值信息。  |
+| void [OH_ArkUI_AccessibilityValue_SetRangeCurrent](#oh_arkui_accessibilityvalue_setrangecurrent) ([ArkUI_AccessibilityValue](#arkui_accessibilityvalue) \*value, int32_t rangeCurrent) | 用于设置范围组件的无障碍当前值信息。  |
 | int32_t [OH_ArkUI_AccessibilityValue_GetRangeCurrent](#oh_arkui_accessibilityvalue_getrangecurrent) ([ArkUI_AccessibilityValue](#arkui_accessibilityvalue) \*value) | 用于获取范围组件的无障碍当前值信息。  |
 | void [OH_ArkUI_AccessibilityValue_SetText](#oh_arkui_accessibilityvalue_settext) ([ArkUI_AccessibilityValue](#arkui_accessibilityvalue) \*value, const char \*text) | 设置无障碍文本描述信息。  |
 | const char \* [OH_ArkUI_AccessibilityValue_GetText](#oh_arkui_accessibilityvalue_gettext) ([ArkUI_AccessibilityValue](#arkui_accessibilityvalue) \*value) | 获取无障碍文本描述信息。  |
@@ -3982,7 +3982,7 @@ enum ArkUI_NodeAttributeType
 | NODE_IMAGE_ANIMATOR_ITERATION  | 设置帧动画的播放次数。支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：播放次数。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：播放次数。 |
 | NODE_BACKDROP_BLUR  | 设置背景模糊效果，支持属性设置，属性重置和属性获取。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：表示背景模糊半径，取值范围[0,+∞)。单位px，默认值0.0。<br/>.value[1]?.f32：表示灰阶模糊参数，对黑色的提亮程度，取值范围为[0,127]。<br/>.value[2]?.f32：表示灰阶模糊参数，对白色的压暗程度，取值范围为[0,127]。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：表示背景模糊半径，取值范围[0,+∞)。单位px。<br/>.value[1].f32：表示灰阶模糊参数，对黑色的提亮程度，取值范围为[0,127]。<br/>.value[2].f32：表示灰阶模糊参数，对白色的压暗程度，取值范围为[0,127]。<br/>起始版本：15。 |
 | NODE_TRANSLATE_WITH_PERCENT  | 通过百分比或具体数值形式设置组件平移，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32： x轴移动距离，单位取决于value[3]，默认单位为百分比；<br/>.value[1].f32： y轴移动距离，单位取决于value[4]，默认单位为百分比；<br/>.value[2].f32： z轴移动距离，单位vp，默认值0。<br/>.value[3]?.i32： x轴的参数单位，默认值1，取值范围0或1。<br/>.value[4]?.i32： y轴的参数单位，默认值1，取值范围0或1。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32： x轴移动距离，单位取决于value[3]；<br/>.value[1].f32： y轴移动距离，单位取决于value[4]；<br/>.value[2].f32： z轴移动距离，单位vp。<br/>.value[3].i32： x轴的参数单位。<br/>.value[4].i32： y轴的参数单位。<br/>**说明：**<br/>设置的参数个数超过5个或少于3个时返回错误码。<br/>参数单位1表示百分比单位，0表示不使用百分比单位，默认vp。<br/>**起始版本：** 20 | 
-| NODE_EMBEDDED_COMPONENT_WANT  | 定义用于启动EmbeddedAbility的want。支持参数属性设置。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.object: EmbeddedCompont的want参数。参数类型为[AbilityBase_Want](../apis-ability-kit/_ability_base.md#abilitybase_want)。默认值为nullptr。<br/>**起始版本：** 20  | 
+| NODE_EMBEDDED_COMPONENT_WANT  | 定义用于启动EmbeddedAbility的want。支持参数属性设置。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.object: EmbeddedCompont的want参数。参数类型为[AbilityBase_Want](#abilitybase_want)。默认值为nullptr。<br/>**起始版本：** 20  | 
 | NODE_EMBEDDED_COMPONENT_OPTION  | EmbeddedCompont的选项。支持参数属性设置。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.object：EmbeddedCompont的选项列表，参数类型为[ArkUI_EmbeddedComponentOption](#arkui_embeddedcomponentoption)。<br/>**起始版本：** 20  | 
 | NODE_ROTATE_ANGLE | 设置组件旋转，支持各轴旋转角属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：x轴方向旋转角度，默认值0；<br/>.value[1].f32：y轴方向旋转角度，默认值0；<br/>.value[2].f32：z轴方向旋转角度，默认值0；<br/>.value[3].f32：视距，即视点到z=0平面的距离，单位px，默认值0。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：x轴方向旋转角度，默认值0；<br/>.value[1].f32：y轴方向旋转角度，默认值0；<br/>.value[2].f32：z轴方向旋转角度，默认值0；<br/>.value[3].f32：视距，即视点到z=0平面的距离，单位px，默认值0。 <br/>**起始版本：** 20 |
 
