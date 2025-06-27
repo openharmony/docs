@@ -287,7 +287,7 @@ typedef void (*OH_PhotoOutput_PhotoAssetAvailable)(Camera_PhotoOutput* photoOutp
 | 参数项 | 描述 |
 | -- | -- |
 | [Camera_PhotoOutput](capi-oh-camera-camera-photooutput.md)* photoOutput | 传递回调的拍照输出实例。 |
-|  [OH_MediaAsset](../apis-media-library-kit/capi-oh-mediaasset.md)* photoAsset | 回调传递的媒体资源。 |
+|  [OH_MediaAsset](../apis-media-library-kit/capi-mediaassetmanager-oh-mediaasset.md)* photoAsset | 回调传递的媒体资源。 |
 
 ### OH_PhotoOutput_RegisterCallback()
 

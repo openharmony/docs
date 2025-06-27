@@ -274,7 +274,7 @@ typedef void (*OH_AVRecorder_OnUri)(OH_AVRecorder *recorder, OH_MediaAsset *asse
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_AVRecorder](capi-avrecorder-oh-avrecorder.md) *recorder | OH_AVRecorder实例的指针。 |
-| [OH_MediaAsset](../apis-media-library-kit/capi-oh-mediaasset.md) *asset | OH_MediaAsset实例的指针。 |
+| [OH_MediaAsset](../apis-media-library-kit/capi-mediaassetmanager-oh-mediaasset.md) *asset | OH_MediaAsset实例的指针。 |
 |  void *userData | 用户特定数据的指针。 |
 
 
