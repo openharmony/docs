@@ -36,8 +36,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [ArkUI_DragResult](_ark_u_i___native_module.md#arkui_dragresult) { ARKUI_DRAG_RESULT_SUCCESSFUL, ARKUI_DRAG_RESULT_FAILED, ARKUI_DRAG_RESULT_CANCELED } | 拖拽结果定义，由数据接收方设置，并由系统传递给数据拖出方，拖出方可感知接收方对数据的处理结果。  | 
-| [ArkUI_DropOperation](_ark_u_i___native_module.md#arkui_dropoperation) { ARKUI_DROP_OPERATION_COPY, ARKUI_DROP_OPERATION_MOVE } | 定义拖拽释放时的数据处理方式，可影响角标的显示。  | 
+| [ArkUI_DragResult](_ark_u_i___native_module.md#arkui_dragresult) { ARKUI_DRAG_RESULT_SUCCESSFUL = 0, ARKUI_DRAG_RESULT_FAILED, ARKUI_DRAG_RESULT_CANCELED } | 拖拽结果定义，由数据接收方设置，并由系统传递给数据拖出方，拖出方可感知接收方对数据的处理结果。  | 
+| [ArkUI_DropOperation](_ark_u_i___native_module.md#arkui_dropoperation) { ARKUI_DROP_OPERATION_COPY = 0, ARKUI_DROP_OPERATION_MOVE } | 定义拖拽释放时的数据处理方式，可影响角标的显示。  | 
 | [ArkUI_PreDragStatus](_ark_u_i___native_module.md#arkui_predragstatus) {<br/>ARKUI_PRE_DRAG_STATUS_UNKNOWN = -1, ARKUI_PRE_DRAG_STATUS_ACTION_DETECTING, ARKUI_PRE_DRAG_STATUS_READY_TO_TRIGGER_DRAG, ARKUI_PRE_DRAG_STATUS_PREVIEW_LIFT_STARTED,<br/>ARKUI_PRE_DRAG_STATUS_PREVIEW_LIFT_FINISHED, ARKUI_PRE_DRAG_STATUS_PREVIEW_LANDING_STARTED, ARKUI_PRE_DRAG_STATUS_PREVIEW_LANDING_FINISHED, ARKUI_PRE_DRAG_STATUS_CANCELED_BEFORE_DRAG<br/>} | 定义拖拽发起前的长按交互阶段的变化状态。  | 
 | [ArkUI_DragPreviewScaleMode](_ark_u_i___native_module.md#arkui_dragpreviewscalemode) { ARKUI_DRAG_PREVIEW_SCALE_AUTO = 0, ARKUI_DRAG_PREVIEW_SCALE_DISABLED } | 拖拽预览缩放模式。  | 
 | [ArkUI_DragStatus](_ark_u_i___native_module.md#arkui_dragstatus) { ArkUI_DRAG_STATUS_UNKNOWN = -1, ArkUI_DRAG_STATUS_STARTED, ArkUI_DRAG_STATUS_ENDED } | 拖拽状态。  | 
