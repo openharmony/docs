@@ -14,7 +14,7 @@
 | ----------- | ------------------------------------------------------------------------------------------------ | ---- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
 | movingPhotoFormat<sup>14+</sup>  | [PixelMapFormat](#pixelmapformat14)    | 否   | 设置动态照片组件封面图片的解码格式。                  |
 | dynamicRangeMode<sup>14+</sup>  | [DynamicRangeMode](#dynamicrangemode14) | 否   | 设置动态照片组件封面图片的RangeMode样式。 |
-| playWithMask<sup>19+</sup>  | boolean | 否   | 控制带画框水印的动态照片播放时是否保留封面照片的水印显示。<br/>默认值：false。<br/>false：带画框水印的动态照片视频播放时保持宽高比撑满组件，不展示水印信息。<br/>true：带画框水印的动态照片视频播放时不遮挡封面照片的水印，展示水印信息|
+| playWithMask<sup>19+</sup>  | boolean | 否   | 带有水印的动态照片播放时是否保留水印显示。<br/>默认值：false。<br/>false：播放时保持宽高比撑满组件，不展示水印信息。<br/>true：播放时不遮挡封面照片的水印，展示水印信息。|
 
 ## PixelMapFormat<sup>14+</sup>
 
@@ -85,7 +85,8 @@ struct Index {
             movingPhoto: data,
             controller: this.controller,
             movingPhotoFormat: this.format,
-            dynamicRangeMode: this.mode
+            dynamicRangeMode: this.mode,
+            playWithMask: false
           })
         }
       }
