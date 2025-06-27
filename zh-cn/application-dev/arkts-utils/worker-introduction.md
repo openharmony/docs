@@ -24,6 +24,8 @@ Worker的主要作用是为应用程序提供一个多线程的运行环境，�
 - 引用HAR/HSP中的worker前，需要先配置对HAR/HSP的依赖，详见[引用共享包](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-har-import)。
 - 不支持在Worker工作线程中使用[AppStorage](../ui/state-management/arkts-appstorage.md)。
 - 从API version 18开始，Worker线程优先级可以在构造函数的参数[WorkerOptions](../reference/apis-arkts/js-apis-worker.md#workeroptions)中进行指定。
+- 在Worker文件中禁止使用export语法导出任何内容，否则会导致jscrash问题。
+
 
 ### 创建Worker的注意事项
 
