@@ -10,7 +10,7 @@
 
 ## 接口
 
-animation(value:AnimateParam): T
+animation(value:AnimateParam)
 
 > **说明：**
 >
@@ -24,12 +24,6 @@ animation(value:AnimateParam): T
 | 参数    | 类型                                | 是否必填 | 描述                                    |
 | ----- | --------------------------------- | ---- | ------------------------------------- |
 | value | [AnimateParam](ts-explicit-animation.md#animateparam对象说明) | 是    | 设置动画效果相关参数。                           |
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| T | 返回当前组件。 |
 
 属性动画只对写在animation前面的属性生效，且对组件构造器的属性不生效。
  ```
