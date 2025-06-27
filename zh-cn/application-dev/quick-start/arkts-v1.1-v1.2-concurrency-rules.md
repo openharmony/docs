@@ -288,7 +288,7 @@ let array = new Array<BaseClass>();
 array.push(baseInstance);
 let task = new taskpool.Task(testFunc, array);
 task.setCloneList(array);
-taskpool.execute(task).then((res: Object) => {
+taskpool.execute(task).then((res: Object):void => {
   console.info('sendable: task res is: ' + res)
 });
 ```
