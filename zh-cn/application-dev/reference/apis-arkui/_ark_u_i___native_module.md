@@ -1860,6 +1860,17 @@ typedef struct ArkUI_ActiveChildrenInfo ArkUI_ActiveChildrenInfo
 
 **起始版本：** 14
 
+### AbilityBase_Want
+
+```
+typedef struct AbilityBase_Want AbilityBase_Want
+```
+**描述：**
+
+声明want。
+
+**起始版本：** 20
+
 ### ArkUI_EmbeddedComponentOption
 
 ```
