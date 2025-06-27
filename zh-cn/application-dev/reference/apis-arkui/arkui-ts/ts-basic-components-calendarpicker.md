@@ -270,7 +270,7 @@ struct CalendarPickerExample {
 
 ### 示例3（设置日历选择器在系统当前日期时，保持高亮显示和禁用日期区间）
 
-该示例通过markToday设置日历选择器在系统当前日期时，开启保持高亮显示，同时，通过disabledDateRange设置日历选择器的禁用日期区间。
+该示例通过[markToday](#marktoday19)设置日历选择器在系统当前日期时，开启保持高亮显示，同时，通过[disabledDateRange](#calendaroptions对象说明)设置日历选择器的禁用日期区间。
 
 ```ts
 // xxx.ets
