@@ -3234,6 +3234,7 @@
           - [UIExtension错误码](reference/apis-arkui/errorcode-uiextension.md)
           - [用户界面外观服务错误码](reference/apis-arkui/errorcode-uiappearance.md)
           - [NodeAdapter错误码](reference/apis-arkui/errorcode-nodeadapter.md)
+          - [XComponent组件错误码](reference/apis-arkui/errorcode-xcomponent.md)
         - UI编译<!--arkui-compile-arkts-errcode-->
           - [编译错误码](reference/apis-arkui/_ark_ui_compile.md)
         - 图形图像<!--arkui-graphics-images-arkts-errcode-->
