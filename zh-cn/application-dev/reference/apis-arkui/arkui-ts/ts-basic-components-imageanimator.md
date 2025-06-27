@@ -293,7 +293,7 @@ struct ImageAnimatorExample {
             src: $r('app.media.img4')
           }
         ])
-        .duration(2000)
+        .duration(4000)
         .state(this.state)
         .reverse(this.reverse)
         .fillMode(FillMode.None)
@@ -344,6 +344,8 @@ struct ImageAnimatorExample {
   }
 }
 ```
+
+![imageAnimator_resource](figures/imageAnimator_resource.gif)
 
 ### 示例2（播放PixelMap动画）
 
