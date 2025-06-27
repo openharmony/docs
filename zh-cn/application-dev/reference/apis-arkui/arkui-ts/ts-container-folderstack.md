@@ -183,9 +183,9 @@ type OnFoldStatusChangeCallback = (event: OnFoldStatusChangeInfo) => void
 | foldStatus       | [FoldStatus](ts-appendix-enums.md#foldstatus11)             | 是   | 当前设备的折叠状态。 |
 | isHoverMode      | boolean                                                     | 是   | 当前是否为悬停态。设置为true时表示当前为悬停态，设置为false时表示当前为非悬停态。  |
 | appRotation      | [AppRotation](ts-appendix-enums.md#approtation12)           | 是   | 当前应用方向。    |
-| windowStatusType | [WindowStatusType](#windowstatustype11) | 是   | 窗口模式枚举。    |
+| windowStatusType | [WindowStatusType](#windowstatustype12) | 是   | 窗口模式枚举。    |
 
-## WindowStatusType<sup>11+</sup>
+## WindowStatusType<sup>12+</sup>
 
 type WindowStatusType = WindowStatusType
 
