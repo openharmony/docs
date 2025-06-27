@@ -467,7 +467,9 @@ struct on_cut_copy_paste {
         Text('查看回调内容：').fontSize(10).fontColor(Color.Gray).width(300)
           .width(300)
           .height(300)
-
+        RichEditor(this.options1)
+          .width(300)
+          .height(70)
       }.width('100%').alignItems(HorizontalAlign.Start)
     }.height('100%')
   }
@@ -507,6 +509,9 @@ RichEditor(this.options)
   })
   .width(300)
   .height(70)
+RichEditor(this.options1)
+          .width(300)
+          .height(70)
 ```
 
 ### 添加完成复制前可触发的回调
@@ -540,6 +545,9 @@ RichEditor(this.options)
       }
     })
   })
+  .width(300)
+  .height(70)
+RichEditor(this.options1)
   .width(300)
   .height(70)
 ```
