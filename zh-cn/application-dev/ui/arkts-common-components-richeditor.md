@@ -604,8 +604,8 @@ RichEditor(this.options)
   .width(300)
   .height(70)
 RichEditor(this.options1)
-          .width(300)
-          .height(70)
+  .width(300)
+  .height(70)
 ```
 
 ![alt text](figures/richeditor_image_oncut_paste_copy.gif)
