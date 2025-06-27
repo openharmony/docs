@@ -1,7 +1,7 @@
 # Media Library Kit（媒体文件管理服务）
 
 - ArkTS API<!--media-library-arkts-->
-  - @ohos.file.photoAccessHelper (相册管理模块)<!--js-apis-photoAccessHelper-->
+  - @ohos.file.photoAccessHelper (相册管理模块)<!--js-apis-photoaccesshelper-->
     - [模块描述](arkts-apis-photoAccessHelper.md)
     - [Functions](arkts-apis-photoAccessHelper-f.md)
     - [Class (MediaAlbumChangeRequest)](arkts-apis-photoAccessHelper-MediaAlbumChangeRequest.md)

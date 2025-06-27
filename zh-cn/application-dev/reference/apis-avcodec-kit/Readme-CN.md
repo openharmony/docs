@@ -34,6 +34,7 @@
     - [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md)
     - [OH_AVCodecCallback](_o_h___a_v_codec_callback.md)
     - [OH_AVDataSource](_o_h___a_v_data_source.md)
+    - [OH_AVDataSourceExt](_o_h___a_v_data_source_ext.md)
     - [OH_AVRange](_o_h___a_v_range.md)
     - [DrmSubsample](_drm_subsample.md)
   - 已停止维护的接口<!--avcodec-arkts-dep-->

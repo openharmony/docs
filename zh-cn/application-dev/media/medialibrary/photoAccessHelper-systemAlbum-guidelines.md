@@ -91,7 +91,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 
 ### 获取收藏夹中的图片和视频
 
-先[获取收藏夹对象](#获取收藏夹对象)。然后调用[Album.getAssets](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#getassets-3)接口获取收藏夹中的资源。
+先[获取收藏夹对象](#获取收藏夹对象)。然后调用[Album.getAssets](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-AbsAlbum.md#getassets-1)接口获取收藏夹中的资源。
 
 **前提条件**
 
