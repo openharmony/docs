@@ -318,8 +318,8 @@ RichEditor(this.options)
 controller: RichEditorController = new RichEditorController();
 options: RichEditorOptions = { controller: this.controller };
 
-controller1: RichEditorController = new RichEditorController();
-options1: RichEditorOptions = { controller: this.controller1 };
+infoShowController: RichEditorController = new RichEditorController();
+infoShowOptions: RichEditorOptions = { controller: this.infoShowController };
 
 RichEditor(this.options)
   .onReady(() => {
@@ -331,7 +331,7 @@ RichEditor(this.options)
     })
   })
   .onSelectionChange((value: RichEditorRange) => {
-    this.controller1.addTextSpan("\n" + "触发了onSelectionChange回调，起始范围信息为：(" + value.start + "," +
+    this.infoShowController.addTextSpan("\n" + "触发了onSelectionChange回调，起始范围信息为：(" + value.start + "," +
     value.end + ")", {
       style: {
         fontColor: Color.Gray,
@@ -342,7 +342,7 @@ RichEditor(this.options)
   .width(300)
   .height(50)
 Text('查看回调内容：').fontSize(10).fontColor(Color.Gray).width(300)
-RichEditor(this.options1)
+RichEditor(this.infoShowOptions)
   .width(300)
   .height(70)
 ```
@@ -360,8 +360,8 @@ RichEditor(this.options1)
 controller: RichEditorController = new RichEditorController();
 options: RichEditorOptions = { controller: this.controller };
 
-controller1: RichEditorController = new RichEditorController();
-options1: RichEditorOptions = { controller: this.controller1 };
+infoShowController: RichEditorController = new RichEditorController();
+infoShowOptions: RichEditorOptions = { controller: this.infoShowController };
 
 RichEditor(this.options)
   .onReady(() => {
@@ -373,7 +373,7 @@ RichEditor(this.options)
     })
   })
   .onWillChange((value: RichEditorChangeValue) => {
-    this.controller1.addTextSpan('组件内图文变化前，触发回调：\n' + JSON.stringify(value), {
+    this.infoShowController.addTextSpan('组件内图文变化前，触发回调：\n' + JSON.stringify(value), {
       style: {
         fontColor: Color.Gray,
         fontSize: 10
@@ -382,7 +382,7 @@ RichEditor(this.options)
     return true;
   })
   .onDidChange((rangeBefore: TextRange, rangeAfter: TextRange) => {
-    this.controller1.addTextSpan('\n图文变化后，触发回调：\nrangeBefore:' + JSON.stringify(rangeBefore) +
+    this.infoShowController.addTextSpan('\n图文变化后，触发回调：\nrangeBefore:' + JSON.stringify(rangeBefore) +
       '\nrangeAfter：' + JSON.stringify(rangeBefore), {
       style: {
         fontColor: Color.Gray,
@@ -393,7 +393,7 @@ RichEditor(this.options)
   .width(300)
   .height(50)
 Text('查看回调内容：').fontSize(10).fontColor(Color.Gray).width(300)
-RichEditor(this.options1)
+RichEditor(this.infoShowOptions)
   .width(300)
   .height(70)
 ```
@@ -411,8 +411,8 @@ RichEditor(this.options1)
 controller: RichEditorController = new RichEditorController();
 options: RichEditorOptions = { controller: this.controller };
 
-controller1: RichEditorController = new RichEditorController();
-options1: RichEditorOptions = { controller: this.controller1 };
+infoShowController: RichEditorController = new RichEditorController();
+infoShowOptions: RichEditorOptions = { controller: this.infoShowController };
 
 RichEditor(this.options)
   .onReady(() => {
@@ -424,7 +424,7 @@ RichEditor(this.options)
     })
   })
   .aboutToIMEInput((value: RichEditorInsertValue) => {
-    this.controller1.addTextSpan('输入法输入内容前，触发aboutToIMEInput回调：\n' + JSON.stringify(value), {
+    this.infoShowController.addTextSpan('输入法输入内容前，触发aboutToIMEInput回调：\n' + JSON.stringify(value), {
       style: {
         fontColor: Color.Gray,
         fontSize: 10
@@ -433,7 +433,7 @@ RichEditor(this.options)
     return true;
   })
   .onDidIMEInput((value: TextRange) => {
-    this.controller1.addTextSpan('输入法完成输入后，触发onDidIMEInput回调：\n' + JSON.stringify(value), {
+    this.infoShowController.addTextSpan('输入法完成输入后，触发onDidIMEInput回调：\n' + JSON.stringify(value), {
       style: {
         fontColor: Color.Gray,
         fontSize: 10
@@ -443,7 +443,7 @@ RichEditor(this.options)
   .width(300)
   .height(50)
 Text('查看回调内容：').fontSize(10).fontColor(Color.Gray).width(300)
-RichEditor(this.options1)
+RichEditor(this.infoShowOptions)
   .width(300)
   .height(70)
 ```
@@ -465,8 +465,8 @@ import { BusinessError, pasteboard } from '@kit.BasicServicesKit';
 struct on_cut_copy_paste {
   controller: RichEditorController = new RichEditorController();
   options: RichEditorOptions = { controller: this.controller }
-  controller1: RichEditorController = new RichEditorController();
-  options1: RichEditorOptions = { controller: this.controller1 }
+  infoShowController: RichEditorController = new RichEditorController();
+  infoShowOptions: RichEditorOptions = { controller: this.infoShowController }
 
   PopDataFromPasteboard() {
     let selection = this.controller.getSelection();
@@ -511,7 +511,7 @@ struct on_cut_copy_paste {
               { style: { fontColor: Color.Black, fontSize: 15 } })
           })
           .onPaste((event) => {
-            this.controller1.addTextSpan('触发onPaste回调\n', { style: { fontColor: Color.Gray, fontSize: 10 } })
+            this.infoShowController.addTextSpan('触发onPaste回调\n', { style: { fontColor: Color.Gray, fontSize: 10 } })
             if (event != undefined && event.preventDefault) {
               event.preventDefault();
             }
@@ -523,7 +523,7 @@ struct on_cut_copy_paste {
         Text('查看回调内容：').fontSize(10).fontColor(Color.Gray).width(300)
           .width(300)
           .height(70)
-        RichEditor(this.options1)
+        RichEditor(this.infoShowOptions)
           .width(300)
           .height(70) 
       }.width('100%').alignItems(HorizontalAlign.Start)
@@ -543,8 +543,8 @@ struct on_cut_copy_paste {
 controller: RichEditorController = new RichEditorController();
 options: RichEditorOptions = { controller: this.controller };
 
-controller1: RichEditorController = new RichEditorController();
-options1: RichEditorOptions = { controller: this.controller1 };
+infoShowController: RichEditorController = new RichEditorController();
+infoShowOptions: RichEditorOptions = { controller: this.infoShowController };
 
 RichEditor(this.options)
   .onReady(() => {
@@ -556,7 +556,7 @@ RichEditor(this.options)
     })
   })
   .onCut(() => {
-    this.controller1.addTextSpan('触发onCut回调\n', {
+    this.infoShowController.addTextSpan('触发onCut回调\n', {
       style: {
         fontColor: Color.Gray,
         fontSize: 10
@@ -565,7 +565,7 @@ RichEditor(this.options)
   })
   .width(300)
   .height(70)
-RichEditor(this.options1)
+RichEditor(this.infoShowOptions)
   .width(300)
   .height(70) 
 ```
@@ -581,8 +581,8 @@ RichEditor(this.options1)
 controller: RichEditorController = new RichEditorController();
 options: RichEditorOptions = { controller: this.controller };
 
-controller1: RichEditorController = new RichEditorController();
-options1: RichEditorOptions = { controller: this.controller1 };
+infoShowController: RichEditorController = new RichEditorController();
+infoShowOptions: RichEditorOptions = { controller: this.infoShowController };
 
 RichEditor(this.options)
   .onReady(() => {
@@ -594,7 +594,7 @@ RichEditor(this.options)
     })
   })
   .onCopy(() => {
-    this.controller1.addTextSpan('触发onCopy回调\n', {
+    this.infoShowController.addTextSpan('触发onCopy回调\n', {
       style: {
         fontColor: Color.Gray,
         fontSize: 10
@@ -603,7 +603,7 @@ RichEditor(this.options)
   })
   .width(300)
   .height(70)
-RichEditor(this.options1)
+RichEditor(this.infoShowOptions)
   .width(300)
   .height(70) 
 ```
@@ -856,8 +856,8 @@ Button('addSymbolSpan', {
 ```ts
 controller: RichEditorController = new RichEditorController();
 options: RichEditorOptions = { controller: this.controller }
-controller1: RichEditorController = new RichEditorController();
-options1: RichEditorOptions = { controller: this.controller1 }
+infoShowController: RichEditorController = new RichEditorController();
+infoShowOptions: RichEditorOptions = { controller: this.infoShowController }
 // 创建两个富文本组件
 
 RichEditor(this.options)
@@ -872,7 +872,7 @@ RichEditor(this.options)
   .width(300)
   .height(50)
 Text('查看getSpans返回值：').fontSize(10).fontColor(Color.Gray).width(300)
-RichEditor(this.options1)
+RichEditor(this.infoShowOptions)
   .width(300)
   .height(50)
 Button('getSpans', {
@@ -881,7 +881,7 @@ Button('getSpans', {
   .height(30)
   .fontSize(13)
   .onClick(() => {
-    this.controller1.addTextSpan(JSON.stringify(this.controller.getSpans()), {
+    this.infoShowController.addTextSpan(JSON.stringify(this.controller.getSpans()), {
       style: {
         fontColor: Color.Gray,
         fontSize: 10
