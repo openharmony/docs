@@ -276,7 +276,7 @@ struct Index {
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-| 名称   | 类型 | 可读 | 可写 | 说明       |
+| 名称   | 类型 | 只读 | 可选 | 说明       |
 | ------ | -------- | ---- | ---- | ---------- |
 | width  | number   | 是   | 否   | 窗口宽度，单位为px，该参数应为正整数，不大于屏幕宽。 |
 | height | number   | 是   | 否   | 窗口高度，单位为px，该参数应为正整数，不大于屏幕高。 |
@@ -290,7 +290,7 @@ struct Index {
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-| 名称   | 类型 | 可读 | 可写 | 说明       |
+| 名称   | 类型 | 只读 | 可选 | 说明       |
 | ------ | -------- | ---- | ---- | ---------- |
 | windowId  | number   | 是   | 否   | 画中画窗口ID。 |
 | size  | [PiPWindowSize](#pipwindowsize15)  | 是   | 否   | 画中画窗口大小。 |
@@ -644,6 +644,8 @@ setAutoStartEnabled(enable: boolean): void
 
 设置是否在返回桌面时自动启动画中画，默认不自动拉起。
 
+在使用xComponent方案实现画中画功能并结合Navigation进行路由管理时，首次调用setAutoStartEnabled(true)方法，系统会缓存当前应用传入的NavigationId的栈顶信息。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
@@ -658,7 +660,6 @@ setAutoStartEnabled(enable: boolean): void
 
 ```ts
 let enable: boolean = true;
-//应用在首次调用setAutoStartEnabled(true)时,会缓存栈顶的handleId,且后续无法更改
 this.pipController.setAutoStartEnabled(enable);
 ```
 
