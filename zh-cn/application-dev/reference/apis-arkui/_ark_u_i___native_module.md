@@ -3371,7 +3371,7 @@ enum ArkUI_KeySourceType
 | ARKUI_KEY_SOURCE_UNKNOWN  | 未知类型  |
 | ARKUI_KEY_SOURCE_TYPE_MOUSE  | 鼠标  |
 | ARKUI_KEY_SOURCE_TYPE_KEYBOARD  | 键盘  |
-| ARKUI_KEY_SOURCE_TYPE_JOYSTICK  | 游戏手柄  |
+| ARKUI_KEY_SOURCE_TYPE_JOYSTICK  | 游戏手柄。<br/>**起始版本：** 15  |
 
 
 ### ArkUI_LengthMetricUnit
