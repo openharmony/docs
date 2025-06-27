@@ -225,7 +225,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 
 ### 获取视频相册中的视频
 
-先[获取视频相册对象](#获取视频相册对象)。然后调用[Album.getAssets](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#getassets-3)接口获取视频相册对象中的视频资源。
+先[获取视频相册对象](#获取视频相册对象)。然后调用[Album.getAssets](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-AbsAlbum.md#getassets-1)接口获取视频相册对象中的视频资源。
 
 **前提条件**
 
@@ -306,7 +306,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 
 ### 获取截屏和录屏相册中的媒体资源
 
-先[获取截屏和录屏相册对象](#获取截屏和录屏相册对象)。然后调用[Album.getAssets](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#getassets-3)接口获取截屏和录屏相册对象中的媒体资源。
+先[获取截屏和录屏相册对象](#获取截屏和录屏相册对象)。然后调用[Album.getAssets](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-AbsAlbum.md#getassets-1)接口获取截屏和录屏相册对象中的媒体资源。
 
 **前提条件**
 
