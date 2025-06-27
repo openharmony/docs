@@ -45,10 +45,10 @@
     - [media_asset_manager_capi.h](capi-media-asset-manager-capi-h.md)
     - [moving_photo_capi.h](capi-moving-photo-capi-h.md)
   - 结构体<!--media-library-struct-->
-    - [MediaLibrary_RequestId](capi-medialibrary-requestid.md)
-    - [OH_MediaAssetManager](capi-oh-mediaassetmanager.md)
-    - [OH_MediaAssetChangeRequest](capi-oh-mediaassetchangerequest.md)
-    - [OH_MovingPhoto](capi-oh-movingphoto.md)
-    - [OH_MediaAsset](capi-oh-mediaasset.md)
-    - [MediaLibrary_RequestOptions](capi-medialibrary-requestoptions.md)
+    - [MediaLibrary_RequestId](capi-mediaassetmanager-medialibrary-requestid.md)
+    - [OH_MediaAssetManager](capi-mediaassetmanager-oh-mediaassetmanager.md)
+    - [OH_MediaAssetChangeRequest](capi-mediaassetmanager-oh-mediaassetchangerequest.md)
+    - [OH_MovingPhoto](capi-mediaassetmanager-oh-movingphoto.md)
+    - [OH_MediaAsset](capi-mediaassetmanager-oh-mediaasset.md)
+    - [MediaLibrary_RequestOptions](capi-mediaassetmanager-medialibrary-requestoptions.md)
 
