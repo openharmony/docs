@@ -288,7 +288,7 @@ let array = new Array<BaseClass>();
 array.push(baseInstance);
 let task = new taskpool.Task(testFunc, array);
 task.setCloneList(array);
-taskpool.execute(task).then((res: Object) => {
+taskpool.execute(task).then((res: Object):void => {
   console.info('sendable: task res is: ' + res)
 });
 ```
@@ -373,7 +373,7 @@ let buffer1: ArrayBuffer = new ArrayBuffer(16);
 let view1: Uint8Array = new Uint8Array(buffer1);
 
 let task: taskpool.Task = new taskpool.Task(testTransfer, view, view1);
-taskpool.execute(task).then((res: Object) => {
+taskpool.execute(task).then((res: NullishType):void => {
   console.info('test result: ' + res);
 }).catch((e: Error): void => {
   console.error('test catch: ' + e);
