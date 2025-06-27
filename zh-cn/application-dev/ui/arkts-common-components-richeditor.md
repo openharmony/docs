@@ -231,6 +231,9 @@ RichEditor(this.options)
 通过[maxLines](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#maxlines18)设置富文本可显示的最大行数。
 
 ```ts
+controller: RichEditorController = new RichEditorController();
+options: RichEditorOptions = { controller: this.controller };
+
 RichEditor(this.options)
   .onReady(() => {
     this.controller.addTextSpan('组件设置了最大行数\n超出内容将会以滚动显示\n超出1行\n超出2行\n超出3行\n超出4行', {
@@ -249,6 +252,9 @@ RichEditor(this.options)
 通过[maxLength](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#maxlength18)设置富文本的最大输入字符数。
 
 ```ts
+controller: RichEditorController = new RichEditorController();
+options: RichEditorOptions = { controller: this.controller };
+
 RichEditor(this.options)
   .placeholder('组件设置了最大字符数：7')
   .onReady(() => {})
@@ -261,6 +267,9 @@ RichEditor(this.options)
 富文本中的文字被选中时会弹出包含剪切、复制、翻译、分享的菜单。
 
 ```ts
+controller: RichEditorController = new RichEditorController();
+options: RichEditorOptions = { controller: this.controller };
+
 RichEditor(this.options)
   .onReady(() => {
     this.controller.addTextSpan('这是一段文本,用来展示选中菜单', {
@@ -513,8 +522,10 @@ struct on_cut_copy_paste {
           .height(70)
         Text('查看回调内容：').fontSize(10).fontColor(Color.Gray).width(300)
           .width(300)
-          .height(300)
-
+          .height(70)
+        RichEditor(this.options1)
+          .width(300)
+          .height(70)
       }.width('100%').alignItems(HorizontalAlign.Start)
     }.height('100%')
   }
@@ -554,6 +565,9 @@ RichEditor(this.options)
   })
   .width(300)
   .height(70)
+RichEditor(this.options1)
+          .width(300)
+          .height(70)
 ```
 
 ### 添加完成复制前可触发的回调
@@ -589,6 +603,9 @@ RichEditor(this.options)
   })
   .width(300)
   .height(70)
+RichEditor(this.options1)
+          .width(300)
+          .height(70)
 ```
 
 ![alt text](figures/richeditor_image_oncut_paste_copy.gif)
