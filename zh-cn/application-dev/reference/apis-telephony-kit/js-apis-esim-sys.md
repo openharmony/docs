@@ -161,8 +161,7 @@ eSIM.startOsu(0).then(() => {
 
 ## eSIM.getDownloadableProfileMetadata<sup>18+</sup>
 
-getDownloadableProfileMetadata\(slotId: number, portIndex: number,
-profile: DownloadableProfile, forceDisableProfile: boolean\): Promise\<GetDownloadableProfileMetadataResult\>
+getDownloadableProfileMetadata\(slotId: number, portIndex: number, profile: DownloadableProfile, forceDisableProfile: boolean\): Promise\<GetDownloadableProfileMetadataResult\>
 
 填充可下载配置文件的元数据。使用Promise异步回调。
 
@@ -179,7 +178,7 @@ profile: DownloadableProfile, forceDisableProfile: boolean\): Promise\<GetDownlo
 | slotId              | number                                        | 是 | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。                                                                      |
 | portIndex           | number                                        | 是 | 插槽的端口索引。                                                                                             |
 | profile             | [DownloadableProfile](./js-apis-esim.md#downloadableprofile18) | 是 | 可下载的配置文件信息。                                                                                          |
-| forceDisableProfile | boolean | 是 | 如果值为true，切换配置文件时，如果需要去激活当前的配置文件，则可以直接操作。如果值为false，如果需要去激活当前的配置文件，则会返回错误，并得到用户授权后再继续调用该接口，执行切换配置文件操作。 |
+| forceDisableProfile | boolean | 是 | 是否可直接去激活配置文件。true表示切换配置文件时，如果需要去激活当前的配置文件，则可以直接操作。false表示如果需要去激活当前的配置文件，则会返回错误，并得到用户授权后再继续调用该接口，执行切换配置文件操作。 |
 
 **返回值：**
 
@@ -243,7 +242,7 @@ forceDisableProfile: boolean\): Promise\<GetDownloadableProfilesResult\>
 | ------ | ------ | ----- | ----- |
 | slotId              | number  | 是 | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 | portIndex           | number  | 是 | 插槽的端口索引。 |
-| forceDisableProfile | boolean | 是 | 如果值为true，切换配置文件时，如果需要去激活当前的配置文件，则可以直接操作。如果值为false，如果需要去激活当前的配置文件，则会返回错误，并得到用户授权后再继续调用该接口，执行切换配置文件操作。|
+| forceDisableProfile | boolean | 是 | 是否可直接去激活配置文件。true表示切换配置文件时，如果需要去激活当前的配置文件，则可以直接操作。false表示如果需要去激活当前的配置文件，则会返回错误，并得到用户授权后再继续调用该接口，执行切换配置文件操作。|
 
 **返回值：**
 
@@ -519,7 +518,7 @@ forceDisableProfile: boolean\): Promise\<ResultCode\>
 | slotId              | number  | 是 | 卡槽ID。<br/>- 0：卡槽1。<br/>- 1：卡槽2。 |
 | portIndex           | number  | 是 | 插槽的端口索引。 |
 | iccid               | string  | 是 | 配置文件的Id。   |
-| forceDisableProfile | boolean | 是 | 如果值为true，切换配置文件时，如果需要去激活当前的配置文件，则可以直接操作。如果值为false，如果需要去激活当前的配置文件，则会返回错误，并得到用户授权后再继续调用该接口，执行切换配置文件操作。|
+| forceDisableProfile | boolean | 是 | 是否可直接去激活配置文件。true表示切换配置文件时，如果需要去激活当前的配置文件，则可以直接操作。false表示如果需要去激活当前的配置文件，则会返回错误，并得到用户授权后再继续调用该接口，执行切换配置文件操作。|
 
 **返回值：**
 
@@ -885,7 +884,7 @@ eSIM.cancelSession(0, testId, CancelReason::CANCEL_REASON_END_USER_REJECTION).th
 | ----- | ----- | ----- | -----|
 | downloadableProfile | DownloadableProfile  |  是  | 可下载的配置文件信息。   |
 | pprType             | number               |  是  | 配置文件策略规则类型。 |
-| pprFlag             | boolean              |  是  | 如果值为true，则配置文件有策略规则。如果值为false，则配置文件无策略规则。 |
+| pprFlag             | boolean              |  是  | 配置文件是否有策略规则。true表示有策略规则，false表示无策略规则。|
 | iccid               | string               |  是  | 配置文件的iccId。     |
 | serviceProviderName | string               |  是  | 配置文件的服务提供商名称。 |
 | profileName         | string               |  是  | 配置文件名称。 |
@@ -932,7 +931,7 @@ eSIM.cancelSession(0, testId, CancelReason::CANCEL_REASON_END_USER_REJECTION).th
 | ----- | ----- | ----- | -----|
 | responseResult  |ResultCode            |  是  | 返回操作结果码。    |
 | profiles        | Array\<EuiccProfile> |  是  | 配置文件数组。      |
-| isRemovable     | boolean              |  是  | 如果值为true，则eUICC可移除。如果值为false，则eUICC不可移除。|
+| isRemovable     | boolean              |  是  | eUICC是否可移除。true表示可移除，false表示不可移除。|
 
 ## OperatorId<sup>18+</sup>
 
@@ -1140,6 +1139,7 @@ euicc信息。
 
 | 名称 | 类型 | 必填 | 说明 |
 | ----- | ----- | ----- | -----|
-|switchAfterDownload | boolean | 是 | 如果值为true，则下载成功后启用配置文件。如果值为false，则下载成功后不启用配置文件。|
-|forceDisableProfile | boolean | 是 | 如果值为true，切换配置文件时，如果需要去激活当前的配置文件，则可以直接操作。如果值为false，如果需要去激活当前的配置文件，则会返回错误，并得到用户授权后再继续调用该接口，执行切换配置文件操作。|
-|isPprAllowed        | boolean | 是 | 如果值为true，则表示得到了用户授权，服务提供商可实施配置文件策略规则。如果值为false，则表示未得到用户授权，不允许实施配置文件策略规则。|
+|switchAfterDownload | boolean | 是 | 下载成功后是否启用配置文件。true表示启用，false表示不启用。|
+|forceDisableProfile | boolean | 是 | 是否可直接去激活配置文件。true表示切换配置文件时，如果需要去激活当前的配置文件，则可以直接操作。false表示如果需要去激活当前的配置文件，则会返回错误，并得到用户授权后再继续调用该接口，执行切换配置文件操作。|
+|isPprAllowed        | boolean | 是 | 是否得到用户授权。true表示得到用户授权，服务提供商可实施配置文件策略规则；false表示未得到用户授权，不允许实施配置文件策略规则。|
+
