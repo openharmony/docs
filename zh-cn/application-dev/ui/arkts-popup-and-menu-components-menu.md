@@ -290,3 +290,56 @@ struct Index2 {
 }
 
 ```
+
+## 基于绑定组件指定位置弹出菜单
+
+菜单从API version 20开始支持基于绑定组件在指定位置弹出。通过设置水平与垂直偏移量，控制菜单相对于绑定组件左上角的弹出位置。与单独使用offset接口不同，此方法可使菜单覆盖显示在绑定组件上。需要指定弹出位置时，可使用[ContextMenuOptions](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#contextmenuoptions10)的anchorPosition属性进行设置。
+
+> **说明：**
+>- 当菜单处于预览状态时，设定的定位偏移量将无法生效。
+>- 预设的[placement](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#contextmenuoptions10)对齐参数将不再生效。
+>- 叠加[offset](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#contextmenuoptions10)参数的偏移量，最终确定菜单的精确显示位置。
+>- 当水平与垂直偏移量均设为负值时，菜单以绑定组件左下角为基准点进行显示。
+>- 当水平或垂直偏移量存在负值时，组件将以绑定组件的左上角为定位基准点，通过叠加偏移量参数实现反向偏移。
+
+```ts
+@Entry
+@Component
+struct DirectiveMenuExample {
+  @Builder
+  MenuBuilder() {
+    Column() {
+      Menu() {
+        MenuItemGroup() {
+          MenuItem({ startIcon: $r('app.media.app_icon'), content: "Select Mixed Menu 1", labelInfo: "" })
+          MenuItem({ startIcon: $r('app.media.app_icon'), content: "Select Mixed Menu 2", labelInfo: "" })
+          MenuItem({ startIcon: $r('app.media.app_icon'), content: "Select Mixed Menu 3", labelInfo: "" })
+        }
+      }
+    }
+  }
+
+  build() {
+    Column() {
+      Text()
+        .borderRadius(10)
+        .width(200) 
+        .height(150)
+        .borderWidth(1)
+        .backgroundColor(Color.White)
+        .borderColor(Color.Red)
+        .margin({ top: 200, left: 125 })
+        .bindContextMenu(this.MenuBuilder, ResponseType.RightClick, {
+          anchorPosition: { x: 45, y: 50 },
+        })
+    }
+    .alignItems(HorizontalAlign.Start)
+    .width('100%')
+    .height('100%')
+    .backgroundColor('#F5F5F5')
+  }
+}
+```
+
+![AnchorPosition](figures/AnchorPosition.gif)
+
