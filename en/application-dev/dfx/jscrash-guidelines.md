@@ -42,7 +42,7 @@ In the debug and release modes, the formats of the exception code call stacks ar
 
 In an application built in release mode, the standard format of exception stack information is as follows:
 
-at <Execution method name> (<Module name|Dependent module name|Version number|Compilation product path>:<Line number>:<Column number>)
+at \<Execution method name> (<Module name|Dependent module name|Version number|Compilation product path>:\<Line number>:\<Column number>)
 
 The following is an example:
 
@@ -61,13 +61,13 @@ Format description:
   - Source code path: For details, see the key field in [Exception Stack Trace Analysis: Sourcemap Format](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-exception-stack-parsing-principle#section1145914292713).
   - File type: The file name extension is **.ts**.
 
-4. Row and column numbers: Colons (:) are used to separate row and column numbers.
+4. Row and column numbers: Colons are used to separate row and column numbers.
 
 #### Debug Mode
 
 In an application built in debug mode or a release application whose exception stack is translated using source map, the standard format of exception stack information is as follows:
 
-at <Execution method name><Module name of source code path> (<Source code path>:<Line number>:<Column number>)
+at \<Execution method name>\<Module name of source code path> (\<Source code path>:\<Line number>:\<Column number>)
 
 The following is an example:
 
@@ -87,7 +87,7 @@ Format description:
   - Source code path: Source code file path based on the project directory.
   - File type: The file name extension is **.ets**.
 
-4. Row and column numbers: Colons (:) are used to separate row and column numbers.
+4. Row and column numbers: Colons are used to separate row and column numbers.
 
 ### JS Crash Exception Types
 

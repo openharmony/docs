@@ -4,7 +4,7 @@
 
 > **NOTE**
 >
-> This feature is supported since API version 7 and effective since API version 10. Updates will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 7 and effective since API version 10. Updates will be marked with a superscript to indicate their earliest API version.
 >
 > For the settings to take effect, [geometryTransition](ts-transition-animation-geometrytransition.md) must be used together with [animateTo](ts-explicit-animation.md). The animation duration and curve follow the settings in [animateTo](ts-explicit-animation.md). [animation](ts-animatorproperty.md) is not supported.
 >
@@ -77,7 +77,7 @@ struct Index {
       }
     }
     .onClick(() => {
-      animateTo({ duration: 1000 }, () => {
+      this.getUIContext()?.animateTo({ duration: 1000 }, () => {
         this.isShow = !this.isShow
       })
     })

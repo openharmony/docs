@@ -622,7 +622,7 @@ struct MenuExample {
 }
 ```
 
-![zh-cn_image_0000001174582862](figures/preview-symbol.jpeg)
+![en-us_image_0000001174582862](figures/preview-symbol.jpeg)
 
 ### Example 10: Using Shared Element Transition
 

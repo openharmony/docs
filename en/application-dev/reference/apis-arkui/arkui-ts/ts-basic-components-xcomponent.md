@@ -134,7 +134,7 @@ Sets whether to enable the secure surface to protect the content rendered within
   >
   > This attribute is effective only when **type** is set to **SURFACE**.
   >
-  > The **XComponent** created using the[ArkUI NDK APIs](../../../ui/ndk-build-ui-overview.md) is not supported.
+  > The **XComponent** created using the [ArkUI NDK APIs](../../../ui/ndk-build-ui-overview.md) is not supported.
 
 ## Events
 

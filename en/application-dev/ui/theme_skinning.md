@@ -8,7 +8,7 @@ For applications developed with ArkTS, you can switch themes within the applicat
 To implement theme skinning for your application, you must define custom theme colors. Use [CustomTheme](../reference/apis-arkui/js-apis-arkui-theme.md#customtheme) to specify the colors you wish to modify. Properties of **CustomTheme** are optional: Only overridden properties are applied, and the rest inherits from the system's default settings. For details, see [System Default Token Color Values](#system-default-token-color-values). The following is an example of how to define custom theme colors:
 
   ```ts
-    import { CustomColors, CustomTheme } from '@kit.ArkUI'
+    import { CustomColors, CustomTheme } from '@kit.ArkUI';
 
     export class AppColors implements CustomColors {
       // Custom theme colors
@@ -16,10 +16,10 @@ To implement theme skinning for your application, you must define custom theme c
     }
 
     export class AppTheme implements CustomTheme {
-      public colors: AppColors = new AppColors()
+      public colors: AppColors = new AppColors();
     }
     
-    export let gAppTheme: CustomTheme = new AppTheme()
+    export let gAppTheme: CustomTheme = new AppTheme();
   ```
 
 ## Setting Custom Theme Colors for Application Components
@@ -27,16 +27,16 @@ To implement theme skinning for your application, you must define custom theme c
   Use the [onWillApplyTheme](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onwillapplytheme12) callback function to allow custom components to access the currently active **Theme** object.
 
   ```ts
-    import { Theme, ThemeControl } from '@kit.ArkUI'
-    import { gAppTheme } from './AppTheme'
+    import { Theme, ThemeControl } from '@kit.ArkUI';
+    import { gAppTheme } from './AppTheme';
     
     // Execute ThemeControl before the page builds.
-    ThemeControl.setDefaultTheme(gAppTheme)
+    ThemeControl.setDefaultTheme(gAppTheme);
 
     @Entry
     @Component
     struct DisplayPage {
-      @State menuItemColor: ResourceColor = $r('sys.color.background_primary')
+      @State menuItemColor: ResourceColor = $r('sys.color.background_primary');
       
       onWillApplyTheme(theme: Theme) {
         this.menuItemColor = theme.colors.backgroundPrimary;
@@ -138,9 +138,9 @@ To implement theme skinning for your application, you must define custom theme c
     import { window, CustomColors, ThemeControl } from '@kit.ArkUI';
 
     class AppColors implements CustomColors {
-      fontPrimary = 0xFFD53032
-      iconOnPrimary = 0xFFD53032
-      iconFourth = 0xFFD53032
+      fontPrimary = 0xFFD53032;
+      iconOnPrimary = 0xFFD53032;
+      iconFourth = 0xFFD53032;
     }
     
     const abilityThemeColors = new AppColors();
@@ -165,7 +165,7 @@ To implement theme skinning for your application, you must define custom theme c
           }
           hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
           // Call setDefaultTheme in the onWindowStageCreate() API.
-          ThemeControl.setDefaultTheme({ colors: abilityThemeColors })
+          ThemeControl.setDefaultTheme({ colors: abilityThemeColors });
           hilog.info(0x0000, 'testTag', '%{public}s', 'ThemeControl.setDefaultTheme done');
         });
       }
@@ -180,36 +180,36 @@ To implement theme skinning for your application, you must define custom theme c
 >If the parameter for **setDefaultTheme** is undefined, the default value is used. See [System Default Token Color Values](#system-default-token-color-values) for the default color values associated with the tokens.
 
 ## Setting a Custom Theme Style for Specific Application Pages
-Use [WithTheme](../reference/apis-arkui/arkui-ts/ts-container-with-theme.md) to apply the color scheme of a custom theme to the default styles of components within the scope This way, the colors of components within the **WithTheme** scope align with the theme's color scheme.
+You can use [WithTheme](../reference/apis-arkui/arkui-ts/ts-container-with-theme.md) to apply the color scheme of a custom theme to the default styles of internal components. Within the scope of **WithTheme**, the color scheme of components will be adjusted according to the theme's color scheme.
 
 In the example below, components within the scope are styled with a custom theme using **WithTheme({ theme: this.myTheme })**. You can switch to a different theme style by updating **this.myTheme**. The [onWillApplyTheme](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onwillapplytheme12) callback function allows custom components to access the currently active **Theme** object.
 
   ```ts
-    import { CustomColors, CustomTheme, Theme } from '@kit.ArkUI'
+    import { CustomColors, CustomTheme, Theme } from '@kit.ArkUI';
 
     class AppColors implements CustomColors {
-      fontPrimary: ResourceColor = $r('app.color.brand_purple')
-      backgroundEmphasize: ResourceColor = $r('app.color.brand_purple')
+      fontPrimary: ResourceColor = $r('app.color.brand_purple');
+      backgroundEmphasize: ResourceColor = $r('app.color.brand_purple');
     }
     
     class AppColorsSec implements CustomColors {
-      fontPrimary: ResourceColor = $r('app.color.brand')
-      backgroundEmphasize: ResourceColor = $r('app.color.brand')
+      fontPrimary: ResourceColor = $r('app.color.brand');
+      backgroundEmphasize: ResourceColor = $r('app.color.brand');
     }
     
     class AppTheme implements CustomTheme {
-      public colors: AppColors = new AppColors()
+      public colors: AppColors = new AppColors();
     }
     
     class AppThemeSec implements CustomTheme {
-      public colors: AppColors = new AppColorsSec()
+      public colors: AppColors = new AppColorsSec();
     }
     
     @Entry
     @Component
     struct DisplayPage {
-      @State customTheme: CustomTheme = new AppTheme()
-      @State message: string = 'Set a custom theme style for specific pages'
+      @State customTheme: CustomTheme = new AppTheme();
+      @State message: string = 'Set a custom theme style for specific pages';
       count = 0;
     
       build() {
@@ -248,9 +248,9 @@ In the example below, components within the scope are styled with a custom theme
 ![customTheme](figures/customTheme.gif)
 
 ## Setting the Color Mode for Application Pages
-Use [WithTheme](../reference/apis-arkui/arkui-ts/ts-container-with-theme.md) to set the color mode.
+Using [WithTheme](../reference/apis-arkui/arkui-ts/ts-container-with-theme.md), you can set three color modes: following the system mode, light mode, and dark mode.
 
-Within the **WithTheme** scope, component styles adapt to the specified color mode by accessing the corresponding system and application resource values. This means that the color schemes of components are adjusted according to the chosen color mode.
+Within the scope of **WithTheme**, component styles adapt to the specified color mode by accessing the corresponding system and application resource values. This means that the color schemes of components are adjusted according to the chosen color mode.
 
 In the example below, components within the scope are set to dark mode using **WithTheme({ colorMode: ThemeColorMode.DARK })**.
 
