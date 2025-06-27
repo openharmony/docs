@@ -1960,7 +1960,12 @@
   - API参考概述<!--ref-overview-api-->
     <!--Del-->
     - [系统能力SystemCapability使用指南](reference/syscap.md)
-    - [系统能力SystemCapability列表](reference/syscap-list.md)
+    - 系统能力SystemCapability列表<!--syscap-list-->
+      - [Phone](reference/phone-syscap-list.md)
+      - [Tablet](reference/tablet-syscap-list.md)
+      - [LiteWearable](reference/litewearable-syscap-list.md)
+      - [TV](reference/tv-syscap-list.md)
+      - [Wearable](reference/wearable-syscap-list.md)
     <!--DelEnd-->
     - [通用错误码](reference/errorcode-universal.md)
   - 应用框架<!--app-framework-api-->
