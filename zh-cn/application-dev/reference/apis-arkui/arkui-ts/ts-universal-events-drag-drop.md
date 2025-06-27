@@ -1377,7 +1377,7 @@ struct Index {
         .height(50)
         .margin({ left: 15 })
       Text('onDragEnter dragSource: ' + this.enterDragSource.toString() + '\n' + 'onDragEnter isRemote: ' +
-      this.startIsRemote.toString())
+      this.enterIsRemote.toString())
         .width('100%')
         .height(50)
         .margin({ left: 15 })
@@ -1500,26 +1500,26 @@ struct VideoExample {
           .onDragStart((event: DragEvent) => {
             const context: Context | undefined = this.uiContext.getHostContext();
             if (context) {
-              let data = context.resourceManager.getRawFdSync('test1.mp4');
-              let filePath = context.filesDir + '/test1.mp4';
-              let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-              let bufferSize = data.length as number;
-              let buf = new ArrayBuffer(bufferSize);
-              fs.readSync(data.fd, buf, { offset: data.offset, length: bufferSize });
-              fs.writeSync(file.fd, buf, { offset: 0, length: bufferSize });
-              fs.closeSync(file.fd);
-              context.resourceManager.closeRawFdSync('test1.mp4')
-              this.uri = fileUri.getUriFromPath(filePath);
-              let videoMp: uniformDataStruct.FileUri = {
-                uniformDataType: 'general.file-uri',
-                oriUri: this.uri,
-                fileType: 'general.video',
-              }
-              let unifiedRecord = new unifiedDataChannel.UnifiedRecord();
-              let unifiedData = new unifiedDataChannel.UnifiedData();
-              unifiedRecord.addEntry(uniformTypeDescriptor.UniformDataType.FILE_URI, videoMp);
-              unifiedData.addRecord(unifiedRecord);
               let loadHandler: unifiedDataChannel.DataLoadHandler = () => {
+                let data = context.resourceManager.getRawFdSync('test1.mp4');
+                let filePath = context.filesDir + '/test1.mp4';
+                let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+                let bufferSize = data.length as number;
+                let buf = new ArrayBuffer(bufferSize);
+                fs.readSync(data.fd, buf, { offset: data.offset, length: bufferSize });
+                fs.writeSync(file.fd, buf, { offset: 0, length: bufferSize });
+                fs.closeSync(file.fd);
+                context.resourceManager.closeRawFdSync('test1.mp4')
+                this.uri = fileUri.getUriFromPath(filePath);
+                let videoMp: uniformDataStruct.FileUri = {
+                  uniformDataType: 'general.file-uri',
+                  oriUri: this.uri,
+                  fileType: 'general.video',
+                }
+                let unifiedRecord = new unifiedDataChannel.UnifiedRecord();
+                let unifiedData = new unifiedDataChannel.UnifiedData();
+                unifiedRecord.addEntry(uniformTypeDescriptor.UniformDataType.FILE_URI, videoMp);
+                unifiedData.addRecord(unifiedRecord);
                 return unifiedData;
               }
               (event as DragEvent).setDataLoadParams({
@@ -1563,12 +1563,12 @@ struct VideoExample {
                       this.blockArr.splice(JSON.parse(extraParams as string).insertIndex, 0, this.uri);
                     }
                   } else {
-                    console.log('dragData arr is null');
+                    console.info('dragData arr is null');
                   }
                 } else {
-                  console.log('dragData is undefined');
+                  console.info('dragData is undefined');
                 }
-                console.log(`percentage: ${progress.progress}`);
+                console.info(`percentage: ${progress.progress}`);
               };
             let options: DataSyncOptions = {
               destUri: destUri,
@@ -1578,9 +1578,9 @@ struct VideoExample {
             }
             try {
               this.udKey = (event as DragEvent).startDataLoading(options);
-              console.log('udKey: ', this.udKey);
+              console.info('udKey: ', this.udKey);
             } catch (e) {
-              console.log(`startDataLoading errorCode: ${e.code}, errorMessage: ${e.message}`);
+              console.error(`startDataLoading errorCode: ${e.code}, errorMessage: ${e.message}`);
             }
           }, { disableDataPrefetch: true })
         }
@@ -1593,7 +1593,7 @@ struct VideoExample {
           try {
             this.getUIContext().getDragController().cancelDataLoading(this.udKey);
           } catch (e) {
-            console.log(`cancelDataLoading errorCode: ${e.code}, errorMessage: ${e.message}`);
+            console.error(`cancelDataLoading errorCode: ${e.code}, errorMessage: ${e.message}`);
           }
         })
         .margin({ top: 10 })
@@ -1601,4 +1601,4 @@ struct VideoExample {
   }
 }
 ```
-![DragEvent_getDisplayId](figures/dragLoading.gif)
+![DragEvent_setDataLoadParams](figures/dragLoading.gif)
