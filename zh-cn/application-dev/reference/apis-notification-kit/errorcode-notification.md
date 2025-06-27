@@ -353,7 +353,7 @@ The do-not-disturb profile does not exist.
 
 **错误信息**
 
-The application is not allowed to publish notifications due to permission control settings.
+The application is not allowed to send notifications due to permission settings.
 
 **错误描述**
 

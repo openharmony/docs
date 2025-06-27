@@ -16,6 +16,7 @@
 
 在使用CommonEventSubscriber的功能前，需要通过commonEventManager.createSubscriber获取subscriber对象。
 
+<!--code_no_check-->
 ```ts
 import { commonEventManager } from '@kit.BasicServicesKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -56,6 +57,8 @@ getCode(callback: AsyncCallback\<number>): void
 
 **示例：**
 
+<!--code_no_check-->
+
 ```ts
 subscriber.getCode((err: BusinessError, code: number) => {
   if (err) {
@@ -84,6 +87,8 @@ getCode(): Promise\<number>
 
 **示例：**
 
+<!--code_no_check-->
+
 ```ts
 subscriber.getCode().then((code: number) => {
   console.info(`Succeeded in getting code, code is ${JSON.stringify(code)}`);
@@ -109,6 +114,8 @@ getCodeSync(): number
 | number | 表示有序公共事件传递的数据（number类型）。 |
 
 **示例：**
+
+<!--code_no_check-->
 
 ```ts
 let code: number = subscriber.getCodeSync();
@@ -141,6 +148,8 @@ setCode(code: number, callback: AsyncCallback\<void>): void
 | 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 
 **示例：**
+
+<!--code_no_check-->
 
 ```ts
 subscriber.setCode(1, (err: BusinessError) => {
@@ -184,6 +193,8 @@ setCode(code: number): Promise\<void>
 
 **示例：**
 
+<!--code_no_check-->
+
 ```ts
 subscriber.setCode(1).then(() => {
   console.info(`Succeeded in setting code.`);
@@ -217,6 +228,8 @@ setCodeSync(code: number): void
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.                    | 
 
 **示例：**
+
+<!--code_no_check-->
 
 ```ts
 try {
@@ -253,6 +266,8 @@ getData(callback: AsyncCallback\<string>): void
 
 **示例：**
 
+<!--code_no_check-->
+
 ```ts
 // 获取有序公共事件传递的数据（string类型）回调
 subscriber.getData((err: BusinessError, data: string) => {
@@ -282,6 +297,8 @@ getData(): Promise\<string>
 
 **示例：**
 
+<!--code_no_check-->
+
 ```ts
 subscriber.getData().then((data: string) => {
   console.info(`Succeeded in getting data, data is ${JSON.stringify(data)}`);
@@ -307,6 +324,8 @@ getDataSync(): string
 | string | 有序公共事件传递的数据（string类型）。 |
 
 **示例：**
+
+<!--code_no_check-->
 
 ```ts
 let data: string = subscriber.getDataSync();
@@ -339,6 +358,8 @@ setData(data: string, callback: AsyncCallback\<void>): void
 | 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 
 **示例：**
+
+<!--code_no_check-->
 
 ```ts
 subscriber.setData('publish_data_changed', (err: BusinessError) => {
@@ -382,6 +403,8 @@ setData(data: string): Promise\<void>
 
 **示例：**
 
+<!--code_no_check-->
+
 ```ts
 subscriber.setData('publish_data_changed').then(() => {
   console.info(`Succeeded in setting data.`);
@@ -415,6 +438,8 @@ setDataSync(data: string): void
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.                    | 
 
 **示例：**
+
+<!--code_no_check-->
 
 ```ts
 try {
@@ -452,6 +477,8 @@ setCodeAndData(code: number, data: string, callback:AsyncCallback\<void>): void
 | 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 
 **示例：**
+
+<!--code_no_check-->
 
 ```ts
 subscriber.setCodeAndData(1, 'publish_data_changed', (err: BusinessError) => {
@@ -496,6 +523,8 @@ setCodeAndData(code: number, data: string): Promise\<void>
 
 **示例：**
 
+<!--code_no_check-->
+
 ```ts
 subscriber.setCodeAndData(1, 'publish_data_changed').then(() => {
   console.info(`Succeeded in setting code and data.`);
@@ -531,6 +560,8 @@ setCodeAndDataSync(code: number, data: string): void
 
 **示例：**
 
+<!--code_no_check-->
+
 ```ts
 try {
   subscriber.setCodeAndDataSync(1, 'publish_data_changed');
@@ -565,6 +596,8 @@ isOrderedCommonEvent(callback: AsyncCallback\<boolean>): void
 
 **示例：**
 
+<!--code_no_check-->
+
 ```ts
 subscriber.isOrderedCommonEvent((err: BusinessError, isOrdered:boolean) => {
   if (err) {
@@ -591,6 +624,8 @@ isOrderedCommonEvent(): Promise\<boolean>
 
 **示例：**
 
+<!--code_no_check-->
+
 ```ts
 subscriber.isOrderedCommonEvent().then((isOrdered:boolean) => {
   console.info(`isOrderedCommonEvent ${JSON.stringify(isOrdered)}`);
@@ -614,6 +649,8 @@ isOrderedCommonEventSync(): boolean
 | boolean |返回true表示有序公共事件；返回false表示无序公共事件。 |
 
 **示例：**
+
+<!--code_no_check-->
 
 ```ts
 let isOrdered: boolean = subscriber.isOrderedCommonEventSync();
@@ -644,6 +681,8 @@ isStickyCommonEvent(callback: AsyncCallback\<boolean>): void
 
 **示例：**
 
+<!--code_no_check-->
+
 ```ts
 subscriber.isStickyCommonEvent((err: BusinessError, isSticky:boolean) => {
   if (err) {
@@ -670,6 +709,8 @@ isStickyCommonEvent(): Promise\<boolean>
 
 **示例：**
 
+<!--code_no_check-->
+
 ```ts
 subscriber.isStickyCommonEvent().then((isSticky:boolean) => {
   console.info(`isStickyCommonEvent ${JSON.stringify(isSticky)}`);
@@ -693,6 +734,8 @@ isStickyCommonEventSync(): boolean
 | boolean | 返回true表示是粘性公共事件；返回false表示不是粘性公共事件。 |
 
 **示例：**
+
+<!--code_no_check-->
 
 ```ts
 let isSticky: boolean = subscriber.isStickyCommonEventSync();
@@ -722,6 +765,8 @@ abortCommonEvent(callback: AsyncCallback\<void>): void
 | 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 
 **示例：**
+
+<!--code_no_check-->
 
 ```ts
 subscriber.abortCommonEvent((err: BusinessError) => {
@@ -756,6 +801,8 @@ abortCommonEvent(): Promise\<void>
 
 **示例：**
 
+<!--code_no_check-->
+
 ```ts
 subscriber.abortCommonEvent().then(() => {
   console.info(`Succeeded in aborting common event.`);
@@ -778,6 +825,8 @@ abortCommonEventSync(): void
 **系统能力：** `SystemCapability.Notification.CommonEvent`
 
 **示例：**
+
+<!--code_no_check-->
 
 ```ts
 subscriber.abortCommonEventSync();
@@ -812,6 +861,8 @@ clearAbortCommonEvent(callback: AsyncCallback\<void>): void
 
 **示例：**
 
+<!--code_no_check-->
+
 ```ts
 subscriber.clearAbortCommonEvent((err: BusinessError) => {
   if (err) {
@@ -845,6 +896,8 @@ clearAbortCommonEvent(): Promise\<void>
 
 **示例：**
 
+<!--code_no_check-->
+
 ```ts
 subscriber.clearAbortCommonEvent().then(() => {
   console.info(`Succeeded in clearing abort common event.`);
@@ -867,6 +920,8 @@ clearAbortCommonEventSync(): void
 **系统能力：** `SystemCapability.Notification.CommonEvent`
 
 **示例：**
+
+<!--code_no_check-->
 
 ```ts
 subscriber.clearAbortCommonEventSync();
@@ -901,6 +956,8 @@ getAbortCommonEvent(callback: AsyncCallback\<boolean>): void
 
 **示例：**
 
+<!--code_no_check-->
+
 ```ts
 subscriber.getAbortCommonEvent((err: BusinessError, abortEvent: boolean) => {
   if (err) {
@@ -927,6 +984,8 @@ getAbortCommonEvent(): Promise\<boolean>
 
 **示例：**
 
+<!--code_no_check-->
+
 ```ts
 subscriber.getAbortCommonEvent().then((abortEvent: boolean) => {
   console.info(`Succeeded in getting abort common event, abortEvent is ${JSON.stringify(abortEvent)}`);
@@ -950,6 +1009,8 @@ getAbortCommonEventSync(): boolean
 | boolean |返回true表示当前有序公共事件处于中止状态；返回false表示当前有序公共事件没有处于中止状态。 |
 
 **示例：**
+
+<!--code_no_check-->
 
 ```ts
 let abortEvent: boolean = subscriber.getAbortCommonEventSync();
@@ -982,6 +1043,8 @@ getSubscribeInfo(callback: AsyncCallback\<CommonEventSubscribeInfo>): void
 
 **示例：**
 
+<!--code_no_check-->
+
 ```ts
 subscriber.getSubscribeInfo((err: BusinessError, subscribeInfo: commonEventManager.CommonEventSubscribeInfo) => {
   if (err) {
@@ -1010,6 +1073,8 @@ getSubscribeInfo(): Promise\<CommonEventSubscribeInfo>
 
 **示例：**
 
+<!--code_no_check-->
+
 ```ts
 subscriber.getSubscribeInfo().then((subscribeInfo: commonEventManager.CommonEventSubscribeInfo) => {
   console.info(`Succeeded in getting subscribe info, subscribe info is ${JSON.stringify(subscribeInfo)}`);
@@ -1035,6 +1100,8 @@ getSubscribeInfoSync(): CommonEventSubscribeInfo
 | [CommonEventSubscribeInfo](./js-apis-inner-commonEvent-commonEventSubscribeInfo.md) | 表示订阅者的订阅信息。 |
 
 **示例：**
+
+<!--code_no_check-->
 
 ```ts
 let subscribeInfo = subscriber.getSubscribeInfoSync();
@@ -1065,6 +1132,8 @@ finishCommonEvent(callback: AsyncCallback\<void>): void
 
 **示例：**
 
+<!--code_no_check-->
+
 ```ts
 subscriber.finishCommonEvent((err: BusinessError) => {
   if (err) {
@@ -1090,6 +1159,8 @@ finishCommonEvent(): Promise\<void>
 | Promise\<void>   | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
+
+<!--code_no_check-->
 
 ```ts
 subscriber.finishCommonEvent().then(() => {
