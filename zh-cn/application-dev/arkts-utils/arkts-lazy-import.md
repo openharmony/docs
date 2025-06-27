@@ -55,7 +55,7 @@ mod2 executed
 main executed
 ```
 
-- 同时对同一模块引用lazy-import与原生import。
+- 同时对同一模块引用lazy-import与import。
 
 ```typescript    
 // main.ets   
