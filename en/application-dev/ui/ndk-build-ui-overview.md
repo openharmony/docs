@@ -20,7 +20,7 @@ The ArkUI NDK APIs provide the following capabilities:
 
 - **Component**
 
-  Components are essential for UI, shaping the appearance on the screen. They include both built-in system components and custom components with user-defined layout and drawing behaviors. Built-in components, such as buttons, radio buttons, images, and text, can be quickly created and have their attributes and events set using the ArkUI NDK APIs. Customization capabilities for UI components encompass layout measurement and drawing, enabling the construction of distinctive UI components.
+  Components are essential for UI, shaping the appearance on the screen. They include both built-in components and custom components with user-defined layout and drawing behaviors. Built-in components, such as buttons, radio buttons, images, and text, can be quickly created and have their attributes and events set using the ArkUI NDK APIs. Customization capabilities for UI components encompass layout measurement and drawing, enabling the construction of distinctive UI components.
 
 - **Dialog box**
 
@@ -61,11 +61,13 @@ Using the NDK for UI development involves the following tasks.
 | [Integrating with ArkTS Pages](ndk-access-the-arkts-page.md)| Explains how to mount the NDK-developed UI onto ArkTS pages for rendering and display.|
 | [Listening for Component Events](ndk-listen-to-component-events.md)| Describes how to register event listeners for components and add gesture interactions.|
 | [Using Animations](ndk-use-animation.md)| Introduces how to add animations on the native side.|
-| [Developing a Long List with Lazy Loading](ndk-loading-long-list.md)| Explains how to develop performant long lists on the native side using lazy loading.|
+| [Building Layouts](ndk-loading-long-list.md) | Describes how to use container components to build layouts on the native side.|
 | [Building Dialog Boxes](ndk-build-pop-up-window.md)| Introduces how to build dialog boxes.|
 | [Building Custom Components](ndk-build-custom-components.md)| Describes how to build custom components with the NDK to achieve unique UI elements.|
 | [Embedding ArkTS Components](ndk-embed-arkts-components.md)| Explains how to build pages on the native side that include ArkTS components.|
 | [Integrating Accessibility Through XComponent](ndk-accessibility-xcomponent.md)| Describes how to connect third-party systems to the UI platform through **XComponent**.|
+| [Implementing Custom Drawing](arkts-user-defined-draw.md)| Describes how to use custom drawing capabilities to render custom content.|
+| [Using Text](ndk-styled-string.md) | Describes how to render styled text using the **Text** component and how to listen for text box events.|
 
 
 ## Precautions

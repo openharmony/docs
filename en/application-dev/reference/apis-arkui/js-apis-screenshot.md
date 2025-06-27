@@ -102,7 +102,7 @@ capture(options?: CaptureOption): Promise&lt;image.PixelMap&gt;
 
 Takes a screenshot of the entire screen. This API can be used only on tablets and 2-in-1 devices.
 
-This API allows you to take screenshots of different screens by setting various **displayId** values, but only full-screen captures are supported. The[pick](#screenshotpick) API allows you to take screenshots of a specified region.
+This API allows you to take screenshots of different screens by setting various **displayId** values, but only full-screen captures are supported. The [pick](#screenshotpick) API allows you to take screenshots of a specified region.
 
 **Atomic service API**: This API can be used in atomic services since API version 14.
 

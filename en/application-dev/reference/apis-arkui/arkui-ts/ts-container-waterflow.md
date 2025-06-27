@@ -736,7 +736,7 @@ struct WaterFlowDemo {
 }
 ```
 
-![zh-cn_image_WaterFlow.gif](figures/waterflow-perf-demo.gif)
+![en-us_image_WaterFlow.gif](figures/waterflow-perf-demo.gif)
 
 ### Example 2: Implementing Automatic Column Count Calculation
 This example showcases how to implement automatic column count calculation using the **auto-fill** feature.

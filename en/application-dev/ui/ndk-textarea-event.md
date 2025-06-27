@@ -68,7 +68,7 @@ The following example demonstrates how to listen for text box events and parse d
         }
     });
     ```
-- Sample
+- Sample Code
     ```c++
     void NodeManager::CreateTextAreaNode() {
         ArkUI_NativeNodeAPI_1 *nodeApi = reinterpret_cast<ArkUI_NativeNodeAPI_1 *>(

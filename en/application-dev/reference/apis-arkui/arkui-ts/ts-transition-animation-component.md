@@ -4,7 +4,7 @@ You can configure the component transition animations through the **transition**
 
 >  **NOTE**
 >
->  The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+>  This feature is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## Attributes
@@ -171,7 +171,7 @@ struct TransitionEffectExample2 {
           } else {
             this.show = 'show';
           }
-          animateTo({ duration: 2000 }, () => {
+          this.getUIContext().animateTo({ duration: 2000 }, () => {
             // In the first image, **TransitionEffect** contains **animation**, and therefore the animation settings are those configured in **TransitionEffect**.
             // In the second image, **TransitionEffect** does not contain **animation**, and therefore the animation settings are those configured in **animateTo**.
             this.flag = !this.flag;

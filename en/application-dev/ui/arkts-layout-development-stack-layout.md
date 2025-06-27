@@ -14,6 +14,9 @@ In the **Stack** component shown in Figure 1, the sequence of child elements is 
 
 ![stack-layout](figures/stack-layout.png)
 
+> **NOTE**
+>
+> Excessive nesting of components can lead to performance degradation. In some scenarios, using component attributes directly or leveraging system APIs can achieve the same effect as the stack layout, reducing the number of nested components and optimizing performance. For best practices, see [Preferentially Using Component Properties Instead of Nested Components](https://developer.huawei.com/consumer/en/doc/best-practices/bpta-component-nesting-optimization#section78181114123811).
 
 ## How to Develop
 

@@ -51,7 +51,7 @@ Implements an implicit shared element transition.
 
 | Name| Type| Mandatory| Description                                                    |
 | ------ | -------- | ---- | ------------------------------------------------------------ |
-| follow | boolean  | No  | Whether to apply the animation to components that are always in the component tree. It is effective only in the **if** syntax.<br>Default value: **false**|
+| follow | boolean  | No  | Whether to apply the animation to components that are always in the component tree. It is effective only in the **if** syntax. The value **true** means to apply the animation to components that are always in the component tree, and **false** means the opposite.<br>Default value: **false**|
 
 ## Example
 
@@ -60,7 +60,7 @@ Implements an implicit shared element transition.
 @Entry
 @Component
 struct Index {
-  @State isShow: boolean = false
+  @State isShow: boolean = false;
 
   build() {
     Stack({ alignContent: Alignment.Center }) {
@@ -84,8 +84,8 @@ struct Index {
         }
         .width(80)
         .height(80)
-        // geometryTransition synchronizes rounded corner settings, but only for the bound component, which is the container in this example.
-        // In other words, rounded corner settings of the container are synchronized, and those of the child components are not.
+        // geometryTransition synchronizes corner radius settings, but only for the bound component, which is the container in this example.
+        // In other words, corner radius settings of the container are synchronized, and those of the child components are not.
         .borderRadius(20)
         .clip(true)
         .geometryTransition("picture")
@@ -94,9 +94,9 @@ struct Index {
       }
     }
     .onClick(() => {
-      animateTo({ duration: 1000 }, () => {
-        this.isShow = !this.isShow
-      })
+      this.getUIContext().animateTo({ duration: 1000 }, () => {
+        this.isShow = !this.isShow;
+      });
     })
   }
 }

@@ -12,6 +12,8 @@ onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 | Name       | Type                   | Mandatory | Description                         |
 | ---------- | -------------------------- | ------- | ----------------------------- |
@@ -39,6 +41,8 @@ onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name           | Type                       | Description        |
 | ---------------  | -------------------------   | -----------|
 | tag              | string                      | Gesture tag.<br>**NOTE**<br>If the event tag is not set, **undefined** or no gesture tag is returned. |
@@ -64,6 +68,7 @@ onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent
 
 ## BaseEvent<sup>8+</sup>
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name   | Type                                     | Description        |
 | ---------| ----------------------------------------  | -----------|
@@ -73,6 +78,7 @@ onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent
 | pressure<sup>9+</sup> | number | Press pressure.<br>Default value: **0**<br>Value range: [0, 1], typical value 0.913168, where higher values indicate greater pressure.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
 | tiltX<sup>9+</sup> | number | Angle between the projection of the stylus on the device plane and the x-axis.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | tiltY<sup>9+</sup> | number | Angle between the projection of the stylus on the device plane and the y-axis.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| rollAngle<sup>17+</sup> | number | Angle between the stylus and the device's surface.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 18.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 | sourceTool<sup>9+</sup> | [SourceTool](ts-gesture-settings.md#sourcetool9) | Event input source.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
 | axisHorizontal<sup>12+</sup> | number | Horizontal axis value.<br>**NOTE**<br>The value can only be obtained in the pan gesture initiated by mouse wheel scrolling or two-finger swipes on a touchpad.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | axisVertical<sup>12+</sup> | number | Vertical axis value.<br>**NOTE**<br>The value can only be obtained in the pan gesture initiated by mouse wheel scrolling or two-finger swipes on a touchpad.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
@@ -93,6 +99,8 @@ Inherits from [BaseEvent](#baseevent8).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name     | Type                                     | Description        |
 | ---------  | ----------------------------------------  | -----------|
 | fingerList | [FingerInfo[]](ts-gesture-settings.md#fingerinfo8) | Information about all fingers that trigger the event. |
@@ -107,6 +115,8 @@ Inherits from [BaseGestureEvent](#basegestureevent). This object can be passed i
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name     | Type                                     | Description        |
 | ---------  | ----------------------------------------  | -----------|
 | repeat     | boolean | Whether the event is repeated. <br>**true**: The event is repeated.<br>**false**: The event is not repeated. |
@@ -115,6 +125,8 @@ Inherits from [BaseGestureEvent](#basegestureevent). This object can be passed i
 Inherits from [BaseGestureEvent](#basegestureevent). This object can be passed in as the **event** parameter of [onGestureJudgeBegin](#ongesturejudgebegin).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name     | Type                                     | Description        |
 | ---------  | ----------------------------------------  | -----------|
@@ -128,6 +140,8 @@ Inherits from [BaseGestureEvent](#basegestureevent). This object can be passed i
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 Inherits from [BaseGestureEvent](#basegestureevent). This object can be passed in as the **event** parameter of [onGestureJudgeBegin](#ongesturejudgebegin).
 | Name        | Type                                     | Description        |
 | ------------  | ----------------------------------------  | -----------|
@@ -139,6 +153,8 @@ Inherits from [BaseGestureEvent](#basegestureevent). This object can be passed i
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 Inherits from [BaseGestureEvent](#basegestureevent). This object can be passed in as the **event** parameter of [onGestureJudgeBegin](#ongesturejudgebegin).
 | Name        | Type                                     | Description        |
 | ------------  | ----------------------------------------  | -----------|
@@ -148,6 +164,8 @@ Inherits from [BaseGestureEvent](#basegestureevent). This object can be passed i
 Inherits from [BaseGestureEvent](#basegestureevent). This object can be passed in as the **event** parameter of [onGestureJudgeBegin](#ongesturejudgebegin).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name        | Type                                     | Description        |
 | ------------  | ----------------------------------------  | -----------|
@@ -245,12 +263,13 @@ This example demonstrates how to use **onGestureJudgeBegin** to determine whethe
 
 ```ts
 // xxx.ets
-import { promptAction } from '@kit.ArkUI';
+import { PromptAction } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct Index {
   scroller: Scroller = new Scroller()
+  promptAction: PromptAction = this.getUIContext().getPromptAction();
 
   build() {
     Scroll(this.scroller) {
@@ -267,7 +286,7 @@ struct Index {
           Image($r('sys.media.ohos_app_icon'))
             .draggable(true)
             .onDragStart(()=>{
-              promptAction.showToast({ message: "When the blue area is dragged, the image responds" })
+              this.promptAction.showToast({ message: "When the blue area is dragged, the image responds." })
             })
             .width('200vp').height('200vp')
           // The upper half area of the stack is a floating area bound to the long press gesture.
@@ -283,7 +302,7 @@ struct Index {
             }
             console.log("gestureInfo Type " + gestureInfo.type.toString() + " isSystemGesture " + gestureInfo.isSystemGesture);
             console.log("pressure " + event.pressure + " fingerList.length " + event.fingerList.length
-            + " timeStamp " + event.timestamp + " sourceType " + event.source.toString() + " titleX " + event.tiltX + " titleY " + event.tiltY + " sourcePool " + event.sourceTool.toString());
+            + " timeStamp " + event.timestamp + " sourceType " + event.source.toString() + " titleX " + event.tiltX + " titleY " + event.tiltY + " rollAngle " + event.rollAngle + " sourcePool " + event.sourceTool.toString());
             // If the gesture is a long press gesture, check whether the touch position is in the upper half area.
             if (gestureInfo.type == GestureControl.GestureType.LONG_PRESS_GESTURE) {
               if (event.fingerList.length > 0 && event.fingerList[0].localY < 100) {
@@ -297,7 +316,7 @@ struct Index {
           .gesture(GestureGroup(GestureMode.Parallel,
             LongPressGesture()
               .onAction((event: GestureEvent) => {
-                promptAction.showToast({ message: "When long pressed, the red area responds." })
+                this.promptAction.showToast({ message: "When long pressed, the red area responds." })
               })
               .tag("tap111")
           ))
