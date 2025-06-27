@@ -4495,6 +4495,7 @@
           - [OH_AVCodecBufferAttr](reference/apis-avcodec-kit/_o_h___a_v_codec_buffer_attr.md)
           - [OH_AVCodecCallback](reference/apis-avcodec-kit/_o_h___a_v_codec_callback.md)
           - [OH_AVDataSource](reference/apis-avcodec-kit/_o_h___a_v_data_source.md)
+          - [OH_AVDataSourceExt](reference/apis-avcodec-kit/_o_h___a_v_data_source_ext.md)
           - [OH_AVRange](reference/apis-avcodec-kit/_o_h___a_v_range.md)
           - [DrmSubsample](reference/apis-avcodec-kit/_drm_subsample.md)
         - 已停止维护的接口<!--avcodec-arkts-dep-->
@@ -4869,7 +4870,7 @@
         - [Media错误码](reference/apis-media-kit/errorcode-media.md)
     - Media Library Kit（媒体文件管理服务）<!--media-library-api-->
       - ArkTS API<!--media-library-arkts-->
-        - @ohos.file.photoAccessHelper (相册管理模块)<!--js-apis-photoAccessHelper-->
+        - @ohos.file.photoAccessHelper (相册管理模块)<!--js-apis-photoaccesshelper-->
           - [模块描述](reference/apis-media-library-kit/arkts-apis-photoAccessHelper.md)
           - [Functions](reference/apis-media-library-kit/arkts-apis-photoAccessHelper-f.md)
           - [Class (MediaAlbumChangeRequest)](reference/apis-media-library-kit/arkts-apis-photoAccessHelper-MediaAlbumChangeRequest.md)

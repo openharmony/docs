@@ -218,7 +218,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 
 ## 获取用户相册中的图片和视频
 
-先[获取用户相册](#获取用户相册)对象，然后调用[Album.getAssets](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAccessHelper.md#getassets-3)接口获取用户相册中的图片资源。
+先[获取用户相册](#获取用户相册)对象，然后调用[Album.getAssets](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-AbsAlbum.md#getassets-1)接口获取用户相册中的图片资源。
 
 **前提条件**
 
