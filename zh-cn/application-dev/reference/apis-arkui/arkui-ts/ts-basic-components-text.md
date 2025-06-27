@@ -418,7 +418,7 @@ draggable(value: boolean)
 
 不能和[onDragStart](ts-universal-events-drag-drop.md#ondragstart)事件同时使用。
 
-需配合[CopyOptions](ts-appendix-enums.md#copyoptions9)使用，设置copyOptions为CopyOptions.InApp或者CopyOptions.LocalDevice，并且draggable设置为true时，支持对选中文本的拖拽及复制到输入框。
+当draggable设置为true时，需配合[CopyOptions](ts-appendix-enums.md#copyoptions9)使用，设置copyOptions为CopyOptions.InApp或者CopyOptions.LocalDevice，支持对选中文本的拖拽及复制到输入框。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
