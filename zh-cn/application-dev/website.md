@@ -47,6 +47,9 @@
       - [从TypeScript到ArkTS的适配规则](quick-start/typescript-to-arkts-migration-guide.md)
       - [适配指导案例](quick-start/arkts-more-cases.md)
     - [ArkTS高性能编程实践](quick-start/arkts-high-performance-programming.md)
+    - 面向其他语言的ArkTS迁移指导<!--arkts-for-other-languages-->
+      - [从Java到ArkTS的迁移指导](quick-start/getting-started-with-arkts-for-java-programmers.md)
+      - [从Swift到ArkTS的迁移指导](quick-start/getting-started-with-arkts-for-swift-programmers.md)    
 - 开发<!--application-develop-->
   - 应用框架<!--app-framework-->
     - Ability Kit（程序框架服务）<!--ability-kit-->
@@ -219,8 +222,8 @@
         - [通过用户首选项实现数据持久化 (ArkTS)](database/data-persistence-by-preferences.md)
         - [通过用户首选项实现数据持久化 (C/C++)](database/preferences-guidelines.md)
         - [通过键值型数据库实现数据持久化 (ArkTS)](database/data-persistence-by-kv-store.md)
-        - [通过关系型数据库实现数据持久化（ArkTS）](database/data-persistence-by-rdb-store.md)
-        - [通过关系型数据库实现数据持久化（C/C++）](database/native-relational-store-guidelines.md)
+        - [通过关系型数据库实现数据持久化 (ArkTS)](database/data-persistence-by-rdb-store.md)
+        - [通过关系型数据库实现数据持久化 (C/C++)](database/native-relational-store-guidelines.md)
         - [通过向量数据库实现数据持久化 (ArkTS)](database/data-persistence-by-vector-store.md)
         - [通过向量数据库实现数据持久化 (C/C++)](database/native-vector-store-guidelines.md)
       - 同应用跨设备数据同步（分布式）<!--distributed-data-sync-->
@@ -230,13 +233,12 @@
         - [分布式数据对象跨设备数据同步 (ArkTS)](database/data-sync-of-distributed-data-object.md)
       - 数据可靠性与安全性<!--data-reliability-security-->
         - [数据可靠性与安全性概述](database/data-reliability-security-overview.md)
-        - [数据库备份与恢复（ArkTS）](database/data-backup-and-restore.md)
-        - [数据库备份与恢复（C/C++）](database/native-backup-and-restore.md)
-        - [数据库加密（ArkTS）](database/data-encryption.md)
-        - [数据库加密（C/C++）](database/native-data-encryption.md)
-        - [基于设备分类和数据分级的访问控制（ArkTS）](database/access-control-by-device-and-data-level.md)
-        - [基于设备分类和数据分级的访问控制（C/C++）](database/native-access-control-by-device-and-data-level.md)
-        - [E类加密数据库的使用 (ArkTS)](database/encrypted_estore_guidelines.md)
+        - [数据库备份与恢复 (ArkTS)](database/data-backup-and-restore.md)
+        - [数据库备份与恢复 (C/C++)](database/native-backup-and-restore.md)
+        - [数据库加密 (ArkTS)](database/data-encryption.md)
+        - [数据库加密 (C/C++)](database/native-data-encryption.md)
+        - [基于设备分类和数据分级的访问控制 (ArkTS)](database/access-control-by-device-and-data-level.md)
+        - [基于设备分类和数据分级的访问控制 (C/C++)](database/native-access-control-by-device-and-data-level.md)
       - 跨应用数据共享<!--cross-app-data-share-->
         - [跨应用数据共享概述](database/data-share-overview.md)
         <!--Del-->
@@ -372,10 +374,12 @@
             - [页面和自定义组件生命周期](ui/state-management/arkts-page-custom-components-lifecycle.md)
             - [自定义组件的自定义布局](ui/state-management/arkts-page-custom-components-layout.md)
             - [自定义组件成员属性访问限定符使用限制](ui/state-management/arkts-custom-components-access-restrictions.md)
-          - [\@Builder装饰器：自定义构建函数](ui/state-management/arkts-builder.md)
-          - [\@LocalBuilder装饰器：维持组件父子关系](ui/state-management/arkts-localBuilder.md)
-          - [\@BuilderParam装饰器：引用\@Builder函数](ui/state-management/arkts-builderparam.md)
-          - [wrapBuilder：封装全局@Builder](ui/state-management/arkts-wrapBuilder.md)
+          - 组件扩展<!--arkts-extend-components-->
+            - [组件扩展概述](ui/state-management/arkts-extend-components-overview.md)
+            - [\@Builder装饰器：自定义构建函数](ui/state-management/arkts-builder.md)
+            - [\@LocalBuilder装饰器：维持组件父子关系](ui/state-management/arkts-localBuilder.md)
+            - [\@BuilderParam装饰器：引用\@Builder函数](ui/state-management/arkts-builderparam.md)
+            - [wrapBuilder：封装全局@Builder](ui/state-management/arkts-wrapBuilder.md)
           - [\@Styles装饰器：定义组件重用样式](ui/state-management/arkts-style.md)
           - [\@Extend装饰器：定义扩展组件样式](ui/state-management/arkts-extend.md)
           - [stateStyles：多态样式](ui/state-management/arkts-statestyles.md)
@@ -858,6 +862,7 @@
       - [输入法子类型开发指南](inputmethod/input-method-subtype-guide.md)
       - [在自绘编辑框中使用输入法(C/C++)](inputmethod/use-inputmethod-in-custom-edit-box-ndk.md)
       - [输入法应用沉浸模式](inputmethod/inputmethod-immersive-mode-guide.md)
+      - [通过hdc命令管理输入法](inputmethod/inputmethod-hdc-commands-guide.md)
     - IPC Kit（进程间通信服务）<!--ipc-kit-->
       - [IPC Kit简介](ipc/ipc-rpc-overview.md)
       - [IPC与RPC通信开发指导(ArkTS)](ipc/ipc-rpc-development-guideline.md)
@@ -945,6 +950,7 @@
           - [查询关键资产(ArkTS)](security/AssetStoreKit/asset-js-query.md)
           - [查询需要用户认证的关键资产(ArkTS)](security/AssetStoreKit/asset-js-query-auth.md)
           - [管理群组关键资产(ArkTS)](security/AssetStoreKit/asset-js-group-access-control.md)
+          - [同步（备份恢复）关键资产](security/AssetStoreKit/asset-js-sync.md)
           <!--Del-->
           - [指定用户空间进行关键资产操作(仅对系统应用开放)(ArkTS)](security/AssetStoreKit/asset-as-user-sys.md)
           <!--DelEnd-->
@@ -954,6 +960,7 @@
           - [更新关键资产(C/C++)](security/AssetStoreKit/asset-native-update.md)
           - [查询关键资产(C/C++)](security/AssetStoreKit/asset-native-query.md)
           - [管理群组关键资产(C/C++)](security/AssetStoreKit/asset-native-group-access-control.md)
+          - [同步（备份恢复）关键资产(C/C++)](security/AssetStoreKit/asset-native-sync.md)
       - Crypto Architecture Kit（加解密算法框架服务）<!--crypto-architecture-kit-->
         - [Crypto Architecture Kit简介](security/CryptoArchitectureKit/crypto-architecture-kit-intro.md)
         - 密钥生成和转换<!--crypto-key-generation-conversion-->
@@ -971,12 +978,15 @@
             - [指定二进制数据转换非对称密钥对(ArkTS)](security/CryptoArchitectureKit/crypto-convert-binary-data-to-asym-key-pair.md)
             - [指定二进制数据转换非对称密钥对(C/C++)](security/CryptoArchitectureKit/crypto-convert-binary-data-to-asym-key-pair-ndk.md)
             - [指定密钥参数生成非对称密钥对(ArkTS)](security/CryptoArchitectureKit/crypto-generate-asym-key-pair-from-key-spec.md)
+            - [指定密钥参数生成非对称密钥对(C/C++)](security/CryptoArchitectureKit/crypto-generate-asym-key-pair-from-key-spec-ndk.md)
             - [使用ECC压缩/非压缩公钥格式转换(ArkTS)](security/CryptoArchitectureKit/crypto-convert-compressed-or-uncompressed-ECC-pubkey.md)
             - [使用ECC压缩/非压缩公钥格式转换(C/C++)](security/CryptoArchitectureKit/crypto-convert-compressed-or-uncompressed-ECC-pubkey-ndk.md)
             - [使用ECC压缩/非压缩点格式转换(ArkTS)](security/CryptoArchitectureKit/crypto-convert-compressed-or-uncompressed-ECC-point.md)
+            - [使用ECC压缩/非压缩点格式转换(C/C++)](security/CryptoArchitectureKit/crypto-convert-compressed-or-uncompressed-ECC-point-ndk.md)
             - [指定PEM格式字符串数据转换非对称密钥对(ArkTS)](security/CryptoArchitectureKit/crypto-convert-string-data-to-asym-key-pair.md)
             - [指定PEM格式字符串数据转换非对称密钥对(C/C++)](security/CryptoArchitectureKit/crypto-convert-string-data-to-asym-key-pair-ndk.md)
-            - [使用RSA私钥进行编码解码](security/CryptoArchitectureKit/crypto-rsa-encoded-decoded.md)
+            - [使用RSA私钥进行编码解码(ArkTS)](security/CryptoArchitectureKit/crypto-rsa-encoded-decoded.md)
+            - [使用RSA私钥进行编码解码(C/C++)](security/CryptoArchitectureKit/crypto-rsa-encoded-decoded-ndk.md)
         - 加解密<!--crypto-encryption-decryption-->
           - [加解密介绍](security/CryptoArchitectureKit/crypto-encryption-decryption-overview.md)
           - 加解密算法规格<!--crypto-encrypt-decrypt-spec-->
@@ -1006,33 +1016,41 @@
             - [使用SM4对称密钥（GCM模式）加解密(C/C++)](security/CryptoArchitectureKit/crypto-sm4-sym-encrypt-decrypt-gcm-ndk.md)
             - [使用SM4对称密钥（GCM模式）分段加解密(ArkTS)](security/CryptoArchitectureKit/crypto-sm4-sym-encrypt-decrypt-gcm-by-segment.md)
             - [使用SM4对称密钥（GCM模式）分段加解密(C/C++)](security/CryptoArchitectureKit/crypto-sm4-sym-encrypt-decrypt-gcm-by-segment-ndk.md)
-            - [使用RSA非对称密钥（PKCS1模式）加解密](security/CryptoArchitectureKit/crypto-rsa-asym-encrypt-decrypt-pkcs1.md)
-            - [使用RSA非对称密钥分段加解密](security/CryptoArchitectureKit/crypto-rsa-asym-encrypt-decrypt-by-segment.md)
+            - [使用RSA非对称密钥（PKCS1模式）加解密(ArkTS)](security/CryptoArchitectureKit/crypto-rsa-asym-encrypt-decrypt-pkcs1.md)
+            - [使用RSA非对称密钥（PKCS1模式）加解密(C/C++)](security/CryptoArchitectureKit/crypto-rsa-asym-encrypt-decrypt-pkcs1-ndk.md)
+            - [使用RSA非对称密钥分段加解密(ArkTS)](security/CryptoArchitectureKit/crypto-rsa-asym-encrypt-decrypt-by-segment.md)
+            - [使用RSA非对称密钥分段加解密(C/C++)](security/CryptoArchitectureKit/crypto-rsa-asym-encrypt-decrypt-by-segment-ndk.md)
             - [使用RSA非对称密钥（PKCS1_OAEP模式）加解密](security/CryptoArchitectureKit/crypto-rsa-asym-encrypt-decrypt-pkcs1_oaep.md)
-            - [使用SM2非对称密钥加解密](security/CryptoArchitectureKit/crypto-sm2-asym-encrypt-decrypt.md)
-            - [使用SM2密文格式转换](security/CryptoArchitectureKit/crypto-sm2-ciphertext-conversion.md)
+            - [使用SM2非对称密钥加解密(ArkTS)](security/CryptoArchitectureKit/crypto-sm2-asym-encrypt-decrypt.md)
+            - [使用SM2非对称密钥加解密(C/C++)](security/CryptoArchitectureKit/crypto-sm2-asym-encrypt-decrypt-ndk.md)
+            - [使用SM2密文格式转换(ArkTS)](security/CryptoArchitectureKit/crypto-sm2-ciphertext-conversion.md)
+            - [使用SM2密文格式转换(C/C++)](security/CryptoArchitectureKit/crypto-sm2-ciphertext-conversion-ndk.md)
         - 签名验签<!--crypto-sign-sig-verify-->
           - [签名验签介绍及算法规格](security/CryptoArchitectureKit/crypto-sign-sig-verify-overview.md)
           - 签名验签开发指导<!--crypto-sign-sig-verify-dev-->
             - [使用RSA密钥对（PKCS1模式）签名验签(ArkTS)](security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1.md)
-            - [使用RSA密钥对（PKCS1模式）验签(C/C++)](security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1-ndk.md)
+            - [使用RSA密钥对（PKCS1模式）签名验签(C/C++)](security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1-ndk.md)
             - [使用RSA密钥对（PKCS1模式）签名及签名恢复(ArkTS)](security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-recover-pkcs1.md)
             - [使用RSA密钥对（PKCS1模式）签名恢复(C/C++)](security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-recover-pkcs1-ndk.md)
             - [使用RSA密钥对分段签名验签（PKCS1模式）(ArkTS)](security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1-by-segment.md)
-            - [使用RSA密钥对分段验签（PKCS1模式）(C/C++)](security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1-by-segment-ndk.md)
+            - [使用RSA密钥对分段签名验签（PKCS1模式）(C/C++)](security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1-by-segment-ndk.md)
             - [使用RSA密钥对签名验签（PSS模式）(ArkTS)](security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pss.md)
-            - [使用RSA密钥对验签（PSS模式）(C/C++)](security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pss-ndk.md)
+            - [使用RSA密钥对签名验签（PSS模式）(C/C++)](security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pss-ndk.md)
             - [使用ECDSA密钥对签名验签(ArkTS)](security/CryptoArchitectureKit/crypto-ecdsa-sign-sig-verify.md)
-            - [使用ECDSA密钥对验签(C/C++)](security/CryptoArchitectureKit/crypto-ecdsa-sign-sig-verify-ndk.md)
+            - [使用ECDSA密钥对签名验签(C/C++)](security/CryptoArchitectureKit/crypto-ecdsa-sign-sig-verify-ndk.md)
             - [使用SM2密钥对签名验签(ArkTS)](security/CryptoArchitectureKit/crypto-sm2-sign-sig-verify-pkcs1.md)
-            - [使用SM2密钥对验签(C/C++)](security/CryptoArchitectureKit/crypto-sm2-sign-sig-verify-pkcs1-ndk.md)
+            - [使用SM2密钥对签名验签(C/C++)](security/CryptoArchitectureKit/crypto-sm2-sign-sig-verify-pkcs1-ndk.md)
             - [SM2签名数据格式转换(ArkTS)](security/CryptoArchitectureKit/crypto-sm2-sign-data-format-conversion.md)
+            - [SM2签名数据格式转换(C/C++)](security/CryptoArchitectureKit/crypto-sm2-sign-data-format-conversion-ndk.md)
         - 密钥协商<!--crypto-key-agreement-->
           - [密钥协商介绍及算法规格](security/CryptoArchitectureKit/crypto-key-agreement-overview.md)
           - 密钥协商开发指导<!--crypto-key-agreement-dev-->
-            - [使用ECDH进行密钥协商](security/CryptoArchitectureKit/crypto-key-agreement-using-ecdh.md)
-            - [使用X25519进行密钥协商](security/CryptoArchitectureKit/crypto-key-agreement-using-x25519.md)
-            - [使用DH进行密钥协商](security/CryptoArchitectureKit/crypto-key-agreement-using-dh.md)
+            - [使用ECDH进行密钥协商(ArkTS)](security/CryptoArchitectureKit/crypto-key-agreement-using-ecdh.md)
+            - [使用ECDH进行密钥协商(C/C++)](security/CryptoArchitectureKit/crypto-key-agreement-using-ecdh-ndk.md)
+            - [使用X25519进行密钥协商(ArkTS)](security/CryptoArchitectureKit/crypto-key-agreement-using-x25519.md)
+            - [使用X25519进行密钥协商(C/C++)](security/CryptoArchitectureKit/crypto-key-agreement-using-x25519-ndk.md)
+            - [使用DH进行密钥协商(ArkTS)](security/CryptoArchitectureKit/crypto-key-agreement-using-dh.md)
+            - [使用DH进行密钥协商(C/C++)](security/CryptoArchitectureKit/crypto-key-agreement-using-dh-ndk.md)
         - 消息摘要计算<!--crypto-generate-message-->
           - [消息摘要计算介绍及算法规格](security/CryptoArchitectureKit/crypto-generate-message-digest-overview.md)
           - 消息摘要计算开发指导<!--crypto-generate-message-digest-dev-->
@@ -1042,14 +1060,20 @@
             - [消息摘要计算MD5(C/C++)](security/CryptoArchitectureKit/crypto-generate-message-digest-md5-ndk.md)
         - 消息认证码<!--crypto-compute-mac-->
           - [消息认证码计算介绍及算法规格](security/CryptoArchitectureKit/crypto-compute-mac-overview.md)
-          - [消息认证码计算HMAC](security/CryptoArchitectureKit/crypto-compute-hmac.md)
-          - [消息认证码计算CMAC](security/CryptoArchitectureKit/crypto-compute-cmac.md)
-        - [安全随机数生成](security/CryptoArchitectureKit/crypto-generate-random-number.md)
+          - [消息认证码计算HMAC(ArkTS)](security/CryptoArchitectureKit/crypto-compute-hmac.md)
+          - [消息认证码计算HMAC(C/C++)](security/CryptoArchitectureKit/crypto-compute-hmac-ndk.md)
+          - [消息认证码计算CMAC(ArkTS)](security/CryptoArchitectureKit/crypto-compute-cmac.md)
+          - [消息认证码计算CMAC(C/C++)](security/CryptoArchitectureKit/crypto-compute-cmac-ndk.md)
+        - [安全随机数生成(ArkTS)](security/CryptoArchitectureKit/crypto-generate-random-number.md)
+        - [安全随机数生成(C/C++)](security/CryptoArchitectureKit/crypto-generate-random-number-ndk.md)
         - 密钥派生<!--crypto-key-derivation-->
           - [密钥派生介绍及算法规格](security/CryptoArchitectureKit/crypto-key-derivation-overview.md)
-          - [使用PBKDF2进行密钥派生](security/CryptoArchitectureKit/crypto-key-derivation-using-pbkdf2.md)
-          - [使用HKDF进行密钥派生](security/CryptoArchitectureKit/crypto-key-derivation-using-hkdf.md)
-          - [使用SCRYPT进行密钥派生](security/CryptoArchitectureKit/crypto-key-derivation-using-scrypt.md)
+          - [使用PBKDF2进行密钥派生(ArkTS)](security/CryptoArchitectureKit/crypto-key-derivation-using-pbkdf2.md)
+          - [使用PBKDF2进行密钥派生(C/C++)](security/CryptoArchitectureKit/crypto-key-derivation-using-pbkdf2-ndk.md)
+          - [使用HKDF进行密钥派生(ArkTS)](security/CryptoArchitectureKit/crypto-key-derivation-using-hkdf.md)
+          - [使用HKDF进行密钥派生(C/C++)](security/CryptoArchitectureKit/crypto-key-derivation-using-hkdf-ndk.md)
+          - [使用SCRYPT进行密钥派生(ArkTS)](security/CryptoArchitectureKit/crypto-key-derivation-using-scrypt.md)
+          - [使用SCRYPT进行密钥派生(C/C++)](security/CryptoArchitectureKit/crypto-key-derivation-using-scrypt-ndk.md)
       - Data Protection Kit（数据保护服务）<!--data-protection-kit-->
         - 数据防泄漏服务<!--dlp-->
           - [数据防泄漏服务简介](security/DataProtectionKit/dlp-overview.md)
@@ -1174,6 +1198,7 @@
         - WLAN<!--wlan-->
           - [WLAN服务开发概述](connectivity/wlan/wlan-overview.md)
           - [P2P模式开发指南](connectivity/wlan/p2p-development-guide.md)
+        - [Connectivity Kit术语](connectivity/terminology.md)
       - Distributed Service Kit（分布式管理服务）<!--distributed-service-kit-->
         - [Distributed Service Kit简介](distributedservice/distributedservice-kit-intro.md)
         - [分布式设备管理](distributedservice/devicemanager-guidelines.md)
@@ -1182,27 +1207,30 @@
           <!--Del-->
           - [UIAbility与Extension连接开发指南](distributedservice/distributedextension-guidelines.md)
           <!--DelEnd-->
+          - [增强连接开发指南](distributedservice/linnkEnhance_development-guide.md)
         - 硬件跨设备连接管理<!--devconnect-distributed-->
           - [分布式相机开发指南](distributedservice/camera-distributed.md)
       - Network Kit（网络服务）<!--network-kit-->
         - [Network Kit简介](network/net-mgmt-overview.md)
-        - Network Kit数据传输能力<!--network-kit-data-transmission-->
-            - [HTTP数据请求](network/http-request.md)
-            - [WebSocket连接](network/websocket-connection.md)
-            - [WebSocket连接(C/C++)](network/native-websocket-guidelines.md)
-            - [Socket连接](network/socket-connection.md)
-            - [MDNS](network/net-mdns.md)
-        - Network Kit网络管理能力<!--network-kit-network-management-->
-            - [网络连接管理](network/net-connection-manager.md)
-            - [NetConnection开发指导(C/C++)](network/native-netmanager-guidelines.md)
-            - [流量管理](network/net-statistics.md)
-            - [VPN应用开发指南](network/net-vpnExtension.md)
-            - [网络防火墙](network/net-netfirewall.md)
+        - 访问网络<!--network-kit-data-transmission-->
+            - [使用HTTP访问网络](network/http-request.md)
+            - [使用WebSocket访问网络](network/websocket-connection.md)
+            - [使用WebSocket访问网络(C/C++)](network/native-websocket-guidelines.md)
+            - [使用Socket访问网络](network/socket-connection.md)
+            - [使用MDNS访问局域网服务](network/net-mdns.md)
+        - 连接网络<!--network-kit-network-connecttion-->
+            - [管理网络连接](network/net-connection-manager.md)
+            - [管理网络连接(C/C++)](network/native-netmanager-guidelines.md)
+            - [连接VPN](network/net-vpnExtension.md)
+        - 管理网络<!--network-kit-network-management-->
+            - [统计网络流量消耗](network/net-statistics.md)
+            - [使用网络防火墙](network/net-netfirewall.md)
             <!--Del-->
             - [网络共享（仅对系统应用开放）](network/net-sharing.md)
             - [以太网连接管理（仅对系统应用开放）](network/net-ethernet.md)
             - [VPN管理（仅对系统应用开放）](network/net-vpn.md)
             <!--DelEnd-->
+        - [Network Kit术语](network/terminology.md)
       - Telephony Kit（蜂窝通信服务）<!--telephony-kit-->
         - [Telephony Kit简介](telephony/telephony-overview.md)
         - [拨打电话](telephony/telephony-call.md)
@@ -1480,6 +1508,7 @@
         - [管理全局音频输入设备](media/audio/audio-input-device-management.md)
         - [共享音频输入](media/audio/audio-recording-concurrency.md)
         - [实现音频耳返](media/audio/audio-ear-monitor.md)
+        - [实现音频低时延耳返](media/audio/audio-ear-monitor-loopback.md)
       - 音频通话<!--audio-call-->
         - [音频通话开发概述](media/audio/audio-call-overview.md)
         - [开发音频通话功能](media/audio/audio-call-development.md)
@@ -1497,6 +1526,7 @@
         - [视频编码](media/avcodec/video-encoding.md)
         - [时域可分层视频编码](media/avcodec/video-encoding-temporal-scalability.md)
         - [典型场景的视频编码配置](media/avcodec/video-encoding-configuration-typical-scenarios.md)
+        - [ROI视频编码](media/avcodec/video-encoding-ROI.md)
         - [视频解码](media/avcodec/video-decoding.md)
         - [创建视频解码器和NativeWindow初始化并行](media/avcodec/parallel-decoding-nativeWindow.md)
         - [视频可变帧率](media/avcodec/video-variable-refreshrate.md)
@@ -1510,6 +1540,7 @@
         - [媒体会话提供方](media/avsession/using-avsession-developer.md)
         - [媒体会话提供方(C/C++)](media/avsession/using-ohavsession-developer.md)
         - [应用接入AVSession场景介绍](media/avsession/avsession-access-scene.md)
+        - [后台播放](media/avsession/avsession-background-scene.md) 
         <!--Del-->
         - [媒体会话控制方(仅对系统应用开放)](media/avsession/using-avsession-controller.md)
         <!--DelEnd-->
@@ -1641,8 +1672,10 @@
           - [使用AVScreenCapture录屏取码流(C/C++)](media/media/using-avscreencapture-for-buffer.md)
           - [使用AVScreenCapture录屏写文件(C/C++)](media/media/using-avscreencapture-for-file.md)
         - 媒体信息查询<!--media-info-c-->
-          - [使用AVMetadataExtractor提取音视频元数据信息(C/C++))](media/media/using-ndk-avmetadataextractor-for-media.md)
-          - [使用AVImageGenerator提取视频指定时间图像(C/C++))](media/media/using-ndk-avimagegenerator-for-video.md)
+          - [使用AVMetadataExtractor获取元数据(C/C++)](media/media/using-ndk-avmetadataextractor-for-media.md)
+          - [使用AVImageGenerator获取视频帧(C/C++)](media/media/using-ndk-avimagegenerator-for-video.md)
+        - 视频转码<!--media-transcoder-c-->
+          - [使用AVTranscoder实现视频转码(C/C++)](media/media/using-ndk-avtranscoder-for-transcodering.md)
     - Media Library Kit（媒体文件管理服务）<!--medialibrary-kit-->
       - [Media Library Kit 简介](media/medialibrary/photoAccessHelper-overview.md)
       - [使用Picker选择媒体库资源](media/medialibrary/photoAccessHelper-photoviewpicker.md)
@@ -1733,6 +1766,7 @@
       - [日程管理](calendarmanager/calendarmanager-event-developer.md)
     - Contacts Kit（联系人服务）<!--contacts-kit-->
       - [Contacts Kit开发概述](contacts/contacts-intro.md)
+      - [使用picker管理联系人](contacts/contacts-addcontactviaui.md)
     - Location Kit（位置服务）<!--location-kit-->
       - [Location Kit简介](device/location/location-kit-intro.md)
       - [申请位置权限开发指导(ArkTS)](device/location/location-permission-guidelines.md)
@@ -2926,6 +2960,7 @@
           - [TreeView](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-TreeView.md)
         - 状态管理与渲染控制<!--state-management-and-rendering-control-->
           - [应用级变量的状态管理](reference/apis-arkui/arkui-ts/ts-state-management.md)
+          - [状态变量变化监听](reference/apis-arkui/arkui-ts/ts-state-management-watch-monitor.md)
           - [ForEach](reference/apis-arkui/arkui-ts/ts-rendering-control-foreach.md)
           - [LazyForEach](reference/apis-arkui/arkui-ts/ts-rendering-control-lazyforeach.md)
           - [Repeat](reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md)
@@ -3782,6 +3817,7 @@
           - [@ohos.distributedDeviceManager (设备管理)](reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md)
           - [@ohos.distributedsched.abilityConnectionManager (应用多端协同管理)](reference/apis-distributedservice-kit/js-apis-distributed-abilityConnectionManager.md)
           - [@ohos.application.DistributedExtensionAbility (协同Extension)](reference/apis-distributedservice-kit/js-apis-distributedExtensionAbility.md)
+          - [@ohos.distributedsched.linkEnhance (增强连接)](reference/apis-distributedservice-kit/js-apis-link-enhance.md)
           <!--Del-->
           - [@ohos.distributedHardware.hardwareManager (分布式硬件管理)(系统接口)](reference/apis-distributedservice-kit/js-apis-distributedHardwareManager-sys.md)
           - [@ohos.distributedDeviceManager (设备管理)(系统接口)](reference/apis-distributedservice-kit/js-apis-distributedDeviceManager-sys.md)
@@ -3795,6 +3831,7 @@
           <!--Del-->
           - [键鼠穿越管理错误码](reference/apis-distributedservice-kit/errorcode-devicestatus.md)
           <!--DelEnd-->
+          - [连接增强错误码](reference/apis-distributedservice-kit/errorcode_linkEnhance.md)
         - C API<!--distributed-service-c-->
           - 模块<!--distributed-service-moudle-->
             - [DeviceManager](reference/apis-distributedservice-kit/capi-devicemanager.md)
@@ -3874,6 +3911,7 @@
           - [流量管理错误码](reference/apis-network-kit/errorcode-net-statistics.md)
           - [VPN错误码](reference/apis-network-kit/errorcode-net-vpn.md)
           - [NetworkSecurity错误码](reference/apis-network-kit/errorcode-net-networkSecurity.md)
+          - [内核错误码](reference/apis-network-kit/errorcode-kernel.md)
 
       - Telephony Kit（蜂窝通信服务）<!--telephony-api-->
         - ArkTS API<!--telephony-arkts-->
@@ -4370,6 +4408,7 @@
           - [Interface (AudioStreamManager)](reference/apis-audio-kit/arkts-apis-audio-AudioStreamManager.md)
           - [Interface (AudioVolumeGroupManager)](reference/apis-audio-kit/arkts-apis-audio-AudioVolumeGroupManager.md)
           - [Interface (AudioVolumeManager)](reference/apis-audio-kit/arkts-apis-audio-AudioVolumeManager.md)
+          - [Interface (AudioLoopback)](reference/apis-audio-kit/arkts-apis-audio-AudioLoopback.md)
           - [Interfaces (其他)](reference/apis-audio-kit/arkts-apis-audio-i.md)
           - [Enums](reference/apis-audio-kit/arkts-apis-audio-e.md)
           - [Constants](reference/apis-audio-kit/arkts-apis-audio-c.md)
@@ -5228,7 +5267,7 @@
     - [Node-API](reference/native-lib/napi.md)
     - [libuv](reference/native-lib/libuv.md)
     - [OpenSL ES](reference/native-lib/opensles.md)
-    - [OpenGL ES](reference/native-lib/opengles.md)
+    - [OpenGL ES](reference/native-lib/opengl.md)
     - [OpenGL](reference/native-lib/opengles.md)
     - [EGL](reference/native-lib/egl.md)
     - [ICU4C](reference/native-lib/icu4c.md)
