@@ -320,7 +320,7 @@ config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.s
 
                     // 获取buffer地址。
                     uint8_t *buf = OH_AVBuffer_GetAddr(buffer);
-                    if (buf != nullptr) {
+                    if (buf == nullptr) {
                         return;
                     }
                     // 使用buffer数据。
@@ -339,7 +339,7 @@ config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.s
 
                 // 获取buffer地址。
                 uint8_t *buf = OH_AVBuffer_GetAddr(buffer);
-                if (buf != nullptr) {
+                if (buf == nullptr) {
                     return;
                 }
                 // 使用buffer数据。
@@ -350,7 +350,7 @@ config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.s
 
                 // 获取buffer地址。
                 uint8_t *buf = OH_AVBuffer_GetAddr(buffer);
-                if (buf != nullptr) {
+                if (buf == nullptr) {
                     return;
                 }
                 // 使用buffer数据。
@@ -503,7 +503,7 @@ void OnBufferAvailable(OH_AVScreenCapture *capture, OH_AVBuffer *buffer, OH_AVSc
 
                 // 获取buffer地址。
                 uint8_t *buf = OH_AVBuffer_GetAddr(buffer);
-                if (buf != nullptr) {
+                if (buf == nullptr) {
                     return;
                 }
                 // 使用buffer数据。
@@ -522,7 +522,7 @@ void OnBufferAvailable(OH_AVScreenCapture *capture, OH_AVBuffer *buffer, OH_AVSc
 
             // 获取buffer地址。
             uint8_t *buf = OH_AVBuffer_GetAddr(buffer);
-            if (buf != nullptr) {
+            if (buf == nullptr) {
                 return;
             }
             // 使用buffer数据。
@@ -533,7 +533,7 @@ void OnBufferAvailable(OH_AVScreenCapture *capture, OH_AVBuffer *buffer, OH_AVSc
 
             // 获取buffer地址。
             uint8_t *buf = OH_AVBuffer_GetAddr(buffer);
-            if (buf != nullptr) {
+            if (buf == nullptr) {
                 return;
             }
             // 使用buffer数据。
