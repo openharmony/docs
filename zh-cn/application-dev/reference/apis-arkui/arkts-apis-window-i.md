@@ -247,7 +247,7 @@
 
 | 名称   | 类型   | 必填 | 说明                                       |
 | ------ | ------ | ---- | ------------------------------------------ |
-| windowRect<sup>15+</sup> | [Rect](arkts-apis-window-i.md#rect7)  | 是 | 窗口尺寸，窗口在屏幕上的实际位置和大小。 |
+| windowRect | [Rect](arkts-apis-window-i.md#rect7)  | 是 | 窗口尺寸，窗口在屏幕上的实际位置和大小。 |
 
 ## KeyboardInfo<sup>18+</sup>
 

@@ -534,7 +534,7 @@
     - [OH_NativeXComponent_HistoricalPoint](_o_h___native_x_component___historical_point.md)
     - [PictureInPicture_PipConfig](capi-pictureinpicture-pipconfig.md)
     - [WindowManager_Rect](capi-windowmanager-rect.md)
-    - [struct](capi-struct.md)
+    - [OH_PixelmapNative](capi-struct.md)
     - [WindowManager_WindowProperties](capi-windowmanager-windowproperties.md)
     - [WindowManager_AvoidArea](capi-windowmanager-avoidarea.md)
     - [NativeDisplayManager_Rect](capi-nativedisplaymanager-rect.md)
