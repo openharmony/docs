@@ -4166,7 +4166,9 @@
           - [OH_AudioCapturerStruct](reference/apis-audio-kit/capi-oh-audiocapturerstruct.md)
       - 错误码<!--audio-arkts-errcode-->
         - [Audio错误码](reference/apis-audio-kit/errorcode-audio.md)
+        <!--Del-->
         - [Ringtone错误码](reference/apis-audio-kit/errorcode-ringtone.md)
+        <!--DelEnd-->
     - AVCodec Kit（音视频编解码服务）<!--avcodec-api-->
       - C API<!--avcodec-c-->
         - 模块<!--avcodec-module-->
