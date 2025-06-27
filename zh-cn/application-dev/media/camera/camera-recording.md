@@ -52,7 +52,7 @@
    >
    > 1.预览流与录像输出流的分辨率的宽高比要保持一致，如示例代码中宽高比为640:480 = 4:3，则需要预览流中的分辨率的宽高比也为4:3，如分辨率选择640:480，或960:720，或1440:1080，以此类推。
    >
-   > 2.在设置预览输出流的分辨率宽高前，需要先通过[AVRecorderProfile](../../reference/apis-media-kit/js-apis-media.md#avrecorderprofile9)查询视频帧支持可配置的宽高范围。
+   > 2.在设置预览输出流的分辨率宽高前，需要先通过[AVRecorderProfile](../../reference/apis-media-kit/arkts-apis-media-i.md#avrecorderprofile9)查询视频帧支持可配置的宽高范围。
    >
    > 3.获取录像旋转角度的方法：通过[VideoOutput](../../reference/apis-camera-kit/arkts-apis-camera-VideoOutput.md)类中的[getVideoRotation](../../reference/apis-camera-kit/arkts-apis-camera-VideoOutput.md#getvideorotation12)方法获取rotation实际的值。
 
