@@ -85,7 +85,6 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [ArkUI_UIState](_ark_u_i___native_module.md#arkui_uistate) { <br/>UI_STATE_NORMAL = 0,  UI_STATE_PRESSED = 1 << 0, UI_STATE_FOCUSED = 1 << 1, UI_STATE_DISABLED = 1 << 2, UI_STATE_SELECTED = 1 << 3 <br/>} | 组件的UI状态枚举，用于处理状态样式。<br/>**起始版本：** 20 |
 | [ArkUI_Alignment](_ark_u_i___native_module.md#arkui_alignment) {<br/>[ARKUI_ALIGNMENT_TOP_START](_ark_u_i___native_module.md) = 0, [ARKUI_ALIGNMENT_TOP](_ark_u_i___native_module.md), [ARKUI_ALIGNMENT_TOP_END](_ark_u_i___native_module.md), [ARKUI_ALIGNMENT_START](_ark_u_i___native_module.md),<br/>[ARKUI_ALIGNMENT_CENTER](_ark_u_i___native_module.md), [ARKUI_ALIGNMENT_END](_ark_u_i___native_module.md), [ARKUI_ALIGNMENT_BOTTOM_START](_ark_u_i___native_module.md), [ARKUI_ALIGNMENT_BOTTOM](_ark_u_i___native_module.md),<br/>[ARKUI_ALIGNMENT_BOTTOM_END](_ark_u_i___native_module.md)<br/>} | 定义布局对齐枚举值。  | 
 | [ArkUI_ImageRepeat](_ark_u_i___native_module.md#arkui_imagerepeat) { [ARKUI_IMAGE_REPEAT_NONE](_ark_u_i___native_module.md) = 0, [ARKUI_IMAGE_REPEAT_X](_ark_u_i___native_module.md), [ARKUI_IMAGE_REPEAT_Y](_ark_u_i___native_module.md), [ARKUI_IMAGE_REPEAT_XY](_ark_u_i___native_module.md) } | 定义图片重复铺设枚举值。  | 
 | [ArkUI_FontStyle](_ark_u_i___native_module.md#arkui_fontstyle) { [ARKUI_FONT_STYLE_NORMAL](_ark_u_i___native_module.md) = 0, [ARKUI_FONT_STYLE_ITALIC](_ark_u_i___native_module.md) } | 定义字体样式枚举值。  | 
@@ -193,7 +192,7 @@
 | [ArkUI_DatePickerMode](_ark_u_i___native_module.md#arkui_datepickermode) { <br/>[ARKUI_DATEPICKER_MODE_DATE](_ark_u_i___native_module.md) = 0, [ARKUI_DATEPICKER_YEAR_AND_MONTH](_ark_u_i___native_module.md) = 1, [ARKUI_DATEPICKER_MONTH_AND_DAY](_ark_u_i___native_module.md) = 2 <br/>} | 定义要显示的日期选项列样式。 | 
 | [ArkUI_ExpandMode](_ark_u_i___native_module.md#arkui_expandmode) { <br/>[ARKUI_NOT_EXPAND](_ark_u_i___native_module.md) = 0, [ARKUI_EXPAND](_ark_u_i___native_module.md) = 1, [ARKUI_LAZY_EXPAND](_ark_u_i___native_module.md) = 2 <br/>} | 定义子节点展开模式枚举值。 | 
 | [ArkUI_ListItemGroupArea](_ark_u_i___native_module.md#arkui_listitemgrouparea) { <br/>[ARKUI_LIST_ITEM_GROUP_AREA_OUTSIDE](_ark_u_i___native_module.md) = 0, [ARKUI_LIST_ITEM_SWIPE_AREA_NONE](_ark_u_i___native_module.md), [ARKUI_LIST_ITEM_SWIPE_AREA_ITEM](_ark_u_i___native_module.md), [ARKUI_LIST_ITEM_SWIPE_AREA_HEADER](_ark_u_i___native_module.md), [ARKUI_LIST_ITEM_SWIPE_AREA_FOOTER](_ark_u_i___native_module.md) <br/>} | 定义组件区域的枚举值。 | 
-| [ArkUI_UIState](_ark_u_i___native_module.md#arkui_uistate) { <br/>[UI_STATE_NORMAL](_ark_u_i___native_module.md) = 0, [UI_STATE_PRESSED](_ark_u_i___native_module.md) = 1 &lt;&lt; 0, [UI_STATE_FOCUSED](_ark_u_i___native_module.md) = 1 &lt;&lt; 1, [UI_STATE_DISABLED](_ark_u_i___native_module.md) = 1 &lt;&lt; 2, [UI_STATE_SELECTED](_ark_u_i___native_module.md) = 1 &lt;&lt; 3 <br/>} | 组件的UI状态枚举，用于处理状态样式。 | 
+| [ArkUI_UIState](_ark_u_i___native_module.md#arkui_uistate) { <br/>[UI_STATE_NORMAL](_ark_u_i___native_module.md) = 0, [UI_STATE_PRESSED](_ark_u_i___native_module.md) = 1 &lt;&lt; 0, [UI_STATE_FOCUSED](_ark_u_i___native_module.md) = 1 &lt;&lt; 1, [UI_STATE_DISABLED](_ark_u_i___native_module.md) = 1 &lt;&lt; 2, [UI_STATE_SELECTED](_ark_u_i___native_module.md) = 1 &lt;&lt; 3 <br/>} | 组件的UI状态枚举，用于处理状态样式。<br/>**起始版本：** 20 | 
 
 
 ### 函数
