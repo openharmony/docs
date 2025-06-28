@@ -55,7 +55,7 @@ Queue的构造函数。
 **示例：**
 
 ```ts
-let queue : Queue<number | string | Object> = new Queue();
+let queue : Queue<number | string | Object> = new Queue<number | string | Object>();
 ```
 
 
@@ -96,7 +96,7 @@ class C1 {
   name: string = ""
   age: string = ""
 }
-let queue : Queue<number | string | C1 | number[]> = new Queue();
+let queue : Queue<number | string | C1 | number[]> = new Queue<number | string | C1 | number[]>();
 let result = queue.add("a");
 let result1 = queue.add(1);
 let b = [1, 2, 3];
@@ -114,6 +114,8 @@ pop(): T
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **返回值：**
 
@@ -141,6 +143,36 @@ queue.add(4);
 let result = queue.pop();
 ```
 
+### pop<sup>20+</sup>
+
+pop(): T \| undefined
+
+删除并返回头元素。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T \| undefined | 返回删除的元素，容器为空则返回undefined。 |
+
+**示例：**
+
+```ts
+let queue : Queue<number> = new Queue<number>();
+queue.add(2);
+queue.add(4);
+queue.add(5);
+queue.add(2);
+queue.add(4);
+let result = queue.pop();
+```
+
 ### getFirst
 
 getFirst(): T
@@ -150,6 +182,8 @@ getFirst(): T
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **返回值：**
 
@@ -176,6 +210,35 @@ queue.add(2);
 let result = queue.getFirst();
 ```
 
+### getFirst<sup>20+</sup>
+
+getFirst(): T \| undefined
+
+获取队列的头元素。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T \| undefined | 返回获取的元素，容器为空则返回undefined。 |
+
+**示例：**
+
+```ts
+let queue : Queue<number> = new Queue<number>();
+queue.add(2);
+queue.add(4);
+queue.add(5);
+queue.add(2);
+let result = queue.getFirst();
+```
+
 ### forEach
 
 forEach(callbackFn: (value: T, index?: number, Queue?: Queue&lt;T&gt;) => void,
@@ -186,6 +249,8 @@ thisArg?: Object): void
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **参数：**
 
@@ -224,6 +289,41 @@ queue.forEach((value : number, index ?: number) : void => {
 });
 ```
 
+### forEach<sup>20+</sup>
+
+forEach(callbackfn: QueueForEachCb\<T\>): void
+
+通过回调函数来遍历Queue实例对象上的元素以及元素对应的下标。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| callbackFn | [QueueForEachCb\<T\>](#queueforeachcbt20) | 是 | 回调函数。 |
+
+**示例：**
+
+```ts
+import { QueueForEachCb } from '@ohos.util.Queue';
+
+let queue : Queue<number> = new Queue<number>();
+queue.add(2);
+queue.add(4);
+queue.add(5);
+queue.add(4);
+let queueCb: QueueForEachCb<number> = (value: number, index: number, q: Queue<number>) : void => {
+  console.info("value:" + value, "index:" + index);
+};
+
+queue.forEach(queueCb);
+```
+
 ### [Symbol.iterator]
 
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
@@ -233,6 +333,8 @@ queue.forEach((value : number, index ?: number) : void => {
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **返回值：**
 
@@ -270,3 +372,58 @@ while(temp != undefined) {
   temp = iter.next().value;
 }
 ```
+
+### $_iterator<sup>20+</sup>
+
+\$_iterator\(): IterableIterator&lt;T&gt;
+
+返回一个迭代器，迭代器的每一项都是一个JavaScript对象，并返回该对象。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| IterableIterator&lt;T&gt; | 返回一个迭代器。 |
+
+**示例：**
+
+```ts
+let queue : Queue<number> = new Queue<number>();
+queue.add(2);
+queue.add(4);
+queue.add(5);
+queue.add(4);
+
+let iter = queue.$_iterator();
+let temp: IteratorResult<number> = iter.next();
+while(temp.value != undefined) {
+  console.info("value:" + temp.value);
+  temp = iter.next();
+}
+```
+
+### QueueForEachCb\<T\><sup>20+</sup>
+
+type QueueForEachCb\<T\> = (value: T, index: number, queue: Queue\<T\>) => void
+
+Queue中forEach方法的回调函数。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| value | T | 是 | 当前遍历到的元素。 |
+| index | number | 是 | 当前遍历到的下标值。 |
+| Queue | [Queue&lt;T&gt;](#queue) | 是 | 当前调用[forEach](#foreach20)方法的实例对象。 |
