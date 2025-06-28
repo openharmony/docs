@@ -102,7 +102,7 @@ onBundleAdded(bundleName: string, accountId: number): void
 
 ```ts
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
-  onBundleAdded(bundleName: string, accountId?: number) {
+  onBundleAdded(bundleName: string, accountId: number) {
     console.info(`Succeeded in calling onBundleAdded callback, added bundle name : ${bundleName}, accountId: ${accountId}`);
   }
 };
@@ -155,7 +155,7 @@ onBundleRemoved(bundleName: string, accountId: number): void
 
 ```ts
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
-  onBundleRemoved(bundleName: string, accountId?: number) {
+  onBundleRemoved(bundleName: string, accountId: number) {
     console.info(`Succeeded in calling onBundleRemoved callback, removed bundle name : ${bundleName}, accountId: ${accountId}`);
   }
 };
