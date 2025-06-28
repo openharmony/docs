@@ -17,7 +17,7 @@
 >
 > 该组件不支持在Wearable设备上使用。
 >
->卡片具体开发指导请参考：[Form Kit简介](../../../form/formkit-overview.md#form-kit简介)
+>卡片具体开发指导请参考[卡片开发指南](../../../form/formkit-overview.md)。
 
 
 ## 导入模块
