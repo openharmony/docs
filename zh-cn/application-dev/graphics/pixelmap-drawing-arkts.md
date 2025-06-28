@@ -81,7 +81,7 @@
 
 3. 绘制PixelMap。
 
-   绘制PixelMap时需要通过Canva相关接口绘制位图，下文以drawImage()为例。更多方式和接口的使用请见[drawing.Canvas](../reference/apis-arkgraphics2d/js-apis-graphics-drawing.md#canvas)。
+   绘制PixelMap时需要通过Canva相关接口绘制位图，下文以drawImage()为例。更多方式和接口的使用请见[drawing.Canvas](../reference/apis-arkgraphics2d/arkts-apis-graphics-drawing-Canvas.md)。
 
    drawImage()函数接受4个参数，第一个就是上文中创建的PixelMap，第二个是绘制图片位置的左上角x轴坐标，第三个是左上角y轴坐标，第四个为采样选项对象，默认为不使用任何参数构造的原始采样选项对象。
 

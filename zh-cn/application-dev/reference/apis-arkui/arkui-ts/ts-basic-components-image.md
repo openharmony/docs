@@ -709,7 +709,7 @@ type DrawingColorFilter = ColorFilter
 
 | 类型     | 说明       |
 | ------ | ---------- |
-| [ColorFilter](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#colorfilter)  | 返回一个颜色滤波器。 |
+| [ColorFilter](../../apis-arkgraphics2d/arkts-apis-graphics-drawing-ColorFilter.md)  | 返回一个颜色滤波器。 |
 
 ## DrawingLattice<sup>12+<sup>
 
@@ -723,7 +723,7 @@ type DrawingLattice = Lattice
 
 | 类型     | 说明       |
 | ------ | ---------- |
-| [Lattice](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#lattice12) | 返回一个矩阵网格对象。 |
+| [Lattice](../../apis-arkgraphics2d/arkts-apis-graphics-drawing-Lattice.md) | 返回一个矩阵网格对象。 |
 
 ## ImageMatrix<sup>15+</sup>对象说明
 
