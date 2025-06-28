@@ -4542,13 +4542,16 @@
         - [@ohos.multimedia.avInputCastPicker（录音设备选择组件）](reference/apis-avsession-kit/ohos-multimedia-avinputcastpicker.md)
       - C API<!--avsession-c-->
         - 模块<!--avsession-module-->
-          - [OHAVSession](reference/apis-avsession-kit/_o_h_a_v_session.md)
+          - [OHAVSession](reference/apis-avsession-kit/capi-ohavsession.md)
         - 头文件<!--avsession-headerfile-->
-          - [native_avmetadata.h](reference/apis-avsession-kit/native__avmetadata_8h.md)
-          - [native_avsession.h](reference/apis-avsession-kit/native__avsession_8h.md)
-          - [native_avsession_errors.h](reference/apis-avsession-kit/native__avsession__errors_8h.md)
+          - [native_avmetadata.h](reference/apis-avsession-kit/capi-native-avmetadata-h.md)
+          - [native_avsession.h](reference/apis-avsession-kit/capi-native-avsession-h.md)
+          - [native_avsession_errors.h](reference/apis-avsession-kit/capi-native-avsession-errors-h.md)
         - 结构体<!--avsession-struct-->
-          - [AVSession_PlaybackPosition](reference/apis-avsession-kit/_a_v_session___playback_position.md)
+          - [OH_AVMetadataBuilderStruct](reference/apis-avsession-kit/capi-ohavsession-oh-avmetadatabuilderstruct.md)
+          - [OH_AVMetadataStruct](reference/apis-avsession-kit/capi-ohavsession-oh-avmetadatastruct.md)
+          - [AVSession_PlaybackPosition](reference/apis-avsession-kit/capi-ohavsession-avsession-playbackposition.md)
+          - [OH_AVSession](reference/apis-avsession-kit/capi-ohavsession-oh-avsession.md)
       - 错误码<!--avsession-arkts-errcode-->
         - [媒体会话管理错误码](reference/apis-avsession-kit/errorcode-avsession.md)
     - Camera Kit（相机服务）<!--camera-api-->
