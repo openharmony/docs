@@ -1114,7 +1114,7 @@ paint(canvas: drawing.Canvas, x: number, y: number): void
 
 | 参数名 | 类型                                                  | 必填 | 说明                    |
 | ------ | ---------------------------------------------------- | ---- | ---------------------- |
-| canvas | [drawing.Canvas](js-apis-graphics-drawing.md#canvas) | 是   | 绘制的目标画布。         |
+| canvas | [drawing.Canvas](arkts-apis-graphics-drawing-Canvas.md) | 是   | 绘制的目标画布。         |
 |    x   | number                                               | 是   | 绘制的左上角位置的横坐标，浮点数。|
 |    y   | number                                               | 是   | 绘制的左上角位置的纵坐标，浮点数。|
 
@@ -1140,8 +1140,8 @@ paintOnPath(canvas: drawing.Canvas, path: drawing.Path, hOffset: number, vOffset
 
 | 参数名 | 类型                                                  | 必填 | 说明                    |
 | ------ | ---------------------------------------------------- | ---- | ---------------------- |
-| canvas | [drawing.Canvas](js-apis-graphics-drawing.md#canvas) | 是   | 绘制的目标画布。         |
-| path | [drawing.Path](js-apis-graphics-drawing.md#path) | 是   | 确认文字位置的路径。         |
+| canvas | [drawing.Canvas](arkts-apis-graphics-drawing-Canvas.md) | 是   | 绘制的目标画布。         |
+| path | [drawing.Path](arkts-apis-graphics-drawing-Path.md) | 是   | 确认文字位置的路径。         |
 |    hOffset   | number                                               | 是   | 沿路径方向偏置，从路径起点向前为正，向后为负。|
 |    vOffset   | number                                               | 是   | 沿路径垂直方向偏置，沿路径方向左侧为负，右侧为正。|
 
@@ -1740,7 +1740,7 @@ let line : text.TextLine = lineTypeset.createLine(startIndex, count);
 | 名称      | 类型                                                | 只读 | 可选 | 说明        |
 | --------- | -------------------------------------------------- | ---- | ---- | ----------- |
 | textStyle | [TextStyle](#textstyle)                             | 否   | 否   | 字体的样式信息。|
-| fontMetrics | [drawing.FontMetrics](js-apis-graphics-drawing.md#fontmetrics)| 否   | 否   | 字体度量信息。    |
+| fontMetrics | [drawing.FontMetrics](arkts-apis-graphics-drawing-i.md#fontmetrics)| 否   | 否   | 字体度量信息。    |
 
 ## LineMetrics
 
@@ -2338,7 +2338,7 @@ paint(canvas: drawing.Canvas, x: number, y: number): void
 
 | 参数名 | 类型                                                  | 必填 | 说明                    |
 | ------ | ---------------------------------------------------- | ---- | ---------------------- |
-| canvas | [drawing.Canvas](js-apis-graphics-drawing.md#canvas) | 是   | 绘制的目标canvas。      |
+| canvas | [drawing.Canvas](arkts-apis-graphics-drawing-Canvas.md) | 是   | 绘制的目标canvas。      |
 |    x   | number                                               | 是   | 绘制的左上角位置的横坐标，浮点数。|
 |    y   | number                                               | 是   | 绘制的左上角位置的纵坐标，浮点数。|
 
@@ -2814,7 +2814,7 @@ getFont(): drawing.Font
 
 | 类型                   | 说明           |
 | ------------------------------------------------- | -------------------------- |
-| [drawing.Font](js-apis-graphics-drawing.md#font)  | 该排版单元的字体属性对象实例。|
+| [drawing.Font](arkts-apis-graphics-drawing-Font.md)  | 该排版单元的字体属性对象实例。|
 
 **示例：**
 
@@ -2834,7 +2834,7 @@ paint(canvas: drawing.Canvas, x: number, y: number): void
 
 | 参数名 | 类型                                                  | 必填 | 说明                    |
 | ------ | ---------------------------------------------------- | ---- | ---------------------- |
-| canvas | [drawing.Canvas](js-apis-graphics-drawing.md#canvas) | 是   | 绘制的目标 canvas。      |
+| canvas | [drawing.Canvas](arkts-apis-graphics-drawing-Canvas.md) | 是   | 绘制的目标 canvas。      |
 |    x   | number                                               | 是   | 绘制的左上角位置的横坐标，浮点数。|
 |    y   | number                                               | 是   | 绘制的左上角位置的纵坐标。浮点数。|
 

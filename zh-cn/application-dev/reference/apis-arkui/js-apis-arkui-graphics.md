@@ -252,7 +252,7 @@ get canvas(): drawing.Canvas
 
 | 类型          | 说明             |
 | ------------- | ---------------- |
-| [drawing.Canvas](../apis-arkgraphics2d/js-apis-graphics-drawing.md#canvas) | 用于绘制的画布。 |
+| [drawing.Canvas](../apis-arkgraphics2d/arkts-apis-graphics-drawing-Canvas.md) | 用于绘制的画布。 |
 
 **示例：**
 

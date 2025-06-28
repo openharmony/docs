@@ -524,7 +524,7 @@ getXComponentSurfaceRotation(): Required\<SurfaceRotationOptions>
 
 lockCanvas(): DrawingCanvas | null
 
-返回可用于向XComponent上绘制内容的画布对象。具体绘制方法请参考[Canvas](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#canvas)。
+返回可用于向XComponent上绘制内容的画布对象。具体绘制方法请参考[Canvas](../../apis-arkgraphics2d/arkts-apis-graphics-drawing-Canvas.md)。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
