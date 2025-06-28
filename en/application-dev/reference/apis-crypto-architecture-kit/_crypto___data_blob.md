@@ -9,6 +9,7 @@ Defines the data used for encryption and decryption.
 
 **Related module**: [CryptoCommonApi](_crypto_common_api.md)
 
+**Header file:** [crypto_common.h](capi-crypto-common-h.md)
 
 ## Summary
 

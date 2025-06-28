@@ -17,7 +17,7 @@ import { certificateManager } from '@kit.DeviceCertificateKit';
 
 Enumerates the error codes used in the certificate management APIs.
 
-**System capability**: System SystemCapability.Security.CertificateManager
+**System capability**: SystemCapability.Security.CertificateManager
 
 | Name      | Value|  Description     |
 | ---------- | ------ | --------- |
@@ -31,7 +31,7 @@ Obtains all private credentials. This API uses an asynchronous callback to retur
 
 **Required permissions**: ohos.permission.ACCESS_CERT_MANAGER and ohos.permission.ACCESS_CERT_MANAGER_INTERNAL
 
-**System capability**: System SystemCapability.Security.CertificateManager
+**System capability**: SystemCapability.Security.CertificateManager
 
 **System API**: This is a system API.
 
@@ -84,7 +84,7 @@ Obtains all private credentials. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ACCESS_CERT_MANAGER and ohos.permission.ACCESS_CERT_MANAGER_INTERNAL
 
-**System capability**: System SystemCapability.Security.CertificateManager
+**System capability**: SystemCapability.Security.CertificateManager
 
 **System API**: This is a system API.
 
@@ -135,7 +135,7 @@ Obtains all system credentials. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ACCESS_CERT_MANAGER
 
-**System capability**: System SystemCapability.Security.CertificateManager
+**System capability**: SystemCapability.Security.CertificateManager
 
 **System API**: This is a system API.
 
