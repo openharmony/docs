@@ -4986,6 +4986,20 @@
 
 **起始版本**：20
 
+## ohos.permission.MOUNT_HDCDEBUG_PATH
+
+允许应用挂载hdc调试路径。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：PC/2in1
+
+**起始版本**：20
+
 ## ohos.permission.ACCESS_CAMERA_SCENARIOS_CARD
 
 允许应用访问遥控拍照场景卡片服务。
