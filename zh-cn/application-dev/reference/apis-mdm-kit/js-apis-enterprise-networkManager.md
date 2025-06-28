@@ -497,7 +497,7 @@ try {
 
 addFirewallRule(admin: Want, firewallRule: FirewallRule): void
 
-为设备添加防火墙过滤规则。<br/>
+为设备添加防火墙过滤规则，仅支持IPv4。<br/>
 添加了[Action](#action)为ALLOW规则后，将会默认添加DENY规则，不在ALLOW规则之内的网络数据包将会被丢弃或拦截。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
@@ -550,7 +550,7 @@ networkManager.addFirewallRule(wantTemp, firewallRule);
 
 removeFirewallRule(admin: Want, firewallRule?: FirewallRule): void
 
-移除设备防火墙过滤规则。<br/>
+移除设备防火墙过滤规则，仅支持IPv4。<br/>
 移除规则后如果不存在[Action](#action)为ALLOW规则后，会将[addFirewallRule](#networkmanageraddfirewallrule)添加的默认DENY规则清空。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
@@ -606,7 +606,7 @@ networkManager.removeFirewallRule(wantTemp);
 
 getFirewallRules(admin: Want): Array\<FirewallRule>
 
-查询设备防火墙过滤规则。
+查询设备防火墙过滤规则，仅支持IPv4。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
