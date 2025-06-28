@@ -3117,7 +3117,7 @@ struct Index {
             },
             paragraphStyle: {
               textAlign: TextAlign.Start,
-              textVerticalAlign：TextVerticalAlign.BASELINE,
+              textVerticalAlign: TextVerticalAlign.BASELINE,
               leadingMargin: 16
             }
           })
