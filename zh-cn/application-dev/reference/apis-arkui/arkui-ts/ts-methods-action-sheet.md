@@ -166,7 +166,7 @@ static show(value: ActionSheetOptions)
 
 > **说明：**
 > 
-> 直接使用ActionSheet可能导致[UI上下文不明确](../../../ui/arkts-global-interface.md)的问题，建议使用[getUIContext](../js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[showActionSheet](../js-apis-arkui-UIContext.md#showactionsheet)调用绑定实例的ActionSheet.show()。
+> 直接使用ActionSheet可能导致[UI上下文不明确](../../../ui/arkts-global-interface.md)的问题，建议使用getUIContext()获取[UIContext](../js-apis-arkui-UIContext.md#uicontext)实例，并使用[showActionSheet](../js-apis-arkui-UIContext.md#showactionsheet)调用绑定实例的ActionSheet.show()。
 
 ### 示例1（弹出列表选择弹窗）
 
