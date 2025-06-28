@@ -59,7 +59,7 @@ List的构造函数。
 **示例：**
 
 ```ts
-let list: List<string | number | boolean | object> = new List();
+let list: List<string | number | boolean | object> = new List<string | number | boolean | object>();
 ```
 
 
@@ -96,7 +96,7 @@ add(element: T): boolean
 **示例：**
 
 ```ts
-let list: List<string | number | boolean | object> = new List();
+let list: List<string | number | boolean | object> = new List<string | number | boolean | object>();
 let result1 = list.add("a");
 let result2 = list.add(1);
 let b = [1, 2, 3];
@@ -125,7 +125,7 @@ insert(element: T, index: number): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | element | T | 是 | 插入元素。 |
-| index | number | 是 | 插入的位置索引。需要小于等于int32_max即2147483647。 |
+| index | number | 是 | 插入的位置索引。需要小于等于int32_max（即2147483647）。 |
 
 **错误码：**
 
@@ -140,7 +140,7 @@ insert(element: T, index: number): void
 **示例：**
 
 ```ts
-let list: List<string | number | boolean> = new List();
+let list: List<string | number | boolean> = new List<string | number | boolean>();
 list.insert("A", 0);
 list.insert(0, 1);
 list.insert(true, 2);
@@ -179,7 +179,7 @@ has(element: T): boolean
 **示例：**
 
 ```ts
-let list: List<string> = new List();
+let list: List<string> = new List<string>();
 list.add("squirrel");
 let result = list.has("squirrel");
 ```
@@ -194,11 +194,13 @@ get(index: number): T
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| index | number | 是 | 要查找的下标。需要小于等于int32_max即2147483647。 |
+| index | number | 是 | 要查找的下标。需要小于等于int32_max（即2147483647）。 |
 
 **返回值：**
 
@@ -219,6 +221,44 @@ get(index: number): T
 
 ```ts
 let list: List<number> = new List();
+list.add(2);
+list.add(4);
+list.add(5);
+list.add(2);
+list.add(1);
+list.add(2);
+list.add(4);
+let result = list.get(2);
+```
+
+### get<sup>20+</sup>
+
+get(index: number): T \| undefined
+
+根据下标获取List中的元素。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| index | number | 是 | 要查找的下标。需要小于等于int32_max（即2147483647）。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T \| undefined | 根据下标查找到的元素，元素不存在返回undefined。 |
+
+**示例：**
+
+```ts
+let list: List<number> = new List<number>();
 list.add(2);
 list.add(4);
 list.add(5);
@@ -262,7 +302,7 @@ getLastIndexOf(element: T): number
 **示例：**
 
 ```ts
-let list: List<number> = new List();
+let list: List<number> = new List<number>();
 list.add(2);
 list.add(4);
 list.add(5);
@@ -306,7 +346,7 @@ getIndexOf(element: T): number
 **示例：**
 
 ```ts
-let list: List<number> = new List();
+let list: List<number> = new List<number>();
 list.add(2);
 list.add(4);
 list.add(5);
@@ -350,7 +390,7 @@ equal(obj: Object): boolean
 **示例：**
 
 ```ts
-let list: List<number> = new List();
+let list: List<number> = new List<number>();
 list.add(2);
 list.add(4);
 list.add(5);
@@ -371,11 +411,13 @@ removeByIndex(index: number): T
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| index | number | 是 | 指定元素的下标值。需要小于等于int32_max即2147483647。 |
+| index | number | 是 | 指定元素的下标值。需要小于等于int32_max（即2147483647）。 |
 
 **返回值：**
 
@@ -397,6 +439,50 @@ removeByIndex(index: number): T
 
 ```ts
 let list: List<number> = new List();
+list.add(2);
+list.add(4);
+list.add(5);
+list.add(2);
+list.add(4);
+let result = list.removeByIndex(2);
+```
+
+### removeByIndex<sup>20+</sup>
+
+removeByIndex(index: number): T \| undefined
+
+根据元素的下标值查找元素，并将其删除。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| index | number | 是 | 指定元素的下标值。需要小于等于int32_max（即2147483647）。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T \| undefined | 返回被删除的元素。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of "index" is out of range. It must be >= 0 && <= \$\{length - 1\}. |
+
+**示例：**
+
+```ts
+let list: List<number> = new List<number>();
 list.add(2);
 list.add(4);
 list.add(5);
@@ -438,7 +524,7 @@ remove(element: T): boolean
 **示例：**
 
 ```ts
-let list: List<number> = new List();
+let list: List<number> = new List<number>();
 list.add(2);
 list.add(4);
 list.add(5);
@@ -456,6 +542,8 @@ thisArg?: Object): void
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **参数：**
 
@@ -495,6 +583,41 @@ list.replaceAllElements((value: number) => {
 });
 ```
 
+### replaceAllElements<sup>20+</sup>
+
+replaceAllElements(callbackfn: ListReplaceCb\<T\>): void
+
+通过回调函数操作List中的元素，用操作后的元素替换原元素并返回操作后的元素。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| callbackFn | [ListReplaceCb\<T\>](#listreplacecbt20) | 是 | 回调函数。 |
+
+**示例：**
+
+```ts
+import { ListReplaceCb } from '@ohos.util.List';
+
+let list: List<number> = new List<number>();
+list.add(2);
+list.add(4);
+list.add(5);
+list.add(7);
+let listCb: ListReplaceCb<number> = (value: number, index: number, list: List<number>): number => {
+  console.log("value: " + value);
+  return value;
+}
+list.replaceAllElements(listCb);
+```
+
 ### forEach
 
 forEach(callbackFn: (value: T, index?: number, List?: List&lt;T&gt;) => void,
@@ -505,6 +628,8 @@ thisArg?: Object): void
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **参数：**
 
@@ -543,6 +668,40 @@ list.forEach((value: number, index?: number) => {
 });
 ```
 
+### forEach<sup>20+</sup>
+
+forEach(callbackfn: ListforEachCb\<T\>): void
+
+通过回调函数遍历List实例对象上的元素以及元素对应的下标值。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| callbackFn | [ListforEachCb\<T\>](#listforeachcbt20) | 是 | 回调函数。 |
+
+**示例：**
+
+```ts
+import { ListForEachCb } from '@ohos.util.List';
+
+let list: List<number> = new List<number>();
+list.add(2);
+list.add(4);
+list.add(5);
+list.add(7);
+let listCb: ListForEachCb<number> = (value: number, index: number, list: List<number>) => {
+  console.log("value: " + value, " index = " + index);
+}
+list.forEach(listCb);
+```
+
 ### sort
 
 sort(comparator: (firstValue: T, secondValue: T) => number): void
@@ -578,7 +737,7 @@ comparator的参数说明：
 **示例：**
 
 ```ts
-let list: List<number> = new List();
+let list: List<number> = new List<number>();
 list.add(2);
 list.add(4);
 list.add(5);
@@ -623,7 +782,7 @@ getSubList(fromIndex: number, toIndex: number): List&lt;T&gt;
 **示例：**
 
 ```ts
-let list: List<number> = new List();
+let list: List<number> = new List<number>();
 list.add(2);
 list.add(4);
 list.add(5);
@@ -652,7 +811,7 @@ clear(): void
 **示例：**
 
 ```ts
-let list: List<number> = new List();
+let list: List<number> = new List<number>();
 list.add(2);
 list.add(4);
 list.add(5);
@@ -670,11 +829,13 @@ set(index: number, element: T): T
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| index | number | 是 | 查找的下标值。需要小于等于int32_max即2147483647。 |
+| index | number | 是 | 查找的下标值。需要小于等于int32_max（即2147483647）。 |
 | element | T | 是 | 用来替换的元素。 |
 
 **返回值：**
@@ -704,6 +865,50 @@ list.add(4);
 let result = list.set(2, "b");
 ```
 
+### set<sup>20+</sup>
+
+set(index: number, element: T): T \| undefined
+
+将List中指定位置的元素替换为指定元素。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| index | number | 是 | 查找的下标值。需要小于等于int32_max（即2147483647）。 |
+| element | T | 是 | 用来替换的元素。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T \| undefined | 返回替换后的元素，替换失败返回undefined。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of "index" is out of range. It must be >= 0 && <= \$\{length - 1\}. |
+
+**示例：**
+
+```ts
+let list: List<number> = new List<number>();
+list.add(2);
+list.add(4);
+list.add(5);
+list.add(4);
+let result = list.set(2, 9);
+```
+
 ### convertToArray
 
 convertToArray(): Array&lt;T&gt;
@@ -731,7 +936,7 @@ convertToArray(): Array&lt;T&gt;
 **示例：**
 
 ```ts
-let list: List<number> = new List();
+let list: List<number> = new List<number>();
 list.add(2);
 list.add(4);
 list.add(5);
@@ -766,7 +971,7 @@ isEmpty(): boolean
 **示例：**
 
 ```ts
-let list: List<number> = new List();
+let list: List<number> = new List<number>();
 list.add(2);
 list.add(4);
 list.add(5);
@@ -783,6 +988,8 @@ getFirst(): T
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **返回值：**
 
@@ -819,6 +1026,8 @@ getLast(): T
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **返回值：**
 
 | 类型 | 说明 |
@@ -844,6 +1053,146 @@ list.add(4);
 let result = list.getLast();
 ```
 
+### getFirst<sup>20+</sup>
+
+getFirst(): T \| undefined
+
+获取List实例中的第一个元素。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T \| undefined | 返回第一个元素，容器为空时返回undefined。 |
+
+**示例：**
+
+```ts
+let list: List<number> = new List<number>();
+list.add(2);
+list.add(4);
+list.add(5);
+list.add(4);
+let result = list.getFirst();
+```
+
+### getLast<sup>20+</sup>
+
+getLast(): T \| undefined
+
+获取List实例中的最后一个元素。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T \| undefined | 返回最后一个元素，容器为空时返回undefined。 |
+
+**示例：**
+
+```ts
+let list: List<number> = new List<number>();
+list.add(2);
+list.add(4);
+list.add(5);
+list.add(4);
+let result = list.getLast();
+```
+
+### \$_get(index: number) <sup>20+</sup>
+
+\$_get(index: number): T | undefined
+
+取指定索引值对应位置的元素。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| index | number | 是 | 元素的位置索引。需要小于等于int32_max（即2147483647）。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T \| undefined | 容器中对应索引值为index的元素，如果没有返回undefined |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of index is out of range. |
+
+**示例：**
+
+```ts
+let list: List<number> = new List<number>();
+list.add(2);
+list.add(4);
+list.add(5);
+list.add(6);
+let result = list.$_get(2);
+```
+
+### \$_set(index: number, value: T) <sup>20+</sup>
+
+\$_set(index: number, value: T): void
+
+将指定位置的元素替换为指定元素。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| index | number | 是 | 元素的位置索引。需要小于等于int32_max（即2147483647）。 |
+| value | T | 是 | 用来替换的元素。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of index is out of range. |
+
+**示例：**
+
+```ts
+let list: List<number> = new List<number>();
+list.add(2);
+list.add(4);
+list.add(5);
+list.add(6);
+list.$_set(2, 9);
+let result = list.$_get(2);
+```
+
 ### [Symbol.iterator]
 
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
@@ -853,6 +1202,8 @@ let result = list.getLast();
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **返回值：**
 
@@ -891,3 +1242,84 @@ while(!temp.done) {
   temp = iter.next();
 }
 ```
+
+### $_iterator<sup>20+</sup>
+
+\$_iterator\(): IterableIterator&lt;T&gt;
+
+返回一个迭代器，迭代器的每一项都是一个JavaScript对象，并返回该对象。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| IterableIterator&lt;T&gt; | 返回一个迭代器。 |
+
+**示例：**
+
+```ts
+let list: List<number> = new List<number>();
+list.add(2);
+list.add(4);
+list.add(5);
+list.add(4);
+
+// 使用方法一：
+for (let item of list) {
+  console.info("value: " + item);
+}
+
+// 使用方法二：
+let iter = list.$_iterator();
+let temp: IteratorResult<number> = iter.next();
+while(!temp.done) {
+  console.info("value: " + temp.value);
+  temp = iter.next();
+}
+```
+
+### ListforEachCb\<T\><sup>20+</sup>
+
+type ListforEachCb\<T\> = (value: T, index: number, list: List\<T\>) => void
+
+List中forEach方法的回调函数。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| value | T | 是 | 当前遍历到的元素。 |
+| index | number | 是 | 当前遍历到的下标值，默认值为0。 |
+| List | [List&lt;T&gt;](#list) | 是 | 当前调用[forEach](#foreach20)方法的实例对象。 |
+
+### ListReplaceCb\<T\><sup>20+</sup>
+
+type ListReplaceCb\<T\> = (value: T, index: number, list: List\<T\>) => T
+
+List中replaceAllElements方法的回调函数。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| value | T | 是 | 当前遍历到的元素。 |
+| index | number | 是 | 当前遍历到的下标值。 |
+| list | [List&lt;T&gt;](#list) | 是 | 当前调用[replaceAllElements](#replaceallelements20)方法的实例对象。 |
