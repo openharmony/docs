@@ -4928,7 +4928,7 @@
         - [@ohos.graphics.sendableColorSpaceManager (可共享的色彩管理)](reference/apis-arkgraphics2d/js-apis-sendableColorSpaceManager.md)
         - [@ohos.graphics.common2D (2D图形通用数据类型)](reference/apis-arkgraphics2d/js-apis-graphics-common2D.md)
         - [@ohos.graphics.displaySync (可变帧率)](reference/apis-arkgraphics2d/js-apis-graphics-displaySync.md)
-        - [@ohos.graphics.drawing (绘制模块)]<!--js-apis-graphics-drawing-->
+        - @ohos.graphics.drawing (绘制模块)<!--js-apis-graphics-drawing-->
           - [模块描述](reference/apis-arkgraphics2d/arkts-apis-graphics-drawing.md)
           - [Class (Brush)](reference/apis-arkgraphics2d/arkts-apis-graphics-drawing-Brush.md)
           - [Class (Canvas)](reference/apis-arkgraphics2d/arkts-apis-graphics-drawing-Canvas.md)
