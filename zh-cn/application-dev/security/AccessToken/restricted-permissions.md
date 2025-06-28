@@ -667,9 +667,10 @@ HarmonyAppProvision配置文件示例如下所示，修改"bundle-info" &gt; "ap
 ## ohos.permission.READ_LOCAL_DEVICE_NAME
 
 允许应用获取本机的设备显示名。
+
 获取此权限后，应用可获取设置中“关于本机”页面的设备名称，否则只能获取设备出厂时的默认名称。
 
-<!--RP46--><!--RP46End-->
+<!--RP47--><!--RP47End-->
 
 **权限级别**: system_basic
 

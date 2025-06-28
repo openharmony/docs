@@ -640,10 +640,10 @@ With this permission, the application can obtain the current screen peeping stat
 ## ohos.permission.READ_LOCAL_DEVICE_NAME
 
 Allows an application to obtain the local device name.
-With this permission, the application can obtain the device name on the About screen in Settings.
-Without this permission, the application can only obtain the default device name.
 
-<!--RP45--><!--RP45End-->
+With this permission, the application can obtain the device name on the About screen in Settings. Without this permission, the application can only obtain the default device name.
+
+<!--RP47--><!--RP47End-->
 
 **Permission level**: system_basic
 
