@@ -31,7 +31,7 @@ static makeFromPosText(text: string, len: number, points: common2D.Point[], font
 | 参数名   | 类型                          | 必填 | 说明                                   |
 | -------- | ----------------------------- | ---- | -------------------------------------- |
 | text     | string             | 是   | 绘制字形的文本内容。                   |
-| len      | number             | 是   | 字形个数，由[countText](#counttext12)获取，该参数为整数。 |
+| len      | number             | 是   | 字形个数，由[countText](arkts-apis-graphics-drawing-Font.md#counttext12)获取，该参数为整数。 |
 | points   |[common2D.Point](js-apis-graphics-common2D.md#point12)[]     | 是   |点数组，用于指定每个字形的坐标，长度必须为len。|
 | font     | [Font](arkts-apis-graphics-drawing-Font.md)      | 是   | 字型对象。 |
 
@@ -163,7 +163,7 @@ static makeFromRunBuffer(pos: Array\<TextBlobRunBuffer>, font: Font, bounds?: co
 
 | 参数名 | 类型                                               | 必填 | 说明                           |
 | ------ | -------------------------------------------------- | ---- | ------------------------------ |
-| pos    | Array\<[TextBlobRunBuffer](#textblobrunbuffer)>    | 是   | TextBlobRunBuffer数组。        |
+| pos    | Array\<[TextBlobRunBuffer](arkts-apis-graphics-drawing-i.md#textblobrunbuffer)>    | 是   | TextBlobRunBuffer数组。        |
 | font   | [Font](arkts-apis-graphics-drawing-Font.md)                                      | 是   | 字型对象。   |
 | bounds | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 否   | 可选，如果不设置，则无边界框。 |
 
