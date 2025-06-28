@@ -1532,7 +1532,7 @@ export default {
 
 > **说明：**
 > 
-> 直接使用router可能导致[UI上下文不明确](../../ui/arkts-global-interface.md#ui上下文不明确)的问题，建议使用[getUIContext](js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getRouter](js-apis-arkui-UIContext.md#getrouter)获取绑定实例的router。
+> 直接使用router可能导致[UI上下文不明确](../../ui/arkts-global-interface.md#ui上下文不明确)的问题，建议使用getUIContext获取[UIContext](js-apis-arkui-UIContext.md#uicontext)实例，并使用[getRouter](js-apis-arkui-UIContext.md#getrouter)获取绑定实例的router。
 
 <!--deperecated_code_no_check-->
 ```ts
