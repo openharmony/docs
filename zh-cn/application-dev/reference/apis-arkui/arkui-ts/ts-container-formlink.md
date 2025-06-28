@@ -8,6 +8,7 @@
 >
 > - 该组件仅可以在静态卡片中使用。
 >
+>卡片具体开发指导请参考：[Form Kit简介](../../../form/formkit-overview.md#form-kit简介)
 
 ## 权限
 
