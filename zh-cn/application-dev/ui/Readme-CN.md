@@ -145,6 +145,7 @@
      - [设置浮层 (OverlayManager)](arkts-create-overlaymanager.md)
   - 显示图形<!--arkts-draw-graphics-->
     - [绘制几何图形 (Shape)](arkts-geometric-shape-drawing.md)
+    - [形状裁剪 (clipShape)](arkts-clip-shape.md)
     - [使用画布绘制自定义图形 (Canvas)](arkts-drawing-customization-on-canvas.md)
   - 使用动画<!--arkts-use-animation-->
     - [动画概述](arkts-animation.md)
