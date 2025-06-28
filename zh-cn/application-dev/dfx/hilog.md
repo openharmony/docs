@@ -60,7 +60,7 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 | -t | --type | &lt;type&gt; | 查看指定类型的日志。| 
 |  |  | app | 查看应用日志。 | 
 |  |  | core | 查看系统日志。 | 
-|  |  | init | 查看启动时间。 | 
+|  |  | init | 查看启动日志。 | 
 |  |  | kmsg | 查看内核日志。 | 
 |  |  | only_prerelease | 查看仅在系统release版本前打印的日志，应用开发者无需关注。 | 
 | -L | --level | &lt;level&gt; | 指定级别的日志，示例：-L D/I/W/E/F。 | 
