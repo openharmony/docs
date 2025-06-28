@@ -427,7 +427,7 @@
           - [ContentSlot: Representing a Placeholder in Hybrid Development](ui/state-management/arkts-rendering-control-contentslot.md)	
         - Layout Development<!--arkts-layout-development-->
           - [Layout Overview](ui/arkts-layout-development-overview.md)
-          - Building a Layout<!--arkts-build-layout-->
+          - Building Layouts<!--arkts-build-layout-->
             - [Linear Layout (Row/Column)](ui/arkts-layout-development-linear.md)
             - [Stack Layout (Stack)](ui/arkts-layout-development-stack-layout.md)
             - [Flex Layout (Flex)](ui/arkts-layout-development-flex-layout.md)
@@ -469,7 +469,7 @@
             - [Dialog Box Overview](ui/arkts-base-dialog-overview.md)
             - [Global Custom Dialog Box Independent of UI Components (openCustomDialog) (Recommended)](ui/arkts-uicontext-custom-dialog.md)
             - [Basic Custom Dialog Box (CustomDialog) (Not Recommended)](ui/arkts-common-components-custom-dialog.md)
-            - [Fixed Style Dialog Box](ui/arkts-fixes-style-dialog.md)
+            - [Fixed-Style Dialog Box](ui/arkts-fixes-style-dialog.md)
             - [Page-Level Dialog Box](ui/arkts-embedded-dialog.md)
             - [Dialog Box Layer Management](ui/arkts-dialog-levelorder.md)
             - [Dialog Controller](ui/arkts-dialog-controller.md)
@@ -552,7 +552,7 @@
           - [Configuring In-Application Theme Skinning](ui/theme_skinning.md)
         - [Using the UI Context API for UI Operations (UIContext)](ui/arkts-global-interface.md)
         - [Using Component Snapshot (ComponentSnapshot)](ui/arkts-uicontext-component-snapshot.md)
-        - Launching Pages Across Processes<!--arkts-ui-cross-process-->
+        - Embedded Components<!--arkts-ui-cross-process-->
           - [Atomic Service Full Screen Launch Component (FullScreenLaunchComponent)](ui/arkts-FullScreenComponent.md)
           - [In-Application Embedded Component (EmbeddedComponent)](ui/arkts-embedded-components.md)
           <!--Del-->
@@ -695,6 +695,10 @@
         - [Implementing Content Scrolling](web/web-content-scrolling.md)
         - [Docking to the Soft Keyboard](web/web-docking-softkeyboard.md)
         - [Managing Focus](web/web-focus.md)
+        - [Interacting with Applications Using Gestures](web/web-gesture.md)
+        - [Zooming Web Pages](web/web-scale-zoom.md)
+        - [Displaying Web Page Dialog Boxes](web/web-dialog.md)
+        - [Implementing the Drag Functionality](web/web_drag.md)
       - Managing Cyber Security and Privacy for the Web Component<!--web-manage-cyber-security-privacy-->
         - [Resolving Cross-Origin Resource Access](web/web-cross-origin.md)
         - [Intelligent Tracking Prevention](web/web-intelligent-tracking-prevention.md)
@@ -714,15 +718,19 @@
       - Using Web Multimedia<!--web-use-multimedia-->
         - [Holding a Video Conference with WebRTC](web/web-rtc.md)
         - [Taking Over the Media Playback on Web Pages](web/app-takeovers-web-media.md)
+        - [Enabling Immersive Full-Screen Video Playback](web/web_full_screen.md)
       - Processing Web Page Content<!--web-process-page-content-->
         - [Printing Frontend Pages](web/web-print.md)
         - [Previewing PDF Files](web/web-pdf-preview.md)
         - [Calculating and Adjusting Safe Area Insets](web/web-safe-area-insets.md)
+        - [Using Web Menus](web/web_menu.md)
+        - [Interacting with the System Clipboard](web/web-clipboard.md)
       - [Using Same-Layer Rendering](web/web-same-layer.md)
       - [Using Offline Web Components](web/web-offline-mode.md)
       - Web Debugging<!--web-debugging-->
         - [Debugging Frontend Pages by Using DevTools](web/web-debugging-with-devtools.md)
         - [Using Crashpad to Collect Web Component Crash Information](web/web-crashpad.md)
+        - [Troubleshooting White Screen Issues on Web Pages](web/web-white-screen.md)
     - Background Tasks Kit<!--background-task-kit-->
       - [Background Task Overview](task-management/background-task-overview.md)
       - [Transient Task (ArkTS)](task-management/transient-task.md)
@@ -2961,7 +2969,7 @@
           - [Snapshot Error Codes](reference/apis-arkui/errorcode-snapshot.md)
           - [Styled String Error Codes](reference/apis-arkui/errorcode-styled-string.md)
           - [UI Context Error Codes](reference/apis-arkui/errorcode-uicontext.md)
-          - [Interaction Event Error Codes](reference/apis-arkui/errorcode-event.md)          
+          - [Interaction Event Error Codes](reference/apis-arkui/errorcode-event.md)
           - [NodeAdapter Error Codes](reference/apis-arkui/errorcode-nodeadapter.md)
           <!--Del-->
           - [UI Appearance Error Codes](reference/apis-arkui/errorcode-uiappearance.md)
@@ -2975,9 +2983,21 @@
     - ArkWeb<!--arkweb-api-->
       - ArkTS APIs<!--arkweb-arkts-->
         - [@ohos.web.webview (Webview)](reference/apis-arkweb/js-apis-webview.md)
+          - [Class (WebviewController)](reference/apis-arkweb/js-apis-webview-WebviewController.md)
+          - [Class (WebMessageExt)](reference/apis-arkweb/js-apis-webview-WebMessageExt.md)
+          - [Interface (BackForwardList)](reference/apis-arkweb/js-apis-webview-BackForwardList.md)
+          - [Interface (WebMessagePort)](reference/apis-arkweb/js-apis-webview-WebMessagePort.md)
+          - [Interfaces (Others)](reference/apis-arkweb/js-apis-webview-i.md)
+          - [Enums](reference/apis-arkweb/js-apis-webview-e.md)
+          - [Types](reference/apis-arkweb/js-apis-webview-t.md)
         - [@ohos.web.netErrorList](reference/apis-arkweb/js-apis-netErrorList.md)
       - ArkTS Components<!--arkweb-comp-->
         - [Web](reference/apis-arkweb/ts-basic-components-web.md)
+          - [Attributes](reference/apis-arkweb/ts-basic-components-web-attributes.md)
+          - [Events](reference/apis-arkweb/ts-basic-components-web-events.md)
+          - [Interfaces (Others)](reference/apis-arkweb/ts-basic-components-web-i.md)
+          - [Enums](reference/apis-arkweb/ts-basic-components-web-e.md)
+          - [Types](reference/apis-arkweb/ts-basic-components-web-t.md)
       - C APIs<!--arkweb-c-->
         - Modules<!--arkweb-module-->
           - [Web](reference/apis-arkweb/_web.md)
