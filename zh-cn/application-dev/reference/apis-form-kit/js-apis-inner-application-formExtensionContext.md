@@ -12,7 +12,7 @@ FormExtensionContext模块提供FormExtensionAbility具有的接口和能力。
 ## 导入模块
 
 ```ts
-import { common } from '@kit.AbilityKit';
+import { FormExtensionAbility } from '@kit.FormKit';
 ```
 
 ## FormExtensionContext
