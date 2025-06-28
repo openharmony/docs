@@ -17,6 +17,7 @@ export class A {
 
 ```typescript
 // file2.ets ArkTS1.2
+'use static'
 import { foo, A } from "./file1";
 ```
 
@@ -55,6 +56,7 @@ export class C implements Inface {
 
 ```typescript
 // file2.ets ArkTS1.2
+'use static'
 import { A, B, C } from "./file1";
 let a = new A(123);
 let b = new B(456, "Bob");
@@ -84,6 +86,7 @@ export class Person {
 
 ```typescript
 // file2.ets ArkTS1.2
+'use static'
 import { Person } from "./file1";
 let p = new Person("John");
 console.log(p.name); // Output: John
@@ -104,13 +107,14 @@ export let say = (msg: string) => {
 };
 export function myAdd(a: number, b: number): number {
   let ret = a + b;
-  console.log(ret);
+  console.log("result is " + ret);
   return ret;
 }
 ```
 
 ```typescript
 // file2.ets ArkTS1.2
+'use static'
 import { say, myAdd } from "file1";
 say("Hello"); // Output: Hello
 myAdd(3, 4); // Output: 7
@@ -124,7 +128,7 @@ myAdd(3, 4); // Output: 7
 // file1.ets ArkTS1.1
 export class A {
   log() {
-    console.log(123)
+    console.log("123")
   }
 }
 class B {
@@ -143,7 +147,8 @@ export let arr = new Array<number>(1, 2, 3);
 ```
 
 ```typescript
-// file2.ets ArkTS.12
+// file2.ets ArkTS1.2
+'use static'
 import { A, C, itA, arr } from "file1";
 let a = new A();
 a.log();
@@ -175,6 +180,7 @@ export interface Iface {
 }
 
 // file2.ets ArkTS1.2
+'use static'
 import { foo, C, Iface } from "file1";
 
 foo(["Hi", "Bye"]); // Output: Hi
@@ -218,6 +224,7 @@ export function foo5() {
 }
 
 // file2.ets ArkTS1.2
+'use static'
 import {
   err,
   ranErr,

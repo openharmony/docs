@@ -10,6 +10,7 @@
 
 ```typescript
 // file1.ets ArkTS1.2
+'use static'
 export function func(){}
 export class A{}
 export let a: A = new A();
@@ -24,6 +25,7 @@ import { func, A, a} from './file1'
 
 ```typescript
 // file1.ets ArkTS1.2
+'use static'
 export class A {}
 export class B extends A {}
 interface interA {}
@@ -42,6 +44,7 @@ let c = new C();
 
 ```typescript
 // file1.ets ArkTS1.2
+'use static'
 export class Person {
   name: string = "unknown"
 }
@@ -59,8 +62,9 @@ a.name = "John";
 
 ```typescript
 // file1.ets ArkTS1.2
+'use static'
 export let func = () => {
-  console.log(123);
+  console.log("123");
 };
 export function foo1() {}
 export function foo2(a: number, b: number): number {
@@ -80,9 +84,10 @@ foo2(1.5, 2.5);
 
 ```typescript
 // file1.ets ArkTS1.2
+'use static'
 export class A {
   log() {
-    console.log(123)
+    console.log("123")
   }
 }
 class B {
@@ -115,6 +120,7 @@ arr.push(4)
 
 ```typescript
 // file1.ets ArkTS1.2
+'use static'
 export function foo(a: Array<string>) {
   console.log(a[0]);
 }
@@ -148,6 +154,7 @@ ArkTS1.1中定义一个异常的实例，可以在ArkTS1.2中捕获这个异常�
 
 ```typescript
 // file1.ets ArkTS1.2
+'use static'
 export function foo() {
   throw new Error("123");
 }
@@ -175,6 +182,7 @@ export class A{}
 export let a: A = new A();
 
 // file2.ets ArkTS1.2
+'use static'
 import { func, A, a} from './file1'
 ```
 
@@ -190,6 +198,7 @@ interface interA {}
 export class C implements interA {}
 
 // file2.ets ArkTS1.2
+'use static'
 import { A, B, C } from "file1";
 let a = new A();
 let b = new B();
@@ -207,6 +216,7 @@ export class Person {
 }
 
 // file2.ets ArkTS1.2
+'use static'
 import { Person } from "file1";
 let a = new Person();
 let b = a.name; // "unknown"
@@ -220,7 +230,7 @@ a.name = "John";
 ```typescript
 // file1.ts
 export let func = () => {
-  console.log(123);
+  console.log("123");
 };
 export function foo1() {}
 export function foo2(a: number, b: number): number {
@@ -228,6 +238,7 @@ export function foo2(a: number, b: number): number {
 }
 
 // file2.ets ArkTS1.2
+'use static'
 import { func, foo1, foo2 } from "file1";
 func();
 foo1();
@@ -242,7 +253,7 @@ foo2(1.5, 2.5);
 // file1.ts
 export class A {
   log() {
-    console.log(123)
+    console.log("123")
   }
 }
 class B {
@@ -259,7 +270,8 @@ export let itA: InterA = {
 }
 export let arr = new Array<number>(1, 2, 3);
 
-// file2.ets ArkTS.12
+// file2.ets ArkTS1.2
+'use static'
 import { A, C, itA, arr } from 'file1'
 let a = new A()
 a.log()
@@ -291,6 +303,7 @@ export interface Iface {
 }
 
 // file2.ets ArkTS1.2
+'use static'
 import { foo, C, Iface } from "file1";
 
 foo(["Hi", "Bye"]); // Output: Hi
@@ -313,6 +326,7 @@ export function foo() {
 }
 
 // file2.ets ArkTS1.2
+'use static'
 import { foo } from "./file1";
 
 try {
@@ -333,6 +347,7 @@ export class A{}
 export let a: A = new A();
 
 // file2.ets ArkTS1.2
+'use static'
 let mod: ESValue = ESValue.load('./file1')
 let func: ESValue = mod.getProperty('func')
 let A: ESValue = mod.getProperty('A')
@@ -348,6 +363,7 @@ let a: ESValue = mod.getProperty('a')
 export class A {}
 
 // file2.ets ArkTS1.2
+'use static'
 let mod: ESValue = ESValue.load("./file1");
 let A: ESValue = module.getProperty("A");
 let a: ESValue = A.instantiate();  // 创建A的实例，这个实例被包装在a中
@@ -364,6 +380,7 @@ export class A {
 }
 
 // file2.ets ArkTS1.2
+'use static'
 let module = ESValue.load('./file1')
 let A = module.getProperty('A');
 let a = A.instantiate()
@@ -383,6 +400,7 @@ export function foo() {
 }
 
 // file2.ets ArkTS1.2
+'use static'
 let foo: ESValue = ESValue.load("./file1").getProperty("foo");
 let res: ESValue = foo.invoke();
 let resNum: string = res.toNumber();  // 100
@@ -405,6 +423,7 @@ export class A {
 }
 
 //file2.ets  ArkTS1.2
+'use static'
 let A = ESValue.load('./file1').getProperty('A')
 let a: ESValue = A.invokeMethod('getInstance')  // 调用静态方法
 let msg: ESValue = a.invokeMethod('sayHi', ESValue.wrap('hello'))  // 调用实例方法, 打印hello
@@ -424,6 +443,7 @@ export function foo(msg, count) {
 }
 
 // file2.ets ArkTS1.2
+'use static'
 let foo = ESValue.load("./file1").getProperty("foo");
 foo.invoke(ESValue.wrap("hello"), ESValue.wrap(3));  // 打印3次hello
 ```
@@ -439,6 +459,7 @@ export function foo() {
 }
 
 // file2.ets  ArkTS1.2
+'use static'
 let foo = ESValue.load('./file1').getProperty('foo')
 try {
   foo.invoke()
@@ -479,6 +500,7 @@ a.data = y;
 
 ```typescript
 // fiel1.ets ArkTS1.2
+'use static'
 export function foo(obj: Object) {}
 // solution: export function foo(obj: Any) {}
 export class A {
@@ -523,18 +545,10 @@ export class X {
 // file1.ets
 import { X } from "./file2";
 function foo(prx: Object) {
-  Object.getOwnPropertyDescriptor(prx, "a"); // not undefined
-  Object.getOwnPropertyDescriptors(prx); // not {}
   Object.getOwnPropertyNames(prx); // ['a']
   Object.hasOwn(prx, "a"); // true
-  Object.isExtensible(prx); // true
-  Object.isFrozen(prx); // false
-  Object.isSealed(prx); // false
   Object.keys(prx); // ['a']
-  Object.setPrototypeOf(prx, {}); // OK
   Object.values(prx); // [1]
-  prx.hasOwnProperty("a"); // true
-  prx.propertyIsEnumerable("a"); // true
 }
 
 foo(new X());
@@ -544,6 +558,7 @@ foo(new X());
 
 ```typescript
 // file2.ets ArkTS1.2
+'use static'
 export class X {
   a = 1;
 }
@@ -565,19 +580,11 @@ function myGetKeys(prx: Object) {
   return ret;
 }
 export function foo(prx: Object) {
-  Object.getOwnPropertyDescriptor(prx, "a"); // undefined
-  Object.getOwnPropertyDescriptors(prx); // {}
   Object.getOwnPropertyNames(prx); // []
   Object.hasOwn(prx, "a"); // false
-  Object.isExtensible(prx); // false
-  Object.isFrozen(prx); // true
-  Object.isSealed(prx); // true
   Object.keys(prx); // []
   myGetKeys(prx); // ['a']
-  Object.setPrototypeOf(prx, {}); // 运行时报错
   Object.values(prx); // []
-  prx.hasOwnProperty("a"); // false
-  prx.propertyIsEnumerable("a"); // false
 }
 
 foo(new X());
@@ -610,14 +617,8 @@ export class X {
 // file1.ets
 import { X } from "./file2";
 function foo(prx: Object) {
-  Reflect.apply(prx.getName, { a: 12 }); // 12
-  Reflect.defineProperty(prx, "newField", { value: 7 }); // true
-  Reflect.deleteProperty(prx, "a"); // true
-  Reflect.getOwnPropertyDescriptor(prx, "a"); // not undefined
   Reflect.ownKeys(prx); // ['a']
-  Reflect.isExtensible(prx); // true
   Reflect.set(prx, "newField", 7); // true
-  Reflect.setPrototypeOf(prx, {}); // true
 }
 
 foo(new X());
@@ -627,6 +628,7 @@ foo(new X());
 
 ```typescript
 // file2.ets  ArkTS1.2
+'use static'
 export class X {
   a: string = 'hello'
   getName() { return this.a }
@@ -649,15 +651,9 @@ function myOwnKeys(prx: Object) {
 }
 
 function foo(prx: Object) {
- Reflect.apply(prx.getName, {a: 12}) // 运行时报错
- Reflect.defineProperty(prx, 'newField', {value: 7})  // false
- Reflect.deleteProperty(prx, 'a')  // false
- Reflect.getOwnPropertyDescriptor(prx, 'a')  // undefined
  Reflect.ownKeys(prx)  // []
  myOwnKeys(prx)  // ['a']
- Reflect.isExtensible(prx) // false
  Reflect.set(prx, 'newField', 7)  // false
- Reflect.setPrototypeOf(prx, {})  // false
 }
 
 foo(new X())
@@ -700,6 +696,7 @@ foo(new X());
 
 ```typescript
 // file1.ets  ArkTS1.2
+'use static'
 export function foo(prx: Object) {
   Object.assign({}, prx); // OK
   Object.entries(prx); // [a, 1]
@@ -754,6 +751,7 @@ foo(new X());
 
 ```typescript
 // file1.ets  ArkTS1.2
+'use static'
 export function foo(prx: Object) {
   Reflect.get(prx, "a"); // 'hello'
   Reflect.set(prx, "a", "world"); // true
@@ -808,6 +806,7 @@ foo(new X());
 ```typescript
 // solution for Object.keys, case for Object.values is similar:
 // file0.ets  ArkTS1.2
+'use static'
 export function getKeys(prx: Any): string[] | undefined {
   if (prx instanceof Object) {
     return Object.keys(prx);
@@ -834,6 +833,7 @@ export function foo(prx: Object) {
 }
 
 // file2.ets  ArkTS1.2
+'use static'
 import { foo } from "./file1";
 class X {
   a = 1;
@@ -858,23 +858,16 @@ foo(new X());
 
 ```typescript
 // file1.ets
-import {foo} from './file1'
 export class X {
   a: string = 'hello'
   getName() { return this.a }
 }
 
 // file2.ets
-improt {X} from './file1'
+import {X} from './file1'
 function foo(prx: ESObject) {
- Reflect.apply(prx.getName, {a: 12}) // 12
- Reflect.defineProperty(prx, 'newField', {value: 7})  // true
- Reflect.deleteProperty(prx, 'a')  // true
- Reflect.getOwnPropertyDescriptor(prx, 'a')  // not undefined
  Reflect.ownKeys(prx)  // ['a']
- Reflect.isExtensible(prx) // true
  Reflect.set(prx, 'newField', 7)  // true
- Reflect.setPrototypeOf(prx, {})  // true
 }
 foo(new X())
 ```
@@ -884,6 +877,7 @@ foo(new X())
 ```typescript
 // solution for static ownKeys:
 // file0.ets ArkTS1.2
+'use static'
 export getOwnKeys(prx: Any): string[] | undefined {
   if (prx instanceof Object) {
     return Reflect.ownKeys(prx)
@@ -902,19 +896,14 @@ export function myOwnKeys(prx: Object) {
 }
 
 export function foo(prx: ESObject) {
- Reflect.apply(prx.getName, {a: 12}) // 运行时报错
- Reflect.defineProperty(prx, 'newField', {value: 7})  // false
- Reflect.deleteProperty(prx, 'a')  // false
- Reflect.getOwnPropertyDescriptor(prx, 'a')  // undefined
  Reflect.ownKeys(prx)  // []
  myOwnKeys(prx)  // ['a']
- Reflect.isExtensible(prx) // false
  Reflect.set(prx, 'newField', 7)  // false
- Reflect.setPrototypeOf(prx, {})  // false
 }
 
 // file2.ets  ArkTS1.2
-improt {foo} from './file1'
+'use static'
+import {foo} from './file1'
 export class X {
   a: string = 'hello'
   getName() { return this.a }
@@ -956,6 +945,7 @@ let a = new A() as A;
 export class A {}
 
 // file2.ets   ArkTS1.2
+'use static'
 let mod = ESValue.load("./file1");
 let A: ESValue = mod.getProperty("A");
 let a = A.instantiate() as A;
@@ -1000,6 +990,7 @@ export class X {
   }
 }
 // file2.ets  ArkTS1.2
+'use static'
 import { X } from "./file1";
 let x: X = { name: "hello" }; // 编译报错
 ```
@@ -1048,6 +1039,7 @@ export interface Y {
 }
 
 // file2.ets  ArkTS1.2
+'use static'
 import { X, Y } from "./file1";
 let x: X | Y = { name: "hello" }; // 编译报错
 ```
@@ -1090,6 +1082,7 @@ export class A {
 }
 
 // file2.ets ArkTS1.2
+'use static'
 import { A } from "./file1";
 let a: A = { name: "hello" }; // let a = new A(), a.name = 'hello'
 
@@ -1169,6 +1162,7 @@ export let obj: SomeType;
 // export let obj: Any
 
 // file2.ets ArkTS1.2
+'use static'
 import { obj } from "./file1";
 let esVal = ESValue.wrap(obj);
 let val = esVal.getProperty('prop');  // let val = obj.prop
@@ -1218,6 +1212,7 @@ export class MyIter<T> {
 }
 
 // file2.ets  ArkTS1.2
+'use static'
 import {MyIter} from './file1'
 let m = new MyIter<number>();
 let eo = ESValue.wrap(m)
@@ -1244,18 +1239,10 @@ for (let a of eo) {
 ```typescript
 // file1.ts
 export function foo(prx: any) {
-  Object.getOwnPropertyDescriptor(prx, "a"); // not undefined
-  Object.getOwnPropertyDescriptors(prx); // not {}
   Object.getOwnPropertyNames(prx); // ['a']
   Object.hasOwn(prx, "a"); // true
-  Object.isExtensible(prx); // true
-  Object.isFrozen(prx); // false
-  Object.isSealed(prx); // false
   Object.keys(prx); // ['a']
-  Object.setPrototypeOf(prx, {}); // OK
   Object.values(prx); // [1]
-  prx.hasOwnProperty("a"); // true
-  prx.propertyIsEnumerable("a"); // true
 }
 
 // file2.ets
@@ -1271,22 +1258,14 @@ foo(new X());
 ```typescript
 // file1.ts
 export function foo(prx: any) {
- Object.getOwnPropertyDescriptor(prx, 'a') // undefined
- Object.getOwnPropertyDescriptors(prx) // {}
  Object.getOwnPropertyNames(prx) // []
- Object.getOwnPropertySymbols(prx)) // []
  Object.hasOwn(prx, 'a')  // false
- Object.isExtensible(prx)  // false
- Object.isFrozen(prx)  // true
- Object.isSealed(prx)  // true
  Object.keys(prx)  // []
- Object.setPrototypeOf(prx, {})  // 运行时报错
  Object.values(prx)  // []
- prx.hasOwnProperty('a')  // false
- prx.propertyIsEnumerable('a')  // false
 }
 
 // file2.ets
+'use static'
 import {foo} from './file1'
 class X { a = 1 }
 foo(ESValue.wrap(new X()))
@@ -1310,14 +1289,8 @@ foo(ESValue.wrap(new X()))
 ```typescript
 // file1.ts
 export function foo(prx: any) {
-  Reflect.apply(prx.getName, { a: 12 }); // 12
-  Reflect.defineProperty(prx, "newField", { value: 7 }); // true
-  Reflect.deleteProperty(prx, "a"); // true
-  Reflect.getOwnPropertyDescriptor(prx, "a"); // not undefined
   Reflect.ownKeys(prx); // ['a']
-  Reflect.isExtensible(prx); // true
   Reflect.set(prx, "newField", 7); // true
-  Reflect.setPrototypeOf(prx, {}); // true
 }
 
 // file2.ets
@@ -1336,17 +1309,12 @@ foo(new X());
 ```typescript
 // file1.ts
 export function foo(prx: any) {
-  Reflect.apply(prx.getName, { a: 12 }); // 运行时报错
-  Reflect.defineProperty(prx, "newField", { value: 7 }); // false
-  Reflect.deleteProperty(prx, "a"); // false
-  Reflect.getOwnPropertyDescriptor(prx, "a"); // undefined
   Reflect.ownKeys(prx); // []
-  Reflect.isExtensible(prx); // false
   Reflect.set(prx, "newField", 7); // false
-  Reflect.setPrototypeOf(prx, {}); // false
 }
 
 // file2.ets
+'use static'
 import { foo } from "./file1";
 class X {
   a: string = "hello";
@@ -1384,7 +1352,7 @@ import { foo } from "./file1";
 try {
   foo();
 } catch (e) {
-  console.log(e as number); // 123
+  console.log("result is " + (e as number)); // 123
 }
 ```
 
@@ -1397,6 +1365,7 @@ export function foo() {
 }
 
 // file2.ets  // ArkTS1.2
+'use static'
 import { foo } from "./file1";
 
 try {
@@ -1450,6 +1419,7 @@ typeof b; // 'object'
 typeof c; // 'object'
 
 //file2.ets  ArkTS1.2
+'use static'
 import { a, b, c, d, e } from "./fiel1";
 typeof a; // 'number'
 typeof b; // 'boolean'
@@ -1488,6 +1458,7 @@ let a = new A() as A;
 export class A {}
 
 // file2.ets   ArkTS1.2
+'use static'
 let mod = ESValue.load("./file1");
 let A: ESValue = mod.getProperty("A");
 let a = A.instantiate() as A;
@@ -1530,6 +1501,7 @@ export class A {
 }
 
 // file2.ets ArkTS1.2
+'use static'
 import { A } from "./file1";
 let a: A = { name: "hello" };
 
@@ -1571,6 +1543,7 @@ export function foo() {}
 export class A {}
 
 // file2.ets  // ArkTS1.2
+'use static'
 let mod = ESValue.load("./file1");
 let foo = mod.getProperty("foo");
 let A = mod.getProperty("A");
@@ -1613,6 +1586,7 @@ export function foo() {}
 export function bar(a) {}
 
 // file2.ets  // ArkTS1.2
+'use static'
 let mod = ESValue.load("./file1");
 let foo = mod.getProperty("foo");
 let bar = mod.getProperty("bar");
@@ -1656,6 +1630,7 @@ class foo {
 }
 
 // file2.ets  // ArkTS1.2
+'use static'
 let mod = ESValue.load("./file1");
 let foo = mod.getProperty("foo");
 foo.instantiate(ESValue.wrap(123));
@@ -1694,6 +1669,7 @@ foo.name = "456";
 export let foo = {name: '123'}
 
 // file2.ets  // ArkTS1.2
+'use static'
 let mod = ESValue.load('./file1')
 let foo = mod.getProperty('foo')
 foo.getProperty('name')
@@ -1737,6 +1713,7 @@ class Foo {
 }
 
 // file2.ets  // ArkTS1.2
+'use static'
 let mod = ESValue.load("./file1");
 let foo = mod.getProperty("foo");
 foo.invokeMethod("bar", ESValue.wrap(123));
@@ -1776,6 +1753,7 @@ arr[3] = 4;
 export let foo = [1, 2, 3];
 
 // file2.ets  // ArkTS1.2
+'use static'
 let mod = ESValue.load("./file1");
 let foo = mod.getProperty("foo");
 let arr = foo.getProperty("arr");
@@ -1825,6 +1803,7 @@ export let foo3 = { str: "123" };
 export let foo4 = { big: 123n };
 
 // file2.ets  // ArkTS1.2
+'use static'
 let mod = ESValue.load("./file1");
 let foo1 = mod.getProperty("foo1");
 let num = foo.getProperty("num");
@@ -1879,6 +1858,7 @@ typeof foo.num; // 'number'
 export let foo = 123;
 
 // file2.ets  // ArkTS1.2
+'use static'
 let mod = ESValue.load("./file1");
 let foo = mod.getProperty("foo");
 let num = foo.getProperty("num");
@@ -1920,6 +1900,7 @@ export class Foo {}
 export let foo = new Foo();
 
 // file2.ets  // ArkTS1.2
+'use static'
 let mod = ESValue.load("./file1");
 let Foo = mod.getProperty("Foo");
 let foo = mod.getProperty("foo");
@@ -1964,6 +1945,7 @@ a = --foo.num;
 export let foo = { num: 0 };
 
 // file2.ets  // ArkTS1.2
+'use static'
 let mod = ESValue.load("./file1");
 let foo = mod.getProperty("foo");
 let a: number = 0;
@@ -2016,6 +1998,7 @@ import { foo } from "./file1";
 export let foo = { num: 0 };
 
 // file2.ets  // ArkTS1.2
+'use static'
 let mod = ESValue.load("./file1");
 let foo = mod.getProperty("foo");
 let num =
@@ -2071,6 +2054,7 @@ a ** b;
 export let foo = { a: 1, b: 2 };
 
 // file2.ets  // ArkTS1.2
+'use static'
 let mod = ESValue.load("./file1");
 let foo = mod.getProperty("foo");
 let a = foo.getProperty("a").toNumber();
@@ -2123,6 +2107,7 @@ async function foo(){}
 export p = foo()
 
 // file2.ets  // ArkTS1.2
+'use static'
 let mod = ESValue.load('./file1')
 let p = mod.getProperty('p')
 
@@ -2170,6 +2155,7 @@ export let a = 1;
 export let b = 2;
 
 // file2.ets  // ArkTS1.2
+'use static'
 let mod = ESValue.load("./file1");
 let foo = mod.getProperty("foo");
 let a = foo.getProperty("a").toNumber();
@@ -2222,6 +2208,7 @@ export let a = new A();
 export let b = new A();
 
 // file2.ets  // ArkTS1.2
+'use static'
 let mod = ESValue.load("./file1");
 let a = mod.getProperty("a");
 let b = mod.getProperty("b");
@@ -2268,6 +2255,7 @@ if (foo.isGood) {
 export let foo = { isGood: true };
 
 // file2.ets
+'use static'
 let mod = ESValue.load("./file1");
 let foo = mod.getProperty("foo");
 
@@ -2310,6 +2298,7 @@ let b = new B();
 export class A {}
 
 // file2.ets  // ArkTS1.2
+'use static'
 let mod = ESValue.load("./file1");
 let A = mod.getProperty("A");
 
@@ -2346,7 +2335,7 @@ import { foo } from "./file1";
 try {
   foo();
 } catch (e) {
-  console.log(e as number); //123
+  console.log("result is " + (e as number)); //123
 }
 ```
 
@@ -2359,6 +2348,7 @@ export function foo() {
 }
 
 // file2.ets
+'use static'
 let mod = ESValue.load("./file1");
 let foo = mod.getProperty("foo");
 
@@ -2412,6 +2402,7 @@ export let foo = {
 };
 
 // file2.ets
+'use static'
 let mod = ESValue.load("./file1");
 let foo = mod.getProperty("foo");
 
@@ -2456,6 +2447,7 @@ for (let i = 0; i < len; ++i) {
 export let foo = { arr: [1, 2, 3] };
 
 // file2.ets  ArkTS1.2
+'use static'
 let mod = ESValue.load("./file1");
 let foo = mod.getProperty("foo");
 let arr = foo.getProerptyByName("arr");
@@ -2515,6 +2507,7 @@ export function handle(cb) {
 }
 
 // file2.ets
+'use static'
 let mod = ESValue.load("./file1");
 let handle = mod.getProperty("handle");
 interface Person {
@@ -2575,6 +2568,7 @@ export function foo(obj) {
 }
 
 // file2.ets  // ArkTS1.2
+'use static'
 let mod = ESValue.load("./file1");
 let foo = mod.getProperty("foo");
 class X {
@@ -2603,18 +2597,10 @@ foo.invoke(ESValue.wrap(new X()));
 ```typescript
 // file1.js
 export function foo(prx) {
-  Object.getOwnPropertyDescriptor(prx, "a"); // not undefined
-  Object.getOwnPropertyDescriptors(prx); // not {}
   Object.getOwnPropertyNames(prx); // ['a']
   Object.hasOwn(prx, "a"); // true
-  Object.isExtensible(prx); // true
-  Object.isFrozen(prx); // false
-  Object.isSealed(prx); // false
   Object.keys(prx); // ['a']
-  Object.setPrototypeOf(prx, {}); // OK
   Object.values(prx); // [1]
-  prx.hasOwnProperty("a"); // true
-  prx.propertyIsEnumerable("a"); // true
 }
 
 // file2.ets
@@ -2630,22 +2616,14 @@ foo(new X());
 ```typescript
 // file1.js
 export function foo(prx) {
- Object.getOwnPropertyDescriptor(prx, 'a') // undefined
- Object.getOwnPropertyDescriptors(prx) // {}
  Object.getOwnPropertyNames(prx) // []
- Object.getOwnPropertySymbols(prx)) // []
  Object.hasOwn(prx, 'a')  // false
- Object.isExtensible(prx)  // false
- Object.isFrozen(prx)  // true
- Object.isSealed(prx)  // true
  Object.keys(prx)  // []
- Object.setPrototypeOf(prx, {})  // 运行时报错
  Object.values(prx)  // []
- prx.hasOwnProperty('a')  // false
- prx.propertyIsEnumerable('a')  // false
 }
 
 // file2.ets  // ArkTS1.2
+'use static'
 let mod = ESValue.load('./file1')
 let foo = mod.getProperty('foo')
 class X { a = 1 }
@@ -2671,14 +2649,8 @@ foo.invoke(ESValue.wrap(new X()))
 ```typescript
 // file1.js
 export function foo(prx) {
-  Reflect.apply(prx.getName, { a: 12 }); // 12
-  Reflect.defineProperty(prx, "newField", { value: 7 }); // true
-  Reflect.deleteProperty(prx, "a"); // true
-  Reflect.getOwnPropertyDescriptor(prx, "a"); // not undefined
   Reflect.ownKeys(prx); // ['a']
-  Reflect.isExtensible(prx); // true
   Reflect.set(prx, "newField", 7); // true
-  Reflect.setPrototypeOf(prx, {}); // true
 }
 
 // file2.ets
@@ -2697,17 +2669,12 @@ foo(new X());
 ```typescript
 // file1.js
 export function foo(prx) {
-  Reflect.apply(prx.getName, { a: 12 }); // 运行时报错
-  Reflect.defineProperty(prx, "newField", { value: 7 }); // false
-  Reflect.deleteProperty(prx, "a"); // false
-  Reflect.getOwnPropertyDescriptor(prx, "a"); // undefined
   Reflect.ownKeys(prx); // []
-  Reflect.isExtensible(prx); // false
   Reflect.set(prx, "newField", 7); // false
-  Reflect.setPrototypeOf(prx, {}); // false
 }
 
 // file2.ets  // ArkTS1.2
+'use static'
 let mod = ESValue.load("./file1");
 let foo = mod.getProperty("foo");
 class X {
@@ -2762,6 +2729,7 @@ export function foo(obj) {
   // solution: let rest = {c: obj.c}
 
 // file2.ets  // ArkTS1.2
+'use static'
 let mod = ESValue.load('./file1')
 let foo = mod.getProperty('foo')
 class X { a = 1; b = 2; c = 3 }
@@ -2805,6 +2773,7 @@ ArkTS1.2动态导入JS
 export class A {}
 
 // file2.ets   ArkTS1.2
+'use static'
 let mod = ESValue.load("./file1");
 let A: ESValue = mod.getProperty("A");
 let a = A.instantiate();
@@ -2829,6 +2798,7 @@ export let p = new Promise((resolve, reject) => {
   }, 300);
 });
 // file2.ets ArkTS1.2
+'use static'
 import { p } from "file1";
 // OK
 p.then((s: String) => {
@@ -2854,6 +2824,7 @@ async function foo() {
 // file1.ets ArkTS1.1
 export async function foo() {}
 // file2.ets ArkTS1.2
+'use static'
 import { foo } from "file1";
 // OK, call foo
 function baz() {
@@ -2880,6 +2851,7 @@ export function foo(arg: Object) {
   return 42;
 }
 // file2.ets ArkTS1.2
+'use static'
 import { s, foo } from "file1";
 function bar() {
   let p = new Promise<number>(
@@ -2913,6 +2885,7 @@ export function bar() {
   return foo(42); // 违反闭包原则，报错
 }
 // file2.ets ArkTS1.2
+'use static'
 import { s, foo, bar } from 'file1'
 // 1.2 Taskpool
 function baz() {
@@ -2943,6 +2916,7 @@ export let p = new Promise<number>((resolve, reject) => {
   }, 1000);
 });
 // file2.ets ArkTS1.2
+'use static'
 import {foo, bar, A, p} from 'file1'
 async function baz() {
   foo(); // NO
@@ -2958,6 +2932,7 @@ launch(baz)  // NO
 
 ```typescript
 // file1.ets ArkTS1.2
+'use static'
 export let p = new Promise<String>(
   (resolve: (v: number) => void, _: (error: Object) => void) => {
     setTimeout(() => {
@@ -2987,6 +2962,7 @@ await p;
 
 ```typescript
 // file1.ets ArkTS1.2
+'use static'
 export async function foo() {}
 // file2.ets ArkTS1.1
 import { foo } from "file1";
@@ -3009,6 +2985,7 @@ const p = foo();
 
 ```typescript
 // file1.ets ArkTS1.2
+'use static'
 export class A {}
 export function foo(arg: Object) {
   arg as A;
@@ -3032,6 +3009,7 @@ async function bar() {
 
 ```typescript
 // file1.ets ArkTS1.2
+'use static'
 export class A {}
 export function foo(arg: Object) {
   arg as A;
