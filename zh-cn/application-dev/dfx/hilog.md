@@ -57,7 +57,12 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 | -x | --exit | - | 非阻塞读日志，读完退出。 | 
 | -a | --head | &lt;n&gt; | 只显示前&lt;n&gt;行日志。 | 
 | -z | --tail | &lt;n&gt; | 只显示后&lt;n&gt;行日志。 | 
-| -t | --type | &lt;type&gt; | 指定类型的日志，示例：-t app/core/init/kmsg/only_prerelease。app为应用日志，core为系统日志，init为启动日志，kmsg为内核日志，only_prerelease为仅在系统release版本前打印的日志，应用开发者无需关注。| 
+| -t | --type | &lt;type&gt; | 查看指定类型的日志。| 
+|  |  | app | 查看应用日志。 | 
+|  |  | core | 查看系统日志。 | 
+|  |  | init | 查看启动时间。 | 
+|  |  | kmsg | 查看内核日志。 | 
+|  |  | only_prerelease | 查看仅在系统release版本前打印的日志，应用开发者无需关注。 | 
 | -L | --level | &lt;level&gt; | 指定级别的日志，示例：-L D/I/W/E/F。 | 
 | -D | --domain | &lt;domain&gt; | 指定domain。 | 
 | -T | --tag | &lt;tag&gt; | 指定tag。 | 
@@ -65,7 +70,7 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 | -e | --regex | &lt;expr&gt; | 只打印日志消息与&lt;expr&gt;匹配的行，其中&lt;expr&gt;是一个正则表达式。 |
 | -v | --format | &lt;format&gt; | 显示格式控制。 | 
 |  |  | time | 显示本地时间。 | 
-|  |  | color/colour | 显示不同级别显示不同颜色，参数缺省级别颜色模式处理（按黑白方式）。 | 
+|  |  | color/colour | 不同级别显示不同颜色，缺省是按照黑白颜色模式处理。 | 
 |  |  | epoch | 显示相对1970时间。 | 
 |  |  | monotonic | 显示相对启动时间。 | 
 |  |  | usec | 显示微秒精度时间。 | 
