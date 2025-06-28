@@ -86,23 +86,41 @@ AttributeUpdater首次设置给组件时提供的样式。
 import { AttributeUpdater } from '@kit.ArkUI';
 
 class MyButtonModifier extends AttributeUpdater<ButtonAttribute> {
+  // 该AttributeUpdater对象第一次使用的时候触发的回调
   initializeModifier(instance: ButtonAttribute): void {
-    instance.backgroundColor('#ff2787d9')
-      .width('50%')
-      .height(30);
+    instance.backgroundColor('#ffd5d5d5')
+      .labelStyle({ maxLines: 3 })
+      .width('80%')
+  }
+
+  // 该AttributeUpdater对象后续使用或者更新的时候触发的回调
+  applyNormalAttribute(instance: ButtonAttribute): void {
+    instance.borderWidth(1);
   }
 }
 
 @Entry
 @Component
-struct updaterDemo1 {
+struct Index {
   modifier: MyButtonModifier = new MyButtonModifier();
+  @State flushTheButton: string = 'Button';
 
   build() {
     Row() {
       Column() {
-        Button("Button")
+        Button(this.flushTheButton)
           .attributeModifier(this.modifier)
+          .onClick(() => {
+            // 通过AttributeUpdater的attribute对属性进行修改
+            // 需要注意先通过组件的attributeModifier属性方法建立组件与AttributeUpdater绑定关系
+            this.modifier.attribute?.backgroundColor('#ff2787d9').labelStyle({ maxLines: 5 });
+          })
+        Button('Change The message to flush the Button')
+          .width('80%')
+          .labelStyle({ maxLines: 2 })
+          .onClick(() => {
+            this.flushTheButton = 'Updates' + this.flushTheButton;
+          })
       }
       .width('100%')
     }
