@@ -133,7 +133,7 @@ bindSheet(isShow: Optional\<boolean\>, builder: CustomBuilder, options?: SheetOp
 
 5. 不支持指定其他显示层级接口，如showInSubWindow = true、mode = SheetMode.EMBEDDED。侧边弹窗的层级同SheetMode.OVERLAY，只支持在当前UIContext内顶层显示，在所有页面之上。和弹窗类组件显示在一个层级。
 
-6. 无避让软键盘能力，需自定义避让。也无悬停态避让能力。
+6. 无悬停态避让能力。
 
 
 **侧边弹窗样式不支持的接口**
@@ -146,7 +146,6 @@ bindSheet(isShow: Optional\<boolean\>, builder: CustomBuilder, options?: SheetOp
 | uiContext | 不支持指定显示层级。|
 | mode | 不支持指定显示层级。 |
 | scrollSizeMode | 无挡位能力。  |
-| keyboardAvoidMode | 无避让软键盘能力，需自定义避让。 |
 | enableHoverMode  | 无悬停态避让能力。|
 | hoverModeArea    | 无悬停态避让能力。|
 | detentSelection | 无挡位能力。 |
