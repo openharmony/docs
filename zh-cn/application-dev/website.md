@@ -481,6 +481,7 @@
           - [富文本 (RichEditor)](ui/arkts-common-components-richeditor.md)
           - [图标小符号 (SymbolGlyph/SymbolSpan)](ui/arkts-common-components-symbol.md)
           - [属性字符串 (StyledString/MutableStyledString)](ui/arkts-styled-string.md)
+          - [图文混排](ui/arkts-text-image-layout.md)
         - 使用弹窗<!--arkts-use-dialog-->
           - [弹窗概述](ui/arkts-dialog-overview.md)
           - 使用弹出框 (Dialog)<!--arkts-use-dialogs-->
