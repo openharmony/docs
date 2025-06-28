@@ -138,7 +138,7 @@ struct Index {
 
     build() {
       Column() {
-        Text("ReuseComponent num:" + this.num.toString())
+        Text('ReuseComponent num:' + this.num.toString())
         ReuseComponentChild({ num: this.num })
         Button('plus')
           .onClick(() => {
@@ -158,7 +158,7 @@ struct Index {
     }
 
     build() {
-      Text("ReuseComponentChild num:" + this.num.toString())
+      Text('ReuseComponentChild num:' + this.num.toString())
     }
   }
   ```
@@ -222,7 +222,7 @@ struct Index {
 
     build() {
       Column() {
-        Text("ReuseComponent num:" + this.num.toString())
+        Text('ReuseComponent num:' + this.num.toString())
         ReuseComponentChild({ num: this.num })
         Button('plus')
           .onClick(() => {
@@ -244,7 +244,7 @@ struct Index {
     }
 
     build() {
-      Text("ReuseComponentChild num:" + this.num.toString())
+      Text('ReuseComponentChild num:' + this.num.toString())
     }
   }
   ```
