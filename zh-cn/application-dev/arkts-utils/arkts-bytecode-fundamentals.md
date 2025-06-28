@@ -492,7 +492,7 @@ function foo(a: number, b: number): void {}
 |  0x94	|  IMM16_ID16	|  stthisbyname RRRR, @AAAA	|  默认入参：acc：值<br>R：方舟运行时内部使用的16位保留数字<br>A：string id	|  将acc中的值存放到`this`的键值为索引A对应的字符串的属性上。   |
 |  0x95	|  IMM16	|  ldthisbyvalue RRRR	|  默认入参：acc：属性键值<br>R：方舟运行时内部使用的16位保留数字	|  加载`this`的键值为acc的属性，并将结果存放到acc中。   |
 |  0x96	|  IMM16_V8	|  stthisbyvalue RRRR, vAA	|  默认入参：acc：值<br>R：方舟运行时内部使用的16位保留数字<br>A：属性键值	|  将acc中的值存放到`this`的键值为A的属性上。   |
-|  0x97	|  V8	|  asyncgeneratorreject vAA	 |  默认入参：acc：异常<br>A：生成器	|  使用 *[generator](https://262.ecma-international.org/12.0/#sec-generator-objects)* A和acc中存放的异常，执行[AsyncGeneratorReject](https://262.ecma-international.org/12.0/#sec-asyncgeneratorreject)，并将结果存放到acc中。   |
+|  0x97	|  V8	|  asyncgeneratorreject vAA	 |  默认入参：acc：异常<br>A：生成器	|  使用[generator](https://262.ecma-international.org/12.0/#sec-generator-objects) A和acc中存放的异常，执行[AsyncGeneratorReject](https://262.ecma-international.org/12.0/#sec-asyncgeneratorreject)，并将结果存放到acc中。   |
 |  0x98	|  IMM32	|  jmp +AAAAAAAA	|  A：有符号的分支偏移量	|  无条件跳转到分支A。   |
 |  0x99	|  IMM8_V8_V8	|  stownbyvaluewithnameset RR, vAA, vBB	|  默认入参：acc：函数对象<br>R：方舟运行时内部使用的8位保留数字<br>A：对象<br>B：属性键值	|  将acc中的值存放到对象A的键值为B的属性上，并将函数的名称设置为B。   |
 |  0x9a	|  IMM32	|  jeqz +AAAAAAAA	|  默认入参：acc：值<br>A：有符号的分支偏移量	|  计算`acc == 0`，如果为真，则跳转到分支A。   |
@@ -513,7 +513,7 @@ function foo(a: number, b: number): void {}
 |  0xa9	|  V8_IMM16	|  jstricteq vAA, +BBBB	|  默认入参：acc：值<br>A：值<br>B：有符号的分支偏移量	|  计算`acc === A`，如果为真，则跳转到分支B。<br>指令功能未使能，暂不可用。   |
 |  0xaa	|  V8_IMM16	|  jnstricteq vAA, +BBBB	|  默认入参：acc：值<br>A：值<br>B：有符号的分支偏移量	|  计算`acc !== A`，如果为真，则跳转到分支B。<br>指令功能未使能，暂不可用。   |
 |  0xab	|  IMM16	|  getiterator RRRR	|  默认入参：acc：对象<br>R：方舟运行时内部使用的16位保留数字	|  执行[GetIterator](https://262.ecma-international.org/12.0/#sec-getiterator)(acc, sync)方法，并将结果存放到acc中。   |
-|  0xac	|  IMM16_V8	|  closeiterator RRRR, vAA	|  R：方舟运行时内部使用的16位保留数字<br>A：对象	|  以类型为 *[iteratorRecord](https://262.ecma-international.org/12.0/#sec-iterator-records)* 的A作为参数，执行[IteratorClose](https://262.ecma-international.org/12.0/#sec-iteratorclose)，并将结果存放到acc中。   |
+|  0xac	|  IMM16_V8	|  closeiterator RRRR, vAA	|  R：方舟运行时内部使用的16位保留数字<br>A：对象	|  以类型为[iteratorRecord](https://262.ecma-international.org/12.0/#sec-iterator-records)的A作为参数，执行[IteratorClose](https://262.ecma-international.org/12.0/#sec-iteratorclose)，并将结果存放到acc中。   |
 |  0xad	|  NONE	|  ldsymbol	 |  	|  加载**Symbol**对象到acc中。   |
 |  0xae	|  NONE	|  asyncfunctionenter	|   	|  创建一个异步函数对象，并将这个对象存放到acc中。   |
 |  0xaf	|  NONE	|  ldfunction	|   	|  将当前的函数对象加载到acc中。   |

@@ -2,545 +2,545 @@
 
 ## Overview
 
-Provides applications with the ability to access the printing system using CAPI.
+Provides applications with the ability to access the print system using CAPI.
 
-**Since:** 12
+**Since**: 12
 
 ## Summary
 
-### Type Definitions
+### Types
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| [Print_StringList](#print_stringlist) | Printer device list. |
-| [Print_Property](#print_property) | Printer property. |
-| [Print_PropertyList](#print_propertylist) | Printer property list. |
-| [Print_Resolution](#print_resolution) | Print resolution unit. |
-| [Print_Margin](#print_margin) | Print margin. |
-| [Print_PageSize](#print_pagesize) | Print paper size. |
-| [Print_PrinterCapability](#print_printercapability) | Printer capability. |
-| [Print_DefaultValue](#print_defaultvalue) | Print default information. |
-| [Print_PrinterInfo](#print_printerinfo) | Printer information. |
-| [Print_PrintJob](#print_printjob) | Print job. |
-| [Print_Range](#print_range) | Print range. |
-| [Print_PrintAttributes](#print_printattributes) | Print attributes. |
-| [Print_WriteResultCallback](#print_writeresultcallback) | Write result callback. |
-| [Print_OnStartLayoutWrite](#print_onstartlayoutwrite) | Start layout callback. |
-| [Print_OnJobStateChanged](#print_onjobstatechanged) | Print job state callback. |
-| [Print_PrintDocCallback](#print_printdoccallback) | Print document state callback. |
-| [Print_PrinterDiscoveryCallback](#print_printerdiscoverycallback) | Printer discovery callback. |
-| [Print_PrinterChangeCallback](#print_printerchangecallback) | Printer state change callback. |
+| [Print_StringList](#print_stringlist) | Defines a printer list.|
+| [Print_Property](#print_property) | Defines a property for the printer.|
+| [Print_PropertyList](#print_propertylist) | Defines a property list for the printer.|
+| [Print_Resolution](#print_resolution) | Defines the resolution unit for printing.|
+| [Print_Margin](#print_margin) | Defines the page margin.|
+| [Print_PageSize](#print_pagesize) | Defines the page size for printing.|
+| [Print_PrinterCapability](#print_printercapability) | Defines the printer capabilities.|
+| [Print_DefaultValue](#print_defaultvalue) | Defines the default printing information.|
+| [Print_PrinterInfo](#print_printerinfo) | Defines the printer information.|
+| [Print_PrintJob](#print_printjob) | Defines a print job.|
+| [Print_Range](#print_range) | Defines the page range.|
+| [Print_PrintAttributes](#print_printattributes) | Defines the print attributes.|
+| [Print_WriteResultCallback](#print_writeresultcallback) | Defines a callback used to return the write result.|
+| [Print_OnStartLayoutWrite](#print_onstartlayoutwrite) | Defines a callback to be invoked when the layout processing starts.|
+| [Print_OnJobStateChanged](#print_onjobstatechanged) | Defines a callback to be invoked when the print job state changes.|
+| [Print_PrintDocCallback](#print_printdoccallback) | Defines a callback used to return the file state.|
+| [Print_PrinterDiscoveryCallback](#print_printerdiscoverycallback) | Defines a callback used to return the discovered printers.|
+| [Print_PrinterChangeCallback](#print_printerchangecallback) | Defines a callback to be invoked when the printer state changes.|
 
-### Enumerations
+### Enums
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| [Print_ErrorCode](#print_errorcode) | Error codes. |
-| [Print_PrinterState](#print_printerstate) | Printer state codes. |
-| [Print_DiscoveryEvent](#print_discoveryevent) | Printer discovery events. |
-| [Print_PrinterEvent](#print_printerevent) | Printer state change events. |
-| [Print_DuplexMode](#print_duplexmode) | Print duplex mode. |
-| [Print_ColorMode](#print_colormode) | Print color mode. |
-| [Print_OrientationMode](#print_orientationmode) | Print orientation. |
-| [Print_Quality](#print_quality) | Print quality. |
-| [Print_DocumentFormat](#print_documentformat) | Printer document format. |
-| [Print_JobDocAdapterState](#print_jobdocadapterstate) | Print job state. |
+| [Print_ErrorCode](#print_errorcode) | Enumerates the error codes.|
+| [Print_PrinterState](#print_printerstate) | Enumerates the printer state codes.|
+| [Print_DiscoveryEvent](#print_discoveryevent) | Enumerates the printer discovery events.|
+| [Print_PrinterEvent](#print_printerevent) | Enumerates the printer state change events.|
+| [Print_DuplexMode](#print_duplexmode) | Enumerates the duplex modes for printing.|
+| [Print_ColorMode](#print_colormode) | Enumerates the color modes for printing.|
+| [Print_OrientationMode](#print_orientationmode) | Enumerates the orientation modes for printing.|
+| [Print_Quality](#print_quality) | Enumerates the print quality.|
+| [Print_DocumentFormat](#print_documentformat) | Enumerates the document formats.|
+| [Print_JobDocAdapterState](#print_jobdocadapterstate) | Enumerates the print job adapter states.|
 
 ### Functions
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| [OH_Print_Init](#oh_print_init) | Starts the print service, initializes the print client, and establishes a connection to the print service. |
-| [OH_Print_Release](#oh_print_release) | Closes the connection to the print service, unregisters callbacks, and releases print client resources. |
-| [OH_Print_StartPrinterDiscovery](#oh_print_startprinterdiscovery) | Starts printer discovery. |
-| [OH_Print_StopPrinterDiscovery](#oh_print_stopprinterdiscovery) | Stops printer discovery. |
-| [OH_Print_ConnectPrinter](#oh_print_connectprinter) | Connects to a printer using the printer ID. |
-| [OH_Print_StartPrintJob](#oh_print_startprintjob) | Starts a print job. |
-| [OH_Print_RegisterPrinterChangeListener](#oh_print_registerprinterchangelistener) | Registers a printer state change event listener. |
-| [OH_Print_UnregisterPrinterChangeListener](#oh_print_unregisterprinterchangelistener) | Unregisters the printer state change event listener. |
-| [OH_Print_QueryPrinterList](#oh_print_queryprinterlist) | Queries the printer list. |
-| [OH_Print_ReleasePrinterList](#oh_print_releaseprinterlist) | Releases the printer list. |
-| [OH_Print_QueryPrinterInfo](#oh_print_queryprinterinfo) | Queries printer information. |
-| [OH_Print_ReleasePrinterInfo](#oh_print_releaseprinterinfo) | Releases printer information memory. |
-| [OH_Print_LaunchPrinterManager](#oh_print_launchprintermanager) | Launches the printer manager window. |
-| [OH_Print_QueryPrinterProperties](#oh_print_queryprinterproperties) | Queries printer properties. |
-| [OH_Print_ReleasePrinterProperties](#oh_print_releaseprinterproperties) | Releases printer properties. |
-| [OH_Print_UpdatePrinterProperties](#oh_print_updateprinterproperties) | Updates printer properties. |
-| [OH_Print_RestorePrinterProperties](#oh_print_restoreprinterproperties) | Restores printer properties to default settings based on the property key list. |
-| [OH_Print_StartPrintByNative](#oh_print_startprintbynative) | Starts printing. |
+| [OH_Print_Init](#oh_print_init) | Initiates the print service, initializes the print client, and establishes a connection to the print service.|
+| [OH_Print_Release](#oh_print_release) | Closes the connection to the print service, unregisters the callback, and releases the print client resources.|
+| [OH_Print_StartPrinterDiscovery](#oh_print_startprinterdiscovery) | Starts printer discovery.|
+| [OH_Print_StopPrinterDiscovery](#oh_print_stopprinterdiscovery) | Stops printer discovery.|
+| [OH_Print_ConnectPrinter](#oh_print_connectprinter) | Connects to a printer by printer ID.|
+| [OH_Print_StartPrintJob](#oh_print_startprintjob) | Starts a print job.|
+| [OH_Print_RegisterPrinterChangeListener](#oh_print_registerprinterchangelistener) | Registers a listener to listen for the printer state changes.|
+| [OH_Print_UnregisterPrinterChangeListener](#oh_print_unregisterprinterchangelistener) | Unregisters the listener used to listen for the printer state changes.|
+| [OH_Print_QueryPrinterList](#oh_print_queryprinterlist) | Queries the printer list.|
+| [OH_Print_ReleasePrinterList](#oh_print_releaseprinterlist) | Releases the memory allocated for querying the printer list.|
+| [OH_Print_QueryPrinterInfo](#oh_print_queryprinterinfo) | Queries the printer information.|
+| [OH_Print_ReleasePrinterInfo](#oh_print_releaseprinterinfo) | Releases the memory allocated for querying the printer information.|
+| [OH_Print_LaunchPrinterManager](#oh_print_launchprintermanager) | Launches the printer manager.|
+| [OH_Print_QueryPrinterProperties](#oh_print_queryprinterproperties) | Queries the printer properties.|
+| [OH_Print_ReleasePrinterProperties](#oh_print_releaseprinterproperties) | Releases the memory allocated for querying the printer properties.|
+| [OH_Print_UpdatePrinterProperties](#oh_print_updateprinterproperties) | Updates the printer properties.|
+| [OH_Print_RestorePrinterProperties](#oh_print_restoreprinterproperties) | Restores printer properties to the default settings based on the property key list.|
+| [OH_Print_StartPrintByNative](#oh_print_startprintbynative) | Starts printing.|
 
-## Type Definitions
+## Type Description
 
 ### Print_StringList
 
 **Description**
 
-Printer device list.
+Defines a printer list.
 
-**Since:** 12
+**Since**: 12
 
-| Member | Description |
+| Member        | Description    |
 | ------------ | -------- |
-| count    | Number of strings. |
-| list | String pointer array.   |
+| count    | Number of strings.|
+| list | String pointer array.  |
 
 ### Print_Property
 
 **Description**
 
-Printer property.
+Defines a property for the printer.
 
-**Since:** 12
+**Since**: 12
 
-| Member | Description |
+| Member    | Description                   |
 | -------- | ----------------------- |
-| key | Property key. |
-| value | Property value. |
+| key | Property key.|
+| value       | Property value.           |
 
 ### Print_PropertyList
 
 **Description**
 
-Printer property list.
+Defines a property list for the printer.
 
-**Since:** 12
+**Since**: 12
 
-| Member | Description |
+| Member        | Description        |
 | ------------ | ------------ |
-| count | Number of properties. |
-| list | Property pointer array. |
+| count       | Number of properties.    |
+| list | Property pointer array.|
 
 ### Print_Resolution
 
 **Description**
 
-Print resolution unit.
+Defines the resolution unit for printing.
 
-**Since:** 12
+**Since**: 12
 
-| Parameter | Description |
+| Parameter       | Description      |
 | ----------- | ---------- |
-| horizontalDpi | Horizontal resolution (dpi). |
-| verticalDpi | Vertical resolution (dpi). |
+| horizontalDpi     | Horizontal resolution (dpi).|
+| verticalDpi | Vertical resolution (dpi).  |
 
 ### Print_Margin
 
 **Description**
 
-Print margin.
+Defines the page margin.
 
-**Since:** 12
+**Since**: 12
 
-| Parameter | Description |
+| Parameter       | Description      |
 | ----------- | ---------- |
-| leftMargin | Left margin (microns). |
-| topMargin | Top margin (microns). |
-| rightMargin | Right margin (microns). |
-| bottomMargin | Bottom margin (microns). |
+| leftMargin     | Left margin (µm).|
+| topMargin | Top margin (µm).  |
+| rightMargin | Right margin (µm).  |
+| bottomMargin | Bottom margin (µm).  |
 
 ### Print_PageSize
 
 **Description**
 
-Print paper size.
+Defines the page size for printing.
 
-**Since:** 12
+**Since**: 12
 
-| Parameter | Description |
+| Parameter       | Description      |
 | ----------- | ---------- |
-| id | Paper ID. |
-| name | Paper name. |
-| width | Paper width (microns). |
-| height | Paper height (microns). |
+| id     | Page ID.|
+| name | Page name.  |
+| width | Paper width (µm).  |
+| height | Paper height (µm).  |
 
 ### Print_PrinterCapability
 
 **Description**
 
-Printer capability.
+Defines the printer capabilities.
 
-**Since:** 12
+**Since**: 12
 
-| Parameter | Description |
+| Parameter       | Description      |
 | ----------- | ---------- |
-| supportedColorModes | Supported color modes list. |
-| supportedColorModesCount | Number of supported color modes. |
-| supportedDuplexModes | Supported duplex modes list. |
-| supportedDuplexModesCount | Number of supported duplex modes. |
-| supportedPageSizes | Supported paper sizes list. |
-| supportedPageSizesCount | Number of supported paper sizes. |
-| supportedMediaTypes | Supported media types (JSON string array format). |
-| supportedQualities | Supported print qualities list. |
-| supportedQualitiesCount | Number of supported print qualities. |
-| supportedPaperSources | Supported paper sources (JSON string array format). |
-| supportedCopies | Maximum supported copies. |
-| supportedResolutions | Supported resolutions list. |
-| supportedResolutionsCount | Number of supported resolutions. |
-| supportedOrientations | Supported orientations list. |
-| supportedOrientationsCount | Number of supported orientations. |
-| advancedCapability | Advanced capability (JSON format). |
+| supportedColorModes     | Supported color modes.|
+| supportedColorModesCount | Number of supported color modes.  |
+| supportedDuplexModes | Supported duplex modes.  |
+| supportedDuplexModesCount | Number of supported duplex modes.  |
+| supportedPageSizes | Supported page sizes.  |
+| supportedPageSizesCount | Number of supported paper sizes.  |
+| supportedMediaTypes | Supported media types (JSON string array format).  |
+| supportedQualities | Supported print qualities.  |
+| supportedQualitiesCount | Number of supported print qualities.  |
+| supportedPaperSources | Supported paper sources (JSON string array format).  |
+| supportedCopies | Maximum number of copies that can be printed.  |
+| supportedResolutions | Supported resolutions.  |
+| supportedResolutionsCount | Number of supported resolutions.  |
+| supportedOrientations | Supported printing orientations.  |
+| supportedOrientationsCount | Number of supported printing orientations.  |
+| advancedCapability | Advanced capabilities (JSON format).  |
 
 ### Print_DefaultValue
 
 **Description**
 
-Printer default information.
+Defines the default printing information.
 
-**Since:** 12
+**Since**: 12
 
-| Parameter | Description |
+| Parameter       | Description      |
 | ----------- | ---------- |
-| defaultColorMode | Default color mode. |
-| defaultDuplexMode | Default duplex mode. |
-| defaultMediaType | Default media type. |
-| defaultPageSizeId | Default paper size ID. |
-| defaultMargin | Default margin. |
-| defaultPaperSource | Default paper source. |
-| defaultPrintQuality | Default print quality. |
-| defaultCopies | Default number of copies. |
-| defaultResolution | Default resolution. |
-| defaultOrientation | Default orientation. |
-| otherDefaultValues | Other default values (JSON format). |
+| defaultColorMode     | Default color mode.|
+| defaultDuplexMode | Default duplex mode.  |
+| defaultMediaType | Default media type.  |
+| defaultPageSizeId | Default page size ID.  |
+| defaultMargin | Default margin.  |
+| defaultPaperSource | Default paper source.  |
+| defaultPrintQuality | Default print quality.  |
+| defaultCopies | Default number of copies.  |
+| defaultResolution | Default resolution.  |
+| defaultOrientation | Default printing orientation.  |
+| otherDefaultValues | Other default values (JSON format).  |
 
 ### Print_PrinterInfo
 
 **Description**
 
-Printer information.
+Defines the printer information.
 
-**Since:** 12
+**Since**: 12
 
-| Parameter | Description |
+| Parameter       | Description      |
 | ----------- | ---------- |
-| printerState | Printer state. |
-| capability | Printer capability. |
-| defaultValue | Printer default properties. |
-| isDefaultPrinter | Whether it is the default printer. |
-| printerId | Printer ID. |
-| printerName | Printer name. |
-| description | Printer description. |
-| location | Printer location. |
-| makeAndModel | Printer manufacturer and model information. |
-| printerUri | Printer URI. |
-| detailInfo | Detailed information (JSON format). |
+| printerState     | Printer state.|
+| capability | Printer capability.  |
+| defaultValue | Default printer property.  |
+| isDefaultPrinter | Whether the printer is the default one.  |
+| printerId | Printer ID.  |
+| printerName | Printer name.  |
+| description | Printer description.  |
+| location | Printer location.  |
+| makeAndModel | Printer manufacturer and model information.  |
+| printerUri | Printer URI.  |
+| detailInfo | Detailed information (JSON format).  |
 
 ### Print_PrintJob
 
 **Description**
 
-Print job.
+Defines a print job.
 
-**Since:** 12
+**Since**: 12
 
-| Parameter | Description |
+| Parameter       | Description      |
 | ----------- | ---------- |
-| jobName | Print job name. |
-| fdList | Print file descriptor array. |
-| fdListCount | Number of print file descriptors. |
-| printerId | Printer ID. |
-| copyNumber | Number of copies. |
-| paperSource | Paper source. |
-| mediaType | Media type. |
-| pageSizeId | Paper size ID. |
-| colorMode | Color mode. |
-| duplexMode | Duplex mode. |
-| resolution | Resolution. |
-| printMargin | Print margin. |
-| borderless | Whether to print borderless. |
-| orientationMode | Print orientation. |
-| printQuality | Print quality. |
-| documentFormat | Document format. |
-| advancedOptions | Advanced options (JSON format). |
+| jobName     | Print job name.|
+| fdList | List of file descriptors of the print job.  |
+| fdListCount | Number of file descriptors of the print job.  |
+| printerId | Printer ID.  |
+| copyNumber | Number of copies to print.  |
+| paperSource | Paper source.  |
+| mediaType | Media type.  |
+| pageSizeId | Page size ID.  |
+| colorMode | Color mode.  |
+| duplexMode | Duplex mode.  |
+| resolution | Resolution.  |
+| printMargin | Page margin.  |
+| borderless | Whether to print without margins.  |
+| orientationMode | Orientation mode.  |
+| printQuality | Print quality.  |
+| documentFormat | Document format.  |
+| advancedOptions | Advanced options (JSON format).  |
 
 ### Print_Range
 
 **Description**
 
-Print range.
+Defines the page range.
 
-**Since:** 13
+**Since**: 13
 
-| Parameter | Description |
+| Parameter       | Description      |
 | ----------- | ---------- |
-| startPage | Start page number. |
-| endPage | End page number. |
-| pagesArrayLen | Page array length. |
-| pagesArray | Page array. |
+| startPage     | Start page number.|
+| endPage | End page number.  |
+| pagesArrayLen | Length of the page array.  |
+| pagesArray | Page array.  |
 
 ### Print_PrintAttributes
 
 **Description**
 
-Print attributes.
+Defines the print attributes.
 
-**Since:** 13
+**Since**: 13
 
-| Parameter | Description |
+| Parameter       | Description      |
 | ----------- | ---------- |
-| pageRange | Print range. |
-| pageSize | Paper size. |
-| pageMargin | Page margin. |
-| copyNumber | Number of copies. |
-| duplexMode | Duplex mode. |
-| colorMode | Color mode. |
-| isSequential | Whether to print sequentially. |
-| isLandscape | Whether to print in landscape. |
-| hasOption | Whether there are print options. |
-| options | Print options (256 bytes). |
+| pageRange     | Defines the page range.|
+| pageSize | Paper size.  |
+| pageMargin | Page margin.  |
+| copyNumber | Number of copies to print.  |
+| duplexMode | Duplex mode.  |
+| colorMode | Color mode.  |
+| isSequential | Whether to print in sequence.  |
+| isLandscape | Whether to print in landscape mode.  |
+| hasOption | Whether print options are provided.  |
+| options | Print options (in 256 bytes).  |
 
 ### Print_WriteResultCallback
 
 **Description**
 
-Write result callback.
+Defines a callback used to return the write result.
 
-**Since:** 13
+**Since**: 13
 
-**Parameters:**
+**Parameters**
 
-| Name | Description |
+| Name     | Description      |
 | --------- | ---------- |
-| jobId | Print job ID. |
-| code | Write result status code. |
+| jobId     | Print job ID.|
+| code | State code of the write result.  |
 
 ### Print_OnStartLayoutWrite
 
 **Description**
 
-Start layout callback.
+Defines a callback to be invoked when the layout processing starts.
 
-**Since:** 13
+**Since**: 13
 
-**Parameters:**
+**Parameters**
 
-| Name | Description |
+| Name     | Description      |
 | --------- | ---------- |
-| jobId | Print job ID. |
-| fd | File descriptor. |
-| oldAttrs | Previous print attributes. |
-| newAttrs | Current print attributes. |
-| writeCallback | Write result callback function. |
+| jobId     | Print job ID.|
+| fd | File descriptor.  |
+| oldAttrs | Previous print attributes.  |
+| newAttrs | New print attributes.  |
+| writeCallback | Callback used to return the write result.  |
 
 ### Print_OnJobStateChanged
 
 **Description**
 
-Print job state change callback.
+Defines a callback to be invoked when the print job state changes.
 
-**Since:** 13
+**Since**: 13
 
-**Parameters:**
+**Parameters**
 
-| Name | Description |
+| Name     | Description      |
 | --------- | ---------- |
-| jobId | Print job ID. |
-| state | Print job state. |
+| jobId     | Print job ID.|
+| state | Print job state.  |
 
 ### Print_PrintDocCallback
 
 **Description**
 
-Print document state callback.
+Defines a callback used to return the file state.
 
-**Since:** 13
+**Since**: 13
 
-| Parameter | Description |
+| Parameter       | Description      |
 | ----------- | ---------- |
-| startLayoutWriteCb | Start layout write callback. |
-| jobStateChangedCb | Job state change callback. |
+| startLayoutWriteCb     | Callback to be invoked when the layout processing starts.|
+| jobStateChangedCb | Callback to be invoked when the print job state changes.  |
 
 ### Print_PrinterDiscoveryCallback
 
 **Description**
 
-Printer discovery callback.
+Defines a callback used to return the discovered printers.
 
-**Since:** 12
+**Since**: 12
 
-**Parameters:**
+**Parameters**
 
-| Name | Description |
+| Name     | Description      |
 | --------- | ---------- |
-| event | Discovery event. |
-| printerInfo | Printer information. |
+| event     | Discovery event.|
+| printerInfo | Printer information.  |
 
 ### Print_PrinterChangeCallback
 
 **Description**
 
-Printer state change callback.
+Defines a callback to be invoked when the printer state changes.
 
-**Since:** 12
+**Since**: 12
 
-**Parameters:**
+**Parameters**
 
-| Name | Description |
+| Name     | Description      |
 | --------- | ---------- |
-| event | Change event. |
-| printerInfo | Printer information. |
+| event     | Change event.|
+| printerInfo | Printer information.  |
 
-## Enumerations
+## Enum Description
 
 ### Print_ErrorCode
 
 **Description**
 
-Error codes.
+Enumerates the error codes.
 
-**Since:** 12
+**Since**: 12
 
-| Enum Value | Description | Value |
+| Name| Description| Value|
 | -------- | -------- | -------- |
-| PRINT_ERROR_NONE | Operation successful. | 0 |
-| PRINT_ERROR_NO_PERMISSION | Permission verification failed. | 201 |
-| PRINT_ERROR_INVALID_PARAMETER | Invalid parameter. | 401 |
-| PRINT_ERROR_GENERIC_FAILURE | Generic internal error. | 24300001 |
-| PRINT_ERROR_RPC_FAILURE | RPC communication error. | 24300002 |
-| PRINT_ERROR_SERVER_FAILURE | Server error. | 24300003 |
-| PRINT_ERROR_INVALID_EXTENSION | Invalid extension. | 24300004 |
-| PRINT_ERROR_INVALID_PRINTER | Invalid printer. | 24300005 |
-| PRINT_ERROR_INVALID_PRINT_JOB | Invalid print job. | 24300006 |
-| PRINT_ERROR_FILE_IO | File I/O error. | 24300007 |
-| PRINT_ERROR_UNKNOWN | Unknown error. | 24300255 |
+| PRINT_ERROR_NONE | Operation successful.| 0 |
+| PRINT_ERROR_NO_PERMISSION | Permission verification failed.| 201 |
+| PRINT_ERROR_INVALID_PARAMETER | Invalid parameter.| 401 |
+| PRINT_ERROR_GENERIC_FAILURE | Internal error.| 24300001 |
+| PRINT_ERROR_RPC_FAILURE | RPC communication error.| 24300002 |
+| PRINT_ERROR_SERVER_FAILURE | Server error.| 24300003 |
+| PRINT_ERROR_INVALID_EXTENSION | Invalid extension.| 24300004 |
+| PRINT_ERROR_INVALID_PRINTER | Invalid printer.| 24300005 |
+| PRINT_ERROR_INVALID_PRINT_JOB | Invalid print job.| 24300006 |
+| PRINT_ERROR_FILE_IO | File I/O operation failed.| 24300007 |
+| PRINT_ERROR_UNKNOWN | Unknown error.| 24300255 |
 
 ### Print_PrinterState
 
 **Description**
 
-Printer state codes.
+Enumerates the printer state codes.
 
-**Since:** 12
+**Since**: 12
 
-| Enum Value | Description |
+| Name| Description|
 | -------- | -------- |
-| PRINTER_IDLE | Printer idle. |
-| PRINTER_BUSY | Printer busy. |
-| PRINTER_UNAVAILABLE | Printer unavailable. |
+| PRINTER_IDLE | The printer is idle.|
+| PRINTER_BUSY | The printer is busy.|
+| PRINTER_UNAVAILABLE | The printer is unavailable.|
 
 ### Print_DiscoveryEvent
 
 **Description**
 
-Printer discovery events.
+Enumerates the printer discovery events.
 
-**Since:** 12
+**Since**: 12
 
-| Enum Value | Description |
+| Name| Description|
 | -------- | -------- |
-| PRINTER_DISCOVERED | Printer discovered. |
-| PRINTER_LOST | Printer lost. |
-| PRINTER_CONNECTING | Printer connecting. |
-| PRINTER_CONNECTED | Printer connected. |
+| PRINTER_DISCOVERED | Printer discovered.|
+| PRINTER_LOST | Printer lost.|
+| PRINTER_CONNECTING | Printer connecting.|
+| PRINTER_CONNECTED | Printer connected.|
 
 ### Print_PrinterEvent
 
 **Description**
 
-Printer events.
+Enumerates the printer state change events.
 
-**Since:** 12
+**Since**: 12
 
-| Enum Value | Description |
+| Name| Description|
 | -------- | -------- |
-| PRINTER_ADDED | Printer added. |
-| PRINTER_DELETED | Printer deleted. |
-| PRINTER_STATE_CHANGED | Printer state changed. |
-| PRINTER_INFO_CHANGED | Printer information changed. |
-| PRINTER_PREFERENCE_CHANGED | Printer preference changed. |
+| PRINTER_ADDED | A printer is added.|
+| PRINTER_DELETED | A printer is deleted.|
+| PRINTER_STATE_CHANGED | The printer state has changed.|
+| PRINTER_INFO_CHANGED | The printer information has changed.|
+| PRINTER_PREFERENCE_CHANGED | The printer preferences have changed.|
 
 ### Print_DuplexMode
 
 **Description**
 
-Print duplex mode.
+Enumerates the duplex modes for printing.
 
-**Since:** 12
+**Since**: 12
 
-| Enum Value | Description |
+| Name| Description|
 | -------- | -------- |
-| DUPLEX_MODE_ONE_SIDED | One-sided printing. |
-| DUPLEX_MODE_TWO_SIDED_LONG_EDGE | Two-sided long edge printing. |
-| DUPLEX_MODE_TWO_SIDED_SHORT_EDGE | Two-sided short edge printing. |
+| DUPLEX_MODE_ONE_SIDED | Single-sided printing.|
+| DUPLEX_MODE_TWO_SIDED_LONG_EDGE | Long-edge duplex printing.|
+| DUPLEX_MODE_TWO_SIDED_SHORT_EDGE | Short-edge duplex printing.|
 
 ### Print_ColorMode
 
 **Description**
 
-Print color mode.
+Enumerates the color modes for printing.
 
-**Since:** 12
+**Since**: 12
 
-| Enum Value | Description |
+| Name| Description|
 | -------- | -------- |
-| COLOR_MODE_MONOCHROME | Monochrome mode. |
-| COLOR_MODE_COLOR | Color mode. |
-| COLOR_MODE_AUTO | Auto mode. |
+| COLOR_MODE_MONOCHROME | Monochrome mode.|
+| COLOR_MODE_COLOR | Color mode.|
+| COLOR_MODE_AUTO | Auto mode.|
 
 ### Print_OrientationMode
 
 **Description**
 
-Print orientation.
+Enumerates the orientation modes for printing.
 
-**Since:** 12
+**Since**: 12
 
-| Enum Value | Description |
+| Name| Description|
 | -------- | -------- |
-| ORIENTATION_MODE_PORTRAIT | Portrait. |
-| ORIENTATION_MODE_LANDSCAPE | Landscape. |
-| ORIENTATION_MODE_REVERSE_LANDSCAPE | Reverse landscape. |
-| ORIENTATION_MODE_REVERSE_PORTRAIT | Reverse portrait. |
-| ORIENTATION_MODE_NONE | Not specified. |
+| ORIENTATION_MODE_PORTRAIT | Portrait.|
+| ORIENTATION_MODE_LANDSCAPE | Landscape.|
+| ORIENTATION_MODE_REVERSE_LANDSCAPE | Reverse landscape.|
+| ORIENTATION_MODE_REVERSE_PORTRAIT | Reverse portrait.|
+| ORIENTATION_MODE_NONE | Not specified.|
 
 ### Print_Quality
 
 **Description**
 
-Print quality.
+Enumerates the print qualities.
 
-**Since:** 12
+**Since**: 12
 
-| Enum Value | Description |
+| Name| Description|
 | -------- | -------- |
-| PRINT_QUALITY_DRAFT | Draft quality. |
-| PRINT_QUALITY_NORMAL | Normal quality. |
-| PRINT_QUALITY_HIGH | High quality. |
+| PRINT_QUALITY_DRAFT | Draft quality.|
+| PRINT_QUALITY_NORMAL | Normal quality.|
+| PRINT_QUALITY_HIGH | High quality.|
 
 ### Print_DocumentFormat
 
 **Description**
 
-Document format.
+Enumerates the document formats.
 
-**Since:** 12
+**Since**: 12
 
-| Enum Value | Description | MIME Type |
+| Name| Description| MIME Type|
 | -------- | -------- | -------- |
-| DOCUMENT_FORMAT_AUTO | Auto detect. | application/octet-stream. |
-| DOCUMENT_FORMAT_JPEG | JPEG image. | image/jpeg. |
-| DOCUMENT_FORMAT_PDF | PDF document. | application/pdf. |
-| DOCUMENT_FORMAT_POSTSCRIPT | PostScript document. | application/postscript. |
-| DOCUMENT_FORMAT_TEXT | Plain text. | text/plain. |
+| DOCUMENT_FORMAT_AUTO | Auto-detected format.| application/octet-stream. |
+| DOCUMENT_FORMAT_JPEG | JPEG image.| image/jpeg. |
+| DOCUMENT_FORMAT_PDF | PDF document.| application/pdf. |
+| DOCUMENT_FORMAT_POSTSCRIPT | PostScript document.| application/postscript. |
+| DOCUMENT_FORMAT_TEXT | Plain text.| text/plain. |
 
 ### Print_JobDocAdapterState
 
 **Description**
 
-Print job document adapter state.
+Enumerates the print job adapter states.
 
-**Since:** 13
+**Since**: 13
 
-| Enum Value | Description |
+| Name| Description|
 | -------- | -------- |
-| PRINT_DOC_ADAPTER_PREVIEW_ABILITY_DESTROY | Print preview ability destroyed. |
-| PRINT_DOC_ADAPTER_PRINT_TASK_SUCCEED | Print task succeeded. |
-| PRINT_DOC_ADAPTER_PRINT_TASK_FAIL | Print task failed. |
-| PRINT_DOC_ADAPTER_PRINT_TASK_CANCEL | Print task canceled. |
-| PRINT_DOC_ADAPTER_PRINT_TASK_BLOCK | Print task blocked. |
-| PRINT_DOC_ADAPTER_PREVIEW_ABILITY_DESTROY_FOR_CANCELED | Preview ability destroyed due to cancellation. |
-| PRINT_DOC_ADAPTER_PREVIEW_ABILITY_DESTROY_FOR_STARTED | Preview ability destroyed due to task start. |
+| PRINT_DOC_ADAPTER_PREVIEW_ABILITY_DESTROY | Preview destroyed.|
+| PRINT_DOC_ADAPTER_PRINT_TASK_SUCCEED | Successful print job.|
+| PRINT_DOC_ADAPTER_PRINT_TASK_FAIL | Print job failed.|
+| PRINT_DOC_ADAPTER_PRINT_TASK_CANCEL | Print job canceled.|
+| PRINT_DOC_ADAPTER_PRINT_TASK_BLOCK | Print job blocked.|
+| PRINT_DOC_ADAPTER_PREVIEW_ABILITY_DESTROY_FOR_CANCELED | Preview destroyed due to print job cancellation.|
+| PRINT_DOC_ADAPTER_PREVIEW_ABILITY_DESTROY_FOR_STARTED | Preview destroyed due to print job start.|
 
-## Function Documentation
+## Function Description
 
 ### OH_Print_Init()
 
@@ -550,22 +550,22 @@ Print_ErrorCode OH_Print_Init();
 
 **Description**
 
-Starts the print service, initializes the print client, and establishes a connection to the print service.
+Initiates the print service, initializes the print client, and establishes a connection to the print service.
 
-**Permission:** ohos.permission.PRINT
+**Required permissions**: ohos.permission.PRINT
 
-**System Capability:** SystemCapability.Print.PrintFramework
+**System capability**: SystemCapability.Print.PrintFramework
 
-**Since:** 12
+**Since**: 12
 
-**Returns:**
+**Returns**
 
-| Error Code | Description |
+| Error Code| Description|
 | -------- | -------- |
-| PRINT_ERROR_NONE | Operation successful. |
-| PRINT_ERROR_NO_PERMISSION | Missing print permission. |
-| PRINT_ERROR_RPC_FAILURE | Unable to connect to print service. |
-| PRINT_ERROR_SERVER_FAILURE | CUPS service failed to start. |
+| PRINT_ERROR_NONE | Operation successful.|
+| PRINT_ERROR_NO_PERMISSION | Permission denied.|
+| PRINT_ERROR_RPC_FAILURE | Failed to connect to the print service.|
+| PRINT_ERROR_SERVER_FAILURE | Failed to start the CUPS service.|
 
 ### OH_Print_Release()
 
@@ -575,17 +575,17 @@ Print_ErrorCode OH_Print_Release();
 
 **Description**
 
-Closes the connection to the print service, unregisters callbacks, and releases print client resources.
+Closes the connection to the print service, unregisters the callback, and releases the print client resources.
 
-**System Capability:** SystemCapability.Print.PrintFramework
+**System capability**: SystemCapability.Print.PrintFramework
 
-**Since:** 12
+**Since**: 12
 
-**Returns:**
+**Returns**
 
-| Error Code | Description |
+| Error Code| Description|
 | -------- | -------- |
-| PRINT_ERROR_NONE | Operation successful. |
+| PRINT_ERROR_NONE | Operation successful.|
 
 ### OH_Print_StartPrinterDiscovery()
 
@@ -595,29 +595,29 @@ Print_ErrorCode OH_Print_StartPrinterDiscovery(Print_PrinterDiscoveryCallback ca
 
 **Description**
 
-Starts the printer discovery process.
+Starts printer discovery.
 
-**Permission:** ohos.permission.PRINT
+**Required permissions**: ohos.permission.PRINT
 
-**System Capability:** SystemCapability.Print.PrintFramework
+**System capability**: SystemCapability.Print.PrintFramework
 
-**Since:** 12
+**Since**: 12
 
-**Parameters:**
+**Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| callback | Printer discovery event callback function. |
+| callback | callback used to return the discovered printers.|
 
-**Returns:**
+**Returns**
 
-| Error Code | Description |
+| Error Code| Description|
 | -------- | -------- |
-| PRINT_ERROR_NONE | Operation successful. |
-| PRINT_ERROR_NO_PERMISSION | Missing print permission. |
-| PRINT_ERROR_RPC_FAILURE | Unable to connect to print service. |
-| PRINT_ERROR_SERVER_FAILURE | Failed to query print extension list from BMS. |
-| PRINT_ERROR_INVALID_EXTENSION | No available print extensions found. |
+| PRINT_ERROR_NONE | Operation successful.|
+| PRINT_ERROR_NO_PERMISSION | Permission denied.|
+| PRINT_ERROR_RPC_FAILURE | Failed to connect to the print service.|
+| PRINT_ERROR_SERVER_FAILURE | Failed to query the extended printing list from the BMS.|
+| PRINT_ERROR_INVALID_EXTENSION | Invalid print extension.|
 
 ### OH_Print_StopPrinterDiscovery()
 
@@ -627,21 +627,21 @@ Print_ErrorCode OH_Print_StopPrinterDiscovery();
 
 **Description**
 
-Stops the printer discovery process.
+Stops printer discovery.
 
-**Permission:** ohos.permission.PRINT
+**Required permissions**: ohos.permission.PRINT
 
-**System Capability:** SystemCapability.Print.PrintFramework
+**System capability**: SystemCapability.Print.PrintFramework
 
-**Since:** 12
+**Since**: 12
 
-**Returns:**
+**Returns**
 
-| Error Code | Description |
+| Error Code| Description|
 | -------- | -------- |
-| PRINT_ERROR_NONE | Operation successful. |
-| PRINT_ERROR_NO_PERMISSION | Missing print permission. |
-| PRINT_ERROR_RPC_FAILURE | Unable to connect to print service. |
+| PRINT_ERROR_NONE | Operation successful.|
+| PRINT_ERROR_NO_PERMISSION | Permission denied.|
+| PRINT_ERROR_RPC_FAILURE | Failed to connect to the print service.|
 
 ### OH_Print_ConnectPrinter()
 
@@ -651,29 +651,29 @@ Print_ErrorCode OH_Print_ConnectPrinter(const char *printerId);
 
 **Description**
 
-Connects to a printer using the printer ID.
+Connects to a printer by printer ID.
 
-**Permission:** ohos.permission.PRINT
+**Required permissions**: ohos.permission.PRINT
 
-**System Capability:** SystemCapability.Print.PrintFramework
+**System capability**: SystemCapability.Print.PrintFramework
 
-**Since:** 12
+**Since**: 12
 
-**Parameters:**
+**Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| printerId | Printer ID to connect to. |
+| printerId | ID of the printer to be connected.|
 
-**Returns:**
+**Returns**
 
-| Error Code | Description |
+| Error Code| Description|
 | -------- | -------- |
-| PRINT_ERROR_NONE | Operation successful. |
-| PRINT_ERROR_NO_PERMISSION | Missing print permission. |
-| PRINT_ERROR_RPC_FAILURE | Unable to connect to print service. |
-| PRINT_ERROR_INVALID_PRINTER | Printer not in discovered list. |
-| PRINT_ERROR_SERVER_FAILURE | Unable to find extension responsible for the printer. |
+| PRINT_ERROR_NONE | Operation successful.|
+| PRINT_ERROR_NO_PERMISSION | Permission denied.|
+| PRINT_ERROR_RPC_FAILURE | Failed to connect to the print service.|
+| PRINT_ERROR_INVALID_PRINTER | Failed to find the printer in the discovery list.|
+| PRINT_ERROR_SERVER_FAILURE | Failed to find the printer extension.|
 
 ### OH_Print_StartPrintJob()
 
@@ -685,28 +685,28 @@ Print_ErrorCode OH_Print_StartPrintJob(const Print_PrintJob *printJob);
 
 Starts a print job.
 
-**Permission:** ohos.permission.PRINT
+**Required permissions**: ohos.permission.PRINT
 
-**System Capability:** SystemCapability.Print.PrintFramework
+**System capability**: SystemCapability.Print.PrintFramework
 
-**Since:** 12
+**Since**: 12
 
-**Parameters:**
+**Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| printJob | Pointer to Print_PrintJob structure containing print job information. |
+| printJob | Pointer to the **Print_PrintJob** struct that contains the print job information.|
 
-**Returns:**
+**Returns**
 
-| Error Code | Description |
+| Error Code| Description|
 | -------- | -------- |
-| PRINT_ERROR_NONE | Operation successful. |
-| PRINT_ERROR_NO_PERMISSION | Missing print permission. |
-| PRINT_ERROR_RPC_FAILURE | Unable to connect to print service. |
-| PRINT_ERROR_INVALID_PRINTER | Printer not in connected list. |
-| PRINT_ERROR_SERVER_FAILURE | Failed to create print job in print service. |
-| PRINT_ERROR_INVALID_PRINT_JOB | Unable to find job in job queue. |
+| PRINT_ERROR_NONE | Operation successful.|
+| PRINT_ERROR_NO_PERMISSION | Permission denied.|
+| PRINT_ERROR_RPC_FAILURE | Failed to connect to the print service.|
+| PRINT_ERROR_INVALID_PRINTER | Failed to find the printer in the connection list.|
+| PRINT_ERROR_SERVER_FAILURE | Failed to create a print job in the print service.|
+| PRINT_ERROR_INVALID_PRINT_JOB | Invalid print job.|
 
 ### OH_Print_RegisterPrinterChangeListener()
 
@@ -716,27 +716,27 @@ Print_ErrorCode OH_Print_RegisterPrinterChangeListener(Print_PrinterChangeCallba
 
 **Description**
 
-Registers a printer state change listener.
+Registers a listener to listen for the printer state changes.
 
-**Permission:** ohos.permission.PRINT
+**Required permissions**: ohos.permission.PRINT
 
-**System Capability:** SystemCapability.Print.PrintFramework
+**System capability**: SystemCapability.Print.PrintFramework
 
-**Since:** 12
+**Since**: 12
 
-**Parameters:**
+**Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| callback | Printer state change callback function. |
+| callback | Callback to be invoked when the printer state changes.|
 
-**Returns:**
+**Returns**
 
-| Error Code | Description |
+| Error Code| Description|
 | -------- | -------- |
-| PRINT_ERROR_NONE | Operation successful. |
-| PRINT_ERROR_NO_PERMISSION | Missing print permission. |
-| PRINT_ERROR_RPC_FAILURE | Unable to connect to print service. |
+| PRINT_ERROR_NONE | Operation successful.|
+| PRINT_ERROR_NO_PERMISSION | Permission denied.|
+| PRINT_ERROR_RPC_FAILURE | Failed to connect to the print service.|
 
 ### OH_Print_UnregisterPrinterChangeListener()
 
@@ -746,13 +746,13 @@ void OH_Print_UnregisterPrinterChangeListener();
 
 **Description**
 
-Unregisters the printer state change listener.
+Unregisters the listener used to listen for the printer state changes.
 
-**Permission:** ohos.permission.PRINT
+**Required permissions**: ohos.permission.PRINT
 
-**System Capability:** SystemCapability.Print.PrintFramework
+**System capability**: SystemCapability.Print.PrintFramework
 
-**Since:** 12
+**Since**: 12
 
 ### OH_Print_QueryPrinterList()
 
@@ -762,29 +762,29 @@ Print_ErrorCode OH_Print_QueryPrinterList(Print_StringList *printerIdList);
 
 **Description**
 
-Queries the list of added printers.
+Queries the printer list.
 
-**Permission:** ohos.permission.PRINT
+**Required permissions**: ohos.permission.PRINT
 
-**System Capability:** SystemCapability.Print.PrintFramework
+**System capability**: SystemCapability.Print.PrintFramework
 
-**Since:** 12
+**Since**: 12
 
-**Parameters:**
+**Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| printerIdList | Pointer to Print_StringList to store the queried printer ID list. |
+| printerIdList | Pointer to **Print_StringList** that stores the query result.|
 
-**Returns:**
+**Returns**
 
-| Error Code | Description |
+| Error Code| Description|
 | -------- | -------- |
-| PRINT_ERROR_NONE | Operation successful. |
-| PRINT_ERROR_NO_PERMISSION | Missing print permission. |
-| PRINT_ERROR_INVALID_PARAMETER | printerIdList is NULL. |
-| PRINT_ERROR_INVALID_PRINTER | Unable to query any connected printers. |
-| PRINT_ERROR_GENERIC_FAILURE | Unable to copy printer ID list. |
+| PRINT_ERROR_NONE | Operation successful.|
+| PRINT_ERROR_NO_PERMISSION | Permission denied.|
+| PRINT_ERROR_INVALID_PARAMETER | **printerIdList** is null.|
+| PRINT_ERROR_INVALID_PRINTER | Failed to query any connected printers.|
+| PRINT_ERROR_GENERIC_FAILURE | Failed to copy the printer ID list.|
 
 ### OH_Print_ReleasePrinterList()
 
@@ -794,17 +794,17 @@ void OH_Print_ReleasePrinterList(Print_StringList *printerIdList);
 
 **Description**
 
-Releases memory allocated for printer list query.
+Releases the memory allocated for querying the printer list.
 
-**System Capability:** SystemCapability.Print.PrintFramework
+**System capability**: SystemCapability.Print.PrintFramework
 
-**Since:** 12
+**Since**: 12
 
-**Parameters:**
+**Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| printerIdList | Printer ID list to be released. |
+| printerIdList | Printer ID list queried.|
 
 ### OH_Print_QueryPrinterInfo()
 
@@ -814,30 +814,30 @@ Print_ErrorCode OH_Print_QueryPrinterInfo(const char *printerId, Print_PrinterIn
 
 **Description**
 
-Queries printer information based on printer ID.
+Queries printer information based on the printer ID.
 
-**Permission:** ohos.permission.PRINT
+**Required permissions**: ohos.permission.PRINT
 
-**System Capability:** SystemCapability.Print.PrintFramework
+**System capability**: SystemCapability.Print.PrintFramework
 
-**Since:** 12
+**Since**: 12
 
-**Parameters:**
+**Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| printerId | Printer ID to query. |
-| printerInfo | Pointer to Print_PrinterInfo pointer to store printer information. |
+| printerId | Printer ID to be queried.|
+| printerInfo | Pointer to **Print_PrinterInfo** that stores the query result.|
 
-**Returns:**
+**Returns**
 
-| Error Code | Description |
+| Error Code| Description|
 | -------- | -------- |
-| PRINT_ERROR_NONE | Operation successful. |
-| PRINT_ERROR_NO_PERMISSION | Missing print permission. |
-| PRINT_ERROR_RPC_FAILURE | Unable to connect to print service. |
-| PRINT_ERROR_INVALID_PARAMETER | printerId or printerInfo is NULL. |
-| PRINT_ERROR_INVALID_PRINTER | Unable to find printer in connected printer list. |
+| PRINT_ERROR_NONE | Operation successful.|
+| PRINT_ERROR_NO_PERMISSION | Permission denied.|
+| PRINT_ERROR_RPC_FAILURE | Failed to connect to the print service.|
+| PRINT_ERROR_INVALID_PARAMETER | **printerId** or **printerInfo** is null.|
+| PRINT_ERROR_INVALID_PRINTER | Failed to find the printer in the connection list.|
 
 ### OH_Print_ReleasePrinterInfo()
 
@@ -847,17 +847,17 @@ void OH_Print_ReleasePrinterInfo(Print_PrinterInfo *printerInfo);
 
 **Description**
 
-Releases memory allocated for printer information query.
+Releases the memory allocated for querying the printer information.
 
-**System Capability:** SystemCapability.Print.PrintFramework
+**System capability**: SystemCapability.Print.PrintFramework
 
-**Since:** 12
+**Since**: 12
 
-**Parameters:**
+**Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| printerInfo | Pointer to queried printer information to be released. |
+| printerInfo | Pointer to the printer information.|
 
 ### OH_Print_LaunchPrinterManager()
 
@@ -867,18 +867,18 @@ Print_ErrorCode OH_Print_LaunchPrinterManager();
 
 **Description**
 
-Launches the system's printer management window.
+Launches the system printer manager.
 
-**System Capability:** SystemCapability.Print.PrintFramework
+**System capability**: SystemCapability.Print.PrintFramework
 
-**Since:** 12
+**Since**: 12
 
-**Returns:**
+**Returns**
 
-| Error Code | Description |
+| Error Code| Description|
 | -------- | -------- |
-| PRINT_ERROR_NONE | Operation successful. |
-| PRINT_ERROR_GENERIC_FAILURE | Unable to launch printer manager window. |
+| PRINT_ERROR_NONE | Operation successful.|
+| PRINT_ERROR_GENERIC_FAILURE | Failed to launch the printer manager.|
 
 ### OH_Print_QueryPrinterProperties()
 
@@ -890,31 +890,31 @@ Print_ErrorCode OH_Print_QueryPrinterProperties(const char *printerId,
 
 **Description**
 
-Queries printer property values based on property key list.
+Queries printer properties based on the property key list.
 
-**Permission:** ohos.permission.PRINT
+**Required permissions**: ohos.permission.PRINT
 
-**System Capability:** SystemCapability.Print.PrintFramework
+**System capability**: SystemCapability.Print.PrintFramework
 
-**Since:** 12
+**Since**: 12
 
-**Parameters:**
+**Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| printerId | Printer ID to query. |
-| propertyKeyList | List of property keys to query. |
-| propertyList | List of queried printer property values. |
+| printerId | Printer ID to be queried.|
+| propertyKeyList | List of property keys.|
+| propertyList | Property list used to store the query result.|
 
-**Returns:**
+**Returns**
 
-| Error Code | Description |
+| Error Code| Description|
 | -------- | -------- |
-| PRINT_ERROR_NONE | Operation successful. |
-| PRINT_ERROR_NO_PERMISSION | Missing print permission. |
-| PRINT_ERROR_INVALID_PARAMETER | One of the parameters is NULL or key list is empty. |
-| PRINT_ERROR_INVALID_PRINTER | Printer properties for specified printer not found. |
-| PRINT_ERROR_GENERIC_FAILURE | Unable to copy printer properties. |
+| PRINT_ERROR_NONE | Operation successful.|
+| PRINT_ERROR_NO_PERMISSION | Permission denied.|
+| PRINT_ERROR_INVALID_PARAMETER | The parameter is null or the key list is empty.|
+| PRINT_ERROR_INVALID_PRINTER | Failed to find printer properties.|
+| PRINT_ERROR_GENERIC_FAILURE | Failed to copy the printer properties.|
 
 ### OH_Print_ReleasePrinterProperties()
 
@@ -924,17 +924,17 @@ void OH_Print_ReleasePrinterProperties(Print_PropertyList *propertyList);
 
 **Description**
 
-Releases memory allocated for printer properties query.
+Releases the memory allocated for querying the printer properties.
 
-**System Capability:** SystemCapability.Print.PrintFramework
+**System capability**: SystemCapability.Print.PrintFramework
 
-**Since:** 12
+**Since**: 12
 
-**Parameters:**
+**Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| propertyList | Pointer to queried printer properties to be released. |
+| propertyList | Pointer to the property list.|
 
 ### OH_Print_UpdatePrinterProperties()
 
@@ -945,28 +945,28 @@ Print_ErrorCode OH_Print_UpdatePrinterProperties(const char *printerId,
 
 **Description**
 
-Sets printer properties based on property key-value pair list.
+Updates the printer properties based on the KV pairs.
 
-**Permission:** ohos.permission.PRINT
+**Required permissions**: ohos.permission.PRINT
 
-**System Capability:** SystemCapability.Print.PrintFramework
+**System capability**: SystemCapability.Print.PrintFramework
 
-**Since:** 12
+**Since**: 12
 
-**Parameters:**
+**Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| printerId | Printer ID to set. |
-| propertyList | List of printer property values to set. |
+| printerId | Printer ID to be set.|
+| propertyList | Property list to be set.|
 
-**Returns:**
+**Returns**
 
-| Error Code | Description |
+| Error Code| Description|
 | -------- | -------- |
-| PRINT_ERROR_NONE | Operation successful. |
-| PRINT_ERROR_NO_PERMISSION | Missing print permission. |
-| PRINT_ERROR_RPC_FAILURE | Unable to connect to print service. |
+| PRINT_ERROR_NONE | Operation successful.|
+| PRINT_ERROR_NO_PERMISSION | Permission denied.|
+| PRINT_ERROR_RPC_FAILURE | Failed to connect to the print service.|
 
 ### OH_Print_RestorePrinterProperties()
 
@@ -977,28 +977,28 @@ Print_ErrorCode OH_Print_RestorePrinterProperties(const char *printerId,
 
 **Description**
 
-Restores printer properties to default settings based on property key list.
+Restores printer properties to the default settings based on the property key list.
 
-**Permission:** ohos.permission.PRINT
+**Required permissions**: ohos.permission.PRINT
 
-**System Capability:** SystemCapability.Print.PrintFramework
+**System capability**: SystemCapability.Print.PrintFramework
 
-**Since:** 12
+**Since**: 12
 
-**Parameters:**
+**Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| printerId | Printer ID to restore. |
-| propertyKeyList | List of property keys to restore. |
+| printerId | Printer ID to be restored.|
+| propertyKeyList | Property list to be restored.|
 
-**Returns:**
+**Returns**
 
-| Error Code | Description |
+| Error Code| Description|
 | -------- | -------- |
-| PRINT_ERROR_NONE | Operation successful. |
-| PRINT_ERROR_NO_PERMISSION | Missing print permission. |
-| PRINT_ERROR_RPC_FAILURE | Unable to connect to print service. |
+| PRINT_ERROR_NONE | Operation successful.|
+| PRINT_ERROR_NO_PERMISSION | Permission denied.|
+| PRINT_ERROR_RPC_FAILURE | Failed to connect to the print service.|
 
 ### OH_Print_StartPrintByNative()
 
@@ -1010,26 +1010,26 @@ Print_ErrorCode OH_Print_StartPrintByNative(const char *printJobName,
 
 **Description**
 
-Starts print service.
+Starts printing.
 
-**Permission:** ohos.permission.PRINT
+**Required permissions**: ohos.permission.PRINT
 
-**System Capability:** SystemCapability.Print.PrintFramework
+**System capability**: SystemCapability.Print.PrintFramework
 
-**Since:** 13
+**Since**: 13
 
-**Parameters:**
+**Parameters**
 
-| Name | Description |
+| Name| Description|
 | -------- | -------- |
-| printJobName | Print job name. |
-| printDocCallback | Print document state callback. |
-| context | Caller application context. |
+| printJobName | Print job name.|
+| printDocCallback | Callback used to return the file state.|
+| context | Context of the caller.|
 
-**Returns:**
+**Returns**
 
-| Error Code | Description |
+| Error Code| Description|
 | -------- | -------- |
-| PRINT_ERROR_NONE | Operation successful. |
-| PRINT_ERROR_NO_PERMISSION | Missing print permission. |
-| PRINT_ERROR_RPC_FAILURE | Unable to connect to print service. |
+| PRINT_ERROR_NONE | Operation successful.|
+| PRINT_ERROR_NO_PERMISSION | Permission denied.|
+| PRINT_ERROR_RPC_FAILURE | Failed to connect to the print service.|

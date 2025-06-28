@@ -20,12 +20,12 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [MediaLibrary_RequestId](capi-medialibrary-requestid.md) | MediaLibrary_RequestId | 定义请求Id。<br>当请求媒体库资源时，会返回此类型。<br>请求Id可用于取消请求。 |
-| [OH_MediaAssetManager](capi-oh-mediaassetmanager.md) | OH_MediaAssetManager | 定义媒体资产管理器。<br>此结构提供了请求媒体库资源的能力。<br>如果创建失败，则返回空指针。 |
-| [OH_MediaAssetChangeRequest](capi-oh-mediaassetchangerequest.md) | OH_MediaAssetChangeRequest | 定义媒体资产更改请求。<br>此结构体提供了处理媒体资产更改请求的能力。 |
-| [OH_MovingPhoto](capi-oh-movingphoto.md) | OH_MovingPhoto | 定义动态照片。<br>此结构体提供了获取关于动态照片的信息的能力。 |
-| [OH_MediaAsset](capi-oh-mediaasset.md) | OH_MediaAsset | 定义媒体资产。<br>此结构体提供了封装文件资源属性的能力。 |
-| [MediaLibrary_RequestOptions](capi-medialibrary-requestoptions.md) | MediaLibrary_RequestOptions | 请求策略模式配置项。<br>此结构体为媒体资源请求策略模式配置项。 |
+| [MediaLibrary_RequestId](capi-mediaassetmanager-medialibrary-requestid.md) | MediaLibrary_RequestId | 定义请求Id。<br>当请求媒体库资源时，会返回此类型。<br>请求Id可用于取消请求。 |
+| [OH_MediaAssetManager](capi-mediaassetmanager-oh-mediaassetmanager.md) | OH_MediaAssetManager | 定义媒体资产管理器。<br>此结构提供了请求媒体库资源的能力。<br>如果创建失败，则返回空指针。 |
+| [OH_MediaAssetChangeRequest](capi-mediaassetmanager-oh-mediaassetchangerequest.md) | OH_MediaAssetChangeRequest | 定义媒体资产更改请求。<br>此结构体提供了处理媒体资产更改请求的能力。 |
+| [OH_MovingPhoto](capi-mediaassetmanager-oh-movingphoto.md) | OH_MovingPhoto | 定义动态照片。<br>此结构体提供了获取关于动态照片的信息的能力。 |
+| [OH_MediaAsset](capi-mediaassetmanager-oh-mediaasset.md) | OH_MediaAsset | 定义媒体资产。<br>此结构体提供了封装文件资源属性的能力。 |
+| [MediaLibrary_RequestOptions](capi-mediaassetmanager-medialibrary-requestoptions.md) | MediaLibrary_RequestOptions | 请求策略模式配置项。<br>此结构体为媒体资源请求策略模式配置项。 |
 
 ### 枚举
 
@@ -256,10 +256,10 @@ typedef void (*OH_MediaLibrary_OnImageDataPrepared)(MediaLibrary_ErrorCode resul
 | 参数项 | 描述 |
 | -- | -- |
 | [MediaLibrary_ErrorCode](#medialibrary_errorcode) result | 处理所请求资源的结果[MediaLibrary_ErrorCode](#medialibrary_errorcode)。 |
-| [MediaLibrary_RequestId](capi-medialibrary-requestid.md) requestId | 请求的[MediaLibrary_RequestId](capi-medialibrary-requestid.md)。 |
+| [MediaLibrary_RequestId](capi-mediaassetmanager-medialibrary-requestid.md) requestId | 请求的[MediaLibrary_RequestId](capi-mediaassetmanager-medialibrary-requestid.md)。 |
 |  [MediaLibrary_MediaQuality](capi-media-asset-base-capi-h.md#medialibrary_mediaquality) mediaQuality | 请求源的[MediaLibrary_MediaQuality](capi-media-asset-base-capi-h.md#medialibrary_mediaquality)。 |
 |  [MediaLibrary_MediaContentType](capi-media-asset-base-capi-h.md#medialibrary_mediacontenttype) type | 请求源的[MediaLibrary_MediaContentType](capi-media-asset-base-capi-h.md#medialibrary_mediacontenttype)。 |
-| [OH_ImageSourceNative](../apis-image-kit/capi-oh-imagesourcenative.md)* imageSourceNative | 当请求的图像源准备就绪时获取[OH_ImageSourceNative](../apis-image-kit/capi-oh-imagesourcenative.md)。 |
+| [OH_ImageSourceNative](../apis-image-kit/capi-image-nativemodule-oh-imagesourcenative.md)* imageSourceNative | 当请求的图像源准备就绪时获取[OH_ImageSourceNative](../apis-image-kit/capi-image-nativemodule-oh-imagesourcenative.md)。 |
 
 ### OH_MediaLibrary_OnMovingPhotoDataPrepared()
 
@@ -279,9 +279,9 @@ typedef void (*OH_MediaLibrary_OnMovingPhotoDataPrepared)(MediaLibrary_ErrorCode
 | 参数项 | 描述 |
 | -- | -- |
 | [MediaLibrary_ErrorCode](#medialibrary_errorcode) result | 处理所请求资源的结果[MediaLibrary_ErrorCode](capi-media-asset-base-capi-h.md#medialibrary_errorcode)。 |
-| [MediaLibrary_RequestId](capi-medialibrary-requestid.md) requestId | 请求的[MediaLibrary_RequestId](capi-medialibrary-requestid.md)。 |
+| [MediaLibrary_RequestId](capi-mediaassetmanager-medialibrary-requestid.md) requestId | 请求的[MediaLibrary_RequestId](capi-mediaassetmanager-medialibrary-requestid.md)。 |
 |  [MediaLibrary_MediaQuality](capi-media-asset-base-capi-h.md#medialibrary_mediaquality) mediaQuality | 请求资源的[MediaLibrary_MediaQuality](capi-media-asset-base-capi-h.md#medialibrary_mediaquality)。 |
 |  [MediaLibrary_MediaContentType](capi-media-asset-base-capi-h.md#medialibrary_mediacontenttype) type | 请求资源的[MediaLibrary_MediaContentType](capi-media-asset-base-capi-h.md#medialibrary_mediacontenttype)。 |
-| [OH_MovingPhoto](capi-oh-movingphoto.md)* movingPhoto | 当请求的动态图片准备就绪时获取[OH_MovingPhoto](capi-oh-movingphoto.md)。 |
+| [OH_MovingPhoto](capi-mediaassetmanager-oh-movingphoto.md)* movingPhoto | 当请求的动态图片准备就绪时获取[OH_MovingPhoto](capi-mediaassetmanager-oh-movingphoto.md)。 |
 
 

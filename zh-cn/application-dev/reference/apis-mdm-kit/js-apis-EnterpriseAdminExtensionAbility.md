@@ -102,7 +102,7 @@ onBundleAdded(bundleName: string, accountId: number): void
 
 ```ts
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
-  onBundleAdded(bundleName: string, accountId?: number) {
+  onBundleAdded(bundleName: string, accountId: number) {
     console.info(`Succeeded in calling onBundleAdded callback, added bundle name : ${bundleName}, accountId: ${accountId}`);
   }
 };
@@ -155,7 +155,7 @@ onBundleRemoved(bundleName: string, accountId: number): void
 
 ```ts
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
-  onBundleRemoved(bundleName: string, accountId?: number) {
+  onBundleRemoved(bundleName: string, accountId: number) {
     console.info(`Succeeded in calling onBundleRemoved callback, removed bundle name : ${bundleName}, accountId: ${accountId}`);
   }
 };
@@ -327,6 +327,62 @@ onAccountRemoved(accountId: number): void
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
   onAccountRemoved(accountId: number) {
     console.info(`Succeeded in calling onAccountRemoved callback, removed accountId: ${accountId}`);
+  }
+};
+```
+
+## EnterpriseAdminExtensionAbility.onKioskModeEntering<sup>20+</sup>
+
+onKioskModeEntering(bundleName: string, accountId: number): void
+
+应用进入Kiosk模式回调，回调中包含应用包名和用户ID。
+
+Kiosk模式为系统层面提供的一种应用运行模式，该模式下会将设备锁定在单个应用或者一组应用运行，同时对锁屏状态、状态栏、手势操作和关键功能进行控制，防止用户在设备上启动其它应用或执行其它操作。
+
+**系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填   | 说明      |
+| ----- | ----------------------------------- | ---- | ------- |
+| bundleName | string | 是    | 进入Kiosk模式应用的包名。 |
+| accountId | number | 是    | 进入Kiosk模式应用所在的用户ID。 |
+
+**示例：**
+
+```ts
+import { EnterpriseAdminExtensionAbility } from '@kit.MDMKit';
+
+export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
+  onKioskModeEntering(bundleName: string, accountId: number): void {
+    console.info(`Succeeded in calling onKioskModeEntering callback, bundleName:${bundleName}, accountId:${accountId}`);
+  }
+};
+```
+
+## EnterpriseAdminExtensionAbility.onKioskModeExiting<sup>20+</sup>
+
+onKioskModeExiting(bundleName: string, accountId: number): void
+
+应用退出Kiosk模式回调，回调中包含应用包名和用户ID。
+
+**系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填   | 说明      |
+| ----- | ----------------------------------- | ---- | ------- |
+| bundleName | string | 是    | 退出Kiosk模式应用的包名。 |
+| accountId | number | 是    | 退出Kiosk模式应用所在的用户ID。 |
+
+**示例：**
+
+```ts
+import { EnterpriseAdminExtensionAbility } from '@kit.MDMKit';
+
+export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
+  onKioskModeExiting(bundleName: string, accountId: number): void {
+    console.info(`Succeeded in calling onKioskModeExiting callback, bundleName:${bundleName}, accountId:${accountId}`);
   }
 };
 ```

@@ -9,6 +9,7 @@ Defines the page range.
 
 **Related module**: [OH_Print](_o_h___print.md)
 
+**Header file**: [ohprint.h](ohprint_8h.md)
 
 ## Summary
 
@@ -32,6 +33,7 @@ Defines the page range.
 uint32_t Print_Range::endPage
 ```
 **Description**
+
 Defines the end page to print.
 
 
@@ -41,6 +43,7 @@ Defines the end page to print.
 uint32_t* Print_Range::pagesArray
 ```
 **Description**
+
 Defines the pointer to the pages array.
 
 

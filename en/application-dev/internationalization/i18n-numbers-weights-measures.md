@@ -160,7 +160,7 @@ formattedNumber = halfCeilFormat.format(11.21); // formattedNumber = '$11.20'
 
 ### Number Range Formatting
 
-Number range formatting is implemented through the [formatRange](../reference/apis-localization-kit/js-apis-intl.md#formatrange-1) API of the [NumberFormat](../reference/apis-localization-kit/js-apis-intl.md#numberformat) class. The development procedure is as follows:
+Number range formatting is implemented through the [formatRange](../reference/apis-localization-kit/js-apis-intl.md#formatrange18) API of the [NumberFormat](../reference/apis-localization-kit/js-apis-intl.md#numberformat) class. The development procedure is as follows:
 
 1. Import the **intl** module.
    ```ts

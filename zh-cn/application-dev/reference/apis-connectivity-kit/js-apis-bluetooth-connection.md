@@ -669,7 +669,7 @@ setDevicePinCode(deviceId: string, code: string, callback: AsyncCallback&lt;void
 | 参数名    | 类型      | 必填   | 说明                               |
 | ------ | ------- | ---- | -------------------------------- |
 | deviceId | string  | 是    | 表示对端设备MAC地址，例如："XX:XX:XX:XX:XX:XX"。 |
-| code   | string  | 是    | 用户输入的PIN码。        |
+| code   | string  | 是    | 用户输入的PIN码，该字符串的字符个数范围为(0, 16]，例如："12345"。        |
 | callback   | AsyncCallback&lt;void&gt;  | 是    | 回调函数，当设置PinCode成功，err为undefined，否则为错误对象。        |
 
 **错误码**：
@@ -715,7 +715,7 @@ setDevicePinCode(deviceId: string, code: string): Promise&lt;void&gt;
 | 参数名    | 类型      | 必填   | 说明                               |
 | ------ | ------- | ---- | -------------------------------- |
 | deviceId | string  | 是    | 表示对端设备MAC地址，例如："XX:XX:XX:XX:XX:XX"。 |
-| code   | string  | 是    | 用户输入的PIN码。        |
+| code   | string  | 是    | 用户输入的PIN码，该字符串的字符个数范围为(0, 16]，例如："12345"。        |
 
 **返回值：**
 
@@ -771,7 +771,7 @@ setLocalName(name: string): void
 
 | 参数名  | 类型     | 必填   | 说明                    |
 | ---- | ------ | ---- | --------------------- |
-| name | string | 是    | 需要设置的蓝牙名称，名称长度范围为(0,248]，单位是字节。 |
+| name | string | 是    | 需要设置的蓝牙名称，名称长度范围：(0, 248]，单位：Byte。 |
 
 **错误码**：
 
@@ -813,7 +813,7 @@ setBluetoothScanMode(mode: ScanMode, duration: number): void
 | 参数名      | 类型                    | 必填   | 说明                           |
 | -------- | --------------------- | ---- | ---------------------------- |
 | mode     | [ScanMode](#scanmode) | 是    | 蓝牙扫描模式。当扫描模式为SCAN_MODE_GENERAL_DISCOVERABLE时，超出duration持续时间(不为0)，扫描模式会重新设置为SCAN_MODE_CONNECTABLE。               |
-| duration | number                | 是    | 设备可被发现的持续时间，单位为毫秒。设置为0则持续可发现。 |
+| duration | number                | 是    | 设备可被发现的持续时间，单位：ms。设置为0则表示持续可发现。 |
 
 **错误码**：
 
@@ -1020,7 +1020,7 @@ setRemoteDeviceName(deviceId: string, name: string): Promise&lt;void&gt;
 | 参数名      | 类型                                  | 必填   | 说明                                     |
 | -------- | ----------------------------------- | ---- | -------------------------------------- |
 | deviceId     | string                              | 是    | 表示对端设备MAC地址，例如："XX:XX:XX:XX:XX:XX"。 |
-| name | string | 是    | 修改对端设备名称，名称长度范围为(0,64]，单位是字节。    |
+| name | string | 是    | 修改对端设备名称，名称长度范围：(0, 64]，单位：Byte。    |
 
 **返回值：**
 
@@ -1828,6 +1828,6 @@ try {
 | 名称       | 类型   | 只读   | 可选   | 说明          |
 | -------- | ------ | ---- | ---- | ----------- |
 | deviceId    | string      | 否    | 否    | 扫描到的设备地址。<br>基于信息安全考虑，此处获取的设备地址为虚拟MAC地址。<br>- 若和该设备地址配对成功后，该地址不会变更。<br>- 若取消配对该设备或蓝牙关闭后，再次重新发起扫描，该虚拟地址会变更。<br>- 若要持久化保存该地址，可使用[access.addPersistentDeviceId](js-apis-bluetooth-access.md#accessaddpersistentdeviceid16)方法。|
-| rssi     | number      | 否    | 否    | 扫描到的设备信号强度，单位dBm。|
+| rssi     | number      | 否    | 否    | 扫描到的设备信号强度，单位：dBm。|
 | deviceName     | string      | 否    | 否    | 扫描到的设备名称。|
-| deviceClass     | DeviceClass      | 否    | 否    | 扫描到的设备的设备类型。|
+| deviceClass     | [DeviceClass](#deviceclass)      | 否    | 否    | 扫描到的设备类型。|

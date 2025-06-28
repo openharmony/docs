@@ -20,8 +20,8 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [OH_CryptoSymCipher](capi-oh-cryptosymcipher.md) | OH_CryptoSymCipher | 定义对称加解密结构体。 |
-| [OH_CryptoSymCipherParams](capi-oh-cryptosymcipherparams.md) | OH_CryptoSymCipherParams | 定义对称加解密参数结构体。 |
+| [OH_CryptoSymCipher](capi-cryptoasymcipherapi-oh-cryptosymcipher.md) | OH_CryptoSymCipher | 定义对称加解密结构体。 |
+| [OH_CryptoSymCipherParams](capi-cryptoasymcipherapi-oh-cryptosymcipherparams.md) | OH_CryptoSymCipherParams | 定义对称加解密参数结构体。 |
 
 ### 枚举
 
@@ -83,7 +83,7 @@ OH_Crypto_ErrCode OH_CryptoSymCipherParams_Create(OH_CryptoSymCipherParams **par
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoSymCipherParams](capi-oh-cryptosymcipherparams.md) **params | 指向对称加解密参数实例的指针。 |
+| [OH_CryptoSymCipherParams](capi-cryptoasymcipherapi-oh-cryptosymcipherparams.md) **params | 指向对称加解密参数实例的指针。 |
 
 **返回：**
 
@@ -108,9 +108,9 @@ OH_Crypto_ErrCode OH_CryptoSymCipherParams_SetParam(OH_CryptoSymCipherParams *pa
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoSymCipherParams](capi-oh-cryptosymcipherparams.md) *params | 指向对称密钥加解密参数实例。 |
+| [OH_CryptoSymCipherParams](capi-cryptoasymcipherapi-oh-cryptosymcipherparams.md) *params | 指向对称密钥加解密参数实例。 |
 | [CryptoSymCipher_ParamsType](#cryptosymcipher_paramstype) paramsType | 设置对称密钥加解密参数类型。 |
-| [Crypto_DataBlob](capi-crypto-datablob.md) *value | 设置的参数值。 |
+| [Crypto_DataBlob](capi-cryptocommonapi-crypto-datablob.md) *value | 设置的参数值。 |
 
 **返回：**
 
@@ -135,7 +135,7 @@ void OH_CryptoSymCipherParams_Destroy(OH_CryptoSymCipherParams *params)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoSymCipherParams](capi-oh-cryptosymcipherparams.md) *params | 指向对称密钥加解密参数实例。 |
+| [OH_CryptoSymCipherParams](capi-cryptoasymcipherapi-oh-cryptosymcipherparams.md) *params | 指向对称密钥加解密参数实例。 |
 
 ### OH_CryptoSymCipher_Create()
 
@@ -155,7 +155,7 @@ OH_Crypto_ErrCode OH_CryptoSymCipher_Create(const char *algoName, OH_CryptoSymCi
 | 参数项 | 描述 |
 | -- | -- |
 | const char *algoName | algoName 用于生成加密实例的算法名称。<br>例如"AES128\|GCM\|PKCS7"。 |
-| [OH_CryptoSymCipher](capi-oh-cryptosymcipher.md) **ctx | 指向对称密钥加密实例的指针。 |
+| [OH_CryptoSymCipher](capi-cryptoasymcipherapi-oh-cryptosymcipher.md) **ctx | 指向对称密钥加密实例的指针。 |
 
 **返回：**
 
@@ -180,10 +180,10 @@ OH_Crypto_ErrCode OH_CryptoSymCipher_Init(OH_CryptoSymCipher *ctx, Crypto_Cipher
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoSymCipher](capi-oh-cryptosymcipher.md) *ctx | 对称密钥加密实例。 |
+| [OH_CryptoSymCipher](capi-cryptoasymcipherapi-oh-cryptosymcipher.md) *ctx | 对称密钥加密实例。 |
 | [Crypto_CipherMode](capi-crypto-common-h.md#crypto_ciphermode) mod | 加解密模式。 |
-| [OH_CryptoSymKey](capi-oh-cryptosymkey.md) *key | 对称密钥。 |
-| [OH_CryptoSymCipherParams](capi-oh-cryptosymcipherparams.md) *params | 指向对称密钥参数实例。 |
+| [OH_CryptoSymKey](capi-cryptoasymkeyapi-oh-cryptosymkey.md) *key | 对称密钥。 |
+| [OH_CryptoSymCipherParams](capi-cryptoasymcipherapi-oh-cryptosymcipherparams.md) *params | 指向对称密钥参数实例。 |
 
 **返回：**
 
@@ -212,9 +212,9 @@ OH_Crypto_ErrCode OH_CryptoSymCipher_Update(OH_CryptoSymCipher *ctx, Crypto_Data
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoSymCipher](capi-oh-cryptosymcipher.md) *ctx | 指向对称密钥加解密实例。 |
-| [Crypto_DataBlob](capi-crypto-datablob.md) *in | 加密或者解密的数据。 |
-| [Crypto_DataBlob](capi-crypto-datablob.md) *out | 更新的结果。 |
+| [OH_CryptoSymCipher](capi-cryptoasymcipherapi-oh-cryptosymcipher.md) *ctx | 指向对称密钥加解密实例。 |
+| [Crypto_DataBlob](capi-cryptocommonapi-crypto-datablob.md) *in | 加密或者解密的数据。 |
+| [Crypto_DataBlob](capi-cryptocommonapi-crypto-datablob.md) *out | 更新的结果。 |
 
 **返回：**
 
@@ -243,9 +243,9 @@ OH_Crypto_ErrCode OH_CryptoSymCipher_Final(OH_CryptoSymCipher *ctx, Crypto_DataB
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoSymCipher](capi-oh-cryptosymcipher.md) *ctx | 对称密钥加密实例。 |
-| [Crypto_DataBlob](capi-crypto-datablob.md) *in | 要加密或解密的数据。 |
-| [Crypto_DataBlob](capi-crypto-datablob.md) *out | 返回剩余数据的加/解密结果。 |
+| [OH_CryptoSymCipher](capi-cryptoasymcipherapi-oh-cryptosymcipher.md) *ctx | 对称密钥加密实例。 |
+| [Crypto_DataBlob](capi-cryptocommonapi-crypto-datablob.md) *in | 要加密或解密的数据。 |
+| [Crypto_DataBlob](capi-cryptocommonapi-crypto-datablob.md) *out | 返回剩余数据的加/解密结果。 |
 
 **返回：**
 
@@ -274,7 +274,7 @@ const char *OH_CryptoSymCipher_GetAlgoName(OH_CryptoSymCipher *ctx)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoSymCipher](capi-oh-cryptosymcipher.md) *ctx | 指向对称密钥加解密实例。 |
+| [OH_CryptoSymCipher](capi-cryptoasymcipherapi-oh-cryptosymcipher.md) *ctx | 指向对称密钥加解密实例。 |
 
 **返回：**
 
@@ -299,6 +299,6 @@ void OH_CryptoSymCipher_Destroy(OH_CryptoSymCipher *ctx)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoSymCipher](capi-oh-cryptosymcipher.md) *ctx | 指向对称密钥加解密实例。 |
+| [OH_CryptoSymCipher](capi-cryptoasymcipherapi-oh-cryptosymcipher.md) *ctx | 指向对称密钥加解密实例。 |
 
 

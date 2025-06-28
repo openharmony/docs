@@ -13,7 +13,7 @@
 ## 场景介绍
 
 MindSpore Lite AI模型部署流程是：
-1. 开发者首先将原始模型（如：ONNX、CAFFE等）用MindSpore Lite模型转换工具，生成后缀为.ms的模型文件；
+1. 开发者首先将原始模型（如：ONNX、CAFFE等）用MindSpore Lite模型转换工具，生成后缀为.ms的模型文件。MindSpore Lite Kit所支持的ONNX算子，可查询[MindSpore Lite Kit算子支持列表](mindspore-lite-supported-operators.md)，以确保模型转换成功。
 2. 然后在代码中调用MindSpore Lite推理引擎接口，执行[模型推理](mindspore-lite-guidelines.md)。
 
 ## 环境准备
@@ -26,11 +26,17 @@ MindSpore Lite AI模型部署流程是：
 
 | 组件                                                    | 硬件平台 | 操作系统     | 链接                                                         | SHA-256                                                      |
 | ------------------------------------------------------- | -------- | ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| 端侧推理和训练benchmark工具、converter工具、cropper工具 | CPU      | Linux-x86_64 | [mindspore-lite-2.1.0-linux-x64.tar.gz](https://ms-release.obs.cn-north-4.myhuaweicloud.com/2.1.0/MindSpore/lite/release/linux/x86_64/mindspore-lite-2.1.0-linux-x64.tar.gz) | b267e5726720329200389e47a178c4f882bf526833b714ba6e630c8e2920fe89 |
+| 端侧推理和训练benchmark工具、converter工具、cropper工具 | CPU      | Linux-x86_64 | [mindspore-lite-2.3.0-linux-x64.tar.gz](https://ms-release.obs.cn-north-4.myhuaweicloud.com/2.3.0/MindSpore/lite/release/linux/x86_64/mindspore-lite-2.3.0-linux-x64.tar.gz) | 060d698a171b52c38b64c8d65927816daf4b81d8e2b5069718aeb91a9f8a154c |
 
 > **说明：**
 >
-> 由于支持转换PyTorch模型的编译选项默认关闭，因此下载的安装包不支持转换PyTorch模型，只能通过源码编译方式获取。
+> 1. 由于支持转换PyTorch模型的编译选项默认关闭，因此下载的安装包不支持转换PyTorch模型，只能通过源码编译方式获取。
+>
+> 2. 在以下情况进行模型转换时，需要通过源码编译方式获取。
+>    
+>    自定义关闭clip算子融合优化功能；
+>    
+>    模型中有transpose与convolution算子融合。
 
 #### 通过源码编译
 

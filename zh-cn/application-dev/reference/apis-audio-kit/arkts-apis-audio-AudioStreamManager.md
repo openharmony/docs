@@ -7,6 +7,12 @@
 
 在使用AudioStreamManager的接口之前，需先通过[getStreamManager](arkts-apis-audio-AudioManager.md#getstreammanager9)获取AudioStreamManager实例。
 
+## 导入模块
+
+```ts
+import { audio } from '@kit.AudioKit';
+```
+
 ## getCurrentAudioRendererInfoArray<sup>9+</sup>
 
 getCurrentAudioRendererInfoArray(callback: AsyncCallback&lt;AudioRendererChangeInfoArray&gt;): void
@@ -753,5 +759,47 @@ try {
 } catch (err) {
   let error = err as BusinessError;
   console.error(`isAcousticEchoCancelerSupported ERROR: ${error}`);
+}
+```
+
+## isAudioLoopbackSupported<sup>20+</sup>
+
+isAudioLoopbackSupported(mode: AudioLoopbackMode): boolean
+
+查询传入的音频返听模式是否支持音频返听。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+**参数：**
+
+| 参数名    | 类型                                | 必填     | 说明                         |
+| -------- | ----------------------------------- | -------- | --------------------------- |
+| mode     | [AudioLoopbackMode](arkts-apis-audio-e.md#audioloopbackmode20)         | 是     |  音频返听模式。               |
+
+**返回值：**
+
+| 类型                                                                      | 说明                                    |
+| --------------------------------------------------------------------------| --------------------------------------- |
+|  boolean     | 是否支持音频返听。true表示支持，false表示不支持。        |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | Parameter verification failed.              |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let isSupported = audioStreamManager.isAudioLoopbackSupported(audio.AudioLoopbackMode.HARDWARE);
+  console.info(`[Audio loopback Support] mode: ${audio.AudioLoopbackMode.HARDWARE}, Status: ${isSupported}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`isAudioLoopbackSupported ERROR: ${error}`);
 }
 ```

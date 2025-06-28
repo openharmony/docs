@@ -6,11 +6,17 @@
 
 图像元数据类，用于存储图像的元数据。目前支持的元数据类型可参考[MetadataType](arkts-apis-image-e.md#metadatatype13)。
 
+## 导入模块
+
+```ts
+import { image } from '@kit.ImageKit';
+```
+
 ## getProperties<sup>13+</sup>
 
 getProperties(key: Array\<string>): Promise\<Record\<string, string | null>>
 
-获取图像中属性的值，使用Promise形式返回。如要查询属性值信息请参考[PropertyKey](arkts-apis-image-e.md#propertykey7)和[FragmentMapPropertyKey](arkts-apis-image-e.md#fragmentmappropertykey13)。
+获取图像中属性的值，使用Promise形式返回。如要查询属性值信息请参考[PropertyKey](arkts-apis-image-e.md#propertykey7)、[FragmentMapPropertyKey](arkts-apis-image-e.md#fragmentmappropertykey13)和[GifPropertyKey](arkts-apis-image-e.md#gifpropertykey20)。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -68,7 +74,7 @@ async function GetProperties(context: Context) {
 
 setProperties(records: Record\<string, string | null>): Promise\<void>
 
-批量设置图片元数据中的指定属性的值，使用Promise形式返回。如要查询属性值信息请参考[PropertyKey](arkts-apis-image-e.md#propertykey7)和[FragmentMapPropertyKey](arkts-apis-image-e.md#fragmentmappropertykey13)。
+批量设置图片元数据中的指定属性的值，使用Promise形式返回。如要查询属性值信息请参考[PropertyKey](arkts-apis-image-e.md#propertykey7)、[FragmentMapPropertyKey](arkts-apis-image-e.md#fragmentmappropertykey13)和[GifPropertyKey](arkts-apis-image-e.md#gifpropertykey20)。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -130,7 +136,7 @@ async function SetProperties(context: Context) {
 
 getAllProperties(): Promise\<Record<string, string | null>>
 
-获取图片中所有元数据的属性和值，使用Promise形式返回。如要查询属性值信息请参考[PropertyKey](arkts-apis-image-e.md#propertykey7)和[FragmentMapPropertyKey](arkts-apis-image-e.md#fragmentmappropertykey13)。
+获取图片中所有元数据的属性和值，使用Promise形式返回。如要查询属性值信息请参考[PropertyKey](arkts-apis-image-e.md#propertykey7)、[FragmentMapPropertyKey](arkts-apis-image-e.md#fragmentmappropertykey13)和[GifPropertyKey](arkts-apis-image-e.md#gifpropertykey20)。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 

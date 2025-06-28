@@ -85,6 +85,7 @@ HUKS提供了完备的密钥访问控制能力，以保证存储在HUKS中的密
 - HUKS_USER_AUTH_TYPE_PIN，即锁屏密码。简写为PIN。
 - HUKS_USER_AUTH_TYPE_FACE，即生物特征（人脸）。简写为FACE。
 - HUKS_USER_AUTH_TYPE_FINGERPRINT，即生物特征（指纹）。简写为FINGERPRINT。
+<!--RP1--><!--RP1End-->
 
 安全访问控制类型简写为：
 - HUKS_AUTH_ACCESS_INVALID_CLEAR_PASSWORD，即清除锁屏密码后，密钥永久失效。简写为INVALID_CLEAR_PASSWORD。
@@ -112,4 +113,5 @@ HUKS提供了完备的密钥访问控制能力，以保证存储在HUKS中的密
 | PIN  \|  FINGERPRINT           | ALWAYS_VALID           | 当前支持锁屏密码或指纹进行身份认证，密钥永久有效。    |
 | FACE  \|  FINGERPRINT          | ALWAYS_VALID           | 当前支持人脸或指纹进行身份认证，密钥永久有效。    |
 | PIN  \|  FACE  \|  FINGERPRINT | ALWAYS_VALID           | 当前支持锁屏密码、人脸或指纹进行身份认证，密钥永久有效。    |
+<!--RP2--><!--RP2End-->
 

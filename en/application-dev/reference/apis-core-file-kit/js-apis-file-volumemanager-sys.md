@@ -734,15 +734,15 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 **System capability**: SystemCapability.FileManagement.StorageService.Volume
 
-### Properties
+### Attributes
 
-| Name        | Type   | Read-Only  | Writable  | Description                |
+| Name        | Type   | Read-Only  | Optional  | Description                |
 | ----------- | ------- | ------- | ----- | -------------------- |
-| id          | string  | Yes| No| Volume ID, in the vol-{Primary device ID}-{Secondary device ID} format. The primary device IDs identify devices of different types. The secondary device IDs identify different devices of the same type. The volume IDs vary depending on the card insertion sequence.                |
-| uuid        | string  | Yes| No| Volume UUID, which uniquely identifies a volume irrespective of the card insertion sequence. However, the UUID of a volume will change after the volume is formatted.              |
-| diskId      | string  | Yes| No| ID of the disk to which the volume belongs. A disk can have one or more volumes. The disk ID is in the disk-{Primary device ID}-{Secondary device ID} format, which is similar to the volume ID.       |
-| description | string  | Yes| No| Description of the volume.          |
-| removable   | boolean | Yes| No| Whether the volume can be removed. Currently, only removable storage devices are supported. The value **true** means the device can be removed; the value **false** means the opposite.|
-| state       | number  | Yes| No| Volume status.<br>**0**: The volume is unmounted.<br> **1**: The volume is being checked.<br> **2**: The volume is mounted.<br> **3**: The volume is being ejected.         |
-| path        | string  | Yes| No| Path of the volume mounted. Generally, the path is **/mnt/data/external/{uuid}**.        |
-| fsType<sup>12+</sup>        | string  | Yes| No| File system type. Common file systems are **ext2**, **vfat**, and **NTFS**.      |
+| id          | string  | No| No| Volume ID, in the vol-{Primary device ID}-{Secondary device ID} format. The primary device IDs identify devices of different types. The secondary device IDs identify different devices of the same type. The volume IDs vary depending on the card insertion sequence.                |
+| uuid        | string  | No| No| Volume UUID, which uniquely identifies a volume irrespective of the card insertion sequence. However, the UUID of a volume will change after the volume is formatted.              |
+| diskId      | string  | No| No| ID of the disk to which the volume belongs. A disk can have one or more volumes. The disk ID is in the disk-{Primary device ID}-{Secondary device ID} format, which is similar to the volume ID.       |
+| description | string  | No| No| Description of the volume.          |
+| removable   | boolean | No| No| Whether the volume can be removed. Currently, only removable storage devices are supported. The value **true** means the device can be removed; the value **false** means the opposite.|
+| state       | number  | No| No| Volume status.<br>**0**: The volume is unmounted.<br> **1**: The volume is being checked.<br> **2**: The volume is mounted.<br> **3**: The volume is being ejected.         |
+| path        | string  | No| No| Path of the volume mounted. Generally, the path is **/mnt/data/external/{uuid}**.        |
+| fsType<sup>12+</sup>        | string  | No| No| File system type. Common file systems are **ext2**, **vfat**, and **NTFS**.      |

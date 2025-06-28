@@ -1,6 +1,6 @@
 # @ohos.multimodalInput.inputConsumer (Global Shortcut Keys)
 
-The **inputConsumer** module provides APIs for subscribing to and unsubscribing from global shortcut keys. 
+The **inputConsumer** module implements listening for combination key events as well as listening and interception for volume key events.
 
 > **NOTE**
 >
@@ -22,11 +22,11 @@ Defines shortcut key options.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputConsumer
 
-| Name       | Type  | Readable  | Writable  | Description     |
+| Name       | Type  | Read-Only  | Optional  | Description     |
 | --------- | ------ | ------- | ------- | ------- |
-| preKeys   | Array&lt;number&gt; | Yes     | No     | Modifier key set (including Ctrl, Shift, and Alt). A maximum of two modifier keys are supported. There is no requirement on the sequence of modifier keys.<br>For example, in **Ctrl+Shift+Esc**, **Ctrl** and **Shift** are modifier keys.|
-| finalKey  | number  | Yes     | No     | Modified key, which can be any key except the modifier keys and Meta key. For details about the keys, see [Keycode](js-apis-keycode.md).<br>For example, in **Ctrl+Shift+Esc**, **Esc** is the modified key.|
-| isRepeat  | boolean  | Yes     | No     | Whether to report repeated key events. The value **true** means to report repeated key events, and the value **false** means the opposite. The default value is **true**.|
+| preKeys   | Array&lt;number&gt; | No     | No     | Modifier key set (including Ctrl, Shift, and Alt). A maximum of two modifier keys are supported. There is no requirement on the sequence of modifier keys.<br>For example, in **Ctrl+Shift+Esc**, **Ctrl** and **Shift** are modifier keys.|
+| finalKey  | number  | No     | No     | Modified key, which can be any key except the modifier keys and Meta key. For details about the keys, see [Keycode](js-apis-keycode.md).<br>For example, in **Ctrl+Shift+Esc**, **Esc** is the modified key.|
+| isRepeat  | boolean  | No     | Yes     | Whether to report repeated key events. The value **true** means to report repeated key events, and the value **false** means the opposite. The default value is **true**.|
 
 ## KeyPressedConfig<sup>16+</sup>
 
@@ -34,11 +34,11 @@ Sets the key event consumption configuration.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputConsumer
 
-| Name       | Type  | Readable  | Writable  | Description     |
+| Name       | Type  | Read-Only  | Optional  | Description     |
 | --------- | ------ | ------- | ------- | ------- |
-| key       | number  | Yes     | No     | Key value.<br>Currently, only the [KEYCODE_VOLUME_UP](js-apis-keycode.md#keycode) and [KEYCODE_VOLUME_DOWN](js-apis-keycode.md#keycode) keys are supported.|
-| action    | number  | Yes     | No     | Key event type. Currently, this parameter can only be set to **1**, indicating key press.|
-| isRepeat  | boolean  | Yes     | No     | Whether to report repeated key events. The value **true** means to report repeated key events, and the value **false** means the opposite. The default value is **true**.|
+| key       | number  | No     | No     | Key value.<br>Currently, only the [KEYCODE_VOLUME_UP](js-apis-keycode.md#keycode) and [KEYCODE_VOLUME_DOWN](js-apis-keycode.md#keycode) keys are supported.|
+| action    | number  | No     | No     | Key event type. Currently, this parameter can only be set to **1**, indicating key press.|
+| isRepeat  | boolean  | No     | No     | Whether to report repeated key events. The value **true** means to report repeated key events, and the value **false** means the opposite. The default value is **true**.|
 
 ## inputConsumer.getAllSystemHotkeys
 
@@ -182,7 +182,9 @@ try {
 
 on(type: 'keyPressed', options: KeyPressedConfig, callback: Callback&lt;KeyEvent&gt;): void
 
-Subscribes to key press events. This API uses an asynchronous callback to return the result. If the current application is in the foreground focus window, a callback is triggered when the specified key is pressed.
+Subscribes to key press events. This API uses an asynchronous callback to return the result. If the current application is in the foreground focus window, a callback is triggered when the specified key is pressed. This API is available only for mobile phones and tablets.
+
+If the API call is successful, the system's default response to the key event will be intercepted; that is, system-level actions, such as volume adjustment, will no longer be triggered. To restore the system response, call [off](#inputconsumeroffkeypressed16) to disable listening for the key event.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputConsumer
 
@@ -224,7 +226,7 @@ try {
 
 off(type: 'keyPressed', callback?: Callback&lt;KeyEvent&gt;): void
 
-Unsubscribes from key press events. This API uses an asynchronous callback to return the result.
+Disables listening for the **keyPressed** event. This API uses an asynchronous callback to return the result. If the API call is successful, the system's default response to the key event will be resumed; that is, system-level actions, such as volume adjustment, will be triggered normally. This API is available only for mobile phones and tablets.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputConsumer
 

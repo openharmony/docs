@@ -6,6 +6,12 @@
 
 预览输出类。继承[CameraOutput](arkts-apis-camera-CameraOutput.md)。
 
+## 导入模块
+
+```ts
+import { camera } from '@kit.CameraKit';
+```
+
 ## on('frameStart')
 
 on(type: 'frameStart', callback: AsyncCallback\<void\>): void

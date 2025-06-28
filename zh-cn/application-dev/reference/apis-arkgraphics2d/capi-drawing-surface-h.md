@@ -45,15 +45,15 @@ OH_Drawing_Surface* OH_Drawing_SurfaceCreateFromGpuContext(OH_Drawing_GpuContext
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_GpuContext](capi-oh-drawing-gpucontext.md)* gpuContext | 指向图形处理器上下文对象的指针[OH_Drawing_GpuContext](capi-oh-drawing-gpucontext.md)。 |
+| [OH_Drawing_GpuContext](capi-drawing-oh-drawing-gpucontext.md)* gpuContext | 指向图形处理器上下文对象的指针[OH_Drawing_GpuContext](capi-drawing-oh-drawing-gpucontext.md)。 |
 | bool flag | 用于控制内存分配是否计入缓存预算。true则计入高速缓存预算，false则不计入高速缓存预算。 |
-| [OH_Drawing_Image_Info](capi-oh-drawing-image-info.md) imageInfo | 图片信息[OH_Drawing_Image_Info](capi-oh-drawing-image-info.md)结构体。 |
+| [OH_Drawing_Image_Info](capi-drawing-oh-drawing-image-info.md) imageInfo | 图片信息[OH_Drawing_Image_Info](capi-drawing-oh-drawing-image-info.md)结构体。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_Surface](capi-oh-drawing-surface.md)* | 返回一个指针，指针指向创建的surface对象[OH_Drawing_Surface](capi-oh-drawing-surface.md)。 |
+| [OH_Drawing_Surface](capi-drawing-oh-drawing-surface.md)* | 返回一个指针，指针指向创建的surface对象[OH_Drawing_Surface](capi-drawing-oh-drawing-surface.md)。 |
 
 ### OH_Drawing_SurfaceCreateOnScreen()
 
@@ -74,15 +74,15 @@ OH_Drawing_Surface* OH_Drawing_SurfaceCreateOnScreen(OH_Drawing_GpuContext* gpuC
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_GpuContext](capi-oh-drawing-gpucontext.md)* gpuContext | 指向图形处理器上下文对象的指针[OH_Drawing_GpuContext](capi-oh-drawing-gpucontext.md)。<br>该图形处理器上下文对象必须由[OH_Drawing_GpuContextCreate](capi-drawing-gpu-context-h.md#oh_drawing_gpucontextcreate)创建，否则surface对象会创建失败。 |
-| [OH_Drawing_Image_Info](capi-oh-drawing-image-info.md) imageInfo | 图片信息[OH_Drawing_Image_Info](capi-oh-drawing-image-info.md)结构体。 |
+| [OH_Drawing_GpuContext](capi-drawing-oh-drawing-gpucontext.md)* gpuContext | 指向图形处理器上下文对象的指针[OH_Drawing_GpuContext](capi-drawing-oh-drawing-gpucontext.md)。<br>该图形处理器上下文对象必须由[OH_Drawing_GpuContextCreate](capi-drawing-gpu-context-h.md#oh_drawing_gpucontextcreate)创建，否则surface对象会创建失败。 |
+| [OH_Drawing_Image_Info](capi-drawing-oh-drawing-image-info.md) imageInfo | 图片信息[OH_Drawing_Image_Info](capi-drawing-oh-drawing-image-info.md)结构体。 |
 | void* window | 指向屏幕窗口对象的指针。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_Surface](capi-oh-drawing-surface.md)* | 返回一个指针，指针指向创建的surface对象[OH_Drawing_Surface](capi-oh-drawing-surface.md)。 |
+| [OH_Drawing_Surface](capi-drawing-oh-drawing-surface.md)* | 返回一个指针，指针指向创建的surface对象[OH_Drawing_Surface](capi-drawing-oh-drawing-surface.md)。 |
 
 ### OH_Drawing_SurfaceGetCanvas()
 
@@ -103,13 +103,13 @@ OH_Drawing_Canvas* OH_Drawing_SurfaceGetCanvas(OH_Drawing_Surface* surface)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Surface](capi-oh-drawing-surface.md)* surface | 指向创建的surface对象的指针。 |
+| [OH_Drawing_Surface](capi-drawing-oh-drawing-surface.md)* surface | 指向创建的surface对象的指针。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* | 返回一个指针，指针指向创建的画布对象[OH_Drawing_Canvas](capi-oh-drawing-canvas.md)。返回的指针不需要由调用者管理。 |
+| [OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)* | 返回一个指针，指针指向创建的画布对象[OH_Drawing_Canvas](capi-drawing-oh-drawing-canvas.md)。返回的指针不需要由调用者管理。 |
 
 ### OH_Drawing_SurfaceFlush()
 
@@ -130,7 +130,7 @@ OH_Drawing_ErrorCode OH_Drawing_SurfaceFlush(OH_Drawing_Surface* surface)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Surface](capi-oh-drawing-surface.md)* surface | 指向创建的surface对象的指针[OH_Drawing_Surface](capi-oh-drawing-surface.md)。该surface对象必须由[OH_Drawing_SurfaceCreateOnScreen](capi-drawing-surface-h.md#oh_drawing_surfacecreateonscreen)创建，否则该接口调用将没有任何效果。 |
+| [OH_Drawing_Surface](capi-drawing-oh-drawing-surface.md)* surface | 指向创建的surface对象的指针[OH_Drawing_Surface](capi-drawing-oh-drawing-surface.md)。该surface对象必须由[OH_Drawing_SurfaceCreateOnScreen](capi-drawing-surface-h.md#oh_drawing_surfacecreateonscreen)创建，否则该接口调用将没有任何效果。 |
 
 **返回：**
 
@@ -157,6 +157,6 @@ void OH_Drawing_SurfaceDestroy(OH_Drawing_Surface* surface)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Surface](capi-oh-drawing-surface.md)* surface | 指向创建的surface对象的指针。 |
+| [OH_Drawing_Surface](capi-drawing-oh-drawing-surface.md)* surface | 指向创建的surface对象的指针。 |
 
 

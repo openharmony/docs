@@ -1,10 +1,10 @@
 # @ohos.util.HashSet (Nonlinear Container HashSet)
 
-**HashSet** is implemented based on [HashMap](js-apis-hashmap.md). In **HashSet**, only the **value** object is processed.
+HashSet is implemented based on [HashMap](js-apis-hashmap.md). In HashSet, only the **value** object is processed.
 
-Unlike [TreeSet](js-apis-treeset.md), which stores and accesses data in sorted order, **HashSet** stores data in a random order. This means that **HashSet** may use a different order when storing and accessing elements. Both of them allow only unique elements. However, null values are allowed in **HashSet**, but not in **TreeSet**, because null values may affect the order of elements in the container.
+Unlike [TreeSet](js-apis-treeset.md), which stores and accesses data in sorted order, HashSet stores data in a random order. This means that HashSet may use a different order when storing and accessing elements. Both of them allow only unique elements. However, null values are allowed in HashSet, but not in TreeSet, because null values may affect the order of elements in the container.
 
-**Recommended use case**: Use **HashSet** when you need a set that has only unique elements or need to deduplicate a set.
+**Recommended use case**: Use HashSet when you need a set that has only unique elements or need to deduplicate a set.
 
 This topic uses the following to identify the use of generics:
 - T: Type
@@ -22,7 +22,7 @@ import { HashSet } from '@kit.ArkTS';
 
 ## HashSet
 
-### Attributes
+### Properties
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -30,7 +30,7 @@ import { HashSet } from '@kit.ArkTS';
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| length | number | Yes| No| Number of elements in a hash set (called container later).|
+| length | number | Yes| No| Number of elements in a HashSet.|
 
 **Example**
 
@@ -73,7 +73,7 @@ let hashSet: HashSet<number> = new HashSet();
 
 isEmpty(): boolean
 
-Checks whether this container is empty (contains no element).
+Checks whether this HashSet is empty (contains no element).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -83,7 +83,7 @@ Checks whether this container is empty (contains no element).
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the container is empty; returns **false** otherwise.|
+| boolean | Check result. The value **true** is returned if the HashSet is empty; otherwise, **false** is returned.|
 
 **Error codes**
 
@@ -105,7 +105,7 @@ let result = hashSet.isEmpty();
 
 has(value: T): boolean
 
-Checks whether this container contains the specified element.
+Checks whether this HashSet has the specified element.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -121,7 +121,7 @@ Checks whether this container contains the specified element.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the specified element is contained; returns **false** otherwise.|
+| boolean | Operation result. The value **true** is returned if the specified element is contained; otherwise, **false** is returned.|
 
 **Error codes**
 
@@ -145,7 +145,7 @@ let result = hashSet.has("squirrel");
 
 add(value: T): boolean
 
-Adds an element to this container.
+Adds an element to this HashSet.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -161,7 +161,7 @@ Adds an element to this container.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the element is added successfully; returns **false** otherwise.|
+| boolean | Operation result. The value **true** is returned if the element is added; otherwise, **false** is returned.|
 
 **Error codes**
 
@@ -184,7 +184,7 @@ let result = hashSet.add("squirrel");
 
 remove(value: T): boolean
 
-Removes an element from this container.
+Removes an element from this HashSet.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -200,7 +200,7 @@ Removes an element from this container.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the element is removed successfully; returns **false** otherwise.|
+| boolean | Operation result. The value **true** is returned if the element is removed; otherwise, **false** is returned.|
 
 **Error codes**
 
@@ -225,7 +225,7 @@ let result = hashSet.remove("sparrow");
 
 clear(): void
 
-Clears this container and sets its length to **0**.
+Clears this HashSet and sets its length to **0**.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -253,7 +253,7 @@ hashSet.clear();
 
 values(): IterableIterator&lt;T&gt;
 
-Obtains an iterator that contains all the values in this container.
+Returns an iterator that contains all the values in this HashSet.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -292,7 +292,7 @@ while(!temp.done) {
 
 forEach(callbackFn: (value?: T, key?: T, set?: HashSet&lt;T&gt;) => void, thisArg?: Object): void
 
-Uses a callback to traverse the elements in this container and obtain their position indexes.
+Uses a callback to traverse the elements in this HashSet and obtain their position indexes.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -302,10 +302,10 @@ Uses a callback to traverse the elements in this container and obtain their posi
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callbackFn | function | Yes| Callback invoked to traverse the elements in the container.|
+| callbackFn | function | Yes| Callback invoked to traverse the elements in the HashSet.|
 | thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. The default value is this instance.|
 
-callbackFn
+callbackFn parameters
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | T | No| Value of the element that is currently traversed. The default value is the value of the first key-value pair.|
@@ -345,7 +345,7 @@ for(let i = 0;i < 10; i++) {
 ### entries
 entries(): IterableIterator<[T, T]>
 
-Obtains an iterator that contains all the elements in this container.
+Returns an iterator that contains all the elements in this HashSet.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -394,7 +394,7 @@ for(let i = 0;i < 10; i++) {
 
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
-Obtains an iterator, each item of which is a JavaScript object.
+Returns an iterator, each item of which is a JavaScript object.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -422,7 +422,7 @@ hashSet.add("squirrel");
 hashSet.add("sparrow");
 
 // Method 1:
-let val: Array<string> = Array.from(hashSet.values())
+let val: Array<string> = Array.from(hashSet.values());
 for (let item of val) {
   console.log("value: " + item);
 }

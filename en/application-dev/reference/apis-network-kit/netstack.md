@@ -15,8 +15,8 @@ Provides C APIs for the network protocol stack module.
 
 | Name| Description| 
 | -------- | -------- |
-| [net_ssl_c.h](net__ssl__c_8h.md) | Defines C APIs for the SSL/TLS certificate chain verification module.<br>**File to include**: \<network\/netstack\/net_ssl\/net_ssl_c.h\>| 
-| [net_ssl_c_type.h](net__ssl__c__type_8h.md) | Defines data structures for the C APIs of the SSL/TLS certificate chain verification module. **File to include**:  \<network\/netstack\/net_ssl\/net_ssl_c_type.h\>| 
+| [net_ssl_c.h](net__ssl__c_8h.md) | Defines C APIs for the SSL/TLS certificate chain verification module. **File to include**: \<network\/netstack\/net_ssl\/net_ssl_c.h\>| 
+| [net_ssl_c_type.h](net__ssl__c__type_8h.md) | Defines data structures for the C APIs of the SSL/TLS certificate chain verification module. **File to include**: \<network\/netstack\/net_ssl\/net_ssl_c_type.h\>| 
 | [net_websocket.h](net__websocket_8h.md) | Defines C APIs for the WebSocket client module. **File to include**: \<network\/netstack\/net_websocket.h\>| 
 | [net_websocket_type.h](net__websocket__type_8h.md) | Defines data structures for the C APIs of the WebSocket client module. **File to include**: \<network\/net_websocket_type.h\>| 
 
@@ -68,6 +68,8 @@ Provides C APIs for the network protocol stack module.
 | [OH_NetStack_GetPinSetForHostName](#oh_netstack_getpinsetforhostname)(const char \*hostname, [NetStack_CertificatePinning](_net_stack___certificate_pinning.md) \*pin) | Obtains the certificate lock information.|
 | [OH_NetStack_GetCertificatesForHostName](#oh_netstack_getcertificatesforhostname)(const char \*hostname, [NetStack_Certificates](_net_stack___certificates.md) \*certs) | Obtains certificate information.|
 | [OH_Netstack_DestroyCertificatesContent](#oh_netstack_destroycertificatescontent)([NetStack_Certificates](_net_stack___certificates.md) \*certs) | Releases the certificate content.|
+| [OH_Netstack_IsCleartextPermitted](#oh_netstack_iscleartextpermitted)(bool \*isCleartextPermitted) | Boolean value indicating whether plaintext HTTP is allowed.|
+| [OH_Netstack_IsCleartextPermittedByHostName](#oh_netstack_iscleartextpermittedbyhostname)(const char \*hostname, bool \*isCleartextPermitted) | Boolean value indicating whether host name–based plaintext HTTP is allowed.|
 
 ### Variables
 
@@ -172,7 +174,7 @@ Callback invoked when the WebSocket client receives an **open** message.
 
 | Name| Description| 
 | -------- | -------- |
-| client | WebSocket client. | 
+| client | WebSocket client.| 
 | openResult | Content of the connection setup message received by the WebSocket client. | 
 
 
@@ -307,21 +309,21 @@ Verifies the certificate chain.
 
 **2305008**: Failed to sign the CRL.
 
-**2305009**: The certificate has not taken effect.
+**2305009**: Certificate not activated.
 
-**2305010**: The certificate has expired.
+**2305010**: Certificate expired.
 
-**2305011**: The CRL has not taken effect.
+**2305011**: CRL not activated.
 
-**2305012**: The CRL has expired.
+**2305012**: CRL expired.
 
-**2305023**: The certificate has been revoked.
+**2305023**: Certificate revoked.
 
-**2305024**: The certificate authority (CA) is invalid.
+**2305024**: Invalid certificate authority (CA).
 
-**2305027**: The certificate is untrusted.
+**2305027**: Untrusted certificate.
 
-**2305069**: A call error occurred during certificate verification or the parameter is invalid.
+**2305069**: Call error or invalid parameter in certificate verification.
 
 ### OH_NetStack_GetPinSetForHostName()
 
@@ -401,6 +403,63 @@ Releases the certificate content. If **NetStack_Certificates** is no longer used
 | ----- | ---------------- |
 | certs | Defines the certificate information structure.|
 
+### OH_Netstack_IsCleartextPermitted()
+
+```
+int32_t  OH_Netstack_IsCleartextPermitted(bool *isCleartextPermitted)
+```
+
+**Description**
+
+Checks whether plaintext HTTP access is allowed from the preset **network_config.json** file of the application. By default, plaintext HTTP access is allowed.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Since**: 18
+
+**Parameters**
+
+| Name    | Description                      |
+| -------- | -------------------------- |
+| isCleartextPermitted | Boolean value indicating whether plaintext HTTP is allowed. The value **true** indicates that plaintext HTTP is allowed, and the value **false** indicates the opposite. The default value is **true**.                 |
+
+**Returns**
+
+**0**: Success.
+
+**201**: Permission denied.
+
+**401**: Parameter error.
+
+### OH_Netstack_IsCleartextPermittedByHostName()
+
+```
+int32_t OH_Netstack_IsCleartextPermittedByHostName(const char *hostname, bool *isCleartextPermitted)
+```
+
+**Description**
+
+Checks whether host name–based plaintext HTTP access is allowed from the preset **network_config.json** file of the application. By default, plaintext HTTP access is allowed.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Since**: 18
+
+**Parameters**
+
+| Name    | Description                      |
+| -------- | -------------------------- |
+| hostname | Host name.                  |
+| isCleartextPermitted | Boolean value indicating whether host name–based plaintext HTTP is allowed. The value **true** indicates that plaintext HTTP is allowed, and the value **false** indicates the opposite. The default value is **true**.                 |
+
+**Returns**
+
+**0**: Success.
+
+**201**: Permission denied.
+
+**401**: Parameter error.
+
 ### OH_WebSocketClient_AddHeader()
 
 ```
@@ -422,7 +481,7 @@ Adds the header information to the client request.
 
 **Returns**
 
-Returns **0** if the operation is successful. For details about error codes, see **OH_Websocket_ErrCode**.
+Returns **0** if the operation is successful. For details about the error codes, see [WebSocket Error Codes](errorcode-net-webSocket.md).
 
 
 
@@ -444,11 +503,11 @@ Lets the WebSocket client proactively close the connection.
 | -------- | -------- |
 | client | WebSocket client. | 
 | url | IP address for the WebSocket client to connect to the server. | 
-| options | Optional parameters for the connection closure. | 
+| options | Optional parameters for connection closure. | 
 
 **Returns**
 
-Returns **0** if the operation is successful. For details about error codes, see **OH_Websocket_ErrCode**.
+Returns **0** if the operation is successful. For details about the error codes, see [WebSocket Error Codes](errorcode-net-webSocket.md).
 
 **Required Permissions**
 
@@ -477,7 +536,7 @@ Connects the WebSocket client to the server.
 
 **Returns**
 
-Returns **0** if the operation is successful. For details about error codes, see **OH_Websocket_ErrCode**.
+Returns **0** if the operation is successful. For details about the error codes, see [WebSocket Error Codes](errorcode-net-webSocket.md).
 
 **Required Permissions**
 
@@ -531,7 +590,7 @@ Releases the context and resources of the WebSocket connection.
 
 **Returns**
 
-Returns **0** if the operation is successful. For details about error codes, see **OH_Websocket_ErrCode**.
+Returns **0** if the operation is successful. For details about the error codes, see [WebSocket Error Codes](errorcode-net-webSocket.md).
 
 **Required Permissions**
 
@@ -562,7 +621,7 @@ Sends data from the WebSocket client to the server.
 
  
 
-Returns **0** if the operation is successful. For details about error codes, see **OH_Websocket_ErrCode**.
+Returns **0** if the operation is successful. For details about the error codes, see [WebSocket Error Codes](errorcode-net-webSocket.md).
 
 **Required Permissions**
 

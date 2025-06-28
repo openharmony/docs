@@ -107,9 +107,9 @@ You can set a USB device as a host to connect to a device for data transfer. The
    let deviceName : string = deviceList[0].name;
    // Request the permissions to operate a specified device.
    usbManager.requestRight(deviceName).then((hasRight : boolean) => {
-     console.info("usb device request right result: " + hasRight);
+     console.info(`usb device request right result: ${hasRight}`);
    }).catch((error : BusinessError)=> {
-     console.info("usb device request right failed : " + error);
+     console.error(`usb device request right failed : ${error}`);
    });
    ```
 
@@ -142,22 +142,22 @@ You can set a USB device as a host to connect to a device for data transfer. The
     let dataUint8Array : Uint8Array = new Uint8Array(1024);
     usbManager.bulkTransfer(pipe, inEndpoint, dataUint8Array, 15000).then((dataLength : number) => {
     if (dataLength >= 0) {
-      console.info("usb readData result Length : " + dataLength);
+      console.info(`usb readData result Length : ${dataLength}`);
     } else {
-      console.info("usb readData failed : " + dataLength);
+      console.error(`usb readData failed`);
     }
     }).catch((error : BusinessError) => {
-    console.info("usb readData error : " + JSON.stringify(error));
+    console.error(`usb readData error : ${error}`);
     });
     // Send data. Select the corresponding TX endpoint from deviceList for data transfer. (endpoint.direction == 0)
     usbManager.bulkTransfer(pipe, outEndpoint, dataUint8Array, 15000).then((dataLength : number) => {
       if (dataLength >= 0) {
-        console.info("usb writeData result write length : " + dataLength);
+        console.info(`usb writeData result write length : ${dataLength}`);
       } else {
-        console.info("writeData failed");
+        console.error("usb writeData failed");
       }
     }).catch((error : BusinessError) => {
-      console.info("usb writeData error : " + JSON.stringify(error));
+      console.error(`usb writeData error : ${error}`);
     });
     ```
 
@@ -180,7 +180,7 @@ You can set a USB device as a host to connect to a device for data transfer. The
     };
 
     usbManager.usbControlTransfer(pipe, param).then((ret: number) => {
-    console.info("usbControlTransfer = ${ret}");
+    console.info(`usbControlTransfer = ${ret}`);
     })
     ```
 

@@ -6,14 +6,16 @@
 
 SystemCapability (SysCap) refers to a standalone feature in the operating system, for example, Bluetooth, Wi-Fi, NFC, or camera. Each SysCap corresponds to a set of APIs, whose availability depends on the support of the target device. Such a set of APIs can be provided in DevEco Studio for association.
 
-![image-20220326064841782](figures/image-20220326064841782.png)
+![image-SysCap.png](figures/image-SysCap.png)
 
-For details about the SysCap sets in OpenHarmony, see [SysCap List](syscap-list.md).
+<!--Del-->For details about the SysCap sets in OpenHarmony, see [SysCap List](syscap-list.md).<!--DelEnd-->
 
 ### Supported SysCap Set, Associated SysCap Set, and Required SysCap Set
 
 The supported SysCap set, associated SysCap set, and required SysCap set are collections of SysCaps.
+
 The supported SysCap set covers the device capabilities, and the required SysCap set covers the application capabilities. If the SysCap set required by application A is a subset of the SysCap set supported by device N, application A can be distributed to device N for installation and running. Otherwise, application A cannot be distributed.
+
 The associated SysCap set covers the system capabilities of associated APIs that DevEco Studio offers during application development.
 
 ![image-20220326064913834](figures/image-20220326064913834.png)
@@ -21,6 +23,7 @@ The associated SysCap set covers the system capabilities of associated APIs that
 ### Devices and Supported SysCap Sets
 
 Each device provides a SysCap set that matches its hardware capability.
+
 The SDK classifies devices into general devices and custom devices. The general devices' supported SysCap set is defined by OpenHarmony, and the custom devices' is defined by device vendors.
 
 ![image-20220326064955505](figures/image-20220326064955505.png)
@@ -33,6 +36,7 @@ The SDK provides a full set of APIs for DevEco Studio. DevEco Studio identifies 
 
 ## How to Develop
 
+<!--Del-->
 ### Obtaining the PCID
 
 The Product Compatibility ID (PCID) contains the SysCap information supported by the current device. For the moment, you can obtain the PCID of a device from the device vendor. In the future, you'll be able to obtain the PCIDs of all devices from the authentication center, which is in development.
@@ -78,6 +82,9 @@ Exercise caution when modifying the required SysCap set. Incorrect modifications
 	}
 }
 ```
+<!--DelEnd-->
+
+<!--RP1--><!--RP1End-->
 
 ### Single-Device Application Development
 
@@ -117,7 +124,7 @@ You can use either the ArkTS or native API to determine whether an API is availa
 		console.log('current location: ' + JSON.stringify(location));
 	});
 	} catch(err) {
-	    console.log('This device does not support location information.' + err);
+	    console.error('This device does not support location information.' + err);
 	}
 	```
 - Native API
@@ -168,13 +175,13 @@ The device SysCaps in product solutions vary according to the component combinat
 
 ![image-20220326072448840](figures/image-20220326072448840.png)
 
-1. A set of OpenHarmony source code consists of optional and mandatory components. Different components represent different SysCaps.
+1. A set of operating system source code consists of optional and mandatory components. Different components represent different SysCaps.
 
 2. In a normalized released SDK, APIs are mapped to SysCap sets.
 
 3. Product solution vendors can assemble components based on hardware capabilities and product requirements.
 
-4. The components configured for a product can be OpenHarmony components or proprietary components developed by a third party. Since there is mapping between components and SysCap, the SysCap set of the product can be obtained after all components are assembled.
+4. The components configured for a product can be system components or proprietary components developed by a third party. Since there is mapping between components and SysCap, the SysCap set of the product can be obtained after all components are assembled.
 
 5. The SysCap set is encoded to generate the PCID. You can import the PCID to DevEco Studio and decode it into SysCaps. During development, compatibility processing is performed to mitigate the SysCap differences of devices.
 

@@ -206,6 +206,42 @@ maxFontScale(scale: Optional\<number | Resource>)
 | ------ | ---- | ---- | ----- |
 | scale  |[Optional](ts-universal-attributes-custom-property.md#optional12)\<number&nbsp;\|&nbsp;[Resource](ts-types.md#resource)>  | 是   | SymbolGlyph组件最大的字体缩放倍数。<br/>取值范围：[1, +∞)<br/>**说明：** <br/>设置的值小于1时，按值为1处理，异常值默认不生效。 |
 
+### shaderStyle<sup>20+</sup>
+
+shaderStyle(shaders: Array\<ShaderStyle\>)
+
+设置SymbolGlyph组件的渐变色效果。
+
+可以显示为径向渐变[radialGradient](../arkui-ts/ts-universal-attributes-gradient-color.md#radialgradient)或线性渐变[linearGradient](../arkui-ts/ts-universal-attributes-gradient-color.md#lineargradient)的效果，shaderStyle的优先级高于[fontColor](../arkui-ts/ts-basic-components-symbolSpan.md#fontcolor)和AI识别，纯色建议使用[fontColor](../arkui-ts/ts-basic-components-symbolSpan.md#fontcolor)。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                                         | 必填                             | 说明                               |
+| -------------- | -------------------------------------------- | ----------------------------------- | ----------------------------------- |
+| shaders | Array[\<ShaderStyle\>](../arkui-ts/ts-text-common.md#shaderstyle20) | 是 | 径向或线性渐变。<br/>根据传入的参数区分处理径向渐变[radialGradient](../arkui-ts/ts-universal-attributes-gradient-color.md#radialgradient)或线性渐变[linearGradient](../arkui-ts/ts-universal-attributes-gradient-color.md#lineargradient)，最终设置到SymbolGlyph组件上显示为渐变色效果。 |
+
+### symbolShadow<sup>20+</sup>
+
+symbolShadow(shadow: Optional\<ShadowOptions\>)
+
+设置SymbolGlyph组件的阴影效果。
+
+**卡片能力：** 从API version 20开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：**: 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：**: SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------ | ---- | ---- | ----- |
+| shadow  |[Optional](ts-universal-attributes-custom-property.md#optional12)\<[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)\>  | 是  | SymbolGlyph组件的阴影效果。<br>默认值：<br>{<br>radius：0,<br>color：Color.Black,<br>offsetX：0,<br>offsetY：0<br>}|
+
 ## ScaleSymbolEffect<sup>12+</sup>
 
 ScaleSymbolEffect继承自父类SymbolEffect。
@@ -479,6 +515,74 @@ PulseSymbolEffect的构造函数，脉冲动效。
 | DOWN | 0    | 图标缩小再复原。 |
 | UP   | 1    | 图标放大再复原。 |
 
+## DisableSymbolEffect<sup>20+</sup>
+
+DisableSymbolEffect继承自父类[SymbolEffect](#symboleffect12)。
+
+**卡片能力：** 从API version 20开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### 属性
+
+| 名称 | 类型 | 必填 | 说明  |
+| ---- | ---- | ---- | ---- |
+| scope | [EffectScope](#effectscope12枚举说明) | 否   | 动效范围。<br/>默认值：EffectScope.LAYER |
+
+### constructor<sup>20+</sup>
+
+constructor(scope?: EffectScope)
+
+DisableSymbolEffect的构造函数，禁用动效。
+
+**卡片能力：** 从API version 20开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ---- | ---- | ---- | ---- |
+| scope  | [EffectScope](#effectscope12枚举说明) | 否   | 动效范围。<br/>默认值：EffectScope.LAYER |
+
+## QuickReplaceSymbolEffect<sup>20+</sup>
+
+QuickReplaceSymbolEffect继承自父类[SymbolEffect](#symboleffect12)。
+
+**卡片能力：** 从API version 20开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### 属性
+
+| 名称 | 类型 | 必填 | 说明  |
+| ---- | ---- | ---- | ---- |
+| scope | [EffectScope](#effectscope12枚举说明) | 否   | 动效范围。<br/>默认值：EffectScope.LAYER |
+
+### constructor<sup>20+</sup>
+
+constructor(scope?: EffectScope)
+
+QuickReplaceSymbolEffect的构造函数，快速替换动效。
+
+**卡片能力：** 从API version 20开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ---- | ---- | ---- | ---- |
+| scope  | [EffectScope](#effectscope12枚举说明) | 否   | 动效范围。<br/>默认值：EffectScope.LAYER |
+
 ## EffectScope<sup>12+</sup>枚举说明
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
@@ -599,9 +703,9 @@ struct Index {
 ```
 ![symbol](figures/symbolGlyph.gif)
 
-###  示例2（设置动效）
+###  示例2（设置动效和阴影）
 
-该示例通过symbolEffect属性展示了可变颜色动效和替换动效的效果。
+该示例通过symbolEffect属性展示了各种动效的效果以及结合symbolShadow的阴影效果。
 
 ```ts
 // xxx.ets
@@ -610,7 +714,20 @@ struct Index {
 struct Index {
   @State isActive: boolean = true;
   @State triggerValueReplace: number = 0;
+  @State triggerValueReplace1: number = 0;
+  @State triggerValueReplace2: number = 0;
+  @State renderMode: number = 1;
+
   replaceFlag: boolean = true;
+  replaceFlag1: boolean = true;
+  replaceFlag2: boolean = true;
+
+  options: ShadowOptions = {
+    radius: 30.0,
+    color: Color.Blue,
+    offsetX: 20,
+    offsetY: 20,
+  };
 
   build() {
     Column() {
@@ -620,27 +737,171 @@ struct Index {
           SymbolGlyph($r('sys.symbol.ohos_wifi'))
             .fontSize(96)
             .symbolEffect(new HierarchicalSymbolEffect(EffectFillStyle.ITERATIVE), this.isActive)
-          Button(this.isActive ? '关闭' : '播放').onClick(() => {
-            this.isActive = !this.isActive;
-          })
-        }.margin({ right: 20 })
-
+          Button(this.isActive ? '关闭' : '播放')
+            .onClick(() => {
+              this.isActive = !this.isActive;
+            })
+        }
+        .margin({ right: 20 })
         Column() {
           Text("替换动效")
           SymbolGlyph(this.replaceFlag ? $r('sys.symbol.checkmark_circle') : $r('sys.symbol.repeat_1'))
             .fontSize(96)
             .symbolEffect(new ReplaceSymbolEffect(EffectScope.WHOLE), this.triggerValueReplace)
-          Button('trigger').onClick(() => {
-            this.replaceFlag = !this.replaceFlag;
-            this.triggerValueReplace = this.triggerValueReplace + 1;
-          })
+          Button('trigger')
+            .onClick(() => {
+              this.replaceFlag = !this.replaceFlag;
+              this.triggerValueReplace = this.triggerValueReplace + 1;
+            })
         }
+        .margin({ right: 20 })
       }
-    }.margin({
-      left: 30,
+
+      Row() {
+        Column() {
+          Text("禁用动效")
+          SymbolGlyph(this.replaceFlag1 ? $r('sys.symbol.eye_slash') : $r('sys.symbol.eye'))
+            .fontSize(96)
+            .renderingStrategy(this.renderMode)
+            .symbolEffect(new DisableSymbolEffect(EffectScope.WHOLE), this.triggerValueReplace1)
+          Button('trigger')
+            .onClick(() => {
+              this.replaceFlag1 = !this.replaceFlag1;
+              this.triggerValueReplace1 = this.triggerValueReplace1 + 1;
+            })
+        }
+        .margin({ right: 20 })
+        Column() {
+          Text("快速替换动效")
+          SymbolGlyph(this.replaceFlag2 ? $r('sys.symbol.checkmark_circle') : $r('sys.symbol.repeat_1'))
+            .fontSize(96)
+            .symbolEffect(new QuickReplaceSymbolEffect(EffectScope.WHOLE), this.triggerValueReplace2)
+          Button('trigger')
+            .onClick(() => {
+              this.replaceFlag2 = !this.replaceFlag2;
+              this.triggerValueReplace2 = this.triggerValueReplace2 + 1;
+            })
+        }
+        .margin({ right: 20 })
+        Column() {
+          Text("阴影能力")
+          SymbolGlyph($r('sys.symbol.ohos_wifi'))
+            .fontSize(96)
+            .symbolEffect(new HierarchicalSymbolEffect(EffectFillStyle.ITERATIVE), !this.isActive)
+            .symbolShadow(this.options)
+          Button(!this.isActive ? '关闭' : '播放')
+            .onClick(() => {
+              this.isActive = !this.isActive;
+            })
+        }
+        .margin({ right: 20 })
+      }
+    }
+    .margin({
+      left: 90,
       top: 50
     })
   }
 }
 ```
-![symbol](figures/symbolGlyph_symbolEffect.gif)
+![symbol](figures/SymbolGlyph_Example2.gif)
+
+### 示例3（设置颜色渐变）
+
+该示例通过shaderStyle接口实现了symbolGlyph控件显示为渐变色的功能。
+
+```ts
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+
+  linearGradientOptions1: LinearGradientOptions = {
+    angle: 45,
+    colors: [[Color.Red, 0.0], [Color.Blue, 0.3], [Color.Green, 0.5]]
+  };
+
+  linearGradientOptions2: LinearGradientOptions = {
+    direction: GradientDirection.LeftTop,
+    colors: [[Color.Red, 0.0], [Color.Blue, 0.3], [Color.Green, 0.5]],
+    repeating: true,
+  };
+
+  radialGradientOptions: RadialGradientOptions = {
+    center: [50, 50],
+    radius: 20,
+    colors: [[Color.Red, 0.0], [Color.Blue, 0.3], [Color.Green, 0.5]],
+    repeating: true,
+  };
+
+  build() {
+    Column() {
+      Row() {
+        Column() {
+          Text('angle为45°的线性渐变')
+            .fontSize(18)
+            .fontColor(0xCCCCCC)
+            .textAlign(TextAlign.Center)
+          SymbolGlyph($r('sys.symbol.ohos_folder_badge_plus'))
+            .fontSize(96)
+            .shaderStyle([new LinearGradientStyle(this.linearGradientOptions1)])
+        }
+        .margin({ right: 20 })
+        Column() {
+          Text('LeftTop的线性渐变')
+            .fontSize(18)
+            .fontColor(0xCCCCCC)
+            .textAlign(TextAlign.Center)
+          SymbolGlyph($r('sys.symbol.ohos_folder_badge_plus'))
+            .fontSize(96)
+            .shaderStyle([new LinearGradientStyle(this.linearGradientOptions2)])
+        }
+        .margin({ right: 20 })
+      }
+
+      Row() {
+        Column() {
+          Text('径向渐变')
+            .fontSize(18)
+            .fontColor(0xCCCCCC)
+            .textAlign(TextAlign.Center)
+          SymbolGlyph($r('sys.symbol.ohos_folder_badge_plus'))
+            .fontSize(96)
+            .shaderStyle([new RadialGradientStyle(this.radialGradientOptions)])
+        }
+        .margin({ right: 20 })
+        Column() {
+          Text('纯色')
+            .fontSize(18)
+            .fontColor(0xCCCCCC)
+            .textAlign(TextAlign.Center)
+          SymbolGlyph($r('sys.symbol.ohos_folder_badge_plus'))
+            .fontSize(96)
+            .shaderStyle([new ColorShaderStyle(Color.Red)])
+        }
+        .margin({ right: 20 })
+        Column() {
+          Text('线性和径向渐变')
+            .fontSize(18)
+            .fontColor(0xCCCCCC)
+            .textAlign(TextAlign.Center)
+          SymbolGlyph($r('sys.symbol.ohos_folder_badge_plus'))
+            .fontSize(96)
+            .shaderStyle([
+              new LinearGradientStyle(this.linearGradientOptions2),
+              new LinearGradientStyle(this.linearGradientOptions2),
+              new RadialGradientStyle(this.radialGradientOptions)
+            ])
+            .renderingStrategy(SymbolRenderingStrategy.MULTIPLE_OPACITY)
+        }
+        .margin({ right: 20 })
+      }
+    }
+    .margin({
+      left: 60,
+      top: 50
+    })
+  }
+}
+```
+![symbol](figures/SymbolGlyph_Example3.jpeg)

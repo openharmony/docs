@@ -216,13 +216,13 @@
 
 1. \@State装饰的变量必须初始化，否则编译期会报错。
 
-  ```ts
-  // 错误写法，编译报错
-  @State count: number;
-
-  // 正确写法
-  @State count: number = 10;
-  ```
+    ```ts
+    // 错误写法，编译报错
+    @State count: number;
+  
+    // 正确写法
+    @State count: number = 10;
+    ```
 
 2. \@State不支持装饰Function类型的变量，框架会抛出运行时错误。
 
