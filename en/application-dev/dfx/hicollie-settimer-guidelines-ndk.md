@@ -67,8 +67,8 @@ The following describes how to add a button in the application and click the but
      HiCollie_ErrorCode errorCode = OH_HiCollie_SetTimer(param, &id);  // Register a HiCollieTimer function to execute a one-off timeout detection task.
      if (errorCode == HICOLLIE_SUCCESS) {  // The HiCollieTimer task is successfully registered.
        OH_LOG_INFO(LogType::LOG_APP, "HiCollieTimer taskId: %{public}d", id); // Log the task ID.
-       sleep (2); // Simulate a time-consuming function to block the thread for 2s.
-       OH_HiCollie_CancelTimer (id); // Cancel the registered timer based on the ID.
+       sleep(2); // Simulate a time-consuming function to block the thread for 2s.
+       OH_HiCollie_CancelTimer(id); // Cancel the registered timer based on the ID.
      }
      return 0;
    }

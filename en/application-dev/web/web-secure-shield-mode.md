@@ -28,25 +28,25 @@ When the Secure Shield mode is enabled, ArkWeb reduces the attack surface by res
 
 ## Evaluating Impacts On Applications
 
-To evaluate the impact and compatibility of applications in Secure Shield mode, go to **Settings** > **Privacy & security** > **Secure Shield mode** to enable this mode.
+To evaluate the impact and compatibility of applications in Secure Shield mode, go to **Settings** > **Privacy & security** > **Secure Shield** to enable this mode.
 
 <!--RP2--><!--RP2End-->
 
 > **NOTE**
 >
-> To evaluate the compatibility of a debug version (not released on AppGallery), you need to enable the developer option and then enable the Secure Shield mode.
+> - To evaluate the compatibility of a debug version (not released on AppGallery), you need to enable **Developer options** and the Secure Shield mode.
 
-When an application is running, you can check whether the corresponding functions are affected in the following ways:
+When an application is running, you can check whether the corresponding functionalities are affected in the following ways:
 
 - Check whether WebAssembly APIs are called in the frontend code. WebAssembly provides the capability of running low-level languages such as C and C++ on the web, which is usually used in high-performance scenarios such as games and encoding and decoding. In Secure Shield mode, WebAssembly cannot be called.
 
-- Check whether WebGL APIs are called in the frontend code. WebGL provides the 3D graphics drawing capability, which cannot be called in shield daemon mode.
+- Check whether the frontend code calls the WebGL APIs, which provide the 3D graphics drawing capability and cannot be called in the Secure Shield mode.
 
 - Check whether the PDF file can be displayed online. If the Secure Shield mode is enabled, the PDF file cannot be displayed online. For example, the loadUrl API cannot be used to load the PDF link.
 
-- Check whether the HTML page contains the MathML syntax embedded in the \**<\math>** tag. In the Secure Shield mode, the MathML syntax cannot be properly parsed and displayed.
+- Check whether the HTML page contains the MathML syntax embedded in the \<math> tag. In the Secure Shield mode, the MathML syntax cannot be parsed and displayed.
 
-- Check whether APIs such as **SpeechRecognition** and **SpeechSynthesis** are called in the frontend code. In the Shield Guard mode, they cannot be called.
+- Check whether APIs such as **SpeechRecognition** and **SpeechSynthesis** are called in the frontend code. In the Secure Shield mode, they cannot be called.
 
 - Check whether WebRTC APIs such as **RTCDataChannel** and **createDataChannel** are called in the frontend code. These APIs can be used to establish a bidirectional data channel to implement real-time data exchange between peers in WebRTC and cannot be called in the Secure Shield mode.
 

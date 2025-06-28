@@ -24,7 +24,7 @@ The following table lists the APIs provided by the Node-API module for creating 
 | napi_get_value_string_utf16 | Obtains a UTF16-encoded string from an ArkTS value.|
 | napi_create_string_utf16 | Creates an ArkTS string from a UTF16-encoded C string.|
 | napi_get_value_string_latin1 | Obtains an ISO-8859-1-encoded string from an ArkTS value.|
-| napi_create_string_latin1 | Creates an ArkTS string from an ISO-8859-1-encoded tring.|
+| napi_create_string_latin1 | Creates an ArkTS string from an ISO-8859-1-encoded string.|
 
 ## Example
 
@@ -79,7 +79,7 @@ ArkTS code:
 import hilog from '@ohos.hilog'
 import testNapi from 'libentry.so'
 // Pass in a string and a number respectively. If the input is a string, the string will be returned. If the input is not a string, 'undefined' will be returned.
-hilog.info(0x0000, 'testTag','Test Node-API get_value_string_utf8_string %{public}s', testNapi.getValueStringUtf8 ('aaBC+-$%^Hello 123');
+hilog.info(0x0000, 'testTag', 'Test Node-API get_value_string_utf8_string %{public}s', testNapi.getValueStringUtf8('aaBC+-$%^Hello 123'));
 hilog.info(0x0000, 'testTag', 'Test Node-API get_value_string_utf8_not_string %{public}s', testNapi.getValueStringUtf8(50));
 ```
 
@@ -209,7 +209,7 @@ ArkTS code:
 import hilog from '@ohos.hilog'
 import testNapi from 'libentry.so'
 
-hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_string_utf16:%{public}s ', testNapi.createStringUtf16());
+hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_string_utf16:%{public}s', testNapi.createStringUtf16());
 ```
 
 ### napi_get_value_string_latin1
@@ -256,7 +256,7 @@ import testNapi from 'libentry.so'
 // If non-character data is passed in, undefined will be returned.
 hilog.info(0x0000, 'testTag', 'Test Node-API get_value_string_latin1_not_string %{public}s', testNapi.getValueStringLatin1(10));
 // The ISO-8859-1 encoding does not support Chinese characters. If Chinese characters are passed in, garbled characters will be displayed.
-hilog.info(0x0000, 'testTag','Test Node-API get_value_string_latin1_string_chinese %{public}s', testNapi.getValueStringLatin1 ('中文'));
+hilog.info(0x0000, 'testTag', 'Test Node-API get_value_string_latin1_string_chinese %{public}s', testNapi.getValueStringLatin1('中文'));
 // Passing in characters of other languages will not cause garbled characters.
 hilog.info(0x0000, 'testTag', 'Test Node-API get_value_string_latin1_string %{public}s', testNapi.getValueStringLatin1('abo ABP=-&*/'));
 ```

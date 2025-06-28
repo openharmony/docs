@@ -37,7 +37,7 @@ The following describes how to subscribe to the freeze event triggered by a butt
     };
     // Set custom parameters for the freeze event.
     hiAppEvent.setEventParam(params, hiAppEvent.domain.OS, hiAppEvent.event.APP_FREEZE).then(() => {
-      hilog.info(0x0000, 'testTag', `HiAppEvent success to set svent param`);
+      hilog.info(0x0000, 'testTag', `HiAppEvent success to set event param`);
     }).catch((err: BusinessError) => {
       hilog.error(0x0000, 'testTag', `HiAppEvent code: ${err.code}, message: ${err.message}`);
     });
@@ -85,13 +85,13 @@ The following describes how to subscribe to the freeze event triggered by a butt
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.exception=${JSON.stringify(eventInfo.params['exception'])}`);
             // Obtain the log information when the freeze event occurs.
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.hilog.size=${eventInfo.params['hilog'].length}`);
-            // Obtain the messages that are not yet processed by the main thread when the freeze event occurs.
+            // Obtain the messages that are unprocessed by the main thread when the freeze event occurs.
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.event_handler.size=${eventInfo.params['event_handler'].length}`);
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.event_handler_size_3s=${eventInfo.params['event_handler_size_3s']}`);
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.event_handler_size_6s=${eventInfo.params['event_handler_size_6s']}`);
             // Obtain the synchronous binder call information when the freeze event occurs.
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.peer_binder.size=${eventInfo.params['peer_binder'].length}`);
-            // Obtain the full thread call stack when the freeze event occurs.
+            // Obtain the complete thread call stack when the freeze event occurs.
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.threads.size=${eventInfo.params['threads'].length}`);
             // Obtain the memory information when the freeze event occurs.
             hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.memory=${JSON.stringify(eventInfo.params['memory'])}`);
