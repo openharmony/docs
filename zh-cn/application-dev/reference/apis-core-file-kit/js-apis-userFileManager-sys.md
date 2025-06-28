@@ -41,8 +41,20 @@ getUserFileMgr(context: Context): UserFileManager
 // 此处获取的userFileManager实例mgr为全局对象，后续使用到mgr的地方默认为使用此处获取的对象，如未添加此段代码报mgr未定义的错误请自行添加
 // 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
 import { common } from '@kit.AbilityKit';
-let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-let mgr = userFileManager.getUserFileMgr(context);
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Button("example").onClick(async () => {
+        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+        let mgr = userFileManager.getUserFileMgr(context);
+      }).width('100%')
+    }
+    .height('90%')
+  }
+}
 ```
 
 ## UserFileManager
@@ -79,7 +91,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('getPhotoAssets');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: userFileManager.FetchOptions = {
@@ -138,7 +150,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('getPhotoAssets');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: userFileManager.FetchOptions = {
@@ -193,7 +205,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('createPhotoAssetDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: userFileManager.AlbumFetchOptions = {
@@ -244,7 +256,7 @@ createPhotoAsset(displayName: string, callback: AsyncCallback&lt;FileAsset&gt;):
 mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('createPhotoAssetDemo');
   let testFileName: string = 'testFile' + Date.now() + '.jpg';
   mgr.createPhotoAsset(testFileName, (err, fileAsset) => {
@@ -294,7 +306,7 @@ createPhotoAsset(displayName: string, albumUri?: string): Promise&lt;FileAsset&g
 mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('createPhotoAssetDemo');
   try {
     let testFileName: string = 'testFile' + Date.now() + '.jpg';
@@ -339,7 +351,7 @@ createPhotoAsset(displayName: string, createOption: PhotoCreateOptions, callback
 mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('createPhotoAssetDemo');
   let testFileName: string = 'testFile' + Date.now() + '.jpg';
   let createOption: userFileManager.PhotoCreateOptions = {
@@ -392,7 +404,7 @@ createPhotoAsset(displayName: string, createOption: PhotoCreateOptions): Promise
 mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('createPhotoAssetDemo');
   try {
     let testFileName: string = 'testFile' + Date.now() + '.jpg';
@@ -439,7 +451,7 @@ createAudioAsset(displayName: string, callback: AsyncCallback&lt;FileAsset&gt;):
 mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('createAudioAssetDemo');
   let testFileName: string = 'testFile' + Date.now() + '.mp3';
   mgr.createAudioAsset(testFileName, (err, fileAsset) => {
@@ -488,7 +500,7 @@ createAudioAsset(displayName: string): Promise&lt;FileAsset&gt;
 mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('createAudioAssetDemo');
   try {
     let testFileName: string = 'testFile' + Date.now() + '.mp3';
@@ -529,7 +541,7 @@ createAlbum(name: string, callback: AsyncCallback&lt;Album&gt;): void
 mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('createAlbumDemo');
   let albumName: string = 'newAlbumName' + new Date().getTime();
   mgr.createAlbum(albumName, (err, album) => {
@@ -577,7 +589,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('createAlbumDemo');
   let albumName: string  = 'newAlbumName' + new Date().getTime();
   mgr.createAlbum(albumName).then((album) => {
@@ -614,7 +626,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   // 示例代码为删除相册名为newAlbumName的相册。
   console.info('deleteAlbumsDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -668,7 +680,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   // 示例代码为删除相册名为newAlbumName的相册。
   console.info('deleteAlbumsDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -726,7 +738,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   // 示例代码中为获取相册名为newAlbumName的相册。
   console.info('getAlbumsDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -786,7 +798,7 @@ getAlbums(type: AlbumType, subType: AlbumSubType, callback: AsyncCallback&lt;Fet
 mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   // 示例代码中为获取统相册VIDEO，默认已预置。
   console.info('getAlbumsDemo');
   mgr.getAlbums(userFileManager.AlbumType.SYSTEM, userFileManager.AlbumSubType.VIDEO, async (err, fetchResult) => {
@@ -849,7 +861,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   // 示例代码中为获取相册名为newAlbumName的相册。
   console.info('getAlbumsDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -908,7 +920,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('getPhotoAlbumsDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let albumFetchOptions: userFileManager.AlbumFetchOptions = {
@@ -973,7 +985,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('getPhotoAlbumsDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let albumFetchOptions: userFileManager.AlbumFetchOptions = {
@@ -1022,7 +1034,7 @@ getPrivateAlbum(type: PrivateAlbumType, callback: AsyncCallback&lt;FetchResult&l
 mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('getPrivateAlbumDemo');
   mgr.getPrivateAlbum(userFileManager.PrivateAlbumType.TYPE_TRASH, async (err, fetchResult) => {
     if (fetchResult != undefined) {
@@ -1072,7 +1084,7 @@ getPrivateAlbum(type: PrivateAlbumType): Promise&lt;FetchResult&lt;PrivateAlbum&
 mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('getPrivateAlbumDemo');
   try {
     let fetchResult: userFileManager.FetchResult<userFileManager.PrivateAlbum> = await mgr.getPrivateAlbum(userFileManager.PrivateAlbumType.TYPE_TRASH);
@@ -1116,7 +1128,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('getAudioAssets');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: userFileManager.FetchOptions = {
@@ -1176,7 +1188,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('getAudioAssets');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: userFileManager.FetchOptions = {
@@ -1230,7 +1242,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('deleteAssetDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: userFileManager.FetchOptions = {
@@ -1296,7 +1308,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('deleteDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: userFileManager.FetchOptions = {
@@ -1337,7 +1349,7 @@ getActivePeers(callback: AsyncCallback&lt;Array&lt;PeerInfo&gt;&gt;): void
 mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('getActivePeersDemo');
   mgr.getActivePeers((err, devicesInfo) => {
     if (devicesInfo != undefined) {
@@ -1371,7 +1383,7 @@ getActivePeers(): Promise&lt;Array&lt;PeerInfo&gt;&gt;
 mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('getActivePeersDemo');
   try {
     let devicesInfo: Array<userFileManager.PeerInfo> = await mgr.getActivePeers();
@@ -1408,7 +1420,7 @@ getAllPeers(callback: AsyncCallback&lt;Array&lt;PeerInfo&gt;&gt;): void
 mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('getAllPeersDemo');
   mgr.getAllPeers((err, devicesInfo) => {
     if (devicesInfo != undefined) {
@@ -1442,7 +1454,7 @@ getAllPeers(): Promise&lt;Array&lt;PeerInfo&gt;&gt;
 mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('getAllPeersDemo');
   try {
     let devicesInfo: Array<userFileManager.PeerInfo> = await mgr.getAllPeers();
@@ -1497,7 +1509,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   try {
     console.info('getPhotoIndexDemo');
     let predicatesForGetAsset: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -1573,7 +1585,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   try {
     console.info('getPhotoIndexDemo');
     let predicatesForGetAsset: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -1625,7 +1637,7 @@ release(callback: AsyncCallback&lt;void&gt;): void
 mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('releaseDemo');
   mgr.release((err) => {
     if (err != undefined) {
@@ -1657,7 +1669,7 @@ release(): Promise&lt;void&gt;
 mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('releaseDemo');
   try {
     await mgr.release();
@@ -1699,7 +1711,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('onDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: userFileManager.FetchOptions = {
@@ -1764,7 +1776,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('offDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: userFileManager.FetchOptions = {
@@ -1820,7 +1832,7 @@ on(type: ChangeEvent, callback: Callback&lt;void&gt;): void
 mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('onDemo');
   let count = 0;
   mgr.on('imageChange', () => {
@@ -1869,7 +1881,7 @@ off(type: ChangeEvent, callback?: Callback&lt;void&gt;): void
 mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('offDemo');
   let count = 0;
   mgr.on('imageChange', () => {
@@ -1906,11 +1918,11 @@ async function example() {
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
-| 名称                      | 类型                     | 只读 | 可写 | 说明                                                   |
+| 名称                      | 类型                     | 只读 | 可选 | 说明                                                   |
 | ------------------------- | ------------------------ | ---- | ---- | ------------------------------------------------------ |
 | uri                       | string                   | 是   | 否   | 媒体文件资源uri（如：file://media/Photo/1/IMG_datetime_0001/displayName.jpg），详情参见用户文件uri介绍中的[媒体文件uri](../../file-management/user-file-uri-intro.md#媒体文件uri)。         |
 | fileType   | [FileType](#filetype) | 是   | 否   | 媒体文件类型。                                               |
-| displayName               | string                   | 是   | 是   | 显示文件名，包含后缀名。                                 |
+| displayName               | string                   | 否   | 否   | 显示文件名，包含后缀名。                                 |
 
 ### get
 
@@ -1939,7 +1951,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('fileAssetGetDemo');
   try {
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -1980,7 +1992,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('fileAssetSetDemo');
   try {
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -2021,7 +2033,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('commitModifyDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: userFileManager.FetchOptions = {
@@ -2070,7 +2082,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('commitModifyDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: userFileManager.FetchOptions = {
@@ -2119,7 +2131,7 @@ open(mode: string, callback: AsyncCallback&lt;number&gt;): void
 mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('openDemo');
    let testFileName: string = 'testFile' + Date.now() + '.jpg';
   const fileAsset: userFileManager.FileAsset = await mgr.createPhotoAsset(testFileName);
@@ -2163,7 +2175,7 @@ open(mode: string): Promise&lt;number&gt;
 mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr)的示例使用。
 
 ```ts
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('openDemo');
   try {
     let testFileName: string = 'testFile' + Date.now() + '.jpg';
@@ -2203,7 +2215,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('closeDemo');
   try {
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -2255,7 +2267,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('closeDemo');
   try {
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -2289,7 +2301,7 @@ getThumbnail(callback: AsyncCallback&lt;image.PixelMap&gt;): void
 
 | 参数名      | 类型                                  | 必填   | 说明               |
 | -------- | ----------------------------------- | ---- | ---------------- |
-| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 是    | callback返回缩略图的PixelMap。 |
+| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | 是    | callback返回缩略图的PixelMap。 |
 
 **示例：**
 
@@ -2298,7 +2310,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('getThumbnailDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: userFileManager.FetchOptions = {
@@ -2332,8 +2344,8 @@ getThumbnail(size: image.Size, callback: AsyncCallback&lt;image.PixelMap&gt;): v
 
 | 参数名      | 类型                                  | 必填   | 说明               |
 | -------- | ----------------------------------- | ---- | ---------------- |
-| size     | [image.Size](../apis-image-kit/js-apis-image.md#size) | 是    | 缩略图尺寸。            |
-| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 是    | callback返回缩略图的PixelMap。 |
+| size     | [image.Size](../apis-image-kit/arkts-apis-image-i.md#size) | 是    | 缩略图尺寸。            |
+| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | 是    | callback返回缩略图的PixelMap。 |
 
 **示例：**
 
@@ -2343,7 +2355,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 import { dataSharePredicates } from '@kit.ArkData';
 import { image } from '@kit.ImageKit';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('getThumbnailDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: userFileManager.FetchOptions = {
@@ -2378,13 +2390,13 @@ getThumbnail(size?: image.Size): Promise&lt;image.PixelMap&gt;
 
 | 参数名  | 类型             | 必填   | 说明    |
 | ---- | -------------- | ---- | ----- |
-| size | [image.Size](../apis-image-kit/js-apis-image.md#size) | 否    | 缩略图尺寸。 |
+| size | [image.Size](../apis-image-kit/arkts-apis-image-i.md#size) | 否    | 缩略图尺寸。 |
 
 **返回值：**
 
 | 类型                            | 说明                    |
 | ----------------------------- | --------------------- |
-| Promise&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Promise对象，返回缩略图的PixelMap。 |
+| Promise&lt;[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | Promise对象，返回缩略图的PixelMap。 |
 
 **示例：**
 
@@ -2395,7 +2407,7 @@ import { dataSharePredicates } from '@kit.ArkData';
 import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('getThumbnailDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: userFileManager.FetchOptions = {
@@ -2438,7 +2450,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('favoriteDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: userFileManager.FetchOptions = {
@@ -2487,7 +2499,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('favoriteDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: userFileManager.FetchOptions = {
@@ -2539,7 +2551,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('setHiddenDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: userFileManager.FetchOptions = {
@@ -2599,7 +2611,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   // 示例代码为将文件从隐藏相册中恢复，需要先在隐藏相册预置资源
   console.info('setHiddenDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -2641,7 +2653,7 @@ getExif(): Promise&lt;string&gt;
 
 **支持Exif标签列表**：
 
-Exif标签的详细信息请参考[image.PropertyKey](../apis-image-kit/js-apis-image.md#propertykey7)。
+Exif标签的详细信息请参考[image.PropertyKey](../apis-image-kit/arkts-apis-image-e.md#propertykey7)。
 
 | 标签key值                                    | 标签说明              |
 | --------------------------------------- | ----------------- |
@@ -2688,7 +2700,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   try {
     console.info('getExifDemo');
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -2733,7 +2745,7 @@ getExif(callback: AsyncCallback&lt;string&gt;): void
 
 **支持Exif标签列表**：
 
-Exif标签的详细信息请参考[image.PropertyKey](../apis-image-kit/js-apis-image.md#propertykey7)。
+Exif标签的详细信息请参考[image.PropertyKey](../apis-image-kit/arkts-apis-image-e.md#propertykey7)。
 
 | 标签key值                                    | 标签说明              |
 | --------------------------------------- | ----------------- |
@@ -2780,7 +2792,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   try {
     console.info('getExifDemo');
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -2850,7 +2862,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   try {
     console.info('setUserCommentDemo')
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -2905,7 +2917,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   try {
     console.info('setUserCommentDemo')
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -2954,7 +2966,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('getCountDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: userFileManager.FetchOptions = {
@@ -2988,7 +3000,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: userFileManager.FetchOptions = {
     fetchColumns: [],
@@ -3021,7 +3033,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('fetchResultCloseDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: userFileManager.FetchOptions = {
@@ -3059,7 +3071,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('getFirstObjectDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: userFileManager.FetchOptions = {
@@ -3098,7 +3110,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('getFirstObjectDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: userFileManager.FetchOptions = {
@@ -3133,7 +3145,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('getNextObjectDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: userFileManager.FetchOptions = {
@@ -3176,7 +3188,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('getNextObjectDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: userFileManager.FetchOptions = {
@@ -3213,7 +3225,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('getLastObjectDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: userFileManager.FetchOptions = {
@@ -3252,7 +3264,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('getLastObjectDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: userFileManager.FetchOptions = {
@@ -3295,7 +3307,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('getPositionObjectDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: userFileManager.FetchOptions = {
@@ -3348,7 +3360,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('getPositionObjectDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: userFileManager.FetchOptions = {
@@ -3382,7 +3394,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('getAllObjectDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: userFileManager.FetchOptions = {
@@ -3421,7 +3433,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('getAllObjectDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: userFileManager.FetchOptions = {
@@ -3442,14 +3454,15 @@ async function example() {
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
-| 名称           | 类型    | 只读   | 可写  | 说明   |
+| 名称           | 类型    | 只读   | 可选  | 说明   |
 | ------------ | ------ | ---- | ---- | ------- |
 | albumType<sup>10+</sup> | [AlbumType]( #albumtype10) | 是    | 否    | 相册类型。    |
 | albumSubType<sup>10+</sup> | [AlbumSubType]( #albumsubtype10) | 是    | 否   | 相册子类型。    |
-| albumName | string | 是    | 用户相册可写，预置相册不可写   | 相册名称。    |
+| albumName | string | 否    | 否   | 相册名称。<br>**说明：** 用户相册可写，预置相册不可写。    |
 | albumUri | string | 是    | 否    | 相册Uri。   |
+| dateModified  | number | 是    | 否    |  相册的修改时间。 |
 | count | number | 是    | 否    |  相册中文件数量。 |
-| coverUri | string | 是    | 用户相册可写，预置相册不可写	    | 封面文件Uri。 |
+| coverUri | string | 否    | 否	    | 封面文件Uri。<br>**说明：** 用户相册可写，预置相册不可写。 |
 
 ### getPhotoAssets
 
@@ -3483,7 +3496,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('albumGetFileAssetsDemoCallback');
 
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -3544,7 +3557,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('albumGetFileAssetsDemoPromise');
 
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -3588,7 +3601,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('albumCommitModifyDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let albumFetchOptions: userFileManager.AlbumFetchOptions = {
@@ -3631,7 +3644,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('albumCommitModifyDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let albumFetchOptions: userFileManager.AlbumFetchOptions = {
@@ -3684,7 +3697,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   try {
     console.info('addPhotoAssetsDemoCallback');
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -3747,7 +3760,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   try {
     console.info('addPhotoAssetsDemoPromise');
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -3802,7 +3815,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   try {
     console.info('removePhotoAssetsDemoCallback');
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -3865,7 +3878,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   try {
     console.info('removePhotoAssetsDemoPromise');
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -3920,7 +3933,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   try {
     console.info('recoverPhotoAssetsDemoCallback');
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -3983,7 +3996,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   try {
     console.info('recoverPhotoAssetsDemoPromise');
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -4040,7 +4053,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   try {
     console.info('deletePhotoAssetsDemoCallback');
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -4105,7 +4118,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   try {
     console.info('deletePhotoAssetsDemoPromise');
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -4138,13 +4151,13 @@ async function example() {
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
-| 名称           | 类型    | 只读   | 可写   | 说明      |
+| 名称           | 类型    | 只读   | 可选   | 说明      |
 | ------------ | ------ | ---- | ---- | ------- |
-| albumName | string | 是    | 是    | 相册名称。    |
+| albumName | string | 否    | 否    | 相册名称。    |
 | albumUri | string | 是    | 否    | 相册Uri。   |
 | dateModified | number | 是    | 否    | 修改日期。    |
 | count | number | 是    | 否    | 相册中文件数量。 |
-| coverUri | string | 是    | 否    | 封面文件Uri。 |
+| coverUri | string | 否    | 否    | 封面文件Uri。 |
 
 ### getPhotoAssets
 
@@ -4180,7 +4193,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('privateAlbumGetFileAssetsDemoCallback');
   let albumList: userFileManager.FetchResult<userFileManager.PrivateAlbum> = await mgr.getPrivateAlbum(userFileManager.PrivateAlbumType.TYPE_TRASH);
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -4240,7 +4253,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('privateAlbumGetFileAssetsDemoPromise');
   let albumList: userFileManager.FetchResult<userFileManager.PrivateAlbum> = await mgr.getPrivateAlbum(userFileManager.PrivateAlbumType.TYPE_TRASH);
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -4281,7 +4294,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('privateAlbumDeleteCallback');
   let albumList: userFileManager.FetchResult<userFileManager.PrivateAlbum> = await mgr.getPrivateAlbum(userFileManager.PrivateAlbumType.TYPE_TRASH);
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -4335,7 +4348,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('privateAlbumDeleteDemoPromise');
   let albumList: userFileManager.FetchResult<userFileManager.PrivateAlbum> = await mgr.getPrivateAlbum(userFileManager.PrivateAlbumType.TYPE_TRASH);
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -4381,7 +4394,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('privateAlbumRecoverDemoCallback');
   let albumList: userFileManager.FetchResult<userFileManager.PrivateAlbum> = await mgr.getPrivateAlbum(userFileManager.PrivateAlbumType.TYPE_TRASH);
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -4435,7 +4448,7 @@ mgr的创建请参考[userFileManager.getUserFileMgr](#userfilemanagergetuserfil
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('privateAlbumRecoverDemoPromise');
   let albumList: userFileManager.FetchResult<userFileManager.PrivateAlbum> = await mgr.getPrivateAlbum(userFileManager.PrivateAlbumType.TYPE_TRASH);
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -4461,7 +4474,7 @@ async function example() {
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
-| 名称  |  类型 |  只读  |  可写  |  说明  |
+| 名称  |  类型 |  只读  |  可选  |  说明  |
 | ----- |  ---- |  ---- |  ---- |  ---- |
 | number |  number | 是 | 是 | number类型。 |
 | string |  string | 是 | 是 | string类型。|
@@ -4473,14 +4486,14 @@ async function example() {
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
-| 名称  |  类型 |  只读  |  可写  |  说明 |
-| ----- |  ---- |  ---- |  ---- |  ---- |
-| deviceChange |  string | 是 | 是 |  设备。 |
-| albumChange |  string | 是 | 是 |  相册。 |
-| imageChange |  string | 是 | 是 |  图片。 |
-| audioChange |  string | 是 | 是 |  音频。 |
-| videoChange |  string | 是 | 是 |  视频。 |
-| remoteFileChange |  string | 是 | 是 |  远程文件。 |
+| 名称   | 类型                     | 必填 | 说明                      |
+| -------- | ------------------------- | ---- | ----- |
+| deviceChange | string | 是    | 设备。 |
+| albumChange | string | 是    | 相册。 |
+| imageChange | string | 是    | 图片。 |
+| audioChange | string | 是    | 音频。 |
+| videoChange | string | 是    | 视频。 |
+| remoteFileChange | string | 是    | 远程文件。 |
 
 ## PeerInfo
 
@@ -4488,7 +4501,7 @@ async function example() {
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.DistributedCore
 
-| 名称       | 类型                       | 只读 | 可写 | 说明             |
+| 名称       | 类型                       | 只读 | 可选 | 说明             |
 | ---------- | -------------------------- | ---- | ---- | ---------------- |
 | deviceName | string                     | 是   | 否   | 注册设备的名称。   |
 | networkId  | string                     | 是   | 否   | 注册设备的网络ID。 |
@@ -4646,10 +4659,10 @@ async function example() {
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
-| 名称                   | 类型                | 只读 | 可写 | 说明                                              |
+| 名称                   | 类型                | 只读 | 可选 | 说明                                              |
 | ---------------------- | ------------------- | ---- |---- | ------------------------------------------------ |
-| fetchColumns           | Array&lt;string&gt; | 是   | 是   | 检索条件，指定列名查询，如果该参数为空时默认查询uri、name、fileType（具体字段名称以检索对象定义为准）且使用[get](#get)接口去获取当前对象的其他属性时将会报错。示例：<br />fetchColumns: ['uri', 'title']。 |
-| predicates           | [dataSharePredicates.DataSharePredicates](../apis-arkdata/js-apis-data-dataSharePredicates-sys.md) | 是   | 是   | 谓词查询，显示过滤条件。 |
+| fetchColumns           | Array&lt;string&gt; | 否   | 否   | 检索条件，指定列名查询，如果该参数为空时默认查询uri、name、fileType（具体字段名称以检索对象定义为准）且使用[get](#get)接口去获取当前对象的其他属性时将会报错。示例：<br />fetchColumns: ['uri', 'title']。 |
+| predicates           | [dataSharePredicates.DataSharePredicates](../apis-arkdata/js-apis-data-dataSharePredicates-sys.md) | 否   | 否   | 谓词查询，显示过滤条件。 |
 
 ## AlbumFetchOptions
 
@@ -4657,9 +4670,9 @@ async function example() {
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
-| 名称                   | 类型                | 只读 | 可写 | 说明                                              |
+| 名称                   | 类型                | 只读 | 可选 | 说明                                              |
 | ---------------------- | ------------------- | ---- |---- | ------------------------------------------------ |
-| predicates           | [dataSharePredicates.DataSharePredicates](../apis-arkdata/js-apis-data-dataSharePredicates-sys.md) | 是   | 是   | 谓词查询，显示过滤条件。 |
+| predicates           | [dataSharePredicates.DataSharePredicates](../apis-arkdata/js-apis-data-dataSharePredicates-sys.md) | 否   | 否   | 谓词查询，显示过滤条件。 |
 
 ## ChangeData<sup>10+</sup>
 
@@ -4667,11 +4680,11 @@ async function example() {
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
-| 名称    | 类型                        | 只读 | 可写 | 说明                                                         |
+| 名称    | 类型                        | 只读 | 可选 | 说明                                                         |
 | ------- | --------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| type    | [NotifyType](#notifytype10) | 是   | 否   | ChangeData的通知类型。                                       |
-| uris    | Array&lt;string&gt;         | 是   | 否   | 相同[NotifyType](#notifytype10)的所有uri，可以是FileAsset或Album。 |
-| subUris | Array&lt;string&gt;         | 是   | 否   | 相册中变动文件的uri数组。可能为undefined，使用前需要检查是否为undefined。|
+| type    | [NotifyType](#notifytype10) | 否   | 否   | ChangeData的通知类型。                                       |
+| uris    | Array&lt;string&gt;         | 否   | 否   | 相同[NotifyType](#notifytype10)的所有uri，可以是FileAsset或Album。 |
+| subUris | Array&lt;string&gt;         | 否   | 否   | 相册中变动文件的uri数组。可能为undefined，使用前需要检查是否为undefined。|
 
 ## NotifyType<sup>10+</sup>
 

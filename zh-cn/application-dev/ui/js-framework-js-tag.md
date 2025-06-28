@@ -7,7 +7,7 @@ js标签用于配置实例名称、页面路由和窗口样式信息。
 | ------ | ------ | ------- | ---- | ------------------------------- |
 | name   | string | default | 是    | 标识JS实例的名字。                      |
 | pages  | Array  | -       | 是    | 路由信息，详见“**[pages](#pages)**”。   |
-| window | Object | -       | 否    | 窗口信息，详见“**[window](#window)**”。 |
+| window | Object | -       | 否    | 窗口信息，详见“**[Window](#window)**”。 |
 
 
 > **说明：**

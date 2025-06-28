@@ -1,7 +1,7 @@
 # 蓝牙设置
 
 ## 简介
-主要提供了开启蓝牙、关闭蓝牙和获取蓝牙开关状态的开发指导。开发者在使用蓝牙其他功能时，应确保蓝牙子系统已正常开启。
+本指南主要提供了开启蓝牙、关闭蓝牙和获取蓝牙开关状态的开发指导。开发者在使用蓝牙其他功能时，应确保蓝牙子系统已正常开启。
 
 ## 开发步骤
 
@@ -109,7 +109,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 export class AdapterManager {
   // 定义蓝牙开关状态变化函数回调
-  onReceiveEvent(data: access.BluetoothState) {
+  onReceiveEvent = (data: access.BluetoothState) => {
     let btStateMessage = '';
     switch (data) {
       case access.BluetoothState.STATE_OFF:
@@ -140,7 +140,7 @@ export class AdapterManager {
         break;
     }
     console.info('bluetooth state: ' + btStateMessage);
-  }
+  };
 
   // 开启蓝牙
   public openBluetooth() {

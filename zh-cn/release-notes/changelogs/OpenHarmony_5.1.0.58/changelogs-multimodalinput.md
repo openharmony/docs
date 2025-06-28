@@ -30,8 +30,8 @@ API 12
 
 oh_input_manager.h 文件中如下接口：
 
-- [OH_Input_AddInputEventInterceptor](../../../application-dev/reference/apis-input-kit/input.md#oh_input_addinputeventinterceptor)
-- [OH_Input_AddKeyEventInterceptor](../../../application-dev/reference/apis-input-kit/input.md#oh_input_addkeyeventinterceptor)
+- [OH_Input_AddInputEventInterceptor](../../../application-dev/reference/apis-input-kit/capi-oh-input-manager-h.md#oh_input_addinputeventinterceptor)
+- [OH_Input_AddKeyEventInterceptor](../../../application-dev/reference/apis-input-kit/capi-oh-input-manager-h.md#oh_input_addkeyeventinterceptor)
 
 **适配指导**
 

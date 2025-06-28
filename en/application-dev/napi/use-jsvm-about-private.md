@@ -12,8 +12,8 @@ In JSVM-API, you can create private keys, use the keys to create and delete prop
 
 | API                                   | Description                      |
 |----------------------------------------|--------------------------------|
-| OH_JSVM_CreateDataReference            | Creates a reference to a **JSVM_Data** instance. |
-| OH_JSVM_GetReferenceData               | Obtains the **JSVM_Data** value from a reference. |
+| OH_JSVM_CreateDataReference            | Creates a data reference with a specified reference count in JSVM.|
+| OH_JSVM_GetReferenceData               | Checks whether a specified reference is valid. If the reference is valid, the JavaScript data associated with the reference is returned; otherwise, **result** is set to **NULL**.|
 | OH_JSVM_CreatePrivate                  | Creates a JS private key object.  |
 | OH_JSVM_SetPrivate                     | Sets a private property for a passed-in object.  |
 | OH_JSVM_GetPrivate                     | Obtains the private property of an object based on the private key.  |
@@ -25,7 +25,7 @@ If you are just starting out with JSVM-API, see [JSVM-API Development Process](u
 
 ### Creating a private Key, adding a private Property, and Deleting the Property
 
-CPP Code
+CPP code:
 
 ```cpp
 static JSVM_Value privateTest(JSVM_Env env, JSVM_CallbackInfo info) {

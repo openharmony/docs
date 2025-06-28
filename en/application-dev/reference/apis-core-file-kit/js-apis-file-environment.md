@@ -4,7 +4,7 @@ The **Environment** module provides APIs for obtaining the root directories of t
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
@@ -12,7 +12,7 @@ The **Environment** module provides APIs for obtaining the root directories of t
 import { Environment } from '@kit.CoreFileKit';
 ```
 
-## Environment.getUserDownloadDir<sup>11+</sup>
+## Environment.getUserDownloadDir
 
 getUserDownloadDir(): string
 
@@ -44,12 +44,12 @@ function getUserDownloadDirExample() {
     let path = Environment.getUserDownloadDir();
     console.log(`success to getUserDownloadDir: ${JSON.stringify(path)}`);
   } catch (error) {
-    console.error(`failed to getUserDownloadDir because: ${JSON.stringify(error)}`);
+    console.error(`failed to getUserDownloadDir, Error code: ${error.code}, message: ${error.message}`);
   }
 }
 ```
 
-## Environment.getUserDesktopDir<sup>11+</sup>
+## Environment.getUserDesktopDir
 
 getUserDesktopDir(): string
 
@@ -81,12 +81,12 @@ function getUserDesktopDirExample() {
     let path = Environment.getUserDesktopDir();
     console.log(`success to getUserDesktopDir: ${JSON.stringify(path)}`);
   } catch (error) {
-    console.error(`failed to getUserDesktopDir because: ${JSON.stringify(error)}`);
+    console.error(`failed to getUserDesktopDir, Error code: ${error.code}, message: ${error.message}`);
   }
 }
 ```
 
-## Environment.getUserDocumentDir<sup>11+</sup>
+## Environment.getUserDocumentDir
 
 getUserDocumentDir(): string
 
@@ -118,7 +118,7 @@ function getUserDocumentDirExample() {
     let path = Environment.getUserDocumentDir();
     console.log(`success to getUserDocumentDir: ${JSON.stringify(path)}`);
   } catch (error) {
-    console.error(`failed to getUserDocumentDir because: ${JSON.stringify(error)}`);
+    console.error(`failed to getUserDocumentDir, Error code: ${error.code}, message: ${error.message}`);
   }
 }
 ```

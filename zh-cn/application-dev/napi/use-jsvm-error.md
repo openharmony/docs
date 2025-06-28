@@ -40,7 +40,7 @@ JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开�
 
 创建并获取一个带文本信息的JavaScript Error。
 
-cpp部分代码
+cpp部分代码：
 
 ```cpp
 // hello.cpp
@@ -90,6 +90,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char *srcCallNative = R"JS(jsVmCreateThrowError();)JS";
 ```
+<!-- @[oh_jsvm_create_error](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmError/createerror/src/main/cpp/hello.cpp) -->
 预期输出结果
 ```ts
 JSVM error message: HasError, error code: -1
@@ -99,7 +100,7 @@ JSVM error message: HasError, error code: -1
 
 用于抛出一个带文本信息的JS Error。
 
-cpp部分代码
+cpp部分代码：
 
 ```cpp
 // hello.cpp
@@ -113,7 +114,7 @@ static JSVM_Value JsVmThrowError(JSVM_Env env, JSVM_CallbackInfo info)
         // 如果没有传递参数，直接抛出错误
         OH_JSVM_ThrowError(env, "-1", "has Error");
     } else if (argc == 1) {
-        size_t length;
+        size_t length = 0;
         // 通过入参获取到javaScript侧传入的字符串长度。
         OH_JSVM_GetValueStringUtf8(env, argv[0], nullptr, 0, &length);
         char *buffer = new char[length + 1];
@@ -138,8 +139,9 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char *srcCallNative = R"JS(jsVmThrowError();jsVmThrowError("self defined error message");)JS";
 ```
+<!-- @[oh_jsvm_throw_error](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmError/throwerror/src/main/cpp/hello.cpp) -->
 
-预期输出结果
+预期输出结果：
 ```ts
 JSVM error message: has Error, error code: -1
 JSVM error message: self defined error message, error code: self defined error code
@@ -149,7 +151,7 @@ JSVM error message: self defined error message, error code: self defined error c
 
 创建并获取一个带文本信息的JavaScript TypeError。
 
-cpp部分代码
+cpp部分代码：
 
 ```cpp
 // hello.cpp
@@ -162,7 +164,7 @@ static JSVM_Value JsVmThrowTypeError(JSVM_Env env, JSVM_CallbackInfo info) {
         // 如果没有传递参数，直接抛出错误
         OH_JSVM_ThrowTypeError(env, "-1", "throwing type error");
     } else if (argc == 1) {
-        size_t length;
+        size_t length = 0;
         // 通过入参获取到javaScript侧传入的字符串长度
         OH_JSVM_GetValueStringUtf8(env, argv[0], nullptr, 0, &length);
         char *buffer = new char[length + 1];
@@ -187,8 +189,9 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char *srcCallNative = R"JS(jsVmThrowTypeError();jsVmThrowTypeError("self defined error message");)JS";
 ```
+<!-- @[oh_jsvm_throw_type_error](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmError/throwtypeerror/src/main/cpp/hello.cpp) -->
 
-预期输出结果
+预期输出结果：
 ```ts
 JSVM error message: throwing type error, error code: -1
 JSVM error message: self defined error message, error code: self defined error code
@@ -198,7 +201,7 @@ JSVM error message: self defined error message, error code: self defined error c
 
 创建并获取一个带文本信息的JavaScript RangeError。
 
-cpp部分代码
+cpp部分代码：
 
 ```cpp
 // hello.cpp
@@ -232,9 +235,10 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char *srcCallNative = R"JS(jsVmThrowRangeError(1);)JS";
 ```
+<!-- @[oh_jsvm_throw_range_error](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmError/throwrangeerror/src/main/cpp/hello.cpp) -->
 
 
-预期输出结果
+预期输出结果：
 ```ts
 JSVM error message: Expected two numbers as arguments, error code: OH_JSVM_ThrowRangeError
 ```
@@ -243,7 +247,7 @@ JSVM error message: Expected two numbers as arguments, error code: OH_JSVM_Throw
 
 创建并获取一个带文本信息的JavaScript SyntaxError。
 
-cpp部分代码
+cpp部分代码：
 
 ```cpp
 // hello.cpp
@@ -281,8 +285,9 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char *srcCallNative = R"JS(jsVmThrowSyntaxError();)JS";
 ```
+<!-- @[oh_jsvm_throw_syntax_error](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmError/throwsyntaxerror/src/main/cpp/hello.cpp) -->
 
-预期输出结果
+预期输出结果：
 ```ts
 JSVM error message: throw syntax error, error code: JsVmThrowSyntaxError
 ```
@@ -291,7 +296,7 @@ JSVM error message: throw syntax error, error code: JsVmThrowSyntaxError
 
 用于判断给定的JSVM_Value是否表示一个error对象。
 
-cpp部分代码
+cpp部分代码：
 
 ```cpp
 // hello.cpp
@@ -326,8 +331,9 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char *srcCallNative = R"JS(jsVmIsError(Error()))JS";
 ```
+<!-- @[oh_jsvm_is_error](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmError/iserror/src/main/cpp/hello.cpp) -->
 
-预期输出结果
+预期输出结果：
 ```ts
 JSVM API call OH_JSVM_IsError success, result is 1
 ```
@@ -336,7 +342,7 @@ JSVM API call OH_JSVM_IsError success, result is 1
 
 创建并获取一个带文本信息的JavaScript TypeError。
 
-cpp部分代码
+cpp部分代码：
 
 ```cpp
 // hello.cpp
@@ -369,8 +375,9 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char *srcCallNative = R"JS(jsVmCreateTypeError();)JS";
 ```
+<!-- @[oh_jsvm_create_type_error](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmError/createtypeerror/src/main/cpp/hello.cpp) -->
 
-预期输出结果
+预期输出结果：
 ```ts
 JSVM API Create TypeError SUCCESS
 ```
@@ -379,7 +386,7 @@ JSVM API Create TypeError SUCCESS
 
 创建并获取一个带文本信息的JavaScript RangeError。
 
-cpp部分代码
+cpp部分代码：
 
 ```cpp
 // hello.cpp
@@ -412,8 +419,9 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char *srcCallNative = R"JS(jsVmCreateRangeError();)JS";
 ```
+<!-- @[oh_jsvm_create_range_error](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmError/createrangeerror/src/main/cpp/hello.cpp) -->
 
-预期输出结果
+预期输出结果：
 ```ts
 JSVM API CreateRangeError SUCCESS
 ```
@@ -421,7 +429,7 @@ JSVM API CreateRangeError SUCCESS
 
 用于创建并获取一个带文本信息的JavaScript SyntaxError。
 
-cpp部分代码
+cpp部分代码：
 
 ```cpp
 // hello.cpp
@@ -454,8 +462,9 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char *srcCallNative = R"JS(jsVmCreateSyntaxError();)JS";
 ```
+<!-- @[oh_jsvm_create_syntax_error](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmError/createsyntaxerror/src/main/cpp/hello.cpp) -->
 
-预期输出结果
+预期输出结果：
 ```ts
 JSVM API CreateSyntaxError SUCCESS
 ```
@@ -464,7 +473,7 @@ JSVM API CreateSyntaxError SUCCESS
 
 用于获取并清除最近一次出现的异常。
 
-cpp部分代码
+cpp部分代码：
 
 ```cpp
 // hello.cpp
@@ -494,8 +503,9 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char *srcCallNative = R"JS(jsVmGetAndClearLastException();)JS";
 ```
+<!-- @[oh_jsvm_get_and_clear_last_exception](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmError/getandclearlastexception/src/main/cpp/hello.cpp) -->
 
-预期输出结果
+预期输出结果：
 ```ts
 JSVM API OH_JSVM_GetAndClearLastException SUCCESS
 ```
@@ -504,7 +514,7 @@ JSVM API OH_JSVM_GetAndClearLastException SUCCESS
 
 用于判断是否出现了异常。
 
-cpp部分代码
+cpp部分代码：
 
 ```cpp
 // hello.cpp
@@ -546,8 +556,9 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char *srcCallNative = R"JS(jsVmIsExceptionPending();)JS";
 ```
+<!-- @[oh_jsvm_is_exception_pending](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmError/isexceptionpending/src/main/cpp/hello.cpp) -->
 
-预期输出结果
+预期输出结果：
 ```ts
 JSVM API OH_JSVM_IsExceptionPending: SUCCESS
 ```
@@ -557,7 +568,7 @@ JSVM API OH_JSVM_IsExceptionPending: SUCCESS
 用于获取调用JSVM接口最后一次发生的错误信息（接口返回值不为JSVM_OK），包括错误码、错误消息以及错误堆栈信息，即使存在挂起的JavaScript异常，也可以调用此API。
 注意: 通过OH_JSVM_ThrowError等接口主动触发的Error不会被该接口获取，除非调用接口时返回值不为JSVM_OK。
 
-cpp部分代码
+cpp部分代码：
 
 ```cpp
 // hello.cpp
@@ -597,8 +608,9 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char *srcCallNative = R"JS(jsVmGetLastErrorInfo();)JS";
 ```
+<!-- @[oh_jsvm_get_last_error_info](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/JsvmError/getlasterrorinfo/src/main/cpp/hello.cpp) -->
 
-预期输出结果
+预期输出结果：
 ```ts
 JSVM API OH_JSVM_GetLastErrorInfo: SUCCESS, error message is A number was expected, error code is 6
 ```

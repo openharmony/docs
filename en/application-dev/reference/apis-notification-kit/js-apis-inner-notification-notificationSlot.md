@@ -16,12 +16,12 @@ The **NotificationSlot** module provides APIs for defining the notification slot
 | notificationType<sup>11+</sup>                 | [notificationManager.SlotType](js-apis-notificationManager.md#slottype) | No| Yes | Notification slot type.               |
 | level                | [notification.SlotLevel](../apis-notification-kit/js-apis-notificationManager.md#slotlevel)                | No| Yes | Notification level.|
 | desc                 | string                | No| Yes | Notification slot description.           |
-| badgeFlag            | boolean               | No| Yes | Whether to display the badge.             |
-| bypassDnd            | boolean               | No| Yes | Whether to bypass DND mode in the system.      |
+| badgeFlag            | boolean               | No| Yes | Whether to display the badge.<br> - **true**: Yes.<br> - **false**: No.             |
+| bypassDnd            | boolean               | No| Yes | Whether to bypass DND mode in the system.<br> - **true**: Yes.<br> - **false**: No.      |
 | lockscreenVisibility | number                | No| Yes | Mode for displaying the notification on the lock screen. Not supported currently.      |
-| vibrationEnabled     | boolean               | No| Yes | Whether to enable vibration for the notification.              |
+| vibrationEnabled     | boolean               | No| Yes | Whether to enable vibration for the notification.<br> - **true**: Yes.<br> - **false**: No.              |
 | sound                | string                | No| Yes | Notification alert tone.              |
-| lightEnabled         | boolean               | No| Yes | Whether the indicator blinks for the notification.               |
+| lightEnabled         | boolean               | No| Yes | Whether the indicator blinks for the notification.<br> - **true**: Yes.<br> - **false**: No.               |
 | lightColor           | number                | No| Yes | Indicator color of the notification. Not supported currently.              |
 | vibrationValues      | Array\<number\>       | No| Yes | Vibration mode of the notification. Not supported currently.             |
-| enabled<sup>9+</sup> | boolean               | Yes| Yes | Whether the notification slot is enabled. The value **true** means to enable the notification slot, and **false** means the opposite.        |
+| enabled<sup>9+</sup> | boolean               | Yes| Yes | Whether the notification is enabled.<br> - **true**: enabled.<br> - **false**: disabled.      |

@@ -167,6 +167,7 @@ Form is not trust.
 
 检查卡片代码的死循环、内存泄漏等问题。
 
+<!--Del-->
 ## 16501008 等待卡片加桌超时
 
 **错误信息**
@@ -184,6 +185,43 @@ Waiting for the form addition to the desktop timed out.
 **处理步骤**
 
 服务繁忙，请稍后重试。
+<!--DelEnd-->
+
+## 16501010 设置互动卡片背景图失败
+
+**错误信息**
+
+Failed to set the live form background image.
+
+**错误描述**
+
+设置互动卡片背景图时，传入背景图资源无效，系统会报此错误码。
+
+**可能原因**
+
+背景图资源无效。
+
+**处理步骤**
+
+检查传入的背景图资源是否有效。
+
+## 16501011 当前卡片不支持互动卡片能力
+
+**错误信息**
+
+The form can not support this operation, please check your fom_config's sceneAnimationParams configuration infomation is correct or not.
+
+**错误描述**
+
+当前卡片不支持互动卡片能力时，系统会报此错误码。
+
+**可能原因**
+
+普通卡片发起互动卡片动效请求，或者当前互动卡片配置错误。
+
+**处理步骤**
+
+检查当前卡片对应[互动卡片配置项sceneAnimationParams](../../form/arkts-ui-widget-configuration.md#sceneanimationparams标签)是否正确。
 
 ## 2293761 内部服务错误
 
@@ -204,7 +242,7 @@ Some internal server error occurs.
 1. 重启系统后重试。
 2. 重启后仍旧失败，请提[在线工单](http://developer.huawei.com/consumer/cn/support/feedback/#)获取帮助。
 
-## 2293766 包管理获取获取请求的应用包名不存在
+## 2293766 包管理获取请求的应用包名不存在
 
 **错误信息**
 

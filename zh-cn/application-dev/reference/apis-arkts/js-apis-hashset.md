@@ -28,7 +28,7 @@ import { HashSet } from '@kit.ArkTS';
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | length | number | 是 | 否 | HashSet的元素个数。 |
 
@@ -422,7 +422,7 @@ hashSet.add("squirrel");
 hashSet.add("sparrow");
 
 // 使用方法一：
-let val: Array<string> = Array.from(hashSet.values())
+let val: Array<string> = Array.from(hashSet.values());
 for (let item of val) {
   console.log("value: " + item);
 }

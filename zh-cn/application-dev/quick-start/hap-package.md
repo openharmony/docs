@@ -18,11 +18,11 @@ HAP（Harmony Ability Package）是应用安装和运行的基本单元。HAP包
 
 - 不支持导出接口和ArkUI组件，给其他模块使用。
 
-- 多HAP场景下，App Pack包中同一设备类型的所有HAP中必须有且只有一个Entry类型的HAP，Feature类型的HAP可以有一个或者多个，也可以没有。
+- 多HAP场景下，App Pack包中同一设备类型的所有HAP中最多只能包含一个Entry类型的HAP，也可以不包含；Feature类型的HAP可以包含一个或者多个，也可以不包含。
 
 - 多HAP场景下，同一应用中的所有HAP的配置文件中的bundleName、versionCode、versionName、minCompatibleVersionCode、debug、minAPIVersion、targetAPIVersion、apiReleaseType相同，同一设备类型的所有HAP对应的moduleName标签必须唯一。HAP打包生成App Pack包时，会对上述参数配置进行校验。
 
-- 多HAP场景下，同一应用的所有HAP、HSP的签名证书要保持一致。上架应用市场是以App Pack形式上架，应用市场分发时会将所有HAP从App Pack中拆分出来，同时对所有HAP进行重签名，以保证签名证书的一致性。在调试阶段，开发者通过命令行或DevEco Studio将HAP安装到设备上时，要保证所有HAP签名证书一致，否则会出现安装失败的问题。
+- 多HAP场景下，同一应用的所有HAP、HSP的签名证书要保持一致。上架应用市场是以App Pack形式上架，应用市场分发时会将所有HAP从App Pack中拆分出来，同时对所有HAP进行重签名，以保证签名证书的一致性。在调试阶段，开发者通过命令行或DevEco Studio将HAP安装到设备上时，要保证所有HAP签名证书一致，否则会出现安装失败的问题，签名操作请参考[应用/元服务签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing)。
 
 ## 创建
 
@@ -38,7 +38,7 @@ HAP（Harmony Ability Package）是应用安装和运行的基本单元。HAP包
 
 ## 开发
 
-- HAP中支持添加UIAbility组件或ExtensionAbility组件，以及pages页面。具体操作可参考[在模块中添加Ability](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-add-new-ability)。
+- HAP中支持添加UIAbility组件或ExtensionAbility组件，以及pages页面。具体操作可参考[在模块中添加Ability](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-add-new-ability)和[添加Page](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-add-page)。
 
 - HAP中支持引用HAR或HSP共享包，详见[HAR的使用](./har-package.md#使用)、[HSP的使用](./in-app-hsp.md#使用)。
 
@@ -59,13 +59,13 @@ HAP（Harmony Ability Package）是应用安装和运行的基本单元。HAP包
       HAP的路径为开发平台上的文件路径，以Windows开发平台为例，命令参考如下：
 
       ```shell
-      // 安装、更新，多HAP可以指定多个文件路径
+      # 安装、更新，多HAP可以指定多个文件路径
       hdc install entry.hap feature.hap
-      // 执行结果
+      # 执行结果
       install bundle successfully.
-      // 卸载
+      # 卸载
       hdc uninstall com.example.myapplication
-      // 执行结果
+      # 执行结果
       uninstall bundle successfully.
       ```
 
@@ -74,15 +74,15 @@ HAP（Harmony Ability Package）是应用安装和运行的基本单元。HAP包
       HAP的文件路径为真机上的文件路径，命令参考如下：
 
       ```shell
-      // 先执行hdc shell才能使用bm工具
+      # 先执行hdc shell才能使用bm工具
       hdc shell
-      // 安装、更新，多HAP可以指定多个文件路径
+      # 安装、更新，多HAP可以指定多个文件路径
       bm install -p /data/app/entry.hap /data/app/feature.hap
-      // 执行结果
+      # 执行结果
       install bundle successfully.
-      // 卸载
+      # 卸载
       bm uninstall -n com.example.myapplication
-      // 执行结果
+      # 执行结果
       uninstall bundle successfully.
       ```
 

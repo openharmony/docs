@@ -1,6 +1,6 @@
 # @ohos.pasteboard (剪贴板)
 
-本模块主要提供管理系统剪贴板的能力，为系统复制、粘贴功能提供支持。系统剪贴板支持对文本、HTML、URI、Want、PixelMap等内容的操作。
+本模块提供管理系统剪贴板的能力，支持系统复制、粘贴功能。系统剪贴板支持对文本、HTML、URI、Want、PixelMap等内容的操作。
 
 > **说明：**
 >
@@ -40,7 +40,7 @@ type ValueType = string | image.PixelMap | Want | ArrayBuffer
 | 类型 | 说明 |
 | -------- | -------- |
 | string | 表示string的类型。 |
-| image.PixelMap | 表示[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)的类型。 |
+| image.PixelMap | 表示[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)的类型。 |
 | Want | 表示[Want](../apis-ability-kit/js-apis-app-ability-want.md)的类型。 |
 | ArrayBuffer | 表示ArrayBuffer的类型。 |
 
@@ -137,7 +137,7 @@ let pasteData: pasteboard.PasteData = pasteboard.createData(record);
 
 ## pasteboard.createRecord<sup>9+</sup>
 
-createRecord(mimeType: string, value: ValueType):PasteDataRecord
+createRecord(mimeType: string, value: ValueType): PasteDataRecord
 
 创建一条指定类型的数据内容条目。
 
@@ -149,7 +149,7 @@ createRecord(mimeType: string, value: ValueType):PasteDataRecord
 
 | 参数名 | 类型 | 必填 | 说明                |
 | -------- | -------- | -------- |-------------------|
-| mimeType | string | 是 | 剪贴板数据对应的MIME类型，可以是[常量](#常量)中已定义的类型，包括HTML类型，WANT类型，纯文本类型，URI类型，PIXELMAP类型；也可以是自定义的MIME类型，开发者可自定义此参数值，mimeType长度不能超过1024个字节。  |
+| mimeType | string | 是 | 剪贴板数据对应的MIME类型，可以是[常量](#常量)中已定义的类型，包括HTML类型，WANT类型，纯文本类型，URI类型，PIXELMAP类型；也可以是自定义的MIME类型，开发者可自定义此参数值，mimeType长度不能超过1024字节。  |
 | value | [ValueType](#valuetype9) | 是 | 指定类型对应的数据内容。          |
 
 **返回值：**
@@ -465,20 +465,20 @@ let record: pasteboard.PasteDataRecord = pasteboard.createUriRecord('dataability
 
 ## PasteDataProperty<sup>7+</sup>
 
-定义了剪贴板中所有内容条目的属性，包含时间戳、数据类型、粘贴范围以及一些附加数据等，该属性必须通过[setProperty](#setproperty9)方法，才能设置到剪贴板中。
+定义剪贴板中所有内容条目的属性，包含时间戳、数据类型、粘贴范围以及一些附加数据等，该属性必须通过[setProperty](#setproperty9)方法，才能设置到剪贴板中。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- |-------------------------------|
-| additions<sup>7+</sup> | {[key:string]:object} | 是 | 是 | 设置其他附加属性数据。不支持动态追加属性，只能通过重新赋值的方式修改附加值，具体见相关示例setProperty。 |
+| additions<sup>7+</sup> | {[key:string]:object} | 否 | 是 | 设置其他附加属性数据。不支持动态追加属性，只能通过重新赋值的方式修改附加值，具体见相关示例setProperty。 |
 | mimeTypes<sup>7+</sup> | Array&lt;string&gt; | 是 | 否 | 剪贴板内容条目的数据类型，非重复的类型列表。 |
-| tag<sup>7+</sup> | string | 是 | 是 | 用户自定义标签。 |
+| tag<sup>7+</sup> | string | 否 | 是 | 用户自定义标签。 |
 | timestamp<sup>7+</sup> | number | 是 | 否 | 剪贴板数据的写入时间戳（单位：ms）。 |
-| localOnly<sup>7+</sup> | boolean | 是 | 是 | 配置剪贴板内容是否为“仅在本地”，默认值为false。其值会被shareOption属性覆盖，推荐使用[ShareOption](#shareoption9)属性。 |
-| shareOption<sup>9+</sup> | [ShareOption](#shareoption9) | 是 | 是 | 指示剪贴板数据可以粘贴到的范围。 |
+| localOnly<sup>7+</sup> | boolean | 否 | 是 | 配置剪贴板内容是否为“仅在本地”，默认值为false。其值会被shareOption属性覆盖，推荐使用[ShareOption](#shareoption9)属性。 |
+| shareOption<sup>9+</sup> | [ShareOption](#shareoption9) | 否 | 是 | 指示剪贴板数据可以粘贴到的范围。 |
 
 ## FileConflictOptions<sup>15+</sup>
 
@@ -514,7 +514,7 @@ let record: pasteboard.PasteDataRecord = pasteboard.createUriRecord('dataability
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
-| 名称     | 类型   | 可读 | 可写 | 说明                                                       |
+| 名称     | 类型   | 只读 | 可选 | 说明                                                       |
 | -------- | ------ | ---- | ---- | ---------------------------------------------------------- |
 | progress | number | 是   | 否   | 不使用系统提供的进度条时，系统上报拷贝粘贴任务进度百分比。 |
 
@@ -615,14 +615,14 @@ struct PasteboardTest {
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | htmlText<sup>7+</sup> | string | 是 | 否 | HTML内容。 |
 | want<sup>7+</sup> | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是 | 否 | Want内容。 |
 | mimeType<sup>7+</sup> | string | 是 | 否 | 默认数据类型。 |
 | plainText<sup>7+</sup> | string | 是 | 否 | 纯文本内容。 |
 | uri<sup>7+</sup> | string | 是 | 否 | URI内容。 |
-| pixelMap<sup>9+</sup> | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是 | 否 | PixelMap内容。 |
+| pixelMap<sup>9+</sup> | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 是 | 否 | PixelMap内容。 |
 | data<sup>9+</sup> | {[mimeType:&nbsp;string]:&nbsp;ArrayBuffer} | 是 | 否 | 自定义数据内容。 |
 
 ### toPlainText<sup>9+</sup>
@@ -661,7 +661,7 @@ addEntry(type: string, value: ValueType): void
 
 | 参数名   | 类型 | 必填 | 说明                |
 |-------| -------- | -------- |-------------------|
-| type  | string | 是 | 剪贴板数据对应的MIME类型，可以是[常量](#常量)中已定义的类型，包括HTML类型，WANT类型，纯文本类型，URI类型，PIXELMAP类型；也可以是自定义的MIME类型，开发者可自定义此参数值，mimeType长度不能超过1024个字节。  |
+| type  | string | 是 | 剪贴板数据对应的MIME类型，可以是[常量](#常量)中已定义的类型，包括HTML类型，WANT类型，纯文本类型，URI类型，PIXELMAP类型；也可以是自定义的MIME类型，开发者可自定义此参数值，mimeType长度不能超过1024字节。  |
 | value | [ValueType](#valuetype9) | 是 | 自定义数据内容。          |
 
 **错误码：**
@@ -985,7 +985,7 @@ getPrimaryPixelMap(): image.PixelMap
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | PixelMap内容。剪贴板内容对象中没有PixelMap内容时，默认返回为undefined。 |
+| [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | PixelMap内容。剪贴板内容对象中没有PixelMap内容时，默认返回为undefined。 |
 
 **示例：**
 
@@ -1047,12 +1047,12 @@ addRecord(mimeType: string, value: ValueType): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| mimeType | string | 是 | 数据的MIME类型， 其长度不能超过1024个字节。 |
+| mimeType | string | 是 | 数据的MIME类型， 其长度不能超过1024字节。 |
 | value | [ValueType](#valuetype9) | 是 | 数据内容。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和见[剪贴板错误码](errorcode-pasteboard.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[剪贴板错误码](errorcode-pasteboard.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -1703,7 +1703,7 @@ let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboa
 
 ### on('update')<sup>7+</sup>
 
-on(type:  'update', callback: () =&gt;void ): void
+on(type: 'update', callback: () =&gt;void): void
 
 订阅系统剪贴板内容变化事件，当系统剪贴板中内容变化时触发用户程序的回调。
 
@@ -1736,7 +1736,7 @@ systemPasteboard.on('update', listener);
 
 ### off('update')<sup>7+</sup>
 
-off(type:  'update', callback?: () =&gt;void ): void
+off(type: 'update', callback?: () =&gt;void): void
 
 取消订阅系统剪贴板内容变化事件。
 
@@ -1922,7 +1922,7 @@ systemPasteboard.setData(pasteData).then((data: void) => {
 
 ### getData<sup>9+</sup>
 
-getData( callback: AsyncCallback&lt;PasteData&gt;): void
+getData(callback: AsyncCallback&lt;PasteData&gt;): void
 
 读取系统剪贴板内容，使用callback异步回调。
 
@@ -2141,7 +2141,7 @@ systemPasteboard.clear().then((data) => {
 
 ### getPasteData<sup>(deprecated)</sup>
 
-getPasteData( callback: AsyncCallback&lt;PasteData&gt;): void
+getPasteData(callback: AsyncCallback&lt;PasteData&gt;): void
 
 读取系统剪贴板内容，使用callback异步回调。
 > **说明：**
@@ -2376,7 +2376,7 @@ isRemoteData(): boolean
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12900005 | Request timed out. |
+| 12900005 | Excessive processing time for internal data. |
 
 **示例：**
 
@@ -2412,7 +2412,7 @@ getDataSource(): string
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12900005 | Request timed out. |
+| 12900005 | Excessive processing time for internal data. |
 
 **示例：**
 
@@ -2455,7 +2455,7 @@ hasDataType(mimeType: string): boolean
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 401 | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
-| 12900005 | Request timed out. |
+| 12900005 | Excessive processing time for internal data. |
 
 **示例：**
 
@@ -2485,7 +2485,7 @@ clearDataSync(): void
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12900005 | Request timed out. |
+| 12900005 | Excessive processing time for internal data. |
 
 **示例：**
 
@@ -2523,7 +2523,7 @@ getDataSync(): PasteData
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12900005 | Request timed out. |
+| 12900005 | Excessive processing time for internal data. |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
 
 **示例：**
@@ -2561,7 +2561,7 @@ setDataSync(data: PasteData): void
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
-| 12900005 | Request timed out. |
+| 12900005 | Excessive processing time for internal data. |
 
 **示例：**
 
@@ -2598,7 +2598,7 @@ hasDataSync(): boolean
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12900005 | Request timed out. |
+| 12900005 | Excessive processing time for internal data. |
 
 **示例：**
 
@@ -2684,7 +2684,7 @@ getUnifiedDataSync(): unifiedDataChannel.UnifiedData
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
-| 12900005 | Request timed out. |
+| 12900005 | Excessive processing time for internal data. |
 
 **示例：**
 
@@ -2778,7 +2778,7 @@ setUnifiedDataSync(data: unifiedDataChannel.UnifiedData): void
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
-| 12900005 | Request timed out. |
+| 12900005 | Excessive processing time for internal data. |
 
 **示例：**
 
@@ -2827,7 +2827,7 @@ setAppShareOptions(shareOptions: ShareOption): void
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 12900006 | Settings already exist. |
 
 **示例：**
@@ -2915,7 +2915,7 @@ detectPatterns(patterns: Array&lt;Pattern&gt;): Promise&lt;Array&lt;Pattern&gt;&
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -3002,10 +3002,10 @@ getDataWithProgress(params: GetDataParams): Promise&lt;PasteData&gt;
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 401      | Parameter error.                                             |
 | 12900003 | Another copy or paste operation is in progress.              |
-| 12900007 | Copy file failed.                                            |
+| 12900007 | Invalid destUri or file system error.                        |
 | 12900008 | Failed to start progress.                                    |
 | 12900009 | Progress exits abnormally.                                   |
-| 12900010 | Get pasteData error.                                         |
+| 12900010 | System error occurred during paste execution.                |
 
 **示例：**
 

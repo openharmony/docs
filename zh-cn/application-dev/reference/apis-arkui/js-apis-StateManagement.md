@@ -19,7 +19,7 @@
 ## 导入模块
 
 ```ts
-import { AppStorageV2,PersistenceV2,UIUtils} from '@kit.ArkUI';
+import { AppStorageV2, PersistenceV2, UIUtils } from '@kit.ArkUI';
 ```
 
 ## AppStorageV2
@@ -66,7 +66,7 @@ static&nbsp;connect\<T extends object\>( </br >
 
 | 类型                                   | 说明                                                         |
 | -------------------------------------- | ------------------------------------------------------------ |
-| T | 创建或获取AppStorageV2数据成功时，返回数据；否则返回undefined。 |
+| T \| undefined | 创建或获取AppStorageV2数据成功时，返回数据；否则返回undefined。 |
 
 **示例：**
 
@@ -201,6 +201,7 @@ static globalConnect\<T extends object\>(type: ConnectOptions\<T\>): T | undefin
 > 9、EL5加密要想生效，需要开发者在module.json中配置字段ohos.permission.PROTECT_SCREEN_LOCK_DATA，使用说明见[声明权限](../../security/AccessToken/declare-permissions.md)。
 
 **示例：**
+仅供开发者了解globalConnect用法，完整使用需开发者自己写出@Entry组件。
 
 <!--code_no_check-->
 ```ts
@@ -221,16 +222,26 @@ export class Sample {
 }
 
 // key不传入尝试用为type的name作为key，加密参数不传入默认加密等级为EL2
-@Local p: Sample = PersistenceV2.globalConnect({type: Sample, defaultCreator:() => new Sample()})!;
+const p: Sample = PersistenceV2.globalConnect({ type: Sample, defaultCreator: () => new Sample() })!;
 
 // 使用key:global1连接，传入加密等级为EL1
-@Local p1: Sample = PersistenceV2.globalConnect({type: Sample, key:'global1', defaultCreator:() => new Sample(), areaMode: contextConstant.AreaMode.EL1})!;
+const p1: Sample = PersistenceV2.globalConnect({
+  type: Sample,
+  key: 'global1',
+  defaultCreator: () => new Sample(),
+  areaMode: contextConstant.AreaMode.EL1
+})!;
 
 // 使用key:global2连接，使用构造函数形式，加密参数不传入默认加密等级为EL2
-@Local p2: Sample = PersistenceV2.globalConnect({type: Sample, key: 'global2', defaultCreator:() => new Sample()})!;
+const p2: Sample = PersistenceV2.globalConnect({ type: Sample, key: 'global2', defaultCreator: () => new Sample() })!;
 
 // 使用key:global3连接，直接写加密数值，范围只能在0-4，否则运行会crash,例如加密设置为EL3
-@Local p3: Sample = PersistenceV2.globalConnect({type: Sample, key:'global3', defaultCreator:() => new Sample(), areaMode: 3})!;
+const p3: Sample = PersistenceV2.globalConnect({
+  type: Sample,
+  key: 'global3',
+  defaultCreator: () => new Sample(),
+  areaMode: 3
+})!;
 
 ```
 
@@ -261,14 +272,19 @@ static&nbsp;save\<T\>(keyOrType:&nbsp;string&nbsp;|&nbsp;TypeConstructorWithArgs
 <!--code_no_check-->
 
 ```ts
+@ObservedV2
+class SampleClass {
+  @Trace p: number = 0;
+}
+
 // 假设PersistenceV2中存在key为key_as2的键，持久化该键值对数据
 PersistenceV2.save('key_as2');
 
 // 假设PersistenceV2中存在key为SampleClass的键，持久化该键值对数据
-PersistenceV2.remove(SampleClass);
+PersistenceV2.save(SampleClass);
 
 // 假设PersistenceV2中不存在key为key_as1的键，无意义的操作
-PersistenceV2.remove('key_as1');
+PersistenceV2.save('key_as1');
 ```
 
 ### notifyOnError
@@ -297,6 +313,8 @@ PersistenceV2.notifyOnError((key: string, reason: string, msg: string) => {
 ```
 
 ## ConnectOptions<sup>18+</sup>
+
+globalConnect参数类型。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -604,6 +622,8 @@ struct SampleComp {
 
 new(...args: any): T
 
+创建并返回一个指定类型T的实例。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -725,15 +745,17 @@ struct Index {
 
 new(): T
 
+创建并返回一个指定类型T的实例。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **返回值：**
 
 | 类型 | 说明                                             |
 | ---- | ------------------------------------------------ |
 | T    | T类型的实例。 |
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **示例：**
 

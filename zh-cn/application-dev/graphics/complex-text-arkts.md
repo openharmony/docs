@@ -127,9 +127,9 @@ const textNode = new MyRenderNode()
 // 定义newNode的像素格式
 textNode.frame = {
   x: 0,
-  y: 100,
-  width: 1250,
-  height: 800
+  y: 0,
+  width: 400,
+  height: 600
 }
 textNode.pivot = { x: 0.2, y: 0.8 }
 textNode.scale = { x: 1, y: 1 }
@@ -341,9 +341,9 @@ const textNode = new MyRenderNode()
 // 定义newNode的像素格式
 textNode.frame = {
   x: 0,
-  y: 100,
-  width: 1250,
-  height: 800
+  y: 0,
+  width: 400,
+  height: 600
 }
 textNode.pivot = { x: 0.2, y: 0.8 }
 textNode.scale = { x: 1, y: 1 }
@@ -688,9 +688,9 @@ const textNode = new MyRenderNode()
 // 定义newNode的像素格式
 textNode.frame = {
   x: 0,
-  y: 100,
-  width: 1250,
-  height: 800
+  y: 0,
+  width: 400,
+  height: 600
 }
 textNode.pivot = { x: 0.2, y: 0.8 }
 textNode.scale = { x: 1, y: 1 }

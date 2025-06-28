@@ -1,6 +1,6 @@
 # @arkts.collections (ArkTS容器集)
 
-本模块提供的ArkTS容器集，可以用于并发场景下的高性能数据传递。功能与JavaScript内建的对应容器类似，但ArkTS容器实例无法通过\.或者\[\]添加或更新属性。
+本模块提供的ArkTS容器集，可以用于并发场景下的高性能数据传递。功能与JavaScript内建的对应容器类似，但ArkTS容器实例无法通过`.`或者`[]`添加或更新属性。
 
 ArkTS容器在多个并发实例间传递时，其默认行为是引用传递，支持多个并发实例可以同时操作同一个容器实例。另外，也支持拷贝传递，即每个并发实例持有一个ArkTS容器实例。
 
@@ -993,7 +993,7 @@ reverse(): Array\<T>
 
 | 类型    | 说明                 |
 | ----- | ------------------ |
-| Array | 反转后的ArkTS Array对象。 |
+| Array\<T> | 反转后的ArkTS Array对象。 |
 
 **错误码：**
 
@@ -1375,7 +1375,7 @@ reduce\<U>(callbackFn: (previousValue: U, currentValue: T, currentIndex: number,
 
 | 参数名       | 类型                                                         | 必填 | 说明                                                         |
 | ------------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callbackFn   | callbackFn: (previousValue: U, currentValue: T, currentIndex: number, array: Array\<T>) => U | 是   | 一个接受四个参数的函数，用于对每个元素执行操作，并将结果作为累加值传递给下一个元素。 |
+| callbackFn   | (previousValue: U, currentValue: T, currentIndex: number, array: Array\<T>) => U | 是   | 一个接受四个参数的函数，用于对每个元素执行操作，并将结果作为累加值传递给下一个元素。 |
 | initialValue | U                                                            | 是   | 用于初始化累加器的值。                                       |
 
 **返回值：**

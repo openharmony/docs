@@ -18,7 +18,7 @@ import { display } from '@kit.ArkUI';
 
 hasPrivateWindow(displayId: number): boolean
 
-查询指定display对象上是否有可见的隐私窗口。可通过[setWindowPrivacyMode()](js-apis-window.md#setwindowprivacymode9)接口设置隐私窗口。隐私窗口内容将无法被截屏或录屏。
+查询指定display对象上是否有可见的隐私窗口。可通过[setWindowPrivacyMode()](arkts-apis-window-Window.md#setwindowprivacymode9)接口设置隐私窗口。隐私窗口内容将无法被截屏或录屏。
 
 **系统接口：** 此接口为系统接口。
 
@@ -278,7 +278,7 @@ addVirtualScreenBlocklist(windowIds: Array\<number>): Promise\<void>
 
 | 参数名   | 类型                                       | 必填 | 说明                                                    |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
-| windowIds     | Array\<number>    | 是   | 窗口id列表，传入子窗窗口id时不生效。窗口id为大于0的整数。推荐使用[getWindowProperties()](js-apis-window.md#getwindowproperties9)方法获取窗口id属性。|
+| windowIds     | Array\<number>    | 是   | 窗口id列表，传入子窗窗口id时不生效。窗口id为大于0的整数。推荐使用[getWindowProperties()](arkts-apis-window-Window.md#getwindowproperties9)方法获取窗口id属性。|
 
 **返回值：**
 
@@ -333,7 +333,7 @@ removeVirtualScreenBlocklist(windowIds: Array\<number>): Promise\<void>
 
 | 参数名   | 类型                                       | 必填 | 说明                                                    |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
-| windowIds     | Array\<number>    | 是   | 窗口id列表，传入子窗窗口id时不生效。窗口id为大于0的整数。推荐使用[getWindowProperties()](js-apis-window.md#getwindowproperties9)方法获取窗口id属性。|
+| windowIds     | Array\<number>    | 是   | 窗口id列表，传入子窗窗口id时不生效。窗口id为大于0的整数。推荐使用[getWindowProperties()](arkts-apis-window-Window.md#getwindowproperties9)方法获取窗口id属性。|
 
 **返回值：**
 

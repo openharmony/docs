@@ -167,13 +167,13 @@ Sets the number of times that the animation is played.
 | ------ | ------ | ---- | ------------------------------------------------------ |
 | value  | number | Yes  | Number of times that the animation is played. By default, the animation is played once. The value **-1** indicates that the animation is played for an unlimited number of times.<br>Default value: **1**|
 
-### monitorInvisibleArea<sup>18+</sup>
+### monitorInvisibleArea<sup>17+</sup>
 
 monitorInvisibleArea(monitorInvisibleArea: boolean)
 
 Sets whether the component should automatically pause or resume based on its visibility, using the system's [onVisibleAreaChange](./ts-universal-component-visible-area-change-event.md#onvisibleareachange) event.
 
-**Atomic service API**: This API can be used in atomic services since API version 18.
+**Atomic service API**: This API can be used in atomic services since API version 17.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -272,9 +272,9 @@ This example demonstrates how to play an animation using the **ImageAnimator** c
 @Entry
 @Component
 struct ImageAnimatorExample {
-  @State state: AnimationStatus = AnimationStatus.Initial
-  @State reverse: boolean = false
-  @State iterations: number = 1
+  @State state: AnimationStatus = AnimationStatus.Initial;
+  @State reverse: boolean = false;
+  @State iterations: number = 1;
 
   build() {
     Column({ space: 10 }) {
@@ -347,19 +347,19 @@ This example demonstrates how to play an animation using the **ImageAnimator** c
 
 ```ts
 // xxx.ets
-import { image } from '@kit.ImageKit'
+import { image } from '@kit.ImageKit';
 
 @Entry
 @Component
 struct ImageAnimatorExample {
-  imagePixelMap: Array<PixelMap> = []
-  @State state: AnimationStatus = AnimationStatus.Initial
-  @State reverse: boolean = false
-  @State iterations: number = 1
-  @State images:Array<ImageFrameInfo> = []
+  imagePixelMap: Array<PixelMap> = [];
+  @State state: AnimationStatus = AnimationStatus.Initial;
+  @State reverse: boolean = false;
+  @State iterations: number = 1;
+  @State images:Array<ImageFrameInfo> = [];
   async aboutToAppear() {
-    this.imagePixelMap.push(await this.getPixmapFromMedia($r('app.media.icon')))
-    this.images.push({src:this.imagePixelMap[0]})
+    this.imagePixelMap.push(await this.getPixmapFromMedia($r('app.media.icon')));
+    this.images.push({src:this.imagePixelMap[0]});
   }
   build() {
     Column({ space: 10 }) {
@@ -370,58 +370,58 @@ struct ImageAnimatorExample {
         .fillMode(FillMode.None).iterations(this.iterations).width(340).height(240)
         .margin({ top: 100 })
         .onStart(() => {
-          console.info('Start')
+          console.info('Start');
         })
         .onPause(() => {
-          console.info('Pause')
+          console.info('Pause');
         })
         .onRepeat(() => {
-          console.info('Repeat')
+          console.info('Repeat');
         })
         .onCancel(() => {
-          console.info('Cancel')
+          console.info('Cancel');
         })
         .onFinish(() => {
-          console.info('Finish')
-          this.state = AnimationStatus.Stopped
+          console.info('Finish');
+          this.state = AnimationStatus.Stopped;
         })
       Row() {
         Button('start').width(100).padding(5).onClick(() => {
-          this.state = AnimationStatus.Running
+          this.state = AnimationStatus.Running;
         }).margin(5)
         Button('pause').width(100).padding(5).onClick(() => {
-          this.state = AnimationStatus.Paused     // Display the image of the current frame.
+          this.state = AnimationStatus.Paused;    // Display the image of the current frame.
         }).margin(5)
         Button('stop').width(100).padding(5).onClick(() => {
-          this.state = AnimationStatus.Stopped    // Display the image of the initial frame.
+          this.state = AnimationStatus.Stopped;   // Display the image of the initial frame.
         }).margin(5)
       }
       Row() {
         Button('reverse').width(100).padding(5).onClick(() => {
-          this.reverse = !this.reverse
+          this.reverse = !this.reverse;
         }).margin(5)
         Button('once').width(100).padding(5).onClick(() => {
-          this.iterations = 1
+          this.iterations = 1;
         }).margin(5)
         Button('infinite').width(100).padding(5).onClick(() => {
-          this.iterations = -1 // The animation is played for an unlimited number of times.
+          this.iterations = -1; // The animation is played for an unlimited number of times.
         }).margin(5)
       }
     }.width('100%').height('100%')
   }
 
   private async getPixmapFromMedia(resource: Resource) {
-    let unit8Array = await getContext(this)?.resourceManager?.getMediaContent({
+    let unit8Array = await this.getUIContext().getHostContext()?.resourceManager?.getMediaContent({
       bundleName: resource.bundleName,
       moduleName: resource.moduleName,
       id: resource.id
-    })
-    let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength))
+    });
+    let imageSource = image.createImageSource(unit8Array?.buffer.slice(0, unit8Array.buffer.byteLength));
     let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
       desiredPixelFormat: image.PixelMapFormat.RGBA_8888
-    })
-    await imageSource.release()
-    return createPixelMap
+    });
+    await imageSource.release();
+    return createPixelMap;
   }
 }
 ```
@@ -430,18 +430,18 @@ struct ImageAnimatorExample {
 
 ### Example 3: Enabling Automatic Pause on Invisibility
 
-This example demonstrates how to use [monitorInvisibleArea](#monitorinvisiblearea18) to automatically pause the **ImageAnimator** component when it becomes invisible and resume playback when it becomes visible again. This behavior is controlled based on the component's [state](#state) being set to **AnimationStatus.Running**.
+This example demonstrates how to use [monitorInvisibleArea](#monitorinvisiblearea17) to automatically pause the **ImageAnimator** component when it becomes invisible and resume playback when it becomes visible again. This behavior is controlled based on the component's [state](#state) being set to **AnimationStatus.Running**.
 
 ```ts
 @Entry
 @Component
 struct ImageAnimatorAutoPauseTest {
-  scroller: Scroller = new Scroller()
-  @State state: AnimationStatus = AnimationStatus.Running
-  @State reverse: boolean = false
-  @State iterations: number = 100
-  @State preCallBack: string = "Null"
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+  scroller: Scroller = new Scroller();
+  @State state: AnimationStatus = AnimationStatus.Running;
+  @State reverse: boolean = false;
+  @State iterations: number = 100;
+  @State preCallBack: string = 'Null';
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
   build() {
     Stack({ alignContent: Alignment.TopStart }) {
@@ -468,21 +468,21 @@ struct ImageAnimatorAutoPauseTest {
             .fillMode(FillMode.Forwards).iterations(this.iterations).width(340).height(240)
             .margin({ top: 100 })
             .onStart(() => {
-              this.preCallBack = "Start"
-              console.info('ImageAnimator Start')
+              this.preCallBack = "Start";
+              console.info('ImageAnimator Start');
             })
             .onPause(() => {
-              this.preCallBack = "Pause"
-              console.info('ImageAnimator Pause')
+              this.preCallBack = "Pause";
+              console.info('ImageAnimator Pause');
             })
             .onRepeat(() => {
-              console.info('ImageAnimator Repeat')
+              console.info('ImageAnimator Repeat');
             })
             .onCancel(() => {
-              console.info('ImageAnimator Cancel')
+              console.info('ImageAnimator Cancel');
             })
             .onFinish(() => {
-              console.info('ImageAnimator Finish')
+              console.info('ImageAnimator Finish');
             })
           ForEach(this.arr, (item: number) => {
             Text(item.toString())
@@ -503,13 +503,13 @@ struct ImageAnimatorAutoPauseTest {
       .friction(0.6)
       .edgeEffect(EdgeEffect.None)
       .onWillScroll((xOffset: number, yOffset: number, scrollState: ScrollState) => {
-        console.info(xOffset + ' ' + yOffset)
+        console.info(xOffset + ' ' + yOffset);
       })
       .onScrollEdge((side: Edge) => {
-        console.info('To the edge')
+        console.info('To the edge');
       })
       .onScrollStop(() => {
-        console.info('Scroll Stop')
+        console.info('Scroll Stop');
       })
       Text("Last triggered callback (Pause/Start): " + this.preCallBack)
         .margin({ top: 60, left: 20 })

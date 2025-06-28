@@ -34,7 +34,7 @@ shutdown(reason: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)。
+以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
@@ -74,7 +74,7 @@ reboot(reason: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)。
+以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
@@ -115,7 +115,7 @@ API version 9-18，使用该接口无需权限；从API version 19开始，需�
 
 **错误码：**
 
-以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)。
+以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
@@ -157,7 +157,7 @@ API version 9-18，使用该接口无需权限；从API version 19开始，需�
 
 **错误码：**
 
-以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)。
+以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
@@ -197,11 +197,10 @@ setPowerMode(mode: DevicePowerMode, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4900101 | Failed to connect to the service. |
 | 401     | Parameter error. Possible causes: 1.Parameter verification failed. |
 | 201     | Permission verification failed. The application does not have the permission required to call the API. |
 | 202     | Permission verification failed. A non-system application calls a system API.  |
@@ -244,11 +243,10 @@ setPowerMode(mode: DevicePowerMode): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4900101 | Failed to connect to the service. |
 | 401     | Parameter error. Possible causes: 1.Parameter verification failed. |
 | 201     | Permission verification failed. The application does not have the permission required to call the API. |
 | 202     | Permission verification failed. A non-system application calls a system API.  |
@@ -287,7 +285,7 @@ API version 12-18，使用该接口无需权限；从API version 19开始，需�
 
 **错误码：**
 
-以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)。
+以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
@@ -328,7 +326,7 @@ API version 12-18，使用该接口无需权限；从API version 19开始，需�
 
 **错误码：**
 
-以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)。
+以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|

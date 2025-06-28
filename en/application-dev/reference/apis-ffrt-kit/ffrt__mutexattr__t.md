@@ -9,6 +9,7 @@ The **ffrt_mutexattr_t** struct describes an FFRT mutex attribute.
 
 **Related module**: [FFRT](_f_f_r_t.md)
 
+**Header file**: [type_def.h](type__def_8h.md)
 
 ## Summary
 

@@ -64,7 +64,7 @@ let config: ethernet.InterfaceConfiguration = {
 
 ethernet.setIfaceConfig("eth0", config, (error: BusinessError) => {
   if (error) {
-    console.log("setIfaceConfig callback error = " + JSON.stringify(error));
+    console.error("setIfaceConfig callback error = " + JSON.stringify(error));
   } else {
     console.log("setIfaceConfig callback ok");
   }
@@ -131,7 +131,7 @@ const setConfigPromise = ethernet.setIfaceConfig("eth0", config);
 setConfigPromise.then(() => {
   console.log("setIfaceConfig promise ok");
 }).catch((error: BusinessError)  => {
-  console.log("setIfaceConfig promise error = " + JSON.stringify(error));
+  console.error("setIfaceConfig promise error = " + JSON.stringify(error));
 });
 ```
 
@@ -174,7 +174,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 ethernet.getIfaceConfig("eth0", (error: BusinessError, value: ethernet.InterfaceConfiguration) => {
   if (error) {
-    console.log("getIfaceConfig  callback error = " + JSON.stringify(error));
+    console.error("getIfaceConfig  callback error = " + JSON.stringify(error));
   } else {
     console.log("getIfaceConfig callback mode = " + JSON.stringify(value.mode));
     console.log("getIfaceConfig callback ipAddr = " + JSON.stringify(value.ipAddr));
@@ -236,7 +236,7 @@ ethernet.getIfaceConfig("eth0").then((data: ethernet.InterfaceConfiguration) => 
   console.log("getIfaceConfig promise netMask = " + JSON.stringify(data.netMask));
   console.log("getIfaceConfig promise dnsServers = " + JSON.stringify(data.dnsServers));
 }).catch((error: BusinessError) => {
-  console.log("getIfaceConfig promise error = " + JSON.stringify(error));
+  console.error("getIfaceConfig promise error = " + JSON.stringify(error));
 });
 ```
 
@@ -279,7 +279,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 ethernet.isIfaceActive("eth0", (error: BusinessError, value: number) => {
   if (error) {
-    console.log("whether2Activate callback error = " + JSON.stringify(error));
+    console.error("whether2Activate callback error = " + JSON.stringify(error));
   } else {
     console.log("whether2Activate callback = " + JSON.stringify(value));
   }
@@ -331,7 +331,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 ethernet.isIfaceActive("eth0").then((data: number) => {
   console.log("isIfaceActive promise = " + JSON.stringify(data));
 }).catch((error: BusinessError) => {
-  console.log("isIfaceActive promise error = " + JSON.stringify(error));
+  console.error("isIfaceActive promise error = " + JSON.stringify(error));
 });
 ```
 
@@ -370,7 +370,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 ethernet.getAllActiveIfaces((error: BusinessError, value: string[]) => {
   if (error) {
-    console.log("getAllActiveIfaces callback error = " + JSON.stringify(error));
+    console.error("getAllActiveIfaces callback error = " + JSON.stringify(error));
   } else {
     console.log("getAllActiveIfaces callback value.length = " + JSON.stringify(value.length));
     for (let i = 0; i < value.length; i++) {
@@ -419,7 +419,7 @@ ethernet.getAllActiveIfaces().then((data: string[]) => {
     console.log("getAllActiveIfaces promise  = " + JSON.stringify(data[i]));
   }
 }).catch((error:BusinessError) => {
-  console.log("getAllActiveIfaces promise error = " + JSON.stringify(error));
+  console.error("getAllActiveIfaces promise error = " + JSON.stringify(error));
 });
 ```
 

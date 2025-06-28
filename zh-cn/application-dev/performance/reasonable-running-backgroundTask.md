@@ -210,10 +210,10 @@ export struct LongTermTaskView {
             console.info(`[EntryAbility], data: ${JSON.stringify(data)}`);
           })
           .catch((err: BusinessError) => {
-            console.info(`[EntryAbility], err: ${JSON.stringify(err)}`);
+            console.error(`[EntryAbility], err: ${JSON.stringify(err)}`);
           })
       } catch (err) {
-        console.info(`[EntryAbility], catch err->${JSON.stringify(err)}`);
+        console.error(`[EntryAbility], catch err->${JSON.stringify(err)}`);
       }
     }).catch((err: BusinessError) => {
       console.error(`[EntryAbility] requestEnableNotification failed, code is ${err.code}, message is ${err.message}`);

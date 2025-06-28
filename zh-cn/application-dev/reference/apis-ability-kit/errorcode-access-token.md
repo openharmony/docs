@@ -8,11 +8,10 @@
 
 **错误信息**
 
-Invalid Parameter. Error message: ${messageInfo}.
+Invalid Parameter. Error message: messageInfo.
 
 **可能原因**
 
-该错误码表示参数校验出现错误，可能原因如下。
 1. tokenId值为0。
 2. 指定的权限名为空或者权限名长度大于256。
 3. 请求授权/撤销权限的flag取值非法。
@@ -21,16 +20,16 @@ Invalid Parameter. Error message: ${messageInfo}.
 6. 请求的权限不属于同一个权限组。
 7. 请求的权限中存在应用未声明的权限。
 8. 请求的全局开关类型非法。
-9. 指定的权限名不是user_grant权限。
+9. 指定的权限名不是[user_grant权限](../../security/AccessToken/permissions-for-all-user.md)。
 10. 指定的数组成员个数超过1024或成员均为无效值。
 11. 请求查看权限使用记录的起始结束时间不合法。
 12. 指定的权限名未在应用中声明。
 
 **处理步骤**
 
-检查入参，修正参数值为有效值，有效值请参考[权限列表](../../security/AccessToken/app-permissions.md)。
+检查入参，修正参数值为有效值，有效值请参考各[接口参数说明](js-apis-abilityAccessCtrl.md)。
 
-
+<!--Del-->
 ## 12100002 tokenId不存在
 
 **错误信息**
@@ -44,9 +43,9 @@ TokenId does not exist.
 
 **处理步骤**
 
-检查入参，修正参数值为有效值，有效值请参考[权限列表](../../security/AccessToken/app-permissions.md)。
+检查入参，确认tokenId值是否为目标应用的身份标识。
 
-
+<!--Del-->
 ## 12100003 权限名不存在
 
 **错误信息**
@@ -61,8 +60,8 @@ Permission does not exist.
 
 **处理步骤**
 
-检查入参，修正参数值为有效值。[权限列表](../../security/AccessToken/app-permissions.md)。
-
+检查入参，修正参数值为有效值，有效值请参考[权限列表](../../security/AccessToken/app-permissions.md)。
+<!--DelEnd-->
 
 ## 12100004 接口未配套使用
 
@@ -72,7 +71,6 @@ The API is not used in pair with others.
 
 **可能原因**
 
-该错误码表示监听器接口未配套使用，可能原因如下。
 1. 当前接口在未配套使用的情况下，重复调用。
 2. 当前接口在未配套使用的情况下，单独调用。
 
@@ -96,7 +94,7 @@ The number of listeners exceeds the limit.
 
 及时释放已注册的无用的监听器。
 
-
+<!--Del-->
 ## 12100006 指定的应用不支持被授予或被取消授予指定的权限
 
 **错误信息**
@@ -112,7 +110,7 @@ The specified application does not support the permissions granted or ungranted 
 
 1. 请确认tokenId的获取方式是否正确。
 2. 确认待授权的沙箱应用是否为特殊的受限沙箱应用进程，部分模式下的沙箱应用被禁止授予大部分权限。
-
+<!--DelEnd-->
 
 ## 12100007 系统服务工作异常
 
@@ -122,7 +120,6 @@ The service is abnormal.
 
 **可能原因**
 
-该错误码表示系统服务工作异常。
 1. 权限管理服务无法正常启动。
 2. IPC数据读取写入失败。
 
@@ -130,7 +127,7 @@ The service is abnormal.
 
 系统服务内部工作异常，请稍后重试，或者重启设备。
 
-
+<!--Del-->
 ## 12100008 内存申请失败
 
 **错误信息**
@@ -144,7 +141,7 @@ Out of memory.
 **处理步骤**
 
 系统内存不足，请稍后重试，或者重启设备。
-
+<!--DelEnd-->
 
 ## 12100009 服务内部错误
 

@@ -14,7 +14,7 @@ HiLog defines five log levels (DEBUG, INFO, WARN, ERROR, and FATAL) and provides
 | API| Description| 
 | -------- | -------- |
 | isLoggable(domain: number, tag: string, level: LogLevel) | Checks whether logs of the specified domain, tag, and level can be printed.|
-| debug(domain: number, tag: string, format: string, ...args: any[]) | Outputs DEBUG logs, which are used only for debugging applications and services.<br>To set the log level to **DEBUG**, run the **hdc shell hilogcat** command in the **Terminal** window of DevEco Studio or in the **cmd** window.|
+| debug(domain: number, tag: string, format: string, ...args: any[]) | Outputs DEBUG logs, which are used only for debugging applications and services.<br>To set the log level to **DEBUG**, run the **hdc shell hilog -b D** command in the **Terminal** window of DevEco Studio or in the **cmd** window.|
 | info(domain: number, tag: string, format: string, ...args: any[]) | Outputs INFO logs, which provide prevalent, highlighting events related to key service processes.|
 | warn(domain: number, tag: string, format: string, ...args: any[]) | Outputs WARN logs, which indicate issues that have little impact on the system.|
 | error(domain: number, tag: string, format: string, ...args: any[]) | Outputs ERROR logs, which indicate program or functional errors.|
@@ -46,6 +46,7 @@ HiLog defines five log levels (DEBUG, INFO, WARN, ERROR, and FATAL) and provides
   | -------- | -------- | -------- |
   | d/i | Prints logs of the **number** and **bigint** types.| 123 |
   | s | Prints logs of the **string**, **undefined**, **boolean**, and **null** types.| "123" |
+  | o/O | Prints logs of the **object**, **undefined**, and **null** types.<br>This flag is supported since API version 20.| obj |
 
   You can set multiple parameters in the **format** string, for example, **%s World**, where **%s** is a variable of the string type and its value is defined by **args**. <!--Del-->
 
@@ -97,6 +98,16 @@ Add a click event in a button, which prints a log when the button is clicked.
            .onClick(() => {
              hilog.isLoggable(0xFF00, "testTag", hilog.LogLevel.INFO);
              hilog.info(0xFF00, "testTag", "%{public}s World %{public}d", "hello", 3);
+             class Person {
+                constructor(name: string, age: number) {
+                  this.name = name;
+                  this.age = age;
+                }
+                name: string;
+                age:  number;
+             }
+             let peter: Person = new Person("peter", 15);
+             hilog.info(0xFF00, "testTag", "peter is %{public}o", peter);
              // Set the minimum log level to Warn.
              hilog.setMinLogLevel(hilog.LogLevel.WARN);
              hilog.info(0x0000, 'testTag', 'this is an info level log');
@@ -117,6 +128,12 @@ Add a click event in a button, which prints a log when the button is clicked.
    ```
    *%{public}s* indicates a string, and *%{public}d* indicates an integer. Both of them are displayed in plaintext.
 
+   To output objects, use the following format string:
+   ```txt
+   'peter is %{public}o'
+   ```
+   The variable parameter *%{public}o* is a public object.
+
 4. Run the project on a real device, and click the **Next** button on the app/service.
 
 5. At the bottom of DevEco Studio, switch to the **Log** tab and set the filter criteria.
@@ -125,6 +142,7 @@ Add a click event in a button, which prints a log when the button is clicked.
    The log result is as follows:
    ```txt
    01-02 08:18:24.947   30988-30988   A0ff00/testTag                  com.example.hilogemo  I     hello World 3
+   01-02 08:18:24.947   30988-30988   A0ff00/testTag                  com.example.hilogemo  I     peter is {"name":"peter","age":15}
    01-02 08:18:24.947   30988-30988   A00000/testTag                  com.example.hilogemo  E     this is an error level log
    ```
 

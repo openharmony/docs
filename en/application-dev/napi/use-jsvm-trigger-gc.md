@@ -24,7 +24,6 @@ If you are just starting out with JSVM-API, see [JSVM-API Development Process](u
 ### OH_JSVM_AddHandlerForGC & OH_JSVM_RemoveHandlerForGC
 
 You can call **OH_JSVM_AddHandlerForGC** multiple times to register callbacks with a JSVM, and all registered callbacks will take effect. The registration behavior uses the callback pointer and **native-data** as the key. If multiple registration behaviors have the same key, the registration will be considered invalid and the **JSVM_INVALID_ARG** error code will be returned. The order in which callbacks are invoked under the same triggering condition does not strictly following the registration order.
-
 You can use **OH_JSVM_RemoveHandlerForGC** to remove a registered callback from a JSVM. Removing callbacks with the same key will be considered an invalid removal, and the **JSVM_INVALID_ARG** error will be returned.
 
 #### CPP Code
@@ -32,8 +31,6 @@ You can use **OH_JSVM_RemoveHandlerForGC** to remove a registered callback from 
 ```cpp
 // hello.cpp
 #include <iostream>
-
-#include "jsvmtest.h"
 
 static bool before_flag1 = false;
 static bool before_flag2 = false;

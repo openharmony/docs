@@ -3,9 +3,9 @@
 The **OAID** module provides APIs for obtaining and resetting Open Anonymous Device Identifiers (OAIDs).
 
 > **NOTE**
-> The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> To use the APIs for obtaining OAIDs, you must [request the ohos.permission.APP_TRACKING_CONSENT permission](../../security/AccessToken/request-user-authorization.md).
-> This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohos.identifier.oaid (OAID)](js-apis-oaid.md).
+> - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - To use the APIs for obtaining OAIDs, you must [request the ohos.permission.APP_TRACKING_CONSENT permission](../../security/AccessToken/request-user-authorization.md).
+> - This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohos.identifier.oaid (OAID)](js-apis-oaid.md).
 
 ## Modules to Import
 
@@ -27,11 +27,11 @@ Resets an OAID.
 
 For details about the following error codes, see [OAID Error Codes](errorcode-oaid.md).
 
-| ID   | Error Message                                                                        | 
+| ID| Error Message                                                                    |
 |----------|------------------------------------------------------------------------------|
 | 202      | Permission verification failed. A non-system application calls a system API. |
 | 17300001 | System internal error.                                                       |
-| 17300002 | Not in the trust list.                                                       | 
+| 17300002 | Not in the trust list.                                                       |
 
 **Example**
 

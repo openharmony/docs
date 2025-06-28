@@ -4,10 +4,50 @@
 
 >**说明：**
 >
->  - 本模块首批接口从API version 20开始支持，后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>  - 本模块首批接口从API version 18开始支持，后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >  - 目前仅支持通过开启无障碍模式触发。
 
-## onAccessibilityActionIntercept
+## onAccessibilityFocus
+
+onAccessibilityFocus(callback: AccessibilityFocusCallback): T
+
+设置无障碍节点获焦、失焦状态的回调函数。当状态发生变化时，触发回调函数。
+
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型    | 必填 | 说明                                                         |
+| -------- | ------- | ---- | ------------------------------------------------------------ |
+| callback | [AccessibilityFocusCallback](ts-universal-accessibility-event.md#accessibilityfocuscallback) | 是   | 向注册回调函数方通知当前获焦、失焦状态。 |
+
+**返回值：**
+
+| 类型    | 说明              |
+| ------ | ---------------- |
+| T | 返回当前组件。 |
+
+## AccessibilityFocusCallback
+
+type AccessibilityFocusCallback = (isFocus: boolean) => void
+
+定义onAccessibilityFocus中使用的回调类型。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型    | 必填 | 说明              |
+| ------ | ------ | ---- | ---------------- |
+| isFocus | boolean | 是 | 用于表示组件是否获焦。<br/>true：当前组件获焦。<br/>false：当前组件失焦。|
+
+## onAccessibilityActionIntercept<sup>20+</sup>
 
 onAccessibilityActionIntercept(callback: AccessibilityActionInterceptCallback): T
 
@@ -23,7 +63,7 @@ onAccessibilityActionIntercept(callback: AccessibilityActionInterceptCallback): 
 
 | 参数名   | 类型    | 必填 | 说明                                                         |
 | -------- | ------- | ---- | ------------------------------------------------------------ |
-| callback | [AccessibilityActionInterceptCallback](ts-universal-accessibility-event.md#accessibilityactioninterceptcallback) | 是   | 在无障碍事件触发前，向注册回调函数方通知，由注册方决定是否拦截该次无障碍事件。 |
+| callback | [AccessibilityActionInterceptCallback](ts-universal-accessibility-event.md#accessibilityactioninterceptcallback20) | 是   | 在无障碍事件触发前，向注册回调函数方通知，由注册方决定是否拦截该次无障碍事件。 |
 
 **返回值：**
 
@@ -31,7 +71,7 @@ onAccessibilityActionIntercept(callback: AccessibilityActionInterceptCallback): 
 | ------ | ---------------- |
 | T | 返回当前组件。 |
 
-## AccessibilityActionInterceptCallback
+## AccessibilityActionInterceptCallback<sup>20+</sup>
 
 type AccessibilityActionInterceptCallback = (action: AccessibilityAction) => AccessibilityActionInterceptResult
 
@@ -47,15 +87,15 @@ type AccessibilityActionInterceptCallback = (action: AccessibilityAction) => Acc
 
 | 参数名  | 类型    | 必填 | 说明              |
 | ------ | ------ | ---- | ---------------- |
-| action | [AccessibilityAction](ts-universal-accessibility-event.md#accessibilityaction枚举说明) | 是 | 当前触发的无障碍事件类型。 |
+| action | [AccessibilityAction](ts-universal-accessibility-event.md#accessibilityaction20枚举说明) | 是 | 当前触发的无障碍事件类型。 |
 
 **返回值：**
 
 | 类型    | 说明              |
 | ------ | ---------------- |
-| [AccessibilityActionInterceptResult](ts-universal-accessibility-event.md#accessibilityactioninterceptresult枚举说明) | 无障碍事件拦截结果。 |
+| [AccessibilityActionInterceptResult](ts-universal-accessibility-event.md#accessibilityactioninterceptresult20枚举说明) | 无障碍事件拦截结果。 |
 
-## AccessibilityAction枚举说明
+## AccessibilityAction<sup>20+</sup>枚举说明
 
 定义组件当前触发的无障碍事件类型。
 
@@ -70,7 +110,7 @@ type AccessibilityActionInterceptCallback = (action: AccessibilityAction) => Acc
 | UNDEFINED_ACTION | 0 | 未定义的无障碍事件。 |
 | ACCESSIBILITY_CLICK | 1 | 无障碍点击事件。 |
 
-## AccessibilityActionInterceptResult枚举说明
+## AccessibilityActionInterceptResult<sup>20+</sup>枚举说明
 
 定义AccessibilityActionInterceptCallback的无障碍事件拦截结果。
 

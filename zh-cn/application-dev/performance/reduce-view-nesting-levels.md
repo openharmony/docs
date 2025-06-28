@@ -927,5 +927,5 @@ struct Index {
 
 ## 优化布局工具介绍
 
-[DevEco Studio](../quick-start/deveco-studio-user-guide-for-openharmony.md)内置ArkUI Inspector工具，开发者可以使用ArkUI
+[DevEco Studio](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-tools-overview)内置ArkUI Inspector工具，开发者可以使用ArkUI
 Inspector，在DevEco Studio上查看应用在真机上的UI显示效果。利用ArkUI Inspector工具，开发者可以快速定位布局不理想或其他UI相关问题，同时也可以观察和了解不同组件之间的布局关系和属性。

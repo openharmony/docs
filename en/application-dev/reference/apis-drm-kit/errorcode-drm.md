@@ -8,68 +8,29 @@
 
 **Error Message**
 
-All unknown errors.
+Unknown error.
 
 **Description**
 
-An unknown error is returned when the API is called.
+An unknown error occurs.
 
 **Possible Causes**
 
-The plugin returns an undefined or custom error.
+The input parameter format or data type is incorrect. As a result, data fails to be obtained or converted.
 
 **Procedure**
 
-Refer to the plugin document to rectify the fault.
+Obtain the exception description, check the system error logs, and rectify the fault based on the exception description and error description in the logs.
 
-## 24700102 Memory Allocation Failure
-
-**Error Message**
-
-Memory allocation failure.
-
-**Description**
-
-This error code is reported if a memory allocation failure or null pointer occurs when an API is called.
-
-**Possible Causes**
-
-1. The system does not have sufficient memory for mapping.
-2. Invalid instances are not destroyed in time to release the memory.
-
-**Procedure**
-
-1. Destroy the existing instances.
-2. Create a new instance. If the creation fails, stop related operations.
-
-## 24700103 Unsupported State
+## 24700103 Too Many MediaKeySystem Instances
 
 **Error Message**
 
-Unsupported state.
+Too many MediaKeySystem instances.
 
 **Description**
 
-This operation is not allowed in the current state.
-
-**Possible Causes**
-
-The status of the device certificate or media key is abnormal.
-
-**Procedure**
-
-1. Check whether this operation is supported in the current state.
-2. Call the API to request a device certificate or media key in the correct state.
-
-## 24700104 Too Many MediaKeySystem Instances
-
-**Error Message**
-
-Too many MediaKeySystem streams.
-
-**Description**
-
-The number of **MediaKeySystem** instances reaches the upper limit.
+The number of **MediaKeySystem** instances reaches the upper limit (64).
 
 **Possible Causes**
 
@@ -79,15 +40,15 @@ Invalid **MediaKeySystem** instances are not released in time.
 
 Release **MediaKeySystem** instances that are no longer used.
 
-## 24700105 Too Many MediaKeySession Instances
+## 24700104 Too Many MediaKeySession Instances
 
 **Error Message**
 
-Too many MediaKeySession streams.
+Too many MediaKeySession instances.
 
 **Description**
 
-The number of **MediaKeySession** instances reaches the upper limit.
+The number of **MediaKeySession** instances reaches the upper limit (64).
 
 **Possible Causes**
 
@@ -101,16 +62,18 @@ Release **MediaKeySession** instances that are no longer used.
 
 **Error Message**
 
-Fatal service error, for example, service died.
+Service error. For example, the service crashed.
 
 **Description**
 
-The IPC service is abnormal.
+A DRM service error occurs.
 
 **Possible Causes**
 
-The system processing is abnormal, for example, system service restart or IPC exceptions.
+1. An error occurs during the DRM solution plugin execution.
+
+2. DRM services are suspended.
 
 **Procedure**
 
-Create the service again.
+Obtain the exception description, check the system error logs, and rectify the fault based on the exception description and error description in the logs.

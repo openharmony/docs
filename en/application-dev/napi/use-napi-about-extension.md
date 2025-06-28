@@ -98,8 +98,8 @@ export const add: (a: number, b: number) => number;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 hilog.info(0x0000, 'testTag', 'Test Node-API 2 + 3 = %{public}d', testNapi.add(2, 3));
 ```
@@ -154,8 +154,8 @@ export const createObjectWithProperties: (data: string) => Object;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 let value = testNapi.createObjectWithProperties('createObject');
 hilog.info(0x0000, 'testTag', 'Node-API napi_create_object_with_properties:%{public}s', JSON.stringify(value));
@@ -204,14 +204,14 @@ export const createObjectWithNameProperties: (data: string) => string | { name: 
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 let value = testNapi.createObjectWithNameProperties('ls');
 hilog.info(0x0000, 'testTag', 'Node-API napi_create_object_with_named_properties:%{public}s', JSON.stringify(value));
 ```
 
-## Runing an .abc File
+## Running an .abc File
 
 ### Available APIs
 
@@ -258,8 +258,8 @@ export const runScriptPath: () => boolean;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 try {
   // Return true is the script is executed successfully; return false otherwise.
@@ -716,8 +716,8 @@ export const aboutSerialize: (obj: Object) => number;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 class Obj {
   numKey:number = 0;
 }
@@ -790,8 +790,8 @@ export const isSendable: <T>(a: T) => boolean;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 let value = testNapi.isSendable('createObject');
 hilog.info(0x0000, 'testTag', 'Node-API napi_is_sendable: %{public}s', JSON.stringify(value));
@@ -889,8 +889,8 @@ export class SendableClass {
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 let value = new testNapi.SendableClass();
 hilog.info(0x0000, 'testTag', 'Node-API napi_define_sendable_class: %{public}s', value.str);
@@ -927,8 +927,8 @@ export const getSendableObject: () => { x: true };
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 let value = testNapi.getSendableObject();
 hilog.info(0x0000, 'testTag', 'Node-API napi_create_sendable_object_with_properties: %{public}s', JSON.stringify(value));
@@ -960,8 +960,8 @@ export const getSendableArray: () => [];
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 let value = testNapi.getSendableArray();
 hilog.info(0x0000, 'testTag', 'Node-API napi_create_sendable_array: %{public}s', JSON.stringify(value));
@@ -991,8 +991,8 @@ export const getSendableArrayWithLength: () => [];
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 let value = testNapi.getSendableArrayWithLength();
 hilog.info(0x0000, 'testTag', 'Node-API napi_create_sendable_array_with_length: %{public}s', JSON.stringify(value.length));
@@ -1030,8 +1030,8 @@ export const getSendableArrayBuffer: () => void;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 testNapi.getSendableArrayBuffer();
 ```
@@ -1072,8 +1072,8 @@ export const getSendableTypedArray: () => void;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 testNapi.getSendableTypedArray();
 ```
@@ -1113,8 +1113,8 @@ export const wrapSendable: () => void;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 testNapi.wrapSendable();
 ```
@@ -1154,8 +1154,8 @@ export const wrapSendableWithSize: () => void;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 testNapi.wrapSendableWithSize();
 ```
@@ -1199,8 +1199,8 @@ export const unwrapSendable: () => void;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 testNapi.unwrapSendable();
 ```
@@ -1244,8 +1244,8 @@ export const removeWrapSendable: () => void;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 testNapi.removeWrapSendable();
 ```
@@ -1257,4 +1257,61 @@ To print logs in the native CPP, add the following information to the **CMakeLis
 add_definitions( "-DLOG_DOMAIN=0xd0d0" )
 add_definitions( "-DLOG_TAG=\"testTag\"" )
 target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
+```
+
+
+## napi_wrap Enhancement
+
+### Available APIs
+
+| API| Description|
+| -------- | -------- |
+| napi_wrap_enhance | Wraps a Node-API instance into an ArkTS object and specifies the instance size. You can specify whether to execute the registered callback asynchronously (if asynchronous, it must be thread-safe).|
+
+### Example
+
+#### napi_wrap_enhance
+
+Call **napi_wrap_enhance** to wrap a Node-API instance into an ArkTS object and specify the instance size. You can specify whether to execute the registered callback asynchronously (if asynchronous, it must be thread-safe).
+
+CPP code:
+
+```cpp
+#include "napi/native_api.h"
+
+static napi_value TestNapiWrapEnhance(napi_env env, napi_callback_info info)
+{
+    napi_value testClass = nullptr;
+    napi_define_class(
+        env, "TestClass", NAPI_AUTO_LENGTH,
+        [](napi_env env, napi_callback_info info) -> napi_value {
+            napi_value thisVar = nullptr;
+            napi_get_cb_info(env, info, nullptr, nullptr, &thisVar, nullptr);
+            return thisVar;
+        },
+        nullptr, 0, nullptr, &testClass);
+
+    napi_value obj = nullptr;
+    napi_new_instance(env, testClass, 0, nullptr, &obj);
+    const char* testStr = "test";
+    napi_ref wrappedRef = nullptr;
+    napi_wrap_enhance(env, obj, (void*)testStr, [](napi_env env, void* data, void* hint) {}, false, nullptr, sizeof(testStr), &wrappedRef);
+    return nullptr;
+}
+```
+
+API declaration:
+
+```ts
+// index.d.ts
+export const testNapiWrapEnhance: () => void;
+```
+
+ArkTS code:
+
+```ts
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
+
+testNapi.testNapiWrapEnhance();
 ```

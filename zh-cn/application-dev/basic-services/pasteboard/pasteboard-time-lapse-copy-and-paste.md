@@ -22,7 +22,7 @@
 
 ### 接口说明
 
-详细接口见[Pasteboard文档](../../reference/apis-basic-services-kit/_pasteboard.md)和[UDMF接口文档](../../reference/apis-arkdata/_u_d_m_f.md)。
+详细接口见[Pasteboard文档](../../reference/apis-basic-services-kit/capi-pasteboard.md)和[UDMF接口文档](../../reference/apis-arkdata/capi-udmf.md)。
 
 | 名称 | 说明                                                                   |
 | -------- |----------------------------------------------------------------------|
@@ -30,7 +30,7 @@
 | int OH_UdmfRecordProvider_SetData(OH_UdmfRecordProvider* provider, void* context, const OH_UdmfRecordProvider_GetData callback, const UdmfData_Finalize finalize) | 设置统一数据提供者的回调函数。                              |
 | int OH_UdmfRecord_SetProvider(OH_UdmfRecord* pThis, const char* const* types, unsigned int count, OH_UdmfRecordProvider* provider) | 将统一数据提供者配置到OH_UdmfRecord中。                     |
 | int OH_Pasteboard_SetData(OH_Pasteboard* pasteboard, OH_UdmfData* data) | 向剪贴板中写入数据。                                    |
-| OH_UdmfData * OH_Pasteboard_GetData (OH_Pasteboard* pasteboard, int* status) | 获取剪贴板中的数据。 |
+| OH_UdmfData * OH_Pasteboard_GetData(OH_Pasteboard* pasteboard, int* status) | 获取剪贴板中的数据。 |
 | OH_UdmfRecord** OH_UdmfData_GetRecords(OH_UdmfData* pThis, unsigned int* count) | 获取OH_UdmfData中全部的数据记录。                           |
 
 ### 开发步骤

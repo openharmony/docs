@@ -6,12 +6,15 @@ The **FormExtensionAbility** module provides lifecycle callbacks invoked when a 
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
+> The formExtensionAbility is cleared after 10 seconds of inactivity.
+>
 > The following modules cannot be referenced in the FormExtensionAbility, as doing so may cause the program to exit abnormally:
 > - @ohos.ability.particleAbility (ParticleAbility)
 > - @ohos.multimedia.audio (Audio Management)
 > - @ohos.multimedia.camera (Camera Management)
 > - @ohos.multimedia.media (Media)
 > - @ohos.resourceschedule.backgroundTaskManager (Background Task Management)
+
 
 ## Modules to Import
 
@@ -41,7 +44,7 @@ Widget extension class. It provides APIs to notify the widget provider that a wi
 
 onAddForm(want: Want): formBindingData.FormBindingData
 
-Called to notify the widget provider that a **Form** instance (widget) is being created.
+Called to notify the widget provider that a widget is being created.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -53,7 +56,7 @@ Called to notify the widget provider that a **Form** instance (widget) is being 
 
 | Name| Type                                  | Mandatory| Description                                                        |
 | ------ | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| want   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Want information related to the FormExtensionAbility, including the widget ID, name, and style. The information must be managed as persistent data to facilitate subsequent widget update and deletion.|
+| want   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Want information of the widget. You can set the **parameters** field to one or more values enumerated in [widget parameters](./js-apis-app-form-formInfo.md#formparam), such as widget ID, widget name, and widget style. The information must be managed as persistent data to facilitate subsequent widget update and deletion.|
 
 **Return value**
 
@@ -115,7 +118,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 onUpdateForm(formId: string, wantParams?: Record<string, Object>): void
 
-Called to notify the widget provider that a widget is being updated, with update parameters carried. After obtaining the latest data, your application should call [updateForm](js-apis-app-form-formProvider.md#updateform) of **formProvider** to update the widget data.
+Called to notify the widget provider that a widget is being updated, with update parameters carried. After obtaining the latest data, your application should call [updateForm](js-apis-app-form-formProvider.md#formproviderupdateform) of **formProvider** to update the widget data.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -177,7 +180,7 @@ This API is valid only for system applications when **formVisibleNotify** is set
 import { formBindingData, FormExtensionAbility, formProvider } from '@kit.FormKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// According to the ArkTS specification, **Object.keys** and **for..in...** cannot be used in .ets files to obtain the key value of an object. Use the user-defined function **getObjKeys** instead.
+// According to the ArkTS specification, Object.keys and for..in... cannot be used in .ets files to obtain the key value of an object. Use the user-defined function getObjKeys instead.
 // Extract this function to a .ts file and export it. Import this function to the required .ets file before using it.
 function getObjKeys(obj: Object): string[] {
   let keys = Object.keys(obj);
@@ -242,7 +245,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 onRemoveForm(formId: string): void
 
-Called to notify the widget provider that a **Form** instance (widget) is being destroyed.
+Called to notify the widget provider that a widget is being destroyed.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -272,8 +275,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 onConfigurationUpdate(newConfig: Configuration): void
 
-Called when the configuration of the environment where the FormExtensionAbility is running is updated. 
-This lifecycle callback is triggered only when the configuration is updated while the FormExtensionAbility is alive. If no operation is performed within 10 seconds after a **FormExtensionAbility** instance is created, the instance will be deleted.
+Called when system configuration items change. The **onConfigurationUpdate** callback is triggered only when the FormExtensionAbility is alive. <!--Del-->Since API version 20, for system applications, the **onConfigurationUpdate** callback within the FormExtensionAbility will be triggered when the system language changes.<!--DelEnd-->
 
 **Model restriction**: This API can be used only in the stage model.
 

@@ -1,4 +1,4 @@
-# Obfuscation Principles and Capabilities of ArkGuard
+# ArkGuard Principles and Capabilities for Source Code Obfuscation
 
 ## Glossary
 
@@ -12,7 +12,7 @@
 | Local HSP| HSP module in source code form.|
 | Remote HSP| HSP generated after the build.|
 | Third-party library| Libraries developed by third parties and published to the OpenHarmony Third-Party Library Repository.|
-| Name obfuscation| Changing class names, method names, variable names, and other identifiers to meaningless names.|
+| Name obfuscation| Changing class names, method names, variable names, property names, exported variable names and other identifiers to simple, meaningless names.|
 
 ## Scope of Obfuscation Capabilities
 
@@ -20,21 +20,23 @@
 ArkGuard supports ArkTS, TS, and JS, but not C/C++, JSON, or resource files.
 
 ### Obfuscation Capabilities
-ArkGuard provides basic name obfuscation, code compression, and comment removal, but does not support advanced features like control obfuscation or data obfuscation.
+ArkGuard provides name obfuscation, code compression, and comment removal, but does not support advanced features like control stream obfuscation or data obfuscation.
 
-It primarily offers name renaming and trustlist configuration for retention. 
+It primarily offers name renaming and trustlist configuration for retention.
 
 ### Limitations of Obfuscation Capabilities
 
 **Language Limitations**
 
-Code obfuscation tools vary in type analysis mechanisms, obfuscation strategies, and execution efficiency based on the target language. For example, ProGuard targets strongly-typed languages like Java, where each type has a clear definition source. This feature makes the type relationship tracing and processing in the obfuscation process more accurate, greatly reducing the need for retention rules.
+Source code obfuscation tools vary in type analysis mechanisms, obfuscation strategies, and execution efficiency based on the target language. For example, ProGuard targets strongly-typed languages like Java, where each type has a clear definition source. This feature makes the type relationship tracing and processing in the obfuscation process more accurate, greatly reducing the need for retention rules.
 
-In contrast, ArkGuard targets JS, TS, and ArkTS. JS supports dynamic modification of objects and functions at runtime, but obfuscation is a static process in the compilation phase. This difference may cause a failure in parsing obfuscated named at runtime, resulting in runtime exceptions. TS and ArkTS use a structural type system, where different named types with the same structure are considered as equivalent types. Therefore, it is difficult to trace the exact source of types. As such, when using ArkGuard, you need to configure trustlists for more syntax scenarios. Moreover, ArkGuard uses a global property retention mechanism that retains all properties with the same name according to the trustlist. It does not support precise retention settings for specific types.
+In contrast, ArkGuard targets JS, TS, and ArkTS. Suppose ArkGuard supports configuring a trustlist for specific types. JS supports dynamic modification of objects and functions at runtime, but obfuscation is a static process in the compilation phase. This difference may cause a failure in parsing obfuscated named at runtime, resulting in runtime exceptions. TS and ArkTS use a structural type system, where different named types with the same structure are considered as equivalent types. Therefore, it is difficult to trace the exact source of types. As such, when using ArkGuard, you need to configure trustlists for more syntax scenarios. Moreover, ArkGuard uses a global property retention mechanism that retains all properties with the same name according to the trustlist. It does not support precise retention settings for specific types.
 
 To illustrate, consider this example:
 
-Assume that ArkGuard allows the configuration of a trustlist for specific types. If class A1 is configured in a trustlist with its property prop1, but prop1 in class A2 is not in the trustlist, passing an instance of A2 (a2) to the **test** function would cause issues when accessing the prop1 property.
+Assume that ArkGuard allows the configuration of a trustlist for specific types. If class A1 is configured in a trustlist with its property prop1, but prop1 in class A2 is not in the trustlist, then passing an instance of A2 as a parameter to the **test** function and accessing its properties within the function could lead to issues. Before obfuscation, accessing the prop1 property works as expected. However, after obfuscation, since prop1 in A1 remains unchanged while prop1 in A2 is obfuscated, accessing prop1 in the **test** function will result in functionality anomalies. 
+
+ArkGuard does not support precise retention configurations for specific types.
 
 ```typescript
 // Before obfuscation:
@@ -78,9 +80,9 @@ You should be aware of these differences and use unique names to achieve better 
 
 **Limited security assurance**
 
-Like other obfuscation tools, ArkGuard increases reverse engineering difficulty but cannot prevent it entirely.
+Similar to other source code obfuscation tools, ArkGuard increases reverse engineering difficulty but cannot prevent it entirely.
 
-You should not rely solely on ArkGuard for security. For higher security requirements, consider [application encryption](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/code-protect-V5) and third-party hardening measures.
+You should not rely solely on ArkGuard for security. For higher security requirements, consider [application encryption](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/code-protect) and hardening measures.
 
 ## Obfuscation Mechanism and Process
 
@@ -88,9 +90,9 @@ The following figure shows a simplified compilation process.
 
 ![compilation-process](figures/compilation-process.png)
 
-You can enable the obfuscation feature in the **build-profile.json5** file of the module so that the source code can be automatically obfuscated during compilation and packaging.
+You can enable the obfuscation feature in the **build-profile.json5** file of the module so that the source code can be automatically obfuscated during compilation and packaging. For details, see [Using ArkGuard for Source Code Obfuscation](source-obfuscation-guide.md).
 
-During obfuscation, the tool reads the obfuscation switch. If the switch is enabled, it parses the obfuscation configuration file, merges rules according to the [merging strategies](#obfuscation-rule merging-strategies), applies obfuscation to intermediate files (generated after syntax conversion), and writes the obfuscated files to the **build** directory. You can verify the obfuscation effect by examining the output in the **build** directory.
+During obfuscation, the tool reads the obfuscation switch. If the switch is enabled, it parses the obfuscation configuration file, merges rules according to the [merging strategies](#obfuscation-rule-merging-strategies), applies obfuscation to intermediate files (generated after syntax conversion), and writes the obfuscated files to the **build** directory. You can verify the obfuscation effect by examining the output in the **build** directory.
 
 Before using obfuscation, you are advised to learn about the capabilities of [obfuscation options](source-obfuscation.md#obfuscation-options) and [retention options](source-obfuscation.md#retention-options), and select the appropriate capabilities for your needs.
 
@@ -101,15 +103,16 @@ Before using obfuscation, you are advised to learn about the capabilities of [ob
 
 | Function| Option|
 | --- | --- |
+| Default obfuscation| Enabled after obfuscation is enabled|
 | Disabling obfuscation| [`-disable-obfuscation`](#-disable-obfuscation) |
-| Obfuscating property names| [`-enable-property-obfuscation`](#-enable-property-obfuscation) |
-| Obfuscating string literal property names| [`-enable-string-property-obfuscation`](#-enable-string-property-obfuscation) |
-| Obfuscating top-level scope names| [`-enable-toplevel-obfuscation`](#-enable-toplevel-obfuscation) |
-| Obfuscating imported/exported names| [`-enable-export-obfuscation`](#-enable-export-obfuscation) |
-| Obfuscating file names| [`-enable-filename-obfuscation`](#-enable-filename-obfuscation) |
+| Enabling obfuscation for property names| [`-enable-property-obfuscation`](#-enable-property-obfuscation) |
+| Enabling obfuscation for string literal property names| [`-enable-string-property-obfuscation`](#-enable-string-property-obfuscation) |
+| Enabling obfuscation for top-level scope name obfuscation.| [`-enable-toplevel-obfuscation`](#-enable-toplevel-obfuscation) |
+| Enabling obfuscation for imported/exported names| [`-enable-export-obfuscation`](#-enable-export-obfuscation) |
+| Enabling obfuscation for file names| [`-enable-filename-obfuscation`](#-enable-filename-obfuscation) |
 | Compressing code| [`-compact`](#-compact) |
 | Removing declaration file comments| [`-remove-comments`](#-remove-comments) |
-| Removing console logs| [`-remove-log`](#-remove-log) |
+| Removing console.* statement.| [`-remove-log`](#-remove-log) |
 | Printing name caches| [`-print-namecache`](#-print-namecache) |
 | Reusing name caches| [`-apply-namecache`](#-apply-namecache) |
 | Printing unobfuscated names| [`-print-kept-names`](#-print-kept-names) |
@@ -119,11 +122,15 @@ Before using obfuscation, you are advised to learn about the capabilities of [ob
 | Merging dependent module options| [`-enable-lib-obfuscation-options`](#-enable-lib-obfuscation-options) |
 | Marking trustlists in source code by comments| [`-use-keep-in-source`](#-use-keep-in-source) |
 
+### Default Obfuscation
+
+Default obfuscation takes effect automatically when obfuscation is enabled, and it only obfuscates local variable names and parameter names.
+
 ### -disable-obfuscation
 
 Disables code obfuscation.
 
-If this option is configured, the default obfuscation capabilities (local variables and parameter names) and all configured obfuscation and retention options become invalid.
+If this option is configured, the default obfuscation capabilities (obfuscating only local variables and parameter names) and all configured obfuscation and retention options become invalid.
 
 ### -enable-property-obfuscation
 
@@ -147,7 +154,7 @@ Enables property name obfuscation. The effect is as follows:
 
 If this option is configured, all property names except the following are obfuscated:
 
-* Property names of classes and objects that are directly imported or exported by using **import** or **export**. For example, the property name **data** in the following example is not obfuscated.
+* Property names of classes and objects that are directly imported or exported by using **import** or **export** in case that the **-enable-export-obfuscation** option is not configured. For example, the property name **data** in the following example is not obfuscated.
 
     ```
     export class MyClass {
@@ -167,16 +174,23 @@ If this option is configured, all property names except the following are obfusc
 
 * Property names specified in [retention options](#-keep-property-name).
 * Property names in the SDK API list. The SDK API list is a set of names automatically extracted from the SDK during build. Its cache file is **systemApiCache.json**, which is stored in **build/default/cache/{...}/release/obfuscation** in the project directory.
-* String literal property names. For example, **"name"** and **"age"** in the following example are not obfuscated.
+* String literal property names. For example, **exampleName** and **exampleAge** in the following example are not obfuscated.
 
     ```
-    let person = {"name": "abc"};
-    person["age"] = 22;
+    let person = {"exampleName": "abc"};
+    person["exampleAge"] = 22;
+    ```
+
+* Annotation member names. For example, **authorName** and **revision** in the following example are not obfuscated.
+
+    ```
+    @interface MyAnnotation {
+      authorName: string;
+      revision: number = 1;
+    }
     ```
 
 ### -enable-string-property-obfuscation
-
-Enables obfuscation of string literal property names. It is effective only if property name obfuscation is enabled.
 
 To obfuscate string literal property names, you must use this option together with **-enable-property-obfuscation**. Example:
 
@@ -185,12 +199,12 @@ To obfuscate string literal property names, you must use this option together wi
   -enable-string-property-obfuscation
   ```
 
-According to the preceding configuration, the obfuscation effect of **"name"** and **"age"** is as follows:
+According to the preceding configuration, the obfuscation effect of **exampleName** and **exampleAge** is as follows:
 
   ```
   // Before obfuscation:
-  let person = {"name": "abc"};
-  person["age"] = 22;
+  let person = {"exampleName": "abc"};
+  person["exampleAge"] = 22;
   ```
 
   ```
@@ -233,7 +247,7 @@ Enables obfuscation of top-level scope names. The effect is as follows:
 
 If this option is configured, the names of all top-level scopes except the following are obfuscated:
 
-* Names that are directly imported or exported by using **import** or **export**.
+* Names that are directly imported or exported by using **import** or **export** in case that the **-enable-export-obfuscation** option is not configured.
 * Top-level scope names that are not declared in the current file.
 * Top-level scope names specified by [retention options](#-keep-global-name).
 * Top-level scope names in the SDK API list.
@@ -256,7 +270,7 @@ Enables obfuscation for imported/exported names. The effect is as follows:
   }
   ```
 
-If this option is configured, names imported/exported in non-top-level scopes will be obfuscated. To obfuscate names imported/exported in the top-level scope, use this option with **-enable-toplevel-obfuscation**. To obfuscate imported or exported property names, use this option **-enable-property-obfuscation**. Note the following special scenarios:
+If this option is configured, only names imported/exported in non-top-level scopes will be obfuscated. To obfuscate names imported/exported in the top-level scope, use this option with **-enable-toplevel-obfuscation**. To obfuscate imported or exported property names, use this option **-enable-property-obfuscation**. Note the following special scenarios:
 
 * Names exported from remote HARs (packages whose real paths are in **oh_modules**) and their property names are not obfuscated.
 * Names and property names specified by [retention options](#retention-options) are not obfuscated.
@@ -281,7 +295,7 @@ Enables obfuscation of file/folder names. The effect is as follows:
   const module = import('../a/b');
   ```
 
-If this option is configured, all file/folder names except the following are obfuscated:
+If this option is configured, all file names and folder names except the following are obfuscated:
 
 * File or folder names specified by the **main** and **types** fields in the **oh-package.json5** file.
 * File or folder names specified by the **srcEntry** field in the **module.json5** file of the module.
@@ -293,11 +307,11 @@ If this option is configured, all file/folder names except the following are obf
 >
 >For files that the system needs to load files during application running, manually configure them into a trustlist using the [-keep-file-name](#-keep-file-name) option. Otherwise, the application may fail to run.
 >
->The names of the compilation entry file, ability component file, and Worker multithreaded file cannot be obfuscated and have been automatically added to the trustlist in DevEco Studio 5.0.3.500. No manual configuration is required. For other files that cannot be obfuscated, you need to manually configure their names in the trustlist.
+>The names of the compilation entry file, ability component file, and Worker multithreaded file cannot be obfuscated and have been automatically added to the trustlist in DevEco Studio 5.0.3.500 or later. No manual configuration is required. For other files that cannot be obfuscated, you need to manually configure their names in the trustlist.
 
 ### -compact
 
-Removes unnecessary spaces and all line feeds.
+Removes spaces and all newline characters that do not participate in the syntax structure and do not affect program execution.
 
 If this option is configured, all code is compressed to one line. The effect is as follows:
 
@@ -317,7 +331,6 @@ If this option is configured, all code is compressed to one line. The effect is 
 >**NOTE**
 >
 >The stack information built in release mode contains the line number of code, but not the column number. Therefore, when the **compact** option is used, the source code cannot be located based on the line number in the stack information.
-
 
 ### -remove-comments
 
@@ -340,7 +353,7 @@ You can configure [-keep-comments](#-keep-comments) to retain the JsDoc comments
 
 >**NOTE**
 >
->By default, all comments in the source code file generated after the compilation are removed and cannot be retained. 
+> By default, all comments in the source code file generated after the compilation are removed and cannot be retained.
 
 ### -remove-log
 
@@ -362,6 +375,10 @@ Removes calls to console.* statements, provided the return value is not used. Th
 If this option is configured, the console.* statements in the following scenarios are removed:
 
 1. Calls at the top layer of a file.
+   Example:
+   ```js
+   console.log("in tolevel");
+   ```
 2. Calls within a code block. 
    Example:
    ```
@@ -377,6 +394,16 @@ If this option is configured, the console.* statements in the following scenario
    }
    ```
 4. Calls within a **switch** statement.
+   Example:
+   ```js
+   switch (value) {
+     case 1:
+       console.log("in switch case");
+       break;
+     default:
+       console.warn("default");
+   }
+   ```
 
 ### -print-namecache
 
@@ -395,7 +422,8 @@ Example:
 ### -apply-namecache
 
 Reuses a name cache file in the specified file path. The **filepath** parameter is mandatory. It supports relative and absolute paths. For a relative path, the start point is the current directory of the obfuscation configuration file. The file name extension in **filepath** must be .json.
-This option should be used in incremental build scenarios. After this option is enabled, the names will be obfuscated according to the cache mappings. If there is no corresponding name, new random names are used.
+
+This option applies to incremental build scenarios. After this option is enabled, the names will be obfuscated according to the cache mappings. If there is no corresponding name, new random names are used.
 
 Example:
 ```
@@ -432,7 +460,7 @@ The full trustlist collected during a full build is classified into the followin
 
 The 'sdk' trustlist is exported to the **systemApiCache.json** file in the **build/default/cache/{...}/release/obfuscation/** directory, and other trustlists are exported to the **whitelist.json** file.
 
-The **keptNames.json** file contains the names that are not obfuscated and the reasons why they are not obfuscated. There are seven reasons: The name is the same as that in the SDK trustlist, language trustlist, user-defined trustlist, struct trustlist, exported name trustlist, or string property trustlist (when string literal property name obfuscation is disabled), or enum trustlist.
+The **keptNames.json** file contains the names that are not obfuscated and the reasons why they are not obfuscated. There are seven reasons: The name is the same as that in the SDK trustlist, language trustlist, user-defined trustlist, struct trustlist, exported name trustlist, or string property trustlist (when [string literal property name obfuscation](#-enable-string-property-obfuscation) is disabled), or enum trustlist.
 
 **NOTE**
 
@@ -481,7 +509,7 @@ Compare the differences in the **ReservedLocalNames** and **ReservedPropertyName
 
 **How to use -extra-options**
 
-To enable trustlist optimization, add the **-extra-options** prefix directly before the option in the obfuscation configuration file, with no additional content in between. You can enable either one option or both options, like shown in the following examples:
+Add the **-extra-options** prefix and options in the obfuscation configuration file, with no additional content in between. You can enable either one option or both options, like shown in the following examples:
 
 One option enabled:
 
@@ -667,6 +695,25 @@ Currently, only global variables can be marked. Local variables cannot be marked
 const myVal = 1;
 ```
 
+#### Annotations
+
+Currently, only the marking and retention of annotation declarations are supported. Marking annotation members is invalid, and the annotation members themselves are not obfuscated.
+
+Starting from API version 20, marking annotation declarations is supported.
+
+**Example**
+
+```typescript
+// Retain the marked annotation declaration. MyAnnotation will not be obfuscated.
+// @KeepSymbol
+@interface MyAnnotation {
+  // Marking annotation members is invalid; authorName will not be added to the trustlist.
+  // @KeepSymbol
+  authorName: string;
+  revision: number = 1;
+}
+```
+
 #### Trustlist Addition Rules
 
 Marked names are added to the obfuscation trustlist based on the following rules. Names kept by **KeepAsConsumer** are also recorded in the **obfuscation.txt** file.
@@ -748,7 +795,7 @@ lastName
 
 **Which property names should be retained?**
 
-1. To ensure correct obfuscation, you are advised to retain all properties that are not accessed using dot notation. For example, object properties accessed via strings:
+1. If object properties are defined via string concatenation, variable access, or the **defineProperty** method within the code, these property names should be retained. Example:
 
    ```
    var obj = {x0: 0, x1: 0, x2: 0};
@@ -790,7 +837,7 @@ lastName
    }
    ```
 
-3. If an API (for example, **foo** in the example) of the .so library needs to be used in the ArkTS/TS/JS file, manually retain the API name.
+3. If you want to use an API (for example, **foo** in the example) of the .so library in the ArkTS/TS/JS file, manually retain the API name.
 
    ```
    import testNapi from 'library.so'
@@ -914,7 +961,7 @@ entry
 
 **Which file names should be retained?**
 
-1. When **require** is used to import file paths, the path should be retained. This is because ArkTS does not support [CommonJS](../arkts-utils/module-principle.md#commonjs module) syntax.
+1. When **require** is used to import file paths, the path should be retained. This is because ArkTS does not support [CommonJS](../arkts-utils/module-principle.md#commonjs-module) syntax.
 
    ```
    const module1 = require('./file1')   // file1 should be retained.
@@ -999,7 +1046,7 @@ Retains all names (such as variable names, class names, and property names) in t
 ./oh_modules                  // To retain the HAR package in the module-level oh_modules, configuring the parent directory name of the HAR package is not supported.
 ```
 
-**Method 2**: Specify the exact path of the remote HAR package in the project-level oh_modules. Since the file paths in the project-level oh_modules are all real paths, any path can be configured.
+**Method 2**: Specify the exact path of the remote HAR package in the project-level oh_modules. The file paths in the project-level oh_modules are actual paths and can be directly configured. Since the file paths in the project-level oh_modules are all real paths, any path can be configured.
 
 ```
 -keep
@@ -1007,7 +1054,7 @@ Retains all names (such as variable names, class names, and property names) in t
 ../oh_modules/harName3          // Names in all the files under the harName3 directory and its subdirectories are not obfuscated.
 ```
 
-The following figure shows the directory structure of module-level oh_moudles and project-level oh_modules in DevEco Studio.
+The following figure shows the directory structure of module-level oh_modules and project-level oh_modules in DevEco Studio.
 
 ![oh_modules](./figures/oh_modules.png)
 
@@ -1025,7 +1072,7 @@ The table below lists the name wildcards supported.
 
 | Wildcard| Description                  | Example                                      |
 | ------ | ---------------------- | ------------------------------------------ |
-| ?      | Matches any single character.      | "AB?" matches "ABC", but not "AB".        |
+| ?      | Matches any single character.      | "AB?" matches "ABC", but not "AB".       |
 | \*     | Matches any number of characters.| "\*AB\*" matches "AB", "aABb", "cAB", and "ABc".|
 
 **Use Example**
@@ -1161,9 +1208,9 @@ If a HAP is built, no **obfuscation.txt** will be generated.
 Obfuscation options: The OR operation is used for merging. If a switch option exists in any of the rule files being merged, it will be included in the final merged result. 
 Retention options: When merging, for trustlist options, their content is the union of all.
 
-- If the current module's obfuscation configuration does not include the **-enable-lib-obfuscation-options** option, the merged result is the current module's obfuscation rules and the [retention options](#retention-options) in the dependent modules' obfuscation rules. 
+- If the current module's obfuscation configuration does not include the **-enable-lib-obfuscation-options** option, the merged result is the current module's obfuscation rules and the [retention options](#retention-options) in the dependent modules' obfuscation rules.
 
-- If the current module's obfuscation configuration includes the **-enable-lib-obfuscation-options** option, the merged result is the current module's obfuscation rules and the dependent modules' obfuscation rules. 
+- If the current module's obfuscation configuration includes the **-enable-lib-obfuscation-options** option, the merged result is the current module's obfuscation rules and the dependent modules' obfuscation rules.
 
 When the obfuscation configuration file specified by **consumerFiles** contains the following obfuscation rules, these rules will be merged into the **obfuscation.txt** file of a remote HAR or remote HSP, whereas other obfuscation rules will not.
 ```
@@ -1181,7 +1228,7 @@ When the obfuscation configuration file specified by **consumerFiles** contains 
 
 **Precautions for Obfuscation in HSP and HAR**
 
-1. If the obfuscation configuration file specified by **consumerFiles** contains the above obfuscation options, when other modules depend on this module, these obfuscation options will be merged with the main module's obfuscation rules, thereby affecting the main module. Therefore, you are not advised to configure obfuscation options in the **consumer-rules.txt** file. Instead, configure only retention options in the file.
+1. If the obfuscation configuration file specified by **consumerFiles** contains the above obfuscation options, when other modules depend on this HAR, these obfuscation options will be merged with the main module's obfuscation rules, thereby affecting the main module. Therefore, you are not advised to configure obfuscation options in the **consumer-rules.txt** file. Instead, configure only retention options in the file.
 
 2. If the **-keep-dts** option is added to the obfuscation configuration file specified by **consumerFiles**, it will be converted into **-keep-global-name** and **-keep-property-name**.
 

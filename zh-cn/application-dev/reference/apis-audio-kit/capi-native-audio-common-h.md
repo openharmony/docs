@@ -2,9 +2,9 @@
 
 ## 概述
 
-声明音频公共基础数据结构。
+声明音频公共基础数据结构。<br> 定义音频接口的公共返回值的类型。
 
-定义音频接口的公共返回值的类型。
+**引用文件：** <ohaudio/native_audio_common.h>
 
 **库：** libohaudio.so
 
@@ -22,6 +22,7 @@
 | -- | -- | -- |
 | [OH_AudioCommon_Result](#oh_audiocommon_result) | OH_AudioCommon_Result | 音频错误码。 |
 | [OH_AudioScene](#oh_audioscene) | OH_AudioScene | 定义音频场景。 |
+| [OH_AudioRingerMode](#oh_audioringermode) | OH_AudioRingerMode | 定义铃音模式。 |
 
 ## 枚举类型说明
 
@@ -66,3 +67,23 @@ enum OH_AudioScene
 | AUDIO_SCENE_RINGING = 1 | 响铃场景。 |
 | AUDIO_SCENE_PHONE_CALL = 2 | 电话场景。 |
 | AUDIO_SCENE_VOICE_CHAT = 3 | 语音聊天场景。 |
+
+### OH_AudioRingerMode
+
+```
+enum OH_AudioRingerMode
+```
+
+**描述**
+
+定义铃音模式。
+
+**起始版本：** 20
+
+| 枚举项 | 描述 |
+| -- | -- |
+| AUDIO_RINGER_MODE_SILENT = 0 | 静音模式。<br>**起始版本：** 20 |
+| AUDIO_RINGER_MODE_VIBRATE = 1 | 振动模式。<br>**起始版本：** 20 |
+| AUDIO_RINGER_MODE_NORMAL = 2 | 响铃模式。<br>**起始版本：** 20 |
+
+

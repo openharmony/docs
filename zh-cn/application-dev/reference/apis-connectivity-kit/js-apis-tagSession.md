@@ -18,11 +18,11 @@ import { tag } from '@kit.ConnectivityKit';
 
 ## TagSession
 
-TagSession是所有[NFC Tag技术类型](js-apis-nfctech.md)的基类， 提供建立连接和发送数据等共同接口。
+TagSession是所有[nfcTag技术类型](js-apis-nfctech.md)的基类， 提供建立连接和发送数据等共同接口。
 
 需要通过其子类来访问以下接口。在下面的示例中 统一用 getXXX()表示获取子类实例的方法。
 
-具体使用时,请根据实际采用的Nfc tag技术，选择对应的方法，具体请参见[nfcTag](js-apis-nfcTag.md)文档。
+具体使用时,请根据实际采用的nfcTag技术，选择对应的方法，具体请参见[nfcTag](js-apis-nfcTag.md)文档。
 
 ### getTagInfo<sup>(deprecated)</sup>
 

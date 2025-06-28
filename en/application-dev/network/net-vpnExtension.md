@@ -4,11 +4,13 @@
 
 A virtual private network (VPN) is a dedicated network established on a public network. Unlike a traditional private network, a VPN does not require an end-to-end physical link between any two nodes. It is built over a network platform (for example, Internet) provided by a public network service provider. User data is transmitted over the logical link.
 
-OpenHarmony provides the VPN Extension solution for enhanced VPN management. The following guides you through on how to develop your own VPN client.
+OpenHarmony provides the VPN Extension solution for enhanced VPN management. Currently, the VPN capabilities provided to third-party applications are primarily used for creating virtual NICs and configuring VPN routing information. The connection tunnel process and internal connection protocols need to be implemented by the applications themselves. The following guides you through on how to develop your own VPN client.
 
 > **NOTE**
 >
 > To maximize the application running efficiency, all APIs are called asynchronously in callback or promise mode. The following code examples use the promise mode. For details about the APIs, see [API Reference](../reference/apis-network-kit/js-apis-net-vpnExtension.md).
+
+For details about the complete JavaScript APIs and sample code, see [API Reference](../reference/apis-network-kit/js-apis-net-vpnExtension.md).
 
 ## VPN Extension Ability UI
 
@@ -20,13 +22,12 @@ With the VPN Extension APIs provided by OpenHarmony, you can build VPN services 
 To facilitate the query and configuration, your VPN application needs to provide the following UIs:
 
 - UI for manually starting and stopping the VPN connection.
-- UI for displaying the connection status of the VPN application in the notification bar  or providing network statistics (such as the connection duration and traffic) of the VPN connection. Touching the notification in notification bar should bring your VPN application to the foreground.
+- UI for displaying the connection status of the VPN application in the notification bar or providing network statistics (such as the connection duration and traffic) of the VPN connection. Touching the notification in notification bar should bring your VPN application to the foreground.
 
-## Available APIs
 
-For details about the complete JavaScript APIs and sample code, see [API Reference](../reference/apis-network-kit/js-apis-net-vpnExtension.md).
+## How to Develop
 
-## Creating a VPN Extension Ability
+### Creating a VPN Extension Ability
 
 To enable your application to support the VPN functionality, you need to create an **ExtensionAbilities** instance inherited from **VpnExtensionAbility**.
 
@@ -54,8 +55,7 @@ Next, you need to configure, start, and stop the VPN in the created **VpnExtensi
 - Use [VpnConnection.create](../reference/apis-network-kit/js-apis-net-vpnExtension.md#create) to establish a VPN connection.
 - Process data of the virtual network interface card (vNIC), such as reading or writing data.
 
-
-## Starting the VPN Extension Ability
+### Starting the VPN Extension Ability
 
 To start a connection from the VPN application, you need to call **startVpnExtensionAbility** with the **VpnExtensionAbility** information specified. Make sure that **bundleName** is the same as that of the VPN application, and **abilityName** is the name of the **VpnExtensionAbility** you created. The sample code is as follows:
 
@@ -96,7 +96,7 @@ Currently, only one active VPN connection is supported. If the application calls
 
 
 
-## Stopping the VPN Extension Ability
+### Stopping the VPN Extension Ability
 
 To stop a VPN connection, the VPN application needs to call **stopVpnExtensionAbility** with the target **VpnExtensionAbility** specified. The system verifies the permission of the caller. The caller of **stopVpnExtensionAbility** must have obtained the VPN connection authorization of the user and can only stop the **VpnExtensionAbility** it started. Therefore, make sure that the value of **bundleName** passed by the API is the same as that of the VPN application, and the value of **abilityName** is the same as that of the target **VpnExtensionAbility**.
 
@@ -175,10 +175,10 @@ To ensure network connectivity, the system automatically stops the VPN connectio
 | dnsAddresses        | Array\<string\>                                              | No  | IP addresses of DNS servers. Trusted VPN applications can access the network through these IP addresses. If this parameter is not configured, IP address allocated by the system will be used.|
 | searchDomains       | Array\<string\>                                              | No  | List of DNS search domains.                                           |
 | mtu                 | number                                                       | No  | Maximum transmission unit (MTU), in bytes.                              |
-| isIPv4Accepted      | boolean                                                      | No  | Whether IPv4 is supported. The default value is **true**.                                |
-| isIPv6Accepted      | boolean                                                      | No  | Whether IPv6 is supported. The default value is **false**.                               |
-| isInternal          | boolean                                                      | No  | Whether the built-in VPN is supported. The default value is **false**.                            |
-| isBlocking          | boolean                                                      | No  | Whether the blocking mode is used. The default value is **false**.                               |
+| isIPv4Accepted      | boolean                                                      | No  | Whether IPv4 is supported. The default value is **true**. The value **true** indicates that IPV4 is supported, and the value **false** indicates the opposite.                                |
+| isIPv6Accepted      | boolean                                                      | No  | Whether IPv6 is supported. The default value is **false**. The value **true** indicates that IPV6 is supported, and the value **false** indicates the opposite.                               |
+| isInternal          | boolean                                                      | No  | Whether the built-in VPN is supported. The default value is **false**. The value **true** indicates that the built-in VPN is supported, and the value **false** indicates the opposite.                            |
+| isBlocking          | boolean                                                      | No  | Whether the blocking mode is used. The default value is **false**. The value **true** indicates that the blocking mode is used, and the value **false** indicates the opposite.                               |
 | trustedApplications | Array\<string\>                                              | No  | Trusted VPN applications, which are represented by bundle names of the string type             |
 | blockedApplications | Array\<string\>                                              | No  | Blocked VPN applications, which are represented by bundle names of the string type           |
 

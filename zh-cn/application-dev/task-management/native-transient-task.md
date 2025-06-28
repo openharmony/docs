@@ -6,7 +6,7 @@
 
 ## 接口说明
 
-常用接口如下表所示。
+常用接口如下表所示，具体API说明详见[API参考](../reference/apis-backgroundtasks-kit/_transient_task.md#transienttask)。
 
 
 | 接口名 | 描述 |
@@ -14,6 +14,7 @@
 | int32_t OH_BackgroundTaskManager_RequestSuspendDelay(const char *reason, TransientTask_Callback callback, TransientTask_DelaySuspendInfo *info); | 申请短时任务。 |
 | int32_t OH_BackgroundTaskManager_GetRemainingDelayTime(int32_t requestId, int32_t *delayTime); | 获取对应短时任务的剩余时间。 |
 | int32_t OH_BackgroundTaskManager_CancelSuspendDelay(int32_t requestId); | 取消短时任务。 |
+| int32_t OH_BackgroundTaskManager_GetTransientTaskInfo(TransientTask_TransientTaskInfo  *transientTaskInfo); | 获取所有短时任务信息，如当日剩余总配额等。 |
 
 ## 开发步骤
 
@@ -69,6 +70,53 @@
          return result;
    }
 
+   // 获取所有短时任务信息
+   TransientTask_TransientTaskInfo transientTaskInfo;
+
+   static napi_value GetTransientTaskInfo(napi_env env, napi_callback_info info)
+   {
+      napi_value result;
+      napi_create_object(env, &result);
+      int32_t res = OH_BackgroundTaskManager_GetTransientTaskInfo(&transientTaskInfo);
+      napi_value napiRemainingQuota = nullptr;
+      // 获取成功，格式化数据并返回给接口
+      if (res == 0) {
+         napi_create_int32(env, transientTaskInfo.remainingQuota, &napiRemainingQuota);
+         napi_set_named_property(env, result, "remainingQuota", napiRemainingQuota); // 格式化当日总配额
+   
+         napi_value info {nullptr};
+         napi_create_array(env, &info);
+         uint32_t count = 0;
+         // 格式化所有已申请的短时任务信息
+         for (int index = 0; index < 3; index++) {
+            if (transientTaskInfo.transientTasks[index].requestId == 0) {
+                continue;
+            }
+            
+            napi_value napiWork = nullptr;
+            napi_create_object(env, &napiWork);
+   
+            napi_value napiRequestId = nullptr;
+            napi_create_int32(env, transientTaskInfo.transientTasks[index].requestId, &napiRequestId);
+            napi_set_named_property(env, napiWork, "requestId", napiRequestId);
+   
+            napi_value napiActualDelayTime = nullptr;
+            napi_create_int32(env, transientTaskInfo.transientTasks[index].actualDelayTime, &napiActualDelayTime);
+            napi_set_named_property(env, napiWork, "actualDelayTime", napiActualDelayTime);
+   
+            napi_set_element(env, info, count, napiWork);
+            count++;
+         }
+         napi_set_named_property(env, result, "transientTasks", info);
+      } else {
+         napi_create_int32(env, 0, &napiRemainingQuota);
+         napi_set_named_property(env, result, "remainingQuota", napiRemainingQuota);
+         napi_value info {nullptr};
+         napi_create_array(env, &info);
+         napi_set_named_property(env, result, "transientTasks", info);
+      }
+      return result;
+   }
    ```
 
 2. 注册函数
@@ -81,6 +129,7 @@
            {"RequestSuspendDelay", nullptr, RequestSuspendDelay, nullptr, nullptr, nullptr, napi_default, nullptr},
            {"GetRemainingDelayTime", nullptr, GetRemainingDelayTime, nullptr, nullptr, nullptr, napi_default, nullptr},
            {"CancelSuspendDelay", nullptr, CancelSuspendDelay, nullptr, nullptr, nullptr, napi_default, nullptr},
+           {"GetTransientTaskInfo", nullptr, GetTransientTaskInfo, nullptr, nullptr, nullptr, napi_default, nullptr },
        };
        napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
        return exports;
@@ -110,9 +159,12 @@
 ### 在index.d.ts文件中声明函数
 
    ```ts
+   import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
+
    export const RequestSuspendDelay: () => number;
    export const GetRemainingDelayTime: () => number;
    export const CancelSuspendDelay: () => number;
+   export const GetTransientTaskInfo: () => backgroundTaskManager.TransientTaskInfo;
    ```
 
 ### 在index.ets文件中调用函数
@@ -140,6 +192,9 @@
            Button('取消短时任务').onClick(event =>{
              this.CancelSuspendDelay();
            })
+           Button('获取所有短时任务信息').onClick(event =>{
+             this.GetTransientTaskInfo();
+           })
          }
          .width('100%')
         }
@@ -159,6 +214,11 @@
      CancelSuspendDelay() {
        let ret = testTransientTask.CancelSuspendDelay();
        console.log("The ret is " + ret);
+     }
+
+     GetTransientTaskInfo() {
+       let ret = testTransientTask.GetTransientTaskInfo();
+       console.log("The ret is " + JSON.stringify(ret));
      }
    }
 
@@ -191,6 +251,11 @@
 
    ```
    The ret is 0
+   ```
+5. 点击 `获取所有短时任务信息` 按钮，控制台会打印日志，示例如下：
+
+   ```
+   The ret is {"remainingQuota":600000,"transientTasks":[]}
    ```
 > **说明**
 >

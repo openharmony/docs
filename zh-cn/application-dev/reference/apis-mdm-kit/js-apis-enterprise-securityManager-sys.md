@@ -111,6 +111,7 @@ getDeviceEncryptionStatus(admin: Want): DeviceEncryptionStatus
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',

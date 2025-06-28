@@ -70,6 +70,12 @@ static JSVM_PropertyDescriptor descriptor[] = {
 ```c++
 const char *srcCallNative = R"JS(getVM())JS";
 ```
+<!-- @[oh_jsvm_get_vm](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/UsageInstructionsTwo/getvm/src/main/cpp/hello.cpp) -->
+
+预计的输出结果：
+```
+JSVM OH_JSVM_GetVM: success
+```
 
 预计的输出结果：
 ```
@@ -137,6 +143,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 ```c++
 const char *srcCallNative = R"JS(getHeapStatistics())JS";
 ```
+<!-- @[oh_jsvm_get_heap_statistics](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/UsageInstructionsTwo/getheapstatistics/src/main/cpp/hello.cpp) -->
 预计的输出结果：
 ```
 JSVM API heap totalHeapSize: 1597440

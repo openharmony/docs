@@ -19,10 +19,10 @@ import { missionManager } from '@kit.AbilityKit';
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| ability | ElementName | 是 | 是 | 表示该任务的组件信息。 | 
-| snapshot | [PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是 | 是 | 表示任务快照。 |
+| ability | ElementName | 否 | 否 | 表示该任务的组件信息。 | 
+| snapshot | [PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 否 | 否 | 表示任务快照。 |
 
 ## 使用说明
 
@@ -39,8 +39,8 @@ try {
       console.error(`getMissionInfos failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}`);
       return;
     }
-    console.log(`size = ${missions.length}`);
-    console.log(`missions = ${JSON.stringify(missions)}`);
+    console.info(`size = ${missions.length}`);
+    console.info(`missions = ${JSON.stringify(missions)}`);
     let id = missions[0].missionId;
 
     missionManager.getMissionSnapShot('', id, (err, snapshot) => {
@@ -49,7 +49,7 @@ try {
         return;
       }
       // 执行正常业务
-      console.log(`bundleName = ${snapshot.ability.bundleName}`);
+      console.info(`bundleName = ${snapshot.ability.bundleName}`);
     });
   });
 } catch (paramError) {

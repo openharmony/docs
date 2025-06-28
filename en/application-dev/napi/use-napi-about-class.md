@@ -55,14 +55,14 @@ API declaration:
 
 ```ts
 // index.d.ts
-export const newInstance: (obj: Object, param: string) => Object
+export const newInstance: (obj: Object, param: string) => Object;
 ```
 
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 class Fruit {
   name: string;
   constructor(name: string) {
@@ -79,11 +79,13 @@ hilog.info(0x0000, 'Node-API', 'napi_new_instance %{public}s', JSON.stringify(ob
 
 Call **napi_get_new_target** to obtain **new.target** of a constructor. In ArkTS, **new.target** is a meta property used to determine whether a constructor was called using the **new** operator.
 
+
 For more information, see [Wrapping a Native Object in an ArkTS Object](use-napi-object-wrap.md).
 
 ### napi_define_class
 
 Call **napi_define_class** to define an ArkTS class. This API creates an ArkTS class and associates the methods and properties of the ArkTS class with those of a C/C++ class.
+
 
 For more information, see [Wrapping a Native Object in an ArkTS Object](use-napi-object-wrap.md).
 
@@ -118,6 +120,8 @@ CPP code:
 #include <string>
 #include "napi/native_api.h"
 
+static constexpr int INT_ARG_18 = 18; // Age: 18 years old
+
 struct Object {
     std::string name;
     int32_t age;
@@ -135,7 +139,7 @@ static napi_value Wrap(napi_env env, napi_callback_info info)
     // Initialize the native object.
     struct Object *obj = new struct Object();
     obj->name = "liLei";
-    obj->age = 18;
+    obj->age = INT_ARG_18;
     size_t argc = 1;
     napi_value toWrap;
     // Call napi_wrap to wrap the native object in an ArkTS object.
@@ -189,8 +193,8 @@ export const removeWrap: (obj: Object) => void;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 try {
     class Obj {}
     let obj: Obj = {};

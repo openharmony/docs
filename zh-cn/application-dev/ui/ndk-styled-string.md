@@ -9,7 +9,7 @@
 
 ## 创建Text组件
 
-由于文本样式通过字体引擎接口设置，创建文本组件时无需配置文字颜色、字体大小等样式属性。仍需设置基础的通用属性，例如宽度、高度。
+由于文本样式通过字体引擎接口设置，创建文本组件时无需配置文字颜色、字体大小等样式属性。但仍需设置基础的通用属性，例如宽度、高度。
 ```c++
 ArkUI_NativeNodeAPI_1 *nodeApi = reinterpret_cast<ArkUI_NativeNodeAPI_1 *>(
     OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_NODE, "ArkUI_NativeNodeAPI_1"));
@@ -121,7 +121,7 @@ Text组件不对本文涉及的任何对象的生命周期进行管理，需由�
 
 更多字体引擎销毁API参考[简单文本绘制与显示（C/C++)](../graphics/simple-text-c.md)、[复杂文本绘制与显示（C/C++）](../graphics/complex-text-c.md)。
 
-Text组件提供`OH_ArkUI_StyledString_Destroy：销毁属性字符串对象。
+Text组件提供`OH_ArkUI_StyledString_Destroy`：销毁属性字符串对象。
 
 ## 完整示例
 ```c++

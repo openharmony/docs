@@ -7,8 +7,7 @@ The SceneType module provides common data types in 3D graphics.
 
 ## Modules to Import
 ```ts
-import { Vec2, Vec3, Vec4, Color, Rect, Quaternion, Aabb, Position3, Rotation3,
-  Scale3 } from '@kit.ArkGraphics3D';
+import { Vec2, Vec3, Vec4, Quaternion, Aabb, Color, Rect, GeometryType, PrimitiveTopology, CustomGeometry, CubeGeometry, PlaneGeometry, SphereGeometry, Position3, Rotation3, Scale3 } from '@kit.ArkGraphics3D';
 ```
 
 ## Vec2
@@ -83,6 +82,78 @@ Rectangle in a plane.
 | width | number | No| No| Width of the rectangle. The value must be greater than 0.|
 | height | number | No| No| Height of the rectangle. The value must be greater than 0.|
 
+## GeometryType<sup>18+</sup>
+Enumerates the geometry types.
+
+**System capability**: SystemCapability.ArkUi.Graphics3D
+
+| Name| Value| Description|
+| ---- | ---- | ---- |
+| CUSTOM | 0 | Undefined.|
+| CUBE | 1 | Cube.|
+| PLANE | 2 | Plane.|
+| SPHERE | 3 | Sphere.|
+
+## GeometryDefinition<sup>18+</sup>
+An abstract class used to define the properties of specific geometry types.
+
+**System capability**: SystemCapability.ArkUi.Graphics3D
+| Name| Type| Read Only| Optional| Description|
+| ---- | ---- | ---- | ---- | ---- |
+| geometryType | [GeometryType](#geometrytype18)| Yes| No| Type of geometry.|
+
+## PrimitiveTopology<sup>18+</sup>
+Enumerates the vertex processing methods.
+
+**System capability**: SystemCapability.ArkUi.Graphics3D
+
+| Name| Value| Description|
+| ---- | ---- | ---- |
+| TRIANGLE_LIST | 0 | A set of vertices forming separate triangles without intersecting.|
+| TRIANGLE_STRIP | 1 | Each vertex and the edge of the previous triangle create a new triangle.|
+
+## CustomGeometry<sup>18+</sup>
+A custom geometry type that inherits from [GeometryDefinition](#geometrydefinition18).
+
+**System capability**: SystemCapability.ArkUi.Graphics3D
+
+| Name| Type| Read Only| Optional| Description|
+| ---- | ---- | ---- | ---- | ---- |
+| topology | [PrimitiveTopology](#primitivetopology18)| No| Yes| Parsing mode of triangle primitives. The default value is **TRIANGLE_LIST**.|
+| vertices | [Vec3](#vec3)[] | No| No| Array of vertices that make up the model.|
+| indices | number[] | No| Yes| Array of indices for the vertices, with values starting at 0. The default value is undefined.|
+| normals | [Vec3](#vec3)[] | No| Yes| Array of normals corresponding to the vertices. The default value is undefined.|
+| uvs | [Vec2](#vec2)[] | No| Yes| Array of UV coordinates for the vertices. The default value is undefined.|
+| colors | [Color](#color)[] | No| Yes| Array of colors for the vertices. The default value is undefined.|
+
+## CubeGeometry<sup>18+</sup>
+A cube geometry type that inherits from [GeometryDefinition](#geometrydefinition18).
+
+**System capability**: SystemCapability.ArkUi.Graphics3D
+
+| Name| Type| Read Only| Optional| Description|
+| ---- | ---- | ---- | ---- | ---- |
+| size | [Vec3](#vec3) | No| No| Width, height, and depth of the cube, defining its size.|
+
+## PlaneGeometry<sup>18+</sup>
+A plane geometry type that inherits from [GeometryDefinition](#geometrydefinition18).
+
+**System capability**: SystemCapability.ArkUi.Graphics3D
+
+| Name| Type| Read Only| Optional| Description|
+| ---- | ---- | ---- | ---- | ---- |
+| size | [Vec2](#vec2) | No| No| Width and height of the plane, defining its size.|
+
+## SphereGeometry<sup>18+</sup>
+A sphere geometry type that inherits from [GeometryDefinition](#geometrydefinition18).
+
+**System capability**: SystemCapability.ArkUi.Graphics3D
+
+| Name| Type| Read Only| Optional| Description|
+| ---- | ---- | ---- | ---- | ---- |
+| radius | number | No| No| Radius of the sphere. The value must be greater than 0.|
+| segmentCount | number | No| No| Number of segments dividing the sphere along latitude and longitude. The value must be greater than 0.|
+
 ## Position3
 type Position3 = Vec3
 
@@ -97,7 +168,7 @@ Position of an object in 3D space. The value is of the [Vec3](#vec3) type.
 ## Rotation3
 type Rotation3 = Vec3
 
-Rotation of an object in 3D space. It is of the [Vec3](#vec3) type.
+Rotation of an object in 3D space. The value is of the [Vec3](#vec3) type.
 
 **System capability**: SystemCapability.ArkUi.Graphics3D
 

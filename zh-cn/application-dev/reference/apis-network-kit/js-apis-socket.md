@@ -42,7 +42,7 @@ UDPSocket连接。在调用UDPSocket的方法前，需要先通过[socket.constr
 
 bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 
-绑定IP地址和端口，端口可以指定或由系统随机分配。使用callback方式作为异步方法。
+绑定IP地址和端口，端口可以由用户指定或由系统随机分配。使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -56,6 +56,8 @@ bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 | callback | AsyncCallback\<void\>              | 是   | 回调函数。成功返回空，失败返回错误码、错误信息。        |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
@@ -75,7 +77,7 @@ let bindAddr: socket.NetAddress = {
 }
 udp.bind(bindAddr, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
@@ -86,7 +88,7 @@ udp.bind(bindAddr, (err: BusinessError) => {
 
 bind(address: NetAddress): Promise\<void\>
 
-绑定IP地址和端口，端口可以指定或由系统随机分配。使用Promise方式作为异步方法。
+绑定IP地址和端口，端口可以由用户指定或由系统随机分配。使用Promise方式作为异步方法。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -100,6 +102,8 @@ bind(address: NetAddress): Promise\<void\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
@@ -109,7 +113,7 @@ bind(address: NetAddress): Promise\<void\>
 
 | 类型            | 说明                                       |
 |  -------------- |  ----------------------------------------- |
-| Promise\<void\> | 以Promise形式异步返回UDPSocket绑定的结果。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。|
 
 **示例：**
 
@@ -125,7 +129,7 @@ let bindAddr: socket.NetAddress = {
 udp.bind(bindAddr).then(() => {
   console.log('bind success');
 }).catch((err: BusinessError) => {
-  console.log('bind fail');
+  console.error('bind fail');
 });
 ```
 
@@ -149,6 +153,8 @@ send(options: UDPSendOptions, callback: AsyncCallback\<void\>): void
 | callback | AsyncCallback\<void\>                    | 是   | 回调函数。成功返回空，失败返回错误码、错误信息。                                                  |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
@@ -176,7 +182,7 @@ let bindAddr: socket.NetAddress = {
 }
 udp.bind(bindAddr, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
@@ -191,7 +197,7 @@ let sendOptions: socket.UDPSendOptions = {
 }
 udp.send(sendOptions, (err: BusinessError) => {
   if (err) {
-    console.log('send fail');
+    console.error('send fail');
     return;
   }
   console.log('send success');
@@ -211,7 +217,7 @@ let bindAddr: socket.NetAddress = {
 }
 udp.bind(bindAddr, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
@@ -236,7 +242,7 @@ let sendOptions: socket.UDPSendOptions = {
 }
 udp.send(sendOptions, (err: BusinessError) => {
   if (err) {
-    console.log('send fail');
+    console.error('send fail');
     return;
   }
   console.log('send success');
@@ -263,6 +269,8 @@ send(options: UDPSendOptions): Promise\<void\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
@@ -280,7 +288,7 @@ send(options: UDPSendOptions): Promise\<void\>
 
 | 类型            | 说明                                           |
 |  -------------- |  --------------------------------------------- |
-| Promise\<void\> | 以Promise形式返回UDPSocket连接发送数据的结果。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -296,7 +304,7 @@ let bindAddr: socket.NetAddress = {
 udp.bind(bindAddr).then(() => {
   console.log('bind success');
 }).catch((err: BusinessError) => {
-  console.log('bind fail');
+  console.error('bind fail');
   return;
 });
 let netAddress: socket.NetAddress = {
@@ -310,7 +318,7 @@ let sendOptions: socket.UDPSendOptions = {
 udp.send(sendOptions).then(() => {
   console.log('send success');
 }).catch((err: BusinessError) => {
-  console.log('send fail');
+  console.error('send fail');
 });
 ```
 
@@ -328,7 +336,7 @@ let bindAddr: socket.NetAddress = {
 udp.bind(bindAddr).then(() => {
   console.log('bind success');
 }).catch((err: BusinessError) => {
-  console.log('bind fail');
+  console.error('bind fail');
   return;
 });
 let netAddress: socket.NetAddress = {
@@ -352,7 +360,7 @@ let sendOptions: socket.UDPSendOptions = {
 udp.send(sendOptions).then(() => {
   console.log('send success');
 }).catch((err: BusinessError) => {
-  console.log('send fail');
+  console.error('send fail');
 });
 ```
 
@@ -374,6 +382,8 @@ close(callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 201     | Permission denied.      |
@@ -387,7 +397,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 udp.close((err: BusinessError) => {
   if (err) {
-    console.log('close fail');
+    console.error('close fail');
     return;
   }
   console.log('close success');
@@ -406,6 +416,8 @@ close(): Promise\<void\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 201     | Permission denied.      |
@@ -414,7 +426,7 @@ close(): Promise\<void\>
 
 | 类型            | 说明                                       |
 |  -------------- |  ----------------------------------------- |
-| Promise\<void\> | 以Promise形式返回关闭UDPSocket连接的结果。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -426,7 +438,7 @@ let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 udp.close().then(() => {
   console.log('close success');
 }).catch((err: BusinessError) => {
-  console.log('close fail');
+  console.error('close fail');
 });
 ```
 
@@ -451,6 +463,8 @@ getState(callback: AsyncCallback\<SocketStateBase\>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 201     | Permission denied.      |
@@ -468,10 +482,10 @@ let bindAddr: socket.NetAddress = {
 }
 udp.bind(bindAddr, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
-  console.log('bind success');
+  console.error('bind success');
   udp.getState((err: BusinessError, data: socket.SocketStateBase) => {
     if (err) {
       console.log('getState fail');
@@ -497,6 +511,9 @@ getState(): Promise\<SocketStateBase\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 201     | Permission denied.      |
@@ -520,14 +537,14 @@ let bindAddr: socket.NetAddress = {
 }
 udp.bind(bindAddr, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
   udp.getState().then((data: socket.SocketStateBase) => {
     console.log('getState success:' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
-    console.log('getState fail' + JSON.stringify(err));
+    console.error('getState fail' + JSON.stringify(err));
   });
 });
 ```
@@ -554,6 +571,8 @@ setExtraOptions(options: UDPExtraOptions, callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
@@ -573,7 +592,7 @@ let bindAddr: socket.NetAddress = {
 }
 udp.bind(bindAddr, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
@@ -586,7 +605,7 @@ udp.bind(bindAddr, (err: BusinessError) => {
   }
   udp.setExtraOptions(udpextraoptions, (err: BusinessError) => {
     if (err) {
-      console.log('setExtraOptions fail');
+      console.error('setExtraOptions fail');
       return;
     }
     console.log('setExtraOptions success');
@@ -617,9 +636,11 @@ setExtraOptions(options: UDPExtraOptions): Promise\<void\>
 
 | 类型            | 说明                                                 |
 |  -------------- |  --------------------------------------------------- |
-| Promise\<void\> | 以Promise形式返回设置UDPSocket连接的其他属性的结果。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
@@ -640,7 +661,7 @@ let bindAddr: socket.NetAddress = {
 }
 udp.bind(bindAddr, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
@@ -654,7 +675,7 @@ udp.bind(bindAddr, (err: BusinessError) => {
   udp.setExtraOptions(udpextraoptions).then(() => {
     console.log('setExtraOptions success');
   }).catch((err: BusinessError) => {
-    console.log('setExtraOptions fail');
+    console.error('setExtraOptions fail');
   });
 })
 ```
@@ -677,6 +698,8 @@ getLocalAddress(): Promise\<NetAddress\>
 | Promise\<[NetAddress](#netaddress)\> | 以Promise形式返回获取本地socket地址的结果。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)。
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
@@ -756,8 +779,8 @@ off(type: 'message', callback?: Callback\<SocketMessageInfo\>): void
 
 | 参数名   | 类型                                                         | 必填 | 说明                                      |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
-| type     | string                                                       | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | 否   | 回调函数。返回取消订阅某类事件后UDPSocket连接的状态信息。                              |
+| type     | string                                                       | 是   | 取消订阅的事件类型。'message'：接收消息事件。 |
+| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | 否   | 回调函数。可以指定传入on中的callback取消对应的订阅，也可以不指定callback清空所有订阅。                              |
 
 **示例：**
 
@@ -825,8 +848,8 @@ off(type: 'listening' | 'close', callback?: Callback\<void\>): void
 
 | 参数名   | 类型             | 必填 | 说明                                                         |
 | -------- | ---------------- | ---- | ------------------------------------------------------------ |
-| type     | string           | 是   | 订阅事件类型。<br />- 'listening'：数据包消息事件。<br />- 'close'：关闭事件。 |
-| callback | Callback\<void\> | 否   | 回调函数。取消订阅UDPSocket连接的数据包消息事件或关闭事件后触发回调函数。     |
+| type     | string           | 是   | 取消订阅事件类型。<br />- 'listening'：数据包消息事件。<br />- 'close'：关闭事件。 |
+| callback | Callback\<void\> | 否   | 回调函数。可以指定传入on中的callback取消对应的订阅，也可以不指定callback清空所有订阅。     |
 
 **示例：**
 
@@ -874,7 +897,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 udp.on('error', (err: BusinessError) => {
-  console.log("on error, err:" + JSON.stringify(err))
+  console.error("on error, err:" + JSON.stringify(err))
 });
 ```
 
@@ -890,8 +913,8 @@ off(type: 'error', callback?: ErrorCallback): void
 
 | 参数名   | 类型          | 必填 | 说明                                 |
 | -------- | ------------- | ---- | ------------------------------------ |
-| type     | string        | 是   | 订阅的事件类型。'error'：error事件。 |
-| callback | ErrorCallback | 否   | 回调函数。UDPSocket连接发生error事件后。      |
+| type     | string        | 是   | 取消订阅的事件类型。'error'：error事件。 |
+| callback | ErrorCallback | 否   | 回调函数。可以指定传入on中的callback取消对应的订阅，也可以不指定callback清空所有订阅。      |
 
 **示例：**
 
@@ -901,7 +924,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 let callback = (err: BusinessError) => {
-  console.log("on error, err:" + JSON.stringify(err));
+  console.error("on error, err:" + JSON.stringify(err));
 }
 udp.on('error', callback);
 // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
@@ -965,7 +988,7 @@ UDPSocket连接的其他属性。继承自[ExtraOptionsBase](#extraoptionsbase7)
 
 | 名称            | 类型    | 必填 | 说明                             |
 | ----------------- | ------- | ---- | -------------------------------- |
-| broadcast         | boolean | 否   | 是否可以发送广播。默认为false。true：可发送广播；false：不可发送广播。  |
+| broadcast         | boolean | 否   | 是否可以发送广播。true表示可发送广播，false表示不可发送广播。默认为false。  |
 
 ## SocketMessageInfo<sup>11+</sup>
 
@@ -1007,7 +1030,7 @@ Socket的连接信息。
 
 UDP 其余错误码映射形式为：2301000 + Linux内核错误码。
 
-错误码的详细介绍参见[Socket错误码](errorcode-net-socket.md)
+错误码的详细介绍参见[Socket错误码](errorcode-net-socket.md)。
 
 ## socket.constructMulticastSocketInstance<sup>11+</sup>
 
@@ -1056,6 +1079,8 @@ addMembership(multicastAddress: NetAddress, callback: AsyncCallback\<void\>): vo
 
 **错误码：**
 
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
@@ -1076,7 +1101,7 @@ let addr: socket.NetAddress = {
 }
 multicast.addMembership(addr, (err: Object) => {
   if (err) {
-    console.log('add membership fail, err: ' + JSON.stringify(err));
+    console.error('add membership fail, err: ' + JSON.stringify(err));
     return;
   }
   console.log('add membership success');
@@ -1111,6 +1136,8 @@ addMembership(multicastAddress: NetAddress): Promise\<void\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
@@ -1131,7 +1158,7 @@ let addr: socket.NetAddress = {
 multicast.addMembership(addr).then(() => {
   console.log('addMembership success');
 }).catch((err: Object) => {
-  console.log('addMembership fail');
+  console.error('addMembership fail');
 });
 ```
 
@@ -1158,6 +1185,8 @@ dropMembership(multicastAddress: NetAddress, callback: AsyncCallback\<void\>): v
 
 **错误码：**
 
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
@@ -1177,7 +1206,7 @@ let addr: socket.NetAddress = {
 }
 multicast.dropMembership(addr, (err: Object) => {
   if (err) {
-    console.log('drop membership fail, err: ' + JSON.stringify(err));
+    console.error('drop membership fail, err: ' + JSON.stringify(err));
     return;
   }
   console.log('drop membership success');
@@ -1212,6 +1241,8 @@ dropMembership(multicastAddress: NetAddress): Promise\<void\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
@@ -1232,7 +1263,7 @@ let addr: socket.NetAddress = {
 multicast.dropMembership(addr).then(() => {
   console.log('drop membership success');
 }).catch((err: Object) => {
-  console.log('drop membership fail');
+  console.error('drop membership fail');
 });
 ```
 
@@ -1259,6 +1290,8 @@ setMulticastTTL(ttl: number, callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
@@ -1274,7 +1307,7 @@ let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance(
 let ttl = 8
 multicast.setMulticastTTL(ttl, (err: Object) => {
   if (err) {
-    console.log('set ttl fail, err: ' + JSON.stringify(err));
+    console.error('set ttl fail, err: ' + JSON.stringify(err));
     return;
   }
   console.log('set ttl success');
@@ -1309,6 +1342,8 @@ setMulticastTTL(ttl: number): Promise\<void\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
@@ -1324,7 +1359,7 @@ let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance(
 multicast.setMulticastTTL(8).then(() => {
   console.log('set ttl success');
 }).catch((err: Object) => {
-  console.log('set ttl failed');
+  console.error('set ttl failed');
 });
 ```
 
@@ -1350,6 +1385,8 @@ getMulticastTTL(callback: AsyncCallback\<number\>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
@@ -1363,7 +1400,7 @@ import { socket } from '@kit.NetworkKit';
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
 multicast.getMulticastTTL((err: Object, value: Number) => {
   if (err) {
-    console.log('set ttl fail, err: ' + JSON.stringify(err));
+    console.error('set ttl fail, err: ' + JSON.stringify(err));
     return;
   }
   console.log('set ttl success, value: ' + JSON.stringify(value));
@@ -1392,6 +1429,8 @@ getMulticastTTL(): Promise\<number\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                |
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
@@ -1406,7 +1445,7 @@ let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance(
 multicast.getMulticastTTL().then((value: Number) => {
   console.log('ttl: ', JSON.stringify(value));
 }).catch((err: Object) => {
-  console.log('set ttl failed');
+  console.error('set ttl failed');
 });
 ```
 
@@ -1427,10 +1466,12 @@ setLoopbackMode(flag: boolean, callback: AsyncCallback\<void\>): void
 
 | 参数名         | 类型                  | 必填 | 说明                         |
 | ------------- | --------------------- | ---- | ---------------------------- |
-| flag          | boolean               |  是  | ttl设置数值，类型为boolen 。  |
+| flag          | boolean               |  是  | 是否开启环回模式。true表示环回模式开启，false表示环回模式关闭。  |
 | callback      | AsyncCallback\<void\> |  是  | 回调函数。失败返回错误码、错误信息。    |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
@@ -1445,7 +1486,7 @@ import { socket } from '@kit.NetworkKit';
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
 multicast.setLoopbackMode(false, (err: Object) => {
   if (err) {
-    console.log('set loopback mode fail, err: ' + JSON.stringify(err));
+    console.error('set loopback mode fail, err: ' + JSON.stringify(err));
     return;
   }
   console.log('set loopback mode success');
@@ -1469,7 +1510,7 @@ setLoopbackMode(flag: boolean): Promise\<void\>
 
 | 参数名         | 类型                   | 必填 | 说明                             |
 | ------------- | ---------------------- | ---- | -------------------------------- |
-| flag          | boolean                |  是  | 环回模式标志位，类型为数字boolean。|
+| flag          | boolean                |  是  | 是否开启环回模式。true表示环回模式开启，false表示环回模式关闭。|
 
 **返回值：**
 
@@ -1478,6 +1519,8 @@ setLoopbackMode(flag: boolean): Promise\<void\>
 | Promise\<void\> | 以Promise形式返回MulticastSocket设置环回模式的结果。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                |
 | ------- | ----------------------- |
@@ -1493,7 +1536,7 @@ let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance(
 multicast.setLoopbackMode(false).then(() => {
   console.log('set loopback mode success');
 }).catch((err: Object) => {
-  console.log('set loopback mode failed');
+  console.error('set loopback mode failed');
 });
 ```
 
@@ -1514,9 +1557,11 @@ getLoopbackMode(callback: AsyncCallback\<boolean\>): void
 
 | 参数名         | 类型                     | 必填 | 说明                         |
 | ------------- | ----------------------- | ---- | --------------------------- |
-| callback      | AsyncCallback\<boolean\> |  是  | 回调函数。失败返回错误码、错误信息。  |
+| callback      | AsyncCallback\<boolean\> |  是  | 回调函数。返回值为环回模式状态，true表示环回模式开启，false表示环回模式关闭。  |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                |
 | ------- | ----------------------- |
@@ -1531,7 +1576,7 @@ import { socket } from '@kit.NetworkKit';
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
 multicast.getLoopbackMode((err: Object, value: Boolean) => {
   if (err) {
-    console.log('get loopback mode fail, err: ' + JSON.stringify(err));
+    console.error('get loopback mode fail, err: ' + JSON.stringify(err));
     return;
   }
   console.log('get loopback mode success, value: ' + JSON.stringify(value));
@@ -1555,9 +1600,11 @@ getLoopbackMode(): Promise\<boolean\>
 
 | 类型                | 说明                        |
 | ----------------  | --------------------------- |
-| Promise\<boolean\> | 以Promise形式返回当前TTL数值。 |
+| Promise\<boolean\> | Promise对象。返回true表示环回模式开启，返回false表示环回模式关闭。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                |
 | ------- | ----------------------- |
@@ -1573,7 +1620,7 @@ let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance(
 multicast.getLoopbackMode().then((value: Boolean) => {
   console.log('loopback mode: ', JSON.stringify(value));
 }).catch((err: Object) => {
-  console.log('get loopback mode failed');
+  console.error('get loopback mode failed');
 });
 ```
 
@@ -1606,7 +1653,7 @@ TCPSocket连接。在调用TCPSocket的方法前，需要先通过[socket.constr
 
 bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 
-绑定IP地址和端口，端口可以指定为0由系统随机分配或指定为其它非0端口。使用callback方法作为异步方法。
+绑定IP地址和端口，端口可以指定为0由系统随机分配或由用户指定为其它非0端口。使用callback方法作为异步方法。
 
 > **说明：**
 > bind方法如果因为端口冲突而执行失败，则会由系统随机分配端口号。
@@ -1626,6 +1673,8 @@ bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
@@ -1644,7 +1693,7 @@ let bindAddr: socket.NetAddress = {
 }
 tcp.bind(bindAddr, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
@@ -1655,7 +1704,7 @@ tcp.bind(bindAddr, (err: BusinessError) => {
 
 bind(address: NetAddress): Promise\<void\>
 
-绑定IP地址和端口，端口可以指定为0由系统随机分配或指定为其它非0端口。使用Promise方法作为异步方法。
+绑定IP地址和端口，端口可以指定为0由系统随机分配或由用户指定为其它非0端口。使用Promise方法作为异步方法。
 
 > **说明：**
 > bind方法如果因为端口冲突而执行失败，则会由系统随机分配端口号。
@@ -1680,6 +1729,8 @@ bind(address: NetAddress): Promise\<void\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
@@ -1699,7 +1750,7 @@ let bindAddr: socket.NetAddress = {
 tcp.bind(bindAddr).then(() => {
   console.log('bind success');
 }).catch((err: BusinessError) => {
-  console.log('bind fail');
+  console.error('bind fail');
 });
 ```
 
@@ -1724,6 +1775,8 @@ connect(options: TCPConnectOptions, callback: AsyncCallback\<void\>): void
 | callback | AsyncCallback\<void\>                    | 是   | 回调函数。失败返回错误码、错误信息。                      |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
@@ -1755,7 +1808,7 @@ let tcpconnectoptions: socket.TCPConnectOptions = {
 }
 tcp.connect(tcpconnectoptions, (err: BusinessError) => {
   if (err) {
-    console.log('connect fail');
+    console.error('connect fail');
     return;
   }
   console.log('connect success');
@@ -1789,7 +1842,7 @@ let tcpconnectoptions: socket.TCPConnectOptions = {
 }
 tcp.connect(tcpconnectoptions, (err: BusinessError) => {
   if (err) {
-    console.log('connect fail');
+    console.error('connect fail');
     return;
   }
   console.log('connect success');
@@ -1823,6 +1876,8 @@ connect(options: TCPConnectOptions): Promise\<void\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
@@ -1854,7 +1909,7 @@ let tcpconnectoptions: socket.TCPConnectOptions = {
 tcp.connect(tcpconnectoptions).then(() => {
   console.log('connect success')
 }).catch((err: BusinessError) => {
-  console.log('connect fail');
+  console.error('connect fail');
 });
 ```
 
@@ -1886,7 +1941,7 @@ let tcpconnectoptions: socket.TCPConnectOptions = {
 tcp.connect(tcpconnectoptions).then(() => {
   console.log('connect success')
 }).catch((err: BusinessError) => {
-  console.log('connect fail');
+  console.error('connect fail');
 });
 ```
 
@@ -1911,6 +1966,8 @@ send(options: TCPSendOptions, callback: AsyncCallback\<void\>): void
 | callback | AsyncCallback\<void\>                   | 是   | 回调函数。失败返回错误码、错误信息。                           |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
@@ -1939,7 +1996,7 @@ tcp.connect(tcpconnectoptions, () => {
   }
   tcp.send(tcpSendOptions, (err: BusinessError) => {
     if (err) {
-      console.log('send fail');
+      console.error('send fail');
       return;
     }
     console.log('send success');
@@ -1970,9 +2027,11 @@ send(options: TCPSendOptions): Promise\<void\>
 
 | 类型            | 说明                                               |
 | -------------- | ------------------------------------------------- |
-| Promise\<void\> | 以Promise形式返回通过TCPSocket连接发送数据的结果。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
@@ -2002,7 +2061,7 @@ tcp.connect(tcpconnectoptions, () => {
   tcp.send(tcpSendOptions).then(() => {
     console.log('send success');
   }).catch((err: BusinessError) => {
-    console.log('send fail');
+    console.error('send fail');
   });
 })
 ```
@@ -2025,6 +2084,8 @@ close(callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 201     | Permission denied.      |
@@ -2039,7 +2100,7 @@ let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 
 tcp.close((err: BusinessError) => {
   if (err) {
-    console.log('close fail');
+    console.error('close fail');
     return;
   }
   console.log('close success');
@@ -2060,9 +2121,11 @@ close(): Promise\<void\>
 
 | 类型            | 说明                                       |
 | -------------- | ----------------------------------------- |
-| Promise\<void\> | 以Promise形式返回关闭TCPSocket连接的结果。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
@@ -2078,7 +2141,7 @@ let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 tcp.close().then(() => {
   console.log('close success');
 }).catch((err: BusinessError) => {
-  console.log('close fail');
+  console.error('close fail');
 });
 ```
 
@@ -2103,6 +2166,8 @@ getRemoteAddress(callback: AsyncCallback\<NetAddress\>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 201     | Permission denied.      |
@@ -2126,7 +2191,7 @@ tcp.connect(tcpconnectoptions, () => {
   console.log('connect success');
   tcp.getRemoteAddress((err: BusinessError, data: socket.NetAddress) => {
     if (err) {
-      console.log('getRemoteAddressfail');
+      console.error('getRemoteAddressfail');
       return;
     }
     console.log('getRemoteAddresssuccess:' + JSON.stringify(data));
@@ -2155,6 +2220,8 @@ getRemoteAddress(): Promise\<NetAddress\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 201     | Permission denied.      |
@@ -2179,10 +2246,10 @@ tcp.connect(tcpconnectoptions).then(() => {
   tcp.getRemoteAddress().then(() => {
     console.log('getRemoteAddress success');
   }).catch((err: BusinessError) => {
-    console.log('getRemoteAddressfail');
+    console.error('getRemoteAddressfail');
   });
 }).catch((err: BusinessError) => {
-  console.log('connect fail');
+  console.error('connect fail');
 });
 ```
 
@@ -2207,6 +2274,8 @@ getState(callback: AsyncCallback\<SocketStateBase\>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 201     | Permission denied.      |
@@ -2230,7 +2299,7 @@ tcp.connect(tcpconnectoptions, () => {
   console.log('connect success');
   tcp.getState((err: BusinessError, data: socket.SocketStateBase) => {
     if (err) {
-      console.log('getState fail');
+      console.error('getState fail');
       return;
     }
     console.log('getState success:' + JSON.stringify(data));
@@ -2259,6 +2328,8 @@ getState(): Promise\<SocketStateBase\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 201     | Permission denied.      |
@@ -2283,10 +2354,10 @@ tcp.connect(tcpconnectoptions).then(() => {
   tcp.getState().then(() => {
     console.log('getState success');
   }).catch((err: BusinessError) => {
-    console.log('getState fail');
+    console.error('getState fail');
   });
 }).catch((err: BusinessError) => {
-  console.log('connect fail');
+  console.error('connect fail');
 });
 ```
 
@@ -2396,6 +2467,8 @@ setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
@@ -2436,7 +2509,7 @@ tcp.connect(tcpconnectoptions, () => {
   }
   tcp.setExtraOptions(tcpExtraOptions, (err: BusinessError) => {
     if (err) {
-      console.log('setExtraOptions fail');
+      console.error('setExtraOptions fail');
       return;
     }
     console.log('setExtraOptions success');
@@ -2448,7 +2521,7 @@ tcp.connect(tcpconnectoptions, () => {
 
 setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 
-设置TCPSocket连接的其他属性，使用Promise方式作为异步方法。
+设置TCPSocket连接的其他属性。使用Promise方式作为异步方法。
 
 > **说明：**
 > bind或connect方法调用成功后，才可调用此方法。
@@ -2467,9 +2540,11 @@ setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 
 | 类型            | 说明                                                 |
 | -------------- | --------------------------------------------------- |
-| Promise\<void\> | 以Promise形式返回设置TCPSocket连接的其他属性的结果。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
@@ -2512,7 +2587,7 @@ tcp.connect(tcpconnectoptions, () => {
   tcp.setExtraOptions(tcpExtraOptions).then(() => {
     console.log('setExtraOptions success');
   }).catch((err: BusinessError) => {
-    console.log('setExtraOptions fail');
+    console.error('setExtraOptions fail');
   });
 });
 ```
@@ -2535,6 +2610,8 @@ getLocalAddress(): Promise\<NetAddress\>
 | Promise\<[NetAddress](#netaddress)\> | 以Promise形式返回获取本地socket地址的结果。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)。
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
@@ -2612,8 +2689,8 @@ off(type: 'message', callback?: Callback<SocketMessageInfo\>): void
 
 | 参数名   | 类型                                                         | 必填 | 说明                                      |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
-| type     | string                                                       | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | 否   | 回调函数。取消订阅TCPSocket连接的接收消息事件时触发回调函数。                             |
+| type     | string                                                       | 是   | 取消订阅的事件类型。'message'：接收消息事件。 |
+| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | 否   | 回调函数。可以指定传入on中的callback取消对应的订阅，也可以不指定callback清空所有订阅。                             |
 
 **示例：**
 
@@ -2681,8 +2758,8 @@ off(type: 'connect' | 'close', callback?: Callback\<void\>): void
 
 | 参数名   | 类型             | 必填 | 说明                                                         |
 | -------- | ---------------- | ---- | ------------------------------------------------------------ |
-| type     | string           | 是   | 订阅的事件类型。<br />- 'connect'：连接事件。<br />- 'close'：关闭事件。 |
-| callback | Callback\<void\> | 否   | 回调函数。TCPSocket的连接事件或关闭事件触发时调用回调函数。                        |
+| type     | string           | 是   | 取消订阅的事件类型。<br />- 'connect'：连接事件。<br />- 'close'：关闭事件。 |
+| callback | Callback\<void\> | 否   | 回调函数。可以指定传入on中的callback取消对应的订阅，也可以不指定callback清空所有订阅。                        |
 
 **示例：**
 
@@ -2730,7 +2807,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 tcp.on('error', (err: BusinessError) => {
-  console.log("on error, err:" + JSON.stringify(err))
+  console.error("on error, err:" + JSON.stringify(err))
 });
 ```
 
@@ -2746,8 +2823,8 @@ off(type: 'error', callback?: ErrorCallback): void
 
 | 参数名   | 类型          | 必填 | 说明                                 |
 | -------- | ------------- | ---- | ------------------------------------ |
-| type     | string        | 是   | 订阅的事件类型。'error'：error事件。 |
-| callback | ErrorCallback | 否   | 回调函数。TCPSocket连接取消订阅的某类error事件触发时调用回调函数。                           |
+| type     | string        | 是   | 取消订阅的事件类型。'error'：error事件。 |
+| callback | ErrorCallback | 否   | 回调函数。可以指定传入on中的callback取消对应的订阅，也可以不指定callback清空所有订阅。                           |
 
 **示例：**
 
@@ -2757,7 +2834,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 let callback = (err: BusinessError) => {
-  console.log("on error, err:" + JSON.stringify(err));
+  console.error("on error, err:" + JSON.stringify(err));
 }
 tcp.on('error', callback);
 // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
@@ -2848,6 +2925,8 @@ listen(address: NetAddress, callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
 | 401      | Parameter error.                            |
@@ -2872,7 +2951,7 @@ let listenAddr: socket.NetAddress = {
 }
 tcpServer.listen(listenAddr, (err: BusinessError) => {
   if (err) {
-    console.log("listen fail");
+    console.error("listen fail");
     return;
   }
   console.log("listen success");
@@ -2902,9 +2981,11 @@ listen(address: NetAddress): Promise\<void\>
 
 | 类型            | 说明                                                         |
 |  -------------- |  ----------------------------------------------------------- |
-| Promise\<void\> | 以Promise形式返回, 成功返回空，失败返回错误码错误信息。|
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。|
 
 **错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
@@ -2931,7 +3012,7 @@ let listenAddr: socket.NetAddress = {
 tcpServer.listen(listenAddr).then(() => {
   console.log('listen success');
 }).catch((err: BusinessError) => {
-  console.log('listen fail');
+  console.error('listen fail');
 });
 ```
 
@@ -2956,6 +3037,8 @@ getState(callback: AsyncCallback\<SocketStateBase\>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------- |
 | 401      | Parameter error.                |
@@ -2977,14 +3060,14 @@ let listenAddr: socket.NetAddress = {
 }
 tcpServer.listen(listenAddr, (err: BusinessError) => {
   if (err) {
-    console.log("listen fail");
+    console.error("listen fail");
     return;
   }
   console.log("listen success");
 })
 tcpServer.getState((err: BusinessError, data: socket.SocketStateBase) => {
   if (err) {
-    console.log('getState fail');
+    console.error('getState fail');
     return;
   }
   console.log('getState success:' + JSON.stringify(data));
@@ -3012,6 +3095,8 @@ getState(): Promise\<SocketStateBase\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------- |
 | 201      | Permission denied.              |
@@ -3032,7 +3117,7 @@ let listenAddr: socket.NetAddress = {
 }
 tcpServer.listen(listenAddr, (err: BusinessError) => {
   if (err) {
-    console.log("listen fail");
+    console.error("listen fail");
     return;
   }
   console.log("listen success");
@@ -3040,7 +3125,7 @@ tcpServer.listen(listenAddr, (err: BusinessError) => {
 tcpServer.getState().then((data: socket.SocketStateBase) => {
   console.log('getState success' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-  console.log('getState fail');
+  console.error('getState fail');
 });
 ```
 
@@ -3066,6 +3151,8 @@ setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------- |
 | 401      | Parameter error.                |
@@ -3087,7 +3174,7 @@ let listenAddr: socket.NetAddress = {
 }
 tcpServer.listen(listenAddr, (err: BusinessError) => {
   if (err) {
-    console.log("listen fail");
+    console.error("listen fail");
     return;
   }
   console.log("listen success");
@@ -3110,7 +3197,7 @@ let tcpExtraOptions: socket.TCPExtraOptions = {
 }
 tcpServer.setExtraOptions(tcpExtraOptions, (err: BusinessError) => {
   if (err) {
-    console.log('setExtraOptions fail');
+    console.error('setExtraOptions fail');
     return;
   }
   console.log('setExtraOptions success');
@@ -3121,7 +3208,7 @@ tcpServer.setExtraOptions(tcpExtraOptions, (err: BusinessError) => {
 
 setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 
-设置TCPSocketServer连接的其他属性，使用Promise方式作为异步方法。
+设置TCPSocketServer连接的其他属性。使用Promise方式作为异步方法。
 
 > **说明：**
 > listen方法调用成功后，才可调用此方法。
@@ -3140,9 +3227,11 @@ setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 
 | 类型            | 说明                                                       |
 |  -------------- |  --------------------------------------------------------- |
-| Promise\<void\> | 以Promise形式返回，成功返回空，失败返回错误码错误信息。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------- |
@@ -3171,7 +3260,7 @@ interface SocketLinger {
 
 tcpServer.listen(listenAddr, (err: BusinessError) => {
   if (err) {
-    console.log("listen fail");
+    console.error("listen fail");
     return;
   }
   console.log("listen success");
@@ -3190,7 +3279,7 @@ let tcpExtraOptions: socket.TCPExtraOptions = {
 tcpServer.setExtraOptions(tcpExtraOptions).then(() => {
   console.log('setExtraOptions success');
 }).catch((err: BusinessError) => {
-  console.log('setExtraOptions fail');
+  console.error('setExtraOptions fail');
 });
 ```
 
@@ -3212,6 +3301,8 @@ getLocalAddress(): Promise\<NetAddress\>
 | Promise\<[NetAddress](#netaddress)\> | 以Promise形式返回获取本地socket地址的结果。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)。
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
@@ -3262,6 +3353,8 @@ on(type: 'connect', callback: Callback\<TCPSocketConnection\>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息         |
 | -------- | ---------------- |
 | 401      | Parameter error. |
@@ -3280,7 +3373,7 @@ let listenAddr: socket.NetAddress = {
 }
 tcpServer.listen(listenAddr, (err: BusinessError) => {
   if (err) {
-    console.log("listen fail");
+    console.error("listen fail");
     return;
   }
   console.log("listen success");
@@ -3302,10 +3395,12 @@ off(type: 'connect', callback?: Callback\<TCPSocketConnection\>): void
 
 | 参数名   | 类型                            | 必填 | 说明                                  |
 | -------- | ------------------------------- | ---- | ------------------------------------- |
-| type     | string                          | 是   | 订阅的事件类型。'connect'：连接事件。 |
-| callback | Callback\<[TCPSocketConnection](#tcpsocketconnection10)\> | 否   | 回调函数。失败时返回错误码、错误信息。 |
+| type     | string                          | 是   | 取消订阅的事件类型。'connect'：连接事件。 |
+| callback | Callback\<[TCPSocketConnection](#tcpsocketconnection10)\> | 否   | 回调函数。可以指定传入on中的callback取消对应的订阅，也可以不指定callback清空所有订阅。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息         |
 | -------- | ---------------- |
@@ -3325,7 +3420,7 @@ let listenAddr: socket.NetAddress = {
 }
 tcpServer.listen(listenAddr, (err: BusinessError) => {
   if (err) {
-    console.log("listen fail");
+    console.error("listen fail");
     return;
   }
   console.log("listen success");
@@ -3359,6 +3454,8 @@ on(type: 'error', callback: ErrorCallback): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息         |
 | -------- | ---------------- |
 | 401      | Parameter error. |
@@ -3378,12 +3475,12 @@ let listenAddr: socket.NetAddress = {
 }
 tcpServer.listen(listenAddr, (err: BusinessError) => {
   if (err) {
-    console.log("listen fail");
+    console.error("listen fail");
     return;
   }
   console.log("listen success");
   tcpServer.on('error', (err: BusinessError) => {
-    console.log("on error, err:" + JSON.stringify(err))
+    console.error("on error, err:" + JSON.stringify(err))
   });
 })
 ```
@@ -3400,10 +3497,12 @@ off(type: 'error', callback?: ErrorCallback): void
 
 | 参数名   | 类型          | 必填 | 说明                                 |
 | -------- | ------------- | ---- | ------------------------------------ |
-| type     | string        | 是   | 订阅的事件类型。'error'：error事件。 |
-| callback | ErrorCallback | 否   | 回调函数。失败时返回错误码、错误信息。                           |
+| type     | string        | 是   | 取消订阅的事件类型。'error'：error事件。 |
+| callback | ErrorCallback | 否   | 回调函数。可以指定传入on中的callback取消对应的订阅，也可以不指定callback清空所有订阅。                           |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息         |
 | -------- | ---------------- |
@@ -3424,12 +3523,12 @@ let listenAddr: socket.NetAddress = {
 }
 tcpServer.listen(listenAddr, (err: BusinessError) => {
   if (err) {
-    console.log("listen fail");
+    console.error("listen fail");
     return;
   }
   console.log("listen success");
   let callback = (err: BusinessError) => {
-    console.log("on error, err:" + JSON.stringify(err));
+    console.error("on error, err:" + JSON.stringify(err));
   }
   tcpServer.on('error', callback);
   // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
@@ -3474,6 +3573,8 @@ send(options: TCPSendOptions, callback: AsyncCallback\<void\>): void
 | callback | AsyncCallback\<void\>             | 是   | 回调函数。失败时返回错误码、错误信息。             |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -3521,9 +3622,11 @@ send(options: TCPSendOptions): Promise\<void\>
 
 | 类型            | 说明                                                         |
 |  -------------- |  ----------------------------------------------------------- |
-| Promise\<void\> | 以Promise形式返回，成功返回空，失败返回错误码错误信息。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -3546,7 +3649,7 @@ tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
   client.send(tcpSendOption).then(() => {
     console.log('send success');
   }).catch((err: BusinessError) => {
-    console.log('send fail');
+    console.error('send fail');
   });
 });
 ```
@@ -3569,6 +3672,8 @@ close(callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
 | 401      | Parameter error.       |
@@ -3586,7 +3691,7 @@ let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance(
 tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
   client.close((err: BusinessError) => {
     if (err) {
-      console.log('close fail');
+      console.error('close fail');
       return;
     }
     console.log('close success');
@@ -3608,9 +3713,11 @@ close(): Promise\<void\>
 
 | 类型            | 说明                                         |
 |  -------------- |  ------------------------------------------- |
-| Promise\<void\> | 以Promise形式返回，成功返回空，失败返回错误码错误信息。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -3627,7 +3734,7 @@ tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
   client.close().then(() => {
   	console.log('close success');
   }).catch((err: BusinessError) => {
-  	console.log('close fail');
+  	console.error('close fail');
   });
 });
 ```
@@ -3653,6 +3760,8 @@ getRemoteAddress(callback: AsyncCallback\<NetAddress\>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------- |
 | 401      | Parameter error.                |
@@ -3670,7 +3779,7 @@ let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance(
 tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
   client.getRemoteAddress((err: BusinessError, data: socket.NetAddress) => {
     if (err) {
-      console.log('getRemoteAddress fail');
+      console.error('getRemoteAddress fail');
       return;
     }
     console.log('getRemoteAddress success:' + JSON.stringify(data));
@@ -3699,6 +3808,8 @@ getRemoteAddress(): Promise\<NetAddress\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------- |
 | 201      | Permission denied.              |
@@ -3716,7 +3827,7 @@ tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
   client.getRemoteAddress().then(() => {
     console.log('getRemoteAddress success');
   }).catch((err: BusinessError) => {
-    console.log('getRemoteAddress fail');
+    console.error('getRemoteAddress fail');
   });
 });
 ```
@@ -3736,6 +3847,8 @@ getLocalAddress(): Promise\<NetAddress\>
 | Promise\<[NetAddress](#netaddress)\> | 以Promise形式返回获取本地socket地址的结果。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)。
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
@@ -3799,6 +3912,8 @@ on(type: 'message', callback: Callback<SocketMessageInfo\>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息         |
 | -------- | ---------------- |
 | 401      | Parameter error. |
@@ -3838,10 +3953,12 @@ off(type: 'message', callback?: Callback<SocketMessageInfo\>): void
 
 | 参数名   | 类型                                                         | 必填 | 说明                                      |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
-| type     | string                                                       | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | 否   | 回调函数。失败时返回错误码、错误信息。        |
+| type     | string                                                       | 是   | 取消订阅的事件类型。'message'：接收消息事件。 |
+| callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | 否   | 回调函数。可以指定传入on中的callback取消对应的订阅，也可以不指定callback清空所有订阅。        |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息         |
 | -------- | ---------------- |
@@ -3890,6 +4007,8 @@ on(type: 'close', callback: Callback\<void\>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息         |
 | -------- | ---------------- |
 | 401      | Parameter error. |
@@ -3920,10 +4039,12 @@ off(type: 'close', callback?: Callback\<void\>): void
 
 | 参数名   | 类型             | 必填 | 说明                                |
 | -------- | ---------------- | ---- | ----------------------------------- |
-| type     | string           | 是   | 订阅的事件类型。'close'：关闭事件。 |
-| callback | Callback\<void\> | 否   | 回调函数。失败时返回错误码、错误信息。    |
+| type     | string           | 是   | 取消订阅的事件类型。'close'：关闭事件。 |
+| callback | Callback\<void\> | 否   | 回调函数。可以指定传入on中的callback取消对应的订阅，也可以不指定callback清空所有订阅。    |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息         |
 | -------- | ---------------- |
@@ -3963,6 +4084,8 @@ on(type: 'error', callback: ErrorCallback): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息         |
 | -------- | ---------------- |
 | 401      | Parameter error. |
@@ -3976,7 +4099,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
   client.on('error', (err: BusinessError) => {
-    console.log("on error, err:" + JSON.stringify(err))
+    console.error("on error, err:" + JSON.stringify(err))
   });
 });
 ```
@@ -3993,10 +4116,12 @@ off(type: 'error', callback?: ErrorCallback): void
 
 | 参数名   | 类型          | 必填 | 说明                                 |
 | -------- | ------------- | ---- | ------------------------------------ |
-| type     | string        | 是   | 订阅的事件类型。'error'：error事件。 |
-| callback | ErrorCallback | 否   | 回调函数。失败时返回错误码、错误信息。  |
+| type     | string        | 是   | 取消订阅的事件类型。'error'：error事件。 |
+| callback | ErrorCallback | 否   | 回调函数。可以指定传入on中的callback取消对应的订阅，也可以不指定callback清空所有订阅。  |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息         |
 | -------- | ---------------- |
@@ -4009,7 +4134,7 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let callback = (err: BusinessError) => {
-  console.log("on error, err:" + JSON.stringify(err));
+  console.error("on error, err:" + JSON.stringify(err));
 }
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
@@ -4024,7 +4149,7 @@ tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
 
 TCP 其余错误码映射形式为：2301000 + Linux内核错误码。
 
-错误码的详细介绍参见[Socket错误码](errorcode-net-socket.md)
+错误码的详细介绍参见[Socket错误码](errorcode-net-socket.md)。
 
 ## socket.constructLocalSocketInstance<sup>11+</sup>
 
@@ -4073,9 +4198,11 @@ bind(address: LocalAddress): Promise\<void\>;
 
 | 类型            | 说明                                       |
 | :-------------- | :---------------------------------------- |
-| Promise\<void\> | Promise\<void\>：Promise对象。无返回结果的Promise对象。|
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。|
 
 **错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                    |
 | ------- | -------------------------- |
@@ -4090,6 +4217,7 @@ bind(address: LocalAddress): Promise\<void\>;
 >
 >在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
+<!--code_no_check-->
 ```ts
 import { socket } from '@kit.NetworkKit';
 import { common } from '@kit.AbilityKit';
@@ -4132,6 +4260,8 @@ connect(options: LocalConnectOptions): Promise\<void\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 401     | Parameter error.                 |
@@ -4146,6 +4276,7 @@ connect(options: LocalConnectOptions): Promise\<void\>
 >
 >在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
+<!--code_no_check-->
 ```ts
 import { socket } from '@kit.NetworkKit';
 import { common } from '@kit.AbilityKit';
@@ -4188,9 +4319,11 @@ send(options: LocalSendOptions): Promise\<void\>
 
 | 类型            | 说明                                         |
 | :-------------- | :------------------------------------------ |
-| Promise\<void\> | 以Promise形式返回通过LocalSocket发送数据的结果。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
@@ -4203,6 +4336,7 @@ send(options: LocalSendOptions): Promise\<void\>
 >
 >在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
+<!--code_no_check-->
 ```ts
 import { socket } from '@kit.NetworkKit';
 import { common } from '@kit.AbilityKit';
@@ -4244,9 +4378,11 @@ close(): Promise\<void\>
 
 | 类型            | 说明                                       |
 | :-------------- | :----------------------------------------- |
-| Promise\<void\> | 以Promise形式返回关闭LocalSocket连接的结果。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)。
 
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
@@ -4289,6 +4425,7 @@ getState(): Promise\<SocketStateBase\>
 >
 >在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
+<!--code_no_check-->
 ```ts
 import { socket } from '@kit.NetworkKit';
 import { common } from '@kit.AbilityKit';
@@ -4339,6 +4476,7 @@ getSocketFd(): Promise\<number\>
 >
 >在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
+<!--code_no_check-->
 ```ts
 import { socket } from '@kit.NetworkKit';
 import { common } from '@kit.AbilityKit';
@@ -4369,7 +4507,7 @@ client.getSocketFd().then((data: number) => {
 
 setExtraOptions(options: ExtraOptionsBase): Promise\<void\>
 
-设置LocalSocket的套接字属性，使用Promise方式作为异步方法。
+设置LocalSocket的套接字属性。使用Promise方式作为异步方法。
 
 > **说明：**
 > bind或connect方法调用成功后，才可调用此方法。
@@ -4390,6 +4528,8 @@ setExtraOptions(options: ExtraOptionsBase): Promise\<void\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
@@ -4401,6 +4541,7 @@ setExtraOptions(options: ExtraOptionsBase): Promise\<void\>
 >
 >在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
+<!--code_no_check-->
 ```ts
 import { socket } from '@kit.NetworkKit';
 import { common } from '@kit.AbilityKit';
@@ -4436,7 +4577,7 @@ client.connect(connectOpt).then(() => {
 
 getExtraOptions(): Promise\<ExtraOptionsBase\>;
 
-获取LocalSocket的套接字属性，使用Promise方式作为异步方法。
+获取LocalSocket的套接字属性。使用Promise方式作为异步方法。
 
 > **说明：**
 > bind或connect方法调用成功后，才可调用此方法。
@@ -4451,6 +4592,8 @@ getExtraOptions(): Promise\<ExtraOptionsBase\>;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)。
+
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 2301009 | Bad file descriptor.    |
@@ -4461,6 +4604,7 @@ getExtraOptions(): Promise\<ExtraOptionsBase\>;
 >
 >在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
+<!--code_no_check-->
 ```ts
 import { socket } from '@kit.NetworkKit';
 import { common } from '@kit.AbilityKit';
@@ -4506,6 +4650,8 @@ getLocalAddress(): Promise\<string\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)。
+
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
 | 2300002  | System internal error.                      |
@@ -4518,6 +4664,7 @@ getLocalAddress(): Promise\<string\>
 >
 >在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
+<!--code_no_check-->
 ```ts
 import { common } from '@kit.AbilityKit';
 
@@ -4535,7 +4682,7 @@ client.bind(address).then(() => {
     console.error("FAIL " + JSON.stringify(err));
   })
 }).catch((err: Object) => {
-  console.info('failed to bind: ' + JSON.stringify(err));
+  console.error('failed to bind: ' + JSON.stringify(err));
 })
 ```
 
@@ -4555,6 +4702,8 @@ on(type: 'message', callback: Callback\<LocalSocketMessageInfo\>): void
 | callback | Callback\<[LocalSocketMessageInfo](#localsocketmessageinfo11)\> | 是   | 以callback的形式异步返回接收的消息。|
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
@@ -4589,10 +4738,12 @@ off(type: 'message', callback?: Callback\<LocalSocketMessageInfo\>): void
 
 | 参数名   | 类型                                               | 必填 | 说明                                 |
 | -------- | ------------------------------------------------ | ---- | ----------------------------------- |
-| type     | string                                           | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback\<[LocalSocketMessageInfo](#localsocketmessageinfo11)\> | 否   | 指定传入on中的callback取消一个订阅。|
+| type     | string                                           | 是   | 取消订阅的事件类型。'message'：接收消息事件。 |
+| callback | Callback\<[LocalSocketMessageInfo](#localsocketmessageinfo11)\> | 否   | 回调函数。可以指定传入on中的callback取消对应的订阅，也可以不指定callback清空所有订阅。|
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
@@ -4635,6 +4786,8 @@ on(type: 'connect', callback: Callback\<void\>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
@@ -4662,10 +4815,12 @@ off(type: 'connect', callback?: Callback\<void\>): void
 
 | 参数名   | 类型             | 必填 | 说明                                                         |
 | -------- | ---------------- | ---- | --------------------------------------------------------- |
-| type     | string           | 是   | 订阅的事件类型。                                             |
-| callback | Callback\<void\> | 否   | 指定传入on中的callback取消一个订阅。                           |
+| type     | string           | 是   | 取消订阅的事件类型。'connect'：LocalSocket的connect事件。        |
+| callback | Callback\<void\> | 否   | 回调函数。可以指定传入on中的callback取消对应的订阅，也可以不指定callback清空所有订阅。                           |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
@@ -4703,6 +4858,8 @@ on(type: 'close', callback: Callback\<void\>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
@@ -4731,10 +4888,12 @@ off(type: 'close', callback?: Callback\<void\>): void
 
 | 参数名   | 类型             | 必填 | 说明                        |
 | -------- | ---------------- | ---- | ------------------------ |
-| type     | string           | 是   | 订阅LocalSocket的关闭事件。 |
-| callback | Callback\<void\> | 否   | 取消指定传入on中的callback取消一个订阅。|
+| type     | string           | 是   | 取消订阅的事件类型。'close'：LocalSocket的关闭事件。 |
+| callback | Callback\<void\> | 否   | 回调函数。可以指定传入on中的callback取消对应的订阅，也可以不指定callback清空所有订阅。|
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
@@ -4772,6 +4931,8 @@ on(type: 'error', callback: ErrorCallback): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
@@ -4783,7 +4944,7 @@ import { socket } from '@kit.NetworkKit';
 
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
 client.on('error', (err: Object) => {
-  console.log("on error, err:" + JSON.stringify(err))
+  console.error("on error, err:" + JSON.stringify(err))
 });
 ```
 
@@ -4799,10 +4960,12 @@ off(type: 'error', callback?: ErrorCallback): void
 
 | 参数名   | 类型          | 必填 | 说明                             |
 | -------- | ------------- | ---- | ----------------------------- |
-| type     | string        | 是   | 取消订阅LocalSocket的error事件。 |
-| callback | ErrorCallback | 否   | 指定传入on中的callback取消一个订阅。|
+| type     | string        | 是   | 取消订阅的事件类型。'error'：LocalSocket的error事件。 |
+| callback | ErrorCallback | 否   | 回调函数。可以指定传入on中的callback取消对应的订阅，也可以不指定callback清空所有订阅。|
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
@@ -4815,7 +4978,7 @@ import { socket } from '@kit.NetworkKit';
 
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
 let callback = (err: Object) => {
-  console.log("on error, err:" + JSON.stringify(err));
+  console.error("on error, err:" + JSON.stringify(err));
 }
 client.on('error', callback);
 // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
@@ -4926,9 +5089,11 @@ listen(address: LocalAddress): Promise\<void\>
 
 | 类型            | 说明                                                   |
 | :-------------- | :---------------------------------------------------- |
-| Promise\<void\> | 以Promise形式返回执行结果, 成功返回空，失败返回错误码错误信息。|
+| Promise\<void\> | 以Promise形式返回执行结果， 成功返回空，失败返回错误码错误信息。|
 
 **错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                      |
 | -------- | --------------------------- |
@@ -4944,6 +5109,7 @@ listen(address: LocalAddress): Promise\<void\>
 >
 >在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
+<!--code_no_check-->
 ```ts
 import { socket } from '@kit.NetworkKit';
 import { common } from '@kit.AbilityKit';
@@ -5011,7 +5177,7 @@ server.getState().then((data: socket.SocketStateBase) => {
 
 setExtraOptions(options: ExtraOptionsBase): Promise\<void\>
 
-设置LocalSocketServer连接的套接字属性，使用Promise方式作为异步方法。
+设置LocalSocketServer连接的套接字属性。使用Promise方式作为异步方法。
 
 > **说明：**
 > listen方法调用成功后，才可调用此方法。
@@ -5028,9 +5194,11 @@ setExtraOptions(options: ExtraOptionsBase): Promise\<void\>
 
 | 类型            | 说明                                             |
 | :-------------- | :---------------------------------------------- |
-| Promise\<void\> | 以Promise形式返回，成功返回空，失败返回错误码错误信息。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------- |
@@ -5075,7 +5243,7 @@ server.setExtraOptions(options).then(() => {
 
 getExtraOptions(): Promise\<ExtraOptionsBase\>;
 
-获取LocalSocketServer中连接的套接字的属性，使用Promise方式作为异步方法。
+获取LocalSocketServer中连接的套接字的属性。使用Promise方式作为异步方法。
 
 > **说明：**
 > listen方法调用成功后，才可调用此方法。
@@ -5089,6 +5257,8 @@ getExtraOptions(): Promise\<ExtraOptionsBase\>;
 | Promise\<[ExtraOptionsBase](#extraoptionsbase7)\> | 以Promise形式返回套接字的属性。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | -------------------- |
@@ -5140,6 +5310,8 @@ getLocalAddress(): Promise\<string\>
 | Promise\<string\> | 以Promise形式返回获取本地socket地址的结果。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)。
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
@@ -5195,6 +5367,8 @@ on(type: 'connect', callback: Callback\<LocalSocketConnection\>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息         |
 | -------- | ---------------- |
 | 401      | Parameter error. |
@@ -5224,10 +5398,12 @@ off(type: 'connect', callback?: Callback\<LocalSocketConnection\>): void
 
 | 参数名   | 类型                            | 必填 | 说明                                  |
 | -------- | ------------------------------- | ---- | ------------------------------------- |
-| type     | string                          | 是   | 订阅的事件类型。'connect'：连接事件。 |
-| callback | Callback\<[LocalSocketConnection](#localsocketconnection11)\> | 否   | 指定传入on的一个callback取消注册。|
+| type     | string                          | 是   | 取消订阅的事件类型。'connect'：LocalSocketServer的连接事件。 |
+| callback | Callback\<[LocalSocketConnection](#localsocketconnection11)\> | 否   | 回调函数。可以指定传入on中的callback取消对应的订阅，也可以不指定callback清空所有订阅。|
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息         |
 | -------- | ---------------- |
@@ -5270,6 +5446,8 @@ on(type: 'error', callback: ErrorCallback): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息         |
 | -------- | ---------------- |
 | 401      | Parameter error. |
@@ -5297,10 +5475,12 @@ off(type: 'error', callback?: ErrorCallback): void
 
 | 参数名   | 类型          | 必填 | 说明                                 |
 | -------- | ------------- | ---- | ------------------------------------ |
-| type     | string        | 是   | 订阅的事件类型。'error'：error事件。 |
-| callback | ErrorCallback | 否   | 指定传入on的一个callback取消订阅。   |
+| type     | string        | 是   | 取消订阅的事件类型。'error'：error事件。 |
+| callback | ErrorCallback | 否   | 回调函数。可以指定传入on中的callback取消对应的订阅，也可以不指定callback清空所有订阅。   |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息         |
 | -------- | ---------------- |
@@ -5358,9 +5538,11 @@ send(options: LocalSendOptions): Promise\<void\>
 
 | 类型            | 说明                                             |
 | :-------------- | :---------------------------------------------- |
-| Promise\<void\> | 以Promise形式返回，成功返回空，失败返回错误码错误信息。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
@@ -5398,9 +5580,11 @@ close(): Promise\<void\>
 
 | 类型            | 说明                                         |
 | :-------------- | :------------------------------------------- |
-| Promise\<void\> | 以Promise形式返回，成功返回空，失败返回错误码错误信息。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)。
 
 | 错误码ID | 错误信息               |
 | -------- | -------------------- |
@@ -5436,6 +5620,8 @@ getLocalAddress(): Promise\<string\>
 | Promise\<string\> | 以Promise形式返回获取本地socket地址的结果。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)。
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
@@ -5494,6 +5680,8 @@ on(type: 'message', callback: Callback\<LocalSocketMessageInfo\>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息         |
 | -------- | ---------------- |
 | 401      | Parameter error. |
@@ -5504,6 +5692,7 @@ on(type: 'message', callback: Callback\<LocalSocketMessageInfo\>): void
 >
 >在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
+<!--code_no_check-->
 ```ts
 import { socket } from '@kit.NetworkKit';
 import { common } from '@kit.AbilityKit';
@@ -5544,10 +5733,12 @@ off(type: 'message', callback?: Callback\<LocalSocketMessageInfo\>): void
 
 | 参数名   | 类型                                              | 必填 | 说明                                 |
 | -------- | ----------------------------------------------- | ---- | ----------------------------------- |
-| type     | string                                          | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback\<[LocalSocketMessageInfo](#localsocketmessageinfo11)\> | 否   | 指定传入on的一个callback取消注册。 |
+| type     | string                                          | 是   | 取消订阅的事件类型。'message'：接收消息事件。 |
+| callback | Callback\<[LocalSocketMessageInfo](#localsocketmessageinfo11)\> | 否   | 回调函数。可以指定传入on中的callback取消对应的订阅，也可以不指定callback清空所有订阅。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息         |
 | -------- | ---------------- |
@@ -5593,6 +5784,8 @@ on(type: 'close', callback: Callback\<void\>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息         |
 | -------- | ---------------- |
 | 401      | Parameter error. |
@@ -5622,10 +5815,12 @@ off(type: 'close', callback?: Callback\<void\>): void
 
 | 参数名   | 类型             | 必填 | 说明                                |
 | -------- | ---------------- | ---- | ----------------------------------- |
-| type     | string           | 是   | 订阅的事件类型。'close'：关闭事件。 |
-| callback | Callback\<void\> | 否   | 指定传入on的一个callback取消订阅。 |
+| type     | string           | 是   | 取消订阅的事件类型。'close'：关闭事件。 |
+| callback | Callback\<void\> | 否   | 回调函数。可以指定传入on中的callback取消对应的订阅，也可以不指定callback清空所有订阅。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息         |
 | -------- | ---------------- |
@@ -5665,6 +5860,8 @@ on(type: 'error', callback: ErrorCallback): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息         |
 | -------- | ---------------- |
 | 401      | Parameter error. |
@@ -5694,10 +5891,12 @@ off(type: 'error', callback?: ErrorCallback): void
 
 | 参数名   | 类型          | 必填 | 说明                                 |
 | -------- | ------------- | ---- | ------------------------------------ |
-| type     | string        | 是   | 订阅的事件类型。'error'：error事件。 |
-| callback | ErrorCallback | 否   | 指定传入on的一个callback取消订阅。   |
+| type     | string        | 是   | 取消订阅的事件类型。'error'：error事件。 |
+| callback | ErrorCallback | 否   | 回调函数。可以指定传入on中的callback取消对应的订阅，也可以不指定callback清空所有订阅。   |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息         |
 | -------- | ---------------- |
@@ -5724,7 +5923,7 @@ server.on('connect', (connection: socket.LocalSocketConnection) => {
 
 LocalSocket 错误码映射形式为：2301000 + Linux内核错误码。
 
-错误码的详细介绍参见[Socket错误码](errorcode-net-socket.md)
+错误码的详细介绍参见[Socket错误码](errorcode-net-socket.md)。
 
 ## socket.constructTLSSocketInstance<sup>9+</sup>
 
@@ -5773,6 +5972,8 @@ constructTLSSocketInstance(tcpSocket: TCPSocket): TLSSocket
 
 **错误码：**
 
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID   | 错误信息                             |
 |---------|----------------------------------|
 | 401     | Parameter error.  |
@@ -5787,18 +5988,18 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
-let connAddress: socket.TCPConnectOptions = {
+let netAddress: socket.NetAddress = {
   address: '192.168.xx.xxx',
   port: 8080
-};
+}
 let tcpconnectoptions: socket.TCPConnectOptions = {
-  address: connAddress,
+  address: netAddress,
   timeout: 6000
 }
 
 tcp.connect(tcpconnectoptions, (err: BusinessError) => {
   if (err) {
-    console.log('connect fail');
+    console.error('connect fail');
     return;
   }
   console.log('connect success');
@@ -5834,6 +6035,8 @@ bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
@@ -5854,7 +6057,7 @@ let bindAddr: socket.NetAddress = {
 }
 tls.bind(bindAddr, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
@@ -5888,6 +6091,8 @@ bind(address: NetAddress): Promise\<void\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
@@ -5909,7 +6114,7 @@ let bindAddr: socket.NetAddress = {
 tls.bind(bindAddr).then(() => {
   console.log('bind success');
 }).catch((err: BusinessError) => {
-  console.log('bind fail');
+  console.error('bind fail');
 });
 ```
 
@@ -5929,6 +6134,8 @@ getState(callback: AsyncCallback\<SocketStateBase\>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)。
+
 | 错误码ID | 错误信息                        |
 | ------- | ------------------------------ |
 | 2303188 | Socket operation on non-socket.|
@@ -5947,14 +6154,14 @@ let bindAddr: socket.NetAddress = {
 }
 tls.bind(bindAddr, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
 });
 tls.getState((err: BusinessError, data: socket.SocketStateBase) => {
   if (err) {
-    console.log('getState fail');
+    console.error('getState fail');
     return;
   }
   console.log('getState success:' + JSON.stringify(data));
@@ -5977,6 +6184,8 @@ getState(): Promise\<SocketStateBase\>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)。
+
 | 错误码ID | 错误信息                        |
 | ------- | ------------------------------ |
 | 2303188 | Socket operation on non-socket.|
@@ -5995,7 +6204,7 @@ let bindAddr: socket.NetAddress = {
 }
 tls.bind(bindAddr, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
@@ -6003,7 +6212,7 @@ tls.bind(bindAddr, (err: BusinessError) => {
 tls.getState().then(() => {
   console.log('getState success');
 }).catch((err: BusinessError) => {
-  console.log('getState fail');
+  console.error('getState fail');
 });
 ```
 
@@ -6024,6 +6233,8 @@ setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 401     | Parameter error.               |
@@ -6043,7 +6254,7 @@ let bindAddr: socket.NetAddress = {
 }
 tls.bind(bindAddr, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
@@ -6066,7 +6277,7 @@ let tcpExtraOptions: socket.TCPExtraOptions = {
 }
 tls.setExtraOptions(tcpExtraOptions, (err: BusinessError) => {
   if (err) {
-    console.log('setExtraOptions fail');
+    console.error('setExtraOptions fail');
     return;
   }
   console.log('setExtraOptions success');
@@ -6077,7 +6288,7 @@ tls.setExtraOptions(tcpExtraOptions, (err: BusinessError) => {
 
 setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 
-在TLSSocket的bind成功之后，设置TCPSocket连接的其他属性，使用Promise方式作为异步方法。
+在TLSSocket的bind成功之后，设置TCPSocket连接的其他属性。使用Promise方式作为异步方法。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -6091,9 +6302,11 @@ setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 
 | 类型            | 说明                                                 |
 |  -------------- |  --------------------------------------------------- |
-| Promise\<void\> | 以Promise形式返回设置TCPSocket连接的其他属性的结果。失败返回错误码，错误信息。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[Socket错误码](errorcode-net-socket.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                        |
 | ------- | ------------------------------ |
@@ -6114,7 +6327,7 @@ let bindAddr: socket.NetAddress = {
 }
 tls.bind(bindAddr, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
@@ -6138,7 +6351,7 @@ let tcpExtraOptions: socket.TCPExtraOptions = {
 tls.setExtraOptions(tcpExtraOptions).then(() => {
   console.log('setExtraOptions success');
 }).catch((err: BusinessError) => {
-  console.log('setExtraOptions fail');
+  console.error('setExtraOptions fail');
 });
 ```
 
@@ -6147,6 +6360,10 @@ tls.setExtraOptions(tcpExtraOptions).then(() => {
 on(type: 'message', callback: Callback\<SocketMessageInfo\>): void
 
 订阅TLSSocket连接的接收消息事件。使用callback方式作为异步方法。
+
+> **说明：**
+>
+> bind方法调用成功后，才可调用此方法。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -6158,6 +6375,8 @@ on(type: 'message', callback: Callback\<SocketMessageInfo\>): void
 | callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | 是   | 回调函数。TLSSocket连接订阅某类接受消息事件触发的调用函数，返回TLSSocket连接信息。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                        |
 | ------- | ------------------------------ |
@@ -6171,15 +6390,26 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 let messageView = '';
-tls.on('message', (value: socket.SocketMessageInfo) => {
-  for (let i: number = 0; i < value.message.byteLength; i++) {
-    let uint8Array = new Uint8Array(value.message) 
-    let messages = uint8Array[i]
-    let message = String.fromCharCode(messages);
-    messageView += message;
+let bindAddr: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+tls.bind(bindAddr, (err: BusinessError) => {
+  if (err) {
+    console.log('bind fail');
+    return;
   }
-  console.log('on message message: ' + JSON.stringify(messageView));
-  console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
+  console.log('bind success');
+  tls.on('message', (value: socket.SocketMessageInfo) => {
+    for (let i: number = 0; i < value.message.byteLength; i++) {
+      let uint8Array = new Uint8Array(value.message) 
+      let messages = uint8Array[i]
+      let message = String.fromCharCode(messages);
+      messageView += message;
+    }
+    console.log('on message message: ' + JSON.stringify(messageView));
+    console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
+  });
 });
 ```
 
@@ -6232,6 +6462,10 @@ on(type: 'connect' | 'close', callback: Callback\<void\>): void
 
 订阅TLSSocket的连接事件或关闭事件。使用callback方式作为异步方法。
 
+> **说明：**
+>
+> bind方法调用成功后，才可调用此方法。
+
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -6254,11 +6488,22 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
-tls.on('connect', () => {
-  console.log("on connect success")
-});
-tls.on('close', () => {
-  console.log("on close success")
+let bindAddr: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+tls.bind(bindAddr, (err: BusinessError) => {
+  if (err) {
+    console.log('bind fail');
+    return;
+  }
+  console.log('bind success');
+  tls.on('connect', () => {
+    console.log("on connect success")
+  });
+  tls.on('close', () => {
+    console.log("on close success")
+  });
 });
 ```
 
@@ -6311,6 +6556,10 @@ on(type: 'error', callback: ErrorCallback): void
 
 订阅TLSSocket连接的error事件。使用callback方式作为异步方法。
 
+> **说明：**
+>
+> bind方法调用成功后，才可调用此方法。
+
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -6333,8 +6582,19 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
-tls.on('error', (err: BusinessError) => {
-  console.log("on error, err:" + JSON.stringify(err))
+let bindAddr: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+tls.bind(bindAddr, (err: BusinessError) => {
+  if (err) {
+    console.log('bind fail');
+    return;
+  }
+  console.log('bind success');
+  tls.on('error', (err: BusinessError) => {
+    console.error("on error, err:" + JSON.stringify(err))
+  });
 });
 ```
 
@@ -6367,7 +6627,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 let callback = (err: BusinessError) => {
-  console.log("on error, err:" + JSON.stringify(err));
+  console.error("on error, err:" + JSON.stringify(err));
 }
 tls.on('error', callback);
 // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
@@ -6429,7 +6689,7 @@ let bindAddr: socket.NetAddress = {
 }
 tlsTwoWay.bind(bindAddr, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
@@ -6461,7 +6721,7 @@ tlsTwoWay.connect(tlsConnectOptions, (err: BusinessError) => {
 let tlsOneWay: socket.TLSSocket = socket.constructTLSSocketInstance(); // One way authentication
 tlsOneWay.bind(bindAddr, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
@@ -6495,7 +6755,7 @@ let bindAddr: socket.NetAddress = {
 }
 tlsTwoWay.bind(bindAddr, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
@@ -6537,7 +6797,7 @@ tlsTwoWay.connect(tlsConnectOptions, (err: BusinessError) => {
 let tlsOneWay: socket.TLSSocket = socket.constructTLSSocketInstance(); // 单向认证
 tlsOneWay.bind(bindAddr, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
@@ -6625,7 +6885,7 @@ let bindAddr: socket.NetAddress = {
 }
 tlsTwoWay.bind(bindAddr, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
@@ -6653,13 +6913,13 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsTwoWay.connect(tlsConnectOptions).then(() => {
   console.log("connect successfully");
 }).catch((err: BusinessError) => {
-  console.log("connect failed " + JSON.stringify(err));
+  console.error("connect failed " + JSON.stringify(err));
 });
 
 let tlsOneWay: socket.TLSSocket = socket.constructTLSSocketInstance(); // One way authentication
 tlsOneWay.bind(bindAddr, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
@@ -6679,7 +6939,7 @@ let tlsOneWayConnectOptions: socket.TLSConnectOptions = {
 tlsOneWay.connect(tlsOneWayConnectOptions).then(() => {
   console.log("connect successfully");
 }).catch((err: BusinessError) => {
-  console.log("connect failed " + JSON.stringify(err));
+  console.error("connect failed " + JSON.stringify(err));
 });
 ```
 
@@ -6695,7 +6955,7 @@ let bindAddr: socket.NetAddress = {
 }
 tlsTwoWay.bind(bindAddr, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
@@ -6733,13 +6993,13 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsTwoWay.connect(tlsConnectOptions).then(() => {
   console.log("connect successfully");
 }).catch((err: BusinessError) => {
-  console.log("connect failed " + JSON.stringify(err));
+  console.error("connect failed " + JSON.stringify(err));
 });
 
 let tlsOneWay: socket.TLSSocket = socket.constructTLSSocketInstance(); // 单向认证
 tlsOneWay.bind(bindAddr, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
@@ -6765,7 +7025,7 @@ let tlsOneWayConnectOptions: socket.TLSConnectOptions = {
 tlsOneWay.connect(tlsOneWayConnectOptions).then(() => {
   console.log("connect successfully");
 }).catch((err: BusinessError) => {
-  console.log("connect failed " + JSON.stringify(err));
+  console.error("connect failed " + JSON.stringify(err));
 });
 ```
 
@@ -6799,7 +7059,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getRemoteAddress((err: BusinessError, data: socket.NetAddress) => {
   if (err) {
-    console.log('getRemoteAddress fail');
+    console.error('getRemoteAddress fail');
     return;
   }
   console.log('getRemoteAddress success:' + JSON.stringify(data));
@@ -6837,7 +7097,7 @@ let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getRemoteAddress().then(() => {
   console.log('getRemoteAddress success');
 }).catch((err: BusinessError) => {
-  console.log('getRemoteAddress fail');
+  console.error('getRemoteAddress fail');
 });
 ```
 
@@ -6872,7 +7132,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getCertificate((err: BusinessError, data: socket.X509CertRawData) => {
   if (err) {
-    console.log("getCertificate callback error = " + err);
+    console.error("getCertificate callback error = " + err);
   } else {
     console.log("getCertificate callback = " + data);
   }
@@ -6949,7 +7209,7 @@ import { util } from '@kit.ArkTS';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getRemoteCertificate((err: BusinessError, data: socket.X509CertRawData) => {
   if (err) {
-    console.log("getRemoteCertificate callback error = " + err);
+    console.error("getRemoteCertificate callback error = " + err);
   } else {
     const decoder = util.TextDecoder.create();
     const str = decoder.decodeToString(data.data);
@@ -7027,7 +7287,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getProtocol((err: BusinessError, data: string) => {
   if (err) {
-    console.log("getProtocol callback error = " + err);
+    console.error("getProtocol callback error = " + err);
   } else {
     console.log("getProtocol callback = " + data);
   }
@@ -7102,7 +7362,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getCipherSuite((err: BusinessError, data: Array<string>) => {
   if (err) {
-    console.log("getCipherSuite callback error = " + err);
+    console.error("getCipherSuite callback error = " + err);
   } else {
     console.log("getCipherSuite callback = " + data);
   }
@@ -7176,7 +7436,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getSignatureAlgorithms((err: BusinessError, data: Array<string>) => {
   if (err) {
-    console.log("getSignatureAlgorithms callback error = " + err);
+    console.error("getSignatureAlgorithms callback error = " + err);
   } else {
     console.log("getSignatureAlgorithms callback = " + data);
   }
@@ -7257,6 +7517,46 @@ tls.getLocalAddress().then((localAddress: socket.NetAddress) => {
 })
 ```
 
+### getSocketFd<sup>16+</sup>
+
+getSocketFd(): Promise\<number\>
+
+获取TLSSocket的文件描述符。使用Promise异步回调。
+
+> **说明：**
+>
+> bind方法调用成功后，才可调用此方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**返回值：**
+
+| 类型                                             | 说明                                       |
+| ----------------------------------------------- | ----------------------------------------- |
+| Promise\<number\> | 以Promise形式返回socket的文件描述符。 |
+
+**示例：**
+
+```ts
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
+let bindAddr: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+tls.bind(bindAddr, (err: BusinessError) => {
+  if (err) {
+    console.error('bind fail');
+    return;
+  }
+  console.log('bind success');
+});
+tls.getSocketFd().then((data: number) => {
+  console.info("tls socket fd: " + data);
+})
+```
+
 ### send<sup>9+</sup>
 
 send(data: string \| ArrayBuffer, callback: AsyncCallback\<void\>): void
@@ -7292,7 +7592,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.send("xxxx", (err: BusinessError) => {
   if (err) {
-    console.log("send callback error = " + err);
+    console.error("send callback error = " + err);
   } else {
     console.log("send success");
   }
@@ -7377,7 +7677,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.close((err: BusinessError) => {
   if (err) {
-    console.log("close callback error = " + err);
+    console.error("close callback error = " + err);
   } else {
     console.log("close success");
   }
@@ -7568,7 +7868,7 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
   skipRemoteValidation: false
 }
 tlsServer.listen(tlsConnectOptions, (err: BusinessError) => {
-  console.log("listen callback error" + err);
+  console.error("listen callback error" + err);
 });
 ```
 
@@ -7641,7 +7941,7 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed: " + JSON.stringify(err));
+  console.error("failed: " + JSON.stringify(err));
 });
 ```
 
@@ -7699,11 +7999,11 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed: " + JSON.stringify(err));
+  console.error("failed: " + JSON.stringify(err));
 });
 tlsServer.getState((err: BusinessError, data: socket.SocketStateBase) => {
   if (err) {
-    console.log('getState fail');
+    console.error('getState fail');
     return;
   }
   console.log('getState success:' + JSON.stringify(data));
@@ -7763,12 +8063,12 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed: " + JSON.stringify(err));
+  console.error("failed: " + JSON.stringify(err));
 });
 tlsServer.getState().then(() => {
   console.log('getState success');
 }).catch((err: BusinessError) => {
-  console.log('getState fail');
+  console.error('getState fail');
 });
 ```
 
@@ -7827,7 +8127,7 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed: " + JSON.stringify(err));
+  console.error("failed: " + JSON.stringify(err));
 });
 
 interface SocketLinger {
@@ -7847,7 +8147,7 @@ let tcpExtraOptions: socket.TCPExtraOptions = {
 }
 tlsServer.setExtraOptions(tcpExtraOptions, (err: BusinessError) => {
   if (err) {
-    console.log('setExtraOptions fail');
+    console.error('setExtraOptions fail');
     return;
   }
   console.log('setExtraOptions success');
@@ -7914,7 +8214,7 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed: " + JSON.stringify(err));
+  console.error("failed: " + JSON.stringify(err));
 });
 
 interface SocketLinger {
@@ -7935,7 +8235,7 @@ let tcpExtraOptions: socket.TCPExtraOptions = {
 tlsServer.setExtraOptions(tcpExtraOptions).then(() => {
   console.log('setExtraOptions success');
 }).catch((err: BusinessError) => {
-  console.log('setExtraOptions fail');
+  console.error('setExtraOptions fail');
 });
 ```
 
@@ -7995,11 +8295,11 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed: " + JSON.stringify(err));
+  console.error("failed: " + JSON.stringify(err));
 });
 tlsServer.getCertificate((err: BusinessError, data: socket.X509CertRawData) => {
   if (err) {
-    console.log("getCertificate callback error = " + err);
+    console.error("getCertificate callback error = " + err);
   } else {
     const decoder = util.TextDecoder.create();
     const str = decoder.decodeToString(data.data);
@@ -8063,7 +8363,7 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed: " + JSON.stringify(err));
+  console.error("failed: " + JSON.stringify(err));
 });
 tlsServer.getCertificate().then((data: socket.X509CertRawData) => {
   const decoder = util.TextDecoder.create();
@@ -8129,11 +8429,11 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed: " + JSON.stringify(err));
+  console.error("failed: " + JSON.stringify(err));
 });
 tlsServer.getProtocol((err: BusinessError, data: string) => {
   if (err) {
-    console.log("getProtocol callback error = " + err);
+    console.error("getProtocol callback error = " + err);
   } else {
     console.log("getProtocol callback = " + data);
   }
@@ -8194,7 +8494,7 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed: " + JSON.stringify(err));
+  console.error("failed: " + JSON.stringify(err));
 });
 tlsServer.getProtocol().then((data: string) => {
   console.log(data);
@@ -8295,7 +8595,7 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed: " + JSON.stringify(err));
+  console.error("failed: " + JSON.stringify(err));
 });
 tlsServer.on('connect', (data: socket.TLSSocketConnection) => {
   console.log(JSON.stringify(data))
@@ -8356,7 +8656,7 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed: " + JSON.stringify(err));
+  console.error("failed: " + JSON.stringify(err));
 });
 
 let callback = (data: socket.TLSSocketConnection) => {
@@ -8421,10 +8721,10 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed: " + JSON.stringify(err));
+  console.error("failed: " + JSON.stringify(err));
 });
 tlsServer.on('error', (err: BusinessError) => {
-  console.log("on error, err:" + JSON.stringify(err))
+  console.error("on error, err:" + JSON.stringify(err))
 });
 ```
 
@@ -8482,11 +8782,11 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed: " + JSON.stringify(err));
+  console.error("failed: " + JSON.stringify(err));
 });
 
 let callback = (err: BusinessError) => {
-  console.log("on error, err:" + JSON.stringify(err));
+  console.error("on error, err:" + JSON.stringify(err));
 }
 tlsServer.on('error', callback);
 // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
@@ -8564,13 +8864,13 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed" + err);
+  console.error("failed" + err);
 });
 
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.send('Hello, client!', (err: BusinessError) => {
     if (err) {
-      console.log('send fail');
+      console.error('send fail');
       return;
     }
     console.log('send success');
@@ -8638,14 +8938,14 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed" + err);
+  console.error("failed" + err);
 });
 
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.send('Hello, client!').then(() => {
     console.log('send success');
   }).catch((err: BusinessError) => {
-    console.log('send fail');
+    console.error('send fail');
   });
 });
 ```
@@ -8703,13 +9003,13 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed" + err);
+  console.error("failed" + err);
 });
 
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.close((err: BusinessError) => {
     if (err) {
-      console.log('close fail');
+      console.error('close fail');
       return;
     }
     console.log('close success');
@@ -8769,13 +9069,13 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed" + err);
+  console.error("failed" + err);
 });
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.close().then(() => {
     console.log('close success');
   }).catch((err: BusinessError) => {
-    console.log('close fail');
+    console.error('close fail');
   });
 });
 ```
@@ -8831,12 +9131,12 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed" + err);
+  console.error("failed" + err);
 });
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.getRemoteAddress((err: BusinessError, data: socket.NetAddress) => {
     if (err) {
-      console.log('getRemoteAddress fail');
+      console.error('getRemoteAddress fail');
       return;
     }
     console.log('getRemoteAddress success:' + JSON.stringify(data));
@@ -8894,7 +9194,7 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed" + err);
+  console.error("failed" + err);
 });
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.getRemoteAddress().then((data: socket.NetAddress) => {
@@ -8957,12 +9257,12 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed" + err);
+  console.error("failed" + err);
 });
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.getRemoteCertificate((err: BusinessError, data: socket.X509CertRawData) => {
     if (err) {
-      console.log("getRemoteCertificate callback error: " + err);
+      console.error("getRemoteCertificate callback error: " + err);
     } else {
       const decoder = util.TextDecoder.create();
       const str = decoder.decodeToString(data.data);
@@ -9023,7 +9323,7 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed" + err);
+  console.error("failed" + err);
 });
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.getRemoteCertificate().then((data: socket.X509CertRawData) => {
@@ -9089,12 +9389,12 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed" + err);
+  console.error("failed" + err);
 });
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.getCipherSuite((err: BusinessError, data: Array<string>) => {
     if (err) {
-      console.log("getCipherSuite callback error = " + err);
+      console.error("getCipherSuite callback error = " + err);
     } else {
       console.log("getCipherSuite callback = " + data);
     }
@@ -9154,7 +9454,7 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed" + err);
+  console.error("failed" + err);
 });
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.getCipherSuite().then((data: Array<string>) => {
@@ -9216,12 +9516,12 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed" + err);
+  console.error("failed" + err);
 });
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.getSignatureAlgorithms((err: BusinessError, data: Array<string>) => {
     if (err) {
-      console.log("getSignatureAlgorithms callback error = " + err);
+      console.error("getSignatureAlgorithms callback error = " + err);
     } else {
       console.log("getSignatureAlgorithms callback = " + data);
     }
@@ -9279,7 +9579,7 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed" + err);
+  console.error("failed" + err);
 });
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.getSignatureAlgorithms().then((data: Array<string>) => {
@@ -9356,46 +9656,6 @@ tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
 });
 ```
 
-### getSocketFd<sup>16+</sup>
-
-getSocketFd(): Promise\<number\>
-
-获取TLSSocket的文件描述符。使用Promise异步回调。
-
-> **说明：**
->
-> bind方法调用成功后，才可调用此方法。
-
-**系统能力**：SystemCapability.Communication.NetStack
-
-**返回值：**
-
-| 类型                                             | 说明                                       |
-| ----------------------------------------------- | ----------------------------------------- |
-| Promise\<number\> | 以Promise形式返回socket的文件描述符。 |
-
-**示例：**
-
-```ts
-import { socket } from '@kit.NetworkKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
-let bindAddr: socket.NetAddress = {
-  address: '192.168.xx.xxx',
-  port: 8080
-}
-tls.bind(bindAddr, (err: BusinessError) => {
-  if (err) {
-    console.error('bind fail');
-    return;
-  }
-  console.log('bind success');
-});
-tls.getSocketFd().then((data: number) => {
-  console.info("tls socket fd: " + data);
-})
-```
-
 ### on('message')<sup>10+</sup>
 
 on(type: 'message', callback: Callback\<SocketMessageInfo\>): void
@@ -9446,7 +9706,7 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed" + err);
+  console.error("failed" + err);
 });
 
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
@@ -9514,7 +9774,7 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed" + err);
+  console.error("failed" + err);
 });
 
 let callback = (value: socket.SocketMessageInfo) => {
@@ -9586,7 +9846,7 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed" + err);
+  console.error("failed" + err);
 });
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.on('close', () => {
@@ -9645,7 +9905,7 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed" + err);
+  console.error("failed" + err);
 });
 
 let callback = () => {
@@ -9709,12 +9969,12 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed" + err);
+  console.error("failed" + err);
 });
 
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.on('error', (err: BusinessError) => {
-    console.log("on error, err:" + JSON.stringify(err))
+    console.error("on error, err:" + JSON.stringify(err))
   });
 });
 ```
@@ -9769,11 +10029,11 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed" + err);
+  console.error("failed" + err);
 });
 
 let callback = (err: BusinessError) => {
-  console.log("on error, err:" + JSON.stringify(err));
+  console.error("on error, err:" + JSON.stringify(err));
 }
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.on('error', callback);

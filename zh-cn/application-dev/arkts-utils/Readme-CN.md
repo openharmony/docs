@@ -8,7 +8,7 @@
         - [XML生成](xml-generation.md)
         - [XML解析](xml-parsing.md)
         - [XML转换](xml-conversion.md)
-    - [Buffer介绍](buffer.md)
+    - [Buffer与FastBuffer](buffer.md)
     - [JSON扩展库](arkts-json.md)
     - ArkTS容器类库<!--containers-->
         - [容器类库概述](container-overview.md)
@@ -25,6 +25,7 @@
     - 并发线程间通信<!--interthead-communication-->
         - [ArkTS线程间通信概述](interthread-communication-overview.md)
         - 线程间通信对象<!--interthead-communication-object-->
+            - [线程间通信对象概述](serializable-overview.md)
             - [普通对象](normal-object.md)
             - [ArrayBuffer对象](arraybuffer-object.md)
             - [SharedArrayBuffer对象](shared-arraybuffer-object.md)
@@ -69,8 +70,10 @@
             - [ArkUI瀑布流渲染场景](taskpool-waterflow.md)
             - [获取最近访问列表场景](sendablelrucache-recent-list.md)
             - [多线程取消TaskPool任务场景](multi-thread-cancel-task.md)
-            - [ArkTS多线程间操作Native对象场景](napi-coerce-to-native-binding-object.md)
+            - [自定义Native Transferable对象的多线程操作场景](napi-coerce-to-native-binding-object.md)
+            - [自定义Native Sendable对象的多线程操作场景](napi-define-sendable-object.md)
             - [Worker常驻线程通过TaskPool进行多任务并发处理](worker-and-taskpool.md)
+    - [并发常见问题](concurrency-faq.md)
 - [ArkTS跨语言交互](arkts-cross-language-interaction.md)
 - ArkTS运行时<!--arkts-runtime-->
     - [ArkTS运行时概述](arkts-runtime-overview.md)
@@ -98,5 +101,11 @@
         - [ArkGuard混淆开启指南](source-obfuscation-guide.md)
         - [不同包类型的源码混淆建议](source-obfuscation-practice.md)
         - [ArkGuard混淆常见问题](source-obfuscation-questions.md)
+    - ArkGuard字节码混淆工具<!--arkts-arkguard-bytecode-->
+        - [ArkGuard字节码混淆工具概述](bytecode-obfuscation-overview.md)
+        - [ArkGuard字节码混淆原理及功能](bytecode-obfuscation.md)
+        - [ArkGuard字节码混淆开启指南](bytecode-obfuscation-guide.md)
+        - [不同包类型的字节码混淆建议](bytecode-obfuscation-practice.md)
+        - [ArkGuard字节码混淆常见问题](bytecode-obfuscation-questions.md)
     - [在build-profile.json5中配置arkOptions](arkoptions-guide.md)
 

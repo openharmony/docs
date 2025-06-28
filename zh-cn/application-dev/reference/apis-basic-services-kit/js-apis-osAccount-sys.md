@@ -182,7 +182,7 @@ isOsAccountActivated(localId: number): Promise&lt;boolean&gt;
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS或ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -233,7 +233,7 @@ isOsAccountConstraintEnabled(localId: number, constraint: string): Promise&lt;bo
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS或ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -286,7 +286,7 @@ isOsAccountUnlocked(localId: number): Promise&lt;boolean&gt;
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS或ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -783,7 +783,7 @@ getEnabledOsAccountConstraints(localId: number): Promise&lt;Array&lt;string&gt;&
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS或ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -860,8 +860,11 @@ queryAllCreatedOsAccounts(callback: AsyncCallback&lt;Array&lt;OsAccountInfo&gt;&
   let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   try {
     accountManager.queryAllCreatedOsAccounts((err: BusinessError, accountArr: osAccount.OsAccountInfo[])=>{
-      console.log('queryAllCreatedOsAccounts err:' + JSON.stringify(err));
-      console.log('queryAllCreatedOsAccounts accountArr:' + JSON.stringify(accountArr));
+      if (err) {
+        console.error('queryAllCreatedOsAccounts exception:' + JSON.stringify(err));
+      } else {
+        console.log('queryAllCreatedOsAccounts accountArr:' + JSON.stringify(accountArr));
+      }
     });
   } catch (e) {
     console.error('queryAllCreatedOsAccounts exception: ' + JSON.stringify(e));
@@ -952,8 +955,11 @@ createOsAccount(localName: string, type: OsAccountType, callback: AsyncCallback&
   try {
     accountManager.createOsAccount('testName', osAccount.OsAccountType.NORMAL,
       (err: BusinessError, osAccountInfo: osAccount.OsAccountInfo)=>{
-      console.log('createOsAccount err:' + JSON.stringify(err));
-      console.log('createOsAccount osAccountInfo:' + JSON.stringify(osAccountInfo));
+      if (err) {
+        console.error('createOsAccount exception:' + JSON.stringify(err));
+      } else {
+        console.log('createOsAccount osAccountInfo:' + JSON.stringify(osAccountInfo));
+      }
     });
   } catch (e) {
     console.error('createOsAccount exception: ' + JSON.stringify(e));
@@ -978,7 +984,7 @@ createOsAccount(localName: string, type: OsAccountType, options?: CreateOsAccoun
 | --------- | ------------------------------- | ---- | ---------------------- |
 | localName | string                          | 是   | 创建的系统账号的名称。 |
 | type      | [OsAccountType](js-apis-osAccount.md#osaccounttype) | 是   | 创建的系统账号的类型。 |
-| options      | [CreateOsAccountOptions](js-apis-osAccount-sys.md#createosaccountoptions12) | 否   | 创建系统账号的选项，默认为空。 <br/>从API version 12开始支持该可选参数。|
+| options      | [CreateOsAccountOptions](js-apis-osAccount-sys.md#createosaccountoptions12) | 否   | 创建系统账号的选项，默认为空。<br/>从API version 12开始支持该可选参数。|
 
 **返回值：**
 
@@ -1068,8 +1074,11 @@ createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo, cal
   try {
     accountManager.createOsAccountForDomain(osAccount.OsAccountType.NORMAL, domainInfo,
       (err: BusinessError, osAccountInfo: osAccount.OsAccountInfo)=>{
-      console.log('createOsAccountForDomain err:' + JSON.stringify(err));
-      console.log('createOsAccountForDomain osAccountInfo:' + JSON.stringify(osAccountInfo));
+      if (err) {
+        console.error('createOsAccountForDomain exception:' + JSON.stringify(err));
+      } else {
+        console.log('createOsAccountForDomain osAccountInfo:' + JSON.stringify(osAccountInfo));
+      }
     });
   } catch (e) {
     console.error('createOsAccountForDomain exception: ' + JSON.stringify(e));
@@ -1148,7 +1157,7 @@ queryOsAccount(): Promise&lt;OsAccountInfo&gt;
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.GET_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS或ohos.permission.GET_LOCAL_ACCOUNTS
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1190,7 +1199,7 @@ queryOsAccountById(localId: number, callback: AsyncCallback&lt;OsAccountInfo&gt;
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS或ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1220,8 +1229,11 @@ queryOsAccountById(localId: number, callback: AsyncCallback&lt;OsAccountInfo&gt;
   let localId: number = 100;
   try {
     accountManager.queryOsAccountById(localId, (err: BusinessError, accountInfo: osAccount.OsAccountInfo)=>{
-      console.log('queryOsAccountById err:' + JSON.stringify(err));
-      console.log('queryOsAccountById accountInfo:' + JSON.stringify(accountInfo));
+      if (err) {
+        console.error('queryOsAccountById exception:' + JSON.stringify(err));
+      } else {
+        console.log('queryOsAccountById accountInfo:' + JSON.stringify(accountInfo));
+      }
     });
   } catch (e) {
     console.error('queryOsAccountById exception: ' + JSON.stringify(e));
@@ -1236,7 +1248,7 @@ queryOsAccountById(localId: number): Promise&lt;OsAccountInfo&gt;
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS或ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -1318,8 +1330,11 @@ getOsAccountProfilePhoto(localId: number, callback: AsyncCallback&lt;string&gt;)
   let localId: number = 100;
   try {
     accountManager.getOsAccountProfilePhoto(localId, (err: BusinessError, photo: string)=>{
-      console.log('getOsAccountProfilePhoto err:' + JSON.stringify(err));
-      console.log('get photo:' + photo + ' by localId: ' + localId);
+      if (err) {
+        console.error('getOsAccountProfilePhoto exception:' + JSON.stringify(err));
+      } else {
+        console.log('get photo:' + photo + ' by localId: ' + localId);
+      }
     });
   } catch (e) {
     console.error('getOsAccountProfilePhoto exception: ' + JSON.stringify(e));
@@ -1422,7 +1437,11 @@ setOsAccountProfilePhoto(localId: number, photo: string, callback: AsyncCallback
   '+7q0mP0DZW9pNmoEFUzrQjp5cCnaen2kSJXLFD8ghbXyZCMQf/8e8Ns1XVAG/XAgqKzVnJFAAAAABJRU5ErkJggg=='
   try {
     accountManager.setOsAccountProfilePhoto(localId, photo, (err: BusinessError)=>{
-      console.log('setOsAccountProfilePhoto err:' + JSON.stringify(err));
+      if (err) {
+        console.error('setOsAccountProfilePhoto exception:' + JSON.stringify(err));
+      } else {
+        console.log('setOsAccountProfilePhoto successful.');
+      }
     });
   } catch (e) {
     console.error('setOsAccountProfilePhoto exception: ' + JSON.stringify(e));
@@ -1775,11 +1794,14 @@ getBundleIdForUid(uid: number, callback: AsyncCallback&lt;number&gt;): void
   let testUid: number = 1000000;
   try {
     accountManager.getBundleIdForUid(testUid, (err: BusinessError, bundleId: number) => {
-      console.info('getBundleIdForUid errInfo:' + JSON.stringify(err));
-      console.info('getBundleIdForUid bundleId:' + JSON.stringify(bundleId));
+      if (err) {
+        console.error('getBundleIdForUid errInfo:' + JSON.stringify(err));
+      } else {
+        console.info('getBundleIdForUid bundleId:' + JSON.stringify(bundleId));
+      }
     });
   } catch (e) {
-    console.info('getBundleIdForUid exception: ' + JSON.stringify(e));
+    console.error('getBundleIdForUid exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1824,10 +1846,10 @@ getBundleIdForUid(uid: number): Promise&lt;number&gt;
     accountManager.getBundleIdForUid(testUid).then((result: number) => {
       console.info('getBundleIdForUid bundleId:' + JSON.stringify(result));
     }).catch((err: BusinessError) => {
-      console.info('getBundleIdForUid errInfo:' + JSON.stringify(err));
+      console.error('getBundleIdForUid errInfo:' + JSON.stringify(err));
     });
   } catch (e) {
-    console.info('getBundleIdForUid exception: ' + JSON.stringify(e));
+    console.error('getBundleIdForUid exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1870,7 +1892,7 @@ getBundleIdForUidSync(uid: number): number
     let bundleId : number = accountManager.getBundleIdForUidSync(testUid);
     console.info('getBundleIdForUidSync bundleId:' + bundleId);
   } catch (e) {
-    console.info('getBundleIdForUidSync exception: ' + JSON.stringify(e));
+    console.error('getBundleIdForUidSync exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1908,11 +1930,14 @@ isMainOsAccount(callback: AsyncCallback&lt;boolean&gt;): void
   let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   try {
     accountManager.isMainOsAccount((err: BusinessError,result: boolean)=>{
-      console.info('isMainOsAccount errInfo:' + JSON.stringify(err));
-      console.info('isMainOsAccount result:' + JSON.stringify(result));
+      if (err) {
+        console.error('isMainOsAccount errInfo:' + JSON.stringify(err));
+      } else {
+        console.info('isMainOsAccount result:' + JSON.stringify(result));
+      }
     });
   } catch (e) {
-    console.info('isMainOsAccount exception: ' + JSON.stringify(e));
+    console.error('isMainOsAccount exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1951,10 +1976,10 @@ isMainOsAccount(): Promise&lt;boolean&gt;;
     accountManager.isMainOsAccount().then((result: boolean) => {
       console.info('isMainOsAccount result:' + JSON.stringify(result));
     }).catch((err: BusinessError) => {
-      console.info('isMainOsAccount errInfo:' + JSON.stringify(err));
+      console.error('isMainOsAccount errInfo:' + JSON.stringify(err));
     });
   } catch (e) {
-    console.info('isMainOsAccount exception: ' + JSON.stringify(e));
+    console.error('isMainOsAccount exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1997,11 +2022,14 @@ getOsAccountConstraintSourceTypes(localId: number, constraint: string, callback:
   try {
     accountManager.getOsAccountConstraintSourceTypes(100, 'constraint.wifi',
       (err: BusinessError,sourceTypeInfos: osAccount.ConstraintSourceTypeInfo[])=>{
-      console.info('getOsAccountConstraintSourceTypes errInfo:' + JSON.stringify(err));
-      console.info('getOsAccountConstraintSourceTypes sourceTypeInfos:' + JSON.stringify(sourceTypeInfos));
+      if (err) {
+        console.error('getOsAccountConstraintSourceTypes errInfo:' + JSON.stringify(err));
+      } else {
+        console.info('getOsAccountConstraintSourceTypes sourceTypeInfos:' + JSON.stringify(sourceTypeInfos));
+      }
     });
   } catch (e) {
-    console.info('getOsAccountConstraintSourceTypes exception: ' + JSON.stringify(e));
+    console.error('getOsAccountConstraintSourceTypes exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -2051,10 +2079,10 @@ getOsAccountConstraintSourceTypes(localId: number, constraint: string): Promise&
       (result: osAccount.ConstraintSourceTypeInfo[]) => {
       console.info('getOsAccountConstraintSourceTypes sourceTypeInfos:' + JSON.stringify(result));
     }).catch((err: BusinessError) => {
-      console.info('getOsAccountConstraintSourceTypes errInfo:' + JSON.stringify(err));
+      console.error('getOsAccountConstraintSourceTypes errInfo:' + JSON.stringify(err));
     });
   } catch (e) {
-    console.info('getOsAccountConstraintSourceTypes exception: ' + JSON.stringify(e));
+    console.error('getOsAccountConstraintSourceTypes exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -2066,7 +2094,7 @@ getOsAccountType(localId: number): Promise&lt;OsAccountType&gt;;
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS或ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -2102,10 +2130,72 @@ getOsAccountType(localId: number): Promise&lt;OsAccountType&gt;;
     accountManager.getOsAccountType(localId).then((type: osAccount.OsAccountType) => {
       console.info('getOsAccountType Type:' + type);
     }).catch((err: BusinessError) => {
-      console.info('getOsAccountType errInfo:' + JSON.stringify(err));
+      console.error('getOsAccountType errInfo:' + JSON.stringify(err));
     });
   } catch (e) {
-    console.info('getOsAccountType exception: ' + JSON.stringify(e));
+    console.error('getOsAccountType exception: ' + JSON.stringify(e));
+  }
+  ```
+
+### bindDomainAccount<sup>20+</sup>
+
+bindDomainAccount(localId: number, domainAccountInfo: DomainAccountInfo): Promise&lt;void&gt;
+
+在指定系统账号上绑定指定域账号。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明         |
+| ------- | ------ | ---- | ------------ |
+| localId     | number | 是   |  要查询的系统账号ID。 |
+| domainAccountInfo | [DomainAccountInfo](#domainaccountinfo8) | 是   | 域账号信息。          |
+
+**返回值：**
+
+| 类型                  | 说明                                                         |
+| --------------------- | ------------------------------------------------------------ |
+| Promise&lt;void&gt; | Promise对象，无返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见通用[错误码说明文档](../errorcode-universal.md)和[账号管理错误码](./errorcode-account.md)。
+
+| 错误码ID | 错误信息       |
+| -------- | ------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 801 | Capability not supported.|
+| 12300001 | The system service works abnormally. |
+| 12300002 | Invalid domain account information. |
+| 12300003 | The OS account not found. |
+| 12300008 | Restricted OS account. Possible causes: The OS account cannot be bound. |
+| 12300010 | Service busy. Possible causes: The target OS account or domain account is being operated. |
+| 12300021 | The OS account is already bound. |
+| 12300022 | The domain account is already bound. |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
+  try {
+    let localId: number = 100;
+    let domainInfo: osAccount.DomainAccountInfo =
+      {domain: 'testDomain', accountName: 'testAccountName'};
+    accountManager.bindDomainAccount(localId, domainInfo).then(() => {
+      console.info('bindDomainAccount success.');
+    }).catch((error: BusinessError) => {
+      console.error(`bindDomainAccount failed, errCode=${error.code}, errMsg=${error.message}`);
+    });
+  } catch (e) {
+    let error = e as BusinessError;
+    console.error(`bindDomainAccount error, errCode=${error.code}, errMsg=${error.message}`);
   }
   ```
 
@@ -2258,8 +2348,11 @@ getProperty(request: GetPropertyRequest, callback: AsyncCallback&lt;ExecutorProp
   };
   try {
     userAuth.getProperty(request, (err: BusinessError, result: osAccount.ExecutorProperty) => {
-      console.log('getProperty err = ' + JSON.stringify(err));
-      console.log('getProperty result = ' + JSON.stringify(result));
+      if (err) {
+        console.error('getProperty exception = ' + JSON.stringify(err));
+      } else {
+        console.log('getProperty result = ' + JSON.stringify(result));
+      }
     });
   } catch (e) {
     console.error('getProperty exception = ' + JSON.stringify(e));
@@ -2534,6 +2627,9 @@ prepareRemoteAuth(remoteNetworkId: string): Promise&lt;void&gt;;
 | 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid remoteNetworkId. |
+| 12300090 | Cross-device capability not supported. |
+| 12300091 | Cross-device communication failed. |
+| 12300111 | Operation timeout. |
 
 **示例：**
   ```ts
@@ -2595,6 +2691,9 @@ auth(challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, 
 | 12300001 | The system service works abnormally. |
 | 12300002 | Invalid challenge, authType or authTrustLevel. |
 | 12300013 | Network exception. |
+| 12300020 | Device hardware abnormal. |
+| 12300090 | Cross-device capability not supported. |
+| 12300091 | Cross-device communication failed. |
 | 12300101 | The credential is incorrect. |
 | 12300102 | The credential does not exist. |
 | 12300105 | The trust level is not supported. |
@@ -2606,6 +2705,7 @@ auth(challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, 
 | 12300113 | The authentication service does not exist. |
 | 12300114 | The authentication service works abnormally. |
 | 12300117 | PIN is expired. |
+| 12300119 | Multi-factor authentication failed. |
 | 12300211 | Server unreachable. |
 
 **示例：**
@@ -2665,6 +2765,9 @@ auth(challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, 
 | 12300002 | Invalid challenge, authType, authTrustLevel or options. |
 | 12300003 | Account not found. |
 | 12300013 | Network exception. |
+| 12300020 | Device hardware abnormal. |
+| 12300090 | Cross-device capability not supported. |
+| 12300091 | Cross-device communication failed. |
 | 12300101 | The credential is incorrect. |
 | 12300102 | The credential does not exist. |
 | 12300105 | The trust level is not supported. |
@@ -2676,6 +2779,7 @@ auth(challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, 
 | 12300113 | The authentication service does not exist. |
 | 12300114 | The authentication service works abnormally. |
 | 12300117 | PIN is expired. |
+| 12300119 | Multi-factor authentication failed. |
 | 12300211 | Server unreachable. |
 
 **示例：**
@@ -2738,6 +2842,9 @@ authUser(userId: number, challenge: Uint8Array, authType: AuthType, authTrustLev
 | 12300002 | Invalid challenge, authType or authTrustLevel. |
 | 12300003 | Account not found. |
 | 12300013 | Network exception. |
+| 12300020 | Device hardware abnormal. |
+| 12300090 | Cross-device capability not supported. |
+| 12300091 | Cross-device communication failed. |
 | 12300101 | The credential is incorrect. |
 | 12300102 | The credential does not exist. |
 | 12300105 | The trust level is not supported. |
@@ -2749,6 +2856,7 @@ authUser(userId: number, challenge: Uint8Array, authType: AuthType, authTrustLev
 | 12300113 | The authentication service does not exist. |
 | 12300114 | The authentication service works abnormally. |
 | 12300117 | PIN is expired. |
+| 12300119 | Multi-factor authentication failed. |
 | 12300211 | Server unreachable. |
 
 **示例：**
@@ -2927,7 +3035,7 @@ static registerInputer(authType: AuthType, inputer: IInputer): void
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-**需要权限：** ohos.permission.ACCESS_USER_AUTH_INTERNAL 或 ohos.permission.MANAGE_USER_IDM
+**需要权限：** ohos.permission.ACCESS_USER_AUTH_INTERNAL或ohos.permission.MANAGE_USER_IDM
 
 **参数：**
 
@@ -2974,7 +3082,7 @@ static unregisterInputer(authType: AuthType): void
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-**需要权限：** ohos.permission.ACCESS_USER_AUTH_INTERNAL 或 ohos.permission.MANAGE_USER_IDM
+**需要权限：** ohos.permission.ACCESS_USER_AUTH_INTERNAL或ohos.permission.MANAGE_USER_IDM
 
 **参数：**
 
@@ -3296,6 +3404,7 @@ bindAccount(domainAccountInfo: DomainAccountInfo, localId: number, callback: Asy
 | 参数名      | 类型                                    | 必填 | 说明             |
 | ---------- | --------------------------------------- | ---- | --------------- |
 | domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域账号信息。|
+| localId             | number  | 是   | 系统账号ID。 |
 | callback   | AsyncCallback&lt;void&gt; | 是   | 指示绑定结果回调。|
 
 **示例：**
@@ -4199,7 +4308,7 @@ isAuthenticationExpired(domainAccountInfo: DomainAccountInfo): Promise&lt;boolea
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS或ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -4302,8 +4411,11 @@ openSession(callback: AsyncCallback&lt;Uint8Array&gt;): void
   let userIDM = new osAccount.UserIdentityManager();
   try {
     userIDM.openSession((err: BusinessError, challenge: Uint8Array) => {
-        console.log('openSession error = ' + JSON.stringify(err));
+      if (err) {
+        console.error('openSession exception = ' + JSON.stringify(err));
+      } else {
         console.log('openSession challenge = ' + JSON.stringify(challenge));
+      }
     });
   } catch (e) {
     console.error('openSession exception = ' + JSON.stringify(e));
@@ -4707,8 +4819,11 @@ getAuthInfo(callback: AsyncCallback&lt;Array&lt;EnrolledCredInfo&gt;&gt;): void
   let userIDM = new osAccount.UserIdentityManager();
   try {
     userIDM.getAuthInfo((err: BusinessError, result: osAccount.EnrolledCredInfo[]) => {
-      console.log('getAuthInfo err = ' + JSON.stringify(err));
-      console.log('getAuthInfo result = ' + JSON.stringify(result));
+      if (err) {
+        console.error('getAuthInfo exception = ' + JSON.stringify(err));
+      } else {
+        console.log('getAuthInfo result = ' + JSON.stringify(result));
+      }
     });
   } catch (e) {
     console.error('getAuthInfo exception = ' + JSON.stringify(e));
@@ -4751,8 +4866,11 @@ getAuthInfo(authType: AuthType, callback: AsyncCallback&lt;Array&lt;EnrolledCred
   try {
     userIDM.getAuthInfo(osAccount.AuthType.PIN,
       (err: BusinessError, result: osAccount.EnrolledCredInfo[]) => {
-      console.log('getAuthInfo err = ' + JSON.stringify(err));
-      console.log('getAuthInfo result = ' + JSON.stringify(result));
+      if (err) {
+        console.error('getAuthInfo exception = ' + JSON.stringify(err));
+      } else {
+        console.log('getAuthInfo result = ' + JSON.stringify(result));
+      }
     });
   } catch (e) {
     console.error('getAuthInfo exception = ' + JSON.stringify(e));
@@ -4824,7 +4942,7 @@ getAuthInfo(options?: GetAuthInfoOptions): Promise&lt;Array&lt;EnrolledCredInfo&
 
 | 参数名    | 类型                                | 必填 | 说明      |
 | -------- | ----------------------------------- | ---- | -------- |
-| options | [GetAuthInfoOptions](#getauthinfooptions12)          | 否   | 获取认证信息的可选参数集合。 |
+| options | [GetAuthInfoOptions](#getauthinfooptions12)          | 否   | 获取认证信息的可选参数集合。默认为空，表示查询当前用户所有已注册凭据信息。 |
 
 **返回值：**
 
@@ -5174,15 +5292,16 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-| 名称         | 类型                         |  可读 | 可写 | 说明              |
+| 名称         | 类型                         |  只读 | 可选 | 说明              |
 | ------------ | ---------------------------- | ----- | -----|----------------- |
-| result       | number                       | 是    | 是   | 指示结果。         |
-| authSubType  | [AuthSubType](#authsubtype8) | 是    | 是   | 指示认证凭据子类型。|
-| remainTimes  | number                       | 是    | 是   | 指示剩余次数。     |
-| freezingTime | number                       | 是    | 是   | 指示冻结时间。     |
-| enrollmentProgress<sup>10+</sup> | string   | 是    | 是   | 指示录入进度，默认为空。 |
-| sensorInfo<sup>10+</sup> | string           | 是    | 是   | 指示传感器信息，默认为空。 |
-| nextPhaseFreezingTime<sup>12+</sup> | number | 是    | 是   | 指示下次冻结时间，默认为undefined。 |
+| result       | number                       | 否    | 否   | 指示结果。         |
+| authSubType  | [AuthSubType](#authsubtype8) | 否    | 否   | 指示认证凭据子类型。|
+| remainTimes  | number                       | 否    | 是   | 指示剩余次数。     |
+| freezingTime | number                       | 否    | 是   | 指示冻结时间。     |
+| enrollmentProgress<sup>10+</sup> | string   | 否    | 是   | 指示录入进度，默认为空。 |
+| sensorInfo<sup>10+</sup> | string           | 否    | 是   | 指示传感器信息，默认为空。 |
+| nextPhaseFreezingTime<sup>12+</sup> | number | 否    | 是   | 指示下次冻结时间，默认为undefined。 |
+| credentialLength<sup>20+</sup> | number | 否    | 是   | 指示凭据长度，默认为undefined。查询生物信息等无定长属性的凭据时返回undefined。 |
 
 ## AuthResult<sup>8+</sup>
 
@@ -5243,6 +5362,8 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 | authType     | [AuthType](#authtype8)       | 是    | 指示认证凭据类型。   |
 | authSubType  | [AuthSubType](#authsubtype8) | 是    | 指示认证凭据子类型。 |
 | templateId   | Uint8Array                               | 是    | 指示凭据模板ID。     |
+| isAbandoned<sup>20+</sup>   | boolean                      | 否    | 指示凭据是否废弃。废弃后的凭据可能作为备份凭据保存一段时间。默认为undefined，表示是否废弃未定义。   |
+| validityPeriod<sup>20+</sup>   | number                    | 否    | 指示凭据有效期。默认为undefined，表示有效期未定义。     |
 
 ## GetPropertyType<sup>8+</sup>
 
@@ -5260,6 +5381,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 | ENROLLMENT_PROGRESS<sup>10+</sup> | 4      | 录入进度。   |
 | SENSOR_INFO<sup>10+</sup> | 5      | 传感器信息。   |
 | NEXT_PHASE_FREEZING_TIME<sup>12+</sup> | 6 | 下次冻结时间。 |
+| CREDENTIAL_LENGTH<sup>20+</sup> | 7 | 凭据长度。 |
 
 ## SetPropertyType<sup>8+</sup>
 
@@ -5582,6 +5704,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 | UNLOCK   | 1   | 解锁意图。 |
 | SILENT_AUTH<sup>14+</sup>  | 2   | 静默认证意图。 |
 | QUESTION_AUTH<sup>14+</sup>   | 3   | 密保问题认证意图。 |
+| ABANDONED_PIN_AUTH<sup>20+</sup>   | 4   | 废弃PIN码认证意图。用户修改锁屏密码后，旧的PIN码被废弃。废弃PIN存在期间，用户如果忘记密码可以通过废弃PIN认证通过后重置锁屏密码。 |
 
 ## RemoteAuthOptions<sup>12+</sup>
 

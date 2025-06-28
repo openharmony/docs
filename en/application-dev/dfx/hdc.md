@@ -21,7 +21,7 @@ The following figure shows the relationship.
 
 ## Environment Setup
 
-The hdc tool is obtained from the **toolchains** directory of OpenHarmony SDK.
+Download and install [DevEco Studio](https://developer.huawei.com/consumer/cn/deveco-studio/). You can obtain the hdc application in **DevEco Studio/sdk/default/openharmony/toolchains**.
 
 ### (Optional) Running the hdc Program on the CLI
 
@@ -29,10 +29,9 @@ You can go to the **toolchains** directory of SDK through the CLI and run the hd
 To facilitate the execution of the hdc program in the CLI, you can add the file path of the hdc program to the system environment variable that specifies the command search path.
 For example, add it to **Path** on Windows.
 
-### (Optional) Configuring the server Listening Port
+### (Optional) Configuring the hdc Server
 
-When the hdc server is started, it listens for port 8710 of the PC by default. The hdc client uses TCP to connect to the server through this port. If port 8710 of the PC has been used or you want to use another port, you can add the environment variable **OHOS_HDC_SERVER_PORT** to the system environment variable to listen for any unoccupied port when the server is started.
-For example, set **OHOS_HDC_SERVER_PORT** to **18710**.
+You can set the listening port, log output level, feature switch, and command recording of the hdc server by configuring the corresponding system environment variables. For details, see [Optional Configuration Items](#optional-configuration-items).
 
 > **NOTE**
 >
@@ -177,23 +176,23 @@ When multiple devices are connected, use the **-t** parameter to specify the tar
    ```
 
    **Parameters**
-   | Name| Description|
-   | -------- | -------- |
-   | connect-key| Device ID, which is the return value of the **hdc list targets** command.|
-   | command | Command to be executed.|
+| Name| Description|
+| -------- | -------- |
+| connect-key| Device ID, which is the return value of the **hdc list targets** command.|
+| command | Command to be executed.|
 
    > **NOTE**
    >
    > The *connect-key* uniquely identifies a device. If the device is connected over the network, the *connect-key* is the IP address and port number. If the device is connected through USB, the *connect-key* is the USB SN.
 
    **Return value**
-   | Return Value| Description|
-   | -------- | -------- |
-   | Command output| Command execution result, which may vary with the command.|
-   | [Fail]Not match target founded, check connect-key please | No device matches the *connect-key*.|
-   | [Fail]Device not founded or connected | The device is not found or connected.|
-   | [Fail]ExecuteCommand need connect-key? please confirm a device by help info | You must specify one device if there are multiple devices available.|
-   | Unknown operation command... | The command is not supported.|
+| Return Value| Description|
+| -------- | -------- |
+| Command output| Command execution result, which may vary with the command.|
+| [Fail]Not match target founded, check connect-key please | No device matches the *connect-key*.|
+| [Fail]Device not founded or connected | The device is not found or connected.|
+| [Fail]ExecuteCommand need connect-key? please confirm a device by help info | You must specify one device if there are multiple devices available.|
+| Unknown operation command... | The command is not supported.|
 
    > **NOTE**
    >
@@ -218,9 +217,9 @@ Run the following commands:
    ```
 
    **Return value**
-   | Return Value| Description|
-   | -------- | -------- |
-   | None| The **hdc wait** command ends when a properly connected device is identified.|
+| Return Value| Description|
+| -------- | -------- |
+| None| The **hdc wait** command ends when a properly connected device is identified.|
 
    **Usage**
 
@@ -468,17 +467,17 @@ Run the following commands:
    ```
 
    **Parameters**
-   | Parameter| Description|
-   | -------- | -------- |
-   | [-b _bundlename_] | The bundle name of a debug application. The command is executed in non-interactive mode in the data directory of the debug application.<br>Currently, this parameter can be used only in non-interactive mode, and the **command** parameter must be specified to enter an interactive shell session.<br>Otherwise, commands are executed in the system root directory by default.|
-   | [command] | A single command to execute on the device. The command varies depending on the system type or version. You can run the **hdc shell ls /system/bin** command to obtain the supported command list. Currently, many commands are provided by [toybox](../tools/toybox.md). You can run the **hdc shell toybox --help** command to obtain the help information.<br>If this parameter is not specified, hdc starts an interactive shell session, in which you can enter commands such as **ls**, **cd**, and **pwd** at the command prompt.|
+| Parameter| Description|
+| -------- | -------- |
+| [-b _bundlename_] | The bundle name of a debug application. The command is executed in non-interactive mode in the data directory of the debug application.<br>Currently, this parameter can be used only in non-interactive mode, and the **command** parameter must be specified to enter an interactive shell session.<br>Otherwise, commands are executed in the system root directory by default.|
+| [command] | A single command to execute on the device. The command varies depending on the system type or version. You can run the **hdc shell ls /system/bin** command to obtain the supported command list. Currently, many commands are provided by [toybox](../tools/toybox.md). You can run the **hdc shell toybox --help** command to obtain the help information.<br>If this parameter is not specified, hdc starts an interactive shell session, in which you can enter commands such as **ls**, **cd**, and **pwd** at the command prompt.|
 
    **Return value**
-   | Return Value| Description|
-   | -------- | -------- |
-   | Command execution result| Execution result of the command. For details, see the corresponding command output.|
-   | /bin/sh: XXX : inaccessible or not found | The specified command is not supported.|
-   | [Fail]Error information| The execution fails. For details, see [hdc Error Codes](#hdc-error-codes).|
+| Return Value| Description|
+| -------- | -------- |
+| Command execution result| Execution result of the command. For details, see the corresponding command output.|
+| /bin/sh: XXX : inaccessible or not found | The specified command is not supported.|
+| [Fail]Error information| The execution fails. For details, see [hdc Error Codes](#hdc-error-codes).|
 
    **Usage**
 
@@ -498,7 +497,7 @@ Run the following commands:
 
    > **NOTE**
    >
-   > To use the **\[-b _bundlename_]** parameter, ensure that the installed application to be specified is an application built in debug mode. For details about how to build an application in debug mode, see [Building a HAR in Debug Mode](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5#section197792874110).
+   > To use the **[-b _bundlename_]** parameter, ensure that the installed application to be specified is an application signed by a debug certificate. For details about how to request and use the debug certificate, see [Requesting a Debug Certificate](https://developer.huawei.com/consumer/en/doc/app/agc-help-add-debugcert-0000001914263178).
 
 ## Managing Applications
 
@@ -601,7 +600,7 @@ Run the following commands:
    >
    > In the **hdc file send -b com.example.myapplication a.txt data/storage/el2/base/b.txt** command, the **-b** parameter is specified to transfer the **a.txt** file in the current local directory to the relative path **data/storage/el2/base/** of the **com.example.myapplication** application data directory and rename the file to **b.txt**.
    >
-   > To use the **\[-b _bundlename_]** parameter, ensure that the installed application to be specified is an application built in debug mode. For details about how to build an application in debug mode, see [Building a HAR in Debug Mode](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5#section197792874110).
+   > To use the **[-b _bundlename_]** parameter, ensure that the installed application to be specified is an application signed by a debug certificate. For details about how to request and use the debug certificate, see [Requesting a Debug Certificate](https://developer.huawei.com/consumer/en/doc/app/agc-help-add-debugcert-0000001914263178).
 
 2. Send a file from a remote device to the local device.
 
@@ -636,7 +635,7 @@ Run the following commands:
    >
    > In the **hdc file recv -b com.example.myapplication data/storage/el2/base/b.txt a.txt** command, the **-b** parameter is specified to transfer the **b.txt** file in the relative path **data/storage/el2/base/** of the **com.example.myapplication** application data directory to the current local directory and rename the file to **a.txt**.
    >
-   > To use the **\[-b _bundlename_]** parameter, ensure that the installed application to be specified is an application built in debug mode. For details about how to build an application in debug mode, see [Building a HAR in Debug Mode](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5#section197792874110).
+   > To use the **[-b _bundlename_]** parameter, ensure that the installed application to be specified is an application signed by a debug certificate. For details about how to request and use the debug certificate, see [Requesting a Debug Certificate](https://developer.huawei.com/consumer/en/doc/app/agc-help-add-debugcert-0000001914263178).
 
 ## Port Forwarding
 
@@ -749,11 +748,7 @@ Port forwarding type supported by the device: TCP, DEV, localabstract, localfile
    **Return value**
    | Return Value| Description|
    | -------- | -------- |
-   | hdc start server, listening: _::ffff:127.0.0.1:8710_ | The server is started and the IP address and port number are displayed.|
-   | Start server finish | The server is started successfully.|
-   | hdc server process already exists | The server already exists.|
-   | Kill server finish | The server is restarted after the original server is terminated.|
-   | [Fail]Error information| Failed to start the server process.|
+   | No return value| The server is started successfully.|
 
    **Usage**
 
@@ -799,7 +794,7 @@ Port forwarding type supported by the device: TCP, DEV, localabstract, localfile
    **Return value**
    | Return Value| Description|
    | -------- | -------- |
-   | Connect server failed | Fails to connect to the server.| 
+   | Connect server failed | Fails to connect to the server.|
 
    **Usage**
 
@@ -1055,7 +1050,7 @@ Port forwarding type supported by the device: TCP, DEV, localabstract, localfile
 
 ### Server Logs
 
-#### Log Level
+#### Specifying the Log Level
 
 Specify the hdc log level. The default value is **LOG_INFO**. 
 
@@ -1064,10 +1059,10 @@ Specify the hdc log level. The default value is **LOG_INFO**.
    ```
 
    **Parameters**
-   | Parameter| Description|
-   | -------- | -------- |
-   | [level] | Log level.<br>0: LOG_OFF<br>1: LOG_FATAL<br>2: LOG_WARN<br>3: LOG_INFO<br>4: LOG_DEBUG<br>5: LOG_ALL<br>6: LOG_LIBUSB|
-   | command | Command to be executed.|
+| Parameter| Description|
+| -------- | -------- |
+| [level] | Log Level<br>0: LOG_OFF<br>1: LOG_FATAL<br>2: LOG_WARN<br>3: LOG_INFO<br>4: LOG_DEBUG<br>5: LOG_ALL<br>6: LOG_LIBUSB|
+| command | Command to be executed.|
 
    > **NOTE**
    >
@@ -1075,10 +1070,10 @@ Specify the hdc log level. The default value is **LOG_INFO**.
    > 2. You can change only the log levels of the current client and server processes.
 
    **Return value**
-   | Return Value| Description|
-   | -------- | -------- |
-   | Command output| Command execution result, which may vary with the command.|
-   | Log information| Logs of the specified level.|
+| Return Value| Description|
+| -------- | -------- |
+| Command output| Command execution result, which may vary with the command.|
+| Log information| Logs of the specified level.|
 
    **Usage**
 
@@ -1129,15 +1124,6 @@ Log-related environment variables
 |--------------------|-----|--------------------------------|
 | OHOS_HDC_LOG_LEVEL | 5   | The log level of the server process.<br>For details, see [Server Logs](#server-logs). |
 
-Configure environment variables as follows:
-
-The following shows how to set the **OHOS_HDC_LOG_LEVEL** environment variable to **5**.
-
-| OS| Configuration Method|
-|---|---|
-| Windows  | Choose **This PC >Properties >Advanced system settings >Advanced >Environment Variables**, add the environment variable **OHOS_HDC_LOG_LEVEL**, and set its value to **5**. After the configuration is complete, click **OK**. Restart the CLI or other software that uses OpenHarmony SDK for the new environment variable to take effect. |
-| Linux  | Add **export OHOS_HDC_LOG_LEVEL=5** to the end of the **~/.bash_profile** file, save the file, and run the **source ~/.bash_profile** command for the current environment variable to take effect.|
-| macOS | Add **export OHOS_HDC_LOG_LEVEL=5** to the end of the **~/.zshrc** file, save the file, and run the **source ~/.zshrc** command for the current environment variable to take effect. Restart the CLI or other software that uses OpenHarmony SDK for the new environment variable to take effect.|
 
 ### Device Logs
 
@@ -1148,6 +1134,63 @@ hdc shell hilog -w start                             // Enable the function of s
 hdc shell ls /data/log/hilog                     // View the stored HiLog logs.
 hdc file recv /data/log/hilog                  // Obtain the stored HiLog logs (including kernel logs).
 ```
+
+## Optional Configuration Items
+
+### OHOS_HDC_SERVER_PORT
+
+ 
+
+Sets the port of the hdc server to listen for. This port is used for data communication between the hdc client and hdc server. The default value of this parameter is **8710**.
+
+When the hdc server is started, it listens for port 8710 of the PC by default. The hdc client uses TCP to connect to the server through this port. If port 8710 of the PC has been used or you want to use another port, you can add the environment variable **OHOS_HDC_SERVER_PORT** to the system environment variable to listen for any unoccupied port when the server is started. You can set the port number to a value ranging from 1 to 65535.
+
+For example, set **OHOS_HDC_SERVER_PORT** to **18710**.
+
+### OHOS_HDC_LOG_LEVEL
+
+ 
+
+Sets the log level of the service process. The default value of this parameter is **3**. For details about the log level, see "Log Level" in [Server Logs](#server-logs).
+
+### OHOS_HDC_HEARTBEAT
+
+ 
+
+Sets whether to enable the heartbeat functionality for the hdc server and hdc daemon. This functionality is enabled by default.
+
+After the hdc server and hdc daemon are started, they send heartbeat packets to each other and record the heartbeat packets in hdc logs for checking the device connection status.
+
+When the environment variable **OHOS_HDC_HEARTBEAT** is set to **1** for the hdc server, its heartbeat functionality is disabled. When the device is connected to the PC, the hdc server notifies the hdc daemon that the heartbeat functionality is disabled and does not send heartbeat packets to each other.
+
+When **OHOS_HDC_HEARTBEAT** is set to other values, the heartbeat function is enabled.
+
+### OHOS_HDC_CMD_RECORD
+
+
+Sets whether to enable the hdc command recording functionality. This functionality is enabled by default. This functionality records only the executed hdc commands but not the command execution results.
+
+When this parameter is set to **1**, the command recording functionality is enabled. When it is not set or set to any other number, the command recording functionality is disabled.
+
+This parameter is supported since API version 20.
+
+Paths for storing recording logs:
+
+| OS| Path| Remarks|
+| -------- | -------- | -------- |
+| Windows | %temp%\hdc_cmd\ | Example: **C:\Users\Username\AppData\Local\Temp\hdc_cmd\**.<br>Replace *Username* with the actual one.|
+| Linux | /tmp/hdc_cmd/ | - |
+| macOS| $TMPDIR/hdc_cmd/ | - |
+
+### Configuring Environment Variables
+
+In the following example, the **OHOS_HDC_CMD_RECORD** environment variable is set to **1**.
+
+| OS| Configuration Method|
+|---|---|
+| Windows  | Choose **This PC >Properties >Advanced system settings >Advanced >Environment Variables**, add the environment variable **OHOS_HDC_CMD_RECORD**, and set its value to **1**. After the configuration is complete, click **OK**. Restart the CLI or other software that uses OpenHarmony SDK for the new environment variable to take effect. |
+| Linux  | Add **export OHOS_HDC_CMD_RECORD=1** to the end of the **~/.bash_profile** file, save the file, and run the **source ~/.bash_profile** command for the current environment variable to take effect.|
+| macOS | Add **export OHOS_HDC_CMD_RECORD=1** to the end of the **~/.zshrc** file, save the file, and run the **source ~/.zshrc** command for the current environment variable to take effect. Restart the CLI or other software that uses OpenHarmony SDK for the new environment variable to take effect.|
 
 ## FAQs
 
@@ -1354,7 +1397,7 @@ The **_bundlename_** specified in the **hdc shell [-b bundlename] [command]** co
 
 * Scenario 1: The specified application is not installed on the device.
 
-* Scenario 2: The specified application is not built in debug mode.
+* Scenario 2: The specified application is not a debug application.
 
 * Scenario 3: The specified application is not started.
 
@@ -1380,22 +1423,21 @@ The **_bundlename_** specified in the **hdc shell [-b bundlename] [command]** co
 
    c. If the application is not a debug application but a release application, the** _bundlename_** cannot be specified.
 
-* Scenario 2: Run the **hdc shell "bm dump -n bundlename | grep debug"** command to check whether the specified application is built in debug mode. The expected result is **"appProvisionType": "debug", "debug": true**.
+* Scenario 2: Run the **hdc shell "bm dump -n bundlename | grep appProvisionType"** command to check whether the application specified in the command can be debugged. The expected output is **"appProvisionType": "debug"**.
 
    For example, run the following command to check the bundle name **com.example.myapplication**:
 
    ```shell
-   hdc shell "bm dump -n com.example.myapplication | grep debug"
+   hdc shell "bm dump -n com.example.myapplication | grep appProvisionType"
    ```
 
-   If the application corresponding to the bundle name is built in debug mode, the following information is displayed:
+   If the application is a debug application, the following information is displayed:
 
    ```shell
    "appProvisionType": "debug",
-   "debug": true,
    ```
 
-   For details about how to build an application in debug mode, see [Building a HAR in Debug Mode](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5#section197792874110).
+   To build a debug application, you need to use a debug certificate for signature. For details about how to request and use the debug certificate, see [Requesting a Debug Certificate](https://developer.huawei.com/consumer/en/doc/app/agc-help-add-debugcert-0000001914263178).
 
 * Scenario 3: Ensure that the bundle specified by the command has been started.
 

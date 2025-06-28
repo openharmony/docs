@@ -15,12 +15,25 @@ Currently, the system provides the default style and custom style for the **AVCa
 1. Create an AVSession of the voice_call type. The AVSession constructor provides **AVSessionType** to specify the session type, and **voice_call** indicates the call type. If no AVSession is created, an empty list is displayed.
 
    ```ts
-   import { avSession } from '@kit.AVSessionKit';
-
-   private session: avSession.AVSession | undefined = undefined;
-
-   // Create an AVSession of the voice_call type.
-   this.session = await avSession.createAVSession(getContext(this), 'voiptest', 'voice_call');
+    import { avSession } from '@kit.AVSessionKit';
+    @Entry
+    @Component
+    struct Index {
+      @State message: string = 'hello world';
+    
+      build() { 
+        Column() {
+            Text(this.message)
+              .onClick(()=>{
+                let context = this.getUIContext().getHostContext() as Context;
+                // Create an AVSession of the voice_call type.
+                let session: AVSessionManager.AVSession = await AVSessionManager.createAVSession(context, 'voiptest', 'voice_call');
+              })
+          }
+        .width('100%')
+        .height('100%')
+      }
+    }
    ```
 
 2. Create the **AVCastPicker** component on the call page that provides device switching.

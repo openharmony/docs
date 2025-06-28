@@ -29,7 +29,7 @@ import { Queue } from '@kit.ArkTS';
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | length | number | 是 | 否 | Queue的元素个数。 |
 
@@ -258,7 +258,7 @@ queue.add(4);
 
 // 使用方法一：
 while(queue.length) {
-  let item = queue.pop()
+  let item = queue.pop();
   console.log("value:" + item);
 }
 

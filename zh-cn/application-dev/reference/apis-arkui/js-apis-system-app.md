@@ -216,7 +216,7 @@ static requestFullWindow(options?: RequestFullWindowOptions): void
 
 请求应用以全窗口运行，FA在某些场景下（如半模态FA）会以非全窗口运行，调用该接口会从非全窗口切换为全窗口运行，如果已经以全窗口运行则该接口调用无效。
 
-从API Version 7开始，推荐使用[`@ohos.window`](js-apis-window.md)。
+从API Version 7开始，推荐使用[`@ohos.window`](arkts-apis-window.md)。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

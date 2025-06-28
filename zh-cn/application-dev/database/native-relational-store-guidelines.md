@@ -1,4 +1,4 @@
-# 通过关系型数据库实现数据持久化（C/C++）
+# 通过关系型数据库实现数据持久化 (C/C++)
 
 ## 场景介绍
 
@@ -24,7 +24,7 @@ RelationalStore提供了一套完整的对本地数据库进行管理的机制�
 
 ## 接口说明
 
-详细的接口说明请参考[RDB](../reference/apis-arkdata/_r_d_b.md)。
+详细的接口说明请参考[RDB](../reference/apis-arkdata/capi-rdb.md)。
 
 | 接口名称 | 描述 |
 | -------- | -------- |
@@ -350,7 +350,7 @@ libnative_rdb_ndk.z.so
 
     如需配置fts（Full-Text Search，即全文搜索引擎）动态库，可使用OH_Rdb_SetPlugins接口进行配置。
     
-    使用约束详见[StoreConfig](../reference/apis-arkdata/js-apis-data-relationalStore.md#storeconfig)中pluginLibs配置项。
+    使用约束详见[StoreConfig](../reference/apis-arkdata/arkts-apis-data-relationalStore-i.md#storeconfig)中pluginLibs配置项。
 
     ```c
     const char *plugins[] = {

@@ -19,9 +19,9 @@ The Socket Connection module allows an application to transmit data over a socke
 
 ## When to Use
 
-Applications transmit data over TCP, UDP, Multicast, or TLS socket connections. The main application scenarios are as follows:
+Applications can transmit data over TCP, UDP, Multicast, or TLS socket connections. The main application scenarios include:
 
-- Implementing data transmission over TCP socket or UDP socket connections
+- Implementing data transmission over TCP/UDP socket connections
 - Implementing data transmission over TCP socket server connections
 - Implementing data transmission over multicast socket connections
 - Implementing data transmission over local socket connections
@@ -44,11 +44,11 @@ Socket connection functions are mainly implemented by the **socket** module. The
 | constructLocalSocketInstance()       | Creates a **LocalSocket** object.                                                 |
 | constructLocalSocketServerInstance() | Creates a **LocalSocketServer** object.                                           |
 | listen()                           | Subscribes to **connect** events from the client. This API is supported only for TCP and local socket connections.            |
-| bind()                             | Binds an IP address to a port, or binds the address of a local socket.                                       |
+| bind()                             | Binds the IP address and port, or binds the local socket path.                                       |
 | send()                             | Sends data.                                                                    |
 | close()                            | Closes a socket connection.                                                                    |
 | getState()                         | Obtains the status of a socket connection.                                                            |
-| connect()                          | Connects to the specified IP address and port, or connects to a local socket. This API is supported only for TCP and local socket connections.         |
+| connect()                          | Connects to the specified IP address and port, or connects to the local socket. (This API is supported only for TCP and local socket connections.)         |
 | getRemoteAddress()                 | Obtains the peer address of the socket connection. This function is supported only for TCP. The **connect** API must have been called before you use this API.                  |
 | setExtraOptions()                  | Sets other properties of the socket connection.                                                  |
 | getExtraOptions()                  | Obtains other properties of a socket connection. This API is supported only for local socket connections.                           |
@@ -69,7 +69,7 @@ Socket connection functions are mainly implemented by the **socket** module. The
 | on(type:&nbsp;'connect')           | Subscribes to **message** events of a socket connection. This API is supported only for TCP and local socket connections.                           |
 | off(type:&nbsp;'connect')          | Unsubscribes from **message** events of a socket connection. This API is supported only for TCP and local socket connections.                        |
 
-TLS socket connection functions are mainly provided by the **tls_socket** module. The following table describes the related APIs.
+TLS socket connection functions are mainly provided by the **socket** module. The following table describes the related APIs.
 
 | API                      | Description                                                  |
 | ---------------------------- | ---------------------------------------------------------- |
@@ -97,11 +97,11 @@ TLS socket connection functions are mainly provided by the **tls_socket** module
 
 The implementation is similar for UDP socket and TCP socket connections. The following uses data transmission over a TCP socket connection as an example.
 
-1. Import the required **socket** module.
+1. Import the required socket module.
 
-2. Create a TCP socket connection. A **TCPSocketConnction** object is returned.
+2. Create a TCP socket connection. A **TCPSocket** object is returned.
 
-3. (Optional) Subscribe to events of the **TCPSocketConnction** object.
+3. (Optional) Subscribe to TCP socket connection events.
 
 4. Bind the IP address and port number. The port number can be specified or randomly allocated by the system.
 
@@ -187,9 +187,9 @@ setTimeout(() => {
 
 ## Transmitting Data over TCP Socket Server Connections
 
-The TCP socket server connection process is described as follows:
+The TCP socket connection process on the server is as follows:
 
-1. Import the required **socket** module.
+1. Import the required socket module.
 2. Create a TCP socket server connection. A **TCPSocketServer** object is returned.
 3. Bind the local IP address and port, and listen for and accept TCP socket connections established over the socket.
 4. Subscribe to **connect** events of the **TCPSocketServer** object to listen for client connection status changes.
@@ -270,7 +270,7 @@ setTimeout(() => {
 
 ## Transmitting Data over Multicast Socket Connections
 
-1. Import the required **socket** module.
+1. Import the required socket module.
 
 2. Create a **MulticastSocket** object.
 
@@ -338,7 +338,7 @@ multicast.dropMembership(addr).then(() => {
 
 ## Transmitting Data over Local Socket Connections
 
-1. Import the required **socket** module.
+1. Import the required socket module.
 
 2. Call **constructLocalSocketInstance** to create a **LocalSocket** object.
 
@@ -350,8 +350,13 @@ multicast.dropMembership(addr).then(() => {
 
 6. If the socket connection is no longer needed, unsubscribe from message events and close the connection.
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain the UIAbilityContext, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
 ```ts
 import { socket } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
 
 // Create a local socket connection. A LocalSocket object is returned.
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
@@ -372,7 +377,8 @@ client.on('close', () => {
 });
 
 // Specify the address of local socket file to connect to the server.
-let sandboxPath: string = getContext(this).filesDir + '/testSocket'
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let sandboxPath: string = context.filesDir + '/testSocket';
 let localAddress : socket.LocalAddress = {
   address: sandboxPath
 }
@@ -407,9 +413,9 @@ client.close().then(() => {
 
 ## Transmitting Data over Local Socket Server Connections
 
-The local socket connection process on the server is described as follows:
+The local socket connection process on the server is as follows:
 
-1. Import the required **socket** module.
+1. Import the required socket module.
 
 2. Call **constructLocalSocketServerInstance** to create a **LocalSocketServer** object.
 
@@ -427,13 +433,19 @@ The local socket connection process on the server is described as follows:
 
 9. Unsubscribe from events of the **LocalSocketConnection** and **LocalSocketServer** objects.
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain the UIAbilityContext, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
 ```ts
 import { socket } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
 
 // Create a local socket server connection. A LocalSocketServer object is returned.
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
 // Create and bind the local socket file testSocket for listening.
-let sandboxPath: string = getContext(this).filesDir + '/testSocket'
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let sandboxPath: string = context.filesDir + '/testSocket';
 let listenAddr: socket.LocalAddress = {
   address: sandboxPath
 }
@@ -492,17 +504,17 @@ server.off('error');
 
 ## Implementing Encrypted Data Transmission over TLS Socket Connections
 
-The TLS socket connection process on the client is described as follows:
+The TLS socket connection process on the client is as follows:
 
-1. Import the required **socket** module.
+1. Import the required socket module.
 
-2. Bind the IP address and port number of the server.
+2. Bind the server IP address and port number.
 
 3. For two-way authentication, upload the client CA certificate and digital certificate. For one-way authentication, upload the client CA certificate.
 
-4. Create a TLS socket connection. A **TLSSocketConnection** object is returned.
+4. Create a TLS socket connection. A **TLSsocket** object is returned.
 
-5. (Optional) Subscribe to events of the **TLSSocketConnection** object.
+5. (Optional) Subscribe to TLS socket connection events.
 
 6. Send data over the connection.
 
@@ -652,7 +664,7 @@ tlsTwoWay.close((err: BusinessError) => {
 
 The process of upgrading a TCP socket connection to a TLS socket connection is as follows:
 
-1. Import the required **socket** module.
+1. Import the required socket module.
 
 2. Create a TCP socket connection. For details, see [Transmitting Data over TCP Socket or UDP Socket Connections](#transmitting-data-over-tcp-socket-or-udp-socket-connections).
 
@@ -660,7 +672,7 @@ The process of upgrading a TCP socket connection to a TLS socket connection is a
 
 4. For two-way authentication, upload the client CA certificate and digital certificate. For one-way authentication, upload the client CA certificate.
 
-5. (Optional) Subscribe to events of the **TLSSocketConnection** object.
+5. (Optional) Subscribe to TLS socket connection events.
 
 6. Send data over the connection.
 
@@ -779,13 +791,13 @@ tcp.bind(ipAddress, (err: BusinessError) => {
 
 ## Implementing Encrypted Data Transmission over TLS Socket Server Connections
 
-The TLS socket connection process on the server is described as follows:
+The TLS socket connection process on the server is as follows:
 
-1. Import the required **socket** module.
+1. Import the required socket module.
 
 2. Start the service and bind the IP address and port number to set up a TLS socket connection. Then, create and initialize a TLS session, and load and verify the certificate key.
 
-3. Subscribe to **connect** events of the **TLSSocketServer** object.
+3. Subscribes to **TLSSocketServer** connection events.
 
 4. Obtain a **TLSSocketConnection** object through the callback when the client initiates a TLS socket connection.
 
@@ -871,4 +883,3 @@ tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
 // Unsubscribe from events of the TLSSocketServer object.
 tlsServer.off('connect');
 ```
-

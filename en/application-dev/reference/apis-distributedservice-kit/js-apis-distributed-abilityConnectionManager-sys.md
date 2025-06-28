@@ -1,4 +1,4 @@
-# @ohos.abilityConnectionManager (Cross-Device Connection Management) (System API)
+# @ohos.distributedsched.abilityConnectionManager (Cross-Device Connection Management) (System API)
 
 The **abilityConnectionManager** module provides APIs for cross-device connection management. After successful networking between devices (login with the same account and enabling of Bluetooth on the devices), a system application and third-party application can start a [UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md) of the same application across the devices. After a connection is successfully established, data can be transmitted across the devices, including strings, [ArrayBuffer](../../arkts-utils/arraybuffer-object.md) byte streams, images, and transport streams.
 
@@ -14,11 +14,11 @@ The **abilityConnectionManager** module provides APIs for cross-device connectio
 import { abilityConnectionManager } from '@kit.DistributedServiceKit';
 ```
 
-## abilityConnectionManager.on
+## abilityConnectionManager.on('collaborateEvent')
 
-on(type:&nbsp;'collaborateEvent'&nbsp;|&nbsp;'receiveImage',&nbsp;sessionId:&nbsp;number,&nbsp;callback:&nbsp;Callback&lt;EventCallbackInfo&gt;):&nbsp;void
+on(type:&nbsp;'collaborateEvent',&nbsp;sessionId:&nbsp;number,&nbsp;callback:&nbsp;Callback&lt;CollaborateEventInfo&gt;):&nbsp;void
 
-Registers a callback listener for the **collaborateEvent** and **receiveImage** events.
+Registers a listener for the **collaborateEvent** events.
 
 **System capability**: SystemCapability.DistributedSched.AppCollaboration
 
@@ -28,9 +28,9 @@ Registers a callback listener for the **collaborateEvent** and **receiveImage** 
 
 | Name      | Type                                   | Mandatory  | Description   |
 | --------- | ------------------------------------- | ---- | ----- |
-| type | string  | Yes   |   Event type, which can be:<br>\- `collaborateEvent`: event triggered when `collaborateEvent()` is called.<br>\- `receiveImage`: event triggered when `sendImage()` is called.  |
-| sessionId | number  | Yes   | ID of the collaborative session.   |
-| callback | Callback&lt;[EventCallbackInfo](js-apis-distributed-abilityConnectionManager.md#eventcallbackinfo)&gt; | Yes   | Registered callback function.   |
+| type | string  | Yes   |   Event type, which is **collaborateEvent**. This event is triggered when `collaborateEvent()` is called.  |
+| sessionId | number  | Yes   | Collaboration session ID.   |
+| callback | Callback&lt;[CollaborateEventInfo](js-apis-distributed-abilityConnectionManager.md#CollaborateEventInfo)&gt; | Yes   | Registered callback.   |
 
 **Error codes**
 
@@ -47,21 +47,17 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   import { abilityConnectionManager } from '@kit.DistributedServiceKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  abilityConnectionManager.on("collaborateEvent", this.sessionId,(callbackInfo) => {
-    hilog.info(0x0000, 'testTag', 'session collaborateEvent, sessionId is', callbackInfo.sessionId);
+  let sessionId = 100;
+  abilityConnectionManager.on("collaborateEvent", sessionId, (callbackInfo) => {
+    hilog.info(0x0000, 'testTag', 'session collaborateEvent, eventType is', callbackInfo.eventType);
   });
-
-  abilityConnectionManager.on("receiveImage", this.sessionId,(callbackInfo) => {
-    hilog.info(0x0000, 'testTag', 'session receiveImage, sessionId is', callbackInfo.sessionId);
-  });
-
   ```
 
-## abilityConnectionManager.off
+## abilityConnectionManager.on('receiveImage')
 
-off(type:&nbsp;'collaborateEvent'&nbsp;|&nbsp;'receiveImage',&nbsp;sessionId:&nbsp;number,&nbsp;callback?:&nbsp;Callback&lt;EventCallbackInfo&gt;):&nbsp;void
+on(type:&nbsp;'receiveImage',&nbsp;sessionId:&nbsp;number,&nbsp;callback:&nbsp;Callback&lt;EventCallbackInfo&gt;):&nbsp;void
 
-Unregisters the callback listener for the **collaborateEvent** and **receiveImage** events.
+Registers a listener for the **receiveImage** events.
 
 **System capability**: SystemCapability.DistributedSched.AppCollaboration
 
@@ -71,9 +67,9 @@ Unregisters the callback listener for the **collaborateEvent** and **receiveImag
 
 | Name      | Type                                   | Mandatory  | Description   |
 | --------- | ------------------------------------- | ---- | ----- |
-| type | string  | Yes   |   Event type, which can be:<br>\- `collaborateEvent`: event triggered when `collaborateEvent()` is called.<br>\- `receiveImage`: event triggered when `sendImage()` is called.   |
-| sessionId | number  | Yes   | ID of the collaborative session.   |
-| callback | Callback&lt;[EventCallbackInfo](js-apis-distributed-abilityConnectionManager.md#eventcallbackinfo)&gt; | No   | Registered callback function.   |
+| type | string  | Yes   |   Event type, which is **receiveImage**. This event is triggered when `sendImage()` is called.  |
+| sessionId | number  | Yes   | Collaboration session ID.   |
+| callback | Callback&lt;[EventCallbackInfo](js-apis-distributed-abilityConnectionManager.md#eventcallbackinfo)&gt; | Yes   | Registered callback.   |
 
 **Error codes**
 
@@ -90,8 +86,83 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   import { abilityConnectionManager } from '@kit.DistributedServiceKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  abilityConnectionManager.off("collaborateEvent", this.sessionId);
-  abilityConnectionManager.off("receiveImage", this.sessionId);
+  abilityConnectionManager.on("receiveImage", sessionId, (callbackInfo) => {
+    hilog.info(0x0000, 'testTag', 'session receiveImage, sessionId is', callbackInfo.sessionId);
+  });
+  ```
+
+## abilityConnectionManager.off('collaborateEvent')
+
+off(type:&nbsp;'collaborateEvent',&nbsp;sessionId:&nbsp;number,&nbsp;callback?:&nbsp;Callback&lt;CollaborateEventInfo&gt;):&nbsp;void
+
+Unregisters the listener for the **collaborateEvent** events.
+
+**System capability**: SystemCapability.DistributedSched.AppCollaboration
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name      | Type                                   | Mandatory  | Description   |
+| --------- | ------------------------------------- | ---- | ----- |
+| type | string  | Yes   |   Event type, which is **collaborateEvent**.   |
+| sessionId | number  | Yes   | Collaboration session ID.   |
+| callback | Callback&lt;[CollaborateEventInfo](js-apis-distributed-abilityConnectionManager.md#CollaborateEventInfo)&gt; | No   | Registered callback. If a value is passed in, listening will be disabled for the specified event callback. If no value is passed in, listening will be disabled for all event callbacks.   |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 201      | Permission verification failed. The application does not have the permission required to call the API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**Example**
+
+  ```ts
+  import { abilityConnectionManager } from '@kit.DistributedServiceKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+
+  let sessionId = 100;
+  abilityConnectionManager.off("collaborateEvent", sessionId);
+  ```
+
+## abilityConnectionManager.off('receiveImage')
+
+off(type:&nbsp;'receiveImage',&nbsp;sessionId:&nbsp;number,&nbsp;callback?:&nbsp;Callback&lt;EventCallbackInfo&gt;):&nbsp;void
+
+Unregisters the listener for the **receiveImage** events.
+
+**System capability**: SystemCapability.DistributedSched.AppCollaboration
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name      | Type                                   | Mandatory  | Description   |
+| --------- | ------------------------------------- | ---- | ----- |
+| type | string  | Yes   |   Event type, which is **receiveImage**.   |
+| sessionId | number  | Yes   | Collaboration session ID.   |
+| callback | Callback&lt;[EventCallbackInfo](js-apis-distributed-abilityConnectionManager.md#eventcallbackinfo)&gt; | No   | Registered callback. If a value is passed in, listening will be disabled for the specified event callback. If no value is passed in, listening will be disabled for all event callbacks.   |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 201      | Permission verification failed. The application does not have the permission required to call the API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**Example**
+
+  ```ts
+  import { abilityConnectionManager } from '@kit.DistributedServiceKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+
+  let sessionId = 100;
+  abilityConnectionManager.off("receiveImage", sessionId);
   ```
 
 ## abilityConnectionManager.sendImage
@@ -108,9 +179,9 @@ Sends images from one device to another after a connection is successfully estab
 
 | Name      | Type                                     | Mandatory  | Description   |
 | --------- | --------------------------------------- | ---- | ----- |
-| sessionId | number | Yes   | ID of the collaborative session.|
+| sessionId | number | Yes   | Collaboration session ID.|
 | image | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Yes   | Image information.|
-| quality | number | No   | Image compression quality. The value range is [0, 100]. The default value is **30**.|
+| quality | number | No   | Image compression quality. The value ranges from 0 to 100. The default value is **30**.|
 
 **Return value**
 
@@ -133,7 +204,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   ```ts
   import { abilityConnectionManager } from '@kit.DistributedServiceKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
-  import CameraService from '../model/CameraService';
   import { photoAccessHelper } from '@kit.MediaLibraryKit';
   import { image } from '@kit.ImageKit';
   import { fileIo as fs } from '@kit.CoreFileKit';
@@ -152,10 +222,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
       let file = fs.openSync(photoSelectResult.photoUris[0], fs.OpenMode.READ_ONLY);
       hilog.info(0x0000, 'testTag', 'file.fd:' + file.fd);
 
+      let sessionId = 100;
       let imageSourceApi: image.ImageSource = image.createImageSource(file.fd);
       if (imageSourceApi) {
         imageSourceApi.createPixelMap().then((pixelMap) => {
-          abilityConnectionManager.sendImage(this.sessionId, pixelMap)
+          abilityConnectionManager.sendImage(sessionId, pixelMap)
         });
       } else {
         hilog.info(0x0000, 'testTag', 'imageSourceApi is undefined');
@@ -180,8 +251,8 @@ Creates transport streams to send images and videos from one device to another a
 
 | Name      | Type                                     | Mandatory  | Description   |
 | --------- | --------------------------------------- | ---- | ----- |
-| sessionId | number | Yes   | ID of the collaborative session.|
-| param | [StreamParam](#streamparam) | Yes   | Transport stream information.|
+| sessionId | number | Yes   | Collaboration session ID.|
+| param | [StreamParam](#streamparam) | Yes   | Transport stream configuration.|
 
 **Return value**
 
@@ -209,6 +280,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   hilog.info(0x0000, 'testTag', 'startStream');
+  let sessionId = 100;
   abilityConnectionManager.createStream(sessionId ,{name: 'receive', role: 0}).then(async (streamId) => {
     let surfaceParam: abilityConnectionManager.SurfaceParam = {
       width: 640,
@@ -218,7 +290,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
     let surfaceId = abilityConnectionManager.getSurfaceId(streamId, surfaceParam);
     hilog.info(0x0000, 'testTag', 'surfaceId is'+surfaceId);
     AppStorage.setOrCreate<string>('surfaceId', surfaceId);
-    await CameraService.initCamera(surfaceId, 0);
     abilityConnectionManager.startStream(streamId);
   })
   ```
@@ -237,9 +308,9 @@ Sets the binding relationship between transport streams and surfaces.
 
 | Name      | Type                                     | Mandatory  | Description   |
 | --------- | --------------------------------------- | ---- | ----- |
-| sessionId | number | Yes   | ID of the collaborative session.|
-| surfaceId | string | Yes   | Unique ID of the surface.|
-| param | [SurfaceParam](#surfaceparam) | Yes   | Surface configuration parameters.|
+| sessionId | number | Yes   | Collaboration session ID.|
+| surfaceId | string | Yes   | Unique surface ID.|
+| param | [SurfaceParam](#surfaceparam) | Yes   | Surface configuration.|
 
 **Error codes**
 
@@ -257,6 +328,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   hilog.info(0x0000, 'testTag', 'setSurfaceId');
+  let sessionId = 100;
   abilityConnectionManager.createStream(sessionId ,{name: 'receive', role: 0}).then(async (streamId) => {
     let surfaceParam: abilityConnectionManager.SurfaceParam = {
       width: 640,
@@ -282,8 +354,8 @@ Obtains the unique ID of the surface bound to the specified transport streams.
 
 | Name      | Type                                     | Mandatory  | Description   |
 | --------- | --------------------------------------- | ---- | ----- |
-| sessionId | number | Yes   | ID of the collaborative session.|
-| param | [SurfaceParam](#surfaceparam) | Yes   | Surface configuration parameters.|
+| sessionId | number | Yes   | Collaboration session ID.|
+| param | [SurfaceParam](#surfaceparam) | Yes   | Surface configuration.|
 
 **Return value**
 
@@ -307,6 +379,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   hilog.info(0x0000, 'testTag', 'getSurfaceId');
+  let sessionId = 100;
   abilityConnectionManager.createStream(sessionId ,{name: 'receive', role: 0}).then(async (streamId) => {
     let surfaceParam: abilityConnectionManager.SurfaceParam = {
       width: 640,
@@ -331,8 +404,8 @@ Updates the configuration of the surface bound to the specified transport stream
 
 | Name      | Type                                     | Mandatory  | Description   |
 | --------- | --------------------------------------- | ---- | ----- |
-| sessionId | number | Yes   | ID of the collaborative session.|
-| param | [SurfaceParam](#surfaceparam) | Yes   | Surface configuration parameters.|
+| sessionId | number | Yes   | Collaboration session ID.|
+| param | [SurfaceParam](#surfaceparam) | Yes   | Surface configuration.|
 
 **Error codes**
 
@@ -350,6 +423,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   hilog.info(0x0000, 'testTag', 'updateSurfaceParam');
+  let sessionId = 100;
   abilityConnectionManager.createStream(sessionId ,{name: 'receive', role: 0}).then(async (streamId) => {
     let surfaceParam: abilityConnectionManager.SurfaceParam = {
       width: 640,
@@ -374,7 +448,7 @@ Destroys the transport streams after the sending of images and videos is complet
 
 | Name      | Type                                     | Mandatory  | Description   |
 | --------- | --------------------------------------- | ---- | ----- |
-| sessionId | number | Yes   | ID of the collaborative session.|
+| sessionId | number | Yes   | Collaboration session ID.|
 
 **Error codes**
 
@@ -392,6 +466,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   import { abilityConnectionManager } from '@kit.DistributedServiceKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
+  let sessionId = 100;
   hilog.info(0x0000, 'testTag', 'destroyStream called');
   abilityConnectionManager.destroyStream(sessionId)
   ```
@@ -410,7 +485,7 @@ Starts transmission of the specified transport streams.
 
 | Name      | Type                                     | Mandatory  | Description   |
 | --------- | --------------------------------------- | ---- | ----- |
-| sessionId | number | Yes   | ID of the collaborative session.|
+| sessionId | number | Yes   | Collaboration session ID.|
 
 **Error codes**
 
@@ -428,6 +503,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   import { abilityConnectionManager } from '@kit.DistributedServiceKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
+  let sessionId = 100;
   hilog.info(0x0000, 'testTag', 'startStream called');
   abilityConnectionManager.startStream(sessionId)
   ```
@@ -446,7 +522,7 @@ Stops transmission of the specified transport streams.
 
 | Name      | Type                                     | Mandatory  | Description   |
 | --------- | --------------------------------------- | ---- | ----- |
-| sessionId | number | Yes   | ID of the collaborative session.|
+| sessionId | number | Yes   | Collaboration session ID.|
 
 **Error codes**
 
@@ -463,6 +539,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   import { abilityConnectionManager } from '@kit.DistributedServiceKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
+  let sessionId = 100;
   hilog.info(0x0000, 'testTag', 'stopStream called');
   abilityConnectionManager.stopStream(sessionId)
   ```
@@ -486,14 +563,14 @@ Defines stream transmission configuration parameters.
 
 | Name      | Type   | Readable  | Writable  | Mandatory  | Description         |
 | -------- | ------ | ---- | ---- | ---- | ----------- |
-| name  | string   | Yes   | No   | Yes   |   Name of the transport stream. The name must be the same on the TX end and RX end.|
-| role  | [StreamRole](#streamrole)     | Yes   | No   | Yes   |   Stream transmission mode (TX stream or RX stream).|
-| bitrate  | number   | Yes   | No   | No   |   Video bit rate (valid only at the TX end).|
-| colorSpaceConversionTarget  | [colorSpaceManager.ColorSpace](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspace)     | Yes   | No   | No   |   Target color space for conversion.|
+| name  | string   | Yes   | No   | Yes   |   Stream name. It must be the same on the TX end and RX end.|
+| role  | [StreamRole](#streamrole)     | Yes   | No   | Yes   |   Stream role, which can be TX stream or RX stream.|
+| bitrate  | number   | Yes   | No   | No   |   Video bit rate. It is valid only for the TX end. The default value is **80000**.|
+| colorSpaceConversionTarget  | [colorSpaceManager.ColorSpace](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspace)     | Yes   | No   | No   |  Target color space.|
 
 ## SurfaceParam
 
-Defines surface configuration parameters.
+Defines the surface configuration.
 
 **System capability**: SystemCapability.DistributedSched.AppCollaboration
 
@@ -502,7 +579,7 @@ Defines surface configuration parameters.
 | width | number | Yes   | No   | Yes   | Encoding width. Set this parameter prior to stream transmission. Once stream transmission starts, the setting cannot be updated until the stream transmission ends. If you need to update the setting, stop stream transmission first.|
 | height | number | Yes   | No   | Yes  | Encoding length. Set this parameter prior to stream transmission. Once stream transmission starts, the setting cannot be updated until the stream transmission ends. If you need to update the setting, stop stream transmission first.|
 | format | [VideoPixelFormat](#videopixelformat) | Yes   | No   | No   | Video pixel format (valid only at the TX end).|
-| rotation | number | Yes   | No   | No   | Video rotation angle.|
+| rotation | number | Yes   | No   | No   | Rotation angle of the video. The value range is {0, 90, 180, 270}. The default value is **0**.|
 | flip | [FlipOptions](#flipoptions) | Yes   | No   | No   | Video flip option.|
 
 ## CollaborateEventType
@@ -549,3 +626,34 @@ Enumerates video pixel formats.
 | UNKNOWN   | Unknown pixel format.|
 | NV12  | NV12, YUV420 semi-planar format.|
 | NV21  | NV21, YUV420 semi-planar format.|
+
+## ConnectOptions
+
+Defines the connection options for the application.
+
+**System capability**: SystemCapability.DistributedSched.AppCollaboration
+
+| Name         | Type   | Read-Only  | Optional  | Description         |
+| ----------- | ------- | ---- | ---- | ----------- |
+| needSendStream    | boolean  | No   | No   | Whether to send streams. The value **true** means to send streams, and the value **false** means the opposite.   |
+| needReceiveStream    | boolean  | No   | No   | Whether to receive streams. The value **true** means to receive streams, and the value **false** means the opposite.    |
+
+## EventCallbackInfo
+
+Defines the event callback information.
+
+**System capability**: SystemCapability.DistributedSched.AppCollaboration
+
+| Name      | Type   | Readable  | Writable  | Description         |
+| -------- | ------ | ---- | ---- | ----------- |
+| image  | image.PixelMap | Yes   | No   |   Received image.|
+
+## StartOptionParams
+
+Enumerates application start options.
+
+**System capability**: SystemCapability.DistributedSched.AppCollaboration
+ 
+| Name|  Value| Description|
+|-------|-------|-------|
+| START_IN_BACKGROUND | 1 |Start of the peer application in the background.|

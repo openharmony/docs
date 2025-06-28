@@ -9,7 +9,7 @@
 
 
 
-  **图1** 主轴为水平方向的Flex容器示意图  
+  **图1** 主轴为水平方向的Flex容器示意图
 
 ![flex-layout](figures/flex-layout.png)
 
@@ -25,7 +25,7 @@
 
 在弹性布局中，容器的子元素可以按照任意方向排列。通过设置参数direction，可以决定主轴的方向，从而控制子元素的排列方向。
 
-  **图2** 弹性布局方向图  
+  **图2** 弹性布局方向图
 
 ![flex-layout-direction](figures/flex-layout-direction.png)
 
@@ -364,7 +364,7 @@
 
 ### 子元素设置交叉轴对齐
 
-子元素的[alignSelf](../reference/apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#alignself)属性也可以设置子元素在父容器交叉轴的对齐格式，且会覆盖Flex布局容器中alignItems配置。如下例所示：
+子元素的[alignSelf](../reference/apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#alignself)属性也可以设置子元素在父容器交叉轴的对齐方式，且会覆盖Flex布局容器中alignItems配置。如下例所示：
 
 ```ts
 Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) { // 容器组件设置子元素居中

@@ -19,7 +19,7 @@ If an application is developed using ArkTS and C++ language, or if its architect
 ## Using Native APIs to Implement JSBridge Communication (Recommended)
 In the previous version, the return value of native synchronization APIs is fixed to void. With the continuous expansion of services, many service scenarios require APIs to provide return values to support synchronous calls. To meet this requirement, substitute APIs are introduced since API version 16. They support return values of the Boolean, string, and buffer types.
 
-In addition, the [permission](#permission) field is added for the synchronous API [registerJavaScriptProxyEx](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#registerjavascriptproxyex) and asynchronous API [registerAsyncJavaScriptProxyEx](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#registerasyncjavascriptproxyex) to control the calling permission.
+In addition, the [permission](#invoking-application-functions-on-the-frontend-page) field is added for the synchronous API [registerJavaScriptProxyEx](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#registerjavascriptproxyex) and asynchronous API [registerAsyncJavaScriptProxyEx](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#registerasyncjavascriptproxyex) to control the calling permission.
 
 ### Substitute APIs
 
@@ -134,7 +134,7 @@ Use [registerJavaScriptProxyEx](../reference/apis-arkweb/_ark_web___controller_a
   // If the permission parameter is empty, permission control is not performed.
   controller->registerJavaScriptProxyEx(webTag, &proxyObject, /*permission*/"");
   ```
-  <a id="permission"></a>
+
   - The **permission** parameter is a JSON string as follows:
   ```json
   {

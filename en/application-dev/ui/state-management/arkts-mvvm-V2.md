@@ -19,6 +19,8 @@ This section uses a simple to-do list as an example to introduce the decorators 
 
 First, start with the most basic static to-do list with no state change or dynamic interaction.
 
+**Example  1**
+
 ```ts
 // src/main/ets/pages/1-Basic.ets
 
@@ -42,7 +44,9 @@ struct TodoList {
 
 After the static to-do list is displayed, it needs to respond to interactions and be dynamically updated so that users can change the task completion status. Therefore, the \@Local decorator is introduced to manage the internal state of the component. When the variable decorated by \@Local changes, the bound UI component is re-rendered.
 
-In this example, the **isFinish** property decorated by \@Local is added to indicate whether the task is finished. Two icons, **finished.png** and **unfinished.png**, are provided to display the task status. When a user taps a to-do item, the **isFinish** state is switched to change the icon and add a strikethrough.
+In Example 2, the **isFinish** property decorated by \@Local is added to indicate whether the task is finished. Two icons, **finished.png** and **unfinished.png**, are provided to display the task status. When a user taps a to-do item, the **isFinish** state is switched to change the icon and add a strikethrough.
+
+**Example 2**
 
 ```ts 
 // src/main/ets/pages/2-Local.ets
@@ -74,7 +78,9 @@ struct TodoList {
 ### Adding \@Param to Enable Components to Receive External Input
 After the local status of the task is switched, to enhance flexibility of the to-do list, a name of each task should be dynamically set, instead of being fixed in code. After the \@Param decorator is introduced, the decorated variable of the child component can receive the value passed by the parent component, implementing one-way data synchronization. By default, \@Param is read-only. To locally update the input value in the child component, use \@Param and \@Once.
 
-In this example, each to-do item is abstracted as a **TaskItem** component. The **taskName** attribute decorated by \@Param passes the task name from the parent component **TodoList** so that the **TaskItem** component is flexible and reusable, and can receive and render different task names. After receiving the initial value, the **isFinish** property decorated by \@Param and \@Once can be updated in the child component.
+In Example 3, each to-do item is abstracted as a **TaskItem** component. The **taskName** attribute decorated by \@Param passes the task name from the parent component **TodoList** so that the **TaskItem** component is flexible and reusable, and can receive and render different task names. After receiving the initial value, the **isFinish** property decorated by \@Param and \@Once can be updated in the child component.
+
+**Example 3**
 
 ```ts
 // src/main/ets/pages/3-Param.ets
@@ -117,7 +123,9 @@ struct TodoList {
 
 After the task name can be dynamically set, the content of the task list is still fixed. You need to add the functions of adding and deleting task items to dynamically expand the task list. Therefore, use the \@Event decorator to enable the child component to output data to the parent component.
 
-In this example, the delete button is added to each task item, and the function of adding a new task is added to the bottom of the task list. When the delete button of the child component **TaskItem** is clicked, the **deleteTask** event is triggered and passed to the parent component **TodoList**. Then the parent component responds and removes the task from the list. By using \@Param and \@Event, the child component can receive data from and pass events back to the parent component to implement two-way data synchronization.
+In Example 4, the delete button is added to each task item, and the function of adding a new task is added to the bottom of the task list. When the delete button of the child component **TaskItem** is clicked, the **deleteTask** event is triggered and passed to the parent component **TodoList**. Then the parent component responds and removes the task from the list. By using \@Param and \@Event, the child component can receive data from and pass events back to the parent component to implement two-way data synchronization.
+
+**Example 4**
 
 ```ts
 // src/main/ets/pages/4-Event.ets
@@ -179,7 +187,8 @@ struct TodoList {
 
 As the number of task list items increases after the function of adding or deleting tasks is added, a method for efficiently rendering multiple child components with the same structure is required to improve the performance of the UI. Therefore, the **Repeat** method is introduced to optimize the rendering process of the task list. **Repeat** supports two modes: virtualScroll is applicable to scenarios with a large amount of data. It loads components as required in scrolling containers, greatly saving memory and improving rendering efficiency; non-virtualScroll is applicable to scenarios with a small amount of data. All components are rendered at a time, and only the changed data is updated, avoiding overall re-rendering.
 
-In this example, the non-virtualScroll mode is selected because of few task items. Create an array **tasks**, use the **Repeat** method to iterate each item in the array, and dynamically generate and reuse the **TaskItem** component. In this way, you can efficiently reuse existing components when adding or deleting a task to avoid repeated component renderings, improving code reusability and rendering efficiency.
+In Example 5, the non-virtualScroll mode is selected because of few task items. Create an array **tasks**, use the **Repeat** method to iterate each item in the array, and dynamically generate and reuse the **TaskItem** component. In this way, you can efficiently reuse existing components when adding or deleting a task to avoid repeated component renderings, improving code reusability and rendering efficiency.
+**Example 5**
 
 ```ts
 // src/main/ets/pages/5-Repeat.ets
@@ -242,7 +251,9 @@ struct TodoList {
 
 After multiple functions are implemented, the management of the task list becomes more and more complex. To better process task data changes, especially in multi-level nested structures, you should ensure that property changes can be deeply observed and the UI can be automatically re-rendered. In this case, the \@ObservedV2 and \@Trace decorators are introduced. Compared with \@Local, which can only observe the changes of the object itself and its first level, \@ObservedV2 and \@Trace are more suitable for complex structure scenarios such as multi-level nesting and inheritance. In the \@ObservedV2 decorated class, when the \@Trace decorated property changes, the UI component bound to the attribute is re-rendered.
 
-In this example, **Task** is abstracted as a class and marked by \@ObservedV2. \@Trace is used to mark the **isFinish** property. **Task** is nested in **TaskItem** when the later is nested in the **TodoList** component. In the outermost **TodoList**, the "All finished" and "All unfinished" buttons are added. Each time these buttons are clicked, the **isFinish** property of the innermost **Task** class is directly updated. \@ObservedV2 and \@Trace ensure that the re-render of the corresponding UI component of **isFinish** can be observed, thereby implementing in-depth observation of nested class properties.
+In Example 6, **Task** is abstracted as a class and marked by \@ObservedV2. \@Trace is used to mark the **isFinish** property. **Task** is nested in **TaskItem** when the later is nested in the **TodoList** component. In the outermost **TodoList**, the "All finished" and "All unfinished" buttons are added. Each time these buttons are clicked, the **isFinish** property of the innermost **Task** class is directly updated. \@ObservedV2 and \@Trace ensure that the re-render of the corresponding UI component of **isFinish** can be observed, thereby implementing in-depth observation of nested class properties.
+
+**Example 6**
 
 ```ts
 // src/main/ets/pages/6-ObservedV2Trace.ets
@@ -331,7 +342,9 @@ struct TodoList {
 
 Based on the current task list function, some additional functions can be added to improve user experience, such as listening for task status changes and dynamic computation of the number of unfinished tasks. Therefore, the \@Monitor and \@Computed decorators are introduced. \@Monitor is used to listen for in-depth state variables and trigger the custom callback method when the property changes. \@Computed is used to decorate the **get** method and detect the changes of computed properties. When the value changes, it is computed only once to reduce the overhead of repeated computation.
 
-In this example, \@Monitor is used to listen for the in-depth **isFinish** property of **task** in **TaskItem**. When the task status changes, the **onTasksFinished** callback is invoked to output a log to record the change. In addition, the number of unfinished tasks in the **TodoList** is recorded. Use \@Computed to decorate **tasksUnfinished**. The value is automatically recomputed when the task status changes. The two decorators are used to implement in-depth listening and efficient computation of state variables.
+In Example 7, \@Monitor is used to listen for the in-depth **isFinish** property of **task** in **TaskItem**. When the task status changes, the **onTasksFinished** callback is invoked to output a log to record the change. In addition, the number of unfinished tasks in the **TodoList** is recorded. Use \@Computed to decorate **tasksUnfinished**. The value is automatically recomputed when the task status changes. The two decorators are used to implement in-depth listening and efficient computation of state variables.
+
+**Example 7**
 
 ```ts
 // src/main/ets/pages/7-MonitorComputed.ets
@@ -397,7 +410,7 @@ struct TodoList {
       Text('To-Dos')
         .fontSize(40)
         .margin({ bottom: 10 })
-      Text('Unfinished: ${this.tasksUnfinished}')
+      Text(`Unfinished: ${this.tasksUnfinished}`)
       Repeat<Task>(this.tasks)
         .each((obj: RepeatItem<Task>) => {
           TaskItem({
@@ -430,7 +443,9 @@ struct TodoList {
 
 With continuous enhancement of a to-do list function, an application may involve a plurality of pages or function modules. In this case, a global state needs to be shared with multiple pages. For example, in a to-do list application, you can add a settings page to link with the home page. To implement cross-page state sharing, **AppStorageV2** is introduced to store and share the global state of an application among multiple UIAbility instances.
 
-In this example, **SettingAbility** is added to load **SettingPage**. **SettingPage** contains a **Setting** class, in which the **showCompletedTask** property is used to control whether to display finished tasks. Users can switch the option by using a switch. Two abilities share the data through **AppStorageV2** with the key **Setting**, and the corresponding data is of the **Setting** class. When **AppStorageV2** connects to **Setting** for the first time, if no stored data exists, a **Setting** instance whose **showCompletedTask** is **true** is created by default. After you change the settings on the settings page, the task list on the home page is updated accordingly. With **AppStorageV2**, data can be shared across abilities and pages.
+In Example 8, **SettingAbility** is added to load **SettingPage**. **SettingPage** contains a **Setting** class, in which the **showCompletedTask** property is used to control whether to display finished tasks. Users can switch the option by using a switch. Two abilities share the data through **AppStorageV2** with the key **Setting**, and the corresponding data is of the **Setting** class. When **AppStorageV2** connects to **Setting** for the first time, if no stored data exists, a **Setting** instance whose **showCompletedTask** is **true** is created by default. After you change the settings on the settings page, the task list on the home page is updated accordingly. With **AppStorageV2**, data can be shared across abilities and pages.
+
+**Example 8**
 
 ```ts
 // src/main/ets/pages/8-AppStorageV2.ets
@@ -484,7 +499,7 @@ struct TodoList {
   ];
   @Local newTaskName: string = '';
   @Local setting: Setting = AppStorageV2.connect(Setting, 'Setting', () => new Setting())!;
-  private context = getContext(this) as common.UIAbilityContext;
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   finishAll(ifFinish: boolean) {
     for (let task of this.tasks) {
@@ -502,7 +517,7 @@ struct TodoList {
       Text('To-Dos')
         .fontSize(40)
         .margin({ bottom: 10 })
-      Text('Unfinished: ${this.tasksUnfinished}')
+      Text(`Unfinished: ${this.tasksUnfinished}`)
       Repeat<Task>(this.tasks.filter(task => this.setting.showCompletedTask || !task.isFinish))
         .each((obj: RepeatItem<Task>) => {
           TaskItem({
@@ -554,7 +569,7 @@ export class Setting {
 @ComponentV2
 struct SettingPage {
   @Local setting: Setting = AppStorageV2.connect(Setting, 'Setting', () => new Setting())!;
-  private context = getContext(this) as common.UIAbilityContext;
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   build() {
     Column() {
@@ -581,7 +596,9 @@ struct SettingPage {
 
 To ensure that the user can still view the previous task status when the application is restarted, a persistent storage solution can be introduced. **PersistenceV2** can persistently store data on device disks. Different from the runtime memory of **AppStorageV2**, **PersistenceV2** ensures that data remains unchanged even if an application is closed and restarted.
 
-In this example, a **TaskList** class is created to persistently store all task information through **PersistenceV2** with the key **TaskList**, and the corresponding data is of the **TaskList** class. When **PersistenceV2** connects to the **TaskList** for the first time, if there is no data, a **TaskList** instance whose array **tasks** is empty by default. In the **aboutToAppear** lifecycle function, if **TaskList** connected to **PersistenceV2** does not store task data, tasks are loaded from the local file **defaultTasks.json** and stored in **PersistenceV2**. After that, the completion status of each task is synchronized to **PersistenceV2**. In this way, even if the application is closed and restarted, all task data remains unchanged, thereby storing application status persistently.
+In Example 9, a **TaskList** class is created to persistently store all task information through **PersistenceV2** with the key **TaskList**, and the corresponding data is of the **TaskList** class. When **PersistenceV2** connects to the **TaskList** for the first time, if there is no data, a **TaskList** instance whose array **tasks** is empty by default. In the **aboutToAppear** lifecycle function, if **TaskList** connected to **PersistenceV2** does not store task data, tasks are loaded from the local file **defaultTasks.json** and stored in **PersistenceV2**. After that, the completion status of each task is synchronized to **PersistenceV2**. In this way, even if the application is closed and restarted, all task data remains unchanged, thereby storing application status persistently.
+
+**Example 9**
 
 ```ts
 // src/main/ets/pages/9-PersistenceV2.ets
@@ -652,7 +669,7 @@ struct TodoList {
   @Local taskList: TaskList = PersistenceV2.connect(TaskList, 'TaskList', () => new TaskList([]))!;
   @Local newTaskName: string = '';
   @Local setting: Setting = AppStorageV2.connect(Setting, 'Setting', () => new Setting())!;
-  private context = getContext(this) as common.UIAbilityContext;
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   async aboutToAppear() {
     this.taskList = PersistenceV2.connect(TaskList, 'TaskList', () => new TaskList([]))!;
@@ -677,7 +694,7 @@ struct TodoList {
       Text('To-Dos')
         .fontSize(40)
         .margin({ bottom: 10 })
-      Text('Unfinished: ${this.tasksUnfinished}')
+      Text(`Unfinished: ${this.tasksUnfinished}`)
       Repeat<Task>(this.taskList.tasks.filter(task => this.setting.showCompletedTask || !task.isFinish))
         .each((obj: RepeatItem<Task>) => {
           TaskItem({
@@ -732,7 +749,9 @@ The **defaultTasks.json** file is stored in **src/main/resources/rawfile** direc
 
 As application functions gradually expand, some UI elements in the code start to be repeated, increasing the code volume and making maintenance more complex. To solve this problem, you can use the \@Builder decorator to abstract repeated UI components into an independent **builder** method, facilitating reuse and code modularization.
 
-In this example, \@Builder is used to define the **ActionButton** method to manage the text, style, and touch events of various buttons in a unified manner, making the code simpler and improving the code maintainability. On this basis, \@Builder adjusts the layout and style, such as spacing, color, and size of the components, to make the to-do list UI more attractive and present a to-do list application with complete functions and a user-friendly UI.
+In Example 10, \@Builder is used to define the **ActionButton** method to manage the text, style, and touch events of various buttons in a unified manner, making the code simpler and improving the code maintainability. On this basis, \@Builder adjusts the layout and style, such as spacing, color, and size of the components, to make the to-do list UI more attractive and present a to-do list application with complete functions and a user-friendly UI.
+
+**Example 10**
 
 ```ts
 // src/main/ets/pages/10-Builder.ets
@@ -814,7 +833,7 @@ struct TodoList {
   @Local taskList: TaskList = PersistenceV2.connect(TaskList, 'TaskList', () => new TaskList([]))!;
   @Local newTaskName: string = '';
   @Local setting: Setting = AppStorageV2.connect(Setting, 'Setting', () => new Setting())!;
-  private context = getContext(this) as common.UIAbilityContext;
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   async aboutToAppear() {
     this.taskList = PersistenceV2.connect(TaskList, 'TaskList', () => new TaskList([]))!;
@@ -839,7 +858,7 @@ struct TodoList {
       Text('To-Dos')
         .fontSize(40)
         .margin(10)
-      Text('Unfinished: ${this.tasksUnfinished}')
+      Text(`Unfinished: ${this.tasksUnfinished}`)
         .margin({ left: 10, bottom: 10 })
       Repeat<Task>(this.taskList.tasks.filter(task => this.setting.showCompletedTask || !task.isFinish))
         .each((obj: RepeatItem<Task>) => {
@@ -1043,7 +1062,7 @@ export default struct TitleView {
       Text('To-Dos')
         .fontSize(40)
         .margin(10)
-      Text('Unfinished: ${this.tasksUnfinished}')
+      Text(`Unfinished: ${this.tasksUnfinished}`)
         .margin({ left: 10, bottom: 10 })
     }
   }
@@ -1176,7 +1195,7 @@ import BottomView from '../view/BottomView';
 struct TodoList {
   @Local taskList: TaskListViewModel = PersistenceV2.connect(TaskListViewModel, 'TaskList', () => new TaskListViewModel())!;
   @Local setting: Setting = AppStorageV2.connect(Setting, 'Setting', () => new Setting())!;
-  private context = getContext(this) as common.UIAbilityContext;
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   async aboutToAppear() {
     this.taskList = PersistenceV2.connect(TaskListViewModel, 'TaskList', () => new TaskListViewModel())!;
@@ -1221,8 +1240,8 @@ export class Setting {
 @ComponentV2
 struct SettingPage {
   @Local setting: Setting = AppStorageV2.connect(Setting, 'Setting', () => new Setting())!;
-  private context = getContext(this) as common.UIAbilityContext;
-
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  
   build(){
     Column(){
       Text('Settings')

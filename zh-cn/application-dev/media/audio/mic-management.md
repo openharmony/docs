@@ -6,7 +6,7 @@
 
 ## 开发步骤及注意事项
 
-在AudioVolumeGroupManager中提供了管理麦克风状态的方法，接口的详细说明请参考[API文档](../../reference/apis-audio-kit/js-apis-audio.md#audiovolumegroupmanager9)。
+在AudioVolumeGroupManager中提供了管理麦克风状态的方法，接口的详细说明请参考[API文档](../../reference/apis-audio-kit/arkts-apis-audio-AudioVolumeGroupManager.md)。
 
 1. 创建audioVolumeGroupManager对象。
      

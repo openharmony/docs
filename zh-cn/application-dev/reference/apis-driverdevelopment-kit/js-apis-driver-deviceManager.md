@@ -67,7 +67,7 @@ bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;,
 需要调用[deviceManager.queryDevices()](#devicemanagerquerydevices)获取设备信息以及device。
 
 > **说明**
-> 从 API version 10开始支持，从API version 18开始废弃。建议使用[deviceManager.bindDriverWithDeviceId](#devicemanagerbinddriverwithdeviceid18)替代。
+> 从 API version 10开始支持，从API version 19开始废弃。建议使用[deviceManager.bindDriverWithDeviceId](#devicemanagerbinddriverwithdeviceid19)替代。
 
 **需要权限：** ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
 
@@ -126,7 +126,7 @@ bindDeviceDriver(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;,
 需要调用[deviceManager.queryDevices()](#devicemanagerquerydevices)获取设备信息以及device。
 
 > **说明**
-> 从 API version 11开始支持，从API version 18开始废弃。建议使用[deviceManager.bindDriverWithDeviceId](#devicemanagerbinddriverwithdeviceid18)替代。
+> 从 API version 11开始支持，从API version 19开始废弃。建议使用[deviceManager.bindDriverWithDeviceId](#devicemanagerbinddriverwithdeviceid19)替代。
 
 **需要权限：** ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
 
@@ -181,7 +181,7 @@ bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;): Promise
 需要调用[deviceManager.queryDevices](#devicemanagerquerydevices)获取设备信息以及device。
 
 > **说明**
-> 从 API version 10开始支持，从API version 18开始废弃。建议使用[deviceManager.bindDriverWithDeviceId](#devicemanagerbinddriverwithdeviceid18)替代。
+> 从 API version 10开始支持，从API version 19开始废弃。建议使用[deviceManager.bindDriverWithDeviceId](#devicemanagerbinddriverwithdeviceid19)替代。
 
 **需要权限：** ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
 
@@ -237,7 +237,7 @@ bindDeviceDriver(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;): P
 需要调用[deviceManager.queryDevices](#devicemanagerquerydevices)获取设备信息以及device。
 
 > **说明**
-> 从 API version 11开始支持，从API version 18开始废弃。建议使用[deviceManager.bindDriverWithDeviceId](#devicemanagerbinddriverwithdeviceid18)替代。
+> 从 API version 11开始支持，从API version 19开始废弃。建议使用[deviceManager.bindDriverWithDeviceId](#devicemanagerbinddriverwithdeviceid19)替代。
 
 **需要权限：** ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
 
@@ -292,7 +292,7 @@ unbindDevice(deviceId: number, callback: AsyncCallback&lt;number&gt;): void
 解除设备绑定。
 
 > **说明**
-> 从 API version 10开始支持，从API version 18开始废弃。建议使用[deviceManager.unbindDriverWithDeviceId](#devicemanagerunbinddriverwithdeviceid18)替代。
+> 从 API version 10开始支持，从API version 19开始废弃。建议使用[deviceManager.unbindDriverWithDeviceId](#devicemanagerunbinddriverwithdeviceid19)替代。
 
 **需要权限**：ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
 
@@ -339,7 +339,7 @@ unbindDevice(deviceId: number): Promise&lt;number&gt;
 解除设备绑定。
 
 > **说明**
-> 从 API version 10开始支持，从API version 18开始废弃。建议使用[deviceManager.unbindDriverWithDeviceId](#devicemanagerunbinddriverwithdeviceid18)替代。
+> 从 API version 10开始支持，从API version 19开始废弃。建议使用[deviceManager.unbindDriverWithDeviceId](#devicemanagerunbinddriverwithdeviceid19)替代。
 
 **需要权限**：ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
 
@@ -382,7 +382,7 @@ try {
   console.error(`unbindDevice fail. Code is ${error.code}, message is ${error.message}`);
 }
 ```
-## deviceManager.bindDriverWithDeviceId<sup>18+</sup>
+## deviceManager.bindDriverWithDeviceId<sup>19+</sup>
 
 bindDriverWithDeviceId(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;): Promise&lt;RemoteDeviceDriver&gt;;
 
@@ -436,7 +436,7 @@ try {
 }
 ```
 
-## deviceManager.unbindDriverWithDeviceId<sup>18+</sup>
+## deviceManager.unbindDriverWithDeviceId<sup>19+</sup>
 
 unbindDriverWithDeviceId(deviceId: number): Promise&lt;number&gt;
 

@@ -1,4 +1,4 @@
-# @ohos.app.ability.continueManager (continueManager)
+# @ohos.app.ability.continueManager (跨端迁移)
 
 continueManager提供了应用跨端迁移的管理能力，如获取应用跨端迁移过程中快速拉起目标应用的结果。
 
@@ -34,11 +34,10 @@ on(type: 'prepareContinue', context: Context, callback: AsyncCallback&lt;Continu
 
 **错误码：**
 
-以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[DistributedSchedule错误码](errorcode-DistributedSchedule.md)。
+以下错误码详细介绍请参考[DistributedSchedule错误码](errorcode-DistributedSchedule.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 16300501 | the system ability work abnormally. |
 
 **示例**：
@@ -100,11 +99,10 @@ off(type: 'prepareContinue', context: Context, callback?: AsyncCallback&lt;Conti
 
 **错误码：**
 
-以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[DistributedSchedule错误码](errorcode-DistributedSchedule.md)。
+以下错误码详细介绍请参考[DistributedSchedule错误码](errorcode-DistributedSchedule.md)。
 
 | 错误码ID    | 错误信息 |
 |----------| -------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 16300501 | the system ability work abnormally. |
 
 **示例**：

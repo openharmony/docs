@@ -68,6 +68,8 @@
 | [OH_NetStack_GetPinSetForHostName](#oh_netstack_getpinsetforhostname)(const char \*hostname, [NetStack_CertificatePinning](_net_stack___certificate_pinning.md) \*pin) | 获取证书锁定信息。 |
 | [OH_NetStack_GetCertificatesForHostName](#oh_netstack_getcertificatesforhostname)(const char \*hostname, [NetStack_Certificates](_net_stack___certificates.md) \*certs) | 获取证书信息。 |
 | [OH_Netstack_DestroyCertificatesContent](#oh_netstack_destroycertificatescontent)([NetStack_Certificates](_net_stack___certificates.md) \*certs) | 释放证书内容。 |
+| [OH_Netstack_IsCleartextPermitted](#oh_netstack_iscleartextpermitted)(bool \*isCleartextPermitted) | 整体明文HTTP是否允许。 |
+| [OH_Netstack_IsCleartextPermittedByHostName](#oh_netstack_iscleartextpermittedbyhostname)(const char \*hostname, bool \*isCleartextPermitted) | 按域名明文HTTP是否允许。 |
 
 ### 变量
 
@@ -400,6 +402,63 @@ void OH_Netstack_DestroyCertificatesContent(NetStack_Certificates * certs)
 | 名称  | 描述             |
 | ----- | ---------------- |
 | certs | 证书信息结构体。 |
+
+### OH_Netstack_IsCleartextPermitted()
+
+```
+int32_t  OH_Netstack_IsCleartextPermitted(bool *isCleartextPermitted)
+```
+
+**描述**
+
+从应用预置network_config.json文件中获取整体明文HTTP是否允许信息，默认允许明文HTTP访问。
+
+**系统能力：** SystemCapability.Communication.NetStack
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称     | 描述                       |
+| -------- | -------------------------- |
+| isCleartextPermitted | 整体明文HTTP是否允许。返回true表示允许访问明文HTTP，false表示不允许。默认返回true。                  |
+
+**返回：**
+
+0 - 成功。
+
+201 - 权限校验失败。
+
+401 - 参数设置错误。
+
+### OH_Netstack_IsCleartextPermittedByHostName()
+
+```
+int32_t OH_Netstack_IsCleartextPermittedByHostName(const char *hostname, bool *isCleartextPermitted)
+```
+
+**描述**
+
+从应用预置network_config.json文件中获取按域名明文HTTP是否允许信息，默认允许明文HTTP访问。
+
+**系统能力：** SystemCapability.Communication.NetStack
+
+**起始版本：** 18
+
+**参数:**
+
+| 名称     | 描述                       |
+| -------- | -------------------------- |
+| hostname | 主机名。                   |
+| isCleartextPermitted | 按域名明文HTTP是否允许。返回true表示允许明文HTTP访问该主机，false表示不允许。默认返回true。                  |
+
+**返回：**
+
+0 - 成功。
+
+201 - 权限校验失败。
+
+401 - 参数设置错误。
 
 ### OH_WebSocketClient_AddHeader()
 

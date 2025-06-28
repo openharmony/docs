@@ -27,7 +27,7 @@ import { AttributeUpdater } from '@kit.ArkUI';
 >  4. 开发者需要自行保障AttributeUpdater中T和C的类型匹配。比如T为ImageAttribute，C要对应为ImageInterface，否则可能导致
 >  使用updateConstructorParams时功能异常。
 >  
->  5. updateConstructorParams当前只支持Button，Image，Text和Span组件。
+>  5. updateConstructorParams当前只支持Button，Image，Text，Span，SymbolSpan和ImageSpan组件。
 >  
 >  6. AttributeUpdater不支持深浅色切换等状态管理相关的操作。
 
@@ -41,9 +41,9 @@ type Initializer\<T> = () => T
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## AttributeUpdater<T, C = Initializer\<T>>
-为[AttributeModifier](arkui-ts/ts-universal-attributes-attribute-modifier.md#AttributeModifier)的实现类，开发者需要自定义class继承AttributeUpdater。
+为[AttributeModifier](arkui-ts/ts-universal-attributes-attribute-modifier.md#attributemodifiert)的实现类，开发者需要自定义class继承AttributeUpdater。
 
-其中C代表组件的构造函数类型，比如Text组件的TextInterface，Image组件的ImageInterface等，需要使用updateConstructorParams时才需要传递C类型。
+其中C代表组件的构造函数类型，比如Text组件的TextInterface，Image组件的ImageInterface等，仅在使用updateConstructorParams时才需要传递C类型。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -86,23 +86,41 @@ AttributeUpdater首次设置给组件时提供的样式。
 import { AttributeUpdater } from '@kit.ArkUI';
 
 class MyButtonModifier extends AttributeUpdater<ButtonAttribute> {
+  // 该AttributeUpdater对象第一次使用的时候触发的回调
   initializeModifier(instance: ButtonAttribute): void {
-    instance.backgroundColor('#ff2787d9')
-      .width('50%')
-      .height(30);
+    instance.backgroundColor('#ffd5d5d5')
+      .labelStyle({ maxLines: 3 })
+      .width('80%')
+  }
+
+  // 该AttributeUpdater对象后续使用或者更新的时候触发的回调
+  applyNormalAttribute(instance: ButtonAttribute): void {
+    instance.borderWidth(1);
   }
 }
 
 @Entry
 @Component
-struct updaterDemo1 {
+struct Index {
   modifier: MyButtonModifier = new MyButtonModifier();
+  @State flushTheButton: string = 'Button';
 
   build() {
     Row() {
       Column() {
-        Button("Button")
+        Button(this.flushTheButton)
           .attributeModifier(this.modifier)
+          .onClick(() => {
+            // 通过AttributeUpdater的attribute对属性进行修改
+            // 需要注意先通过组件的attributeModifier属性方法建立组件与AttributeUpdater绑定关系
+            this.modifier.attribute?.backgroundColor('#ff2787d9').labelStyle({ maxLines: 5 });
+          })
+        Button('Change The message to flush the Button')
+          .width('80%')
+          .labelStyle({ maxLines: 2 })
+          .onClick(() => {
+            this.flushTheButton = 'Updates' + this.flushTheButton;
+          })
       }
       .width('100%')
     }
@@ -179,7 +197,7 @@ updateConstructorParams: C
 
 **示例：** 
 
-使用updateConstructorParams更新组件构造入参。
+使用updateConstructorParams更新组件的构造入参。
 
 ```ts
 // xxx.ets

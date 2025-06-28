@@ -40,11 +40,11 @@ setBatteryConfig(sceneName: string, sceneValue: string): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)。
+以下错误码的详细介绍请参见[电量信息错误码](errorcode-battery-info.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4900101 | Failed to connect to the service. |
+| 5100101 | Failed to connect to the service. |
 | 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
 | 202     | Permission verification failed. A non-system application calls a system API. |
 
@@ -84,11 +84,11 @@ getBatteryConfig(sceneName: string): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)。
+以下错误码的详细介绍请参见[电量信息错误码](errorcode-battery-info.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4900101 | Failed to connect to the service. |
+| 5100101 | Failed to connect to the service. |
 | 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
 | 202     | Permission verification failed. A non-system application calls a system API. |
 
@@ -127,11 +127,11 @@ isBatteryConfigSupported(sceneName: string): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)。
+以下错误码的详细介绍请参见[电量信息错误码](errorcode-battery-info.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4900101 | Failed to connect to the service. |
+| 5100101 | Failed to connect to the service. |
 | 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
 | 202     | Permission verification failed. A non-system application calls a system API. |
 
@@ -152,7 +152,7 @@ isBatteryConfigSupported(sceneName: string): boolean
 
 **系统能力**：SystemCapability.PowerManager.BatteryManager.Core
 
-| 名称      | 类型        | 可读 | 可写 |  说明     |
+| 名称      | 类型        | 只读 | 可选 |  说明     |
 | --------------- | ------------------- | ---- | ---- | ---------------------|
 | estimatedRemainingChargeTime<sup>9+</sup> | number                                         | 是   | 否   | 表示当前设备充满电的预估时间，单位毫秒。此接口为系统接口。          |
 | totalEnergy<sup>9+</sup>                  | number                                         | 是   | 否   | 表示当前设备电池的总容量，单位毫安时。此接口为系统接口。   |

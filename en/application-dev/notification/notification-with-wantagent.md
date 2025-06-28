@@ -1,17 +1,21 @@
 # Adding a WantAgent Object to a Notification
 
-When publishing a notification, if you want users to tap the notification panel to start the target application component or publish a public event, you can use the Ability Kit to apply for [WantAgent](../reference/apis-ability-kit/js-apis-app-ability-wantAgent.md) and encapsulate it into the notification message.
+An application requests [WantAgent](../reference/apis-ability-kit/js-apis-app-ability-wantAgent.md) from Ability Kit and encapsulates it into the notification. When a notification is published, the user may tap a message or a button in the notification panel to start the target application or publish a common event.
 
-**Figure 1** Publishing a notification with a WantAgent object 
- ![notification_wantagent](figures/notification_wantagent.png) 
+The following figure shows a notification carrying action buttons.
+
+![notification_wantagent](figures/notification_actionButtons.png)
+
+## Working Principles
+
+![notification_wantagent](figures/notification_wantagent.png)
 
 ## Available APIs
 
-For details about the APIs, see [@ohos.wantAgent (WantAgent)](../reference/apis-ability-kit/js-apis-app-ability-wantAgent.md).
-
 | **API**| **Description**|
 | -------- | -------- |
-| getWantAgent(info:&nbsp;WantAgentInfo,&nbsp;callback:&nbsp;AsyncCallback&lt;WantAgent&gt;):&nbsp;void | Creates a **WantAgent** object.|
+| [publish](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagerpublish-1)(request: NotificationRequest): Promise\<void\>       | Publishes a notification. |
+| [getWantAgent](../reference/apis-ability-kit/js-apis-app-ability-wantAgent.md#wantagentgetwantagent)(info:&nbsp;WantAgentInfo,&nbsp;callback:&nbsp;AsyncCallback&lt;WantAgent&gt;):&nbsp;void | Creates a **WantAgent** object.|
 
 ## How to Develop
 
@@ -86,9 +90,23 @@ For details about the APIs, see [@ohos.wantAgent (WantAgent)](../reference/apis-
    });
    ```
 
-4. Create a **NotificationRequest** object and publish a notification that carries the **WantAgent** object.
+4. Create a **NotificationRequest** object and publish a notification carrying **WantAgent**.
+
+   > **NOTE**
+   >
+   > - If **WantAgent** is encapsulated in a notification, **WantAgent** is triggered when the notification is tapped. If a notification contains action buttons, the buttons are displayed when the notification is tapped and **WantAgent** is triggered when the notification is tapped again.
+   >
+   > - If **WantAgent** is encapsulated in the action buttons, the buttons are displayed under the notification when the notification is tapped and **WantAgent** is triggered when a button is tapped.
 
    ```typescript
+   // Create the NotificationActionButton object.
+   let actionButton: notificationManager.NotificationActionButton = {
+     title: 'Test_Title',
+     // Before using wantAgentObj, ensure that a value has been assigned to it (that is, step 3 is performed).
+     // WantAgent of the notification buttons
+     wantAgent: wantAgentObj
+   }
+   
    // Create a NotificationRequest object.
    let notificationRequest: notificationManager.NotificationRequest = {
      content: {
@@ -100,9 +118,10 @@ For details about the APIs, see [@ohos.wantAgent (WantAgent)](../reference/apis-
        },
      },
      id: 6,
-     label: 'TEST',
-     // Before using wantAgentObj, ensure that a value has been assigned to it (that is, step 3 is performed).
+     // WantAgent of the notification
      wantAgent: wantAgentObj,
+     // Action buttons
+     actionButtons: [actionButton],
    }
    
    notificationManager.publish(notificationRequest, (err: BusinessError) => {
@@ -113,5 +132,3 @@ For details about the APIs, see [@ohos.wantAgent (WantAgent)](../reference/apis-
      hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in publishing notification.');
    });
    ```
-
-5. When the user touches the notification from the notification panel, the system automatically triggers the action specified in the **WantAgent** object.

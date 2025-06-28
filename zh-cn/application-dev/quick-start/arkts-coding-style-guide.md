@@ -704,7 +704,7 @@ if (isFoo = false) {
 **【正例】**
 
 ```
-const isFoo = someBoolean; // 在上面赋值，if条件判断中直接使用
+const isFoo = false; // 在上面赋值，if条件判断中直接使用
 if (isFoo) {
   // ...
 }

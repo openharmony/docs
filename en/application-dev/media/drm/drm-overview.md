@@ -37,7 +37,9 @@ Be familiar with the following basic concepts before development:
 
 - DRM plugin
 
-  A DRM solution driver integrated into the system, implementing the DRM HDI and providing DRM-related features.<!--RP1--><!--RP1End-->
+  A DRM solution driver integrated into the system, implementing the DRM HDI and providing DRM-related features.
+  
+<!--RP1--><!--RP1End-->
 
 - MediaKeySystem
 

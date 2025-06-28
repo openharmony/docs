@@ -24,7 +24,7 @@ accessibilityGroup(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 无障碍分组，设置为true时表示该组件及其所有子组件为一整个可以选中的组件，无障碍服务将不再关注其子组件内容。<br/>默认值：false |
+| value  | boolean | 是   | 无障碍分组，设置为true时表示该组件及其所有子组件为一整个可以选中的组件，无障碍服务将不再关注其子组件内容；设置为false表示不启用无障碍分组。<br/>默认值：false |
 
 ## accessibilityGroup<sup>14+</sup>
 
@@ -46,8 +46,8 @@ accessibilityGroup(isGroup: boolean, accessibilityOptions: AccessibilityOptions)
 
 | 参数名               | 类型                                                    | 必填 | 说明                                                         |
 | -------------------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| isGroup              | boolean                                                 | 是   | 无障碍分组，设置为true时表示该组件及其所有子组件为一整个可以选中的组件，无障碍服务将不再关注其子组件内容。<br/>默认值：false |
-| accessibilityOptions | [AccessibilityOptions](#accessibilityoptions14对象说明) | 是   | accessibilityPreferred设置为true时，使应用优先拼接无障碍文本进行朗读。<br/>默认值：false            |
+| isGroup              | boolean                                                 | 是   | 无障碍分组，设置为true时表示该组件及其所有子组件为一整个可以选中的组件，无障碍服务将不再关注其子组件内容；设置为false表示不启用无障碍分组。<br/>默认值：false |
+| accessibilityOptions | [AccessibilityOptions](#accessibilityoptions14对象说明) | 是   | accessibilityPreferred设置为true时，使应用优先拼接无障碍文本进行朗读；设置为false时，应用进行屏幕朗读时不会优先使用无障碍文本。<br/>默认值：false            |
 
 ## AccessibilityOptions<sup>14+</sup>对象说明
 
@@ -55,7 +55,7 @@ accessibilityGroup(isGroup: boolean, accessibilityOptions: AccessibilityOptions)
 
 | 名称                   | 类型    | 必填 | 说明                                                         |
 | ---------------------- | ------- | ---- | ------------------------------------------------------------ |
-| accessibilityPreferred | boolean | 否   | 若accessibilityPreferred设置为true，则深度遍历每个子节点时优先选择该子节点的无障碍文本accessibilityText。<br/>若无障碍文本为空则选择本身Text文本，最终将拼接完成的文本设置给accessibilityText与Text都为空的父节点。<br/>默认值：false |
+| accessibilityPreferred | boolean | 否   | 若accessibilityPreferred设置为true，则深度遍历每个子节点时优先选择该子节点的无障碍文本accessibilityText。<br/>若无障碍文本为空则选择本身Text文本，最终将拼接完成的文本设置给accessibilityText与Text都为空的父节点。<br/>若accessibilityPreferred设置为false，表示不启用此功能。<br/>默认值：false |
 
 ## accessibilityText
 
@@ -218,41 +218,7 @@ accessibilityRole(role: AccessibilityRoleType)
 
 | 参数名   | 类型    | 必填 | 说明                                                         |
 | -------- | ------- | ---- | ------------------------------------------------------------ |
-| role | [AccessibilityRoleType](ts-universal-attributes-accessibility.md#AccessibilityRoleType18) | 是   | 屏幕朗读播报的组件类型，如按钮、图表。具体类型可由开发者自定义。 |
-
-## onAccessibilityFocus<sup>18+</sup>
-
-onAccessibilityFocus(callback: AccessibilityFocusCallback)
-
-设置无障碍节点获焦、失焦状态的回调函数。当状态发生变化时，触发回调函数。
-
-**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名   | 类型    | 必填 | 说明                                                         |
-| -------- | ------- | ---- | ------------------------------------------------------------ |
-| callback | [AccessibilityFocusCallback](ts-universal-attributes-accessibility.md#AccessibilityFocusCallback18) | 是   | 向注册回调函数方通知当前获焦、失焦状态。 |
-
-## AccessibilityFocusCallback<sup>18+</sup>
-
-type AccessibilityFocusCallback = (isFocus: boolean) => void
-
-定义onAccessibilityFocus中使用的回调类型。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名  | 类型    | 必填 | 说明              |
-| ------ | ------ | ---- | ---------------- |
-| isFocus | boolean | 是 | 用于表示组件是否获焦。<br/>true：当前组件获焦。<br/>false：当前组件失焦。|
+| role | [AccessibilityRoleType](ts-universal-attributes-accessibility.md#accessibilityroletype18枚举说明) | 是   | 屏幕朗读播报的组件类型，如按钮、图表。具体类型可由开发者自定义。 |
 
 ## AccessibilityRoleType<sup>18+</sup>枚举说明
 
@@ -430,7 +396,7 @@ accessibilityDefaultFocus(focus: boolean)
 
 accessibilityUseSamePage(pageMode: AccessibilitySamePageMode)
 
-针对UIExtensionComponent等子树场景中可能出现的跳焦问题，可以通过设置accessibilityUseSamePage属性来解决。由于UEApage事件（由UIExtensionComponent拉起来的进程的page事件）和宿主page事件发送时序的问题，可能会导致焦点从当前组件移动到另一个组件，这种现象即为"跳焦"。
+针对跨进程嵌入式显示的组件，例如EmbeddedComponent，其子树场景中出现的跳焦问题，可通过设置accessibilityUseSamePage属性解决。因跨进程嵌入式显示的组件启动进程的page事件与宿主page事件发送时序不一致，可能导致焦点从当前组件移至另一组件，此现象称为“跳焦”。
 
 **卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
@@ -442,11 +408,11 @@ accessibilityUseSamePage(pageMode: AccessibilitySamePageMode)
 
 | 参数名   | 类型                                                         | 必填 | 说明                                             |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------ |
-| pageMode | [AccessibilitySamePageMode](#accessibilitysamepagemode18枚举说明) | 是   | 当前UIExtensionComponent和宿主应用的同page模式。 |
+| pageMode | [AccessibilitySamePageMode](#accessibilitysamepagemode18枚举说明) | 是   | 当前跨进程嵌入式显示的组件和宿主应用的同page模式。 |
 
 ## AccessibilitySamePageMode<sup>18+</sup>枚举说明
 
-当前UIExtensionComponent和宿主应用的同page模式。
+当前跨进程嵌入式显示的组件和宿主应用的同page模式。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -454,8 +420,8 @@ accessibilityUseSamePage(pageMode: AccessibilitySamePageMode)
 
 | 名称        | 值   | 说明                                                         |
 | ----------- | ---- | ------------------------------------------------------------ |
-| SEMI_SILENT | 0    | UEA（由UIExtensionComponent拉起来的进程的page事件）中如果是首次加载页面或者UEA页面的根节点发送的page事件会被忽略。 |
-| FULL_SILENT | 1    | UEA将忽略所有的page事件。                                      |
+| SEMI_SILENT | 0    | 跨进程嵌入式显示的组件拉起来的进程的page事件中如果是首次加载页面或者该事件页面的根节点发送的page事件会被忽略。 |
+| FULL_SILENT | 1    | 跨进程嵌入式显示的组件将忽略所有的page事件。                                      |
 
 ## accessibilityScrollTriggerable<sup>18+</sup>
 
@@ -581,7 +547,7 @@ struct Focus {
       Button().accessibilityLevel("yes").accessibilityText("accessibility无text 读accessibility")
       Button("无accessibility有text 读text").accessibilityLevel("yes")
       Button()
-      Button('btnl23').accessibilityText("有accessibility有text btn123").accessibilityLevel("yes")
+      Button('btn123').accessibilityText("有accessibility有text btn123").accessibilityLevel("yes")
       Button('btn123').accessibilityLevel("yes")
     }
     .accessibilityGroup(true, { accessibilityPreferred: true })
@@ -665,3 +631,109 @@ struct Index {
   }
 }
 ```
+
+### 示例5（设置无障碍屏幕朗读滚动和焦点绿框绘制）
+
+该示例主要演示accessibilityScrollTriggerable设置无障碍节点是否支持屏幕朗读滚动、accessibilityFocusDrawLevel设置无障碍焦点绿框的绘制层级和accessibilityUseSamePage设置跨进程嵌入式显示的组件,如[EmbeddedComponent](ts-container-embedded-component.md)的accessibilityUseSamePage属性。
+
+```ts
+// xxx.ets
+import { Want } from '@kit.AbilityKit';
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Message: ';
+  private want: Want = {
+    bundleName: 'com.example.embeddeddemo',
+    abilityName: 'ExampleEmbeddedAbility',
+  }
+
+  build() {
+    Row() {
+      List() {
+        ListItem() {
+          Column() {
+            Text(this.message)
+              .fontSize(18)
+              .fontColor('#2D2D2D')
+              .fontWeight(FontWeight.Medium)
+            Column() {
+              EmbeddedComponent(this.want, EmbeddedType.EMBEDDED_UI_EXTENSION)
+                .width('100%')
+                .height('90%')
+                .onTerminated((info) => {
+                  this.message = 'Termination: code = ' + info.code + ', want = ' + JSON.stringify(info.want);
+                })
+                .onError((error) => {
+                  this.message = 'Error: code = ' + error.code;
+                })
+                .accessibilityUseSamePage(AccessibilitySamePageMode.FULL_SILENT)
+                .width('90%')
+                .height('50%')
+                .backgroundColor('#F0F0F0')
+                .borderRadius(8)
+                .borderWidth(1)
+                .borderColor('#D9D9D9')
+
+              Stack() {
+                Column() {
+                  Text('文本1')
+                    .fontSize(18)
+                    .fontColor('#2D2D2D')
+                    .fontWeight(FontWeight.Medium)
+                  Text('文本1')
+                    .fontSize(18)
+                    .fontColor('#2D2D2D')
+                    .fontWeight(FontWeight.Medium)
+                    .accessibilityFocusDrawLevel(FocusDrawLevel.TOP)
+                }
+                .padding({ top: 8, bottom: 8 })
+
+                Column() {
+                  Text('文本2')
+                    .fontSize(18)
+                    .fontColor('#FFFFFF')
+                    .fontWeight(FontWeight.Medium)
+                  Text('文本2')
+                    .fontSize(18)
+                    .fontColor('#FFFFFF')
+                    .fontWeight(FontWeight.Medium)
+                }
+                .backgroundColor('#4A90E2')
+                .padding({
+                  left: 12,
+                  right: 12,
+                  top: 10,
+                  bottom: 10
+                })
+                .borderRadius(6)
+              }
+              .width('100%')
+              .margin({ top: 10, bottom: 10 })
+            }
+            .width('100%')
+            .height('100%')
+            .margin({ top: 15 })
+            .accessibilityText($r('app.string.app_name'))
+            .accessibilityDescription($r('app.string.module_desc'))
+            Column() {
+              Text('文本4')
+                .fontSize(18)
+                .fontWeight(FontWeight.Medium)
+            }
+            .margin({ top: 15 })
+          }
+          .width('100%')
+        }
+      }
+      .accessibilityScrollTriggerable(false)
+      .width('100%')
+    }
+    .height('100%')
+    .backgroundColor('#F7F9FC')
+  }
+}
+```
+
+![accessibilityFocusDrawLevel](figures/accessibilityFocusDrawLevel.png)

@@ -210,7 +210,7 @@ For details about the error codes, see [Screen Hopping Error Codes](errorcode-de
 | 201 | Permission denied. |
 | 202 | Not system application. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
-| 20900001 | Service Exception. Possible causes:  1. A system error, such as null pointer, container-related exception, IPC exception. 2. N-API invocation exception, invalid N-API status. |
+| 20900001 | Service exception. Possible causes: 1. A system error, such as null pointer, container-related exception, or IPC exception. 2. N-API invocation exception or invalid N-API status. |
 
 **Example**
 
@@ -263,7 +263,7 @@ For details about the error codes, see [Screen Hopping Error Codes](errorcode-de
 | 201 | Permission denied. |
 | 202 | Not system application. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
-| 20900001 | Service Exception. Possible causes:  1. A system error, such as null pointer, container-related exception, IPC exception. 2. N-API invocation exception, invalid N-API status. |
+| 20900001 | Service exception. Possible causes: 1. A system error, such as null pointer, container-related exception, or IPC exception. 2. N-API invocation exception or invalid N-API status. |
 
 **Example**
 
@@ -945,7 +945,7 @@ For details about the error codes, see [Screen Hopping Error Codes](errorcode-de
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 20900001 | Service Exception. Possible causes:  1. A system error, such as null pointer, container-related exception, IPC exception. 2. N-API invocation exception, invalid N-API status. |
+| 20900001 | Service exception. Possible causes: 1. A system error, such as null pointer, container-related exception, or IPC exception. 2. N-API invocation exception or invalid N-API status. |
 | 202 | Not system application. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
@@ -1001,7 +1001,7 @@ For details about the error codes, see [Screen Hopping Error Codes](errorcode-de
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 20900001 | Service Exception. Possible causes:  1. A system error, such as null pointer, container-related exception, IPC exception. 2. N-API invocation exception, invalid N-API status. |
+| 20900001 | Service exception. Possible causes: 1. A system error, such as null pointer, container-related exception, or IPC exception. 2. N-API invocation exception or invalid N-API status.|
 | 202 | Not system application. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 

@@ -43,8 +43,8 @@
 
     > **说明：**
     >
-    > 1. 在DevEco Studio5.0.3.600之前，新建工程的默认设置是开启代码混淆，自动对API 10及更高版本的Stage模型进行混淆。
-    > 2. 在DevEco Studio5.0.3.600及之后，新建工程的默认设置为关闭代码混淆。若需开启混淆，需将模块的`build-profile.json5`文件的`ruleOptions.enable`字段设置为true。同时混淆规则配置文件`obfuscation-rules.txt`默认开启了四项推荐的混淆选项：`-enable-property-obfuscation`、`-enable-toplevel-obfuscation`、`-enable-filename-obfuscation`和`-enable-export-obfuscation`，开发者可以根据需要进一步修改混淆配置。
+    > 1. 在DevEco Studio5.0.3.600之前，新建工程的默认设置是开启源码混淆，自动对API 10及更高版本的Stage模型进行混淆。
+    > 2. 在DevEco Studio5.0.3.600及之后，新建工程的默认设置为关闭源码混淆。若需开启混淆，需将模块的`build-profile.json5`文件的`ruleOptions.enable`字段设置为true。同时混淆规则配置文件`obfuscation-rules.txt`默认开启了四项推荐的混淆选项：`-enable-property-obfuscation`、`-enable-toplevel-obfuscation`、`-enable-filename-obfuscation`和`-enable-export-obfuscation`，开发者可以根据需要进一步修改混淆配置。
 
 * 指定release编译  
     源码混淆仅支持release编译，不支持debug编译。开启混淆开关后，release编译会进行混淆，debug编译则不会。开发者可参考[指定构建模式](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-hvigor-compilation-options-customizing-guide#section192461528194916)查看和修改构建模式。
@@ -55,18 +55,20 @@
 
 ### 三种混淆配置文件
 * `obfuscation-rules.txt`  
-    HAP、HAR及HSP模块的`build-profile.json5`配置文件中均有`arkOptions.obfuscation.ruleOptions.files`字段，用于指定在编译本模块时需要生效的混淆规则，新建工程时会创建默认文件`obfuscation-rules.txt`。
+    在HAP、HAR和HSP模块的`build-profile.json5`配置文件中，均包含`arkOptions.obfuscation.ruleOptions.files`字段，该字段用于指定当前模块在编译过程中所应用的混淆规则，新建工程时，系统默认会生成混淆规则文件`obfuscation-rules.txt`作为初始配置。
 
 * `consumer-rules.txt`  
-    对于HAR和HSP模块，在`build-profile.json5`中额外有一个`arkOptions.obfuscation.consumerFiles`字段，**用于指定当本包被依赖时，期望在当前编译流程生效的混淆规则**，新建HAR或HSP模块时会创建默认文件`consumer-rules.txt`。它与`obfuscation-rules.txt`的区别是：**`obfuscation-rules.txt`在编译本模块时生效，`consumer-rules.txt`在编译依赖本模块的其他模块时生效**。
+    对于HAR和HSP模块，在`build-profile.json5`中额外有一个`arkOptions.obfuscation.consumerFiles`字段，用于指定当本包被依赖时，期望在当前编译流程生效的混淆规则，新建HAR或HSP模块时会创建默认文件`consumer-rules.txt`。它与`obfuscation-rules.txt`的区别是：**`obfuscation-rules.txt`在编译本模块时生效，`consumer-rules.txt`在编译依赖本模块的其他模块时生效**。
+
+	build-profile.json5配置示例：
     ```
     "arkOptions": {
       "obfuscation": {
         "ruleOptions": {
-          "enable": true,
-          "files": ["./obfuscation-rules.txt"],
+          "enable": true, // 开启混淆开关
+          "files": ["./obfuscation-rules.txt"] // 指定配置混淆规则文件, 在编译本模块时生效。 
         }
-        "consumerFiles": ["./consumer-rules.txt"]
+        "consumerFiles": ["./consumer-rules.txt"] // 指定配置混淆规则文件, 在编译依赖本模块的其他模块时生效。
       }
     }
     ```
@@ -82,7 +84,7 @@
   >
   > 针对三方库中`obfuscation.txt`文件，只有在模块的`oh-package.json5`文件中依赖三方库时，三方库中的`obfuscation.txt`文件才会生效。如果在工程的`oh-package.json5`文件中进行依赖，则三方库的`obfuscation.txt`文件不会生效。
 
-下表简要总结了三种配置文件的差异：
+下表简要总结了三种混淆配置文件的差异：
 
 | 配置文件（示例） | 配置类型 |  是否可修改配置  |  是否影响本模块的混淆  |  是否影响其他模块的混淆  |
 | --- | --- | --- | --- | --- |
@@ -92,7 +94,7 @@
 
 ### 混淆选项配置指导
 1. 开启`-enable-toplevel-obfuscation`选项，如果代码中有globalThis访问全局变量，会出现访问失败的情况，需要使用`-keep-global-name`来保留此全局变量名称。
-2. 待上述选项应用适配成功后，开启`-enable-property-obfuscation`选项。此选项开启后以下场景需要适配：
+2. 待上述选项应用适配成功后，开启`-enable-property-obfuscation`选项。此选项开启后，以下场景需要适配：
     1. 若代码中存在静态定义、动态访问的情况，或动态定义、静态访问的情况，需要使用`-keep-property-name`保留属性名称。示例：
         ```
         // 静态定义，动态访问：属性名在对象定义时是静态的，但访问时通过动态构建属性名（通常使用字符串拼接）来访问
@@ -145,5 +147,6 @@
 
 经过混淆的应用程序，代码名称会发生更改，导致crash时打印的报错栈难以理解。开发人员可使用DevEco Studio命令工具Command Line Tools中的[hstack插件](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-command-line-hstack)来还原源码堆栈，进而分析问题。  
 反混淆工具需要使用应用编译过程中生成的sourceMaps.map文件以及混淆名称映射文件nameCache.json文件，请本地备份这些文件。
+* 源代码映射信息文件：sourceMaps.map，该文件记录了压缩/转换后的代码到原始源代码之间的映射关系。
 
 ![obfuscation-product](figures/obfuscation-product.png)

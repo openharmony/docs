@@ -151,12 +151,12 @@ static JSVM_CallbackStruct *method = param;
 static JSVM_PropertyDescriptor descriptor[] = {
     {"createPromise", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
     {"resolveRejectDeferred", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-}
+};
 
 // Call the C++ code from JS.
-const char *srcCallNativeCreatePromise = R"JS(createPromise())JS";
-const char *srcCallNativeResolveRejectDeferred1 = R"JS(resolveRejectDeferred('success','fail', true))JS";
-const char *srcCallNativeResolveRejectDeferred2 = R"JS(resolveRejectDeferred('success','fail', false))JS";
+const char *srcCallNative = R"JS(createPromise();
+                                 resolveRejectDeferred('success','fail', true);
+                                 resolveRejectDeferred('success','fail', false);)JS";
 ```
 
 Expected result:
@@ -170,8 +170,9 @@ OH_JSVM_RejectDeferred reject
 
 Call **OH_JSVM_PromiseRegisterHandler** to register a callback that is invoked after a promise is fulfilled rejected. It is equivalent to calling the native **Promise.then()** or **Promise.catch()**.
 
-CPP code:
-```
+The following describes only part of the C++ code. For details about other framework code, such as the **TestJSVM** function, see the implementation of **OH_JSVM_SetMicrotaskPolicy** in [Working with Tasks Using JSVM-API](use-jsvm-execute_tasks.md).
+
+```cpp
 static int PromiseRegisterHandler(JSVM_VM vm, JSVM_Env env) {
     const char *defineFunction = R"JS(
         var x1 = 0;

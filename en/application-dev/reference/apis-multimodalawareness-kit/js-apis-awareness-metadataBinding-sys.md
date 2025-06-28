@@ -14,10 +14,10 @@ The **metadataBinding** module provides the capability of adding metadata to ima
 import { metadataBinding } from '@kit.MultimodalAwarenessKit';
 ```
 
-## encodeImage(image.PixelMap, string)
+## metadataBinding.encodeImage
 encodeImage(srcImage: image.PixelMap, metadata: string): Promise<image.PixelMap>;  
 Encodes metadata into an image. 
-**System capability**: SystemCapability.MultimodalAwarness.metadataBinding
+**System capability**: SystemCapability.MultimodalAwareness.metadataBinding
 **System API**: This is a system API.
 
 **Parameters**
@@ -36,7 +36,7 @@ For details about the error codes, see [Metadata Binding Error Codes](errorcode-
 | -------- | ------------------------------------------------------------ |
 |   202    | Permission check failed. A non-system application uses the system API.|
 |32100001  | Internal handling failed. File creation failed.|
-|32100002  | Encode process fail. Possible causes: 1. Image processing error; 2. Channel coding error.|
+|32100002  | Encoding failed. Possible causes: 1. Image processing error; 2. Channel coding error.|
 
 **Example**
 
@@ -55,11 +55,11 @@ metadataBinding.encodeImage(srcImage, metadata).then((pixelMap: image.PixelMap) 
 });
 ```
 
-## decodeImage(image.PixelMap)
+## metadataBinding.decodeImage
 function decodeImage(encodedImage: image.PixelMap): Promise\<string\>
 Decodes the information carried in the image.
 
-**System capability**: SystemCapability.MultimodalAwarness.metadataBinding
+**System capability**: SystemCapability.MultimodalAwareness.metadataBinding
 **System API**: This is a system API.
 
 **Parameters** 
@@ -76,8 +76,8 @@ For details about the error codes, see [Metadata Binding Error Codes](errorcode-
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 |   202    | Permission check failed. A non-system application uses the system API.|
-|32100001  | Internal handling failed. File read failed.|
-|32100003  | Decode process fail. Possible causes: 1. Image is not an encoded Image; 2. Image destroyed, decoding failed.|
+|32100001  | Internal handling failed. File creation failed.|
+|32100003  | Decoding failed. Possible causes: 1. Image not encoded; 2. Image destroyed.|
 
 **Example** 
 ```ts
@@ -94,10 +94,10 @@ metadataBinding.decodeImage(encodeImage).then((metadata: string) =>{
 }); 
 ```
 
-## notifyMetadataBindingEvent(string)
+## metadataBinding.notifyMetadataBindingEvent
 notifyMetadataBindingEvent(metadata: string): void;
 Transfers metadata to the application or service that calls the encoding API.
-**System capability**: SystemCapability.MultimodalAwarness.metadataBinding
+**System capability**: SystemCapability.MultimodalAwareness.metadataBinding
 **System API**: This is a system API.
 
 **Parameters** 
@@ -112,7 +112,7 @@ For details about the error codes, see [Metadata Binding Error Codes](errorcode-
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-|32100001|Internal handling failed. Obtain metadata failed.|
+|32100001| Internal handling failed. File creation failed.|
 
 **Example**
 

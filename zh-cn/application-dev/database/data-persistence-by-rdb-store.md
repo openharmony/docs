@@ -1,4 +1,4 @@
-# 通过关系型数据库实现数据持久化（ArkTS）
+# 通过关系型数据库实现数据持久化 (ArkTS)
 
 
 ## 场景介绍
@@ -29,7 +29,7 @@
 
 ## 约束限制
 
-- 系统默认日志方式是WAL（Write Ahead Log）模式，系统默认落盘方式是FULL模式。
+- 系统默认日志方式是[WAL](data-terminology.md#wal模式)（Write Ahead Log）模式，系统默认落盘方式是[FULL模式](data-terminology.md#full模式)。
 
 - 数据库中常驻有4个读连接和1个写连接。读连接会动态扩充，无可用读连接时，会创建新的读连接执行读操作。写连接不会动态扩充，无可用写连接时，会等待连接释放后执行写操作。
 
@@ -43,7 +43,7 @@
 
 ## 接口说明
 
-以下是关系型数据库持久化功能的相关接口，大部分为异步接口。异步接口均有callback和Promise两种返回形式，下表均以callback形式为例，更多接口及使用方式请见[关系型数据库](../reference/apis-arkdata/js-apis-data-relationalStore.md)。
+以下是关系型数据库持久化功能的相关接口，大部分为异步接口。异步接口均有callback和Promise两种返回形式，下表均以callback形式为例，更多接口及使用方式请见[关系型数据库](../reference/apis-arkdata/arkts-apis-data-relationalStore.md)。
 
 | 接口名称 | 描述 | 
 | -------- | -------- |
@@ -81,12 +81,18 @@
          console.error(`ICU_TOKENIZER is not supported on this platform.`);
        }
        const STORE_CONFIG: relationalStore.StoreConfig = {
-         name: 'RdbTest.db', // 数据库文件名
-         securityLevel: relationalStore.SecurityLevel.S3, // 数据库安全级别
-         encrypt: false, // 可选参数，指定数据库是否加密，默认不加密
-         customDir: 'customDir/subCustomDir', // 可选参数，数据库自定义路径。数据库将在如下的目录结构中被创建：context.databaseDir + '/rdb/' + customDir，其中context.databaseDir是应用沙箱对应的路径，'/rdb/'表示创建的是关系型数据库，customDir表示自定义的路径。当此参数不填时，默认在本应用沙箱目录下创建RdbStore实例。
-         isReadOnly: false, // 可选参数，指定数据库是否以只读方式打开。该参数默认为false，表示数据库可读可写。该参数为true时，只允许从数据库读取数据，不允许对数据库进行写操作，否则会返回错误码801。
-         tokenizer: tokenType // 可选参数，指定用户在全文搜索场景(FTS)下使用哪种分词器。当此参数不填时，则在FTS下仅支持英文分词，不支持其他语言分词。
+         // 数据库文件名
+         name: 'RdbTest.db', 
+         // 数据库安全级别
+         securityLevel: relationalStore.SecurityLevel.S3, 
+         // 可选参数，指定数据库是否加密，默认不加密
+         encrypt: false, 
+         // 可选参数，数据库自定义路径。默认在本应用沙箱目录下创建RdbStore实例。
+         customDir: 'customDir/subCustomDir', 
+         // 可选参数，指定数据库是否以只读方式打开。默认为false，表示数据库可读可写。为true时，只允许从数据库读取数据，不允许对数据库进行写操作，否则会返回错误码801。
+         isReadOnly: false, 
+         // 可选参数，指定用户在全文搜索场景(FTS)下使用哪种分词器。默认在FTS下仅支持英文分词，不支持其他语言分词。
+         tokenizer: tokenType 
        };
 
        // 判断数据库版本，如果不匹配则需进行升降级操作
@@ -389,7 +395,7 @@
    调用createTransaction方法创建事务对象并执行相应操作。
    支持配置的事务类型有DEFERRED、IMMEDIATE和EXCLUSIVE，默认为DEFERRED。
 
-   具体信息请参见[关系型数据库](../reference/apis-arkdata/js-apis-data-relationalStore.md#createtransaction14)。
+   具体信息请参见[关系型数据库](../reference/apis-arkdata/arkts-apis-data-relationalStore-RdbStore.md#createtransaction14)。
 
    ```ts
    if (store != undefined) {
@@ -489,7 +495,7 @@
 
 7. 从备份数据库中恢复数据。关系型数据库支持两种方式：恢复手动备份数据和恢复自动备份数据（仅系统应用可用），具体可见[关系型数据库数据恢复](data-backup-and-restore.md#关系型数据库数据恢复)。
 
-   此处以调用[restore](../reference/apis-arkdata/js-apis-data-relationalStore.md#restore)接口恢复手动备份数据为例：
+   此处以调用[restore](../reference/apis-arkdata/arkts-apis-data-relationalStore-RdbStore.md#restore)接口恢复手动备份数据为例：
 
    ```ts
    if (store !== undefined) {
@@ -536,3 +542,5 @@
 针对关系型数据库的开发，有以下相关实例可供参考：
 
 - [`Rdb`：关系型数据库（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Data/Rdb)
+
+<!--RP1--><!--RP1End-->

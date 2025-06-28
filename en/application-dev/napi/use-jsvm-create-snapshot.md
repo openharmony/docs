@@ -32,7 +32,7 @@ CPP code:
 #include <hilog/log.h>
 #include <fstream>
 
-#define LOG_DEMAIN 0x0202
+#define LOG_DOMAIN 0x0202
 #define LOG_TAG "TEST_TAG"
 
 static int g_aa = 0;
@@ -307,5 +307,18 @@ struct Index {
   }
 }
 ```
-**Expected output**:
-Output in the log:<br>Test JSVM RunVMSnapshot read file blobSize =: 300064
+ 
+Log output when the screen is clicked once:
+```ts
+Test JSVM RunVMSnapshot read file blobSize = : 300064
+```
+Log output when the screen is clicked multiple times:
+```ts
+Test JSVM RunVMSnapshot read file blobSize = : 300176
+Test JSVM RunVMSnapshot read file blobSize = : 300064
+Test JSVM RunVMSnapshot read file blobSize = : 300160
+Test JSVM RunVMSnapshot read file blobSize = : 300032
+Test JSVM RunVMSnapshot read file blobSize = : 300176
+Test JSVM RunVMSnapshot read file blobSize = : 300048
+```
+**blobSize** is the snapshot file size obtained through **file.tellg()** when the file is read.  

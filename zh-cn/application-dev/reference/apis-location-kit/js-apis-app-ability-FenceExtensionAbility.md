@@ -13,7 +13,11 @@ FenceExtensionAbility为开发者提供的地理围栏相关的能力，继承�
 import { FenceExtensionAbility } from '@kit.LocationKit';
 ```
 
-## 属性
+## FenceExtensionAbility
+
+为开发者提供地理围栏相关的能力，继承自ExtensionAbility。
+
+### 属性
 
 **系统能力**：SystemCapability.Location.Location.Geofence
 
@@ -21,7 +25,7 @@ import { FenceExtensionAbility } from '@kit.LocationKit';
 | -------- | -------- | -------- | -------- | -------- |
 | context | [FenceExtensionContext](js-apis-app-ability-FenceExtensionContext.md) | 是 | 否 | 围栏服务上下文。 |
 
-## FenceExtensionAbility.onFenceStatusChange
+### onFenceStatusChange
 
 onFenceStatusChange(transition: geoLocationManager.GeofenceTransition, additions: Record&lt;string, string&gt;): void;
 
@@ -32,7 +36,7 @@ onFenceStatusChange(transition: geoLocationManager.GeofenceTransition, additions
 **参数：**
 | 参数名 |  类型 | 必填  | 说明  |
 | ------------ | ------------ | ------------ | ------------ |
-|  transition |  [geoLocationManager.GeofenceTransition](js-apis-geoLocationManager.md#geofencetransition12) |  是 | 地理围栏事件信息；包含地理围栏ID和具体的地理围栏事件。  |
+| transition |  [geoLocationManager.GeofenceTransition](js-apis-geoLocationManager.md#geofencetransition12) |  是 | 地理围栏事件信息；包含地理围栏ID和具体的地理围栏事件。  |
 | additions  | Record&lt;string, string&gt;  | 是  | 附加信息  |
 
 **示例：**
@@ -81,7 +85,7 @@ export class MyFenceExtensionAbility extends FenceExtensionAbility {
   }
 }
 ```
-## FenceExtensionAbility.onDestroy
+### onDestroy
 
 onDestroy(): void;
 

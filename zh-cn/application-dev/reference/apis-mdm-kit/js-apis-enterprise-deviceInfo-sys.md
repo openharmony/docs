@@ -1,6 +1,6 @@
 # @ohos.enterprise.deviceInfo（设备信息管理）(系统接口)
 
-本模块提供企业设备信息管理能力，包括获取设备序列号等。
+本模块提供企业设备信息管理能力，包括获取设备序列号、设备名称等。
 
 > **说明：**
 >
@@ -22,7 +22,7 @@ import { deviceInfo } from '@kit.MDMKit';
 
 getDeviceSerial(admin: Want, callback: AsyncCallback&lt;string&gt;): void
 
-指定设备管理应用获取设备序列号，使用callback异步回调。
+获取设备序列号，使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_GET_DEVICE_INFO
 
@@ -32,7 +32,7 @@ getDeviceSerial(admin: Want, callback: AsyncCallback&lt;string&gt;): void
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。                  |
 | callback | AsyncCallback&lt;string&gt;            | 是    | 回调函数。当接口调用成功，err为null，data为设备序列号，否则err为错误对象。       |
 
 **错误码**：
@@ -51,6 +51,7 @@ getDeviceSerial(admin: Want, callback: AsyncCallback&lt;string&gt;): void
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -69,7 +70,7 @@ deviceInfo.getDeviceSerial(wantTemp, (err, result) => {
 
 getDeviceSerial(admin: Want): Promise&lt;string&gt;
 
-指定设备管理应用获取设备序列号，使用Promise异步回调。
+获取设备序列号，使用Promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_GET_DEVICE_INFO
 
@@ -79,7 +80,7 @@ getDeviceSerial(admin: Want): Promise&lt;string&gt;
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。 |
 
 **返回值：**
 
@@ -104,6 +105,7 @@ getDeviceSerial(admin: Want): Promise&lt;string&gt;
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -120,7 +122,7 @@ deviceInfo.getDeviceSerial(wantTemp).then((result) => {
 
 getDisplayVersion(admin: Want, callback: AsyncCallback&lt;string&gt;): void
 
-指定设备管理应用获取设备版本号，使用callback异步回调。
+获取设备版本号，使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_GET_DEVICE_INFO
 
@@ -130,7 +132,7 @@ getDisplayVersion(admin: Want, callback: AsyncCallback&lt;string&gt;): void
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是    | 企业设备管理扩展组件。                  |
 | callback | AsyncCallback&lt;string&gt;            | 是    | 回调函数。当接口调用成功，err为null，data为设备版本号，否则err为错误对象。       |
 
 **错误码**：
@@ -149,6 +151,7 @@ getDisplayVersion(admin: Want, callback: AsyncCallback&lt;string&gt;): void
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -167,7 +170,7 @@ deviceInfo.getDisplayVersion(wantTemp, (err, result) => {
 
 getDisplayVersion(admin: Want): Promise&lt;string&gt;
 
-指定设备管理应用获取设备版本号，使用Promise异步回调。
+获取设备版本号，使用Promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_GET_DEVICE_INFO
 
@@ -177,7 +180,7 @@ getDisplayVersion(admin: Want): Promise&lt;string&gt;
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。 |
 
 **返回值：**
 
@@ -202,6 +205,7 @@ getDisplayVersion(admin: Want): Promise&lt;string&gt;
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -218,7 +222,7 @@ deviceInfo.getDisplayVersion(wantTemp).then((result) => {
 
 getDeviceName(admin: Want, callback: AsyncCallback&lt;string&gt;): void
 
-指定设备管理应用获取设备名称，使用callback异步回调。
+获取设备名称，使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_GET_DEVICE_INFO
 
@@ -228,7 +232,7 @@ getDeviceName(admin: Want, callback: AsyncCallback&lt;string&gt;): void
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是    | 企业设备管理扩展组件。                  |
 | callback | AsyncCallback&lt;string&gt;              | 是    | 回调函数。当接口调用成功，err为null，data为设备名称，否则err为错误对象。       |
 
 **错误码**：
@@ -247,6 +251,7 @@ getDeviceName(admin: Want, callback: AsyncCallback&lt;string&gt;): void
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -265,7 +270,7 @@ deviceInfo.getDeviceName(wantTemp, (err, result) => {
 
 getDeviceName(admin: Want): Promise&lt;string&gt;
 
-指定设备管理应用获取设备名称，使用Promise异步回调。
+获取设备名称，使用Promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_GET_DEVICE_INFO
 
@@ -275,7 +280,7 @@ getDeviceName(admin: Want): Promise&lt;string&gt;
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。 |
 
 **返回值：**
 
@@ -300,6 +305,7 @@ getDeviceName(admin: Want): Promise&lt;string&gt;
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',

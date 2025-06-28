@@ -42,10 +42,23 @@ transmitInfrared(infraredFrequency: number, pattern: Array&lt;number&gt;): void
 **示例**：
 
 ```js
-try {
-  infraredEmitter.transmitInfrared(38000, [100, 200, 300, 400]);
-} catch (error) {
-  console.error(`transmitInfrared failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { infraredEmitter } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            infraredEmitter.transmitInfrared(38000, [100, 200, 300, 400]);
+          } catch (error) {
+            console.error(`transmitInfrared failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -76,11 +89,24 @@ getInfraredFrequencies(): Array&lt;InfraredFrequency&gt;
 **示例**：
 
 ```js
-try {
-  let frequencies = infraredEmitter.getInfraredFrequencies();
-  console.log(`frequencies: ${JSON.stringify(frequencies)}`);
-} catch (error) {
-  console.error(`Get infrared frequencies failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+import { infraredEmitter } from '@kit.InputKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            let frequencies = infraredEmitter.getInfraredFrequencies();
+            console.log(`frequencies: ${JSON.stringify(frequencies)}`);
+          } catch (error) {
+            console.error(`Get infrared frequencies failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 

@@ -41,7 +41,6 @@ CPP code:
 
 ```cpp
 #include "napi/native_api.h"
-#include <assert.h>
 static napi_value GetLastErrorInfo(napi_env env, napi_callback_info info)
 {
     // Obtain the input parameter, that is the message string in this example.
@@ -52,12 +51,18 @@ static napi_value GetLastErrorInfo(napi_env env, napi_callback_info info)
     int32_t value = 0;
     napi_status status = napi_get_value_int32(env, args[0], &value);
     // The return value (status) is not napi_ok, which means an error occurred.
-    assert(status != napi_ok);
+    if (status != napi_ok) {
+        OH_LOG_INFO(LOG_APP, "Test Node-API napi_get_value_int32 return status, status is not equal to napi_ok.");
+    }
+
     // Call napi_get_last_error_info to obtain the last error message.
     const napi_extended_error_info *errorInfo;
     napi_get_last_error_info(env, &errorInfo);
     // Obtain the error code and compare it with the return value (status) obtained.
-    assert(errorInfo->error_code == status);
+    if (errorInfo->error_code == status) {
+        OH_LOG_INFO(LOG_APP, "Test Node-API napi_get_last_error_info return errorInfo, error_code equal to status.");
+    }
+
     // Obtain the error message as the return value and print it.
     napi_value result = nullptr;
     napi_create_string_utf8(env, errorInfo->error_message, NAPI_AUTO_LENGTH, &result);
@@ -75,8 +80,8 @@ export const getLastErrorInfo: (str: string) => string;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 try {
   hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_last_error_info: %{public}s', testNapi.getLastErrorInfo('message'));
 } catch (error) {
@@ -117,8 +122,8 @@ export const createTypeError: () => Error;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 try {
   throw testNapi.createTypeError();
 } catch (error) {
@@ -159,8 +164,8 @@ export const createRangeError: () => Error;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 try {
   throw testNapi.createRangeError();
 } catch (error) {
@@ -209,8 +214,8 @@ export const napiThrow: () => void;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 try {
   testNapi.napiThrow();
 } catch (error) {
@@ -263,8 +268,8 @@ export const napiThrowError: (dividend: number, divisor: number) => void;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 try {
   testNapi.napiThrowErrorMessage();
 } catch (error) {
@@ -322,8 +327,8 @@ export const throwTypeError: (message: string) => void;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 try {
   testNapi.throwTypeErrorMessage();
 } catch (error) {
@@ -387,8 +392,8 @@ export const throwRangeError: (num: number) => number | void;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 try {
   testNapi.throwRangeErrorMessage();
 } catch (error) {
@@ -438,8 +443,8 @@ export const napiIsError: <T>(obj: T) => boolean;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 try {
   throw new Error("throwing an error");
 } catch (error) {
@@ -483,8 +488,8 @@ export const getAndClearLastException: () => Error | void;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 // Obtain the last unprocessed exception.
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_and_clear_last_exception, error.message: %{public}s',
            testNapi.getAndClearLastException());
@@ -534,8 +539,8 @@ export const isExceptionPending: () => Object | void;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 interface MyObject {
   code: string;
   message: string;
@@ -560,7 +565,7 @@ CPP code:
 
 static napi_value FatalError(napi_env env, napi_callback_info info)
 {
-    // Calling **napi_fatal_error** will terminate the application process immediately. Use this API only when a fatal error that cannot be rectified occurs.
+    // Calling napi_fatal_error will terminate the application process immediately. Use this API only when a fatal error that cannot be rectified occurs.
     // Simulate a fatal error.
     bool errorCondition = true;
     if (errorCondition) {
@@ -581,8 +586,8 @@ export const fatalError: () => void;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 try {
   testNapi.fatalError();
 } catch (error) {
@@ -607,7 +612,7 @@ static napi_value FatalException(napi_env env, napi_callback_info info)
     if (status != napi_ok) {
       return nullptr;
     }
-    // Calling **napi_fatal_exception** will terminate the application process. Use this API only when a fatal error that cannot be rectified occurs in the main thread.
+    // Calling napi_fatal_exception will terminate the application process. Use this API only when a fatal error that cannot be rectified occurs in the main thread.
     // Simulate a fatal error.
     status = napi_fatal_exception(env, args[0]);
     if (status != napi_ok) {
@@ -627,8 +632,8 @@ export const fatalException: (err: Error) => void;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 const err = new Error("a fatal exception occurred");
 testNapi.fatalException(err);

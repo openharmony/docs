@@ -299,7 +299,7 @@ This window type is invalid.
 窗口类型无效。
 
 **可能原因**<br>
-使用了无效的窗口类型，有效的窗口类型见[WindowType](js-apis-window.md#windowtype7)。
+使用了无效的窗口类型，有效的窗口类型见[WindowType](arkts-apis-window-e.md#windowtype7)。
 
 **处理步骤**<br>
 请使用WindowType支持的窗口类型，再进行相关操作。

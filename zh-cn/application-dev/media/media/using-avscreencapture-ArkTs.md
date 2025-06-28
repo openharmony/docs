@@ -10,7 +10,7 @@
 
 开始屏幕录制时正在通话中或者屏幕录制过程中来电，录屏将自动停止。因通话中断的录屏会上报SCREENCAPTURE_STATE_STOPPED_BY_CALL状态。
 
-本开发指导将以完成一次屏幕数据录制的过程为例，向开发者讲解如何使用AVScreenCaptureRecorder进行屏幕录制，详细的API声明请参考[AVScreenCaptureRecorder API参考](../../reference/apis-media-kit/js-apis-media.md#avscreencapturerecorder12)。
+本开发指导将以完成一次屏幕数据录制的过程为例，向开发者讲解如何使用AVScreenCaptureRecorder进行屏幕录制，详细的API声明请参考[AVScreenCaptureRecorder API参考](../../reference/apis-media-kit/arkts-apis-media-AVScreenCaptureRecorder.md)。
 
 如果配置了采集麦克风音频数据，需对应配置麦克风权限ohos.permission.MICROPHONE和申请长时任务，配置方式请参见[向用户申请权限](../../security/AccessToken/request-user-authorization.md)、[申请长时任务](../../task-management/continuous-task.md)。
 
@@ -94,7 +94,7 @@
         }
     })
     this.screenCapture.on('error', (err) => {
-        console.info("处理异常情况");
+        console.error("处理异常情况");
     })
     ```
 
@@ -137,7 +137,7 @@
     await this.screenCapture.init(this.captureConfig);
     ```
 
-6. 创建豁免隐私窗口，这里填写的是子窗口id和主窗口id，具体开发步骤可参见[窗口API](../../reference/apis-arkui/js-apis-window.md#windowproperties)。
+6. 创建豁免隐私窗口，这里填写的是子窗口id和主窗口id，具体开发步骤可参见[窗口API](../../reference/apis-arkui/arkts-apis-window-i.md#windowproperties)。
 
     ```javascript
     let windowIDs = [57, 86];
@@ -251,7 +251,7 @@ export class AVScreenCaptureDemo {
       }
     })
     this.screenCapture?.on('error', (err) => {
-      console.info("处理异常情况");
+      console.error("处理异常情况");
     })
     await this.screenCapture?.init(this.captureConfig);
 

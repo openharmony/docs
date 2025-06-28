@@ -28,7 +28,7 @@ import { Stack } from '@kit.ArkTS';
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | length | number | 是 | 否 | Stack的元素个数。 |
 
@@ -332,7 +332,7 @@ stack.push(4);
 // 使用方法一：
 while(!stack.isEmpty()) {
   // 业务逻辑
-  let item = stack.pop()
+  let item = stack.pop();
   console.log("value:" + item);
 }
 

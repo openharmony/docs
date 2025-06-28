@@ -141,12 +141,48 @@ List() {
 .alignListItem(ListItemAlign.Center)
 ```
 
+## ListItem生命周期
+### 使用ForEach创建ListItem
+List组件创建时，所有ListItem将会被创建。显示区域内的ListItem在首帧进行布局，预加载范围内的ListItem在空闲时完成布局。预加载范围之外的ListItem仅创建ListItem自身，ListItem其内部的子组件不会被创建。
+
+当List组件滑动时，进入预加载及显示区域的ListItem将会创建其内部的子组件并完成布局，而滑出预加载及显示区域的ListItem将不会被销毁。
+
+**图7** ForEach创建ListItem的生命周期
+![](./figures/list_foreach.png)
+
+### 使用LazyForEach创建ListItem
+List组件创建时，显示区域中的ListItem会被创建与布局。预加载范围内的ListItem在空闲时创建与布局，但是不会被挂载到组件树上。预加载范围外的ListItem则不会被创建。
+
+当List组件滑动时，进入预加载及显示区域的ListItem将被创建与布局，创建ListItem过程中，若ListItem内部如果包含@Reusable标记的自定义组件，则会优先从缓存池中复用。滑出预加载及显示区域的ListItem将被销毁，其内部若含@Reusable标记的自定义组件，则会被回收并加入缓存池。
+
+**图8** LazyForEach创建ListItem的生命周期
+![](./figures/list_lazyforeach.png)
+
+### 使用Repeat创建ListItem
+**使用virtualScroll**
+
+List组件创建时，显示区域内的ListItem将被创建和布局。预加载范围内的ListItem在空闲时创建和布局，并且挂载至组件树上。预加载范围外的ListItem则不会被创建。
+
+当List组件滑动时，进入预加载及显示区域的ListItem，将从缓存池中获取ListItem并复用及布局，若缓存池中无ListItem，则会新创建并布局。滑出预加载及显示区域的ListItem会将被回收至缓存池。
+
+**图9** Repeat使用virtualScroll创建ListItem的生命周期
+![](./figures/list_repeatv.png)
+
+**不使用virtualScroll**
+
+List组件创建时，所有ListItem均被创建。显示区域内的ListItem在首帧完成布局，预加载范围内的ListItem在空闲时完成布局。预加载范围外的ListItem不会进行布局。
+
+当List组件滑动时，进入预加载及显示区域的ListItem将进行布局。滑出预加载及显示区域的ListItem不会销毁。
+
+**图10** Repeat不使用virtualScroll创建ListItem的生命周期
+![](./figures/list_repeat.png)
+
 
 ## 在列表中显示数据
 
 列表视图垂直或水平显示项目集合，在行或列超出屏幕时提供滚动功能，使其适合显示大型数据集合。在最简单的列表形式中，List静态地创建其列表项ListItem的内容。
 
-  **图7** 城市列表  
+  **图11** 城市列表  
 
 ![zh-cn_image_0000001563060761](figures/zh-cn_image_0000001563060761.png)
 
@@ -176,7 +212,7 @@ struct CityList {
 
 由于在ListItem中只能有一个根节点组件，不支持以平铺形式使用多个组件。因此，若列表项是由多个组件元素组成的，则需要将这多个元素组合到一个容器组件内或组成一个自定义组件。
 
-  **图8** 联系人列表项示例  
+  **图12** 联系人列表项示例  
 
 ![zh-cn_image_0000001511421328](figures/zh-cn_image_0000001511421328.png)
 
@@ -187,6 +223,7 @@ struct CityList {
 List() {
   ListItem() {
     Row() {
+      // app.media.iconE为自定义资源
       Image($r('app.media.iconE'))
         .width(40)
         .height(40)
@@ -199,6 +236,7 @@ List() {
 
   ListItem() {
     Row() {
+      // app.media.iconF为自定义资源
       Image($r('app.media.iconF'))
         .width(40)
         .height(40)
@@ -270,7 +308,7 @@ struct SimpleContacts {
 
 ### 设置内容间距
 
-在初始化列表时，如需在列表项之间添加间距，可以使用space参数。例如，在每个列表项之间沿主轴方向添加10vp的间距：
+在初始化列表时，如需在列表项之间添加间距，可以使用space参数。例如，在每个列表项之间沿主轴方向添加10vp的间距。
 
 
 ```ts
@@ -282,9 +320,9 @@ List({ space: 10 }) {
 
 ### 添加分隔线
 
-分隔线用来将界面元素隔开，使单个元素更加容易识别。如下图所示，当列表项左边有图标（如蓝牙图标），由于图标本身就能很好的区分，此时分隔线从图标之后开始显示即可。
+分隔线用来将界面元素隔开，使单个元素更加容易识别。以系统设置场景为例（如下图所示），列表项左侧为图标（如蓝牙图标），右侧为文字描述且分割线在文字下方。
 
-  **图9** 设置列表分隔线样式  
+  **图13** 设置列表分隔线样式  
 
 ![zh-cn_image_0000001511580960](figures/zh-cn_image_0000001511580960.png)
 
@@ -335,7 +373,7 @@ struct EgDivider {
 
 当列表项高度（宽度）超出屏幕高度（宽度）时，列表可以沿垂直（水平）方向滚动。在页面内容很多时，若用户需快速定位，可拖拽滚动条，如下图所示。
 
-  **图10** 列表的滚动条 
+  **图14** 列表的滚动条 
 
 ![zh-cn_image_0000001511740544](figures/zh-cn_image_0000001511740544.gif)
 
@@ -375,7 +413,7 @@ List() {
    ScrollBar({ scroller: this.listScroller })
    ```
 
-  **图11** 列表的外置滚动条 
+  **图15** 列表的外置滚动条 
 
 ![ScrollBar](figures/list_scrollbar.gif)
 
@@ -387,7 +425,7 @@ List() {
 
 在列表中支持数据的分组展示，可以使列表显示结构清晰，查找方便，从而提高使用效率。分组列表在实际应用中十分常见，如下图所示联系人列表。
 
-  **图12** 联系人分组列表 
+  **图16** 联系人分组列表 
 
 ![zh-cn_image_0000001511580948](figures/zh-cn_image_0000001511580948.png)
 
@@ -432,7 +470,7 @@ struct ContactsList {
 
 粘性标题不仅有助于阐明列表中数据的表示形式和用途，还可以帮助用户在大量信息中进行数据定位，从而避免用户在标题所在的表的顶部与感兴趣区域之间反复滚动。
 
-  **图13** 粘性标题  
+  **图17** 粘性标题  
 
 ![zh-cn_image_0000001511740552](figures/zh-cn_image_0000001511740552.gif)
 
@@ -517,10 +555,10 @@ struct ContactsList {
   }
   build() {
     List() {
-      // 循环渲染ListItemGroup，contactsGroups为多个分组联系人contacts和标题title的数据集合
+      // 懒加载ListItemGroup，contactsGroups为多个分组联系人contacts和标题title的数据集合
       LazyForEach(contactsGroupsDataSource, (itemGroup: ContactsGroup) => {
         ListItemGroup({ header: this.itemHead(itemGroup.title) }) {
-          // 循环渲染ListItem
+          // 懒加载ListItem
           if (itemGroup.contacts) {
             LazyForEach(new ContactsGroupDataSource(itemGroup.contacts), (item: Contact) => {
               ListItem() {
@@ -540,7 +578,7 @@ struct ContactsList {
 
 控制滚动位置在实际应用中十分常见，例如当新闻页列表项数量庞大，用户滚动列表到一定位置时，希望快速滚动到列表底部或返回列表顶部。此时，可以通过控制滚动位置来实现列表的快速定位，如下图所示。
 
-  **图14** 返回列表顶部  
+  **图18** 返回列表顶部  
 
 ![zh-cn_image_0000001511900520](figures/zh-cn_image_0000001511900520.gif)
 
@@ -580,7 +618,7 @@ Stack({ alignContent: Alignment.Bottom }) {
 
 除了字母索引之外，滚动列表结合多级分类索引在应用开发过程中也很常见，例如购物应用的商品分类页面，多级分类也需要监听列表的滚动位置。
 
-**图15** 字母索引响应联系人列表滚动  
+**图19** 字母索引响应联系人列表滚动  
 
 ![zh-cn_image_0000001563060769](figures/zh-cn_image_0000001563060769.gif)
 
@@ -622,7 +660,7 @@ struct ContactsList {
 
 侧滑菜单在许多应用中都很常见。例如，通讯类应用通常会给消息列表提供侧滑删除功能，即用户可以通过向左侧滑列表的某一项，再点击删除按钮删除消息，如下图所示。其中，列表项头像右上角标记设置参考[给列表项添加标记](#给列表项添加标记)。
 
-**图16** 侧滑删除列表项  
+**图20** 侧滑删除列表项  
 
 ![zh-cn_image_0000001563060773](figures/zh-cn_image_0000001563060773.gif)
 
@@ -666,7 +704,7 @@ ListItem的[swipeAction属性](../reference/apis-arkui/arkui-ts/ts-container-lis
 
 添加标记是一种无干扰性且直观的方法，用于显示通知或将注意力集中到应用内的某个区域。例如，当消息列表接收到新消息时，通常对应的联系人头像的右上方会出现标记，提示有若干条未读消息，如下图所示。
 
-  **图17** 给列表项添加标记  
+  **图21** 给列表项添加标记  
 
 ![zh-cn_image_0000001511580952](figures/zh-cn_image_0000001511580952.png)
 
@@ -724,7 +762,7 @@ ListItem() {
 
 如下图所示，当用户点击添加按钮时，提供用户新增列表项内容选择或填写的交互界面，用户点击确定后，列表中新增对应的项目。
 
-  **图18** 新增待办  
+  **图22** 新增待办  
 
 ![zh-cn_image_0000001511740556](figures/zh-cn_image_0000001511740556.gif)
 
@@ -849,7 +887,7 @@ ListItem() {
 
 如下图所示，当用户长按列表项进入删除模式时，提供用户删除列表项选择的交互界面，用户勾选完成后点击删除按钮，列表中删除对应的项目。
 
-  **图19** 长按删除待办事项  
+  **图23** 长按删除待办事项  
 
 ![zh-cn_image_0000001562820877](figures/zh-cn_image_0000001562820877.gif)
 
@@ -955,7 +993,7 @@ ListItem() {
 
 关于长列表按需加载优化的具体实现可参考[数据懒加载](../ui/state-management/arkts-rendering-control-lazyforeach.md)章节中的示例。
 
-当使用懒加载方式渲染列表时，为了更好的列表滚动体验，减少列表滑动时出现白块，List组件提供了cachedCount参数用于设置列表项缓存数，只在懒加载LazyForEach中生效。
+当使用懒加载方式渲染列表时，为了更好的列表滚动体验，减少列表滑动时出现白块，List组件提供了cachedCount参数用于设置列表项缓存数，懒加载方式只会预加载List显示区域外cachedCount的内容，而非懒加载会全部加载。无论懒加载还是非懒加载都只布局List显示区域+List显示区域外cachedCount的内容。
 
 
 ```ts
@@ -966,9 +1004,9 @@ List() {
 
 以垂直列表为例：
 
-- 若懒加载是用于ListItem，当列表为单列模式时，会在List显示的ListItem前后各缓存cachedCount个ListItem；若是多列模式下，会在List显示的ListItem前后各缓存cachedCount \* 列数个ListItem。
+- List设置cachedCount后，显示区域外上下各会预加载并布局cachedCount行ListItem。计算ListItem行数时，会计算ListItemGroup内部的ListItem行数。如果ListItemGroup内没有ListItem，则整个ListItemGroup算一行。
 
-- 若懒加载是用于ListItemGroup，无论单列模式还是多列模式，都是在List显示的ListItem前后各缓存cachedCount个ListItemGroup。
+- List下嵌套使用LazyForEach，并且LazyForEach下嵌套使用ListItemGroup时，LazyForEach会在List显示区域外上下各会创建cachedCount个ListItemGroup。
 
 >**说明：**
 >
@@ -981,7 +1019,7 @@ List() {
 
 列表项的折叠与展开用途广泛，常用于信息清单的展示、填写等应用场景。
 
-  **图20** 列表项的折叠与展开 
+  **图24** 列表项的折叠与展开 
 
 ![zh-cn_image_0000001949866104](figures/zh-cn_image_0000001949866104.gif)
 
@@ -1155,7 +1193,7 @@ List() {
 
 部分业务场景需要列表底部插入数据时，自动向上滚动，把新插入的节点展示出来。例如，直播评论、即时聊天等应用场景。而List组件正常布局时, 在内容下方增加节点，内容是保持不变的。此时，可以通过切换布局方向来实现所需效果。
 
-  **图20** 实时消息滚动显示
+  **图25** 实时消息滚动显示
 
 ![zh-cn_image_0000001949866105](figures/zh-cn_image_0000001949866105.gif)
 
@@ -1195,13 +1233,112 @@ List() {
     }
     ```
 
+## 支持滑动离手事件
+
+从API version 20开始，滚动类组件（[Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md)、[List](../reference/apis-arkui/arkui-ts/ts-container-list.md)、[Scroll](../reference/apis-arkui/arkui-ts/ts-container-scroll.md)、[WaterFlow](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md)）支持滑动离手事件回调功能，当用户手指离开屏幕时，会触发该事件并上报离手瞬间的滑动速度。开发者可利用此接口实现类似新闻浏览页面的自定义限位滚动效果，短新闻限位滚动，长新闻自由滚动。
+
+  **图26** 自定义限位滚动效果
+
+![onWillStopDragging](figures/onWillStopDragging.gif)
+
+1. 定义新闻条目数据结构。
+
+    ```ts
+    // 结构参考
+    class news {
+      public id: string;
+      public title: string;
+      public content: string;
+      public type: string;
+
+      constructor(id: string, title: string, content: string, type: string) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.type = type;
+      }
+    }
+    ```
+
+2. 构造新闻条目结构，通过type属性来区分长新闻，短新闻。
+
+    ```ts
+    // 实现参考
+    @State newsData: Array<news> = [
+      new news('1', '新闻标题1', '这是第一条短新闻，内容较少，快速滑动切换', 'short'),
+      new news('2', '新闻标题2', '这是第一条短新闻，内容较少，快速滑动切换', 'short'),
+      new news('3', '新闻标题3', '这是第二条长新闻，内容较多，可以自由滑动查看完整内容。'.repeat(20), 'long'),
+      new news('4', '新闻标题4', '这是第三条短新闻，内容较少，快速滑动切换', 'short'),
+      new news('5', '新闻标题5', '这是第四条长新闻，内容较多，可以自由滑动查看完整内容。', 'long')
+    ];
+    ```
+
+3. 滑动离手事件onWillStopDragging及新闻处理逻辑：
+   - 上报离手瞬间滑动速度，支持正负方向速度检测，向上滑动为正，向下滑动为负。
+
+     ```ts
+     // 实现参考
+     onWillStopDragging((velocity: number) => {
+       if (velocity < 0) {
+         // 向下滑动处理
+       } else {
+         // 向上滑动处理
+       }
+     })
+     ```
+
+   - 通过getItemRect接口方法获取当前项位置信息。
+
+     ```ts
+     // 实现参考
+     let rect = this.scrollerForList.getItemRect(this.currentIndex);
+     ```
+     
+   - 处理短新闻：直接跳转相邻项。
+     
+     ```ts
+     // 实现参考
+     if (velocity > 10) {
+       this.scrollerForList.scrollToIndex(this.currentIndex, true, ScrollAlign.START);
+     } else if (velocity < -10) {
+       this.scrollerForList.scrollToIndex(this.currentIndex + 1, true, ScrollAlign.START);
+     }
+     ```
+
+   - 处理长新闻：计算剩余显示范围决定滚动终点。
+   
+     ```ts
+     let rect = this.scrollerForList.getItemRect(this.currentIndex);
+     if (velocity < -30) {
+       if (rect) {
+         // 当前节点在页面内的剩余显示范围
+         let leftRect = rect.y + rect.height;
+         //   终点位置
+         let mainPosition = -velocity * DEFAULT_FRICTION / FRICTION_SCALE;
+         if (leftRect + mainPosition > 0.75 * this.listHeight) {
+           this.scrollerForList.scrollToIndex(this.currentIndex + 1, true, ScrollAlign.START);
+           return;
+         } else if (leftRect + mainPosition < 0.25 * this.listHeight) {
+           this.scrollerForList.scrollToIndex(this.currentIndex, true, ScrollAlign.END,
+             { extraOffset: LengthMetrics.vp(this.listHeight * 0.3) })
+           return;
+         }
+       }
+     } else if (velocity > 30) {
+       let leftRect = rect?.y + rect?.height;
+       let mainPosition = velocity * DEFAULT_FRICTION / FRICTION_SCALE;
+       if (leftRect + mainPosition > 0.75 * this.listHeight) {
+         this.scrollerForList.scrollToIndex(this.currentIndex, true, ScrollAlign.START);
+         return;
+       }
+     }
+     ```
+
 ## 相关实例
 
 如需详细了解ArkUI中列表的创建与使用，请参考以下示例：
 
 - [新闻数据加载](https://gitee.com/openharmony/codelabs/tree/master/NetworkManagement/NewsDataArkTS)
-
-- [音乐专辑页](../key-features/multi-device-app-dev/music-album-page.md)
 
 - [常用组件和容器低代码开发示例（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/EfficiencyEnhancementKit/SuperVisualSample)
 

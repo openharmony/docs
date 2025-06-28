@@ -439,7 +439,7 @@ Obtains the product model.
 
 **Returns**
 
-Returns a product mode of the string type.
+Returns a product model of the string type.
 
 
 ### OH_GetProductSeries()
@@ -473,7 +473,7 @@ Obtains the SDK API version.
 
 **Returns**
 
-Returns a SDK API version.
+Returns an SDK API version.
 
 
 ### OH_GetSecurityPatchTag()

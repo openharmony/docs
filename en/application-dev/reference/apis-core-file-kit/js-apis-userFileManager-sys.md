@@ -17,7 +17,7 @@ import userFileManager from '@ohos.filemanagement.userFileManager';
 
 getUserFileMgr(context: Context): UserFileManager
 
-Obtains a **UserFileManager** instance.This instance can be used to access and modify user media data (such as audio and video clips, images, and documents).
+Obtains a **UserFileManager** instance. This instance can be used to access and modify user media data (such as audio and video assets, images, and documents).
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -39,8 +39,22 @@ Obtains a **UserFileManager** instance.This instance can be used to access and m
 
 ```ts
 // The userFileManager instance obtained is a global object. It is used by default in subsequent operations. If the code snippet is not added, an error will be reported indicating that mgr is not defined.
-const context = getContext(this);
-let mgr = userFileManager.getUserFileMgr(context);
+// Obtain the context from the component and ensure that the return value of this.getUiContext().getHostContext() is UIAbilityContext.
+import { common } from '@kit.AbilityKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Button("example").onClick(async () => {
+        let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+        let mgr = userFileManager.getUserFileMgr(context);
+      }).width('100%')
+    }
+    .height('90%')
+  }
+}
 ```
 
 ## UserFileManager
@@ -72,10 +86,12 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('getPhotoAssets');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: userFileManager.FetchOptions = {
@@ -129,10 +145,12 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('getPhotoAssets');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: userFileManager.FetchOptions = {
@@ -182,10 +200,12 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('createPhotoAssetDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: userFileManager.AlbumFetchOptions = {
@@ -233,8 +253,10 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('createPhotoAssetDemo');
   let testFileName: string = 'testFile' + Date.now() + '.jpg';
   mgr.createPhotoAsset(testFileName, (err, fileAsset) => {
@@ -281,8 +303,10 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('createPhotoAssetDemo');
   try {
     let testFileName: string = 'testFile' + Date.now() + '.jpg';
@@ -324,8 +348,10 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('createPhotoAssetDemo');
   let testFileName: string = 'testFile' + Date.now() + '.jpg';
   let createOption: userFileManager.PhotoCreateOptions = {
@@ -375,8 +401,10 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('createPhotoAssetDemo');
   try {
     let testFileName: string = 'testFile' + Date.now() + '.jpg';
@@ -420,8 +448,10 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('createAudioAssetDemo');
   let testFileName: string = 'testFile' + Date.now() + '.mp3';
   mgr.createAudioAsset(testFileName, (err, fileAsset) => {
@@ -467,8 +497,10 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('createAudioAssetDemo');
   try {
     let testFileName: string = 'testFile' + Date.now() + '.mp3';
@@ -506,8 +538,10 @@ The album name must meet the following requirements:
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('createAlbumDemo');
   let albumName: string = 'newAlbumName' + new Date().getTime();
   mgr.createAlbum(albumName, (err, album) => {
@@ -550,10 +584,12 @@ The album name must meet the following requirements:
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('createAlbumDemo');
   let albumName: string  = 'newAlbumName' + new Date().getTime();
   mgr.createAlbum(albumName).then((album) => {
@@ -585,10 +621,12 @@ Ensure that the albums to be deleted exist. Only user albums can be deleted.
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   // Delete the album named newAlbumName.
   console.info('deleteAlbumsDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -636,11 +674,13 @@ Ensure that the albums to be deleted exist. Only user albums can be deleted.
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   // Delete the album named newAlbumName.
   console.info('deleteAlbumsDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -693,10 +733,12 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   // Obtain the album named newAlbumName.
   console.info('getAlbumsDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -753,8 +795,10 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   // Obtain the system album VIDEO, which is preset by default.
   console.info('getAlbumsDemo');
   mgr.getAlbums(userFileManager.AlbumType.SYSTEM, userFileManager.AlbumSubType.VIDEO, async (err, fetchResult) => {
@@ -811,11 +855,13 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   // Obtain the album named newAlbumName.
   console.info('getAlbumsDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -857,7 +903,7 @@ This API will be deprecated. Use [getAlbums<sup>10+</sup>](#getalbums10) instead
 | Name  | Type                    | Mandatory| Description                     |
 | -------- | ------------------------ | ---- | ------------------------- |
 | options  | [AlbumFetchOptions](#albumfetchoptions)        | Yes  | Options for fetching the albums.             |
-| callback |  AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | Yes  | Callback used to return the image and video albums obtained.|
+| callback |  AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | Yes  | Callback used to return the albums obtained.|
 
 **Error codes**
 
@@ -869,10 +915,12 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('getPhotoAlbumsDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let albumFetchOptions: userFileManager.AlbumFetchOptions = {
@@ -920,7 +968,7 @@ This API will be deprecated. Use [getAlbums<sup>10+</sup>](#getalbums10) instead
 
 | Type                       | Description          |
 | --------------------------- | -------------- |
-| Promise&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | Promise used to return the image and video albums obtained.|
+| Promise&lt;[FetchResult](#fetchresult)&lt;[Album](#album)&gt;&gt; | Promise used to return the albums obtained.|
 
 **Error codes**
 
@@ -932,10 +980,12 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('getPhotoAlbumsDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let albumFetchOptions: userFileManager.AlbumFetchOptions = {
@@ -969,7 +1019,7 @@ This API will be deprecated. Use [getAlbums<sup>10+</sup>](#getalbums10) instead
 | Name  | Type                    | Mandatory| Description                     |
 | -------- | ------------------------ | ---- | ------------------------- |
 | type  | [PrivateAlbumType](#privatealbumtype)        | Yes  | Type of the system album to obtain.             |
-| callback |  AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[PrivateAlbum](#privatealbum)&gt;&gt; | Yes  | Callback used to return the album obtained.|
+| callback |  AsyncCallback&lt;[FetchResult](#fetchresult)&lt;[PrivateAlbum](#privatealbum)&gt;&gt; | Yes  | Callback used to return the albums obtained.|
 
 **Error codes**
 
@@ -981,8 +1031,10 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('getPrivateAlbumDemo');
   mgr.getPrivateAlbum(userFileManager.PrivateAlbumType.TYPE_TRASH, async (err, fetchResult) => {
     if (fetchResult != undefined) {
@@ -1029,8 +1081,10 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('getPrivateAlbumDemo');
   try {
     let fetchResult: userFileManager.FetchResult<userFileManager.PrivateAlbum> = await mgr.getPrivateAlbum(userFileManager.PrivateAlbumType.TYPE_TRASH);
@@ -1069,10 +1123,12 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('getAudioAssets');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: userFileManager.FetchOptions = {
@@ -1109,7 +1165,7 @@ Obtains audio assets. This API uses a promise to return the result.
 
 | Name  | Type                    | Mandatory| Description                     |
 | -------- | ------------------------ | ---- | ------------------------- |
-| options  | [FetchOptions](#fetchoptions)        | Yes  | Options for fetching the audio assets.             |
+| options  | [FetchOptions](#fetchoptions)        | Yes  | Options for fetching audio assets.             |
 
 **Return value**
 
@@ -1127,10 +1183,12 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('getAudioAssets');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: userFileManager.FetchOptions = {
@@ -1179,10 +1237,12 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('deleteAssetDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: userFileManager.FetchOptions = {
@@ -1243,10 +1303,12 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('deleteDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: userFileManager.FetchOptions = {
@@ -1284,8 +1346,10 @@ Obtains information about online peer devices. This API uses an asynchronous cal
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('getActivePeersDemo');
   mgr.getActivePeers((err, devicesInfo) => {
     if (devicesInfo != undefined) {
@@ -1316,8 +1380,10 @@ Obtains information about online peer devices. This API uses a promise to return
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('getActivePeersDemo');
   try {
     let devicesInfo: Array<userFileManager.PeerInfo> = await mgr.getActivePeers();
@@ -1351,8 +1417,10 @@ Obtains information about all peer devices. This API uses an asynchronous callba
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('getAllPeersDemo');
   mgr.getAllPeers((err, devicesInfo) => {
     if (devicesInfo != undefined) {
@@ -1383,8 +1451,10 @@ Obtains information about all peer devices. This API uses a promise to return th
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('getAllPeersDemo');
   try {
     let devicesInfo: Array<userFileManager.PeerInfo> = await mgr.getAllPeers();
@@ -1421,7 +1491,7 @@ Obtains the index of an image or video in an album. This API uses an asynchronou
 | -------- | ------------------------- | ---- | ---------- |
 | photoUri | string | Yes  | URI of the media asset whose index is to be obtained.|
 | albumUri | string | Yes  | Album URI, which can be an empty string. If it is an empty string, all the media assets in the Gallery are obtained by default.  |
-| options  | [FetchOptions](#fetchoptions)       | Yes  |  Fetch options. Only one search condition or sorting mode must be set in **predicates**. If no value is set or multiple search conditions or sorting modes are set, the API cannot be called successfully.     |
+| options  | [FetchOptions](#fetchoptions)       | Yes  |  Fetch options. Only one search condition or sorting mode must be set in **predicates**. If no value is set or multiple search criteria or sorting modes are set, the API cannot be called successfully.     |
 | callback | AsyncCallback&lt;number&gt;| Yes  | Callback used to return the index obtained.|
 
 **Error codes**
@@ -1430,14 +1500,16 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
+
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   try {
     console.info('getPhotoIndexDemo');
     let predicatesForGetAsset: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -1489,7 +1561,7 @@ Obtains the index of an image or video in an album. This API uses a promise to r
 | -------- | ------------------------- | ---- | ---------- |
 | photoUri | string | Yes  | URI of the media asset whose index is to be obtained.|
 | albumUri | string | Yes  | Album URI, which can be an empty string. If it is an empty string, all the media assets in the Gallery are obtained by default.  |
-| options  | [FetchOptions](#fetchoptions)       | Yes  |  Fetch options. Only one search condition or sorting mode must be set in **predicates**. If no value is set or multiple search conditions or sorting modes are set, the API cannot be called successfully.     |
+| options  | [FetchOptions](#fetchoptions)       | Yes  |  Fetch options. Only one search condition or sorting mode must be set in **predicates**. If no value is set or multiple search criteria or sorting modes are set, the API cannot be called successfully.     |
 
 **Return value**
 
@@ -1503,15 +1575,17 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
+
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   try {
     console.info('getPhotoIndexDemo');
     let predicatesForGetAsset: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -1547,7 +1621,7 @@ async function example() {
 
 release(callback: AsyncCallback&lt;void&gt;): void
 
-Releases this **UserFileManager** instance. This API uses an asynchronous callback to return the result.
+Releases the **UserFileManager** instance. This API uses an asynchronous callback to return the result.
 Call this API when the APIs in the **UserFileManager** instance are no longer used.
 
 **System capability**: SystemCapability.FileManagement.UserFileManager.Core
@@ -1560,8 +1634,10 @@ Call this API when the APIs in the **UserFileManager** instance are no longer us
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('releaseDemo');
   mgr.release((err) => {
     if (err != undefined) {
@@ -1577,7 +1653,7 @@ async function example() {
 
 release(): Promise&lt;void&gt;
 
-Releases this **UserFileManager** instance. This API uses a promise to return the result.
+Releases the **UserFileManager** instance. This API uses a promise to return the result.
 Call this API when the APIs in the **UserFileManager** instance are no longer used.
 
 **System capability**: SystemCapability.FileManagement.UserFileManager.Core
@@ -1590,8 +1666,10 @@ Call this API when the APIs in the **UserFileManager** instance are no longer us
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('releaseDemo');
   try {
     await mgr.release();
@@ -1606,7 +1684,7 @@ async function example() {
 
 on(uri: string, forSubUri: boolean, callback: Callback&lt;ChangeData&gt;) : void
 
-Registers a listener for the specified URI.
+Registers a listener for the specified URI. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.UserFileManager.Core
 
@@ -1615,8 +1693,8 @@ Registers a listener for the specified URI.
 | Name   | Type                                       | Mandatory| Description                                                        |
 | --------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | uri       | string                                      | Yes  | URI of the file asset or album, or [DefaultChangeUri](#defaultchangeuri10).|
-| forSubUri | boolean                                     | Yes  | Whether to perform fuzzy listening. If **uri** is the URI of an album, the value **true** means to listen for the changes of the files in the album; the value **false** means to listen for the changes of the album only. If **uri** is **fileAsset**, there is no difference whether **forSubUri** is **true** or **false**. If **uri** is **DefaultChangeUri**, **forSubUri** must be **true**. If **forSubUri** is set to **false**, the URI cannot be found and no message can be received.|
-| callback  | Callback&lt;[ChangeData](#changedata10)&gt; | Yes  | Callback used to return [ChangeData](#changedata10). <br>**NOTE**: Different callbacks can be registered for a URI. You can use [off<sup>10+</sup>](#off10) to disable the specified callback or all callbacks for the URI.|
+| forSubUri | boolean                                     | Yes  | Whether to perform fuzzy listening.<br> If **uri** is the URI of the album, the value **true** means to listen for the file change in the album; the value **false** means to listen for the album change only.<br> If **uri** is the URI of the file asset, there is no difference whether **forSubUri** is **true** or **false**.<br> If **uri** is **DefaultChangeUri**, the value must be **true**, otherwise, the URI cannot be found and no message can be received.|
+| callback  | Callback&lt;[ChangeData](#changedata10)&gt; | Yes  | Callback used to return [ChangeData](#changedata10). <br>Note that different callbacks can be registered for a URI. You can use [off<sup>10+</sup>](#off10) to disable the specified callback or all callbacks for the URI.|
 
 **Error codes**
 
@@ -1628,10 +1706,12 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('onDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: userFileManager.FetchOptions = {
@@ -1679,7 +1759,7 @@ Unregisters the listener for the specified URI. Multiple callbacks can be regist
 | Name  | Type                                       | Mandatory| Description                                                        |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | uri      | string                                      | Yes  | URI of the file asset or album, or [DefaultChangeUri](#defaultchangeuri10).|
-| callback | Callback&lt;[ChangeData](#changedata10)&gt; | No  | Callback registered by [on<sup>10+</sup>](#on10). If this parameter is not specified, all listener callbacks registered for the URI will be unregistered. <br>**NOTE**: The specified callback will not be invoked.|
+| callback | Callback&lt;[ChangeData](#changedata10)&gt; | No  | Callback registered by [on<sup>10+</sup>](#on10). If this parameter is not specified, all listener callbacks registered for the URI will be unregistered. <br>Note that the specified callback will not be invoked.|
 
 **Error codes**
 
@@ -1691,10 +1771,12 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('offDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOptions: userFileManager.FetchOptions = {
@@ -1742,13 +1824,15 @@ This API will be deprecated. Use [on<sup>10+</sup>](#on10) instead.
 
 | Name  | Type                | Mandatory| Description                                                        |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| type     | [ChangeEvent](#changeevent)               | Yes  | Type of event to subscribe to.<br>**'deviceChange'**: device change.<br>**'albumChange'**: album change.<br>**'imageChange'**: image change.<br>**'audioChange'**: audio file change.<br>**'videoChange'**: video file change.<br>**remoteFileChange** indicates the change of the file on a registered device.|
+| type     | [ChangeEvent](#changeevent)               | Yes  | Type of event to subscribe to.<br>**'deviceChange'**: device change.<br>**'albumChange'**: album change.<br>**'imageChange'**: image change.<br>**'audioChange'**: audio file change.<br>**'videoChange'**: video file change.<br>**'remoteFileChange'**: change of the file on a registered device.|
 | callback | Callback&lt;void&gt; | Yes  | Callback that returns no value.                                                  |
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('onDemo');
   let count = 0;
   mgr.on('imageChange', () => {
@@ -1789,13 +1873,15 @@ This API will be deprecated. Use [off<sup>10+</sup>](#off10) instead.
 
 | Name  | Type                | Mandatory| Description                                                        |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| type     | [ChangeEvent](#changeevent)               | Yes  | Type of event to subscribe to.<br>**'deviceChange'**: device change.<br>**'albumChange'**: album change.<br>**'imageChange'**: image change.<br>**'audioChange'**: audio file change.<br>**'videoChange'**: video file change.<br>**remoteFileChange** indicates the change of the file on a registered device.|
+| type     | [ChangeEvent](#changeevent)               | Yes  | Type of event to subscribe to.<br>**'deviceChange'**: device change.<br>**'albumChange'**: album change.<br>**'imageChange'**: image change.<br>**'audioChange'**: audio file change.<br>**'videoChange'**: video file change.<br>**'remoteFileChange'**: change of the file on a registered device.|
 | callback | Callback&lt;void&gt; | No  | Callback that returns no value.                                                  |
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('offDemo');
   let count = 0;
   mgr.on('imageChange', () => {
@@ -1828,7 +1914,7 @@ async function example() {
 
 Provides APIs for encapsulating file asset attributes.
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.FileManagement.UserFileManager.Core
 
@@ -1852,12 +1938,20 @@ Obtains the value of a **FileAsset** parameter.
 | -------- | ------------------------- | ---- | ----- |
 | member | string | Yes   | Member parameter name, for example, **ImageVideoKey.DISPLAY_NAME**. You need to set **PhotoKeys** to be obtained in **fetchColumns** for all attributes except **uri**, **photoType**, and **displayName**. For example, **fetchColumns: ['title']**.|
 
+**Return value**
+
+| Type                   | Description           |
+| --------------------- | ------------- |
+| MemberType | Returns the member parameter.|
+
 **Example**
+
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('fileAssetGetDemo');
   try {
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -1893,10 +1987,12 @@ Sets a **FileAsset** parameter.
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('fileAssetSetDemo');
   try {
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -1932,10 +2028,12 @@ Commits the modification on the file metadata to the database. This API uses an 
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('commitModifyDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: userFileManager.FetchOptions = {
@@ -1979,10 +2077,12 @@ Commits the modification on the file metadata to the database. This API uses a p
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('commitModifyDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: userFileManager.FetchOptions = {
@@ -2011,7 +2111,7 @@ async function example() {
 
 open(mode: string, callback: AsyncCallback&lt;number&gt;): void
 
-Opens this file asset. This API uses an asynchronous callback to return the result.
+Opens a file. This API uses an asynchronous callback to return the result.
 
 **NOTE**<br>The write operations are mutually exclusive. After a write operation is complete, you must call **close** to release the resource.
 
@@ -2024,12 +2124,14 @@ Opens this file asset. This API uses an asynchronous callback to return the resu
 | Name     | Type                         | Mandatory  | Description                                 |
 | -------- | --------------------------- | ---- | ----------------------------------- |
 | mode     | string                      | Yes   | Mode of opening the file, for example, **'r'** (read-only), **'w'** (write-only), and **'rw'** (read-write).|
-| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the file descriptor (FD) of the file opened.                           |
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the file descriptor of the file opened.                           |
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('openDemo');
    let testFileName: string = 'testFile' + Date.now() + '.jpg';
   const fileAsset: userFileManager.FileAsset = await mgr.createPhotoAsset(testFileName);
@@ -2048,7 +2150,7 @@ async function example() {
 
 open(mode: string): Promise&lt;number&gt;
 
-Opens this file asset. This API uses a promise to return the result.
+Opens a file. This API uses a promise to return the result.
 
 **NOTE**<br>The write operations are mutually exclusive. After a write operation is complete, you must call **close** to release the resource.
 
@@ -2066,12 +2168,14 @@ Opens this file asset. This API uses a promise to return the result.
 
 | Type                   | Description           |
 | --------------------- | ------------- |
-| Promise&lt;number&gt; | Promise used to return the FD of the file opened.|
+| Promise&lt;number&gt; | Promise used to return the file descriptor of the file opened.|
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('openDemo');
   try {
     let testFileName: string = 'testFile' + Date.now() + '.jpg';
@@ -2093,7 +2197,7 @@ async function example() {
 
 close(fd: number, callback: AsyncCallback&lt;void&gt;): void
 
-Closes a file asset. This API uses an asynchronous callback to return the result.
+Closes a file. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.UserFileManager.Core
 
@@ -2101,15 +2205,17 @@ Closes a file asset. This API uses an asynchronous callback to return the result
 
 | Name     | Type                       | Mandatory  | Description   |
 | -------- | ------------------------- | ---- | ----- |
-| fd       | number                    | Yes   | FD of the file to close.|
+| fd       | number                    | Yes   | File descriptor of the file to close.|
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback that returns no value.|
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('closeDemo');
   try {
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -2138,7 +2244,7 @@ async function example() {
 
 close(fd: number): Promise&lt;void&gt;
 
-Closes a file asset. This API uses a promise to return the result.
+Closes a file. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.UserFileManager.Core
 
@@ -2146,7 +2252,7 @@ Closes a file asset. This API uses a promise to return the result.
 
 | Name | Type    | Mandatory  | Description   |
 | ---- | ------ | ---- | ----- |
-| fd   | number | Yes   | FD of the file to close.|
+| fd   | number | Yes   | File descriptor of the file to close.|
 
 **Return value**
 
@@ -2156,10 +2262,12 @@ Closes a file asset. This API uses a promise to return the result.
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('closeDemo');
   try {
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -2183,7 +2291,7 @@ async function example() {
 
 getThumbnail(callback: AsyncCallback&lt;image.PixelMap&gt;): void
 
-Obtains the thumbnail of this file asset. This API uses an asynchronous callback to return the result.
+Obtains the thumbnail of a file. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO or ohos.permission.READ_AUDIO
 
@@ -2193,14 +2301,16 @@ Obtains the thumbnail of this file asset. This API uses an asynchronous callback
 
 | Name     | Type                                 | Mandatory  | Description              |
 | -------- | ----------------------------------- | ---- | ---------------- |
-| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Yes   | Callback used to return the PixelMap of the thumbnail.|
+| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | Yes   | Callback used to return the PixelMap of the thumbnail.|
 
 **Example**
+
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('getThumbnailDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: userFileManager.FetchOptions = {
@@ -2234,16 +2344,18 @@ Obtains the file thumbnail of the given size. This API uses an asynchronous call
 
 | Name     | Type                                 | Mandatory  | Description              |
 | -------- | ----------------------------------- | ---- | ---------------- |
-| size     | [image.Size](../apis-image-kit/js-apis-image.md#size) | Yes   | Size of the thumbnail.           |
-| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Yes   | Callback used to return the PixelMap of the thumbnail.|
+| size     | [image.Size](../apis-image-kit/arkts-apis-image-i.md#size) | Yes   | Size of the thumbnail.           |
+| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | Yes   | Callback used to return the PixelMap of the thumbnail.|
 
 **Example**
+
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { image } from '@kit.ImageKit';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('getThumbnailDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: userFileManager.FetchOptions = {
@@ -2278,22 +2390,24 @@ Obtains the file thumbnail of the given size. This API uses a promise to return 
 
 | Name | Type            | Mandatory  | Description   |
 | ---- | -------------- | ---- | ----- |
-| size | [image.Size](../apis-image-kit/js-apis-image.md#size) | No   | Size of the thumbnail.|
+| size | [image.Size](../apis-image-kit/arkts-apis-image-i.md#size) | No   | Size of the thumbnail.|
 
 **Return value**
 
 | Type                           | Description                   |
 | ----------------------------- | --------------------- |
-| Promise&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | Promise used to return the PixelMap of the thumbnail.|
+| Promise&lt;[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | Promise used to return the PixelMap of the thumbnail.|
 
 **Example**
+
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('getThumbnailDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: userFileManager.FetchOptions = {
@@ -2316,7 +2430,7 @@ async function example() {
 
 favorite(isFavorite: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-Favorites or unfavorites this file asset. This API uses an asynchronous callback to return the result.
+Favorites or unfavorites a file. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.WRITE_IMAGEVIDEO or ohos.permission.WRITE_AUDIO
 
@@ -2326,15 +2440,17 @@ Favorites or unfavorites this file asset. This API uses an asynchronous callback
 
 | Name       | Type                       | Mandatory  | Description                                |
 | ---------- | ------------------------- | ---- | ---------------------------------- |
-| isFavorite | boolean                   | Yes   | Whether to favorite or unfavorite the file. The value **true** means to favorite the file, and **false** means to unfavorite the file.|
+| isFavorite | boolean                   | Yes   | Whether to favorite or unfavorite the file. The value **true** means to favorite the file; the value **false** means the opposite.|
 | callback   | AsyncCallback&lt;void&gt; | Yes   | Callback that returns no value.                             |
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('favoriteDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: userFileManager.FetchOptions = {
@@ -2357,7 +2473,7 @@ async function example() {
 
 favorite(isFavorite: boolean): Promise&lt;void&gt;
 
-Favorites or unfavorites this file asset. This API uses a promise to return the result.
+Favorites or unfavorites a file. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.WRITE_IMAGEVIDEO or ohos.permission.WRITE_AUDIO
 
@@ -2367,7 +2483,7 @@ Favorites or unfavorites this file asset. This API uses a promise to return the 
 
 | Name       | Type     | Mandatory  | Description                                |
 | ---------- | ------- | ---- | ---------------------------------- |
-| isFavorite | boolean | Yes   | Whether to favorite or unfavorite the file. The value **true** means to favorite the file, and **false** means to unfavorite the file.|
+| isFavorite | boolean | Yes   | Whether to favorite or unfavorite the file. The value **true** means to favorite the file; the value **false** means the opposite.|
 
 **Return value**
 
@@ -2377,11 +2493,13 @@ Favorites or unfavorites this file asset. This API uses a promise to return the 
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('favoriteDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: userFileManager.FetchOptions = {
@@ -2402,7 +2520,7 @@ async function example() {
 
 setHidden(hiddenState: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-Sets this file asset to hidden state. This API uses an asynchronous callback to return the result.
+Sets a file to hidden state. This API uses an asynchronous callback to return the result.
 
 The private files set to hidden state are located in the private album (in hidden state) and are not open to third-party applications. After obtaining private files from the private album, users can set **hiddenState** to **false** to remove them from the private album.
 
@@ -2428,10 +2546,12 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('setHiddenDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: userFileManager.FetchOptions = {
@@ -2454,7 +2574,7 @@ async function example() {
 
 setHidden(hiddenState: boolean): Promise&lt;void&gt;
 
-Sets this file asset to hidden state. This API uses a promise to return the result.
+Sets a file to hidden state. This API uses a promise to return the result.
 
 The private files set to hidden state are located in the private album (in hidden state) and are not open to third-party applications. After obtaining private files from the private album, users can set **hiddenState** to **false** to remove them from the private album.
 
@@ -2485,11 +2605,13 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   // Restore a file from a hidden album. Before the operation, ensure that the file exists in the hidden album.
   console.info('setHiddenDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -2513,7 +2635,7 @@ async function example() {
 
 getExif(): Promise&lt;string&gt;
 
-Obtains a JSON string consisting of the exchangeable image file format (EXIF) tags of this JPG image. This API uses a promise to return the result.
+Obtains a JSON string consisting of the EXIF tags of the JPG image. This API uses a promise to return the result.
 
 **NOTE**<br>This API returns a JSON string consisting of EXIF tags. The complete EXIF information consists of **all_exif** and [ImageVideoKey.USER_COMMENT](#imagevideokey). These two fields must be passed in via **fetchColumns**.
 
@@ -2531,7 +2653,7 @@ Obtains a JSON string consisting of the exchangeable image file format (EXIF) ta
 
 **Supported EXIF tags**
 
-For details about the EXIF tags, see [image.PropertyKey](../apis-image-kit/js-apis-image.md#propertykey7).
+For details about the EXIF tags, see [image.PropertyKey](../apis-image-kit/arkts-apis-image-e.md#propertykey7).
 
 | Key Value                                   | Description             |
 | --------------------------------------- | ----------------- |
@@ -2541,8 +2663,8 @@ For details about the EXIF tags, see [image.PropertyKey](../apis-image-kit/js-ap
 | ImageWidth | Image width.|
 | GPSLatitude | GPS latitude of the image.|
 | GPSLongitude | GPS longitude of the image.|
-| GPSLatitudeRef | Whether the longitude is east or west longitude.|
-| GPSLongitudeRef | Whether the latitude is north or south latitude.|
+| GPSLatitudeRef | Longitude reference, for example, W or E.|
+| GPSLongitudeRef | Latitude reference, for example, N or S.|
 | DateTimeOriginal | Shooting time.|
 | ExposureTime | Exposure time.|
 | SceneType | Scene type.|
@@ -2573,10 +2695,12 @@ For details about the EXIF tags, see [image.PropertyKey](../apis-image-kit/js-ap
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   try {
     console.info('getExifDemo');
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -2603,7 +2727,7 @@ async function example() {
 
 getExif(callback: AsyncCallback&lt;string&gt;): void
 
-Obtains a JSON string consisting of the EXIF tags of this JPG image. This API uses a promise to return the result.
+Obtains a JSON string consisting of the EXIF tags of the JPG image. This API uses a promise to return the result.
 
 **NOTE**<br>This API returns a JSON string consisting of EXIF tags. The complete EXIF information consists of **all_exif** and [ImageVideoKey.USER_COMMENT](#imagevideokey). These two fields must be passed in via **fetchColumns**.
 
@@ -2617,11 +2741,11 @@ Obtains a JSON string consisting of the EXIF tags of this JPG image. This API us
 
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the JSON string obtained.|
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the EXIF data, in JSON strings.|
 
 **Supported EXIF tags**
 
-For details about the EXIF tags, see [image.PropertyKey](../apis-image-kit/js-apis-image.md#propertykey7).
+For details about the EXIF tags, see [image.PropertyKey](../apis-image-kit/arkts-apis-image-e.md#propertykey7).
 
 | Key Value                                   | Description             |
 | --------------------------------------- | ----------------- |
@@ -2631,8 +2755,8 @@ For details about the EXIF tags, see [image.PropertyKey](../apis-image-kit/js-ap
 | ImageWidth | Image width.|
 | GPSLatitude | GPS latitude of the image.|
 | GPSLongitude | GPS longitude of the image.|
-| GPSLatitudeRef | Whether the longitude is east or west longitude.|
-| GPSLongitudeRef | Whether the latitude is north or south latitude.|
+| GPSLatitudeRef | Longitude reference, for example, W or E.|
+| GPSLongitudeRef | Latitude reference, for example, N or S.|
 | DateTimeOriginal | Shooting time.|
 | ExposureTime | Exposure time.|
 | SceneType | Scene type.|
@@ -2663,10 +2787,12 @@ For details about the EXIF tags, see [image.PropertyKey](../apis-image-kit/js-ap
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   try {
     console.info('getExifDemo');
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -2727,14 +2853,16 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202   | Called by non-system application.                |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
+
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   try {
     console.info('setUserCommentDemo')
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -2780,14 +2908,16 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 202   | Called by non-system application.                |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
+
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   try {
     console.info('setUserCommentDemo')
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -2831,10 +2961,12 @@ Obtains the total number of files in the result set.
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('getCountDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: userFileManager.FetchOptions = {
@@ -2863,10 +2995,12 @@ Checks whether the cursor is in the last row of the result set.
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: userFileManager.FetchOptions = {
     fetchColumns: [],
@@ -2888,16 +3022,18 @@ async function example() {
 
 close(): void
 
-Releases and invalidates this **FetchFileResult** instance. After this instance is released, the APIs in this instance cannot be invoked.
+Releases and invalidates the **FetchFileResult** instance. After this instance is released, the APIs in this instance cannot be invoked.
 
 **System capability**: SystemCapability.FileManagement.UserFileManager.Core
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('fetchResultCloseDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: userFileManager.FetchOptions = {
@@ -2930,10 +3066,12 @@ Obtains the first file asset in the result set. This API uses an asynchronous ca
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('getFirstObjectDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: userFileManager.FetchOptions = {
@@ -2967,10 +3105,12 @@ Obtains the first file asset in the result set. This API uses a promise to retur
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('getFirstObjectDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: userFileManager.FetchOptions = {
@@ -3000,10 +3140,12 @@ Before using this API, you must use [isAfterLast()](#isafterlast) to check wheth
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('getNextObjectDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: userFileManager.FetchOptions = {
@@ -3041,10 +3183,12 @@ Before using this API, you must use [isAfterLast()](#isafterlast) to check wheth
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('getNextObjectDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: userFileManager.FetchOptions = {
@@ -3076,10 +3220,12 @@ Obtains the last file asset in the result set. This API uses an asynchronous cal
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('getLastObjectDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: userFileManager.FetchOptions = {
@@ -3113,10 +3259,12 @@ Obtains the last file asset in the result set. This API uses a promise to return
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('getLastObjectDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: userFileManager.FetchOptions = {
@@ -3154,10 +3302,12 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('getPositionObjectDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: userFileManager.FetchOptions = {
@@ -3205,10 +3355,12 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('getPositionObjectDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: userFileManager.FetchOptions = {
@@ -3237,10 +3389,12 @@ Obtains all the file assets in the result set. This API uses an asynchronous cal
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('getAllObjectDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: userFileManager.FetchOptions = {
@@ -3274,10 +3428,12 @@ Obtains all the file assets in the result set. This API uses a promise to return
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('getAllObjectDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: userFileManager.FetchOptions = {
@@ -3292,9 +3448,9 @@ async function example() {
 
 ## Album
 
-Provides APIs to implement a physical album.
+Provides APIs to manage albums.
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.FileManagement.UserFileManager.Core
 
@@ -3334,10 +3490,12 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('albumGetFileAssetsDemoCallback');
 
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -3392,11 +3550,13 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('albumGetFileAssetsDemoPromise');
 
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -3435,10 +3595,12 @@ Commits the modification on the album attributes to the database. This API uses 
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('albumCommitModifyDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let albumFetchOptions: userFileManager.AlbumFetchOptions = {
@@ -3475,11 +3637,13 @@ Commits the modification on the album attributes to the database. This API uses 
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('albumCommitModifyDemo');
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let albumFetchOptions: userFileManager.AlbumFetchOptions = {
@@ -3527,10 +3691,12 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   try {
     console.info('addPhotoAssetsDemoCallback');
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -3587,11 +3753,13 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   try {
     console.info('addPhotoAssetsDemoPromise');
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -3641,10 +3809,12 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   try {
     console.info('removePhotoAssetsDemoCallback');
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -3701,11 +3871,13 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   try {
     console.info('removePhotoAssetsDemoPromise');
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -3755,10 +3927,12 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   try {
     console.info('recoverPhotoAssetsDemoCallback');
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -3815,11 +3989,13 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   try {
     console.info('recoverPhotoAssetsDemoPromise');
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -3848,7 +4024,7 @@ deletePhotoAssets(assets: Array&lt;FileAsset&gt;, callback: AsyncCallback&lt;voi
 
 Deletes image or video assets from the recycle bin. Before the operation, ensure that the image or video assets exist in the recycle bin. This API uses an asynchronous callback to return the result.
 
-**CAUTION**: This operation is irreversible. The file assets deleted cannot be restored. Exercise caution when performing this operation.
+**CAUTION**<br>This operation is irreversible. The file assets deleted cannot be restored. Exercise caution when performing this operation.
 
 **Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
 
@@ -3871,10 +4047,12 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   try {
     console.info('deletePhotoAssetsDemoCallback');
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -3905,7 +4083,7 @@ deletePhotoAssets(assets: Array&lt;FileAsset&gt;): Promise&lt;void&gt;
 
 Deletes image or video assets from the recycle bin. Before the operation, ensure that the image or video assets exist in the recycle bin. This API uses a promise to return the result.
 
-**CAUTION**: This operation is irreversible. The file assets deleted cannot be restored. Exercise caution when performing this operation.
+**CAUTION**<br>This operation is irreversible. The file assets deleted cannot be restored. Exercise caution when performing this operation.
 
 **Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
 
@@ -3933,11 +4111,13 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   try {
     console.info('deletePhotoAssetsDemoPromise');
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -3964,9 +4144,9 @@ async function example() {
 
 Provides APIs for managing the system albums.
 
-This API will be discarded. Use [Album](#album) instead.
+This API will be deprecated. Use [Album](#album) instead.
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.FileManagement.UserFileManager.Core
 
@@ -4007,10 +4187,12 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('privateAlbumGetFileAssetsDemoCallback');
   let albumList: userFileManager.FetchResult<userFileManager.PrivateAlbum> = await mgr.getPrivateAlbum(userFileManager.PrivateAlbumType.TYPE_TRASH);
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -4065,10 +4247,12 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('privateAlbumGetFileAssetsDemoPromise');
   let albumList: userFileManager.FetchResult<userFileManager.PrivateAlbum> = await mgr.getPrivateAlbum(userFileManager.PrivateAlbumType.TYPE_TRASH);
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -4104,10 +4288,12 @@ This API will be deprecated. Use [Album.deletePhotoAssets](#deletephotoassets10)
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('privateAlbumDeleteCallback');
   let albumList: userFileManager.FetchResult<userFileManager.PrivateAlbum> = await mgr.getPrivateAlbum(userFileManager.PrivateAlbumType.TYPE_TRASH);
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -4155,11 +4341,13 @@ This API will be deprecated. Use [Album.deletePhotoAssets](#deletephotoassets10)
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('privateAlbumDeleteDemoPromise');
   let albumList: userFileManager.FetchResult<userFileManager.PrivateAlbum> = await mgr.getPrivateAlbum(userFileManager.PrivateAlbumType.TYPE_TRASH);
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -4200,10 +4388,12 @@ This API will be deprecated. Use [Album.recoverPhotoAssets](#recoverphotoassets1
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('privateAlbumRecoverDemoCallback');
   let albumList: userFileManager.FetchResult<userFileManager.PrivateAlbum> = await mgr.getPrivateAlbum(userFileManager.PrivateAlbumType.TYPE_TRASH);
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -4251,11 +4441,13 @@ This API will be deprecated. Use [Album.recoverPhotoAssets](#recoverphotoassets1
 
 **Example**
 
+For details about how to create a **userFileManager** instance, see the example in [userFileManager.getUserFileMgr](#userfilemanagergetuserfilemgr).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example() {
+async function example(mgr: userFileManager.UserFileManager) {
   console.info('privateAlbumRecoverDemoPromise');
   let albumList: userFileManager.FetchResult<userFileManager.PrivateAlbum> = await mgr.getPrivateAlbum(userFileManager.PrivateAlbumType.TYPE_TRASH);
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
@@ -4382,7 +4574,7 @@ Enumerate the album subtypes.
 
 Enumerates the system album types.
 
-This API will be deprecated. Use [AlbumType](#albumtype10) and [AlbumSubType](#albumsubtype10)  instead.
+This API will be deprecated. Use [AlbumType](#albumtype10) and [AlbumSubType](#albumsubtype10) instead.
 
 **System capability**: SystemCapability.FileManagement.UserFileManager.Core
 
@@ -4402,9 +4594,9 @@ Defines the key information about an audio file.
 | URI           | uri                 | URI of the file.                                                  |
 | DISPLAY_NAME  | display_name        | File name displayed.                                                  |
 | DATE_ADDED    | date_added          | Date when the file was added. The value is the number of seconds elapsed since the Epoch time (00:00:00 UTC on January 1, 1970).            |
-| DATE_MODIFIED | date_modified       | Date when the file content (not the file name) was last modified. The value is the number of seconds elapsed since the Epoch time.|
-| TITLE         | title               | Title in the file.                                                  |
-| ARTIST        | artist              | Artist of the file.                                                  |
+| DATE_MODIFIED | date_modified       | Date when the file content (not the file name) was last modified. The value is the number of seconds elapsed since the Epoch time (00:00:00 UTC on January 1, 1970).|
+| TITLE         | title               | Title of the file.                                                  |
+| ARTIST        | artist              | Author of the file.                                                  |
 | AUDIOALBUM    | audio_album         | Audio album.                                                  |
 | DURATION      | duration            | Duration, in ms.                                   |
 | FAVORITE      | favorite            | Whether the file is added to favorites.                                                  |
@@ -4421,18 +4613,18 @@ Defines the key information about an image or video file.
 | FILE_TYPE     | file_type           | Type of the file.                                             |
 | DISPLAY_NAME  | display_name        | File name displayed.                                                  |
 | DATE_ADDED    | date_added          | Date when the file was added. The value is the number of seconds elapsed since the Epoch time (00:00:00 UTC on January 1, 1970).            |
-| DATE_MODIFIED | date_modified       | Date when the file content (not the file name) was last modified. The value is the number of seconds elapsed since the Epoch time.|
+| DATE_MODIFIED | date_modified       | Date when the file content (not the file name) was last modified. The value is the number of seconds elapsed since the Epoch time (00:00:00 UTC on January 1, 1970).|
 | TITLE         | title               | Title of the file.                                                  |
 | DURATION      | duration            | Duration, in ms.                                   |
 | WIDTH         | width               | Image width, in pixels.                                   |
 | HEIGHT        | height              | Image height, in pixels.                                     |
-| DATE_TAKEN    | date_taken          | Date when the file (photo) was taken. The value is the number of seconds elapsed since the Epoch time.               |
+| DATE_TAKEN    | date_taken          | Date when the file (photo) was taken. The value is the number of seconds elapsed since the Epoch time (00:00:00 UTC on January 1, 1970).               |
 | ORIENTATION   | orientation         | Orientation of the image file.                                            |
 | FAVORITE      | favorite            | Whether the file is added to favorites.                                                   |
 | POSITION<sup>10+</sup>  | position            | File location type.                              |
-| DATE_TRASHED<sup>10+</sup>  | date_trashed  | Date when the file was deleted. The value is the number of seconds elapsed since the Epoch time.                |
+| DATE_TRASHED<sup>10+</sup>  | date_trashed  | Date when the file was deleted. The value is the number of seconds elapsed since the Epoch time (00:00:00 UTC on January 1, 1970).                |
 | HIDDEN<sup>10+</sup>  | hidden            | Whether the file is hidden.                              |
-| CAMERA_SHOT_KEY<sup>10+</sup>    | camera_shot_key           | Key for the Ultra Snapshot feature, which allows the camera to take photos or record videos with the screen off. (This parameter is available only for the system camera, and the key value is defined by the system camera.)   |
+| CAMERA_SHOT_KEY<sup>10+</sup>    | camera_shot_key           | Key for the Ultra Snapshot feature.<br>This parameter is available only for the system camera, and the key value is defined by the system camera.   |
 | USER_COMMENT<sup>10+</sup>  | user_comment            | User comment information.                              |
 
 ## AlbumKey
@@ -4447,7 +4639,7 @@ Defines the key album information.
 | FILE_TYPE     | file_type           | Type of the file.                                             |
 | ALBUM_NAME    | album_name          | Name of the album.                                                  |
 | DATE_ADDED    | date_added          | Date when the file was added. The value is the number of seconds elapsed since the Epoch time (00:00:00 UTC on January 1, 1970).            |
-| DATE_MODIFIED | date_modified       | Date when the album file content (not the album name) was last modified. The value is the number of seconds elapsed since the Epoch time.|
+| DATE_MODIFIED | date_modified       | Date when the file content (not the file name) was last modified. The value is the number of seconds elapsed since the Epoch time (00:00:00 UTC on January 1, 1970).|
 
 ## PhotoCreateOptions<sup>10+</sup>
 
@@ -4458,7 +4650,7 @@ Options for creating an image or video asset.
 | Name                  | Type               | Mandatory| Description                                             |
 | ---------------------- | ------------------- | ---- | ------------------------------------------------ |
 | subType           | [PhotoSubType](#photosubtype10) | No | Subtype of the image or video. |
-| cameraShotKey           | string | No | Key for the Ultra Snapshot feature, which allows the camera to take photos or record videos with the screen off. (This parameter is available only for the system camera, and the key value is defined by the system camera.) |
+| cameraShotKey           | string | No | Key for the Ultra Snapshot feature.<br>This parameter is available only for the system camera, and the key value is defined by the system camera. |
 
 ## FetchOptions
 
@@ -4491,7 +4683,7 @@ Defines the return value of the listener callback.
 | ------- | --------------------------- | ---- | ---- | ------------------------------------------------------------ |
 | type    | [NotifyType](#notifytype10) | Yes  | No  | Notification type.                                      |
 | uris    | Array&lt;string&gt;         | Yes  | No  | Array of all file asset or album URIs with the same [NotifyType](#notifytype10).|
-| subUris | Array&lt;string&gt;         | Yes  | No  | URIs of the changed files in the album.                                   |
+| subUris | Array&lt;string&gt;         | Yes  | No  | URIs of the changed files in the album. The value may be undefined. Check whether the value is undefined before using it.|
 
 ## NotifyType<sup>10+</sup>
 
@@ -4518,3 +4710,5 @@ Enumerates the **DefaultChangeUri** subtypes.
 | DEFAULT_PHOTO_URI | file://media/Photo      | Default **PhotoAsset** URI. The **PhotoAsset** change notifications are received based on this parameter and **forSubUri{true}**.|
 | DEFAULT_ALBUM_URI | file://media/PhotoAlbum | Default album URI. Album change notifications are received based on this parameter and **forSubUri{true}**. |
 | DEFAULT_AUDIO_URI | file://media/Audio      | Default **AudioAsset** URI. The **AudioAsset** change notifications are received based on this parameter and **forSubUri{true}**.|
+
+<!--no_check-->

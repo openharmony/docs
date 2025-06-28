@@ -31,6 +31,7 @@
       taskpool.execute(task);
     }
     ```
+    <!-- @[query_database_return_main_thread](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/PracticalCases/entry/src/main/ets/managers/Mock.ets) -->
 
 2. 封装一个瀑布流数据源，用于瀑布流组件加载数据。
 
@@ -165,6 +166,7 @@
       }
     }
     ```
+    <!-- @[encapsulate_waterfall_data_source](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/PracticalCases/entry/src/main/ets/managers/WaterFlowDataSource.ets) -->
 
 3. 在应用冷启动阶段，调用`getImgFromDB()`接口，将数据查询操作放到子线程中。在`img`接收到子线程返回的数据后，将数据渲染到瀑布流组件。
 
@@ -284,3 +286,4 @@
       }
     }
     ```
+    <!-- @[receive_child_thread_data_render_waterfall_component](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/PracticalCases/entry/src/main/ets/managers/WaterfallRendering.ets) -->

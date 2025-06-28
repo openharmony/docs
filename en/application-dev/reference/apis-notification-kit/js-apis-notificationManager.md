@@ -26,7 +26,7 @@ If the ID and label of the new notification are the same as that of the previous
 
 | Name    | Type                                       | Mandatory| Description                                       |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------- |
-| request  | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | Yes  | Content and related configuration of the notification to publish.|
+| request  | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest-1) | Yes  | Content and related configuration of the notification to publish.|
 | callback | AsyncCallback\<void\>                       | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.                       |
 
 **Error codes**
@@ -47,7 +47,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 1600014  | No permission.                                       |
 | 1600015  | The current notification status does not support duplicate configurations. |
 | 1600016  | The notification version for this update is too low. |
-| 1600020  | The application is not allowed to publish notifications due to permission control settings. |
+| 1600020  | The application is not allowed to send notifications due to permission settings. |
 | 2300007  | Network unreachable.                                 |
 
 **Example**
@@ -92,7 +92,7 @@ If the ID and label of the new notification are the same as that of the previous
 
 | Name    | Type                                       | Mandatory| Description                                       |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------- |
-| request  | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | Yes  | Content and related configuration of the notification to publish.|
+| request  | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest-1) | Yes  | Content and related configuration of the notification to publish.|
 
 **Return value**
 
@@ -118,7 +118,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 1600014  | No permission.                                       |
 | 1600015  | The current notification status does not support duplicate configurations. |
 | 1600016  | The notification version for this update is too low. |
-| 1600020  | The application is not allowed to publish notifications due to permission control settings. |
+| 1600020  | The application is not allowed to send notifications due to permission settings. |
 | 2300007  | Network unreachable.                                 |
 
 **Example**
@@ -454,7 +454,7 @@ Obtains a notification slot of a specified type. This API uses an asynchronous c
 
 | Name    | Type                             | Mandatory| Description                                                       |
 | -------- | --------------------------------- | ---- | ----------------------------------------------------------- |
-| slotType | [SlotType](#slottype)                          | Yes  | Type of a notification slot, including social communication, service notification, and content consultation.|
+| slotType | [SlotType](#slottype)                          | Yes  | Type of a notification slot, such as social communication, service notification, content consultation, and so on.|
 | callback | AsyncCallback\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the obtained **NotificationSlot**; otherwise, **err** is an error object.                                       |
 
 **Error codes**
@@ -478,7 +478,7 @@ let getSlotCallback = (err: BusinessError, data: notificationManager.Notificatio
   if (err) {
     console.error(`Failed to get slot. Code is ${err.code}, message is ${err.message}`);
   } else {
-    console.info(`Succeeded in getting slot, data is ` + JSON.stringify(data));
+    console.info(`Succeeded in getting slot, data is ${JSON.stringify(data)}`);
   }
 }
 let slotType: notificationManager.SlotType = notificationManager.SlotType.SOCIAL_COMMUNICATION;
@@ -497,7 +497,7 @@ Obtains a notification slot of a specified type. This API uses a promise to retu
 
 | Name    | Type    | Mandatory| Description                                                       |
 | -------- | -------- | ---- | ----------------------------------------------------------- |
-| slotType | [SlotType](#slottype) | Yes  | Type of a notification slot, including social communication, service notification, and content consultation.|
+| slotType | [SlotType](#slottype) | Yes  | Type of a notification slot, such as social communication, service notification, content consultation, and so on.|
 
 **Return value**
 
@@ -523,7 +523,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotType: notificationManager.SlotType = notificationManager.SlotType.SOCIAL_COMMUNICATION;
 notificationManager.getSlot(slotType).then((data: notificationManager.NotificationSlot) => {
-  console.info(`Succeeded in getting slot, data is ` + JSON.stringify(data));
+  console.info(`Succeeded in getting slot, data is ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
   console.error(`Failed to get slot. Code is ${err.code}, message is ${err.message}`);
 });
@@ -565,7 +565,7 @@ let getSlotsCallback = (err: BusinessError, data: Array<notificationManager.Noti
   if (err) {
     console.error(`Failed to get slots. Code is ${err.code}, message is ${err.message}`);
   } else {
-    console.info(`Succeeded in getting slots, data is ` + JSON.stringify(data));
+    console.info(`Succeeded in getting slots, data is ${JSON.stringify(data)}`);
   }
 }
 notificationManager.getSlots(getSlotsCallback);
@@ -601,7 +601,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.getSlots().then((data: Array<notificationManager.NotificationSlot>) => {
-  console.info(`Succeeded in getting slots, data is ` + JSON.stringify(data));
+  console.info(`Succeeded in getting slots, data is ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
   console.error(`Failed to get slots. Code is ${err.code}, message is ${err.message}`);
 });
@@ -619,7 +619,7 @@ Removes a notification slot of a specified type for this application. This API u
 
 | Name    | Type                 | Mandatory| Description                                                       |
 | -------- | --------------------- | ---- | ----------------------------------------------------------- |
-| slotType | [SlotType](#slottype)              | Yes  | Type of a notification slot, including social communication, service notification, and content consultation.|
+| slotType | [SlotType](#slottype)              | Yes  | Type of a notification slot, such as social communication, service notification, content consultation, and so on.|
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.                                       |
 
 **Error codes**
@@ -662,7 +662,7 @@ Removes a notification slot of a specified type for this application. This API u
 
 | Name    | Type    | Mandatory| Description                                                       |
 | -------- | -------- | ---- | ----------------------------------------------------------- |
-| slotType | [SlotType](#slottype) | Yes  | Type of a notification slot, including social communication, service notification, and content consultation.|
+| slotType | [SlotType](#slottype) | Yes  | Type of a notification slot, such as social communication, service notification, content consultation, and so on.|
 
 **Return value**
 
@@ -782,7 +782,7 @@ Checks whether notification is enabled for the specified application. This API u
 
 | Name    | Type                 | Mandatory| Description                    |
 | -------- | --------------------- | ---- | ------------------------ |
-| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result. The value **true** means that the notification is enabled, and **false** means the opposite.|
+| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result. The value **true** means that the notification can be published; **false** means the opposite. If the call fails, an error object is returned.|
 
 **Error codes**
 
@@ -845,7 +845,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.isNotificationEnabled().then((data: boolean) => {
-  console.info("isNotificationEnabled success, data: " + JSON.stringify(data));
+  console.info(`isNotificationEnabled success, data: ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
   console.error(`isNotificationEnabled failed, code is ${err.code}, message is ${err.message}`);
 });
@@ -888,7 +888,7 @@ setBadgeNumber(badgeNumber: number): Promise\<void\>
 
 Sets the notification badge number. This API uses a promise to return the result.
 
-This API is not supported on TVs and wearables.
+This API is not supported on wearables.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -936,7 +936,7 @@ setBadgeNumber(badgeNumber: number, callback: AsyncCallback\<void\>): void
 
 Sets the notification badge number. This API uses an asynchronous callback to return the result.
 
-This API is not supported on TVs and wearables.
+This API is not supported on wearables.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -1010,7 +1010,7 @@ let getActiveNotificationCountCallback = (err: BusinessError, data: number): voi
   if (err) {
     console.error(`Failed to get active notification count. Code is ${err.code}, message is ${err.message}`);
   } else {
-    console.info(`Succeeded in getting active notification count, data is ` + JSON.stringify(data));
+    console.info(`Succeeded in getting active notification count, data is ${JSON.stringify(data)}`);
   }
 }
 
@@ -1047,7 +1047,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.getActiveNotificationCount().then((data: number) => {
-  console.info(`Succeeded in getting active notification count, data is ` + JSON.stringify(data));
+  console.info(`Succeeded in getting active notification count, data is ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
   console.error(`Failed to get active notification count. Code is ${err.code}, message is ${err.message}`);
 });
@@ -1065,7 +1065,7 @@ Obtains the active notifications of this application. This API uses an asynchron
 
 | Name    | Type                                                        | Mandatory| Description                          |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------ |
-| callback | AsyncCallback\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)>> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and data is the obtained **NotificationRequest** array ; otherwise, **err** is an error object.|
+| callback | AsyncCallback\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest-1)>> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and data is the obtained **NotificationRequest** array; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -1087,7 +1087,7 @@ let getActiveNotificationsCallback = (err: BusinessError, data: Array<notificati
   if (err) {
     console.error(`Failed to get active notifications. Code is ${err.code}, message is ${err.message}`);
   } else {
-    console.info(`Succeeded in getting active notifications, data is ` + JSON.stringify(data));
+    console.info(`Succeeded in getting active notifications, data is ${JSON.stringify(data)}`);
   }
 }
 notificationManager.getActiveNotifications(getActiveNotificationsCallback);
@@ -1105,7 +1105,7 @@ Obtains the active notifications of this application. This API uses a promise to
 
 | Type                                                        | Description                                   |
 | ------------------------------------------------------------ | --------------------------------------- |
-| Promise\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)\>\> | Promise used to return the result.|
+| Promise\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest-1)\>\> | Promise used to return the result.|
 
 **Error codes**
 
@@ -1123,7 +1123,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.getActiveNotifications().then((data: Array<notificationManager.NotificationRequest>) => {
-  console.info(`Succeeded in getting active notifications, data is ` + JSON.stringify(data));
+  console.info(`Succeeded in getting active notifications, data is ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
   console.error(`Failed to get active notifications. Code is ${err.code}, message is ${err.message}`);
 });
@@ -1141,7 +1141,7 @@ Cancels notifications under a notification group of this application. This API u
 
 | Name     | Type                 | Mandatory| Description                        |
 | --------- | --------------------- | ---- | ---------------------------- |
-| groupName | string                | Yes  | Name of the notification group, which is specified through [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) when the notification is published.|
+| groupName | string                | Yes  | Name of the notification group, which is specified through [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest-1) when the notification is published.|
 | callback  | AsyncCallback\<void\> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
@@ -1183,7 +1183,7 @@ Cancels notifications under a notification group of this application. This API u
 
 | Name     | Type  | Mandatory| Description          |
 | --------- | ------ | ---- | -------------- |
-| groupName | string | Yes  | Name of the notification group, which is specified through [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) when the notification is published.|
+| groupName | string | Yes  | Name of the notification group, which is specified through [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest-1) when the notification is published.|
 
 **Return value**
 
@@ -1219,7 +1219,7 @@ notificationManager.cancelGroup(groupName).then(() => {
 
 isSupportTemplate(templateName: string, callback: AsyncCallback\<boolean\>): void
 
-Checks whether a specified template is supported before using [NotificationTemplate](js-apis-inner-notification-notificationTemplate.md) to publish a notification. This API uses an asynchronous callback to return the result.
+Checks whether a specified template is supported before using [NotificationTemplate](js-apis-inner-notification-notificationTemplate.md) to publish a notification. This API uses an asynchronous callback to return the result. If the API fails to be called, an error object is returned.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -1251,7 +1251,7 @@ let isSupportTemplateCallback = (err: BusinessError, data: boolean): void => {
   if (err) {
     console.error(`isSupportTemplate failed, code is ${err.code}, message is ${err.message}`);
   } else {
-    console.info("isSupportTemplate success, data: " + JSON.stringify(data));
+    console.info(`isSupportTemplate success, data: ${JSON.stringify(data)}`);
   }
 }
 notificationManager.isSupportTemplate(templateName, isSupportTemplateCallback);
@@ -1295,7 +1295,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let templateName: string = 'downloadTemplate';
 notificationManager.isSupportTemplate(templateName).then((data: boolean) => {
-  console.info("isSupportTemplate success, data: " + JSON.stringify(data));
+  console.info(`isSupportTemplate success, data: ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
   console.error(`isSupportTemplate failed, code is ${err.code}, message is ${err.message}`);
 });
@@ -1346,7 +1346,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 
 class MyAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
-  hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
@@ -1525,7 +1525,7 @@ notificationManager.requestEnableNotification().then(() => {
 
 isDistributedEnabled(callback: AsyncCallback\<boolean>): void
 
-Checks whether distributed notification is enabled on this device. This API uses an asynchronous callback to return the result.
+Checks whether the device supports cross-device notifications. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -1533,7 +1533,7 @@ Checks whether distributed notification is enabled on this device. This API uses
 
 | Name  | Type                    | Mandatory| Description                      |
 | -------- | ------------------------ | ---- | -------------------------- |
-| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result. The value **true** means that distributed notification is enabled, and **false** means the opposite.|
+| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result. The value **true** means that the cross-device notification is supported; **false** means the opposite. If the call fails, an error object is returned.|
 
 **Error codes**
 
@@ -1556,7 +1556,7 @@ let isDistributedEnabledCallback = (err: BusinessError, data: boolean): void => 
   if (err) {
     console.error(`isDistributedEnabled failed, code is ${err.code}, message is ${err.message}`);
   } else {
-    console.info("isDistributedEnabled success " + JSON.stringify(data));
+    console.info(`isDistributedEnabled success ${JSON.stringify(data)}`);
   }
 };
 notificationManager.isDistributedEnabled(isDistributedEnabledCallback);
@@ -1566,7 +1566,7 @@ notificationManager.isDistributedEnabled(isDistributedEnabledCallback);
 
 isDistributedEnabled(): Promise\<boolean>
 
-Checks whether distributed notification is enabled on this device. This API uses a promise to return the result.
+Checks whether the device supports cross-device notifications. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -1574,7 +1574,7 @@ Checks whether distributed notification is enabled on this device. This API uses
 
 | Type              | Description                                         |
 | ------------------ | --------------------------------------------- |
-| Promise\<boolean\> | Promise used to return the result. The value **true** means that distributed notification is enabled, and **false** means the opposite.|
+| Promise\<boolean\> | Promise used to return the result. The value **true** means that the cross-device notification is supported; **false** means the opposite.|
 
 **Error codes**
 
@@ -1593,7 +1593,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.isDistributedEnabled().then((data: boolean) => {
-  console.info("isDistributedEnabled success, data: " + JSON.stringify(data));
+  console.info(`isDistributedEnabled success, data: ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
   console.error(`isDistributedEnabled failed, code is ${err.code}, message is ${err.message}`);
 });
@@ -1661,6 +1661,42 @@ class MyAbility extends UIAbility {
 }
 ```
 
+## notificationManager.getNotificationSetting<sup>20+</sup>
+
+getNotificationSetting(): Promise\<NotificationSetting\>
+
+Obtains the notification settings of an application. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**Return value**
+
+| Type              | Description           |
+| ------------------ | --------------- |
+| Promise\<[NotificationSetting](#notificationsetting20)\> | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect to the service.          |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+notificationManager.getNotificationSetting().then((data: notificationManager.NotificationSetting) => {
+    console.info(`getNotificationSetting success, data: ${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+    console.error(`getNotificationSetting failed, code is ${err.code}, message is ${err.message}`);
+});
+```
+
 ## ContentType
 
 Enumerates the notification content types.
@@ -1708,7 +1744,7 @@ Enumerates the notification slot types.
 | SOCIAL_COMMUNICATION | 1 | Notification slot for social communication. This type corresponds to [SlotLevel](#slotlevel) being **LEVEL_HIGH**.|
 | SERVICE_INFORMATION  | 2 | Notification slot for service information. This type corresponds to [SlotLevel](#slotlevel) being **LEVEL_HIGH**.|
 | CONTENT_INFORMATION  | 3 | Notification slot for content consultation. This type corresponds to [SlotLevel](#slotlevel) being **LEVEL_MIN**.|
-| LIVE_VIEW<sup>11+</sup>            | 4 | Live view. A third-party application cannot directly create a notification of this slot type. After the system proxy creates a system live view, the third-party application releases a notification with the same ID to update the specified content. This type corresponds to [SlotLevel](#slotlevel) being **LEVEL_DEFAULT**.|
+| LIVE_VIEW<sup>11+</sup>            | 4 | Live view. A third-party application cannot directly create a notification of this slot type. After the system proxy creates a system live view, the third-party application publishes a notification with the same ID to update the specified content. This type corresponds to [SlotLevel](#slotlevel) being **LEVEL_DEFAULT**.|
 | CUSTOMER_SERVICE<sup>11+</sup>     | 5 | Customer service message. This type is used for messages between users and customer service providers. The messages must be initiated by users. This type corresponds to [SlotLevel](#slotlevel) being **LEVEL_DEFAULT**. |
 | OTHER_TYPES          | 0xFFFF | Notification slot for other purposes. This type corresponds to [SlotLevel](#slotlevel) being **LEVEL_MIN**.|
 
@@ -1758,7 +1794,7 @@ Describes the notification contents.
 
 | Type| Description|
 | --- | --- |
-| [_NotificationContent](js-apis-inner-notification-notificationContent.md#notificationcontent) | Notification content.|
+| [_NotificationContent](js-apis-inner-notification-notificationContent.md#notificationcontent-1) | Notification content.|
 
 ## NotificationLongTextContent
 
@@ -1818,7 +1854,7 @@ Describes the notification request.
 
 | Type| Description|
 | --- | --- |
-| [_NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | Notification request.|
+| [_NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest-1) | Notification request.|
 
 ## DistributedOptions
 
@@ -1915,3 +1951,15 @@ Describes the notification progress.
 | Type| Description|
 | --- | --- |
 | [_NotificationProgress](js-apis-inner-notification-notificationContent.md#notificationprogress11) | Notification progress.|
+
+## NotificationSetting<sup>20+</sup>
+
+Describes notification settings, including whether to enable vibration and ringtone.
+
+**System capability**: SystemCapability.Notification.Notification
+
+
+| Name   | Type                                 | Mandatory| Description                  |
+| ------- | ------------------------------------ | ---- | ---------------------- |
+| vibrationEnabled | boolean | Yes| Whether to enable vibration. The value **true** means to enable vibration, and **false** means the opposite.|
+| soundEnabled | boolean | Yes| Whether to enable ringtone. The value **true** means to enable ringtone, and **false** means the opposite.|

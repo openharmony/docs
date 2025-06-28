@@ -104,6 +104,50 @@ try {
 }
 ```
 
+## backgroundTaskManager.getAllEfficiencyResources<sup>20+</sup>
+
+getAllEfficiencyResources(): Promise&lt;EfficiencyResourcesInfo[]&gt;
+
+获取已申请的所有能效资源信息，如能效资源类型等，使用Promise异步回调。
+
+**系统能力**: SystemCapability.ResourceSchedule.BackgroundTaskManager.EfficiencyResourcesApply
+
+**系统API**: 此接口为系统接口。
+
+**返回值**：
+
+| 类型                                            | 说明          |
+|-----------------------------------------------|-------------|
+|  Promise&lt;[EfficiencyResourcesInfo](#efficiencyresourcesinfo20)[]&gt; | Promise对象，返回所有能效资源信息。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202 | Not System App. |
+| 18700001 | Caller information verification failed for an energy resource request. |
+| 18700002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
+| 18700004 | System service operation failed. |
+
+**示例**：
+
+```js
+import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+    backgroundTaskManager.getAllEfficiencyResources().then((res: backgroundTaskManager.EfficiencyResourcesInfo[]) => {
+        console.info(`Operation getAllEfficiencyResources succeeded. data: ` + JSON.stringify(res));
+    }).catch((error : BusinessError) => {
+        console.error(`Operation getAllEfficiencyResources failed. code is ${error.code} message is ${error.message}`);
+    });
+} catch (error) {
+    console.error(`Operation getAllEfficiencyResources failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+}
+```
+
 ## BackgroundMode
 
 长时任务模式。
@@ -150,3 +194,21 @@ try {
 | AUDIO                   | 64   | 音频资源，有音频播放时对应的应用进程不被挂起。 |
 | RUNNING_LOCK<sup>10+</sup> | 128 | RUNNING_LOCK资源，申请后挂起状态不会代理RUNNING_BACKGROUND锁。 |
 | SENSOR<sup>10+</sup> | 256 | 申请后不拦截Sensor回调。 |
+
+## EfficiencyResourcesInfo<sup>20+</sup>
+
+能效资源信息。
+
+**系统能力**: SystemCapability.ResourceSchedule.BackgroundTaskManager.EfficiencyResourcesApply
+
+**系统API**: 此接口为系统接口。
+
+| 名称                             | 类型      | 只读   | 可选   | 说明          |
+|--------------------------------|---------| ---- | ---- |-------------|
+| [resourceTypes](#resourcetype) | number  | 否    | 否    | 能效资源类型。     |
+| timeout                        | number  | 否    | 否    | 超时时间，单位：ms。 |
+| isPersistent                   | boolean | 否    | 否    | 是否永久持有资源，默认为false。取值为true表示永久持有。取值为false表示有限时间内持有。      |
+| isForProcess                   | boolean | 否    | 否    | 进程或应用申请，取值为true表示进程申请。取值为false表示应用申请。   |
+| reason                         | string  | 否    | 否    | 申请资源原因。       |
+| uid                            | number  | 否    | 否    | 应用的UID。     |
+| pid                            | number  | 否    | 否    | 应用进程的PID。   |

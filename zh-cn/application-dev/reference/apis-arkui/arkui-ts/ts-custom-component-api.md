@@ -77,7 +77,7 @@ struct MyComponent {
 
 queryNavDestinationInfo(): NavDestinationInfo | undefined;
 
-查询自定义组件所属的NavDestination信息。
+查询自定义组件所属的NavDestination信息，仅当自定义组件在NavDestination的内部时才生效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -403,7 +403,7 @@ struct Index {
           .onClick(() => {
             let ctx = this.getUIContext();
             let promptAction = ctx.getPromptAction();
-            promptAction.openCustomDialog(new ComponentContent(ctx, wrapBuilder(buildText), new Params(this.message)));
+            promptAction.openCustomDialog(new ComponentContent(ctx, wrapBuilder(buildText), new Params(this.message)))
               .catch((err: BusinessError) => {
                 console.error("openCustomDialog error: " + err.code + " " + err.message);
               })

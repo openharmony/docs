@@ -51,6 +51,7 @@ disallowOsAccountAddition(admin: Want, disallow: boolean, accountId?: number): v
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -104,6 +105,7 @@ isOsAccountAdditionDisallowed(admin: Want, accountId?: number): boolean
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -141,7 +143,7 @@ addOsAccountAsync(admin: Want, name: string, type: osAccount.OsAccountType): Pro
 
 | 类型                                                         | 说明                 |
 | ------------------------------------------------------------ | -------------------- |
-| [osAccount.OsAccountInfo](../apis-basic-services-kit/js-apis-osAccount.md#osaccounttype) | 返回添加的账号信息。 |
+| Promise&lt;[osAccount.OsAccountInfo](../apis-basic-services-kit/js-apis-osAccount.md#osaccountinfo)&gt; | Promise对象，返回添加的账号信息。 |
 
 **错误码**：
 
@@ -160,6 +162,7 @@ addOsAccountAsync(admin: Want, name: string, type: osAccount.OsAccountType): Pro
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError, osAccount } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -198,51 +201,54 @@ setDomainAccountPolicy(admin: Want, domainAccountInfo: osAccount.DomainAccountIn
 | 9200001  | The application is not an administrator application of the device. |
 | 9200002  | The administrator application does not have permission to manage the device. |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError, osAccount } from '@kit.BasicServicesKit';
-let wantTemp: Want = {
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
-};
-let policy: accountManager.DomainAccountPolicy = {
-  authenticationValidityPeriod: 300,
-  passwordValidityPeriod: 420,
-  passwordExpirationNotification: 60,
-}
-// 设置全局域账号策略
-let accountInfo: osAccount.DomainAccountInfo = {
-  domain: '',
-  accountName: '',
-  serverConfigId: '',
-}
-try {
-  accountManager.setDomainAccountPolicy(wantTemp, accountInfo, policy);
-  console.info('Succeeded in setting global domainAccount policy.');
-} catch (err) {
-  console.error(`Failed to set domainAccount policy. Code: ${err.code}, message: ${err.message}`);
-}
-// 设置指定域账号策略
-let accountInfo2: osAccount.DomainAccountInfo = {
-  domain: '',
-  accountName: '',
-  serverConfigId: '',
-}
-let userId: number = 100;
-await osAccount.getAccountManager().getOsAccountDomainInfo(userId).then((domainAccountInfo: osAccount.DomainAccountInfo) => {
-  accountInfo2 = domainAccountInfo;
-}).catch((err: BusinessError) => {
-  console.error(`Failed to get account domain info. Code: ${err.code}, message: ${err.message}`);
-})
-try {
-  accountManager.setDomainAccountPolicy(wantTemp, accountInfo2, policy);
-  console.info('Succeeded in setting domain account policy.');
-} catch (err) {
-  console.error(`Failed to set domain account policy. Code: ${err.code}, message: ${err.message}`);
+
+async function setDomainAccountPolicy() {
+  let wantTemp: Want = {
+    bundleName: 'com.example.myapplication',
+    abilityName: 'EntryAbility',
+  };
+  let policy: accountManager.DomainAccountPolicy = {
+    authenticationValidityPeriod: 300,
+    passwordValidityPeriod: 420,
+    passwordExpirationNotification: 60,
+  }
+  // 设置全局域账号策略
+  let accountInfo: osAccount.DomainAccountInfo = {
+    domain: '',
+    accountName: '',
+    serverConfigId: '',
+  }
+  try {
+    accountManager.setDomainAccountPolicy(wantTemp, accountInfo, policy);
+    console.info('Succeeded in setting global domainAccount policy.');
+  } catch (err) {
+    console.error(`Failed to set domainAccount policy. Code: ${err.code}, message: ${err.message}`);
+  }
+  // 设置指定域账号策略
+  let accountInfo2: osAccount.DomainAccountInfo = {
+    domain: '',
+    accountName: '',
+    serverConfigId: '',
+  }
+  let userId: number = 100;
+  await osAccount.getAccountManager().getOsAccountDomainInfo(userId)
+    .then((domainAccountInfo: osAccount.DomainAccountInfo) => {
+      accountInfo2 = domainAccountInfo;
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to get account domain info. Code: ${err.code}, message: ${err.message}`);
+    })
+  try {
+    accountManager.setDomainAccountPolicy(wantTemp, accountInfo2, policy);
+    console.info('Succeeded in setting domain account policy.');
+  } catch (err) {
+    console.error(`Failed to set domain account policy. Code: ${err.code}, message: ${err.message}`);
+  }
 }
 ```
 
@@ -280,47 +286,52 @@ getDomainAccountPolicy(admin: Want, domainAccountInfo: osAccount.DomainAccountIn
 | 9200001  | The application is not an administrator application of the device. |
 | 9200002  | The administrator application does not have permission to manage the device. |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError, osAccount } from '@kit.BasicServicesKit';
-let wantTemp: Want = {
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
-};
-let domainAccountPolicy: accountManager.DomainAccountPolicy = {}
-// 查询全局域账号策略
-let accountInfo: osAccount.DomainAccountInfo = {
-  domain: '',
-  accountName: '',
-  serverConfigId: '',
-}
-try {
-  domainAccountPolicy = accountManager.getDomainAccountPolicy(wantTemp, accountInfo);
-  console.info('Succeeded in getting global domain account policy.');
-} catch (err) {
-  console.error(`Failed to get domain account policy. Code: ${err.code}, message: ${err.message}`);
-}
-// 查询指定域账号策略
-let accountInfo2: osAccount.DomainAccountInfo = {
-  domain: '',
-  accountName: '',
-  serverConfigId: '',
-}
-let userId: number = 100;
-await osAccount.getAccountManager().getOsAccountDomainInfo(userId).then((domainAccountInfo: osAccount.DomainAccountInfo) => {
-  accountInfo2 = domainAccountInfo;
-}).catch((err: BusinessError) => {
-  console.error(`Failed to get account domain info. Code: ${err.code}, message: ${err.message}`);
-})
-try {
-  domainAccountPolicy = accountManager.getDomainAccountPolicy(wantTemp, accountInfo2);
-  console.info('Succeeded in getting domain account policy.');
-} catch (err) {
-  console.error(`Failed to get domain account policy. Code: ${err.code}, message: ${err.message}`);
+
+async function getDomainAccountPolicy() {
+  let wantTemp: Want = {
+    bundleName: 'com.example.myapplication',
+    abilityName: 'EntryAbility',
+  };
+  let domainAccountPolicy: accountManager.DomainAccountPolicy = {}
+  // 查询全局域账号策略
+  let accountInfo: osAccount.DomainAccountInfo = {
+    domain: '',
+    accountName: '',
+    serverConfigId: '',
+  }
+  try {
+    domainAccountPolicy = accountManager.getDomainAccountPolicy(wantTemp, accountInfo);
+    console.info('Succeeded in getting global domain account policy.');
+  } catch (err) {
+    console.error(`Failed to get domain account policy. Code: ${err.code}, message: ${err.message}`);
+  }
+  // 查询指定域账号策略
+  let accountInfo2: osAccount.DomainAccountInfo = {
+    domain: '',
+    accountName: '',
+    serverConfigId: '',
+  }
+  let userId: number = 100;
+  await osAccount.getAccountManager()
+    .getOsAccountDomainInfo(userId)
+    .then((domainAccountInfo: osAccount.DomainAccountInfo) => {
+      accountInfo2 = domainAccountInfo;
+    })
+    .catch((err: BusinessError) => {
+      console.error(`Failed to get account domain info. Code: ${err.code}, message: ${err.message}`);
+    })
+  try {
+    domainAccountPolicy = accountManager.getDomainAccountPolicy(wantTemp, accountInfo2);
+    console.info('Succeeded in getting domain account policy.');
+  } catch (err) {
+    console.error(`Failed to get domain account policy. Code: ${err.code}, message: ${err.message}`);
+  }
 }
 ```
 

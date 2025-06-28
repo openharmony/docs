@@ -15,15 +15,17 @@ The **BackupExtensionContext** module provides the capability for accessing a sp
 import  { BackupExtensionContext } from '@kit.CoreFileKit';
 ```
 
-## Properties
+## BackupExtensionContext
+
+### Properties
 
 **System capability**: SystemCapability.FileManagement.StorageService.Backup
 
-| Name| Type| Mandatory| Description| 
-| -------- | -------- | -------- | -------- |
-| backupDir<sup>12+</sup> | string | Yes| Temporary directory used for backup or restore. This directory cannot be used for other purposes. Currently, only **el1/** and **el2/** are supported.|
+| Name| Type| Read-Only| Optional| Description|
+| -------- | -------- |-------| -------- | -------- |
+| backupDir<sup>12+</sup> | string | Yes| No| Temporary directory used for backup or restore. This directory cannot be used for other purposes. Currently, only **el1/** and **el2/** are supported.|
 
-## When to Use
+### When to Use
 **BackupExtensionContext** is used to obtain a temporary directory for backup or restore.
 
 **Example**

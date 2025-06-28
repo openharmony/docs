@@ -72,7 +72,7 @@ onTerminated(callback: Callback&lt;TerminationInfo&gt;)
 
 onError(callback: ErrorCallback)
 
-被拉起的EmbeddedUIExtensionAbility在运行过程中发生异常时触发本回调。
+被拉起的EmbeddedUIExtensionAbility在运行过程中发生异常时触发本回调。可通过回调参数中的code、name和message获取错误信息并做处理，业务错误码详细介绍请参见[UIExtension错误码](../errorcode-uiextension.md)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -158,23 +158,23 @@ onError(callback: ErrorCallback)
 
   export default class ExampleEmbeddedAbility extends EmbeddedUIExtensionAbility {
     onCreate() {
-      console.log(TAG, `onCreate`);
+      console.info(TAG, `onCreate`);
     }
 
     onForeground() {
-      console.log(TAG, `onForeground`);
+      console.info(TAG, `onForeground`);
     }
 
     onBackground() {
-      console.log(TAG, `onBackground`);
+      console.info(TAG, `onBackground`);
     }
 
     onDestroy() {
-      console.log(TAG, `onDestroy`);
+      console.info(TAG, `onDestroy`);
     }
 
     onSessionCreate(want: Want, session: UIExtensionContentSession) {
-      console.log(TAG, `onSessionCreate, want: ${JSON.stringify(want)}`);
+      console.info(TAG, `onSessionCreate, want: ${JSON.stringify(want)}`);
       let param: Record<string, UIExtensionContentSession> = {
         'session': session
       };
@@ -184,7 +184,7 @@ onError(callback: ErrorCallback)
     }
 
     onSessionDestroy(session: UIExtensionContentSession) {
-      console.log(TAG, `onSessionDestroy`);
+      console.info(TAG, `onSessionDestroy`);
     }
   }
   ```

@@ -9,7 +9,7 @@
 - 当前不支持动态属性设置。
 - 当前不支持设置ArkUI通用属性[expandSafeArea](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-expand-safe-area.md#expandsafearea)。
 - 该组件长按触发播放时组件区域放大为1.1倍。
-- 该组件使用[AVPlayer](../../reference/apis-media-kit/js-apis-media.md#avplayer9)进行播放，同时开启的AVPlayer个数不建议超过3个，超过3个可能会出现视频播放卡顿现象。
+- 该组件使用[AVPlayer](../../reference/apis-media-kit/arkts-apis-media-AVPlayer.md)进行播放，同时开启的AVPlayer个数不建议超过3个，超过3个可能会出现视频播放卡顿现象。
 
 ## 开发步骤
 
@@ -19,7 +19,7 @@
    import { MovingPhotoView, MovingPhotoViewController, MovingPhotoViewAttribute } from '@kit.MediaLibraryKit';
    ```
 
-2. 获取动态照片对象（[MovingPhoto](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#movingphoto12)）。
+2. 获取动态照片对象（[MovingPhoto](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-MovingPhoto.md)）。
 
    MovingPhoto对象需要通过photoAccessHelper接口创建或获取，MovingPhotoView只接收构造完成的MovingPhoto对象。
 
@@ -53,7 +53,6 @@
           MovingPhotoView({
             movingPhoto: this.src,
             controller: this.controller
-            // imageAIOptions: this.options.
           })
             // 是否静音播放，此处由按钮控制，默认值为false非静音播放。
             .muted(this.isMuted)

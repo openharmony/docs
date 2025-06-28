@@ -74,7 +74,7 @@ onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent
 | ---------| ----------------------------------------  | -----------|
 | target   | [EventTarget](ts-universal-events-click.md#eventtarget8对象说明) | 触发手势事件的元素对象。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | timestamp| number | 事件时间戳，触发事件时距离系统启动的时间间隔。<br>单位：ns<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| source   | [SourceType](ts-gesture-settings.md#sourcetype枚举说明) | 事件输入设备的类型。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
+| source   | [SourceType](ts-gesture-settings.md#sourcetype枚举说明8) | 事件输入设备的类型。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
 | pressure<sup>9+</sup> | number | 按压的压力大小。<br/>默认值：0<br/>取值范围：[0,1]，典型值0.913168，压感大小与数值正相关。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
 | tiltX<sup>9+</sup> | number | 手写笔在设备平面上的投影与设备平面X轴的夹角。<br/>默认值：0<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | tiltY<sup>9+</sup> | number | 手写笔在设备平面上的投影与设备平面Y轴的夹角。<br/>默认值：0<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -97,13 +97,12 @@ onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent
 ## BaseGestureEvent对象说明
 继承于[BaseEvent](#baseevent对象说明8)。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 类型                                      | 描述         |
-| ---------  | ----------------------------------------  | -----------|
-| fingerList | [FingerInfo[]](ts-gesture-settings.md#fingerinfo对象说明8) | 触发事件的所有手指信息。  |
+| 名称      | 类型                                      |    必填   | 描述         |
+| ---------  | ----------------------------------------  | ----|  -----------|
+| fingerList<sup>11+</sup> | [FingerInfo[]](ts-gesture-settings.md#fingerinfo对象说明8) | 是 | 触发事件的所有手指信息。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| fingerInfos<sup>20+</sup> | [FingerInfo[]](ts-gesture-settings.md#fingerinfo对象说明8) | 否 | 参与触发事件的所有有效触点信息。默认值为空数组[]，返回空数组时，表示当前无有效触点信息。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
 
 ## TapGestureEvent对象说明
 继承于[BaseGestureEvent](#basegestureevent对象说明)。可将该对象作为[onGestureJudgeBegin](#ongesturejudgebegin)的event参数来传递。
@@ -334,3 +333,89 @@ struct Index {
 }
 ```
 ![gestures2](figures/gestures2.gif)
+
+### 示例3（实时监测参与手势的有效触点的数量及其简要信息）
+
+该示例通过配置fingerInfos实时检测参与手势的有效触点数量、各个触点ID及其坐标
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct GestureDetectorExample {
+  @State message: string = '触摸区域'
+  @State fingerCount: number = 0
+  @State fingerDetails: string = ''
+
+  build() {
+    Column() {
+      // 显示信息区域
+      Column() {
+        Text(this.message)
+          .fontSize(20)
+          .fontWeight(FontWeight.Bold)
+
+        Text(`触点数量: ${this.fingerCount}`)
+          .fontSize(16)
+          .margin({ top: 8 })
+
+
+        Text(this.fingerDetails)
+          .fontSize(14)
+          .margin({ top: 8 })
+      }
+      .padding(10)
+      .border({ width: 1, color: Color.Gray })
+
+      // 手势检测区域
+      Column()
+        .width('90%')
+        .height(200)
+        .margin(20)
+        .border({ width: 2, color: Color.Black })
+        .gesture(
+          GestureGroup(GestureMode.Exclusive,
+            TapGesture()
+              .onAction(() => {
+                this.message = '单击事件'
+              }),
+            LongPressGesture()
+              .onAction(() => {
+                this.message = '长按事件'
+              }),
+            PanGesture()
+              .onActionStart(() => {
+                this.message = '拖动开始'
+              })
+              .onActionUpdate(() => {
+                this.message = '拖动中...'
+              })
+              .onActionEnd(() => {
+                this.message = '拖动结束'
+                this.fingerCount = 0
+                this.fingerDetails = ''
+              })
+          )
+        )
+        .onGestureJudgeBegin((gestureInfo: GestureInfo, event: BaseGestureEvent) => {
+          // 获取 fingerInfos 信息
+          if (event?.fingerInfos) {
+            this.fingerCount = event.fingerInfos.length
+            this.fingerDetails = event.fingerInfos.map(finger =>
+            `ID：${finger.id}: (${finger.localX.toFixed(1)}, ${finger.localY.toFixed(1)})`
+            ).join('\n')
+            console.log('触点信息:', JSON.stringify(event.fingerInfos))
+          }
+          if (this.fingerCount > 2) {
+            return GestureJudgeResult.REJECT
+          }
+          return GestureJudgeResult.CONTINUE
+        })
+    }
+    .width('100%')
+    .height('100%')
+    .padding(10)
+  }
+}
+
+```

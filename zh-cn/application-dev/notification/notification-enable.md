@@ -4,7 +4,7 @@
   
 ## 接口说明
 
-接口详情参见[API参考](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagerrequestenablenotification10-1)。
+接口详情参见[API参考](../reference/apis-notification-kit/js-apis-notificationManager.md)。
 
 **表1** 通知授权接口功能介绍
 

@@ -30,9 +30,9 @@ Before your development, configure the following permissions for your applicatio
 > To record only audio, you do not need to set video-related parameters such as **videoFrameWidth** and **videoFrameHeight**. Similarly, to record only videos, you do not need to set audio-related parameters such as **audioBitrate** and **audioChannels**.
 
 
-You can use C/C++ APIs related to video recording by including the header files [avrecorder.h](../../reference/apis-media-kit/avrecorder_8h.md), [avrecorder_base.h](../../reference/apis-media-kit/avrecorder__base_8h.md), and [native_averrors.h](../../reference/apis-avcodec-kit/native__averrors_8h.md).
+You can use C/C++ APIs related to video recording by including the header files [avrecorder.h](../../reference/apis-media-kit/capi-avrecorder-h.md), [avrecorder_base.h](../../reference/apis-media-kit/capi-avrecorder-base-h.md), and [native_averrors.h](../../reference/apis-avcodec-kit/native__averrors_8h.md).
 
-Read [AVRecorder](../../reference/apis-media-kit/_a_v_recorder.md) for the API reference.
+Read [AVRecorder](../../reference/apis-media-kit/capi-avrecorder.md) for the API reference.
 
 
 Link the dynamic library in the CMake script.
@@ -164,7 +164,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
    >
    > - In pure video recording scenarios, set only video-related parameters in **OH_AVRecorder_Config** of **OH_AVRecorder_Prepare()**.
    >
-   > - The recording output URL (URL in **avConfig** in the sample code) must be in the format of fd://xx (where xx indicates a file descriptor). You must call the basic file operation APIs to implement access to the application file. For details, see [Accessing Application Files](../../file-management/native-fileio-guidelines.md).
+   > - The recording output URL (URL in **OH_AVRecorder_Config** in the sample code) must be in the format of fd://xx (where xx indicates a file descriptor). You must call the basic file operation APIs to implement access to the application file. For details, see [Accessing Application Files](../../file-management/native-fileio-guidelines.md).
 
    ```C++
    void SetConfig(OH_AVRecorder_Config &config)
@@ -271,7 +271,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
    ```
 
 
-## Sample Code
+## Development Example
 
 Refer to the sample code below to complete the process of creating a recorder instance, preparing for, starting, pausing, resuming, and stopping recording, resetting the recording state, and releasing the recording resources.
 

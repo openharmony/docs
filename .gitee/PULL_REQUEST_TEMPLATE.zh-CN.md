@@ -3,10 +3,9 @@
 > **注意：**
 > 请务必按如下模板反馈PR所携带的修改信息。
 > 请分析是否需要同步合入活跃的发布分支。当前活跃的分支除master外还包括：
-> OpenHarmony-feature-20250512 (API 19)
-> OpenHarmony-5.1.0-Release (API 18)
-> OpenHarmony-feature-20240401 (API 17)
-
+> (API 20) OpenHarmony-6.0-Beta1
+> (API 19) OpenHarmony-feature-20250512
+> (API 18) OpenHarmony-5.1.0-Release
 
 ## 文档变更类型
 
@@ -28,6 +27,10 @@
 
 - 文档中示例代码片段已经在IDE中自验证，确保编译通过，并在下方给出截图证明。（ ）
 - API的定义与使用方式与配套版本的SDK严格一致，无文档与SDK不一致问题。（ ）
-- 对于文档的写作，已学习并参考相关[资料模板规范要求](https://gitee.com/openharmony/docs/tree/master/zh-cn/contribute/template)，符合OpenHarmony文档质量要求。（ ）
+- 文档需完成[AI辅助工具DocLinter扫描](https://gitee.com/openharmony/docs/wikis/HarmonyPilot-DocLinter%20AI%E8%BE%85%E5%8A%A9%E5%86%99%E4%BD%9C%E6%8F%92%E4%BB%B6#%E6%9F%A5%E7%9C%8B%E5%9C%A8%E7%BA%BF%E6%8A%A5%E5%91%8A)并完成问题修改，并在此附加在线扫描报告的链接。
 
 ## 示例代码编译通过截图证明（如涉及示例代码需提供）：
+
+> **说明：**
+> 1. 示例代码验证时，应尽可能**在有效设备上实际运行**。仅编译或IDE预览器运行均无法发现所有潜在问题。
+> 2. 示例代码截图应提供**编译日志**和**运行日志**以证明示例代码无问题。**存在错误码但不阻塞编译的日志均视为示例代码有误**。

@@ -43,23 +43,23 @@ import { avSession as AVSessionManager } from '@kit.AVSessionKit';
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { avSession } from '@kit.AVSessionKit';
+import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+
 @Entry
 @Component
 struct Index {
   @State message: string = 'hello world';
 
-  build() { 
+  build() {
     Column() {
-        Text(this.message)
-          .onClick(()=>{
-            // 创建session。
-            let context = this.getUIContext().getHostContext() as Context;
-            async function createSession() {
-            let session: AVSessionManager.AVSession = await AVSessionManager.createAVSession(context, 'SESSION_NAME', 'audio');
-            console.info(`session create done : sessionId : ${session.sessionId}`);
-            }
-          })
-      }
+      Text(this.message)
+        .onClick(async () => {
+          // 创建session。
+          let context = this.getUIContext().getHostContext() as Context;
+          let session: AVSessionManager.AVSession = await AVSessionManager.createAVSession(context, 'SESSION_NAME', 'audio');
+          console.info(`session create done : sessionId : ${session.sessionId}`);
+        })
+    }
     .width('100%')
     .height('100%')
   }
@@ -83,4 +83,4 @@ async function createController() {
 ```
 <!--DelEnd-->
 
-更多关于AVSessionManager的方法，可以参考[API文档](../../reference/apis-avsession-kit/js-apis-avsession.md)。
+更多关于AVSessionManager的方法，可以参考[API文档](../../reference/apis-avsession-kit/arkts-apis-avsession.md)。

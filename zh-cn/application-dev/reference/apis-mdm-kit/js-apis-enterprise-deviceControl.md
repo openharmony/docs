@@ -49,7 +49,6 @@ operateDevice(admin: Want, operate: string, addition?: string): void
 **示例：**
 
 ```ts
-import { deviceControl } from '@kit.MDMKit';
 import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {

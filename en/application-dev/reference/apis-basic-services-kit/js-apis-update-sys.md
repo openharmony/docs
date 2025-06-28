@@ -133,6 +133,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 11500104 | IPC error.               |
 
 **Example**
@@ -168,6 +169,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 11500104 | IPC error.               |
 
 **Example**
@@ -182,7 +184,7 @@ updater.checkNewVersion()
         console.log(`checkNewVersion versionDigestInfo: ${result.newVersionInfo.versionDigestInfo.versionDigest}`);
       })
       .catch((err: BusinessError)=>{
-        console.log(`checkNewVersion promise error ${JSON.stringify(err)}`);
+        console.error(`checkNewVersion promise error ${JSON.stringify(err)}`);
       });
 ```
 
@@ -209,6 +211,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 11500104 | IPC error.               |
 
 **Example**
@@ -245,6 +248,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 11500104 | IPC error.               |
 
 **Example**
@@ -256,7 +260,7 @@ updater.getNewVersionInfo().then((info: update.NewVersionInfo) => {
     console.log(`info displayVersion = ${info.versionComponents[0].displayVersion}`);
     console.log(`info innerVersion = ${info.versionComponents[0].innerVersion}`);
 }).catch((err: BusinessError) => {
-    console.log(`getNewVersionInfo promise error ${JSON.stringify(err)}`);
+    console.error(`getNewVersionInfo promise error ${JSON.stringify(err)}`);
 });
 ```
 
@@ -285,6 +289,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
@@ -307,7 +312,7 @@ const descriptionOptions: update.DescriptionOptions = {
 updater.getNewVersionDescription(versionDigestInfo, descriptionOptions).then((info: Array<update.ComponentDescription>)=> {
   console.log(`getNewVersionDescription promise info ${JSON.stringify(info)}`);
 }).catch((err: BusinessError) => {
-  console.log(`getNewVersionDescription promise error ${JSON.stringify(err)}`);
+  console.error(`getNewVersionDescription promise error ${JSON.stringify(err)}`);
 });
 ```
 
@@ -341,6 +346,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
@@ -363,7 +369,7 @@ const descriptionOptions: update.DescriptionOptions = {
 updater.getNewVersionDescription(versionDigestInfo, descriptionOptions).then((info: Array<update.ComponentDescription>)=> {
   console.log(`getNewVersionDescription promise info ${JSON.stringify(info)}`);
 }).catch((err: BusinessError) => {
-  console.log(`getNewVersionDescription promise error ${JSON.stringify(err)}`);
+  console.error(`getNewVersionDescription promise error ${JSON.stringify(err)}`);
 });
 ```
 
@@ -390,6 +396,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 11500104 | IPC error.               |
 
 **Example**
@@ -427,6 +434,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 11500104 | IPC error.               |
 
 **Example**
@@ -439,7 +447,7 @@ updater.getCurrentVersionInfo().then((info: update.CurrentVersionInfo) => {
   console.log(`info deviceName = ${info.deviceName}`);
   console.log(`info displayVersion = ${info.versionComponents[0].displayVersion}`);
 }).catch((err: BusinessError) => {
-  console.log(`getCurrentVersionInfo promise error ${JSON.stringify(err)}`);
+  console.error(`getCurrentVersionInfo promise error ${JSON.stringify(err)}`);
 });
 ```
 
@@ -467,6 +475,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
@@ -514,6 +523,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
@@ -529,7 +539,7 @@ const descriptionOptions: update.DescriptionOptions = {
 updater.getCurrentVersionDescription(descriptionOptions).then((info: Array<update.ComponentDescription>) => {
   console.log(`getCurrentVersionDescription promise info ${JSON.stringify(info)}`);
 }).catch((err: BusinessError) => {
-  console.log(`getCurrentVersionDescription promise error ${JSON.stringify(err)}`);
+  console.error(`getCurrentVersionDescription promise error ${JSON.stringify(err)}`);
 });
 ```
 
@@ -556,6 +566,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 11500104 | IPC error.               |
 
 **Example**
@@ -591,6 +602,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 11500104 | IPC error.               |
 
 **Example**
@@ -601,7 +613,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 updater.getTaskInfo().then((info: update.TaskInfo) => {
   console.log(`getTaskInfo isexistTask= ${info.existTask}`);
 }).catch((err: BusinessError) => {
-  console.log(`getTaskInfo promise error ${JSON.stringify(err)}`);
+  console.error(`getTaskInfo promise error ${JSON.stringify(err)}`);
 });
 ```
 
@@ -630,6 +642,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
@@ -683,6 +696,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
@@ -704,7 +718,7 @@ const downloadOptions: update.DownloadOptions = {
 updater.download(versionDigestInfo, downloadOptions).then(() => {
   console.log(`download start`);
 }).catch((err: BusinessError) => {
-  console.log(`download error ${JSON.stringify(err)}`);
+  console.error(`download error ${JSON.stringify(err)}`);
 });
 ```
 
@@ -733,6 +747,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
@@ -785,6 +800,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
@@ -805,7 +821,7 @@ const resumeDownloadOptions: update.ResumeDownloadOptions = {
 updater.resumeDownload(versionDigestInfo, resumeDownloadOptions).then(() => {
   console.log(`resumeDownload start`);
 }).catch((err: BusinessError) => {
-  console.log(`resumeDownload error ${JSON.stringify(err)}`);
+  console.error(`resumeDownload error ${JSON.stringify(err)}`);
 });
 ```
 
@@ -834,6 +850,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
@@ -886,6 +903,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
@@ -906,7 +924,7 @@ const pauseDownloadOptions: update.PauseDownloadOptions = {
 updater.pauseDownload(versionDigestInfo, pauseDownloadOptions).then(() => {
   console.log(`pauseDownload`);
 }).catch((err: BusinessError)  => {
-  console.log(`pauseDownload error ${JSON.stringify(err)}`);
+  console.error(`pauseDownload error ${JSON.stringify(err)}`);
 });
 ```
 
@@ -935,6 +953,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
@@ -987,6 +1006,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
@@ -1007,7 +1027,7 @@ const upgradeOptions: update.UpgradeOptions = {
 updater.upgrade(versionDigestInfo, upgradeOptions).then(() => {
   console.log(`upgrade start`);
 }).catch((err: BusinessError) => {
-  console.log(`upgrade error ${JSON.stringify(err)}`);
+  console.error(`upgrade error ${JSON.stringify(err)}`);
 });
 ```
 
@@ -1036,6 +1056,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
@@ -1088,6 +1109,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
@@ -1108,7 +1130,7 @@ const clearOptions: update.ClearOptions = {
 updater.clearError(versionDigestInfo, clearOptions).then(() => {
   console.log(`clearError success`);
 }).catch((err: BusinessError) => {
-  console.log(`clearError error ${JSON.stringify(err)}`);
+  console.error(`clearError error ${JSON.stringify(err)}`);
 });
 ```
 
@@ -1135,6 +1157,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 11500104 | IPC error.               |
 
 **Example**
@@ -1142,7 +1165,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-updater.getUpgradePolicy(err: BusinessError, policy: update.UpgradePolicy) => {
+updater.getUpgradePolicy((err: BusinessError, policy: update.UpgradePolicy) => {
   console.log(`policy downloadStrategy = ${policy?.downloadStrategy}`);
   console.log(`policy autoUpgradeStrategy = ${policy?.autoUpgradeStrategy}`);
 });
@@ -1171,6 +1194,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 11500104 | IPC error.               |
 
 **Example**
@@ -1182,7 +1206,7 @@ updater.getUpgradePolicy().then((policy: update.UpgradePolicy) => {
   console.log(`policy downloadStrategy = ${policy.downloadStrategy}`);
   console.log(`policy autoUpgradeStrategy = ${policy.autoUpgradeStrategy}`);
 }).catch((err: BusinessError)  => {
-  console.log(`getUpgradePolicy promise error ${JSON.stringify(err)}`);
+  console.error(`getUpgradePolicy promise error ${JSON.stringify(err)}`);
 });
 ```
 
@@ -1210,6 +1234,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 11500104 | IPC error.               |
 
 **Example**
@@ -1256,6 +1281,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 11500104 | IPC error.               |
 
 **Example**
@@ -1271,7 +1297,7 @@ const policy: update.UpgradePolicy = {
 updater.setUpgradePolicy(policy).then(() => {
   console.log(`setUpgradePolicy success`);
 }).catch((err: BusinessError) => {
-  console.log(`setUpgradePolicy promise error ${JSON.stringify(err)}`);
+  console.error(`setUpgradePolicy promise error ${JSON.stringify(err)}`);
 });
 ```
 
@@ -1298,6 +1324,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 11500104 | IPC error.               |
 
 **Example**
@@ -1333,6 +1360,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 11500104 | IPC error.               |
 
 **Example**
@@ -1343,7 +1371,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 updater.terminateUpgrade().then(() => {
   console.log(`terminateUpgrade success`);
 }).catch((err: BusinessError) => {
-  console.log(`terminateUpgrade error ${JSON.stringify(err)}`);
+  console.error(`terminateUpgrade error ${JSON.stringify(err)}`);
 });
 ```
 
@@ -1429,6 +1457,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 11500104 | IPC error.               |
 
 **Example**
@@ -1462,6 +1491,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 11500104 | IPC error.               |
 
 **Example**
@@ -1472,7 +1502,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 restorer.factoryReset().then(() => {
   console.log(`factoryReset success`);
 }).catch((err: BusinessError) => {
-  console.log(`factoryReset error ${JSON.stringify(err)}`);
+  console.error(`factoryReset error ${JSON.stringify(err)}`);
 });
 ```
 
@@ -1503,6 +1533,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
@@ -1549,6 +1580,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
@@ -1564,7 +1596,7 @@ const upgradeFile: update.UpgradeFile = {
 localUpdater.verifyUpgradePackage(upgradeFile, "cerstFilePath").then(() => {
   console.log(`verifyUpgradePackage success`);
 }).catch((err: BusinessError) => {
-  console.log(`verifyUpgradePackage error ${JSON.stringify(err)}`);
+  console.error(`verifyUpgradePackage error ${JSON.stringify(err)}`);
 });
 ```
 
@@ -1591,6 +1623,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
@@ -1630,6 +1663,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
 | 201      | Permission denied.       |
+| 202      | not system application.  |
 | 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
@@ -1645,7 +1679,7 @@ const upgradeFiles: Array<update.UpgradeFile> = [{
 localUpdater.applyNewVersion(upgradeFiles).then(() => {
   console.log(`applyNewVersion success`);
 }).catch((err: BusinessError) => {
-  console.log(`applyNewVersion error ${JSON.stringify(err)}`);
+  console.error(`applyNewVersion error ${JSON.stringify(err)}`);
 });
 ```
 

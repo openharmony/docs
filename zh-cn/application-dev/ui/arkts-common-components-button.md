@@ -94,7 +94,7 @@ Button有四种可选类型，分别为胶囊类型（Capsule）、圆形按钮�
 
   ![zh-cn_image_0000001563060641](figures/zh-cn_image_0000001563060641.png)
 
-- 圆角矩形按钮
+- 圆角矩形按钮。
   当[controlSize](../reference/apis-arkui/arkui-ts/ts-basic-components-button.md#controlsize11)为NORMAL时，默认圆角大小为20vp，[controlSize](../reference/apis-arkui/arkui-ts/ts-basic-components-button.md#controlsize11)为SMALL时，圆角大小为14vp，支持通过borderRadius属性重新设置圆角。
 
   ```ts
@@ -148,7 +148,7 @@ Button有四种可选类型，分别为胶囊类型（Capsule）、圆形按钮�
 
 - 创建功能型按钮。
 
-  为删除操作创建一个按钮。
+ 创建删除操作的按钮。
 
   ```ts
   let MarLeft: Record<string, number> = { 'left': 20 }
@@ -201,21 +201,21 @@ Button('Ok', { type: ButtonType.Normal, stateEffect: true })
         List({ space: 4 }) {
           ListItem() {
             Button("First").onClick(() => {
-              this.pathStack.pushPath({ name: "first_page"})
+              this.pathStack.pushPath({ name: "first_page"});
             })
               .width('100%')
           }
 
           ListItem() {
             Button("Second").onClick(() => {
-              this.pathStack.pushPath({ name: "second_page"})
+              this.pathStack.pushPath({ name: "second_page"});
             })
               .width('100%')
           }
 
           ListItem() {
             Button("Third").onClick(() => {
-              this.pathStack.pushPath({ name: "third_page"})
+              this.pathStack.pushPath({ name: "third_page"});
             })
               .width('100%')
           }
@@ -240,12 +240,12 @@ Button('Ok', { type: ButtonType.Normal, stateEffect: true })
         }.width('100%').height('100%')
       }.title("pageOne")
       .onBackPressed(() => {
-        const popDestinationInfo = this.pathStack.pop() // 弹出路由栈栈顶元素
-        console.log('pop' + '返回值' + JSON.stringify(popDestinationInfo))
+        const popDestinationInfo = this.pathStack.pop(); // 弹出路由栈栈顶元素
+        console.info('pop' + '返回值' + JSON.stringify(popDestinationInfo));
         return true
       })
       .onReady((context: NavDestinationContext) => {
-        this.pathStack = context.pathStack
+        this.pathStack = context.pathStack;
       })
     }
   }
@@ -262,12 +262,12 @@ Button('Ok', { type: ButtonType.Normal, stateEffect: true })
         }.width('100%').height('100%')
       }.title("pageTwo")
       .onBackPressed(() => {
-        const popDestinationInfo = this.pathStack.pop() // 弹出路由栈栈顶元素
-        console.log('pop' + '返回值' + JSON.stringify(popDestinationInfo))
+        const popDestinationInfo = this.pathStack.pop(); // 弹出路由栈栈顶元素
+        console.info('pop' + '返回值' + JSON.stringify(popDestinationInfo));
         return true
       })
       .onReady((context: NavDestinationContext) => {
-        this.pathStack = context.pathStack
+        this.pathStack = context.pathStack;
       })
     }
   }
@@ -284,12 +284,12 @@ Button('Ok', { type: ButtonType.Normal, stateEffect: true })
         }.width('100%').height('100%')
       }.title("pageThree")
       .onBackPressed(() => {
-        const popDestinationInfo = this.pathStack.pop() // 弹出路由栈栈顶元素
-        console.log('pop' + '返回值' + JSON.stringify(popDestinationInfo))
+        const popDestinationInfo = this.pathStack.pop(); // 弹出路由栈栈顶元素
+        console.info('pop' + '返回值' + JSON.stringify(popDestinationInfo));
         return true
       })
       .onReady((context: NavDestinationContext) => {
-        this.pathStack = context.pathStack
+        this.pathStack = context.pathStack;
       })
     }
   }

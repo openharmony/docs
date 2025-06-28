@@ -12,7 +12,7 @@ The **securityLabel** module provides APIs for managing data security levels of 
 import { securityLabel } from '@kit.CoreFileKit';
 ```
 
-## Guidelines
+## How to Use
 
 Before using the APIs provided by this module to perform operations on a file or directory, obtain the application sandbox path of the file or directory as follows:
 
@@ -43,7 +43,7 @@ Defines the data security level.
 
 setSecurityLabel(path:string, type:DataLevel):Promise&lt;void&gt;
 
-Sets a security label for a file. This API returns the result synchronously. The security label cannot be changed from a higher level to a lower level. This API uses a promise to return the result.
+Sets a security label for a file. The security label cannot be changed from a higher level to a lower level. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -91,7 +91,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 setSecurityLabel(path:string, type:DataLevel, callback: AsyncCallback&lt;void&gt;):void
 
-Sets a security label for a file. This API returns the result synchronously. The security label cannot be changed from a higher level to a lower level. This API uses an asynchronous callback to return the result.
+Sets a security label for a file. The security label cannot be changed from a higher level to a lower level. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -100,8 +100,8 @@ Sets a security label for a file. This API returns the result synchronously. The
 | Name   | Type                     | Mandatory| Description                                        |
 | --------- | ------------------------- | ---- | -------------------------------------------- |
 | path      | string                    | Yes  | File path.                                    |
-| type      | DataLevel                 | Yes  | Security label to set, which can be **s0**, **s1**, **s2**, **s3**, or **s4**.|
-| callback  | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                  |
+| type      | [DataLevel](#datalevel)   | Yes  | Security label to set, which can be **s0**, **s1**, **s2**, **s3**, or **s4**.|
+| callback  | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the security label set.                  |
 
 **Error codes**
 
@@ -145,7 +145,7 @@ Sets a security label for a file. This API returns the result synchronously. The
 | Name   | Type  | Mandatory| Description                                        |
 | --------- | ------ | ---- | -------------------------------------------- |
 | path      | string | Yes  | File path.                                    |
-| type      | DataLevel | Yes  | Security label to set, which can be **s0**, **s1**, **s2**, **s3**, or **s4**.|
+| type      | [DataLevel](#datalevel) | Yes  | Security label to set, which can be **s0**, **s1**, **s2**, **s3**, or **s4**.|
 
 **Error codes**
 
@@ -264,7 +264,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 getSecurityLabelSync(path:string):string
 
-Obtains the security label. If no security label has been set for the file, **s3** is returned by default.
+Obtains the security label. This API returns the result synchronously. If no security label has been set for the file, **s3** is returned by default.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 

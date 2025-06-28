@@ -4,6 +4,7 @@
 >
 > 以下仅介绍本模块特有错误码，通用错误码请参考[通用错误码说明文档](../errorcode-universal.md)。
 
+<!--Del-->
 ## 3900001 指定的设备不存在
 
 **错误信息**
@@ -22,7 +23,7 @@ The specified device does not exist.
 **处理步骤**
 
 1. 通过[inputDevice.getDeviceList](js-apis-inputdevice.md#inputdevicegetdevicelist9)查询设备id，并传入正确的设备id。
-2. 检查设备的物理连接是否断开。
+2. 检查设备的物理连接是否断开。<!--DelEnd-->
 
 ## 3900002 键盘设备没有连接
 
@@ -46,7 +47,7 @@ There is currently no keyboard device connected.
 
 **错误信息**
 
-it is prohibited for non-input applications.
+It is prohibited for non-input applications.
 
 **错误描述**
 
@@ -59,21 +60,3 @@ it is prohibited for non-input applications.
 **处理步骤**
 
 请使用输入法应用调用该接口。
-
-## 26500001 无效的windowId
-
-**错误信息**
-
-Invalid windowId. Possible causes: The window id does not belong to the current process.
-
-**错误描述**
-
-无效的窗口id。
-
-**可能原因**
-
-窗口id不属于当前进程。
-
-**处理步骤**
-
-请检查并传入当前进程的窗口id，可通过windowClass.[getWindowProperties()](../apis-arkui/js-apis-window.md#getwindowproperties9)接口获取当前窗口属性，窗口属性中含有窗口id。

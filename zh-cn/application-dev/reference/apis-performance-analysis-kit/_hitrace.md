@@ -135,7 +135,7 @@ HiTrace输出级别。
 
 低于系统跟踪输出级别阈值的打点将不会生效。log版本阈值为HITRACE_LEVEL_INFO；nolog版本阈值为HITRACE_LEVEL_COMMERCIAL。
 
-
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiTrace
 
@@ -238,7 +238,7 @@ HiTrace输出级别。
 
 低于系统跟踪输出级别阈值的打点将不会生效。log版本阈值为HITRACE_LEVEL_INFO；nolog版本阈值为HITRACE_LEVEL_COMMERCIAL。
 
-
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiTrace
 
@@ -385,6 +385,8 @@ void OH_HiTrace_CountTraceEx (HiTrace_Output_Level level, const char * name, int
 **描述**
 标记一个跟踪的整数变量，分级控制跟踪输出。
 
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
 **起始版本：** 19
 
 **参数:**
@@ -490,7 +492,7 @@ void OH_HiTrace_FinishAsyncTraceEx (HiTrace_Output_Level level, const char * nam
 
 和OH_HiTrace_StartAsyncTraceEx配对使用，参数level、name和taskId必须与异步跟踪开始打点接口的对应参数值保持一致。
 
-
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **起始版本：** 19
 
@@ -532,7 +534,7 @@ void OH_HiTrace_FinishTraceEx (HiTrace_Output_Level level)
 
 跟踪数据解析时，和其前执行流程中最近的OH_HiTrace_StartTraceEx进行匹配。
 
-
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **起始版本：** 19
 
@@ -778,7 +780,7 @@ bool OH_HiTrace_IsTraceEnabled (void )
 **描述**
 判断当前是否开启应用trace捕获。应用trace捕获未开启时，HiTraceMeter性能跟踪打点无效。
 
-
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **起始版本：** 19
 
@@ -938,7 +940,7 @@ void OH_HiTrace_StartAsyncTraceEx (HiTrace_Output_Level level, const char * name
 
 不同进程的taskId不会相互干扰。
 
-
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **起始版本：** 19
 
@@ -990,7 +992,7 @@ void OH_HiTrace_StartTraceEx (HiTrace_Output_Level level, const char * name, con
 
 OH_HiTrace_StartTraceEx和OH_HiTrace_FinishTraceEx函数对可以嵌套使用，跟踪解析时使用栈式数据结构进行匹配。
 
-
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **起始版本：** 19
 

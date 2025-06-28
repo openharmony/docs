@@ -32,7 +32,7 @@ If you are just starting out with Node-API, see [Node-API Development Process](u
 
 Call **napi_add_env_cleanup_hook** to add an environment cleanup hook function, which will be executed when the environment exits. This ensures that resources are released before the environment is destroyed.
 
-Note that **napi_add_env_cleanup_hook** does not support binding multiple callbacks to the same **arg**. If **env** is destroyed but the **cleanup** callback has not been executed, you can locate the failed calls with "AddCleanupHook Failed, data cannot register multiple times." on HiLog if the ArkTS runtime [multi-thread check] (../dfx/cppcrash-guidelines.md#tool-2-ark-multi-thread-check) is enabled.
+Note that **napi_add_env_cleanup_hook** does not support binding multiple callbacks to the same **arg**. If **env** is destroyed but the **cleanup** callback has not been executed, you can locate the failed calls with "AddCleanupHook Failed, data cannot register multiple times." on HiLog if the ArkTS runtime [multi-thread check](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-multi-thread-check) is enabled.
 
 ### napi_remove_env_cleanup_hook
 
@@ -50,7 +50,7 @@ typedef struct {
     size_t size;
 } Memory;
 // Callback for clearing the external buffer. It is used to release the allocated memory.
-void ExternalFinalize(napi_env env, void *finalize_data, void *finalize_hint) 
+void ExternalFinalize(napi_env env, void *finalize_data, void *finalize_hint)
 {
     Memory *wrapper = (Memory *)finalize_hint;
     free(wrapper->data);
@@ -64,12 +64,12 @@ static void Cleanup(void *arg)
     OH_LOG_INFO(LOG_APP, "Node-API napi_add_env_cleanup_hook cleanuped: %{public}d", *(int *)(arg));
 }
 // Create an external buffer and add the environment cleanup hook function.
-static napi_value NapiEnvCleanUpHook(napi_env env, napi_callback_info info) 
+static napi_value NapiEnvCleanUpHook(napi_env env, napi_callback_info info)
 {
     // Allocate memory and copy the string to the memory.
     std::string str("Hello from Node-API!");
     Memory *wrapper = (Memory *)malloc(sizeof(Memory));
-    wrapper->data = (char *)malloc(str.size());
+    wrapper->data = static_cast<char *>(malloc(str.size()));
     strcpy(wrapper->data, str.c_str());
     wrapper->size = str.size();
     // Create an external buffer object and specify the cleanup callback function.
@@ -109,8 +109,8 @@ ArkTS code:
 
 ```ts
 // index.ets
-import hilog from '@ohos.hilog'
-import worker from '@ohos.worker'
+import hilog from '@ohos.hilog';
+import worker from '@ohos.worker';
 
 let wk = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 // Send a message to the worker thread.
@@ -124,13 +124,13 @@ wk.onmessage = (message) => {
 
 ```ts
 // worker.ts
-import hilog from '@ohos.hilog'
-import worker from '@ohos.worker'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import worker from '@ohos.worker';
+import testNapi from 'libentry.so';
 
 let parent = worker.workerPort;
 // Process messages from the main thread.
-parent.onmessage = function(message) {
+parent.onmessage = (message) => {
   hilog.info(0x0000, 'testTag', 'Test Node-API message from main thread: %{public}s', JSON.stringify(message));
   // Send a message to the main thread.
   parent.postMessage('Test Node-API worker:' + testNapi.napiEnvCleanUpHook());
@@ -240,8 +240,8 @@ export const napiAsyncCleanUpHook: () => boolean | void;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 try {
   hilog.info(0x0000, 'testTag', 'Test Node-API napi_add_async_cleanup_hook: %{public}s', testNapi.napiAsyncCleanUpHook());
 } catch (error) {

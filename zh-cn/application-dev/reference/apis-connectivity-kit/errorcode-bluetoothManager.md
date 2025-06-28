@@ -130,6 +130,25 @@ pimpl或proxy为空。
 
 重新打开蓝牙开关，执行配对流程。
 
+## 2900009
+
+**错误信息**
+
+Fails to start scan as it is out of hardware resources.
+
+**错误描述**
+
+由于硬件资源不足，无法启动本次扫描。
+
+**可能原因**
+
+当前系统中本应用或其他应用已启动的扫描通道过多，导致硬件资源不足。
+
+**处理步骤**
+
+本应用未启动过扫描，可重新关开蓝牙，释放其他应用占用的扫描资源；
+本应用已启动过其他通道的扫描，可调用停止扫描接口，停止其他已启动的扫描，释放硬件资源后再重新启动本次扫描。
+
 ## 2900010
 
 **错误信息**
@@ -160,8 +179,8 @@ The operation is busy. The last operation is not complete.
 
 **可能原因**
 
-上一个执行的操作还未完成即执行本次操作，例如[readCharacteristicValue](js-apis-bluetooth-ble.md#readCharacteristicValue)未结束即进行下一次操作。
-其他涉及的接口有[writeCharacteristicValue](js-apis-bluetooth-ble.md#writeCharacteristicValue)、[readDescriptorValue](js-apis-bluetooth-ble.md#readDescriptorValue)、[writeDescriptorValue](js-apis-bluetooth-ble.md#writeDescriptorValue)、[getRssiValue](js-apis-bluetooth-ble.md#getRssiValue)、[setCharacteristicChangeNotification](js-apis-bluetooth-ble.md#setCharacteristicChangeNotification)、[setCharacteristicChangeIndication](js-apis-bluetooth-ble.md#setCharacteristicChangeIndication)，如调用未完成均可能阻塞下一次操作。
+上一个执行的操作还未完成即执行本次操作，例如[readCharacteristicValue](js-apis-bluetooth-ble.md#readcharacteristicvalue)未结束即进行下一次操作。
+其他涉及的接口有[writeCharacteristicValue](js-apis-bluetooth-ble.md#writecharacteristicvalue)、[readDescriptorValue](js-apis-bluetooth-ble.md#readdescriptorvalue)、[writeDescriptorValue](js-apis-bluetooth-ble.md#writedescriptorvalue)、[getRssiValue](js-apis-bluetooth-ble.md#getrssivalue)、[setCharacteristicChangeNotification](js-apis-bluetooth-ble.md#setcharacteristicchangenotification)、[setCharacteristicChangeIndication](js-apis-bluetooth-ble.md#setcharacteristicchangeindication)，如调用未完成均可能阻塞下一次操作。
 
 **处理步骤**
 
@@ -251,7 +270,7 @@ GATT未连接。
 
 **可能原因**
 
-GATT处于未连接的状态下执行操作，例如调用[getServices](js-apis-bluetooth-ble.md#getServices)和[readCharacteristicValue](js-apis-bluetooth-ble.md#readCharacteristicValue)。
+GATT处于未连接的状态下执行操作，例如调用[getServices](js-apis-bluetooth-ble.md#getservices)和[readCharacteristicValue](js-apis-bluetooth-ble.md#readcharacteristicvalue)。
 
 **处理步骤**
 
@@ -269,7 +288,7 @@ GATT处于拥塞状态。
 
 **可能原因**
 
-读写特征值或描述符过于频繁，导致底层数据传输拥塞，例如入参[GattWriteType](js-apis-bluetooth-ble.md#GattWriteType)为WRITE_NO_RESPONSE的[writeCharacteristicValue](js-apis-bluetooth-ble.md#writeCharacteristicValue)接口调用过于频繁可能导致拥塞。
+读写特征值或描述符过于频繁，导致底层数据传输拥塞，例如入参[GattWriteType](js-apis-bluetooth-ble.md#gattwritetype)为WRITE_NO_RESPONSE的[writeCharacteristicValue](js-apis-bluetooth-ble.md#writecharacteristicvalue)接口调用过于频繁可能导致拥塞。
 
 **处理步骤**
 

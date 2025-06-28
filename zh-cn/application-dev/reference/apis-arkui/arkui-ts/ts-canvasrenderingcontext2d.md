@@ -8,9 +8,9 @@
 >
 > 本文绘制接口在调用时会存入被关联的Canvas组件的指令队列中。仅当当前帧进入渲染阶段且关联的Canvas组件处于可见状态时，这些指令才会从队列中被提取并执行。因此，在Canvas组件不可见的情况下，应尽量避免频繁调用绘制接口，以防止指令在队列中堆积，从而避免内存占用过大的问题。
 >
+> [beginPath](#beginpath)、[moveTo](#moveto)、[lineTo](#lineto)、[closePath](#closepath)、[bezierCurveTo](#beziercurveto)、[quadraticCurveTo](#quadraticcurveto)、[arc](#arc)、[arcTo](#arcto)、[ellipse](#ellipse)、[rect](#rect)和[roundRect](#roundrect20)接口只能对CanvasRenderingContext2D中的路径生效，无法对[OffscreenCanvasRenderingContext2D](./ts-offscreencanvasrenderingcontext2d.md)和[Path2D](./ts-components-canvas-path2d.md)对象中设置的路径生效。
+>
 > Canvas组件的宽或高超过8000px时使用CPU渲染，会导致性能明显下降。
-
-
 
 ## 接口
 
@@ -50,7 +50,7 @@ RenderingContextSettings(antialias?: boolean)
 
 ### LengthMetricsUnit<sup>12+</sup>
 
-用来配置CanvasRenderingContext2D对象的单位模式，默认单位模式为LengthMetricsUnit.DEFAULT，对应默认单位vp，配置后无法动态更改，详细说明见[LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12)。
+用来配置CanvasRenderingContext2D对象的单位模式，默认单位模式为LengthMetricsUnit.DEFAULT，对应默认单位vp，配置后无法动态更改。详细说明见[LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12)。
 
 **示例：**
 
@@ -105,7 +105,7 @@ struct LengthMetricsUnitDemo {
 | [lineCap](#linecap)                      | [CanvasLineCap](#canvaslinecap类型说明) | 否 | 否 | 指定线端点的样式，可选值为：<br/>-&nbsp;'butt'：线端点以方形结束。<br/>-&nbsp;'round'：线端点以圆形结束。<br/>-&nbsp;'square'：线端点以方形结束，该样式下会增加一个长度和线段厚度相同，宽度是线段厚度一半的矩形。<br/>默认值：'butt'<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | [lineJoin](#linejoin)                    | [CanvasLineJoin](#canvaslinejoin类型说明) | 否 | 否 | 指定线段间相交的交点样式，可选值为：<br/>-&nbsp;'round'：在线段相连处绘制一个扇形，扇形的圆角半径是线段的宽度。<br/>-&nbsp;'bevel'：在线段相连处使用三角形为底填充，&nbsp;每个部分矩形拐角独立。<br/>-&nbsp;'miter'：在相连部分的外边缘处进行延伸，使其相交于一点，形成一个菱形区域，该属性可以通过设置miterLimit属性展现效果。<br/>默认值：'miter'<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | [miterLimit](#miterlimit)                | number | 否 | 否 | 设置斜接面限制值，该值指定了线条相交处内角和外角的距离。  <br/>默认值：10px<br/>单位：px<br/>miterLimit取值不支持0和负数，0和负数按异常值处理，异常值按默认值处理。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| [font](#font)                            | string | 否 | 否 | 设置文本绘制中的字体样式。<br/>语法：ctx.font='font-style&nbsp;font-weight&nbsp;font-size&nbsp;font-family'<br/>-&nbsp;font-style(可选)，用于指定字体样式，支持如下几种样式：'normal','italic'。<br/>-&nbsp;font-weight(可选)，用于指定字体的粗细，支持如下几种类型：'normal',&nbsp;'bold',&nbsp;'bolder',&nbsp;'lighter',&nbsp;100,&nbsp;200,&nbsp;300,&nbsp;400,&nbsp;500,&nbsp;600,&nbsp;700,&nbsp;800,&nbsp;900。<br/>-&nbsp;font-size(可选)，指定字号和行高，单位支持px、vp。使用时需要添加单位。<br/>-&nbsp;font-family(可选)，指定字体系列，支持如下几种类型：'sans-serif',&nbsp;'serif',&nbsp;'monospace'。同时API version 18及以后支持注册过的自定义字体（DevEco Studio的预览器不支持显示自定义字体），具体使用方法参考[自定义字体示例](#font)。<br/>默认值：'normal normal 14px sans-serif'<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| [font](#font)                            | string | 否 | 否 | 设置文本绘制中的字体样式。<br/>语法：ctx.font='font-style&nbsp;font-weight&nbsp;font-size&nbsp;font-family'<br/>-&nbsp;font-style(可选)，用于指定字体样式，支持如下几种样式：'normal','italic'。<br/>-&nbsp;font-weight(可选)，用于指定字体的粗细，支持如下几种类型：'normal',&nbsp;'bold',&nbsp;'bolder',&nbsp;'lighter',&nbsp;100,&nbsp;200,&nbsp;300,&nbsp;400,&nbsp;500,&nbsp;600,&nbsp;700,&nbsp;800,&nbsp;900。<br/>-&nbsp;font-size(可选)，指定字号和行高，单位支持px、vp。使用时需要添加单位。<br/>-&nbsp;font-family(可选)，指定字体系列，支持如下几种类型：'sans-serif',&nbsp;'serif',&nbsp;'monospace'，不支持自定义字体。<br/>默认值：'normal normal 14px sans-serif'<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | [textAlign](#textalign)                  | [CanvasTextAlign](#canvastextalign类型说明) | 否 | 否 | 设置文本绘制中的文本对齐方式，可选值为：<br/>-&nbsp;'left'：文本左对齐。<br/>-&nbsp;'right'：文本右对齐。<br/>-&nbsp;'center'：文本居中对齐。<br/>-&nbsp;'start'：文本对齐界线开始的地方。<br/>-&nbsp;'end'：文本对齐界线结束的地方。<br/>ltr布局模式下'start'和'left'一致，rtl布局模式下'start'和'right'一致。<br/>默认值：'left'<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | [textBaseline](#textbaseline)            | [CanvasTextBaseline](#canvastextbaseline类型说明) | 否 | 否 | 设置文本绘制中的水平对齐方式，可选值为：<br/>-&nbsp;'alphabetic'：文本基线是标准的字母基线。<br/>-&nbsp;'top'：文本基线在文本块的顶部。<br/>-&nbsp;'hanging'：文本基线是悬挂基线。<br/>-&nbsp;'middle'：文本基线在文本块的中间。<br/>-&nbsp;'ideographic'：文字基线是表意字基线；如果字符本身超出了alphabetic基线，那么ideograhpic基线位置在字符本身的底部。<br/>-&nbsp;'bottom'：文本基线在文本块的底部。&nbsp;与ideographic基线的区别在于ideographic基线不需要考虑下行字母。<br/>默认值：'alphabetic'<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | [globalAlpha](#globalalpha)              | number | 否 | 否 | 设置透明度，范围为[0.0, 1.0]，0.0为完全透明，1.0为完全不透明。若给定值小于0.0，则取值0.0；若给定值大于1.0，则取值1.0.<br/>默认值：1.0<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -126,7 +126,7 @@ struct LengthMetricsUnitDemo {
 
 > **说明：**
 >
-> fillStyle、shadowColor与 strokeStyle 中string类型格式为 'rgb(255, 255, 255)'，'rgba(255, 255, 255, 1.0)'，'\#FFFFFF'。
+> fillStyle、shadowColor与 strokeStyle 中string类型格式为`rgb(255, 255, 255)`、`rgba(255, 255, 255, 1.0)`或者`#FFFFFF`。
 
 
 ### fillStyle
@@ -327,31 +327,11 @@ struct MiterLimit {
 
 ### font
 
-使用font属性加载自定义字体前，必须在src/main/ets/entryability/目录下的EntryAbility.ets中先注册自定义字体，参考如下代码：
-
-> familyName必须设置为不带空格的连续字符串（例如："customFont"），否则font属性将无法加载自定义字体；
-> 
-> familySrc中的font文件夹与pages文件夹在同一目录下。
-
-```ts
-onWindowStageCreate(windowStage: window.WindowStage): void {
-  windowStage.loadContent('pages/Index', (err) => {
-    windowStage.getMainWindow().then(res => {
-      const uiCtc = res.getUIContext()
-      uiCtc.getFont().registerFont({
-        familyName: 'customFont',
-        familySrc: '/font/myFont.ttf'
-      })
-    })
-  });
-}
-```
-
 ```ts
 // xxx.ets
 @Entry
 @Component
-struct Fonts {
+struct FontDemo {
   private settings: RenderingContextSettings = new RenderingContextSettings(true)
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
 
@@ -361,14 +341,13 @@ struct Fonts {
         .width('100%')
         .height('100%')
         .backgroundColor('rgb(213,213,213)')
-        .onReady(() =>{
-          this.context.font = '30px sans-serif'
+        .onReady(() => {
+          // 常规字体样式，常规粗细，字体大小为30px，字体系列为sans-serif
+          this.context.font = 'normal normal 30px sans-serif'
           this.context.fillText("Hello px", 20, 60)
-          this.context.font = '30vp sans-serif'
+          // 斜体样式，加粗，字体大小为30vp，字体系列为monospace
+          this.context.font = 'italic bold 30vp monospace'
           this.context.fillText("Hello vp", 20, 100)
-          // font属性的font-family可以指定被注册的自定义字体的familyName，从而加载自定义字体
-          this.context.font = '30vp customFont'
-          this.context.fillText("Hello 自定义字体", 20, 140)
         })
     }
     .width('100%')
@@ -377,7 +356,7 @@ struct Fonts {
 }
 ```
 
-![new_font](figures/new_font.jpeg)
+![font](figures/canvasFont.jpeg)
 
 ### textAlign
 
@@ -1573,7 +1552,7 @@ lineTo(x: number, y: number): void
 
 closePath(): void
 
-结束当前路径形成一个封闭路径。
+结束当前路径，形成一个封闭路径。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -1678,7 +1657,7 @@ createPattern(image: ImageBitmap, repetition: string | null): CanvasPattern | nu
 
 bezierCurveTo(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number, y: number): void
 
-创建三次贝赛尔曲线的路径。
+创建三次贝塞尔曲线的路径。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -1733,7 +1712,7 @@ bezierCurveTo(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number,
 
 quadraticCurveTo(cpx: number, cpy: number, x: number, y: number): void
 
-创建二次贝赛尔曲线的路径。
+创建二次贝塞尔曲线的路径。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -2582,22 +2561,25 @@ transform方法对应一个变换矩阵，想对一个图形进行变化的时�
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 > **说明：**
+>
+> 图形中各个点变换后的坐标可通过下方坐标计算公式计算。
+>
 > 变换后的坐标计算方式（x和y为变换前坐标，x'和y'为变换后坐标）：
 >
-> - x' = scaleX \* x + skewY \* y + translateX
+> - x' = a \* x + c \* y + e
 >
-> - y' = skewX \* x + scaleY \* y + translateY
+> - y' = b \* x + d \* y + f
 
 **参数：**
 
-| 参数名   | 类型     | 必填   | 说明                   |
+| 参数名   | 类型     | 必填 | 说明 |
 | ---- | ------ | ---- | -------------------- |
-| a    | number | 是  | scaleX: 指定水平缩放值。  |
-| b    | number | 是  | skewY: 指定垂直倾斜值。   |
-| c    | number | 是  | skewX: 指定水平倾斜值。   |
-| d    | number | 是  | scaleY: 指定垂直缩放值。  |
-| e    | number | 是  | translateX: 指定水平移动值。<br>默认单位：vp |
-| f    | number | 是  | translateY: 指定垂直移动值。<br>默认单位：vp |
+| a    | number | 是    | scaleX：指定水平缩放值，支持设置负数。 |
+| b    | number | 是    | skewY：指定垂直倾斜值，支持设置负数。  |
+| c    | number | 是    | skewX：指定水平倾斜值，支持设置负数。  |
+| d    | number | 是    | scaleY：指定垂直缩放值，支持设置负数。 |
+| e    | number | 是    | translateX：指定水平移动值，支持设置负数。<br>默认单位：vp |
+| f    | number | 是    | translateY：指定垂直移动值，支持设置负数。<br>默认单位：vp |
 
 **示例：**
 
@@ -2647,16 +2629,26 @@ setTransform方法使用的参数和transform()方法相同，但setTransform()�
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+> **说明：**
+>
+> 图形中各个点变换后的坐标可通过下方坐标计算公式计算。
+>
+> 变换后的坐标计算方式（x和y为变换前坐标，x'和y'为变换后坐标）：
+>
+> - x' = a \* x + c \* y + e
+>
+> - y' = b \* x + d \* y + f
+
 **参数：**
 
-| 参数名   | 类型     | 必填   | 说明    |
+| 参数名   | 类型     | 必填 | 说明 |
 | ---- | ------ | ---- | -------------------- |
-| a    | number | 是 | scaleX: 指定水平缩放值。 |
-| b    | number | 是 | skewY: 指定垂直倾斜值。  |
-| c    | number | 是 | skewX: 指定水平倾斜值。  |
-| d    | number | 是 | scaleY: 指定垂直缩放值。 |
-| e    | number | 是 | translateX: 指定水平移动值。<br>默认单位：vp |
-| f    | number | 是 | translateY: 指定垂直移动值。<br>默认单位：vp |
+| a    | number | 是    | scaleX：指定水平缩放值，支持设置负数。 |
+| b    | number | 是    | skewY：指定垂直倾斜值，支持设置负数。  |
+| c    | number | 是    | skewX：指定水平倾斜值，支持设置负数。  |
+| d    | number | 是    | scaleY：指定垂直缩放值，支持设置负数。 |
+| e    | number | 是    | translateX：指定水平移动值，支持设置负数。<br>默认单位：vp |
+| f    | number | 是    | translateY：指定垂直移动值，支持设置负数。<br>默认单位：vp |
 
 **示例：**
 
@@ -2704,7 +2696,7 @@ setTransform(transform?: Matrix2D): void
 
 | 参数名  | 类型 | 必填 | 说明  |
 | --------- | ---------------------------------------- | ---- | ----- |
-| transform | [Matrix2D](ts-components-canvas-matrix2d.md#Matrix2D) | 否 | 变换矩阵。<br>默认值：null |
+| transform | [Matrix2D](ts-components-canvas-matrix2d.md#matrix2d) | 否 | 变换矩阵。<br>默认值：null |
 
 **示例：**
 
@@ -2765,7 +2757,7 @@ getTransform(): Matrix2D
 
 | 类型                                       | 说明    |
 | ---------------------------------------- | ----- |
-| [Matrix2D](ts-components-canvas-matrix2d.md#Matrix2D) | 矩阵对象。 |
+| [Matrix2D](ts-components-canvas-matrix2d.md#matrix2d) | 矩阵对象。 |
 
 **示例：**
 
@@ -2879,7 +2871,7 @@ drawImage(image: ImageBitmap | PixelMap, dx: number, dy: number): void
 
 | 参数名  | 类型  | 必填  | 说明 |
 | ----- | ---------------------------------------- | ---- | ---------------------------------------- |
-| image | [ImageBitmap](ts-components-canvas-imagebitmap.md)或[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | 是    | 图片资源，请参考ImageBitmap或PixelMap。            |
+| image | [ImageBitmap](ts-components-canvas-imagebitmap.md)或[PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) | 是    | 图片资源，请参考ImageBitmap或PixelMap。            |
 | dx    | number                                   | 是  | 绘制区域左上角在x轴的位置。<br>默认单位：vp|
 | dy    | number                                   | 是  | 绘制区域左上角在y轴的位置。<br>默认单位：vp|
 
@@ -2897,7 +2889,7 @@ drawImage(image: ImageBitmap | PixelMap, dx: number, dy: number, dw: number, dh:
 
 | 参数名  | 类型  | 必填  | 说明 |
 | ----- | ---------------------------------------- | ---- | ---------------------------------------- |
-| image | [ImageBitmap](ts-components-canvas-imagebitmap.md)或[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | 是    | 图片资源，请参考ImageBitmap或PixelMap。            |
+| image | [ImageBitmap](ts-components-canvas-imagebitmap.md)或[PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) | 是    | 图片资源，请参考ImageBitmap或PixelMap。            |
 | dx    | number                                   | 是  | 绘制区域左上角在x轴的位置。<br>默认单位：vp|
 | dy    | number                                   | 是  | 绘制区域左上角在y轴的位置。<br>默认单位：vp|
 | dw    | number                                   | 是  | 绘制区域的宽度。当绘制区域的宽度和裁剪图像的宽度不一致时，将图像宽度拉伸或压缩为绘制区域的宽度。<br>默认单位：vp |
@@ -2917,7 +2909,7 @@ drawImage(image: ImageBitmap | PixelMap, sx: number, sy: number, sw: number, sh:
 
 | 参数名  | 类型  | 必填  | 说明 |
 | ----- | ---------------------------------------- | ---- | ---------------------------------------- |
-| image | [ImageBitmap](ts-components-canvas-imagebitmap.md)或[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | 是    | 图片资源，请参考ImageBitmap或PixelMap。            |
+| image | [ImageBitmap](ts-components-canvas-imagebitmap.md)或[PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) | 是    | 图片资源，请参考ImageBitmap或PixelMap。            |
 | sx    | number                                   | 是  | 裁切源图像时距离源图像左上角的x坐标值。<br>image类型为ImageBitmap时，默认单位：vp<br>image类型为PixelMap时，API version 18前，默认单位：px；API version 18及以后，默认单位：vp |
 | sy    | number                                   | 是  | 裁切源图像时距离源图像左上角的y坐标值。<br>image类型为ImageBitmap时，默认单位：vp<br>image类型为PixelMap时，API version 18前，默认单位：px；API version 18及以后，默认单位：vp  |
 | sw    | number                                   | 是  | 裁切源图像时需要裁切的宽度。<br>image类型为ImageBitmap时，默认单位：vp<br>image类型为PixelMap时，API version 18前，默认单位：px；API version 18及以后，默认单位：vp  |
@@ -3011,7 +3003,7 @@ createImageData(imageData: ImageData): ImageData
 
 getPixelMap(sx: number, sy: number, sw: number, sh: number): PixelMap
 
-以当前canvas指定区域内的像素创建[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)对象，该接口存在内存拷贝行为，高耗时，应避免频繁使用。
+以当前canvas指定区域内的像素创建[PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md)对象，该接口存在内存拷贝行为，高耗时，应避免频繁使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -3030,7 +3022,7 @@ getPixelMap(sx: number, sy: number, sw: number, sh: number): PixelMap
 
 | 类型                                       | 说明            |
 | ---------------------------------------- | ------------- |
-| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | 新的PixelMap对象。 |
+| [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) | 新的PixelMap对象。 |
 
 **示例：**
 
@@ -3071,7 +3063,7 @@ getPixelMap(sx: number, sy: number, sw: number, sh: number): PixelMap
 
 setPixelMap(value?: PixelMap): void
 
-将当前传入[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)对象绘制在画布上。setPixelMap示例同getPixelMap。
+将当前传入[PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md)对象绘制在画布上。setPixelMap示例同getPixelMap。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -3081,7 +3073,7 @@ setPixelMap(value?: PixelMap): void
 
 | 参数名   | 类型     | 必填   | 说明 |
 | ---- | ------ | ---- | --------------- |
-|  value  | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | 否 | 包含像素值的PixelMap对象<br>默认值：null |
+|  value  | [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) | 否 | 包含像素值的PixelMap对象<br>默认值：null |
 
 ### getImageData
 
@@ -3486,7 +3478,7 @@ toDataURL(type?: string, quality?: any): string
 
 restore(): void
 
-对保存的绘图上下文进行恢复。
+恢复保存的绘图上下文。
 
 > **说明：**
 >
@@ -3822,7 +3814,7 @@ off(type: 'onAttach', callback?: () => void): void
 | 参数名 | 类型      | 必填 | 说明                                                                   |
 | ------ | --------- | ---- | ---------------------------------------------------------------------- |
 | type   | string | 是   | 取消订阅CanvasRenderingContext2D与Canvas组件发生绑定的回调。 |
-| callback   | () => void | 否   | 为空代表取消所有订阅CanvasRenderingContext2D与Canvas组件发生绑定后触发的回调。<br>非空代表取消订阅发生绑定对应的回调。 |
+| callback   | () => void | 否   | 为空表示取消所有订阅CanvasRenderingContext2D与Canvas组件发生绑定后触发的回调。<br>非空则取消订阅发生绑定对应的回调。 |
 
 ### off('onDetach')<sup>13+</sup>
 
@@ -3929,7 +3921,7 @@ struct AttachDetachExample {
 
 startImageAnalyzer(config: ImageAnalyzerConfig): Promise\<void>
 
-配置AI分析并启动AI分析功能，使用前需先[启用图像AI分析能力](ts-components-canvas-canvas.md#enableanalyzer12)。<br>该方法调用时，将截取调用时刻的画面帧进行分析，使用时需注意启动分析的时机，避免出现画面和分析内容不一致的情况。<br>未执行完重复调用该方法会触发错误回调。示例代码同stopImageAnalyzer。
+配置并启动AI分析功能，使用前需先[启用图像AI分析能力](ts-components-canvas-canvas.md#enableanalyzer12)。<br>该方法调用时，将截取调用时刻的画面帧进行分析，使用时需注意启动分析的时机，避免出现画面和分析内容不一致的情况。<br>未执行完重复调用该方法会触发错误回调。示例代码同stopImageAnalyzer。
 
 > **说明：**
 > 
@@ -3955,7 +3947,7 @@ startImageAnalyzer(config: ImageAnalyzerConfig): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[AI分析类库错误码](../errorcode-image-analyzer.md)。
+以下错误码的详细介绍请参见[AI分析类库错误码](errorcode-image-analyzer.md)。
 
 | 错误码ID | 错误信息                                      |
 | -------- | -------------------------------------------- |

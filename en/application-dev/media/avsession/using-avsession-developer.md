@@ -37,19 +37,33 @@ To enable an audio and video application to access the AVSession service as a pr
 
 1. Call an API in the **AVSessionManager** class to create and activate an **AVSession** object.
      
-   ```ts
-   import { avSession as AVSessionManager } from '@kit.AVSessionKit';
-
-   // Start to create and activate an AVSession object.
-   // Create an AVSession object.
-   let context: Context = getContext(this);
-   async function createSession() {
-     let type: AVSessionManager.AVSessionType = 'audio';
-     let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
-     await session.activate();
-     console.info(`session create done : sessionId : ${session.sessionId}`);
-   }
-   ```
+      ```ts
+      import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+      @Entry
+      @Component
+      struct Index {
+        @State message: string = 'hello world';
+    
+        build() { 
+          Column() {
+              Text(this.message)
+                .onClick(()=>{
+                  // Start to create and activate an AVSession object.
+                  // Create an AVSession object.
+                  let context = this.getUIContext().getHostContext() as Context;
+                  async function createSession() {
+                      let type: AVSessionManager.AVSessionType = 'audio';
+                      let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
+                      await session.activate();
+                      console.info(`session create done : sessionId : ${session.sessionId}`);
+                  }
+                })
+            }
+          .width('100%')
+          .height('100%')
+        }
+      }
+      ```
 
 2. Set AVSession information, which includes:
    - AVMetadata
@@ -57,79 +71,93 @@ To enable an audio and video application to access the AVSession service as a pr
 
    The controller will call an API in the **AVSessionController** class to obtain the information and display or process the information.
      
-   ```ts
-   import { avSession as AVSessionManager } from '@kit.AVSessionKit';
-   import { BusinessError } from '@kit.BasicServicesKit';
-
-   let context: Context = getContext(this);
-   async function setSessionInfo() {
-     // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet in step 1.
-     let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', 'audio');
-     // The player logic that triggers changes in the session metadata and playback state is omitted here.
-     // Set necessary session metadata.
-     let metadata: AVSessionManager.AVMetadata = {
-       assetId: '0', // Specified by the application, used to identify the media asset in the application media library.
-       title: 'TITLE',
-       mediaImage: 'IMAGE',
-       artist: 'ARTIST'
-     };
-     session.setAVMetadata(metadata).then(() => {
-       console.info(`SetAVMetadata successfully`);
-     }).catch((err: BusinessError) => {
-       console.error(`Failed to set AVMetadata. Code: ${err.code}, message: ${err.message}`);
-     });
-     // Set the playback state to paused and set isFavorite to false.
-     let playbackState: AVSessionManager.AVPlaybackState = {
-       state:AVSessionManager.PlaybackState.PLAYBACK_STATE_PAUSE,
-       isFavorite:false
-     };
-     session.setAVPlaybackState(playbackState, (err) => {
-       if (err) {
-         console.error(`Failed to set AVPlaybackState. Code: ${err.code}, message: ${err.message}`);
-       } else {
-         console.info(`SetAVPlaybackState successfully`);
-       }
-     });
-     // Set a playlist.
-     let queueItemDescription_1: AVSessionManager.AVMediaDescription = {
-       assetId: '001',
-       title: 'music_name',
-       subtitle: 'music_sub_name',
-       description: 'music_description',
-       mediaImage: "PIXELMAP_OBJECT",
-       extras: {'extras':'any'}
-     };
-     let queueItem_1: AVSessionManager.AVQueueItem = {
-       itemId: 1,
-       description: queueItemDescription_1
-     };
-     let queueItemDescription_2: AVSessionManager.AVMediaDescription = {
-       assetId: '002',
-       title: 'music_name',
-       subtitle: 'music_sub_name',
-       description: 'music_description',
-       mediaImage: "PIXELMAP_OBJECT",
-       extras: {'extras':'any'}
-     };
-     let queueItem_2: AVSessionManager.AVQueueItem = {
-       itemId: 2,
-       description: queueItemDescription_2
-     };
-     let queueItemsArray = [queueItem_1, queueItem_2];
-     session.setAVQueueItems(queueItemsArray).then(() => {
-       console.info(`SetAVQueueItems successfully`);
-     }).catch((err: BusinessError) => {
-       console.error(`Failed to set AVQueueItem, error code: ${err.code}, error message: ${err.message}`);
-     });
-     // Set a name for the playlist.
-     let queueTitle = 'QUEUE_TITLE';
-     session.setAVQueueTitle(queueTitle).then(() => {
-       console.info(`SetAVQueueTitle successfully`);
-     }).catch((err: BusinessError) => {
-       console.info(`Failed to set AVQueueTitle, error code: ${err.code}, error message: ${err.message}`);
-     });
-   }
-   ```
+      ```ts
+      import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+      import { BusinessError } from '@kit.BasicServicesKit';
+      @Entry
+      @Component
+      struct Index {
+        @State message: string = 'hello world';
+    
+        build() { 
+          Column() {
+              Text(this.message)
+                .onClick(()=>{
+                  let context = this.getUIContext().getHostContext() as Context;
+                  async function setSessionInfo() {
+                      // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet in step 1.
+                      let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', 'audio');
+                      // The player logic that triggers changes in the session metadata and playback state is omitted here.
+                      // Set necessary session metadata.
+                      let metadata: AVSessionManager.AVMetadata = {
+                      assetId: '0', // Specified by the application, used to identify the media asset in the application media library.
+                      title: 'TITLE',
+                      mediaImage: 'IMAGE',
+                      artist: 'ARTIST'
+                      };
+                      session.setAVMetadata(metadata).then(() => {
+                      console.info(`SetAVMetadata successfully`);
+                      }).catch((err: BusinessError) => {
+                      console.error(`Failed to set AVMetadata. Code: ${err.code}, message: ${err.message}`);
+                      });
+                      // Set the playback state to paused and set isFavorite to false.
+                      let playbackState: AVSessionManager.AVPlaybackState = {
+                      state:AVSessionManager.PlaybackState.PLAYBACK_STATE_PAUSE,
+                      isFavorite:false
+                      };
+                      session.setAVPlaybackState(playbackState, (err) => {
+                      if (err) {
+                          console.error(`Failed to set AVPlaybackState. Code: ${err.code}, message: ${err.message}`);
+                      } else {
+                          console.info(`SetAVPlaybackState successfully`);
+                      }
+                      });
+                      // Set a playlist.
+                      let queueItemDescription_1: AVSessionManager.AVMediaDescription = {
+                      assetId: '001',
+                      title: 'music_name',
+                      subtitle: 'music_sub_name',
+                      description: 'music_description',
+                      mediaImage: "PIXELMAP_OBJECT",
+                      extras: {'extras':'any'}
+                      };
+                      let queueItem_1: AVSessionManager.AVQueueItem = {
+                      itemId: 1,
+                      description: queueItemDescription_1
+                      };
+                      let queueItemDescription_2: AVSessionManager.AVMediaDescription = {
+                      assetId: '002',
+                      title: 'music_name',
+                      subtitle: 'music_sub_name',
+                      description: 'music_description',
+                      mediaImage: "PIXELMAP_OBJECT",
+                      extras: {'extras':'any'}
+                      };
+                      let queueItem_2: AVSessionManager.AVQueueItem = {
+                      itemId: 2,
+                      description: queueItemDescription_2
+                      };
+                      let queueItemsArray = [queueItem_1, queueItem_2];
+                      session.setAVQueueItems(queueItemsArray).then(() => {
+                      console.info(`SetAVQueueItems successfully`);
+                      }).catch((err: BusinessError) => {
+                      console.error(`Failed to set AVQueueItem, error code: ${err.code}, error message: ${err.message}`);
+                      });
+                      // Set a name for the playlist.
+                      let queueTitle = 'QUEUE_TITLE';
+                      session.setAVQueueTitle(queueTitle).then(() => {
+                      console.info(`SetAVQueueTitle successfully`);
+                      }).catch((err: BusinessError) => {
+                      console.info(`Failed to set AVQueueTitle, error code: ${err.code}, error message: ${err.message}`);
+                      });
+                  }
+                })
+            }
+          .width('100%')
+          .height('100%')
+        }
+      }
+      ```
 
 3. Set the UIAbility to be started by the controller. The UIAbility configured here is started when a user operates the UI of the controller, for example, clicking a widget in Media Controller.
    The UIAbility is set through the **WantAgent** API. For details, see [WantAgent](../../reference/apis-ability-kit/js-apis-app-ability-wantAgent.md).
@@ -137,55 +165,80 @@ To enable an audio and video application to access the AVSession service as a pr
    ```ts
    import { avSession as AVSessionManager } from '@kit.AVSessionKit';
    import { wantAgent } from '@kit.AbilityKit';
-
-   let context: Context = getContext(this);
-   async function getWantAgent() {
-     let type: AVSessionManager.AVSessionType = 'audio';
-     // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet in step 1.
-     let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
-     let wantAgentInfo: wantAgent.WantAgentInfo = {
-       wants: [
-         {
-           bundleName: 'com.example.musicdemo',
-           abilityName: 'MainAbility'
-         }
-       ],
-       // OperationType.START_ABILITIES
-       operationType: 2,
-       requestCode: 0,
-       wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-     }
-     wantAgent.getWantAgent(wantAgentInfo).then((agent) => {
-       session.setLaunchAbility(agent);
-     })
-   }
-   ```
-
+   @Entry
+   @Component
+   struct Index {
+      @State message: string = 'hello world';
+    
+      build() { 
+        Column() {
+            Text(this.message)
+              .onClick(()=>{
+                let context = this.getUIContext().getHostContext() as Context;
+                async function getWantAgent() {
+                    let type: AVSessionManager.AVSessionType = 'audio';
+                    // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet in step 1.
+                    let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
+                    let wantAgentInfo: wantAgent.WantAgentInfo = {
+                    wants: [
+                        {
+                        bundleName: 'com.example.musicdemo',
+                        abilityName: 'MainAbility'
+                        }
+                    ],
+                    // OperationType.START_ABILITIES
+                    operationType: 2,
+                    requestCode: 0,
+                    wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+                    }
+                    wantAgent.getWantAgent(wantAgentInfo).then((agent) => {
+                    session.setLaunchAbility(agent);
+                    })
+                }
+              })
+          }
+        .width('100%')
+        .height('100%')
+      }
+    }
+    ```
+    
 4. Set a custom session event. The controller performs an operation after receiving the event.
 
    > **NOTE**
    > 
    > The data set through **dispatchSessionEvent** is not saved in the **AVSession** object or AVSession service.
-
-   ```ts
-
-   import { avSession as AVSessionManager } from '@kit.AVSessionKit';
-   import { BusinessError } from '@kit.BasicServicesKit';
-
-   let context: Context = getContext(this);
-   async function dispatchSessionEvent() {
-     // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet in step 1.
-     let type: AVSessionManager.AVSessionType = 'audio';
-     let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
-     let eventName = 'dynamic_lyric';
-     await session.dispatchSessionEvent(eventName, {lyric : 'This is my lyric'}).then(() => {
-       console.info(`Dispatch session event successfully`);
-     }).catch((err: BusinessError) => {
-       console.error(`Failed to dispatch session event. Code: ${err.code}, message: ${err.message}`);
-     })
-   }
-
-   ```
+      ```ts
+      import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+      import { BusinessError } from '@kit.BasicServicesKit';
+      @Entry
+      @Component
+      struct Index {
+        @State message: string = 'hello world';
+    
+        build() { 
+          Column() {
+              Text(this.message)
+                .onClick(()=>{
+                  let context = this.getUIContext().getHostContext() as Context;
+                  async function dispatchSessionEvent() {
+                      // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet in step 1.
+                      let type: AVSessionManager.AVSessionType = 'audio';
+                      let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
+                      let eventName = 'dynamic_lyric';
+                      await session.dispatchSessionEvent(eventName, {lyric : 'This is my lyric'}).then(() => {
+                      console.info(`Dispatch session event successfully`);
+                      }).catch((err: BusinessError) => {
+                      console.error(`Failed to dispatch session event. Code: ${err.code}, message: ${err.message}`);
+                      })
+                  }
+                })
+            }
+          .width('100%')
+          .height('100%')
+        }
+      }
+      ```
 
 5. Set a custom media packet. The controller performs an operation after receiving the event.
 
@@ -196,17 +249,31 @@ To enable an audio and video application to access the AVSession service as a pr
    ```ts
    import { avSession as AVSessionManager } from '@kit.AVSessionKit';
    import { BusinessError } from '@kit.BasicServicesKit';
-
-   let context: Context = getContext(this);
-   async function setExtras() {
-     // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet in step 1.
-     let type: AVSessionManager.AVSessionType = 'audio';
-     let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
-     await session.setExtras({extra : 'This is my custom meida packet'}).then(() => {
-       console.info(`Set extras successfully`);
-     }).catch((err: BusinessError) => {
-       console.error(`Failed to set extras. Code: ${err.code}, message: ${err.message}`);
-     })
+   @Entry
+   @Component
+   struct Index {
+      @State message: string = 'hello world';
+    
+      build() { 
+        Column() {
+            Text(this.message)
+              .onClick(()=>{
+                let context = this.getUIContext().getHostContext() as Context;
+                async function setExtras() {
+                    // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet in step 1.
+                    let type: AVSessionManager.AVSessionType = 'audio';
+                    let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
+                    await session.setExtras({extra : 'This is my custom meida packet'}).then(() => {
+                    console.info(`Set extras successfully`);
+                    }).catch((err: BusinessError) => {
+                    console.error(`Failed to set extras. Code: ${err.code}, message: ${err.message}`);
+                    })
+                }
+              })
+          }
+        .width('100%')
+        .height('100%')
+      }
    }
    ```
 
@@ -225,67 +292,82 @@ To enable an audio and video application to access the AVSession service as a pr
    ```ts
    import { avSession as AVSessionManager } from '@kit.AVSessionKit';
 
-   let context: Context = getContext(this);
-   async function setListenerForMesFromController() {
-     // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet in step 1.
-     let type: AVSessionManager.AVSessionType = 'audio';
-     let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
-     // Generally, logic processing on the player is implemented in the listener.
-     // After the processing is complete, use the setter to synchronize the playback information. For details, see the code snippet above.
-     session.on('play', () => {
-       console.info(`on play , do play task`);
-       // If this command is not supported, do not register it. If the command has been registered but is not used temporarily, use session.off('play') to cancel listening.
-       // After the processing is complete, call SetAVPlayState to report the playback state.
-     });
-     session.on('pause', () => {
-       console.info(`on pause , do pause task`);
-        // If this command is not supported, do not register it. If the command has been registered but is not used temporarily, use session.off('pause') to cancel listening.
-        // After the processing is complete, call SetAVPlayState to report the playback state.
-     });
-     session.on('stop', () => {
-       console.info(`on stop , do stop task`);
-        // If this command is not supported, do not register it. If the command has been registered but is not used temporarily, use session.off('stop') to cancel listening.
-        // After the processing is complete, call SetAVPlayState to report the playback state.
-     });
-     session.on('playNext', () => {
-       console.info(`on playNext , do playNext task`);
-        // If this command is not supported, do not register it. If the command has been registered but is not used temporarily, use session.off('playNext') to cancel listening.
-        // After the processing is complete, call SetAVPlayState to report the playback state and call SetAVMetadata to report the media information.
-     });
-     session.on('playPrevious', () => {
-       console.info(`on playPrevious , do playPrevious task`);
-        // If this command is not supported, do not register it. If the command has been registered but is not used temporarily, use session.off('playPrevious') to cancel listening.
-        // After the processing is complete, call SetAVPlayState to report the playback state and call SetAVMetadata to report the media information.
-     });
-     session.on('fastForward', () => {
-       console.info(`on fastForward , do fastForward task`);
-        // If this command is not supported, do not register it. If the command has been registered but is not used temporarily, use session.off('fastForward') to cancel listening.
-        // After the processing is complete, call SetAVPlayState to report the playback state and position.
-     });
-     session.on('rewind', () => {
-       console.info(`on rewind , do rewind task`);
-        // If this command is not supported, do not register it. If the command has been registered but is not used temporarily, use session.off('rewind') to cancel listening.
-        // After the processing is complete, call SetAVPlayState to report the playback state and position.
-     });
-     session.on('seek', (time) => {
-       console.info(`on seek , the seek time is ${time}`);
-        // If this command is not supported, do not register it. If the command has been registered but is not used temporarily, use session.off('seek') to cancel listening.
-        // After the processing is complete, call SetAVPlayState to report the playback state and position.
-     });
-     session.on('setSpeed', (speed) => {
-       console.info(`on setSpeed , the speed is ${speed}`);
-       // do some tasks ···
-     });
-     session.on('setLoopMode', (mode) => {
-       console.info(`on setLoopMode , the loop mode is ${mode}`);
-        // If this command is not supported, do not register it. If the command has been registered but is not used temporarily, use session.off('setLoopMode') to cancel listening.
-        // The application determines the next loop mode. After the processing is complete, call SetAVPlayState to report the new loop mode.
-     });
-     session.on('toggleFavorite', (assetId) => {
-       console.info(`on toggleFavorite , the target asset Id is ${assetId}`);
-        // If this command is not supported, do not register it. If the command has been registered but is not used temporarily, use session.off('toggleFavorite') to cancel listening.
-        // After the processing is complete, call SetAVPlayState to report the value of isFavorite.
-     });
+   @Entry
+   @Component
+   struct Index {
+     @State message: string = 'hello world';
+    
+     build() { 
+       Column() {
+           Text(this.message)
+             .onClick(()=>{
+               let context = this.getUIContext().getHostContext() as Context;
+               async function setListenerForMesFromController() {
+                   // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet in step 1.
+                   let type: AVSessionManager.AVSessionType = 'audio';
+                   let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
+                   // Generally, logic processing on the player is implemented in the listener.
+                   // After the processing is complete, use the setter to synchronize the playback information. For details, see the code snippet above.
+                   session.on('play', () => {
+                   console.info(`on play , do play task`);
+                   // If this command is not supported, do not register it. If the command has been registered but is not used temporarily, use session.off('play') to cancel listening.
+                   // After the processing is complete, call SetAVPlayState to report the playback state.
+                   });
+                   session.on('pause', () => {
+                   console.info(`on pause , do pause task`);
+                       // If this command is not supported, do not register it. If the command has been registered but is not used temporarily, use session.off('pause') to cancel listening.
+                       // After the processing is complete, call SetAVPlayState to report the playback state.
+                   });
+                   session.on('stop', () => {
+                   console.info(`on stop , do stop task`);
+                       // If this command is not supported, do not register it. If the command has been registered but is not used temporarily, use session.off('stop') to cancel listening.
+                       // After the processing is complete, call SetAVPlayState to report the playback state.
+                   });
+                   session.on('playNext', () => {
+                   console.info(`on playNext , do playNext task`);
+                       // If this command is not supported, do not register it. If the command has been registered but is not used temporarily, use session.off('playNext') to cancel listening.
+                       // After the processing is complete, call SetAVPlayState to report the playback state and call SetAVMetadata to report the media information.
+                   });
+                   session.on('playPrevious', () => {
+                   console.info(`on playPrevious , do playPrevious task`);
+                       // If this command is not supported, do not register it. If the command has been registered but is not used temporarily, use session.off('playPrevious') to cancel listening.
+                       // After the processing is complete, call SetAVPlayState to report the playback state and call SetAVMetadata to report the media information.
+                   });
+                   session.on('fastForward', () => {
+                   console.info(`on fastForward , do fastForward task`);
+                       // If this command is not supported, do not register it. If the command has been registered but is not used temporarily, use session.off('fastForward') to cancel listening.
+                       // After the processing is complete, call SetAVPlayState to report the playback state and position.
+                   });
+                   session.on('rewind', () => {
+                   console.info(`on rewind , do rewind task`);
+                       // If this command is not supported, do not register it. If the command has been registered but is not used temporarily, use session.off('rewind') to cancel listening.
+                       // After the processing is complete, call SetAVPlayState to report the playback state and position.
+                   });
+                   session.on('seek', (time) => {
+                   console.info(`on seek , the seek time is ${time}`);
+                       // If this command is not supported, do not register it. If the command has been registered but is not used temporarily, use session.off('seek') to cancel listening.
+                       // After the processing is complete, call SetAVPlayState to report the playback state and position.
+                   });
+                   session.on('setSpeed', (speed) => {
+                   console.info(`on setSpeed , the speed is ${speed}`);
+                   // do some tasks ···
+                   });
+                   session.on('setLoopMode', (mode) => {
+                   console.info(`on setLoopMode , the loop mode is ${mode}`);
+                       // If this command is not supported, do not register it. If the command has been registered but is not used temporarily, use session.off('setLoopMode') to cancel listening.
+                       // The application determines the next loop mode. After the processing is complete, call SetAVPlayState to report the new loop mode.
+                   });
+                   session.on('toggleFavorite', (assetId) => {
+                   console.info(`on toggleFavorite , the target asset Id is ${assetId}`);
+                       // If this command is not supported, do not register it. If the command has been registered but is not used temporarily, use session.off('toggleFavorite') to cancel listening.
+                       // After the processing is complete, call SetAVPlayState to report the value of isFavorite.
+                   });
+               }
+             })
+         }
+       .width('100%')
+       .height('100%')
+     }
    }
    ```
 
@@ -300,30 +382,44 @@ To enable an audio and video application to access the AVSession service as a pr
 
    ```ts
    import { avSession as AVSessionManager } from '@kit.AVSessionKit';
-
-   let context: Context = getContext(this);
-   async function setListenerForMesFromController() {
-     // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet in step 1.
-     let type: AVSessionManager.AVSessionType = 'audio';
-     let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
-     // Generally, logic processing on the player is implemented in the listener.
-     // After the processing is complete, use the setter to synchronize the playback information. For details, see the code snippet above.
-     session.on('skipToQueueItem', (itemId) => {
-       console.info(`on skipToQueueItem , do skip task`);
-       // do some tasks ···
-     });
-     session.on('handleKeyEvent', (event) => {
-       console.info(`on handleKeyEvent , the event is ${JSON.stringify(event)}`);
-       // do some tasks ···
-     });
-     session.on('outputDeviceChange', (device) => {
-       console.info(`on outputDeviceChange , the device info is ${JSON.stringify(device)}`);
-       // do some tasks ···
-     });
-     session.on('commonCommand', (commandString, args) => {
-       console.info(`on commonCommand , command is ${commandString}, args are ${JSON.stringify(args)}`);
-       // do some tasks ···
-     });
+   @Entry
+   @Component
+   struct Index {
+     @State message: string = 'hello world';
+ 
+     build() { 
+       Column() {
+           Text(this.message)
+             .onClick(()=>{
+               let context = this.getUIContext().getHostContext() as Context;
+               async function setListenerForMesFromController() {
+                   // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet in step 1.
+                   let type: AVSessionManager.AVSessionType = 'audio';
+                   let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
+                   // Generally, logic processing on the player is implemented in the listener.
+                   // After the processing is complete, use the setter to synchronize the playback information. For details, see the code snippet above.
+                   session.on('skipToQueueItem', (itemId) => {
+                   console.info(`on skipToQueueItem , do skip task`);
+                   // do some tasks ···
+                   });
+                   session.on('handleKeyEvent', (event) => {
+                   console.info(`on handleKeyEvent , the event is ${JSON.stringify(event)}`);
+                   // do some tasks ···
+                   });
+                   session.on('outputDeviceChange', (device) => {
+                   console.info(`on outputDeviceChange , the device info is ${JSON.stringify(device)}`);
+                   // do some tasks ···
+                   });
+                   session.on('commonCommand', (commandString, args) => {
+                   console.info(`on commonCommand , command is ${commandString}, args are ${JSON.stringify(args)}`);
+                   // do some tasks ···
+                   });
+               }
+             })
+         }
+       .width('100%')
+       .height('100%')
+     }
    }
    ```
 
@@ -332,26 +428,41 @@ To enable an audio and video application to access the AVSession service as a pr
    ```ts
    import { avSession as AVSessionManager } from '@kit.AVSessionKit';
 
-   let context: Context = getContext(this);
-   async function createControllerFromSession() {
-     // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet in step 1.
-     let type: AVSessionManager.AVSessionType = 'audio';
-     let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
-
-     // Obtain an AVSessionController object for this AVSession object.
-     let controller = await session.getController();
-
-     // The AVSessionController object can interact with the AVSession object, for example, by delivering a playback control command.
-     let avCommand: AVSessionManager.AVControlCommand = {command:'play'};
-     controller.sendControlCommand(avCommand);
-
-     // Alternatively, listen for state changes.
-     controller.on('playbackStateChange', 'all', (state) => {
-
-       // Do some things.
-     });
-
-     // The AVSessionController object can perform many operations. For details, see the description of the controller.
+   @Entry
+   @Component
+   struct Index {
+     @State message: string = 'hello world';
+ 
+     build() { 
+       Column() {
+           Text(this.message)
+             .onClick(()=>{
+               let context = this.getUIContext().getHostContext() as Context;
+               async function createControllerFromSession() {
+                   // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet in step 1.
+                   let type: AVSessionManager.AVSessionType = 'audio';
+                   let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
+ 
+                   // Obtain an AVSessionController object for this AVSession object.
+                   let controller = await session.getController();
+ 
+                   // The AVSessionController object can interact with the AVSession object, for example, by delivering a playback control command.
+                   let avCommand: AVSessionManager.AVControlCommand = {command:'play'};
+                   controller.sendControlCommand(avCommand);
+ 
+                   // Alternatively, listen for state changes.
+                   controller.on('playbackStateChange', 'all', (state) => {
+ 
+                   // do some things.
+                   });
+ 
+                   // The AVSessionController object can perform many operations. For details, see the description of the controller.
+               }
+             })
+         }
+       .width('100%')
+       .height('100%')
+     }
    }
    ```
 
@@ -361,23 +472,37 @@ To enable an audio and video application to access the AVSession service as a pr
 
    ```ts
    import { avSession as AVSessionManager } from '@kit.AVSessionKit';
-
-   let context: Context = getContext(this);
-   async function unregisterSessionListener() {
-     // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet in step 1.
-     let type: AVSessionManager.AVSessionType = 'audio';
-     let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
-
-     // Cancel the listener of the AVSession object.
-     session.off('play');
-     session.off('pause');
-     session.off('stop');
-     session.off('playNext');
-     session.off('playPrevious');
-     session.off('skipToQueueItem');
-     session.off('handleKeyEvent');
-     session.off('outputDeviceChange');
-     session.off('commonCommand');
+   @Entry
+   @Component
+   struct Index {
+     @State message: string = 'hello world';
+ 
+     build() { 
+       Column() {
+           Text(this.message)
+             .onClick(()=>{
+               let context = this.getUIContext().getHostContext() as Context;
+               async function unregisterSessionListener() {
+                   // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet in step 1.
+                   let type: AVSessionManager.AVSessionType = 'audio';
+                   let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
+ 
+                   // Cancel the listener of the AVSession object.
+                   session.off('play');
+                   session.off('pause');
+                   session.off('stop');
+                   session.off('playNext');
+                   session.off('playPrevious');
+                   session.off('skipToQueueItem');
+                   session.off('handleKeyEvent');
+                   session.off('outputDeviceChange');
+                   session.off('commonCommand');
+               }
+             })
+         }
+       .width('100%')
+       .height('100%')
+     }
    }
    ```
 
@@ -385,19 +510,33 @@ To enable an audio and video application to access the AVSession service as a pr
      
    ```ts
    import { avSession as AVSessionManager } from '@kit.AVSessionKit';
-
-   let context: Context = getContext(this);
-   async function destroySession() {
-     // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet in step 1.
-     let type: AVSessionManager.AVSessionType = 'audio';
-     let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
-     // Destroy the AVSession object.
-     session.destroy((err) => {
-       if (err) {
-         console.error(`Failed to destroy session. Code: ${err.code}, message: ${err.message}`);
-       } else {
-         console.info(`Destroy : SUCCESS `);
-       }
-     });
+   @Entry
+   @Component
+   struct Index {
+     @State message: string = 'hello world';
+ 
+     build() { 
+       Column() {
+           Text(this.message)
+             .onClick(()=>{
+               let context = this.getUIContext().getHostContext() as Context;
+               async function destroySession() {
+                   // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet in step 1.
+                   let type: AVSessionManager.AVSessionType = 'audio';
+                   let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
+                   // Destroy the AVSession object.
+                   session.destroy((err) => {
+                   if (err) {
+                       console.error(`Failed to destroy session. Code: ${err.code}, message: ${err.message}`);
+                   } else {
+                       console.info(`Destroy : SUCCESS `);
+                   }
+                   });
+               }
+             })
+         }
+       .width('100%')
+       .height('100%')
+     }
    }
    ```

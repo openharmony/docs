@@ -49,12 +49,12 @@
         content: {
             notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
             normal: {
-            title: "test_title",
-            text: "test_text",
-            additionalText: "test_additionalText"
+            title: 'test_title',
+            text: 'test_text',
+            additionalText: 'test_additionalText'
             }
         },
-        appMessageId: 'test_appmessageid_1'
+        appMessageId: 'test_appMessageId_1'
     };
     notificationManager.publish(notificationRequest, publishCallback);
     ```

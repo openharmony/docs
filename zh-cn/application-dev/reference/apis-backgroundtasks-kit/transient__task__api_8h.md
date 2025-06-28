@@ -23,4 +23,5 @@
 | -------- | -------- |
 | int32_t [OH_BackgroundTaskManager_RequestSuspendDelay](_transient_task.md#oh_backgroundtaskmanager_requestsuspenddelay) (const char \*reason, [TransientTask_Callback](_transient_task.md#transienttask_callback) callback, [TransientTask_DelaySuspendInfo](_transient_task___delay_suspend_info.md) \*info) | 申请短时任务。 | 
 | int32_t [OH_BackgroundTaskManager_GetRemainingDelayTime](_transient_task.md#oh_backgroundtaskmanager_getremainingdelaytime) (int32_t requestId, int32_t \*delayTime) | 获取本次短时任务的剩余时间。 | 
-| int32_t [OH_BackgroundTaskManager_CancelSuspendDelay](_transient_task.md#oh_backgroundtaskmanager_cancelsuspenddelay) (int32_t requestId) | 取消短时任务。 | 
+| int32_t [OH_BackgroundTaskManager_CancelSuspendDelay](_transient_task.md#oh_backgroundtaskmanager_cancelsuspenddelay) (int32_t requestId) | 取消短时任务。 |
+| int32_t [OH_BackgroundTaskManager_GetTransientTaskInfo](_transient_task.md#oh_backgroundtaskmanager_gettransienttaskinfo) ([TransientTask_TransientTaskInfo](_transient_task.md#transienttask_transienttaskinfo) \*transientTaskInfo)                                                                  | 获取所有短时任务信息。    |   

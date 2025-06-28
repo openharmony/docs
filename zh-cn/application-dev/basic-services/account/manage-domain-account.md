@@ -66,8 +66,11 @@
    try {
      osAccountMgr.createOsAccountForDomain(osAccount.OsAccountType.NORMAL, domainInfo,
      (err: BusinessError, osAccountInfo: osAccount.OsAccountInfo)=>{
-       console.log('createOsAccountForDomain err:' + JSON.stringify(err));
-       console.log('createOsAccountForDomain osAccountInfo:' + JSON.stringify(osAccountInfo));
+       if (err) {
+        console.error('createOsAccountForDomain exception:' + JSON.stringify(err));
+      } else {
+        console.log('createOsAccountForDomain osAccountInfo:' + JSON.stringify(osAccountInfo));
+      }
    });
    } catch (e) {
    console.error('createOsAccountForDomain exception: ' + JSON.stringify(e));

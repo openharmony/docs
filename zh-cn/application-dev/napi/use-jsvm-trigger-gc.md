@@ -105,13 +105,13 @@ static JSVM_Value TriggerGC(JSVM_Env env, JSVM_CallbackInfo info)
     }
     // 通知引擎当前存在比较大的内存压力，能大概率触发JS引擎的GC流程。
     JSVM_CALL(OH_JSVM_MemoryPressureNotification(env, JSVM_MEMORY_PRESSURE_LEVEL_CRITICAL));
-    if ((before_flag1 == true) &&
-        (before_flag2 == true) &&
-        (after_flag1 == true) &&
-        (after_flag2 == false) &&
-        (remove_repeated == true) &&
-        (remove_notAdded == true) &&
-        (add_repeated == true)) {
+    if ((before_flag1) &&
+        (before_flag2) &&
+        (after_flag1) &&
+        (!after_flag2) &&
+        (remove_repeated) &&
+        (remove_notAdded) &&
+        (add_repeated)) {
         OH_LOG_INFO(LOG_APP, "JSVM Trigger GC: success");
     } else {
         OH_LOG_ERROR(LOG_APP, "JSVM Trigger GC: failed");
