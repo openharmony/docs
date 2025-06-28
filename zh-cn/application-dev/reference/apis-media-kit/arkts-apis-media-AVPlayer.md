@@ -429,7 +429,11 @@ avPlayer.prepare().then(() => {
 
 setMediaMuted(mediaType: MediaType,  muted: boolean ): Promise\<void>
 
-设置音频静音/取消音频静音。 从API 20开始，支持设置关闭视频画面/取消关闭视频画面。 只能在prepared/playing/paused/completed状态下调用。
+设置音频静音/取消音频静音。
+
+从API 20开始，支持设置关闭视频画面/取消关闭视频画面。
+
+只能在prepared/playing/paused/completed状态下调用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
