@@ -270,7 +270,7 @@ AVSession_ErrCode OH_AVSession_Create(AVSession_Type sessionType, const char* se
 | const char* sessionTag |   会话标签。 |
 | const char* bundleName |   创建会话的包名。 |
 | const char* abilityName |  创建会话的ability名。 |
-| OH_AVSession** avsession |    返回的媒体会话对象。 |
+| [OH_AVSession](capi-ohavsession-oh-avsession.md)** avsession |    返回的媒体会话对象。 |
 
 **返回：**
 
@@ -295,7 +295,7 @@ AVSession_ErrCode OH_AVSession_Destroy(OH_AVSession* avsession)
 
 | 参数项 | 描述 |
 | -- | -- |
-| OH_AVSession* avsession | 媒体会话对象。 |
+| [OH_AVSession](capi-ohavsession-oh-avsession.md)* avsession | 媒体会话对象。 |
 
 **返回：**
 
@@ -320,7 +320,7 @@ AVSession_ErrCode OH_AVSession_Activate(OH_AVSession* avsession)
 
 | 参数项 | 描述 |
 | -- | -- |
-| OH_AVSession* avsession | 媒体会话对象。 |
+| [OH_AVSession](capi-ohavsession-oh-avsession.md)* avsession | 媒体会话对象。 |
 
 **返回：**
 
@@ -345,7 +345,7 @@ AVSession_ErrCode OH_AVSession_Deactivate(OH_AVSession* avsession)
 
 | 参数项 | 描述 |
 | -- | -- |
-| OH_AVSession* avsession | 媒体会话对象。 |
+| [OH_AVSession](capi-ohavsession-oh-avsession.md)* avsession | 媒体会话对象。 |
 
 **返回：**
 
@@ -370,7 +370,7 @@ AVSession_ErrCode OH_AVSession_GetSessionType(OH_AVSession* avsession, AVSession
 
 | 参数项 | 描述 |
 | -- | -- |
-| OH_AVSession* avsession | 媒体会话对象。 |
+| [OH_AVSession](capi-ohavsession-oh-avsession.md)* avsession | 媒体会话对象。 |
 | [AVSession_Type](capi-native-avsession-h.md#avsession_type)* sessionType | 返回的会话类型。 |
 
 **返回：**
@@ -396,7 +396,7 @@ AVSession_ErrCode OH_AVSession_GetSessionId(OH_AVSession* avsession, const char*
 
 | 参数项 | 描述 |
 | -- | -- |
-| OH_AVSession* avsession | 媒体会话对象。 |
+| [OH_AVSession](capi-ohavsession-oh-avsession.md)* avsession | 媒体会话对象。 |
 | const char** sessionId | 返回的会话类型id。 |
 
 **返回：**
@@ -422,8 +422,8 @@ AVSession_ErrCode OH_AVSession_SetAVMetadata(OH_AVSession* avsession, OH_AVMetad
 
 | 参数项 | 描述 |
 | -- | -- |
-| OH_AVSession* avsession | 媒体会话对象。 |
-| OH_AVMetadata* avmetadata | 设置媒体元数据信息。 |
+| [OH_AVSession](capi-ohavsession-oh-avsession.md)* avsession | 媒体会话对象。 |
+| [OH_AVMetadata](capi-ohavsession-oh-avmetadatastruct.md)* avmetadata | 设置媒体元数据信息。 |
 
 **返回：**
 
@@ -448,7 +448,7 @@ AVSession_ErrCode OH_AVSession_SetPlaybackState(OH_AVSession* avsession,AVSessio
 
 | 参数项 | 描述 |
 | -- | -- |
-| OH_AVSession* avsession | 媒体会话对象。 |
+| [OH_AVSession](capi-ohavsession-oh-avsession.md)* avsession | 媒体会话对象。 |
 | [AVSession_PlaybackState](capi-native-avsession-h.md#avsession_playbackstate) playbackState | 播放状态。 |
 
 **返回：**
@@ -474,7 +474,7 @@ AVSession_ErrCode OH_AVSession_SetPlaybackPosition(OH_AVSession* avsession,AVSes
 
 | 参数项 | 描述 |
 | -- | -- |
-| OH_AVSession* avsession | 媒体会话对象。 |
+| [OH_AVSession](capi-ohavsession-oh-avsession.md)* avsession | 媒体会话对象。 |
 | [AVSession_PlaybackPosition](capi-ohavsession-avsession-playbackposition.md)* playbackPosition | 播放位置对象。 |
 
 **返回：**
@@ -500,7 +500,7 @@ AVSession_ErrCode OH_AVSession_SetFavorite(OH_AVSession* avsession, bool favorit
 
 | 参数项 | 描述 |
 | -- | -- |
-| OH_AVSession* avsession | 媒体会话对象。 |
+| [OH_AVSession](capi-ohavsession-oh-avsession.md)* avsession | 媒体会话对象。 |
 | bool favorite | 收藏状态，true表示收藏，false表示取消收藏。 |
 
 **返回：**
@@ -526,7 +526,7 @@ AVSession_ErrCode OH_AVSession_SetLoopMode(OH_AVSession* avsession, AVSession_Lo
 
 | 参数项 | 描述 |
 | -- | -- |
-| OH_AVSession* avsession | 媒体会话对象。 |
+| [OH_AVSession](capi-ohavsession-oh-avsession.md)* avsession | 媒体会话对象。 |
 | [AVSession_LoopMode](capi-native-avsession-h.md#avsession_loopmode) loopMode | 循环模式。 |
 
 **返回：**
@@ -552,7 +552,7 @@ AVSession_ErrCode OH_AVSession_RegisterCommandCallback(OH_AVSession* avsession,A
 
 | 参数项 | 描述 |
 | -- | -- |
-| OH_AVSession* avsession | 媒体会话对象。 |
+| [OH_AVSession](capi-ohavsession-oh-avsession.md)* avsession | 媒体会话对象。 |
 | [AVSession_ControlCommand](capi-native-avsession-h.md#avsession_controlcommand) command |   播控的控制命令。 |
 | [OH_AVSessionCallback_OnCommand](capi-native-avsession-h.md#oh_avsessioncallback_oncommand) callback |  控制命令的回调。 |
 | void* userData |  指向通过回调函数传递的应用数据指针。 |
@@ -580,7 +580,7 @@ AVSession_ErrCode OH_AVSession_UnregisterCommandCallback(OH_AVSession* avsession
 
 | 参数项 | 描述 |
 | -- | -- |
-| OH_AVSession* avsession | 媒体会话对象。 |
+| [OH_AVSession](capi-ohavsession-oh-avsession.md)* avsession | 媒体会话对象。 |
 | [AVSession_ControlCommand](capi-native-avsession-h.md#avsession_controlcommand) command |   播控的控制命令。 |
 | [OH_AVSessionCallback_OnCommand](capi-native-avsession-h.md#oh_avsessioncallback_oncommand) callback |  控制命令的回调。 |
 
@@ -607,7 +607,7 @@ AVSession_ErrCode OH_AVSession_RegisterForwardCallback(OH_AVSession* avsession,O
 
 | 参数项 | 描述 |
 | -- | -- |
-| OH_AVSession* avsession | 媒体会话对象。 |
+| [OH_AVSession](capi-ohavsession-oh-avsession.md)* avsession | 媒体会话对象。 |
 | [OH_AVSessionCallback_OnFastForward](capi-native-avsession-h.md#oh_avsessioncallback_onfastforward) callback | 快进命令的回调。 |
 | void* userData | 指向通过回调函数传递的应用数据指针。 |
 
@@ -634,7 +634,7 @@ AVSession_ErrCode OH_AVSession_UnregisterForwardCallback(OH_AVSession* avsession
 
 | 参数项 | 描述 |
 | -- | -- |
-| OH_AVSession* avsession | 媒体会话对象。 |
+| [OH_AVSession](capi-ohavsession-oh-avsession.md)* avsession | 媒体会话对象。 |
 | [OH_AVSessionCallback_OnFastForward](capi-native-avsession-h.md#oh_avsessioncallback_onfastforward) callback | 快进命令的回调。 |
 
 **返回：**
@@ -660,7 +660,7 @@ AVSession_ErrCode OH_AVSession_RegisterRewindCallback(OH_AVSession* avsession,OH
 
 | 参数项 | 描述 |
 | -- | -- |
-| OH_AVSession* avsession | 媒体会话对象。 |
+| [OH_AVSession](capi-ohavsession-oh-avsession.md)* avsession | 媒体会话对象。 |
 | [OH_AVSessionCallback_OnRewind](capi-native-avsession-h.md#oh_avsessioncallback_onrewind) callback | 快退命令的回调。 |
 | void* userData | 指向通过回调函数传递的应用数据指针。 |
 
@@ -687,7 +687,7 @@ AVSession_ErrCode OH_AVSession_UnregisterRewindCallback(OH_AVSession* avsession,
 
 | 参数项 | 描述 |
 | -- | -- |
-| OH_AVSession* avsession | 媒体会话对象。 |
+| [OH_AVSession](capi-ohavsession-oh-avsession.md)* avsession | 媒体会话对象。 |
 | [OH_AVSessionCallback_OnRewind](capi-native-avsession-h.md#oh_avsessioncallback_onrewind) callback | 快退命令的回调。 |
 
 **返回：**
@@ -713,7 +713,7 @@ AVSession_ErrCode OH_AVSession_RegisterSeekCallback(OH_AVSession* avsession,OH_A
 
 | 参数项 | 描述 |
 | -- | -- |
-| OH_AVSession* avsession | 媒体会话对象。 |
+| [OH_AVSession](capi-ohavsession-oh-avsession.md)* avsession | 媒体会话对象。 |
 | [OH_AVSessionCallback_OnSeek](capi-native-avsession-h.md#oh_avsessioncallback_onseek) callback | 跳转命令的回调。 |
 | void* userData | 指向通过回调函数传递的应用数据指针。 |
 
@@ -740,7 +740,7 @@ AVSession_ErrCode OH_AVSession_UnregisterSeekCallback(OH_AVSession* avsession,OH
 
 | 参数项 | 描述 |
 | -- | -- |
-| OH_AVSession* avsession | 媒体会话对象。 |
+| [OH_AVSession](capi-ohavsession-oh-avsession.md)* avsession | 媒体会话对象。 |
 | [OH_AVSessionCallback_OnSeek](capi-native-avsession-h.md#oh_avsessioncallback_onseek) callback | 跳转命令的回调。 |
 
 **返回：**
@@ -766,7 +766,7 @@ AVSession_ErrCode OH_AVSession_RegisterSetLoopModeCallback(OH_AVSession* avsessi
 
 | 参数项 | 描述 |
 | -- | -- |
-| OH_AVSession* avsession | 媒体会话对象。 |
+| [OH_AVSession](capi-ohavsession-oh-avsession.md)* avsession | 媒体会话对象。 |
 | [OH_AVSessionCallback_OnSetLoopMode](capi-native-avsession-h.md#oh_avsessioncallback_onsetloopmode) callback | 设置循环模式命令的回调。 |
 | void* userData | 指向通过回调函数传递的应用数据指针。 |
 
@@ -793,7 +793,7 @@ AVSession_ErrCode OH_AVSession_UnregisterSetLoopModeCallback(OH_AVSession* avses
 
 | 参数项 | 描述 |
 | -- | -- |
-| OH_AVSession* avsession | 媒体会话对象。 |
+| [OH_AVSession](capi-ohavsession-oh-avsession.md)* avsession | 媒体会话对象。 |
 | [OH_AVSessionCallback_OnSetLoopMode](capi-native-avsession-h.md#oh_avsessioncallback_onsetloopmode) callback | 设置循环模式命令的回调。 |
 
 **返回：**
@@ -819,7 +819,7 @@ AVSession_ErrCode OH_AVSession_RegisterToggleFavoriteCallback(OH_AVSession* avse
 
 | 参数项 | 描述 |
 | -- | -- |
-| OH_AVSession* avsession | 媒体会话对象。 |
+| [OH_AVSession](capi-ohavsession-oh-avsession.md)* avsession | 媒体会话对象。 |
 | [OH_AVSessionCallback_OnToggleFavorite](capi-native-avsession-h.md#oh_avsessioncallback_ontogglefavorite) callback | 设置收藏命令的回调。 |
 | void* userData | 指向通过回调函数传递的应用数据指针。 |
 
@@ -846,7 +846,7 @@ AVSession_ErrCode OH_AVSession_UnregisterToggleFavoriteCallback(OH_AVSession* av
 
 | 参数项 | 描述 |
 | -- | -- |
-| OH_AVSession* avsession | 媒体会话对象。 |
+| [OH_AVSession](capi-ohavsession-oh-avsession.md)* avsession | 媒体会话对象。 |
 | [OH_AVSessionCallback_OnToggleFavorite](capi-native-avsession-h.md#oh_avsessioncallback_ontogglefavorite) callback | 设置收藏命令的回调。 |
 
 **返回：**

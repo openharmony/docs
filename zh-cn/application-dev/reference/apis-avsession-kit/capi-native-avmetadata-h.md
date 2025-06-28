@@ -128,7 +128,7 @@ AVMetadata_Result OH_AVMetadataBuilder_Create(OH_AVMetadataBuilder** builder)
 
 | 参数项 | 描述 |
 | -- | -- |
-| OH_AVMetadataBuilder** builder |  该引用指向创建的构造器的结果。 |
+| [OH_AVMetadataBuilder](capi-ohavsession-oh-avmetadatabuilderstruct.md)** builder |  该引用指向创建的构造器的结果。 |
 
 **返回：**
 
@@ -153,7 +153,7 @@ AVMetadata_Result OH_AVMetadataBuilder_Destroy(OH_AVMetadataBuilder* builder)
 
 | 参数项 | 描述 |
 | -- | -- |
-| OH_AVMetadataBuilder* builder | 指向元数据构造器的实例。 |
+| [OH_AVMetadataBuilder](capi-ohavsession-oh-avmetadatabuilderstruct.md)* builder | 指向元数据构造器的实例。 |
 
 **返回：**
 
@@ -178,7 +178,7 @@ AVMetadata_Result OH_AVMetadataBuilder_SetAssetId(OH_AVMetadataBuilder* builder,
 
 | 参数项 | 描述 |
 | -- | -- |
-| OH_AVMetadataBuilder* builder | 指向元数据构造器的实例。 |
+| [OH_AVMetadataBuilder](capi-ohavsession-oh-avmetadatabuilderstruct.md)* builder | 指向元数据构造器的实例。 |
 | const char* assetId | 资源id。 |
 
 **返回：**
@@ -204,7 +204,7 @@ AVMetadata_Result OH_AVMetadataBuilder_SetTitle(OH_AVMetadataBuilder* builder, c
 
 | 参数项 | 描述 |
 | -- | -- |
-| OH_AVMetadataBuilder* builder | 指向元数据构造器的实例。 |
+| [OH_AVMetadataBuilder](capi-ohavsession-oh-avmetadatabuilderstruct.md)* builder | 指向元数据构造器的实例。 |
 | const char* title | 标题。 |
 
 **返回：**
@@ -230,7 +230,7 @@ AVMetadata_Result OH_AVMetadataBuilder_SetArtist(OH_AVMetadataBuilder* builder, 
 
 | 参数项 | 描述 |
 | -- | -- |
-| OH_AVMetadataBuilder* builder | 指向元数据构造器的实例。 |
+| [OH_AVMetadataBuilder](capi-ohavsession-oh-avmetadatabuilderstruct.md)* builder | 指向元数据构造器的实例。 |
 | const char* artist | 艺术家。 |
 
 **返回：**
@@ -256,7 +256,7 @@ AVMetadata_Result OH_AVMetadataBuilder_SetAuthor(OH_AVMetadataBuilder* builder, 
 
 | 参数项 | 描述 |
 | -- | -- |
-| OH_AVMetadataBuilder* builder | 指向元数据构造器的实例。 |
+| [OH_AVMetadataBuilder](capi-ohavsession-oh-avmetadatabuilderstruct.md)* builder | 指向元数据构造器的实例。 |
 | const char* author | 作者。 |
 
 **返回：**
@@ -282,7 +282,7 @@ AVMetadata_Result OH_AVMetadataBuilder_SetAlbum(OH_AVMetadataBuilder* builder, c
 
 | 参数项 | 描述 |
 | -- | -- |
-| OH_AVMetadataBuilder* builder | 指向元数据构造器的实例。 |
+| [OH_AVMetadataBuilder](capi-ohavsession-oh-avmetadatabuilderstruct.md)* builder | 指向元数据构造器的实例。 |
 | const char* album | 专辑名。 |
 
 **返回：**
@@ -308,7 +308,7 @@ AVMetadata_Result OH_AVMetadataBuilder_SetWriter(OH_AVMetadataBuilder* builder, 
 
 | 参数项 | 描述 |
 | -- | -- |
-| OH_AVMetadataBuilder* builder | 指向元数据构造器的实例。 |
+| [OH_AVMetadataBuilder](capi-ohavsession-oh-avmetadatabuilderstruct.md)* builder | 指向元数据构造器的实例。 |
 | const char* writer | 词作者。 |
 
 **返回：**
@@ -334,7 +334,7 @@ AVMetadata_Result OH_AVMetadataBuilder_SetComposer(OH_AVMetadataBuilder* builder
 
 | 参数项 | 描述 |
 | -- | -- |
-| OH_AVMetadataBuilder* builder | 指向元数据构造器的实例。 |
+| [OH_AVMetadataBuilder](capi-ohavsession-oh-avmetadatabuilderstruct.md)* builder | 指向元数据构造器的实例。 |
 | const char* composer | 作曲者。 |
 
 **返回：**
@@ -360,7 +360,7 @@ AVMetadata_Result OH_AVMetadataBuilder_SetDuration(OH_AVMetadataBuilder* builder
 
 | 参数项 | 描述 |
 | -- | -- |
-| OH_AVMetadataBuilder* builder | 指向元数据构造器的实例。 |
+| [OH_AVMetadataBuilder](capi-ohavsession-oh-avmetadatabuilderstruct.md)* builder | 指向元数据构造器的实例。 |
 | int64_t duration | 资源播放时长，以ms为单位。 |
 
 **返回：**
@@ -386,7 +386,7 @@ AVMetadata_Result OH_AVMetadataBuilder_SetMediaImageUri(OH_AVMetadataBuilder* bu
 
 | 参数项 | 描述 |
 | -- | -- |
-| OH_AVMetadataBuilder* builder | 指向元数据构造器的实例。 |
+| [OH_AVMetadataBuilder](capi-ohavsession-oh-avmetadatabuilderstruct.md)* builder | 指向元数据构造器的实例。 |
 | const char* mediaImageUri | 网络资源图片数据地址。 |
 
 **返回：**
@@ -412,8 +412,8 @@ AVMetadata_Result OH_AVMetadataBuilder_SetSubtitle(OH_AVMetadataBuilder* builder
 
 | 参数项 | 描述 |
 | -- | -- |
-| OH_AVMetadataBuilder* builder | 指向元数据构造器的实例。 |
-| const char* subtitle | The subtitle of resource. |
+| [OH_AVMetadataBuilder](capi-ohavsession-oh-avmetadatabuilderstruct.md)* builder | 指向元数据构造器的实例。 |
+| const char* subtitle | 副标题名称。 |
 
 **返回：**
 
@@ -438,7 +438,7 @@ AVMetadata_Result OH_AVMetadataBuilder_SetDescription(OH_AVMetadataBuilder* buil
 
 | 参数项 | 描述 |
 | -- | -- |
-| OH_AVMetadataBuilder* builder | 指向元数据构造器的实例。 |
+| [OH_AVMetadataBuilder](capi-ohavsession-oh-avmetadatabuilderstruct.md)* builder | 指向元数据构造器的实例。 |
 | const char* description | 媒体描述信息。 |
 
 **返回：**
@@ -464,7 +464,7 @@ AVMetadata_Result OH_AVMetadataBuilder_SetLyric(OH_AVMetadataBuilder* builder, c
 
 | 参数项 | 描述 |
 | -- | -- |
-| OH_AVMetadataBuilder* builder | 指向元数据构造器的实例。 |
+| [OH_AVMetadataBuilder](capi-ohavsession-oh-avmetadatabuilderstruct.md)* builder | 指向元数据构造器的实例。 |
 | const char* lyric | lrc格式的歌词内容。 |
 
 **返回：**
@@ -490,7 +490,7 @@ AVMetadata_Result OH_AVMetadataBuilder_SetSkipIntervals(OH_AVMetadataBuilder* bu
 
 | 参数项 | 描述 |
 | -- | -- |
-| OH_AVMetadataBuilder* builder | 指向元数据构造器的实例。 |
+| [OH_AVMetadataBuilder](capi-ohavsession-oh-avmetadatabuilderstruct.md)* builder | 指向元数据构造器的实例。 |
 | [AVMetadata_SkipIntervals](capi-native-avmetadata-h.md#avmetadata_skipintervals) intervals | 跳转的时间间隔。 |
 
 **返回：**
@@ -516,7 +516,7 @@ AVMetadata_Result OH_AVMetadataBuilder_SetDisplayTags(OH_AVMetadataBuilder* buil
 
 | 参数项 | 描述 |
 | -- | -- |
-| OH_AVMetadataBuilder* builder | 指向元数据构造器的实例。 |
+| [OH_AVMetadataBuilder](capi-ohavsession-oh-avmetadatabuilderstruct.md)* builder | 指向元数据构造器的实例。 |
 | int32_t tags | 用于显示在播控的媒体资源的金标类型。 |
 
 **返回：**
@@ -542,8 +542,8 @@ AVMetadata_Result OH_AVMetadataBuilder_GenerateAVMetadata(OH_AVMetadataBuilder* 
 
 | 参数项 | 描述 |
 | -- | -- |
-| OH_AVMetadataBuilder* builder | 指向元数据构造器的实例。 |
-| OH_AVMetadata** avMetadata | 指向元数据的指针对象。 |
+| [OH_AVMetadataBuilder](capi-ohavsession-oh-avmetadatabuilderstruct.md)* builder | 指向元数据构造器的实例。 |
+| [OH_AVMetadata](capi-ohavsession-oh-avmetadatastruct.md)** avMetadata | 指向元数据的指针对象。 |
 
 **返回：**
 
@@ -568,7 +568,7 @@ AVMetadata_Result OH_AVMetadata_Destroy(OH_AVMetadata* avMetadata)
 
 | 参数项 | 描述 |
 | -- | -- |
-| OH_AVMetadata* avMetadata | 指向元数据的指针对象。 |
+| [OH_AVMetadata](capi-ohavsession-oh-avmetadatastruct.md)* avMetadata | 指向元数据的指针对象。 |
 
 **返回：**
 
