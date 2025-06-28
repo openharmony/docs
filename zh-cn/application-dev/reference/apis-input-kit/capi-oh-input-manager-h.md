@@ -518,6 +518,25 @@ typedef void (*Input_DeviceRemovedCallback)(int32_t deviceId)
 | -- | -- |
 | int32_t deviceId | 设备的ID。 |
 
+### Input_InjectAuthorizeCallback()
+
+```
+typedef void (*Input_InjectAuthorizeCallback)(Input_InjectionStatus authorizedStatus)
+```
+
+**描述**
+
+回调函数，用于获取注入权限状态。
+
+**起始版本：** 20
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [Input_InjectionStatus](capi-oh-input-manager-h.md#input_injectionstatus) authorizedStatus | 注入权限状态。 |
+
 ### OH_Input_GetKeyState()
 
 ```
