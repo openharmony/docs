@@ -70,7 +70,7 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
 | -e | --regex | &lt;expr&gt; | 只打印日志消息与&lt;expr&gt;匹配的行，其中&lt;expr&gt;是一个正则表达式。 |
 | -v | --format | &lt;format&gt; | 显示格式控制。 | 
 |  |  | time | 显示本地时间。 | 
-|  |  | color/colour | 不同级别显示不同颜色，缺省是按照黑白颜色模式处理。 | 
+|  |  | color/colour | 不同级别显示不同颜色，缺省时按照黑白颜色模式处理。 | 
 |  |  | epoch | 显示相对1970时间。 | 
 |  |  | monotonic | 显示相对启动时间。 | 
 |  |  | usec | 显示微秒精度时间。 | 
