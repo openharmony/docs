@@ -132,6 +132,9 @@ BadgeParamWithString继承自[BadgeParam](#badgeparam对象说明)，具有Badge
 | borderColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | 底板描边颜色。<br/>默认值：Color.Red                         |
 | borderWidth<sup>10+</sup> | [Length](ts-types.md#length)                                 | 否   | 底板描边粗细。<br/>默认值：1<br/>单位：vp<br/>**说明：** <br/>不支持设置百分比，当设置为百分比时，按照默认值处理。 |
 
+> **说明：**
+> 当`borderWidth`大于0且`borderColor`与`badgeColor`颜色不一致时，先绘制角标，再绘制描边。由于边缘像素经过抗锯齿处理，抗锯齿产生半透明像素，四角会出现 `badgeColor` 颜色的描边线。如需实现相关场景，建议使用[Text](ts-basic-components-text.md)组件设置[outline](ts-universal-attributes-outline.md)代替Badge组件。
+
 ## 属性
 
 支持[通用属性](ts-component-general-attributes.md)。
