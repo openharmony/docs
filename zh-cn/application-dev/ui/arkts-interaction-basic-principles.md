@@ -87,61 +87,60 @@ node.collectEvent()
 | 触摸测试控制   | 干预自身及其他组件收集结果。         | [hitTestBehavior](../reference/apis-arkui/arkui-ts/ts-universal-attributes-hit-test-behavior.md#hittestbehavior)  | 与onTouchIntercept效果相同，但是hitTestBehavior是静态配置。                                                                                                                                                                                                                                                                               |
 | 自定义事件拦截 | 干预自身及其他组件收集结果。         | [onTouchIntercept](../reference/apis-arkui/arkui-ts/ts-universal-attributes-on-touch-intercept.md#ontouchintercept) | 当用户按下，系统开始收集当前位置下所有需要参与事件处理的组件时触发，应用可通过该回调返回一个HitTestMode值，进而影响系统收集子节点或兄弟节点的行为。可以通过该回调达到动态控制交互响应的效果，如某些组件，根据业务状态的变化，可能有时候需要参与交互，有时候不需要参与交互。<br/>与hitTestBehavior效果相同，但是onTouchIntercept是动态回调 |
 
-以下分别进行详细说明：
 
-**1.触摸热区设置**
+1. 触摸热区设置
 
-默认情况下，组件的响应热区即为组件自身的位置和大小，这与用户看到的范围相一致，从而最大程度地保证用户操作的手眼一致性。在极少数情况下，应用需调整热区大小以限制或扩大组件响应的操作范围，这一功能通过组件的responseRegion接口实现。
+   默认情况下，组件的响应热区即为组件自身的位置和大小，这与用户看到的范围相一致，从而最大程度地保证用户操作的手眼一致性。在极少数情况下，应用需调整热区大小以限制或扩大组件响应的操作范围，这一功能通过组件的responseRegion接口实现。
 
-响应热区影响指向性事件的派发，通过与组件自身区域的相对关系进行指定，可以指定一个或多个区域，将组件的响应热区分割为多个部分。
+   响应热区影响指向性事件的派发，通过与组件自身区域的相对关系进行指定，可以指定一个或多个区域，将组件的响应热区分割为多个部分。
 
->**说明：**
->
-> x和y可以设置正负值百分比。当x设置为'100%'时表示热区往右偏移组件本身宽度大小，当x设置为'-100%'时表示热区往左偏移组件本身宽度大小。当y设置为'100%'时表示热区往下偏移组件本身高度大小，当y设置为'-100%'时表示热区往上偏移组件本身高度大小。
->
-> width和height只能设置正值百分比。width：'100%'表示热区宽度设置为该组件本身的宽度。比如组件本身宽度是100vp，那么'100%'表示热区宽度也为100vp。height：'100%'表示热区高度设置为该组件本身的高度。
->
-> 百分比相对于组件自身宽高进行计算。
+   >**说明：**
+   >
+   > x和y可以设置正负值百分比。当x设置为'100%'时表示热区往右偏移组件本身宽度大小，当x设置为'-100%'时表示热区往左偏移组件本身宽度大小。当y设置为'100%'时表示热区往下偏移组件本身高度大小，当y设置为'-100%'时表示热区往上偏移组件本身高度大小。
+   >
+   > width和height只能设置正值百分比。width：'100%'表示热区宽度设置为该组件本身的宽度。比如组件本身宽度是100vp，那么'100%'表示热区宽度也为100vp。height：'100%'表示热区高度设置为该组件本身的高度。
+   >
+   > 百分比相对于组件自身宽高进行计算。
 
-以下是一个绑定多个热区范围的示例：
+   以下是一个绑定多个热区范围的示例：
 
-```typescript
-Button("按钮")
-  .responseRegion([
-      { x: 0, y: 0, width: '30%', height: '100%' },      // 第一个热区为按钮的左侧1/3区域
-      { x: '70%', y: 0, width: '30%', height: '100%' },  // 第二个热区为按钮的左侧1/3区域
-    ])
-```
+   ```ts
+   Button("按钮")
+     .responseRegion([
+        { x: 0, y: 0, width: '30%', height: '100%' },      // 第一个热区为按钮的左侧1/3区域
+        { x: '70%', y: 0, width: '30%', height: '100%' },  // 第二个热区为按钮的左侧1/3区域
+      ])
+   ```
 
-上面的代码可以将按钮切分成了3部分，中间40%的区域不响应点击，而两侧的剩下部分可响应。
+   上面的代码可以将按钮切分成了3部分，中间40%的区域不响应点击，而两侧的剩下部分可响应。
 
-![response region](figures/interaction-basic-respose-region-01.png)
+   ![response region](figures/interaction-basic-respose-region-01.png)
 
-**2.触摸测试控制**
+2. 触摸测试控制
 
-在组件上绑定[触摸测试控制](../reference/apis-arkui/arkui-ts/ts-universal-attributes-hit-test-behavior.md)时，可能影响兄弟节点和父子节点的触摸测试。子组件对父组件的触摸测试影响程度取决于最后一个未被阻塞触摸测试的子组件状态。
+   在组件上绑定[触摸测试控制](../reference/apis-arkui/arkui-ts/ts-universal-attributes-hit-test-behavior.md)时，可能影响兄弟节点和父子节点的触摸测试。子组件对父组件的触摸测试影响程度取决于最后一个未被阻塞触摸测试的子组件状态。
 
-开发者可以通过配置触摸测试控制，来实现阻塞组件自身或其他组件的触摸测试。
+   开发者可以通过配置触摸测试控制，来实现阻塞组件自身或其他组件的触摸测试。
 
-- HitTestMode.Default：默认不配hitTestBehavior属性，自身如果命中会阻塞兄弟组件，但是不阻塞子组件。
+   - HitTestMode.Default：默认不配hitTestBehavior属性，自身如果命中会阻塞兄弟组件，但是不阻塞子组件。
 
-  ![hitTestModeDefault](figures/hitTestModeDefault.png)
+     ![hitTestModeDefault](figures/hitTestModeDefault.png)
 
-- HitTestMode.None：自身不接收事件，但不会阻塞兄弟组件或子组件继续做触摸测试。
+   - HitTestMode.None：自身不接收事件，但不会阻塞兄弟组件或子组件继续做触摸测试。
 
-  ![hitTestModeNone](figures/hitTestModeNone.png)
+     ![hitTestModeNone](figures/hitTestModeNone.png)
 
-- HitTestMode.Block：阻塞子组件的触摸测试，如果自身触摸测试命中，会阻塞兄弟组件及父组件的触摸测试。
+   - HitTestMode.Block：阻塞子组件的触摸测试，如果自身触摸测试命中，会阻塞兄弟组件及父组件的触摸测试。
 
-  ![hitTestModeBlock](figures/hitTestModeBlock.png)
+     ![hitTestModeBlock](figures/hitTestModeBlock.png)
 
-- HitTestMode.Transparent：自身进行触摸测试，同时不阻塞兄弟组件及父组件。
+   - HitTestMode.Transparent：自身进行触摸测试，同时不阻塞兄弟组件及父组件。
 
-  ![hitTestModeTransparent](figures/hitTestModeTransparent.png)
+     ![hitTestModeTransparent](figures/hitTestModeTransparent.png)
 
-**3.自定义事件拦截**
+3. 自定义事件拦截
 
-当用户执行按下操作时，将触发组件上绑定的[自定义事件拦截](../reference/apis-arkui/arkui-ts/ts-universal-attributes-on-touch-intercept.md)的回调。开发者可根据应用状态，动态调整组件的hitTestBehavior属性，进而影响触控测试的流程。
+   当用户执行按下操作时，将触发组件上绑定的[自定义事件拦截](../reference/apis-arkui/arkui-ts/ts-universal-attributes-on-touch-intercept.md)的回调。开发者可根据应用状态，动态调整组件的hitTestBehavior属性，进而影响触控测试的流程。
 
 ## 禁用控制
 
