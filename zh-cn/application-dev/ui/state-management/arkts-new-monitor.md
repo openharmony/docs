@@ -757,7 +757,7 @@ struct Index {
 
 ### 类中\@Monitor对变量监听的生效及失效时间
 
-当\@Monitor定义在\@ObservedV2装饰的类中时，\@Monitor会在类创建完成后生效，在类销毁时失效。
+当\@Monitor定义在\@ObservedV2装饰的类中时，\@Monitor会在类的实例创建完成后生效，在类的实例销毁时失效。
 
 ```ts
 @ObservedV2
