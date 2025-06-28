@@ -49,7 +49,7 @@ AVCastPicker({
 | activeColor<sup>11+</sup> | Color &#124; number &#124; string | 否 | @Prop | 指设备切换成功状态下投播组件的颜色。未设置系统将优先根据normalColor的颜色匹配；如果normalColor也未设置，将采用colorMode下的颜色设置。 |
 | pickerStyle<sup>12+</sup> | [AVCastPickerStyle](js-apis-avCastPickerParam.md#avcastpickerstyle12) | 否 | @Prop | 投播样式。<br>- 当sessionType是audio或者video时，默认值为STYLE_PANEL；<br>- 当sessionType是voice_call或者video_call时，默认值为STYLE_MENU，且不可修改为STYLE_PANEL。|
 | colorMode<sup>12+</sup> | [AVCastPickerColorMode](js-apis-avCastPickerParam.md#avcastpickercolormode12) | 否 |  @Prop | 显示模式。默认值为AUTO。<br>- 当colorMode设置为AUTO时，跟随系统的深浅色模式的默认色值；<br>- 当colorMode设置为DARK、LIGHT时，使用对应模式的系统预定色值。 |
-| sessionType<sup>12+</sup> | string | 否| @Prop | 会话类型，可参考[AVSessionType](js-apis-avsession.md#avsessiontype10)。默认值为当前应用创建的AVSessionType。 |
+| sessionType<sup>12+</sup> | string | 否| @Prop | 会话类型，可参考[AVSessionType](arkts-apis-avsession-t.md#avsessiontype10)。默认值为当前应用创建的AVSessionType。 |
 | customPicker<sup>12+</sup> | [CustomBuilder](../apis-arkui/arkui-ts/ts-types.md#custombuilder8) | 否 | @Prop | 自定义样式。建议应用自定义组件样式，可有效提升组件显示速度。 |
 | onStateChange<sup>11+</sup> | (state: [AVCastPickerState](js-apis-avCastPickerParam.md)) => void | 否 | - | 投播状态更改回调。 |
 

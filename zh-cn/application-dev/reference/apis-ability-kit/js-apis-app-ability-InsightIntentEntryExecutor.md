@@ -73,25 +73,24 @@ const LOG_TAG: string = 'testTag-EntryIntent';
   intentVersion: '1.0.1',
   displayName: '播放歌曲',
   displayDescription: '播放音乐意图',
-  icon: $r("app.media.app_icon"),
+  icon: $r('app.media.app_icon'),
   llmDescription: '支持传递歌曲名称，播放音乐',
   keywords: ['音乐播放', '播放歌曲', 'PlayMusic'],
-  abilityName: "EntryAbility",
+  abilityName: 'EntryAbility',
   executeMode: [insightIntent.ExecuteMode.UI_ABILITY_FOREGROUND],
   parameters: {
-    "schema": "http://json-schema.org/draft-07/schema#",
-    "type": "object",
-    "title": "Song Schema",
-    "description": "A schema for describing songs and their artists",
-    "properties": {
-      "songName": {
-        "type": "string",
-        "description": "The name of the song",
-        "minLength": 1
+    'schema': 'http://json-schema.org/draft-07/schema#',
+    'type': 'object',
+    'title': 'Song Schema',
+    'description': 'A schema for describing songs and their artists',
+    'properties': {
+      'songName': {
+        'type': 'string',
+        'description': 'The name of the song',
+        'minLength': 1
       }
     },
-    "required": ["songName"],
-    "additionalProperties": false
+    'required': ['songName']
   }
 })
 export default class PlayMusicDemo extends InsightIntentEntryExecutor<string> {
@@ -104,14 +103,14 @@ export default class PlayMusicDemo extends InsightIntentEntryExecutor<string> {
     storage.setOrCreate('songName', this.songName);
     // 根据executeMode参数的不同情况，提供不同拉起PlayMusicPage页面的方式。
     if (this.executeMode == insightIntent.ExecuteMode.UI_ABILITY_FOREGROUND) {
-      this.windowStage?.loadContent("pages/PlayMusicPage", storage);       
+      this.windowStage?.loadContent('pages/PlayMusicPage', storage);       
     } else if (this.executeMode == insightIntent.ExecuteMode.UI_EXTENSION_ABILITY) {
-      this.uiExtensionSession?.loadContent("pages/PlayMusicPage", storage);
+      this.uiExtensionSession?.loadContent('pages/PlayMusicPage', storage);
     }
     // 定义意图的执行结果
     let result: insightIntent.IntentResult<string> = {
       code: 123,
-      result: "result"
+      result: 'result'
     }
     hilog.info(0x0000, LOG_TAG, 'PlayMusicDemo return %{public}s', JSON.stringify(result));
     // 以Promise的方式返回意图执行结果

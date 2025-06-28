@@ -130,7 +130,7 @@ struct ParentComponent {
 
 ## 限制条件
 
-1. \@Link装饰器不能在[\@Entry](./arkts-create-custom-components.md#自定义组件的基本结构)装饰的自定义组件中使用。
+1. \@Link装饰器不能在[\@Entry](./arkts-create-custom-components.md#entry)装饰的自定义组件中使用。
 
 2. \@Link装饰的变量禁止本地初始化，否则编译期会报错。
 

@@ -1918,11 +1918,11 @@ async function example(mgr: userFileManager.UserFileManager) {
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
-| 名称                      | 类型                     | 只读 | 可写 | 说明                                                   |
+| 名称                      | 类型                     | 只读 | 可选 | 说明                                                   |
 | ------------------------- | ------------------------ | ---- | ---- | ------------------------------------------------------ |
 | uri                       | string                   | 是   | 否   | 媒体文件资源uri（如：file://media/Photo/1/IMG_datetime_0001/displayName.jpg），详情参见用户文件uri介绍中的[媒体文件uri](../../file-management/user-file-uri-intro.md#媒体文件uri)。         |
 | fileType   | [FileType](#filetype) | 是   | 否   | 媒体文件类型。                                               |
-| displayName               | string                   | 是   | 是   | 显示文件名，包含后缀名。                                 |
+| displayName               | string                   | 否   | 否   | 显示文件名，包含后缀名。                                 |
 
 ### get
 
@@ -3454,14 +3454,15 @@ async function example(mgr: userFileManager.UserFileManager) {
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
-| 名称           | 类型    | 只读   | 可写  | 说明   |
+| 名称           | 类型    | 只读   | 可选  | 说明   |
 | ------------ | ------ | ---- | ---- | ------- |
 | albumType<sup>10+</sup> | [AlbumType]( #albumtype10) | 是    | 否    | 相册类型。    |
 | albumSubType<sup>10+</sup> | [AlbumSubType]( #albumsubtype10) | 是    | 否   | 相册子类型。    |
-| albumName | string | 是    | 用户相册可写，预置相册不可写   | 相册名称。    |
+| albumName | string | 否    | 否   | 相册名称。<br>**说明：** 用户相册可写，预置相册不可写。    |
 | albumUri | string | 是    | 否    | 相册Uri。   |
+| dateModified  | number | 是    | 否    |  相册的修改时间。 |
 | count | number | 是    | 否    |  相册中文件数量。 |
-| coverUri | string | 是    | 用户相册可写，预置相册不可写	    | 封面文件Uri。 |
+| coverUri | string | 否    | 否	    | 封面文件Uri。<br>**说明：** 用户相册可写，预置相册不可写。 |
 
 ### getPhotoAssets
 
@@ -4150,13 +4151,13 @@ async function example(mgr: userFileManager.UserFileManager) {
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
-| 名称           | 类型    | 只读   | 可写   | 说明      |
+| 名称           | 类型    | 只读   | 可选   | 说明      |
 | ------------ | ------ | ---- | ---- | ------- |
-| albumName | string | 是    | 是    | 相册名称。    |
+| albumName | string | 否    | 否    | 相册名称。    |
 | albumUri | string | 是    | 否    | 相册Uri。   |
 | dateModified | number | 是    | 否    | 修改日期。    |
 | count | number | 是    | 否    | 相册中文件数量。 |
-| coverUri | string | 是    | 否    | 封面文件Uri。 |
+| coverUri | string | 否    | 否    | 封面文件Uri。 |
 
 ### getPhotoAssets
 
@@ -4473,7 +4474,7 @@ async function example(mgr: userFileManager.UserFileManager) {
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
-| 名称  |  类型 |  只读  |  可写  |  说明  |
+| 名称  |  类型 |  只读  |  可选  |  说明  |
 | ----- |  ---- |  ---- |  ---- |  ---- |
 | number |  number | 是 | 是 | number类型。 |
 | string |  string | 是 | 是 | string类型。|
@@ -4485,14 +4486,14 @@ async function example(mgr: userFileManager.UserFileManager) {
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
-| 名称  |  类型 |  只读  |  可写  |  说明 |
-| ----- |  ---- |  ---- |  ---- |  ---- |
-| deviceChange |  string | 是 | 是 |  设备。 |
-| albumChange |  string | 是 | 是 |  相册。 |
-| imageChange |  string | 是 | 是 |  图片。 |
-| audioChange |  string | 是 | 是 |  音频。 |
-| videoChange |  string | 是 | 是 |  视频。 |
-| remoteFileChange |  string | 是 | 是 |  远程文件。 |
+| 名称   | 类型                     | 必填 | 说明                      |
+| -------- | ------------------------- | ---- | ----- |
+| deviceChange | string | 是    | 设备。 |
+| albumChange | string | 是    | 相册。 |
+| imageChange | string | 是    | 图片。 |
+| audioChange | string | 是    | 音频。 |
+| videoChange | string | 是    | 视频。 |
+| remoteFileChange | string | 是    | 远程文件。 |
 
 ## PeerInfo
 
@@ -4500,7 +4501,7 @@ async function example(mgr: userFileManager.UserFileManager) {
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.DistributedCore
 
-| 名称       | 类型                       | 只读 | 可写 | 说明             |
+| 名称       | 类型                       | 只读 | 可选 | 说明             |
 | ---------- | -------------------------- | ---- | ---- | ---------------- |
 | deviceName | string                     | 是   | 否   | 注册设备的名称。   |
 | networkId  | string                     | 是   | 否   | 注册设备的网络ID。 |
@@ -4658,10 +4659,10 @@ async function example(mgr: userFileManager.UserFileManager) {
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
-| 名称                   | 类型                | 只读 | 可写 | 说明                                              |
+| 名称                   | 类型                | 只读 | 可选 | 说明                                              |
 | ---------------------- | ------------------- | ---- |---- | ------------------------------------------------ |
-| fetchColumns           | Array&lt;string&gt; | 是   | 是   | 检索条件，指定列名查询，如果该参数为空时默认查询uri、name、fileType（具体字段名称以检索对象定义为准）且使用[get](#get)接口去获取当前对象的其他属性时将会报错。示例：<br />fetchColumns: ['uri', 'title']。 |
-| predicates           | [dataSharePredicates.DataSharePredicates](../apis-arkdata/js-apis-data-dataSharePredicates-sys.md) | 是   | 是   | 谓词查询，显示过滤条件。 |
+| fetchColumns           | Array&lt;string&gt; | 否   | 否   | 检索条件，指定列名查询，如果该参数为空时默认查询uri、name、fileType（具体字段名称以检索对象定义为准）且使用[get](#get)接口去获取当前对象的其他属性时将会报错。示例：<br />fetchColumns: ['uri', 'title']。 |
+| predicates           | [dataSharePredicates.DataSharePredicates](../apis-arkdata/js-apis-data-dataSharePredicates-sys.md) | 否   | 否   | 谓词查询，显示过滤条件。 |
 
 ## AlbumFetchOptions
 
@@ -4669,9 +4670,9 @@ async function example(mgr: userFileManager.UserFileManager) {
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
-| 名称                   | 类型                | 只读 | 可写 | 说明                                              |
+| 名称                   | 类型                | 只读 | 可选 | 说明                                              |
 | ---------------------- | ------------------- | ---- |---- | ------------------------------------------------ |
-| predicates           | [dataSharePredicates.DataSharePredicates](../apis-arkdata/js-apis-data-dataSharePredicates-sys.md) | 是   | 是   | 谓词查询，显示过滤条件。 |
+| predicates           | [dataSharePredicates.DataSharePredicates](../apis-arkdata/js-apis-data-dataSharePredicates-sys.md) | 否   | 否   | 谓词查询，显示过滤条件。 |
 
 ## ChangeData<sup>10+</sup>
 
@@ -4679,11 +4680,11 @@ async function example(mgr: userFileManager.UserFileManager) {
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
-| 名称    | 类型                        | 只读 | 可写 | 说明                                                         |
+| 名称    | 类型                        | 只读 | 可选 | 说明                                                         |
 | ------- | --------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| type    | [NotifyType](#notifytype10) | 是   | 否   | ChangeData的通知类型。                                       |
-| uris    | Array&lt;string&gt;         | 是   | 否   | 相同[NotifyType](#notifytype10)的所有uri，可以是FileAsset或Album。 |
-| subUris | Array&lt;string&gt;         | 是   | 否   | 相册中变动文件的uri数组。可能为undefined，使用前需要检查是否为undefined。|
+| type    | [NotifyType](#notifytype10) | 否   | 否   | ChangeData的通知类型。                                       |
+| uris    | Array&lt;string&gt;         | 否   | 否   | 相同[NotifyType](#notifytype10)的所有uri，可以是FileAsset或Album。 |
+| subUris | Array&lt;string&gt;         | 否   | 否   | 相册中变动文件的uri数组。可能为undefined，使用前需要检查是否为undefined。|
 
 ## NotifyType<sup>10+</sup>
 

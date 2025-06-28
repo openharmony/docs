@@ -20,8 +20,8 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [OH_CryptoKdf](capi-oh-cryptokdf.md) | OH_CryptoKdf | 定义密钥派生函数（KDF）结构。 |
-| [OH_CryptoKdfParams](capi-oh-cryptokdfparams.md) | OH_CryptoKdfParams | 定义密钥派生函数（KDF）参数结构。 |
+| [OH_CryptoKdf](capi-cryptokdfapi-oh-cryptokdf.md) | OH_CryptoKdf | 定义密钥派生函数（KDF）结构。 |
+| [OH_CryptoKdfParams](capi-cryptokdfapi-oh-cryptokdfparams.md) | OH_CryptoKdfParams | 定义密钥派生函数（KDF）参数结构。 |
 
 ### 枚举
 
@@ -86,7 +86,7 @@ OH_Crypto_ErrCode OH_CryptoKdfParams_Create(const char *algoName, OH_CryptoKdfPa
 | 参数项 | 描述 |
 | -- | -- |
 | const char *algoName | KDF算法名称。<br>例如"HKDF\|SHA384\|EXTRACT_AND_EXPAND"、"PBKDF2\|SHA384"。 |
-| [OH_CryptoKdfParams](capi-oh-cryptokdfparams.md) **params | KDF参数。 |
+| [OH_CryptoKdfParams](capi-cryptokdfapi-oh-cryptokdfparams.md) **params | KDF参数。 |
 
 **返回：**
 
@@ -111,9 +111,9 @@ OH_Crypto_ErrCode OH_CryptoKdfParams_SetParam(OH_CryptoKdfParams *params, Crypto
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoKdfParams](capi-oh-cryptokdfparams.md) *params | KDF参数。 |
+| [OH_CryptoKdfParams](capi-cryptokdfapi-oh-cryptokdfparams.md) *params | KDF参数。 |
 | [CryptoKdf_ParamType](#cryptokdf_paramtype) type | KDF参数类型。 |
-| [Crypto_DataBlob](capi-crypto-datablob.md) *value | KDF参数值。 |
+| [Crypto_DataBlob](capi-cryptocommonapi-crypto-datablob.md) *value | KDF参数值。 |
 
 **返回：**
 
@@ -138,7 +138,7 @@ void OH_CryptoKdfParams_Destroy(OH_CryptoKdfParams *params)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoKdfParams](capi-oh-cryptokdfparams.md) *params | KDF参数。 |
+| [OH_CryptoKdfParams](capi-cryptokdfapi-oh-cryptokdfparams.md) *params | KDF参数。 |
 
 ### OH_CryptoKdf_Create()
 
@@ -158,7 +158,7 @@ OH_Crypto_ErrCode OH_CryptoKdf_Create(const char *algoName, OH_CryptoKdf **ctx)
 | 参数项 | 描述 |
 | -- | -- |
 | const char *algoName | KDF算法名称。 |
-| [OH_CryptoKdf](capi-oh-cryptokdf.md) **ctx | KDF实例。 |
+| [OH_CryptoKdf](capi-cryptokdfapi-oh-cryptokdf.md) **ctx | KDF实例。 |
 
 **返回：**
 
@@ -183,10 +183,10 @@ OH_Crypto_ErrCode OH_CryptoKdf_Derive(OH_CryptoKdf *ctx, const OH_CryptoKdfParam
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoKdf](capi-oh-cryptokdf.md) *ctx |KDF实例。 |
-| const [OH_CryptoKdfParams](capi-oh-cryptokdfparams.md) *params | KDF参数。 |
+| [OH_CryptoKdf](capi-cryptokdfapi-oh-cryptokdf.md) *ctx |KDF实例。 |
+| const [OH_CryptoKdfParams](capi-cryptokdfapi-oh-cryptokdfparams.md) *params | KDF参数。 |
 | int keyLen | 密钥派生长度。 |
-| [Crypto_DataBlob](capi-crypto-datablob.md) key | 派生出的密钥。 |
+| [Crypto_DataBlob](capi-cryptocommonapi-crypto-datablob.md) key | 派生出的密钥。 |
 
 **返回：**
 
@@ -211,6 +211,6 @@ void OH_CryptoKdf_Destroy(OH_CryptoKdf *ctx)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_CryptoKdf](capi-oh-cryptokdf.md) *ctx |KDF实例。 |
+| [OH_CryptoKdf](capi-cryptokdfapi-oh-cryptokdf.md) *ctx |KDF实例。 |
 
 

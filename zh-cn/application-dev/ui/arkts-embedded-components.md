@@ -205,23 +205,23 @@ struct Extension {
 
 1. 会话管理
 
-  正确获取并使用UIExtensionContentSession会话对象，确保与宿主应用的通信正常。
+   正确获取并使用UIExtensionContentSession会话对象，确保与宿主应用的通信正常。
 
 2. 结果返回
 
-  通过terminateSelfWithResult方法向宿主应用返回结果时，需要指定：
+   通过terminateSelfWithResult方法向宿主应用返回结果时，需要指定：
 
-  - resultCode：结果代码；
+   - resultCode：结果代码；
 
-  - want：目标意图，指定结果的接收方。
+   - want：目标意图，指定结果的接收方。
 
 3. 页面生命周期
 
-  了解并管理好入口页面的生命周期，确保资源的正确释放和回收。
+   了解并管理好入口页面的生命周期，确保资源的正确释放和回收。
 
 4. 样式配置
 
-  合理配置页面元素的样式，确保界面显示效果符合预期。
+   合理配置页面元素的样式，确保界面显示效果符合预期。
 
 **添加配置项**
 
@@ -241,16 +241,16 @@ struct Extension {
 
 1. 启动应用，由于设备默认未开启多进程，会出现报错信息；
 
-![zh-cn_image_0000001502261185](figures/zh-cn_image_0000001502261185.jpg)
+   ![zh-cn_image_0000001502261185](figures/zh-cn_image_0000001502261185.jpg)
 
 2. 设备测试开启多进程后重启设备，开启多进程的hdc命令如下：
 
-```bash
-hdc shell param set persist.sys.abilityms.multi_process_model true
-```
+   ```bash
+   hdc shell param set persist.sys.abilityms.multi_process_model true
+   ```
 
 3. 启动应用，界面显示正常；
 
-![zh-cn_image_0000001502261065](figures/zh-cn_image_0000001502261065.jpg)
+   ![zh-cn_image_0000001502261065](figures/zh-cn_image_0000001502261065.jpg)
 
 4. 点击terminateSelfWithResult按钮，提供方内容消失，页面显示onTerminated信息。

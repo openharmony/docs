@@ -2,7 +2,7 @@
 
 ## 简介
 
-使用JSVM-API接口对JSON数据操作时，相关接口可以在JSVM模块中直接操作和处理JSON格式的数据。
+使用JSVM-API接口操作JSON数据时，JSVM模块中相关接口可以直接操作和处理JSON格式的数据。
 
 ## 基本概念
 
@@ -17,13 +17,13 @@
 
 ## 使用示例
 
-JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅对接口对应C++相关代码进行展示。
+JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅展示接口对应的C++相关代码。
 
 ### OH_JSVM_JsonParse && OH_JSVM_JsonStringify
 
-对JSON对象进行解析操作，并输出解析结果的有效值。
+解析JSON对象，并输出有效的解析结果。
 
-cpp部分代码
+cpp部分代码：
 
 ```cpp
 // hello.cpp
@@ -42,7 +42,7 @@ static JSVM_Value JsonParseNumber(JSVM_Env env, JSVM_CallbackInfo info)
     JSVM_Value jsonObject;
     // 调用OH_JSVM_JsonParse函数解析JSON数字，并将结果存储在JSON对象中
     JSVM_CALL(OH_JSVM_JsonParse(env, jsonString, &jsonObject));
-    double number;
+    double number = 0.0f;
     JSVM_CALL(OH_JSVM_GetValueDouble(env, jsonObject, &number));
     OH_LOG_INFO(LOG_APP, "Test JSVM jsonParseNumber: %{public}f", number);
     return nullptr;
@@ -85,9 +85,9 @@ JSVM_PropertyDescriptor descriptor[] = {
 };
 
 ```
-<!-- @[oh_jsvm_json_parse_and_json_stringify](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/UsageInstructionsOne/aboutjson/src/main/cpp/hello.cpp) -->
+<!-- @[oh_jsvm_json_parse_and_json_stringify](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/UsageInstructionsOne/aboutjson/src/main/cpp/hello.cpp) -->
 
-## 预期结果
+## 预期结果：
 
 Test JSVM jsonParseNumber: 10.555000
 

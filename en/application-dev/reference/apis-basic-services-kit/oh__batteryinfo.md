@@ -31,7 +31,7 @@ Provides APIs for the BatteryInfo module to obtain battery information.
 | Name| Description| 
 | -------- | -------- |
 | int32_t [OH_BatteryInfo_GetCapacity](#oh_batteryinfo_getcapacity) () | Obtains the current battery capacity.| 
-| [BatteryInfo_BatteryPluggedType](#batteryinfo_batterypluggedtype)[OH_BatteryInfo_GetPluggedType](#oh_batteryinfo_getpluggedtype) () | Obtains the plug type.| 
+| [BatteryInfo_BatteryPluggedType](#batteryinfo_batterypluggedtype) [OH_BatteryInfo_GetPluggedType](#oh_batteryinfo_getpluggedtype) () | Obtains the plug type.| 
 
 
 ### Variables

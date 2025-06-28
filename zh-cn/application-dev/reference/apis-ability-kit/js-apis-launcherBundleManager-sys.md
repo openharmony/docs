@@ -60,7 +60,7 @@ try {
         if (errData !== null) {
             console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
         } else {
-            console.log("data is " + JSON.stringify(data));
+            console.info('data is ' + JSON.stringify(data));
         }
     })
 } catch (errData) {
@@ -117,7 +117,7 @@ import { BusinessError } from '@ohos.base';
 try {
     launcherBundleManager.getLauncherAbilityInfo("com.example.demo", 100)
         .then((data: launcherBundleManager.LauncherAbilityInfo[]) => {
-        console.log("data is " + JSON.stringify(data));
+        console.info('data is ' + JSON.stringify(data));
     }).catch ((errData: BusinessError) => {
         console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
     })
@@ -171,7 +171,7 @@ try {
         if (errData !== null) {
             console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
         } else {
-            console.log("data is " + JSON.stringify(data));
+            console.info('data is ' + JSON.stringify(data));
         }
     });
 } catch (errData) {
@@ -225,7 +225,7 @@ import { BusinessError } from '@ohos.base';
 try {
     launcherBundleManager.getAllLauncherAbilityInfo(100)
         .then((data: launcherBundleManager.LauncherAbilityInfo[]) => {
-        console.log("data is " + JSON.stringify(data));
+        console.info('data is ' + JSON.stringify(data));
     }).catch ((errData: BusinessError) => {
         console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
     });
@@ -279,7 +279,7 @@ try {
         if (errData !== null) {
             console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
         } else {
-            console.log("data is " + JSON.stringify(data));
+            console.info('data is ' + JSON.stringify(data));
         }
     });
 } catch (errData) {
@@ -334,7 +334,7 @@ import { BusinessError } from '@ohos.base';
 try {
     launcherBundleManager.getShortcutInfo("com.example.demo")
         .then((data: launcherBundleManager.ShortcutInfo[]) => {
-        console.log("data is " + JSON.stringify(data));
+        console.info('data is ' + JSON.stringify(data));
     }).catch ((errData: BusinessError) => {
         console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
     });
@@ -389,7 +389,7 @@ import { BusinessError } from '@ohos.base';
 
 try {
     let data = launcherBundleManager.getShortcutInfoSync("com.example.demo");
-    console.log("data is " + JSON.stringify(data));
+    console.info('data is ' + JSON.stringify(data));
 } catch (errData) {
     let code = (errData as BusinessError).code;
     let message = (errData as BusinessError).message;
@@ -443,7 +443,7 @@ import { BusinessError } from '@ohos.base';
 
 try {
     let data = launcherBundleManager.getShortcutInfoSync("com.example.demo", 100);
-    console.log("data is " + JSON.stringify(data));
+    console.info('data is ' + JSON.stringify(data));
 } catch (errData) {
     let code = (errData as BusinessError).code;
     let message = (errData as BusinessError).message;
@@ -496,12 +496,12 @@ import { BusinessError } from '@ohos.base';
 
 try {
     let data : Array<launcherBundleManager.ShortcutInfo> = launcherBundleManager.getShortcutInfoSync("com.example.demo");
-    console.log("data is " + JSON.stringify(data));
+    console.info('data is ' + JSON.stringify(data));
     if (data) {
         try {
             launcherBundleManager.startShortcut(data[0])
                 .then(() => {
-                console.log("startShortcut success");
+                console.info('startShortcut success');
             }).catch ((err: BusinessError) => {
                 console.error(`errData is errCode:${err.code}  message:${err.message}`);
             });

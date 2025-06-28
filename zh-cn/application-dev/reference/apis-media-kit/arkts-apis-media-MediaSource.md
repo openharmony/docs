@@ -7,6 +7,12 @@
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
+## 导入模块
+
+```ts
+import { media } from '@kit.MediaKit';
+```
+
 ## setMimeType<sup>12+</sup>
 
 setMimeType(mimeType: AVMimeTypes): void

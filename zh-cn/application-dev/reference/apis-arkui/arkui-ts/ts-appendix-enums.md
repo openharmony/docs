@@ -619,7 +619,7 @@
 | ------- | ----- | ----------- |
 | Lighter |  100  |   字体较细。 |
 | Normal  |  400  |   字体粗细正常。 |
-| Regular |  400  |   字体粗细正常。 |
+| Regular |  400  |   字体粗细正常。与Normal效果相同。 |
 | Medium  |  500  |   字体粗细适中。 |
 | Bold    |  700  |   字体较粗。   |
 | Bolder  |  900  |   字体非常粗。 |
@@ -881,7 +881,8 @@ type Nullable\<T> = T | undefined
 | NORMAL  | 0 | CJK(中文、日文、韩文)文本可以在任意2个字符间断行，而Non-CJK文本（如英文等）只能在空白符处断行。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | BREAK_ALL | 1 | 对于Non-CJK的文本，可在任意2个字符间断行。对于CJK与NORMAL效果一致。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | BREAK_WORD | 2 | 与BREAK_ALL相同，对于Non-CJK的文本可在任意2个字符间断行，一行文本中有断行破发点（如空白符）时，优先按破发点换行，保障单词优先完整显示。若整一行文本均无断行破发点时，则在任意2个字符间断行。对于CJK与NORMAL效果一致。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| HYPHENATION<sup>18+</sup> | 3 | 对于Non-CJK的文本，可以按照音节断行。对于CJK的文本，换行效果与NORMAL效果保持一致。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| HYPHENATION<sup>18+</sup> | 3 | 每行末尾单词尝试通过连字符“-”进行断行，若无法添加连字符“-”，则跟BREAK_WORD保持一致。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+
 
 ## LineBreakStrategy<sup>12+</sup>
 

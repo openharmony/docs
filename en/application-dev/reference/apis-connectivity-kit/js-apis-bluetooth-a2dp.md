@@ -23,7 +23,7 @@ Defines **BaseProfile** APIs.
 
 | Type                           | Description        |
 | ----------------------------- | ---------- |
-| [baseProfile.BaseProfile](js-apis-bluetooth-baseProfile.md#baseprofile) | **BaseProfile** API definition.|
+| [baseProfile.BaseProfile](js-apis-bluetooth-baseProfile.md)| **BaseProfile** API definition.|
 
 
 ## a2dp.createA2dpSrcProfile
@@ -135,13 +135,29 @@ Defines the codec information.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-| Name       | Type                   | Readable  | Writable  | Description                                    |
+| Name       | Type                   | Read-Only  | Optional  | Description                                    |
 | ------------------- | ----------------------- | ---- | ---- | -------------------------------------- |
-| codecType           | [CodecType](#codectype11)      | Yes   | Yes   | Codec type. The default value is **CODEC_TYPE_SBC**.|
-| codecBitsPerSample  | [CodecBitsPerSample](#codecbitspersample11)  | Yes   | Yes   | Number of bits of each sample. The default value is **SCAN_MODE_LOW_POWER**.|
-| codecChannelMode    | [CodecChannelMode](#codecchannelmode11) | Yes   | Yes   | Channel mode of the codec. The default value is **CODEC_CHANNEL_MODE_NONE**.|
-| codecSampleRate     | [CodecSampleRate](#codecsamplerate11) | Yes   | Yes   | Sampling rate of the codec. The default value is **CODEC_BITS_PER_SAMPLE_NONE**.|
+| codecType           | [CodecType](#codectype11)      | No   | No   | Codec type. The default value is **CODEC_TYPE_SBC**.|
+| codecBitsPerSample  | [CodecBitsPerSample](#codecbitspersample11)  | No   | No   | Number of bits per sampling point. The default value is **CODEC_BITS_PER_SAMPLE_NONE**.|
+| codecChannelMode    | [CodecChannelMode](#codecchannelmode11) | No   | No   | Channel mode of the codec. The default value is **CODEC_CHANNEL_MODE_NONE**.|
+| codecSampleRate     | [CodecSampleRate](#codecsamplerate11) | No   | No   | Sampling rate of the codec. The default value is **CODEC_BITS_PER_SAMPLE_NONE**.|
+| codecBitRate<sup>19+<sup/>     | [CodecBitRate](#codecbitrate19) | No   | Yes   | Bit rate of the codec. The default value is **CODEC_BIT_RATE_ABR**.|
+| codecFrameLength<sup>19+<sup/>     | [CodecFrameLength](#codecframelength19) | No   | Yes   | Frame length of the codec. The default value is **CODEC_FRAME_LENGTH_10MS**.|
 
+## CodecInfoList<sup>19+</sup>
+
+Defines the codec parameters.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+| Name       | Type                   | Read-Only  | Optional  | Description                                    |
+| ------------------- | ----------------------- | ---- | ---- | -------------------------------------- |
+| codecType           | [CodecType](#codectype11)      | No   | No   | Codec type.|
+| codecBitsPerSampleArray  | [CodecBitsPerSample[]](#codecbitspersample11) | No   | No   | List of the numbers of bits per sampling point for the codec.|
+| codecChannelModeArray    | [CodecChannelMode[]](#codecchannelmode11) | No   | No   | List of audio channel modes for the codec.|
+| codecSampleRateArray     | [CodecSampleRate[]](#codecsamplerate11) | No   | No   | List of sampling rates for the codec.|
+| codecBitRateArray     | [CodecBitRate[]](#codecbitrate19) | No   | No   | List of bit rates for the codec.|
+| codecFrameLengthArray     | [CodecFrameLength[]](#codecframelength19) | No   | No   | List of frame lengths for the codec.|
 
 ## CodecType<sup>11+</sup>
 
@@ -188,7 +204,7 @@ Enumerates the number of bits per sample for the Bluetooth codec.
 
 ## CodecSampleRate<sup>11+</sup>
 
-Enumerates the sampling rates of the Bluetooth codec.
+Enumerates sampling rates of the Bluetooth codec.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -201,3 +217,32 @@ Enumerates the sampling rates of the Bluetooth codec.
 | CODEC_SAMPLE_RATE_96000   | 4 | 96 kHz.|
 | CODEC_SAMPLE_RATE_176400  | 5 | 176.4 kHz.|
 | CODEC_SAMPLE_RATE_192000  | 6 | 192 kHz.|
+
+## CodecBitRate<sup>19+</sup>
+
+Enumerates bit rates of the Bluetooth codec.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+| Name               | Value   | Description     |
+| ----------------- | ------ | ------- |
+| CODEC_BIT_RATE_96000    | 0 | 96 kbit/s|
+| CODEC_BIT_RATE_128000   | 1 | 128 kbit/s|
+| CODEC_BIT_RATE_192000   | 2 | 192 kbit/s|
+| CODEC_BIT_RATE_256000   | 3 | 256 kbit/s|
+| CODEC_BIT_RATE_320000   | 4 | 320 kbit/s|
+| CODEC_BIT_RATE_480000  | 5 | 480 kbit/s|
+| CODEC_BIT_RATE_640000  | 6 | 640 kbit/s|
+| CODEC_BIT_RATE_960000  | 7 | 960 kbit/s|
+| CODEC_BIT_RATE_ABR  | 8 | Adaptive bit rate.|
+
+## CodecFrameLength<sup>19+</sup>
+
+Enumerates frame lengths of the Bluetooth codec.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+| Name               | Value   | Description     |
+| ----------------- | ------ | ------- |
+| CODEC_FRAME_LENGTH_5MS    | 0 | 5 ms|
+| CODEC_FRAME_LENGTH_10MS   | 1 | 10 ms|

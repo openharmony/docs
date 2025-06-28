@@ -13,7 +13,7 @@
 | 名称                                  | 值 | 说明                                                                                     |
 |-------------------------------------| ------ |----------------------------------------------------------------------------------------|
 | TYPE_APP                            | 0      | 表示应用子窗口。<br>**模型约束：** 此接口仅可在FA模型下使用。                                                   |
-| TYPE_SYSTEM_ALERT                   | 1      | 表示系统告警窗口。<br>- **说明：** 从API version 11开始废弃。<br>- 从API version 7开始支持。                               |
+| TYPE_SYSTEM_ALERT<sup>(deprecated)</sup>               | 1     | 表示系统告警窗口。<br>- **说明：** 从API version 11开始废弃。<br>- 从API version 7开始支持。                           |
 | TYPE_FLOAT<sup>9+</sup>             | 8      | 表示悬浮窗。<br>**模型约束：** 此接口仅可在Stage模型下使用。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | TYPE_DIALOG<sup>10+</sup>           | 16      | 表示模态窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。                                                 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | TYPE_MAIN<sup>18+</sup>             | 32      | 表示应用主窗口。<br>此窗口类型不支持在创建窗口时使用，仅可在getWindowProperties接口的返回值中用于读取。                               |
@@ -115,8 +115,8 @@
 | 名称       | 值   | 说明                          |
 | ---------- | ---- | ----------------------------- |
 | UNDEFINED  | 0    | 表示APP未定义窗口模式。       |
-| FULL_SCREEN | 1    | 表示APP全屏模式。             |
-| MAXIMIZE    | 2    | 表示APP窗口最大化模式。   |
+| FULL_SCREEN | 1    | 表示APP全屏模式，在2in1设备中，窗口铺满整个屏幕，且无dock栏和状态栏。             |
+| MAXIMIZE    | 2    | 表示APP窗口最大化模式，在2in1设备中，窗口铺满整个屏幕，有dock栏和状态栏。   |
 | MINIMIZE    | 3    | 表示APP窗口最小化模式。   |
 | FLOATING    | 4    | 表示APP自由悬浮形式窗口模式。   |
 | SPLIT_SCREEN  | 5    | 表示APP分屏模式。   |
@@ -129,10 +129,10 @@
 
 | 名称       | 值   | 说明                          |
 | ---------- | ---- | ----------------------------- |
-| FOLLOW_APP_IMMERSIVE_SETTING  | 0    | 最大化时，跟随应用app当前设置的沉浸式布局。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。       |
-| EXIT_IMMERSIVE | 1    | 最大化时，如果当前窗口设置了沉浸式布局会退出沉浸式布局。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。             |
-| ENTER_IMMERSIVE    | 2    | 最大化时，进入沉浸式布局，鼠标Hover在热区上显示窗口标题栏和dock栏。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
-| ENTER_IMMERSIVE_DISABLE_TITLE_AND_DOCK_HOVER<sup>14+</sup>    | 3    | 最大化时，进入沉浸式布局，鼠标Hover在热区上不显示窗口标题栏和dock栏。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。   |
+| FOLLOW_APP_IMMERSIVE_SETTING  | 0    | 最大化时，跟随应用app当前设置的全屏模式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。       |
+| EXIT_IMMERSIVE | 1    | 最大化时，如果当前窗口设置了全屏模式会退出全屏模式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。             |
+| ENTER_IMMERSIVE    | 2    | 最大化时，进入全屏模式，鼠标Hover在热区上显示窗口标题栏和dock栏。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
+| ENTER_IMMERSIVE_DISABLE_TITLE_AND_DOCK_HOVER<sup>14+</sup>    | 3    | 最大化时，进入全屏模式，鼠标Hover在热区上不显示窗口标题栏和dock栏。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。   |
 
 ## WindowAnimationCurve<sup>20+</sup>
 
@@ -249,6 +249,21 @@ WindowStage生命周期。
 | RESUMED<sup>11+</sup> | 5      | 前台可交互状态，例如应用打开后，可以与用户交互的状态。 |
 | PAUSED<sup>11+</sup>  | 6      | 前台不可交互状态，例如从屏幕底部上划，应用进入到多任务界面后的状态。 |
 
+## WindowStageLifecycleEventType<sup>20+</sup>
+
+WindowStage生命周期的状态类型枚举。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+| 名称       | 值 | 说明       |
+| ---------- | ------ | ---------- |
+| SHOWN      | 1      | 切到前台。 |
+| RESUMED    | 2      | 前台可交互状态。 |
+| PAUSED     | 3      | 前台不可交互状态。 |
+| HIDDEN     | 4      | 切到后台。 |
+
 ## ModalityType<sup>14+</sup>
 
 子窗口模态类型枚举。
@@ -261,3 +276,17 @@ WindowStage生命周期。
 | -------------------- | ------ | ---------- |
 | WINDOW_MODALITY      | 0      | 模态子窗类型为模窗口子窗，当仅需要其父级窗口不响应用户操作时，可选此参数。 |
 | APPLICATION_MODALITY | 1      | 模态子窗类型为模应用子窗，除其父级窗口外还需要该应用其他实例的窗口不响应用户操作时，可选此参数。<br> 此接口仅支持在2in1设备下使用。 |
+
+## ScreenshotEventType<sup>20+</sup>
+
+截屏事件类型枚举。
+
+**系统能力：**  SystemCapability.WindowManager.WindowManager.Core
+
+| 名称   | 值 | 说明                   |
+| ------ | ---- | --------------------- |
+| SYSTEM_SCREENSHOT | 0 | 系统截屏成功。 |
+| SYSTEM_SCREENSHOT_ABORT | 1 | 系统截屏中止。 |
+| SCROLL_SHOT_START | 2 | 滚动截屏开始。 |
+| SCROLL_SHOT_END | 3 | 滚动截屏结束。 |
+| SCROLL_SHOT_ABORT | 4 | 滚动截屏中止。 |

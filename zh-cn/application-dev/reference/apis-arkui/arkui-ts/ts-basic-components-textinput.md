@@ -237,13 +237,13 @@ fontFamily(value: ResourceStr)
 
 | 参数名 | 类型                                   | 必填 | 说明                                                         |
 | ------ | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [ResourceStr](ts-types.md#resourcestr) | 是   | 字体列表。默认字体'HarmonyOS Sans'。<br>应用当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。<br>卡片当前仅支持'HarmonyOS Sans'字体。 |
+| value  | [ResourceStr](ts-types.md#resourcestr) | 是   | 字体列表。默认字体'HarmonyOS Sans'。<br>使用多个字体时，请用逗号','分隔，字体的优先级按顺序生效。例如：'Arial, HarmonyOS Sans'。<br>应用当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。<br>卡片当前仅支持'HarmonyOS Sans'字体。 |
 
 ### inputFilter<sup>8+</sup>
 
 inputFilter(value: ResourceStr, error?: Callback\<string>)
 
-通过正则表达式设置输入过滤器。匹配表达式的输入允许显示，不匹配的输入将被过滤。仅支持单个字符匹配，不支持字符串匹配。
+通过正则表达式设置输入过滤器。匹配表达式的输入允许显示，不匹配的输入将被过滤。
 
 从API version 11开始，设置inputFilter且输入的字符不为空字符，会导致设置输入框类型(即type接口)附带的文本过滤效果失效。
 
@@ -296,7 +296,7 @@ showPasswordIcon(value: boolean)
 
 style(value: TextInputStyle &nbsp;|&nbsp;TextContentStyle)
 
-设置输入框为默认风格或内联输入风格，内联输入风格只支持InputType.Normal类型。
+设置输入框为默认风格或内联输入风格，内联输入风格只支持InputType.Normal类型。<br>输入框类型介绍请参考[type](#type)接口。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -327,6 +327,10 @@ textAlign(value: TextAlign)
 | 参数名 | 类型                                        | 必填 | 说明                                                       |
 | ------ | ------------------------------------------- | ---- | ---------------------------------------------------------- |
 | value  | [TextAlign](ts-appendix-enums.md#textalign) | 是   | 文本在输入框中的水平对齐方式。<br/>默认值：TextAlign.Start |
+
+>  **说明：**  
+>
+>  textAlign只能调整文本整体的布局，不影响字符的显示顺序。若需要调整字符的显示顺序，请参考[镜像状态字符对齐](../../../ui/arkts-mirroring-display.md#镜像状态字符对齐)。
 
 ### selectedBackgroundColor<sup>10+</sup>
 
@@ -678,6 +682,9 @@ lineHeight(value: number | string | Resource)
 | ------ | ------------------------------------------------------------ | ---- | ---------------- |
 | value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本的文本行高。 |
 
+>  **说明：**
+>  
+>  特殊字符字体高度远超出同行的其他字符高度时，文本框出现截断、遮挡、内容相对位置发生变化等不符合预期的显示异常，需要开发者调整组件高度、行高等属性，修改对应的页面布局。
 ### decoration<sup>12+</sup>
 
 decoration(value: TextDecorationOptions)
@@ -701,6 +708,8 @@ letterSpacing(value: number | string | Resource)
 设置文本字符间距。设置该值为百分比时，按默认值显示。设置该值为0时，按默认值显示。string类型支持number类型取值的字符串形式，可以附带单位，例如"10"、"10fp"。
 
 当取值为负值时，文字会发生压缩，负值过小时会将组件内容区大小压缩为0，导致无内容显示。
+
+对每个字符生效，包括行尾字符。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -781,10 +790,12 @@ textOverflow(value: TextOverflow)
 
 | 参数名 | 类型                                                          | 必填 | 说明                                                                                                |
 | ------ | ------------------------------------------------------------ | ---- | -------------------------------------------------------------------------------------------------- |
-| value  | [TextOverflow](ts-appendix-enums.md#textoverflow)            | 是   | 文本超长时的显示方式。<br/>内联模式非编辑态下默认值：TextOverflow.Ellipsis <br/>内联模式编辑态下默认值：TextOverflow.Clip<br/>内联模式介绍见[TextInputstyle枚举说明](#textinputstyle9枚举说明)。                     |
+| value  | [TextOverflow](ts-appendix-enums.md#textoverflow)            | 是   | 文本超长时的显示方式。<br/>内联模式非编辑态下默认值：TextOverflow.Ellipsis <br/>内联模式编辑态下默认值：TextOverflow.Clip<br/>内联模式介绍见[style](#style9)。                     |
 
 >  **说明：**  
 >   TextInput组件不支持设置TextOverflow.MARQUEE模式，当设置为TextOverflow.MARQUEE模式时，内联模式非编辑态下显示为TextOverflow.Ellipsis，内联模式编辑态下以及非内联模式下显示为TextOverflow.Clip。
+>
+>  未设置内联模式时，按照默认风格显示。若此时设置textOverflow，则不生效。
 
 ### textIndent<sup>12+</sup>
 
@@ -939,6 +950,10 @@ enablePreviewText(enable: boolean)
 | 参数名 | 类型    | 必填 | 说明                               |
 | ------ | ------- | ---- | ---------------------------------- |
 | enable | boolean | 是   | 是否开启输入预上屏。<br/>true表示开启输入预上屏，false表示不开启输入预上屏。<br/>默认值：true |
+
+>  **说明：**
+>  
+>  “预上屏”描述的是一种文字暂存状态。需要在输入法中开启预上屏功能，在输入文本过程中，未确认输入候选词时，文本框中显示标记文本。例如，通过拼音输入中文时，未确定候选词之前，在输入框中显示拼音字母，该状态称为文字预上屏。
 
 ### enableHapticFeedback<sup>13+</sup>
 
@@ -1487,6 +1502,10 @@ onDidDelete(callback: Callback\<DeleteValue>)
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
 | callback  | Callback\<[DeleteValue](ts-text-common.md#deletevalue12对象说明)> | 是   | 在删除完成时调用的回调。<br/>仅支持系统输入法输入的场景。 |
+
+>  **说明：**
+>
+>  点击清除按钮不触发onDidDelete回调。
 
 ### onWillChange<sup>15+</sup>
 

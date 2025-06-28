@@ -39,7 +39,7 @@
 | [ArkUI_ModifierKeyName](#arkui_modifierkeyname) { ARKUI_MODIFIER_KEY_CTRL = 1 &lt;&lt; 0, ARKUI_MODIFIER_KEY_SHIFT = 1 &lt;&lt; 1, ARKUI_MODIFIER_KEY_ALT = 1 &lt;&lt; 2, ARKUI_MODIFIER_KEY_FN = 1 &lt;&lt; 3 } | 定义modifier按键。  | 
 | {<br/>UI_FOCUS_AXIS_EVENT_ABS_X = 0, UI_FOCUS_AXIS_EVENT_ABS_Y = 1, UI_FOCUS_AXIS_EVENT_ABS_Z = 2, UI_FOCUS_AXIS_EVENT_ABS_RZ = 3,<br/>UI_FOCUS_AXIS_EVENT_ABS_GAS = 4, UI_FOCUS_AXIS_EVENT_ABS_BRAKE = 5, UI_FOCUS_AXIS_EVENT_ABS_HAT0X = 6, UI_FOCUS_AXIS_EVENT_ABS_HAT0Y = 7<br/>} | 定义焦点轴事件的轴类型。  | 
 | {<br/>ARKUI_EVENT_HAND_NONE = 0, ARKUI_EVENT_HAND_LEFT = 1, ARKUI_EVENT_HAND_RIGHT = 2<br/>} | 定义事件是由左手点击触发还是右手点击触发。  | 
-
+| {<br/>UI_AXIS_EVENT_ACTION_NONE = 0, UI_AXIS_EVENT_ACTION_BEGIN = 1, UI_AXIS_EVENT_ACTION_UPDATE = 2, UI_AXIS_EVENT_ACTION_END = 3, UI_AXIS_EVENT_ACTION_CANCEL = 4<br/>} | 定义轴事件的操作类型。  | 
 
 ### 函数
 
@@ -49,7 +49,7 @@
 | int32_t [OH_ArkUI_UIInputEvent_GetAction](#oh_arkui_uiinputevent_getaction) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event) | 获取UI输入事件的操作类型。  | 
 | int32_t [OH_ArkUI_UIInputEvent_GetSourceType](#oh_arkui_uiinputevent_getsourcetype) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event) | 获取产生UI输入事件的来源类型。  | 
 | int32_t [OH_ArkUI_UIInputEvent_GetToolType](#oh_arkui_uiinputevent_gettooltype) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event) | 获取产生UI输入事件的工具类型。  | 
-| int64_t [OH_ArkUI_UIInputEvent_GetEventTime](#oh_arkui_uiinputevent_geteventtime) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event) | 获取UI输入事件发生的时间。  | 
+| int64_t [OH_ArkUI_UIInputEvent_GetEventTime](#oh_arkui_uiinputevent_geteventtime) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event) | 获取UI输入事件发生的时间。单位为ns。  | 
 | uint32_t [OH_ArkUI_PointerEvent_GetPointerCount](#oh_arkui_pointerevent_getpointercount) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event) | 从带有指向性的输入事件（如触摸事件、鼠标事件、轴事件）中获取多点触控的接触点数量。  | 
 | int32_t [OH_ArkUI_PointerEvent_GetPointerId](#oh_arkui_pointerevent_getpointerid) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event, uint32_t pointerIndex) | 从带有指向性的输入事件（如触摸事件、鼠标事件、轴事件）中获取多点触控的接触点标识。  | 
 | int32_t [OH_ArkUI_PointerEvent_GetChangedPointerId](#oh_arkui_pointerevent_getchangedpointerid) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event, uint32_t \*pointerIndex) | 获取当前触摸事件触发的id。  | 
@@ -67,8 +67,8 @@
 | float [OH_ArkUI_PointerEvent_GetDisplayYByIndex](#oh_arkui_pointerevent_getdisplayybyindex) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event, uint32_t pointerIndex) | 从带有指向性的输入事件（如触摸事件、鼠标事件、轴事件）中获取特定接触点相对于当前屏幕左上角的Y坐标。  | 
 | float [OH_ArkUI_PointerEvent_GetPressure](#oh_arkui_pointerevent_getpressure) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event, uint32_t pointerIndex) | 从带有指向性的输入事件（如触摸事件）中获取触屏压力。  | 
 | float [OH_ArkUI_PointerEvent_GetTiltX](#oh_arkui_pointerevent_gettiltx) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event, uint32_t pointerIndex) | 从带有指向性的输入事件（如触摸事件）中获取相对YZ平面的角度，取值的范围[-90, 90]，其中正值是向右倾斜。  | 
-| float [OH_ArkUI_PointerEvent_GetTiltY](#oh_arkui_pointerevent_gettilty) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event, uint32_t pointerIndex) | 从带有指向性的输入事件（如触摸事件）中获取相对XZ平面的角度，值的范围[-90, 90]，其中正值是向下倾斜。  | 
-| int32_t [OH_ArkUI_PointerEvent_GetRollAngle](#oh_arkui_pointerevent_getrollangle) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event, double \*rollAngle) | 从带有指向性的输入事件（如触摸事件）中获取手写笔与设备平面的夹角。  | 
+| float [OH_ArkUI_PointerEvent_GetTiltY](#oh_arkui_pointerevent_gettilty) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event, uint32_t pointerIndex) | 从指向性输入事件（如触摸事件）中获取相对XZ平面的角度，取值的范围[-90, 90]，其中正值是向右倾斜。<br/>仅适用于支持倾角上报的触控笔操作产生的触控事件。  | 
+| int32_t [OH_ArkUI_PointerEvent_GetRollAngle](#oh_arkui_pointerevent_getrollangle) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event, double \*rollAngle) | 获取触控笔绕Z轴旋转的角度。<br/>**起始版本：** 17  | 
 | float [OH_ArkUI_PointerEvent_GetTouchAreaWidth](#oh_arkui_pointerevent_gettouchareawidth) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event, uint32_t pointerIndex) | 从带有指向性的输入事件（如触摸事件）中获取触屏区域的宽度。  | 
 | float [OH_ArkUI_PointerEvent_GetTouchAreaHeight](#oh_arkui_pointerevent_gettouchareaheight) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event, uint32_t pointerIndex) | 从带有指向性的输入事件（如触摸事件）中获取触屏区域的高度。  | 
 | uint32_t [OH_ArkUI_PointerEvent_GetHistorySize](#oh_arkui_pointerevent_gethistorysize) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event) | 从带有指向性的输入事件（如触摸事件、鼠标事件、轴事件）中获取历史事件数量。  | 
@@ -97,7 +97,7 @@
 | int32_t [OH_ArkUI_UIInputEvent_GetDeviceId](#oh_arkui_uiinputevent_getdeviceid) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event) | 获取当前按键的输入设备ID。  | 
 | int32_t [OH_ArkUI_UIInputEvent_GetPressedKeys](#oh_arkui_uiinputevent_getpressedkeys) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event, int32_t \*pressedKeyCodes, int32_t \*length) | 获取所有按下的按键，当前只支持按键事件。  | 
 | double [OH_ArkUI_FocusAxisEvent_GetAxisValue](#oh_arkui_focusaxisevent_getaxisvalue) (const [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event, int32_t \*axis) | 获取焦点轴事件的轴值。  | 
-| int32_t [OH_ArkUI_FocusAxisEvent_SetStopPropagation](#oh_arkui_focusaxisevent_setstoppropagation) (const [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event, bool \*stopPropagation) | 设置是否阻止焦点轴事件冒泡。  | 
+| int32_t [OH_ArkUI_FocusAxisEvent_SetStopPropagation](#oh_arkui_focusaxisevent_setstoppropagation) (const [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event, bool stopPropagation) | 设置是否阻止焦点轴事件冒泡。<br/>**起始版本：** 15  | 
 | int32_t [OH_ArkUI_PointerEvent_GetInteractionHand](#oh_arkui_pointerevent_getinteractionhand) (const [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event, [ArkUI_InteractionHand](_ark_u_i___event_module.md#interactionhand) \*hand) | 获取当前触摸事件是左手点击触发还是右手点击触发。  | 
 | int32_t [OH_ArkUI_PointerEvent_GetInteractionHandByIndex](#oh_arkui_pointerevent_getinteractionhandbyindex) (const [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event, int32_t pointerIndex, [ArkUI_InteractionHand](_ark_u_i___event_module.md#interactionhand) \*hand) | 获取当前触摸事件是左手点击触发还是右手点击触发。  | 
 | float [OH_ArkUI_UIInputEvent_GetEventTargetWidth](#oh_arkui_uiinputevent_geteventtargetwidth) (const [ArkUI_UIInputEvent](#arkui_uiinputevent)) | 获取事件命中的组件的宽度。  |
@@ -106,9 +106,9 @@
 | float [OH_ArkUI_UIInputEvent_GetEventTargetPositionY](#oh_arkui_uiinputevent_geteventtargetpositiony) (const [ArkUI_UIInputEvent](#arkui_uiinputevent)) | 获取事件命中的组件的Y坐标。  |
 | float [OH_ArkUI_UIInputEvent_GetEventTargetGlobalPositionX](#oh_arkui_uiinputevent_geteventtargetglobalpositionx) (const [ArkUI_UIInputEvent](#arkui_uiinputevent)) | 获取事件命中的组件的全局X坐标。  |
 | float [OH_ArkUI_UIInputEvent_GetEventTargetGlobalPositionY](#oh_arkui_uiinputevent_geteventtargetglobalpositiony) (const [ArkUI_UIInputEvent](#arkui_uiinputevent)) | 获取事件命中的组件的全局Y坐标。  |
-| int32_t [OH_ArkUI_UIInputEvent_GetModifierKeyStates](#oh_arkui_uiinputevent_getmodifierkeystates) (const [ArkUI_UIInputEvent](#arkui_uiinputevent), uint64_t \*keys) | 获取UI输入事件的功能键按压状态。  | 
+| int32_t [OH_ArkUI_UIInputEvent_GetModifierKeyStates](#oh_arkui_uiinputevent_getmodifierkeystates) (const [ArkUI_UIInputEvent](#arkui_uiinputevent), uint64_t \*keys) | 获取UI输入事件的修饰键状态。该接口会通过keys传出当前事件发生时所有修饰键的状态。<br/>**起始版本：** 17  | 
 | bool [OH_ArkUI_HoverEvent_IsHovered](#oh_arkui_hoverevent_ishovered) (const [ArkUI_UIInputEvent](#arkui_uiinputevent)) | 获取鼠标是否悬浮在当前组件上。  |    
-| int32_t [OH_ArkUI_PointerEvent_CreateClonedEvent](#oh_arkui_pointerevent_createclonedevent) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event, [ArkUI_UIInputEvent](#arkui_uiinputevent) \*clonedevent) | 基于原始事件指针创建克隆事件指针。  | 
+| int32_t [OH_ArkUI_PointerEvent_CreateClonedEvent](#oh_arkui_pointerevent_createclonedevent) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event, [ArkUI_UIInputEvent](#arkui_uiinputevent) \*\*clonedevent) | 基于原始事件指针创建克隆事件指针。仅对触摸事件有效。<br/>**起始版本：** 15  | 
 | int32_t [OH_ArkUI_PointerEvent_DestroyClonedEvent](#oh_arkui_pointerevent_destroyclonedevent) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event) | 销毁克隆事件指针。  | 
 | int32_t [OH_ArkUI_PointerEvent_SetClonedEventLocalPosition](#oh_arkui_pointerevent_setclonedeventlocalposition) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event, float x, float y) | 设置指向性事件相对于当前组件左上角的X坐标和Y坐标。  | 
 | int32_t [OH_ArkUI_PointerEvent_SetClonedEventLocalPositionByIndex](#oh_arkui_pointerevent_setclonedeventlocalpositionbyindex) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event, float x, float y, int32_t pointerIndex) | 设置指向性事件特有接触点相对于当前组件左上角的X坐标和Y坐标。  | 
@@ -122,7 +122,7 @@
 | int32_t [OH_ArkUI_MouseEvent_GetPressedButtons](#oh_arkui_mouseevent_getpressedbuttons) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event, int32_t* pressedButtons, int32_t* length) | 从鼠标事件中获取按下的按钮。  | 
 | int32_t [OH_ArkUI_UIInputEvent_GetTargetDisplayId](#oh_arkui_uiinputevent_gettargetdisplayid) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event) | 获取发生UI输入事件的屏幕ID。 | 
 | int32_t [OH_ArkUI_AxisEvent_SetPropagation](#oh_arkui_axisevent_setpropagation)(const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event, bool propagation) | 设置是否激活轴事件冒泡。|
-| int32_t [OH_ArkUI_AxisEvent_GetScrollStep](#oh_arkui_axisevent_getscrollstep)(const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event) | 获取鼠标滚轮轴滚动步长配置。|
+| int32_t [OH_ArkUI_AxisEvent_GetScrollStep](#oh_arkui_axisevent_getscrollstep)(const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event) | 获取滚动轴事件的滚动步长系数，适用于鼠标滚轮产生的轴事件。这个值可以告诉你用户所配置的滚动放大系数。<br/>**起始版本：** 17|
 | ArkUI_ErrorCode [OH_ArkUI_UIInputEvent_GetLatestStatus](#oh_arkui_uiinputevent_getlateststatus)() | 调用该方法获取最近一次UIInput相关方法的执行情况。通常情况下不需要使用该方法，仅在返回值结果不确定是否异常时使用。<br>**起始版本：** 20 |
 
 
@@ -344,15 +344,15 @@ anonymous enum
 ```
 **描述：**
 
-定义轴事件的Action Code。
+定义轴事件的操作类型。
 
 **起始版本：** 15
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| UI_AXIS_EVENT_ACTION_NONE  | 无轴事件。 | 
+| UI_AXIS_EVENT_ACTION_NONE  | 轴事件异常。 | 
 | UI_AXIS_EVENT_ACTION_BEGIN  | 轴事件开始。 | 
-| UI_AXIS_EVENT_ACTION_UPDATE  | 轴事件触发中。 | 
+| UI_AXIS_EVENT_ACTION_UPDATE  | 轴事件更新。 | 
 | UI_AXIS_EVENT_ACTION_END  | 轴事件结束。  | 
 | UI_AXIS_EVENT_ACTION_CANCEL  | 轴事件取消。 | 
 
@@ -683,7 +683,7 @@ int32_t OH_ArkUI_PointerEvent_GetHistoryPointerId (const ArkUI_UIInputEvent * ev
 ```
 **描述：**
 
-从带有指向性的输入事件（如触摸事件、鼠标事件、轴事件）中获取多点触控的接触点标识。
+从指向性输入事件（如触摸事件）的历史点中获取多点触控的接触点标识。
 
 **起始版本：** 12
 
@@ -731,7 +731,7 @@ uint32_t OH_ArkUI_PointerEvent_GetHistorySize (const ArkUI_UIInputEvent * event)
 ```
 **描述：**
 
-从带有指向性的输入事件（如触摸事件、鼠标事件、轴事件）中获取历史事件数量。
+从带有指向性的输入事件（如触摸事件、鼠标事件、轴事件）中获取历史事件数量。历史事件为此次事件与上一次事件之间发生的原始事件，仅适用于move事件。
 
 **起始版本：** 12
 
@@ -1002,7 +1002,7 @@ int32_t OH_ArkUI_PointerEvent_GetChangedPointerId (const ArkUI_UIInputEvent * ev
 
 **返回：**
 
-返回执行的状态代码。返回0表示设置成功，如果返回401，表示返回失败，可能的原因是参数异常，例如event是一个空指针。
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
 
 
 ### OH_ArkUI_PointerEvent_GetPressure()
@@ -1058,7 +1058,7 @@ float OH_ArkUI_PointerEvent_GetTiltY (const ArkUI_UIInputEvent * event, uint32_t
 ```
 **描述：**
 
-从带有指向性的输入事件（如触摸事件）中获取相对XZ平面的角度，值的范围[-90, 90]，其中正值是向下倾斜。
+从指向性输入事件（如触摸事件）中获取相对XZ平面的角度，取值的范围[-90, 90]，其中正值是向右倾斜。仅适用于支持倾角上报的触控笔操作产生的触控事件。
 
 **起始版本：** 12
 
@@ -1080,7 +1080,7 @@ int32_t OH_ArkUI_PointerEvent_GetRollAngle (const ArkUI_UIInputEvent * event, do
 ```
 **描述：**
 
-从带有指向性的输入事件（如触摸事件）中获取手写笔与设备平面的夹角。
+获取触控笔绕Z轴旋转的角度。
 
 **起始版本：** 17
 
@@ -1089,7 +1089,7 @@ int32_t OH_ArkUI_PointerEvent_GetRollAngle (const ArkUI_UIInputEvent * event, do
 | 名称 | 描述 | 
 | -------- | -------- |
 | event | 表示指向当前UI输入事件的指针。  | 
-| rollAngle | 表示存储角度的变量。默认值为0。参数异常不会更改此值。  | 
+| rollAngle | 触控笔绕Z轴旋转的角度。默认值为0。参数异常不会更改此值。  | 
 
 **返回：**
 
@@ -1102,7 +1102,7 @@ float OH_ArkUI_PointerEvent_GetTouchAreaHeight (const ArkUI_UIInputEvent * event
 ```
 **描述：**
 
-从带有指向性的输入事件（如触摸事件）中获取触屏区域的高度。
+从带有指向性的输入事件（如触摸事件）中获取触屏区域的高度。仅适用于手指操作产生的触控事件，这通常是一个圆形区域的半径。
 
 **起始版本：** 12
 
@@ -1125,7 +1125,7 @@ float OH_ArkUI_PointerEvent_GetTouchAreaWidth (const ArkUI_UIInputEvent * event,
 ```
 **描述：**
 
-从带有指向性的输入事件（如触摸事件）中获取触屏区域的宽度。
+从带有指向性的输入事件（如触摸事件）中获取触屏区域的宽度。仅适用于手指操作产生的触控事件，这通常是一个圆形区域的半径。
 
 **起始版本：** 12
 
@@ -1360,7 +1360,7 @@ int32_t OH_ArkUI_PointerEvent_SetStopPropagation (const ArkUI_UIInputEvent * eve
 | 名称 | 描述 | 
 | -------- | -------- |
 | event | 表示指向当前UI输入事件的指针。  | 
-| stopPropagation | 表示是否阻止事件冒泡。  | 
+| stopPropagation | 表示是否阻止事件冒泡。true表示阻止事件冒泡，false表示不阻止事件冒泡。  | 
 
 **返回：**
 
@@ -1562,7 +1562,7 @@ int32_t OH_ArkUI_FocusAxisEvent_SetStopPropagation (const ArkUI_UIInputEvent * e
 | 名称 | 描述 | 
 | -------- | -------- |
 | event | 表示指向当前UI输入事件的指针。  | 
-| stopPropagation | 是否阻止事件冒泡。  | 
+| stopPropagation | 是否阻止事件冒泡。true表示阻止事件冒泡，false表示不阻止事件冒泡。  | 
 
 **返回：**
 
@@ -1576,7 +1576,7 @@ int64_t OH_ArkUI_PointerEvent_GetPressedTimeByIndex (const ArkUI_UIInputEvent* e
 ```
 **描述：**
 
-获取特定触摸点的按压时间。
+获取特定触摸点的按压时间。仅对触摸事件有效。
 
 **起始版本：** 15
 
@@ -1689,7 +1689,7 @@ int32_t OH_ArkUI_PointerEvent_GetInteractionHand (const ArkUI_UIInputEvent * eve
 ```
 **描述：**
 
-获取当前触摸事件是左手点击触发还是右手点击触发。
+获取当前触摸事件是左手点击触发还是右手点击触发。仅在部分触控产品上有效。
 
 **起始版本：** 15
 
@@ -1712,7 +1712,7 @@ int32_t OH_ArkUI_PointerEvent_GetInteractionHandByIndex (const ArkUI_UIInputEven
 ```
 **描述：**
 
-获取当前触摸事件是左手点击触发还是右手点击触发。
+获取当前触摸事件是左手点击触发还是右手点击触发。仅在部分触控产品上有效。
 
 **起始版本：** 15
 
@@ -1868,7 +1868,7 @@ int32_t OH_ArkUI_UIInputEvent_GetModifierKeyStates(const ArkUI_UIInputEvent* eve
 ```
 **描述：**
 
-获取UI输入事件的功能键按压状态。
+获取UI输入事件的修饰键状态。该接口会通过keys传出当前事件发生时所有修饰键的状态。
 
 **起始版本：** 17
 
@@ -1881,7 +1881,7 @@ int32_t OH_ArkUI_UIInputEvent_GetModifierKeyStates(const ArkUI_UIInputEvent* eve
 
 **返回：**
 
-ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
 
 
 ### OH_ArkUI_HoverEvent_IsHovered()
@@ -1913,7 +1913,7 @@ int32_t OH_ArkUI_PointerEvent_CreateClonedEvent(const ArkUI_UIInputEvent* event,
 ```
 **描述：**
 
-基于原始事件指针创建克隆事件指针。
+基于原始事件指针创建克隆事件指针。仅对触摸事件有效。
 
 **起始版本：** 15
 
@@ -2020,7 +2020,7 @@ int32_t OH_ArkUI_PointerEvent_SetClonedEventActionType(const ArkUI_UIInputEvent 
 | 名称 | 描述 | 
 | -------- | -------- |
 | event | ArkUI_UIInputEvent事件指针。  | 
-| actionType | 事件类型。  | 
+| actionType | ArkUI_UIInputEvent克隆事件类型。  | 
 
 **返回：**
 
@@ -2120,7 +2120,7 @@ int32_t OH_ArkUI_AxisEvent_SetPropagation (const ArkUI_UIInputEvent * event, boo
 | 名称 | 描述 | 
 | -------- | -------- |
 | event | 表示指向当前UI输入事件的指针。 | 
-| propagation | 表示是否激活事件冒泡。  | 
+| propagation | 表示是否激活事件冒泡。true表示激活事件冒泡，false表示不激活事件冒泡。  | 
 
 **返回：**
 
@@ -2134,7 +2134,7 @@ int32_t OH_ArkUI_AxisEvent_GetScrollStep (const ArkUI_UIInputEvent * event)
 ```
 **描述：**
 
-获取鼠标滚轮轴滚动步长配置。
+获取滚动轴事件的滚动步长系数，适用于鼠标滚轮产生的轴事件。这个值可以告诉你用户所配置的滚动放大系数。
 
 **起始版本：** 17
 
@@ -2155,7 +2155,7 @@ ArkUI_ErrorCode OH_ArkUI_UIInputEvent_GetLatestStatus()
 **描述：**
 
 调用该方法获取最近一次UIInput相关方法的执行情况。通常情况下不需要使用该方法，仅在返回值结果不确定是否异常时使用。
-以下是一个使用示例（对于返回的float类型，0.0并不代表错误，因此可以进一步使用GetLatestStatus方法来确认是否发生异常）。
+以下是一个使用示例（对于返回的float类型，0.0并不代表错误，因此可以进一步使用OH_ArkUI_UIInputEvent_GetLatestStatus方法来确认是否发生异常）。
 ```
 float x = OH_ArkUI_PointerEvent_GetX(event);
 if (ARKUI_ERROR_CODE_NO_ERROR != OH_Arkui_UIInputEvent_GetlatestStatus()) {

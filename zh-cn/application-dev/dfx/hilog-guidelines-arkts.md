@@ -19,13 +19,7 @@ HiLog中定义了DEBUG、INFO、WARN、ERROR、FATAL五种日志级别，并提�
 | warn(domain: number, tag: string, format: string, ...args: any[]) | 输出WARN级别日志。表示存在警告。 |
 | error(domain: number, tag: string, format: string, ...args: any[]) | 输出ERROR级别日志。表示存在错误。 |
 | fatal(domain: number, tag: string, format: string, ...args: any[]) | 输出FATAL级别日志。表示出现致命错误、不可恢复错误。 |
-| setMinLogLevel(level: LogLevel) | 设置应用日志打印的最低日志级别，进程在打印日志时，需要同时校验该日志级别和全局日志级别，所以设置的日志级别不能低于全局日志级别。|
-
-<!--RP2-->
-> **说明：**
->
-> 全局日志级别，默认为info, 可参考[查看和设置日志级别](hilog.md#查看和设置日志级别)
-<!--RP2End-->
+| setMinLogLevel(level: LogLevel) | 设置应用日志打印的最低日志级别，用于拦截低级别日志打印。<br/>需要注意：如果设置的日志级别低于[全局日志级别](hilog.md#查看和设置日志级别)，设置不生效。|
 
 ### 参数解析
 
@@ -46,9 +40,9 @@ HiLog中定义了DEBUG、INFO、WARN、ERROR、FATAL五种日志级别，并提�
   | -------- | -------- | -------- |
   | d/i | 支持打印number和bigint类型。 | 123 |
   | s | 支持打印string、undefined、boolean和null类型。 | "123" |
-  | o/O | 支持打印object、undefined和null类型。<br>从API version 20开始，支持该能力。 | obj |
+  | o/O | 支持打印object、undefined和null类型。<br>从API version 20开始，支持该能力。 | { 'name': "Jack", 'age': 22 } |
 
-  格式字符串中可以设置多个参数，例如格式字符串为“%s World”，“%s”为参数类型为string的变参标识，具体取值在args中定义。<!--Del-->
+  格式字符串中可以设置多个参数，例如格式字符串为“%{public}s World”，“%{public}s”表示参数类型为string的变参标识，具体取值在args中定义。<!--Del-->
 
   调试时可通过命令“hilog -p off”指令，关闭隐私开关，明文显示private日志内容。
 <!--DelEnd-->
@@ -153,12 +147,14 @@ HiLog中定义了DEBUG、INFO、WARN、ERROR、FATAL五种日志级别，并提�
 5. 在DevEco Studio的底部，切换到“Log”窗口，设置日志的过滤条件。
    选择当前的设备及进程，日志级别选择Verbose，搜索内容设置为“testTag”。此时窗口仅显示符合条件的日志。
 
+<!--RP3-->
    打印日志结果为:
    ```txt
-   01-02 08:18:24.947   30988-30988   A0ff00/testTag                  com.example.hilogemo  I     hello World 3
-   01-02 08:18:24.947   30988-30988   A0ff00/testTag                  com.example.hilogemo  I     peter is {"name":"peter","age":15}
-   01-02 08:18:24.947   30988-30988   A00000/testTag                  com.example.hilogemo  E     this is an error level log
+   01-02 08:18:24.947   30988-30988   A0ff00/testTag                  com.example.hilogDemo  I     hello World 3
+   01-02 08:18:24.947   30988-30988   A0ff00/testTag                  com.example.hilogDemo  I     peter is {"name":"peter","age":15}
+   01-02 08:18:24.947   30988-30988   A00000/testTag                  com.example.hilogDemo  E     this is an error level log
    ```
+<!--RP3End-->
 
 <!--RP1-->
 <!--RP1End-->

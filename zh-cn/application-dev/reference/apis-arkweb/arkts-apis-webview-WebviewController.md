@@ -9087,6 +9087,42 @@ struct WebComponent {
 }
 ```
 
+## getProgress<sup>20+</sup>
+
+getProgress(): number
+
+获取当前网页加载进度。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值**
+
+| 类型                            | 说明                   |
+| :------------------------------ | ---------------------- |
+| number | 当前页面加载进度，取值范围[0, 100] |
+
+**示例：**
+
+```ts
+import { webview } from '@kit.ArkWeb';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Web({ src: 'www.example.com', controller: this.controller })
+        .onPageBegin(() => {
+          let curProgress = this.controller.getProgress();
+          console.info("current page loading progress is :" + curProgress);
+        })
+    }
+  }
+}
+```
+
 ## getHitTest<sup>(deprecated)</sup>
 
 getHitTest(): WebHitTestType
@@ -9188,6 +9224,71 @@ struct WebComponent {
             let hitValue = this.controller.getHitTestValue();
             console.log("hitType: " + hitValue.type);
             console.log("extra: " + hitValue.extra);
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+## avoidVisibleViewportBottom<sup>20+</sup>
+
+avoidVisibleViewportBottom(avoidHeight: number): void
+
+设置Web网页可视视口底部避让高度。
+
+> **说明：**
+>
+> - avoidHeight有效值区间为[0, Web组件高度]，超出有效值区间时取边界值。
+> - 该接口高度设置为非0时，Web组件位置和尺寸不变，可视视口向上避让avoidHeight，表现为Web网页内容抬升avoidHeight。该接口一般用于应用自定义网页底部避让区，不建议和点击web网页可编辑区拉起键盘的场景同时使用。同时使用时，键盘弹起避让模式将使用OVERLAYS_CONTENT。
+> - 该接口高度设置为0时，Web网页内容可恢复，键盘弹起避让模式将使用[keyboardAvoidMode()](./arkts-basic-components-web-attributes.md#keyboardavoidmode12)声明的模式。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明               |
+| ------ | -------- | ---- | ---------------------- |
+| avoidHeight   | number   | 是   | 设置Web网页可视视口底部避让高度。<br>默认值：0<br>单位：vp<br>合法取值范围：0~Web组件高度<br>非法值设置行为：超出合法取值范围时取边界值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**示例：**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+  avoidHeight: number = 100;
+
+  build() {
+    Column() {
+      Button('avoid')
+        .onClick(() => {
+          try {
+            this.controller.avoidVisibleViewportBottom(this.avoidHeight);
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+      Button('reset')
+        .onClick(() => {
+          try {
+            this.controller.avoidVisibleViewportBottom(0);
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }

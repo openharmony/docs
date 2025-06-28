@@ -7,6 +7,12 @@
 
 在使用AudioManager的接口之前，需先通过[getAudioManager](arkts-apis-audio-f.md#audiogetaudiomanager)获取AudioManager实例。
 
+## 导入模块
+
+```ts
+import { audio } from '@kit.AudioKit';
+```
+
 ## getAudioScene<sup>8+</sup>
 
 getAudioScene\(callback: AsyncCallback<AudioScene\>\): void

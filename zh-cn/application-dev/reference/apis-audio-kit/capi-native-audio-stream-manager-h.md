@@ -22,7 +22,7 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [OH_AudioStreamManager](capi-oh-audiostreammanager.md) | OH_AudioStreamManager | 声明音频流管理器，用于管理音频流相关功能。 |
+| [OH_AudioStreamManager](capi-ohaudio-oh-audiostreammanager.md) | OH_AudioStreamManager | 声明音频流管理器，用于管理音频流相关功能。 |
 
 ### 函数
 
@@ -50,7 +50,7 @@ OH_AudioCommon_Result OH_AudioManager_GetAudioStreamManager(OH_AudioStreamManage
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AudioStreamManager](capi-oh-audiostreammanager.md) **streamManager | 音频流管理器句柄。 |
+| [OH_AudioStreamManager](capi-ohaudio-oh-audiostreammanager.md) **streamManager | 音频流管理器句柄。 |
 
 **返回：**
 
@@ -75,8 +75,8 @@ OH_AudioCommon_Result OH_AudioStreamManager_GetDirectPlaybackSupport(OH_AudioStr
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AudioStreamManager](capi-oh-audiostreammanager.md) *audioStreamManager | 音频流管理器句柄。通过 [OH_AudioManager_GetAudioStreamManager](capi-native-audio-stream-manager-h.md#oh_audiomanager_getaudiostreammanager)获取句柄。 |
-| [OH_AudioStreamInfo](capi-oh-audiostreaminfo.md) *streamInfo | 音频流信息指针。  |
+| [OH_AudioStreamManager](capi-ohaudio-oh-audiostreammanager.md) *audioStreamManager | 音频流管理器句柄。通过 [OH_AudioManager_GetAudioStreamManager](capi-native-audio-stream-manager-h.md#oh_audiomanager_getaudiostreammanager)获取句柄。 |
+| [OH_AudioStreamInfo](capi-ohaudio-oh-audiostreaminfo.md) *streamInfo | 音频流信息指针。  |
 | [OH_AudioStream_Usage](capi-native-audiostream-base-h.md#oh_audiostream_usage) usage | 音频流使用场景。    |
 | [OH_AudioStream_DirectPlaybackMode](capi-native-audiostream-base-h.md#oh_audiostream_directplaybackmode) *directPlaybackMode | 指向 [OH_AudioStream_DirectPlaybackMode](capi-native-audiostream-base-h.md#oh_audiostream_directplaybackmode)，用于获取当前音频流支持的direct通路播放模式。    |
 
@@ -103,7 +103,7 @@ OH_AudioCommon_Result OH_AudioStreamManager_IsAcousticEchoCancelerSupported(OH_A
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AudioStreamManager](capi-oh-audiostreammanager.md) *audioStreamManager | 音频流管理器句柄。通过 [OH_AudioManager_GetAudioStreamManager](capi-native-audio-stream-manager-h.md#oh_audiomanager_getaudiostreammanager)获取句柄。 |
+| [OH_AudioStreamManager](capi-ohaudio-oh-audiostreammanager.md) *audioStreamManager | 音频流管理器句柄。通过 [OH_AudioManager_GetAudioStreamManager](capi-native-audio-stream-manager-h.md#oh_audiomanager_getaudiostreammanager)获取句柄。 |
 | [OH_AudioStream_SourceType](capi-native-audiostream-base-h.md#oh_audiostream_sourcetype) sourceType | 指向[OH_AudioStream_SourceType](capi-native-audiostream-base-h.md#oh_audiostream_sourcetype)，用于设置音频输入流的使用场景。 |
 | bool *supported | 查询结果。 |
 

@@ -19,7 +19,7 @@
    import { MovingPhotoView, MovingPhotoViewController, MovingPhotoViewAttribute } from '@kit.MediaLibraryKit';
    ```
 
-2. 获取动态照片对象（[MovingPhoto](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#movingphoto12)）。
+2. 获取动态照片对象（[MovingPhoto](../../reference/apis-media-library-kit/arkts-apis-photoAccessHelper-MovingPhoto.md)）。
 
    MovingPhoto对象需要通过photoAccessHelper接口创建或获取，MovingPhotoView只接收构造完成的MovingPhoto对象。
 

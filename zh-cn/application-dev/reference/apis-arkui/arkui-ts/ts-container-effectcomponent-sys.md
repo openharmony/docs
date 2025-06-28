@@ -20,9 +20,17 @@
 
 ## 接口
 
-EffectComponent()
+EffectComponent(options?: EffectComponentOptions)
 
-创建特效绘制合并组件，用于对子组件背景模糊特效的绘制合并。
+创建特效绘制合并组件，无参数或者参数为EffectLayer.None时用于对子组件背景模糊特效的绘制合并。有明确参数时表示当前渲染图层置于特殊图层。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数:**
+
+| 参数名            | 类型        | 必填   | 说明                                     |
+| -------------- | ---------------------------------------- | ---- |  ---------------------------------------- |
+| options      | [EffectComponentOptions](#effectcomponentoptions20对象说明) | 否    |  EffectComponent构造参数。               |
 
 ## 事件
 
@@ -32,7 +40,31 @@ EffectComponent()
 
 支持通用属性，目前仅支持对backgroundBlurStyle属性做绘制合并优化。
 
+## EffectComponentOptions<sup>20+</sup>对象说明
+
+设置当前EffectComponent构造参数，包含EffectComponent的渲染层级。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称        | 类型                                    | 必填 | 说明                                                     |
+| ----------- | --------------------------------------- | ---- | -------------------------------------------------------- |
+| effectLayer | [EffectLayer](#effectlayer20枚举说明) | 否   | EffectComponent的渲染层级。<br/>默认值：EffectLayer.NONE |
+
+## EffectLayer<sup>20+</sup>枚举说明
+
+EffectComponent的渲染层级。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称          | 值   | 说明         |
+| :------------ | :--- | :----------- |
+| NONE          | 0    | 无特效层。   |
+| CHARGE_MOTION | 1    | 充电动画层。 |
+| CHARGE_TEXT   | 2    | 充电文字层。 |
+
 ## 示例
+
+### 示例1（使用特效绘制合并能力）
 
 该示例主要演示如何使用特效绘制合并组件。
 
@@ -99,3 +131,32 @@ struct Index {
 ```
 
 ![zh-cn_image_effectcomponent](figures/zh-cn_image_effectcomponent.png)
+
+### 示例2（独立渲染图层）
+
+该示例主要演示如何渲染充电文字层。
+
+```ts
+@Entry
+@Component
+struct Index {
+  build() {
+    Stack() {
+      Image($r("app.media.startIcon"))
+        .autoResize(true)
+      EffectComponent({effectLayer: EffectLayer.CHARGE_TEXT}) {
+        Text('CHARGE_TEXT')
+          .height('50%')
+          .width('100%')
+          .fontSize(50)
+          .textAlign(TextAlign.Center);
+      }
+      .backgroundBlurStyle(BlurStyle.Thin)
+    }
+    .backgroundColor(Color.Black)
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+

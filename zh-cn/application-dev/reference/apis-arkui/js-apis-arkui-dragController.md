@@ -5,7 +5,7 @@
 > **说明：**
 >
 > 本模块首批接口从 API version 10 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 本模块功能依赖UI的执行上下文，不可在[UI上下文不明确](../../ui/arkts-global-interface.md)的地方使用，参见[UIContext](js-apis-arkui-UIContext.md#uicontext)说明。
+> 本模块功能依赖UI的执行上下文，不可在[UI上下文不明确](../../ui/arkts-global-interface.md#ui上下文不明确)的地方使用，参见[UIContext](js-apis-arkui-UIContext.md#uicontext)说明。
 > 示例效果请以真机运行为准，当前 DevEco Studio预览器不支持。
 
 ## 导入模块
@@ -271,9 +271,9 @@ struct DragControllerPage {
   ![zh-cn_executeDrag2](figures/executeDrag2.gif)
 ## DragInfo
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
 发起拖拽所需要的属性和拖拽时携带的信息。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称        | 类型                                                   | 必填 | 说明                                     |
 | ----------- | ------------------------------------------------------ | ---- | ---------------------------------------- |
@@ -678,11 +678,11 @@ struct DragControllerPage {
 
 ## DragAndDropInfo<sup>11+</sup>
 
+拖拽过程中监听到status改变时上报的数据。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-拖拽过程中监听到status改变时上报的数据。
 
 | 名称          | 类型                                                   | 必填 | 说明                                     |
 | -----------   | ------------------------------------------------------ | ---- | ---------------------------------------- |
@@ -692,11 +692,11 @@ struct DragControllerPage {
 
 ## DragStatus<sup>11+</sup>
 
+拖拽开始和结束状态。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-拖拽开始和结束状态。
 
 | 名称          | 值                                                   | 说明                                     |
 | -----------   | ------------------------------------------------------| ---------------------------------------- |
@@ -705,11 +705,11 @@ struct DragControllerPage {
 
 ## AnimationOptions<sup>11+</sup>
 
+拖拽相关的动效参数。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-发起拖拽所需要的属性和拖拽时携带的信息。
 
 | 名称        | 类型                                                   | 必填 | 说明                                     |
 | ----------- | ------------------------------------------------------ | ---- | ---------------------------------------- |
@@ -718,16 +718,16 @@ struct DragControllerPage {
 
 ## DragEventParam<sup>12+</sup>
 
+拖拽结束返回结果的回调。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-拖拽结束返回结果的回调。
-
 | 名称        | 类型                                                         | 必填 | 说明                           |
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------ |
-| event       | [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent7) | 是   | 拖拽事件信息，仅包括拖拽结果。 |
-| extraParams | string                                                       | 是   | 拖拽事件额外信息。             |
+| event<sup>10+</sup>       | [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent7) | 是   | 拖拽事件信息，仅包括拖拽结果。 |
+| extraParams<sup>10+</sup> | string                                                       | 是   | 拖拽事件额外信息。             |
 
 ## dragController.getDragPreview<sup>(deprecated)</sup>
 
@@ -783,7 +783,7 @@ setForegroundColor(color: ResourceColor): void
 
 请参考[animate](#animate11)
 
-  ### animate<sup>11+</sup>
+### animate<sup>11+</sup>
 
 animate(options: AnimationOptions, handler: () => void): void
 

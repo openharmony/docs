@@ -73,7 +73,7 @@ PhotoPickerComponent({
 
 ## PickerOptions
 
-继承自[BaseSelectOptions](js-apis-photoAccessHelper.md#baseselectoptions12)。
+继承自[BaseSelectOptions](arkts-apis-photoAccessHelper-class.md#baseselectoptions12)。
 
 Picker配置选项。
 
@@ -272,7 +272,7 @@ saveTrustedPhotoAssets(trustedUris: Array&lt;string&gt;, callback: AsyncCallback
 |-------------|----------------------------------------------------------------| ----- |-------------------|
 | trustedUris     | Array&lt;string&gt; | 是 | 需要保存到图库的应用沙箱图片/视频uri。trustedUris一般来自[replacePhotoPickerPreview](#replacephotopickerpreview15)替换显示成功的newUri。 |
 | callback  | AsyncCallback&lt;Array&lt;string&gt;&gt;          | 是 | 返回保存后新生成的媒体库文件对应的uri。             |
-| configs | Array&lt;[photoAccessHelper.PhotoCreationConfig](js-apis-photoAccessHelper.md#photocreationconfig12)&gt;          | 否 | 需要保存的文件对应的配置参数。             |
+| configs | Array&lt;[photoAccessHelper.PhotoCreationConfig](arkts-apis-photoAccessHelper-i.md#photocreationconfig12)&gt;          | 否 | 需要保存的文件对应的配置参数。             |
 | saveMode | [SaveMode](#savemode15)           | 否 | 图片保存模式。             |
 
 ## BaseItemInfo

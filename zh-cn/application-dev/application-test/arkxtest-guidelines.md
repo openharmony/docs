@@ -35,7 +35,7 @@
 
 ### 搭建环境
 
-DevEco Studio可参考其官网介绍进行[下载](https://developer.harmonyos.com/cn/develop/deveco-studio)，并进行相关的配置动作。
+DevEco Studio可参考其官网介绍进行[下载](https://developer.huawei.com/consumer/cn/download/)，并进行相关的配置动作。
 
 ### 新建和编写测试脚本
 
@@ -554,9 +554,22 @@ hdc shell uitest dumpLayout -p /data/local/tmp/1.json
 >
 > 录制过程中，需等待当前操作的识别结果在命令行输出后，再进行下一步操作。
 
+**命令列表**
+| 命令   | 配置参数    |  必填 | 描述              | 
+|-------|--------------|------|-----------------|
+| -W    | \<true/false> | 否   | 录制过程中是否保存操作坐标对应的控件信息到/data/local/tmp/record.csv文件中。true表示保存控件信息，false表示仅记录坐标信息，不设置时默认为true。 |
+| -l    |              | 否   | 在每次操作后保存当前布局信息，文件保存路径：/data/local/tmp/layout_录制启动时间戳_操作序号.json。 | 
+| -c    | \<true/false> | 否   | 是否将录制到的操作事件信息打印到控制台，true表示打印，flase表示打印，不设置时默认为true。 | 
+
 ```bash
 # 将当前界面操作记录到/data/local/tmp/record.csv，结束录制操作使用Ctrl+C结束录制。
 hdc shell uitest uiRecord record
+# 录制时仅记录操作对应的坐标，不匹配目标控件。
+hdc shell uitest uiRecord record -W false
+# 每次操作后，保存页面布局，文件保存路径：/data/local/tmp/layout_录制启动时间戳_操作序号.json。
+hdc shell uitest uiRecord record -l
+# 录制到的操作事件信息不打印到控制台。
+hdc shell uitest uiRecord record -c false
 # 读取并打印录制数据。
 hdc shell uitest uiRecord read
 ```
@@ -810,6 +823,10 @@ hdc shell uitest start-daemon
 
 #### 模拟调整窗口大小能力实例
 介绍模拟调整窗口大小能力，并可指定调整的具体方向，具体代码请参考[模拟调整窗口大小能力示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/window/ReSizeWindow.test.ets)。
+
+### 白盒性能测试脚本实例
+
+介绍调用PerfTest接口，实现白盒性能测试的能力，具体代码请参考[白盒性能测试示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/perftest/entry/src/ohosTest/ets/test/PerfTest.test.ets)。
 
 <!--DelEnd-->
 

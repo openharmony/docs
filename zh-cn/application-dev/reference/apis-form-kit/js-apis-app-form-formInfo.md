@@ -219,3 +219,15 @@ import { formInfo } from '@kit.FormKit';
 | top    | number | 是 | 否   | 描述矩形的左上角顶点的 y 坐标，单位：vp。|
 | width  | number | 是 | 否   | 描述矩形的宽度，单位：vp。|
 | height | number | 是 | 否   | 描述矩形的高度，单位：vp。|
+## FormLocation<sup>20+</sup>
+
+卡片当前位置枚举。
+
+**系统能力**：SystemCapability.Ability.Form
+
+| 名称                         | 值   | 说明                             |
+| ---------------------------- | ---- | -------------------------------- |
+| DESKTOP                      | 0    | 表示卡片位于桌面。               |
+| FORM_CENTER                  | 1    | 表示卡片位于桌面的卡片中心。     |
+| FORM_MANAGER                 | 2    | 表示卡片位于桌面的卡片管理器。   |
+<!--RP1--><!--RP1End-->

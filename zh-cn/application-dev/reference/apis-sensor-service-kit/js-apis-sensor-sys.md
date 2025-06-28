@@ -126,10 +126,10 @@ off(type: SensorId.COLOR, callback?: Callback&lt;ColorResponse&gt;): void
 
 **参数**：
 
-| 参数名   | 类型                                              | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | [SensorId](#sensorid9).COLOR                      | 是   | 传感器类型，该值固定为SensorId.COLOR。                       |
-| callback | Callback&lt;[ColorResponse](#colorresponse10)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
+| 参数名   | 类型                                                     | 必填 | 说明                                                         |
+| -------- |--------------------------------------------------------| ---- | ------------------------------------------------------------ |
+| type     | [SensorId](#sensorid9).COLOR                           | 是   | 传感器类型，该值固定为SensorId.COLOR。                       |
+| callback | Callback&lt;[ColorResponse](#colorresponse10)&gt;      | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **错误码**：
 
@@ -164,6 +164,84 @@ try {
 } catch (error) {
   let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
+}
+```
+
+### COLOR<sup>19+</sup>
+
+off(type: SensorId.COLOR, sensorInfoParam?: SensorInfoParam, callback?: Callback&lt;ColorResponse&gt;): void
+
+取消订阅颜色传感器数据。
+
+**系统能力**：SystemCapability.Sensors.Sensor
+
+**系统API**：此接口为系统接口
+
+**参数**：
+
+| 参数名   | 类型                                                     | 必填 | 说明                                                         |
+| -------- |--------------------------------------------------------| ---- | ------------------------------------------------------------ |
+| type     | [SensorId](#sensorid9).COLOR                           | 是   | 传感器类型，该值固定为SensorId.COLOR。                       |
+| sensorInfoParam | [SensorInfoParam](#sensorinfoparam19) |  否 | 传感器传入设置参数，可指定deviceId、sensorIndex |
+| callback | Callback&lt;[ColorResponse](#colorresponse10)&gt;      | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 202      | Permission check failed. A non-system application uses the system API. |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
+
+**示例**：
+
+```ts
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+enum Ret { OK, Failed = -1 }
+
+// 传感器回调
+const sensorCallback = (response: sensor.ColorResponse) => {
+  console.log(`callback response: ${JSON.stringify(response)}`);
+}
+// 传感器监听类型
+const sensorType = sensor.SensorId.COLOR;
+const sensorInfoParam: sensor.SensorInfoParam = {};
+
+function sensorSubscribe(): Ret {
+  let ret: Ret = Ret.OK;
+  try {
+    // 查询所有的传感器
+    const sensorList: sensor.Sensor[] = sensor.getSensorListSync();
+    if (!sensorList.length) {
+      return Ret.Failed;
+    }
+    // 根据实际业务逻辑获取目标传感器
+    const targetSensor: sensor.Sensor = sensorList[0];
+    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    // 订阅传感器事件
+    sensor.on(sensorType, sensorCallback, { sensorInfoParam });
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`Failed to invoke sensor.on. Code: ${e.code}, message: ${e.message}`);
+    ret = Ret.Failed;
+  }
+  return ret;
+}
+
+function sensorUnsubscribe(): Ret {
+  let ret: Ret = Ret.OK;
+  try {
+    sensor.off(sensorType, sensorInfoParam, sensorCallback);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`Failed to invoke sensor.off. Code: ${e.code}, message: ${e.message}`);
+    ret = Ret.Failed;
+  }
+  return ret;
 }
 ```
 
@@ -220,6 +298,84 @@ try {
 }
 ```
 
+### SAR<sup>19+</sup>
+
+off(type: SensorId.SAR, sensorInfoParam?: SensorInfoParam, callback?: Callback&lt;SarResponse&gt;): void
+
+取消订阅吸收比率传感器数据。
+
+**系统能力**：SystemCapability.Sensors.Sensor
+
+**系统API**：此接口为系统接口
+
+**参数**：
+
+| 参数名   | 类型                                          | 必填 | 说明                                                         |
+| -------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | [SensorId](#sensorid9).SAR                    | 是   | 传感器类型，该值固定为SensorId.SAR。                         |
+| sensorInfoParam | [SensorInfoParam](#sensorinfoparam19) |  否 | 传感器传入设置参数，可指定deviceId、sensorIndex |
+| callback | Callback&lt;[SarResponse](#sarresponse10)&gt; | 否   | 需要取消订阅的回调函数，若无此参数，则取消订阅当前类型的所有回调函数。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                                                                                                    |
+| -------- |-----------------------------------------------------------------------------------------------------------------------------------------|
+| 202      | Permission check failed. A non-system application uses the system API.                                                                  |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
+
+**示例**：
+
+```ts
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+enum Ret { OK, Failed = -1 }
+
+// 传感器回调
+const sensorCallback = (response: sensor.SarResponse) => {
+  console.log(`callback response: ${JSON.stringify(response)}`);
+}
+// 传感器监听类型
+const sensorType = sensor.SensorId.SAR;
+const sensorInfoParam: sensor.SensorInfoParam = {};
+
+function sensorSubscribe(): Ret {
+  let ret: Ret = Ret.OK;
+  try {
+    // 查询所有的传感器
+    const sensorList: sensor.Sensor[] = sensor.getSensorListSync();
+    if (!sensorList.length) {
+      return Ret.Failed;
+    }
+    // 根据实际业务逻辑获取目标传感器
+    const targetSensor: sensor.Sensor = sensorList[0];
+    sensorInfoParam.deviceId = targetSensor.deviceId ?? -1;
+    sensorInfoParam.sensorIndex = targetSensor.sensorIndex ?? -1;
+    // 订阅传感器事件
+    sensor.on(sensorType, sensorCallback, { sensorInfoParam });
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`Failed to invoke sensor.on. Code: ${e.code}, message: ${e.message}`);
+    ret = Ret.Failed;
+  }
+  return ret;
+}
+
+function sensorUnsubscribe(): Ret {
+  let ret: Ret = Ret.OK;
+  try {
+    sensor.off(sensorType, sensorInfoParam, sensorCallback);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`Failed to invoke sensor.off. Code: ${e.code}, message: ${e.message}`);
+    ret = Ret.Failed;
+  }
+  return ret;
+}
+```
+
 ## SensorId<sup>9+</sup>
 
 表示当前支持订阅或取消订阅的传感器类型。
@@ -257,3 +413,16 @@ try {
 | 名称            | 类型   | 只读 | 可选 | 说明                            |
 | --------------- | ------ | ---- | ---- | ------------------------------- |
 | absorptionRatio | number | 是   | 是   | 表示具体的吸收率，单位 : W/kg。 |
+
+
+## SensorInfoParam<sup>19+</sup>
+
+传感器传入设置参数。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.Sensor
+
+
+| 参数名 | 类型                   | 必填 | 说明                      |
+| ------ | ---------------------- | ---- |-------------------------|
+| deviceId   | number | 否   | 设备ID：默认值为-1，表示本地设备。     |
+| sensorIndex   | number | 否   | 传感器索引：默认值为0，为设备上的默认传感器。 |

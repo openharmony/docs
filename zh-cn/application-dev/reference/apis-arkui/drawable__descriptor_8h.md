@@ -24,6 +24,7 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | typedef struct [ArkUI_DrawableDescriptor](_ark_u_i___native_module.md#arkui_drawabledescriptor) [ArkUI_DrawableDescriptor](_ark_u_i___native_module.md#arkui_drawabledescriptor) | 定义DrawableDescriptor对象。  | 
+| struct [OH_PixelmapNative](_ark_u_i___native_module.md#oh_pixelmapnative) | 使用Image Kit定义的Native侧的OH_PixelmapNative对象。  | 
 | typedef struct [OH_PixelmapNative](_ark_u_i___native_module.md#oh_pixelmapnative) \* [OH_PixelmapNativeHandle](_ark_u_i___native_module.md#oh_pixelmapnativehandle) | 定义OH_PixelmapNative对象指针类型。  | 
 
 

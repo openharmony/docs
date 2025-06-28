@@ -36,7 +36,7 @@ Subscribes to an event in persistent manner and executes a callback after the ev
 **Example**
 
 ```ts
-import { Callback} from '@kit.BasicServicesKit';
+import { Callback } from '@kit.BasicServicesKit';
 
 let innerEvent: emitter.InnerEvent = {
   eventId: 1
@@ -70,7 +70,7 @@ Subscribes to an event in persistent manner and executes a callback after the ev
 **Example**
 
 ```ts
-import { Callback} from '@kit.BasicServicesKit';
+import { Callback } from '@kit.BasicServicesKit';
 
 let callback: Callback<emitter.EventData> = (eventData: emitter.EventData) => {
   console.info(`eventData: ${JSON.stringify(eventData)}`);
@@ -99,7 +99,7 @@ Subscribes to an event in persistent manner and executes a callback after the ev
 **Example**
 
 ```ts
-import { Callback} from '@kit.BasicServicesKit';
+import { Callback } from '@kit.BasicServicesKit';
 
 @Sendable
 class Sample {
@@ -142,7 +142,7 @@ Subscribes to an event in one-shot manner and unsubscribes from it after the eve
 **Example**
 
 ```ts
-import { Callback} from '@kit.BasicServicesKit';
+import { Callback } from '@kit.BasicServicesKit';
 
 let innerEvent: emitter.InnerEvent = {
   eventId: 1
@@ -175,7 +175,7 @@ Subscribes to an event in one-shot manner and unsubscribes from it after the eve
 **Example**
 
 ```ts
-import { Callback} from '@kit.BasicServicesKit';
+import { Callback } from '@kit.BasicServicesKit';
 
 let callback: Callback<emitter.EventData> = (eventData: emitter.EventData) => {
   console.info(`eventData: ${JSON.stringify(eventData)}`);
@@ -204,7 +204,7 @@ Subscribes to an event in one-shot manner and unsubscribes from it after the eve
 **Example**
 
 ```ts
-import { Callback} from '@kit.BasicServicesKit';
+import { Callback } from '@kit.BasicServicesKit';
 
 @Sendable
 class Sample {
@@ -299,7 +299,7 @@ After this API is used to unsubscribe from an event, the event that has been pub
 **Example**
 
 ```ts
-import { Callback} from '@kit.BasicServicesKit';
+import { Callback } from '@kit.BasicServicesKit';
 
 let callback: Callback<emitter.EventData> = (eventData: emitter.EventData) => {
   console.info(`eventData: ${JSON.stringify(eventData)}`);
@@ -331,7 +331,7 @@ After this API is used to unsubscribe from an event, the event that has been pub
 **Example**
 
 ```ts
-import { Callback} from '@kit.BasicServicesKit';
+import { Callback } from '@kit.BasicServicesKit';
 
 let callback: Callback<emitter.EventData> = (eventData: emitter.EventData) => {
   console.info(`eventData: ${JSON.stringify(eventData)}`);
@@ -363,7 +363,7 @@ After this API is used to unsubscribe from an event, the event that has been pub
 **Example**
 
 ```ts
-import { Callback} from '@kit.BasicServicesKit';
+import { Callback } from '@kit.BasicServicesKit';
 
 @Sendable
 class Sample {
@@ -580,7 +580,14 @@ Obtains the number of subscriptions to a specified event.
 
 | Name | Type          | Mandatory| Description    |
 | ------- | -------------- | ---- | -------- |
-| eventId | number \| string | Yes  | Event ID. The value of the string type cannot be an empty string.|
+| eventId | number \| string | Yes  | Event ID, which is a custom string. The value cannot be an empty string and exceed 10240 bytes.|
+
+**Returns**
+
+| Type    | Description        |
+| ------- |------------|
+| number | Number of subscriptions to a specified event.|
+
 
 **Example**
 
@@ -598,7 +605,7 @@ Enumerates the event priorities.
 
 | Name     | Value   | Description                                               |
 | --------- | ---- | --------------------------------------------------- |
-| IMMEDIATE | 0    | The event will be emitted immediately.                                |
+| IMMEDIATE | 0    | The event will be emitted immediately.                                 |
 | HIGH      | 1    | The event will be emitted before low-priority events.                          |
 | LOW       | 2    | The event will be emitted before idle-priority events. By default, an event is in LOW priority.    |
 | IDLE      | 3    | The event will be emitted after all the other events.            |

@@ -5,7 +5,7 @@
 
 The **native_audio_session_manager.h** file declares the functions related to an audio session manager.
 
-You can call the functions to create an audio session manager, activates or deactivates an audio session, checks whether an audio session is activated, and listens for audio session deactivation events.
+You can call the functions to create an audio session manager, activate or deactivate an audio session, check whether an audio session is activated, and listen for audio session deactivation events.
 
 **Library**: libohaudio.so
 

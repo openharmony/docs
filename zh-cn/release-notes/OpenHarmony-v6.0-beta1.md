@@ -231,6 +231,16 @@ Wi-Fi新增支持连接候选网络时提示确认是否信任该网络，并提
 | IC04TG | 进程com.ohos.note下的com.ohos.note线程有一定概率出现因libarkweb_engine.so导致的cppcrash。  |
 | IBZYWM | 进程com.ohos.note下的CompositorGpuTh线程有一定概率出现因libmali-bifrost-g52-g7p0-ohos.so导致的cppcrash。  |
 | IC57IO | 桌面->右上角下划进入控制中心->点击控制中心飞行模式，该操作按钮功能失效。  |
+| IC4ZPS | 执行XTS测试时，ActslocationErrorCodeApiTest测试套因RK3568开发板位置服务不支持Geofence能力导致执行结果出现失败项。  |
+| IC32I0 | 浏览器微博首页滑动、浏览器天猫界面缩放的动画帧率未达到基线要求。 |
+| IBTCKR | SystemUI状态栏下拉到内容渲染耗完成时的完整用时可能稍长（160+ ms）。 |
+| IBBZPS | 进程com.ohos.systemui下的OS_IPC_0_1067线程小概率出现cppcrash，崩溃栈：ld-musl-arm.so.1(__libc_free+172) |
+| IBE36X<br />IBO3MF | 进程render_service小概率出现因SERVICE_BLOCK导致的的sysfreeze问题。 |
+| IC32SL<br />IBE47X | 首次启动浏览器到启动完成的耗时稍长，未达到基线要求。 |
+| IBUCOT | com.ohos.settingsdata进程的常驻内存实测值为16MB，远超基线要求。  |
+| IC4UFM | 通话拨号盘按键的按键响应时延稍长，未达到基线要求。  |
+| IC22OQ | 进程com.ohos.note下的RSRenderThread线程小概率出现因libskia_canvaskit.z.so导致的cppcrash。  |
+| IC4D3P | 开机和重启的耗时稍长，未达到基线要求。 |
 
 
 ## 遗留缺陷列表
@@ -239,16 +249,9 @@ Wi-Fi新增支持连接候选网络时提示确认是否信任该网络，并提
 
 | ISSUE | 问题描述 | 影响 | 计划解决日期 | 
 | -------- | -------- | -------- | -------- |
-| IBTCKR | SystemUI状态栏下拉到内容渲染耗完成时的完整用时可能稍长（160+ ms）。 | 轻微影响使用体验。 | 2025年5月30日 |
-| IBBZPS | 进程com.ohos.systemui下的OS_IPC_0_1067线程小概率出现cppcrash，崩溃栈：ld-musl-arm.so.1(__libc_free+172) | 系统异常，用户无感知。 | 2025年5月30日 | 
-| IBE36X<br />IBO3MF | 进程render_service小概率出现因SERVICE_BLOCK导致的的sysfreeze问题。 | 桌面无响应后黑屏，自动恢复后回到桌面。 | 2025年5月30日 |
-| IC32I0 | 浏览器微博首页滑动、浏览器天猫界面缩放的动画帧率未达到基线要求。 | 轻微影响使用体验。 | 2025年5月30日 | 
-| IC32SL<br />IBE47X | 首次启动浏览器到启动完成的耗时稍长，未达到基线要求。 | 轻微影响使用体验。 | 2025年6月23日 | 
-| IBUCOT | com.ohos.settingsdata进程的常驻内存实测值为16MB，远超基线要求。  | 内存占用不符合预期，对实际使用无影响。 | 2025年5月30日 | 
-| IC4UFM | 通话拨号盘按键的按键响应时延稍长，未达到基线要求。  | 轻微影响使用体验。 | 2025年5月16日 | 
-| IC22OQ | 进程com.ohos.note下的RSRenderThread线程小概率出现因libskia_canvaskit.z.so导致的cppcrash。  | 备忘录应用异常，重启可恢复。 | 2025年5月15日 | 
-| IC4ZPS | 执行XTS测试时，ActslocationErrorCodeApiTest测试套因RK3568开发板位置服务不支持Geofence能力导致执行结果出现失败项。  | 该问题已在master解决，可通过增加配置项处理。<br/>配置方式可参考https://gitee.com/openharmony/vendor_hihope/pulls/1505 | 2025年4月30日 | 
-| IC4D3P | 开机和重启的耗时稍长，未达到基线要求。 | 轻微影响使用体验。 | 2025年7月30日 | 
+| ICAWPJ | 执行XTS测试时，在之前的case注册了on的callback（其中callback是一个case的局部函数），之后没有通过off解除注册，在后面的case也触发了此callback，但是因其引用的js函数已经析构，导致执行结果出现失败项。 | 阻塞特定场景下的XTS测试。 | 2025年6月20日已在master解决 | 
+| ICD55I | 执行XTS测试时，ActsTelephonyContactTest测试套因RK3568开发板因联系人服务获取datashare超时限制过长导致执行结果出现失败项。 | 阻塞特定场景下的XTS测试。 | 2025年6月20日已在master解决 | 
+| ICENKX | 执行XTS测试时，创建资产接口业务码未做区分导致执行结果出现失败项。 | 阻塞特定场景下的XTS测试。 | 2025年6月20日已在master解决 | 
 | IC2I9O | 仿抖音应用视频播放过程中滑动评论区的帧率略低于基线要求。 | 轻微影响使用体验。 | 2025年7月30日 | 
 | ICE0E0 | 进程com.ohos.systemui有较大概率出现因INPUT_EVENT_SOCKET_TIMEOUT导致的sysfreeze问题。 | 系统异常，重启可恢复。 | 2025年7月30日 | 
 | ICCUL7 | 进程/system/bin/bootanimation下的OS_IPC_1_743线程有一定概率出现因libaccessibilityconfig.z.so崩溃导致的cppcrash。 | 系统异常，重启可恢复。 | 2025年7月30日 | 

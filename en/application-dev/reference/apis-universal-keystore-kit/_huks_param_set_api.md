@@ -43,7 +43,7 @@ Defines functions for parameter set lifecycle management, including initializing
 ### OH_Huks_AddParams()
 
 ```
-struct OH_Huks_Result OH_Huks_AddParams (struct OH_Huks_ParamSet * paramSet, const struct OH_Huks_Param * params, uint32_t paramCnt )
+struct OH_Huks_Result OH_Huks_AddParams(struct OH_Huks_ParamSet *paramSet, const struct OH_Huks_Param *params, uint32_t paramCnt)
 ```
 **Description**
 Adds parameters to a parameter set.
@@ -66,7 +66,7 @@ Returns [OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode) if the operation is
 ### OH_Huks_BuildParamSet()
 
 ```
-struct OH_Huks_Result OH_Huks_BuildParamSet (struct OH_Huks_ParamSet ** paramSet)
+struct OH_Huks_Result OH_Huks_BuildParamSet(struct OH_Huks_ParamSet **paramSet)
 ```
 **Description**
 Builds a parameter set.
@@ -87,7 +87,7 @@ Returns [OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode) if the operation is
 ### OH_Huks_CheckParamMatch()
 
 ```
-struct OH_Huks_Result OH_Huks_CheckParamMatch (const struct OH_Huks_Param * baseParam, const struct OH_Huks_Param * param )
+struct OH_Huks_Result OH_Huks_CheckParamMatch(const struct OH_Huks_Param *baseParam, const struct OH_Huks_Param *param)
 ```
 **Description**
 Checks whether two parameters are the same.
@@ -109,7 +109,7 @@ Returns [OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode) if the two paramete
 ### OH_Huks_CopyParamSet()
 
 ```
-struct OH_Huks_Result OH_Huks_CopyParamSet (const struct OH_Huks_ParamSet * fromParamSet, uint32_t fromParamSetSize, struct OH_Huks_ParamSet ** paramSet )
+struct OH_Huks_Result OH_Huks_CopyParamSet(const struct OH_Huks_ParamSet *fromParamSet, uint32_t fromParamSetSize, struct OH_Huks_ParamSet **paramSet)
 ```
 **Description**
 Copies a parameter set (deep copy).
@@ -132,7 +132,7 @@ Returns [OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode) if the operation is
 ### OH_Huks_FreeKeyAliasSet()
 
 ```
-void OH_Huks_FreeKeyAliasSet (struct OH_Huks_KeyAliasSet * keyAliasSet)
+void OH_Huks_FreeKeyAliasSet(struct OH_Huks_KeyAliasSet *keyAliasSet)
 ```
 **Description**
 Frees a key alias set.
@@ -149,7 +149,7 @@ Frees a key alias set.
 ### OH_Huks_FreeParamSet()
 
 ```
-void OH_Huks_FreeParamSet (struct OH_Huks_ParamSet ** paramSet)
+void OH_Huks_FreeParamSet(struct OH_Huks_ParamSet **paramSet)
 ```
 **Description**
 Frees a parameter set.
@@ -166,7 +166,7 @@ Frees a parameter set.
 ### OH_Huks_FreshParamSet()
 
 ```
-struct OH_Huks_Result OH_Huks_FreshParamSet (struct OH_Huks_ParamSet * paramSet, bool isCopy )
+struct OH_Huks_Result OH_Huks_FreshParamSet(struct OH_Huks_ParamSet *paramSet, bool isCopy)
 ```
 **Description**
 Updates the data of the [OH_Huks_Blob](_o_h___huks___blob.md) type in a parameter set.
@@ -188,7 +188,7 @@ Returns [OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode) if the operation is
 ### OH_Huks_GetParam()
 
 ```
-struct OH_Huks_Result OH_Huks_GetParam (const struct OH_Huks_ParamSet * paramSet, uint32_t tag, struct OH_Huks_Param ** param )
+struct OH_Huks_Result OH_Huks_GetParam(const struct OH_Huks_ParamSet *paramSet, uint32_t tag, struct OH_Huks_Param **param)
 ```
 **Description**
 Obtains a parameter from a parameter set.
@@ -211,7 +211,7 @@ Returns [OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode) if the operation is
 ### OH_Huks_InitParamSet()
 
 ```
-struct OH_Huks_Result OH_Huks_InitParamSet (struct OH_Huks_ParamSet ** paramSet)
+struct OH_Huks_Result OH_Huks_InitParamSet(struct OH_Huks_ParamSet **paramSet)
 ```
 **Description**
 Initializes a parameter set.
@@ -232,7 +232,7 @@ Returns [OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode) if the operation is
 ### OH_Huks_IsParamSetTagValid()
 
 ```
-struct OH_Huks_Result OH_Huks_IsParamSetTagValid (const struct OH_Huks_ParamSet * paramSet)
+struct OH_Huks_Result OH_Huks_IsParamSetTagValid(const struct OH_Huks_ParamSet *paramSet)
 ```
 **Description**
 Checks whether the parameters in a parameter set are valid.
@@ -253,7 +253,7 @@ Returns [OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode) if the parameters a
 ### OH_Huks_IsParamSetValid()
 
 ```
-struct OH_Huks_Result OH_Huks_IsParamSetValid (const struct OH_Huks_ParamSet * paramSet, uint32_t size )
+struct OH_Huks_Result OH_Huks_IsParamSetValid(const struct OH_Huks_ParamSet *paramSet, uint32_t size)
 ```
 **Description**
 Checks whether a parameter set is of the valid size.

@@ -534,7 +534,7 @@
     - [OH_NativeXComponent_HistoricalPoint](_o_h___native_x_component___historical_point.md)
     - [PictureInPicture_PipConfig](capi-pictureinpicture-pipconfig.md)
     - [WindowManager_Rect](capi-windowmanager-rect.md)
-    - [struct](capi-struct.md)
+    - [OH_PixelmapNative](capi-struct.md)
     - [WindowManager_WindowProperties](capi-windowmanager-windowproperties.md)
     - [WindowManager_AvoidArea](capi-windowmanager-avoidarea.md)
     - [NativeDisplayManager_Rect](capi-nativedisplaymanager-rect.md)
@@ -565,6 +565,7 @@
     - [UIExtension错误码](errorcode-uiextension.md)
     - [用户界面外观服务错误码](errorcode-uiappearance.md)
     - [NodeAdapter错误码](errorcode-nodeadapter.md)
+    - [XComponent组件错误码](errorcode-xcomponent.md)
   - 图形图像<!--arkui-graphics-images-arkts-errcode-->
     - [屏幕错误码](errorcode-display.md)
     - [窗口错误码](errorcode-window.md)

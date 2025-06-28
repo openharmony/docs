@@ -260,7 +260,7 @@ struct RadioExample {
           .height(50)
           .width(50)
           .onChange((isChecked: boolean) => {
-            console.log('Radio1 status is ' + isChecked);
+            console.info('Radio1 status is ' + isChecked);
           })
       }
       Column() {
@@ -272,7 +272,7 @@ struct RadioExample {
           .height(50)
           .width(50)
           .onChange((isChecked: boolean) => {
-            console.log('Radio2 status is ' + isChecked);
+            console.info('Radio2 status is ' + isChecked);
           })
       }
       Column() {
@@ -284,7 +284,7 @@ struct RadioExample {
           .height(50)
           .width(50)
           .onChange((isChecked: boolean) => {
-            console.log('Radio3 status is ' + isChecked);
+            console.info('Radio3 status is ' + isChecked);
           })
       }
     }.padding({ top: 30 })
@@ -313,7 +313,7 @@ struct RadioExample {
           .height(50)
           .width(80)
           .onChange((isChecked: boolean) => {
-            console.log('Radio1 status is ' + isChecked);
+            console.info('Radio1 status is ' + isChecked);
           })
       }
       Column() {
@@ -324,7 +324,7 @@ struct RadioExample {
           .height(50)
           .width(80)
           .onChange((isChecked: boolean) => {
-            console.log('Radio2 status is ' + isChecked);
+            console.info('Radio2 status is ' + isChecked);
           })
       }
       Column() {
@@ -336,7 +336,7 @@ struct RadioExample {
           .height(50)
           .width(80)
           .onChange((isChecked: boolean) => {
-            console.log('Radio3 status is ' + isChecked);
+            console.info('Radio3 status is ' + isChecked);
           })
       }
     }.padding({ top: 30 })

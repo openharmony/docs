@@ -65,38 +65,38 @@ import { InsightIntentLink, LinkParamCategory } from '@kit.AbilityKit';
     paramCategory: LinkParamCategory.LINK
   }],
   parameters: {
-    "schema": "http://json-schema.org/draft-07/schema#",
-    "type": "object",
-    "title": "Song Schema",
-    "description": "A schema for describing songs and their artists",
-    "properties": {
-      "songName": {
-        "type": "string",
-        "description": "The name of the song",
-        "minLength": 1
+    'schema': 'http://json-schema.org/draft-07/schema#',
+    'type': 'object',
+    'title': 'Song Schema',
+    'description': 'A schema for describing songs and their artists',
+    'properties': {
+      'songName': {
+        'type': 'string',
+        'description': 'The name of the song',
+        'minLength': 1
       }
     },
-    "required": ["songName"],
-    "additionalProperties": false
+    'required': ['songName'],
+    'additionalProperties': false
   },
   result: {
-    "type": "object",
-    "propertyNames": {
-      "enum": [
-        "code",
-        "result"
+    'type': 'object',
+    'propertyNames': {
+      'enum': [
+        'code',
+        'result'
       ]
     },
-    "required": [
-      "code",
-      "result"
+    'required': [
+      'code',
+      'result'
     ],
-    "properties": {
-      "code": {
-        "description": "执行结果码",
-        "type": "number"
+    'properties': {
+      'code': {
+        'description': '执行结果码',
+        'type': 'number'
       },
-      "result": {}
+      'result': {}
     }
   },
   example: '{songName: Song}'
@@ -116,8 +116,8 @@ export class ClassForLink {
     this._playback = playback;
   }
 
-  static Function1(playbackProgress:number, playback?: number): void {
-    console.log('Function1'+ playbackProgress);
+  static Function1(playbackProgress: number, playback?: number): void {
+    console.log('Function1' + playbackProgress);
   }
 }
 ```
@@ -168,7 +168,7 @@ LinkIntentDecoratorInfo继承自[IntentDecoratorInfo](#intentdecoratorinfo)，�
 | 名称        | 类型              | 只读 | 可选 | 说明                                                         |
 | ----------- | -----------------| ------ | ---- | ------------------------------------------------------------ |
 | uri                | string          | 否          | 否   | 表示意图的uri信息。                                 |
-| paramsMapping      | [LinkIntentParamMapping](#linkintentparammapping)[] | 否 | 是   | 意图参数和uri信息的映射。    |
+| paramMappings      | [LinkIntentParamMapping](#linkintentparammapping)[] | 否 | 是   | 意图参数和uri信息的映射。    |
 
 ## LinkIntentParamMapping
 
@@ -311,19 +311,19 @@ export class ClassForFuncDemo {
   icon: $r('sys.plural.selecttitlebar_accessibility_message_desc_new'),
   llmDescription: 'Get weather of an location',
   parameters: {
-    "schema": "http://json-schema.org/draft-07/schema#",
-    "type": "object",
-    "title": "Weather Schema",
-    "description": "A schema for get weather of an location",
-    "properties": {
-      "location": {
-        "type": "string",
-        "description": "The city and state, e.g. Hangzhou",
-        "minLength": 1
+    'schema': 'http://json-schema.org/draft-07/schema#',
+    'type': 'object',
+    'title': 'Weather Schema',
+    'description': 'A schema for get weather of an location',
+    'properties': {
+      'location': {
+        'type': 'string',
+        'description': 'The city and state, e.g. Hangzhou',
+        'minLength': 1
       }
     },
-    "required": ["location"],
-    "additionalProperties": false
+    'required': ['location'],
+    'additionalProperties': false
   }
 })
   static getWeather(location: string): string {
@@ -374,19 +374,18 @@ const LOG_TAG: string = 'testTag-EntryIntent';
   abilityName: 'EntryAbility',
   executeMode: [insightIntent.ExecuteMode.UI_ABILITY_FOREGROUND],
   parameters: {
-    "schema": "http://json-schema.org/draft-07/schema#",
-    "type": "object",
-    "title": "Song Schema",
-    "description": "A schema for describing songs and their artists",
-    "properties": {
-      "songName": {
-        "type": "string",
-        "description": "The name of the song",
-        "minLength": 1
+    'schema': 'http://json-schema.org/draft-07/schema#',
+    'type': 'object',
+    'title': 'Song Schema',
+    'description': 'A schema for describing songs and their artists',
+    'properties': {
+      'songName': {
+        'type': 'string',
+        'description': 'The name of the song',
+        'minLength': 1
       }
     },
-    "required": ["songName"],
-    "additionalProperties": false
+    'required': ['songName']
   }
 })
 export default class PlayMusicDemo extends InsightIntentEntryExecutor<string> {
@@ -406,7 +405,7 @@ export default class PlayMusicDemo extends InsightIntentEntryExecutor<string> {
     // 定义意图的执行结果
     let result: insightIntent.IntentResult<string> = {
       code: 123,
-      result: "result"
+      result: 'result'
     }
     hilog.info(0x0000, LOG_TAG, 'PlayMusicDemo return %{public}s', JSON.stringify(result));
     // 以Promise的方式返回意图执行结果
@@ -459,39 +458,39 @@ import { insightIntent, Want, InsightIntentForm } from '@kit.AbilityKit';
   llmDescription: '支持传递歌曲名称，播放音乐',
   keywords: ['音乐播放', '播放歌曲', 'PlayMusic'],
   parameters: {
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "type": "object",
-    "title": "Song Schema",
-    "description": "A schema for describing songs and their artists",
-    "properties": {
-      "songName": {
-        "type": "string",
-        "description": "The name of the song",
-        "minLength": 1
+    '$schema': 'http://json-schema.org/draft-07/schema#',
+    'type': 'object',
+    'title': 'Song Schema',
+    'description': 'A schema for describing songs and their artists',
+    'properties': {
+      'songName': {
+        'type': 'string',
+        'description': 'The name of the song',
+        'minLength': 1
       },
-      "artist": {
-        "type": "object",
-        "description": "Information about the artist",
-        "properties": {
-          "country": {
-            "type": "string",
-            "description": "The artist's country of origin",
-            "default": "zh"
+      'artist': {
+        'type': 'object',
+        'description': 'Information about the artist',
+        'properties': {
+          'country': {
+            'type': 'string',
+            'description': 'The artist\'s country of origin',
+            'default': 'zh'
           },
-          "city": {
-            "type": "object",
-            "description": "The artist's city of origin"
+          'city': {
+            'type': 'object',
+            'description': 'The artist\' city of origin'
           },
-          "name": {
-            "type": "string",
-            "description": "The name of the artist",
-            "minLength": 1
+          'name': {
+            'type': 'string',
+            'description': 'The name of the artist',
+            'minLength': 1
           }
         },
-        "required": ["name"]
+        'required': ['name']
       }
     },
-    "required": ["songName"]
+    'required': ['songName']
   },
   formName: 'widget'
 })
@@ -540,26 +539,26 @@ import { insightIntent, InsightIntentEntity } from '@kit.AbilityKit';
 @InsightIntentEntity({
   entityCategory: 'artist entity category',
   parameters: {
-    "$id": "/schemas/ArtistClassDef",
-    "type": "object",
-    "description": "Information about the artist",
-    "properties": {
-      "country": {
-        "type": "string",
-        "description": "The artist's country of origin",
-        "default": "zh"
+    '$id': '/schemas/ArtistClassDef',
+    'type': 'object',
+    'description': 'Information about the artist',
+    'properties': {
+      'country': {
+        'type': 'string',
+        'description': 'The artist\'s country of origin',
+        'default': 'zh'
       },
-      "city": {
-        "type": "string",
-        "description": "The artist's city of origin"
+      'city': {
+        'type': 'string',
+        'description': 'The artist\'s city of origin'
       },
-      "name": {
-        "type": "string",
-        "description": "The name of the artist",
-        "minLength": 1
+      'name': {
+        'type': 'string',
+        'description': 'The name of the artist',
+        'minLength': 1
       }
     },
-    "required": ["name"]
+    'required': ['name']
   }
 })
 export class ArtistClassDef implements insightIntent.IntentEntity {

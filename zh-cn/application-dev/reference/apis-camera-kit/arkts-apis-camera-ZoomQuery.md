@@ -7,6 +7,12 @@
 
 提供了与设备的缩放相关的查询功能，包括获取支持的缩放比例范围。
 
+## 导入模块
+
+```ts
+import { camera } from '@kit.CameraKit';
+```
+
 ## getZoomRatioRange<sup>11+</sup>
 
 getZoomRatioRange(): Array\<number\>

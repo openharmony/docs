@@ -76,6 +76,179 @@ struct Index {
 }
 ```
 
+- 被@Reusable装饰的自定义组件在复用时，会递归调用该自定义组件及其所有子组件的aboutToReuse回调函数。若在子组件的aboutToReuse函数中修改了父组件的状态变量，此次修改将不会生效，请避免此类用法。若需设置父组件的状态变量，可使用setTimeout设置延迟执行，将任务抛出组件复用的作用范围，使修改生效。
+
+
+  【反例】
+
+  在子组件的aboutToReuse中，直接修改父组件的状态变量。
+
+  ```ts
+  class BasicDataSource implements IDataSource {
+    private listener: DataChangeListener | undefined = undefined;
+    public dataArray: number[] = [];
+
+    totalCount(): number {
+      return this.dataArray.length;
+    }
+
+    getData(index: number): number {
+      return this.dataArray[index];
+    }
+
+    registerDataChangeListener(listener: DataChangeListener): void {
+      this.listener = listener;
+    }
+
+    unregisterDataChangeListener(listener: DataChangeListener): void {
+      this.listener = undefined;
+    }
+  }
+
+  @Entry
+  @Component
+  struct Index {
+    private data: BasicDataSource = new BasicDataSource();
+
+    aboutToAppear(): void {
+      for (let index = 1; index < 20; index++) {
+        this.data.dataArray.push(index);
+      }
+    }
+
+    build() {
+      List() {
+        LazyForEach(this.data, (item: number, index: number) => {
+          ListItem() {
+            ReuseComponent({ num: item })
+          }
+        }, (item: number, index: number) => index.toString())
+      }.cachedCount(0)
+    }
+  }
+
+  @Reusable
+  @Component
+  struct ReuseComponent {
+    @State num: number = 0;
+
+    aboutToReuse(params: ESObject): void {
+      this.num = params.num;
+    }
+
+    build() {
+      Column() {
+        Text("ReuseComponent num:" + this.num.toString())
+        ReuseComponentChild({ num: this.num })
+        Button('plus')
+          .onClick(() => {
+            this.num += 10;
+          })
+      }
+      .height(200)
+    }
+  }
+
+  @Component
+  struct ReuseComponentChild {
+    @Link num: number;
+
+    aboutToReuse(params: ESObject): void {
+      this.num = -1 * params.num;
+    }
+
+    build() {
+      Text("ReuseComponentChild num:" + this.num.toString())
+    }
+  }
+  ```
+
+  【正例】
+
+  在子组件的aboutToReuse中，使用setTimeout，将修改抛出组件复用的作用范围。
+
+  ```ts
+  class BasicDataSource implements IDataSource {
+    private listener: DataChangeListener | undefined = undefined;
+    public dataArray: number[] = [];
+
+    totalCount(): number {
+      return this.dataArray.length;
+    }
+
+    getData(index: number): number {
+      return this.dataArray[index];
+    }
+
+    registerDataChangeListener(listener: DataChangeListener): void {
+      this.listener = listener;
+    }
+
+    unregisterDataChangeListener(listener: DataChangeListener): void {
+      this.listener = undefined;
+    }
+  }
+
+  @Entry
+  @Component
+  struct Index {
+    private data: BasicDataSource = new BasicDataSource();
+
+    aboutToAppear(): void {
+      for (let index = 1; index < 20; index++) {
+        this.data.dataArray.push(index);
+      }
+    }
+
+    build() {
+      List() {
+        LazyForEach(this.data, (item: number, index: number) => {
+          ListItem() {
+            ReuseComponent({ num: item })
+          }
+        }, (item: number, index: number) => index.toString())
+      }.cachedCount(0)
+    }
+  }
+
+  @Reusable
+  @Component
+  struct ReuseComponent {
+    @State num: number = 0;
+
+    aboutToReuse(params: ESObject): void {
+      this.num = params.num;
+    }
+
+    build() {
+      Column() {
+        Text("ReuseComponent num:" + this.num.toString())
+        ReuseComponentChild({ num: this.num })
+        Button('plus')
+          .onClick(() => {
+            this.num += 10;
+          })
+      }
+      .height(200)
+    }
+  }
+
+  @Component
+  struct ReuseComponentChild {
+    @Link num: number;
+
+    aboutToReuse(params: ESObject): void {
+      setTimeout(() => {
+        this.num = -1 * params.num;
+      }, 1)
+    }
+
+    build() {
+      Text("ReuseComponentChild num:" + this.num.toString())
+    }
+  }
+  ```
+
 - ComponentContent不支持传入\@Reusable装饰器装饰的自定义组件。
 
 ```ts

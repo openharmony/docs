@@ -1,8 +1,8 @@
 # @ohos.ai.intelligentVoice (Intelligent Voice) (System API)
 
-The **intelligentVoice** module provides the intelligent voice enrollment and voice wakeup functions.
+The **intelligentVoice** module provides the intelligent voice enrollment and voice wakeup functions. <!--Del-->Currently, the features are related to chips and are not supported on OpenHarmony yet.<!--DelEnd-->
 
-Its functions are implemented by:
+Its features are implemented by:
 
 - [IntelligentVoiceManager](#intelligentvoicemanager): intelligent voice manager class, which declares the functions provided by the module. Currently, voice enrollment and voice wakeup are supported. Before developing intelligent voice functions, call [getIntelligentVoiceManager()](#intelligentvoicegetintelligentvoicemanager) to check whether they are supported.
 - [EnrollIntelligentVoiceEngine](#enrollintelligentvoiceengine): class that implements voice enrollment. You need to perform voice enrollment before using voice wakeup.
@@ -839,7 +839,7 @@ A sensibility type maps to a wakeup threshold. A higher sensibility indicates a 
 
 ## WakeupHapInfo
 
-Defines the HAP information for an wakeup application.
+Defines the HAP information for a wakeup application.
 
 **System capability**: SystemCapability.AI.IntelligentVoice.Core
 
@@ -1429,6 +1429,12 @@ Sets the HAP information for the wakeup application. This API uses a promise to 
 **Required permissions**: ohos.permission.MANAGE_INTELLIGENT_VOICE
 
 **System capability**: SystemCapability.AI.IntelligentVoice.Core
+
+**Parameters**
+
+| Name    | Type                             | Mandatory| Description                                         |
+| -------- | -------------------------------- | --- | ------------------------------------------- |
+| info     | [WakeupHapInfo](#wakeuphapinfo)                           | Yes  | HAP information for the wakeup application.|
 
 **Return value**
 

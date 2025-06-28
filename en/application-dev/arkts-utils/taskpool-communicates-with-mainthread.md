@@ -12,8 +12,9 @@ The following example uses multiple image loading tasks that provide real-time u
      console.info("Child thread task completed. Total images loaded:", data)
    }
    ```
+   <!-- @[receive_task_message](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationScenario/entry/src/main/ets/managers/TaskSendDataUsage.ets) -->
 
-2. In the task, use **sendData()** to send messages to the host thread.
+2. Add **sendData()** to the task to enable the child thread to send messages to the host thread.
 
    ```ts
    // IconItemSource.ets
@@ -27,6 +28,7 @@ The following example uses multiple image loading tasks that provide real-time u
      }
    }
    ```
+   <!-- @[implement_child_thread_task](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationScenario/entry/src/main/ets/managers/IconItemSource.ets) -->
 
    ```ts
    // TaskSendDataUsage.ets
@@ -53,6 +55,7 @@ The following example uses multiple image loading tasks that provide real-time u
      return iconItemSourceList;
    }
    ```
+   <!-- @[implement_child_thread_task](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationScenario/entry/src/main/ets/managers/TaskSendDataUsage.ets) -->
 
 3. In the host thread, use **onReceiveData()** to receive messages.
    This allows the host thread to receive data sent by the task through **notice()**.
@@ -72,10 +75,10 @@ The following example uses multiple image loading tasks that provide real-time u
              .fontWeight(FontWeight.Bold)
              .onClick(() => {
                let iconItemSourceList: IconItemSource[];
-               let lodePictureTask: taskpool.Task = new taskpool.Task(loadPictureSendData, 30);
+               let loadPictureTask: taskpool.Task = new taskpool.Task(loadPictureSendData, 30);
                // Use notice to receive messages from the task.
-               lodePictureTask.onReceiveData(notice);
-               taskpool.execute(lodePictureTask).then((res: object) => {
+               loadPictureTask.onReceiveData(notice);
+               taskpool.execute(loadPictureTask).then((res: object) => {
                  iconItemSourceList = res as IconItemSource[];
                })
              })
@@ -86,3 +89,4 @@ The following example uses multiple image loading tasks that provide real-time u
      }
    }
    ```
+   <!-- @[receive_task_data](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationScenario/entry/src/main/ets/managers/TaskSendDataUsage.ets) -->

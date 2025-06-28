@@ -555,10 +555,10 @@ struct ContactsList {
   }
   build() {
     List() {
-      // 循环渲染ListItemGroup，contactsGroups为多个分组联系人contacts和标题title的数据集合
+      // 懒加载ListItemGroup，contactsGroups为多个分组联系人contacts和标题title的数据集合
       LazyForEach(contactsGroupsDataSource, (itemGroup: ContactsGroup) => {
         ListItemGroup({ header: this.itemHead(itemGroup.title) }) {
-          // 循环渲染ListItem
+          // 懒加载ListItem
           if (itemGroup.contacts) {
             LazyForEach(new ContactsGroupDataSource(itemGroup.contacts), (item: Contact) => {
               ListItem() {
@@ -993,7 +993,7 @@ ListItem() {
 
 关于长列表按需加载优化的具体实现可参考[数据懒加载](../ui/state-management/arkts-rendering-control-lazyforeach.md)章节中的示例。
 
-当使用懒加载方式渲染列表时，为了更好的列表滚动体验，减少列表滑动时出现白块，List组件提供了cachedCount参数用于设置列表项缓存数，只在懒加载LazyForEach中生效。
+当使用懒加载方式渲染列表时，为了更好的列表滚动体验，减少列表滑动时出现白块，List组件提供了cachedCount参数用于设置列表项缓存数，懒加载方式只会预加载List显示区域外cachedCount的内容，而非懒加载会全部加载。无论懒加载还是非懒加载都只布局List显示区域+List显示区域外cachedCount的内容。
 
 
 ```ts
@@ -1004,9 +1004,9 @@ List() {
 
 以垂直列表为例：
 
-- 若懒加载是用于ListItem，当列表为单列模式时，会在List显示的ListItem前后各缓存cachedCount个ListItem；若是多列模式下，会在List显示的ListItem前后各缓存cachedCount \* 列数个ListItem。
+- List设置cachedCount后，显示区域外上下各会预加载并布局cachedCount行ListItem。计算ListItem行数时，会计算ListItemGroup内部的ListItem行数。如果ListItemGroup内没有ListItem，则整个ListItemGroup算一行。
 
-- 若懒加载是用于ListItemGroup，无论单列模式还是多列模式，都是在List显示的ListItem前后各缓存cachedCount个ListItemGroup。
+- List下嵌套使用LazyForEach，并且LazyForEach下嵌套使用ListItemGroup时，LazyForEach会在List显示区域外上下各会创建cachedCount个ListItemGroup。
 
 >**说明：**
 >
@@ -1339,8 +1339,6 @@ List() {
 如需详细了解ArkUI中列表的创建与使用，请参考以下示例：
 
 - [新闻数据加载](https://gitee.com/openharmony/codelabs/tree/master/NetworkManagement/NewsDataArkTS)
-
-- [音乐专辑页](../key-features/multi-device-app-dev/music-album-page.md)
 
 - [常用组件和容器低代码开发示例（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/EfficiencyEnhancementKit/SuperVisualSample)
 

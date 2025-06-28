@@ -9,6 +9,7 @@ Defines the value of an asset attribute, which is in the form of a key-value (KV
 
 **Related module**: [AssetType](_asset_type.md)
 
+**Header file**: [asset_type.h](asset__type_8h.md)
 
 ## Summary
 

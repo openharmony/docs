@@ -2955,6 +2955,7 @@ setColorMode(colorMode: ConfigurationConstant.ColorMode): void
 设置UIAbility的深浅色模式。调用该接口前需要保证该UIAbility对应页面已完成加载。仅支持主线程调用。
 
 > **说明**：
+> - 调用该接口前，需要确保窗口已完成创建、且UIAbility对应的页面已完成加载，即在[onWindowStageCreate()](js-apis-app-ability-uiAbility.md#onwindowstagecreate)生命周期中通过[loadContent](../apis-arkui/arkts-apis-window-WindowStage.md#loadcontent9)方法加载页面之后调用。
 > - 调用该接口后会创建新的资源管理器对象，如果此前有缓存资源管理器，需要进行更新。
 > - 深浅色模式生效的优先级：UIAbility的深浅色模式 > 应用的深浅色模式（[ApplicationContext.setColorMode](js-apis-inner-application-applicationContext.md#applicationcontextsetcolormode11)）> 系统的深浅色模式。
 

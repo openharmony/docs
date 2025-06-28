@@ -1,6 +1,10 @@
 # @ohos.xml (XML Parsing and Generation)
 
-The XML module provides a series of APIs for converting XML text into JavaScript objects and generating and parsing XML files.
+The xml module provides APIs for generating and parsing XML files.
+
+The module offers two methods for generating XML files:
+* [XmlSerializer](#xmlserializer): suitable for scenarios where the size of the XML text is known in advance.
+* [XmlDynamicSerializer<sup>20+</sup>](#xmldynamicserializer20): suitable for scenarios where the size of the XML text is not known in advance.
 
 > **NOTE**
 >
@@ -35,7 +39,7 @@ A constructor used to create an **XmlSerializer** instance.
 
 | Name  | Type                             | Mandatory| Description                                            |
 | -------- | --------------------------------- | ---- | ------------------------------------------------ |
-| buffer   | ArrayBuffer \| DataView | Yes  | **ArrayBuffer** or **DataView** for storing the XML information to set.|
+| buffer   | ArrayBuffer \| DataView | Yes  | ArrayBuffer or DataView for storing the XML information to set.|
 | encoding | string                            | No  | Encoding format. The default value is **'utf-8'** (the only format currently supported).              |
 
 **Error codes**
@@ -61,7 +65,7 @@ Sets an attribute.
 
 > **NOTE**
 >
-> This API does not perform standard XML verification on the data added. Ensure that the data to add complies with the XML specifications. For example, as stipulated in the specifications, you are not allowed to add an attribute name starting with a digit or add multiple attribute names with the same name.
+> This API does not perform standard XML verification on the data to add. Ensure that the data complies with the XML specifications. For example, as stipulated in the specifications, you are not allowed to add an attribute name starting with a digit or add multiple attributes with the same name.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -105,7 +109,7 @@ Adds an empty element.
 
 > **NOTE**
 >
-> This API does not perform standard XML verification on the data added. Ensure that the data to add complies with the XML specifications. For example, as stipulated in the specifications, you are not allowed to add an attribute name starting with a digit.
+> This API does not perform standard XML verification on the data to add. Ensure that the data complies with the XML specifications. For example, as stipulated in the specifications, you are not allowed to add an attribute name starting with a digit.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -115,7 +119,7 @@ Adds an empty element.
 
 | Name| Type  | Mandatory| Description              |
 | ------ | ------ | ---- | ------------------ |
-| name   | string | Yes  | Name of the empty element to add.|
+| name   | string | Yes  | Name of the element.|
 
 **Error codes**
 
@@ -166,13 +170,13 @@ console.log(result);
 
 startElement(name: string): void
 
-Writes the start tag based on the given element name.
+Adds the start tag based on the given element name.
 
 > **NOTE**
 >
 >- After calling this API, you must call [endElement](#endelement) to write the end flag to ensure that the node is closed correctly.
 >
->- This API does not perform standard XML verification on the data added. Ensure that the data to add complies with the XML specifications. For example, as stipulated in the specifications, you are not allowed to add an attribute name starting with a digit.
+>- This API does not perform standard XML verification on the data to add. Ensure that the data complies with the XML specifications. For example, as stipulated in the specifications, you are not allowed to add an attribute name starting with a digit.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -212,7 +216,7 @@ console.log(result);
 
 endElement(): void
 
-Writes the end tag of the element.
+Adds the end tag of the element.
 
 > **NOTE**
 >
@@ -246,7 +250,7 @@ Sets the namespace for an element tag.
 
 > **NOTE**
 >
-> This API does not perform standard XML verification on the data added. Ensure that the data to add complies with the XML specifications. For example, as stipulated in the specifications, you are not allowed to add a namespace starting with a digit or set multiple namespaces for the same element.
+> This API does not perform standard XML verification on the data to add. Ensure that the data complies with the XML specifications. For example, as stipulated in the specifications, you are not allowed to add a namespace starting with a digit or set multiple namespaces for the same element.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -328,7 +332,7 @@ Adds data to the CDATA tag. The structure of the generated CDATA tag is "\<! <![
 
 > **NOTE**
 >
-> This API does not perform standard XML verification on the data added. Ensure that the data to add complies with the XML specifications. For example, as stipulated in the specifications, you are not allowed to add data that contains the string \]\]\> to the CDATA tag.
+> This API does not perform standard XML verification on the data to add. Ensure that the data complies with the XML specifications. For example, as stipulated in the specifications, you are not allowed to add data that contains the string \]\]\> to the CDATA tag.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -438,6 +442,483 @@ let result = util.TextDecoder.create().decodeToString(uint8);
 console.log(result); // <!DOCTYPE root SYSTEM "http://www.test.org/test.dtd">
 ```
 
+## XmlDynamicSerializer<sup>20+</sup>
+
+The **XmlDynamicSerializer** class is used to generate XML strings. It is recommended when the length of the XML content cannot be determined in advance.
+
+> **NOTE**
+>
+> Objects constructed from this class do not require manual creation of an ArrayBuffer. You can continuously add XML elements, and the upper limit for the length of the final serialized string result is 100,000 characters.
+
+### constructor<sup>20+</sup>
+
+constructor(encoding?: string)
+
+A constructor used to create an **XmlDynamicSerializer** instance.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name  | Type                             | Mandatory| Description                                            |
+| -------- | --------------------------------- | ---- | ------------------------------------------------ |
+| encoding | string                            | No  | Encoding format. The default value is **'utf-8'** (the only format currently supported).         |
+
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200066 | Incorrect encoding format, only support utf-8. |
+
+**Example**
+
+```ts
+let serializer = new xml.XmlDynamicSerializer('utf-8');
+```
+
+### getOutput<sup>20+</sup>
+
+getOutput(): ArrayBuffer
+
+Obtains the ArrayBuffer of the XML string.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Return value**
+
+| Type  | Description                |
+| ------ | -------------------- |
+| ArrayBuffer | ArrayBuffer for storing the XML information to set.|
+
+**Example**
+
+```ts
+import { util } from '@kit.ArkTS';
+
+let serializer = new xml.XmlDynamicSerializer('utf-8');
+serializer.startElement("note");
+serializer.setText("Happy");
+serializer.endElement();
+let arr = serializer.getOutput();
+let uint8 = new Uint8Array(arr);
+let result = util.TextDecoder.create().decodeToString(uint8);
+console.info(result); // <note>Happy</note>
+```
+
+### setAttributes<sup>20+</sup>
+
+setAttributes(name: string, value: string): void
+
+Sets an attribute.
+
+> **NOTE**
+>
+> This API does not perform standard XML verification on the data to add. Ensure that the data complies with the XML specifications. For example, as stipulated in the specifications, you are not allowed to add an attribute name starting with a digit or add multiple attributes with the same name.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description           |
+| ------ | ------ | ---- | --------------- |
+| name   | string | Yes  | Key of the attribute. The total length of the XML cannot exceed 100,000 characters.|
+| value  | string | Yes  | Value of the attribute. The total length of the XML cannot exceed 100,000 characters.|
+
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200062 | The cumulative length of xml has exceeded the upper limit 100000. |
+| 10200063 | Illegal position for xml. |
+| 10200064 | Cannot be an empty string. |
+
+**Example**
+
+```ts
+import { util } from '@kit.ArkTS';
+
+let serializer = new xml.XmlDynamicSerializer('utf-8');
+serializer.startElement("note");
+serializer.setAttributes("importance", "high");
+serializer.endElement();
+let arrayBuffer = serializer.getOutput();
+let uint8 = new Uint8Array(arrayBuffer);
+let result = util.TextDecoder.create().decodeToString(uint8);
+console.info(result); // <note importance="high"/>
+```
+
+### addEmptyElement<sup>20+</sup>
+
+addEmptyElement(name: string): void
+
+Adds an empty element.
+
+> **NOTE**
+>
+> This API does not perform standard XML verification on the data to add. Ensure that the data complies with the XML specifications. For example, as stipulated in the specifications, you are not allowed to add an attribute name starting with a digit.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description              |
+| ------ | ------ | ---- | ------------------ |
+| name   | string | Yes  | Name of the empty element. The total length of the XML cannot exceed 100,000 characters.|
+
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200062 | The cumulative length of xml has exceeded the upper limit 100000. |
+| 10200064 | Cannot be an empty string. |
+
+**Example**
+
+```ts
+import { util } from '@kit.ArkTS';
+
+let serializer = new xml.XmlDynamicSerializer('utf-8');
+serializer.addEmptyElement("d");
+let arrayBuffer = serializer.getOutput();
+let uint8 = new Uint8Array(arrayBuffer);
+let result = util.TextDecoder.create().decodeToString(uint8);
+console.info(result); // <d/>
+```
+
+### setDeclaration<sup>20+</sup>
+
+setDeclaration(): void
+
+Sets a file declaration with encoding.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200062 | The cumulative length of xml has exceeded the upper limit 100000. |
+| 10200063 | Illegal position for xml. |
+
+**Example**
+
+```ts
+import { util } from '@kit.ArkTS';
+
+let serializer = new xml.XmlDynamicSerializer('utf-8');
+serializer.setDeclaration();
+let arrayBuffer = serializer.getOutput();
+let uint8 = new Uint8Array(arrayBuffer);
+let result = util.TextDecoder.create().decodeToString(uint8);
+console.info(result); // <?xml version="1.0" encoding="utf-8"?>
+```
+
+### startElement<sup>20+</sup>
+
+startElement(name: string): void
+
+Writes the start tag of the element.
+
+> **NOTE**
+>
+>- After calling this API, you must call [endElement](#endelement) to write the end flag to ensure that the node is closed correctly.
+>
+>- This API does not perform standard XML verification on the data to add. Ensure that the data complies with the XML specifications. For example, as stipulated in the specifications, you are not allowed to add an attribute name starting with a digit.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description              |
+| ------ | ------ | ---- | ------------------ |
+| name   | string | Yes  | Name of the element. The total length of the XML cannot exceed 100,000 characters.|
+
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200062 | The cumulative length of xml has exceeded the upper limit 100000. |
+| 10200064 | Cannot be an empty string. |
+
+**Example**
+
+```ts
+import { util } from '@kit.ArkTS';
+
+let serializer = new xml.XmlDynamicSerializer('utf-8');
+serializer.startElement("note");
+serializer.setText("Happy");
+serializer.endElement();
+let arrayBuffer = serializer.getOutput();
+let uint8 = new Uint8Array(arrayBuffer);
+let result = util.TextDecoder.create().decodeToString(uint8);
+console.info(result); // <note>Happy</note>
+```
+
+### endElement<sup>20+</sup>
+
+endElement(): void
+
+Writes the end tag of the element.
+
+> **NOTE**
+>
+> Before calling this API, you must call [startElement](#startelement) to write the start flag.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200062 | The cumulative length of xml has exceeded the upper limit 100000. |
+| 10200065 | There is no match between the startElement and the endElement. |
+
+**Example**
+
+```ts
+import { util } from '@kit.ArkTS';
+
+let serializer = new xml.XmlDynamicSerializer('utf-8');
+serializer.startElement("note");
+serializer.setText("Happy");
+serializer.endElement();
+let arrayBuffer = serializer.getOutput();
+let uint8 = new Uint8Array(arrayBuffer);
+let result = util.TextDecoder.create().decodeToString(uint8);
+console.info(result); // <note>Happy</note>
+```
+
+### setNamespace<sup>20+</sup>
+
+setNamespace(prefix: string, namespace: string): void
+
+Sets the namespace for an element tag.
+
+> **NOTE**
+>
+> This API does not perform standard XML verification on the data to add. Ensure that the data complies with the XML specifications. For example, as stipulated in the specifications, you are not allowed to add a namespace starting with a digit or set multiple namespaces for the same element.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name   | Type  | Mandatory| Description                          |
+| --------- | ------ | ---- | ------------------------------ |
+| prefix    | string | Yes  | Prefix of the element and its child elements. The total length of the XML cannot exceed 100,000 characters.|
+| namespace | string | Yes  | Namespace to set. The total length of the XML cannot exceed 100,000 characters.|
+
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200062 | The cumulative length of xml has exceeded the upper limit 100000. |
+| 10200064 | Cannot be an empty string. |
+
+**Example**
+
+```ts
+import { util } from '@kit.ArkTS';
+
+let serializer = new xml.XmlDynamicSerializer('utf-8');
+serializer.setNamespace("h", "http://www.w3.org/TR/html4/");
+serializer.startElement("note");
+serializer.endElement();
+let arrayBuffer = serializer.getOutput();
+let uint8 = new Uint8Array(arrayBuffer);
+let result = util.TextDecoder.create().decodeToString(uint8);
+console.info(result); // <h:note xmlns:h="http://www.w3.org/TR/html4/"/>
+```
+
+### setComment<sup>20+</sup>
+
+setComment(text: string): void
+
+Sets a comment.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                |
+| ------ | ------ | ---- | -------------------- |
+| text   | string | Yes  | Comment to set. The total length of the XML cannot exceed 100,000 characters.|
+
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200062 | The cumulative length of xml has exceeded the upper limit 100000. |
+| 10200064 | Cannot be an empty string. |
+
+**Example**
+
+```ts
+import { util } from '@kit.ArkTS';
+
+let serializer = new xml.XmlDynamicSerializer('utf-8');
+serializer.setComment("Hello, World!");
+let arrayBuffer = serializer.getOutput();
+let uint8 = new Uint8Array(arrayBuffer);
+let result = util.TextDecoder.create().decodeToString(uint8);
+console.info(result); // <!--Hello, World!-->
+```
+
+### setCdata<sup>20+</sup>
+
+setCdata(text: string): void
+
+Adds data to the CDATA tag. The structure of the generated CDATA tag is "\<! <![CDATA\["+ Data added + "\]\]\>".
+
+> **NOTE**
+>
+> This API does not perform standard XML verification on the data to add. Ensure that the data complies with the XML specifications. For example, as stipulated in the specifications, you are not allowed to add data that contains the string \]\]\> to the CDATA tag.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description             |
+| ------ | ------ | ---- | ----------------- |
+| text   | string | Yes  | CDATA data to set. The total length of the XML cannot exceed 100,000 characters.|
+
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200062 | The cumulative length of xml has exceeded the upper limit 100000. |
+| 10200064 | Cannot be an empty string. |
+
+**Example**
+
+```ts
+import { util } from '@kit.ArkTS';
+
+let serializer = new xml.XmlDynamicSerializer('utf-8');
+serializer.setCdata('root SYSTEM')
+let arrayBuffer = serializer.getOutput();
+let uint8 = new Uint8Array(arrayBuffer);
+let result = util.TextDecoder.create().decodeToString(uint8);
+console.info(result); // <![CDATA[root SYSTEM]]>
+```
+
+### setText<sup>20+</sup>
+
+setText(text: string): void
+
+Sets a tag value.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description            |
+| ------ | ------ | ---- | ---------------- |
+| text   | string | Yes  | Tag value. The total length of the XML cannot exceed 100,000 characters.|
+
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200062 | The cumulative length of xml has exceeded the upper limit 100000. |
+| 10200064 | Cannot be an empty string. |
+
+**Example**
+
+```ts
+import { util } from '@kit.ArkTS';
+
+let serializer = new xml.XmlDynamicSerializer('utf-8');
+serializer.startElement("note");
+serializer.setAttributes("importance", "high");
+serializer.setText("Happy");
+serializer.endElement();
+let arrayBuffer = serializer.getOutput();
+let uint8 = new Uint8Array(arrayBuffer);
+let result = util.TextDecoder.create().decodeToString(uint8);
+console.info(result); // <note importance="high">Happy</note>
+```
+
+### setDocType<sup>20+</sup>
+
+setDocType(text: string): void
+
+Sets a document type.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description               |
+| ------ | ------ | ---- | ------------------- |
+| text   | string | Yes  | Content of **DocType** to set. The total length of the XML cannot exceed 100,000 characters.|
+
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200062 | The cumulative length of xml has exceeded the upper limit 100000. |
+| 10200064 | Cannot be an empty string. |
+
+**Example**
+
+```ts
+import { util } from '@kit.ArkTS';
+
+let serializer = new xml.XmlDynamicSerializer('utf-8');
+serializer.setDocType('root SYSTEM "http://www.test.org/test.dtd"');
+let arrayBuffer = serializer.getOutput();
+let uint8 = new Uint8Array(arrayBuffer);
+let result = util.TextDecoder.create().decodeToString(uint8);
+console.info(result); // <!DOCTYPE root SYSTEM "http://www.test.org/test.dtd">
+```
+
 ## XmlPullParser
 
 Implements XML file parsing.
@@ -545,7 +1026,7 @@ Parses XML information.
 
 | Name| Type                         | Mandatory| Description                            |
 | ------ | ----------------------------- | ---- | -------------------------------- |
-| option | [ParseOptions](#parseoptions) | Yes  | Options for controlling and obtaining the parsed information.|
+| option | [ParseOptions](#parseoptions) | Yes  | XML parsing options.|
 
 **Error codes**
 
@@ -888,7 +1369,7 @@ Checks whether the current element is empty.
 
 | Type   | Description                        |
 | ------- | ---------------------------- |
-| boolean | Returns **true** if the element is empty; returns **false** otherwise.|
+| boolean | Check result. The value **true** is returned if the element is empty; otherwise, **false** is returned.|
 
 **Example**
 
@@ -927,7 +1408,7 @@ Checks whether the current event contains only whitespace characters.
 
 | Type   | Description                                  |
 | ------- | -------------------------------------- |
-| boolean | Returns **true** if the text event contains only whitespace characters; returns **false** otherwise.|
+| boolean | Check result. The value **true** is returned if the text event contains only whitespace characters; otherwise, **false** is returned.|
 
 **Example**
 

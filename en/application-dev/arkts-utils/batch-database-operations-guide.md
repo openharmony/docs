@@ -105,7 +105,7 @@ struct Index {
           middle: { anchor: '__container__', align: HorizontalAlign.Center }
         })
         .onClick(async () => {
-          let context = getContext(this);
+          let context : Context = this.getUIContext().getHostContext() as Context;
 
           // Prepare data.
           const count = 5
@@ -138,6 +138,7 @@ struct Index {
   }
 }
 ```
+<!-- @[taskpool_frequently_operate_database](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/PracticalCases/entry/src/main/ets/managers/UsingSendable.ets) -->
 
 ## Using Sendable for Large-Scale Database Operations
 
@@ -169,6 +170,7 @@ When handling large volumes of database data, cross-thread data transfer may sti
      }
    }
    ```
+   <!-- @[define_data_format](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/PracticalCases/entry/src/main/ets/managers/SharedValuesBucket.ets) -->
 
 2. Initiate from the UI main thread and perform Create, Read, Update, Delete (CRUD) operations in the background thread.
 
@@ -274,7 +276,7 @@ When handling large volumes of database data, cross-thread data transfer may sti
              middle: { anchor: '__container__', align: HorizontalAlign.Center }
            })
            .onClick(async () => {
-             let context = getContext(this);
+             let context : Context = this.getUIContext().getHostContext() as Context;
    
              // Prepare data.
              const count = 5
@@ -308,6 +310,7 @@ When handling large volumes of database data, cross-thread data transfer may sti
      }
    }
    ```
+   <!-- @[operate_child_thread_data](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ApplicationMultithreadingDevelopment/PracticalCases/entry/src/main/ets/managers/UsingTaskPool.ets) -->
 
 ## Using Sendable for Large-Scale Database Operations with Complex Class Instances
 
@@ -493,7 +496,7 @@ For complex regular class instances, you can first wrap the relevant database da
              middle: { anchor: '__container__', align: HorizontalAlign.Center }
            })
            .onClick(async () => {
-             let context = getContext(this);
+             let context : Context = this.getUIContext().getHostContext() as Context;
              let material = initMaterial();
              await taskpool.execute(create, context);
              await taskpool.execute(insert, context, material.getBuckets());

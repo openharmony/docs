@@ -18,7 +18,7 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [OhosImageSize](capi-ohosimagesize.md) | - | 定义图像大小。是[OhosImageDecodingOps](capi-ohosimagedecodingops.md)的成员变量。 |
+| [OhosImageSize](capi-image-ohosimagesize.md) | - | 定义图像大小。是[OhosImageDecodingOps](capi-image-ohosimagedecodingops.md)的成员变量。 |
 
 ### 枚举
 

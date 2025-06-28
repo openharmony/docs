@@ -21,7 +21,7 @@ import { StartOptions } from '@kit.AbilityKit';
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | windowMode<sup>12+<sup> | number | 否 | 是 | 启动Ability时的窗口模式，详见[WindowMode](./js-apis-app-ability-abilityConstant.md#windowmode12)。 |
-| displayId | number | 否 | 是 | 屏幕ID模式。默认是0，表示当前屏幕。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| displayId | number | 否 | 是 | 屏幕ID，取值为大于等于-1的整数。<br>- 取值为-1，表示当前屏幕。<br>- 取值为0，表示主屏幕。<br>- 取值为正整数，表示指定ID的屏幕。<br>**说明**：<br>从API version 14开始，默认值是-1，即当前屏幕。<br>在API version 14之前版本，默认值为0，即主屏幕。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | withAnimation<sup>11+</sup> | boolean | 否 | 是 | 启动Ability时是否具有动画效果。true表示具有动画效果，false表示不具有动画效果。<br>**约束：**<br>1.该功能仅在2in1和tablet设备上生效。<br>2.调用方与目标方必须为同一应用。 |
 | windowLeft<sup>11+</sup> | number | 否 | 是 | 窗口左边的位置，单位为px。取值范围为[0, maxWindowWidth]。如果设置为负值，系统会默认设置为0。配置该字段时，建议同时配置windowTop。 |
 | windowTop<sup>11+</sup> | number | 否 | 是 | 窗口顶部的位置，单位为px。取值范围为[0, maxWindowHeight]。如果设置为负值，系统会默认设置为0。配置该字段时，建议同时配置windowLeft。 |
@@ -37,6 +37,7 @@ import { StartOptions } from '@kit.AbilityKit';
 | maxWindowWidth<sup>17+</sup> | number | 否 | 是 | 窗口最大的宽度，单位为px，可以通过[getWindowLimits](../apis-arkui/arkts-apis-window-Window.md#getwindowlimits11)获得当前窗口的尺寸限制。<br>**约束：**<br/>仅在2in1和tablet设备上生效。 |
 | maxWindowHeight<sup>17+</sup> | number | 否 | 是 | 窗口最大的高度，单位为px，可以通过[getWindowLimits](../apis-arkui/arkts-apis-window-Window.md#getwindowlimits11)获得当前窗口的尺寸限制。<br>**约束：**<br/>仅在2in1和tablet设备上生效。 |
 | completionHandler<sup>20+</sup> | [CompletionHandler](js-apis-app-ability-completionHandler.md) | 否 | 是 | 拉端结果操作类，用于处理拉端结果。<br/>**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。 |
+| hideStartWindow<sup>20+</sup> | boolean | 否 | 是 | 表示是否隐藏启动窗口。<br>**约束：**<br/>1.该功能仅在2in1设备和自由多窗模式下的tablet设备上生效。<br>2.该功能仅在启动当前应用的UIAbility时生效。 |
 
 **示例：**
 
@@ -84,7 +85,8 @@ import { StartOptions } from '@kit.AbilityKit';
           minWindowHeight: 240,
           maxWindowWidth: 2560,
           maxWindowHeight: 2560,
-          completionHandler: completionHandler
+          completionHandler: completionHandler,
+          hideStartWindow: true
         };
 
         try {

@@ -51,7 +51,7 @@
    }
    ```
 
-3. 系统字体的配置信息[OH_Drawing_FontConfigInfo](../reference/apis-arkgraphics2d/capi-oh-drawing-fontconfiginfo.md)包含以下几类信息：
+3. 系统字体的配置信息[OH_Drawing_FontConfigInfo](../reference/apis-arkgraphics2d/capi-drawing-oh-drawing-fontconfiginfo.md)包含以下几类信息：
 
    - 系统字体文件路径数量。
 
@@ -61,9 +61,9 @@
 
    - 系统字体文件路径列表。
 
-   - 通用字体集列表，具体信息可见[OH_Drawing_FontGenericInfo](../reference/apis-arkgraphics2d/capi-oh-drawing-fontgenericinfo.md)结构体。
+   - 通用字体集列表，具体信息可见[OH_Drawing_FontGenericInfo](../reference/apis-arkgraphics2d/capi-drawing-oh-drawing-fontgenericinfo.md)结构体。
 
-   - 备用字体集列表，具体信息可见[OH_Drawing_FontFallbackGroup](../reference/apis-arkgraphics2d/capi-oh-drawing-fontfallbackgroup.md)结构体。
+   - 备用字体集列表，具体信息可见[OH_Drawing_FontFallbackGroup](../reference/apis-arkgraphics2d/capi-drawing-oh-drawing-fontfallbackgroup.md)结构体。
 
    以下示例展示系统字体的一些具体配置信息的获取：
 
