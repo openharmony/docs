@@ -913,6 +913,10 @@ int32_t OH_NativeXComponent_AttachNativeRootNode (OH_NativeXComponent * componen
 
 **起始版本：** 12
 
+**废弃版本：** 20
+
+**替代接口：** [OH_ArkUI_NodeContent_AddNode](./_ark_u_i___native_module.md#oh_arkui_nodecontent_addnode)。
+
 **参数:**
 
 | 名称 | 描述 |
@@ -937,6 +941,10 @@ int32_t OH_NativeXComponent_DetachNativeRootNode (OH_NativeXComponent * componen
 将ArkUI的Native组件从当前XComponent上卸载。
 
 **起始版本：** 12
+
+**废弃版本：** 20
+
+**替代接口：** [OH_ArkUI_NodeContent_RemoveNode](./_ark_u_i___native_module.md#oh_arkui_nodecontent_removenode)。
 
 **参数:**
 
