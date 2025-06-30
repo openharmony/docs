@@ -197,7 +197,7 @@ Text可通过以下两种方式来创建：
 
   ![zh-cn_image_0000001511740480](figures/zh-cn_image_0000001511740480.png)
 
-- 通过[decoration](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#decoration)属性设置文本装饰线样式及其颜色。
+- 通过[decoration](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#decoration)属性设置文本装饰线样式、颜色及其粗细。
 
   ```ts
   Text('This is the text')
@@ -205,22 +205,51 @@ Text可通过以下两种方式来创建：
       type: TextDecorationType.LineThrough,
       color: Color.Red
     })
-    .borderWidth(1).padding(10).margin(5)
+    .borderWidth(1).padding(15).margin(5)
   Text('This is the text')
     .decoration({
       type: TextDecorationType.Overline,
       color: Color.Red
     })
-    .borderWidth(1).padding(10).margin(5)
+    .borderWidth(1).padding(15).margin(5)
   Text('This is the text')
     .decoration({
       type: TextDecorationType.Underline,
       color: Color.Red
     })
-    .borderWidth(1).padding(10).margin(5)
+    .borderWidth(1).padding(15).margin(5)
+  Text('This is the text')
+    .decoration({
+      type: TextDecorationType.Underline,
+      color: Color.Blue,
+      style: TextDecorationStyle.DASHED
+    })
+    .borderWidth(1).padding(15).margin(5)
+  Text('This is the text')
+    .decoration({
+      type: TextDecorationType.Underline,
+      color: Color.Blue,
+      style: TextDecorationStyle.DOTTED
+    })
+    .borderWidth(1).padding(15).margin(5)
+  Text('This is the text')
+    .decoration({
+      type: TextDecorationType.Underline,
+      color: Color.Blue,
+      style: TextDecorationStyle.DOUBLE
+    })
+    .borderWidth(1).padding(15).margin(5)
+  Text('This is the text')
+    .decoration({
+      type: TextDecorationType.Underline,
+      color: Color.Blue,
+      style: TextDecorationStyle.WAVY,
+      thicknessScale: 4
+    })
+    .borderWidth(1).padding(15).margin(5)
   ```
 
-  ![zh-cn_image_0000001511580888](figures/zh-cn_image_0000001511580888.png)
+  ![Text_decoration](figures/Text_decoration.jpg)
 
 - 通过[baselineOffset](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#baselineoffset)属性设置文本基线的偏移量。
 
@@ -354,6 +383,44 @@ Text可通过以下两种方式来创建：
 
   ![zh-cn_image_0000001511580868](figures/zh-cn_image_0000001511580868.png)
 
+- 从API version 20开始，支持通过[optimizeTrailingSpace](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#optimizetrailingspace20)设置是否在文本布局过程中优化每行末尾的空格，可解决行尾空格影响对齐显示效果问题。
+
+  ```ts
+  Column() {
+    //启用优化行尾空格功能
+    Text("Trimmed space enabled     ")
+      .fontSize(30)
+      .fontWeight(FontWeight.Bold)
+      .margin({ top: 20 })
+      .optimizeTrailingSpace(true)
+      .textAlign(TextAlign.Center)
+    //不启用优化行尾空格功能
+    Text("Trimmed space disabled     ")
+      .fontSize(30)
+      .fontWeight(FontWeight.Bold)
+      .margin({ top: 20 })
+      .optimizeTrailingSpace(false)
+      .textAlign(TextAlign.Center)
+  }
+  ```
+  ![Text_optimize_trailing_space](figures/Text_optimize_trailing_space.jpg)
+
+- 从API version 20开始，支持通过[lineSpacing](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#linespacing20)设置文本的行间距。当不配置[LineSpacingOptions](../reference/apis-arkui/arkui-ts/ts-text-common.md#linespacingoptions20对象说明)时，首行上方和尾行下方默认会有行间距，当onlyBetweenLines设置为true时，行间距仅适用于行与行之间，首行上方无额外的行间距。
+
+  ```ts
+  function style() {
+  .width(250)
+  .height(100)
+  .maxFontSize(30)
+  .minFontSize(15)
+  .border({ width: 1 })
+  }
+
+  Text('The line spacing of this context is set to 20_px, and the spacing is effective only between the lines.')
+   .lineSpacing(LengthMetrics.px(20), { onlyBetweenLines: true })
+   .style()
+  ```
+  ![Text_line_spacing](figures/Text_line_spacing.jpg)
 
 ## 添加事件
 
@@ -509,6 +576,97 @@ Text('点我')
     }
     ```
  
+### 屏蔽系统服务类菜单
+
+- 从API version 20开始，支持通过[disableSystemServiceMenuItems](../reference/apis-arkui/js-apis-arkui-UIContext.md#disablesystemservicemenuitems20)屏蔽文本选择菜单内所有系统服务菜单项。
+
+  ```ts
+  import { TextMenuController } from '@kit.ArkUI';
+  // xxx.ets
+  @Entry
+  @Component
+  struct Index {
+    aboutToAppear(): void {
+      // 禁用所有系统服务菜单
+      TextMenuController.disableSystemServiceMenuItems(true);
+    }
+
+    aboutToDisappear(): void {
+      // 页面消失恢复系统服务菜单
+      TextMenuController.disableSystemServiceMenuItems(false);
+    }
+
+    build() {
+      Row() {
+        Column() {
+          Text("这是一段文本，长按弹出文本选择菜单")
+            .height(60)
+            .fontStyle(FontStyle.Italic)
+            .fontWeight(FontWeight.Bold)
+            .textAlign(TextAlign.Center)
+            .copyOption(CopyOptions.InApp)
+            .editMenuOptions({
+              onCreateMenu: (menuItems: Array<TextMenuItem>) => {
+                  // menuItems不包含被屏蔽的系统菜单项
+                  return menuItems;
+              },
+              onMenuItemClick: (menuItem: TextMenuItem, textRange: TextRange) => {
+                  return false;
+              }
+            })
+        }.width('100%')
+      }
+      .height('100%')
+    }
+  }
+  ```
+
+  ![text_disable_system_service_menuItems](figures/text_disable_system_service_menuItems.jpg)
+
+- 从API version 20开始，支持通过[disableMenuItems](../reference/apis-arkui/js-apis-arkui-UIContext.md#disablemenuitems20)屏蔽文本选择菜单内指定的系统服务菜单项。
+
+  ```ts
+  import { TextMenuController } from '@kit.ArkUI';
+  // xxx.ets
+  @Entry
+  @Component
+  struct Index {
+    aboutToAppear(): void {
+      // 禁用搜索菜单
+      TextMenuController.disableMenuItems([TextMenuItemId.SEARCH])
+    }
+
+    aboutToDisappear(): void {
+      // 恢复系统服务菜单
+      TextMenuController.disableMenuItems([])
+    }
+
+    build() {
+      Row() {
+        Column() {
+          Text("这是一段文本，长按弹出文本选择菜单")
+            .height(60)
+            .fontStyle(FontStyle.Italic)
+            .fontWeight(FontWeight.Bold)
+            .textAlign(TextAlign.Center)
+            .copyOption(CopyOptions.InApp)
+            .editMenuOptions({
+              onCreateMenu: (menuItems: Array<TextMenuItem>) => {
+                  // menuItems不包含搜索
+                  return menuItems;
+              },
+              onMenuItemClick: (menuItem: TextMenuItem, textRange: TextRange) => {
+                  return false
+              }
+            })
+        }.width('100%')
+      }
+      .height('100%')
+    }
+  }
+  ```
+
+  ![text_disable_menuItems](figures/text_disable_menuItems.jpg)
 
 ## 设置AI菜单
 
