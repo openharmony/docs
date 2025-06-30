@@ -124,9 +124,10 @@ class ConsumerTest {
 
 function Main(): void {
   let consumer: ConsumerTest = new ConsumerTest();
-  let producer1: Producer = new Producer();
-  for (let i = 0; i < 0; i++) {
-    // Simulate the startup of multiple threads to execute a production task.
+  let producer: Producer = new Producer();
+  let threadNum: number = 10;
+  for (let i = 0; i < threadNum; i++) {
+    // The following pseudocode simulates the startup of multiple threads to execute production tasks.
     // let thread = new Thread();
     // thread.run(producer.run());
     // consumer.run();
