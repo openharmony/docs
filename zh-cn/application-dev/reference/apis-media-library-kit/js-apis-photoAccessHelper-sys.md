@@ -2318,8 +2318,8 @@ on(type: 'hiddenPhotoChange', callback: Callback&lt;PhotoAssetChangeInfos&gt;): 
 | -------- | ---------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Called by non-system application. |
-| 13900020 | Invalid argument. |
-| 14000011 | Internal system error. |
+| 23800151 | The scenario parameter verification fails.<br>Possible causes: 1. The type is not fixed at 'hiddenPhotoChange'; 2. The same callback is registered repeatedly. |
+| 23800301 | Internal system error. You are advised to retry and check the logs.<br>Possible causes: 1. The database is corrupted. 2. The file system is abnormal. 3. The IPC request timed out. |
 
 **示例：**
 
@@ -2378,8 +2378,8 @@ off(type: 'hiddenPhotoChange', callback?: Callback&lt;PhotoAssetChangeInfos&gt;)
 | -------- | ---------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Called by non-system application. |
-| 13900020 | Invalid argument. |
-| 14000011 | Internal system error. |
+| 23800151 | The scenario parameter verification fails.<br>Possible causes: 1. The type is not fixed at 'hiddenPhotoChange'; 2. The same callback is unregistered repeatedly. |
+| 23800301 | Internal system error. You are advised to retry and check the logs.<br>Possible causes: 1. The database is corrupted. 2. The file system is abnormal. 3. The IPC request timed out. |
 
 **示例：**
 
@@ -2441,8 +2441,8 @@ on(type: 'trashedPhotoChange', callback: Callback&lt;PhotoAssetChangeInfos&gt;):
 | -------- | ---------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Called by non-system application. |
-| 13900020 | Invalid argument. |
-| 14000011 | Internal system error. |
+| 23800151  | The scenario parameter verification fails.<br>Possible causes: 1. The type is not fixed at 'trashedPhotoChange'; 2. The same callback is registered repeatedly. |
+| 23800301 | Internal system error. You are advised to retry and check the logs.<br>Possible causes: 1. The database is corrupted. 2. The file system is abnormal. 3. The IPC request timed out. |
 
 **示例：**
 
@@ -2501,8 +2501,8 @@ off(type: 'trashedPhotoChange', callback?: Callback&lt;PhotoAssetChangeInfos&gt;
 | -------- | ---------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Called by non-system application. |
-| 13900020 | Invalid argument. |
-| 14000011 | Internal system error. |
+| 23800151 | The scenario parameter verification fails.<br>Possible causes: 1. The type is not fixed at 'trashedPhotoChange'; 2. The same callback is unregistered repeatedly. |
+| 23800301 | Internal system error. You are advised to retry and check the logs.<br>Possible causes: 1. The database is corrupted. 2. The file system is abnormal. 3. The IPC request timed out. |
 
 **示例：**
 
@@ -2564,8 +2564,8 @@ on(type: 'hiddenAlbumChange', callback: Callback&lt;AlbumChangeInfos&gt;): void
 | -------- | ---------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Called by non-system application. |
-| 13900020 | Invalid argument. |
-| 14000011 | Internal system error. |
+| 23800151 | The scenario parameter verification fails.<br>Possible causes: 1. The type is not fixed at 'hiddenAlbumChange'; 2. The same callback is registered repeatedly. |
+| 23800301 | Internal system error. You are advised to retry and check the logs.<br>Possible causes: 1. The database is corrupted. 2. The file system is abnormal. 3. The IPC request timed out. |
 
 **示例：**
 
@@ -2624,8 +2624,8 @@ off(type: 'hiddenAlbumChange', callback?: Callback&lt;AlbumChangeInfos&gt;): voi
 | -------- | ---------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Called by non-system application. |
-| 13900020 | Invalid argument. |
-| 14000011 | Internal system error. |
+| 23800151 | The scenario parameter verification fails.<br>Possible causes: 1. The type is not fixed at 'hiddenAlbumChange'; 2. The same callback is unregistered repeatedly. |
+| 23800301 | Internal system error. You are advised to retry and check the logs.<br>Possible causes: 1. The database is corrupted. 2. The file system is abnormal. 3. The IPC request timed out. |
 
 **示例：**
 
@@ -2687,8 +2687,8 @@ on(type: 'trashedAlbumChange', callback: Callback&lt;AlbumChangeInfos&gt;): void
 | -------- | ---------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Called by non-system application. |
-| 13900020 | Invalid argument. |
-| 14000011 | Internal system error. |
+| 23800151 | The scenario parameter verification fails.<br>Possible causes: 1. The type is not fixed at 'trashedAlbumChange'; 2. The same callback is registered repeatedly. |
+| 23800301 | Internal system error. You are advised to retry and check the logs.<br>Possible causes: 1. The database is corrupted. 2. The file system is abnormal. 3. The IPC request timed out. |
 
 **示例：**
 
@@ -2747,8 +2747,8 @@ off(type: 'trashedAlbumChange', callback?: Callback&lt;AlbumChangeInfos&gt;): vo
 | -------- | ---------------------------------------- |
 | 201 | Permission denied. |
 | 202 | Called by non-system application. |
-| 13900020 | Invalid argument. |
-| 14000011 | Internal system error. |
+| 23800151 | The scenario parameter verification fails.<br>Possible causes: 1. The type is not fixed at 'trashedAlbumChange'; 2. The same callback is unregistered repeatedly. |
+| 23800301 | Internal system error. You are advised to retry and check the logs.<br>Possible causes: 1. The database is corrupted. 2. The file system is abnormal. 3. The IPC request timed out. |
 
 **示例：**
 

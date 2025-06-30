@@ -1101,8 +1101,8 @@ on(type: 'photoChange', callback: Callback&lt;PhotoAssetChangeInfos&gt;): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 201 | Permission denied. |
-| 13900020 | Invalid argument. |
-| 14000011 | Internal system error. |
+| 23800151 | The scenario parameter verification fails.<br>Possible causes: 1. The type is not fixed at 'photoChange'; 2. The same callback is registered repeatedly. |
+| 23800301 | Internal system error. You are advised to retry and check the logs.<br>Possible causes: 1. The database is corrupted. 2. The file system is abnormal. 3. The IPC request timed out. |
 
 **示例：**
 
@@ -1158,8 +1158,8 @@ off(type: 'photoChange', callback?: Callback&lt;PhotoAssetChangeInfos&gt;): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 201 | Permission denied. |
-| 13900020 | Invalid argument. |
-| 14000011 | Internal system error. |
+| 23800151 | The scenario parameter verification fails.<br>Possible causes: 1. The type is not fixed at 'photoChange'; 2. The same callback is unregistered repeatedly. |
+| 23800301 | Internal system error. You are advised to retry and check the logs.<br>Possible causes: 1. The database is corrupted. 2. The file system is abnormal. 3. The IPC request timed out. |
 
 **示例：**
 
@@ -1218,8 +1218,8 @@ on(type: 'photoAlbumChange', callback: Callback&lt;AlbumChangeInfos&gt;): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 201 | Permission denied. |
-| 13900020 | Invalid argument. |
-| 14000011 | Internal system error. |
+| 23800151 | The scenario parameter verification fails.<br>Possible causes: 1. The type is not fixed at 'photoAlbumChange'; 2. The same callback is registered repeatedly. |
+| 23800301 | Internal system error. You are advised to retry and check the logs.<br>Possible causes: 1. The database is corrupted. 2. The file system is abnormal. 3. The IPC request timed out. |
 
 **示例：**
 
@@ -1275,8 +1275,8 @@ off(type: 'photoAlbumChange', callback?: Callback&lt;AlbumChangeInfos&gt;): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 201 | Permission denied. |
-| 13900020 | Invalid argument. |
-| 14000011 | Internal system error. |
+| 23800151 | The scenario parameter verification fails.<br>Possible causes: 1. The type is not fixed at 'photoAlbumChange'; 2. The same callback is unregistered repeatedly. |
+| 23800301 | Internal system error. You are advised to retry and check the logs.<br>Possible causes: 1. The database is corrupted. 2. The file system is abnormal. 3. The IPC request timed out. |
 
 **示例：**
 
