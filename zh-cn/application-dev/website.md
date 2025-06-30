@@ -589,6 +589,7 @@
             - [监听组件事件](ui/ndk-listen-to-component-events.md)
             - [绑定手势事件](ui/ndk-bind-gesture-events.md)
             - [拖拽事件](ui/ndk-drag-event.md)
+            - [监听组件布局和绘制送显事件](ui/ndk-inspector-component-observer.md)
           - [使用动画](ui/ndk-use-animation.md)
           - 构建布局<!--arkts-build-layout-ndk-->
             - [使用列表](ui/ndk-loading-long-list.md)
