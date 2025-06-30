@@ -1042,7 +1042,7 @@ bool OH_AVFormat_GetIntBuffer(struct OH_AVFormat *format, const char *key, int32
 **描述**
 
 从OH_AVFormat中读取一个int32_t数据的数组。
-注意获取的buffer生命周期与OH_AVFormat对象绑定，当format销毁时自动失效。 如果开发者需要长时间保持它，应用程序必须将数据显式复制到新分配的内存。
+需要注意的是，获取的buffer生命周期与OH_AVFormat对象绑定，当format销毁时自动失效。如果开发者需要长时间保持绑定，应用程序必须将数据显式复制到新分配的内存。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
