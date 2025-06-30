@@ -25,7 +25,7 @@ target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
 
 2. 获取待运算的数据。
 
-3. 调用[OH_Huks_InitParamSet](../../reference/apis-universal-keystore-kit/capi-huksparamsetapi.md#oh_huks_initparamset)指定算法参数配置。
+3. 调用[OH_Huks_InitParamSet](../../reference/apis-universal-keystore-kit/capi-native-huks-param-h.md#oh_huks_initparamset)指定算法参数配置。
    
 4. 调用[OH_Huks_InitSession](../../reference/apis-universal-keystore-kit/capi-native-huks-api-h.md#oh_huks_initsession)初始化密钥会话，并获取会话的句柄handle。
 

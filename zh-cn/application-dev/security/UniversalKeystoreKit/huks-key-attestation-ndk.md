@@ -11,7 +11,7 @@ target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
 
 1. 确定密钥别名keyAlias，密钥别名最大长度为128字节。
 
-2. 初始化参数集：通过[OH_Huks_InitParamSet](../../reference/apis-universal-keystore-kit/capi-huksparamsetapi.md#oh_huks_initparamset)、[OH_Huks_AddParams](../../reference/apis-universal-keystore-kit/capi-huksparamsetapi.md#oh_huks_addparams)、[OH_Huks_BuildParamSet](../../reference/apis-universal-keystore-kit/capi-huksparamsetapi.md#oh_huks_buildparamset)构造参数集paramSet，通过[OH_HUKS_TAG_ALGORITHM](../../reference/apis-universal-keystore-kit/capi-hukstypeapi.md#oh_huks_keyalg)、[OH_HUKS_TAG_KEY_SIZE](../../reference/apis-universal-keystore-kit/capi-hukstypeapi.md#oh_huks_keysize)、[OH_HUKS_TAG_PURPOSE](../../reference/apis-universal-keystore-kit/capi-hukstypeapi.md#oh_huks_keypurpose)分别指定算法、密钥大小、密钥用途属性。
+2. 初始化参数集：通过[OH_Huks_InitParamSet](../../reference/apis-universal-keystore-kit/capi-native-huks-param-h.md#oh_huks_initparamset)、[OH_Huks_AddParams](../../reference/apis-universal-keystore-kit/capi-native-huks-param-h.md#oh_huks_addparams)、[OH_Huks_BuildParamSet](../../reference/apis-universal-keystore-kit/capi-native-huks-param-h.md#oh_huks_buildparamset)构造参数集paramSet，通过[OH_HUKS_TAG_ALGORITHM](../../reference/apis-universal-keystore-kit/capi-native-huks-type-h.md#oh_huks_keyalg)、[OH_HUKS_TAG_KEY_SIZE](../../reference/apis-universal-keystore-kit/capi-native-huks-type-h.md#oh_huks_keysize)、[OH_HUKS_TAG_PURPOSE](../../reference/apis-universal-keystore-kit/capi-native-huks-type-h.md#oh_huks_keypurpose)分别指定算法、密钥大小、密钥用途属性。
 
 3. 生成非对称密钥，具体请参考[密钥生成](huks-key-generation-ndk.md)。
 
