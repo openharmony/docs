@@ -191,15 +191,6 @@ clone(): Promise\<Metadata>
 | --------------------------------- | --------------------------------- |
 | Promise\<[Metadata](arkts-apis-image-Metadata.md)> | Promise对象，成功返回元数据实例。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
-
-| 错误码ID | 错误信息             |
-| -------- | -------------------- |
-| 7600301  | Memory alloc failed. |
-| 7600302  | Memory copy failed.  |
-
 **示例：**
 
 ```ts
