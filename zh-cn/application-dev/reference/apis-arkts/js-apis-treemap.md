@@ -1043,32 +1043,6 @@ entries(): IterableIterator<[K, V]>
 
 **示例：**
 
-以下示例代码适用于ArkTS1.1。
-
-```ts
-let treeMap : TreeMap<string, number> = new TreeMap();
-treeMap.set("squirrel", 123);
-treeMap.set("sparrow", 356);
-let it = treeMap.entries();
-let t: IteratorResult<Object[]> = it.next();
-while(!t.done) {
-  console.log("TreeMap" + t.value);
-  t = it.next()
-}
-```
-```ts
- // 不建议在entries中使用set、remove方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
- let treeMap : TreeMap<string, number> = new TreeMap();
- for(let i = 0; i < 10; i++) {
-   treeMap.set("sparrow" + i, 123);
- }
- for(let i = 0;i < 10; i++) {
-   treeMap.remove("sparrow" + i);
- }
-```
-
-以下示例代码适用于ArkTS1.2。
-
 ```ts
 let treeMap : TreeMap<string, Number> = new TreeMap<string, Number>();
 treeMap.set("squirrel", 123);

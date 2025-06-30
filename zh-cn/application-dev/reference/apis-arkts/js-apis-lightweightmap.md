@@ -1025,33 +1025,6 @@ entries(): IterableIterator<[K, V]>
 
 **示例：**
 
-以下示例代码适用于ArkTS1.1。
-
-```ts
-let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
-lightWeightMap.set("squirrel", 123);
-lightWeightMap.set("sparrow", 356);
-let iter = lightWeightMap.entries();
-let temp: IteratorResult<Object[]> = iter.next();
-while(!temp.done) {
-  console.log("key:" + temp.value[0]);
-  console.log("value:" + temp.value[1]);
-  temp = iter.next();
-}
-```
-```ts
-// 不建议在entries中使用set、setValueAt、remove、removeAt方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
-let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
-for(let i = 0; i < 10; i++) {
-  lightWeightMap.set("sparrow" + i, 123);
-}
-for(let i = 0; i < 10; i++) {
-  lightWeightMap.remove("sparrow" + i);
-}
-```
-
-以下示例代码适用于ArkTS1.2。
-
 ```ts
 let lightWeightMap: LightWeightMap<string, Number> = new LightWeightMap<string, Number>();
 lightWeightMap.set("squirrel", 123);
