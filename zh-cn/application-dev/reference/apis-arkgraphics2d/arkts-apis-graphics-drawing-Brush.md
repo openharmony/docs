@@ -103,7 +103,7 @@ brush.setColor(color);
 
 setColor(alpha: number, red: number, green: number, blue: number): void
 
-设置画刷的颜色。性能优于[setColor](#setcolor-1)接口，推荐使用本接口。
+设置画刷的颜色。性能优于[setColor](#setcolor)接口，推荐使用本接口。
 
 **系统能力：** SystemCapability.Graphics.Drawing
  
@@ -168,7 +168,7 @@ brush.setColor(0xffff0000);
 
 setColor4f(color4f: common2D.Color4f, colorSpace: colorSpaceManager.ColorSpaceManager | null): void
 
-设置画刷的颜色以及标准色域，与[setColor](#setcolor-1)区别在于可以单独设置色域，适用于需要单独设置色域的场景。
+设置画刷的颜色以及标准色域，与[setColor](#setcolor)区别在于可以单独设置色域，适用于需要单独设置色域的场景。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -219,7 +219,7 @@ let colorGet = brush.getColor();
 
 getColor4f(): common2D.Color4f
 
-获取画刷的颜色，与[getColor](#getcolor12-1)的区别是返回值类型为浮点数，适用于需要浮点数类型的场景。
+获取画刷的颜色，与[getColor](#getcolor12)的区别是返回值类型为浮点数，适用于需要浮点数类型的场景。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
