@@ -1,6 +1,6 @@
 # NodeController
 
-NodeController用于实现自定义节点的创建、显示、更新等操作的管理，并负责将自定义节点挂载到[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)上。
+NodeController用于实现自定义节点的创建、显示、更新等操作的管理，并负责将自定义节点挂载到[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md)上。
 
 > **说明：**
 >
@@ -16,7 +16,7 @@ import {  NodeController  } from '@kit.ArkUI';
 
 ## NodeController
 
-通常搭配[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)进行使用。用于创建控制器管理绑定的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)组件。一个NodeController只允许与一个[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)进行绑定。最佳实践请参考[组件动态创建-组件动态添加、更新和删除](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-ui-dynamic-operations#section153921947151012)。
+通常搭配[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md)进行使用。用于创建控制器管理绑定的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md)组件。一个NodeController只允许与一个[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md)进行绑定。最佳实践请参考[组件动态创建-组件动态添加、更新和删除](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-ui-dynamic-operations#section153921947151012)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -26,7 +26,7 @@ import {  NodeController  } from '@kit.ArkUI';
 
 abstract makeNode(uiContext : UIContext): FrameNode | null
 
-当实例绑定的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)创建的时候进行回调。回调方法将返回一个节点，将该节点挂载至[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)。
+当实例绑定的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md)创建的时候进行回调。回调方法将返回一个节点，将该节点挂载至[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md)。
 或者可以通过NodeController的rebuild()方法进行回调的触发。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -37,19 +37,19 @@ abstract makeNode(uiContext : UIContext): FrameNode | null
 
 | 参数名    | 类型                                      | 必填 | 说明                                                                                                          |
 | --------- | ----------------------------------------- | ---- | ------------------------------------------------------------------------------------------------------------- |
-| uiContext | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 回调该方法的时候，绑定[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)的UI上下文。 |
+| uiContext | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 回调该方法的时候，绑定[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md)的UI上下文。 |
 
 **返回值：**
 
 | 类型             | 说明                                                                                                                                                                                                                                                        |
 | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [FrameNode](./js-apis-arkui-frameNode.md#framenode)\| null | 一个FrameNode对象，返回的节点将被挂载至[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)的占位节点上。若返回null对象，将清空对应[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)的子节点。 |
+| [FrameNode](./js-apis-arkui-frameNode.md)\| null | 一个FrameNode对象，返回的节点将被挂载至[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md)的占位节点上。若返回null对象，将清空对应[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md)的子节点。 |
 
 ### aboutToAppear
 
 aboutToAppear?(): void
 
-当NodeController绑定的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)挂载显示后触发此回调。
+当NodeController绑定的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md)挂载显示后触发此回调。
 
 > **说明：**
 >
@@ -63,7 +63,7 @@ aboutToAppear?(): void
 
 aboutToDisappear?(): void
 
-当NodeController绑定的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)卸载消失时触发此回调。
+当NodeController绑定的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md)卸载消失时触发此回调。
 
 > **说明：**
 >
@@ -77,7 +77,7 @@ aboutToDisappear?(): void
 
 onAttach?(): void
 
-当NodeController绑定的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)挂载至主节点树时触发此回调。
+当NodeController绑定的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md)挂载至主节点树时触发此回调。
 
 > **说明：**
 >
@@ -91,7 +91,7 @@ onAttach?(): void
 
 onDetach?(): void
 
-当NodeController绑定的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)从主节点树卸载时触发此回调。
+当NodeController绑定的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md)从主节点树卸载时触发此回调。
 
 > **说明：**
 >
@@ -105,7 +105,7 @@ onDetach?(): void
 
 onWillBind?(containerId: number): void
 
-当NodeController与[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)即将绑定前触发此回调。
+当NodeController与[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md)即将绑定前触发此回调。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -115,13 +115,13 @@ onWillBind?(containerId: number): void
 
 | 参数名    | 类型                                      | 必填 | 说明                                                                                                          |
 | ----------- | ------ |----- |---------------------------------------------------------------------------------------------------------------------------------- |
-| containerId | number | 是   | 回调该方法时，NodeController与NodeContainerId对应的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)即将绑定。|
+| containerId | number | 是   | 回调该方法时，NodeController与NodeContainerId对应的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md)即将绑定。|
 
 ### onWillUnbind<sup>18+</sup>
 
 onWillUnbind?(containerId: number): void
 
-当NodeController与[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)即将解绑前触发此回调。
+当NodeController与[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md)即将解绑前触发此回调。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -131,13 +131,13 @@ onWillUnbind?(containerId: number): void
 
 | 参数名    | 类型                                      | 必填 | 说明                                                                                                          |
 | ----------- | ------ |----- |---------------------------------------------------------------------------------------------------------------------------------- |
-| containerId | number | 是   | 回调该方法时，NodeController与NodeContainerId对应的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)即将解绑。|
+| containerId | number | 是   | 回调该方法时，NodeController与NodeContainerId对应的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md)即将解绑。|
 
 ### onBind<sup>18+</sup>
 
 onBind?(containerId: number): void
 
-当NodeController与[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)绑定后触发此回调。
+当NodeController与[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md)绑定后触发此回调。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -147,13 +147,13 @@ onBind?(containerId: number): void
 
 | 参数名    | 类型                                      | 必填 | 说明                                                                                                          |
 | ----------- | ------ |----- |---------------------------------------------------------------------------------------------------------------------------------- |
-| containerId | number | 是   | 回调该方法时，NodeController与NodeContainerId对应的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)绑定完成。|
+| containerId | number | 是   | 回调该方法时，NodeController与NodeContainerId对应的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md)绑定完成。|
 
 ### onUnbind<sup>18+</sup>
 
 onUnbind?(containerId: number): void
 
-当NodeController与[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)解绑后触发此回调。
+当NodeController与[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md)解绑后触发此回调。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -163,13 +163,13 @@ onUnbind?(containerId: number): void
 
 | 参数名    | 类型                                      | 必填 | 说明                                                                                                          |
 | ----------- | ------ |----- |---------------------------------------------------------------------------------------------------------------------------------- |
-| containerId | number | 是   | 回调该方法时，NodeController与NodeContainerId对应的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)解绑完成。|
+| containerId | number | 是   | 回调该方法时，NodeController与NodeContainerId对应的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md)解绑完成。|
 
 ### aboutToResize
 
 aboutToResize?(size: Size): void
 
-当NodeController绑定的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)布局的时候触发此回调。
+当NodeController绑定的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md)布局的时候触发此回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -185,7 +185,7 @@ aboutToResize?(size: Size): void
 
 onTouchEvent?(event: TouchEvent): void
 
-当NodeController绑定的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)收到Touch事件时触发此回调。
+当NodeController绑定的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md)收到Touch事件时触发此回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -201,7 +201,7 @@ onTouchEvent?(event: TouchEvent): void
 
 rebuild(): void
 
-调用此接口通知[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)组件重新回调[makeNode](#makenode)方法，更改子节点。
+调用此接口通知[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md)组件重新回调[makeNode](#makenode)方法，更改子节点。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
