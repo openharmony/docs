@@ -535,7 +535,7 @@ OH_Drawing_Point* OH_Drawing_GetRunGlyphAdvanceByIndex(OH_Drawing_Array* advance
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_Point](capi-drawing-oh-drawing-point.md)* | 返回指向渲染单元单个字形宽度[OH_Drawing_Point](capi-drawing-oh-drawing-point.md)对象的指针。其中，[OH_Drawing_Point](capi-drawing-oh-drawing-point.md)对象的x值代表渲染单元单个字形宽度，y值为保留字段，默认返回0 |
+| [OH_Drawing_Point](capi-drawing-oh-drawing-point.md)* | 返回指向渲染单元单个字形宽度[OH_Drawing_Point](capi-drawing-oh-drawing-point.md)对象的指针。其中，[OH_Drawing_Point](capi-drawing-oh-drawing-point.md)对象的x值代表渲染单元单个字形宽度，y值为保留字段，默认返回0。 |
 
 ### OH_Drawing_DestroyRunGlyphAdvances()
 
