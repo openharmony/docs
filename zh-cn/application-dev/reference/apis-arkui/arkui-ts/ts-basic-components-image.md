@@ -432,7 +432,7 @@ colorFilter(value: ColorFilter | DrawingColorFilter)
 
 draggable(value: boolean)
 
-设置组件默认拖拽效果。不能和[onDragStart](ts-universal-events-drag-drop.md#ondragstart)事件、[bindPopup](ts-universal-attributes-popup.md)同时使用。
+设置组件默认拖拽效果。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -442,7 +442,7 @@ draggable(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 组件默认拖拽效果，设置为true时，组件可拖拽，绑定的长按手势不生效。<br />API version 9及之前，默认值为false。API version 10及之后，默认值为true。<br /> 若用户需要设置自定义手势，则需要将draggable设置为false。 |
+| value  | boolean | 是   | 组件默认拖拽效果，设置为true时，组件可拖拽，绑定的长按手势不生效。<br />API version 9及之前，默认值为false。API version 10及之后，默认值为true。<br /> 若用户需要设置自定义手势，则需要将draggable设置为false。设置为false之后，拖拽类事件不再触发。 |
 
 ### enableAnalyzer<sup>11+</sup>
 
@@ -1953,7 +1953,7 @@ struct fillColorMetricsDemo {
   ]
   @State colorArrayStr: string[] = [
     "P3 Red", "SRGB Red", "P3 Green", "SRGB Green",
-    "P3 Blue", "SRGB Blue", "ColorContent.ORIGIN", "Gray", "undefined"
+    "P3 Blue", "SRGB Blue", "ORIGIN", "Gray", "undefined"
   ]
   @State arrayIdx: number = 0
   build() {
