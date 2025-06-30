@@ -1237,7 +1237,7 @@ export default class EntryAbility extends UIAbility {
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
 | 名称             | 类型     | 只读   | 可选   | 说明                                       |
-| --------------- | ------ | ---- | ---------------------------------------- |
+| --------------- | ------ | ---- | ---- | ---------------------------------------- |
 | id | number | 否    | 否    | 被激活的长时任务 Id。|
 
 ## ContinuousTaskInfo<sup>20+</sup>
