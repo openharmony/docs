@@ -5800,6 +5800,10 @@ int32_t OH_ArkUI_ActiveChildrenInfo_GetCount (ArkUI_ActiveChildrenInfo * handle)
 | -------- | -------- |
 | handle | 要获取信息的ActiveChildrenInfo实例。  |
 
+**返回：**
+
+子节点数量，默认值 0。
+
 
 ### OH_ArkUI_ActiveChildrenInfo_GetNodeByIndex()
 
@@ -5817,6 +5821,11 @@ ArkUI_NodeHandle OH_ArkUI_ActiveChildrenInfo_GetNodeByIndex (ArkUI_ActiveChildre
 | 名称 | 描述 |
 | -------- | -------- |
 | handle | 要获取信息的ActiveChildrenInfo实例。  |
+| index | 子节点的下标。  |
+
+**返回：**
+
+下标对应的子节点指针，异常时返回nullptr。
 
 
 ### OH_ArkUI_AlignmentRuleOption_Create()
@@ -18146,7 +18155,7 @@ int32_t OH_ArkUI_RunTaskInScope(ArkUI_ContextHandle uiContext, void* userData, v
 ```
 **描述：**
 
-在UIContext作用域内运行自定义函数。
+在UIContext作用域内运行自定义函数。示例请参考：[在NDK中保证多实例场景功能正常](../../ui/ndk-scope-task.md)。
 
 **起始版本：** 20
 
@@ -18645,7 +18654,7 @@ int32_t OH_ArkUI_NodeUtils_GetPositionToParent (ArkUI_NodeHandle node, ArkUI_Int
 ```
 **描述：**
 
-获取目标节点相对于父节点的偏移值。
+获取目标节点相对于父节点的偏移值，单位：px。
 
 **起始版本：** 15
 
