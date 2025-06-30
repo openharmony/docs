@@ -9,7 +9,7 @@ The **useEffect** attribute is used to combine the drawing of special effects, s
 
 ## useEffect
 
-useEffect(value: boolean)
+useEffect(value: boolean): T
 
 Specifies whether to combine the drawing of special effects, such as background blur.
 
@@ -21,11 +21,17 @@ Specifies whether to combine the drawing of special effects, such as background 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | boolean | Yes| Whether the component inherits the special effect settings of the **EffectComponent** component.<br>The value **true** means that the component inherits the special effect settings of the **EffectComponent** component, and **false** means the opposite.<br>Default value: **false**|
+| value | boolean | Yes| Whether the component inherits the special effect settings of the **EffectComponent** component.<br>The value **true** means the component inherits the special effect settings of the **EffectComponent** component, and **false** means the opposite.<br>Default value: **false**|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| T | Current component.|
 
 ## useEffect<sup>14+</sup>
 
-useEffect(useEffect: boolean, effectType: EffectType)
+useEffect(useEffect: boolean, effectType: EffectType): T
 
 Specifies whether to apply the effect defined by <!--Del-->the parent [EffectComponent](ts-container-effectcomponent-sys.md) or <!--DelEnd-->the window.
 
@@ -40,11 +46,17 @@ Specifies whether to apply the effect defined by <!--Del-->the parent [EffectCom
 | useEffect  | boolean                                                      | Yes  | Whether to apply the effect defined by <!--Del-->the parent **EffectComponent** or <!--DelEnd-->the window.<br>The value **true** means to apply the effect defined by <!--Del-->the parent **EffectComponent** or <!--DelEnd-->the window.<br>Default value: **false**|
 | effectType | [EffectType](ts-universal-attributes-use-effect.md#effecttype14) | Yes  | Type of effect to apply to the component, which is defined by <!--Del-->the parent **EffectComponent** or <!--DelEnd-->the window.<br>Default value: **EffectType.DEFAULT**|
 
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| T | Current component.|
+
 ## useEffect<sup>18+</sup>
 
-useEffect(useEffect: Optional\<boolean>, effectType?: EffectType)
+useEffect(useEffect: Optional\<boolean>, effectType?: EffectType): T
 
-Specifies whether to apply the effect defined by <!--Del-->the parent [EffectComponent](ts-container-effectcomponent-sys.md) or <!--DelEnd-->the window. Compared to [useEffect<sup>14+</sup>](#useeffect), this API supports the **undefined** type for the **useEffect** parameter.
+Specifies whether to apply the effect defined by <!--Del-->the parent [EffectComponent](ts-container-effectcomponent-sys.md) or <!--DelEnd-->the window. Compared to [useEffect<sup>14+</sup>](#useeffect), the **useEffect** parameter supports the **undefined** type.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -56,6 +68,12 @@ Specifies whether to apply the effect defined by <!--Del-->the parent [EffectCom
 | -------- | -------- | -------- | -------- |
 | useEffect | Optional\<boolean> | Yes| Whether to apply the effect defined by <!--Del-->the parent **EffectComponent** or <!--DelEnd-->the window.<br>The value **true** means to apply the effect defined by <!--Del-->the parent **EffectComponent** or <!--DelEnd-->the window.<br>Default value: **false**<br>If **useEffect** is set to **undefined**, the previous value is retained.|
 | effectType | [EffectType](ts-universal-attributes-use-effect.md#effecttype14) | No| Type of effect to apply to the component, which is defined by <!--Del-->the parent **EffectComponent** or <!--DelEnd-->the window.<br>Default value: **EffectType.DEFAULT**|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| T | Current component.|
 
 ## EffectType<sup>14+</sup>
 
@@ -74,15 +92,17 @@ Effect Template
 
 |  Device Type   | Fuzzy Radius (Unit: px)  | Saturation                |  Brightness |  Color |
 | -------- | ---- | ---------------------- | -------- | -------- |
-| Mobile device | 0   | 0 | 0 | '#ffffffff' |
-| 2-in-1 device: dark mode | 80   | 1.5 | 1.0 | '#e52e3033' |
-| 2-in-1 device: light mode | 80   | 1.9 | 1.0 | '#e5ffffff' |
-| Tablet | 0   | 0 | 0 | '#ffffffff' |
+| Mobile device | 0   | 0 | 0 | '#ffffffff'
+| 2-in-1 device: dark mode | 80   | 1.5 | 1.0 | '#e52e3033'
+| 2-in-1 device: light mode | 80   | 1.9 | 1.0 | '#e5ffffff'
+| Tablet | 0   | 0 | 0 | '#ffffffff'
 
 <!--Del-->
 ## Example
 
 This example shows how to combine the drawing of special effects, including background blur.
+
+<!--code_no_check-->
 
 ```ts
 //Index.ets

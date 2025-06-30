@@ -10,7 +10,7 @@ You can bind a popup to a component, specifying its content, interaction logic, 
 
 ## bindPopup
 
-bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions)
+bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions): T
 
 Binds a popup to the component.
 
@@ -22,10 +22,12 @@ Binds a popup to the component.
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| show   | boolean                                                      | Yes  | Whether to show the popup. The default value is **false**, indicating that the popup is hidden. The popup can be displayed only after the entire page is fully constructed. Therefore, to avoid incorrect display positions and shapes, do not set this parameter to **true** while the page is still being constructed. Since API version 13, this parameter supports two-way binding through [!!](../../../ui/state-management/arkts-new-binding.md#two-way-binding-between-built-in-component-parameters).|
+| show   | boolean                                                      | Yes  | Whether to show the popup. The default value is **false**, indicating that the popup is hidden. The popup can be displayed only after the entire page is fully constructed. Therefore, to avoid incorrect display positions and shapes, do not set this parameter to **true** while the page is still being constructed. Since API version 13, this parameter supports two-way binding through the [!! syntax](../../../ui/state-management/arkts-new-binding.md#two-way-binding-between-built-in-component-parameters).|
 | popup  | [PopupOptions](#popupoptions) \| [CustomPopupOptions](#custompopupoptions8)<sup>8+</sup> | Yes  | Parameters of the popup.                                        |
 
 ## PopupOptions
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name                                 | Type                                                        | Mandatory| Description                                                     |
 | ------------------------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
@@ -151,6 +153,7 @@ Parameters of the popup. Use the [getPromptAction()](../js-apis-arkui-UIContext.
 | transition | [TransitionEffect](ts-transition-animation-component.md#transitioneffect10) | No| Transition effect for the entrance and exit of the popup.<br>**NOTE**<br>1. If this parameter is not set, the default effect is used.<br>2. Touching the Back button during the entrance animation pauses the entrance animation and starts the exit animation. The final effect is one obtained after the curves of the entrance and exit animations are combined.<br>3. Touching the Back button during the exit animation does not affect the animation playback. The Back button does not respond.<br>4. The settings cannot be updated through [updatePopup](../js-apis-arkui-UIContext.md#updatepopup18).|
 | onWillDismiss           | boolean\|Callback<[DismissPopupAction](#dismisspopupaction12)> | No  | Whether to perform dismissal event interception and interception callback. The default value is **true**.<br>1. If this parameter is set to **false**, the system does not respond to the dismissal event initiated by touching the Back button, swiping left or right on the screen, or pressing the Esc key; and the system dismisses the popup only when **show** is set to **false**. If this parameter is set to **true**, the system responds to the dismissal event as expected.<br>2. If this parameter is set to a function, the dismissal event is intercepted and the callback function is executed.<br>**NOTE**<br>1. Nesting **onWillDismiss** callbacks is not allowed.<br>2. The settings cannot be updated through [updatePopup](../js-apis-arkui-UIContext.md#updatepopup18).|
 | followTransformOfTarget          | boolean | No  | Whether the popup adjusts its position to follow transformations (like rotation or scaling) applied to its host component or the host component's parent container.<br>Default value: **false**|
+|enableHoverMode  | boolean  | No  |  Whether to enable the hover mode. If the click position of the popup component is in the crease area in the hover state, the popup component does not respond to the hover state. Default value: **false**, indicating that the popup does not respond in hover mode<br>**NOTE**<br>The popup responds in hover mode when **enableHoverMode** is set to **true** and does not when **enableHoverMode** is set to **false** or an invalid value or is not set at all.|
 
 ## PopupStateChangeParam<sup>18+</sup>
 
@@ -179,12 +182,6 @@ type PopupStateChangeCallback = (event: PopupStateChangeParam) => void;
 | Name     | Type                                      | Mandatory| Description                                                        |
 | --------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
 | event  | [PopupStateChangeParam](#popupstatechangeparam18) | Yes  | Display state of the popup.                                      |
-
-**Return value**
-
-| Type                                      | Description     |
-| ---------------------------------------- | ------- |
-|   void           |   Callback invoked when the popup state changes.|
 
 ## PopupMaskType<sup>18+</sup>
 
@@ -236,22 +233,22 @@ struct PopupExample {
           primaryButton: {
             value: 'confirm',
             action: () => {
-              this.handlePopup = !this.handlePopup
-              console.info('confirm Button click')
+              this.handlePopup = !this.handlePopup;
+              console.info('confirm Button click');
             }
           },
           // Secondary button
           secondaryButton: {
             value: 'cancel',
             action: () => {
-              this.handlePopup = !this.handlePopup
-              console.info('cancel Button click')
+              this.handlePopup = !this.handlePopup;
+              console.info('cancel Button click');
             }
           },
           onStateChange: (e) => {
             console.info(JSON.stringify(e.isVisible))
             if (!e.isVisible) {
-              this.handlePopup = false
+              this.handlePopup = false;
             }
           }
         })
@@ -261,7 +258,7 @@ struct PopupExample {
       // CustomPopupOptions for setting the popup
       Button('CustomPopupOptions')
         .onClick(() => {
-          this.customPopup = !this.customPopup
+          this.customPopup = !this.customPopup;
         })
         .bindPopup(this.customPopup, {
           builder: this.popupBuilder,
@@ -274,7 +271,7 @@ struct PopupExample {
           showInSubWindow: false,
           onStateChange: (e) => {
             if (!e.isVisible) {
-              this.customPopup = false
+              this.customPopup = false;
             }
           }
         })
@@ -320,9 +317,9 @@ struct PopupExample {
           enableArrow: false, // Set the arrow not to display.
           targetSpace: '15vp',
           onStateChange: (e) => {
-            console.info(JSON.stringify(e.isVisible))
+            console.info(JSON.stringify(e.isVisible));
             if (!e.isVisible) {
-              this.handlePopup = false
+              this.handlePopup = false;
             }
           }
         })
@@ -343,8 +340,8 @@ This example demonstrates how to use the **bindPopup** API with properties like 
 @Entry
 @Component
 struct PopupExample {
-  @State customPopup: boolean = false
-  @State handlePopup: boolean = false
+  @State customPopup: boolean = false;
+  @State handlePopup: boolean = false;
 
   build() {
     Column({ space: 100 }) {
@@ -363,7 +360,7 @@ struct PopupExample {
 
       Button('PopupOptions')
         .onClick(() => {
-          this.handlePopup = !this.handlePopup
+          this.handlePopup = !this.handlePopup;
         })
         .bindPopup(this.handlePopup, {
           width: 300,
@@ -390,8 +387,8 @@ In this example, the **bindPopup** API is used with the **transition** property 
 @Entry
 @Component
 struct PopupExample {
-  @State handlePopup: boolean = false
-  @State customPopup: boolean = false
+  @State handlePopup: boolean = false;
+  @State customPopup: boolean = false;
 
   // Popup builder
   @Builder popupBuilder() {
@@ -405,7 +402,7 @@ struct PopupExample {
       // PopupOptions for setting the popup
       Button('PopupOptions')
         .onClick(() => {
-          this.handlePopup = !this.handlePopup
+          this.handlePopup = !this.handlePopup;
         })
         .bindPopup(this.handlePopup, {
           message: 'This is a popup with transitionEffect',
@@ -414,7 +411,7 @@ struct PopupExample {
           onStateChange: (e) => {
             console.info(JSON.stringify(e.isVisible))
             if (!e.isVisible) {
-              this.handlePopup = false
+              this.handlePopup = false;
             }
           },
           // Set the popup animation to a combination of opacity and translation effects, with no exit animation.
@@ -428,7 +425,7 @@ struct PopupExample {
       // CustomPopupOptions for setting the popup
       Button('CustomPopupOptions')
         .onClick(() => {
-          this.customPopup = !this.customPopup
+          this.customPopup = !this.customPopup;
         })
         .bindPopup(this.customPopup, {
           builder: this.popupBuilder,
@@ -436,7 +433,7 @@ struct PopupExample {
           showInSubWindow: false,
           onStateChange: (e) => {
             if (!e.isVisible) {
-              this.customPopup = false
+              this.customPopup = false;
             }
           },
           // Set the popup entrance and exit animations to be a scaling effect.
@@ -460,12 +457,12 @@ This example uses the **bindPopup** API with the **onWillDismiss** property to i
 @Entry
 @Component
 struct PopupExample {
-  @State handlePopup: boolean = false
+  @State handlePopup: boolean = false;
   build() {
     Column() {
       Button('PopupOptions')
         .onClick(() => {
-          this.handlePopup = true
+          this.handlePopup = true;
         })
         .bindPopup(this.handlePopup, {
           message: 'This is a popup with PopupOptions',
@@ -482,14 +479,14 @@ struct PopupExample {
           targetSpace: '15vp',
           onStateChange: (e) => {
             if (!e.isVisible) {
-              this.handlePopup = false
+              this.handlePopup = false;
             }
           },
           onWillDismiss: (
             (dismissPopupAction: DismissPopupAction) => {
-              console.info("dismissReason:" + JSON.stringify(dismissPopupAction.reason))
-              if (dismissPopupAction.reason == DismissReason.PRESS_BACK) {
-                dismissPopupAction.dismiss()
+              console.info("dismissReason:" + JSON.stringify(dismissPopupAction.reason));
+              if (dismissPopupAction.reason === DismissReason.PRESS_BACK) {
+                dismissPopupAction.dismiss();
               }
             }
           )
@@ -511,12 +508,13 @@ In this example, the **onWillDismiss** property is set to **false** to intercept
 @Entry
 @Component
 struct PopupExample {
-  @State handlePopup: boolean = false
+  @State handlePopup: boolean = false;
+
   build() {
     Column() {
       Button('PopupOptions')
         .onClick(() => {
-          this.handlePopup = true
+          this.handlePopup = true;
         })
         .bindPopup(this.handlePopup, {
           message: 'This is a popup with PopupOptions',
@@ -533,10 +531,12 @@ struct PopupExample {
           targetSpace: '15vp',
           followTransformOfTarget: true,
           onStateChange: (e) => {
-            let timer = setTimeout(()=>{this.handlePopup = false},6000)
+            let timer = setTimeout(() => {
+              this.handlePopup = false;
+            }, 6000);
             if (!e.isVisible) {
-              this.handlePopup = false
-              clearTimeout(timer)
+              this.handlePopup = false;
+              clearTimeout(timer);
             }
           },
           onWillDismiss: false

@@ -8,9 +8,13 @@ With the gesture modifier, you can dynamically set gestures bound to components,
 
 ## gestureModifier
 
-gestureModifier(modifier: GestureModifier)
+gestureModifier(modifier: GestureModifier): T
 
 Creates a gesture modifier.
+
+>  **NOTE**
+>
+>  **gestureModifier** does not support custom components.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -22,6 +26,12 @@ Creates a gesture modifier.
 | -------- | --------------------- | ---- | ------------------------------------------------------------ |
 | modifier | [GestureModifier](#gesturemodifier-1) | Yes  | Modifier for dynamically setting gestures bound to the current component. The **if/else** syntax is supported.<br>**modifier**: gesture modifier. You need a custom class to implement the **GestureModifier** API.|
 
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| T | Current component.|
+
 ## GestureModifier
 
 You need a custom class to implement the **GestureModifier** API.
@@ -31,7 +41,7 @@ applyGesture(event: UIGestureEvent): void
 
 Binds a gesture to this component.
 
-You can customize this API as required. The **if/else** syntax is supported.
+You can customize this API as required. Dynamic configuration using the **if/else** syntax is supported. If gesture switching is triggered during an active gesture operation, the new configuration will take effect in the subsequent gesture interaction after all fingers are lifted from the current gesture.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -48,7 +58,7 @@ This example demonstrates how to dynamically set the gestures bound to a compone
 ```ts
 // xxx.ets
 class MyButtonModifier implements GestureModifier {
-  supportDoubleTap: boolean = true
+  supportDoubleTap: boolean = true;
 
   applyGesture(event: UIGestureEvent): void {
     if (this.supportDoubleTap) {
@@ -83,6 +93,11 @@ struct Index {
           .width(500)
           .height(500)
           .backgroundColor(Color.Blue)
+        Button('changeGesture')
+          .onClick(() => {
+            this.modifier.supportDoubleTap = !this.modifier.supportDoubleTap;
+          })
+          .margin({top: 10})
       }
       .width('100%')
     }

@@ -1,14 +1,16 @@
 # Size
 
-The size attributes set the width, height, and margin of a component.
+The size attributes set the width, height, and margins of a component.
 
 >  **NOTE**
 >
->  The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+>  The initial APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+>
+>  When a component's size is set by percentage, the actual size is calculated based on the size of the nearest ancestor node with a fixed size.
 
 ## width
 
-width(value: Length)
+width(value: Length): T
 
 Sets the width of the component. By default, the width required to fully hold the component content is used. If the width of the component is greater than that of the parent container, the component will be drawn beyond the parent container scope.
 
@@ -26,6 +28,12 @@ Since API version 10, this API supports the calc calculation feature.
 | ----- | ---------------------------- | ---- | ------------------- |
 | value | [Length](ts-types.md#length) | Yes   | Width of the component to set.<br>Unit: vp|
 
+**Return value**
+
+| Type| Description|
+| --- | --- |
+|  T | Current component.|
+
 >  **NOTE**
 >
 >  - In the [TextInput](./ts-basic-components-textinput.md) component, setting **width** to **auto** means that the width adapts to the width of the text content.
@@ -34,7 +42,7 @@ Since API version 10, this API supports the calc calculation feature.
 
 ## height
 
-height(value: Length)
+height(value: Length): T
 
 Sets the height of the component. By default, the height required to fully hold the component content is used. If the height of the component is greater than that of the parent container, the component will be drawn beyond the parent container scope.
 
@@ -52,13 +60,19 @@ Since API version 10, this API supports the calc calculation feature.
 | ----- | ---------------------------- | ---- | ------------------- |
 | value | [Length](ts-types.md#length) | Yes   | Height of the component to set.<br>Unit: vp|
 
+**Return value**
+
+| Type| Description|
+| --- | --- |
+|  T | Current component.|
+
 >  **NOTE**
 >
 >  In the [Row](./ts-container-row.md), [Column](./ts-container-column.md), and [RelativeContainer](./ts-container-relativecontainer.md) components, setting **width** and **height** to **auto** means that the size adapts to the size of their child components.
 
 ## width<sup>15+</sup>
 
-width(widthValue: Length | LayoutPolicy)
+width(widthValue: Length | LayoutPolicy): T
 
 Sets the width of the component or its horizontal layout policy. By default, the component uses the width required for its content. If the width of the component is greater than that of the parent container, the component will be drawn beyond the parent container scope.
 
@@ -74,9 +88,15 @@ Sets the width of the component or its horizontal layout policy. By default, the
 | ----- | ---------------------------- | ---- | ------------------- |
 | widthValue | [Length](ts-types.md#length) \|  [LayoutPolicy](ts-types.md#layoutpolicy15) | Yes   | Width of the component to set.<br>Unit: vp|
 
+**Return value**
+
+| Type| Description|
+| --- | --- |
+|  T | Current component.|
+
 ## height<sup>15+</sup>
 
-height(heightValue: Length | LayoutPolicy)
+height(heightValue: Length | LayoutPolicy): T
 
 Sets the height of the component or its vertical layout policy. By default, the component uses the height required for its content. If the height of the component is greater than that of the parent container, the component will be drawn beyond the parent container scope.
 
@@ -92,15 +112,21 @@ Sets the height of the component or its vertical layout policy. By default, the 
 | ----- | ---------------------------- | ---- | ------------------- |
 | heightValue | [Length](ts-types.md#length) \|  [LayoutPolicy](ts-types.md#layoutpolicy15) | Yes   | Height of the component to set.<br>Unit: vp|
 
+**Return value**
+
+| Type| Description|
+| --- | --- |
+|  T | Current component.|
+
 >  **NOTE**
 > 
->  In the [Row](./ts-container-row.md) and [Column](./ts-container-column.md) components, **width** and **height** can be set to parameters of the [LayoutPolicy](ts-types.md#layoutpolicy15) type.
+>  The **width** and **height** attributes of the [Row](./ts-container-row.md) and [Column](./ts-container-column.md) components support parameters of the [LayoutPolicy](ts-types.md#layoutpolicy15) type.
 
 ## size
 
-size(value: SizeOptions)
+size(value: SizeOptions): T
 
-Sets the size of the component.
+Sets the width and height of the component.
 
 Since API version 10, this API supports the calc calculation feature.
 
@@ -116,9 +142,15 @@ Since API version 10, this API supports the calc calculation feature.
 | ----- | ------------------------------- | ---- | ----------------- |
 | value | [SizeOptions](#sizeoptions) | Yes   | Size of the component to set.<br>Unit: vp|
 
+**Return value**
+
+| Type| Description|
+| --- | --- |
+|  T | Current component.|
+
 ## padding
 
-padding(value: Padding | Length | LocalizedPadding)
+padding(value: Padding | Length | LocalizedPadding): T
 
 Sets the padding of the component.
 
@@ -136,9 +168,15 @@ Since API version 10, this API supports the calc calculation feature.
 | ----- | ---------------------------------------- | ---- | ---------------------------------------- |
 | value | [Padding](ts-types.md#padding) \|  [Length](ts-types.md#length) \|   [LocalizedPadding](ts-types.md#localizedpadding12)<sup>12+</sup>| Yes   | Padding of the component to set.<br>When the parameter is of the **Length** type, the four paddings take effect.<br>Default value: **0**<br>Unit: vp<br>When **padding** is set to a percentage, the width of the parent container is used as the basic value.|
 
+**Return value**
+
+| Type| Description|
+| --- | --- |
+|  T | Current component.|
+
 ## margin
 
-margin(value: Margin | Length | LocalizedMargin)
+margin(value: Margin | Length | LocalizedMargin): T
 
 Sets the margin of the component.
 
@@ -156,11 +194,17 @@ Since API version 10, this API supports the calc calculation feature.
 | ------ | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
 | value  | [Margin](ts-types.md#margin) \| [Length](ts-types.md#length) \| [LocalizedMargin](ts-types.md#localizedmargin12)<sup>12+</sup> | Yes| Margin of the component to set.<br>When the parameter is of the **Length** type, the four margins take effect.<br>Default value: **0**<br>Unit: vp<br>When **margin** is set to a percentage, the width of the parent container is used as the basic value. When child components are laid out along the cross axis of the [Row](./ts-container-row.md), [Column](./ts-container-column.md), or [Flex](./ts-container-flex.md) container, the cross axis size of the child components and the margins add up to the total size of the container.<br>For example, if the width of the **Column** container is 100, the width of the child component is 50, the left margin is 10, and the right margin is 20, then the actual horizontal offset of the child component is 10.|
 
+**Return value**
+
+| Type| Description|
+| --- | --- |
+|  T | Current component.|
+
 ## safeAreaPadding<sup>14+</sup>
 
-safeAreaPadding(value: Padding | LengthMetrics | LocalizedPadding)
+safeAreaPadding(paddingValue: Padding | LengthMetrics | LocalizedPadding): T
 
-Sets the safe area padding. It enables a container to add a component-level safe area for child components to expand into.
+Sets the safe area padding. This allows the container to add a component-level safe area for its child components to extend into.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 14.
 
@@ -174,11 +218,17 @@ Sets the safe area padding. It enables a container to add a component-level safe
 | ----- | ---------------------------------------- | ---- | ---------------------------------------- |
 | paddingValue | [Padding](ts-types.md#padding) \|  [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \|   [LocalizedPadding](ts-types.md#localizedpadding12)| Yes   | Safe area padding.<br>Default value: **0**<br>Unit: vp|
 
+**Return value**
+
+| Type| Description|
+| --- | --- |
+|  T | Current component.|
+
 ## layoutWeight
 
-layoutWeight(value: number | string)
+layoutWeight(value: number | string): T
 
-Sets the weight of the component during layout. A component with this attribute is allocated space along the main axis of its parent container ([Row](./ts-container-row.md), [Column](./ts-container-column.md), or [Flex](./ts-container-flex.md)) based on its specified weight.
+Sets the weight of the component during layout. A component with this attribute set is allocated space along the main axis of its parent container ([Row](./ts-container-row.md), [Column](./ts-container-column.md), or [Flex](./ts-container-flex.md)) based on its specified weight.
 
 **Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
 
@@ -190,11 +240,17 @@ Sets the weight of the component during layout. A component with this attribute 
 
 | Name  | Type                        | Mandatory     | Description                                      |
 | ----- | -------------------------- | ------- | ---------------------------------------- |
-| value | number \| string | Yes| Weight of the component during layout. When the size of the parent container is determined, the container space is allocated along the main axis among the component and its sibling components based on their respective weights, ignoring their own size settings.<br>Default value: **0**<br>**NOTE**<br>This parameter is only effective in [Row](./ts-container-row.md), [Column](./ts-container-column.md), and [Flex](./ts-container-flex.md) container components.<br>The value can be a number greater than or equal to 0 or a string that can be converted to a number.<br>If any child component in a container has the **layoutWeight** attribute set to a value greater than 0, then child components will no longer be laid out based on **flexShrink** and **flexGrow**.|
+| value | number \| string | Yes| Layout weight of the component.<br>When the parent container size is determined:<br>Elements without **layoutWeight** or with **layoutWeight** set to **0** take precedence in occupying space.<br> The remaining space on the main axis is then allocated proportionally among elements with a **layoutWeight** value greater than 0, ignoring their own size settings.<br>Default value: **0**<br>**NOTE**<br>This parameter is only effective in [Row](./ts-container-row.md), [Column](./ts-container-column.md), and [Flex](./ts-container-flex.md) container components.<br>The value can be a number greater than or equal to 0 or a string that can be converted to a number.<br>If any child component in a container has the **layoutWeight** attribute set to a value greater than 0, then child components will no longer be laid out based on **flexShrink** and **flexGrow**.|
+
+**Return value**
+
+| Type| Description|
+| --- | --- |
+|  T | Current component.|
 
 ## constraintSize
 
-constraintSize(value: ConstraintSizeOptions)
+constraintSize(value: ConstraintSizeOptions): T
 
 Sets the constraint size of the component, which is used to limit the size range during component layout.
 
@@ -212,6 +268,12 @@ Since API version 10, this API supports the calc calculation feature.
 | ----- | ---------------------------------------- | ---- | ---------------------------------------- |
 | value | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | Yes   | Constraint size of the component to set. **constraintSize** takes precedence over **width** and **height**. See **Impact of constraintSize on width/height**.<br>Default value:<br>{<br>minWidth: 0,<br>maxWidth: Infinity,<br>minHeight: 0,<br>maxHeight: Infinity<br>}<br>Unit: vp<br>|
 
+**Return value**
+
+| Type| Description|
+| --- | --- |
+|  T | Current component.|
+
 **Impact of constraintSize(minWidth/maxWidth/minHeight/maxHeight) on width/height**
 
 | Default Value                                     | Result                                      |
@@ -228,6 +290,8 @@ Since API version 10, this API supports the calc calculation feature.
 
 ## SizeOptions
 
+Describes the width and height of a component during layout.
+
 **Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
@@ -238,6 +302,8 @@ Since API version 10, this API supports the calc calculation feature.
 | height | [Length](ts-types.md#length) | No| Component height.|
 
 ## ConstraintSizeOptions
+
+Describes the size constraints of a component during layout.
 
 **Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
 
@@ -258,7 +324,7 @@ Since API version 10, this API supports the calc calculation feature.
 
 ### Example 1: Setting the Component Width, Height, Margin, and Padding
 
-This example demonstrates how to set the width, height, margin, and padding of a component.
+This example demonstrates how to set the width, height, padding, and margin of a component.
 
 ```ts
 // xxx.ets
@@ -271,7 +337,9 @@ struct SizeExample {
       Row() {
         // Width: 80; height: 80; margin: 20 (blue area); top, bottom, left, and right paddings: 5, 15, 10, and 20 (white area)
         Row() {
-          Row().size({ width: '100%', height: '100%' }).backgroundColor(Color.Yellow)
+          Row()
+          .size({ width: '100%', height: '100%' })
+          .backgroundColor(Color.Yellow)
         }
         .width(80)
         .height(80)
@@ -280,12 +348,18 @@ struct SizeExample {
         .backgroundColor(Color.White)
       }.backgroundColor(Color.Blue)
 
-      Text('constraintSize').fontSize(12).fontColor(0xCCCCCC).width('90%')
+      Text('constraintSize')
+        .fontSize(12)
+        .fontColor(0xCCCCCC)
+        .width('90%')
       Text('this is a Text.this is a Text.this is a Text.this is a Text.this is a Text.this is a Text.this is a Text.this is a Text.this is a Text.this is a Text.this is a Text.this is a Text.this is a Text.this is a Text.this is a Text')
         .width('90%')
         .constraintSize({ maxWidth: 200 })
 
-      Text('layoutWeight').fontSize(12).fontColor(0xCCCCCC).width('90%')
+      Text('layoutWeight')
+        .fontSize(12)
+        .fontColor(0xCCCCCC)
+        .width('90%')
       // When the container size is determined, the component occupies the space along the main axis based on the layout weight, and the component size setting is ignored.
       Row() {
         // Weight 1: The component occupies 1/3 of the remaining space along the main axis.
@@ -299,9 +373,14 @@ struct SizeExample {
         // If layoutWeight is not set, the component is rendered based on its own size setting.
         Text('no layoutWeight')
           .size({ width: '30%', height: 110 }).backgroundColor(0xD2B48C).textAlign(TextAlign.Center)
-      }.size({ width: '90%', height: 140 }).backgroundColor(0xAFEEEE)
+      }
+      .size({ width: '90%', height: 140 })
+      .backgroundColor(0xAFEEEE)
       // calc calculation feature
-      Text('calc:').fontSize(12).fontColor(0xCCCCCC).width('90%')
+      Text('calc:')
+        .fontSize(12)
+        .fontColor(0xCCCCCC)
+        .width('90%')
       Text('calc test')
         .fontSize(50)
         .fontWeight(FontWeight.Bold)
@@ -310,7 +389,9 @@ struct SizeExample {
         .margin('calc(25vp*2)')
         // If width or height is set to a percentage, the width or height of the parent container are used as the basic value.
         .size({ width: 'calc(90%)', height: 'calc(50vp + 10%)' })
-    }.width('100%').margin({ top: 5 })
+    }
+    .width('100%')
+    .margin({ top: 5 })
   }
 }
 ```
@@ -319,7 +400,7 @@ struct SizeExample {
 
 ### Example 2: Using LocalizedPadding and LocalizedMargin Types
 
-This example demonstrates how to use **LocalizedPadding** and **LocalizedMargin** types to set the padding and margin.
+This example demonstrates how to use **LocalizedPadding** and **LocalizedMargin** types to define the **padding** and **margin** attributes.
 
 ```ts
 // xxx.ets
@@ -330,11 +411,16 @@ import { LengthMetrics } from '@kit.ArkUI'
 struct SizeExample {
   build() {
     Column({ space: 10 }) {
-      Text('margin and padding:').fontSize(12).fontColor(0xCCCCCC).width('90%')
+      Text('margin and padding:')
+        .fontSize(12)
+        .fontColor(0xCCCCCC)
+        .width('90%')
       Row() {
         // Set the width to 80, height to 80, top, bottom, start, and end paddings to 40, 20, 30, and 10, respectively (blue area), and top, bottom, start, and end margins to 5, 15, 10, and 20, respectively (white area).
         Row() {
-          Row().size({ width: '100%', height: '100%' }).backgroundColor(Color.Yellow)
+          Row()
+            .size({ width: '100%', height: '100%' })
+            .backgroundColor(Color.Yellow)
         }
         .width(80)
         .height(80)
@@ -351,8 +437,11 @@ struct SizeExample {
           end: LengthMetrics.vp(10)
         })
         .backgroundColor(Color.White)
-      }.backgroundColor(Color.Blue)
-    }.width('100%').margin({ top: 5 })
+      }
+      .backgroundColor(Color.Blue)
+    }
+    .width('100%')
+    .margin({ top: 5 })
   }
 }
 ```
