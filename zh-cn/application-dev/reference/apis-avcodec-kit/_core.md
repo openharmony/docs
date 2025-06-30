@@ -1036,16 +1036,16 @@ bool OH_AVFormat_GetBuffer (struct OH_AVFormat *format, const char *key, uint8_t
 ### OH_AVFormat_GetIntBuffer()
 
 ```
-bool OH_AVFormat_GetIntBuffer (struct OH_AVFormat *format, const char *key, int32_t ** addr, size_t *size)
+bool OH_AVFormat_GetIntBuffer(struct OH_AVFormat *format, const char *key, int32_t **addr, size_t *size)
 ```
 
 **描述**
 
 从OH_AVFormat中读取一个int32_t数据的数组。
-
+注意获取的buffer生命周期与OH_AVFormat对象绑定，当format销毁时自动失效。 如果开发者需要长时间保持它，应用程序必须将数据显式复制到新分配的内存。
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
-**起始版本：** 9
+**起始版本：** 20
 
 **参数:**
 
@@ -1062,11 +1062,11 @@ bool OH_AVFormat_GetIntBuffer (struct OH_AVFormat *format, const char *key, int3
 
 可能的失败原因：
 
-1. 输入format为空指针；
-2. 输入format参数结构校验失败；
-3. 输入key为空指针；
-4. 输入addr为空指针；
-5. size为空指针；
+1. 输入format为空指针。
+2. 输入format参数结构校验失败。
+3. 输入key为空指针。
+4. 输入addr为空指针。
+5. 输入size为空指针。
 
 ### OH_AVFormat_GetDoubleValue()
 

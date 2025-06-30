@@ -3204,7 +3204,7 @@ const char* OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_MAX_COUNT
 ### OH_MD_KEY_REFERENCE_TRACK_IDS
 
 ```
-const char* OH_MD_KEY_REFERENCE_TRACK_IDS
+const char *OH_MD_KEY_REFERENCE_TRACK_IDS
 ```
 **描述**
 媒体文件轨道间参考、被参考关系，值类型为int32_t\*。
@@ -3216,7 +3216,7 @@ const char* OH_MD_KEY_REFERENCE_TRACK_IDS
 ### OH_MD_KEY_TRACK_REFERENCE_TYPE
 
 ```
-const char* OH_MD_KEY_TRACK_REFERENCE_TYPE
+const char *OH_MD_KEY_TRACK_REFERENCE_TYPE
 ```
 **描述**
 媒体文件辅助轨类型，值类型为string。
@@ -3228,7 +3228,7 @@ const char* OH_MD_KEY_TRACK_REFERENCE_TYPE
 ### OH_MD_KEY_TRACK_DESCRIPTION
 
 ```
-const char* OH_MD_KEY_TRACK_DESCRIPTION
+const char *OH_MD_KEY_TRACK_DESCRIPTION
 ```
 **描述**
 媒体文件辅助轨描述信息，值类型为string。
