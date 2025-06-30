@@ -704,10 +704,10 @@ try {
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-| 名称   | 类型       | 必填 | 说明               |
-| ------ | ---------- | ---- | ------------------ |
-| inData | Uint8Array | 是   | 证书的二进制内容。 |
-| alias  | string     | 是   | 证书别名。         |
+| 名称   | 类型       | 只读 | 可选 | 说明               |
+| ------ | ---------- | ---- | ---- | ------------------ |
+| inData | Uint8Array | 否   | 否 |证书的二进制内容。 |
+| alias  | string     | 否   | 否 |证书别名。         |
 
 ## PasswordPolicy
 
@@ -715,11 +715,11 @@ try {
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-| 名称         | 类型     | 必填 | 说明                            |
-| ----------- | --------| ---- | ------------------------------- |
-| complexityRegex | string | 否 | 口令复杂度正则表达式。 |
-| validityPeriod | number | 否 | 密码有效期（单位：毫秒）。 |
-| additionalDescription | string | 否 | 描述文本。 |
+| 名称         | 类型     | 只读 | 可选 | 说明                            |
+| ----------- | --------| ---- | ---- | --------------------------- |
+| complexityRegex | string | 否 | 是 | 口令复杂度正则表达式。 |
+| validityPeriod | number | 否 | 是 | 密码有效期（单位：毫秒）。 |
+| additionalDescription | string | 否 | 是 | 描述文本。 |
 
 ## ClipboardPolicy
 

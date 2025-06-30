@@ -298,10 +298,10 @@ context.resourceManager.getRawFileContent("test.cer").then((value) => {
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-| 名称         | 类型     | 必填 | 说明                            |
-| ----------- | --------| ----- | ------------------------------- |
-| inData | Uint8Array | 是 | 证书的二进制内容。 |
-| alias | string | 是 | 证书别名。 |
+| 名称         | 类型     | 只读 | 可选 | 说明                            |
+| ----------- | --------| ----- | ---- | ------------------------------- |
+| inData | Uint8Array | 否 | 否 |证书的二进制内容。 |
+| alias | string | 否 | 否 |证书别名。 |
 
 ## deviceSettings.uninstallUserCertificate
 
@@ -517,10 +517,10 @@ try {
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-| 名称         | 类型     | 必填 | 说明                            |
-| ----------- | --------| ----- | ------------------------------- |
-| powerPolicyAction | [PowerPolicyAction](#powerpolicyaction11) | 是 | 执行电源策略的动作。 |
-| delayTime | number | 是 | 延迟时间（单位：毫秒）。|
+| 名称         | 类型     | 只读 | 可选 | 说明                            |
+| ----------- | --------| ----- | ---- | ------------------------------- |
+| powerPolicyAction | [PowerPolicyAction](#powerpolicyaction11) | 否 | 否 | 执行电源策略的动作。 |
+| delayTime | number | 否 | 否 | 延迟时间（单位：毫秒）。|
 
 ## PowerScene<sup>11+</sup>
 
