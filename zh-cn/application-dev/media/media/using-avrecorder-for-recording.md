@@ -87,7 +87,7 @@
      audioChannels: 2, // 音频声道数。
      audioCodec: media.CodecMimeType.AUDIO_AAC, // 音频编码格式，当前支持ACC，MP3，G711MU。
      audioSampleRate: 48000, // 音频采样率。
-     fileFormat: media.ContainerFormatType.CFT_MPEG_4A, // 封装格式，当前支持MP4，M4A，MP3，WAV。
+     fileFormat: media.ContainerFormatType.CFT_MPEG_4A, // 封装格式，当前支持MP4，M4A，MP3，WAV，AMR，AAC。
    };
    
    const context: Context = this.getUIContext().getHostContext()!; // 参考应用文件访问与管理。
@@ -166,7 +166,7 @@ export class AudioRecorderDemo extends CustomComponent {
     audioChannels: 2, // 音频声道数。
     audioCodec: media.CodecMimeType.AUDIO_AAC, // 音频编码格式，当前支持ACC，MP3，G711MU。
     audioSampleRate: 48000, // 音频采样率。
-    fileFormat: media.ContainerFormatType.CFT_MPEG_4A, // 封装格式，当前支持MP4，M4A，MP3，WAV。
+    fileFormat: media.ContainerFormatType.CFT_MPEG_4A, // 封装格式，当前支持MP4，M4A，MP3，WAV，AMR，AAC。
   };
   private avConfig: media.AVRecorderConfig = {
     audioSourceType: media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC, // 音频输入源，这里设置为麦克风。
@@ -175,6 +175,7 @@ export class AudioRecorderDemo extends CustomComponent {
   };
   private uriPath: string = '';
   private filePath: string = '';
+  private fileFd: number = 0;
   
   // 创建文件以及设置avConfig.url。
   async createAndSetFd(): Promise<void> {
@@ -182,6 +183,7 @@ export class AudioRecorderDemo extends CustomComponent {
       const path: string = context.filesDir + '/example.mp3'; // 文件沙箱路径，文件后缀名应与封装格式对应。
       const audioFile: fs.File = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
       this.avConfig.url = 'fd://' + audioFile.fd; // 更新url。
+      this.fileFd = audioFile.fd;
       this.filePath = path;
   }
 
@@ -209,6 +211,7 @@ export class AudioRecorderDemo extends CustomComponent {
     this.avRecorder = await media.createAVRecorder();
     this.setAudioRecorderCallback();
     // 2.获取录制文件fd赋予avConfig里的url；参考FilePicker文档。
+    this.createAndSetFd();
 
     // 3.配置录制参数完成准备工作。
     await this.avRecorder.prepare(this.avConfig);
@@ -244,6 +247,7 @@ export class AudioRecorderDemo extends CustomComponent {
       await this.avRecorder.release();
       this.avRecorder = undefined;
       // 4.关闭录制文件fd。
+      await fs.close(this.fileFd);
     }
   }
 
