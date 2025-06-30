@@ -116,6 +116,7 @@
     - [富文本 (RichEditor)](arkts-common-components-richeditor.md)
     - [图标小符号 (SymbolGlyph/SymbolSpan)](arkts-common-components-symbol.md)
     - [属性字符串 (StyledString/MutableStyledString)](arkts-styled-string.md)
+    - [图文混排](arkts-text-image-layout.md)
   - 使用弹窗<!--arkts-use-dialog-->
      - [弹窗概述](arkts-dialog-overview.md)
      - 使用弹出框 (Dialog)<!--arkts-use-dialogs-->
