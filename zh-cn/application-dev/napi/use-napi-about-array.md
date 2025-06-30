@@ -159,7 +159,7 @@ static napi_value GetArrayLength(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const getArrayLength: (arr: Array<any>) => number | void;
+export const getArrayLength: (arr: Array<any>) => number | undefined;
 ```
 
 ArkTS侧示例代码
@@ -207,7 +207,7 @@ static napi_value IsArray(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const isArray: <T>(data: Array<T> | T) => boolean | void;
+export const isArray: <T>(data: Array<T> | T) => boolean | undefined;
 ```
 
 ArkTS侧示例代码
@@ -607,7 +607,7 @@ static napi_value IsTypedarray(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const isTypedarray: (data: Object) => boolean | void;
+export const isTypedarray: (data: Object) => boolean | undefined;
 ```
 
 ArkTS侧示例代码
@@ -762,7 +762,7 @@ static napi_value CreateDataView(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const createDataView: (arraybuffer:ArrayBuffer) => DataView | void;
+export const createDataView: (arraybuffer:ArrayBuffer) => DataView | undefined;
 ```
 
 ArkTS侧示例代码
@@ -813,7 +813,7 @@ static napi_value IsDataView(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const isDataView: (date: DataView | string) => boolean | void;
+export const isDataView: (date: DataView | string) => boolean | undefined;
 ```
 
 ArkTS侧示例代码
