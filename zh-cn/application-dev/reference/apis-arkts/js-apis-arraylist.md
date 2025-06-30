@@ -56,7 +56,7 @@ ArrayList的构造函数。
 **示例：**
 
 ```ts
-let arrayList: ArrayList<string | number> = new ArrayList();
+let arrayList: ArrayList<string | number> = new ArrayList<string | number>();
 ```
 
 
@@ -97,7 +97,8 @@ class C1 {
   name: string = ""
   age: string = ""
 }
-let arrayList: ArrayList<string | number | boolean | Array<number> | C1> = new ArrayList();
+let arrayList: ArrayList<string | number | boolean | Array<number> | C1> =
+  new ArrayList<string | number | boolean | Array<number> | C1>();
 let result1 = arrayList.add("a");
 let result2 = arrayList.add(1);
 let b = [1, 2, 3];
@@ -122,7 +123,7 @@ insert(element: T, index: number): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | element | T | 是 | 被插入的元素。 |
-| index | number | 是 | 被插入的位置索引。需要小于等于int32_max即2147483647。 |
+| index | number | 是 | 被插入的位置索引。需要小于等于int32_max（即2147483647）。 |
 
 **错误码：**
 
@@ -137,7 +138,7 @@ insert(element: T, index: number): void
 **示例：**
 
 ```ts
-let arrayList: ArrayList<number | string | boolean> = new ArrayList();
+let arrayList: ArrayList<number | string | boolean> = new ArrayList<number | string | boolean>();
 arrayList.insert("A", 0);
 arrayList.insert(0, 1);
 arrayList.insert(true, 2);
@@ -176,7 +177,7 @@ has(element: T): boolean
 **示例：**
 
 ```ts
-let arrayList: ArrayList<string> = new ArrayList();
+let arrayList: ArrayList<string> = new ArrayList<string>();
 arrayList.add("squirrel");
 let result: boolean = arrayList.has("squirrel");
 ```
@@ -214,7 +215,7 @@ getIndexOf(element: T): number
 **示例：**
 
 ```ts
-let arrayList: ArrayList<number> = new ArrayList();
+let arrayList: ArrayList<number> = new ArrayList<number>();
 arrayList.add(2);
 arrayList.add(4);
 arrayList.add(5);
@@ -258,7 +259,7 @@ getLastIndexOf(element: T): number
 **示例：**
 
 ```ts
-let arrayList: ArrayList<number> = new ArrayList();
+let arrayList: ArrayList<number> = new ArrayList<number>();
 arrayList.add(2);
 arrayList.add(4);
 arrayList.add(5);
@@ -283,7 +284,7 @@ removeByIndex(index: number): T
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| index | number | 是 | 指定元素的下标值。需要小于等于int32_max即2147483647。 |
+| index | number | 是 | 指定元素的下标值。需要小于等于int32_max（即2147483647）。 |
 
 **返回值：**
 
@@ -304,7 +305,7 @@ removeByIndex(index: number): T
 **示例：**
 
 ```ts
-let arrayList: ArrayList<number> = new ArrayList();
+let arrayList: ArrayList<number> = new ArrayList<number>();
 arrayList.add(2);
 arrayList.add(4);
 arrayList.add(5);
@@ -346,7 +347,7 @@ remove(element: T): boolean
 **示例：**
 
 ```ts
-let arrayList: ArrayList<number> = new ArrayList();
+let arrayList: ArrayList<number> = new ArrayList<number>();
 arrayList.add(2);
 arrayList.add(4);
 arrayList.add(5);
@@ -384,7 +385,7 @@ removeByRange(fromIndex: number, toIndex: number): void
 **示例：**
 
 ```ts
-let arrayList: ArrayList<number> = new ArrayList();
+let arrayList: ArrayList<number> = new ArrayList<number>();
 arrayList.add(2);
 arrayList.add(4);
 arrayList.add(5);
@@ -402,6 +403,8 @@ thisArg?: Object): void
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **参数：**
 
@@ -441,6 +444,41 @@ arrayList.replaceAllElements((value: number): number => {
 });
 ```
 
+### replaceAllElements<sup>20+</sup>
+
+replaceAllElements(callbackfn: ArrayListReplaceCb\<T\>): void
+
+用户操作ArrayList中的元素，用操作后的元素替换原元素并返回操作后的元素。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| callbackFn | [ArrayListReplaceCb\<T\>](#arraylistreplacecbt20) | 是 | 回调函数。 |
+
+**示例：**
+
+```ts
+import { ArrayListReplaceCb } from '@ohos.util.ArrayList';
+
+let arrayList: ArrayList<number> = new ArrayList<number>();
+arrayList.add(2);
+arrayList.add(4);
+arrayList.add(5);
+arrayList.add(4);
+let arrayListCb: ArrayListReplaceCb<number> = (value: number, index: number, arrlist: ArrayList<number>) => {
+  // 用户操作逻辑根据实际场景进行添加。
+  return value;
+};
+arrayList.replaceAllElements(arrayListCb);
+```
+
 ### forEach
 
 forEach(callbackFn: (value: T, index?: number, arrlist?: ArrayList&lt;T&gt;) => void,
@@ -451,6 +489,8 @@ thisArg?: Object): void
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **参数：**
 
@@ -489,6 +529,40 @@ arrayList.forEach((value: number, index?: number) => {
 });
 ```
 
+### forEach<sup>20+</sup>
+
+forEach(callbackfn: ArrayListForEachCb\<T\>): void
+
+通过回调函数来遍历ArrayList实例对象上的元素以及元素对应的下标。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| callbackFn | [ArrayListForEachCb\<T\>](#arraylistforeachcbt20) | 是 | 回调函数。 |
+
+**示例：**
+
+```ts
+import { ArrayListForEachCb } from '@ohos.util.ArrayList';
+
+let arrayList: ArrayList<number> = new ArrayList<number>();
+arrayList.add(2);
+arrayList.add(4);
+arrayList.add(5);
+arrayList.add(4);
+let arrayListCb: ArrayListForEachCb<number> = (value: number, index: number, arrlist: ArrayList<number>) => {
+  console.info("value: " + value, " index: " + index);
+};
+arrayList.forEach(arrayListCb);
+```
+
 ### sort
 
 sort(comparator?: (firstValue: T, secondValue: T) => number): void
@@ -524,7 +598,7 @@ comparator的参数说明：
 **示例：**
 
 ```ts
-let arrayList: ArrayList<number> = new ArrayList();
+let arrayList: ArrayList<number> = new ArrayList<number>();
 arrayList.add(2);
 arrayList.add(4);
 arrayList.add(5);
@@ -570,7 +644,7 @@ subArrayList(fromIndex: number, toIndex: number): ArrayList&lt;T&gt;
 **示例：**
 
 ```ts
-let arrayList: ArrayList<number> = new ArrayList();
+let arrayList: ArrayList<number> = new ArrayList<number>();
 arrayList.add(2);
 arrayList.add(4);
 arrayList.add(5);
@@ -599,7 +673,7 @@ clear(): void
 **示例：**
 
 ```ts
-let arrayList: ArrayList<number> = new ArrayList();
+let arrayList: ArrayList<number> = new ArrayList<number>();
 arrayList.add(2);
 arrayList.add(4);
 arrayList.add(5);
@@ -635,7 +709,7 @@ clone(): ArrayList&lt;T&gt;
 **示例：**
 
 ```ts
-let arrayList: ArrayList<number> = new ArrayList();
+let arrayList: ArrayList<number> = new ArrayList<number>();
 arrayList.add(2);
 arrayList.add(4);
 arrayList.add(5);
@@ -670,7 +744,7 @@ getCapacity(): number
 **示例：**
 
 ```ts
-let arrayList: ArrayList<number> = new ArrayList();
+let arrayList: ArrayList<number> = new ArrayList<number>();
 arrayList.add(2);
 arrayList.add(4);
 arrayList.add(5);
@@ -705,7 +779,7 @@ convertToArray(): Array&lt;T&gt;
 **示例：**
 
 ```ts
-let arrayList: ArrayList<number> = new ArrayList();
+let arrayList: ArrayList<number> = new ArrayList<number>();
 arrayList.add(2);
 arrayList.add(4);
 arrayList.add(5);
@@ -740,7 +814,7 @@ isEmpty(): boolean
 **示例：**
 
 ```ts
-let arrayList: ArrayList<number> = new ArrayList();
+let arrayList: ArrayList<number> = new ArrayList<number>();
 arrayList.add(2);
 arrayList.add(4);
 arrayList.add(5);
@@ -762,7 +836,7 @@ let result: boolean = arrayList.isEmpty();
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| index | number | 是 | 元素的位置索引。需要小于等于int32_max即2147483647。 |
+| index | number | 是 | 元素的位置索引。需要小于等于int32_max（即2147483647）。 |
 
 **返回值：**
 
@@ -782,12 +856,94 @@ let result: boolean = arrayList.isEmpty();
 **示例：**
 
 ```ts
-let arrayList: ArrayList<number> = new ArrayList();
+let arrayList: ArrayList<number> = new ArrayList<number>();
 arrayList.add(2);
 arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 let result: number = arrayList[2];
+```
+
+### \$_get(index: number) <sup>20+</sup>
+
+\$_get(index: number): T
+
+取指定索引值对应位置的元素。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| index | number | 是 | 元素的位置索引。需要小于等于int32_max（即2147483647）。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 容器中对应索引值为index的元素。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of index is out of range. |
+
+**示例：**
+
+```ts
+let arrayList: ArrayList<number> = new ArrayList<number>();
+arrayList.add(2);
+arrayList.add(4);
+arrayList.add(5);
+arrayList.add(6);
+let result: number = arrayList.$_get(2);
+```
+
+### \$_set(index: number, value: T) <sup>20+</sup>
+
+\$_set(index: number, value: T): void
+
+将指定位置的元素替换为指定元素。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| index | number | 是 | 元素的位置索引。需要小于等于int32_max（即2147483647）。 |
+| value | T | 是 | 用来替换的元素。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of index is out of range. |
+
+**示例：**
+
+```ts
+let arrayList: ArrayList<number> = new ArrayList<number>();
+arrayList.add(2);
+arrayList.add(4);
+arrayList.add(5);
+arrayList.add(6);
+arrayList.$_set(2, 9);
+let result = arrayList.$_get(2);
 ```
 
 ### increaseCapacityTo
@@ -818,7 +974,7 @@ increaseCapacityTo(newCapacity: number): void
 **示例：**
 
 ```ts
-let arrayList: ArrayList<number> = new ArrayList();
+let arrayList: ArrayList<number> = new ArrayList<number>();
 arrayList.add(2);
 arrayList.add(4);
 arrayList.add(5);
@@ -848,7 +1004,7 @@ trimToCurrentLength(): void
 **示例：**
 
 ```ts
-let arrayList: ArrayList<number> = new ArrayList();
+let arrayList: ArrayList<number> = new ArrayList<number>();
 arrayList.add(2);
 arrayList.add(4);
 arrayList.add(5);
@@ -865,6 +1021,8 @@ arrayList.trimToCurrentLength();
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **返回值：**
 
@@ -903,3 +1061,84 @@ while(!temp.done) {
     temp = iter.next();
 }
 ```
+
+### $_iterator<sup>20+</sup>
+
+\$_iterator\(): IterableIterator&lt;T&gt;
+
+返回一个迭代器，迭代器的每一项都是一个JavaScript对象，并返回该对象。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| IterableIterator&lt;T&gt; | 返回一个迭代器。 |
+
+**示例：**
+
+```ts
+let arrayList: ArrayList<number> = new ArrayList<number>();
+arrayList.add(2);
+arrayList.add(4);
+arrayList.add(5);
+arrayList.add(4);
+
+// 使用方法一：
+for (let item of arrayList) {
+  console.info(`value : ${item}`);
+}
+
+// 使用方法二：
+let iter = arrayList.$_iterator();
+let temp: IteratorResult<number> = iter.next();
+while(!temp.done) {
+    console.info(`value:${temp.value}`);
+    temp = iter.next();
+}
+```
+
+### ArrayListForEachCb\<T\><sup>20+</sup>
+
+type ArrayListForEachCb\<T\> = (value: T, index: number, arrlist: ArrayList\<T\>) => void
+
+ArrayList中forEach方法的回调函数。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| value | T | 是 | 当前遍历到的元素。 |
+| index | number | 是 | 当前遍历到的下标值。 |
+| arrlist | [ArrayList&lt;T&gt;](#arraylist) | 是 | 当前调用[forEach](#foreach20)方法的实例对象。 |
+
+### ArrayListReplaceCb\<T\><sup>20+</sup>
+
+type ArrayListReplaceCb\<T\> = (value: T, index: number, arrlist: ArrayList\<T\>) => T
+
+ArrayList中replaceAllElements方法的回调函数。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| value | T | 是 | 当前遍历到的元素。 |
+| index | number | 是 | 当前遍历到的下标值。 |
+| arrlist | [ArrayList&lt;T&gt;](#arraylist) | 是 | 当前调用[replaceAllElements](#replaceallelements20)方法的实例对象。 |
