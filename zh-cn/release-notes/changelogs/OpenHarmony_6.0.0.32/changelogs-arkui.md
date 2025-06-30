@@ -104,24 +104,24 @@ struct Index {
 
 **变更原因**
 
-接口能力增强，使能Row和Column在设置matchParent时仅适应父组件内容区大小。
+接口能力增强，使能Row和Column在设置matchParent时仅适应父组件内容区大小并且调整constraintSize和matchParent的优先级。
 
 **变更影响**
 
 此变更不涉及应用适配。
 
-变更前：Row和Column的子组件matchParent时，会将其大小设置为父组件包含padding、border以及safeAreaPadding后的大小。
+变更前：Row和Column的子组件matchParent时，会将其大小设置为父组件包含padding、border以及safeAreaPadding后的大小并且不受自身constraintSize的约束。
 
-变更后：Row和Column的子组件matchParent时，会将其大小设置为父组件不包含padding、border以及safeAreaPadding后的大小，即与父组件内容区大小保持一致。
+变更后：Row和Column的子组件matchParent时，会将其大小设置为父组件不包含padding、border以及safeAreaPadding后的大小，即与父组件内容区大小保持一致并且会受到自身constraintSize的约束。
 
-例如：运行以下示例，进入页面后，观察matchParent的最终结果。
+例如：运行以下示例，进入页面后，观察Row组件matchParent的最终结果为父组件内容区大小。
 
 ```ts
 @Entry
 @Component
 struct Demo {
   build() {
-    Column(){
+    Column() {
       Row().width(LayoutPolicy.matchParent).height(LayoutPolicy.matchParent).backgroundColor('rgb(0, 74, 175)')
     }.width(200).height(200).padding(20).backgroundColor('rgb(39, 135, 217)')
   }
@@ -133,6 +133,40 @@ struct Demo {
 |变更前|变更后|
 |--|--|
 |![变更前效果](figures/match_parent_before.jpeg)|![变更后效果](figures/match_parent_after.jpeg)|
+
+再例如：运行以下示例，进入页面后，观察Row组件的子组件matchParent的最终结果会受自身constraintSize约束。
+
+```ts
+@Entry
+@Component
+struct Demo {
+  build() {
+    Column({ space: 100 }) {
+      Row() {
+        Stack()
+          .width(LayoutPolicy.matchParent)
+          .height(LayoutPolicy.matchParent)
+          .constraintSize({ maxWidth: 50, maxHeight: 50 })
+          .backgroundColor('rgb(0, 74, 175)')
+      }.width(200).height(200).backgroundColor('rgb(39, 135, 217)')
+
+      Row() {
+        Stack()
+          .width(LayoutPolicy.matchParent)
+          .height(LayoutPolicy.matchParent)
+          .constraintSize({ minWidth: 100, minHeight: 100 })
+          .backgroundColor('rgb(0, 74, 175)')
+      }.width(50).height(50).backgroundColor('rgb(39, 135, 217)')
+    }.width('100%').height('100%')
+  }
+}
+```
+
+变更前后效果如下:
+
+|变更前|变更后|
+|--|--|
+|![变更前效果](figures/constraintBefore.jpeg)|![变更后效果](figures/constraintAfter.jpeg)|
 
 **起始API Level**
 
