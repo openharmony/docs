@@ -477,7 +477,7 @@ OH_Drawing_TextDirection OH_Drawing_GetRunTextDirection(OH_Drawing_Run* run)
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_TextDirection](capi-drawing-text-typography-h.md#oh_drawing_textdirection) | 返回渲染单元的文本方向。0为TEXT_DIRECTION_R2L，方向为从右到左；1为TEXT_DIRECTION_L2R，方向为从左到右，具体可见[OH_Drawing_TextDirection](capi-drawing-text-typography-h.md#oh_drawing_textdirection)枚举。 |
+| [OH_Drawing_TextDirection](capi-drawing-text-typography-h.md#oh_drawing_textdirection) | 返回渲染单元的文本方向。0为TEXT_DIRECTION_RTL，方向为从右到左；1为TEXT_DIRECTION_LTR，方向为从左到右，具体可见[OH_Drawing_TextDirection](capi-drawing-text-typography-h.md#oh_drawing_textdirection)枚举。 |
 
 ### OH_Drawing_GetRunGlyphAdvances()
 
