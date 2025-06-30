@@ -112,6 +112,16 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so libnative_buffe
     OH_AVScreenCapture_SetCaptureStrategy(capture, strategy);
     ```
 
+   设置屏幕录屏自动跟随旋转配置。（可选）
+
+    设为true，表示跟随屏幕旋转，并在横竖屏旋转后，自动调换虚拟屏尺寸，确保输出画面及时跟随旋转。
+
+    ```c++
+    OH_AVScreenCapture_CaptureStrategy* strategy = OH_AVScreenCapture_CreateCaptureStrategy();
+    OH_AVScreenCapture_StrategyForCanvasFollowRotation(strategy, true);
+    OH_AVScreenCapture_SetCaptureStrategy(capture, strategy);
+    ```
+
 8. 调用StartScreenCapture()方法开始进行屏幕录制。
 
     ```c++
@@ -616,6 +626,8 @@ static napi_value StartScreenCapture(napi_env env, napi_callback_info info) {
     int value = 0;
     OH_AVScreenCapture_CaptureStrategy* strategy = OH_AVScreenCapture_CreateCaptureStrategy();
     OH_AVScreenCapture_StrategyForPrivacyMaskMode(strategy, value);
+	// 可选，设置自动跟随旋转配置。
+    OH_AVScreenCapture_StrategyForCanvasFollowRotation(strategy, true);
     OH_AVScreenCapture_SetCaptureStrategy(capture, strategy);
 
     // 可选 设置光标显示开关，开始录屏前后均可调用。
