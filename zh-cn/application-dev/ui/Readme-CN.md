@@ -257,6 +257,10 @@
   - [查询和操作自定义节点](ndk-node-query-operate.md)
   - [通过EmbeddedComponent拉起EmbeddedUIExtensionAbility](ndk-embedded-component.md)
   - [在NDK中保证多实例场景功能正常](ndk-scope-task.md)
+- UI开发调试维测
+  - UI显示异常
+    - [定位工具](arkts-layout-development-Tool.md)
+    - [定位方法和解决方案](arkts-layout-development-FAQ.md)
 - UI开发 (兼容JS的类Web开发范式)<!--ui-js-dev-->
   - [UI开发 (兼容JS的类Web开发范式)概述](ui-js-overview.md)
   - 框架说明<!--js-framework-overview-->
