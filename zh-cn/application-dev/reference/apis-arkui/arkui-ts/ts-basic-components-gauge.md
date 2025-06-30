@@ -272,7 +272,7 @@ GaugeShadowOptions继承自[MultiShadowOptions](ts-types.md#multishadowoptions10
 ## 示例
 ### 示例1（设置多色量规图）
 
-该示例通过colors接口，实现了多色量规图效果。
+该示例通过[colors](#colors)接口，实现了多色量规图效果。
 
 ```ts
 @Entry
@@ -341,7 +341,7 @@ struct Gauge1 {
 
 ### 示例2（设置单色量规图）
 
-该示例通过colors接口，实现了单色量规图效果。
+该示例通过[colors](#colors)接口，实现了单色量规图效果。
 
 ```ts
 @Entry
@@ -384,7 +384,7 @@ struct Gauge2 {
 
 ### 示例3（设置定制说明区）
 
-该示例通过description接口，实现了说明区的设置功能。
+该示例通过[description](#description11)接口，实现了说明区的设置功能。
 
 ```ts
 @Entry
@@ -540,7 +540,7 @@ struct Gauge5 {
 
 ### 示例6（设置指针）
 
-该示例通过indicator接口，实现了设置量规图的指针的功能。
+该示例通过[indicator](#indicator11)接口，实现了设置量规图的指针的功能。
 
 ```ts
 @Entry
@@ -587,7 +587,7 @@ struct Gauge6 {
 
 ### 示例7（设置起止角度）
 
-该示例通过startAngle和endAngle接口，实现了量规图起止角度设置的功能。
+该示例通过[startAngle](#startangle)和[endAngle](#endangle)接口，实现了量规图起止角度设置的功能。
 
 ```ts
 @Entry
@@ -628,7 +628,7 @@ struct Gauge7 {
 
 ### 示例8（设置定制内容区）
 
-该示例通过contentModifier接口，实现了定制量规图内容区的功能。
+该示例通过[contentModifier](#contentmodifier12)接口，实现了定制量规图内容区的功能。
 
 ```ts
 // xxx.ets
@@ -711,7 +711,7 @@ struct refreshExample {
 
 ### 示例9（设置隐私隐藏）
 
-该示例通过privacySensitive接口，实现了隐私隐藏效果，效果展示需要卡片框架支持
+该示例通过[privacySensitive](#privacysensitive12)接口，实现了隐私隐藏效果，效果展示需要卡片框架支持
 
 ```ts
 @Entry
@@ -755,7 +755,7 @@ struct GaugeExample {
 
 ### 示例10（设置自定义指针）
 
-该示例通过indicator接口，实现了自定义指针功能，开发者导入svg类型的图片以替换默认指针。
+该示例通过[indicator](#indicator11)接口，实现了自定义指针功能，开发者导入svg类型的图片以替换默认指针。
 
 ```ts
 @Entry
