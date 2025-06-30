@@ -863,7 +863,7 @@ type RectWidthStyle = RectWidthStyle
 
 ## ShaderStyle<sup>20+</sup>
 
-显示为线性渐变或径向渐变的效果。
+文本着色器效果基类。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 

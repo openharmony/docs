@@ -1070,7 +1070,7 @@ enableAutoSpacing(enabled: Optional\<boolean>)
 
 shaderStyle(shader: ShaderStyle)
 
-可以显示为径向渐变[radialGradient](../arkui-ts/ts-universal-attributes-gradient-color.md#radialgradient)或线性渐变[LinearGradient](../arkui-ts/ts-universal-attributes-gradient-color.md#lineargradient)的效果，shaderStyle的优先级高于[fontColor](../arkui-ts/ts-basic-components-symbolSpan.md#fontcolor)和AI识别，纯色建议使用[fontColor](../arkui-ts/ts-basic-components-symbolSpan.md#fontcolor)。当center设置到组件范围外时，可将repeating设置为true查看现象。
+可以显示为径向渐变[RadialGradientStyle](../arkui-ts/ts-text-common.md#radialgradientstyle20)或线性渐变[LinearGradientStyle](../arkui-ts/ts-text-common.md#lineargradientstyle20)或纯色[ColorShaderStyle](../arkui-ts/ts-text-common.md#colorshaderstyle20)的效果，shaderStyle的优先级高于[fontColor](../arkui-ts/ts-basic-components-symbolSpan.md#fontcolor)和AI识别，纯色建议使用[fontColor](../arkui-ts/ts-basic-components-symbolSpan.md#fontcolor)。当center设置到组件范围外时，可将repeating设置为true查看现象。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -1080,7 +1080,7 @@ shaderStyle(shader: ShaderStyle)
 
 | 参数名     | 类型                                         | 必填                             | 说明                               |
 | -------------- | -------------------------------------------- | ----------------------------------- | ----------------------------------- |
-| shader | [ShaderStyle](../arkui-ts/ts-text-common.md#shaderstyle20) | 是 | 径向或线性渐变。<br/>根据传入的参数区分处理径向渐变[radialGradient](../arkui-ts/ts-universal-attributes-gradient-color.md#radialgradient)或线性渐变[LinearGradient](../arkui-ts/ts-universal-attributes-gradient-color.md#lineargradient)，最终设置到Text文本上显示为渐变色效果。 |
+| shader | [ShaderStyle](../arkui-ts/ts-text-common.md#shaderstyle20) | 是 | 径向渐变或线性渐变或纯色。<br/>根据传入的参数区分处理径向渐变[RadialGradientStyle](../arkui-ts/ts-text-common.md#radialgradientstyle20)或线性渐变[LinearGradientStyle](../arkui-ts/ts-text-common.md#lineargradientstyle20)或纯色[ColorShaderStyle](../arkui-ts/ts-text-common.md#colorshaderstyle20)，最终设置到Text文本上显示为渐变色效果。 |
 
 ## TextSpanType<sup>11+</sup>枚举说明
 
