@@ -126,12 +126,16 @@ function testWithArray(args: [number, string]): string {
 }
 
 taskpool.execute<[number], number>(printArgs, 100).then((value: number) => { // 100: test number
-  console.info("taskpool result: " + value);
+  console.info("taskpool result: " + value); // "taskpool result: 100"
 });
 
-taskpool.execute<[number, string, number], string>(testWithThreeParams, 100, "test", 100).then((value: string) => {});
+taskpool.execute<[number, string, number], string>(testWithThreeParams, 100, "test", 100).then((value: string) => {
+	console.info("taskpool result: " + value); // "taskpool result: test"
+});
 
-taskpool.execute<[[number, string]], string>(testWithArray, [100, "test"]).then((value: string) => {});
+taskpool.execute<[[number, string]], string>(testWithArray, [100, "test"]).then((value: string) => {
+	console.info("taskpool result: " + value); // "taskpool result: success"
+);
 ```
 
 
