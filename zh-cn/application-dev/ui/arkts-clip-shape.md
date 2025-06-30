@@ -12,7 +12,7 @@
 
 ## 裁剪圆形
 
-通过设置clipShape，将图片裁剪为圆形。
+通过设置CircleShape，将图片裁剪为圆形。
 
 ```ts
 // xxx.ets
@@ -43,7 +43,7 @@ struct ClipShapeExample {
 
 ## 裁剪椭圆形
 
-通过设置clipShape，将图片裁剪为椭圆形。
+通过设置EllipseShape，将图片裁剪为椭圆形。
 
 ```ts
 // xxx.ets
@@ -72,7 +72,7 @@ struct ClipShapeExample {
 
 ## 裁剪矩形
 
-通过设置clipShape，将图片裁剪为矩形。
+通过设置RectShape，将图片裁剪为矩形。
 
 ```ts
 // xxx.ets
@@ -101,7 +101,7 @@ struct ClipShapeExample {
 
 ## 裁剪不规则形状
 
-通过设置clipShape，将图片裁剪为不规则形状。
+通过设置PathShape，将图片裁剪为不规则形状。
 
 ```ts
 // xxx.ets
