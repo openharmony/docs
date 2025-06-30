@@ -761,6 +761,13 @@ Native侧
 
     ```c++
     // plugin_manager.cpp
+    std::unordered_map<std::string, ArkUI_NodeHandle> PluginManager::nodeHandleMap_;
+    std::unordered_map<void *, EGLRender *> PluginManager::renderMap_;
+    std::unordered_map<void *, OH_ArkUI_SurfaceCallback *> PluginManager::callbackMap_;
+    std::unordered_map<void *, OH_ArkUI_SurfaceHolder *> PluginManager::surfaceHolderMap_;
+    ArkUI_NativeNodeAPI_1 *nodeAPI = reinterpret_cast<ArkUI_NativeNodeAPI_1 *>(
+        OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_NODE, "ArkUI_NativeNodeAPI_1"));
+
     std::string value2String(napi_env env, napi_value value) { // 将napi_value转化为string类型的变量
         size_t stringSize = 0;
         napi_get_value_string_utf8(env, value, nullptr, 0, &stringSize);
@@ -832,7 +839,7 @@ Native侧
         napi_get_value_int32(env, args[2], &max);
 
         int32_t expected = 0;
-        napi_get_value_int32(env, args[2], &expected);
+        napi_get_value_int32(env, args[3], &expected);
         OH_NativeXComponent_ExpectedRateRange range = {
             .min = min,
             .max = max,
