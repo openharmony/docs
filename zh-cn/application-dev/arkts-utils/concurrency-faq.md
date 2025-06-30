@@ -146,7 +146,7 @@ TaskPool第一次执行任务慢，间隔几百毫秒，原因是子线程反序
 
 **问题原因**
 
-TaskPool实现任务的函数（Concurrent函数）入参和返回结果需满足线程间通信支持的类型，详情请查看[线程间通信对象](../reference/apis-arkts/js-apis-taskpool.md#序列化支持类型)。在Concurrent函数中传入或返回不支持的通信对象时，会出现上述现象。应用可以结合Hilog日志中打印的对象类型进一步排查通信对象是否符合要求。
+TaskPool实现任务的函数（Concurrent函数）入参和返回结果需满足线程间通信支持的对象类型，详情请查看[线程间通信对象](../reference/apis-arkts/js-apis-taskpool.md#序列化支持类型)。当Concurrent函数的入参或返回结果是线程间通信不支持的对象类型时，会出现上述现象。应用可以结合Hilog日志中打印的对象类型进一步排查通信对象是否符合要求。
 
 **场景示例**
 
