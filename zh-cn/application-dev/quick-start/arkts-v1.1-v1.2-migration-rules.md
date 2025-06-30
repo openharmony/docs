@@ -1051,7 +1051,7 @@ boundGreet(); // Hello, my name is Alice
 
 **级别：error**
 
-在ArkTS中，class声明的是一个新的类型，不是一个值。因此，不支持将class用作对象（例如将class赋值给一个对象）。
+在ArkTS中，class声明的是一个新的类型，不是一个值。因此，不支持将class用作对象（例如将class赋值给一个变量）。
 
 **ArkTS1.1**
 
@@ -1067,11 +1067,13 @@ let obj = MyClass; // 违反规则
 
 ```typescript
 class MyClass {
-  constructor(public name: string) {}
+  constructor(name: string) {}
 }
 
-let obj = new MyClass("Alice"); 
-console.log(obj.name); // Alice
+// 需要通过反射来实现
+let className = "path.to.MyClass";
+let linker = Class.ofCaller()!.getLinker();
+let classType: ClassType | undefined = linker.getType(className) as ClassType;
 ```
 
 ## arkts-limited-stdlib
