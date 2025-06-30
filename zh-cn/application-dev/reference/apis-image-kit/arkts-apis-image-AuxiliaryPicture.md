@@ -39,8 +39,6 @@ writePixelsFromBuffer(data: ArrayBuffer): Promise\<void>
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
-| 7600301  | Memory alloc failed.                                         |
-| 7600302  | Memory copy failed.                                          |
 
 **示例:**
 
@@ -80,15 +78,6 @@ readPixelsToBuffer(): Promise\<ArrayBuffer>
 | 类型                  | 说明                              |
 | --------------------- | --------------------------------- |
 | Promise\<ArrayBuffer> | Promise对象。返回辅助图像素数据。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
-
-| 错误码ID | 错误信息             |
-| -------- | -------------------- |
-| 7600301  | Memory alloc failed. |
-| 7600302  | Memory copy failed.  |
 
 **示例：**
 
