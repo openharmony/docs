@@ -7,7 +7,7 @@
     - [声明式UI描述](../ui/state-management/arkts-declarative-ui-description.md)
     - 自定义组件<!--arkts-custom-components-->
       - [创建自定义组件](../ui/state-management/arkts-create-custom-components.md)
-      - [router页面和自定义组件生命周期](../ui/state-management/arkts-page-custom-components-lifecycle.md)
+      - [自定义组件生命周期](../ui/state-management/arkts-page-custom-components-lifecycle.md)
       - [自定义组件的自定义布局](../ui/state-management/arkts-page-custom-components-layout.md)
       - [自定义组件成员属性访问限定符使用限制](../ui/state-management/arkts-custom-components-access-restrictions.md)
     - 组件扩展<!--arkts-extend-components-->
@@ -143,6 +143,7 @@
      - [设置浮层 (OverlayManager)](arkts-create-overlaymanager.md)
   - 显示图形<!--arkts-draw-graphics-->
     - [绘制几何图形 (Shape)](arkts-geometric-shape-drawing.md)
+    - [形状裁剪 (clipShape)](arkts-clip-shape.md)
     - [使用画布绘制自定义图形 (Canvas)](arkts-drawing-customization-on-canvas.md)
   - 使用动画<!--arkts-use-animation-->
     - [动画概述](arkts-animation.md)

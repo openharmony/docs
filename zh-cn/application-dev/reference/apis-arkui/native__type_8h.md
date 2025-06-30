@@ -193,6 +193,7 @@
 | [ArkUI_ExpandMode](_ark_u_i___native_module.md#arkui_expandmode) { <br/>[ARKUI_NOT_EXPAND](_ark_u_i___native_module.md) = 0, [ARKUI_EXPAND](_ark_u_i___native_module.md) = 1, [ARKUI_LAZY_EXPAND](_ark_u_i___native_module.md) = 2 <br/>} | 定义子节点展开模式枚举值。 | 
 | [ArkUI_ListItemGroupArea](_ark_u_i___native_module.md#arkui_listitemgrouparea) { <br/>[ARKUI_LIST_ITEM_GROUP_AREA_OUTSIDE](_ark_u_i___native_module.md) = 0, [ARKUI_LIST_ITEM_SWIPE_AREA_NONE](_ark_u_i___native_module.md), [ARKUI_LIST_ITEM_SWIPE_AREA_ITEM](_ark_u_i___native_module.md), [ARKUI_LIST_ITEM_SWIPE_AREA_HEADER](_ark_u_i___native_module.md), [ARKUI_LIST_ITEM_SWIPE_AREA_FOOTER](_ark_u_i___native_module.md) <br/>} | 定义组件区域的枚举值。 | 
 | [ArkUI_UIState](_ark_u_i___native_module.md#arkui_uistate) { <br/>[UI_STATE_NORMAL](_ark_u_i___native_module.md) = 0, [UI_STATE_PRESSED](_ark_u_i___native_module.md) = 1 &lt;&lt; 0, [UI_STATE_FOCUSED](_ark_u_i___native_module.md) = 1 &lt;&lt; 1, [UI_STATE_DISABLED](_ark_u_i___native_module.md) = 1 &lt;&lt; 2, [UI_STATE_SELECTED](_ark_u_i___native_module.md) = 1 &lt;&lt; 3 <br/>} | 组件的UI状态枚举，用于处理状态样式。<br/>**起始版本：** 20 | 
+| [ArkUI_FocusWrapMode](_ark_u_i___native_module.md#arkui_focuswrapmode) { <br/>[FOCUS_WRAP_MODE_DEFAULT](_ark_u_i___native_module.md) = 0,  [FOCUS_WRAP_WITH_ARROW](_ark_u_i___native_module.md) = 1 <br/>} | 组件走焦换行规则。<br/>**起始版本：** 20  |
 
 
 ### 函数

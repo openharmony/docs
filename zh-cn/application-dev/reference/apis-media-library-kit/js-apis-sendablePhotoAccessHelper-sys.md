@@ -411,6 +411,10 @@ async function example(phAccessHelper: sendablePhotoAccessHelper.PhotoAccessHelp
 }
 ```
 
+## Album
+
+实体相册
+
 ### getFaceId<sup>13+</sup>
 
 getFaceId(): Promise\<string>
@@ -469,10 +473,6 @@ async function example(phAccessHelper: sendablePhotoAccessHelper.PhotoAccessHelp
   }
 }
 ```
-
-## Album
-
-实体相册
 
 ## AlbumType
 

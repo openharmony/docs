@@ -141,8 +141,8 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 
 | 名称     | 类型                | 只读 | 可选 | 说明  |
 | ---- | ------- | ---- |  ---- | ----- |
-| assetBeforeChange | [PhotoAssetChangeInfo](#photoassetchangeinfo20)  | 否 | 否 | 变更前的媒体资产（图片/视频）数据。 |
-| assetAfterChange  | [PhotoAssetChangeInfo](#photoassetchangeinfo20) | 否 | 否  | 变更后的媒体资产（图片/视频）数据。 |
+| assetBeforeChange | [PhotoAssetChangeInfo](#photoassetchangeinfo20) \| null | 否 | 否 | 变更前的媒体资产（图片/视频）数据。如果是新增资产，assetBeforeChange为null。 |
+| assetAfterChange  | [PhotoAssetChangeInfo](#photoassetchangeinfo20) \| null | 否 | 否  | 变更后的媒体资产（图片/视频）数据。如果是删除资产，assetAfterChange为null。 |
 | isContentChanged  |boolean  | 否 | 否 | 媒体资产（图片/视频）内容是否变化。true表示文件内容发生变化，false表示文件内容未发生变化。  |
 | isDeleted         |boolean  | 否 | 否 | 媒体资产（图片/视频）是否被删除。true表示资产被彻底删除，false表示资产未被彻底删除。  |
 
@@ -155,7 +155,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 | 名称                   | 类型                | 只读 | 可选 | 说明    |
 | ---- | ------- | ---- |  ---- | ----- |
 | type       | [NotifyChangeType](arkts-apis-photoAccessHelper-e.md#notifychangetype20)  | 否 | 否 | 媒体资产（图片/视频）变更的通知类型。 |
-| assetChangeDatas | [PhotoAssetChangeData](#photoassetchangedata20)[]  | 否 |  否 | 变更的媒体资产（图片/视频）数组。  |
+| assetChangeDatas | [PhotoAssetChangeData](#photoassetchangedata20)[] \| null | 否 |  否 | 变更的媒体资产（图片/视频）数组。如果需要重新查询所有媒体资产，assetChangeDatas为null。  |
 | isForRecheck    | boolean  | 否 | 否 | 应用是否应该重新查询所有媒体资产（图片/视频）信息。true表示需要重新查询所有资产，false表示无需查询所有资产。<br>**注意：** 在特殊情况或者异常通知的场景下，应用收到的isForRecheck为true，表示重新查询所有资产信息。  |
 
 ## AlbumChangeInfo<sup>20+</sup>
@@ -183,8 +183,8 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 
 | 名称                   | 类型                | 只读 | 可选 | 说明                |
 | ---- | ------- | ---- |  ---- | ----- |
-| albumBeforeChange | [AlbumChangeInfo](#albumchangeinfo20)  | 否 | 否 | 变更前的相册数据。 |
-| albumAfterChange  | [AlbumChangeInfo](#albumchangeinfo20) | 否 | 否  | 变更后的相册数据。 |
+| albumBeforeChange | [AlbumChangeInfo](#albumchangeinfo20) \| null | 否 | 否 | 变更前的相册数据。如果是新增相册，albumBeforeChange为null。 |
+| albumAfterChange  | [AlbumChangeInfo](#albumchangeinfo20) \| null | 否 | 否  | 变更后的相册数据。如果是删除相册，albumAfterChange为null。 |
 | isDeleted         | boolean  | 否 | 否 | 相册是否被删除。true表示相册被删除，false表示相册未被删除。  |
 
 ## AlbumChangeInfos<sup>20+</sup>
@@ -196,5 +196,5 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 | 名称                   | 类型                | 只读 | 可选 | 说明           |
 | ---- | ------- | ---- |  ---- | ----- |
 | type       | [NotifyChangeType](arkts-apis-photoAccessHelper-e.md#notifychangetype20)  | 否 | 否 | 相册变更的通知类型。 |
-| albumChangeDatas   | [AlbumChangeData](#albumchangedata20)[]  | 否 | 否 | 变更的相册数组。  |
+| albumChangeDatas   | [AlbumChangeData](#albumchangedata20)[] \| null | 否 | 否 | 变更的相册数组。如果需要重新查询所有相册，albumChangeDatas为null。  |
 | isForRecheck          | boolean  | 否 | 否 | 应用是否应该重新查询所有相册信息。true表示需要重新查询所有相册，false表示无需查询所有相册。<br>**注意：** 在特殊情况或者异常通知的场景下，应用收到的isForRecheck为true，表示重新查询所有相册信息。  |

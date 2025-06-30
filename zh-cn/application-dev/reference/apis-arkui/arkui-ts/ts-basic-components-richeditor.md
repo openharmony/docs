@@ -261,7 +261,7 @@ selectedBackgroundColor(value: ResourceColor)
 
 editMenuOptions(editMenu: EditMenuOptions)
 
-设置自定义菜单扩展项，允许用户设置扩展项的文本内容、图标、回调方法。
+设置系统默认菜单的扩展项，允许配置扩展项的文本内容、图标和回调方法。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3117,7 +3117,7 @@ struct Index {
             },
             paragraphStyle: {
               textAlign: TextAlign.Start,
-              textVerticalAlign：TextVerticalAlign.BASELINE,
+              textVerticalAlign: TextVerticalAlign.BASELINE,
               leadingMargin: 16
             }
           })
@@ -5083,8 +5083,8 @@ export struct Index {
 
 ![LayoutManager](figures/getLayoutManager.gif)
 
-### 示例23（设置自定义菜单扩展项）
-通过[editMenuOptions](#editmenuoptions12)属性设置自定义菜单扩展项，允许用户设置扩展项的文本内容、图标、回调方法。
+### 示例23（设置系统默认菜单扩展项）
+通过[editMenuOptions](#editmenuoptions12)属性设置系统默认菜单的扩展项，允许配置扩展项的文本内容、图标和回调方法。
 
 ```ts
 // xxx.ets
@@ -5096,10 +5096,10 @@ struct RichEditorExample {
   @State endIndex: number | undefined = 0;
   onCreateMenu = (menuItems: Array<TextMenuItem>) => {
     const idsToFilter = [
-      TextMenuItemId.of('OH_DEFAULT_TRANSLATE'),
-      TextMenuItemId.of('OH_DEFAULT_SHARE'),
-      TextMenuItemId.of('OH_DEFAULT_SEARCH'),
-      TextMenuItemId.of('OH_DEFAULT_AI_WRITE')
+      TextMenuItemId.TRANSLATE,
+      TextMenuItemId.SHARE,
+      TextMenuItemId.SEARCH,
+      TextMenuItemId.AI_WRITE
     ]
     const items = menuItems.filter(item => !idsToFilter.some(id => id.equals(item.id)))
     let item1: TextMenuItem = {

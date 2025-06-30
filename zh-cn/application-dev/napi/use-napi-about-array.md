@@ -166,7 +166,7 @@ static napi_value GetArrayLength(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const getArrayLength: (arr: Array<any>) => number | void;
+export const getArrayLength: (arr: Array<any>) => number | undefined;
 ```
 <!-- @[napi_get_array_length_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIArray/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
@@ -217,7 +217,7 @@ static napi_value IsArray(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const isArray: <T>(data: Array<T> | T) => boolean | void;
+export const isArray: <T>(data: Array<T> | T) => boolean | undefined;
 ```
 <!-- @[napi_is_array_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIArray/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
@@ -636,7 +636,7 @@ static napi_value IsTypedarray(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const isTypedarray: (data: Object) => boolean | void;
+export const isTypedarray: (data: Object) => boolean | undefined;
 ```
 <!-- @[napi_is_typed_array_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIArray/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
@@ -797,7 +797,7 @@ static napi_value CreateDataView(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const createDataView: (arraybuffer:ArrayBuffer) => DataView | void;
+export const createDataView: (arraybuffer:ArrayBuffer) => DataView | undefined;
 ```
 <!-- @[napi_create_data_view_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIArray/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 
@@ -851,7 +851,7 @@ static napi_value IsDataView(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const isDataView: (date: DataView | string) => boolean | void;
+export const isDataView: (date: DataView | string) => boolean | undefined;
 ```
 <!-- @[napi_is_data_view_api](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/NodeAPI/NodeApiUse/NodeAPIArray/entry/src/main/cpp/types/libentry/Index.d.ts) -->
 

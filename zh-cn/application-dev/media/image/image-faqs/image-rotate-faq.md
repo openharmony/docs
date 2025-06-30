@@ -33,4 +33,4 @@ C/C++场景下读取和编辑图片的旋转角度信息，可参考：[使用Im
 
 ### 图片编码时，如何保存EXIF数据
 
-在调用图片编码接口时，需要设置[packingOption](../../../reference/apis-image-kit/arkts-apis-image-i#packingoption)的needsPackProperties属性为true（该属性的默认值为false）。
+在调用图片编码接口时，需要设置[packingOption](../../../reference/apis-image-kit/arkts-apis-image-i.md#packingoption)的needsPackProperties属性为true（该属性的默认值为false）。
