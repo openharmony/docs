@@ -57,9 +57,8 @@ HashMap的构造函数。
 **示例：**
 
 ```ts
-let hashMap: HashMap<string, number> = new HashMap();
+let hashMap: HashMap<string, number> = new HashMap<string, number>();
 ```
-
 
 ### isEmpty
 
@@ -88,10 +87,9 @@ isEmpty(): boolean
 **示例：**
 
 ```ts
-const hashMap: HashMap<string, number> = new HashMap();
+const hashMap: HashMap<string, number> = new HashMap<string, number>();
 let result = hashMap.isEmpty();
 ```
-
 
 ### hasKey
 
@@ -126,11 +124,10 @@ hasKey(key: K): boolean
 **示例：**
 
 ```ts
-const hashMap: HashMap<string, number> = new HashMap();
+const hashMap: HashMap<string, number> = new HashMap<string, number>();
 hashMap.set("squirrel", 123);
 let result = hashMap.hasKey("squirrel");
 ```
-
 
 ### hasValue
 
@@ -165,11 +162,10 @@ hasValue(value: V): boolean
 **示例：**
 
 ```ts
-const hashMap: HashMap<string, number> = new HashMap();
+const hashMap: HashMap<string, number> = new HashMap<string, number>();
 hashMap.set("squirrel", 123);
 let result = hashMap.hasValue(123);
 ```
-
 
 ### get
 
@@ -180,6 +176,8 @@ get(key: K): V
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **参数：**
 
@@ -210,6 +208,38 @@ hashMap.set("sparrow", 356);
 let result = hashMap.get("sparrow");
 ```
 
+### get<sup>20+</sup>
+
+get(key: K): V \| undefined
+
+获取指定key映射的value值，不存在返回undefined。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| key | K | 是 | 要查找的键。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| V \| undefined | 返回key映射的value值，不存在返回undefined。 |
+
+**示例：**
+
+```ts
+const hashMap: HashMap<string, number> = new HashMap<string, number>();
+hashMap.set("squirrel", 123);
+hashMap.set("sparrow", 356);
+let result = hashMap.get("sparrow");
+```
 
 ### setAll
 
@@ -239,14 +269,13 @@ setAll(map: HashMap<K, V>): void
 **示例：**
 
 ```ts
-const hashMap: HashMap<string, number> = new HashMap();
+const hashMap: HashMap<string, number> = new HashMap<string, number>();
 hashMap.set("squirrel", 123);
 hashMap.set("sparrow", 356);
-let newHashMap: HashMap<string, number> = new HashMap();
+let newHashMap: HashMap<string, number> = new HashMap<string, number>();
 newHashMap.set("newMap", 99);
 hashMap.setAll(newHashMap);
 ```
-
 
 ### set
 
@@ -283,10 +312,9 @@ set(key: K, value: V): Object
 **示例：**
 
 ```ts
-let hashMap: HashMap<string, number> = new HashMap();
+let hashMap: HashMap<string, number> = new HashMap<string, number>();
 let result = hashMap.set("squirrel", 123);
 ```
-
 
 ### remove
 
@@ -297,6 +325,8 @@ remove(key: K): V
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **参数：**
 
@@ -327,6 +357,38 @@ hashMap.set("sparrow", 356);
 let result = hashMap.remove("sparrow");
 ```
 
+### remove<sup>20+</sup>
+
+remove(key: K): V \| undefined
+
+删除指定key所对应元素。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| key | K | 是 | 指定key。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| V \| undefined | 返回删除元素的值，key不存在返回undefined。 |
+
+**示例：**
+
+```ts
+let hashMap: HashMap<string, number> = new HashMap<string, number>();
+hashMap.set("squirrel", 123);
+hashMap.set("sparrow", 356);
+let result = hashMap.remove("sparrow");
+```
 
 ### clear
 
@@ -349,12 +411,11 @@ clear(): void
 **示例：**
 
 ```ts
-let hashMap: HashMap<string, number> = new HashMap();
+let hashMap: HashMap<string, number> = new HashMap<string, number>();
 hashMap.set("squirrel", 123);
 hashMap.set("sparrow", 356);
 hashMap.clear();
 ```
-
 
 ### keys
 
@@ -383,17 +444,16 @@ keys(): IterableIterator&lt;K&gt;
 **示例：**
 
 ```ts
-let hashMap: HashMap<string, number> = new HashMap();
+let hashMap: HashMap<string, number> = new HashMap<string, number>();
 hashMap.set("squirrel", 123);
 hashMap.set("sparrow", 356);
 let iter = hashMap.keys();
-let temp: IteratorResult<string,number> = iter.next();
+let temp = iter.next();
 while(!temp.done) {
-  console.log("value:" + temp.value);
+  console.info("value:" + temp.value);
   temp = iter.next();
 }
 ```
-
 
 ### values
 
@@ -422,17 +482,16 @@ values(): IterableIterator&lt;V&gt;
 **示例：**
 
 ```ts
-let hashMap: HashMap<string, number> = new HashMap();
+let hashMap: HashMap<string, number> = new HashMap<string, number>();
 hashMap.set("squirrel", 123);
 hashMap.set("sparrow", 356);
 let iter = hashMap.values();
-let temp: IteratorResult<number> = iter.next();
+let temp = iter.next();
 while(!temp.done) {
-  console.log("value:" + temp.value);
+  console.info("value:" + temp.value);
   temp = iter.next();
 }
 ```
-
 
 ### replace
 
@@ -468,11 +527,10 @@ replace(key: K, newValue: V): boolean
 **示例：**
 
 ```ts
-let hashMap: HashMap<string, number> = new HashMap();
+let hashMap: HashMap<string, number> = new HashMap<string, number>();
 hashMap.set("sparrow", 123);
 let result = hashMap.replace("sparrow", 357);
 ```
-
 
 ### forEach
 
@@ -483,6 +541,8 @@ forEach(callbackFn: (value?: V, key?: K, map?: HashMap<K, V>) => void, thisArg?:
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **参数：**
 
@@ -529,6 +589,38 @@ for(let i = 0; i < 10; i++) {
 }
 ```
 
+### forEach<sup>20+</sup>
+
+forEach(callbackFn: HashMapCbFn\<K, V\>): void
+
+通过回调函数来遍历HashMap实例对象上的元素以及元素对应的下标。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| callbackFn | [HashMapCbFn\<K, V\>](#hashmapcbfnk-v20) | 是 | 回调函数。 |
+
+**示例：**
+
+```ts
+import { HashMapCbFn } from '@ohos.util.HashMap';
+
+let hashMap: HashMap<string, number> = new HashMap<string, number>();
+hashMap.set("sparrow", 123);
+hashMap.set("gull", 357);
+let hashMapCb: HashMapCbFn<string, number> = (value: number, key: string, map: HashMap<string, number>) => {
+  console.info("value: " + value, " key: " + key);
+};
+hashMap.forEach(hashMapCb);
+```
+
 ### entries
 
 entries(): IterableIterator&lt;[K, V]&gt;
@@ -555,6 +647,8 @@ entries(): IterableIterator&lt;[K, V]&gt;
 
 **示例：**
 
+以下示例代码适用于ArkTS1.1。
+
 ```ts
 let hashMap: HashMap<string, number> = new HashMap();
 hashMap.set("squirrel", 123);
@@ -578,6 +672,33 @@ for(let i = 0; i < 10; i++) {
   hashMap.remove("sparrow" + i);
 }
 ```
+
+以下示例代码适用于ArkTS1.2。
+
+```ts
+let hashMap = new HashMap<string, Number>();
+hashMap.set("squirrel", 123);
+hashMap.set("sparrow", 356);
+let iter = hashMap.entries();
+let temp: IteratorResult<[string, Number]> = iter.next();
+while(!temp.done) {
+  console.info("key:" + temp.value![0]);
+  console.info("value:" + temp.value![1]);
+  temp = iter.next();
+}
+```
+```ts
+// 不建议在entries中使用set、remove方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
+let hashMap = new HashMap<string, Number>();
+for(let i = 0; i < 10; i++) {
+  hashMap.set("sparrow" + i, 123);
+}
+
+for(let i = 0; i < 10; i++) {
+  hashMap.remove("sparrow" + i);
+}
+```
+
 ### [Symbol.iterator]
 
 [Symbol.iterator]\(): IterableIterator&lt;[K, V]&gt;
@@ -587,6 +708,8 @@ for(let i = 0; i < 10; i++) {
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **返回值：**
 
@@ -636,3 +759,64 @@ for(let i = 0; i < 10; i++) {
   hashMap.remove("sparrow" + i);
 }
 ```
+
+### $_iterator<sup>20+</sup>
+
+\$_iterator\(): IterableIterator&lt;[K, V]&gt;
+
+返回一个迭代器，迭代器的每一项都是一个JavaScript对象，并返回该对象。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| IterableIterator<[K, V]> | 返回一个迭代器。 |
+
+**示例：**
+
+```ts
+let hashMap = new HashMap<string, Number>();
+hashMap.set("squirrel", 123);
+hashMap.set("sparrow", 456);
+
+// 使用方法一：
+for (let item of hashMap) {
+  console.info("key:" + item[0]);
+  console.info("value:" + item[1]);
+}
+
+// 使用方法二：
+ let iter = hashMap.$_iterator();
+ let temp: IteratorResult<[string, Number]> = iter.next();
+ while(!temp.done) {
+   console.info("key:" + temp.value![0]);
+   console.info("value:" + temp.value![1]);
+   temp = iter.next();
+ }
+```
+
+### HashMapCbFn\<K, V\><sup>20+</sup>
+
+type HashMapCbFn\<K, V\> = (value: V, key: K, map: HashMap\<K, V\>) => void
+
+HashMap中forEach方法的回调函数。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| value | V | 是 | 当前遍历到的元素键值对的值。 |
+| key | K | 是 | 当前遍历到的元素键值对的键。 |
+| map | [HashMap\<K, V\>](#hashmap) | 是 | 当前调用[forEach](#foreach20)方法的实例对象。 |
