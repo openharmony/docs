@@ -14,7 +14,7 @@ Serial port communication is often used in industrial scenarios and some legacy 
 ## Summary
 
 
-### File
+### Files
 
 | Name| Description| 
 | -------- | -------- |

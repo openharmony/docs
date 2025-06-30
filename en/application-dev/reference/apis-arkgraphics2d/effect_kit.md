@@ -13,7 +13,7 @@ The EffectKit module provides the basic image processing capabilities, including
 ## Summary
 
 
-### File
+### Files
 
 | Name| Description| 
 | -------- | -------- |
