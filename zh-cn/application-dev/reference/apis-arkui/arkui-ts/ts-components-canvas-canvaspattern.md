@@ -24,7 +24,7 @@ setTransform(transform?: Matrix2D): void
 
 | 参数名      | 类型  | 必填 | 说明   |
 | --------- | -------------- | ------ | ---------- |
-| transform | [Matrix2D](ts-components-canvas-matrix2d.md#matrix2d) | 否  | 转换矩阵。<br>默认值：null |
+| transform | [Matrix2D](ts-components-canvas-matrix2d.md) | 否  | 转换矩阵。<br>默认值：null |
 
 ## 示例
 

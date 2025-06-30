@@ -8,7 +8,7 @@
 >
 > - Swiper组件内包含了[PanGesture](ts-basic-gestures-pangesture.md)拖动手势事件，用于滑动轮播子组件。[disableSwipe](#disableswipe8)属性设为true会取消内部的PanGesture事件监听。
 >
-> - Swiper中复用[NodeContainer](./ts-basic-components-nodecontainer.md#nodecontainer)时，禁止递归流程中子节点更新父节点状态变量。
+> - Swiper中复用[NodeContainer](./ts-basic-components-nodecontainer.md)时，禁止递归流程中子节点更新父节点状态变量。
 
 ## 子组件
 
