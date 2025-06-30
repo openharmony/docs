@@ -13,7 +13,15 @@
 import { InputMethodExtensionAbility } from '@kit.IMEKit';
 ```
 
-## 属性
+## InputMethodExtensionAbility
+
+输入法Extension ability类。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+### context
+
+输入法Extension ability的上下文信息。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -21,7 +29,7 @@ import { InputMethodExtensionAbility } from '@kit.IMEKit';
 | -------- | -------- | -------- | -------- | -------- |
 | context | [InputMethodExtensionContext](js-apis-inputmethod-extension-context.md) | 否 | 否 | InputMethodExtension的上下文环境，继承于ExtensionContext。 |
 
-## InputMethodExtensionAbility.onCreate
+### onCreate
 
 onCreate(want: Want): void
 
@@ -47,7 +55,7 @@ class InputMethodExt extends InputMethodExtensionAbility {
 }
 ```
 
-## InputMethodExtensionAbility.onDestroy
+### onDestroy
 
 onDestroy(): void
 

@@ -11,8 +11,9 @@
 
 ## 申请权限
 
+<!--RP1-->
 请参考[申请位置权限开发指导](../../device/location/location-permission-guidelines.md#开发步骤)。
-
+<!--RP1End-->
 
 ## 导入模块
 
@@ -127,7 +128,7 @@ import { geoLocationManager } from '@kit.LocationKit';
 | -------- | -------- | -------- | -------- | -------- |
 | interval | number | 否 | 否 | 表示上报位置信息的时间间隔，单位是秒。默认值为1，取值范围为大于等于0。等于0时对位置上报时间间隔无限制。|
 | locationScenario | [UserActivityScenario](#useractivityscenario12) &#124; [PowerConsumptionScenario](#powerconsumptionscenario12) | 否 | 否 | 表示定位的场景信息。取值范围见[UserActivityScenario](#useractivityscenario12)和[PowerConsumptionScenario](#powerconsumptionscenario12)的定义。 |
-| needPoi<sup>19+ | boolean | 否 | 是 | 表示是否需要获取当前位置附近的POI信息。false代表不需要获取当前位置附近的POI信息，true代表需要获取当前位置附近的POI信息。不设置时，默认值为false。<br/>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。|
+| needPoi<sup>19+ | boolean | 否 | 是 | 表示是否需要获取当前位置附近的POI信息。false代表不需要获取当前位置附近的POI信息，true代表需要获取当前位置附近的POI信息。不设置时，默认值为false。<br/>该参数仅在精确位置功能场景（即同时授权了ohos.permission.APPROXIMATELY_LOCATION和ohos.permission.LOCATION 权限）下有效，模糊位置功能生效场景（即仅授权了ohos.permission.APPROXIMATELY_LOCATION 权限）下不返回POI信息。<br/>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。|
 
 
 ## SingleLocationRequest<sup>12+</sup>
@@ -142,7 +143,7 @@ import { geoLocationManager } from '@kit.LocationKit';
 | -------- | -------- | -------- | -------- | -------- |
 | locatingPriority | [LocatingPriority](#locatingpriority12) | 否 | 否 | 表示优先级信息。取值范围见[LocatingPriority](#locatingpriority12)的定义。|
 | locatingTimeoutMs | number | 否 | 否 | 表示超时时间，单位是毫秒，最小为1000毫秒。取值范围为大于等于1000。 |
-| needPoi<sup>19+ | boolean | 否 | 是 | 表示是否需要获取当前位置附近的POI信息。false代表不需要获取当前位置附近的POI信息，true代表需要获取当前位置附近的POI信息。不设置时，默认值为false。<br/>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。|
+| needPoi<sup>19+ | boolean | 否 | 是 | 表示是否需要获取当前位置附近的POI信息。false代表不需要获取当前位置附近的POI信息，true代表需要获取当前位置附近的POI信息。不设置时，默认值为false。<br/>该参数仅在精确位置功能场景（即同时授权了ohos.permission.APPROXIMATELY_LOCATION和ohos.permission.LOCATION 权限）下有效，模糊位置功能生效场景（即仅授权了ohos.permission.APPROXIMATELY_LOCATION 权限）下不返回POI信息。<br/>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。|
 
 
 ## SatelliteStatusInfo
@@ -450,7 +451,7 @@ GNSS地理围栏请求参数。
 | -------- | -------- | -------- |
 | LOCATING_FAILED_DEFAULT   | -1 |  默认值。 |
 | LOCATING_FAILED_LOCATION_PERMISSION_DENIED   | -2 | 表示ohos.permission.APPROXIMATELY_LOCATION权限或ohos.permission.LOCATION权限校验失败导致持续定位失败。 |
-| LOCATING_FAILED_BACKGROUND_PERMISSION_DENIED    | -3 | 表示应用在后台时位置权限校验失败导致持续定位失败。APP在后台定位时的位置权限申请方式参见[申请位置权限开发指导](../../device/location/location-permission-guidelines.md#开发步骤)。 |
+| LOCATING_FAILED_BACKGROUND_PERMISSION_DENIED    | -3 | 表示应用在后台时位置权限校验失败导致持续定位失败。<!--RP3-->APP在后台定位时的位置权限申请方式参见[申请位置权限开发指导](../../device/location/location-permission-guidelines.md#开发步骤)。<!--RP3End--> |
 | LOCATING_FAILED_LOCATION_SWITCH_OFF    | -4 | 表示位置信息开关关闭导致持续定位失败。 |
 | LOCATING_FAILED_INTERNET_ACCESS_FAILURE    | -5 | 表示无法访问网络，导致网络定位失败。 |
 
@@ -576,7 +577,7 @@ on(type: 'locationChange', request: LocationRequest | ContinuousLocationRequest,
   // 方式一：使用LocationRequest作为入参
   let requestInfo:geoLocationManager.LocationRequest = {'priority': geoLocationManager.LocationRequestPriority.FIRST_FIX, 'scenario': geoLocationManager.LocationRequestScenario.UNSET, 'timeInterval': 1, 'distanceInterval': 0, 'maxAccuracy': 0};
   let locationChange = (location:geoLocationManager.Location):void => {
-      console.info('locationChanger: data: ' + JSON.stringify(location));
+      console.info('locationChange: data: ' + JSON.stringify(location));
   };
   try {
       geoLocationManager.on('locationChange', requestInfo, locationChange);
@@ -634,7 +635,7 @@ off(type: 'locationChange', callback?: Callback&lt;Location&gt;): void
 
   let requestInfo:geoLocationManager.LocationRequest = {'priority': geoLocationManager.LocationRequestPriority.FIRST_FIX, 'scenario': geoLocationManager.LocationRequestScenario.UNSET, 'timeInterval': 1, 'distanceInterval': 0, 'maxAccuracy': 0};
   let locationChange = (location:geoLocationManager.Location):void => {
-    console.info('locationChanger: data: ' + JSON.stringify(location));
+    console.info('locationChange: data: ' + JSON.stringify(location));
   };
   try {
       geoLocationManager.on('locationChange', requestInfo, locationChange);
@@ -682,7 +683,7 @@ on(type: 'locationError', callback: Callback&lt;LocationError&gt;): void
 
   let requestInfo:geoLocationManager.LocationRequest = {'priority': geoLocationManager.LocationRequestPriority.FIRST_FIX, 'scenario': geoLocationManager.LocationRequestScenario.UNSET, 'timeInterval': 1, 'distanceInterval': 0, 'maxAccuracy': 0};
   let locationChange = (location:geoLocationManager.Location):void => {
-      console.info('locationChanger: data: ' + JSON.stringify(location));
+      console.info('locationChange: data: ' + JSON.stringify(location));
   };
   try {
       geoLocationManager.on('locationChange', requestInfo, locationChange);
@@ -1397,10 +1398,10 @@ getCurrentLocation(request: CurrentLocationRequest | SingleLocationRequest, call
   let requestInfo:geoLocationManager.CurrentLocationRequest = {'priority': geoLocationManager.LocationRequestPriority.FIRST_FIX, 'scenario': geoLocationManager.LocationRequestScenario.UNSET,'maxAccuracy': 0};
   let locationChange = (err:BusinessError, location:geoLocationManager.Location):void => {
       if (err) {
-          console.error('locationChanger: err=' + JSON.stringify(err));
+          console.error('locationChange: err=' + JSON.stringify(err));
       }
       if (location) {
-          console.info('locationChanger: location=' + JSON.stringify(location));
+          console.info('locationChange: location=' + JSON.stringify(location));
       }
   };
 
@@ -1414,10 +1415,10 @@ getCurrentLocation(request: CurrentLocationRequest | SingleLocationRequest, call
   let request:geoLocationManager.SingleLocationRequest = {'locatingTimeoutMs': 10000, 'locatingPriority': geoLocationManager.LocatingPriority.PRIORITY_ACCURACY};
   let locationCallback = (err:BusinessError, location:geoLocationManager.Location):void => {
       if (err) {
-          console.error('locationChanger: err=' + JSON.stringify(err));
+          console.error('locationChange: err=' + JSON.stringify(err));
       }
       if (location) {
-          console.info('locationChanger: location=' + JSON.stringify(location));
+          console.info('locationChange: location=' + JSON.stringify(location));
       }
   };
 
@@ -1466,10 +1467,10 @@ getCurrentLocation(callback: AsyncCallback&lt;Location&gt;): void
   import { BusinessError } from '@kit.BasicServicesKit';
   let locationChange = (err:BusinessError, location:geoLocationManager.Location) => {
       if (err) {
-          console.error('locationChanger: err=' + JSON.stringify(err));
+          console.error('locationChange: err=' + JSON.stringify(err));
       }
       if (location) {
-          console.info('locationChanger: location=' + JSON.stringify(location));
+          console.info('locationChange: location=' + JSON.stringify(location));
       }
   };
 
@@ -2469,6 +2470,8 @@ on(type: 'bluetoothScanResultChange', callback: Callback&lt;BluetoothScanResult&
 
 订阅蓝牙扫描信息上报事件，使用callback异步回调。
 
+<!--RP2--><!--RP2End-->
+
 本API会启动蓝牙扫描，为了避免产生较多功耗，需要开发者在适当的时机调用 [geoLocationManager.off('bluetoothScanResultChange')](#geolocationmanageroffbluetoothscanresultchange16)接口停止蓝牙扫描。
 
 当前仅支持扫描BLE设备。
@@ -2621,10 +2624,11 @@ getPoiInfo(): Promise&lt;PoiInfo&gt;
   import { geoLocationManager } from '@kit.LocationKit';
   try {
     if (geoLocationManager.isPoiServiceSupported()) {
-      let poiInfo = await geoLocationManager.getPoiInfo();
-      if (poiInfo !== undefined) {
-        console.info("get PoiInfo:" + json.stringify(poiInfo));
-      }
+      geoLocationManager.getPoiInfo().then((poiInfo) => {
+        if (poiInfo !== undefined) {
+          console.info("get PoiInfo:" + JSON.stringify(poiInfo));
+        }
+      })
     }
   } catch(error) {
     console.error("getPoiInfo errCode:" + error.code + ", errMessage:" + error.message);

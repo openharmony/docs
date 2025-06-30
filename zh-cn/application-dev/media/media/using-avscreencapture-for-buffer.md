@@ -236,6 +236,7 @@ config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.s
     // 错误事件发生回调函数OnError()。
     void OnError(OH_AVScreenCapture *capture, int32_t errorCode, void *userData) {
         (void)capture;
+        // 应用根据错误码进行事件处理。
         (void)errorCode;
         (void)userData;
     }
@@ -297,7 +298,7 @@ config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.s
 
                     // 获取buffer地址。
                     uint8_t *buf = OH_AVBuffer_GetAddr(buffer);
-                    if (buf != nullptr) {
+                    if (buf == nullptr) {
                         return;
                     }
                     // 使用buffer数据。
@@ -316,7 +317,7 @@ config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.s
 
                 // 获取buffer地址。
                 uint8_t *buf = OH_AVBuffer_GetAddr(buffer);
-                if (buf != nullptr) {
+                if (buf == nullptr) {
                     return;
                 }
                 // 使用buffer数据。
@@ -327,7 +328,7 @@ config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.s
 
                 // 获取buffer地址。
                 uint8_t *buf = OH_AVBuffer_GetAddr(buffer);
-                if (buf != nullptr) {
+                if (buf == nullptr) {
                     return;
                 }
                 // 使用buffer数据。
@@ -406,6 +407,7 @@ config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.s
 // 错误事件发生回调函数OnError()。
 void OnError(OH_AVScreenCapture *capture, int32_t errorCode, void *userData) {
     (void)capture;
+    // 应用根据错误码进行事件处理。
     (void)errorCode;
     (void)userData;
 }
@@ -468,7 +470,7 @@ void OnBufferAvailable(OH_AVScreenCapture *capture, OH_AVBuffer *buffer, OH_AVSc
 
                 // 获取buffer地址。
                 uint8_t *buf = OH_AVBuffer_GetAddr(buffer);
-                if (buf != nullptr) {
+                if (buf == nullptr) {
                     return;
                 }
                 // 使用buffer数据。
@@ -487,7 +489,7 @@ void OnBufferAvailable(OH_AVScreenCapture *capture, OH_AVBuffer *buffer, OH_AVSc
 
             // 获取buffer地址。
             uint8_t *buf = OH_AVBuffer_GetAddr(buffer);
-            if (buf != nullptr) {
+            if (buf == nullptr) {
                 return;
             }
             // 使用buffer数据。
@@ -498,7 +500,7 @@ void OnBufferAvailable(OH_AVScreenCapture *capture, OH_AVBuffer *buffer, OH_AVSc
 
             // 获取buffer地址。
             uint8_t *buf = OH_AVBuffer_GetAddr(buffer);
-            if (buf != nullptr) {
+            if (buf == nullptr) {
                 return;
             }
             // 使用buffer数据。

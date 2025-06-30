@@ -4,7 +4,7 @@
 >
 > - 本模块接口从API version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
-> - 示例效果请以真机运行为准，当前IDE预览器不支持。
+> - 示例效果请以真机运行为准，当前DevEco Studio预览器不支持。
 
 ## WebStorageOrigin
 
@@ -148,17 +148,6 @@ createPdf函数输入参数。
 | ---- | ---- | ---- | ---- |---- |
 | type | [WebHitTestType](./arkts-apis-webview-e.md#webhittesttype) | 否 | 否 | 当前被点击区域的元素类型。|
 | extra | string        | 否 | 否 |点击区域的附加参数信息。若被点击区域为图片或链接，则附加参数信息为其url地址。 |
-
-## ControllerAttachState<sup>20+</sup>
-
-WebViewController与Web组件的绑定状态。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-| 名称 | 值 | 说明 |
-| ------------------------------- | - | ---------- |
-| UNATTACHED | 0 | 未绑定状态。 |
-| ATTACHED   | 1 | 已绑定状态。 |
 
 ## HistoryItem
 

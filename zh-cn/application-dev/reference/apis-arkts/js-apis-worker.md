@@ -1,10 +1,10 @@
 # @ohos.worker (启动一个Worker)
 
-Worker是与主线程并行的独立线程。创建Worker的线程称之为宿主线程，Worker自身的线程称之为Worker线程。创建Worker传入的url文件在Worker线程中执行，可以处理耗时操作但不可以直接操作UI。
+Worker是与主线程并行的具有ArkTS执行环境的独立线程。创建Worker的线程称之为宿主线程，Worker自身的线程称之为Worker线程。创建Worker传入的url文件在Worker线程中执行，可以处理耗时操作但不可以直接操作UI。
 
 Worker主要作用是为应用程序提供一个多线程的运行环境，可满足应用程序在执行过程中与宿主线程分离，在后台线程中运行一个脚本处理耗时操作，极大避免类似于计算密集型或高延迟的任务阻塞宿主线程的运行。由于Worker一旦被创建则不会主动被销毁，若不处于任务状态一直运行，在一定程度上会造成资源的浪费，应及时关闭空闲的Worker。
 
-Worker的上下文对象和UI主线程的上下文对象是不同的，Worker线程不支持UI操作。
+Worker的上下文环境和UI主线程的上下文环境是独立的，Worker线程不支持UI操作。
 
 Worker使用过程中的相关注意点请查看[Worker注意事项](../../arkts-utils/worker-introduction.md#worker注意事项)。
 
@@ -22,10 +22,10 @@ import { worker } from '@kit.ArkTS';
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称                              | 类型                                                         | 可读 | 可写 | 说明                                                         |
+| 名称                              | 类型                                                         | 只读 | 可选 | 说明                                                         |
 | --------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| workerPort<sup>9+</sup>           | [ThreadWorkerGlobalScope](#threadworkerglobalscope9)         | 是   | 是   | worker线程用于与宿主线程通信的对象。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。                         |
-| parentPort<sup>(deprecated)</sup> | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated) | 是   | 是   | worker线程用于与宿主线程通信的对象。<br/>此属性从API version 7开始支持，从API version 9开始被废弃。<br/>建议使用workerPort<sup>9+</sup>替代。 |
+| workerPort<sup>9+</sup>           | [ThreadWorkerGlobalScope](#threadworkerglobalscope9)         | 否   | 否   | worker线程用于与宿主线程通信的对象。<br/>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。                         |
+| parentPort<sup>(deprecated)</sup> | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated) | 否   | 否   | worker线程用于与宿主线程通信的对象。<br/>此属性从API version 7开始支持，从API version 9开始被废弃。<br/>建议使用workerPort<sup>9+</sup>替代。 |
 
 
 ## WorkerOptions
@@ -36,10 +36,10 @@ Worker构造函数的选项信息，用于为Worker添加其他信息。
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | -------- | ---- | ---- | -------------- |
-| type | 'classic' \| 'module' | 是   | 是 | Worker执行脚本的模式类型，暂不支持module类型，默认值为"classic"。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| name | string   | 是   | 是 | Worker的名称，默认值为 undefined 。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| shared | boolean | 是   | 是 | 表示Worker共享功能，此接口暂不支持。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| priority<sup>18+</sup> | [ThreadWorkerPriority](#threadworkerpriority18) | 是   | 是 | 表示Worker线程优先级。 <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
+| type | 'classic' \| 'module' | 否   | 是 | Worker执行脚本的模式类型，暂不支持module类型，默认值为"classic"。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| name | string   | 否   | 是 | Worker的名称，默认值为 undefined 。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| shared | boolean | 否   | 是 | 表示Worker共享功能，此接口暂不支持。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| priority<sup>18+</sup> | [ThreadWorkerPriority](#threadworkerpriority18) | 否   | 是 | 表示Worker线程优先级。默认值为MEDIUM。 <br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
 
 
 ## ThreadWorkerPriority<sup>18+</sup>
@@ -60,7 +60,7 @@ Worker线程的优先级枚举，各优先级对应关系请参考[QoS等级定�
 
 ## ThreadWorker<sup>9+</sup>
 
-使用以下方法前，均需先构造ThreadWorker实例，ThreadWorker类继承[WorkerEventTarget](#workereventtarget9)。
+使用以下方法前，均需先构造ThreadWorker实例，ThreadWorker类继承自[WorkerEventTarget](#workereventtarget9)。
 
 ### constructor<sup>9+</sup>
 
@@ -115,7 +115,7 @@ postMessage(message: Object, transfer: ArrayBuffer[]): void
 
 | 参数名   | 类型          | 必填 | 说明                                                         |
 | -------- | ------------- | ---- | ------------------------------------------------------------ |
-| message  | Object        | 是   | 发送至Worker的数据，该数据对象必须是可序列化，序列化支持类型见[其他说明](#序列化支持类型)。 |
+| message  | Object        | 是   | 发送至Worker的数据，该数据对象必须是可序列化对象，序列化支持类型见[其他说明](#序列化支持类型)。 |
 | transfer | ArrayBuffer[] | 是   | 表示可转移的ArrayBuffer实例对象数组，该数组中对象的所有权会被转移到Worker线程，在宿主线程中将会变为不可用，仅在Worker线程中可用，数组不可传入null。 |
 
 **错误码：**
@@ -189,7 +189,7 @@ struct Index {
             workerInstance.onexit = (code) => {
               console.info("main thread terminate");
             }
-
+            // 监听Worker错误
             workerInstance.onAllErrors = (err: ErrorEvent) => {
               console.error("main error message " + err.message);
             }
@@ -216,7 +216,7 @@ postMessage(message: Object, options?: PostMessageOptions): void
 
 | 参数名  | 类型                                      | 必填 | 说明                                                         |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| message | Object                                    | 是   | 发送至Worker的数据，该数据对象必须是可序列化，序列化支持类型见[其他说明](#序列化支持类型)。 |
+| message | Object                                    | 是   | 发送至Worker的数据，该数据对象必须是可序列化对象，序列化支持类型见[其他说明](#序列化支持类型)。 |
 | options | [PostMessageOptions](#postmessageoptions) | 否   | 当填入该参数时，与传入ArrayBuffer[]的作用一致，该数组中对象的所有权会被转移到Worker线程，在宿主线程中将会变为不可用，仅在Worker线程中可用。<br>若不填入该参数，默认设置为 undefined，通过拷贝数据的方式传输信息到Worker线程。 |
 
 **错误码：**
@@ -1647,56 +1647,26 @@ workerInstance.dispatchEvent({ type: "alert", timeStamp: 0 }); // timeStamp暂�
 
 Worker线程自身的运行环境，GlobalScope类继承[WorkerEventTarget](#workereventtarget9)。
 
-### 属性
-
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 类型                                                         | 可读 | 可写 | 说明                                  |
+| 名称 | 类型                                                         | 只读 | 可选 | 说明                                  |
 | ---- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------- |
 | name | string                                                       | 是   | 否   | Worker的名字，new&nbsp;Worker时指定。 |
 | self | [GlobalScope](#globalscope9)&nbsp;&amp;&nbsp;typeof&nbsp;globalThis | 是   | 否   | GlobalScope本身。                     |
+| onerror | (ev: [ErrorEvent](#errorevent)) => void | 否   | 是   | Worker在执行过程中发生异常被调用的回调函数，在Worker线程中执行，ev表示收到的异常数据。默认值为undefined。|
 
-
-### onerror<sup>9+</sup>
-
-onerror?: (ev: ErrorEvent) =&gt; void
-
-回调函数。GlobalScope的onerror属性表示Worker在执行过程中发生异常被调用的事件处理程序，处理程序在Worker线程中执行。其中回调函数中ev类型为[ErrorEvent](#errorevent)，表示收到的异常数据。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**示例：**
-
-```ts
-// main thread
-import { worker } from '@kit.ArkTS';
-
-const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
-```
-
-```ts
-// worker.ets
-import { worker, ErrorEvent } from '@kit.ArkTS';
-
-const workerPort = worker.workerPort;
-workerPort.onerror = (err: ErrorEvent) => {
-    console.error("worker.ets onerror" + err.message);
-}
-```
 
 ## MessageEvents<sup>9+</sup>
 
-消息类，持有Worker线程间传递的数据。
+消息类，持有Worker线程间传递的数据，MessageEvents类继承[Event](#event)。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 类型 | 可读 | 可写 | 说明               |
+| 名称 | 类型 | 只读 | 可选 | 说明               |
 | ---- | ---- | ---- | ---- | ------------------ |
 | data | any  | 是   | 否   | 线程间传递的数据。 |
 
@@ -2394,9 +2364,9 @@ parentPort.onmessageerror = () => {
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称     | 类型     | 可读 | 可写 | 说明                              |
+| 名称     | 类型     | 只读 | 可选 | 说明                              |
 | -------- | -------- | ---- | ---- | --------------------------------- |
-| transfer | Object[] | 是   | 是   | ArrayBuffer数组，用于传递所有权。该数组中不可传入null。 |
+| transfer | Object[] | 否   | 是   | ArrayBuffer数组，用于传递所有权。该数组中不可传入null。默认值为undefined。 |
 
 
 ## Event
@@ -2407,7 +2377,7 @@ parentPort.onmessageerror = () => {
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称      | 类型   | 可读 | 可写 | 说明                                         |
+| 名称      | 类型   | 只读 | 可选 | 说明                                         |
 | --------- | ------ | ---- | ---- | -------------------------------------------- |
 | type      | string | 是   | 否   | 指定事件的类型。                             |
 | timeStamp | number | 是   | 否   | 事件创建时的时间戳（精度为毫秒），暂未支持。 |
@@ -2461,7 +2431,7 @@ workerInstance.addEventListener("alert", ()=>{
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称     | 类型   | 可读 | 可写 | 说明                 |
+| 名称     | 类型   | 只读 | 可选 | 说明                 |
 | -------- | ------ | ---- | ---- | -------------------- |
 | message  | string | 是   | 否   | 异常发生的错误信息。 |
 | filename | string | 是   | 否   | 出现异常所在的文件。 |
@@ -2472,13 +2442,13 @@ workerInstance.addEventListener("alert", ()=>{
 
 ## MessageEvent\<T\>
 
-消息类，持有Worker线程间传递的数据。
+消息类，持有Worker线程间传递的数据，MessageEvent类继承[Event](#event)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 类型 | 可读 | 可写 | 说明               |
+| 名称 | 类型 | 只读 | 可选 | 说明               |
 | ---- | ---- | ---- | ---- | ------------------ |
 | data | T    | 是   | 否   | 线程间传递的数据。 |
 
@@ -2490,44 +2460,13 @@ Worker线程自身的运行环境，WorkerGlobalScope类继承[EventTarget](#eve
 > **说明：**<br/>
 > 从API version 7开始支持，从API version 9开始废弃，建议使用[GlobalScope<sup>9+</sup>](#globalscope9)替代。
 
-### 属性
-
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 类型                                                         | 可读 | 可写 | 说明                                  |
+| 名称 | 类型                                                         | 只读 | 可选 | 说明                                  |
 | ---- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------- |
 | name | string                                                       | 是   | 否   | Worker的名字，new&nbsp;Worker时指定。 |
 | self | [WorkerGlobalScope](#workerglobalscopedeprecated)&nbsp;&amp;&nbsp;typeof&nbsp;globalThis | 是   | 否   | WorkerGlobalScope本身。               |
-
-
-### onerror<sup>(deprecated)</sup>
-
-onerror?: (ev: ErrorEvent) =&gt; void
-
-WorkerGlobalScope的onerror属性表示Worker在执行过程中发生异常被调用的事件处理程序，处理程序在Worker线程中执行。其中回调函数中ev类型为[ErrorEvent](#errorevent)，表示收到的异常数据。
-
-> **说明：**<br/>
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[GlobalScope<sup>9+</sup>.onerror<sup>9+</sup>](#onerror9-1)替代。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**示例：**
-
-```ts
-// main thread
-import { worker } from '@kit.ArkTS';
-
-const workerInstance = new worker.Worker("workers/worker.ets")
-```
-```ts
-// worker.ets
-import { worker, ErrorEvent } from '@kit.ArkTS';
-
-const parentPort = worker.parentPort
-parentPort.onerror = (err: ErrorEvent) => {
-    console.error("worker.ets onerror" + err.message)
-}
-```
+| onerror | (ev: [ErrorEvent](#errorevent)) => void | 否 | 是 | Worker在执行过程中发生异常被调用的回调函数，在Worker线程中执行，ev表示收到的异常数据。默认值为undefined。 |
 
 
 ## 其他说明
@@ -2570,7 +2509,7 @@ workerPort.onmessage = (d: MessageEvents): void => {
   }
   // workerPort.postMessage(func1); 传递func1发生序列化错误
   let obj2 = new MyModel();
-  workerPort.postMessage(obj2);     // 传递obj2不会发生序列化错误
+  workerPort.postMessage(obj2);     // 传递obj2不会发生序列化错误，obj2中的函数会丢失
 }
 workerPort.onmessageerror = () => {
     console.error("worker.ets onmessageerror");
@@ -2581,7 +2520,7 @@ workerPort.onerror = (err: ErrorEvent) => {
 ```
 
 ### 内存模型
-Worker基于Actor并发模型实现。在Worker的交互流程中，JS宿主线程可以创建多个Worker子线程，各个Worker线程间相互隔离，并通过序列化传递对象，等到Worker线程完成计算任务，再把结果返回给宿主线程。
+Worker基于Actor并发模型实现。在Worker的交互流程中，ArkTS宿主线程可以创建多个Worker子线程，各个Worker线程间运行环境相互隔离，并通过序列化传递对象，等到Worker线程完成计算任务，再把结果返回给宿主线程。
 
 Actor并发模型的交互原理：各个Actor并发地处理宿主线程任务，每个Actor内部都有一个消息队列和单线程执行模块。消息队列负责接收宿主线程及其他Actor的请求，而单线程执行模块则负责串行地处理这些请求、向其他Actor发送请求以及创建新的Actor。由于Actor采用的是异步方式，各个Actor之间相互隔离且没有数据竞争，因此Actor可以高并发运行。
 

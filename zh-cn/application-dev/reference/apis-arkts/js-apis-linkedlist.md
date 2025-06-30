@@ -34,7 +34,7 @@ import { LinkedList } from '@kit.ArkTS';
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | length | number | 是 | 否 | LinkedList的元素个数。 |
 
@@ -110,6 +110,7 @@ class C {
 let c: C = {name : "Dylan", age : "13"};
 let result3 = linkedList.add(c);
 let result4 = linkedList.add(false);
+console.log("result = ", result4) // result =  true
 ```
 
 ### addFirst

@@ -280,7 +280,7 @@ createAsset(photoType: PhotoType, extension: string, options: CreateOptions, cal
 | -------- | ------------------------ | ---- | ------------------------- |
 | photoType  | [PhotoType](#phototype)        | 是   | 创建的文件类型，IMAGE或者VIDEO类型。              |
 | extension  | string        | 是   | 文件名后缀参数，例如：'jpg'。              |
-| options  | [CreateOptions](#createoptions)        | 是   | 创建选项，例如{title: 'testPhoto'}。              |
+| options  | [CreateOptions](#createoptions)        | 是   | 创建选项，当前仅支持'title'，例如{title: 'testPhoto'}。              |
 | callback |  AsyncCallback&lt;string&gt; | 是   | callback返回创建的图片和视频的uri。 |
 
 **错误码：**
@@ -394,7 +394,7 @@ createAsset(photoType: PhotoType, extension: string, options?: CreateOptions): P
 | -------- | ------------------------ | ---- | ------------------------- |
 | photoType  | [PhotoType](#phototype)        | 是   | 创建的文件类型，IMAGE或者VIDEO类型。              |
 | extension  | string        | 是   | 文件名后缀参数，例如：'jpg'。              |
-| options  | [CreateOptions](#createoptions)        | 否   | 创建选项，例如{title: 'testPhoto'}。              |
+| options  | [CreateOptions](#createoptions)        | 否   | 创建选项，当前仅支持'title'，例如{title: 'testPhoto'}。              |
 
 **返回值：**
 
@@ -1245,8 +1245,6 @@ getSupportedPhotoFormats(photoType: PhotoType): Promise&lt;Array&lt;string&gt;&g
 phAccessHelper的创建请参考[photoAccessHelper.getPhotoAccessHelper](#photoaccesshelpergetphotoaccesshelper)的示例使用。
 
 ```ts
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
-
 async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, photoTypeNumber: number){
   console.info('getSupportedPhotoFormatsDemo.');
 
@@ -2057,7 +2055,7 @@ select(option?: PhotoSelectOptions) : Promise&lt;PhotoSelectResult&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example01() {
+async function example01(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     let PhotoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
     PhotoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE;
@@ -2108,7 +2106,7 @@ select(option: PhotoSelectOptions, callback: AsyncCallback&lt;PhotoSelectResult&
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example02() {
+async function example02(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     let PhotoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
     PhotoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE;
@@ -2160,7 +2158,7 @@ select(callback: AsyncCallback&lt;PhotoSelectResult&gt;) : void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function example03() {
+async function example03(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     let photoPicker = new photoAccessHelper.PhotoViewPicker();
     photoPicker.select((err: BusinessError, PhotoSelectResult: photoAccessHelper.PhotoSelectResult) => {

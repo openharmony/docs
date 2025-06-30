@@ -845,6 +845,7 @@ struct MyComponent {
       }, (item: StringData, index: number) => index.toString())
     }.cachedCount(5)
   }
+}
 ```
 
 `@ObservedV2`与`@Trace`用于装饰类以及类中的属性，配合使用能深度观测被装饰的类和属性。示例中，展示了深度嵌套类结构下，通过`@ObservedV2`和`@Trace`实现对多层嵌套属性变化的观测和子组件刷新。当点击子组件`Text`修改被`@Trace`修饰的嵌套类最内层的类成员属性时，仅重新渲染依赖了该属性的组件。
@@ -999,7 +1000,7 @@ struct ChildComponent {
 使用`@Param`装饰器，子组件可以接受外部输入参数，实现父子组件间的数据同步。在`MyComponent`中创建子组件时，传递`item.message`，并用`@Param`修饰的变量`data`与其关联。点击`ListItem`中的组件修改`item.message`，数据变化会从父组件传递到子组件，触发子组件刷新。
 
 ## 拖拽排序
-当LazyForEach在List组件下使用，并且设置了onMove事件，可以使能拖拽排序。拖拽排序释放后，如果数据位置发生变化，将触发onMove事件，上报原始索引号和目标索引号。在onMove事件中，根据上报的索引号修改数据源。修改数据源时，无需调用DataChangeListener接口通知数据源变化。
+当LazyForEach在List组件下使用，并且设置了[onMove](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-drag-sorting.md#onmove)事件，可以使能拖拽排序。拖拽排序释放后，如果数据位置发生变化，将触发onMove事件，上报原始索引号和目标索引号。在onMove事件中，根据上报的索引号修改数据源。修改数据源时，无需调用DataChangeListener接口通知数据源变化。
 
 ```ts
 /** BasicDataSource代码见文档末尾BasicDataSource示例代码: string类型数组的BasicDataSource代码 **/
@@ -1268,7 +1269,7 @@ struct MyComponent {
           item.message += '00';
           this.data.reloadData();
         })
-      }, (item: StringData, index: number) => JSON.stringify(item))
+      }, (item: StringData, index: number) => item.message)
     }.cachedCount(5)
   }
 }
@@ -1422,7 +1423,7 @@ struct MyComponent {
         .onClick(() => {
           item.message.message += '0';
         })
-      }, (item: StringData, index: number) => JSON.stringify(item) + index.toString())
+      }, (item: StringData, index: number) => item.message.message + index.toString())
     }.cachedCount(5)
   }
 }
@@ -1509,7 +1510,7 @@ struct MyComponent {
           // @ObjectLink装饰的成员变量仅能监听到其子属性的变化，再深入嵌套的属性便无法观测到
           item.message = new NestedString(item.message.message + '0');
         })
-      }, (item: StringData, index: number) => JSON.stringify(item) + index.toString())
+      }, (item: StringData, index: number) => item.message.message + index.toString())
     }.cachedCount(5)
   }
 }

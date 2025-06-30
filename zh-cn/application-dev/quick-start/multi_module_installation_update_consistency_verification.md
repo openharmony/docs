@@ -6,6 +6,8 @@
 > **说明**
 >
 > [app.json5配置文件](./app-configuration-file.md)中versionCode字段一致，表示安装或更新包同版本，否则为不同版本。
+>
+> 如果使用打包工具进行打包，打包过程中存在合法性校验，具体请参考[打包工具](../../application-dev/tools/packing-tool.md)。
 
 ## 签名证书一致性校验
 

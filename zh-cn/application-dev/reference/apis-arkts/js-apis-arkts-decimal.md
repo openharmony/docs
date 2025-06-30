@@ -71,7 +71,7 @@ type Modulo = Rounding | 9
 | 类型                   | 说明                                                         |
 | ---------------------- | ------------------------------------------------------------ |
 | [Rounding](#rounding) | 模运算下的舍入类型。与[Rounding](#常量)表示的舍入模式相同。  |
-| 9                      | 余模运算下，余数始终为正。欧几里得除法。与[Decimal.EUCLID](#常量)一致。 |
+| 9                      | 余模运算下，余数始终为正。欧几里得除法，与[Decimal.EUCLID](#常量)一致。 |
 
 ## DecimalConfig
 
@@ -128,7 +128,7 @@ type Modulo = Rounding | 9
 | ROUND_HALF_EVEN    | number | 6    | 向最近的邻值舍入。如果距离相等，则向偶数邻值舍入。模运算下，IEEE 754 求余函数。 |
 | ROUND_HALF_CEILING | number | 7    | 向最近的邻值舍入。如果距离相等，则向正无穷方向舍入。         |
 | ROUND_HALF_FLOOR   | number | 8    | 向最近的邻值舍入。如果距离相等，则向负无穷方向舍入。         |
-| EUCLID             | number | 9    | 模运算下，余数始终为正。使用欧几里得除法：q = sign(x) * floor(a / abs(x))。 |
+| EUCLIDEAN          | number | 9    | 模运算下，余数始终为正。使用欧几里得除法：q = sign(x) * floor(a / abs(x))。 |
 
 ### constructor
 
@@ -288,8 +288,14 @@ clamp(min: Value, max: Value): Decimal
 **示例：**
 
 ```ts
-let data: Decimal = new Decimal(10.1).clamp(0, 10);
-console.info("test Decimal clamp:" + data.toString()); // 'test Decimal clamp:10'
+let data1: Decimal = new Decimal(10.1).clamp(0, 10);
+console.info("test Decimal clamp:" + data1.toString()); // 'test Decimal clamp:10'
+
+let data2: Decimal = new Decimal(-5).clamp(0, 10);
+console.info("test Decimal clamp:" + data2.toString()); // 'test Decimal clamp:0'
+
+let data3: Decimal = new Decimal(7.5).clamp(0, 10);
+console.info("test Decimal clamp:" + data3.toString()); // 'test Decimal clamp:7.5'
 ```
 
 
@@ -616,7 +622,7 @@ console.info("test Decimal exp:" + data.toString()); // 'test Decimal exp:7.3890
 
 log(n: Value): Decimal
 
-返回一个以n为底的指定对数运算的Decimal对象。
+返回一个对数运算后的Decimal对象，其值是以n为底的对数值。
 
 使用[DecimalConfig.precision](#decimalconfig)的值进行有效数字的保留，使用[DecimalConfig.rounding](#decimalconfig)的值设置舍入模式。
 
@@ -1023,7 +1029,7 @@ Decimal的比较方法。
 
 | 参数名 | 类型            | 必填 | 说明                  |
 | ------ | --------------- | ---- | --------------------- |
-| n      | [Value](#value) | 是   | 待比较的值或Decimal。 |
+| n      | [Value](#value) | 是   | 待比较的值。 |
 
 **返回值：**
 
@@ -1065,7 +1071,7 @@ equals(n: Value): boolean
 
 | 参数名 | 类型            | 必填 | 说明                  |
 | ------ | --------------- | ---- | --------------------- |
-| n      | [Value](#value) | 是   | 待比较的值或Decimal。 |
+| n      | [Value](#value) | 是   | 待比较的值。 |
 
 **返回值：**
 
@@ -1103,7 +1109,7 @@ greaterThan(n: Value): boolean
 
 | 参数名 | 类型            | 必填 | 说明                  |
 | ------ | --------------- | ---- | --------------------- |
-| n      | [Value](#value) | 是   | 待比较的值或Decimal。 |
+| n      | [Value](#value) | 是   | 待比较的值。 |
 
 **返回值：**
 
@@ -1141,7 +1147,7 @@ greaterThanOrEqualTo(n: Value): boolean
 
 | 参数名 | 类型            | 必填 | 说明                  |
 | ------ | --------------- | ---- | --------------------- |
-| n      | [Value](#value) | 是   | 待比较的值或Decimal。 |
+| n      | [Value](#value) | 是   | 待比较的值。 |
 
 **返回值：**
 
@@ -1179,7 +1185,7 @@ lessThan(n: Value): boolean
 
 | 参数名 | 类型            | 必填 | 说明                  |
 | ------ | --------------- | ---- | --------------------- |
-| n      | [Value](#value) | 是   | 待比较的值或Decimal。 |
+| n      | [Value](#value) | 是   | 待比较的值。 |
 
 **返回值：**
 
@@ -1217,7 +1223,7 @@ lessThanOrEqualTo(n: Value): boolean
 
 | 参数名 | 类型            | 必填 | 说明                  |
 | ------ | --------------- | ---- | --------------------- |
-| n      | [Value](#value) | 是   | 待比较的值或Decimal。 |
+| n      | [Value](#value) | 是   | 待比较的值。 |
 
 **返回值：**
 
@@ -1475,14 +1481,6 @@ toBinary(): string
 | 类型   | 说明                     |
 | ------ | ------------------------ |
 | string | 返回二进制表示的字符串。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
-
-| 错误码ID | 错误信息                                          |
-| -------- | ------------------------------------------------- |
-| 10200001 | The value of 'significantDigits' is out of range. |
 
 **示例：**
 
@@ -2185,11 +2183,11 @@ toNearest(n: Value): Decimal
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                 |
-| -------- | ---------------------------------------- |
-| 10200001 | The value of 'rounding' is out of range. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 
 **示例：**
 
@@ -2224,10 +2222,11 @@ toNearest(n: Value, rounding: Rounding): Decimal
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 401      | Parameter error. Possible causes:1. Incorrect parameter types;2. Parameter verification failed. |
 | 10200001 | The value of 'rounding' is out of range. |
 
 **示例：**
@@ -4091,8 +4090,33 @@ static sign(n: Value): number
 **示例：**
 
 ```ts
-let data: number = Decimal.sign(2);
-console.info("test Decimal sign:" + data); // 'test Decimal sign:1'
+let data1: number = Decimal.sign(2);
+console.info("test Decimal sign:" + data1); // 'test Decimal sign:1'
+
+let data2: number = Decimal.sign(-3);
+console.info("test Decimal sign:" + data2); // 'test Decimal sign:-1'
+
+let data3: number = Decimal.sign(0);
+console.info("test Decimal sign:" + data3); // 'test Decimal sign:0'
+
+let data4: number = Decimal.sign(-0);
+console.info("test Decimal sign:" + data4); // 'test Decimal sign:0'
+
+let data5: number = Decimal.sign(3.14);
+console.info("test Decimal sign:" + data5); // 'test Decimal sign:1'
+
+let data6: number = Decimal.sign(-1.618);
+console.info("test Decimal sign:" + data6); // 'test Decimal sign:-1'
+
+let data7: number = Decimal.sign("100");
+console.info("test Decimal sign:" + data7); // 'test Decimal sign:1'
+
+let data8: number = Decimal.sign("-50");
+console.info("test Decimal sign:" + data8); // 'test Decimal sign:-1'
+
+let data9: number = Decimal.sign(NaN);
+console.info("test Decimal sign:" + data9); // 'test Decimal sign:NaN'
+
 ```
 
 ### round

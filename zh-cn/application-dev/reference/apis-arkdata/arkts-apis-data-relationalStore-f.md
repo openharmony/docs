@@ -4,6 +4,12 @@
 > 
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
+## 导入模块
+
+```ts
+import { relationalStore } from '@kit.ArkData';
+```
+
 ## relationalStore.getRdbStore
 
 getRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback&lt;RdbStore&gt;): void
@@ -628,7 +634,7 @@ getInsertSqlInfo(table: string, values: ValuesBucket, conflict?: ConflictResolut
 
 | **错误码ID** | **错误信息**             |
 |-----------|---------------------|
-| 14800001       | Invalid args. Possible causes: 1. Empty conditions; 2. Missing GROUP BY clause. |
+| 14800001       | Invalid arguments. Possible causes: 1. Empty conditions; 2. Missing GROUP BY clause. |
 
 
 **示例：**
@@ -676,7 +682,7 @@ getUpdateSqlInfo(predicates: RdbPredicates, values: ValuesBucket, conflict?: Con
 
 | **错误码ID** | **错误信息**             |
 |-----------|---------------------|
-| 14800001       | Invalid args. Possible causes: 1. Empty conditions; 2. Missing GROUP BY clause. |
+| 14800001       | Invalid arguments. Possible causes: 1. Empty conditions; 2. Missing GROUP BY clause. |
 
 
 **示例：**
@@ -724,7 +730,7 @@ getDeleteSqlInfo(predicates: RdbPredicates): SqlInfo
 
 | **错误码ID** | **错误信息**             |
 |-----------|---------------------|
-| 14800001       | Invalid args. Possible causes: 1. Empty conditions; 2. Missing GROUP BY clause. |
+| 14800001       | Invalid arguments. Possible causes: 1. Empty conditions; 2. Missing GROUP BY clause. |
 
 
 **示例：**
@@ -740,7 +746,7 @@ const sqlInfo: relationalStore.SqlInfo = relationalStore.getDeleteSqlInfo(predic
 
 ## relationalStore.getQuerySqlInfo<sup>20+</sup>
 
-getQuerySqlInfo(predicates: RdbPredicates, columns: Array\<string>): SqlInfo
+getQuerySqlInfo(predicates: RdbPredicates, columns?: Array\<string>): SqlInfo
 
 获取用于查询数据的SQL语句，此为同步接口。
 
@@ -765,7 +771,7 @@ getQuerySqlInfo(predicates: RdbPredicates, columns: Array\<string>): SqlInfo
 
 | **错误码ID** | **错误信息**             |
 |-----------|---------------------|
-| 14800001       | Invalid args. Possible causes: 1. Empty conditions; 2. Missing GROUP BY clause. |
+| 14800001       | Invalid arguments. Possible causes: 1. Empty conditions; 2. Missing GROUP BY clause. |
 
 
 **示例：**

@@ -124,7 +124,7 @@ ThemeControl将自定义Theme应用于App组件内，实现App组件风格跟随
 
 setDefaultTheme(theme: [CustomTheme](#customtheme)): void
 
-将用户自定义Theme设置应用级默认主题，实现应用风格跟随Theme切换。
+将用户自定义Theme设置应用级默认主题，实现应用风格跟随Theme切换。建议在onWindowStageCreate阶段里windowStage.loadContent的完成时回调中使用，详细代码可参考[设置应用内组件自定义主题色](../../ui/theme_skinning.md#设置应用内组件自定义主题色)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

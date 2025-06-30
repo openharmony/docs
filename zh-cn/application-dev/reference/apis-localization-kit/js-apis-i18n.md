@@ -2680,7 +2680,7 @@ static getUnicodeWrappedFilePath(path: string, delimiter?: string, locale?: intl
 | ------ | ------ | ---- | ------------------------ |
 | path | string | 是   | 待处理的路径，如：/data/out/tmp。 |
 | delimiter | string | 否   | 路径分隔符，默认值：/。 |
-| locale | [intl.Locale](./js-apis-intl.md#localedeprecated) | 否   | 区域对象，默认值：系统区域对象。 |
+| locale | [intl.Locale](./js-apis-intl.md#locale) | 否   | 区域对象，默认值：系统区域对象。 |
 
 **返回值：**
 
@@ -2698,21 +2698,21 @@ static getUnicodeWrappedFilePath(path: string, delimiter?: string, locale?: intl
 
 **示例：**
 
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-import { intl } from '@kit.LocalizationKit';
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { intl } from '@kit.LocalizationKit';
 
-try {
-  let path: string = '/data/out/tmp';
-  let delimiter: string = '/';
-  let locale: intl.Locale = new intl.Locale('ar');
-  let mirrorPath: string =
-    i18n.I18NUtil.getUnicodeWrappedFilePath(path, delimiter, locale); // mirrorPath显示为: 'tmp/out/data/'
-} catch (error) {
-  let err: BusinessError = error as BusinessError;
-  console.error(`call I18NUtil.getUnicodeWrappedFilePath failed, error code: ${err.code}, message: ${err.message}.`);
-}
-```
+  try {
+    let path: string = '/data/out/tmp';
+    let delimiter: string = '/';
+    let locale: intl.Locale = new intl.Locale('ar');
+    let mirrorPath: string =
+      i18n.I18NUtil.getUnicodeWrappedFilePath(path, delimiter, locale); // mirrorPath显示为: 'tmp/out/data/'
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error(`call I18NUtil.getUnicodeWrappedFilePath failed, error code: ${err.code}, message: ${err.message}.`);
+  }
+  ```
 
 ## Normalizer<sup>10+</sup>
 
@@ -2995,7 +2995,7 @@ getSimpleDateTimeFormatByPattern(pattern: string, locale?: intl.Locale): SimpleD
 | 参数名    | 类型     | 必填   | 说明                                       |
 | ------- | ----------- | ----- | ---------------------------------------- |
 | pattern | string      | 是    | 合法的模式字符串，支持的字符及含义请参考[日期字段符号表](https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table)。同时，pattern支持传入自定义文本，文本内容以`''`标识。 |
-| locale  | [intl.Locale](./js-apis-intl.md#localedeprecated) | 否    | 区域对象。默认值：系统区域对象。 |
+| locale  | [intl.Locale](./js-apis-intl.md#locale) | 否    | 区域对象。默认值：系统区域对象。 |
 
 **返回值：**
 
@@ -3012,18 +3012,18 @@ getSimpleDateTimeFormatByPattern(pattern: string, locale?: intl.Locale): SimpleD
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-import { intl } from '@kit.LocalizationKit';
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { intl } from '@kit.LocalizationKit';
 
-try {
-  let locale: intl.Locale = new intl.Locale('zh-Hans-CN');
-  let formatter: i18n.SimpleDateTimeFormat = i18n.getSimpleDateTimeFormatByPattern("'month('M')'", locale);
-} catch (error) {
-  let err: BusinessError = error as BusinessError;
-  console.error(`call i18n.getSimpleDateTimeFormatByPattern failed, error code: ${err.code}, message: ${err.message}.`);
-}
-```
+  try {
+    let locale: intl.Locale = new intl.Locale('zh-Hans-CN');
+    let formatter: i18n.SimpleDateTimeFormat = i18n.getSimpleDateTimeFormatByPattern("'month('M')'", locale);
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error(`call i18n.getSimpleDateTimeFormatByPattern failed, error code: ${err.code}, message: ${err.message}.`);
+  }
+  ```
 
 ## i18n.getSimpleDateTimeFormatBySkeleton<sup>18+</sup>
 
@@ -3040,7 +3040,7 @@ getSimpleDateTimeFormatBySkeleton(skeleton: string, locale?: intl.Locale): Simpl
 | 参数名    | 类型     | 必填   | 说明                                       |
 | ------- | ----------- | ----- | ---------------------------------------- |
 | skeleton | string      | 是    | 合法的框架字符串，支持的字符及含义请参考[日期字段符号表](https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table)。skeleton不支持传入自定义文本。 |
-| locale  | [intl.Locale](./js-apis-intl.md#localedeprecated) | 否    | 区域对象。默认值：系统区域对象。 |
+| locale  | [intl.Locale](./js-apis-intl.md#locale) | 否    | 区域对象。默认值：系统区域对象。 |
 
 **返回值：**
 
@@ -3057,18 +3057,18 @@ getSimpleDateTimeFormatBySkeleton(skeleton: string, locale?: intl.Locale): Simpl
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-import { intl } from '@kit.LocalizationKit';
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { intl } from '@kit.LocalizationKit';
 
-try {
-  let locale: intl.Locale = new intl.Locale('zh-Hans-CN');
-  let formatter: i18n.SimpleDateTimeFormat = i18n.getSimpleDateTimeFormatBySkeleton('yMd', locale);
-} catch (error) {
-  let err: BusinessError = error as BusinessError;
-  console.error(`call i18n.getSimpleDateTimeFormatBySkeleton failed, error code: ${err.code}, message: ${err.message}.`);
-}
-```
+  try {
+    let locale: intl.Locale = new intl.Locale('zh-Hans-CN');
+    let formatter: i18n.SimpleDateTimeFormat = i18n.getSimpleDateTimeFormatBySkeleton('yMd', locale);
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error(`call i18n.getSimpleDateTimeFormatBySkeleton failed, error code: ${err.code}, message: ${err.message}.`);
+  }
+  ```
 
 ## SimpleDateTimeFormat<sup>18+</sup>
 
@@ -3097,9 +3097,10 @@ format(date: Date): string
 **示例：**
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { intl } from '@kit.LocalizationKit';
 
   try {
-    let locale : Intl.Locale = new Intl.Locale("zh-Hans-CN");
+    let locale : intl.Locale = new intl.Locale("zh-Hans-CN");
     let date : Date = new Date(2024, 11, 13); // 时间日期为2024.12.13
 
     let formatterWithText: i18n.SimpleDateTimeFormat =
@@ -3132,7 +3133,7 @@ getSimpleNumberFormatBySkeleton(skeleton: string, locale?: intl.Locale): SimpleN
 | 参数名    | 类型     | 必填   | 说明                                       |
 | ------- | ----------- | ----- | ---------------------------------------- |
 | skeleton | string      | 是    | 合法的框架字符串，支持的字符及含义请参考[Number Skeletons](https://unicode-org.github.io/icu/userguide/format_parse/numbers/skeletons.html#number-skeletons)。 |
-| locale  | [intl.Locale](./js-apis-intl.md#localedeprecated) | 否    | 区域对象。默认值：系统区域对象。 |
+| locale  | [intl.Locale](./js-apis-intl.md#locale) | 否    | 区域对象。默认值：系统区域对象。 |
 
 **返回值：**
 
@@ -3149,18 +3150,18 @@ getSimpleNumberFormatBySkeleton(skeleton: string, locale?: intl.Locale): SimpleN
 | 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-import { intl } from '@kit.LocalizationKit';
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { intl } from '@kit.LocalizationKit';
 
-try {
-  let locale: intl.Locale = new intl.Locale('zh-Hans-CN');
-  let formatter: i18n.SimpleNumberFormat = i18n.getSimpleNumberFormatBySkeleton('%', locale);
-} catch (error) {
-  let err: BusinessError = error as BusinessError;
-  console.error(`call SimpleDateTimeFormat.getSimpleNumberFormatBySkeleton failed, error code: ${err.code}, message: ${err.message}.`);
-}
-```
+  try {
+    let locale: intl.Locale = new intl.Locale('zh-Hans-CN');
+    let formatter: i18n.SimpleNumberFormat = i18n.getSimpleNumberFormatBySkeleton('%', locale);
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error(`call SimpleDateTimeFormat.getSimpleNumberFormatBySkeleton failed, error code: ${err.code}, message: ${err.message}.`);
+  }
+  ```
 
 ## SimpleNumberFormat<sup>18+</sup>
 
@@ -3187,18 +3188,19 @@ format(value: number): string
 | string | 格式化后的数字字符串。 |
 
 **示例：**
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { intl } from '@kit.LocalizationKit';
 
-try {
-  let locale: Intl.Locale = new Intl.Locale('zh-Hans-CN');
-  let formatter: i18n.SimpleNumberFormat = i18n.getSimpleNumberFormatBySkeleton('%', locale);
-  let formattedNumber: string = formatter.format(10); // formattedNumber = '10%'
-} catch (error) {
-  let err: BusinessError = error as BusinessError;
-  console.error(`call SimpleNumberFormat.format failed, error code: ${err.code}, message: ${err.message}.`);
-}
-```
+  try {
+    let locale: intl.Locale = new intl.Locale('zh-Hans-CN');
+    let formatter: i18n.SimpleNumberFormat = i18n.getSimpleNumberFormatBySkeleton('%', locale);
+    let formattedNumber: string = formatter.format(10); // formattedNumber = '10%'
+  } catch (error) {
+    let err: BusinessError = error as BusinessError;
+    console.error(`call SimpleNumberFormat.format failed, error code: ${err.code}, message: ${err.message}.`);
+  }
+  ```
 
 ## StyledNumberFormat<sup>18+</sup>
 

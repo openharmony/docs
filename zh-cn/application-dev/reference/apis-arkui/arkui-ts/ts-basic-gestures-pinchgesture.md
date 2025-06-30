@@ -5,6 +5,8 @@
 >  **说明：**
 >
 >  从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  
+>  在捏合手势触发成功后，需要抬起所有手指，重新按下进行捏合才能再次触发捏合手势。
 
 
 ## 接口
@@ -27,6 +29,10 @@ PinchGesture(value?: { fingers?: number, distance?: number })
 ## 事件
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+>  **说明：**
+>
+>  在[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)的fingerList元素中，手指索引编号与位置相对应，即fingerList[index]的id为index。对于先按下但未参与当前手势触发的手指，fingerList中对应的位置为空。建议优先使用fingerInfos。
 
 | 名称 | 功能描述 |
 | -------- | -------- |

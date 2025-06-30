@@ -15,7 +15,7 @@
 >
 >如果组件自身内容不能填满组件大小区域，那么剩余位置截图返回的内容为透明像素。如果组件使用了[图像效果](arkui-ts/ts-universal-attributes-image-effect.md)类属性或其他的效果类属性，则可能产生非用户预期的截图结果。请排查是否需要填充组件透明内容区域，或使用[窗口截图](arkts-apis-window-Window.md#snapshot9)替代。
 >
-> 示例效果请以真机运行为准，当前 IDE 预览器不支持。
+> 示例效果请以真机运行为准，当前 DevEco Studio预览器不支持。
 
 
 ## 导入模块
@@ -63,7 +63,7 @@ get(id: string, callback: AsyncCallback<image.PixelMap>, options?: SnapshotOptio
 
 > **说明：**
 > 
-> 直接使用componentSnapshot可能导致[UI上下文不明确](../../ui/arkts-global-interface.md)的问题，建议使用[getUIContext](js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)获取绑定实例的componentSnapshot。
+> 直接使用componentSnapshot可能导致[UI上下文不明确](../../ui/arkts-global-interface.md#ui上下文不明确)的问题，建议使用getUIContext()获取[UIContext](js-apis-arkui-UIContext.md#uicontext)实例，并使用[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)获取绑定实例的componentSnapshot。
 
 ```ts
 import { componentSnapshot } from '@kit.ArkUI';
@@ -145,7 +145,7 @@ get(id: string, options?: SnapshotOptions): Promise<image.PixelMap>
 
 > **说明：**
 > 
-> 直接使用componentSnapshot可能导致[UI上下文不明确](../../ui/arkts-global-interface.md)的问题，建议使用[getUIContext](js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)获取绑定实例的componentSnapshot。
+> 直接使用componentSnapshot可能导致[UI上下文不明确](../../ui/arkts-global-interface.md#ui上下文不明确)的问题，建议使用getUIContext()获取[UIContext](js-apis-arkui-UIContext.md#uicontext)实例，并使用[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)获取绑定实例的componentSnapshot。
 
 ```ts
 import { componentSnapshot } from '@kit.ArkUI';
@@ -228,7 +228,7 @@ createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap
 
 > **说明：**
 > 
-> 直接使用componentSnapshot可能导致[UI上下文不明确](../../ui/arkts-global-interface.md)的问题，建议使用[getUIContext](js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)获取绑定实例的componentSnapshot。
+> 直接使用componentSnapshot可能导致[UI上下文不明确](../../ui/arkts-global-interface.md#ui上下文不明确)的问题，建议使用getUIContext()获取[UIContext](js-apis-arkui-UIContext.md#uicontext)实例，并使用[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)获取绑定实例的componentSnapshot。
 
 ```ts
 import { componentSnapshot } from '@kit.ArkUI';
@@ -339,7 +339,7 @@ createFromBuilder(builder: CustomBuilder, delay?: number, checkImageStatus?: boo
 
 > **说明：**
 > 
-> 直接使用componentSnapshot可能导致[UI上下文不明确](../../ui/arkts-global-interface.md)的问题，建议使用[getUIContext](js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)获取绑定实例的componentSnapshot。
+> 直接使用componentSnapshot可能导致[UI上下文不明确](../../ui/arkts-global-interface.md#ui上下文不明确)的问题，建议使用getUIContext()获取[UIContext](js-apis-arkui-UIContext.md#uicontext)实例，并使用[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)获取绑定实例的componentSnapshot。
 
 ```ts
 import { componentSnapshot } from '@kit.ArkUI'
@@ -439,7 +439,7 @@ getSync(id: string, options?: SnapshotOptions): image.PixelMap
 
 > **说明：**
 > 
-> 直接使用componentSnapshot可能导致[UI上下文不明确](../../ui/arkts-global-interface.md)的问题，建议使用[getUIContext](js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)获取绑定实例的componentSnapshot。
+> 直接使用componentSnapshot可能导致[UI上下文不明确](../../ui/arkts-global-interface.md#ui上下文不明确)的问题，建议使用getUIContext()获取[UIContext](js-apis-arkui-UIContext.md#uicontext)实例，并使用[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)获取绑定实例的componentSnapshot。
 
 ```ts
 import { componentSnapshot } from '@kit.ArkUI';
@@ -505,9 +505,9 @@ type SnapshotRegionType =  SnapshotRegion | LocalizedSnapshotRegion
 
 定义组件截图的矩形区域。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称   | 类型   | 必填 | 说明                                    |
 | ------ | ------ | ---- | --------------------------------------- |
@@ -520,9 +520,9 @@ type SnapshotRegionType =  SnapshotRegion | LocalizedSnapshotRegion
 
 定义组件截图的矩形区域，start和end的值在布局方向为LTR时指定为left和right，在布局方向为RTL时指定为right和left。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |

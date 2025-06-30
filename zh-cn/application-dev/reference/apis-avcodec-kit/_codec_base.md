@@ -21,7 +21,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | [OH_AVCODEC_MIMETYPE_AUDIO_G711MU](#oh_avcodec_mimetype_audio_g711mu) | G711MU音频编解码器的MIME类型。                         |
 | [OH_AVCODEC_MIMETYPE_AUDIO_RAW](#oh_avcodec_mimetype_audio_raw) | RAW音频码流的MIME类型。                         |
 | [OH_AVCODEC_MIMETYPE_AUDIO_VORBIS](#oh_avcodec_mimetype_audio_vorbis) | VORBIS音频解码器的MIME类型。                           |
-| [OH_AVCODEC_MIMETYPE_AUDIO_MPEG](#oh_avcodec_mimetype_audio_mpeg) | MP3音频解码器的MIME类型。                              |
+| [OH_AVCODEC_MIMETYPE_AUDIO_MPEG](#oh_avcodec_mimetype_audio_mpeg) | MP3音频编解码器的MIME类型。                              |
 | [OH_AVCODEC_MIMETYPE_AUDIO_VIVID](#oh_avcodec_mimetype_audio_vivid) | Audio Vivid音频解码器的MIME类型。<!--Del-->（此规格暂未开放）<!--DelEnd-->     |
 | [OH_AVCODEC_MIMETYPE_AUDIO_AMR_NB](#oh_avcodec_mimetype_audio_amr_nb) | AMR_NB音频解码器的MIME类型。                           |
 | [OH_AVCODEC_MIMETYPE_AUDIO_AMR_WB](#oh_avcodec_mimetype_audio_amr_wb) | AMR_WB音频解码器的MIME类型。                           |
@@ -259,7 +259,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_OPUS](#oh_avcodec_mimetype_audio_opus) | OPUS音频编解码器的MIME类型。<!--Del-->（此规格暂未开放）<!--DelEnd-->  |
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_G711MU](#oh_avcodec_mimetype_audio_g711mu) | G711MU音频编解码器的MIME类型。 |
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_VORBIS](#oh_avcodec_mimetype_audio_vorbis) | VORBIS音频解码器的MIME类型。 |
-| const char \* [OH_AVCODEC_MIMETYPE_AUDIO_MPEG](#oh_avcodec_mimetype_audio_mpeg) | MP3音频解码器的MIME类型。 |
+| const char \* [OH_AVCODEC_MIMETYPE_AUDIO_MPEG](#oh_avcodec_mimetype_audio_mpeg) | MP3音频编解码器的MIME类型。 |
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_VIVID](#oh_avcodec_mimetype_audio_vivid) | Audio Vivid音频解码器的MIME类型。<!--Del-->（此规格暂未开放）<!--DelEnd-->  |
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_AMR_NB](#oh_avcodec_mimetype_audio_amr_nb) | AMR_NB音频解码器的MIME类型。 |
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_AMR_WB](#oh_avcodec_mimetype_audio_amr_wb) | AMR_WB音频解码器的MIME类型。 |
@@ -477,7 +477,7 @@ typedef void(* OH_AVCodecOnError) (OH_AVCodec *codec, int32_t errorCode, void *u
 | -------- | -------- |
 | codec | OH_AVCodec实例。  | 
 | errorCode | 特定错误代码。在不同场景下返回的错误码不同，详情可见上述描述中的表格。  | 
-| userData | 用户执行回调所依赖的数据。  |
+| userData | 开发者执行回调所依赖的数据。  |
 
 
 ### OH_AVCodecOnNeedInputBuffer
@@ -499,7 +499,7 @@ typedef void(* OH_AVCodecOnNeedInputBuffer) (OH_AVCodec *codec, uint32_t index, 
 | codec | OH_AVCodec实例。  | 
 | index | 与新可用的输入缓冲区相对应的索引。  | 
 | buffer | 新的可用输入缓冲区。  | 
-| userData | 用户执行回调所依赖的数据。  | 
+| userData | 开发者执行回调所依赖的数据。  | 
 
 
 ### OH_AVCodecOnNeedInputData
@@ -525,7 +525,7 @@ typedef void(* OH_AVCodecOnNeedInputData) (OH_AVCodec *codec, uint32_t index, OH
 | codec | OH_AVCodec实例。  | 
 | index | 与新可用的输入缓冲区相对应的索引。  | 
 | data | 新的可用输入缓冲区。  | 
-| userData | 用户执行回调所依赖的数据。  | 
+| userData | 开发者执行回调所依赖的数据。  | 
 
 
 ### OH_AVCodecOnNewOutputBuffer
@@ -547,7 +547,7 @@ typedef void(* OH_AVCodecOnNewOutputBuffer) (OH_AVCodec *codec, uint32_t index, 
 | codec | OH_AVCodec实例。  | 
 | index | 与新输出缓冲区对应的索引。  | 
 | buffer | 包含新输出数据的缓冲区。  | 
-| userData | 用户执行回调所依赖的数据。  | 
+| userData | 开发者执行回调所依赖的数据。  | 
 
 
 ### OH_AVCodecOnNewOutputData
@@ -574,7 +574,7 @@ typedef void(* OH_AVCodecOnNewOutputData) (OH_AVCodec *codec, uint32_t index, OH
 | index | 与新输出缓冲区对应的索引。  | 
 | data | 包含新输出数据的缓冲区。  | 
 | attr | 新输出缓冲区的说明，请参见[OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md)。  | 
-| userData | 用户执行回调所依赖的数据。  | 
+| userData | 开发者执行回调所依赖的数据。  | 
 
 
 ### OH_AVCodecOnStreamChanged
@@ -595,7 +595,7 @@ typedef void(* OH_AVCodecOnStreamChanged) (OH_AVCodec *codec, OH_AVFormat *forma
 | -------- | -------- |
 | codec | OH_AVCodec实例。  |
 | format | 新输出流描述信息。  |
-| userData | 用户执行回调所依赖的数据。  |
+| userData | 开发者执行回调所依赖的数据。  |
 
 
 ### OH_AVCProfile
@@ -1766,7 +1766,7 @@ RAW音频码流的MIME类型。
 const char* OH_AVCODEC_MIMETYPE_AUDIO_MPEG
 ```
 **描述**
-MP3音频解码器的MIME类型。
+MP3音频编解码器的MIME类型。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 

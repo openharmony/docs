@@ -26,7 +26,7 @@ MindSpore Lite AI模型部署流程是：
 
 | 组件                                                    | 硬件平台 | 操作系统     | 链接                                                         | SHA-256                                                      |
 | ------------------------------------------------------- | -------- | ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| 端侧推理和训练benchmark工具、converter工具、cropper工具 | CPU      | Linux-x86_64 | [mindspore-lite-2.1.0-linux-x64.tar.gz](https://ms-release.obs.cn-north-4.myhuaweicloud.com/2.1.0/MindSpore/lite/release/linux/x86_64/mindspore-lite-2.1.0-linux-x64.tar.gz) | b267e5726720329200389e47a178c4f882bf526833b714ba6e630c8e2920fe89 |
+| 端侧推理和训练benchmark工具、converter工具、cropper工具 | CPU      | Linux-x86_64 | [mindspore-lite-2.3.0-linux-x64.tar.gz](https://ms-release.obs.cn-north-4.myhuaweicloud.com/2.3.0/MindSpore/lite/release/linux/x86_64/mindspore-lite-2.3.0-linux-x64.tar.gz) | 060d698a171b52c38b64c8d65927816daf4b81d8e2b5069718aeb91a9f8a154c |
 
 > **说明：**
 >

@@ -6,7 +6,7 @@
 >
 > - 本模块接口从API version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
-> - 示例效果请以真机运行为准，当前IDE预览器不支持。
+> - 示例效果请以真机运行为准，当前DevEco Studio预览器不支持。
 
 ## constructor<sup>9+</sup>
 
@@ -65,33 +65,5 @@ cut(): void
 selectAll(): void
 
 执行与此上下文菜单相关的全选操作。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-## undo<sup>20+</sup>
-
-undo(): void
-
-执行与此上下文菜单相关的撤销操作。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-## redo<sup>20+</sup>
-
-redo(): void
-
-执行与此上下文菜单相关的重做操作，即取消用户上一次的撤销操作。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-## pasteAndMatchStyle<sup>20+</sup>
-
-pasteAndMatchStyle(): void
-
-执行一个和上下文菜单相关的粘贴操作，粘贴的内容会匹配目标格式，以纯文本形式呈现。
-
-> **说明：**
->
-> 需要配置权限：ohos.permission.READ_PASTEBOARD。
 
 **系统能力：** SystemCapability.Web.Webview.Core

@@ -4055,7 +4055,7 @@ static createBlendImageFilter(mode: BlendMode, background: ImageFilter, foregrou
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 25900001 | Parameter error.Possible causes: 1.Incorrect parameter range; 2.Incorrect parameter types.|
+| 25900001 | Parameter error.Possible causes: Incorrect parameter range. |
 
 **示例：**
 

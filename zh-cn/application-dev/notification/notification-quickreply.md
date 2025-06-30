@@ -28,12 +28,11 @@
 
     ```typescript
     import { notificationManager } from '@kit.NotificationKit';
-    import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+    import { AbilityConstant, UIAbility, Want, wantAgent, WantAgent } from '@kit.AbilityKit';
     import { window } from '@kit.ArkUI';
     import { rpc } from '@kit.IPCKit';
     import { BusinessError } from '@kit.BasicServicesKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
-    import { common } from '@kit.AbilityKit';
 
     const TAG: string = '[PublishOperation]';
     const DOMAIN_NUMBER: number = 0xFF00;

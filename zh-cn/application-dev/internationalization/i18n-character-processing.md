@@ -188,12 +188,12 @@ let breakText: string = iterator.getLineBreakText(); // breakText = 'Apple is my
 
 1. 导入模块。
    ```ts
-   import { i18n } from '@kit.LocalizationKit';
+   import { i18n, intl } from '@kit.LocalizationKit';
    ```
 
 2. 文件路径镜像处理。
    ```ts
-   let mirrorPath: string = i18n.I18NUtil.getUnicodeWrappedFilePath(path: string, delimiter?: string, locale?: Intl.Locale);
+   let mirrorPath: string = i18n.I18NUtil.getUnicodeWrappedFilePath(path: string, delimiter?: string, locale?: intl.Locale);
    ```
 
 
@@ -201,18 +201,18 @@ let breakText: string = iterator.getLineBreakText(); // breakText = 'Apple is my
 ```ts
 // 导入模块
 import { BusinessError } from '@kit.BasicServicesKit';
-import { i18n } from '@kit.LocalizationKit';
+import { i18n, intl } from '@kit.LocalizationKit';
 
 try {
   // 传入镜像语言，对路径进行镜像处理
   let path: string = 'data/out/tmp';
   let delimiter: string = '/';
-  let locale: Intl.Locale = new Intl.Locale('ar');
+  let locale: intl.Locale = new intl.Locale('ar');
   // mirrorPath = 'tmp/out/data/'
   let mirrorPath: string = i18n.I18NUtil.getUnicodeWrappedFilePath(path, delimiter, locale);
 
   // 传入非镜像语言，不处理路径
-  let localeZh: Intl.Locale = new Intl.Locale('zh');
+  let localeZh: intl.Locale = new intl.Locale('zh');
   // unMirrorPath = '/data/out/tmp'
   let unMirrorPath: string = i18n.I18NUtil.getUnicodeWrappedFilePath(path, delimiter, localeZh);
 } catch (error) {

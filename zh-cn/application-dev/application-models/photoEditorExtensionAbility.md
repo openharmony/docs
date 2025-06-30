@@ -73,7 +73,7 @@
     import { fileIo } from '@kit.CoreFileKit';
     import { image } from '@kit.ImageKit';
 
-    const storage = LocalStorage.getShared()
+    const storage = LocalStorage.getShared();
     const TAG = '[ExamplePhotoEditorAbility]';
 
     @Entry
@@ -114,7 +114,7 @@
           this.originalImage = pixmap;
           return pixmap;
         } catch(e) {
-          hilog.info(0x0000, TAG, `ReadImage failed:${e}`);
+          hilog.error(0x0000, TAG, `ReadImage failed:${e}`);
         } finally {
           fileIo.close(file);
         }
@@ -218,7 +218,7 @@
         return photoSelectResult.photoUris[0];
       } catch(error) {
         let err: BusinessError = error as BusinessError;
-        hilog.info(0x0000, TAG, 'PhotoViewPicker failed with err: ' + JSON.stringify(err));
+        hilog.error(0x0000, TAG, 'PhotoViewPicker failed with err: ' + JSON.stringify(err));
       }
       return "";
     }
@@ -238,7 +238,7 @@
       this.filePath = context.filesDir + `/original-${timeStamp}.jpg`;
       this.originalImage = fileUri.getUriFromPath(this.filePath);
     } catch (e) {
-      hilog.info(0x0000, TAG, `readImage failed:${e}`);
+      hilog.error(0x0000, TAG, `readImage failed:${e}`);
     } finally {
       fileIo.close(file);
     }
@@ -320,7 +320,7 @@ struct Index {
       this.editedImage = pixmap;
       return pixmap;
     } catch(e) {
-      hilog.info(0x0000, TAG, `readImage failed:${e}`);
+      hilog.error(0x0000, TAG, `readImage failed:${e}`);
     } finally {
       fileIo.close(file);
     }
@@ -328,21 +328,27 @@ struct Index {
   }
 
   // 图库中选取图片
-  async photoPickerGetUri(): Promise < string > {
-    try {
-      let PhotoSelectOptions = new picker.PhotoSelectOptions();
-      PhotoSelectOptions.MIMEType = picker.PhotoViewMIMETypes.IMAGE_TYPE;
-      PhotoSelectOptions.maxSelectNumber = 1;
-      let photoPicker = new picker.PhotoViewPicker();
-      let photoSelectResult: picker.PhotoSelectResult = await photoPicker.select(PhotoSelectOptions);
-      hilog.info(0x0000, TAG,
-        'PhotoViewPicker.select successfully, PhotoSelectResult uri: ' + JSON.stringify(photoSelectResult));
-      return photoSelectResult.photoUris[0];
-    } catch(error) {
-      let err: BusinessError = error as BusinessError;
-      hilog.info(0x0000, TAG, 'PhotoViewPicker failed with err: ' + JSON.stringify(err));
-    }
-    return "";
+  async photoPickerGetUri(): Promise<string> {
+	try {
+		let textInfo: photoAccessHelper.TextContextInfo = {
+			text: 'photo'
+		}
+		let recommendOptions: photoAccessHelper.RecommendationOptions = {
+			textContextInfo: textInfo
+		}
+		let options: photoAccessHelper.PhotoSelectOptions = {
+			MIMEType: photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE,
+			maxSelectNumber: 1,
+			recommendationOptions: recommendOptions
+		}
+		let photoPicker = new photoAccessHelper.PhotoViewPicker();
+		let photoSelectResult: photoAccessHelper.PhotoSelectResult = await photoPicker.select(options);
+		return photoSelectResult.photoUris[0];
+	} catch (error) {
+		let err: BusinessError = error as BusinessError;
+		hilog.error(0x0000, TAG, 'PhotoViewPicker failed with err: ' + JSON.stringify(err));
+	}
+	return "";
   }
 
   build() {

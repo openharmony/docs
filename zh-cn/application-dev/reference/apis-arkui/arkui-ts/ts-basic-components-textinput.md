@@ -237,13 +237,13 @@ fontFamily(value: ResourceStr)
 
 | 参数名 | 类型                                   | 必填 | 说明                                                         |
 | ------ | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [ResourceStr](ts-types.md#resourcestr) | 是   | 字体列表。默认字体'HarmonyOS Sans'。<br>应用当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。<br>卡片当前仅支持'HarmonyOS Sans'字体。 |
+| value  | [ResourceStr](ts-types.md#resourcestr) | 是   | 字体列表。默认字体'HarmonyOS Sans'。<br>使用多个字体时，请用逗号','分隔，字体的优先级按顺序生效。例如：'Arial, HarmonyOS Sans'。<br>应用当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。<br>卡片当前仅支持'HarmonyOS Sans'字体。 |
 
 ### inputFilter<sup>8+</sup>
 
 inputFilter(value: ResourceStr, error?: Callback\<string>)
 
-通过正则表达式设置输入过滤器。匹配表达式的输入允许显示，不匹配的输入将被过滤。仅支持单个字符匹配，不支持字符串匹配。
+通过正则表达式设置输入过滤器。匹配表达式的输入允许显示，不匹配的输入将被过滤。
 
 从API version 11开始，设置inputFilter且输入的字符不为空字符，会导致设置输入框类型(即type接口)附带的文本过滤效果失效。
 
@@ -296,7 +296,7 @@ showPasswordIcon(value: boolean)
 
 style(value: TextInputStyle &nbsp;|&nbsp;TextContentStyle)
 
-设置输入框为默认风格或内联输入风格，内联输入风格只支持InputType.Normal类型。
+设置输入框为默认风格或内联输入风格，内联输入风格只支持InputType.Normal类型。<br>输入框类型介绍请参考[type](#type)接口。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -327,6 +327,10 @@ textAlign(value: TextAlign)
 | 参数名 | 类型                                        | 必填 | 说明                                                       |
 | ------ | ------------------------------------------- | ---- | ---------------------------------------------------------- |
 | value  | [TextAlign](ts-appendix-enums.md#textalign) | 是   | 文本在输入框中的水平对齐方式。<br/>默认值：TextAlign.Start |
+
+>  **说明：**  
+>
+>  textAlign只能调整文本整体的布局，不影响字符的显示顺序。若需要调整字符的显示顺序，请参考[镜像状态字符对齐](../../../ui/arkts-mirroring-display.md#镜像状态字符对齐)。
 
 ### selectedBackgroundColor<sup>10+</sup>
 
@@ -678,6 +682,9 @@ lineHeight(value: number | string | Resource)
 | ------ | ------------------------------------------------------------ | ---- | ---------------- |
 | value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本的文本行高。 |
 
+>  **说明：**
+>  
+>  特殊字符字体高度远超出同行的其他字符高度时，文本框出现截断、遮挡、内容相对位置发生变化等不符合预期的显示异常，需要开发者调整组件高度、行高等属性，修改对应的页面布局。
 ### decoration<sup>12+</sup>
 
 decoration(value: TextDecorationOptions)
@@ -701,6 +708,8 @@ letterSpacing(value: number | string | Resource)
 设置文本字符间距。设置该值为百分比时，按默认值显示。设置该值为0时，按默认值显示。string类型支持number类型取值的字符串形式，可以附带单位，例如"10"、"10fp"。
 
 当取值为负值时，文字会发生压缩，负值过小时会将组件内容区大小压缩为0，导致无内容显示。
+
+对每个字符生效，包括行尾字符。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -781,10 +790,12 @@ textOverflow(value: TextOverflow)
 
 | 参数名 | 类型                                                          | 必填 | 说明                                                                                                |
 | ------ | ------------------------------------------------------------ | ---- | -------------------------------------------------------------------------------------------------- |
-| value  | [TextOverflow](ts-appendix-enums.md#textoverflow)            | 是   | 文本超长时的显示方式。<br/>内联模式非编辑态下默认值：TextOverflow.Ellipsis <br/>内联模式编辑态下默认值：TextOverflow.Clip<br/>内联模式介绍见[TextInputstyle枚举说明](#textinputstyle9枚举说明)。                     |
+| value  | [TextOverflow](ts-appendix-enums.md#textoverflow)            | 是   | 文本超长时的显示方式。<br/>内联模式非编辑态下默认值：TextOverflow.Ellipsis <br/>内联模式编辑态下默认值：TextOverflow.Clip<br/>内联模式介绍见[style](#style9)。                     |
 
 >  **说明：**  
 >   TextInput组件不支持设置TextOverflow.MARQUEE模式，当设置为TextOverflow.MARQUEE模式时，内联模式非编辑态下显示为TextOverflow.Ellipsis，内联模式编辑态下以及非内联模式下显示为TextOverflow.Clip。
+>
+>  未设置内联模式时，按照默认风格显示。若此时设置textOverflow，则不生效。
 
 ### textIndent<sup>12+</sup>
 
@@ -939,6 +950,10 @@ enablePreviewText(enable: boolean)
 | 参数名 | 类型    | 必填 | 说明                               |
 | ------ | ------- | ---- | ---------------------------------- |
 | enable | boolean | 是   | 是否开启输入预上屏。<br/>true表示开启输入预上屏，false表示不开启输入预上屏。<br/>默认值：true |
+
+>  **说明：**
+>  
+>  “预上屏”描述的是一种文字暂存状态。需要在输入法中开启预上屏功能，在输入文本过程中，未确认输入候选词时，文本框中显示标记文本。例如，通过拼音输入中文时，未确定候选词之前，在输入框中显示拼音字母，该状态称为文字预上屏。
 
 ### enableHapticFeedback<sup>13+</sup>
 
@@ -1144,22 +1159,6 @@ enableAutoFillAnimation(enabled: Optional\<boolean>)
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | enabled  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否启用自动填充动效。<br/>true表示启用，false表示不启用。<br/>默认值：true <br/>**说明：**<br/>启用之后，仅[输入模式](#inputtype枚举说明)设置为Password、NEW_PASSWORD或NUMBER_PASSWORD的输入框在进行自动填充时动效可生效。  |
-
-### enableAutoSpacing<sup>20+</sup>
-
-enableAutoSpacing(enabled: Optional\<boolean>)
-
-设置是否开启中文与西文的自动间距。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型    | 必填 | 说明                               |
-| ------ | ------- | ---- | ---------------------------------- |
-| enabled | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否开启中文与西文的自动间距。<br/>true为开启自动间距，false为不开启。<br />默认值：false |
 
 ## InputType枚举说明
 
@@ -1488,6 +1487,10 @@ onDidDelete(callback: Callback\<DeleteValue>)
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
 | callback  | Callback\<[DeleteValue](ts-text-common.md#deletevalue12对象说明)> | 是   | 在删除完成时调用的回调。<br/>仅支持系统输入法输入的场景。 |
 
+>  **说明：**
+>
+>  点击清除按钮不触发onDidDelete回调。
+
 ### onWillChange<sup>15+</sup>
 
 onWillChange(callback: Callback\<EditableTextChangeValue, boolean>)
@@ -1505,6 +1508,22 @@ onWillChange的回调时序晚于onWillInsert、onWillDelete，早于onDidInsert
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
 | callback  | Callback\<[EditableTextChangeValue](ts-text-common.md#editabletextchangevalue15), boolean> | 是   | 在文本内容将要发生变化时的回调。<br/>返回true时，表示正常修改。返回false时，表示拦截此次触发。 |
+
+### onWillAttachIME<sup>20+</sup>
+
+onWillAttachIME(callback: Callback\<IMEClient>)
+
+在输入框将要绑定输入法前触发该回调。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明               |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| callback  | Callback\<[IMEClient](ts-text-common.md#imeclient20对象说明)> | 是   | 在输入框将要绑定输入法前触发该回调。 |
 
 ## TextInputController<sup>8+</sup>
 
@@ -2589,7 +2608,8 @@ struct EllipsisModeExample {
     " pink, and lavender, creating a breath taking tapestry that stretches as far as the eye can see." +
     "The air is filled with the sweet scent of blooming flowers, mingling with the earthy aroma of freshly turned soil.";
   @State ellipsisModeIndex: number = 0;
-  @State ellipsisMode: (EllipsisMode | undefined | null)[] = [EllipsisMode.END, EllipsisMode.START, EllipsisMode.CENTER];
+  @State ellipsisMode: (EllipsisMode | undefined | null)[] =
+    [EllipsisMode.END, EllipsisMode.START, EllipsisMode.CENTER];
   @State ellipsisModeStr: string[] = ['END ', 'START', 'CENTER'];
   @State textOverflowIndex: number = 0;
   @State textOverflow: TextOverflow[] = [TextOverflow.Ellipsis, TextOverflow.Clip];
@@ -2597,13 +2617,13 @@ struct EllipsisModeExample {
   @State styleInputIndex: number = 0;
   @State styleInput: TextInputStyle[] = [TextInputStyle.Inline, TextInputStyle.Default];
   @State styleInputStr: string[] = ['Inline', 'Default'];
+
   build() {
     Row() {
       Column({ space: 20 }) {
-        Text('测试TextInput').fontSize(30)
-        TextInput({ text: this.text})
-          .textOverflow( this.textOverflow[this.textOverflowIndex])
-          .ellipsisMode( this.ellipsisMode[this.ellipsisModeIndex])
+        TextInput({ text: this.text })
+          .textOverflow(this.textOverflow[this.textOverflowIndex])
+          .ellipsisMode(this.ellipsisMode[this.ellipsisModeIndex])
           .style(this.styleInput[this.styleInputIndex])
           .fontSize(30)
           .margin(30)
@@ -2741,10 +2761,10 @@ struct TextInputExample {
 ```
 
 ![TextInputEditChange](figures/TextInputEditChange.png)
-
+<!--RP3-->
 ### 示例18（设置最小字体范围与最大字体范围）
 
-该示例通过minFontScale、maxFontScale设置字体显示最小与最大范围。
+该示例通过minFontScale、maxFontScale设置字体显示最小与最大范围（<!--Del-->该示例使用系统接口，应用类型需调整为系统应用，可参考HarmonyAppProvision的[系统接口说明](../../../reference/development-intro-api.md#系统接口说明)<!--DelEnd-->）。
 
 ```json
 // 开启应用缩放跟随系统
@@ -2776,27 +2796,73 @@ struct TextInputExample {
 
 ```ts
 // xxx.ets
+import { abilityManager, Configuration } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 @Entry
 @Component
 struct TextInputExample {
+  @State currentFontSizeScale: number = 1;
   @State minFontScale: number = 0.85;
   @State maxFontScale: number = 2;
+
+  // 设置字体大小
+  async setFontScale(scale: number): Promise<void> {
+    let configInit: Configuration = {
+      language: 'zh-Ch',
+      fontSizeScale: scale,
+    };
+    // 更新配置-字体大小，调用系统接口更新字体配置
+    // 需在工程的module.json5文件的requestPermissions字段配置权限：ohos.permission.UPDATE_CONFIGURATION
+    abilityManager.updateConfiguration(configInit, (err: BusinessError) => {
+      if (err) {
+        console.error(`updateConfiguration fail, err: ${JSON.stringify(err)}`);
+      } else {
+        this.currentFontSizeScale = scale;
+        console.log('updateConfiguration success.');
+      }
+    });
+  }
 
   build() {
     Column() {
       Column({ space: 30 }) {
-        Text("系统字体变大变小，变大变小aaaaaaaAAAAAA")
+        Text("通过minFontScale、maxFontScale调整文本显示的最大和最小字体缩放倍数。")
         TextInput({
           placeholder: 'The text area can hold an unlimited amount of text. input your word...',
+          text: '通过minFontScale、maxFontScale调整文本显示的最大和最小字体缩放倍数。'
         })
           .minFontScale(this.minFontScale)// 设置最小字体缩放倍数，参数为undefined则跟随系统默认倍数缩放
-          .maxFontScale(this.maxFontScale)// 设置最大字体缩放倍数，参数为undefined则跟随系统默认倍数缩放
+          .maxFontScale(this.maxFontScale) // 设置最大字体缩放倍数，参数为undefined则跟随系统默认倍数缩放
       }.width('100%')
+
+      Column() {
+        Row() {
+          Button('1倍').onClick(() => {
+            this.setFontScale(1)
+          }).margin(10)
+          Button('1.75倍').onClick(() => {
+            this.setFontScale(1.75)
+          }).margin(10)
+        }
+
+        Row() {
+          Button('2倍').onClick(() => {
+            this.setFontScale(2)
+          }).margin(10)
+          Button('3.2倍').onClick(() => {
+            this.setFontScale(3.2)
+          }).margin(10)
+        }
+      }.margin({ top: 50 })
     }
   }
 }
 ```
-
+| 系统字体缩放倍数为2倍 | 系统字体缩放倍数为3.2倍 |
+| ---------------------------------- | ------------------------------------ |
+| ![](figures/TextInput_font_scale1.png)  | ![](figures/TextInput_font_scale2.png)  |
+<!--RP3End-->
 ### 示例19（设置选中指定区域的文本内容）
 
 该示例通过setTextSelection方法展示如何设置选中指定区域的文本内容以及菜单的显隐策略。
@@ -2881,30 +2947,3 @@ struct TextInputExample {
 ```
 
 ![textInputSetStroke](figures/textInputSetStroke.png)
-
-### 示例21（设置中西文自动间距）
-
-该示例通过enableAutoSpacing属性设置中西文自动间距。
-
-```ts
-// xxx.ets
-@Entry
-@Component
-struct TextInputExample {
-  build() {
-    Row() {
-      Column() {
-        Text('开启中西文自动间距').margin(5)
-        TextInput({text: '中西文Auto Spacing自动间距'})
-          .enableAutoSpacing(true)
-        Text('关闭中西文自动间距').margin(5)
-        TextInput({text: '中西文Auto Spacing自动间距'})
-          .enableAutoSpacing(false)
-      }.height('100%')
-    }
-    .width('60%')
-  }
-}
-```
-
-![textInputEnableAutoSpacing](figures/textInputEnableAutoSpacing.png)

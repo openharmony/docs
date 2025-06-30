@@ -40,7 +40,7 @@ getContext(component?: Object):Context
 
 > **说明：**
 > 
-> 直接使用getContext可能导致[UI上下文不明确](../../ui/arkts-global-interface.md)的问题，建议使用[getUIContext](js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getHostContext](js-apis-arkui-UIContext.md#gethostcontext12)调用绑定实例的getContext。
+> 直接使用getContext可能导致[UI上下文不明确](../../ui/arkts-global-interface.md#ui上下文不明确)的问题，建议使用getUIContext()获取[UIContext](js-apis-arkui-UIContext.md#uicontext)实例，并使用[getHostContext](js-apis-arkui-UIContext.md#gethostcontext12)调用绑定实例的getContext。
 
 ```ts
 // EntryAbility.ets

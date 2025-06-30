@@ -1,5 +1,4 @@
-<!--RP1-->
-# Background Task Overview<!--RP1End-->
+# Introduction to Background Tasks Kit
 
 
 ## Introduction

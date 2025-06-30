@@ -53,7 +53,6 @@
           MovingPhotoView({
             movingPhoto: this.src,
             controller: this.controller
-            // imageAIOptions: this.options.
           })
             // 是否静音播放，此处由按钮控制，默认值为false非静音播放。
             .muted(this.isMuted)

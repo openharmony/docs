@@ -166,7 +166,7 @@ LinkIntentDecoratorInfo继承自[IntentDecoratorInfo](#intentdecoratorinfo)，�
 | 名称        | 类型              | 只读 | 可选 | 说明                                                         |
 | ----------- | -----------------| ------ | ---- | ------------------------------------------------------------ |
 | uri                | string          | 否          | 否   | 表示意图的uri信息。                                 |
-| paramsMapping      | [LinkIntentParamMapping](#linkintentparammapping)[] | 否 | 是   | 意图参数和uri信息的映射。    |
+| paramMappings      | [LinkIntentParamMapping](#linkintentparammapping)[] | 否 | 是   | 意图参数和uri信息的映射。    |
 
 ## LinkIntentParamMapping
 
@@ -266,7 +266,7 @@ PageIntentDecoratorInfo继承自[IntentDecoratorInfo](#intentdecoratorinfo)，�
 | ------------------ | -------------| --------- | ---- | ------------------------------------------------------------ |
 | uiAbility          | string       | 否           | 是   | 表示与意图绑定的UIAbility名称。                                  |
 | pagePath           | string        | 否          | 否   | 表示与意图绑定的页面路径。                                   |
-| navigationId       | string        | 否        | 是   | 表示与意图绑定的[Navigation组件](../apis-arkui/arkui-ts/ts-basic-components-navigation.md#navigation)的id属性。 |
+| navigationId       | string        | 否        | 是   | 表示与意图绑定的[Navigation组件](../apis-arkui/arkui-ts/ts-basic-components-navigation.md#属性)的id属性。 |
 | navDestinationName | string         | 否       | 是   | 表示与意图绑定[NavDestination组件](../apis-arkui/arkui-ts/ts-basic-components-navigation.md#navdestination10)的名称。 |
 
 ## @InsightIntentFunction

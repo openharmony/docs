@@ -36,8 +36,8 @@
 | [float OH_Drawing_RectGetWidth(OH_Drawing_Rect* rect)](#oh_drawing_rectgetwidth) | 用于获取矩形对象的宽度，计算方式为设置的矩形的右下角横坐标减去左上角横坐标。<br>本接口会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](capi-drawing-error-code-h.md#oh_drawing_errorcodeget)查看错误码的取值。<br>rect为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。 |
 | [void OH_Drawing_RectCopy(OH_Drawing_Rect* sRect, OH_Drawing_Rect* dRect)](#oh_drawing_rectcopy) | 用于将源矩形对象复制到目标矩形对象。<br>本接口会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](capi-drawing-error-code-h.md#oh_drawing_errorcodeget)查看错误码的取值。<br>sRect、dRect任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。 |
 | [void OH_Drawing_RectDestroy(OH_Drawing_Rect* rect)](#oh_drawing_rectdestroy) | 用于销毁矩形对象并回收该对象占有的内存。 |
-| [OH_Drawing_Array* OH_Drawing_RectCreateArray(size_t size)](#oh_drawing_rectcreatearray) | 用于创建一个矩形数组对象，用来存储多个矩形对象。不再需要[OH_Drawing_Array](capi-oh-drawing-array.md)时，请使用[OH_Drawing_RectDestroyArray](capi-drawing-rect-h.md#oh_drawing_rectdestroyarray)接口释放该对象的指针。 |
-| [OH_Drawing_ErrorCode OH_Drawing_RectGetArraySize(OH_Drawing_Array* rectArray, size_t* pSize)](#oh_drawing_rectgetarraysize) | 用于获取矩形数组对象[OH_Drawing_Array](capi-oh-drawing-array.md)的大小。 |
+| [OH_Drawing_Array* OH_Drawing_RectCreateArray(size_t size)](#oh_drawing_rectcreatearray) | 用于创建一个矩形数组对象，用来存储多个矩形对象。不再需要[OH_Drawing_Array](capi-drawing-oh-drawing-array.md)时，请使用[OH_Drawing_RectDestroyArray](capi-drawing-rect-h.md#oh_drawing_rectdestroyarray)接口释放该对象的指针。 |
+| [OH_Drawing_ErrorCode OH_Drawing_RectGetArraySize(OH_Drawing_Array* rectArray, size_t* pSize)](#oh_drawing_rectgetarraysize) | 用于获取矩形数组对象[OH_Drawing_Array](capi-drawing-oh-drawing-array.md)的大小。 |
 | [OH_Drawing_ErrorCode OH_Drawing_RectGetArrayElement(OH_Drawing_Array* rectArray, size_t index,OH_Drawing_Rect** rect)](#oh_drawing_rectgetarrayelement) | 用于获取矩形数组对象中指定索引的矩形对象。 |
 | [OH_Drawing_ErrorCode OH_Drawing_RectDestroyArray(OH_Drawing_Array* rectArray)](#oh_drawing_rectdestroyarray) | 用于销毁矩形数组对象并回收该对象占有的内存。 |
 
@@ -71,7 +71,7 @@ OH_Drawing_Rect* OH_Drawing_RectCreate(float left, float top, float right, float
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_Rect](capi-oh-drawing-rect.md)* | 函数会返回一个指针，指针指向创建的矩形对象。 |
+| [OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)* | 函数会返回一个指针，指针指向创建的矩形对象。 |
 
 ### OH_Drawing_RectIntersect()
 
@@ -92,8 +92,8 @@ bool OH_Drawing_RectIntersect(OH_Drawing_Rect* rect, const OH_Drawing_Rect* othe
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Rect](capi-oh-drawing-rect.md)* rect | 指向矩形对象的指针。 |
-| const [OH_Drawing_Rect](capi-oh-drawing-rect.md)* other | 指向矩形对象的指针。 |
+| [OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)* rect | 指向矩形对象的指针。 |
+| const [OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)* other | 指向矩形对象的指针。 |
 
 **返回：**
 
@@ -120,8 +120,8 @@ bool OH_Drawing_RectJoin(OH_Drawing_Rect* rect, const OH_Drawing_Rect* other)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Rect](capi-oh-drawing-rect.md)* rect | 指向矩形对象的指针。 |
-| const [OH_Drawing_Rect](capi-oh-drawing-rect.md)* other | 指向矩形对象的指针。 |
+| [OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)* rect | 指向矩形对象的指针。 |
+| const [OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)* other | 指向矩形对象的指针。 |
 
 **返回：**
 
@@ -148,7 +148,7 @@ void OH_Drawing_RectSetLeft(OH_Drawing_Rect* rect, float left)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Rect](capi-oh-drawing-rect.md)* rect | 指向矩形对象的指针。 |
+| [OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)* rect | 指向矩形对象的指针。 |
 | float left | 矩形左上角的横坐标。 |
 
 ### OH_Drawing_RectSetTop()
@@ -170,7 +170,7 @@ void OH_Drawing_RectSetTop(OH_Drawing_Rect* rect, float top)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Rect](capi-oh-drawing-rect.md)* rect | 指向矩形对象的指针。 |
+| [OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)* rect | 指向矩形对象的指针。 |
 | float top | 矩形左上角的纵坐标。 |
 
 ### OH_Drawing_RectSetRight()
@@ -192,7 +192,7 @@ void OH_Drawing_RectSetRight(OH_Drawing_Rect* rect, float right)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Rect](capi-oh-drawing-rect.md)* rect | 指向矩形对象的指针。 |
+| [OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)* rect | 指向矩形对象的指针。 |
 | float right | 矩形右下角的横坐标。 |
 
 ### OH_Drawing_RectSetBottom()
@@ -214,7 +214,7 @@ void OH_Drawing_RectSetBottom(OH_Drawing_Rect* rect, float bottom)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Rect](capi-oh-drawing-rect.md)* rect | 指向矩形对象的指针。 |
+| [OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)* rect | 指向矩形对象的指针。 |
 | float bottom | 矩形右下角的纵坐标。 |
 
 ### OH_Drawing_RectGetLeft()
@@ -236,7 +236,7 @@ float OH_Drawing_RectGetLeft(OH_Drawing_Rect* rect)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Rect](capi-oh-drawing-rect.md)* rect | 指向矩形对象的指针。 |
+| [OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)* rect | 指向矩形对象的指针。 |
 
 **返回：**
 
@@ -263,7 +263,7 @@ float OH_Drawing_RectGetTop(OH_Drawing_Rect* rect)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Rect](capi-oh-drawing-rect.md)* rect | 指向矩形对象的指针。 |
+| [OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)* rect | 指向矩形对象的指针。 |
 
 **返回：**
 
@@ -290,7 +290,7 @@ float OH_Drawing_RectGetRight(OH_Drawing_Rect* rect)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Rect](capi-oh-drawing-rect.md)* rect | 指向矩形对象的指针。 |
+| [OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)* rect | 指向矩形对象的指针。 |
 
 **返回：**
 
@@ -317,7 +317,7 @@ float OH_Drawing_RectGetBottom(OH_Drawing_Rect* rect)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Rect](capi-oh-drawing-rect.md)* rect | 指向矩形对象的指针。 |
+| [OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)* rect | 指向矩形对象的指针。 |
 
 **返回：**
 
@@ -344,7 +344,7 @@ float OH_Drawing_RectGetHeight(OH_Drawing_Rect* rect)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Rect](capi-oh-drawing-rect.md)* rect | 指向矩形对象的指针。 |
+| [OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)* rect | 指向矩形对象的指针。 |
 
 **返回：**
 
@@ -371,7 +371,7 @@ float OH_Drawing_RectGetWidth(OH_Drawing_Rect* rect)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Rect](capi-oh-drawing-rect.md)* rect | 指向矩形对象的指针。 |
+| [OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)* rect | 指向矩形对象的指针。 |
 
 **返回：**
 
@@ -398,8 +398,8 @@ void OH_Drawing_RectCopy(OH_Drawing_Rect* sRect, OH_Drawing_Rect* dRect)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Rect](capi-oh-drawing-rect.md)* sRect | 指向源矩形对象的指针。 |
-| [OH_Drawing_Rect](capi-oh-drawing-rect.md)* dRect | 指向目标矩形对象的指针。 |
+| [OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)* sRect | 指向源矩形对象的指针。 |
+| [OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)* dRect | 指向目标矩形对象的指针。 |
 
 ### OH_Drawing_RectDestroy()
 
@@ -420,7 +420,7 @@ void OH_Drawing_RectDestroy(OH_Drawing_Rect* rect)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Rect](capi-oh-drawing-rect.md)* rect | 指向矩形对象的指针。 |
+| [OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)* rect | 指向矩形对象的指针。 |
 
 ### OH_Drawing_RectCreateArray()
 
@@ -430,7 +430,7 @@ OH_Drawing_Array* OH_Drawing_RectCreateArray(size_t size)
 
 **描述**
 
-用于创建一个矩形数组对象，用来存储多个矩形对象。不再需要[OH_Drawing_Array](capi-oh-drawing-array.md)时，请使用[OH_Drawing_RectDestroyArray](capi-drawing-rect-h.md#oh_drawing_rectdestroyarray)接口释放该对象的指针。
+用于创建一个矩形数组对象，用来存储多个矩形对象。不再需要[OH_Drawing_Array](capi-drawing-oh-drawing-array.md)时，请使用[OH_Drawing_RectDestroyArray](capi-drawing-rect-h.md#oh_drawing_rectdestroyarray)接口释放该对象的指针。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -447,7 +447,7 @@ OH_Drawing_Array* OH_Drawing_RectCreateArray(size_t size)
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_Array](capi-oh-drawing-array.md)* | 返回创建的数组对象[OH_Drawing_Array](capi-oh-drawing-array.md)指针，如果返回的对象指针为空，表示创建失败。<br> 失败的原因可能为：没有可用的内存或参数错误。 |
+| [OH_Drawing_Array](capi-drawing-oh-drawing-array.md)* | 返回创建的数组对象[OH_Drawing_Array](capi-drawing-oh-drawing-array.md)指针，如果返回的对象指针为空，表示创建失败。<br> 失败的原因可能为：没有可用的内存或参数错误。 |
 
 ### OH_Drawing_RectGetArraySize()
 
@@ -457,7 +457,7 @@ OH_Drawing_ErrorCode OH_Drawing_RectGetArraySize(OH_Drawing_Array* rectArray, si
 
 **描述**
 
-用于获取矩形数组对象[OH_Drawing_Array](capi-oh-drawing-array.md)的大小。
+用于获取矩形数组对象[OH_Drawing_Array](capi-drawing-oh-drawing-array.md)的大小。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -468,7 +468,7 @@ OH_Drawing_ErrorCode OH_Drawing_RectGetArraySize(OH_Drawing_Array* rectArray, si
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Array](capi-oh-drawing-array.md)* rectArray | 指向矩形数组对象[OH_Drawing_Array](capi-oh-drawing-array.md)的指针。 |
+| [OH_Drawing_Array](capi-drawing-oh-drawing-array.md)* rectArray | 指向矩形数组对象[OH_Drawing_Array](capi-drawing-oh-drawing-array.md)的指针。 |
 | size_t* pSize | 指向size_t类型的指针，用于存储矩形数组大小，作为出参使用。 |
 
 **返回：**
@@ -496,9 +496,9 @@ OH_Drawing_ErrorCode OH_Drawing_RectGetArrayElement(OH_Drawing_Array* rectArray,
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Array](capi-oh-drawing-array.md)* rectArray | 指向矩形数组对象[OH_Drawing_Array](capi-oh-drawing-array.md)的指针。 |
+| [OH_Drawing_Array](capi-drawing-oh-drawing-array.md)* rectArray | 指向矩形数组对象[OH_Drawing_Array](capi-drawing-oh-drawing-array.md)的指针。 |
 | size_t index | 矩形数组的索引。 |
-| [OH_Drawing_Rect](capi-oh-drawing-rect.md)** rect | 指向[OH_Drawing_Rect](capi-oh-drawing-rect.md)的二级指针，作为出参，返回给调用者。 |
+| [OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)** rect | 指向[OH_Drawing_Rect](capi-drawing-oh-drawing-rect.md)的二级指针，作为出参，返回给调用者。 |
 
 **返回：**
 
@@ -525,7 +525,7 @@ OH_Drawing_ErrorCode OH_Drawing_RectDestroyArray(OH_Drawing_Array* rectArray)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Array](capi-oh-drawing-array.md)* rectArray | 指向矩形数组对象[OH_Drawing_Array](capi-oh-drawing-array.md)的指针。 |
+| [OH_Drawing_Array](capi-drawing-oh-drawing-array.md)* rectArray | 指向矩形数组对象[OH_Drawing_Array](capi-drawing-oh-drawing-array.md)的指针。 |
 
 **返回：**
 

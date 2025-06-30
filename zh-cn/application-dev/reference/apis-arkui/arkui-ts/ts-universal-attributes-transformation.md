@@ -457,7 +457,6 @@ struct MatrixExample {
 ```
 
 ![center](figures/center.PNG)
-![center](figures/center.PNG)
 
 ### 示例4（按各轴旋转角的方式实现旋转）
 
