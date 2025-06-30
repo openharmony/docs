@@ -3,12 +3,13 @@
 
 ## Overview
 
-Defines the native ArkWeb **JavaScriptValue** API. Before calling the API, you are advised to use **ARKWEB_MEMBER_MISSING** to check whether the function struct has the corresponding pointer to avoid crash caused by mismatch between the SDK and the device ROM.
+Defines the JavaScriptValue API of ArkWeb. Before calling the API, you are advised to use **ARKWEB_MEMBER_MISSING** to check whether the function struct has the corresponding pointer to avoid crash caused by mismatch between the SDK and the device ROM.
 
 **Since**: 14
 
 **Related module**: [Web](_web.md)
 
+**Header file**: [arkweb_type.h](arkweb__type_8h.md)
 
 ## Summary
 

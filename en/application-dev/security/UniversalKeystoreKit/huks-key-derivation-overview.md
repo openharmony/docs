@@ -1,7 +1,7 @@
 # Key Derivation Overview and Algorithm Specifications
 
 
-To stretch keys into longer keys or to obtain keys in the required format, you can use the HUKS APIs to derive one or more secrete keys from a key (base key) by using a pseudorandom function.
+To stretch keys into longer keys or to obtain keys in the required format, you can use the HUKS APIs to derive one or more secret keys from a key (base key) by using a pseudorandom function.
 > **NOTE** 
 >
 > * In HUKS, only the keys managed by HUKS can be used for key derivation.  

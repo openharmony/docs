@@ -9,6 +9,8 @@ The **DrmSubsample** struct describes the subsample type.
 
 **Related module**: [Multimedia_Drm](_multimedia___drm.md)
 
+**Header file**: [native_cencinfo.h](native__cencinfo_8h.md)
+
 
 ## Summary
 

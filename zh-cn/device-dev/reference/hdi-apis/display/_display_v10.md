@@ -529,8 +529,8 @@ enum MaskInfo
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| LAYER_NORAML |  | 
-| LAYER_HBM_SYNC |  | 
+| LAYER_NORAML | 没有指纹蒙版 | 
+| LAYER_HBM_SYNC | 有指纹蒙版 | 
 
 
 ### MirrorType

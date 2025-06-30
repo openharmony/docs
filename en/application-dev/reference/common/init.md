@@ -7,9 +7,7 @@ Provides the API for querying the support for a SystemCapability (SysCap), which
 
 The result is returned by checking the SysCap configuration file.
 
-**Since**
-
-8
+**Since**: 8
 
 
 ## Summary

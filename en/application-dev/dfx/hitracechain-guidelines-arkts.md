@@ -2,7 +2,7 @@
 
 ## Overview
 
-hiTraceChain is a lightweight implementation of the cloud-based distributed call chain tracing on the device side. It allows the calls made in a service process to be traced, helping locating issues across threads, processes, and devices. With hiTraceChain, a unique ID is generated for a service process, passed throughout the service process, and associated with various output information (including application events, system time, and logs). During debugging and fault locating, you can use this unique ID to quickly correlate various information related to the service process. hiTraceChain provides APIs to implement call chain tracing throughout a service process. This can help you quickly obtain the run log for the call chain of a service process and locate faults across devices, processes, and threads.
+HiTraceChain is a lightweight implementation of the cloud-based distributed call chain tracing on the device side. It allows the calls made in a service process to be traced, helping locating issues across threads, processes, and devices. With hiTraceChain, a unique ID is generated for a service process, passed throughout the service process, and associated with various output information (including application events, system time, and logs). During debugging and fault locating, you can use this unique ID to quickly correlate various information related to the service process. hiTraceChain provides APIs to implement call chain tracing throughout a service process. This can help you quickly obtain the run log for the call chain of a service process and locate faults across devices, processes, and threads.
 
 ## Basic Concepts
 
@@ -32,7 +32,7 @@ The following example walks you through on how to implement distributed call cha
     @Entry
     @Component
     struct Index {
-      @State message: string = 'Start writing an app event'
+      @State message: string = 'Start writing an app event';
 
       build() {
         Row() {
@@ -46,7 +46,7 @@ The following example walks you through on how to implement distributed call cha
               .onClick(() => {
                 try {
                   // Start distributed call chain tracing before the service starts.
-                  let traceId = hiTraceChain.begin("Write a new app event", hiTraceChain.HiTraceFlag.INCLUDE_ASYNC)
+                  let traceId = hiTraceChain.begin("Write a new app event", hiTraceChain.HiTraceFlag.INCLUDE_ASYNC);
                   // Log a button onclick event when the button is clicked.
                   let eventParams: Record<string, number> = { 'click_time': 100 }
                   let eventInfo: hiAppEvent.AppEventInfo = {
@@ -57,17 +57,17 @@ The following example walks you through on how to implement distributed call cha
                     // Define the event type.
                     eventType: hiAppEvent.EventType.BEHAVIOR,
                     // Define the event parameters.
-                    params: eventParams,
+                    params: eventParams
                   }
                   hiAppEvent.write(eventInfo).then(() => {
-                    hilog.info(0x0000, 'testTag', `Succeed to write an app event`)
+                    hilog.info(0x0000, 'testTag', `Succeeded in writing an app event`);
                     // Stop distributed call chain tracing when the service ends.
                     hiTraceChain.end(traceId)
                   }).catch((err: BusinessError) => {
-                    hilog.error(0x0000, 'testTag', `HiAppEvent err.code: ${err.code}, err.message: ${err.message}`)
+                    hilog.error(0x0000, 'testTag', `HiAppEvent err.code: ${err.code}, err.message: ${err.message}`);
                   })
                 } catch (err) {
-                  console.error(`error message is ${(err as BusinessError).message}`)
+                  console.error(`error message is ${(err as BusinessError).message}`);
                 }
               })
           }

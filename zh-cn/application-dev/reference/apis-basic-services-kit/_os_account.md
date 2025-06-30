@@ -3,7 +3,7 @@
 
 ## 概述
 
-描述OsAccount向应用提供系统账号能力。
+OsAccount模块为应用提供系统账号管理能力。
 
 **起始版本：** 12
 
@@ -104,4 +104,4 @@ OsAccount_ErrCode OH_OsAccount_GetName (char *buffer, size_t buffer_size)
 
 **返回：**
 
-返回OS_ACCOUNT_ERR_OK表示成功；返回OS_ACCOUNT_ERR_INTERNAL_ERROR表示内部错误；返回OS_ACCOUNT_ERR_INVALID_PARAMETER指示buffer为NULL指针或名称（不包括结束字符（'\0'））的大小大于或等于buffer_size。
+返回OS_ACCOUNT_ERR_OK表示成功；返回OS_ACCOUNT_ERR_INTERNAL_ERROR表示内部错误；返回OS_ACCOUNT_ERR_INVALID_PARAMETER表示buffer为NULL指针，或名称（不包括结束字符'\0'）的长度大于等于buffer_size。

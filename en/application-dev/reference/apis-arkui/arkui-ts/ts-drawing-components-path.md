@@ -25,14 +25,14 @@ Path(options?: PathOptions)
 
 | Name                                            | Type        | Mandatory| Description                  |
 | ------ | ---------------- | ---- | ------------------------------------------------------------ |
-| options  | [PathOptions](ts-drawing-components-path.md#pathoptions14) | No  | Options for path drawing.|
+| options  | [PathOptions](ts-drawing-components-path.md#pathoptions18) | No  | Options for path drawing.|
 
-## PathOptions<sup>14+</sup>
+## PathOptions<sup>18+</sup>
 Describes the options for path drawing.
 
-**Widget capability**: This API can be used in ArkTS widgets since API version 14.
+**Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
-**Atomic service API**: This API can be used in atomic services since API version 14.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -44,13 +44,13 @@ Describes the options for path drawing.
 
 ## Attributes
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+In addition to the [universal attributes](ts-component-general-attributes.md), the following attributes are supported.
 
 ### commands
 
 commands(value: string)
 
-Sets the command string for path drawing. The unit is px. For details about how to convert pixel units, see [Pixel Units](ts-pixel-units.md).
+Sets a string of path commands that comply with the [SVG path syntax](ts-drawing-components-path.md#svg-path-syntax). The unit is px. For details about how to convert pixel units, see [Pixel Units](ts-pixel-units.md).
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -122,7 +122,7 @@ Sets the stroke color. If this attribute is not set, the component does not have
 
 strokeDashArray(value: Array&lt;any&gt;)
 
-Sets the stroke dashes. Line segments may overlap when they intersect. An invalid value is handled as the default value.
+Sets the stroke dashes. Line segments may overlap when they intersect. The value must be greater than or equal to 0. Invalid values are treated as the default value.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -232,7 +232,7 @@ Sets the stroke opacity. The value range is [0.0, 1.0]. If the value passed in i
 
 strokeWidth(value: Length)
 
-Sets the stroke width. If of the string type, this attribute cannot be set in percentage. A percentage is processed as 1 px.
+Sets the stroke width. If this attribute is of the string type, percentage values are not supported and will be treated as 1 px.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -244,7 +244,7 @@ Sets the stroke width. If of the string type, this attribute cannot be set in pe
 
 | Name| Type                        | Mandatory| Description                    |
 | ------ | ---------------------------- | ---- | ------------------------ |
-| value  | [Length](ts-types.md#length) | Yes  | Stroke width.<br>Default value: **1**<br>Default unit: vp|
+| value  | [Length](ts-types.md#length) | Yes  | Stroke width. The value must be greater than or equal to 0.<br>Default value: **1**<br>Default unit: vp<br>An invalid value is handled as the default value.|
 
 ### antiAlias
 
@@ -262,22 +262,22 @@ Specifies whether anti-aliasing is enabled.
 
 | Name| Type   | Mandatory| Description                                 |
 | ------ | ------- | ---- | ------------------------------------- |
-| value  | boolean | Yes  | Whether anti-aliasing is enabled.<br>Default value: **true**|
+| value  | boolean | Yes  | Whether anti-aliasing is enabled.<br>**true**: Anti-aliasing is enabled.<br>**false**: Anti-aliasing is disabled.<br>Default value: **true**|
 
-## Commands
+## SVG Path Syntax
 
-The supported commands are as follows:
+The table below lists the supported SVG path commands.
 
 | Command  | Name                              | Parameter                                      | Description                                      |
 | ---- | -------------------------------- | ---------------------------------------- | ---------------------------------------- |
 | M    | moveto                           | (x y)                                   | Starts a new subpath at the point specified by the given (x, y) coordinates. For example, `M 0 0` starts a new subpath at point (0, 0).|
 | L    | lineto                           | (x y)                                   | Draws a line from the current point to the point specified by the given (x, y) coordinates. The specified point becomes the start point of the new subpath. For example, `L 50 50` draws a line from the current point to point (50, 50), which is the start point of the new subpath.|
-| H    | horizontal lineto                | x                                        | Draws a horizontal line from the current point. This command is equivalent to the **L** command where the y-coordinate is 0. For example, `H 50 ` draws a line from the current point to point (50, 0), which is the start point of the new subpath.|
-| V    | vertical lineto                  | y                                        | Draws a vertical line from the current point. This command is equivalent to the **L** command where the x-coordinate is 0. For example, `V 50 ` draws a line from the current point to point (0, 50), which is the start point of the new subpath.|
-| C    | curveto                          | (x1 y1 x2 y2 x y)                        | Draws a cubic Bezier curve from the current point to the point specified by the given (x, y) coordinates, with (x1, y1) as the control point of the curve start point and (x2, y2) as the control point of the curve end point. For example, `C100 100 250 100 250 200 ` draws a cubic Bezier curve from the current point to point (250, 200), which is the start point of the new subpath.|
-| S    | smooth curveto                   | (x2 y2 x y)                              | Draws a cubic Bezier curve from the current point to the point specified by the given (x, y) coordinates, with (x2, y2) as the control point of the curve end point. If the previous command is **C** or **S**, the control point of the curve start point is the mapping of the control point of the curve end point in the previous command relative to the start point. For example, in `C100 100 250 100 250 200 S400 300 400 200`, the second segment of the cubic Bezier curve uses point (250, 300) as the control point of the curve start point. If there is no previous command or the previous command is not **C** or **S**, the control point of the curve start point coincides with the current point.|
-| Q    | quadratic Belzier curve          | (x1 y1 x y)                              | Draws a quadratic Bezier curve from the current point to the point specified by the given (x, y) coordinates, with (x1, y1) as the control point. For example, `Q400 50 600 300` draws a quadratic Bezier curve from the current point to point (600, 300), which is the start point of the new subpath.|
-| T    | smooth quadratic Belzier curveto | (x y)                                    | Draws a quadratic Bezier curve from the current point to the point specified by the given (x, y) coordinates. If the previous command is **Q** or **T**, the control point is the mapping of the control point of the curve end point in the previous command relative to the start point. For example, in `Q400 50 600 300 T1000 300`, the second segment of the quadratic Bezier curve uses point (800, 350) as the control point. If there is no previous command or the previous command is not **Q** or **T**, the control point of the curve start point coincides with the current point.|
+| H    | horizontal lineto                | x                                        | Draws a horizontal line to the given X coordinate. This command is equivalent to an **L** command with the current Y coordinate. For example, **H 50** draws a horizontal line from the current point to (50, current y).|
+| V    | vertical lineto                  | y                                        | Draws a vertical line to the given Y coordinate. This command is equivalent to an **L** command with the current X coordinate. For example, **V 50** draws a vertical line from the current point to (current x, 50).|
+| C    | curveto                          | (x1 y1 x2 y2 x y)                        | Draws a cubic Bezier curve from the current point to the point specified by the given (x, y) coordinates, with (x1, y1) as the control point of the curve start point and (x2, y2) as the control point of the curve end point. For example, **C100 100 250 100 250 200** draws a cubic Bezier curve from the current point to point (250, 200), which is the start point of the new subpath.|
+| S    | smooth curveto                   | (x2 y2 x y)                              | Draws a cubic Bezier curve from the current point to the point specified by the given (x, y) coordinates, with (x2, y2) as the control point of the curve end point. If the previous command is **C** or **S**, the control point of the curve start point is the mapping of the control point of the curve end point in the previous command relative to the start point. For example, in **C100 100 250 100 250 200 S400 300 400 200**, the second segment of the cubic Bezier curve uses point (250, 300) as the control point of the curve start point. If there is no previous command or the previous command is not **C** or **S**, the control point of the curve start point coincides with the current point.|
+| Q    | quadratic Belzier curve          | (x1 y1 x y)                              | Draws a quadratic Bezier curve from the current point to the point specified by the given (x, y) coordinates, with (x1, y1) as the control point. For example, **Q400 50 600 300** draws a quadratic Bezier curve from the current point to point (600, 300), which is the start point of the new subpath.|
+| T    | smooth quadratic Belzier curveto | (x y)                                    | Draws a quadratic Bezier curve from the current point to the point specified by the given (x, y) coordinates. If the previous command is **Q** or **T**, the control point is the mapping of the control point of the curve end point in the previous command relative to the start point. For example, in **Q400 50 600 300 T1000 300**, the second segment of the quadratic Bezier curve uses point (800, 350) as the control point. If there is no previous command or the previous command is not **Q** or **T**, the control point of the curve start point coincides with the current point.|
 | A    | elliptical Arc                   | (rx ry x-axis-rotation large-arc-flag sweep-flag x y) | Draws an elliptical arc from the current point to the point specified by the given (x, y) coordinates. **(rx, ry)** and **x-axis-rotation** define the size and direction of the arc, indicating how the arc rotates relative to the current coordinate system (in degrees). **large-arc-flag** and **sweep-flag** define how the arc is drawn.|
 | Z    | closepath                        | none                                     | Closes the current subpath by connecting the current path back to the initial point of the current subpath.            |
 

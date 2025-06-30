@@ -19,7 +19,7 @@ import { shortcutManager } from '@kit.AbilityKit';
 
 addDesktopShortcutInfo(shortcutInfo: [ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md), userId: number) : Promise\<void>
 
-增加指定用户的[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)。
+增加指定用户的快捷方式信息。
 
 **需要权限：** ohos.permission.MANAGE_SHORTCUTS
 
@@ -33,6 +33,12 @@ addDesktopShortcutInfo(shortcutInfo: [ShortcutInfo](js-apis-bundleManager-shortc
 | ---------- | ------ | ---- | -------------- |
 | shortcutInfo | [ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md) | 是   | 快捷方式信息。 |
 | userId     | number | 是   | 用户id。 |
+
+**返回值：**
+
+| 类型                                       | 说明      |
+| ---------------------------------------- | ------- |
+| Promise\<void> | 无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -78,7 +84,7 @@ struct ShortcutExample {
           try {
             shortcutManager.addDesktopShortcutInfo(data, 100)
               .then(() => {
-                console.log("addDesktopShortcutInfo success");
+                console.info("addDesktopShortcutInfo success");
               }).catch((err: BusinessError) => {
               console.error(`addDesktopShortcutInfo errData is errCode:${err.code}  message:${err.message}`);
             });
@@ -98,7 +104,7 @@ struct ShortcutExample {
 
 deleteDesktopShortcutInfo(shortcutInfo: [ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md), userId: number) : Promise\<void>
 
-删除指定用户的[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)。
+删除指定用户的快捷方式信息。
 
 **需要权限：** ohos.permission.MANAGE_SHORTCUTS
 
@@ -112,6 +118,12 @@ deleteDesktopShortcutInfo(shortcutInfo: [ShortcutInfo](js-apis-bundleManager-sho
 | ---------- | ------ | ---- | -------------- |
 | shortcutInfo | [ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md) | 是   | 快捷方式信息。 |
 | userId     | number | 是   | 用户id。 |
+
+**返回值：**
+
+| 类型                                       | 说明      |
+| ---------------------------------------- | ------- |
+| Promise\<void> | 无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -153,7 +165,7 @@ struct ShortcutExample {
           try {
             shortcutManager.deleteDesktopShortcutInfo(data, 100)
               .then(() => {
-                console.log("deleteDesktopShortcutInfo success");
+                console.info("deleteDesktopShortcutInfo success");
               }).catch((err: BusinessError) => {
               console.error(`deleteDesktopShortcutInfo errData is errCode:${err.code}  message:${err.message}`);
             });
@@ -173,7 +185,7 @@ struct ShortcutExample {
 
 getAllDesktopShortcutInfo(userId: number) : Promise<Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)>>
 
-查询指定用户的所有[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)。
+查询指定用户的所有快捷方式信息。
 
 **需要权限：** ohos.permission.MANAGE_SHORTCUTS
 
@@ -191,7 +203,7 @@ getAllDesktopShortcutInfo(userId: number) : Promise<Array\<[ShortcutInfo](js-api
 
 | 类型                                                         | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)> | Array形式返回[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)信息。 |
+| Promise<Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)>> | Promise对象，返回应用配置文件中定义的快捷方式信息。 |
 
 **错误码：**
 
@@ -220,7 +232,7 @@ struct ShortcutExample {
           try {
             shortcutManager.getAllDesktopShortcutInfo(100)
               .then((data: shortcutManager.ShortcutInfo[]) => {
-                console.log("Shortcut data is " + JSON.stringify(data));
+                console.info("Shortcut data is " + JSON.stringify(data));
               }).catch((err: BusinessError) => {
               console.error(`getAllDesktopShortcutInfo errData is errCode:${err.code}  message:${err.message}`);
             });
@@ -236,5 +248,45 @@ struct ShortcutExample {
 }
 ```
 
+## ShortcutInfo
 
+type ShortcutInfo = _ShortcutInfo
+
+应用[module.json5配置文件](../../quick-start/module-configuration-file.md#shortcuts标签)中定义的快捷方式信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Launcher
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md#shortcutinfo) | 应用module.json5配置文件中定义的快捷方式信息。 |
+
+## ShortcutWant
+
+type ShortcutWant = _ShortcutWant
+
+快捷方式内定义的目标[wants](../../quick-start/module-configuration-file.md#wants标签)信息集合。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Launcher
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_ShortcutWant](js-apis-bundleManager-shortcutInfo-sys.md#shortcutwant) | 快捷方式内定义的目标[wants](../../quick-start/module-configuration-file.md#wants标签)信息集合。 |
+
+## ParameterItem
+
+type ParameterItem = _ParameterItem
+
+快捷方式配置信息中的自定义数据。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Launcher
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_ParameterItem](js-apis-bundleManager-shortcutInfo-sys.md#parameteritem12) | 快捷方式配置信息中的自定义数据。 |
 

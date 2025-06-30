@@ -8,7 +8,7 @@ DevEco Studio作为驱动开发工具，是进行驱动开发的必备条件之�
 
 ## SDK版本配置
 
-扩展外设管理模块提供的ArkTs接口，所需SDK版本为API10及以上版本才可使用，更新SDK的具体操作可参见[更新指南](../../tools/openharmony_sdk_upgrade_assistant.md)。
+扩展外设管理模块提供的ArkTs接口，所需SDK版本为API10及以上版本才可使用<!--Del-->，更新SDK的具体操作可参见[更新指南](../../tools/openharmony_sdk_upgrade_assistant.md)<!--DelEnd-->。
 
 基于DDK能力开发专业专用扩展外设驱动或扩展外设增强驱动时，对SDK版本的要求如下：
 
@@ -32,7 +32,7 @@ HDC（HarmonyOS Device Connector）是为开发人员提供的用于调试的命
 **注意：** “配置环境变量hdc_server_port”和“全局环境变量”为必须操作。
 
 ## 开发设备
-
-* 当前开发调试及验证，以RK3568作为开发设备进行说明。关于RK3568的编译、烧录操作等方法，可参考[快速入门](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/quick-start/quickstart-pkg-3568-burn.md)。
-* 开发扩展外设驱动客户端和扩展外设驱动时，需要一个外接USB设备进行调试，**当前仅支持USB总线的外接设备**。
-* 需要知道外接USB设备的ProductId和VendorId，用于定义驱动以及IPC通信。
+<!--RP1-->
+- 当前开发调试及验证，以RK3568作为开发设备进行说明。关于RK3568的编译、烧录操作等方法，可参考[快速入门](../../../device-dev/quick-start/quickstart-pkg-3568-burn.md)。<!--RP1End-->
+- 开发扩展外设驱动客户端和扩展外设驱动时，需要一个外接USB设备进行调试，**当前仅支持USB总线的外接设备**。
+- 需要知道外接USB设备的ProductId和VendorId，用于定义驱动以及IPC通信。

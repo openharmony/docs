@@ -10,7 +10,7 @@ You can set custom properties on components. These custom properties can be obta
 
 customProperty(name: string, value: Optional\<Object>)
 
-Sets a custom property for this component. This API does not work for [custom components](../../../quick-start/arkts-create-custom-components.md#creating-a-custom-component).
+Sets a custom property for this component. This API does not work for [custom components](../../../ui/state-management/arkts-create-custom-components.md#creating-a-custom-component).
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -39,6 +39,9 @@ Defines the Optional type. The value can be **undefined**.
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
 ## Example
+
+This example demonstrates how to set custom properties on a **Column** component and obtain these properties from its corresponding FrameNode.
+
 ```ts
 // xxx.ets
 import { FrameNode, UIContext } from '@kit.ArkUI';

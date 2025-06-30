@@ -3,7 +3,7 @@
 > **说明：**
 >
 > 以下仅介绍本模块特有错误码，通用错误码请参考[通用错误码说明文档](../errorcode-universal.md)。
-
+<!--Del-->
 ## 9300001 输入无效的包名称或者Ability名称
 
 **错误信息**
@@ -43,7 +43,7 @@ Target ability already enabled.
 
 1. 停止该目标Ability。
 2. 重新启用该目标Ability。
-
+<!--DelEnd-->
 ## 9300003 不具备执行该操作的无障碍权限
 
 **错误信息**

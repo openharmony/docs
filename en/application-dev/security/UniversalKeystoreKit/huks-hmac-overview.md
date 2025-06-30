@@ -1,6 +1,6 @@
 # HMAC Overview and Algorithm Specifications
 
-A message authentication code (MAC) is used for verifying the authenticity and integrity of information transmitted or stored on unreliable media. A hash-based message authentication code (HMAC) is a MAC involving a cryptographic has function and a secret cryptographic key. The HMAC can be used with any cryptographic hash function, such as MD5 and SHA-1. The universal keystore supports the use of HMAC with mainstream message digest (MD) algorithms.
+A message authentication code (MAC) is used for verifying the authenticity and integrity of information transmitted or stored on unreliable media. A hash-based message authentication code (HMAC) is a MAC involving a cryptographic hash function and a secret cryptographic key. The HMAC can be used with any cryptographic hash function, such as MD5 and SHA-1. The universal keystore supports the use of HMAC with mainstream message digest (MD) algorithms.
 
 
 ## Supported Algorithms

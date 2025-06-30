@@ -1803,6 +1803,10 @@ draw(context: DrawContext): void
 
 绘制方法，需要开发者进行实现。该方法会在RenderNode进行绘制时被调用。
 
+> **说明：**
+>
+> RenderNode初始化时，会调用两次draw方法。第一次调用是在首次创建FrameNode时触发Render流程，第二次调用是在首次设置modifier时触发绘制。后续绘制流程皆由modifier触发。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -1819,13 +1823,20 @@ ArkTS侧代码：
 
 ```ts
 // Index.ets
-import bridge from "libentry.so" // 该 so 由开发者通过 NAPI 编写并生成
+import bridge from "libentry.so"; // 该 so 由开发者通过 NAPI 编写并生成
 import { RenderNode, FrameNode, NodeController, DrawContext } from '@kit.ArkUI';
 
 class MyRenderNode extends RenderNode {
+  uiContext: UIContext;
+
+  constructor(uiContext: UIContext) {
+    super();
+    this.uiContext = uiContext;
+  }
+
   draw(context: DrawContext) {
     // 需要将 context 中的宽度和高度从vp转换为px
-    bridge.nativeOnDraw(0, context, vp2px(context.size.height), vp2px(context.size.width));
+    bridge.nativeOnDraw(0, context, this.uiContext.vp2px(context.size.height), this.uiContext.vp2px(context.size.width));
   }
 }
 
@@ -1837,7 +1848,7 @@ class MyNodeController extends NodeController {
 
     const rootRenderNode = this.rootNode.getRenderNode();
     if (rootRenderNode !== null) {
-      const renderNode = new MyRenderNode();
+      const renderNode = new MyRenderNode(uiContext);
       renderNode.size = { width: 100, height: 100 }
       rootRenderNode.appendChild(renderNode);
     }
@@ -1979,21 +1990,26 @@ invalidate(): void
 **示例：**
 
 ```ts
-import bridge from "libentry.so" // 该 so 由开发者通过 NAPI 编写并生成
+import bridge from "libentry.so"; // 该 so 由开发者通过 NAPI 编写并生成
 import { RenderNode, FrameNode, NodeController, DrawContext } from '@kit.ArkUI';
 
 class MyRenderNode extends RenderNode {
+  uiContext: UIContext;
+
+  constructor(uiContext: UIContext) {
+    super();
+    this.uiContext = uiContext;
+  }
+
   draw(context: DrawContext) {
     // 需要将 context 中的宽度和高度从vp转换为px
-    bridge.nativeOnDraw(0, context, vp2px(context.size.height), vp2px(context.size.width));
+    bridge.nativeOnDraw(0, context, this.uiContext.vp2px(context.size.height), this.uiContext.vp2px(context.size.width));
   }
 }
 
-const newNode = new MyRenderNode();
-newNode.size = { width: 100, height: 100 };
-
 class MyNodeController extends NodeController {
   private rootNode: FrameNode | null = null;
+  newNode: MyRenderNode | null = null;
 
   makeNode(uiContext: UIContext): FrameNode | null {
     this.rootNode = new FrameNode(uiContext);
@@ -2001,7 +2017,9 @@ class MyNodeController extends NodeController {
     if (renderNode === null) {
       return this.rootNode;
     }
-    renderNode.appendChild(newNode);
+    this.newNode = new MyRenderNode(uiContext);
+    this.newNode.size = { width: 100, height: 100 };
+    renderNode.appendChild(this.newNode);
     return this.rootNode;
   }
 }
@@ -2009,14 +2027,16 @@ class MyNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+
   build() {
     Column() {
       Column() {
-        NodeContainer(new MyNodeController())
+        NodeContainer(this.myNodeController)
           .width('100%')
         Button('Invalidate')
           .onClick(() => {
-            newNode.invalidate()
+            this.myNodeController.newNode?.invalidate()
           })
       }
       .width('100%')
@@ -2259,7 +2279,7 @@ set borderRadius(radius: BorderRadiuses)
 
 | 参数名 | 类型                                                         | 必填 | 说明                   |
 | ------ | ------------------------------------------------------------ | ---- | ---------------------- |
-| radius | [BorderRadiuses](./js-apis-arkui-graphics.md#borderradiuses) | 是   | RenderNode的边框圆角，单位为vp。 |
+| radius | [BorderRadiuses](./js-apis-arkui-graphics.md#borderradiuses12) | 是   | RenderNode的边框圆角，单位为vp。 |
 
 
 get borderRadius(): BorderRadiuses
@@ -2274,7 +2294,7 @@ get borderRadius(): BorderRadiuses
 
 | 类型                                                         | 说明                   |
 | ------------------------------------------------------------ | ---------------------- |
-| [BorderRadiuses](./js-apis-arkui-graphics.md#borderradiuses) | RenderNode的边框圆角，默认所有边框圆角为0vp。 |
+| [BorderRadiuses](./js-apis-arkui-graphics.md#borderradiuses12) | RenderNode的边框圆角，默认所有边框圆角为0vp。 |
 
 **示例：**
 
@@ -2479,8 +2499,8 @@ struct Index {
             rect: {
               left: 0,
               top: 0,
-              right: vp2px(150),
-              bottom: vp2px(150)
+              right: this.getUIContext().vp2px(150),
+              bottom: this.getUIContext().vp2px(150)
             },
             corners: {
               topLeft: { x: 32, y: 32 },
@@ -2501,9 +2521,9 @@ struct Index {
         .onClick(() => {
           renderNode.shapeClip.setOvalShape({
             left: 0,
-            right: vp2px(150),
+            right: this.getUIContext().vp2px(150),
             top: 0,
-            bottom: vp2px(100)
+            bottom: this.getUIContext().vp2px(100)
           });
           renderNode.shapeClip = renderNode.shapeClip;
         })

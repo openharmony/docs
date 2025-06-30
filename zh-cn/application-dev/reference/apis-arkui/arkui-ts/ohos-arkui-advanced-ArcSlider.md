@@ -1,10 +1,10 @@
 # ArcSlider
 
-弧形滑动条组件，通常用于在圆形屏幕中快速调节设置值，如音量调节、亮度调节等应用场景。
+弧形滑动条组件，通常用于在圆形屏幕的穿戴设备中快速调节设置值，如音量调节、亮度调节等应用场景。
 
 >  **说明：**
 >
->  该组件从API Version 18开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  该组件从API version 18开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## 导入模块
 
@@ -20,7 +20,7 @@ import {
   ArcSliderLayoutOptionsConstructorOptions,
   ArcSliderStyleOptionsConstructorOptions,
   ArcSliderOptionsConstructorOptions
-} from '@kit.ArkUI'
+} from '@kit.ArkUI';
 ```
 
 ## 子组件
@@ -71,6 +71,7 @@ ArcSlider({ options: ArcSliderOptions })
 | digitalCrownSensitivity | [CrownSensitivity](ts-appendix-enums.md#crownsensitivity18) | 否 | @Trace | 设置旋转表冠的灵敏度。<br/>默认值：CrownSensitivity.MEDIUM |
 | onTouch | [ArcSliderTouchHandler](#arcslidertouchhandler) | 否 | @Trace | 弧形Slider被触摸时，告知应用。<br/>默认值：不传入的情况，无回调。 |
 | onChange | [ArcSliderChangeHandler](#arcsliderchangehandler) | 否 | @Trace | 弧形Slider的进度值发生变化时，告知应用。<br/>默认值：不传入的情况，无回调。 |
+| onEnlarge | [ArcSliderEnlargeHandler](#arcsliderenlargehandler) | 否 | @Trace | 弧形Slider放大或缩小时，告知应用。<br/>默认值：不传入的情况，无回调。 |
 
 ### constructor
 
@@ -132,7 +133,7 @@ ArcSliderValueOptions的构造函数。
 
 | 名称     | 类型                                    | 必填 | 装饰器类型 | 说明                                                         |
 | -------- | --------------------------------------- | ---- | ---------- | ------------------------------------------------------------ |
-| reverse  | boolean                                 | 否   | @Trace     | 设置弧形Slider取值范围是否反向。<br />默认值：true。表示从下往上滑动。 |
+| reverse  | boolean                                 | 否   | @Trace     | 设置弧形Slider取值范围是否反向。值为false时表示从上往下滑。<br />默认值：true，表示从下往上滑动。 |
 | position | [ArcSliderPosition](#arcsliderposition) | 否   | @Trace     | 弧形Slider的屏幕显示位置。<br />默认值：ArcSliderPosition.RIGHT |
 
 ### constructor
@@ -230,6 +231,22 @@ type ArcSliderChangeHandler = (progress: number) => void
 | -------- | ------ | ---- | -------------------- |
 | progress | number | 是   | Slider当前的进度值。 |
 
+## ArcSliderEnlargeHandler
+
+type ArcSliderEnlargeHandler = (isEnlarged: boolean) => void
+
+弧形Slider放大或缩小时，告知应用。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Circle
+
+**参数：**
+
+| 参数名     | 类型    | 必填 | 说明                                                         |
+| ---------- | ------- | ---- | ------------------------------------------------------------ |
+| isEnlarged | boolean | 是   | ArcSlider当前是否放大。<br/>isEnlarged为false时，ArcSlider组件处于缩小状态。<br/>isEnlarged为true时，ArcSlider组件处于放大状态。 |
+
 ## ArcSliderOptionsConstructorOptions
 
 ArcSliderOptions的构造信息。
@@ -246,6 +263,7 @@ ArcSliderOptions的构造信息。
 | digitalCrownSensitivity | [CrownSensitivity](ts-appendix-enums.md#crownsensitivity18) | 否   | 设置旋转表冠的灵敏度。<br/>默认值：CrownSensitivity.MEDIUM   |
 | onTouch                 | [ArcSliderTouchHandler](#arcslidertouchhandler)             | 否   | 弧形Slider被触摸时，告知应用。<br/>默认值：不传入的情况，无回调。 |
 | onChange                | [ArcSliderChangeHandler](#arcsliderchangehandler)           | 否   | 弧形Slider的进度值发生变化时，告知应用。<br/>默认值：不传入的情况，无回调。 |
+| onEnlarge               | [ArcSliderEnlargeHandler](#arcsliderenlargehandler)         | 否   | 弧形Slider放大或缩小时，告知应用。<br/>默认值：不传入的情况，无回调。 |
 
 ## ArcSliderValueOptionsConstructorOptions
 
@@ -305,7 +323,7 @@ import {
   ArcSliderLayoutOptionsConstructorOptions,
   ArcSliderStyleOptionsConstructorOptions,
   ArcSliderOptionsConstructorOptions
-} from '@kit.ArkUI'
+} from '@kit.ArkUI';
 
 @Entry
 @ComponentV2
@@ -314,22 +332,22 @@ struct ArcSliderExample {
     progress: 60,
     min: 10,
     max: 110
-  }
+  };
 
   layoutOptionsConstructorOptions: ArcSliderLayoutOptionsConstructorOptions = {
     reverse: true,
     position: ArcSliderPosition.RIGHT
-  }
+  };
   styleOptionsConstructorOptions: ArcSliderStyleOptionsConstructorOptions = {
     trackThickness: 8,
     activeTrackThickness: 30,
     trackColor: '#ffd5d5d5',
     selectedColor: '#ff2787d9',
     trackBlur: 20
-  }
-  valueOptions: ArcSliderValueOptions = new ArcSliderValueOptions(this.valueOptionsConstructorOptions)
-  layoutOptions: ArcSliderLayoutOptions = new ArcSliderLayoutOptions(this.layoutOptionsConstructorOptions)
-  styleOptions: ArcSliderStyleOptions = new ArcSliderStyleOptions(this.styleOptionsConstructorOptions)
+  };
+  valueOptions: ArcSliderValueOptions = new ArcSliderValueOptions(this.valueOptionsConstructorOptions);
+  layoutOptions: ArcSliderLayoutOptions = new ArcSliderLayoutOptions(this.layoutOptionsConstructorOptions);
+  styleOptions: ArcSliderStyleOptions = new ArcSliderStyleOptions(this.styleOptionsConstructorOptions);
   arcSliderOptionsConstructorOptions: ArcSliderOptionsConstructorOptions = {
     valueOptions: this.valueOptions,
     layoutOptions: this.layoutOptions,
@@ -338,9 +356,11 @@ struct ArcSliderExample {
     onTouch: (event: TouchEvent) => {
     },
     onChange: (progress: number) => {
+    },
+    onEnlarge: (isEnlarged: boolean) => {
     }
-  }
-  arcSliderOptions: ArcSliderOptions = new ArcSliderOptions(this.arcSliderOptionsConstructorOptions)
+  };
+  arcSliderOptions: ArcSliderOptions = new ArcSliderOptions(this.arcSliderOptionsConstructorOptions);
 
   build() {
     Column() {

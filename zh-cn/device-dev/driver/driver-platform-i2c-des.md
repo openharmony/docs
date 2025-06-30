@@ -83,7 +83,7 @@ if (i2cHandle == NULL) {
 
 #### 进行I2C通信
 
-消息传输
+消息传输。
 
 ```c
 int32_t I2cTransfer(DevHandle handle, struct I2cMsg *msgs, int16_t count);

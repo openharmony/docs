@@ -309,7 +309,7 @@ SSL链接失败。
 
 **错误信息**
 
-SSL server cert needed.
+SSL server cert untrusted.
 
 **错误描述**
 
@@ -360,3 +360,39 @@ seek continuous is unsupported.
 **处理步骤**
 
 1. 提示性错误码，用于客户端感知不支持SEEK_CONTINUOUS模式进行seek时的表现，客户端无需处理。
+
+## 5410003 不支持超分
+
+**错误信息**
+
+super resolution not supported.
+
+**错误描述**
+
+提示性错误码，该媒体源或者当前设备不支持超分。
+
+**可能原因**
+
+超分仅支持非hdr、非drm且分辨率在1080P及以下的视频。若媒体源不满足超分条件，或者当前设备不支持超分，则调用超分相关接口时会上报此错误。
+
+**处理步骤**
+
+用于客户端感知不支持超分时的表现，客户端后续不应再调用超分相关接口。
+
+## 5410004 未使能超分
+
+**错误信息**
+
+super resolution not enabled.
+
+**错误描述**
+
+没有使能超分功能，导致超分相关接口不可用。
+
+**可能原因**
+
+若没有通过[PlaybackStrategy](./js-apis-media.md#playbackstrategy12)使能超分，则每次调用超分相关接口时会返回该错误码。
+
+**处理步骤**
+
+确认应用调用超分相关接口前正确使能了超分。

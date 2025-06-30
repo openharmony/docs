@@ -20,7 +20,8 @@
 ## 使用示例
 
 JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅对接口对应C++相关代码进行展示。
-注意：Wasm字节码需要应用拥有JIT权限才能执行，可参考[JSVM 申请JIT权限指导](jsvm-apply-jit-profile.md)申请对应权限。
+权限要求：Wasm字节码需要应用拥有JIT权限才能执行，可参考[JSVM 申请JIT权限指导](jsvm-apply-jit-profile.md)申请对应权限。
+运行限制：当前 JSVM 版本在坚盾守护模式下将禁用 WebAssembly 全部功能模块。开发者需针对此限制进行应用兼容性评估，具体技术规范详见[JSVM 坚盾守护模式](jsvm-secure-shield-mode.md)。
 ### OH_JSVM_PumpMessageLoop && OH_JSVM_PerformMicrotaskCheckpoint
 
 启动任务队列，执行任务。
@@ -63,7 +64,7 @@ static JSVM_Value ConsoleInfo(JSVM_Env env, JSVM_CallbackInfo info) {
     size_t argc = 1;
     JSVM_Value args[1];
     char log[256] = "";
-    size_t logLength;
+    size_t logLength = 0;
     JSVM_CALL(OH_JSVM_GetCbInfo(env, info, &argc, args, NULL, NULL));
 
     OH_JSVM_GetValueStringUtf8(env, args[0], log, 255, &logLength);
@@ -165,7 +166,7 @@ static int SetMicrotaskPolicy(JSVM_VM vm, JSVM_Env env) {
     CHECK_RET(OH_JSVM_GetGlobal(env, &global));
     JSVM_Value hasEvaluateMicrotask;
     CHECK_RET(OH_JSVM_GetNamedProperty(env, global, "evaluateMicrotask", &hasEvaluateMicrotask));
-    bool val;
+    bool val = false;
     CHECK_RET(OH_JSVM_GetValueBool(env, hasEvaluateMicrotask, &val));
 
     OH_LOG_INFO(LOG_APP, "Policy :JSVM_MICROTASK_AUTO, evaluateMicrotask : %{public}d", val);

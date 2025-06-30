@@ -7,6 +7,8 @@ Provides the enum variables, structures, and macros used in the SCSI Peripheral 
 
 **File to include**: &lt;scsi_peripheral/scsi_peripheral_types.h&gt;
 
+**Library**: libscsi.z.so
+
 **System capability**: SystemCapability.Driver.SCSI.Extension
 
 **Since**: 18
@@ -44,7 +46,7 @@ Provides the enum variables, structures, and macros used in the SCSI Peripheral 
 | [SCSIPERIPHERAL_MAX_CMD_DESC_BLOCK_LEN](_s_c_s_i.md#scsiperipheral_max_cmd_desc_block_len)&nbsp;&nbsp;&nbsp;16 | Maximum length of a command descriptor block (CDB).| 
 | [SCSIPERIPHERAL_MAX_SENSE_DATA_LEN](_s_c_s_i.md#scsiperipheral_max_sense_data_len)&nbsp;&nbsp;&nbsp;252 | Maximum length of sense data. In the SCSI protocol, the maximum length of sense data is usually 252 bytes.| 
 | [SCSIPERIPHERAL_VENDOR_ID_LEN](_s_c_s_i.md#scsiperipheral_vendor_id_len)&nbsp;&nbsp;&nbsp;8 | Maximum length of the vendor ID.| 
-| [SCSIPERIPHERAL_PRODUCT_ID_LEN](_s_c_s_i.md#scsiperipheral_product_id_len)&nbsp;&nbsp;&nbsp;16 | Maximum length of the product ID.| 
+| [SCSIPERIPHERAL_PRODUCT_ID_LEN](_s_c_s_i.md#scsiperipheral_product_id_len)&nbsp;&nbsp;&nbsp;18 | Maximum length of the product ID.| 
 | [SCSIPERIPHERAL_PRODUCT_REV_LEN](_s_c_s_i.md#scsiperipheral_product_rev_len)&nbsp;&nbsp;&nbsp;4 | Maximum length of the product version.| 
 
 

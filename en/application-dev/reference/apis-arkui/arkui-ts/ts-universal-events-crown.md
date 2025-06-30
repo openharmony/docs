@@ -3,11 +3,11 @@ A crown event is an event triggered when the crown of a wearable device is rotat
 
 >  **NOTE**
 >
->  - This event is supported since API version 16. Updates will be marked with a superscript to indicate their earliest API version.
+>  - This event is supported since API version 18. Updates will be marked with a superscript to indicate their earliest API version.
 >
 >  - Manual rotation of the crown has default interaction logic. For example, rotating the crown causes the scrollbar to scroll in the direction of the rotation.
 >
->  - A component must have focus to receive crown events. Focus control can be managed using [focusable](ts-universal-attributes-focus.md#focusable), [defaultFocus](ts-universal-attributes-focus.md#defaultFocus9), and [focusOnTouch](ts-universal-attributes-focus.md#focusOnTouch9).
+>  - A component must have focus to receive crown events. Focus control can be managed using [focusable](ts-universal-attributes-focus.md#focusable), [defaultFocus](ts-universal-attributes-focus.md#defaultfocus9), and [focusOnTouch](ts-universal-attributes-focus.md#focusontouch9).
 >
 >  - This event is only supported on wearable devices.
 >
@@ -19,7 +19,7 @@ onDigitalCrown(handler: Optional&lt;Callback&lt;CrownEvent&gt;&gt;): T
 
 Called when the crown is rotated while the component has focus.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -39,7 +39,7 @@ Called when the crown is rotated while the component has focus.
 
 Defines a data structure for the crown event received by a component. It includes timestamp, angular velocity, rotation angle, and crown action.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 

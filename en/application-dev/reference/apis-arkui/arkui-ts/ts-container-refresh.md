@@ -34,7 +34,7 @@ Refresh(value: RefreshOptions)
 
 | Name        | Type                                     | Mandatory  | Description                                    |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| refreshing | boolean                                  | Yes   | Whether the component is being refreshed. The value **true** means that the component is being refreshed, and **false** means the opposite.<br>Default value: **false**<br>This parameter supports [$$](../../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| refreshing | boolean                                  | Yes   | Whether the component is being refreshed. The value **true** means that the component is being refreshed, and **false** means the opposite.<br>Default value: **false**<br>This parameter supports [$$](../../../ui/state-management/arkts-two-way-sync.md) for two-way binding of variables.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | offset<sup>(deprecated)</sup>    | number \| string   | No   | Distance from the pull-down starting point to the top of the component.<br>Default value: **16**, in vp<br>This API is deprecated since API version 11. No substitute API is provided.<br>**NOTE**<br>The value range of **offset** is [0vp, 64vp]. If the value is greater than 64 vp, the value 64 vp will be used. The value cannot be a percentage or a negative number.|
 | friction<sup>(deprecated)</sup>   | number \| string               | No   | Coefficient of friction, which indicates the **<Refresh\>** component's sensitivity to the pull-down gesture. The value ranges from 0 to 100.<br>Default value: **62**<br>- **0** indicates that the **Refresh** component is not responsive to the pull-down gesture.<br>- **100** indicates that the **Refresh** component is highly responsive to the pull-down gesture.<br>- A larger value indicates higher responsiveness of the **Refresh** component to the pull-down gesture.<br>This API is deprecated since API version 11. You can use [pullDownRatio](#pulldownratio12) instead since API version 12.|
 | builder<sup>10+</sup>    | [CustomBuilder](ts-types.md#custombuilder8) | No   | Custom content in the refreshing area.<br>**NOTE**<br>In API version 10 and earlier versions, there is a height limit of 64 vp on custom components. This restriction is removed since API version 11.<br>When a custom component is set with a fixed height, it will be displayed below the refreshing area at that fixed height; when the custom component does not have a height set, its height will adapt to the height of the refreshing area, which may result in the height of the custom component changing to 0 along with the refreshing area. To maintain the intended layout, configure a minimum height constraint for a custom component, which ensures that the component's height does not fall below a certain threshold. For details about how to apply this constraint, see [Example 3](#example-3-customizing-the-refreshing-area-content-with-builder).<br>Since API version 12, use **refreshingContent** instead of **builder** for customizing the content of the refreshing area, to avoid animation interruptions caused by the destruction and re-creation of the custom component during the refreshing process.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
@@ -544,7 +544,6 @@ struct ListRefreshLoad {
   @State refreshing: boolean = false;
   @State refreshOffset: number = 0;
   @State refreshState: RefreshStatus = RefreshStatus.Inactive;
-  @State canLoad: boolean = false;
   @State isLoading: boolean = false;
 
   @Builder
@@ -596,8 +595,7 @@ struct ListRefreshLoad {
       }
       .onScrollIndex((start: number, end: number) => {
         // Trigger new data loading when the end of the list is reached.
-        if (this.canLoad && end >= this.arr.length - 1) {
-          this.canLoad = false;
+        if (end >= this.arr.length - 1) {
           this.isLoading = true;
           // Simulate new data loading.
           setTimeout(() => {
@@ -607,13 +605,6 @@ struct ListRefreshLoad {
             }
           }, 700)
         }
-      })
-      .onScrollFrameBegin((offset: number, state: ScrollState) => {
-        // Trigger new data loading only when the list scrolls up.
-        if (offset > 5 && !this.isLoading) {
-          this.canLoad = true;
-        }
-        return { offsetRemain: offset };
       })
       .scrollBar(BarState.Off)
       // Enable the effect used when the scroll boundary is reached.

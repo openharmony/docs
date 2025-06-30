@@ -21,18 +21,59 @@ hdc分为三部分：
 
 ## 环境准备
 
-下载并安装[DevEco Studio](https://developer.huawei.com/consumer/cn/deveco-studio/)，hdc应用程序可以在DevEco Studio安装位置下：DevEco Studio\sdk\default\openharmony\toolchains目录中查看。
+下载并安装[DevEco Studio](https://developer.huawei.com/consumer/cn/deveco-studio/)，hdc应用程序可以在DevEco Studio安装位置下：DevEco Studio/sdk/default/openharmony/toolchains目录中查看。
 
 ### （可选）命令行直接执行hdc程序
 
-开发者可通过命令行进入SDK的toolchains目录，在目录中执行hdc相关命令进行调试。
-为了方便在命令行中直接执行hdc程序，开发者也可以将hdc程序文件路径添加到操作系统命令搜索路径的环境变量中。
-例如，Windows系统可以添加到系统环境变量Path中。
+**SDK的toolchains目录调试**
 
-### （可选）server监听端口配置
+开发者可以在SDK的toolchains子目录下执行hdc命令进行设备调试。
 
-hdc server启动时，默认会监听PC的8710端口，hdc client使用tcp协议通过此端口连接server。如果PC的8710端口已经被使用或者希望使用其他端口，可以通过添加环境变量OHOS_HDC_SERVER_PORT到系统环境变量中来修改server启动时监听的端口号。
-例如，添加变量名为：OHOS_HDC_SERVER_PORT，变量值可设置为任意未被占用的端口，如18710。
+**（可选）hdc独立运行**
+
+hdc支持独立运行，将安装子目录toolchains下的hdc可执行文件和libusb_shared依赖文件集中存放至自定义目录中，可在该目录下直接执行hdc命令，实现独立调试功能。
+
+**（可选）添加hdc到系统环境变量**
+
+- Windows环境变量设置方法
+   
+   在此电脑 > 属性 > 高级系统设置 > 高级 > 环境变量 > Path > 编辑 中，将hdc.exe所在目录添加到 Path，环境变量配置完成后，请重启电脑，即可在cmd窗口执行hdc命令。
+
+- Linux/MacOS系统：
+
+   1. 打开终端工具，执行以下命令，根据输出结果分别执行不同命令。
+
+      `echo $SHELL`
+
+      a. 如果输出结果为bin/bash，则执行以下命令，打开.bashrc文件。
+   
+      `vi ~/.bashrc`
+
+      b. 如果输出结果为/bin/zsh，则执行以下命令，打开.zshrc文件。
+
+      `vi ~/.zshrc`
+
+   2. 单击字母“i”，进入Insert模式。
+   3. 输入以下内容，添加PATH信息。
+
+      `export PATH=$PATH:/path/to/your/hdc`
+   
+   4. 编辑完成后，单击Esc键，退出编辑模式，然后输入“:wq”，单击Enter键保存。
+   5. 执行以下命令，使配置的环境变量生效。
+      
+      a. 如果步骤1操作打开的是.bashrc文件，请执行如下命令：
+
+      `source ~/.bashrc`
+
+      b. 如果步骤1操作打开的是.zshrc文件，请执行如下命令：
+
+      `source ~/.zshrc`
+
+   6. 环境变量配置完成后，重启电脑。
+
+### （可选）hdc server配置
+
+通过配置对应的系统环境变量，可以修改hdc server的监听端口，日志打印级别或特性开关等，详细介绍请查看[可选配置项](#可选配置项)章节。
 
 > **说明：**
 >
@@ -301,7 +342,7 @@ hdc list targets -v
 #### 远程连接场景
 
 远程连接场景是指客户端通过网络远程连接服务端，客户端和服务端在不同的PC运行，服务端连接设备。
-远程连接如图所示:
+远程连接如图所示：
 
 ![远程连接结构图](figures/hdc_image_004.PNG)
 
@@ -389,7 +430,7 @@ hdc client（客户端）在PC1中运行，hdc server（服务端）在PC2中运
    **参数：**
    | 参数 | 参数说明 |
    | -------- | -------- |
-   | port-number | 监听连接的网络端口号，范围:1~65535。 |
+   | port-number | 监听连接的网络端口号，范围：1~65535。 |
 
    **返回值：**
    | 返回值 | 说明 |
@@ -498,7 +539,7 @@ hdc client（客户端）在PC1中运行，hdc server（服务端）在PC2中运
 
    > **说明：**
    >
-   > 使用参数[-b _bundlename_]指定包名，应满足条件：指定包名的已安装应用为“以debug模式构建的可调试应用”， 以debug模式构建应用可参考：[以debug模式构建HAR](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5#section197792874110)。
+   > 使用参数[-b _bundlename_]指定包名，应满足条件：指定包名的已安装应用为“使用调试证书签名的应用”， 如何申请调试证书及签名可参考：[申请调试证书](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-debugcert-0000001914263178)。
 
 ## 应用管理
 
@@ -601,7 +642,7 @@ hdc client（客户端）在PC1中运行，hdc server（服务端）在PC2中运
    >
    > 使用方法中，`hdc file send -b com.example.myapplication a.txt data/storage/el2/base/b.txt`指定了-b参数，将传输本地当前目录下的文件a.txt到包名为com.example.myapplication应用数据目录，传输到相对路径data/storage/el2/base/下，并重命名为b.txt。
    >
-   > 使用参数[-b _bundlename_]指定包名，应满足条件：指定包名的已安装应用为“以debug模式构建的可调试应用”， 以debug模式构建应用可参考：[以debug模式构建HAR](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5#section197792874110)。
+   > 使用参数[-b _bundlename_]指定包名，应满足条件：指定包名的已安装应用为“使用调试证书签名的应用”， 如何申请调试证书及签名可参考：[申请调试证书](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-debugcert-0000001914263178)。
 
 2. 从远端设备发送文件至本地，命令格式如下：
 
@@ -636,7 +677,7 @@ hdc client（客户端）在PC1中运行，hdc server（服务端）在PC2中运
    >
    > 使用方法中，`hdc file recv -b com.example.myapplication data/storage/el2/base/b.txt   a.txt`指定了-b参数，将传输名为com.example.myapplication可调试应用进程的应用数据相对路径data/storage/el2/base/下的文件b.txt到本地当前目录下，并重命名为a.txt。
    >
-   > 使用参数[-b _bundlename_]指定包名，应满足条件：指定包名的已安装应用为“以debug模式构建的可调试应用”， 以debug模式构建应用可参考：[以debug模式构建HAR](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5#section197792874110)。
+   > 使用参数[-b _bundlename_]指定包名，应满足条件：指定包名的已安装应用为“使用调试证书签名的应用”， 如何申请调试证书及签名可参考：[申请调试证书](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-debugcert-0000001914263178)。
 
 ## 端口转发
 
@@ -749,11 +790,7 @@ PC端支持的端口转发类型：tcp。
    **返回值：**
    | 返回值 | 说明 |
    | -------- | -------- |
-   | hdc start server, listening: _::ffff:127.0.0.1:8710_ | 启动服务进程并显示服务进程网络监听参数。 |
-   | Start server finish | 服务进程启动成功。 |
-   | hdc server process already exists | 服务进程已存在。 |
-   | Kill server finish | 重启服务进程，原服务进程终止成功。 |
-   | [Fail]具体失败信息 | 服务进程启动失败。 |
+   | 无返回值 | 服务进程启动成功。 |
 
    **使用方法：**
 
@@ -835,7 +872,7 @@ PC端支持的端口转发类型：tcp。
 
    > **说明：**
    >
-   > 1. 使用前台启动参数时，可通过附加 -s 参数来指定服务进程的网络监听参数。如果既没有使用 -s 指定网络监听参数，也没有配置环境变量OHOS_HDC_SERVER_PORT配置监听端口，系统将采用默认网络监听参数:127.0.0.1:8710。
+   > 1. 使用前台启动参数时，可通过附加 -s 参数来指定服务进程的网络监听参数。如果既没有使用 -s 指定网络监听参数，也没有配置环境变量OHOS_HDC_SERVER_PORT配置监听端口，系统将采用默认网络监听参数：127.0.0.1:8710。
    > 2. 在服务进程前台启动模式下，系统默认的日志输出等级设置为 LOG_DEBUG。如需变更日志等级，可通过结合使用 -l 参数来进行相应的调整。
    > 3. 在运行环境中，仅允许单一的服务进程实例存在。若运行环境中已存在一个活跃的后台服务进程，那么尝试在前台启动新的服务进程实例将不会成功。
 
@@ -1082,13 +1119,13 @@ hdc运行时日志等级，默认为LOG_INFO，命令格式如下：
 
    **使用方法：**
 
-   客户端打印LOG_DEBUG级别日志，以执行shell ls为例，命令示例如下:
+   客户端打印LOG_DEBUG级别日志，以执行shell ls为例，命令示例如下：
 
    ```shell
    hdc -l 5 shell ls
    ```
 
-   服务进程前台模式启动指定LOG_LIBUSB级别日志，命令示例如下:
+   服务进程前台模式启动指定LOG_LIBUSB级别日志，命令示例如下：
 
    ```shell
    hdc kill && hdc -l 6 -m
@@ -1097,7 +1134,7 @@ hdc运行时日志等级，默认为LOG_INFO，命令格式如下：
    > **说明：**
    > `-m`参数指定以前台模式启动服务进程，可以直接观察前台日志输出，按下Ctrl+C退出进程。
 
-   服务进程后台启动模式指定LOG_LIBUSB级别日志，命令示例如下:
+   服务进程后台启动模式指定LOG_LIBUSB级别日志，命令示例如下：
 
    ```shell
    hdc kill && hdc -l 6 start
@@ -1149,6 +1186,36 @@ hdc shell ls /data/log/hilog                          // 查看已落盘hilog日
 hdc file recv /data/log/hilog                         // 获取hilog已落盘日志（包含内核日志）
 ```
 
+## 可选配置项
+
+### OHOS_HDC_SERVER_PORT
+
+默认值：8710。
+
+用于设置hdc server运行时监听的端口号，该端口用于hdc client与hdc server之间的数据通讯。
+
+hdc server启动时，默认会监听电脑的8710端口，hdc client使用tcp协议通过此端口连接server。如果电脑的8710端口已经被使用或者希望使用其他端口，可以通过添加环境变量OHOS_HDC_SERVER_PORT到系统环境变量中来修改server启动时监听的端口号。可以设置的端口范围为1~65535。
+
+例如，添加变量名为：OHOS_HDC_SERVER_PORT，变量值可设置为任意未被占用的端口，如18710。
+
+### OHOS_HDC_LOG_LEVEL
+
+默认值：3。
+
+用于设置服务进程日志记录级别，日志级别详情参考：[server端日志](#server端日志)指定运行时日志等级章节。
+
+### OHOS_HDC_HEARTBEAT
+
+默认：心跳功能开启。
+
+用于设置hdc server和hdc daemon的心跳功能开关。
+
+hdc server和hdc daemon启动后，默认会互相发送心跳数据包，收到心跳数据包后会记录在hdc的日志中，方便后期查看设备的连接情况。
+
+当hdc server对应的电脑中配置环境变量OHOS_HDC_HEARTBEAT为“1”后，hdc server会关闭心跳特性；当设备连接这台电脑后，hdc server会给hdc daemon发送心跳特性关闭的信息，双方不再互相发送心跳数据包。
+
+设置为"1"表示关闭心跳功能；设置为其它数字表示开启心跳功能。
+
 ## 常见问题
 
 ### 设备无法识别
@@ -1169,7 +1236,7 @@ hdc file recv /data/log/hilog                         // 获取hilog已落盘日
 
    Linux环境：
 
-   在命令行执行`lsusb`,在返回的内容中查看是否有`HDC Device`（单一端口设备）或`HDC Interface`（复合端口设备）。
+   在命令行执行`lsusb`，在返回的内容中查看是否有`HDC Device`（单一端口设备）或`HDC Interface`（复合端口设备）。
 
    MacOS环境：
 
@@ -1217,7 +1284,7 @@ hdc file recv /data/log/hilog                         // 获取hilog已落盘日
 
    可能存在以下原因，可参考排查：
 
-   - hdc或SDK版本与设备不匹配: 如果设备更新到最新版本，可更新hdc或SDK工具至最新版本。
+   - hdc或SDK版本与设备不匹配：如果设备更新到最新版本，可更新hdc或SDK工具至最新版本。
    - 端口被占用：
 
    常见于hdc和hdc_std使用同一端口，同时运行时OHOS_HDC_SERVER_PORT设置的端口互相冲突（未设置则使用默认端口8710，仍然会冲突），注意只运行其中一个。其他软件占用hdc默认端口也会导致该问题发生。
@@ -1243,7 +1310,7 @@ hdc file recv /data/log/hilog                         // 获取hilog已落盘日
          netstat -an |grep 8710
          ```
 
-         Windows:
+         Windows：
 
          ```shell
          netstat -an |findstr 8710
@@ -1255,11 +1322,11 @@ hdc file recv /data/log/hilog                         // 获取hilog已落盘日
 
          Windows：
 
-         使用`任务管理器`>`详细信息`查询hdc.exe进程,右键打开文件所在位置，核对位置是否为配置的环境变量中的hdc文件位置，如果不一致，可尝试结束hdc.exe进程(hdc kill或者任务管理器直接结束进程)并重新执行hdc命令。（关闭hdc server后执行hdc命令会重新启动hdc server）
+         使用`任务管理器`>`详细信息`查询hdc.exe进程，右键打开文件所在位置，核对位置是否为配置的环境变量中的hdc文件位置，如果不一致，可尝试结束hdc.exe进程（hdc kill或者任务管理器直接结束进程）并重新执行hdc命令。（关闭hdc server后执行hdc命令会重新启动hdc server）
 
          Unix：
 
-         使用`ps -ef |grep hdc`查询hdc后台server进程，核对进程启动位置是否为配置的环境变量中的hdc文件位置，如果不一致，可尝试结束hdc进程(hdc kill或者kill -9 hdc进程的PID)并重新执行hdc命令。（关闭hdc server后执行hdc命令会重新启动hdc server）
+         使用`ps -ef |grep hdc`查询hdc后台server进程，核对进程启动位置是否为配置的环境变量中的hdc文件位置，如果不一致，可尝试结束hdc进程（hdc kill或者kill -9 hdc进程的PID）并重新执行hdc命令。（关闭hdc server后执行hdc命令会重新启动hdc server）
 
    - **注册表异常**
 
@@ -1275,19 +1342,17 @@ hdc file recv /data/log/hilog                         // 获取hilog已落盘日
       3. 找到`UpperFilters`键，右键`修改`编辑，**备份**并清空其中数值数据内容（如清空后无法解决问题可依照备份恢复）。
       4. 刷新设备管理器/插拔USB接口/重启计算机。
 
-<!--Del-->
+**Linux系统非root权限运行hdc无法找到设备**
 
-**linux系统非root权限运行hdc无法找到设备**
+Linux环境可以选择开启非root用户USB设备操作权限，方法如下：
 
-linux环境可以选择开启非root用户USB设备操作权限，方法如下：
-
-- （临时权限）设置USB设备操作权限最大化:
+- （临时权限）设置USB设备操作权限最大化：
 
    ```shell
    sudo chmod -R 777 /dev/bus/usb/
    ```
 
-- （永久权限）永久修改USB设备权限:
+- （永久权限）永久修改USB设备权限：
 
    1. 使用lsusb找出USB设备的vendorID和productID。
 
@@ -1311,8 +1376,6 @@ linux环境可以选择开启非root用户USB设备操作权限，方法如下�
 > **注意：**
 > **开启非root用户USB设备操作权限**可以解决Linux环境在非root权限下使用hdc无法找到设备的情况，但权限最大化**可能存在潜在安全问题**，请开发者根据使用场景自行评估是否开启。
 
-<!--DelEnd-->
-
 ### hdc无法运行
 
 **现象描述**
@@ -1330,6 +1393,30 @@ linux环境可以选择开启非root用户USB设备操作权限，方法如下�
    Windows运行环境：建议使用Windows10/Windows11 64位版本，如低版本缺失WinUSB库/驱动，请使用Zadig工具更新。对于符合设备，需要使用Zadig工具安装libusb-win32驱动。详情请见：[Zadig链接](https://github.com/pbatard/libwdi/releases)。
 
 - 运行方式不当：请使用命令行依照正确命令运行hdc工具，而非鼠标双击文件。
+
+### 使用hdc file send/recv传输中文文件出现乱码
+
+**现象描述**
+
+hdc文件传输命令执行出现乱码，如使用`file recv`从设备侧发送带有中文命令的文件到本地，报错提示`[Fail]Error opening file: no such file or directory, path:XXXXX`，其中path显示中文乱码。
+
+**可能原因&解决方法**
+
+3.1.0a版本开始，文件传输命令支持参数路径包含中文，版本过低需要更新至最新版本。
+
+执行`hdc checkserver`命令检查当前版本，如果低于3.1.0a版本需自行升级SDK到API12或更高版本。
+
+### 执行hdc list targets显示“Unauthorized”
+
+**现象描述**
+
+使用`hdc list targets`命令查询已连接设备，连接设备标识后显示Unauthorized。
+
+**可能原因&解决方法**
+
+- 首次连接未授权：连接设备后解锁设备，屏幕显示“是否信任此设备？”窗口，点击“始终信任”或“信任”完成授权。
+
+- 授权窗口关闭或拒绝授权：设备侧授权窗口会在超时后关闭，或开发者在授权窗口点击“不信任”拒绝授权。需要再次授权可在设备侧 设置 > 系统 > 开发者选项 > USB调试/无线调试 中，关闭已开启的调试开关后再开启，屏幕显示“是否信任此设备？”窗口，点击“始终信任”或“信任”完成授权。
 
 ### 其他问题排查常用步骤
 
@@ -1354,7 +1441,7 @@ Invalid bundle name: _bundlename_
 
 * 场景一：指定的应用未安装到设备上。
 
-* 场景二：指定包名的应用，不是以debug模式构建的应用。
+* 场景二：指定包名的应用，不是可调试应用。
 
 * 场景三：指定包名的应用没有启动。
 
@@ -1380,22 +1467,21 @@ Invalid bundle name: _bundlename_
 
    c.如应用不是可调试应用，而是release类型的应用，将不支持指定 _bundlename_ 执行命令相关功能。
 
-* 场景二：确认命令指定的应用是以debug模式构建的可调试应用，可执行`hdc shell "bm dump -n bundlename | grep debug"`查询，预期返回信息为`"appProvisionType": "debug", "debug": true`。
+* 场景二：确认命令指定的应用是否为可调试应用，可执行`hdc shell "bm dump -n bundlename | grep appProvisionType"`查询，预期返回信息为`"appProvisionType": "debug"`。
 
    以包名`com.example.myapplication`为例，可执行如下命令查询：
 
    ```shell
-   hdc shell "bm dump -n com.example.myapplication | grep debug"
+   hdc shell "bm dump -n com.example.myapplication | grep appProvisionType"
    ```
 
-   如包名对应的应用是以debug模式构建的可调试应用，预期返回信息：
+   如包名对应的应用是可调试应用，预期返回信息：
 
    ```shell
    "appProvisionType": "debug",
-   "debug": true,
    ```
 
-   如何以debug模式构建应用请参考：[以debug模式构建HAR](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5#section197792874110)
+   构建可调试应用需要使用调试证书进行签名，申请调试证书及签名可参考：[申请调试证书](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-debugcert-0000001914263178)。
 
 * 场景三：确定命令指定的应用已启动。
 

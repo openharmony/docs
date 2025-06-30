@@ -339,7 +339,7 @@ on(type: 'uninstallDLPSandbox', listener: Callback&lt;DLPSandboxState&gt;): void
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | 'uninstallDLPSandbox' | 是 | 监听事件类型。固定值为'uninstallDLPSandbox':DLP沙箱卸载事件。 |
+| type | 'uninstallDLPSandbox' | 是 | 监听事件类型。固定值为'uninstallDLPSandbox'：DLP沙箱卸载事件。 |
 | listener | Callback&lt;[DLPSandboxState](#dlpsandboxstate)&gt; | 是 | 沙箱应用卸载事件的回调。 |
 
 **错误码：**
@@ -384,7 +384,7 @@ off(type: 'uninstallDLPSandbox', listener?: Callback&lt;DLPSandboxState&gt;): vo
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | 'uninstallDLPSandbox' | 是 | 监听事件类型。固定值为'uninstallDLPSandbox':DLP沙箱卸载事件。 |
+| type | 'uninstallDLPSandbox' | 是 | 监听事件类型。固定值为'uninstallDLPSandbox'：DLP沙箱卸载事件。 |
 | listener | Callback&lt;[DLPSandboxState](#dlpsandboxstate)&gt; | 否 | 沙箱应用卸载事件的回调。默认为空，表示取消该类型事件的所有回调。 |
 
 **错误码：**
@@ -1654,7 +1654,7 @@ openDLPFile(ciphertextFd: number, appId: string): Promise&lt;DLPFile&gt;
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | ciphertextFd | number | 是 | 加密文件的fd。 |
-| appId | string | 是 | 调用方身份。最小140字节，最大261字节。 |
+| appId | string | 是 | 调用方身份。最小8字节，最大1024字节。 |
 
 **返回值：**
 
@@ -1737,7 +1737,7 @@ DLP管理应用调用该接口，打开DLP文件。获取DLPFile管理对象，�
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | ciphertextFd | number | 是 | 加密文件的fd。 |
-| appId | string | 是 | 调用方身份。最小140字节，最大261字节。 |
+| appId | string | 是 | 调用方身份。最小8字节，最大1024字节。 |
 | callback | AsyncCallback&lt;[DLPFile](#dlpfile)&gt; | 是 | 回调函数。返回DLPFile对象。 |
 
 **错误码：**

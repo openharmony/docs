@@ -11,6 +11,8 @@ The **OhosPixelMapInfos** struct describes the information about a PixelMap.
 
 **Related module**: [Image](image.md)
 
+**Header file**: [image_pixel_map_mdk.h](image__pixel__map__mdk_8h.md)
+
 
 ## Summary
 

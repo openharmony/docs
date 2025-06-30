@@ -85,7 +85,7 @@ As indicated by the last row in the preceding table, you can specify the RSA key
 
 ### PKCS1_OAEP
 
-The RSA encryption and decryption can be implemented based a string parameter. When creating a **Cipher** instance, you need to specify the algorithm specifications in a string parameter. The string parameter consists of the asymmetric key type, padding mode (which is **PKCS1_OAEP**), MD algorithm, and mask digest algorithm with a vertical bar (|) in between.
+The RSA encryption and decryption can be implemented based on a string parameter. When creating a **Cipher** instance, you need to specify the algorithm specifications in a string parameter. The string parameter consists of the asymmetric key type, padding mode (which is **PKCS1_OAEP**), MD algorithm, and mask digest algorithm with a vertical bar (|) in between.
 
 In the following table, the options included in the square brackets ([]) are mutually exclusive. You can use only one of them in a string parameter.
 
@@ -142,7 +142,7 @@ As indicated by the last row in the preceding table, you can specify the RSA key
 
 ### Getting and Setting of OAEP Parameters
 
-Since API version 10, OAEP parameters can be set and obtained when PKCS1_OAEP is used with RSA. In ths following table, the symbol "√" indicates that the parameter can be obtained or set.
+Since API version 10, OAEP parameters can be set and obtained when PKCS1_OAEP is used with RSA. In the following table, the symbol "√" indicates that the parameter can be obtained or set.
 
 | OAEP Parameter| Value| Get| Set|
 | -------- | -------- | -------- | -------- |

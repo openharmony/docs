@@ -11,6 +11,7 @@ The OhosImageSourceDelayTimeList struct defines the delay time list of an image 
 
 **Related module**: [Image](image.md)
 
+**Header file**: [image_source_mdk.h](image__source__mdk_8h.md)
 
 ## Summary
 

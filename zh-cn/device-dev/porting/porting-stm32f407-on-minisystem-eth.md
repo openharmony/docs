@@ -550,7 +550,7 @@ board_ld_flags  ：链接选项，与Makefile中的LDFLAGS变量对应。
    #define LOSCFG_SYS_HEAP_SIZE (((unsigned long)&__los_heap_addr_end__) - ((unsigned long)&__los_heap_addr_start__))
    ```
 
-   其中，`__los_heap_addr_start__`与`__los_heap_addr_end__`变量在`STM32F407IGTx_FLASH.ld`链接文件中被定义, 将_user_heap_stack花括号内内容修改为:
+   其中，`__los_heap_addr_start__`与`__los_heap_addr_end__`变量在`STM32F407IGTx_FLASH.ld`链接文件中被定义, 将_user_heap_stack花括号内内容修改为：
 
    ```
    ._user_heap_stack :
@@ -756,9 +756,9 @@ board_ld_flags  ：链接选项，与Makefile中的LDFLAGS变量对应。
   }
 ```
 
-`W25x_BufferRead`等函数是spi-flash读写操作的接口，不同型号的spi-flash其实现也不同，Niobe407的SPI-Flash操作具体实现可参考`//device/board/talkweb/niobe407/liteos_m/drivers/spi_flash/src/w25qxx.c`
+`W25x_BufferRead`等函数是spi-flash读写操作的接口，不同型号的spi-flash其实现也不同，Niobe407的SPI-Flash操作具体实现可参考`//device/board/talkweb/niobe407/liteos_m/drivers/spi_flash/src/w25qxx.c`。
 
-由于SPI已经hdf化了，而littlefs依赖于spi驱动，为了方便对文件系统进行配置，可以将littlefs的配置加入至.hcs文件中，具体参考：`//device/board/talkweb/niobe407/liteos_m/hdf_config/hdf_littlefs.hcs`文件
+由于SPI已经hdf化了，而littlefs依赖于spi驱动，为了方便对文件系统进行配置，可以将littlefs的配置加入至.hcs文件中，具体参考：`//device/board/talkweb/niobe407/liteos_m/hdf_config/hdf_littlefs.hcs`文件。
 
 ```
 misc {

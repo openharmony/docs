@@ -25,4 +25,4 @@ import { appManager } from '@kit.AbilityKit';
 | moduleName  | string  | Yes  | No  | Module name.|
 | abilityName | string  | Yes  | No  | Ability name.   |
 | appIndex    | number  | Yes  | No  | Index of the DLP sandbox. |
-| isColdStart | boolean | Yes  | No  | Enabled status of cold start.    |
+| isColdStart | boolean | Yes  | No  | Enabled status of cold start. The value **true** means that cold start is enabled, and **false** means the opposite.    |

@@ -52,7 +52,7 @@ This error code is reported if a process does not exist.
 
 **Cause**
 
-The process does not exist.
+This error code is reported if a process does not exist.
 
 **Procedure**
 
@@ -203,7 +203,7 @@ This error code is reported if a SOCKS5 client fails to receive messages due to 
 
 **Cause**
 
-Errors such as memory overflow and invalid parameter have occurred. Check the log for Linux kernel errors.
+This problem is usually caused by memory overflows and invalid parameters. Check the log for Linux kernel errors.
 
 **Procedure**
 
@@ -329,8 +329,7 @@ This error code is reported if the type of the specified socket protocol is inco
 
 **Cause**
 
-The **socket** function is called with an unsupported socket protocol type.
-For example, the protocol type cannot be set to **SOCK_STREAM socket** for the the Internet UDP protocol.
+The socket function is called with an unsupported socket protocol type. For example, the protocol type cannot be set to **SOCK_STREAM** socket for the the Internet UDP protocol.
 
 **Procedure**
 
@@ -380,7 +379,7 @@ Network is down.
 
 **Description**
 
-The network is disabled.
+This error code is reported if the network is disabled.
 
 **Cause**
 
@@ -398,7 +397,7 @@ Connection timed out.
 
 **Description**
 
-This error code is reported if the connection to the remote server cannot be set up for a long time.
+This error code is reported if the connection to the remote server fails to establish within the timeout period.
 
 **Cause**
 
@@ -406,7 +405,7 @@ It is probable that a server breakdown has occurred.
 
 **Procedure**
 
-Contact the peer end to rectify the fault.
+If the issue cannot be resolved locally, verify whether the remote server has encountered a fault.
 
 ## 2303501 Null SSL
 
@@ -426,7 +425,7 @@ The returned error information is null when an internal function fails to be exe
 
 Call the function again.
 
-## 2303502 TLS Reading Error
+## 2303502 TLS Read Error
 
 **Error Message**
 
@@ -444,7 +443,7 @@ The underlying socket is blocked.
 
 Perform data receiving again.
 
-## 2303503 TLS Writing Error
+## 2303503 TLS Write Error
 
 **Error Message**
 
@@ -460,13 +459,13 @@ When the send buffer is full, the underlying socket sends an **EWOUDLBLOCK** err
 
 **Procedure**
 
-Rectify the fault on the server side.
+Check the server status, and rectify the fault.
 
 ## 2303504 x509 Failed to Look Up the x509 Certificate
 
 **Error Message**
 
-An error occurred when verifying the X.509 certificate.
+An error occurred when verifying the x509 certificate.
 
 **Description**
 

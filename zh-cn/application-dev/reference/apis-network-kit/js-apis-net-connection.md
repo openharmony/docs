@@ -5,6 +5,7 @@
 > **说明：**
 >
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
 > 无特殊说明，接口默认不支持并发。
 
 ## 导入模块
@@ -19,6 +20,8 @@ createNetConnection(netSpecifier?: NetSpecifier, timeout?: number): NetConnectio
 
 创建一个NetConnection对象，[netSpecifier](#netspecifier)指定关注的网络的各项特征；timeout是超时时间(单位是毫秒)；netSpecifier是timeout的必要条件，两者都没有则表示关注默认网络。
 
+**注意：** createNetConnection注册回调函数的数量不能超过2000（个），否则无法继续注册网络监听。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
@@ -28,7 +31,7 @@ createNetConnection(netSpecifier?: NetSpecifier, timeout?: number): NetConnectio
 | 参数名       | 类型                          | 必填 | 说明                                                         |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
 | netSpecifier | [NetSpecifier](#netspecifier) | 否   | 指定网络的各项特征，不指定或为undefined时关注默认网络。                   |
-| timeout      | number                        | 否   | 获取netSpecifier指定的网络时的超时时间，仅netSpecifier存在时生效，undefined时默认值为0。 |
+| timeout      | number                        | 否   | 获取netSpecifier指定的网络时的超时时间，传入值需为uint32_t范围内的整数，仅netSpecifier存在时生效，undefined时默认值为0。 |
 
 **返回值：**
 
@@ -211,8 +214,7 @@ connection.setAppHttpProxy({
 
 **预置锁定证书PIN:**
 
-证书PIN是对证书文件用sha256算法计算出的hash值。 
-对于证书server.pem, 可以用如下openssl命令计算它的PIN:
+证书PIN是对证书文件用sha256算法计算出的hash值。对于证书server.pem, 可以用如下openssl命令计算它的PIN:
 
 ```shell
 cat server.pem \
@@ -233,8 +235,7 @@ cat server.pem \
 
 **预置JSON配置文件:**
 
-预置的证书与网络服务器的对应关系通过JSON配置。 
-配置文件在APP中的路径是：src/main/resources/base/profile/network_config.json
+预置的证书与网络服务器的对应关系通过JSON配置。配置文件在APP中的路径是：src/main/resources/base/profile/network_config.json
 
 **JSON配置文件:**
 
@@ -385,9 +386,7 @@ item必须包含1个digest(string:指示公钥PIN)。
 
 getDefaultHttpProxy(callback: AsyncCallback\<HttpProxy>): void
 
-获取网络默认的代理配置信息。
-如果设置了全局代理，则会返回全局代理配置信息。如果进程使用[setAppNet](#connectionsetappnet9)绑定到指定[NetHandle](#nethandle)对应的网络，则返回[NetHandle](#nethandle)对应网络的代理配置信息。在其它情况下，将返回默认网络的代理配置信息。
-使用callback方式作为异步方法。
+获取网络默认的代理配置信息。如果设置了全局代理，则会返回全局代理配置信息。如果进程使用[setAppNet](#connectionsetappnet9)绑定到指定[NetHandle](#nethandle)对应的网络，则返回[NetHandle](#nethandle)对应网络的代理配置信息。在其它情况下，将返回默认网络的代理配置信息。使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -425,9 +424,7 @@ connection.getDefaultHttpProxy((error: BusinessError, data: connection.HttpProxy
 
 getDefaultHttpProxy(): Promise\<HttpProxy>
 
-获取网络默认的代理配置信息。
-如果设置了全局代理，则会返回全局代理配置信息。如果进程使用[setAppNet](#connectionsetappnet9)绑定到指定[NetHandle](#nethandle)对应的网络，则返回[NetHandle](#nethandle)对应网络的代理配置信息。在其它情况下，将返回默认网络的代理配置信息。
-使用Promise方式作为异步方法。
+获取网络默认的代理配置信息。如果设置了全局代理，则会返回全局代理配置信息。如果进程使用[setAppNet](#connectionsetappnet9)绑定到指定[NetHandle](#nethandle)对应的网络，则返回[NetHandle](#nethandle)对应网络的代理配置信息。在其它情况下，将返回默认网络的代理配置信息。使用Promise方式作为异步方法。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -664,7 +661,7 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   connection.setAppNet(netHandle).then(() => {
     console.log("success");
   }).catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
   })
 });
 ```
@@ -1136,7 +1133,7 @@ import { connection } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.isDefaultNetMetered((error: BusinessError, data: boolean) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log('data: ' + data);
 });
 ```
@@ -1245,7 +1242,7 @@ import { connection } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.hasDefaultNet((error: BusinessError, data: boolean) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log('data: ' + data);
 });
 ```
@@ -1358,7 +1355,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   connection.reportNetConnected(netHandle, (error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
   });
 });
 ```
@@ -1770,7 +1767,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 connection.removeCustomDnsRule("xxxx").then(() => {
     console.log("success");
 }).catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
 })
 ```
 
@@ -1853,7 +1850,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 connection.clearCustomDnsRules().then(() => {
     console.log("success");
 }).catch((error: BusinessError) => {
-    console.log(JSON.stringify(error));
+    console.error(JSON.stringify(error));
 })
 ```
 
@@ -1940,6 +1937,8 @@ register(callback: AsyncCallback\<void>): void
 
 订阅指定网络状态变化的通知。
 
+**注意：** 使用完register接口后需要及时调用unregister取消注册。
+
 **需要权限**：ohos.permission.GET_NETWORK_INFO
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -1973,7 +1972,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let netCon: connection.NetConnection = connection.createNetConnection();
 netCon.register((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -1981,7 +1980,7 @@ netCon.register((error: BusinessError) => {
 
 unregister(callback: AsyncCallback\<void>): void
 
-取消订阅默认网络状态变化的通知。
+取消订阅默认网络状态变化的通知。可在业务逻辑处理结束时取消订阅，但不应该放在事件回调函数中调用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2012,7 +2011,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let netCon: connection.NetConnection = connection.createNetConnection();
 netCon.unregister((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -2044,7 +2043,7 @@ let netCon: connection.NetConnection = connection.createNetConnection();
 
 // 先使用register接口注册订阅事件
 netCon.register((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 
 // 订阅网络可用事件。调用register后，才能接收到此事件通知
@@ -2054,7 +2053,7 @@ netCon.on('netAvailable', (data: connection.NetHandle) => {
 
 // 使用unregister接口取消订阅
 netCon.unregister((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -2084,7 +2083,7 @@ let netCon: connection.NetConnection = connection.createNetConnection();
 
 // 先使用register接口注册订阅事件
 netCon.register((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 
 // 订阅网络阻塞状态事件。调用register后，才能接收到此事件通知
@@ -2094,7 +2093,7 @@ netCon.on('netBlockStatusChange', (data: connection.NetBlockStatusInfo) => {
 
 // 使用unregister接口取消订阅
 netCon.unregister((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -2126,7 +2125,7 @@ let netCon: connection.NetConnection = connection.createNetConnection();
 
 // 先使用register接口注册订阅事件
 netCon.register((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 
 // 订阅网络能力变化事件。调用register后，才能接收到此事件通知
@@ -2136,7 +2135,7 @@ netCon.on('netCapabilitiesChange', (data: connection.NetCapabilityInfo) => {
 
 // 使用unregister接口取消订阅
 netCon.unregister((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -2166,7 +2165,7 @@ let netCon: connection.NetConnection = connection.createNetConnection();
 
 // 先使用register接口注册订阅事件
 netCon.register((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 
 // 订阅网络连接信息变化事件。调用register后，才能接收到此事件通知
@@ -2176,7 +2175,7 @@ netCon.on('netConnectionPropertiesChange', (data: connection.NetConnectionProper
 
 // 使用unregister接口取消订阅
 netCon.unregister((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -2208,7 +2207,7 @@ let netCon: connection.NetConnection = connection.createNetConnection();
 
 // 先使用register接口注册订阅事件
 netCon.register((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 
 // 订阅网络丢失事件。调用register后，才能接收到此事件通知
@@ -2218,7 +2217,7 @@ netCon.on('netLost', (data: connection.NetHandle) => {
 
 // 使用unregister接口取消订阅
 netCon.unregister((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -2250,7 +2249,7 @@ let netCon: connection.NetConnection = connection.createNetConnection();
 
 // 先使用register接口注册订阅事件
 netCon.register((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 
 // 订阅网络不可用事件。调用register后，才能接收到此事件通知
@@ -2260,7 +2259,7 @@ netCon.on('netUnavailable', () => {
 
 // 使用unregister接口取消订阅
 netCon.unregister((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
 });
 ```
 
@@ -2327,7 +2326,7 @@ interface Data {
               port:8080,
               family:1} as socket.NetAddress, (error: Error) => {
       if (error) {
-        console.log('bind fail');
+        console.error('bind fail');
         return;
       }
       netHandle.bindSocket(tcp, (error: BusinessError, data: void) => {
@@ -2421,7 +2420,7 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
               port:8080,
               family:1} as socket.NetAddress, (error: Error) => {
       if (error) {
-        console.log('bind fail');
+        console.error('bind fail');
         return;
       }
       netHandle.bindSocket(tcp).then(() => {
@@ -2701,7 +2700,7 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 | 名称    | 类型   | 必填 | 说明                      |
 | ------ | ------ | --- |------------------------- |
 | host  | string | 是  |  代理服务器主机名。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| port  | number | 是  |  主机端口。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| port  | number | 是  |  主机端口。取值范围[0,65535]。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | exclusionList  | Array\<string\> | 是  | 不使用代理的主机名列表，主机名支持域名、IP地址以及通配符形式，详细匹配规则如下：<br/>1、域名匹配规则：<br/>（1）完全匹配：代理服务器主机名只要与列表中的任意一个主机名完全相同，就可以匹配。<br/>（2）包含匹配：代理服务器主机名只要包含列表中的任意一个主机名，就可以匹配。<br/>例如，如果在主机名列表中设置了 “ample.com”，则  “ample.com”、“www.ample.com”、“ample.com:80”都会被匹配，而 “www.example.com”、“ample.com.org”则不会被匹配。<br/>2、IP地址匹配规则：代理服务器主机名只要与列表中的任意一个IP地址完全相同，就可以匹配。<br/>3、域名跟IP地址可以同时添加到列表中进行匹配。<br/>4、单个“\*”是唯一有效的通配符，当列表中只有通配符时，将与所有代理服务器主机名匹配，表示禁用代理。通配符只能单独添加，不可以与其他域名、IP地址一起添加到列表中，否则通配符将不生效。<br/>5、匹配规则不区分主机名大小写。<br/>6、匹配主机名时，不考虑http和https等协议前缀。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | username<sup>12+</sup>  | string | 否 |  使用代理的用户名。|
 | password<sup>12+</sup>  | string | 否 |  使用代理的用户密码。|
@@ -2732,15 +2731,16 @@ let config: wifiManager.WifiDeviceConfig = {
   securityType: wifiManager.WifiSecurityType.WIFI_SEC_TYPE_PSK
 };
 // 通过wifiManager.addCandidateConfig获取注册WLAN的networkId
-let networkId: number = await wifiManager.addCandidateConfig(config);
-let netConnectionWlan = connection.createNetConnection({
-  netCapabilities: {
-    bearerTypes: [connection.NetBearType.BEARER_WIFI]
-  },
-  bearerPrivateIdentifier: `${networkId}`
-});
-netConnectionWlan.register((error: BusinessError) => {
-  console.log(JSON.stringify(error));
+wifiManager.addCandidateConfig(config,(error,networkId) => {
+ let netConnectionWlan = connection.createNetConnection({
+   netCapabilities: {
+     bearerTypes: [connection.NetBearType.BEARER_WIFI]
+   },
+   bearerPrivateIdentifier: `${networkId}`
+ });
+ netConnectionWlan.register((error: BusinessError) => {
+   console.error(JSON.stringify(error));
+ });
 });
 ```
 
@@ -2794,7 +2794,7 @@ netConnectionWlan.register((error: BusinessError) => {
 | 名称                 | 类型                                  | 必填 |            说明            |
 | -------------------- | ------------------------------------- | --- |--------------------------- |
 | netHandle            | [NetHandle](#nethandle)               | 是   |数据网络句柄(netHandle)。   |
-| blocked              | boolean                               | 是   |标识当前网络是否是堵塞状态。 |
+| blocked              | boolean                               | 是   |true：标识当前网络是堵塞状态；false：标识当前网络不是堵塞状态。 |
 
 ## ConnectionProperties
 
@@ -2822,8 +2822,8 @@ netConnectionWlan.register((error: BusinessError) => {
 | interface      | string                      | 是 |网卡名称。       |
 | destination    | [LinkAddress](#linkaddress) | 是 |目的地址。       |
 | gateway        | [NetAddress](#netaddress)   | 是 |网关地址。       |
-| hasGateway     | boolean                     | 是 |是否有网关。     |
-| isDefaultRoute | boolean                     | 是 |是否为默认路由。 |
+| hasGateway     | boolean                     | 是 |true：有网关；false：无网关。    |
+| isDefaultRoute | boolean                     | 是 |true：默认路由；false：非默认路由。 |
 
 ## LinkAddress
 
@@ -2848,7 +2848,7 @@ netConnectionWlan.register((error: BusinessError) => {
 | ------- | ------ | -- |---------------------------- |
 | address | string | 是 |地址。                       |
 | family  | number | 否 |IPv4 = 1，IPv6 = 2，默认IPv4。|
-| port    | number | 否 |端口，取值范围\[0, 65535]。   |
+| port    | number | 否 |端口，取值范围\[0, 65535]，默认值为0。  |
 
 ## HttpRequest
 
@@ -2870,8 +2870,6 @@ type TCPSocket = socket.TCPSocket
 
 获取一个TCPSocket对象。
 
-**原子化服务API：** 从API version 10开始，该接口支持在原子化服务中使用。
-
 **系统能力**：SystemCapability.Communication.NetStack
 
 |       类型       |            说明             |
@@ -2883,8 +2881,6 @@ type TCPSocket = socket.TCPSocket
 type UDPSocket = socket.UDPSocket
 
 获取一个UDPSocket对象。
-
-**原子化服务API：** 从API version 10开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetStack
 

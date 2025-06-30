@@ -4,9 +4,9 @@
 
 ### `JSVM_Status`
 
-    是一个枚举数据类型，表示 JSVM-API 接口返回的状态信息。
+    这是一个枚举数据类型，表示 JSVM-API 接口返回的状态信息。
 
-    每当调用一个 JSVM-API 函数，都会返回该值，表示操作成功与否的相关信息。
+    调用一次 JSVM-API 函数，会返回一个值，用来表示操作成功与否的相关信息。
 
 ```c++
     typedef enum {
@@ -563,6 +563,8 @@ consoleinfo('Result is:' + value);\
 场景示例：
 编译及执行JS代码(创建vm，注册function，执行js，销毁vm)。
 
+cpp 部分代码
+
 ```c++
 #include <cstring>
 #include <fstream>
@@ -638,12 +640,6 @@ static void RunScriptWithOption(JSVM_Env env, string& src,
     char resultStr[128];
     size_t size;
     OH_JSVM_GetValueStringUtf8(env, result, resultStr, 128, &size);
-    printf("%s\n", resultStr);
-    if (dataPtr && lengthPtr && *dataPtr == nullptr) {
-        // 将js源码编译出的脚本保存到cache，可以避免重复编译，带来性能提升
-        OH_JSVM_CreateCodeCache(env, script, (const uint8_t**)dataPtr, lengthPtr);
-        printf("Code cache created with length = %ld\n", *lengthPtr);
-    }
 
     OH_JSVM_CloseHandleScope(env, handleScope);
 }
@@ -686,57 +682,11 @@ static void RunScript(JSVM_Env env, string& src,
     char resultStr[128];
     size_t size;
     OH_JSVM_GetValueStringUtf8(env, result, resultStr, 128, &size);
-    printf("%s\n", resultStr);
-    if (dataPtr && lengthPtr && *dataPtr == nullptr) {
-        // 将js源码编译出的脚本保存到cache，可以避免重复编译，带来性能提升
-        OH_JSVM_CreateCodeCache(env, script, (const uint8_t**)dataPtr, lengthPtr);
-        printf("Code cache created with length = %ld\n", *lengthPtr);
-    }
 
     OH_JSVM_CloseHandleScope(env, handleScope);
 }
 
-static void CreateSnapshot() {
-    JSVM_VM vm;
-    JSVM_CreateVMOptions options;
-    memset(&options, 0, sizeof(options));
-    options.isForSnapshotting = true;
-    OH_JSVM_CreateVM(&options, &vm);
-    JSVM_VMScope vmScope;
-    OH_JSVM_OpenVMScope(vm, &vmScope);
-
-    JSVM_Env env;
-    // 将native函数注册成js可调用的方法，hello_cb中记录该native方法的指针和参数等信息
-    JSVM_PropertyDescriptor descriptors[] = {
-        { "hello", NULL, &hello_cb, NULL, NULL, NULL, JSVM_DEFAULT }
-    };
-    OH_JSVM_CreateEnv(vm, 1, descriptors, &env);
-
-    JSVM_EnvScope envScope;
-    OH_JSVM_OpenEnvScope(env, &envScope);
-    // 执行js源码src，src中可以包含任何js语法。也可以调用已注册的native方法。
-    string src = srcGlobal + "concat(hello(), ', ', 'World from CreateSnapshot!');";
-    RunScript(env, src, true);
-
-    // 创建snapshot，将当前的env保存到字符串，可以在某个时机通过该字符串还原出env，避免重复定义该env中的属性，带来性能提升。
-    const char* blobData = nullptr;
-    size_t blobSize = 0;
-    JSVM_Env envs[1] = { env };
-    OH_JSVM_CreateSnapshot(vm, 1, envs, &blobData, &blobSize);
-    printf("Snapshot blob size = %ld\n", blobSize);
-
-    // 如果将snapshot保存到文件中，需要考虑应用中的文件读写权限
-    ofstream file("/data/storage/el2/base/files/blob.bin", ios::out | ios::binary | ios::trunc);
-    file.write(blobData, blobSize);
-    file.close();
-
-    OH_JSVM_CloseEnvScope(env, envScope);
-    OH_JSVM_DestroyEnv(env);
-    OH_JSVM_CloseVMScope(vm, vmScope);
-    OH_JSVM_DestroyVM(vm);
-}
-
-void RunWithoutSnapshot(uint8_t** dataPtr, size_t* lengthPtr) {
+void RunWithOption(uint8_t** dataPtr, size_t* lengthPtr) {
     // 创建虚拟机实例
     JSVM_VM vm;
     OH_JSVM_CreateVM(nullptr, &vm);
@@ -752,7 +702,7 @@ void RunWithoutSnapshot(uint8_t** dataPtr, size_t* lengthPtr) {
     JSVM_EnvScope envScope;
     OH_JSVM_OpenEnvScope(env, &envScope);
     // 执行js源码src，src中可以包含任何js语法。也可以调用已注册的native方法。
-    auto src = srcGlobal + "concat(hello(), ', ', 'World', ' from RunWithoutSnapshot!')";
+    auto src = srcGlobal + "concat(hello(), ', ', 'World', ' from RunWithOption!')";
     // 其中使用新增接口，可以覆盖原有 Compile 系列接口的功能且具有拓展性
     RunScriptWithOption(env, src, dataPtr, lengthPtr);
 
@@ -760,95 +710,92 @@ void RunWithoutSnapshot(uint8_t** dataPtr, size_t* lengthPtr) {
     OH_JSVM_DestroyEnv(env);
     OH_JSVM_CloseVMScope(vm, vmScope);
     OH_JSVM_DestroyVM(vm);
+
+    bool result = true;
+    OH_LOG_INFO(LOG_APP, "RunWithOption: success: %{public}d", result);
 }
 
-void RunWithSnapshot(uint8_t **dataPtr, size_t *lengthPtr) {
-    // The lifetime of blobData must not be shorter than that of the vm.
-    // 如果从文件中读取snapshot，需要考虑应用中的文件读写权限
-    vector<char> blobData;
-    ifstream file("/data/storage/el2/base/files/blob.bin", ios::in | ios::binary | ios::ate);
-    size_t blobSize = file.tellg();
-    blobData.resize(blobSize);
-    file.seekg(0, ios::beg);
-    file.read(blobData.data(), blobSize);
-    file.close();
-
+void RunWithOrigin(uint8_t **dataPtr, size_t *lengthPtr) {
     // 创建虚拟机实例
     JSVM_VM vm;
     JSVM_CreateVMOptions options;
     memset(&options, 0, sizeof(options));
-    options.snapshotBlobData = blobData.data();
-    options.snapshotBlobSize = blobSize;
+    options.isForSnapshotting = true;
     OH_JSVM_CreateVM(&options, &vm);
     JSVM_VMScope vmScope;
     OH_JSVM_OpenVMScope(vm, &vmScope);
 
     // 从快照中创建env
     JSVM_Env env;
-    OH_JSVM_CreateEnvFromSnapshot(vm, 0, &env);
+    // 将native函数注册成js可调用的方法，hello_cb中记录该native方法的指针和参数等信息
+    JSVM_PropertyDescriptor descriptors[] = {
+        { "hello", NULL, &hello_cb, NULL, NULL, NULL, JSVM_DEFAULT }
+    };
+    OH_JSVM_CreateEnv(vm, 1, descriptors, &env);
     JSVM_EnvScope envScope;
     OH_JSVM_OpenEnvScope(env, &envScope);
-
     // 执行js脚本，因为快照记录的env中定义了hello()，所以无需重新定义。dataPtr中如果保存了编译后的js脚本，就能直接执行js脚本，避免从源码重复编译。
-    string src = "concat(hello(), ', ', 'World', ' from RunWithSnapshot!')";
+    string src = "concat(hello(), ', ', 'World', ' from RunWithOrigin!')";
     RunScript(env, src, true, dataPtr, lengthPtr);
 
     OH_JSVM_CloseEnvScope(env, envScope);
     OH_JSVM_DestroyEnv(env);
     OH_JSVM_CloseVMScope(vm, vmScope);
     OH_JSVM_DestroyVM(vm);
+
+    bool result = true;
+    OH_LOG_INFO(LOG_APP, "RunWithOrigin: success: %{public}d", result);
 }
 
-void PrintVmInfo() {
-    JSVM_VMInfo vmInfo;
-    OH_JSVM_GetVMInfo(&vmInfo);
-    printf("apiVersion: %d\n", vmInfo.apiVersion);
-    printf("engine: %s\n", vmInfo.engine);
-    printf("version: %s\n", vmInfo.version);
-    printf("cachedDataVersionTag: 0x%x\n", vmInfo.cachedDataVersionTag);
-}
+static JSVM_Value RunDemo(JSVM_Env env, JSVM_CallbackInfo info) {
+    size_t argc = 1;
+    JSVM_Value args[1] = {nullptr};
+    OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);
 
-static intptr_t externals[] = {
-    (intptr_t)&hello_cb,
-    0,
-};
+    char* str = "WithOrigin";
+    size_t len = strlen(str);
+    JSVM_Value result = nullptr;
+    OH_JSVM_CreateStringUtf8(env, str, len, &result);
 
-int main(int argc, char *argv[]) {
-    if (argc <= 1) {
-        printf("Usage: %s gen-snapshot|use-snapshot|no-snapshot\n", argv[0]);
-        return 0;
-    }
-
-    JSVM_InitOptions initOptions;
-    memset(&initOptions, 0, sizeof(initOptions));
-    initOptions.externalReferences = externals;
-    // 初始化引擎，一个进程中只能初始化一次
-    OH_JSVM_Init(&initOptions);
-    PrintVmInfo();
-
-    if (argv[1] == string("gen-snapshot")) {
-        CreateSnapshot();
-        return 0;
-    }
-
-    // snapshot可以记录下某个时间的js执行环境，可以跨进程通过snapshot快速还原出js执行上下文环境，前提是保证snapshot数据的生命周期。
-    const auto useSnapshot = argv[1] == string("use-snapshot");
-    const auto run = useSnapshot ? RunWithSnapshot : RunWithoutSnapshot;
     uint8_t* data = nullptr;
     size_t length = 0;
-    run(&data, &length);
+    bool equal = false;
+    OH_JSVM_StrictEquals(env, args[0], result, &equal);
+    const auto run = equal ? RunWithOrigin : RunWithOption;
     run(&data, &length);
     delete[] data;
 
-    return 0;
+    return nullptr;
 }
+
+// RunDemo注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = RunDemo},
+};
+static JSVM_CallbackStruct *method = param;
+// RunDemo方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"RunDemo", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+
+// 样例测试js
+const char *srcCallNative = R"JS(RunDemo("WithOrigin"); RunDemo("WithOption"))JS";
 ```
+
+预期输出结果
+```ts
+RunWithOption: success: 1
+RunWithOrigin: success: 1
+```
+
+OH_JSVM_CreateCodeCache 接口用法可参考[使用 code cache 加速编译](use-jsvm-about-code-cache.md)。
 
 ### 使用 JSVM-API WebAssembly 接口编译 wasm module
 
 #### 场景介绍
 
-JSVM-API WebAssembly 接口提供了 wasm 字节码编译、wasm 函数优化、wasm cache 序列化和反序列化的能力。
+JSVM-API WebAssembly 接口提供了 WebAssembly 字节码编译、WebAssembly 函数优化、WebAssembly cache 序列化和反序列化的能力。
+详见[使用 JSVM-API WebAssembly 接口](use-jsvm-about-wasm.md)。
 
 #### 接口说明
 
@@ -868,7 +815,7 @@ JSVM-API WebAssembly 接口提供了 wasm 字节码编译、wasm 函数优化、
 
 #### 场景介绍
 
-获取、抛出、清理JS异常
+获取、抛出、清理JS异常。
 
 #### 接口说明
 | 接口 | 功能说明 |
@@ -1028,7 +975,7 @@ OH_JSVM_CloseHandleScope(env, scope);
 
 #### 场景介绍
 
-创建JS对象类型和基本类型
+创建JS对象类型和基本类型。
 
 #### 接口说明
 | 接口 | 功能说明 |
@@ -1128,11 +1075,11 @@ JSVM_Value value;
 OH_JSVM_CreateSet(env, &value);
 ```
 
-### 从JS类型获取C类型&获取JS类型信息
+### 从JS类型获取C类型&JS类型信息
 
 #### 场景介绍
 
-从JS类型获取C类型&获取JS类型信息。
+从JS类型获取C类型&JS类型信息。
 
 #### 接口说明
 | 接口 | 功能说明 |
@@ -1206,7 +1153,7 @@ size_t arrayBufferLength = 0;
 OH_JSVM_GetArraybufferInfo(env, retArrayBuffer, &tmpArrayBufferPtr, &arrayBufferLength);
 ```
 
-创建utf8类型的String，并获取C字符串。
+根据 UTF-8 编码的C字符串创建一个 JavaScript 字符串，以及获取给定 JavaScript 字符串的 UTF-8 编码C字符串。
 
 ```c++
 const char *testStringStr = "testString";
@@ -1373,7 +1320,7 @@ OH_JSVM_IsRegExp(env, result, &isRegExp);
 
 #### 场景介绍
 
-JS对象属性的增删获取和判断
+JS对象属性的增加、删除、获取和判断。
 
 #### 接口说明
 | 接口 | 功能说明 |
@@ -2038,7 +1985,7 @@ static napi_value TestDefineClassWithProperty(napi_env env1, napi_callback_info 
     return nullptr;
 }
 ```
-场景示例：设置父类class并通过DefineClassOptions设置监听拦截属性操作
+场景示例：设置父类并通过DefineClassOptions设置监听拦截属性操作
 
 具体示例参考[使用JSVM进行class相关开发](use-jsvm-about-class.md)。
 
@@ -2068,7 +2015,7 @@ OH_JSVM_GetVersion(env, &versionId);
 
 #### 场景介绍
 
-内存管理
+内存管理。
 
 #### 接口说明
 | 接口                                          | 功能说明                                                                                                   |
@@ -2079,7 +2026,7 @@ OH_JSVM_GetVersion(env, &versionId);
 | OH_JSVM_FreeArrayBufferBackingStoreData | 释放 BackingStore 内存。 |
 | OH_JSVM_CreateArrayBufferFromBackingStoreData | 基于申请的 BackingStore 内存创建 array buffer。 |
 
-> BackingStore 的使用属于高危操作，需要使用者自身保证内存的正确使用，请参考下方的正确示例，谨慎使用。
+> 使用 BackingStore 属于高危操作，使用者需确保内存使用正确。请参考下方正确示例，谨慎操作。
 
 场景示例：
 内存管理。
@@ -2240,7 +2187,7 @@ OH_JSVM_JsonParse(env, jsonString, &result);
 
 #### 场景介绍
 
-创建和使用虚拟机的启动快照
+创建和使用虚拟机的启动快照。
 
 #### 接口说明
 | 接口 | 功能说明 |
@@ -2255,7 +2202,7 @@ OH_JSVM_JsonParse(env, jsonString, &result);
 
 #### 场景介绍
 
-检查传入的值是否可调用
+检查传入的值是否可调用。
 
 #### 接口说明
 | 接口 | 功能说明 |
@@ -2334,7 +2281,7 @@ static napi_value MyJSVMDemo([[maybe_unused]] napi_env _env, [[maybe_unused]] na
 
 #### 场景介绍
 
-Lock操作
+Lock操作。
 
 #### 接口说明
 | 接口 | 功能说明 |
@@ -2437,7 +2384,7 @@ static napi_value Add([[maybe_unused]] napi_env _env, [[maybe_unused]] napi_call
 
 #### 场景介绍
 
-检索通过OH_JSVM_SetInstanceData()与当前运行的JSVM环境相关联的数据
+使用OH_JSVM_SetInstanceData()函数，检索与当前运行的JSVM环境相关联的数据。
 
 #### 接口说明
 | 接口 | 功能说明 |
@@ -2532,7 +2479,7 @@ static napi_value GetInstanceData(napi_env env1, napi_callback_info info)
 
 #### 场景介绍
 
-在虚拟机内部启动任务队列的运行，检查是否有微任务在队列中等待，这个任务队列可以由外部事件循环执行
+在虚拟机内部启动任务队列的运行，检查队列中是否有微任务等待，任务队列可由外部事件循环执行。
 
 #### 接口说明
 | 接口 | 功能说明 |

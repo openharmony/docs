@@ -36,9 +36,9 @@ struct PageInterflowFaAndStage {
               abilityName: 'MainAbility'
             };
             featureAbility.startAbility({ want }).then((code) => {
-              hilog.info(domain, TAG, 'Ability verify code: ' + JSON.stringify(code));
+              hilog.info(domain, TAG, `Ability verify code: ${JSON.stringify(code)}.`);
             }).catch((error: BusinessError) => {
-              hilog.error(domain, TAG, 'Ability failed: ' + JSON.stringify(error));
+              hilog.error(domain, TAG, `Ability failed, error msg: ${JSON.stringify(error)}.`);
             });
             let serviceWant: Want = {
               bundleName: 'com.samples.stagemodelabilityinteraction',
@@ -46,13 +46,13 @@ struct PageInterflowFaAndStage {
             };
             let faConnect: common.ConnectOptions = {
               onConnect: (elementName, proxy) => {
-                hilog.info(domain, TAG, "FaConnection onConnect called.");
+                hilog.info(domain, TAG, `FaConnection onConnect called.`);
               },
               onDisconnect: (elementName) => {
-                hilog.info(domain, TAG, "FaConnection onDisconnect called.");
+                hilog.info(domain, TAG, `FaConnection onDisconnect called.`);
               },
               onFailed: (code) => {
-                hilog.info(domain, TAG, "FaConnection onFailed code is: " + code);
+                hilog.error(domain, TAG, `FaConnection onFailed code is: ${code}`);
               }
             };
             let connectionId = featureAbility.connectAbility(serviceWant, faConnect);
@@ -91,9 +91,9 @@ class ServiceAbilityStartUiAbility {
       abilityName: 'MainAbility'
     };
     particleAbility.startAbility({ want }).then(() => {
-      hilog.info(domain, TAG, 'ServiceAbilityStartUIAbility Start Ability successfully.');
+      hilog.info(domain, TAG, `ServiceAbilityStartUIAbility Start Ability successfully.`);
     }).catch((error: BusinessError) => {
-      hilog.info(domain, TAG, 'ServiceAbilityStartUIAbility Ability failed: ' + JSON.stringify(error));
+      hilog.error(domain, TAG, `ServiceAbilityStartUIAbility Ability failed: ${JSON.stringify(error)}.`);
     });
 
     // Access the ServiceExtensionAbility.
@@ -103,17 +103,17 @@ class ServiceAbilityStartUiAbility {
     };
     let faConnect: common.ConnectOptions = {
       onConnect: (elementName, proxy) => {
-        hilog.info(domain, TAG, 'FaConnection onConnect called.');
+        hilog.info(domain, TAG, `FaConnection onConnect called.`);
       },
       onDisconnect: (elementName) => {
-        hilog.info(domain, TAG, 'FaConnection onDisconnect called.');
+        hilog.info(domain, TAG, `FaConnection onDisconnect called.`);
       },
       onFailed: (code) => {
-        hilog.info(domain, TAG, 'FaConnection onFailed code is: ' + code);
+        hilog.error(domain, TAG, `FaConnection onFailed code is: ${code}.`);
       }
     };
     let connectionId = particleAbility.connectAbility(serviceWant, faConnect);
-    hilog.info(domain, TAG, 'ServiceAbilityStartUIAbility ServiceAbility onStart');
+    hilog.info(domain, TAG, `ServiceAbilityStartUIAbility ServiceAbility onStart.`);
   }
 };
 

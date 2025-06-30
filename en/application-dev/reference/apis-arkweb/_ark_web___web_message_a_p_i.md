@@ -3,12 +3,13 @@
 
 ## Overview
 
-Defines a native API struct of the post message data. Before calling the API, you are advised to use **ARKWEB_MEMBER_MISSING** to check whether the function struct has the corresponding pointer to avoid crash caused by mismatch between the SDK and the device ROM.
+Defines a native API struct of the post message data. Before calling the API, you are advised to use **ARKWEB_MEMBER_MISSING** to check whether the function struct has the corresponding pointer to avoid crash caused by mismatch between the SDK version and the device ROM version.
 
 **Since**: 12
 
 **Related module**: [Web](_web.md)
 
+**Header file**: [arkweb_type.h](arkweb__type_8h.md)
 
 ## Summary
 
@@ -40,7 +41,7 @@ Pointer to the message to create.
 
 **Returns**
 
-Returns the message struct.
+The message struct.
 
 
 ### destroyWebMessage
@@ -56,7 +57,7 @@ Pointer to the message to destroy.
 
 | Name| Description| 
 | -------- | -------- |
-| webMessage | Message to destroy. | 
+| webMessage | Pointer to the message to destroy. | 
 
 
 ### getData
@@ -77,7 +78,7 @@ Pointer to the data to obtain.
 
 **Returns**
 
-Returns the pointer to the data.
+Pointer to the data.
 
 
 ### getType
@@ -97,7 +98,7 @@ Pointer to the message type to obtain.
 
 **Returns**
 
-Returns the message type.
+Message type.
 
 
 ### setData

@@ -4,7 +4,7 @@
 
 > **说明：**
 >
-> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
 
@@ -12,7 +12,7 @@
 import { Environment } from '@kit.CoreFileKit';
 ```
 
-## Environment.getUserDownloadDir<sup>11+</sup>
+## Environment.getUserDownloadDir
 
 getUserDownloadDir(): string
 
@@ -44,12 +44,12 @@ function getUserDownloadDirExample() {
     let path = Environment.getUserDownloadDir();
     console.log(`success to getUserDownloadDir: ${JSON.stringify(path)}`);
   } catch (error) {
-    console.error(`failed to getUserDownloadDir because: ${JSON.stringify(error)}`);
+    console.error(`failed to getUserDownloadDir, Error code: ${error.code}, message: ${error.message}`);
   }
 }
 ```
 
-## Environment.getUserDesktopDir<sup>11+</sup>
+## Environment.getUserDesktopDir
 
 getUserDesktopDir(): string
 
@@ -81,12 +81,12 @@ function getUserDesktopDirExample() {
     let path = Environment.getUserDesktopDir();
     console.log(`success to getUserDesktopDir: ${JSON.stringify(path)}`);
   } catch (error) {
-    console.error(`failed to getUserDesktopDir because: ${JSON.stringify(error)}`);
+    console.error(`failed to getUserDesktopDir, Error code: ${error.code}, message: ${error.message}`);
   }
 }
 ```
 
-## Environment.getUserDocumentDir<sup>11+</sup>
+## Environment.getUserDocumentDir
 
 getUserDocumentDir(): string
 
@@ -118,7 +118,7 @@ function getUserDocumentDirExample() {
     let path = Environment.getUserDocumentDir();
     console.log(`success to getUserDocumentDir: ${JSON.stringify(path)}`);
   } catch (error) {
-    console.error(`failed to getUserDocumentDir because: ${JSON.stringify(error)}`);
+    console.error(`failed to getUserDocumentDir, Error code: ${error.code}, message: ${error.message}`);
   }
 }
 ```

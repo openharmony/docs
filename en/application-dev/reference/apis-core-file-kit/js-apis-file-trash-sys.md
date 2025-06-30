@@ -105,7 +105,7 @@ Permanently deletes a file or folder from the **Recently deleted** list.
 
 | Name| Type  | Mandatory| Description                      |
 | ------ | ------ | ---- | -------------------------- |
-| uri   | string | Yes  | URI of the file or folder to recover.|
+| uri   | string | Yes  | URI of the file or folder to delete.|
 
 **Error codes**
 
@@ -118,7 +118,6 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   let uri = fileinfos[0].uri;
   trash.completelyDelete(uri);
   ```
-
 
 ## FileInfo
 
@@ -134,6 +133,6 @@ Represents information about a file or folder in the **Recently deleted** list.
 | srcPath | string | Yes| No| Path of the file or folder before being deleted.|
 | fileName | string | Yes| No| Name of the file or folder.|
 | mode | number | Yes| No| Permission on the file or folder.|
-| size | number | Yes| No|  Size of the file or folder.|
-| mtime | number | Yes| No|  Time when the file or folder was last modified.|
-| ctime | string | Yes| No|  Time when the file or folder was created.|
+| size | number | Yes| No|  Size of a file or folder, in bytes.|
+| mtime | number | Yes| No|  Time when the file or folder was last modified. It is the number of milliseconds elapsed since the Unix epoch (00:00:00 UTC on January 1, 1970).|
+| ctime | number | Yes| No|  Time when the file or folder was created. It is the number of seconds elapsed since the Unix epoch (00:00:00 UTC on January 1, 1970).|

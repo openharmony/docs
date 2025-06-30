@@ -9,6 +9,7 @@ Defines the structure of the interceptor for callback events, including mouse ev
 
 **Related module**: [Input](input.md)
 
+**Header file**: [oh_input_manager.h](oh__input__manager_8h.md)
 
 ## Summary
 
@@ -31,6 +32,7 @@ Defines the structure of the interceptor for callback events, including mouse ev
 Input_AxisEventCallback Input_InterceptorEventCallback::axisCallback
 ```
 **Description**
+
 Callback for axis events.
 
 **Since**: 12
@@ -42,6 +44,7 @@ Callback for axis events.
 Input_MouseEventCallback Input_InterceptorEventCallback::mouseCallback
 ```
 **Description**
+
 Callback for mouse events.
 
 **Since**: 12
@@ -53,6 +56,7 @@ Callback for mouse events.
 Input_TouchEventCallback Input_InterceptorEventCallback::touchCallback
 ```
 **Description**
+
 Callback for touch events.
 
 **Since**: 12

@@ -6,9 +6,9 @@
 >
 > 针对非对称密钥的convertPemKey操作：
 >
-> - 公钥需满足：X.509规范、PKCS\#1规范、PEM编码格式。
+> - 公钥需满足X.509规范、PKCS\#1规范、PEM编码格式。
 >
-> - 私钥需满足：PKCS\#8规范、PKCS\#1规范、PEM编码格式。
+> - 私钥需满足PKCS\#8规范、PKCS\#1规范、PEM编码格式。
 >
 > - 当前只支持RSA非对称密钥的转换。
 
@@ -23,7 +23,7 @@
 2. 调用[AsyKeyGenerator.convertPemKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertpemkey12)，传入二进制密钥数据，生成非对称密钥对象（KeyPair）。
 3. 调用[AsyKeyGenerator.getEncodedPem](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getencodedpem12)，将非对称密钥对象中的公钥转换成pkcs1或x509格式，私钥转换成pkcs1或pkcs8格式。
 
-- 以使用Promise方式生成RSA密钥对为例：
+- 以Promise方式生成RSA密钥对为例：
 
   ```ts
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';

@@ -11,6 +11,8 @@ The OHOS::Media::OhosImageRect struct defines the information about an image rec
 
 **Related module**: [Image](image.md)
 
+**Header file**: [image_mdk.h](image__mdk_8h.md)
+
 
 ## Summary
 

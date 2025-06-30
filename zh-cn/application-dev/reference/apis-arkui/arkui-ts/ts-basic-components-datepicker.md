@@ -4,7 +4,9 @@
 
 >  **说明：**
 >
->  该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 该组件从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> - 该组件不建议开发者在动效过程中修改属性数据。
 
 
 ## 子组件
@@ -30,6 +32,8 @@ DatePicker(options?: DatePickerOptions)
 
 ## DatePickerOptions对象说明
 
+日期选择器组件的参数说明。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -38,13 +42,13 @@ DatePicker(options?: DatePickerOptions)
 | -------- | ---- | ---- | ------------------------------------------------------------ |
 | start    | Date | 否   | 指定选择器的起始日期。<br/>默认值：Date('1970-1-1')          |
 | end      | Date | 否   | 指定选择器的结束日期。<br/>默认值：Date('2100-12-31')        |
-| selected | Date | 否   | 设置选中项的日期。<br/>默认值：当前系统日期<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
-| mode<sup>18+</sup> | [DatePickerMode](#datepickermode18枚举说明) | 否   | 设置DatePicker显示的日期选项列。<br/>默认值：DatePickerMode.DATE，日期列显示年、月、日三列。 小数值做取整处理。<br/>在DatePickerDialog中，当showTime=true时，此参数不生效，显示默认年月日三列。 |
+| selected | Date | 否   | 设置选中项的日期。<br/>默认值：当前系统日期<br />从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。 |
+| mode<sup>18+</sup> | [DatePickerMode](#datepickermode18枚举说明) | 否   | 设置[DatePicker](#datepicker)显示的日期选项列。<br/>默认值：DatePickerMode.DATE，日期列显示年、月、日三列。 小数值做取整处理。<br/>在DatePickerDialog中，当showTime=true时，此参数不生效，显示默认年月日三列。 |
 
 >  **说明：**
 >
 >  Date的使用请参考[TimePickerOptions](ts-basic-components-timepicker.md)。  
->  在DatePicker组件滑动过程中修改DatePickerOptions中的属性（start、end、selected）,会导致这些属性无法生效。
+>  在[DatePicker](#datepicker)组件滑动过程中修改DatePickerOptions中的属性（start、end、selected、mode），会导致这些属性无法生效。
 
 
 ## DatePickerMode<sup>18+</sup>枚举说明
@@ -61,7 +65,7 @@ DatePicker(options?: DatePickerOptions)
 | YEAR_AND_MONTH | 日期列显示年、月二列。|
 | MONTH_AND_DAY | 日期列显示月、日二列。<br/>此模式下，如果月份从12月变化到1月，年份不增加1年；如果月份从1月变化到12月，年份不减少1年；年份始终在当前设置的年份。|
 
-**异常情形说明:**
+**异常情形说明：**
 
 | 异常情形   | 对应结果  |
 | -------- |  ------------------------------------------------------------ |
@@ -197,7 +201,7 @@ selectedTextStyle(value: PickerTextStyle)
 
 | 参数名 | 类型                                          | 必填 | 说明                                                         |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [PickerTextStyle](#pickertextstyle10类型说明) | 是   | 选中项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff007dff',<br/>font: {<br/>size: '20vp', <br/>weight: FontWeight.Medium<br/>}<br/>} |
+| value  | [PickerTextStyle](#pickertextstyle10类型说明) | 是   | 选中项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff007dff',<br/>font: {<br/>size: '20fp', <br/>weight: FontWeight.Medium<br/>}<br/>} |
 
 ### selectedTextStyle<sup>18+</sup>
 
@@ -213,7 +217,7 @@ selectedTextStyle(style: Optional\<PickerTextStyle>)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| style  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](#pickertextstyle10类型说明)> | 是   | 选中项的文本颜色、字号、字体粗细。<br/>当style的值为undefined时，默认值：<br/>{<br/>color: '#ff007dff',<br/>font: {<br/>size: '20vp', <br/>weight: FontWeight.Medium<br/>}<br/>} |
+| style  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](#pickertextstyle10类型说明)> | 是   | 选中项的文本颜色、字号、字体粗细。<br/>当style的值为undefined时，默认值：<br/>{<br/>color: '#ff007dff',<br/>font: {<br/>size: '20fp', <br/>weight: FontWeight.Medium<br/>}<br/>} |
 
 ### enableHapticFeedback<sup>18+</sup>
 
@@ -249,7 +253,7 @@ digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名   | 参数类型                                     | 必填   | 参数描述                      |
+| 参数名   | 类型                                     | 必填   | 说明                      |
 | ----- | ---------------------------------------- | ---- | ------------------------- |
 | sensitivity | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[CrownSensitivity](ts-appendix-enums.md#crownsensitivity18)> | 是    | 表冠灵敏度。                     |
 
@@ -259,9 +263,11 @@ digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
 
 ## PickerTextStyle<sup>10+</sup>类型说明
 
+选择器组件的文本样式。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 参数名   | 参数类型                                     | 必填   | 参数描述                      |
+| 参数名   | 类型                                     | 必填   | 说明                      |
 | ----- | ---------------------------------------- | ---- | ------------------------- |
 | color | [ResourceColor](ts-types.md#resourcecolor) | 否    | 文本颜色。                     |
 | font  | [Font](ts-types.md#font)                 | 否    | 文本样式。 |
@@ -274,7 +280,7 @@ digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
 
 onChange(callback: (value: DatePickerResult) => void)
 
-选择日期时触发该事件。
+选择日期时触发该事件。不能通过双向绑定的状态变量触发。
 
 从API version 8 开始支持，从 API version 10 开始废弃，建议使用[onDateChange](#ondatechange10)。
 
@@ -290,7 +296,7 @@ onChange(callback: (value: DatePickerResult) => void)
 
 onDateChange(callback: (value: Date) => void)
 
-选择日期时触发该事件。
+选择日期时触发该事件。不能通过双向绑定的状态变量触发。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -320,6 +326,8 @@ onDateChange(callback: Optional\<Callback\<Date>>)
 
 ## DatePickerResult对象说明
 
+日期选择器返回的时间格式。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -342,15 +350,15 @@ onDateChange(callback: Optional\<Callback\<Date>>)
 @Entry
 @Component
 struct DatePickerExample {
-  @State isLunar: boolean = false
-  private selectedDate: Date = new Date('2021-08-08')
+  @State isLunar: boolean = false;
+  private selectedDate: Date = new Date('2021-08-08');
 
   build() {
     Column() {
       Button('切换公历农历')
         .margin({ top: 30, bottom: 30 })
         .onClick(() => {
-          this.isLunar = !this.isLunar
+          this.isLunar = !this.isLunar;
         })
       DatePicker({
         start: new Date('1970-1-1'),
@@ -359,8 +367,8 @@ struct DatePickerExample {
       })
         .lunar(this.isLunar)
         .onDateChange((value: Date) => {
-          this.selectedDate = value
-          console.info('select current date is: ' + value.toString())
+          this.selectedDate = value;
+          console.info('select current date is: ' + value.toString());
         })
 
     }.width('100%')
@@ -372,14 +380,14 @@ struct DatePickerExample {
 
 ### 示例2（设置文本样式）
 
-该示例通过配置disappearTextStyle、textStyle、selectedTextStyle设置文本样式。
+该示例通过配置[disappearTextStyle](#disappeartextstyle10)、[textStyle](#textstyle10)、[selectedTextStyle](#selectedtextstyle10)设置文本样式。
 
 ```ts
 // xxx.ets
 @Entry
 @Component
 struct DatePickerExample {
-  private selectedDate: Date = new Date('2021-08-08')
+  private selectedDate: Date = new Date('2021-08-08');
 
   build() {
     Column() {
@@ -392,8 +400,8 @@ struct DatePickerExample {
         .textStyle({ color: '#ff182431', font: { size: '18fp', weight: FontWeight.Normal } })
         .selectedTextStyle({ color: '#ff0000FF', font: { size: '26fp', weight: FontWeight.Regular, family: "HarmonyOS Sans", style: FontStyle.Normal } })
         .onDateChange((value: Date) => {
-          this.selectedDate = value
-          console.info('select current date is: ' + value.toString())
+          this.selectedDate = value;
+          console.info('select current date is: ' + value.toString());
         })
 
     }.width('100%')
@@ -412,13 +420,13 @@ struct DatePickerExample {
 @Entry
 @Component
 struct DatePickerExample {
-  @State isLunar: boolean = false
-  private selectedDate: Date = new Date('2025-01-15')
+  @State isLunar: boolean = false;
+  private selectedDate: Date = new Date('2025-01-15');
   @State datePickerModeList: (DatePickerMode)[] = [
     DatePickerMode.DATE,
     DatePickerMode.YEAR_AND_MONTH,
     DatePickerMode.MONTH_AND_DAY,
-  ]
+  ];
   @State datePickerModeIndex: number = 0;
 
   build() {
@@ -426,7 +434,7 @@ struct DatePickerExample {
       Button('切换公历农历')
         .margin({ top: 30, bottom: 30 })
         .onClick(() => {
-          this.isLunar = !this.isLunar
+          this.isLunar = !this.isLunar;
         })
       DatePicker({
         start: new Date('1970-1-1'),
@@ -436,15 +444,15 @@ struct DatePickerExample {
       })
         .lunar(this.isLunar)
         .onDateChange((value: Date) => {
-          this.selectedDate = value
-          console.info('select current date is: ' + value.toString())
+          this.selectedDate = value;
+          console.info('select current date is: ' + value.toString());
         })
 
       Button('mode :' + this.datePickerModeIndex).margin({ top: 20 })
         .onClick(() => {
-          this.datePickerModeIndex++
+          this.datePickerModeIndex++;
           if(this.datePickerModeIndex >= this.datePickerModeList.length){
-            this.datePickerModeIndex = 0
+            this.datePickerModeIndex = 0;
           }
         })
     }.width('100%')

@@ -13,6 +13,8 @@ To perform both external capture (using microphones) and internal capture, **aud
 
 **Related module**: [AVScreenCapture](_a_v_screen_capture.md)
 
+**Header file**: [native_avscreen_capture_base.h](native__avscreen__capture__base_8h.md)
+
 
 ## Summary
 

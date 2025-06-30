@@ -35,7 +35,7 @@ Since API version 9, this API is supported in ArkTS widgets, except that **Pixel
 
 ## Attributes
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+In addition to the [universal attributes](ts-component-general-attributes.md), the following attributes are supported.
 
 ### viewPort
 
@@ -53,23 +53,23 @@ Sets the viewport of the shape.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | [ViewportRect](ts-drawing-components-shape.md#viewportrect14) | Yes| Options of the viewport.|
+| value | [ViewportRect](ts-drawing-components-shape.md#viewportrect18) | Yes| Options of the viewport.|
 
-## ViewportRect<sup>14+</sup>
+## ViewportRect<sup>18+</sup>
 Describes the options of the viewport.
 
-**Widget capability**: This API can be used in ArkTS widgets since API version 14.
+**Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
-**Atomic service API**: This API can be used in atomic services since API version 14.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| x | string \| number | No| Horizontal coordinate of the start point of the viewport.<br>Default value: **0**<br>Default unit: vp<br>An invalid value is handled as the default value.|
-| y | string \| number | No| Vertical coordinate of the start point of the viewport.<br>Default value: **0**<br>Default unit: vp<br>An invalid value is handled as the default value.|
-| width | string \| number | No| Width of the viewport.<br>Default value: **0**<br>Default unit: vp<br>An invalid value is handled as the default value.|
-| height | string \| number | No| Height of the viewport.<br>Default value: **0**<br>Default unit: vp<br>An invalid value is handled as the default value.|
+| x | string \| number | No| Horizontal coordinate of the start point of the viewport.<br>Default value: **0**.<br>Default unit: vp.<br>Invalid values are treated as the default value.|
+| y | string \| number | No| Vertical coordinate of the start point of the viewport.<br>Default value: **0**.<br>Default unit: vp.<br>Invalid values are treated as the default value.|
+| width | string \| number | No| Width of the viewport. The value must be greater than or equal to 0.<br>Default value: **0**.<br>Default unit: vp.<br>Invalid values are treated as the default value.|
+| height | string \| number | No| Height of the viewport. The value must be greater than or equal to 0.<br>Default value: **0**.<br>Default unit: vp.<br>Invalid values are treated as the default value.|
 
 ### fill
 
@@ -93,7 +93,7 @@ Sets the color of the fill area. An invalid value is handled as the default valu
 
 fillOpacity(value: number | string | Resource)
 
-Sets the opacity of the fill area. The value range is [0.0, 1.0]. A value less than 0.0 evaluates to the value **0.0**. A value greater than 1.0 evaluates to the value **1.0**. Any other value evaluates to the value **1.0**.
+Sets the opacity of the fill area. The value range is [0.0, 1.0]. A value less than 0.0 is treated as **0.0**. A value greater than 1.0 is treated as **1.0**. Any other value is treated as **1.0**.
 
 **Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
 
@@ -129,7 +129,7 @@ Sets the stroke color. If this attribute is not set, the component does not have
 
 strokeDashArray(value: Array&lt;any&gt;)
 
-Sets the stroke dashes. An invalid value is handled as the default value.
+Sets the stroke dashes. The value must be greater than or equal to 0. Invalid values are treated as the default value.
 
 **Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
 
@@ -147,7 +147,7 @@ Sets the stroke dashes. An invalid value is handled as the default value.
 
 strokeDashOffset(value: number | string)
 
-Sets the offset of the start point for drawing the stroke. An invalid value is handled as the default value.
+Sets the offset of the start point for drawing the stroke. Invalid values are treated as the default value.
 
 **Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
 
@@ -159,7 +159,7 @@ Sets the offset of the start point for drawing the stroke. An invalid value is h
 
 | Name| Type                      | Mandatory| Description                                |
 | ------ | -------------------------- | ---- | ------------------------------------ |
-| value  | number \| string | Yes  | Offset of the start point for drawing the stroke.<br>Default value: **0**<br>Default unit: vp|
+| value  | number \| string | Yes  | Offset of the start point for drawing the stroke.<br>Default value: **0**.<br>Default unit: vp|
 
 ### strokeLineCap
 
@@ -221,7 +221,7 @@ The value must be greater than or equal to 1.0. If the value is in the [0, 1) ra
 
 strokeOpacity(value: number | string | Resource)
 
-Sets the stroke opacity. The value range is [0.0, 1.0]. If the value passed in is less than **0.0**, the opacity is set to **0.0**. If the value passed in is greater than **1.0**, the opacity is set to **1.0**. Any other value is regarded as **1.0**.
+Sets the stroke opacity. The value range is [0.0, 1.0]. A value less than 0.0 is treated as **0.0**. A value greater than 1.0 is treated as **1.0**. Any other value is treated as **1.0**.
 
 **Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
 
@@ -239,7 +239,7 @@ Sets the stroke opacity. The value range is [0.0, 1.0]. If the value passed in i
 
 strokeWidth(value: number | string)
 
-Sets the stroke width. If of the string type, this attribute cannot be set in percentage. A percentage is processed as 1 px.
+Sets the stroke width. If this attribute is of the string type, percentage values are not supported and will be treated as 1 px.
 
 **Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
 
@@ -251,7 +251,7 @@ Sets the stroke width. If of the string type, this attribute cannot be set in pe
 
 | Name| Type                        | Mandatory| Description                    |
 | ------ | ---------------------------- | ---- | ------------------------ |
-| value  | number \| string | Yes  | Stroke width.<br>Default value: **1**<br>Default unit: vp|
+| value  | number \| string | Yes  | Stroke width. The value must be greater than or equal to 0.<br>Default value: **1**.<br>Default unit: vp.<br>Invalid values are treated as the default value.|
 
 ### antiAlias
 
@@ -269,7 +269,7 @@ Specifies whether anti-aliasing is enabled.
 
 | Name| Type   | Mandatory| Description                                 |
 | ------ | ------- | ---- | ------------------------------------- |
-| value  | boolean | Yes  | Whether anti-aliasing is enabled.<br>Default value: **true**|
+| value  | boolean | Yes  | Whether anti-aliasing is enabled.<br>**true**: Anti-aliasing is enabled.<br>**false**: Anti-aliasing is disabled.<br>Default value: **true**|
 
 ### mesh<sup>8+</sup>
 
@@ -313,7 +313,12 @@ struct ShapeExample {
       }
       .width(350)
       .height(140)
-      .viewPort({ x: -2, y: -2, width: 304, height: 130 })
+      .viewPort({
+        x: -2,
+        y: -2,
+        width: 304,
+        height: 130
+      })
       .fill(0x317AF7)
       .stroke(Color.Black)
       .strokeWidth(4)
@@ -322,13 +327,19 @@ struct ShapeExample {
       .strokeLineCap(LineCapStyle.Round)
       .strokeLineJoin(LineJoinStyle.Round)
       .antiAlias(true)
+
       // Draw a 300 x 50 rectangle with strokes at (0, 0) and (-5, -5). The drawing start point is the midpoint of the stroke width by default. To fully display the strokes, you must set the coordinates of the start position of the viewport to negative values so that the viewport is offset by half the stroke width.
       Shape() {
         Rect().width(300).height(50)
       }
       .width(350)
       .height(80)
-      .viewPort({ x: 0, y: 0, width: 320, height: 70 })
+      .viewPort({
+        x: 0,
+        y: 0,
+        width: 320,
+        height: 70
+      })
       .fill(0x317AF7)
       .stroke(Color.Black)
       .strokeWidth(10)
@@ -338,7 +349,12 @@ struct ShapeExample {
       }
       .width(350)
       .height(80)
-      .viewPort({ x: -5, y: -5, width: 320, height: 70 })
+      .viewPort({
+        x: -5,
+        y: -5,
+        width: 320,
+        height: 70
+      })
       .fill(0x317AF7)
       .stroke(Color.Black)
       .strokeWidth(10)
@@ -350,49 +366,78 @@ struct ShapeExample {
       }
       .width(350)
       .height(20)
-      .viewPort({ x: 0, y: -5, width: 300, height: 20 })
+      .viewPort({
+        x: 0,
+        y: -5,
+        width: 300,
+        height: 20
+      })
       .stroke(0xEE8443)
       .strokeWidth(10)
       .strokeDashArray([20])
+
       // Draw a straight line at (0, -5). The fill color is 0xEE8443, the stroke width is 10, the stroke dash is 20, and the offset is 10 to the left.
       Shape() {
         Path().width(300).height(10).commands('M0 0 L900 0')
       }
       .width(350)
       .height(20)
-      .viewPort({ x: 0, y: -5, width: 300, height: 20 })
+      .viewPort({
+        x: 0,
+        y: -5,
+        width: 300,
+        height: 20
+      })
       .stroke(0xEE8443)
       .strokeWidth(10)
       .strokeDashArray([20])
       .strokeDashOffset(10)
+
       // Draw a straight line at (0, -5). The fill color is 0xEE8443, the stroke width is 10, and the stroke opacity is 0.5.
       Shape() {
         Path().width(300).height(10).commands('M0 0 L900 0')
       }
       .width(350)
       .height(20)
-      .viewPort({ x: 0, y: -5, width: 300, height: 20 })
+      .viewPort({
+        x: 0,
+        y: -5,
+        width: 300,
+        height: 20
+      })
       .stroke(0xEE8443)
       .strokeWidth(10)
       .strokeOpacity(0.5)
+
       // Draw a straight line at (0, -5). The fill color is 0xEE8443, the stroke width is 10, the stroke dash is 20, and the cap style is rounded.
       Shape() {
         Path().width(300).height(10).commands('M0 0 L900 0')
       }
       .width(350)
       .height(20)
-      .viewPort({ x: 0, y: -5, width: 300, height: 20 })
+      .viewPort({
+        x: 0,
+        y: -5,
+        width: 300,
+        height: 20
+      })
       .stroke(0xEE8443)
       .strokeWidth(10)
       .strokeDashArray([20])
       .strokeLineCap(LineCapStyle.Round)
+
       // Draw a closed path at (-20, -5). The fill color is 0x317AF7, the stroke width is 10, the stroke color is 0xEE8443, and the join style is miter (default value).
       Shape() {
         Path().width(200).height(60).commands('M0 0 L400 0 L400 150 Z')
       }
       .width(300)
       .height(200)
-      .viewPort({ x: -20, y: -5, width: 310, height: 90 })
+      .viewPort({
+        x: -20,
+        y: -5,
+        width: 310,
+        height: 90
+      })
       .fill(0x317AF7)
       .stroke(0xEE8443)
       .strokeWidth(10)

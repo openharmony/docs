@@ -1,5 +1,6 @@
 # @ohos.wifiManagerExt (WLAN Extension)
-This **wifiext** module provides WLAN extension interfaces for non-universal products.
+
+The **wifiManagerExt** module provides WLAN extension APIs for non-universal products.
 
 > **NOTE**
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.

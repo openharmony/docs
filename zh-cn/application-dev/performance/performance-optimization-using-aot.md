@@ -31,19 +31,19 @@ ArkTS在运行期间默认情况下会通过解释器执行字节码。字节码
 
 ```ts
 export function computeNBodyByTaskPool(totalTimeSteps: number): void {
-  Logger.info(TAG, "computeNBodyByTaskPool: start executing")
+  Logger.info(TAG, "computeNBodyByTaskPool: start executing");
   let task: taskpool.Task = new taskpool.Task(computeTask, totalTimeSteps);
   try {
-    Logger.info(TAG, 'computeNBodyByTaskPool: start calculating...')
+    Logger.info(TAG, 'computeNBodyByTaskPool: start calculating...');
     // 向taskpool线程池派发子线程任务
     taskpool.execute(task, taskpool.Priority.HIGH).then((res: number) => {
-      Logger.info(TAG, 'computeNBodyByTaskPool: executed successfully, total time costed = ' + res + ' ms.')
-      AppStorage.set<String>('timeCost', 'Total time costed = ' + res + ' ms.')
+      Logger.info(TAG, 'computeNBodyByTaskPool: executed successfully, total time costed = ' + res + ' ms.');
+      AppStorage.set<String>('timeCost', 'Total time costed = ' + res + ' ms.');
     })
   } catch (err) {
-    Logger.error(TAG, 'computeNBodyByTaskPool: execute failed, ' + (err as BusinessError).toString())
+    Logger.error(TAG, 'computeNBodyByTaskPool: execute failed, ' + (err as BusinessError).toString());
   }
-  Logger.info(TAG, 'computeNBodyByTaskPool: finish executing')
+  Logger.info(TAG, 'computeNBodyByTaskPool: finish executing');
 }
 ```
 

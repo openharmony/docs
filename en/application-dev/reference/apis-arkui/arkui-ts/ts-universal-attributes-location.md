@@ -198,7 +198,7 @@ Defines the offset of the component under the anchor constraints.
 
 chainMode(direction: Axis, style: ChainStyle)
 
-Sets the parameters of the chain in which the component is the head. This parameter has effect only when the parent container is [RelativeContainer](ts-container-relativecontainer.md). The chain head is the first component in the chain that satisfies the [chain formation rules](ts-container-relativecontainer.md#rules) (starting from the left in the horizontal direction, or from the right in a mirrored language layout; starting from the top in the vertical direction).
+Sets the parameters of the chain in which the component is the head. This parameter has effect only when the parent container is [RelativeContainer](ts-container-relativecontainer.md). The chain head is the first component in the chain that satisfies the chain formation rules. In a horizontal layout, it starts from the left (or from the right in a mirrored language layout). In a vertical layout, it starts from the top.
 For details, see [RelativeContainer Example 7](ts-container-relativecontainer.md#example-7-creating-chains).
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full

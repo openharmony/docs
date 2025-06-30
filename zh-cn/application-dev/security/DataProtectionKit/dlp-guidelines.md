@@ -58,9 +58,10 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
     ```ts
     import { common, Want } from '@kit.AbilityKit';
     import { BusinessError } from '@kit.BasicServicesKit';
+    import { UIContext } from '@kit.ArkUI';
 
     function OpenDlpFile(dlpUri: string, fileName: string, fd: number) {
-      let want:Want = {
+      let want: Want = {
         "action": "ohos.want.action.viewData",
         "bundleName": "com.example.example_bundle_name",
         "abilityName": "exampleAbility",
@@ -76,7 +77,7 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
         }
       }
 
-      let context = getContext() as common.UIAbilityContext; // 获取当前UIAbilityContext。
+      let context = new UIContext().getHostContext() as common.UIAbilityContext; // 获取当前UIAbilityContext。
 
       try {
         console.log('openDLPFile:' + JSON.stringify(want));
@@ -119,11 +120,12 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
     import { dlpPermission } from '@kit.DataProtectionKit';
     import { common, Want } from '@kit.AbilityKit';
     import { BusinessError } from '@kit.BasicServicesKit';
+    import { UIContext } from '@kit.ArkUI';
 
     try {
       let fileUri: string = "file://docs/storage/Users/currentUser/test.txt";
       let fileName: string = "test.txt";
-      let context = getContext() as common.UIAbilityContext; // 获取当前UIAbilityContext。
+      let context = new UIContext().getHostContext() as common.UIAbilityContext; // 获取当前UIAbilityContext。
       let want: Want = {
         'uri': fileUri,
         'parameters': {
@@ -309,11 +311,11 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
 
     ```ts
     import { dlpPermission } from '@kit.DataProtectionKit';
-    import { common, UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';
-    import { BusinessError } from '@kit.BasicServicesKit';
+    import { common, Want } from '@kit.AbilityKit';
+    import { UIContext } from '@kit.ArkUI';
 
     try {
-      let context = getContext() as common.UIAbilityContext; // 获取当前UIAbilityContext。
+      let context = new UIContext().getHostContext() as common.UIAbilityContext; // 获取当前UIAbilityContext。
       let want: Want = {
         "uri": "file://docs/storage/Users/currentUser/Desktop/1.txt",
         "parameters": {

@@ -17,7 +17,7 @@ The following describes the development procedure specific to each application s
 
 ## Available APIs
 
-For the complete list of JS APIs and example code, see, see [MDNS Management](../reference/apis-network-kit/js-apis-net-mdns.md).
+For the complete list of JS APIs and example code, see [MDNS Management](../reference/apis-network-kit/js-apis-net-mdns.md).
 
 | API                 | Description|
 | ----------------------- | ---- |
@@ -133,7 +133,7 @@ class EntryAbility extends UIAbility {
 
 let context = GlobalContext.getContext().getObject("value") as common.UIAbilityContext;
 
-// Create a **DiscoveryService** object, which is used to discover MDNS services of the specified type.
+// Create a DiscoveryService object, which is used to discover MDNS services of the specified type.
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 

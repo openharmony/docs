@@ -1,6 +1,6 @@
-# Photo Capture Sample (ArkTS)
+# Photo Capture Practices (ArkTS)
 
-Before developing a camera application, request permissions by following the instructions provided in [Camera Development Preparations](camera-preparation.md).
+Before developing a camera application, request permissions by following the instructions provided in [Requesting Camera Development Permissions](camera-preparation.md).
 
 This topic provides sample code that covers the complete photo capture process to help you understand the complete API calling sequence.
 
@@ -23,17 +23,12 @@ Specifically, when [photoOutput.on('photoAvailable')](../../reference/apis-camer
 import { camera } from '@kit.CameraKit';
 import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { common } from '@kit.AbilityKit';
-import { fileIo as fs } from '@kit.CoreFileKit';
-import { photoAccessHelper } from '@kit.MediaLibraryKit';
-
-let context = getContext(this);
 
 function setPhotoOutputCb(photoOutput: camera.PhotoOutput): void {
   // After the callback is set, call capture() of photoOutput to transfer the photo buffer back to the callback.
   photoOutput.on('photoAvailable', (errCode: BusinessError, photo: camera.Photo): void => {
     console.info('getPhoto start');
-    console.info(`err: ${JSON.stringify(errCode)}`);
+    console.info(`err: ${errCode}`);
     if (errCode || photo === undefined) {
       console.error('getPhoto failed');
       return;
@@ -61,9 +56,9 @@ function setPhotoOutputCb(photoOutput: camera.PhotoOutput): void {
   });
 }
 
-async function cameraShootingCase(baseContext: common.BaseContext, surfaceId: string): Promise<void> {
+async function cameraShootingCase(context: Context, surfaceId: string): Promise<void> {
   // Create a CameraManager object.
-  let cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);
+  let cameraManager: camera.CameraManager = camera.getCameraManager(context);
   if (!cameraManager) {
     console.error("camera.getCameraManager error");
     return;

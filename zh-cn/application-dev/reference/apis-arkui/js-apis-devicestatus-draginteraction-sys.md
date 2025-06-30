@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```js
-import { dragInteraction } from '@kit.ArkUI'
+import { dragInteraction } from '@kit.ArkUI';
 ```
 
 ## DragState
@@ -75,7 +75,7 @@ try {
     console.log(`Drag interaction event: ${JSON.stringify(data)}`);
   });
 } catch (error) {
-  console.log(`Register failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Register failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -117,7 +117,7 @@ try {
   dragInteraction.on('drag', single_callback);
   dragInteraction.off("drag", single_callback);
 } catch (error) {
-  console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -131,7 +131,7 @@ try {
   dragInteraction.on('drag', all_callback);
   dragInteraction.off("drag");
 } catch (error) {
-  console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -189,7 +189,6 @@ setDragSwitchState(enabled: boolean): void
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
 | 202 | Not system application. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例：**
 

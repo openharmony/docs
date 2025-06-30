@@ -7,6 +7,8 @@
 
 **库：** libpixelmap.so
 
+**引用文件**：&lt;multimedia/image_framework/image/pixelmap_native.h&gt;
+
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 **起始版本：** 12
@@ -100,7 +102,7 @@
 | [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_PixelmapNative_Crop](_image___native_module.md#oh_pixelmapnative_crop) ([OH_PixelmapNative](_image___native_module.md#oh_pixelmapnative) \*pixelmap, [Image_Region](_image___region.md) \*region) | 根据输入的尺寸对图片进行裁剪。 | 
 | [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_PixelmapNative_Release](_image___native_module.md#oh_pixelmapnative_release) ([OH_PixelmapNative](_image___native_module.md#oh_pixelmapnative) \*pixelmap) | 释放OH_PixelmapNative指针，推荐使用 [OH_PixelmapNative_Destroy](_image___native_module.md#oh_pixelmapnative_destroy)。 | 
 | [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_PixelmapNative_Destroy](_image___native_module.md#oh_pixelmapnative_destroy) ([OH_PixelmapNative](_image___native_module.md#oh_pixelmapnative) \*\*pixelmap) | 释放OH_PixelmapNative指针。 | 
-| [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_PixelmapNative_ConvertAlphaFormat](_image___native_module.md#oh_pixelmapnative_convertalphaformat) ([OH_PixelmapNative](_image___native_module.md#oh_pixelmapnative) \*srcpixelmap, [OH_PixelmapNative](_image___native_module.md#oh_pixelmapnative) \*dstpixelmap, const bool isPremul) | 将pixlemap的像素数据做预乘和非预乘之间的转换。| 
+| [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_PixelmapNative_ConvertAlphaFormat](_image___native_module.md#oh_pixelmapnative_convertalphaformat) ([OH_PixelmapNative](_image___native_module.md#oh_pixelmapnative) \*srcpixelmap, [OH_PixelmapNative](_image___native_module.md#oh_pixelmapnative) \*dstpixelmap, const bool isPremul) | 将pixelmap的像素数据做预乘和非预乘之间的转换。| 
 | [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_PixelmapNative_CreateEmptyPixelmap](_image___native_module.md#oh_pixelmapnative_createemptypixelmap) ([OH_Pixelmap_InitializationOptions](_image___native_module.md#oh_pixelmap_initializationoptions) \*options, [OH_PixelmapNative](_image___native_module.md#oh_pixelmapnative) \*\*pixelmap) | 利用OH_Pixelmap_InitializationOptions创建空的pixelmap对象，内存数据为0。| 
 | [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_PixelmapNative_GetNativeBuffer](_image___native_module.md#oh_pixelmapnative_getnativebuffer) ([OH_PixelmapNative](_image___native_module.md#oh_pixelmapnative) \*pixelmap, OH_NativeBuffer \*\*nativeBuffer) | 从DMA内存的PixelMap中，获取NativeBuffer对象。  | 
 | [Image_ErrorCode](_image___native_module.md#image_errorcode) [OH_PixelmapNative_GetMetadata](_image___native_module.md#oh_pixelmapnative_getmetadata) ([OH_PixelmapNative](_image___native_module.md#oh_pixelmapnative) \*pixelmap, [OH_Pixelmap_HdrMetadataKey](_image___native_module.md#oh_pixelmap_hdrmetadatakey) key, [OH_Pixelmap_HdrMetadataValue](_o_h___pixelmap___hdr_metadata_value.md) \*\*value) | 获取元数据。  | 

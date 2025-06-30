@@ -83,7 +83,7 @@ char* OH_NativeBundle_GetAppIdentifier()
 
 **Description**
 
-Obtains the appIdentifier information about the current application. appIdentifier is the unique ID of the application. It is a random string allocated by AppGallery Connect during the creation of the application. This ID does not change along the application lifecycle, including version updates, certificate changes, public and private key changes, and application transfers.
+Obtains the appIdentifier information about the current application. appIdentifier is the unique ID of the application. It is the [app ID](https://developer.huawei.com/consumer/en/doc/app/agc-help-createharmonyapp-0000001945392297), which is a random string, allocated by AppGallery Connect during the creation of the application. This ID does not change along the application lifecycle, including version updates, certificate changes, public and private key changes, and application transfers. If you use multiple debugging devices, perform debugging offline, or need to interact with other applications, you are advised to use [manual signature](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-signing#section297715173233).
 
 **Since**: 11
 

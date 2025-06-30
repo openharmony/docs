@@ -7,6 +7,8 @@ The **image_packer_native.h** file declares the APIs for image encoding.
 
 **Library**: libimage_packer.so
 
+**File to include**: &lt;multimedia/image_framework/image/image_packer_native.h&gt;
+
 **System capability**: SystemCapability.Multimedia.Image.ImagePacker
 
 **Since**: 12

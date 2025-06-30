@@ -1,6 +1,6 @@
 # @ohos.net.ethernet (以太网连接管理)（系统接口）
 
-以太网连接管理主要提供有线网络能力，提供设置有线网络的IP地址，子网掩码，网关，DNS，代理等信息
+以太网连接管理主要提供有线网络能力，提供设置有线网络的IP地址，子网掩码，网关，DNS，代理等信息。
 
 > **说明：**
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -28,9 +28,9 @@ setIfaceConfig(iface: string, ic: InterfaceConfiguration, callback: AsyncCallbac
 
 | 参数名   | 类型                                              | 必填 | 说明                                       |
 | -------- | ------------------------------------------------- | ---- | ------------------------------------------ |
-| iface    | string                                            | 是   | 网络接口名                                     |
-| ic       | [InterfaceConfiguration](#interfaceconfiguration9) | 是   | 要设置的网络接口配置信息                   |
-| callback | AsyncCallback\<void>                     | 是   | 回调函数，成功无返回，失败返回对应错误码。 |
+| iface    | string                                            | 是   | 网络接口名。                                     |
+| ic       | [InterfaceConfiguration](#interfaceconfiguration9) | 是   | 要设置的网络接口配置信息。                   |
+| callback | AsyncCallback\<void>                     | 是   | 回调函数。成功无返回，失败返回对应错误码。 |
 
 **错误码：**
 
@@ -64,7 +64,7 @@ let config: ethernet.InterfaceConfiguration = {
 
 ethernet.setIfaceConfig("eth0", config, (error: BusinessError) => {
   if (error) {
-    console.log("setIfaceConfig callback error = " + JSON.stringify(error));
+    console.error("setIfaceConfig callback error = " + JSON.stringify(error));
   } else {
     console.log("setIfaceConfig callback ok");
   }
@@ -87,8 +87,8 @@ setIfaceConfig(iface: string, ic: InterfaceConfiguration): Promise\<void>
 
 | 参数名 | 类型                                              | 必填 | 说明                     |
 | ------ | ------------------------------------------------- | ---- | ------------------------ |
-| iface  | string                                            | 是   | 接口名                   |
-| ic     | [InterfaceConfiguration](#interfaceconfiguration9) | 是   | 要设置的网络接口配置信息 |
+| iface  | string                                            | 是   | 接口名。                   |
+| ic     | [InterfaceConfiguration](#interfaceconfiguration9) | 是   | 要设置的网络接口配置信息。 |
 
 **返回值：**
 
@@ -131,7 +131,7 @@ const setConfigPromise = ethernet.setIfaceConfig("eth0", config);
 setConfigPromise.then(() => {
   console.log("setIfaceConfig promise ok");
 }).catch((error: BusinessError)  => {
-  console.log("setIfaceConfig promise error = " + JSON.stringify(error));
+  console.error("setIfaceConfig promise error = " + JSON.stringify(error));
 });
 ```
 
@@ -151,8 +151,8 @@ getIfaceConfig(iface: string, callback: AsyncCallback\<InterfaceConfiguration>):
 
 | 参数名   | 类型                                            | 必填  | 说明         |
 | -------- | ----------------------------------------------- | ----- | ------------ |
-| iface    | string                                          | 是    | 指定网络接口 |
-| callback | AsyncCallback\<[InterfaceConfiguration](#interfaceconfiguration9)> | 是    | 回调函数，返回指定网络接口信息   |
+| iface    | string                                          | 是    | 指定网络接口。 |
+| callback | AsyncCallback\<[InterfaceConfiguration](#interfaceconfiguration9)> | 是    | 回调函数。返回指定网络接口信息。   |
 
 **错误码：**
 
@@ -174,7 +174,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 ethernet.getIfaceConfig("eth0", (error: BusinessError, value: ethernet.InterfaceConfiguration) => {
   if (error) {
-    console.log("getIfaceConfig  callback error = " + JSON.stringify(error));
+    console.error("getIfaceConfig  callback error = " + JSON.stringify(error));
   } else {
     console.log("getIfaceConfig callback mode = " + JSON.stringify(value.mode));
     console.log("getIfaceConfig callback ipAddr = " + JSON.stringify(value.ipAddr));
@@ -202,7 +202,7 @@ getIfaceConfig(iface: string): Promise\<InterfaceConfiguration>
 
 | 参数名   | 类型                                    | 必填 | 说明         |
 | -------- | --------------------------------------- | ---- | ------------ |
-| iface    | string                                  | 是   | 指定网络接口 |
+| iface    | string                                  | 是   | 指定网络接口。 |
 
 **返回值：**
 
@@ -236,7 +236,7 @@ ethernet.getIfaceConfig("eth0").then((data: ethernet.InterfaceConfiguration) => 
   console.log("getIfaceConfig promise netMask = " + JSON.stringify(data.netMask));
   console.log("getIfaceConfig promise dnsServers = " + JSON.stringify(data.dnsServers));
 }).catch((error: BusinessError) => {
-  console.log("getIfaceConfig promise error = " + JSON.stringify(error));
+  console.error("getIfaceConfig promise error = " + JSON.stringify(error));
 });
 ```
 
@@ -256,8 +256,8 @@ isIfaceActive(iface: string, callback: AsyncCallback\<number>): void
 
 | 参数名   | 类型                        | 必填 | 说明                                               |
 | -------- | --------------------------- | ---- | -------------------------------------------------- |
-| iface    | string                      | 是   | 接口名。为空时代表查询是否存在激活接口             |
-| callback | AsyncCallback\<number>       | 是   | 回调函数，已激活:1,未激活:0,其他为获取失败错误码。 |
+| iface    | string                      | 是   | 接口名。为空时代表查询是否存在激活接口。             |
+| callback | AsyncCallback\<number>       | 是   | 回调函数。已激活：1，未激活：0，其他为获取失败错误码。 |
 
 **错误码：**
 
@@ -279,7 +279,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 ethernet.isIfaceActive("eth0", (error: BusinessError, value: number) => {
   if (error) {
-    console.log("whether2Activate callback error = " + JSON.stringify(error));
+    console.error("whether2Activate callback error = " + JSON.stringify(error));
   } else {
     console.log("whether2Activate callback = " + JSON.stringify(value));
   }
@@ -302,13 +302,13 @@ isIfaceActive(iface: string): Promise\<number>
 
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
-| iface  | string | 是   | 接口名。为空时代表查询是否存在激活接口 |
+| iface  | string | 是   | 接口名。为空时代表查询是否存在激活接口。 |
 
 **返回值：**
 
 | 类型            | 说明                                                               |
 | ----------------| ------------------------------------------------------------------ |
-| Promise\<number> | 以Promise形式返回获取结果。已激活:1,未激活:0,其他为获取失败错误码。|
+| Promise\<number> | 以Promise形式返回获取结果。已激活：1，未激活：0，其他为获取失败错误码。|
 
 **错误码：**
 
@@ -331,7 +331,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 ethernet.isIfaceActive("eth0").then((data: number) => {
   console.log("isIfaceActive promise = " + JSON.stringify(data));
 }).catch((error: BusinessError) => {
-  console.log("isIfaceActive promise error = " + JSON.stringify(error));
+  console.error("isIfaceActive promise error = " + JSON.stringify(error));
 });
 ```
 
@@ -351,7 +351,7 @@ getAllActiveIfaces(callback: AsyncCallback\<Array\<string>>): void
 
 | 参数名   | 类型                                 | 必填 | 说明                           |
 | -------- | ------------------------------------ | ---- | ------------------------------ |
-| callback | AsyncCallback\<Array\<string>>         | 是   | 回调函数，返回值为对应接口名。 |
+| callback | AsyncCallback\<Array\<string>>         | 是   | 回调函数。返回值为对应接口名。 |
 
 **错误码：**
 
@@ -370,7 +370,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 ethernet.getAllActiveIfaces((error: BusinessError, value: string[]) => {
   if (error) {
-    console.log("getAllActiveIfaces callback error = " + JSON.stringify(error));
+    console.error("getAllActiveIfaces callback error = " + JSON.stringify(error));
   } else {
     console.log("getAllActiveIfaces callback value.length = " + JSON.stringify(value.length));
     for (let i = 0; i < value.length; i++) {
@@ -419,7 +419,7 @@ ethernet.getAllActiveIfaces().then((data: string[]) => {
     console.log("getAllActiveIfaces promise  = " + JSON.stringify(data[i]));
   }
 }).catch((error:BusinessError) => {
-  console.log("getAllActiveIfaces promise error = " + JSON.stringify(error));
+  console.error("getAllActiveIfaces promise error = " + JSON.stringify(error));
 });
 ```
 

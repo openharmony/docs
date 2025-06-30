@@ -4,7 +4,7 @@ The AudioCapturer is used to record Pulse Code Modulation (PCM) audio data. It i
 
 ## Development Guidelines
 
-The full recording process involves creating an **AudioCapturer** instance, configuring audio recording parameters, starting and stopping recording, and releasing the instance. In this topic, you will learn how to use the AudioCapturer to recording audio data. Before the development, you are advised to read [AudioCapturer](../../reference/apis-audio-kit/js-apis-audio.md#audiocapturer8) for the API reference.
+The full recording process involves creating an **AudioCapturer** instance, configuring audio recording parameters, starting and stopping recording, and releasing the instance. In this topic, you will learn how to use the AudioCapturer to record audio data. Before the development, you are advised to read [AudioCapturer](../../reference/apis-audio-kit/js-apis-audio.md#audiocapturer8) for the API reference.
 
 The figure below shows the state changes of the AudioCapturer. After an **AudioCapturer** instance is created, different APIs can be called to switch the AudioCapturer to different states and trigger the required behavior. If an API is called when the AudioCapturer is not in the given state, the system may throw an exception or generate other undefined behavior. Therefore, you are advised to check the AudioCapturer state before triggering state transition.
 
@@ -57,6 +57,7 @@ You can call **on('stateChange')** to listen for state changes of the AudioCaptu
    ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
     import { fileIo as fs } from '@kit.CoreFileKit';
+    import { common } from '@kit.AbilityKit';
 
     class Options {
       offset?: number;
@@ -64,7 +65,9 @@ You can call **on('stateChange')** to listen for state changes of the AudioCaptu
     }
 
     let bufferSize: number = 0;
-    let path = getContext().cacheDir;
+    // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+    let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+    let path = context.cacheDir;
     let filePath = path + '/StarWars10s-2C-48000-4SW.pcm';
     let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
     let readDataCallback = (buffer: ArrayBuffer) => {
@@ -129,6 +132,7 @@ Refer to the sample code below to record audio using AudioCapturer.
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
 
 const TAG = 'AudioCapturerDemo';
 
@@ -153,7 +157,9 @@ let audioCapturerOptions: audio.AudioCapturerOptions = {
   streamInfo: audioStreamInfo,
   capturerInfo: audioCapturerInfo
 };
-let path = getContext().cacheDir;
+// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let path = context.cacheDir;
 let filePath = path + '/StarWars10s-2C-48000-4SW.pcm';
 let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
 let readDataCallback = (buffer: ArrayBuffer) => {

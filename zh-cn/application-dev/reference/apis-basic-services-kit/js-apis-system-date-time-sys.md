@@ -398,7 +398,7 @@ getNtpTime(): number
 
 | 错误码ID | 错误信息                                                                                                    |
 |-------|-------------------------------------------------------------------------------------------------------------|
-| 13000002    | updateNtpTime() is not called successfully.                                                           |
+| 13000002    | Location NTP time of the system is invalid.                                                           |
 | 202   | Permission verification failed. A non-system application calls a system API.                                |
 
 **示例：**

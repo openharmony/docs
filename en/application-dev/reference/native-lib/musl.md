@@ -20,14 +20,15 @@ C11 is implemented by [libc, libm, and libdl](https://en.cppreference.com/w/c/he
 ## musl Version
 
 - 1.2.0
+
 - 1.2.3 since OpenHarmony 4.0
 
 - 1.2.5 since OpenHarmony 5.0
 
 ## Supported Capabilities
-OpenHarmony provides header files and library interfaces that are compatible (not fully compatible) with C99, C11, and POSIX, and supports Armv7-A, Arm64, and x86_64 architectures.
+OpenHarmony provides header files and library interfaces that align with C99, C11, and POSIX standards, though not fully compliant. It supports Armv7-A, Arm64, and x86_64 architectures.
 
-To better adapt to the basic features of OpenHarmony devices, such as high performance, low memory, high security, lightweight, and multi-form support, OpenHarmony has optimized the musl library and removed the interfaces that are not applicable to embedded devices.
+To better accommodate the basic features of OpenHarmony devices, such as high performance, low memory usage, high security, lightweight design, and multi-device adaptability, the musl library has been optimized and enhanced, with interfaces unsuitable for embedded devices removed according.
 
 ### New Capabilities
 1. The dynamic loader supports isolation by namespace. The dynamic libraries that can be loaded by **dlopen()** are restricted by the system namespace. For example, the system dynamic libraries cannot be opened.
@@ -64,7 +65,7 @@ param set musl.log.ld.app.{app_name} false
 
 | API         | Description                                                                                        |
 |:--               |    :--                                                                                       |
-| epoll_create     | In OpenHarmony 5.0, this API uses the same logic as in musl 1.2.3. Specifically, the API does not verify input parameters or process them if the input parameter value is less than or equal to **0**. In the next version, this API will adopt the logic from musl 1.2.5, which includes input parameter verification. If the input parameter value is less than or equal to **0**, the error code EINVAL will be returned.|
+| epoll_create     | In OpenHarmony 5.0, this API uses the same logic as in musl 1.2.3. Specifically, the API does not verify input parameters or process them if the input parameter value is less than or equal to **0**. In the next version, this API will adopt the logic from musl 1.2.5, which includes input parameter verification. If the input parameter value is less than or equal to **0**, the error code EINVAL will be returned.|  
 
 ## Character Encoding Formats Supported by iconv
 

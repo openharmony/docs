@@ -1,6 +1,6 @@
 # @ohos.bundle.launcherBundleManager (launcherBundleManager模块)(系统接口)
 
-本模块支持launcher应用所需的查询能力，支持[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)、[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)信息的查询。
+本模块支持launcher应用所需的查询能力，支持[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)、[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)信息的查询。
 
 > **说明：**
 >
@@ -17,9 +17,9 @@ import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
 
 ## launcherBundleManager.getLauncherAbilityInfo<sup>9+</sup>
 
-getLauncherAbilityInfo(bundleName: string, userId: number, callback: AsyncCallback\<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)\>\>) : void
+getLauncherAbilityInfo(bundleName: string, userId: number, callback: AsyncCallback\<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)\>\>) : void
 
-查询指定bundleName及用户的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)。
+查询指定bundleName及用户的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
@@ -32,8 +32,8 @@ getLauncherAbilityInfo(bundleName: string, userId: number, callback: AsyncCallba
 | 参数名     | 类型   | 必填 | 说明         |
 | ---------- | ------ | ---- | -------------- |
 | bundleName | string | 是   | 应用Bundle名称。 |
-| userId     | number | 是   | 被查询的用户id。|
-| callback | AsyncCallback\<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)\>\> | 是 | callback形式返回bundle包含的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)信息。 |
+| userId     | number | 是   | 被查询的用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取。|
+| callback | AsyncCallback\<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)\>\> | 是 | callback形式返回bundle包含的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)信息。 |
 
 **错误码：**
 
@@ -41,7 +41,7 @@ getLauncherAbilityInfo(bundleName: string, userId: number, callback: AsyncCallba
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 201 | Permission denied. |
+| 201 | Verify permission denied. |
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 801 | Capability not support. |
@@ -60,7 +60,7 @@ try {
         if (errData !== null) {
             console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
         } else {
-            console.log("data is " + JSON.stringify(data));
+            console.info('data is ' + JSON.stringify(data));
         }
     })
 } catch (errData) {
@@ -72,9 +72,9 @@ try {
 
 ## launcherBundleManager.getLauncherAbilityInfo<sup>9+</sup>
 
-getLauncherAbilityInfo(bundleName: string, userId: number) : Promise\<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)\>\>
+getLauncherAbilityInfo(bundleName: string, userId: number) : Promise\<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)\>\>
 
-查询指定bundleName及用户的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)。
+查询指定bundleName及用户的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
@@ -87,13 +87,13 @@ getLauncherAbilityInfo(bundleName: string, userId: number) : Promise\<Array\<[La
 | 参数名     | 类型   | 必填 | 说明         |
 | ---------- | ------ | ---- | -------------- |
 | bundleName | string | 是   | 应用Bundle名称。 |
-| userId     | number | 是   | 被查询的用户id。 |
+| userId     | number | 是   | 被查询的用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取。 |
 
 **返回值：**
 
 | 类型                          | 说明                                               |
 | ----------------------------- | -------------------------------------------------- |
-| Promise\<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)\>\> | Promise形式返回bundle包含的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)信息。 |
+| Promise\<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)\>\> | Promise形式返回bundle包含的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)信息。 |
 
 **错误码：**
 
@@ -101,7 +101,7 @@ getLauncherAbilityInfo(bundleName: string, userId: number) : Promise\<Array\<[La
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 201 | Permission denied. |
+| 201 | Verify permission denied. |
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 801 | Capability not support. |
@@ -117,7 +117,7 @@ import { BusinessError } from '@ohos.base';
 try {
     launcherBundleManager.getLauncherAbilityInfo("com.example.demo", 100)
         .then((data: launcherBundleManager.LauncherAbilityInfo[]) => {
-        console.log("data is " + JSON.stringify(data));
+        console.info('data is ' + JSON.stringify(data));
     }).catch ((errData: BusinessError) => {
         console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
     })
@@ -128,65 +128,11 @@ try {
 }
 ```
 
-## launcherBundleManager.getLauncherAbilityInfoSync<sup>10+</sup>
-
-getLauncherAbilityInfoSync(bundleName: string, userId: number) : Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)\>
-
-查询指定bundleName及用户的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)。
-
-**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.BundleManager.BundleFramework.Launcher
-
-**参数：**
-
-| 参数名     | 类型   | 必填 | 说明         |
-| ---------- | ------ | ---- | -------------- |
-| bundleName | string | 是   | 应用Bundle名称。 |
-| userId     | number | 是   | 被查询的用户id。 |
-
-**返回值：**
-
-| 类型                          | 说明                                               |
-| ----------------------------- | -------------------------------------------------- |
-| Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)\> | Array形式返回bundle包含的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)信息。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
-
-| 错误码ID | 错误信息                                 |
-| -------- | ---------------------------------------- |
-| 201 | Permission denied. |
-| 202 | Permission denied, non-system app called system api. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
-| 801 | Capability not support. |
-| 17700001 | The specified bundle name is not found.  |
-| 17700004 | The specified user ID is not found.       |
-
-**示例：**
-
-```ts
-import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
-import { BusinessError } from '@ohos.base';
-
-try {
-    let data = launcherBundleManager.getLauncherAbilityInfoSync("com.example.demo", 100);
-    console.log("data is " + JSON.stringify(data));
-} catch (errData) {
-    let code = (errData as BusinessError).code;
-    let message = (errData as BusinessError).message;
-    console.error(`errData is errCode:${code}  message:${message}`);
-}
-```
-
 ## launcherBundleManager.getAllLauncherAbilityInfo<sup>9+</sup>
 
-getAllLauncherAbilityInfo(userId: number, callback: AsyncCallback\<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)\>\>) : void
+getAllLauncherAbilityInfo(userId: number, callback: AsyncCallback\<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)\>\>) : void
 
-查询指定用户下所有应用的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)。
+查询指定用户下所有应用的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
@@ -198,8 +144,8 @@ getAllLauncherAbilityInfo(userId: number, callback: AsyncCallback\<Array\<[Launc
 
 | 参数名 | 类型   | 必填 | 说明         |
 | ------ | ------ | ---- | -------------- |
-| userId | number | 是   | 被查询的用户id。 |
-| callback | AsyncCallback\<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)\>\> | 是 | callback形式返回指定用户下所有应用的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)。 |
+| userId | number | 是   | 被查询的用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取。 |
+| callback | AsyncCallback\<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)\>\> | 是 | callback形式返回指定用户下所有应用的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)。 |
 
 **错误码：**
 
@@ -207,7 +153,7 @@ getAllLauncherAbilityInfo(userId: number, callback: AsyncCallback\<Array\<[Launc
 
 | 错误码ID | 错误信息                                |
 | -------- | ---------------------------------------- |
-| 201 | Permission denied. |
+| 201 | Verify permission denied. |
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 801 | Capability not support. |
@@ -225,7 +171,7 @@ try {
         if (errData !== null) {
             console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
         } else {
-            console.log("data is " + JSON.stringify(data));
+            console.info('data is ' + JSON.stringify(data));
         }
     });
 } catch (errData) {
@@ -236,9 +182,9 @@ try {
 ```
 ## launcherBundleManager.getAllLauncherAbilityInfo<sup>9+</sup>
 
-getAllLauncherAbilityInfo(userId: number) : Promise\<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)\>\>
+getAllLauncherAbilityInfo(userId: number) : Promise\<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)\>\>
 
-查询指定用户下所有应用的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)。
+查询指定用户下所有应用的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
@@ -250,13 +196,13 @@ getAllLauncherAbilityInfo(userId: number) : Promise\<Array\<[LauncherAbilityInfo
 
 | 参数名 | 类型   | 必填 | 说明         |
 | ------ | ------ | ---- | -------------- |
-| userId | number | 是   | 被查询的用户id。 |
+| userId | number | 是   | 被查询的用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取。 |
 
 **返回值：**
 
 | 类型                          | 说明                                                   |
 | ----------------------------- | ------------------------------------------------------ |
-| Promise\<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)\>\> | Promise形式返回指定用户下所有应用的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)。 |
+| Promise\<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)\>\> | Promise形式返回指定用户下所有应用的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)。 |
 
 **错误码：**
 
@@ -264,7 +210,7 @@ getAllLauncherAbilityInfo(userId: number) : Promise\<Array\<[LauncherAbilityInfo
 
 | 错误码ID | 错误信息                                |
 | -------- | ---------------------------------------- |
-| 201 | Permission denied. |
+| 201 | Verify permission denied. |
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 801 | Capability not support. |
@@ -279,7 +225,7 @@ import { BusinessError } from '@ohos.base';
 try {
     launcherBundleManager.getAllLauncherAbilityInfo(100)
         .then((data: launcherBundleManager.LauncherAbilityInfo[]) => {
-        console.log("data is " + JSON.stringify(data));
+        console.info('data is ' + JSON.stringify(data));
     }).catch ((errData: BusinessError) => {
         console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
     });
@@ -315,7 +261,7 @@ getShortcutInfo(bundleName :string, callback: AsyncCallback\<Array\<[ShortcutInf
 
 | 错误码ID | 错误信息                                |
 | -------- | ---------------------------------------- |
-| 201 | Permission denied. |
+| 201 | Verify permission denied. |
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 801 | Capability not support. |
@@ -333,7 +279,7 @@ try {
         if (errData !== null) {
             console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
         } else {
-            console.log("data is " + JSON.stringify(data));
+            console.info('data is ' + JSON.stringify(data));
         }
     });
 } catch (errData) {
@@ -373,7 +319,7 @@ getShortcutInfo(bundleName : string) : Promise\<Array\<[ShortcutInfo](js-apis-bu
 
 | 错误码ID | 错误信息                                |
 | -------- | ---------------------------------------- |
-| 201 | Permission denied. |
+| 201 | Verify permission denied. |
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 801 | Capability not support. |
@@ -388,7 +334,7 @@ import { BusinessError } from '@ohos.base';
 try {
     launcherBundleManager.getShortcutInfo("com.example.demo")
         .then((data: launcherBundleManager.ShortcutInfo[]) => {
-        console.log("data is " + JSON.stringify(data));
+        console.info('data is ' + JSON.stringify(data));
     }).catch ((errData: BusinessError) => {
         console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
     });
@@ -429,7 +375,7 @@ getShortcutInfoSync(bundleName : string) : Array\<[ShortcutInfo](js-apis-bundleM
 
 | 错误码ID | 错误信息                                |
 | -------- | ---------------------------------------- |
-| 201 | Permission denied. |
+| 201 | Verify permission denied. |
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 801 | Capability not support. |
@@ -443,7 +389,7 @@ import { BusinessError } from '@ohos.base';
 
 try {
     let data = launcherBundleManager.getShortcutInfoSync("com.example.demo");
-    console.log("data is " + JSON.stringify(data));
+    console.info('data is ' + JSON.stringify(data));
 } catch (errData) {
     let code = (errData as BusinessError).code;
     let message = (errData as BusinessError).message;
@@ -468,7 +414,7 @@ getShortcutInfoSync(bundleName: string, userId: number) : Array\<[ShortcutInfo](
 | 参数名     | 类型   | 必填 | 说明         |
 | ---------- | ------ | ---- | -------------- |
 | bundleName | string | 是   | 应用Bundle名称。 |
-| userId     | number | 是   | 表示用户ID。  |
+| userId     | number | 是   | 表示用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取。  |
 
 **返回值：**
 
@@ -482,7 +428,7 @@ getShortcutInfoSync(bundleName: string, userId: number) : Array\<[ShortcutInfo](
 
 | 错误码ID | 错误信息                                |
 | -------- | ---------------------------------------- |
-| 201 | Permission denied. |
+| 201 | Verify permission denied. |
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 801 | Capability not support. |
@@ -497,7 +443,7 @@ import { BusinessError } from '@ohos.base';
 
 try {
     let data = launcherBundleManager.getShortcutInfoSync("com.example.demo", 100);
-    console.log("data is " + JSON.stringify(data));
+    console.info('data is ' + JSON.stringify(data));
 } catch (errData) {
     let code = (errData as BusinessError).code;
     let message = (errData as BusinessError).message;
@@ -524,13 +470,19 @@ startShortcut(shortcutInfo: ShortcutInfo, options?: StartOptions): Promise\<void
 | shortcutInfo | [ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md) | 是   | 应用的快捷方式信息。 |
 | options      | [StartOptions](js-apis-app-ability-startOptions-sys.md)   | 否   | 启动参数选项，用于指定任务切到前台时的窗口模式，设备ID等。 |
 
+**返回值：**
+
+| 类型                                       | 说明      |
+| ---------------------------------------- | ------- |
+| Promise\<void> | 无返回结果的Promise对象。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                |
 | -------- | ---------------------------------------- |
-| 201 | Permission denied. |
+| 201 | Verify permission denied. |
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 801 | Capability not support. |
@@ -544,12 +496,12 @@ import { BusinessError } from '@ohos.base';
 
 try {
     let data : Array<launcherBundleManager.ShortcutInfo> = launcherBundleManager.getShortcutInfoSync("com.example.demo");
-    console.log("data is " + JSON.stringify(data));
+    console.info('data is ' + JSON.stringify(data));
     if (data) {
         try {
             launcherBundleManager.startShortcut(data[0])
                 .then(() => {
-                console.log("startShortcut success");
+                console.info('startShortcut success');
             }).catch ((err: BusinessError) => {
                 console.error(`errData is errCode:${err.code}  message:${err.message}`);
             });
@@ -565,3 +517,45 @@ try {
     console.error(`errData is errCode:${code}  message:${message}`);
 }
 ```
+
+## ShortcutInfo
+
+type ShortcutInfo = _ShortcutInfo
+
+应用[module.json5配置文件](../../quick-start/module-configuration-file.md#shortcuts标签)中定义的快捷方式信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Launcher
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md#shortcutinfo) | 应用module.json5配置文件中定义的快捷方式信息。 |
+
+## ShortcutWant
+
+type ShortcutWant = _ShortcutWant
+
+快捷方式内定义的目标[wants](../../quick-start/module-configuration-file.md#wants标签)信息集合。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Launcher
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_ShortcutWant](js-apis-bundleManager-shortcutInfo-sys.md#shortcutwant) | 快捷方式内定义的目标[wants](../../quick-start/module-configuration-file.md#wants标签)信息集合。 |
+
+## ParameterItem<sup>12+</sup>
+
+type ParameterItem = _ParameterItem
+
+快捷方式配置信息中的自定义数据。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Launcher
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_ParameterItem](js-apis-bundleManager-shortcutInfo-sys.md#parameteritem12) | 快捷方式配置信息中的自定义数据。 |

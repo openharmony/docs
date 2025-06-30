@@ -132,7 +132,7 @@ text{
 
 ```js
 // index.js
-import promptAction from '@ohos.promptAction'
+import promptAction from '@ohos.promptAction';
 export default {
   search(e){
     promptAction.showToast({

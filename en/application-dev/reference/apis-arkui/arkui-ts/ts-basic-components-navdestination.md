@@ -16,7 +16,7 @@
 
 ## Child Components
 
-Built-in components and custom components are allowed, with support for ([if/else](../../../quick-start/arkts-rendering-control-ifelse.md), [ForEach](../../../quick-start/arkts-rendering-control-foreach.md), and [LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)) rendering control.
+Built-in components and custom components are allowed, with support for ([if/else](../../../ui/state-management/arkts-rendering-control-ifelse.md), [ForEach](../../../ui/state-management/arkts-rendering-control-foreach.md), and [LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md)) rendering control.
 
 Number of child components: multiple.
 
@@ -522,7 +522,7 @@ Triggered when **NavDestination** component becomes inactive (not on top of the 
 | Name     | Type                                      | Mandatory  | Description      |
 | ------- | ---------------------------------------- | ---- | -------- |
 | builder | [CustomBuilder](ts-types.md#custombuilder8) | Yes   | Content of the title bar.|
-| height  | [TitleHeight](ts-appendix-enums.md#titleheight9) \| [Length](ts-types.md#length) | Yes   | Height of the title bar.<br>Value range: [0, +��)|
+| height  | [TitleHeight](ts-appendix-enums.md#titleheight9) \| [Length](ts-types.md#length) | Yes   | Height of the title bar.<br>Value range: [0, +∞)|
 
 ## NavDestinationContext<sup>11+</sup>
 

@@ -358,7 +358,7 @@ The **CustomBuilder** type is used to define custom UI descriptions in component
 
 | Name           | Type                  | Description                                      |
 | ------------- | ---------------------- | ---------------------------------------- |
-| CustomBuilder | () =&gt; any \| void | Builder for creating a custom component; must be used with @Builder. For details, see [@Builder](../../../quick-start/arkts-builder.md).|
+| CustomBuilder | () =&gt; any \| void | Builder for creating a custom component; must be used with @Builder. For details, see [@Builder](../../../ui/state-management/arkts-builder.md).|
 
 ## MarkStyle<sup>10+</sup>
 

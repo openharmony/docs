@@ -46,16 +46,27 @@ enable(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
 import { inputDeviceCooperate } from '@kit.InputKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-try {
-  inputDeviceCooperate.enable(true, (error: BusinessError) => {
-    if (error) {
-      console.log(`Keyboard mouse crossing enable failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-      return;
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            inputDeviceCooperate.enable(true, (error: BusinessError) => {
+              if (error) {
+                console.error(`Keyboard mouse crossing enable failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+                return;
+              }
+              console.log(`Keyboard mouse crossing enable success.`);
+            });
+          } catch (error) {
+            console.error(`Keyboard mouse crossing enable failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
     }
-    console.log(`Keyboard mouse crossing enable success.`);
-  });
-} catch (error) {
-  console.log(`Keyboard mouse crossing enable failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  }
 }
 ```
 
@@ -64,7 +75,6 @@ try {
 enable(enable: boolean): Promise&lt;void&gt;
 
 开启、关闭键鼠穿越，使用Promise异步方式返回结果。
-
 
 **系统能力**： SystemCapability.MultimodalInput.Input.Cooperator
 
@@ -94,14 +104,25 @@ enable(enable: boolean): Promise&lt;void&gt;
 import { inputDeviceCooperate } from '@kit.InputKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-try {
-  inputDeviceCooperate.enable(true).then(() => {
-    console.log(`Keyboard mouse crossing enable success.`);
-  }, (error: BusinessError) => {
-    console.log(`Keyboard mouse crossing enable failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-  });
-} catch (error) {
-  console.log(`Keyboard mouse crossing enable failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            inputDeviceCooperate.enable(true).then(() => {
+              console.log(`Keyboard mouse crossing enable success.`);
+            }, (error: BusinessError) => {
+              console.error(`Keyboard mouse crossing enable failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+            });
+          } catch (error) {
+            console.error(`Keyboard mouse crossing enable failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -123,7 +144,7 @@ start(sinkDeviceDescriptor: string, srcInputDeviceId: number, callback: AsyncCal
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.multimodalinput错误码](errorcode-multimodalinput.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.multimodalinput错误码](errorcode-cooperator.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -137,18 +158,29 @@ start(sinkDeviceDescriptor: string, srcInputDeviceId: number, callback: AsyncCal
 import { inputDeviceCooperate } from '@kit.InputKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let sinkDeviceDescriptor = "descriptor";
-let srcInputDeviceId = 0;
-try {
-  inputDeviceCooperate.start(sinkDeviceDescriptor, srcInputDeviceId, (error: BusinessError) => {
-    if (error) {
-      console.log(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-      return;
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          let sinkDeviceDescriptor = "descriptor";
+          let srcInputDeviceId = 0;
+          try {
+            inputDeviceCooperate.start(sinkDeviceDescriptor, srcInputDeviceId, (error: BusinessError) => {
+              if (error) {
+                console.error(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+                return;
+              }
+              console.log(`Start Keyboard mouse crossing success.`);
+            });
+          } catch (error) {
+            console.error(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
     }
-    console.log(`Start Keyboard mouse crossing success.`);
-  });
-} catch (error) {
-  console.log(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  }
 }
 ```
 
@@ -177,7 +209,7 @@ start(sinkDeviceDescriptor: string, srcInputDeviceId: number): Promise\<void>
 
 **错误码**：
 
-以下错误码的详细介绍请参见[ohos.multimodalinput错误码](errorcode-multimodalinput.md)。
+以下错误码的详细介绍请参见[ohos.multimodalinput错误码](errorcode-cooperator.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -191,16 +223,27 @@ start(sinkDeviceDescriptor: string, srcInputDeviceId: number): Promise\<void>
 import { inputDeviceCooperate } from '@kit.InputKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let sinkDeviceDescriptor = "descriptor";
-let srcInputDeviceId = 0;
-try {
-  inputDeviceCooperate.start(sinkDeviceDescriptor, srcInputDeviceId).then(() => {
-    console.log(`Start Keyboard mouse crossing success.`);
-  }, (error: BusinessError) => {
-    console.log(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-  });
-} catch (error) {
-  console.log(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          let sinkDeviceDescriptor = "descriptor";
+          let srcInputDeviceId = 0;
+          try {
+            inputDeviceCooperate.start(sinkDeviceDescriptor, srcInputDeviceId).then(() => {
+              console.log(`Start Keyboard mouse crossing success.`);
+            }, (error: BusinessError) => {
+              console.error(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+            });
+          } catch (error) {
+            console.error(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -232,16 +275,27 @@ stop(callback: AsyncCallback\<void>): void
 import { inputDeviceCooperate } from '@kit.InputKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-try {
-  inputDeviceCooperate.stop((error: BusinessError) => {
-    if (error) {
-      console.log(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-      return;
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            inputDeviceCooperate.stop((error: BusinessError) => {
+              if (error) {
+                console.error(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+                return;
+              }
+              console.log(`Stop Keyboard mouse crossing success.`);
+            });
+          } catch (error) {
+            console.error(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
     }
-    console.log(`Stop Keyboard mouse crossing success.`);
-  });
-} catch (error) {
-  console.log(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  }
 }
 ```
 
@@ -265,14 +319,25 @@ stop(): Promise\<void>
 import { inputDeviceCooperate } from '@kit.InputKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-try {
-  inputDeviceCooperate.stop().then(() => {
-    console.log(`Stop Keyboard mouse crossing success.`);
-  }, (error: BusinessError) => {
-    console.log(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-  });
-} catch (error) {
-  console.log(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          try {
+            inputDeviceCooperate.stop().then(() => {
+              console.log(`Stop Keyboard mouse crossing success.`);
+            }, (error: BusinessError) => {
+              console.error(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+            });
+          } catch (error) {
+            console.error(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -306,17 +371,28 @@ getState(deviceDescriptor: string, callback: AsyncCallback<{ state: boolean }>):
 import { inputDeviceCooperate } from '@kit.InputKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let deviceDescriptor = "descriptor";
-try {
-  inputDeviceCooperate.getState(deviceDescriptor, (error: BusinessError, data: object) => {
-    if (error) {
-      console.log(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-      return;
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          let deviceDescriptor = "descriptor";
+          try {
+            inputDeviceCooperate.getState(deviceDescriptor, (error: BusinessError, data: object) => {
+              if (error) {
+                console.error(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+                return;
+              }
+              console.log(`Get the status success, data: ${JSON.stringify(data)}`);
+            });
+          } catch (error) {
+            console.error(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
     }
-    console.log(`Get the status success, data: ${JSON.stringify(data)}`);
-  });
-} catch (error) {
-  console.log(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  }
 }
 ```
 
@@ -355,15 +431,26 @@ getState(deviceDescriptor: string): Promise<{ state: boolean }>
 import { inputDeviceCooperate } from '@kit.InputKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let deviceDescriptor = "descriptor";
-try {
-  inputDeviceCooperate.getState(deviceDescriptor).then((data: object) => {
-    console.log(`Get the status success, data: ${JSON.stringify(data)}`);
-  }, (error: BusinessError) => {
-    console.log(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-  });
-} catch (error) {
-  console.log(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          let deviceDescriptor = "descriptor";
+          try {
+            inputDeviceCooperate.getState(deviceDescriptor).then((data: object) => {
+              console.log(`Get the status success, data: ${JSON.stringify(data)}`);
+            }, (error: BusinessError) => {
+              console.error(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+            });
+          } catch (error) {
+            console.error(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -396,14 +483,25 @@ on(type: 'cooperation', callback: AsyncCallback<{ deviceDescriptor: string, even
 ```ts
 import { inputDeviceCooperate } from '@kit.InputKit';
 
-function callback(msg: object) {
-  console.log(`Keyboard mouse crossing event: ${JSON.stringify(msg)}`);
-  return false;
-}
-try {
-  inputDeviceCooperate.on('cooperation', callback);
-} catch (error) {
-  console.log(`Register failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          let callback = (msg: object) => {
+            console.log(`Keyboard mouse crossing event: ${JSON.stringify(msg)}`);
+            return false;
+          }
+          try {
+            inputDeviceCooperate.on('cooperation', callback);
+          } catch (error) {
+            console.error(`Register failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 
@@ -436,35 +534,57 @@ off(type: 'cooperation', callback?: AsyncCallback\<void>): void
 ```ts
 import { inputDeviceCooperate } from '@kit.InputKit';
 
-// 取消注册单个回调函数
-function callbackOn(msg: object) {
-  console.log(`Keyboard mouse crossing event: ${JSON.stringify(msg)}`);
-  return false;
-}
-function callbackOff() {
-  console.log(`Keyboard mouse crossing event`);
-  return false;
-}
-try {
-  inputDeviceCooperate.on('cooperation', callbackOn);
-  inputDeviceCooperate.off("cooperation", callbackOff);
-} catch (error) {
-  console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          // 取消注册单个回调函数
+          let callbackOn = (msg: object) => {
+            console.log(`Keyboard mouse crossing event: ${JSON.stringify(msg)}`);
+            return false;
+          }
+          let callbackOff = () => {
+            console.log(`Keyboard mouse crossing event`);
+            return false;
+          }
+          try {
+            inputDeviceCooperate.on('cooperation', callbackOn);
+            inputDeviceCooperate.off("cooperation", callbackOff);
+          } catch (error) {
+            console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 ```ts
 import { inputDeviceCooperate } from '@kit.InputKit';
 
-// 取消注册所有回调函数
-function callback(msg: object) {
-  console.log(`Keyboard mouse crossing event: ${JSON.stringify(msg)}`);
-  return false;
-}
-try {
-  inputDeviceCooperate.on('cooperation', callback);
-  inputDeviceCooperate.off("cooperation");
-} catch (error) {
-  console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+@Entry
+@Component
+struct Index {
+  build() {
+    RelativeContainer() {
+      Text()
+        .onClick(() => {
+          // 取消注册所有回调函数
+          let callback = (msg: object) => {
+            console.log(`Keyboard mouse crossing event: ${JSON.stringify(msg)}`);
+            return false;
+          }
+          try {
+            inputDeviceCooperate.on('cooperation', callback);
+            inputDeviceCooperate.off("cooperation");
+          } catch (error) {
+            console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          }
+        })
+    }
+  }
 }
 ```
 

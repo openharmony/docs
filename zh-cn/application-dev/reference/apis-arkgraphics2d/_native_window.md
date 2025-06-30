@@ -996,7 +996,9 @@ int32_t OH_NativeWindow_NativeWindowFlushBuffer (OHNativeWindow *window, OHNativ
 **描述：**
 
 通过OHNativeWindow将生产好内容的OHNativeWindowBuffer放回到Buffer队列中，用以内容消费。
-系统会将fenFd关闭，无需用户close。
+
+系统会将fenceFd关闭，无需用户close。
+
 本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
@@ -1009,8 +1011,8 @@ int32_t OH_NativeWindow_NativeWindowFlushBuffer (OHNativeWindow *window, OHNativ
 | -------- | -------- |
 | window | 一个OHNativeWindow的结构体实例的指针。 | 
 | buffer | 一个OHNativeWindowBuffer的结构体实例的指针。 | 
-| fenceFd | 一个文件描述符句柄，用以同步时序。 | 
-| region | 表示一块脏区域，该区域有内容更新。 | 
+| fenceFd |一个文件描述符句柄，用以同步时序。不同取值及含义如下：<br>- -1：CPU渲染完成，无需同步时序。<br>- ≥0：从GPU同步对象转换（如EGL的`eglDupNativeFenceFDANDROID`），对端需要通过此fenceFd同步时序。| 
+| region | 一个[Region](_region.md)结构体，表示一块脏区域，该区域有内容更新。 | 
 
 **返回：**
 
@@ -1068,8 +1070,8 @@ int32_t OH_NativeWindow_NativeWindowRequestBuffer (OHNativeWindow *window, OHNat
 | 名称 | 描述 | 
 | -------- | -------- |
 | window | 一个OHNativeWindow的结构体实例的指针。 | 
-| buffer | 一个OHNativeWindowBuffer的结构体实例的二级指针。 | 
-| fenceFd | 一个文件描述符句柄。 | 
+| buffer | 一个指向OHNativeWindowBuffer指针的指针（二级指针）。通过[OH_NativeWindow_GetBufferHandleFromNative](#oh_nativewindow_getbufferhandlefromnative)可获取[BufferHandle](_buffer_handle.md)结构体，访问缓冲区内存。 | 
+| fenceFd | 一个文件描述符句柄，用于GPU/CPU同步。不同取值及含义如下：<br>- 返回≥0：缓冲区正被GPU使用，需要等待文件描述符fenceFd就绪。<br>- 返回-1：缓冲区可直接使用。| 
 
 **返回：**
 

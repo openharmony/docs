@@ -174,7 +174,7 @@ struct Index {
       .height('5%')
       .margin({ bottom: '12vp' })
       .onClick(() => {
-        let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+        let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
         let link: string = "https://www.example.com/programs?action=showall";
         // 仅以App Linking的方式打开应用
         context.openLink(link, { appLinkingOnly: true })

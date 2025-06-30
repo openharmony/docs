@@ -4,11 +4,11 @@
 
 >  **说明：**
 >
->  从API Version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  从API version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## foregroundEffect
 
-foregroundEffect(options: ForegroundEffectOptions)
+foregroundEffect(options: ForegroundEffectOptions): T
 
 设置组件的前景属性。
 
@@ -21,6 +21,12 @@ foregroundEffect(options: ForegroundEffectOptions)
 | 参数名 | 类型                                                         | 必填 | 说明                                                 |
 | ------ | ------------------------------------------------------------ | ---- | ---------------------------------------------------- |
 | options | [ForegroundEffectOptions](#foregroundeffectoptions12) | 是   | 设置组件前景属性包括：模糊半径。 |
+
+**返回值：**
+
+| 类型   | 说明                     |
+| ------ | ------------------------ |
+| T | 返回当前组件。 |
 
 ## ForegroundEffectOptions<sup>12+</sup>
 前景效果参数。
@@ -57,6 +63,6 @@ struct Index {
 ```
 
 效果图如下：
-radius表示模糊半径，数值越大越模糊。
+radius表示模糊半径，数值越大，效果越模糊。
 
 ![foregroundColor_circle](figures/foregroundEffect.jpg)

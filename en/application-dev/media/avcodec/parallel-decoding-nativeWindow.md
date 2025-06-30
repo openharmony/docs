@@ -119,7 +119,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
 7. Start the decoder.
 
-    For details, see step 9 in [Video Decoding Surface Mode](video-decoding.md#surface-output).
+    For details, see step 8 in [Video Decoding Surface Mode](video-decoding.md#surface-output).
 
 
 8. Set the surface.

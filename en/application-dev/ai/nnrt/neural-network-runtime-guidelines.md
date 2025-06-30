@@ -2,12 +2,12 @@
 
 ## When to Use
 
-As a bridge between the AI inference engine and acceleration chip, Neural Network Runtime (NNRt) provides simplified native APIs for the AI inference engine to perform end-to-end inference through the acceleration chip.
+As a bridge between the AI inference engine and acceleration chip, Neural Network Runtime (NNRt) provides simplified Native APIs for the AI inference engine to perform end-to-end inference through the acceleration chip.
 
-This topic uses the `Add` single-operator model shown in Figure 1 as an example to describe the NNRt development process. The `Add` operator involves two inputs, one parameter, and one output. Wherein, the `activation` parameter is used to specify the type of the activation function in the `Add` operator.
+This document uses the `Add` single-operator model shown in Figure 1 as an example to describe the NNRt development process. The `Add` operator involves two inputs, one parameter, and one output. Wherein, the `activation` parameter is used to specify the type of the activation function in the `Add` operator.
 
-**Figure 1** Add single-operator model<br>
-!["Single Add operator model"](figures/neural_network_runtime.png)
+**Figure 1** Add single-operator model
+!["Add single-operator model"](figures/neural_network_runtime.png)
 
 ## Preparing the Environment
 
@@ -18,35 +18,19 @@ The environment requirements for NNRt are as follows:
 - Development environment: Ubuntu 18.04 or later.
 - Access device: a standard device whose built-in hardware accelerator driver has been connected to NNRt.
 
-NNRt is opened to external systems through native APIs. Therefore, you need to use the native development suite to build NNRt applications. You can download the ohos-sdk package of the corresponding version from the daily build in the OpenHarmony community and then decompress the package to obtain the native development suite of the corresponding platform. Take Linux as an example. The package of the native development suite is named `native-linux-{version number}.zip`.
+NNRt is opened to external systems through native APIs. Therefore, you need to download the corresponding SDK and build NNRt applications using the native development kit. You can use DevEco Studio to set up the environment and compile the code.
 
 ### Environment Setup
 
 1. Start the Ubuntu server.
-2. Copy the downloaded package of the Native development suite to the root directory of the current user.
-3. Decompress the package of the native development suite.
-    ```shell
-    unzip native-linux-{version number}.zip
-    ```
+2. Specify the native toolchain path for compilation.
+3. Download the required SDK. Specifically, choose **File** >** Settings...** on the DevEco Studio project page to navigate to the DevEco Studio installation directory, and search for the required SDK and download it to the local directory.
 
-    The directory structure after decompression is as follows. The content in the directory may vary depending on the version. Use the native APIs of the latest version.
-    ```text
-    native/
-    ├── build // Cross-compilation toolchain
-    ├── build-tools // Compilation and build tools
-    ├── docs
-    ├── llvm
-    ├── nativeapi_syscap_config.json
-    ├── ndk_system_capability.json
-    ├── NOTICE.txt
-    ├── oh-uni-package.json
-    └── sysroot // Native API header files and libraries
-    ```
 ## Available APIs
 
-This section describes the common APIs used in the NNRt development process.
+The following table lists the common APIs used in the NNRt development. For details, see [NeuralNetworkRuntime](../../reference/apis-neural-network-runtime-kit/_neural_network_runtime.md).
 
-### Structs
+### Structure
 
 | Name| Description|
 | --------- | ---- |
@@ -124,7 +108,7 @@ This section describes the common APIs used in the NNRt development process.
 
 | Name| Description|
 | ------- | --- |
-| OH_NNExecutor *OH_NNExecutor_Construct(OH_NNCompilation *compilation) | Creates an **OH_NNExecutor** instance.|
+| OH_NNExecutor *OH_NNExecutor_Construct(OH_NNCompilation *compilation) | Creates an executor instance of the OH_NNExecutor type.|
 | OH_NN_ReturnCode OH_NNExecutor_GetOutputShape(OH_NNExecutor *executor, uint32_t outputIndex, int32_t **shape, uint32_t *shapeLength) | Obtains the dimension information about the output tensor. This API is applicable only if the output tensor has a dynamic shape.|
 | OH_NN_ReturnCode OH_NNExecutor_GetInputCount(const OH_NNExecutor *executor, size_t *inputCount) | Obtains the number of input tensors.|
 | OH_NN_ReturnCode OH_NNExecutor_GetOutputCount(const OH_NNExecutor *executor, size_t *outputCount) | Obtains the number of output tensors.|
@@ -137,7 +121,7 @@ This section describes the common APIs used in the NNRt development process.
 | OH_NN_ReturnCode OH_NNExecutor_RunAsync(OH_NNExecutor *executor, NN_Tensor *inputTensor[], size_t inputCount, NN_Tensor *outputTensor[], size_t outputCount, int32_t timeout, void *userData) | Performs asynchronous inference.|
 | void OH_NNExecutor_Destroy(OH_NNExecutor **executor) | Destroys an **OH_NNExecutor** instance.|
 
-### Device Management APIs
+### Device management APIs
 
 | Name| Description|
 | ------- | --- |
@@ -152,14 +136,14 @@ The development process of NNRt consists of three phases: model construction, mo
 
 1. Create an application sample file.
 
-    Create the source file of the NNRt application sample. Run the following commands in the project directory to create the `nnrt_example/` directory and create the `nnrt_example.cpp` source file in the directory:
+    Create the source file of NNRt application sample. Run the following commands in the project directory to create the `nnrt_example/` directory and create the `nnrt_example.cpp` source file in the directory:
 
     ```shell
     mkdir ~/nnrt_example && cd ~/nnrt_example
     touch nnrt_example.cpp
     ```
 
-2. Import the NNRt module.
+2. Import NNRt module.
 
     Add the following code at the beginning of the `nnrt_example.cpp` file to import NNRt:
 
@@ -396,7 +380,7 @@ The development process of NNRt consists of three phases: model construction, mo
     {
         availableDevice.clear();
 
-        // Obtain the available hardware IDs.
+        // Obtain the available hardware ID.
         const size_t* devices = nullptr;
         uint32_t deviceCount = 0;
         OH_NN_ReturnCode ret = OH_NNDevice_GetAllDevicesID(&devices, &deviceCount);
@@ -631,7 +615,7 @@ The development process of NNRt consists of three phases: model construction, mo
     Create the **build/** directory in the current directory, and compile `nnrt\_example.cpp` in the **build/** directory to obtain the binary file `nnrt\_example`:
     ```shell
     mkdir build && cd build
-    cmake -DCMAKE_TOOLCHAIN_FILE={Path of the cross-compilation toolchain}/build/cmake/ohos.toolchain.cmake -DOHOS_ARCH=arm64-v8a -DOHOS_PLATFORM=OHOS -DOHOS_STL=c++_static ..
+    cmake -DCMAKE_TOOLCHAIN_FILE={Path of the cross-compilation tool chain }/build/cmake/ohos.toolchain.cmake -DOHOS_ARCH=arm64-v8a -DOHOS_PLATFORM=OHOS -DOHOS_STL=c++_static ..
     make
     ```
 
@@ -669,7 +653,7 @@ The development process of NNRt consists of three phases: model construction, mo
 
     > **NOTE**
     >
-    > The IR graphs of the model need to be passed to the hardware driver layer, so that the HDI service compiles the IR graphs into a computing graph dedicated to hardware. The compilation process is time-consuming. The NNRt supports the computing graph cache feature. It can cache the computing graphs compiled by the HDI service to the device storage. If the same model is compiled on the same acceleration chip next time, you can specify the cache path so that NNRt can directly load the computing graphs in the cache file, reducing the compilation time.
+    > The IR graphs of the model need to be passed to the hardware driver layer, so that the HDI service compiles the IR graphs into a computing graph dedicated to hardware. The compilation process is time-consuming. NNRt supports the computing graph cache feature. It can cache the computing graphs compiled by the HDI service to the device storage. If the same model is compiled on the same acceleration chip next time, you can specify the cache path so that NNRt can directly load the computing graphs in the cache file, reducing the compilation time.
 
     Check the cached files in the cache directory.
     ```shell

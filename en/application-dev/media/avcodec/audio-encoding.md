@@ -10,10 +10,10 @@ For details about the supported encoding capabilities, see [AVCodec Supported Fo
 
 - Audio recording
 
-  Record incoming PCM data, encode it into the desired stream format, and then [wrap](audio-video-muxer.md#media-data-muxing) it in the target file format.
+  Record incoming PCM data, encode it into the desired stream format, and then [wrap](audio-video-muxer.md#media-data-multiplexing) it in the target file format.
 - Audio editing
 
-  When exporting edited PCM data as an audio file, the PCM data must be encoded into the appropriate audio format and then [wrapped](audio-video-muxer.md#media-data-muxing) into a file.
+  When exporting edited PCM data as an audio file, the PCM data must be encoded into the appropriate audio format and then [wrapped](audio-video-muxer.md#media-data-multiplexing) into a file.
 > **NOTE**
 >
 > AAC encoders adopt the VBR mode by default, which may differ in the configured parameters.
@@ -74,7 +74,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     // Create an encoder by MIME type.
     OH_AVCodec *audioEnc_ = OH_AudioCodec_CreateByMime(OH_AVCODEC_MIMETYPE_AUDIO_AAC, isEncoder);
     ```
-    
+   
     ```cpp
     // Initialize the queues.
     class AEncBufferSignal {
@@ -98,7 +98,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
    Register the **OH_AVCodecCallback** struct that defines the following callback function pointers:
 
    - **OH_AVCodecOnError**, a callback used to report a codec operation error
-   - **OH_AVCodecOnStreamChanged**. This callback is not supported by the audio encoder.
+   - **OH_AVCodecOnStreamChanged**, a callback not supported by the audio encoder yet
    - **OH_AVCodecOnNeedInputBuffer**, a callback used to report input data required, which means that the encoder is ready for receiving PCM data
    - **OH_AVCodecOnNewOutputBuffer**, a callback used to report output data generated, which means that encoding is complete
 
@@ -314,16 +314,16 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     if (ret != AV_ERR_OK) {
         // Handle exceptions.
     }
-    ```
+   ```
    In the preceding example, **attr.flags** indicates the type of the buffer flag.
 
    To indicate the End of Stream (EOS), pass in the **AVCODEC_BUFFER_FLAGS_EOS** flag.
 
-   | Value| Description| 
+   | Value| Description|
    | -------- | -------- |
-   | AVCODEC_BUFFER_FLAGS_NONE | Common frame.| 
-   | AVCODEC_BUFFER_FLAGS_EOS | The buffer is an end-of-stream frame.| 
-   | AVCODEC_BUFFER_FLAGS_CODEC_DATA | The buffer contains codec-specific data.| 
+   | AVCODEC_BUFFER_FLAGS_NONE | Common frame.|
+   | AVCODEC_BUFFER_FLAGS_EOS | The buffer is an end-of-stream frame.|
+   | AVCODEC_BUFFER_FLAGS_CODEC_DATA | The buffer contains codec-specific data.|
 
 8. Call **OH_AudioCodec_FreeOutputBuffer()** to release the encoded data.
 

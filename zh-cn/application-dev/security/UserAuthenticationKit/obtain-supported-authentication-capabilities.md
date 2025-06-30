@@ -18,15 +18,15 @@
 
    认证可信等级的详细介绍请参见[认证可信等级划分原则](../../security/UserAuthenticationKit/user-authentication-overview.md)。
 
-以查询设备是否支持认证可信等级≥ATL1的人脸认证功能为例：
+以查询设备是否支持认证可信等级≥ATL3的人脸认证功能为例：
 
 ```ts
 import { BusinessError } from  '@kit.BasicServicesKit';
 import { userAuth } from '@kit.UserAuthenticationKit';
 
 // 查询认证能力是否支持。
-try {    
-    userAuth.getAvailableStatus(userAuth.UserAuthType.FACE, userAuth.AuthTrustLevel.ATL1);    
+try {
+    userAuth.getAvailableStatus(userAuth.UserAuthType.FACE, userAuth.AuthTrustLevel.ATL3);
     console.info('current auth trust level is supported');
 } catch (error) {
     const err: BusinessError = error as BusinessError;

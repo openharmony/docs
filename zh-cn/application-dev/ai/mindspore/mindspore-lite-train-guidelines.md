@@ -8,7 +8,7 @@ MindSpore Lite是一款AI引擎，它提供了面向不同硬件设备AI模型�
 
 
 ## 接口说明
-此处给出使用MindSpore Lite进行模型训练相关的部分接口，具体请见下方表格
+此处给出使用MindSpore Lite进行模型训练相关的部分接口，具体请见下方表格。更多接口及详细内容，请见[MindSpore](../../reference/apis-mindspore-lite-kit/_mind_spore.md)。
 
 | 接口名称        | 描述        |
 | ------------------ | ----------------- |
@@ -61,7 +61,7 @@ int GenerateInputDataWithRandom(OH_AI_TensorHandleArray inputs) {
 
 1. 模型准备。
 
-    准备的模型格式为`.ms`，本文以[lenet_train.ms](https://gitee.com/openharmony-sig/compatibility/blob/master/test_suite/resource/master/standard%20system/acts/resource/ai/mindspore/lenet_train/lenet_train.ms)为例（此模型是提前准备的`ms`模型）。如果开发者需要使用自己准备的模型，可以按如下步骤操作：
+    准备的模型格式为`.ms`，本文以lenet_train.ms为例（此模型是提前准备的`ms`模型，本文相关效果仅以此模型文件为例）。开发者请自行准备所需的模型，可以按如下步骤操作：
 
     - 首先基于MindSpore架构使用Python创建网络模型，并导出为`.mindir`文件，详细指南参考[这里](https://www.mindspore.cn/tutorials/zh-CN/r2.1/beginner/quick_start.html)。
     - 然后将`.mindir`模型文件转换成`.ms`文件，转换操作步骤可以参考[训练模型转换](https://www.mindspore.cn/lite/docs/zh-CN/r2.1/use/converter_train.html)，`.ms`文件可以导入端侧设备并基于MindSpore端侧框架进行训练。

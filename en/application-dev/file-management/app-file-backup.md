@@ -36,12 +36,11 @@ import common from '@ohos.app.ability.common';
 import fs from '@ohos.file.fs';
 import { BusinessError } from '@ohos.base';
 
-// Obtain the application file path.
-let context = getContext(this) as common.UIAbilityContext;
-let filesDir = context.filesDir;
-
-async function getLocalCapabilities(): Promise<void> {
+// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+async function getLocalCapabilities(context: common.UIAbilityContext): Promise<void> {
  try {
+   let filesDir = context.filesDir;
    let fileData = await backup.getLocalCapabilities();
    console.info('getLocalCapabilities success');
    let fpath = filesDir + '/localCapabilities.json';
@@ -49,7 +48,7 @@ async function getLocalCapabilities(): Promise<void> {
    fs.closeSync(fileData.fd);
  } catch (error) {
    let err: BusinessError = error as BusinessError;
-   console.error('getLocalCapabilities failed with err: ' + JSON.stringify(err));
+   console.error(`getLocalCapabilities failed with err, code is ${err.code}, message is ${err.message}`);
  }
 }
 ```
@@ -59,11 +58,10 @@ async function getLocalCapabilities(): Promise<void> {
 | Name      | Type| Mandatory| Description                  |
 | -------------- | -------- | ---- | ---------------------- |
 | bundleInfos    | Array    | Yes  | Application information.          |
-| allToBackup    | Boolean  | Yes  | Whether to allow backup and restoration.      |
+| allToBackup    | Boolean  | Yes  | Whether to allow backup and restoration. The value **true** means that backup and restoration are allowed; the value **false** means the opposite.      |
 | extensionName  | String  | Yes  | Extension name of the application.          |
 | name           | String  | Yes  | Bundle name of the application.            |
-| needToInstall  | Boolean  | Yes  | Whether to install the application during data restoration.|
-| spaceOccupied  | Number    | Yes  | Space occupied by the application data.|
+| spaceOccupied  | Number    | Yes  | Space occupied by an application, in bytes.|
 | versionCode    | Number    | Yes  | Application version number.          |
 | versionName    | String  | Yes  | Application version name.        |
 | deviceType     | String  | Yes  | Device type.              |
@@ -101,17 +99,17 @@ You can save the file to a local directory as required.
   import fs from '@ohos.file.fs';
   import { BusinessError } from '@ohos.base';
 
-  // Obtain the sandbox path.
-  let context = getContext(this) as common.UIAbilityContext;
-  let filesDir = context.filesDir;
+  // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext; 
   // Create a SessionBackup instance for data backup.
   let g_session: backup.SessionBackup;
-  function createSessionBackup(): backup.SessionBackup {
+  function createSessionBackup(context: common.UIAbilityContext): backup.SessionBackup {
     let generalCallbacks: backup.GeneralCallbacks = {
+      let filesDir = context.filesDir;
       // onFileReady is called to return a data complete notification to the application. Avoid time-consuming implementations in onFileReady. You can use asynchronous threads to process data based on the file FD.
       onFileReady: (err: BusinessError, file: backup.File) => {
         if (err) {
-          console.info('onFileReady err: ' + JSON.stringify(err));
+          console.error(`onFileReady err, code is ${err.code}, message is ${err.message}`);
         }
         try {
           let bundlePath = filesDir + '/' + file.bundleName;
@@ -128,21 +126,21 @@ You can save the file to a local directory as required.
       },
       onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
         if (err) {
-          console.info('onBundleBegin err: ' + JSON.stringify(err));
+          console.error(`onBundleBegin err, code is ${err.code}, message is ${err.message}`);
         } else {
           console.info('onBundleBegin bundleName: ' + bundleName);
         }
       },
       onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
         if (err) {
-          console.info('onBundleEnd err: ' + JSON.stringify(err));
+          console.error(`onBundleEnd err, code is ${err.code}, message is ${err.message}`);
         } else {
           console.info('onBundleEnd bundleName: ' + bundleName);
         }
       },
       onAllBundlesEnd: (err: BusinessError) => {
         if (err) {
-          console.info('onAllBundlesEnd err: ' + JSON.stringify(err));
+          console.error(`onAllBundlesEnd err, code is ${err.code}, message is ${err.message}`);
         } else {
           console.info('onAllBundlesEnd');
         }
@@ -208,7 +206,7 @@ When all the data of the application is ready, the service starts to restore the
     let generalCallbacks: backup.GeneralCallbacks = {
       onFileReady: (err: BusinessError, file: backup.File) => {
         if (err) {
-          console.info('onFileReady err: ' + JSON.stringify(err));
+          console.error(`onFileReady err, code is ${err.code}, message is ${err.message}`);
         }
         // Set bundlePath based on the actual situation.
         let bundlePath: string = '';
@@ -226,19 +224,19 @@ When all the data of the application is ready, the service starts to restore the
       },
       onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
         if (err) {
-          console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
+          console.error(`onBundleBegin failed with err, code is ${err.code}, message is ${err.message}`);
         }
         console.info('onBundleBegin success');
       },
       onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
         if (err) {
-          console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
+          console.error(`onBundleEnd failed with err, code is ${err.code}, message is ${err.message}`);
         }
         console.info('onBundleEnd success');
       },
       onAllBundlesEnd: (err: BusinessError) => {
         if (err) {
-          console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+          console.error(`onAllBundlesEnd failed with err, code is ${err.code}, message is ${err.message}`);
         }
         console.info('onAllBundlesEnd success');
       },

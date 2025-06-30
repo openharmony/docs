@@ -21,7 +21,7 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 
 | 名称           | 类型                               | 必填 | 说明                                                         |
 | -------------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
-| userId<sup>18+</sup> | number | 否   |要认证的目标用户ID，值为大于等于0的正整数。|
+| userId<sup>18+</sup> | number | 否   |要认证的目标用户ID，值为大于等于0的正整数。默认值为当前用户的ID。|
 
 ## WindowModeType<sup>10+</sup>
 
@@ -349,6 +349,8 @@ try {
     }
   });
   console.info('auth on success');
+  userAuthInstance.start();
+  console.info('auth start success');
 } catch (error) {
   const err: BusinessError = error as BusinessError;
   console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);

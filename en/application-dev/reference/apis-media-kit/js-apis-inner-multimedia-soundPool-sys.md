@@ -17,4 +17,4 @@ Describes the playback parameters of the sound pool.
 
 | Name           | Type                                    | Mandatory| Description                                                        |
 | --------------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| parallelPlayFlag | boolean | No  | Whether the sound can be played in parallel with other active audio streams. The value **true** means that the sound can be played in parallel with other active audio streams, without preempting the audio focus, and **false** means the opposite.<br>This is a system API.|
+| parallelPlayFlag | boolean | No  | Whether the sound can be played in parallel with other active audio streams. The value **true** means that the sound can be played in parallel with other active audio streams, without preempting the audio focus, and **false** means the opposite. The default value is **false**.<br>This is a system API.|

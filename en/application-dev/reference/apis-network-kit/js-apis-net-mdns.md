@@ -45,14 +45,20 @@ Adds an MDNS service. This API uses an asynchronous callback to return the resul
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
 Stage model:
 
+<!--code_no_check-->
 ```ts
 import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 // Obtain the context.
-let context = getContext(this) as Context;
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
 let localServiceInfo: mdns.LocalServiceInfo = {
   serviceType: "_print._tcp",
@@ -65,7 +71,7 @@ let localServiceInfo: mdns.LocalServiceInfo = {
 }
 
 mdns.addLocalService(context, localServiceInfo, (error:BusinessError, data:mdns.LocalServiceInfo) =>  {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
 ```
@@ -109,14 +115,20 @@ Adds an MDNS service. This API uses a promise to return the result.
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
 Stage model:
 
+<!--code_no_check-->
 ```ts
 import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 // Obtain the context.
-let context = getContext(this) as Context;
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
 let localServiceInfo: mdns.LocalServiceInfo = {
   serviceType: "_print._tcp",
@@ -167,14 +179,20 @@ Removes an MDNS service. This API uses an asynchronous callback to return the re
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
 Stage model:
 
+<!--code_no_check-->
 ```ts
 import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 // Obtain the context.
-let context = getContext(this) as Context;
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
 let localServiceInfo: mdns.LocalServiceInfo = {
   serviceType: "_print._tcp",
@@ -187,7 +205,7 @@ let localServiceInfo: mdns.LocalServiceInfo = {
 }
 
 mdns.removeLocalService(context, localServiceInfo, (error: BusinessError, data: mdns.LocalServiceInfo) =>  {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
 ```
@@ -231,13 +249,19 @@ Removes an MDNS service. This API uses a promise to return the result.
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
 Stage model:
 
+<!--code_no_check-->
 ```ts
 import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
-let context = getContext(this) as Context;
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
 let localServiceInfo: mdns.LocalServiceInfo = {
   serviceType: "_print._tcp",
@@ -285,14 +309,20 @@ Creates a **DiscoveryService** object, which is used to discover MDNS services o
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
 Stage model:
 
+<!--code_no_check-->
 ```ts
 import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 // Obtain the context.
-let context = getContext(this) as Context;
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
 let serviceType = "_print._tcp";
 let discoveryService : Object = mdns.createDiscoveryService(context, serviceType);
@@ -332,14 +362,20 @@ Resolves an MDNS service. This API uses an asynchronous callback to return the r
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
 Stage model:
 
+<!--code_no_check-->
 ```ts
 import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 // Obtain the context.
-let context = getContext(this) as Context;
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
 let localServiceInfo: mdns.LocalServiceInfo = {
   serviceType: "_print._tcp",
@@ -352,7 +388,7 @@ let localServiceInfo: mdns.LocalServiceInfo = {
 }
 
 mdns.resolveLocalService(context, localServiceInfo, (error: BusinessError, data: mdns.LocalServiceInfo) =>  {
-  console.log(JSON.stringify(error));
+  console.error(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
 ```
@@ -396,14 +432,20 @@ Resolves an MDNS service. This API uses a promise to return the result.
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
 Stage model:
 
+<!--code_no_check-->
 ```ts
 import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 // Obtain the context.
-let context = getContext(this) as Context;
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
 let localServiceInfo: mdns.LocalServiceInfo = {
   serviceType: "_print._tcp",
@@ -435,14 +477,20 @@ Searches for MDNS services on the LAN.
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
 Stage model:
 
+<!--code_no_check-->
 ```ts
 import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 // Obtain the context.
-let context = getContext(this) as Context;
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
@@ -460,14 +508,20 @@ Stops searching for MDNS services on the LAN.
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
 Stage model:
 
+<!--code_no_check-->
 ```ts
 import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 // Obtain the context.
-let context = getContext(this) as Context;
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.stopSearchingMDNS();
@@ -492,12 +546,18 @@ Enables listening for **discoveryStart** events.
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+<!--code_no_check-->
 ```ts
 import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 // See mdns.createDiscoveryService.
-let context = getContext(this) as Context;
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
@@ -528,12 +588,18 @@ Disables listening for **discoveryStart** events.
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+<!--code_no_check-->
 ```ts
 import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 // See mdns.createDiscoveryService.
-let context = getContext(this) as Context;
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
@@ -568,12 +634,18 @@ Enables listening for **discoveryStop** events.
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+<!--code_no_check-->
 ```ts
 import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 // See mdns.createDiscoveryService.
-let context = getContext(this) as Context;
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
@@ -604,12 +676,18 @@ Disables listening for **discoveryStop** events.
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+<!--code_no_check-->
 ```ts
 import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 // See mdns.createDiscoveryService.
-let context = getContext(this) as Context;
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
@@ -644,12 +722,18 @@ Enables listening for **serviceFound** events.
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+<!--code_no_check-->
 ```ts
 import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 // See mdns.createDiscoveryService.
-let context = getContext(this) as Context;
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
@@ -683,12 +767,18 @@ Disables listening for **serviceFound** events.
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+<!--code_no_check-->
 ```ts
 import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 // See mdns.createDiscoveryService.
-let context = getContext(this) as Context;
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
@@ -726,12 +816,18 @@ Enables listening for **serviceLost** events.
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+<!--code_no_check-->
 ```ts
 import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 // See mdns.createDiscoveryService.
-let context = getContext(this) as Context;
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
@@ -762,12 +858,18 @@ Disables listening for **serviceLost** events.
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+<!--code_no_check-->
 ```ts
 import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 // See mdns.createDiscoveryService.
-let context = getContext(this) as Context;
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
@@ -785,7 +887,7 @@ discoveryService.off('serviceLost', (data: mdns.LocalServiceInfo) => {
 
 ## LocalServiceInfo
 
-Defines the MDNS service information.
+MDNS service information.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -795,13 +897,13 @@ Defines the MDNS service information.
 | --------------------- | ---------------------------------- | --- | ------------------------ |
 | serviceType   | string                             |  Yes|  Type of the MDNS service. The value is in the format of **\_\<name>.<_tcp/_udp>**, where **name** contains a maximum of 63 characters excluding periods (.). |
 | serviceName | string                             |  Yes|  Name of the MDNS service.  |
-| port            | number           |  No|  Port number of the MDNS server.          |
+| port            | number           |  No|  Port number of the MDNS server. The value range is [0, 65535].          |
 | host           |  [NetAddress](js-apis-net-connection.md#netaddress) |  No|  IP address of the device that provides the MDNS service. The IP address is not effective when an MDNS service is added or removed.              |
 | serviceAttribute     | Array\<[ServiceAttribute](#serviceattribute)> |  No|  MDNS service attribute information.              |
 
 ## ServiceAttribute
 
-Defines the MDNS service attribute information.
+MDNS service attribute information.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -847,7 +949,7 @@ Obtains the network address.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
-**System capability**: SystemCapability.Communication.NetManager
+**System capability**: SystemCapability.Communication.NetManager.Core
 
 |       Type      |            Description            |
 | ---------------- | --------------------------- |

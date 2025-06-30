@@ -17,18 +17,18 @@
    - 当前单次update长度没有限制，开发者可以根据数据量判断如何调用update。
    - 建议开发者对每次update的结果都判断是否为null，并在结果不为null时取出其中的数据进行拼接，形成完整的密文。因为在不同的规格下，update的结果可能会受到不同影响。
       
-      1）比如ECB和CBC模式，始终以分组作为基本单位来加密，并输出本次update产生的加密分组结果。即当本次update操作凑满一个分组就输出密文，没有凑满则此次update输出null，将未加密的数据与下次输入的数据拼接凑分组再输出。等到最后doFinal的时候，将未加密的数据，根据指定的填充模式进行填充，在输出剩余加密结果。解密过程中的update同理。
+      1）例如ECB和CBC模式，始终以分组作为基本单位进行加密，并输出本次更新产生的加密分组结果。即当本次更新操作凑满一个分组时就输出密文，未凑满则本次更新输出null，将未加密的数据与下次输入的数据拼接后再凑分组输出。最后在doFinal时，将未加密的数据根据指定的填充模式进行填充，再输出剩余的加密结果。解密过程中的update操作同理。
 
-      2）对于流加密模式（比如CTR和OFB模式），通常密文长度和明文长度相等。
+      2）对于流加密模式，如CTR和OFB模式，密文长度等于明文长度。
 
 5. 调用[Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1)，获取加密后的数据。
    
-   - 由于已使用update传入数据，此处data传入null。
-   - doFinal输出结果可能为null，在访问具体数据前，需要先判断结果是否为null，避免产生异常。
+   - 由于已通过update传入数据，此处传入null。
+   - 在访问doFinal输出结果前，需先判断结果是否为null，避免产生异常。
 
-6. 读取[GcmParamsSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#gcmparamsspec).authTag作为解密的认证信息。
+6. 读取[GcmParamsSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#gcmparamsspec).authTag作为解密认证信息。
    
-   在GCM模式下，算法库当前只支持16字节的authTag，作为解密时初始化的认证信息。示例中authTag恰好为16字节。
+   在GCM模式下，算法库支持16字节的authTag，用于解密时的认证初始化。示例中的authTag为16字节。
 
 **解密**
 
@@ -82,7 +82,7 @@
       let updateMessageBlob: cryptoFramework.DataBlob = { data: updateMessage };
       // 分段update。
       let updateOutput = await cipher.update(updateMessageBlob);
-      // 把update的结果拼接起来，得到密文（有些情况下还需拼接doFinal的结果，这取决于分组模式。
+      // 把update的结果拼接起来，以获得密文。在某些情况下，还需要拼接doFinal的结果，这取决于分组模式。
       // 和填充模式，本例中GCM模式的doFinal结果只包含authTag而不含密文，所以不需要拼接）。
       let mergeText = new Uint8Array(cipherText.length + updateOutput.data.length);
       mergeText.set(cipherText);
@@ -127,7 +127,7 @@
   async function aes() {
     let keyData = new Uint8Array([83, 217, 231, 76, 28, 113, 23, 219, 250, 71, 209, 210, 205, 97, 32, 159]);
     let symKey = await genSymKeyByData(keyData);
-    let message = "aaaaa.....bbbbb.....ccccc.....ddddd.....eee"; // 假设信息总共43字节，根据utf-8解码后，也是43字节。
+    let message = "aaaaa.....bbbbb.....ccccc.....ddddd.....eee"; // 信息总共43字节，根据utf-8解码后，也是43字节。
     let plainText: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(message, 'utf-8').buffer) };
     let encryptText = await encryptMessageUpdateBySegment(symKey, plainText);
     let decryptText = await decryptMessagePromise(symKey, encryptText);
@@ -227,7 +227,7 @@
   function main() {
     let keyData = new Uint8Array([83, 217, 231, 76, 28, 113, 23, 219, 250, 71, 209, 210, 205, 97, 32, 159]);
     let symKey = genSymKeyByData(keyData);
-    let message = "aaaaa.....bbbbb.....ccccc.....ddddd.....eee"; // 假设信息总共43字节，根据utf-8解码后，也是43字节。
+    let message = "aaaaa.....bbbbb.....ccccc.....ddddd.....eee"; // 信息总共43字节，根据utf-8解码后，也是43字节。
     let plainText: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(message, 'utf-8').buffer) };
     let encryptText = encryptMessageUpdateBySegment(symKey, plainText);
     let decryptText = decryptMessage(symKey, encryptText);

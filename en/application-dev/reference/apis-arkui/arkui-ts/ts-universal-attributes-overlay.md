@@ -46,8 +46,8 @@ Adds an overlay to this component, which can be text, a custom component, or **C
 
 | Name   | Type                                                     | Read Only| Optional | Description                                               |
 | ------- | ---------------------------------------------------------| ---- | ------| --------------------------------------------------- |
-| x       | number                                                   | No  | Yes   | Horizontal offset.                                          |
-| y       | number                                                   | No  | Yes   | Vertical offset.                                          |
+| x       | number                                                   | No  | Yes   | Horizontal offset.<br>Unit: vp.                              |
+| y       | number                                                   | No  | Yes   | Vertical offset.<br>Unit: vp.                              |
 
 ## Example
 

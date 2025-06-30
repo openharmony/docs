@@ -1,6 +1,6 @@
 # 使用ImagePacker完成多图对象编码
 
-图片编码指将Picture多图对象编码成不同格式的存档图片（当前仅支持打包为JPEG 和 HEIF 格式），用于后续处理，如保存、传输等。
+图片编码指将Picture多图对象编码成不同格式的图片文件（当前仅支持编码为JPEG 和 HEIF 格式），用于后续处理，如保存、传输等。
 
 ## 开发步骤
 
@@ -34,7 +34,7 @@
       };
       ```
 
-3. 进行图片编码，并保存编码后的图片。
+3. 进行图片编码，并保存编码后的图片。在进行编码前，需要先通过解码获取picture，可参考[使用ImageSource完成多图对象解码](./image-picture-decoding.md)。
 
    ```ts
    import { BusinessError } from '@kit.BasicServicesKit';
@@ -49,8 +49,11 @@
 
 在编码时，开发者可以传入对应的文件路径，编码后的内存数据将直接写入文件。
 
-   ```ts
-  const context : Context = getContext(this);
+  ```ts
+  import { common } from '@kit.AbilityKit';
+
+   // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   const path : string = context.cacheDir + "/picture.jpg";
   let file = fileIo.openSync(path, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
   imagePackerApi.packToFile(picture, file.fd, packOpts).then(() => {
@@ -58,4 +61,4 @@
   }).catch((error : BusinessError) => {
     console.error('Failed to pack the image. And the error is: ' + error);
   })
-   ```
+  ```

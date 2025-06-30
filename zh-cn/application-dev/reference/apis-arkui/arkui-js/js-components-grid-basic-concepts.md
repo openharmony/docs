@@ -27,7 +27,9 @@
 
 3. Columns：
 
-   是用来辅助布局的主要定位工具，不同的屏幕尺寸匹配不同的Columns数量来辅助布局定位。Columns的宽度在保证Margins和Gutters符合规范的情况下，根据实际设备的宽度和Columns数量自动计算每一个Columns的宽度。![zh-cn_image_0000001127125136](figures/zh-cn_image_0000001127125136.png)
+   是用来辅助布局的主要定位工具，不同的屏幕尺寸匹配不同的Columns数量来辅助布局定位。Columns的宽度在保证Margins和Gutters符合规范的情况下，根据实际设备的宽度和Columns数量自动计算每一个Columns的宽度。
+   
+   ![zh-cn_image_0000001127125136](figures/zh-cn_image_0000001127125136.png)
 
    **栅格断点系统**
 

@@ -13,7 +13,7 @@ The EffectKit module provides the basic image processing capabilities, including
 ## Summary
 
 
-### File
+### Files
 
 | Name| Description| 
 | -------- | -------- |
@@ -129,6 +129,7 @@ Enumerates the tile modes of the shader effect.
 | REPEAT | Repeats the shader effect in both horizontal and vertical directions.| 
 | MIRROR | Repeats the shader effect in both horizontal and vertical directions, alternating mirror images.| 
 | DECAL | Renders the shader effect only within the original boundary.| 
+
 
 ## Function Description
 

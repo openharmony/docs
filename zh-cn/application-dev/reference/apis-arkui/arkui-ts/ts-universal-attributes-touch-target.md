@@ -1,15 +1,15 @@
 # 触摸热区设置
 
-适用于支持通用点击事件、通用触摸事件、通用手势处理的组件。
+适用于支持通用点击事件、通用触摸事件和通用手势处理的组件。
 
 
 >  **说明：**
 >
->  从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## responseRegion
 
-responseRegion(value: Array&lt;Rectangle&gt; | Rectangle)
+responseRegion(value: Array&lt;Rectangle&gt; | Rectangle): T
 
 设置一个或多个触摸热区。
 
@@ -25,6 +25,11 @@ responseRegion(value: Array&lt;Rectangle&gt; | Rectangle)
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | Array&lt;[Rectangle](#rectangle对象说明)&gt;&nbsp;\|&nbsp;[Rectangle](#rectangle对象说明) | 是   | 设置一个或多个触摸热区，包括位置和大小。<br/>默认触摸热区为整个组件，默认值：<br/>{<br/>x：0,<br/>y：0,<br/>width：'100%',<br/>height：'100%'<br/>}<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
 
 ## Rectangle对象说明
 
@@ -46,18 +51,20 @@ responseRegion(value: Array&lt;Rectangle&gt; | Rectangle)
   >  width和height只能设置正值百分比。width：'100%'表示热区宽度设置为该组件本身的宽度。比如组件本身宽度是100vp，那么'100%'表示热区宽度也为100vp。height：'100%'表示热区高度设置为该组件本身的高度。
   >
   >  百分比相对于组件自身宽高进行计算。
+  >
+  >  当父组件设置[clip](ts-universal-attributes-sharp-clipping.md#clip12)(true)时，子组件的响应会受到父组件触摸热区的影响，不在父组件触摸热区内的子组件无法响应手势和事件。
 
 
 ## 示例
 
-该示例通过responseRegion对按钮设置触摸热区响应点击事件。
+该示例通过responseRegion设置按钮的触摸热区以响应点击事件。
 
 ```ts
 // xxx.ets
 @Entry
 @Component
 struct TouchTargetExample {
-  @State text: string = ""
+  @State text: string = "";
 
   build() {
     Column({ space: 20 }) {

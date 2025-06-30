@@ -6,13 +6,15 @@
 
 > **说明：**
 >
-> 该组件从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 该组件从API version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> 该组件不支持在Wearable设备上使用。
 
 
 ## 导入模块
 
 ```ts
-import { SubHeader } from '@kit.ArkUI'
+import { SubHeader } from '@kit.ArkUI';
 ```
 
 
@@ -42,13 +44,13 @@ TextModifier, titleBuilder?: () => void, contentMargin?: LocalizedMargin, conten
 | 名称 | 类型 | 必填 | 装饰器类型         | 说明 |
 | -------- | -------- | -------- |---------------| -------- |
 | icon | [ResourceStr](ts-types.md#resourcestr) | 否 | \@Prop        | 图标设置项。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| iconSymbolOptions<sup>12+</sup> | [SymbolOptions](#symboloptions12) | 否 | -             | icon为[Symbol资源](ts-basic-components-symbolGlyph.md)时的设置项。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| iconSymbolOptions<sup>12+</sup> | [SymbolOptions](#symboloptions12) | 否 | -             | icon为[SymbolGlyph](ts-basic-components-symbolGlyph.md)时的设置项。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | primaryTitle | [ResourceStr](ts-types.md#resourcestr) | 否 | \@Prop        | 标题内容。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | secondaryTitle | [ResourceStr](ts-types.md#resourcestr) | 否 | \@Prop        | 副标题内容。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | select | [SelectOptions](#selectoptions) | 否 | -             | select内容以及事件。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | operationType | [OperationType](#operationtype) | 否 | \@Prop        | 操作区(右侧)元素样式。<br/>默认值：OperationType.BUTTON<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | operationItem | Array&lt;[OperationOption](#operationoption)&gt; | 否 | -             | 操作区（右侧）的设置项。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| operationSymbolOptions<sup>12+</sup> | Array&lt;[SymbolOptions](#symboloptions12)&gt; | 否 | -             | operationType为OperationType.ICON_GROUP，<br/>operationItem设置多个图标，图标为[Symbol资源](ts-basic-components-symbolGlyph.md)时的设置项。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| operationSymbolOptions<sup>12+</sup> | Array&lt;[SymbolOptions](#symboloptions12)&gt; | 否 | -             | operationType为OperationType.ICON_GROUP，<br/>operationItem设置多个图标，图标为[SymbolGlyph](ts-basic-components-symbolGlyph.md)时的设置项。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | primaryTitleModifier<sup>12+</sup> | [TextModifier](ts-universal-attributes-attribute-modifier.md) | 否 | -             | 设置标题文本属性，如设置标题颜色、字体大小、字重等。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | secondaryTitleModifier<sup>12+</sup> | [TextModifier](ts-universal-attributes-attribute-modifier.md) | 否 | -             | 设置副标题文本属性，如设置标题颜色、字体大小、字重等。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | titleBuilder<sup>12+</sup> | () => void | 否 | @BuilderParam | 自定义标题区内容<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -101,11 +103,11 @@ TextModifier, titleBuilder?: () => void, contentMargin?: LocalizedMargin, conten
 
 | 名称 | 类型 | 必填 | 说明                                                                                                                                                                                                                                              |
 | -------- | -------- | -------- |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| fontColor | Array&lt;[ResourceColor](ts-types.md#resourcecolor)&gt; | 否 | 设置[Symbol资源](ts-basic-components-symbolGlyph.md)颜色。<br/>默认值：不同渲染策略下默认值不同。                                                                                                                                                                       |
-| fontSize | number \|string \|[Resource](ts-types.md#Resource) | 否 | 设置[Symbol资源](ts-basic-components-symbolGlyph.md)大小。<br/>取值范围：大于等于0。<br/>默认值：系统默认值。                                                                                                                                                              |
-| fontWeight | number \|&nbsp;[FontWeight](ts-appendix-enums.md#fontweight)&nbsp;\|&nbsp;string | 否 | 设置[Symbol资源](ts-basic-components-symbolGlyph.md)粗细。<br/>number类型取值[100,900]，取值间隔为100，默认为400，取值越大，字体越粗。<br/>string类型仅支持number类型取值的字符串形式，例如“400”，以及“bold”、“bolder”、“lighter”、“regular” 、“medium”分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Normal。 |
-| renderingStrategy | [SymbolRenderingStrategy](ts-basic-components-symbolGlyph.md#symbolrenderingstrategy11枚举说明) | 否 | 设置[Symbol资源](ts-basic-components-symbolGlyph.md)渲染策略。<br/>默认值：SymbolRenderingStrategy.SINGLE。<br/>**说明：**<br/>$r('sys.symbol.ohos_*')中引用的资源仅ohos_trash_circle、ohos_folder_badge_plus、ohos_lungs支持分层与多色模式。                                       |
-| effectStrategy | [SymbolEffectStrategy](ts-basic-components-symbolGlyph.md#symboleffectstrategy11枚举说明) | 否 | 设置[Symbol资源](ts-basic-components-symbolGlyph.md)动效策略。<br/>默认值：SymbolEffectStrategy.NONE。<br/>**说明：**<br/>$r('sys.symbol.ohos_*')中引用的资源仅ohos_wifi支持层级动效模式。                                                                                       |
+| fontColor | Array&lt;[ResourceColor](ts-types.md#resourcecolor)&gt; | 否 | 设置[SymbolGlyph](ts-basic-components-symbolGlyph.md)颜色。<br/>默认值：不同渲染策略下默认值不同。                                                                                                                                                                       |
+| fontSize | number \|string \|[Resource](ts-types.md#resource) | 否 | 设置[SymbolGlyph](ts-basic-components-symbolGlyph.md)大小。<br/>取值范围：大于等于0。<br/>默认值：系统默认值。                                                                                                                                                              |
+| fontWeight | number \|&nbsp;[FontWeight](ts-appendix-enums.md#fontweight)&nbsp;\|&nbsp;string | 否 | 设置[SymbolGlyph](ts-basic-components-symbolGlyph.md)粗细。<br/>number类型取值[100,900]，取值间隔为100，默认为400，取值越大，字体越粗。<br/>string类型仅支持number类型取值的字符串形式，例如“400”，以及“bold”、“bolder”、“lighter”、“regular” 、“medium”分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Normal。 |
+| renderingStrategy | [SymbolRenderingStrategy](ts-basic-components-symbolGlyph.md#symbolrenderingstrategy11枚举说明) | 否 | 设置[SymbolGlyph](ts-basic-components-symbolGlyph.md)渲染策略。<br/>默认值：SymbolRenderingStrategy.SINGLE。<br/>**说明：**<br/>$r('sys.symbol.ohos_*')中引用的资源仅ohos_trash_circle、ohos_folder_badge_plus、ohos_lungs支持分层与多色模式。                                       |
+| effectStrategy | [SymbolEffectStrategy](ts-basic-components-symbolGlyph.md#symboleffectstrategy11枚举说明) | 否 | 设置[SymbolGlyph](ts-basic-components-symbolGlyph.md)动效策略。<br/>默认值：SymbolEffectStrategy.NONE。<br/>**说明：**<br/>$r('sys.symbol.ohos_*')中引用的资源仅ohos_wifi支持层级动效模式。                                                                                       |
 
 ## 事件
 不支持[通用事件](ts-component-general-events.md)。
@@ -115,7 +117,7 @@ TextModifier, titleBuilder?: () => void, contentMargin?: LocalizedMargin, conten
 该示例主要演示子标题左侧为icon、secondaryTitle，右侧operationType为按钮类型。
 
 ```ts
-import { promptAction, OperationType, SubHeader } from '@kit.ArkUI';
+import { Prompt, OperationType, SubHeader } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -129,7 +131,7 @@ struct SubHeaderExample {
         operationItem: [{
           value: '操作',
           action: () => {
-            promptAction.showToast({ message: 'demo' });
+            Prompt.showToast({ message: 'demo' });
           }
         }]
       })
@@ -144,7 +146,7 @@ struct SubHeaderExample {
 该示例主要演示子标题左侧为primaryTitle、secondaryTitle，右侧operationType类型为TEXT_ARROW。
 
 ```ts
-import { promptAction, OperationType, SubHeader } from '@kit.ArkUI';
+import { Prompt, OperationType, SubHeader } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -158,7 +160,7 @@ struct SubHeaderExample {
         operationItem: [{
           value: '更多',
           action: () => {
-            promptAction.showToast({ message: 'demo' });
+            Prompt.showToast({ message: 'demo' });
           }
         }]
       })
@@ -173,7 +175,7 @@ struct SubHeaderExample {
 该示例主要演示子标题左侧为select，右侧operationType类型为ICON_GROUP。
 
 ```ts
-import { promptAction, OperationType, SubHeader } from '@kit.ArkUI';
+import { Prompt, OperationType, SubHeader } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -187,7 +189,7 @@ struct SubHeaderExample {
           value: 'selectDemo',
           selected: 2,
           onSelect: () => {
-            promptAction.showToast({ message: 'demo' });
+            Prompt.showToast({ message: 'demo' });
           }
         },
         operationType: OperationType.ICON_GROUP,
@@ -195,17 +197,17 @@ struct SubHeaderExample {
         operationItem: [{
           value: $r('sys.media.ohos_ic_public_email'),
           action: () => {
-            promptAction.showToast({ message: 'demo' })
+            Prompt.showToast({ message: 'demo' })
           }
         }, {
           value: $r('sys.media.ohos_ic_public_email'),
           action: () => {
-            promptAction.showToast({ message: 'demo' });
+            Prompt.showToast({ message: 'demo' });
           }
         }, {
           value: $r('sys.media.ohos_ic_public_email'),
           action: () => {
-            promptAction.showToast({ message: 'demo' });
+            Prompt.showToast({ message: 'demo' });
           }
         }]
       })
@@ -221,7 +223,7 @@ struct SubHeaderExample {
 
 ```ts
 
-import { promptAction, OperationType, SubHeader } from '@kit.ArkUI';
+import { Prompt, OperationType, SubHeader } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -239,7 +241,7 @@ struct SubHeaderExample {
         operationItem: [{
           value: '操作',
           action: () => {
-            promptAction.showToast({ message: 'demo' });
+            Prompt.showToast({ message: 'demo' });
           }
         }]
       })
@@ -254,7 +256,7 @@ struct SubHeaderExample {
 该示例主要演示子标题operationType设置为OperationType.ICON_GROUP，operationItem的value设置为symbol图标。
 
 ```ts
-import { promptAction, OperationType, SubHeader } from '@kit.ArkUI';
+import { Prompt, OperationType, SubHeader } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -268,7 +270,7 @@ struct SubHeaderExample {
           value: 'selectDemo',
           selected: 2,
           onSelect: () => {
-            promptAction.showToast({ message: 'demo' });
+            Prompt.showToast({ message: 'demo' });
           }
         },
         operationType: OperationType.ICON_GROUP,
@@ -276,17 +278,17 @@ struct SubHeaderExample {
         operationItem: [{
           value: $r('sys.symbol.ohos_lungs'),
           action: () => {
-            promptAction.showToast({ message: 'icon1' });
+            Prompt.showToast({ message: 'icon1' });
           }
         }, {
           value: $r('sys.symbol.ohos_lungs'),
           action: () => {
-            promptAction.showToast({ message: 'icon2' });
+            Prompt.showToast({ message: 'icon2' });
           }
         }, {
           value: $r('sys.symbol.ohos_lungs'),
           action: () => {
-            promptAction.showToast({ message: 'icon3' });
+            Prompt.showToast({ message: 'icon3' });
           }
         }],
         // 设置右侧icon图标symbol样式
@@ -311,7 +313,7 @@ struct SubHeaderExample {
  该示例主要演示SubHeader设置titleBuilder自定义标题内容的效果。
 
 ```ts
-import { promptAction, OperationType, SubHeader } from '@kit.ArkUI';
+import { Prompt, OperationType, SubHeader } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -339,7 +341,7 @@ struct SubHeaderExample {
         operationItem: [{
           value: '更多信息',
           action: () => {
-            promptAction.showToast({ message: 'demo' });
+            Prompt.showToast({ message: 'demo' });
           }
         }]
       })
@@ -353,7 +355,7 @@ struct SubHeaderExample {
 该示例主要演示SubHeader设置标题和副标题字体样式以及标题内外边距的效果。
 
 ```ts
-import { promptAction, OperationType, SubHeader, LengthMetrics, TextModifier } from '@kit.ArkUI';
+import { Prompt, OperationType, SubHeader, LengthMetrics, TextModifier } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -373,7 +375,7 @@ struct SubHeaderExample {
         operationItem: [{
           value: '更多信息',
           action: () => {
-            promptAction.showToast({ message: 'demo' });
+            Prompt.showToast({ message: 'demo' });
           }
         }],
         // 标题内外间距
@@ -391,7 +393,7 @@ struct SubHeaderExample {
 ### 示例8（右侧按钮自定义播报）
 该示例通过设置subheader的右侧按钮属性accessibilityText、accessibilityDescription、accessibilityLevel自定义屏幕朗读播报文本。
 ```ts
-import { promptAction, OperationType, SubHeader } from '@kit.ArkUI';
+import { Prompt, OperationType, SubHeader } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -407,7 +409,7 @@ struct SubHeaderExample {
         operationItem: [{
           value: '操作',
           action: () => {
-            promptAction.showToast({ message: 'demo' })
+            Prompt.showToast({ message: 'demo' })
           }
         }]
       })
@@ -420,7 +422,7 @@ struct SubHeaderExample {
         operationItem: [{
           value: '更多',
           action: () => {
-            promptAction.showToast({ message: 'demo' })
+            Prompt.showToast({ message: 'demo' })
           }
         }]
       })
@@ -460,7 +462,7 @@ struct SubHeaderExample {
 ### 示例9（右侧按钮设置默认获焦）
 该示例通过设置subheader的右侧按钮属性defaultFocus使其默认获焦。
 ```ts
-import { promptAction, OperationType, SubHeader } from '@kit.ArkUI';
+import { Prompt, OperationType, SubHeader } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -476,7 +478,7 @@ struct SubHeaderExample {
           value: '操作',
           defaultFocus: true,
           action: () => {
-            promptAction.showToast({ message: 'demo' })
+            Prompt.showToast({ message: 'demo' })
           }
         }]
       })

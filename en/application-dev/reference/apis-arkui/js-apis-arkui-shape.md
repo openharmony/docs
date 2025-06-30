@@ -203,7 +203,7 @@ Represents the parameter of the constructor used to create a **PathShape** objec
 
 | Name        | Type                                              | Mandatory                                            | Description                                        |
 | ----------- | -------------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| commands | string | No| Path drawing commands. For details, see [commands](./arkui-ts/ts-drawing-components-path.md#commands-1).|
+| commands | string | No| Path drawing commands. For details, see [commands](./arkui-ts/ts-drawing-components-path.md#commands).|
 
 ## RectShapeOptions
 

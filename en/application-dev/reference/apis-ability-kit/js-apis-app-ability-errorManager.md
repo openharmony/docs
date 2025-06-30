@@ -57,13 +57,13 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let observer: errorManager.ErrorObserver = {
   onUnhandledException(errorMsg) {
-    console.log('onUnhandledException, errorMsg: ', errorMsg);
+    console.info('onUnhandledException, errorMsg: ', errorMsg);
   },
   onException(errorObj) {
-    console.log('onException, name: ', errorObj.name);
-    console.log('onException, message: ', errorObj.message);
+    console.info('onException, name: ', errorObj.name);
+    console.info('onException, message: ', errorObj.message);
     if (typeof(errorObj.stack) === 'string') {
-      console.log('onException, stack: ', errorObj.stack);
+      console.info('onException, stack: ', errorObj.stack);
     }
   }
 };
@@ -111,11 +111,11 @@ import { errorManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 function errorFunc(observer: errorManager.GlobalError) {
-    console.log("result name :" + observer.name);
-    console.log("result message :" + observer.message);
-    console.log("result stack :" + observer.stack);
-    console.log("result instanceName :" + observer.instanceName);
-    console.log("result instaceType :" + observer.instanceType);
+    console.info("result name :" + observer.name);
+    console.info("result message :" + observer.message);
+    console.info("result stack :" + observer.stack);
+    console.info("result instanceName :" + observer.instanceName);
+    console.info("result instaceType :" + observer.instanceType);
 }
 
 try {
@@ -133,6 +133,8 @@ off(type: 'globalErrorOccurred', observer?: GlobalObserver): void
 
 Unregisters a global error observer. After the deregistration, global listening cannot be implemented.
 
+If the observer passed in is not in the observer queue registered via the **on** API, error code 16300004 is thrown. Therefore, you are advised to handle this using **try-catch** logic.
+
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -142,7 +144,7 @@ Unregisters a global error observer. After the deregistration, global listening 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type. It is fixed at **'globalErrorOccurred'**.|
-| observer | [GlobalObserver](#globalobserver18) | No| Callback registered by the **on** API.|
+| observer | [GlobalObserver](#globalobserver18) | No| Observer registered by the **on** API. You are advised to use this parameter. If omitted, all observers registered with the same environment through **on** are unregistered by default. Otherwise, the specified observer is unregistered. |
 
 **Error codes**
 
@@ -161,11 +163,11 @@ import { errorManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 function errorFunc(observer: errorManager.GlobalError) {
-    console.log("result name :" + observer.name);
-    console.log("result message :" + observer.message);
-    console.log("result stack :" + observer.stack);
-    console.log("result instanceName :" + observer.instanceName);
-    console.log("result instaceType :" + observer.instanceType);
+    console.info("result name :" + observer.name);
+    console.info("result message :" + observer.message);
+    console.info("result stack :" + observer.stack);
+    console.info("result instanceName :" + observer.instanceName);
+    console.info("result instaceType :" + observer.instanceType);
 }
 
 try {
@@ -270,7 +272,7 @@ let observerId = 100;
 try {
   errorManager.off('error', observerId)
     .then((data) => {
-      console.log('----------- unregisterErrorObserver success ----------', data);
+      console.info('----------- unregisterErrorObserver success ----------', data);
     })
     .catch((err: BusinessError) => {
       console.error('----------- unregisterErrorObserver fail ----------', err);
@@ -315,7 +317,7 @@ import { errorManager } from '@kit.AbilityKit';
 
 let observer: errorManager.LoopObserver = {
   onLoopTimeOut(timeout: number) {
-    console.log('Duration timeout: ' + timeout);
+    console.info('Duration timeout: ' + timeout);
   }
 };
 
@@ -337,7 +339,7 @@ Registers a rejected promise observer with any thread in the process. After the 
 | Name                  | Type                                                         | Mandatory| Description                                      |
 |-----------------------|-------------------------------------------------------------| -------- |------------------------------------------|
 | type                  | string                                                      | Yes| Event type. It is fixed at **'globalUnhandledRejectionDetected'**, indicating an observer for the promise rejection.|
-| observer              | [GlobalObserver](#globalobserver18) | Yes| Callback to register.                         |
+| observer              | [GlobalObserver](#globalobserver18) | Yes| Observer to register.                         |
 
 **Error codes**
 
@@ -354,11 +356,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { errorManager } from '@kit.AbilityKit';
 
 function promiseFunc(observer: errorManager.GlobalError) {
-  console.log("result name :" + observer.name);
-  console.log("result message :" + observer.message);
-  console.log("result stack :" + observer.stack);
-  console.log("result instanceName :" + observer.instanceName);
-  console.log("result instaceType :" + observer.instanceType);
+  console.info("result name :" + observer.name);
+  console.info("result message :" + observer.message);
+  console.info("result stack :" + observer.stack);
+  console.info("result instanceName :" + observer.instanceName);
+  console.info("result instaceType :" + observer.instanceType);
 }
 
 errorManager.on("globalUnhandledRejectionDetected", promiseFunc);
@@ -405,12 +407,12 @@ import { errorManager } from '@kit.AbilityKit';
 
 let observer: errorManager.UnhandledRejectionObserver = (reason: Error, promise: Promise<void>) => {
   if (promise === promise1) {
-    console.log("promise1 is rejected");
+    console.info("promise1 is rejected");
   }
-  console.log("reason.name: ", reason.name);
-  console.log("reason.message: ", reason.message);
+  console.info("reason.name: ", reason.name);
+  console.info("reason.message: ", reason.message);
   if (reason.stack) {
-    console.log("reason.stack: ", reason.stack);
+    console.info("reason.stack: ", reason.stack);
   }
 };
 
@@ -451,7 +453,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { errorManager } from '@kit.AbilityKit';
 
 function freezeCallback() {
-    console.log("freezecallback");
+    console.info("freezecallback");
 }
 errorManager.on("freeze", freezeCallback);
 ```
@@ -495,6 +497,8 @@ off(type: 'globalUnhandledRejectionDetected', observer?: GlobalObserver): void
 
 Unregisters a rejected promise observer. After the deregistration, promise exceptions in the process cannot be listened for.
 
+If the observer passed in is not in the observer queue registered via the **on** API, error code 16300004 is thrown. Therefore, you are advised to handle this using **try-catch** logic.
+
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -504,7 +508,7 @@ Unregisters a rejected promise observer. After the deregistration, promise excep
 | Name                  | Type                             | Mandatory| Description                                          |
 |-----------------------|---------------------------------|----|----------------------------------------------|
 | type                  | string                          | Yes | Event type. It is fixed at **'globalUnhandledRejectionDetected'**, indicating an observer for the promise rejection.|
-| observer              | [GlobalObserver](#globalobserver18) | No | Callback registered by the **on** API.                       |
+| observer              | [GlobalObserver](#globalobserver18) | No | Observer registered by the **on** API. You are advised to use this parameter. If omitted, all observers registered with the same environment through **on** are unregistered by default. Otherwise, the specified observer is unregistered.|
 
 **Error codes**
 
@@ -522,11 +526,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { errorManager } from '@kit.AbilityKit';
 
 function promiseFunc(observer: errorManager.GlobalError) {
-  console.log("result name :" + observer.name);
-  console.log("result message :" + observer.message);
-  console.log("result stack :" + observer.stack);
-  console.log("result instanceName :" + observer.instanceName);
-  console.log("result instaceType :" + observer.instanceType);
+  console.info("result name :" + observer.name);
+  console.info("result message :" + observer.message);
+  console.info("result stack :" + observer.stack);
+  console.info("result instanceName :" + observer.instanceName);
+  console.info("result instaceType :" + observer.instanceType);
 }
 
 errorManager.on("globalUnhandledRejectionDetected", promiseFunc);
@@ -557,7 +561,7 @@ Unregisters an observer for the promise rejection.
 | Name                  | Type                             | Mandatory| Description                                          |
 |-----------------------|---------------------------------|----|----------------------------------------------|
 | type                  | string                          | Yes | Event type. It is fixed at **'unhandledRejection'**, indicating an observer for the promise rejection.|
-| observer              | [UnhandledRejectionObserver](#unhandledrejectionobserver12) | No | Observer to unregister.                       |
+| observer              | [UnhandledRejectionObserver](#unhandledrejectionobserver12) | No | Observer to unregister. You are advised to use this parameter. If omitted, all observers registered with the same environment through **on** are unregistered by default. Otherwise, the specified observer is unregistered.                       |
 
 **Error codes**
 
@@ -576,12 +580,12 @@ import { errorManager } from '@kit.AbilityKit';
 
 let observer: errorManager.UnhandledRejectionObserver = (reason: Error, promise: Promise<void>) => {
   if (promise === promise1) {
-    console.log("promise1 is rejected");
+    console.info("promise1 is rejected");
   }
-  console.log("reason.name: ", reason.name);
-  console.log("reason.message: ", reason.message);
+  console.info("reason.name: ", reason.name);
+  console.info("reason.message: ", reason.message);
   if (reason.stack) {
-    console.log("reason.stack: ", reason.stack);
+    console.info("reason.stack: ", reason.stack);
   }
 };
 
@@ -599,12 +603,12 @@ import { errorManager } from '@kit.AbilityKit';
 
 let observer: errorManager.UnhandledRejectionObserver = (reason: Error, promise: Promise<void>) => {
   if (promise === promise1) {
-    console.log("promise1 is rejected");
+    console.info("promise1 is rejected");
   }
-  console.log("reason.name: ", reason.name);
-  console.log("reason.message: ", reason.message);
+  console.info("reason.name: ", reason.name);
+  console.info("reason.message: ", reason.message);
   if (reason.stack) {
-    console.log("reason.stack: ", reason.stack);
+    console.info("reason.stack: ", reason.stack);
   }
 };
 
@@ -623,6 +627,8 @@ off(type: 'freeze', observer?: FreezeObserver): void
 
 Unregisters an observer for the main thread freeze event of the application. This API can be called only in the main thread.
 
+If the observer passed in does not match the observer registered via the **on** API, error code 16300004 is thrown. Therefore, you are advised to handle this using **try-catch** logic.
+
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -632,7 +638,7 @@ Unregisters an observer for the main thread freeze event of the application. Thi
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type. It is fixed at **'freeze'**, indicating an observer for the freeze event of the main thread.|
-| observer | [FreezeObserver](#freezeobserver18) | No| Observer to unregister. If this parameter is not specified, the subscriptions to the specified event with all the callbacks are canceled.|
+| observer | [FreezeObserver](#freezeobserver18) | No| Observer to unregister. You are advised to use this parameter. If omitted, all observers registered with the same environment through **on** are unregistered by default. Otherwise, the specified observer is unregistered.|
 
 **Error codes**
 
@@ -649,7 +655,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { errorManager } from '@kit.AbilityKit';
 
 function freezeCallback() {
-    console.log("freezecallback");
+    console.info("freezecallback");
 }
 errorManager.on("freeze", freezeCallback);
 errorManager.off("freeze", freezeCallback);
@@ -746,7 +752,7 @@ Enumerates the VM instance types.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
-**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 | Name | Value | Description  |
 | ---- | --- | ------ |

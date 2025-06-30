@@ -1,6 +1,6 @@
 # @ohos.telephony.data (蜂窝数据)
 
-蜂窝数据提供了移动数据管理能力，包括获取默认移动数据的SIM卡、获取蜂窝数据业务的上下行和分组交换域(PS域)的连接状态，以及检查蜂窝数据业务和漫游是否启用等。
+蜂窝数据提供了移动数据管理能力，包括获取默认移动数据的SIM卡、获取蜂窝数据业务的上下行数据流状态、蜂窝数据业务链路连接状态，以及检查蜂窝数据业务和漫游是否启用等。
 
 > **说明：**
 >
@@ -151,7 +151,7 @@ data.getCellularDataFlowType().then((contextData: data.DataFlowType) => {
 
 getCellularDataState(callback: AsyncCallback\<DataConnectState\>): void
 
-获取分组交换域(PS域)的连接状态，使用callback方式作为异步方法。
+获取蜂窝数据业务的连接状态，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.Telephony.CellularData
 
@@ -180,7 +180,7 @@ data.getCellularDataState((err: BusinessError, contextData: data.DataConnectStat
 
 getCellularDataState(): Promise\<DataConnectState\>
 
-获取分组交换域(PS域)的连接状态，使用Promise方式作为异步方法。
+获取蜂窝数据业务的连接状态，使用Promise方式作为异步方法。
 
 **系统能力**：SystemCapability.Telephony.CellularData
 
@@ -230,7 +230,7 @@ isCellularDataEnabled(callback: AsyncCallback\<boolean\>): void
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error.                               |
+| 8300999  | Internal error.                               |
 
 **示例：**
 
@@ -272,7 +272,7 @@ isCellularDataEnabled(): Promise\<boolean\>
 | 201      | Permission denied.                           |
 | 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error.                               |
+| 8300999  | Internal error.                               |
 
 **示例：**
 
@@ -312,7 +312,7 @@ isCellularDataEnabledSync(): boolean
 | 201      | Permission denied.                           |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Internal error.                          |
 
 **示例：**
 
@@ -357,7 +357,7 @@ isCellularDataRoamingEnabled(slotId: number, callback: AsyncCallback\<boolean\>)
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error.                               |
+| 8300999  | Internal error.                               |
 
 **示例：**
 
@@ -407,7 +407,7 @@ isCellularDataRoamingEnabled(slotId: number): Promise\<boolean\>
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error.                               |
+| 8300999  | Internal error.                               |
 
 **示例：**
 
@@ -455,7 +455,7 @@ isCellularDataRoamingEnabledSync(slotId: number): boolean
 | 8300001  | Invalid parameter value.                                     |
 | 8300002  | Operation failed. Cannot connect to service.                 |
 | 8300003  | System internal error.                                       |
-| 8300999  | Unknown error code.                                          |
+| 8300999  | Internal error.                                          |
 
 **示例：**
 
@@ -498,9 +498,9 @@ console.log("Result: "+ data.getDefaultCellularDataSimId());
 
 queryAllApns(): Promise\<Array\<ApnInfo\>\>
 
-获取默认移动数据的SIM卡的APN（access point name，接入点名称）信息。
+异步获取默认移动数据的SIM卡的APN（access point name，接入点名称）信息。
 
-**需要权限**：ohos.permission.MANAGE_APN_SETTING
+**需要权限**：ohos.permission.MANAGE_APN_SETTING（该权限是受限开放权限，仅需要连接移动数据专网进行办公室可以申请该权限，权限介绍参见[权限定义](../../security/AccessToken/restricted-permissions.md#ohospermissionmanage_apn_setting)）
 
 **系统能力**：SystemCapability.Telephony.CellularData
 
@@ -508,7 +508,7 @@ queryAllApns(): Promise\<Array\<ApnInfo\>\>
 
 | 类型              | 说明                                         |
 | ------ |--------------------------------------------|
-| Promise\<Array\<ApnInfo\>\> | 获取默认移动数据的SIM卡的APN信息列表。 |
+| Promise\<Array\<[ApnInfo](#apninfo16)\>\> | Promise对象，返回默认移动数据的SIM卡的APN信息列表。 |
 
 **错误码：**
 
@@ -523,7 +523,7 @@ queryAllApns(): Promise\<Array\<ApnInfo\>\>
 ```ts
 import { data } from '@kit.TelephonyKit';
 
-cellular.queryAllApns().then((data: Array<cellular.ApnInfo>) => {
+data.queryAllApns().then((data: Array<data.ApnInfo>) => {
     console.info(`queryAllApns success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`queryAllApns failed, promise: err->${JSON.stringify(err)}`);
@@ -534,17 +534,24 @@ cellular.queryAllApns().then((data: Array<cellular.ApnInfo>) => {
 
 queryApnIds(apnInfo: ApnInfo): Promise\<Array\<number\>\>
 
-获取传入的ApnInfo对应的ApnId信息。
+异步获取传入的ApnInfo对应的ApnId信息。
 
-**需要权限**：ohos.permission.MANAGE_APN_SETTING
+**需要权限**：ohos.permission.MANAGE_APN_SETTING（该权限是受限开放权限，仅需要连接移动数据专网进行办公室可以申请该权限，权限介绍参见[权限定义](../../security/AccessToken/restricted-permissions.md#ohospermissionmanage_apn_setting)）
 
 **系统能力**：SystemCapability.Telephony.CellularData
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                     |
+| ------ | ------ | ---- | ---------------------------------------- |
+| apnInfo | [ApnInfo](#apninfo16) | 是   | 要查询的APN参数。 |
+
 
 **返回值：**
 
 | 类型              | 说明                          |
 | ------ |-----------------------------|
-| Promise\<Array\<number\>\> | 获取到的传入的ApnInfo对应的ApnId信息列表。 |
+| Promise\<Array\<number\>\> | Promise对象，返回传入的ApnInfo对应的ApnId信息列表。 |
 
 **错误码：**
 
@@ -559,7 +566,7 @@ queryApnIds(apnInfo: ApnInfo): Promise\<Array\<number\>\>
 ```ts
 import { data } from '@kit.TelephonyKit';
 
-let apnInfo: cellular.ApnInfo;
+let apnInfo: data.ApnInfo;
 apnInfo = {
   apnName: "CMNET",
   apn: "cmnet",
@@ -567,7 +574,7 @@ apnInfo = {
   mnc: "07",
 };
 
-cellular.queryApnIds(apnInfo).then((data: Array<number>) => {
+data.queryApnIds(apnInfo).then((data: Array<number>) => {
     console.info(`queryApnIds success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`queryApnIds failed, promise: err->${JSON.stringify(err)}`);
@@ -578,21 +585,27 @@ cellular.queryApnIds(apnInfo).then((data: Array<number>) => {
 
 setPreferredApn(apnId: number): Promise\<boolean\>
 
-设置apnId对应的APN为首选APN。
+异步设置apnId对应的APN为首选APN。
 
 > 注意:
 >
 > 如果传入的apnId为无效的apnId，切回运营商默认配置的优选Apn。
 
-**需要权限**：ohos.permission.MANAGE_APN_SETTING
+**需要权限**：ohos.permission.MANAGE_APN_SETTING（该权限是受限开放权限，仅需要连接移动数据专网进行办公室可以申请该权限，权限介绍参见[权限定义](../../security/AccessToken/restricted-permissions.md#ohospermissionmanage_apn_setting)）
 
 **系统能力**：SystemCapability.Telephony.CellularData
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                     |
+| ------ | ------ | ---- | ---------------------------------------- |
+| apnId | number | 是   | 要设置的apnId，可以通过[queryApnIds](#dataqueryapnids16)查询。 |
 
 **返回值：**
 
 | 类型              | 说明                     |
 | ------ |------------------------|
-| Promise\<boolean\> | 设置的返回结果，在未插卡时会返回fasle。 |
+| Promise\<boolean\> | Promise对象，返回设置的结果，在未插卡时会返回fasle。 |
 
 **错误码：**
 
@@ -608,7 +621,7 @@ setPreferredApn(apnId: number): Promise\<boolean\>
 import { data } from '@kit.TelephonyKit';
 
 let apnId: number = 0; // apnId为通过queryApnIds返回的有效值，setPreferredApn传入无效的apnId会切回运营商默认配置的优选APN。
-cellular.setPreferredApn(apnId).then((data: boolean) => {
+data.setPreferredApn(apnId).then((data: boolean) => {
     console.info(`setPreferredApn success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`setPreferredApn failed, promise: err->${JSON.stringify(err)}`);

@@ -9,6 +9,7 @@ Defines the types of the key and value in a KV pair.
 
 **Related module**: [RDB](_r_d_b.md)
 
+**Header file**: [oh_values_bucket.h](oh__values__bucket_8h.md)
 
 ## Summary
 
@@ -26,3 +27,4 @@ Defines the types of the key and value in a KV pair.
 | [putNull](_r_d_b.md#putnull) | Puts a null value into the **OH_VBucket** object in the given column.|
 | [clear](_r_d_b.md#clear-22) | Clears an **OH_VBucket** object.|
 | [destroy](_r_d_b.md#destroy-34) | Destroys an **OH_VBucket** object and reclaims the memory occupied.|
+

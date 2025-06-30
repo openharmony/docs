@@ -8,7 +8,7 @@
 >
 > 本模块接口仅可在Stage模型下使用。
 >
-> 本模块接口仅对[设备管理应用](../../mdm/mdm-kit-guide.md#功能介绍)开放，需将设备管理应用激活后调用，实现相应功能。
+> 本模块接口仅对设备管理应用开放，且调用接口前需激活设备管理应用，具体请参考[MDM Kit开发指南](../../mdm/mdm-kit-guide.md)。
 >
 
 ## 导入模块
@@ -55,6 +55,7 @@ getAllNetworkInterfacesSync(admin: Want): Array&lt;string&gt;
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -107,6 +108,7 @@ getIpAddressSync(admin: Want, networkInterface: string): string
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -159,6 +161,7 @@ getMacSync(admin: Want, networkInterface: string): string
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -211,6 +214,7 @@ isNetworkInterfaceDisabledSync(admin: Want, networkInterface: string): boolean
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -259,6 +263,7 @@ setNetworkInterfaceDisabledSync(admin: Want, networkInterface: string, isDisable
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -306,6 +311,7 @@ setGlobalProxySync(admin: Want, httpProxy: connection.HttpProxy): void
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { connection } from '@kit.NetworkKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -361,6 +367,7 @@ setGlobalProxyForAccount(admin: Want, httpProxy: connection.HttpProxy, accountId
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { connection } from '@kit.NetworkKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -418,6 +425,7 @@ getGlobalProxySync(admin: Want): connection.HttpProxy
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { connection } from '@kit.NetworkKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -471,6 +479,7 @@ getGlobalProxyForAccount(admin: Want, accountId: number): connection.HttpProxy
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { connection } from '@kit.NetworkKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -488,7 +497,7 @@ try {
 
 addFirewallRule(admin: Want, firewallRule: FirewallRule): void
 
-为设备添加防火墙过滤规则。<br/>
+为设备添加防火墙过滤规则，仅支持IPv4。<br/>
 添加了[Action](#action)为ALLOW规则后，将会默认添加DENY规则，不在ALLOW规则之内的网络数据包将会被丢弃或拦截。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
@@ -541,7 +550,7 @@ networkManager.addFirewallRule(wantTemp, firewallRule);
 
 removeFirewallRule(admin: Want, firewallRule?: FirewallRule): void
 
-移除设备防火墙过滤规则。<br/>
+移除设备防火墙过滤规则，仅支持IPv4。<br/>
 移除规则后如果不存在[Action](#action)为ALLOW规则后，会将[addFirewallRule](#networkmanageraddfirewallrule)添加的默认DENY规则清空。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
@@ -597,7 +606,7 @@ networkManager.removeFirewallRule(wantTemp);
 
 getFirewallRules(admin: Want): Array\<FirewallRule>
 
-查询设备防火墙过滤规则。
+查询设备防火墙过滤规则，仅支持IPv4。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 

@@ -9,7 +9,7 @@ The **List** component provides a list container that presents a series of list 
 
 ## Child Components
 
-Only the [ListItem](ts-container-listitem.md) and [ListItemGroup](ts-container-listitemgroup.md) child components are allowed, with support for [if/else](../../../quick-start/arkts-rendering-control-ifelse.md), [ForEach](../../../quick-start/arkts-rendering-control-foreach.md), [LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md), and [Repeat](../../../quick-start/arkts-new-rendering-control-repeat.md) rendering control.
+Only the [ListItem](ts-container-listitem.md) and [ListItemGroup](ts-container-listitemgroup.md) child components are allowed, with support for [if/else](../../../ui/state-management/arkts-rendering-control-ifelse.md), [ForEach](../../../ui/state-management/arkts-rendering-control-foreach.md), [LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md), and [Repeat](../../../ui/state-management/arkts-new-rendering-control-repeat.md) rendering control.
 
 > **NOTE**
 >
@@ -21,7 +21,7 @@ Only the [ListItem](ts-container-listitem.md) and [ListItemGroup](ts-container-l
 >
 > - In the **ForEach**, **LazyForEach**, or **Repeat** statement, the indexes of all expanded subnodes are calculated.
 >
-> - After changes occur in [if/else](../../../quick-start/arkts-rendering-control-ifelse.md), [ForEach](../../../quick-start/arkts-rendering-control-foreach.md), [LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md), or [Repeat](../../../quick-start/arkts-new-rendering-control-repeat.md), the indexes of the child nodes are updated.
+> - After changes occur in [if/else](../../../ui/state-management/arkts-rendering-control-ifelse.md), [ForEach](../../../ui/state-management/arkts-rendering-control-foreach.md), [LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md), or [Repeat](../../../ui/state-management/arkts-new-rendering-control-repeat.md), the indexes of the child nodes are updated.
 >
 > - Each **ListItemGroup** component is taken as a whole and assigned an index, and the indexes of the list items within are not included in the index calculation.
 >
@@ -246,7 +246,7 @@ For chained animations to work properly, the following conditions must be met:
 
 multiSelectable(value: boolean)
 
-Sets whether to enable multiselect.
+Sets whether to enable multi-select.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -258,7 +258,7 @@ Sets whether to enable multiselect.
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | Yes  | Whether to enable multiselect.<br>**false** (default): Multiselect is disabled.<br>**true**: Multiselect is enabled. |
+| value  | boolean | Yes  | Whether to enable multi-select.<br>**false** (default): Multi-select is disabled.<br>**true**: Multi-select is enabled. |
 
 ### lanes<sup>9+</sup>
 
@@ -1273,7 +1273,7 @@ struct ListExample {
 ### Example 5: Implementing Accurate Scrolling
 This example shows that, by setting the **childrenMainSize** attribute, the list can jump to an exact specific location when the **scrollTo** API is called, even when the heights of the child components are inconsistent.
 
-For details about how to use these features in conjunction with state management V2, see [List](../../../quick-start/arkts-v1-v2-migration.md#list).
+For details about how to use these features in conjunction with state management V2, see [List](../../../ui/state-management/arkts-v1-v2-migration.md#list).
 ```ts
 // xxx.ets
 @Entry

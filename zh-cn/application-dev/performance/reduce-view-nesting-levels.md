@@ -217,7 +217,7 @@ struct MyComponent {
           .height('40vp')  
           .width('40vp')  
           .textAlign(TextAlign.Center)  
-          .clip(new Circle({ width: '40vp', height: '40vp' }))  
+          .clipShape(new Circle({ width: '40vp', height: '40vp' }))  
           .backgroundColor(Color.Green)  
           .alignRules({  
             center: { anchor: "__container__", align: VerticalAlign.Center },  
@@ -396,7 +396,7 @@ import prompt from '@ohos.prompt';
 @Entry
 @Component
 struct PerformanceRelative {
-  @State message: string = 'Hello World'
+  @State message: string = 'Hello World';
   @State textWidth: string = "";
 
   build() {
@@ -893,7 +893,7 @@ struct ColorMeasure {
     try {
       sourceColor = ColorMetrics.resourceColor(baseColor).blendColor(ColorMetrics.resourceColor(addColor));
     } catch (error) {
-      console.log("getBlendColor failed, code = " + (error as BusinessError).code + ", message = " +
+      console.error("getBlendColor failed, code = " + (error as BusinessError).code + ", message = " +
       (error as BusinessError).message);
       sourceColor = ColorMetrics.resourceColor(addColor);
     }
@@ -927,5 +927,5 @@ struct Index {
 
 ## 优化布局工具介绍
 
-[DevEco Studio](../quick-start/deveco-studio-user-guide-for-openharmony.md)内置ArkUI Inspector工具，开发者可以使用ArkUI
+[DevEco Studio](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-tools-overview)内置ArkUI Inspector工具，开发者可以使用ArkUI
 Inspector，在DevEco Studio上查看应用在真机上的UI显示效果。利用ArkUI Inspector工具，开发者可以快速定位布局不理想或其他UI相关问题，同时也可以观察和了解不同组件之间的布局关系和属性。

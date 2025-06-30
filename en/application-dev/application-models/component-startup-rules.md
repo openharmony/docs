@@ -4,7 +4,7 @@
 Component startup refers to the behavior of starting or connecting to an application component.
 
 
-- Start the [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md), ServiceExtensionAbility, and DataShareExtensionAbility components. For example, you can use [startAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability), **startServiceExtensionAbility()**, [startAbilityByCall()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilitybycall), and [openLink()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12).
+- Start the [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md), ServiceExtensionAbility, and DataShareExtensionAbility components. For example, you can use [startAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability), **startServiceExtensionAbility()**, [startAbilityByCall()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilitybycall), and [openLink()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#openlink12).
 
 - Connect to the ServiceExtensionAbility and DataShareExtensionAbility components. For example, you can use [connectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability) and **createDataShareHelper()**.
 
@@ -26,7 +26,7 @@ In view of this, the system formulates a set of component startup rules, as foll
 
   If the **exported** field of the component is set to **true**, the component can be called by other applications. If the field is set to **false**, the component cannot be called by other applications. If this is the case, you must also verify the permission **ohos.permission.START_INVISIBLE_ABILITY**, which is available only for system applications. For details about the **exported** fields, see [abilities](../quick-start/module-configuration-file.md#abilities).
 
-- Before starting a UIAbility component of a background application, the caller must verify the permission ohos.permission.START_ABILITIES_FROM_BACKGROUND, which is available only for system applications. For 2-in-1 devices, if an application has created a floating window in the foreground, it can start other UIAbility components without verifying this permission after it transitions to the background.
+- Before starting a UIAbility component of a background application, the caller must verify the permission ohos.permission.START_ABILITIES_FROM_BACKGROUND, which is available only for system applications. For 2-in-1 devices and tablets, if an application has created a floating window in the foreground, it can start other abilities without verifying this permission after it transitions to the background.
 
   > **NOTE**
   > 

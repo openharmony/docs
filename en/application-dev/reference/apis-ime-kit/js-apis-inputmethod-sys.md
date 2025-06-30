@@ -57,7 +57,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let currentIme = inputMethod.getCurrentInputMethod();
 try {
   inputMethod.switchInputMethod(currentIme.name).then(() => {
-    console.log('Succeeded in switching inputmethod.');
+    console.info('Succeeded in switching inputmethod.');
   }).catch((err: BusinessError) => {
     console.error(`Failed to switchInputMethod: ${JSON.stringify(err)}`);
   })
@@ -67,7 +67,7 @@ try {
 let currentImeSubType = inputMethod.getCurrentInputMethodSubtype();
 try {
   inputMethod.switchInputMethod(currentIme.name, currentImeSubType.id).then(() => {
-    console.log('Succeeded in switching inputmethod.');
+    console.info('Succeeded in switching inputmethod.');
   }).catch((err: BusinessError) => {
     console.error(`Failed to switchInputMethod: ${JSON.stringify(err)}`);
   })
@@ -169,7 +169,7 @@ Unsubscribes from the soft keyboard show event of the [input method panel](js-ap
 
 | Name  | Type| Mandatory| Description  |
 | -------- | ---- | ---- | ------ |
-| type     | string | Yes| Event type, which is `imeShow`.|
+| type     | string | Yes| Event type, which is **'imeShow'**.|
 | callback | (info: Array<[InputWindowInfo](js-apis-inputmethod.md#inputwindowinfo10)>) => void  | No| Callback to unregister.<br>If this parameter is not specified, this API unregisters all callbacks for the specified event type.|
 
 **Example**
@@ -252,7 +252,7 @@ let info: PanelInfo = {
 }
 try {
   let result = inputMethodSetting.isPanelShown(info);
-  console.log('Succeeded in querying isPanelShown, result: ' + result);
+  console.info('Succeeded in querying isPanelShown, result: ' + result);
 } catch (err) {
   console.error(`Failed to query isPanelShown: ${JSON.stringify(err)}`);
 }

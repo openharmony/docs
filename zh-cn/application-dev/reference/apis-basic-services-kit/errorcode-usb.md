@@ -8,7 +8,7 @@
 
 **错误信息**
 
-Permission denied. Call requestRight or requestAccessoryRight to get the permission or USBDevicePipe access right first.
+Access right denied. Call requestRight to get the USBDevicePipe access right first.
 
 **错误描述**
 
@@ -21,7 +21,7 @@ Permission denied. Call requestRight or requestAccessoryRight to get the permiss
 **处理步骤**
 
 调用requestRight方法申请设备的使用权限。
-
+<!--Del-->
 ## 14400002 HDC功能被禁用
 
 **错误信息**
@@ -57,7 +57,7 @@ Unsupported operation. The current device does not support port role switching.
 **处理步骤**
 
 使用正确的端口角色。
-
+<!--DelEnd-->
 ## 14400004 服务异常
 
 **错误信息**
@@ -89,7 +89,7 @@ Database operation exception.
 **处理步骤**
 
 尝试重新调用接口。
-
+<!--Del-->
 ## 14400006 不支持的USB设备侧功能
 
 **错误信息**
@@ -107,7 +107,7 @@ Unsupported operation. The function is not supported.
 **处理步骤**
 
 使用正确的USB设备侧功能。
-
+<!--DelEnd-->
 ## 14401001 目标USB配件未匹配
 
 **错误信息**
@@ -154,11 +154,17 @@ Cannot reopen the accessory.
 
 **错误信息**
 
-Resource busy.
+Resource busy. Possible causes: 1. The transfer has already been submitted. 2. The interface is claimed by another program or driver.
 
 **错误描述**
 
 资源被占用。
+
+**可能原因**
+
+1. 传输任务已提交。
+
+2. 该接口已被另一个程序或驱动程序占用。
 
 **处理步骤**
 
@@ -182,11 +188,15 @@ No such device (it may have been disconnected).
 
 **错误信息**
 
-Insufficient memory.
+Insufficient memory. Possible causes: 1. Memory allocation failed.
 
 **错误描述**
 
 内存申请时无内存可用，单次传输，数据大小最大为1KB。
+
+**可能原因**
+
+内存占用率过高，没有足够的空间分配给当前任务。
 
 **处理步骤**
 
@@ -210,7 +220,7 @@ Other USB error. Possible causes:Unrecognized discard error code.
 
 **错误信息**
 
-If the transfer is not in progress, already complete, or already cancelled. 
+The transfer is not in progress, or is already complete or cancelled.
 
 **错误描述**
 

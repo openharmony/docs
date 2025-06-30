@@ -1,6 +1,6 @@
 # AbilityMonitor
 
-AbilityMonitor模块提供匹配满足指定条件的受监视能力对象的方法的能力，最近匹配的ability对象将保存在[AbilityMonitor](js-apis-inner-application-abilityMonitor.md#abilitymonitor-1)对象中。
+AbilityMonitor模块提供匹配满足指定条件的受监视能力对象的方法的能力，最近匹配的ability对象将保存在AbilityMonitor对象中。
 
 > **说明：**
 > 
@@ -16,7 +16,7 @@ import { abilityDelegatorRegistry } from '@kit.TestKit';
 
 可以作为abilityDelegator中的[addAbilityMonitor](../apis-test-kit/js-apis-inner-application-abilityDelegator.md#addabilitymonitor9)的入参来监听指定Ability的生命周期变化。
 
-## 属性
+## AbilityMonitor
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 

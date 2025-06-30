@@ -28,17 +28,17 @@
 
 | 名称                                                         | 描述                         |
 | ------------------------------------------------------------ | ---------------------------- |
-| [AbilityBase_Element](_ability_base_element.md#abilitybase_element) {<br/>    char* bundleName;<br/>    char* moduleName;<br/>    char* abilityName;<br/>} | Element数据结构。 |
+| [AbilityBase_Element](_ability_base_element.md) {<br/>    char* bundleName;<br/>    char* moduleName;<br/>    char* abilityName;<br/>} | Element数据结构。 |
 | [AbilityBase_Want](#abilitybase_want)  | Want数据结构。 |
 
 ### 函数
 
 | 名称                                                         | 描述                         |
 | ------------------------------------------------------------ | ---------------------------- |
-| [AbilityBase_Want](#abilitybase_want)* [OH_AbilityBase_CreateWant](#oh_abilitybase_createwant)([AbilityBase_Element](_ability_base_element.md#abilitybase_element) element) | 创建Want。 |
+| [AbilityBase_Want](#abilitybase_want)* [OH_AbilityBase_CreateWant](#oh_abilitybase_createwant)([AbilityBase_Element](_ability_base_element.md) element) | 创建Want。 |
 | [AbilityBase_ErrorCode](#abilitybase_errorcode) [OH_AbilityBase_DestroyWant](#oh_abilitybase_destroywant)([AbilityBase_Want](#abilitybase_want)* want) | 销毁Want。销毁后的Want不可使用，否则会导致未定义行为。 |
-| [AbilityBase_ErrorCode](#abilitybase_errorcode) [OH_AbilityBase_SetWantElement](#oh_abilitybase_setwantelement)([AbilityBase_Want](#abilitybase_want)* want, [AbilityBase_Element](_ability_base_element.md#abilitybase_element) element) | 设置Want中由bundleName、moduleName与abilityName组成的Element结构体。 |
-| [AbilityBase_ErrorCode](#abilitybase_errorcode) [OH_AbilityBase_GetWantElement](#oh_abilitybase_getwantelement)([AbilityBase_Want](#abilitybase_want)* want, [AbilityBase_Element](_ability_base_element.md#abilitybase_element)* element) | 获取Want中由bundleName、moduleName与abilityName组成的Element结构体。 |
+| [AbilityBase_ErrorCode](#abilitybase_errorcode) [OH_AbilityBase_SetWantElement](#oh_abilitybase_setwantelement)([AbilityBase_Want](#abilitybase_want)* want, [AbilityBase_Element](_ability_base_element.md) element) | 设置Want中由bundleName、moduleName与abilityName组成的Element结构体。 |
+| [AbilityBase_ErrorCode](#abilitybase_errorcode) [OH_AbilityBase_GetWantElement](#oh_abilitybase_getwantelement)([AbilityBase_Want](#abilitybase_want)* want, [AbilityBase_Element](_ability_base_element.md)* element) | 获取Want中由bundleName、moduleName与abilityName组成的Element结构体。 |
 | [AbilityBase_ErrorCode](#abilitybase_errorcode) [OH_AbilityBase_SetWantCharParam](#oh_abilitybase_setwantcharparam)([AbilityBase_Want](#abilitybase_want)* want, const char* key, const char* value) | 设置Want Param参数，Param可参考[Want中的parameters参数](js-apis-inner-ability-want.md)。 |
 | [AbilityBase_ErrorCode](#abilitybase_errorcode) [OH_AbilityBase_GetWantCharParam](#oh_abilitybase_getwantcharparam)([AbilityBase_Want](#abilitybase_want)* want, const char* key, char* value, size_t valueSize) | 获取[OH_AbilityBase_SetWantCharParam](#oh_abilitybase_setwantcharparam)方法设置的Want Param参数。 |
 | [AbilityBase_ErrorCode](#abilitybase_errorcode) [OH_AbilityBase_AddWantFd](#oh_abilitybase_addwantfd)([AbilityBase_Want](#abilitybase_want)* want, const char* key, int32_t fd) | 添加Want文件描述符，文件描述符可通过[fs.open](../apis-core-file-kit/js-apis-file-fs.md#fsopen)获取。 |
@@ -295,7 +295,7 @@ AbilityBase_ErrorCode OH_AbilityBase_SetWantUri(AbilityBase_Want* want, const ch
 
 设置Want中URI字符串。URI可参考[Want中URI描述](js-apis-app-ability-want.md)。
 
-**起始版本**：18
+**起始版本**：17
 
 **参数：**
 
@@ -319,7 +319,7 @@ AbilityBase_ErrorCode OH_AbilityBase_GetWantUri(AbilityBase_Want* want, char* ur
 
 获取Want中URI字符串。URI可参考[Want中URI描述](js-apis-app-ability-want.md)。
 
-**起始版本**：18
+**起始版本**：17
 
 **参数：**
 
@@ -344,7 +344,7 @@ AbilityBase_ErrorCode OH_AbilityBase_SetWantInt32Param(AbilityBase_Want* want, c
 
 设置Want中int32_t类型的值。
 
-**起始版本**：18
+**起始版本**：17
 
 **参数：**
 
@@ -369,7 +369,7 @@ AbilityBase_ErrorCode OH_AbilityBase_GetWantInt32Param(AbilityBase_Want* want, c
 
 获取Want中int32_t类型的值。
 
-**起始版本**：18
+**起始版本**：17
 
 **参数：**
 
@@ -395,7 +395,7 @@ AbilityBase_ErrorCode OH_AbilityBase_SetWantBoolParam(AbilityBase_Want* want, co
 
 设置Want中bool类型的值。
 
-**起始版本**：18
+**起始版本**：17
 
 **参数：**
 
@@ -420,7 +420,7 @@ AbilityBase_ErrorCode OH_AbilityBase_GetWantBoolParam(AbilityBase_Want* want, co
 
 获取Want中bool类型的值。
 
-**起始版本**：18
+**起始版本**：17
 
 **参数：**
 
@@ -445,7 +445,7 @@ AbilityBase_ErrorCode OH_AbilityBase_SetWantDoubleParam(AbilityBase_Want* want, 
 
 设置Want中double类型的值。
 
-**起始版本**：18
+**起始版本**：17
 
 **参数：**
 
@@ -470,7 +470,7 @@ AbilityBase_ErrorCode OH_AbilityBase_GetWantDoubleParam(AbilityBase_Want* want, 
 
 获取Want中double类型的值。
 
-**起始版本**：18
+**起始版本**：17
 
 **参数：**
 

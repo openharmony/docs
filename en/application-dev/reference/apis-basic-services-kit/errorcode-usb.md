@@ -21,7 +21,7 @@ The permission to access the USB device is not granted.
 **Procedure**
 
 Call **requestRight** to request for the permission to access the USB device.
-
+<!--Del-->
 ## 14400002 HDC Disabled
 
 **Error Message**
@@ -57,7 +57,7 @@ The port role is incorrect.
 **Procedure**
 
 Use the correct port role.
-
+<!--DelEnd-->
 ## 14400004 Service Exception
 
 **Error Message**
@@ -89,7 +89,7 @@ This error code is reported if the database operation is abnormal.
 **Procedure**
 
 Call the API again.
-
+<!--Del-->
 ## 14400006 USB Device Function Unsupported
 
 **Error Message**
@@ -107,7 +107,7 @@ The USB device function is not supported.
 **Procedure**
 
 Use the correct USB device function.
-
+<!--DelEnd-->
 ## 14401001 Target USB Accessory Unmatched
 
 **Error Message**

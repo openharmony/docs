@@ -423,7 +423,7 @@ Before using the **Router** module, import it first.
 import { router } from '@kit.ArkUI';
 ```
 
-In the [HAR](../quick-start/har-package.md) or [HSP](../quick-start/in-app-hsp.md) you want to navigate to, name the @Entry decorated custom component in [EntryOptions](../quick-start/arkts-create-custom-components.md#entryoptions10).
+In the [HAR](../quick-start/har-package.md) or [HSP](../quick-start/in-app-hsp.md) you want to navigate to, name the @Entry decorated custom component in [EntryOptions](../ui/state-management/arkts-create-custom-components.md#entryoptions10).
 
 ```ts
 // library/src/main/ets/pages/Index.ets

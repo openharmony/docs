@@ -350,7 +350,7 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
 ## tag.getIsoDep<sup>9+</sup>
 
-getIsoDep(tagInfo: [TagInfo](#taginfo)): [IsoDepTag](js-apis-nfctech.md#isoDepTag9 )
+getIsoDep(tagInfo: [TagInfo](#taginfo)): [IsoDepTag](js-apis-nfctech.md#isodeptag9 )
 
 Obtains an **IsoDepTag** object, which allows access to the tags that use the IsoDep technology.
 
@@ -432,7 +432,7 @@ Obtains a **MifareClassicTag** object, which allows access to the tags that use 
 
 | **Type**                                                 | **Description**                                                               |
 | --------------------------------------------------------- | ----------------------------------------------------------------------- |
-| [MifareClassicTag](js-apis-nfctech.md#mifareclassictag-9) | **MifareClassicTag** object obtained.|
+| [MifareClassicTag](js-apis-nfctech.md#mifareclassictag9) | **MifareClassicTag** object obtained.|
 
 **Error codes**
 
@@ -494,7 +494,7 @@ Obtains an **NdefFormatableTag** object, which allows access to the tags that ar
 
 | **Type**                                                 | **Description**                                                                 |
 | --------------------------------------------------------- | ------------------------------------------------------------------------- |
-| [NdefFormatableTag](js-apis-nfctech.md#ndefformatabletag) | **NdefFormatableTag** object obtained.|
+| [NdefFormatableTag](js-apis-nfctech.md#ndefformatabletag9) | **NdefFormatableTag** object obtained.|
 
 **Error codes**
 
@@ -1406,7 +1406,7 @@ Obtains an **IsoDepTag** object.
 
 | Type  | Description                                                        |
 | ------ | ------------------------------------------------------------ |
-| [_IsoDepTag](./js-apis-nfctech.md#isodeptag9) | Object that implements access to ISO-DEP (ISO 14443-4) properties and I/O operations on a tag. |
+| [_IsoDepTag](js-apis-nfctech.md#isodeptag9) | Object that implements access to ISO-DEP (ISO 14443-4) properties and I/O operations on a tag. |
 
 ## NdefTag<sup>9+</sup>
 

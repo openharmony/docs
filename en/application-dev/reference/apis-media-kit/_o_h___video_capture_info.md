@@ -5,13 +5,15 @@
 
 The **OH_VideoCaptureInfo** struct describes the video capture information.
 
-When both **videoFrameWidth** and **videoFrameHeight** are **0**, video-related parameters are ignored and screen data is not recorded.
+When **videoFrameWidth** and **videoFrameHeight** are both **0**, video-related parameters are ignored and screen data is not recorded.
 
 **System capability**: SystemCapability.Multimedia.Media.AVScreenCapture
 
 **Since**: 10
 
 **Related module**: [AVScreenCapture](_a_v_screen_capture.md)
+
+**Header file**: [native_avscreen_capture_base.h](native__avscreen__capture__base_8h.md)
 
 
 ## Summary

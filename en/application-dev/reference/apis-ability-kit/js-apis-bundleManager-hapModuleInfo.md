@@ -38,9 +38,9 @@ The **HapModuleInfo** module defines the HAP module information. A third-party a
 
 Describes the preloaded module information in the atomic service.
 
- **Atomic service API**: This API can be used in atomic services since API version 11.
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
- **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 | Name     | Type          | Read-Only| Optional| Description                       |
 | --------- | -------------- | ---- | ---- | --------------------------- |
@@ -50,9 +50,9 @@ Describes the preloaded module information in the atomic service.
 
 Describes the information about the dynamic shared library on which the module depends.
 
- **Atomic service API**: This API can be used in atomic services since API version 11.
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
- **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 | Name       | Type  | Read-Only| Optional| Description                  |
 | ----------- | ------ | ---- | ---- | ---------------------- |
@@ -64,9 +64,9 @@ Describes the information about the dynamic shared library on which the module d
 
 Describes the router table configuration of the module.
 
- **Atomic service API**: This API can be used in atomic services since API version 12.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
- **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 | Name          | Type  | Read-Only| Optional| Description                  |
 | ------------- | ------ | ---- | ---- | ---------------------- |

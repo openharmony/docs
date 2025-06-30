@@ -4,21 +4,26 @@
 
 > **说明：**
 >
-> 从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
->
-> 从API version 10开始，可以通过使用[UIContext](./js-apis-arkui-UIContext.md#uicontext)中的[getUIInspector](./js-apis-arkui-UIContext.md#getuiinspector)方法获取当前UI上下文关联的[UIInspector](./js-apis-arkui-UIContext.md#uiinspector)对象。
+> 从API version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## 导入模块
 
+<!--deprecated_code_no_check-->
 ```ts
-import { inspector } from '@kit.ArkUI'
+import { inspector } from '@kit.ArkUI';
 ```
 
-## inspector.createComponentObserver
+## inspector.createComponentObserver<sup>(deprecated)</sup>
 
 createComponentObserver(id: string): ComponentObserver
 
 绑定指定组件，返回对应的监听句柄。
+
+> **说明：**
+> 
+> 从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getUIInspector](js-apis-arkui-UIContext.md#getuiinspector)获取[UIInspector](js-apis-arkui-UIContext.md#uiinspector)实例，再通过此实例调用替代方法[createComponentObserver](js-apis-arkui-UIContext.md#createcomponentobserver)。
+>
+> 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getUIInspector](js-apis-arkui-UIContext.md#getuiinspector)方法获取当前UI上下文关联的[UIInspector](js-apis-arkui-UIContext.md#uiinspector)对象。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -37,7 +42,6 @@ createComponentObserver(id: string): ComponentObserver
 |[ComponentObserver](#componentobserver)| 组件回调事件监听句柄，用于注册和取消注册监听回调。 |
 
 **示例：** 
-
 ```ts
 let listener:inspector.ComponentObserver = inspector.createComponentObserver('COMPONENT_ID'); //监听id为COMPONENT_ID的组件回调事件
 ```
@@ -46,7 +50,7 @@ let listener:inspector.ComponentObserver = inspector.createComponentObserver('CO
 
 组件布局和组件绘制送显完成回调的句柄，包含了申请句柄时的首次查询结果。
 
-### on
+### on('layout')
 
 on(type: 'layout', callback: () => void): void
 
@@ -60,10 +64,10 @@ on(type: 'layout', callback: () => void): void
 
 | 参数名   | 类型   | 必填 | 说明|
 | -------- | ------ | ---- | -------------------------------------|
-| type     | string | 是   | 必须填写字符串'layout'或'draw'。<br>layout: 组件布局完成。<br>draw: 组件绘制送显完成。 |
-| callback | () => void   | 是   | 监听layout或draw的回调。|
+| type     | string | 是   | 必须填写字符串'layout。<br>layout: 组件布局完成。 |
+| callback | () => void   | 是   | 监听layout的回调。|
 
-### off
+### off('layout')
 
 off(type: 'layout', callback?: () => void): void
 
@@ -77,10 +81,10 @@ off(type: 'layout', callback?: () => void): void
 
 | 参数名   | 类型   | 必填 | 说明 |
 | -------- | ------ | ---- | -------------------------------------------- |
-| type     | string | 是   | 必须填写字符串'layout'或'draw'。<br>layout: 组件布局完成。<br>draw: 组件绘制送显完成。 |
-| callback | () => void   | 否   | 需要取消注册的回调，如果参数缺省则取消注册该句柄下所有的回调。|
+| type     | string | 是   | 必须填写字符串'layout。<br>layout: 组件布局完成。 |
+| callback | () => void   | 否   | 需要取消注册的回调，如果参数缺省则取消注册该句柄下所有的回调。callback需要和[on('layout')](#onlayout)方法中的callback为相同对象时才能取消回调成功。|
 
-### on
+### on('draw')
 
 on(type: 'draw', callback: () => void): void
 
@@ -94,10 +98,10 @@ on(type: 'draw', callback: () => void): void
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | 是   | 必须填写字符串'layout'或'draw'。<br>layout: 组件布局完成。<br>draw: 组件绘制送显完成。 |
-| callback | () => void   | 是   | 监听layout或draw的回调。                                     |
+| type     | string | 是   | 必须填写字符串'draw'。<br>draw: 组件绘制送显完成。 |
+| callback | () => void   | 是   | 监听draw的回调。                                     |
 
-### off
+### off('draw')
 
 off(type: 'draw', callback?: () => void): void
 
@@ -111,8 +115,8 @@ off(type: 'draw', callback?: () => void): void
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | 是   | 必须填写字符串'layout'或'draw'。<br>layout: 组件布局完成。<br>draw: 组件绘制送显完成。 |
-| callback | () => void   | 否   | 需要取消注册的回调，如果参数缺省则取消注册该句柄下所有的回调。callback需要和on方法中的callback为相同对象时才能取消回调成功。 |
+| type     | string | 是   | 必须填写字符串'draw'。<br>draw: 组件绘制送显完成。 |
+| callback | () => void   | 否   | 需要取消注册的回调，如果参数缺省则取消注册该句柄下所有的回调。callback需要和[on('draw')](#ondraw)方法中的callback为相同对象时才能取消回调成功。 |
 
 **示例：**
 
@@ -140,7 +144,7 @@ off(type: 'draw', callback?: () => void): void
       }.height(320).width(360).padding({ right: 10, top: 10 })
     }
 
-    listener:inspector.ComponentObserver = inspector.createComponentObserver('IMAGE_ID') // 建议使用 this.getUIContext().getUIInspector().createComponentObserver()接口
+    listener:inspector.ComponentObserver = this.getUIContext().getUIInspector().createComponentObserver('IMAGE_ID')
 
     aboutToAppear() {
       let onLayoutComplete:()=>void=():void=>{

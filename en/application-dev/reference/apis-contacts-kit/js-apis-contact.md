@@ -44,31 +44,36 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+  <!--code_no_check-->
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // Obtain the application context.
-  let context = getContext(this) as Context;
-  contact.addContact(
-    context,
-    {
-	  name: {
-	    fullName: 'xxx'
-	  },
-      phoneNumbers: [{
-	    phoneNumber: '138xxxxxxxx'
-	  }]
-    }, (err: BusinessError, data) => {
-      if (err) {
-        console.error(`Failed to add Contact. Code:${err.code}, message: ${err.message}`);
-        return;
-      }
-      console.info(`Succeeded in adding Contact. data: ${JSON.stringify(data)}`);
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  contact.addContact(context, {
+    name: {
+      fullName: 'xxx'
+    },
+    phoneNumbers: [{
+      phoneNumber: '138xxxxxxxx'
+    }]
+  }, (err: BusinessError, data) => {
+    if (err) {
+      console.error(`Failed to add Contact. Code:${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in adding Contact. data: ${JSON.stringify(data)}`);
   });
 ```
 
 ## contact.addContact<sup>(deprecated)7+</sup>
 
-addContact(contact:Contact, callback:AsyncCallback&lt;number&gt;): void
+addContact(contact: Contact, callback: AsyncCallback&lt;number&gt;): void
 
 Adds a contact. This API uses an asynchronous callback to return the result.
 
@@ -91,19 +96,20 @@ Adds a contact. This API uses an asynchronous callback to return the result.
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  contact.addContact({
-      name: {
-	    fullName: 'xxx'
-	  },
-      phoneNumbers: [{
-	    phoneNumber: '138xxxxxxxx'
-	  }]
+
+  contact.addContact(context, {
+    name: {
+      fullName: 'xxx'
+    },
+    phoneNumbers: [{
+      phoneNumber: '138xxxxxxxx'
+    }]
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to add Contact. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in adding Contact. data: ${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to add Contact. Code:${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in adding Contact. data: ${JSON.stringify(data)}`);
   });
   ```
 
@@ -143,19 +149,24 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+  <!--code_no_check-->
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // Obtain the application context.
-  let context = getContext(this) as Context;
-  let promise = contact.addContact(
-    context,
-    {
-	  name: {
-	    fullName: 'xxx'
-	  },
-      phoneNumbers: [{
-	    phoneNumber: '138xxxxxxxx'
-	  }]
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  let promise = contact.addContact(context, {
+    name: {
+      fullName: 'xxx'
+    },
+    phoneNumbers: [{
+      phoneNumber: '138xxxxxxxx'
+    }]
   });
   promise.then((data) => {
     console.info(`Succeeded in adding Contact. data: ${JSON.stringify(data)}`);
@@ -194,18 +205,19 @@ Adds a contact. This API uses a promise to return the result.
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   let promise = contact.addContact({
-      name: {
-	    fullName: 'xxx'
-	  },
-      phoneNumbers: [{
-	    phoneNumber: '138xxxxxxxx'
-	  }]
+    name: {
+      fullName: 'xxx'
+    },
+    phoneNumbers: [{
+      phoneNumber: '138xxxxxxxx'
+    }]
   });
   promise.then((data) => {
-      console.info(`Succeeded in adding Contact. data: ${JSON.stringify(data)}`);
+    console.info(`Succeeded in adding Contact. data: ${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to add Contact. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to add Contact. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -236,16 +248,23 @@ Deletes a contact based on the specified contact key. This API uses an asynchron
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+  <!--code_no_check-->
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // Obtain the application context.
-  let context = getContext(this) as Context; 
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.deleteContact(context, 'xxx', (err: BusinessError) => {
-      if (err) {
-          console.error(`Failed to delete Contact. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info('Succeeded in deleting Contact.');
+    if (err) {
+      console.error(`Failed to delete Contact. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in deleting Contact.');
   });
 ```
 
@@ -274,12 +293,13 @@ Deletes a contact based on the specified contact key. This API uses an asynchron
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.deleteContact('xxx', (err: BusinessError) => {
-      if (err) {
-          console.error(`Failed to delete Contact. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info('Succeeded in deleting Contact.');
+    if (err) {
+      console.error(`Failed to delete Contact. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in deleting Contact.');
   });
   ```
 
@@ -315,15 +335,22 @@ Deletes a contact based on the specified contact key. This API uses a promise to
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.deleteContact(context, 'xxx');
   promise.then(() => {
-      console.info(`Succeeded in deleting Contact.`);
+    console.info(`Succeeded in deleting Contact.`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to delete Contact. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to delete Contact. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -357,11 +384,12 @@ Deletes a contact based on the specified contact key. This API uses a promise to
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   let promise = contact.deleteContact('xxx');
   promise.then(() => {
-      console.info(`Succeeded in deleting Contact.`);
+    console.info(`Succeeded in deleting Contact.`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to delete Contact. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to delete Contact. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -392,24 +420,31 @@ Updates a contact based on the specified contact information. This API uses an a
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.updateContact(context, {
-      id: 1,
-      name: {
-	    fullName: 'xxx'
-	  },
-      phoneNumbers: [{
-	    phoneNumber: '138xxxxxxxx'
-	  }]
+    id: 1,
+    name: {
+      fullName: 'xxx'
+    },
+    phoneNumbers: [{
+      phoneNumber: '138xxxxxxxx'
+    }]
   }, (err: BusinessError) => {
-      if (err) {
-          console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info('Succeeded in updating Contact.');
+    if (err) {
+      console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in updating Contact.');
   });
   ```
 
@@ -438,20 +473,21 @@ Updates a contact based on the specified contact information. This API uses an a
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  contact.updateContact({
-      id: 1,
-      name: {
-	    fullName: 'xxx'
-	  },
-      phoneNumbers: [{
-	    phoneNumber: '138xxxxxxxx'
-	  }]
+
+  contact.updateContact(context, {
+    id: 1,
+    name: {
+      fullName: 'xxx'
+    },
+    phoneNumbers: [{
+      phoneNumber: '138xxxxxxxx'
+    }]
   }, (err: BusinessError) => {
-      if (err) {
-          console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info('Succeeded in updating Contact.');
+    if (err) {
+      console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in updating Contact.');
   });
   ```
 
@@ -483,26 +519,33 @@ Updates a contact based on the specified contact information. This API uses an a
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.updateContact(context, {
-      id: 1,
-      name: {
-	    fullName: 'xxx'
-	  },
-      phoneNumbers: [{
-	    phoneNumber: '138xxxxxxxx'
-	  }]
+    id: 1,
+    name: {
+      fullName: 'xxx'
+    },
+    phoneNumbers: [{
+      phoneNumber: '138xxxxxxxx'
+    }]
   }, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError) => {
-      if (err) {
-          console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info('Succeeded in updating Contact.');
+    if (err) {
+    console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in updating Contact.');
   });
   ```
 
@@ -532,22 +575,23 @@ Updates a contact based on the specified contact information. This API uses an a
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.updateContact({
-      id: 1,
-      name: {
-	    fullName: 'xxx'
-	  },
-      phoneNumbers: [{
-	    phoneNumber: '138xxxxxxxx'
-	  }]
+    id: 1,
+    name: {
+      fullName: 'xxx'
+    },
+    phoneNumbers: [{
+      phoneNumber: '138xxxxxxxx'
+    }]
   }, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError) => {
-      if (err) {
-          console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info('Succeeded in updating Contact.');
+    if (err) {
+      console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in updating Contact.');
   });
   ```
 
@@ -584,25 +628,32 @@ Updates a contact based on the specified contact information and attributes. Thi
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+  <!--code_no_check-->
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.updateContact(context, {
-      id: 1,
-      name: {
-	    fullName: 'xxx'
-	  },
-      phoneNumbers: [{
-	    phoneNumber: '138xxxxxxxx'
-	  }]
+    id: 1,
+    name: {
+      fullName: 'xxx'
+    },
+    phoneNumbers: [{
+      phoneNumber: '138xxxxxxxx'
+    }]
   }, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then(() => {
-      console.info('Succeeded in updating Contact.');
+    console.info('Succeeded in updating Contact.');
   }).catch((err: BusinessError) => {
-      console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
   });
 ```
 
@@ -637,21 +688,22 @@ Updates a contact based on the specified contact information and attributes. Thi
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   let promise = contact.updateContact({
-      id: 1,
-      name: {
-	    fullName: 'xxx'
-	  },
-      phoneNumbers: [{
-	    phoneNumber: '138xxxxxxxx'
-	  }]
+    id: 1,
+    name: {
+      fullName: 'xxx'
+    },
+    phoneNumbers: [{
+      phoneNumber: '138xxxxxxxx'
+    }]
   }, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then(() => {
-      console.info('Succeeded in updating Contact.');
+    console.info('Succeeded in updating Contact.');
   }).catch((err: BusinessError) => {
-      console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -684,16 +736,23 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.isLocalContact(context, /*id*/1, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to isLocalContact. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in isLocalContact.`);
+    if (err) {
+      console.error(`Failed to isLocalContact. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in isLocalContact.`);
   });
   ```
 
@@ -722,12 +781,13 @@ Checks whether the ID of this contact is in the local address book. This API use
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.isLocalContact(/*id*/1, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to isLocalContact. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in isLocalContact.`);
+    if (err) {
+      console.error(`Failed to isLocalContact. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in isLocalContact.`);
   });
   ```
 
@@ -765,15 +825,22 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+  <!--code_no_check-->
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.isLocalContact(context, /*id*/1);
   promise.then((data) => {
-      console.info(`Succeeded in isLocalContact. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in isLocalContact. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to isLocalContact. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to isLocalContact. Code: ${err.code}, message: ${err.message}`);
   });
 ```
 
@@ -807,11 +874,12 @@ Checks whether the ID of this contact is in the local address book. This API use
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   let promise = contact.isLocalContact(/*id*/1);
   promise.then((data) => {
-      console.info(`Succeeded in isLocalContact. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in isLocalContact. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to isLocalContact. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to isLocalContact. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -844,16 +912,23 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+  <!--code_no_check-->
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.isMyCard(context, /*id*/1, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to isMyCard. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in isMyCard. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to isMyCard. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in isMyCard. data->${JSON.stringify(data)}`);
   });
 ```
 
@@ -882,12 +957,13 @@ Checks whether a contact is included in my card. This API uses an asynchronous c
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.isMyCard(/*id*/1, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to isMyCard. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in isMyCard. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to isMyCard. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in isMyCard. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -925,15 +1001,22 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+  <!--code_no_check-->
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.isMyCard(context, /*id*/1);
   promise.then((data) => {
-      console.info(`Succeeded in isMyCard. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in isMyCard. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to isMyCard. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to isMyCard. Code: ${err.code}, message: ${err.message}`);
   });
 ```
 
@@ -967,11 +1050,12 @@ Checks whether a contact is included in my card. This API uses a promise to retu
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   let promise = contact.isMyCard(/*id*/1);
   promise.then((data) => {
-      console.info(`Succeeded in isMyCard. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in isMyCard. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to isMyCard. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to isMyCard. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -1003,16 +1087,23 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+  <!--code_no_check-->
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryMyCard(context, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying My Card. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying My Card. data->${JSON.stringify(data)}`);
   });
 ```
 
@@ -1040,12 +1131,13 @@ Queries my card. This API uses an asynchronous callback to return the result.
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryMyCard((err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying My Card. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying My Card. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1078,18 +1170,25 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+  <!--code_no_check-->
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryMyCard(context, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying My Card. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying My Card. data->${JSON.stringify(data)}`);
   });
 ```
 
@@ -1118,14 +1217,15 @@ Queries my card. This API uses an asynchronous callback to return the result.
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryMyCard({
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying My Card. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying My Card. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1163,17 +1263,24 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+  <!--code_no_check-->
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.queryMyCard(context, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
-      console.info(`Succeeded in querying My Card. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in querying My Card. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
   });
 ```
 
@@ -1207,13 +1314,14 @@ Queries my card based on the specified contact attributes. This API uses a promi
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   let promise = contact.queryMyCard({
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
-      console.info(`Succeeded in querying My Card. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in querying My Card. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -1239,12 +1347,13 @@ Selects a contact. This API uses an asynchronous callback to return the result.
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.selectContact((err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to select Contact. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in selecting Contact. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to select Contact. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in selecting Contact. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1270,11 +1379,12 @@ Selects a contact. This API uses a promise to return the result.
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   let promise = contact.selectContact();
   promise.then((data) => {
-      console.info(`Succeeded in selecting Contact. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in selecting Contact. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to select Contact. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to select Contact. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -1306,12 +1416,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.selectContacts((err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to select Contacts. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in selecting Contacts. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to select Contacts. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in selecting Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1336,11 +1447,12 @@ Selects a contact. This API uses a promise to return the result.
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   let promise = contact.selectContacts();
   promise.then((data) => {
-      console.info(`Succeeded in selecting Contacts. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in selecting Contacts. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to select Contacts. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to select Contacts. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -1373,14 +1485,15 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.selectContacts({
     isMultiSelect:false
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to select Contacts. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in selecting Contacts. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to select Contacts. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in selecting Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1418,11 +1531,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   let promise = contact.selectContacts({isMultiSelect:false});
   promise.then((data) => {
-      console.info(`Succeeded in selecting Contacts. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in selecting Contacts. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to select Contacts. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to select Contacts. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -1455,16 +1569,23 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContact(context, 'xxx', (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1493,12 +1614,13 @@ Queries a contact based on the specified key. This API uses an asynchronous call
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryContact('xxx', (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1532,20 +1654,27 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContact(context, 'xxx', {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1575,16 +1704,17 @@ Queries a contact based on the specified key and holder. This API uses an asynch
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryContact('xxx', {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1618,18 +1748,25 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContact(context, 'xxx', {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1659,14 +1796,15 @@ Queries a contact based on the specified key and attributes. This API uses an as
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryContact('xxx', {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1701,22 +1839,29 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+  <!--code_no_check-->
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContact(context, 'xxx', {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   });
 ```
 
@@ -1747,18 +1892,19 @@ Queries a contact based on the specified key, holder, and attributes. This API u
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryContact('xxx', {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1798,21 +1944,28 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.queryContact(context, 'xxx', {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
-      console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -1848,17 +2001,18 @@ Queries a contact based on the specified key, holder, and attributes. This API u
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   let promise = contact.queryContact('xxx', {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
-      console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -1890,16 +2044,23 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContacts(context, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1927,12 +2088,13 @@ Queries all contacts. This API uses an asynchronous callback to return the resul
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryContacts((err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1965,20 +2127,27 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContacts(context, {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2007,16 +2176,17 @@ Queries contacts based on the specified holder. This API uses an asynchronous ca
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryContacts({
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2049,18 +2219,25 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContacts(context, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2089,14 +2266,15 @@ Queries contacts based on the specified attributes. This API uses an asynchronou
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryContacts({
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2130,22 +2308,29 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContacts(context, {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2175,18 +2360,19 @@ Queries contacts based on the specified holder and attributes. This API uses an 
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryContacts({
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2225,21 +2411,28 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.queryContacts(context, {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
-      console.info(`Succeeded in querying Contacts. data: ${JSON.stringify(data)}`);
+    console.info(`Succeeded in querying Contacts. data: ${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -2274,17 +2467,18 @@ Queries contacts based on the specified holder and attributes. This API uses a p
 
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   let promise = contact.queryContacts({
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
-      console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
   });
 ```
 
@@ -2317,16 +2511,23 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2355,12 +2556,13 @@ Queries contacts based on the specified phone number. This API uses an asynchron
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryContactsByPhoneNumber('138xxxxxxxx', (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2394,20 +2596,27 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2437,16 +2646,17 @@ Queries contacts based on the specified phone number and holder. This API uses a
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryContactsByPhoneNumber('138xxxxxxxx', {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2480,18 +2690,25 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2521,14 +2738,15 @@ Queries contacts based on the specified phone number and attributes. This API us
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryContactsByPhoneNumber('138xxxxxxxx', {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2563,22 +2781,29 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2609,18 +2834,19 @@ Queries contacts based on the specified phone number, holder, and attributes. Th
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryContactsByPhoneNumber('138xxxxxxxx', {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2660,21 +2886,28 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
-      console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -2710,17 +2943,18 @@ Queries contacts based on the specified phone number, holder, and attributes. Th
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   let promise = contact.queryContactsByPhoneNumber('138xxxxxxxx', {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
-      console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -2753,16 +2987,23 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContactsByEmail(context, 'xxx@email.com', (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2791,12 +3032,13 @@ Queries contacts based on the specified email address. This API uses an asynchro
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryContactsByEmail('xxx@email.com', (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2830,20 +3072,27 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContactsByEmail(context, 'xxx@email.com', {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2873,16 +3122,17 @@ Queries a contact based on the specified email and holder. This API uses an asyn
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryContactsByEmail('xxx@email.com', {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2916,18 +3166,25 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContactsByEmail(context, 'xxx@email.com', {
-      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+    attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2957,14 +3214,15 @@ Queries a contact based on the specified email and attributes. This API uses an 
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryContactsByEmail('xxx@email.com', {
-      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+    attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2999,22 +3257,29 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContactsByEmail(context, 'xxx@email.com', {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+    attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3045,18 +3310,19 @@ Queries a contact based on the specified email, holder, and attributes. This API
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryContactsByEmail('xxx@email.com', {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+    attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3096,21 +3362,28 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.queryContactsByEmail(context, 'xxx@email.com', {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+    attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   });
   promise.then((data) => {
-      console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -3146,17 +3419,18 @@ Queries a contact based on the specified email, holder, and attributes. This API
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   let promise = contact.queryContactsByEmail('xxx@email.com', {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+    attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   });
   promise.then((data) => {
-      console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -3186,16 +3460,23 @@ Queries all groups of this contact. This API uses an asynchronous callback to re
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryGroups(context, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Groups. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Groups. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Groups. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Groups. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3223,12 +3504,13 @@ Queries all groups of this contact. This API uses an asynchronous callback to re
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryGroups((err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Groups. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Groups.. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Groups. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Groups.. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3261,20 +3543,27 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryGroups(context, {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Groups. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Groups. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Groups. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Groups. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3303,16 +3592,17 @@ Queries all groups of this contact based on the specified holder. This API uses 
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryGroups({
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Groups. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Groups. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Groups. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Groups. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3350,19 +3640,26 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.queryGroups(context, {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   });
   promise.then((data) => {
-      console.info(`Succeeded in querying Groups. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in querying Groups. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to query Groups. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to query Groups. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -3396,15 +3693,16 @@ Queries all groups of this contact based on the specified holder. This API uses 
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   let promise = contact.queryGroups({
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   });
   promise.then((data) => {
-      console.info(`Succeeded in querying Groups. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in querying Groups. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to query Groups. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to query Groups. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -3436,16 +3734,23 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryHolders(context, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Holders. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Holders. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Holders. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Holders. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3473,12 +3778,13 @@ Queries all applications that have created contacts. This API uses an asynchrono
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryHolders((err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Holders. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Holders. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Holders. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Holders. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3515,15 +3821,22 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.queryHolders(context);
   promise.then((data) => {
-      console.info(`Succeeded in querying Holders. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in querying Holders. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to query Holders. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to query Holders. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -3551,11 +3864,12 @@ Queries all applications that have created contacts. This API uses a promise to 
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   let promise = contact.queryHolders();
   promise.then((data) => {
-      console.info(`Succeeded in querying Holders. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in querying Holders. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to query Holders. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to query Holders. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -3588,16 +3902,23 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryKey(context, /*id*/1, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Key. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Key. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Key. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Key. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3626,12 +3947,13 @@ Queries the key of a contact based on the specified contact ID. This API uses an
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryKey(/*id*/1, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Key. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Key. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Key. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Key. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3665,20 +3987,27 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryKey(context, /*id*/1, {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Key. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Key. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Key. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Key. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3708,16 +4037,17 @@ Queries the key of a contact based on the specified contact ID and holder. This 
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryKey(/*id*/1, {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Key. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Key. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Key. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Key. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3756,19 +4086,26 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.queryKey(context, /*id*/1, {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   });
   promise.then((data) => {
-      console.info(`Succeeded in querying Key. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in querying Key. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to query Key. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to query Key. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -3803,15 +4140,16 @@ Queries the key of a contact based on the specified contact ID and holder. This 
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   let promise = contact.queryKey(/*id*/1, {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   });
   promise.then((data) => {
-      console.info(`Succeeded in querying Key. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in querying Key. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to query Key. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to query Key. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -3842,7 +4180,7 @@ Opens the **Add contact** page to add a contact. This API uses a promise to retu
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Contacts Error Codes](../apis-contacts-kit/errorcode-contacts.md).
 
-| Type                 | Description                                      |
+| ID                | Error Message                                      |
 | --------------------- | ------------------------------------------ |
 | 401       | Parameter error. Possible causes: Mandatory parameters are left unspecified. |
 | 801       | The specified SystemCapability name was not found. |
@@ -3852,10 +4190,24 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+<!--code_no_check-->
 ```js
-import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
+
 // Obtain the application context.
-let context = getContext(this) as Context;
+let contactInfo: contact.Contact = {
+  name: {
+    fullName: 'xxx'
+  },
+  phoneNumbers: [{
+    phoneNumber: '138xxxxxx'
+  }]
+}
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let promise = contact.addContactViaUI(context, contactInfo);
 ```
 
@@ -3880,13 +4232,13 @@ Opens the **Save to existing** page to save a contact to an existing one. This A
 
 | Type                 | Description                                      |
 | --------------------- | ------------------------------------------ |
-| Promise&lt;number&gt; | Promise Contact ID.|
+| Promise&lt;number&gt; | Promise used to return the result, which is the contact ID.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Contacts Error Codes](../apis-contacts-kit/errorcode-contacts.md).
 
-| Type                 | Description                                      |
+| ID                | Error Message                                      |
 | --------------------- | ------------------------------------------ |
 | 401       | Parameter error. Possible causes: Mandatory parameters are left unspecified. |
 | 801       | The specified SystemCapability name was not found. |
@@ -3897,10 +4249,25 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+<!--code_no_check-->
 ```js
-import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
+
 // Obtain the application context.
-let context = getContext(this) as Context;
+let contactInfo: contact.Contact = {
+  id: 1,
+  name: {
+    fullName: 'xxx'
+  },
+  phoneNumbers: [{
+    phoneNumber: '138xxxxxx'
+  }]
+}
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let promise = contact.saveToExistingContactViaUI(context, contactInfo);
 ``` 
 
@@ -3914,10 +4281,10 @@ Defines the contact selection options.
 
 |                Name              |                  Type                | Read-Only | Optional |        Description     |
 | --------------------------------- | ------------------------------------- | ---- | ---- | ---------------- |
-| isMultiSelect<sup>10+</sup>         | boolean | No  | Yes  | Whether multiple contacts can be selected. The default value is **false**.    |
-| maxSelectable<sup>15+</sup>         | number | No  | Yes  | Maximum number of contacts that can be selected. The default value is **10000**.    | 
-| isDisplayedByName<sup>15+</sup>         | boolean | No  | Yes  | Whether to display contacts by name. The default value is **false**.    |
-| filter<sup>15+</sup>         | [ContactSelectionFilter](#contactselectionfilter15) | No  | Yes  | Contact selection filter.    |
+| isMultiSelect<sup>10+</sup>         | boolean | No  | Yes  | Whether multiple contacts can be selected. The value **true** indicates that multiple contacts can be selected, and the value **false** indicates that only one contact can be selected. The default value is **false**. **Atomic service API**: This API can be used in atomic services since API version 11.    |
+| maxSelectable<sup>15+</sup>         | number | No  | Yes  | Maximum number of contacts that can be selected. The default value is **10000**. **Atomic service API**: This API can be used in atomic services since API version 15.    | 
+| isDisplayedByName<sup>15+</sup>         | boolean | No  | Yes  | Whether to display contacts by name. The value **true** indicates that contacts are displayed by name, and the value **false** indicates that contacts are displayed by number. The default value is **false**. **Atomic service API**: This API can be used in atomic services since API version 15.    |
+| filter<sup>15+</sup>         | [ContactSelectionFilter](#contactselectionfilter15) | No  | Yes  | Contact selection filter. **Atomic service API**: This API can be used in atomic services since API version 15.    |
 
 ## ContactSelectionFilter<sup>15+</sup>
 
@@ -3927,10 +4294,10 @@ Defines the contact selection filter.
 
 **System capability**: SystemCapability.Applications.Contacts
 
-|                Name              |                  Type                | Mandatory |        Description     |
-| --------------------------------- | ------------------------------------- | ---- | ---------------- |
-| filterClause        | [FilterClause](#filterclause15) | Yes  | Filter criteria.    |
-| filterType        | [FilterType](#filtertype15) | Yes  | Filter type.    |
+|                Name              |                  Type                |  Read-Only | Optional   |        Description     |
+| --------------------------------- | ------------------------------------- | ---- | ---- | ---------------- |
+| filterClause        | [FilterClause](#filterclause15) |  No |  No  |  Filter criteria.    |
+| filterType        | [FilterType](#filtertype15) |  No |  No   | Filter type.    |
 
 ## FilterType<sup>15+</sup>
 
@@ -3938,7 +4305,7 @@ Enumerates contact filter types.
 
 **Atomic service API**: This API can be used in atomic services since API version 15.
 
-**System capability**: SystemCapability.Applications.ContactsData
+**System capability**: SystemCapability.Applications.Contacts
 
 | Name                 | Value| Description                              |
 | --------------------- | ---- | ---------------------------------- |
@@ -3954,12 +4321,12 @@ Defines the contact filter criteria.
 
 **System capability**: SystemCapability.Applications.Contacts
 
-|                Name              |                  Type                | Mandatory |        Description     |
-| --------------------------------- | ------------------------------------- | ---- | ---------------- |
-| id         | [FilterOptions](#filteroptions15)[] | No  | Contact ID.    |
-| name         | [FilterOptions](#filteroptions15)[]  | No  | Contact name.    |
-| dataItem         | [DataFilter](#datafilter15) | No  | Contact data filter item.    |
-| focusModeList        | [FilterOptions](#filteroptions15)[]  | No  | Focus mode list.    |
+|                Name              |                  Type                |   Read-Only | Optional    |        Description     |
+| --------------------------------- | ------------------------------------- | ---- | ---- | ---------------- |
+| id         | Array\<[FilterOptions](#filteroptions15)> | No  | Yes  | Contact ID.    |
+| name         | Array\<[FilterOptions](#filteroptions15)>  | No  | Yes  | Contact name.    |
+| dataItem         | [DataFilter](#datafilter15) | No  | Yes  | Contact data filter item.    |
+| focusModeList        | Array\<[FilterOptions](#filteroptions15)>  | No  | Yes  | Focus mode list.    |
 
 ## FilterOptions<sup>15+</sup>
 
@@ -3969,10 +4336,10 @@ Defines contact filter options.
 
 **System capability**: SystemCapability.Applications.Contacts
 
-|                Name              |                  Type                | Mandatory |        Description     |
-| --------------------------------- | ------------------------------------- | ---- | ---------------- |
-| filterCondition         | [FilterCondition](#filtercondition15) | Yes  | Filter criteria.    |
-| value        | string or ValueType[]| No  | Filter value. The default value is **undefined**.    |
+|                Name              |                  Type                |  Read-Only | Optional   |        Description     |
+| --------------------------------- | ------------------------------------- | ---- | ---- | ---------------- |
+| filterCondition         | [FilterCondition](#filtercondition15) | No   |   No  | Filter criteria.    |
+| value        | string \| ValueType[] |  No   |   Yes  | Filter value. The default value is **undefined**.    |
 
 ## FilterCondition<sup>15+</sup>
 
@@ -3980,11 +4347,11 @@ Enumerates filter criteria.
 
 **Atomic service API**: This API can be used in atomic services since API version 15.
 
-**System capability**: SystemCapability.Applications.ContactsData
+**System capability**: SystemCapability.Applications.Contacts
 
 | Name                 | Value| Description                              |
 | --------------------- | ---- | ---------------------------------- |
-| IS_NOT_NULL    | 0 |The corresponding field is not empty.|
+| IS_NOT_NULL    | 0 | The corresponding field is not empty.|
 | EQUAL_TO            | 1 | The corresponding field is equal to a value.                |
 | NOT_EQUAL_TO | 2 | The corresponding field is not equal to a value.                    |
 | IN | 3 | The value of the corresponding field is in an array.                    |
@@ -3999,10 +4366,10 @@ Defines the contact data filter item.
 
 **System capability**: SystemCapability.Applications.Contacts
 
-|                Name              |                  Type                | Mandatory |        Description     |
-| --------------------------------- | ------------------------------------- | ---- | ---------------- |
-| field         | [DataField](#datafield15) | Yes  | Contact data field.    |
-| options         | [FilterOptions](#filteroptions15)[] | Yes  | Filter options.    |
+|                Name              |                  Type                |  Read-Only | Optional  |        Description     |
+| --------------------------------- | ------------------------------------- | ---- | ---- | ---------------- |
+| field         | [DataField](#datafield15) | No | No | Contact data field.    |
+| options         | Array\<[FilterOptions](#filteroptions15)> | No | No | Filter options.    |
 
 ## DataField<sup>15+</sup>
 
@@ -4010,11 +4377,11 @@ Enumerates contact data fields.
 
 **Atomic service API**: This API can be used in atomic services since API version 15.
 
-**System capability**: SystemCapability.Applications.ContactsData
+**System capability**: SystemCapability.Applications.Contacts
 
 | Name                 | Value| Description                              |
 | --------------------- | --- | ---------------------------------- |
-| EMAIL    | 0 |Email of the contact.|
+| EMAIL    | 0 | Email of the contact.|
 | PHONE            | 1 | Phone number of the contact.                |
 | ORGANIZATION | 2 | Organization of the contact.                    |
 
@@ -4153,12 +4520,12 @@ Defines a contact's email.
 
 ### Attributes
 
-| Name       |   Type  | Readable| Writable| Description            |
+| Name       |   Type  | Read-Only| Optional| Description            |
 | ----------- | -------- | ---- | ---- | ---------------- |
-| email       | string   | Yes  | Yes  | Email addresses      |
-| labelName   | string   | Yes  | Yes  | Name of the mailbox type.|
-| displayName | string   | Yes  | Yes  | Displayed name of the mailbox.|
-| labelId     | number   | Yes  | Yes  | Mailbox type.    |
+| email       | string   | No  | No  | Email addresses      |
+| labelName   | string   | No  | Yes  | Name of the mailbox type.|
+| displayName | string   | No  | Yes  | Displayed name of the mailbox.|
+| labelId     | number   | No  | Yes  | Mailbox type.    |
 
 **Example**
 
@@ -4185,11 +4552,11 @@ Defines an application that creates the contact.
 
 **System capability**: SystemCapability.Applications.ContactsData
 
-| Name       | Type  | Readable| Writable| Description        |
+| Name       | Type  | Read-Only| Optional| Description        |
 | ----------- | ------ | ---- | ---- | ------------ |
 | bundleName  | string | Yes  | No  | Bundle name. The value is **com.ohos.contacts**.|
-| displayName | string | Yes  | No  | Application name.  |
-| holderId    | number | Yes  | Yes  | Application ID.    |
+| displayName | string | Yes  | Yes  | Application name.  |
+| holderId    | number | No  | Yes  | Application ID.    |
 
 **Example**
 
@@ -4213,21 +4580,21 @@ Defines a contact's event.
 
 ### Constant
 
-| Name             | Value  | Description              |
-| ----------------- | ---- | ------------------ |
-| CUSTOM_LABEL      | 0    | Custom event.  |
-| EVENT_ANNIVERSARY | 1    | Anniversary event.|
-| EVENT_OTHER       | 2    | Other event.    |
-| EVENT_BIRTHDAY    | 3    | Birthday event.    |
-| INVALID_LABEL_ID  | -1   | Invalid event.    |
+| Name             |   Type  |  Value  | Description              |
+| ----------------- | ---- | ---- | ------------------ |
+| CUSTOM_LABEL      | number   | 0    | Custom event.  |
+| EVENT_ANNIVERSARY | number   | 1    | Anniversary event.|
+| EVENT_OTHER       | number   | 2    | Other event.    |
+| EVENT_BIRTHDAY    | number   | 3    | Birthday event.    |
+| INVALID_LABEL_ID  | number   | -1   | Invalid event.    |
 
 ### Attributes
 
-|    Name  |   Type  | Readable| Writable| Description          |
+|    Name  |   Type  | Read-Only| Optional| Description          |
 | --------- | -------- | ---- | ---- | -------------- |
-| eventDate | string   | Yes  | Yes  | Event date.  |
-| labelName | string   | Yes  | Yes  | Event type.|
-| labelId   | number   | Yes  | Yes  | Event type ID.    |
+| eventDate | string   | No  | No  | Event date.  |
+| labelName | string   | No  | Yes  | Event type.|
+| labelId   | number   | No  | Yes  | Event type ID.    |
 
 **Example**
 
@@ -4254,10 +4621,10 @@ Defines a contact group.
 
 **System capability**: SystemCapability.Applications.ContactsData
 
-| Name   |   Type  | Readable| Writable| Description              |
+| Name   |   Type  | Read-Only| Optional| Description              |
 | ------- | -------- | ---- | ---- | ------------------ |
-| groupId | number   | Yes  | Yes  | ID of a contact group.  |
-| title   | string   | Yes  | Yes  | Name of a contact group.|
+| groupId | number   | No  | Yes  | ID of a contact group.  |
+| title   | string   | No  | No  | Name of a contact group.|
 
 **Example**
 
@@ -4280,25 +4647,25 @@ Enumerates IM addresses.
 
 ### Constant
 
-| Name            | Value  | Description                |
-| ---------------- | ---- | -------------------- |
-| CUSTOM_LABEL     | -1   | Custom IM|
-| IM_AIM           | 0    | AIM   |
-| IM_MSN           | 1    | MSN   |
-| IM_YAHOO         | 2    | Yahoo |
-| IM_SKYPE         | 3    | Skype |
-| IM_QQ            | 4    | QQ    |
-| IM_ICQ           | 6    | ICQ   |
-| IM_JABBER        | 7    | JABBER|
-| INVALID_LABEL_ID | -2   | Invalid IM|
+| Name            |   Type  | Value  | Description                |
+| ---------------- | ---- | ---- | -------------------- |
+| CUSTOM_LABEL     | number   | -1   | Custom IM|
+| IM_AIM           | number   | 0    | AIM   |
+| IM_MSN           | number   | 1    | MSN   |
+| IM_YAHOO         | number   | 2    | Yahoo |
+| IM_SKYPE         | number   | 3    | Skype |
+| IM_QQ            | number   | 4    | QQ    |
+| IM_ICQ           | number   | 6    | ICQ   |
+| IM_JABBER        | number   | 7    | JABBER|
+| INVALID_LABEL_ID | number   | -2   | Invalid IM|
 
 ### Attributes
 
-| Name     |   Type  | Readable| Writable| Description              |
+| Name     |   Type  | Read-Only| Optional| Description              |
 | --------- | -------- | ---- | ---- | ------------------ |
-| imAddress | string   | Yes  | Yes  | IM address.    |
-| labelName | string   | Yes  | Yes  | IM name.|
-| labelId   | number   | Yes  | Yes  | IM ID.    |
+| imAddress | string   | No  | No  | IM address.    |
+| labelName | string   | No  | Yes  | IM name.|
+| labelId   | number   | No  | Yes  | IM ID.    |
 
 **Example**
 
@@ -4327,17 +4694,17 @@ Defines a contact's name.
 
 **System capability**: SystemCapability.Applications.ContactsData
 
-| Name              |   Type  | Readable| Writable| Description                       |
+| Name              |   Type  | Read-Only| Optional| Description                       |
 | ------------------ | -------- | ---- | ---- | --------------------------- |
-| familyName         | string   | Yes  | Yes  | Family name.         |
-| familyNamePhonetic | string   | Yes  | Yes  | Family name in pinyin.     |
-| fullName           | string   | Yes  | Yes  | Full name of the contact.             |
-| givenName          | string   | Yes  | Yes  | Given name of the contact.|
-| givenNamePhonetic  | string   | Yes  | Yes  | Given name of the contact in pinyin.         |
-| middleName         | string   | Yes  | Yes  | Middle name of the contact.           |
-| middleNamePhonetic | string   | Yes  | Yes  | Middle name of the contact in pinyin.       |
-| namePrefix         | string   | Yes  | Yes  | Prefix of the contact name.         |
-| nameSuffix         | string   | Yes  | Yes  | Suffix of the contact name.         |
+| familyName         | string   | No  | Yes  | Family name.         |
+| familyNamePhonetic | string   | No  | Yes  | Family name in pinyin.     |
+| fullName           | string   | No  | No  | Full name of the contact.             |
+| givenName          | string   | No  | Yes  | Given name of the contact.|
+| givenNamePhonetic  | string   | No  | Yes  | Given name of the contact in pinyin.         |
+| middleName         | string   | No  | Yes  | Middle name of the contact.           |
+| middleNamePhonetic | string   | No  | Yes  | Middle name of the contact in pinyin.       |
+| namePrefix         | string   | No  | Yes  | Prefix of the contact name.         |
+| nameSuffix         | string   | No  | Yes  | Suffix of the contact name.         |
 
 **Example**
 
@@ -4358,9 +4725,9 @@ Defines a contact's nickname.
 
 **System capability**: SystemCapability.Applications.ContactsData
 
-| Name    |   Type  | Readable| Writable| Description          |
+| Name    |   Type  | Read-Only| Optional| Description          |
 | -------- | -------- | ---- | ---- | -------------- |
-| nickName | string   | Yes  | Yes  | Contact nickname.|
+| nickName | string   | No  | No  | Contact nickname.|
 
 **Example**
 
@@ -4380,9 +4747,9 @@ Defines a contact's note.
 
 **System capability**: SystemCapability.Applications.ContactsData
 
-| Name       |   Type  | Readable| Writable| Description              |
+| Name       |   Type  | Read-Only| Optional| Description              |
 | ----------- | -------- | ---- | ---- | ------------------ |
-| noteContent | string   | Yes  | Yes  | Notes of the contact.|
+| noteContent | string   | No  | No  | Notes of the contact.|
 
 **Example**
 
@@ -4402,10 +4769,10 @@ Defines a contact's organization.
 
 **System capability**: SystemCapability.Applications.ContactsData
 
-| Name |   Type  | Readable| Writable| Description      |
+| Name |   Type  | Read-Only| Optional| Description      |
 | ----- | -------- | ---- | ---- | ---------- |
-| name  | string   | Yes  | Yes  | Organization name.|
-| title | string   | Yes  | Yes  | Job title.|
+| name  | string   | No  | No  | Organization name.|
+| title | string   | No  | Yes  | Job title.|
 
 **Example**
 
@@ -4428,38 +4795,38 @@ Defines a contact's phone number.
 
 ### Constant
 
-| Name            | Value  | Description                                            |
-| ---------------- | ---- | ------------------------------------------------ |
-| CUSTOM_LABEL     | 0    | Custom phone type.                                |
-| NUM_HOME         | 1    | Home phone.                                  |
-| NUM_MOBILE       | 2    | Mobile phone.                                  |
-| NUM_WORK         | 3    | Work phone.                                  |
-| NUM_FAX_WORK     | 4    | Work fax.                              |
-| NUM_FAX_HOME     | 5    | Family fax.                              |
-| NUM_PAGER        | 6    | Pager.                                |
-| NUM_OTHER        | 7    | Other phone type.                                  |
-| NUM_CALLBACK     | 8    | Callback phone.                                  |
-| NUM_CAR          | 9    | Car phone.                                  |
-| NUM_COMPANY_MAIN | 10   | Company phone.                                  |
-| NUM_ISDN         | 11   | Integrated Services Digital Network (ISDN) phone.                |
-| NUM_MAIN         | 12   | Main phone.                                    |
-| NUM_OTHER_FAX    | 13   | Other fax phone.                                  |
-| NUM_RADIO        | 14   | Wireless phone.                                  |
-| NUM_TELEX        | 15   | Telex phone.                                  |
-| NUM_TTY_TDD      | 16   | Teletypewriter (TTY) or Test Driven Development (TDD) phone.|
-| NUM_WORK_MOBILE  | 17   | Work mobile phone.                              |
-| NUM_WORK_PAGER   | 18   | Work pager.                            |
-| NUM_ASSISTANT    | 19   | Assistant phone.                                  |
-| NUM_MMS          | 20   | MMS phone.                                  |
-| INVALID_LABEL_ID | -1   | Invalid phone type.                                  |
+| Name            |  Type | Value  | Description                                            |
+| ---------------- | ---- | ---- | ------------------------------------------------ |
+| CUSTOM_LABEL     |  number  | 0    | Custom phone type.                                |
+| NUM_HOME         |  number  | 1    | Home phone.                                  |
+| NUM_MOBILE       |  number  | 2    | Mobile phone.                                  |
+| NUM_WORK         |  number  | 3    | Work phone.                                  |
+| NUM_FAX_WORK     |  number  | 4    | Work fax.                              |
+| NUM_FAX_HOME     |  number  | 5    | Family fax.                              |
+| NUM_PAGER        |  number  | 6    | Pager.                                |
+| NUM_OTHER        |  number  | 7    | Other phone type.                                  |
+| NUM_CALLBACK     |  number  | 8    | Callback phone.                                  |
+| NUM_CAR          |  number  | 9    | Car phone.                                  |
+| NUM_COMPANY_MAIN |  number  | 10   | Company phone.                                  |
+| NUM_ISDN         |  number  | 11   | Integrated Services Digital Network (ISDN) phone.                |
+| NUM_MAIN         |  number  | 12   | Main phone.                                    |
+| NUM_OTHER_FAX    |  number  | 13   | Other fax phone.                                  |
+| NUM_RADIO        |  number  | 14   | Wireless phone.                                  |
+| NUM_TELEX        |  number  | 15   | Telex phone.                                  |
+| NUM_TTY_TDD      |  number  | 16   | Teletypewriter (TTY) or Test Driven Development (TDD) phone.|
+| NUM_WORK_MOBILE  |  number  | 17   | Work mobile phone.                              |
+| NUM_WORK_PAGER   |  number  | 18   | Work pager.                            |
+| NUM_ASSISTANT    |  number  | 19   | Assistant phone.                                  |
+| NUM_MMS          |  number  | 20   | MMS phone.                                  |
+| INVALID_LABEL_ID |  number  | -1   | Invalid phone type.                                  |
 
 ### Attributes
 
-| Name       |   Type  | Readable| Writable| Description              |
+| Name       |   Type  | Read-Only| Optional| Description              |
 | ----------- | -------- | ---- | ---- | ------------------ |
-| labelName   | string   | Yes  | Yes  | Phone number type.|
-| phoneNumber | string   | Yes  | Yes  | Phone number.        |
-| labelId     | number   | Yes  | Yes  | Phone number ID.    |
+| labelName   | string   | No  | Yes  | Phone number type.|
+| phoneNumber | string   | No  | No  | Phone number.        |
+| labelId     | number   | No  | Yes  | Phone number ID.    |
 
 **Example**
 
@@ -4487,9 +4854,9 @@ Defines a contact's portrait.
 
 **System capability**: SystemCapability.Applications.ContactsData
 
-| Name|   Type  | Readable| Writable| Description          |
+| Name|   Type  | Read-Only| Optional| Description          |
 | ---- | -------- | ---- | ---- | -------------- |
-| uri  | string   | Yes  | Yes  | Contact portrait.|
+| uri  | string   | No  | No  | Contact portrait.|
 
 **Example**
 
@@ -4511,28 +4878,28 @@ Defines a contact's postal address.
 
 ### Constant
 
-| Name            | Value  | Description                |
-| ---------------- | ---- | -------------------- |
-| CUSTOM_LABEL     | 0    | Custom postal address type.|
-| ADDR_HOME        | 1    | Home address.      |
-| ADDR_WORK        | 2    | Work address.      |
-| ADDR_OTHER       | 3    | Other addresses.      |
-| INVALID_LABEL_ID | -1   | Invalid address type.      |
+| Name            |   Type  | Value  | Description                |
+| ---------------- | ---- | ---- | -------------------- |
+| CUSTOM_LABEL     | number   | 0    | Custom postal address type.|
+| ADDR_HOME        | number   | 1    | Home address.      |
+| ADDR_WORK        | number   | 2    | Work address.      |
+| ADDR_OTHER       | number   | 3    | Other addresses.      |
+| INVALID_LABEL_ID | number   | -1   | Invalid address type.      |
 
 ### Attributes
 
-| Name         |   Type  | Readable| Writable| Description                      |
+| Name         |   Type  | Read-Only| Optional| Description                      |
 | ------------- | -------- | ---- | ---- | -------------------------- |
-| city          | string   | Yes  | Yes  | City where the contact is located.        |
-| country       | string   | Yes  | Yes  | Country/Region where the contact is located.        |
-| labelName     | string   | Yes  | Yes  | Postal address type.        |
-| neighborhood  | string   | Yes  | Yes  | Neighbor of the contact.            |
-| pobox         | string   | Yes  | Yes  | Email of the contact.            |
-| postalAddress | string   | Yes  | Yes  | Postal address of the contact.        |
-| postcode      | string   | Yes  | Yes  | Postal code of the region where the contact is located.|
-| region        | string   | Yes  | Yes  | Area where the contact is located.        |
-| street        | string   | Yes  | Yes  | Street where the contact resides.        |
-| labelId       | number   | Yes  | Yes  | Postal address type.            |
+| city          | string   | No  | Yes  | City where the contact is located.        |
+| country       | string   | No  | Yes  | Country/Region where the contact is located.        |
+| labelName     | string   | No  | Yes  | Postal address type.        |
+| neighborhood  | string   | No  | Yes  | Neighbor of the contact.            |
+| pobox         | string   | No  | Yes  | Email of the contact.            |
+| postalAddress | string   | No  | No  | Postal address of the contact.        |
+| postcode      | string   | No  | Yes  | Postal code of the region where the contact is located.|
+| region        | string   | No  | Yes  | Area where the contact is located.        |
+| street        | string   | No  | Yes  | Street where the contact resides.        |
+| labelId       | number   | No  | Yes  | Postal address type.            |
 
 **Example**
 
@@ -4563,32 +4930,32 @@ Defines a contact's relationship.
 
 ### Constant
 
-| Name                     | Value  | Description              |
-| ------------------------- | ---- | ------------------ |
-| CUSTOM_LABEL              | 0    | Custom relationship.  |
-| RELATION_ASSISTANT        | 1    | Assistant.    |
-| RELATION_BROTHER          | 2    | Sibling.    |
-| RELATION_CHILD            | 3    | Child.    |
-| RELATION_DOMESTIC_PARTNER | 4    | Domestic partner.|
-| RELATION_FATHER           | 5    | Father.    |
-| RELATION_FRIEND           | 6    | Friend.    |
-| RELATION_MANAGER          | 7    | Manager.  |
-| RELATION_MOTHER           | 8    | Mother.    |
-| RELATION_PARENT           | 9    | Parent.    |
-| RELATION_PARTNER          | 10   | Partner.|
-| RELATION_REFERRED_BY      | 11   | Referrer.  |
-| RELATION_RELATIVE         | 12   | Relative.    |
-| RELATION_SISTER           | 13   | Sister.    |
-| RELATION_SPOUSE           | 14   | Spouse.    |
-| INVALID_LABEL_ID          | -1   | Invalid relationship.  |
+| Name                     |  Type  | Value  | Description              |
+| ------------------------- | ---- | ---- | ------------------ |
+| CUSTOM_LABEL              | number   | 0    | Custom relationship.  |
+| RELATION_ASSISTANT        | number   | 1    | Assistant.    |
+| RELATION_BROTHER          | number   | 2    | Sibling.    |
+| RELATION_CHILD            | number   | 3    | Child.    |
+| RELATION_DOMESTIC_PARTNER | number   | 4    | Domestic partner.|
+| RELATION_FATHER           | number   | 5    | Father.    |
+| RELATION_FRIEND           | number   | 6    | Friend.    |
+| RELATION_MANAGER          | number   | 7    | Manager.  |
+| RELATION_MOTHER           | number   | 8    | Mother.    |
+| RELATION_PARENT           | number   | 9    | Parent.    |
+| RELATION_PARTNER          | number   | 10   | Partner.|
+| RELATION_REFERRED_BY      | number   | 11   | Referrer.  |
+| RELATION_RELATIVE         | number   | 12   | Relative.    |
+| RELATION_SISTER           | number   | 13   | Sister.    |
+| RELATION_SPOUSE           | number   | 14   | Spouse.    |
+| INVALID_LABEL_ID          | number   | -1   | Invalid relationship.  |
 
 ### Attributes
 
-| Name        |   Type  | Readable| Writable| Description          |
+| Name        |   Type  | Read-Only| Optional| Description          |
 | ------------ | -------- | ---- | ---- | -------------- |
-| labelName    | string   | Yes  | Yes  | Relationship type.|
-| relationName | string   | Yes  | Yes  | Relationship name.    |
-| labelId      | number   | Yes  | Yes  | Relationship ID.    |
+| labelName    | string   | No  | Yes  | Relationship type.|
+| relationName | string   | No  | No  | Relationship name.    |
+| labelId      | number   | No  | Yes  | Relationship ID.    |
 
 **Example**
 
@@ -4619,21 +4986,21 @@ Defines a contact's SIP address.
 
 ### Constant
 
-| Name            | Value  | Description                               |
-| ---------------- | ---- | ----------------------------------- |
-| CUSTOM_LABEL     | 0    | Custom SIP address.|
-| SIP_HOME         | 1    | Home SIP address.  |
-| SIP_WORK         | 2    | Work SIP address.  |
-| SIP_OTHER        | 3    | Other SIP address.  |
-| INVALID_LABEL_ID | -1   | Invalid SIP address.  |
+| Name            |   Type  | Value  | Description                               |
+| ---------------- | ---- | ---- | ----------------------------------- |
+| CUSTOM_LABEL     | number   | 0    | Custom SIP address.|
+| SIP_HOME         | number   | 1    | Home SIP address.  |
+| SIP_WORK         | number   | 2    | Work SIP address.  |
+| SIP_OTHER        | number   | 3    | Other SIP address.  |
+| INVALID_LABEL_ID | number   | -1   | Invalid SIP address.  |
 
 ### Attributes
 
-| Name      |   Type  | Readable| Writable| Description                             |
+| Name      |   Type  | Read-Only| Optional| Description                             |
 | ---------- | -------- | ---- | ---- | --------------------------------- |
-| labelName  | string   | Yes  | Yes  | SIP address type.|
-| sipAddress | string   | Yes  | Yes  | SIP address.        |
-| labelId    | number   | Yes  | Yes  | SIP address ID.    |
+| labelName  | string   | No  | Yes  | SIP address type.|
+| sipAddress | string   | No  | No  | SIP address.        |
+| labelId    | number   | No  | Yes  | SIP address ID.    |
 
 **Example**
 
@@ -4660,9 +5027,9 @@ Defines a contact's website.
 
 **System capability**: SystemCapability.Applications.ContactsData
 
-| Name   |   Type  | Readable| Writable| Description              |
+| Name   |   Type  | Read-Only| Optional| Description              |
 | ------- | -------- | ---- | ---- | ------------------ |
-| website | string   | Yes  | Yes  | Website of the contact.|
+| website | string   | No  | No  | Website of the contact.|
 
 **Example**
 

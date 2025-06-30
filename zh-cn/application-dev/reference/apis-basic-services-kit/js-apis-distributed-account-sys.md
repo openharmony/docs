@@ -56,13 +56,13 @@ try {
   accountAbility.getOsAccountDistributedInfoByLocalId(100,
     (err: BusinessError, data: distributedAccount.DistributedInfo) => {
       if (err) {
-        console.log('getOsAccountDistributedInfoByLocalId exception: ' + JSON.stringify(err));
+        console.error('getOsAccountDistributedInfoByLocalId exception: ' + JSON.stringify(err));
       } else {
         console.log('distributed information: ' + JSON.stringify(data));
       }
     });
 } catch (err) {
-  console.log('getOsAccountDistributedInfoByLocalId exception: ' + JSON.stringify(err));
+  console.error('getOsAccountDistributedInfoByLocalId exception: ' + JSON.stringify(err));
 }
 ```
 
@@ -105,10 +105,10 @@ try {
     data: distributedAccount.DistributedInfo) => {
     console.log('distributed information: ' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
-    console.log('getOsAccountDistributedInfoByLocalId exception: '  + JSON.stringify(err));
+    console.error('getOsAccountDistributedInfoByLocalId exception: '  + JSON.stringify(err));
   });
 } catch (err) {
-  console.log('getOsAccountDistributedInfoByLocalId exception: ' + JSON.stringify(err));
+  console.error('getOsAccountDistributedInfoByLocalId exception: ' + JSON.stringify(err));
 }
 ```
 
@@ -155,13 +155,13 @@ let accountInfo: distributedAccount.DistributedInfo =
 try {
   accountAbility.setOsAccountDistributedInfoByLocalId(100, accountInfo, (err: BusinessError) => {
     if (err) {
-      console.log('setOsAccountDistributedInfoByLocalId exception: ' + JSON.stringify(err));
+      console.error('setOsAccountDistributedInfoByLocalId exception: ' + JSON.stringify(err));
     } else {
       console.log('setOsAccountDistributedInfoByLocalId successfully');
     }
   });
 } catch (err) {
-    console.log('setOsAccountDistributedInfoByLocalId exception: ' + JSON.stringify(err));
+    console.error('setOsAccountDistributedInfoByLocalId exception: ' + JSON.stringify(err));
 }
 ```
 
@@ -214,9 +214,9 @@ try {
   accountAbility.setOsAccountDistributedInfoByLocalId(100, accountInfo).then(() => {
       console.log('setOsAccountDistributedInfoByLocalId successfully');
   }).catch((err: BusinessError) => {
-      console.log('setOsAccountDistributedInfoByLocalId exception: '  + JSON.stringify(err));
+      console.error('setOsAccountDistributedInfoByLocalId exception: '  + JSON.stringify(err));
   });
 } catch (err) {
-    console.log('setOsAccountDistributedInfoByLocalId exception: ' + JSON.stringify(err));
+    console.error('setOsAccountDistributedInfoByLocalId exception: ' + JSON.stringify(err));
 }
 ```

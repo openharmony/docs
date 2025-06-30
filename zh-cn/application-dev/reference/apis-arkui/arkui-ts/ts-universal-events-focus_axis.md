@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  从API Version 15开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  从API version 15开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## onFocusAxisEvent
 
@@ -20,7 +20,7 @@ onFocusAxisEvent(event: Callback\<FocusAxisEvent>): T
 
 | 参数名 | 类型                          | 必填 | 说明               |
 | ------ | ----------------------------- | ---- | ------------------ |
-| event  | [FocusAxisEvent](#focusaxisevent对象说明) | 是   | 获得FocusAxisEvent对象。 |
+| event  | Callback\<[FocusAxisEvent](#focusaxisevent对象说明)> | 是   | 获得FocusAxisEvent对象。 |
 
 **返回值：**
 
@@ -30,7 +30,7 @@ onFocusAxisEvent(event: Callback\<FocusAxisEvent>): T
 
 ## FocusAxisEvent对象说明
 
-焦点轴事件的对象说明，继承于[BaseEvent](ts-gesture-customize-judge.md#baseevent对象说明)。
+焦点轴事件的对象说明，继承于[BaseEvent](ts-gesture-customize-judge.md#baseevent对象说明8)。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 

@@ -30,12 +30,12 @@ Defines the parameter used to execute an InsightIntent call.
 | -------- | -------- | -------- | -------- |
 | bundleName | string | Yes| Name of the bundle to which the ability to be called belongs.|
 | moduleName | string | Yes| Name of the module to which the ability belongs.|
-| abilityName | string | Yes| Name of the ability to be called.|
+| abilityName | string | Yes| Name of the ability to be called. |
 | insightIntentName | string | Yes| InsightIntent name.|
-| insightIntentParam | string | Yes| InsightIntent call parameter.|
-| executeMode | [insightIntent.ExecuteMode](js-apis-app-ability-insightIntent.md#executemode) | Yes| InsightIntent call execution mode.|
+| insightIntentParam | Record\<string, Object> | Yes| InsightIntent call parameter.|
+| executeMode | [insightIntent.ExecuteMode](js-apis-app-ability-insightIntent.md#executemode) | Yes| InsightIntent call execution mode. |
 | displayId<sup>12+</sup> | number | No| Physical screen ID specified during InsightIntent call. The value must be an integer. This parameter is valid only when **executeMode** is set to **UI_ABILITY_FOREGROUND**.|
-| uris<sup>18+</sup> | Array&lt;string&gt; | No| List of URIs authorized by the InsightIntent caller to the InsightIntent executor during the call.|
+| uris<sup>18+</sup> | Array&lt;string&gt; | No| List of URIs authorized by the InsightIntent caller to the InsightIntent executor during the call. |
 | flags<sup>18+</sup> | number | No| [Flags](js-apis-app-ability-wantConstant.md#flags) of the URIs authorized by the InsightIntent caller to the InsightIntent executor during the call.<br>**NOTE**<br>This parameter supports only **FLAG_AUTH_READ_URI_PERMISSION**, **FLAG_AUTH_WRITE_URI_PERMISSION**, and FLAG_AUTH_READ_URI_PERMISSION\||FLAG_AUTH_WRITE_URI_PERMISSION.|
 
 ## insightIntentDriver.execute

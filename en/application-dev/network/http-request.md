@@ -1,8 +1,39 @@
 # HTTP Data Request
 
-## When to Use
+## Overview
 
 An application can initiate a data request over HTTP. Common HTTP methods include **GET**, **POST**, **OPTIONS**, **HEAD**, **PUT**, **DELETE**, **TRACE**, and **CONNECT**.
+
+<!--RP1-->
+
+<!--RP1End-->
+
+The following table lists the functions supported by the HTTP request. The options corresponding to the these functions can be set in [HttpResponseOptions](../reference/apis-network-kit/js-apis-http.md#httprequestoptions) of the HTTP request.
+
+| Category    | Function                          |Description                     | Available Since        |
+| ----------- | -----------------------------------|-----------------------------|------------------------|
+| Basic    | Setting the request method                     | Specifies the request method, including **GET**, **POST**, **HEAD**, **PUT**, **DELETE**, **TRACE**, **CONNECT**, and **OPTIONS**. The default value is **GET**. |  API version 6  |
+| Basic    | Setting additional data of the request                | Specifies additional data can be carried with the request. This parameter is not used by default.| API version 6    |
+| Basic    | Setting the read timeout interval                | Specifies the total time from the start to the end of a request, including DNS resolution, connection setup, and transmission. The default value is **60000**, in ms.|  API version 6   |
+| Basic    | Setting the connection timeout interval                | Specifies the connection timeout interval. The default value is **60000**, in ms.|  API version 6   |
+| Basic    | Setting the HTTP request header                 | Specifies the HTTP request header. If the request method is **POST**, **PUT**, **DELETE**, or left empty, the default value is {'content-Type': 'application/json'}. Otherwise, the default value is {'content-Type': 'application/x-www-form-urlencoded'}.|  API version 6   |
+| Basic    | Setting the response data type               | Specifies the type of the HTTP response data. This parameter is not used by default. If this parameter is set, the system returns the specified type of data preferentially.|  API version 9   |
+| Basic    | Setting the priority of concurrent requests             |  Specifies the priority of concurrent HTTP/HTTPS requests. A larger value indicates a higher priority. The value ranges from 1 to 1000. The default value is **1**.|  API version 9   |
+| Basic    | Enabling the cache               | Specifies whether to use the cache. The default value is **true**. The data in the cache is preferentially read. The cache takes effect with the current process. The new cache replaces the old cache. If this parameter is set to **false**, the cache is not used.|  API version 9   |
+| Basic    | Setting the protocol type                | Specifies the protocol type. The default value is automatically assigned by the system. You can set it to **HTTP 1.1**, **HTTP 2**, or **HTTP 3**.|  API version 9   |
+| Proxy setting    | Setting the HTTP request proxy                | Specifies whether to use the HTTP proxy. The default value is **false**, indicating that the proxy is not used. If this parameter is set to **true**, the default proxy of the system is used. You can also use a cstom network proxy.|  API version 10  |
+| Certificate verification    | Setting the CA certificate path                  | Specifies the CA certificate path. If the CA certificate path is set, the system uses the CA certificate in the specified path. Otherwise, the system uses the preset CA certificate.| API version 10    |
+| Certificate verification    | Setting the transmission of client certificates           | Specifies whether to enable the transmission of client certificates, which include the certificate path, certificate type, certificate key path, and password information.| API version 11    |
+| Basic    | Setting the start and end positions of the download        | Specifies the data range to retrieve, which is commonly used in file download scenarios.|  API version 11  |
+| Basic    | Setting the list of data fields to be uploaded       |Specifies the multipart form data, which is commonly used in file upload scenarios.|  API version 11   |
+| DNS setting     | Setting an HTTPS server for DNS resolution | Specifies whether to use an HTTPS server for DNS resolution. The value must be URL-encoded in the following format: "https://host:port/path".| API version 11    |
+| DNS setting    | Setting the specified DNS server for DNS resolution        | Specifies whether to use the specified DNS server for DNS resolution.<br> - You can set a maximum of three DNS servers. If there are more than three DNS servers, only the first three DNS servers are used.<br> - The DNS servers must be expressed as IPv4 or IPv6 addresses.|  API version 11   |
+| Basic    | Setting the maximum number of bytes in a response message           | Specifies the maximum number of bytes in a response message. The default value is 5\*1024\*1024, in bytes. The maximum value is **100\*1024\*1024**.|   API version 11  |
+| Certificate verification    | Setting the certificate pinning configuration            | Specifies the certificate pinning configuration. One or more certificate PINs can be specified.|   API version 12  |
+| Certificate verification    | Setting the IP address family       | Specifies the IP address family for resolving the target domain name. The address type can be set to follow the system network configuration, forcibly use only IPv4 addresses for resolution, or forcibly use only IPv6 addresses for resolution.|  API version 15   |
+| Certificate verification    | Setting whether to skip SSL certificate verification                    | Specifies whether to skip SSL certificate verification.| API version 18    |
+| Certificate verification    | Setting the certificate verification version and cipher suite            | Customizes the certificate verification version and cipher suite.|  API version 18  |
+| Certificate verification    | Setting server authentication for secure connections       | Specifies server authentication for secure connections.|  API version 18   |
 
 ## Available APIs
 
@@ -32,7 +63,7 @@ The following table provides only a simple description of the related APIs. For 
 | on\('dataSendProgress'\)<sup>11+</sup>        | Registers an observer for events indicating progress of sending HTTP requests. |
 | off\('dataSendProgress'\)<sup>11+</sup>       | Unregisters the observer for events indicating progress of sending HTTP requests.|
 
-## How to Develop request APIs
+## Initiating an HTTP Data Request
 
 1. Import the **http** namespace from **@kit.NetworkKit**.
 2. Call **createHttp()** to create an **HttpRequest** object.
@@ -42,11 +73,18 @@ The following table provides only a simple description of the related APIs. For 
 6. Call **off()** to unsubscribe from HTTP response header events.
 7. Call **httpRequest.destroy()** to release resources after the request is processed.
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain the UIAbilityContext, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+<!--code_no_check-->
 ```ts
 // Import the http namespace.
 import { http } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 // Each httpRequest corresponds to an HTTP request task and cannot be reused.
 let httpRequest = http.createHttp();
 // This API is used to listen for the HTTP Response Header event, which is returned earlier than the result of the HTTP request. It is up to you whether to listen for HTTP Response Header events.
@@ -72,7 +110,7 @@ httpRequest.request(
     readTimeout: 60000, // Optional. The default value is 60000, in ms.
     usingProtocol: http.HttpProtocol.HTTP1_1, // Optional. The default protocol type is automatically specified by the system.
     usingProxy: false, // Optional. By default, network proxy is not used. This field is supported since API version 10.
-    caPath: '/path/to/cacert.pem', // Optional. The preset CA certificate is used by default. This field is supported since API version 10.
+    caPath: '/path/to/cacert.pem', // Optional. The prebuilt CA certificate is used by default. This field is supported since API version 10.
     clientCert: { // Optional. The client certificate is not used by default. This field is supported since API version 11.
       certPath: '/path/to/client.pem', // The client certificate is not used by default. This field is supported since API version 11.
       keyPath: '/path/to/client.key', // If the certificate contains key information, an empty string is passed. This field is supported since API version 11.
@@ -89,7 +127,7 @@ httpRequest.request(
         name: "Part2", // Data name. This field is supported since API version 11.
         contentType: 'text/plain', // Data type. This field is supported since API version 11.
         // data/app/el2/100/base/com.example.myapplication/haps/entry/files/fileName.txt
-        filePath: `${getContext(this).filesDir}/fileName.txt`, // File path, optional. This field is supported since API version 11.
+        filePath: `${context.filesDir}/fileName.txt`, // File path, optional. This field is supported since API version 11.
         remoteFileName: 'fileName.txt' // Optional. This field is supported since API version 11.
       }
     ]
@@ -114,7 +152,7 @@ httpRequest.request(
 );
 ```
 
-## How to Develop requestInStream APIs
+## Initiating an HTTP Streaming Request
 
 1. Import the **http** namespace from **@kit.NetworkKit**.
 2. Call **createHttp()** to create an **HttpRequest** object.
@@ -195,9 +233,9 @@ httpRequest.requestInStream("EXAMPLE_URL", streamInfo).then((data: number) => {
 
 ## Certificate Pinning
 
-You can preset application-level certificates or a public key hash values for certificate pinning. This way, an HTTPS connection can be established only when the preset certificate is used.
+You can prebuild application-level certificates or a public key hash values for certificate pinning. This way, an HTTPS connection can be established only when the prebuilt certificate is used.
 
-Both modes are configured in the configuration file, which is available at `src/main/resources/base/profile/network_config.json`. In the configuration file, you can create mapping between preset certificates and network servers.
+Both modes are configured through `src/main/resources/base/profile/network_config.json`. In the configuration file, you can create mapping between prebuilt certificates and network servers.
 
 If you do not know the certificate mapping a server domain name, you can use the following command to obtain the certificate. When running the command, change `www.example.com` to the server domain name and `www.example.com.pem` to the name of the obtained certificate file.
 
@@ -212,15 +250,15 @@ If you are using a Windows environment, you need to:
 * Press **Enter** to exit. This is different from OpenSSL of Linux, which may exit until the user enters a value.
 * If the **sed** command is not present, copy the content between `-----BEGIN CERTIFICATE-----` and `-----END CERTIFICATE-----` (with these two lines included) in the command output and save it.
 
-### Presetting Application-level Certificates
+### Prebuilding Application-level Certificates
 
-Presetting application-level certificates means to embed the original certificate files in the application. Currently, certificate files in the **.crt** and **.pem** formats are supported.
+Prebuilding application-level certificates means to embed the original certificate files in the application. Currently, certificate files in the **.crt** and **.pem** formats are supported.
 
 > **NOTE**
 >
 > Currently, certificate pinning has been enabled for the ohos.net.http and Image components, and the hash values of all certificates in the certificate chain are matched. If any certificate is updated on the server, the verification fails. Therefore, if any certificate on the server has been updated, upgrade the application to the latest version as soon as possible. Otherwise, network connection may fail.
 
-### Presetting Certificate Public Key Hash Values
+### Prebuilding Certificate Public Key Hash Values
 
 You can create mapping between public key hash values and domain name certificates in the configuration file. This way, access to the domain name is allowed only if the used domain name certificate matches the preset public key hash value.
 
@@ -237,7 +275,7 @@ openssl dgst -sha256 -binary www.example.com.pubkey.der | openssl base64
 
 ### Example of the JSON Configuration File
 
-The following is an example of presetting application-level certificates:
+The following is an example of prebuilt application-level certificates. For details about the configuration path, see [Network Connection Security Configuration](https://developer.huawei.com/consumer/en/doc/best-practices/bpta-network-ca-security#section5454123841911).
 
 ```json
 {
@@ -268,7 +306,7 @@ The following is an example of presetting application-level certificates:
 }
 ```
 
-The following is an example of presetting certificate public key hash values:
+The following is an example of prebuilt certificate public key hash values:
 ```
 {
   "network-security-config": {
@@ -305,7 +343,7 @@ The following is an example of presetting certificate public key hash values:
 |trust-anchors              | array           |Trusted CA. The value can contain any number of items. An item must contain one **certificates**.|
 |certificates               | string          |CA certificate path.|
 |domains                    | array           |Domain. The value can contain any number of items. An item must contain one **name** (string: domain name) and can contain zero or one **include-subdomains**.|
-|include-subdomains         | boolean         |Whether a rule applies to subdomains.|
+|include-subdomains         | boolean         |Whether a rule applies to subdomains. Whether a rule applies to subdomains. The value **true** indicates that the rule applies to subdomains, and the value **false** indicates the opposite.|
 |pin-set                    | object          |Certificate public key hash setting. The value must contain one **pin** and can contain zero or one **expiration**.|
 |expiration                 | string          |Expiration time of the certificate public key hash.|
 |pin                        | array           |Certificate public key hash. The value can contain any number of items. An item must contain one **digest-algorithm** and **digest**.|

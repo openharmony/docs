@@ -57,7 +57,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let currentIme = inputMethod.getCurrentInputMethod();
 try {
   inputMethod.switchInputMethod(currentIme.name).then(() => {
-    console.log('Succeeded in switching inputmethod.');
+    console.info('Succeeded in switching inputmethod.');
   }).catch((err: BusinessError) => {
     console.error(`Failed to switchInputMethod: ${JSON.stringify(err)}`);
   })
@@ -67,7 +67,7 @@ try {
 let currentImeSubType = inputMethod.getCurrentInputMethodSubtype();
 try {
   inputMethod.switchInputMethod(currentIme.name, currentImeSubType.id).then(() => {
-    console.log('Succeeded in switching inputmethod.');
+    console.info('Succeeded in switching inputmethod.');
   }).catch((err: BusinessError) => {
     console.error(`Failed to switchInputMethod: ${JSON.stringify(err)}`);
   })
@@ -169,7 +169,7 @@ off(type: 'imeShow', callback?: (info: Array\<InputWindowInfo>) => void): void
 
 | 参数名   | 类型 | 必填 | 说明   |
 | -------- | ---- | ---- | ------ |
-| type     | string | 是 | 设置监听类型，固定取值`imeShow`。 |
+| type     | string | 是 | 设置监听类型，固定取值'imeShow'。 |
 | callback | (info: Array<[InputWindowInfo](js-apis-inputmethod.md#inputwindowinfo10)>) => void  | 否 | 取消订阅的回调函数。<br>参数不填写时，取消订阅type对应的所有回调事件。 |
 
 **示例：**
@@ -252,7 +252,7 @@ let info: PanelInfo = {
 }
 try {
   let result = inputMethodSetting.isPanelShown(info);
-  console.log('Succeeded in querying isPanelShown, result: ' + result);
+  console.info('Succeeded in querying isPanelShown, result: ' + result);
 } catch (err) {
   console.error(`Failed to query isPanelShown: ${JSON.stringify(err)}`);
 }

@@ -1,7 +1,7 @@
 # Locale and Cultural Habit Division
 
 
-## Use Cases
+## When to Use
 
 In a broad sense, a locale uniquely identifies a specific geographical region by using digits, letters, symbols, or their combinations.
 

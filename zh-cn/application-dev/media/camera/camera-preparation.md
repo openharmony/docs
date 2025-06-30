@@ -1,8 +1,6 @@
-# 开发准备
+# 申请相机开发的权限
 
 相机应用开发的主要流程包含开发准备、设备输入、会话管理、预览、拍照和录像等。
-
-## 申请权限
 
 在开发相机应用时，需要先申请相机相关权限，确保应用拥有访问相机硬件及其他功能的权限，需要的权限如下表。在申请权限前，请保证符合[权限使用的基本原则](../../security/AccessToken/app-permission-mgmt-overview.md#权限使用的基本原则)。
 
@@ -18,19 +16,3 @@
 > **说明：** 
 > 
 > 仅应用需要克隆、备份或同步用户公共目录的图片、视频类文件时，可申请ohos.permission.READ_IMAGEVIDEO、ohos.permission.WRITE_IMAGEVIDEO权限来读写音频文件，申请方式请参考<!--RP1-->[申请受控权限](../../security/AccessToken/declare-permissions-in-acl.md)<!--RP1End-->。
-
-## 开发指导
-
-当前相机提供了ArkTS和C++两种开发语言的开发指导，如下表所示。
-
-| 开发流程 | ArkTS开发指导 | C++开发指导 |
-| ------- | ------------- | --------- |
-| 设备输入 | [设备输入(ArkTS)](camera-device-input.md) | [设备输入(C/C++)](native-camera-device-input.md) |
-| 会话管理 | [会话管理(ArkTS)](camera-session-management.md) | [会话管理(C/C++)](native-camera-session-management.md) |
-| 预览  | [预览(ArkTS)](camera-preview.md) | [预览(C/C++)](native-camera-preview.md) |
-| 预览流二次处理 | -  | [预览流二次处理(C/C++)](native-camera-preview-imageReceiver.md) |
-| 拍照 | [拍照(ArkTS)](camera-shooting.md) | [拍照(C/C++)](native-camera-shooting.md) |
-| 分段式拍照 | [分段式拍照(ArkTS)](camera-deferred-capture.md) | -  |
-| 动态照片 | [动态照片(ArkTS)](camera-moving-photo.md) | - |
-| 录像 | [录像(ArkTS)](camera-recording.md) | [录像(C/C++)](native-camera-recording.md) |
-| 元数据 | [元数据(ArkTS)](camera-metadata.md) | [元数据(C/C++)](native-camera-metadata.md) |

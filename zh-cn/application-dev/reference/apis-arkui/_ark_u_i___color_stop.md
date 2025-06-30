@@ -35,7 +35,6 @@ const uint32_t* ArkUI_ColorStop::colors
 
 颜色数组。
 
-
 ### size
 
 ```
@@ -44,7 +43,6 @@ int ArkUI_ColorStop::size
 **描述：**
 
 数组长度。
-
 
 ### stops
 

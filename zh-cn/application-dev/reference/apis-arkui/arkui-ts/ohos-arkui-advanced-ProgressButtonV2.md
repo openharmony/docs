@@ -3,18 +3,20 @@
 
 文本下载按钮，可显示具体的下载进度。
 
-该组件基于[状态管理V2](../../../quick-start/arkts-state-management-overview.md#状态管理v2)实现，相较于[状态管理V1](../../../quick-start/arkts-state-management-overview.md#状态管理v1)，状态管理V2增强了对数据对象的深度观察与管理能力，不再局限于组件层级。借助状态管理V2，开发者可以通过该组件更灵活地控制文本下载按钮的数据和状态，实现更高效的用户界面刷新。
+该组件基于[状态管理V2](../../../ui/state-management/arkts-state-management-overview.md#状态管理v2)实现，相较于[状态管理V1](../../../ui/state-management/arkts-state-management-overview.md#状态管理v1)，状态管理V2增强了对数据对象的深度观察与管理能力，不再局限于组件层级。借助状态管理V2，开发者可以通过该组件更灵活地控制文本下载按钮的数据和状态，实现更高效的用户界面刷新。
 
 
 > **说明：**
 >
-> - 该组件从API Version 18开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 该组件从API version 18开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 
+> - 该组件不支持在Wearable设备上使用。
 
 
 ## 导入模块
 
 ```
-import { ColorMetrics, LengthMetrics, ProgressButtonV2,  ProgressButtonV2Color } from '@kit.ArkUI'
+import { ColorMetrics, LengthMetrics, ProgressButtonV2,  ProgressButtonV2Color } from '@kit.ArkUI';
 ```
 
 ## ProgressButtonV2
@@ -30,15 +32,15 @@ isEnabled: boolean, colorOptions?: ProgressButtonColorOptions, progressButtonRad
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                                | 类型                                                            | 必填 | 装饰器类型                  | 说明                                                                                 |
-|-----------------------------------|---------------------------------------------------------------|----|------------------------|------------------------------------------------------------------------------------|
-| progress                          | number                                                        | 是  | \@Require <br/>\@Param | 下载按钮的当前进度值。<br/>取值范围：[0,100]。设置小于0的数值时置为0，设置大于100的数值置为100。<br/>默认值：0                                                                        |
-| content                           | [ResourceStr](ts-types.md#resourcestr)                        | 是  | \@Require <br/>\@Param | 下载按钮的文本。                                                                           |
+| 名称                                | 类型                                                            | 必填 | 装饰器类型                  | 说明                                                                                |
+|-----------------------------------|---------------------------------------------------------------|----|------------------------|-----------------------------------------------------------------------------------|
+| progress                          | number                                                        | 是  | \@Require <br/>\@Param | 下载按钮的当前进度值。<br/>取值范围：[0,100]。设置小于0的数值时置为0，设置大于100的数值置为100。<br/>默认值：0                                                                       |
+| content                           | [ResourceStr](ts-types.md#resourcestr)                        | 是  | \@Require <br/>\@Param | 下载按钮的文本。                                                                          |
 | progressButtonWidth               | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否  | \@Param <br/>\@Once  | 下载按钮的宽度。<br/>默认值：44vp                                                             |
-| onClicked                         | [ClickCallback](#clickcallback)                               | 是  | \@Param                | 下载按钮的点击回调。<br/>默认值：() => {}。                                                       |
+| onClicked                         | [ClickCallback](#clickcallback)                               | 是  | \@Param                | 下载按钮的点击回调。<br/>默认值：() => {}。                                                      |
 | isEnabled                         | boolean                                                       | 是  | \@Param                | 下载按钮是否可以点击。<br> isEnabled为true时，表示可以点击。<br> isEnabled为false时，表示不可点击。<br/>默认值：true。 |
-| colorOptions                      | [ProgressButtonV2Color](#progressbuttonv2color)               | 否  | \@Param                | 下载按钮颜色选项。<br/>默认值：undefined。                                                       |
-| progressButtonRadius<sup>18+<sup> | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否  | \@Param                | 下载按钮的圆角（不支持百分比设置）。<br/>取值范围：[0, height/2]<br/>默认值：height/2<br/>设置非法数值时，按照默认值处理。    |
+| colorOptions                      | [ProgressButtonV2Color](#progressbuttonv2color)               | 否  | \@Param                | 下载按钮颜色选项。<br/>默认值：undefined                                                       |
+| progressButtonRadius<sup>18+<sup> | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否  | \@Param                | 下载按钮的圆角（不支持百分比设置）。<br/>取值范围：[0, height/2]<br/>默认值：height/2<br/>设置非法数值时，按照默认值处理。   |
 
 ## 属性
 不支持[通用属性](ts-component-general-attributes.md)。
@@ -92,12 +94,12 @@ constructor(options: ProgressButtonV2ColorOptions);
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称              | 类型           | 必填 | 说明                         |
-|-----------------|--------------|----|----------------------------|
-| progressColor   | ColorMetrics | 否  | 进度条颜色。<br/>默认值：undefined。  |
-| borderColor     | ColorMetrics | 否  | 按钮描边颜色。<br/>默认值：undefined。 |
-| textColor       | ColorMetrics | 否  | 按钮文本颜色。<br/>默认值：undefined。 |
-| backgroundColor | ColorMetrics | 否  | 按钮背景颜色。<br/>默认值：undefined。 |
+| 名称              | 类型           | 必填 | 说明                        |
+|-----------------|--------------|----|---------------------------|
+| progressColor   | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)| 否  | 进度条颜色。<br/>默认值：undefined  |
+| borderColor     | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)| 否  | 按钮描边颜色。<br/>默认值：undefined |
+| textColor       | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)| 否  | 按钮文本颜色。<br/>默认值：undefined |
+| backgroundColor | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)| 否  | 按钮背景颜色。<br/>默认值：undefined |
 
 ## 事件
 不支持[通用事件](ts-component-general-events.md)。
@@ -106,7 +108,7 @@ constructor(options: ProgressButtonV2ColorOptions);
 
 该示例实现了一个简单的带加载进度的文本下载按钮。
 ```ts
-import { ColorMetrics, LengthMetrics, ProgressButtonV2, ProgressButtonV2Color } from '@kit.ArkUI'
+import { LengthMetrics, ProgressButtonV2 } from '@kit.ArkUI';
 
 @Entry
 @ComponentV2

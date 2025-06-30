@@ -35,9 +35,9 @@ struct PageInterflowFaAndStage {
               abilityName: 'MainAbility'
             };
             featureAbility.startAbility({ want }).then((code) => {
-              hilog.info(domain, TAG, 'Ability verify code: ' + JSON.stringify(code));
+              hilog.info(domain, TAG, `Ability verify code: ${code}`);
             }).catch((error: BusinessError) => {
-              hilog.error(domain, TAG, 'Ability failed: ' + JSON.stringify(error));
+              hilog.error(domain, TAG, `Ability failed, error code: ${error.code}, error msg: ${error.message}.`);
             });
             //...
           })
@@ -86,9 +86,9 @@ struct PageInterflowFaAndStage {
               abilityName: 'MainAbility'
             };
             featureAbility.startAbilityForResult({ want }).then((result) => {
-              hilog.info(domain, TAG, 'Ability verify result: ' + JSON.stringify(result));
+              hilog.info(domain, TAG, `Ability verify result: ${JSON.stringify(result)}.`);
             }).catch((error: BusinessError) => {
-              hilog.error(domain, TAG, 'Ability failed: ' + JSON.stringify(error));
+              hilog.error(domain, TAG, `Ability failed, error code: ${error.code}, error msg: ${error.message}.`);
             });
           })
         }
@@ -126,9 +126,9 @@ class ServiceAbilityStartUiAbility {
       abilityName: 'MainAbility'
     };
     particleAbility.startAbility({ want }).then(() => {
-      hilog.info(domain, TAG, 'ServiceAbilityStartUIAbility Start Ability successfully.');
+      hilog.info(domain, TAG, `ServiceAbilityStartUIAbility Start Ability successfully.`);
     }).catch((error: BusinessError) => {
-      hilog.info(domain, TAG, 'ServiceAbilityStartUIAbility Ability failed: ' + JSON.stringify(error));
+      hilog.error(domain, TAG, `ServiceAbilityStartUIAbility Ability failed, error code: ${error.code}, error msg: ${error.message}.`);
     });
   }
 };

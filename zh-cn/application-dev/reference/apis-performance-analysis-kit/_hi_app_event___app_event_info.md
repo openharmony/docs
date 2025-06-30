@@ -9,10 +9,9 @@
 
 **起始版本：** 12
 
-**相关模块：**[HiAppEvent](_hi_app_event.md)
+**相关模块：** [HiAppEvent](_hi_app_event.md)
 
 **所在头文件：** [hiappevent.h](hiappevent_8h.md)
-
 
 ## 汇总
 

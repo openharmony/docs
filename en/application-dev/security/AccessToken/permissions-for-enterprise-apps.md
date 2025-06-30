@@ -6,6 +6,10 @@ The distribution type of enterprise applications can be **enterprise_normal** (n
 
 For details about how to request the permissions for enterprise applications, see [declaring permissions](declare-permissions.md).
 
+> **NOTE**
+> 
+> The following permissions do not support automatic code signing. You must [manually sign the code](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-signing#section297715173233) during the debugging and release phases.
+
 ## ohos.permission.SET_FILE_GUARD_POLICY
 
 Allows an application to update the file guard policy.
@@ -100,6 +104,8 @@ Allows an application to obtain basic information and sensitive information abou
 
 Allows an application to obtain the Wi-Fi configuration.
 
+Currently, this permission is available only to applications running on PCs and 2-in-1 devices.
+
 **Permission level**: system_basic
 
 **Authorization mode**: system_grant
@@ -170,6 +176,21 @@ Allows a system application to kill other applications.
 **Valid since**: 12
 
 **Changelog**: This permission is available only to system applications in API versions 7 to 13. From API version 14, it is available to normal enterprise applications.
+
+### ohos.permission.SET_TELEPHONY_ESIM_STATE_OPEN
+
+Allows a system application or carrier application to set the eSIM nickname and activate the eSIM.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Valid since**: 14
+
+**Changelog**: Since API version 14, the permission level is changed to system_basic, and this permission is available only to normal enterprise applications instead of all applications.
 
 ## ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION
 

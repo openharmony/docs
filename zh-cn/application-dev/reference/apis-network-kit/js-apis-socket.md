@@ -75,7 +75,7 @@ let bindAddr: socket.NetAddress = {
 }
 udp.bind(bindAddr, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
@@ -125,7 +125,7 @@ let bindAddr: socket.NetAddress = {
 udp.bind(bindAddr).then(() => {
   console.log('bind success');
 }).catch((err: BusinessError) => {
-  console.log('bind fail');
+  console.error('bind fail');
 });
 ```
 
@@ -170,8 +170,19 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
+let bindAddr: socket.NetAddress = {
+  address: '192.168.xx.xxx',  // 本端地址
+  port: 1234
+}
+udp.bind(bindAddr, (err: BusinessError) => {
+  if (err) {
+    console.error('bind fail');
+    return;
+  }
+  console.log('bind success');
+});
 let netAddress: socket.NetAddress = {
-  address: '192.168.xx.xxx',
+  address: '192.168.xx.xxx',  // 对端地址
   port: 8080
 }
 let sendOptions: socket.UDPSendOptions = {
@@ -180,7 +191,7 @@ let sendOptions: socket.UDPSendOptions = {
 }
 udp.send(sendOptions, (err: BusinessError) => {
   if (err) {
-    console.log('send fail');
+    console.error('send fail');
     return;
   }
   console.log('send success');
@@ -194,8 +205,19 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
+let bindAddr: socket.NetAddress = {
+  address: '192.168.xx.xxx',  // 本端地址
+  port: 1234
+}
+udp.bind(bindAddr, (err: BusinessError) => {
+  if (err) {
+    console.error('bind fail');
+    return;
+  }
+  console.log('bind success');
+});
 let netAddress: socket.NetAddress = {
-  address: '192.168.xx.xxx',
+  address: '192.168.xx.xxx',  // 对端地址
   port: 8080
 }
 let socks5Server: socket.NetAddress = {
@@ -214,7 +236,7 @@ let sendOptions: socket.UDPSendOptions = {
 }
 udp.send(sendOptions, (err: BusinessError) => {
   if (err) {
-    console.log('send fail');
+    console.error('send fail');
     return;
   }
   console.log('send success');
@@ -267,8 +289,18 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
+let bindAddr: socket.NetAddress = {
+  address: '192.168.xx.xxx', // 本端地址
+  port: 8080
+}
+udp.bind(bindAddr).then(() => {
+  console.log('bind success');
+}).catch((err: BusinessError) => {
+  console.error('bind fail');
+  return;
+});
 let netAddress: socket.NetAddress = {
-  address: '192.168.xx.xxx',
+  address: '192.168.xx.xxx', // 对端地址
   port: 8080
 }
 let sendOptions: socket.UDPSendOptions = {
@@ -278,7 +310,7 @@ let sendOptions: socket.UDPSendOptions = {
 udp.send(sendOptions).then(() => {
   console.log('send success');
 }).catch((err: BusinessError) => {
-  console.log('send fail');
+  console.error('send fail');
 });
 ```
 
@@ -289,8 +321,18 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
+let bindAddr: socket.NetAddress = {
+  address: '192.168.xx.xxx', // 本端地址
+  port: 8080
+}
+udp.bind(bindAddr).then(() => {
+  console.log('bind success');
+}).catch((err: BusinessError) => {
+  console.error('bind fail');
+  return;
+});
 let netAddress: socket.NetAddress = {
-  address: '192.168.xx.xxx',
+  address: '192.168.xx.xxx', // 对端地址
   port: 8080
 }
 let socks5Server: socket.NetAddress = {
@@ -310,7 +352,7 @@ let sendOptions: socket.UDPSendOptions = {
 udp.send(sendOptions).then(() => {
   console.log('send success');
 }).catch((err: BusinessError) => {
-  console.log('send fail');
+  console.error('send fail');
 });
 ```
 
@@ -345,7 +387,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 udp.close((err: BusinessError) => {
   if (err) {
-    console.log('close fail');
+    console.error('close fail');
     return;
   }
   console.log('close success');
@@ -384,7 +426,7 @@ let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 udp.close().then(() => {
   console.log('close success');
 }).catch((err: BusinessError) => {
-  console.log('close fail');
+  console.error('close fail');
 });
 ```
 
@@ -426,10 +468,10 @@ let bindAddr: socket.NetAddress = {
 }
 udp.bind(bindAddr, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
-  console.log('bind success');
+  console.error('bind success');
   udp.getState((err: BusinessError, data: socket.SocketStateBase) => {
     if (err) {
       console.log('getState fail');
@@ -478,14 +520,14 @@ let bindAddr: socket.NetAddress = {
 }
 udp.bind(bindAddr, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
   udp.getState().then((data: socket.SocketStateBase) => {
     console.log('getState success:' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
-    console.log('getState fail' + JSON.stringify(err));
+    console.error('getState fail' + JSON.stringify(err));
   });
 });
 ```
@@ -531,20 +573,20 @@ let bindAddr: socket.NetAddress = {
 }
 udp.bind(bindAddr, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
   let udpextraoptions: socket.UDPExtraOptions = {
-    receiveBufferSize: 6000000,
-    sendBufferSize: 2000000,
+    receiveBufferSize: 8192,
+    sendBufferSize: 8192,
     reuseAddress: false,
     socketTimeout: 6000,
     broadcast: true
   }
   udp.setExtraOptions(udpextraoptions, (err: BusinessError) => {
     if (err) {
-      console.log('setExtraOptions fail');
+      console.error('setExtraOptions fail');
       return;
     }
     console.log('setExtraOptions success');
@@ -598,13 +640,13 @@ let bindAddr: socket.NetAddress = {
 }
 udp.bind(bindAddr, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
   let udpextraoptions: socket.UDPExtraOptions = {
-    receiveBufferSize: 6000000,
-    sendBufferSize: 2000000,
+    receiveBufferSize: 8192,
+    sendBufferSize: 8192,
     reuseAddress: false,
     socketTimeout: 6000,
     broadcast: true
@@ -612,7 +654,7 @@ udp.bind(bindAddr, (err: BusinessError) => {
   udp.setExtraOptions(udpextraoptions).then(() => {
     console.log('setExtraOptions success');
   }).catch((err: BusinessError) => {
-    console.log('setExtraOptions fail');
+    console.error('setExtraOptions fail');
   });
 })
 ```
@@ -832,7 +874,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 udp.on('error', (err: BusinessError) => {
-  console.log("on error, err:" + JSON.stringify(err))
+  console.error("on error, err:" + JSON.stringify(err))
 });
 ```
 
@@ -859,7 +901,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 let callback = (err: BusinessError) => {
-  console.log("on error, err:" + JSON.stringify(err));
+  console.error("on error, err:" + JSON.stringify(err));
 }
 udp.on('error', callback);
 // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
@@ -923,7 +965,7 @@ UDPSocket连接的其他属性。继承自[ExtraOptionsBase](#extraoptionsbase7)
 
 | 名称            | 类型    | 必填 | 说明                             |
 | ----------------- | ------- | ---- | -------------------------------- |
-| broadcast         | boolean | 否   | 是否可以发送广播。默认为false。  |
+| broadcast         | boolean | 否   | 是否可以发送广播。默认为false。true：可发送广播；false：不可发送广播。  |
 
 ## SocketMessageInfo<sup>11+</sup>
 
@@ -944,9 +986,9 @@ Socket的状态信息。
 
 | 名称      | 类型    | 必填 | 说明       |
 | ----------- | ------- | ---- | ---------- |
-| isBound     | boolean | 是   | 是否绑定。 |
-| isClose     | boolean | 是   | 是否关闭。 |
-| isConnected | boolean | 是   | 是否连接。 |
+| isBound     | boolean | 是   | 是否绑定。true：绑定；false：不绑定。 |
+| isClose     | boolean | 是   | 是否关闭。true：关闭；false：打开。 |
+| isConnected | boolean | 是   | 是否连接。true：连接；false：断开。 |
 
 ## SocketRemoteInfo
 
@@ -993,7 +1035,7 @@ MulticastSocket连接。在调用MulticastSocket的方法前，需要先通过[s
 
 ### addMembership<sup>11+</sup>
 
-addMembership(multicastAddress: NetAddress, callback: AsyncCallback\<void\>): void;
+addMembership(multicastAddress: NetAddress, callback: AsyncCallback\<void\>): void
 
 加入多播组。使用callback方法作为异步方法。
 
@@ -1034,7 +1076,7 @@ let addr: socket.NetAddress = {
 }
 multicast.addMembership(addr, (err: Object) => {
   if (err) {
-    console.log('add membership fail, err: ' + JSON.stringify(err));
+    console.error('add membership fail, err: ' + JSON.stringify(err));
     return;
   }
   console.log('add membership success');
@@ -1043,9 +1085,9 @@ multicast.addMembership(addr, (err: Object) => {
 
 ### addMembership<sup>11+</sup>
 
-addMembership(multicastAddress: NetAddress): Promise\<void\>;
+addMembership(multicastAddress: NetAddress): Promise\<void\>
 
-加入多播组。使用Promise方法作为异步方法。。
+加入多播组。使用Promise方法作为异步方法。
 
 > **说明：**
 > 多播使用的IP地址属于特定的范围（例如224.0.0.0到239.255.255.255）。
@@ -1089,13 +1131,13 @@ let addr: socket.NetAddress = {
 multicast.addMembership(addr).then(() => {
   console.log('addMembership success');
 }).catch((err: Object) => {
-  console.log('addMembership fail');
+  console.error('addMembership fail');
 });
 ```
 
 ### dropMembership<sup>11+</sup>
 
-dropMembership(multicastAddress: NetAddress, callback: AsyncCallback\<void\>): void;
+dropMembership(multicastAddress: NetAddress, callback: AsyncCallback\<void\>): void
 
 退出多播组。使用callback方法作为异步方法。
 
@@ -1135,7 +1177,7 @@ let addr: socket.NetAddress = {
 }
 multicast.dropMembership(addr, (err: Object) => {
   if (err) {
-    console.log('drop membership fail, err: ' + JSON.stringify(err));
+    console.error('drop membership fail, err: ' + JSON.stringify(err));
     return;
   }
   console.log('drop membership success');
@@ -1144,9 +1186,9 @@ multicast.dropMembership(addr, (err: Object) => {
 
 ### dropMembership<sup>11+</sup>
 
-dropMembership(multicastAddress: NetAddress): Promise\<void\>;
+dropMembership(multicastAddress: NetAddress): Promise\<void\>
 
-退出多播组。使用Promise方法作为异步方法。。
+退出多播组。使用Promise方法作为异步方法。
 
 > **说明：**
 > 多播使用的IP地址属于特定的范围（例如224.0.0.0到239.255.255.255）。
@@ -1190,13 +1232,13 @@ let addr: socket.NetAddress = {
 multicast.dropMembership(addr).then(() => {
   console.log('drop membership success');
 }).catch((err: Object) => {
-  console.log('drop membership fail');
+  console.error('drop membership fail');
 });
 ```
 
 ### setMulticastTTL<sup>11+</sup>
 
-setMulticastTTL(ttl: number, callback: AsyncCallback\<void\>): void;
+setMulticastTTL(ttl: number, callback: AsyncCallback\<void\>): void
 
 设置多播通信时数据包在网络传输过程中路由器最大跳数。使用callback方法作为异步方法。
 
@@ -1232,7 +1274,7 @@ let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance(
 let ttl = 8
 multicast.setMulticastTTL(ttl, (err: Object) => {
   if (err) {
-    console.log('set ttl fail, err: ' + JSON.stringify(err));
+    console.error('set ttl fail, err: ' + JSON.stringify(err));
     return;
   }
   console.log('set ttl success');
@@ -1241,9 +1283,9 @@ multicast.setMulticastTTL(ttl, (err: Object) => {
 
 ### setMulticastTTL<sup>11+</sup>
 
-setMulticastTTL(ttl: number): Promise\<void\>;
+setMulticastTTL(ttl: number): Promise\<void\>
 
-设置多播通信时数据包在网络传输过程中路由器最大跳数。使用Promise方法作为异步方法。。
+设置多播通信时数据包在网络传输过程中路由器最大跳数。使用Promise方法作为异步方法。
 
 > **说明：**
 > 用于限制数据包在网络中传输时能够经过的最大路由器跳数的字段，TTL (Time to live)。
@@ -1282,13 +1324,13 @@ let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance(
 multicast.setMulticastTTL(8).then(() => {
   console.log('set ttl success');
 }).catch((err: Object) => {
-  console.log('set ttl failed');
+  console.error('set ttl failed');
 });
 ```
 
 ### getMulticastTTL<sup>11+</sup>
 
-getMulticastTTL(callback: AsyncCallback\<number\>): void;
+getMulticastTTL(callback: AsyncCallback\<number\>): void
 
 获取数据包在网络传输过程中路由器最大跳数(TTL)的值。使用callback方法作为异步方法。
 
@@ -1321,7 +1363,7 @@ import { socket } from '@kit.NetworkKit';
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
 multicast.getMulticastTTL((err: Object, value: Number) => {
   if (err) {
-    console.log('set ttl fail, err: ' + JSON.stringify(err));
+    console.error('set ttl fail, err: ' + JSON.stringify(err));
     return;
   }
   console.log('set ttl success, value: ' + JSON.stringify(value));
@@ -1330,7 +1372,7 @@ multicast.getMulticastTTL((err: Object, value: Number) => {
 
 ### getMulticastTTL<sup>11+</sup>
 
-getMulticastTTL(): Promise\<number\>;
+getMulticastTTL(): Promise\<number\>
 
 获取数据包在网络传输过程中路由器最大跳数(TTL)的值。使用Promise方法作为异步方法。
 
@@ -1364,13 +1406,13 @@ let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance(
 multicast.getMulticastTTL().then((value: Number) => {
   console.log('ttl: ', JSON.stringify(value));
 }).catch((err: Object) => {
-  console.log('set ttl failed');
+  console.error('set ttl failed');
 });
 ```
 
 ### setLoopbackMode<sup>11+</sup>
 
-setLoopbackMode(flag: boolean, callback: AsyncCallback\<void\>): void;
+setLoopbackMode(flag: boolean, callback: AsyncCallback\<void\>): void
 
 设置多播通信中的环回模式标志位。使用callback方法作为异步方法。
 
@@ -1403,7 +1445,7 @@ import { socket } from '@kit.NetworkKit';
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
 multicast.setLoopbackMode(false, (err: Object) => {
   if (err) {
-    console.log('set loopback mode fail, err: ' + JSON.stringify(err));
+    console.error('set loopback mode fail, err: ' + JSON.stringify(err));
     return;
   }
   console.log('set loopback mode success');
@@ -1412,7 +1454,7 @@ multicast.setLoopbackMode(false, (err: Object) => {
 
 ### setLoopbackMode<sup>11+</sup>
 
-setLoopbackMode(flag: boolean): Promise\<void\>;
+setLoopbackMode(flag: boolean): Promise\<void\>
 
 设置多播通信中的环回模式标志位。使用callback方法作为异步方法。
 
@@ -1451,13 +1493,13 @@ let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance(
 multicast.setLoopbackMode(false).then(() => {
   console.log('set loopback mode success');
 }).catch((err: Object) => {
-  console.log('set loopback mode failed');
+  console.error('set loopback mode failed');
 });
 ```
 
 ### getLoopbackMode<sup>11+</sup>
 
-getLoopbackMode(callback: AsyncCallback\<boolean\>): void;
+getLoopbackMode(callback: AsyncCallback\<boolean\>): void
 
 获取多播通信中的环回模式状态。使用Promise方法作为异步方法。
 
@@ -1472,7 +1514,7 @@ getLoopbackMode(callback: AsyncCallback\<boolean\>): void;
 
 | 参数名         | 类型                     | 必填 | 说明                         |
 | ------------- | ----------------------- | ---- | --------------------------- |
-| callback      | AsyncCallback\<number\> |  是  | 回调函数。失败返回错误码、错误信息。  |
+| callback      | AsyncCallback\<boolean\> |  是  | 回调函数。失败返回错误码、错误信息。  |
 
 **错误码：**
 
@@ -1489,7 +1531,7 @@ import { socket } from '@kit.NetworkKit';
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
 multicast.getLoopbackMode((err: Object, value: Boolean) => {
   if (err) {
-    console.log('get loopback mode fail, err: ' + JSON.stringify(err));
+    console.error('get loopback mode fail, err: ' + JSON.stringify(err));
     return;
   }
   console.log('get loopback mode success, value: ' + JSON.stringify(value));
@@ -1498,7 +1540,7 @@ multicast.getLoopbackMode((err: Object, value: Boolean) => {
 
 ### getLoopbackMode<sup>11+</sup>
 
-getLoopbackMode(): Promise\<boolean\>;
+getLoopbackMode(): Promise\<boolean\>
 
 获取多播通信中的环回模式状态。使用Promise方法作为异步方法。
 
@@ -1531,7 +1573,7 @@ let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance(
 multicast.getLoopbackMode().then((value: Boolean) => {
   console.log('loopback mode: ', JSON.stringify(value));
 }).catch((err: Object) => {
-  console.log('get loopback mode failed');
+  console.error('get loopback mode failed');
 });
 ```
 
@@ -1602,7 +1644,7 @@ let bindAddr: socket.NetAddress = {
 }
 tcp.bind(bindAddr, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
@@ -1657,7 +1699,7 @@ let bindAddr: socket.NetAddress = {
 tcp.bind(bindAddr).then(() => {
   console.log('bind success');
 }).catch((err: BusinessError) => {
-  console.log('bind fail');
+  console.error('bind fail');
 });
 ```
 
@@ -1713,7 +1755,7 @@ let tcpconnectoptions: socket.TCPConnectOptions = {
 }
 tcp.connect(tcpconnectoptions, (err: BusinessError) => {
   if (err) {
-    console.log('connect fail');
+    console.error('connect fail');
     return;
   }
   console.log('connect success');
@@ -1747,7 +1789,7 @@ let tcpconnectoptions: socket.TCPConnectOptions = {
 }
 tcp.connect(tcpconnectoptions, (err: BusinessError) => {
   if (err) {
-    console.log('connect fail');
+    console.error('connect fail');
     return;
   }
   console.log('connect success');
@@ -1812,7 +1854,7 @@ let tcpconnectoptions: socket.TCPConnectOptions = {
 tcp.connect(tcpconnectoptions).then(() => {
   console.log('connect success')
 }).catch((err: BusinessError) => {
-  console.log('connect fail');
+  console.error('connect fail');
 });
 ```
 
@@ -1844,7 +1886,7 @@ let tcpconnectoptions: socket.TCPConnectOptions = {
 tcp.connect(tcpconnectoptions).then(() => {
   console.log('connect success')
 }).catch((err: BusinessError) => {
-  console.log('connect fail');
+  console.error('connect fail');
 });
 ```
 
@@ -1897,7 +1939,7 @@ tcp.connect(tcpconnectoptions, () => {
   }
   tcp.send(tcpSendOptions, (err: BusinessError) => {
     if (err) {
-      console.log('send fail');
+      console.error('send fail');
       return;
     }
     console.log('send success');
@@ -1960,7 +2002,7 @@ tcp.connect(tcpconnectoptions, () => {
   tcp.send(tcpSendOptions).then(() => {
     console.log('send success');
   }).catch((err: BusinessError) => {
-    console.log('send fail');
+    console.error('send fail');
   });
 })
 ```
@@ -1997,7 +2039,7 @@ let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 
 tcp.close((err: BusinessError) => {
   if (err) {
-    console.log('close fail');
+    console.error('close fail');
     return;
   }
   console.log('close success');
@@ -2036,7 +2078,7 @@ let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 tcp.close().then(() => {
   console.log('close success');
 }).catch((err: BusinessError) => {
-  console.log('close fail');
+  console.error('close fail');
 });
 ```
 
@@ -2084,7 +2126,7 @@ tcp.connect(tcpconnectoptions, () => {
   console.log('connect success');
   tcp.getRemoteAddress((err: BusinessError, data: socket.NetAddress) => {
     if (err) {
-      console.log('getRemoteAddressfail');
+      console.error('getRemoteAddressfail');
       return;
     }
     console.log('getRemoteAddresssuccess:' + JSON.stringify(data));
@@ -2137,10 +2179,10 @@ tcp.connect(tcpconnectoptions).then(() => {
   tcp.getRemoteAddress().then(() => {
     console.log('getRemoteAddress success');
   }).catch((err: BusinessError) => {
-    console.log('getRemoteAddressfail');
+    console.error('getRemoteAddressfail');
   });
 }).catch((err: BusinessError) => {
-  console.log('connect fail');
+  console.error('connect fail');
 });
 ```
 
@@ -2188,7 +2230,7 @@ tcp.connect(tcpconnectoptions, () => {
   console.log('connect success');
   tcp.getState((err: BusinessError, data: socket.SocketStateBase) => {
     if (err) {
-      console.log('getState fail');
+      console.error('getState fail');
       return;
     }
     console.log('getState success:' + JSON.stringify(data));
@@ -2241,10 +2283,10 @@ tcp.connect(tcpconnectoptions).then(() => {
   tcp.getState().then(() => {
     console.log('getState success');
   }).catch((err: BusinessError) => {
-    console.log('getState fail');
+    console.error('getState fail');
   });
 }).catch((err: BusinessError) => {
-  console.log('connect fail');
+  console.error('connect fail');
 });
 ```
 
@@ -2387,14 +2429,14 @@ tcp.connect(tcpconnectoptions, () => {
     OOBInline: true,
     TCPNoDelay: true,
     socketLinger: { on: true, linger: 10 } as SocketLinger,
-    receiveBufferSize: 1000,
-    sendBufferSize: 1000,
+    receiveBufferSize: 8192,
+    sendBufferSize: 8192,
     reuseAddress: true,
     socketTimeout: 3000
   }
   tcp.setExtraOptions(tcpExtraOptions, (err: BusinessError) => {
     if (err) {
-      console.log('setExtraOptions fail');
+      console.error('setExtraOptions fail');
       return;
     }
     console.log('setExtraOptions success');
@@ -2462,15 +2504,15 @@ tcp.connect(tcpconnectoptions, () => {
     OOBInline: true,
     TCPNoDelay: true,
     socketLinger: { on: true, linger: 10 } as SocketLinger,
-    receiveBufferSize: 1000,
-    sendBufferSize: 1000,
+    receiveBufferSize: 8192,
+    sendBufferSize: 8192,
     reuseAddress: true,
     socketTimeout: 3000
   }
   tcp.setExtraOptions(tcpExtraOptions).then(() => {
     console.log('setExtraOptions success');
   }).catch((err: BusinessError) => {
-    console.log('setExtraOptions fail');
+    console.error('setExtraOptions fail');
   });
 });
 ```
@@ -2688,7 +2730,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 tcp.on('error', (err: BusinessError) => {
-  console.log("on error, err:" + JSON.stringify(err))
+  console.error("on error, err:" + JSON.stringify(err))
 });
 ```
 
@@ -2715,7 +2757,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 let callback = (err: BusinessError) => {
-  console.log("on error, err:" + JSON.stringify(err));
+  console.error("on error, err:" + JSON.stringify(err));
 }
 tcp.on('error', callback);
 // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
@@ -2732,7 +2774,7 @@ TCPSocket连接的参数。
 | 名称  | 类型                               | 必填 | 说明                       |
 | ------- | ---------------------------------- | ---- | -------------------------- |
 | address | [NetAddress](#netaddress) | 是   | 绑定的地址以及端口。       |
-| timeout | number                             | 否   | 超时时间，单位毫秒（ms）。 |
+| timeout | number                             | 否   | 超时时间，单位毫秒（ms）。默认值为5000。 |
 | proxy<sup>18+</sup>   | [ProxyOptions](#proxyoptions18) | 否   | 使用的代理信息，默认不使用代理。 |
 
 ## TCPSendOptions
@@ -2754,9 +2796,9 @@ TCPSocket连接的其他属性。继承自[ExtraOptionsBase](#extraoptionsbase7)
 
 | 名称            | 类型    | 必填 | 说明                                                         |
 | ----------------- | ------- | ---- | ------------------------------------------------------------ |
-| keepAlive         | boolean | 否   | 是否保持连接。默认为false。                                  |
-| OOBInline         | boolean | 否   | 是否为OOB内联。默认为false。                                 |
-| TCPNoDelay        | boolean | 否   | TCPSocket连接是否无时延。默认为false。                       |
+| keepAlive         | boolean | 否   | 是否保持连接。默认为false。true：保持连接；false：断开连接。                                  |
+| OOBInline         | boolean | 否   | 是否为OOB内联。默认为false。true：是OOB内联；false：不是OOB内联。                                 |
+| TCPNoDelay        | boolean | 否   | TCPSocket连接是否无时延。默认为false。true：无时延；false：有时延。                       |
 | socketLinger      | \{on:boolean, linger:number\}  | 否   | socket是否继续逗留。<br />- on：是否逗留（true：逗留；false：不逗留）。<br />- linger：逗留时长，单位毫秒（ms），取值范围为0~65535。<br />当入参on设置为true时，才需要设置。 |
 
 ## socket.constructTCPSocketServerInstance<sup>10+</sup>
@@ -2830,7 +2872,7 @@ let listenAddr: socket.NetAddress = {
 }
 tcpServer.listen(listenAddr, (err: BusinessError) => {
   if (err) {
-    console.log("listen fail");
+    console.error("listen fail");
     return;
   }
   console.log("listen success");
@@ -2889,7 +2931,7 @@ let listenAddr: socket.NetAddress = {
 tcpServer.listen(listenAddr).then(() => {
   console.log('listen success');
 }).catch((err: BusinessError) => {
-  console.log('listen fail');
+  console.error('listen fail');
 });
 ```
 
@@ -2935,14 +2977,14 @@ let listenAddr: socket.NetAddress = {
 }
 tcpServer.listen(listenAddr, (err: BusinessError) => {
   if (err) {
-    console.log("listen fail");
+    console.error("listen fail");
     return;
   }
   console.log("listen success");
 })
 tcpServer.getState((err: BusinessError, data: socket.SocketStateBase) => {
   if (err) {
-    console.log('getState fail');
+    console.error('getState fail');
     return;
   }
   console.log('getState success:' + JSON.stringify(data));
@@ -2990,7 +3032,7 @@ let listenAddr: socket.NetAddress = {
 }
 tcpServer.listen(listenAddr, (err: BusinessError) => {
   if (err) {
-    console.log("listen fail");
+    console.error("listen fail");
     return;
   }
   console.log("listen success");
@@ -2998,7 +3040,7 @@ tcpServer.listen(listenAddr, (err: BusinessError) => {
 tcpServer.getState().then((data: socket.SocketStateBase) => {
   console.log('getState success' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-  console.log('getState fail');
+  console.error('getState fail');
 });
 ```
 
@@ -3045,7 +3087,7 @@ let listenAddr: socket.NetAddress = {
 }
 tcpServer.listen(listenAddr, (err: BusinessError) => {
   if (err) {
-    console.log("listen fail");
+    console.error("listen fail");
     return;
   }
   console.log("listen success");
@@ -3061,14 +3103,14 @@ let tcpExtraOptions: socket.TCPExtraOptions = {
   OOBInline: true,
   TCPNoDelay: true,
   socketLinger: { on: true, linger: 10 } as SocketLinger,
-  receiveBufferSize: 1000,
-  sendBufferSize: 1000,
+  receiveBufferSize: 8192,
+  sendBufferSize: 8192,
   reuseAddress: true,
   socketTimeout: 3000
 }
 tcpServer.setExtraOptions(tcpExtraOptions, (err: BusinessError) => {
   if (err) {
-    console.log('setExtraOptions fail');
+    console.error('setExtraOptions fail');
     return;
   }
   console.log('setExtraOptions success');
@@ -3129,7 +3171,7 @@ interface SocketLinger {
 
 tcpServer.listen(listenAddr, (err: BusinessError) => {
   if (err) {
-    console.log("listen fail");
+    console.error("listen fail");
     return;
   }
   console.log("listen success");
@@ -3140,15 +3182,15 @@ let tcpExtraOptions: socket.TCPExtraOptions = {
   OOBInline: true,
   TCPNoDelay: true,
   socketLinger: { on: true, linger: 10 } as SocketLinger,
-  receiveBufferSize: 1000,
-  sendBufferSize: 1000,
+  receiveBufferSize: 8192,
+  sendBufferSize: 8192,
   reuseAddress: true,
   socketTimeout: 3000
 }
 tcpServer.setExtraOptions(tcpExtraOptions).then(() => {
   console.log('setExtraOptions success');
 }).catch((err: BusinessError) => {
-  console.log('setExtraOptions fail');
+  console.error('setExtraOptions fail');
 });
 ```
 
@@ -3238,7 +3280,7 @@ let listenAddr: socket.NetAddress = {
 }
 tcpServer.listen(listenAddr, (err: BusinessError) => {
   if (err) {
-    console.log("listen fail");
+    console.error("listen fail");
     return;
   }
   console.log("listen success");
@@ -3283,7 +3325,7 @@ let listenAddr: socket.NetAddress = {
 }
 tcpServer.listen(listenAddr, (err: BusinessError) => {
   if (err) {
-    console.log("listen fail");
+    console.error("listen fail");
     return;
   }
   console.log("listen success");
@@ -3336,12 +3378,12 @@ let listenAddr: socket.NetAddress = {
 }
 tcpServer.listen(listenAddr, (err: BusinessError) => {
   if (err) {
-    console.log("listen fail");
+    console.error("listen fail");
     return;
   }
   console.log("listen success");
   tcpServer.on('error', (err: BusinessError) => {
-    console.log("on error, err:" + JSON.stringify(err))
+    console.error("on error, err:" + JSON.stringify(err))
   });
 })
 ```
@@ -3382,12 +3424,12 @@ let listenAddr: socket.NetAddress = {
 }
 tcpServer.listen(listenAddr, (err: BusinessError) => {
   if (err) {
-    console.log("listen fail");
+    console.error("listen fail");
     return;
   }
   console.log("listen success");
   let callback = (err: BusinessError) => {
-    console.log("on error, err:" + JSON.stringify(err));
+    console.error("on error, err:" + JSON.stringify(err));
   }
   tcpServer.on('error', callback);
   // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
@@ -3504,7 +3546,7 @@ tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
   client.send(tcpSendOption).then(() => {
     console.log('send success');
   }).catch((err: BusinessError) => {
-    console.log('send fail');
+    console.error('send fail');
   });
 });
 ```
@@ -3544,7 +3586,7 @@ let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance(
 tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
   client.close((err: BusinessError) => {
     if (err) {
-      console.log('close fail');
+      console.error('close fail');
       return;
     }
     console.log('close success');
@@ -3585,7 +3627,7 @@ tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
   client.close().then(() => {
   	console.log('close success');
   }).catch((err: BusinessError) => {
-  	console.log('close fail');
+  	console.error('close fail');
   });
 });
 ```
@@ -3628,7 +3670,7 @@ let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance(
 tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
   client.getRemoteAddress((err: BusinessError, data: socket.NetAddress) => {
     if (err) {
-      console.log('getRemoteAddress fail');
+      console.error('getRemoteAddress fail');
       return;
     }
     console.log('getRemoteAddress success:' + JSON.stringify(data));
@@ -3674,7 +3716,7 @@ tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
   client.getRemoteAddress().then(() => {
     console.log('getRemoteAddress success');
   }).catch((err: BusinessError) => {
-    console.log('getRemoteAddress fail');
+    console.error('getRemoteAddress fail');
   });
 });
 ```
@@ -3934,7 +3976,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
   client.on('error', (err: BusinessError) => {
-    console.log("on error, err:" + JSON.stringify(err))
+    console.error("on error, err:" + JSON.stringify(err))
   });
 });
 ```
@@ -3967,7 +4009,7 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let callback = (err: BusinessError) => {
-  console.log("on error, err:" + JSON.stringify(err));
+  console.error("on error, err:" + JSON.stringify(err));
 }
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
@@ -4027,6 +4069,12 @@ bind(address: LocalAddress): Promise\<void\>;
 | -------- | ---------------------------------- | ---- | ------------------------------------------------------ |
 | address  | [LocalAddress](#localaddress11) | 是   | 目标地址信息，参考[LocalAddress](#localaddress11)。 |
 
+**返回值：**
+
+| 类型            | 说明                                       |
+| :-------------- | :---------------------------------------- |
+| Promise\<void\> | Promise\<void\>：Promise对象。无返回结果的Promise对象。|
+
 **错误码：**
 
 | 错误码ID | 错误信息                    |
@@ -4038,11 +4086,18 @@ bind(address: LocalAddress): Promise\<void\>;
 
 **示例：**
 
+>**说明：** 
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+<!--code_no_check-->
 ```ts
 import { socket } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
 
 let client: socket.LocalSocket = socket.constructLocalSocketInstance()
-let sandboxPath: string = getContext().filesDir + '/testSocket'
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let sandboxPath: string = context.filesDir + '/testSocket';
 let address : socket.LocalAddress = {
   address: sandboxPath
 }
@@ -4088,11 +4143,18 @@ connect(options: LocalConnectOptions): Promise\<void\>
 
 **示例：**
 
+>**说明：** 
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+<!--code_no_check-->
 ```ts
 import { socket } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
 
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
-let sandboxPath: string = getContext().filesDir + '/testSocket'
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let sandboxPath: string = context.filesDir + '/testSocket';
 let localAddress : socket.LocalAddress = {
   address: sandboxPath
 }
@@ -4139,11 +4201,18 @@ send(options: LocalSendOptions): Promise\<void\>
 
 **示例：**
 
+>**说明：** 
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+<!--code_no_check-->
 ```ts
 import { socket } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
 
 let client: socket.LocalSocket = socket.constructLocalSocketInstance()
-let sandboxPath: string = getContext().filesDir + '/testSocket'
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let sandboxPath: string = context.filesDir + '/testSocket';
 let localAddress : socket.LocalAddress = {
   address: sandboxPath
 }
@@ -4219,11 +4288,18 @@ getState(): Promise\<SocketStateBase\>
 
 **示例：**
 
+>**说明：** 
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+<!--code_no_check-->
 ```ts
 import { socket } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
 
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
-let sandboxPath: string = getContext().filesDir + '/testSocket'
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let sandboxPath: string = context.filesDir + '/testSocket';
 let localAddress : socket.LocalAddress = {
   address: sandboxPath
 }
@@ -4263,11 +4339,18 @@ getSocketFd(): Promise\<number\>
 
 **示例：**
 
+>**说明：** 
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+<!--code_no_check-->
 ```ts
 import { socket } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
 
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
-let sandboxPath: string = getContext().filesDir + '/testSocket'
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let sandboxPath: string = context.filesDir + '/testSocket';
 let localAddress : socket.LocalAddress = {
   address: sandboxPath
 }
@@ -4319,11 +4402,18 @@ setExtraOptions(options: ExtraOptionsBase): Promise\<void\>
 
 **示例：**
 
+>**说明：** 
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+<!--code_no_check-->
 ```ts
 import { socket } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
 
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
-let sandboxPath: string = getContext().filesDir + '/testSocket'
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let sandboxPath: string = context.filesDir + '/testSocket';
 let localAddress : socket.LocalAddress = {
   address: sandboxPath
 }
@@ -4334,8 +4424,8 @@ let connectOpt: socket.LocalConnectOptions = {
 client.connect(connectOpt).then(() => {
   console.log('connect success');
   let options: socket.ExtraOptionsBase = {
-    receiveBufferSize: 8000,
-    sendBufferSize: 8000,
+    receiveBufferSize: 8192,
+    sendBufferSize: 8192,
     socketTimeout: 3000
   }
   client.setExtraOptions(options).then(() => {
@@ -4373,11 +4463,18 @@ getExtraOptions(): Promise\<ExtraOptionsBase\>;
 
 **示例：**
 
+>**说明：** 
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+<!--code_no_check-->
 ```ts
 import { socket } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
 
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
-let sandboxPath: string = getContext().filesDir + '/testSocket'
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let sandboxPath: string = context.filesDir + '/testSocket';
 let localAddress : socket.LocalAddress = {
   address: sandboxPath
 }
@@ -4424,9 +4521,17 @@ getLocalAddress(): Promise\<string\>
 
 **示例：**
 
+>**说明：** 
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+!--code_no_check-->
 ```ts
+import { common } from '@kit.AbilityKit';
+
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
-let sandboxPath: string = getContext().filesDir + '/testSocket';
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let sandboxPath: string = context.filesDir + '/testSocket';
 let address : socket.LocalAddress = {
   address: sandboxPath
 }
@@ -4438,7 +4543,7 @@ client.bind(address).then(() => {
     console.error("FAIL " + JSON.stringify(err));
   })
 }).catch((err: Object) => {
-  console.info('failed to bind: ' + JSON.stringify(err));
+  console.error('failed to bind: ' + JSON.stringify(err));
 })
 ```
 
@@ -4523,7 +4628,7 @@ client.off('message');
 
 ### on('connect')<sup>11+</sup>
 
-on(type: 'connect', callback: Callback\<void\>): void;
+on(type: 'connect', callback: Callback\<void\>): void
 
 订阅LocalSocket的连接事件。使用callback方式作为异步方法。
 
@@ -4555,7 +4660,7 @@ client.on('connect', () => {
 
 ### off('connect')<sup>11+</sup>
 
-off(type: 'connect', callback?: Callback\<void\>): void;
+off(type: 'connect', callback?: Callback\<void\>): void
 
 取消订阅LocalSocket的连接事件。使用callback方式作为异步方法。
 
@@ -4591,7 +4696,7 @@ client.off('connect');
 
 ### on('close')<sup>11+</sup>
 
-on(type: 'close', callback: Callback\<void\>): void;
+on(type: 'close', callback: Callback\<void\>): void
 
 订阅LocalSocket的关闭事件。使用callback方式作为异步方法。
 
@@ -4624,7 +4729,7 @@ client.on('close', callback);
 
 ### off('close')<sup>11+</sup>
 
-off(type: 'close', callback?: Callback\<void\>): void;
+off(type: 'close', callback?: Callback\<void\>): void
 
 订阅LocalSocket的关闭事件。使用callback方式作为异步方法。
 
@@ -4686,13 +4791,13 @@ import { socket } from '@kit.NetworkKit';
 
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
 client.on('error', (err: Object) => {
-  console.log("on error, err:" + JSON.stringify(err))
+  console.error("on error, err:" + JSON.stringify(err))
 });
 ```
 
 ### off('error')<sup>11+</sup>
 
-off(type: 'error', callback?: ErrorCallback): void;
+off(type: 'error', callback?: ErrorCallback): void
 
 取消订阅LocalSocket连接的error事件。使用callback方式作为异步方法。
 
@@ -4718,7 +4823,7 @@ import { socket } from '@kit.NetworkKit';
 
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
 let callback = (err: Object) => {
-  console.log("on error, err:" + JSON.stringify(err));
+  console.error("on error, err:" + JSON.stringify(err));
 }
 client.on('error', callback);
 // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
@@ -4757,7 +4862,7 @@ LocalSocket客户端在连接服务端时传入的参数信息。
 | 名称     | 类型       | 必填 | 说明                            |
 | ------- | ---------- | --- | ------------------------------ |
 | address | [LocalAddress](#localaddress11)    | 是   | 指定的本地套接字路径。            |
-| timeout | number     | 否   | 连接服务端的超时时间，单位为毫秒。  |
+| timeout | number     | 否   | 连接服务端的超时时间，单位为毫秒。默认值为0。需要应用手动设置一下，建议设置为5000。  |
 
 ## LocalSendOptions<sup>11+</sup>
 
@@ -4778,9 +4883,9 @@ Socket套接字的基础属性。
 
 | 名称            | 类型    | 必填 | 说明                              |
 | ----------------- | ------- | ---- | ----------------------------- |
-| receiveBufferSize | number  | 否   | 接收缓冲区大小（单位：Byte）。     |
-| sendBufferSize    | number  | 否   | 发送缓冲区大小（单位：Byte）。     |
-| reuseAddress      | boolean | 否   | 是否重用地址。                   |
+| receiveBufferSize | number  | 否   | 接收缓冲区大小（单位：Byte），取值范围0~262144，不设置或设置的值超过取值范围则会默认为8192。     |
+| sendBufferSize    | number  | 否   | 发送缓冲区大小（单位：Byte），取值范围0~262144，不设置或设置的值超过取值范围则会默认为8192。     |
+| reuseAddress      | boolean | 否   | 是否重用地址。true：重用地址；false：不重用地址。                   |
 | socketTimeout     | number  | 否   | 套接字超时时间，单位毫秒（ms）。    |
 
 ## socket.constructLocalSocketServerInstance<sup>11+</sup>
@@ -4843,11 +4948,18 @@ listen(address: LocalAddress): Promise\<void\>
 
 **示例：**
 
+>**说明：** 
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+<!--code_no_check-->
 ```ts
 import { socket } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
 
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
-let sandboxPath: string = getContext().filesDir + '/testSocket'
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let sandboxPath: string = context.filesDir + '/testSocket';
 let addr: socket.LocalAddress = {
   address: sandboxPath
 }
@@ -4877,11 +4989,17 @@ getState(): Promise\<SocketStateBase\>
 
 **示例：**
 
+>**说明：** 
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
 ```ts
 import { socket } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
 
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
-let sandboxPath: string = getContext().filesDir + '/testSocket'
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let sandboxPath: string = context.filesDir + '/testSocket';
 let listenAddr: socket.LocalAddress = {
   address: sandboxPath
 }
@@ -4929,11 +5047,18 @@ setExtraOptions(options: ExtraOptionsBase): Promise\<void\>
 
 **示例：**
 
+>**说明：** 
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
 ```ts
 import { socket } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
+
 
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
-let sandboxPath: string = getContext().filesDir + '/testSocket'
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let sandboxPath: string = context.filesDir + '/testSocket';
 let listenAddr: socket.NetAddress = {
   address: sandboxPath
 }
@@ -4944,8 +5069,8 @@ server.listen(listenAddr).then(() => {
 })
 
 let options: socket.ExtraOptionsBase = {
-  receiveBufferSize: 6000,
-  sendBufferSize: 6000,
+  receiveBufferSize: 8192,
+  sendBufferSize: 8192,
   socketTimeout: 3000
 }
 server.setExtraOptions(options).then(() => {
@@ -4980,11 +5105,17 @@ getExtraOptions(): Promise\<ExtraOptionsBase\>;
 
 **示例：**
 
+>**说明：** 
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
 ```ts
 import { socket } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
 
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
-let sandboxPath: string = getContext().filesDir + '/testSocket'
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let sandboxPath: string = context.filesDir + '/testSocket';
 let listenAddr: socket.LocalAddress = {
   address: sandboxPath
 }
@@ -5027,9 +5158,16 @@ getLocalAddress(): Promise\<string\>
 
 **示例：**
 
+>**说明：** 
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
 ```ts
+import { common } from '@kit.AbilityKit';
+
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
-let sandboxPath: string = getContext().filesDir + '/testSocket';
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let sandboxPath: string = context.filesDir + '/testSocket';
 let listenAddr: socket.LocalAddress = {
   address: sandboxPath
 }
@@ -5316,9 +5454,16 @@ getLocalAddress(): Promise\<string\>
 
 **示例：**
 
+>**说明：** 
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
 ```ts
+import { common } from '@kit.AbilityKit';
+
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
-let sandboxPath: string = getContext().filesDir + '/testSocket';
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let sandboxPath: string = context.filesDir + '/testSocket';
 let localAddr: socket.LocalAddress = {
   address: sandboxPath
 }
@@ -5343,7 +5488,7 @@ server.listen(localAddr).then(() => {
 
 ### on('message')<sup>11+</sup>
 
-on(type: 'message', callback: Callback\<LocalSocketMessageInfo\>): void;
+on(type: 'message', callback: Callback\<LocalSocketMessageInfo\>): void
 
 订阅LocalSocketConnection连接的接收消息事件。使用callback方式作为异步方法。
 
@@ -5364,11 +5509,18 @@ on(type: 'message', callback: Callback\<LocalSocketMessageInfo\>): void;
 
 **示例：**
 
+>**说明：** 
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+<!--code_no_check-->
 ```ts
 import { socket } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
 
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
-let sandboxPath: string = getContext().filesDir + '/testSocket'
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let sandboxPath: string = context.filesDir + '/testSocket';
 let listenAddr: socket.LocalAddress = {
   address: sandboxPath
 }
@@ -5645,18 +5797,18 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
-let connAddress: socket.TCPConnectOptions = {
+let netAddress: socket.NetAddress = {
   address: '192.168.xx.xxx',
   port: 8080
-};
+}
 let tcpconnectoptions: socket.TCPConnectOptions = {
-  address: connAddress,
+  address: netAddress,
   timeout: 6000
 }
 
 tcp.connect(tcpconnectoptions, (err: BusinessError) => {
   if (err) {
-    console.log('connect fail');
+    console.error('connect fail');
     return;
   }
   console.log('connect success');
@@ -5712,7 +5864,7 @@ let bindAddr: socket.NetAddress = {
 }
 tls.bind(bindAddr, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
@@ -5767,7 +5919,7 @@ let bindAddr: socket.NetAddress = {
 tls.bind(bindAddr).then(() => {
   console.log('bind success');
 }).catch((err: BusinessError) => {
-  console.log('bind fail');
+  console.error('bind fail');
 });
 ```
 
@@ -5805,14 +5957,14 @@ let bindAddr: socket.NetAddress = {
 }
 tls.bind(bindAddr, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
 });
 tls.getState((err: BusinessError, data: socket.SocketStateBase) => {
   if (err) {
-    console.log('getState fail');
+    console.error('getState fail');
     return;
   }
   console.log('getState success:' + JSON.stringify(data));
@@ -5853,7 +6005,7 @@ let bindAddr: socket.NetAddress = {
 }
 tls.bind(bindAddr, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
@@ -5861,7 +6013,7 @@ tls.bind(bindAddr, (err: BusinessError) => {
 tls.getState().then(() => {
   console.log('getState success');
 }).catch((err: BusinessError) => {
-  console.log('getState fail');
+  console.error('getState fail');
 });
 ```
 
@@ -5901,7 +6053,7 @@ let bindAddr: socket.NetAddress = {
 }
 tls.bind(bindAddr, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
@@ -5917,14 +6069,14 @@ let tcpExtraOptions: socket.TCPExtraOptions = {
   OOBInline: true,
   TCPNoDelay: true,
   socketLinger: { on: true, linger: 10 } as SocketLinger,
-  receiveBufferSize: 1000,
-  sendBufferSize: 1000,
+  receiveBufferSize: 8192,
+  sendBufferSize: 8192,
   reuseAddress: true,
   socketTimeout: 3000
 }
 tls.setExtraOptions(tcpExtraOptions, (err: BusinessError) => {
   if (err) {
-    console.log('setExtraOptions fail');
+    console.error('setExtraOptions fail');
     return;
   }
   console.log('setExtraOptions success');
@@ -5972,7 +6124,7 @@ let bindAddr: socket.NetAddress = {
 }
 tls.bind(bindAddr, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
@@ -5988,23 +6140,27 @@ let tcpExtraOptions: socket.TCPExtraOptions = {
   OOBInline: true,
   TCPNoDelay: true,
   socketLinger: { on: true, linger: 10 } as SocketLinger,
-  receiveBufferSize: 1000,
-  sendBufferSize: 1000,
+  receiveBufferSize: 8192,
+  sendBufferSize: 8192,
   reuseAddress: true,
   socketTimeout: 3000
 }
 tls.setExtraOptions(tcpExtraOptions).then(() => {
   console.log('setExtraOptions success');
 }).catch((err: BusinessError) => {
-  console.log('setExtraOptions fail');
+  console.error('setExtraOptions fail');
 });
 ```
 
 ### on('message')<sup>9+</sup>
 
-on(type: 'message', callback: Callback\<SocketMessageInfo\>): void;
+on(type: 'message', callback: Callback\<SocketMessageInfo\>): void
 
 订阅TLSSocket连接的接收消息事件。使用callback方式作为异步方法。
+
+> **说明：**
+>
+> bind方法调用成功后，才可调用此方法。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -6029,15 +6185,26 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 let messageView = '';
-tls.on('message', (value: socket.SocketMessageInfo) => {
-  for (let i: number = 0; i < value.message.byteLength; i++) {
-    let uint8Array = new Uint8Array(value.message) 
-    let messages = uint8Array[i]
-    let message = String.fromCharCode(messages);
-    messageView += message;
+let bindAddr: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+tls.bind(bindAddr, (err: BusinessError) => {
+  if (err) {
+    console.log('bind fail');
+    return;
   }
-  console.log('on message message: ' + JSON.stringify(messageView));
-  console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
+  console.log('bind success');
+  tls.on('message', (value: socket.SocketMessageInfo) => {
+    for (let i: number = 0; i < value.message.byteLength; i++) {
+      let uint8Array = new Uint8Array(value.message) 
+      let messages = uint8Array[i]
+      let message = String.fromCharCode(messages);
+      messageView += message;
+    }
+    console.log('on message message: ' + JSON.stringify(messageView));
+    console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
+  });
 });
 ```
 
@@ -6090,6 +6257,10 @@ on(type: 'connect' | 'close', callback: Callback\<void\>): void
 
 订阅TLSSocket的连接事件或关闭事件。使用callback方式作为异步方法。
 
+> **说明：**
+>
+> bind方法调用成功后，才可调用此方法。
+
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -6112,11 +6283,22 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
-tls.on('connect', () => {
-  console.log("on connect success")
-});
-tls.on('close', () => {
-  console.log("on close success")
+let bindAddr: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+tls.bind(bindAddr, (err: BusinessError) => {
+  if (err) {
+    console.log('bind fail');
+    return;
+  }
+  console.log('bind success');
+  tls.on('connect', () => {
+    console.log("on connect success")
+  });
+  tls.on('close', () => {
+    console.log("on close success")
+  });
 });
 ```
 
@@ -6169,6 +6351,10 @@ on(type: 'error', callback: ErrorCallback): void
 
 订阅TLSSocket连接的error事件。使用callback方式作为异步方法。
 
+> **说明：**
+>
+> bind方法调用成功后，才可调用此方法。
+
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -6191,8 +6377,19 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
-tls.on('error', (err: BusinessError) => {
-  console.log("on error, err:" + JSON.stringify(err))
+let bindAddr: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+tls.bind(bindAddr, (err: BusinessError) => {
+  if (err) {
+    console.log('bind fail');
+    return;
+  }
+  console.log('bind success');
+  tls.on('error', (err: BusinessError) => {
+    console.error("on error, err:" + JSON.stringify(err))
+  });
 });
 ```
 
@@ -6225,7 +6422,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 let callback = (err: BusinessError) => {
-  console.log("on error, err:" + JSON.stringify(err));
+  console.error("on error, err:" + JSON.stringify(err));
 }
 tls.on('error', callback);
 // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
@@ -6287,7 +6484,7 @@ let bindAddr: socket.NetAddress = {
 }
 tlsTwoWay.bind(bindAddr, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
@@ -6319,7 +6516,7 @@ tlsTwoWay.connect(tlsConnectOptions, (err: BusinessError) => {
 let tlsOneWay: socket.TLSSocket = socket.constructTLSSocketInstance(); // One way authentication
 tlsOneWay.bind(bindAddr, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
@@ -6353,7 +6550,7 @@ let bindAddr: socket.NetAddress = {
 }
 tlsTwoWay.bind(bindAddr, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
@@ -6395,7 +6592,7 @@ tlsTwoWay.connect(tlsConnectOptions, (err: BusinessError) => {
 let tlsOneWay: socket.TLSSocket = socket.constructTLSSocketInstance(); // 单向认证
 tlsOneWay.bind(bindAddr, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
@@ -6483,7 +6680,7 @@ let bindAddr: socket.NetAddress = {
 }
 tlsTwoWay.bind(bindAddr, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
@@ -6511,13 +6708,13 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsTwoWay.connect(tlsConnectOptions).then(() => {
   console.log("connect successfully");
 }).catch((err: BusinessError) => {
-  console.log("connect failed " + JSON.stringify(err));
+  console.error("connect failed " + JSON.stringify(err));
 });
 
 let tlsOneWay: socket.TLSSocket = socket.constructTLSSocketInstance(); // One way authentication
 tlsOneWay.bind(bindAddr, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
@@ -6537,7 +6734,7 @@ let tlsOneWayConnectOptions: socket.TLSConnectOptions = {
 tlsOneWay.connect(tlsOneWayConnectOptions).then(() => {
   console.log("connect successfully");
 }).catch((err: BusinessError) => {
-  console.log("connect failed " + JSON.stringify(err));
+  console.error("connect failed " + JSON.stringify(err));
 });
 ```
 
@@ -6553,7 +6750,7 @@ let bindAddr: socket.NetAddress = {
 }
 tlsTwoWay.bind(bindAddr, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
@@ -6591,13 +6788,13 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsTwoWay.connect(tlsConnectOptions).then(() => {
   console.log("connect successfully");
 }).catch((err: BusinessError) => {
-  console.log("connect failed " + JSON.stringify(err));
+  console.error("connect failed " + JSON.stringify(err));
 });
 
 let tlsOneWay: socket.TLSSocket = socket.constructTLSSocketInstance(); // 单向认证
 tlsOneWay.bind(bindAddr, (err: BusinessError) => {
   if (err) {
-    console.log('bind fail');
+    console.error('bind fail');
     return;
   }
   console.log('bind success');
@@ -6623,7 +6820,7 @@ let tlsOneWayConnectOptions: socket.TLSConnectOptions = {
 tlsOneWay.connect(tlsOneWayConnectOptions).then(() => {
   console.log("connect successfully");
 }).catch((err: BusinessError) => {
-  console.log("connect failed " + JSON.stringify(err));
+  console.error("connect failed " + JSON.stringify(err));
 });
 ```
 
@@ -6657,7 +6854,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getRemoteAddress((err: BusinessError, data: socket.NetAddress) => {
   if (err) {
-    console.log('getRemoteAddress fail');
+    console.error('getRemoteAddress fail');
     return;
   }
   console.log('getRemoteAddress success:' + JSON.stringify(data));
@@ -6695,7 +6892,7 @@ let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getRemoteAddress().then(() => {
   console.log('getRemoteAddress success');
 }).catch((err: BusinessError) => {
-  console.log('getRemoteAddress fail');
+  console.error('getRemoteAddress fail');
 });
 ```
 
@@ -6730,7 +6927,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getCertificate((err: BusinessError, data: socket.X509CertRawData) => {
   if (err) {
-    console.log("getCertificate callback error = " + err);
+    console.error("getCertificate callback error = " + err);
   } else {
     console.log("getCertificate callback = " + data);
   }
@@ -6769,7 +6966,7 @@ import { util } from '@kit.ArkTS';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getCertificate().then((data: socket.X509CertRawData) => {
   const decoder = util.TextDecoder.create();
-  const str = decoder.decodeWithStream(data.data);
+  const str = decoder.decodeToString(data.data);
   console.log("getCertificate: " + str);
 }).catch((err: BusinessError) => {
   console.error("failed" + err);
@@ -6807,10 +7004,10 @@ import { util } from '@kit.ArkTS';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getRemoteCertificate((err: BusinessError, data: socket.X509CertRawData) => {
   if (err) {
-    console.log("getRemoteCertificate callback error = " + err);
+    console.error("getRemoteCertificate callback error = " + err);
   } else {
     const decoder = util.TextDecoder.create();
-    const str = decoder.decodeWithStream(data.data);
+    const str = decoder.decodeToString(data.data);
     console.log("getRemoteCertificate callback = " + str);
   }
 });
@@ -6847,7 +7044,7 @@ import { util } from '@kit.ArkTS';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getRemoteCertificate().then((data: socket.X509CertRawData) => {
   const decoder = util.TextDecoder.create();
-  const str = decoder.decodeWithStream(data.data);
+  const str = decoder.decodeToString(data.data);
   console.log("getRemoteCertificate:" + str);
 }).catch((err: BusinessError) => {
   console.error("failed" + err);
@@ -6885,7 +7082,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getProtocol((err: BusinessError, data: string) => {
   if (err) {
-    console.log("getProtocol callback error = " + err);
+    console.error("getProtocol callback error = " + err);
   } else {
     console.log("getProtocol callback = " + data);
   }
@@ -6960,7 +7157,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getCipherSuite((err: BusinessError, data: Array<string>) => {
   if (err) {
-    console.log("getCipherSuite callback error = " + err);
+    console.error("getCipherSuite callback error = " + err);
   } else {
     console.log("getCipherSuite callback = " + data);
   }
@@ -7034,7 +7231,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getSignatureAlgorithms((err: BusinessError, data: Array<string>) => {
   if (err) {
-    console.log("getSignatureAlgorithms callback error = " + err);
+    console.error("getSignatureAlgorithms callback error = " + err);
   } else {
     console.log("getSignatureAlgorithms callback = " + data);
   }
@@ -7115,6 +7312,46 @@ tls.getLocalAddress().then((localAddress: socket.NetAddress) => {
 })
 ```
 
+### getSocketFd<sup>16+</sup>
+
+getSocketFd(): Promise\<number\>
+
+获取TLSSocket的文件描述符。使用Promise异步回调。
+
+> **说明：**
+>
+> bind方法调用成功后，才可调用此方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**返回值：**
+
+| 类型                                             | 说明                                       |
+| ----------------------------------------------- | ----------------------------------------- |
+| Promise\<number\> | 以Promise形式返回socket的文件描述符。 |
+
+**示例：**
+
+```ts
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
+let bindAddr: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+tls.bind(bindAddr, (err: BusinessError) => {
+  if (err) {
+    console.error('bind fail');
+    return;
+  }
+  console.log('bind success');
+});
+tls.getSocketFd().then((data: number) => {
+  console.info("tls socket fd: " + data);
+})
+```
+
 ### send<sup>9+</sup>
 
 send(data: string \| ArrayBuffer, callback: AsyncCallback\<void\>): void
@@ -7150,7 +7387,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.send("xxxx", (err: BusinessError) => {
   if (err) {
-    console.log("send callback error = " + err);
+    console.error("send callback error = " + err);
   } else {
     console.log("send success");
   }
@@ -7235,7 +7472,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.close((err: BusinessError) => {
   if (err) {
-    console.log("close callback error = " + err);
+    console.error("close callback error = " + err);
   } else {
     console.log("close success");
   }
@@ -7291,7 +7528,7 @@ TLS连接的操作。
 | address        | [NetAddress](#netaddress)             | 是  |  网关地址。       |
 | secureOptions  | [TLSSecureOptions](#tlssecureoptions9) | 是 | TLS安全相关操作。|
 | ALPNProtocols  | Array\<string\>                         | 否 | ALPN协议，支持["spdy/1", "http/1.1"]，默认为[]。      |
-| skipRemoteValidation<sup>12+</sup>  | boolean                         | 否 | 是否跳过对服务端进行证书认证，默认为false。      |
+| skipRemoteValidation<sup>12+</sup>  | boolean                         | 否 | 是否跳过对服务端进行证书认证，默认为false。true：跳过对服务端进行证书认证；false：不跳过对服务端进行证书认证。      |
 | proxy<sup>18+</sup>   | [ProxyOptions](#proxyoptions18) | 否   | 使用的代理信息，默认不使用代理。 |
 
 ## TLSSecureOptions<sup>9+</sup>
@@ -7307,10 +7544,10 @@ TLS安全相关操作。当本地证书cert和私钥key不为空时，开启双�
 | key                   | string                                                  | 否 | 本地数字证书的私钥。                   |
 | password                | string                                                  | 否 | 读取私钥的密码。                      |
 | protocols             | [Protocol](#protocol9) \|Array\<[Protocol](#protocol9)\> | 否 | TLS的协议版本，默认为"TLSv1.2"。                  |
-| useRemoteCipherPrefer | boolean                                                 | 否 | 优先使用对等方的密码套件。        |
+| useRemoteCipherPrefer | boolean                                                 | 否 | 优先使用对等方的密码套件。true：优先使用对等方的密码套件；false：不优先使用对等方的密码套件。        |
 | signatureAlgorithms   | string                                                 | 否 | 通信过程中的签名算法，默认为"" 。              |
 | cipherSuite           | string                                                 | 否 | 通信过程中的加密套件，默认为"" 。              |
-| isBidirectionalAuthentication<sup>12+</sup>           | boolean                                                 | 否 | 用于设置双向认证，默认为false。              |
+| isBidirectionalAuthentication<sup>12+</sup>           | boolean                                                 | 否 | 用于设置双向认证，默认为false。true：设置双向认证；false：不设置双向认证。              |
 
 ## Protocol<sup>9+</sup>
 
@@ -7426,7 +7663,7 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
   skipRemoteValidation: false
 }
 tlsServer.listen(tlsConnectOptions, (err: BusinessError) => {
-  console.log("listen callback error" + err);
+  console.error("listen callback error" + err);
 });
 ```
 
@@ -7499,7 +7736,7 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed: " + JSON.stringify(err));
+  console.error("failed: " + JSON.stringify(err));
 });
 ```
 
@@ -7557,11 +7794,11 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed: " + JSON.stringify(err));
+  console.error("failed: " + JSON.stringify(err));
 });
 tlsServer.getState((err: BusinessError, data: socket.SocketStateBase) => {
   if (err) {
-    console.log('getState fail');
+    console.error('getState fail');
     return;
   }
   console.log('getState success:' + JSON.stringify(data));
@@ -7621,12 +7858,12 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed: " + JSON.stringify(err));
+  console.error("failed: " + JSON.stringify(err));
 });
 tlsServer.getState().then(() => {
   console.log('getState success');
 }).catch((err: BusinessError) => {
-  console.log('getState fail');
+  console.error('getState fail');
 });
 ```
 
@@ -7685,7 +7922,7 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed: " + JSON.stringify(err));
+  console.error("failed: " + JSON.stringify(err));
 });
 
 interface SocketLinger {
@@ -7698,14 +7935,14 @@ let tcpExtraOptions: socket.TCPExtraOptions = {
   OOBInline: true,
   TCPNoDelay: true,
   socketLinger: { on: true, linger: 10 } as SocketLinger,
-  receiveBufferSize: 1000,
-  sendBufferSize: 1000,
+  receiveBufferSize: 8192,
+  sendBufferSize: 8192,
   reuseAddress: true,
   socketTimeout: 3000
 }
 tlsServer.setExtraOptions(tcpExtraOptions, (err: BusinessError) => {
   if (err) {
-    console.log('setExtraOptions fail');
+    console.error('setExtraOptions fail');
     return;
   }
   console.log('setExtraOptions success');
@@ -7772,7 +8009,7 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed: " + JSON.stringify(err));
+  console.error("failed: " + JSON.stringify(err));
 });
 
 interface SocketLinger {
@@ -7785,15 +8022,15 @@ let tcpExtraOptions: socket.TCPExtraOptions = {
   OOBInline: true,
   TCPNoDelay: true,
   socketLinger: { on: true, linger: 10 } as SocketLinger,
-  receiveBufferSize: 1000,
-  sendBufferSize: 1000,
+  receiveBufferSize: 8192,
+  sendBufferSize: 8192,
   reuseAddress: true,
   socketTimeout: 3000
 }
 tlsServer.setExtraOptions(tcpExtraOptions).then(() => {
   console.log('setExtraOptions success');
 }).catch((err: BusinessError) => {
-  console.log('setExtraOptions fail');
+  console.error('setExtraOptions fail');
 });
 ```
 
@@ -7853,14 +8090,14 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed: " + JSON.stringify(err));
+  console.error("failed: " + JSON.stringify(err));
 });
 tlsServer.getCertificate((err: BusinessError, data: socket.X509CertRawData) => {
   if (err) {
-    console.log("getCertificate callback error = " + err);
+    console.error("getCertificate callback error = " + err);
   } else {
     const decoder = util.TextDecoder.create();
-    const str = decoder.decodeWithStream(data.data);
+    const str = decoder.decodeToString(data.data);
     console.log("getCertificate callback: " + str);
   }
 });
@@ -7921,11 +8158,11 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed: " + JSON.stringify(err));
+  console.error("failed: " + JSON.stringify(err));
 });
 tlsServer.getCertificate().then((data: socket.X509CertRawData) => {
   const decoder = util.TextDecoder.create();
-  const str = decoder.decodeWithStream(data.data);
+  const str = decoder.decodeToString(data.data);
   console.log("getCertificate: " + str);
 }).catch((err: BusinessError) => {
   console.error("failed" + err);
@@ -7987,11 +8224,11 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed: " + JSON.stringify(err));
+  console.error("failed: " + JSON.stringify(err));
 });
 tlsServer.getProtocol((err: BusinessError, data: string) => {
   if (err) {
-    console.log("getProtocol callback error = " + err);
+    console.error("getProtocol callback error = " + err);
   } else {
     console.log("getProtocol callback = " + data);
   }
@@ -8052,7 +8289,7 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed: " + JSON.stringify(err));
+  console.error("failed: " + JSON.stringify(err));
 });
 tlsServer.getProtocol().then((data: string) => {
   console.log(data);
@@ -8153,7 +8390,7 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed: " + JSON.stringify(err));
+  console.error("failed: " + JSON.stringify(err));
 });
 tlsServer.on('connect', (data: socket.TLSSocketConnection) => {
   console.log(JSON.stringify(data))
@@ -8214,7 +8451,7 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed: " + JSON.stringify(err));
+  console.error("failed: " + JSON.stringify(err));
 });
 
 let callback = (data: socket.TLSSocketConnection) => {
@@ -8279,10 +8516,10 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed: " + JSON.stringify(err));
+  console.error("failed: " + JSON.stringify(err));
 });
 tlsServer.on('error', (err: BusinessError) => {
-  console.log("on error, err:" + JSON.stringify(err))
+  console.error("on error, err:" + JSON.stringify(err))
 });
 ```
 
@@ -8340,11 +8577,11 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed: " + JSON.stringify(err));
+  console.error("failed: " + JSON.stringify(err));
 });
 
 let callback = (err: BusinessError) => {
-  console.log("on error, err:" + JSON.stringify(err));
+  console.error("on error, err:" + JSON.stringify(err));
 }
 tlsServer.on('error', callback);
 // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
@@ -8422,13 +8659,13 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed" + err);
+  console.error("failed" + err);
 });
 
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.send('Hello, client!', (err: BusinessError) => {
     if (err) {
-      console.log('send fail');
+      console.error('send fail');
       return;
     }
     console.log('send success');
@@ -8496,14 +8733,14 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed" + err);
+  console.error("failed" + err);
 });
 
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.send('Hello, client!').then(() => {
     console.log('send success');
   }).catch((err: BusinessError) => {
-    console.log('send fail');
+    console.error('send fail');
   });
 });
 ```
@@ -8561,13 +8798,13 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed" + err);
+  console.error("failed" + err);
 });
 
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.close((err: BusinessError) => {
     if (err) {
-      console.log('close fail');
+      console.error('close fail');
       return;
     }
     console.log('close success');
@@ -8627,13 +8864,13 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed" + err);
+  console.error("failed" + err);
 });
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.close().then(() => {
     console.log('close success');
   }).catch((err: BusinessError) => {
-    console.log('close fail');
+    console.error('close fail');
   });
 });
 ```
@@ -8689,12 +8926,12 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed" + err);
+  console.error("failed" + err);
 });
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.getRemoteAddress((err: BusinessError, data: socket.NetAddress) => {
     if (err) {
-      console.log('getRemoteAddress fail');
+      console.error('getRemoteAddress fail');
       return;
     }
     console.log('getRemoteAddress success:' + JSON.stringify(data));
@@ -8752,7 +8989,7 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed" + err);
+  console.error("failed" + err);
 });
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.getRemoteAddress().then((data: socket.NetAddress) => {
@@ -8815,15 +9052,15 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed" + err);
+  console.error("failed" + err);
 });
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.getRemoteCertificate((err: BusinessError, data: socket.X509CertRawData) => {
     if (err) {
-      console.log("getRemoteCertificate callback error: " + err);
+      console.error("getRemoteCertificate callback error: " + err);
     } else {
       const decoder = util.TextDecoder.create();
-      const str = decoder.decodeWithStream(data.data);
+      const str = decoder.decodeToString(data.data);
       console.log("getRemoteCertificate callback: " + str);
     }
   });
@@ -8881,12 +9118,12 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed" + err);
+  console.error("failed" + err);
 });
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.getRemoteCertificate().then((data: socket.X509CertRawData) => {
     const decoder = util.TextDecoder.create();
-    const str = decoder.decodeWithStream(data.data);
+    const str = decoder.decodeToString(data.data);
     console.log("getRemoteCertificate success: " + str);
   }).catch((err: BusinessError) => {
     console.error("failed" + err);
@@ -8947,12 +9184,12 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed" + err);
+  console.error("failed" + err);
 });
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.getCipherSuite((err: BusinessError, data: Array<string>) => {
     if (err) {
-      console.log("getCipherSuite callback error = " + err);
+      console.error("getCipherSuite callback error = " + err);
     } else {
       console.log("getCipherSuite callback = " + data);
     }
@@ -9012,7 +9249,7 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed" + err);
+  console.error("failed" + err);
 });
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.getCipherSuite().then((data: Array<string>) => {
@@ -9074,12 +9311,12 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed" + err);
+  console.error("failed" + err);
 });
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.getSignatureAlgorithms((err: BusinessError, data: Array<string>) => {
     if (err) {
-      console.log("getSignatureAlgorithms callback error = " + err);
+      console.error("getSignatureAlgorithms callback error = " + err);
     } else {
       console.log("getSignatureAlgorithms callback = " + data);
     }
@@ -9137,7 +9374,7 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed" + err);
+  console.error("failed" + err);
 });
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.getSignatureAlgorithms().then((data: Array<string>) => {
@@ -9264,7 +9501,7 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed" + err);
+  console.error("failed" + err);
 });
 
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
@@ -9332,7 +9569,7 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed" + err);
+  console.error("failed" + err);
 });
 
 let callback = (value: socket.SocketMessageInfo) => {
@@ -9404,7 +9641,7 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed" + err);
+  console.error("failed" + err);
 });
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.on('close', () => {
@@ -9463,7 +9700,7 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed" + err);
+  console.error("failed" + err);
 });
 
 let callback = () => {
@@ -9527,12 +9764,12 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed" + err);
+  console.error("failed" + err);
 });
 
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.on('error', (err: BusinessError) => {
-    console.log("on error, err:" + JSON.stringify(err))
+    console.error("on error, err:" + JSON.stringify(err))
   });
 });
 ```
@@ -9587,11 +9824,11 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
 tlsServer.listen(tlsConnectOptions).then(() => {
   console.log("listen callback success");
 }).catch((err: BusinessError) => {
-  console.log("failed" + err);
+  console.error("failed" + err);
 });
 
 let callback = (err: BusinessError) => {
-  console.log("on error, err:" + JSON.stringify(err));
+  console.error("on error, err:" + JSON.stringify(err));
 }
 tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.on('error', callback);

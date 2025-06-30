@@ -2,18 +2,18 @@
 
 ## 使用场景
 
-在用户使用到排序的场景下，提供符合用户使用习惯的排序方法展示内容。例如，设置中“系统和语言”的语言列表，列表需要按照当地用户习惯进行排序。
+在用户使用到排序的场景下，提供符合用户使用习惯的排序方法展示内容。例如，设置中“系统和语言”的语言列表，需要按照当地用户习惯进行排序。
 
 ## 开发步骤
 
-多语言列表按照本地习惯进行排序，通过[Collator](../reference/apis-localization-kit/js-apis-intl.md#collator8)类的[compare](../reference/apis-localization-kit/js-apis-intl.md#compare8)接口实现，具体开发步骤如下。
+多语言列表按照当地用户习惯进行排序，通过[Collator](../reference/apis-localization-kit/js-apis-intl.md#collator8)类的[compare](../reference/apis-localization-kit/js-apis-intl.md#compare8)接口实现，具体开发步骤如下：
 
 1. 导入模块。
    ```ts
    import { intl } from '@kit.LocalizationKit';
    ```
 
-2. 创建collator排序对象。
+2. 创建Collator排序对象。
    构造函数支持通过CollatorOptions设置不同的排序格式，具体请参考表1。
    ```ts
    let collator: intl.Collator = new intl.Collator(locale: string | Array<string>, options?: CollatorOptions);
@@ -37,17 +37,17 @@
 |  | best fit | 准确匹配 |  | 
 | usage | sort | 用作排序 |  | 
 |  | search | 用作查找匹配的字符串 |  | 
-| sensitivity | base | 不同的字母比较不相等 | 例如: a ≠ b, a = á, a = A. | 
-|  | accent | 不同的字母或读音比较不相等 | 例如: a ≠ b, a ≠ á, a = A. | 
-|  | case | 不同的字母或同一字母大小写比较不相等 | 例如: a ≠ b, a = á, a ≠ A. | 
-|  | variant | 不同的字母或读音及其它有区别的标志或大小写都是不相等的 | 例如: a ≠ b, a ≠ á, a ≠ A. | 
-| ignorePunctuation | true | 忽略标点 | a, b = ab | 
-|  | false | 不忽略标点 | a, b &lt; ab | 
-| numeric | true | 使用数字排序 | 1 &lt; 2 &lt; 10 &lt; 11 | 
-|  | false | 不使用数字排序 | 1 &lt; 10 &lt; 11 &lt; 2 | 
-| caseFirst | upper | 大写排前面 | ab, aB, AB, Ab =&gt; AB &lt; Ab &lt; aB &lt; ab | 
-|  | lower | 小写排前面 | ab, aB, AB, Ab =&gt; ab &lt; aB &lt; Ab &lt; AB | 
-|  | false | 不区分首字母大小写 | ab, aB, AB, Ab =&gt; ab &lt; aB &lt; Ab &lt; AB | 
+| sensitivity | base | 不同的字母比较不相等 | 'a' ≠ 'b', 'a' = 'á', 'a' = 'A' | 
+|  | accent | 不同的字母或不同读音的相同字母比较不相等 | 'a' ≠ 'b', 'a' ≠ 'á', 'a' = 'A' | 
+|  | case | 不同的字母或相同字母大小写比较不相等 | 'a' ≠ 'b', 'a' = 'á', 'a' ≠ 'A' | 
+|  | variant | 不同的字母或读音及其它有区别的标志或大小写都是不相等的 | 'a' ≠ 'b', 'a' ≠ 'á', 'a' ≠ 'A' | 
+| ignorePunctuation | true | 忽略标点 | 'a,b' = 'ab' | 
+|  | false | 不忽略标点 | 'a,b' &lt; 'ab' | 
+| numeric | true | 使用数字排序 | '1' &lt; '2' &lt; '10' &lt; '11' | 
+|  | false | 不使用数字排序 | '1' &lt; '10' &lt; '11' &lt; '2' | 
+| caseFirst | upper | 大写排前面 | 'AB' &lt; 'Ab' &lt; 'aB' &lt; 'ab' | 
+|  | lower | 小写排前面 | 'ab' &lt; 'aB' &lt; 'Ab' &lt; 'AB' | 
+|  | false | 不区分首字母大小写 | 'ab' &lt; 'aB' &lt; 'Ab' &lt; 'AB' | 
 | collation | big5han | 拉丁字母使用的拼音排序 |  | 
 |  | compat | 兼容性排序，仅用于阿拉伯语 |  | 
 |  | dict | 词典风格排序，仅用于僧伽罗语 |  | 

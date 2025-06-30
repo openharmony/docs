@@ -1,6 +1,6 @@
 # Using ImageSource to Decode Pictures
 
-Image decoding refers to the process of decoding an archived image in a supported format (JPEG and HEIF currently) into a [picture](image-overview.md).  
+Image decoding refers to the process of decoding an image in a supported format (JPEG and HEIF currently) into a [picture](image-overview.md). Currently, the supported image formats include JPEG and HEIF.
 
 ## How to Develop
 
@@ -13,7 +13,7 @@ Read [Image](../../reference/apis-image-kit/js-apis-image.md#imagesource) for AP
    ```
 
 2. Obtain an image.
-   - Method 1: Obtain the sandbox path. For details about how to obtain the sandbox path, see [Obtaining Application File Paths](../../application-models/application-context-stage.md#obtaining-application-file-paths). For details about the application sandbox and how to push files to the application sandbox directory, see [File Management](../../file-management/app-sandbox-directory.md).
+   - Method 1: Directly obtain the image through the sandbox path. This method applies only to images in the application sandbox path. For details about how to obtain the sandbox path, see [Obtaining Application File Paths](../../application-models/application-context-stage.md#obtaining-application-file-paths). For details about the application sandbox and how to push files to the application sandbox directory, see [File Management](../../file-management/app-sandbox-directory.md).
 
       ```ts
       const context : Context = getContext(this);
@@ -144,81 +144,6 @@ Read [Image](../../reference/apis-image-kit/js-apis-image.md#imagesource) for AP
    ```
 
 6. Release the **Picture** instance.
-
-   ```ts
-   picture.release();
-   ```
-
-## Sample Code - Decoding an Image in Resource Files
-
-1. Obtain a resource manager.
-
-   ```ts
-   const context : Context = getContext(this);
-   // Obtain a resource manager.
-   const resourceMgr : resourceManager.ResourceManager = context.resourceManager;
-   ```
-
-2. Create an **ImageSource** instance.
-   - Create an **ImageSource** instance by using the array buffer of **test.jpg** in the **rawfile** folder.
-
-     ```ts
-      resourceMgr.getRawFileContent('test.jpg').then((fileData : Uint8Array) => {
-         console.log("Succeeded in getting RawFileContent")
-         // Obtain the array buffer of the image.
-         const buffer = fileData.buffer.slice(0);
-         const imageSource : image.ImageSource = image.createImageSource(buffer);
-      }).catch((err : BusinessError) => {
-         console.error("Failed to get RawFileContent")
-      });
-     ```
-
-   - Create an **ImageSource** instance by using the raw file descriptor of **test.jpg** in the **rawfile** folder.
-
-     ```ts
-      resourceMgr.getRawFd('test.jpg').then((rawFileDescriptor : resourceManager.RawFileDescriptor) => {
-         console.log("Succeeded in getting RawFd")
-         const imageSource : image.ImageSource = image.createImageSource(rawFileDescriptor);
-      }).catch((err : BusinessError) => {
-         console.error("Failed to get RawFd")
-      });
-     ```
-
-3. Create a **Picture** instance.
-
-   ```ts
-   let options: image.DecodingOptionsForPicture = {
-      desiredAuxiliaryPictures: [image.AuxiliaryPictureType.GAINMAP] // GAINMAP indicates the type of the auxiliary picture to be decoded.
-   };
-   imageSource.createPicture(options).then((picture: image.Picture) => {
-      console.log("Create picture succeeded.")
-   }).catch((err : BusinessError) => {
-      console.error("Create picture failed.")
-   });
-   ```
-
-4. Manipulate the picture, for example, obtaining an auxiliary picture. For details about how to manipulate a picture and auxiliary picture, see [Image API](../../reference/apis-image-kit/js-apis-image.md#picture13).
-
-   ```ts
-   // Obtain an auxiliary picture.
-   let type: image.AuxiliaryPictureType = image.AuxiliaryPictureType.GAINMAP;
-   let auxPicture: image.AuxiliaryPicture | null = picture.getAuxiliaryPicture(type);
-   // Obtain the information of the auxiliary picture.
-   let auxinfo: image.AuxiliaryPictureInfo = auxPicture.getAuxiliaryPictureInfo();
-   console.info('GetAuxiliaryPictureInfo Type: ' + auxinfo.auxiliaryPictureType +
-      ' height: ' + auxinfo.size.height + ' width: ' + auxinfo.size.width +
-      ' rowStride: ' +  auxinfo.rowStride +  ' pixelFormat: ' + auxinfo.pixelFormat +
-      ' colorSpace: ' +  auxinfo.colorSpace);
-   // Read data of the auxiliary picture and write the data to an ArrayBuffer.
-   auxPicture.readPixelsToBuffer().then((pixelsBuffer: ArrayBuffer) => {
-      console.info('Read pixels to buffer success.');
-   }).catch((error: BusinessError) => {
-      console.error('Read pixels to buffer failed error.code: ' + JSON.stringify(error.code) + ' ,error.message:' + JSON.stringify(error.message));
-   });
-   auxPicture.release();
-   ```
-
-5. Release the **Picture** instance.
 
    ```ts
    picture.release();

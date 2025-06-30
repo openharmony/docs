@@ -1,7 +1,7 @@
 # HMAC (C/C++)
 
 
-A Hash-based Message Authentication Code (HMAC) is a specific type of message authentication code (MAC) involving a cryptographic has function and a secret cryptographic key. For details about the scenarios and supported algorithm specifications, see [HMAC Overview and Algorithm Specifications](huks-hmac-overview.md).
+A Hash-based Message Authentication Code (HMAC) is a specific type of message authentication code (MAC) involving a cryptographic hash function and a secret cryptographic key. For details about the scenarios and supported algorithm specifications, see [HMAC Overview and Algorithm Specifications](huks-hmac-overview.md).
 
 ## Add the dynamic library in the CMake script.
 ```txt

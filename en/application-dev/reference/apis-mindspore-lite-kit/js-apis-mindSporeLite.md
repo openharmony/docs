@@ -303,7 +303,7 @@ Loads the training model file based on the specified path. This API uses a promi
 | Name  | Type                   | Mandatory| Description                                          |
 | -------- | ----------------------- | ---- | ---------------------------------------------- |
 | model    | string                  | Yes  | Complete path of the input model.                          |
-| trainCfg | [TrainCfg](#traincfg12) | No  | Model training configuration. The default value is an array of the default values of attributes in **TrainCfg**.  |
+| trainCfg | [TrainCfg](#traincfg12) | No  | Configure model training parameters. The default value is an array of the default values of attributes in **TrainCfg**.  |
 | context  | [Context](#context)     | No  | Configuration information of the running environment. By default, **CpuDevice** is used for initialization.|
 
 **Return value**
@@ -335,7 +335,7 @@ Loads a training model from the memory buffer. This API uses a promise to return
 | Name  | Type                   | Mandatory| Description                                         |
 | -------- | ----------------------- | ---- | --------------------------------------------- |
 | model    | ArrayBuffer             | Yes  | Memory accommodating the training model.                         |
-| trainCfg | [TrainCfg](#traincfg12) | No  | Model training configuration. The default value is an array of the default values of attributes in **TrainCfg**. |
+| trainCfg | [TrainCfg](#traincfg12) | No  | Configure model training parameters. The default value is an array of the default values of attributes in **TrainCfg**. |
 | context  | [Context](#context)     | No  | Configuration information of the running environment. By default, **CpuDevice** is used for initialization.|
 
 **Return value**
@@ -374,7 +374,7 @@ Loads the training model file from the file descriptor. This API uses a promise 
 | Name  | Type                   | Mandatory| Description                                         |
 | -------- | ----------------------- | ---- | --------------------------------------------- |
 | model    | number                  | Yes  | File descriptor of the training model.                       |
-| trainCfg | [TrainCfg](#traincfg12) | No  | Model training configuration. The default value is an array of the default values of attributes in **TrainCfg**. |
+| trainCfg | [TrainCfg](#traincfg12) | No  | Configure model training parameters. The default value is an array of the default values of attributes in **TrainCfg**. |
 | context  | [Context](#context)     | No  | Configuration information of the running environment. By default, **CpuDevice** is used for initialization.|
 
 **Return value**

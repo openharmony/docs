@@ -303,7 +303,7 @@ struct CollapseAndExpand {
 ## 参考
 [显示动画](../application-dev/reference/apis-arkui/arkui-ts/ts-explicit-animation.md)
 
-[@Provide和@Consume：与后代组件双向同步](../application-dev/quick-start/arkts-provide-and-consume.md)
+[@Provide和@Consume：与后代组件双向同步](../application-dev/ui/state-management/arkts-provide-and-consume.md)
 
 [list开发指导](../application-dev/ui/ui-js-components-list.md)
 

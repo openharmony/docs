@@ -1,7 +1,7 @@
 # Vibrator Overview
 
 
-The **vibrator** module extends the native vibrator service via maximizing utilization of vibrator hardware capabilities. By innovatively integrating vibration and interaction, the module takes user interaction efficiency and usability to the next level.
+The **vibrator** module extends the vibrator service via maximizing utilization of vibrator hardware capabilities. By innovatively integrating vibration and interaction, the module takes user interaction efficiency and usability to the next level.
 
 
 ## Working Principles

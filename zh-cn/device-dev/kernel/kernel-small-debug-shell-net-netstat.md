@@ -22,11 +22,11 @@ netstat
 
 ## 特殊说明
 
-shell端暂不支持。
+shell端暂不支持
 
 ## 使用实例
 
-举例：输入netstat
+输入netstat
 
 
 ## 输出说明
@@ -61,4 +61,5 @@ udp     0           0           127.0.0.1:62178         127.0.0.1:62177
 | State                | TCP连接状态，UDP此项无意义。                                 |
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>
 > 形如“========== total sockets 32 ====== unused sockets 22 BootTime 27 s ========== ”，表示一共32个套接字，未使用套接字22个，距系统启动已经过27秒。

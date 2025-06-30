@@ -11,6 +11,7 @@ The OH_NativeBuffer_Smpte2086 struct describes the SMPTE ST 2086 static metadata
 
 **Related module**: [OH_NativeBuffer](_o_h___native_buffer.md)
 
+**Header file**: [buffer_common.h](buffer__common_8h.md)
 
 ## Summary
 

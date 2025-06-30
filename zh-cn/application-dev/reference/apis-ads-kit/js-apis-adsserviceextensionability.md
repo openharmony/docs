@@ -13,6 +13,8 @@ import { RespCallback } from '@kit.AdsKit';
 
 ## RespCallback
 
+### (respData: Map&lt;string, Array&lt;advertising.Advertisement&gt;&gt;)
+
 (respData: Map&lt;string, Array&lt;advertising.Advertisement&gt;&gt;): void
 
 广告请求回调。
@@ -21,9 +23,9 @@ import { RespCallback } from '@kit.AdsKit';
 
 **参数：**
 
-| 参数名      | 类型                                                                                                | 必填 | 说明        | 
-|----------|---------------------------------------------------------------------------------------------------|----|-----------|
-| respData | Map&lt;string, Array&lt;advertising.[Advertisement](js-apis-advertising.md#advertisement)&gt;&gt; | 是  | 广告请求回调数据。 | 
+| 参数名   | 类型                                                                                              | 必填 | 说明              |
+|----------|---------------------------------------------------------------------------------------------------|-----|-----------------|
+| respData | Map&lt;string, Array&lt;advertising.[Advertisement](js-apis-advertising.md#advertisement)&gt;&gt; | 是   | 广告请求回调数据。 |
 
 **示例：**
 

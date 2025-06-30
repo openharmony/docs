@@ -34,7 +34,7 @@ Creates a time picker, which is in 24-hour format by default.
 
 | Name                | Type                                           | Mandatory| Description                                                        |
 | -------------------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| selected             | Date                                            | No  | Time of the selected item.<br>Default value: current system time<br>Since API version 10, this parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| selected             | Date                                            | No  | Time of the selected item.<br>Default value: current system time<br>Since API version 10, this parameter supports two-way binding through [$$](../../../ui/state-management/arkts-two-way-sync.md).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | format<sup>11+</sup> | [TimePickerFormat](#timepickerformat11)| No  | Time format.<br>Default value: **TimePickerFormat.HOUR_MINUTE**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | start<sup>18+</sup>  | Date | No  | Start time of the time picker.<br>Default value: **Date(0, 0, 0, 0, 0, 0)**; only the hour and minute settings take effect.<br>If both start and end are set to non-default values, the loop feature is disabled.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 | end<sup>18+</sup>    | Date | No  | End time of the time picker.<br>Default value: **Date(0, 0, 0, 23, 59, 59)**; only the hour and minute settings take effect.<br>If both start and end are set to non-default values, the loop feature is disabled.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
@@ -112,7 +112,7 @@ Sets whether to display time in 24-hour format. When the display time is in 12-h
 
 useMilitaryTime(isMilitaryTime: Optional\<boolean>)
 
-Sets whether to display time in 24-hour format. Compared to [useMilitaryTime](#usemilitarytime), the **isMilitaryTime** parameter supports the **undefined** type.
+Sets whether to display time in 24-hour format. Compared to [useMilitaryTime](#usemilitarytime), this API supports the **undefined** type for the **isMilitaryTime** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -144,7 +144,7 @@ Sets the font color, font size, and font weight for the top and bottom items.
 
 disappearTextStyle(style: Optional\<PickerTextStyle>)
 
-Sets the font color, font size, and font weight for the top and bottom items. Compared to [disappearTextStyle](#disappeartextstyle10)<sup>10+</sup>, the **style** parameter supports the **undefined** type.
+Sets the font color, font size, and font weight for the top and bottom items. Compared to [disappearTextStyle](#disappeartextstyle10)<sup>10+</sup>, this API supports the **undefined** type for the **style** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -176,7 +176,7 @@ Sets the font color, font size, and font weight for all items except the top, bo
 
 textStyle(style: Optional\<PickerTextStyle>)
 
-Sets the font color, font size, and font weight for all items except the top, bottom, and selected items. Compared to [textStyle](#textstyle10)<sup>10+</sup>, the **style** parameter supports the **undefined** type.
+Sets the font color, font size, and font weight for all items except the top, bottom, and selected items. Compared to [textStyle](#textstyle10)<sup>10+</sup>, this API supports the **undefined** type for the **style** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -208,7 +208,7 @@ Sets the font color, font size, and font weight for the selected item.
 
 selectedTextStyle(style: Optional\<PickerTextStyle>)
 
-Sets the font color, font size, and font weight for the selected item. Compared to [selectedTextStyle](#selectedtextstyle10)<sup>10+</sup>, the **style** parameter supports the **undefined** type.
+Sets the font color, font size, and font weight for the selected item. Compared to [selectedTextStyle](#selectedtextstyle10)<sup>10+</sup>, this API supports the **undefined** type for the **style** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -240,7 +240,7 @@ Sets whether to enable the loop mode.
 
 loop(isLoop: Optional\<boolean>)
 
-Sets whether to enable the loop mode. Compared to [loop](#loop11)<sup>11+</sup>, the **isLoop** parameter supports the **undefined** type.
+Sets whether to enable the loop mode. Compared to [loop](#loop11)<sup>11+</sup>, this API supports the **undefined** type for the **isLoop** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -272,7 +272,7 @@ Sets whether to display a leading zero for the hours, minutes, and seconds.
 
 dateTimeOptions(timeFormat: Optional\<DateTimeOptions>)
 
-Sets whether to display a leading zero for the hours, minutes, and seconds. Compared to [dateTimeOptions](#datetimeoptions12)<sup>12+</sup>, the **timeFormat** parameter supports the **undefined** type.
+Sets whether to display a leading zero for the hours, minutes, and seconds. Compared to [dateTimeOptions](#datetimeoptions12)<sup>12+</sup>, this API supports the **undefined** type for the **timeFormat** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -302,7 +302,7 @@ Sets whether to enable haptic feedback.
 
 enableHapticFeedback(enable: Optional\<boolean>)
 
-Sets whether to enable haptic feedback. Compared to [enableHapticFeedback](#enablehapticfeedback12)<sup>12+</sup>, the **enable** parameter supports the **undefined** type.
+Sets whether to enable haptic feedback. Compared to [enableHapticFeedback](#enablehapticfeedback12)<sup>12+</sup>, this API supports the **undefined** type for the **enable** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -378,7 +378,7 @@ Triggered when a time is selected.
 
 onChange(callback: Optional\<OnTimePickerChangeCallback>)
 
-Triggered when the time options in the TimePicker rest on the selected position after scrolling. Compared to [onChange](#onchange), the **callback** parameter supports the **undefined** type.
+Triggered when the time options in the TimePicker rest on the selected position after scrolling. Compared to [onChange](#onchange), this API supports the **undefined** type for the **callback** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 

@@ -10,7 +10,7 @@
 
 当前PixelMap的内存类型包括以下两种。
 
-- DMA_ALLOC：ION内存。IPC耗时同样较短，但无需纹理上传。
+- DMA_ALLOC：DMA内存。IPC耗时同样较短，但无需纹理上传。
 - SHARE_MEMORY：共享内存。IPC耗时较少，但需要进行纹理上传。
 
 鉴于当前的解码接口内存分配策略无法满足某些场景的需求，系统提供了[OH_ImageSourceNative_CreatePixelmapUsingAllocator](../../reference/apis-image-kit/_image___native_module.md#oh_imagesourcenative_createpixelmapusingallocator)接口，以便用户能够自定义内存分配类型进行解码。
@@ -80,10 +80,10 @@
 
 stride（步幅）描述了图片在内存中每一行像素数据的存储宽度。它是图片绘制过程中的重要参数，用于正确定位图片数据在内存中的布局。
 
-使用DMA分配机制分配内存时，stride必须满足 硬件对齐要求。
+使用DMA分配机制分配内存时，stride必须满足硬件对齐要求。
 
-- stride 值需为 硬件平台要求字节数的整数倍。
-- 如果通过上面的计算公式得到的 stride 不满足对齐要求时，系统会自动补齐填充数据（padding）。
+- stride值需为硬件平台要求字节数的整数倍。
+- 如果通过上面的计算公式得到的stride不满足对齐要求时，系统会自动补齐填充数据（padding）。
   stride的值可以通过[OH_PixelmapNative_GetImageInfo](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapnative_getimageinfo) 接口获取。
 
 1. 调用[OH_PixelmapNative_GetImageInfo](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapnative_getimageinfo)方法，获取 `OH_Pixelmap_ImageInfo` 对象。

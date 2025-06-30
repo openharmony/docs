@@ -37,7 +37,7 @@
     - [@ohos.arkui.UIContext (UIContext) (System API)](js-apis-arkui-UIContext-sys.md)
     - [@ohos.promptAction (Prompt) (System API)](js-apis-promptAction-sys.md)
     <!--DelEnd-->
-    - arkui
+    - arkui<!--ui-interface-arkui-->
       - [BuilderNode](js-apis-arkui-builderNode.md)
       - [ComponentContent](js-apis-arkui-ComponentContent.md)
       - [FrameNode](js-apis-arkui-frameNode.md)

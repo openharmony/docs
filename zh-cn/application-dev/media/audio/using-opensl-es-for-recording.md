@@ -19,7 +19,7 @@ OpenSL ES中提供了以下的接口，OpenHarmony当前仅实现了部分[接�
 
 以下列表列举了OpenHarmony上已实现的OpenSL ES的接口，具体说明请参考[OpenSL ES](https://www.khronos.org/opensles/)规范：
 
-- **OpenHarmony上支持的SLInterfaceID**：
+- **OpenHarmony上支持的SLInterfaceID：**
 
   | SLInterfaceID | 说明 |
   | -------- | -------- |
@@ -42,7 +42,7 @@ OpenSL ES中提供了以下的接口，OpenHarmony当前仅实现了部分[接�
   - SLresult (\*SetRecordState) (SLRecordItf self, SLuint32 state)
   - SLresult (\*GetRecordState) (SLRecordItf self,SLuint32 \*pState)
 
-- **OpenHarmony上支持的BufferQueue接口**：
+- **OpenHarmony上支持的BufferQueue接口：**
   
   以下接口需引入&lt;OpenSLES_OpenHarmony.h&gt;使用。
 

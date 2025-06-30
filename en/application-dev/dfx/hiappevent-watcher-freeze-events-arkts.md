@@ -37,7 +37,7 @@ The following describes how to subscribe to the freeze event triggered by a butt
     };
     // Set custom parameters for the freeze event.
     hiAppEvent.setEventParam(params, hiAppEvent.domain.OS, hiAppEvent.event.APP_FREEZE).then(() => {
-      hilog.info(0x0000, 'testTag', `HiAppEvent success to set svent param`);
+      hilog.info(0x0000, 'testTag', `HiAppEvent success to set event param`);
     }).catch((err: BusinessError) => {
       hilog.error(0x0000, 'testTag', `HiAppEvent code: ${err.code}, message: ${err.message}`);
     });
@@ -147,3 +147,6 @@ The following describes how to subscribe to the freeze event triggered by a butt
    HiAppEvent eventInfo.params.log_over_limit=false
    HiAppEvent eventInfo.params.test_data=100
    ```
+
+<!--RP1-->
+<!--RP1End-->

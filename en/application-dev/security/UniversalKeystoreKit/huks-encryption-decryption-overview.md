@@ -24,7 +24,7 @@ The key management service specifications include mandatory specifications and o
 | DES/CBC/NoPadding<br>DES/ECB/NoPadding | **IV** is mandatory in CBC mode.| 16+ | Yes|
 | 3DES/CBC/NoPadding<br>3DES/ECB/NoPadding | **IV** is mandatory in CBC mode.| 16+ | Yes|
 
-**Specifications for Mimi-System Devices**
+**Specifications for Mini-System Devices**
 
 <!--Del-->
 Before implementing the specifications for mini-system devices, determine whether your device supports the related specifications.

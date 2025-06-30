@@ -6,21 +6,25 @@
 >
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
-> 本模块功能依赖UI的执行上下文，不可在UI上下文不明确的地方使用，参见[UIContext](./js-apis-arkui-UIContext.md#uicontext)说明。
->
-> 从API version 10开始，可以通过使用[UIContext](./js-apis-arkui-UIContext.md#uicontext)中的[getFont](./js-apis-arkui-UIContext.md#getfont)方法获取当前UI上下文关联的[Font](./js-apis-arkui-UIContext.md#font)对象。
+> 本模块功能依赖UI的执行上下文，不可在[UI上下文不明确](../../ui/arkts-global-interface.md#ui上下文不明确)的地方使用，参见[UIContext](./js-apis-arkui-UIContext.md#uicontext)说明。
 
 ## 导入模块
 
 ```ts
-import { font } from '@kit.ArkUI'
+import { font } from '@kit.ArkUI';
 ```
 
-## font.registerFont
+## font.registerFont<sup>(deprecated)</sup>
 
 registerFont(options: FontOptions): void
 
 在字体管理中注册自定义字体。
+
+> **说明：**
+>
+> 从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getFont](js-apis-arkui-UIContext.md#getfont)获取[Font](js-apis-arkui-UIContext.md#font)实例，再通过此实例调用替代方法[registerFont](js-apis-arkui-UIContext.md#registerfont)。
+>
+> 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getFont](js-apis-arkui-UIContext.md#getfont)方法获取当前UI上下文关联的[Font](js-apis-arkui-UIContext.md#font)对象。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -33,6 +37,8 @@ registerFont(options: FontOptions): void
 | options | [FontOptions](#fontoptions) | 是    | 注册的自定义字体信息。 |
 
 ## FontOptions
+
+注册的自定义字体信息。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -47,12 +53,10 @@ registerFont(options: FontOptions): void
 
 > **说明**
 >
-> 推荐通过使用[UIContext](./js-apis-arkui-UIContext.md#uicontext)中的[getFont](./js-apis-arkui-UIContext.md#getfont)方法获取当前UI上下文关联的[Font](./js-apis-arkui-UIContext.md#font)对象。
+> 直接使用font可能导致[UI上下文不明确](../../ui/arkts-global-interface.md#ui上下文不明确)的问题，推荐通过使用[UIContext](./js-apis-arkui-UIContext.md#uicontext)中的[getFont](./js-apis-arkui-UIContext.md#getfont)方法获取当前UI上下文关联的[Font](./js-apis-arkui-UIContext.md#font)对象。
 
 ```ts
 // xxx.ets
-import { font } from '@kit.ArkUI';
-
 @Entry
 @Component
 struct FontExample {
@@ -60,29 +64,30 @@ struct FontExample {
   // iconFont示例，假设0000为指定icon的Unicode，实际需要开发者从注册的iconFont的ttf文件里面获取Unicode
   @State unicode: string = '\u0000';
   @State codePoint: string = String.fromCharCode(0x0000);
+  private uiContext: UIContext = this.getUIContext();
 
   aboutToAppear() {
     // familyName和familySrc都支持系统Resource
-    font.registerFont({
+    this.uiContext.getFont().registerFont({
       // 建议使用 this.getUIContext().getFont().registerFont()接口
       familyName: $r('app.string.font_name'),
       familySrc: $r('app.string.font_src')
     })
 
     // familySrc支持RawFile
-    font.registerFont({
+    this.uiContext.getFont().registerFont({
       familyName: 'mediumRawFile',
       familySrc: $rawfile('font/medium.ttf')
     })
 
     // 注册iconFont
-    font.registerFont({
+    this.uiContext.getFont().registerFont({
       familyName: 'iconFont',
       familySrc: '/font/iconFont.ttf'
     })
 
     // familyName和familySrc都支持string
-    font.registerFont({
+    this.uiContext.getFont().registerFont({
       familyName: 'medium',
       familySrc: '/font/medium.ttf' // font文件夹与pages目录同级
     })
@@ -110,15 +115,21 @@ struct FontExample {
 ```
 > **说明：**
 >
-> 应用若需全局使用自定义字体，请在EntryAbility.ets文件的[onWindowStageCreate](../apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate)生命周期中，通过[windowStage.loadContent](js-apis-window.md#loadcontent9)回调注册。
+> 应用若需全局使用自定义字体，请在EntryAbility.ets文件的[onWindowStageCreate](../apis-ability-kit/js-apis-app-ability-uiAbility.md#onwindowstagecreate)生命周期中，通过[windowStage.loadContent](js-apis-window.md#loadcontent9)回调注册。
 >
 > 在HSP工程中，不推荐采用相对路径的方式注册自定义字体，详见[通过$r访问HSP中的资源](../../quick-start/in-app-hsp.md)。
 
-## font.getSystemFontList<sup>10+</sup>
+## font.getSystemFontList<sup>(deprecated)</sup>
 
 getSystemFontList(): Array\<string>
 
 获取风格字体列表。
+
+> **说明：**
+>
+> 从API version 10开始支持，从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getFont](js-apis-arkui-UIContext.md#getfont)获取[Font](js-apis-arkui-UIContext.md#font)实例，再通过此实例调用替代方法[getSystemFontList](js-apis-arkui-UIContext.md#getsystemfontlist)。
+>
+> 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getFont](js-apis-arkui-UIContext.md#getfont)方法获取当前UI上下文关联的[Font](js-apis-arkui-UIContext.md#font)对象。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -138,7 +149,9 @@ getSystemFontList(): Array\<string>
 
 > **说明**
 >
-> 推荐通过使用[UIContext](./js-apis-arkui-UIContext.md#uicontext)中的[getFont](./js-apis-arkui-UIContext.md#getfont)方法获取当前UI上下文关联的[Font](./js-apis-arkui-UIContext.md#font)对象。
+> 直接使用font可能导致[UI上下文不明确](../../ui/arkts-global-interface.md#ui上下文不明确)的问题，推荐通过使用[UIContext](./js-apis-arkui-UIContext.md#uicontext)中的[getFont](./js-apis-arkui-UIContext.md#getfont)方法获取当前UI上下文关联的[Font](./js-apis-arkui-UIContext.md#font)对象。
+
+<!--deprecated_code_no_check-->
 
 ```ts
 // xxx.ets
@@ -155,18 +168,24 @@ struct FontExample {
         .width('60%')
         .height('6%')
         .onClick(() => {
-          this.fontList = font.getSystemFontList() // 建议使用 this.getUIContext().getFont().getSystemFontList()接口
+          this.fontList = font.getSystemFontList(); // 建议使用 this.getUIContext().getFont().getSystemFontList()接口
         })
     }.width('100%')
   }
 }
 ```
 
-## font.getFontByName<sup>10+</sup>
+## font.getFontByName<sup>(deprecated)</sup>
 
 getFontByName(fontName: string): FontInfo
 
 根据传入的系统字体名称获取系统字体的相关信息。
+
+> **说明：**
+>
+> 从API version 10开始支持，从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getFont](js-apis-arkui-UIContext.md#getfont)获取[Font](js-apis-arkui-UIContext.md#font)实例，再通过此实例调用替代方法[getFontByName](js-apis-arkui-UIContext.md#getfontbyname)。
+>
+> 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getFont](js-apis-arkui-UIContext.md#getfont)方法获取当前UI上下文关联的[Font](js-apis-arkui-UIContext.md#font)对象。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -185,6 +204,8 @@ getFontByName(fontName: string): FontInfo
 | FontInfo         | 字体的详细信息。     |
 
 ## FontInfo<sup>10+</sup>
+
+字体的详细信息。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -207,7 +228,7 @@ getFontByName(fontName: string): FontInfo
 
 > **说明**
 >
-> 推荐通过使用[UIContext](./js-apis-arkui-UIContext.md#uicontext)中的[getFont](./js-apis-arkui-UIContext.md#getfont)方法获取当前UI上下文关联的[Font](./js-apis-arkui-UIContext.md#font)对象。
+> 直接使用font可能导致实例不明确的问题，推荐通过使用[UIContext](./js-apis-arkui-UIContext.md#uicontext)中的[getFont](./js-apis-arkui-UIContext.md#getfont)方法获取当前UI上下文关联的[Font](./js-apis-arkui-UIContext.md#font)对象。
 
 ```ts
 // xxx.ets
@@ -217,24 +238,25 @@ import { font } from '@kit.ArkUI';
 @Component
 struct FontExample {
   fontList: Array<string> = new Array<string>();
-  fontInfo: font.FontInfo = font.getFontByName('');
+  uiFont = this.getUIContext().getFont();
+  fontInfo: font.FontInfo = this.uiFont.getFontByName(''); // 建议使用 this.getUIContext().getFont().getFontByName()接口
 
   build() {
     Column() {
       Button("getFontByName")
         .onClick(() => {
           this.fontInfo =
-            font.getFontByName('HarmonyOS Sans Italic') // 建议使用 this.getUIContext().getFont().getFontByName()接口
-          console.log("getFontByName(): path = " + this.fontInfo.path)
-          console.log("getFontByName(): postScriptName = " + this.fontInfo.postScriptName)
-          console.log("getFontByName(): fullName = " + this.fontInfo.fullName)
-          console.log("getFontByName(): Family = " + this.fontInfo.family)
-          console.log("getFontByName(): Subfamily = " + this.fontInfo.subfamily)
-          console.log("getFontByName(): weight = " + this.fontInfo.weight)
-          console.log("getFontByName(): width = " + this.fontInfo.width)
-          console.log("getFontByName(): italic = " + this.fontInfo.italic)
-          console.log("getFontByName(): monoSpace = " + this.fontInfo.monoSpace)
-          console.log("getFontByName(): symbolic = " + this.fontInfo.symbolic)
+            this.uiFont.getFontByName('HarmonyOS Sans Italic');
+          console.info("getFontByName(): path = " + this.fontInfo.path);
+          console.info("getFontByName(): postScriptName = " + this.fontInfo.postScriptName);
+          console.info("getFontByName(): fullName = " + this.fontInfo.fullName);
+          console.info("getFontByName(): Family = " + this.fontInfo.family);
+          console.info("getFontByName(): Subfamily = " + this.fontInfo.subfamily);
+          console.info("getFontByName(): weight = " + this.fontInfo.weight);
+          console.info("getFontByName(): width = " + this.fontInfo.width);
+          console.info("getFontByName(): italic = " + this.fontInfo.italic);
+          console.info("getFontByName(): monoSpace = " + this.fontInfo.monoSpace);
+          console.info("getFontByName(): symbolic = " + this.fontInfo.symbolic);
         })
     }.width('100%')
   }
@@ -257,6 +279,8 @@ getUIFontConfig() : UIFontConfig
 
 ## UIFontConfig<sup>11+</sup>
 
+系统的UI字体配置信息。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -267,6 +291,8 @@ getUIFontConfig() : UIFontConfig
 | fallbackGroups       | Array\<[UIFontFallbackGroupInfo](#uifontfallbackgroupinfo11)>  | 是 | 备用字体集。           |
 
 ## UIFontGenericInfo<sup>11+</sup>
+
+系统所支持的通用字体集列表。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -279,6 +305,8 @@ getUIFontConfig() : UIFontConfig
 
 ## UIFontFallbackGroupInfo<sup>11+</sup>
 
+备用字体集。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -288,6 +316,8 @@ getUIFontConfig() : UIFontConfig
 | fallback        | Array\<[UIFontFallbackInfo](#uifontfallbackinfo11)>  | 是 | 表示以下列表为该字体集的备用字体，如果fontSetName为""，表示可以作为所有字体集的备用字体。 |
 
 ## UIFontAliasInfo<sup>11+</sup>
+
+别名列表。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -299,6 +329,8 @@ getUIFontConfig() : UIFontConfig
 
 ## UIFontAdjustInfo<sup>11+</sup>
 
+字体原本的weight值和显示实际值的映射列表。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -308,6 +340,8 @@ getUIFontConfig() : UIFontConfig
 | to            | number  | 是 | 字体在应用中显示的weight值。<br/>可返回的值有100、400、700、900。 |
 
 ## UIFontFallbackInfo<sup>11+</sup>
+
+该字体集的备用字体。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -334,25 +368,25 @@ struct FontExample {
         .margin(50)
         .onClick(() => {
           let fontConfig = font.getUIFontConfig();
-          console.log("font-dir -----------" + String(fontConfig.fontDir.length));
+          console.info("font-dir -----------" + String(fontConfig.fontDir.length));
           for (let i = 0; i < fontConfig.fontDir.length; i++) {
-            console.log(fontConfig.fontDir[i]);
+            console.info(fontConfig.fontDir[i]);
           }
-          console.log("generic-------------" + String(fontConfig.generic.length));
+          console.info("generic-------------" + String(fontConfig.generic.length));
           for (let i = 0; i < fontConfig.generic.length; i++) {
-            console.log("family:" + fontConfig.generic[i].family);
+            console.info("family:" + fontConfig.generic[i].family);
             for (let j = 0; j < fontConfig.generic[i].alias.length; j++) {
-              console.log(fontConfig.generic[i].alias[j].name + " " + fontConfig.generic[i].alias[j].weight);
+              console.info(fontConfig.generic[i].alias[j].name + " " + fontConfig.generic[i].alias[j].weight);
             }
             for (let j = 0; j < fontConfig.generic[i].adjust.length; j++) {
-              console.log(fontConfig.generic[i].adjust[j].weight + " " + fontConfig.generic[i].adjust[j].to);
+              console.info(fontConfig.generic[i].adjust[j].weight + " " + fontConfig.generic[i].adjust[j].to);
             }
           }
-          console.log("fallback------------" + String(fontConfig.fallbackGroups.length));
+          console.info("fallback------------" + String(fontConfig.fallbackGroups.length));
           for (let i = 0; i < fontConfig.fallbackGroups.length; i++) {
-            console.log("fontSetName:" + fontConfig.fallbackGroups[i].fontSetName);
+            console.info("fontSetName:" + fontConfig.fallbackGroups[i].fontSetName);
             for (let j = 0; j < fontConfig.fallbackGroups[i].fallback.length; j++) {
-              console.log("language:" + fontConfig.fallbackGroups[i].fallback[j].language + " family:" +
+              console.info("language:" + fontConfig.fallbackGroups[i].fallback[j].language + " family:" +
               fontConfig.fallbackGroups[i].fallback[j].family);
             }
           }

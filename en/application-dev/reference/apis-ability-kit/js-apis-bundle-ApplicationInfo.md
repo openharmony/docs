@@ -3,12 +3,14 @@
 The **ApplicationInfo** module provides application information. Unless otherwise specified, the information is obtained through [bundle.getApplicationInfo](js-apis-Bundle.md#bundlegetapplicationinfodeprecated).
 
 > **NOTE**
->
+> 
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> 
+> The APIs of this module are deprecated since API version 9. You are advised to use [bundleManager-ApplicationInfo](js-apis-bundleManager-applicationInfo.md) instead.
 
 ## ApplicationInfo<sup>(deprecated)<sup>
 
-> This API is deprecated since API version 9. You are advised to use [bundleManager-ApplicationInfo](js-apis-bundleManager-applicationInfo.md) instead.
+This API is deprecated since API version 9. You are advised to use [bundleManager-ApplicationInfo](js-apis-bundleManager-applicationInfo.md#applicationinfo-1) instead.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework
 

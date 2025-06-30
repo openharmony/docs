@@ -911,7 +911,7 @@ This function is not thread-safe.
 | buffer | Pointer to an **OH_NativeBuffer** instance.| 
 | metadataKey | Key of the metadata. For details about the available options, see [OH_NativeBuffer_MetadataKey](#oh_nativebuffer_metadatakey-1).| 
 | size | Size of the uint8_t vector. For details about the available options, see [OH_NativeBuffer_MetadataKey](#oh_nativebuffer_metadatakey-1).| 
-| metaDate | Pointer to the uint8_t vector.| 
+| metaData | Pointer to the uint8_t vector.| 
 
 **Returns**
 

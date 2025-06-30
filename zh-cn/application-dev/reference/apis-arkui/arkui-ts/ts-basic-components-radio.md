@@ -6,7 +6,7 @@
 >
 >  API version 12开始，Radio选中默认样式由RadioIndicatorType.DOT变为RadioIndicatorType.TICK。
 >
->  该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  该组件从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -34,6 +34,8 @@ Radio(options: RadioOptions)
 
 ## RadioOptions对象说明
 
+单选框的信息。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 类型 | 必填 | 说明 |
@@ -44,6 +46,8 @@ Radio(options: RadioOptions)
 | indicatorBuilder<sup>12+</sup> | [CustomBuilder](ts-types.md#custombuilder8) | 否 | 配置单选框的选中样式为自定义组件。自定义组件与Radio组件为中心点对齐显示。indicatorBuilder设置为undefined时，按照RadioIndicatorType.TICK进行显示。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## RadioIndicatorType<sup>12+</sup>枚举说明
+
+单选框的样式。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -67,8 +71,8 @@ checked(value: boolean)
 
 设置单选框的选中状态。
 
-从API version 10开始，该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
-从API version 18开始，该属性支持[!!](../../../quick-start/arkts-new-binding.md)双向绑定变量。
+从API version 10开始，该属性支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。
+从API version 18开始，该属性支持[!!](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -88,8 +92,7 @@ checked(isChecked: Optional\<boolean>)
 
 设置单选框的选中状态。与[checked](#checked)相比，isChecked参数新增了对undefined类型的支持。
 
-该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
-从API version 18开始，该属性支持[!!](../../../quick-start/arkts-new-binding.md)双向绑定变量。
+该属性支持[$$](../../../ui/state-management/arkts-two-way-sync.md)、[!!](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。
 
 **卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
@@ -135,7 +138,7 @@ contentModifier(modifier: ContentModifier\<RadioConfiguration>)
 
 | 参数名 | 类型                                          | 必填 | 说明                                             |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
-| modifier  | [ContentModifier\<RadioConfiguration>](#radioconfiguration12对象说明) | 是   | 在Radio组件上，定制内容区的方法。<br/>modifier: 内容修改器，开发者需要自定义class实现ContentModifier接口。 |
+| modifier  | [ContentModifier\<RadioConfiguration>](#radioconfiguration12对象说明) | 是   | 在Radio组件上，定制内容区的方法。<br/>modifier：内容修改器，开发者需要自定义class实现ContentModifier接口。 |
 
 ### contentModifier<sup>18+</sup>
 
@@ -151,7 +154,7 @@ contentModifier(modifier: Optional<ContentModifier\<RadioConfiguration>>)
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| modifier | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ContentModifier\<RadioConfiguration>](#radioconfiguration12对象说明)> | 是   | 在Radio组件上，定制内容区的方法。<br/>modifier: 内容修改器，开发者需要自定义class实现ContentModifier接口。<br/>当modifier的值为undefined时，不使用内容修改器。 |
+| modifier | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ContentModifier\<RadioConfiguration>](#radioconfiguration12对象说明)> | 是   | 在Radio组件上，定制内容区的方法。<br/>modifier：内容修改器，开发者需要自定义class实现ContentModifier接口。<br/>当modifier的值为undefined时，不使用内容修改器。 |
 
 ## 事件
 
@@ -173,7 +176,7 @@ onChange(callback: (isChecked: boolean) => void)
 
 | 参数名    | 类型    | 必填 | 说明                             |
 | --------- | ------- | ---- | -------------------------------- |
-| isChecked | boolean | 是   | 单选框选中状态改变时触发该回调。 |
+| isChecked | boolean | 是   | 单选框选中状态改变时触发该回调。<br/>值为true时，表示从未选中变为选中。值为false时，表示从选中变为未选中。 |
 
 ### onChange<sup>18+</sup>
 
@@ -210,6 +213,8 @@ type OnRadioChangeCallback = (isChecked: boolean) => void
 | isChecked | boolean | 是   | 单选框的状态。<br/>值为true时，表示从未选中变为选中。值为false时，表示从选中变为未选中。 |
 
 ## RadioStyle<sup>10+</sup>对象说明
+
+单选框的颜色。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -255,7 +260,7 @@ struct RadioExample {
           .height(50)
           .width(50)
           .onChange((isChecked: boolean) => {
-            console.log('Radio1 status is ' + isChecked)
+            console.info('Radio1 status is ' + isChecked);
           })
       }
       Column() {
@@ -267,7 +272,7 @@ struct RadioExample {
           .height(50)
           .width(50)
           .onChange((isChecked: boolean) => {
-            console.log('Radio2 status is ' + isChecked)
+            console.info('Radio2 status is ' + isChecked);
           })
       }
       Column() {
@@ -279,7 +284,7 @@ struct RadioExample {
           .height(50)
           .width(50)
           .onChange((isChecked: boolean) => {
-            console.log('Radio3 status is ' + isChecked)
+            console.info('Radio3 status is ' + isChecked);
           })
       }
     }.padding({ top: 30 })
@@ -308,7 +313,7 @@ struct RadioExample {
           .height(50)
           .width(80)
           .onChange((isChecked: boolean) => {
-            console.log('Radio1 status is ' + isChecked)
+            console.info('Radio1 status is ' + isChecked);
           })
       }
       Column() {
@@ -319,7 +324,7 @@ struct RadioExample {
           .height(50)
           .width(80)
           .onChange((isChecked: boolean) => {
-            console.log('Radio2 status is ' + isChecked)
+            console.info('Radio2 status is ' + isChecked);
           })
       }
       Column() {
@@ -331,7 +336,7 @@ struct RadioExample {
           .height(50)
           .width(80)
           .onChange((isChecked: boolean) => {
-            console.log('Radio3 status is ' + isChecked)
+            console.info('Radio3 status is ' + isChecked);
           })
       }
     }.padding({ top: 30 })
@@ -343,16 +348,16 @@ struct RadioExample {
 该示例通过contentModifier实现自定义单选框样式。
 ```ts
 class MyRadioStyle implements ContentModifier<RadioConfiguration> {
-  type: number = 0
-  selectedColor: ResourceColor = Color.Black
+  type: number = 0;
+  selectedColor: ResourceColor = Color.Black;
 
   constructor(numberType: number, colorType: ResourceColor) {
-    this.type = numberType
-    this.selectedColor = colorType
+    this.type = numberType;
+    this.selectedColor = colorType;
   }
 
   applyContent(): WrappedBuilder<[RadioConfiguration]> {
-    return wrapBuilder(buildRadio)
+    return wrapBuilder(buildRadio);
   }
 }
 
@@ -368,9 +373,9 @@ function buildRadio(config: RadioConfiguration) {
       .backgroundColor('#2787D9')
       .onClick(() => {
         if (config.checked) {
-          config.triggerChange(false)
+          config.triggerChange(false);
         } else {
-          config.triggerChange(true)
+          config.triggerChange(true);
         }
       })
   }

@@ -5,7 +5,7 @@
 
 列表是一种复杂的容器，当列表项达到一定数量，内容超过屏幕大小时，可以自动提供滚动功能。它适合用于呈现同类数据类型或数据类型集，例如图片和文本。在列表中显示数据集合是许多应用程序中的常见要求（如通讯录、音乐列表、购物清单等）。
 
-使用列表可以轻松高效地显示结构化、可滚动的信息。通过在[List](../reference/apis-arkui/arkui-ts/ts-container-list.md)组件中按垂直或者水平方向线性排列子组件[ListItemGroup](../reference/apis-arkui/arkui-ts/ts-container-listitemgroup.md)或[ListItem](../reference/apis-arkui/arkui-ts/ts-container-listitem.md)，为列表中的行或列提供单个视图，或使用[循环渲染](../quick-start/arkts-rendering-control-foreach.md)迭代一组行或列，或混合任意数量的单个视图和ForEach结构，构建一个列表。List组件支持使用条件渲染、循环渲染、懒加载等[渲染控制](../quick-start/arkts-rendering-control-overview.md)方式生成子组件。
+使用列表可以轻松高效地显示结构化、可滚动的信息。通过在[List](../reference/apis-arkui/arkui-ts/ts-container-list.md)组件中按垂直或者水平方向线性排列子组件[ListItemGroup](../reference/apis-arkui/arkui-ts/ts-container-listitemgroup.md)或[ListItem](../reference/apis-arkui/arkui-ts/ts-container-listitem.md)，为列表中的行或列提供单个视图，或使用[循环渲染](../ui/state-management/arkts-rendering-control-foreach.md)迭代一组行或列，或混合任意数量的单个视图和ForEach结构，构建一个列表。List组件支持使用条件渲染、循环渲染、懒加载等[渲染控制](../ui/state-management/arkts-rendering-control-overview.md)方式生成子组件。
 
 在圆形屏幕设备上，推荐使用[ArcList](../reference/apis-arkui/arkui-ts/ts-container-arclist.md)组件，使用方式可参考[创建弧形列表 (ArcList)](./arkts-layout-development-create-arclist.md)。
 
@@ -115,7 +115,7 @@ List() {
 @Entry
 @Component
 struct EgLanes {
-  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 }
+  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 };
   build() {
     List() {
       // ...
@@ -141,12 +141,48 @@ List() {
 .alignListItem(ListItemAlign.Center)
 ```
 
+## ListItem生命周期
+### 使用ForEach创建ListItem
+List组件创建时，所有ListItem将会被创建。显示区域内的ListItem在首帧进行布局，预加载范围内的ListItem在空闲时完成布局。预加载范围之外的ListItem仅创建ListItem自身，ListItem其内部的子组件不会被创建。
+
+当List组件滑动时，进入预加载及显示区域的ListItem将会创建其内部的子组件并完成布局，而滑出预加载及显示区域的ListItem将不会被销毁。
+
+**图7** ForEach创建ListItem的生命周期
+![](./figures/list_foreach.png)
+
+### 使用LazyForEach创建ListItem
+List组件创建时，显示区域中的ListItem会被创建与布局。预加载范围内的ListItem在空闲时创建与布局，但是不会被挂载到组件树上。预加载范围外的ListItem则不会被创建。
+
+当List组件滑动时，进入预加载及显示区域的ListItem将被创建与布局，创建ListItem过程中，若ListItem内部如果包含@Reusable标记的自定义组件，则会优先从缓存池中复用。滑出预加载及显示区域的ListItem将被销毁，其内部若含@Reusable标记的自定义组件，则会被回收并加入缓存池。
+
+**图8** LazyForEach创建ListItem的生命周期
+![](./figures/list_lazyforeach.png)
+
+### 使用Repeat创建ListItem
+**使用virtualScroll**
+
+List组件创建时，显示区域内的ListItem将被创建和布局。预加载范围内的ListItem在空闲时创建和布局，并且挂载至组件树上。预加载范围外的ListItem则不会被创建。
+
+当List组件滑动时，进入预加载及显示区域的ListItem，将从缓存池中获取ListItem并复用及布局，若缓存池中无ListItem，则会新创建并布局。滑出预加载及显示区域的ListItem会将被回收至缓存池。
+
+**图9** Repeat使用virtualScroll创建ListItem的生命周期
+![](./figures/list_repeatv.png)
+
+**不使用virtualScroll**
+
+List组件创建时，所有ListItem均被创建。显示区域内的ListItem在首帧完成布局，预加载范围内的ListItem在空闲时完成布局。预加载范围外的ListItem不会进行布局。
+
+当List组件滑动时，进入预加载及显示区域的ListItem将进行布局。滑出预加载及显示区域的ListItem不会销毁。
+
+**图10** Repeat不使用virtualScroll创建ListItem的生命周期
+![](./figures/list_repeat.png)
+
 
 ## 在列表中显示数据
 
 列表视图垂直或水平显示项目集合，在行或列超出屏幕时提供滚动功能，使其适合显示大型数据集合。在最简单的列表形式中，List静态地创建其列表项ListItem的内容。
 
-  **图7** 城市列表  
+  **图11** 城市列表  
 
 ![zh-cn_image_0000001563060761](figures/zh-cn_image_0000001563060761.png)
 
@@ -176,7 +212,7 @@ struct CityList {
 
 由于在ListItem中只能有一个根节点组件，不支持以平铺形式使用多个组件。因此，若列表项是由多个组件元素组成的，则需要将这多个元素组合到一个容器组件内或组成一个自定义组件。
 
-  **图8** 联系人列表项示例  
+  **图12** 联系人列表项示例  
 
 ![zh-cn_image_0000001511421328](figures/zh-cn_image_0000001511421328.png)
 
@@ -187,6 +223,7 @@ struct CityList {
 List() {
   ListItem() {
     Row() {
+      // app.media.iconE为自定义资源
       Image($r('app.media.iconE'))
         .width(40)
         .height(40)
@@ -199,6 +236,7 @@ List() {
 
   ListItem() {
     Row() {
+      // app.media.iconF为自定义资源
       Image($r('app.media.iconF'))
         .width(40)
         .height(40)
@@ -214,13 +252,13 @@ List() {
 
 ## 迭代列表内容
 
-通常，应用通过数据集合动态地创建列表。使用[循环渲染](../quick-start/arkts-rendering-control-foreach.md)可从数据源中迭代获取数据，并在每次迭代过程中创建相应的组件，降低代码复杂度。
+通常，应用通过数据集合动态地创建列表。使用[循环渲染](../ui/state-management/arkts-rendering-control-foreach.md)可从数据源中迭代获取数据，并在每次迭代过程中创建相应的组件，降低代码复杂度。
 
-ArkTS通过[ForEach](../quick-start/arkts-rendering-control-foreach.md)提供了组件的循环渲染能力。以简单形式的联系人列表为例，将联系人名称和头像数据以Contact类结构存储到contacts数组，使用ForEach中嵌套ListItem的形式来代替多个平铺的、内容相似的ListItem，从而减少重复代码。
+ArkTS通过[ForEach](../ui/state-management/arkts-rendering-control-foreach.md)提供了组件的循环渲染能力。以简单形式的联系人列表为例，将联系人名称和头像数据以Contact类结构存储到contacts数组，使用ForEach中嵌套ListItem的形式来代替多个平铺的、内容相似的ListItem，从而减少重复代码。
 
 
 ```ts
-import { util } from '@kit.ArkTS'
+import { util } from '@kit.ArkTS';
 
 class Contact {
   key: string = util.generateRandomUUID(true);
@@ -239,7 +277,7 @@ struct SimpleContacts {
   private contacts: Array<object> = [
     new Contact('小明', $r("app.media.iconA")),
     new Contact('小红', $r("app.media.iconB")),
-  ]
+  ];
 
   build() {
     List() {
@@ -270,7 +308,7 @@ struct SimpleContacts {
 
 ### 设置内容间距
 
-在初始化列表时，如需在列表项之间添加间距，可以使用space参数。例如，在每个列表项之间沿主轴方向添加10vp的间距：
+在初始化列表时，如需在列表项之间添加间距，可以使用space参数。例如，在每个列表项之间沿主轴方向添加10vp的间距。
 
 
 ```ts
@@ -282,9 +320,9 @@ List({ space: 10 }) {
 
 ### 添加分隔线
 
-分隔线用来将界面元素隔开，使单个元素更加容易识别。如下图所示，当列表项左边有图标（如蓝牙图标），由于图标本身就能很好的区分，此时分隔线从图标之后开始显示即可。
+分隔线用来将界面元素隔开，使单个元素更加容易识别。以系统设置场景为例（如下图所示），列表项左侧为图标（如蓝牙图标），右侧为文字描述且分割线在文字下方。
 
-  **图9** 设置列表分隔线样式  
+  **图13** 设置列表分隔线样式  
 
 ![zh-cn_image_0000001511580960](figures/zh-cn_image_0000001511580960.png)
 
@@ -295,22 +333,22 @@ startMargin和endMargin属性分别用于设置分隔线距离列表侧边起始
 
 ```ts
 class DividerTmp {
-  strokeWidth: Length = 1
-  startMargin: Length = 60
-  endMargin: Length = 10
-  color: ResourceColor = '#ffe9f0f0'
+  strokeWidth: Length = 1;
+  startMargin: Length = 60;
+  endMargin: Length = 10;
+  color: ResourceColor = '#ffe9f0f0';
 
   constructor(strokeWidth: Length, startMargin: Length, endMargin: Length, color: ResourceColor) {
-    this.strokeWidth = strokeWidth
-    this.startMargin = startMargin
-    this.endMargin = endMargin
-    this.color = color
+    this.strokeWidth = strokeWidth;
+    this.startMargin = startMargin;
+    this.endMargin = endMargin;
+    this.color = color;
   }
 }
 @Entry
 @Component
 struct EgDivider {
-  @State egDivider: DividerTmp = new DividerTmp(1, 60, 10, '#ffe9f0f0')
+  @State egDivider: DividerTmp = new DividerTmp(1, 60, 10, '#ffe9f0f0');
   build() {
     List() {
       // ...
@@ -335,7 +373,7 @@ struct EgDivider {
 
 当列表项高度（宽度）超出屏幕高度（宽度）时，列表可以沿垂直（水平）方向滚动。在页面内容很多时，若用户需快速定位，可拖拽滚动条，如下图所示。
 
-  **图10** 列表的滚动条 
+  **图14** 列表的滚动条 
 
 ![zh-cn_image_0000001511740544](figures/zh-cn_image_0000001511740544.gif)
 
@@ -375,19 +413,19 @@ List() {
    ScrollBar({ scroller: this.listScroller })
    ```
 
-  **图11** 列表的外置滚动条 
+  **图15** 列表的外置滚动条 
 
 ![ScrollBar](figures/list_scrollbar.gif)
 
 >**说明：**
 >- 滚动条组件[ScrollBar](../reference/apis-arkui/arkui-ts/ts-basic-components-scrollbar.md)，还可配合其他可滚动组件使用，如[ArcList](../reference/apis-arkui/arkui-ts/ts-container-arclist.md)、[Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md)、[Scroll](../reference/apis-arkui/arkui-ts/ts-container-scroll.md)、[WaterFlow](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md)。
->- 在圆形屏幕设备上，[list](../reference/apis-arkui/arkui-ts/ts-container-grid.md)可以与弧形滚动条组件[ArcScrollBar](../reference/apis-arkui/arkui-ts/ts-basic-components-arcscrollbar.md)配合使用为列表添加弧形外置滚动条，使用方式可参考[创建弧形列表 (ArcList)](./arkts-layout-development-create-arclist.md)的[添加外置滚动条ArcScrollBar](./arkts-layout-development-create-arclist.md#添加外置滚动条arcscrollbar)章节。
+>- 在圆形屏幕设备上，[list](../reference/apis-arkui/arkui-ts/ts-container-list.md)可以与弧形滚动条组件[ArcScrollBar](../reference/apis-arkui/arkui-ts/ts-basic-components-arcscrollbar.md)配合使用为列表添加弧形外置滚动条，使用方式可参考[创建弧形列表 (ArcList)](./arkts-layout-development-create-arclist.md)的[添加外置滚动条ArcScrollBar](./arkts-layout-development-create-arclist.md#添加外置滚动条arcscrollbar)章节。
 
 ## 支持分组列表
 
 在列表中支持数据的分组展示，可以使列表显示结构清晰，查找方便，从而提高使用效率。分组列表在实际应用中十分常见，如下图所示联系人列表。
 
-  **图12** 联系人分组列表 
+  **图16** 联系人分组列表 
 
 ![zh-cn_image_0000001511580948](figures/zh-cn_image_0000001511580948.png)
 
@@ -432,7 +470,7 @@ struct ContactsList {
 
 粘性标题不仅有助于阐明列表中数据的表示形式和用途，还可以帮助用户在大量信息中进行数据定位，从而避免用户在标题所在的表的顶部与感兴趣区域之间反复滚动。
 
-  **图13** 粘性标题  
+  **图17** 粘性标题  
 
 ![zh-cn_image_0000001511740552](figures/zh-cn_image_0000001511740552.gif)
 
@@ -442,7 +480,7 @@ List组件的sticky属性配合ListItemGroup组件使用，用于设置ListItemG
 
 
 ```ts
-import { util } from '@kit.ArkTS'
+import { util } from '@kit.ArkTS';
 class Contact {
   key: string = util.generateRandomUUID(true);
   name: string;
@@ -454,9 +492,9 @@ class Contact {
   }
 }
 class ContactsGroup {
-  title: string = ''
-  contacts: Array<object> | null = null
-  key: string = ""
+  title: string = '';
+  contacts: Array<object> | null = null;
+  key: string = "";
 }
 export let contactsGroups: object[] = [
   {
@@ -515,7 +553,7 @@ struct ContactsList {
 
 控制滚动位置在实际应用中十分常见，例如当新闻页列表项数量庞大，用户滚动列表到一定位置时，希望快速滚动到列表底部或返回列表顶部。此时，可以通过控制滚动位置来实现列表的快速定位，如下图所示。
 
-  **图14** 返回列表顶部  
+  **图18** 返回列表顶部  
 
 ![zh-cn_image_0000001511900520](figures/zh-cn_image_0000001511900520.gif)
 
@@ -543,7 +581,7 @@ Stack({ alignContent: Alignment.Bottom }) {
   }
   .onClick(() => {
     // 点击按钮时，指定跳转位置，返回列表顶部
-    this.listScroller.scrollToIndex(0)
+    this.listScroller.scrollToIndex(0);
   })
 }
 ```
@@ -555,7 +593,7 @@ Stack({ alignContent: Alignment.Bottom }) {
 
 除了字母索引之外，滚动列表结合多级分类索引在应用开发过程中也很常见，例如购物应用的商品分类页面，多级分类也需要监听列表的滚动位置。
 
-**图15** 字母索引响应联系人列表滚动  
+**图19** 字母索引响应联系人列表滚动  
 
 ![zh-cn_image_0000001563060769](figures/zh-cn_image_0000001563060769.gif)
 
@@ -597,7 +635,7 @@ struct ContactsList {
 
 侧滑菜单在许多应用中都很常见。例如，通讯类应用通常会给消息列表提供侧滑删除功能，即用户可以通过向左侧滑列表的某一项，再点击删除按钮删除消息，如下图所示。其中，列表项头像右上角标记设置参考[给列表项添加标记](#给列表项添加标记)。
 
-**图16** 侧滑删除列表项  
+**图20** 侧滑删除列表项  
 
 ![zh-cn_image_0000001563060773](figures/zh-cn_image_0000001563060773.gif)
 
@@ -641,7 +679,7 @@ ListItem的[swipeAction属性](../reference/apis-arkui/arkui-ts/ts-container-lis
 
 添加标记是一种无干扰性且直观的方法，用于显示通知或将注意力集中到应用内的某个区域。例如，当消息列表接收到新消息时，通常对应的联系人头像的右上方会出现标记，提示有若干条未读消息，如下图所示。
 
-  **图17** 给列表项添加标记  
+  **图21** 给列表项添加标记  
 
 ![zh-cn_image_0000001511580952](figures/zh-cn_image_0000001511580952.png)
 
@@ -699,7 +737,7 @@ ListItem() {
 
 如下图所示，当用户点击添加按钮时，提供用户新增列表项内容选择或填写的交互界面，用户点击确定后，列表中新增对应的项目。
 
-  **图18** 新增待办  
+  **图22** 新增待办  
 
 ![zh-cn_image_0000001511740556](figures/zh-cn_image_0000001511740556.gif)
 
@@ -709,7 +747,7 @@ ListItem() {
 
    ```ts
    //ToDo.ets
-   import { util } from '@kit.ArkTS'
+   import { util } from '@kit.ArkTS';
 
    export class ToDo {
      key: string = util.generateRandomUUID(true);
@@ -728,8 +766,8 @@ ListItem() {
    import { ToDo } from './ToDo';
    @Component
    export struct ToDoListItem {
-     @Link isEditMode: boolean
-     @Link selectedItems: ToDo[]
+     @Link isEditMode: boolean;
+     @Link selectedItems: ToDo[];
      private toDoItem: ToDo = new ToDo("");
 
      build() {
@@ -763,14 +801,14 @@ ListItem() {
    @Entry
    @Component
    struct ToDoList {
-     @State toDoData: ToDo[] = []
-     @Watch('onEditModeChange') @State isEditMode: boolean = false
-     @State selectedItems: ToDo[] = []
-    private availableThings: string[] = ['读书', '运动', '旅游', '听音乐', '看电影', '唱歌']
+     @State toDoData: ToDo[] = [];
+     @Watch('onEditModeChange') @State isEditMode: boolean = false;
+     @State selectedItems: ToDo[] = [];
+    private availableThings: string[] = ['读书', '运动', '旅游', '听音乐', '看电影', '唱歌'];
    
      onEditModeChange() {
        if (!this.isEditMode) {
-         this.selectedItems = []
+         this.selectedItems = [];
        }
     }
    
@@ -824,7 +862,7 @@ ListItem() {
 
 如下图所示，当用户长按列表项进入删除模式时，提供用户删除列表项选择的交互界面，用户勾选完成后点击删除按钮，列表中删除对应的项目。
 
-  **图19** 长按删除待办事项  
+  **图23** 长按删除待办事项  
 
 ![zh-cn_image_0000001562820877](figures/zh-cn_image_0000001562820877.gif)
 
@@ -867,7 +905,7 @@ ListItem() {
 
     ```ts
    // 结构参考
-   import { util } from '@kit.ArkTS'
+   import { util } from '@kit.ArkTS';
    export class ToDo {
      key: string = util.generateRandomUUID(true);
      name: string;
@@ -884,11 +922,11 @@ ListItem() {
       Checkbox()
         .onChange((isSelected) => {
           if (isSelected) {
-            this.selectedItems.push(toDoList.toDoItem) // this.selectedItems为勾选时，记录选中的列表项，可根据实际场景构造
+            this.selectedItems.push(toDoList.toDoItem); // this.selectedItems为勾选时，记录选中的列表项，可根据实际场景构造
           } else {
-            let index = this.selectedItems.indexOf(toDoList.toDoItem)
+            let index = this.selectedItems.indexOf(toDoList.toDoItem);
             if (index !== -1) {
-              this.selectedItems.splice(index, 1) // 取消勾选时，则将此项从selectedItems中删除
+              this.selectedItems.splice(index, 1); // 取消勾选时，则将此项从selectedItems中删除
             }
           }
         })
@@ -899,7 +937,7 @@ ListItem() {
 
     ```ts
     // 结构参考
-    import { util } from '@kit.ArkTS'
+    import { util } from '@kit.ArkTS';
     export class ToDo {
       key: string = util.generateRandomUUID(true);
       name: string;
@@ -926,9 +964,9 @@ ListItem() {
 
 ## 长列表的处理
 
-[循环渲染](../quick-start/arkts-rendering-control-foreach.md)适用于短列表，当构建具有大量列表项的长列表时，如果直接采用循环渲染方式，会一次性加载所有的列表元素，会导致页面启动时间过长，影响用户体验。因此，推荐使用[数据懒加载](../quick-start/arkts-rendering-control-lazyforeach.md)（LazyForEach）方式实现按需迭代加载数据，从而提升列表性能。
+[循环渲染](../ui/state-management/arkts-rendering-control-foreach.md)适用于短列表，当构建具有大量列表项的长列表时，如果直接采用循环渲染方式，会一次性加载所有的列表元素，会导致页面启动时间过长，影响用户体验。因此，推荐使用[数据懒加载](../ui/state-management/arkts-rendering-control-lazyforeach.md)（LazyForEach）方式实现按需迭代加载数据，从而提升列表性能。
 
-关于长列表按需加载优化的具体实现可参考[数据懒加载](../quick-start/arkts-rendering-control-lazyforeach.md)章节中的示例。
+关于长列表按需加载优化的具体实现可参考[数据懒加载](../ui/state-management/arkts-rendering-control-lazyforeach.md)章节中的示例。
 
 当使用懒加载方式渲染列表时，为了更好的列表滚动体验，减少列表滑动时出现白块，List组件提供了cachedCount参数用于设置列表项缓存数，只在懒加载LazyForEach中生效。
 
@@ -956,7 +994,7 @@ List() {
 
 列表项的折叠与展开用途广泛，常用于信息清单的展示、填写等应用场景。
 
-  **图20** 列表项的折叠与展开 
+  **图24** 列表项的折叠与展开 
 
 ![zh-cn_image_0000001949866104](figures/zh-cn_image_0000001949866104.gif)
 
@@ -965,6 +1003,7 @@ List() {
 1. 定义列表项数据结构。
 
     ```ts
+    import { curves } from '@kit.ArkUI';
     interface ItemInfo {
       index: number,
       name: string,
@@ -1118,7 +1157,7 @@ List() {
       .onClick(() => {
         if (itemGroup.children.length) {
           this.getUIContext()?.animateTo({ curve: curves.interpolatingSpring(0, 1, 528, 39) }, () => {
-            this.expandedItems[itemGroup.index] = !this.expandedItems[itemGroup.index]
+            this.expandedItems[itemGroup.index] = !this.expandedItems[itemGroup.index];
           })
         }
       })

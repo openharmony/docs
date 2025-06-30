@@ -2,7 +2,7 @@
 
 ## Overview
 
-Non-standard serial port devices, such as temperature and humidity meters and special identity card readers, are used in industrial scenarios and on some legacy devices. If the system does not have a driver that adapts to the devices, the devices cannot be used after being connected. The USB Serial Driver Development Kit (DDK) is a toolset that helps you develop USB serial drivers at the application layer based on the user mode. The USB Serial DDK provides a series of APIs for the host to access devices, including APIs for enabling and disabling devices on the host and read/write data through serial ports. With the driver development APIs provided by OpenHarmony, third-party peripherals are able to access the ecosystem conveniently.
+Non-standard serial port devices, such as temperature and humidity meters and special identity card readers, are used in industrial scenarios and on some legacy devices. If the system does not have a driver that adapts to the devices, the devices cannot be used after being connected. The USB Serial Driver Development Kit (USB Serial DDK) is a toolset that helps you develop USB serial drivers at the application layer based on the user mode. The USB Serial DDK provides a series of APIs for the host to access devices, including APIs for enabling and disabling devices on the host and read/write data through serial ports. With these APIs, third-party peripheral devices can seamlessly integrate with the OpenHarmony ecosystem.
 
 ### Basic Concepts
 
@@ -22,7 +22,7 @@ Before developing the SCSI Peripheral DDK, you must understand the following bas
 
 - **DDK**
 
-    DDK is a tool package provided by OpenHarmony for developing drivers for non-standard USB serial port devices based on the peripheral framework.
+    The Driver Development Kit (DDK) is a tool package provided by OpenHarmony for developing drivers for non-standard USB serial port devices based on the peripheral framework.
 
 - **Non-standard peripherals**
 
@@ -91,9 +91,9 @@ libusb_serial_ndk.z.so
 #include <serial/usb_serial_types.h>
 ```
 
-1. Initialize the USB Serial DDK.
+1. Initialize the HID DDK.
 
-    Use **OH_UsbSerial_Init** in **usb_serial_api.h** to initialize the USB Serial DDK.
+    Use **OH_UsbSerial_Init** in **usb_serial_api.h** to initialize the DDK.
 
     ```c++
     // Initialize the USB Serial DDK.
@@ -178,7 +178,7 @@ libusb_serial_ndk.z.so
 
 7. Release the USB Serial DDK.
 
-    After the USB serial port device is closed, use **OH_UsbSerial_Release** in **usb_serial_api.h** to release the USB Serial DDK.
+    After the USB serial port device is closed, use **OH_UsbSerial_Release** in **usb_serial_api.h** to release the DDK.
 
     ```c++
     // Release the USB Serial DDK.

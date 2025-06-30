@@ -353,7 +353,7 @@ The do-not-disturb profile does not exist.
 
 **错误信息**
 
-The application is not allowed to publish notifications due to permission control settings.
+The application is not allowed to send notifications due to permission settings.
 
 **错误描述**
 
@@ -420,4 +420,4 @@ The specified bundle name was not found.
 
 **处理步骤**
 
-1. 检查应用是否存在。
+检查应用是否存在。

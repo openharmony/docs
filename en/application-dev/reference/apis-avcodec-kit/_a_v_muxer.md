@@ -3,9 +3,9 @@
 
 ## Overview
 
-The AVMuxer module provides the APIs for audio and video muxing.
+The AVMuxer module provides the APIs for audio and video multiplexing.
 
-For details about the development guide and sample, see [Media Data Muxing](../../media/avcodec/audio-video-muxer.md).
+For details about the development guide and sample, see [Media Data Multiplexing](../../media/avcodec/audio-video-muxer.md).
 
 **System capability**: SystemCapability.Multimedia.Media.Muxer
 
@@ -19,7 +19,7 @@ For details about the development guide and sample, see [Media Data Muxing](../.
 
 | Name| Description| 
 | -------- | -------- |
-| [native_avmuxer.h](native__avmuxer_8h.md) | Declares the native APIs used for audio and video muxing. | 
+| [native_avmuxer.h](native__avmuxer_8h.md) | Declares the native APIs used for audio and video multiplexing. | 
 
 
 ### Types
@@ -118,11 +118,11 @@ Creates an **OH_AVMuxer** instance by using the file descriptor and container fo
 | Name| Description| 
 | -------- | -------- |
 | fd | File descriptor (FD). You must open the file in read/write mode (O_RDWR) and close the file after using it. | 
-| format | Format of the muxed output file. For details, see [OH_AVOutputFormat](_codec_base.md#oh_avoutputformat-1). | 
+| format | Format of the multiplexed output file. For details, see [OH_AVOutputFormat](_codec_base.md#oh_avoutputformat-1). | 
 
 **Returns**
 
-Returns the pointer to the **OH_AVMuxer** instance created. After the muxing process is complete, call **OH_AVMuxer_Destroy** to destroy the instance.
+Returns the pointer to the **OH_AVMuxer** instance created. After the multiplexing process is complete, call **OH_AVMuxer_Destroy** to destroy the instance.
 
 
 ### OH_AVMuxer_Destroy()
@@ -309,7 +309,7 @@ This function must be called after **OH_AVMuxer_Start** and before **OH_AVMuxer_
 | -------- | -------- |
 | muxer | Pointer to an **OH_AVMuxer** instance. | 
 | trackIndex | Index of the audio or video track corresponding to the data. | 
-| sample | Pointer to the data obtained after encoding or demuxing. | 
+| sample | Pointer to the data obtained after encoding or demultiplexing. | 
 | info | Sample description. For details, see [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md). | 
 
 **Returns**
@@ -345,7 +345,7 @@ This function must be called after **OH_AVMuxer_Start** and before **OH_AVMuxer_
 | -------- | -------- |
 | muxer | Pointer to an **OH_AVMuxer** instance. | 
 | trackIndex | Index of the audio or video track corresponding to the data. | 
-| sample | Pointer to the data and properties obtained after encoding or demuxing. | 
+| sample | Pointer to the data and properties obtained after encoding or demultiplexing. | 
 
 **Returns**
 

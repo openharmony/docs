@@ -3,7 +3,7 @@
 
 ## 概述
 
-声明操作NFC芯片的API，包括关闭、打开NFC，初始化NFC，读写数据、配置RF参数、发送nci指令。
+声明操作nfc芯片的API，包括关闭、打开nfc，初始化nfc，读写数据、配置RF参数、发送nci指令。
 
 **起始版本：** 4.1
 
@@ -17,9 +17,9 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [GetVendorConfig](#getvendorconfig) ([out] struct [NfcVendorConfig](_nfc_vendor_config_v11.md) config, [out] enum NfcStatus status) | 查询厂商自定义的NFC配置。 | 
-| [DoFactoryReset](#dofactoryreset) ([out] enum NfcStatus status) | NFC芯片工厂级复位。 | 
-| [Shutdown](#shutdown) ([out] enum NfcStatus status) | 关闭NFC。如果设备支持关机刷卡功能，需要实现该接口。 | 
+| [GetVendorConfig](#getvendorconfig) ([out] struct [NfcVendorConfig](_nfc_vendor_config_v11.md) config, [out] enum NfcStatus status) | 查询厂商自定义的nfc配置。 | 
+| [DoFactoryReset](#dofactoryreset) ([out] enum NfcStatus status) | nfc芯片工厂级复位。 | 
+| [Shutdown](#shutdown) ([out] enum NfcStatus status) | 关闭nfc。如果设备支持关机刷卡功能，需要实现该接口。 | 
 
 
 ## 成员函数说明
@@ -76,7 +76,7 @@ INfcInterface::Shutdown ([out] enum NfcStatus status)
 **描述**
 
 
-关闭NFC。如果设备支持关机刷卡功能，需要实现该接口
+关闭NFC。如果设备支持关机刷卡功能，需要实现该接口。
 
 **起始版本：** 4.1
 

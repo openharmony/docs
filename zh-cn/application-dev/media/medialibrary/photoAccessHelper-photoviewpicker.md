@@ -56,6 +56,7 @@
 2. 通过fd使用[fileIo.readSync](../../reference/apis-core-file-kit/js-apis-file-fs.md#readsync)接口读取这个文件内的数据，读取完成后关闭fd。
 
    ```ts
+   // buffer为缓冲区长度，由开发者自定义。
    let buffer = new ArrayBuffer(4096);
    let readLen = fileIo.readSync(file.fd, buffer);
    console.info('readSync data to file succeed and buffer size is:' + readLen);
@@ -69,8 +70,10 @@
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { dataSharePredicates } from '@kit.ArkData';
+import { common } from '@kit.AbilityKit';
 
-const context = getContext(this);
+// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayBuffer> {

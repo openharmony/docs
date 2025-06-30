@@ -86,7 +86,7 @@ CSP与Actor之间的主要区别：
    
    ```typescript
    // 请求网络数据
-   let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+   let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
    // 参数中mediaData和isImageData是根据开发者自己的业务需求添加的，其中mediaData为数据路径、isImageData为判断图片或视频的标识
    workerInstance.postMessage({ context, mediaData: this.mediaData, isImageData: this.isImageData });
    ```
@@ -123,7 +123,7 @@ CSP与Actor之间的主要区别：
          // 下载完成之后执行解压操作
          zlib.decompressFile(inFilePath, filesDir, options, (errData: BusinessError) => {
            if (errData !== null) {
-             ...
+             // ...
              // 异常处理
            }
            let videoPath: string = `${filesDir}/${fileName}/${fileName}.mp4`;
@@ -131,11 +131,11 @@ CSP与Actor之间的主要区别：
          })
        });
        downloadTask.on('fail', () => {
-         ...
+         // ...
          // 异常处理
        });
      }).catch((err) => {
-       ...
+       // ...
        // 异常处理
      });
    };
@@ -213,10 +213,10 @@ TaskPool的适用场景主要分为如下三类：
 2. new一个task对象，其中传入被调用的方法和参数。
    
    ```typescript
-   ... 
+   // ... 
    // 创建task任务项，参数1.任务执行需要传入函数 参数2.任务执行传入函数的参数 （本示例中此参数为被调用的网络地址字符串）
    let task: taskpool.Task = new taskpool.Task(getWebData, jsonUrl);
-   ...
+   // ...
    
    // 获取网络数据
    @Concurrent
@@ -228,21 +228,21 @@ TaskPool的适用场景主要分为如下三类：
              'Content-Type': 'application/json'
          },
            connectTimeout: 60000, readTimeout: 60000
-         })
+         });
        if (typeof (webData.result) === 'string') {
          // 解析json字符串
          let jsonObj: Array<FriendMoment> = await JSON.parse(webData.result).FriendMoment;
          let friendMomentBuckets: Array<FriendMoment> = new Array<FriendMoment>();
          // 下方源码省略，主要为数据解析和耗时操作处理
-         ...
+         // ...
          return friendMomentBuckets;
        } else {
          // 异常处理
-         ...
+         // ...
        }
      } catch (err) {
        // 异常处理
-       ...
+       // ...
      }
    }
    ```
@@ -353,7 +353,7 @@ class MyMath implements MyMathInterface {
   b: number = 1;
 
   constructor(a: number, b: number) {
-    console.log('MyMath constructor a:' + a + ' b:' + b)
+    console.log('MyMath constructor a:' + a + ' b:' + b);
     this.a = a;
     this.b = b;
   }
@@ -381,7 +381,7 @@ class MyMathProxy implements MyMathInterface {
 const workerPort = worker.workerPort;
 workerPort.onmessage = (e: MessageEvents): void => {
   // 方法三：使用代理类构造对象
-  let proxy = new MyMathProxy(e.data)
+  let proxy = new MyMathProxy(e.data);
   console.log('math compute:' + proxy.compute()); // 成功打印出结果：5
 }
 ```
@@ -540,7 +540,7 @@ workerPort.onmessage = (e: MessageEvents): void => {
       'phone': value3,
       'remark': value4,
       'age': value5,
-    }
+    };
     if (this.rdbStore != undefined) {
       let ret = await this.rdbStore.insert(TABLE_NAME, valueBucket, rdb.ConflictResolution.ON_CONFLICT_REPLACE);
       Logger.info(TAG, `insert done:${ret}`);
@@ -572,7 +572,7 @@ workerPort.onmessage = (e: MessageEvents): void => {
   import rdb from '@ohos.data.relationalStore';
   import type common from '@ohos.app.ability.common';
   import { Contact } from '../constant/Contact';
-  import { ValuesBucket } from '@ohos.data.ValuesBucket';;
+  import { ValuesBucket } from '@ohos.data.ValuesBucket';
   
   /**
      * 批量插入数据库
@@ -606,13 +606,13 @@ workerPort.onmessage = (e: MessageEvents): void => {
           'phone': value3,
           'remark': value4,
           'age': value5,
-        }
+        };
         valueBuckets.push(valueBucket);
       }
   
       if (this.rdbStore != undefined) {
-        let ret = await this.rdbStore.batchInsert(TABLE_NAME, valueBuckets)
-        Logger.info(TAG, `batch insert done:${ret}`)
+        let ret = await this.rdbStore.batchInsert(TABLE_NAME, valueBuckets);
+        Logger.info(TAG, `batch insert done:${ret}`);
       }
     }
   ```
@@ -658,7 +658,7 @@ workerPort.onmessage = (e: MessageEvents): void => {
     } else {
       // 默认查询所有列
       let resultSet: rdb.ResultSet = await this.rdbStore.query(predicates, this.columns);
-      Logger.info(TAG, 'result is ' + JSON.stringify(resultSet.rowCount))
+      Logger.info(TAG, 'result is ' + JSON.stringify(resultSet.rowCount));
       // 处理查询到的结果数组
       return this.getListFromResultSet(resultSet);
     }
@@ -689,7 +689,7 @@ workerPort.onmessage = (e: MessageEvents): void => {
         'phone': resultSet.getString(resultSet.getColumnIndex('phone')),
         'age': resultSet.getLong(resultSet.getColumnIndex('age')),
         'remark': resultSet.getString(resultSet.getColumnIndex('remark'))
-      }
+      };
       if (!contacts.includes(contact)) {
         // 如果数据集合中没有这条数据就添加进去
         contacts.push(contact);
@@ -718,7 +718,7 @@ workerPort.onmessage = (e: MessageEvents): void => {
     .height(40)
     .onClick(() => {
       for (let index = 0; index < 3000; index++) {
-        this.count++
+        this.count++;
         contact.phone = JSON.stringify(this.count);
         // 插入数据库
         taskPoolExecuteInsert(context, contact));
@@ -755,7 +755,7 @@ workerPort.onmessage = (e: MessageEvents): void => {
     .onClick(async  () => {
        // 查询数据库
        taskPoolExecuteQuery(context).then((contact: Array<Contact>) => {
-       this.dataArray = this.dataArray.concat(contact);
+         this.dataArray = this.dataArray.concat(contact);
        }); 
      })
   ```

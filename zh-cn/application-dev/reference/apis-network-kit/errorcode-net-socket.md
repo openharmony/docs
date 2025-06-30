@@ -1,8 +1,10 @@
-# Socket 错误码
+# SOCKET 错误码
 
 > **说明：**
 >
 > 以下仅介绍本模块特有错误码，通用错误码请参考[通用错误码说明文档](../errorcode-universal.md)。
+> socket错误码映射关系：2301000 + [内核错误码](./errorcode-kernel.md)。
+> socket server错误码映射关系：2303100 + [内核错误码](./errorcode-kernel.md)。
 
 ## 2301001 操作不允许
 
@@ -52,7 +54,7 @@ No such process.
 
 **可能原因**
 
-进程不存在
+进程不存在。
 
 **处理步骤**
 
@@ -191,7 +193,7 @@ SOCKS5因系统调用错误，发送消息失败。
 
 尝试新建socket，再次发起连接。
 
-## 2301211 SOCKS5接受消息失败
+## 2301211 SOCKS5接收消息失败
 
 **错误信息**
 
@@ -199,7 +201,7 @@ Socks5 failed to receive the message.
 
 **错误描述**
 
-SOCKS5因系统调用错误，接受消息失败。
+SOCKS5因系统调用错误，接收消息失败。
 
 **可能原因**
 
@@ -257,7 +259,7 @@ Interrupted system call.
 
 **可能原因**
 
-调有connect时，可能会导致阻塞时间过长，所以系统产生中断信号，返回EINTR错误。
+调用connect时，可能会导致阻塞时间过长，所以系统产生中断信号，返回EINTR错误。
 
 **处理步骤**
 
@@ -329,8 +331,7 @@ Incorrect socket protocol type.
 
 **可能原因**
 
-标识了协议的Socket函数在不支持的socket上进行操作。
-如Internet UDP协议不能被标识为SOCK_STREAM socket类型。
+标识了协议的Socket函数在不支持的socket上进行操作，如Internet UDP协议不能被标识为SOCK_STREAM socket类型。
 
 **处理步骤**
 
@@ -380,15 +381,15 @@ Network is down.
 
 **错误描述**
 
-网络已关闭
+网络已关闭。
 
 **可能原因**
 
-网络服务未启动或已停止
+网络服务未启动或已停止。
 
 **处理步骤**
 
-检查网络连接
+检查网络连接。
 
 ## 2303210 连接超时
 
@@ -406,7 +407,7 @@ Connection timed out.
 
 **处理步骤**
 
-本地处理不了，需要确认远程服务器是否发生问题。
+本地无法处理此问题，需确认远程服务器是否出现故障。
 
 ## 2303501 SSL为空
 
@@ -426,7 +427,7 @@ SSL is null.
 
 尝试重新执行一遍流程。
 
-## 2303502 tls读取错误
+## 2303502 TLS读取错误
 
 **错误信息**
 
@@ -444,7 +445,7 @@ An error occurred when reading data on the TLS socket.
 
 重新执行接收数据的操作。
 
-## 2303503 tls写入错误
+## 2303503 TLS写入错误
 
 **错误信息**
 
@@ -460,13 +461,13 @@ An error occurred when writing data on the TLS socket.
 
 **处理步骤**
 
-需要检查服务器并修复它。
+需检查服务器状态并进行修复。
 
 ## 2303504 查找x509时出错
 
 **错误信息**
 
-An error occurred when verifying the X.509 certificate.
+An error occurred when verifying the x509 certificate.
 
 **错误描述**
 
@@ -480,7 +481,7 @@ An error occurred when verifying the X.509 certificate.
 
 检查本地CA跟证书和服务器证书是否匹配。
 
-## 2303505 tls系统调用错误
+## 2303505 TLS系统调用错误
 
 **错误信息**
 
@@ -498,7 +499,7 @@ An error occurred in the TLS system call.
 
 请参阅Linux系统内核错误码errno以了解详细信息。
 
-## 2303506 清除tls连接出错
+## 2303506 清除TLS连接出错
 
 **错误信息**
 

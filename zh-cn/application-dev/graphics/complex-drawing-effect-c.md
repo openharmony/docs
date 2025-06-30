@@ -440,3 +440,11 @@ OH_Drawing_FilterDestroy(filter);
 | 不设置蒙版滤波器效果的示意图 | 设置蒙版滤波器效果的示意图 |
 | -------- | -------- |
 | ![zh-cn_image_0000002194110877](figures/zh-cn_image_0000002194110877.png) | ![zh-cn_image_0000002158744126](figures/zh-cn_image_0000002158744126.png) |
+
+<!--RP1-->
+## 相关实例
+
+针对Drawing(C/C++)的开发，有以下相关实例可供参考：
+
+- [NDKGraphicsDraw (API14)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Drawing/NDKGraphicsDraw)
+<!--RP1End-->

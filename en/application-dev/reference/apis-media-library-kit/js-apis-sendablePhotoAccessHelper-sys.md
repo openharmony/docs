@@ -59,6 +59,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.sendablePhotoAccessHelper (Album Management Based on a Sendable Object)](js-apis-sendablePhotoAccessHelper.md).
+
 ```ts
 async function example() {
   console.info('createAssetDemo');
@@ -118,6 +120,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.sendablePhotoAccessHelper (Album Management Based on a Sendable Object)](js-apis-sendablePhotoAccessHelper.md).
+
 ```ts
 async function example() {
   console.info('createAssetDemo');
@@ -172,6 +176,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011 | Internal system error.                                        |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.sendablePhotoAccessHelper (Album Management Based on a Sendable Object)](js-apis-sendablePhotoAccessHelper.md).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -260,6 +266,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.sendablePhotoAccessHelper (Album Management Based on a Sendable Object)](js-apis-sendablePhotoAccessHelper.md).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -318,6 +326,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.sendablePhotoAccessHelper (Album Management Based on a Sendable Object)](js-apis-sendablePhotoAccessHelper.md).
+
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
 
@@ -359,7 +369,7 @@ Obtains the face identifier on the cover of a portrait album or group photo albu
 
 | Type               | Description                               |
 | :------------------ | :---------------------------------- |
-| Promise&lt;string&gt; | Promise used to return **tag_id**  of the portrait album, **group_tag** of the group photo album, or an empty string if no face identifier is found.|
+| Promise&lt;string&gt; | Promise used to return **tag_id** of the portrait album, **group_tag** of the group photo album, or an empty string if no face identifier is found.|
 
 **Error codes**
 
@@ -372,6 +382,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 14000011 | Internal system error                                        |
 
 **Example**
+
+For details about how to create a **phAccessHelper** instance, see the example provided in [@ohos.file.sendablePhotoAccessHelper (Album Management Based on a Sendable Object)](js-apis-sendablePhotoAccessHelper.md).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';

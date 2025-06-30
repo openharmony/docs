@@ -7,7 +7,7 @@ For details about the corresponding algorithm specifications, see [HKDF](crypto-
    
    **HKDFSpec** is a child class of [KdfSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#kdfspec11). You need to specify the following:
 
-   - **algName**: algorithm to used, which is **'HKDF'**.
+   - **algName**: algorithm to be used, which is **'HKDF'**.
    - **key**: original key material.
       If **key** is of the string type, pass in the data used for key derivation instead of the string type such as HexString or base64. In addition, ensure that the string is encoded in UTF-8 format. Otherwise, the derived key may be different from what you expected.
    - **salt**: salt value.

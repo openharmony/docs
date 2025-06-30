@@ -128,8 +128,6 @@ let subscriber: notificationSubscribe.NotificationSubscriber = {
 notificationSubscribe.subscribe(subscriber, subscribeCallback);
 ```
 
-
-
 ## notificationSubscribe.subscribe
 
 subscribe(subscriber: NotificationSubscriber, info?: NotificationSubscribeInfo): Promise\<void\>
@@ -893,6 +891,12 @@ Removes all notifications for a specified user. This API uses a promise to retur
 | ------ | ------------ | ---- | ---------- |
 | userId | number | Yes  | User ID.|
 
+**Return value**
+
+| Type    | Description        |
+| ------- |------------|
+| Promise\<void\> | Promise that returns no value.|
+
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
@@ -938,6 +942,12 @@ Triggers a notification for cross-device operations, such as tap-to-redirect and
 | ------ | ------------ | ---- | ---------- |
 | hashcode | string | Yes  | Unique notification ID.|
 | operationInfo | [OperationInfo](#operationinfo18) | No  | Cross-device operation information.|
+
+**Return value**
+
+| Type    | Description        |
+| ------- |------------|
+| Promise\<void\> | Promise that returns no value.|
 
 **Error codes**
 

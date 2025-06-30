@@ -9,13 +9,13 @@
 
 ## 前置条件
 
-业务HAP在app.json配置了一个群组ID：demo_group_id。
+在应用配置文件app.json5中，配置群组ID：demo_group_id。
 
 ```json
 {
   "app": {
     //其他配置项此处省略
-    "asset-access-groups": [
+    "assetAccessGroups": [
       "demo_group_id"
     ]
   }
@@ -24,7 +24,7 @@
 
 ## 新增群组关键资产
 
-在群组中新增一条密码是demo_pwd，别名是demo_alias，附属信息是demo_label的关键资产，该关键资产在用户首次解锁设备后可被访问。
+在群组中新增密码为demo_pwd、别名为demo_alias、附属信息为demo_label的关键资产。用户首次解锁设备后，该关键资产可被访问。
 
 ```c
 #include <string.h>
@@ -89,7 +89,7 @@ void RemoveAsset() {
 
 ## 更新群组关键资产
 
-在群组中更新别名是demo_alias的关键资产，将关键资产明文更新为demo_pwd_new，附属信息更新成demo_label_new。
+在群组中更新别名为demo_alias的关键资产，将关键资产的明文更新为demo_pwd_new，附属信息更新为demo_label_new。
 
 ```c
 #include <string.h>
@@ -127,7 +127,7 @@ void UpdateAsset() {
 
 ## 查询单条群组关键资产明文
 
-在群组中查询别名是demo_alias的关键资产明文。
+在群组中查询别名为demo_alias的关键资产明文。
 
 ```c
 #include <string.h>

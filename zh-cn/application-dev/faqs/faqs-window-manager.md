@@ -206,7 +206,7 @@ struct ScreenTest {
 
   setOrientation() {
     try {
-      window.getLastWindow(getContext(this), (err, data) => { // 获取window实例
+      window.getLastWindow(this.getUIContext().getHostContext(), (err, data) => { // 获取window实例
         if (err.code) {
           console.error(TAG, 'Failed to obtain the top window. Cause: ' + JSON.stringify(err));
           return;
@@ -326,5 +326,27 @@ display.on('change', (data) => {
 **参考链接**
 
 [display.on('change')](../reference/apis-arkui/js-apis-display.md#displayonaddremovechange)
+
+## 窗口Orientation枚举值8\~10或12和枚举值13\~16的区别(API9)
+
+1. 窗口设置8\~10或12，会跟随传感器自动旋转，且受控制中心的旋转开关控制。
+2. 窗口设置13\~16，会临时旋转到指定方向（如：13会临时旋转到竖屏），之后跟随传感器自动旋转，受控制中心的旋转开关控制，且可旋转方向受系统判定。
+
+两者的区别是，调用13\~16时会临时旋转到指定方向，且前后台切换时窗口方向保持，而调用8\~10或12前后台切换时窗口方向不会保持。
+
+**场景举例：**
+1. 竖持手机，关闭旋转锁定开关 -> 应用设置方向为AUTO_ROTATION_RESTRICTED -> 将手机旋转为横屏（**应用方向为横屏**） -> 应用退出后台进入桌面，竖持手机（方向为竖屏） -> 应用切换至前台（**应用方向为竖屏**） 
+2. 竖持手机，关闭旋转锁定开关 -> 应用设置方向为USER_ROTATION_PORTRAIT（**应用方向为竖屏**） -> 将手机旋转为横屏（**应用方向为横屏**） -> 应用退出后台进入桌面，竖持手机（方向为竖屏） -> 应用切换至前台（**应用方向为横屏**） 
+
+| 名称                               | 值  | 可旋转方向           | 是否跟随传感器自动旋转 | 是否受旋转开关控制 |
+|----------------------------------|----|-----------------|-------------|-----------|
+| AUTO_ROTATION_RESTRICTED         | 8  | 横屏、竖屏、反向竖屏、反向横屏 | 是           | 是         |
+| AUTO_ROTATION_PORTRAIT_RESTRICTED         | 9  | 竖屏、反向竖屏 | 是           | 是         |
+| AUTO_ROTATION_LANDSCAPE_RESTRICTED         | 10 | 横屏、反向横屏 | 是           | 是         |
+| AUTO_ROTATION_UNSPECIFIED         | 12  | 受系统判定 | 是           | 是         |
+| USER_ROTATION_PORTRAIT           | 13 | 受系统判定           | 是           | 是         |
+| USER_ROTATION_LANDSCAPE          | 14 | 受系统判定           | 是           | 是         |
+| USER_ROTATION_PORTRAIT_INVERTED  | 15 | 受系统判定           | 是           | 是         |
+| USER_ROTATION_LANDSCAPE_INVERTED | 16 | 受系统判定           | 是           | 是         |
 
 <!--no_check-->

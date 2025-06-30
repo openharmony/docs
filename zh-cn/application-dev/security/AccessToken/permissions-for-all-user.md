@@ -37,6 +37,8 @@
 
 允许应用读取开放匿名设备标识符。
 
+<!--RP3--><!--RP3End-->
+
 **权限级别**：normal
 
 **授权方式**：用户授权（user_grant）
@@ -205,6 +207,20 @@
 **起始版本**：11
 
 **变更信息：** API 11，权限级别为system_basic；从API 12开始，变更为normal。
+
+## ohos.permission.CUSTOM_SCREEN_CAPTURE
+
+允许应用获取屏幕图像。
+
+应用获取此权限后，可进行截屏等操作。当前仅平板、2in1设备应用可申请此权限。
+
+**权限级别**：system_basic
+
+**授权方式**：用户授权（user_grant）
+
+**ACL使能**：true
+
+**起始版本**：14
 
 ## ohos.permission.READ_MEDIA
 

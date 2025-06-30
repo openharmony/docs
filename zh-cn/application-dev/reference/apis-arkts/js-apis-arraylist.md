@@ -4,11 +4,11 @@ ArrayList是一种线性数据结构，底层基于数组实现。ArrayList会�
 
 ArrayList和[Vector](js-apis-vector.md)相似，都是基于数组实现。它们都可以动态调整容量，但Vector每次扩容增加1倍。
 
-ArrayList和[LinkedList](js-apis-linkedlist.md)相比，ArrayList的随机访问效率更高。但由于ArrayList的增删操作会影响数组内其他元素的移动，LinkedList的增加和删除操作效率更高。
+ArrayList和[LinkedList](js-apis-linkedlist.md)相比，ArrayList的随机访问效率更高。但由于ArrayList的增删操作可能会影响数组内其他元素的移动，LinkedList的增加和删除操作效率更高。
 
 **推荐使用场景：** 当需要频繁读取集合中的元素时，推荐使用ArrayList。
 
-文档中存在泛型的使用，涉及以下泛型标记符：<br>
+文档中使用了泛型，涉及以下泛型标记符：
 - T：Type，类
 
 > **说明：**
@@ -30,7 +30,7 @@ import { ArrayList } from '@kit.ArkTS';
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | length | number | 是 | 否 | ArrayList的元素个数。 |
 
@@ -111,7 +111,7 @@ let result5 = arrayList.add(false);
 
 insert(element: T, index: number): void
 
-在长度范围内任意位置插入指定元素。
+在长度范围内指定位置index插入元素element。如果index超出范围，则插入失败。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -147,7 +147,7 @@ arrayList.insert(true, 2);
 
 has(element: T): boolean
 
-判断此ArrayList中是否含有该指定元素。
+判断此ArrayList中是否包含该指定元素。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -179,13 +179,14 @@ has(element: T): boolean
 let arrayList: ArrayList<string> = new ArrayList();
 arrayList.add("squirrel");
 let result: boolean = arrayList.has("squirrel");
+console.log("result = ", result); // result = true
 ```
 
 ### getIndexOf
 
 getIndexOf(element: T): number
 
-返回指定元素第一次出现时的下标值，查找失败返回-1。
+返回指定元素第一次出现的下标，查找失败返回-1。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -222,14 +223,15 @@ arrayList.add(2);
 arrayList.add(1);
 arrayList.add(2);
 arrayList.add(4);
-let result: number = arrayList.getIndexOf(2);
+let result: number = arrayList.getIndexOf(2); 
+console.log("result = ", result); // result = 0
 ```
 
 ### getLastIndexOf
 
 getLastIndexOf(element: T): number
 
-返回指定元素最后一次出现时的下标值，查找失败返回-1。
+返回指定元素最后一次出现的下标，查找失败返回-1。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -267,6 +269,7 @@ arrayList.add(1);
 arrayList.add(2);
 arrayList.add(4);
 let result: number = arrayList.getLastIndexOf(2);
+console.log("result = ", result); // result = 5
 ```
 
 ### removeByIndex
@@ -311,13 +314,14 @@ arrayList.add(5);
 arrayList.add(2);
 arrayList.add(4);
 let result: number = arrayList.removeByIndex(2);
+console.log("result = ", result); // result = 5
 ```
 
 ### remove
 
 remove(element: T): boolean
 
-删除查找到的第一个指定的元素。
+删除查找到的第一个指定元素。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -352,13 +356,14 @@ arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 let result: boolean = arrayList.remove(2);
+console.log(result); // result =  true
 ```
 
 ### removeByRange
 
 removeByRange(fromIndex: number, toIndex: number): void
 
-从一段范围内删除元素，包括起始值但不包括终止值。
+删除指定范围内的元素，区间包含fromIndex，但不包含toIndex，即左闭右开区间[fromIndex, toIndex)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -408,9 +413,9 @@ thisArg?: Object): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | 是 | 回调函数。 |
-| thisArg | Object | 否 | callbackfn被调用时用作this值，默认值为当前实例对象。 |
+| thisArg | Object | 否 | callbackFn被调用时用作this值，默认值为当前实例对象。 |
 
-callbackfn的参数说明：
+callbackFn的参数说明：
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -446,7 +451,7 @@ arrayList.replaceAllElements((value: number): number => {
 forEach(callbackFn: (value: T, index?: number, arrlist?: ArrayList&lt;T&gt;) => void,
 thisArg?: Object): void
 
-通过回调函数来遍历ArrayList实例对象上的元素以及元素对应的下标。
+在遍历ArrayList实例对象中每一个元素的过程中，对每个元素执行回调函数。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -457,9 +462,9 @@ thisArg?: Object): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | 是 | 回调函数。 |
-| thisArg | Object | 否 | callbackfn被调用时用作this值，默认值为当前实例对象。 |
+| thisArg | Object | 否 | callbackFn被调用时用作this值，默认值为当前实例对象。 |
 
-callbackfn的参数说明：
+callbackFn的参数说明：
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -487,6 +492,12 @@ arrayList.add(4);
 arrayList.forEach((value: number, index?: number) => {
   console.log("value:" + value, "index:" + index);
 });
+/**
+ * value:2 index:0
+ * value:4 index:1
+ * value:5 index:2
+ * value:4 index:3
+ * /
 ```
 
 ### sort
@@ -538,7 +549,7 @@ arrayList.sort();
 
 subArrayList(fromIndex: number, toIndex: number): ArrayList&lt;T&gt;
 
-根据下标截取ArrayList中的一段元素，并返回这一段ArrayList实例，包括起始值但不包括终止值。
+根据下标截取ArrayList中的一段元素，并返回这一段ArrayList实例，区间包含fromIndex，但不包含toIndex，即左闭右开区间[fromIndex, toIndex)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -576,6 +587,7 @@ arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 let result: ArrayList<number> = arrayList.subArrayList(2, 4);
+console.log("result = ", result.length); // result = 2
 ```
 
 ### clear
@@ -641,6 +653,7 @@ arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 let result:  ArrayList<number> = arrayList.clone();
+console.log("result = ", result.length); // result = 4
 ```
 
 ### getCapacity
@@ -657,7 +670,7 @@ getCapacity(): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 返回arraylist的容量大小。 |
+| number | 获取当前实例的容量大小。 |
 
 **错误码：**
 
@@ -676,6 +689,7 @@ arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 let result: number = arrayList.getCapacity();
+console.log("result = ", result); // result = 10
 ```
 
 ### convertToArray
@@ -711,6 +725,7 @@ arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 let result: Array<number> = arrayList.convertToArray();
+console.log("result = ", result); // result =  2,4,5,4
 ```
 
 ### isEmpty
@@ -746,13 +761,14 @@ arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 let result: boolean = arrayList.isEmpty();
+console.log("result = ", result); // result =  false
 ```
 
 ### \[index: number\]<sup>12+</sup>
 
 \[index: number\]: T
 
-取指定索引值对应位置的元素。
+获取指定索引值对应位置的元素。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -788,6 +804,7 @@ arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 let result: number = arrayList[2];
+console.log("result = ", result); // result =  5
 ```
 
 ### increaseCapacityTo
@@ -825,6 +842,7 @@ arrayList.add(5);
 arrayList.add(4);
 arrayList.increaseCapacityTo(2);
 arrayList.increaseCapacityTo(8);
+console.log("result = ", arrayList.length); // result = 4
 ```
 
 ### trimToCurrentLength
@@ -854,13 +872,14 @@ arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
 arrayList.trimToCurrentLength();
+console.log("result = ", arrayList.length); // result = 4
 ```
 
 ### [Symbol.iterator]
 
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
-返回一个迭代器，迭代器的每一项都是一个 JavaScript 对象，并返回该对象。
+返回一个迭代器，每一项都是一个JavaScript对象。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -890,11 +909,16 @@ arrayList.add(5);
 arrayList.add(4);
 
 // 使用方法一：
-let numbers: Array<number> = arrayList.convertToArray()
+let numbers: Array<number> = arrayList.convertToArray();
 for (let item of numbers) {
   console.log(`value : ${item}`);
 }
-
+/**
+ * value : 2
+ * value : 4
+ * value : 5
+ * value : 4
+ * */
 // 使用方法二：
 let iter = arrayList[Symbol.iterator]();
 let temp: IteratorResult<number> = iter.next();
@@ -902,4 +926,10 @@ while(!temp.done) {
     console.log(`value:${temp.value}`);
     temp = iter.next();
 }
+/**
+ * value:2
+ * value:4
+ * value:5
+ * value:4
+ * */
 ```

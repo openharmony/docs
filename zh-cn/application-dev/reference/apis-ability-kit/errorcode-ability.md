@@ -47,7 +47,7 @@ Incorrect ability type.
 **处理步骤**
 
 1. 检查want中的bundleName、moduleName和abilityName是否正确。
-2. 根据Ability类型调用不同接口，如ServiceExtensionAbility应使用<!--Del-->[startServiceExtensionAbility](js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstartserviceextensionability)方法启动或<!--DelEnd-->[connectServiceExtensionAbility()](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability)方法连接。
+2. 根据Ability类型调用不同接口，如ServiceExtensionAbility应使用<!--Del-->[startServiceExtensionAbility](js-apis-inner-application-uiAbilityContext-sys.md#startserviceextensionability)方法启动或<!--DelEnd-->[connectServiceExtensionAbility()](js-apis-inner-application-uiAbilityContext.md#connectserviceextensionability)方法连接。
 
 ## 16000003 指定的ID不存在
 
@@ -288,7 +288,7 @@ Another ability is being started. Wait until it finishes starting.
 
 **错误信息**
 
-Redirection to a third-party application is not allowed in API version 11 or later.
+Redirection to a third-party application is not allowed in API version greater than 11.
 
 **错误描述**
 
@@ -296,7 +296,7 @@ Redirection to a third-party application is not allowed in API version 11 or lat
 
 **处理步骤**
 
-使用隐式启动方式或通过[openLink](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12)跳转其他应用。
+使用隐式启动方式或通过[openLink](js-apis-inner-application-uiAbilityContext.md#openlink12)跳转其他应用。
 
 ## 16000019 隐式启动未查找到匹配应用
 
@@ -717,7 +717,7 @@ App clone is not supported.
 
 **处理步骤**
 
-参考[应用多实例的配置方法](../../quick-start/multiInstance.md#应用多实例的配置方法)，在app.json5配置文件中配置multiAppMode标签，开启应用分身功能后，再调用[getCurrentAppCloneIndex](./js-apis-inner-application-applicationContext.md#applicationcontextgetcurrentappcloneindex12)接口。
+参考[应用多实例的配置方法](../../quick-start/multiInstance.md)，在app.json5配置文件中配置multiAppMode标签，开启应用分身功能后，再调用[getCurrentAppCloneIndex](./js-apis-inner-application-applicationContext.md#applicationcontextgetcurrentappcloneindex12)接口。
 
 <!--Del-->
 ## 16000072 不支持应用多开
@@ -950,6 +950,44 @@ The extension can not start the ability due to extension control.
 **处理步骤**
 
 查看对应类型ExtensionAbility的使用约束限制，确保接口使用符合约束限制。
+
+## 16000084 只允许DelegatorAbility单次调用
+
+**错误信息**
+
+Only allow DelegatorAbility to call the method once.
+
+**错误描述**
+
+系统只允许DelegatorAbility调用该接口一次。
+
+**可能原因**
+
+1. 调用方不是DelegatorAbility。
+2. 调用方是DelegatorAbility，但是重复调用接口。
+
+**处理步骤**
+
+1. 检查调用方是否DelegatorAbility。
+2. 检查是否重复调用。
+
+## 16000085 元能力与窗口的交互流程发生错误
+
+**错误信息**
+
+The interaction process between Ability and Window encountered an error.
+
+**错误描述**
+
+元能力与窗口的交互流程发生错误。
+
+**可能原因**
+
+窗口业务流程出现异常。
+
+**处理步骤**
+
+系统错误，尝试重新调用。
 
 ## 16000100 监听Ability生命周期变化的AbilityMonitor方法执行失败
 

@@ -404,7 +404,7 @@ Starts AI image analysis in the given settings. Before calling this API, make su
 
 **Error codes**
 
-For details about the error codes, see [AI Image Analyzer Error Codes](../errorcode-image-analyzer.md).
+For details about the error codes, see [AI Image Analyzer Error Codes](errorcode-image-analyzer.md).
 
 | ID| Error Message                                     |
 | -------- | -------------------------------------------- |

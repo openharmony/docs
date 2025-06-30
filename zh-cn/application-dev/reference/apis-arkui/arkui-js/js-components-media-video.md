@@ -20,9 +20,9 @@
 
 | 名称       | 类型      | 默认值   | 必填   | 描述                                       |
 | -------- | ------- | ----- | ---- | ---------------------------------------- |
-| muted    | boolean | false | 否    | 视频是否静音播放。                                |
+| muted    | boolean | false | 否    | 视频是否静音播放。<br/>true：开启静音；<br/>false：关闭静音。                           |
 | src      | string  | -     | 否    | 播放视频内容的路径。                               |
-| autoplay | boolean | false | 否    | 视频是否自动播放。                                |
+| autoplay | boolean | false | 否    | 视频是否自动播放。<br/>true：开启自动播放；<br/>false：关闭自动播放。                                |
 | controls | boolean | true  | 否    | 控制视频播放的控制栏是否显示，如果设置为false，则不显示控制栏。默认为true，由系统决定显示或隐藏控制栏。 |
 
 
@@ -75,7 +75,7 @@
 ```html
 <!-- xxx.hml -->
 <div class="container">
-  <video id='videoId' src='/common/myDeram.mp4' muted='false' autoplay='false'
+  <video id='videoId' src='/common/myDream.mp4' muted='false' autoplay='false'
          controls='true' onprepared='preparedCallback' onstart='startCallback'
          onpause='pauseCallback' onfinish='finishCallback' onerror='errorCallback'
          onseeking='seekingCallback' onseeked='seekedCallback' 

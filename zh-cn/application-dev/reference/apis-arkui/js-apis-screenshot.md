@@ -56,7 +56,7 @@ import { screenshot } from '@kit.ArkUI';
 
 pick(): Promise&lt;PickInfo&gt;
 
-获取屏幕截图。此接口仅可在2in1设备上使用。
+获取屏幕截图。此接口仅可在2in1设备上使用。当前仅支持获取displayId为0的屏幕截图。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -100,7 +100,8 @@ try {
 
 capture(options?: CaptureOption): Promise&lt;image.PixelMap&gt;
 
-获取屏幕全屏截图，此接口仅支持在平板和2in1设备上使用。与[pick](#screenshotpick)接口不同之处是可以通过设置不同的displayId截取不同屏幕的截图。
+获取屏幕全屏截图，此接口仅支持在平板和2in1设备上使用。
+此接口可以通过设置不同的displayId截取不同屏幕的截图，且只能截取全屏；[pick](#screenshotpick)接口可实现区域截屏。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 

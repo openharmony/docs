@@ -211,7 +211,7 @@ export struct LessEmbeddedComponent {
           ListItem() {
             OneMomentNoModifier({ color: moment.color })
               .onClick(() => {
-                console.log(`my id is ${moment.id}`)
+                console.log(`my id is ${moment.id}`);
               })
           }
         }, (moment: FriendMoment) => moment.id)
@@ -281,11 +281,11 @@ export class MyTextUpdater extends AttributeUpdater<TextAttribute> {
 
   constructor(color: string | number | Resource) {
     super();
-    this.color = color
+    this.color = color;
   }
 
   initializeModifier(instance: TextAttribute): void {
-    instance.fontColor(this.color) // 差异化更新
+    instance.fontColor(this.color); // 差异化更新
   }
 }
 
@@ -303,7 +303,7 @@ export struct UpdaterComponent {
           ListItem() {
             OneMomentNoModifier({ color: moment.color })
               .onClick(() => {
-                console.log(`my id is ${moment.id}`)
+                console.log(`my id is ${moment.id}`);
               })
           }
         }, (moment: FriendMoment) => moment.id)
@@ -570,11 +570,11 @@ export struct OneMoment {
 
   // 此处aboutToReuse为多余刷新
   aboutToReuse(params: Record<string, Object>): void {
-    this.moment.id = (params.moment as FriendMoment).id
-    this.moment.userName = (params.moment as FriendMoment).userName
-    this.moment.avatar = (params.moment as FriendMoment).avatar
-    this.moment.text = (params.moment as FriendMoment).text
-    this.moment.image = (params.moment as FriendMoment).image
+    this.moment.id = (params.moment as FriendMoment).id;
+    this.moment.userName = (params.moment as FriendMoment).userName;
+    this.moment.avatar = (params.moment as FriendMoment).avatar;
+    this.moment.text = (params.moment as FriendMoment).text;
+    this.moment.image = (params.moment as FriendMoment).image;
   }
     
   build() {

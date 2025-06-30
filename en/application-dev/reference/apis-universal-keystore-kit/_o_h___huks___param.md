@@ -9,6 +9,8 @@ Defines the types of the parameters in a parameter set.
 
 **Related module**: [HuksTypeApi](_huks_type_api.md)
 
+**Header file**: [native_huks_type.h](native__huks__type_8h.md)
+
 
 ## Summary
 

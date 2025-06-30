@@ -5,9 +5,7 @@
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
-You can use WebSocket to establish a bidirectional connection between a server and a client. Before doing this, you need to use the [createWebSocket](#websocketcreatewebsocket6) API to create a [WebSocket](#websocket6) object and then use the [connect](#connect6) API to connect to the server.
-If the connection is successful, the client will receive a callback of the [open](#onopen6) event. Then, the client can communicate with the server using the [send](#send6) API.
-When the server sends a message to the client, the client will receive a callback of the [message](#onmessage6) event. If the client no longer needs this connection, it can call the [close](#close6) API to disconnect from the server. Then, the client will receive a callback of the [close](#onclose6) event.
+You can use WebSocket to establish a bidirectional connection between a server and a client. Before doing this, you need to use the [createWebSocket](#websocketcreatewebsocket6) API to create a [WebSocket](#websocket6) object and then use the [connect](#connect6) API to connect to the server. If the connection is successful, the client will receive a callback of the [open](#onopen6) event. Then, the client can communicate with the server using the [send](#send6) API. When the server sends a message to the client, the client will receive a callback of the [message](#onmessage6) event. If the client no longer needs this connection, it can call the [close](#close6) API to disconnect from the server. Then, the client will receive a callback of the [close](#onclose6) event.
 
 If an error occurs in any of the preceding processes, the client will receive a callback of the [error](#onerror6) event.
 
@@ -27,7 +25,7 @@ let defaultIpAddress = "ws://";
 let ws = webSocket.createWebSocket();
 ws.on('open', (err:BusinessError, value: Object) => {
   if (err != undefined) {
-    console.log(JSON.stringify(err));
+    console.error(JSON.stringify(err));
     return;
   }
   // When receiving the on('open') event, the client can use the send() API to communicate with the server.
@@ -35,7 +33,7 @@ ws.on('open', (err:BusinessError, value: Object) => {
     if (!err) {
       console.log("send success");
     } else {
-      console.log("send fail, err:" + JSON.stringify(err));
+      console.error("send fail, err:" + JSON.stringify(err));
     }
   });
 });
@@ -47,7 +45,7 @@ ws.on('message',(error: BusinessError, value: string | ArrayBuffer) => {
       if (!err) {
         console.log("close success");
       } else {
-        console.log("close fail, err is " + JSON.stringify(err));
+        console.error("close fail, err is " + JSON.stringify(err));
       }
     });
   }
@@ -56,7 +54,7 @@ ws.on('close', (err: BusinessError, value: webSocket.CloseResult) => {
   console.log("on close, code is " + value.code + ", reason is " + value.reason);
 });
 ws.on('error', (err: BusinessError) => {
-  console.log("on error, error:" + JSON.stringify(err));
+  console.error("on error, error:" + JSON.stringify(err));
 });
 ws.connect(defaultIpAddress, {
   header:{
@@ -74,13 +72,13 @@ ws.connect(defaultIpAddress, {
   if (!err) {
     console.log("connect success");
   } else {
-    console.log("connect fail, err:" + JSON.stringify(err));
+    console.error("connect fail, err:" + JSON.stringify(err));
   }
   ws.close((err: BusinessError) => {
     if (!err) {
       console.log("close success");
     } else {
-      console.log("close fail, err is " + JSON.stringify(err));
+      console.error("close fail, err is " + JSON.stringify(err));
     }
   });
 });
@@ -134,7 +132,7 @@ Initiates a WebSocket request to establish a WebSocket connection to a given URL
 | Name  | Type                    | Mandatory| Description                        |
 | -------- | ------------------------ | ---- | ---------------------------- |
 | url      | string                   | Yes  | URL for establishing a WebSocket connection.|
-| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.                  |
+| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.                  |
 
 **Error codes**
 
@@ -142,11 +140,11 @@ Initiates a WebSocket request to establish a WebSocket connection to a given URL
 | --------------------- | ------------------------------------------ |
 | 401                   | Parameter error.                           |
 | 201                   | Permission denied.                         |
-| 2302001<sup>12+</sup> | Websocket url error.                       |
-| 2302002<sup>12+</sup> | Websocket certificate file does not exist. |
-| 2302003<sup>12+</sup> | Websocket connection already exists.       |
-| 2302998<sup>12+</sup> | It is not allowed to access this domain.   |
-| 2302999<sup>10+</sup> | Websocket other unknown error.             |
+| 2302001               | Websocket url error.                       |
+| 2302002               | Websocket certificate file does not exist. |
+| 2302003               | Websocket connection already exists.       |
+| 2302998               | It is not allowed to access this domain.   |
+| 2302999               | Internal error.             |
 
 > **NOTE**
 > For details about the error codes, see [webSocket Error Codes](errorcode-net-http.md).
@@ -163,7 +161,7 @@ ws.connect(url, (err: BusinessError, value: boolean) => {
   if (!err) {
     console.log("connect success");
   } else {
-    console.log("connect fail, err:" + JSON.stringify(err));
+    console.error("connect fail, err:" + JSON.stringify(err));
   }
 });
 ```
@@ -191,7 +189,7 @@ Initiates a WebSocket request carrying specified options to establish a WebSocke
 | -------- | ------------------------ | ---- | ------------------------------------------------------- |
 | url      | string                   | Yes  | URL for establishing a WebSocket connection.                           |
 | options  | WebSocketRequestOptions  | Yes  | Request options. For details, see [WebSocketRequestOptions](#websocketrequestoptions).|
-| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.                                             |
+| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.                                             |
 
 **Error codes**
 
@@ -199,11 +197,11 @@ Initiates a WebSocket request carrying specified options to establish a WebSocke
 | --------------------- | ------------------------------------------ |
 | 401                   | Parameter error.                           |
 | 201                   | Permission denied.                         |
-| 2302001<sup>12+</sup> | Websocket url error.                       |
-| 2302002<sup>12+</sup> | Websocket certificate file does not exist. |
-| 2302003<sup>12+</sup> | Websocket connection already exists.       |
-| 2302998<sup>12+</sup> | It is not allowed to access this domain.   |
-| 2302999<sup>10+</sup> | Websocket other unknown error.             |
+| 2302001               | Websocket url error.                       |
+| 2302002               | Websocket certificate file does not exist. |
+| 2302003               | Websocket connection already exists.       |
+| 2302998               | It is not allowed to access this domain.   |
+| 2302999               | Internal error.             |
 
 > **NOTE**
 > For details about the error codes, see [webSocket Error Codes](errorcode-net-http.md).
@@ -229,7 +227,7 @@ ws.connect(url, options, (err: BusinessError, value: Object) => {
   if (!err) {
     console.log("connect success");
   } else {
-    console.log("connect fail, err:" + JSON.stringify(err))
+    console.error("connect fail, err:" + JSON.stringify(err))
   }
 });
 ```
@@ -262,7 +260,7 @@ Initiates a WebSocket request carrying specified options to establish a WebSocke
 
 | Type              | Description                             |
 | :----------------- | :-------------------------------- |
-| Promise\<boolean\> | Promise used to return the result.|
+| Promise\<boolean\> | Promise used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
 
 **Error codes**
 
@@ -270,11 +268,11 @@ Initiates a WebSocket request carrying specified options to establish a WebSocke
 | --------------------- | ------------------------------------------ |
 | 401                   | Parameter error.                           |
 | 201                   | Permission denied.                         |
-| 2302001<sup>12+</sup> | Websocket url error.                       |
-| 2302002<sup>12+</sup> | Websocket certificate file does not exist. |
-| 2302003<sup>12+</sup> | Websocket connection already exists.       |
-| 2302998<sup>12+</sup> | It is not allowed to access this domain.   |
-| 2302999<sup>10+</sup> | Websocket other unknown error.             |
+| 2302001               | Websocket url error.                       |
+| 2302002               | Websocket certificate file does not exist. |
+| 2302003               | Websocket connection already exists.       |
+| 2302998               | It is not allowed to access this domain.   |
+| 2302999               | Internal error.             |
 
 > **NOTE**
 > For details about the error codes, see [webSocket Error Codes](errorcode-net-http.md).
@@ -288,9 +286,9 @@ let ws = webSocket.createWebSocket();
 let url = "ws://"
 let promise = ws.connect(url);
 promise.then((value: boolean) => {
-  console.log("connect success")
+  console.log("connect success");
 }).catch((err:string) => {
-  console.log("connect fail, error:" + JSON.stringify(err))
+  console.error("connect fail, error:" + JSON.stringify(err));
 });
 ```
 
@@ -311,7 +309,7 @@ Sends data through a WebSocket connection. This API uses an asynchronous callbac
 | Name  | Type                    | Mandatory| Description        |
 | -------- | ------------------------ | ---- | ------------ |
 | data     | string \| ArrayBuffer | Yes  | Data to send.<br>Only the string type is supported for API version 6 or earlier. Both the string and ArrayBuffer types are supported for API version 8 or later.|
-| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.  |
+| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.  |
 
 **Error codes**
 
@@ -336,7 +334,7 @@ ws.connect(url, (err: BusinessError, value: boolean) => {
     if (!err) {
       console.log("connect success");
     } else {
-      console.log("connect fail, err:" + JSON.stringify(err))
+      console.error("connect fail, err:" + JSON.stringify(err))
     }
 });
 ws.on('open', (err: BusinessError, value: Object) => {
@@ -345,7 +343,7 @@ ws.on('open', (err: BusinessError, value: Object) => {
     if (!err) {
       console.log("send success");
     } else {
-      console.log("send fail, err:" + JSON.stringify(err))
+      console.error("send fail, err:" + JSON.stringify(err))
     }
   });
 });
@@ -377,7 +375,7 @@ Sends data through a WebSocket connection. This API uses a promise to return the
 
 | Type              | Description                             |
 | :----------------- | :-------------------------------- |
-| Promise\<boolean\> | Promise used to return the result.|
+| Promise\<boolean\> | Promise used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
 
 **Error codes**
 
@@ -402,7 +400,7 @@ ws.connect(url, (err: BusinessError, value: boolean) => {
     if (!err) {
       console.log("connect success");
     } else {
-      console.log("connect fail, err:" + JSON.stringify(err))
+      console.error("connect fail, err:" + JSON.stringify(err))
     }
 });
 
@@ -412,7 +410,7 @@ ws.on('open', (err: BusinessError, value: Object) => {
   promise.then((value: boolean) => {
     console.log("send success")
   }).catch((err:string) => {
-    console.log("send fail, error:" + JSON.stringify(err))
+    console.error("send fail, error:" + JSON.stringify(err))
   });
 });
 ```
@@ -437,7 +435,7 @@ Closes a WebSocket connection. This API uses an asynchronous callback to return 
 
 | Name  | Type                    | Mandatory| Description      |
 | -------- | ------------------------ | ---- | ---------- |
-| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
 
 **Error codes**
 
@@ -457,7 +455,7 @@ ws.close((err: BusinessError) => {
   if (!err) {
     console.log("close success")
   } else {
-    console.log("close fail, err is " + JSON.stringify(err))
+    console.error("close fail, err is " + JSON.stringify(err))
   }
 });
 ```
@@ -479,7 +477,7 @@ Closes a WebSocket connection carrying specified options such as **code** and **
 | Name  | Type                    | Mandatory| Description                                                 |
 | -------- | ------------------------ | ---- | ----------------------------------------------------- |
 | options  | WebSocketCloseOptions    | Yes  | Request options. For details, see [WebSocketCloseOptions](#websocketcloseoptions).|
-| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.                                           |
+| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.                                           |
 
 **Error codes**
 
@@ -505,7 +503,7 @@ ws.close(options, (err: BusinessError) => {
     if (!err) {
         console.log("close success")
     } else {
-        console.log("close fail, err is " + JSON.stringify(err))
+        console.error("close fail, err is " + JSON.stringify(err))
     }
 });
 ```
@@ -532,7 +530,7 @@ Closes a WebSocket connection carrying specified options such as **code** and **
 
 | Type              | Description                             |
 | :----------------- | :-------------------------------- |
-| Promise\<boolean\> | Promise used to return the result.|
+| Promise\<boolean\> | Promise used to return the result. The value **true** indicates that the operation is successful, and the value **false** indicates the opposite.|
 
 **Error codes**
 
@@ -556,7 +554,7 @@ let promise = ws.close();
 promise.then((value: boolean) => {
     console.log("close success")
 }).catch((err:string) => {
-    console.log("close fail, err is " + JSON.stringify(err))
+    console.error("close fail, err is " + JSON.stringify(err))
 });
 ```
 
@@ -709,7 +707,7 @@ Enables listening for the **close** events of a WebSocket connection. This API u
 | Name  | Type                                           | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ------------------------------ |
 | type     | string                                          | Yes  | Event type. <br />**close**: event indicating that a WebSocket connection has been closed.|
-| callback | AsyncCallback\<CloseResult\> | Yes  | Callback used to return the result.<br>**close** and **reason** indicate the error code and error cause for closing the connection, respectively.|
+| callback | AsyncCallback\<CloseResult\> | Yes  | Callback used to return the result.<br>**close** indicates the close error code and **reason** indicates the error code description.|
 
 **Example**
 
@@ -741,7 +739,7 @@ Disables listening for the **close** events of a WebSocket connection. This API 
 | Name  | Type                                           | Mandatory| Description                          |
 | -------- | ----------------------------------------------- | ---- | ------------------------------ |
 | type     | string                                          | Yes  | Event type. <br />**close**: event indicating that a WebSocket connection has been closed.|
-| callback | AsyncCallback\<CloseResult\> | No  | Callback used to return the result.<br>**close** and **reason** indicate the error code and error cause for closing the connection, respectively.|
+| callback | AsyncCallback\<CloseResult\> | No  | Callback used to return the result.<br>**close** indicates the close error code and **reason** indicates the error code description.|
 
 **Example**
 
@@ -777,7 +775,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let ws = webSocket.createWebSocket();
 ws.on('error', (err: BusinessError) => {
-  console.log("on error, error:" + JSON.stringify(err))
+  console.error("on error, error:" + JSON.stringify(err))
 });
 ```
 
@@ -925,7 +923,7 @@ Defines the optional parameters carried in the request for establishing a WebSoc
 | Name| Type|  Read Only | Optional| Description                                                        |
 | ------ | ------ |------ | ---- | ------------------------------------------------------------ |
 | header | Object |  No |  Yes  | Header carrying optional parameters in the request for establishing a WebSocket connection. You can customize the parameter or leave it unspecified.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| caPath<sup>11+</sup> | string |  No |  Yes | Path of CA certificates. If a path is set, the system uses the CA certificates in this path. If a path is not set, the system uses the preset CA certificate, namely, **/etc/ssl/certs/cacert.pem**. This path is the sandbox mapping path, which can be obtained through **Global.getContext().filesDir**. Currently, only text certificates in PEM format are supported.|
+| caPath<sup>11+</sup> | string |  No |  Yes | Path of CA certificates. If a path is set, the system uses the CA certificates in this path. If a path is not set, the system uses the preset CA certificate, namely, **/etc/ssl/certs/cacert.pem**. This path is the sandbox mapping path, which can be obtained by using **UIAbilityContext** APIs. Currently, only text certificates in PEM format are supported.|
 | clientCert<sup>11+</sup> | [ClientCert](#clientcert11) |   No |  Yes  | Client certificate.|
 | proxy<sup>12+</sup> | ProxyConfiguration |  No | Yes| Proxy configuration. By default, the system network proxy is used.|
 | protocol<sup>12+</sup> | string |  No | Yes| Custom **Sec-WebSocket-Protocol** field. The default value is "".             |
@@ -965,7 +963,7 @@ Defines the optional parameters carried in the request for closing a WebSocket c
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| code   | number | No  | Error code. Set this parameter based on the actual situation. The default value is **1000**.|
+| code   | number | No  | Error code. Set this parameter based on the actual situation. The input value must be a positive integer. The default value is **1000**.|
 | reason | string | No  | Error cause. Set this parameter based on the actual situation. The default value is an empty string ("").|
 
 ## CloseResult<sup>10+</sup>
@@ -994,7 +992,7 @@ Enumerates the response headers sent by the server.
 | ------ | ------------------------------------------------------------ |
 | {[k:string]:string \| string[] \| undefined} | The header data type can be key-value pair, string, or undefined.|
 
-## Result Codes for Connection Closing
+## Result Codes for Closing a WebSocket Connection
 
 You can customize the result codes sent to the server. The result codes in the following table are for reference only.
 
@@ -1014,7 +1012,7 @@ type HttpProxy = connection.HttpProxy
 
 Defines the global HTTP proxy configuration of the network.
 
-**System capability**: SystemCapability.Communication.NetStack
+**System capability**: SystemCapability.Communication.NetManager.Core
 
 |       Type      |            Description            |
 | ---------------- | --------------------------- |

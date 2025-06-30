@@ -9,7 +9,7 @@ Canvas provides the capability of drawing basic graphics on the screen. You can 
 Canvas is the core of graphics drawing. All drawing operations (including basic graphics drawing, text drawing, image drawing, and image transformation) mentioned in this chapter are based on Canvas.
 
 
-Currently, ArkTS can obtain the canvas in either of the following ways: [Obtaining the Canvas That Can Be Directly Displayed](#obtaining-the-canvas-that-can-be-directly-displayed) and [Obtaining and Displaying the Off-Screen Canvas](#obtaining-and-displaying-the off-screen-canvas). The former can display the drawing result on the screen without additional operations after the drawing API is called, while the latter can display the drawing result using existing display methods.
+Currently, ArkTS can obtain the canvas in either of the following ways: [Obtaining the Canvas That Can Be Directly Displayed](#obtaining-the-canvas-that-can-be-directly-displayed) and [Obtaining and Displaying the Off-Screen Canvas](#obtaining-and-displaying-the-off-screen-canvas). The former can display the drawing result on the screen without additional operations after the drawing API is called, while the latter can display the drawing result using existing display methods.
 
 
 ## Obtaining the Canvas That Can Be Directly Displayed
@@ -22,7 +22,7 @@ Use [RenderNode](../reference/apis-arkui/js-apis-arkui-renderNode.md) to obtain 
 
 3. Rewrite the [draw()](../reference//apis-arkui/js-apis-arkui-renderNode.md#draw) function of the customized RenderNode to obtain the Canvas for customized drawing.
 
-4. Displays the customized NodeController.
+4. Display the customized NodeController.
 
 ```ts
 import { UIContext, NodeController, FrameNode, RenderNode, DrawContext } from '@kit.ArkUI';
@@ -95,10 +95,10 @@ struct RenderTest {
 4. Rewrite the [draw()](../reference//apis-arkui/js-apis-arkui-renderNode.md#draw) function of the custom RenderNode to obtain the off-screen Canvas for drawing.
 
    1. Use the pixel map created in step 3 to construct an off-screen canvas.
-   2. Performs customized drawing operations on the off-screen Canvas.
-   3. Sends the drawing result of the off-screen Canvas to the RenderNode.
+   2. Perform customized drawing operations on the off-screen Canvas.
+   3. Send the drawing result of the off-screen Canvas to the RenderNode.
 
-5. Displays the customized NodeController.
+5. Display the customized NodeController.
 
 ```ts
 import { UIContext, NodeController, FrameNode, RenderNode, DrawContext } from '@kit.ArkUI';

@@ -231,16 +231,17 @@
 9. 在Init函数中补充接口。
 
    ```c
+   EXTERN_C_START
    static napi_value Init(napi_env env, napi_value exports)
-      {
-          napi_property_descriptor desc[] = {
-              { "getSensorInfos", nullptr, GetSensorInfos, nullptr, nullptr, nullptr, napi_default, nullptr },
-              { "subscriber", nullptr, Subscriber, nullptr, nullptr, nullptr, napi_default, nullptr }
-          };
-          napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
-          return exports;
-      }
-      EXTERN_C_END
+   {
+       napi_property_descriptor desc[] = {
+           { "getSensorInfos", nullptr, GetSensorInfos, nullptr, nullptr, nullptr, napi_default, nullptr },
+           { "subscriber", nullptr, Subscriber, nullptr, nullptr, nullptr, napi_default, nullptr }
+       };
+       napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
+       return exports;
+   }
+   EXTERN_C_END
    ```
 
 10. 在types/libentry路径下index.d.ts文件中引入Napi接口。

@@ -232,31 +232,48 @@ Json文件共包含3个属性。
    
    const fileName: string = 'xxx.json';
    
-   // 获取文件资源描述符
-   let rawFd: resourceManager.RawFileDescriptor = getContext().resourceManager.getRawFdSync(fileName);
+   @Entry
+   @Component
+   struct Index {
+     uiContext = this.getUIContext();
    
-   // 触发马达振动
-   try {
-     vibrator.startVibration({
-       type: "file",
-       hapticFd: { fd: rawFd.fd, offset: rawFd.offset, length: rawFd.length }
-     }, {
-       id: 0,
-       usage: 'alarm'
-     }, (error: BusinessError) => {
-       if (error) {
-         console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
-         return;
+     build() {
+       Row() {
+         Column() {
+           Button('alarm-file')
+             .onClick(() => {
+               // 获取文件资源描述符
+               let rawFd: resourceManager.RawFileDescriptor | undefined = this.uiContext.getHostContext()?.resourceManager.getRawFdSync(fileName);
+               if (rawFd != undefined) {
+                 // 触发马达振动
+                 try {
+                   vibrator.startVibration({
+                     type: "file",
+                     hapticFd: { fd: rawFd.fd, offset: rawFd.offset, length: rawFd.length }
+                   }, {
+                     id: 0,
+                     usage: 'alarm' // 根据实际选择类型归属不同的开关管控
+                   }, (error: BusinessError) => {
+                     if (error) {
+                       console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+                       return;
+                     }
+                     console.info('Succeed in starting vibration');
+                   });
+                 } catch (err) {
+                   let e: BusinessError = err as BusinessError;
+                   console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+                 }
+               }
+               // 关闭文件资源描述符
+               this.uiContext.getHostContext()?.resourceManager.closeRawFdSync(fileName);
+             })
+         }
+         .width('100%')
        }
-       console.info('Succeed in starting vibration');
-     });
-   } catch (err) {
-     let e: BusinessError = err as BusinessError;
-     console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
+       .height('100%')
+     }
    }
-   
-   // 关闭文件资源描述符
-   getContext().resourceManager.closeRawFdSync(fileName);
    ```
 
 3. 停止马达的振动。

@@ -10,7 +10,7 @@ animateToImmediately接口用来提供[显式动画](ts-explicit-animation.md)�
 
 > **说明：**
 >
-> 从API Version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 从API version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 
 ## 接口
@@ -27,7 +27,7 @@ animateToImmediately(value: AnimateParam , event: () => void): void
 
 **参数：** 
 
-| 参数名 | 类型                                                         | 是否必填 | 描述                                                         |
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
 | value  | [AnimateParam](ts-explicit-animation.md#animateparam对象说明) | 是       | 设置动画效果相关参数。                                       |
 | event  | () => void                                                   | 是       | 指定显示动效的闭包函数，在闭包函数中导致的状态变化系统会自动插入过渡动画。 |
@@ -41,10 +41,10 @@ animateToImmediately(value: AnimateParam , event: () => void): void
 @Entry
 @Component
 struct AnimateToImmediatelyExample {
-  @State widthSize: number = 250
-  @State heightSize: number = 100
-  @State opacitySize: number = 0
-  private flag: boolean = true
+  @State widthSize: number = 250;
+  @State heightSize: number = 100;
+  @State opacitySize: number = 0;
+  private flag: boolean = true;
 
   build() {
     Column() {
@@ -61,31 +61,31 @@ struct AnimateToImmediatelyExample {
               delay: 0,
               duration: 1000
             }, () => {
-              this.opacitySize = 1
+              this.opacitySize = 1;
             })
-            animateTo({
+            this.getUIContext()?.animateTo({
               delay: 1000,
               duration: 1000
             }, () => {
-              this.widthSize = 150
-              this.heightSize = 60
+              this.widthSize = 150;
+              this.heightSize = 60;
             })
           } else {
             animateToImmediately({
               delay: 0,
               duration: 1000
             }, () => {
-              this.widthSize = 250
-              this.heightSize = 100
+              this.widthSize = 250;
+              this.heightSize = 100;
             })
-            animateTo({
+            this.getUIContext()?.animateTo({
               delay: 1000,
               duration: 1000
             }, () => {
-              this.opacitySize = 0
+              this.opacitySize = 0;
             })
           }
-          this.flag = !this.flag
+          this.flag = !this.flag;
         })
     }.width('100%').margin({ top: 5 })
   }

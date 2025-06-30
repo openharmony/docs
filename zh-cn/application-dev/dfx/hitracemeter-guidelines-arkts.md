@@ -1,4 +1,4 @@
-# 使用HiTraceMeter跟踪性能（ArkTS/JS）
+# 使用HiTraceMeter跟踪性能（ArkTS）
 
 ## 简介
 

@@ -5,7 +5,7 @@ SIM卡管理模块提供了SIM卡管理的基础能力，包括获取指定卡�
 >**说明：** 
 >
 >本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.telephony.sim (SIM卡管理)](js-apis-sim.md)
+> 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.telephony.sim (SIM卡管理)](js-apis-sim.md)。
 
 ## 导入模块
 
@@ -34,7 +34,7 @@ isOperatorSimCard\(slotId: number, operator: OperatorSimCard\): boolean
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| boolean | 返回指定卡槽是否为指定运营商卡，如果是返回true。 |
+| boolean | 返回指定卡槽是否为指定运营商卡<br/>- true：是<br/>- false：否 |
 
 **错误码：**
 
@@ -1918,8 +1918,8 @@ setVoiceMailInfo\(slotId: number, mailName: string, mailNumber: string, callback
 | 参数名     | 类型                 | 必填 | 说明                                   |
 | ---------- | -------------------- | ---- | -------------------------------------- |
 | slotId     | number               | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| mailName   | string               | 是   | 邮件名字                               |
-| mailNumber | string               | 是   | 邮件号码                               |
+| mailName   | string               | 是   | 邮件名字。                              |
+| mailNumber | string               | 是   | 邮件号码。                               |
 | callback   | AsyncCallback<void\> | 是   | 回调函数。                             |
 
 **错误码：**
@@ -3450,7 +3450,7 @@ sim.getSimAuthentication(0, sim.AuthType.SIM_AUTH_EAP_SIM_TYPE, "test").then(() 
 | ------------ | ------ | ---- | ---------- |
 | alphaTag     | string |  是  | 标签。     |
 | number       | string |  是  | 号码。     |
-| recordNumber | number |  否  | 记录编号。 |
+| recordNumber | number |  否  | 记录编号,如未传入，默认值为undefined。 |
 | pin2         | string |  否  | pin2密码。 |
 
 ## ContactType<sup>8+</sup>

@@ -72,7 +72,7 @@ ICodecComponent::AllocateBuffer ([in] unsigned int portIndex, [in] struct OmxCod
 
 - 当组件处于OMX_StateWaitForResources状态，所需的资源可用，并且组件已准备好进入OMX_StateIdle状态。
 
-- 在去使能端口上，组件处于OMX_StateExecuting、OMX_StatePause或OMX_StateIdle状态。 更多组件状态的说明请详见**[OMX_STATETYPE](https://gitee.com/openharmony/third_party_openmax/blob/master/api/1.1.2/OMX_Core.h)**。
+- 在去使能端口上，组件处于OMX_StateExecuting、OMX_StatePause或OMX_StateIdle状态。 更多组件状态的说明请详见[OMX_STATETYPE](https://gitee.com/openharmony/third_party_openmax/blob/master/api/1.1.2/OMX_Core.h)。
 
 **起始版本：** 3.2
 
@@ -105,7 +105,7 @@ ICodecComponent::ComponentDeInit ()
 
 组件去初始化。
 
-调用此接口使组件去初始化，当组件处于OMX_StateLoaded状态时，将直接关闭组件，更多组件状态的说明请详见**[OMX_STATETYPE](https://gitee.com/openharmony/third_party_openmax/blob/master/api/1.1.2/OMX_Core.h)**。
+调用此接口使组件去初始化，当组件处于OMX_StateLoaded状态时，将直接关闭组件，更多组件状态的说明请详见[OMX_STATETYPE](https://gitee.com/openharmony/third_party_openmax/blob/master/api/1.1.2/OMX_Core.h)。
 
 **起始版本：** 3.2
 
@@ -162,7 +162,7 @@ ICodecComponent::ComponentTunnelRequest ([in] unsigned int port, [in] int tunnel
 
 设置组件采用Tunnel方式通信。
 
-当组件处于OMX_StateLoaded状态时（表示组件已加载），用户通过调用此接口确定组件是否可以进行Tunnel传输，如果可以则设置组件的Tunnel传输。 更多组件状态的说明请详见**[OMX_STATETYPE](https://gitee.com/openharmony/third_party_openmax/blob/master/api/1.1.2/OMX_Core.h)**。
+当组件处于OMX_StateLoaded状态时（表示组件已加载），用户通过调用此接口确定组件是否可以进行Tunnel传输，如果可以则设置组件的Tunnel传输。 更多组件状态的说明请详见[OMX_STATETYPE](https://gitee.com/openharmony/third_party_openmax/blob/master/api/1.1.2/OMX_Core.h)。
 
 **起始版本：** 3.2
 
@@ -197,7 +197,7 @@ ICodecComponent::EmptyThisBuffer ([in] struct OmxCodecBuffer buffer)
 
 编解码输入待处理buffer。
 
-此接口在组件处于OMX_StateExecuting或者OMX_StatePause状态时调用，更多组件状态的说明请详见**[OMX_STATETYPE](https://gitee.com/openharmony/third_party_openmax/blob/master/api/1.1.2/OMX_Core.h)**。
+此接口在组件处于OMX_StateExecuting或者OMX_StatePause状态时调用，更多组件状态的说明请详见[OMX_STATETYPE](https://gitee.com/openharmony/third_party_openmax/blob/master/api/1.1.2/OMX_Core.h)。
 
 **起始版本：** 3.2
 
@@ -228,7 +228,7 @@ ICodecComponent::FillThisBuffer ([in] struct OmxCodecBuffer buffer)
 
 编解码输出填充buffer。
 
-此接口在组件处于OMX_StateExecuting或者OMX_StatePause状态时调用，更多组件状态的说明请详见**[OMX_STATETYPE](https://gitee.com/openharmony/third_party_openmax/blob/master/api/1.1.2/OMX_Core.h)**。
+此接口在组件处于OMX_StateExecuting或者OMX_StatePause状态时调用，更多组件状态的说明请详见[OMX_STATETYPE](https://gitee.com/openharmony/third_party_openmax/blob/master/api/1.1.2/OMX_Core.h)。
 
 **起始版本：** 3.2
 
@@ -263,7 +263,7 @@ ICodecComponent::FreeBuffer ([in] unsigned int portIndex, [in] struct OmxCodecBu
 
 - 当组件处于OMX_StateIdle状态，并且已经向组件发送OMX_StateLoaded状态转换请求。
 
-- 在去使能端口上，组件处于OMX_StateExecuting、OMX_StatePause或OMX_StateIdle时调用。 更多组件状态的说明请详见**[OMX_STATETYPE](https://gitee.com/openharmony/third_party_openmax/blob/master/api/1.1.2/OMX_Core.h)**。
+- 在去使能端口上，组件处于OMX_StateExecuting、OMX_StatePause或OMX_StateIdle时调用。 更多组件状态的说明请详见[OMX_STATETYPE](https://gitee.com/openharmony/third_party_openmax/blob/master/api/1.1.2/OMX_Core.h)。
 
 - 此接口调用可随时进行，但是如果未在上述情况下执行，可能会导致组件上报OMX_ErrorPortUnpopulated事件。
 
@@ -393,7 +393,7 @@ ICodecComponent::GetParameter ([in] unsigned int index, [in] byte[] inParamStruc
 
 获取组件参数设置。
 
-当组件处于除了OMX_StateInvalid（组件状态异常）之外的其他状态，用户可通过此接口获取组件参数，组件状态详见**[OMX_STATETYPE](https://gitee.com/openharmony/third_party_openmax/blob/master/api/1.1.2/OMX_Core.h)**。
+当组件处于除了OMX_StateInvalid（组件状态异常）之外的其他状态，用户可通过此接口获取组件参数，组件状态详见[OMX_STATETYPE](https://gitee.com/openharmony/third_party_openmax/blob/master/api/1.1.2/OMX_Core.h)。
 
 **起始版本：** 3.2
 
@@ -434,7 +434,7 @@ ICodecComponent::GetState ([out] enum OMX_STATETYPE state)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| state | 指向获取到的状态指针，组件状态详见**[OMX_STATETYPE](https://gitee.com/openharmony/third_party_openmax/blob/master/api/1.1.2/OMX_Core.h)**。 | 
+| state | 指向获取到的状态指针，组件状态详见[OMX_STATETYPE](https://gitee.com/openharmony/third_party_openmax/blob/master/api/1.1.2/OMX_Core.h)。 | 
 
 **返回：**
 
@@ -466,7 +466,7 @@ ICodecComponent::SendCommand ([in] enum OMX_COMMANDTYPE cmd, [in] unsigned int p
 | 名称 | 描述 | 
 | -------- | -------- |
 | cmd | 组件要执行的命令，详见**OMX_COMMANDTYPE**。 | 
-| param | 组件要执行的命令携带的参数。<br/>- 当cmd为OMX_CommandStateSet时，param的值详见**[OMX_STATETYPE](https://gitee.com/openharmony/third_party_openmax/blob/master/api/1.1.2/OMX_Core.h)**。<br/>- 当cmd为OMX_CommandFlush、OMX_CommandPortDisable、OMX_CommandPortEnable、OMX_CommandMarkBuffer时，param为目标端口。 | 
+| param | 组件要执行的命令携带的参数。<br/>- 当cmd为OMX_CommandStateSet时，param的值详见[OMX_STATETYPE](https://gitee.com/openharmony/third_party_openmax/blob/master/api/1.1.2/OMX_Core.h)。<br/>- 当cmd为OMX_CommandFlush、OMX_CommandPortDisable、OMX_CommandPortEnable、OMX_CommandMarkBuffer时，param为目标端口。 | 
 | cmdData | 当cmd为OMX_CommandMarkBuffer时，指向OMX_MARKTYPE结构体指针。 | 
 
 **返回：**
@@ -490,7 +490,7 @@ ICodecComponent::SetCallbacks ([in] ICodecCallback callbacks, [in] long appData 
 
 设置Codec组件的回调函数。
 
-当组件处于OMX_StateLoaded状态时，使用此回调函数向上通知事件以及上报可用的输入输出信息。更多组件状态的说明请详见**[OMX_STATETYPE](https://gitee.com/openharmony/third_party_openmax/blob/master/api/1.1.2/OMX_Core.h)**。
+当组件处于OMX_StateLoaded状态时，使用此回调函数向上通知事件以及上报可用的输入输出信息。更多组件状态的说明请详见[OMX_STATETYPE](https://gitee.com/openharmony/third_party_openmax/blob/master/api/1.1.2/OMX_Core.h)。
 
 **起始版本：** 3.2
 
@@ -562,7 +562,7 @@ ICodecComponent::SetParameter ([in] unsigned int index, [in] byte[] paramStruct 
 
 - 当状态或者端口是去使能状态，用户可通过此接口设置组件参数。
 
-更多组件状态的说明请详见**[OMX_STATETYPE](https://gitee.com/openharmony/third_party_openmax/blob/master/api/1.1.2/OMX_Core.h)**。
+更多组件状态的说明请详见[OMX_STATETYPE](https://gitee.com/openharmony/third_party_openmax/blob/master/api/1.1.2/OMX_Core.h)。
 
 **起始版本：** 3.2
 
@@ -602,7 +602,7 @@ ICodecComponent::UseBuffer ([in] unsigned int portIndex, [in] struct OmxCodecBuf
 
 - 在去使能端口上，组件处于OMX_StateExecuting、OMX_StatePause或OMX_StateIdle状态。
 
-更多组件状态的说明请详见**[OMX_STATETYPE](https://gitee.com/openharmony/third_party_openmax/blob/master/api/1.1.2/OMX_Core.h)**。
+更多组件状态的说明请详见[OMX_STATETYPE](https://gitee.com/openharmony/third_party_openmax/blob/master/api/1.1.2/OMX_Core.h)。
 
 **起始版本：** 3.2
 
@@ -643,7 +643,7 @@ ICodecComponent::UseEglImage ([in] unsigned int portIndex, [in] struct OmxCodecB
 
 - 在去使能端口上，组件处于OMX_StateExecuting、OMX_StatePause或OMX_StateIdle状态。
 
-更多组件状态的说明请详见**[OMX_STATETYPE](https://gitee.com/openharmony/third_party_openmax/blob/master/api/1.1.2/OMX_Core.h)**。
+更多组件状态的说明请详见[OMX_STATETYPE](https://gitee.com/openharmony/third_party_openmax/blob/master/api/1.1.2/OMX_Core.h)。
 
 **起始版本：** 3.2
 

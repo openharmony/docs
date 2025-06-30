@@ -4,7 +4,7 @@
 
 > **说明：**
 >
-> 从API Version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 从API version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## 接口
 
@@ -18,7 +18,7 @@ DrawingRenderingContext(unit?: LengthMetricsUnit)
 
 | 参数名      | 类型 | 必填   | 说明 |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| unit<sup>12+</sup>  | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | 否    | 用来配置DrawingRenderingContext对象的单位模式，配置后无法更改，配置方法同[CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md#lengthmetricsunit12)。<br>默认值：DEFAULT。 |
+| unit<sup>12+</sup>  | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | 否    | 用来配置DrawingRenderingContext对象的单位模式，配置后无法更改，配置方法同[CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md#lengthmetricsunit12)。<br>默认值：DEFAULT |
 
 ## 属性
 
@@ -59,21 +59,47 @@ invalidate(): void
 该示例实现了如何使用DrawingRenderingContext中的方法进行绘制。
 
 ```ts
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 // xxx.ets
 @Entry
 @Component
 struct CanvasExample {
-  private context: DrawingRenderingContext = new DrawingRenderingContext()
+  private context: DrawingRenderingContext = new DrawingRenderingContext();
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Canvas(this.context)
         .width('100%')
-        .height('100%')
-        .backgroundColor('#ffff00')
+        .height('50%')
+        .backgroundColor('#D5D5D5')
         .onReady(() => {
-          this.context.canvas.drawCircle(200, 200, 100)
-          this.context.invalidate()
+          let brush = new drawing.Brush();
+          // 使用RGBA(39, 135, 217, 255)填充圆心为(200, 200)，半径为100的圆
+          brush.setColor({
+            alpha: 255,
+            red: 39,
+            green: 135,
+            blue: 217
+          });
+          this.context.canvas.attachBrush(brush);
+          this.context.canvas.drawCircle(200, 200, 100);
+          this.context.canvas.detachBrush();
+          this.context.invalidate();
+        })
+      Button("Clear")
+        .width('120')
+        .height('50')
+        .onClick(() => {
+          let color: common2D.Color = {
+            alpha: 0,
+            red: 0,
+            green: 0,
+            blue: 0
+          };
+          // 使用RGBA(0, 0, 0, 0)填充画布
+          this.context.canvas.clear(color);
+          this.context.invalidate();
         })
     }
     .width('100%')
@@ -81,4 +107,11 @@ struct CanvasExample {
   }
 }
 ```
-  ![zh-cn_image_0000001194032666](figures/canvas_drawingRenderingContext.png)
+
+图1 绘制圆心为(200, 200)，半径为100的圆，填充色为RGBA(39, 135, 217, 255)
+  
+  ![canvas_drawingRenderingContext](figures/canvas_drawingRenderingContext.png)
+
+图2 点击Clear按钮清空画布
+
+  ![canvas_drawingRenderingContextClear](figures/canvas_drawingRenderingContextClear.png)

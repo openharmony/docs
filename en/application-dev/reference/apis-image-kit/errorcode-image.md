@@ -614,7 +614,7 @@ Input parameters are incorrect. For example, the region size exceeds the upper l
 
 Check the input parameters.
 
-## 62980180 File Descriptor Mapping Failed
+## 62980180 Failure in Mapping the File Descriptor
 
 **Error Message**
 
@@ -637,11 +637,11 @@ Failed to read the pixel map.
 **Possible Cause**
 
 1. The PixelMap data is incorrect.
-2. You do not have the permission to read the PixelMap.
+2. You do not have the permission to read data from the PixelMap.
 
 **Solution**
 
-Re-create the PixelMap or change the read permission.
+Create another PixelMap or request the read permission.
 
 ## 62980247 Failure in Writing the PixelMap
 
@@ -652,11 +652,11 @@ Failed to write the pixel map.
 **Possible Cause**
 
 1. The PixelMap data is incorrect.
-2. You do not have the permission to write the PixelMap.
+2. You do not have the permission to write data to the PixelMap.
 
 **Solution**
 
-Re-create the PixelMap or change the read permission.
+Create another PixelMap or request the write permission.
 
 ## 62980248 No Modification to the PixelMap
 

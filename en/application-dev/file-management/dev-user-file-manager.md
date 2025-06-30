@@ -5,7 +5,7 @@ OpenHarmony is prebuilt with the **FileManager** application. You can also devel
 ## How to Develop
 For details about the APIs for developing the user file manager, see [User File Access and Management](../reference/apis-core-file-kit/js-apis-fileAccess-sys.md).
 
-1. Apply for permissions required.<br>
+1. Apply for permissions required.
    Request the ohos.permission.FILE_ACCESS_MANAGER and ohos.permission.GET_BUNDLE_INFO_PRIVILEGED permissions. For details, see [Requesting Permissions for System_basic Applications](../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
 
    > **NOTE**
@@ -33,13 +33,13 @@ For details about the APIs for developing the user file manager, see [User File 
    import { BusinessError } from '@kit.BasicServicesKit';
    import { Filter } from '@kit.CoreFileKit';
 
-   // Obtain the application context.
-   let context = getContext(this) as common.UIAbilityContext;
+   // The context is passed from EntryAbility. Ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+   let context = this.getUIContext().getHostContext() as common.UIAbilityContext; 
 
    // Create a helper object for connecting to all file management servers in the system.
    let fileAccessHelperAllServer: fileAccess.FileAccessHelper;
-   function createFileAccessHelper(): void {
-     try {    // this.context is the context passed from EntryAbility.
+   function createFileAccessHelper(context: common.UIAbilityContext): void {
+     try {
        fileAccessHelperAllServer = fileAccess.createFileAccessHelper(context);
        if (!fileAccessHelperAllServer) {
          console.error("createFileAccessHelper interface returns an undefined object");
@@ -166,7 +166,7 @@ For details about the APIs, see [User File Access and Management](../reference/a
 You can use **notify()** to observe not only the changes of directories, but also the device online/offline status.
 
 
-1. Request permissions required.<br>
+1. Request permissions required.
 
    Request the ohos.permission.FILE_ACCESS_MANAGER and ohos.permission.GET_BUNDLE_INFO_PRIVILEGED permissions. For details, see [Declaring Permissions](../security/AccessToken/declare-permissions.md).
 
@@ -214,11 +214,12 @@ You can use **notify()** to observe not only the changes of directories, but als
      }
    }
 
-   let context = getContext(this) as common.UIAbilityContext;
+   // The context is passed from EntryAbility. Ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
    // Create a helper object for connecting to all file management servers in the system.
    let fileAccessHelperAllServer: fileAccess.FileAccessHelper;
-   function createFileAccessHelper(): void {
-     try {    // this.context is the context passed from EntryAbility.
+   function createFileAccessHelper(context: common.UIAbilityContext): void {
+     try {
        fileAccessHelperAllServer = fileAccess.createFileAccessHelper(context);
        if (!fileAccessHelperAllServer) {
          console.error("createFileAccessHelper interface returns an undefined object");

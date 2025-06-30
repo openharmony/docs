@@ -1,6 +1,6 @@
 # Security
 
-- [Application Access Control](../security/AccessToken/Readme-EN.md)
+- [Application Access Control](AccessToken/Readme-EN.md)
 - [Asset Store Kit](AssetStoreKit/Readme-EN.md)
 - [Crypto Architecture Kit](CryptoArchitectureKit/Readme-EN.md)
 - [Data Protection Kit](DataProtectionKit/Readme-EN.md)
@@ -8,7 +8,7 @@
 - [Universal Keystore Kit](UniversalKeystoreKit/Readme-EN.md)
 - [User Authentication Kit](UserAuthenticationKit/Readme-EN.md)
 <!--Del-->
-- [Access Security Privacy Framework](SecurityPrivacyCenter/auto-menu-guidelines.md)
+- [Accessing the Security & Privacy Framework](SecurityPrivacyCenter/auto-menu-guidelines.md)
 - hapsigner
   - [hapsigner Overview](hapsigntool-overview.md)
   - [hapsigner Guide](hapsigntool-guidelines.md)

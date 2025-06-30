@@ -25,7 +25,7 @@ import { common } from '@kit.AbilityKit';
 | AutoFillExtensionContext<sup>11+<sup>   | [AutoFillExtensionContext](js-apis-inner-application-autoFillExtensionContext-sys.md) | No | No | Level-2 module **AutoFillExtensionContext**.<br>**System API**: This is a system API.|
 | AutoStartupInfo<sup>11+<sup>   | [AutoStartupInfo](js-apis-inner-application-autoStartupInfo-sys.md) | No | No | Level-2 module **AutoStartupInfo**.<br>**System API**: This is a system API.|
 | AutoStartupCallback<sup>11+<sup>   | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback-sys.md) | No | No | Level-2 module **AutoStartupCallback**.<br>**System API**: This is a system API.|
-| UIServiceExtensionContext<sup>13+<sup> | [UIServiceExtensionContext ](js-apis-inner-application-uiserviceExtensionContext-sys.md) |  No | No |Level-2 module **UIServiceExtensionContext**.<br>**System API**: This is a system API.|
+| UIServiceExtensionContext<sup>14+<sup> | [UIServiceExtensionContext ](js-apis-inner-application-uiserviceExtensionContext-sys.md) |  No | No |Level-2 module **UIServiceExtensionContext**.<br>**System API**: This is a system API.|
 | UIServiceHostProxy<sup>13+<sup> | [UIServiceHostProxy](js-apis-inner-application-uiservicehostproxy-sys.md) |  No | No | Level-2 module **UIServiceHostProxy**.<br>**System API**: This is a system API.|
 
 **Example**

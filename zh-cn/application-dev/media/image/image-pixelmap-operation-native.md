@@ -1,6 +1,6 @@
-# 使用Image处理PixelMap数据
+# 位图操作
 
-开发者可以通过本指导了解如何使用Native Image的接口。
+开发者可以通过本指导了解如何使用Native Image的接口完成位图操作。
 
 ## 开发步骤
 
@@ -231,7 +231,7 @@ EXTERN_C_END
                 .width(100)
                 .height(100)
                 .onClick(() => {
-                    console.log("com.example.native_ndk_api10 button click in");
+                    console.info("com.example.native_ndk_api10 button click in");
                     this._pixelMap = testNapi.createPixelMapTest();
                     testNapi.transform(this._pixelMap);
                 })

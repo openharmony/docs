@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
-> 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## 子组件
 
@@ -61,7 +61,7 @@ startPoint(value: Array&lt;any&gt;)
 
 | 参数名 | 类型                                      | 必填 | 说明                                                         |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | Array&lt;[Length](ts-types.md#length)&gt; | 是   | 直线起点坐标点（相对坐标），单位vp。<br/>默认值：[0,&nbsp;0] |
+| value  | Array&lt;any&gt; | 是   | 直线起点坐标点（相对坐标），单位vp。<br/>默认值：[0,&nbsp;0] |
 
 ### endPoint
 
@@ -79,7 +79,7 @@ endPoint(value: Array&lt;any&gt;)
 
 | 参数名 | 类型                                      | 必填 | 说明                                                         |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | Array&lt;[Length](ts-types.md#length)&gt; | 是   | 直线终点坐标点（相对坐标），单位vp。<br/>默认值：[0,&nbsp;0] |
+| value  | Array&lt;any&gt; | 是   | 直线终点坐标点（相对坐标），单位vp。<br/>默认值：[0,&nbsp;0] |
 
 ### fill
 
@@ -151,11 +151,11 @@ strokeDashArray(value: Array&lt;any&gt;)
 
 | 参数名 | 类型                                      | 必填 | 说明                      |
 | ------ | ----------------------------------------- | ---- | ------------------------- |
-| value  | Array&lt;[Length](ts-types.md#length)&gt; | 是   | 边框间隙。<br/>默认值：[]<br/>默认单位：vp |
+| value  | Array&lt;any&gt; | 是   | 边框间隙。<br/>默认值：[]<br/>默认单位：vp |
 
 ### strokeDashOffset
 
-strokeDashOffset(value: number | string)
+strokeDashOffset(value: number&nbsp;|&nbsp;string)
 
 设置边框绘制起点的偏移量。
 
@@ -193,7 +193,7 @@ strokeLineCap(value: LineCapStyle)
 
 strokeLineJoin(value: LineJoinStyle)
 
-设置边框拐角绘制样式。Line组件无法形成拐角，该属性设置无效。
+设置边框拐角绘制样式，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。Line组件不支持拐角，该属性设置无效。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -211,7 +211,7 @@ strokeLineJoin(value: LineJoinStyle)
 
 strokeMiterLimit(value: number | string)
 
-设置锐角绘制成斜角的极限值。Line组件无法设置锐角图形，该属性设置无效。
+设置锐角绘制成斜角的极限值，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。Line组件不支持设置锐角图形，该属性设置无效。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 

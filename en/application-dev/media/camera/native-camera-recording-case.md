@@ -1,8 +1,8 @@
-# Video Recording Sample (C/C++)
+# Video Recording Practices (C/C++)
 
-Before developing a camera application, request permissions by following the instructions provided in [Camera Development Preparations](camera-preparation.md).
+Before developing a camera application, request permissions by following the instructions provided in [Requesting Camera Development Permissions](camera-preparation.md).
 
-This topic provides sample code that covers the complete video recording process and the API calling sequence. For details about a single process (such as device input, session management, and video recording), see the corresponding C/C++ development guide links provided in [Camera Development Preparations](camera-preparation.md).
+This topic provides sample code that covers the complete video recording process and the API calling sequence. For details about a single process (such as device input, session management, and video recording), see the corresponding C/C++ development guide links provided in [Requesting Camera Development Permissions](camera-preparation.md).
 
 ## Development Process
 
@@ -14,7 +14,11 @@ After obtaining the output stream capabilities supported by the camera, create a
 
 1. Link the dynamic library in the CMake script.
     ```txt
-    target_link_libraries(entry PUBLIC libohcamera.so libhilog_ndk.z.so)
+    target_link_libraries(entry PUBLIC
+        libace_napi.z.so
+        libohcamera.so
+        libhilog_ndk.z.so
+    )
     ```
 
 2. Create the header file **ndk_camera.h**.
@@ -30,7 +34,7 @@ After obtaining the output stream capabilities supported by the camera, create a
    class NDKCamera {
    public:
        ~NDKCamera();
-       NDKCamera(char *previewId, char *videoId);
+       NDKCamera(char* previewId, char* videoId);
    };
    ```
 
@@ -38,6 +42,13 @@ After obtaining the output stream capabilities supported by the camera, create a
     ```c++
     #include "hilog/log.h"
     #include "ndk_camera.h"
+    #include <cmath>
+
+    bool IsAspectRatioEqual(float videoAspectRatio, float previewAspectRatio)
+    {
+        float epsilon = 1e-6f;
+        return fabsf(videoAspectRatio - previewAspectRatio) <= epsilon;
+    }
 
     void OnCameraInputError(const Camera_Input* cameraInput, Camera_ErrorCode errorCode)
     {
@@ -109,7 +120,7 @@ After obtaining the output stream capabilities supported by the camera, create a
         return &cameraManagerListener;
     }
 
-    NDKCamera::NDKCamera(char *previewId, char *videoId)
+    NDKCamera::NDKCamera(char* previewId, char* videoId)
     {
         Camera_Manager* cameraManager = nullptr;
         Camera_Device* cameras = nullptr;
@@ -129,18 +140,21 @@ After obtaining the output stream capabilities supported by the camera, create a
         // Create a CameraManager object.
         Camera_ErrorCode ret = OH_Camera_GetCameraManager(&cameraManager);
         if (cameraManager == nullptr || ret != CAMERA_OK) {
-            OH_LOG_ERROR(LOG_APP, "OH_Camera_GetCameraMananger failed.");
+            OH_LOG_ERROR(LOG_APP, "OH_Camera_GetCameraManager failed.");
+            return;
         }
         // Listen for camera status changes.
         ret = OH_CameraManager_RegisterCallback(cameraManager, GetCameraManagerListener());
         if (ret != CAMERA_OK) {
             OH_LOG_ERROR(LOG_APP, "OH_CameraManager_RegisterCallback failed.");
+            return;
         }
 
         // Obtain the camera list.
         ret = OH_CameraManager_GetSupportedCameras(cameraManager, &cameras, &size);
         if (cameras == nullptr || size < 0 || ret != CAMERA_OK) {
             OH_LOG_ERROR(LOG_APP, "OH_CameraManager_GetSupportedCameras failed.");
+            return;
         }
 
         for (int index = 0; index < size; index++) {
@@ -155,27 +169,45 @@ After obtaining the output stream capabilities supported by the camera, create a
                                                                 &cameraOutputCapability);
         if (cameraOutputCapability == nullptr || ret != CAMERA_OK) {
             OH_LOG_ERROR(LOG_APP, "OH_CameraManager_GetSupportedCameraOutputCapability failed.");
+            return;
         }
 
-        if (cameraOutputCapability->previewProfilesSize < 0) {
-            OH_LOG_ERROR(LOG_APP, "previewProfilesSize == null");
+        if (cameraOutputCapability->previewProfiles == nullptr) {
+            OH_LOG_ERROR(LOG_APP, "previewProfiles == null");
+            return;
         }
         previewProfile = cameraOutputCapability->previewProfiles[0];
-
-        if (cameraOutputCapability->photoProfilesSize < 0) {
-            OH_LOG_ERROR(LOG_APP, "photoProfilesSize == null");
+        OH_LOG_INFO(LOG_APP, "previewProfile width: %{public}, height: %{public}.", previewProfile->size.width,
+            previewProfile->size.height);
+        if (cameraOutputCapability->photoProfiles == nullptr) {
+            OH_LOG_ERROR(LOG_APP, "photoProfiles == null");
+            return;
         }
         photoProfile = cameraOutputCapability->photoProfiles[0];
 
-        if (cameraOutputCapability->videoProfilesSize < 0) {
-            OH_LOG_ERROR(LOG_APP, "videorofilesSize == null");
+        if (cameraOutputCapability->videoProfiles == nullptr) {
+            OH_LOG_ERROR(LOG_APP, "videorofiles == null");
+            return;
         }
-        videoProfile = cameraOutputCapability->videoProfiles[0];
+        // Ensure that the aspect ratio of the preview stream is the same as that of the video stream. To record HDR videos, choose Camera_VideoProfile that supports HDR.
+        Camera_VideoProfile** videoProfiles = cameraOutputCapability->videoProfiles;
+        for (int index = 0; index < cameraOutputCapability->videoProfilesSize; index++) {
+            bool isEqual = IsAspectRatioEqual((float)videoProfiles[index]->size.width / videoProfiles[index]->size.height,
+                (float)previewProfile->size.width / previewProfile->size.height);
+            // The profile of CAMERA_FORMAT_YUV_420_SP is used by default.
+            if (isEqual && videoProfiles[index]->format == Camera_Format::CAMERA_FORMAT_YUV_420_SP) {
+                videoProfile = videoProfiles[index];
+                OH_LOG_INFO(LOG_APP, "videoProfile width: %{public}, height: %{public}.", videoProfile->size.width,
+                    videoProfile->size.height);
+                break;
+            }
+        }
 
         // Create a VideoOutput instance.
         ret = OH_CameraManager_CreateVideoOutput(cameraManager, videoProfile, videoSurfaceId, &videoOutput);
         if (videoProfile == nullptr || videoOutput == nullptr || ret != CAMERA_OK) {
             OH_LOG_ERROR(LOG_APP, "OH_CameraManager_CreateVideoOutput failed.");
+            return;
         }
 
         // Listen for video output errors.
@@ -188,6 +220,7 @@ After obtaining the output stream capabilities supported by the camera, create a
         ret = OH_CameraManager_CreateCaptureSession(cameraManager, &captureSession);
         if (captureSession == nullptr || ret != CAMERA_OK) {
             OH_LOG_ERROR(LOG_APP, "OH_CameraManager_CreateCaptureSession failed.");
+            return;
         }
         // Listen for session errors.
         ret = OH_CaptureSession_RegisterCallback(captureSession, GetCaptureSessionRegister());
@@ -199,12 +232,14 @@ After obtaining the output stream capabilities supported by the camera, create a
         ret = OH_CaptureSession_BeginConfig(captureSession);
         if (ret != CAMERA_OK) {
             OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_BeginConfig failed.");
+            return;
         }
 
         // Create a camera input stream.
         ret = OH_CameraManager_CreateCameraInput(cameraManager, &cameras[cameraDeviceIndex], &cameraInput);
         if (cameraInput == nullptr || ret != CAMERA_OK) {
             OH_LOG_ERROR(LOG_APP, "OH_CameraManager_CreateCameraInput failed.");
+            return;
         }
 
         // Listen for camera input errors.
@@ -217,48 +252,56 @@ After obtaining the output stream capabilities supported by the camera, create a
         ret = OH_CameraInput_Open(cameraInput);
         if (ret != CAMERA_OK) {
             OH_LOG_ERROR(LOG_APP, "OH_CameraInput_Open failed.");
+            return;
         }
 
         // Add the camera input stream to the session.
         ret = OH_CaptureSession_AddInput(captureSession, cameraInput);
         if (ret != CAMERA_OK) {
             OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_AddInput failed.");
+            return;
         }
 
         // Create a preview output stream. For details about the surfaceId parameter, see the XComponent. The preview stream is the surface provided by the XComponent.
         ret = OH_CameraManager_CreatePreviewOutput(cameraManager, previewProfile, previewSurfaceId, &previewOutput);
         if (previewProfile == nullptr || previewOutput == nullptr || ret != CAMERA_OK) {
             OH_LOG_ERROR(LOG_APP, "OH_CameraManager_CreatePreviewOutput failed.");
+            return;
         }
 
         // Add the preview output stream to the session.
         ret = OH_CaptureSession_AddPreviewOutput(captureSession, previewOutput);
         if (ret != CAMERA_OK) {
             OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_AddPreviewOutput failed.");
+            return;
         }
 
         // Add the video output stream to the session.
         ret = OH_CaptureSession_AddVideoOutput(captureSession, videoOutput);
         if (ret != CAMERA_OK) {
             OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_AddVideoOutput failed.");
+            return;
         }
 
         // Commit the session configuration.
         ret = OH_CaptureSession_CommitConfig(captureSession);
         if (ret != CAMERA_OK) {
             OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_CommitConfig failed.");
+            return;
         }
 
         // Start the session.
         ret = OH_CaptureSession_Start(captureSession);
         if (ret != CAMERA_OK) {
             OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_Start failed.");
+            return;
         }
 
         // Start the video output stream.
         ret = OH_VideoOutput_Start(videoOutput);
         if (ret != CAMERA_OK) {
             OH_LOG_ERROR(LOG_APP, "OH_VideoOutput_Start failed.");
+            return;
         }
 
         // Call avRecorder.start() on the TS side to start video recording.
@@ -314,21 +357,21 @@ After obtaining the output stream capabilities supported by the camera, create a
         // Release the resources.
         ret = OH_CameraManager_DeleteSupportedCameras(cameraManager, cameras, size);
         if (ret != CAMERA_OK) {
-          OH_LOG_ERROR(LOG_APP, "Delete Cameras failed.");
+            OH_LOG_ERROR(LOG_APP, "Delete Cameras failed.");
         } else {
-          OH_LOG_ERROR(LOG_APP, "OH_CameraManager_DeleteSupportedCameras. ok");
+            OH_LOG_ERROR(LOG_APP, "OH_CameraManager_DeleteSupportedCameras. ok");
         }
         ret = OH_CameraManager_DeleteSupportedCameraOutputCapability(cameraManager, cameraOutputCapability);
         if (ret != CAMERA_OK) {
-          OH_LOG_ERROR(LOG_APP, "Delete Cameras failed.");
+            OH_LOG_ERROR(LOG_APP, "Delete Cameras failed.");
         } else {
-          OH_LOG_ERROR(LOG_APP, "OH_CameraManager_DeleteSupportedCameraOutputCapability. ok");
+            OH_LOG_ERROR(LOG_APP, "OH_CameraManager_DeleteSupportedCameraOutputCapability success");
         }
         ret = OH_Camera_DeleteCameraManager(cameraManager);
         if (ret != CAMERA_OK) {
-          OH_LOG_ERROR(LOG_APP, "Delete Cameras failed.");
+            OH_LOG_ERROR(LOG_APP, "Delete Cameras failed.");
         } else {
-          OH_LOG_ERROR(LOG_APP, "OH_Camera_DeleteCameraManager. ok");
+            OH_LOG_ERROR(LOG_APP, "OH_Camera_DeleteCameraManager success");
         }
     }
     ```

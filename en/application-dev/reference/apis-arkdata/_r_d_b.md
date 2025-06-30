@@ -110,7 +110,7 @@ The relational database (RDB) store manages data based on relational models. The
 | Name| Description|
 | -------- | -------- |
 | [Rdb_DBType](#rdb_dbtype-1) { RDB_SQLITE = 1, RDB_CAYLEY = 2, DBTYPE_BUTT = 64 } | Enumerates the database kernel types.|
-| [OH_OrderType](#oh_ordertype-1) { ASC = 0, DESC = 1 } | Enumerates the sorting types.|
+| [OH_OrderType](#oh_ordertype) { ASC = 0, DESC = 1 } | Enumerates the sorting types.|
 | [OH_Rdb_SecurityLevel](#oh_rdb_securitylevel-1) { S1 = 1, S2, S3, S4 } | Enumerates the RDB store security levels.|
 | [Rdb_SecurityArea](#rdb_securityarea-1) { RDB_SECURITY_AREA_EL1 = 1, RDB_SECURITY_AREA_EL2, RDB_SECURITY_AREA_EL3, RDB_SECURITY_AREA_EL4 } | Enumerates the encryption levels of database files.|
 | [Rdb_DistributedType](#rdb_distributedtype-1) { RDB_DISTRIBUTED_CLOUD } | Enumerates the distributed types.|

@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -69,7 +69,7 @@ radiusWidth(value: number | string)
 
 设置圆角的宽度，仅设置宽时宽高一致。 异常值按照默认值处理。
 
-**卡片能力：** 从API version 7开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -87,7 +87,7 @@ radiusHeight(value: number | string)
 
 设置圆角的高度，仅设置高时宽高一致。  异常值按照默认值处理。
 
-**卡片能力：** 从API version 7开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -157,7 +157,7 @@ fillOpacity(value: number | string | Resource)
 
 stroke(value: ResourceColor)
 
-设置边框颜色，不设置时，默认没有边框。异常值不会绘制边框。
+设置边框颜色，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法，不设置时，默认无边框。异常值不会绘制边框。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -285,7 +285,7 @@ strokeOpacity(value: number | string | Resource)
 
 strokeWidth(value: Length)
 
-设置边框宽度。该属性若为string类型, 暂不支持百分比，百分比按照1px处理。
+设置边框宽度，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。该属性若为string类型，暂不支持百分比，百分比按照1px处理。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 

@@ -1,8 +1,6 @@
 # Process Model (Stage Model)
 
-A process is the basic unit for a system to allocate resources, and is the basis of an operating system structure.
-
-The process model is shown below.
+A process is the basic unit for a system to allocate resources, and is the basis of an operating system structure. The process model is shown below.
 
 - Generally, all UIAbility<!--Del-->, ServiceExtensionAbility, and DataShareExtensionAbility<!--DelEnd--> components of an application (with the same bundle name) run in an independent process, which is **Main process** in green in the figure.
 - All ExtensionAbility components of the same type<!--Del--> (except ServiceExtensionAbility and DataShareExtensionAbility)<!--DelEnd--> of an application (with the same bundle name) run in an independent process, such as **FormExtensionAbility process**, **InputMethodExtensionAbility process**, and other **ExtensionAbility process** in blue in the figure.
@@ -10,9 +8,9 @@ The process model is shown below.
 
 > **NOTE**
 >
-> For 2-in-1 devices, you can set a specific HAP or UIAbility to run in an independent process.
-> - To enable a HAP to run in an independent process, set the **isolationMode** field in the **module.json5** file to **isolationOnly** (running only in an independent process) or **isolationFirst** (running in an independent process preferentially).
-> - To enable a UIAbility to run in an independent process, set the **isolationProcess** field in the **module.json5** file to **true** and return a unique process ID in the [onNewProcessRequest](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md) callback.
+> For 2-in-1 devices and tablets, you can set a specific HAP or UIAbility to run in an independent process.
+> - To enable a HAP to run in an independent process, set the **isolationMode** field in the [module.json5 file](../quick-start/module-configuration-file.md#tags-in-the-configuration-file) to **isolationOnly** (running only in an independent process) or **isolationFirst** (running in an independent process preferentially).
+> - To enable a UIAbility to run in an independent process, set the **isolationProcess** field in the **module.json5** file to **true** and return a unique process ID in the [onNewProcessRequest](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageonnewprocessrequest11) callback.
 
 **Figure 1** Process model
 

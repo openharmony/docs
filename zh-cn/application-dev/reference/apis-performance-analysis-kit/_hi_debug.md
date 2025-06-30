@@ -7,7 +7,7 @@
 
 提供调试代码的定义。
 
-本模块函数可用于获取cpu uage、memory、heap、capture trace等。
+本模块函数可用于获取cpu usage、memory、heap、capture trace等。
 
 **起始版本：** 12
 
@@ -469,7 +469,7 @@ SA标签。
 ### HiDebug_ErrorCode
 
 ```
-typedef enum HiDebug_ErrorCodeHiDebug_ErrorCode
+typedef enum HiDebug_ErrorCode HiDebug_ErrorCode
 ```
 **描述**
 错误码定义。
@@ -480,7 +480,7 @@ typedef enum HiDebug_ErrorCodeHiDebug_ErrorCode
 ### HiDebug_MemoryLimit
 
 ```
-typedef struct HiDebug_MemoryLimitHiDebug_MemoryLimit
+typedef struct HiDebug_MemoryLimit HiDebug_MemoryLimit
 ```
 **描述**
 应用程序进程内存限制结构类型定义。
@@ -491,7 +491,7 @@ typedef struct HiDebug_MemoryLimitHiDebug_MemoryLimit
 ### HiDebug_NativeMemInfo
 
 ```
-typedef struct HiDebug_NativeMemInfoHiDebug_NativeMemInfo
+typedef struct HiDebug_NativeMemInfo HiDebug_NativeMemInfo
 ```
 **描述**
 应用程序进程本机内存信息结构类型定义。
@@ -502,7 +502,7 @@ typedef struct HiDebug_NativeMemInfoHiDebug_NativeMemInfo
 ### HiDebug_SystemMemInfo
 
 ```
-typedef struct HiDebug_SystemMemInfoHiDebug_SystemMemInfo
+typedef struct HiDebug_SystemMemInfo HiDebug_SystemMemInfo
 ```
 **描述**
 系统内存信息结构类型定义。
@@ -513,7 +513,7 @@ typedef struct HiDebug_SystemMemInfoHiDebug_SystemMemInfo
 ### HiDebug_ThreadCpuUsage
 
 ```
-typedef struct HiDebug_ThreadCpuUsageHiDebug_ThreadCpuUsage
+typedef struct HiDebug_ThreadCpuUsage HiDebug_ThreadCpuUsage
 ```
 **描述**
 应用程序所有线程的CPU使用率结构体定义。
@@ -535,7 +535,7 @@ HiDebug_ThreadCpuUsage指针定义。
 ### HiDebug_TraceFlag
 
 ```
-typedef enum HiDebug_TraceFlagHiDebug_TraceFlag
+typedef enum HiDebug_TraceFlag HiDebug_TraceFlag
 ```
 **描述**
 采集trace线程的类型。
@@ -595,7 +595,7 @@ void OH_HiDebug_FreeThreadCpuUsage (HiDebug_ThreadCpuUsagePtr * threadCpuUsage)
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -614,7 +614,7 @@ double OH_HiDebug_GetAppCpuUsage ()
 
 **返回：**
 
-返回进程的CPU使用率百分比。如果返回结果为0，可能的原因是获取失败。
+返回进程的CPU使用率百分比。如果返回结果为0，可能因当前应用的CPU使用率过低导致。
 
 
 ### OH_HiDebug_GetAppMemoryLimit()
@@ -627,11 +627,11 @@ void OH_HiDebug_GetAppMemoryLimit (HiDebug_MemoryLimit * memoryLimit)
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| memoryLimit | 表示指向[HiDebug_MemoryLimit](_hi_debug___memory_limit.md)。 经过该函数调用，如果结构体里的数据为空，说明调用失败。  | 
+| memoryLimit | 表示指向[HiDebug_MemoryLimit](_hi_debug___memory_limit.md)。 函数调用后，若结构体数据为空，则表明调用失败。  | 
 
 
 ### OH_HiDebug_GetAppNativeMemInfo()
@@ -644,11 +644,11 @@ void OH_HiDebug_GetAppNativeMemInfo (HiDebug_NativeMemInfo * nativeMemInfo)
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| nativeMemInfo | 表示指向[HiDebug_NativeMemInfo](_hi_debug___native_mem_info.md)。 经过该函数调用，如果结构体里的数据为空，说明调用失败。  | 
+| nativeMemInfo | 表示指向[HiDebug_NativeMemInfo](_hi_debug___native_mem_info.md)。 函数调用后，若结构体数据为空，则表明调用失败。  | 
 
 
 ### OH_HiDebug_GetAppThreadCpuUsage()
@@ -663,7 +663,7 @@ HiDebug_ThreadCpuUsagePtr OH_HiDebug_GetAppThreadCpuUsage ()
 
 **返回：**
 
-返回所有线程CPU使用情况，见[HiDebug_ThreadCpuUsagePtr](#hidebug_threadcpuusageptr)。 如果返回的结果是null，说明调用失败。
+返回所有线程CPU使用情况，见[HiDebug_ThreadCpuUsagePtr](#hidebug_threadcpuusageptr)。 若返回结果为null，可能因未获取到线程相关数据所致。
 
 
 ### OH_HiDebug_GetGraphicsMemory()
@@ -676,7 +676,7 @@ HiDebug_ErrorCode OH_HiDebug_GetGraphicsMemory (uint32_t * value)
 
 **起始版本：** 14
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -716,11 +716,11 @@ void OH_HiDebug_GetSystemMemInfo (HiDebug_SystemMemInfo * systemMemInfo)
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| systemMemInfo | 表示指向[HiDebug_SystemMemInfo](_hi_debug___system_mem_info.md)。 经过该函数调用，如果结构体里的数据为空，说明调用失败。  | 
+| systemMemInfo | 表示指向[HiDebug_SystemMemInfo](_hi_debug___system_mem_info.md)。 函数调用后，若结构体数据为空，则表明调用失败。  | 
 
 
 ### OH_HiDebug_StartAppTraceCapture()
@@ -733,7 +733,7 @@ HiDebug_ErrorCode OH_HiDebug_StartAppTraceCapture (HiDebug_TraceFlag flag, uint6
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 | 
 | -------- | -------- |

@@ -31,7 +31,7 @@
 ### 搭建环境
 
   1. 安装[DevEco Studio](https://developer.huawei.com/consumer/cn/download/deveco-studio)，要求版本在5.0及以上。
-  2. 将public-SDK更新到API 16或以上，更新SDK的具体操作可参见[更新指南](../tools/openharmony_sdk_upgrade_assistant.md)。
+  2. 将public-SDK更新到API 16或以上<!--Del-->，更新SDK的具体操作可参见[更新指南](../tools/openharmony_sdk_upgrade_assistant.md)<!--DelEnd-->。
   3. 用USB线缆将两台调测设备（设备A和设备B）连接到PC。
   4. 打开设备A和设备B的Wifi并连接到同一个接入点上，互相识别，连接并组网。连接组网的具体操作可参见[创建会话并连接](abilityconnectmanager-guidelines.md#应用间创建会话并进行连接)。
 

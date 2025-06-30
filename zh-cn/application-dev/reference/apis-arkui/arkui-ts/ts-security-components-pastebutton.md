@@ -70,7 +70,7 @@ PasteButton(options: PasteButtonOptions)
 
 ## 属性
 
-不支持通用属性，仅继承[安全控件通用属性](ts-securitycomponent-attributes.md#属性)。
+不支持通用属性，仅继承[安全控件通用属性](ts-securitycomponent-attributes.md)。
 
 ## PasteIconStyle枚举说明
 
@@ -149,12 +149,12 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Component
 struct Index {
   handlePasteButtonClick: PasteButtonCallback =
-    (event: ClickEvent, result: PasteButtonOnClickResult, error: BusinessError<void>) => {
+    (event: ClickEvent, result: PasteButtonOnClickResult, error?: BusinessError<void>) => {
       if (result == PasteButtonOnClickResult.SUCCESS) {
         console.info("success");
       } else {
-        console.info("errCode: " + error.code);
-        console.info("errMessage: " + error.message);
+        console.error("errCode: " + error?.code);
+        console.error("errMessage: " + error?.message);
       }
     };
 

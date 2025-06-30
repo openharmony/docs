@@ -16,9 +16,13 @@ import { continueManager } from '@kit.AbilityKit';
 
 on(type: 'prepareContinue', context: Context, callback: AsyncCallback&lt;ContinueResultInfo&gt;): void
 
-Registers a callback to obtain the result of quickly launching the application during the cross-device continuity process. This API uses an asynchronous callback to return the result.
+Registers a callback to obtain the quick start result when an application is launched quickly. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Ability.DistributedManagementService
+> **NOTE**
+>
+> The quick start feature allows the application to start concurrently while the user triggers migration and waits for the migration data to return, reducing wait time. To enable the quick start feature, add the suffix **_ContinueQuickStart** to the **continueType** value in the [module.json5 file](../../quick-start/module-configuration-file.md) of the source application.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
 **Parameters**
 
@@ -28,6 +32,15 @@ Registers a callback to obtain the result of quickly launching the application d
   | context | [Context](../apis-ability-kit/js-apis-inner-application-baseContext.md)                                                                                         | Yes| Context of the ability.                        |
   | callback | AsyncCallback&lt;[ContinueResultInfo](js-apis-app-ability-continueManager.md#continueresultinfo)&gt; | Yes| Callback used to return the result. If obtaining the quick start result is successful, **err** is undefined, and **ContinueResultInfo** is the obtained quick startup result. Otherwise, **err** is an error object.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Distributed Scheduler Error Codes](errorcode-DistributedSchedule.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 16300501 | the system ability work abnormally. |
+
 **Example**
 
   ```ts
@@ -46,32 +59,36 @@ export default class MigrationAbility extends UIAbility {
         // 1. Quick start is configured. Trigger the lifecycle callback when the application is launched immediately.
         if (launchParam.launchReason === AbilityConstant.LaunchReason.PREPARE_CONTINUATION) {
             // Register the callback to obtain the quick start result.
-            this.registerQuickStartCallback();
+            try {
+              continueManager.on("prepareContinue", this.context, (err, continueResultInfo) => {
+                if (err.code != 0) {
+                  console.error('register failed, cause: ' + JSON.stringify(err));
+                  return;
+                }
+                console.info('register finished, ' + JSON.stringify(continueResultInfo));
+              });
+            } catch (e) {
+              console.error('register failed, cause: ' + JSON.stringify(e));
+            }
             // If the application data to migrate is large, add a loading screen here (for example, displaying "loading" on the screen).
             // Handle issues related to custom redirection and timing.
             // ...
         }
-    }
-    
-    async registerQuickStartCallback() : Promise<void>{
-        continueManager.on("prepareContinue", this.context, (err, continueResultInfo)=>{
-            if (err.code != 0) {
-                console.error('register failed, cause: ' + JSON.stringify(err));
-                return;
-            }
-            console.info('register finished, ' + JSON.stringify(continueResultInfo));
-        });
     }
 }
   ```
 
 ## continueManager.off
 
-off(type: 'prepareContinue', context: Context, callback: AsyncCallback&lt;ContinueResultInfo&gt;): void
+off(type: 'prepareContinue', context: Context, callback?: AsyncCallback&lt;ContinueResultInfo&gt;): void
 
-Unregisters the callback used to obtain the result of quickly launching the application during the cross-device continuity process. This API uses an asynchronous callback to return the result.
+Unregisters the callback used to obtain the quick start result when an application is launched quickly. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Ability.DistributedManagementService
+> **NOTE**
+>
+> The quick start feature allows the application to start concurrently while the user triggers migration and waits for the migration data to return, reducing wait time. To enable the quick start feature, add the suffix **_ContinueQuickStart** to the **continueType** value in the [module.json5 file](../../quick-start/module-configuration-file.md) of the source application.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
 **Parameters**
 
@@ -79,7 +96,16 @@ Unregisters the callback used to obtain the result of quickly launching the appl
   | -------- |------------------------------------| -------- |--------------------------------------|
 | type | string                             | Yes| The value is fixed at **prepareContinue**.                |
 | context | [Context](../apis-ability-kit/js-apis-inner-application-baseContext.md)                            | Yes| Context of the ability.                    |
-| callback | AsyncCallback&lt;[ContinueResultInfo](js-apis-app-ability-continueManager.md#continueresultinfo)&gt; | Yes| Callback used to return the result. If the callback is unregistered, **err** is undefined, and **ContinueResultInfo** is the callback unregistration result. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;[ContinueResultInfo](js-apis-app-ability-continueManager.md#continueresultinfo)&gt; | No| Callback used to return the result. If the callback is unregistered, **err** is undefined, and **ContinueResultInfo** is the callback unregistration result. Otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Distributed Scheduler Error Codes](errorcode-DistributedSchedule.md).
+
+| ID   | Error Message|
+|----------| -------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 16300501 | the system ability work abnormally. |
 
 **Example**
 
@@ -98,22 +124,22 @@ export default class MigrationAbility extends UIAbility {
 
         // 1. Quick start is configured. Trigger the lifecycle callback when the application is launched immediately.
         if (launchParam.launchReason === AbilityConstant.LaunchReason.PREPARE_CONTINUATION) {
-            // Register the callback to obtain the quick start result.
-            this.registerQuickStartCallback();
+            // Unregister the callback used to obtain the quick start result.
+            try {
+              continueManager.off("prepareContinue", this.context, (err, continueResultInfo) => {
+                if (err.code != 0) {
+                  console.error('unregister failed, cause: ' + JSON.stringify(err));
+                  return;
+                }
+                console.info('unregister finished, ' + JSON.stringify(continueResultInfo));
+              });
+            } catch (e) {
+              console.error('unregister failed, cause: ' + JSON.stringify(e));
+            }
             // If the application data to migrate is large, add a loading screen here (for example, displaying "loading" on the screen).
             // Handle issues related to custom redirection and timing.
             // ...
         }
-    }
-    
-    async registerQuickStartCallback() : Promise<void>{
-        continueManager.off("prepareContinue", this.context, (err, continueResultInfo)=>{
-            if (err.code != 0) {
-                console.error('register failed, cause: ' + JSON.stringify(err));
-                return;
-            }
-            console.info('register finished, ' + JSON.stringify(continueResultInfo));
-        });
     }
 }
   ```
@@ -122,7 +148,7 @@ export default class MigrationAbility extends UIAbility {
 
 Describes the quick start result returned by the callback.
 
-**System capability**: SystemCapability.Ability.DistributedManagementService
+**System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
 | Name| Type                                                                           | Read-Only| Optional| Description      |
 | -------- |-------------------------------------------------------------------------------|----|----|----------|
@@ -133,7 +159,7 @@ Describes the quick start result returned by the callback.
 
 Enumerates the status codes of the quick start result.
 
-**System capability**: SystemCapability.Ability.DistributedManagementService
+**System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
 | Name| Value | Description   | 
 | -------- |----|-------|

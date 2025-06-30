@@ -11,8 +11,11 @@ Read [AVPlayer](../../reference/apis-media-kit/js-apis-media.md#avplayer9) for t
 1. Set an external subtitle resource in the AVPlayer instance used for video playback.
 
    ```ts
-   let context = getContext(this) as common.UIAbilityContext;
-   let fileDescriptor = await context.resourceManager.getRawFd('xxx.srt');
+   private context: Context | undefined;
+   constructor(context: Context) {
+     this.context = context; // this.getUIContext().getHostContext();
+   }
+   let fileDescriptor = await this.context.resourceManager.getRawFd('xxx.srt');
 
    avPlayer.addSubtitleFromFd(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length);
 
@@ -52,6 +55,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 export class AVPlayerSubtitleDemo {
   private avPlayer: media.AVPlayer | undefined = undefined;
+  private context: Context | undefined;
+  constructor(context: Context) {
+    this.context = context; // this.getUIContext().getHostContext();
+  }
   // Set AVPlayer callback functions.
   setAVPlayerCallback(avPlayer: media.AVPlayer) {
     // Callback function for errors. If an error occurs during the operation on the AVPlayer, reset() is called to reset the AVPlayer.
@@ -93,8 +100,7 @@ export class AVPlayerSubtitleDemo {
     // Create a callback function.
     this.setAVPlayerCallback(this.avPlayer);
 
-    let context = getContext(this) as common.UIAbilityContext;
-    let fileDescriptor = await context.resourceManager.getRawFd('xxx.srt');
+    let fileDescriptor = await this.context.resourceManager.getRawFd('xxx.srt');
 
     this.avPlayer.addSubtitleFromFd(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length);
   }

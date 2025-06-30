@@ -9,13 +9,14 @@ Defines the observer for the device-cloud sync progress.
 
 **Related module**: [RDB](_r_d_b.md)
 
+**Header file**: [relational_store.h](relational__store_8h.md)
 
 ## Summary
 
 
 ### Member Variables
 
-| Name| Description| 
+| Name| Description|
 | -------- | -------- |
-| [context](_r_d_b.md#context-22) | Context of the device-cloud sync progress observer.| 
-| [callback](_r_d_b.md#callback-22) | Callback used to return the device-cloud sync progress.| 
+| [context](_r_d_b.md#context-22) | Context of the device-cloud sync progress observer.|
+| [callback](_r_d_b.md#callback-22) | Callback used to return the device-cloud sync progress.|

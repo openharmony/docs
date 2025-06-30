@@ -1,10 +1,12 @@
 # FolderStack
 
-FolderStack继承于Stack(层叠布局)控件，新增了折叠屏悬停能力，通过识别upperItems自动避让折叠屏折痕区后移到上半屏。
+FolderStack继承于Stack(层叠布局)控件，新增了<!--RP1-->折叠屏悬停<!--RP1End-->能力，通过在配置项[FolderStackOptions](#folderstackoptions18对象说明)的upperItems数组上设置子组件id，使相应子组件自动避让折叠屏折痕区后移到上半屏。
 
 >  **说明：**
 >
 >  该组件从API version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+>  该组件不支持在Wearable设备上使用。
 
 
 ## 子组件
@@ -24,11 +26,11 @@ FolderStack(options?: FolderStackOptions)
 
 | 参数名       | 类型                                    | 必填 | 说明                                                                 |
 | ------------ | ------------------------------------------- | ---- |----------------------------------------------------------------------|
-| options |  [FolderStackOptions](#folderstackoptions14对象说明) | 否   | FolderStack的配置项。 |
+| options |  [FolderStackOptions](#folderstackoptions18对象说明) | 否   | FolderStack的配置项。 |
 
-## FolderStackOptions<sup>14+</sup>对象说明
+## FolderStackOptions<sup>18+</sup>对象说明
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -70,7 +72,7 @@ enableAnimation(value: boolean)
 
 | 参数名 | 类型                                        | 必填 | 说明                                |
 | ------ | ------------------------------------------- | ---- | ----------------------------------- |
-| value  | boolean | 是   | 是否使用默认动效。<br/>默认值：true |
+| value  | boolean | 是   | 是否使用默认动效。<br/>默认值：true，设置true表示使用默认动效，设置false表示不使用默认动效。 |
 
 ### autoHalfFold
 
@@ -86,7 +88,7 @@ autoHalfFold(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                |
 | ------ | ------- | ---- | ----------------------------------- |
-| value  | boolean | 是   | 是否开启自动旋转。<br/>默认值：true |
+| value  | boolean | 是   | 是否开启自动旋转。<br/>默认值：true，设置true表示开启自动旋转，设置false表示关闭自动旋转。 |
 
 >  **说明：**
 >
@@ -110,7 +112,7 @@ onFolderStateChange(callback: OnFoldStatusChangeCallback)
 
 | 参数名     | 类型                                            | 必填 | 说明                 |
 | ---------- | ----------------------------------------------- | ---- | -------------------- |
-| callback | [OnFoldStatusChangeCallback](#onfoldstatuschangecallback14) | 是   | 当前设备的折叠状态。 |
+| callback | [OnFoldStatusChangeCallback](#onfoldstatuschangecallback18) | 是   | 当前设备的折叠状态。 |
 
 
 ### onHoverStatusChange<sup>12+</sup>
@@ -127,15 +129,15 @@ onHoverStatusChange(handler: OnHoverStatusChangeCallback)
 
 | 参数名     | 类型                                            | 必填 | 说明                 |
 | ---------- | ----------------------------------------------- | ---- | -------------------- |
-| handler | [OnHoverStatusChangeCallback](#onhoverstatuschangecallback14) | 是   | 当悬停状态改变的时候触发回调。 |
+| handler | [OnHoverStatusChangeCallback](#onhoverstatuschangecallback18) | 是   | 当悬停状态改变的时候触发回调。 |
 
-## OnHoverStatusChangeCallback<sup>14+</sup>
+## OnHoverStatusChangeCallback<sup>18+</sup>
 
 type OnHoverStatusChangeCallback = (param: HoverEventParam) => void
 
 当悬停状态改变的时候触发回调。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -143,26 +145,26 @@ type OnHoverStatusChangeCallback = (param: HoverEventParam) => void
 | ---------- | ----------------------------------------------- | ---- | -------------------- |
 | param | [HoverEventParam](#hovereventparam12对象说明) | 是   | 当悬停状态改变的时候触发回调。 |
 
-## OnFoldStatusChangeCallback<sup>14+</sup>
+## OnFoldStatusChangeCallback<sup>18+</sup>
 
 type OnFoldStatusChangeCallback = (event: OnFoldStatusChangeInfo) => void
 
 当前设备的折叠状态。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 参数名     | 类型                                            | 必填 | 说明                 |
 | ---------- | ----------------------------------------------- | ---- | -------------------- |
-| callback | [OnFoldStatusChangeInfo](#onfoldstatuschangeinfo14) | 是   | 当前设备的折叠状态。 |
+| callback | [OnFoldStatusChangeInfo](#onfoldstatuschangeinfo18) | 是   | 当前设备的折叠状态。 |
 
 
-## OnFoldStatusChangeInfo<sup>14+</sup>
+## OnFoldStatusChangeInfo<sup>18+</sup>
 
 当折叠状态改变的时候回调，仅在横屏状态下生效。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -179,11 +181,11 @@ type OnFoldStatusChangeCallback = (event: OnFoldStatusChangeInfo) => void
 | 名称              | 类型                                                          | 必填 | 说明         |
 |------------------|-------------------------------------------------------------| --- |------------|
 | foldStatus       | [FoldStatus](ts-appendix-enums.md#foldstatus11)             | 是   | 当前设备的折叠状态。 |
-| isHoverMode      | boolean                                                     | 是   | 当前是否悬停模式。  |
+| isHoverMode      | boolean                                                     | 是   | 当前是否为悬停态。设置为true时表示当前为悬停态，设置为false时表示当前为非悬停态。  |
 | appRotation      | [AppRotation](ts-appendix-enums.md#approtation12)           | 是   | 当前应用方向。    |
-| windowStatusType | [WindowStatusType](#windowstatustype12) | 是   | 窗口模式枚举。    |
+| windowStatusType | [WindowStatusType](#windowstatustype11) | 是   | 窗口模式枚举。    |
 
-## WindowStatusType<sup>12+</sup>
+## WindowStatusType<sup>11+</sup>
 
 type WindowStatusType = WindowStatusType
 

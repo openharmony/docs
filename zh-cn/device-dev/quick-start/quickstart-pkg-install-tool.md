@@ -51,7 +51,7 @@
 > - 若安装hb的过程中遇到问题，请参见下文[常见问题](quickstart-pkg-common-hberr.md)进行解决。
 
 
-### 安装LLVM(仅OpenHarmony_v1.x分支/标签需要)
+### 安装LLVM（仅OpenHarmony_v1.x分支/标签需要）
 
 > ![icon-notice.gif](public_sys-resources/icon-notice.gif) **须知：**
 > 如果下载的源码为OpenHarmony_v1.x分支/标签，请按下面的步骤安装9.0.0版本的llvm。

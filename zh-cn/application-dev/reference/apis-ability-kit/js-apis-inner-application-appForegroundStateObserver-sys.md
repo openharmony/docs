@@ -13,15 +13,23 @@
 import { appManager } from '@kit.AbilityKit';
 ```
 
-## 属性
+## AppForegroundStateObserver
 
-**系统接口**：此接口为系统接口。
+### onAppStateChanged
+
+onAppStateChanged(appStateData: AppStateData): void
+
+应用启动和退出状态发生变化时，系统会触发该回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称                             | 类型                    | 可读 | 可写 | 说明   |
-| -------------------------------- | ---------------------- | ---- | ---- | ------------------ |
-| onAppStateChanged   | AsyncCallback\<void>   | 是   | 否   | 应用启动和退出状态发生变化时执行的回调函数。传入参数类型是[AppStateData](js-apis-inner-application-appStateData.md)。 |
+**系统接口**：此接口为系统接口。
+
+**参数**：
+
+| 参数名  | 类型 | 必填 | 说明   |
+| ------ | ---- | ---- | ---- -|
+| appStateData   | [AppStateData](js-apis-inner-application-appStateData.md)   | 是  | 应用状态信息。 |
 
 **示例：**
 ```ts
@@ -29,7 +37,7 @@ import { appManager } from '@kit.AbilityKit';
 
 let observer: appManager.AppForegroundStateObserver = {
   onAppStateChanged(appStateData) {
-    console.log(`onAppStateChanged appStateData: ${JSON.stringify(appStateData)}`);
+    console.info(`onAppStateChanged appStateData: ${JSON.stringify(appStateData)}`);
   },
 };
 appManager.on('appForegroundState', observer);

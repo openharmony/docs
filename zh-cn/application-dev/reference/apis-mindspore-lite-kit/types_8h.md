@@ -5,7 +5,11 @@
 
 提供了MindSpore Lite支持的模型文件类型和设备类型。
 
+**引用文件：** <mindspore/types.h>
+
 **库：** libmindspore_lite_ndk.so
+
+**系统能力：** SystemCapability.Ai.MindSpore
 
 **起始版本：** 9
 

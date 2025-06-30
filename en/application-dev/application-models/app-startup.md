@@ -236,7 +236,7 @@ export default class MyStartupConfigEntry extends StartupConfigEntry {
     let onCompletedCallback = (error: BusinessError<void>) => {
       hilog.info(0x0000, 'testTag', `onCompletedCallback`);
       if (error) {
-        hilog.info(0x0000, 'testTag', 'onCompletedCallback: %{public}d, message: %{public}s', error.code, error.message);
+        hilog.error(0x0000, 'testTag', 'onCompletedCallback: %{public}d, message: %{public}s', error.code, error.message);
       } else {
         hilog.info(0x0000, 'testTag', `onCompletedCallback: success.`);
       }
@@ -291,14 +291,14 @@ export default class StartupTask_001 extends StartupTask {
 
  ### (Optional) Using AppStartup in the HSP and HAR
 
- Large applications often consist of multiple [HSP](../quick-start/har-package.md) and [HAR](../quick-start/in-app-hsp.md) modules. This section provides an example to demonstrate how to use AppStartup in HSP and HAR packages. This example application includes two HSP packages (hsp1, hsp2) and one HAR package (har1), with startup tasks and .so file preloading tasks.
+Large applications often consist of multiple [HSP](../quick-start/in-app-hsp.md) and [HAR](../quick-start/har-package.md) modules. This section provides an example to demonstrate how to use AppStartup in HSP and HAR packages. This example application includes two HSP packages (hsp1, hsp2) and one HAR package (har1), with startup tasks and .so file preloading tasks.
 
  Perform the following steps:
 
   1. Create an AppStartup configuration file under the **resources/base/profile** directory for each HSP and HAR, in addition to the main module. Different modules can use the same file name. The following uses **startup_config.json** as an example.
   
   2. Configure the **startup_config.json** file for each module.
-     
+
         The table below lists the startup tasks and .so file preloading tasks available for the application.
         
         **Table 4** Startup tasks and .so file preloading tasks
@@ -382,7 +382,7 @@ export default class StartupTask_001 extends StartupTask {
           }
         }
         ```
-
+  
   For details about other steps, see [Setting Startup Parameters](#setting-startup-parameters) and [Adding a Startup Task for Each Component to Be Initialized](#adding-a-startup-task-for-each-component-to-be-initialized).
 
 
@@ -403,20 +403,19 @@ import { BusinessError } from '@kit.BasicServicesKit';
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-    let startParams = ["StartupTask_005", "StartupTask_006"];
+    let startParams = ['StartupTask_005', 'StartupTask_006'];
     try {
       startupManager.run(startParams).then(() => {
-        console.log('StartupTest startupManager run then, startParams = ');
+        console.log(`StartupTest startupManager run then, startParams = ${JSON.stringify(startParams)}.`);
       }).catch((error: BusinessError) => {
-        console.info('StartupTest promise catch error, error = ' + JSON.stringify(error));
-        console.info('StartupTest promise catch error, startParams = '
-          + JSON.stringify(startParams));
+        console.error(`StartupTest promise catch error, error = ${JSON.stringify(error)}.`);
+        console.error(`StartupTest promise catch error, startParams = ${JSON.stringify(startParams)}.`);
       })
     } catch (error) {
-      let errMsg = JSON.stringify(error);
-      let errCode: number = error.code;
-      console.log('Startup catch error , errCode= ' + errCode);
-      console.log('Startup catch error ,error= ' + errMsg);
+      let errMsg = (error as BusinessError).message;
+      let errCode = (error as BusinessError).code;
+      console.error(`Startup catch error, errCode= ${errCode}.`);
+      console.error(`Startup catch error, errMsg= ${errMsg}.`);
     }
   }
 

@@ -10,6 +10,8 @@ Provides APIs to access the result set obtained by querying the RDB store.
 
 **Related module**: [RDB](_r_d_b.md)
 
+**Header file**: [oh_cursor.h](oh__cursor_8h.md)
+
 
 ## Summary
 

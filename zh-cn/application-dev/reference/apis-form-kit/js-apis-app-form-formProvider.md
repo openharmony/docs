@@ -1,6 +1,6 @@
 # @ohos.app.form.formProvider (formProvider)
 
-FormProvider模块提供了卡片提供方相关接口的能力，开发者在开发卡片时，可通过该模块提供接口实现更新卡片、设置卡片更新时间、获取卡片信息、请求发布卡片等。
+formProvider模块提供了获取卡片信息、更新卡片、设置卡片更新时间等能力。
 
 > **说明：**
 >
@@ -394,8 +394,6 @@ openFormEditAbility(abilityName: string, formId: string, isMainPage?: boolean): 
 
 打开卡片编辑页。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Ability.Form
 
 **参数：**
@@ -423,10 +421,7 @@ openFormEditAbility(abilityName: string, formId: string, isMainPage?: boolean): 
 
 ```ts
 import { router } from '@kit.ArkUI';
-import { formProvider } from '@ohos.app.form.formProvider';
-import { common } from '@ohos.app.ability.common';
 
-const context = getContext(this) as common.UIAbilityContext;
 const TAG: string = 'FormEditDemo-Page] -->';
 
 @Entry
@@ -473,7 +468,7 @@ openFormManager(want: Want): void
 
 | 参数名  | 类型    | 必填 | 说明                                                                                                                                                                                                                                                                                                      |
 |------| ------ | ---- |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| want     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 打开卡片管理页面的请求中的want参数，需包含以下字段。<br>bundleName: 卡片所属应用的包名。<br>abilityName: 卡片所属的ability名称。<br>parameters:<br>- ohos.extra.param.key.form_dimension: [卡片尺寸](js-apis-app-form-formInfo.md#formInfoformdimension)。<br>- ohos.extra.param.key.form_name: 卡片名称。<br>- ohos.extra.param.key.module_name: 卡片所属的模块名称。 |
+| want     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 打开卡片管理页面的请求中的want参数，需包含以下字段。<br>bundleName: 卡片所属应用的包名。<br>abilityName: 卡片所属的ability名称。<br>parameters:<br>- ohos.extra.param.key.form_dimension: [卡片尺寸](js-apis-app-form-formInfo.md#formdimension)。<br>- ohos.extra.param.key.form_name: 卡片名称。<br>- ohos.extra.param.key.module_name: 卡片所属的模块名称。 |
 
 **错误码：**
 
@@ -481,7 +476,6 @@ openFormManager(want: Want): void
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 16500050 | IPC connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
@@ -503,7 +497,7 @@ const want: Want = {
   },
 };
 try {
-  formProvider.openFormManager(this.want);
+  formProvider.openFormManager(want);
 } catch (error) {
   console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message})`);
 }
@@ -537,7 +531,6 @@ getPublishedFormInfoById(formId: string): Promise&lt;formInfo.FormInfo&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 16500050 | IPC connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
@@ -550,7 +543,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 const formId: string = '388344236';
 try {
-  formProvider.getPublishedFormInfoById(this.formId).then((data: formInfo.FormInfo) => {
+  formProvider.getPublishedFormInfoById(formId).then((data: formInfo.FormInfo) => {
     console.log(`formProvider getPublishedFormInfoById, data: ${JSON.stringify(data)}`);
   }).catch((error: BusinessError) => {
     console.error(`promise error, code: ${error.code}, message: ${error.message})`);

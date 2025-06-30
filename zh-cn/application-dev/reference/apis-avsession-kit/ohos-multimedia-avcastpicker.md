@@ -5,9 +5,9 @@
 > **说明：**
 >
 > - 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - **设备限制：** 当前功能不支持在PC/2in1设备上使用。
 > - 示例效果请以真机为准，当前DevEco Studio预览器无实际投播功能。<!--Del-->
 > - 当前组件的使用，依赖于设备支持“设备选择界面”。当前暂无OpenHarmony设备支持，需要OEM厂商实现具体的“设备选择界面”。<!--DelEnd-->
-> <!--RP2--><!--RP2End-->
 
 ## 导入模块
 
@@ -35,9 +35,9 @@ AVCastPicker({
 
 投播组件，可用于将音视频资源投放到其它设备播放。
 
-该组件为自定义组件，开发者在使用前需要先了解[@Component](../../quick-start/arkts-create-custom-components.md#component)。
+该组件为自定义组件，开发者在使用前需要先了解[@Component](../../ui/state-management/arkts-create-custom-components.md#component)。
 
-**装饰器类型：** [@Component](../../quick-start/arkts-create-custom-components.md)
+**装饰器类型：** [@Component](../../ui/state-management/arkts-create-custom-components.md)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

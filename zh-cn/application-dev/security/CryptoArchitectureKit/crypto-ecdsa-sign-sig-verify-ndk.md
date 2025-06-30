@@ -1,6 +1,6 @@
 # 使用ECDSA密钥对验签(C/C++)
 
-对应的算法规格请查看[签名验签算法规格：ECDSA](crypto-sign-sig-verify-overview.md#ecdsa)。
+查看[签名验签算法规格：ECDSA](crypto-sign-sig-verify-overview.md#ecdsa)。
 
 ## 在CMake脚本中链接相关动态库
 ```txt

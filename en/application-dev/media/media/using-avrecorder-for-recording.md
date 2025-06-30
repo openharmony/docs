@@ -88,7 +88,7 @@ Read [AVRecorder](../../reference/apis-media-kit/js-apis-media.md#avrecorder9) f
      fileFormat: media.ContainerFormatType.CFT_MPEG_4A, // Container format. Currently, MP4, M4A, MP3, and WAV are supported.
    };
    
-   const context: Context = getContext(this); // Refer to Accessing Application Files.
+   const context: Context = this.getUIContext().getHostContext()!; // Refer to Accessing Application Files.
    let filePath: string = context.filesDir + '/example.mp3';
    let audioFile: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
    let fileFd: number = this.audioFile.fd; // Obtain the file FD.
@@ -157,7 +157,7 @@ import { media } from '@kit.MediaKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
 
-export class AudioRecorderDemo {
+export class AudioRecorderDemo extends CustomComponent {
   private avRecorder: media.AVRecorder | undefined = undefined;
   private avProfile: media.AVRecorderProfile = {
     audioBitrate: 100000, // Audio bit rate.
@@ -176,7 +176,7 @@ export class AudioRecorderDemo {
   
   // Create a file and set avConfig.url.
   async createAndSetFd(): Promise<void> {
-      const context: Context = getContext(this);
+      const context: Context = this.getUIContext().getHostContext()!; // Non-null assertion, ensuring the context is of type Context and not null.
       const path: string = context.filesDir + '/example.mp3'; // File sandbox path. The file name extension must match the container format.
       const audioFile: fs.File = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
       this.avConfig.url = 'fd://' + audioFile.fd; // Update the URL.

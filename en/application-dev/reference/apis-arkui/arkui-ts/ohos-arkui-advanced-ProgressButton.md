@@ -48,10 +48,10 @@ Defines the color options for the download button.
 
 | Name             | Type                                    | Mandatory| Description                                                               |
 |-----------------|----------------------------------------|----|-------------------------------------------------------------------|
-| progressColor   | [ResourceStr](ts-types.md#resourcestr) | No | Color of the progress indicator.<br>Default value: **#330A59F7**                                         |
-| borderColor     | [ResourceStr](ts-types.md#resourcestr) | No | Border color of the button.<br>Default value: **#330A59F7**                                        |
-| textColor       | [ResourceStr](ts-types.md#resourcestr) | No | Text color of the button.<br>Default value: system default value                                            |
-| backgroundColor | [ResourceStr](ts-types.md#resourcestr) | No | Background color of the button.<br>Default value: **\$r('sys.color.ohos_id_color_foreground_contrary')**|
+| progressColor   | [ResourceColor](ts-types.md#resourcecolor) | No | Color of the progress indicator.<br>Default value: **#330A59F7**                                         |
+| borderColor     | [ResourceColor](ts-types.md#resourcecolor) | No | Border color of the button.<br>Default value: **#330A59F7**                                        |
+| textColor       | [ResourceColor](ts-types.md#resourcecolor) | No | Text color of the button.<br>Default value: system default value                                            |
+| backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | No | Background color of the button.<br>Default value: **\$r('sys.color.ohos_id_color_foreground_contrary')**|
 
 ## Events
 The [universal events](ts-component-general-events.md) are not supported.

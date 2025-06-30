@@ -9,6 +9,7 @@ Defines the JavaScript Bridge data.
 
 **Related module**: [Web](_web.md)
 
+**Header file**: [arkweb_type.h](arkweb__type_8h.md)
 
 ## Summary
 

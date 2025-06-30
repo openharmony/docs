@@ -50,7 +50,7 @@ try {
   let devices : Array<deviceManager.Device> = deviceManager.queryDevices(deviceManager.BusType.USB);
   for (let item of devices) {
     let device : deviceManager.USBDevice = item as deviceManager.USBDevice;
-    console.info(`Device id is ${device.deviceId}`)
+    console.info(`Device id is ${device.deviceId}`);
   }
 } catch (error) {
   console.error(`Failed to query device. Code is ${error.code}, message is ${error.message}`);
@@ -60,7 +60,7 @@ try {
 ## deviceManager.bindDevice
 
 bindDevice(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;,
-  callback: AsyncCallback&lt;{deviceId: number; remote: rpc.IRemoteObject;}&gt;): void;
+  callback: AsyncCallback&lt;{deviceId: number; remote: rpc.IRemoteObject;}&gt;): void
 
 Binds a peripheral device based on the device information returned by **queryDevices()**. This API uses an asynchronous callback to return the result.
 
@@ -116,7 +116,7 @@ try {
 
 ## deviceManager.bindDeviceDriver<sup>11+</sup>
 bindDeviceDriver(deviceId: number, onDisconnect: AsyncCallback&lt;number&gt;,
-  callback: AsyncCallback&lt;RemoteDeviceDriver&gt;): void;
+  callback: AsyncCallback&lt;RemoteDeviceDriver&gt;): void
 
 Binds a peripheral device based on the device information returned by **queryDevices()**. This API uses an asynchronous callback to return the result.
 
@@ -302,6 +302,7 @@ Unbinds a peripheral device. This API uses an asynchronous callback to return th
 
 ```ts
 import { deviceManager } from '@kit.DriverDevelopmentKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // For example, deviceId is 12345678. You can use queryDevices() to obtain the deviceId.

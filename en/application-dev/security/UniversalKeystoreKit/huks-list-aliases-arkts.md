@@ -1,4 +1,4 @@
-# Querying Key Aliases
+# Querying Key Aliases (ArkTS)
 
 
 This topic walks you through on how to query key aliases.

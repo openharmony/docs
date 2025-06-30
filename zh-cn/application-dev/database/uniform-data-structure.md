@@ -5,7 +5,7 @@
 
 针对[UTD标准化数据类型](../reference/apis-arkdata/js-apis-data-uniformTypeDescriptor.md#uniformdatatype)中的部分常见类型，为了方便业务使用，我们按照不同的数据类型提供了标准化数据结构，例如系统定义的桌面图标类型（对应的标准化数据类型标识为'openharmony.app-item'），我们明确定义了该数据结构对应的相关描述信息。
 
-某些业务场景下应用可以直接使用我们具体定义的UTD标准化数据结构，例如跨应用拖拽场景。拖出方应用可以按照标准化数据结构将拖拽数据写入[拖拽事件](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#dragevent)，拖入方应用从拖拽事件中读取拖拽数据并按照标准化数据结构进行数据的解析。这使得不同应用间的数据交互遵从相同的标准定义，有效减少了跨应用数据交互的开发工作量。
+某些业务场景下应用可以直接使用我们具体定义的UTD标准化数据结构，例如跨应用拖拽场景。拖出方应用可以按照标准化数据结构将拖拽数据写入[拖拽事件](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#dragevent7)，拖入方应用从拖拽事件中读取拖拽数据并按照标准化数据结构进行数据的解析。这使得不同应用间的数据交互遵从相同的标准定义，有效减少了跨应用数据交互的开发工作量。
 
 ## 接口说明
 
@@ -22,6 +22,8 @@ UDMF针对部分标准化数据类型定义的标准化数据结构如下所示�
 ## 开发步骤
 
 以使用标准化数据结构定义数据内容（包含超链接、纯文本两条数据记录）为例，提供基本的开发步骤。
+
+数据提供方可通过UMDF提供的addRecord()接口添加数据记录，使用getRecords()接口获取当前数据对象内的所有数据记录。
 
   ```ts
   // 1. 导入unifiedDataChannel和uniformTypeDescriptor模块。
@@ -90,9 +92,3 @@ UDMF针对部分标准化数据类型定义的标准化数据结构如下所示�
     }
   }
   ```
-
-## 相关实例
-
-针对标准化数据定义的开发，有以下相关实例可供参考：
-
-- [标准化数据定义与描述（ArkTS）（API11）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DataManagement/UDMF/UniformTypeDescriptor/UTDType)

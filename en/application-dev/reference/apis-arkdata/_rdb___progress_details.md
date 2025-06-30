@@ -9,6 +9,8 @@ Defines a struct for statistics of the overall device-cloud sync (upload and dow
 
 **Related module**: [RDB](_r_d_b.md)
 
+**Header file**: [relational_store.h](relational__store_8h.md)
+
 
 ## Summary
 

@@ -41,11 +41,28 @@ import { avSession as AVSessionManager } from '@kit.AVSessionKit';
 例如，媒体会话提供方通过AVSessionManager创建媒体会话的示例如下所示：
  
 ```ts
-// 创建session。
-let context: Context = getContext(this);
-async function createSession() {
-  let session: AVSessionManager.AVSession = await AVSessionManager.createAVSession(context, 'SESSION_NAME', 'audio');
-  console.info(`session create done : sessionId : ${session.sessionId}`);
+import { BusinessError } from '@kit.BasicServicesKit';
+import { avSession } from '@kit.AVSessionKit';
+@Entry
+@Component
+struct Index {
+  @State message: string = 'hello world';
+
+  build() { 
+    Column() {
+        Text(this.message)
+          .onClick(()=>{
+            // 创建session。
+            let context = this.getUIContext().getHostContext() as Context;
+            async function createSession() {
+            let session: AVSessionManager.AVSession = await AVSessionManager.createAVSession(context, 'SESSION_NAME', 'audio');
+            console.info(`session create done : sessionId : ${session.sessionId}`);
+            }
+          })
+      }
+    .width('100%')
+    .height('100%')
+  }
 }
 ```
 <!--Del-->

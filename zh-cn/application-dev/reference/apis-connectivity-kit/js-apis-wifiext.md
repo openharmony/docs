@@ -6,7 +6,7 @@
 >
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 该文档中的接口只供非通用类型产品使用，如路由器等，对于常规类型产品，不应该使用这些接口。
-> 从API Version 9 开始，该接口不再维护，推荐使用[`@ohos.wifiManagerExt (WLAN扩展接口)`](js-apis-wifiManagerExt.md)等相关接口。
+> 从API Version 9开始，该接口不再维护，推荐使用[`@ohos.wifiManagerExt（WLAN扩展接口）`](js-apis-wifiManagerExt.md)等相关接口。
 
 ## 导入模块
 

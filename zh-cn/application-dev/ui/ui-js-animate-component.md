@@ -140,9 +140,9 @@ export default {
 ![zh-cn_image_0000001174916742](figures/zh-cn_image_0000001174916742.gif)
 
 > **说明：**
-> - translate、scale和rtotate的先后顺序会影响动画效果。
+> - translate、scale和rotate的先后顺序会影响动画效果。
 >
-> - transformOrigin只对scale和rtotate起作用。
+> - transformOrigin只对scale和rotate起作用。
 
 在获取动画对象后，通过设置参数Options来设置动画的属性。
 

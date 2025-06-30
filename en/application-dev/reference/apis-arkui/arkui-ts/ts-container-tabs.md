@@ -11,7 +11,7 @@ The **Tabs** component is a container component that allows users to switch betw
 
 ## Child Components
 
-Custom components cannot be used as child components. Only the [TabContent](ts-container-tabcontent.md) child component is allowed, with support for [if/else](../../../quick-start/arkts-rendering-control-ifelse.md) and [ForEach](../../../quick-start/arkts-rendering-control-foreach.md) rendering control. In addition, the **if/else** and **ForEach** statements support **TabContent** components only, but not custom components.
+Custom components cannot be used as child components. Only the [TabContent](ts-container-tabcontent.md) child component is allowed, with support for [if/else](../../../ui/state-management/arkts-rendering-control-ifelse.md) and [ForEach](../../../ui/state-management/arkts-rendering-control-foreach.md) rendering control. In addition, the **if/else** and **ForEach** statements support **TabContent** components only, but not custom components.
 
 >  **NOTE**
 >
@@ -45,7 +45,7 @@ Provides parameters for configuring the **Tabs** component, including tab positi
 | Name        | Type                             | Mandatory  | Description                                    |
 | ----------- | --------------------------------- | ---- | ---------------------------------------- |
 | barPosition<sup>7+</sup> | [BarPosition](#barposition)| No   | Position of the **Tabs** component.<br>Default value: **BarPosition.Start**<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
-| index<sup>7+</sup>       | number                            | No   | Index of the currently displayed tab.<br>Default value: **0**<br>**NOTE**<br>A value less than 0 evaluates to the default value.<br>The value ranges from 0 to the number of **TabContent** nodes minus 1.<br>When the tab is switched by changing the index, the tab switching animation does not take effect. When **changeIndex** of **TabController** is used for tab switching, the tab switching animation is enabled by default. You can disable the animation by setting **animationDuration** to **0**.<br>Since API version 10, this parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).<br>When the **Tabs** component is rebuilt, system resources are switched (for example, system font or theme changes), or component attributes change, the **Tab** component will switch to the one specified by **index**. To prevent this behavior, you are advised to use two-way binding.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| index<sup>7+</sup>       | number                            | No   | Index of the currently displayed tab.<br>Default value: **0**<br>**NOTE**<br>A value less than 0 evaluates to the default value.<br>The value ranges from 0 to the number of **TabContent** nodes minus 1.<br>When the tab is switched by changing the index, the tab switching animation does not take effect. When **changeIndex** of **TabController** is used for tab switching, the tab switching animation is enabled by default. You can disable the animation by setting **animationDuration** to **0**.<br>Since API version 10, this parameter supports two-way binding through [$$](../../../ui/state-management/arkts-two-way-sync.md).<br>When the **Tabs** component is rebuilt, system resources are switched (for example, system font or theme changes), or component attributes change, the **Tab** component will switch to the one specified by **index**. To prevent this behavior, you are advised to use two-way binding.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | controller<sup>7+</sup>  | [TabsController](#tabscontroller) | No   | Tab controller.<br>**Atomic service API**: This API can be used in atomic services since API version 11.        |
 | barModifier<sup>15+</sup>  | [CommonModifier](#commonmodifier15) | No   | [Universal attributes](ts-component-general-attributes.md) of the tab bar.<br>**NOTE**<br>If this parameter is dynamically set to **undefined**, the current state will be preserved, and universal attributes will not be reset.<br>If the setting switches from one **CommonModifier** to another, overlapping attributes will be overwritten, while non-overlapping attributes will coexist without resetting the attributes of the previous **CommonModifier**.<br>The [barWidth](#barwidth), [barHeight](#barheight), [barBackgroundColor](#barbackgroundcolor10), [barBackgroundBlurStyle](#barbackgroundblurstyle15), and [barBackgroundEffect] (#barbackgroundeffect15) attributes of **Tabs** will overwrite the [width](ts-universal-attributes-size.md#width), [height](ts-universal-attributes-size.md#height), [backgroundColor](ts-universal-attributes-background.md#backgroundcolor18), [backgroundBlurStyle](ts-universal-attributes-background.md#backgroundblurstyle18), and [backgroundEffect](ts-universal-attributes-background.md#backgroundeffect18) attributes of **CommonModifier**.<br>The [align](ts-universal-attributes-location.md#align) attribute works only in [BarMode.Scrollable](#barmode10-1) mode. In addition, for a horizontal **Tabs** component, it only takes effect when [nonScrollableLayoutStyle](#scrollablebarmodeoptions10) is set to an invalid value or is not set.<br>When set to the bottom tab style, [tabBar](ts-container-tabcontent.md#tabbar18) attribute of the [TabContent](ts-container-tabcontent.md) component does not support the dragging feature.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
 
@@ -197,7 +197,7 @@ Sets the length of time required to complete the tab switching animation, which 
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | Yes  | Length of time required to complete the tab switching animation, which is initiated by clicking a specific tab or by calling the **changeIndex** API of **TabsController**.<br>The default value varies.<br>API version 10 and earlier versions: If this parameter is set to **null** or is not set, the default value **0** is used, which means that no tab switching animation is displayed when a specific tab is clicked or the **changeIndex** API of **TabsController** is called. If this parameter is set to **undefined** or a value less than 0, the default value **300** is used.<br>API version 11 and later versions: If this parameter is set to an invalid value or is not set, the default value is **0** when the tab bar is set to **BottomTabBarStyle** and **300** when the tab bar is set to any other style.<br>Unit: ms<br>Value range: [0, +��)|
+| value  | number | Yes  | Length of time required to complete the tab switching animation, which is initiated by clicking a specific tab or by calling the **changeIndex** API of **TabsController**.<br>The default value varies.<br>API version 10 and earlier versions: If this parameter is set to **null** or is not set, the default value **0** is used, which means that no tab switching animation is displayed when a specific tab is clicked or the **changeIndex** API of **TabsController** is called. If this parameter is set to **undefined** or a value less than 0, the default value **300** is used.<br>API version 11 and later versions: If this parameter is set to an invalid value or is not set, the default value is **0** when the tab bar is set to **BottomTabBarStyle** and **300** when the tab bar is set to any other style.<br>Unit: ms<br>Value range: [0, +∞)|
 
 ### animationMode<sup>12+</sup>
 
@@ -402,10 +402,10 @@ Describes the divider style.
 
 | Name         | Type                                    | Mandatory  | Description                                      |
 | ----------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| strokeWidth | [Length](ts-types.md#length)             | Yes   | Width of the divider. It cannot be set in percentage.<br>Default value: **0.0**<br>Unit: vp<br>Value range: [0, +��)          |
+| strokeWidth | [Length](ts-types.md#length)             | Yes   | Width of the divider. It cannot be set in percentage.<br>Default value: **0.0**<br>Unit: vp<br>Value range: [0, +∞)          |
 | color       | [ResourceColor](ts-types.md#resourcecolor) | No   | Color of the divider.<br>Default value: **#33182431**               |
-| startMargin | [Length](ts-types.md#length)             | No   | Distance between the divider and the top of the sidebar. It cannot be set in percentage.<br>Default value: **0.0**<br>Unit: vp<br>Value range: [0, +��)|
-| endMargin   | [Length](ts-types.md#length)             | No   | Distance between the divider and the bottom of the sidebar. It cannot be set in percentage.<br>Default value: **0.0**<br>Unit: vp<br>Value range: [0, +��)|
+| startMargin | [Length](ts-types.md#length)             | No   | Distance between the divider and the top of the sidebar. It cannot be set in percentage.<br>Default value: **0.0**<br>Unit: vp<br>Value range: [0, +∞)|
+| endMargin   | [Length](ts-types.md#length)             | No   | Distance between the divider and the bottom of the sidebar. It cannot be set in percentage.<br>Default value: **0.0**<br>Unit: vp<br>Value range: [0, +∞)|
 
 ## BarGridColumnOptions<sup>10+</sup>
 
@@ -433,7 +433,7 @@ Implements a **ScrollableBarModeOptions** object.
 
 | Name         | Type                                    | Mandatory  | Description                                      |
 | ----------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| margin | [Dimension](ts-types.md#dimension10)          | No   | Left and right margin of the tab bar in scrollable mode. It cannot be set in percentage.<br>Default value: **0.0**<br>Unit: vp<br>Value range: [0, +��)|
+| margin | [Dimension](ts-types.md#dimension10)          | No   | Left and right margin of the tab bar in scrollable mode. It cannot be set in percentage.<br>Default value: **0.0**<br>Unit: vp<br>Value range: [0, +∞)|
 | nonScrollableLayoutStyle      | [LayoutStyle](#layoutstyle10) | No   | Tab layout mode of the tab bar when not scrolling in scrollable mode.<br>Default value: **LayoutStyle.ALWAYS_CENTER**          |
 
 ## BarMode
@@ -507,7 +507,7 @@ This event is triggered when any of the following conditions is met:
 
 2. The [Controller](#tabscontroller) API is called.
 
-3. The attribute value is updated using a [state variable](../../../quick-start/arkts-state.md).
+3. The attribute value is updated using a [state variable](../../../ui/state-management/arkts-state.md).
 
 4. A tab is clicked.
 
@@ -650,7 +650,7 @@ This event is triggered under the following conditions:
 
 2. The API of [TabsController](#tabscontroller) is called.
 
-3. The attribute value is updated using a [state variable](../../../quick-start/arkts-state.md).
+3. The attribute value is updated using a [state variable](../../../ui/state-management/arkts-state.md).
 
 4. A tab is clicked.
 
@@ -680,7 +680,7 @@ This event is triggered under the following conditions:
 
 2. The API of [TabsController](#tabscontroller) is called.
 
-3. The attribute value is updated using a [state variable](../../../quick-start/arkts-state.md).
+3. The attribute value is updated using a [state variable](../../../ui/state-management/arkts-state.md).
 
 4. A tab is clicked.
 
@@ -822,7 +822,7 @@ Provides the information about the custom tab page switching animation.
 
 | Name           | Type        | Mandatory  | Description                                      |
 | ------------- | ---------------------- | ---- |---------------------- |
-| timeout | number | No| Timeout for the custom switching animation. The timer starts when the switching begins. If this timeframe passes without you calling the **finishTransition** API in [TabContentTransitionProxy](#tabcontenttransitionproxy11), the component will assume that the custom animation has ended and will proceed directly with subsequent operations.<br>Default value: **1000**<br>Unit: ms<br>Value range: [0, +��)|
+| timeout | number | No| Timeout for the custom switching animation. The timer starts when the switching begins. If this timeframe passes without you calling the **finishTransition** API in [TabContentTransitionProxy](#tabcontenttransitionproxy11), the component will assume that the custom animation has ended and will proceed directly with subsequent operations.<br>Default value: **1000**<br>Unit: ms<br>Value range: [0, +∞)|
 | transition | [Callback](./ts-types.md#callback12)\<[TabContentTransitionProxy](#tabcontenttransitionproxy11)> | Yes| Content of the custom switching animation.|
 
 ## TabContentTransitionProxy<sup>11+</sup>

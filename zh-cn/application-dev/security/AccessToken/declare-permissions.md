@@ -81,3 +81,5 @@
 2. 如果是申请其他权限组中的权限，系统将使用权限组内当前被申请的第一个子权限的使用理由，作为该权限组的使用理由进行展示。组内的排序，固定按照权限管理内排列的权限组数组顺序。
 
    举例说明：权限组A = {权限A, 权限B, 权限C}；申请传入的权限是{权限C, 权限B}，界面将展示权限B的权限使用理由。
+
+3. 如果应用内多包申请的权限名称一样，但权限使用理由不一致，系统返回的权限申请详细信息[ReqPermissionDetail](../../reference/apis-ability-kit/js-apis-bundleManager-bundleInfo.md#reqpermissiondetail)里只会有一个权限申请理由，优先级从高到低为：entry类型HAP、feature类型HAP、应用内HSP。

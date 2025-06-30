@@ -5,7 +5,7 @@
 
 提供资产类型数据结构。
 
-资产是指可以一种可以在数据管理中使用的数据结构，可以存储及查询一个文件的名称、绝对路径、相对路径、创建时间、修改时间、 状态、 占用空间等属性。
+资产是指一种可以在数据管理中使用的数据结构，可以存储及查询一个文件的名称、绝对路径、相对路径、创建时间、修改时间、 状态、 占用空间等属性。
 
 **引用文件：** <database/data/data_asset.h>
 
@@ -51,7 +51,7 @@
 | [OH_Data_Asset_GetCreateTime](_data.md#oh_data_asset_getcreatetime) ([Data_Asset](_data.md#data_asset) \*asset, int64_t \*createTime) | 获取资产类型数据的创建时间。 |
 | [OH_Data_Asset_GetModifyTime](_data.md#oh_data_asset_getmodifytime) ([Data_Asset](_data.md#data_asset) \*asset, int64_t \*modifyTime) | 获取资产类型数据的最后修改的时间。 |
 | [OH_Data_Asset_GetSize](_data.md#oh_data_asset_getsize) ([Data_Asset](_data.md#data_asset) \*asset, size_t \*size) | 获取资产类型数据占用空间的大小。 |
-| [OH_Data_Asset_GetStatus](_data.md#oh_data_asset_getstatus) ([Data_Asset](_data.md#data_asset) \*asset, [Data_AssetStatus](_data.md#data_assetstatus) \*status) | i获取资产类型数据的状态码。 |
+| [OH_Data_Asset_GetStatus](_data.md#oh_data_asset_getstatus) ([Data_Asset](_data.md#data_asset) \*asset, [Data_AssetStatus](_data.md#data_assetstatus) \*status) | 获取资产类型数据的状态码。 |
 | [OH_Data_Asset_CreateOne](_data.md#oh_data_asset_createone) () | 创造一个[Data_Asset](_data.md#data_asset)类型实例。 |
 | [OH_Data_Asset_DestroyOne](_data.md#oh_data_asset_destroyone) ([Data_Asset](_data.md#data_asset) \*asset) | 销毁[Data_Asset](_data.md#data_asset)对象并回收该对象占用的内存。 |
 | [OH_Data_Asset_CreateMultiple](_data.md#oh_data_asset_createmultiple) (uint32_t count) | 创造指定数量的[Data_Asset](_data.md#data_asset)类型实例。 |

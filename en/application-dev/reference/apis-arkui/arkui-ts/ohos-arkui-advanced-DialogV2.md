@@ -2,7 +2,7 @@
 
 The dialog box is a modal window that commands attention while retaining the current context. It is frequently used to draw the user's attention to vital information or prompt the user to complete a specific task. As all modal windows, this component requires the user to interact before exiting.
 
-This component is implemented based on [state management V2](../../../quick-start/arkts-state-management-overview.md#state-management-v2). Compared with [state management V1](../../../quick-start/arkts-state-management-overview.md#state-management-v1), V2 offers a higher level of observation and management over data objects beyond the component level. You can now more easily manage dialog box data and states with greater flexibility, leading to faster UI updates.
+This component is implemented based on [state management V2](../../../ui/state-management/arkts-state-management-overview.md#state-management-v2). Compared with [state management V1](../../../ui/state-management/arkts-state-management-overview.md#state-management-v1), V2 offers a higher level of observation and management over data objects beyond the component level. You can now more easily manage dialog box data and states with greater flexibility, leading to faster UI updates.
 
 > **NOTE**
 >
@@ -152,7 +152,7 @@ Displays a dialog box that contains custom content and operation area.
 | primaryTitle       | [ResourceStr](ts-types.md#resourcestr)               | No | @Param        | Primary title of the dialog box.<br>It is not displayed by default.            |
 | secondaryTitle     | [ResourceStr](ts-types.md#resourcestr)               | No | @Param        | Secondary title of the dialog box.<br>It is not displayed by default.          |
 | contentAreaPadding | [LocalizedPadding](ts-types.md#localizedpadding12)     | No | @Param        | Padding of the content area of the dialog box.<br>It is not displayed by default.        |
-| buttons            | [AdvacnedDialogV2Button](#advanceddialogv2button)\[] | No | @Param        | Buttons in the operation area of the dialog box. A maximum of four buttons are allowed.<br>It is not displayed by default.|
+| buttons            | [AdvancedDialogV2Button](#advanceddialogv2button)\[] | No | @Param        | Buttons in the operation area of the dialog box. A maximum of four buttons are allowed.<br>It is not displayed by default.|
 
 ## PopoverDialogV2OnVisibleChange
 

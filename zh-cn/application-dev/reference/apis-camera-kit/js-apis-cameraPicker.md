@@ -1,6 +1,6 @@
 # @ohos.multimedia.cameraPicker (相机选择器)
 
-本模块提供相机拍照与录制的能力。应用可以自行选择媒体类型实现拍照和录制的功能。该类接口，需要应用在界面UIAbility中调用，否则无法拉起cameraPicker应用。
+本模块提供相机拍照与录制的能力。应用可选择媒体类型实现拍照和录制的功能。调用此类接口时，应用必须在界面UIAbility中调用，否则无法启动cameraPicker应用。
 
 > **说明：**
 >
@@ -24,7 +24,7 @@ pick(context: Context, mediaTypes: Array\<PickerMediaType\>, pickerProfile: Pick
 
 **参数：**
 
-| 参数名          | 类型                                              | 必填 | 说明                           |
+| 参数名          | 类型                                            | 必填 | 说明                          |
 | -------------- |-------------------------------------------------| ---- | ---------------------------- |
 | context        | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 应用上下文。                   |
 | mediaTypes     | Array\<[PickerMediaType](#pickermediatype)\>    | 是   | 媒体类型。                    |
@@ -34,23 +34,21 @@ pick(context: Context, mediaTypes: Array\<PickerMediaType\>, pickerProfile: Pick
 
 | 类型                                             | 说明                                                                                   |
 | ----------------------------------------------- | -------------------------------------------------------------------------------------- |
-| Promise\<PickerResult\>                         | 使用Promise的方式获取相机选择器的处理结果。具体返回值[PickerResult](#pickerresult)。        |
+| Promise\<PickerResult\>                         | 使用Promise方式获取相机选择器的处理结果。返回值为[PickerResult](#pickerresult)。        |
 
 **示例：**
 
 ```ts
 import { cameraPicker as picker } from '@kit.CameraKit';
 import { camera } from '@kit.CameraKit';
-import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-let mContext = getContext(this) as common.Context;
 
-async function demo() {
+async function demo(context: Context) {
   try {
     let pickerProfile: picker.PickerProfile = {
       cameraPosition: camera.CameraPosition.CAMERA_POSITION_BACK
     };
-    let pickerResult: picker.PickerResult = await picker.pick(mContext,
+    let pickerResult: picker.PickerResult = await picker.pick(context,
       [picker.PickerMediaType.PHOTO, picker.PickerMediaType.VIDEO], pickerProfile);
     console.log("the pick pickerResult is:" + JSON.stringify(pickerResult));
   } catch (error) {

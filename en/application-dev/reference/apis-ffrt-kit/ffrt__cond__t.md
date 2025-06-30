@@ -9,6 +9,7 @@ The **ffrt_cond_t** struct describes a condition variable.
 
 **Related module**: [FFRT](_f_f_r_t.md)
 
+**Header file**: [type_def.h](type__def_8h.md)
 
 ## Summary
 

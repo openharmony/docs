@@ -5,13 +5,15 @@
 
 Provides the status codes of MindSpore Lite.
 
-**Since**
+**File to include**: <mindspore/status.h>
 
-9
+**Library**: libmindspore_lite_ndk.so
 
-**Related module**
+**System capability**: SystemCapability.Ai.MindSpore
 
-[MindSpore](_mind_spore.md)
+**Since**: 9
+
+**Related module**: [MindSpore](_mind_spore.md)
 
 
 ## Summary

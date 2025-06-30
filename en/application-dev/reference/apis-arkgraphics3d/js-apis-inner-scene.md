@@ -1,9 +1,8 @@
 # Scene
-The Scene module is the basic module of ArkGraphics 3D and provides common data types such as **SceneResourceParamters** and **SceneNodeParamters**. It also provides basic methods such as glTF model loading, scene creation, and resource creation.
+The Scene module is the basic module of ArkGraphics 3D and provides common data types such as **SceneResourceParameters** and **SceneNodeParameters**. It also provides basic methods such as glTF model loading, scene creation, and resource creation.
 
 > **NOTE**
->
-> The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 ```ts
@@ -11,7 +10,7 @@ import { SceneResourceParameters, SceneNodeParameters, SceneResourceFactory, Sce
 ```
 
 ## SceneResourceParameters
-Describes the scene resource parameters, which are **name** and **uri**. The parameters describe the name of the scene resource and the path of the resource file required in the 3D scene.
+Describes the scene resource parameters (**name** and **uri**), which are used to provide the name of a scene resource and the path of the resource file required in the 3D scene.
 
 **System capability**: SystemCapability.ArkUi.Graphics3D
 | Name| Type| Read Only| Optional| Description|
@@ -329,8 +328,137 @@ function createEnvironmentPromise() : Promise<Environment> {
 }
 ```
 
+### createGeometry<sup>18+</sup>
+createGeometry(params: SceneNodeParameters, mesh:MeshResource): Promise\<Geometry>
+
+Creates a geometry object based on the scene node parameters and mesh data. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.ArkUi.Graphics3D
+
+**Parameters**
+| Name| Type| Mandatory| Description|
+| ---- | ---- | ---- | ---- |
+| params | [SceneNodeParameters](#scenenodeparameters) | Yes| Scene node parameters.|
+| mesh | [MeshResource](js-apis-inner-scene-resources.md#meshresource18) | Yes| Mesh data parameters.|
+
+**Return value**
+| Type| Description|
+| ---- | ---- |
+| Promise\<[Geometry](js-apis-inner-scene-nodes.md#geometry)> | Promise used to return the **Geometry** object created.|
+
+**Example**
+```ts
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, Geometry, CubeGeometry, MeshResource} from '@kit.ArkGraphics3D';
+
+function createGeometryPromise() : Promise<Geometry> {
+  return new Promise(() => {
+    let scene: Promise<Scene> = Scene.load();
+    scene.then(async (result: Scene | undefined) => {
+      if (!result) {
+        return;
+      }
+      let sceneFactory: SceneResourceFactory = result.getResourceFactory();
+      let cubeGeom = new CubeGeometry();
+      cubeGeom.size = { x: 1, y: 1, z: 1 };
+      let meshRes = await sceneFactory.createMesh({ name: "MeshName" }, cubeGeom);
+      console.info("TEST createGeometryPromise");
+      let geometry: Promise<Geometry> = sceneFactory.createGeometry({ name: "GeometryName" }, meshRes);
+      return geometry;
+    });
+  });
+}
+```
+
+### createMesh<sup>18+</sup>
+createMesh(params: SceneResourceParameters, geometry: GeometryDefinition): Promise\<MeshResource>
+
+Creates a mesh based on the scene resource parameters and geometry definition. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.ArkUi.Graphics3D
+
+**Parameters**
+| Name| Type| Mandatory| Description|
+| ---- | ---- | ---- | ---- |
+| params | [SceneResourceParameters](#sceneresourceparameters) | Yes| Scene resource parameters.|
+| geometry | [GeometryDefinition](js-apis-inner-scene-types.md#geometrydefinition18) | Yes| Geometry instance parameters.|
+
+**Return value**
+| Type| Description|
+| ---- | ---- |
+| Promise\<[MeshResource](js-apis-inner-scene-resources.md#meshresource18)> | Promise used to return the **Mesh** object created.|
+
+**Example**
+```ts
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, Geometry, CubeGeometry, MeshResource} from '@kit.ArkGraphics3D';
+
+function createMeshPromise() : Promise<MeshResource> {
+  return new Promise(() => {
+    let scene: Promise<Scene> = Scene.load();
+    scene.then(async (result: Scene | undefined) => {
+      if (!result) {
+        return;
+      }
+      let sceneFactory: SceneResourceFactory = result.getResourceFactory();
+      let cubeGeom = new CubeGeometry();
+      cubeGeom.size = { x: 1, y: 1, z: 1 };
+      console.info("TEST createMeshPromise");
+      let meshRes = await sceneFactory.createMesh({ name: "MeshName" }, cubeGeom);
+      return meshRes;
+    });
+  });
+}
+```
+
+### createScene<sup>18+</sup>
+createScene(uri?: ResourceStr): Promise\<Scene>
+
+Creates a scene based on the resource parameters. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.ArkUi.Graphics3D
+
+**Parameters**
+| Name| Type| Mandatory| Description|
+| ---- | ---- | ---- | ---- |
+| uri | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr) | No| Resource path. The default value is undefined.|
+
+**Return value**
+| Type| Description|
+| ---- | ---- |
+| Promise\<[Scene](#scene-1)> | Promise used to return the **Scene** object created.|
+
+**Example**
+```ts
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, Geometry, CubeGeometry, MeshResource} from '@kit.ArkGraphics3D';
+
+function createScenePromise() : Promise<Scene> {
+  return new Promise(() => {
+    Scene.load().then(async (result: Scene | undefined) => {
+      if (!result) {
+        return;
+      }
+      let sceneFactory: SceneResourceFactory = result.getResourceFactory();
+      console.info("TEST createScenePromise");
+      let scene = sceneFactory.createScene($rawfile("gltf/DamagedHelmet/glTF/DamagedHelmet.gltf"));
+      return scene;
+    });
+  });
+}
+```
+
+## RenderParameters<sup>15+</sup>
+Describes the rendering parameters.
+
+**System capability**: SystemCapability.ArkUi.Graphics3D
+| Name| Type| Read Only| Optional| Description|
+| ---- | ---- | ---- | ---- | ---- |
+| alwaysRender | boolean | No| Yes| Whether to render every frame. The value **true** means to render every frame, and **false** means to render frames on demand. The default value is **true**.|
+
+
 ## Scene
-Used to set a scene.
+Describes a scene.
 
 ### Properties
 
@@ -339,7 +467,7 @@ Used to set a scene.
 | Name| Type| Read Only| Optional| Description|
 | ---- | ---- | ---- | ---- | ---- |
 | environment | [Environment](js-apis-inner-scene-resources.md#environment) | No| No| Environment object.|
-| animations | [Animation](js-apis-inner-scene-resources.md#animation)[] | Yes| No| Animation array used to hold the animation objects in the 3D scene.|
+| animations | [Animation](js-apis-inner-scene-resources.md#animation)[] | Yes| No| Animation objects in the 3D scene.|
 | root | [Node](js-apis-inner-scene-nodes.md#node) \| null | Yes| No| Root node in the 3D scene tree.|
 
 ### load
@@ -452,6 +580,118 @@ function destroy() : void {
          // Destroy the scene.
         result.destroy();
     }
+  });
+}
+```
+
+### importNode<sup>18+</sup>
+importNode(name: string, node: Node, parent: Node | null): Node
+
+Imports a node from another scene.
+
+**System capability**: SystemCapability.ArkUi.Graphics3D
+
+**Parameters**
+| Name| Type| Mandatory| Description|
+| ---- | ---- | ---- | ---- |
+| name | string | Yes| Name of the imported node, which can be customized without specific constraints.|
+| node | [Node](js-apis-inner-scene-nodes.md#node) | Yes| Node to import.|
+| parent | [Node](js-apis-inner-scene-nodes.md#node) \| null | Yes| Parent node of the imported node in the new scene.|
+
+**Return value**
+| Type| Description|
+| ---- | ---- |
+| [Node](js-apis-inner-scene-nodes.md#node) | Node imported.|
+
+**Example**
+```ts
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, Geometry, CubeGeometry, MeshResource} from '@kit.ArkGraphics3D';
+
+function ImportNodeTest() {
+  Scene.load().then(async (result: Scene | undefined) => {
+    if (!result) {
+      return;
+    }
+    Scene.load($rawfile("gltf/AnimatedCube/glTF/AnimatedCube.gltf"))
+      .then(async (extScene: Scene) => {
+        let extNode = extScene.getNodeByPath("rootNode_/Unnamed Node 1/AnimatedCube");
+        console.info("TEST ImportNodeTest");
+        let node = result.importNode("scene", extNode, result.root);
+        if (node) {
+          node.position.x = 5;
+        }
+      });
+  });
+}
+```
+
+### importScene<sup>18+</sup>
+importScene(name: string, scene: Scene, parent: Node | null): Node
+
+Imports another scene into the current one.
+
+**System capability**: SystemCapability.ArkUi.Graphics3D
+
+**Parameters**
+| Name| Type| Mandatory| Description|
+| ---- | ---- | ---- | ---- |
+| name | string | Yes| Root node name of the imported scene, which can be customized without specific constraints.|
+| scene | [Scene](#scene-1) | Yes| Scene to import.|
+| parent | [Node](js-apis-inner-scene-nodes.md#node) \| null | Yes| Parent node of the imported scene in the new scene.|
+
+**Return value**
+| Type| Description|
+| ---- | ---- |
+| [Node](js-apis-inner-scene-nodes.md#node) | Root node of the imported scene.|
+
+**Example**
+```ts
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, Geometry, CubeGeometry, MeshResource} from '@kit.ArkGraphics3D';
+
+function ImportSceneTest() {
+  Scene.load().then(async (result: Scene | undefined) => {
+    if (!result) {
+      return;
+    }
+    let content = await result.getResourceFactory().createScene($rawfile("gltf/DamagedHelmet/glTF/DamagedHelmet.gltf"))
+    console.info("TEST ImportSceneTest");
+    result.importScene("helmet", content, null);
+  });
+}
+```
+
+### renderFrame<sup>15+</sup>
+renderFrame(params?: RenderParameters): boolean
+
+Renders frames on demand, such as controlling the frame rate.
+
+**System capability**: SystemCapability.ArkUi.Graphics3D
+
+**Parameters**
+| Name| Type| Mandatory| Description|
+| ---- | ---- | ---- | ---- |
+| params | [RenderParameters](#renderparameters15) | No| Rendering parameters. The default value is undefined.|
+
+**Return value**
+| Type| Description|
+| ---- | ---- |
+| boolean | Rendering result. The value **true** is returned if rendering is successfully scheduled; returns **false** otherwise.|
+
+**Example**
+```ts
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, Geometry, CubeGeometry, MeshResource} from '@kit.ArkGraphics3D';
+
+function RenderFrameTest() {
+  Scene.load($rawfile("gltf/DamagedHelmet/glTF/DamagedHelmet.gltf"))
+    .then(async (result: Scene | undefined) => {
+      if (!result) {
+        return;
+      }
+      console.info("TEST RenderFrameTest");
+      result.renderFrame({ alwaysRender: true });
   });
 }
 ```

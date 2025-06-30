@@ -1,6 +1,6 @@
 # ApplicationInfo
 
-The **ApplicationInfo** module defines the application information. A third-party application can obtain its own application information through [bundleManager.getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself), with **GET_BUNDLE_INFO_WITH_APPLICATION** passed in to [bundleFlags](js-apis-bundleManager.md#bundleflag).
+The ApplicationInfo module defines the application information. A third-party application can obtain its own application information through [bundleManager.getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself), with **GET_BUNDLE_INFO_WITH_APPLICATION** passed in to [bundleFlags](js-apis-bundleManager.md#bundleflag).
 
 > **NOTE**
 >
@@ -23,7 +23,7 @@ The **ApplicationInfo** module defines the application information. A third-part
 | process                    | string                                                       | Yes  | No  | Process name.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | permissions                | Array\<string>                                               | Yes  | No  | Permissions required for accessing the application. The permissions can be obtained by passing in **GET_BUNDLE_INFO_WITH_APPLICATION** and **GET_BUNDLE_INFO_WITH_REQUESTED_PERMISSION** to the **bundleFlags** parameter of [getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | codePath                   | string                                                       | Yes  | No  | Installation directory of the application.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| metadata<sup>(deprecated)<sup>  | Map\<string, Array\<[Metadata](js-apis-bundleManager-metadata.md)>> | Yes  | No  | Metadata of the application. The information can be obtained by passing in **GET_BUNDLE_INFO_WITH_APPLICATION** and **GET_BUNDLE_INFO_WITH_METADATA** to the **bundleFlags** parameter of [getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself). **NOTE**<br>This field is deprecated since API version 10. You are advised to use **metadataArray** instead.|
+| metadata<sup>(deprecated)<sup>  | Map\<string, Array\<[Metadata](js-apis-bundleManager-metadata.md)>> | Yes  | No  | Metadata of the application. The information can be obtained by passing in **GET_BUNDLE_INFO_WITH_APPLICATION** and **GET_BUNDLE_INFO_WITH_METADATA** to the **bundleFlags** parameter of [getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself).<br>**NOTE**<br>The **metadata** field is deprecated since API version 10. You are advised to use **metadataArray** instead.|
 | metadataArray<sup>10+</sup>              | Array\<[ModuleMetadata](#modulemetadata10)> | Yes  | No  | Metadata of the application. The information can be obtained by passing in **GET_BUNDLE_INFO_WITH_APPLICATION** and **GET_BUNDLE_INFO_WITH_METADATA** to the **bundleFlags** parameter of [getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | removable                  | boolean                                                      | Yes  | No  | Whether the application is removable. The value **true** means that the application is removable, and **false** means the opposite.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | accessTokenId             | number                                                       | Yes  | No  | Access token ID of the application.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
@@ -45,7 +45,7 @@ The **ApplicationInfo** module defines the application information. A third-part
 | cloudFileSyncEnabled<sup>12+</sup>    | boolean    | Yes  | No  | Whether device-cloud file synchronization is enabled for the application. The value **true** means that device-cloud file synchronization is enabled, and **false** means the opposite.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## MultiAppMode<sup>12+</sup>
-Describes the multi-app mode.
+Defines the multi-app mode.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
@@ -60,9 +60,9 @@ Describes the multi-app mode.
 
 Describes the metadata of a module.
 
- **Atomic service API**: This API can be used in atomic services since API version 11.
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
- **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 | Name     | Type          | Read-Only| Optional| Description                       |
 | --------- | -------------- | ---- | ---- | --------------------------- |

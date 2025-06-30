@@ -55,10 +55,10 @@ class InputMethodExtnAbility extends InputMethodExtensionAbility {
   onDestroy() {
     this.context.destroy((err: BusinessError) => {
       if(err) {
-        console.log(`Failed to destroy context, err code = ${err.code}`);
+        console.error(`Failed to destroy context, err code = ${err.code}`);
         return;
       }
-      console.log('Succeeded in destroying context.');
+      console.info('Succeeded in destroying context.');
     });
   }
 }
@@ -91,9 +91,9 @@ class InputMethodExtnAbility extends InputMethodExtensionAbility {
   }
   onDestroy() {
     this.context.destroy().then(() => {
-      console.log('Succeed in destroying context.');
+      console.info('Succeed in destroying context.');
     }).catch((err: BusinessError)=>{
-      console.log(`Failed to destroy context, err code = ${err.code}`);
+      console.error(`Failed to destroy context, err code = ${err.code}`);
     });
   }
 }
@@ -164,14 +164,14 @@ class InputMethodExtnAbility extends InputMethodExtensionAbility {
     };
     try {
       this.context.startAbility(want).then(() => {
-        console.log(`startAbility success`);
+        console.info(`startAbility success`);
       }).catch((err: BusinessError) => {
         let error = err as BusinessError;
-        console.log(`startAbility error: ${error.code} ${error.message}`);
+        console.error(`startAbility error: ${error.code} ${error.message}`);
       })
     } catch (err) {
       let error = err as BusinessError;
-      console.log(`startAbility error: ${error.code} ${error.message}`);
+      console.error(`startAbility error: ${error.code} ${error.message}`);
     }
   }
 }

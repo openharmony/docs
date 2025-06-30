@@ -105,6 +105,18 @@
 
 **起始版本**：8
 
+## ohos.permission.SET_NETWORK_INFO
+
+允许应用配置数据网络。
+
+包括激活或取消激活指定网络、获取和监听指定网络信息。
+
+**权限级别**：normal
+
+**授权方式**：系统授权（system_grant）
+
+**起始版本**：8
+
 ## ohos.permission.GET_WIFI_INFO
 
 允许应用获取Wi-Fi信息。
@@ -420,3 +432,15 @@
 **授权方式**：系统授权（system_grant）
 
 **起始版本**：15
+
+## ohos.permission.GET_FILE_ICON
+
+允许应用获取指定类型文件的文件图标。
+
+获取该权限后，可用于直接获取指定类型文件的文件图标。
+
+**权限级别**：normal
+
+**授权方式**：系统授权（system_grant）
+
+**起始版本**：17

@@ -1,14 +1,16 @@
 # BundleInfo
 
-The **BundleInfo** module defines the bundle information, which can be obtained through [bundle.getBundleInfo](js-apis-Bundle.md#bundlegetbundleinfodeprecated).
+The BundleInfo module defines the bundle information, which can be obtained through [bundle.getBundleInfo](js-apis-Bundle.md#bundlegetbundleinfodeprecated).
 
 > **NOTE**
->
+> 
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> 
+> The APIs of this module are deprecated since API version 9. You are advised to use [bundleManager-BundleInfo](js-apis-bundleManager-bundleInfo.md) instead.
 
 ## BundleInfo<sup>(deprecated)<sup>
 
-> This API is deprecated since API version 9. You are advised to use [bundleManager-BundleInfo](js-apis-bundleManager-bundleInfo.md) instead.
+This API is deprecated since API version 9. You are advised to use [bundleManager-BundleInfo](js-apis-bundleManager-bundleInfo.md#bundleinfo-1) instead.
 
  **System capability**: SystemCapability.BundleManager.BundleFramework
 

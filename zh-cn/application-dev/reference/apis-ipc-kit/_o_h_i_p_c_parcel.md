@@ -655,7 +655,7 @@ int OH_IPCParcel_RewindReadPosition (OHIPCParcel * parcel, uint32_t newReadPos)
 | 名称 | 描述 | 
 | -------- | -------- |
 | parcel | OHIPCParcel对象的指针，不能为空。 | 
-| newReadPos | 新的读取位置，范围:[0, 当前数据大小]。 | 
+| newReadPos | 新的读取位置，范围：[0, 当前数据大小]。 | 
 
 **返回：**
 
@@ -683,7 +683,7 @@ int OH_IPCParcel_RewindWritePosition (OHIPCParcel * parcel, uint32_t newWritePos
 | 名称 | 描述 | 
 | -------- | -------- |
 | parcel | OHIPCParcel对象的指针，不能为空。 | 
-| newWritePos | 新的写入位置，范围:[0, 当前数据大小]。 | 
+| newWritePos | 新的写入位置，范围：[0, 当前数据大小]。 | 
 
 **返回：**
 

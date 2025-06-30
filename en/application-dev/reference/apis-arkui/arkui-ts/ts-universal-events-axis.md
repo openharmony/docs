@@ -4,7 +4,7 @@ An axis event is triggered when a user interacts with a component by scrolling t
 
 >  **NOTE**
 >
->  This event is supported since API version 16. Updates will be marked with a superscript to indicate their earliest API version.
+>  This event is supported since API version 18. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## onAxisEvent
 
@@ -12,9 +12,9 @@ onAxisEvent(event: (event: AxisEvent) => void): T
 
 Called when the mouse wheel is scrolled or two fingers are swiped on a touchpad.
 
-**Widget capability**: This API can be used in ArkTS widgets since API version 16.
+**Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -34,7 +34,7 @@ Called when the mouse wheel is scrolled or two fingers are swiped on a touchpad.
 
 Defines an axis event object that inherits from [BaseEvent](ts-gesture-customize-judge.md#baseevent8).
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -58,7 +58,7 @@ getHorizontalAxisValue(): number
 
 Obtains the horizontal axis value of this axis event.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -74,7 +74,7 @@ getVerticalAxisValue(): number
 
 Obtains the vertical axis value of this axis event.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 

@@ -9,6 +9,8 @@ The Image_Region struct describes the region of an image to decode.
 
 **Related module**: [Image_NativeModule](_image___native_module.md)
 
+**Header file**: [image_common.h](image__common_8h.md)
+
 
 ## Summary
 

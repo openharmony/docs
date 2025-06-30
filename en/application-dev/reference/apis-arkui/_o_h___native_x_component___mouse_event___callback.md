@@ -5,13 +5,11 @@
 
 Registers callbacks for the mouse event.
 
-**Since:**
-9
+**Since**: 9
 
-**Related Modules:**
+**Related module**: [Native XComponent](_o_h___native_x_component.md)
 
-[Native XComponent](_o_h___native_x_component.md)
-
+**Header file**: [native_interface_xcomponent.h](native__interface__xcomponent_8h.md)
 
 ## Summary
 
@@ -20,5 +18,5 @@ Registers callbacks for the mouse event.
 
 | Name | Description |
 | -------- | -------- |
-| [DispatchMouseEvent](_o_h___native_x_component.md#dispatchmouseevent) | Invoked when a mouse event is triggered. |
-| [DispatchHoverEvent](_o_h___native_x_component.md#dispatchhoverevent) |  Invoked when a hover event is triggered. |
+| void(\* [DispatchMouseEvent](_o_h___native_x_component.md#dispatchmouseevent) )([OH_NativeXComponent](_o_h___native_x_component.md#oh_nativexcomponent) \*component, void \*window) | Invoked when a mouse event is triggered. | 
+| void(\* [DispatchHoverEvent](_o_h___native_x_component.md#dispatchhoverevent) )([OH_NativeXComponent](_o_h___native_x_component.md#oh_nativexcomponent) \*component, bool isHover) | Invoked when a hover event is triggered. | 

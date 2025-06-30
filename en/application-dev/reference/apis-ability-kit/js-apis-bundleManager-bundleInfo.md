@@ -1,6 +1,6 @@
 # BundleInfo
 
-The **BundleInfo** module defines the bundle information. A third-party application can obtain its own bundle information through [bundleManager.getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself), with [bundleFlags](js-apis-bundleManager.md#bundleflag) set to the information to be contained in the returned [BundleInfo](js-apis-bundleManager-bundleInfo.md).
+The BundleInfo module defines the bundle information. A third-party application can obtain its own bundle information through [bundleManager.getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself), with [bundleFlags](js-apis-bundleManager.md#bundleflag) set to the information to be contained in the returned [BundleInfo](js-apis-bundleManager-bundleInfo.md).
 
 > **NOTE**
 >
@@ -26,7 +26,7 @@ The **BundleInfo** module defines the bundle information. A third-party applicat
 | installTime                       | number                                                       | Yes  | No  | Time when the bundle was installed.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | updateTime                        | number                                                       | Yes  | No  | Time when the bundle was updated.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | routerMap<sup>12+</sup>           | Array\<[RouterItem](js-apis-bundleManager-hapModuleInfo.md#routeritem12)>           | Yes  | No  | Router table of the application. The table is obtained by deduplicating and combining the **routerMap** information under **hapModulesInfo** based on the **name** field in **RouterItem**. The information can be obtained by passing in **GET_BUNDLE_INFO_WITH_HAP_MODULE** and **GET_BUNDLE_INFO_WITH_ROUTER_MAP** to the **bundleFlags** parameter of [getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| appIndex<sup>12+</sup>    | number    | Yes  | No  | Index of an application clone. It takes effect only for cloned applications.|
+| appIndex<sup>12+</sup>    | number    | Yes  | No  | Index of an application clone. It takes effect only for application clones.|
 | firstInstallTime<sup>18+</sup>                        | number                                                       | Yes  | Yes  | Time when the application is installed on the current device for the first time.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 
 
@@ -74,7 +74,7 @@ Describes the signature information of the bundle.
 | --------- | -------------- | ---- | ---- | --------------------------- |
 | appId     | string         | Yes  | No  | Application ID.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                |
 |fingerprint| string         | Yes  | No  | Fingerprint information of the bundle. This field changes when the used signing certificate changes.<br>**Atomic service API**: This API can be used in atomic services since API version 11.           |
-|appIdentifier<sup>11+</sup>| string         | Yes  | No  | Unique ID of the application. It is a random string allocated by AppGallery Connect during the creation of the application. This ID does not change along the application lifecycle, including version updates, certificate changes, public and private key changes, and application transfers.<br>**Atomic service API**: This API can be used in atomic services since API version 11.           |
+|appIdentifier<sup>11+</sup>| string         | Yes  | No  | Unique ID of the application. It is the [app ID](https://developer.huawei.com/consumer/en/doc/app/agc-help-createharmonyapp-0000001945392297), which is a random string, allocated by AppGallery Connect during the creation of the application. This ID does not change along the application lifecycle, including version updates, certificate changes, public and private key changes, and application transfers. If you use multiple debugging devices, perform debugging offline, or need to interact with other applications, you are advised to use [manual signature](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-signing#section297715173233).<br>**Atomic service API**: This API can be used in atomic services since API version 11.         |
 |certificate<sup>14+</sup>| string         | Yes  | Yes  | Public key of the application certificate.<br>**Atomic service API**: This API can be used in atomic services since API version 14.           |
 
 ## AppCloneIdentity<sup>14+<sup>

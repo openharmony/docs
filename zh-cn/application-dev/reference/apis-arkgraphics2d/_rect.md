@@ -49,7 +49,7 @@ int32_t Rect::y
 ## w
 
 ```
-uint32_t Rext::w
+uint32_t Rect::w
 ```
 
 **描述：**
@@ -60,7 +60,7 @@ uint32_t Rext::w
 ## h
 
 ```
-uint32_t Rext::h
+uint32_t Rect::h
 ```
 
 **描述：**

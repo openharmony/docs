@@ -1,13 +1,13 @@
 # SharedArrayBuffer对象
 
-SharedArrayBuffer内部包含一块Native内存，其JS对象壳被分配在虚拟机本地堆（LocalHeap）。支持跨并发实例间共享，但是访问及修改需要采用Atomics类，防止数据竞争。SharedArrayBuffer可以用于多个并发实例间的状态共享或者数据共享。通信过程如下图所示：
+SharedArrayBuffer内部包含一块Native内存，其JS对象壳被分配在虚拟机本地堆（LocalHeap）。支持跨并发实例间共享Native内存，但是对共享Native内存的访问及修改需要采用Atomics类，防止数据竞争。SharedArrayBuffer可以用于多个并发实例间的状态共享或者数据共享。通信过程如下图所示：
 
 ![sharedarraybufer](figures/sharedarraybufer.png)
 
 
 ## 使用示例
 
-这里提供了一个简单示例，使用TaskPool传递一个Int32Array对象，具体实现如下：
+这里提供了一个示例，使用TaskPool传递Int32Array对象，实现如下：
 
 ```ts
 import { taskpool } from '@kit.ArkTS';

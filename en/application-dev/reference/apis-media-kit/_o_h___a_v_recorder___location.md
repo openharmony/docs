@@ -11,6 +11,8 @@ The OH_AVRecorder_Location struct describes the geographical location informatio
 
 **Related module**: [AVRecorder](_a_v_recorder.md)
 
+**Header file**: [avrecorder_base.h](avrecorder__base_8h.md)
+
 
 ## Summary
 

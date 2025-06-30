@@ -34,7 +34,7 @@ Describes the initialization options of the **Search** component.
 
 | Name     | Type        | Mandatory| Description       |
 | ----------- | ------------- | ---- | ------------- |
-| value<sup>8+</sup>       | string                                               | No  | Text input in the search text box.<br>Since API version 10, this parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).<br>Since API version 18, this parameter supports two-way binding through [!!](../../../quick-start/arkts-new-binding.md#two-way-binding-between-built-in-component-parameters).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| value<sup>8+</sup>       | string                                               | No  | Text input in the search text box.<br>Since API version 10, this parameter supports two-way binding through [$$](../../../ui/state-management/arkts-two-way-sync.md).<br>Since API version 18, this parameter supports two-way binding through [!!](../../../ui/state-management/arkts-new-binding.md#two-way-binding-between-built-in-component-parameters).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | placeholder<sup>8+</sup> | [ResourceStr](ts-types.md#resourcestr) | No  | Text displayed when there is no input.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | icon<sup>8+</sup>        | string                                               | No  | Path to the search icon. By default, the system search icon is used.<br>**NOTE**<br>The icon data source can be a local or online image.<br>- The supported formats include PNG, JPG, BMP, SVG, GIF, pixelmap, and HEIF.<br>- The Base64 string is supported in the following format: data:image/[png\|jpeg\|bmp\|webp\|heif];base64,[base64 data], where *[base64 data]* is a Base64 string.<br>If this attribute and the **searchIcon** attribute are both set, the **searchIcon** attribute takes precedence.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | controller<sup>8+</sup>  | [SearchController](#searchcontroller) | No  | Controller of the **Search** component.<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
@@ -519,7 +519,7 @@ Sets whether half leading is enabled.
 
 | Name| Type                                         | Mandatory| Description                                         |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| halfLeading | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | Yes | Whether half leading is enabled.<br>Whether half leading is enabled. Half leading is the leading split in half and applied equally to the top and bottom edges. The value **true** means that half leading is enabled, and **false** means the opposite.<br>Default value: **false**|
+| halfLeading | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | Yes | Whether half leading is enabled.<br>Half leading is the leading split in half and applied equally to the top and bottom edges. The value **true** means that half leading is enabled, and **false** means the opposite.<br>Default value: **false**|
 
 ### minFontScale<sup>18+</sup>
 
@@ -1460,12 +1460,12 @@ struct SearchExample {
   @State text: string = 'Search editMenuOptions'
   onCreateMenu = (menuItems: Array<TextMenuItem>) => {
     let item1: TextMenuItem = {
-      content: 'custom1',
+      content: 'Custom 1',
       icon: $r('app.media.startIcon'),
       id: TextMenuItemId.of('custom1'),
     }
     let item2: TextMenuItem = {
-      content: 'custom2',
+      content: 'Custom 2',
       id: TextMenuItemId.of('custom2'),
       icon: $r('app.media.startIcon'),
     }

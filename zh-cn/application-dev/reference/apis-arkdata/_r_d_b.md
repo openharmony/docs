@@ -196,8 +196,8 @@
 | int [OH_VBuckets_PutRows](#oh_vbuckets_putrows) ([OH_Data_VBuckets](#oh_data_vbuckets) \*buckets, const [OH_Data_VBuckets](#oh_data_vbuckets) \*rows) | 添加OH_Data_VBuckets类型数据。 |
 | int [OH_VBuckets_RowCount](#oh_vbuckets_rowcount) ([OH_Data_VBuckets](#oh_data_vbuckets) \*buckets, size_t \*count) | 获取OH_Data_VBuckets中OH_VBucket的行数。 |
 | [OH_RDB_TransOptions](#oh_rdb_transoptions) \* [OH_RdbTrans_CreateOptions](#oh_rdbtrans_createoptions) (void) | 创建事务配置对象。 |
-| int [OH_RdbTrans_DestroyOptions](#oh_rdbtrans_destroyoptions) ([OH_RDB_TransOptions](#oh_rdb_transoptions) \*opitons) | 销毁事务配置对象。 |
-| int [OH_RdbTransOption_SetType](#oh_rdbtransoption_settype) ([OH_RDB_TransOptions](#oh_rdb_transoptions) \*opitons, [OH_RDB_TransType](#oh_rdb_transtype) type) | 设置关系型数据库事务类型。 |
+| int [OH_RdbTrans_DestroyOptions](#oh_rdbtrans_destroyoptions) ([OH_RDB_TransOptions](#oh_rdb_transoptions) \*options) | 销毁事务配置对象。 |
+| int [OH_RdbTransOption_SetType](#oh_rdbtransoption_settype) ([OH_RDB_TransOptions](#oh_rdb_transoptions) \*options, [OH_RDB_TransType](#oh_rdb_transtype) type) | 设置关系型数据库事务类型。 |
 | int [OH_RdbTrans_Commit](#oh_rdbtrans_commit) ([OH_Rdb_Transaction](#oh_rdb_transaction) \*trans) | 提交事务。 |
 | int [OH_RdbTrans_Rollback](#oh_rdbtrans_rollback) ([OH_Rdb_Transaction](#oh_rdb_transaction) \*trans) | 回滚事务。 |
 | int [OH_RdbTrans_Insert](#oh_rdbtrans_insert) ([OH_Rdb_Transaction](#oh_rdb_transaction) \*trans, const char \*table, const [OH_VBucket](_o_h___v_bucket.md) \*row, int64_t \*rowId) | 将一行数据插入到目标表中。 |
@@ -252,7 +252,7 @@
 | [OH_Rdb_Subscribe](#oh_rdb_subscribe) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [Rdb_SubscribeType](#rdb_subscribetype) type, const [Rdb_DataObserver](_rdb___data_observer.md) \*observer) | 为数据库注册观察者。当分布式数据库中的数据发生更改时，将调用回调。 |
 | [OH_Rdb_Unsubscribe](#oh_rdb_unsubscribe) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [Rdb_SubscribeType](#rdb_subscribetype) type, const [Rdb_DataObserver](_rdb___data_observer.md) \*observer) | 从数据库中删除指定类型的指定观察者。 |
 | [OH_Rdb_GetTableDetails](#oh_rdb_gettabledetails) ([Rdb_ProgressDetails](_rdb___progress_details.md) \*progress, int32_t version) | 从端云同步任务的统计信息中获取数据库表的统计信息。 |
-| [OH_Rdb_CloudSync](#oh_rdb_cloudsync) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [Rdb_SyncMode](#rdb_syncmode) mode, const char \*tables, int count, const [Rdb_ProgressObserver](_rdb___progress_observer.md) \*observer) | 进行端云同步。 |
+| [OH_Rdb_CloudSync](#oh_rdb_cloudsync) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [Rdb_SyncMode](#rdb_syncmode) mode, const char \*tables[], uint32_t count, const [Rdb_ProgressObserver](_rdb___progress_observer.md) \*observer) | 进行端云同步。 |
 | [OH_Rdb_SubscribeAutoSyncProgress](#oh_rdb_subscribeautosyncprogress) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const [Rdb_ProgressObserver](_rdb___progress_observer.md) \*observer) | 订阅RDB存储的自动同步进度。当收到自动同步进度的通知时，将调用回调。 |
 | [OH_Rdb_UnsubscribeAutoSyncProgress](#oh_rdb_unsubscribeautosyncprogress) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const [Rdb_ProgressObserver](_rdb___progress_observer.md) \*observer) | 取消订阅RDB存储的自动同步进程。 |
 | int [OH_Rdb_LockRow](#oh_rdb_lockrow) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [OH_Predicates](_o_h___predicates.md) \*predicates) | 根据指定的条件锁定数据库中的数据，锁定数据不执行端云同步。 |
@@ -515,7 +515,7 @@ typedef enum Rdb_Tokenizer Rdb_Tokenizer
 
 描述数据库的分词器类型。
 
-**起始版本：** 18
+**起始版本：** 17
 
 ### OH_Rdb_ConfigV2
 
@@ -957,6 +957,24 @@ enum Rdb_ConflictResolution
 | RDB_CONFLICT_IGNORE | 发生冲突时忽略冲突的数据，继续执行后续修改。 | 
 | RDB_CONFLICT_REPLACE | 发生冲突时，尝试删除后插入，如果还是冲突则等同于RDB_CONFLICT_ABORT。 | 
 
+
+### OH_OrderType
+
+```
+enum OH_OrderType
+```
+
+**描述**
+
+排序方式。
+
+**起始版本：** 10
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| ASC | 升序排列。 | 
+| DESC | 降序排列。 | 
+
 ### OH_Rdb_ErrCode
 
 ```
@@ -1093,13 +1111,13 @@ enum Rdb_Tokenizer
 
 描述数据库的分词器类型。
 
-**起始版本：** 18
+**起始版本：** 17
 
 | 枚举值 | 描述 |
 | -------- | -------- |
 | RDB_NONE_TOKENIZER | 表示不使用分词器。 |
-| RDB_ICU_TOKENIZER | 表示使用原生ICU分词器。 |
-| RDB_CUSTOM_TOKENIZER | 表示使用CUSTOM分词器。 |
+| RDB_ICU_TOKENIZER | 表示使用ICU分词器。 |
+| RDB_CUSTOM_TOKENIZER<sup>18+</sup> | 表示使用CUSTOM分词器。 |
 
 ### Rdb_DBType
 
@@ -1701,7 +1719,7 @@ int OH_Rdb_SetTokenizer (OH_Rdb_ConfigV2 *config, Rdb_Tokenizer tokenizer )
 
 给指定的数据库文件配置设置分词器类型。
 
-**起始版本：** 18
+**起始版本：** 17
 
 **参数：**
 
@@ -1868,7 +1886,7 @@ int OH_RdbTrans_Destroy (OH_Rdb_Transaction *trans)
 ### OH_RdbTrans_DestroyOptions()
 
 ```
-int OH_RdbTrans_DestroyOptions (OH_RDB_TransOptions *opitons)
+int OH_RdbTrans_DestroyOptions (OH_RDB_TransOptions *options)
 ```
 
 **描述**
@@ -1881,7 +1899,7 @@ int OH_RdbTrans_DestroyOptions (OH_RDB_TransOptions *opitons)
 
 | 名称 | 描述 |
 | -------- | -------- |
-| opitons | 表示指向[OH_RDB_TransOptions](#oh_rdb_transoptions)实例的指针。 |
+| options | 表示指向[OH_RDB_TransOptions](#oh_rdb_transoptions)实例的指针。 |
 
 **返回：**
 
@@ -2161,7 +2179,7 @@ int OH_RdbTrans_Update (OH_Rdb_Transaction *trans, const OH_VBucket *row, const 
 ### OH_RdbTransOption_SetType()
 
 ```
-int OH_RdbTransOption_SetType (OH_RDB_TransOptions *opitons, OH_RDB_TransType type )
+int OH_RdbTransOption_SetType (OH_RDB_TransOptions *options, OH_RDB_TransType type )
 ```
 
 **描述**
@@ -2174,7 +2192,7 @@ int OH_RdbTransOption_SetType (OH_RDB_TransOptions *opitons, OH_RDB_TransType ty
 
 | 名称 | 描述 |
 | -------- | -------- |
-| opitons | 表示指向[OH_RDB_TransOptions](#oh_rdb_transoptions)实例的指针。 |
+| options | 表示指向[OH_RDB_TransOptions](#oh_rdb_transoptions)实例的指针。 |
 | type | 表示关系型数据库事务类型。 |
 
 **返回：**
@@ -4530,7 +4548,7 @@ RDB_E_INVALID_ARGS 表示无效参数。
 ### OH_Rdb_CloudSync()
 
 ```
-int OH_Rdb_CloudSync (OH_Rdb_Store *store, Rdb_SyncMode mode, const char *tables, int count, const Rdb_ProgressObserver *observer )
+int OH_Rdb_CloudSync (OH_Rdb_Store *store, Rdb_SyncMode mode, const char *tables[], uint32_t count, const Rdb_ProgressObserver *observer )
 ```
 
 **描述**

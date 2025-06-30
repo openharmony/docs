@@ -25,51 +25,59 @@ You can use **backup()** to back up a KV store, use **restore()** to restore a K
 
    (3) Create a **kvStore** instance.
 
-     
+
    ```ts
+   import { AbilityConstant, ConfigurationConstant, UIAbility, Want } from '@kit.AbilityKit';
+   import { hilog } from '@kit.PerformanceAnalysisKit';
    import { distributedKVStore } from '@kit.ArkData';
    import { BusinessError } from '@kit.BasicServicesKit';
-   
-   let kvManager: distributedKVStore.KVManager;
-   let kvStore: distributedKVStore.SingleKVStore | undefined = undefined;
-   let context = getContext(this);
-   const kvManagerConfig: distributedKVStore.KVManagerConfig = {
-     context: context,
-     bundleName: 'com.example.datamanagertest'
-   }
-   try {
-     kvManager = distributedKVStore.createKVManager(kvManagerConfig);
-     console.info('Succeeded in creating KVManager.');
-     try {
-       const options: distributedKVStore.Options = {
-         createIfMissing: true,
-         encrypt: true,
-         backup: false,
-         autoSync: false,
-         kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
-         securityLevel: distributedKVStore.SecurityLevel.S3
-       };
-       kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options, (err, store: distributedKVStore.SingleKVStore) => {
-         if (err) {
-           console.error(`Failed to get KVStore. Code:${err.code},message:${err.message}`);
-           return;
+
+   export default class EntryAbility extends UIAbility {
+     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+       this.context.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
+       hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+       let kvManager: distributedKVStore.KVManager;
+       let kvStore: distributedKVStore.SingleKVStore | undefined = undefined;
+       let context = this.context;
+       const kvManagerConfig: distributedKVStore.KVManagerConfig = {
+         context: context,
+         bundleName: 'com.example.datamanagertest'
+       }
+       try {
+         kvManager = distributedKVStore.createKVManager(kvManagerConfig);
+         console.info('Succeeded in creating KVManager.');
+         try {
+           const options: distributedKVStore.Options = {
+             createIfMissing: true,
+             encrypt: true,
+             backup: false,
+             autoSync: false,
+             kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
+             securityLevel: distributedKVStore.SecurityLevel.S3
+           };
+           kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options, (err, store: distributedKVStore.SingleKVStore) => {
+             if (err) {
+               console.error(`Failed to get KVStore. Code:${err.code},message:${err.message}`);
+               return;
+             }
+             console.info('Succeeded in getting KVStore.');
+             kvStore = store;
+           });
+         } catch (e) {
+           let error = e as BusinessError;
+           console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
          }
-         console.info('Succeeded in getting KVStore.');
-         kvStore = store;
-       });
-     } catch (e) {
-       let error = e as BusinessError;
-       console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
+       } catch (e) {
+         let error = e as BusinessError;
+         console.error(`Failed to create KVManager. Code:${error.code},message:${error.message}`);
+       }
+
+       if (kvStore !== undefined) {
+         kvStore = kvStore as distributedKVStore.SingleKVStore;
+         // Perform subsequent operations.
+         //...
+       }
      }
-   } catch (e) {
-     let error = e as BusinessError;
-     console.error(`Failed to create KVManager. Code:${error.code},message:${error.message}`);
-   }
-   
-   if (kvStore !== undefined) {
-     kvStore = kvStore as distributedKVStore.SingleKVStore;
-     // Perform subsequent operations.
-     //...
    }
    ```
 
@@ -170,42 +178,48 @@ Two backup modes are available: manual backup and automatic backup. Automatic ba
 
 Call [backup()](../reference/apis-arkdata/js-apis-data-relationalStore.md#backup) to manually back up an RDB store. <br>Example:
 
-   ```ts
-   import { relationalStore } from '@kit.ArkData';
-   import { BusinessError } from '@kit.BasicServicesKit';
-   import { fileIo } from '@kit.CoreFileKit';
-   
-   let store: relationalStore.RdbStore | undefined = undefined;
+```ts
+import { UIAbility } from '@kit.AbilityKit';
+import { relationalStore } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-   let context = getContext(this);
+export default class EntryAbility extends UIAbility {
+  async onCreate(): Promise<void> {
+    let store: relationalStore.RdbStore | undefined = undefined;
+    let context = this.context;
 
-   const STORE_CONFIG: relationalStore.StoreConfig = {
-     name: 'RdbTest.db',
-     securityLevel: relationalStore.SecurityLevel.S3,
-     allowRebuild: true
-   };
-   relationalStore.getRdbStore(context, STORE_CONFIG, (err, rdbStore) => {
-     store = rdbStore;
-     if (err) {
-       console.error(`Failed to get RdbStore. Code:${err.code},message:${err.message}`);
-       return;
-     }
-     console.info('Succeeded in getting RdbStore.');
-     store.executeSql('CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)', (err) => {
-     /**
-      * Backup.db specifies the database backup file. By default, it is in the same directory as the RDB store.
-      * You can also specify an absolute path, for example, /data/storage/el2/database/Backup.db. The file path must exist and will not be automatically created.
-      */
-     (store as relationalStore.RdbStore).backup("Backup.db", (err: BusinessError) => {
-       if (err) {
-         console.error(`Failed to backup RdbStore. Code:${err.code}, message:${err.message}`);
-           return;
-        }
-        console.info(`Succeeded in backing up RdbStore.`);
-      })
-     })
-   })
-   ```
+    const STORE_CONFIG: relationalStore.StoreConfig = {
+      name: 'RdbTest.db',
+      securityLevel: relationalStore.SecurityLevel.S3,
+      allowRebuild: true
+    };
+    try {
+      store = await relationalStore.getRdbStore(context, STORE_CONFIG);
+      await store.executeSql('CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)');
+      console.info('Succeeded in getting RdbStore.');
+    } catch (e) {
+      const err = e as BusinessError;
+      console.error(`Failed to get RdbStore. Code:${err.code},message:${err.message}`);
+    }
+
+    if (!store) {
+      return;
+    }
+
+    try {
+      /**
+       * Backup.db specifies the database backup file. By default, it is in the same directory as the RDB store.
+       * You can also specify an absolute path, for example, /data/storage/el2/database/Backup.db. The file path must exist and will not be automatically created.
+       */
+      await store.backup("Backup.db");
+      console.info(`Succeeded in backing up RdbStore.`);
+    } catch (e) {
+      const err = e as BusinessError;
+      console.error(`Failed to backup RdbStore. Code:${err.code}, message:${err.message}`);
+    }
+  }
+}
+```
 
 <!--Del-->
 
@@ -213,24 +227,34 @@ Call [backup()](../reference/apis-arkdata/js-apis-data-relationalStore.md#backup
 
 To implement hot backup of an RDB store, set **haMode** in [StoreConfig](../reference/apis-arkdata/js-apis-data-relationalStore-sys.md#storeconfig) to **MAIN_REPLICA**. This parameter is available only for system applications. <br>Example:
 
-   ```ts
-   // Set haMode to MAIN_REPLICA.
-   const AUTO_BACKUP_CONFIG :relationalStore.StoreConfig = {
-     name: "BackupResotreTest.db",
-     securityLevel: relationalStore.SecurityLevel.S3,
-     haMode: relationalStore.HAMode.MAIN_REPLICA, // Data is written to the main and replica stores on a real-time basis.
-     allowRebuild: true
-   }
+```ts
+import { UIAbility } from '@kit.AbilityKit';
+import { relationalStore } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-   // Call getRdbStore() to create an RDB store instance.
-   relationalStore.getRdbStore(context, AUTO_BACKUP_CONFIG, (err, store) => {
-     if (err) {
-       console.error(`Failed to get RdbStore. Code:${err.code}, message:${err.message}`);
-       return;
-     }
-     console.info('Succeeded in getting RdbStore.');
-   })
-   ```
+export default class EntryAbility extends UIAbility {
+  async onCreate(): Promise<void> {
+    let store: relationalStore.RdbStore | undefined = undefined;
+    let context = this.context;
+    try {
+      // Set haMode of StoreConfig to MAIN_REPLICA.
+      const AUTO_BACKUP_CONFIG: relationalStore.StoreConfig = {
+        name: "BackupRestoreTest.db",
+        securityLevel: relationalStore.SecurityLevel.S3,
+        haMode: relationalStore.HAMode.MAIN_REPLICA, // Data is written to the main and replica stores on a real-time basis.
+        allowRebuild: true
+      }
+
+      // Call getRdbStore() to create an RDB store instance.
+      store = await relationalStore.getRdbStore(context, AUTO_BACKUP_CONFIG);
+      console.info('Succeeded in getting RdbStore.');
+    } catch (e) {
+      const err = e as BusinessError;
+      console.error(`Failed to get RdbStore. Code:${err.code}, message:${err.message}`);
+    }
+  }
+}
+```
 
 <!--DelEnd-->
 
@@ -244,30 +268,31 @@ If **allowRebuild** in **StoreConfig** is set to **true** before the database is
 
 If **allowRebuild** in **StoreConfig** is not set or is set to **false**, set **allowRebuild** to **true** and open the rebuilt RDB store. <br>Example:
 
-   ```ts
-   import { relationalStore } from '@kit.ArkData';
-   import { BusinessError } from '@kit.BasicServicesKit';
-   
-   let store: relationalStore.RdbStore | undefined = undefined;
+```ts
+import { UIAbility } from '@kit.AbilityKit';
+import { relationalStore } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-   let context = getContext(this);
-
-   const STORE_CONFIG: relationalStore.StoreConfig = {
-     name: 'RdbTest.db',
-     securityLevel: relationalStore.SecurityLevel.S3,
-     allowRebuild: true
-   };
-   relationalStore.getRdbStore(context, STORE_CONFIG, (err, rdbStore) => {
-     store = rdbStore;
-     if (err) {
-       console.error(`Failed to get RdbStore. Code:${err.code},message:${err.message}`);
-       return;
-     }
-     store.executeSql('CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)', (err) => {
-     })
-     console.info('Succeeded in getting RdbStore.');
-   })
-   ```
+export default class EntryAbility extends UIAbility {
+  async onCreate(): Promise<void> {
+    let store: relationalStore.RdbStore | undefined = undefined;
+    let context = this.context;
+    try {
+      const STORE_CONFIG: relationalStore.StoreConfig = {
+        name: 'RdbTest.db',
+        securityLevel: relationalStore.SecurityLevel.S3,
+        allowRebuild: true
+      };
+      store = await relationalStore.getRdbStore(context, STORE_CONFIG);
+      await store.executeSql('CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)');
+      console.info('Succeeded in getting RdbStore.');
+    } catch (e) {
+      const err = e as BusinessError;
+      console.error(`Failed to get RdbStore. Code:${err.code}, message:${err.message}`);
+    }
+  }
+}
+```
 
 ## Restoring RDB Store Data
 
@@ -281,7 +306,7 @@ You can use **backup()** to [perform manual backup](#manual-backup) and use **re
 
 The following example contains only the code snippet for the restore process. The complete code must also contain the code for backing up data and rebuilding an RDB store.
 
-1. Throws an error code to indicate a database exception.
+1. Throw an error code to indicate a database exception.
 
    ```ts
    let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
@@ -332,36 +357,47 @@ The following example contains only the code snippet for the restore process. Th
 3. Call **restore()** to restore data.
 
    ```ts
-   try {
-     let context = getContext();
-     /**
-      * Backup.db specifies the database backup file. By default, it is in the same directory as the current database.
-      * If an absolute path is specified for the database backup file, for example, /data/storage/el2/database/Backup.db, pass in the absolute path.
-      */
-     let backup = context.databaseDir + '/entry/rdb/Backup.db';
-     if (!fileIo.access(backup)) {
-       console.info("no backup file");
-       try {
-         (store as relationalStore.RdbStore).close();
-         store = undefined;
-       } catch (e) {
-           if (e.code != 14800014) {
-             console.info(JSON.stringify(e));
-           }
-       }
-       let storeConfig: relationalStore.StoreConfig = {
-         name: "BackupResotreTest.db",
+   import { UIAbility } from '@kit.AbilityKit';
+   import { relationalStore } from '@kit.ArkData';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { fileIo } from '@kit.CoreFileKit';
+
+   export default class EntryAbility extends UIAbility {
+     async onCreate(): Promise<void> {
+       let store: relationalStore.RdbStore | undefined = undefined;
+       let context = this.context;
+       let STORE_CONFIG: relationalStore.StoreConfig = {
+         name: "RdbTest.db",
          securityLevel: relationalStore.SecurityLevel.S3,
          allowRebuild: true
        }
-       // Open the rebuilt RDB store and create tables.
-       // Generate data.
-       return
+       try {
+         /**
+          * Backup.db specifies the database backup file. By default, it is in the same directory as the current database.
+          * If an absolute path is specified for the database backup file, for example, /data/storage/el2/database/Backup.db, pass in the absolute path.
+          */
+         let backupFilePath = context.databaseDir + '/rdb/Backup.db';
+         const backupExist = await fileIo.access(backupFilePath);
+         if (!backupExist) {
+           console.info("Backup is not exist.");
+           // Open the rebuilt RDB store and create tables.
+           // Generate data.
+           return;
+         }
+       } catch (e) {
+         console.error(`Code:${e.code}, message:${e.message}`);
+       }
+
+       try {
+         store = await relationalStore.getRdbStore(context, STORE_CONFIG);
+         // Call restore() to restore data.
+         await store.restore("Backup.db");
+         console.log("Restore from back success.")
+       } catch (e) {
+         const err = e as BusinessError;
+         console.error(`Failed to get RdbStore. Code:${err.code}, message:${err.message}`);
+       }
      }
-     // Call restore() to restore data.
-     (store as relationalStore.RdbStore).restore("Backup.db");
-   } catch (e) {
-       console.error(`Code:${e.code}, message:${e.message}`);
    }
    ```
 

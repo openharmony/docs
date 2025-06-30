@@ -4,7 +4,7 @@
 
 系统提供了多样化的API，来帮助开发者完成音频录制的开发，不同的API适用于不同录音输出格式、音频使用场景或不同开发语言。因此，选择合适的音频录制API，有助于降低开发工作量，实现更佳的音频录制效果。
 
-- [AudioCapturer](using-audiocapturer-for-recording.md)：用于音频输入的的ArkTS/JS API，仅支持PCM格式，需要应用持续读取音频数据进行工作。应用可以在音频输出后添加数据处理，要求开发者具备音频处理的基础知识，适用于更专业、更多样化的媒体录制应用开发。
+- [AudioCapturer](using-audiocapturer-for-recording.md)：用于音频输入的ArkTS/JS API，仅支持PCM格式，需要应用持续读取音频数据进行工作。应用可以在音频输出后添加数据处理，要求开发者具备音频处理的基础知识，适用于更专业、更多样化的媒体录制应用开发。
 
 - [OpenSL ES](using-opensl-es-for-recording.md)：一套跨平台标准化的音频Native API，同样提供音频输入原子能力，仅支持PCM格式，适用于从其他嵌入式平台移植，或依赖在Native层实现音频输入功能的录音应用使用。
 

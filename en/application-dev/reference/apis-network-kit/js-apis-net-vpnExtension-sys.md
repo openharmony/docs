@@ -1,7 +1,7 @@
 # @ohos.net.vpnExtension (Enhanced VPN Management) (System API)
 
-This module implements virtual private network (VPN) management, such as starting and stopping a third-party VPN.
-Third-party VPNs refer to VPN services provided by third parties. They usually support more security and privacy functions and more comprehensive customization options.
+The **vpnExtension** module implements virtual private network (VPN) management, such as starting and stopping a third-party VPN.
+Third-party VPNs refer to VPN services provided by third parties. They usually provide more security and privacy functions and more comprehensive customization options.
 
 > **NOTE**
 > The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -32,7 +32,7 @@ Enables or disables the **always on** mode.
 
 | Name    | Type   | Mandatory| Description                                                   |
 | ---------- | ------- | ---- | ------------------------------------------------------- |
-| enable     | boolean | Yes  | Whether to enable the **always on** mode.                                  |
+| enable     | boolean | Yes  | Whether to enable the **always on** mode. The value **true** means to enable the **always on**, and the value **false** means the opposite.                                  |
 | bundleName | string  | Yes  | Bundle name of the application (generally a third-party application).|
 
 **Return value**
@@ -149,7 +149,7 @@ Updates the VPN pop-up authorization status.
 
 | Type   | Description                                       |
 | ------- | ------------------------------------------- |
-| boolean | Boolean value indicating whether the VPN pop-up authorization status is successfully updated.|
+| boolean | Boolean value indicating whether the VPN pop-up authorization status is successfully updated. The value **true** indicates that the VPN pop-up authorization status is successfully updated, and the value **false** indicates the opposite.|
 
 **Error codes**
 

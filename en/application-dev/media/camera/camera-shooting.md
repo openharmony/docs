@@ -31,7 +31,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
        photoOutput = cameraManager.createPhotoOutput(photoProfilesArray[0]);
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to createPhotoOutput. error: ${JSON.stringify(err)}`);
+       console.error(`Failed to createPhotoOutput. error: ${err}`);
      }
      return photoOutput;
    }
@@ -45,13 +45,11 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
 
     Specifically, when [photoOutput.on('photoAvailable')](../../reference/apis-camera-kit/js-apis-camera.md#onphotoavailable11) is called and a buffer is obtained, the buffer must be stored in the security component to the media library.
    ```ts
-   let context = getContext(this);
-
-   function setPhotoOutputCb(photoOutput: camera.PhotoOutput) {
+   function setPhotoOutputCb(photoOutput: camera.PhotoOutput, context: Context) {
    // After the callback is set, call capture() of photoOutput to transfer the photo buffer back to the callback.
      photoOutput.on('photoAvailable', (errCode: BusinessError, photo: camera.Photo): void => {
         console.info('getPhoto start');
-        console.info(`err: ${JSON.stringify(errCode)}`);
+        console.info(`err: ${errCode}`);
         if (errCode || photo === undefined) {
           console.error('getPhoto failed');
           return;
@@ -91,7 +89,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
        flashStatus = photoSession.hasFlash();
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to hasFlash. error: ${JSON.stringify(err)}`);
+       console.error(`Failed to hasFlash. error: ${err}`);
      }
      console.info(`Returned with the flash light support status: ${flashStatus}`);
      if (flashStatus) {
@@ -102,7 +100,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
          flashModeStatus = status;
        } catch (error) {
          let err = error as BusinessError;
-         console.error(`Failed to check whether the flash mode is supported. error: ${JSON.stringify(err)}`);
+         console.error(`Failed to check whether the flash mode is supported. error: ${err}`);
        }
        if (flashModeStatus) {
          // Set the flash mode to auto.
@@ -110,7 +108,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
            photoSession.setFlashMode(camera.FlashMode.FLASH_MODE_AUTO);
          } catch (error) {
            let err = error as BusinessError;
-           console.error(`Failed to set the flash mode. error: ${JSON.stringify(err)}`);
+           console.error(`Failed to set the flash mode. error: ${err}`);
          }
        }
      }
@@ -121,7 +119,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
        focusModeStatus = status;
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to check whether the focus mode is supported. error: ${JSON.stringify(err)}`);
+       console.error(`Failed to check whether the focus mode is supported. error: ${err}`);
      }
      if (focusModeStatus) {
        // Set the focus mode to continuous auto focus.
@@ -129,7 +127,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
          photoSession.setFocusMode(camera.FocusMode.FOCUS_MODE_CONTINUOUS_AUTO);
        } catch (error) {
          let err = error as BusinessError;
-         console.error(`Failed to set the focus mode. error: ${JSON.stringify(err)}`);
+         console.error(`Failed to set the focus mode. error: ${err}`);
        }
      }
      // Obtain the zoom ratio range supported by the camera.
@@ -138,7 +136,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
        zoomRatioRange = photoSession.getZoomRatioRange();
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to get the zoom ratio range. error: ${JSON.stringify(err)}`);
+       console.error(`Failed to get the zoom ratio range. error: ${err}`);
      }
      if (zoomRatioRange.length <= 0 ) {
        return;
@@ -148,7 +146,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
        photoSession.setZoomRatio(zoomRatioRange[0]);
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to set the zoom ratio value. error: ${JSON.stringify(err)}`);
+       console.error(`Failed to set the zoom ratio value. error: ${err}`);
      }
    }
    ```
@@ -169,7 +167,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
      };
      photoOutput.capture(settings, (err: BusinessError) => {
        if (err) {
-         console.error(`Failed to capture the photo. error: ${JSON.stringify(err)}`);
+         console.error(`Failed to capture the photo. error: ${err}`);
          return;
        }
        console.info('Callback invoked to indicate the photo capture request success.');

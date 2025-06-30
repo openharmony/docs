@@ -65,7 +65,7 @@ Use the **&lt;slider&gt;** component to set the background color, selected color
 
 ![en-us_image_0000001232003000](figures/en-us_image_0000001232003000.gif)
 
-Add the **mix**, **max**, **value**, **step**, and **mode** attributes to set the minimum value, maximum value, initial value, step, and style of the slider.
+Add the **min**, **max**, **value**, **step**, and **mode** attributes to set the minimum value, maximum value, initial value, step, and style of the slider.
 
 
 ```html
@@ -101,7 +101,7 @@ Add the **mix**, **max**, **value**, **step**, and **mode** attributes to set th
 
 ## Binding Events
 
-Add the **change** event to the **&lt;rating&gt;** component and pass the ChangeEvent attribute when adding the event.
+Add the **change** event to the **&lt;slider&gt;** component and pass the ChangeEvent attribute when adding the event.
 
 
 ```html

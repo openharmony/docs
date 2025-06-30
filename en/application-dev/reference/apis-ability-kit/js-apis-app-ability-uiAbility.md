@@ -218,7 +218,7 @@ class MyUIAbility extends UIAbility {
 
 onForeground(): void
 
-Called when this UIAbility is switched from the background to the foreground. This API returns the result synchronously and does not support asynchronous callback.
+Triggered when the application transitions from the background to the foreground. This API returns the result synchronously and does not support asynchronous callback.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -241,7 +241,7 @@ class MyUIAbility extends UIAbility {
 
 onBackground(): void
 
-Called when this UIAbility is switched from the foreground to the background. This API returns the result synchronously and does not support asynchronous callback.
+Triggered when the application transitions from the foreground to the background. This API returns the result synchronously and does not support asynchronous callback.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -456,7 +456,7 @@ class MyUIAbility extends UIAbility {
 }
 ```
 
-## UIAbility.onPrepareToTerminate<sup>10+</sup>
+### onPrepareToTerminate<sup>10+</sup>
 
 onPrepareToTerminate(): boolean
 
@@ -554,7 +554,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbility.onBackPressed<sup>10+</sup>
+### onBackPressed<sup>10+</sup>
 
 onBackPressed(): boolean
 
@@ -585,7 +585,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbility.onCollaborate<sup>18+</sup>
+### onCollaborate<sup>18+</sup>
 
 onCollaborate(wantParam: Record&lt;string, Object&gt;): AbilityConstant.CollaborateResult
 
@@ -715,7 +715,7 @@ export default class MainUIAbility extends UIAbility {
 ```
 
 
-### Caller.callWithResult
+### callWithResult
 
 callWithResult(method: string, data: rpc.Parcelable): Promise&lt;rpc.MessageSequence&gt;
 
@@ -759,23 +759,26 @@ class MyMessageAble implements rpc.Parcelable {
   name: string
   str: string
   num: number = 1
+
   constructor(name: string, str: string) {
     this.name = name;
     this.str = str;
   }
+
   marshalling(messageSequence: rpc.MessageSequence) {
     messageSequence.writeInt(this.num);
     messageSequence.writeString(this.str);
-    console.log(`MyMessageAble marshalling num[${this.num}] str[${this.str}]`);
+    console.info(`MyMessageAble marshalling num[${this.num}] str[${this.str}]`);
     return true;
   }
+
   unmarshalling(messageSequence: rpc.MessageSequence) {
     this.num = messageSequence.readInt();
     this.str = messageSequence.readString();
-    console.log(`MyMessageAble unmarshalling num[${this.num}] str[${this.str}]`);
+    console.info(`MyMessageAble unmarshalling num[${this.num}] str[${this.str}]`);
     return true;
   }
-};
+}
 let method = 'call_Function';
 let caller: Caller;
 
@@ -790,9 +793,9 @@ export default class MainUIAbility extends UIAbility {
       let msg = new MyMessageAble('msg', 'world');
       caller.callWithResult(method, msg)
         .then((data) => {
-          console.log('Caller callWithResult() called');
-          let retmsg = new MyMessageAble('msg', 'world');
-          data.readParcelable(retmsg);
+          console.info('Caller callWithResult() called');
+          let retMsg = new MyMessageAble('msg', 'world');
+          data.readParcelable(retMsg);
         })
         .catch((callErr: BusinessError) => {
           console.error(`Caller.callWithResult catch error, error.code: ${callErr.code}, error.message: ${callErr.message}`);
@@ -805,7 +808,7 @@ export default class MainUIAbility extends UIAbility {
 ```
 
 
-### Caller.release
+### release
 
 release(): void
 
@@ -851,9 +854,9 @@ export default class MainUIAbility extends UIAbility {
 }
 ```
 
-### Caller.onRelease
+### onRelease
 
- onRelease(callback: OnReleaseCallback): void
+onRelease(callback: OnReleaseCallback): void
 
 Called when the stub on the target UIAbility is disconnected. This API uses an asynchronous callback to return the result.
 
@@ -893,7 +896,7 @@ export default class MainUIAbility extends UIAbility {
       caller = obj;
       try {
         caller.onRelease((str) => {
-          console.log(`Caller OnRelease CallBack is called ${str}`);
+          console.info(`Caller OnRelease CallBack is called ${str}`);
         });
       } catch (error) {
         console.error(`Caller.onRelease catch error, error.code: $error.code}, error.message: ${error.message}`);
@@ -905,7 +908,7 @@ export default class MainUIAbility extends UIAbility {
 }
 ```
 
-### Caller.onRemoteStateChange<sup>10+</sup>
+### onRemoteStateChange<sup>10+</sup>
 
 onRemoteStateChange(callback: OnRemoteStateChangeCallback): void
 
@@ -948,7 +951,7 @@ export default class MainAbility extends UIAbility {
       caller = obj;
       try {
         caller.onRemoteStateChange((str) => {
-          console.log('Remote state changed ' + str);
+          console.info('Remote state changed ' + str);
         });
       } catch (error) {
         console.error(`Caller.onRemoteStateChange catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}`);
@@ -960,7 +963,7 @@ export default class MainAbility extends UIAbility {
 }
 ```
 
-### Caller.on('release')
+### on('release')
 
 on(type: 'release', callback: OnReleaseCallback): void
 
@@ -1260,7 +1263,7 @@ Defines the callback that is invoked when the stub on the target UIAbility is di
 | Name| Type| Mandatory| Description|
 | --- | ----- | --- | -------- |
 | msg | string | Yes| Message used for disconnection.| 
-
+ 
 ## OnRemoteStateChangeCallback<sup>10+</sup>
 
 ### (msg: string)
@@ -1276,7 +1279,7 @@ Defines the callback that is invoked when the remote UIAbility state changes in 
 | Name| Type| Mandatory| Description|
 | --- | ----- | --- | -------- |
 | msg | string | Yes| Message used for disconnection.| 
-
+ 
 ## CalleeCallback
 
 ### (indata: rpc.MessageSequence)

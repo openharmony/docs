@@ -3,7 +3,8 @@
 
 ## When to Use
 
-Vector stores are designed to store, manage, and retrieve vector data while also supporting relational data processing for scalar values. The data type **floatvector** is used to store data vectorization results, enabling rapid retrieval and similarity searches for such data.
+Vector stores are designed to store, manage, and retrieve vector data while also supporting relational data processing for scalar values. The data type **floatvector** is used to store data vectorization results, enabling rapid retrieval and similarity searches for such data.<br>
+Since API version 18, data in vector stores can be persisted.
 
 ## Basic Concepts
 
@@ -134,7 +135,7 @@ libnative_rdb_ndk.z.so
 
    // Delete data with parameter binding.
    OH_Data_Values *values2 = OH_Values_Create();
-   OH_Values_PutInt(values2, 01);
+   OH_Values_PutInt(values2, 1);
    OH_Rdb_ExecuteV2(store_, "delete from test where id = ?", values2, nullptr);
    OH_Values_Destroy(values2);
    ```

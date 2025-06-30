@@ -52,7 +52,7 @@ Sets the total number of ratings (stars). If the value set is less than or equal
 
 stars(starCount: Optional\<number>)
 
-Sets the total number of ratings (stars). If the value set is less than or equal to 0, the default value is used. Compared to [stars](#stars), the **starCount** parameter supports the **undefined** type.
+Sets the total number of ratings (stars). If the value set is less than or equal to 0, the default value is used. Compared to [stars](#stars), this API supports the **undefined** type for the **starCount** parameter.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
@@ -88,7 +88,7 @@ Sets the step for rating. A value less than 0.1 evaluates to the default value.
 
 stepSize(size: Optional\<number>)
 
-Sets the step for rating. A value less than 0.1 evaluates to the default value. Compared to [stepSize](#stepsize), the **size** parameter supports the **undefined** type.
+Sets the step for rating. A value less than 0.1 evaluates to the default value. Compared to [stepSize](#stepsize), this API supports the **undefined** type for the **size** parameter.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
@@ -134,7 +134,7 @@ Local and online images are supported, but not **PixelMap** and **Resource** obj
 
 By default, the image is loaded in asynchronous mode. Synchronous loading is not supported.
 
-Compared to [starStyle](#starstyle), the **options** parameter supports the **undefined** type.
+Compared to [starStyle](#starstyle), this API supports the **undefined** type for the **options** parameter.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
@@ -174,7 +174,7 @@ Creates a content modifier.
 
 contentModifier(modifier: Optional<ContentModifier\<RatingConfiguration>>)
 
-Creates a content modifier. Compared to [contentModifier](#contentmodifier12), the **modifier** parameter supports the **undefined** type.
+Creates a content modifier. Compared to [contentModifier](#contentmodifier12), this API supports the **undefined** type for the **modifier** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -210,7 +210,7 @@ Triggered when the rating value changes.
 
 onChange(callback:Optional\<OnRatingChangeCallback>)
 
-Triggered when the rating value changes. Compared to [onChange](#onchange), the **callback** parameter supports the **undefined** type.
+Triggered when the rating value changes. Compared to [onChange](#onchange), this API supports the **undefined** type for the **callback** parameter.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 18.
 
@@ -259,8 +259,8 @@ You need a custom class to implement the **ContentModifier** API.
 
 | Name | Type   |    Read Only   |    Optional     |  Description             |
 | ------ | ------ | ------ |-------------------------------- |-------------------------------- |
-| rating    | number  | No| No| Value to rate.<br>Default value: **0**<br>Value range: [0, stars]<br>Values less than 0 are treated as **0**, and values greater than the value of [stars](#stars) are treated as the value of **stars**.<br>This parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).<br>This parameter supports two-way binding through [!!](../../../quick-start/arkts-new-binding.md).|
-| indicator | boolean | No| No| Whether the rating bar is used as an indicator. **true**: The rating bar is used as an indicator.<br>**false**: The rating bar is not used as an indicator.<br>Default value: **false**|
+| rating    | number  | No| No| Value to rate.<br>Default value: **0**<br>Value range: [0, stars]<br>Values less than 0 are treated as **0**, and values greater than the value of [stars](#stars) are treated as the value of **stars**.<br>This parameter supports two-way binding through [$$](../../../ui/state-management/arkts-two-way-sync.md).<br>This parameter supports two-way binding through [!!](../../../ui/state-management/arkts-new-binding.md).|
+| indicator | boolean | No| No| Whether the rating bar is used as an indicator.<br>**true**: The rating bar is used as an indicator.<br>**false**: The rating bar is not used as an indicator.<br>Default value: **false**|
 | stars | number | No| No|Total number of ratings.<br>Default value: **5**|
 | stepSize | number | No| No|Step of an operation.<br>Default value: **0.5**|
 | triggerChange | Callback\<number> | No| No|Callback triggered when the rating value changes.|
@@ -275,7 +275,7 @@ You need a custom class to implement the **ContentModifier** API.
 
 | Name                  | Type   | Mandatory| Description                                                        |
 | ---------------------- | ------- | ---- | ------------------------------------------------------------ |
-| rating<sup>7+</sup>    | number  | Yes  | Value to rate.<br>Default value: **0**<br>Value range: [0, stars]<br>Values less than 0 are treated as **0**, and values greater than the value of [stars](#stars) are treated as the value of **stars**.<br>This parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| rating<sup>7+</sup>    | number  | Yes  | Value to rate.<br>Default value: **0**<br>Value range: [0, stars]<br>Values less than 0 are treated as **0**, and values greater than the value of [stars](#stars) are treated as the value of **stars**.<br>This parameter supports two-way binding through [$$](../../../ui/state-management/arkts-two-way-sync.md).<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | indicator<sup>7+</sup> | boolean | No  | Whether the component is used only as an indicator.<br>Default value: **false**<br>**NOTE**<br>When **indicator** is set to **true**, the default component height is 12.0 vp, and the component width is calculated as follows: Height x Value of **stars**.<br>When **indicator** is set to **false**, the default component height is 28.0 vp, and the component width is calculated as follows: Height x Value of **stars**.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 
 ## StarStyleOptions<sup>18+</sup>

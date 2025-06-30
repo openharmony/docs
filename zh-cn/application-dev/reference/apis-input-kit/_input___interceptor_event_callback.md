@@ -3,7 +3,7 @@
 
 ## 概述
 
-拦截回调事件结构体，拦截鼠标事件、触摸事件和轴事件。
+拦截回调事件结构体，拦截鼠标事件、触屏事件和轴事件。
 
 **起始版本：** 12
 
@@ -19,7 +19,7 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | [Input_MouseEventCallback](input.md#input_mouseeventcallback) [mouseCallback](#mousecallback) | 鼠标事件的回调函数。  | 
-| [Input_TouchEventCallback](input.md#input_toucheventcallback) [touchCallback](#touchcallback) | 触摸事件的回调函数。  | 
+| [Input_TouchEventCallback](input.md#input_toucheventcallback) [touchCallback](#touchcallback) | 触屏事件的回调函数。  | 
 | [Input_AxisEventCallback](input.md#input_axiseventcallback) [axisCallback](#axiscallback) | 轴事件的回调函数。  | 
 
 
@@ -57,6 +57,6 @@ Input_TouchEventCallback Input_InterceptorEventCallback::touchCallback
 ```
 **描述**
 
-触摸事件的回调函数。
+触屏事件的回调函数。
 
 **起始版本：** 12

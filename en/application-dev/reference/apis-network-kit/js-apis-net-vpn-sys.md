@@ -45,6 +45,11 @@ For details about the error codes, see [VPN Error Codes](errorcode-net-vpn.md).
 | 401       | Parameter error.                                 |
 
 **Example**
+
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
 Stage model:
 
 ```ts
@@ -54,7 +59,7 @@ import { common } from '@kit.AbilityKit';
 @Entry
 @Component
 struct Index {
-  private context = getContext(this) as common.UIAbilityContext;
+  private context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
   private VpnConnection: vpn.VpnConnection = vpn.createVpnConnection(this.context);
   functiontest()
   {
@@ -104,6 +109,10 @@ For details about the error codes, see [VPN Error Codes](errorcode-net-vpn.md).
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
 ```js
 import { vpn } from '@kit.NetworkKit';
 import { common } from '@kit.AbilityKit';
@@ -112,7 +121,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Entry
 @Component
 struct Index {
-  private context = getContext(this) as common.UIAbilityContext;
+  private context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
   private VpnConnection: vpn.VpnConnection = vpn.createVpnConnection(this.context);
   SetUp(): void {
     let config: vpn.VpnConfig = {
@@ -127,7 +136,7 @@ struct Index {
       dnsAddresses: ["114.114.114.114"]
     }
     this.VpnConnection.setUp(config, (error: BusinessError, data: number) => {
-      console.info(JSON.stringify(error));
+      console.error(JSON.stringify(error));
       console.info("tunfd: " + JSON.stringify(data));
     });
   }
@@ -176,6 +185,10 @@ For details about the error codes, see [VPN Error Codes](errorcode-net-vpn.md).
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
 ```js
 import { vpn } from '@kit.NetworkKit';
 import { common } from '@kit.AbilityKit';
@@ -184,7 +197,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Entry
 @Component
 struct Index {
-  private context = getContext(this) as common.UIAbilityContext;
+  private context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
   private VpnConnection: vpn.VpnConnection = vpn.createVpnConnection(this.context);
   SetUp(): void {
     let config: vpn.VpnConfig = {
@@ -201,7 +214,7 @@ struct Index {
     this.VpnConnection.setUp(config).then((data: number) => {
       console.info("setUp success, tunfd: " + JSON.stringify(data));
     }).catch((err: BusinessError) => {
-      console.info("setUp fail" + JSON.stringify(err));
+      console.error("setUp fail" + JSON.stringify(err));
     });
   }
   build() { }
@@ -243,6 +256,10 @@ For details about the error codes, see [VPN Error Codes](errorcode-net-vpn.md).
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
 ```js
 import { socket, vpn } from '@kit.NetworkKit';
 import { common } from '@kit.AbilityKit';
@@ -251,7 +268,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Entry
 @Component
 struct Index {
-  private context = getContext(this) as common.UIAbilityContext;
+  private context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
   private VpnConnection: vpn.VpnConnection = vpn.createVpnConnection(this.context);
 
   Protect(): void {
@@ -272,7 +289,7 @@ struct Index {
     tcp.getSocketFd().then((tunnelfd: number) => {
       console.info("tunenlfd: " + tunnelfd);
       this.VpnConnection.protect(tunnelfd, (error: BusinessError) => {
-        console.info(JSON.stringify(error));
+        console.error(JSON.stringify(error));
       });
     });
   }
@@ -320,6 +337,10 @@ For details about the error codes, see [VPN Error Codes](errorcode-net-vpn.md).
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
 ```js
 import { socket, vpn } from '@kit.NetworkKit';
 import { common } from '@kit.AbilityKit';
@@ -328,7 +349,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Entry
 @Component
 struct Index {
-  private context = getContext(this) as common.UIAbilityContext;
+  private context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
   private VpnConnection: vpn.VpnConnection = vpn.createVpnConnection(this.context);
 
   Protect(): void {
@@ -351,7 +372,7 @@ struct Index {
       this.VpnConnection.protect(tunnelfd).then(() => {
         console.info("protect success.");
       }).catch((err: BusinessError) => {
-        console.info("protect fail" + JSON.stringify(err));
+        console.error("protect fail" + JSON.stringify(err));
       });
     });
   }
@@ -391,6 +412,10 @@ For details about the error codes, see [VPN Error Codes](errorcode-net-vpn.md).
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
 ```js
 import { vpn } from '@kit.NetworkKit';
 import { common } from '@kit.AbilityKit';
@@ -399,11 +424,11 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Entry
 @Component
 struct Index {
-  private context = getContext(this) as common.UIAbilityContext;
+  private context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
   private VpnConnection: vpn.VpnConnection = vpn.createVpnConnection(this.context);
   Destroy(): void {
     this.VpnConnection.destroy((error: BusinessError) => {
-      console.info(JSON.stringify(error));
+      console.error(JSON.stringify(error));
     });
   }
   build() { }
@@ -442,6 +467,10 @@ For details about the error codes, see [VPN Error Codes](errorcode-net-vpn.md).
 
 **Example**
 
+>**NOTE**
+>
+>In the sample code provided in this topic, **this.context** is used to obtain **UIAbilityContext**, where **this** indicates a UIAbility instance inherited from **UIAbility**. To use **UIAbilityContext** APIs on pages, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
 ```js
 import { vpn } from '@kit.NetworkKit';
 import { common } from '@kit.AbilityKit';
@@ -450,13 +479,13 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Entry
 @Component
 struct Index {
-  private context = getContext(this) as common.UIAbilityContext;
+  private context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
   private VpnConnection: vpn.VpnConnection = vpn.createVpnConnection(this.context);
   Destroy(): void {
     this.VpnConnection.destroy().then(() => {
       console.info("destroy success.");
     }).catch((err: BusinessError) => {
-      console.info("destroy fail" + JSON.stringify(err));
+      console.error("destroy fail" + JSON.stringify(err));
     });
   }
   build() { }

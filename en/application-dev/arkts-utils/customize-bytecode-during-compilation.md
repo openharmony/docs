@@ -8,38 +8,40 @@ Develop a dynamic library file to manipulate ARK bytecode files. In the **build-
 
 ## Execution
 
-If **transformLib** is not configured in the **build-profile.json5** file, the compiler generates the ARK bytecode file to the default location. If **transformLib** is configured and the dynamic library file is successfully loaded, the compiler generates an ARK bytecode file to the default location, and calls the **Transform** method in the dynamic library, passing the path of the ARK bytecode file as a parameter. The **Transform** method contains your custom logic to modify and regenerate the bytecode.
+If **transformLib** is configured and the dynamic library file is successfully loaded, the compiler generates an ARK bytecode file to the default location. It then calls the **Transform** method in the dynamic library, passing the path of the ARK bytecode file as a parameter. The **Transform** method, which includes developer-defined modification logic, is used to regenerate the Ark bytecode file. The operation of updating the bytecode file to disk is executed by the user.
 
-Below is an example template of the dynamic library. You should implement the specific logic of the **Transform** method based on your service requirements.
+Below is a template for a dynamic library, which you can use to implement the specific logic for the **Transform** method as required.
 
 ## How to Develop
 
 1. Create the source code for the dynamic library.
 
-   ```
+   example.cpp:
+
+   ```c++
    /**
     * @brief Entry method for modifying the ARK bytecode file.
     * @param abc_path Path for storing the ARK bytecode file to be processed.
     */
    extern "C" int Transform(const char *abc_path)
    {
-       // You can read the ARK bytecode file corresponding to ${abc_path}, modify related data based on the ARK bytecode format, and generate a new ARK bytecode file.
+       // You can read the ARK bytecode file corresponding to abc_path, modify related data based on the ARK bytecode format, and generate a new ARK bytecode file.
        return 0;
    }
    ```
 
-2. Use a C language compiler (g++) to compile the link library file.
+2. Use a C language compiler (g++) to compile the dynamic library.
 
    Windows:
 
    ```
-   g++ --share -o example.dll example.cpp
+   g++ --shared -o example.dll example.cpp
    ```
 
    Linux:
 
    ```
-   g++ --share -o example.so example.cpp
+   g++ --shared -o example.so example.cpp
    ```
 
    macOS:

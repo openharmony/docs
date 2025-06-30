@@ -9,6 +9,7 @@ The OH_Drawing_FontGenericInfo struct describes the information about generic fo
 
 **Related module**: [Drawing](_drawing.md)
 
+**Header file**: [drawing_text_typography.h](drawing__text__typography_8h.md)
 
 ## Summary
 

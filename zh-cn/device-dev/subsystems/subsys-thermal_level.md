@@ -79,7 +79,7 @@ Linux调测环境，相关要求和配置可参考《[快速入门](../quick-sta
     </level>
     ```
 
-4. 参考[默认热等级配置文件夹中的BUILD.gn](https://gitee.com/openharmony/powermgr_thermal_manager/blob/master/services/native/profile/BUILD.gn)编写BUILD.gn文件，将thermal_service_config.xml打包到`/vendor/etc/thermal_config`目录下
+4. 参考[默认热等级配置文件夹中的BUILD.gn](https://gitee.com/openharmony/powermgr_thermal_manager/blob/master/services/native/profile/BUILD.gn)编写BUILD.gn文件，将thermal_service_config.xml打包到`/vendor/etc/thermal_config`目录下：
 
     ```shell
     import("//build/ohos.gni")                      # 引用build/ohos.gni

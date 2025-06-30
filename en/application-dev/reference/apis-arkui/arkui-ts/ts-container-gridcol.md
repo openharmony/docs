@@ -13,6 +13,8 @@ This component can contain only one child component.
 
 GridCol(option?: GridColOptions)
 
+Creates a **GridCol** component.
+
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
@@ -22,9 +24,11 @@ GridCol(option?: GridColOptions)
 **Parameters**
 | Name| Type                                                 | Mandatory| Description                                                        |
 | ------ | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| option   | [GridColOptions](#gridcoloptions) | No  | Child component options of the grid layout.|
+| option   | [GridColOptions](#gridcoloptions) | No  | Options of the **GridCol** component.|
 
 ## GridColOptions
+
+Defines the options of the **GridCol** component.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -34,9 +38,9 @@ GridCol(option?: GridColOptions)
 
 | Name| Type                                                 | Mandatory| Description                                                        |
 | ------ | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| span   | number \| [GridColColumnOption](#gridcolcolumnoption) | No  | Number of columns occupied by the component. If it is set to **0**, the component is not involved in layout calculation, that is, the component is not rendered.<br>Default value: **1**|
-| offset | number \| [GridColColumnOption](#gridcolcolumnoption) | No  | Number of offset columns relative to the original position of the component.<br>Default value: **0**          |
-| order  | number \| [GridColColumnOption](#gridcolcolumnoption) | No  | Sequence number of the component. Child components of the grid are sorted in ascending order based on their sequence numbers.<br>Default value: **0**<br>**NOTE**<br>If a child component shares an **order** value with another child component or does not have **order** set, it is displayed based on its code sequence number.<br>If **order** is not set for all child components, those that have **order** set are displayed after those that do not and are sorted in ascending order based on the value.|
+| span   | number \| [GridColColumnOption](#gridcolcolumnoption) | No  | Number of columns occupied by the component. If it is set to **0**, the component is not involved in layout calculation, that is, the component is not rendered.<br>The value is an integer greater than 0.<br>Default value: **1**.|
+| offset | number \| [GridColColumnOption](#gridcolcolumnoption) | No  | Number of offset columns relative to the original position of the component.<br>The value is an integer greater than 0.<br>Default value: **0**.          |
+| order  | number \| [GridColColumnOption](#gridcolcolumnoption) | No  | Sequence number of the component. Child components of the grid are sorted in ascending order based on their sequence numbers.<br>The value is an integer greater than 0.<br>Default value: **0**.<br>**NOTE**<br>If a child component shares an **order** value with another child component or does not have **order** set, it is displayed based on its code sequence number.<br>If **order** is not set for all child components, those that have **order** set are displayed after those that do not and are sorted in ascending order based on the value.|
 
 The values of `span`, `offset`, and `order` attributes are inherited in the sequence of **xs**, **sm**, **md**, **lg**, **xl**, and **xxl**. If no value is set for a breakpoint, the value is obtained from the previous breakpoint.
 
@@ -59,7 +63,7 @@ Sets the number of columns occupied by the component. If it is set to **0**, the
 
 | Name| Type                                                        | Mandatory| Description                    |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------ |
-| value  | number \| [GridColColumnOption](#gridcolcolumnoption) | Yes  | Number of occupied columns.<br>Default value: **1**|
+| value  | number \| [GridColColumnOption](#gridcolcolumnoption) | Yes  | Number of occupied columns.<br>The value is an integer greater than 0.<br>Default value: **1**.|
 
 ### gridColOffset
 
@@ -77,7 +81,7 @@ Sets the number of offset columns relative to the original position of the compo
 
 | Name| Type                                                        | Mandatory| Description                                            |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------ |
-| value  | number \| [GridColColumnOption](#gridcolcolumnoption) | Yes  | Number of offset columns relative to the previous child component of the grid<br>Default value: **0**|
+| value  | number \| [GridColColumnOption](#gridcolcolumnoption) | Yes  | Number of offset columns relative to the previous child component of the grid<br>The value is an integer greater than 0.<br>Default value: **0**.|
 
 ### order
 
@@ -95,7 +99,7 @@ Sets the sequence number of the component. Child components of the grid are sort
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | number \| [GridColColumnOption](#gridcolcolumnoption) | Yes  | Sequence number of the component. Child components of the grid are sorted in ascending order based on their sequence numbers.<br>Default value: **0**|
+| value  | number \| [GridColColumnOption](#gridcolcolumnoption) | Yes  | Sequence number of the component. Child components of the grid are sorted in ascending order based on their sequence numbers.<br>The value is an integer greater than 0.<br>Default value: **0**.|
 
 ## GridColColumnOption
 
@@ -117,4 +121,4 @@ Describes the numbers of grid columns occupied by the **GridCol** component on d
 | xxl | number | No   | Number of grid columns on the device where the grid size is xxl.   |
 
 ## Example
-See [GridRow](ts-container-gridrow.md#example).
+See the example for [GridRow](ts-container-gridrow.md#example).

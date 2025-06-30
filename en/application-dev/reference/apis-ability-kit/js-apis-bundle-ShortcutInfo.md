@@ -5,8 +5,12 @@ The shortcutInfo module defines shortcut information configured in the configura
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+> The APIs of this module are deprecated since API version 9. The substitute APIs are open only to system applications. <!--Del-->You are advised to use [bundleManager-ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md) instead.<!--DelEnd-->
 
 ## ShortcutInfo<sup>(deprecated)<sup>
+
+The APIs of this module are deprecated since API version 9. The substitute APIs are open only to system applications. <!--Del-->You are advised to use [bundleManager-ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md#shortcutinfo) instead.<!--DelEnd-->
 
 **System capability**: SystemCapability.BundleManager.BundleFramework
 
@@ -23,4 +27,4 @@ The shortcutInfo module defines shortcut information configured in the configura
 | wants                   | Array&lt;<!--Del-->[<!--DelEnd-->ShortcutWant<!--Del-->](js-apis-bundle-ShortcutInfo-sys.md#shortcutwantdeprecated)<!--DelEnd-->&gt; | Yes  | No  | Want list for the shortcut.        |
 | isStatic                | boolean                                    | Yes  | No  | Whether the shortcut is static. The value **true** means that the shortcut is static, and **false** means the opposite.         |
 | isHomeShortcut          | boolean                                    | Yes  | No  | Whether the shortcut is a home shortcut. The value **true** means that the shortcut is a home shortcut, and **false** means the opposite.|
-| isEnabled               | boolean                                    | Yes  | No  | Whether the shortcut is enabled. The value **true** means that the shortcut is enabled., and **false** means the opposite.            |
+| isEnabled               | boolean                                    | Yes  | No  | Whether the shortcut is enabled. The value **true** means that the shortcut is enabled, and **false** means the opposite.            |

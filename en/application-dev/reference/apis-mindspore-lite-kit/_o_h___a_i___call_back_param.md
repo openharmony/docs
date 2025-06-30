@@ -5,21 +5,20 @@
 
 Defines the operator information passed in a callback.
 
-**Since**
+**System capability**: SystemCapability.Ai.MindSpore
 
-9
+**Since**: 9
 
-**Related module**
+**Related module**: [MindSpore](_mind_spore.md)
 
-[MindSpore](_mind_spore.md)
-
+**Header file**: [model.h](model_8h.md)
 
 ## Summary
 
 
 ### Member Variables
 
-| Name| Description.|
+| Name| Description|
 | -------- | -------- |
 | [node_name](#node_name) | Operator name.|
 | [node_type](#node_type) | Operator type.|

@@ -120,11 +120,11 @@ onError(callback: ErrorCallback)
   @Entry
   @Component
   struct Index {
-    @State message: string = 'Message: '
+    @State message: string = 'Message: ';
     private want: Want = {
       bundleName: "com.example.embeddeddemo",
       abilityName: "ExampleEmbeddedAbility",
-    }
+    };
 
     build() {
       Row() {
@@ -154,27 +154,27 @@ onError(callback: ErrorCallback)
   ```ts
   import { EmbeddedUIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
 
-  const TAG: string = '[ExampleEmbeddedAbility]'
+  const TAG: string = '[ExampleEmbeddedAbility]';
 
   export default class ExampleEmbeddedAbility extends EmbeddedUIExtensionAbility {
     onCreate() {
-      console.log(TAG, `onCreate`);
+      console.info(TAG, `onCreate`);
     }
 
     onForeground() {
-      console.log(TAG, `onForeground`);
+      console.info(TAG, `onForeground`);
     }
 
     onBackground() {
-      console.log(TAG, `onBackground`);
+      console.info(TAG, `onBackground`);
     }
 
     onDestroy() {
-      console.log(TAG, `onDestroy`);
+      console.info(TAG, `onDestroy`);
     }
 
     onSessionCreate(want: Want, session: UIExtensionContentSession) {
-      console.log(TAG, `onSessionCreate, want: ${JSON.stringify(want)}`);
+      console.info(TAG, `onSessionCreate, want: ${JSON.stringify(want)}`);
       let param: Record<string, UIExtensionContentSession> = {
         'session': session
       };
@@ -184,7 +184,7 @@ onError(callback: ErrorCallback)
     }
 
     onSessionDestroy(session: UIExtensionContentSession) {
-      console.log(TAG, `onSessionDestroy`);
+      console.info(TAG, `onSessionDestroy`);
     }
   }
   ```
@@ -194,7 +194,7 @@ onError(callback: ErrorCallback)
   ```ts
   import { UIExtensionContentSession } from '@kit.AbilityKit';
 
-  let storage = LocalStorage.getShared()
+  let storage = new LocalStorage();
 
   @Entry(storage)
   @Component

@@ -6,6 +6,8 @@
 >
 > 从API Version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
+> UIObserver仅能监听到本进程内的相关信息，不支持获取<!--Del-->[UIExtensionComponent](../../reference/apis-arkui/arkui-ts/ts-container-ui-extension-component-sys.md)等<!--DelEnd-->跨进程场景的信息。
+
 
 ## 导入模块
 
@@ -29,8 +31,8 @@ NavDestination组件状态。
 | ON_WILL_HIDE<sup>12+</sup> | 5   | NavDestination组件隐藏之前。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | ON_WILL_APPEAR<sup>12+</sup>| 6   | NavDestination挂载到组件树之前。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | ON_WILL_DISAPPEAR<sup>12+</sup>| 7   | NavDestination从组件树上卸载之前。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| ON_ACTIVE<sup>18+</sup> | 8 | NavDestination组件处于激活态。**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
-| ON_INACTIVE<sup>18+</sup> | 9 | NavDestination组件处于非激活态。**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
+| ON_ACTIVE<sup>17+</sup> | 8 | NavDestination组件处于激活态。**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。|
+| ON_INACTIVE<sup>17+</sup> | 9 | NavDestination组件处于非激活态。**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。|
 | ON_BACKPRESS<sup>12+</sup> | 100   | NavDestination组件返回。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## ScrollEventType<sup>12+</sup>
@@ -118,7 +120,7 @@ ScrollEvent滚动信息。
 | id           | string                                             | 是   | 滚动组件的id。                               |
 | uniqueId           | number                                             | 是   | 滚动组件的uniqueId。                               |
 | scrollEvent    | [ScrollEventType](#scrolleventtype12)                | 是   | 滚动事件的类型。                             |
-| offset       | number                                             | 是   | 滚动组件的当前偏移量。                        |
+| offset       | number                                             | 是   | 滚动组件的当前偏移量。                   |
 
 ## ObserverOptions<sup>12+</sup>
 
@@ -395,7 +397,7 @@ off(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callba
 
 on(type: 'scrollEvent', callback: Callback\<ScrollEventInfo\>): void
 
-监听滚动事件的开始和结束。
+监听所有滚动组件滚动事件的开始和结束。滚动组件包括[List](./arkui-ts/ts-container-list.md)、[Grid](./arkui-ts/ts-container-grid.md)、[Scroll](./arkui-ts/ts-container-scroll.md)、[WaterFlow](./arkui-ts/ts-container-waterflow.md)、[ArcList](./arkui-ts/ts-container-arclist.md)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -416,7 +418,7 @@ on(type: 'scrollEvent', callback: Callback\<ScrollEventInfo\>): void
 
 off(type: 'scrollEvent', callback?: Callback\<ScrollEventInfo\>): void
 
-取消监听滚动事件的开始和结束。
+取消监听所有滚动组件滚动事件的开始和结束。滚动组件包括[List](./arkui-ts/ts-container-list.md)、[Grid](./arkui-ts/ts-container-grid.md)、[Scroll](./arkui-ts/ts-container-scroll.md)、[WaterFlow](./arkui-ts/ts-container-waterflow.md)、[ArcList](./arkui-ts/ts-container-arclist.md)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -437,7 +439,7 @@ off(type: 'scrollEvent', callback?: Callback\<ScrollEventInfo\>): void
 
 on(type: 'scrollEvent', options: ObserverOptions, callback: Callback\<ScrollEventInfo\>): void
 
-监听滚动事件的开始和结束。
+监听指定id的滚动组件滚动事件的开始和结束。滚动组件包括[List](./arkui-ts/ts-container-list.md)、[Grid](./arkui-ts/ts-container-grid.md)、[Scroll](./arkui-ts/ts-container-scroll.md)、[WaterFlow](./arkui-ts/ts-container-waterflow.md)、[ArcList](./arkui-ts/ts-container-arclist.md)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -459,7 +461,7 @@ on(type: 'scrollEvent', options: ObserverOptions, callback: Callback\<ScrollEven
 
 off(type: 'scrollEvent', options: ObserverOptions, callback?: Callback\<ScrollEventInfo\>): void
 
-取消监听滚动事件的开始和结束。
+取消监听指定id的滚动组件滚动事件的开始和结束。滚动组件包括[List](./arkui-ts/ts-container-list.md)、[Grid](./arkui-ts/ts-container-grid.md)、[Scroll](./arkui-ts/ts-container-scroll.md)、[WaterFlow](./arkui-ts/ts-container-waterflow.md)、[ArcList](./arkui-ts/ts-container-arclist.md)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -482,7 +484,7 @@ import { uiObserver } from '@kit.ArkUI'
 @Component
 struct Index {
   scroller: Scroller = new Scroller();
-  options: uiObserver.ObserverOptions = { id: "testId" };
+  options: uiObserver.ObserverOptions = { id: 'testId' };
   private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7]
 
   build() {
@@ -502,7 +504,7 @@ struct Index {
             }, (item: string) => item)
           }.width('100%')
         }
-        .id("testId")
+        .id('testId')
         .height('80%')
       }
       .width('100%')
@@ -608,7 +610,7 @@ off(type: 'routerPageUpdate', context: UIAbilityContext | UIContext, callback?: 
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 监听事件，固定为'routerPageUpdate'，即router中page页面的状态变化。 |
 | context  | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)&nbsp;\|&nbsp;[UIContext](./js-apis-arkui-UIContext.md) | 是   | 上下文信息，用以指定监听页面的范围。 |
-| callback | Callback\<[RouterPageInfo](#routerpageinfo)\>        | 否   | 需要被注销的回调函。                 |
+| callback | Callback\<[RouterPageInfo](#routerpageinfo)\>        | 否   | 需要被注销的回调函数。                 |
 
 **示例：**
 
@@ -933,7 +935,7 @@ on(type: 'navDestinationSwitch', context: UIAbilityContext | UIContext, callback
 // uiObserver.off('navDestinationSwitch', UIAbilityContext, callback)
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { uiObserver, window } from '@kit.ArkUI';
-import { hilog } from "@kit.PerformanceAnalysisKit"
+import { hilog } from "@kit.PerformanceAnalysisKit";
 
 function callBackFunc(info: uiObserver.NavDestinationSwitchInfo) {
   console.info(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)

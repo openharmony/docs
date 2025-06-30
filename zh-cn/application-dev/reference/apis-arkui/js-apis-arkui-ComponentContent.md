@@ -1,6 +1,6 @@
 # ComponentContent
 
-ComponentContent表示组件内容的实体封装，其对象支持在非UI组件中创建与传递，便于开发者对弹窗类组件进行解耦封装。ComponentContent底层使用了BuilderNode，相关使用规格参考[BuilderNode](js-apis-arkui-builderNode.md)。
+ComponentContent表示组件内容的实体封装，其对象支持在非UI组件中创建与传递，便于开发者对弹窗类组件进行解耦封装。其底层使用了BuilderNode，具体使用规格参考[BuilderNode](js-apis-arkui-builderNode.md)。
 
 > **说明：**
 >
@@ -31,8 +31,8 @@ ComponentContent的构造函数。
 
 | 参数名    | 类型                                      | 必填 | 说明                               |
 | --------- | ----------------------------------------- | ---- | ---------------------------------- |
-| uiContext | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时候所需要的UI上下文。 |
-| builder  | [WrappedBuilder\<[]>](../../quick-start/arkts-wrapBuilder.md) | 是   |   封装不带参builder函数的WrappedBuilder对象。 |
+| uiContext | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需要的UI上下文。 |
+| builder  | [WrappedBuilder\<[]>](../../ui/state-management/arkts-wrapBuilder.md) | 是   |   封装不带参builder函数的WrappedBuilder对象。 |
 
 ### constructor
 
@@ -49,7 +49,7 @@ ComponentContent的构造函数。
 | 参数名    | 类型                                      | 必填 | 说明                               |
 | --------- | ----------------------------------------- | ---- | ---------------------------------- |
 | uiContext | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时候所需要的UI上下文。 |
-| builder  | [WrappedBuilder\<[T]>](../../quick-start/arkts-wrapBuilder.md) | 是   |   封装带参builder函数的WrappedBuilder对象。 |
+| builder  | [WrappedBuilder\<[T]>](../../ui/state-management/arkts-wrapBuilder.md) | 是   |   封装带参builder函数的WrappedBuilder对象。 |
 | args     |     T     |   是   |   WrappedBuilder对象封装的builder函数的参数。 |
 
 ### constructor
@@ -67,13 +67,13 @@ ComponentContent的构造函数。
 | 参数名    | 类型                                      | 必填 | 说明                               |
 | --------- | ----------------------------------------- | ---- | ---------------------------------- |
 | uiContext | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时候所需要的UI上下文。 |
-| builder  | [WrappedBuilder\<[T]>](../../quick-start/arkts-wrapBuilder.md) | 是   |   封装带参builder函数的WrappedBuilder对象。 |
+| builder  | [WrappedBuilder\<[T]>](../../ui/state-management/arkts-wrapBuilder.md) | 是   |   封装带参builder函数的WrappedBuilder对象。 |
 | args     |     T     |   是   |   WrappedBuilder对象封装的builder函数的参数。 |
 | options | [BuildOptions](./js-apis-arkui-builderNode.md#buildoptions12)                                                    | 是   |  build的配置参数，判断是否支持@Builder中嵌套@Builder的行为。                                         |
 
 **示例：**
 ``` ts
-import { ComponentContent, NodeContent, typeNode } from "@kit.ArkUI"
+import { ComponentContent, NodeContent, typeNode } from "@kit.ArkUI";
 
 interface ParamsInterface {
   text: string;
@@ -102,7 +102,7 @@ function buildText(params: ParamsInterface) {
 @Entry
 @Component
 struct Index {
-  @State message: string = "HELLO"
+  @State message: string = "HELLO";
   private content: NodeContent = new NodeContent();
 
   build() {
@@ -117,7 +117,7 @@ struct Index {
                 text: this.message, func: () => {
                   return "FUNCTION"
                 }
-              }, { nestingBuilderSupported: true }))
+              }, { nestingBuilderSupported: true }));
             this.content.addFrameNode(column);
           })
         ContentSlot(this.content)
@@ -154,7 +154,7 @@ update(args: T): void
 import { ComponentContent } from "@kit.ArkUI";
 
 class Params {
-  text: string = ""
+  text: string = "";
   constructor(text: string) {
     this.text = text;
   }
@@ -173,7 +173,7 @@ function buildText(params: Params) {
 @Entry
 @Component
 struct Index {
-  @State message: string = "hello"
+  @State message: string = "hello";
 
   build() {
     Row() {
@@ -202,7 +202,7 @@ struct Index {
 
 reuse(param?: Object): void
 
-传递reuse事件到ComponentContent中的自定义组件。
+触发ComponentContent中的自定义组件的复用。组件复用请参见[@Reusable装饰器：组件复用](../../ui/state-management/arkts-reusable.md)。关于ComponentContent的解绑场景请参见[解除实体节点引用关系](../../ui/arkts-user-defined-arktsNode-builderNode.md#解除实体节点引用关系)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -218,7 +218,8 @@ reuse(param?: Object): void
 
 recycle(): void
 
-传递recycle事件到ComponentContent中的自定义组件。
+- 触发ComponentContent中自定义组件的回收。自定义组件的回收是组件复用机制中的环节，具体信息请参见[@Reusable装饰器：组件复用](../../ui/state-management/arkts-reusable.md)。
+- ComponentContent通过reuse和recycle完成其内外自定义组件之间的复用事件传递，具体使用场景请参见[节点复用能力](../../ui/arkts-user-defined-arktsNode-builderNode.md#节点复用能力)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -231,7 +232,7 @@ const TEST_TAG: string = "Reuse+Recycle";
 
 class MyDataSource {
   private dataArray: string[] = [];
-  private listener: DataChangeListener | null = null
+  private listener: DataChangeListener | null = null;
 
   public totalCount(): number {
     return this.dataArray.length;
@@ -400,11 +401,15 @@ struct Index {
 
 dispose(): void
 
-立即释放当前ComponentContent，即ComponentContent对象与后端实体节点解除引用关系。
+立即释放当前ComponentContent对象对[基本概念：实体节点](../../ui/arkts-user-defined-node.md#基本概念)的引用关系。关于ComponentContent的解绑场景请参见[解除实体节点引用关系](../../ui/arkts-user-defined-arktsNode-builderNode.md#解除实体节点引用关系)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+> **说明：**
+>
+> 当ComponentContent对象调用dispose之后，会与后端实体节点解除引用关系。若前端对象ComponentContent无法释放，容易导致内存泄漏。建议在不再需要操作该ComponentContent对象时，开发者主动调用dispose释放后端节点，以减少引用关系的复杂性，降低内存泄漏的风险。
 
 **示例：** 
 
@@ -413,7 +418,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { ComponentContent } from '@kit.ArkUI';
 
 class Params {
-  text: string = ""
+  text: string = "";
   constructor(text: string) {
     this.text = text;
   }
@@ -425,14 +430,14 @@ function buildText(params: Params) {
     Text(params.text)
       .fontSize(50)
       .fontWeight(FontWeight.Bold)
-      .margin({bottom: 36})
+      .margin({ bottom: 36 })
   }.backgroundColor('#FFF0F0F0')
 }
 
 @Entry
 @Component
 struct Index {
-  @State message: string = "hello"
+  @State message: string = "hello";
 
   build() {
     Row() {
@@ -447,7 +452,7 @@ struct Index {
                 setTimeout(() => {
                   promptAction.closeCustomDialog(contentNode)
                     .then(() => {
-                      console.info('customdialog closed.')
+                      console.info('customdialog closed.');
                       if (contentNode !== null) {
                         contentNode.dispose();   //释放contentNode
                       }
@@ -480,11 +485,11 @@ updateConfiguration(): void
 
 > **说明：**
 >
-> updateConfiguration接口功能为通知对象更新，更新所使用的系统环境由当前的系统环境变化。
+> updateConfiguration接口用于通知对象更新当前的系统环境变化。
 
 **示例：**
 ```ts
-import { NodeController, FrameNode, ComponentContent } from '@kit.ArkUI';
+import { NodeController, FrameNode, ComponentContent, UIContext, FrameCallback } from '@kit.ArkUI';
 import { AbilityConstant, Configuration, EnvironmentCallback, ConfigurationConstant } from '@kit.AbilityKit';
 
 @Builder
@@ -523,6 +528,12 @@ class MyNodeController extends NodeController {
   }
 }
 
+class MyFrameCallback extends FrameCallback {
+  onFrame() {
+    updateColorMode();
+  }
+}
+
 function updateColorMode() {
   componentContentMap.forEach((value, index) => {
     value.updateConfiguration();
@@ -541,7 +552,7 @@ struct FrameNodeTypeTest {
       },
       onConfigurationUpdated: (config: Configuration): void => {
         console.log('onConfigurationUpdated ' + JSON.stringify(config));
-        updateColorMode();
+        this.getUIContext()?.postFrameCallback(new MyFrameCallback());
       }
     }
     // 注册监听回调

@@ -196,9 +196,9 @@ Linux调测环境，相关要求和配置可参考《[快速入门](../quick-sta
 9. 将定制版本烧录到DAYU200开发板中。
 
 ### 调测验证 
-1. 修改代码配置：
-    修改代码路径：base/startup/init/services/init/init_config.c
-    修改函数：ReadConfig
+1. 修改代码配置：<br/>
+    修改代码路径：base/startup/init/services/init/init_config.c<br/>
+    修改函数：ReadConfig<br/>
     修改前：
     ```c
     void ReadConfig(void)

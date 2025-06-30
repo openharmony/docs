@@ -6,7 +6,7 @@
 
 >  **说明：**
 >
->  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -37,7 +37,7 @@ TextArea(value?: TextAreaOptions)
 | 名称 | 类型  | 必填   | 说明 |
 | ---- | ----- | ---- | ---- |
 | placeholder      | [ResourceStr](ts-types.md#resourcestr)  | 否    | 设置无输入时的提示文本。输入内容后，提示文本不显示。<br/>仅设置placeholder属性时，手柄依然跟随拖动，手柄松开后光标停留在文字开头位置。     |
-| text             | [ResourceStr](ts-types.md#resourcestr)  | 否    | 设置输入框当前的文本内容。</br>建议通过onChange事件将状态变量与文本实时绑定，</br>避免组件刷新时TextArea中的文本内容异常。<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。<br />从API version 18开始，该参数支持[!!](../../../quick-start/arkts-new-binding.md#内置组件参数双向绑定)双向绑定变量。|
+| text             | [ResourceStr](ts-types.md#resourcestr)  | 否    | 设置输入框当前的文本内容。</br>建议通过onChange事件将状态变量与文本实时绑定，</br>避免组件刷新时TextArea中的文本内容异常。<br />从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。<br />从API version 18开始，该参数支持[!!](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。|
 | controller<sup>8+</sup> | [TextAreaController](#textareacontroller8) | 否    | 设置TextArea控制器。 |
 
 
@@ -49,7 +49,7 @@ TextArea(value?: TextAreaOptions)
 >
 >  [通用属性padding](ts-universal-attributes-size.md#padding)的默认值为：<br>{<br>&nbsp;top: '8vp',<br>&nbsp;right: '16vp',<br>&nbsp;bottom: '8vp',<br>&nbsp;left: '16vp'<br> }
 >
->  从API version 11开始，多行输入框可设置.width('auto')使组件宽度自适应文本宽度，自适应时组件宽度受constraintSize属性以及父容器传递的最大最小宽度限制，其余使用方式参考[尺寸设置](ts-universal-attributes-size.md#属性)。
+>  从API version 11开始，多行输入框可设置.width('auto')使组件宽度自适应文本宽度，自适应时组件宽度受constraintSize属性以及父容器传递的最大最小宽度限制，其余使用方式参考[尺寸设置](ts-universal-attributes-size.md)。
 
 ### placeholderColor
 
@@ -71,7 +71,7 @@ placeholderColor(value: ResourceColor)
 
 placeholderFont(value: Font)
 
-设置placeholder文本样式，包括字体大小，字体粗细，字体族，字体风格。当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。
+设置placeholder文本样式，包括字体大小、字体粗细、字体族、字体风格。当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -107,6 +107,10 @@ textAlign(value: TextAlign)
 | ------ | ------------------------------------------- | ---- | ---------------------------------------------------------- |
 | value  | [TextAlign](ts-appendix-enums.md#textalign) | 是   | 文本在输入框中的水平对齐方式。<br/>默认值：TextAlign.Start |
 
+>  **说明：**  
+>
+>  textAlign只能调整文本整体的布局，不影响字符的显示顺序。若需要调整字符的显示顺序，请参考[镜像状态字符对齐](../../../ui/arkts-mirroring-display.md#镜像状态字符对齐)。
+
 ### caretColor
 
 caretColor(value: ResourceColor)
@@ -123,7 +127,7 @@ caretColor(value: ResourceColor)
 | ------ | ------------------------------------------ | ---- | -------------------------------------- |
 | value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 输入框光标颜色。<br/>默认值：'#007DFF' |
 
->  **说明：**     
+>  **说明：**
 >   从API version 12开始，此接口支持设置文本手柄颜色，光标和文本手柄颜色保持一致。
 
 ### fontColor
@@ -156,7 +160,7 @@ fontSize(value: Length)
 
 | 参数名 | 类型                         | 必填 | 说明                                                         |
 | ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Length](ts-types.md#length) | 是   | 字体大小。fontSize为number类型时，使用fp单位。字体默认大小16fp，wearable设备上默认值为：18fp。不支持设置百分比字符串。 |
+| value  | [Length](ts-types.md#length) | 是   | 字体大小。fontSize为number类型时，使用fp单位。字体默认大小16fp，Wearable设备上默认值为：18fp。不支持设置百分比字符串。 |
 
 ### fontStyle
 
@@ -204,7 +208,7 @@ fontFamily(value: ResourceStr)
 
 | 参数名 | 类型                                   | 必填 | 说明                                                         |
 | ------ | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [ResourceStr](ts-types.md#resourcestr) | 是   | 字体列表。默认字体'HarmonyOS Sans'。<br>应用当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。<br>卡片当前仅支持'HarmonyOS Sans'字体。 |
+| value  | [ResourceStr](ts-types.md#resourcestr) | 是   | 字体列表。默认字体'HarmonyOS Sans'。<br>使用多个字体时，请用逗号','分隔，字体的优先级按顺序生效。例如：'Arial, HarmonyOS Sans'。<br>应用当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。<br>卡片当前仅支持'HarmonyOS Sans'字体。 |
 
 ### inputFilter<sup>8+</sup>
 
@@ -229,7 +233,7 @@ copyOption(value: CopyOptions)
 
 设置输入的文本是否可复制。设置CopyOptions.None时，当前TextArea中的文字无法被复制、剪切、翻译、分享、搜索和帮写，仅支持粘贴。
 
-设置CopyOptions.None时，不允许拖拽。
+设置CopyOptions.None时，不支持拖拽操作。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -263,7 +267,7 @@ showCounter(value: boolean, options?: InputCounterOptions)
 
 设置当通过InputCounterOptions输入的字符数超过阈值时显示计数器。
 
-参数value为true时，才能设置options，文本框开启计数下标功能，需要配合maxlength（设置最大字符限制）一起使用。字符计数器显示的效果是当前输入字符数/最大可输入字符数。
+参数value为true时，才能设置options，文本框开启计数器功能，需要配合maxLength（设置最大字符限制）一起使用。字符计数器显示的效果是当前输入字符数/最大可输入字符数。
 
 当输入字符数大于最大字符数乘百分比值时，显示字符计数器。如果用户设置计数器时不设置InputCounterOptions，那么当前输入字符数达到最大字符数时，边框和计数器下标将变为红色。用户同时设置参数value为true和InputCounterOptions，当thresholdPercentage数值在有效区间内，且输入字符数超过最大字符数时，边框和计数器下标将变为红色，框体抖动。highlightBorder设置为false，则不显示红色边框，计数器默认显示红色边框。内联模式下字符计数器不显示。
 
@@ -275,8 +279,8 @@ showCounter(value: boolean, options?: InputCounterOptions)
 
 | 参数名                | 类型                                                         | 必填 | 说明             |
 | --------------------- | ------------------------------------------------------------ | ---- | ---------------- |
-| value                 | boolean                                                      | 是   | 是否显示计数器。 |
-| options<sup>11+</sup> | [InputCounterOptions](ts-types.md#inputcounteroptions11对象说明) | 否   | 计数器的百分比。 |
+| value                 | boolean                                                      | 是   | 是否显示计数器。<br/>true表示显示计时器，false表示不显示。 |
+| options<sup>11+</sup> | [InputCounterOptions](ts-types.md#inputcounteroptions11对象说明) | 否   | 计数器的配置项。 |
 
 ### style<sup>10+</sup>
 
@@ -332,7 +336,7 @@ selectionMenuHidden(value: boolean)
 
 barState(value: BarState)
 
-设置输入框编辑态时滚动条的显示模式。
+设置输入框滚动条的显示模式。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -342,13 +346,13 @@ barState(value: BarState)
 
 | 参数名 | 类型                                      | 必填 | 说明                                                         |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [BarState](ts-appendix-enums.md#barstate) | 是   | 输入框编辑态时滚动条的显示模式。<br/>默认值：BarState.Auto |
+| value  | [BarState](ts-appendix-enums.md#barstate) | 是   | 输入框滚动条的显示模式。<br/>默认值：BarState.Auto |
 
 ### maxLines<sup>10+</sup>
 
 maxLines(value: number)
 
-配置textOverflow一起使用时，maxlines为可显示行数，超出截断；未配置textOverflow时，内联模式获焦状态下内容超出maxlines时，文本可滚动显示，内联模式非获焦状态下不生效maxlines，非内联模式按行截断。
+配置textOverflow一起使用时，maxLines为可显示行数，超出截断；未配置textOverflow时，内联模式获焦状态下内容超出maxLines时，文本可滚动显示，内联模式非获焦状态下不生效maxLines，非内联模式按行截断。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -368,15 +372,15 @@ customKeyboard(value: CustomBuilder, options?: KeyboardOptions)
 
 当设置自定义键盘时，输入框激活后不会打开系统输入法，而是加载指定的自定义组件。
 
-自定义键盘的高度可以通过自定义组件根节点的height属性设置，宽度不可设置，使用系统默认值。
+自定义键盘的高度可以通过自定义组件根节点的height属性设置，宽度则使用系统默认值。
 
-自定义键盘采用覆盖原始界面的方式呈现，当没有开启避让模式或者输入框不需要避让的场景不会对应用原始界面产生压缩或者上提。
+自定义键盘采用覆盖原始界面的方式呈现，当没有开启避让模式或者输入框不需要避让的场景，不会对应用原始界面产生压缩或者上提。
 
 自定义键盘无法获取焦点，但是会拦截手势事件。
 
 默认在输入控件失去焦点时，关闭自定义键盘，开发者也可以通过[TextAreaController](#textareacontroller8).[stopEditing](#stopediting10)方法控制键盘关闭。
 
-如果设备支持拍摄输入，设置自定义键盘后，该输入框会不支持拍摄输入。
+如果设备支持拍摄输入，设置自定义键盘后，输入框将不再支持拍摄输入。
 
 当设置自定义键盘时，可以通过绑定[onKeyPrelme](ts-universal-events-key.md#onkeypreime12)事件规避物理键盘的输入。
 
@@ -471,6 +475,10 @@ lineHeight(value: number | string | Resource)
 | ------ | ------------------------------------------------------------ | ---- | ---------------- |
 | value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本的文本行高。 |
 
+>  **说明：**
+>  
+>  特殊字符字体高度远超出同行的其他字符高度时，文本框出现截断、遮挡、内容相对位置发生变化等不符合预期的显示异常，需要开发者调整组件高度、行高等属性，修改对应的页面布局。
+
 ### decoration<sup>12+</sup>
 
 decoration(value: TextDecorationOptions)
@@ -491,9 +499,11 @@ decoration(value: TextDecorationOptions)
 
 letterSpacing(value: number | string | Resource)
 
-设置文本字符间距。设置该值为百分比时，按默认值显示。设置该值为0时，按默认值显示。string类型支持number类型取值的字符串形式，可以附带单位，例如"10"、"10fp"。
+设置文本字符间距。设置该值为百分比时，按默认值显示。当设置该值为0时，使用默认值。string类型支持number类型取值的字符串形式，可以附带单位，例如"10"、"10fp"。
 
 当取值为负值时，文字会发生压缩，负值过小时会将组件内容区大小压缩为0，导致无内容显示。
+
+对每个字符生效，包括行尾字符。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -503,7 +513,7 @@ letterSpacing(value: number | string | Resource)
 
 | 参数名 | 类型                       | 必填 | 说明           |
 | ------ | -------------------------- | ---- | -------------- |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本字符间距。<br/>单位：fp |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本字符间距。<br/>单位：[fp](ts-pixel-units.md#像素单位) |
 
 ### fontFeature<sup>12+</sup>
 
@@ -566,7 +576,7 @@ selectedBackgroundColor(value: ResourceColor)
 
 | 参数名 | 类型                                       | 必填 | 说明                                       |
 | ------ | ------------------------------------------ | ---- | ------------------------------------------ |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 文本选中底板颜色。<br/>默认为20%不透明度。 |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 文本选中底板颜色。 |
 
 ### caretStyle<sup>12+</sup>
 
@@ -645,7 +655,7 @@ minFontSize(value: number | string | Resource)
 
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最小显示字号。<br/>单位：fp |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最小显示字号。<br/>单位：[fp](ts-pixel-units.md#像素单位) |
 
 ### maxFontSize<sup>12+</sup>
 
@@ -665,7 +675,7 @@ maxFontSize(value: number | string | Resource)
 
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最大显示字号。<br/>单位：fp |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最大显示字号。<br/>单位：[fp](ts-pixel-units.md#像素单位) |
 
 ### heightAdaptivePolicy<sup>12+</sup>
 
@@ -756,6 +766,10 @@ enablePreviewText(enable: boolean)
 | ------ | ------- | ---- | ---------------------------------- |
 | enable | boolean | 是   | 是否开启输入预上屏。<br/>true表示开启，false表示不开启。<br/>默认值：true |
 
+>  **说明：**
+>  
+>  “预上屏”描述的是一种文字暂存状态。需要在输入法中开启预上屏功能，在输入文本过程中，未确认输入候选词时，文本框中显示标记文本。例如，通过拼音输入中文时，未确定候选词之前，在输入框中显示拼音字母，该状态称为文字预上屏。
+
 ### enableHapticFeedback<sup>13+</sup>
 
 enableHapticFeedback(isEnabled: boolean)
@@ -774,7 +788,7 @@ enableHapticFeedback(isEnabled: boolean)
 
 >  **说明：**
 >
->  开启触控反馈时，需要在工程的module.json5中配置requestPermissions字段开启振动权限，配置如下：
+>  开启触控反馈时，需要在工程的module.json5中配置requestPermissions字段以开启振动权限，配置如下：
 > ```json
 > "requestPermissions": [
 >  {
@@ -813,7 +827,7 @@ stopBackPress(isStopped: Optional\<boolean>)
 
 | 参数名 | 类型                                                | 必填 | 说明                                      |
 | ------ | --------------------------------------------------- | ---- | ----------------------------------------- |
-| isStopped  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否消费返回键。 <br />默认值：true |
+| isStopped  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否阻止返回键。<br/>true表示阻止返回键向其它组件或应用侧传递，false表示不阻止。<br />默认值：true |
 
 ### halfLeading<sup>18+</sup>
 
@@ -845,7 +859,7 @@ minFontScale(scale: Optional\<number | Resource>)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| scale  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number \| [Resource](ts-types.md#resource)> | 是   | 文本最小的字体缩放倍数，支持undefined类型。<br/>取值范围：[0, 1]<br/>**说明：** <br/>设置的值小于0时，按值为0处理。设置的值大于1，按值为1处理。异常值默认不生效。 |
+| scale  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number \| [Resource](ts-types.md#resource)> | 是   | 文本最小的字体缩放倍数，支持undefined类型。<br/>取值范围：[0, 1]<br/>**说明：** <br/>设置的值小于0时，按值为0处理。设置的值大于1，按值为1处理。异常值默认不生效。<br/>使用前需在工程中配置configuration.json文件和app.json5文件，具体详见[示例17设置最小字体范围与最大字体范围](#示例17设置最小字体范围与最大字体范围)。 |
 
 ### maxFontScale<sup>18+</sup>
 
@@ -861,7 +875,7 @@ maxFontScale(scale: Optional\<number | Resource>)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| scale  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number \| [Resource](ts-types.md#resource)> | 是   | 文本最大的字体缩放倍数，支持undefined类型。<br/>取值范围：[1, +∞)<br/>**说明：** <br/>设置的值小于1时，按值为1处理。异常值默认不生效。 |
+| scale  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number \| [Resource](ts-types.md#resource)> | 是   | 文本最大的字体缩放倍数，支持undefined类型。<br/>取值范围：[1, +∞)<br/>**说明：** <br/>设置的值小于1时，按值为1处理。异常值默认不生效。<br/>使用前需在工程中配置configuration.json文件和app.json5文件，具体详见[示例17设置最小字体范围与最大字体范围](#示例17设置最小字体范围与最大字体范围)。 |
 
 ### ellipsisMode<sup>18+</sup>
 
@@ -907,7 +921,7 @@ onChange(callback:&nbsp;EditableTextOnChangeCallback)
 
 onEditChange(callback:&nbsp;(isEditing:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)
 
-输入状态变化时，触发该回调。有光标时为编辑态，无光标时为非编辑态。isEditing为true表示正在输入。
+输入状态变化时，触发该回调。有光标时为编辑态，无光标时为非编辑态。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -972,7 +986,7 @@ onPaste(callback:&nbsp;(value:&nbsp;string, event:&nbsp;PasteEvent)&nbsp;=&gt;&n
 
 onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) => void)
 
-文本选择的位置发生变化或编辑状态下光标位置发生变化时，触发该回调。
+文本选择的位置或编辑状态下光标位置发生变化时，触发该回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -999,14 +1013,14 @@ onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)
 
 | 参数名       | 类型   | 必填 | 说明                               |
 | ------------ | ------ | ---- | ---------------------------------- |
-| totalOffsetX | number | 是   | 文本在内容区的横坐标偏移，单位px。 |
-| totalOffsetY | number | 是   | 文本在内容区的纵坐标偏移，单位px。 |
+| totalOffsetX | number | 是   | 文本在内容区的横坐标偏移。<br/>单位：[px](ts-pixel-units.md#像素单位) |
+| totalOffsetY | number | 是   | 文本在内容区的纵坐标偏移。<br/>单位：[px](ts-pixel-units.md#像素单位) |
 
 ### onSubmit<sup>11+</sup>
 
 onSubmit(callback:&nbsp;(enterKey:&nbsp;EnterKeyType)&nbsp;=&gt;&nbsp;void)
 
-按下软键盘输入法回车键触发该回调。
+按下软键盘输入法回车键时，触发该回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1098,6 +1112,10 @@ onDidDelete(callback: Callback\<DeleteValue>)
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
 | callback  | Callback\<[DeleteValue](ts-text-common.md#deletevalue12对象说明)> | 是   | 在删除完成时调用的回调。<br/>仅支持系统输入法输入的场景。 |
 
+>  **说明：**
+>
+>  点击清除按钮不触发onDidDelete回调。
+
 ### onWillChange<sup>15+</sup>
 
 onWillChange(callback: Callback\<EditableTextChangeValue, boolean>)
@@ -1170,8 +1188,8 @@ setTextSelection(selectionStart: number, selectionEnd: number, options?: Selecti
 
 | 参数名 | 类型 | 必填 | 说明  |
 | ------ | ---- | ---- | ---- |
-| selectionStart | number   | 是   | 文本选择区域起始位置，文本框中文字的起始位置为0。<br/>当selectionStart小于0时、按照0处理；当selectionStart大于文字最大长度时、按照文字最大长度处理。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| selectionEnd   | number   | 是   | 文本选择区域结束位置。<br/>当selectionEnd小于0时、按照0处理；当selectionEnd大于文字最大长度时、按照文字最大长度处理。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| selectionStart | number   | 是   | 文本选择区域起始位置，文本框中文字的起始位置为0。<br/>当selectionStart小于0时，按0处理；当selectionStart大于文字最大长度时，按照文字最大长度处理。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| selectionEnd   | number   | 是   | 文本选择区域结束位置。<br/>当selectionEnd小于0时，按0处理；当selectionEnd大于文字最大长度时，按照文字最大长度处理。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | options<sup>12+</sup>   | [SelectionOptions](ts-types.md#selectionoptions12对象说明) | 否    | 选中文字时的配置。<br />默认值：MenuPolicy.DEFAULT<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 >  **说明：**
@@ -1233,9 +1251,9 @@ type TextAreaSubmitCallback = (enterKeyType: EnterKeyType, event?: SubmitEvent) 
 @Entry
 @Component
 struct TextAreaExample {
-  @State text: string = ''
-  @State positionInfo: CaretOffset = { index: 0, x: 0, y: 0 }
-  controller: TextAreaController = new TextAreaController()
+  @State text: string = '';
+  @State positionInfo: CaretOffset = { index: 0, x: 0, y: 0 };
+  controller: TextAreaController = new TextAreaController();
 
   build() {
     Column() {
@@ -1252,7 +1270,7 @@ struct TextAreaExample {
         .fontColor('#182431')
         .backgroundColor('#FFFFFF')
         .onChange((value: string) => {
-          this.text = value
+          this.text = value;
         })
       Text(this.text)
       Button('Set caretPosition 1')
@@ -1260,13 +1278,13 @@ struct TextAreaExample {
         .margin(15)
         .onClick(() => {
           // 设置光标位置到第一个字符后
-          this.controller.caretPosition(1)
+          this.controller.caretPosition(1);
         })
       Button('Get CaretOffset')
         .backgroundColor('#007DFF')
         .margin(15)
         .onClick(() => {
-          this.positionInfo = this.controller.getCaretOffset()
+          this.positionInfo = this.controller.getCaretOffset();
         })
     }.width('100%').height('100%').backgroundColor('#F1F3F5')
   }
@@ -1284,8 +1302,8 @@ struct TextAreaExample {
 @Entry
 @Component
 struct TextAreaExample {
-  @State text: string = ''
-  controller: TextAreaController = new TextAreaController()
+  @State text: string = '';
+  controller: TextAreaController = new TextAreaController();
 
   build() {
     Column() {
@@ -1307,7 +1325,7 @@ struct TextAreaExample {
           //如果用户当前输入字符数达到最大字符限制乘50%（thresholdPercentage）。字符计数器显示。
           //用户设置highlightBorder为false时，配置取消红色边框。不设置此参数时，默认为true。
         .onChange((value: string) => {
-          this.text = value
+          this.text = value;
         })
     }.width('100%').height('100%').backgroundColor('#F1F3F5')
   }
@@ -1326,22 +1344,22 @@ struct TextAreaExample {
 @Entry
 @Component
 struct TextAreaExample {
-  controller: TextAreaController = new TextAreaController()
-  @State inputValue: string = ""
+  controller: TextAreaController = new TextAreaController();
+  @State inputValue: string = "";
 
   // 自定义键盘组件
   @Builder CustomKeyboardBuilder() {
     Column() {
       Button('x').onClick(() => {
         // 关闭自定义键盘
-        this.controller.stopEditing()
+        this.controller.stopEditing();
       })
       Grid() {
         ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, '*', 0, '#'], (item: number | string) => {
           GridItem() {
             Button(item + "")
               .width(110).onClick(() => {
-              this.inputValue += item
+              this.inputValue += item;
             })
           }
         })
@@ -1351,7 +1369,7 @@ struct TextAreaExample {
 
   build() {
     Column() {
-      TextArea({ controller: this.controller, text: this.inputValue})
+      TextArea({ controller: this.controller, text: this.inputValue })
         // 绑定自定义键盘
         .customKeyboard(this.CustomKeyboardBuilder()).margin(10).border({ width: 1 })
         .height(200)
@@ -1371,11 +1389,11 @@ struct TextAreaExample {
 @Entry
 @Component
 struct TextAreaExample {
-  @State text: string = ''
+  @State text: string = '';
   @State enterTypes: Array<EnterKeyType> =
     [EnterKeyType.Go, EnterKeyType.Search, EnterKeyType.Send, EnterKeyType.Done, EnterKeyType.Next,
-      EnterKeyType.PREVIOUS, EnterKeyType.NEW_LINE]
-  @State index: number = 0
+      EnterKeyType.PREVIOUS, EnterKeyType.NEW_LINE];
+  @State index: number = 0;
 
   build() {
     Column({ space: 20 }) {
@@ -1383,7 +1401,7 @@ struct TextAreaExample {
         .width(380)
         .enterKeyType(this.enterTypes[this.index])
         .onChange((value: string) => {
-          this.text = value
+          this.text = value;
         })
         .onSubmit((enterKey: EnterKeyType) => {
           console.log("trigger area onsubmit" + enterKey);
@@ -1503,8 +1521,8 @@ struct TextAreaExample {
 @Entry
 @Component
 struct TextAreaExample {
-  @State text1: string = 'This is ss01 on : 0123456789'
-  @State text2: string = 'This is ss01 off: 0123456789'
+  @State text1: string = 'This is ss01 on : 0123456789';
+  @State text2: string = 'This is ss01 off: 0123456789';
 
   build() {
     Column() {
@@ -1533,10 +1551,10 @@ struct TextAreaExample {
 @Entry
 @Component
 struct TextAreaExample {
-  controller: TextAreaController = new TextAreaController()
-  @State inputValue: string = ""
-  @State height1: string | number = '80%'
-  @State height2: number = 100
+  controller: TextAreaController = new TextAreaController();
+  @State inputValue: string = "";
+  @State height1: string | number = '80%';
+  @State height2: number = 100;
   @State supportAvoidance: boolean = true;
 
   // 自定义键盘组件
@@ -1546,7 +1564,7 @@ struct TextAreaExample {
       Row() {
         Button('x').onClick(() => {
           // 关闭自定义键盘
-          this.controller.stopEditing()
+          this.controller.stopEditing();
         }).margin(10)
       }
 
@@ -1555,7 +1573,7 @@ struct TextAreaExample {
           GridItem() {
             Button(item + "")
               .width(110).onClick(() => {
-              this.inputValue += item
+              this.inputValue += item;
             })
           }
         })
@@ -1569,13 +1587,13 @@ struct TextAreaExample {
         Button("20%")
           .fontSize(24)
           .onClick(() => {
-            this.height1 = "20%"
+            this.height1 = "20%";
           })
         Button("80%")
           .fontSize(24)
           .margin({ left: 20 })
           .onClick(() => {
-            this.height1 = "80%"
+            this.height1 = "80%";
           })
       }
       .justifyContent(FlexAlign.Center)
@@ -1642,7 +1660,7 @@ struct TextAreaExample {
 
 ```ts
 // xxx.ets
-import { LengthMetrics } from '@kit.ArkUI'
+import { LengthMetrics } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -1683,7 +1701,7 @@ struct TextAreaExample {
 @Entry
 @Component
 struct TextAreaExample {
-  @State text: string = ''
+  @State text: string = '';
 
   build() {
     Column() {
@@ -1722,11 +1740,11 @@ struct TextAreaExample {
   @State message1: string =
     "They can be classified as built-in components–those directly provided by the ArkUI framework and custom components – those defined by developers" +
       "The built-in components include buttons radio buttonsprogress indicators and text You can set the rendering effectof thesecomponents in method chaining mode," +
-      "page components are divided into independent UI units to implementindependent creation development and reuse of different units on pages making pages more engineering-oriented."
-  @State lineBreakStrategyIndex: number = 0
+      "page components are divided into independent UI units to implementindependent creation development and reuse of different units on pages making pages more engineering-oriented.";
+  @State lineBreakStrategyIndex: number = 0;
   @State lineBreakStrategy: LineBreakStrategy[] =
-    [LineBreakStrategy.GREEDY, LineBreakStrategy.HIGH_QUALITY, LineBreakStrategy.BALANCED]
-  @State lineBreakStrategyStr: string[] = ['GREEDY', 'HIGH_QUALITY', 'BALANCED']
+    [LineBreakStrategy.GREEDY, LineBreakStrategy.HIGH_QUALITY, LineBreakStrategy.BALANCED];
+  @State lineBreakStrategyStr: string[] = ['GREEDY', 'HIGH_QUALITY', 'BALANCED'];
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start }) {
@@ -1739,9 +1757,9 @@ struct TextAreaExample {
         .lineBreakStrategy(this.lineBreakStrategy[this.lineBreakStrategyIndex])
       Row() {
         Button('当前lineBreakStrategy模式：' + this.lineBreakStrategyStr[this.lineBreakStrategyIndex]).onClick(() => {
-          this.lineBreakStrategyIndex++
+          this.lineBreakStrategyIndex++;
           if (this.lineBreakStrategyIndex > (this.lineBreakStrategyStr.length - 1)) {
-            this.lineBreakStrategyIndex = 0
+            this.lineBreakStrategyIndex = 0;
           }
         })
       }.padding({ top: 10 })
@@ -1761,11 +1779,11 @@ struct TextAreaExample {
 @Entry
 @Component
 struct TextAreaExample {
-  @State insertValue: string = ""
-  @State deleteValue: string = ""
-  @State insertOffset: number = 0
-  @State deleteOffset: number = 0
-  @State deleteDirection: number = 0
+  @State insertValue: string = "";
+  @State deleteValue: string = "";
+  @State insertOffset: number = 0;
+  @State deleteOffset: number = 0;
+  @State deleteDirection: number = 0;
 
   build() {
     Row() {
@@ -1774,11 +1792,11 @@ struct TextAreaExample {
           .width(300)
           .height(60)
           .onWillInsert((info: InsertValue) => {
-            this.insertValue = info.insertValue
+            this.insertValue = info.insertValue;
             return true;
           })
           .onDidInsert((info: InsertValue) => {
-            this.insertOffset = info.insertOffset
+            this.insertOffset = info.insertOffset;
           })
 
         Text("insertValue:" + this.insertValue + "  insertOffset:" + this.insertOffset).height(30)
@@ -1787,13 +1805,13 @@ struct TextAreaExample {
           .width(300)
           .height(60)
           .onWillDelete((info: DeleteValue) => {
-            this.deleteValue = info.deleteValue
-            info.direction
+            this.deleteValue = info.deleteValue;
+            info.direction;
             return true;
           })
           .onDidDelete((info: DeleteValue) => {
-            this.deleteOffset = info.deleteOffset
-            this.deleteDirection = info.direction
+            this.deleteOffset = info.deleteOffset;
+            this.deleteDirection = info.direction;
           })
 
         Text("deleteValue:" + this.deleteValue + "  deleteOffset:" + this.deleteOffset).height(30)
@@ -1817,40 +1835,40 @@ struct TextAreaExample {
 @Entry
 @Component
 struct TextAreaExample {
-  @State text: string = 'TextArea editMenuOptions'
+  @State text: string = 'TextArea editMenuOptions';
   onCreateMenu = (menuItems: Array<TextMenuItem>) => {
     let item1: TextMenuItem = {
       content: 'custom1',
       icon: $r('app.media.startIcon'),
       id: TextMenuItemId.of('custom1'),
-    }
+    };
     let item2: TextMenuItem = {
       content: 'custom2',
       id: TextMenuItemId.of('custom2'),
       icon: $r('app.media.startIcon'),
-    }
+    };
     menuItems.push(item1)
     menuItems.unshift(item2)
     return menuItems
-  }
+  };
   onMenuItemClick = (menuItem: TextMenuItem, textRange: TextRange) => {
     if (menuItem.id.equals(TextMenuItemId.of("custom2"))) {
-      console.log("拦截 id: custom2 start:" + textRange.start + "; end:" + textRange.end)
-      return true
+      console.log("拦截 id: custom2 start:" + textRange.start + "; end:" + textRange.end);
+      return true;
     }
     if (menuItem.id.equals(TextMenuItemId.COPY)) {
-      console.log("拦截 COPY start:" + textRange.start + "; end:" + textRange.end)
-      return true
+      console.log("拦截 COPY start:" + textRange.start + "; end:" + textRange.end);
+      return true;
     }
     if (menuItem.id.equals(TextMenuItemId.SELECT_ALL)) {
-      console.log("不拦截 SELECT_ALL start:" + textRange.start + "; end:" + textRange.end)
-      return false
+      console.log("不拦截 SELECT_ALL start:" + textRange.start + "; end:" + textRange.end);
+      return false;
     }
-    return false
+    return false;
   }
   @State editMenuOptions: EditMenuOptions = {
     onCreateMenu: this.onCreateMenu, onMenuItemClick: this.onMenuItemClick
-  }
+  };
 
   build() {
     Column() {
@@ -1877,24 +1895,24 @@ struct TextAreaExample {
 @Entry
 @Component
 struct EllipsisModeExample {
-  @State textIndex: number = 0
+  @State textIndex: number = 0;
   @State text: string = "As the sun begins to set, casting a warm golden hue across the sky," +
     "the world seems to slow down and breathe a sigh of relief. The sky is painted with hues of orange, " +
     " pink, and lavender, creating a breath taking tapestry that stretches as far as the eye can see." +
-    "The air is filled with the sweet scent of blooming flowers, mingling with the earthy aroma of freshly turned soil."
-  @State ellipsisModeIndex: number = 0
+    "The air is filled with the sweet scent of blooming flowers, mingling with the earthy aroma of freshly turned soil.";
+  @State ellipsisModeIndex: number = 0;
   @State ellipsisMode: (EllipsisMode | undefined | null)[] =
-    [EllipsisMode.START, EllipsisMode.END, EllipsisMode.CENTER, undefined, null]
-  @State ellipsisModeStr: string[] = ['START ', 'END', 'CENTER', 'undefined', 'null']
-  @State textOverflowIndex: number = 0
-  @State textOverflow: TextOverflow[] = [TextOverflow.Ellipsis, TextOverflow.Clip]
-  @State textOverflowStr: string[] = ['Ellipsis', 'Clip']
-  @State maxLinesIndex: number = 0
-  @State maxLines: number[] = [1, 2, 3]
-  @State maxLinesStr: string[] = ['1', '2', '3']
-  @State styleAreaIndex: number = 0
-  @State styleArea: TextContentStyle[] = [TextContentStyle.INLINE, TextContentStyle.DEFAULT]
-  @State styleAreaStr: string[] = ['Inline', 'Default']
+    [EllipsisMode.START, EllipsisMode.END, EllipsisMode.CENTER, undefined, null];
+  @State ellipsisModeStr: string[] = ['START ', 'END', 'CENTER', 'undefined', 'null'];
+  @State textOverflowIndex: number = 0;
+  @State textOverflow: TextOverflow[] = [TextOverflow.Ellipsis, TextOverflow.Clip];
+  @State textOverflowStr: string[] = ['Ellipsis', 'Clip'];
+  @State maxLinesIndex: number = 0;
+  @State maxLines: number[] = [1, 2, 3];
+  @State maxLinesStr: string[] = ['1', '2', '3'];
+  @State styleAreaIndex: number = 0;
+  @State styleArea: TextContentStyle[] = [TextContentStyle.INLINE, TextContentStyle.DEFAULT];
+  @State styleAreaStr: string[] = ['Inline', 'Default'];
 
   build() {
     Column() {
@@ -1907,28 +1925,27 @@ struct EllipsisModeExample {
         .margin(30)
 
       Button('更改ellipsisMode模式：' + this.ellipsisModeStr[this.ellipsisModeIndex]).onClick(() => {
-        this.ellipsisModeIndex++
+        this.ellipsisModeIndex++;
         if (this.ellipsisModeIndex > (this.ellipsisModeStr.length - 1)) {
-          this.ellipsisModeIndex = 0
+          this.ellipsisModeIndex = 0;
         }
       }).fontSize(20)
       Button('更改textOverflow模式：' + this.textOverflowStr[this.textOverflowIndex]).onClick(() => {
-        this.textOverflowIndex++
+        this.textOverflowIndex++;
         if (this.textOverflowIndex > (this.textOverflowStr.length - 1)) {
-          this.textOverflowIndex = 0
+          this.textOverflowIndex = 0;
         }
       }).fontSize(20)
       Button('更改maxLines大小：' + this.maxLinesStr[this.maxLinesIndex]).onClick(() => {
-        this.maxLinesIndex++
+        this.maxLinesIndex++;
         if (this.maxLinesIndex > (this.maxLinesStr.length - 1)) {
-          this.maxLinesIndex = 0
+          this.maxLinesIndex = 0;
         }
       }).fontSize(20)
       Button('更改Style大小：' + this.styleAreaStr[this.styleAreaIndex]).onClick(() => {
-
-        this.styleAreaIndex++
+        this.styleAreaIndex++;
         if (this.styleAreaIndex > (this.styleAreaStr.length - 1)) {
-          this.styleAreaIndex = 0
+          this.styleAreaIndex = 0;
         }
       }).fontSize(20)
     }.height(600).width('100%').padding({ left: 35, right: 35, top: 35 })
@@ -1940,15 +1957,15 @@ struct EllipsisModeExample {
 
 ### 示例16（自定义复制、剪切、粘贴）
 
-该示例展示如何监听文本选择菜单的复制、剪切、粘贴按钮，如何屏蔽系统粘贴功能并实现自定义的粘贴能力。
+该示例展示如何监听文本选择菜单的复制、剪切、粘贴按钮，以及如何屏蔽系统粘贴功能并实现自定义的粘贴能力。
 
 ```ts
 // xxx.ets
 @Entry
 @Component
 struct TextAreaExample {
-  @State text: string = ''
-  controller: TextAreaController = new TextAreaController()
+  @State text: string = '';
+  controller: TextAreaController = new TextAreaController();
 
   build() {
     Column() {
@@ -1965,7 +1982,7 @@ struct TextAreaExample {
         .fontWeight(FontWeight.Bold)
         .fontFamily('HarmonyOS Sans')
         .inputFilter('[a-zA-Z]+', (value) => { // 只允许字母输入
-          console.error(`unsupport char ${value}`)
+          console.error(`unsupport char ${value}`);
         })
         .copyOption(CopyOptions.LocalDevice)
         .enableKeyboardOnFocus(false)
@@ -1985,27 +2002,27 @@ struct TextAreaExample {
         .margin(20)
         .fontSize(16)
         .onEditChange((isEditing: boolean) => {
-          console.log(`isEditing ${isEditing}`)
+          console.log(`isEditing ${isEditing}`);
         })
         .onCopy((value) => {
-          console.log(`copy ${value}`)
+          console.log(`copy ${value}`);
         })
         .onCut((value) => {
-          console.log(`cut ${value}`)
+          console.log(`cut ${value}`);
         })
         .onPaste((value, event) => {
           // 阻止系统粘贴功能，开发者可自行实现
           if (event.preventDefault) {
-            event.preventDefault()
+            event.preventDefault();
           }
-          console.log(`paste:${value}`)
-          this.text = value
+          console.log(`paste:${value}`);
+          this.text = value;
         })
         .onTextSelectionChange((start: number, end: number) => {
-          console.log(`onTextSelectionChange start ${start}, end ${end}`)
+          console.log(`onTextSelectionChange start ${start}, end ${end}`);
         })
         .onContentScroll((totalOffsetX: number, totalOffsetY: number) => {
-          console.log(`onContentScroll offsetX ${totalOffsetX}, offsetY ${totalOffsetY}`)
+          console.log(`onContentScroll offsetX ${totalOffsetX}, offsetY ${totalOffsetY}`);
         })
     }.width('100%').height('100%').backgroundColor('#F1F3F5')
   }
@@ -2017,49 +2034,21 @@ struct TextAreaExample {
 
 该示例通过minFontScale、maxFontScale设置字体显示最小与最大范围。
 
-```ts
-import { abilityManager, Configuration } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-// xxx.ets
-@Entry
-@Component
-export struct TextAreaExample11 {
-  @State minFontScale: number = 0.85;
-  @State maxFontScale: number = 2;
-  @State changeValue: string = 'abcde';
-
-  build() {
-    Column() {
-      Column({ space: 30 }) {
-        Text("系统字体变大变小，变大变小aaaaaaaAAAAAA")
-        TextArea({
-          placeholder: 'The text area can hold an unlimited amount of text. input your word...',
-        })
-        //设置最小字体缩放倍数，参数为undefined则跟随系统默认倍数缩放。
-          .minFontScale(0.85)
-          //设置最大字体缩放倍数，参数为undefined则跟随系统默认倍数缩放。
-          .maxFontScale(2)
-      }.width('100%')
-    }
+```json
+// 开启应用缩放跟随系统
+// AppScope/resources/base，新建文件夹profile。
+// AppScope/resources/base/profile，新建文件configuration.json。
+// AppScope/resources/base/profile/configuration.json，增加如下代码。
+{
+  "configuration": {
+    "fontSizeScale": "followSystem",
+    "fontSizeMaxScale": "3.2"
   }
 }
 ```
 
-```ts
-路径：AppScope/resources/base，新建文件夹profile。
-路径：AppScope/resources/base/profile，新建文件configuration.json。
-路径：AppScope/resources/base/profile/configuration.json，增加如下代码。
-{
-  "configuration":{
-    "fontSizeScale": "followSystem",
-    "fontSizeMaxScale": "3.2"
-}
-}
-```
-
-```ts
-路径：AppScope/app.json5，修改如下代码。
+```json
+// AppScope/app.json5，修改如下代码。
 {
   "app": {
     "bundleName": "com.example.myapplication",
@@ -2072,3 +2061,67 @@ export struct TextAreaExample11 {
   }
 }
 ```
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextAreaExample {
+  @State minFontScale: number = 0.85;
+  @State maxFontScale: number = 2;
+
+  build() {
+    Column() {
+      Column({ space: 30 }) {
+        Text("系统字体变大变小，变大变小aaaaaaaAAAAAA")
+        TextArea({
+          placeholder: 'The text area can hold an unlimited amount of text. input your word...',
+        })
+          .minFontScale(this.minFontScale)// 设置最小字体缩放倍数，参数为undefined则跟随系统默认倍数缩放
+          .maxFontScale(this.maxFontScale)// 设置最大字体缩放倍数，参数为undefined则跟随系统默认倍数缩放
+      }.width('100%')
+    }
+  }
+}
+```
+
+### 示例18（设置选中指定区域的文本内容）
+
+该示例通过setTextSelection方法展示如何设置选中指定区域的文本内容以及菜单的显隐策略。
+
+```ts
+// xxx.ets
+
+@Entry
+@Component
+struct TextAreaExample {
+  controller: TextAreaController = new TextAreaController();
+  @State startIndex: number = 0;
+  @State endIndex: number = 0;
+
+  build() {
+    Column({ space: 3 }) {
+      Text('Selection start:' + this.startIndex + ' end:' + this.endIndex)
+      TextArea({ text: 'Hello World', controller: this.controller })
+        .width('95%')
+        .height(80)
+        .margin(10)
+        .defaultFocus(true)
+        .enableKeyboardOnFocus(true)
+        .onTextSelectionChange((selectionStart: number, selectionEnd: number) => {
+          this.startIndex = selectionStart;
+          this.endIndex = selectionEnd;
+        })
+
+      Button('setTextSelection [0,3], set menuPolicy is MenuPolicy.SHOW')
+        .onClick(() => {
+          this.controller.setTextSelection(0, 3, { menuPolicy: MenuPolicy.SHOW });
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+![textAreaSetTextSelection](figures/textAreaSetTextSelection.gif)

@@ -14,9 +14,9 @@ ArkTS Runtime主要由四个子系统组成：
 
   - 内存管理：对象分配器与[垃圾回收器](gc-introduction.md)（并发标记和部分内存压缩的CMS-GC和Partial-Compressing-GC）。
 
-  - 分析工具：DFX工具、cpu和heap的profiling工具。
+  - 分析工具：DFX工具、CPU和heap的profiling工具。
 
-  - 并发管理：Actor并发模型中的abc文件管理器。
+  - 并发管理：Actor并发模型中的方舟字节码文件管理器。
 
   - 标准库：ECMAScript规范定义的标准库、高效的container容器库与对象模型。
   

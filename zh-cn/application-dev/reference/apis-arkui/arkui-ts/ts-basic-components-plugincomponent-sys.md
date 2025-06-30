@@ -20,13 +20,17 @@ PluginComponent(options: PluginComponentOptions)
 
 创建插件组件，用于显示外部应用提供的UI。
 
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数名  | 参数类型                                                     | 必填 | 参数描述                                                     |
+| 参数名  | 类型                                                     | 必填 | 说明                                                     |
 | ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [PluginComponentOptions](#plugincomponentoptions14类型说明) | 是   | 定义用于构造插件组件的选项。 |
+| options | [PluginComponentOptions](#plugincomponentoptions18类型说明) | 是   | 定义用于构造插件组件的选项。 |
 
-## PluginComponentOptions<sup>14+</sup>类型说明
+## PluginComponentOptions<sup>18+</sup>类型说明
 
 定义用于构造插件组件的选项。
 
@@ -50,11 +54,11 @@ PluginComponent(options: PluginComponentOptions)
 * 1.使用绝对路径进行资源提供：source字段填写模板绝对路径，bundleName不需要填写。仅适用于不需要加载资源的单独模板页面，不建议使用。
 * 2.通过应用包进行资源提供：bundleName字段需要填写应用包名；source字段填写相对hap包的模板相对路径，对于多hap场景，通过“相对路径&模块名称”的方式进行hap包的确认。
 
-  例如：{source：'pages/PluginProviderExample.ets&entry', bundleName:'com.example.provider'}
+  例如：{source: 'pages/PluginProviderExample.ets&entry', bundleName: 'com.example.provider'}
 
   仅对FA模型支持source字段填写AbilityName、bundleName字段填写应用包名的方式进行资源提供。
 
-  例如：{source：'plugin', bundleName:'com.example.provider'}
+  例如：{source: 'plugin', bundleName: 'com.example.provider'}
 
 
 ## 事件
@@ -73,9 +77,15 @@ onComplete(callback:&nbsp;VoidCallback)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：**
+
+| 参数名  | 类型                                                     | 必填 | 说明                                                     |
+| ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| callback | [VoidCallback](../../apis-basic-services-kit/js-apis-base.md#callback) | 是   | 回调函数，组件加载完成时触发的回调。 |
+
 ### onError
 
-onError(callback:&nbsp;{info:&nbsp;PluginErrorCallback})
+onError(callback:&nbsp;PluginErrorCallback)
 
 组件加载错误时触发回调。
 
@@ -87,17 +97,17 @@ onError(callback:&nbsp;{info:&nbsp;PluginErrorCallback})
 
 | 参数名    | 类型                                                         | 必填 | 说明                                            |
 | --------- | ------------------------------------------------------------ | ---- | ----------------------------------------------- |
-| callback  | [PluginErrorCallback](#pluginerrorcallback14类型说明)          | 是   | 发生错误时调用回调。 |
+| callback  | [PluginErrorCallback](#pluginerrorcallback18类型说明)          | 是   | 发生错误时调用回调。 |
 
-## PluginErrorCallback<sup>14+</sup>类型说明
+## PluginErrorCallback<sup>18+</sup>类型说明
 
 发生错误时调用回调。
 
 | 参数     | 类型               | 描述                        |
 | -------- | ------------------ | --------------------------- |
-| info     | [PluginErrorData](#pluginerrordata14类型说明)  | 发生错误时提供的数据。 |
+| info     | [PluginErrorData](#pluginerrordata18类型说明)  | 发生错误时提供的数据。 |
 
-## PluginErrorData<sup>14+</sup>类型说明
+## PluginErrorData<sup>18+</sup>类型说明
 
 发生错误时提供的数据。
 
@@ -105,6 +115,20 @@ onError(callback:&nbsp;{info:&nbsp;PluginErrorCallback})
 | ---------- | ------ | -------------------------- |
 | errcode    | number | 错误码。                    |
 | msg        | string | 错误信息。                  |
+
+错误码1为默认错误码，错误信息和处理建议详见下表：
+
+| 错误信息   | 描述                        | 处理建议 |
+| ------ | -------------------------- | ----------------- |
+| package path is empty. | 包路径为空。 | 检查PluginComponentTemplate参数中source字段是否有误。  |
+| Query Active OsAccountIds failed! | 获取激活的用户ID失败。 | 检查Account服务是否异常，或检查应用是否具备用户ID查询权限。    |
+| Template source is empty. | 模板source为空。 | 检查PluginComponentTemplate参数中source字段是否有误。  |
+| Bms bundleManager is nullptr. | 获取BundleManager失败。 |  检查BMS服务是否异常，或检查应用是否具备ohos.permission.GET_BUNDLE_INFO_PRIVILEGED,ohos.permission.GET_BUNDLE_INFO,ohos.permission.REQUIRE_FORM权限。                  |
+| App bundleName is empty. | 应用包名为空。  | 检查PluginComponentTemplate参数中bundleName字段是否有误。                   |
+| Bms get bundleName failed! | 获取包名失败。  |  检查PluginComponentTemplate参数中bundleName字段是否有误，或检查bundleName字段对应的包是否已正确安装，或检查BMS服务是否异常，或检查应用是否具备ohos.permission.GET_BUNDLE_INFO_PRIVILEGED,ohos.permission.GET_BUNDLE_INFO,ohos.permission.REQUIRE_FORM权限。                |
+| Bms moduleResPaths is empty. | 插件包moduleResPaths属性为空。 |  检查bundleName字段对应的包的moduleResPaths属性是否异常，或检查BMS服务是否异常                   |
+| Bms get hapPath failed! Cannot find hap according to BundleName and ModuleName! | 获取hapPath失败。  |   检查PluginComponentTemplate参数中bundleName字段是否有误，检查bundleName字段对应的模块是否已正确安装。               |
+
 
 ## 示例（加载PluginComponent）
 
@@ -120,7 +144,7 @@ onError(callback:&nbsp;{info:&nbsp;PluginErrorCallback})
 使用方应用的`bundleName`为"com.example.user"，包含一个页面。
 - `EntryAbility(UIAbility)`加载入口页面文件`ets/pages/Index.ets`，`Index.ets`内容如下：
   ```ts
-  import plugin from "./plugin_component"
+  import plugin from "./plugin_component";
 
   interface Info {
     errcode: number,
@@ -141,8 +165,8 @@ onError(callback:&nbsp;{info:&nbsp;PluginErrorCallback})
           .height(100)
           .margin({ top: 20 })
           .onClick(() => {
-            plugin.onListener()
-            console.log("Button('Register Push Listener')")
+            plugin.onListener();
+            console.info("Button('Register Push Listener')");
           })
         Button('Request')
           .fontSize(50)
@@ -150,8 +174,8 @@ onError(callback:&nbsp;{info:&nbsp;PluginErrorCallback})
           .height(100)
           .margin({ top: 20 })
           .onClick(() => {
-            plugin.Request()
-            console.log("Button('Request')")
+            plugin.Request();
+            console.info("Button('Request')");
           })
         PluginComponent({
           // 提供方
@@ -159,10 +183,10 @@ onError(callback:&nbsp;{info:&nbsp;PluginErrorCallback})
           data: { 'countDownStartValue': 'new countDownStartValue' }
         }).size({ width: 500, height: 350 })
           .onComplete(() => {
-            console.log("onComplete")
+            console.info("onComplete");
           })
           .onError((info: Info) => {
-            console.log("onComplete" + info.errcode + ":" + info.msg)
+            console.info("onComplete" + info.errcode + ":" + info.msg);
           })
       }
       .width('100%')
@@ -191,12 +215,12 @@ onError(callback:&nbsp;{info:&nbsp;PluginErrorCallback})
 提供方应用的`bundleName`为"com.example.provider"，包含一个页面。
 - `EntryAbility(UIAbility)`加载入口页面文件`ets/pages/Index.ets`，`Index.ets`内容如下：
   ```ts
-  import plugin from "./plugin_component"
+  import plugin from "./plugin_component";
 
   @Entry
   @Component
   struct PluginProviderExample {
-    @State message: string = 'no click!'
+    @State message: string = 'no click!';
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -206,8 +230,8 @@ onError(callback:&nbsp;{info:&nbsp;PluginErrorCallback})
           .height(100)
           .margin({ top: 20 })
           .onClick(() => {
-            plugin.onListener()
-            console.log("Button('Register Request Listener')")
+            plugin.onListener();
+            console.info("Button('Register Request Listener')");
           })
         Button('Push')
           .fontSize(30)
@@ -215,9 +239,9 @@ onError(callback:&nbsp;{info:&nbsp;PluginErrorCallback})
           .height(100)
           .margin({ top: 20 })
           .onClick(() => {
-            plugin.Push()
-            this.message = "Button('Push')"
-            console.log("Button('Push')")
+            plugin.Push();
+            this.message = "Button('Push')";
+            console.info("Button('Push')");
           })
         Text(this.message)
           .height(150)
@@ -245,17 +269,17 @@ var providerName = 'Index'
 
 // push事件监听
 function onPushListener(source, template, data, extraData) {
-    console.log("onPushListener template.source=" + template.source)
-    console.log("onPushListener template.ability=" + template.ability)
-    console.log("onPushListener data=" + JSON.stringify(data))
-    console.log("onPushListener extraData=" + JSON.stringify(extraData))
+    console.info("onPushListener template.source=" + template.source)
+    console.info("onPushListener template.ability=" + template.ability)
+    console.info("onPushListener data=" + JSON.stringify(data))
+    console.info("onPushListener extraData=" + JSON.stringify(extraData))
 }
 
 // request事件监听
 function onRequestListener(source, name, data)
 {
-    console.log("onRequestListener name=" + name);
-    console.log("onRequestListener data=" + JSON.stringify(data));
+    console.info("onRequestListener name=" + name);
+    console.info("onRequestListener data=" + JSON.stringify(data));
     return {template:"pluginTemplate", data:data};
 }
 
@@ -284,7 +308,7 @@ export default {
                 jsonPath: "",
             },
             (err, data) => {
-                console.log("push_callback: push ok!");
+                console.info("push_callback: push ok!");
             }
         )
     },
@@ -303,10 +327,10 @@ export default {
             jsonPath: "",
         },
             (err, data) => {
-                console.log("request_callback: componentTemplate.ability=" + data.componentTemplate.ability)
-                console.log("request_callback: componentTemplate.source=" + data.componentTemplate.source)
-                console.log("request_callback: data=" + JSON.stringify(data.data))
-                console.log("request_callback: extraData=" + JSON.stringify(data.extraData))
+                console.info("request_callback: componentTemplate.ability=" + data.componentTemplate.ability)
+                console.info("request_callback: componentTemplate.source=" + data.componentTemplate.source)
+                console.info("request_callback: data=" + JSON.stringify(data.data))
+                console.info("request_callback: extraData=" + JSON.stringify(data.extraData))
             }
         )
     }
@@ -326,16 +350,16 @@ var providerName = 'Index'
 
 // push事件监听
 function onPushListener(source, template, data, extraData) {
-    console.log("onPushListener template.source=" + template.source)
-    console.log("onPushListener template.ability=" + template.ability)
-    console.log("onPushListener data=" + JSON.stringify(data))
-    console.log("onPushListener extraData=" + JSON.stringify(extraData))
+    console.info("onPushListener template.source=" + template.source)
+    console.info("onPushListener template.ability=" + template.ability)
+    console.info("onPushListener data=" + JSON.stringify(data))
+    console.info("onPushListener extraData=" + JSON.stringify(extraData))
 }
 
 // request事件监听
 function onRequestListener(source, name, data) {
-    console.log("onRequestListener name=" + name)
-    console.log("onRequestListener data=" + JSON.stringify(data))
+    console.info("onRequestListener name=" + name)
+    console.info("onRequestListener data=" + JSON.stringify(data))
     return { template: "pluginTemplate", data: data }
 }
 
@@ -368,7 +392,7 @@ export default {
                 jsonPath: "",
             },
             (err, data) => {
-                console.log("push_callback: push ok!");
+                console.info("push_callback: push ok!");
             }
         )
     },
@@ -391,10 +415,10 @@ export default {
             jsonPath: "",
         },
             (err, data) => {
-                console.log("request_callback: componentTemplate.ability=" + data.componentTemplate.ability)
-                console.log("request_callback: componentTemplate.source=" + data.componentTemplate.source)
-                console.log("request_callback: data=" + JSON.stringify(data.data))
-                console.log("request_callback: extraData=" + JSON.stringify(data.extraData))
+                console.info("request_callback: componentTemplate.ability=" + data.componentTemplate.ability)
+                console.info("request_callback: componentTemplate.source=" + data.componentTemplate.source)
+                console.info("request_callback: data=" + JSON.stringify(data.data))
+                console.info("request_callback: extraData=" + JSON.stringify(data.extraData))
             }
         )
     }

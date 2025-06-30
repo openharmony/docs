@@ -1,6 +1,6 @@
 # 使用ImagePacker完成图片编码
 
-图片编码指将PixelMap编码成不同格式的存档图片，当前支持打包为JPEG、WebP、png和 HEIF(不同硬件设备支持情况不同) 格式，用于后续处理，如保存、传输等。
+图片编码指将PixelMap编码成不同格式的图片文件，当前支持编码为JPEG、WebP、PNG和 HEIF（不同硬件设备支持情况不同）格式，用于后续处理，如保存、传输等。
 
 ## 开发步骤
 
@@ -33,7 +33,18 @@
       packOpts.desiredDynamicRange = image.PackingDynamicRange.AUTO;
       ```
 
-3. [创建PixelMap对象或创建ImageSource对象](image-decoding.md)。
+3. 创建PixelMap对象或创建ImageSource对象。
+   ```ts
+   import { common } from '@kit.AbilityKit';
+
+   // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+   //此处'test.jpg'仅作示例，请开发者自行替换。否则imageSource会创建失败，导致后续无法正常执行。
+   const path: string = context.filesDir + "/test.jpg";
+   const imageSource: image.ImageSource = image.createImageSource(path);
+   let decodingOptions : image.DecodingOptions = { editable: true, desiredPixelFormat: image.PixelMapFormat.RGBA_8888 };
+   let pixelmap = imageSource.createPixelMapSync(decodingOptions);
+   ```
 
 4. 进行图片编码，并保存编码后的图片。
 
@@ -41,8 +52,8 @@
 
    ```ts
    import { BusinessError } from '@kit.BasicServicesKit';
-   imagePackerApi.packing(pixelMap, packOpts).then( (data : ArrayBuffer) => {
-     // data 为打包获取到的文件流，写入文件保存即可得到一张图片。
+   imagePackerApi.packToData(pixelMap, packOpts).then( (data : ArrayBuffer) => {
+     // data 为编码获取到的文件流，写入文件保存即可得到一张图片。
    }).catch((error : BusinessError) => { 
      console.error('Failed to pack the image. And the error is: ' + error); 
    })
@@ -52,8 +63,8 @@
 
    ```ts
    import { BusinessError } from '@kit.BasicServicesKit';
-   imagePackerApi.packing(imageSource, packOpts).then( (data : ArrayBuffer) => {
-       // data 为打包获取到的文件流，写入文件保存即可得到一张图片。
+   imagePackerApi.packToData(imageSource, packOpts).then( (data : ArrayBuffer) => {
+       // data 为编码获取到的文件流，写入文件保存即可得到一张图片。
    }).catch((error : BusinessError) => { 
      console.error('Failed to pack the image. And the error is: ' + error); 
    })
@@ -68,11 +79,10 @@
    ```ts
    import { BusinessError } from '@kit.BasicServicesKit';
    import { fileIo as fs } from '@kit.CoreFileKit';
-   const context : Context = getContext(this);
    const path : string = context.cacheDir + "/pixel_map.jpg";
    let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
    imagePackerApi.packToFile(pixelMap, file.fd, packOpts).then(() => {
-       // 直接打包进文件。
+       // 直接编码进文件。
    }).catch((error : BusinessError) => { 
      console.error('Failed to pack the image. And the error is: ' + error); 
    }).finally(()=>{
@@ -85,11 +95,10 @@
    ```ts
    import { BusinessError } from '@kit.BasicServicesKit';
    import { fileIo as fs } from '@kit.CoreFileKit';
-   const context : Context = getContext(this);
    const filePath : string = context.cacheDir + "/image_source.jpg";
    let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
    imagePackerApi.packToFile(imageSource, file.fd, packOpts).then(() => {
-       // 直接打包进文件。
+       // 直接编码进文件。
    }).catch((error : BusinessError) => { 
      console.error('Failed to pack the image. And the error is: ' + error); 
    }).finally(()=>{

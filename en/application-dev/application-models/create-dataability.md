@@ -1,5 +1,5 @@
 # Creating a DataAbility
-
+<!--deprecated_code_no_check-->
 
 To meet the basic requirements of the database storage service, implement the **Insert**, **Query**, **Update**, and **Delete** methods for a DataAbility. The **BatchInsert** and **ExecuteBatch** methods have already implemented the traversal logic, but not batch data processing.
 

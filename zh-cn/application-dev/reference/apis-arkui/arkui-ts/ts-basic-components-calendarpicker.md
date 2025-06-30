@@ -4,7 +4,9 @@
 
 >  **说明：**
 >
->  该组件从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 该组件从API version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> - 该组件不支持在Wearable设备上使用。
 
 
 ## 子组件
@@ -105,7 +107,7 @@ textStyle(style: Optional\<PickerTextStyle>)
 
 onChange(callback: Callback\<Date>)
 
-选择日期时触发该事件。
+选择日期时触发该事件。不能通过双向绑定的状态变量触发。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -121,7 +123,7 @@ onChange(callback: Callback\<Date>)
 
 onChange(callback: Optional\<Callback\<Date>>)
 
-选择日期时触发该事件。与[onChange](#onchange)相比，callback参数新增了对undefined类型的支持。
+选择日期时触发该事件。不能通过双向绑定的状态变量触发。与[onChange](#onchange)相比，callback参数新增了对undefined类型的支持。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -134,6 +136,8 @@ onChange(callback: Optional\<Callback\<Date>>)
 | callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[Callback](ts-types.md#callback12)\<Date>> | 是   | 选中的日期值。<br>当callback的值为undefined时，不使用回调函数。 |
 
 ##  CalendarOptions对象说明
+
+日历选择器组件的参数说明。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -159,11 +163,13 @@ onChange(callback: Optional\<Callback\<Date>>)
 
 ## CalendarAlign枚举说明
 
+对齐方式类型。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   | 描述                     |
+| 名称   | 说明                     |
 | ------ | ------------------------ |
 | START  | 设置选择器与入口组件左对齐的对齐方式。   |
 | CENTER | 设置选择器与入口组件居中对齐的对齐方式。 |
@@ -179,7 +185,7 @@ onChange(callback: Optional\<Callback\<Date>>)
 @Entry
 @Component
 struct CalendarPickerExample {
-  private selectedDate: Date = new Date('2024-03-05')
+  private selectedDate: Date = new Date('2024-03-05');
 
   build() {
     Column() {
@@ -189,7 +195,7 @@ struct CalendarPickerExample {
           .textStyle({ color: "#ff182431", font: { size: 20, weight: FontWeight.Normal } })
           .margin(10)
           .onChange((value) => {
-            console.info("CalendarPicker onChange:" + JSON.stringify(value))
+            console.info("CalendarPicker onChange:" + JSON.stringify(value));
           })
       }.alignItems(HorizontalAlign.End).width("100%")
 
@@ -210,9 +216,9 @@ struct CalendarPickerExample {
 @Entry
 @Component
 struct CalendarPickerExample {
-  private selectedDate: Date = new Date('2025-01-15')
-  private startDate: Date = new Date('2025-01-05')
-  private endDate: Date = new Date('2025-01-25')
+  private selectedDate: Date = new Date('2025-01-15');
+  private startDate: Date = new Date('2025-01-05');
+  private endDate: Date = new Date('2025-01-25');
 
   build() {
     Column() {
@@ -222,7 +228,7 @@ struct CalendarPickerExample {
           .textStyle({ color: "#ff182431", font: { size: 20, weight: FontWeight.Normal } })
           .margin(10)
           .onChange((value) => {
-            console.info("CalendarPicker onChange:" + JSON.stringify(value))
+            console.info("CalendarPicker onChange:" + JSON.stringify(value));
           })
       }.alignItems(HorizontalAlign.End).width("100%")
     }.width('100%').margin({ top: 350 })

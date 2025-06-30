@@ -114,7 +114,6 @@ constructor()
 
 | 错误码ID                     | 错误信息        |
 | ---------------------------- | ---------- |
-| 202 | Permission verification failed, application which is not a system application uses system API. |
 | 401 | The input parameter is invalid. Possible causes:Incorrect parameter types. |
 
 **示例：**
@@ -144,8 +143,6 @@ on(event: 'progress', callback: Callback\<SyncProgress>): void
 
 | 错误码ID                     | 错误信息        |
 | ---------------------------- | ---------- |
-| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
-| 202 | Permission verification failed, application which is not a system application uses system API. |
 | 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 
@@ -181,8 +178,6 @@ off(event: 'progress', callback?: Callback\<SyncProgress>): void
 
 | 错误码ID                     | 错误信息        |
 | ---------------------------- | ---------- |
-| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
-| 202 | Permission verification failed, application which is not a system application uses system API. |
 | 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 
@@ -204,7 +199,7 @@ off(event: 'progress', callback?: Callback\<SyncProgress>): void
 
 start(): Promise&lt;void&gt;
 
-异步方法启动云盘端云同步,以Promise形式返回结果。
+异步方法启动云盘端云同步，以Promise形式返回结果。
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
@@ -220,8 +215,6 @@ start(): Promise&lt;void&gt;
 
 | 错误码ID                     | 错误信息        |
 | ---------------------------- | ---------- |
-| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
-| 202 | Permission verification failed, application which is not a system application uses system API. |
 | 401 | The input parameter is invalid. Possible causes:Incorrect parameter types. |
 | 13600001  | IPC error. |
 | 22400001  | Cloud status not ready. |
@@ -251,7 +244,7 @@ start(): Promise&lt;void&gt;
 
 start(callback: AsyncCallback&lt;void&gt;): void
 
-异步方法启动云盘端云同步,以callback形式返回结果。
+异步方法启动云盘端云同步，以callback形式返回结果。
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
@@ -267,8 +260,6 @@ start(callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID                     | 错误信息        |
 | ---------------------------- | ---------- |
-| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
-| 202 | Permission verification failed, application which is not a system application uses system API. |
 | 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 | 22400001  | Cloud status not ready. |
@@ -294,7 +285,7 @@ start(callback: AsyncCallback&lt;void&gt;): void
 
 stop(): Promise&lt;void&gt;
 
-异步方法停止云盘端云同步,以Promise形式返回结果。
+异步方法停止云盘端云同步，以Promise形式返回结果。
 
 调用stop接口，同步流程会停止。再次调用[start](#start12)接口会继续同步。
 
@@ -312,8 +303,6 @@ stop(): Promise&lt;void&gt;
 
 | 错误码ID                     | 错误信息        |
 | ---------------------------- | ---------- |
-| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
-| 202 | Permission verification failed, application which is not a system application uses system API. |
 | 401 | The input parameter is invalid. Possible causes:Incorrect parameter types. |
 | 13600001  | IPC error. |
 
@@ -334,7 +323,7 @@ stop(): Promise&lt;void&gt;
 
 stop(callback: AsyncCallback&lt;void&gt;): void
 
-异步方法停止云盘端云同步,以callback形式返回结果。
+异步方法停止云盘端云同步，以callback形式返回结果。
 
 调用stop接口，同步流程会停止。再次调用[start](#start12)接口会继续同步。
 
@@ -352,8 +341,6 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID                     | 错误信息        |
 | ---------------------------- | ---------- |
-| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
-| 202 | Permission verification failed, application which is not a system application uses system API. |
 | 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 
@@ -376,7 +363,7 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 
 getLastSyncTime(): Promise&lt;number&gt;
 
-异步方法获取上次同步时间, 以promise形式返回结果。
+异步方法获取上次同步时间，以promise形式返回结果。
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
@@ -392,8 +379,6 @@ getLastSyncTime(): Promise&lt;number&gt;
 
 | 错误码ID                     | 错误信息        |
 | ---------------------------- | ---------- |
-| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
-| 202 | Permission verification failed, application which is not a system application uses system API. |
 | 401 | The input parameter is invalid. Possible causes:Incorrect parameter types. |
 | 13600001  | IPC error. |
 
@@ -416,7 +401,7 @@ getLastSyncTime(): Promise&lt;number&gt;
 
 getLastSyncTime(callback: AsyncCallback&lt;number&gt;): void
 
-异步方法获取上次同步时间, 以callback形式返回结果。
+异步方法获取上次同步时间，以callback形式返回结果。
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
@@ -432,8 +417,6 @@ getLastSyncTime(callback: AsyncCallback&lt;number&gt;): void
 
 | 错误码ID                     | 错误信息        |
 | ---------------------------- | ---------- |
-| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
-| 202 | Permission verification failed, application which is not a system application uses system API. |
 | 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 
@@ -789,7 +772,7 @@ registerChange(uri: string, recursion: boolean, callback: Callback&lt;ChangeData
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
 | uri | string | 是   | 待下载文件uri。 |
-| recursion | boolean | 是   | true为监听该uri以及子文件和子目录，false为仅监听该uri文件。|
+| recursion | boolean | 是   | true为监听该URI以及子文件和子目录，false为仅监听该URI文件。|
 | callback | Callback&lt;[ChangeData](#changedata12)&gt; | 是   | 返回更改的数据。 |
 
 **错误码：**
@@ -798,7 +781,6 @@ registerChange(uri: string, recursion: boolean, callback: Callback&lt;ChangeData
 
 | 错误码ID                     | 错误信息        |
 | ---------------------------- | ---------- |
-| 202 | Permission verification failed, application which is not a system application uses system API. |
 | 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13900001  | Operation not permitted. |
 | 13900002  | No such file or directory. |
@@ -811,7 +793,7 @@ registerChange(uri: string, recursion: boolean, callback: Callback&lt;ChangeData
   import { fileUri } from '@kit.CoreFileKit';
   let path = "/data/storage/el2/cloud/1.txt";
   let uri = fileUri.getUriFromPath(path);
-  let onCallback1 = (changeData: ChangeData) => {
+  let onCallback1 = (changeData: cloudSync.ChangeData) => {
     if (changeData.type == cloudSync.NotifyType.NOTIFY_ADDED) {
       //file had added, do something
     } else if (changeData.type== cloudSync.NotifyType.NOTIFY_DELETED) {
@@ -820,7 +802,7 @@ registerChange(uri: string, recursion: boolean, callback: Callback&lt;ChangeData
   }
   cloudSync.registerChange(uri, false, onCallback1);
   // 取消注册监听
-  cloudSync.unRegisterChange(uri);
+  cloudSync.unregisterChange(uri);
   ```
 
 ## cloudSync.unregisterChange<sup>12+</sup>
@@ -843,7 +825,6 @@ unregisterChange(uri: string): void
 
 | 错误码ID                     | 错误信息        |
 | ---------------------------- | ---------- |
-| 202 | Permission verification failed, application which is not a system application uses system API. |
 | 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13900001  | Operation not permitted. |
 | 13900002  | No such file or directory. |
@@ -856,7 +837,7 @@ unregisterChange(uri: string): void
   import { fileUri } from '@kit.CoreFileKit';
   let path = "/data/storage/el2/cloud/1.txt";
   let uri = fileUri.getUriFromPath(path);
-  let onCallback1 = (changeData: ChangeData) => {
+  let onCallback1 = (changeData: cloudSync.ChangeData) => {
     if (changeData.type == cloudSync.NotifyType.NOTIFY_ADDED) {
       //file had added, do something
     } else if (changeData.type== cloudSync.NotifyType.NOTIFY_DELETED) {
@@ -865,7 +846,7 @@ unregisterChange(uri: string): void
   }
   cloudSync.registerChange(uri, false, onCallback1);
   // 取消注册监听
-  cloudSync.unRegisterChange(uri);
+  cloudSync.unregisterChange(uri);
   ```
 
 ## NotifyType<sup>12+</sup>
@@ -890,5 +871,5 @@ unregisterChange(uri: string): void
 | 名称     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
 | type | [NotifyType](#notifytype12) | 是   | 更改的通知类型。|
-| isDirectory | Array&lt;boolean&gt; | 是   | 指示更改的uri是否为目录。|
+| isDirectory | Array&lt;boolean&gt; | 是   | 指示更改的URI是否为目录。true：是目录。false：非目录。|
 | uris | Array&lt;string&gt; | 是   | 更改的uris。|

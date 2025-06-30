@@ -75,7 +75,7 @@ The dialog box provides lifecycle functions to notify users of its lifecycle eve
 
 ## Updating the Content of a Custom Dialog Box
 
-**ComponentContent** has the same usage constraints as [BuilderNode](../reference/apis-arkui/js-apis-arkui-builderNode.md) and does not support custom components using decorators such as [@Reusable](../quick-start/arkts-create-custom-components.md#basic-structure-of-a-custom-component), [@Link](../quick-start/arkts-link.md), [@Provide](../quick-start/arkts-provide-and-consume.md), and [@Consume](../quick-start/arkts-provide-and-consume.md) to synchronize the state between the page where the dialog box pops up and the custom component in **ComponentContent**. Therefore, if you need to update the content of the custom component in the dialog box, use the **update** API provided by **ComponentContent**.
+**ComponentContent** has the same usage constraints as [BuilderNode](../reference/apis-arkui/js-apis-arkui-builderNode.md) and does not support custom components using decorators such as [@Reusable](../ui/state-management/arkts-create-custom-components.md#basic-structure-of-a-custom-component), [@Link](../ui/state-management/arkts-link.md), [@Provide](../ui/state-management/arkts-provide-and-consume.md), and [@Consume](../ui/state-management/arkts-provide-and-consume.md) to synchronize the state between the page where the dialog box pops up and the custom component in **ComponentContent**. Therefore, if you need to update the content of the custom component in the dialog box, use the **update** API provided by **ComponentContent**.
 
 ```ts
 this.contentNode.update(new Params('update'))

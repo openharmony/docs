@@ -18,7 +18,7 @@
 
 布局通常为分层结构，一个常见的页面结构如下所示：
 
-  **图1** 常见页面结构图  
+  **图1** 常见页面结构图
 
 ![common-page-structure](figures/common-page-structure.png)
 
@@ -27,9 +27,9 @@
 
 ## 布局元素的组成
 
-布局相关的容器组件可形成对应的布局效果。例如，List组件可构成线性布局。
+布局相关的容器组件可形成对应的布局效果。
 
-  **图2** 布局元素组成图  
+  **图2** 布局元素组成图
 
 ![layout-element-omposition](figures/layout-element-omposition.png)
 
@@ -37,7 +37,7 @@
 
 - 组件内容区（黄色方块）：组件内容区大小为组件区域大小减去组件的[border](../reference/apis-arkui/arkui-ts/ts-universal-attributes-border.md#border)值，组件内容区大小会作为组件内容（或者子组件）进行大小测算时的布局测算限制。
 
-- 组件内容（绿色方块）：组件内容本身占用的大小，比如文本内容占用的大小。组件内容和组件内容区不一定匹配，比如设置了固定的width和height，此时组件内容的大小就是设置的width和height减去padding和border值，但文本内容则是通过文本布局引擎测算后得到的大小，可能出现文本真实大小小于设置的组件内容区大小。当组件内容和组件内容区大小不一致时，[align](../reference/apis-arkui/arkui-ts/ts-universal-attributes-location.md#align)属性生效，定义组件内容在组件内容区的对齐方式，如居中对齐。
+- 组件内容（绿色方块）：组件内容本身占用的大小，比如文本内容占用的大小。组件内容和组件内容区不一定匹配，比如设置了固定的width和height，此时组件内容的大小就是设置的width和height减去padding和border值，但文本内容则是通过文本布局引擎测算后得到的大小，可能出现文本真实大小小于设置的组件内容区大小，也就是文本内容无法占满文本组件提供的内容区大小。当组件内容和组件内容区大小不一致时，[align](../reference/apis-arkui/arkui-ts/ts-universal-attributes-location.md#align)属性生效，定义组件内容在组件内容区的对齐方式，如居中对齐。
 
 - 组件布局边界（虚线部分）：组件通过[margin](../reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md#margin)属性设置外边距时，组件布局边界就是组件区域加上margin的大小。
 
@@ -57,6 +57,7 @@
 | [列表](arkts-layout-development-create-list.md)（List）      | 使用列表可以高效地显示结构化、可滚动的信息。在ArkUI中，列表具有垂直和水平布局能力和自适应交叉轴方向上排列个数的布局能力，超出屏幕时可以滚动。列表适合用于呈现同类数据类型或数据类型集，例如图片和文本。 |
 | [弧形列表](arkts-layout-development-create-arclist.md)（ArcList）      | 使用弧形列表能够高效地展示结构化、可滚动的信息。在ArkUI中，弧形列表仅支持垂直布局，当内容超出屏幕范围时可实现滚动。弧形列表适用于展示同类数据类型或数据集合，例如图片和文本。 |
 | [网格](arkts-layout-development-create-grid.md)（Grid）      | 网格布局具有较强的页面均分能力、子元素占比控制能力。网格布局可以控制元素所占的网格数量、设置子元素横跨几行或者几列，当网格容器尺寸发生变化时，所有子元素以及间距等比例调整。推荐在需要按照固定比例或者均匀分配空间的布局场景下使用，例如计算器、相册、日历等。 |
+| [瀑布流](arkts-layout-development-create-waterflow.md)（WaterFlow）      | 瀑布流布局是多列等宽不等高的布局方式，视觉呈现如瀑布般错落有致。推荐在需要错落排列到场景使用，如图片/视频展示，商品推荐等。 |
 | [轮播](arkts-layout-development-create-looping.md)（Swiper） | 轮播组件通常用于实现广告轮播、图片预览等。       |
 | [弧形轮播](arkts-layout-development-arcswiper.md)（ArcSwiper） | 弧形轮播组件通常用于实现圆形屏幕设备上的广告轮播、图片预览等。       |
 | [选项卡](arkts-navigation-tabs.md)（Tabs） | 选项卡可以在一个页面内快速实现视图内容的切换，一方面提升查找信息的效率，另一方面精简用户单次获取到的信息量。       |

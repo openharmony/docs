@@ -14,7 +14,7 @@
 import { UIExtensionAbility } from '@kit.AbilityKit';
 ```
 
-## Properties
+## UIExtensionAbility
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -22,7 +22,7 @@ import { UIExtensionAbility } from '@kit.AbilityKit';
 | -------- | -------- | -------- | -------- | -------- |
 | context | [UIExtensionContext](js-apis-inner-application-uiExtensionContext.md) | No| No| Context of the UIExtensionAbility.|
 
-## UIExtensionAbility.onCreate
+### onCreate
 
 onCreate(launchParam: AbilityConstant.LaunchParam): void
 
@@ -37,19 +37,18 @@ Called to initialize the service logic when a UIExtensionAbility is being create
 **Example**
 
 ```ts
-import { UIExtensionAbility, AbilityConstant } from '@kit.AbilityKit';
+import { ShareExtensionAbility, AbilityConstant } from '@kit.AbilityKit';
 
-const TAG: string = '[testTag] UIExtAbility';
+const TAG: string = '[testTag] ShareExtAbility';
 
-export default class UIExtAbility extends UIExtensionAbility {
+export default class ShareExtAbility extends ShareExtensionAbility {
   onCreate(launchParam: AbilityConstant.LaunchParam) {
-    console.info(TAG, `onCreate`);
-    console.log(`onCreate, launchParam: ${JSON.stringify(launchParam)}`);
+    console.info(TAG, `onCreate, launchParam: ${JSON.stringify(launchParam)}`);
   }
 }
 ```
 
-## UIExtensionAbility.onSessionCreate
+### onSessionCreate
 
 onSessionCreate(want: Want, session: UIExtensionContentSession): void
 
@@ -67,18 +66,18 @@ Called when a **UIExtensionContentSession** instance is created for this UIExten
 **Example**
 
 ```ts
-import { UIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
+import { ShareExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
 
-const TAG: string = '[testTag] UIExtAbility';
+const TAG: string = '[testTag] ShareExtAbility';
 
-export default class UIExtAbility extends UIExtensionAbility {
+export default class ShareExtAbility extends ShareExtensionAbility {
   onSessionCreate(want: Want, session: UIExtensionContentSession) {
     console.info(TAG, `onSessionCreate, want: ${JSON.stringify(want)}`);
   }
 }
 ```
 
-## UIExtensionAbility.onSessionDestroy
+### onSessionDestroy
 
 onSessionDestroy(session: UIExtensionContentSession): void
 
@@ -95,18 +94,18 @@ Called when a **UIExtensionContentSession** instance is destroyed for this UIExt
 **Example**
 
 ```ts
-import { UIExtensionAbility, UIExtensionContentSession } from '@kit.AbilityKit';
+import { ShareExtensionAbility, UIExtensionContentSession } from '@kit.AbilityKit';
 
-const TAG: string = '[testTag] UIExtAbility';
+const TAG: string = '[testTag] ShareExtAbility';
 
-export default class UIExtAbility extends UIExtensionAbility {
+export default class ShareExtAbility extends ShareExtensionAbility {
   onSessionDestroy(session: UIExtensionContentSession) {
     console.info(TAG, `onSessionDestroy`);
   }
 }
 ```
 
-## UIExtensionAbility.onForeground
+### onForeground
 
 onForeground(): void
 
@@ -117,18 +116,18 @@ Called when this UIExtensionAbility is switched from the background to the foreg
 **Example**
 
 ```ts
-import { UIExtensionAbility } from '@kit.AbilityKit';
+import { ShareExtensionAbility } from '@kit.AbilityKit';
 
-const TAG: string = '[testTag] UIExtAbility';
+const TAG: string = '[testTag] ShareExtAbility';
 
-export default class UIExtAbility extends UIExtensionAbility {
+export default class ShareExtAbility extends ShareExtensionAbility {
   onForeground() {
     console.info(TAG, `onForeground`);
   }
 }
 ```
 
-## UIExtensionAbility.onBackground
+### onBackground
 
 onBackground(): void
 
@@ -139,18 +138,18 @@ Called when this UIExtensionAbility is switched from the foreground to the backg
 **Example**
 
 ```ts
-import { UIExtensionAbility } from '@kit.AbilityKit';
+import { ShareExtensionAbility } from '@kit.AbilityKit';
 
-const TAG: string = '[testTag] UIExtAbility';
+const TAG: string = '[testTag] ShareExtAbility';
 
-export default class UIExtAbility extends UIExtensionAbility {
+export default class ShareExtAbility extends ShareExtensionAbility {
   onBackground() {
     console.info(TAG, `onBackground`);
   }
 }
 ```
 
-## UIExtensionAbility.onDestroy
+### onDestroy
 
 onDestroy(): void | Promise&lt;void&gt;
 
@@ -168,11 +167,11 @@ After the **onDestroy()** lifecycle callback is executed, the application may ex
 **Example**
 
 ```ts
-import { UIExtensionAbility } from '@kit.AbilityKit';
+import { ShareExtensionAbility } from '@kit.AbilityKit';
 
-const TAG: string = '[testTag] UIExtAbility';
+const TAG: string = '[testTag] ShareExtAbility';
 
-export default class UIExtAbility extends UIExtensionAbility {
+export default class ShareExtAbility extends ShareExtensionAbility {
   onDestroy() {
     console.info(TAG, `onDestroy`);
   }

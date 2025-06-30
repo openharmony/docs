@@ -29,7 +29,7 @@ Defines a gesture path.
 
 constructor(durationTime: number);
 
-A constructor used to create a **Highlights** album instance.
+A constructor used to create a **GesturePath** instance.
 
 > **NOTE**
 >

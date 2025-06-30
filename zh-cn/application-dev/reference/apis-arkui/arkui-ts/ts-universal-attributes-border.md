@@ -9,7 +9,7 @@
 
 ## border
 
-border(value: BorderOptions)
+border(value: BorderOptions): T
 
 设置边框样式。
 
@@ -23,11 +23,17 @@ border(value: BorderOptions)
 
 | 参数名 | 类型                                    | 必填 | 说明                                                         |
 | ------ | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [BorderOptions](#borderoptions对象说明) | 是   | 统一边框样式设置接口。<br/>**说明：** <br/>边框宽度默认值为0，即不显示边框。<br/>从API Version 9开始，父节点的border显示在子节点内容之上。 |
+| value  | [BorderOptions](#borderoptions对象说明) | 是   | 统一边框样式设置接口。<br/>**说明：** <br/>边框宽度默认值为0，即不显示边框。<br/>从API version 9开始，父节点的border显示在子节点内容之上。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| --- | --- |
+|  T | 返回当前组件。 |
 
 ## borderStyle
 
-borderStyle(value: BorderStyle | EdgeStyles)
+borderStyle(value: BorderStyle | EdgeStyles): T
 
 设置元素的边框线条样式。
 
@@ -43,9 +49,15 @@ borderStyle(value: BorderStyle | EdgeStyles)
 | ------ | ------------------------------------------------------------ | ---- | -------------------------------------------------- |
 | value  | [BorderStyle](ts-appendix-enums.md#borderstyle)&nbsp;\|&nbsp;[EdgeStyles](#edgestyles9对象说明)<sup>9+</sup> | 是   | 设置元素的边框样式。<br/>默认值：BorderStyle.Solid |
 
+**返回值：**
+
+| 类型 | 说明 |
+| --- | --- |
+|  T | 返回当前组件。 |
+
 ## borderWidth
 
-borderWidth(value: Length | EdgeWidths | LocalizedEdgeWidths)
+borderWidth(value: Length | EdgeWidths | LocalizedEdgeWidths): T
 
 设置边框的宽度。
 
@@ -61,9 +73,15 @@ borderWidth(value: Length | EdgeWidths | LocalizedEdgeWidths)
 | ------ | ------------------------------------------------------------ | ---- | ---------------------------------- |
 | value  | [Length](ts-types.md#length)&nbsp;\|&nbsp;[EdgeWidths](#edgewidths9对象说明)<sup>9+</sup>&nbsp;\|&nbsp;[LocalizedEdgeWidths](#localizededgewidths12对象说明)<sup>12+</sup> | 是   | 设置元素的边框宽度，不支持百分比。 |
 
+**返回值：**
+
+| 类型 | 说明 |
+| --- | --- |
+|  T | 返回当前组件。 |
+
 ## borderColor
 
-borderColor(value: ResourceColor | EdgeColors | LocalizedEdgeColors)
+borderColor(value: ResourceColor | EdgeColors | LocalizedEdgeColors): T
 
 设置边框的颜色。
 
@@ -79,9 +97,15 @@ borderColor(value: ResourceColor | EdgeColors | LocalizedEdgeColors)
 | ------ | ------------------------------------------------------------ | ---- | -------------------------------------------- |
 | value  | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](#edgecolors9对象说明)<sup>9+</sup>&nbsp;\|&nbsp;[LocalizedEdgeColors](#localizededgecolors12对象说明)<sup>12+</sup> | 是   | 设置元素的边框颜色。<br/>默认值：Color.Black |
 
+**返回值：**
+
+| 类型 | 说明 |
+| --- | --- |
+|  T | 返回当前组件。 |
+
 ## borderRadius
 
-borderRadius(value: Length | BorderRadiuses | LocalizedBorderRadiuses)
+borderRadius(value: Length | BorderRadiuses | LocalizedBorderRadiuses): T
 
 设置边框的圆角。圆角大小受组件尺寸限制，最大值为组件宽或高的一半。
 
@@ -97,20 +121,24 @@ borderRadius(value: Length | BorderRadiuses | LocalizedBorderRadiuses)
 | ------ | ------------------------------------------------------------ | ---- | -------------------------------------- |
 | value  | [Length](ts-types.md#length)&nbsp;\|&nbsp;[BorderRadiuses](#borderradiuses9对象说明)<sup>9+</sup>&nbsp;\|&nbsp;[LocalizedBorderRadiuses](#localizedborderradiuses12对象说明)<sup>12+</sup> | 是   | 设置元素的边框圆角半径，支持百分比，百分比依据组件宽度。设置圆角后，可搭配[.clip属性](./ts-universal-attributes-sharp-clipping.md#clip12)进行裁剪，避免子组件超出组件自身。|
 
+**返回值：**
+
+| 类型 | 说明 |
+| --- | --- |
+|  T | 返回当前组件。 |
+
 ## BorderOptions对象说明
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 | 名称   | 参数类型                                                     | 必填 | 描述               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| width  | [Length](ts-types.md#length)&nbsp;\|&nbsp;[EdgeWidths](#edgewidths9对象说明)<sup>9+</sup>&nbsp;\|&nbsp;[LocalizedEdgeWidths](#localizededgewidths12对象说明)<sup>12+</sup> | 否   | 设置边框宽度。     |
-| color  | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](#edgecolors9对象说明)<sup>9+</sup>&nbsp;\|&nbsp;[LocalizedEdgeColors](#localizededgecolors12对象说明)<sup>12+</sup> | 否   | 设置边框颜色。     |
-| radius | [Length](ts-types.md#length)&nbsp;\|&nbsp;[BorderRadiuses](#borderradiuses9对象说明)<sup>9+</sup>&nbsp;\|&nbsp;[LocalizedBorderRadiuses](#localizedborderradiuses12对象说明)<sup>12+</sup> | 否   | 设置边框圆角半径。 |
-| style  | [BorderStyle](ts-appendix-enums.md#borderstyle)&nbsp;\|&nbsp;[EdgeStyles](#edgestyles9对象说明)<sup>9+</sup> | 否   | 设置边框样式。     |
-| dashGap<sup>12+</sup>  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)&nbsp;\|&nbsp;[EdgeWidths](#edgewidths9对象说明)&nbsp;\|&nbsp;[LocalizedEdgeWidths](#localizededgewidths12对象说明) | 否  | 设置虚线的线段间距，仅在边框样式为虚线时生效。<br/>不支持设置百分比。     |
-| dashWidth<sup>12+</sup>  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)&nbsp;\|&nbsp;[EdgeWidths](#edgewidths9对象说明)&nbsp;\|&nbsp;[LocalizedEdgeWidths](#localizededgewidths12对象说明) | 否   | 设置虚线的线段长度，仅在边框样式为虚线时生效。<br/>不支持设置百分比。     |
+| width  | [Length](ts-types.md#length)&nbsp;\|&nbsp;[EdgeWidths](#edgewidths9对象说明)<sup>9+</sup>&nbsp;\|&nbsp;[LocalizedEdgeWidths](#localizededgewidths12对象说明)<sup>12+</sup> | 否   | 设置边框宽度。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。     |
+| color  | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](#edgecolors9对象说明)<sup>9+</sup>&nbsp;\|&nbsp;[LocalizedEdgeColors](#localizededgecolors12对象说明)<sup>12+</sup> | 否   | 设置边框颜色。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。     |
+| radius | [Length](ts-types.md#length)&nbsp;\|&nbsp;[BorderRadiuses](#borderradiuses9对象说明)<sup>9+</sup>&nbsp;\|&nbsp;[LocalizedBorderRadiuses](#localizedborderradiuses12对象说明)<sup>12+</sup> | 否   | 设置边框圆角半径。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| style  | [BorderStyle](ts-appendix-enums.md#borderstyle)&nbsp;\|&nbsp;[EdgeStyles](#edgestyles9对象说明)<sup>9+</sup> | 否   | 设置边框样式。<br/>从API version 11开始，该接口支持在原子化服务中使用。     |
+| dashGap<sup>12+</sup>  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)&nbsp;\|&nbsp;[EdgeWidths](#edgewidths9对象说明)&nbsp;\|&nbsp;[LocalizedEdgeWidths](#localizededgewidths12对象说明) | 否  | 设置虚线的线段间距，仅在边框样式为虚线时生效。<br/>不支持设置百分比。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>该接口不支持在ArkTS卡片中使用。|
+| dashWidth<sup>12+</sup>  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)&nbsp;\|&nbsp;[EdgeWidths](#edgewidths9对象说明)&nbsp;\|&nbsp;[LocalizedEdgeWidths](#localizededgewidths12对象说明) | 否   | 设置虚线的线段长度，仅在边框样式为虚线时生效。<br/>不支持设置百分比。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>该接口不支持在ArkTS卡片中使用。     |
 
 ## EdgeWidths<sup>9+</sup>对象说明
 
@@ -158,7 +186,7 @@ borderRadius(value: Length | BorderRadiuses | LocalizedBorderRadiuses)
 
 ## LocalizedEdgeColors<sup>12+</sup>对象说明
 
-边框颜色，用于描述组件边框四条边的颜色。
+边框颜色，描述组件边框四条边的颜色。
 
 引入该对象时，至少传入一个参数。
 
@@ -224,7 +252,7 @@ borderRadius(value: Length | BorderRadiuses | LocalizedBorderRadiuses)
 
 ### 示例1（基本样式用法）
 
-设置边框的宽度、颜色、边框圆角半径以及点、线样式。
+设置边框的宽度、颜色、圆角半径以及点、线样式。
 
 ```ts
 // xxx.ets

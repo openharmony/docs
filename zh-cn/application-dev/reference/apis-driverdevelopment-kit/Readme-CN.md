@@ -24,8 +24,8 @@
     - [scsi_peripheral_types.h](scsi__peripheral__types_8h.md)
     - [usb_ddk_api.h](usb__ddk__api_8h.md)
     - [usb_ddk_types.h](usb__ddk__types_8h.md)
-    - [usb_serial_ddk_api.h](usb__serial__ddk__api_8h.md)
-    - [usb_serial_ddk_types.h](usb__serial__ddk__types_8h.md)
+    - [usb_serial_api.h](usb__serial__ddk__api_8h.md)
+    - [usb_serial_types.h](usb__serial__ddk__types_8h.md)
   - 结构体<!--driver-development-struct-->
     - [DDK_Ashmem](_ddk_ashmem.md)
     - [Hid_AbsAxesArray](_hid___abs_axes_array.md)

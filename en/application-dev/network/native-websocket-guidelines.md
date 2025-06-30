@@ -1,6 +1,6 @@
 # WebSocket Connection (C/C++)
 
-## When to Use
+## Overview
 
 The WebSocket module can be used to establish bidirectional connections between the server and the client.
 

@@ -41,7 +41,7 @@
 | -------- | -------- | -------- | -------- | -------- |
 | color | &lt;color&gt; | - | 否 | 文本颜色。 |
 | font-size | &lt;length&gt; | - | 否 | 文本大小。 |
-| allow-scale | boolean | true | 否 | 文本尺寸是否跟随系统设置字体缩放尺寸进行放大缩小。 |
+| allow-scale | boolean | true | 否 | 文本尺寸是否跟随系统设置字体缩放尺寸进行放大缩小。<br>默认值：true。<br>true：表示文本尺寸跟随系统设置字体缩放尺寸进行放大缩小。<br>false：表示文本尺寸不跟随系统设置字体缩放尺寸进行放大缩小。 |
 | font-style | string | normal | 否 | 文本字体样式，可选值为：<br/>-&nbsp;normal:&nbsp;标准的字体样式；<br/>-&nbsp;italic:&nbsp;斜体的字体样式。 |
 | font-weight | number\|string | normal | 否 | 文本字体粗细，number类型取值[100,&nbsp;900]的整数（被100整除），默认为400，取值越大，字体越粗。string类型取值为：lighter、normal、bold、bolder。 |
 | text-decoration | string | none | 否 | 文本修饰，可选值为：<br/>-&nbsp;underline:&nbsp;文本下划线修饰。<br/>-&nbsp;line-through:&nbsp;穿过文本的修饰线。<br/>-&nbsp;none:&nbsp;标准文本。 |
@@ -50,7 +50,7 @@
 >  **说明：**
 > - 不支持长宽样式，宽和父容器stepper一样，高是父容器stepper减去底部导航按钮的高度。
 > 
-> - 不支持posit样式。
+> - 不支持position样式。
 
 
 ## 事件

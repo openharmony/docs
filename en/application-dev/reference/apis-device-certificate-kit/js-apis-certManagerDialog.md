@@ -177,7 +177,7 @@ import { common } from '@kit.AbilityKit';
 let context: common.Context = getContext(this);
 /* certificateType specifies the certificate type. The value CA_CERT here indicates a CA certificate. */
 let certificateType: certificateManagerDialog.CertificateType = certificateManagerDialog.CertificateType.CA_CERT;
-/* certificateScope specifies the usage scope of the certificate. The value CURRENT_USER here means the certificate can be used by the the current user. */
+/* certificateScope specifies the usage scope of the certificate. The value CURRENT_USER here means the certificate can be used by the current user. */
 let certificateScope: certificateManagerDialog.CertificateScope = certificateManagerDialog.CertificateScope.CURRENT_USER;
 /* The CA certificate data must be assigned by the service. In this example, the data is not CA certificate data. */
 let caCert: Uint8Array = new Uint8Array([

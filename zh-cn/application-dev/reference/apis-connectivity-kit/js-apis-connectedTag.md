@@ -20,7 +20,7 @@ init(): boolean
 
 > **说明：**
 >
-> 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用[initialize](#connectedtaginitialize9)替代。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[initialize](#connectedtaginitialize9)替代。
 
 **需要权限**：ohos.permission.NFC_TAG
 
@@ -30,7 +30,7 @@ init(): boolean
 
 | **类型** | **说明** |
 | -------- | -------- |
-| boolean | true:初始化成功。&nbsp;<br>false:初始化失败。 |
+| boolean | true：初始化成功。&nbsp;<br>false：初始化失败。 |
 
 ## connectedTag.initialize<sup>9+</sup>
 
@@ -66,7 +66,7 @@ uninit(): boolean
 
 | **类型** | **说明** |
 | -------- | -------- |
-| boolean | true:卸载操作成功。&nbsp;<br>false:卸载操作失败。 |
+| boolean | true：卸载操作成功。&nbsp;<br>false：卸载操作失败。 |
 
 ## connectedTag.uninitialize<sup>9+</sup>
 
@@ -256,9 +256,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let rawData = "010203"; // change it to be correct.
 connectedTag.writeNdefTag(rawData).then(() => {
-    console.log("connectedTag writeNdefTag Promise success.");
+    console.log("connectedTag.writeNdefTag Promise success.");
 }).catch((err: BusinessError)=> {
-    console.log("connectedTag writeNdefTag Promise err: " + err);
+    console.log("connectedTag.writeNdefTag Promise err: " + err);
 });
 ```
 
@@ -303,9 +303,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let rawData = [0x01, 0x02, 0x03]; // change it to be correct.
 connectedTag.write(rawData).then(() => {
-    console.log("connectedTag write NdefTag Promise success.");
+    console.log("connectedTag.writeNdefTag Promise success.");
 }).catch((err: BusinessError)=> {
-    console.log("connectedTag write NdefTag Promise err: " + err);
+    console.log("connectedTag.writeNdefTag Promise err: " + err);
 });
 ```
 
@@ -334,9 +334,9 @@ import { connectedTag } from '@kit.ConnectivityKit';
 let rawData = "010203"; // change it to be correct.
 connectedTag.writeNdefTag(rawData, (err)=> {
     if (err) {
-        console.log("connectedTag writeNdefTag AsyncCallback err: " + err);
+        console.log("connectedTag.writeNdefTag AsyncCallback err: " + err);
     } else {
-        console.log("connectedTag writeNdefTag AsyncCallback success.");
+        console.log("connectedTag.writeNdefTag AsyncCallback success.");
     }
 });
 ```
@@ -377,9 +377,9 @@ import { connectedTag } from '@kit.ConnectivityKit';
 let rawData = [0x01, 0x02, 0x03]; // change it to be correct.
 connectedTag.write(rawData, (err)=> {
     if (err) {
-        console.log("connectedTag write NdefTag AsyncCallback err: " + err);
+        console.log("connectedTag.writeNdefTag AsyncCallback err: " + err);
     } else {
-        console.log("connectedTag write NdefTag AsyncCallback success.");
+        console.log("connectedTag.writeNdefTag AsyncCallback success.");
     }
 });
 ```

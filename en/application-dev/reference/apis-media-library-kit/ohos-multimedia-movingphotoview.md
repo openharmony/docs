@@ -4,8 +4,9 @@ The **MovingPhotoView** component is used to play moving photos and control the 
 
 > **NOTE**
 >
-> - This component is supported since API version 12. Updates will be marked with a superscript to indicate their earliest API version.
-> - Currently, the **MovingPhotoView** component cannot be used in Previewer.
+> This component is supported since API version 12. Updates will be marked with a superscript to indicate their earliest API version.
+>
+> Currently, the **MovingPhotoView** component cannot be used in Previewer.
 
 ## Modules to Import
 
@@ -20,7 +21,7 @@ import { MovingPhotoView, MovingPhotoViewController, MovingPhotoViewAttribute } 
 > - Currently, live attributes cannot be set.
 > - Currently, **expandSafeArea** in the ArkUI common attribute **ComponentOptions** cannot be set.
 > - When this component is long pressed to trigger playback, the component area is zoomed in to 1.1 times.
-> - This component uses [AVPlayer](../apis-media-kit/_a_v_player.md#avplayer) to play moving photos. A maximum of three [AVPlayers](../apis-media-kit/_a_v_player.md#avplayer) can be used at the same time. Otherwise, frame freezing may occur during the playback.
+> - This component uses [AVPlayer](../apis-media-kit/_a_v_player.md#avplayer) to play moving photos. A maximum of three [AVPlayers](../apis-media-kit/_a_v_player.md#avplayer) can be used at the same time. Otherwise, frame freezing may occur.
 
 MovingPhotoView(options: MovingPhotoViewOptions)
 
@@ -312,6 +313,7 @@ struct MovingPhotoViewDemo {
   @State src: photoAccessHelper.MovingPhoto | undefined = undefined
   @State isMuted: boolean = false
   controller: MovingPhotoViewController = new MovingPhotoViewController()
+  private uiContext: UIContext = this.getUIContext()
 
   aboutToAppear(): void {
     emitter.on({
@@ -332,7 +334,6 @@ struct MovingPhotoViewDemo {
         Button('PICK')
           .margin(5)
           .onClick(async () => {
-            let context = getContext(this)
             try {
               let uris: Array<string> = []
               const photoSelectOptions = new photoAccessHelper.PhotoSelectOptions()
@@ -342,7 +343,7 @@ struct MovingPhotoViewDemo {
               let photoSelectResult: photoAccessHelper.PhotoSelectResult = await photoViewPicker.select(photoSelectOptions)
               uris = photoSelectResult.photoUris
               if (uris[0]) {
-                this.handlePickerResult(context, uris[0], new MediaDataHandlerMovingPhoto())
+                this.handlePickerResult(this.uiContext.getHostContext()!, uris[0], new MediaDataHandlerMovingPhoto())
               }
             } catch (e) {
               console.error(`pick file failed`)
@@ -463,6 +464,7 @@ struct MovingPhotoViewDemo {
     types: [ImageAnalyzerType.SUBJECT, ImageAnalyzerType.TEXT, ImageAnalyzerType.OBJECT_LOOKUP],
     aiController: this.aiController
   }
+  private uiContext: UIContext = this.getUIContext()
 
   aboutToAppear(): void {
     emitter.on({
@@ -483,7 +485,6 @@ struct MovingPhotoViewDemo {
         Button('PICK')
           .margin(5)
           .onClick(async () => {
-            let context = getContext(this)
             try {
               let uris: Array<string> = []
               const photoSelectOptions = new photoAccessHelper.PhotoSelectOptions()
@@ -493,7 +494,7 @@ struct MovingPhotoViewDemo {
               let photoSelectResult: photoAccessHelper.PhotoSelectResult = await photoViewPicker.select(photoSelectOptions)
               uris = photoSelectResult.photoUris
               if (uris[0]) {
-                this.handlePickerResult(context, uris[0], new MediaDataHandlerMovingPhoto())
+                this.handlePickerResult(this.uiContext.getHostContext()!, uris[0], new MediaDataHandlerMovingPhoto())
               }
             } catch (e) {
               console.error(`pick file failed`)
@@ -599,9 +600,8 @@ class MediaDataHandlerMovingPhoto implements photoAccessHelper.MediaAssetDataHan
 // xxx.ets
 import { photoAccessHelper, MovingPhotoView, MovingPhotoViewController, MovingPhotoViewAttribute } from '@kit.MediaLibraryKit';
 
-let context = getContext(this)
 let data: photoAccessHelper.MovingPhoto
-async function loading() {
+async function loading(context: Context) {
   try {
     // Ensure that the media assets corresponding to imageFileUri and videoFileUri exist in the application sandbox directory.
     let imageFileUri = 'file://{bundleName}/data/storage/el2/base/haps/entry/files/xxx.jpg';
@@ -616,6 +616,7 @@ async function loading() {
 @Component
 struct Index {
   controller: MovingPhotoViewController = new MovingPhotoViewController()
+  private uiContext: UIContext = this.getUIContext()
   @State ImageFit: ImageFit | undefined | null = ImageFit.Contain;
   @State flag: boolean = true;
   @State autoPlayFlag: boolean = true;
@@ -623,7 +624,7 @@ struct Index {
   @State autoPlayPeriodStart: number = 0;
   @State autoPlayPeriodEnd: number = 500;
   aboutToAppear(): void {
-    loading()
+    loading(this.uiContext.getHostContext()!)
   }
 
   build() {

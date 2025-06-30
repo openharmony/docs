@@ -31,7 +31,7 @@ URIs can be expressed in different formats based on the available fields. Among 
 
 > **NOTE**
 > - The scheme of a third-party application cannot be the same as that of a system application. Otherwise, the third-party application cannot be started using the URI.
-> - If multiple applications are configured with the same URLs, these applications will be matched during application redirection, and a dialog box will be displayed for uses to select. For better user experience, you can use the **path** field to distinguish the application to start. For example, use **https://www.example.com/path1** to start target application 1 and use **https://www.example.com/path2** to start target application 2.
+> - If multiple applications are configured with the same URLs, these applications will be matched during application redirection, and a dialog box will be displayed for users to select. For better user experience, you can use the **path** field to distinguish the application to start. For example, use **https://www.example.com/path1** to start target application 1 and use **https://www.example.com/path2** to start target application 2.
 
 
 ### Description of linkFeature
@@ -53,7 +53,7 @@ The use of the **linkFeature** field enables an application to deliver a more us
     |RoutePlan|Plans a route.|
     |PlaceSearch|Searches a location.|
 
-2. One-touch return: When a user switches from application A to application B, application B calls the [quick return API](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextbacktocallerabilitywithresult12) to return to application A. For example, if application A is redirected to the payment page of application B and application B has applied for the linkfeature of payment, the user can return to application A at one touch after finishing the payment in application B.
+2. One-touch return: When a user switches from application A to application B, application B calls the [quick return API](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#backtocallerabilitywithresult12) to return to application A. For example, if application A is redirected to the payment page of application B and application B has applied for the linkfeature of payment, the user can return to application A at one touch after finishing the payment in application B.
 
     |Value|Description|
     |---|---|
@@ -61,10 +61,10 @@ The use of the **linkFeature** field enables an application to deliver a more us
     |Pay|Payment and cashier.|
     |Share|Sharing.|
 
-## Example
+## Examples
 
 
-The following uses the authorized login scenario as an example:
+### Authorization Login
 
 ```json
 "uris": [
@@ -76,3 +76,44 @@ The following uses the authorized login scenario as an example:
     }
 ]
 ```
+
+### Clearing Application Sandbox Cache Data
+
+You can go to **Settings > Storage** to access the application details page of a specific application. By default, this page includes a **Clear cache** option to clear all cached data of the current application.
+
+If you have implemented a custom data clearing page and want to provide a redirection entry on the application details page, you can configure the **linkFeature** field.
+
+1. In the [module.json5 file](../quick-start/module-configuration-file.md), add the following skills configuration to the ability that implements data clearing.
+
+   The **linkFeature** field must be set to **AppStorageMgmt**, and other field values should be set based on project requirements.
+
+    ```json
+    {
+      "name": "ClearAbility",
+      "srcEntry": "./ets/clearability/ClearAbility.ets",
+      "description": "$string:ClearAbility_desc",
+      "icon": "$media:layered_image",
+      "label": "$string:ClearAbility_label",
+      "skills": [
+        {
+          "uris": [
+            {
+              "scheme": "storage",
+              "host": "developer.huawei.com",
+              "path": "clearcache",
+              "linkFeature": "AppStorageMgmt"
+            }
+          ]
+        }
+      ]
+    }
+    ```
+
+2. Verify the function.
+
+   1. On the phone, go to **Settings > Storage**, and select the current application to access the application details page.
+   2. Tap **Clear data in *xx*** to go to the corresponding cache data clearing page.
+
+The following figures show the effects.
+
+![app-uri-config_storage](figures/app_uri_config_storage.png)

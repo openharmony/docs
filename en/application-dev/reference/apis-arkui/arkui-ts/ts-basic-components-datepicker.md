@@ -38,7 +38,7 @@ Creates a date picker in the given date range.
 | -------- | ---- | ---- | ------------------------------------------------------------ |
 | start    | Date | No  | Start date of the picker.<br>Default value: **Date('1970-1-1')**         |
 | end      | Date | No  | End date of the picker.<br>Default value: **Date('2100-12-31')**       |
-| selected | Date | No  | Date of the selected item.<br>Default value: current system date<br>Since API version 10, this parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).|
+| selected | Date | No  | Date of the selected item.<br>Default value: current system date<br>Since API version 10, this parameter supports two-way binding through [$$](../../../ui/state-management/arkts-two-way-sync.md).|
 | mode<sup>18+</sup> | [DatePickerMode](#datepickermode18) | No  | Date columns to be displayed.<br>Default value: **DatePickerMode.DATE**, which means to display three columns: year, month, and day. Decimal values are rounded off.<br>In **DatePickerDialog**, with **showTime=true**, this parameter has no effect and the default three columns for year, month, and day are displayed.|
 
 >  **NOTE**
@@ -107,7 +107,7 @@ Specifies whether to display the lunar calendar.
 
 lunar(isLunar: Optional\<boolean>)
 
-Specifies whether to display the lunar calendar. Compared to [lunar](#lunar), the **isLunar** parameter supports the **undefined** type.
+Specifies whether to display the lunar calendar. Compared to [lunar](#lunar), this API supports the **undefined** type for the **isLunar** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -139,7 +139,7 @@ Sets the text style for the top and bottom items.
 
 disappearTextStyle(style: Optional\<PickerTextStyle>)
 
-Sets the text style for the top and bottom items. Compared to [disappearTextStyle](#disappeartextstyle10)<sup>10+</sup>, the **style** parameter supports the **undefined** type.
+Sets the text style for the top and bottom items. Compared to [disappearTextStyle](#disappeartextstyle10)<sup>10+</sup>, this API supports the **undefined** type for the **style** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -171,7 +171,7 @@ Sets the text style for all items except the top, bottom, and selected items.
 
 textStyle(style: Optional\<PickerTextStyle>)
 
-Sets the text style for all items except the top, bottom, and selected items. Compared to [textStyle](#textstyle10)<sup>10+</sup>, the **style** parameter supports the **undefined** type.
+Sets the text style for all items except the top, bottom, and selected items. Compared to [textStyle](#textstyle10)<sup>10+</sup>, this API supports the **undefined** type for the **style** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -203,7 +203,7 @@ Sets the text style for the selected item.
 
 selectedTextStyle(style: Optional\<PickerTextStyle>)
 
-Sets the text style for the selected item. Compared to [selectedTextStyle](#selectedtextstyle10)<sup>10+</sup>, the **style** parameter supports the **undefined** type.
+Sets the text style for the selected item. Compared to [selectedTextStyle](#selectedtextstyle10)<sup>10+</sup>, this API supports the **undefined** type for the **style** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -251,11 +251,11 @@ Sets the sensitivity to the digital crown rotation.
 
 | Name  | Type                                    | Mandatory  | Description                     |
 | ----- | ---------------------------------------- | ---- | ------------------------- |
-| sensitivity | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[CrownSensitivity](ts-appendix-enums.md#crownsensitivity18)> | Yes   | Sensitivity to the digital crown rotation.                   |
+| sensitivity | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[CrownSensitivity](ts-appendix-enums.md#crownsensitivity18)> | Yes   | Sensitivity to the digital crown rotation.<br>Default value: **CrownSensitivity.MEDIUM**                   |
 
 >  **NOTE**
 >
->  This API is only available to circular screens on wearable devices.
+>  This API is only available to circular screens on wearable devices. The component needs to obtain focus before responding to the [crown event](ts-universal-events-crown.md).
 
 ## PickerTextStyle<sup>10+</sup>
 
@@ -306,7 +306,7 @@ Triggered when a date is selected.
 
 onDateChange(callback: Optional\<Callback\<Date>>)
 
-Triggered when a date is selected. Compared to [onDateChange](#ondatechange10)<sup>10+</sup>, the **callback** parameter supports the **undefined** type.
+Triggered when a date is selected. Compared to [onDateChange](#ondatechange10)<sup>10+</sup>, this API supports the **undefined** type for the **callback** parameter.
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -334,7 +334,7 @@ Triggered when a date is selected. Compared to [onDateChange](#ondatechange10)<s
 
 ### Example 1: Switching Between Gregorian and Lunar Calendars
 
-This example implements a date picker that allows switching between the Gregorian and lunar calendars by clicking a button.
+This example implements a date picker that allows users to switch between the Gregorian (solar) calendar and the lunar calendar by clicking a button.
 
 
 ```ts

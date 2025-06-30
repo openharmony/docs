@@ -7,16 +7,23 @@
 > **说明：**
 >
 > 该组件从API version 9 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
-
+>
+> WaterFlow组件支持展示瀑布流布局，不支持编辑模式和子元素拖动功能。
+>
+> 组件内部已绑定手势实现跟手滚动等功能，需要增加自定义手势操作时请参考[手势拦截增强](ts-gesture-blocking-enhancement.md)进行处理。
 ## 子组件
 
 
-仅支持[FlowItem](ts-container-flowitem.md)子组件，支持渲染控制类型（[if/else](../../../quick-start/arkts-rendering-control-ifelse.md)、[ForEach](../../../quick-start/arkts-rendering-control-foreach.md)、[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)和[Repeat](../../../quick-start/arkts-new-rendering-control-repeat.md)）。
+仅支持[FlowItem](ts-container-flowitem.md)子组件，支持渲染控制类型（[if/else](../../../ui/state-management/arkts-rendering-control-ifelse.md)、[ForEach](../../../ui/state-management/arkts-rendering-control-foreach.md)、[LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md)和[Repeat](../../../ui/state-management/arkts-new-rendering-control-repeat.md)）。
 
 >  **说明：**
 >
 >  WaterFlow子组件的visibility属性设置为None时不显示，但该子组件周围的columnsGap、rowsGap、margin仍会生效。
+>
+> 纵向布局时，WaterFlow组件采用“最小高度优先”的放置规则，即每个子组件会放入当前高度最小的列中。
+>
+> 若多个列的高度相同，优先放入最左边的列。在RTL模式下，优先放入最右边的列。
+
 
 ## 接口
 
@@ -91,7 +98,7 @@ splice(start: number, deleteCount?: number, sections?: Array\<SectionOptions\>):
 
 | 类型                                                         | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| boolean | 分组是否修改成功，要加入的分组中有任意分组的itemsCount不是正整数时返回false。 |
+| boolean | 分组修改成功返回true；修改失败（要加入的分组中有任意分组的itemsCount不是正整数）返回false。 |
 
 
 ### push<sup>12+</sup>
@@ -114,7 +121,7 @@ push(section: SectionOptions): boolean
 
 | 类型                                                         | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| boolean | 分组是否添加成功，新分组的itemsCount不是正整数时返回false。 |
+| boolean | 分组添加成功返回true，添加失败（新分组的itemsCount不是正整数）返回false。 |
 
 ### update<sup>12+</sup>
 
@@ -222,12 +229,17 @@ type GetItemMainSizeByIndex = (index: number) => number
 | 名称 | 值 | 说明 |
 | ------ | ------ | -------------------- |
 | ALWAYS_TOP_DOWN | 0 | 默认的从上到下的布局模式。视窗内的FlowItem依赖视窗上方所有FlowItem的布局信息。因此跳转或切换列数时，需要计算出上方所有的FlowItem的布局信息。 |
-| SLIDING_WINDOW | 1 | 移动窗口式的布局模式。只考虑视窗内的布局信息，对视窗上方的FlowItem没有依赖关系，因此向后跳转或切换列数时只需要布局视窗内的FlowItem。建议优先使用该模式。 <br/>**说明：** <br/>1. 无动画跳转到较远的位置时，会以目标位置为基准，向前或向后布局FlowItem。这之后如果滑回跳转前的位置，内容的布局效果可能和之前不一致。 这个效果会导致跳转后回滑到顶部时，顶部节点可能不对齐。所以该布局模式下会在滑动到顶部后自动调整布局，保证顶部对齐。在有多个分组的情况下，会在滑动结束时调整在视窗内的分组。<br/> 2. [scroller](#waterflowoptions对象说明)的[currentOffset](ts-container-scroll.md#currentoffset)接口返回的总偏移量在触发跳转或数据更新后不准确，在回滑到顶部时会重新校准。 <br/> 3. 如果在同一帧内调用跳转（如无动画的[scrollToIndex](ts-container-scroll.md#scrolltoindex)、[scrollEdge](ts-container-scroll.md#scrolledge)）和输入偏移量（如滑动手势或滚动动画），两者都会生效。 <br/> 4. 调用无动画的[scrollToIndex](ts-container-scroll.md#scrolltoindex)进行跳转，如果跳转到较远位置（超过视窗内的FlowItem数量的位置）时，移动窗口模式对总偏移量进行估算。 |
+| SLIDING_WINDOW | 1 | 移动窗口式的布局模式。只考虑视窗内的布局信息，对视窗上方的FlowItem没有依赖关系，因此向后跳转或切换列数时只需要布局视窗内的FlowItem。建议优先采用该模式，尤其在应用需要支持屏幕旋转或动态切换列数的场景下。 <br/>**说明：** <br/>1. 无动画跳转到较远的位置时，会以目标位置为基准，向前或向后布局FlowItem。这之后如果滑回跳转前的位置，内容的布局效果可能和之前不一致。 这个效果会导致跳转后回滑到顶部时，顶部节点可能不对齐。所以该布局模式下会在滑动到顶部后自动调整布局，保证顶部对齐。在有多个分组的情况下，会在滑动结束时调整在视窗内的分组。<br/> 2. [scroller](#waterflowoptions对象说明)的[currentOffset](ts-container-scroll.md#currentoffset)接口返回的总偏移量在触发跳转或数据更新后不准确，在回滑到顶部时会重新校准。 <br/> 3. 如果在同一帧内调用跳转（如无动画的[scrollToIndex](ts-container-scroll.md#scrolltoindex)、[scrollEdge](ts-container-scroll.md#scrolledge)）和输入偏移量（如滑动手势或滚动动画），两者都会生效。 <br/> 4. 调用无动画的[scrollToIndex](ts-container-scroll.md#scrolltoindex)进行跳转，如果跳转到较远位置（超过视窗内的FlowItem数量的位置）时，移动窗口模式对总偏移量进行估算。 |
 
 
 ## 属性
 
 除支持[通用属性](ts-component-general-attributes.md)和[滚动组件通用属性](ts-container-scrollable-common.md#属性)外，还支持以下属性：
+> **说明：** 
+>
+> WaterFlow组件使用通用属性[clip<sup>12+</sup>](ts-universal-attributes-sharp-clipping.md#clip12)和通用属性[clip<sup>18+</sup>](ts-universal-attributes-sharp-clipping.md#clip18)时默认值都为true。
+>
+> WaterFlow组件内容裁剪模式[ContentClipMode<sup>14+</sup>枚举说明](ts-container-scrollable-common.md#contentclipmode14枚举说明)为ContentClipMode.CONTENT_ONLY，padding区域会被裁剪不显示。
 
 ### columnsTemplate
 
@@ -235,7 +247,7 @@ columnsTemplate(value: string)
 
 设置当前瀑布流组件布局列的数量，不设置时默认1列。
 
-例如, '1fr 1fr 2fr' 是将父组件分3列，将父组件允许的宽分为4等份，第一列占1份，第二列占1份，第三列占2份。
+例如，'1fr 1fr 2fr' 是将父组件分3列，将父组件允许的宽分为4等份，第1列占1份，第2列占1份，第3列占2份。
 
 可使用columnsTemplate('repeat(auto-fill,track-size)')根据给定的列宽track-size自动计算列数，其中repeat、auto-fill为关键字，track-size为可设置的宽度，支持的单位包括px、vp、%或有效数字，默认单位为vp，使用方法参见示例2。
 
@@ -255,7 +267,7 @@ rowsTemplate(value: string)
 
 设置当前瀑布流组件布局行的数量，不设置时默认1行。
 
-例如, '1fr 1fr 2fr'是将父组件分三行，将父组件允许的高分为4等份，第一行占1份，第二行占一份，第三行占2份。
+例如，'1fr 1fr 2fr'是将父组件分3行，将父组件允许的高分为4等份，第1行占1份，第2行占1份，第3行占2份。
 
 可使用rowsTemplate('repeat(auto-fill,track-size)')根据给定的行高track-size自动计算行数，其中repeat、auto-fill为关键字，track-size为可设置的高度，支持的单位包括px、vp、%或有效数字，默认单位为vp。
 
@@ -333,7 +345,7 @@ layoutDirection(value: FlexDirection)
 | ------ | --------------------------------------------------- | ---- | ------------------------------------------------- |
 | value  | [FlexDirection](ts-appendix-enums.md#flexdirection) | 是   | 布局的主轴方向。<br/>默认值：FlexDirection.Column |
 
-layoutDirection优先级高于rowsTemplate和columnsTemplate。根据layoutDirection设置情况，分为以下三种设置模式:
+layoutDirection优先级高于rowsTemplate和columnsTemplate。根据layoutDirection设置情况，分为以下三种设置模式：
 
 - layoutDirection设置纵向布局（FlexDirection.Column 或 FlexDirection.ColumnReverse）
 
@@ -351,7 +363,7 @@ layoutDirection优先级高于rowsTemplate和columnsTemplate。根据layoutDirec
 
 enableScrollInteraction(value: boolean)
 
-设置是否支持滚动手势，当设置为false时，无法通过手指或者鼠标滚动，但不影响控制器的滚动接口。
+设置是否支持滚动手势。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -361,13 +373,17 @@ enableScrollInteraction(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                |
 | ------ | ------- | ---- | ----------------------------------- |
-| value  | boolean | 是   | 是否支持滚动手势。<br/>默认值：true |
+| value  | boolean | 是   | 是否支持滚动手势。设置为true时可以通过手指或者鼠标滚动，设置为false时无法通过手指或者鼠标滚动，但不影响控制器[Scroller](ts-container-scroll.md#scroller)的滚动接口。<br/>默认值：true |
+
+> **说明：** 
+>
+> 组件无法通过鼠标按下拖动操作进行滚动。
 
 ### nestedScroll<sup>10+</sup>
 
 nestedScroll(value: NestedScrollOptions)
 
-设置向前向后两个方向上的嵌套滚动模式，实现与父组件的滚动联动。
+设置前后两个方向的嵌套滚动模式，实现与父组件的滚动联动。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -383,7 +399,7 @@ nestedScroll(value: NestedScrollOptions)
 
 friction(value: number | Resource)
 
-设置摩擦系数，手动划动滚动区域时生效，只对惯性滚动过程有影响，对惯性滚动过程中的链式效果有间接影响。
+设置摩擦系数，手动划动滚动区域时生效，仅影响惯性滚动过程，对惯性滚动过程中的链式效果有间接影响。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -399,7 +415,9 @@ friction(value: number | Resource)
 
 cachedCount(value: number)
 
-设置预加载的FlowItem的数量，只在LazyForEach中生效。设置该属性后会缓存cachedCount个FlowItem。[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)超出显示和缓存范围的FlowItem会被释放。
+设置预加载的FlowItem数量。
+
+[LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md)和开启了virtualScroll开关的[Repeat](../../../ui/state-management/arkts-new-rendering-control-repeat.md)，超出显示及缓存范围的FlowItem会被释放。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -419,7 +437,7 @@ cachedCount(count: number, show: boolean)
 
 配合[裁剪](ts-universal-attributes-sharp-clipping.md#clip12)或[内容裁剪](ts-container-scrollable-common.md#clipcontent14)属性可以显示出预加载节点。
 
-[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)和开启了virtualScroll开关的[Repeat](../../../quick-start/arkts-new-rendering-control-repeat.md)超出显示和缓存范围的FlowItem会被释放。
+[LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md)和开启了virtualScroll开关的[Repeat](../../../ui/state-management/arkts-new-rendering-control-repeat.md)，超出显示及缓存范围的FlowItem会被释放。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
@@ -430,7 +448,7 @@ cachedCount(count: number, show: boolean)
 | 参数名 | 类型   | 必填 | 说明                                     |
 | ------ | ------ | ---- | ---------------------------------------- |
 | count | number | 是   | 预加载的FlowItem的数量。 <br/>默认值：根据屏幕内显示的节点个数设置，最大值为16。<br/>取值范围：[0, +∞)，设置为小于0的值时，按1处理。 |
-| show  | boolean | 是   | 被预加载的FlowItem是否需要显示。 <br/> 默认值：false，不显示预加载的FlowItem。 |
+| show  | boolean | 是   | 被预加载的FlowItem是否需要显示。设置为true时显示预加载的FlowItem，设置为false时不显示预加载的FlowItem。 <br/> 默认值：false |
 
 ## 事件
 
@@ -440,7 +458,7 @@ cachedCount(count: number, show: boolean)
 
 onReachStart(event: () => void)
 
-瀑布流组件到达起始位置时触发。
+瀑布流内容到达起始位置时触发。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -450,7 +468,7 @@ onReachStart(event: () => void)
 
 onReachEnd(event: () => void)
 
-瀑布流组件到达末尾位置时触发。
+瀑布流内容到达末尾位置时触发。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -460,9 +478,19 @@ onReachEnd(event: () => void)
 
 onScrollFrameBegin(event: (offset: number, state: ScrollState) => { offsetRemain: number; })
 
-瀑布流开始滑动时触发，事件参数传入即将发生的滑动量，事件处理函数中可根据应用场景计算实际需要的滑动量并作为事件处理函数的返回值返回，瀑布流将按照返回值的实际滑动量进行滑动。
+该接口回调时，事件参数传入即将发生的滑动量，事件处理函数中可根据应用场景计算实际需要的滑动量并作为事件处理函数的返回值返回，瀑布流将按照返回值的实际滑动量进行滑动。
 
-触发该事件的条件：手指拖动WaterFlow、WaterFlow惯性划动时每帧开始时触发；WaterFlow超出边缘回弹、使用滚动控制器和拖动滚动条的滚动不会触发。
+满足以下任一条件时触发该事件：
+
+1. 用户交互（如手指滑动、键鼠操作等）触发滚动。
+2. WaterFlow惯性滚动。
+3. 调用[fling](ts-container-scroll.md#fling12)接口触发滚动。
+
+不触发该事件的条件：
+
+1. 调用除[fling](ts-container-scroll.md#fling12)接口外的其他滚动控制接口。
+2. 越界回弹。
+3. 拖动滚动条。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -499,6 +527,17 @@ onScrollIndex(event: (first: number, last: number) => void)
 | ------ | ------ | ---- | ------------------------------------- |
 | first  | number | 是   | 当前显示的瀑布流起始位置的索引值。<br/>取值范围：[0, 子节点总数-1] |
 | last   | number | 是   | 当前显示的瀑布流终止位置的索引值。<br/>取值范围：[0, 子节点总数-1] |
+
+通过`last`参数可以判断是否“继续加载数据”，参考[示例3使用分组](#示例3使用分组)中"即将触底时提前增加数据"的处理逻辑。
+
+当WaterFlow列表为空时，使用不同的WaterFlowOptions参数会导致onScrollIndex事件的返回值有所不同。具体差异请参见下表：
+
+| layoutMode | sections | first | last |
+| --- | --- | --- | --- |
+| ALWAYS_TOP_DOWN | 无 | 0 | 0 |
+| ALWAYS_TOP_DOWN | 有 | 0 | -1 |
+| SLIDING_WINDOW | 可选 | 1000000 | -1 |
+
 
 ## 示例
 
@@ -633,6 +672,25 @@ export class WaterFlowDataSource implements IDataSource {
   public reload(): void {
     this.dataArray.splice(1, 1);
     this.dataArray.splice(3, 2);
+    this.notifyDataReload();
+  }
+
+  // 在数据尾部增加count个元素
+  public addNewItems(count: number): void {
+    let len = this.dataArray.length;
+    for (let i = 0; i < count; i++) {
+      this.dataArray.push(this.dataArray[len - 1] + i + 1);
+      this.notifyDataAdd(this.dataArray.length - 1);
+    }
+  }
+
+  // 刷新所有元素
+  public refreshItems(): void {
+    let newDataArray: number[] = [];
+    for (let i = 0; i < 100; i++) {
+      newDataArray.push(this.dataArray[0] + i + 1000);
+    }
+    this.dataArray = newDataArray;
     this.notifyDataReload();
   }
 }
@@ -807,7 +865,7 @@ struct WaterFlowDemo {
 
 ### 示例3（使用分组）
 该示例展示了分组的初始化以及splice、push、update、values、length等接口的不同效果。
-如果配合状态管理V2使用，详情见：[WaterFlow与makeObserved](../../../quick-start/arkts-v1-v2-migration.md#waterflow)。
+如果配合状态管理V2使用，详情见：[WaterFlow与makeObserved](../../../ui/state-management/arkts-v1-v2-migration.md#waterflow)。
 
 <!--code_no_check-->
 ```ts
@@ -860,21 +918,21 @@ struct WaterFlowDemo {
     onGetItemMainSizeByIndex: (index: number) => {
       return this.itemHeightArray[index % 100];
     }
-  }
+  };
   twoColumnSection: SectionOptions = {
     itemsCount: 2,
     crossCount: 2,
     onGetItemMainSizeByIndex: (index: number) => {
       return 100;
     }
-  }
+  };
   lastSection: SectionOptions = {
     itemsCount: 20,
     crossCount: 2,
     onGetItemMainSizeByIndex: (index: number) => {
       return this.itemHeightArray[index % 100];
     }
-  }
+  };
 
   // 计算FlowItem高度
   getSize() {
@@ -926,7 +984,7 @@ struct WaterFlowDemo {
               onGetItemMainSizeByIndex: (index: number) => {
                 return this.itemHeightArray[index % 100];
               }
-            }
+            };
             let oldLength: number = this.sections.length();
             this.sections.splice(0, oldLength, [newSection]);
           })
@@ -1064,10 +1122,10 @@ struct WaterFlowDemo {
   private itemWidthArray: number[] = [];
   private itemHeightArray: number[] = [];
   @State columns: number = 2;
-  @State waterflowScale: number = 1;
+  @State waterFlowScale: number = 1;
   @State imageScale: number = 1;
   @State waterFlowOpacity: number = 1;
-  @State waterflowSnapshot: image.PixelMap | undefined = undefined;
+  @State waterFlowSnapshot: image.PixelMap | undefined = undefined;
   private columnChanged: boolean = false;
   private oldColumn: number = this.columns;
   private pinchTime: number = 0;
@@ -1116,7 +1174,7 @@ struct WaterFlowDemo {
 
       Stack() {
         // 用于展示缩放前的WaterFlow截图
-        Image(this.waterflowSnapshot)
+        Image(this.waterFlowSnapshot)
           .width('100%')
           .height('100%')
           .scale({
@@ -1144,8 +1202,8 @@ struct WaterFlowDemo {
         .layoutWeight(1)
         .opacity(this.waterFlowOpacity)
         .scale({
-          x: this.waterflowScale,
-          y: this.waterflowScale,
+          x: this.waterFlowScale,
+          y: this.waterFlowScale,
           centerX: 0,
           centerY: 0
         })
@@ -1161,7 +1219,7 @@ struct WaterFlowDemo {
                   console.info('error:' + JSON.stringify(error));
                   return;
                 }
-                this.waterflowSnapshot = pixmap;
+                this.waterFlowSnapshot = pixmap;
               })
             })
             .onActionUpdate((event: GestureEvent) => {
@@ -1174,28 +1232,28 @@ struct WaterFlowDemo {
               }
               this.pinchTime = event.timestamp;
 
-              this.waterflowScale = event.scale;
+              this.waterFlowScale = event.scale;
               this.imageScale = event.scale;
               // 根据缩放比例设置WaterFlow透明度
-              this.waterFlowOpacity = (this.waterflowScale > 1) ? (this.waterflowScale - 1) : (1 - this.waterflowScale);
+              this.waterFlowOpacity = (this.waterFlowScale > 1) ? (this.waterFlowScale - 1) : (1 - this.waterFlowScale);
               this.waterFlowOpacity *= 3;
               if (!this.columnChanged) {
                 this.changeColumns(event.scale);
               }
               // 限制缩放比例避免出现空白
               if (this.columnChanged) {
-                this.waterflowScale = this.imageScale * this.columns / this.oldColumn;
+                this.waterFlowScale = this.imageScale * this.columns / this.oldColumn;
                 if (event.scale < 1) {
-                  this.waterflowScale = this.waterflowScale > 1 ? this.waterflowScale : 1;
+                  this.waterFlowScale = this.waterFlowScale > 1 ? this.waterFlowScale : 1;
                 } else {
-                  this.waterflowScale = this.waterflowScale < 1 ? this.waterflowScale : 1;
+                  this.waterFlowScale = this.waterFlowScale < 1 ? this.waterFlowScale : 1;
                 }
               }
             })
             .onActionEnd((event: GestureEvent) => {
               // 离手做动画归位
               this.getUIContext()?.animateTo({ duration: 300 }, () => {
-                this.waterflowScale = 1;
+                this.waterFlowScale = 1;
                 this.waterFlowOpacity = 1;
               })
               // 记录当前列数
@@ -1433,3 +1491,87 @@ struct Index {
 ```
 
 ![waterFlow_footerContent](figures/waterFlow_footerContent.gif)
+
+### 示例8（WaterFlow组件实现下拉刷新）
+
+该示例通过Refresh组件和WaterFlow组件，实现了下拉刷新瀑布流组件数据源。
+
+<!--code_no_check-->
+```ts
+// Index.ets
+import { WaterFlowDataSource } from './WaterFlowDataSource';
+
+@Entry
+@Component
+struct WaterFlowDemo {
+  @State minSize: number = 80;
+  @State maxSize: number = 180;
+  @State colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F];
+  @State isRefreshing: boolean = false;
+  dataSource: WaterFlowDataSource = new WaterFlowDataSource();
+  scroller: Scroller = new Scroller();
+  private itemWidthArray: number[] = [];
+  private itemHeightArray: number[] = [];
+
+  // 计算FlowItem宽/高
+  getSize() {
+    let ret = Math.floor(Math.random() * this.maxSize);
+    return (ret > this.minSize ? ret : this.minSize);
+  }
+
+  // 设置FlowItem宽/高数组
+  setItemSizeArray() {
+    for (let i = 0; i < 100; i++) {
+      this.itemWidthArray.push(this.getSize());
+      this.itemHeightArray.push(this.getSize());
+    }
+  }
+
+  aboutToAppear() {
+    this.setItemSizeArray();
+  }
+
+  build() {
+    Column({ space: 2 }) {
+      Refresh({ refreshing: $$this.isRefreshing }) {
+        WaterFlow({ scroller: this.scroller }) {
+          LazyForEach(this.dataSource, (item: number) => {
+            FlowItem() {
+              Column() {
+                Text('N' + item).fontSize(12).height('16')
+              }
+            }
+            .width('100%')
+            .height(this.itemHeightArray[item % 100])
+            .backgroundColor(this.colors[item % 5])
+          }, (item: string) => item)
+        }
+        .columnsTemplate('repeat(auto-fill,80)')
+        .columnsGap(10)
+        .rowsGap(5)
+        .height('90%')
+        .edgeEffect(EdgeEffect.Spring, { alwaysEnabled: true })
+        .onReachEnd(() => {
+          // 触底加载数据
+          setTimeout(() => {
+            this.dataSource.addNewItems(100);
+          }, 1000)
+        })
+      }
+      .onStateChange((refreshStatus: RefreshStatus) => {
+        // 下拉刷新数据
+        if (refreshStatus === RefreshStatus.Done) {
+          this.dataSource.refreshItems();
+        }
+      })
+      .onRefreshing(() => {
+        setTimeout(() => {
+          this.isRefreshing = false;
+        }, 1000)
+      })
+    }
+  }
+}
+```
+
+![waterFlow_refresh](figures/waterFlow_refresh.gif)

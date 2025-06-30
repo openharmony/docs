@@ -34,7 +34,7 @@ shutdown(reason: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)。
+以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
@@ -74,7 +74,7 @@ reboot(reason: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)。
+以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
@@ -103,7 +103,7 @@ wakeup(detail: string): void
 
 **需要权限：** ohos.permission.POWER_MANAGER
 
-API version 9-17，使用该接口无需权限；从API version 18开始，需要申请“ohos.permission.POWER_MANAGER”权限。
+API version 9-18，使用该接口无需权限；从API version 19开始，需要申请“ohos.permission.POWER_MANAGER”权限。
 
 **系统能力：** SystemCapability.PowerManager.PowerManager.Core
 
@@ -115,7 +115,7 @@ API version 9-17，使用该接口无需权限；从API version 18开始，需�
 
 **错误码：**
 
-以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)。
+以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
@@ -144,7 +144,7 @@ suspend(isImmediate?: boolean): void
 
 **需要权限：** ohos.permission.POWER_MANAGER
 
-API version 9-17，使用该接口无需权限；从API version 18开始，需要申请“ohos.permission.POWER_MANAGER”权限。
+API version 9-18，使用该接口无需权限；从API version 19开始，需要申请“ohos.permission.POWER_MANAGER”权限。
 
 **系统能力：** SystemCapability.PowerManager.PowerManager.Core
 
@@ -157,7 +157,7 @@ API version 9-17，使用该接口无需权限；从API version 18开始，需�
 
 **错误码：**
 
-以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)。
+以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
@@ -197,7 +197,7 @@ setPowerMode(mode: DevicePowerMode, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)。
+以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
@@ -244,7 +244,7 @@ setPowerMode(mode: DevicePowerMode): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)。
+以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
@@ -275,7 +275,7 @@ setScreenOffTime(timeout: number): void
 
 **需要权限：** ohos.permission.POWER_MANAGER
 
-API version 12-17，使用该接口无需权限；从API version 18开始，需要申请“ohos.permission.POWER_MANAGER”权限。
+API version 12-18，使用该接口无需权限；从API version 19开始，需要申请“ohos.permission.POWER_MANAGER”权限。
 
 **系统能力：** SystemCapability.PowerManager.PowerManager.Core
 
@@ -287,7 +287,7 @@ API version 12-17，使用该接口无需权限；从API version 18开始，需�
 
 **错误码：**
 
-以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)。
+以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
@@ -316,7 +316,7 @@ hibernate(clearMemory: boolean): void
 
 **需要权限：** ohos.permission.POWER_MANAGER
 
-API version 12-17，使用该接口无需权限；从API version 18开始，需要申请“ohos.permission.POWER_MANAGER”权限。
+API version 12-18，使用该接口无需权限；从API version 19开始，需要申请“ohos.permission.POWER_MANAGER”权限。
 
 **系统能力：** SystemCapability.PowerManager.PowerManager.Core
 
@@ -328,7 +328,7 @@ API version 12-17，使用该接口无需权限；从API version 18开始，需�
 
 **错误码：**
 
-以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)。
+以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息    |
 |---------|---------|

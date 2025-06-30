@@ -1,25 +1,27 @@
 # 订阅崩溃事件（C/C++）
 
-## 接口说明
+## 接口描述
 
-API接口的具体使用说明（参数使用限制、具体取值范围等）请参考[HiAppEvent](../reference/apis-performance-analysis-kit/_hi_app_event.md#hiappevent)。
+本文介绍如何使用HiAppEvent提供的C/C++接口订阅应用崩溃事件。接口的详细使用说明（参数限制、取值范围等）请参考[HiAppEvent功能说明文档](../reference/apis-performance-analysis-kit/_hi_app_event.md#hiappevent)。
 
 > **说明：**
 >
-> 使用C/C++接口订阅崩溃事件，包含JsError和NativeCrash两种崩溃类型。
+> 使用C/C++接口可以订阅JsError和NativeCrash两种崩溃事件。
 
-**订阅接口功能介绍：**
+### 订阅接口描述
 
 | 接口名                                                       | 描述                                         |
 | ------------------------------------------------------------ | -------------------------------------------- |
 | int OH_HiAppEvent_AddWatcher(HiAppEvent_Watcher \*watcher)   | 添加应用事件观察者，以添加对应用事件的订阅。 |
 | int OH_HiAppEvent_RemoveWatcher (HiAppEvent_Watcher \*watcher) | 移除应用事件观察者，以移除对应用事件的订阅。 |
 
-## 开发步骤
+## 接口使用示例
 
-以实现对用户点击按钮触发崩溃场景生成的崩溃事件订阅为例，说明开发步骤。
+### 添加事件观察者
 
-1. 新建Native C++工程，并将jsoncpp导入到新建工程内，目录结构如下：
+以订阅用户点击按钮触发崩溃生成的崩溃事件为例，说明开发步骤。
+
+1. 新建Native C++工程，并将jsoncpp导入到新建工程内，目录结构如下。
 
    ```yml
    entry:
@@ -42,7 +44,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
                - Index.ets
    ```
 
-2. 编辑"CMakeLists.txt"文件，添加源文件及动态库：
+2. 编辑"CMakeLists.txt"文件，添加源文件及动态库。
 
    ```cmake
    # 新增jsoncpp.cpp(解析订阅事件中的json字符串)源文件
@@ -51,7 +53,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so libhiappevent_ndk.z.so)
    ```
 
-3. 编辑"napi_init.cpp"文件，导入依赖的文件，并定义LOG_TAG：
+3. 编辑"napi_init.cpp"文件，导入依赖的文件，并定义LOG_TAG。
 
    ```c++
    #include "napi/native_api.h"
@@ -63,9 +65,9 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    #define LOG_TAG "testTag"
    ```
 
-4. 订阅系统事件：
+4. 完成系统事件的订阅。
 
-   - onReceive类型观察者：
+   - onReceive类型观察者
 
      编辑"napi_init.cpp"文件，定义onReceive类型观察者相关方法：
 
@@ -129,8 +131,8 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
          return {};
      }
      ```
-     
-   - onTrigger类型观察者：
+
+   - onTrigger类型观察者
 
      编辑"napi_init.cpp"文件，定义OnTrigger类型观察者相关方法：
 
@@ -204,7 +206,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
      }
      ```
 
-5. 将RegisterWatcher注册为ArkTS接口：
+5. 将RegisterWatcher注册为ArkTS接口。
 
    编辑"napi_init.cpp"文件，将RegisterWatcher注册为ArkTS接口：
 
@@ -225,7 +227,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    export const registerWatcher: () => void;
    ```
 
-6. 编辑"EntryAbility.ets"文件，在onCreate()函数中新增接口调用：
+6. 编辑"EntryAbility.ets"文件，在onCreate()函数中新增接口调用。
 
    ```typescript
    // 导入依赖模块
@@ -236,7 +238,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    testNapi.registerWatcher();
    ```
 
-7. 编辑"Index.ets"文件，新增按钮触发崩溃事件：
+7. 编辑"Index.ets"文件，新增按钮触发崩溃事件。
 
    ```typescript
    Button("appCrash").onClick(() => {
@@ -244,32 +246,50 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    })
    ```
 
-8. 点击DevEco Studio界面中的运行按钮，运行应用工程，然后在应用界面中点击按钮“appCrash”，触发一次崩溃事件。崩溃事件发生后，系统会根据崩溃类型（JsError或NativeCrash）采用不同的栈回溯方式生成崩溃日志，然后再进行回调。其中NativeCrash栈回溯耗时约2秒，实际耗时与业务线程数量、进程间通信耗时有关。JsError触发进程内栈回溯，NativeCrash触发进程外栈回溯，因此NativeCrash栈回溯会比JsError栈回溯更耗时。用户可以订阅崩溃事件，栈回溯完成后会异步上报，不会阻塞当前业务。
+8. 点击DevEco Studio界面的运行按钮，启动应用工程。在应用界面中点击“appCrash”按钮，触发崩溃事件。系统根据崩溃类型（JsError或NativeCrash）生成相应的崩溃日志并进行回调。
 
-9. 若应用未捕获崩溃异常，则系统处理崩溃后应用退出，应用下次启动后HiAppEvent将崩溃事件上报给应用已注册的监听，完成回调。
-<br>若应用主动捕获崩溃异常，如下两种场景，HiAppEvent事件将会在应用退出前回调。
-<br>&emsp;&emsp;场景1：异常处理中未主动退出，应用发生崩溃后将不会退出。例如采用[errorManger.on](../reference/apis-ability-kit/js-apis-app-ability-errorManager.md#errormanageronerror)方法捕获JsError崩溃；应用主动注册NativeCrash崩溃信号处理函数未主动退出。<br>&emsp;&emsp;场景2：异常处理耗时太久，应用退出时机延后。
-<br>HiAppEvent上报事件完成回调后，可以在Log窗口看到对系统事件数据的处理日志：
+JsError通过进程内采集故障信息的方式触发回调迅速，而NativeCrash采取进程外采集故障信息，平均耗时约2秒，具体耗时受业务线程数量和进程间通信耗时影响。开发者可以订阅崩溃事件，故障信息采集完成后会异步上报，不会阻塞当前业务。
 
-   ```text
-   HiAppEvent eventInfo.domain=OS
-   HiAppEvent eventInfo.name=APP_CRASH
-   HiAppEvent eventInfo.eventType=1
-   HiAppEvent eventInfo.params.time=1502032265088
-   HiAppEvent eventInfo.params.crash_type=JsError
-   HiAppEvent eventInfo.params.foreground=1
-   HiAppEvent eventInfo.params.bundle_version=1.0.0
-   HiAppEvent eventInfo.params.bundle_name=com.example.myapplication
-   HiAppEvent eventInfo.params.pid=19237
-   HiAppEvent eventInfo.params.uid=20010043
-   HiAppEvent eventInfo.params.uuid=cc0f062e1b28c1fd2c817fafab5e8ca3207925b4bdd87c43ed23c60029659e01
-   HiAppEvent eventInfo.params.exception={"message":"Unexpected Text in JSON","name":"SyntaxError","stack":"at anonymous (entry/src/main/ets/pages/Index.ets:16:11)"}
-   HiAppEvent eventInfo.params.hilog.size=110
-   HiAppEvent eventInfo.params.external_log=["/data/storage/el2/log/hiappevent/APP_CRASH_1502032265211_19237.log"]
-   HiAppEvent eventInfo.params.log_over_limit=0
-   ```
+### 验证观察者是否订阅到崩溃事件
 
-10. 移除事件观察者：
+在应用未主动捕获崩溃异常和主动捕获崩溃异常的场景中，崩溃事件会在不同时机得到回调，开发者需要在不同时机验证是否订阅到崩溃事件。
+
+#### 应用未主动捕获崩溃异常场景
+
+若应用未主动捕获崩溃异常，则系统处理崩溃后应用退出，**应用下次启动时**，HiAppEvent将崩溃事件上报给应用已注册的监听，完成回调。
+
+#### 应用主动捕获崩溃异常场景
+
+若应用主动捕获崩溃异常，HiAppEvent事件将在**应用退出前**回调，例如以下两种情况：
+
+1. 异常处理中未主动退出，应用发生崩溃后将不会退出。
+采用[errorManager.on](../reference/apis-ability-kit/js-apis-app-ability-errorManager.md#errormanageronerror)方法捕获异常会导致JsError类型的崩溃事件在应用退出前回调。若应用主动注册[崩溃异常信号](cppcrash-guidelines.md#哪些信号会生成cppcrash日志)处理函数但未主动退出，会导致NativeCrash类型的崩溃事件在应用退出前回调。
+
+2. 异常处理耗时过长，导致应用退出时间延迟。
+
+在开发调试阶段，HiAppEvent上报事件完成回调后，可以在DevEco Studio的HiLog窗口查看订阅到的崩溃事件内容：
+
+```text
+HiAppEvent eventInfo.domain=OS
+HiAppEvent eventInfo.name=APP_CRASH
+HiAppEvent eventInfo.eventType=1
+HiAppEvent eventInfo.params.time=1502032265088
+HiAppEvent eventInfo.params.crash_type=JsError
+HiAppEvent eventInfo.params.foreground=1
+HiAppEvent eventInfo.params.bundle_version=1.0.0
+HiAppEvent eventInfo.params.bundle_name=com.example.myapplication
+HiAppEvent eventInfo.params.pid=19237
+HiAppEvent eventInfo.params.uid=20010043
+HiAppEvent eventInfo.params.uuid=cc0f062e1b28c1fd2c817fafab5e8ca3207925b4bdd87c43ed23c60029659e01
+HiAppEvent eventInfo.params.exception={"message":"Unexpected Text in JSON","name":"SyntaxError","stack":"at anonymous (entry/src/main/ets/pages/Index.ets:16:11)"}
+HiAppEvent eventInfo.params.hilog.size=110
+HiAppEvent eventInfo.params.external_log=["/data/storage/el2/log/hiappevent/APP_CRASH_1502032265211_19237.log"]
+HiAppEvent eventInfo.params.log_over_limit=0
+```
+
+### 移除并销毁事件观察者
+
+1. 移除事件观察者。
 
     ```c++
     static napi_value RemoveWatcher(napi_env env, napi_callback_info info) {
@@ -279,7 +299,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
     }
     ```
 
-11. 销毁事件观察者：
+2. 销毁事件观察者。
 
     ```c++
     static napi_value DestroyWatcher(napi_env env, napi_callback_info info) {

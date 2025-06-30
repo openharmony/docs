@@ -147,7 +147,7 @@ PWM模块适配包含以下四个步骤：
         }
         ```
 
-    - pwm_config.hcs 配置参考
+    - pwm_config.hcs 配置参考：
 
         在//device/soc/hisilicon/hi3516dv300/sdk_liteos/hdf_config/pwm/pwm_config.hcs文件配置器件属性，其中配置参数如下：
 
@@ -232,7 +232,7 @@ PWM模块适配包含以下四个步骤：
         };
         ```
 
-    - Init函数开发参考
+    - Init函数开发参考。
 
         入参：
 

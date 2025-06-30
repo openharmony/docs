@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -30,6 +30,8 @@ Slider(options?: SliderOptions)
 
 ## SliderOptions对象说明
 
+滑动条的信息。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -38,15 +40,17 @@ Slider(options?: SliderOptions)
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | number | 否 | 当前进度值。<br/>默认值：与参数min的取值一致。<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。<br />该参数支持[!!](../../../quick-start/arkts-new-binding.md)双向绑定变量。<br/>取值范围： [min, max]<br/>小于min时取min，大于max时取max。 |
+| value | number | 否 | 当前进度值。<br/>默认值：与参数min的取值一致。<br />从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。<br />该参数支持[!!](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。<br/>取值范围： [min, max]<br/>小于min时取min，大于max时取max。 |
 | min | number | 否 | 设置最小值。<br/>默认值：0 |
 | max | number | 否 | 设置最大值。<br/>默认值：100<br/>**说明：** <br/>min >= max异常情况，min取默认值0，max取默认值100。<br/>value不在[min, max]范围之内，取min或者max，靠近min取min，靠近max取max。 |
-| step | number | 否 | 设置Slider滑动步长。<br/>默认值：1<br/>取值范围：[0.01, max - min]<br/>**说明：** <br/>若设置的step值小于0或大于max值时，则按默认值显示。 |
+| step | number | 否 | 设置Slider滑动步长。<br/>默认值：1<br/>取值范围：[0.01, max - min]<br/>**说明：** <br/>若设置的step值小于0或大于max值，则按默认值显示。 |
 | style | [SliderStyle](#sliderstyle枚举说明) | 否 | 设置Slider的滑块与滑轨显示样式。<br/>默认值：SliderStyle.OutSet |
 | direction<sup>8+</sup> | [Axis](ts-appendix-enums.md#axis) | 否 | 设置滑动条滑动方向为水平或竖直方向。<br/>默认值：Axis.Horizontal |
 | reverse<sup>8+</sup> | boolean | 否 | 设置滑动条取值范围是否反向。<br/>默认值：false<br/>值为true时，横向Slider从右往左滑动，竖向Slider从下往上滑动。值为false时，横向Slider从左往右滑动，竖向Slider从上往下滑动。 |
 
 ## SliderStyle枚举说明
+
+滑动条滑块在滑轨上显示的样式。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -55,6 +59,12 @@ Slider(options?: SliderOptions)
 | OutSet | 滑块在滑轨上。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | InSet | 滑块在滑轨内。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | NONE<sup>12+</sup> | 无滑块 <br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+
+>  **说明：** 
+>
+>  - Slider无默认padding。
+>  - 当Slider为水平滑动条时，默认高度为40vp，宽度为父容器的宽度，滑动条居中显示，当滑动条的style为SliderStyle.OutSet时，左右间距分别为10vp，当滑动条的style为SliderStyle.InSet时，左右间距分别为6vp，若设置padding，padding不会覆盖左右间距。
+>  - 当Slider为竖直滑动条时，默认宽度为40vp，高度为父容器的高度，滑动条居中显示，当滑动条的style为SliderStyle.OutSet时，上下间距分别为10vp，当滑动条的style为SliderStyle.InSet时，上下间距分别为6vp，若设置padding，padding不会覆盖上下间距。
 
 ## 属性
 
@@ -102,7 +112,7 @@ trackColor(value: ResourceColor | LinearGradient)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[LinearGradient<sup>12+</sup>](ts-basic-components-datapanel.md#lineargradient10) | 是   | 滑轨的背景颜色。<br/>**说明：** 设置渐变色时，若颜色断点颜色值为非法值或者渐变色断点为空时，渐变色不起效果。<br/>默认值：`$r('sys.color.ohos_id_color_component_normal')`<br/>该接口中的LinearGradient类型不支持在原子化服务中使用。 |
+| value  | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[LinearGradient<sup>12+</sup>](ts-basic-components-datapanel.md#lineargradient10) | 是   | 滑轨的背景颜色。<br/>**说明：** <br/>设置渐变色时，如果颜色断点颜色值为非法值或渐变色断点为空，渐变色将不起效果。默认值：`$r('sys.color.ohos_id_color_component_normal')`。注意：该接口中的LinearGradient类型不支持在原子化服务中使用。 |
 
 ### selectedColor
 
@@ -120,7 +130,7 @@ selectedColor(value: ResourceColor)
 
 | 参数名 | 类型                                       | 必填 | 说明                                                         |
 | ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 滑轨的已滑动部分颜色。 <br/>**说明：** 设置渐变色时，若颜色断点颜色值为非法值或者渐变色断点为空时，渐变色不起效果。 <br/>默认值：`$r('sys.color.ohos_id_color_emphasize')` |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 滑轨的已滑动部分颜色。 <br/>**说明：** <br/>设置渐变色时，如果颜色断点颜色值为非法值或渐变色断点为空，渐变色将不起效果。默认值：`$r('sys.color.ohos_id_color_emphasize')` |
 
 ### selectedColor<sup>18+</sup>
 
@@ -140,7 +150,7 @@ selectedColor(selectedColor: ResourceColor | LinearGradient)
 
 | 参数名        | 类型                                                         | 必填 | 说明                                                         |
 | ------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| selectedColor | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[LinearGradient<sup>18+</sup>](ts-basic-components-datapanel.md#lineargradient10) | 是   | 滑轨的已滑动部分颜色。 <br/>**说明：** 设置渐变色时，若颜色断点颜色值为非法值或者渐变色断点为空时，渐变色不起效果。 <br/>默认值：`$r('sys.color.ohos_id_color_emphasize')` |
+| selectedColor | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[LinearGradient<sup>18+</sup>](ts-basic-components-datapanel.md#lineargradient10) | 是   | 滑轨的已滑动部分颜色。 <br/>**说明：** <br/>设置渐变色时，若颜色断点颜色值为非法值或者渐变色断点为空时，渐变色不起效果。 <br/>默认值：`$r('sys.color.ohos_id_color_emphasize')` |
 
 ### showSteps
 
@@ -166,7 +176,7 @@ showTips(value: boolean, content?: ResourceStr)
 
 设置滑动时是否显示气泡提示。
 
-当direction的值为Axis.Horizontal时，tip显示在滑块上方，如果上方空间不够，则在下方显示。值为Axis.Vertical时，tip显示在滑块左边，如果左边空间不够，则在右边显示。不设置周边边距或者周边边距比较小时，tip会被截断。
+当direction的值为Axis.Horizontal时，tip显示在滑块上方，如果上方空间不够，则在下方显示。当值为Axis.Vertical时，tip显示在滑块左边，如果左边空间不够，则在右边显示。当不设置周边边距或者周边边距比较小时，tip会被截断。
 
 tip的绘制区域为Slider自身节点的overlay。
 
@@ -180,20 +190,22 @@ tip的绘制区域为Slider自身节点的overlay。
 
 | 参数名                | 类型                                   | 必填 | 说明                                       |
 | --------------------- | -------------------------------------- | ---- | ------------------------------------------ |
-| value                 | boolean                                | 是   | 滑动时是否显示气泡提示。值为true时，显示气泡。值为false时，不显示气泡。<br/>默认值：false |
+| value                 | boolean                                | 是   | 滑动时是否显示气泡提示。值为true时显示气泡。值为false时不显示气泡。<br/>默认值：false |
 | content<sup>10+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否   | 气泡提示的文本内容，默认显示当前百分比。   |
 
 ### trackThickness<sup>8+</sup>
 
 trackThickness(value: Length)
 
-设置滑轨的粗细。设置为小于等于0的值时，取默认值。
+设置滑轨的粗细。设置小于等于0的值时，取默认值。
 
 为保证滑块和滑轨的[SliderStyle](#sliderstyle枚举说明)样式，[blockSize](#blocksize10)跟随trackThickness同比例增减。
 
 当style为[SliderStyle](#sliderstyle枚举说明).OutSet时，trackThickness ：[blockSize](#blocksize10) = 1 ：4，当style为[SliderStyle](#sliderstyle枚举说明).InSet时，trackThickness ：[blockSize](#blocksize10) = 5 ：3。
 
-在变更trackThickness过程中，若trackThickness的大小或者[blockSize](#blocksize10)的大小超过slider组件的width或者height([SliderStyle](#sliderstyle枚举说明).OutSet时可能trackThickness没超过，但是[blockSize](#blocksize10)超过了)，取默认值。
+trackThickness或[blockSize](#blocksize10)的大小超过Slider组件的宽度或高度时，取默认值。
+
+当[SliderStyle](#sliderstyle枚举说明)设置为OutSet时，尽管trackThickness的大小没超过Slider组件的宽度或高度，但是[blockSize](#blocksize10)超过了，取默认值。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -249,7 +261,7 @@ blockBorderWidth(value: Length)
 
 | 参数名 | 类型                         | 必填 | 说明           |
 | ------ | ---------------------------- | ---- | -------------- |
-| value  | [Length](ts-types.md#length) | 是   | 滑块描边粗细。<br/>**说明**：设置string类型时，不支持百分比。 |
+| value  | [Length](ts-types.md#length) | 是   | 滑块描边粗细。<br/>**说明：** <br/>设置string类型时，不支持百分比。 |
 
 ### stepColor<sup>10+</sup>
 
@@ -281,7 +293,7 @@ trackBorderRadius(value: Length)
 
 | 参数名 | 类型                         | 必填 | 说明                             |
 | ------ | ---------------------------- | ---- | -------------------------------- |
-| value  | [Length](ts-types.md#length) | 是   | 底板圆角半径。<br/>默认值：<br/>style值为SliderStyle.OutSet默认值为'2vp'<br/>style值为SliderStyle.InSet默认值为'10vp'。<br/>**说明**：设置string类型时，不支持百分比。设定值小于0时取默认值。 |
+| value  | [Length](ts-types.md#length) | 是   | 底板圆角半径。<br/>默认值：<br/>style值为SliderStyle.OutSet时默认值为'2vp'。<br/>style值为SliderStyle.InSet时默认值为'10vp'。<br/>**说明：** <br/>设置string类型时，不支持百分比。设定值小于0时取默认值。 |
 
 ### selectedBorderRadius<sup>12+</sup>
 
@@ -297,7 +309,7 @@ selectedBorderRadius(value: Dimension)
 
 | 参数名 | 类型                         | 必填 | 说明                             |
 | ------ | ---------------------------- | ---- | -------------------------------- |
-| value  | [Dimension](ts-types.md#dimension10)| 是   | 已选择部分圆角半径。<br/>默认值：style值为SliderStyle.InSet或SliderStyle.OutSet时，跟随底板圆角；style值为SliderStyle.NONE时，为0。<br/>**说明**：不支持Percentage类型。设定值小于0时取默认值。 |
+| value  | [Dimension](ts-types.md#dimension10)| 是   | 已选择部分的圆角半径。<br/>默认值：当style值为SliderStyle.InSet或SliderStyle.OutSet时，跟随底板圆角；当style值为SliderStyle.NONE时，为0。<br/>**说明：** <br/>不支持Percentage类型。设定值小于0时取默认值。 |
 
 ### blockSize<sup>10+</sup>
 
@@ -335,7 +347,7 @@ blockStyle(value: SliderBlockStyle)
 
 | 参数名 | 类型                                            | 必填 | 说明                                                         |
 | ------ | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [SliderBlockStyle](#sliderblockstyle10对象说明) | 是   | 滑块形状参数。<br/>默认值：SliderBlockType.DEFAULT，使用圆形滑块。 |
+| value  | [SliderBlockStyle](#sliderblockstyle10对象说明) | 是   | 滑块形状参数。<br/>默认值：SliderBlockType.DEFAULT，滑块形状为圆形。 |
 
 ### stepSize<sup>10+</sup>
 
@@ -385,12 +397,6 @@ maxLabel(value: string)
 | ------ | ------ | ---- | -------- |
 | value  | string | 是   | 最大值。 |
 
->  **说明：** 
->
->  - Slider无默认padding。
->  - 当Slider为水平滑动条时，Slider默认高度为40vp，宽度为父容器的宽度，滑动条居中显示，左右间距为分别为10vp，若设置padding，padding不会覆盖左右间距。
->  - 当Slider为竖直滑动条时，Slider默认宽度为40vp，高度为父容器的高度，滑动条居中显示，上下间距为分别为6vp，若设置padding，padding不会覆盖上下间距。
-
 ### sliderInteractionMode<sup>12+</sup>
 
 sliderInteractionMode(value: SliderInteraction)
@@ -421,7 +427,7 @@ minResponsiveDistance(value: number)
 
 | 参数名 | 类型    | 必填 | 说明                                       |
 | ------ | ------- | ---- | ------------------------------------------ |
-| value  | number | 是   | 设置滑动响应的最小距离，滑动超过此距离后才响应使滑块滑动。<br/>**说明：** <br/>单位与参数[min](#slideroptions对象说明)和[max](#slideroptions对象说明)一致。<br/>当value小于0、大于MAX-MIN或非法值时，取默认值。<br/>默认值：0  |
+| value  | number | 是   | 设置滑动响应的最小距离，滑动超过此距离后滑块才开始滑动。<br/>**说明：** <br/>单位与参数[min](#slideroptions对象说明)和[max](#slideroptions对象说明)一致。<br/>当value小于0、大于MAX-MIN或非法值时，取默认值。<br/>默认值：0  |
 
 ### contentModifier<sup>12+</sup>
 
@@ -437,12 +443,12 @@ contentModifier(modifier: ContentModifier\<SliderConfiguration>)
 
 | 参数名 | 类型                                          | 必填 | 说明                                             |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
-| modifier  | [ContentModifier\<SliderConfiguration>](#sliderconfiguration12对象说明) | 是   | 在Slider组件上，定制内容区的方法。<br/>modifier: 内容修改器，开发者需要自定义class实现ContentModifier接口。 |
+| modifier  | [ContentModifier\<SliderConfiguration>](#sliderconfiguration12对象说明) | 是   | 在Slider组件上，定制内容区的方法。<br/>modifier：内容修改器，开发者需要自定义class实现ContentModifier接口。 |
 
 >  **说明：**
 >
->  - 如果设置了contentModifier，则在自定义区域内点击和手势滑动均不可触发原slider组件的onChange事件。
->  - 仅当调用triggerChange函数且传递正确的参数值时才可以触发原slider组件的onChange事件。
+>  - 设置了contentModifier后，自定义区域内点击和手势滑动均不会触发原Slider组件的onChange事件。
+>  - 仅当调用triggerChange函数且传递正确的参数值时，才可以触发原Slider组件的onChange事件。
 
 ### slideRange<sup>12+</sup>
 
@@ -530,7 +536,7 @@ Slider组件滑块形状枚举。
 
 ## SliderInteraction<sup>12+</sup>枚举说明
 
-用户与滑动条组件交互方式
+用户与滑动条组件交互方式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -539,8 +545,8 @@ Slider组件滑块形状枚举。
 | 名称     | 值 |说明                          |
 | ------ | -- | ----------------------------- |
 | SLIDE_AND_CLICK | 0 | 用户可拖拽滑块或者点击滑轨使滑块移动，鼠标或手指按下即发生移动。|
-| SLIDE_ONLY | 1 | 不允许用户通过点击滑轨使滑块移动。|
-| SLIDE_AND_CLICK_UP | 2 |用户可拖拽滑块或者点击滑轨使滑块移动，鼠标或手指抬起时，若与屏幕按压位置一致，则触发移动。|
+| SLIDE_ONLY | 1 | 禁止用户通过点击滑轨使滑块移动。|
+| SLIDE_AND_CLICK_UP | 2 |用户可拖拽滑块或者点击滑轨使滑块移动，当鼠标或手指抬起时，若与屏幕按压位置一致，则触发移动。|
 
 ## SlideRange<sup>12+</sup>对象说明
 
@@ -557,15 +563,15 @@ Slider组件滑块形状枚举。
 
 >  **说明：**
 >
->  - 当前仅当MIN<=from<=to<=MAX时该接口生效(MIN和MAX不依赖于其设置的值, 而取决于其实际生效的值)。
->  - 可只设置from或者to, 也可以同时设置from和to。
->  - 当接口生效, 设置的from处于紧邻的step整数倍的值之间, 则from实际取左区间step整数倍的那个值或者MIN作为修正后的值。
->  - 当接口生效, 设置的to处于紧邻的step整数倍的值之间, 则to实际取右区间step整数倍的那个值或者MAX作为修正后的值。
->  - 在from和to取修正值后, 当value是undefined或null时, 其取值与from一致; 当value是数值型, 且value <= from, 则取from; value > to, 则取to。
+>  - 当前仅当MIN<=from<=to<=MAX时该接口生效(MIN和MAX不依赖于其设置的值，而取决于其实际生效的值)。
+>  - 可只设置from或者to，也可以同时设置from和to。
+>  - 当接口生效且设置的from处于紧邻的step整数倍的值之间，则from实际取左区间step整数倍的那个值或者MIN作为修正后的值。
+>  - 当接口生效且设置的to处于紧邻的step整数倍的值之间，则to实际取右区间step整数倍的那个值或者MAX作为修正后的值。
+>  - 在from和to取修正值后， 当value是undefined或null时，其取值与from一致; 当value是数值型且value <= from，则取from; 当value > to，则取to。
 
 ## 事件
 
-支持[通用事件](ts-component-general-events.md)外，还支持以下事件：
+除支持[通用事件](ts-component-general-events.md)外，还支持以下事件：
 
 ### onChange
 
@@ -591,6 +597,8 @@ Begin和End状态当手势点击时都会触发，Moving和Click状态当value�
 | mode   | [SliderChangeMode](#sliderchangemode枚举说明) | 是   | 事件触发的相关状态值。                                       |
 
 ## SliderChangeMode枚举说明
+
+滑块的状态值。包括按下、拖动、离开以及点击滑动条使滑块位置时。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -649,15 +657,15 @@ type SliderTriggerChangeCallback = (value: number, mode: SliderChangeMode) => vo
 @Entry
 @Component
 struct SliderExample {
-  @State outSetValueOne: number = 40
-  @State inSetValueOne: number = 40
-  @State noneValueOne: number = 40
-  @State outSetValueTwo: number = 40
-  @State inSetValueTwo: number = 40
-  @State vOutSetValueOne: number = 40
-  @State vInSetValueOne: number = 40
-  @State vOutSetValueTwo: number = 40
-  @State vInSetValueTwo: number = 40
+  @State outSetValueOne: number = 40;
+  @State inSetValueOne: number = 40;
+  @State noneValueOne: number = 40;
+  @State outSetValueTwo: number = 40;
+  @State inSetValueTwo: number = 40;
+  @State vOutSetValueOne: number = 40;
+  @State vInSetValueOne: number = 40;
+  @State vOutSetValueTwo: number = 40;
+  @State vInSetValueTwo: number = 40;
 
   build() {
     Column({ space: 8 }) {
@@ -671,8 +679,8 @@ struct SliderExample {
         })
           .showTips(true)
           .onChange((value: number, mode: SliderChangeMode) => {
-            this.outSetValueOne = value
-            console.info('value:' + value + 'mode:' + mode.toString())
+            this.outSetValueOne = value;
+            console.info('value:' + value + 'mode:' + mode.toString());
           })
         // toFixed(0)将滑动条返回值处理为整数精度
         Text(this.outSetValueOne.toFixed(0)).fontSize(12)
@@ -686,8 +694,8 @@ struct SliderExample {
         })
           .showSteps(true)
           .onChange((value: number, mode: SliderChangeMode) => {
-            this.outSetValueTwo = value
-            console.info('value:' + value + 'mode:' + mode.toString())
+            this.outSetValueTwo = value;
+            console.info('value:' + value + 'mode:' + mode.toString());
           })
         Text(this.outSetValueTwo.toFixed(0)).fontSize(12)
       }
@@ -706,8 +714,8 @@ struct SliderExample {
           .selectedColor('#4169E1')
           .showTips(true)
           .onChange((value: number, mode: SliderChangeMode) => {
-            this.inSetValueOne = value
-            console.info('value:' + value + 'mode:' + mode.toString())
+            this.inSetValueOne = value;
+            console.info('value:' + value + 'mode:' + mode.toString());
           })
         Text(this.inSetValueOne.toFixed(0)).fontSize(12)
       }
@@ -723,8 +731,8 @@ struct SliderExample {
           .selectedColor('#4169E1')
           .showSteps(true)
           .onChange((value: number, mode: SliderChangeMode) => {
-            this.inSetValueTwo = value
-            console.info('value:' + value + 'mode:' + mode.toString())
+            this.inSetValueTwo = value;
+            console.info('value:' + value + 'mode:' + mode.toString());
           })
         Text(this.inSetValueTwo.toFixed(0)).fontSize(12)
       }
@@ -743,8 +751,8 @@ struct SliderExample {
           .selectedColor('#4169E1')
           .showTips(true)
           .onChange((value: number, mode: SliderChangeMode) => {
-            this.noneValueOne = value
-            console.info('value:' + value + 'mode:' + mode.toString())
+            this.noneValueOne = value;
+            console.info('value:' + value + 'mode:' + mode.toString());
           })
         Text(this.noneValueOne.toFixed(0)).fontSize(12)
       }
@@ -765,8 +773,8 @@ struct SliderExample {
               .selectedColor('#4169E1')
               .showTips(true)
               .onChange((value: number, mode: SliderChangeMode) => {
-                this.vOutSetValueOne = value
-                console.info('value:' + value + 'mode:' + mode.toString())
+                this.vOutSetValueOne = value;
+                console.info('value:' + value + 'mode:' + mode.toString());
               })
             Slider({
               value: this.vOutSetValueTwo,
@@ -779,8 +787,8 @@ struct SliderExample {
               .selectedColor('#4169E1')
               .showSteps(true)
               .onChange((value: number, mode: SliderChangeMode) => {
-                this.vOutSetValueTwo = value
-                console.info('value:' + value + 'mode:' + mode.toString())
+                this.vOutSetValueTwo = value;
+                console.info('value:' + value + 'mode:' + mode.toString());
               })
           }
         }.width('50%').height(300)
@@ -796,8 +804,8 @@ struct SliderExample {
             })
               .showTips(true)
               .onChange((value: number, mode: SliderChangeMode) => {
-                this.vInSetValueOne = value
-                console.info('value:' + value + 'mode:' + mode.toString())
+                this.vInSetValueOne = value;
+                console.info('value:' + value + 'mode:' + mode.toString());
               })
             Slider({
               value: this.vInSetValueTwo,
@@ -808,8 +816,8 @@ struct SliderExample {
             })
               .showSteps(true)
               .onChange((value: number, mode: SliderChangeMode) => {
-                this.vInSetValueTwo = value
-                console.info('value:' + value + 'mode:' + mode.toString())
+                this.vInSetValueTwo = value;
+                console.info('value:' + value + 'mode:' + mode.toString());
               })
           }
         }.width('50%').height(300)
@@ -829,7 +837,7 @@ struct SliderExample {
 @Entry
 @Component
 struct SliderExample {
-  @State tipsValue: number = 40
+  @State tipsValue: number = 40;
 
   build() {
     Column({ space: 8 }) {
@@ -867,7 +875,7 @@ struct SliderExample {
       Slider({ style: SliderStyle.InSet, value: this.tipsValue })
         .showTips(true, this.tipsValue.toFixed())
         .onChange(value => {
-          this.tipsValue = value
+          this.tipsValue = value;
         })
     }
   }
@@ -885,54 +893,57 @@ struct SliderExample {
 ```ts
 // xxx.ets
 
-@Builder function buildSlider(config: SliderConfiguration) {
+@Builder
+function buildSlider(config: SliderConfiguration) {
   Row() {
-    Column({space: 30}) {
-      Progress({value: config.value, total: config.max, type:ProgressType.Ring})
-        .margin({ top:20 })
+    Column({ space: 30 }) {
+      Progress({ value: config.value, total: config.max, type: ProgressType.Ring })
+        .margin({ top: 20 })
 
-      Button('增加').onClick(() => {
-        config.value = config.value + config.step
-        config.triggerChange(config.value, SliderChangeMode.Click)
-      })
+      Button('增加')
+        .onClick(() => {
+          config.value = config.value + config.step;
+          config.triggerChange(config.value, SliderChangeMode.Click);
+        })
         .width(100)
         .height(25)
         .fontSize(10)
-        .enabled(config.value<config.max)
+        .enabled(config.value < config.max)
 
-      Button('减少').onClick(() => {
-        config.value=config.value-config.step
-        config.triggerChange(config.value, SliderChangeMode.Click)
-      })
+      Button('减少')
+        .onClick(() => {
+          config.value = config.value - config.step;
+          config.triggerChange(config.value, SliderChangeMode.Click);
+        })
         .width(100)
         .height(25)
         .fontSize(10)
-        .enabled(config.value>config.min)
+        .enabled(config.value > config.min)
 
       Slider({
         value: config.value,
         min: config.min,
         max: config.max,
-        step:config.step,
+        step: config.step,
       })
         .width(config.max)
-        .visibility((config.contentModifier as MySliderStyle).showSlider?Visibility.Visible:Visibility.Hidden)
+        .visibility((config.contentModifier as MySliderStyle).showSlider ? Visibility.Visible : Visibility.Hidden)
         .showSteps(true)
         .onChange((value: number, mode: SliderChangeMode) => {
-          config.triggerChange(value, mode)
+          config.triggerChange(value, mode);
         })
-      Text('当前状态：'+ ((config.contentModifier as MySliderStyle).sliderChangeMode==0?"Begin"
-        :((config.contentModifier as MySliderStyle).sliderChangeMode==1?"Moving"
-          :((config.contentModifier as MySliderStyle).sliderChangeMode==2?"End"
-            :((config.contentModifier as MySliderStyle).sliderChangeMode==3?"Click":"无")))))
+      Text('当前状态：' + ((config.contentModifier as MySliderStyle).sliderChangeMode == 0 ? "Begin"
+        : ((config.contentModifier as MySliderStyle).sliderChangeMode == 1 ? "Moving"
+          : ((config.contentModifier as MySliderStyle).sliderChangeMode == 2 ? "End"
+            : ((config.contentModifier as MySliderStyle).sliderChangeMode == 3 ? "Click" : "无")))))
         .fontSize(10)
-      Text('进度值：'+ config.value)
+      Text('进度值：' + config.value)
         .fontSize(10)
-      Text('最小值：'+ config.min)
+      Text('最小值：' + config.min)
         .fontSize(10)
-      Text('最大值：'+ config.max)
+      Text('最大值：' + config.max)
         .fontSize(10)
-      Text('步长：'+ config.step)
+      Text('步长：' + config.step)
         .fontSize(10)
     }
     .width('80%')
@@ -942,14 +953,16 @@ struct SliderExample {
 }
 
 class MySliderStyle implements ContentModifier<SliderConfiguration> {
-  showSlider:boolean=true
-  sliderChangeMode:number=0
-  constructor(showSlider: boolean,sliderChangeMode:number) {
-    this.showSlider = showSlider
-    this.sliderChangeMode = sliderChangeMode
+  showSlider: boolean = true;
+  sliderChangeMode: number = 0;
+
+  constructor(showSlider: boolean, sliderChangeMode: number) {
+    this.showSlider = showSlider;
+    this.sliderChangeMode = sliderChangeMode;
   }
-  applyContent() : WrappedBuilder<[SliderConfiguration]> {
-    return wrapBuilder(buildSlider)
+
+  applyContent(): WrappedBuilder<[SliderConfiguration]> {
+    return wrapBuilder(buildSlider);
   }
 }
 
@@ -957,12 +970,12 @@ class MySliderStyle implements ContentModifier<SliderConfiguration> {
 @Entry
 @Component
 struct SliderExample {
-  @State showSlider:boolean=true
-  @State sliderValue: number = 0
-  @State sliderMin: number = 10
-  @State sliderMax: number = 100
-  @State sliderStep: number = 20
-  @State sliderChangeMode: number = 0
+  @State showSlider: boolean = true;
+  @State sliderValue: number = 0;
+  @State sliderMin: number = 10;
+  @State sliderMax: number = 100;
+  @State sliderStep: number = 20;
+  @State sliderChangeMode: number = 0;
 
   build() {
     Column({ space: 8 }) {
@@ -972,15 +985,15 @@ struct SliderExample {
           value: this.sliderValue,
           min: this.sliderMin,
           max: this.sliderMax,
-          step:this.sliderStep,
+          step: this.sliderStep,
         })
           .showSteps(true)
           .onChange((value: number, mode: SliderChangeMode) => {
-            this.sliderValue = value
-            this.sliderChangeMode=mode
-            console.info('【SliderLog】value:' + value + 'mode:' + mode.toString())
+            this.sliderValue = value;
+            this.sliderChangeMode = mode;
+            console.info('【SliderLog】value:' + value + 'mode:' + mode.toString());
           })
-          .contentModifier(new MySliderStyle(this.showSlider,this.sliderChangeMode))
+          .contentModifier(new MySliderStyle(this.showSlider, this.sliderChangeMode))
 
       }
       .width('100%')
@@ -992,3 +1005,85 @@ struct SliderExample {
 
 ![slider_3](figures/slider_builder.gif)
 
+### 示例4（设置滑动条渐变色）
+
+该示例通过colorGradient设置滑动条渐变色，通过focusable、defaultFocus和focusOnTouch设置滑动条支持表冠操作。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct SliderExample {
+  @State inSetValueOne: number = 60
+  @State colorGradient: LinearGradient = new LinearGradient([{ color: "#FF0000FF", offset: 0 }, { color: "#FFFF0000", offset: 1 }])
+  @State sensitivity: CrownSensitivity | undefined | null = CrownSensitivity.MEDIUM
+  scroller: Scroller = new Scroller()
+
+  getIntegerDigits(num: number): string {
+    let numRound = Math.round(num);
+    return numRound.toString();
+  }
+
+  build() {
+    Column() {
+      Scroll(this.scroller){
+        Column() {
+          Row() {
+            Stack({ alignContent: Alignment.Top }) {
+              Slider({
+                value: this.inSetValueOne,
+                min: 0,
+                max: 100,
+                style: SliderStyle.NONE,
+                direction: Axis.Vertical,
+                reverse: true
+              })
+                .focusable(true)
+                .defaultFocus(true)
+                .focusOnTouch(true)
+                .digitalCrownSensitivity(this.sensitivity)
+                .trackColor("#26FFFFFF")
+                .trackThickness(52)
+                .selectedColor(this.colorGradient)
+                .onChange((value: number, mode: SliderChangeMode) => {
+                  this.inSetValueOne = value
+                })
+            }
+            .height(233 - 66)
+            .width(52)
+            .margin({ top: 33, bottom: 33, left: 56 })
+            Column() {
+              Text('音量')
+                .fontSize(19)
+                .fontColor("#A9FFFFFF")
+                .fontWeight(500)
+                .textAlign(TextAlign.Start)
+                .margin({ left: 20 })
+              Row() {
+                Text(this.getIntegerDigits(this.inSetValueOne))
+                  .fontSize(52)
+                  .fontColor("#FFFFFFFF")
+                  .fontWeight(700)
+                  .textAlign(TextAlign.Start)
+                  .margin({ left: 20 })
+                Text('%')
+                  .fontSize(19)
+                  .fontColor("#FFFFFFFF")
+                  .fontWeight(500)
+                  .textAlign(TextAlign.Start)
+                  .margin({ left: 2 })
+              }
+            }.alignItems(HorizontalAlign.Start)
+          }
+          .width(233)
+          .height(233)
+          .borderRadius(116.5)
+          .backgroundColor(Color.Black)
+        }
+      }
+    }.width('100%')
+  }
+}
+```
+
+![slider_4](figures/slider_crown.gif)

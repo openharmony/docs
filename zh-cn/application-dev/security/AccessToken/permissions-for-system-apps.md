@@ -1188,18 +1188,6 @@
 
 **起始版本**：10
 
-## ohos.permission.GET_WIFI_LOCAL_MAC
-
-允许应用获取本机的Wi-Fi设备的MAC地址。
-
-**权限级别**：system_basic
-
-**授权方式**：系统授权（system_grant）
-
-**ACL使能**：true
-
-**起始版本**：8
-
 ## ohos.permission.securityguard.REQUEST_SECURITY_EVENT_INFO
 
 允许应用获取风险详细数据。
@@ -2692,18 +2680,6 @@
 
 **起始版本**：11
 
-## ohos.permission.CONNECT_UI_EXTENSION_ABILITY
-
-允许系统服务连接UIExtensionAbility。
-
-**权限级别**：system_core
-
-**授权方式**：系统授权（system_grant）
-
-**ACL使能**：true
-
-**起始版本**：11
-
 ## ohos.permission.SET_SANDBOX_POLICY
 
 允许系统应用设置动态沙箱策略。
@@ -3607,6 +3583,18 @@
 **ACL使能**：true
 
 **起始版本**：12
+
+## ohos.permission.RECEIVE_BMS_BROKER_MESSAGES
+
+允许系统服务或系统应用接收包管理代理服务消息。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：18
 
 ## ohos.permission.ACCESS_FUSION_MANAGER
 
@@ -4575,11 +4563,71 @@
 
 **起始版本**：18
 
+## ohos.permission.READ_DHA
+
+允许应用读取设备健康证明信息。
+
+**权限级别**：system_core
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：18
+
+## ohos.permission.WRITE_DHA
+
+允许应用写入设备健康证明信息。
+
+**权限级别**：system_core
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：18
+
+## ohos.permission.NOTIFY_DHA
+
+允许应用通知设备健康证明事件。
+
+**权限级别**：system_core
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：18
+
 ## ohos.permission.SEND_NOTIFICATION_CROSS_USER
 
 允许应用发送通知给系统中指定用户。
 
 **权限级别**：system_core
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：18
+
+## ohos.permission.ACCESS_CALENDARDATA_FOR_BROKER
+
+允许系统服务broker访问日历数据。
+
+**权限级别**：system_core
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：17
+
+## ohos.permission.ALLOW_ACCESS_TIPS
+
+允许系统应用拉起Tips提供的组件。
+
+**权限级别**：system_basic
 
 **授权方式**：系统授权（system_grant）
 

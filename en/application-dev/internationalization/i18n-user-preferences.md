@@ -1,6 +1,6 @@
 # Setting User Preferences (For System Applications Only)
 
-## Use Cases
+## When to Use
 
 In addition to system locales and application preferred languages, the system supports setting of user preferences. Currently, the system supports two user preferences: whether to use local digits and whether to use the 12/24-hour format. User preference settings are saved to system locales and application preferred languages as part of the internationalization feature.
 

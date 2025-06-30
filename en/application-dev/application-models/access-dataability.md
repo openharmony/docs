@@ -1,5 +1,5 @@
 # Accessing a DataAbility
-
+<!--deprecated_code_no_check-->
 
 To access a DataAbility, import the basic dependency packages and obtain the URI string for communicating with the DataAbility.
 

@@ -1,7 +1,7 @@
 # 弧形按钮 (ArcButton)
 
 
-ArcButton是弧形按钮组件，用于圆形屏幕使用。为手表用户提供强调、普通、警告等样式按钮。具体用法请参考[ArcButton](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ArcButton.md)。
+ArcButton是弧形按钮组件，用于圆形屏幕。为手表用户提供强调、普通、警告等样式按钮。具体用法请参考[ArcButton](../reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ArcButton.md)。
 
 
 ## 创建按钮
@@ -142,7 +142,7 @@ ArcButton有上弧形按钮和下弧形按钮两种类型。使用[position](../
   在亮度设置界面，进度条显示当前亮度为30%。点击重置后，亮度值将被重置为默认的50%。
 
   ```ts
-import { LengthMetrics, LengthUnit, ArcButton, ArcButtonOptions, ArcButtonStyleMode, } from '@kit.ArkUI';
+import { LengthMetrics, LengthUnit, ArcButton, ArcButtonOptions, ArcButtonStyleMode } from '@kit.ArkUI';
 
 @Entry
 @ComponentV2

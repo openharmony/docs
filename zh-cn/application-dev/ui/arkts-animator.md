@@ -83,26 +83,26 @@
 
    ```ts
    onPageShow(): void {
-       //创建animatorResult对象
-       this.animatorOptions = this.getUIContext().createAnimator(options);
-       this.animatorOptions.onFrame = (progress: number) => {
+     //创建animatorResult对象
+     this.animatorOptions = this.getUIContext().createAnimator(options);
+     this.animatorOptions.onFrame = (progress: number) => {
        this.translateX = progress;
        if (progress > this.topWidth && this.translateY < this.bottomHeight) {
-          this.translateY = Math.pow(progress - this.topWidth, 2) * this.g;
+         this.translateY = Math.pow(progress - this.topWidth, 2) * this.g;
        }
-    }
-    //动画取消时执行方法
-    this.animatorOptions.onCancel = () => {
+     }
+     //动画取消时执行方法
+     this.animatorOptions.onCancel = () => {
        this.animatorStatus = '取消';
-    }
-    //动画完成时执行方法
-    this.animatorOptions.onFinish = () => {
+     }
+     //动画完成时执行方法
+     this.animatorOptions.onFinish = () => {
        this.animatorStatus = '完成';
-    }
-    //动画重复播放时执行方法
-    this.animatorOptions.onRepeat = () => {
+     }
+     //动画重复播放时执行方法
+     this.animatorOptions.onRepeat = () => {
        console.log("动画重复播放");
-    }
+     }
    }
    ```
 
@@ -140,10 +140,10 @@ struct Index {
   @State animatorOptions: AnimatorResult | undefined = undefined;
   @State animatorStatus: string = '创建';
   begin: number = 0;
-  end: number = 300
+  end: number = 300;
   topWidth: number = 150;
   bottomHeight: number = 100;
-  g: number = 0.18
+  g: number = 0.18;
   animatorOption: AnimatorOptions = {
     duration: 4000,
     delay: 0,

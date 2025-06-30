@@ -64,7 +64,7 @@ FA模型中PageAbility对应Stage模型中的UIAbility，PageAbility切换为UIA
         }
         ```
 
-    2. 在resources/base/profile/main_pages.json中配置页面，以"pages/Index"为例:
+    2. 在resources/base/profile/main_pages.json中配置页面，以"pages/Index"为例：
         ```json
         {
           "src": [

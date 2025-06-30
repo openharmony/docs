@@ -4,7 +4,7 @@ The **userAccessCtrl** module provides APIs for setting and obtaining user ident
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 16. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 18. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
@@ -116,7 +116,7 @@ try {
             console.error('userAuthInstance callback result.token is null');
             return;
         }
-        // Initiate a request for verifying the authentication token.
+        // Initiate a request for verifying the AuthToken.
         userAccessCtrl.verifyAuthToken(result.token, allowableDuration)
             .then((retAuthToken: userAccessCtrl.AuthToken) => {
                 Object.keys(retAuthToken).forEach((key) => {

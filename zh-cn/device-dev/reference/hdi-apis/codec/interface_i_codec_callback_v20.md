@@ -13,9 +13,9 @@ Codec回调接口定义。
 
 - 输出端口填充完buffer回调，详见[FillBufferDone](#fillbufferdone)。 通过以下两种方式注册回调:
 
-- 创建组件时，通过**CreateComponent**方法。
+- 创建组件时，通过[CreateComponent](https://gitee.com/openharmony-sig/interface_native_header/blob/master/zh-cn/device_api/hdi/codec/codec_component_manager.h)方法。
 
-- 当组件处于OMX_StateLoaded状态时，通过**SetCallbacks**方法注册回调。
+- 当组件处于OMX_StateLoaded状态时，通过[SetCallbacks](https://gitee.com/openharmony-sig/interface_native_header/blob/master/zh-cn/device_api/hdi/codec/codec_component_if.h)方法注册回调。
 
 **起始版本：** 4.1
 
@@ -108,7 +108,7 @@ HDF_ERR_INVALID_PARAM 表示参数无效，事件上报失败。
 
 HDF_FAILURE 表示执行失败。
 
-其他值表示底层返回失败，具体错误码详见OpenMAX IL定义的OMX_ERRORTYPE。
+其他值表示底层返回失败，具体错误码详见OpenMAX IL定义的[OMX_ERRORTYPE](https://gitee.com/openharmony/third_party_openmax/blob/master/api/1.1.2/OMX_Core.h)。
 
 
 ### FillBufferDone()
@@ -139,4 +139,4 @@ HDF_ERR_INVALID_PARAM 表示参数无效，上报失败。
 
 HDF_FAILURE 表示执行失败。
 
-其他值表示底层返回失败，具体错误码详见OpenMAX IL定义的OMX_ERRORTYPE。
+其他值表示底层返回失败，具体错误码详见OpenMAX IL定义的[OMX_ERRORTYPE](https://gitee.com/openharmony/third_party_openmax/blob/master/api/1.1.2/OMX_Core.h)。

@@ -32,7 +32,11 @@ autoStartupManager.setApplicationAutoStartup({
   moduleName: 'entry',
   abilityName: 'EntryAbility',
   abilityTypeName: 'ServiceExtension'
-} as common.AutoStartupInfo, (err, data) => {
-  console.info('====> err: ' + JSON.stringify(err) + ' data: ' + JSON.stringify(data));
+} as common.AutoStartupInfo, (err) => {
+  if (err) {
+    console.error(`setApplicationAutoStartup failed, err code: ${err.code}, err msg: ${err.message}.`);
+    return;
+  }
+  console.info(`setApplicationAutoStartup success.`);
 });
 ```

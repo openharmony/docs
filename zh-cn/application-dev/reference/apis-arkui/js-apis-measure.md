@@ -2,29 +2,35 @@
 
 本模块提供文本宽度、高度等相关计算。
 
-> **说明**
+> **说明：**
 >
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > 
 > 该模块不支持在[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)的文件声明处使用，即不能在UIAbility的生命周期中调用，需要在创建组件实例后使用。
 >
-> 从API version 12开始，可以通过UIContext中的getMeasureUtils方法获取当前UI上下文关联的[MeasureUtils](js-apis-arkui-UIContext.md#measureutils12)实例。
->
 > 如需更多测算文本参数，建议使用图形对应测算接口[Paragraph](../apis-arkgraphics2d/js-apis-graphics-text.md#paragraph)接口。
 >
-> 为保障时序正确，推荐需要测算文本的开发者自行监听字体缩放变化，保证测算结果的准确性。
+> 调用文本计算接口时，不推荐同时用[ApplicationContext.setFontSizeScale](../apis-ability-kit/js-apis-inner-application-applicationContext.md#applicationcontextsetfontsizescale13)设置应用字体大小缩放比例。为了确保时序正确性，建议开发者自行监听字体缩放变化，以保证测算结果的准确性。
+>
+> 如果计算裁剪后的文本，在裁剪字符串时，建议按照unicode单位迭代，而非按照字符串length长度迭代。否则容易出现字符被截断，导致计算结果不准确的情况，常见emoji字符被截断。
 
 ## 导入模块
 
 ```ts
-import { MeasureText } from '@kit.ArkUI'
+import { MeasureText } from '@kit.ArkUI';
 ```
 
-## MeasureText.measureText
+## MeasureText.measureText<sup>(deprecated)</sup>
 
 static measureText(options: MeasureOptions): number
 
 计算指定文本的宽度。
+
+> **说明：**
+>
+> 从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getMeasureUtils](js-apis-arkui-UIContext.md#getmeasureutils12)获取[MeasureUtils](js-apis-arkui-UIContext.md#measureutils12)实例，再通过此实例调用替代方法[measureText](js-apis-arkui-UIContext.md#measuretext12)。
+>
+> 从API version 12开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getMeasureUtils](js-apis-arkui-UIContext.md#getmeasureutils12)方法获取当前UI上下文关联的[MeasureUtils](js-apis-arkui-UIContext.md#measureutils12)对象。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -47,10 +53,10 @@ static measureText(options: MeasureOptions): number
 
 > **说明**
 >
->推荐通过[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getMeasureUtils](./js-apis-arkui-UIContext.md#getmeasureutils12)方法获取当前UI上下文关联的[MeasureUtils](js-apis-arkui-UIContext.md#measureutils12)实例
+> 直接使用MeasureText可能导致[UI上下文不明确](../../ui/arkts-global-interface.md#ui上下文不明确)的问题，推荐通过[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getMeasureUtils](./js-apis-arkui-UIContext.md#getmeasureutils12)方法获取当前UI上下文关联的[MeasureUtils](js-apis-arkui-UIContext.md#measureutils12)实例。
 
 ```ts
-import { MeasureText } from '@kit.ArkUI'
+import { MeasureText } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -59,7 +65,7 @@ struct Index {
     // 建议使用 this.getUIContext().getMeasureUtils().measureText()接口
     textContent: "Hello World",
     fontSize: '50px'
-  })
+  });
 
   build() {
     Row() {
@@ -73,11 +79,17 @@ struct Index {
 }
 ```
 
-## MeasureText.measureTextSize<sup>10+</sup>
+## MeasureText.measureTextSize<sup>(deprecated)</sup>
 
 static measureTextSize(options: MeasureOptions): SizeOptions
 
 计算指定文本的宽度和高度。
+
+> **说明：**
+>
+> 从API version 10开始支持，从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getMeasureUtils](js-apis-arkui-UIContext.md#getmeasureutils12)获取[MeasureUtils](js-apis-arkui-UIContext.md#measureutils12)实例，再通过此实例调用替代方法[measureTextSize](js-apis-arkui-UIContext.md#measuretextsize12)。
+>
+> 从API version 12开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getMeasureUtils](js-apis-arkui-UIContext.md#getmeasureutils12)方法获取当前UI上下文关联的[MeasureUtils](js-apis-arkui-UIContext.md#measureutils12)对象。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -100,19 +112,19 @@ static measureTextSize(options: MeasureOptions): SizeOptions
 
 > **说明**
 >
->推荐通过[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getMeasureUtils](./js-apis-arkui-UIContext.md#getmeasureutils12)方法获取当前UI上下文关联的[MeasureUtils](js-apis-arkui-UIContext.md#measureutils12)实例
+> 直接使用MeasureText可能导致[UI上下文不明确](../../ui/arkts-global-interface.md#ui上下文不明确)的问题，推荐通过[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getMeasureUtils](./js-apis-arkui-UIContext.md#getmeasureutils12)方法获取当前UI上下文关联的[MeasureUtils](js-apis-arkui-UIContext.md#measureutils12)实例。
 
 ```ts
-import { MeasureText } from '@kit.ArkUI'
+import { MeasureText } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct Index {
   textSize: SizeOptions = MeasureText.measureTextSize({
-    // 建议使用 this.getUIContext().getMeasureUtils().measureText()接口
+    // 建议使用 this.getUIContext().getMeasureUtils().measureTextSize()接口
     textContent: "Hello World",
     fontSize: '50px'
-  })
+  });
 
   build() {
     Row() {

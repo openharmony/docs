@@ -166,7 +166,7 @@ HDF为LCD设计了驱动模型。支持一块新的LCD，需要编写一个驱�
 
 1. 创建Panel驱动。
 
-   在驱动的Init方法中，需要调用RegisterPanel接口注册模型实例。如:
+   在驱动的Init方法中，需要调用RegisterPanel接口注册模型实例。如：
 
 
    ```
@@ -283,7 +283,7 @@ Wi-Fi驱动分为两部分，一部分负责管理WLAN设备，另一个部分�
 
   ![zh-cn_image_0000001188241031](figures/zh-cn_image_0000001188241031.png)
 
-支持一款芯片的主要工作是实现一个ChipDriver驱动。实现HDF_WLAN_CORE和NetDevice提供的接口。主要需要实现的接口有:
+支持一款芯片的主要工作是实现一个ChipDriver驱动。实现HDF_WLAN_CORE和NetDevice提供的接口。主要需要实现的接口有：
 
 | 接口 | 定义头文件 | 说明 |
 | -------- | -------- | -------- |

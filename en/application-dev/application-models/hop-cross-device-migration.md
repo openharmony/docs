@@ -94,7 +94,7 @@ The following figure shows the cross-device migration process when a migration r
     ```ts
     import { AbilityConstant, UIAbility } from '@kit.AbilityKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
-    import { promptAction } from '@kit.ArkUI';
+    import { PromptAction } from '@kit.ArkUI';
     
     const TAG: string = '[MigrationAbility]';
     const DOMAIN_NUMBER: number = 0xFF00;
@@ -107,8 +107,9 @@ The following figure shows the cross-device migration process when a migration r
         hilog.info(DOMAIN_NUMBER, TAG, `onContinue version = ${targetVersion}, targetDevice: ${targetDevice}`);
     
         // The application can set the minimum compatible version based on the source version, which can be obtained from the versionCode field in the app.json5 file. This is to prevent incompatibility caused because the target version is too earlier.
-    	let versionThreshold: number = -1; // Use the minimum version supported by the application.
+        let versionThreshold: number = -1; // Use the minimum version supported by the application.
         // Compatibility verification
+        let promptAction: promptAction = uiContext.getPromptAction;
         if (targetVersion < versionThreshold) {
           // It is recommended that users be notified of the reason why the migration is rejected if the version compatibility check fails.
           promptAction.showToast({
@@ -228,7 +229,7 @@ To implement special scenarios, for example, where migration is required only fo
     @Entry
     @Component
     struct Page_MigrationAbilityFirst {
-      private context = getContext(this) as common.UIAbilityContext;
+      private context = this.getUIContext().getHostContext();
       build() {
         // ...
       }
@@ -248,7 +249,7 @@ To implement special scenarios, for example, where migration is required only fo
     // Page_MigrationAbilityFirst.ets
     import { AbilityConstant, common } from '@kit.AbilityKit';
     import { hilog } from '@kit.PerformanceAnalysisKit';
-    import { promptAction } from '@kit.ArkUI';
+    import { PromptAction } from '@kit.ArkUI';
     
     const TAG: string = '[MigrationAbility]';
     const DOMAIN_NUMBER: number = 0xFF00;
@@ -256,7 +257,8 @@ To implement special scenarios, for example, where migration is required only fo
     @Entry
     @Component
     struct Page_MigrationAbilityFirst {
-      private context = getContext(this) as common.UIAbilityContext;
+      private context = this.getUIContext().getHostContext();
+      let promptAction: promptAction = uiContext.getPromptAction;
       build() {
         Column() {
           //...
@@ -482,7 +484,7 @@ By default, the target application on the peer device is not started immediately
    ```
 With quick start, the target application starts while waiting for the data to migration, minimizing the duration that users wait for the migration to complete. Note that, for the first migration with quick start enabled, the [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate) or [onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant) callback is triggered, in which **launchReason** is **PREPARE_CONTINUATION**. The introduction of the **launchReason** parameter solves problems related to redirection and timing. It also provides a loading screen during quick startup.
 
-Since API version 16, an application that displays a loading page during quick launch can [obtain the quick startup result during cross-device migration](../reference/apis-ability-kit/js-apis-app-ability-continueManager.md#continuemanageron). Depending on this result, the application can take appropriate actions. For example, if the quick startup is successful, the application can dismiss the loading page and proceed to the continuation page.
+Since API version 18, an application that displays a loading page during quick launch can [obtain the quick startup result during cross-device migration](../reference/apis-ability-kit/js-apis-app-ability-continueManager.md#continuemanageron). Depending on this result, the application can take appropriate actions. For example, if the quick startup is successful, the application can dismiss the loading page and proceed to the continuation page.
 
 The following figure shows the quick start process.
 

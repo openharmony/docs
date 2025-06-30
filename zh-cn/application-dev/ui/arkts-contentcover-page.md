@@ -204,7 +204,7 @@ struct BindContentCoverDemo {
       .borderRadius(10)
       .backgroundColor(Color.White)
       .onClick(()=>{
-        this.isSheetShow = !this.isSheetShow
+        this.isSheetShow = !this.isSheetShow;
       })
       // 第一步：定义半模态转场效果
       .bindSheet($$this.isSheetShow, this.MySheetBuilder(), {

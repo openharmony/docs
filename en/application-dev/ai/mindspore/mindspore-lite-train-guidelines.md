@@ -8,7 +8,7 @@ This topic describes the general development process for using MindSpore Lite fo
 
 
 ## Available APIs
-The following table list some APIs for using MindSpore Lite for model training.
+The following table list some APIs for using MindSpore Lite for model training. For details about the APIs, see [MindSpore](../../reference/apis-mindspore-lite-kit/_mind_spore.md).
 
 | API       | Description       |
 | ------------------ | ----------------- |

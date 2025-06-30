@@ -1,6 +1,6 @@
 # 使用HiDebug获取调试信息（ArkTS）
 
-HiDebug对外提供系统调试相关功能的接口，包括应用进程的静态堆内存（native heap）信息、应用进程内存占用PSS（Proportional Set Size）信息的获取等，也可完成虚拟机内存切片导出，虚拟机CPU Profiling采集等操作。
+为应用提供多种调试和调优方法。包括但不限于内存、CPU、GPU、GC等相关数据的获取，进程trace、profiler采集，VM堆快照转储等。由于该模块的接口大多比较耗费性能，接口调用较为耗时，且基于HiDebug模块定义，该模块内的接口仅建议在应用调试，调优阶段使用。若需要在其他场景使用时，请认真评估所需调用的接口对应用性能的影响。
 
 ## 接口说明
 
@@ -38,7 +38,7 @@ HiDebug的具体用法可查看API参考[API参考文档](../reference/apis-perf
 
 ## 开发示例
 
-下文将展示如何在应用内增加一个按钮，并单击该按钮以调用hidebug接口。
+下文展示如何在应用内添加按钮，并通过点击该按钮调用hidebug接口。
 
 1. 新建一个工程，选择“Empty Ability”。
 
@@ -46,14 +46,14 @@ HiDebug的具体用法可查看API参考[API参考文档](../reference/apis-perf
 
 3. 在**Project**窗口单击entry &gt; src &gt; main &gt; ets &gt; pages，打开工程中的Index.ets文件。
 
-   新增一个方法调用hidebug接口，本文以hidebug.getSystemCpuUsage()为例，其他接口可参考[API参考文档](../reference/apis-performance-analysis-kit/js-apis-hidebug.md)。
+   添加一个调用hidebug接口的方法，本文以hidebug.getSystemCpuUsage()为例，其他接口可参考[API参考文档](../reference/apis-performance-analysis-kit/js-apis-hidebug.md)。
 
    ```ts
    import { hidebug } from '@kit.PerformanceAnalysisKit';
    import { BusinessError } from '@kit.BasicServicesKit';
-   function testHidebug(event?: ClickEvent) {
+   function testHiDebug(event?: ClickEvent) {
      try {
-       console.info(`getSystemCpuUsage: ${hidebug.getSystemCpuUsage()}`)
+       console.info(`getSystemCpuUsage: ${hidebug.getSystemCpuUsage()}`);
      } catch (error) {
        console.error(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
      }
@@ -66,7 +66,7 @@ HiDebug的具体用法可查看API参考[API参考文档](../reference/apis-perf
    @Entry
    @Component
    struct Index {
-     @State message: string = 'Hello World'
+     @State message: string = 'Hello World';
 
      build() {
        Row() {
@@ -74,7 +74,7 @@ HiDebug的具体用法可查看API参考[API参考文档](../reference/apis-perf
            Text(this.message)
              .fontSize(50)
              .fontWeight(FontWeight.Bold)
-             .onClick(testHidebug);//添加点击事件
+             .onClick(testHiDebug);//添加点击事件
          }
          .width('100%')
        }
@@ -83,7 +83,7 @@ HiDebug的具体用法可查看API参考[API参考文档](../reference/apis-perf
    }
    ```
 
-4. 在真机上运行该工程，单击应用/服务界面上的“Hello World”文本。
+4. 在真机上运行工程，点击应用/服务界面中的“Hello World”文本。
 
 5. 在DevEco Studio的底部，切换到“Log”窗口，设置日志的过滤条件为“testTag”。
 

@@ -170,7 +170,7 @@ Sets an accessibility virtual child node. For custom drawing components, a **Cus
 
 accessibilityChecked(isCheck: boolean)
 
-Sets the checked state of the accessibility component. This property is used in multiselect scenarios.
+Sets the checked state of the accessibility component. This property is used in multi-select scenarios.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 13.
 
@@ -218,7 +218,7 @@ Sets the role type of the accessibility component, which affects how the compone
 
 | Name  | Type   | Mandatory| Description                                                        |
 | -------- | ------- | ---- | ------------------------------------------------------------ |
-| role | [AccessibilityRoleType](ts-universal-attributes-accessibility.md#AccessibilityRoleType18) | Yes  | Role of the component as announced by screen readers (for example, button or chart). You can define custom roles.|
+| role | [AccessibilityRoleType](ts-universal-attributes-accessibility.md#accessibilityroletype18) | Yes  | Role of the component as announced by screen readers (for example, button or chart). You can define custom roles.|
 
 ## onAccessibilityFocus<sup>18+</sup>
 
@@ -236,7 +236,7 @@ Triggered when the accessibility component gains or loses focus. Callback trigge
 
 | Name  | Type   | Mandatory| Description                                                        |
 | -------- | ------- | ---- | ------------------------------------------------------------ |
-| callback | [AccessibilityFocusCallback](ts-universal-attributes-accessibility.md#AccessibilityFocusCallback18) | Yes  | Callback that notifies the registered component of focus and blur events.|
+| callback | [AccessibilityFocusCallback](ts-universal-attributes-accessibility.md#accessibilityfocuscallback18) | Yes  | Callback that notifies the registered component of focus and blur events.|
 
 ## AccessibilityFocusCallback<sup>18+</sup>
 
@@ -526,7 +526,7 @@ struct Index {
       .accessibilityGroup(true)
       .accessibilityLevel("yes")
       .accessibilityText("Group") // If a component has both text content and accessibility text, only the accessibility text is announced.
-      .accessibilityDescription("The <Column> component is selectable , and the text to be read out is "Group".)
+      .accessibilityDescription("The Column component is selectable , and the text to be read out is "Group".)
       .accessibilityVirtualNode(this.customAccessibilityNode)
       .accessibilityChecked(true)
       .accessibilitySelected(undefined)

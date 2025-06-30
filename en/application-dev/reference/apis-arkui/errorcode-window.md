@@ -14,12 +14,12 @@ Repeated operation.
 This error code is reported when a repeated operation is performed.
 
 **Possible Causes**
-
-The window to create already exists.
+1. The window has been created.
+2. The window is in the current state.
 
 **Solution**
 
-Before creating a window, check whether the window already exists. If it already exists, use it directly.
+Before creating a window, check whether the window has been created or is in the current state.
 
 ## 1300002 Abnormal Window State
 **Error Message**
@@ -83,7 +83,7 @@ This error code is reported when you operate a window stage in the abnormal stat
 
 **Possible Causes**
 
-The window stage has been destroyed when being operated.
+The window stage is not created or has been destroyed.
 
 **Solution**
 
@@ -251,8 +251,8 @@ PiP internal error.
 This error code is reported when an internal error occurs in PiP.
 
 **Possible Causes**
-
-An internal error occurs.
+1. The window on which the PiP feature depends is abnormal. The window may be empty.
+2. The PiP controller is abnormal.
 
 **Solution**
 
@@ -270,12 +270,11 @@ This error code is reported when a repeated PiP operation is performed.
 
 **Possible Causes**
 
-You attempt to start PiP when it is already started or stop it when it is already stopped.
+The PiP window has been started or closed.
 
 **Solution**
 
 Do not start or stop PiP repeatedly.
-
 ## 1001 Window Null Pointer Exception<sup>(deprecated)</sup>
 **Error Message**
 

@@ -24,7 +24,7 @@ Currently, the following tailoring operations are supported:
 
 - Crops a rounded rectangle.
 
-- Tailor the user-defined path.
+- Crops the user-defined path.
 
 - Crops a region.
 
@@ -112,7 +112,7 @@ The following figure shows a simple example.
 ```c++
 // Create a brush object.
 OH_Drawing_Brush* brush = OH_Drawing_BrushCreate();
-// Fill color to be superimposed on the image.
+// Set the fill color to be superimposed on the image.
 OH_Drawing_BrushSetColor(brush, OH_Drawing_ColorSetArgb(0xFF, 0xFF, 0x00, 0x00));
 // Set the brush in the canvas.
 OH_Drawing_CanvasAttachBrush(canvas, brush); 
@@ -143,7 +143,7 @@ The following figure shows a simple example.
 ```c++
 // Create a brush object.
 OH_Drawing_Brush* brush = OH_Drawing_BrushCreate();
-Fill color to be superimposed on the image.
+// Set the fill color to be superimposed on the image.
 OH_Drawing_BrushSetColor(brush, OH_Drawing_ColorSetArgb(0xFF, 0xFF, 0x00, 0x00));
 // Set the brush in the canvas.
 OH_Drawing_CanvasAttachBrush(canvas, brush); 
@@ -174,7 +174,7 @@ The following figure shows a simple example.
 ```c++
 // Create a brush object.
 OH_Drawing_Brush* brush = OH_Drawing_BrushCreate();
-Fill color to be superimposed on the image.
+// Fill the color superimposed on the image.
 OH_Drawing_BrushSetColor(brush, OH_Drawing_ColorSetArgb(0xFF, 0xFF, 0x00, 0x00));
 // Set the brush in the canvas.
 OH_Drawing_CanvasAttachBrush(canvas, brush); 

@@ -20,7 +20,7 @@ import { StartupConfig } from '@kit.AbilityKit';
 
   | Name| Type| Read Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| timeoutMs | number | Yes| Yes| Timeout for executing all startup tasks. The default value is 10000 ms.|
+| timeoutMs | number | Yes| Yes| Timeout for executing all startup tasks, measured in ms. The default value is 10000 ms.|
 | startupListener | [StartupListener](./js-apis-app-appstartup-startupListener.md) | Yes| Yes| AppStartup listener, which is called when all the startup tasks are complete.|
 
 **Example**

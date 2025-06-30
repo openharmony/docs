@@ -25,6 +25,8 @@ A region in which a gesture can be recognized may be specified by the [touch tar
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name| Description|
 | -------- | -------- |
 | [TapGesture](ts-basic-gestures-tapgesture.md) | Tap gesture, which can be a single-tap or multi-tap gesture.|
@@ -39,6 +41,8 @@ A region in which a gesture can be recognized may be specified by the [touch tar
 ## GestureMask
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name| Description|
 | -------- | -------- |
@@ -61,6 +65,8 @@ Inherits from [BaseEvent](ts-gesture-customize-judge.md#baseevent8).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name| Type| Description|
 | -------- | -------- | -------- |
 | repeat | boolean | Whether the event is triggered repeatedly. This attribute is used for the **LongPressGesture** event.|
@@ -80,6 +86,8 @@ Inherits from [BaseEvent](ts-gesture-customize-judge.md#baseevent8).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name| Description|
 | -------- | -------- |
 | Unknown | Unknown device type.|
@@ -88,37 +96,45 @@ Inherits from [BaseEvent](ts-gesture-customize-judge.md#baseevent8).
 
 ## FingerInfo<sup>8+</sup>
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| id | number | Index of a finger.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| globalX | number | X-coordinate relative to the upper left corner of the application window, in vp.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| globalY | number | Y-coordinate relative to the upper left corner of the application window, in vp.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| localX | number | X-coordinate relative to the upper left corner of the current component's original area, in vp.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| localY | number | Y-coordinate relative to the upper left corner of the current component's original area, in vp.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| displayX<sup>12+</sup> | number | X-coordinate relative to the upper left corner of the screen, in vp.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| displayY<sup>12+</sup> | number | Y-coordinate relative to the upper left corner of the screen, in vp.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| id | number | Index of a finger.<br>Value range: [0, +∞).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| globalX | number | X-coordinate relative to the upper left corner of the application window, in vp.<br>Value range: [0, +∞).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| globalY | number | Y-coordinate relative to the upper left corner of the application window, in vp.<br>Value range: [0, +∞).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| localX | number | X-coordinate relative to the upper left corner of the current component's original area, in vp.<br>Value range: [0, +∞).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| localY | number | Y-coordinate relative to the upper left corner of the current component's original area, in vp.<br>Value range: [0, +∞).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| displayX<sup>12+</sup> | number | X-coordinate relative to the upper left corner of the screen, in vp.<br>Value range: [0, +∞).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| displayY<sup>12+</sup> | number | Y-coordinate relative to the upper left corner of the screen, in vp.<br>Value range: [0, +∞).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | hand<sup>15+</sup> | [InteractionHand](#interactionhand15) | Whether the event is triggered by a left-hand or right-hand tap.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
 
 ## SourceTool<sup>9+</sup>
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name| Description|
 | -------- | -------- |
 | Unknown | Unknown input source.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | Finger | Finger.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | Pen | Stylus.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| Mouse<sup>12+</sup> | Mouse device.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| Touchpad<sup>12+</sup> | Touchpad. Single-finger input on the touchpad is treated as a mouse input operation.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| Joystick<sup>12+</sup> | Joystick.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| MOUSE<sup>12+</sup> | Mouse device.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| TOUCHPAD<sup>12+</sup> | Touchpad. Single-finger input on the touchpad is treated as a mouse input operation.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| JOYSTICK<sup>12+</sup> | Joystick.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## InteractionHand<sup>15+</sup>
 
 Defines whether an event is triggered by a left-hand or right-hand tap.
 
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name| Description|
 | -------- | -------- |
-| NONE | Unknown.<br>**Atomic service API**: This API can be used in atomic services since API version 16.|
-| LEFT | Left hand.<br>**Atomic service API**: This API can be used in atomic services since API version 16.|
-| RIGHT | Right hand.<br>**Atomic service API**: This API can be used in atomic services since API version 16.|
+| NONE | Unknown.|
+| LEFT | Left hand.|
+| RIGHT | Right hand.|
 
 
 ## Example

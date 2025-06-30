@@ -1,6 +1,6 @@
 # AbilityStateData
 
-The **AbilityStateData** module defines the ability state information, which can be obtained through the **onAbilityStateChanged** lifecycle callback of [ApplicationStateObserver](js-apis-inner-application-applicationStateObserver.md). The callback can be invoked after a lifecycle change listener is registered through [on](js-apis-app-ability-appManager.md#appmanageronapplicationstate).
+The **AbilityStateData** module defines the ability state information, which can be obtained through the **onAbilityStateChanged** lifecycle callback of [ApplicationStateObserver](js-apis-inner-application-applicationStateObserver.md). The callback can be invoked after a lifecycle change listener is registered through **onAbilityStateChanged**.
 
 > **NOTE**
 > 

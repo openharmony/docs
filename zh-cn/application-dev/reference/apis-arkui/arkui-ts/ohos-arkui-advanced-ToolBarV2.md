@@ -1,11 +1,14 @@
 # ToolBarV2
 
 工具栏用于展示针对当前界面内容的操作选项，在界面底部显示。底部最多显示5个入口，超过则收纳入“更多”子项中，在最右侧显示。<br />
-该组件基于[状态管理V2](../../../quick-start/arkts-state-management-overview.md#状态管理v2)实现，相较于[状态管理V1](../../../quick-start/arkts-state-management-overview.md#状态管理v1)，状态管理V2增强了对数据对象的深度观察与管理能力，不再局限于组件层级。借助状态管理V2，开发者可以通过该组件更灵活地控制工具栏的数据和状态，实现更高效的用户界面刷新。<br>
+该组件基于[状态管理V2](../../../ui/state-management/arkts-state-management-overview.md#状态管理v2)实现，相较于[状态管理V1](../../../ui/state-management/arkts-state-management-overview.md#状态管理v1)，状态管理V2增强了对数据对象的深度观察与管理能力，不再局限于组件层级。借助状态管理V2，开发者可以通过该组件更灵活地控制工具栏的数据和状态，实现更高效的用户界面刷新。<br>
 
 > **说明：**
 >
 > - 该组件从API version 18开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 
+> - 该组件不支持在Wearable设备上使用。
+
 
 ## 导入模块
 
@@ -166,7 +169,7 @@ ToolBarV2ItemText的构造函数。
 
 | 名称                 | 类型                                                          | 必填 | 装饰器类型  | 说明                                                       |
 |:-------------------|:------------------------------------------------------------| :- | :----- |:---------------------------------------------------------|
-| src                | [ResourceStr](ts-types.md#resourcestr)                      | 是  | @Trace | 工具栏子项的文本。                                                |
+| src                | [ResourceStr](ts-types.md#resourcestr)                      | 是  | @Trace | 工具栏子项的图标。                                                |
 | color              | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12) | 否  | @Trace | 工具栏子项的图标的颜色。<br/>默认值：$r('sys.color.icon_primary')。       |
 | activatedColor     | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12) | 否  | @Trace | 工具栏子项在激活态下图标的颜色。<br/>默认值：$r('sys.color.icon_emphasize')。 |
 
@@ -194,7 +197,7 @@ ToolBarV2ItemImage的构造函数。
 
 | 名称                  | 类型                                                          | 必填 | 说明                                                       |
 |:--------------------|:------------------------------------------------------------| :- |:---------------------------------------------------------|
-| src                 | [ResourceStr](ts-types.md#resourcestr)                      | 是  | 工具栏子项的文本。                                                |
+| src                 | [ResourceStr](ts-types.md#resourcestr)                      | 是  | 工具栏子项的图标。                                                |
 | color               | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12) | 否  | 工具栏子项的图标的颜色。<br/>默认值：$r('sys.color.icon_primary')。       |
 | activatedColor | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12) | 否  | 工具栏子项在激活态下图标的颜色。<br/>默认值：$r('sys.color.icon_emphasize')。 |
 
@@ -372,7 +375,7 @@ ToolBarV2SymbolGlyphOptions定义图标的属性。
 该示例展示了工具栏子项state属性分别设置ENABLE、DISABLE、ACTIVATE状态的不同显示效果。
 
 ```ts
-import { ToolBarV2ItemImage, ToolBarV2ItemState, ToolBarV2ItemText, ToolBarV2Item, ToolBarV2 } from '@kit.ArkUI'
+import { ToolBarV2ItemImage, ToolBarV2ItemState, ToolBarV2ItemText, ToolBarV2Item, ToolBarV2 } from '@kit.ArkUI';
 
 @Entry
 @ComponentV2

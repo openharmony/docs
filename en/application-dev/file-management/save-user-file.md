@@ -45,8 +45,8 @@ If the security component cannot be called to save images and videos in your dev
 
    ```ts
    let uris: Array<string> = [];
-   // Ensure that getContext(this) returns UIAbilityContext.
-   let context = getContext(this) as common.Context;
+   // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+   let context = this.getUIContext().getHostContext() as common.UIAbilityContext; 
    const documentViewPicker = new picker.DocumentViewPicker(context);
    documentViewPicker.save(documentSaveOptions).then((documentSaveResult: Array<string>) => {
      uris = documentSaveResult;
@@ -58,14 +58,14 @@ If the security component cannot be called to save images and videos in your dev
 
    > **NOTE**
    >
-   > 1. URI storage:<br>
-   > - Avoid directly using a URI in the Picker callback.<br>
-   > - Define a global variable to save the URI for future use.<br>
+   > 1. URI storage:
+   > - You should avoid directly using a URI in the Picker callback.
+   > - You are advised to define a global variable to save the URI for future use.
    >
-   > 2. Quick saving:<br>
-   > - Directly access the download directory in [DOWNLOAD mode](#saving-files-to-the-download-directory).<br>
+   > 2. Quick saving:
+   > - You can directly access the download directory in [DOWNLOAD mode](#saving-files-to-the-download-directory).
 
-4. After the application UI is returned from FilePicker, call [fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync) to open a document based on the URI. The file descriptor (FD) is returned after the document is opened.
+4. After the application UI is returned from FilePicker, you can call [fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync) to open a document based on the URI. The FD is returned after the document is opened.
 
    ```ts
    const uri = '';
@@ -105,8 +105,8 @@ If the security component cannot be called to save images and videos in your dev
 
    ```ts
    let uri: string = '';
-   // Ensure that getContext(this) returns UIAbilityContext.
-   let context = getContext(this) as common.Context; 
+   // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;  
    const audioViewPicker = new picker.AudioViewPicker(context);
    audioViewPicker.save(audioSaveOptions).then((audioSelectResult: Array<string>) => {
      uri = audioSelectResult[0];
@@ -118,12 +118,12 @@ If the security component cannot be called to save images and videos in your dev
 
    > **NOTE**
    >
-   > 1. URI storage:<br>
-   > - Avoid directly using a URI in the Picker callback.<br>
-   > - Define a global variable to save the URI for future use.<br>
+   > 1. URI storage:
+   > - You should avoid directly using a URI in the Picker callback.
+   > - You are advised to define a global variable to save the URI for future use.
    >
-   > 2. Quick saving:<br>
-   > - Directly access the download directory in [DOWNLOAD mode](#saving-files-to-the-download-directory).<br>
+   > 2. Quick saving:
+   > - You can directly access the download directory in [DOWNLOAD mode](#saving-files-to-the-download-directory).
 
 4. After the application UI is returned from FilePicker, call [fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync) to open an audio clip based on the URI. The FD is returned after the audio clip is opened.
 
@@ -148,7 +148,7 @@ If the security component cannot be called to save images and videos in your dev
 
 - The directory is automatically created in `Download/bundle name/`.
 - Files can be directly saved without file selection.
-- You can create files under the returned URI that has persistent permissions.
+- You can create files under the returned URI that has persisting permissions.
 
 1. Import modules.
 
@@ -171,12 +171,12 @@ If the security component cannot be called to save images and videos in your dev
 
    ```ts
    let uri: string = '';
-   // Ensure that getContext(this) returns UIAbilityContext.
-   let context = getContext(this) as common.Context; 
+   // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+   let context = this.getUIContext().getHostContext() as common.UIAbilityContext; 
    const documentViewPicker = new picker.DocumentViewPicker(context);
    const documentSaveOptions = new picker.DocumentSaveOptions();
    documentSaveOptions.pickerMode = picker.DocumentPickerMode.DOWNLOAD;
-   documentViewPicker.save(documentSaveOptions ).then((documentSaveResult: Array<string>) => {
+   documentViewPicker.save(documentSaveOptions).then((documentSaveResult: Array<string>) => {
      uri = documentSaveResult[0];
      console.info('documentViewPicker.save succeed and uri is:' + uri);
      const testFilePath = new fileUri.FileUri(uri + '/test.txt').path;

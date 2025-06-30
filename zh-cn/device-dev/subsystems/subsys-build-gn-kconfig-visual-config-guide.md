@@ -89,9 +89,9 @@
       python3 parse_kconf.py --deps=/path/to/out/arm64/part_deps_info/part_deps_info.json
       ```
 
-      输出文件默认为当前目录下：`product.json`， 也可以使用`python3 parse_kconf.py --out="example/out.json"`来指定输出文件位置
+      输出文件默认为当前目录下：`product.json`， 也可以使用`python3 parse_kconf.py --out="example/out.json"`来指定输出文件位置。
 
-      更多操作可查看`python3 parse_kconf.py -h`
+      更多操作可查看`python3 parse_kconf.py -h`。
 
 ​	
 
@@ -103,7 +103,7 @@
 
 解决办法：
 
-更新[Kconfig文件](https://gitee.com/openharmony/build/blob/master/tools/component_tools/kconfig)
+更新[Kconfig文件](https://gitee.com/openharmony/build/blob/master/tools/component_tools/kconfig)。
 
 ```shell
 cd build/tools/component_tools

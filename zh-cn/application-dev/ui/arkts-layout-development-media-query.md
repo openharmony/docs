@@ -147,6 +147,7 @@ Stage模型下的示例：
 
 
 ```ts
+<!--deprecated_code_no_check-->
 import { mediaquery, window } from '@kit.ArkUI';
 import { common } from '@kit.AbilityKit';
 
@@ -213,6 +214,7 @@ FA模型下的示例：
 
 
 ```ts
+<!--deprecated_code_no_check-->
 import { mediaquery } from '@kit.ArkUI';
 import { featureAbility } from '@kit.AbilityKit';
 
@@ -221,7 +223,7 @@ import { featureAbility } from '@kit.AbilityKit';
 struct MediaQueryExample {
   @State color: string = '#DB7093';
   @State text: string = 'Portrait';
-  listener:mediaquery.MediaQueryListener = mediaquery.matchMediaSync('(orientation: landscape)'); // 当设备横屏时条件成立
+  listener:mediaquery.MediaQueryListener = this.getUIContext().getMediaQuery().matchMediaSync('(orientation: landscape)'); // 当设备横屏时条件成立
 
   onPortrait(mediaQueryResult:mediaquery.MediaQueryResult) { // 当满足媒体查询条件时，触发回调
     if (mediaQueryResult.matches as boolean) { // 若设备为横屏状态，更改相应的页面布局

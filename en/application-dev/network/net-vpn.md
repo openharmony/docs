@@ -27,7 +27,7 @@ For the complete list of APIs and example code, see [API Reference](../reference
 4. Process data of the virtual network interface card (vNIC), such as reading or writing data.
 5. Destroy the VPN.
 
-This example shows how to develop an application using native C++ code. For details, see [Simple Native C++ Example (ArkTS) (API9)](https://gitee.com/openharmony/codelabs/tree/master/NativeAPI/NativeTemplateDemo).
+This example shows how to develop an application using native C++ code. For details, see [Simple Native C++ Example (ArkTS) (API9)] (https://gitee.com/openharmony/codelabs/tree/master/NativeAPI/NativeTemplateDemo).
 
 The sample application consists of two parts: JS code and C++ code.
 

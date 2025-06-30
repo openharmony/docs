@@ -4,7 +4,7 @@ With the APIs provided by Camera Kit, you can develop a camera application. The 
 
 ## When to Use
 
-When you want to develop a camera application or develop a camera module in an application, you can refer to the development model described below to understand the working process of the camera before the development. For details, see [Camera Development Preparations](camera-preparation.md).
+When you want to develop a camera application or develop a camera module in an application, you can refer to the development model described below to understand the working process of the camera before the development. For details, see [Requesting Camera Development Permissions](camera-preparation.md).
 
 If you only need to start the system camera to take a photo or record a video, you can directly use the CameraPicker module, without applying for the camera permission. For details, see [Camera Picker](../../reference/apis-camera-kit/js-apis-cameraPicker.md).
 
@@ -31,3 +31,6 @@ For better application development, you are also advised understanding the camer
 The camera application controls the camera hardware to implement basic operations such as image display (preview), photo saving (photo capture), and video recording. During the implementation, the camera service controls the camera hardware to collect and output data, and transmits the data to a specific module for processing through a BufferQueue at the bottom camera device hardware interface (HDI) layer. You can ignore the BufferQueue during application development. It is used to send the data processed by the bottom layer to the upper layer for image display.
 
 For example, in a video recording scenario, the recording service creates a video surface and provides it to the camera service for data transmission. The camera service controls the camera device to collect video data and generate a video stream. After processing the collected data at the HDI layer, the camera service transmits the video stream to the recording service through the surface. The recording service processes the video stream and saves it as a video file. Now video recording is complete.
+
+
+

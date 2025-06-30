@@ -28,7 +28,7 @@
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   import { buffer } from '@kit.ArkTS';
 
-  async function doMd() {
+  async function doSha256() {
     let mdAlgName = 'SHA256'; // 摘要算法名。
     let message = 'mdTestMessage'; // 待摘要的数据。
     let md = cryptoFramework.createMd(mdAlgName);
@@ -47,7 +47,7 @@
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   import { buffer } from '@kit.ArkTS';
 
-  function doMdBySync() {
+  function doSha256BySync() {
     let mdAlgName = 'SHA256'; // 摘要算法名。
     let message = 'mdTestMessage'; // 待摘要的数据。
     let md = cryptoFramework.createMd(mdAlgName);
@@ -76,7 +76,7 @@
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   import { buffer } from '@kit.ArkTS';
 
-  async function doLoopMd() {
+  async function doLoopSha256() {
     let mdAlgName = "SHA256"; // 摘要算法名。
     let md = cryptoFramework.createMd(mdAlgName);
     // 假设信息总共43字节，根据utf-8解码后，也是43字节。
@@ -101,7 +101,7 @@
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   import { buffer } from '@kit.ArkTS';
 
-  function doLoopMdBySync() {
+  function doLoopSha256BySync() {
     let mdAlgName = "SHA256"; // 摘要算法名。
     let md = cryptoFramework.createMd(mdAlgName);
     // 假设信息总共43字节，根据utf-8解码后，也是43字节。

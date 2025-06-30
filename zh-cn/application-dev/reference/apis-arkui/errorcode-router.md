@@ -108,6 +108,60 @@ Navigation跳转时，目标页面不存在NavDestination组件。
 
 请检查待跳转的目标页面中是否存在NavDestination组件。
 
+## 106200 传入的索引值非法
+
+**错误信息**
+
+index value is invalid.
+
+**错误描述**
+
+传入的索引值非法。
+
+**可能原因**
+
+index为非法值。
+
+**处理步骤**
+
+请检查传入的索引值。
+
+## 106201 查询路由导航信息失败
+
+**错误信息**
+
+Failed to query route navigation information.
+
+**错误描述**
+
+查询路由导航信息失败。
+
+**可能原因**
+
+可能因为当前节点不在Navigation中。
+
+**处理步骤**
+
+请检查当前节点是否在Navigation中。
+
+## 106202 传入的buffer size异常
+
+**错误信息**
+
+buffer size is not large enough.
+
+**错误描述**
+
+传入的buffer size异常。
+
+**可能原因**
+
+给定的buffer size小于可以容纳目标的最小缓冲区大小。
+
+**处理步骤**
+
+请检查给定的buffer size。
+
 ## 200002 路由页面替换时输入的uri错误
 
 **错误信息**

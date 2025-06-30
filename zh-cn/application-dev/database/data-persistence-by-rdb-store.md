@@ -29,9 +29,9 @@
 
 ## 约束限制
 
-- 系统默认日志方式是WAL（Write Ahead Log）模式，系统默认落盘方式是FULL模式。
+- 系统默认日志方式是[WAL](data-terminology.md#wal模式)（Write Ahead Log）模式，系统默认落盘方式是[FULL模式](data-terminology.md#full模式)。
 
-- 数据库中有4个读连接和1个写连接，线程获取到空闲读连接时，即可进行读取操作。当没有空闲读连接且有空闲写连接时，会将写连接当做读连接来使用。
+- 数据库中常驻有4个读连接和1个写连接。读连接会动态扩充，无可用读连接时，会创建新的读连接执行读操作。写连接不会动态扩充，无可用写连接时，会等待连接释放后执行写操作。
 
 - 为保证数据的准确性，数据库同一时间只能支持一个写操作。
 
@@ -54,12 +54,12 @@
 | delete(predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void | 根据predicates的指定实例对象从数据库中删除数据。 | 
 | query(predicates: RdbPredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void | 根据指定条件查询数据库中的数据。 | 
 | deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void | 删除数据库。 | 
-| isTokenizerSupported(tokenizer: Tokenizer): boolean | 判断当前平台是否支持传入的分词器。 |
+| isTokenizerSupported(tokenizer: Tokenizer): boolean | 判断当前平台是否支持传入的分词器（将文本分解为更小单元的工具，这些单元可以是单词、子词、字符或者其他语言片段）。|
 
 ## 开发步骤
 因Stage模型、FA模型的差异，个别示例代码提供了在两种模型下的对应示例；示例代码未区分模型或没有对应注释说明时默认在两种模型下均适用。
 
-关系库数据库操作或者存储过程中，有可能会因为各种原因发生非预期的数据库异常情况（抛出14800011），此时需要对数据库进行重建并恢复数据，以保障正常的应用开发，具体可见[关系型数据库异常重建](data-backup-and-restore.md#关系型数据库异常重建)。
+关系型数据库操作或者存储过程中，有可能会因为各种原因发生非预期的数据库异常情况（抛出14800011），此时需要对数据库进行重建并恢复数据，以保障正常的应用开发，具体可见[关系型数据库异常重建](data-backup-and-restore.md#关系型数据库异常重建)。
 
 1. 使用关系型数据库实现数据持久化，需要获取一个RdbStore，其中包括建库、建表、升降级等操作。示例代码如下所示：
 
@@ -80,7 +80,7 @@
        if (!tokenTypeSupported) {
          console.error(`ICU_TOKENIZER is not supported on this platform.`);
        }
-       const STORE_CONFIG :relationalStore.StoreConfig= {
+       const STORE_CONFIG: relationalStore.StoreConfig = {
          name: 'RdbTest.db', // 数据库文件名
          securityLevel: relationalStore.SecurityLevel.S3, // 数据库安全级别
          encrypt: false, // 可选参数，指定数据库是否加密，默认不加密
@@ -102,24 +102,37 @@
 
          // 当数据库创建时，数据库默认版本为0
          if (store.version === 0) {
-           store.executeSql(SQL_CREATE_TABLE); // 创建数据表，以便后续调用insert接口插入数据
-           // 设置数据库的版本，入参为大于0的整数
-           store.version = 3;
+           store.executeSql(SQL_CREATE_TABLE) // 创建数据表，以便后续调用insert接口插入数据
+             .then(() => {
+               // 设置数据库的版本，入参为大于0的整数
+               store.version = 3;
+             })
+             .catch((err: BusinessError) => {
+               console.error(`Failed to executeSql. Code:${err.code}, message:${err.message}`);
+             });
          }
 
          // 如果数据库版本不为0且和当前数据库版本不匹配，需要进行升降级操作
          // 当数据库存在并假定版本为1时，例应用从某一版本升级到当前版本，数据库需要从1版本升级到2版本
          if (store.version === 1) {
            // version = 1：表结构：EMPLOYEE (NAME, SALARY, CODES, ADDRESS) => version = 2：表结构：EMPLOYEE (NAME, AGE, SALARY, CODES, ADDRESS)
-           (store as relationalStore.RdbStore).executeSql('ALTER TABLE EMPLOYEE ADD COLUMN AGE INTEGER');
-           store.version = 2;
+           store.executeSql('ALTER TABLE EMPLOYEE ADD COLUMN AGE INTEGER')
+             .then(() => {
+               store.version = 2;
+             }).catch((err: BusinessError) => {
+               console.error(`Failed to executeSql. Code:${err.code}, message:${err.message}`);
+             });
          }
 
          // 当数据库存在并假定版本为2时，例应用从某一版本升级到当前版本，数据库需要从2版本升级到3版本
          if (store.version === 2) {
            // version = 2：表结构：EMPLOYEE (NAME, AGE, SALARY, CODES, ADDRESS) => version = 3：表结构：EMPLOYEE (NAME, AGE, SALARY, CODES)
-           (store as relationalStore.RdbStore).executeSql('ALTER TABLE EMPLOYEE DROP COLUMN ADDRESS TEXT');
-           store.version = 3;
+           store.executeSql('ALTER TABLE EMPLOYEE DROP COLUMN ADDRESS')
+             .then(() => {
+               store.version = 3;
+             }).catch((err: BusinessError) => {
+               console.error(`Failed to executeSql. Code:${err.code}, message:${err.message}`);
+             });
          }
          // 请确保获取到RdbStore实例，完成数据表创建后，再进行数据库的增、删、改、查等操作
        });
@@ -136,7 +149,7 @@
    
    let context = featureAbility.getContext();
 
-   const STORE_CONFIG :relationalStore.StoreConfig = {
+   const STORE_CONFIG: relationalStore.StoreConfig = {
      name: 'RdbTest.db', // 数据库文件名
      securityLevel: relationalStore.SecurityLevel.S3 // 数据库安全级别
    };
@@ -153,24 +166,37 @@
 
      // 当数据库创建时，数据库默认版本为0
      if (store.version === 0) {
-       store.executeSql(SQL_CREATE_TABLE); // 创建数据表，以便后续调用insert接口插入数据
-       // 设置数据库的版本，入参为大于0的整数
-       store.version = 3;
+       store.executeSql(SQL_CREATE_TABLE) // 创建数据表，以便后续调用insert接口插入数据
+         .then(() => {
+           // 设置数据库的版本，入参为大于0的整数
+           store.version = 3;
+         })
+         .catch((err: BusinessError) => {
+           console.error(`Failed to executeSql. Code:${err.code}, message:${err.message}`);
+         });
      }
 
      // 如果数据库版本不为0且和当前数据库版本不匹配，需要进行升降级操作
      // 当数据库存在并假定版本为1时，例应用从某一版本升级到当前版本，数据库需要从1版本升级到2版本
      if (store.version === 1) {
        // version = 1：表结构：EMPLOYEE (NAME, SALARY, CODES, ADDRESS) => version = 2：表结构：EMPLOYEE (NAME, AGE, SALARY, CODES, ADDRESS)
-       store.executeSql('ALTER TABLE EMPLOYEE ADD COLUMN AGE INTEGER');
-       store.version = 2;
+       store.executeSql('ALTER TABLE EMPLOYEE ADD COLUMN AGE INTEGER')
+         .then(() => {
+           store.version = 2;
+         }).catch((err: BusinessError) => {
+           console.error(`Failed to executeSql. Code:${err.code}, message:${err.message}`);
+         });
      }
 
      // 当数据库存在并假定版本为2时，例应用从某一版本升级到当前版本，数据库需要从2版本升级到3版本
      if (store.version === 2) {
        // version = 2：表结构：EMPLOYEE (NAME, AGE, SALARY, CODES, ADDRESS) => version = 3：表结构：EMPLOYEE (NAME, AGE, SALARY, CODES)
-       store.executeSql('ALTER TABLE EMPLOYEE DROP COLUMN ADDRESS TEXT');
-       store.version = 3;
+       store.executeSql('ALTER TABLE EMPLOYEE DROP COLUMN ADDRESS')
+         .then(() => {
+           store.version = 3;
+         }).catch((err: BusinessError) => {
+           console.error(`Failed to executeSql. Code:${err.code}, message:${err.message}`);
+         });
      }
      // 请确保获取到RdbStore实例，完成数据表创建后，再进行数据库的增、删、改、查等操作
    });
@@ -424,3 +450,5 @@
 针对关系型数据库的开发，有以下相关实例可供参考：
 
 - [`Rdb`：关系型数据库（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Data/Rdb)
+
+<!--RP1--><!--RP1End-->

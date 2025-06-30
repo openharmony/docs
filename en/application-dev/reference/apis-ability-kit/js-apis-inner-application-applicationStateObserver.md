@@ -1,6 +1,6 @@
 # ApplicationStateObserver
 
-The ApplicationStateObserver module defines an observer to listen for application state changes. It can be used as an input parameter in [on](js-apis-app-ability-appManager.md#appmanageronapplicationstate) to listen for lifecycle changes of the current application.
+The ApplicationStateObserver module defines an observer to listen for application state changes. It can be used as an input parameter in [on](js-apis-app-ability-appManager.md#appmanageronapplicationstate14) to listen for lifecycle changes of the current application.
 
 > **NOTE**
 > 
@@ -128,25 +128,25 @@ import { appManager } from '@kit.AbilityKit';
 
 let applicationStateObserver: appManager.ApplicationStateObserver = {
   onForegroundApplicationChanged(appStateData) {
-    console.log(`onForegroundApplicationChanged appStateData: ${JSON.stringify(appStateData)}`);
+    console.log(`onForegroundApplicationChanged, appStateData: ${JSON.stringify(appStateData)}.`);
   },
   onAbilityStateChanged(abilityStateData) {
-    console.log(`onAbilityStateChanged onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
+    console.log(`onAbilityStateChanged, abilityStateData: ${JSON.stringify(abilityStateData)}.`);
   },
   onProcessCreated(processData) {
-    console.log(`onProcessCreated onProcessCreated: ${JSON.stringify(processData)}`);
+    console.log(`onProcessCreated, processData: ${JSON.stringify(processData)}.`);
   },
   onProcessDied(processData) {
-    console.log(`onProcessDied onProcessDied: ${JSON.stringify(processData)}`);
+    console.log(`onProcessDied, processData: ${JSON.stringify(processData)}.`);
   },
   onProcessStateChanged(processData) {
-    console.log(`onProcessStateChanged onProcessStateChanged: ${JSON.stringify(processData)}`);
+    console.log(`onProcessStateChanged, processData: ${JSON.stringify(processData)}.`);
   },
   onAppStarted(appStateData) {
-    console.log(`onAppStarted appStateData: ${JSON.stringify(appStateData)}`);
+    console.log(`onAppStarted, appStateData: ${JSON.stringify(appStateData)}.`);
   },
   onAppStopped(appStateData) {
-    console.log(`onAppStopped appStateData: ${JSON.stringify(appStateData)}`);
+    console.log(`onAppStopped, appStateData: ${JSON.stringify(appStateData)}.`);
   }
 };
 let observerCode = appManager.on('applicationState', applicationStateObserver);

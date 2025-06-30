@@ -1,14 +1,18 @@
 # SceneNode
-本模块提供3D图形中场景资源结点的的类型及操作方法。
+
+本模块提供3D图形中场景资源结点的类型及操作方法。
 
 > **说明：** 
-> - 本模块首批接口从API version 12开始支持，后续版本的新增接口，采用上角标标记接口的起始版本。
+>
+> 本模块首批接口从API version 12开始支持，后续版本的新增接口，采用上角标标记接口的起始版本。
 
 ## 导入模块
+
 ```ts
 import { LayerMask, NodeType, Container, Node, Geometry, LightType, Light, SpotLight, DirectionalLight,
   Camera } from '@kit.ArkGraphics3D';
 ```
+
 ## LayerMask
 用于定义结点的图层掩码。
 

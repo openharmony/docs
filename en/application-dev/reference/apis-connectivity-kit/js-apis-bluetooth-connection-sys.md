@@ -621,7 +621,7 @@ try {
 
 getRemoteDeviceType(deviceId: string): Promise&lt;DeviceType&gt;
 
-Obtains the type of a remote Bluetooth device. This API uses a promise to return the result. Since API version 16, the **ohos.permission.ACCESS_BLUETOOTH** permission is no longer verified.
+Obtains the type of a remote Bluetooth device. This API uses a promise to return the result. Since API version 18, the **ohos.permission.ACCESS_BLUETOOTH** permission is no longer verified.
 
 **System API**: This is a system API.
 
@@ -769,39 +769,37 @@ import { connection } from '@kit.ConnectivityKit';
 /**
  * Update cloud devices in Bluetooth settings.
  */
-public updateCloudBluetoothDevice() {
-    const trustPairDeviceArr: connection.TrustedPairedDevice[] = [];
-    let descBuffer = new ArrayBuffer(1);
-    trustPairDeviceArr.push({
-        sn: '',
-        deviceType: '',
-        modelId: '',
-        manufactory: '',
-        productId: '',
-        hiLinkVersion: '',
-        macAddress: '11:22:33:44:55:66',
-        serviceType: '',
-        serviceId: '',
-        deviceName: '',
-        uuids: '',
-        bluetoothClass: 0,
-        token: descBuffer,
-        deviceNameTime: 0,
-        secureAdvertisingInfo: descBuffer,
-        pairState: 0
+const trustPairDeviceArr: connection.TrustedPairedDevice[] = [];
+let descBuffer = new ArrayBuffer(1);
+trustPairDeviceArr.push({
+    sn: '',
+    deviceType: '',
+    modelId: '',
+    manufactory: '',
+    productId: '',
+    hiLinkVersion: '',
+    macAddress: '11:22:33:44:55:66',
+    serviceType: '',
+    serviceId: '',
+    deviceName: '',
+    uuids: '',
+    bluetoothClass: 0,
+    token: descBuffer,
+    deviceNameTime: 0,
+    secureAdvertisingInfo: descBuffer,
+    pairState: 0
+    });
+const trustPairDevices: connection.TrustedPairedDevices = { trustedPairedDevices: trustPairDeviceArr };
+try {
+    connection.updateCloudBluetoothDevice(trustPairDevices)
+        .then(() => {
+            console.info('updateCloudBluetoothDevice success!');
+        })
+        .catch((err: BusinessError) => {
+            console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
         });
-    const trustPairDevices: connection.TrustedPairedDevices = { trustedPairedDevices: trustPairDeviceArr };
-    try {
-        connection.updateCloudBluetoothDevice(trustPairDevices)
-            .then(() => {
-                console.info('updateCloudBluetoothDevice success!');
-            })
-            .catch((err: BusinessError) => {
-                console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
-            });
-    } catch (err) {
-        console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
-    }
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 

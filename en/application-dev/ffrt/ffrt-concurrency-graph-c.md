@@ -78,7 +78,7 @@ The FFRT provides task graph that can describe the task dependency and paralleli
 
 ```c
 #include <stdio.h>
-#include "ffrt/task.h"
+#include "ffrt/ffrt.h"
 
 static inline void ffrt_submit_c(ffrt_function_t func, const ffrt_function_t after_func,
     void* arg, const ffrt_deps_t* in_deps, const ffrt_deps_t* out_deps, const ffrt_task_attr_t* attr)
@@ -140,6 +140,11 @@ int main()
 
     // Wait until all tasks are complete.
     ffrt_wait();
+
+    ffrt_task_handle_destroy(hTaskA);
+    ffrt_task_handle_destroy(hTaskB);
+    ffrt_task_handle_destroy(hTaskC);
+    ffrt_task_handle_destroy(hTaskD);
     return 0;
 }
 ```
@@ -280,11 +285,16 @@ Each task forms a call tree in the FFRT.
 
 The main FFRT APIs involved in the preceding example are as follows:
 
-| Name                                                            | Description                                  |
-| ---------------------------------------------------------------- | -------------------------------------- |
-| [ffrt_submit_base](ffrt-api-guideline-c.md#ffrt_submit_base)     | Submits a task.                    |
-| [ffrt_submit_h_base](ffrt-api-guideline-c.md#ffrt_submit_h_base) | Submits a task, and obtains the task handle.      |
-| [ffrt_wait_deps](ffrt-api-guideline-c.md#ffrt_wait_deps)         | Waits until the dependent tasks are complete.|
+| Name                                                      | Description                            |
+| ---------------------------------------------------------- | -------------------------------- |
+| [ffrt_submit_base](ffrt-api-guideline-c.md#ffrt_submit_base)     | Submits a task.              |
+| [ffrt_submit_h_base](ffrt-api-guideline-c.md#ffrt_submit_h_base) | Submits a task, and obtains the task handle.|
+| [ffrt_wait_deps](ffrt-api-guideline-c.md#ffrt_wait_deps)   | Waits until the dependent tasks are complete.            |
+
+> **NOTE**
+>
+> - For details about how to use FFRT C++ APIs, see [Using FFRT C++ APIs](ffrt-development-guideline.md#using-ffrt-c-api-1).
+> - When using FFRT C or C++ APIs, you can use the FFRT C++ API third-party library to simplify the header file inclusion, that is, use the `#include "ffrt/ffrt.h"` header file to include statements.
 
 ## Constraints
 

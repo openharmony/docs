@@ -165,7 +165,7 @@ disable-admin success.
 
 请补充-a \<ability-name\>。
 
-### error: the administrator ability component is invalid
+### 9200003 error: the administrator ability component is invalid
 
 **错误描述**
 
@@ -183,7 +183,7 @@ disable-admin success.
 
 查询应用的bundleName和enterpriseAdmin类型的ExtensionAbility的abilityName，并将其传入到参数中。
 
-### error: failed to enable the administrator application of the device
+### 9200004 error: failed to enable the administrator application of the device
 
 **错误描述**
 
@@ -203,7 +203,7 @@ disable-admin success.
 
 2、请使用未被管控的设备进行调试。
 
-### error: failed to disable the administrator application of the device
+### 9200005 error: failed to disable the administrator application of the device
 
 **错误描述**
 

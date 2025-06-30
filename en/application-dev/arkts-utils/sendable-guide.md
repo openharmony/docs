@@ -1,5 +1,5 @@
 # Use Scenarios of Sendable
-Sendable objects can be passed by reference between concurrent instances. This approach is more efficient than serialization and preserves methods carried in class instances. As a result, Sendable is particularly useful in two scenarios:
+Sendable objects are passed by reference between different concurrent instances by default. This approach is more efficient than serialization and preserves member methods carried by the class. Therefore, Sendable is particularly useful in two scenarios:
 
 - Transmitting a large amount of data (for example, data exceeding 100 KB) across concurrent instances
 
@@ -107,7 +107,6 @@ export class Test {
 ## Passing Class Instances Carrying Methods Across Concurrent Instances
 
 Methods are lost during serialization of instance objects. Therefore, in scenarios where instance methods must be called, passing objects by reference is essential. If data parsing is required during processing, the [ASON utility](ason-parsing-generation.md) can be used for data parsing.
-
 
 **Example**
 

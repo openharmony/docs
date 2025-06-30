@@ -84,7 +84,7 @@ const char* srcCallNative = R"JS(getValueBigintWords(BigInt(5555555555555555)))J
 预期的输出结果
 ```ts
 OH_JSVM_GetValueBigintWords wordCount:1.
-OH_JSVM_GetValueBigintWords signBit: 1.
+OH_JSVM_GetValueBigintWords signBit: 0.
 ```
 
 ### OH_JSVM_CreateBigintWords
@@ -289,8 +289,8 @@ static JSVM_Value GetBigintInt64(JSVM_Env env, JSVM_CallbackInfo info)
     JSVM_Value args[1] = {nullptr};
     OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);
     // 从传入的参数中提取64位整数的BigInt数据
-    int64_t value;
-    bool lossLess;
+    int64_t value = 0;
+    bool lossLess = false;
     OH_JSVM_GetValueBigintInt64(env, args[0], &value, &lossLess);
     // 判断从JS侧获取bigint是否为无损转换，如果不是抛出异常
     if (!lossLess) {

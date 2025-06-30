@@ -527,6 +527,8 @@ JSVM OH_JSVM_HasNamedProperty success:1
 cpp部分代码
 
 ```cpp
+#include <string>
+
 // 属性描述符列表中defineMethodPropertiesExample属性的回调函数
 static JSVM_Value DefineMethodPropertiesExample(JSVM_Env env, JSVM_CallbackInfo info)
 {

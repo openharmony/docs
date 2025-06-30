@@ -56,10 +56,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { Want } from '@kit.AbilityKit';
 import { common } from '@kit.AbilityKit';
 import { fileAccess } from '@kit.CoreFileKit';
-// context is passed by EntryAbility.
-let context = getContext(this) as common.UIAbilityContext;
+// The context is passed from EntryAbility. Ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext; 
 
-async function example() {
+async function example(context: common.UIAbilityContext) {
     let fileAccessHelper: fileAccess.FileAccessHelper;
     // Obtain wantInfos by using getFileAccessAbilityInfo().
     let wantInfos: Array<Want> = [
@@ -85,10 +85,10 @@ async function example() {
         if (!fileUri) {
           console.error("createFile return undefined object");
         }
-        console.log("createFile success, fileUri: " + JSON.stringify(fileUri));
+        console.info("createFile success, fileUri: " + JSON.stringify(fileUri));
         // Rename the document. The URI of the renamed document is returned.
         let renameUri = await fileAccessHelper.rename(fileUri, "renameFile.txt");
-        console.log("rename success, renameUri: " + JSON.stringify(renameUri));
+        console.info("rename success, renameUri: " + JSON.stringify(renameUri));
       } catch (err) {
         let error: BusinessError = err as BusinessError;
         console.error("createFile failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -145,12 +145,12 @@ The following table describes the fields in a media file URI.
 
 ### Using a Media File URI
 
-Applications of the normal APL can call [photoAccessHelper](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md) APIs to process media files based on their URI. For details about the sample code, see [Obtaining an Image or Video by URI](../media/medialibrary/photoAccessHelper-photoviewpicker.md#obtaining-an-image-or-video-by-uri). To call the APIs, the application must have the ohos.permission.READ_IMAGEVIDEO permission.<!--Del-->
+Applications of the normal APL can call [photoAccessHelper](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md) APIs to process media files based on their URI. For details about the sample code, see [Obtaining an Image or Video by URI](../media/medialibrary/photoAccessHelper-photoviewpicker.md#obtaining-an-image-or-video-by-uri). To call the API, the application must have the ohos.permission.READ_IMAGEVIDEO permission.<!--Del-->
 
 Applications of the system_basic or system_core APL can call **photoAccessHelper** and [userFileManager](../reference/apis-core-file-kit/js-apis-userFileManager-sys.md) APIs to process media files based on their URI. For details about how to use the APIs, see the API reference document.
 <!--DelEnd-->
 
-If you do not want to request the permission for a normal application, call [PhotoViewPicker of PhotoAccessHelper](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#photoviewpicker) to obtain the file URI and call [photoAccessHelper.getAssets](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getassets) to obtain the **PhotoAsset** object based on the URI. The **PhotoAsset** object can be used to call [getThumbnail](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getthumbnail) to obtain the thumbnail and call [get](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#get) to read certain information in [PhotoKeys](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#photokeys).
+If you do not want to request the permission for a normal application, call [PhotoViewPicker of PhotoAccessHelper](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#photoviewpicker) to obtain the file URI and call [photoAccessHelper.getAssets](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getassets) to obtain the **PhotoAsset** object based on the URI. Based on the **PhotoAsset** object, you can use [getThumbnail](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getthumbnail) to obtain the image thumbnail or use [get()](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#get) to obtain information from [PhotoKeys](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#photokeys).
 
 The following information can be obtained from **PhotoKeys** through temporary authorization:
 
@@ -178,10 +178,11 @@ import { dataSharePredicates } from '@kit.ArkData';
 
 // Define an array of URIs to hold the URIs returned by PhotoViewPicker.select.
 let uris: Array<string> = [];
-const context = getContext(this);
+// The context is passed from EntryAbility. Ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext; 
 
 // Call PhotoViewPicker.select to select an image.
-async function photoPickerGetUri() {
+async function photoPickerGetUri(context: common.UIAbilityContext) {
   try {  
     let PhotoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
     PhotoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE;
@@ -191,11 +192,11 @@ async function photoPickerGetUri() {
       console.info('PhotoViewPicker.select successfully, PhotoSelectResult uri: ' + JSON.stringify(PhotoSelectResult));
       uris = PhotoSelectResult.photoUris;
     }).catch((err: BusinessError) => {
-      console.error('PhotoViewPicker.select failed with err: ' + JSON.stringify(err));
+      console.error(`PhotoViewPicker.select failed with err, code is ${err.code}, message is ${err.message}`);
     });
   } catch (error) {
     let err: BusinessError = error as BusinessError;
-    console.error('PhotoViewPicker failed with err: ' + JSON.stringify(err));
+    console.error(`PhotoViewPicker failed with err, code is ${err.code}, message is ${err.message}`);
   }
 }
 
@@ -227,7 +228,7 @@ try {
       }
     });
   } catch (error){
-    console.error('uriGetAssets failed with err: ' + JSON.stringify(error));
+    console.error(`uriGetAssets failed with err, code is ${error.code}, message is ${error.message}`);
   }
 }
 ```
@@ -248,15 +249,15 @@ To copy a file to the specified directory based on the URI, perform the followin
 
 Sample code:
 
-```
+```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { Want } from '@kit.AbilityKit';
 import { common } from '@kit.AbilityKit';
 import { fileAccess } from '@kit.CoreFileKit';
 
-// context is passed by EntryAbility.
-let context = getContext(this) as common.UIAbilityContext;
-async function example() {
+// The context is passed from EntryAbility. Ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext; 
+async function example(context: common.UIAbilityContext) {
     let fileAccessHelper: fileAccess.FileAccessHelper;
     // Obtain wantInfos by using getFileAccessAbilityInfo().
     let wantInfos: Array<Want> = [
@@ -286,7 +287,7 @@ async function example() {
         if (!fileUri) {
           console.error("copyFile return undefined object");
         }
-        console.log("copyFile success, fileUri: " + JSON.stringify(fileUri));
+        console.info("copyFile success, fileUri: " + JSON.stringify(fileUri));
       } catch (err) {
         let error: BusinessError = err as BusinessError;
         console.error("copyFile failed, errCode:" + error.code + ", errMessage:" + error.message);

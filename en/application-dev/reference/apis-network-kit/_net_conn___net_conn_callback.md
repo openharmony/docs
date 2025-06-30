@@ -8,6 +8,7 @@ Defines network status callbacks.
 
 **Related module**: [NetConnection](_net_connection.md)
 
+**Header file**: [net_connection_type.h](net__connection__type_8h.md#net_connection_typeh)
 
 ## Summary
 
@@ -35,7 +36,7 @@ typedef void (*OH_NetConn_NetworkAvailable)(NetConn_NetHandle *netHandle)
 
 Called when the network is available.
 
-**Description**
+**Note**
 
 After the callback is complete, the parameter memory is automatically cleared and therefore the parameter pointer should be released.
 
@@ -55,7 +56,7 @@ typedef void (*OH_NetConn_NetCapabilitiesChange)(NetConn_NetHandle *netHandle, N
 
 Called when the network capabilities change.
 
-**Description**
+**Note**
 
 After the callback is complete, the parameter memory is automatically cleared and therefore the parameter pointer should be released.
 
@@ -64,7 +65,7 @@ After the callback is complete, the parameter memory is automatically cleared an
 | Name| Type| Description|
 | -------- | -------- | -------- |
 | netHandle | [NetHandle](js-apis-net-connection.md#nethandle) | Network handle.|
-| netCapabilities | [NetCapabilities](js-apis-net-connection.md#netcapabilities)| Network capabilities.|
+| netCapabilities | [NetCapabilities](js-apis-net-connection.md#netcapabilities)| Network capability set.|
 
 ### onConnetionProperties
 
@@ -76,7 +77,7 @@ typedef void (*OH_NetConn_NetConnectionPropertiesChange)(NetConn_NetHandle *netH
 
 Called when network connection properties change.
 
-**Description**
+**Note**
 
 After the callback is complete, the parameter memory is automatically cleared and therefore the parameter pointer should be released.
 
@@ -97,7 +98,7 @@ typedef void (*OH_NetConn_NetLost)(NetConn_NetHandle *netHandle)
 
 Called when the network is disconnected.
 
-**Description**
+**Note**
 
 After the callback is complete, the parameter memory is automatically cleared and therefore the parameter pointer should be released.
 

@@ -2,7 +2,7 @@
 
 ## 概述
 
-定义NativeWindow模块使用的的BufferHandle的结构体。
+定义NativeWindow模块使用的BufferHandle的结构体。
 
 **引用文件：**&lt;native_window/buffer_handle.h&gt;
 

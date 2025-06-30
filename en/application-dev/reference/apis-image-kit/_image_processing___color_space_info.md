@@ -17,6 +17,8 @@ See:
 
 **Related module**: [ImageProcessing](_image_processing.md)
 
+**Header file**: [image_processing_types.h](image__processing__types_8h.md)
+
 
 ## Summary
 

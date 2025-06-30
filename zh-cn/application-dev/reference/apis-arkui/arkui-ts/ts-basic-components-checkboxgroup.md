@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  该组件从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## 子组件
 
@@ -14,7 +14,7 @@
 
 CheckboxGroup(options?: CheckboxGroupOptions)
 
-创建多选框群组，可以控制群组内的Checkbox全选或者不全选，group值相同的Checkbox和CheckboxGroup为同一群组。
+创建多选框群组，用于控制群组内Checkbox的全选或取消全选状态，具有相同group值的Checkbox和CheckboxGroup属于同一群组。
 
 在结合带缓存组件使用时(如List)，未被创建的Checkbox选中状态需要应用手动控制。
 
@@ -32,6 +32,8 @@ CheckboxGroup(options?: CheckboxGroupOptions)
 
 ## CheckboxGroupOptions对象说明
 
+多选框群组的信息。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -40,7 +42,7 @@ CheckboxGroup(options?: CheckboxGroupOptions)
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| group | string | 否 | 群组名称。<br/>**说明：** <br/>多个相同群组名称的CheckboxGroup，仅第一个CheckboxGroup生效。 |
+| group | string | 否 | 群组名称。<br/>**说明：** <br/>具有相同群组名称的多个CheckboxGroup，仅第一个CheckboxGroup生效。 |
 
 ## 属性
 
@@ -52,8 +54,10 @@ selectAll(value: boolean)
 
 设置是否全选。若同组的[Checkbox](ts-basic-components-checkbox.md)显式设置了select属性，则Checkbox的优先级高。
 
-从API version 10开始，该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
-从API version 18开始，该属性支持[!!](../../../quick-start/arkts-new-binding.md)双向绑定变量。
+在与带有缓存功能的组件（如[List](ts-container-list.md)）配合使用时，未创建的Checkbox选中状态需由开发者控制。
+
+从API version 10开始，该属性支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。
+从API version 18开始，该属性支持[!!](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -65,7 +69,7 @@ selectAll(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 是否全选。<br/>默认值：false<br/>值为true时，多选框群组都被选中。值为false时，多选框群组都不被选中。 |
+| value  | boolean | 是   | 是否全选。<br/>默认值：false<br/>值为true时，多选框群组将全部被选中；值为false时，多选框群组将全部取消选中。 |
 
 ### selectAll<sup>18+</sup>
 
@@ -73,8 +77,9 @@ selectAll(isAllSelected: Optional\<boolean>)
 
 设置是否全选。若同组的[Checkbox](ts-basic-components-checkbox.md)显式设置了select属性，则Checkbox的优先级高。与[selectAll](#selectall)相比，isAllSelected参数新增了对undefined类型的支持。
 
-该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
-该属性支持[!!](../../../quick-start/arkts-new-binding.md)双向绑定变量。
+在与带有缓存功能的组件（如[List](ts-container-list.md)）配合使用时，未创建的Checkbox选中状态需由开发者控制。
+
+该属性支持[$$](../../../ui/state-management/arkts-two-way-sync.md)、[!!](../../../ui/state-management/arkts-new-binding.md#系统组件参数双向绑定)双向绑定变量。
 
 **卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
@@ -86,7 +91,7 @@ selectAll(isAllSelected: Optional\<boolean>)
 
 | 参数名        | 类型                                                         | 必填 | 说明                                                         |
 | ------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| isAllSelected | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否全选。<br/>当isAllSelected的值为undefined时取默认值false。<br/>值为true时，多选框群组都被选中。值为false时，多选框群组都不被选中。 |
+| isAllSelected | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否全选。<br/>当isAllSelected的值为undefined时取默认值false。<br/>值为true时，多选框群组将全部被选中；值为false时，多选框群组将全部取消选中。 |
 
 ### selectedColor
 
@@ -192,7 +197,7 @@ mark(style: Optional\<MarkStyle>)
 
 checkboxShape(value: CheckBoxShape)
 
-设置CheckboxGroup组件形状， 包括圆形和圆角方形。
+设置CheckboxGroup组件形状，包括圆形和圆角方形。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -204,13 +209,13 @@ checkboxShape(value: CheckBoxShape)
 
 | 参数名 | 类型                                                  | 必填 | 说明                                                         |
 | ------ | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [CheckBoxShape](ts-appendix-enums.md#checkboxshape11) | 是   | 设置CheckboxGroup组件形状， 包括圆形和圆角方形。<br/>默认值:CheckBoxShape.CIRCLE。 <br />**说明**：<br/>CheckboxGroup组件形状按照设置显示。<br/>CheckboxGroup内所有没有单独设置shape类型的Checkbox形状和CheckboxGroup的保持一致。<br/>CheckboxGroup内有单独设置shape类型的Checkbox形状则优先于CheckboxGroup，按照设置形状显示。 |
+| value  | [CheckBoxShape](ts-appendix-enums.md#checkboxshape11) | 是   | 设置CheckboxGroup组件形状，包括圆形和圆角方形。<br/>默认值：CheckBoxShape.CIRCLE <br />**说明：**<br/>CheckboxGroup组件将按照设置的形状显示。<br/>CheckboxGroup内所有未单独设置shape类型的Checkbox，其形状将与CheckboxGroup保持一致。<br/>CheckboxGroup内已单独设置shape类型的Checkbox，其形状将优先于CheckboxGroup的设置，按照自身设置显示。 |
 
 ### checkboxShape<sup>18+</sup>
 
 checkboxShape(shape: Optional\<CheckBoxShape>)
 
-设置CheckboxGroup组件形状， 包括圆形和圆角方形。与[checkboxShape](#checkboxshape12)<sup>12+</sup>相比，shape参数新增了对undefined类型的支持。
+设置CheckboxGroup组件形状，包括圆形和圆角方形。与[checkboxShape](#checkboxshape12)<sup>12+</sup>相比，shape参数新增了对undefined类型的支持。
 
 **卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
@@ -222,7 +227,7 @@ checkboxShape(shape: Optional\<CheckBoxShape>)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| shape  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[CheckBoxShape](ts-appendix-enums.md#checkboxshape11)> | 是   | 设置CheckboxGroup组件形状， 包括圆形和圆角方形。<br/>当shape的值为undefined时，默认值:CheckBoxShape.CIRCLE。 <br />**说明**：<br/>CheckboxGroup组件形状按照设置显示。<br/>CheckboxGroup内所有没有单独设置shape类型的Checkbox形状和CheckboxGroup的保持一致。<br/>CheckboxGroup内有单独设置shape类型的Checkbox形状则优先于CheckboxGroup，按照设置形状显示。 |
+| shape  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[CheckBoxShape](ts-appendix-enums.md#checkboxshape11)> | 是   | 设置CheckboxGroup组件形状，包括圆形和圆角方形。<br/>当shape的值为undefined时，默认值为CheckBoxShape.CIRCLE。<br />**说明：**<br/>CheckboxGroup组件将按照设置的形状显示。<br/>CheckboxGroup内所有未单独设置shape类型的Checkbox，其形状将与CheckboxGroup保持一致。<br/>CheckboxGroup内已单独设置shape类型的Checkbox，其形状将优先于CheckboxGroup的设置，按照自身设置显示。 |
 
 ## 事件
 
@@ -284,6 +289,8 @@ type OnCheckboxGroupChangeCallback  = (value: CheckboxGroupResult) => void
 
 ## CheckboxGroupResult对象说明
 
+多选框群组的名称和状态。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -296,6 +303,8 @@ type OnCheckboxGroupChangeCallback  = (value: CheckboxGroupResult) => void
 | status | [SelectStatus](#selectstatus枚举说明) | 否 | 否 | 选中状态。 |
 
 ## SelectStatus枚举说明
+
+多选框群组的选中状态。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -329,7 +338,7 @@ struct CheckboxExample {
             .checkboxShape(CheckBoxShape.ROUNDED_SQUARE)
             .selectedColor('#007DFF')
             .onChange((itemName: CheckboxGroupResult) => {
-              console.info("checkbox group content" + JSON.stringify(itemName))
+              console.info("checkbox group content" + JSON.stringify(itemName));
             })
           Text('Select All').fontSize(14).lineHeight(20).fontColor('#182431').fontWeight(500)
         }
@@ -340,7 +349,7 @@ struct CheckboxExample {
             .selectedColor('#007DFF')
             .shape(CheckBoxShape.ROUNDED_SQUARE)
             .onChange((value: boolean) => {
-              console.info('Checkbox1 change is' + value)
+              console.info('Checkbox1 change is' + value);
             })
           Text('Checkbox1').fontSize(14).lineHeight(20).fontColor('#182431').fontWeight(500)
         }.margin({ left: 36 })
@@ -351,7 +360,7 @@ struct CheckboxExample {
             .selectedColor('#007DFF')
             .shape(CheckBoxShape.ROUNDED_SQUARE)
             .onChange((value: boolean) => {
-              console.info('Checkbox2 change is' + value)
+              console.info('Checkbox2 change is' + value);
             })
           Text('Checkbox2').fontSize(14).lineHeight(20).fontColor('#182431').fontWeight(500)
         }.margin({ left: 36 })
@@ -362,7 +371,7 @@ struct CheckboxExample {
             .selectedColor('#007DFF')
             .shape(CheckBoxShape.ROUNDED_SQUARE)
             .onChange((value: boolean) => {
-              console.info('Checkbox3 change is' + value)
+              console.info('Checkbox3 change is' + value);
             })
           Text('Checkbox3').fontSize(14).lineHeight(20).fontColor('#182431').fontWeight(500)
         }.margin({ left: 36 })
@@ -391,7 +400,7 @@ struct Index {
             .checkboxShape(CheckBoxShape.ROUNDED_SQUARE)
             .selectedColor(Color.Orange)
             .onChange((itemName: CheckboxGroupResult) => {
-              console.info("checkbox group content" + JSON.stringify(itemName))
+              console.info("checkbox group content" + JSON.stringify(itemName));
             })
             .mark({
               strokeColor:Color.Black,
@@ -408,7 +417,7 @@ struct Index {
             .selectedColor(0x39a2db)
             .shape(CheckBoxShape.ROUNDED_SQUARE)
             .onChange((value: boolean) => {
-              console.info('Checkbox1 change is'+ value)
+              console.info('Checkbox1 change is'+ value);
             })
             .mark({
               strokeColor:Color.Black,
@@ -425,7 +434,7 @@ struct Index {
             .selectedColor(0x39a2db)
             .shape(CheckBoxShape.ROUNDED_SQUARE)
             .onChange((value: boolean) => {
-              console.info('Checkbox2 change is' + value)
+              console.info('Checkbox2 change is' + value);
             })
             .width(30)
             .height(30)
@@ -436,7 +445,7 @@ struct Index {
             .selectedColor(0x39a2db)
             .shape(CheckBoxShape.ROUNDED_SQUARE)
             .onChange((value: boolean) => {
-              console.info('Checkbox3 change is' + value)
+              console.info('Checkbox3 change is' + value);
             })
             .width(30)
             .height(30)

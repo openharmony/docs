@@ -1,6 +1,6 @@
 # @ohos.multimedia.cameraPicker (Camera Picker)
 
-The cameraPicker module provides APIs for an application to select the system camera to take photos or record videos, depending on the media type specified by the application. The APIs of this module must be called in a UIAbility of the page type. Otherwise, the camera picker cannot be started.
+The cameraPicker module provides APIs for an application to use the system camera to take photos or record videos, depending on the media type specified by the application. The application must call these APIs within a UIAbility. Otherwise, the camera picker cannot be started.
 
 > **NOTE**
 >
@@ -41,16 +41,14 @@ Starts the camera picker and enters the corresponding mode based on the media ty
 ```ts
 import { cameraPicker as picker } from '@kit.CameraKit';
 import { camera } from '@kit.CameraKit';
-import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-let mContext = getContext(this) as common.Context;
 
-async function demo() {
+async function demo(context: Context) {
   try {
     let pickerProfile: picker.PickerProfile = {
       cameraPosition: camera.CameraPosition.CAMERA_POSITION_BACK
     };
-    let pickerResult: picker.PickerResult = await picker.pick(mContext,
+    let pickerResult: picker.PickerResult = await picker.pick(context,
       [picker.PickerMediaType.PHOTO, picker.PickerMediaType.VIDEO], pickerProfile);
     console.log("the pick pickerResult is:" + JSON.stringify(pickerResult));
   } catch (error) {

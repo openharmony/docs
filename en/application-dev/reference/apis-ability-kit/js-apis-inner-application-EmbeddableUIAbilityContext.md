@@ -1,6 +1,6 @@
 # EmbeddableUIAbilityContext
 
-**EmbeddableUIAbilityContext**, inherited from [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md), provides the context environment for the [EmbeddableUIAbility](js-apis-app-ability-embeddableUIAbility.md) that needs to store its status. **EmbeddableUIAbilityContext** provides EmbeddableUIAbility-related configuration and APIs for operating EmbeddableUIAbilities and ServiceExtensionAbilities. For example, you can use the APIs to start an EmbeddableUIAbility, terminate an EmbeddableUIAbility to which the EmbeddableUIAbilityContext belongs, and start, terminate, connect to, or disconnect from a ServiceExtensionAbility.
+**EmbeddableUIAbilityContext** provides the context environment for the [EmbeddableUIAbility](js-apis-app-ability-embeddableUIAbility.md) that needs to store its status. This class inherits from [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md).
 
 > **NOTE**
 >
@@ -13,3 +13,13 @@
 ```ts
 import { common } from '@kit.AbilityKit';
 ```
+
+## EmbeddableUIAbilityContext 
+
+**EmbeddableUIAbilityContext** provides the context environment for the [EmbeddableUIAbility](js-apis-app-ability-embeddableUIAbility.md) that needs to store its status. This class inherits from [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md).
+
+**EmbeddableUIAbilityContext** provides EmbeddableUIAbility-related configuration and APIs for operating EmbeddableUIAbilities and ServiceExtensionAbilities. For example, you can use the APIs to start an EmbeddableUIAbility, terminate an EmbeddableUIAbility to which the EmbeddableUIAbilityContext belongs, and start, terminate, connect to, or disconnect from a ServiceExtensionAbility.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Atomic service API**: This API can be used in atomic services since API version 12.

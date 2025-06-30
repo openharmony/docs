@@ -15,7 +15,7 @@ import netfirewall from '@ohos.net.netFirewall';
 
 ## netFirewall.getInterceptedRecords
 
-getInterceptedRecords(userId: number, requestParam: RequestParam): Promise<\InterceptedRecordPage>
+getInterceptedRecords(userId: number, requestParam: RequestParam): Promise\<InterceptedRecordPage\>
 
 按userId获取截获的记录，需要指定分页查询参数。
 
@@ -83,10 +83,10 @@ netFirewall.getInterceptedRecords(100, interceptRecordParam).then((result: netFi
 | time       | number | 是   | 时间戳。            |
 | localIp    | string | 否   | 本地IP。            |
 | remoteIp   | string | 否   | 远端IP。            |
-| localPort  | number | 否   | 本地端口。          |
-| remotePort | number | 否   | 远端端口。          |
-| protocol   | number | 否   | 传输层协议。        |
-| appUid     | number | 否   | 应用程序或服务UID。 |
+| localPort  | number | 否   | 本地端口，默认值为0。          |
+| remotePort | number | 否   | 远端端口，默认值为0。          |
+| protocol   | number | 否   | 传输层协议，默认值为0。        |
+| appUid     | number | 否   | 应用程序或服务UID，默认值为0。 |
 | domain     | string | 否   | 域名。              |
 
 ## InterceptedRecordPage

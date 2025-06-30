@@ -6,11 +6,13 @@
 > **说明：**
 >
 > 该组件从API Version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> 该组件不支持在Wearable设备上使用。
 
 ##  导入模块
 
-```
-import { DownloadFileButton } from '@kit.ArkUI'
+```ts
+import { DownloadFileButton } from '@kit.ArkUI';
 ```
 
 ## 子组件

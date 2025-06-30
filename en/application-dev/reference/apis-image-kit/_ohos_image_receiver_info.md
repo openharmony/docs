@@ -11,6 +11,8 @@ The OhosImageReceiverInfo struct defines the information about an image receiver
 
 **Related module**: [Image](image.md)
 
+**Header file**: [image_receiver_mdk.h](image__receiver__mdk_8h.md)
+
 
 ## Summary
 

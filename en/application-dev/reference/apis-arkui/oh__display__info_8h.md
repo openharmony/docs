@@ -31,6 +31,11 @@ The **oh_display_info.h** file declares the common enums and definitions of the 
 | struct  [NativeDisplayManager_DisplayInfo](_native_display_manager___display_info.md) | Encapsulates the information about a display.| 
 | struct  [NativeDisplayManager_DisplaysInfo](_native_display_manager___displays_info.md) | Encapsulates the information about displays of a device with multiple screens.| 
 
+### Macros
+
+| Name| Description| 
+| -------- | -------- |
+| [OH_DISPLAY_NAME_LENGTH](_o_h___display_manager.md#oh_display_name_length)   32 | Maximum length of a display name. | 
 
 ### Types
 

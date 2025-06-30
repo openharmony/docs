@@ -38,11 +38,11 @@
   - [事件上报](hiappevent-event-reporting.md)
   <!--DelEnd-->
 - HiTraceMeter使用指导<!--hitracemeter-->
-  - [使用HiTraceMeter跟踪性能（ArkTS/JS）](hitracemeter-guidelines-arkts.md)
+  - [使用HiTraceMeter跟踪性能（ArkTS）](hitracemeter-guidelines-arkts.md)
   - [使用HiTraceMeter跟踪性能（C/C++）](hitracemeter-guidelines-ndk.md)
   - [查看HiTraceMeter日志](hitracemeter-view.md)
 - HiTraceChain使用指导<!--hitracechain-->
-  - [使用HiTraceChain打点（ArkTS/JS）](hitracechain-guidelines-arkts.md)
+  - [使用HiTraceChain打点（ArkTS）](hitracechain-guidelines-arkts.md)
   - [使用HiTraceChain打点（C/C++）](hitracechain-guidelines-ndk.md)
 - HiChecker使用指导<!--hichecker-->
   - [使用HiChecker检测问题（ArkTS/JS）](hichecker-guidelines-arkts.md)

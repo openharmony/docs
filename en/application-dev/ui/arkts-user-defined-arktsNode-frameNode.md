@@ -6,7 +6,7 @@ For third-party frameworks with custom frontend definitions, such as those in JS
 
 ![en-us_image_frame-node01](figures/frame-node01.png)
 
-The aforementioned conversion process, which relies on additional data-driven bindings to the [Builder](../quick-start/arkts-builder.md), is complex and can be performance-intensive. Such frameworks typically leverage ArkUI's layout and event handling, as well as basic node operations and customization capabilities. While most components are customized, some built-in components are needed for mixed display. This is where [FrameNode](../reference/apis-arkui/js-apis-arkui-frameNode.md) comes into the picture. In the example shown below, while the custom method of **FrameNode** is used for drawing, a built-in component **Column** and its child component **Text** are mounted to the root FrameNode through **BuilderNode**, thereby achieving mixed display.
+The aforementioned conversion process, which relies on additional data-driven bindings to the [Builder](../ui/state-management/arkts-builder.md), is complex and can be performance-intensive. Such frameworks typically leverage ArkUI's layout and event handling, as well as basic node operations and customization capabilities. While most components are customized, some built-in components are needed for mixed display. This is where [FrameNode](../reference/apis-arkui/js-apis-arkui-frameNode.md) comes into the picture. In the example shown below, while the custom method of **FrameNode** is used for drawing, a built-in component **Column** and its child component **Text** are mounted to the root FrameNode through **BuilderNode**, thereby achieving mixed display.
 
 ![en-us_image_frame-node02](figures/frame-node02.png)
 

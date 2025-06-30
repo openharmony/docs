@@ -5,9 +5,8 @@
 > **说明：**
 >
 > 本模块首批接口从 API version 10 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 本模块功能依赖UI的执行上下文，不可在UI上下文不明确的地方使用，参见[UIContext](js-apis-arkui-UIContext.md#uicontext)说明。
-> 从API version 11开始，可以通过使用UIContext中的[getDragController](js-apis-arkui-UIContext.md#getdragcontroller11)方法获取当前UI上下文关联的DragController对象。
-> 示例效果请以真机运行为准，当前 IDE 预览器不支持。
+> 本模块功能依赖UI的执行上下文，不可在[UI上下文不明确](../../ui/arkts-global-interface.md#ui上下文不明确)的地方使用，参见[UIContext](js-apis-arkui-UIContext.md#uicontext)说明。
+> 示例效果请以真机运行为准，当前 DevEco Studio预览器不支持。
 
 ## 导入模块
 
@@ -15,11 +14,17 @@
 import { dragController } from "@kit.ArkUI";
 ```
 
-## dragController.executeDrag
+## dragController.executeDrag<sup>(deprecated)</sup>
 
 executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo,callback:AsyncCallback\<DragEventParam>): void
 
 主动发起拖拽能力，传入拖拽发起后跟手效果所拖拽的对象以及携带拖拽信息。通过回调返回结果。
+
+> **说明：**
+>
+> 从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getDragController](js-apis-arkui-UIContext.md#getdragcontroller11)获取[DragController](js-apis-arkui-UIContext.md#dragcontroller11)实例，再通过此实例调用替代方法[executeDrag](js-apis-arkui-UIContext.md#executedrag11)。
+>
+> 从API version 11开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getDragController](js-apis-arkui-UIContext.md#getdragcontroller11)方法获取当前UI上下文关联的[DragController](js-apis-arkui-UIContext.md#dragcontroller11)对象。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -90,7 +95,7 @@ struct DragControllerPage {
                 extraParams:string = ''
               }
               let eve:tmp = new tmp()
-              dragController.executeDrag(()=>{this.DraggingBuilder()}, dragInfo, (err, eve) => { // 建议使用 this.getUIContext().getDragController().executeDrag()接口
+              this.getUIContext().getDragController().executeDrag(()=>{this.DraggingBuilder()}, dragInfo, (err, eve) => { // 建议使用 this.getUIContext().getDragController().executeDrag()接口
                 if(eve.event){
                   if (eve.event.getResult() == DragResult.DRAG_SUCCESSFUL) {
                     // ...
@@ -121,11 +126,17 @@ struct DragControllerPage {
 }
 ```
   ![zh-cn_executeDrag1](figures/executeDrag1.gif)
-## dragController.executeDrag
+## dragController.executeDrag<sup>(deprecated)</sup>
 
 executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo): Promise\<DragEventParam>
 
 主动发起拖拽能力，传入拖拽发起后跟手效果所拖拽的对象以及携带拖拽信息。通过Promise返回结果。
+
+> **说明：**
+>
+> 从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getDragController](js-apis-arkui-UIContext.md#getdragcontroller11)获取[DragController](js-apis-arkui-UIContext.md#dragcontroller11)实例，再通过此实例调用替代方法[executeDrag](js-apis-arkui-UIContext.md#executedrag11-1)。
+>
+> 从API version 11开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getDragController](js-apis-arkui-UIContext.md#getdragcontroller11)方法获取当前UI上下文关联的[DragController](js-apis-arkui-UIContext.md#dragcontroller11)对象。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -158,7 +169,7 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo): Promise\<
 > 推荐通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getDragController](js-apis-arkui-UIContext.md#getdragcontroller11)方法获取当前UI上下文关联的DragController对象。
 
 ```ts
-import { dragController, componentSnapshot } from "@kit.ArkUI"
+import { dragController } from "@kit.ArkUI"
 import { image } from '@kit.ImageKit';
 import { unifiedDataChannel } from '@kit.ArkData';
 
@@ -193,7 +204,7 @@ struct DragControllerPage {
     let pb: CustomBuilder = (): void => {
       this.PixmapBuilder()
     }
-    componentSnapshot.createFromBuilder(pb).then((pix: image.PixelMap) => {
+    this.getUIContext().getComponentSnapshot().createFromBuilder(pb).then((pix: image.PixelMap) => {
       this.pixmap = pix;
     })
   }
@@ -226,7 +237,7 @@ struct DragControllerPage {
                 extraParams:string = ''
               }
               let eve:tmp = new tmp()
-              dragController.executeDrag(dragItemInfo, dragInfo) // 建议使用 this.getUIContext().getDragController().executeDrag()接口
+              this.getUIContext().getDragController().executeDrag(dragItemInfo, dragInfo) // 建议使用 this.getUIContext().getDragController().executeDrag()接口
                 .then((eve) => {
                   if (eve.event.getResult() == DragResult.DRAG_SUCCESSFUL) {
                     // ...
@@ -262,9 +273,9 @@ struct DragControllerPage {
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
 发起拖拽所需要的属性和拖拽时携带的信息。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称        | 类型                                                   | 必填 | 说明                                     |
 | ----------- | ------------------------------------------------------ | ---- | ---------------------------------------- |
@@ -274,13 +285,18 @@ struct DragControllerPage {
 | touchPoint<sup>11+</sup>    | [TouchPoint](arkui-ts/ts-types.md#touchpoint11)  | 否   | 配置跟手点坐标。不配置时，左右居中，顶部向下偏移20%。 |
 | previewOptions<sup>11+</sup>| [DragPreviewOptions](arkui-ts/ts-universal-attributes-drag-drop.md#dragpreviewoptions11)                                | 否   | 设置拖拽过程中背板图处理模式及数量角标的显示。 |
 
-## dragController.createDragAction<sup>11+</sup>
+## dragController.createDragAction<sup>(deprecated)</sup>
 
 createDragAction(customArray: Array&lt;CustomBuilder \| DragItemInfo&gt;, dragInfo: DragInfo): DragAction
 
 创建拖拽的Action对象，需要显式指定拖拽背板图(可多个)，以及拖拽的数据，跟手点等信息；当通过一个已创建的 Action 对象发起的拖拽未结束时，无法再次创建新的 Action 对象，接口会抛出异常；当Action对象的生命周期结束后，注册在该对象上的回调函数会失效，因此需要在一个尽量长的作用域下持有该对象，并在每次发起拖拽前通过createDragAction返回新的对象覆盖旧值。
 
-**说明：** 建议控制传递的拖拽背板数量，传递过多容易导致拖起的效率问题。
+> **说明：**
+> 从API version 11开始支持，从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getDragController](js-apis-arkui-UIContext.md#getdragcontroller11)获取[DragController](js-apis-arkui-UIContext.md#dragcontroller11)实例，再通过此实例调用替代方法[createDragAction](js-apis-arkui-UIContext.md#createdragaction11)。
+>
+> 从API version 11开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getDragController](js-apis-arkui-UIContext.md#getdragcontroller11)方法获取当前UI上下文关联的[DragController](js-apis-arkui-UIContext.md#dragcontroller11)对象。
+>
+> 建议控制传递的拖拽背板数量，传递过多容易导致拖起的效率问题。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -314,7 +330,7 @@ createDragAction(customArray: Array&lt;CustomBuilder \| DragItemInfo&gt;, dragIn
 > 推荐通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getDragController](js-apis-arkui-UIContext.md#getdragcontroller11)方法获取当前UI上下文关联的DragController对象。
 
 ```ts
-import { dragController, componentSnapshot } from "@kit.ArkUI";
+import { dragController } from "@kit.ArkUI";
 import { image } from '@kit.ImageKit';
 import { unifiedDataChannel } from '@kit.ArkData';
 
@@ -375,7 +391,7 @@ struct DragControllerPage {
               extraParams: ''
             }
             try{
-              this.dragAction = dragController.createDragAction(this.customBuilders, dragInfo) // 建议使用 this.getUIContext().getDragController().createDragAction()接口
+              this.dragAction = this.getUIContext().getDragController().createDragAction(this.customBuilders, dragInfo) // 建议使用 this.getUIContext().getDragController().createDragAction()接口
               if(!this.dragAction){
                 console.info("listener dragAction is null");
                 return
@@ -423,6 +439,12 @@ startDrag(): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
 **错误码：**
 
 | 错误码ID | 错误信息      |
@@ -436,7 +458,7 @@ startDrag(): Promise&lt;void&gt;
 > 推荐通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getDragController](js-apis-arkui-UIContext.md#getdragcontroller11)方法获取当前UI上下文关联的DragController对象。
 
 ```ts
-import { dragController, componentSnapshot } from "@kit.ArkUI";
+import { dragController } from "@kit.ArkUI";
 import { unifiedDataChannel } from '@kit.ArkData';
 
 @Entry
@@ -471,7 +493,7 @@ struct DragControllerPage {
               extraParams: ''
             }
             try{
-              this.dragAction = dragController.createDragAction(this.customBuilders, dragInfo) // 建议使用 this.getUIContext().getDragController().createDragAction()接口
+              this.dragAction = this.getUIContext().getDragController().createDragAction(this.customBuilders, dragInfo) // 建议使用 this.getUIContext().getDragController().createDragAction()接口
               if(!this.dragAction){
                 console.info("listener dragAction is null");
                 return;
@@ -513,7 +535,7 @@ on(type: 'statusChange', callback: Callback&lt;[DragAndDropInfo](#draganddropinf
 > 推荐通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getDragController](js-apis-arkui-UIContext.md#getdragcontroller11)方法获取当前UI上下文关联的DragController对象。
 
 ```ts
-import { dragController, componentSnapshot } from "@kit.ArkUI";
+import { dragController } from "@kit.ArkUI";
 import { unifiedDataChannel } from '@kit.ArkData';
 
 @Entry
@@ -551,7 +573,7 @@ struct DragControllerPage {
               console.info("Register to listen on drag status", JSON.stringify(dragAndDropInfo));
             }
             try{
-              this.dragAction = dragController.createDragAction(this.customBuilders, dragInfo) // 建议使用 this.getUIContext().getDragController().createDragAction()接口
+              this.dragAction = this.getUIContext().getDragController().createDragAction(this.customBuilders, dragInfo) // 建议使用 this.getUIContext().getDragController().createDragAction()接口
               if(!this.dragAction){
                 console.info("listener dragAction is null");
                 return;
@@ -595,7 +617,7 @@ struct DragControllerPage {
 > 推荐通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getDragController](js-apis-arkui-UIContext.md#getdragcontroller11)方法获取当前UI上下文关联的DragController对象。
 
 ```ts
-import { dragController, componentSnapshot } from "@kit.ArkUI";
+import { dragController } from "@kit.ArkUI";
 import { unifiedDataChannel } from '@kit.ArkData';
 
 @Entry
@@ -633,7 +655,7 @@ struct DragControllerPage {
               console.info("Register to listen on drag status", JSON.stringify(dragAndDropInfo));
             }
             try{
-              this.dragAction = dragController.createDragAction(this.customBuilders, dragInfo) // 建议使用 this.getUIContext().getDragController().createDragAction()接口
+              this.dragAction = this.getUIContext().getDragController().createDragAction(this.customBuilders, dragInfo) // 建议使用 this.getUIContext().getDragController().createDragAction()接口
               if(!this.dragAction){
                 console.info("listener dragAction is null");
                 return;
@@ -657,25 +679,25 @@ struct DragControllerPage {
 
 ## DragAndDropInfo<sup>11+</sup>
 
+拖拽过程中监听到status改变时上报的数据。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-拖拽过程中监听到status改变时上报的数据。
 
 | 名称          | 类型                                                   | 必填 | 说明                                     |
 | -----------   | ------------------------------------------------------ | ---- | ---------------------------------------- |
 | status       | [DragStatus](#dragstatus11)                                                 | 是   | 当前拖拽状态（启动和结束）。         |
-| event        | [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent) | 是   | 当前状态所对应的拖拽事件。通过dragController发起的dragEvent仅支持获取result和behavior，且用于拖拽结束状态。 |
+| event        | [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent7) | 是   | 当前状态所对应的拖拽事件。通过dragController发起的dragEvent仅支持获取result和behavior，且用于拖拽结束状态。 |
 | extraParams| string                                                 | 否   | 设置拖拽事件额外信息，具体功能暂未实现。默认值为空。 |
 
 ## DragStatus<sup>11+</sup>
 
+拖拽开始和结束状态。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-拖拽开始和结束状态。
 
 | 名称          | 值                                                   | 说明                                     |
 | -----------   | ------------------------------------------------------| ---------------------------------------- |
@@ -684,35 +706,41 @@ struct DragControllerPage {
 
 ## AnimationOptions<sup>11+</sup>
 
+拖拽相关的动效参数。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-发起拖拽所需要的属性和拖拽时携带的信息。
 
 | 名称        | 类型                                                   | 必填 | 说明                                     |
 | ----------- | ------------------------------------------------------ | ---- | ---------------------------------------- |
 | duration    | number                                                 | 否   | 动画持续时间，单位为毫秒。<br/>默认值：1000<br/>**说明：**<br/>-&nbsp;设置小于0的值时按0处理。<br/>-&nbsp;设置浮点型类型的值时，向下取整。例如，设置值为1.2，按照1处理。|
-| curve       |&nbsp;[Curve](arkui-ts/ts-appendix-enums.md#curve)&nbsp;\|&nbsp;[ICurve](js-apis-curve.md#icurve) | 否    | 设置动画曲线。<br/>默认值：Curve.EaseInOut|                          |
+| curve       |&nbsp;[Curve](arkui-ts/ts-appendix-enums.md#curve)&nbsp;\|&nbsp;[ICurve](js-apis-curve.md#icurve9) | 否    | 设置动画曲线。<br/>默认值：Curve.EaseInOut|                          |
 
 ## DragEventParam<sup>12+</sup>
+
+拖拽结束返回结果的回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-拖拽结束返回结果的回调。
-
 | 名称        | 类型                                                         | 必填 | 说明                           |
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------ |
-| event       | [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent) | 是   | 拖拽事件信息，仅包括拖拽结果。 |
-| extraParams | string                                                       | 是   | 拖拽事件额外信息。             |
+| event<sup>10+</sup>       | [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent7) | 是   | 拖拽事件信息，仅包括拖拽结果。 |
+| extraParams<sup>10+</sup> | string                                                       | 是   | 拖拽事件额外信息。             |
 
-## dragController.getDragPreview<sup>11+</sup>
+## dragController.getDragPreview<sup>(deprecated)</sup>
 
 getDragPreview(): DragPreview
 
 返回一个代表拖拽背板的对象。
+
+> **说明：**
+>
+> 从API version 11开始支持，从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getDragController](js-apis-arkui-UIContext.md#getdragcontroller11)获取[DragController](js-apis-arkui-UIContext.md#dragcontroller11)实例，再通过此实例调用替代方法[getDragPreview](js-apis-arkui-UIContext.md#getdragpreview11)。
+>
+> 从API version 11开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getDragController](js-apis-arkui-UIContext.md#getdragcontroller11)方法获取当前UI上下文关联的[DragController](js-apis-arkui-UIContext.md#dragcontroller11)对象。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -756,7 +784,7 @@ setForegroundColor(color: ResourceColor): void
 
 请参考[animate](#animate11)
 
-  ### animate<sup>11+</sup>
+### animate<sup>11+</sup>
 
 animate(options: AnimationOptions, handler: () => void): void
 
@@ -802,15 +830,15 @@ export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage): void {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 
-    windowStage.loadContent('pages/Index', (err, data) => {
+    windowStage.loadContent('pages/Index', this.storage, (err, data) => {
       if (err.code) {
-        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', `Code is ${err.code}, message is ${err.message}`);
         return;
       }
-      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s',  `Code is ${err.code}, message is ${err.message}`);
       windowStage.getMainWindow((err, data) => {
         if (err.code) {
-          hilog.error(0x0000, 'Failed to abtain the main window. Cause:' + err.message, '');
+          hilog.error(0x0000, `Failed to abtain the main window. Cause: ${err.message}`, '');
           return;
         }
         let windowClass: window.Window = data;
@@ -821,7 +849,7 @@ export default class EntryAbility extends UIAbility {
   }
 }
   ```
-2.在Index.ets中通过LocalStorage.getShared()获取UI上下文，进而获取DragController对象实施后续操作。
+2.在Index.ets中通过this.getUIContext().getSharedLocalStorage()获取UI上下文，进而获取DragController对象实施后续操作。
   ```ts
 
 import { unifiedDataChannel } from '@kit.ArkData';
@@ -830,12 +858,11 @@ import { dragController, curves, promptAction, UIContext } from "@kit.ArkUI";
 import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let storages = LocalStorage.getShared();
-
-@Entry(storages)
+@Entry()
 @Component
 struct DragControllerPage {
-  @State pixmap: image.PixelMap|null = null
+  @State pixmap: image.PixelMap|null = null;
+  storages = this.getUIContext().getSharedLocalStorage();
 
   @Builder DraggingBuilder() {
     Column() {
@@ -863,7 +890,7 @@ struct DragControllerPage {
         .margin(10)
         .onDragEnter(() => {
         try {
-          let uiContext: UIContext = storages.get<UIContext>('uiContext') as UIContext;
+          let uiContext: UIContext = this.storages?.get<UIContext>('uiContext') as UIContext;
           let previewObj: dragController.DragPreview = uiContext.getDragController().getDragPreview();
           let foregroundColor: ResourceColor = Color.Green;
 
@@ -880,7 +907,7 @@ struct DragControllerPage {
         }
       })
         .onDrop(() => {
-          promptAction.showToast({duration: 100, message: 'Drag Success', bottom: 400})
+          this.getUIContext().getPromptAction().showToast({duration: 100, message: 'Drag Success', bottom: 400})
         })
       Button('拖起').onTouch((event?:TouchEvent) => {
         if(event){
@@ -897,7 +924,7 @@ struct DragControllerPage {
               extraParams:string = ''
             }
             let eve:tmp = new tmp()
-            dragController.executeDrag(() => { // 建议使用 this.getUIContext().getDragController().executeDrag()接口
+            this.getUIContext().getDragController().executeDrag(() => { // 建议使用 this.getUIContext().getDragController().executeDrag()接口
               this.DraggingBuilder()
             }, dragInfo, (err , eve) => {
               hilog.info(0x0000, `ljx ${JSON.stringify(err)}`, '')

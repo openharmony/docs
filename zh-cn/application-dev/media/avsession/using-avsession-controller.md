@@ -246,7 +246,7 @@ OpenHarmony系统预置的播控中心，作为媒体会话控制方与音视频
    import { avSession as AVSessionManager } from '@kit.AVSessionKit';
    async function getInfoFromSessionByController() {
      // 假设我们已经有了一个对应session的controller，如何创建controller可以参考之前的案例。
-     let controller = await AVSessionManager.createController("")
+     let controller = await AVSessionManager.createController("");
      // 获取sessionId。
      let sessionId = controller.sessionId;
      console.info(`get sessionId by controller : isActive : ${sessionId}`);
@@ -292,7 +292,7 @@ OpenHarmony系统预置的播控中心，作为媒体会话控制方与音视频
 
    async function  sendCommandToSessionByController() {
      // 假设我们已经有了一个对应session的controller，如何创建controller可以参考之前的案例。
-     let controller = await AVSessionManager.createController("")
+     let controller = await AVSessionManager.createController("");
      // 获取这个session支持的命令种类。
      let validCommandTypeArray = await controller.getValidCommands();
      console.info(`get validCommandArray by controller : length : ${validCommandTypeArray.length}`);
@@ -342,7 +342,7 @@ OpenHarmony系统预置的播控中心，作为媒体会话控制方与音视频
 
    async function destroyController() {
      // 假设我们已经有了一个对应session的controller，如何创建controller可以参考之前的案例。
-     let controller = await AVSessionManager.createController("")
+     let controller = await AVSessionManager.createController("");
      
      // 销毁当前的controller，销毁后这个controller将不在可用。
      controller.destroy((err: BusinessError) => {

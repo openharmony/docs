@@ -1,4 +1,4 @@
-# Managing Global Audio Output Devices
+# Global Audio Output Device Management
 
 If a device is connected to multiple audio output devices, you can use **AudioRoutingManager** to specify an audio output device to play audio. For details about the API reference, see [AudioRoutingManager](../../reference/apis-audio-kit/js-apis-audio.md#audioroutingmanager9).
 

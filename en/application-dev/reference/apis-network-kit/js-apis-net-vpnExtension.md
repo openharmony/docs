@@ -1,7 +1,6 @@
 # @ohos.net.vpnExtension (Enhanced VPN Management)
 
-This module implements virtual private network (VPN) management, such as starting and stopping a third-party VPN.
-Third-party VPNs refer to VPN services provided by third parties. They usually support more security and privacy functions and more comprehensive customization options.
+The **vpnExtension** module implements virtual private network (VPN) management, such as starting and stopping a third-party VPN. Third-party VPNs refer to VPN services provided by third parties. They usually provide more security and privacy functions and more comprehensive customization options.
 
 > **NOTE**
 > The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -21,7 +20,7 @@ Defines the network link address information.
 
 | Type  | Description                                                        |
 | ------ | ------------------------------------------------------------ |
-| [connection.LinkAddress](./js-apis-net-connection.md#linkaddress) | network link address information.|
+| [connection.LinkAddress](./js-apis-net-connection.md#linkaddress) | Network link address information.|
 
 ## RouteInfo<sup>11+</sup>
 type RouteInfo = connection.RouteInfo
@@ -461,11 +460,11 @@ Defines the VPN configuration.
 | routes              | Array\<[RouteInfo](js-apis-net-connection.md#routeinfo)\>     | No  | Route information of the vNIC. Currently, a maximum of 1024 routes can be configured.           |
 | dnsAddresses        | Array\<string\>                                                | No  | IP address of the DNS server.               |
 | searchDomains       | Array\<string\>                                                | No  | List of DNS search domains.                 |
-| mtu                 | number                                                         | No  | Maximum transmission unit (MTU), in bytes.    |
-| isIPv4Accepted      | boolean                                                        | No  | Whether IPv4 is supported. The default value is **true**.     |
-| isIPv6Accepted      | boolean                                                        | No  | Whether IPv6 is supported. The default value is **false**.    |
-| isInternal          | boolean                                                        | No  | Whether the built-in VPN is supported. The default value is **false**.  |
-| isBlocking          | boolean                                                        | No  | Whether the blocking mode is used. The default value is **false**.      |
+| mtu                 | number                                                         | No  | Maximum transmission unit (MTU), in bytes. The value range is [576,1500].    |
+| isIPv4Accepted      | boolean                                                        | No  | Whether IPv4 is supported. The default value is **true**. The value **true** indicates that IPV4 is supported, and the value **false** indicates the opposite.   |
+| isIPv6Accepted      | boolean                                                        | No  | Whether IPv6 is supported. The default value is **false**. The value **true** indicates that IPV6 is supported, and the value **false** indicates the opposite.    |
+| isInternal          | boolean                                                        | No  | Whether the built-in VPN is supported. The default value is **false**. The value **true** indicates that the built-in VPN is supported, and the value **false** indicates the opposite.  |
+| isBlocking          | boolean                                                        | No  | Whether the blocking mode is used. The default value is **false**. The value **true** indicates that the blocking mode is used, and the value **false** indicates the opposite.      |
 | trustedApplications | Array\<string\>                                                | No  | List of trusted applications, which are represented by bundle names of the string type. |
 | blockedApplications | Array\<string\>                                                | No  | List of blocked applications, which are represented by bundle names of the string type. |
 

@@ -1,6 +1,6 @@
 # PermissionDef (系统接口)
 
-配置文件中定义的权限详细信息，通过接口[bundleManager.getPermissionDef](js-apis-bundleManager-sys.md#bundlemanagergetpermissiondef)获取。
+[module.json5配置文件](../../quick-start/module-configuration-file.md)中定义的权限详细信息，通过接口[bundleManager.getPermissionDef](js-apis-bundleManager-sys.md#bundlemanagergetpermissiondef)获取。
 
 > **说明：**
 >
@@ -8,15 +8,21 @@
 >
 > 本模块为系统接口。
 
-## **PermissionDef**
+## 导入模块
 
- **系统能力:** SystemCapability.BundleManager.BundleFramework.Core
+```ts
+import { bundleManager } from '@kit.AbilityKit';
+```
+
+## PermissionDef
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
  
- **系统接口：** 此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 | 名称           | 类型   | 只读 | 可选 | 说明           |
 | -------------- | ------ | ---- | ---- | -------------- |
 | permissionName | string | 是   | 否   | 用户权限名称。   |
-| grantMode      | number | 是   | 否   | 权限的授予模式。 |
+| grantMode      | number | 是   | 否   | [权限的授予方式](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/app-permission-mgmt-overview#授权方式)。0：表示用户授权，1：表示系统授权。 |
 | labelId        | number | 是   | 否   | 权限的标签ID。   |
 | descriptionId  | number | 是   | 否   | 描述权限的ID。   |

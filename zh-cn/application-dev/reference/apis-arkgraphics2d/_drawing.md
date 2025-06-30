@@ -238,7 +238,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | [OH_Drawing_RectHeightStyle](#oh_drawing_rectheightstyle-1) {<br/>RECT_HEIGHT_STYLE_TIGHT, RECT_HEIGHT_STYLE_MAX, RECT_HEIGHT_STYLE_INCLUDELINESPACEMIDDLE, RECT_HEIGHT_STYLE_INCLUDELINESPACETOP,<br/>RECT_HEIGHT_STYLE_INCLUDELINESPACEBOTTOM, RECT_HEIGHT_STYLE_STRUCT<br/>} | 矩形框高度样式枚举。 | 
 | [OH_Drawing_RectWidthStyle](#oh_drawing_rectwidthstyle-1) { RECT_WIDTH_STYLE_TIGHT, RECT_WIDTH_STYLE_MAX } | 矩形框宽度样式枚举。 | 
 | [OH_Drawing_FontConfigInfoErrorCode](#oh_drawing_fontconfiginfoerrorcode) {<br/>SUCCESS_FONT_CONFIG_INFO = 0, ERROR_FONT_CONFIG_INFO_UNKNOWN = 1, ERROR_FONT_CONFIG_INFO_PARSE_FILE = 2, ERROR_FONT_CONFIG_INFO_ALLOC_MEMORY = 3,<br/>ERROR_FONT_CONFIG_INFO_COPY_STRING_DATA = 4<br/>} | 获取系统字体配置信息列表结果枚举。 | 
-| [OH_Drawing_FontWidth](#oh_drawing_fontwidth) {<br/>ULTRA_CONDENSED_WIDTH = 1, EXTRA_CONDENSED_WIDTH = 2, CONDENSED_WIDTH = 3, SEMI_CONDENSED_WIDTH = 4,<br/>NORMAL_WIDTH = 5, SEMI_EXPANDED_WIDTH = 6, EXPANDED_WIDTH = 7, EXTRA_EXPANDED_WIDTH = 8,<br/>ULTRA_EXPANDED_WIDTH = 9<br/>} | 字体宽度的枚举。 | 
+| [OH_Drawing_FontWidth](#oh_drawing_fontwidth) {<br/>FONT_WIDTH_ULTRA_CONDENSED = 1, FONT_WIDTH_EXTRA_CONDENSED = 2, FONT_WIDTH_CONDENSED = 3, FONT_WIDTH_SEMI_CONDENSED = 4,<br/>FONT_WIDTH_NORMAL = 5, FONT_WIDTH_SEMI_EXPANDED = 6, FONT_WIDTH_EXPANDED = 7, FONT_WIDTH_EXTRA_EXPANDED = 8,<br/>FONT_WIDTH_ULTRA_EXPANDED = 9<br/>} | 字体宽度的枚举。  |
 | [OH_Drawing_TextHeightBehavior](#oh_drawing_textheightbehavior) { TEXT_HEIGHT_ALL = 0x0, TEXT_HEIGHT_DISABLE_FIRST_ASCENT = 0x1, TEXT_HEIGHT_DISABLE_LAST_ASCENT = 0x2, TEXT_HEIGHT_DISABLE_ALL = 0x1 \| 0x2 } | 文本高度修饰符模式枚举。 | 
 | [OH_Drawing_TextStyleType](#oh_drawing_textstyletype) {<br/>TEXT_STYLE_NONE, TEXT_STYLE_ALL_ATTRIBUTES, TEXT_STYLE_FONT, TEXT_STYLE_FOREGROUND,<br/>TEXT_STYLE_BACKGROUND, TEXT_STYLE_SHADOW, TEXT_STYLE_DECORATIONS, TEXT_STYLE_LETTER_SPACING,<br/>TEXT_STYLE_WORD_SPACING<br/>} | 文本样式类型枚举。 | 
 | [OH_Drawing_ColorFormat](#oh_drawing_colorformat-1) {<br/>COLOR_FORMAT_UNKNOWN, COLOR_FORMAT_ALPHA_8, COLOR_FORMAT_RGB_565, COLOR_FORMAT_ARGB_4444,<br/>COLOR_FORMAT_RGBA_8888, COLOR_FORMAT_BGRA_8888<br/>} | 用于描述位图像素的存储格式。 | 
@@ -641,7 +641,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | void [OH_Drawing_SetTextStyleDecoration](#oh_drawing_settextstyledecoration) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, int) | 设置指定文本样式中的装饰线类型，只能设置一个装饰线类型，添加多个需要使用[OH_Drawing_AddTextStyleDecoration](#oh_drawing_addtextstyledecoration)。 |
 | void [OH_Drawing_AddTextStyleDecoration](#oh_drawing_addtextstyledecoration) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, int) | 新增指定装饰，可同时显示多种装饰线。 |
 | void [OH_Drawing_RemoveTextStyleDecoration](#oh_drawing_removetextstyledecoration) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, int) | 删除指定装饰。 |
-| void [OH_Drawing_SetTextStyleDecorationColor](#oh_drawing_settextstyledecorationcolor) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, uint32_t) | 设置指定文本样式中的装饰线颜色。 |
+| void [OH_Drawing_SetTextStyleDecorationColor](#oh_drawing_settextstyledecorationcolor) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, uint32_t) | 设置指定文本样式中的装饰线颜色。如果不调用该接口或者设置color为0时，装饰线颜色跟随文本颜色。 |
 | void [OH_Drawing_SetTextStyleFontHeight](#oh_drawing_settextstylefontheight) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, double) | 设置行高，按当前字体大小的倍数进行设置。 |
 | void [OH_Drawing_SetTextStyleFontFamilies](#oh_drawing_settextstylefontfamilies) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, int, const char \*fontFamilies[]) | 设置指定文本样式的字体家族类型。 |
 | void [OH_Drawing_SetTextStyleFontStyle](#oh_drawing_settextstylefontstyle) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, int) | 为指定文本样式设置字体样式。 |
@@ -691,7 +691,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | size_t [OH_Drawing_GetEndFromRange](#oh_drawing_getendfromrange) ([OH_Drawing_Range](#oh_drawing_range) \*) | 获取OH_Drawing_Range对象结束位置。 |
 | size_t [OH_Drawing_TypographyGetLineCount](#oh_drawing_typographygetlinecount) ([OH_Drawing_Typography](#oh_drawing_typography) \*) | 获取排版对象中文本行数，该接口需要在[OH_Drawing_TypographyLayout](#oh_drawing_typographylayout)接口调用之后调用。 |
 | void [OH_Drawing_SetTextStyleDecorationStyle](#oh_drawing_settextstyledecorationstyle) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, int) | 设置指定文本样式中的装饰线样式。 |
-| void [OH_Drawing_SetTextStyleDecorationThicknessScale](#oh_drawing_settextstyledecorationthicknessscale) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, double) | 设置文本装饰线的厚度缩放比例。 |
+| void [OH_Drawing_SetTextStyleDecorationThicknessScale](#oh_drawing_settextstyledecorationthicknessscale) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, double) | 设置文本装饰线的粗细缩放比例。 |
 | void [OH_Drawing_SetTextStyleLetterSpacing](#oh_drawing_settextstyleletterspacing) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, double) | 设置文本的字符间距。 |
 | void [OH_Drawing_SetTextStyleWordSpacing](#oh_drawing_settextstylewordspacing) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, double) | 设置文本的单词间距。 |
 | void [OH_Drawing_SetTextStyleHalfLeading](#oh_drawing_settextstylehalfleading) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, bool) | 设置文本为一半行间距。 |
@@ -745,7 +745,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | [OH_Drawing_TextShadow](#oh_drawing_textshadow) \* [OH_Drawing_TextStyleGetShadowWithIndex](#oh_drawing_textstylegetshadowwithindex) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, int) | 根据下标获取字体阴影容器中的元素。 |
 | void [OH_Drawing_TypographySetIndents](#oh_drawing_typographysetindents) ([OH_Drawing_Typography](#oh_drawing_typography) \*, int, const float indents[]) | 设置文本的排版缩进，不调用此接口默认文本无缩进。 |
 | float [OH_Drawing_TypographyGetIndentsWithIndex](#oh_drawing_typographygetindentswithindex) ([OH_Drawing_Typography](#oh_drawing_typography) \*, int) | 根据行索引获取排版对象缩进容器中的元素，行索引从0开始。 |
-| [OH_Drawing_Range](#oh_drawing_range) \* [OH_Drawing_TypographyGetLineTextRange](#oh_drawing_typographygetlinetextrange) ([OH_Drawing_Typography](#oh_drawing_typography) \*, int, bool) | 获取排版对象中行的边界，该接口需要在[OH_Drawing_TypographyLayout](#oh_drawing_typographylayout)接口调用之后调用。该接口只能获取已有行的边界，即输入行索引从0开始，最大行索引为[OH_Drawing_TypographyGetLineCount](#oh_drawing_typographygetlinecount) - 1。 |
+| [OH_Drawing_Range](#oh_drawing_range) \* [OH_Drawing_TypographyGetLineTextRange](#oh_drawing_typographygetlinetextrange) ([OH_Drawing_Typography](#oh_drawing_typography) \*, int, bool) | 获取排版对象中行的边界，该接口需要在[OH_Drawing_TypographyLayout](#oh_drawing_typographylayout)接口调用之后调用。该接口只能获取已有行的边界，即输入行索引从0开始，最大行索引为[OH_Drawing_TypographyGetLineCount](#oh_drawing_typographygetlinecount) - 1。如果输入的行索引是非法的行索引，则返回的边界范围的start和end都为0。|
 | void [OH_Drawing_DestroyTextShadows](#oh_drawing_destroytextshadows) ([OH_Drawing_TextShadow](#oh_drawing_textshadow) \*) | 释放由被字体阴影对象OH_Drawing_TextShadow构成的vector占据的内存。 |
 | [OH_Drawing_FontConfigInfo](_o_h___drawing___font_config_info.md) \* [OH_Drawing_GetSystemFontConfigInfo](#oh_drawing_getsystemfontconfiginfo) ([OH_Drawing_FontConfigInfoErrorCode](#oh_drawing_fontconfiginfoerrorcode) \*) | 获取系统字体配置信息。 |
 | void [OH_Drawing_DestroySystemFontConfigInfo](#oh_drawing_destroysystemfontconfiginfo) ([OH_Drawing_FontConfigInfo](_o_h___drawing___font_config_info.md) \*) | 释放系统字体配置信息占用的的内存。 |
@@ -817,7 +817,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | [OH_Drawing_LineTypography](#oh_drawing_linetypography) \* [OH_Drawing_CreateLineTypography](#oh_drawing_createlinetypography) ([OH_Drawing_TypographyCreate](#oh_drawing_typographycreate) \*handler) | 创建一个排版行对象[OH_Drawing_LineTypography](#oh_drawing_linetypography)的指针，排版行对象保存着文本内容以及样式的载体， 可以用于计算单行排版信息。 |
 | void [OH_Drawing_DestroyLineTypography](#oh_drawing_destroylinetypography) ([OH_Drawing_LineTypography](#oh_drawing_linetypography) \*lineTypography) | 释放排版行对象[OH_Drawing_LineTypography](#oh_drawing_linetypography)占用的内存。 |
 | size_t [OH_Drawing_LineTypographyGetLineBreak](#oh_drawing_linetypographygetlinebreak) ([OH_Drawing_LineTypography](#oh_drawing_linetypography) \*lineTypography, size_t startIndex, double width) | 计算在限定排版宽度的情况下，从指定位置处开始可以排版的字符个数。 |
-| OH_Drawing_TextLine \* [OH_Drawing_LineTypographyCreateLine](#oh_drawing_linetypographycreateline) ([OH_Drawing_LineTypography](#oh_drawing_linetypography) \*lineTypography, size_t startIndex, size_t count) | 根据指定区间文本内容创建一个指向文本行对象**OH_Drawing_TextLine**的指针。 |
+| OH_Drawing_TextLine \* [OH_Drawing_LineTypographyCreateLine](#oh_drawing_linetypographycreateline) ([OH_Drawing_LineTypography](#oh_drawing_linetypography) \*lineTypography, size_t startIndex, size_t count) | 根据指定区间文本内容创建一个指向文本行对象[OH_Drawing_TextLine](#oh_drawing_textline)的指针。 |
 | [OH_Drawing_TextTab](#oh_drawing_texttab) \* [OH_Drawing_CreateTextTab](#oh_drawing_createtexttab) ([OH_Drawing_TextAlign](#oh_drawing_textalign) alignment, float location) | 创建文本制表符对象。 |
 | void [OH_Drawing_DestroyTextTab](#oh_drawing_destroytexttab) ([OH_Drawing_TextTab](#oh_drawing_texttab) \*) | 释放文本制表符对象占据的内存。 |
 | [OH_Drawing_TextAlign](#oh_drawing_textalign) [OH_Drawing_GetTextTabAlignment](#oh_drawing_gettexttabalignment) ([OH_Drawing_TextTab](#oh_drawing_texttab) \*) | 获取文本制表符对象的对齐方式。 |
@@ -1574,6 +1574,7 @@ typedef struct OH_Drawing_GpuContextOptions OH_Drawing_GpuContextOptions
 
 **起始版本：** 12
 
+**废弃：** 从API version 18开始废弃。
 
 ### OH_Drawing_Image
 
@@ -2703,15 +2704,15 @@ enum OH_Drawing_FontWeight
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| FONT_WEIGHT_100 | 字重为thin | 
-| FONT_WEIGHT_200 | 字重为extra-light | 
-| FONT_WEIGHT_300 | 字重为light | 
-| FONT_WEIGHT_400 | 字重为normal/regular | 
-| FONT_WEIGHT_500 | 字重为medium | 
-| FONT_WEIGHT_600 | 字重为semi-bold | 
-| FONT_WEIGHT_700 | 字重为bold | 
-| FONT_WEIGHT_800 | 字重为extra-bold | 
-| FONT_WEIGHT_900 | 字重为black | 
+| FONT_WEIGHT_100 | 字重为thinz。 |
+| FONT_WEIGHT_200 | 字重为extra-light。 |
+| FONT_WEIGHT_300 | 字重为light。 |
+| FONT_WEIGHT_400 | 字重为normal/regular。 |
+| FONT_WEIGHT_500 | 字重为medium。 |
+| FONT_WEIGHT_600 | 字重为semi-bold。 |
+| FONT_WEIGHT_700 | 字重为bold。 |
+| FONT_WEIGHT_800 | 字重为extra-bold。 |
+| FONT_WEIGHT_900 | 字重为black。 |
 
 
 ### OH_Drawing_FontWidth
@@ -2726,6 +2727,17 @@ enum OH_Drawing_FontWidth
 
 **起始版本：** 12
 
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| 1 | 表示超窄的字宽。 | 
+| 2 | 表示特窄的字宽。 | 
+| 3 | 表示窄的字宽。 | 
+| 4 | 表示半窄的字宽。 | 
+| 5 | 表示常规的字宽。 | 
+| 6 | 表示半宽的字宽。 | 
+| 7 | 表示宽的字宽。 | 
+| 8 | 表示特宽的字宽。 | 
+| 9 | 表示超宽的字宽。 | 
 
 ### OH_Drawing_MipmapMode
 
@@ -3716,7 +3728,7 @@ OH_Drawing_TextLine* OH_Drawing_LineTypographyCreateLine (OH_Drawing_LineTypogra
 
 **描述**
 
-根据指定区间文本内容创建一个指向文本行对象**OH_Drawing_TextLine**的指针。
+根据指定区间文本内容创建一个指向文本行对象[OH_Drawing_TextLine](#oh_drawing_textline)的指针。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -3732,7 +3744,7 @@ OH_Drawing_TextLine* OH_Drawing_LineTypographyCreateLine (OH_Drawing_LineTypogra
 
 **返回：**
 
-返回一个指向文本行对象**OH_Drawing_TextLine**的指针。
+返回一个指向文本行对象[OH_Drawing_TextLine](#oh_drawing_textline)的指针。
 
 ### OH_Drawing_CreateTextTab()
 
@@ -4062,7 +4074,7 @@ void OH_Drawing_DestroyTextLine (OH_Drawing_TextLine* line)
 
 | 名称 | 描述 |
 | -------- | -------- |
-| line | 指向文本行对象**OH_Drawing_TextLine**的指针。 |
+| line | 指向文本行对象[OH_Drawing_TextLine](#oh_drawing_textline)的指针。 |
 
 ### OH_Drawing_GetTextLineByIndex()
 
@@ -4087,7 +4099,7 @@ OH_Drawing_TextLine* OH_Drawing_GetTextLineByIndex (OH_Drawing_Array* lines, siz
 
 **返回：**
 
-指向指定索引处的文本行对象**OH_Drawing_TextLine**的指针。
+指向指定索引处的文本行对象[OH_Drawing_TextLine](#oh_drawing_textline)的指针。
 
 ### OH_Drawing_TextLineGetGlyphCount()
 
@@ -4107,7 +4119,7 @@ double OH_Drawing_TextLineGetGlyphCount (OH_Drawing_TextLine* line)
 
 | 名称 | 描述 |
 | -------- | -------- |
-| line | 指向文本行对象**OH_Drawing_TextLine**的指针。 |
+| line | 指向文本行对象[OH_Drawing_TextLine](#oh_drawing_textline)的指针。 |
 
 **返回：**
 
@@ -4131,7 +4143,7 @@ void OH_Drawing_TextLineGetTextRange (OH_Drawing_TextLine* line, size_t* start, 
 
 | 名称 | 描述 |
 | -------- | -------- |
-| line | 指向文本行对象**OH_Drawing_TextLine**的指针。 |
+| line | 指向文本行对象[OH_Drawing_TextLine](#oh_drawing_textline)的指针。 |
 | start | 指向区间左侧端点索引的指针。 |
 | end | 指向区间右侧端点索引的指针。 |
 
@@ -4153,7 +4165,7 @@ OH_Drawing_Array* OH_Drawing_TextLineGetGlyphRuns (OH_Drawing_TextLine* line)
 
 | 名称 | 描述 |
 | -------- | -------- |
-| line | 指向文本行对象**OH_Drawing_TextLine**的指针。 |
+| line | 指向文本行对象[OH_Drawing_TextLine](#oh_drawing_textline)的指针。 |
 
 **返回：**
 
@@ -4222,7 +4234,7 @@ void OH_Drawing_TextLinePaint (OH_Drawing_TextLine* line, OH_Drawing_Canvas* can
 
 | 名称 | 描述 |
 | -------- | -------- |
-| line | 指向文本行对象**OH_Drawing_TextLine**的指针。 |
+| line | 指向文本行对象[OH_Drawing_TextLine](#oh_drawing_textline)的指针。 |
 | canvas | 指向绘制的目标画布[OH_Drawing_Canvas](#oh_drawing_canvas)。 |
 | x | 绘制的左上角位置的横坐标，单位为物理像素px。 |
 | y | 绘制的左上角位置的纵坐标，单位为物理像素px。 |
@@ -4245,14 +4257,14 @@ OH_Drawing_TextLine* OH_Drawing_TextLineCreateTruncatedLine (OH_Drawing_TextLine
 
 | 名称 | 描述 |
 | -------- | -------- |
-| line | 指向文本行对象**OH_Drawing_TextLine**的指针。 |
+| line | 指向文本行对象[OH_Drawing_TextLine](#oh_drawing_textline)的指针。 |
 | width | 截断后的行宽度。 |
 | mode | 截断的类型，取值对应为[OH_Drawing_EllipsisModal](#oh_drawing_ellipsismodal)枚举，当前仅支持头部截断ELLIPSIS_MODAL_HEAD和尾部截断ELLIPSIS_MODAL_TAIL。 |
 | ellipsis | 截断的标记字符串。 |
 
 **返回：**
 
-返回指向截断的文本行对象**OH_Drawing_TextLine**指针。
+返回指向截断的文本行对象[OH_Drawing_TextLine](#oh_drawing_textline)指针。
 
 ### OH_Drawing_TextLineGetTypographicBounds()
 
@@ -4272,7 +4284,7 @@ double OH_Drawing_TextLineGetTypographicBounds (OH_Drawing_TextLine* line, doubl
 
 | 名称 | 描述 |
 | -------- | -------- |
-| line | 指向文本行对象**OH_Drawing_TextLine**的指针。height = ascent + descent + leading。 |
+| line | 指向文本行对象[OH_Drawing_TextLine](#oh_drawing_textline)的指针。height = ascent + descent + leading。 |
 | ascent | 指向文本行对象上升高度的指针。 |
 | descent | 指向文本行对象下降高度的指针。 |
 | leading | 指向文本行对象行间距的指针。 |
@@ -4299,7 +4311,7 @@ OH_Drawing_Rect* OH_Drawing_TextLineGetImageBounds (OH_Drawing_TextLine* line)
 
 | 名称 | 描述 |
 | -------- | -------- |
-| line | 指向文本行对象**OH_Drawing_TextLine**的指针。 |
+| line | 指向文本行对象[OH_Drawing_TextLine](#oh_drawing_textline)的指针。 |
 
 **返回：**
 
@@ -4323,7 +4335,7 @@ double OH_Drawing_TextLineGetTrailingSpaceWidth (OH_Drawing_TextLine* line)
 
 | 名称 | 描述 |
 | -------- | -------- |
-| line | 指向文本行对象**OH_Drawing_TextLine**的指针。 |
+| line | 指向文本行对象[OH_Drawing_TextLine](#oh_drawing_textline)的指针。 |
 
 **返回：**
 
@@ -4347,7 +4359,7 @@ int32_t OH_Drawing_TextLineGetStringIndexForPosition (OH_Drawing_TextLine* line,
 
 | 名称 | 描述 |
 | -------- | -------- |
-| line | 指向文本行对象**OH_Drawing_TextLine**的指针。 |
+| line | 指向文本行对象[OH_Drawing_TextLine](#oh_drawing_textline)的指针。 |
 | point | 指向要查找索引的位置[OH_Drawing_Point](#oh_drawing_point)指针。 |
 
 **返回：**
@@ -4372,7 +4384,7 @@ double OH_Drawing_TextLineGetOffsetForStringIndex (OH_Drawing_TextLine* line, in
 
 | 名称 | 描述 |
 | -------- | -------- |
-| line | 指向文本行对象**OH_Drawing_TextLine**的指针。 |
+| line | 指向文本行对象[OH_Drawing_TextLine](#oh_drawing_textline)的指针。 |
 | index | 要获取偏移量的字符串索引。 |
 
 **返回：**
@@ -4397,7 +4409,7 @@ void OH_Drawing_TextLineEnumerateCaretOffsets (OH_Drawing_TextLine* line, Drawin
 
 | 名称 | 描述 |
 | -------- | -------- |
-| line | 指向文本行对象**OH_Drawing_TextLine**的指针。 |
+| line | 指向文本行对象[OH_Drawing_TextLine](#oh_drawing_textline)的指针。 |
 | callback | 用户自定义函数[Drawing_CaretOffsetsCallback](#drawing_caretoffsetscallback)。 |
 
 ### OH_Drawing_TextLineGetAlignmentOffset()
@@ -4418,7 +4430,7 @@ double OH_Drawing_TextLineGetAlignmentOffset (OH_Drawing_TextLine* line, double 
 
 | 名称 | 描述 |
 | -------- | -------- |
-| line | 指向文本行对象**OH_Drawing_TextLine**的指针。 |
+| line | 指向文本行对象[OH_Drawing_TextLine](#oh_drawing_textline)的指针。 |
 | alignmentFactor | 对齐因子，即对齐的程度。小于等于0.0表示左对齐，大于0.0小于0.5表示偏左对齐，0.5表示居中对齐，大于0.5小于1.0表示偏右对齐，大于等于1.0表示右对齐。 |
 | alignmentWidth | 对齐宽度，即最终偏移后的文本行对象右下角相对于起始位置的偏移值。如果指定对齐宽度小于文本行对象的实际宽度，则返回0。 |
 
@@ -11108,6 +11120,8 @@ OH_Drawing_GpuContext* OH_Drawing_GpuContextCreateFromGL (OH_Drawing_GpuContextO
 
 **起始版本：** 12
 
+**废弃：** 从API version 18开始废弃，请使用[OH_Drawing_GpuContextCreate](#oh_drawing_gpucontextcreate)替代。
+
 **参数:**
 
 | 名称 | 描述 | 
@@ -14398,7 +14412,7 @@ void OH_Drawing_SetTextStyleDecoration (OH_Drawing_TextStyle* , int  )
 | 名称 | 描述 | 
 | -------- | -------- |
 | OH_Drawing_TextStyle | 指向OH_Drawing_TextStyle对象的指针，由[OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle)获取。 | 
-| int | 设置装饰，设置1为下划线，设置2为上划线，设置3为删除线，设置0或其它为无装饰，具体可见[OH_Drawing_TextDecoration](#oh_drawing_textdecoration)枚举。 | 
+| int | 设置装饰，设置1为下划线，设置2为上划线，设置4为删除线，设置0或其它为无装饰，具体可见[OH_Drawing_TextDecoration](#oh_drawing_textdecoration)枚举。 | 
 
 
 ### OH_Drawing_SetTextStyleDecorationColor()
@@ -14409,7 +14423,7 @@ void OH_Drawing_SetTextStyleDecorationColor (OH_Drawing_TextStyle* , uint32_t  )
 
 **描述**
 
-设置指定文本样式中的装饰线颜色。
+设置指定文本样式中的装饰线颜色。如果不调用该接口或者设置color为0时，装饰线颜色跟随文本颜色。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -14453,7 +14467,7 @@ void OH_Drawing_SetTextStyleDecorationThicknessScale (OH_Drawing_TextStyle* , do
 
 **描述**
 
-设置文本装饰线的厚度缩放比例。
+设置文本装饰线的粗细缩放比例。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -14464,7 +14478,7 @@ void OH_Drawing_SetTextStyleDecorationThicknessScale (OH_Drawing_TextStyle* , do
 | 名称 | 描述 | 
 | -------- | -------- |
 | OH_Drawing_TextStyle | 指向OH_Drawing_TextStyle对象的指针，由[OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle)获取。 | 
-| double | 缩放比例。 | 
+| double | 粗细缩放比例。默认值为1，如果设置的粗细缩放比例小于等于0，不会绘制装饰线。 | 
 
 
 ### OH_Drawing_SetTextStyleEllipsis()
@@ -17306,7 +17320,7 @@ OH_Drawing_Range* OH_Drawing_TypographyGetLineTextRange (OH_Drawing_Typography* 
 
 **返回：**
 
-返回指向行边界对象的指针[OH_Drawing_Range](#oh_drawing_range)。
+返回指向行边界对象的指针[OH_Drawing_Range](#oh_drawing_range)。如果输入的行索引是非法的行索引，则返回的边界范围的start和end都为0。
 
 
 ### OH_Drawing_TypographyGetLineWidth()

@@ -11,7 +11,9 @@
 
 效果展示：
 
+<!--RP2-->
 ![zh-cn_image_location](figures/zh-cn_image_location_second.png)
+<!--RP2End-->
 
 以下示例代码以再次拉起弹窗申请ohos.permission.APPROXIMATELY_LOCATION权限为例。
 
@@ -20,7 +22,7 @@ import { abilityAccessCtrl, Context, common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
-let context: Context = getContext(this) as common.UIAbilityContext;
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 atManager.requestPermissionOnSetting(context, ['ohos.permission.APPROXIMATELY_LOCATION']).then((data: Array<abilityAccessCtrl.GrantStatus>) => {
   console.info('data:' + JSON.stringify(data));
 }).catch((err: BusinessError) => {

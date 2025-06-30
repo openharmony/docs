@@ -13,7 +13,7 @@ The **oh_window_event_filter.h** file declares the APIs for a window to filter m
 
 **Since**: 12
 
-**Related module**: [WindowManager_NativeModule](_window_manager___native_module.md)
+**Related module**: [WindowManager](_window_manager___native_module.md)
 
 
 ## Summary

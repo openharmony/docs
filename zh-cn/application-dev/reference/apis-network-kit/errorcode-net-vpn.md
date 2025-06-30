@@ -16,7 +16,7 @@ VPN creation denied. Check the user type.
 
 **可能原因**
 
-登录系统的用户类型不匹配, GUEST用户不能调用setUp接口。
+登录系统的用户类型不匹配，GUEST用户不能调用setUp接口。
 
 **处理步骤**
 

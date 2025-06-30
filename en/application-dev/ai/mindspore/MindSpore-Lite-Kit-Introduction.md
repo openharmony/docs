@@ -1,6 +1,6 @@
 # Introduction to MindSpore Lite Kit
 
-## Use Cases
+## Overview
 
 MindSpore Lite is a lightweight AI engine built in OpenHarmony. Its open AI framework comes with a multi-processor architecture to empower intelligent applications in all scenarios. It brings data scientists, algorithm engineers, and developers with friendly development, efficient running, and flexible deployment, helping to build a prosperous open source ecosystem of AI hardware/software applications.
 

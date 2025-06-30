@@ -29,7 +29,7 @@
 | letter-spacing | &lt;length&gt; | 0px | 否 | 设置文本的字符间距。 |
 | font-style | string | normal | 否 | 设置文本的字体样式，可选值为：<br/>-&nbsp;normal：标准的字体样式；<br/>-&nbsp;italic：斜体的字体样式。 |
 | font-weight | number&nbsp;\|&nbsp;string | normal | 否 | 设置文本的字体粗细，number类型取值[100,&nbsp;900]，默认为400，取值越大，字体越粗。<br/>-&nbsp;number取值必须为100的整数倍。<br/>- string类型取值支持如下四个值：lighter、normal、bold、bolder。 |
-| text-decoration | string | none | 否 | 设置文本的文本修饰，可选值为：<br/>-&nbsp;underline：文字下划线修饰；<br/>-&nbsp;line-through：穿过文本的修饰线n<br/>-&nbsp;none：标准文本。 |
+| text-decoration | string | none | 否 | 设置文本的文本修饰，可选值为：<br/>-&nbsp;underline：文字下划线修饰；<br/>-&nbsp;line-through：穿过文本的修饰线；<br/>-&nbsp;none：标准文本。 |
 | text-align | string | start | 否 | 设置文本的文本对齐方式，可选值为：<br/>-&nbsp;left：文本左对齐；<br/>-&nbsp;center：文本居中对齐；<br/>-&nbsp;right：文本右对齐；<br/>-&nbsp;start：根据文字书写相同的方向对齐；<br/>-&nbsp;end：根据文字书写相反的方向对齐。<br/>&nbsp;如文本宽度未指定大小，文本的宽度和父容器的宽度大小相等的情况下，对齐效果可能会不明显。 |
 | line-height | &lt;length&gt; | 0px | 否 | 设置文本的文本行高，设置为0px时，不限制文本行高，自适应字体大小。 |
 | text-overflow | string | clip | 否 | 在设置了最大行数的情况下生效，可选值为：<br/>-&nbsp;clip：将文本根据父容器大小进行裁剪显示；<br/>-&nbsp;ellipsis：根据父容器大小显示，显示不下的文本用省略号代替。需配合max-lines使用。 |

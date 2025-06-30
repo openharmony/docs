@@ -10,7 +10,7 @@ The **Stack** component provides a stack container where child components are su
 
 ## Attributes
 
-## pointLight
+### pointLight
 
 pointLight(value: PointLightStyle)
 

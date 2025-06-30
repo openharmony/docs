@@ -1,6 +1,6 @@
 # @ohos.ability.featureAbility (FeatureAbility)
 
-The **FeatureAbility** module provides APIs that enable user interaction. You can use the APIs to start or terminate an ability, obtain a **dataAbilityHelper** object, obtain the window corresponding to the current ability, and connect to or disconnect from a ServiceAbility.
+The FeatureAbility module provides APIs that enable user interaction. You can use the APIs to start or terminate an ability, obtain a **dataAbilityHelper** object, obtain the window corresponding to the current ability, and connect to or disconnect from a ServiceAbility.
 
 > **NOTE**
 >
@@ -648,10 +648,10 @@ let connectId = featureAbility.connectAbility(
       console.log(`ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}`);
     },
     onDisconnect: (element) => {
-      console.log(`ConnectAbility onDisconnect element.deviceId : ${element.deviceId}`)
+      console.log(`ConnectAbility onDisconnect element.deviceId : ${element.deviceId}`);
     },
     onFailed: (code) => {
-      console.error(`featureAbilityTest ConnectAbility onFailed errCode : ${code}`)
+      console.error(`featureAbilityTest ConnectAbility onFailed errCode : ${code}`);
     },
   },
 );
@@ -757,7 +757,7 @@ let connectId = featureAbility.connectAbility(
 );
 
 featureAbility.disconnectAbility(connectId).then(() => {
-  console.log('disconnectAbility success')
+  console.log('disconnectAbility success');
 }).catch((error: BusinessError)=>{
   console.error(`featureAbilityTest result errCode : ${error.code}`);
 });

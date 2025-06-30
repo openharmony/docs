@@ -338,7 +338,7 @@ getLocalProfileUuids(callback: AsyncCallback&lt;Array&lt;ProfileUuids&gt;&gt;): 
 
 | 参数名      | 类型     | 必填   | 说明                                  |
 | -------- | ------ | ---- | ----------------------------------- |
-| callback | AsyncCallback&lt;Array&lt;[ProfileUuids](js-apis-bluetooth-constant.md#profileuuids)&gt;&gt; | 是    | 回调函数。当获取UUID成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback&lt;Array&lt;[ProfileUuids](js-apis-bluetooth-constant.md#profileuuids12)&gt;&gt; | 是    | 回调函数。当获取UUID成功，err为undefined，否则为错误对象。 |
 
 **错误码**：
 
@@ -384,7 +384,7 @@ getLocalProfileUuids(): Promise&lt;Array&lt;ProfileUuids&gt;&gt;
 
 | 类型                  | 说明            |
 | ------------------- | ------------- |
-|   Promise&lt;Array&lt;[ProfileUuids](js-apis-bluetooth-constant.md#profileuuids)&gt;&gt; | 返回promise对象。 |
+|   Promise&lt;Array&lt;[ProfileUuids](js-apis-bluetooth-constant.md#profileuuids12)&gt;&gt; | 返回promise对象。 |
 
 **错误码**：
 
@@ -769,39 +769,37 @@ import { connection } from '@kit.ConnectivityKit';
 /**
  * 更新云设备到蓝牙设置项。
  */
-public updateCloudBluetoothDevice() {
-    const trustPairDeviceArr: connection.TrustedPairedDevice[] = [];
-    let descBuffer = new ArrayBuffer(1);
-    trustPairDeviceArr.push({
-        sn: '',
-        deviceType: '',
-        modelId: '',
-        manufactory: '',
-        productId: '',
-        hiLinkVersion: '',
-        macAddress: '11:22:33:44:55:66',
-        serviceType: '',
-        serviceId: '',
-        deviceName: '',
-        uuids: '',
-        bluetoothClass: 0,
-        token: descBuffer,
-        deviceNameTime: 0,
-        secureAdvertisingInfo: descBuffer,
-        pairState: 0
+const trustPairDeviceArr: connection.TrustedPairedDevice[] = [];
+let descBuffer = new ArrayBuffer(1);
+trustPairDeviceArr.push({
+    sn: '',
+    deviceType: '',
+    modelId: '',
+    manufactory: '',
+    productId: '',
+    hiLinkVersion: '',
+    macAddress: '11:22:33:44:55:66',
+    serviceType: '',
+    serviceId: '',
+    deviceName: '',
+    uuids: '',
+    bluetoothClass: 0,
+    token: descBuffer,
+    deviceNameTime: 0,
+    secureAdvertisingInfo: descBuffer,
+    pairState: 0
+    });
+const trustPairDevices: connection.TrustedPairedDevices = { trustedPairedDevices: trustPairDeviceArr };
+try {
+    connection.updateCloudBluetoothDevice(trustPairDevices)
+        .then(() => {
+            console.info('updateCloudBluetoothDevice success!');
+        })
+        .catch((err: BusinessError) => {
+            console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
         });
-    const trustPairDevices: connection.TrustedPairedDevices = { trustedPairedDevices: trustPairDeviceArr };
-    try {
-        connection.updateCloudBluetoothDevice(trustPairDevices)
-            .then(() => {
-                console.info('updateCloudBluetoothDevice success!');
-            })
-            .catch((err: BusinessError) => {
-                console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
-            });
-    } catch (err) {
-        console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
-    }
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
 ```
 
@@ -812,9 +810,9 @@ public updateCloudBluetoothDevice() {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
-| 名称       | 类型   | 可读   | 可写   | 说明          |
+| 名称       | 类型   | 只读   | 可选   | 说明          |
 | -------- | ------ | ---- | ---- | ----------- |
-| pinType | [PinType](#pintype) | 是    | 否    | 表示要配对的设备类型。<br/>此接口为系统接口。   |
+| pinType | [PinType](#pintype) | 否    | 否    | 表示要配对的设备类型。<br/>此接口为系统接口。   |
 
 ## ControlDeviceActionParams<sup>15+</sup>
 
@@ -822,12 +820,12 @@ public updateCloudBluetoothDevice() {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
-| 名称       | 类型   | 可读   | 可写   | 说明          |
+| 名称       | 类型   | 只读   | 可选   | 说明          |
 | -------- | ------ | ---- | ---- | ----------- |
-| deviceId | string | 是    | 否 | 表示要配对的设备ID。 |
-| type | [ControlType](#controltype15) | 是    | 否    | 表示控制类型。 |
-| typeValue | [ControlTypeValue](#controltypevalue15) | 是 | 否 | 表示控制动作。 |
-| controlObject | [ControlObject](#controlobject15) | 是 | 否 | 表示控制对象。|
+| deviceId | string | 否    | 否 | 表示要配对的设备ID。 |
+| type | [ControlType](#controltype15) | 否    | 否    | 表示控制类型。 |
+| typeValue | [ControlTypeValue](#controltypevalue15) | 否 | 否 | 表示控制动作。 |
+| controlObject | [ControlObject](#controlobject15) | 否 | 否 | 表示控制对象。|
 
 ## PinType
 
@@ -876,9 +874,9 @@ public updateCloudBluetoothDevice() {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
-| 名称       | 类型   | 可读   | 可写   | 说明          |
+| 名称       | 类型   | 只读   | 可选   | 说明          |
 | -------- | ------ | ---- | ---- | ----------- |
-| deviceId | string | 是    | 否    | 表示远端设备的MAC地址。<br/>此接口为系统接口。 |
+| deviceId | string | 否    | 否    | 表示远端设备的MAC地址。<br/>此接口为系统接口。 |
 
 
 ## ControlType<sup>15+</sup>
@@ -927,9 +925,9 @@ public updateCloudBluetoothDevice() {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
-| 名称       | 类型   | 可读   | 可选   | 说明          |
+| 名称       | 类型   | 只读   | 可选   | 说明          |
 | -------- | ------ | ---- | ---- | ----------- |
-| trustedPairedDevices  | Array&lt;[TrustedPairedDevice](#trustedpaireddevice15)&gt; | 是    | 否    | 表示云设备列表。   |
+| trustedPairedDevices  | Array&lt;[TrustedPairedDevice](#trustedpaireddevice15)&gt; | 否    | 否    | 表示云设备列表。   |
 
 ## TrustedPairedDevice<sup>15+</sup>
 
@@ -937,21 +935,21 @@ public updateCloudBluetoothDevice() {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称       | 类型   | 可读   | 可选   | 说明          |
+| 名称       | 类型   | 只读   | 可选   | 说明          |
 | -------- | ------ | ---- | ---- | ----------- |
-| sn  | string | 是    | 否    | 表示设备的序列号。   |
-| deviceType  | string | 是    | 否    | 表示设备类型。   |
-| modelId  | string | 是    | 否    | 表示左侧耳机的充电状态。   |
-| manufactory  | string | 是    | 否    | 表示制造商信息。   |
-| productId  | string | 是    | 否    | 表示设备产品信息。   |
-| hiLinkVersion  | string | 是    | 否    | 表示hilink版本信息。   |
-| macAddress  | string | 是    | 否    | 表示设备MAC地址。   |
-| serviceType  | string | 是    | 否    | 表示设备服务类型。   |
-| serviceId  | string | 是    | 否    | 表示设备id。   |
-| deviceName  | string | 是    | 否    | 表示设备名字。   |
-| uuids  | string | 是    | 否    | 表示设备的UUID。   |
-| bluetoothClass  | number | 是    | 否    | 表示远端设备类型。   |
-| token  | ArrayBuffer | 是    | 否    | 表示设备的token信息。   |
-| deviceNameTime  | number | 是    | 否    | 表示设备名字的修改时间。   |
-| secureAdvertisingInfo  | ArrayBuffer | 是    | 否    | 表示设备广播信息。   |
-| pairState  | number | 是    | 否    | 表示设备配对状态。   |
+| sn  | string | 否    | 否    | 表示设备的序列号。   |
+| deviceType  | string | 否    | 否    | 表示设备类型。   |
+| modelId  | string | 否    | 否    | 表示左侧耳机的充电状态。   |
+| manufactory  | string | 否    | 否    | 表示制造商信息。   |
+| productId  | string | 否    | 否    | 表示设备产品信息。   |
+| hiLinkVersion  | string | 否    | 否    | 表示hilink版本信息。   |
+| macAddress  | string | 否    | 否    | 表示设备MAC地址。   |
+| serviceType  | string | 否    | 否    | 表示设备服务类型。   |
+| serviceId  | string | 否    | 否    | 表示设备id。   |
+| deviceName  | string | 否    | 否    | 表示设备名字。   |
+| uuids  | string | 否    | 否    | 表示设备的UUID。   |
+| bluetoothClass  | number | 否    | 否    | 表示远端设备类型。   |
+| token  | ArrayBuffer | 否    | 否    | 表示设备的token信息。   |
+| deviceNameTime  | number | 否    | 否    | 表示设备名字的修改时间。   |
+| secureAdvertisingInfo  | ArrayBuffer | 否    | 否    | 表示设备广播信息。   |
+| pairState  | number | 否    | 否    | 表示设备配对状态。   |

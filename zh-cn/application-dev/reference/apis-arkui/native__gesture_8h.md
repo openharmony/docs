@@ -33,10 +33,13 @@
 | -------- | -------- |
 | typedef uint32_t [ArkUI_GestureEventActionTypeMask](_ark_u_i___native_module.md#arkui_gestureeventactiontypemask) | 定义手势事件类型集合  | 
 | typedef uint32_t [ArkUI_GestureDirectionMask](_ark_u_i___native_module.md#arkui_gesturedirectionmask) | 定义滑动手势方向集合。  | 
+| typedef struct [ArkUI_GestureRecognizer](_ark_u_i___native_module.md#arkui_gesturerecognizer) [ArkUI_GestureRecognizer](_ark_u_i___native_module.md#arkui_gesturerecognizer) | 获取手势组件实例对象定义。 |
 | typedef ArkUI_GestureRecognizer \* [ArkUI_GestureRecognizerHandle](_ark_u_i___native_module.md#arkui_gesturerecognizerhandle) | 提供手势识别器句柄类型对象定义。  | 
 | typedef [ArkUI_GestureRecognizerHandle](_ark_u_i___native_module.md#arkui_gesturerecognizerhandle) \* [ArkUI_GestureRecognizerHandleArray](_ark_u_i___native_module.md#arkui_gesturerecognizerhandlearray) | 提供手势识别器句柄类型数组对象定义。  | 
+| typedef struct [ArkUI_TouchRecognizer](_ark_u_i___native_module.md#arkui_touchrecognizer) [ArkUI_TouchRecognizer](_ark_u_i___native_module.md#arkui_touchrecognizer) | 提供触摸识别器类型对象定义。 |
 | typedef ArkUI_TouchRecognizer \* [ArkUI_TouchRecognizerHandle](_ark_u_i___native_module.md#arkui_touchrecognizerhandle) | 提供触摸识别器句柄类型对象定义。  | 
 | typedef [ArkUI_TouchRecognizerHandle](_ark_u_i___native_module.md#arkui_touchrecognizerhandle) \* [ArkUI_TouchRecognizerHandleArray](_ark_u_i___native_module.md#arkui_touchrecognizerhandlearray) | 提供触摸识别器句柄类型数组对象定义。  | 
+| typedef struct [ArkUI_GestureEvent](_ark_u_i___native_module.md#arkui_gestureevent) [ArkUI_GestureEvent](_ark_u_i___native_module.md#arkui_gestureevent) | 获取手势事件数据类型对象定义。 |
 | typedef struct [ArkUI_GestureEventTargetInfo](_ark_u_i___native_module.md#arkui_gestureeventtargetinfo) [ArkUI_GestureEventTargetInfo](_ark_u_i___native_module.md#arkui_gestureeventtargetinfo) | 提供手势事件目标信息类型对象定义。  | 
 | typedef struct [ArkUI_ParallelInnerGestureEvent](_ark_u_i___native_module.md#arkui_parallelinnergestureevent) [ArkUI_ParallelInnerGestureEvent](_ark_u_i___native_module.md#arkui_parallelinnergestureevent) | 提供并行内部手势事件类型对象定义。  | 
 | typedef struct [ArkUI_GestureInterruptInfo](_ark_u_i___native_module.md#arkui_gestureinterruptinfo) [ArkUI_GestureInterruptInfo](_ark_u_i___native_module.md#arkui_gestureinterruptinfo) | 获取手势中断事件中的用户自定义数据。 |
@@ -47,14 +50,14 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [ArkUI_GestureEventActionType](_ark_u_i___native_module.md#arkui_gestureeventactiontype) { [GESTURE_EVENT_ACTION_ACCEPT](_ark_u_i___native_module.md) = 0x01, [GESTURE_EVENT_ACTION_UPDATE](_ark_u_i___native_module.md) = 0x02, [GESTURE_EVENT_ACTION_END](_ark_u_i___native_module.md) = 0x04, [GESTURE_EVENT_ACTION_CANCEL](_ark_u_i___native_module.md) = 0x08 } | 定义手势事件类型。  | 
-| [ArkUI_GesturePriority](_ark_u_i___native_module.md#arkui_gesturepriority) { [NORMAL](_ark_u_i___native_module.md) = 0, [PRIORITY](_ark_u_i___native_module.md) = 1, [PARALLEL](_ark_u_i___native_module.md) = 2 } | 定义手势事件模式。  | 
-| [ArkUI_GroupGestureMode](_ark_u_i___native_module.md#arkui_groupgesturemode) { [SEQUENTIAL_GROUP](_ark_u_i___native_module.md) = 0, [PARALLEL_GROUP](_ark_u_i___native_module.md) = 1, [EXCLUSIVE_GROUP](_ark_u_i___native_module.md) = 2 } | 定义手势组事件模式。  | 
-| [ArkUI_GestureDirection](_ark_u_i___native_module.md#arkui_gesturedirection) {<br/>[GESTURE_DIRECTION_ALL](_ark_u_i___native_module.md) = 0b1111, [GESTURE_DIRECTION_HORIZONTAL](_ark_u_i___native_module.md) = 0b0011, [GESTURE_DIRECTION_VERTICAL](_ark_u_i___native_module.md) = 0b1100, [GESTURE_DIRECTION_LEFT](_ark_u_i___native_module.md) = 0b0001,<br/>[GESTURE_DIRECTION_RIGHT](_ark_u_i___native_module.md) = 0b0010, [GESTURE_DIRECTION_UP](_ark_u_i___native_module.md) = 0b0100, [GESTURE_DIRECTION_DOWN](_ark_u_i___native_module.md) = 0b1000, [GESTURE_DIRECTION_NONE](_ark_u_i___native_module.md) = 0<br/>} | 定义滑动手势方向。  | 
-| [ArkUI_GestureMask](_ark_u_i___native_module.md#arkui_gesturemask) { [NORMAL_GESTURE_MASK](_ark_u_i___native_module.md) = 0, [IGNORE_INTERNAL_GESTURE_MASK](_ark_u_i___native_module.md) } | 定义手势屏蔽模式。  | 
-| [ArkUI_GestureRecognizerType](_ark_u_i___native_module.md#arkui_gesturerecognizertype) {<br/>[TAP_GESTURE](_ark_u_i___native_module.md) = 0, [LONG_PRESS_GESTURE](_ark_u_i___native_module.md), [PAN_GESTURE](_ark_u_i___native_module.md), [PINCH_GESTURE](_ark_u_i___native_module.md),<br/>[ROTATION_GESTURE](_ark_u_i___native_module.md), [SWIPE_GESTURE](_ark_u_i___native_module.md), [GROUP_GESTURE](_ark_u_i___native_module.md)<br/>} | 定义手势类型。  | 
-| [ArkUI_GestureInterruptResult](_ark_u_i___native_module.md#arkui_gestureinterruptresult) { [GESTURE_INTERRUPT_RESULT_CONTINUE](_ark_u_i___native_module.md) = 0, [GESTURE_INTERRUPT_RESULT_REJECT](_ark_u_i___native_module.md) } | 定义手势打断结果。  | 
-| [ArkUI_GestureRecognizerState](_ark_u_i___native_module.md#arkui_gesturerecognizerstate) {<br/>[ARKUI_GESTURE_RECOGNIZER_STATE_READY](_ark_u_i___native_module.md) = 0, [ARKUI_GESTURE_RECOGNIZER_STATE_DETECTING](_ark_u_i___native_module.md) = 1, [ARKUI_GESTURE_RECOGNIZER_STATE_PENDING](_ark_u_i___native_module.md) = 2, [ARKUI_GESTURE_RECOGNIZER_STATE_BLOCKED](_ark_u_i___native_module.md) = 3,<br/>[ARKUI_GESTURE_RECOGNIZER_STATE_SUCCESSFUL](_ark_u_i___native_module.md) = 4, [ARKUI_GESTURE_RECOGNIZER_STATE_FAILED](_ark_u_i___native_module.md) = 5<br/>} | 定义手势识别器状态。  | 
+| [ArkUI_GestureEventActionType](_ark_u_i___native_module.md#arkui_gestureeventactiontype) { GESTURE_EVENT_ACTION_ACCEPT = 0x01, GESTURE_EVENT_ACTION_UPDATE = 0x02, GESTURE_EVENT_ACTION_END = 0x04, GESTURE_EVENT_ACTION_CANCEL = 0x08 } | 定义手势事件类型。  | 
+| [ArkUI_GesturePriority](_ark_u_i___native_module.md#arkui_gesturepriority) { NORMAL = 0, PRIORITY = 1, PARALLEL = 2 } | 定义手势事件模式。  | 
+| [ArkUI_GroupGestureMode](_ark_u_i___native_module.md#arkui_groupgesturemode) { SEQUENTIAL_GROUP = 0, PARALLEL_GROUP = 1, EXCLUSIVE_GROUP = 2 } | 定义手势组事件模式。  | 
+| [ArkUI_GestureDirection](_ark_u_i___native_module.md#arkui_gesturedirection) {<br/>GESTURE_DIRECTION_ALL = 0b1111, GESTURE_DIRECTION_HORIZONTAL = 0b0011, GESTURE_DIRECTION_VERTICAL = 0b1100, GESTURE_DIRECTION_LEFT = 0b0001,<br/>GESTURE_DIRECTION_RIGHT = 0b0010, GESTURE_DIRECTION_UP = 0b0100, GESTURE_DIRECTION_DOWN = 0b1000, GESTURE_DIRECTION_NONE = 0<br/>} | 定义滑动手势方向。  | 
+| [ArkUI_GestureMask](_ark_u_i___native_module.md#arkui_gesturemask) { NORMAL_GESTURE_MASK = 0, IGNORE_INTERNAL_GESTURE_MASK } | 定义手势屏蔽模式。  | 
+| [ArkUI_GestureRecognizerType](_ark_u_i___native_module.md#arkui_gesturerecognizertype) {<br/>TAP_GESTURE = 0, LONG_PRESS_GESTURE, PAN_GESTURE, PINCH_GESTURE,<br/>ROTATION_GESTURE, SWIPE_GESTURE, GROUP_GESTURE<br/>} | 定义手势类型。  | 
+| [ArkUI_GestureInterruptResult](_ark_u_i___native_module.md#arkui_gestureinterruptresult) { GESTURE_INTERRUPT_RESULT_CONTINUE = 0, GESTURE_INTERRUPT_RESULT_REJECT } | 定义手势打断结果。  | 
+| [ArkUI_GestureRecognizerState](_ark_u_i___native_module.md#arkui_gesturerecognizerstate) {<br/>ARKUI_GESTURE_RECOGNIZER_STATE_READY = 0, ARKUI_GESTURE_RECOGNIZER_STATE_DETECTING = 1, ARKUI_GESTURE_RECOGNIZER_STATE_PENDING = 2, ARKUI_GESTURE_RECOGNIZER_STATE_BLOCKED = 3,<br/>ARKUI_GESTURE_RECOGNIZER_STATE_SUCCESSFUL = 4, ARKUI_GESTURE_RECOGNIZER_STATE_FAILED = 5<br/>} | 定义手势识别器状态。  | 
 
 
 ### 函数

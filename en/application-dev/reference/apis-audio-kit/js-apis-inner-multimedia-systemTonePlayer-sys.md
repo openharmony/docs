@@ -1,8 +1,8 @@
-# systemTonePlayer (System Alert Tone Player) (System API)
+# systemTonePlayer (System Tone Player) (System API)
 
-The systemTonePlayer module provides APIs for playing and configuring SMS alert tones and notification alert tones and obtaining related information.
+The systemTonePlayer module provides APIs for playing and configuring SMS tones and notification tones and obtaining related information.
 
-This module must work with [@ohos.multimedia.systemSoundManager](js-apis-systemSoundManager-sys.md) to manage system alert tones.
+This module must work with [@ohos.multimedia.systemSoundManager](js-apis-systemSoundManager-sys.md) to manage system tones.
 
 > **NOTE**
 >
@@ -17,7 +17,7 @@ import { systemSoundManager } from '@kit.AudioKit';
 
 ## SystemToneOptions
 
-Describes the options of system alert tones.
+Describes the options of system tones.
 
 **System API**: This is a system API.
 
@@ -30,13 +30,13 @@ Describes the options of system alert tones.
 
 ## SystemTonePlayer
 
-Implements APIs for playing and configuring SMS alert tones and notification alert tones and obtaining related information. Before calling any API in **SystemTonePlayer**, you must use [getSystemTonePlayer](js-apis-systemSoundManager-sys.md#getsystemtoneplayer11) to create a **SystemTonePlayer** instance.
+Implements APIs for playing and configuring SMS tones and notification tones and obtaining related information. Before calling any API in **SystemTonePlayer**, you must use [getSystemTonePlayer](js-apis-systemSoundManager-sys.md#getsystemtoneplayer11) to create a **SystemTonePlayer** instance.
 
 ### getTitle
 
 getTitle(): Promise&lt;string&gt;
 
-Obtains the title of a system alert tone. This API uses a promise to return the result.
+Obtains the title of a system tone. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -50,7 +50,7 @@ Obtains the title of a system alert tone. This API uses a promise to return the 
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Media Error Codes](../apis-media-kit/errorcode-media.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
@@ -73,7 +73,7 @@ systemTonePlayer.getTitle().then((value: string) => {
 
 prepare(): Promise&lt;void&gt;
 
-Prepares to play a system alert tone. This API uses a promise to return the result.
+Prepares to play a system tone. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -83,11 +83,11 @@ Prepares to play a system alert tone. This API uses a promise to return the resu
 
 | Type   | Description                           |
 | ------- | ------------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Media Error Codes](../apis-media-kit/errorcode-media.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
@@ -111,7 +111,7 @@ systemTonePlayer.prepare().then(() => {
 
 start(toneOptions?: SystemToneOptions): Promise&lt;number&gt;
 
-Starts playing a system alert tone. This API uses a promise to return the result.
+Starts playing a system tone. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -123,7 +123,7 @@ Starts playing a system alert tone. This API uses a promise to return the result
 
 | Name     | Type                                   | Mandatory| Description            |
 | ----------- | --------------------------------------- | ---- | ---------------- |
-| toneOptions | [SystemToneOptions](#systemtoneoptions) | No  | Options of the system alert tone.|
+| toneOptions | [SystemToneOptions](#systemtoneoptions) | No  | Options of the system tone.|
 
 **Return value**
 
@@ -133,7 +133,7 @@ Starts playing a system alert tone. This API uses a promise to return the result
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Media Error Codes](../apis-media-kit/errorcode-media.md).
 
 | ID| Error Message                                                                                                   |
 | -------- | ----------------------------------------------------------------------------------------------------------- |
@@ -164,7 +164,7 @@ systemTonePlayer.start(systemToneOptions).then((value: number) => {
 
 stop(id: number): Promise&lt;void&gt;
 
-Stops playing a system alert tone. This API uses a promise to return the result.
+Stops playing a system tone. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -174,7 +174,7 @@ Stops playing a system alert tone. This API uses a promise to return the result.
 
 | Name| Type  | Mandatory| Description                     |
 | ------ | ------ | ---- | ------------------------- |
-| id     | number | Yes  | Stream ID returned by **start()**.|
+| id     | number | Yes  | Stream ID.|
 
 **Return value**
 
@@ -184,7 +184,7 @@ Stops playing a system alert tone. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Media Error Codes](../apis-media-kit/errorcode-media.md).
 
 | ID| Error Message                                                                                                   |
 | -------- | ----------------------------------------------------------------------------------------------------------- |
@@ -209,7 +209,7 @@ systemTonePlayer.stop(streamID).then(() => {
 
 release(): Promise&lt;void&gt;
 
-Releases the system alert tone player. This API uses a promise to return the result.
+Releases the system tone player. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -219,11 +219,11 @@ Releases the system alert tone player. This API uses a promise to return the res
 
 | Type   | Description                           |
 | ------- | ------------------------------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
@@ -259,14 +259,14 @@ Sets the scale of the audio volume. No result is returned.
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Media Error Codes](../apis-media-kit/errorcode-media.md).
 
 | ID| Error Message                                                                                                   |
 | -------- | ----------------------------------------------------------------------------------------------------------- |
 | 202      | Caller is not a system application.                                                                         |
 | 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 5400102  | Operation not allowed.                                                                                      |
-| 20700002 | Parameter check error, For example, value is out side [0, 1]                                                |
+| 20700002 | Parameter check error, For example, value is out side [0, 1].                                                |
 
 **Example**
 
@@ -281,7 +281,7 @@ try {
 
 ### getAudioVolumeScale<sup>13+</sup>
 
-getAudioVolumeScale(): number;
+getAudioVolumeScale(): number
 
 Obtains the scale of the audio volume. This API returns the result synchronously.
 
@@ -298,8 +298,7 @@ Obtains the scale of the audio volume. This API returns the result synchronously
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
-
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
@@ -328,15 +327,13 @@ Obtains the supported haptics styles. This API uses a promise to return the resu
 
 **Return value**
 
-
 | Type                                                                                                                         | Description                                                                                                                 |
 |-----------------------------------------------------------------------------------------------------------------------------| --------------------------------------------------------------------------------------------------------------------- |
 | Promise&lt;Array&lt;[systemSoundManager.ToneHapticsFeature](js-apis-systemSoundManager-sys.md#tonehapticsfeature13)&gt;&gt; | Promise used to return an array of the supported haptics styles.|
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
-
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Media Error Codes](../apis-media-kit/errorcode-media.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
@@ -365,8 +362,8 @@ Before calling this API, call [getSupportedHapticsFeatures](#getsupportedhaptics
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.Multimedia.SystemSound.Core
-**Parameters**
 
+**Parameters**
 
 | Name        | Type                                                                                             | Mandatory| Description            |
 | -------------- |-------------------------------------------------------------------------------------------------| ---- | ---------------- |
@@ -374,8 +371,7 @@ Before calling this API, call [getSupportedHapticsFeatures](#getsupportedhaptics
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
-
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Media Error Codes](../apis-media-kit/errorcode-media.md).
 
 | ID| Error Message                                                                                                   |
 | -------- | ----------------------------------------------------------------------------------------------------------- |
@@ -412,14 +408,13 @@ Obtains the haptics style of the ringtone. This API returns the result synchrono
 
 **Return value**
 
-
 | Type                                                                                             | Description    |
 |-------------------------------------------------------------------------------------------------| -------- |
 | [systemSoundManager.ToneHapticsFeature](js-apis-systemSoundManager-sys.md#tonehapticsfeature13) | Haptics style.|
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Media Error Codes](../apis-media-kit/errorcode-media.md).
 
 
 | ID| Error Message                           |
@@ -442,7 +437,9 @@ try {
 
 on(type: 'playFinished', streamId: number, callback: Callback\<number>): void
 
-Subscribes to the event indicating that the playback of an audio stream specified by **streamId** is complete. If **streamId** is set to **0**, this API subscribes to the playback complete event of all audio streams of the player.
+Subscribes to the event indicating that the ringtone playback is finished. This API uses an asynchronous callback to return the result.
+
+The object to listen for is an audio stream specified by **streamId**. If **streamId** is set to **0**, this API subscribes to the playback complete event of all audio streams of the player.
 
 **System capability**: SystemCapability.Multimedia.SystemSound.Core
 
@@ -450,7 +447,7 @@ Subscribes to the event indicating that the playback of an audio stream specifie
 
 | Name  | Type                    | Mandatory| Description                                                        |
 | -------- | ----------------------- | ---- | --------------------------------------------------------------- |
-| type     | string                  | Yes  | Event type. The event **'playFinished'** is triggered when the playback of the audio stream specified by **streamId** is complete.|
+| type     | string                  | Yes  | Event type. The event **'playFinished'** is triggered when the playback is finished.|
 | streamId | number                  | Yes  | ID of the audio stream. **streamId** is obtained through [start](#start). If **streamId** is set to **0**, the playback complete event of all audio streams of the player is subscribed to.|
 | callback | Callback\<number>  | Yes  | Callback used to return the stream ID of the audio stream that finishes playing.|
 
@@ -488,7 +485,7 @@ systemTonePlayer.start().then((value: number) => {
 
 off(type: 'playFinished', callback?: Callback\<number>): void
 
-Unsubscribes from the event indicating that the audio stream playback is complete.
+Unsubscribes from the event indicating that the ringtone playback is finished. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.SystemSound.Core
 
@@ -496,7 +493,7 @@ Unsubscribes from the event indicating that the audio stream playback is complet
 
 | Name| Type  | Mandatory| Description                                             |
 | ----- | ----- | ---- | ------------------------------------------------ |
-| type   | string | Yes  | Event type. The event **'playFinished'** is triggered when the playback is complete.|
+| type   | string | Yes  | Event type. The event **'playFinished'** is triggered when the playback is finished.|
 | callback | Callback\<number>    | No  | Callback used to return the ID of the audio stream. If this parameter is not specified, all the subscriptions to the specified event are canceled.|
 
 **Error codes**
@@ -529,7 +526,7 @@ systemTonePlayer.off('playFinished', playFinishedCallback);
 
 on(type: 'error', callback: ErrorCallback): void
 
-Subscribes to error events that occur during ringtone playback.
+Subscribes to error events that occur during ringtone playback. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.SystemSound.Core
 
@@ -537,7 +534,7 @@ Subscribes to error events that occur during ringtone playback.
 
 | Name  | Type         | Mandatory| Description                                |
 | -------- | ------------- | ---- | ------------------------------------ |
-| type     | string        | Yes  | Event type, which is **error** in this case.|
+| type     | string        | Yes  | Event type. The event **'error'** is triggered when an error occurs during ringtone playback.|
 | callback | ErrorCallback | Yes  | Callback used to return the error code and error information. For details about the error codes, see [on('error')](../apis-media-kit/js-apis-media.md#onerror9) of the AVPlayer.|
 
 **Error codes**
@@ -564,7 +561,7 @@ systemTonePlayer.on('error', (err: BusinessError) => {
 
 off(type: 'error', callback?: ErrorCallback): void
 
-Unsubscribes from the error events that occur during ringtone playback.
+Unsubscribes from error events that occur during ringtone playback. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.SystemSound.Core
 
@@ -572,7 +569,7 @@ Unsubscribes from the error events that occur during ringtone playback.
 
 | Name  | Type         | Mandatory| Description                                |
 | -------- | ------------- | ---- | ------------------------------------ |
-| type     | string        | Yes  | Event type, which is **error** in this case.|
+| type     | string        | Yes  | Event type. The event **'error'** is triggered when an error occurs during ringtone playback.|
 | callback | ErrorCallback | No  | Callback used to return the error code and error information. If this parameter is not specified, all the subscriptions to the specified event are canceled.|
 
 **Error codes**

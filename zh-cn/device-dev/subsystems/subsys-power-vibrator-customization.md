@@ -28,7 +28,7 @@ Linux调测环境，相关要求和配置可参考《[快速入门](../quick-sta
 
 本文以power_manager项目开发关机弹窗振动为例。
 
-1. 在[power_manager项目](https://gitee.com/openharmony/powermgr_power_manager/blob/master/services/native/profile/power_vibrator.json)中，编写定制的"power_vibrator.json"，例如:
+1. 在[power_manager项目](https://gitee.com/openharmony/powermgr_power_manager/blob/master/services/native/profile/power_vibrator.json)中，编写定制的"power_vibrator.json"，例如：
 
     ```json
     {

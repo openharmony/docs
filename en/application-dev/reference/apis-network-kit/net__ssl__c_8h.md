@@ -22,6 +22,6 @@ Defines C APIs for the SSL/TLS certificate chain verification module.
 | Name| Description|
 | -------- | -------- |
 | [OH_NetStack_CertVerification](netstack.md#oh_netstack_certverification) (const struct [NetStack_CertBlob](_net_stack___cert_blob.md) \*cert, const struct [NetStack_CertBlob](_net_stack___cert_blob.md) \*caCert) | Verifies the certificate chain.|
-| [OH_NetStack_GetPinSetForHostName](netstack.md#OH_NetStack_GetPinSetForHostName)(const char \*hostname, [NetStack_CertificatePinning](_net_stack___certificate_pinning.md) \*pin) | Obtains the certificate lock information.|
-| [OH_NetStack_GetCertificatesForHostName](netstack.md#OH_NetStack_GetCertificatesForHostName)(const char \*hostname, [NetStack_Certificates](_net_stack___certificates.md) \*certs) | Obtains certificate information.|
-| [OH_Netstack_DestroyCertificatesContent](netstack.md#OH_Netstack_DestroyCertificatesContent)([NetStack_Certificates](_net_stack___certificates.md) \*certs) | Releases the certificate content.|
+| [OH_NetStack_GetPinSetForHostName](netstack.md#oh_netstack_getpinsetforhostname)(const char \*hostname, [NetStack_CertificatePinning](_net_stack___certificate_pinning.md) \*pin) | Obtains the certificate lock information.|
+| [OH_NetStack_GetCertificatesForHostName](netstack.md#oh_netstack_getcertificatesforhostname)(const char \*hostname, [NetStack_Certificates](_net_stack___certificates.md) \*certs) | Obtains certificate information.|
+| [OH_Netstack_DestroyCertificatesContent](netstack.md#oh_netstack_destroycertificatescontent)([NetStack_Certificates](_net_stack___certificates.md) \*certs) | Releases the certificate content.|

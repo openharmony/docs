@@ -12,7 +12,7 @@ Provides APIs for the BatteryInfo module to obtain battery information.
 ## Summary
 
 
-### File
+### Files
 
 | Name| Description| 
 | -------- | -------- |

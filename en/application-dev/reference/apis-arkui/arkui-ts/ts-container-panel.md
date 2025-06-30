@@ -15,7 +15,7 @@ Supported
 
 >  **NOTE**
 >
->  Built-in components and custom components are allowed, with support for ([if/else](../../../quick-start/arkts-rendering-control-ifelse.md), [ForEach](../../../quick-start/arkts-rendering-control-foreach.md), and [LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)) rendering control.
+>  Built-in components and custom components are allowed, with support for ([if/else](../../../ui/state-management/arkts-rendering-control-ifelse.md), [ForEach](../../../ui/state-management/arkts-rendering-control-foreach.md), and [LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md)) rendering control.
 
 
 ## APIs
@@ -66,7 +66,7 @@ Sets the initial mode of the panel.
 
 | Name | Type                                                        | Mandatory| Description                                                        |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value   | [PanelMode](#panelmode) | Yes  | Initial mode of the panel.<br>Default value for the Minibar type: PanelMode.Mini; default value for other types: PanelMode.Half<br>Since API version 10, this attribute supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).|
+| value   | [PanelMode](#panelmode) | Yes  | Initial mode of the panel.<br>Default value for the Minibar type: PanelMode.Mini; default value for other types: PanelMode.Half<br>Since API version 10, this attribute supports two-way binding through [$$](../../../ui/state-management/arkts-two-way-sync.md).|
 
 ### dragBar
 

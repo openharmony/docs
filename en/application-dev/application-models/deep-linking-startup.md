@@ -88,11 +88,11 @@ export default class EntryAbility extends UIAbility {
 
 ## Implementing Application Redirection (Required for the Caller Application)
 
-The following uses three cases to describe how to use [openLink()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12) and [startAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) to implement application redirection and how to implement application redirection in the [Web component](../reference/apis-arkweb/ts-basic-components-web.md).
+The following uses three cases to describe how to use [openLink()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#openlink12) and [startAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) to implement application redirection and how to implement application redirection in the [Web component](../reference/apis-arkweb/ts-basic-components-web.md).
 
 ### Using openLink to Implement Application Redirection
 
-Pass in the URL of the target application into **link** of [openLink()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12), and set **appLinkingOnly** in the **options** field to **false**.
+Pass in the URL of the target application into **link** of [openLink](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#openlink12), and set **appLinkingOnly** in the **options** field to **false**.
 
 
 The sample code is as follows:
@@ -114,7 +114,7 @@ struct Index {
       .height('5%')
       .margin({ bottom: '12vp' })
       .onClick(() => {
-        let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+        let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
         let link: string = "link://www.example.com";
         let openLinkOptions: OpenLinkOptions = {
           appLinkingOnly: false
@@ -159,9 +159,9 @@ struct Index {
       .height('5%')
       .margin({ bottom: '12vp' })
       .onClick(() => {
-        let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+        let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
         let want: Want = {
-            uri: "link://www.example.com"
+          uri: "link://www.example.com"
         };
 
         try {
@@ -201,7 +201,7 @@ struct WebComponent {
         .onLoadIntercept((event) => {
           const url: string = event.data.getRequestUrl();
           if (url === 'link://www.example.com') {
-            (getContext() as common.UIAbilityContext).openLink(url)
+            (this.getUIContext().getHostContext() as common.UIAbilityContext).openLink(url)
               .then(() => {
                 console.log('openLink success');
               }).catch((err: BusinessError) => {

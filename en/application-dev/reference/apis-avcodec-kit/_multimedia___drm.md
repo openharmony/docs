@@ -5,7 +5,7 @@
 
 The Multimedia_Drm module provides APIs for you to set decryption parameters. After a DRM instance and session are created, you can decrypt a DRM encrypted program.
 
-For details about the development guide and sample, see [Media Data Demuxing](../../media/avcodec/audio-video-demuxer.md).
+For details about the development guide and sample, see [Media Data Demultiplexing](../../media/avcodec/audio-video-demuxer.md).
 
 **System capability**: SystemCapability.Multimedia.Media.Spliter
 

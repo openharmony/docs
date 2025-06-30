@@ -23,11 +23,11 @@ ArkTS Date对象提供了一种在ArkTS中表示和操作日期和时间的方�
 
 ## 使用示例
 
-Node-API接口开发流程参考[使用Node-API实现跨语言交互开发流程](use-napi-process.md)，本文仅对接口对应C++及ArkTS相关代码进行展示。
+Node-API接口开发流程参考[使用Node-API实现跨语言交互开发流程](use-napi-process.md)，本文仅对接口对应的C++及ArkTS相关代码进行展示。
 
 ### napi_create_date
 
-通过一个C++的double数据创建ArkTS的Date。
+通过一个C++的double数据创建ArkTS的Date对象。
 
 cpp部分代码
 
@@ -55,8 +55,8 @@ export const createDate: () => Date;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_create_date: %{public}s', testNapi.createDate().toString());
 ```
@@ -105,8 +105,8 @@ export const getDateValue: (date: Date) => number | void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 try {
   const date = new Date();
   hilog.info(0x0000, 'testTag', 'Node-API: output the Unix Time Stamp: %{public}d', date.getTime());
@@ -157,8 +157,8 @@ export const isDate: <T>(date: T) => boolean | void;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 try {
   let now: Date = new Date();
   let date = "123";

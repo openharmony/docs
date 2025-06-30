@@ -130,7 +130,7 @@ type LocationButtonCallback = (event: ClickEvent, result: LocationButtonOnClickR
 
 ## 属性
 
-不支持通用属性，仅继承[安全控件通用属性](ts-securitycomponent-attributes.md#属性)。
+不支持通用属性，仅继承[安全控件通用属性](ts-securitycomponent-attributes.md)。
 
 ## 事件
 
@@ -162,12 +162,12 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Component
 struct Index {
   handleLocationButtonClick: LocationButtonCallback =
-    (event: ClickEvent, result: LocationButtonOnClickResult, error: BusinessError<void>) => {
+    (event: ClickEvent, result: LocationButtonOnClickResult, error?: BusinessError<void>) => {
       if (result == LocationButtonOnClickResult.SUCCESS) {
         console.info("success");
       } else {
-        console.info("errCode: " + error.code);
-        console.info("errMessage: " + error.message);
+        console.error("errCode: " + error?.code);
+        console.error("errMessage: " + error?.message);
       }
     };
 

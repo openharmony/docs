@@ -3,7 +3,7 @@
 
 ## Overview
 
-The Core module provides the basic backbone capabilities for the media framework, including functions related to the memory, error code, and media struct.
+The Core module provides the basic backbone capabilities for the media system, including functions related to the memory, error code, and media data struct.
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -21,7 +21,7 @@ The Core module provides the basic backbone capabilities for the media framework
 | [native_audio_channel_layout.h](native__audio__channel__layout_8h.md) | Declares the functions related to the speaker layout during recording and playback.| 
 | [native_avbuffer.h](native__avbuffer_8h.md) | Declares the functions of the media struct **AVBuffer**.| 
 | [native_avbuffer_info.h](native__avbuffer__info_8h.md) | Declares the attribute definition of the media struct **AVBuffer**.| 
-| [native_averrors.h](native__averrors_8h.md) | Declares the error codes used by the media framework.| 
+| [native_averrors.h](native__averrors_8h.md) | Declares the error codes used by the media system.| 
 | [native_avformat.h](native__avformat_8h.md) | Declares the functions and enums related to **OH_AVFormat**.| 
 | [native_avmemory.h](native__avmemory_8h.md) | Declares the attribute definition of the media struct **AVMemory**.| 
 
@@ -45,7 +45,7 @@ The Core module provides the basic backbone capabilities for the media framework
 | typedef struct [OH_NativeBuffer](#oh_nativebuffer) [OH_NativeBuffer](#oh_nativebuffer) | Defines a struct that describes a native object for the graphics memory interface.| 
 | typedef enum [OH_AVCodecBufferFlags](#oh_avcodecbufferflags-1) [OH_AVCodecBufferFlags](#oh_avcodecbufferflags) | Defines an enum for the flags for the buffer of an **OH_AVCodec** instance.| 
 | typedef struct [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) [OH_AVCodecBufferAttr](#oh_avcodecbufferattr) | Defines the description information about the buffer of an **OH_AVCodec** instance.| 
-| typedef enum [OH_AVErrCode](#oh_averrcode-1) [OH_AVErrCode](#oh_averrcode) | Defines an enum for the error codes used by the media framework.| 
+| typedef enum [OH_AVErrCode](#oh_averrcode-1) [OH_AVErrCode](#oh_averrcode) | Defines an enum for the error codes used by the media system.| 
 | typedef struct [OH_AVFormat](#oh_avformat) [OH_AVFormat](#oh_avformat) | Defines a struct for a native object for the **OH_AVFormat** interface.| 
 | typedef enum [OH_AVPixelFormat](#oh_avpixelformat-1) [OH_AVPixelFormat](#oh_avpixelformat) | Defines an enum for the video pixel formats.| 
 | typedef struct [OH_AVMemory](#oh_avmemory) [OH_AVMemory](#oh_avmemory) | Defines a struct that describes a native object for the audio and video memory interface.| 
@@ -60,7 +60,7 @@ The Core module provides the basic backbone capabilities for the media framework
 | [OH_AmbAttributeSet](#oh_ambattributeset-1) {<br>AMB_ORD_1 = 1ULL &lt;&lt; 0U,<br>AMB_ORD_2 = 2ULL &lt;&lt; 0U,<br>AMB_ORD_3 = 3ULL &lt;&lt; 0U,<br>AMB_COM_ACN = 0ULL &lt;&lt; 8U,<br>AMB_COM_FUMA = 1ULL &lt;&lt; 8U,<br>AMB_NOR_N3D = 0ULL &lt;&lt; 12U,<br>AMB_NOR_SN3D = 1ULL &lt;&lt; 12U,<br>AMB_MODE = 1ULL &lt;&lt; 44U<br>} | Enumerates the Hi-Fi stereo reverberation settings.| 
 | [OH_AudioChannelLayout](#oh_audiochannellayout-1) {<br>CH_LAYOUT_UNKNOWN = 0ULL,<br>CH_LAYOUT_MONO = CH_SET_FRONT_CENTER,<br>CH_LAYOUT_STEREO = CH_SET_FRONT_LEFT \| CH_SET_FRONT_RIGHT,<br>CH_LAYOUT_STEREO_DOWNMIX = CH_SET_STEREO_LEFT \| CH_SET_STEREO_RIGHT,<br>CH_LAYOUT_2POINT1 = CH_LAYOUT_STEREO \| CH_SET_LOW_FREQUENCY,<br>CH_LAYOUT_3POINT0 = CH_LAYOUT_STEREO \| CH_SET_BACK_CENTER,<br>CH_LAYOUT_SURROUND = CH_LAYOUT_STEREO \| CH_SET_FRONT_CENTER,<br>CH_LAYOUT_3POINT1 = CH_LAYOUT_SURROUND \| CH_SET_LOW_FREQUENCY,<br>CH_LAYOUT_4POINT0 = CH_LAYOUT_SURROUND \| CH_SET_BACK_CENTER,<br>CH_LAYOUT_QUAD_SIDE = CH_LAYOUT_STEREO \| CH_SET_SIDE_LEFT \| CH_SET_SIDE_RIGHT,<br>CH_LAYOUT_QUAD = CH_LAYOUT_STEREO \| CH_SET_BACK_LEFT \| CH_SET_BACK_RIGHT,<br>CH_LAYOUT_2POINT0POINT2 = CH_LAYOUT_STEREO \| CH_SET_TOP_SIDE_LEFT \| CH_SET_TOP_SIDE_RIGHT,<br>CH_LAYOUT_AMB_ORDER1_ACN_N3D = AMB_MODE \| AMB_ORD_1 \| AMB_COM_ACN \| AMB_NOR_N3D, CH_LAYOUT_AMB_ORDER1_ACN_SN3D = AMB_MODE \| AMB_ORD_1 \| AMB_COM_ACN \| AMB_NOR_SN3D,<br>CH_LAYOUT_AMB_ORDER1_FUMA = AMB_MODE \| AMB_ORD_1 \| AMB_COM_FUMA,<br>CH_LAYOUT_4POINT1 = CH_LAYOUT_4POINT0 \| CH_SET_LOW_FREQUENCY,<br>CH_LAYOUT_5POINT0 = CH_LAYOUT_SURROUND \| CH_SET_SIDE_LEFT \| CH_SET_SIDE_RIGHT,<br>CH_LAYOUT_5POINT0_BACK = CH_LAYOUT_SURROUND \| CH_SET_BACK_LEFT \| CH_SET_BACK_RIGHT,<br>CH_LAYOUT_2POINT1POINT2 = CH_LAYOUT_2POINT0POINT2 \| CH_SET_LOW_FREQUENCY,<br>CH_LAYOUT_3POINT0POINT2 = CH_LAYOUT_2POINT0POINT2 \| CH_SET_FRONT_CENTER,<br>CH_LAYOUT_5POINT1 = CH_LAYOUT_5POINT0 \| CH_SET_LOW_FREQUENCY,<br>CH_LAYOUT_5POINT1_BACK = CH_LAYOUT_5POINT0_BACK \| CH_SET_LOW_FREQUENCY,<br>CH_LAYOUT_6POINT0 = CH_LAYOUT_5POINT0 \| CH_SET_BACK_CENTER,<br>CH_LAYOUT_3POINT1POINT2 = CH_LAYOUT_3POINT1 \| CH_SET_TOP_FRONT_LEFT \| CH_SET_TOP_FRONT_RIGHT,<br>CH_LAYOUT_6POINT0_FRONT = CH_LAYOUT_QUAD_SIDE \| CH_SET_FRONT_LEFT_OF_CENTER \| CH_SET_FRONT_RIGHT_OF_CENTER,<br>CH_LAYOUT_HEXAGONAL = CH_LAYOUT_5POINT0_BACK \| CH_SET_BACK_CENTER,<br>CH_LAYOUT_6POINT1 = CH_LAYOUT_5POINT1 \| CH_SET_BACK_CENTER,<br>CH_LAYOUT_6POINT1_BACK = CH_LAYOUT_5POINT1_BACK \| CH_SET_BACK_CENTER,<br>CH_LAYOUT_6POINT1_FRONT = CH_LAYOUT_6POINT0_FRONT \| CH_SET_LOW_FREQUENCY,<br>CH_LAYOUT_7POINT0 = CH_LAYOUT_5POINT0 \| CH_SET_BACK_LEFT \| CH_SET_BACK_RIGHT,<br>CH_LAYOUT_7POINT0_FRONT = CH_LAYOUT_5POINT0 \| CH_SET_FRONT_LEFT_OF_CENTER \| CH_SET_FRONT_RIGHT_OF_CENTER,<br>CH_LAYOUT_7POINT1 = CH_LAYOUT_5POINT1 \| CH_SET_BACK_LEFT \| CH_SET_BACK_RIGHT,<br>CH_LAYOUT_OCTAGONAL = CH_LAYOUT_5POINT0 \| CH_SET_BACK_LEFT \| CH_SET_BACK_CENTER \| CH_SET_BACK_RIGHT,<br>CH_LAYOUT_5POINT1POINT2 = CH_LAYOUT_5POINT1 \| CH_SET_TOP_SIDE_LEFT \| CH_SET_TOP_SIDE_RIGHT,<br>CH_LAYOUT_7POINT1_WIDE = CH_LAYOUT_5POINT1 \| CH_SET_FRONT_LEFT_OF_CENTER \| CH_SET_FRONT_RIGHT_OF_CENTER,<br>CH_LAYOUT_7POINT1_WIDE_BACK = CH_LAYOUT_5POINT1_BACK \| CH_SET_FRONT_LEFT_OF_CENTER \| CH_SET_FRONT_RIGHT_OF_CENTER,<br>CH_LAYOUT_AMB_ORDER2_ACN_N3D = AMB_MODE \| AMB_ORD_2 \| AMB_COM_ACN \| AMB_NOR_N3D,<br>CH_LAYOUT_AMB_ORDER2_ACN_SN3D = AMB_MODE \| AMB_ORD_2 \| AMB_COM_ACN \| AMB_NOR_SN3D,<br>CH_LAYOUT_AMB_ORDER2_FUMA = AMB_MODE \| AMB_ORD_2 \| AMB_COM_FUMA,<br>CH_LAYOUT_5POINT1POINT4,<br>CH_LAYOUT_7POINT1POINT2 = CH_LAYOUT_7POINT1 \| CH_SET_TOP_SIDE_LEFT \| CH_SET_TOP_SIDE_RIGHT,<br>CH_LAYOUT_7POINT1POINT4,<br>CH_LAYOUT_10POINT2,<br>CH_LAYOUT_9POINT1POINT4 = CH_LAYOUT_7POINT1POINT4 \| CH_SET_WIDE_LEFT \| CH_SET_WIDE_RIGHT,<br>CH_LAYOUT_9POINT1POINT6 = CH_LAYOUT_9POINT1POINT4 \| CH_SET_TOP_SIDE_LEFT \| CH_SET_TOP_SIDE_RIGHT,<br>CH_LAYOUT_HEXADECAGONAL,<br>CH_LAYOUT_AMB_ORDER3_ACN_N3D = AMB_MODE \| AMB_ORD_3 \| AMB_COM_ACN \| AMB_NOR_N3D,<br>CH_LAYOUT_AMB_ORDER3_ACN_SN3D = AMB_MODE \| AMB_ORD_3 \| AMB_COM_ACN \| AMB_NOR_SN3D,<br>CH_LAYOUT_AMB_ORDER3_FUMA = AMB_MODE \| AMB_ORD_3 \| AMB_COM_FUMA,<br>CH_LAYOUT_22POINT2<br>} | Enumerates the audio channel layouts.| 
 | [OH_AVCodecBufferFlags](#oh_avcodecbufferflags-1) {<br>AVCODEC_BUFFER_FLAGS_NONE = 0,<br>AVCODEC_BUFFER_FLAGS_EOS = 1 &lt;&lt; 0, AVCODEC_BUFFER_FLAGS_SYNC_FRAME = 1 &lt;&lt; 1, AVCODEC_BUFFER_FLAGS_INCOMPLETE_FRAME = 1 &lt;&lt; 2,<br>AVCODEC_BUFFER_FLAGS_CODEC_DATA = 1 &lt;&lt; 3, <br>AVCODEC_BUFFER_FLAGS_DISCARD = 1 &lt;&lt; 4, <br>AVCODEC_BUFFER_FLAGS_DISPOSABLE = 1 &lt;&lt; 5<br>} | Enumerates the flags for the buffer of an **OH_AVCodec** instance. | 
-| [OH_AVErrCode](#oh_averrcode-1)  {<br>AV_ERR_OK = 0,<br>AV_ERR_NO_MEMORY = 1,<br>AV_ERR_OPERATE_NOT_PERMIT = 2,<br>AV_ERR_INVALID_VAL = 3,<br>AV_ERR_IO = 4,<br>AV_ERR_TIMEOUT = 5,<br>AV_ERR_UNKNOWN = 6,<br>AV_ERR_SERVICE_DIED = 7,<br>AV_ERR_INVALID_STATE = 8,<br>AV_ERR_UNSUPPORT = 9, <br>AV_ERR_UNSUPPORTED_FORMAT = 11,<br>AV_ERR_EXTEND_START = 100,<br>AV_ERR_DRM_BASE = 200,<br>AV_ERR_DRM_DECRYPT_FAILED = 201,<br>AV_ERR_VIDEO_BASE = 300,<br>AV_ERR_VIDEO_UNSUPPORTED_COLOR_SPACE_CONVERSION = 301<br>} | Enumerates the error codes used by the media framework. |
+| [OH_AVErrCode](#oh_averrcode-1)  {<br>AV_ERR_OK = 0,<br>AV_ERR_NO_MEMORY = 1,<br>AV_ERR_OPERATE_NOT_PERMIT = 2,<br>AV_ERR_INVALID_VAL = 3,<br>AV_ERR_IO = 4,<br>AV_ERR_TIMEOUT = 5,<br>AV_ERR_UNKNOWN = 6,<br>AV_ERR_SERVICE_DIED = 7,<br>AV_ERR_INVALID_STATE = 8,<br>AV_ERR_UNSUPPORT = 9, <br>AV_ERR_UNSUPPORTED_FORMAT = 11,<br>AV_ERR_EXTEND_START = 100,<br>AV_ERR_DRM_BASE = 200,<br>AV_ERR_DRM_DECRYPT_FAILED = 201,<br>AV_ERR_VIDEO_BASE = 300,<br>AV_ERR_VIDEO_UNSUPPORTED_COLOR_SPACE_CONVERSION = 301<br>} | Enumerates the error codes used by the media system. |
 | [OH_AVPixelFormat](#oh_avpixelformat-1) {<br>AV_PIXEL_FORMAT_YUVI420 = 1,<br>AV_PIXEL_FORMAT_NV12 = 2,<br>AV_PIXEL_FORMAT_NV21 = 3,<br>AV_PIXEL_FORMAT_SURFACE_FORMAT = 4,<br>AV_PIXEL_FORMAT_RGBA = 5<br>} | Enumerates the video pixel formats.| 
 
 
@@ -205,7 +205,7 @@ typedef enum OH_AVErrCode OH_AVErrCode
 
 **Description**
 
-Defines an enum for the error codes used by the media framework.
+Defines an enum for the error codes used by the media system.
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -462,7 +462,7 @@ enum OH_AVErrCode
 
 **Description**
 
-Enumerates the error codes used by the media framework.
+Enumerates the error codes used by the media system.
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -506,7 +506,7 @@ Enumerates the video pixel formats.
 | AV_PIXEL_FORMAT_YUVI420 | YUV 420 Planar.| 
 | AV_PIXEL_FORMAT_NV12 | NV12. YUV 420 semi-planar.| 
 | AV_PIXEL_FORMAT_NV21 | NV21. YVU 420 semi-planar.| 
-| AV_PIXEL_FORMAT_SURFACE_FORMAT | Pixel format obtained from the surface.| 
+| AV_PIXEL_FORMAT_SURFACE_FORMAT | Pixel format obtained from the surface. This value takes effect only in surface mode.| 
 | AV_PIXEL_FORMAT_RGBA | RGBA8888.| 
 
 

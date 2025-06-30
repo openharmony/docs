@@ -20,7 +20,7 @@ Because the data is padded to the block size, **PKCS5** and **PKCS7** used in th
 > - In ECB and CBC modes, the plaintext must be padded if its length is not an integer multiple of 128 bits.
 > - In CCM encryption mode, the additional authentication data (AAD) must be specified and its length must be greater than 1 byte and less than 2048 bytes.
 
-The AES encryption and decryption can be implemented based a string parameter. When creating a **Cipher** instance, you need to specify the algorithm specifications in a string parameter. The string parameter consists of the symmetric key type (algorithm and key length), cipher block mode, and padding mode with a vertical bar (|) in between.
+The AES encryption and decryption can be implemented based on a string parameter. When creating a **Cipher** instance, you need to specify the algorithm specifications in a string parameter. The string parameter consists of the symmetric key type (algorithm and key length), cipher block mode, and padding mode with a vertical bar (|) in between.
 
 - In the following table, the options included in the square brackets ([]) are mutually exclusive. You can use only one of them in a string parameter.
   
@@ -58,7 +58,7 @@ Because the data is padded to the block size, **PKCS5** and **PKCS7** used in th
 >
 > In ECB and CBC modes, the plaintext must be padded if its length is not an integer multiple of 64 bits.
 
-The 3DES encryption and decryption can be implemented based a string parameter. When creating a **Cipher** instance, you need to specify the algorithm specifications in a string parameter. The string parameter consists of the symmetric key type (algorithm and key length), cipher block mode, and padding mode with a vertical bar (|) in between.
+The 3DES encryption and decryption can be implemented based on a string parameter. When creating a **Cipher** instance, you need to specify the algorithm specifications in a string parameter. The string parameter consists of the symmetric key type (algorithm and key length), cipher block mode, and padding mode with a vertical bar (|) in between.
 
 - In the following table, the options included in the square brackets ([]) are mutually exclusive. You can use only one of them in a string parameter.
   

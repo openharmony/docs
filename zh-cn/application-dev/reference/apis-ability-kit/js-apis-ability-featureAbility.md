@@ -648,10 +648,10 @@ let connectId = featureAbility.connectAbility(
       console.log(`ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}`);
     },
     onDisconnect: (element) => {
-      console.log(`ConnectAbility onDisconnect element.deviceId : ${element.deviceId}`)
+      console.log(`ConnectAbility onDisconnect element.deviceId : ${element.deviceId}`);
     },
     onFailed: (code) => {
-      console.error(`featureAbilityTest ConnectAbility onFailed errCode : ${code}`)
+      console.error(`featureAbilityTest ConnectAbility onFailed errCode : ${code}`);
     },
   },
 );
@@ -757,7 +757,7 @@ let connectId = featureAbility.connectAbility(
 );
 
 featureAbility.disconnectAbility(connectId).then(() => {
-  console.log('disconnectAbility success')
+  console.log('disconnectAbility success');
 }).catch((error: BusinessError)=>{
   console.error(`featureAbilityTest result errCode : ${error.code}`);
 });

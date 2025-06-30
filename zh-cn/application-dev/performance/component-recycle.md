@@ -93,7 +93,7 @@ struct MyComponent {
 
   aboutToAppear() {
     for (let i = 0; i < 1000; i++) {
-      this.data.pushData(i.toString())
+      this.data.pushData(i.toString());
     }
   }
 
@@ -113,7 +113,7 @@ struct MyComponent {
 @Reusable
 @Component
 struct ReusableChildComponent {
-  @State item: string = ''
+  @State item: string = '';
 
   aboutToReuse(params: ESObject) {
     this.item = params.item;
@@ -214,15 +214,15 @@ LazyForEach(this.GoodDataOne, (item, index) => {
 @Reusable
 @Component
 struct GoodItems {
-  @State img: Resource = $r("app.media.photo61")
-  @State webimg?: string = ''
-  @State hei: number = 0
-  @State introduce: string = ''
-  @State price: string = ''
-  @State numb: string = ''
-  @LocalStorageLink('storageSimpleProp') simpleVarName: string = ''
-  boo: boolean = true
-  index: number = 0
+  @State img: Resource = $r("app.media.photo61");
+  @State webimg?: string = '';
+  @State hei: number = 0;
+  @State introduce: string = '';
+  @State price: string = '';
+  @State numb: string = '';
+  @LocalStorageLink('storageSimpleProp') simpleVarName: string = '';
+  boo: boolean = true;
+  index: number = 0;
   controllerVideo: VideoController = new VideoController();
 
   aboutToReuse(params)
@@ -305,7 +305,7 @@ struct Reuse {
 
   aboutToAppear(): void {
     for (let index = 0; index < 20; index++) {
-      this.data.pushData(index.toString())
+      this.data.pushData(index.toString());
     }
   }
     
@@ -373,7 +373,7 @@ struct Reuse {
 
   aboutToAppear(): void {
     for (let index = 0; index < 20; index++) {
-      this.data.pushData(index.toString())
+      this.data.pushData(index.toString());
     }
     // 执行该异步函数
     this.count();

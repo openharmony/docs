@@ -19,7 +19,7 @@ onTouchIntercept(callback: Callback<TouchEvent, HitTestMode>)
 
 | Name       | Type                   | Mandatory | Description                         |
 | ---------- | -------------------------- | ------- | ----------------------------- |
-| callback      | Callback<[TouchEvent](ts-universal-events-touch.md#touchevent), [HitTestMode](ts-universal-attributes-hit-test-behavior.md#HitTestMode)>| Yes    |  Custom event interception callback to bind to the component, which is called during hit testing.|
+| callback      | Callback<[TouchEvent](ts-universal-events-touch.md#touchevent), [HitTestMode](ts-universal-attributes-hit-test-behavior.md#hittestmode)>| Yes    |  Custom event interception callback to bind to the component, which is called during hit testing.|
 
 
 ## Example

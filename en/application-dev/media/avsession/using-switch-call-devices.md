@@ -16,11 +16,24 @@ Currently, the system provides the default style and custom style for the **AVCa
 
    ```ts
    import { avSession } from '@kit.AVSessionKit';
-
-   private session: avSession.AVSession | undefined = undefined;
-
-   // Create an AVSession of the voice_call type.
-   this.session = await avSession.createAVSession(getContext(this), 'voiptest', 'voice_call');
+   @Entry
+   @Component
+   struct Index {
+     @State message: string = 'hello world';
+ 
+     build() { 
+       Column() {
+           Text(this.message)
+             .onClick(()=>{
+               let context = this.getUIContext().getHostContext() as Context;
+               // Create an AVSession of the voice_call type.
+               let session: AVSessionManager.AVSession = await AVSessionManager.createAVSession(context, 'voiptest', 'voice_call');
+             })
+         }
+       .width('100%')
+       .height('100%')
+     }
+   }
    ```
 
 2. Create the **AVCastPicker** component on the call page that provides device switching.

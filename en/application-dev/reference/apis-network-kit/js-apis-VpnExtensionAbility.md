@@ -18,9 +18,9 @@ import { VpnExtensionAbility } from '@kit.NetworkKit';
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core.
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| context | [VpnExtensionContext](js-apis-inner-application-VpnExtensionContext.md) | Yes| No| Context of the **VpnExtension**. This context is inherited from **ExtensionContext**.|
+| context | [VpnExtensionContext](js-apis-inner-application-VpnExtensionContext.md) | No| No| Context of the **VpnExtension**. This context is inherited from **ExtensionContext**.|
 
 ## VpnExtensionAbility.onCreate
 

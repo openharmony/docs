@@ -93,7 +93,7 @@ struct UIServiceExtensionAbility {
 
   // Customize a function for connecting to the UIServiceExtensionAbility.
   myConnectUIServiceExtensionAbility() {
-    let context = getContext(this) as common.UIAbilityContext;
+    let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
     let startWant: Want = {
       deviceId: '',
       bundleName: 'com.acts.myapplication',

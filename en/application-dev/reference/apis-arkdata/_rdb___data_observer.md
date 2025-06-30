@@ -9,13 +9,15 @@ Defines the data observer.
 
 **Related module**: [RDB](_r_d_b.md)
 
+**Header file**: [relational_store.h](relational__store_8h.md)
+
 
 ## Summary
 
 
 ### Member Variables
 
-| Name| Description| 
+| Name| Description|
 | -------- | -------- |
-| [context](_r_d_b.md#context-12) | Context of the data observer.| 
-| [callback](_r_d_b.md#callback-12) | Callback used to return the data observed.| 
+| [context](_r_d_b.md#context-12) | Context of the data observer.|
+| [callback](_r_d_b.md#callback-12) | Callback used to return the data observed.|

@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  该组件从API Version 13开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  该组件从API version 13开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 >  当前页面仅包含本模块的系统接口，其他公开接口参见[属性字符串](ts-universal-styled-string.md)。
 
@@ -27,31 +27,6 @@ static marshalling(styledString: StyledString): ArrayBuffer
 | 参数名 | 类型 | 必填 | 说明 |
 | ----- | ----- | ---- | ---- |
 | styledString | [StyledString](ts-universal-styled-string.md) | 是  | 属性字符串参数。 |
-
-**返回值：**
-
-| 类型              |说明       |
-| ------- | --------------------------------- | 
-| ArrayBuffer | 序列化后的buffer信息。<br/>**说明：** <br/>目前支持文本和图片。 |
-
-### marshalling<sup>18+</sup>
-
-static marshalling(styledString: StyledString, callback: StyledStringMarshallCallback): ArrayBuffer
-
-序列化属性字符串，通过定义回调来序列化属性字符串的[StyledStringMarshallingValue](#styledstringmarshallingvalue18)。
-
-**系统接口：** 此接口为系统接口。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| ----- | ----- | ---- | ---- |
-| styledString | [StyledString](ts-universal-styled-string.md) | 是  | 属性字符串参数。 |
-| callback | [StyledStringMarshallCallback](#styledstringmarshallcallback18) | 是 | 如何序列化[StyledStringMarshallingValue](#styledstringmarshallingvalue18)的回调。 |
 
 **返回值：**
 
@@ -83,104 +58,6 @@ static unmarshalling(buffer: ArrayBuffer): Promise\<StyledString>
 | -------------------------------- | --------------------- |
 | Promise\<[StyledString](ts-universal-styled-string.md)> |Promise对象，返回属性字符串。 |
 
-
-### unmarshalling<sup>18+</sup>
-
-static unmarshalling(buffer: ArrayBuffer, callback: StyledStringUnmarshallCallback): Promise\<StyledString>
-
-反序列化后得到属性字符串，通过定义回调来反序列化[StyledStringMarshallingValue](#styledstringmarshallingvalue18)。
-
-**系统接口：** 此接口为系统接口。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| ----- | ----- | ---- | ---- |
-| buffer | ArrayBuffer | 是  | 属性字符串序列化后的数据。 |
-| callback | [StyledStringUnmarshallCallback](#styledstringunmarshallcallback18) | 是 | 如何反序列化ArrayBuffer的回调。 |
-
-**返回值：**
-
-| 类型                             | 说明                  |
-| -------------------------------- | --------------------- |
-| Promise\<[StyledString](ts-universal-styled-string.md)> |Promise对象，返回属性字符串。 |
-
-**错误码**：
-
-以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
-
-## StyledStringMarshallingValue<sup>18+</sup>
-
-type StyledStringMarshallingValue = UserDataSpan
-
-属性字符串自定义序列化对象类型，需要开发者定义序列化和反序列化的方式。
-
-**系统接口：** 此接口为系统接口。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 类型  | 说明   |
-| ------ | ---------- |
-| [UserDataSpan](ts-universal-styled-string.md#userdataspan) | UserDataSpan样式。 |
-
-## StyledStringMarshallCallback<sup>18+</sup>
-
-type StyledStringMarshallCallback = (marshallableVal: StyledStringMarshallingValue) => ArrayBuffer
-
-属性字符串[StyledStringMarshallingValue](#styledstringmarshallingvalue18)序列化回调类型。
-
-**系统接口：** 此接口为系统接口。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名  | 类型   | 必填 | 说明                          |
-| ------- | ------ | ---- | --------------------------- |
-| marshallableVal | [StyledStringMarshallingValue](#styledstringmarshallingvalue18)| 是 | 属性字符串序列化对象。 |
-
-**返回值：**
-
-| 类型                             | 说明                  |
-| -------------------------------- | --------------------- |
-| ArrayBuffer | [StyledStringMarshallingValue](#styledstringmarshallingvalue18)序列化后的数据。|
-
-## StyledStringUnmarshallCallback<sup>18+</sup>
-
-type StyledStringUnmarshallCallback = (buf: ArrayBuffer) => StyledStringMarshallingValue
-
-属性字符串反序列化ArrayBuffer得到[StyledStringMarshallingValue](#styledstringmarshallingvalue18)回调类型。
-
-**系统接口：** 此接口为系统接口。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名  | 类型   | 必填 | 说明                          |
-| ------- | ------ | ---- | --------------------------- |
-| buf | ArrayBuffer | 是 | [StyledStringMarshallingValue](#styledstringmarshallingvalue18)序列化后的数据。 |
-
-**返回值：**
-
-| 类型                             | 说明                  |
-| -------------------------------- | --------------------- |
-| [StyledStringMarshallingValue](#styledstringmarshallingvalue18) | 反序列化得到的[StyledStringMarshallingValue](#styledstringmarshallingvalue18) 。|
-
 ## 示例
 
 ### 示例1 (属性字符串序列化和反序列化)
@@ -189,32 +66,36 @@ type StyledStringUnmarshallCallback = (buf: ArrayBuffer) => StyledStringMarshall
 
 ```ts
 // xxx.ets
-import { LengthMetrics } from '@kit.ArkUI'
+import { LengthMetrics } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct Index {
-  @State textTitle: string = "序列化和反序列化接口"
-  @State textResult: string = "Hello world"
-  @State serializeStr: string = "序列化"
-  @State flag: boolean = false
-  private textAreaController: TextAreaController = new TextAreaController()
-  private buff: Uint8Array = new Uint8Array()
-
+  @State textTitle: string = "序列化和反序列化接口";
+  @State textResult: string = "Hello world";
+  @State serializeStr: string = "序列化";
+  @State flag: boolean = false;
+  private textAreaController: TextAreaController = new TextAreaController();
+  private buff: Uint8Array = new Uint8Array();
   fontStyle: TextStyle = new TextStyle({
     fontWeight: FontWeight.Lighter,
     fontFamily: 'HarmonyOS Sans',
     fontColor: Color.Green,
     fontSize: LengthMetrics.vp(30),
     fontStyle: FontStyle.Normal
-  })
+  });
   // 创建属性字符串对象
   styledString: StyledString = new StyledString("Hello world",
-    [{ start: 0, length: 11, styledKey: StyledStringKey.FONT, styledValue: this.fontStyle }]);
+    [{
+      start: 0,
+      length: 11,
+      styledKey: StyledStringKey.FONT,
+      styledValue: this.fontStyle
+    }]);
 
   @Builder
   controllableBuild() {
-    Column(){
+    Column() {
       TextArea({
         text: this.textResult,
         controller: this.textAreaController
@@ -222,41 +103,41 @@ struct Index {
 
       Button(this.serializeStr)
         .margin(5)
-        .onClick(async ()=>{
-          this.flag = !this.flag
+        .onClick(async () => {
+          this.flag = !this.flag;
           if (!this.flag) {
-            console.info("Debug: 反序列化")
-            let styles: StyledString = await StyledString.unmarshalling(this.buff.buffer)
-            this.textTitle = "调取decodeTlv接口后，反序列化的结果显示："
+            console.info("Debug: 反序列化");
+            let styles: StyledString = await StyledString.unmarshalling(this.buff.buffer);
+            this.textTitle = "调取decodeTlv接口后，反序列化的结果显示：";
             if (styles == undefined) {
-              console.error("Debug: styledString 获取失败！！！")
-              return
+              console.error("Debug: styledString 获取失败！！！");
+              return;
             }
-            this.textResult =  styles.getString()
-            console.info("Debug: this.textResult = " + this.textResult)
-            let stylesArr = styles.getStyles(0, this.textResult.length, StyledStringKey.FONT)
-            console.info("Debug: stylesArr.length = " + stylesArr.length)
+            this.textResult = styles.getString();
+            console.info("Debug: this.textResult = " + this.textResult);
+            let stylesArr = styles.getStyles(0, this.textResult.length, StyledStringKey.FONT);
+            console.info("Debug: stylesArr.length = " + stylesArr.length);
             for (let i = 0; i < stylesArr.length; ++i) {
-              console.info("Debug: style.start = " + stylesArr[i].start)
-              console.info("Debug: style.length = " + stylesArr[i].length)
-              console.info("Debug: style.styledKey = " + stylesArr[i].styledKey)
-              let font = stylesArr[i].styledValue as TextStyle
-              console.info("Debug: style.fontColor = " + font.fontColor)
-              console.info("Debug: style.fontSize = " + font.fontSize)
-              console.info("Debug: style.fontFamily = " + font.fontFamily)
-              console.info("Debug: style.fontStyle = " + font.fontStyle)
+              console.info("Debug: style.start = " + stylesArr[i].start);
+              console.info("Debug: style.length = " + stylesArr[i].length);
+              console.info("Debug: style.styledKey = " + stylesArr[i].styledKey);
+              let font = stylesArr[i].styledValue as TextStyle;
+              console.info("Debug: style.fontColor = " + font.fontColor);
+              console.info("Debug: style.fontSize = " + font.fontSize);
+              console.info("Debug: style.fontFamily = " + font.fontFamily);
+              console.info("Debug: style.fontStyle = " + font.fontStyle);
             }
-            let subStr = styles.subStyledString(0, 2)
-            console.info("Debug: subStr = " + subStr.getString())
-            this.serializeStr = "序列化"
+            let subStr = styles.subStyledString(0, 2);
+            console.info("Debug: subStr = " + subStr.getString());
+            this.serializeStr = "序列化";
           } else {
-            console.info("Debug: 序列化")
-            let resultBuffer = StyledString.marshalling(this.styledString)
-            this.buff = new Uint8Array(resultBuffer)
-            this.textTitle = "调取encodeTlv接口后，序列化的结果显示："
-            this.textResult = this.buff.toString()
-            console.info("Debug: buff = " + this.buff.toString())
-            this.serializeStr = "反序列化"
+            console.info("Debug: 序列化");
+            let resultBuffer = StyledString.marshalling(this.styledString);
+            this.buff = new Uint8Array(resultBuffer);
+            this.textTitle = "调取encodeTlv接口后，序列化的结果显示：";
+            this.textResult = this.buff.toString();
+            console.info("Debug: buff = " + this.buff.toString());
+            this.serializeStr = "反序列化";
           }
         })
     }.margin(10)
@@ -283,11 +164,12 @@ enum MyUserDataType {
 }
 
 class MyUserData extends UserDataSpan {
-  constructor(){
-    super()
+  constructor() {
+    super();
   }
+
   marshalling() {
-    console.log("MyUserData marshalling...")
+    console.log("MyUserData marshalling...");
     const text = "MyUserData1";
     const buffer = new ArrayBuffer(text.length + 1);
     const uint8View = new Uint8Array(buffer);
@@ -298,16 +180,16 @@ class MyUserData extends UserDataSpan {
     }
     return uint8View.buffer;
   }
-  unmarshalling()
-  {
-    console.log("MyUserData unmarshalling...")
-    return new MyUserData()
+
+  unmarshalling() {
+    console.log("MyUserData unmarshalling...");
+    return new MyUserData();
   }
 }
 
 class MyUserData2 extends UserDataSpan {
   marshalling() {
-    console.log("MyUserData2 marshalling...")
+    console.log("MyUserData2 marshalling...");
     const text = "MyUserData2";
     const buffer = new ArrayBuffer(text.length + 1);
     const uint8View = new Uint8Array(buffer);
@@ -317,22 +199,21 @@ class MyUserData2 extends UserDataSpan {
     }
     return uint8View.buffer;
   }
-  unmarshalling()
-  {
-    console.log("MyUserData2 unmarshalling...")
-    return new MyUserData2()
+
+  unmarshalling() {
+    console.log("MyUserData2 unmarshalling...");
+    return new MyUserData2();
   }
 }
 
 @Entry
 @Component
 struct MarshallExample1 {
-
-  controller : TextController = new TextController()
+  controller: TextController = new TextController();
 
   build() {
     Column() {
-      Text(undefined, {controller: this.controller})
+      Text(undefined, { controller: this.controller })
       Button("Marshall&UnMarshall")
         .onClick(async () => {
           let myData = new MyUserData();
@@ -347,42 +228,41 @@ struct MarshallExample1 {
             length: 1,
             styledKey: StyledStringKey.USER_DATA,
             styledValue: myData2
-          }])
+          }]);
 
-          let buffer = StyledString.marshalling(myStyledString, (marshallingValue: StyledStringMarshallingValue)=> {
+          let buffer = StyledString.marshalling(myStyledString, (marshallingValue: StyledStringMarshallingValue) => {
             // 根据类型选择对应的序列化接口
             if (marshallingValue instanceof MyUserData) {
-              console.log("StyledString.marshalling MyUserData")
+              console.log("StyledString.marshalling MyUserData");
               let value = marshallingValue as MyUserData;
-              return value.marshalling()
+              return value.marshalling();
             } else if (marshallingValue instanceof MyUserData2) {
-              console.log("StyledString.marshalling MyUserData2")
+              console.log("StyledString.marshalling MyUserData2");
               let value = marshallingValue as MyUserData2;
-              return value.marshalling()
+              return value.marshalling();
             }
-            console.log("StyledString.marshalling default")
-            return new ArrayBuffer(10)
-          })
+            console.log("StyledString.marshalling default");
+            return new ArrayBuffer(10);
+          });
 
           let newStyledString = await StyledString.unmarshalling(buffer, (value: ArrayBuffer) => {
             // 1. 读取 type 类型，
             // 2. 根据类型，选择对应的接口解析这个 buffer
-            const uint8View  = new Uint8Array(value);
+            const uint8View = new Uint8Array(value);
             let type = uint8View[0];
-            console.log("unmarshalling length:" + uint8View.length)
+            console.log("unmarshalling length:" + uint8View.length);
             if (type == MyUserDataType.TYPE1) {
-              console.log("unmarshalling type1:" + type)
-              let myUserData = new MyUserData()
-              return myUserData.unmarshalling()
+              console.log("unmarshalling type1:" + type);
+              let myUserData = new MyUserData();
+              return myUserData.unmarshalling();
             } else if (type == MyUserDataType.TYPE2) {
-              console.log("unmarshalling type2:" + type)
-              let myUserData = new MyUserData2()
-              return myUserData.unmarshalling()
+              console.log("unmarshalling type2:" + type);
+              let myUserData = new MyUserData2();
+              return myUserData.unmarshalling();
             }
-            return new ArrayBuffer(0)
-          })
-
-          this.controller.setStyledString(newStyledString)
+            return new ArrayBuffer(0);
+          });
+          this.controller.setStyledString(newStyledString);
         })
         .fontSize(20)
         .margin(10)

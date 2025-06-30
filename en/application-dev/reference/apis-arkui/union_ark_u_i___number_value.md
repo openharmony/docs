@@ -9,6 +9,7 @@ Provides the number types of ArkUI in the native code.
 
 **Related module**: [ArkUI_NativeModule](_ark_u_i___native_module.md)
 
+**Header file**: [native_type.h](native__type_8h.md)
 
 ## Summary
 

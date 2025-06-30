@@ -2,7 +2,7 @@
 
 ## 场景介绍
 
-开发者通过createJsCore方法来创建一个新的JS基础运行时环境，并通过该方法获得一个CoreID，通过evaluateJS方法使用CoreID对应的运行环境来运行JS代码，在JS代码中创建promise并异步执行函数，最后使用releaseJsCore方法来释放CoreID对应的运行环境。
+开发者通过createJsCore方法来创建一个新的JS运行时环境，并通过该方法获得一个CoreID。然后，通过evaluateJS方法使用CoreID对应的运行环境来运行JS代码，在JS代码中创建promise并异步执行函数。最后，使用releaseJsCore方法来释放CoreID对应的运行环境。
 
 ## 使用示例
 
@@ -42,7 +42,7 @@ static JSVM_Value Consoleinfo(JSVM_Env env, JSVM_CallbackInfo info) {
     size_t argc = 1;
     JSVM_Value args[1];
     char log[256] = "";
-    size_t log_length;
+    size_t log_length = 0;
     JSVM_CALL(OH_JSVM_GetCbInfo(env, info, &argc, args, NULL, NULL));
 
     JSVM_CALL(OH_JSVM_GetValueStringUtf8(env, args[0], log, 255, &log_length));
@@ -107,7 +107,7 @@ static JSVM_Value Add(JSVM_Env env, JSVM_CallbackInfo info) {
     size_t argc = 2;
     JSVM_Value args[2];
     JSVM_CALL(OH_JSVM_GetCbInfo(env, info, &argc, args, NULL, NULL));
-    double num1, num2;
+    double num1 = 0, num2 = 0;
     JSVM_CALL(OH_JSVM_GetValueDouble(env, args[0], &num1));
     JSVM_CALL(OH_JSVM_GetValueDouble(env, args[1], &num2));
     JSVM_Value sum = nullptr;
@@ -133,7 +133,7 @@ static JSVM_Value AssertEqual(JSVM_Env env, JSVM_CallbackInfo info) {
 }
 
 static int fromOHStringValue(JSVM_Env &env, JSVM_Value &value, std::string &result) {
-    size_t size;
+    size_t size = 0;
     CHECK_RET(OH_JSVM_GetValueStringUtf8(env, value, nullptr, 0, &size));
     char resultStr[size + 1];
     CHECK_RET(OH_JSVM_GetValueStringUtf8(env, value, resultStr, size + 1, &size));
@@ -192,10 +192,10 @@ static int CreateJsCore(uint32_t *result) {
 
 // 对外提供释放JSVM环境接口，通过envId释放对应环境
 static int ReleaseJsCore(uint32_t coreEnvId) {
+    std::lock_guard<std::mutex> lock_guard(envMapLock);
+
     OH_LOG_INFO(LOG_APP, "JSVM ReleaseJsCore START");
     CHECK_COND(g_envMap.count(coreEnvId) != 0 && g_envMap[coreEnvId] != nullptr);
-
-    std::lock_guard<std::mutex> lock_guard(envMapLock);
 
     CHECK(OH_JSVM_DestroyEnv(*g_envMap[coreEnvId]));
     g_envMap[coreEnvId] = nullptr;
@@ -303,7 +303,7 @@ static int32_t TestJSVM() {
     };";
 
     // 创建首个运行环境，并绑定TS回调
-    uint32_t coreId1;
+    uint32_t coreId1 = 0;
     CHECK_COND(CreateJsCore(&coreId1) == 0);
     OH_LOG_INFO(LOG_APP, "TEST coreId: %{public}d", coreId1);
     // 在首个运行环境中执行JS代码
@@ -312,7 +312,7 @@ static int32_t TestJSVM() {
     OH_LOG_INFO(LOG_APP, "TEST evaluateJS: %{public}s", result1.c_str());
 
     // 创建第二个运行环境，并绑定TS回调
-    uint32_t coreId2;
+    uint32_t coreId2 = 0;
     CHECK_COND(CreateJsCore(&coreId2) == 0);
     OH_LOG_INFO(LOG_APP, "TEST coreId: %{public}d", coreId2);
     // 在第二个运行环境中执行JS代码
@@ -328,4 +328,38 @@ static int32_t TestJSVM() {
 
     return 0;
 }
-  ```
+```
+预计的输出结果：
+```
+JSVM CreateJsCore START
+JSVM CreateJsCore END
+TEST coreId: 0
+JSVM EvaluateJS START
+JSVM API TEST: hello World
+JSVM API TEST: CreatePromise start
+JSVM API TEST: CreatePromise end
+JSVM API TEST type: 4
+JSVM API TEST: CreatePromise 0
+JSVM API TEST RESULT: PASS
+JSVM EvaluateJS END
+TEST evaluateJS: hello World
+JSVM CreateJsCore START
+JSVM CreateJsCore END
+TEST coreId: 1
+JSVM EvaluateJS START
+JSVM API TEST: second hello
+JSVM API TEST RESULT: PASS
+JSVM API TEST RESULT: PASS
+JSVM API TEST: CreatePromise start
+JSVM API TEST: CreatePromise end
+JSVM API TEST type: 4
+JSVM API TEST: CreatePromise 1
+JSVM API TEST RESULT: PASS
+JSVM EvaluateJS END
+TEST evaluateJS: second hello
+JSVM ReleaseJsCore START
+JSVM ReleaseJsCore END
+JSVM ReleaseJsCore START
+JSVM ReleaseJsCore END
+Test NAPI end
+```

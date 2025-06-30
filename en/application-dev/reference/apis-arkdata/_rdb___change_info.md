@@ -9,6 +9,8 @@ Defines a struct for the details about the device-cloud sync process.
 
 **Related module**: [RDB](_r_d_b.md)
 
+**Header file**: [relational_store.h](relational__store_8h.md)
+
 
 ## Summary
 

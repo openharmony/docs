@@ -105,7 +105,7 @@ struct Index {
           middle: { anchor: '__container__', align: HorizontalAlign.Center }
         })
         .onClick(async () => {
-          let context = getContext(this);
+          let context : Context = this.getUIContext().getHostContext() as Context;
 
           // Prepare data.
           const count = 5
@@ -274,7 +274,7 @@ When handling large volumes of database data, cross-thread data transfer may sti
              middle: { anchor: '__container__', align: HorizontalAlign.Center }
            })
            .onClick(async () => {
-             let context = getContext(this);
+             let context : Context = this.getUIContext().getHostContext() as Context;
    
              // Prepare data.
              const count = 5
@@ -493,7 +493,7 @@ For complex regular class instances, you can first wrap the relevant database da
              middle: { anchor: '__container__', align: HorizontalAlign.Center }
            })
            .onClick(async () => {
-             let context = getContext(this);
+             let context : Context = this.getUIContext().getHostContext() as Context;
              let material = initMaterial();
              await taskpool.execute(create, context);
              await taskpool.execute(insert, context, material.getBuckets());

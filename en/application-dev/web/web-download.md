@@ -38,14 +38,14 @@ struct WebComponent {
               // Unique ID of a download task.
               console.log("download update guid: " + webDownloadItem.getGuid());
               // Download progress.
-              console.log("download percent complete: " + webDownloadItem.getPercentComplete());
+              console.log("download update percent complelte: " + webDownloadItem.getPercentComplete());
               // Current download speed.
               console.log("download update speed: " + webDownloadItem.getCurrentSpeed())
             })
             this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
               // Error code of a download task failure.
-              console.log("download last error code: " + webDownloadItem.getLastErrorCode());
+              console.log("download failed last error code: " + webDownloadItem.getLastErrorCode());
             })
             this.delegate.onDownloadFinish((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
@@ -176,7 +176,7 @@ struct WebComponent {
               // Unique ID of a download task.
               console.log("download update guid: " + webDownloadItem.getGuid());
               // Download progress.
-              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
+              console.log("download update percent complelte: " + webDownloadItem.getPercentComplete());
               // Current download speed.
               console.log("download update speed: " + webDownloadItem.getCurrentSpeed())
             })

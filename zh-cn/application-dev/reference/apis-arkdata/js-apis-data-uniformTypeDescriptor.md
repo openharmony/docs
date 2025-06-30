@@ -123,7 +123,7 @@ import { uniformTypeDescriptor } from '@kit.ArkData';
 | MPEGURL_AUDIO<sup>12+</sup>                         | 'general.mpegurl-audio'                    | MPEG音频播放列表文件类型，归属类型为AUDIO。       |
 | MPEG_4_AUDIO<sup>12+</sup>                         | 'general.mpeg-4-audio'                    | MPEG-4音频类型，归属类型为AUDIO。       |
 | MP2<sup>12+</sup>                         | 'general.mp2'                    | MP2音频类型，归属类型为AUDIO。       |
-| MPEG_AUDIO<sup>12+</sup>                         | 'general.mpeg-audio'                    | MPGE音频类型，归属类型为AUDIO。       |
+| MPEG_AUDIO<sup>12+</sup>                         | 'general.mpeg-audio'                    | MPEG音频类型，归属类型为AUDIO。       |
 | ULAW_AUDIO<sup>12+</sup>                         | 'general.ulaw-audio'                    | ULAW音频类型，归属类型为AUDIO。       |
 | SD2_AUDIO<sup>12+</sup>                         | 'com.digidesign.sd2-audio'                    | 单声道/立体声音频类型（Digidesign Sound Designer II），归属类型为AUDIO。       |
 | REALAUDIO<sup>12+</sup>                         | 'com.real.realaudio'                    | RealMedia音频类型，归属类型为AUDIO。       |
@@ -142,7 +142,7 @@ import { uniformTypeDescriptor } from '@kit.ArkData';
 | TAR_ARCHIVE<sup>11+</sup>                        | 'general.tar-archive'                  | TAR存档文件类型，归属类型为ARCHIVE。           |
 | ZIP_ARCHIVE<sup>11+</sup>                       | 'general.zip-archive'                 | ZIP存档文件类型，归属类型为ARCHIVE。           |
 | JAVA_ARCHIVE<sup>11+</sup>             | 'com.sun.java-archive'               | JAVA存档文件类型，归属类型为ARCHIVE和EXECUTABLE。          |
-| GNU_TAR_ARCHIVE<sup>11+</sup>         | 'org.gnu.gnu-tar-archive'           | GUN存档文件类型，归属类型为ARCHIVE。           |
+| GNU_TAR_ARCHIVE<sup>11+</sup>         | 'org.gnu.gnu-tar-archive'           | GNU存档文件类型，归属类型为ARCHIVE。           |
 | GNU_ZIP_ARCHIVE<sup>11+</sup>        | 'org.gnu.gnu-zip-archive'          | GZIP存档文件类型，归属类型为ARCHIVE。          |
 | GNU_ZIP_TAR_ARCHIVE<sup>11+</sup>                         | 'org.gnu.gnu-zip-tar-archive'                   | GZIP TAR存档文件类型，归属类型为ARCHIVE。       |
 | OPENXML<sup>12+</sup>                         | 'org.openxmlformats.openxml'                    |   开源XML基类型，归属类型为ARCHIVE。       |
@@ -197,7 +197,7 @@ import { uniformTypeDescriptor } from '@kit.ArkData';
 | CAD<sup>12+</sup>                         | 'general.cad'                    | 所有计算机辅助设计类型的基类型，归属类型为OBJECT。       |
 | OCTET_STREAM<sup>12+</sup>                         | 'general.octet-stream'                    | 任意二进制数据类型，归属类型为OBJECT。       |
 | FILE_URI<sup>15+</sup>                         | 'general.file-uri'                    | 文件地址类型，归属类型为TEXT。       |
-| CONTENT_FORM<sup>15+<sup>                         | 'general.content-form'                    | 内容卡片类型，归属类型为OBJECT。       |
+| CONTENT_FORM<sup>15+</sup>                         | 'general.content-form'                    | 内容卡片类型，归属类型为OBJECT。       |
 
 
 ## TypeDescriptor<sup>11+</sup> 
@@ -208,9 +208,9 @@ import { uniformTypeDescriptor } from '@kit.ArkData';
 
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
-| 名称    | 类型                    | 可读 | 可写 | 说明                                                       |
+| 名称    | 类型                    | 只读 | 可选 | 说明                                                       |
 | ------- | ----------------------- | ---- | ---- |----------------------------------------------------------|
-| typeId<sup>11+</sup>     | string | 是   | 否   | 标准化数据类型的ID（即[UniformDataType](#uniformdatatype)中对应的枚举值）。 |
+| typeId<sup>11+</sup>     | string | 是   | 否   | 标准化数据类型的ID（即[UTD列表](#uniformdatatype)中对应的枚举值），也可以是自定义UTD。 |
 | belongingToTypes<sup>11+</sup>  | Array\<string>          | 是   | 否   | 标准化数据类型所归属的类型typeId列表。                                   |
 | description<sup>11+</sup>     | string                  | 是   | 否   | 标准化数据类型的简要说明。                                            |
 | referenceURL<sup>11+</sup>     | string                  | 是   | 否   | 标准化数据类型的参考链接URL，用于描述类型的详细信息。                            |

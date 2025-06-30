@@ -4,7 +4,7 @@
 基于当前的应用模型，可以通过以下几种方式来实现[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)组件与UI之间的数据同步。
 
 - [使用EventHub进行数据通信](#使用eventhub进行数据通信)：在[基类Context](application-context-stage.md)中提供了[EventHub](../reference/apis-ability-kit/js-apis-inner-application-eventHub.md)对象，可以通过发布订阅方式来实现事件的传递。在事件传递前，订阅者需要先进行订阅，当发布者发布事件时，订阅者将接收到事件并进行相应处理。
-- [使用AppStorage/LocalStorage进行数据同步](#使用appstoragelocalstorage进行数据同步)：ArkUI提供了[AppStorage](../quick-start/arkts-appstorage.md)和[LocalStorage](../quick-start/arkts-localstorage.md)两种应用级别的状态管理方案，可用于实现应用级别和UIAbility级别的数据同步。
+- [使用AppStorage/LocalStorage进行数据同步](#使用appstoragelocalstorage进行数据同步)：ArkUI提供了[AppStorage](../ui/state-management/arkts-appstorage.md)和[LocalStorage](../ui/state-management/arkts-localstorage.md)两种应用级别的状态管理方案，可用于实现应用级别和UIAbility级别的数据同步。
 
 
 ## 使用EventHub进行数据通信
@@ -46,12 +46,11 @@
 
     ```ts
     import { common } from '@kit.AbilityKit';
-    import { promptAction } from '@kit.ArkUI';
 
     @Entry
     @Component
     struct Page_EventHub {
-      private context = getContext(this) as common.UIAbilityContext;
+      private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
       eventHubFunc(): void {
         // 不带参数触发自定义“event1”事件
@@ -73,7 +72,7 @@
               }
               .onClick(() => {
                 this.eventHubFunc();
-                promptAction.showToast({
+                this.getUIContext().getPromptAction().showToast({
                   message: 'EventHubFuncA'
                 });
               })
@@ -86,7 +85,7 @@
               }
               .onClick(() => {
                 this.context.eventHub.off('event1');
-                promptAction.showToast({
+                this.getUIContext().getPromptAction().showToast({
                   message: 'EventHubFuncB'
                 });
               })
@@ -123,5 +122,5 @@
 
 ## 使用AppStorage/LocalStorage进行数据同步
 
-ArkUI提供了[AppStorage](../quick-start/arkts-appstorage.md)和[LocalStorage](../quick-start/arkts-localstorage.md)两种应用级别的状态管理方案，可用于实现应用级别和[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)级别的数据同步。使用这些方案可以方便地管理应用状态，提高应用性能和用户体验。其中，AppStorage是一个全局的状态管理器，适用于多个UIAbility共享同一状态数据的情况；而LocalStorage则是一个局部的状态管理器，适用于单个UIAbility内部使用的状态数据。通过这两种方案，开发者可以更加灵活地控制应用状态，提高应用的可维护性和可扩展性。详细请参见[应用级变量的状态管理](../quick-start/arkts-application-state-management-overview.md)。
+ArkUI提供了[AppStorage](../ui/state-management/arkts-appstorage.md)和[LocalStorage](../ui/state-management/arkts-localstorage.md)两种应用级别的状态管理方案，可用于实现应用级别和[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)级别的数据同步。使用这些方案可以方便地管理应用状态，提高应用性能和用户体验。其中，AppStorage是一个全局的状态管理器，适用于多个UIAbility共享同一状态数据的情况；而LocalStorage则是一个局部的状态管理器，适用于单个UIAbility内部使用的状态数据。通过这两种方案，开发者可以更加灵活地控制应用状态，提高应用的可维护性和可扩展性。详细请参见[应用级变量的状态管理](../ui/state-management/arkts-application-state-management-overview.md)。
 

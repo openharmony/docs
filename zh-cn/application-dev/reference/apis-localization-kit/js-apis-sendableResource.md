@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```js
-import { resourceManager } from '@kit.LocalizationKit'
+import { resourceManager } from '@kit.LocalizationKit';
 ```
 
 ## SendableResource

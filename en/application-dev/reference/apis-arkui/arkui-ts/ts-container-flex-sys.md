@@ -10,7 +10,7 @@ The **Flex** component allows for flexible layout of child components.
 
 ## Attributes
 
-## pointLight
+### pointLight
 
 pointLight(value: PointLightStyle)
 

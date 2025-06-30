@@ -1,4 +1,5 @@
 # @ohos.application.appManager (appManager)
+<!--deprecated_code_no_check-->
 
 The **appManager** module implements application management. You can use the APIs of this module to query whether the application is undergoing a stability test, whether the application is running on a RAM constrained device, the memory size of the application, and information about the running process.
 

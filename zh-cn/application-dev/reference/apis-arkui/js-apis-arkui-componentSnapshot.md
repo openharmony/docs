@@ -2,6 +2,8 @@
 
 本模块提供获取组件截图的能力，包括已加载的组件的截图和没有加载的组件的截图。组件截图只能够截取组件大小的区域，如果组件的绘制超出了它的区域，或子组件的绘制超出了父组件的区域，这些在组件区域外绘制的内容不会在截图中呈现。兄弟节点堆叠在组件区域内，截图不会显示兄弟组件。
 
+缩放、平移、旋转等图形变换属性只对被截图组件的子组件生效；对目标组件本身应用图形变换属性不生效，显示的是还是图形变换前的效果。
+
 > **说明：**
 >
 > 本模块首批接口从 API version 10 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -10,7 +12,7 @@
 >
 >如果组件自身内容不能填满组件大小区域，那么剩余位置截图返回的内容为透明像素。如果组件使用了[图像效果](arkui-ts/ts-universal-attributes-image-effect.md)类属性或其他的效果类属性，则可能产生非用户预期的截图结果。请排查是否需要填充组件透明内容区域，或使用[窗口截图](js-apis-window.md#snapshot9)替代。
 >
-> 示例效果请以真机运行为准，当前 IDE 预览器不支持。
+> 示例效果请以真机运行为准，当前 DevEco Studio预览器不支持。
 
 
 ## 导入模块
@@ -19,7 +21,7 @@
 import { componentSnapshot } from '@kit.ArkUI';
 ```
 
-## componentSnapshot.get
+## componentSnapshot.get<sup>(deprecated)</sup>
 
 get(id: string, callback: AsyncCallback<image.PixelMap>, options?: SnapshotOptions): void
 
@@ -27,6 +29,10 @@ get(id: string, callback: AsyncCallback<image.PixelMap>, options?: SnapshotOptio
 
 > **说明：** 
 >
+> 从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)获取[ComponentSnapshot](js-apis-arkui-UIContext.md#componentsnapshot12)实例，再通过此实例调用替代方法[get](js-apis-arkui-UIContext.md#get12)。
+>
+> 从API version 12开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)方法获取当前UI上下文关联的[ComponentSnapshot](js-apis-arkui-UIContext.md#componentsnapshot12)对象。
+> 
 > 截图会获取最近一帧的绘制内容。如果在组件触发更新的同时调用截图，更新的渲染内容不会被截取到，截图会返回上一帧的绘制内容。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -54,7 +60,7 @@ get(id: string, callback: AsyncCallback<image.PixelMap>, options?: SnapshotOptio
 
 > **说明：**
 > 
-> 直接使用componentSnapshot可能导致实例不明确的问题，建议使用[getUIContext](js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)获取绑定实例的componentSnapshot。
+> 直接使用componentSnapshot可能导致[UI上下文不明确](../../ui/arkts-global-interface.md#ui上下文不明确)的问题，建议使用[getUIContext](js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)获取绑定实例的componentSnapshot。
 
 ```ts
 import { componentSnapshot } from '@kit.ArkUI';
@@ -92,7 +98,7 @@ struct SnapshotExample {
 
 ![componentget](figures/componentget.gif) 
 
-## componentSnapshot.get
+## componentSnapshot.get<sup>(deprecated)</sup>
 
 get(id: string, options?: SnapshotOptions): Promise<image.PixelMap>
 
@@ -100,6 +106,10 @@ get(id: string, options?: SnapshotOptions): Promise<image.PixelMap>
 
 > **说明：**
 >
+> 从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)获取[ComponentSnapshot](js-apis-arkui-UIContext.md#componentsnapshot12)实例，再通过此实例调用替代方法[get](js-apis-arkui-UIContext.md#get12-1)。
+>
+> 从API version 12开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)方法获取当前UI上下文关联的[ComponentSnapshot](js-apis-arkui-UIContext.md#componentsnapshot12)对象。
+> 
 > 截图会获取最近一帧的绘制内容。如果在组件触发更新的同时调用截图，更新的渲染内容不会被截取到，截图会返回上一帧的绘制内容。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -132,7 +142,7 @@ get(id: string, options?: SnapshotOptions): Promise<image.PixelMap>
 
 > **说明：**
 > 
-> 直接使用componentSnapshot可能导致实例不明确的问题，建议使用[getUIContext](js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)获取绑定实例的componentSnapshot。
+> 直接使用componentSnapshot可能导致[UI上下文不明确](../../ui/arkts-global-interface.md#ui上下文不明确)的问题，建议使用[getUIContext](js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)获取绑定实例的componentSnapshot。
 
 ```ts
 import { componentSnapshot } from '@kit.ArkUI';
@@ -169,13 +179,17 @@ struct SnapshotExample {
 
 ![componentget](figures/componentget.gif) 
 
-## componentSnapshot.createFromBuilder
+## componentSnapshot.createFromBuilder<sup>(deprecated)</sup>
 
 createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap>, delay?: number, checkImageStatus?: boolean, options?: SnapshotOptions): void
 
 在应用后台渲染CustomBuilder自定义组件，并输出其截图。通过回调返回结果并支持在回调中获取离屏组件绘制区域坐标和大小。
 
 > **说明：** 
+>
+> 从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)获取[ComponentSnapshot](js-apis-arkui-UIContext.md#componentsnapshot12)实例，再通过此实例调用替代方法[createFromBuilder](js-apis-arkui-UIContext.md#createfrombuilder12)。
+>
+> 从API version 12开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)方法获取当前UI上下文关联的[ComponentSnapshot](js-apis-arkui-UIContext.md#componentsnapshot12)对象。
 >
 > 由于需要等待组件构建、渲染成功，离屏截图的回调有500ms以内的延迟。
 >
@@ -194,7 +208,7 @@ createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap
 | builder  | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) | 是    | 自定义组件构建函数。<br/>**说明：** 不支持全局builder。|
 | callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt;      | 是    | 截图返回结果的回调。支持在回调中获取离屏组件绘制区域坐标和大小。 |
 | delay<sup>12+</sup>   | number | 否    | 指定触发截图指令的延迟时间。当布局中使用了图片组件时，需要指定延迟时间，以便系统解码图片资源。资源越大，解码需要的时间越长，建议尽量使用不需要解码的PixelMap资源。<br/> 当使用PixelMap资源或对Image组件设置syncload为true时，可以配置delay为0，强制不等待触发截图。该延迟时间并非指接口从调用到返回的时间，由于系统需要对传入的builder进行临时离屏构建，因此返回的时间通常要比该延迟时间长。<br/>**说明：** 截图接口传入的builder中，不应使用状态变量控制子组件的构建，如果必须要使用，在调用截图接口时，也不应再有变化，以避免出现截图不符合预期的情况。<br/> 默认值：300 <br/> 单位：毫秒 <br/> 取值范围：[0, +∞)，小于0时按默认值处理。 |
-| checkImageStatus<sup>12+</sup>  | boolean | 否    | 指定是否允许在截图之前，校验图片解码状态。如果为true，则会在截图之前检查所有Image组件是否已经解码完成，如果没有完成检查，则会放弃截图并返回异常。<br/>默认值：false|
+| checkImageStatus<sup>12+</sup>  | boolean | 否    | 指定是否允许在截图之前，校验图片解码状态。如果为true，则会在截图之前检查所有Image组件是否已经解码完成。为false，则不会校验图片解码状态。如果没有完成检查，则会放弃截图并返回异常。<br/>默认值：false|
 | options<sup>12+</sup>       | [SnapshotOptions](#snapshotoptions12)           | 否    | 截图相关的自定义参数。 |
 
 **错误码：** 
@@ -211,7 +225,7 @@ createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap
 
 > **说明：**
 > 
-> 直接使用componentSnapshot可能导致实例不明确的问题，建议使用[getUIContext](js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)获取绑定实例的componentSnapshot。
+> 直接使用componentSnapshot可能导致[UI上下文不明确](../../ui/arkts-global-interface.md#ui上下文不明确)的问题，建议使用[getUIContext](js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)获取绑定实例的componentSnapshot。
 
 ```ts
 import { componentSnapshot } from '@kit.ArkUI';
@@ -253,9 +267,9 @@ struct OffscreenSnapshotExample {
                 return;
               }
               this.pixmap = pixmap
-              // save pixmap to file
+              // 保存pixmap到文件中
               // ....
-              // get component size and location
+              // 获取组件大小和位置
               let info = this.getUIContext().getComponentUtils().getRectangleById("builder")
               console.log(info.size.width + ' ' + info.size.height + ' ' + info.localOffset.x + ' ' + info.localOffset.y + ' ' + info.windowOffset.x + ' ' + info.windowOffset.y)
             }, 320, true, {scale : 2, waitUntilRenderFinished : true})
@@ -272,7 +286,7 @@ struct OffscreenSnapshotExample {
 
 ![componentcreate](figures/componentcreate.gif) 
 
-## componentSnapshot.createFromBuilder
+## componentSnapshot.createFromBuilder<sup>(deprecated)</sup>
 
 createFromBuilder(builder: CustomBuilder, delay?: number, checkImageStatus?: boolean, options?: SnapshotOptions): Promise<image.PixelMap>
 
@@ -280,6 +294,10 @@ createFromBuilder(builder: CustomBuilder, delay?: number, checkImageStatus?: boo
 
 > **说明：** 
 >
+> 从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)获取[ComponentSnapshot](js-apis-arkui-UIContext.md#componentsnapshot12)实例，再通过此实例调用替代方法[createFromBuilder](js-apis-arkui-UIContext.md#createfrombuilder12-1)。
+>
+> 从API version 12开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)方法获取当前UI上下文关联的[ComponentSnapshot](js-apis-arkui-UIContext.md#componentsnapshot12)对象。
+> 
 > 由于需要等待组件构建、渲染成功，离屏截图的回调有500ms以内的延迟。
 >
 > builder中的组件不支持设置动画相关的属性，如[transition](arkui-ts/ts-transition-animation-component.md)。
@@ -296,7 +314,7 @@ createFromBuilder(builder: CustomBuilder, delay?: number, checkImageStatus?: boo
 | ------- | ---------------------------------------- | ---- | ---------- |
 | builder | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) | 是    | 自定义组件构建函数。<br/>**说明：** 不支持全局builder。 |
 | delay<sup>12+</sup>   | number | 否    | 指定触发截图指令的延迟时间。当布局中使用了图片组件时，需要指定延迟时间，以便系统解码图片资源。资源越大，解码需要的时间越长，建议尽量使用不需要解码的PixelMap资源。<br/> 当使用PixelMap资源或对Image组件设置syncload为true时，可以配置delay为0，强制不等待触发截图。该延迟时间并非指接口从调用到返回的时间，由于系统需要对传入的builder进行临时离屏构建，因此返回的时间通常要比该延迟时间长。<br/>**说明：** 截图接口传入的builder中，不应使用状态变量控制子组件的构建，如果必须要使用，在调用截图接口时，也不应再有变化，以避免出现截图不符合预期的情况。<br/> 默认值：300 <br/> 单位：毫秒|
-| checkImageStatus<sup>12+</sup>  | boolean | 否    | 指定是否允许在截图之前，校验图片解码状态。如果为true，则会在截图之前检查所有Image组件是否已经解码完成，如果没有完成检查，则会放弃截图并返回异常。<br/>默认值：false|
+| checkImageStatus<sup>12+</sup>  | boolean | 否    | 指定是否允许在截图之前，校验图片解码状态。如果为true，则会在截图之前检查所有Image组件是否已经解码完成。为false，则不会校验图片解码状态。如果没有完成检查，则会放弃截图并返回异常。<br/>默认值：false|
 | options<sup>12+</sup>       | [SnapshotOptions](#snapshotoptions12)           | 否    | 截图相关的自定义参数。 |
 
 **返回值：**
@@ -318,7 +336,7 @@ createFromBuilder(builder: CustomBuilder, delay?: number, checkImageStatus?: boo
 
 > **说明：**
 > 
-> 直接使用componentSnapshot可能导致实例不明确的问题，建议使用[getUIContext](js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)获取绑定实例的componentSnapshot。
+> 直接使用componentSnapshot可能导致[UI上下文不明确](../../ui/arkts-global-interface.md#ui上下文不明确)的问题，建议使用[getUIContext](js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)获取绑定实例的componentSnapshot。
 
 ```ts
 import { componentSnapshot } from '@kit.ArkUI'
@@ -356,9 +374,9 @@ struct OffscreenSnapshotExample {
           componentSnapshot.createFromBuilder(()=>{this.RandomBuilder()}, 320, true, {scale : 2, waitUntilRenderFinished : true})
             .then((pixmap: image.PixelMap) => {
               this.pixmap = pixmap
-              // save pixmap to file
+              // 保存pixmap到文件中
               // ....
-              // get component size and location
+              // 获取组件大小和位置
               let info = this.getUIContext().getComponentUtils().getRectangleById("builder")
               console.log(info.size.width + ' ' + info.size.height + ' ' + info.localOffset.x + ' ' + info.localOffset.y + ' ' + info.windowOffset.x + ' ' + info.windowOffset.y)
             }).catch((err:Error) => {
@@ -418,7 +436,7 @@ getSync(id: string, options?: SnapshotOptions): image.PixelMap
 
 > **说明：**
 > 
-> 直接使用componentSnapshot可能导致实例不明确的问题，建议使用[getUIContext](js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)获取绑定实例的componentSnapshot。
+> 直接使用componentSnapshot可能导致[UI上下文不明确](../../ui/arkts-global-interface.md#ui上下文不明确)的问题，建议使用[getUIContext](js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getComponentSnapshot](js-apis-arkui-UIContext.md#getcomponentsnapshot12)获取绑定实例的componentSnapshot。
 
 ```ts
 import { componentSnapshot } from '@kit.ArkUI';
@@ -484,9 +502,9 @@ type SnapshotRegionType =  SnapshotRegion | LocalizedSnapshotRegion
 
 定义组件截图的矩形区域。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称   | 类型   | 必填 | 说明                                    |
 | ------ | ------ | ---- | --------------------------------------- |
@@ -499,9 +517,9 @@ type SnapshotRegionType =  SnapshotRegion | LocalizedSnapshotRegion
 
 定义组件截图的矩形区域，start和end的值在布局方向为LTR时指定为left和right，在布局方向为RTL时指定为right和left。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |

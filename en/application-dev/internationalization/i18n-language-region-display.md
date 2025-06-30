@@ -1,7 +1,7 @@
 # Language and Locale Name Localization
 
 
-## Use Cases
+## When to Use
 
 Language and locale name localization means to localize language and locale names on the UI based on local language habits. For example, in an English environment, Simplified Chinese is represented by 简体中文.
 

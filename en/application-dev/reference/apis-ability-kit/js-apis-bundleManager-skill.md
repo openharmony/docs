@@ -39,5 +39,5 @@ import { bundleManager } from '@kit.AbilityKit';
 | pathRegex       | string | Yes  | No  | Regular expression of the path of the URI. This parameter is valid only when both **scheme** and **host** are specified.|
 | type            | string | Yes  | No  | Data type that matches the want. The value complies with the Multipurpose Internet Mail Extensions (MIME) type specification.|
 | utd             | string | Yes  | No  | Standard data type of the URI that matches Want. This parameter applies to sharing scenarios.|
-| maxFileSupported | number   | Yes  | No  | Maximum number of files of a specified type that can be received or opened at a time.|
+| maxFileSupported | number   | Yes  | No  | Maximum number of files of a specified type that can be received or opened at a time. The value must be an integer greater than or equal to 0.|
 | linkFeature     | string | Yes  | No  | Feature type provided by the URI. It is used to implement redirection between applications and exists only in **AbilityInfo**.|

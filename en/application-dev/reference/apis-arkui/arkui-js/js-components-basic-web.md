@@ -19,7 +19,7 @@ Not supported
 
 | Name| Type| Default Value| Mandatory| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| src      | string |   -    |   No    |Address of the web page to be displayed. The domain name of the website must compile with the HTTPS protocol and have received an ICP license.|
+| src      | string |   -    |   No    |Address of the web page to be displayed. Make sure the website domain name uses the HTTPS protocol.|
 | id  | string | -  | No |  Unique ID of the component. |
 
 

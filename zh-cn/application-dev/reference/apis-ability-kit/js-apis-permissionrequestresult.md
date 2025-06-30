@@ -32,7 +32,7 @@ import common from '@ohos.app.ability.common';
 
 let atManager = abilityAccessCtrl.createAtManager();
 try {
-  let context: Context = getContext(this) as common.UIAbilityContext;
+  let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   atManager.requestPermissionsFromUser(context, ["ohos.permission.CAMERA"]).then((data) => {
       console.info("data:" + JSON.stringify(data));
       console.info("data permissions:" + data.permissions);

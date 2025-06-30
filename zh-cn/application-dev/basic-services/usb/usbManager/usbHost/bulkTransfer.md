@@ -10,7 +10,7 @@
 
 - 开发工具及配置：
 
-  DevEco Studio作为驱动开发工具，是进行驱动开发必备条件之一，开发者可以使用该工具进行开发、调试、打包等操作。请[下载安装](https://developer.huawei.com/consumer/cn/download/)该工具，并参考[DevEco Studio使用指南](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V14/ide-tools-overview-V14)中的[创建工程及运行](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V14/ide-create-new-project-V14)进行基本的操作验证，保证DevEco Studio可正常运行。
+  DevEco Studio作为驱动开发工具，是进行驱动开发必备条件之一，开发者可以使用该工具进行开发、调试、打包等操作。请[下载安装](https://developer.huawei.com/consumer/cn/download/)该工具，并参考[DevEco Studio使用指南](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-tools-overview)中的[创建工程及运行](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-create-new-project)进行基本的操作验证，保证DevEco Studio可正常运行。
 
 
 - SDK版本配置：
@@ -20,13 +20,13 @@
 
 - HDC配置：
 
-  HDC（HarmonyOS Device Connector）是为开发人员提供的用于调试的命令行工具，通过该工具可以在Windows/Linux/Mac系统上与真实设备或者模拟器进行交互，详细参考[HDC配置](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/hdc-V5)。
+  HDC（HarmonyOS Device Connector）是为开发人员提供的用于调试的命令行工具，通过该工具可以在Windows/Linux/Mac系统上与真实设备或者模拟器进行交互，详细参考[HDC配置](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/hdc)。
 
 ### 搭建环境
 
 - 在PC上安装[DevEco Studio](https://developer.huawei.com/consumer/cn/download/deveco-studio)，要求版本在4.1及以上。
-- 将public-SDK更新到API 16或以上，更新SDK的具体操作可参见[更新指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/faqs/full-sdk-switch-guide.md)。
-- PC安装HDC工具（HarmonyOS Device Connector），通过该工具可以在Windows/Linux/Mac系统上与真实设备或者模拟器进行交互，详细参考[HDC配置](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/hdc-V5)。
+- 将public-SDK更新到API 16或以上<!--Del-->，更新SDK的具体操作可参见[更新指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/faqs/full-sdk-switch-guide.md)<!--DelEnd-->。
+- PC安装HDC工具，通过该工具可以在Windows/Linux/Mac系统上与真实设备或者模拟器进行交互。
 - 用USB线缆将搭载OpenHarmony的设备连接到PC。
 
 ## 开发指导
@@ -42,6 +42,10 @@
 ### 开发步骤
 
 主机（Host）连接设备（Device），通过`bulkTransfer`接口进行数据传输。以下步骤描述了如何使用批量传输方式来传输数据：
+
+> **说明：** 
+>
+> 以下示例代码只是使用批量传输方式来传输数据的必要流程，需要放入具体的方法中执行。在实际调用时，设备开发者需要遵循设备相关协议进行调用，确保数据的正确传输和设备的兼容性。
 
 1. 导入模块。
 
@@ -115,9 +119,9 @@
    let deviceName : string = deviceList[0].name;
    // 申请操作指定的device的操作权限。
    usbManager.requestRight(deviceName).then((hasRight : boolean) => {
-     console.info("usb device request right result: " + hasRight);
+     console.info(`usb device request right result: ${hasRight}`);
    }).catch((error : BusinessError)=> {
-     console.info("usb device request right failed : " + error);
+     console.error(`usb device request right failed : ${error}`);
    });
    ```
 
@@ -146,22 +150,22 @@
     let dataUint8Array : Uint8Array = new Uint8Array(1024);
     usbManager.bulkTransfer(pipe, inEndpoint, dataUint8Array, 15000).then((dataLength : number) => {
     if (dataLength >= 0) {
-      console.info("usb readData result Length : " + dataLength);
+      console.info(`usb readData result Length : ${dataLength}`);
     } else {
-      console.info("usb readData failed : " + dataLength);
+      console.error("usb readData failed");
     }
     }).catch((error : BusinessError) => {
-    console.info("usb readData error : " + JSON.stringify(error));
+    console.error(`usb readData error : ${error}`);
     });
     // 发送数据，在device信息中选取对应数据发送的endpoint来做数据传输。（endpoint.direction == 0）
     usbManager.bulkTransfer(pipe, outEndpoint, dataUint8Array, 15000).then((dataLength : number) => {
       if (dataLength >= 0) {
-        console.info("usb writeData result write length : " + dataLength);
+        console.info(`usb writeData result write length : ${dataLength}`);
       } else {
-        console.info("writeData failed");
+        console.error("usb writeData failed");
       }
     }).catch((error : BusinessError) => {
-      console.info("usb writeData error : " + JSON.stringify(error));
+      console.error(`usb writeData error : ${error}`);
     });
     ```
 

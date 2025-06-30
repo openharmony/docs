@@ -1,6 +1,8 @@
 # @ohos.resourceManager (Resource Management)
 
-The **resourceManager** module provides APIs to obtain information about application resources based on the current configuration, including the language, region, screen direction, MCC/MNC, as well as device capability and density.
+The **resourceManager** module provides the resource management functionality. It allows an application to obtain the best matched application resources or system resources based on the specified [configuration](#configuration). For details about the matching rules, see [Resource Matching](../../quick-start/resource-categories-and-access.md#resource-matching).
+
+The configuration includes language, region, screen orientation, mobile country code (MCC), mobile network code (MNC), device capability, and density.
 
 > **NOTE**
 >
@@ -9,13 +11,13 @@ The **resourceManager** module provides APIs to obtain information about applica
 ## Modules to Import
 
 ```js
-import { resourceManager } from '@kit.LocalizationKit'
+import { resourceManager } from '@kit.LocalizationKit';
 ```
 
 ## How to Use
 
-Since API version 9, the stage model allows an application to obtain a **ResourceManager** object based on **context** and call its resource management APIs without first importing the required bundle.
-For the FA model, you need to import the required bundle and then call the [getResourceManager](#resourcemanagergetresourcemanager) API to obtain a **ResourceManager** object.
+Since API version 9, the stage model allows an application to obtain a **ResourceManager** object via **Context**. You do not need to import the module.
+In the FA model, you need to import the module and then call [getResourceManager](#resourcemanagergetresourcemanager) to obtain a **ResourceManager** object.
 For details about how to reference context in the stage model, see [Context in the Stage Model](../../application-models/application-context-stage.md).
 
 ```ts
@@ -44,11 +46,15 @@ Obtains the **ResourceManager** object of this application. This API uses an asy
 
 | Name     | Type                                      | Mandatory  | Description                           |
 | -------- | ---------------------------------------- | ---- | ----------------------------- |
-| callback | [AsyncCallback](#asynccallbackdeprecated)&lt;[ResourceManager](#resourcemanager)&gt; | Yes   |Callback used to return the result, which is a **ResourceManager** object.|
+| callback | [AsyncCallback](#asynccallbackdeprecated)&lt;[ResourceManager](#resourcemanager)&gt; | Yes   | Callback used to return the **ResourceManager** object.|
 
 **Example**
+
   <!--code_no_check_fa-->
   ```js
+  import { resourceManager } from '@kit.LocalizationKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   resourceManager.getResourceManager((error, mgr) => {
     if (error != null) {
       console.error("error is " + error);
@@ -78,13 +84,20 @@ Obtains the **ResourceManager** object of the specified application. This API us
 
 | Name       | Type                                      | Mandatory  | Description                           |
 | ---------- | ---------------------------------------- | ---- | ----------------------------- |
-| bundleName | string                                   | Yes   | Bundle name of an application.                |
-| callback   | [AsyncCallback](#asynccallbackdeprecated)&lt;[ResourceManager](#resourcemanager)&gt; | Yes   | Callback used to return the result, which is a **ResourceManager** object.|
+| bundleName | string                                   | Yes   | Bundle name of the application.                |
+| callback   | [AsyncCallback](#asynccallbackdeprecated)&lt;[ResourceManager](#resourcemanager)&gt; | Yes   | Callback used to return the **ResourceManager** object.|
 
 **Example**
   <!--code_no_check_fa-->
   ```js
+  import { resourceManager } from '@kit.LocalizationKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   resourceManager.getResourceManager("com.example.myapplication", (error, mgr) => {
+    if (error != null) {
+      console.error("error is " + error);
+      return;
+    }
   });
   ```
 
@@ -102,12 +115,12 @@ Obtains the **ResourceManager** object of this application. This API uses a prom
 
 | Type                                      | Description               |
 | ---------------------------------------- | ----------------- |
-| Promise&lt;[ResourceManager](#resourcemanager)&gt; | Promise used to return the result, which is a **ResourceManager** object.|
+| Promise&lt;[ResourceManager](#resourcemanager)&gt; | Promise used to return the **ResourceManager** object.|
 
 **Example**
   <!--code_no_check_fa-->
   ```js
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   resourceManager.getResourceManager().then((mgr: resourceManager.ResourceManager) => {
@@ -137,22 +150,23 @@ Obtains the **ResourceManager** object of the specified application. This API us
 
 | Name       | Type    | Mandatory  | Description           |
 | ---------- | ------ | ---- | ------------- |
-| bundleName | string | Yes   | Bundle name of an application.|
+| bundleName | string | Yes   | Bundle name of the application.|
 
 **Return value**
 
 | Type                                      | Description                |
 | ---------------------------------------- | ------------------ |
-| Promise&lt;[ResourceManager](#resourcemanager)&gt; | Promise used to return the result, which is a **ResourceManager** object.|
+| Promise&lt;[ResourceManager](#resourcemanager)&gt; | Promise used to return the **ResourceManager** object.|
 
 **Example**
   <!--code_no_check_fa-->
   ```js
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   resourceManager.getResourceManager("com.example.myapplication").then((mgr: resourceManager.ResourceManager) => {
   }).catch((error: BusinessError) => {
+    console.error("error is " + error);
   });
   ```
 
@@ -170,7 +184,7 @@ Obtains a **ResourceManager** object.
 
 | Type                                      | Description                |
 | ---------------------------------------- | ------------------ |
-| [Resourcemanager](#resourcemanager) | **ResourceManager** object.|
+| [ResourceManager](#resourcemanager) | **ResourceManager** object.|
 
 **Error codes**
 
@@ -178,11 +192,11 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001009  | Failed to access the system resource.which is not mapped to application sandbox, This error code will be thrown. |
+| 9001009  | Failed to access the system resource. which is not mapped to application sandbox, This error code will be thrown. |
 
 **Example**
   ```js
-import { resourceManager } from '@kit.LocalizationKit'
+import { resourceManager } from '@kit.LocalizationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
@@ -195,7 +209,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
-    console.error(`systemResourceManager getStringValue failed, error code: ${code}, message: ${message}.`);
+    console.error(`getSystemResourceManager failed, error code: ${code}, message: ${message}.`);
   }
   ```
 
@@ -225,10 +239,10 @@ Enumerates the device types.
 | -------------------- | ---- | ---- |
 | DEVICE_TYPE_PHONE    | 0x00 | Phone  |
 | DEVICE_TYPE_TABLET   | 0x01 | Tablet  |
-| DEVICE_TYPE_CAR      | 0x02 | Automobile  |
-| DEVICE_TYPE_TV       | 0x04 | TV |
+| DEVICE_TYPE_CAR      | 0x02 | Head unit  |
+| DEVICE_TYPE_TV       | 0x04 | Smart TV |
 | DEVICE_TYPE_WEARABLE | 0x06 | Wearable  |
-| DEVICE_TYPE_2IN1<sup>11+</sup>     | 0x07 | 2-in-1 device  |
+| DEVICE_TYPE_2IN1<sup>11+</sup>     | 0x07 | PC/2-in-1 device  |
 <!--RP1End-->
 
 ## ScreenDensity
@@ -241,12 +255,12 @@ Enumerates the screen density types.
 
 | Name            | Value | Description        |
 | -------------- | ---- | ---------- |
-| SCREEN_SDPI    | 120  | Screen density with small-scale dots per inch (SDPI). |
-| SCREEN_MDPI    | 160  | Screen density with medium-scale dots per inch (MDPI).  |
-| SCREEN_LDPI    | 240  | Screen density with large-scale dots per inch (LDPI).  |
-| SCREEN_XLDPI   | 320  | Screen density with extra-large-scale dots per inch (XLDPI). |
-| SCREEN_XXLDPI  | 480  | Screen density with extra-extra-large-scale dots per inch (XXLDPI). |
-| SCREEN_XXXLDPI | 640  | Screen density with extra-extra-extra-large-scale dots per inch (XXXLDPI).|
+| SCREEN_SDPI    | 120  | Small-scale DPI. |
+| SCREEN_MDPI    | 160  | Medium-scale DPI.  |
+| SCREEN_LDPI    | 240  | Large-scale DPI.  |
+| SCREEN_XLDPI   | 320  | Extra-large-scale DPI.  |
+| SCREEN_XXLDPI  | 480  | Extra-extra-large-scale DPI.  |
+| SCREEN_XXXLDPI | 640  | Extra-extra-extra-large-scale DPI.|
 
 
 ## ColorMode<sup>12+</sup>
@@ -305,7 +319,7 @@ type RawFileDescriptor = _RawFileDescriptor
 
 | Type   | Description  |
 | ------  | ---- | 
-|[_RawFileDescriptor](js-apis-rawFileDescriptor.md#rawfiledescriptor-1)|Descriptor of the HAP where the raw file is located.|
+|[_RawFileDescriptor](js-apis-rawFileDescriptor.md#rawfiledescriptor-1)|File descriptor (fd) of the HAP where the raw file is located.|
 
 ## Resource<sup>9+</sup>
 
@@ -317,19 +331,21 @@ type Resource = _Resource
 
 | Type   | Description  |
 | ------  | ---- | 
-|[_Resource](js-apis-resource.md#resource-1)|Resource information of an application.|
+|[_Resource](js-apis-resource.md#resource-1)|Resource information, including the resource ID, application package name, and module name. Generally, you can use **$r** to obtain the resource information.|
 
 ## ResourceManager
 
-Defines the capability of accessing application resources.
+Provides APIs for accessing application resources and system resources.
 
 > **NOTE**
 >
 > - The methods involved in **ResourceManager** are applicable only to the TypeScript-based declarative development paradigm.
 >
-> - Resource files are defined in the **resources** directory of the project. You can obtain the corresponding strings and string arrays based on the specified resource ID, resource name, or resource object. You can use `$r(resource address).id`, for example, `$r('app.string.test').id`, to obtain the resource ID.
+> - Resource files are defined in the **resources** directory of the project. You can obtain the corresponding resources, such as strings, string arrays, and colors, based on the specified resource ID, resource name, or resource object. You can use `$r(resource address).id`, for example, `$r('app.string.test').id`, to obtain the resource ID.
 >
-> - Use the resource object for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources. Therefore, it takes a longer time than using the resource ID or resource name.
+> - Use the [resource](#resource9) object for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources. Therefore, it takes a longer time than using the resource ID or resource name.
+>
+> - If the resources are in the same HAP, you are advised to use the API with **resId** or **resName** specified. If the resources are in different HAPs or HSPs, you are advised to use [createModuleContext](../apis-ability-kit/js-apis-app-ability-application.md#applicationcreatemodulecontext12) to create the context of the corresponding module and then call the API with **resId** or **resName** specified.
 >
 > - For details about intra-HAP and cross-HAP/HSP resource access modes, see [Resource Access](../../quick-start/resource-categories-and-access.md#resource-access).
 >
@@ -369,11 +385,24 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+  ```json
+  // Resource file path: src/main/resources/base/element/string.json
+  {
+    "string": [
+      {
+        "name": "test",
+        "value": "I'm a test string resource."
+      }
+    ]
+  }
+  ```
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    this.context.resourceManager.getStringSync($r('app.string.test').id);
+    let testStr = this.context.resourceManager.getStringSync($r('app.string.test').id);
+    console.log(`getStringSync, result: ${testStr}`);
+    // Print the output result: getStringSync, result: I'm a test string resource.
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -396,7 +425,7 @@ Obtains a string based on the specified resource ID and formats the string based
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
 | resId | number | Yes   | Resource ID.|
-| ...args | Array<string \| number> | No   | Arguments for formatting strings.<br>Supported value types include %d, %f, %s, %%, %number`$d`, %number`$f`, and %number`$s`.<br>Note: %% is escaped to %. %number`$d` indicates the sequence number of the parameter to be used.<br>For example, %%d is converted to a %d string after formatting, and %1`$d` indicates that the first parameter is used.|
+| ...args | Array<string \| number> | No| Arguments for formatting strings.<br>Supported value types include `%d`, `%f`, `%s`, `%%`, `%number$d`, `%number$f`, and `%number$s`.<br>Note: `%%` is converted to `%`. **number** in `%number$d` indicates the sequence number of the parameter in **args**.<br>For example, `%%d` is converted to `%d` after formatting, and `%1$d` indicates that the first parameter is used.|
 
 **Return value**
 
@@ -405,6 +434,7 @@ Obtains a string based on the specified resource ID and formats the string based
 | string | Formatted string corresponding to the specified resource ID.|
 
 **Error codes**
+
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
@@ -416,11 +446,24 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001007  | Failed to format the resource obtained based on the resource ID. |
 
 **Example**
+  ```json
+  // Resource file path: src/main/resources/base/element/string.json
+  {
+    "string": [
+      {
+        "name": "test",
+        "value": "I'm a %1$s, format int: %2$d, format float: %3$f."
+      }
+    ]
+  }
+  ```
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    this.context.resourceManager.getStringSync($r('app.string.test').id, "format string", 10, 98.78);
+    let testStr = this.context.resourceManager.getStringSync($r('app.string.test').id, "format string", 10, 98.78);
+    console.log(`getStringSync, result: ${testStr}`);
+    // Print the output result: getStringSync, result: I'm a format string, format int: 10, format float: 98.78.
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -464,8 +507,19 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+  ```json
+  // Resource file path: src/main/resources/base/element/string.json
+  {
+    "string": [
+      {
+        "name": "test",
+        "value": "I'm a test string resource."
+      }
+    ]
+  }
+  ```
   ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
@@ -474,7 +528,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
     id: $r('app.string.test').id
   };
   try {
-    this.context.resourceManager.getStringSync(resource);
+    let testStr = this.context.resourceManager.getStringSync(resource);
+    console.log(`getStringSync, result: ${testStr}`);
+    // Print the output result: getStringSync, result: I'm a test string resource.
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -499,7 +555,7 @@ Obtains a string based on the specified resource object and formats the string b
 | Name     | Type                    | Mandatory  | Description  |
 | -------- | ---------------------- | ---- | ---- |
 | resource | [Resource](#resource9) | Yes   | Resource object.|
-| ...args | Array<string \| number> | No   | Arguments for formatting strings.<br>Supported value types include %d, %f, %s, %%, %number`$d`, %number`$f`, and %number`$s`.<br>Note: %% is escaped to %. %number`$d` indicates the sequence number of the parameter to be used.<br>For example, %%d is converted to a %d string after formatting, and %1`$d` indicates that the first parameter is used.|
+| ...args | Array<string \| number> | No   | Arguments for formatting strings.<br>Supported value types include `%d`, `%f`, `%s`, `%%`, `%number$d`, `%number$f`, and `%number$s`.<br>Note: `%%` is converted to `%`. **number** in `%number$d` indicates the sequence number of the parameter in **args**.<br>For example, `%%d` is converted to `%d` after formatting, and `%1$d` indicates that the first parameter is used.|
 
 **Return value**
 
@@ -508,6 +564,7 @@ Obtains a string based on the specified resource object and formats the string b
 | string | Formatted string corresponding to the specified resource object.|
 
 **Error codes**
+
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
@@ -519,8 +576,19 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001007  | Failed to format the resource obtained based on the resource ID. |
 
 **Example**
+  ```json
+  // Resource file path: src/main/resources/base/element/string.json
+  {
+    "string": [
+      {
+        "name": "test",
+        "value": "I'm a %1$s, format int: %2$d, format float: %3$f."
+      }
+    ]
+  }
+  ```
   ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
@@ -529,7 +597,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
     id: $r('app.string.test').id
   };
   try {
-    this.context.resourceManager.getStringSync(resource, "format string", 10, 98.78);
+    let testStr = this.context.resourceManager.getStringSync(resource, "format string", 10, 98.78);
+    console.log(`getStringSync, result: ${testStr}`);
+    // Print the output result: getStringSync, result: I'm a format string, format int: 10, format float: 98.78.
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -571,11 +641,24 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+  ```json
+  // Resource file path: src/main/resources/base/element/string.json
+  {
+    "string": [
+      {
+        "name": "test",
+        "value": "I'm a test string resource."
+      }
+    ]
+  }
+  ```
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    this.context.resourceManager.getStringByNameSync("test");
+    let testStr = this.context.resourceManager.getStringByNameSync("test");
+    console.log(`getStringByNameSync, result: ${testStr}`);
+    // Print the output result: getStringByNameSync, result: I'm a test string resource.
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -587,7 +670,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getStringByNameSync(resName: string, ...args: Array<string | number>): string
 
-Obtains a string based on the specified resource name and formats the string based on **args**. This API returns the result synchronously.
+Obtains a string based on the specified resource ame and formats the string based on **args**. This API returns the result synchronously.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -598,7 +681,7 @@ Obtains a string based on the specified resource name and formats the string bas
 | Name    | Type    | Mandatory  | Description  |
 | ------- | ------ | ---- | ---- |
 | resName | string | Yes   | Resource name.|
-| ...args | Array<string \| number> | No   | Arguments for formatting strings.<br>Supported value types include %d, %f, %s, %%, %number`$d`, %number`$f`, and %number`$s`.<br>Note: %% is escaped to %. %number`$d` indicates the sequence number of the parameter to be used.<br>For example, %%d is converted to a %d string after formatting, and %1`$d` indicates that the first parameter is used.|
+| ...args | Array<string \| number> | No   | Arguments for formatting strings.<br>Supported value types include `%d`, `%f`, `%s`, `%%`, `%number$d`, `%number$f`, and `%number$s`.<br>Note: `%%` is converted to `%`. **number** in `%number$d` indicates the sequence number of the parameter in **args**.<br>For example, `%%d` is converted to `%d` after formatting, and `%1$d` indicates that the first parameter is used.|
 
 **Return value**
 
@@ -619,11 +702,24 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001008  | Failed to format the resource obtained based on the resource Name. |
 
 **Example**
+  ```json
+  // Resource file path: src/main/resources/base/element/string.json
+  {
+    "string": [
+      {
+        "name": "test",
+        "value": "I'm a %1$s, format int: %2$d, format float: %3$f."
+      }
+    ]
+  }
+  ```
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    this.context.resourceManager.getStringByNameSync("test", "format string", 10, 98.78);
+    let testStr = this.context.resourceManager.getStringByNameSync("test", "format string", 10, 98.78);
+    console.log(`getStringByNameSync, result: ${testStr}`);
+    // Print the output result: getStringByNameSync, result: I'm a format string, format int: 10, format float: 98.78.
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -646,7 +742,7 @@ Obtains a string based on the specified resource ID. This API uses an asynchrono
 | Name     | Type                         | Mandatory  | Description             |
 | -------- | --------------------------- | ---- | --------------- |
 | resId    | number                      | Yes   | Resource ID.          |
-| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | Yes   | Callback used to return the result, which is the string corresponding to the specified resource ID.|
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | Yes   | Callback used to return the obtained string.|
 
 **Error codes**
 
@@ -660,22 +756,28 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.         |
 
 **Example (stage)**
+  ```json
+  // Resource file path: src/main/resources/base/element/string.json
+  {
+    "string": [
+      {
+        "name": "test",
+        "value": "I'm a test string resource."
+      }
+    ]
+  }
+  ```
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  try {
-    this.context.resourceManager.getStringValue($r('app.string.test').id, (error: BusinessError, value: string) => {
-      if (error != null) {
-        console.error("error is " + error);
-      } else {
-        let str = value;
-      }
-    });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`callback getStringValue failed, error code: ${code}, message: ${message}.`);
-  }
+  this.context.resourceManager.getStringValue($r('app.string.test').id, (error: BusinessError, value: string) => {
+    if (error != null) {
+      console.error(`callback getStringValue failed, error code: ${error.code}, message: ${error.message}.`);
+    } else {
+      console.log(`getStringValue, result: ${value}`);
+      // Print the output result: getStringValue, result: I'm a test string resource.
+    }
+  });
   ```
 
 ### getStringValue<sup>9+</sup>
@@ -698,7 +800,7 @@ Obtains a string based on the specified resource ID. This API uses a promise to 
 
 | Type                   | Description         |
 | --------------------- | ----------- |
-| Promise&lt;string&gt; | Promise used to return the result, which is the string corresponding to the specified resource ID.|
+| Promise&lt;string&gt; | Promise used to return the obtained string.|
 
 **Error codes**
 
@@ -712,20 +814,26 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+  ```json
+  // Resource file path: src/main/resources/base/element/string.json
+  {
+    "string": [
+      {
+        "name": "test",
+        "value": "I'm a test string resource."
+      }
+    ]
+  }
+  ```
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  try {
-    this.context.resourceManager.getStringValue($r('app.string.test').id).then((value: string) => {
-      let str = value;
-    }).catch((error: BusinessError) => {
-      console.error("getStringValue promise error is " + error);
-    });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`promise getStringValue failed, error code: ${code}, message: ${message}.`);
-  }
+  this.context.resourceManager.getStringValue($r('app.string.test').id).then((value: string) => {
+    console.log(`getStringValue, result: ${value}`);
+    // Print the output result: getStringValue, result: I'm a test string resource.
+  }).catch((error: BusinessError) => {
+    console.error(`promise getStringValue failed, error code: ${error.code}, message: ${error.message}.`);
+  });
   ```
 
 ### getStringValue<sup>9+</sup>
@@ -745,11 +853,11 @@ Obtains a string based on the specified resource object. This API uses an asynch
 | Name     | Type                         | Mandatory  | Description             |
 | -------- | --------------------------- | ---- | --------------- |
 | resource | [Resource](#resource9)      | Yes   | Resource object.           |
-| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | Yes   | Callback used to return the result, which is the string corresponding to the specified resource ID.|
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | Yes   | Callback used to return the obtained string.|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -759,8 +867,19 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+  ```json
+  // Resource file path: src/main/resources/base/element/string.json
+  {
+    "string": [
+      {
+        "name": "test",
+        "value": "I'm a test string resource."
+      }
+    ]
+  }
+  ```
   ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
@@ -768,19 +887,14 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
     moduleName: "entry",
     id: $r('app.string.test').id
   };
-  try {
-    this.context.resourceManager.getStringValue(resource, (error: BusinessError, value: string) => {
-      if (error != null) {
-        console.error("error is " + error);
-      } else {
-        let str = value;
-      }
-    });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`callback getStringValue failed, error code: ${code}, message: ${message}.`);
-  }
+  this.context.resourceManager.getStringValue(resource, (error: BusinessError, value: string) => {
+    if (error != null) {
+      console.error(`callback getStringValue failed, error code: ${error.code}, message: ${error.message}.`);
+    } else {
+      console.log(`getStringValue, result: ${value}`);
+      // Print the output result: getStringValue, result: I'm a test string resource.
+    }
+  });
   ```
 
 ### getStringValue<sup>9+</sup>
@@ -805,11 +919,11 @@ Obtains a string based on the specified resource object. This API uses a promise
 
 | Type                   | Description              |
 | --------------------- | ---------------- |
-| Promise&lt;string&gt; | Promise used to return the result, which is the string corresponding to the specified resource object.|
+| Promise&lt;string&gt; | Promise used to return the obtained string.|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -820,7 +934,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
@@ -828,17 +942,14 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
     moduleName: "entry",
     id: $r('app.string.test').id
   };
-  try {
-    this.context.resourceManager.getStringValue(resource).then((value: string) => {
-      let str = value;
-    }).catch((error: BusinessError) => {
-      console.error("getStringValue promise error is " + error);
-    });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`promise getStringValue failed, error code: ${code}, message: ${message}.`);
-  }
+  this.context.resourceManager.getStringValue(resource, (error: BusinessError, value: string) => {
+    if (error != null) {
+      console.error(`callback getStringValue failed, error code: ${error.code}, message: ${error.message}.`);
+    } else {
+      console.log(`getStringValue, result: ${value}`);
+      // Print the output result: getStringValue, result: I'm a test string resource.
+    }
+  });
   ```
 
 ### getStringByName<sup>9+</sup>
@@ -856,9 +967,10 @@ Obtains a string based on the specified resource name. This API uses an asynchro
 | Name     | Type                         | Mandatory  | Description             |
 | -------- | --------------------------- | ---- | --------------- |
 | resName  | string                      | Yes   | Resource name.           |
-| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | Yes   |Callback used to return the result, which is the string corresponding to the specified resource ID.|
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | Yes   |Callback used to return the obtained string.|
 
 **Error codes**
+
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
@@ -869,22 +981,28 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+  ```json
+  // Resource file path: src/main/resources/base/element/string.json
+  {
+    "string": [
+      {
+        "name": "test",
+        "value": "I'm a test string resource."
+      }
+    ]
+  }
+  ```
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  try {
-    this.context.resourceManager.getStringByName("test", (error: BusinessError, value: string) => {
-      if (error != null) {
-        console.error("error is " + error);
-      } else {
-        let str = value;
-      }
-    });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`callback getStringByName failed, error code: ${code}, message: ${message}.`);
-  }
+  this.context.resourceManager.getStringByName("test", (error: BusinessError, value: string) => {
+    if (error != null) {
+      console.error(`callback getStringByName failed, error code: ${error.code}, message: ${error.message}.`);
+    } else {
+      console.log(`getStringByName, result: ${value}`);
+      // Print the output result: getStringByName, result: I'm a test string resource.
+    }
+  });
   ```
 
 ### getStringByName<sup>9+</sup>
@@ -907,7 +1025,7 @@ Obtains a string based on the specified resource name. This API uses a promise t
 
 | Type                   | Description        |
 | --------------------- | ---------- |
-| Promise&lt;string&gt; | Promise used to return the result, which is the string corresponding to the specified resource name.|
+| Promise&lt;string&gt; | Promise used to return the obtained string.|
 
 **Error codes**
 
@@ -921,20 +1039,26 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+  ```json
+  // Resource file path: src/main/resources/base/element/string.json
+  {
+    "string": [
+      {
+        "name": "test",
+        "value": "I'm a test string resource."
+      }
+    ]
+  }
+  ```
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  try {
-    this.context.resourceManager.getStringByName("test").then((value: string) => {
-      let str = value;
-    }).catch((error: BusinessError) => {
-      console.error("getStringByName promise error is " + error);
-    });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`promise getStringByName failed, error code: ${code}, message: ${message}.`);
-  }
+  this.context.resourceManager.getStringByName("test").then((value: string) => {
+    console.log(`getStringByName, result: ${value}`);
+    // Print the output result: getStringByName, result: I'm a test string resource.
+  }).catch((error: BusinessError) => {
+    console.error(`promise getStringByName failed, error code: ${error.code}, message: ${error.message}.`);
+  });
   ```
 
 ### getStringArrayValueSync<sup>10+</sup>
@@ -961,7 +1085,7 @@ Obtains a string array based on the specified resource ID. This API returns the 
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -971,11 +1095,28 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+  ```json
+  // Resource file path: src/main/resources/base/element/strarray.json
+  {
+    "strarray": [
+      {
+        "name": "test",
+        "value": [
+          {
+            "value": "I'm one of the array's values."
+          }
+        ]
+      }
+    ]
+  }
+  ```
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    this.context.resourceManager.getStringArrayValueSync($r('app.strarray.test').id);
+    let strArray: Array<string> = this.context.resourceManager.getStringArrayValueSync($r('app.strarray.test').id);
+    console.log(`getStringArrayValueSync, result: ${strArray[0]}`);
+    // Print the output result: getStringArrayValueSync, result: I'm one of the array's values.
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -1009,7 +1150,7 @@ Obtains a string array based on the specified resource object. This API returns 
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1019,8 +1160,23 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+  ```json
+  // Resource file path: src/main/resources/base/element/strarray.json
+  {
+    "strarray": [
+      {
+        "name": "test",
+        "value": [
+          {
+            "value": "I'm one of the array's values."
+          }
+        ]
+      }
+    ]
+  }
+  ```
   ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
@@ -1029,7 +1185,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
     id: $r('app.strarray.test').id
   };
   try {
-    this.context.resourceManager.getStringArrayValueSync(resource);
+    let strArray: Array<string> = this.context.resourceManager.getStringArrayValueSync(resource);
+    console.log(`getStringArrayValueSync, result: ${strArray[0]}`);
+    // Print the output result: getStringArrayValueSync, result: I'm one of the array's values.
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -1061,7 +1219,7 @@ Obtains a string array based on the specified resource name. This API returns th
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1071,9 +1229,28 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+  ```json
+  // Resource file path: src/main/resources/base/element/strarray.json
+  {
+    "strarray": [
+      {
+        "name": "test",
+        "value": [
+          {
+            "value": "I'm one of the array's values."
+          }
+        ]
+      }
+    ]
+  }
+  ```
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
   try {
-    this.context.resourceManager.getStringArrayByNameSync("test");
+    let strArray: Array<string> = this.context.resourceManager.getStringArrayByNameSync("test");
+    console.log(`getStringArrayByNameSync, result: ${strArray[0]}`);
+    // Print the output result: getStringArrayByNameSync, result: I'm one of the array's values.
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -1096,9 +1273,10 @@ Obtains a string array based on the specified resource ID. This API uses an asyn
 | Name     | Type                                      | Mandatory  | Description               |
 | -------- | ---------------------------------------- | ---- | ----------------- |
 | resId    | number                                   | Yes   | Resource ID.            |
-| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the result, which is the string array corresponding to the specified resource ID.|
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the obtained string array.|
 
 **Error codes**
+
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
@@ -1109,22 +1287,33 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+  ```json
+  // Resource file path: src/main/resources/base/element/strarray.json
+  {
+    "strarray": [
+      {
+        "name": "test",
+        "value": [
+          {
+            "value": "I'm one of the array's values."
+          }
+        ]
+      }
+    ]
+  }
+  ```
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  try {
-    this.context.resourceManager.getStringArrayValue($r('app.strarray.test').id, (error: BusinessError, value: Array<string>) => {
+  this.context.resourceManager.getStringArrayValue($r('app.strarray.test').id,
+    (error: BusinessError, value: Array<string>) => {
       if (error != null) {
-        console.error("error is " + error);
+        console.error(`callback getStringArrayValue failed, error code: ${error.code}, message: ${error.message}.`);
       } else {
-        let strArray = value;
+        console.log(`getStringArrayValue, result: ${value[0]}`);
+        // Print the output result: getStringArrayValue, result: I'm one of the array's values.
       }
     });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`callback getStringArrayValue failed, error code: ${code}, message: ${message}.`);
-  }
   ```
 
 ### getStringArrayValue<sup>9+</sup>
@@ -1147,9 +1336,10 @@ Obtains a string array based on the specified resource ID. This API uses a promi
 
 | Type                                | Description           |
 | ---------------------------------- | ------------- |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the result, which is the string array corresponding to the specified resource ID.|
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the obtained string array.|
 
 **Error codes**
+
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
@@ -1160,20 +1350,32 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+  ```json
+  // Resource file path: src/main/resources/base/element/strarray.json
+  {
+    "strarray": [
+      {
+        "name": "test",
+        "value": [
+          {
+            "value": "I'm one of the array's values."
+          }
+        ]
+      }
+    ]
+  }
+  ```
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  try {
-    this.context.resourceManager.getStringArrayValue($r('app.strarray.test').id).then((value: Array<string>) => {
-      let strArray = value;
-    }).catch((error: BusinessError) => {
-      console.error("getStringArrayValue promise error is " + error);
+  this.context.resourceManager.getStringArrayValue($r('app.strarray.test').id)
+    .then((value: Array<string>) => {
+      console.log(`getStringArrayValue, result: ${value[0]}`);
+      // Print the output result: getStringArrayValue, result: I'm one of the array's values.
+    })
+    .catch((error: BusinessError) => {
+      console.error(`promise getStringArrayValue failed, error code: ${error.code}, message: ${error.message}.`);
     });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`promise getStringArrayValue failed, error code: ${code}, message: ${message}.`);
-  }
   ```
 
 ### getStringArrayValue<sup>9+</sup>
@@ -1193,11 +1395,11 @@ Obtains a string array based on the specified resource object. This API uses an 
 | Name     | Type                                      | Mandatory  | Description               |
 | -------- | ---------------------------------------- | ---- | ----------------- |
 | resource | [Resource](#resource9)                   | Yes   | Resource object.             |
-| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the result, which is the string array corresponding to the specified resource ID.|
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the obtained string array.|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1207,8 +1409,23 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+  ```json
+  // Resource file path: src/main/resources/base/element/strarray.json
+  {
+    "strarray": [
+      {
+        "name": "test",
+        "value": [
+          {
+            "value": "I'm one of the array's values."
+          }
+        ]
+      }
+    ]
+  }
+  ```
   ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
@@ -1216,19 +1433,14 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
     moduleName: "entry",
     id: $r('app.strarray.test').id
   };
-  try {
-    this.context.resourceManager.getStringArrayValue(resource, (error: BusinessError, value: Array<string>) => {
-      if (error != null) {
-        console.error("error is " + error);
-      } else {
-        let strArray = value;
-      }
-    });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`callback getStringArrayValue failed, error code: ${code}, message: ${message}.`);
-  }
+  this.context.resourceManager.getStringArrayValue(resource, (error: BusinessError, value: Array<string>) => {
+    if (error != null) {
+      console.error(`callback getStringArrayValue failed, error code: ${error.code}, message: ${error.message}.`);
+    } else {
+      console.log(`getStringArrayValue, result: ${value[0]}`);
+      // Print the output result: getStringArrayValue, result: I'm one of the array's values.
+    }
+  });
   ```
 
 ### getStringArrayValue<sup>9+</sup>
@@ -1253,11 +1465,11 @@ Obtains a string array based on the specified resource object. This API uses a p
 
 | Type                                | Description                |
 | ---------------------------------- | ------------------ |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the result, which is the string array corresponding to the specified resource object.|
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the obtained string array.|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1267,8 +1479,23 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+  ```json
+  // Resource file path: src/main/resources/base/element/strarray.json
+  {
+    "strarray": [
+      {
+        "name": "test",
+        "value": [
+          {
+            "value": "I'm one of the array's values."
+          }
+        ]
+      }
+    ]
+  }
+  ```
   ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
@@ -1276,17 +1503,14 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
     moduleName: "entry",
     id: $r('app.strarray.test').id
   };
-  try {
-    this.context.resourceManager.getStringArrayValue(resource).then((value: Array<string>) => {
-      let strArray = value;
-    }).catch((error: BusinessError) => {
-      console.error("getStringArray promise error is " + error);
+  this.context.resourceManager.getStringArrayValue(resource)
+    .then((value: Array<string>) => {
+      console.log(`getStringArrayValue, result: ${value[0]}`);
+      // Print the output result: getStringArrayValue, result: I'm one of the array's values.
+    })
+    .catch((error: BusinessError) => {
+      console.error(`promise getStringArrayValue failed, error code: ${error.code}, message: ${error.message}.`);
     });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`promise getStringArrayValue failed, error code: ${code}, message: ${message}.`);
-  }
   ```
 
 ### getStringArrayByName<sup>9+</sup>
@@ -1304,7 +1528,7 @@ Obtains a string array based on the specified resource name. This API uses an as
 | Name     | Type                                      | Mandatory  | Description               |
 | -------- | ---------------------------------------- | ---- | ----------------- |
 | resName  | string                                   | Yes   | Resource name.             |
-| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the result, which is the string array corresponding to the specified resource ID.|
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the obtained string array.|
 
 **Error codes**
 
@@ -1318,22 +1542,33 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+  ```json
+  // Resource file path: src/main/resources/base/element/strarray.json
+  {
+    "strarray": [
+      {
+        "name": "test",
+        "value": [
+          {
+            "value": "I'm one of the array's values."
+          }
+        ]
+      }
+    ]
+  }
+  ```
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  try {
-    this.context.resourceManager.getStringArrayByName("test", (error: BusinessError, value: Array<string>) => {
-      if (error != null) {
-        console.error("error is " + error);
-      } else {
-        let strArray = value;
-      }
-    });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`callback getStringArrayByName failed, error code: ${code}, message: ${message}.`);
-  }
+  this.context.resourceManager.getStringArrayByName("test", (error: BusinessError, value: Array<string>) => {
+    if (error != null) {
+      console.error(`callback getStringArrayByName failed, error code: ${error.code}, message: ${error.message}.`);
+    } else {
+      let strArray = value;
+      console.log(`getStringArrayByName, result: ${value[0]}`);
+      // Print the output result: getStringArrayByName, result: I'm one of the array's values.
+    }
+  });
   ```
 
 ### getStringArrayByName<sup>9+</sup>
@@ -1356,7 +1591,7 @@ Obtains a string array based on the specified resource name. This API uses a pro
 
 | Type                                | Description          |
 | ---------------------------------- | ------------ |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the result, which is the string array corresponding to the specified resource name.|
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the obtained string array.|
 
 **Error codes**
 
@@ -1370,31 +1605,43 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+  ```json
+  // Resource file path: src/main/resources/base/element/strarray.json
+  {
+    "strarray": [
+      {
+        "name": "test",
+        "value": [
+          {
+            "value": "I'm one of the array's values."
+          }
+        ]
+      }
+    ]
+  }
+  ```
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  try {
-    this.context.resourceManager.getStringArrayByName("test").then((value: Array<string>) => {
-      let strArray = value;
-    }).catch((error: BusinessError) => {
-      console.error("getStringArrayByName promise error is " + error);
+  this.context.resourceManager.getStringArrayByName("test")
+    .then((value: Array<string>) => {
+      console.log(`getStringArrayByName, result: ${value[0]}`);
+      // Print the output result: getStringArrayByName, result: I'm one of the array's values.
+    })
+    .catch((error: BusinessError) => {
+      console.error(`promise getStringArrayByName failed, error code: ${error.code}, message: ${error.message}.`);
     });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`promise getStringArrayByName failed, error code: ${code}, message: ${message}.`);
-  }
   ```
 
 ### getIntPluralStringValueSync<sup>18+</sup>
 
-getIntPluralStringValueSync(resId: number, num: number, ...args: Array<string | number>): string;
+getIntPluralStringValueSync(resId: number, num: number, ...args: Array<string | number>): string
 
-Obtains singular/plural strings based on the specified resource ID.
+Obtains a [singular/plural](../../internationalization/l10n-singular-plural.md) string based on the specified resource ID and formats the string based on the **args** parameter. This API returns the result synchronously.
 
 > **NOTE**
 >
-> Singular/plural forms are available for English, but not Chinese.
+> Strings distinguish between singular and plural forms in all languages except Chinese. For details, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -1405,51 +1652,72 @@ Obtains singular/plural strings based on the specified resource ID.
 | Name | Type                   | Mandatory| Description                                                        |
 | ------- | ----------------------- | ---- | ------------------------------------------------------------ |
 | resId   | number                  | Yes  | Resource ID.                                                  |
-| num     | number                  | Yes  | Integer number used to obtain the corresponding string representation based on the current language's plural rules. For details about the plural rules of a language, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).|
-| ...args | Array<string \| number> | No  | Arguments for formatting strings.<br>Supported value types include %d, %f, %s, %%, %number`$d`, %number`$f`, and %number`$s`.<br>Note: %% is escaped to %. %number`$d` indicates the sequence number of the parameter to be used.<br>For example, %%d is converted to a %d string after formatting, and %1`$d` indicates that the first parameter is used.|
+| num     | number                  | Yes  | Integer number used to obtain the corresponding string representation based on the current language's [plural rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).|
+| ...args | Array<string \| number> | No  | Arguments for formatting strings.<br>Supported value types include `%d`, `%f`, `%s`, `%%`, `%number$d`, `%number$f`, and `%number$s`.<br>Note: `%%` is converted to `%`. **number** in `%number$d` indicates the sequence number of the parameter in **args**.<br>For example, `%%d` is converted to `%d` after formatting, and `%1$d` indicates that the first parameter is used.|
 
 **Return value**
 
 | Type  | Description                  |
 | ------ | ---------------------- |
-| string | Singular or plural string corresponding to the specified resource ID.|
+| string | Formatted string corresponding to the specified resource ID.|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types. |
 | 9001001  | Invalid resource ID.                                         |
 | 9001002  | No matching resource is found based on the resource ID.      |
 | 9001006  | The resource is referenced cyclically.                       |
 | 9001007  | Failed to format the resource obtained based on the resource ID. |
 
 **Example**
-
+  ```json
+  // Resource file path: src/main/resources/base/element/plural.json
+  {
+    "plural": [
+      {
+        "name": "format_test",
+        "value": [
+          {
+            "quantity": "one",
+            "value": "There is %d apple in the %s, the total amount is %f kg."
+          },
+          {
+            "quantity": "other",
+            "value": "There are %d apples in the %s, the total amount is %f kg."
+          }
+        ]
+      }
+    ]
+  }
+  ```
   ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
-try {
-    // If the value of num is 1, the value of quantity is one according to the language plural rules. Therefore, the string whose quantity is one is obtained from the $r ('app.plural.format_test') resource.
-	this.context.resourceManager.getIntPluralStringValueSync($r('app.plural.format_test').id, 1, 1, "aaa", 1.1);
-} catch (error) {
-	let code = (error as BusinessError).code;
-	let message = (error as BusinessError).message;
-	console.error(`getIntPluralStringValueSync failed, error code: ${code}, message: ${message}.`);
-}
+  try {
+    // If num is 1, the single/plural type is one in the English environment.
+    // The quantity field in the resource file indicates the single/plural type. Therefore, the string whose quantity is one is obtained.
+    let pluralStr = this.context.resourceManager.getIntPluralStringValueSync($r('app.plural.format_test').id, 1, 1, "basket", 0.3);
+    console.log(`getIntPluralStringValueSync, result: ${pluralStr}`);
+    // Print the output result: getIntPluralStringValueSync, result: There is 1 apple in the basket, the total amount is 0.3 kg.
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getIntPluralStringValueSync failed, error code: ${code}, message: ${message}.`);
+  }
   ```
 
 ### getIntPluralStringValueSync<sup>18+</sup>
 
-getIntPluralStringValueSync(resource: Resource, num: number, ...args: Array<string | number>): string;
+getIntPluralStringValueSync(resource: Resource, num: number, ...args: Array<string | number>): string
 
-Obtains singular/plural strings based on the specified resource object.
+Obtains a [singular/plural](../../internationalization/l10n-singular-plural.md) string based on the specified resource object and formats the string based on the **args** parameter. This API returns the result synchronously.
 
 > **NOTE**
 >
-> Singular/plural forms are available for English, but not Chinese.
+> Strings distinguish between singular and plural forms in all languages except Chinese. For details, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -1462,57 +1730,79 @@ Obtains singular/plural strings based on the specified resource object.
 | Name  | Type                   | Mandatory| Description                                                        |
 | -------- | ----------------------- | ---- | ------------------------------------------------------------ |
 | resource | [Resource](#resource9)  | Yes  | Resource object.                                                  |
-| num      | number                  | Yes  | Integer number used to obtain the corresponding string representation based on the current language's plural rules. For details about the plural rules of a language, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).|
-| ...args  | Array<string \| number> | No  | Arguments for formatting strings.<br>Supported value types include %d, %f, %s, %%, %number`$d`, %number`$f`, and %number`$s`.<br>Note: %% is escaped to %. %number`$d` indicates the sequence number of the parameter to be used.<br>For example, %%d is converted to a %d string after formatting, and %1`$d` indicates that the first parameter is used.|
+| num      | number                  | Yes  | Integer number used to obtain the corresponding string representation based on the current language's [plural rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).|
+| ...args  | Array<string \| number> | No  | Arguments for formatting strings.<br>Supported value types include `%d`, `%f`, `%s`, `%%`, `%number$d`, `%number$f`, and `%number$s`.<br>Note: `%%` is converted to `%`. **number** in `%number$d` indicates the sequence number of the parameter in **args**.<br>For example, `%%d` is converted to `%d` after formatting, and `%1$d` indicates that the first parameter is used.|
 
 **Return value**
 
 | Type  | Description                                |
 | ------ | ------------------------------------ |
-| string | Singular/plural string represented by the resource object.|
+| string | Formatted string corresponding to the specified resource object.|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types. |
 | 9001001  | Invalid resource ID.                                         |
 | 9001002  | No matching resource is found based on the resource ID.      |
 | 9001006  | The resource is referenced cyclically.                       |
 | 9001007  | Failed to format the resource obtained based on the resource ID. |
 
 **Example**
-
+  ```json
+  // Resource file path: src/main/resources/base/element/plural.json
+  {
+    "plural": [
+      {
+        "name": "format_test",
+        "value": [
+          {
+            "quantity": "one",
+            "value": "There is %d apple in the %s, the total amount is %f kg."
+          },
+          {
+            "quantity": "other",
+            "value": "There are %d apples in the %s, the total amount is %f kg."
+          }
+        ]
+      }
+    ]
+  }
+  ```
   ```ts
-import { resourceManager } from '@kit.LocalizationKit'
-import { BusinessError } from '@kit.BasicServicesKit';
+  import { resourceManager } from '@kit.LocalizationKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
-let resource: resourceManager.Resource = {
-	bundleName: "com.example.myapplication",
-	moduleName: "entry",
-	id: $r('app.plural.format_test').id
-};
-try {
-    // If the value of num is 1, the value of quantity is one according to the language plural rules. Therefore, the string whose quantity is one is obtained from the $r ('app.plural.format_test') resource.
-	this.context.resourceManager.getIntPluralStringValueSync(resource, 1, 1, "aaa", 1.1);
-} catch (error) {
-	let code = (error as BusinessError).code;
-	let message = (error as BusinessError).message;
-	console.error(`getIntPluralStringValueSync failed, error code: ${code}, message: ${message}.`);
-}
+  let resource: resourceManager.Resource = {
+    bundleName: "com.example.myapplication",
+    moduleName: "entry",
+    id: $r('app.plural.format_test').id
+  };
+
+  try {
+    // If num is 1, the single/plural type is one in the English environment.
+    // The quantity field in the resource file indicates the single/plural type. Therefore, the string whose quantity is one is obtained.
+    let pluralStr = this.context.resourceManager.getIntPluralStringValueSync(resource, 1, 1, "basket", 0.3);
+    console.log(`getIntPluralStringValueSync, result: ${pluralStr}`);
+    // Print the output result: getIntPluralStringValueSync, result: There is 1 apple in the basket, the total amount is 0.3 kg.
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getIntPluralStringValueSync failed, error code: ${code}, message: ${message}.`);
+  }
   ```
 
 ### getIntPluralStringByNameSync<sup>18+</sup>
 
-getIntPluralStringByNameSync(resName: string, num: number, ...args: Array<string | number>): string;
+getIntPluralStringByNameSync(resName: string, num: number, ...args: Array<string | number>): string
 
-Obtains singular/plural strings based on the specified resource name.
+Obtains a [singular/plural](../../internationalization/l10n-singular-plural.md) string based on the specified resource name and formats the string based on the **args** parameter. This API returns the result synchronously.
 
 > **NOTE**
 >
-> Singular/plural forms are available for English, but not Chinese.
+> Strings distinguish between singular and plural forms in all languages except Chinese. For details, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -1523,51 +1813,72 @@ Obtains singular/plural strings based on the specified resource name.
 | Name | Type                   | Mandatory| Description                                                        |
 | ------- | ----------------------- | ---- | ------------------------------------------------------------ |
 | resName | string                  | Yes  | Resource name.                                                  |
-| num     | number                  | Yes  | Integer number used to obtain the corresponding string representation based on the current language's plural rules. For details about the plural rules of a language, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).|
-| ...args | Array<string \| number> | No  | Arguments for formatting strings.<br>Supported value types include %d, %f, %s, %%, %number`$d`, %number`$f`, and %number`$s`.<br>Note: %% is escaped to %. %number`$d` indicates the sequence number of the parameter to be used.<br>For example, %%d is converted to a %d string after formatting, and %1`$d` indicates that the first parameter is used.|
+| num     | number                  | Yes  | Integer number used to obtain the corresponding string representation based on the current language's [plural rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).|
+| ...args | Array<string \| number> | No  | Arguments for formatting strings.<br>Supported value types include `%d`, `%f`, `%s`, `%%`, `%number$d`, `%number$f`, and `%number$s`.<br>Note: `%%` is converted to `%`. **number** in `%number$d` indicates the sequence number of the parameter in **args**.<br>For example, `%%d` is converted to `%d` after formatting, and `%1$d` indicates that the first parameter is used.|
 
 **Return value**
 
 | Type  | Description                                |
 | ------ | ------------------------------------ |
-| string | Singular/plural string represented by the resource name.|
+| string | Formatted string corresponding to the specified resource name.|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types. |
 | 9001003  | Invalid resource name.                                       |
 | 9001004  | No matching resource is found based on the resource name.    |
 | 9001006  | The resource is referenced cyclically.                       |
 | 9001008  | Failed to format the resource obtained based on the resource name. |
 
 **Example**
-
+  ```json
+  // Resource file path: src/main/resources/base/element/plural.json
+  {
+    "plural": [
+      {
+        "name": "format_test",
+        "value": [
+          {
+            "quantity": "one",
+            "value": "There is %d apple in the %s, the total amount is %f kg."
+          },
+          {
+            "quantity": "other",
+            "value": "There are %d apples in the %s, the total amount is %f kg."
+          }
+        ]
+      }
+    ]
+  }
+  ```
   ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
-try {
-    // If the value of num is 1, the value of quantity is one according to the language plural rules. Therefore, the string whose quantity is one is obtained from the $r ('app.plural.format_test') resource.
-	this.context.resourceManager.getIntPluralStringByNameSync("format_test", 1, 1, "aaa", 1.1);
-} catch (error) {
-	let code = (error as BusinessError).code;
+  try {
+    // If num is 1, the single/plural type is one in the English environment.
+    // The quantity field in the resource file indicates the single/plural type. Therefore, the string whose quantity is one is obtained.
+    let pluralStr = this.context.resourceManager.getIntPluralStringByNameSync("format_test", 1, 1, "basket", 0.3);
+    console.log(`getIntPluralStringByNameSync, result: ${pluralStr}`);
+    // Print the output result: getIntPluralStringByNameSync, result: There is 1 apple in the basket, the total amount is 0.3 kg.
+  } catch (error) {
+    let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
-	console.error(`getIntPluralStringByNameSync failed, error code: ${code}, message: ${message}.`);
-}
+    console.error(`getIntPluralStringByNameSync failed, error code: ${code}, message: ${message}.`);
+  }
   ```
 
 ### getDoublePluralStringValueSync<sup>18+</sup>
 
-getDoublePluralStringValueSync(resId: number, num: number, ...args: Array<string | number>): string;
+getDoublePluralStringValueSync(resId: number, num: number, ...args: Array<string | number>): string
 
-Obtains singular/plural strings based on the specified resource ID.
+Obtains a [singular/plural](../../internationalization/l10n-singular-plural.md) string based on the specified resource ID and formats the string based on the **args** parameter. This API returns the result synchronously.
 
 > **NOTE**
 >
-> Singular/plural forms are available for English, but not Chinese.
+> Strings distinguish between singular and plural forms in all languages except Chinese. For details, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -1578,51 +1889,72 @@ Obtains singular/plural strings based on the specified resource ID.
 | Name | Type                   | Mandatory| Description                                                        |
 | ------- | ----------------------- | ---- | ------------------------------------------------------------ |
 | resId   | number                  | Yes  | Resource ID.                                                  |
-| num     | number                  | Yes  | Quantity value (a floating point number), which is used to obtain the corresponding string representation based on the current language's plural rules. For details about the plural rules of a language, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).|
-| ...args | Array<string \| number> | No  | Arguments for formatting strings.<br>Supported value types include %d, %f, %s, %%, %number`$d`, %number`$f`, and %number`$s`.<br>Note: %% is escaped to %. %number`$d` indicates the sequence number of the parameter to be used.<br>For example, %%d is converted to a %d string after formatting, and %1`$d` indicates that the first parameter is used.|
+| num     | number                  | Yes  | Quantity value (a floating point number), used to obtain the corresponding string representation based on the current language's [plural rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).|
+| ...args | Array<string \| number> | No  | Arguments for formatting strings.<br>Supported value types include `%d`, `%f`, `%s`, `%%`, `%number$d`, `%number$f`, and `%number$s`.<br>Note: `%%` is converted to `%`. **number** in `%number$d` indicates the sequence number of the parameter in **args**.<br>For example, `%%d` is converted to `%d` after formatting, and `%1$d` indicates that the first parameter is used.|
 
 **Return value**
 
 | Type  | Description                            |
 | ------ | -------------------------------- |
-| string | Singular/plural string represented by the resource ID.|
+| string | Formatted string corresponding to the specified resource ID.|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types. |
 | 9001001  | Invalid resource ID.                                         |
 | 9001002  | No matching resource is found based on the resource ID.      |
 | 9001006  | The resource is referenced cyclically.                       |
 | 9001007  | Failed to format the resource obtained based on the resource ID. |
 
 **Example**
-
+  ```json
+  // Resource file path: src/main/resources/base/element/plural.json
+  {
+    "plural": [
+      {
+        "name": "format_test",
+        "value": [
+          {
+            "quantity": "one",
+            "value": "There is %d apple in the %s, the total amount is %f kg."
+          },
+          {
+            "quantity": "other",
+            "value": "There are %d apples in the %s, the total amount is %f kg."
+          }
+        ]
+      }
+    ]
+  }
+  ```
   ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
-try {
-    // If the value of num is 2.1, the value of quantity is other according to the language plural rules. Therefore, the string whose quantity is other is obtained from the $r('app.plural.format_test') resource.
-	this.context.resourceManager.getDoublePluralStringValueSync($r('app.plural.format_test').id, 2.1, 2, "aaa", 1.1);
-} catch (error) {
-	let code = (error as BusinessError).code;
-	let message = (error as BusinessError).message;
-	console.error(`getDoublePluralStringValueSync failed, error code: ${code}, message: ${message}.`);
-}
+  try {
+    // If num is 2.1, the single/plural type is other in the English environment.
+    // The quantity field in the resource file indicates the single/plural type. Therefore, the string whose quantity is other is obtained.
+    let pluralStr = this.context.resourceManager.getDoublePluralStringValueSync($r('app.plural.format_test').id, 2.1, 2, "basket", 0.6);
+    console.log(`getDoublePluralStringValueSync, result: ${pluralStr}`);
+    // Print the output result: getDoublePluralStringValueSync, result: There are 2 apples in the basket, the total amount is 0.6 kg.
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getDoublePluralStringValueSync failed, error code: ${code}, message: ${message}.`);
+  }
   ```
 
 ### getDoublePluralStringValueSync<sup>18+</sup>
 
-getDoublePluralStringValueSync(resource: Resource, num: number, ...args: Array<string | number>): string;
+getDoublePluralStringValueSync(resource: Resource, num: number, ...args: Array<string | number>): string
 
-Obtains singular/plural strings based on the specified resource object.
+Obtains a [singular/plural](../../internationalization/l10n-singular-plural.md) string based on the specified resource object and formats the string based on the **args** parameter. This API returns the result synchronously.
 
 > **NOTE**
 >
-> Singular/plural forms are available for English, but not Chinese.
+> Strings distinguish between singular and plural forms in all languages except Chinese. For details, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -1635,57 +1967,79 @@ Obtains singular/plural strings based on the specified resource object.
 | Name  | Type                   | Mandatory| Description                                                        |
 | -------- | ----------------------- | ---- | ------------------------------------------------------------ |
 | resource | [Resource](#resource9)  | Yes  | Resource object.                                                  |
-| num      | number                  | Yes  | Quantity value (a floating point number), which is used to obtain the corresponding string representation based on the current language's plural rules. For details about the plural rules of a language, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).|
-| ...args  | Array<string \| number> | No  | Arguments for formatting strings.<br>Supported value types include %d, %f, %s, %%, %number`$d`, %number`$f`, and %number`$s`.<br>Note: %% is escaped to %. %number`$d` indicates the sequence number of the parameter to be used.<br>For example, %%d is converted to a %d string after formatting, and %1`$d` indicates that the first parameter is used.|
+| num      | number                  | Yes  | Quantity value (a floating point number), used to obtain the corresponding string representation based on the current language's [plural rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).|
+| ...args  | Array<string \| number> | No  | Arguments for formatting strings.<br>Supported value types include `%d`, `%f`, `%s`, `%%`, `%number$d`, `%number$f`, and `%number$s`.<br>Note: `%%` is converted to `%`. **number** in `%number$d` indicates the sequence number of the parameter in **args**.<br>For example, `%%d` is converted to `%d` after formatting, and `%1$d` indicates that the first parameter is used.|
 
 **Return value**
 
 | Type  | Description                                    |
 | ------ | ---------------------------------------- |
-| string | Singular/plural string represented by the resource object.|
+| string | Formatted string corresponding to the specified resource object.|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types. |
 | 9001001  | Invalid resource ID.                                         |
 | 9001002  | No matching resource is found based on the resource ID.      |
 | 9001006  | The resource is referenced cyclically.                       |
 | 9001007  | Failed to format the resource obtained based on the resource ID. |
 
 **Example**
-
+  ```json
+  // Resource file path: src/main/resources/base/element/plural.json
+  {
+    "plural": [
+      {
+        "name": "format_test",
+        "value": [
+          {
+            "quantity": "one",
+            "value": "There is %d apple in the %s, the total amount is %f kg."
+          },
+          {
+            "quantity": "other",
+            "value": "There are %d apples in the %s, the total amount is %f kg."
+          }
+        ]
+      }
+    ]
+  }
+  ```
   ```ts
-import { resourceManager } from '@kit.LocalizationKit'
-import { BusinessError } from '@kit.BasicServicesKit';
+  import { resourceManager } from '@kit.LocalizationKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
-let resource: resourceManager.Resource = {
-	bundleName: "com.example.myapplication",
-	moduleName: "entry",
-	id: $r('app.plural.format_test').id
-};
-try {
-    // If the value of num is 2.1, the value of quantity is other according to the language plural rules. Therefore, the string whose quantity is other is obtained from the $r('app.plural.format_test') resource.
-	this.context.resourceManager.getDoublePluralStringValueSync(resource, 2.1, 2, "aaa", 1.1);
-} catch (error) {
-	let code = (error as BusinessError).code;
-	let message = (error as BusinessError).message;
-	console.error(`getDoublePluralStringValueSync failed, error code: ${code}, message: ${message}.`);
-}
+  let resource: resourceManager.Resource = {
+    bundleName: "com.example.myapplication",
+    moduleName: "entry",
+    id: $r('app.plural.format_test').id
+  };
+
+  try {
+    // If num is 2.1, the single/plural type is other in the English environment.
+    // The quantity field in the resource file indicates the single/plural type. Therefore, the string whose quantity is other is obtained.
+    let pluralStr = this.context.resourceManager.getDoublePluralStringValueSync(resource, 2.1, 2, "basket", 0.6);
+    console.log(`getDoublePluralStringValueSync, result: ${pluralStr}`);
+    // Print the output result: getIntPluralStringValueSync, result: There are 2 apples in the basket, the total amount is 0.6 kg.
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getDoublePluralStringValueSync failed, error code: ${code}, message: ${message}.`);
+  }
   ```
 
 ### getDoublePluralStringByNameSync<sup>18+</sup>
 
-getDoublePluralStringByNameSync(resName: string, num: number, ...args: Array<string | number>): string;
+getDoublePluralStringByNameSync(resName: string, num: number, ...args: Array<string | number>): string
 
-Obtains singular/plural strings based on the specified resource name.
+Obtains a [singular/plural](../../internationalization/l10n-singular-plural.md) string based on the specified resource name and formats the string based on the **args** parameter. This API returns the result synchronously.
 
 > **NOTE**
 >
-> Singular/plural forms are available for English, but not Chinese.
+> Strings distinguish between singular and plural forms in all languages except Chinese. For details, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -1696,47 +2050,68 @@ Obtains singular/plural strings based on the specified resource name.
 | Name | Type                   | Mandatory| Description                                                        |
 | ------- | ----------------------- | ---- | ------------------------------------------------------------ |
 | resName | string                  | Yes  | Resource name.                                                  |
-| num     | number                  | Yes  | Quantity value (a floating point number), which is used to obtain the corresponding string representation based on the current language's plural rules. For details about the plural rules of a language, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).|
-| ...args | Array<string \| number> | No  | Arguments for formatting strings.<br>Supported value types include %d, %f, %s, %%, %number`$d`, %number`$f`, and %number`$s`.<br>Note: %% is escaped to %. %number`$d` indicates the sequence number of the parameter to be used.<br>For example, %%d is converted to a %d string after formatting, and %1`$d` indicates that the first parameter is used.|
+| num     | number                  | Yes  | Quantity value (a floating point number), used to obtain the corresponding string representation based on the current language's [plural rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).|
+| ...args | Array<string \| number> | No  | Arguments for formatting strings.<br>Supported value types include `%d`, `%f`, `%s`, `%%`, `%number$d`, `%number$f`, and `%number$s`.<br>Note: `%%` is converted to `%`. **number** in `%number$d` indicates the sequence number of the parameter in **args**.<br>For example, `%%d` is converted to `%d` after formatting, and `%1$d` indicates that the first parameter is used.|
 
 **Return value**
 
 | Type  | Description                            |
 | ------ | -------------------------------- |
-| string | Singular/plural string represented by the resource name.|
+| string | Formatted string corresponding to the specified resource name.|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types. |
 | 9001003  | Invalid resource name.                                       |
 | 9001004  | No matching resource is found based on the resource name.    |
 | 9001006  | The resource is referenced cyclically.                       |
 | 9001008  | Failed to format the resource obtained based on the resource name. |
 
 **Example**
-
+  ```json
+  // Resource file path: src/main/resources/base/element/plural.json
+  {
+    "plural": [
+      {
+        "name": "format_test",
+        "value": [
+          {
+            "quantity": "one",
+            "value": "There is %d apple in the %s, the total amount is %f kg."
+          },
+          {
+            "quantity": "other",
+            "value": "There are %d apples in the %s, the total amount is %f kg."
+          }
+        ]
+      }
+    ]
+  }
+  ```
   ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
-try {
-    // If the value of num is 2.1, the value of quantity is other according to the language plural rules. Therefore, the string whose quantity is other is obtained from the $r('app.plural.format_test') resource.
-	this.context.resourceManager.getDoublePluralStringByNameSync("format_test", 2.1, 2, "aaa", 1.1);
-} catch (error) {
-	let code = (error as BusinessError).code;
-	let message = (error as BusinessError).message;
-	console.error(`getDoublePluralStringByNameSync failed, error code: ${code}, message: ${message}.`);
-}
+  try {
+    // If num is 2.1, the single/plural type is other in the English environment.
+    // The quantity field in the resource file indicates the single/plural type. Therefore, the string whose quantity is other is obtained.
+    let pluralStr = this.context.resourceManager.getDoublePluralStringByNameSync("format_test", 2.1, 2, "basket", 0.6);
+    console.log(`getDoublePluralStringByNameSync, result: ${pluralStr}`);
+    // Print the output result: getIntPluralStringValueSync, result: There are 2 apples in the basket, the total amount is 0.6 kg.
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getDoublePluralStringByNameSync failed, error code: ${code}, message: ${message}.`);
+  }
   ```
 
 ### getMediaContentSync<sup>10+</sup>
 
 getMediaContentSync(resId: number, density?: number): Uint8Array
 
-Obtains the content of a media file with the default or specified screen density based on the specified resource ID. This API returns the result synchronously.
+Obtains the media file content for the default or specified screen density based on the specified resource ID. This API returns the result synchronously.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1757,7 +2132,7 @@ Obtains the content of a media file with the default or specified screen density
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1790,7 +2165,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getMediaContentSync(resource: Resource, density?: number): Uint8Array
 
-Obtains the content of a media file with the default or specified screen density based on the specified resource object. This API returns the result synchronously.
+Obtains the media file content for the default or specified screen density based on the specified resource object. This API returns the result synchronously.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1813,7 +2188,7 @@ Obtains the content of a media file with the default or specified screen density
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1823,7 +2198,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
@@ -1852,7 +2227,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getMediaByNameSync(resName: string, density?: number): Uint8Array
 
-Obtains the content of a media file with the default or specified screen density based on the specified resource name. This API returns the result synchronously.
+Obtains the media file content for the default or specified screen density based on the specified resource name. This API returns the result synchronously.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1869,11 +2244,11 @@ Obtains the content of a media file with the default or specified screen density
 
 | Type                   | Description         |
 | --------------------- | ----------- |
-| Uint8Array | Content of the media file corresponding to the specified resource name.|
+| Uint8Array | Promise used to return the result, which is the content of the media file corresponding to the specified resource name.|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1906,7 +2281,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getMediaContent(resId: number, callback: _AsyncCallback&lt;Uint8Array&gt;): void
 
-Obtains the content of a media file based on the specified resource ID. This API uses an asynchronous callback to return the result.
+Obtains media file content based on the specified resource ID. This API uses an asynchronous callback to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1917,7 +2292,7 @@ Obtains the content of a media file based on the specified resource ID. This API
 | Name     | Type                             | Mandatory  | Description                |
 | -------- | ------------------------------- | ---- | ------------------ |
 | resId    | number                          | Yes   | Resource ID.             |
-| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the media file corresponding to the specified resource ID.|
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Uint8Array&gt; | Yes   | Callback used to return the media file content.|
 
 **Error codes**
 
@@ -1952,7 +2327,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getMediaContent(resId: number, density: number, callback: _AsyncCallback&lt;Uint8Array&gt;): void
 
-Obtains the content of a media file with the specified screen density based on the specified resource ID. This API uses an asynchronous callback to return the result.
+Obtains the media file content for the specified screen density based on the specified resource ID. This API uses an asynchronous callback to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1964,7 +2339,7 @@ Obtains the content of a media file with the specified screen density based on t
 | -------- | ------------------------------- | ---- | ------------------ |
 | resId    | number                          | Yes   | Resource ID.             |
 | [density](#screendensity)  | number                          | Yes   | Screen density. The value **0** indicates the default screen density.   |
-| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the media file corresponding to the specified resource ID.|
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Uint8Array&gt; | Yes   | Callback used to return the media file content.|
 
 **Error codes**
 
@@ -1999,7 +2374,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getMediaContent(resId: number): Promise&lt;Uint8Array&gt;
 
-Obtains the content of a media file based on the specified resource ID. This API uses a promise to return the result.
+Obtains media file content based on the specified resource ID. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2015,7 +2390,7 @@ Obtains the content of a media file based on the specified resource ID. This API
 
 | Type                       | Description            |
 | ------------------------- | -------------- |
-| Promise&lt;Uint8Array&gt; | Promise used to return the result, which is the content of the media file corresponding to the specified resource ID.|
+| Promise&lt;Uint8Array&gt; | Promise used to return the media file content.|
 
 **Error codes**
 
@@ -2048,7 +2423,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getMediaContent(resId: number, density: number): Promise&lt;Uint8Array&gt;
 
-Obtains the content of a media file with the specified screen density based on the specified resource ID. This API uses a promise to return the result.
+Obtains the media file content for the specified screen density based on the specified resource ID. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2065,11 +2440,11 @@ Obtains the content of a media file with the specified screen density based on t
 
 | Type                       | Description            |
 | ------------------------- | -------------- |
-| Promise&lt;Uint8Array&gt; | Promise used to return the result, which is the content of the media file corresponding to the specified resource ID.|
+| Promise&lt;Uint8Array&gt; | Promise used to return the media file content.|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -2098,7 +2473,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getMediaContent(resource: Resource, callback: _AsyncCallback&lt;Uint8Array&gt;): void
 
-Obtains the content of a media file based on the specified resource object. This API uses an asynchronous callback to return the result.
+Obtains media file content based on the specified resource object. This API uses an asynchronous callback to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2111,11 +2486,11 @@ Obtains the content of a media file based on the specified resource object. This
 | Name     | Type                             | Mandatory  | Description                |
 | -------- | ------------------------------- | ---- | ------------------ |
 | resource | [Resource](#resource9)          | Yes   | Resource object.              |
-| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the media file corresponding to the specified resource ID.|
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Uint8Array&gt; | Yes   | Callback used to return the media file content.|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -2125,7 +2500,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
@@ -2152,7 +2527,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getMediaContent(resource: Resource, density: number, callback: _AsyncCallback&lt;Uint8Array&gt;): void
 
-Obtains the content of a media file with the specified screen density based on the specified resource object. This API uses an asynchronous callback to return the result.
+Obtains media file content for the specified screen density based on the specified resource object. This API uses an asynchronous callback to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2166,11 +2541,11 @@ Obtains the content of a media file with the specified screen density based on t
 | -------- | ------------------------------- | ---- | ------------------ |
 | resource | [Resource](#resource9)          | Yes   | Resource object.              |
 | [density](#screendensity)  | number        | Yes   | Screen density. The value **0** indicates the default screen density.   |
-| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the media file corresponding to the specified resource ID.|
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Uint8Array&gt; | Yes   | Callback used to return the media file content.|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -2180,7 +2555,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
@@ -2207,7 +2582,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getMediaContent(resource: Resource): Promise&lt;Uint8Array&gt;
 
-Obtains the content of a media file based on the specified resource object. This API uses a promise to return the result.
+Obtains media file content based on the specified resource object. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2225,11 +2600,11 @@ Obtains the content of a media file based on the specified resource object. This
 
 | Type                       | Description                 |
 | ------------------------- | ------------------- |
-| Promise&lt;Uint8Array&gt; | Promise used to return the result, which is the content of the media file corresponding to the specified resource object.|
+| Promise&lt;Uint8Array&gt; | Promise used to return the media file content.|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -2239,7 +2614,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
@@ -2264,7 +2639,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getMediaContent(resource: Resource, density: number): Promise&lt;Uint8Array&gt;
 
-Obtains the content of a media file with the specified screen density based on the specified resource object. This API uses a promise to return the result.
+Obtains media file content for the specified screen density based on the specified resource object. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2283,11 +2658,11 @@ Obtains the content of a media file with the specified screen density based on t
 
 | Type                       | Description                 |
 | ------------------------- | ------------------- |
-| Promise&lt;Uint8Array&gt; | Promise used to return the result, which is the content of the media file corresponding to the specified resource object.|
+| Promise&lt;Uint8Array&gt; | Promise used to return the media file content.|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -2297,7 +2672,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
@@ -2322,7 +2697,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getMediaByName(resName: string, callback: _AsyncCallback&lt;Uint8Array&gt;): void
 
-Obtains the content of a media file based on the specified resource name. This API uses an asynchronous callback to return the result.
+Obtains media file content based on the specified resource name. This API uses an asynchronous callback to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2333,9 +2708,10 @@ Obtains the content of a media file based on the specified resource name. This A
 | Name     | Type                             | Mandatory  | Description                |
 | -------- | ------------------------------- | ---- | ------------------ |
 | resName  | string                          | Yes   | Resource name.              |
-| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the media file corresponding to the specified resource ID.|
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Uint8Array&gt; | Yes   | Callback used to return the media file content.|
 
 **Error codes**
+
 For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
@@ -2367,7 +2743,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getMediaByName(resName: string, density: number, callback: _AsyncCallback&lt;Uint8Array&gt;): void
 
-Obtains the content of a media file with the specified screen density based on the specified resource name. This API uses an asynchronous callback to return the result.
+Obtains the media file content for the specified screen density based on the specified resource name. This API uses an asynchronous callback to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2379,11 +2755,11 @@ Obtains the content of a media file with the specified screen density based on t
 | -------- | ------------------------------- | ---- | ------------------ |
 | resName  | string                          | Yes   | Resource name.              |
 | [density](#screendensity)  | number        | Yes   | Screen density. The value **0** indicates the default screen density.   |
-| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the media file corresponding to the specified resource ID.|
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Uint8Array&gt; | Yes   | Callback used to return the media file content.|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -2414,7 +2790,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getMediaByName(resName: string): Promise&lt;Uint8Array&gt;
 
-Obtains the content of a media file based on the specified resource name. This API uses a promise to return the result.
+Obtains media file content based on the specified resource name. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2430,7 +2806,7 @@ Obtains the content of a media file based on the specified resource name. This A
 
 | Type                       | Description           |
 | ------------------------- | ------------- |
-| Promise&lt;Uint8Array&gt; | Promise used to return the result, which is the content of the media file corresponding to the specified resource name.|
+| Promise&lt;Uint8Array&gt; | Promise used to return the media file content.|
 
 **Error codes**
 
@@ -2463,7 +2839,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getMediaByName(resName: string, density: number): Promise&lt;Uint8Array&gt;
 
-Obtains the content of a media file with the specified screen density based on the specified resource name. This API uses a promise to return the result.
+Obtains the media file content for the specified screen density based on the specified resource name. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2480,11 +2856,11 @@ Obtains the content of a media file with the specified screen density based on t
 
 | Type                       | Description           |
 | ------------------------- | ------------- |
-| Promise&lt;Uint8Array&gt; | Promise used to return the result, which is the content of the media file corresponding to the specified resource name.|
+| Promise&lt;Uint8Array&gt; | Promise used to return the media file content.|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -2513,7 +2889,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getMediaContentBase64Sync(resId: number, density?: number): string
 
-Obtains the Base64 code of an image with the default or specified screen density based on the specified resource ID. This API returns the result synchronously.
+Obtains an image's Base64 code for the default or specified screen density based on the specified resource ID. This API returns the result synchronously.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2530,11 +2906,11 @@ Obtains the Base64 code of an image with the default or specified screen density
 
 | Type                   | Description         |
 | -------- | ----------- |
-| string   | Base64 code of the image corresponding to the specified resource ID.|
+| string   | Base64 code of the image.|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -2567,7 +2943,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getMediaContentBase64Sync(resource: Resource, density?: number): string
 
-Obtains the Base64 code of an image with the default or specified screen density based on the specified resource object. This API returns the result synchronously.
+Obtains an image's Base64 code for the default or specified screen density based on the specified resource object. This API returns the result synchronously.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2586,11 +2962,11 @@ Obtains the Base64 code of an image with the default or specified screen density
 
 | Type                   | Description         |
 | --------------------- | ----------- |
-| string | Base64 code of the image corresponding to the specified resource object.|
+| string | Base64 code of the image.|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -2600,7 +2976,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
@@ -2629,7 +3005,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getMediaBase64ByNameSync(resName: string, density?: number): string
 
-Obtains the Base64 code of an image with the default or specified screen density based on the specified resource name. This API returns the result synchronously.
+Obtains an image's Base64 code for the default or specified screen density based on the specified resource name. This API returns the result synchronously.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2646,11 +3022,11 @@ Obtains the Base64 code of an image with the default or specified screen density
 
 | Type                   | Description         |
 | --------------------- | ----------- |
-| string | Base64 code of the image corresponding to the specified resource name.|
+| string | Base64 code of the image.|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -2683,7 +3059,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getMediaContentBase64(resId: number, callback: _AsyncCallback&lt;string&gt;): void
 
-Obtains the Base64 code of an image based on the specified resource ID. This API uses an asynchronous callback to return the result.
+Obtains an image's Base64 code based on the specified resource ID. This API uses an asynchronous callback to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2694,7 +3070,7 @@ Obtains the Base64 code of an image based on the specified resource ID. This API
 | Name     | Type                         | Mandatory  | Description                      |
 | -------- | --------------------------- | ---- | ------------------------ |
 | resId    | number                      | Yes   | Resource ID.                   |
-| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | Yes   | Callback used to return the result, which is the Base64 code of the image corresponding to the specified resource ID.|
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | Yes   | Callback used to return the Base64 code of the image.|
 
 **Error codes**
 
@@ -2729,7 +3105,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getMediaContentBase64(resId: number, density: number, callback: _AsyncCallback&lt;string&gt;): void
 
-Obtains the Base64 code of an image with the specified screen density based on the specified resource ID. This API uses an asynchronous callback to return the result.
+Obtains an image's Base64 code for the specified screen density based on the specified resource ID. This API uses an asynchronous callback to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2741,11 +3117,11 @@ Obtains the Base64 code of an image with the specified screen density based on t
 | -------- | --------------------------- | ---- | ------------------------ |
 | resId    | number                      | Yes   | Resource ID.                   |
 | [density](#screendensity)  | number        | Yes   | Screen density. The value **0** indicates the default screen density.   |
-| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | Yes   | Callback used to return the result, which is the Base64 code of the image corresponding to the specified resource ID.|
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | Yes   | Callback used to return the Base64 code of the image.|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -2776,7 +3152,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getMediaContentBase64(resId: number): Promise&lt;string&gt;
 
-Obtains the Base64 code of an image based on the specified resource ID. This API uses a promise to return the result.
+Obtains an image's Base64 code based on the specified resource ID. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2792,7 +3168,7 @@ Obtains the Base64 code of an image based on the specified resource ID. This API
 
 | Type                   | Description                  |
 | --------------------- | -------------------- |
-| Promise&lt;string&gt; | Promise used to return the result, which is the Base64 code of the image corresponding to the specified resource ID.|
+| Promise&lt;string&gt; | Promise used to return the Base64 code of the image.|
 
 **Error codes**
 
@@ -2825,7 +3201,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getMediaContentBase64(resId: number, density: number): Promise&lt;string&gt;
 
-Obtains the Base64 code of an image with the specified screen density based on the specified resource ID. This API uses a promise to return the result.
+Obtains an image's Base64 code for the specified screen density based on the specified resource ID. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2842,11 +3218,11 @@ Obtains the Base64 code of an image with the specified screen density based on t
 
 | Type                   | Description                  |
 | --------------------- | -------------------- |
-| Promise&lt;string&gt; | Promise used to return the result, which is the Base64 code of the image corresponding to the specified resource ID.|
+| Promise&lt;string&gt; | Promise used to return the Base64 code of the image.|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -2875,7 +3251,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getMediaContentBase64(resource: Resource, callback: _AsyncCallback&lt;string&gt;): void
 
-Obtains the Base64 code of an image based on the specified resource object. This API uses an asynchronous callback to return the result.
+Obtains an image's Base64 code based on the specified resource object. This API uses an asynchronous callback to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2888,11 +3264,11 @@ Obtains the Base64 code of an image based on the specified resource object. This
 | Name     | Type                         | Mandatory  | Description                      |
 | -------- | --------------------------- | ---- | ------------------------ |
 | resource | [Resource](#resource9)      | Yes   | Resource object.                    |
-| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | Yes   | Callback used to return the result, which is the Base64 code of the image corresponding to the specified resource ID.|
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | Yes   | Callback used to return the Base64 code of the image.|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -2902,7 +3278,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
@@ -2929,7 +3305,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getMediaContentBase64(resource: Resource, density: number, callback: _AsyncCallback&lt;string&gt;): void
 
-Obtains the Base64 code of an image with the specified screen density based on the specified resource object. This API uses an asynchronous callback to return the result.
+Obtains an image's Base64 code for the specified screen density based on the specified resource object. This API uses an asynchronous callback to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2943,11 +3319,11 @@ Obtains the Base64 code of an image with the specified screen density based on t
 | -------- | --------------------------- | ---- | ------------------------ |
 | resource | [Resource](#resource9)      | Yes   | Resource object.                    |
 | [density](#screendensity)  | number        | Yes   | Screen density. The value **0** indicates the default screen density.   |
-| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | Yes   | Callback used to return the result, which is the Base64 code of the image corresponding to the specified resource ID.|
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | Yes   | Callback used to return the Base64 code of the image.|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -2957,7 +3333,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
@@ -2984,7 +3360,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getMediaContentBase64(resource: Resource): Promise&lt;string&gt;
 
-Obtains the Base64 code of an image based on the specified resource object. This API uses a promise to return the result.
+Obtains an image's Base64 code based on the specified resource object. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -3002,11 +3378,11 @@ Obtains the Base64 code of an image based on the specified resource object. This
 
 | Type                   | Description                       |
 | --------------------- | ------------------------- |
-| Promise&lt;string&gt; | Promise used to return the result, which is the Base64 code of the image corresponding to the specified resource object.|
+| Promise&lt;string&gt; | Promise used to return the Base64 code of the image.|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -3016,7 +3392,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
@@ -3041,7 +3417,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getMediaContentBase64(resource: Resource, density: number): Promise&lt;string&gt;
 
-Obtains the Base64 code of an image with the specified screen density based on the specified resource object. This API uses a promise to return the result.
+Obtains an image's Base64 code for the specified screen density based on the specified resource object. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -3060,11 +3436,11 @@ Obtains the Base64 code of an image with the specified screen density based on t
 
 | Type                   | Description                       |
 | --------------------- | ------------------------- |
-| Promise&lt;string&gt; | Promise used to return the result, which is the Base64 code of the image corresponding to the specified resource object.|
+| Promise&lt;string&gt; | Promise used to return the Base64 code of the image.|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -3074,7 +3450,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
@@ -3099,7 +3475,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getMediaBase64ByName(resName: string, callback: _AsyncCallback&lt;string&gt;): void
 
-Obtains the Base64 code of an image based on the specified resource name. This API uses an asynchronous callback to return the result.
+Obtains an image's Base64 code based on the specified resource name. This API uses an asynchronous callback to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -3110,7 +3486,7 @@ Obtains the Base64 code of an image based on the specified resource name. This A
 | Name     | Type                         | Mandatory  | Description                      |
 | -------- | --------------------------- | ---- | ------------------------ |
 | resName  | string                      | Yes   | Resource name.                    |
-| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | Yes   | Callback used to return the result, which is the Base64 code of the image corresponding to the specified resource ID.|
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | Yes   | Callback used to return the Base64 code of the image.|
 
 **Error codes**
 
@@ -3145,7 +3521,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getMediaBase64ByName(resName: string, density: number, callback: _AsyncCallback&lt;string&gt;): void
 
-Obtains the Base64 code of an image with the specified screen density based on the specified resource name. This API uses an asynchronous callback to return the result.
+Obtains an image's Base64 code for the specified screen density based on the specified resource name. This API uses an asynchronous callback to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -3157,11 +3533,11 @@ Obtains the Base64 code of an image with the specified screen density based on t
 | -------- | --------------------------- | ---- | ------------------------ |
 | resName  | string                      | Yes   | Resource name.                    |
 | [density](#screendensity)  | number        | Yes   | Screen density. The value **0** indicates the default screen density.   |
-| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | Yes   | Callback used to return the result, which is the Base64 code of the image corresponding to the specified resource ID.|
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | Yes   | Callback used to return the Base64 code of the image.|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -3192,7 +3568,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getMediaBase64ByName(resName: string): Promise&lt;string&gt;
 
-Obtains the Base64 code of an image based on the specified resource name. This API uses a promise to return the result.
+Obtains an image's Base64 code based on the specified resource name. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -3208,7 +3584,7 @@ Obtains the Base64 code of an image based on the specified resource name. This A
 
 | Type                   | Description                 |
 | --------------------- | ------------------- |
-| Promise&lt;string&gt; | Promise used to return the result, which is the Base64 code of the image corresponding to the specified resource name.|
+| Promise&lt;string&gt; | Promise used to return the Base64 code of the image.|
 
 **Error codes**
 
@@ -3241,7 +3617,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getMediaBase64ByName(resName: string, density: number): Promise&lt;string&gt;
 
-Obtains the Base64 code of an image with the specified screen density based on the specified resource name. This API uses a promise to return the result.
+Obtains an image's Base64 code for the specified screen density based on the specified resource name. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -3258,11 +3634,11 @@ Obtains the Base64 code of an image with the specified screen density based on t
 
 | Type                   | Description                 |
 | --------------------- | ------------------- |
-| Promise&lt;string&gt; | Promise used to return the result, which is the Base64 code of the image corresponding to the specified resource name.|
+| Promise&lt;string&gt; | Promise used to return the Base64 code of the image.|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -3303,7 +3679,7 @@ Obtains a **DrawableDescriptor** object for icon display based on the specified 
 | ----- | ------ | ---- | ----- |
 | resId | number | Yes   | Resource ID.|
 | [density](#screendensity) | number | No   | Screen density. The default value or value **0** indicates the default screen density.|
-| type<sup>11+</sup> | number | No   | Resource type. The value **1** indicates the layered icon resource of the application in the theme resource package, and the value **0** or the default value indicates the icon resource of the application.|
+| type<sup>11+</sup> | number | No   | - **1**: Layered icon resource of the application in the theme resource package.<br> - **0** or default value: Icon resource of the application.|
 
 **Return value**
 
@@ -3367,7 +3743,7 @@ Obtains a **DrawableDescriptor** object for icon display based on the specified 
 | -------- | ---------------------- | ---- | ---- |
 | resource | [Resource](#resource9) | Yes   | Resource object.|
 | [density](#screendensity) | number | No   | Screen density. The default value or value **0** indicates the default screen density.|
-| type<sup>11+</sup> | number | No   | Resource type. The value **1** indicates the layered icon resource of the application in the theme resource package, and the value **0** or the default value indicates the icon resource of the application.|
+| type<sup>11+</sup> | number | No   | - **1**: Layered icon resource of the application in the theme resource package.<br> - **0** or default value: Icon resource of the application.|
 
 **Return value**
 
@@ -3387,7 +3763,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
   import { DrawableDescriptor } from '@kit.ArkUI';
 
@@ -3435,13 +3811,13 @@ Obtains a **DrawableDescriptor** object for icon display based on the specified 
 | ------- | ------ | ---- | ---- |
 | resName | string | Yes   | Resource name.|
 | [density](#screendensity) | number | No   | Screen density. The default value or value **0** indicates the default screen density.|
-| type<sup>11+</sup> | number | No   | Resource type. The value **1** indicates the layered icon resource of the application in the theme resource package, and the value **0** or the default value indicates the icon resource of the application.|
+| type<sup>11+</sup> | number | No   | - **1**: Layered icon resource of the application in the theme resource package.<br> - **0** or default value: Icon resource of the application.|
 
 **Return value**
 
 | Type    | Description       |
 | ------ | --------- |
-| [DrawableDescriptor](../apis-arkui/js-apis-arkui-drawableDescriptor.md#drawabledescriptor) | **DrawableDescriptor** object corresponding to the specified resource ID.|
+| [DrawableDescriptor](../apis-arkui/js-apis-arkui-drawableDescriptor.md#drawabledescriptor) | **DrawableDescriptor** object.|
 
 **Error codes**
 
@@ -3485,7 +3861,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getBoolean(resId: number): boolean
 
-Obtains a Boolean result based on the specified resource ID. This API returns the result synchronously.
+Obtains a Boolean value based on the specified resource ID. This API returns the result synchronously.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -3501,7 +3877,7 @@ Obtains a Boolean result based on the specified resource ID. This API returns th
 
 | Type     | Description          |
 | ------- | ------------ |
-| boolean | Boolean result corresponding to the specified resource ID.|
+| boolean | Boolean value.|
 
 **Error codes**
 
@@ -3515,11 +3891,24 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+  ```json
+  // Resource file path: src/main/resources/base/element/boolean.json
+  {
+    "boolean": [
+      {
+        "name": "boolean_test",
+        "value": true
+      }
+    ]
+  }
+  ```
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    this.context.resourceManager.getBoolean($r('app.boolean.boolean_test').id);
+    let boolTest = this.context.resourceManager.getBoolean($r('app.boolean.boolean_test').id);
+    console.log(`getBoolean, result: ${boolTest}`);
+    // Print the output result: getBoolean, result: true
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -3530,7 +3919,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getBoolean(resource: Resource): boolean
 
-Obtains a Boolean result based on the specified resource object. This API returns the result synchronously.
+Obtains a Boolean value based on the specified resource object. This API returns the result synchronously.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -3548,7 +3937,7 @@ Obtains a Boolean result based on the specified resource object. This API return
 
 | Type     | Description               |
 | ------- | ----------------- |
-| boolean | Boolean result corresponding to the specified resource object.|
+| boolean | Boolean value.|
 
 **Error codes**
 
@@ -3562,8 +3951,19 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+  ```json
+  // Resource file path: src/main/resources/base/element/boolean.json
+  {
+    "boolean": [
+      {
+        "name": "boolean_test",
+        "value": true
+      }
+    ]
+  }
+  ```
   ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
@@ -3572,7 +3972,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
     id: $r('app.boolean.boolean_test').id
   };
   try {
-    this.context.resourceManager.getBoolean(resource);
+    let boolTest = this.context.resourceManager.getBoolean(resource);
+    console.log(`getBoolean, result: ${boolTest}`);
+    // Print the output result: getBoolean, result: true
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -3584,7 +3986,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getBooleanByName(resName: string): boolean
 
-Obtains a Boolean result based on the specified resource name. This API returns the result synchronously.
+Obtains a Boolean value based on the specified resource name. This API returns the result synchronously.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -3600,7 +4002,7 @@ Obtains a Boolean result based on the specified resource name. This API returns 
 
 | Type     | Description         |
 | ------- | ----------- |
-| boolean | Boolean result corresponding to the specified resource name.|
+| boolean | Boolean value.|
 
 **Error codes**
 
@@ -3614,11 +4016,24 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+  ```json
+  // Resource file path: src/main/resources/base/element/boolean.json
+  {
+    "boolean": [
+      {
+        "name": "boolean_test",
+        "value": true
+      }
+    ]
+  }
+  ```
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    this.context.resourceManager.getBooleanByName("boolean_test");
+    let boolTest = this.context.resourceManager.getBooleanByName("boolean_test");
+    console.log(`getBooleanByName, result: ${boolTest}`);
+    // Print the output result: getBooleanByName, result: true
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -3630,7 +4045,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getNumber(resId: number): number
 
-Obtains an integer or float value based on the specified resource ID. This API returns the result synchronously.
+Obtains an integer or float number based on the specified resource ID. This API returns the result synchronously.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -3646,7 +4061,7 @@ Obtains an integer or float value based on the specified resource ID. This API r
 
 | Type    | Description        |
 | ------ | ---------- | 
-| number | Integer or float value corresponding to the specified resource ID. An integer indicates the original value, and a float number indicates the actual pixel value. For details, see the sample code.|
+| number | Integer or float number.<br>An integer indicates the original value, and a float number without a unit indicates the original value and a float number with the unit of vp or fp indicates the px value. For details, see the sample code.|
 
 **Error codes**
 
@@ -3660,11 +4075,38 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+  ```json
+  // Resource file path: src/main/resources/base/element/integer.json
+  {
+    "integer": [
+      {
+        "name": "integer_test",
+        "value": 100
+      }
+    ]
+  }
+  ```
+
+  ```json
+  // Resource file path: src/main/resources/base/element/float.json
+  {
+    "float": [
+      {
+        "name": "float_test",
+        "value": "30.6vp"
+      }
+    ]
+  }
+  ```
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { display } from '@kit.ArkUI';
 
   try {
-    this.context.resourceManager.getNumber($r('app.integer.integer_test').id); // integer refers to the original value.
+    // An integer refers to the original value.
+    let intValue = this.context.resourceManager.getNumber($r('app.integer.integer_test').id);
+    console.log(`getNumber, int value: ${intValue}`);
+    // Print the output result: getNumber, int value: 100
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -3672,7 +4114,10 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   }
 
   try {
-    this.context.resourceManager.getNumber($r('app.float.float_test').id); // float refers to the actual pixel value.
+    // A float number without a unit indicates the original value, and a float number with the unit of vp or fp indicates the px value (float number with the unit of vp or fp = original value x densityPixels).
+    let floatValue = this.context.resourceManager.getNumber($r('app.float.float_test').id);
+    console.log(`getNumber, densityPixels: ${display.getDefaultDisplaySync().densityPixels}, float value: ${floatValue}`);
+    // Print the output result: getNumber, densityPixels: 3.25, float value: 99.45000457763672
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -3684,11 +4129,11 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getNumber(resource: Resource): number
 
-Obtains an integer or float value based on the specified resource object. This API returns the result synchronously.
+Obtains an integer or float number based on the specified resource object. This API returns the result synchronously.
 
 > **NOTE**
 >
-> If this API is used to obtain the float value whose unit is vp, the value obtained through **resId** is different from that obtained through **resource**. In this case, the value obtained through **resId** is correct. This issue will be rectified in future versions.
+> If this API is used to obtain the float number whose unit is vp, the value obtained is different from that obtained through **resId**. In this case, the value obtained through **resId** is correct. This issue will be rectified in future versions. You are advised to use [getNumber](#getnumber9) or [getNumberByName](#getnumberbyname9).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -3706,7 +4151,7 @@ Obtains an integer or float value based on the specified resource object. This A
 
 | Type    | Description             |
 | ------ | --------------- |
-| number | Integer or float value corresponding to the specified resource name.<br>An integer indicates the original value, and a float number without a unit indicates the original value and a float number with the unit of vp or fp indicates the px value.|
+| number | Integer or float number.<br>An integer indicates the original value, and a float number without a unit indicates the original value and a float number with the unit of vp or fp indicates the px value.|
 
 **Error codes**
 
@@ -3720,17 +4165,63 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+  ```json
+  // Resource file path: src/main/resources/base/element/integer.json
+  {
+    "integer": [
+      {
+        "name": "integer_test",
+        "value": 100
+      }
+    ]
+  }
+  ```
+
+  ```json
+  // Resource file path: src/main/resources/base/element/float.json
+  {
+    "float": [
+      {
+        "name": "float_test",
+        "value": "30.6vp"
+      }
+    ]
+  }
+  ```
   ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { display } from '@kit.ArkUI';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
     moduleName: "entry",
     id: $r('app.integer.integer_test').id
   };
+
   try {
-    this.context.resourceManager.getNumber(resource);
+    let intValue = this.context.resourceManager.getNumber(resource);
+    // integer refers to the original value.
+    console.log(`getNumber, int value: ${intValue}`);
+    // Print the output result: getNumber, int value: 100
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getNumber failed, error code: ${code}, message: ${message}.`);
+  }
+
+  let resource2: resourceManager.Resource = {
+    bundleName: "com.example.myapplication",
+    moduleName: "entry",
+    id: $r('app.float.float_test').id
+  };
+
+  try {
+    // A float number without a unit indicates the original value, and a float number with the unit of vp or fp indicates the px value (float number with the unit of vp or fp = original value x densityPixels).
+    // If this API is used to obtain the float value whose unit is vp, the value obtained through resId is different from that obtained through resource. In this case, the value obtained through resId is correct. This issue will be rectified in future versions.
+    let floatValue = this.context.resourceManager.getNumber(resource2);
+    console.log(`getNumber, densityPixels: ${display.getDefaultDisplaySync().densityPixels}, float value: ${floatValue}`);
+    // Print the output result: getNumber, densityPixels: 3.25, float value: 30.600000381469727
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -3742,7 +4233,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getNumberByName(resName: string): number
 
-Obtains an integer or float value based on the specified resource name. This API returns the result synchronously.
+Obtains an integer or float number based on the specified resource name. This API returns the result synchronously.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -3758,7 +4249,7 @@ Obtains an integer or float value based on the specified resource name. This API
 
 | Type    | Description       |
 | ------ | --------- |
-| number | Integer or float value corresponding to the specified resource name.<br>An integer indicates the original value, and a float number without a unit indicates the original value and a float number with the unit of vp or fp indicates the px value.|
+| number | Integer or float number.<br>An integer indicates the original value, and a float number without a unit indicates the original value and a float number with the unit of vp or fp indicates the px value.|
 
 **Error codes**
 
@@ -3772,11 +4263,38 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+  ```json
+  // Resource file path: src/main/resources/base/element/integer.json
+  {
+    "integer": [
+      {
+        "name": "integer_test",
+        "value": 100
+      }
+    ]
+  }
+  ```
+
+  ```json
+  // Resource file path: src/main/resources/base/element/float.json
+  {
+    "float": [
+      {
+        "name": "float_test",
+        "value": "30.6vp"
+      }
+    ]
+  }
+  ```
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { display } from '@kit.ArkUI';
 
   try {
-    this.context.resourceManager.getNumberByName("integer_test");
+    // integer refers to the original value.
+    let intValue = this.context.resourceManager.getNumberByName("integer_test");
+    console.log(`getNumberByName, int value: ${intValue}`);
+    // Print the output result: getNumberByName, int value: 100
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -3784,7 +4302,10 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   }
 
   try {
-    this.context.resourceManager.getNumberByName("float_test");
+    // A float number without a unit indicates the original value, and a float number with the unit of vp or fp indicates the px value (float number with the unit of vp or fp = original value x densityPixels).
+    let floatValue = this.context.resourceManager.getNumberByName("float_test");
+    console.log(`getNumberByName, densityPixels: ${display.getDefaultDisplaySync().densityPixels}, float value: ${floatValue}`);
+    // Print the output result: getNumberByName, densityPixels: 3.25, float value: 99.45000457763672
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -3794,7 +4315,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 ### getColorSync<sup>10+</sup>
 
-getColorSync(resId: number) : number;
+getColorSync(resId: number) : number
 
 Obtains a color value based on the specified resource ID. This API returns the result synchronously.
 
@@ -3816,7 +4337,7 @@ Obtains a color value based on the specified resource ID. This API returns the r
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -3826,11 +4347,24 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+  ```json
+  // Resource file path: src/main/resources/base/element/color.json
+  {
+    "color": [
+      {
+        "name": "test",
+        "value": "#FFFFFF"
+      }
+    ]
+  }
+  ```
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    this.context.resourceManager.getColorSync($r('app.color.test').id);
+    let colorValue = this.context.resourceManager.getColorSync($r('app.color.test').id);
+    console.log(`getColorSync, result: ${colorValue}`);
+    // Print the output result: getColorSync, result: 4294967295
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -3843,6 +4377,10 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getColorSync(resource: Resource): number
 
 Obtains a color value based on the specified resource object. This API returns the result synchronously.
+
+> **NOTE**
+>
+> When the dark mode is in use, this API returns the color value specific to the light mode, which is different from that obtained through **resId**. This issue will be rectified in future versions. You are advised to use [getColorSync](#getcolorsync10) or [getColorByNameSync](#getcolorbynamesync10).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -3864,7 +4402,7 @@ Obtains a color value based on the specified resource object. This API returns t
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -3874,8 +4412,19 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+  ```json
+  // Resource file path: src/main/resources/base/element/color.json
+  {
+    "color": [
+      {
+        "name": "test",
+        "value": "#FFFFFF"
+      }
+    ]
+  }
+  ```
   ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
@@ -3884,7 +4433,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
     id: $r('app.color.test').id
   };
   try {
-    this.context.resourceManager.getColorSync(resource);
+    let colorValue = this.context.resourceManager.getColorSync(resource);
+    console.log(`getColorSync, result: ${colorValue}`);
+    // Print the output result: getColorSync, result: 4294967295
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -3894,7 +4445,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 ### getColorByNameSync<sup>10+</sup>
 
-getColorByNameSync(resName: string) : number;
+getColorByNameSync(resName: string) : number
 
 Obtains a color value based on the specified resource name. This API returns the result synchronously.
 
@@ -3916,7 +4467,7 @@ Obtains a color value based on the specified resource name. This API returns the
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -3926,11 +4477,24 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+  ```json
+  // Resource file path: src/main/resources/base/element/color.json
+  {
+    "color": [
+      {
+        "name": "test",
+        "value": "#FFFFFF"
+      }
+    ]
+  }
+  ```
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    this.context.resourceManager.getColorByNameSync("test");
+    let colorValue = this.context.resourceManager.getColorByNameSync("test");
+    console.log(`getColorByNameSync, result: ${colorValue}`);
+    // Print the output result: getColorByNameSync, result: 4294967295
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -3940,7 +4504,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 ### getColor<sup>10+</sup>
 
-getColor(resId: number, callback: _AsyncCallback&lt;number&gt;): void;
+getColor(resId: number, callback: _AsyncCallback&lt;number&gt;): void
 
 Obtains a color value based on the specified resource ID. This API uses an asynchronous callback to return the result.
 
@@ -3953,11 +4517,11 @@ Obtains a color value based on the specified resource ID. This API uses an async
 | Name     | Type                         | Mandatory  | Description             |
 | -------- | --------------------------- | ---- | --------------- |
 | resId    | number                      | Yes   | Resource ID.          |
-| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;number&gt; | Yes   | Callback used to return the result, which is the color value (decimal) corresponding to the specified resource ID.|
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;number&gt; | Yes   | Callback used to return the color value (decimal).|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -3967,22 +4531,28 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.         |
 
 **Example (stage)**
+  ```json
+  // Resource file path: src/main/resources/base/element/color.json
+  {
+    "color": [
+      {
+        "name": "test",
+        "value": "#FFFFFF"
+      }
+    ]
+  }
+  ```
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  try {
-    this.context.resourceManager.getColor($r('app.color.test').id, (error: BusinessError, value: number) => {
-      if (error != null) {
-        console.error("error is " + error);
-      } else {
-        let str = value;
-      }
-    });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`callback getColor failed, error code: ${code}, message: ${message}.`);
-  }
+  this.context.resourceManager.getColor($r('app.color.test').id, (error: BusinessError, value: number) => {
+    if (error != null) {
+      console.error(`callback getColor failed, error code: ${error.code}, message: ${error.message}.`);
+    } else {
+      console.log(`getColor, result: ${value}`);
+      // Print the output result: getColor, result: 4294967295
+    }
+  });
   ```
 
 ### getColor<sup>10+</sup>
@@ -4005,11 +4575,11 @@ Obtains a color value based on the specified resource ID. This API uses a promis
 
 | Type                   | Description         |
 | --------------------- | ----------- |
-| Promise&lt;number&gt; | Promise used to return the result, which is the color value (decimal) corresponding to the specified resource ID.|
+| Promise&lt;number&gt; | Promise used to return the color value (decimal).|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -4019,27 +4589,39 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+  ```json
+  // Resource file path: src/main/resources/base/element/color.json
+  {
+    "color": [
+      {
+        "name": "test",
+        "value": "#FFFFFF"
+      }
+    ]
+  }
+  ```
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  try {
-    this.context.resourceManager.getColor($r('app.color.test').id).then((value: number) => {
-      let str = value;
-    }).catch((error: BusinessError) => {
-      console.error("getColor promise error is " + error);
+  this.context.resourceManager.getColor($r('app.color.test').id)
+    .then((value: number) => {
+      console.log(`getColor, result: ${value}`);
+      // Print the output result: getColor, result: 4294967295
+    })
+    .catch((error: BusinessError) => {
+      console.error(`promise getColor failed, error code: ${error.code}, message: ${error.message}.`);
     });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`promise getColor failed, error code: ${code}, message: ${message}.`);
-  }
   ```
 
 ### getColor<sup>10+</sup>
 
-getColor(resource: Resource, callback: _AsyncCallback&lt;number&gt;): void;
+getColor(resource: Resource, callback: _AsyncCallback&lt;number&gt;): void
 
 Obtains a color value based on the specified resource object. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> When the dark mode is in use, this API returns the color value specific to the light mode, which is different from that obtained through **resId**. This issue will be rectified in future versions. You are advised to use [getColor](#getcolor10).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -4052,11 +4634,11 @@ Obtains a color value based on the specified resource object. This API uses an a
 | Name     | Type                         | Mandatory  | Description             |
 | -------- | --------------------------- | ---- | --------------- |
 | resource | [Resource](#resource9)      | Yes   | Resource object.           |
-| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;number&gt; | Yes   | Callback used to return the result, which is the color value (decimal) corresponding to the specified resource ID.|
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;number&gt; | Yes   | Callback used to return the color value (decimal).|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -4066,8 +4648,19 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+  ```json
+  // Resource file path: src/main/resources/base/element/color.json
+  {
+    "color": [
+      {
+        "name": "test",
+        "value": "#FFFFFF"
+      }
+    ]
+  }
+  ```
   ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
@@ -4075,26 +4668,25 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
     moduleName: "entry",
     id: $r('app.color.test').id
   };
-  try {
-    this.context.resourceManager.getColor(resource, (error: BusinessError, value: number) => {
-      if (error != null) {
-        console.error("error is " + error);
-      } else {
-        let str = value;
-      }
-    });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`callback getColor failed, error code: ${code}, message: ${message}.`);
-  }
+  this.context.resourceManager.getColor(resource, (error: BusinessError, value: number) => {
+    if (error != null) {
+      console.error(`callback getColor failed, error code: ${error.code}, message: ${error.message}.`);
+    } else {
+      console.log(`getColor, result: ${value}`);
+      // Print the output result: getColor, result: 4294967295
+    }
+  });
   ```
 
 ### getColor<sup>10+</sup>
 
-getColor(resource: Resource): Promise&lt;number&gt;;
+getColor(resource: Resource): Promise&lt;number&gt;
 
 Obtains a color value based on the specified resource object. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> When the dark mode is in use, this API returns the color value specific to the light mode, which is different from that obtained through **resId**. This issue will be rectified in future versions. You are advised to use [getColor](#getcolor10-1).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -4112,11 +4704,11 @@ Obtains a color value based on the specified resource object. This API uses a pr
 
 | Type                   | Description              |
 | --------------------- | ---------------- |
-| Promise&lt;number&gt; | Promise used to return the result, which is the color value (decimal) corresponding to the specified resource object.|
+| Promise&lt;number&gt; | Promise used to return the color value (decimal).|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -4126,8 +4718,19 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+  ```json
+  // Resource file path: src/main/resources/base/element/color.json
+  {
+    "color": [
+      {
+        "name": "test",
+        "value": "#FFFFFF"
+      }
+    ]
+  }
+  ```
   ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
@@ -4135,17 +4738,14 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
     moduleName: "entry",
     id: $r('app.color.test').id
   };
-  try {
-    this.context.resourceManager.getColor(resource).then((value: number) => {
-      let str = value;
-    }).catch((error: BusinessError) => {
-      console.error("getColor promise error is " + error);
+  this.context.resourceManager.getColor(resource)
+    .then((value: number) => {
+      console.log(`getColor, result: ${value}`);
+      // Print the output result: getColor, result: 4294967295
+    })
+    .catch((error: BusinessError) => {
+      console.error(`promise getColor failed, error code: ${error.code}, message: ${error.message}.`);
     });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`promise getColor failed, error code: ${code}, message: ${message}.`);
-  }
   ```
 
 ### getColorByName<sup>10+</sup>
@@ -4163,11 +4763,11 @@ Obtains a color value based on the specified resource name. This API uses an asy
 | Name     | Type                         | Mandatory  | Description             |
 | -------- | --------------------------- | ---- | --------------- |
 | resName  | string                      | Yes   | Resource name.           |
-| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;number&gt; | Yes   | Callback used to return the result, which is the color value (decimal) corresponding to the specified resource name.|
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;number&gt; | Yes   | Callback used to return the color value (decimal).|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -4177,22 +4777,28 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+  ```json
+  // Resource file path: src/main/resources/base/element/color.json
+  {
+    "color": [
+      {
+        "name": "test",
+        "value": "#FFFFFF"
+      }
+    ]
+  }
+  ```
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  try {
-    this.context.resourceManager.getColorByName("test", (error: BusinessError, value: number) => {
-      if (error != null) {
-        console.error("error is " + error);
-      } else {
-        let string = value;
-      }
-    });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`callback getColorByName failed, error code: ${code}, message: ${message}.`);
-  }
+  this.context.resourceManager.getColorByName("test", (error: BusinessError, value: number) => {
+    if (error != null) {
+      console.error(`callback getColorByName failed, error code: ${error.code}, message: ${error.message}.`);
+    } else {
+      console.log(`getColorByName, result: ${value}`);
+      // Print the output result: getColorByName, result: 4294967295
+    }
+  });
   ```
 
 ### getColorByName<sup>10+</sup>
@@ -4215,11 +4821,11 @@ Obtains a color value based on the specified resource name. This API uses a prom
 
 | Type                   | Description        |
 | --------------------- | ---------- |
-| Promise&lt;number&gt; | Promise used to return the result, which is the color value (decimal) corresponding to the specified resource name.|
+| Promise&lt;number&gt; | Promise used to return the color value (decimal).|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -4229,27 +4835,35 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.            |
 
 **Example**
+  ```json
+  // Resource file path: src/main/resources/base/element/color.json
+  {
+    "color": [
+      {
+        "name": "test",
+        "value": "#FFFFFF"
+      }
+    ]
+  }
+  ```
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  try {
-    this.context.resourceManager.getColorByName("test").then((value: number) => {
-      let string = value;
-    }).catch((error: BusinessError) => {
-      console.error("getColorByName promise error is " + error);
+  this.context.resourceManager.getColorByName("test")
+    .then((value: number) => {
+      console.log(`getColorByName, result: ${value}`);
+      // Print the output result: getColorByName, result: 4294967295
+    })
+    .catch((error: BusinessError) => {
+      console.error(`promise getColorByName failed, error code: ${error.code}, message: ${error.message}.`);
     });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`promise getColorByName failed, error code: ${code}, message: ${message}.`);
-  }
   ```
 
 ### getRawFileContentSync<sup>10+</sup>
 
 getRawFileContentSync(path: string): Uint8Array
 
-Obtains the content of the raw file in the **resources/rawfile** directory. This API returns the result synchronously.
+Obtains the content of a raw file in the **resources/rawfile** directory. This API returns the result synchronously.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -4269,7 +4883,7 @@ Obtains the content of the raw file in the **resources/rawfile** directory. This
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -4293,7 +4907,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getRawFileContent(path: string, callback: _AsyncCallback&lt;Uint8Array&gt;): void
 
-Obtains the content of the raw file in the **resources/rawfile** directory. This API uses an asynchronous callback to return the result.
+Obtains the content of a raw file in the **resources/rawfile** directory. This API uses an asynchronous callback to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -4304,7 +4918,7 @@ Obtains the content of the raw file in the **resources/rawfile** directory. This
 | Name     | Type                             | Mandatory  | Description                     |
 | -------- | ------------------------------- | ---- | ----------------------- |
 | path     | string                          | Yes   | Path of the raw file.            |
-| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the raw file.|
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Uint8Array&gt; | Yes   | Callback used to return the content of the raw file.|
 
 **Error codes**
 
@@ -4313,6 +4927,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001005  | Invalid relative path.          |
 
 **Example**
   ```ts
@@ -4337,7 +4952,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getRawFileContent(path: string): Promise&lt;Uint8Array&gt;
 
-Obtains the content of the raw file in the **resources/rawfile** directory. This API uses a promise to return the result.
+Obtains the content of a raw file in the **resources/rawfile** directory. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -4353,7 +4968,7 @@ Obtains the content of the raw file in the **resources/rawfile** directory. This
 
 | Type                       | Description         |
 | ------------------------- | ----------- |
-| Promise&lt;Uint8Array&gt; | Promise used to return the result, which is the content of the raw file.|
+| Promise&lt;Uint8Array&gt; | Promise used to return the content of the raw file.|
 
 **Error codes**
 
@@ -4389,7 +5004,7 @@ Obtains the list of folders and files in the **resources/rawfile** directory. Th
 
 >**NOTE**
 >
-> If there is no folder or file in the directory, no information is returned. If there are folders and files in the directory, the list of folders and files is returned.
+> If there is no folder or file in the directory, an exception is thrown. If there are folders and files in the directory, the list of the folders and files is returned.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -4409,7 +5024,7 @@ Obtains the list of folders and files in the **resources/rawfile** directory. Th
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -4420,8 +5035,11 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  try { // Passing "" means to obtain the list of files in the root directory of the raw file.
-    this.context.resourceManager.getRawFileListSync("")
+  try {
+    // Passing "" means to obtain the list of files in the root directory (that is, /rawfile). Assume that the test.txt file exists in the root directory.
+    let fileList: Array<string> = this.context.resourceManager.getRawFileListSync("");
+    console.log(`getRawFileListSync, result: ${JSON.stringify(fileList)}`);
+    // Print the output result: getRawFileListSync, result: ["test.txt"]
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -4431,13 +5049,13 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 ### getRawFileList<sup>10+</sup>
 
-getRawFileList(path: string, callback: _AsyncCallback&lt;Array\<string\>&gt;): void;
+getRawFileList(path: string, callback: _AsyncCallback&lt;Array\<string\>&gt;): void
 
 Obtains the list of folders and files in the **resources/rawfile** directory. This API uses an asynchronous callback to return the result.
 
 >**NOTE**
 >
-> If there is no folder or file in the directory, no information is returned. If there are folders and files in the directory, the list of folders and files is returned.
+> If there is no folder or file in the directory, an exception is thrown. If there are folders and files in the directory, the list of the folders and files is returned.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -4448,11 +5066,11 @@ Obtains the list of folders and files in the **resources/rawfile** directory. Th
 | Name     | Type                             | Mandatory  | Description                     |
 | -------- | ------------------------------- | ---- | ----------------------- |
 | path     | string                          | Yes   | **rawfile** directory.            |
-| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Array\<string\>&gt; | Yes| Callback used to return the result, which is the list of folders and files in the **rawfile** directory.|
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Array\<string\>&gt; | Yes| Callback used to return the list of folders and files.|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -4463,19 +5081,15 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  try { // Passing "" means to obtain the list of files in the root directory of the raw file.
-    this.context.resourceManager.getRawFileList("", (error: BusinessError, value: Array<string>) => {
-      if (error != null) {
-        console.error(`callback getRawFileList failed, error code: ${error.code}, message: ${error.message}.`);
-      } else {
-        let rawFile = value;
-      }
-    });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`callback getRawFileList failed, error code: ${code}, message: ${message}.`);
-  }
+  // Passing "" means to obtain the list of files in the root directory (that is, /rawfile). Assume that the test.txt file exists in the root directory.
+  this.context.resourceManager.getRawFileList("", (error: BusinessError, value: Array<string>) => {
+    if (error != null) {
+      console.error(`callback getRawFileList failed, error code: ${error.code}, message: ${error.message}.`);
+    } else {
+      console.log(`getRawFileListSync, result: ${JSON.stringify(value)}`);
+      // Print the output result: getRawFileListSync, result: ["test.txt"]
+    }
+  });
   ```
 
 ### getRawFileList<sup>10+</sup>
@@ -4486,7 +5100,7 @@ Obtains the list of folders and files in the **resources/rawfile** directory. Th
 
 >**NOTE**
 >
-> If there is no folder or file in the directory, no information is returned. If there are folders and files in the directory, the list of folders and files is returned.
+> If there is no folder or file in the directory, an exception is thrown. If there are folders and files in the directory, the list of the folders and files is returned.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -4502,11 +5116,11 @@ Obtains the list of folders and files in the **resources/rawfile** directory. Th
 
 | Type                       | Description         |
 | ------------------------- | ----------- |
-| Promise&lt;Array\<string\>&gt; | Promise used to return the result, which is the list of folders and files in the **rawfile** directory.|
+| Promise&lt;Array\<string\>&gt; | Promise used to return the list of folders and files.|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -4517,24 +5131,26 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  try { // Passing "" means to obtain the list of files in the root directory of the raw file.
-    this.context.resourceManager.getRawFileList("").then((value: Array<string>) => {
-      let rawFile = value;
-    }).catch((error: BusinessError) => {
+  // Passing "" means to obtain the list of files in the root directory (that is, /rawfile). Assume that the test.txt file exists in the root directory.
+  this.context.resourceManager.getRawFileList("")
+    .then((value: Array<string>) => {
+      console.log(`getRawFileListSync, result: ${JSON.stringify(value)}`);
+      // Print the output result: getRawFileListSync, result: ["test.txt"]
+    })
+    .catch((error: BusinessError) => {
       console.error(`promise getRawFileList failed, error code: ${error.code}, message: ${error.message}.`);
     });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`promise getRawFileList failed, error code: ${code}, message: ${message}.`);
-  }
   ```
 
 ### getRawFdSync<sup>10+</sup>
 
 getRawFdSync(path: string): RawFileDescriptor
 
-Obtains the descriptor of the HAP where the raw file is located in the **resources/rawfile** directory.
+Obtains the fd of the HAP where a specific raw file is located.
+
+> **NOTE**
+>
+> To prevent resource leakage, call [closeRawFdSync](#closerawfdsync10) or [closeRawFd](#closerawfd9) to close the fd after use.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -4550,11 +5166,11 @@ Obtains the descriptor of the HAP where the raw file is located in the **resourc
 
 | Type                       | Description         |
 | ------------------------- | ----------- |
-| [RawFileDescriptor](#rawfiledescriptor9) | Descriptor of the HAP where the raw file is located.|
+| [RawFileDescriptor](#rawfiledescriptor9) | fd of the HAP where the raw file is located.|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -4578,7 +5194,11 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getRawFd(path: string, callback: _AsyncCallback&lt;RawFileDescriptor&gt;): void
 
-Obtains the descriptor of the HAP where the raw file is located in the **resources/rawfile** directory. This API uses an asynchronous callback to return the result.
+Obtains the fd of the HAP where a specific raw file is located.
+
+> **NOTE**
+>
+> To prevent resource leakage, call [closeRawFdSync](#closerawfdsync10) or [closeRawFd](#closerawfd9) to close the fd after use.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -4589,7 +5209,7 @@ Obtains the descriptor of the HAP where the raw file is located in the **resourc
 | Name     | Type                                      | Mandatory  | Description                              |
 | -------- | ---------------------------------------- | ---- | -------------------------------- |
 | path     | string                                   | Yes   | Path of the raw file.                     |
-| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;[RawFileDescriptor](#rawfiledescriptor9)&gt; | Yes   | Callback used to return the result, which is the descriptor of the HAP where the raw file is located.|
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;[RawFileDescriptor](#rawfiledescriptor9)&gt; | Yes   | Callback used to return the fd of the HAP.|
 
 **Error codes**
 
@@ -4603,7 +5223,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 **Example**
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
 
   try {
     this.context.resourceManager.getRawFd("test.txt", (error: BusinessError, value: resourceManager.RawFileDescriptor) => {
@@ -4626,7 +5246,11 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 getRawFd(path: string): Promise&lt;RawFileDescriptor&gt;
 
-Obtains the descriptor of the HAP where the raw file is located in the **resources/rawfile** directory. This API uses a promise to return the result.
+Obtains the fd of the HAP where a specific raw file is located.
+
+> **NOTE**
+>
+> To prevent resource leakage, call [closeRawFdSync](#closerawfdsync10) or [closeRawFd](#closerawfd9) to close the fd after use.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -4642,7 +5266,7 @@ Obtains the descriptor of the HAP where the raw file is located in the **resourc
 
 | Type                                      | Description                 |
 | ---------------------------------------- | ------------------- |
-| Promise&lt;[RawFileDescriptor](#rawfiledescriptor9)&gt; | Descriptor of the HAP where the raw file is located.|
+| Promise&lt;[RawFileDescriptor](#rawfiledescriptor9)&gt; | Promise used to return the fd of the HAP.|
 
 **Error codes**
 
@@ -4656,7 +5280,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 **Example**
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
 
   try {
     this.context.resourceManager.getRawFd("test.txt").then((value: resourceManager.RawFileDescriptor) => {
@@ -4677,7 +5301,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 closeRawFdSync(path: string): void
 
-Closes the descriptor of the HAP where the raw file is located in the **resources/rawfile** directory.
+Closes the fd of the HAP where a specific raw file is located.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -4691,7 +5315,7 @@ Closes the descriptor of the HAP where the raw file is located in the **resource
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -4715,7 +5339,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 closeRawFd(path: string, callback: _AsyncCallback&lt;void&gt;): void
 
-Closes the descriptor of the HAP where the raw file is located in the **resources/rawfile** directory. This API uses an asynchronous callback to return the result.
+Closes the fd of the HAP where a specific raw file is located. This API uses an asynchronous callback to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -4726,7 +5350,7 @@ Closes the descriptor of the HAP where the raw file is located in the **resource
 | Name     | Type                       | Mandatory  | Description         |
 | -------- | ------------------------- | ---- | ----------- |
 | path     | string                    | Yes   | Path of the raw file.|
-| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;void&gt; | Yes   | Callback used to return the result.       |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -4758,7 +5382,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 closeRawFd(path: string): Promise&lt;void&gt;
 
-Closes the descriptor of the HAP where the raw file is located in the **resources/rawfile** directory. This API uses a promise to return the result.
+Closes the fd of the HAP where a specific raw file is located. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -4839,11 +5463,11 @@ Obtains the device configuration. This API uses an asynchronous callback to retu
 
 | Name     | Type                                      | Mandatory  | Description                       |
 | -------- | ---------------------------------------- | ---- | ------------------------- |
-| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;[Configuration](#configuration)&gt; | Yes   | Callback used to return the result, which is the device configuration.|
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;[Configuration](#configuration)&gt; | Yes   | Callback used to return the device configuration.|
 
 **Example**
   ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
 
   try {
     this.context.resourceManager.getConfiguration((error: BusinessError, value: resourceManager.Configuration) => {
@@ -4873,12 +5497,12 @@ Obtains the device configuration. This API uses a promise to return the result.
 
 | Type                                      | Description              |
 | ---------------------------------------- | ---------------- |
-| Promise&lt;[Configuration](#configuration)&gt; | Promise used to return the result, which is the device configuration.|
+| Promise&lt;[Configuration](#configuration)&gt; | Promise used to return the device configuration.|
 
 **Example**
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
 
   try {
     this.context.resourceManager.getConfiguration().then((value: resourceManager.Configuration) => {
@@ -4933,11 +5557,11 @@ Obtains the device capability. This API uses an asynchronous callback to return 
 
 | Name     | Type                                      | Mandatory  | Description                          |
 | -------- | ---------------------------------------- | ---- | ---------------------------- |
-| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;[DeviceCapability](#devicecapability)&gt; | Yes   | Callback used to return the result, which is the device capability.|
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;[DeviceCapability](#devicecapability)&gt; | Yes   | Callback used to return the device capability.|
 
 **Example**
   ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
 
   try {
     this.context.resourceManager.getDeviceCapability((error: BusinessError, value: resourceManager.DeviceCapability) => {
@@ -4967,12 +5591,12 @@ Obtains the device capability. This API uses a promise to return the result.
 
 | Type                                      | Description                 |
 | ---------------------------------------- | ------------------- |
-| Promise&lt;[DeviceCapability](#devicecapability)&gt; | Promise used to return the result, which is the device capability.|
+| Promise&lt;[DeviceCapability](#devicecapability)&gt; | Promise used to return the device capability.|
 
 **Example**
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
 
   try {
     this.context.resourceManager.getDeviceCapability().then((value: resourceManager.DeviceCapability) => {
@@ -4988,9 +5612,13 @@ Obtains the device capability. This API uses a promise to return the result.
 
 ### addResource<sup>10+</sup>
 
-addResource(path: string) : void
+addResource(path: string): void
 
 Loads resources from the specified path.
+
+> **NOTE**
+>
+> Resource overwriting is not supported for the **/rawfile** and **/resfile** directories.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -5004,7 +5632,7 @@ Loads resources from the specified path.
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -5015,7 +5643,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let path = getContext().bundleCodeDir + "/library1-default-signed.hsp";
+  let path = this.context.bundleCodeDir + "/library1-default-signed.hsp";
   try {
     this.context.resourceManager.addResource(path);
   } catch (error) {
@@ -5027,9 +5655,13 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 ### removeResource<sup>10+</sup>
 
-removeResource(path: string) : void
+removeResource(path: string): void
 
 Removes the resources loaded from the specified path to restore the original resources.
+
+> **NOTE**
+>
+> Resource overwriting is not supported for the **/rawfile** and **/resfile** directories.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -5043,7 +5675,7 @@ Removes the resources loaded from the specified path to restore the original res
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -5054,7 +5686,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let path = getContext().bundleCodeDir + "/library1-default-signed.hsp";
+  let path = this.context.bundleCodeDir + "/library1-default-signed.hsp";
   try {
     this.context.resourceManager.removeResource(path);
   } catch (error) {
@@ -5078,7 +5710,7 @@ Obtains the language list of an application.
 
 | Name        | Type   | Mandatory  | Description      |
 | -------------- | ------- | ------ | -------------------- |
-| includeSystem  | boolean |  No   | Whether system resources are included. The default value is **false**.<br> **false**: Only application resources are included.<br>**true**: Both system and application resources are included.<br>If the value of **includeSystem** is invalid, the language list of system resources will be returned.|
+| includeSystem  | boolean |  No   | Whether system resources are included. The default value is **false**.<br> - **false**: Only application resources are included.<br> - **true**: Both system and application resources are included.<br>If the value of **includeSystem** is invalid, the language list of system resources will be returned.|
 
 **Return value**
 
@@ -5088,7 +5720,7 @@ Obtains the language list of an application.
 
 **Example**
   ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
@@ -5118,9 +5750,9 @@ Obtains the language list of an application.
 
 ### getSymbol<sup>11+</sup>
 
-getSymbol(resId: number):number
+getSymbol(resId: number): number
 
-Obtains a symbol value based on the specified resource ID. This API returns the result synchronously.
+Obtains the Unicode of a [symbol](https://developer.huawei.com/consumer/en/design/harmonyos-symbol) based on the specified resource ID. This API returns the result synchronously.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -5136,11 +5768,11 @@ Obtains a symbol value based on the specified resource ID. This API returns the 
 
 | Type    | Description         |
 | ------ | ----------- |
-| number | Symbol value (decimal) corresponding to the specified resource ID.|
+| number | Unicode code (decimal) of the symbol.|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -5154,7 +5786,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    this.context.resourceManager.getSymbol($r('app.symbol.test').id);
+    let symbolValue = this.context.resourceManager.getSymbol($r('sys.symbol.message').id);
+    console.log(`getSymbol, result: ${symbolValue}`);
+    // Print the output result: getSymbol, result: 983183
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -5165,7 +5799,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 ### getSymbol<sup>11+</sup>
 getSymbol(resource: Resource): number
 
-Obtains a symbol value based on the specified resource object. This API returns the result synchronously.
+Obtains the Unicode of a [symbol](https://developer.huawei.com/consumer/en/design/harmonyos-symbol) based on the specified resource object. This API returns the result synchronously.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -5183,11 +5817,11 @@ Obtains a symbol value based on the specified resource object. This API returns 
 
 | Type    | Description         |
 | ------ | ----------- |
-| number | Symbol value (decimal) corresponding to the specified resource object.|
+| number | Unicode code (decimal) of the symbol.|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -5198,16 +5832,18 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 **Example**
   ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
     moduleName: "entry",
-    id: $r('app.symbol.test').id
+    id: $r('sys.symbol.message').id
   };
   try {
-    this.context.resourceManager.getSymbol(resource);
+    let symbolValue = this.context.resourceManager.getSymbol(resource);
+    console.log(`getSymbol, result: ${symbolValue}`);
+    // Print the output result: getSymbol, result: 983183
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -5217,9 +5853,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 ### getSymbolByName<sup>11+</sup>
 
-getSymbolByName(resName: string) : number;
+getSymbolByName(resName: string): number
 
-Obtains a symbol value based on the specified resource name. This API returns the result synchronously.
+Obtains the Unicode of a [symbol](https://developer.huawei.com/consumer/en/design/harmonyos-symbol) based on the specified resource name. This API returns the result synchronously.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -5235,11 +5871,11 @@ Obtains a symbol value based on the specified resource name. This API returns th
 
 | Type    | Description        |
 | ------ | ---------- |
-| number | Symbol value (decimal) corresponding to the specified resource name.|
+| number | Unicode code (decimal) of the symbol.|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -5253,7 +5889,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    this.context.resourceManager.getSymbolByName("test");
+    let symbolValue = this.context.resourceManager.getSymbolByName("message");
+    console.log(`getSymbolByName, result: ${symbolValue}`);
+    // Print the output result: getSymbolByName, result: 983183
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -5263,7 +5901,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 ### isRawDir<sup>12+</sup>
 
-isRawDir(path: string) : bool
+isRawDir(path: string): boolean
 
 Checks whether a path is a subdirectory in the **rawfile** directory. This API returns the result synchronously.
 
@@ -5281,11 +5919,11 @@ Checks whether a path is a subdirectory in the **rawfile** directory. This API r
 
 | Type    | Description        |
 | ------ | ---------- |
-| bool |Whether the path is a subdirectory in the **rawfile** directory.<br>**true**: The path is a subdirectory in the **rawfile** directory.<br>**false**: The path is not a subdirectory in the **rawfile** directory.|
+| boolean |Whether the path is a subdirectory in the **rawfile** directory.<br> - **true**: The path is a subdirectory in the **rawfile** directory.<br> - **false**: The path is not a subdirectory in the **rawfile** directory.|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -5297,7 +5935,15 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    this.context.resourceManager.isRawDir("test.txt");
+    // Assume that a non-empty folder named sub exists in the root directory (that is, /rawfile). The value of isRawDir is true in the return result.
+    let isRawDir = this.context.resourceManager.isRawDir("sub");
+    // Print the output result: sub isRawDir, result: true
+    console.log(`sub isRawDir, result: ${isRawDir}`);
+
+    // If the test.txt file exists in the root directory, the value of isRawDir is false.
+    isRawDir = this.context.resourceManager.isRawDir("test.txt");
+    // Print the output result: test.txt isRawDir, result: false
+    console.log(`test.txt isRawDir, result: ${isRawDir}`);
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -5307,11 +5953,11 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 ### getOverrideResourceManager<sup>12+</sup>
 
-getOverrideResourceManager(configuration?: Configuration) : ResourceManager
+getOverrideResourceManager(configuration?: Configuration): ResourceManager
 
 Obtains a **ResourceManager** object for loading differentiated resources. This API returns the result synchronously.
 
-The style (including the language, color mode, resolution, and orientation) of the resources obtained by a common **ResourceManager** object is determined by the system. With this API, an application can obtain the style of differentiated resources, for example, dark color resources in light color mode.
+The resource configuration (including the language, color mode, resolution, and orientation) obtained by a common **ResourceManager** object is determined by the system. With this API, an application can obtain resources of the specified configuration (that is, differentiated resources), for example, dark color resources in light color mode.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -5321,7 +5967,7 @@ The style (including the language, color mode, resolution, and orientation) of t
 
 | Name       | Type                           | Mandatory| Description                                                        |
 | ------------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| configuration | [Configuration](#configuration) | No  | Configuration of differentiated resources.<br>After obtaining the configuration of differentiated resources through [getOverrideConfiguration](#getoverrideconfiguration12), modify the configuration items as required, and then pass these items as input parameters to the API.<br>If this parameter is not specified, the system obtains resources that best match the current system.|
+| configuration | [Configuration](#configuration) | No  | Resource configuration.<br>After obtaining the configuration of differentiated resources through [getOverrideConfiguration](#getoverrideconfiguration12), modify the configuration items as required, and then pass these items as input parameters to the API.<br>If no configuration is specified, the current system configuration is used.|
 
 **Return value**
 
@@ -5341,13 +5987,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
 
   try {
-    let resMgr = this.context.resourceManager
-    let overrideConfig = resMgr.getOverrideConfiguration()
-    overrideConfig.colorMode = resourceManager.ColorMode.DARK
-    let overrideResMgr = resMgr.getOverrideResourceManager(overrideConfig)
+    let resMgr = this.context.resourceManager;
+    let overrideConfig = resMgr.getOverrideConfiguration();
+    overrideConfig.colorMode = resourceManager.ColorMode.DARK;
+    let overrideResMgr = resMgr.getOverrideResourceManager(overrideConfig);
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -5357,7 +6003,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ### getOverrideConfiguration<sup>12+</sup>
 
-getOverrideConfiguration() : Configuration
+getOverrideConfiguration(): Configuration
 
 Obtains the configuration of differentiated resources. This API returns the result synchronously. This API allows a common **ResourceManager** object and a **ResourceManager** object obtained through [getOverrideResourceManager](#getoverrideresourcemanager12) to obtain the configuration of differentiated resources.
 
@@ -5375,14 +6021,23 @@ Obtains the configuration of differentiated resources. This API returns the resu
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
 
-  let overrideConfig = this.context.resourceManager.getOverrideConfiguration()
+  try {
+    let resMgr = this.context.resourceManager;
+    let overrideConfig = resMgr.getOverrideConfiguration();
+    overrideConfig.colorMode = resourceManager.ColorMode.DARK;
+    let overrideResMgr = resMgr.getOverrideResourceManager(overrideConfig);
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getOverrideResourceManager failed, error code: ${code}, message: ${message}.`);
+  }
   ```
 
 ### updateOverrideConfiguration<sup>12+</sup>
 
-updateOverrideConfiguration(configuration: Configuration) : void
+updateOverrideConfiguration(configuration: Configuration): void
 
 Updated configuration of differentiated resources. This API allows a common **ResourceManager** object and a **ResourceManager** object obtained through [getOverrideResourceManager](#getoverrideresourcemanager12) to update the configuration of differentiated resources.
 
@@ -5408,13 +6063,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
 
   try {
-    let resMgr = this.context.resourceManager
-    let overrideConfig = resMgr.getOverrideConfiguration()
-    overrideConfig.colorMode = resourceManager.ColorMode.DARK
-    let overrideResMgr = resMgr.updateOverrideConfiguration(overrideConfig)
+    let resMgr = this.context.resourceManager;
+    let overrideConfig = resMgr.getOverrideConfiguration();
+    overrideConfig.colorMode = resourceManager.ColorMode.DARK;
+    let overrideResMgr = resMgr.updateOverrideConfiguration(overrideConfig);
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -5428,7 +6083,9 @@ release()
 
 Releases a **ResourceManager** object. This API is not supported currently.
 
-This API is supported since API version 7 and is deprecated since API version 12.
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 12.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -5449,7 +6106,9 @@ getString(resId: number, callback: AsyncCallback&lt;string&gt;): void
 
 Obtains a string based on the specified resource ID. This API uses an asynchronous callback to return the result.
 
-This API is deprecated since API version 9. You are advised to use [getStringValue](#getstringvalue9).
+> **NOTE**
+>
+> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [getStringValue](#getstringvalue9).
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -5458,7 +6117,7 @@ This API is deprecated since API version 9. You are advised to use [getStringVal
 | Name     | Type                         | Mandatory  | Description             |
 | -------- | --------------------------- | ---- | --------------- |
 | resId    | number                      | Yes   | Resource ID.          |
-| callback | [AsyncCallback](#asynccallbackdeprecated)&lt;string&gt; | Yes   | Callback used to return the result, which is the string corresponding to the specified resource ID.|
+| callback | [AsyncCallback](#asynccallbackdeprecated)&lt;string&gt; | Yes   | Callback used to return the obtained string.|
 
 **Example**
   ```ts
@@ -5480,7 +6139,9 @@ getString(resId: number): Promise&lt;string&gt;
 
 Obtains a string based on the specified resource ID. This API uses a promise to return the result.
 
-This API is deprecated since API version 9. You are advised to use [getStringValue](#getstringvalue9-1).
+> **NOTE**
+>
+> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [getStringValue](#getstringvalue9-1).
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -5494,7 +6155,7 @@ This API is deprecated since API version 9. You are advised to use [getStringVal
 
 | Type                   | Description         |
 | --------------------- | ----------- |
-| Promise&lt;string&gt; | Promise used to return the result, which is the string corresponding to the specified resource ID.|
+| Promise&lt;string&gt; | Promise used to return the obtained string.|
 
 **Example**
   ```ts
@@ -5516,7 +6177,9 @@ getStringArray(resId: number, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;
 
 Obtains a string array based on the specified resource ID. This API uses an asynchronous callback to return the result.
 
-This API is deprecated since API version 9. You are advised to use [getStringArrayValue](#getstringarrayvalue9).
+> **NOTE**
+>
+> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [getStringArrayValue](#getstringarrayvalue9).
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -5525,7 +6188,7 @@ This API is deprecated since API version 9. You are advised to use [getStringArr
 | Name     | Type                                      | Mandatory  | Description               |
 | -------- | ---------------------------------------- | ---- | ----------------- |
 | resId    | number                                   | Yes   | Resource ID.            |
-| callback | [AsyncCallback](#asynccallbackdeprecated)&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the result, which is the string array corresponding to the specified resource ID.|
+| callback | [AsyncCallback](#asynccallbackdeprecated)&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the obtained string array.|
 
 **Example**
   ```ts
@@ -5547,7 +6210,9 @@ getStringArray(resId: number): Promise&lt;Array&lt;string&gt;&gt;
 
 Obtains a string array based on the specified resource ID. This API uses a promise to return the result.
 
-This API is deprecated since API version 9. You are advised to use [getStringArrayValue](#getstringarrayvalue9-1).
+> **NOTE**
+>
+> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [getStringArrayValue](#getstringarrayvalue9-1).
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -5561,7 +6226,7 @@ This API is deprecated since API version 9. You are advised to use [getStringArr
 
 | Type                                | Description           |
 | ---------------------------------- | ------------- |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the result, which is the string array corresponding to the specified resource ID.|
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the obtained string array.|
 
 **Example**
   ```ts
@@ -5581,9 +6246,11 @@ This API is deprecated since API version 9. You are advised to use [getStringArr
 
 getMedia(resId: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
-Obtains the content of a media file based on the specified resource ID. This API uses an asynchronous callback to return the result.
+Obtains media file content based on the specified resource ID. This API uses an asynchronous callback to return the result.
 
-This API is deprecated since API version 9. You are advised to use [getMediaContent](#getmediacontent9).
+> **NOTE**
+>
+> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [getMediaContent](#getmediacontent9).
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -5592,7 +6259,7 @@ This API is deprecated since API version 9. You are advised to use [getMediaCont
 | Name     | Type                             | Mandatory  | Description                |
 | -------- | ------------------------------- | ---- | ------------------ |
 | resId    | number                          | Yes   | Resource ID.             |
-| callback | [AsyncCallback](#asynccallbackdeprecated)&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the media file corresponding to the specified resource ID.|
+| callback | [AsyncCallback](#asynccallbackdeprecated)&lt;Uint8Array&gt; | Yes   | Callback used to return the media file content.|
 
 **Example**
   ```ts
@@ -5611,9 +6278,11 @@ This API is deprecated since API version 9. You are advised to use [getMediaCont
 
 getMedia(resId: number): Promise&lt;Uint8Array&gt;
 
-Obtains the content of a media file based on the specified resource ID. This API uses a promise to return the result.
+Obtains media file content based on the specified resource ID. This API uses a promise to return the result.
 
-This API is deprecated since API version 9. You are advised to use [getMediaContent](#getmediacontent9-1).
+> **NOTE**
+>
+> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [getMediaContent](#getmediacontent9-1).
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -5627,7 +6296,7 @@ This API is deprecated since API version 9. You are advised to use [getMediaCont
 
 | Type                       | Description            |
 | ------------------------- | -------------- |
-| Promise&lt;Uint8Array&gt; | Promise used to return the result, which is the content of the media file corresponding to the specified resource ID.|
+| Promise&lt;Uint8Array&gt; | Promise used to return the media file content.|
 
 **Example**
   ```ts
@@ -5647,9 +6316,11 @@ This API is deprecated since API version 9. You are advised to use [getMediaCont
 
 getMediaBase64(resId: number, callback: AsyncCallback&lt;string&gt;): void
 
-Obtains the Base64 code of an image based on the specified resource ID. This API uses an asynchronous callback to return the result.
+Obtains an image's Base64 code based on the specified resource ID. This API uses an asynchronous callback to return the result.
 
-This API is deprecated since API version 9. You are advised to use [getMediaContentBase64](#getmediacontentbase649).
+> **NOTE**
+>
+> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [getMediaContentBase64](#getmediacontentbase649).
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -5658,7 +6329,7 @@ This API is deprecated since API version 9. You are advised to use [getMediaCont
 | Name     | Type                         | Mandatory  | Description                      |
 | -------- | --------------------------- | ---- | ------------------------ |
 | resId    | number                      | Yes   | Resource ID.                   |
-| callback | [AsyncCallback](#asynccallbackdeprecated)&lt;string&gt; | Yes   | Callback used to return the result, which is the Base64 code of the image corresponding to the specified resource ID.|
+| callback | [AsyncCallback](#asynccallbackdeprecated)&lt;string&gt; | Yes   | Callback used to return the Base64 code of the image.|
 
 **Example**
   ```ts
@@ -5678,9 +6349,11 @@ This API is deprecated since API version 9. You are advised to use [getMediaCont
 
 getMediaBase64(resId: number): Promise&lt;string&gt;
 
-Obtains the Base64 code of an image based on the specified resource ID. This API uses a promise to return the result.
+Obtains an image's Base64 code based on the specified resource ID. This API uses a promise to return the result.
 
-This API is deprecated since API version 9. You are advised to use [getMediaContentBase64](#getmediacontentbase649-1).
+> **NOTE**
+>
+> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [getMediaContentBase64](#getmediacontentbase649-1).
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -5694,7 +6367,7 @@ This API is deprecated since API version 9. You are advised to use [getMediaCont
 
 | Type                   | Description                  |
 | --------------------- | -------------------- |
-| Promise&lt;string&gt; | Promise used to return the result, which is the Base64 code of the image corresponding to the specified resource ID.|
+| Promise&lt;string&gt; | Promise used to return the Base64 code of the image.|
 
 **Example**
   ```ts
@@ -5717,7 +6390,7 @@ Obtains singular/plural strings based on the specified resource ID and quantity.
 
 > **NOTE**
 >
-> Singular/plural forms are available for English, but not Chinese.
+> Strings distinguish between singular and plural forms in all languages except Chinese. For details, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).
 >
 > This API is supported since API version 10 and deprecated since API version 18. You are advised to use [getIntPluralStringValueSync](#getintpluralstringvaluesync18).
 
@@ -5740,7 +6413,7 @@ Obtains singular/plural strings based on the specified resource ID and quantity.
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -5750,12 +6423,35 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.                       |
 
 **Example**
-
+  ```json
+  // Resource file path: src/main/resources/base/element/plural.json
+  {
+    "plural": [
+      {
+        "name": "test",
+        "value": [
+          {
+            "quantity": "one",
+            "value": "%d apple"
+          },
+          {
+            "quantity": "other",
+            "value": "%d apples"
+          }
+        ]
+      }
+    ]
+  }
+  ```
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    this.context.resourceManager.getPluralStringValueSync($r('app.plural.test').id, 1);
+    // If num is 1, the single/plural type is one in the English environment.
+    // The quantity field in the resource file indicates the single/plural type. Therefore, the string whose quantity is one is obtained.
+    let pluralValue = this.context.resourceManager.getPluralStringValueSync($r('app.plural.test').id, 1);
+    console.log(`getPluralStringValueSync, result: ${pluralValue}`);
+    // Print the output result: getPluralStringValueSync, result: 1 apple
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -5771,7 +6467,7 @@ Obtains singular/plural strings based on the specified quantity and resource obj
 
 > **NOTE**
 >
-> Singular/plural forms are available for English, but not Chinese.
+> Strings distinguish between singular and plural forms in all languages except Chinese. For details, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).
 >
 > This API is supported since API version 10 and deprecated since API version 18. You are advised to use [getIntPluralStringValueSync](#getintpluralstringvaluesync18-1).
 
@@ -5796,7 +6492,7 @@ Obtains singular/plural strings based on the specified quantity and resource obj
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -5806,9 +6502,28 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.                       |
 
 **Example**
-
+  ```json
+  // Resource file path: src/main/resources/base/element/plural.json
+  {
+    "plural": [
+      {
+        "name": "test",
+        "value": [
+          {
+            "quantity": "one",
+            "value": "%d apple"
+          },
+          {
+            "quantity": "other",
+            "value": "%d apples"
+          }
+        ]
+      }
+    ]
+  }
+  ```
   ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
@@ -5817,7 +6532,11 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
     id: $r('app.plural.test').id
   };
   try {
-    this.context.resourceManager.getPluralStringValueSync(resource, 1);
+    // If num is 1, the single/plural type is one in the English environment.
+    // The quantity field in the resource file indicates the single/plural type. Therefore, the string whose quantity is one is obtained.
+    let pluralValue = this.context.resourceManager.getPluralStringValueSync(resource, 1);
+    console.log(`getPluralStringValueSync, result: ${pluralValue}`);
+    // Print the output result: getPluralStringValueSync, result: 1 apple
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -5833,7 +6552,7 @@ Obtains singular/plural strings based on the specified quantity and resource nam
 
 > **NOTE**
 >
-> Singular/plural forms are available for English, but not Chinese.
+> Strings distinguish between singular and plural forms in all languages except Chinese. For details, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).
 >
 > This API is supported since API version 10 and deprecated since API version 18. You are advised to use [getIntPluralStringByNameSync](#getintpluralstringbynamesync18).
 
@@ -5856,7 +6575,7 @@ Obtains singular/plural strings based on the specified quantity and resource nam
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -5866,12 +6585,35 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.                       |
 
 **Example**
-
+  ```json
+  // Resource file path: src/main/resources/base/element/plural.json
+  {
+    "plural": [
+      {
+        "name": "test",
+        "value": [
+          {
+            "quantity": "one",
+            "value": "%d apple"
+          },
+          {
+            "quantity": "other",
+            "value": "%d apples"
+          }
+        ]
+      }
+    ]
+  }
+  ```
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    this.context.resourceManager.getPluralStringByNameSync("test", 1);
+    // If num is 1, the single/plural type is one in the English environment.
+    // The quantity field in the resource file indicates the single/plural type. Therefore, the string whose quantity is one is obtained.
+    let pluralValue = this.context.resourceManager.getPluralStringByNameSync("test", 1);
+    console.log(`getPluralStringByNameSync, result: ${pluralValue}`);
+    // Print the output result: getPluralStringByNameSync, result: 1 apple
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -5887,7 +6629,7 @@ Obtains singular/plural strings based on the specified quantity and resource ID.
 
 > **NOTE**
 >
-> Singular/plural forms are available for English, but not Chinese.
+> Strings distinguish between singular and plural forms in all languages except Chinese. For details, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).
 >
 > This API is supported since API version 9 and deprecated since API version 18. You are advised to use [getIntPluralStringValueSync](#getintpluralstringvaluesync18).
 
@@ -5901,7 +6643,7 @@ Obtains singular/plural strings based on the specified quantity and resource ID.
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
 | resId    | number                      | Yes  | Resource ID.                                                  |
 | num      | number                      | Yes  | Quantity value, which is used to obtain the corresponding string representation based on the current language's plural rules. For details about the plural rules of a language, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)|
-| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | Yes  | Callback used to return the result, which is the singular/plural string corresponding to the specified resource ID.          |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | Yes  | Callback used to return the obtained singular/plural string.          |
 
 **Error codes**
 
@@ -5915,23 +6657,40 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.                       |
 
 **Example**
-
+  ```json
+  // Resource file path: src/main/resources/base/element/plural.json
+  {
+    "plural": [
+      {
+        "name": "test",
+        "value": [
+          {
+            "quantity": "one",
+            "value": "%d apple"
+          },
+          {
+            "quantity": "other",
+            "value": "%d apples"
+          }
+        ]
+      }
+    ]
+  }
+  ```
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  try {
-    this.context.resourceManager.getPluralStringValue($r("app.plural.test").id, 1, (error: BusinessError, value: string) => {
+  // If num is 1, the single/plural type is one in the English environment.
+  // The quantity field in the resource file indicates the single/plural type. Therefore, the string whose quantity is one is obtained.
+  this.context.resourceManager.getPluralStringValue($r("app.plural.test").id, 1,
+    (error: BusinessError, value: string) => {
       if (error != null) {
-        console.error("error is " + error);
+        console.error(`callback getPluralStringValue failed, error code: ${error.code}, message: ${error.message}.`);
       } else {
-        let str = value;
+        console.log(`getPluralStringValue, result: ${value}`);
+        // Print the output result: getPluralStringValue, result: 1 apple
       }
     });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`callback getPluralStringValue failed, error code: ${code}, message: ${message}.`);
-  }
   ```
 
 ### getPluralStringValue<sup>(deprecated)</sup>
@@ -5942,7 +6701,7 @@ Obtains singular/plural strings based on the specified quantity and resource ID.
 
 > **NOTE**
 >
-> Singular/plural forms are available for English, but not Chinese.
+> Strings distinguish between singular and plural forms in all languages except Chinese. For details, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).
 >
 > This API is supported since API version 9 and deprecated since API version 18. You are advised to use [getIntPluralStringValueSync](#getintpluralstringvaluesync18).
 
@@ -5961,7 +6720,7 @@ Obtains singular/plural strings based on the specified quantity and resource ID.
 
 | Type                 | Description                                                |
 | --------------------- | ---------------------------------------------------- |
-| Promise&lt;string&gt; | Promise used to return the result, which is the singular/plural string corresponding to the specified resource ID.|
+| Promise&lt;string&gt; | Promise used to return the obtained singular/plural string.|
 
 **Error codes**
 
@@ -5975,21 +6734,39 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.                       |
 
 **Example**
-
+  ```json
+  // Resource file path: src/main/resources/base/element/plural.json
+  {
+    "plural": [
+      {
+        "name": "test",
+        "value": [
+          {
+            "quantity": "one",
+            "value": "%d apple"
+          },
+          {
+            "quantity": "other",
+            "value": "%d apples"
+          }
+        ]
+      }
+    ]
+  }
+  ```
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  try {
-    this.context.resourceManager.getPluralStringValue($r("app.plural.test").id, 1).then((value: string) => {
-      let str = value;
-    }).catch((error: BusinessError) => {
-      console.error("getPluralStringValue promise error is " + error);
+  // If num is 1, the single/plural type is one in the English environment.
+  // The quantity field in the resource file indicates the single/plural type. Therefore, the string whose quantity is one is obtained.
+  this.context.resourceManager.getPluralStringValue($r("app.plural.test").id, 1)
+    .then((value: string) => {
+      console.log(`getPluralStringValue, result: ${value}`);
+      // Print the output result: getPluralStringValue, result: 1 apple
+    })
+    .catch((error: BusinessError) => {
+      console.error(`promise getPluralStringValue failed, error code: ${error.code}, message: ${error.message}.`);
     });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`promise getPluralStringValue failed, error code: ${code}, message: ${message}.`);
-  }
   ```
 
 ### getPluralStringValue<sup>(deprecated)</sup>
@@ -6000,7 +6777,7 @@ Obtains singular/plural strings based on the specified quantity and resource obj
 
 > **NOTE**
 >
-> Singular/plural forms are available for English, but not Chinese.
+> Strings distinguish between singular and plural forms in all languages except Chinese. For details, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).
 >
 > This API is supported since API version 9 and deprecated since API version 18. You are advised to use [getIntPluralStringValueSync](#getintpluralstringvaluesync18-1).
 
@@ -6016,11 +6793,11 @@ Obtains singular/plural strings based on the specified quantity and resource obj
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
 | resource | [Resource](#resource9)      | Yes  | Resource object.                                                  |
 | num      | number                      | Yes  | Quantity value, which is used to obtain the corresponding string representation based on the current language's plural rules. For details about the plural rules of a language, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)|
-| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | Yes  | Callback used to return the result, which is the singular/plural string corresponding to the specified resource object.      |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | Yes  | Callback used to return the obtained singular/plural string.      |
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
@@ -6030,9 +6807,28 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.                       |
 
 **Example**
-
+  ```json
+  // Resource file path: src/main/resources/base/element/plural.json
+  {
+    "plural": [
+      {
+        "name": "test",
+        "value": [
+          {
+            "quantity": "one",
+            "value": "%d apple"
+          },
+          {
+            "quantity": "other",
+            "value": "%d apples"
+          }
+        ]
+      }
+    ]
+  }
+  ```
   ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
@@ -6040,19 +6836,17 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
     moduleName: "entry",
     id: $r('app.plural.test').id
   };
-  try {
-    this.context.resourceManager.getPluralStringValue(resource, 1, (error: BusinessError, value: string) => {
+  // If num is 1, the single/plural type is one in the English environment.
+  // The quantity field in the resource file indicates the single/plural type. Therefore, the string whose quantity is one is obtained.
+  this.context.resourceManager.getPluralStringValue(resource, 1,
+    (error: BusinessError, value: string) => {
       if (error != null) {
-        console.error("error is " + error);
+        console.error(`callback getPluralStringValue failed, error code: ${error.code}, message: ${error.message}.`);
       } else {
-        let str = value;
+        console.log(`getPluralStringValue, result: ${value}`);
+        // Print the output result: getPluralStringValue, result: 1 apple
       }
     });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`callback getPluralStringValue failed, error code: ${code}, message: ${message}.`);
-  }
   ```
 
 ### getPluralStringValue<sup>(deprecated)</sup>
@@ -6063,7 +6857,7 @@ Obtains singular/plural strings based on the specified quantity and resource obj
 
 > **NOTE**
 >
-> Singular/plural forms are available for English, but not Chinese.
+> Strings distinguish between singular and plural forms in all languages except Chinese. For details, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).
 >
 > This API is supported since API version 9 and deprecated since API version 18. You are advised to use [getIntPluralStringValueSync](#getintpluralstringvaluesync18-1).
 
@@ -6084,7 +6878,7 @@ Obtains singular/plural strings based on the specified quantity and resource obj
 
 | Type                 | Description                                                    |
 | --------------------- | -------------------------------------------------------- |
-| Promise&lt;string&gt; | Promise used to return the result, which is the singular/plural string corresponding to the specified resource object.|
+| Promise&lt;string&gt; | Promise used to return the obtained singular/plural string. |
 
 **Error codes**
 
@@ -6098,9 +6892,28 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.                       |
 
 **Example**
-
+  ```json
+  // Resource file path: src/main/resources/base/element/plural.json
+  {
+    "plural": [
+      {
+        "name": "test",
+        "value": [
+          {
+            "quantity": "one",
+            "value": "%d apple"
+          },
+          {
+            "quantity": "other",
+            "value": "%d apples"
+          }
+        ]
+      }
+    ]
+  }
+  ```
   ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
@@ -6108,17 +6921,16 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
     moduleName: "entry",
     id: $r('app.plural.test').id
   };
-  try {
-    this.context.resourceManager.getPluralStringValue(resource, 1).then((value: string) => {
-      let str = value;
-    }).catch((error: BusinessError) => {
-      console.error("getPluralStringValue promise error is " + error);
+  // If num is 1, the single/plural type is one in the English environment.
+  // The quantity field in the resource file indicates the single/plural type. Therefore, the string whose quantity is one is obtained.
+  this.context.resourceManager.getPluralStringValue(resource, 1)
+    .then((value: string) => {
+      console.log(`getPluralStringValue, result: ${value}`);
+      // Print the output result: getPluralStringValue, result: 1 apple
+    })
+    .catch((error: BusinessError) => {
+      console.error(`promise getPluralStringValue failed, error code: ${error.code}, message: ${error.message}.`);
     });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`promise getPluralStringValue failed, error code: ${code}, message: ${message}.`);
-  }
   ```
 
 ### getPluralStringByName<sup>(deprecated)</sup>
@@ -6129,7 +6941,7 @@ Obtains singular/plural strings based on the specified quantity and resource nam
 
 > **NOTE**
 >
-> Singular/plural forms are available for English, but not Chinese.
+> Strings distinguish between singular and plural forms in all languages except Chinese. For details, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).
 >
 > This API is supported since API version 9 and deprecated since API version 18. You are advised to use [getIntPluralStringByNameSync](#getintpluralstringbynamesync18).
 
@@ -6143,7 +6955,7 @@ Obtains singular/plural strings based on the specified quantity and resource nam
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
 | resName  | string                      | Yes  | Resource name.                                                  |
 | num      | number                      | Yes  | Quantity value, which is used to obtain the corresponding string representation based on the current language's plural rules. For details about the plural rules of a language, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)|
-| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | Yes  | Callback used to return the result, which is the singular/plural string corresponding to the specified resource name.            |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | Yes  | Callback used to return the obtained singular/plural string.            |
 
 **Error codes**
 
@@ -6157,23 +6969,39 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.                       |
 
 **Example**
-
+  ```json
+  // Resource file path: src/main/resources/base/element/plural.json
+  {
+    "plural": [
+      {
+        "name": "test",
+        "value": [
+          {
+            "quantity": "one",
+            "value": "%d apple"
+          },
+          {
+            "quantity": "other",
+            "value": "%d apples"
+          }
+        ]
+      }
+    ]
+  }
+  ```
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  try {
-    this.context.resourceManager.getPluralStringByName("test", 1, (error: BusinessError, value: string) => {
-      if (error != null) {
-        console.error("error is " + error);
-      } else {
-        let str = value;
-      }
-    });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`callback getPluralStringByName failed, error code: ${code}, message: ${message}.`);
-  }
+  // If num is 1, the single/plural type is one in the English environment.
+  // The quantity field in the resource file indicates the single/plural type. Therefore, the string whose quantity is one is obtained.
+  this.context.resourceManager.getPluralStringByName("test", 1, (error: BusinessError, value: string) => {
+    if (error != null) {
+      console.error(`callback getPluralStringByName failed, error code: ${error.code}, message: ${error.message}.`);
+    } else {
+      console.log(`getPluralStringByName, result: ${value}`);
+      // Print the output result: getPluralStringByName, result: 1 apple
+    }
+  });
   ```
 
 ### getPluralStringByName<sup>(deprecated)</sup>
@@ -6184,7 +7012,7 @@ Obtains singular/plural strings based on the specified quantity and resource nam
 
 > **NOTE**
 >
-> Singular/plural forms are available for English, but not Chinese.
+> Strings distinguish between singular and plural forms in all languages except Chinese. For details, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).
 >
 > This API is supported since API version 9 and deprecated since API version 18. You are advised to use [getIntPluralStringByNameSync](#getintpluralstringbynamesync18).
 
@@ -6217,21 +7045,39 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | 9001006  | The resource is referenced cyclically.                       |
 
 **Example**
-
+  ```json
+  // Resource file path: src/main/resources/base/element/plural.json
+  {
+    "plural": [
+      {
+        "name": "test",
+        "value": [
+          {
+            "quantity": "one",
+            "value": "%d apple"
+          },
+          {
+            "quantity": "other",
+            "value": "%d apples"
+          }
+        ]
+      }
+    ]
+  }
+  ```
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  try {
-    this.context.resourceManager.getPluralStringByName("test", 1).then((value: string) => {
-      let str = value;
-    }).catch((error: BusinessError) => {
-      console.error("getPluralStringByName promise error is " + error);
+  // If num is 1, the single/plural type is one in the English environment.
+  // The quantity field in the resource file indicates the single/plural type. Therefore, the string whose quantity is one is obtained.
+  this.context.resourceManager.getPluralStringByName("test", 1)
+    .then((value: string) => {
+      console.log(`getPluralStringByName, result: ${value}`);
+      // Print the output result: getPluralStringByName, result: 1 apple
+    })
+    .catch((error: BusinessError) => {
+      console.error(`promise getPluralStringByName failed, error code: ${error.code}, message: ${error.message}.`);
     });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`promise getPluralStringByName failed, error code: ${code}, message: ${message}.`);
-  }
   ```
 
 ### getPluralString<sup>(deprecated)</sup>
@@ -6242,7 +7088,7 @@ Obtains singular/plural strings based on the specified quantity and resource ID.
 
 > **NOTE**
 >
-> Singular/plural forms are available for English, but not Chinese.
+> Strings distinguish between singular and plural forms in all languages except Chinese. For details, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).
 >
 > This API is supported since API version 6 and deprecated since API version 9. You are advised to use [getIntPluralStringValueSync](#getintpluralstringvaluesync18).
 
@@ -6259,7 +7105,7 @@ Obtains singular/plural strings based on the specified quantity and resource ID.
 
 | Type                   | Description                       |
 | --------------------- | ------------------------- |
-| Promise&lt;string&gt; | Promise used to return the result, which is the singular/plural string corresponding to the specified resource ID.|
+| Promise&lt;string&gt; | Promise used to return the obtained singular/plural string.|
 
 **Example**
 
@@ -6284,7 +7130,7 @@ Obtains singular/plural strings based on the specified quantity and resource ID.
 
 > **NOTE**
 >
-> Singular/plural forms are available for English, but not Chinese.
+> Strings distinguish between singular and plural forms in all languages except Chinese. For details, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).
 >
 > This API is supported since API version 6 and deprecated since API version 9. You are advised to use [getIntPluralStringValueSync](#getintpluralstringvaluesync18).
 
@@ -6296,11 +7142,13 @@ Obtains singular/plural strings based on the specified quantity and resource ID.
 | -------- | --------------------------- | ---- | ------------------------------- |
 | resId    | number                      | Yes   | Resource ID.                          |
 | num      | number                      | Yes   | Quantity value, which is used to obtain the corresponding string representation based on the current language's plural rules. For details about the plural rules of a language, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)|
-| callback | [AsyncCallback](#asynccallbackdeprecated)&lt;string&gt; | Yes   | Callback used to return the result, which is the singular/plural string corresponding to the specified resource ID.|
+| callback | [AsyncCallback](#asynccallbackdeprecated)&lt;string&gt; | Yes   | Callback used to return the obtained singular/plural string.|
 
 **Example**
 
   ```ts
+  import { resourceManager } from '@kit.LocalizationKit';
+
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getPluralString($r("app.plural.test").id, 1, (error: Error, value: string) => {
           if (error != null) {
@@ -6317,7 +7165,7 @@ Obtains singular/plural strings based on the specified quantity and resource ID.
 
 getRawFile(path: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
-Obtains the content of the raw file in the **resources/rawfile** directory. This API uses an asynchronous callback to return the result.
+Obtains the content of a raw file in the **resources/rawfile** directory. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -6330,10 +7178,12 @@ Obtains the content of the raw file in the **resources/rawfile** directory. This
 | Name     | Type                             | Mandatory  | Description                     |
 | -------- | ------------------------------- | ---- | ----------------------- |
 | path     | string                          | Yes   | Path of the raw file.            |
-| callback | [AsyncCallback](#asynccallbackdeprecated)&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the raw file.|
+| callback | [AsyncCallback](#asynccallbackdeprecated)&lt;Uint8Array&gt; | Yes   | Callback used to return the raw file content.|
 
 **Example**
   ```ts
+  import { resourceManager } from '@kit.LocalizationKit';
+
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getRawFile("test.txt", (error: Error, value: Uint8Array) => {
           if (error != null) {
@@ -6350,7 +7200,7 @@ Obtains the content of the raw file in the **resources/rawfile** directory. This
 
 getRawFile(path: string): Promise&lt;Uint8Array&gt;
 
-Obtains the content of the raw file in the **resources/rawfile** directory. This API uses a promise to return the result.
+Obtains the content of a raw file in the **resources/rawfile** directory. This API uses a promise to return the result.
 
 > **NOTE**
 >
@@ -6368,7 +7218,7 @@ Obtains the content of the raw file in the **resources/rawfile** directory. This
 
 | Type                       | Description         |
 | ------------------------- | ----------- |
-| Promise&lt;Uint8Array&gt; | Promise used to return the result, which is the content of the raw file.|
+| Promise&lt;Uint8Array&gt; | Promise used to return the raw file content.|
 
 **Example**
   ```ts
@@ -6388,7 +7238,7 @@ Obtains the content of the raw file in the **resources/rawfile** directory. This
 
 getRawFileDescriptor(path: string, callback: AsyncCallback&lt;RawFileDescriptor&gt;): void
 
-Obtains the descriptor of the raw file in the **resources/rawfile** directory. This API uses an asynchronous callback to return the result.
+Obtains the fd of the raw file in the **resources/rawfile** directory. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -6401,11 +7251,11 @@ Obtains the descriptor of the raw file in the **resources/rawfile** directory. T
 | Name     | Type                                      | Mandatory  | Description                              |
 | -------- | ---------------------------------------- | ---- | -------------------------------- |
 | path     | string                                   | Yes   | Path of the raw file.                     |
-| callback | [AsyncCallback](#asynccallbackdeprecated)&lt;[RawFileDescriptor](#rawfiledescriptor9)&gt; | Yes   | Callback used to return the result, which is the descriptor of the raw file.|
+| callback | [AsyncCallback](#asynccallbackdeprecated)&lt;[RawFileDescriptor](#rawfiledescriptor9)&gt; | Yes   | Callback used to return the obtained fd.|
 
 **Example**
   ```ts
-  import { resourceManager } from '@kit.LocalizationKit'
+  import { resourceManager } from '@kit.LocalizationKit';
 
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getRawFileDescriptor("test.txt", (error: Error, value: resourceManager.RawFileDescriptor) => {
@@ -6424,7 +7274,7 @@ Obtains the descriptor of the raw file in the **resources/rawfile** directory. T
 
 getRawFileDescriptor(path: string): Promise&lt;RawFileDescriptor&gt;
 
-Obtains the descriptor of the raw file in the **resources/rawfile** directory. This API uses a promise to return the result.
+Obtains the fd of the raw file in the **resources/rawfile** directory. This API uses a promise to return the result.
 
 > **NOTE**
 >
@@ -6442,7 +7292,7 @@ Obtains the descriptor of the raw file in the **resources/rawfile** directory. T
 
 | Type                                      | Description                 |
 | ---------------------------------------- | ------------------- |
-| Promise&lt;[RawFileDescriptor](#rawfiledescriptor9)&gt; | Promise used to return the result, which is the descriptor of the raw file.|
+| Promise&lt;[RawFileDescriptor](#rawfiledescriptor9)&gt; | Promise used to return the obtained fd.|
 
 **Example**
   ```ts
@@ -6463,7 +7313,7 @@ Obtains the descriptor of the raw file in the **resources/rawfile** directory. T
 
 closeRawFileDescriptor(path: string, callback: AsyncCallback&lt;void&gt;): void
 
-Closes the descriptor of the raw file in the **resources/rawfile** directory. This API uses an asynchronous callback to return the result.
+Closes the fd of the raw file in the **resources/rawfile** directory. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -6478,10 +7328,12 @@ Closes the descriptor of the raw file in the **resources/rawfile** directory. Th
 | Name     | Type                       | Mandatory  | Description         |
 | -------- | ------------------------- | ---- | ----------- |
 | path     | string                    | Yes   | Path of the raw file.|
-| callback | [AsyncCallback](#asynccallbackdeprecated)&lt;void&gt; | Yes   | Callback used to return the result.       |
+| callback | [AsyncCallback](#asynccallbackdeprecated)&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Example**
   ```ts
+  import { resourceManager } from '@kit.LocalizationKit';
+
   resourceManager.getResourceManager((error, mgr) => {
       mgr.closeRawFileDescriptor("test.txt", (error: Error) => {
           if (error != null) {
@@ -6495,7 +7347,7 @@ Closes the descriptor of the raw file in the **resources/rawfile** directory. Th
 
 closeRawFileDescriptor(path: string): Promise&lt;void&gt;
 
-Closes the descriptor of the raw file in the **resources/rawfile** directory. This API uses a promise to return the result.
+Closes the fd of the raw file in the **resources/rawfile** directory. This API uses a promise to return the result.
 
 > **NOTE**
 >
@@ -6517,6 +7369,8 @@ Closes the descriptor of the raw file in the **resources/rawfile** directory. Th
 
 **Example**
   ```ts
+  import { resourceManager } from '@kit.LocalizationKit';
+
   resourceManager.getResourceManager((error, mgr) => {
       mgr.closeRawFileDescriptor("test.txt");
   });
@@ -6524,11 +7378,11 @@ Closes the descriptor of the raw file in the **resources/rawfile** directory. Th
 
 ## AsyncCallback<sup>(deprecated)</sup>
 
-```
-AsyncCallback<T> {
-  (err: Error, data: T): void;
-}
-```
+  ```ts
+  AsyncCallback<T> {
+    (err: Error, data: T): void;
+  }
+  ```
 
 Defines an asynchronous callback that carries an error parameter and asynchronous return value.
 
@@ -6548,101 +7402,108 @@ Defines an asynchronous callback that carries an error parameter and asynchronou
 - Content of the **app.string.test** file:
 
     ```json
+    // Resource file path: src/main/resources/base/element/string.json
     {
-    "string": [
+      "string": [
         {
-        "name": "test",
-        "value": "10"
+          "name": "test",
+          "value": "I'm a test string resource."
         }
-    ]
+      ]
     }
     ```
 
     ```json
+    // Resource file path: src/main/resources/base/element/string.json
     {
-    "string": [
-     {
-        "name": "test",
-        "value": "%s %d %f"
+      "string": [
+        {
+          "name": "test",
+          "value": "I'm a %1$s, format int: %2$d, format float: %3$f."
         }
-    ]
+      ]
     }
     ```
 
 - Content of the **app.strarray.test** file:
 
     ```json
+    // Resource file path: src/main/resources/base/element/strarray.json
     {
-    "strarray": [
+      "strarray": [
         {
-        "name": "test",
-        "value": [
-          {
-            "value": "strarray_test"
-          }
-        ]
+          "name": "test",
+          "value": [
+            {
+              "value": "I'm one of the array's values."
+            }
+          ]
         }
-    ]
+      ]
     }
     ```
 
 - Content of the **app.plural.test** file:
     ```json
+    // Resource file path: src/main/resources/base/element/plural.json
     {
       "plural": [
         {
-        "name": "test",
-        "value": [
+          "name": "test",
+          "value": [
             {
-            "quantity": "one",
-            "value": "%d apple"
+              "quantity": "one",
+              "value": "%d apple"
             },
             {
-            "quantity": "other",
-            "value": "%d apples"
+              "quantity": "other",
+              "value": "%d apples"
             }
-        ]
+          ]
         }
-    ]
+      ]
     }
     ```
 
 - Content of the **app.plural.format_test** file:
 
-    ```
+    ```json
+    // Resource file path: src/main/resources/base/element/plural.json
     {
       "plural": [
         {
-        "name": "format_test",
-        "value": [
+          "name": "format_test",
+          "value": [
             {
-            "quantity": "one",
-            "value": "%d apple, %s, %f"
+              "quantity": "one",
+              "value": "There is %d apple in the %s, the total amount is %f kg."
             },
             {
-            "quantity": "other",
-            "value": "%d apples, %s, %f"
+              "quantity": "other",
+              "value": "There are %d apples in the %s, the total amount is %f kg."
             }
-        ]
+          ]
         }
-    ]
+      ]
     }
     ```
 
 - Content of the **app.boolean.boolean_test** file:
     ```json
+    // Resource file path: src/main/resources/base/element/boolean.json
     {
-        "boolean": [
-            {
-                "name": "boolean_test",
-                "value": true
-            }
-        ]
+      "boolean": [
+        {
+          "name": "boolean_test",
+          "value": true
+        }
+      ]
     }
     ```
 
 - Content of the **integer_test** and **float_test** files:
     ```json
+    // Resource file path: src/main/resources/base/element/integer.json
     {
       "integer": [
         {
@@ -6654,23 +7515,25 @@ Defines an asynchronous callback that carries an error parameter and asynchronou
     ```
 
     ```json
+    // Resource file path: src/main/resources/base/element/float.json
     {
       "float": [
         {
           "name": "float_test",
-          "value": "30.6"
+          "value": "30.6vp"
         }
       ]
     }
     ```
 - Content of the **app.color.test** file:
     ```json
+    // Resource file path: src/main/resources/base/element/color.json
     {
       "color": [
         {
           "name": "test",
           "value": "#FFFFFF"
-       }
+        }
       ]
     }
     ```

@@ -4,7 +4,7 @@
 
 When using [Canvas](ts-components-canvas-canvas.md) or [Canvas API](ts-canvasrenderingcontext2d.md), rendering, animations, and user interactions generally occur on the main thread of an application. The computation relating to canvas animations and rendering may affect application performance. **OffscreenCanvas** allows for rendering off the screen. This means that some tasks can be run in a separate thread to reduce the load on the main thread.
 
-> **NOTE** 
+> **NOTE**
 >
 > The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
@@ -24,11 +24,11 @@ OffscreenCanvas(width: number, height: number, unit?: LengthMetricsUnit)
 
 **Parameters**
 
-| Name | Type | Mandatory | Description                       |
+| Name| Type| Mandatory| Description                       |
 | ------ | -------- | ---- | ------------------------------------- |
-| width  | number   | Yes | Width of the offscreen canvas.<br>Default unit: vp |
-| height | number   | Yes | Height of the offscreen canvas.<br>Default unit: vp |
-| unit<sup>12+</sup>  | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | No  |  Unit mode of the **OffscreenCanvas** object. The value cannot be dynamically changed once set. The configuration method is the same as that of [CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md#lengthmetricsunit12).<br>Default value: **DEFAULT** |
+| width  | number   | Yes | Width of the offscreen canvas.<br>Default unit: vp|
+| height | number   | Yes | Height of the offscreen canvas.<br>Default unit: vp|
+| unit<sup>12+</sup>  | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | No  |  Unit mode of the **OffscreenCanvas** object. The value cannot be dynamically changed once set. The configuration method is the same as that of [CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md#lengthmetricsunit12).<br>Default value: **DEFAULT**|
 
 ## Attributes
 
@@ -40,10 +40,10 @@ OffscreenCanvas(width: number, height: number, unit?: LengthMetricsUnit)
 
 The following attributes are supported.
 
-| Name  | Type  | Read Only | Optional | Description |
+| Name  | Type  | Read Only| Optional| Description|
 | ------ | ------ | ------ | ------- | ---- |
-| width  | number | No |  No | Width of the offscreen canvas.<br>Default unit: vp |
-| height | number | No |  No | Height of the offscreen canvas.<br>Default unit: vp |
+| width  | number | No |  No | Width of the offscreen canvas.<br>Default unit: vp|
+| height | number | No |  No | Height of the offscreen canvas.<br>Default unit: vp|
 
 ### width
 
@@ -135,7 +135,7 @@ Creates an **ImageBitmap** object from the most recently rendered image of the o
 
 | Type                                              | Description                   |
 | -------------------------------------------------- | ----------------------- |
-| [ImageBitmap](ts-components-canvas-imagebitmap.md) | **ImageBitmap** object created. |
+| [ImageBitmap](ts-components-canvas-imagebitmap.md) | **ImageBitmap** object created.|
 
 **Example**
 
@@ -173,7 +173,7 @@ struct OffscreenCanvasPage {
 }
 ```
 
-![zh-cn_image_0000001194032666](figures/offscreen_canvas_transferToImageBitmap.png)
+![en-us_image_0000001194032666](figures/offscreen_canvas_transferToImageBitmap.png)
 
 ### getContext<sup>10+</sup>
 
@@ -187,16 +187,16 @@ Obtains the drawing context of the offscreen canvas.
 
 **Parameters**
 
-| Name | Type | Mandatory | Description   |
+| Name | Type| Mandatory| Description   |
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| contextType | string | Yes  | Type of the drawing context of the offscreen canvas. The value can only be **"2d"**.<br>Default value: **"2d"**|
-| options      | [RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings) | No | Parameters of the **OffscreenCanvasRenderingContext2D** object. For details, see [RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings).<br>Default value: **null** |
+| contextType | string | Yes  | Type of the drawing context of the offscreen canvas. The value can only be **"2d"**.|
+| options      | [RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings) | No| Parameters of the **OffscreenCanvasRenderingContext2D** object. For details, see [RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings).<br>Default value: **null**|
 
 **Return value**
 
 | Type                                                        | Description                             |
 | ------------------------------------------------------------ | --------------------------------- |
-| [OffscreenCanvasRenderingContext2D](ts-offscreencanvasrenderingcontext2d.md) | Drawing context of the offscreen canvas. If **contextType** in **getContext** is set to a value other than **"2d"** (including **null** and **undefined**), **null** is returned. |
+| [OffscreenCanvasRenderingContext2D](ts-offscreencanvasrenderingcontext2d.md) | Drawing context of the offscreen canvas. If **contextType** in **getContext** is set to a value other than **"2d"** (including **null** and **undefined**), **null** is returned.|
 
 **Example**
 
@@ -252,7 +252,7 @@ struct OffscreenCanvasExamplePage {
 
 ## Concurrent Thread Drawing
 
-Since API version 11, an application can call **postMessage** to pass an **OffscreenCanvas** instance to a worker thread for drawing, and call **onmessage** to receive the drawing result for display.
+Since API version 11, an application can call **postMessage** to pass an **OffscreenCanvas** instance to a [worker thread](../../../arkts-utils/worker-introduction.md) for drawing, and call **onmessage** to receive the drawing result for display.
 
 > **NOTE**
 >
@@ -261,6 +261,8 @@ Since API version 11, an application can call **postMessage** to pass an **Offsc
 > After an **OffscreenCanvas** object is passed to a thread through **postMessage**, it cannot use the **getContext** or **transferToImageBitmap** APIs. Otherwise, an exception is thrown.
 >
 > After an **OffscreenCanvas** object is passed to a thread through **postMessage**, it cannot be passed to any other thread through **postMessage**. Otherwise, an exception is thrown.
+>
+> The content drawn in the Worker thread cannot be previewed in DevEco Studio Previewer.
 
 **Example**
 

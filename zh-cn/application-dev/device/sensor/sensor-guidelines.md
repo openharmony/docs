@@ -34,7 +34,7 @@
     ```ts    
     sensor.getSensorList((error: BusinessError, data: Array<sensor.Sensor>) => {
         if (error) {
-            console.info('getSensorList failed');
+            console.error('getSensorList failed');
         } else {
             console.info('getSensorList success');
             for (let i = 0; i < data.length; i++) {

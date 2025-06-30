@@ -68,7 +68,7 @@
 
    ![zh-cn_image_0000001215897530](figures/zh-cn_image_0000001215897530.png)
 
-   连接成功后，等待在远程计算机用户目录下的.vscode-server文件夹下自动安装插件，安装完成后，根据界面提示在Windows系统下重新加载Visual Studio Code，便可以在Windows的DevEco Device Tool界面进行源码开发、编译、烧录等操作。
+   连接成功后，等待在远程计算机用户目录下的.vscode-server文件夹下自动安装插件。安装完成后，根据界面提示在Windows系统下重新加载Visual Studio Code，便可以在Windows的DevEco Device Tool界面进行源码开发、编译、烧录等操作。
 
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
    > 如果您之前安装过DevEco Device Tool 3.0 Release及以前的版本，可能出现插件安装失败的情况，Visual Studio Code右下角一直处于如下界面，请参考[DevEco Device Tool插件安装失败处理办法](https://device.harmonyos.com/cn/docs/documentation/guide/faq-device-tool-install-failed-0000001437806813)进行处理。
