@@ -128,19 +128,34 @@ TaskPool第一次执行任务慢，间隔几百毫秒，原因是子线程反序
    入参序列化失败
 
    ```ts
+   // API version 20之前版本
    Error message:An exception occurred during serialization, taskpool: failed to serialize arguments.
+
+   // API version 20及之后版本
+   Error message:An exception occurred during serialization, taskpool: failed to serialize arguments.
+   Serialize error: Serialize don't support object type: 
    ```
 
    返回结果序列化失败
 
    ```ts
+   // API version 20之前版本
    Error message:An exception occurred during serialization, taskpool: failed to serialize result.
+
+   // API version 20及之后版本
+   Error message:An exception occurred during serialization, taskpool: failed to serialize result.
+   Serialize error: Serialize don't support object type: 
    ```
 
 2. Hilog错误日志
 
    ```ts
+   // API version 20之前版本
    [ecmascript] Unsupport serialize object type: 
+   [ecmascript] ValueSerialize: serialize data is incomplete
+
+   // API version 20及之后版本
+   [ecmascript] Serialize don't support object type: 
    [ecmascript] ValueSerialize: serialize data is incomplete
    ```
 
@@ -153,7 +168,7 @@ TaskPool实现任务的函数（Concurrent函数）入参和返回结果需满�
 1. 应用在启动TaskPool任务时，在Concurrent函数中传入线程间通信不支持的对象类型，导致抛出入参序列化失败异常。  
 **解决方案**：应用需要查看[线程间通信对象](../reference/apis-arkts/js-apis-taskpool.md#序列化支持类型)排查Concurrent函数入参。
 
-2. 应用在启动TaskPool任务时，抛出入参序列化失败异常，同时Hilog打印错误日志Unsupport serialize object type: Proxy。基于错误日志可知应用在Concurrent函数中传入代理对象，排查代码发现入参使用了@State装饰器，导致原对象实际上变为Proxy代理对象，代理对象不属于线程间通信支持的对象类型。  
+2. 应用在启动TaskPool任务时，抛出入参序列化失败异常，同时Hilog打印错误日志Unsupport serialize object type: Proxy（API version 20及之后版本打印错误日志：Serialize error: Serialize don't support object type: Proxy）。基于错误日志可知应用在Concurrent函数中传入代理对象，排查代码发现入参使用了@State装饰器，导致原对象实际上变为Proxy代理对象，代理对象不属于线程间通信支持的对象类型。  
 **解决方案**：TaskPool不支持@State、@Prop等装饰器修饰的复杂类型，具体内容可见[TaskPool注意事项](taskpool-introduction.md#taskpool注意事项)。应用需要去掉@State装饰器。
 
 3. 应用执行TaskPool任务时，抛出返回结果序列化失败异常，排查代码发现Concurrent Function返回结果是不支持的序列化类型。
