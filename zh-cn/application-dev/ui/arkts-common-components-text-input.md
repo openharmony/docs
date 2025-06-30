@@ -233,21 +233,38 @@ TextInput({ placeholder: '输入你的邮箱...' })
   .contentType(ContentType.EMAIL_ADDRESS)
 ```
 
-## 设置省略属性
+## 设置属性
 
-输入框可以通过[ellipsisMode](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md#ellipsismode18)属性设置省略位置。
+- 设置省略属性。 
 
-ellipsisMode属性需要配合overflow设置为TextOverflow.Ellipsis使用，单独设置ellipsisMode属性不生效。
+  输入框可以通过[ellipsisMode](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md#ellipsismode18)属性设置省略位置。
 
-```ts
-TextInput({ text: '这是一段文本，用来展示省略模式'})
-  .textOverflow(TextOverflow.Ellipsis)
-  .ellipsisMode(EllipsisMode.END)
-  .style(TextInputStyle.Inline)
-  .fontSize(30)
-  .margin(30)
-```
-![TextInput_ellipsismode](figures/TextInput_ellipsismode.jpg)
+  ellipsisMode属性需要配合overflow设置为TextOverflow.Ellipsis使用，单独设置ellipsisMode属性不生效。
+
+  ```ts
+  TextInput({ text: '这是一段文本，用来展示省略模式'})
+    .textOverflow(TextOverflow.Ellipsis)
+    .ellipsisMode(EllipsisMode.END)
+    .style(TextInputStyle.Inline)
+    .fontSize(30)
+    .margin(30)
+  ```
+  ![TextInput_ellipsismode](figures/TextInput_ellipsismode.jpg)
+
+- 设置文本描边属性。 
+
+  从API version 20开始，输入框可以通过[strokeWidth](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md#strokewidth20)和[strokeColor](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md#strokecolor20)属性设置文本的描边宽度及颜色。
+
+  ```ts
+  TextInput({ text: 'Text with stroke' })
+    .width('100%')
+    .height(60)
+    .borderWidth(1)
+    .fontSize(40)
+    .strokeWidth(LengthMetrics.px(3.0))
+    .strokeColor(Color.Red)
+  ```
+  ![TextInput_stroke](figures/TextInput_stroke.jpg)
 
 ## 键盘避让
 

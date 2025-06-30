@@ -20,9 +20,9 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [ColorSpacePrimaries](capi-colorspaceprimaries.md) | ColorSpacePrimaries | 提供色彩原色结构体声明。 |
-| [WhitePointArray](capi-whitepointarray.md) | - | 提供白点数组结构体，白点是指在当前色域中表示白色的坐标。 |
-| [OH_NativeColorSpaceManager](capi-oh-nativecolorspacemanager.md) | OH_NativeColorSpaceManager | 提供OH_NativeColorSpaceManager结构体声明。 |
+| [ColorSpacePrimaries](capi-nativecolorspacemanager-colorspaceprimaries.md) | ColorSpacePrimaries | 提供色彩原色结构体声明。 |
+| [WhitePointArray](capi-nativecolorspacemanager-whitepointarray.md) | - | 提供白点数组结构体，白点是指在当前色域中表示白色的坐标。 |
+| [OH_NativeColorSpaceManager](capi-nativecolorspacemanager-oh-nativecolorspacemanager.md) | OH_NativeColorSpaceManager | 提供OH_NativeColorSpaceManager结构体声明。 |
 
 ### 枚举
 
@@ -111,13 +111,13 @@ OH_NativeColorSpaceManager* OH_NativeColorSpaceManager_CreateFromName(ColorSpace
 
 | 参数项 | 描述 |
 | -- | -- |
-| [ColorSpaceName](#colorspacename) colorSpaceName | 表示创建[OH_NativeColorSpaceManager](capi-oh-nativecolorspacemanager.md)的色彩空间名称。 |
+| [ColorSpaceName](#colorspacename) colorSpaceName | 表示创建[OH_NativeColorSpaceManager](capi-nativecolorspacemanager-oh-nativecolorspacemanager.md)的色彩空间名称。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_NativeColorSpaceManager](capi-oh-nativecolorspacemanager.md)* | 返回一个指向[OH_NativeColorSpaceManager](capi-oh-nativecolorspacemanager.md)实例的指针。内存不足时，会导致创建OH_NativeColorSpaceManager实例失败。 |
+| [OH_NativeColorSpaceManager](capi-nativecolorspacemanager-oh-nativecolorspacemanager.md)* | 返回一个指向[OH_NativeColorSpaceManager](capi-nativecolorspacemanager-oh-nativecolorspacemanager.md)实例的指针。内存不足时，会导致创建OH_NativeColorSpaceManager实例失败。 |
 
 ### OH_NativeColorSpaceManager_CreateFromPrimariesAndGamma()
 
@@ -138,14 +138,14 @@ OH_NativeColorSpaceManager* OH_NativeColorSpaceManager_CreateFromPrimariesAndGam
 
 | 参数项 | 描述 |
 | -- | -- |
-| [ColorSpacePrimaries](capi-colorspaceprimaries.md) primaries | 表示创建[OH_NativeColorSpaceManager](capi-oh-nativecolorspacemanager.md)的色彩原色。 |
-| float gamma | 表示创建[OH_NativeColorSpaceManager](capi-oh-nativecolorspacemanager.md)的伽马值，伽马值为一个浮点数，用于矫正亮度范围。<br>伽马值通常为正值，负值会使弱光区域更亮，强光区域变暗，伽马值为0表示线性色彩空间。 |
+| [ColorSpacePrimaries](capi-nativecolorspacemanager-colorspaceprimaries.md) primaries | 表示创建[OH_NativeColorSpaceManager](capi-nativecolorspacemanager-oh-nativecolorspacemanager.md)的色彩原色。 |
+| float gamma | 表示创建[OH_NativeColorSpaceManager](capi-nativecolorspacemanager-oh-nativecolorspacemanager.md)的伽马值，伽马值为一个浮点数，用于矫正亮度范围。<br>伽马值通常为正值，负值会使弱光区域更亮，强光区域变暗，伽马值为0表示线性色彩空间。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_NativeColorSpaceManager](capi-oh-nativecolorspacemanager.md)* | 返回一个指向[OH_NativeColorSpaceManager](capi-oh-nativecolorspacemanager.md)实例的指针。<br> 内存不足时，会导致创建OH_NativeColorSpaceManager实例失败。 |
+| [OH_NativeColorSpaceManager](capi-nativecolorspacemanager-oh-nativecolorspacemanager.md)* | 返回一个指向[OH_NativeColorSpaceManager](capi-nativecolorspacemanager-oh-nativecolorspacemanager.md)实例的指针。<br> 内存不足时，会导致创建OH_NativeColorSpaceManager实例失败。 |
 
 ### OH_NativeColorSpaceManager_Destroy()
 
@@ -166,7 +166,7 @@ void OH_NativeColorSpaceManager_Destroy(OH_NativeColorSpaceManager* nativeColorS
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_NativeColorSpaceManager](capi-oh-nativecolorspacemanager.md)* nativeColorSpaceManager | 表示指向OH_NativeColorSpaceManager实例的指针。 |
+| [OH_NativeColorSpaceManager](capi-nativecolorspacemanager-oh-nativecolorspacemanager.md)* nativeColorSpaceManager | 表示指向OH_NativeColorSpaceManager实例的指针。 |
 
 ### OH_NativeColorSpaceManager_GetColorSpaceName()
 
@@ -187,7 +187,7 @@ int OH_NativeColorSpaceManager_GetColorSpaceName(OH_NativeColorSpaceManager* nat
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_NativeColorSpaceManager](capi-oh-nativecolorspacemanager.md)* nativeColorSpaceManager | 表示指向OH_NativeColorSpaceManager实例的指针。 |
+| [OH_NativeColorSpaceManager](capi-nativecolorspacemanager-oh-nativecolorspacemanager.md)* nativeColorSpaceManager | 表示指向OH_NativeColorSpaceManager实例的指针。 |
 
 **返回：**
 
@@ -214,13 +214,13 @@ WhitePointArray OH_NativeColorSpaceManager_GetWhitePoint(OH_NativeColorSpaceMana
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_NativeColorSpaceManager](capi-oh-nativecolorspacemanager.md)* nativeColorSpaceManager | 表示指向OH_NativeColorSpaceManager实例的指针。 |
+| [OH_NativeColorSpaceManager](capi-nativecolorspacemanager-oh-nativecolorspacemanager.md)* nativeColorSpaceManager | 表示指向OH_NativeColorSpaceManager实例的指针。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [WhitePointArray](capi-whitepointarray.md) | 返回值为float数组，返回值为<0.0, 0.0>表示接口操作失败，其余返回值表示操作成功。 |
+| [WhitePointArray](capi-nativecolorspacemanager-whitepointarray.md) | 返回值为float数组，返回值为<0.0, 0.0>表示接口操作失败，其余返回值表示操作成功。 |
 
 ### OH_NativeColorSpaceManager_GetGamma()
 
@@ -241,7 +241,7 @@ float OH_NativeColorSpaceManager_GetGamma(OH_NativeColorSpaceManager* nativeColo
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_NativeColorSpaceManager](capi-oh-nativecolorspacemanager.md)* nativeColorSpaceManager | 表示指向OH_NativeColorSpaceManager实例的指针。 |
+| [OH_NativeColorSpaceManager](capi-nativecolorspacemanager-oh-nativecolorspacemanager.md)* nativeColorSpaceManager | 表示指向OH_NativeColorSpaceManager实例的指针。 |
 
 **返回：**
 

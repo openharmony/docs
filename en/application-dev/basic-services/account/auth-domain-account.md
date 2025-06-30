@@ -16,7 +16,7 @@ The domain account can be authenticated by password. You can use [auth](../../re
 
 **Procedure**
 
-1. Request the ohos.permission.ACCESS_USER_AUTH_INTERNAL permission. For details, see [Requesting Permissions for system_basic Applications](../../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
+1. Request the ohos.permission.ACCESS_USER_AUTH_INTERNAL permission. For details about how to request the permission, see [Requesting Permissions for system_basic Applications](../../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
 
 2. Obtain user input information, including the domain account and its password.
 
@@ -45,7 +45,7 @@ The domain account can be authenticated by password. You can use [auth](../../re
    try {
      osAccount.DomainAccountManager.auth(domainAccountInfo, credential, callback);
    } catch (err) {
-     console.log('auth exception = ' + JSON.stringify(err));
+     console.error('auth exception = ' + JSON.stringify(err));
    }
    ```
 
@@ -72,6 +72,6 @@ If the domain account password is unavailable, display a dialog box to authentic
    try {
      osAccount.DomainAccountManager.authWithPopup(callback)
    } catch (err) {
-     console.log('authWithPopup exception = ' + JSON.stringify(err));
+     console.error('authWithPopup exception = ' + JSON.stringify(err));
    }
    ```

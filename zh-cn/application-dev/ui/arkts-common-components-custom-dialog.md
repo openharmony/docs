@@ -559,7 +559,7 @@ struct InterceptCustomDialog {
       }
     }),
     onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
-      console.log('dialog onWillDismiss reason: ' + dismissDialogAction.reason);
+      console.info('dialog onWillDismiss reason: ' + dismissDialogAction.reason);
       // 1、PRESS_BACK    点击三键back、侧滑（左滑/右滑）、键盘ESC。
       // 2、TOUCH_OUTSIDE    点击遮障层时
       // 3、CLOSE_BUTTON    点击关闭按钮
@@ -657,6 +657,66 @@ struct Index {
 ```
 
  ![UIContextPromptAction](figures/UIContextPromptActionCustomDialog.gif)
+
+## 获取弹出框的状态
+
+在业务模块中，页面上可能会同时出现多个弹出框。为避免重复打开相同的弹出框，建议在显示弹出框前，先通过控制器检查其当前状态。如果弹出框已处于显示状态，则不应再次打开。
+从API version 20开始，新增了getState接口，用于获取弹出框的当前状态。具体的弹出框状态信息，请参见[CommonState](../reference/apis-arkui/js-apis-promptAction.md#commonstate20枚举说明)枚举的详细说明。
+
+以下示例通过getDialogController和CustomDialogController两种方法，实现了获取弹出框当前状态的功能。
+
+```ts
+// xxx.ets
+@CustomDialog
+struct CustomDialogExample {
+  controller?: CustomDialogController
+
+  build() {
+    Column() {
+      Button('点我查询弹窗状态:通过自定义组件自带controller')
+        .onClick(() => {
+          if (this.getDialogController() != undefined) {
+            console.info('state:' + this.getDialogController().getState())
+          } else {
+            console.info('state: no exist')
+          }
+        }).margin(20)
+      Button('点我查询弹窗状态:通过CustomDialogController ')
+        .onClick(() => {
+          console.info('state:' + this.controller?.getState())
+        }).margin(20)
+      Button('点我关闭弹窗')
+        .onClick(() => {
+          if (this.getDialogController() != undefined) {
+            this.getDialogController().close()
+          }
+        }).margin(20)
+      
+    }
+  }
+}
+
+@Entry
+@Component
+struct CustomDialogUser {
+  dialogController: CustomDialogController | null = new CustomDialogController({
+    builder: CustomDialogExample({
+    }),
+    autoCancel: false
+  })
+
+  build() {
+    Column() {
+      Button('click me')
+        .onClick(() => {
+          if (this.dialogController != null) {
+            this.dialogController.open()
+          }
+        })
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
 
 ## 相关实例
 

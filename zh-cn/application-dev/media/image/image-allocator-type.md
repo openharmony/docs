@@ -92,7 +92,7 @@ stride的值可以通过[getImageInfo()](../../reference/apis-image-kit/arkts-ap
 ```ts
 import image from '@ohos.multimedia.image';
 
-async CreatePixelMapUsingAllocator(context : Context) {
+async function CreatePixelMapUsingAllocator(context : Context) {
   const resourceMgr = context.resourceManager;
   const rawFile = await resourceMgr.getRawFileContent("test.jpg");  // 测试图片。
   let imageSource: image.ImageSource | null = await image.createImageSource(rawFile.buffer as ArrayBuffer);

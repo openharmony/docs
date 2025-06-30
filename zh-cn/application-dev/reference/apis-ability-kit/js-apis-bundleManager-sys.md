@@ -70,7 +70,7 @@ Ability组件信息标志，指示需要获取的Ability组件信息的内容。
 
 | 名称                                        | 值         | 说明                                                         |
 | ------------------------------------------- | ---------- | ------------------------------------------------------------ |
-| GET_EXTENSION_ABILITY_INFO_DEFAULT          | 0x00000000 | 用于获取默认extensionAbilityInfo。获取的extensionAbilityInfo不包含permission、metadata 和禁用的abilityInfo。 |
+| GET_EXTENSION_ABILITY_INFO_DEFAULT          | 0x00000000 | 用于获取默认extensionAbilityInfo。获取的extensionAbilityInfo不包含permission、metadata 和禁用的extensionAbilityInfo。 |
 | GET_EXTENSION_ABILITY_INFO_WITH_PERMISSION  | 0x00000001 | 用于获取包含permission的extensionAbilityInfo。               |
 | GET_EXTENSION_ABILITY_INFO_WITH_APPLICATION | 0x00000002 | 用于获取包含applicationInfo的extensionAbilityInfo。         |
 | GET_EXTENSION_ABILITY_INFO_WITH_METADATA    | 0x00000004 | 用于获取包含metadata的extensionAbilityInfo。                 |
@@ -1835,6 +1835,8 @@ try {
 getAllBundleCacheSize(): Promise\<number>
 
 获取全局缓存大小，使用Promise异步回调。
+
+有程序运行时的应用的缓存、或者在[应用配置指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/subsystems/subsys-app-privilege-config-guide.md)中已配置“AllowAppDataNotCleared”特权的应用的缓存，无法被获取。
 
 **系统接口：** 此接口为系统接口。
 
@@ -4888,7 +4890,7 @@ try {
 
 ## bundleManager.getDeveloperIds<sup>12+</sup>
 
-getDeveloperIds(appDistributionType?: number): Array\<String>
+getDeveloperIds(appDistributionType?: number): Array\<string>
 
 根据给定的应用[分发类型](#appdistributiontype12)获取当前用户下的所有的开发者ID列表。
 
@@ -4908,7 +4910,7 @@ getDeveloperIds(appDistributionType?: number): Array\<String>
 
 | 类型                                                         | 说明                                   |
 | ------------------------------------------------------------ | -------------------------------------- |
-| Array\<String>    | 同步返回Array\<String>。 |
+| Array\<string>    | 同步返回Array\<string>。 |
 
 **错误码：**
 
@@ -5154,6 +5156,7 @@ enableDynamicIcon(bundleName: string, moduleName: string): Promise\<void>;
 | 17700001 | The specified bundleName is not found. |
 | 17700002 | The specified moduleName is not found. |
 | 17700304 | Failed to enable the dynamic icon. |
+| 17700307 | Dynamic icons cannot take effect due to existing custom themes. |
 
 **示例：**
 
@@ -5220,6 +5223,7 @@ enableDynamicIcon(bundleName: string, moduleName: string, option?: BundleOptions
 | 17700004 | The specified user ID is not found. |
 | 17700061 | AppIndex not in valid range. |
 | 17700304 | Failed to enable the dynamic icon. |
+| 17700307 | Dynamic icons cannot take effect due to existing custom themes. |
 
 **示例：**
 
@@ -5593,6 +5597,8 @@ getAppCloneBundleInfo(bundleName: string, appIndex: number, bundleFlags: number,
 
 根据bundleName、分身索引、[bundleFlags](js-apis-bundleManager.md#bundleflag)以及用户ID查询主应用或分身应用的BundleInfo。使用Promise异步回调。
 
+bundleName是调用方自身时不需要权限。
+
 **系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
@@ -5945,30 +5951,6 @@ try {
 }
 ```
 
-## PluginBundleInfo<sup>19+</sup>
-
-type PluginBundleInfo = _PluginBundleInfo
-
-插件信息。
-
-**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
-
-| 类型                                                         | 说明           |
-| ------------------------------------------------------------ | -------------- |
-| [_PluginBundleInfo](js-apis-bundleManager-pluginBundleInfo-sys.md#pluginbundleinfo) |插件信息。 |
-
-## PluginModuleInfo<sup>19+</sup>
-
-type PluginModuleInfo = _PluginModuleInfo
-
-插件的模块信息。
-
-**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
-
-| 类型                                                         | 说明           |
-| ------------------------------------------------------------ | -------------- |
-| [_PluginModuleInfo](js-apis-bundleManager-pluginBundleInfo-sys.md#pluginmoduleinfo) |插件的模块信息。 |
-
 ## bundleManager.getDynamicIconInfo<sup>20+</sup>
 
 getDynamicIconInfo(bundleName: string): Promise\<Array\<DynamicIconInfo>>
@@ -6084,3 +6066,144 @@ try {
     hilog.error(0x0000, 'testTag', 'getAllDynamicIconInfo failed. Cause: %{public}s', message);
 }
 ```
+
+## PermissionDef
+
+type PermissionDef = _PermissionDef
+
+[module.json5配置文件](../../quick-start/module-configuration-file.md)中定义的权限详细信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_PermissionDef](./js-apis-bundleManager-permissionDef-sys.md#permissiondef) |配置文件中定义的权限详细信息。 |
+
+## SharedBundleInfo<sup>10+</sup>
+
+type SharedBundleInfo = _SharedBundleInfo
+
+共享包信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_SharedBundleInfo](js-apis-bundleManager-sharedBundleInfo-sys.md#sharedbundleinfo) |共享包信息。 |
+
+## AppProvisionInfo<sup>10+</sup>
+
+type AppProvisionInfo = _AppProvisionInfo.AppProvisionInfo
+
+应用[HarmonyAppProvision配置文件](../../security/app-provision-structure.md)中的信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_AppProvisionInfo.AppProvisionInfo](js-apis-bundleManager-AppProvisionInfo-sys.md#appprovisioninfo) |应用[HarmonyAppProvision配置文件](../../security/app-provision-structure.md)中的信息。 |
+
+
+## Validity<sup>10+</sup>
+
+type Validity = _AppProvisionInfo.Validity
+
+配置文件中的有效期。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_AppProvisionInfo.Validity](js-apis-bundleManager-AppProvisionInfo-sys.md#validity) |配置文件中的有效期。 |
+
+## RecoverableApplicationInfo<sup>11+</sup>
+
+type RecoverableApplicationInfo = _RecoverableApplicationInfo
+
+预置应用被卸载后可以恢复的预置应用信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_RecoverableApplicationInfo](js-apis-bundleManager-recoverableApplicationInfo-sys.md#recoverableapplicationinfo) |预置应用被卸载后可以恢复的预置应用信息。 |
+
+## PreinstalledApplicationInfo<sup>12+</sup>
+
+type PreinstalledApplicationInfo = _PreinstalledApplicationInfo
+
+预置应用信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_PreinstalledApplicationInfo](js-apis-bundleManager-ApplicationInfo-sys.md#preinstalledapplicationinfo12) |预置应用信息。 |
+
+## PluginBundleInfo<sup>19+</sup>
+
+type PluginBundleInfo = _PluginBundleInfo
+
+插件信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_PluginBundleInfo](js-apis-bundleManager-pluginBundleInfo-sys.md#pluginbundleinfo) |插件信息。 |
+
+## PluginModuleInfo<sup>19+</sup>
+
+type PluginModuleInfo = _PluginModuleInfo
+
+插件的模块信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_PluginModuleInfo](js-apis-bundleManager-pluginBundleInfo-sys.md#pluginmoduleinfo) |插件的模块信息。 |
+
+## DynamicIconInfo<sup>20+</sup>
+
+type DynamicIconInfo = _BundleInfo.DynamicIconInfo
+
+应用的动态图标信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_BundleInfo.DynamicIconInfo](js-apis-bundleManager-BundleInfo-sys.md#dynamiciconinfo) |应用的动态图标信息。 |
+
+## BundleOptions<sup>20+</sup>
+
+type BundleOptions = _BundleInfo.BundleOptions
+
+应用包选项，用于设置或查询应用相关信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_BundleInfo.BundleOptions](js-apis-bundleManager-BundleInfo-sys.md#bundleoptions) |应用包选项，用于设置或查询应用相关信息。 |

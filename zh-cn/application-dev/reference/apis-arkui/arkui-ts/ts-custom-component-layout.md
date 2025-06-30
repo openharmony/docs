@@ -9,6 +9,8 @@
 > 在自定义组件内实现onMeasureSize, onPlaceChildren任一方法即视为实现自定义布局，推荐同时实现两种方法，具体参数说明可见对应接口参数说明。
 >
 > 从API version 20开始，在自定义布局的自定义组件中，子组件若设置了[LayoutPolicy](ts-types.md#layoutpolicy15)对象的fixAtIdealSize属性，表示尺寸将不受父组件约束，完全按照开发者自定义的尺寸范围布局。
+> 
+> 自定义布局内不支持使用懒加载(包含[Repeat](../../../ui/state-management/arkts-new-rendering-control-repeat.md)和[LazyForEach](../../../ui/state-management/arkts-rendering-control-lazyforeach.md))。
 
 ## onMeasureSize<sup>10+</sup>
 
@@ -74,8 +76,6 @@ ArkUI框架会在自定义组件确定位置时，将该自定义组件的子节
 
 子组件布局信息。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### 属性
@@ -83,6 +83,7 @@ ArkUI框架会在自定义组件确定位置时，将该自定义组件的子节
 | 名称         | 类型       | 只读|可选|  说明                                                      |
 |--------------|---------------------------------- | ------|-----------------------------------------------------|---------------------|
 | measureResult| [MeasureResult](#measureresult10) |   否|否| 子组件测量后的尺寸信息。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br>单位：vp     |
+| uniqueId<sup>18+</sup>| number | 否 |否| 系统为子组件分配的唯一标识UniqueID。<br>取值范围[0,+∞)。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
 
 ### layout
 

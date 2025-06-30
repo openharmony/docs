@@ -5,6 +5,12 @@
 
 音频播放管理类，用于管理和播放音频媒体。在调用AudioPlayer的方法前，需要先通过[createAudioPlayer()](arkts-apis-media-f.md#mediacreateaudioplayerdeprecated)构建一个AudioPlayer实例。
 
+## 导入模块
+
+```ts
+import { media } from '@kit.MediaKit';
+```
+
 ## 属性<sup>(deprecated)</sup>
 
 **系统能力：** SystemCapability.Multimedia.Media.AudioPlayer

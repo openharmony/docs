@@ -2,7 +2,7 @@
 
 ## 如何获取签名信息中的指纹信息
 
-1. 通过调用接口获取。
+* 通过调用接口获取。
 
 可以调用[bundleManager.getBundleInfoForSelf](../reference/apis-ability-kit/js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)获取自身的BundleInfo应用包信息，应用包信息中包含signatureInfo签名信息，签名信息中包含fingerprint指纹信息。
 
@@ -24,7 +24,7 @@ try {
 }
 ```
 
-2. 通过[bm工具](../tools/bm-tool.md)获取fingerprint指纹信息。
+* 通过[bm工具](../tools/bm-tool.md)获取fingerprint指纹信息。
 
 ```shell
 hdc shell
@@ -34,9 +34,9 @@ bm dump -n com.example.myapplication | grep fingerprint
 
 ![alt text](figures/get_fingerprint.png)
 
-3. 通过.cer证书文件获取，可以参考[APP备案FAQ](https://developer.huawei.com/consumer/cn/doc/app/50130)中HarmonyOS应用/元服务如何获取公钥和签名信息。
+* 通过.cer证书文件获取，可以参考[APP备案FAQ](https://developer.huawei.com/consumer/cn/doc/app/50130)中HarmonyOS应用/元服务如何获取公钥和签名信息。
 
-4. 通过keytool工具获取，详情参考[生成签名证书指纹](https://developer.huawei.com/consumer/cn/doc/AppGallery-connect-Guides/appgallerykit-preparation-game-0000001055356911#section147011294331)。
+* 通过keytool工具获取，详情参考[生成签名证书指纹](https://developer.huawei.com/consumer/cn/doc/AppGallery-connect-Guides/appgallerykit-preparation-game-0000001055356911#section147011294331)。
 
 ## 什么是appIdentifier
 
@@ -48,7 +48,7 @@ appIdentifier是[Profile文件](https://developer.huawei.com/consumer/cn/doc/app
 
 ## 如何获取应用信息中appIdentifier
 
-1. 可以调用[bundleManager.getBundleInfoForSelf](../reference/apis-ability-kit/js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)获取自身的BundleInfo应用包信息，应用包信息中包含signatureInfo签名信息，签名信息中包含appIdentifier信息。
+* 可以调用[bundleManager.getBundleInfoForSelf](../reference/apis-ability-kit/js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)获取自身的BundleInfo应用包信息，应用包信息中包含signatureInfo签名信息，签名信息中包含appIdentifier信息。
 
 ```ts
 import { bundleManager } from '@kit.AbilityKit';
@@ -68,7 +68,7 @@ try {
 }
 ```
 
-2. 通过[bm工具](../tools/bm-tool.md)获取。
+* 通过[bm工具](../tools/bm-tool.md)获取。
 
 ```shell
 hdc shell

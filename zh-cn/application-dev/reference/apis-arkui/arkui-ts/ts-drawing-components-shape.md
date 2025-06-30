@@ -275,7 +275,7 @@ antiAlias(value: boolean)
 
 ### mesh<sup>8+</sup>
 
-mesh(value: Array&lt;number&gt;, column: number, row: number)
+mesh(value: Array&lt;any&gt;, column: number, row: number)
 
 设置mesh效果。
 
@@ -289,7 +289,7 @@ mesh(value: Array&lt;number&gt;, column: number, row: number)
 
 | 参数名 | 类型                | 必填 | 说明                                                         |
 | ------ | ------------------- | ---- | ------------------------------------------------------------ |
-| value  | Array&lt;number&gt; | 是   | 长度（column + 1）* （row + 1）* 2的数组，它记录了扭曲后的位图各个顶点位置。 |
+| value  | Array&lt;any&gt; | 是   | 长度（column + 1）* （row + 1）* 2的数组，它记录了扭曲后的位图各个顶点位置。 |
 | column | number              | 是   | mesh矩阵列数。                                               |
 | row    | number              | 是   | mesh矩阵行数。                                               |
 

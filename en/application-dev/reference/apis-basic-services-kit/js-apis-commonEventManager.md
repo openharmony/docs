@@ -38,8 +38,8 @@ Publishes a common event. This API uses an asynchronous callback to return the r
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Event Error Codes](./errorcode-CommonEventService.md).
 
 | ID| Error Message                           |
-| -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed. |
+| -------- | ----------------------------------- | 
+| 1500003  | The common event sending frequency too high. |
 | 1500007  | Failed to send the message to the common event service. |
 | 1500008  | Failed to initialize the common event service. |
 | 1500009  | Failed to obtain system parameters.  |
@@ -80,7 +80,7 @@ Publishes a common event. This API uses an asynchronous callback to return the r
 | -------- | ---------------------- | ---- | ---------------------- |
 | event    | string                 | Yes  | Name of the common event to publish. For details, see [System Common Events](./common_event/commonEventManager-definitions.md). |
 | options  | [CommonEventPublishData](./js-apis-inner-commonEvent-commonEventPublishData.md) | Yes  | Attributes of the common event to publish.|
-| callback | AsyncCallback\<void>  | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object. |
+| callback | AsyncCallback\<void>   | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object. |
 
 **Error codes**
 
@@ -88,7 +88,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      |
+| 1500003  | The common event sending frequency too high. |
 | 1500007  | Failed to send the message to the common event service. |
 | 1500008  | Failed to initialize the common event service. |
 | 1500009  | Failed to obtain system parameters.  |
@@ -143,7 +143,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.    |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.    | 
 
 **Example**
 
@@ -201,7 +201,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 
 **Example**
 
@@ -250,7 +250,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 
 **Example**
 
@@ -295,10 +295,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      |
 | 801  | capability not supported.               |
 | 1500007  | Failed to send the message to the common event service. |
 | 1500008  | Failed to initialize the common event service. |
+| 1500010  | The count of subscriber exceed system specification. |
 
 **Example**
 
@@ -365,7 +365,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 | 801  | capability not supported.               |
 | 1500007  | Failed to send the message to the common event service. |
 | 1500008  | Failed to initialize the common event service. |
@@ -429,6 +429,81 @@ setTimeout(() => {
     console.error(`Failed to unsubscribe. Code is ${err.code}, message is ${err.message}`);
   }
 }, 500);
+```
+
+## commonEventManager.subscribeToEvent<sup>20+</sup>
+
+subscribeToEvent(subscriber: CommonEventSubscriber, callback: Callback\<CommonEventData>): Promise\<void>
+
+Subscribes to common events. This API uses a promise to return the result, indicating subscription success or failure. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.Notification.CommonEvent
+
+**Parameters**
+
+| Name      | Type                                               | Mandatory| Description                            |
+| ---------- | ---------------------------------------------------- | ---- | -------------------------------- |
+| subscriber | [CommonEventSubscriber](./js-apis-inner-commonEvent-commonEventSubscriber.md)     | Yes  | Subscriber object.                |
+| callback   | Callback\<[CommonEventData](./js-apis-inner-commonEvent-commonEventData.md)> | Yes  | Callback to be invoked when a common event is subscribed to.|
+
+**Return value**
+| Type                                                     | Description            |
+| --------------------------------------------------------- | ---------------- |
+| Promise\<void>   | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Event Error Codes](./errorcode-CommonEventService.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 801  | Capability not supported.               |
+| 1500007  | Failed to send the message to the common event service. |
+| 1500008  | Failed to initialize the common event service. |
+| 1500010  | The count of subscriber exceed system specification. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// Define a subscriber to save the created subscriber object for subsequent subscription and unsubscription.
+let subscriber: commonEventManager.CommonEventSubscriber; 
+// Attributes of a subscriber.
+let subscribeInfo: commonEventManager.CommonEventSubscribeInfo = {
+  events: ["event"]
+};
+
+// Create a subscriber.
+try {
+  commonEventManager.createSubscriber(subscribeInfo,
+    (err: BusinessError, commonEventSubscriber: commonEventManager.CommonEventSubscriber) => {
+      if (err) {
+        console.error(`Failed to create subscriber. Code is ${err.code}, message is ${err.message}`);
+      } else {
+        console.info(`Succeeded in creating subscriber.`);
+        subscriber = commonEventSubscriber;
+        // Subscribe to a common event.
+        try {
+          commonEventManager.subscribeToEvent(subscriber, (data: commonEventManager.CommonEventData) => {
+            console.info(`Succeeded to receive common event, data is ` + JSON.stringify(data));
+          }).then(() => {
+            console.info(`Succeeded to subscribe.`);
+          }).catch((err: BusinessError) => {
+            console.error(`Failed to subscribe. Code is ${err.code}, message is ${err.message}`);
+          });
+        } catch (error) {
+          let err: BusinessError = error as BusinessError;
+          console.error(`Failed to subscribe. Code is ${err.code}, message is ${err.message}`);
+        }
+      }
+    });
+} catch (error) {
+  let err: BusinessError = error as BusinessError;
+  console.error(`Failed to create subscriber. Code is ${err.code}, message is ${err.message}`);
+}
 ```
 
 ## CommonEventData<sup>10+</sup>

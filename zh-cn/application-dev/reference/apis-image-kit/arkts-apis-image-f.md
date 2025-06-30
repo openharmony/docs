@@ -4,6 +4,12 @@
 >
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
+## 导入模块
+
+```ts
+import { image } from '@kit.ImageKit';
+```
+
 ## image.createPicture<sup>13+</sup>
 
 createPicture(mainPixelmap : PixelMap): Picture
@@ -285,7 +291,7 @@ createPixelMapFromParcel(sequence: rpc.MessageSequence): PixelMap
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096 | Operation failed.Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.|
+| 62980096 | Operation failed. Possible cause: 1.Image upload exception. 2. Decoding process exception. 3. Insufficient memory.|
 | 62980097 | IPC error. Possible cause: 1.IPC communication failed. 2. Image upload exception. 3. Decode process exception. 4. Insufficient memory.|
 | 62980115 | Invalid input parameter.|
 | 62980105 | Failed to get the data.|
@@ -944,7 +950,7 @@ createImageSource(uri: string): ImageSource
 
 | 参数名 | 类型   | 必填 | 说明                               |
 | ------ | ------ | ---- | ---------------------------------- |
-| uri    | string | 是   | 图片路径，当前仅支持应用沙箱路径。</br>当前支持格式有：.jpg .png .gif .bmp .webp .dng .heic<sup>12+</sup>（不同硬件设备支持情况不同） [.svg<sup>10+</sup>](arkts-apis-image-svg-tag.md) .ico<sup>11+</sup>。 |
+| uri    | string | 是   | 图片路径，当前仅支持应用沙箱路径。</br>当前支持格式有：.jpg .png .gif .bmp .webp .dng .heic<sup>12+</sup>（不同硬件设备支持情况不同） [.svg<sup>10+</sup>](#svg标签说明) .ico<sup>11+</sup>。 |
 
 **返回值：**
 
@@ -981,7 +987,7 @@ createImageSource(uri: string, options: SourceOptions): ImageSource
 
 | 参数名  | 类型                            | 必填 | 说明                                |
 | ------- | ------------------------------- | ---- | ----------------------------------- |
-| uri     | string                          | 是   | 图片路径，当前仅支持应用沙箱路径。</br>当前支持格式有：.jpg .png .gif .bmp .webp .dng .heic<sup>12+</sup>（不同硬件设备支持情况不同）[.svg<sup>10+</sup>](arkts-apis-image-svg-tag.md) .ico<sup>11+</sup>。 |
+| uri     | string                          | 是   | 图片路径，当前仅支持应用沙箱路径。</br>当前支持格式有：.jpg .png .gif .bmp .webp .dng .heic<sup>12+</sup>（不同硬件设备支持情况不同）[.svg<sup>10+</sup>](#svg标签说明) .ico<sup>11+</sup>。 |
 | options | [SourceOptions](arkts-apis-image-i.md#sourceoptions9) | 是   | 图片属性，包括图片像素密度、像素格式和图片尺寸。|
 
 **返回值：**
@@ -1301,7 +1307,7 @@ getImageSourceSupportedFormats(): string[]
 
 获取支持解码的图片格式，图片格式以mime type表示。
 
-**系统能力：** SystemCapability.Multimedia.Image.Core
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 **返回值：**
 
@@ -1347,7 +1353,7 @@ getImagePackerSupportedFormats(): string[]
 
 获取支持编码的图片格式，图片格式以mime type表示。
 
-**系统能力：** SystemCapability.Multimedia.Image.Core
+**系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
 **返回值：**
 
@@ -1566,3 +1572,46 @@ createImageCreator(width: number, height: number, format: number, capacity: numb
 ```ts
 let creator: image.ImageCreator = image.createImageCreator(8192, 8, image.ImageFormat.JPEG, 8);
 ```
+
+## SVG标签说明
+
+从API version 10开始支持SVG标签，使用版本为(SVG) 1.1，SVG标签需设置width，height。SVG文件可添加xml声明，应以“<?xml”开头，当前支持的标签列表有：
+
+- a
+- circla
+- clipPath
+- defs
+- ellipse
+- feBlend
+- feColorMatrix
+- feComposite
+- feDiffuseLighting
+- feDisplacementMap
+- feDistantLight
+- feFlood
+- feGaussianBlur
+- feImage
+- feMorphology
+- feOffset
+- fePointLight
+- feSpecularLighting
+- feSpotLight
+- feTurbulence
+- filter
+- g
+- image
+- line
+- linearGradient
+- mask
+- path
+- pattern
+- polygon
+- polyline
+- radialGradient
+- rect
+- stop
+- svg
+- text
+- textPath
+- tspan
+- use

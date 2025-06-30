@@ -26,7 +26,7 @@ import { common } from '@kit.AbilityKit';
 | AutoStartupInfo<sup>11+<sup>   | [AutoStartupInfo](js-apis-inner-application-autoStartupInfo-sys.md) | 否  | 否  | AutoStartupInfo二级模块。<br>**系统接口**：此接口为系统接口。 |
 | AutoStartupCallback<sup>11+<sup>   | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback-sys.md) | 否  | 否  | AutoStartupCallback二级模块。<br>**系统接口**：此接口为系统接口。 |
 | UIServiceExtensionContext<sup>14+<sup> | [UIServiceExtensionContext ](js-apis-inner-application-uiserviceExtensionContext-sys.md) |  否  | 否  |UIServiceExtensionContext 二级模块。<br/>**系统接口**：此接口为系统接口。 |
-| UIServiceHostProxy<sup>13+<sup> | [UIServiceHostProxy](js-apis-inner-application-uiservicehostproxy-sys.md) |  否  | 否  | UIServiceHostProxy  二级模块。<br/>**系统接口**：此接口为系统接口。 |
+| UIServiceHostProxy<sup>14+<sup> | [UIServiceHostProxy](js-apis-inner-application-uiservicehostproxy-sys.md) |  否  | 否  | UIServiceHostProxy  二级模块。<br/>**系统接口**：此接口为系统接口。 |
 
 **示例：**
 

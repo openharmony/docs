@@ -1,4 +1,4 @@
-# 分布式Extension开发指南
+# DistributedExtensionAbility开发指南
 
 ## 简介
 
@@ -12,7 +12,7 @@
 
 ### 亮点特征
 
-在应用跨设备协同过程中，当终端A处于后台而终端B保持前台运行时，系统可借助分布式消息服务激活分布式扩展组件，从而实现信息跨设备同步传输。例如，手机侧应用运行在后台，手表侧应用运行在前台时，上行消息通过DMS（Distributedsched Management Service）拉起DistributedExtension，从而实现手表侧消息回复同步至手机侧应用服务。
+在应用跨设备协同过程中，当终端A处于后台而终端B保持前台运行时，系统可借助分布式消息服务激活分布式扩展组件，从而实现信息跨设备同步传输。例如，手机侧应用运行在后台，手表侧应用运行在前台时，上行消息通过DMS（Distributedsched Management Service）拉起DistributedExtensionAbility，从而实现手表侧消息回复同步至手机侧应用服务。
 
 ### 基本概念
 
@@ -24,7 +24,7 @@
 * **UIAbility**
   
   描述应用程序的界面交互能力，负责管理应用界面的生命周期、用户交互以及界面渲染等任务。
-* **Extension**
+* **ExtensionAbility**
   
   用于扩展应用的功能或实现跨设备协同。它允许应用在后台运行某些任务，或者将部分功能迁移到其他设备上执行，从而实现分布式能力。
 * **字节流**
@@ -36,7 +36,7 @@
 
 ## 实现原理
 
-设备A应用集成**DistributedExtension**，当设备A侧分布式软总线收到应用的消息时，通过DistributedExtension拉起设备A侧应用后台服务，设备A侧应用后台服务将设备B侧应用消息发送到应用服务。
+设备A应用集成**DistributedExtensionAbility**，当设备A侧分布式软总线收到应用的消息时，通过DistributedExtensionAbility拉起设备A侧应用后台服务，设备A侧应用后台服务将设备B侧应用消息发送到应用服务。
 
 ![实现原理](figures/distributedextension.png)
 

@@ -70,6 +70,7 @@ deviceControl.resetFactory(wantTemp, (err) => {
 ## deviceControl.resetFactory
 
 resetFactory(admin: Want): Promise\<void>
+
 使设备恢复出厂设置。使用Promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_RESET_DEVICE

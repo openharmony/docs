@@ -4,6 +4,12 @@
 > 
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
+## 导入模块
+
+```ts
+import { relationalStore } from '@kit.ArkData';
+```
+
 ## Transaction<sup>14+</sup>
 
 提供以事务方式管理数据库的方法。事务对象是通过[createTransaction](arkts-apis-data-relationalStore-RdbStore.md#createtransaction14)接口创建的，不同事务对象之间的操作是隔离的，不同类型事务的区别见[TransactionType](arkts-apis-data-relationalStore-e.md#transactiontype14) 。

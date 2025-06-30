@@ -6,7 +6,7 @@
 >
 >  从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
-> 事件分发流程可参考[多层级手势事件](../../../ui/arkts-gesture-events-multi-level-gesture.md#多层级手势事件)。
+>  点击事件遵循[触摸事件](../arkui-ts/ts-universal-events-touch.md#触摸事件)分发流程，触摸事件支持屏蔽、透传等自定义行为。触摸事件分发流程可参考[多层级手势事件](../../../ui/arkts-gesture-events-multi-level-gesture.md#多层级手势事件)。
 
 ## onClick<sup>12+</sup>
 
@@ -37,6 +37,10 @@ onClick(event: Callback\<ClickEvent>, distanceThreshold: number): T
 | ------ | --------------------------------- | ---- | -------------------- |
 | event  | [ClickEvent](#clickevent对象说明) | 是   | 获得[ClickEvent](#clickevent对象说明)对象。 |
 | distanceThreshold  | number | 是   | 点击事件移动阈值。当设置的值小于等于0时，会被转化为默认值。<br/>默认值：2^31-1<br/>单位：vp<br/>**说明：**<br/>当手指的移动距离超出开发者预设的移动阈值时，点击识别失败。如果初始化为默认阈值时，手指移动超过组件热区范围，点击识别失败。 |
+
+>  **说明：**
+>
+>  如果是滑动操作，但是滑动距离未超过点击事件移动阈值并且抬手时手指在组件热区范围内，也会触发点击事件。
 
 **返回值：**
 
@@ -106,6 +110,8 @@ onClick(event: (event: ClickEvent) => void): T
 | 100017       | Component does not support prevent function. |
 
 ## EventTarget<sup>8+</sup>对象说明
+
+触发事件的元素对象显示区域。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 

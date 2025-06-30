@@ -16,7 +16,7 @@ import {  NodeController  } from '@kit.ArkUI';
 
 ## NodeController
 
-通常搭配[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)进行使用。用于创建控制器管理绑定的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)组件。一个NodeController只允许与一个[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)进行绑定。
+通常搭配[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)进行使用。用于创建控制器管理绑定的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)组件。一个NodeController只允许与一个[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer)进行绑定。最佳实践请参考[组件动态创建-组件动态添加、更新和删除](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-ui-dynamic-operations#section153921947151012)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -210,7 +210,7 @@ rebuild(): void
 > **说明：**
 > 由于rebuild方法为应用主动调用的方法，且该操作与UI相关。需要开发者自行保证调用该接口时UI上下文有效，即与绑定的NodeContainer保持UI上下文一致。
 >
-> 监听回调等[UI上下文不明确](../../ui/arkts-global-interface.md)时，可以通过[UIContext](./js-apis-arkui-UIContext.md)的[runScopedTask](./js-apis-arkui-UIContext.md#runscopedtask)方法明确调用时的UI上下文。
+> 监听回调等[UI上下文不明确](../../ui/arkts-global-interface.md#ui上下文不明确)时，可以通过[UIContext](./js-apis-arkui-UIContext.md)的[runScopedTask](./js-apis-arkui-UIContext.md#runscopedtask)方法明确调用时的UI上下文。
 
 ## 示例
 

@@ -23,11 +23,15 @@ import { CircleShape, EllipseShape, PathShape, RectShape } from "@kit.ArkUI";
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### constructor
 
 constructor(options?: ShapeSize)
+
+创建CircleShape对象。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -47,11 +51,15 @@ constructor(options?: ShapeSize)
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### constructor
 
 constructor(options?: ShapeSize)
+
+创建EllipseShape对象。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -71,11 +79,15 @@ constructor(options?: ShapeSize)
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### constructor
 
 constructor(options?: PathShapeOptions)
+
+创建PathShape对象。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -119,11 +131,15 @@ commands(commands: string): PathShape
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### constructor
 
 constructor(options?: RectShapeOptions | RoundRectShapeOptions)
+
+创建RectShape对象。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -276,6 +292,8 @@ RectShape 带有半径的构造函数参数。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### width
@@ -352,7 +370,11 @@ size(size: SizeOptions): T
 
 ## CommonShapeMethod
 
+常见的形状方法。
+
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

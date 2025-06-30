@@ -8,6 +8,12 @@ ColorManagement extends [ColorManagementQuery](arkts-apis-camera-ColorManagement
 
 色彩管理类，用于设置色彩空间参数。
 
+## 导入模块
+
+```ts
+import { camera } from '@kit.CameraKit';
+```
+
 ## setColorSpace<sup>12+</sup>
 
 setColorSpace(colorSpace: colorSpaceManager.ColorSpace): void

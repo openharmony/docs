@@ -19,13 +19,13 @@ import { pbap } from '@kit.ConnectivityKit';
 
 type BaseProfile = baseProfile.BaseProfile
 
-Defines **BaseProfile** APIs.
+**BaseProfile** API definition.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 | Type                           | Description        |
 | ----------------------------- | ---------- |
-| [baseProfile.BaseProfile](js-apis-bluetooth-baseProfile.md#baseprofile) | **BaseProfile** API definition.|
+| [baseProfile.BaseProfile](js-apis-bluetooth-baseProfile.md)| **BaseProfile** API definition.|
 
 
 ## pbap.createPbapServerProfile
@@ -40,7 +40,7 @@ Create a **PbapServerProfile** instance.
 
 | Type                           | Description        |
 | ----------------------------- | ---------- |
-| PbapServerProfile | **PbapServerProfile** instance created.|
+|PbapServerProfile | **PbapServerProfile** instance created.|
 
 **Error codes**
 

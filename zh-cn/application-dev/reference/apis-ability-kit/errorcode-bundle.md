@@ -59,7 +59,7 @@ The specified ability name is not found.
 The specified user ID is not found.
 
 **错误描述**<br/>
-调用与用户相关接口时，传入的用户不存在。
+调用与用户相关接口时，传入的用户不存在。<!--Del-->[BundleInstaller.install](js-apis-installer-sys.md#bundleinstallerinstall)抛出该错误码时，错误信息后会追加内部错误码用于定位错误原因，例如`[8519687]`。<!--DelEnd-->
 
 **可能原因**<br/>
 1. 输入的用户名有误。
@@ -121,7 +121,7 @@ The specified device ID is not found.
 Failed to install the HAP because the HAP fails to be parsed.
 
 **错误描述**<br/>
-调用installer模块中的[install接口](../apis-ability-kit/js-apis-installer-sys.md#bundleinstallerinstall)时，传入的HAP解析失败。
+调用installer模块中的[install接口](../apis-ability-kit/js-apis-installer-sys.md#bundleinstallerinstall)时，传入的HAP解析失败。<!--Del-->[BundleInstaller.install](js-apis-installer-sys.md#bundleinstallerinstall)抛出该错误码时，错误信息后会追加内部错误码用于定位错误原因，例如`[8519687]`。<!--DelEnd-->
 
 **可能原因**<br/>
 1. HAP的格式不是zip格式。
@@ -139,7 +139,7 @@ Failed to install the HAP because the HAP fails to be parsed.
 Failed to install the HAP because the HAP signature fails to be verified.
 
 **错误描述**<br/>
-调用installer模块中的[install接口](../apis-ability-kit/js-apis-installer-sys.md#bundleinstallerinstall)时，签名校验失败导致应用安装失败。
+调用installer模块中的[install接口](../apis-ability-kit/js-apis-installer-sys.md#bundleinstallerinstall)时，签名校验失败导致应用安装失败。<!--Del-->[BundleInstaller.install](js-apis-installer-sys.md#bundleinstallerinstall)抛出该错误码时，错误信息后会追加内部错误码用于定位错误原因，例如`[8519687]`。<!--DelEnd-->
 
 **可能原因**<br/>
 
@@ -160,7 +160,7 @@ Failed to install the HAP because the HAP signature fails to be verified.
 Failed to install the HAP because the HAP path is invalid or the HAP is too large.
 
 **错误描述**<br/>
-调用installer模块中的[install接口](../apis-ability-kit/js-apis-installer-sys.md#bundleinstallerinstall)时，安装包路径无效或者文件过大导致应用安装失败。
+调用installer模块中的[install接口](../apis-ability-kit/js-apis-installer-sys.md#bundleinstallerinstall)时，安装包路径无效或者文件过大导致应用安装失败。<!--Del-->[BundleInstaller.install](js-apis-installer-sys.md#bundleinstallerinstall)抛出该错误码时，错误信息后会追加内部错误码用于定位错误原因，例如`[8519687]`。<!--DelEnd-->
 
 **可能原因**<br/>
 1. 输入错误，HAP的文件路径不存在。
@@ -178,7 +178,7 @@ Failed to install the HAP because the HAP path is invalid or the HAP is too larg
 Failed to install the HAPs because they have different configuration information.
 
 **错误描述**<br/>
-调用installer模块中的[install接口](../apis-ability-kit/js-apis-installer-sys.md#bundleinstallerinstall)时，多个HAP配置信息不同导致应用安装失败。
+调用installer模块中的[install接口](../apis-ability-kit/js-apis-installer-sys.md#bundleinstallerinstall)时，多个HAP配置信息不同导致应用安装失败。<!--Del-->[BundleInstaller.install](js-apis-installer-sys.md#bundleinstallerinstall)抛出该错误码时，错误信息后会追加内部错误码用于定位错误原因，例如`[8519687]`。<!--DelEnd-->
 
 **可能原因**<br/>
 多个hap包中配置文件中app标签下面的字段信息不一致。
@@ -192,7 +192,7 @@ Failed to install the HAPs because they have different configuration information
 Failed to install the HAP because of insufficient system disk space.
 
 **错误描述**<br/>
-调用installer模块中的[install接口](../apis-ability-kit/js-apis-installer-sys.md#bundleinstallerinstall)时，系统磁盘空间不足导致应用安装失败。
+调用installer模块中的[install接口](../apis-ability-kit/js-apis-installer-sys.md#bundleinstallerinstall)时，系统磁盘空间不足导致应用安装失败。<!--Del-->[BundleInstaller.install](js-apis-installer-sys.md#bundleinstallerinstall)抛出该错误码时，错误信息后会追加内部错误码用于定位错误原因，例如`[8519687]`。<!--DelEnd-->
 
 **可能原因**<br/>
 系统空间不足。
@@ -206,7 +206,7 @@ Failed to install the HAP because of insufficient system disk space.
 Failed to install the HAP since the version of the HAP to install is too early.
 
 **错误描述**<br/>
-调用installer模块中的[install接口](../apis-ability-kit/js-apis-installer-sys.md#bundleinstallerinstall)时，新安装的应用版本号低于已安装的版本号导致应用安装失败。
+调用installer模块中的[install接口](../apis-ability-kit/js-apis-installer-sys.md#bundleinstallerinstall)时，新安装的应用版本号低于已安装的版本号导致应用安装失败。<!--Del-->[BundleInstaller.install](js-apis-installer-sys.md#bundleinstallerinstall)抛出该错误码时，错误信息后会追加内部错误码用于定位错误原因，例如`[8519687]`。<!--DelEnd-->
 
 **可能原因**<br/>
 新安装的应用版本号低于已安装的版本号。
@@ -232,7 +232,7 @@ hdc shell bm dump -n com.xxx.demo |grep versionCode
 Failed to install the HAP or HSP because the dependent module does not exist.
 
 **错误描述**<br/>
-安装hap或者hsp时，依赖的模块不存在。
+安装hap或者hsp时，依赖的模块不存在。<!--Del-->[BundleInstaller.install](js-apis-installer-sys.md#bundleinstallerinstall)抛出该错误码时，错误信息后会追加内部错误码用于定位错误原因，例如`[8519687]`。<!--DelEnd-->
 
 **可能原因**<br/>
 依赖的模块没有安装。
@@ -412,7 +412,7 @@ The specified bundle does not support clearing of cache files.
 Failed to install the HAP because the overlay check of the HAP failed.
 
 **错误描述**<br/>
-当安装overlay特征的应用时，指定的应用和待安装的overlay特征应用不为预置应用，或者目标应用/目标module是overlay特征的应用/module。
+当安装overlay特征的应用时，指定的应用和待安装的overlay特征应用不为预置应用，或者目标应用/目标module是overlay特征的应用/module。<!--Del-->[BundleInstaller.install](js-apis-installer-sys.md#bundleinstallerinstall)抛出该错误码时，错误信息后会追加内部错误码用于定位错误原因，例如`[8519687]`。<!--DelEnd-->
 
 **可能原因**<br/>
 1. 使用应用间的overlay特性时，overlay特征应用必须为预置应用。
@@ -488,7 +488,7 @@ The specified bundle is an overlay bundle.
 Failed to install the HSP due to the lack of required permission.
 
 **错误描述**<br/>
-共享库未申请配置AllowAppShareLibrary特权，可能存在安全隐私风险，不允许安装。
+共享库未申请配置AllowAppShareLibrary特权，可能存在安全隐私风险，不允许安装。<!--Del-->[BundleInstaller.install](js-apis-installer-sys.md#bundleinstallerinstall)抛出该错误码时，错误信息后会追加内部错误码用于定位错误原因，例如`[8519687]`。<!--DelEnd-->
 
 **可能原因**<br/>
 发布共享库前，未申请配置AllowAppShareLibrary特权。
@@ -533,7 +533,7 @@ The specified shared bundle does not exist.
 Failed to install the HSP because installing a shared bundle specified by hapFilePaths is not allowed.
 
 **错误描述**<br/>
-安装应用时，传入的安装包为应用间共享库类型。
+安装应用时，传入的安装包为应用间共享库类型。<!--Del-->[BundleInstaller.install](js-apis-installer-sys.md#bundleinstallerinstall)抛出该错误码时，错误信息后会追加内部错误码用于定位错误原因，例如`[8519687]`。<!--DelEnd-->
 
 **可能原因**<br/>
 1. 通过[bm工具](../../tools/bm-tool.md)安装应用时，-p参数传入了应用间共享库的安装包路径。
@@ -563,7 +563,7 @@ The specified bundle is a shared bundle which cannot be uninstalled.
 Failed to install the HAP because the installation is forbidden by enterprise device management.
 
 **错误描述**<br/>
-安装应用时，企业设备管理不允许安装。
+安装应用时，企业设备管理不允许安装。<!--Del-->[BundleInstaller.install](js-apis-installer-sys.md#bundleinstallerinstall)抛出该错误码时，错误信息后会追加内部错误码用于定位错误原因，例如`[8519687]`。<!--DelEnd-->
 
 **可能原因**<br/>
 企业设备管理不允许安装该应用。
@@ -576,7 +576,7 @@ Failed to install the HAP because the installation is forbidden by enterprise de
 Failed to install the HAP because of incorrect URI in the data proxy.
 
 **错误描述**<br/>
-安装应用时，数据代理的uri配置错误。
+安装应用时，数据代理的uri配置错误。<!--Del-->[BundleInstaller.install](js-apis-installer-sys.md#bundleinstallerinstall)抛出该错误码时，错误信息后会追加内部错误码用于定位错误原因，例如`[8519687]`。<!--DelEnd-->
 
 **可能原因**<br/>
 1. uri中的包名与当前应用的包名不一致。
@@ -591,7 +591,7 @@ Failed to install the HAP because of incorrect URI in the data proxy.
 Failed to install the HAP because of low APL in the non-system data proxy (required APL: system_basic or system_core).
 
 **错误描述**<br/>
-安装应用时，非系统应用的数据代理的权限等级过低，应为system_basic或system_core。
+安装应用时，非系统应用的数据代理的权限等级过低，应为system_basic或system_core。<!--Del-->[BundleInstaller.install](js-apis-installer-sys.md#bundleinstallerinstall)抛出该错误码时，错误信息后会追加内部错误码用于定位错误原因，例如`[8519687]`。<!--DelEnd-->
 
 **可能原因**<br/>
 1. 非系统应用的数据代理未配置权限。
@@ -606,7 +606,7 @@ Failed to install the HAP because of low APL in the non-system data proxy (requi
 Failed to install the HAP because the isolationMode configured is not supported.
 
 **错误描述**<br/>
-安装应用时，设置的isolationMode与系统配置项所允许的系统配置项矛盾。
+安装应用时，设置的isolationMode与系统配置项所允许的系统配置项矛盾。<!--Del-->[BundleInstaller.install](js-apis-installer-sys.md#bundleinstallerinstall)抛出该错误码时，错误信息后会追加内部错误码用于定位错误原因，例如`[8519687]`。<!--DelEnd-->
 
 **可能原因**<br/>
 1. 设备支持隔离模式，即persist.bms.supportIsolationMode为true时，HAP配置的isolationMode为nonisolationOnly。
@@ -633,7 +633,7 @@ Failed to uninstall the HAP because the uninstall is forbidden by enterprise dev
 Failed to install the HAP because the VersionCode to be updated is not greater than the current VersionCode.
 
 **错误描述**<br/>
-安装应用时，要更新的应用版本没有大于当前版本。
+安装应用时，要更新的应用版本没有大于当前版本。<!--Del-->[BundleInstaller.install](js-apis-installer-sys.md#bundleinstallerinstall)抛出该错误码时，错误信息后会追加内部错误码用于定位错误原因，例如`[8519687]`。<!--DelEnd-->
 
 **可能原因**<br/>
 1. 安装应用的版本号小于等于已安装应用的版本号。
@@ -648,7 +648,7 @@ Failed to install the HAP because the VersionCode to be updated is not greater t
 Failed to install the HAP because the code signature verification failed.
 
 **错误描述**<br/>
-安装应用时，安装包的代码签名文件校验失败。
+安装应用时，安装包的代码签名文件校验失败。<!--Del-->[BundleInstaller.install](js-apis-installer-sys.md#bundleinstallerinstall)抛出该错误码时，错误信息后会追加内部错误码用于定位错误原因，例如`[8519687]`。<!--DelEnd-->
 
 **可能原因**<br/>
 1. 代码签名文件对应的module在安装包中不存在。
@@ -678,7 +678,7 @@ Failed to install the HAP because the bundleName is different from the bundleNam
 Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise devices.
 
 **错误描述**<br/>
-安装应用时，企业normal应用或企业mdm应用无法在非企业设备上安装。
+安装应用时，企业normal应用或企业mdm应用无法在非企业设备上安装。<!--Del-->[BundleInstaller.install](js-apis-installer-sys.md#bundleinstallerinstall)抛出该错误码时，错误信息后会追加内部错误码用于定位错误原因，例如`[8519687]`。<!--DelEnd-->
 
 **可能原因**<br/>
 安装设备不是企业设备。
@@ -705,7 +705,7 @@ Failed to install the HAP because the distribution type of the caller applicatio
 Failed to install the HAP because a debug bundle can be installed only in developer mode.
 
 **错误描述**<br/>
-安装调试应用时，设备处于非开发者模式，不允许安装。
+安装调试应用时，设备处于非开发者模式，不允许安装。<!--Del-->[BundleInstaller.install](js-apis-installer-sys.md#bundleinstallerinstall)抛出该错误码时，错误信息后会追加内部错误码用于定位错误原因，例如`[8519687]`。<!--DelEnd-->
 
 **可能原因**<br/>
 应用为调试应用，而设备处于非开发者模式。
@@ -731,7 +731,7 @@ The caller is not AppGallery.
 Failed to install the HAP because the HAP requests wrong permissions.
 
 **错误描述**<br/>
-待安装的应用申请了错误的权限，导致安装失败。
+待安装的应用申请了错误的权限，导致安装失败。<!--Del-->[BundleInstaller.install](js-apis-installer-sys.md#bundleinstallerinstall)抛出该错误码时，错误信息后会追加内部错误码用于定位错误原因，例如`[8519687]`。<!--DelEnd-->
 
 **可能原因**<br/>
 1. 非MDM应用申请了MDM类型的权限。
@@ -789,7 +789,7 @@ Failed to uninstall updates because the HAP is not pre-installed.
 Failed to install the HAP because this application is prohibited from being installed on this device or by specified users.
 
 **错误描述**<br/>
-指定的应用禁止在本设备或指定用户下安装。
+指定的应用禁止在本设备或指定用户下安装。<!--Del-->[BundleInstaller.install](js-apis-installer-sys.md#bundleinstallerinstall)抛出该错误码时，错误信息后会追加内部错误码用于定位错误原因，例如`[8519687]`。<!--DelEnd-->
 
 **可能原因**<br/>
 1. 当前使用的设备是洗白机。
@@ -881,7 +881,7 @@ ShortcutInfo结构体中的want指定的ability不存在，ShortcutInfo结构体
 Failed to install the HAP because installing the native package failed.
 
 **错误描述**<br/>
-安装hap时，native软件包安装失败。
+安装hap时，native软件包安装失败。<!--Del-->[BundleInstaller.install](js-apis-installer-sys.md#bundleinstallerinstall)抛出该错误码时，错误信息后会追加内部错误码用于定位错误原因，例如`[8519687]`。<!--DelEnd-->
 
 **可能原因**<br/>native软件包配置信息有误。
 
@@ -959,7 +959,7 @@ Launch Want不存在。
 Failed to install the HAP because an application with the same bundle name but different signature information exists on the device.
 
 **错误描述**<br/>
-由于设备上存在具有相同包名称但不同签名信息的应用程序，导致安装失败。
+由于设备上存在具有相同包名称但不同签名信息的应用程序，导致安装失败。<!--Del-->[BundleInstaller.install](js-apis-installer-sys.md#bundleinstallerinstall)抛出该错误码时，错误信息后会追加内部错误码用于定位错误原因，例如`[8519687]`。<!--DelEnd-->
 
 **可能原因**<br/>
 
@@ -1003,7 +1003,7 @@ The specified bundleName of want is not the same with caller.
 Failed to install the HAP or HSP because the app distribution type is not allowed.
 
 **错误描述**<br/>
-签名证书profile文件中的类型被限制，不允许安装到当前设备中。
+签名证书profile文件中的类型被限制，不允许安装到当前设备中。<!--Del-->[BundleInstaller.install](js-apis-installer-sys.md#bundleinstallerinstall)抛出该错误码时，错误信息后会追加内部错误码用于定位错误原因，例如`[8519687]`。<!--DelEnd-->
 
 **可能原因**<br/>
 该[签名证书profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-releaseprofile-0000001914714796)中的类型被限制，禁止安装到当前设备中。
@@ -1017,7 +1017,7 @@ Failed to install the HAP or HSP because the app distribution type is not allowe
 Failed to install the HAP and restore to preinstalled bundle.
 
 **错误描述**<br/>
-安装指定应用前，若对应的预置应用已卸载，会优先安装预置应用，预置应用安装成功后安装指定应用失败。
+安装指定应用前，若对应的预置应用已卸载，会优先安装预置应用，预置应用安装成功后安装指定应用失败。<!--Del-->[BundleInstaller.install](js-apis-installer-sys.md#bundleinstallerinstall)抛出该错误码时，错误信息后会追加内部错误码用于定位错误原因，例如`[8519687]`。<!--DelEnd-->
 
 **可能原因**<br/>
 1. 待安装应用的版本号小于等于预置版本号。
@@ -1249,16 +1249,19 @@ Bundle manager service is excepted.
 1. 重启手机后再次尝试请求接口。
 
 2. 重复上述步骤3到5次后依旧请求失败，请查询设备的/data/log/faultlog/faultlogger/目录下是否存在包含foundation字样的crash文件。
-```
-hdc shell
-cd /data/log/faultlog/faultlogger/
-ls -ls
-```
+
+    ```
+    hdc shell
+    cd /data/log/faultlog/faultlogger/
+    ls -ls
+    ```
+
 3. 导出crash文件和日志文件提[在线工单](https://developer.huawei.com/consumer/cn/support/feedback/#/)获取帮助。
-```
-hdc file recv /data/log/faultlog/faultlogger/
-hdc file recv /data/log/hilog/
-```
+
+    ```
+    hdc file recv /data/log/faultlog/faultlogger/
+    hdc file recv /data/log/hilog/
+    ```
 
 <!--Del-->
 ## 17700201 abc文件校验失败
@@ -1363,4 +1366,18 @@ Failed to obtain the dynamic icon.
 bundleName没有动态图标。
 
 **处理步骤**<br/>
-查询动态图标前确保bundleName存在动态图标。<!--DelEnd-->
+查询动态图标前确保bundleName存在动态图标。
+
+## 17700307 由于存在自定义主题，动态图标无法生效
+**错误信息**<br/>
+Dynamic icons cannot take effect due to existing custom themes.
+
+**错误描述**<br/>
+由于存在自定义主题，动态图标无法生效。
+
+**可能原因**<br/>
+用户使用了自定义主题（例如在主题应用中设置了非官方的主题），主题包内包含了相应应用的图标资源。此时接口调用方来使能对应应用的动态图标会失败，抛出17700307错误码。
+
+**处理步骤**<br/>
+1. 检查当前使用的主题是否为自定义主题。<br/>
+2. 可以切换为官方主题后重新调用使能接口。<!--DelEnd-->

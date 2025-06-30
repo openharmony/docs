@@ -9,6 +9,7 @@ Defines the print job callback struct.
 
 **Related module**: [OH_Print](_o_h___print.md)
 
+**Header file**: [ohprint.h](ohprint_8h.md)
 
 ## Summary
 
@@ -30,6 +31,7 @@ Defines the print job callback struct.
 Print_OnJobStateChanged Print_PrintDocCallback::jobStateChangedCb
 ```
 **Description**
+
 Defines a callback used to return the print job state.
 
 
@@ -39,4 +41,5 @@ Defines a callback used to return the print job state.
 Print_OnStartLayoutWrite Print_PrintDocCallback::startLayoutWriteCb
 ```
 **Description**
+
 Defines a callback to be invoked when the file write-back starts.

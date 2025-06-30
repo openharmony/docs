@@ -6,6 +6,12 @@
 
 拍照会话中使用的输出信息，继承[CameraOutput](arkts-apis-camera-CameraOutput.md)。
 
+## 导入模块
+
+```ts
+import { camera } from '@kit.CameraKit';
+```
+
 ## capture
 
 capture(callback: AsyncCallback\<void\>): void
@@ -444,7 +450,7 @@ on(type: 'photoAssetAvailable', callback: AsyncCallback\<photoAccessHelper.Photo
 | 参数名     | 类型      | 必填 | 说明                                  |
 | -------- | ---------- | --- | ------------------------------------ |
 | type     | string     | 是   | 监听事件，固定为'photoAssetAvailable'，photoOutput创建成功后可监听。 |
-| callback | AsyncCallback\<[photoAccessHelper.PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoasset)\> | 是   | 回调函数，用于监听photoAsset上报。 |
+| callback | AsyncCallback\<[photoAccessHelper.PhotoAsset](../apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAsset.md)\> | 是   | 回调函数，用于监听photoAsset上报。 |
 
 **示例：**
 
@@ -481,7 +487,7 @@ off(type: 'photoAssetAvailable', callback?: AsyncCallback\<photoAccessHelper.Pho
 | 参数名     | 类型      | 必填  | 说明                                                                         |
 | -------- | ---------- |-----|----------------------------------------------------------------------------|
 | type     | string     | 是   | 监听事件，固定为'photoAssetAvailable'，photoOutput创建成功后可监听。                         |
-| callback | AsyncCallback\<[photoAccessHelper.PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoasset)\> | 否   | 需要解监听的回调方法。如果callback不为空且与此对应的监听方法一致，不为匿名方法，则解注册该方法；如果callback为空，则解监听所有回调。 |
+| callback | AsyncCallback\<[photoAccessHelper.PhotoAsset](../apis-media-library-kit/arkts-apis-photoAccessHelper-PhotoAsset.md)\> | 否   | 需要解监听的回调方法。如果callback不为空且与此对应的监听方法一致，不为匿名方法，则解注册该方法；如果callback为空，则解监听所有回调。 |
 
 **示例：**
 

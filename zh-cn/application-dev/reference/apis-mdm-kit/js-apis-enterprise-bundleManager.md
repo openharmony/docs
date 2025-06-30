@@ -530,8 +530,7 @@ bundleManager.uninstall(wantTemp, 'bundleName', 100, true).then(() => {
 
 install(admin: Want, hapFilePaths: Array\<string>, installParam?: InstallParam): Promise\<void>
 
-安装指定路径下的应用包。使用promise异步回调。
-注意：此接口仅支持安装[企业MDM应用](https://developer.huawei.com/consumer/cn/doc/app/agc-help-harmonyos-mdm-0000001872217329#section154181517295)。
+安装指定路径下的应用包。使用promise异步回调。</br>此接口只能安装分发类型为enterprise_mdm（MDM应用）和enterprise_normal（企业普通应用）类型的应用。
 
 **需要权限：** ohos.permission.ENTERPRISE_INSTALL_BUNDLE
 
@@ -629,7 +628,7 @@ getInstalledBundleList(admin: Want, accountId: number): Promise\<Array\<BundleIn
 
 | 类型                | 说明                                                    |
 | ------------------- | ------------------------------------------------------- |
-| Promise&lt;Array&lt;[BundleInfo](#bundleinfo20)&gt; | Promise对象，返回已安装应用包信息。 |
+| Promise&lt;Array&lt;[BundleInfo](#bundleinfo20)&gt;&gt; | Promise对象，返回已安装应用包信息。 |
 
 **错误码**：
 

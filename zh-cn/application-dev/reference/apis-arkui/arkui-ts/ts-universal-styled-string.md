@@ -33,7 +33,7 @@ constructor(value: string | ImageAttachment | CustomSpan , styles?: Array\<Style
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | string \| [ImageAttachment](#imageattachment) \| [CustomSpan](#customspan) | 是 | 属性字符串文本内容。<br/>**说明：** <br/>当value值为ImageAttachment或CustomSpan时，styles参数不生效。  |
+| value | string \| [ImageAttachment](#imageattachment) \| [CustomSpan](#customspan) | 是 | 属性字符串文本内容。<br/>**说明：** <br/>当value值为ImageAttachment或CustomSpan时，styles参数不生效。<br/>需要设置styles时，通过[insertStyledString](#insertstyledstring)实现。 |
 | styles | Array<[StyleOptions](#styleoptions对象说明)> | 否 | 属性字符串初始化选项。<br/>**说明：** <br/>start为异常值时，按默认值0处理。<br/>当start的值合法且length为异常值时，length的值为属性字符串长度与start的值的差值。<br/>StyledStringKey与StyledStringValue不匹配时，不生效。<br/>styledKey参数无默认值。 |
 
 ### 属性
@@ -928,7 +928,7 @@ type ColorFilterType = ColorFilter | DrawingColorFilter
 | 类型  | 说明   |
 | ------ | ---------- |
 | [ColorFilter](ts-types.md#colorfilter9) | ColorFilter类型图片颜色滤镜设置项。 |
-| [DrawingColorFilter](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#colorfilter) | DrawingColorFilter类型图片颜色滤镜设置项。 |
+| [DrawingColorFilter](../../apis-arkgraphics2d/arkts-apis-graphics-drawing-ColorFilter.md) | DrawingColorFilter类型图片颜色滤镜设置项。 |
 
 ## ImageAttachmentInterface对象说明
 
@@ -1092,6 +1092,8 @@ invalidate(): void
 >  **说明：**
 >
 >  属性字符串的maxLines和overflow仅在Text中生效，建议在组件侧设置。
+>
+>  textAlign只能调整文本整体的布局，不影响字符的显示顺序。若需要调整字符的显示顺序，请参考[镜像状态字符对齐](../../../ui/arkts-mirroring-display.md#镜像状态字符对齐)。
 
 ### constructor
 
@@ -1862,7 +1864,7 @@ struct Index {
   //第三段落不设置缩进配置最大行数及超长显示方式
   paragraphStyleAttr3: ParagraphStyle = new ParagraphStyle({
     textAlign: TextAlign.End,
-    textVerticalAlign：TextVerticalAlign.BASELINE,
+    textVerticalAlign: TextVerticalAlign.BASELINE,
     maxLines: 1,
     wordBreak: WordBreak.BREAK_ALL,
     overflow: TextOverflow.Ellipsis
@@ -2631,4 +2633,3 @@ struct Index {
 ```
 
 ![](figures/styledString_14.png)
-

@@ -292,22 +292,26 @@ constraintSize(value: ConstraintSizeOptions): T
 
 ## SizeOptions对象说明
 
+宽高尺寸类型，用于描述组件布局时的宽高尺寸大小。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 参数名   | 类型                                       | 必填   | 说明                                       |
+| 名称   | 类型                                       | 必填   | 说明                                       |
 | ----- | ---------------------------------------- | ---- | ---------------------------------------- |
 | width  | [Length](ts-types.md#length) | &nbsp;否 | 设置组件宽度。 |
 | height | [Length](ts-types.md#length) | &nbsp;否 | 设置组件高度。 |
 
 ## ConstraintSizeOptions对象说明
 
+约束尺寸类型，用于描述组件布局时对尺寸大小的范围限制。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-| 参数名   | 类型                                       | 必填   | 说明                                       |
+| 名称   | 类型                                       | 必填   | 说明                                       |
 | ----- | ---------------------------------------- | ---- | ---------------------------------------- |
 | minWidth  | [Length](ts-types.md#length) | &nbsp;否 | 设置组件最小宽度。 |
 | maxWidth  | [Length](ts-types.md#length) | &nbsp;否 | 设置组件最大宽度。 |
@@ -335,7 +339,9 @@ struct SizeExample {
       Row() {
         // 宽度80 ,高度80 ,外边距20(蓝色区域），上下左右的内边距分别为5、15、10、20（白色区域）
         Row() {
-          Row().size({ width: '100%', height: '100%' }).backgroundColor(Color.Yellow)
+          Row()
+          .size({ width: '100%', height: '100%' })
+          .backgroundColor(Color.Yellow)
         }
         .width(80)
         .height(80)
@@ -344,12 +350,18 @@ struct SizeExample {
         .backgroundColor(Color.White)
       }.backgroundColor(Color.Blue)
 
-      Text('constraintSize').fontSize(12).fontColor(0xCCCCCC).width('90%')
+      Text('constraintSize')
+        .fontSize(12)
+        .fontColor(0xCCCCCC)
+        .width('90%')
       Text('this is a Text.this is a Text.this is a Text.this is a Text.this is a Text.this is a Text.this is a Text.this is a Text.this is a Text.this is a Text.this is a Text.this is a Text.this is a Text.this is a Text.this is a Text')
         .width('90%')
         .constraintSize({ maxWidth: 200 })
 
-      Text('layoutWeight').fontSize(12).fontColor(0xCCCCCC).width('90%')
+      Text('layoutWeight')
+        .fontSize(12)
+        .fontColor(0xCCCCCC)
+        .width('90%')
       // 父容器尺寸确定时，设置了layoutWeight的子元素在主轴布局尺寸按照权重进行分配，忽略本身尺寸设置。
       Row() {
         // 权重1，占主轴剩余空间1/3
@@ -363,9 +375,14 @@ struct SizeExample {
         // 未设置layoutWeight属性，组件按照自身尺寸渲染
         Text('no layoutWeight')
           .size({ width: '30%', height: 110 }).backgroundColor(0xD2B48C).textAlign(TextAlign.Center)
-      }.size({ width: '90%', height: 140 }).backgroundColor(0xAFEEEE)
+      }
+      .size({ width: '90%', height: 140 })
+      .backgroundColor(0xAFEEEE)
       // calc计算特性
-      Text('calc:').fontSize(12).fontColor(0xCCCCCC).width('90%')
+      Text('calc:')
+        .fontSize(12)
+        .fontColor(0xCCCCCC)
+        .width('90%')
       Text('calc test')
         .fontSize(50)
         .fontWeight(FontWeight.Bold)
@@ -374,7 +391,9 @@ struct SizeExample {
         .margin('calc(25vp*2)')
         // width和height设置百分比时，以父容器的width和height作为基础值。
         .size({ width: 'calc(90%)', height: 'calc(50vp + 10%)' })
-    }.width('100%').margin({ top: 5 })
+    }
+    .width('100%')
+    .margin({ top: 5 })
   }
 }
 ```
@@ -394,11 +413,16 @@ import { LengthMetrics } from '@kit.ArkUI'
 struct SizeExample {
   build() {
     Column({ space: 10 }) {
-      Text('margin and padding:').fontSize(12).fontColor(0xCCCCCC).width('90%')
+      Text('margin and padding:')
+        .fontSize(12)
+        .fontColor(0xCCCCCC)
+        .width('90%')
       Row() {
         // 宽度80 ,高度80 ,上下开始结束的外边距40、20、30、10(蓝色区域），上下开始结束的内边距分别为5、15、10、20（白色区域）
         Row() {
-          Row().size({ width: '100%', height: '100%' }).backgroundColor(Color.Yellow)
+          Row()
+            .size({ width: '100%', height: '100%' })
+            .backgroundColor(Color.Yellow)
         }
         .width(80)
         .height(80)
@@ -415,8 +439,11 @@ struct SizeExample {
           end: LengthMetrics.vp(10)
         })
         .backgroundColor(Color.White)
-      }.backgroundColor(Color.Blue)
-    }.width('100%').margin({ top: 5 })
+      }
+      .backgroundColor(Color.Blue)
+    }
+    .width('100%')
+    .margin({ top: 5 })
   }
 }
 ```
@@ -531,7 +558,9 @@ struct LayoutPolicyExample {
         // wrapContent生效时，当前组件会与其子组件大小（300vp * 300vp）相等，但不能超过父组件内容大小（180vp * 180vp）且会受自身constraintSize（250vp * 250vp）约束，因此当前组件大小为180vp * 180vp
         Text("wrapContent")
         Row() {
-          Flex().width(300).height(300)
+          Flex()
+            .width(300)
+            .height(300)
         }
         .backgroundColor('rgb(39, 135, 217)')
         .width(LayoutPolicy.wrapContent)
@@ -542,14 +571,21 @@ struct LayoutPolicyExample {
         Text("fixAtIdealSize")
 
         Row() {
-          Flex().width(300).height(300)
+          Flex()
+            .width(300)
+            .height(300)
         }
         .backgroundColor('rgb(240, 250, 255)')
         .width(LayoutPolicy.fixAtIdealSize)
         .height(LayoutPolicy.fixAtIdealSize)
         .constraintSize({ maxWidth: 250, maxHeight: 250 })
-      }.width(200).height(200).padding(10)
-    }.width("100%").height("100%")
+      }
+      .width(200)
+      .height(200)
+      .padding(10)
+    }
+    .width("100%")
+    .height("100%")
   }
 }
 ```

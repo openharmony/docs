@@ -389,6 +389,10 @@ getDistanceMap(): Map\<SourceTool, number\>
 
 返回不同输入源的拖动手势识别器触发的最小滑动距离。
 
+>  **说明：**
+>
+>  仅支持对通过Pan手势初始化配置修改的设备类型进行阈值查询；对于默认滑动阈值，可通过查询[SourceTool](ts-gesture-settings.md#sourcetool枚举说明9).Unknown类型获取其他未主动设置的类型不返回。
+
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full

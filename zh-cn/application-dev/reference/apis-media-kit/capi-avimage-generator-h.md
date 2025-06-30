@@ -18,7 +18,7 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [OH_AVImageGenerator](capi-oh-avimagegenerator.md) | OH_AVImageGenerator | 定义OH_AVImageGenerator类型，用于生成指定时间点视频帧。 |
+| [OH_AVImageGenerator](capi-avimagegenerator-oh-avimagegenerator.md) | OH_AVImageGenerator | 定义OH_AVImageGenerator类型，用于生成指定时间点视频帧。 |
 
 ### 函数
 
@@ -49,7 +49,7 @@ OH_AVImageGenerator* OH_AVImageGenerator_Create(void)
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AVImageGenerator](capi-oh-avimagegenerator.md)* | 创建成功时返回指向OH_AVImageGenerator实例的指针，否则返回空指针。<br>         可能的失败原因：HstEngineFactory未能创建AVMetadataHelperEngine。 |
+| [OH_AVImageGenerator](capi-avimagegenerator-oh-avimagegenerator.md)* | 创建成功时返回指向OH_AVImageGenerator实例的指针，否则返回空指针。<br>         可能的失败原因：HstEngineFactory未能创建AVMetadataHelperEngine。 |
 
 ### OH_AVImageGenerator_SetFDSource()
 
@@ -70,7 +70,7 @@ OH_AVErrCode OH_AVImageGenerator_SetFDSource(OH_AVImageGenerator* generator,int3
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVImageGenerator](capi-oh-avimagegenerator.md)* generator | 指向OH_AVImageGenerator实例的指针。 |
+| [OH_AVImageGenerator](capi-avimagegenerator-oh-avimagegenerator.md)* generator | 指向OH_AVImageGenerator实例的指针。 |
 | int32_t fd | 媒体源的文件描述符。 |
 | int64_t offset | 媒体源在文件描述符中的偏移量。 |
 | int64_t size | 媒体源的大小。 |
@@ -102,10 +102,10 @@ OH_AVErrCode OH_AVImageGenerator_FetchFrameByTime(OH_AVImageGenerator* generator
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVImageGenerator](capi-oh-avimagegenerator.md)* generator | 指向OH_AVImageGenerator实例的指针。 |
+| [OH_AVImageGenerator](capi-avimagegenerator-oh-avimagegenerator.md)* generator | 指向OH_AVImageGenerator实例的指针。 |
 | int64_t timeUs | 需要获取的视频帧在视频中的时间点，单位为微秒（μs）。 |
 | [OH_AVImageGenerator_QueryOptions](capi-avimage-generator-base-h.md#oh_avimagegenerator_queryoptions) options | 关于给定时间Us和视频帧之间关系的时间选项。 |
-| [OH_PixelmapNative](../apis-image-kit/capi-oh-pixelmapnative.md** pixelMap | 获取的视频帧对象。 |
+| [OH_PixelmapNative](../apis-image-kit/capi-image-nativemodule-oh-pixelmapnative.md** pixelMap | 获取的视频帧对象。 |
 
 **返回：**
 
@@ -132,7 +132,7 @@ OH_AVErrCode OH_AVImageGenerator_Release(OH_AVImageGenerator* generator)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVImageGenerator](capi-oh-avimagegenerator.md)* generator | 指向OH_AVImageGenerator实例的指针。 |
+| [OH_AVImageGenerator](capi-avimagegenerator-oh-avimagegenerator.md)* generator | 指向OH_AVImageGenerator实例的指针。 |
 
 **返回：**
 

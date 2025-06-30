@@ -56,8 +56,8 @@
   @Component
   struct styled_string_demo2 {
     textStyleAttrs: TextStyle =
-      new TextStyle({ fontWeight: FontWeight.Bolder, fontSize: LengthMetrics.vp(24), fontStyle: FontStyle.Italic });
-    mutableStyledString: MutableStyledString = new MutableStyledString("运动35分钟 目标达成", [
+      new TextStyle({ fontWeight: FontWeight.Bolder, fontSize: LengthMetrics.vp(24), fontStyle: FontStyle.Italic, strokeWidth: LengthMetrics.px(5), strokeColor: Color.Green });
+    mutableStyledString: MutableStyledString = new MutableStyledString("运动45分钟 目标达成", [
       {
         start: 2,
         length: 2,
@@ -68,7 +68,8 @@
         start: 7,
         length: 4,
         styledKey: StyledStringKey.FONT,
-        styledValue: new TextStyle({ fontColor: Color.Orange, fontSize: LengthMetrics.vp(12) })
+        styledValue: new TextStyle({ fontColor: Color.Orange, fontSize: LengthMetrics.vp(12),
+        superscript: SuperscriptStyle.SUPERSCRIPT })
       }
     ]);
     controller: TextController = new TextController();
@@ -139,8 +140,21 @@
         start: 0,
         length: 3,
         styledKey: StyledStringKey.DECORATION,
-        styledValue: new DecorationStyle({ type: TextDecorationType.LineThrough, color: Color.Red })
-      }
+        styledValue: new DecorationStyle({ type: TextDecorationType.LineThrough, color: Color.Red, thicknessScale: 3 })
+      },
+      {
+        start: 4,
+        length: 2,
+        styledKey: StyledStringKey.DECORATION,
+        styledValue: new DecorationStyle(
+          {
+            type: TextDecorationType.LineThrough,
+          },
+          {
+            enableMultiType: true
+          }
+        )
+      },
     ]);
     controller: TextController = new TextController();
 
@@ -157,7 +171,7 @@
     }
   }
   ```
-  ![StyledString_Decoration](figures/styled_string_decoration.png)
+  ![StyledString_Decoration](figures/styled_string_decoration.jpg)
 
 - 创建及应用文本基线偏移量对象（BaselineOffsetStyle）
 
@@ -327,6 +341,214 @@
   });
   this.controller.setStyledString(this.paragraphStyledString1);
   ```
+
+## 支持将属性字符串转换成Paragraph
+
+可通过[getParagraphs](../reference/apis-arkui/js-apis-arkui-UIContext.md#getparagraphs20)将属性字符串根据文本布局选项转换成对应的[Paragraph](../reference/apis-arkgraphics2d/js-apis-graphics-text.md#paragraph)数组。
+
+- 以下示例展示了通过MeasureUtils的getParagraphs方法测算文本，当内容超出最大显示行数的时候，截断文本显示并展示“...全文”的效果。
+
+  ```ts
+  import { LengthMetrics } from '@kit.ArkUI';
+  import { drawing, text } from '@kit.ArkGraphics2D';
+  
+  class MyCustomSpan extends CustomSpan {
+    constructor(word: string, width: number, height: number, context: UIContext) {
+      super();
+      this.word = word;
+      this.width = width;
+      this.height = height;
+      this.context = context;
+    }
+  
+    onMeasure(measureInfo: CustomSpanMeasureInfo): CustomSpanMetrics {
+      return { width: this.width, height: this.height };
+    }
+  
+    onDraw(context: DrawContext, options: CustomSpanDrawInfo) {
+      let canvas = context.canvas;
+      const brush = new drawing.Brush();
+      brush.setColor({
+        alpha: 255,
+        red: 0,
+        green: 74,
+        blue: 175
+      });
+      const font = new drawing.Font();
+      font.setSize(25);
+      const textBlob = drawing.TextBlob.makeFromString(this.word, font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
+      canvas.attachBrush(brush);
+      canvas.drawRect({
+        left: options.x + 10,
+        right: options.x + this.context.vp2px(this.width) - 10,
+        top: options.lineTop + 10,
+        bottom: options.lineBottom - 10
+      });
+      brush.setColor({
+        alpha: 255,
+        red: 23,
+        green: 169,
+        blue: 141
+      });
+      canvas.attachBrush(brush);
+      canvas.drawTextBlob(textBlob, options.x + 20, options.lineBottom - 15);
+      canvas.detachBrush();
+    }
+  
+    setWord(word: string) {
+      this.word = word;
+    }
+  
+    width: number = 160;
+    word: string = "drawing";
+    height: number = 10;
+    context: UIContext;
+  }
+  
+  @Entry
+  @Component
+  struct Index {
+    @State pixelMap?: PixelMap = undefined;
+    str: string =
+      "Four score and seven years ago our fathers brought forth on this continent, a new nation, conceived in Liberty,   and dedicated to the proposition that all men are created equal."
+    mutableStr2 = new MutableStyledString(this.str, [
+      {
+        start: 0,
+        length: 3,
+        styledKey: StyledStringKey.FONT,
+        styledValue: new TextStyle({ fontSize: LengthMetrics.px(20) })
+      },
+      {
+        start: 3,
+        length: 3,
+        styledKey: StyledStringKey.FONT,
+        styledValue: new TextStyle({ fontColor: Color.Brown })
+      }
+    ])
+  
+    getLineNum(styledString: StyledString, width: LengthMetrics) {
+      let paragraphArr = this.getUIContext().getMeasureUtils().getParagraphs(styledString, { constraintWidth: width })
+      let res = 0
+      for (let i = 0; i < paragraphArr.length; ++i) {
+        res += paragraphArr[i].getLineCount()
+      }
+      return res
+    }
+  
+    getCorrectIndex(styledString: MutableStyledString, maxLines: number, width: LengthMetrics) {
+      let low = 0
+      let high = styledString.length - 1;
+      while (low <= high) {
+        let mid = (low + high) >> 1;
+        console.log("demo: get " + low + " " + high + " " + mid)
+        let moreStyledString = new MutableStyledString("... 全文", [{
+          start: 4,
+          length: 2,
+          styledKey: StyledStringKey.FONT,
+          styledValue: new TextStyle({ fontColor: Color.Blue })
+        }])
+        moreStyledString.insertStyledString(0, styledString.subStyledString(0, mid))
+        let lineNum = this.getLineNum(moreStyledString, LengthMetrics.px(500))
+        if (lineNum <= maxLines) {
+          low = mid + 1;
+        } else {
+          high = mid - 1;
+        }
+      }
+      return high
+    }
+  
+    mutableStrAllContent = new MutableStyledString(this.str, [
+      {
+        start: 0,
+        length: 3,
+        styledKey: StyledStringKey.FONT,
+        styledValue: new TextStyle({ fontSize: LengthMetrics.px(40) })
+      },
+      {
+        start: 3,
+        length: 3,
+        styledKey: StyledStringKey.FONT,
+        styledValue: new TextStyle({ fontColor: Color.Brown })
+      }
+    ])
+    customSpan1: MyCustomSpan = new MyCustomSpan("Hello", 120, 10, this.getUIContext());
+    mutableStrAllContent2 = new MutableStyledString(this.str, [
+      {
+        start: 0,
+        length: 3,
+        styledKey: StyledStringKey.FONT,
+        styledValue: new TextStyle({ fontSize: LengthMetrics.px(100) })
+      },
+      {
+        start: 3,
+        length: 3,
+        styledKey: StyledStringKey.FONT,
+        styledValue: new TextStyle({ fontColor: Color.Brown })
+      }
+    ])
+    controller: TextController = new TextController()
+    controller2: TextController = new TextController()
+    textController: TextController = new TextController()
+    textController2: TextController = new TextController()
+  
+    aboutToAppear() {
+      this.mutableStrAllContent2.insertStyledString(0, new StyledString(this.customSpan1));
+      this.mutableStr2.insertStyledString(0, new StyledString(this.customSpan1));
+    }
+  
+    build() {
+      Scroll() {
+        Column() {
+          Text('原文')
+          Text(undefined, { controller: this.controller }).width('500px').onAppear(() => {
+            this.controller.setStyledString(this.mutableStrAllContent)
+          })
+          Divider().strokeWidth(8).color('#F1F3F5')
+          Text('排版后')
+          Text(undefined, { controller: this.textController }).onAppear(() => {
+            let now = this.getCorrectIndex(this.mutableStrAllContent, 3, LengthMetrics.px(500))
+            if (now != this.mutableStrAllContent.length - 1) {
+              let moreStyledString = new MutableStyledString("... 全文", [{
+                start: 4,
+                length: 2,
+                styledKey: StyledStringKey.FONT,
+                styledValue: new TextStyle({ fontColor: Color.Blue })
+              }])
+              moreStyledString.insertStyledString(0, this.mutableStrAllContent.subStyledString(0, now))
+              this.textController.setStyledString(moreStyledString)
+            } else {
+              this.textController.setStyledString(this.mutableStrAllContent)
+            }
+          })
+            .width('500px')
+          Divider().strokeWidth(8).color('#F1F3F5')
+          Text('原文')
+          Text(undefined, { controller: this.controller2 }).width('500px').onAppear(() => {
+            this.controller2.setStyledString(this.mutableStrAllContent2)
+          })
+          Divider().strokeWidth(8).color('#F1F3F5')
+          Text('排版后')
+          Text(undefined, { controller: this.textController2 }).onAppear(() => {
+            let now = this.getCorrectIndex(this.mutableStrAllContent2, 3, LengthMetrics.px(500))
+            let moreStyledString = new MutableStyledString("... 全文", [{
+              start: 4,
+              length: 2,
+              styledKey: StyledStringKey.FONT,
+              styledValue: new TextStyle({ fontColor: Color.Blue })
+            }])
+            moreStyledString.insertStyledString(0, this.mutableStrAllContent2.subStyledString(0, now))
+            this.textController2.setStyledString(moreStyledString)
+          })
+            .width('500px')
+        }.width('100%')
+      }
+    }
+  }
+  ```
+
+  ![StyledString_GetParagraphs](figures/StyledString_GetParagraphs.png)
+
 
 ## 使用图片
 
@@ -617,9 +839,9 @@
 
 ## 格式转换
 
-可以通过[toHtml](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#tohtml14)、[fromHtml](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#fromhtml)接口实现属性字符串与HTML格式字符串的相关转换，当前支持转换的HTML标签范围：\<p>、\<span>、\<img>。
+可以通过[toHtml](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#tohtml14)、[fromHtml](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md#fromhtml)接口实现属性字符串与HTML格式字符串的相关转换，当前支持转换的HTML标签范围：\<p>、\<span>、\<img>、\<br>、\<strong>、\<b>、\<a>、\<i>、\<em>、\<s>、\<u>、\<del>、\<sup>、\<sub>。
 
-以下示例展示了如何将属性字符串转换成HTML格式，并展示了如何从HTML格式转换回属性字符串。
+- 以下示例展示了如何将属性字符串转换成HTML格式，并展示了如何从HTML格式转换回属性字符串。
 ```ts
 // xxx.ets
 import { image } from '@kit.ImageKit';
@@ -693,6 +915,71 @@ struct styled_string_demo8 {
 
 ![](figures/styled_string_html.gif)
 
+- 将HTML中\<strong>、\<b>、\<a>、\<i>、\<em>、\<s>、\<u>、\<del>、\<sup>、\<sub>标签及其style属性中的background-color转换为属性字符串并转回HTML。
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct HtmlSpanStringDemo {
+    @State html: string =
+      "<p>This is <b>b</b> <strong>strong</strong> <em>em</em> <i>i</i> <u>u</u> <del>del</del> <s>s</s> <span style =   \"foreground-color:blue\"> <a href='https://www.example.com'>www.example</a> </span> <span   style=\"background-color: red;\">red span</span> <sup>superscript</sup> and <sub>subscript</sub></p>";
+    @State spanString: StyledString | undefined = undefined;
+    @State resultText: string = ""; // 保存结果文本的状态
+    controller: TextController = new TextController;
+  
+    build() {
+      Column() {
+        // 显示转换后的spanString
+        Text(undefined, { controller: this.controller }).height(100)
+  
+        // TextArea显示每个步骤的结果
+        TextArea({ text: this.html })
+          .width("100%")
+          .height(100)
+          .margin(5)
+  
+        // 按钮1:将HTML转换为SpanString
+        Button("Converted HTML to SpanString").onClick(async () => {
+          this.spanString = await StyledString.fromHtml(this.html);
+          this.controller.setStyledString(this.spanString);
+          this.resultText = "Converted HTML to SpanString successfully.";
+        }).margin(5)
+  
+        // 按钮2:将SpanString转换为HTML
+        Button("Converted SpanString to HTML").onClick(() => {
+          if (this.spanString) {
+            // 将spanString转换为HTML并替换当前的HTML状态
+            const newHtml = StyledString.toHtml(this.spanString);
+            if (newHtml !== this.html) { // 通过检查内容是否已经相同来防止重复
+              this.html = newHtml;
+            }
+            this.resultText = "Converted SpanString to HTML successfully.";
+          } else {
+            this.resultText = "SpanString is undefined.";
+          }
+        }).margin(5)
+  
+        // 按钮3:将HTML转换回SpanString
+        Button("Converted HTML back to SpanString").onClick(async () => {
+          this.spanString = await StyledString.fromHtml(this.html);
+          this.controller.setStyledString(this.spanString);
+          this.resultText = "Converted HTML back to SpanString successfully.";
+        }).margin(5)
+  
+        // 重置：重置HTML和SpanString
+        Button("Reset").onClick(() => {
+          this.html =
+            "<p>This is <b>b</b> <strong>strong</strong> <em>em</em> <i>i</i> <u>u</u> <del>del</del> <s>s</s> <span   style = \"foreground-color:blue\"> <a href='https://www.example.com'>www.example</a> </span> <span   style=\"background-color: red;\">red span</span> <sup>superscript</sup> and <sub>subscript</sub></p>";
+          this.spanString = undefined;
+          this.controller.setStyledString(new StyledString("")); // 使用空的StyledString实例
+          this.resultText = "Reset HTML and SpanString successfully.";
+        }).margin(5)
+      }.width("100%").padding(20)
+    }
+  }
+  ```
+
+  ![styled_string_html_2](figures/styled_string_html_2.gif)
 
 ## 场景示例
 

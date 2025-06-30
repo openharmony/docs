@@ -7,6 +7,12 @@
 图像创建模块，用于请求图像原生数据区域，并开放给应用编译原生图像数据的能力。
 在调用以下方法前需要先创建ImageCreator实例，ImageCreator不支持多线程。
 
+## 导入模块
+
+```ts
+import { image } from '@kit.ImageKit';
+```
+
 ## 属性
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageCreator

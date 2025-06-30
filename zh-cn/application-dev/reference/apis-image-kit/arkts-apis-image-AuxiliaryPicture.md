@@ -6,6 +6,12 @@
 
 辅助图一般用于辅助主图进行特殊信息的展示，使图像包含更丰富的信息。辅助图图像类，用于读取或写入图像的辅助图数据以及获取图像的辅助图信息。在调用AuxiliaryPicture的方法前，需要先通过[createAuxiliaryPicture](arkts-apis-image-f.md#imagecreateauxiliarypicture13)创建一个AuxiliaryPicture实例。
 
+## 导入模块
+
+```ts
+import { image } from '@kit.ImageKit';
+```
+
 ## writePixelsFromBuffer<sup>13+</sup>
 
 writePixelsFromBuffer(data: ArrayBuffer): Promise\<void>

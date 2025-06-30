@@ -14,6 +14,12 @@ Audio/Video播放demo可参考：[音频播放开发指导](../../media/media/us
 > - [on('stateChange')](#onstatechange9)：监听播放状态机AVPlayerState切换。
 > - [on('error')](#onerror9)：监听错误事件。
 
+## 导入模块
+
+```ts
+import { media } from '@kit.MediaKit';
+```
+
 ## 属性
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
@@ -423,7 +429,11 @@ avPlayer.prepare().then(() => {
 
 setMediaMuted(mediaType: MediaType,  muted: boolean ): Promise\<void>
 
-设置音频静音/取消音频静音。只能在prepared/playing/paused/completed状态下调用。仅支持设置mediaType为音频格式。
+设置音频静音/取消音频静音。
+
+从API 20开始，支持设置关闭视频画面/取消关闭视频画面。
+
+只能在prepared/playing/paused/completed状态下调用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -434,7 +444,7 @@ setMediaMuted(mediaType: MediaType,  muted: boolean ): Promise\<void>
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
 | mediaType | [MediaType](arkts-apis-media-e.md#mediatype8) | 是   | 播放策略。 |
-| muted | boolean | 是   | 是否静音播放。true表示是静音播放，false表示不是静音播放。|
+| muted | boolean | 是   | API 12-19，仅支持设置音频格式，表示音频是否静音播放。true表示是静音播放，false表示不是静音播放。<br>API20增加支持设置视频格式，表示视频画面是否关闭，true表示关闭画面，false表示恢复画面。|
 
 **返回值：**
 
@@ -1150,7 +1160,7 @@ setDecryptionConfig(mediaKeySession: drm.MediaKeySession, secureVideoPath: boole
 
 | 参数名   | 类型                                                         | 必填 | 说明                                         |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------------- |
-| mediaKeySession | [drm.MediaKeySession](../apis-drm-kit/js-apis-drm.md#mediakeysession) | 是   | 解密会话 |
+| mediaKeySession | [drm.MediaKeySession](../apis-drm-kit/arkts-apis-drm-MediaKeySession.md) | 是   | 解密会话 |
 | secureVideoPath | boolean | 是 | 安全视频通路，true表示选择安全视频通路，false表示选择非安全视频通路 |
 
 **错误码：**
@@ -1163,7 +1173,8 @@ setDecryptionConfig(mediaKeySession: drm.MediaKeySession, secureVideoPath: boole
 
 **示例：**
 
-关于drm模块的示例具体可见[js-apis-drm.md](../apis-drm-kit/js-apis-drm.md)。
+关于drm模块的示例具体可见[@ohos.multimedia.drm](../apis-drm-kit/arkts-apis-drm.md)。
+
 ```ts
 import { drm } from '@kit.DrmKit';
 
@@ -1192,7 +1203,7 @@ getMediaKeySystemInfos(): Array\<drm.MediaKeySystemInfo>
 
 | 类型                                                   | 说明                                              |
 | ------------------------------------------------------ | ------------------------------------------------- |
-|  Array<[drm.MediaKeySystemInfo](../apis-drm-kit/js-apis-drm.md#mediakeysysteminfo)> | MediaKeySystemInfo数组，MediaKeySystemInfo具有uuid和pssh两个属性。 |
+|  Array<[drm.MediaKeySystemInfo](../apis-drm-kit/arkts-apis-drm-i.md#mediakeysysteminfo)> | MediaKeySystemInfo数组，MediaKeySystemInfo具有uuid和pssh两个属性。 |
 
 **示例：**
 
@@ -1596,7 +1607,7 @@ on(type: 'mediaKeySystemInfoUpdate', callback: Callback\<Array\<drm.MediaKeySyst
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | 版权保护信息更新上报事件回调类型，支持的事件：'mediaKeySystemInfoUpdate'，当播放内容的版权保护信息更新时上报事件。 |
-| callback | Callback\<Array\<drm.[MediaKeySystemInfo](../apis-drm-kit/js-apis-drm.md#mediakeysysteminfo)>> | 是   | 版权保护信息更新上报事件回调方法，上报MediaKeySystemInfo数组。 |
+| callback | Callback\<Array\<drm.[MediaKeySystemInfo](../apis-drm-kit/arkts-apis-drm-i.md#mediakeysysteminfo)>> | 是   | 版权保护信息更新上报事件回调方法，上报MediaKeySystemInfo数组。 |
 
 **示例：**
 
@@ -1626,7 +1637,7 @@ off(type: 'mediaKeySystemInfoUpdate', callback?: Callback\<Array\<drm.MediaKeySy
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | 是   | 版权保护信息更新上报事件回调类型，取消注册的事件：'mediaKeySystemInfoUpdate'。 |
-| callback | Callback\<Array\<drm.[MediaKeySystemInfo](../apis-drm-kit/js-apis-drm.md#mediakeysysteminfo)>> | 否   | 版权保护信息更新上报事件回调方法，上报版权保护信息数组。如填写该参数，则仅取消注册此回调方法，否则取消注册mediaKeySystemInfoUpdate事件的所有回调方法。 |
+| callback | Callback\<Array\<drm.[MediaKeySystemInfo](../apis-drm-kit/arkts-apis-drm-i.md#mediakeysysteminfo)>> | 否   | 版权保护信息更新上报事件回调方法，上报版权保护信息数组。如填写该参数，则仅取消注册此回调方法，否则取消注册mediaKeySystemInfoUpdate事件的所有回调方法。 |
 
 **示例：**
 

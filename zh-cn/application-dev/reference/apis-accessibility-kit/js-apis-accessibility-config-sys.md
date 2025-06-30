@@ -43,11 +43,13 @@ boolean返回值的含义：True表示开启，False表示关闭。
 []()
 ## enableAbility
 
-enableAbility(name: string, capability: Array&lt;accessibility.Capability&gt;): Promise&lt;void&gt;;
-
-需要权限：ohos.permission.WRITE_ACCESSIBILITY_CONFIG
+enableAbility(name: string, capability: Array&lt;accessibility.Capability&gt;): Promise&lt;void&gt;
 
 启用辅助扩展，使用Promise异步回调。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.WRITE_ACCESSIBILITY_CONFIG
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -66,7 +68,7 @@ enableAbility(name: string, capability: Array&lt;accessibility.Capability&gt;): 
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[无障碍子系统错误码](errorcode-accessibility.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -94,11 +96,13 @@ config.enableAbility(name, capability).then(() => {
 
 ## enableAbility
 
-enableAbility(name: string, capability: Array&lt;[accessibility.Capability](js-apis-accessibility.md#capability)&gt;, callback: AsyncCallback&lt;void&gt;): void;
-
-需要权限：ohos.permission.WRITE_ACCESSIBILITY_CONFIG
+enableAbility(name: string, capability: Array&lt;[accessibility.Capability](js-apis-accessibility.md#capability)&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 启用辅助扩展，使用callback异步回调。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.WRITE_ACCESSIBILITY_CONFIG
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -112,7 +116,7 @@ enableAbility(name: string, capability: Array&lt;[accessibility.Capability](js-a
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[无障碍子系统错误码](errorcode-accessibility.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -142,11 +146,13 @@ config.enableAbility(name, capability, (err: BusinessError) => {
 
 ## disableAbility
 
-disableAbility(name: string): Promise&lt;void&gt;;
-
-需要权限：ohos.permission.WRITE_ACCESSIBILITY_CONFIG
+disableAbility(name: string): Promise&lt;void&gt;
 
 关闭辅助扩展，使用Promise异步回调。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.WRITE_ACCESSIBILITY_CONFIG
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -164,7 +170,7 @@ disableAbility(name: string): Promise&lt;void&gt;;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[无障碍子系统错误码](errorcode-accessibility.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -190,11 +196,13 @@ config.disableAbility(name).then(() => {
 
 ## disableAbility
 
-disableAbility(name: string, callback: AsyncCallback&lt;void&gt;): void;
-
-需要权限：ohos.permission.WRITE_ACCESSIBILITY_CONFIG
+disableAbility(name: string, callback: AsyncCallback&lt;void&gt;): void
 
 关闭辅助扩展，使用callback异步回调。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.WRITE_ACCESSIBILITY_CONFIG
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -207,7 +215,7 @@ disableAbility(name: string, callback: AsyncCallback&lt;void&gt;): void;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[无障碍子系统错误码](errorcode-accessibility.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -235,11 +243,13 @@ config.disableAbility(name, (err: BusinessError) => {
 
 ## on('enabledAccessibilityExtensionListChange')
 
-on(type: 'enabledAccessibilityExtensionListChange', callback: Callback&lt;void&gt;): void;
-
-需要权限：ohos.permission.READ_ACCESSIBILITY_CONFIG
+on(type: 'enabledAccessibilityExtensionListChange', callback: Callback&lt;void&gt;): void
 
 添加启用的辅助扩展的列表变化监听，使用callback异步回调。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.READ_ACCESSIBILITY_CONFIG
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -247,12 +257,12 @@ on(type: 'enabledAccessibilityExtensionListChange', callback: Callback&lt;void&g
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | string | 是 | 参数固定为enabledAccessibilityExtensionListChange，监听启用的辅助扩展的列表变化。 |
+| type | string | 是 | 参数固定为'enabledAccessibilityExtensionListChange'，监听启用的辅助扩展的列表变化。 |
 | callback | Callback&lt;void&gt; | 是 | 回调函数，在启用的辅助扩展的列表变化时通过此函数进行通知。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -272,11 +282,13 @@ config.on('enabledAccessibilityExtensionListChange', () => {
 
 ## off('enabledAccessibilityExtensionListChange')
 
-off(type: 'enabledAccessibilityExtensionListChange', callback?: Callback&lt;void&gt;): void;
-
-需要权限：ohos.permission.READ_ACCESSIBILITY_CONFIG
+off(type: 'enabledAccessibilityExtensionListChange', callback?: Callback&lt;void&gt;): void
 
 取消启用的辅助扩展的列表变化监听，使用callback异步回调。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.READ_ACCESSIBILITY_CONFIG
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -284,12 +296,12 @@ off(type: 'enabledAccessibilityExtensionListChange', callback?: Callback&lt;void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type |  string | 是 | 参数固定为enabledAccessibilityExtensionListChange，监听启用的辅助扩展的列表变化。 |
+| type |  string | 是 | 参数固定为'enabledAccessibilityExtensionListChange'，监听启用的辅助扩展的列表变化。 |
 | callback | Callback&lt;void&gt; | 否 | 取消指定callback对象的事件响应。需与on('enabledAccessibilityExtensionListChange')的callback一致。缺省时，表示注销所有已注册事件。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -309,11 +321,13 @@ config.off('enabledAccessibilityExtensionListChange', () => {
 
 ## on('installedAccessibilityListChange')<sup>12+</sup>
 
-on(type: 'installedAccessibilityListChange', callback: Callback&lt;void&gt;): void;
-
-需要权限：ohos.permission.READ_ACCESSIBILITY_CONFIG
+on(type: 'installedAccessibilityListChange', callback: Callback&lt;void&gt;): void
 
 添加已安装的辅助扩展的列表变化监听，使用callback异步回调。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.READ_ACCESSIBILITY_CONFIG
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -321,12 +335,12 @@ on(type: 'installedAccessibilityListChange', callback: Callback&lt;void&gt;): vo
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | string | 是 | 参数固定为installedAccessibilityListChange，监听已安装的辅助扩展的列表变化。 |
+| type | string | 是 | 参数固定为'installedAccessibilityListChange'，监听已安装的辅助扩展的列表变化。 |
 | callback | Callback&lt;void&gt; | 是 | 回调函数，在已安装的辅助扩展的列表变化时通过此函数进行通知。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -346,11 +360,13 @@ config.on('installedAccessibilityListChange', () => {
 
 ## off('installedAccessibilityListChange')<sup>12+</sup>
 
-off(type: 'installedAccessibilityListChange', callback?: Callback&lt;void&gt;): void;
-
-需要权限：ohos.permission.READ_ACCESSIBILITY_CONFIG
+off(type: 'installedAccessibilityListChange', callback?: Callback&lt;void&gt;): void
 
 取消已安装的辅助扩展的列表变化监听，使用callback异步回调。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.READ_ACCESSIBILITY_CONFIG
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -358,12 +374,12 @@ off(type: 'installedAccessibilityListChange', callback?: Callback&lt;void&gt;): 
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type |  string | 是 | 参数固定为installedAccessibilityListChange，监听已安装的辅助扩展的列表变化。 |
+| type |  string | 是 | 参数固定为'installedAccessibilityListChange'，监听已安装的辅助扩展的列表变化。 |
 | callback | Callback&lt;void&gt; | 否 | 取消指定callback对象的事件响应。需与on('installedAccessibilityListChange')的callback一致。缺省时，表示注销所有已注册事件。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -380,6 +396,45 @@ config.off('installedAccessibilityListChange', () => {
   console.info('Unsubscribe installed accessibility extension list change state success');
 });
 ```
+## setMagnificationState<sup>20+</sup>
+
+setMagnificationState(state: boolean): void
+
+触发或者关闭放大手势功能的放大效果，使用前需要保证放大手势功能已开启。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.WRITE_ACCESSIBILITY_CONFIG
+
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| state |  boolean | 是 | 表示放大手势功能的放大效果的启用状态。<br>-true：表示触发放大效果。<br>-false：表示关闭放大效果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201  | Permission verification failed. The application does not have the permission required to call the API.  |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 9300007  | Trigger magnification failed. |
+
+**示例：**
+
+```ts
+import { config } from '@kit.AccessibilityKit';
+
+try {
+  config.setMagnificationState(true);
+} catch (e) {
+  console.error(`Set magnification failed,  error code: ${e?.code}, error msg: ${e?.message}`);
+}
+```
 
 ## Config
 
@@ -387,11 +442,13 @@ config.off('installedAccessibilityListChange', () => {
 
 ### set
 
-set(value: T): Promise&lt;void&gt;;
-
-需要权限：ohos.permission.WRITE_ACCESSIBILITY_CONFIG
+set(value: T): Promise&lt;void&gt;
 
 设置属性，使用Promise异步回调。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.WRITE_ACCESSIBILITY_CONFIG
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -409,7 +466,7 @@ set(value: T): Promise&lt;void&gt;;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -434,11 +491,13 @@ config.highContrastText.set(value).then(() => {
 
 ### set
 
-set(value: T, callback: AsyncCallback&lt;void&gt;): void;
-
-需要权限：ohos.permission.WRITE_ACCESSIBILITY_CONFIG
+set(value: T, callback: AsyncCallback&lt;void&gt;): void
 
 设置属性，使用callback异步回调。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.WRITE_ACCESSIBILITY_CONFIG
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -451,7 +510,7 @@ set(value: T, callback: AsyncCallback&lt;void&gt;): void;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -478,9 +537,11 @@ config.highContrastText.set(value, (err: BusinessError) => {
 
 ### get
 
-get(): Promise&lt;T&gt;;
+get(): Promise&lt;T&gt;
 
 获取属性，使用Promise异步回调。
+
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -492,7 +553,7 @@ get(): Promise&lt;T&gt;;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -514,9 +575,11 @@ config.highContrastText.get().then((data: boolean) => {
 
 ### get
 
-get(callback: AsyncCallback&lt;T&gt;): void;
+get(callback: AsyncCallback&lt;T&gt;): void
 
 获取属性，使用callback异步回调。
+
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -528,7 +591,7 @@ get(callback: AsyncCallback&lt;T&gt;): void;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -551,11 +614,13 @@ config.highContrastText.get((err: BusinessError, data: boolean) => {
 
 ### on
 
-on(callback: Callback&lt;T&gt;): void;
-
-需要权限：ohos.permission.READ_ACCESSIBILITY_CONFIG
+on(callback: Callback&lt;T&gt;): void
 
 添加属性变化监听，使用callback异步回调。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.READ_ACCESSIBILITY_CONFIG
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -567,7 +632,7 @@ on(callback: Callback&lt;T&gt;): void;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -587,11 +652,13 @@ config.highContrastText.on((data: boolean) => {
 
 ### off
 
-off(callback?: Callback&lt;T&gt;): void;
-
-需要权限：ohos.permission.READ_ACCESSIBILITY_CONFIG
+off(callback?: Callback&lt;T&gt;): void
 
 取消属性变化监听，使用callback异步回调。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.READ_ACCESSIBILITY_CONFIG
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -603,7 +670,7 @@ off(callback?: Callback&lt;T&gt;): void;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |

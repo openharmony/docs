@@ -8,7 +8,7 @@
 >
 > 该模块不支持在[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)的文件声明处使用，即不能在UIAbility的生命周期中调用，需要在创建组件实例后使用。
 >
-> 本模块功能依赖UI的执行上下文，不可在[UI上下文不明确](../../ui/arkts-global-interface.md)的地方使用，参见[UIContext](js-apis-arkui-UIContext.md#uicontext)说明。
+> 本模块功能依赖UI的执行上下文，不可在[UI上下文不明确](../../ui/arkts-global-interface.md#ui上下文不明确)的地方使用，参见[UIContext](js-apis-arkui-UIContext.md#uicontext)说明。
 
 
 ## 导入模块
@@ -171,7 +171,7 @@ import { mediaquery } from '@kit.ArkUI';
 struct MediaQueryExample {
   @State color: string = '#DB7093'
   @State text: string = 'Portrait'
-  listener: mediaquery.MediaQueryListener = mediaquery.matchMediaSync('(orientation: landscape)') // 建议使用 this.getUIContext().getMediaQuery().matchMediaSync()接口
+  listener: mediaquery.MediaQueryListener = this.getUIContext().getMediaQuery().matchMediaSync('(orientation: landscape)'); //监听横屏事件，mediaquery.matchMediaSync接口已废弃，建议使用this.getUIContext().getMediaQuery().matchMediaSync()来获取
 
   onPortrait(mediaQueryResult:mediaquery.MediaQueryResult) {
     if (mediaQueryResult.matches) {

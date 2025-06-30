@@ -6,6 +6,12 @@
 
 全质量图对象。
 
+## 导入模块
+
+```ts
+import { camera } from '@kit.CameraKit';
+```
+
 ## 属性
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
