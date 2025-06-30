@@ -17609,7 +17609,7 @@ int32_t OH_ArkUI_RegisterLayoutCallbackOnNodeHandle (ArkUI_NodeHandle node, void
 ```
 **描述：**
 
-注册组件布局完成回调方法。同一组件仅能注册一个布局完成回调方法。
+注册组件布局完成回调方法。同一组件仅能注册一个布局完成回调方法。示例请参考：[注册组件布局和绘制送显回调](../../ui/ndk-inspector-component-observer.md)。
 
 **起始版本：** 15
 
@@ -17634,7 +17634,7 @@ int32_t OH_ArkUI_RegisterDrawCallbackOnNodeHandle (ArkUI_NodeHandle node, void* 
 ```
 **描述：**
 
-注册组件绘制完成回调方法。同一组件仅能注册一个绘制完成回调方法。
+注册组件绘制送显完成回调方法。同一组件仅能注册一个绘制完成回调方法。示例请参考：[注册组件布局和绘制送显回调](../../ui/ndk-inspector-component-observer.md)。
 
 **起始版本：** 15
 
@@ -17659,7 +17659,7 @@ int32_t OH_ArkUI_UnregisterLayoutCallbackOnNodeHandle (ArkUI_NodeHandle node)
 ```
 **描述：**
 
-取消注册组件布局完成回调方法。
+取消注册组件布局完成回调方法。示例请参考：[注册组件布局和绘制送显回调](../../ui/ndk-inspector-component-observer.md)。
 
 **起始版本：** 15
 
@@ -17682,7 +17682,7 @@ int32_t OH_ArkUI_UnregisterDrawCallbackOnNodeHandle (ArkUI_NodeHandle node)
 ```
 **描述：**
 
-取消注册组件绘制完成回调方法。
+取消注册组件绘制送显完成回调方法。示例请参考：[注册组件布局和绘制送显回调](../../ui/ndk-inspector-component-observer.md)。
 
 **起始版本：** 15
 
