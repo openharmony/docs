@@ -432,7 +432,7 @@ import { Want } from '@kit.AbilityKit';
 
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
+  abilityName: 'EntryAbility'
 };
 systemManager.getUpdateAuthData(wantTemp).then((result: string) => {
     console.info(`Succeeded in getting update auth data: ${JSON.stringify(result)}`);
@@ -440,6 +440,106 @@ systemManager.getUpdateAuthData(wantTemp).then((result: string) => {
     console.error(`Get update auth data failed. Code is ${error.code},message is ${error.message}`);
   });
 ```
+
+## systemManager.setInstallLocalEnterpriseAppEnabled<sup>20+</sup>
+
+setInstallLocalEnterpriseAppEnabled(admin: Want, isEnable: boolean): void
+
+设置是否开启本地安装企业应用。开启后，支持安装签名证书分发类型为enterprise_normal的企业应用。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_SYSTEM
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填  | 说明 |
+| ----- | ----------------------------------- | ---- | ------- |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是 | 企业设备管理扩展组件。 |
+| isEnable | boolean | 是 | 是否开启本地安装企业应用。true表示开启，false表示关闭，默认为false。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                                      |
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | The application is not an administrator application of the device. |
+| 9200002 | The administrator application does not have permission to manage the device. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+
+**示例：**
+
+```ts
+import { systemManager } from '@kit.MDMKit';
+import { Want } from '@kit.AbilityKit';
+
+// 请根据实际需求替换bundleName, abilityName
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility'
+};
+let isEnable: boolean = true;
+try {
+  systemManager.setInstallLocalEnterpriseAppEnabled(wantTemp, isEnable);
+  console.info('Succeeded in setting InstallLocalEnterpriseAppEnabled.');
+} catch (err) {
+  console.error(`Failed to set installLocalEnterpriseAppEnabled. Code is ${err.code}, message is ${err.message}`);
+}
+```
+
+## systemManager.getInstallLocalEnterpriseAppEnabled<sup>20+</sup>
+
+getInstallLocalEnterpriseAppEnabled(admin: Want): boolean
+
+获取企业应用是否开启本地安装。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_SYSTEM
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**参数：**
+
+| 参数名 | 类型                                                    | 必填 | 说明                   |
+| ------ | ------------------------------------------------------- | ---- | ---------------------- |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
+
+**返回值：**
+
+| 类型   | 说明                                |
+| ------ | ----------------------------------- |
+| boolean | 是否开启本地安装企业应用，true为开启，false为关闭。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+
+**示例：**
+
+```ts
+import { systemManager } from '@kit.MDMKit';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@ohos.base';
+
+// 请根据实际需求替换bundleName, abilityName
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility'
+};
+try {
+  let isEnable: boolean = systemManager.getInstallLocalEnterpriseAppEnabled(wantTemp);
+  console.info('Succeeded in getting installLocalEnterpriseAppEnabled.');
+} catch (err) {
+  console.error(`Failed to get installLocalEnterpriseAppEnabled. Code is ${err.code}, message is ${err.message}`);
+}
+```
+
 ## SystemUpdateInfo
 
 待更新的系统版本信息。
