@@ -34,14 +34,14 @@
 
   ```ts
   Flex({ direction: FlexDirection.Row }) {
-    Text('1').width('33%').height(50).backgroundColor(0xF5DEB3)
-    Text('2').width('33%').height(50).backgroundColor(0xD2B48C)
-    Text('3').width('33%').height(50).backgroundColor(0xF5DEB3)
+    Text('1').width('33%').height(50).backgroundColor('#F5DEB3')
+    Text('2').width('33%').height(50).backgroundColor('#D2B48C')
+    Text('3').width('33%').height(50).backgroundColor('#F5DEB3')
   }
   .height(70)
   .width('90%')
   .padding(10)
-  .backgroundColor(0xAFEEEE)
+  .backgroundColor('#AFEEEE')
   ```
 
   ![zh-cn_image_0000001562820817](figures/zh-cn_image_0000001562820817.png)
@@ -51,14 +51,14 @@
 
   ```ts
   Flex({ direction: FlexDirection.RowReverse }) {
-    Text('1').width('33%').height(50).backgroundColor(0xF5DEB3)
-    Text('2').width('33%').height(50).backgroundColor(0xD2B48C)
-    Text('3').width('33%').height(50).backgroundColor(0xF5DEB3)
+    Text('1').width('33%').height(50).backgroundColor('#F5DEB3')
+    Text('2').width('33%').height(50).backgroundColor('#D2B48C')
+    Text('3').width('33%').height(50).backgroundColor('#F5DEB3')
   }
   .height(70)
   .width('90%')
   .padding(10)
-  .backgroundColor(0xAFEEEE)
+  .backgroundColor('#AFEEEE')
   ```
 
   ![zh-cn_image_0000001511900464](figures/zh-cn_image_0000001511900464.png)
@@ -68,14 +68,14 @@
 
   ```ts
   Flex({ direction: FlexDirection.Column }) {
-    Text('1').width('100%').height(50).backgroundColor(0xF5DEB3)
-    Text('2').width('100%').height(50).backgroundColor(0xD2B48C)
-    Text('3').width('100%').height(50).backgroundColor(0xF5DEB3)
+    Text('1').width('100%').height(50).backgroundColor('#F5DEB3')
+    Text('2').width('100%').height(50).backgroundColor('#D2B48C')
+    Text('3').width('100%').height(50).backgroundColor('#F5DEB3')
   }
   .height(70)
   .width('90%')
   .padding(10)
-  .backgroundColor(0xAFEEEE)
+  .backgroundColor('#AFEEEE')
   ```
 
   ![zh-cn_image_0000001511580884](figures/zh-cn_image_0000001511580884.png)
@@ -85,14 +85,14 @@
 
   ```ts
   Flex({ direction: FlexDirection.ColumnReverse }) {
-    Text('1').width('100%').height(50).backgroundColor(0xF5DEB3)
-    Text('2').width('100%').height(50).backgroundColor(0xD2B48C)
-    Text('3').width('100%').height(50).backgroundColor(0xF5DEB3)
+    Text('1').width('100%').height(50).backgroundColor('#F5DEB3')
+    Text('2').width('100%').height(50).backgroundColor('#D2B48C')
+    Text('3').width('100%').height(50).backgroundColor('#F5DEB3')
   }
   .height(70)
   .width('90%')
   .padding(10)
-  .backgroundColor(0xAFEEEE)
+  .backgroundColor('#AFEEEE')
   ```
 
   ![zh-cn_image_0000001562940541](figures/zh-cn_image_0000001562940541.png)
@@ -107,13 +107,13 @@
 
   ```ts
   Flex({ wrap: FlexWrap.NoWrap }) {
-    Text('1').width('50%').height(50).backgroundColor(0xF5DEB3)
-    Text('2').width('50%').height(50).backgroundColor(0xD2B48C)
-    Text('3').width('50%').height(50).backgroundColor(0xF5DEB3)
+    Text('1').width('50%').height(50).backgroundColor('#F5DEB3')
+    Text('2').width('50%').height(50).backgroundColor('#D2B48C')
+    Text('3').width('50%').height(50).backgroundColor('#F5DEB3')
   } 
   .width('90%')
   .padding(10)
-  .backgroundColor(0xAFEEEE)
+  .backgroundColor('#AFEEEE')
   ```
 
   ![zh-cn_image_0000001562700425](figures/zh-cn_image_0000001562700425.png)
@@ -123,13 +123,13 @@
 
   ```ts
   Flex({ wrap: FlexWrap.Wrap }) {
-    Text('1').width('50%').height(50).backgroundColor(0xF5DEB3)
-    Text('2').width('50%').height(50).backgroundColor(0xD2B48C)
-    Text('3').width('50%').height(50).backgroundColor(0xD2B48C)
+    Text('1').width('50%').height(50).backgroundColor('#F5DEB3')
+    Text('2').width('50%').height(50).backgroundColor('#D2B48C')
+    Text('3').width('50%').height(50).backgroundColor('#D2B48C')
   } 
   .width('90%')
   .padding(10)
-  .backgroundColor(0xAFEEEE)
+  .backgroundColor('#AFEEEE')
   ```
 
   ![zh-cn_image_0000001511740468](figures/zh-cn_image_0000001511740468.png)
@@ -139,13 +139,13 @@
 
   ```ts
   Flex({ wrap: FlexWrap.WrapReverse}) {
-    Text('1').width('50%').height(50).backgroundColor(0xF5DEB3)
-    Text('2').width('50%').height(50).backgroundColor(0xD2B48C)
-    Text('3').width('50%').height(50).backgroundColor(0xF5DEB3)
+    Text('1').width('50%').height(50).backgroundColor('#F5DEB3')
+    Text('2').width('50%').height(50).backgroundColor('#D2B48C')
+    Text('3').width('50%').height(50).backgroundColor('#F5DEB3')
   }
   .width('90%')
   .padding(10)
-  .backgroundColor(0xAFEEEE)
+  .backgroundColor('#AFEEEE')
   ```
 
   ![zh-cn_image_0000001562940521](figures/zh-cn_image_0000001562940521.png)
@@ -163,13 +163,13 @@
 
   ```ts
   Flex({ justifyContent: FlexAlign.Start }) {  
-    Text('1').width('20%').height(50).backgroundColor(0xF5DEB3)
-    Text('2').width('20%').height(50).backgroundColor(0xD2B48C)    
-    Text('3').width('20%').height(50).backgroundColor(0xF5DEB3)
+    Text('1').width('20%').height(50).backgroundColor('#F5DEB3')
+    Text('2').width('20%').height(50).backgroundColor('#D2B48C')    
+    Text('3').width('20%').height(50).backgroundColor('#F5DEB3')
   }
   .width('90%')
   .padding({ top: 10, bottom: 10 })
-  .backgroundColor(0xAFEEEE)
+  .backgroundColor('#AFEEEE')
   ```
 
   ![zh-cn_image_0000001511421280](figures/zh-cn_image_0000001511421280.png)
@@ -179,13 +179,13 @@
 
   ```ts
   Flex({ justifyContent: FlexAlign.Center }) {  
-    Text('1').width('20%').height(50).backgroundColor(0xF5DEB3)  
-    Text('2').width('20%').height(50).backgroundColor(0xD2B48C)   
-    Text('3').width('20%').height(50).backgroundColor(0xF5DEB3)
+    Text('1').width('20%').height(50).backgroundColor('#F5DEB3')  
+    Text('2').width('20%').height(50).backgroundColor('#D2B48C')   
+    Text('3').width('20%').height(50).backgroundColor('#F5DEB3')
   }
   .width('90%')
   .padding({ top: 10, bottom: 10 })
-  .backgroundColor(0xAFEEEE)
+  .backgroundColor('#AFEEEE')
   ```
 
   ![zh-cn_image_0000001563060681](figures/zh-cn_image_0000001563060681.png)
@@ -195,13 +195,13 @@
 
   ```ts
   Flex({ justifyContent: FlexAlign.End }) {  
-    Text('1').width('20%').height(50).backgroundColor(0xF5DEB3)  
-    Text('2').width('20%').height(50).backgroundColor(0xD2B48C)   
-    Text('3').width('20%').height(50).backgroundColor(0xF5DEB3)
+    Text('1').width('20%').height(50).backgroundColor('#F5DEB3')  
+    Text('2').width('20%').height(50).backgroundColor('#D2B48C')   
+    Text('3').width('20%').height(50).backgroundColor('#F5DEB3')
   }
   .width('90%')
   .padding({ top: 10, bottom: 10 })
-  .backgroundColor(0xAFEEEE)
+  .backgroundColor('#AFEEEE')
   ```
 
   ![zh-cn_image_0000001562820809](figures/zh-cn_image_0000001562820809.png)
@@ -211,13 +211,13 @@
 
   ```ts
   Flex({ justifyContent: FlexAlign.SpaceBetween }) {  
-    Text('1').width('20%').height(50).backgroundColor(0xF5DEB3)  
-    Text('2').width('20%').height(50).backgroundColor(0xD2B48C)   
-    Text('3').width('20%').height(50).backgroundColor(0xF5DEB3)
+    Text('1').width('20%').height(50).backgroundColor('#F5DEB3')  
+    Text('2').width('20%').height(50).backgroundColor('#D2B48C')   
+    Text('3').width('20%').height(50).backgroundColor('#F5DEB3')
   }
   .width('90%')
   .padding({ top: 10, bottom: 10 })
-  .backgroundColor(0xAFEEEE)
+  .backgroundColor('#AFEEEE')
   ```
 
   ![zh-cn_image_0000001511421288](figures/zh-cn_image_0000001511421288.png)
@@ -227,13 +227,13 @@
 
   ```ts
   Flex({ justifyContent: FlexAlign.SpaceAround }) {  
-    Text('1').width('20%').height(50).backgroundColor(0xF5DEB3)  
-    Text('2').width('20%').height(50).backgroundColor(0xD2B48C)   
-    Text('3').width('20%').height(50).backgroundColor(0xF5DEB3)
+    Text('1').width('20%').height(50).backgroundColor('#F5DEB3')  
+    Text('2').width('20%').height(50).backgroundColor('#D2B48C')   
+    Text('3').width('20%').height(50).backgroundColor('#F5DEB3')
   }
   .width('90%')
   .padding({ top: 10, bottom: 10 })
-  .backgroundColor(0xAFEEEE)
+  .backgroundColor('#AFEEEE')
   ```
 
   ![zh-cn_image_0000001511900436](figures/zh-cn_image_0000001511900436.png)
@@ -243,13 +243,13 @@
 
   ```ts
   Flex({ justifyContent: FlexAlign.SpaceEvenly }) {  
-    Text('1').width('20%').height(50).backgroundColor(0xF5DEB3)  
-    Text('2').width('20%').height(50).backgroundColor(0xD2B48C)   
-    Text('3').width('20%').height(50).backgroundColor(0xF5DEB3)
+    Text('1').width('20%').height(50).backgroundColor('#F5DEB3')  
+    Text('2').width('20%').height(50).backgroundColor('#D2B48C')   
+    Text('3').width('20%').height(50).backgroundColor('#F5DEB3')
   }
   .width('90%')
   .padding({ top: 10, bottom: 10 })
-  .backgroundColor(0xAFEEEE)
+  .backgroundColor('#AFEEEE')
   ```
 
   ![zh-cn_image_0000001563060713](figures/zh-cn_image_0000001563060713.png)
@@ -270,13 +270,13 @@
 
   ```ts
   Flex({ alignItems: ItemAlign.Auto }) {  
-    Text('1').width('33%').height(30).backgroundColor(0xF5DEB3)  
-    Text('2').width('33%').height(40).backgroundColor(0xD2B48C)  
-    Text('3').width('33%').height(50).backgroundColor(0xF5DEB3)
+    Text('1').width('33%').height(30).backgroundColor('#F5DEB3')  
+    Text('2').width('33%').height(40).backgroundColor('#D2B48C')  
+    Text('3').width('33%').height(50).backgroundColor('#F5DEB3')
   }
   .size({ width: '90%', height: 80 })
   .padding(10)
-  .backgroundColor(0xAFEEEE)
+  .backgroundColor('#AFEEEE')
   ```
 
   ![zh-cn_image_0000001563060677](figures/zh-cn_image_0000001563060677.png)
@@ -286,13 +286,13 @@
 
   ```ts
   Flex({ alignItems: ItemAlign.Start }) {  
-    Text('1').width('33%').height(30).backgroundColor(0xF5DEB3)  
-    Text('2').width('33%').height(40).backgroundColor(0xD2B48C)  
-    Text('3').width('33%').height(50).backgroundColor(0xF5DEB3)
+    Text('1').width('33%').height(30).backgroundColor('#F5DEB3')  
+    Text('2').width('33%').height(40).backgroundColor('#D2B48C')  
+    Text('3').width('33%').height(50).backgroundColor('#F5DEB3')
   }
   .size({ width: '90%', height: 80 })
   .padding(10)
-  .backgroundColor(0xAFEEEE)
+  .backgroundColor('#AFEEEE')
   ```
 
   ![zh-cn_image_0000001562700453](figures/zh-cn_image_0000001562700453.png)
@@ -302,13 +302,13 @@
 
   ```ts
   Flex({ alignItems: ItemAlign.Center }) {  
-    Text('1').width('33%').height(30).backgroundColor(0xF5DEB3)  
-    Text('2').width('33%').height(40).backgroundColor(0xD2B48C)  
-    Text('3').width('33%').height(50).backgroundColor(0xF5DEB3)
+    Text('1').width('33%').height(30).backgroundColor('#F5DEB3')  
+    Text('2').width('33%').height(40).backgroundColor('#D2B48C')  
+    Text('3').width('33%').height(50).backgroundColor('#F5DEB3')
   }
   .size({ width: '90%', height: 80 })
   .padding(10)
-  .backgroundColor(0xAFEEEE)
+  .backgroundColor('#AFEEEE')
   ```
 
   ![zh-cn_image_0000001511740484](figures/zh-cn_image_0000001511740484.png)
@@ -318,13 +318,13 @@
 
   ```ts
   Flex({ alignItems: ItemAlign.End }) {  
-    Text('1').width('33%').height(30).backgroundColor(0xF5DEB3)  
-    Text('2').width('33%').height(40).backgroundColor(0xD2B48C)  
-    Text('3').width('33%').height(50).backgroundColor(0xF5DEB3)
+    Text('1').width('33%').height(30).backgroundColor('#F5DEB3')  
+    Text('2').width('33%').height(40).backgroundColor('#D2B48C')  
+    Text('3').width('33%').height(50).backgroundColor('#F5DEB3')
   }
   .size({ width: '90%', height: 80 })
   .padding(10)
-  .backgroundColor(0xAFEEEE)
+  .backgroundColor('#AFEEEE')
   ```
 
   ![zh-cn_image_0000001511580876](figures/zh-cn_image_0000001511580876.png)
@@ -334,13 +334,13 @@
 
   ```ts
   Flex({ alignItems: ItemAlign.Stretch }) {  
-    Text('1').width('33%').backgroundColor(0xF5DEB3)  
-    Text('2').width('33%').backgroundColor(0xD2B48C)  
-    Text('3').width('33%').backgroundColor(0xF5DEB3)
+    Text('1').width('33%').backgroundColor('#F5DEB3')  
+    Text('2').width('33%').backgroundColor('#D2B48C')  
+    Text('3').width('33%').backgroundColor('#F5DEB3')
   }
   .size({ width: '90%', height: 80 })
   .padding(10)
-  .backgroundColor(0xAFEEEE)
+  .backgroundColor('#AFEEEE')
   ```
 
   ![zh-cn_image_0000001511421252](figures/zh-cn_image_0000001511421252.png)
@@ -350,13 +350,13 @@
 
   ```ts
   Flex({ alignItems: ItemAlign.Baseline }) {  
-    Text('1').width('33%').height(30).backgroundColor(0xF5DEB3)  
-    Text('2').width('33%').height(40).backgroundColor(0xD2B48C)  
-    Text('3').width('33%').height(50).backgroundColor(0xF5DEB3)
+    Text('1').width('33%').height(30).backgroundColor('#F5DEB3')  
+    Text('2').width('33%').height(40).backgroundColor('#D2B48C')  
+    Text('3').width('33%').height(50).backgroundColor('#F5DEB3')
   }
   .size({ width: '90%', height: 80 })
   .padding(10)
-  .backgroundColor(0xAFEEEE)
+  .backgroundColor('#AFEEEE')
   ```
 
   ![zh-cn_image_0000001511900440](figures/zh-cn_image_0000001511900440.png)
@@ -370,21 +370,21 @@
 Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) { // 容器组件设置子元素居中
   Text('alignSelf Start').width('25%').height(80)
     .alignSelf(ItemAlign.Start)
-    .backgroundColor(0xF5DEB3)
+    .backgroundColor('#F5DEB3')
   Text('alignSelf Baseline')
     .alignSelf(ItemAlign.Baseline)
     .width('25%')
     .height(80)
-    .backgroundColor(0xD2B48C)
+    .backgroundColor('#D2B48C')
   Text('alignSelf Baseline').width('25%').height(100)
-    .backgroundColor(0xF5DEB3)
+    .backgroundColor('#F5DEB3')
     .alignSelf(ItemAlign.Baseline)
   Text('no alignSelf').width('25%').height(100)
-    .backgroundColor(0xD2B48C)
+    .backgroundColor('#D2B48C')
   Text('no alignSelf').width('25%').height(100)
-    .backgroundColor(0xF5DEB3)
+    .backgroundColor('#F5DEB3')
 
-}.width('90%').height(220).backgroundColor(0xAFEEEE)
+}.width('90%').height(220).backgroundColor('#AFEEEE')
 ```
 
 
@@ -403,15 +403,15 @@ Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) { // 容器
 
   ```ts
   Flex({ justifyContent: FlexAlign.SpaceBetween, wrap: FlexWrap.Wrap, alignContent: FlexAlign.Start }) {
-    Text('1').width('30%').height(20).backgroundColor(0xF5DEB3)
-    Text('2').width('60%').height(20).backgroundColor(0xD2B48C)
-    Text('3').width('40%').height(20).backgroundColor(0xD2B48C)
-    Text('4').width('30%').height(20).backgroundColor(0xF5DEB3)
-    Text('5').width('20%').height(20).backgroundColor(0xD2B48C)
+    Text('1').width('30%').height(20).backgroundColor('#F5DEB3')
+    Text('2').width('60%').height(20).backgroundColor('#D2B48C')
+    Text('3').width('40%').height(20).backgroundColor('#D2B48C')
+    Text('4').width('30%').height(20).backgroundColor('#F5DEB3')
+    Text('5').width('20%').height(20).backgroundColor('#D2B48C')
   }
   .width('90%')
   .height(100)
-  .backgroundColor(0xAFEEEE)          
+  .backgroundColor('#AFEEEE')          
   ```
 
   ![zh-cn_image_0000001511900460](figures/zh-cn_image_0000001511900460.png)
@@ -421,15 +421,15 @@ Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) { // 容器
 
   ```ts
   Flex({ justifyContent: FlexAlign.SpaceBetween, wrap: FlexWrap.Wrap, alignContent: FlexAlign.Center }) {
-    Text('1').width('30%').height(20).backgroundColor(0xF5DEB3)
-    Text('2').width('60%').height(20).backgroundColor(0xD2B48C)
-    Text('3').width('40%').height(20).backgroundColor(0xD2B48C)
-    Text('4').width('30%').height(20).backgroundColor(0xF5DEB3)
-    Text('5').width('20%').height(20).backgroundColor(0xD2B48C)
+    Text('1').width('30%').height(20).backgroundColor('#F5DEB3')
+    Text('2').width('60%').height(20).backgroundColor('#D2B48C')
+    Text('3').width('40%').height(20).backgroundColor('#D2B48C')
+    Text('4').width('30%').height(20).backgroundColor('#F5DEB3')
+    Text('5').width('20%').height(20).backgroundColor('#D2B48C')
   }
   .width('90%')
   .height(100)
-  .backgroundColor(0xAFEEEE)          
+  .backgroundColor('#AFEEEE')          
   ```
 
   ![zh-cn_image_0000001511421256](figures/zh-cn_image_0000001511421256.png)
@@ -439,15 +439,15 @@ Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) { // 容器
 
   ```ts
   Flex({ justifyContent: FlexAlign.SpaceBetween, wrap: FlexWrap.Wrap, alignContent: FlexAlign.End }) {
-    Text('1').width('30%').height(20).backgroundColor(0xF5DEB3)
-    Text('2').width('60%').height(20).backgroundColor(0xD2B48C)
-    Text('3').width('40%').height(20).backgroundColor(0xD2B48C)
-    Text('4').width('30%').height(20).backgroundColor(0xF5DEB3)
-    Text('5').width('20%').height(20).backgroundColor(0xD2B48C)
+    Text('1').width('30%').height(20).backgroundColor('#F5DEB3')
+    Text('2').width('60%').height(20).backgroundColor('#D2B48C')
+    Text('3').width('40%').height(20).backgroundColor('#D2B48C')
+    Text('4').width('30%').height(20).backgroundColor('#F5DEB3')
+    Text('5').width('20%').height(20).backgroundColor('#D2B48C')
   }
   .width('90%')
   .height(100)
-  .backgroundColor(0xAFEEEE)          
+  .backgroundColor('#AFEEEE')          
   ```
 
   ![zh-cn_image_0000001562820801](figures/zh-cn_image_0000001562820801.png)
@@ -457,15 +457,15 @@ Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) { // 容器
 
   ```ts
   Flex({ justifyContent: FlexAlign.SpaceBetween, wrap: FlexWrap.Wrap, alignContent: FlexAlign.SpaceBetween }) {
-    Text('1').width('30%').height(20).backgroundColor(0xF5DEB3)
-    Text('2').width('60%').height(20).backgroundColor(0xD2B48C)
-    Text('3').width('40%').height(20).backgroundColor(0xD2B48C)
-    Text('4').width('30%').height(20).backgroundColor(0xF5DEB3)
-    Text('5').width('20%').height(20).backgroundColor(0xD2B48C)
+    Text('1').width('30%').height(20).backgroundColor('#F5DEB3')
+    Text('2').width('60%').height(20).backgroundColor('#D2B48C')
+    Text('3').width('40%').height(20).backgroundColor('#D2B48C')
+    Text('4').width('30%').height(20).backgroundColor('#F5DEB3')
+    Text('5').width('20%').height(20).backgroundColor('#D2B48C')
   }
   .width('90%')
   .height(100)
-  .backgroundColor(0xAFEEEE)          
+  .backgroundColor('#AFEEEE')          
   ```
 
   ![zh-cn_image_0000001511900448](figures/zh-cn_image_0000001511900448.png)
@@ -475,15 +475,15 @@ Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) { // 容器
 
   ```ts
   Flex({ justifyContent: FlexAlign.SpaceBetween, wrap: FlexWrap.Wrap, alignContent: FlexAlign.SpaceAround }) {
-    Text('1').width('30%').height(20).backgroundColor(0xF5DEB3)
-    Text('2').width('60%').height(20).backgroundColor(0xD2B48C)
-    Text('3').width('40%').height(20).backgroundColor(0xD2B48C)
-    Text('4').width('30%').height(20).backgroundColor(0xF5DEB3)
-    Text('5').width('20%').height(20).backgroundColor(0xD2B48C)
+    Text('1').width('30%').height(20).backgroundColor('#F5DEB3')
+    Text('2').width('60%').height(20).backgroundColor('#D2B48C')
+    Text('3').width('40%').height(20).backgroundColor('#D2B48C')
+    Text('4').width('30%').height(20).backgroundColor('#F5DEB3')
+    Text('5').width('20%').height(20).backgroundColor('#D2B48C')
   }
   .width('90%')
   .height(100)
-  .backgroundColor(0xAFEEEE)          
+  .backgroundColor('#AFEEEE')          
   ```
 
   ![zh-cn_image_0000001562700445](figures/zh-cn_image_0000001562700445.png)
@@ -493,15 +493,15 @@ Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) { // 容器
 
   ```ts
   Flex({ justifyContent: FlexAlign.SpaceBetween, wrap: FlexWrap.Wrap, alignContent: FlexAlign.SpaceEvenly }) {
-    Text('1').width('30%').height(20).backgroundColor(0xF5DEB3)
-    Text('2').width('60%').height(20).backgroundColor(0xD2B48C)
-    Text('3').width('40%').height(20).backgroundColor(0xD2B48C)
-    Text('4').width('30%').height(20).backgroundColor(0xF5DEB3)
-    Text('5').width('20%').height(20).backgroundColor(0xD2B48C)
+    Text('1').width('30%').height(20).backgroundColor('#F5DEB3')
+    Text('2').width('60%').height(20).backgroundColor('#D2B48C')
+    Text('3').width('40%').height(20).backgroundColor('#D2B48C')
+    Text('4').width('30%').height(20).backgroundColor('#F5DEB3')
+    Text('5').width('20%').height(20).backgroundColor('#D2B48C')
   }
   .width('90%')
   .height(100)
-  .backgroundColor(0xAFEEEE)          
+  .backgroundColor('#AFEEEE')          
   ```
 
   ![zh-cn_image_0000001511580864](figures/zh-cn_image_0000001511580864.png)
@@ -519,24 +519,24 @@ Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) { // 容器
     Text('flexBasis("auto")')
       .flexBasis('auto') // 未设置width以及flexBasis值为auto，内容自身宽度
       .height(100)
-      .backgroundColor(0xF5DEB3)
+      .backgroundColor('#F5DEB3')
     Text('flexBasis("auto")'+' width("40%")')
       .width('40%')
       .flexBasis('auto') //设置width以及flexBasis值auto，使用width的值
       .height(100)
-      .backgroundColor(0xD2B48C)
+      .backgroundColor('#D2B48C')
 
     Text('flexBasis(100)')  // 未设置width以及flexBasis值为100，宽度为100vp
       .flexBasis(100)  
       .height(100)
-      .backgroundColor(0xF5DEB3)
+      .backgroundColor('#F5DEB3')
 
     Text('flexBasis(100)')
       .flexBasis(100)
       .width(200) // flexBasis值为100，覆盖width的设置值，宽度为100vp
       .height(100)
-      .backgroundColor(0xD2B48C)
-  }.width('90%').height(120).padding(10).backgroundColor(0xAFEEEE)
+      .backgroundColor('#D2B48C')
+  }.width('90%').height(120).padding(10).backgroundColor('#AFEEEE')
   ```
 
   ![zh-cn_image_0000001562940505](figures/zh-cn_image_0000001562940505.png)
@@ -549,18 +549,18 @@ Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) { // 容器
       .flexGrow(2)
       .width(100)
       .height(100)
-      .backgroundColor(0xF5DEB3)
+      .backgroundColor('#F5DEB3')
     Text('flexGrow(3)')
       .flexGrow(3)
       .width(100)
       .height(100)
-      .backgroundColor(0xD2B48C)
+      .backgroundColor('#D2B48C')
   
     Text('no flexGrow')
       .width(100)
       .height(100)
-      .backgroundColor(0xF5DEB3)
-  }.width(420).height(120).padding(10).backgroundColor(0xAFEEEE)
+      .backgroundColor('#F5DEB3')
+  }.width(420).height(120).padding(10).backgroundColor('#AFEEEE')
   ```
   
   ![zh-cn_image_0000001562700449](figures/zh-cn_image_0000001562700449.png)
@@ -578,19 +578,19 @@ Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) { // 容器
       .flexShrink(3)
       .width(200)
       .height(100)
-      .backgroundColor(0xF5DEB3)
+      .backgroundColor('#F5DEB3')
     
     Text('no flexShrink')
       .width(200)
       .height(100)
-      .backgroundColor(0xD2B48C)
+      .backgroundColor('#D2B48C')
 
     Text('flexShrink(2)')
       .flexShrink(2)
       .width(200)
       .height(100)
-      .backgroundColor(0xF5DEB3)  
-  }.width(400).height(120).padding(10).backgroundColor(0xAFEEEE) 
+      .backgroundColor('#F5DEB3')  
+  }.width(400).height(120).padding(10).backgroundColor('#AFEEEE') 
   ```
 
   ![zh-cn_image_0000001562820813](figures/zh-cn_image_0000001562820813.png)
@@ -609,13 +609,13 @@ struct FlexExample {
     Column() {
       Column({ space: 5 }) {
         Flex({ direction: FlexDirection.Row, wrap: FlexWrap.NoWrap, justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-          Text('1').width('30%').height(50).backgroundColor(0xF5DEB3)
-          Text('2').width('30%').height(50).backgroundColor(0xD2B48C)
-          Text('3').width('30%').height(50).backgroundColor(0xF5DEB3)
+          Text('1').width('30%').height(50).backgroundColor('#F5DEB3')
+          Text('2').width('30%').height(50).backgroundColor('#D2B48C')
+          Text('3').width('30%').height(50).backgroundColor('#F5DEB3')
         }
         .height(70)
         .width('90%')
-        .backgroundColor(0xAFEEEE)
+        .backgroundColor('#AFEEEE')
       }.width('100%').margin({ top: 5 })
     }.width('100%') 
  }
