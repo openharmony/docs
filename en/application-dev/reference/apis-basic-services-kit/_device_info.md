@@ -11,7 +11,7 @@ Provides APIs for querying device information.
 ## Summary
 
 
-### File
+### Files
 
 | Name| Description|
 | -------- | -------- |
