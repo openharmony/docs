@@ -893,16 +893,16 @@ try {
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 
-| 名称      | 类型                    | 必填 | 说明                                                         |
-| --------- | ----------------------- | ---- | ------------------------------------------------------------ |
-| srcAddr   | string                  | 否   | ip源地址。支持IP段，例如：192.168.0.0/22或者192.168.1.100-192.168.1.200 |
-| destAddr  | string                  | 否   | ip目标地址。支持IP段，例如：192.168.0.0/22或者192.168.1.100-192.168.1.200 |
-| srcPort   | string                  | 否   | 源端口。                                                     |
-| destPort  | string                  | 否   | 目标端口。                                                   |
-| appUid    | string                  | 否   | 应用uid。                                                    |
-| direction | [Direction](#direction) | 否   | 规则链。<br/>添加防护墙过滤规则时必填；<br/>移除防火墙时非必填，当值为空时，表示清空所有的[Direction](#direction)链，且srcAddr，destAddr，srcPort，destPort，appUid也必须传入空值。 |
-| action    | [Action](#action)       | 否   | 接收或者丢弃数据包。<br/>添加防护墙过滤规则时必填；<br/>移除防火墙时非必填，当值为空时，表示清空所有的匹配[Action](#action)规则的链，且srcAddr，destAddr，srcPort，destPort，appUid也必须传入空值。 |
-| protocol  | [Protocol](#protocol)   | 否   | 网络协议。当值为ALL或者ICMP时，不允许设置srcPort与destPort。 |
+| 名称      | 类型                    | 只读 | 可选 | 说明                                                         |
+| --------- | ----------------------- | ---- | ---- |------------------------------------------------------------ |
+| srcAddr   | string                  | 否   | 是 |ip源地址。支持IP段，例如：192.168.0.0/22或者192.168.1.100-192.168.1.200 |
+| destAddr  | string                  | 否   | 是 |ip目标地址。支持IP段，例如：192.168.0.0/22或者192.168.1.100-192.168.1.200 |
+| srcPort   | string                  | 否   | 是 |源端口。                                                     |
+| destPort  | string                  | 否   | 是 |目标端口。                                                   |
+| appUid    | string                  | 否   | 是 |应用uid。                                                    |
+| direction | [Direction](#direction) | 否   | 是 |规则链。<br/>添加防护墙过滤规则时必填；<br/>移除防火墙时非必填，当值为空时，表示清空所有的[Direction](#direction)链，且srcAddr，destAddr，srcPort，destPort，appUid也必须传入空值。 |
+| action    | [Action](#action)       | 否   | 是 |接收或者丢弃数据包。<br/>添加防护墙过滤规则时必填；<br/>移除防火墙时非必填，当值为空时，表示清空所有的匹配[Action](#action)规则的链，且srcAddr，destAddr，srcPort，destPort，appUid也必须传入空值。 |
+| protocol  | [Protocol](#protocol)   | 否   | 是 |网络协议。当值为ALL或者ICMP时，不允许设置srcPort与destPort。 |
 
 ## DomainFilterRule
 
@@ -911,12 +911,12 @@ try {
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 
-| 名称       | 类型              | 必填 | 说明                                                         |
-| ---------- | ----------------- | ---- | ------------------------------------------------------------ |
-| domainName | string            | 否   | 域名。添加域名过滤规则时必填。                               |
-| appUid     | string            | 否   | 应用uid。                                                    |
-| action     | [Action](#action) | 否   | 接收或者丢弃数据包。<br/>添加域名过滤规则时必填；<br/>移除域名过滤规则时非必填，当值为空时，表示清空所有的匹配[Action](#action)规则的链，且domainName，appUid也必须传入空值。 |
-| direction<sup>15+</sup> | [Direction](#direction) | 否 |规则链。<br/>添加防护墙过滤规则时必填；<br/>移除防火墙时非必填，当值为空时，表示清空所有的[Direction](#direction)链，且domainName，appUid也必须传入空值。|
+| 名称       | 类型              | 只读 | 可选 | 说明                                                         |
+| ---------- | ----------------- | ---- | ---- | ------------------------------------------------------------ |
+| domainName | string            | 否   | 是 |域名。添加域名过滤规则时必填。                               |
+| appUid     | string            | 否   | 是 |应用uid。                                                    |
+| action     | [Action](#action) | 否   | 是 |接收或者丢弃数据包。<br/>添加域名过滤规则时必填；<br/>移除域名过滤规则时非必填，当值为空时，表示清空所有的匹配[Action](#action)规则的链，且domainName，appUid也必须传入空值。 |
+| direction<sup>15+</sup> | [Direction](#direction) | 否 | 是 |规则链。<br/>添加防护墙过滤规则时必填；<br/>移除防火墙时非必填，当值为空时，表示清空所有的[Direction](#direction)链，且domainName，appUid也必须传入空值。|
 
 ## Direction
 
