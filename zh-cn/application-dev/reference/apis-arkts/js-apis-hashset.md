@@ -35,7 +35,7 @@ import { HashSet } from '@kit.ArkTS';
 **示例：**
 
 ```ts
-let hashSet: HashSet<number> = new HashSet();
+let hashSet: HashSet<number> = new HashSet<number>();
 hashSet.add(1);
 hashSet.add(2);
 hashSet.add(3);
@@ -65,7 +65,7 @@ HashSet的构造函数。
 **示例：**
 
 ```ts
-let hashSet: HashSet<number> = new HashSet();
+let hashSet: HashSet<number> = new HashSet<number>();
 ```
 
 
@@ -96,7 +96,7 @@ isEmpty(): boolean
 **示例：**
 
 ```ts
-const hashSet: HashSet<number> = new HashSet();
+const hashSet: HashSet<number> = new HashSet<number>();
 let result = hashSet.isEmpty();
 ```
 
@@ -135,7 +135,7 @@ has(value: T): boolean
 **示例：**
 
 ```ts
-let hashSet: HashSet<string> = new HashSet();
+let hashSet: HashSet<string> = new HashSet<string>();
 hashSet.add("squirrel");
 let result = hashSet.has("squirrel");
 ```
@@ -175,7 +175,7 @@ add(value: T): boolean
 **示例：**
 
 ```ts
-let hashSet: HashSet<string> = new HashSet();
+let hashSet: HashSet<string> = new HashSet<string>();
 let result = hashSet.add("squirrel");
 ```
 
@@ -214,7 +214,7 @@ remove(value: T): boolean
 **示例：**
 
 ```ts
-let hashSet: HashSet<string> = new HashSet();
+let hashSet: HashSet<string> = new HashSet<string>();
 hashSet.add("squirrel");
 hashSet.add("sparrow");
 let result = hashSet.remove("sparrow");
@@ -242,7 +242,7 @@ clear(): void
 **示例：**
 
 ```ts
-let hashSet: HashSet<string> = new HashSet();
+let hashSet: HashSet<string> = new HashSet<string>();
 hashSet.add("squirrel");
 hashSet.add("sparrow");
 hashSet.clear();
@@ -276,13 +276,13 @@ values(): IterableIterator&lt;T&gt;
 **示例：**
 
 ```ts
-let hashSet: HashSet<string> = new HashSet();
+let hashSet: HashSet<string> = new HashSet<string>();
 hashSet.add("squirrel");
 hashSet.add("sparrow");
 let iter = hashSet.values();
 let temp = iter.next();
 while(!temp.done) {
-  console.log("value:" + temp.value);
+  console.info("value:" + temp.value);
   temp = iter.next();
 }
 ```
@@ -297,6 +297,8 @@ forEach(callbackFn: (value?: T, key?: T, set?: HashSet&lt;T&gt;) => void, thisAr
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **参数：**
 
@@ -342,6 +344,39 @@ for(let i = 0;i < 10; i++) {
 }
 ```
 
+### forEach<sup>20+</sup>
+
+forEach(callbackFn: HashSetCbFn\<T\>): void
+
+通过回调函数来遍历实例对象上的元素以及元素对应的下标。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| callbackFn | [HashSetCbFn\<T\>](#hashsetcbfnt20) | 是 | 回调函数。 |
+
+
+**示例：**
+
+```ts
+import { HashSetCbFn } from '@ohos.util.HashSet';
+
+let hashSet: HashSet<string> = new HashSet<string>();
+hashSet.add("sparrow");
+hashSet.add("squirrel");
+let hashSetCb: HashSetCbFn<string> = (value: string, key: string, set: HashSet<string>): void => {
+  console.info("value: " + value, " key: " + key);
+};
+hashSet.forEach(hashSetCb);
+```
+
 ### entries
 entries(): IterableIterator<[T, T]>
 
@@ -368,20 +403,20 @@ entries(): IterableIterator<[T, T]>
 **示例：**
 
 ```ts
-let hashSet: HashSet<string> = new HashSet();
+let hashSet: HashSet<string> = new HashSet<string>();
 hashSet.add("squirrel");
 hashSet.add("sparrow");
 let iter = hashSet.entries();
 let temp: IteratorResult<[string, string]> = iter.next();
 while(!temp.done) {
-  console.log("key:" + temp.value[0]);
-  console.log("value:" + temp.value[1]);
+  console.info("key:" + temp.value[0]);
+  console.info("value:" + temp.value[1]);
   temp = iter.next();
 }
 ```
 ```ts
 // 不建议在entries中使用set、remove方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
-let hashSet : HashSet<string> = new HashSet();
+let hashSet : HashSet<string> = new HashSet<string>();
 for(let i = 0;i < 10; i++) {
   hashSet.add("sparrow" + i);
 }
@@ -399,6 +434,8 @@ for(let i = 0;i < 10; i++) {
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **返回值：**
 
@@ -445,3 +482,63 @@ for(let i = 0;i < 10;i++) {
   hashSet.remove("sparrow" + i);
 }
 ```
+
+### $_iterator<sup>20+</sup>
+
+\$_iterator\(): IterableIterator&lt;T&gt;
+
+返回一个迭代器，迭代器的每一项都是一个JavaScript对象，并返回该对象。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| IterableIterator&lt;T&gt; | 返回一个迭代器。 |
+
+**示例：**
+
+```ts
+let hashSet: HashSet<string> = new HashSet<string>();
+hashSet.add("squirrel");
+hashSet.add("sparrow");
+
+// 使用方法一：
+let val: Array<string> = Array.from(hashSet.values())
+for (let item of val) {
+  console.info("value: " + item);
+}
+
+// 使用方法二：
+let iter = hashSet.$_iterator();
+let temp: IteratorResult<string> = iter.next();
+while(!temp.done) {
+  console.info("value: " + temp.value);
+  temp = iter.next();
+}
+```
+
+### HashSetCbFn\<T\><sup>20+</sup>
+
+type HashSetCbFn\<T\> = (value: T, key: T, set: HashSet\<T\>) => void
+
+HashSet中forEach方法的回调函数。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| value | T | 是 | 当前遍历到的元素键值对的值。 |
+| key | T | 是 | 当前遍历到的元素键值对的键（和value相同）。 |
+| set | [HashSet&lt;T&gt;](#hashset) | 是 | 当前调用[forEach](#foreach20)方法的实例对象。 |
