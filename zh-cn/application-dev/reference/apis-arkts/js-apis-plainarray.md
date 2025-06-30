@@ -57,7 +57,7 @@ PlainArray的构造函数。
 **示例：**
 
 ```ts
-let plainArray: PlainArray<string> = new PlainArray();
+let plainArray: PlainArray<string> = new PlainArray<string>();
 ```
 
 
@@ -88,7 +88,7 @@ isEmpty(): boolean
 **示例：**
 
 ```ts
-const plainArray: PlainArray<string> = new PlainArray();
+const plainArray: PlainArray<string> = new PlainArray<string>();
 let result = plainArray.isEmpty();
 ```
 
@@ -107,7 +107,7 @@ has(key: number): boolean
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| key | number | 是 | 指定key。需要小于等于int32_max即2147483647。 |
+| key | number | 是 | 指定key。需要小于等于int32_max（即2147483647）。 |
 
 **返回值：**
 
@@ -127,7 +127,7 @@ has(key: number): boolean
 **示例：**
 
 ```ts
-let plainArray: PlainArray<string> = new PlainArray();
+let plainArray: PlainArray<string> = new PlainArray<string>();
 plainArray.add(1, "squirrel");
 let result = plainArray.has(1);
 ```
@@ -143,11 +143,13 @@ get(key: number): T
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| key | number | 是 | 查找的指定key。需要小于等于int32_max即2147483647。 |
+| key | number | 是 | 查找的指定key。需要小于等于int32_max（即2147483647）。 |
 
 **返回值：**
 
@@ -173,6 +175,46 @@ plainArray.add(2, "sparrow");
 let result = plainArray.get(1);
 ```
 
+### get<sup>20+</sup>
+
+get(key: number): T \| undefined
+
+获取指定key所对应的value值。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| key | number | 是 | 查找的指定key。需要小于等于int32_max（即2147483647）。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T \| undefined | 返回key映射的value值，key不存在返回undefined。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of index is out of range. |
+
+**示例：**
+
+```ts
+let plainArray: PlainArray<string> = new PlainArray<string>();
+plainArray.add(1, "squirrel");
+plainArray.add(2, "sparrow");
+let result = plainArray.get(1);
+```
 
 ### getIndexOfKey
 
@@ -188,7 +230,7 @@ getIndexOfKey(key: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| key | number | 是 | 指定key。需要小于等于int32_max即2147483647。 |
+| key | number | 是 | 指定key。需要小于等于int32_max（即2147483647）。 |
 
 **返回值：**
 
@@ -208,7 +250,7 @@ getIndexOfKey(key: number): number
 **示例：**
 
 ```ts
-let plainArray: PlainArray<string> = new PlainArray();
+let plainArray: PlainArray<string> = new PlainArray<string>();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.getIndexOfKey(2);
@@ -248,7 +290,7 @@ getIndexOfValue(value: T): number
 **示例：**
 
 ```ts
-let plainArray: PlainArray<string> = new PlainArray();
+let plainArray: PlainArray<string> = new PlainArray<string>();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.getIndexOfValue("squirrel");
@@ -265,11 +307,13 @@ getKeyAt(index: number): number
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| index | number | 是 | 指定下标。需要小于等于int32_max即2147483647。 |
+| index | number | 是 | 指定下标。需要小于等于int32_max（即2147483647）。 |
 
 **返回值：**
 
@@ -289,7 +333,48 @@ getKeyAt(index: number): number
 **示例：**
 
 ```ts
-let plainArray: PlainArray<string> = new PlainArray();
+let plainArray: PlainArray<string> = new PlainArray<string>();
+plainArray.add(1, "squirrel");
+plainArray.add(2, "sparrow");
+let result = plainArray.getKeyAt(1);
+```
+
+### getKeyAt<sup>20+</sup>
+
+getKeyAt(index: number): number | undefined
+
+查找指定下标元素键值对中的key值。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| index | number | 是 | 指定下标。需要小于等于int32_max（即2147483647）。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| number \| undefined | 返回该下标元素键值对中的key值，如果没有则返回undefined。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200011 | The getKeyAt method cannot be bound. |
+
+**示例：**
+
+```ts
+let plainArray: PlainArray<string> = new PlainArray<string>();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.getKeyAt(1);
@@ -309,7 +394,7 @@ getValueAt(index: number): T
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | index | number | 是 | 指定下标。需要小于等于int32_max即2147483647。 |
+  | index | number | 是 | 指定下标。需要小于等于int32_max（即2147483647）。 |
 
 **返回值：**
 
@@ -330,7 +415,7 @@ getValueAt(index: number): T
 **示例：**
 
 ```ts
-let plainArray: PlainArray<string> = new PlainArray();
+let plainArray: PlainArray<string> = new PlainArray<string>();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.getValueAt(1);
@@ -363,7 +448,7 @@ clone(): PlainArray&lt;T&gt;
 **示例：**
 
 ```ts
-let plainArray: PlainArray<string> = new PlainArray();
+let plainArray: PlainArray<string> = new PlainArray<string>();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let newPlainArray = plainArray.clone();
@@ -384,7 +469,7 @@ add(key: number, value: T): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| key | number | 是 | 添加成员数据的键名。需要小于等于int32_max即2147483647。 |
+| key | number | 是 | 添加成员数据的键名。需要小于等于int32_max（即2147483647）。 |
 | value | T | 是 | 添加成员数据的值。 |
 
 **错误码：**
@@ -399,7 +484,7 @@ add(key: number, value: T): void
 **示例：**
 
 ```ts
-let plainArray: PlainArray<string> = new PlainArray();
+let plainArray: PlainArray<string> = new PlainArray<string>();
 plainArray.add(1, "squirrel");
 ```
 
@@ -414,11 +499,13 @@ remove(key: number): T
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| key | number | 是 | 指定key。需要小于等于int32_max即2147483647。 |
+| key | number | 是 | 指定key。需要小于等于int32_max（即2147483647）。 |
 
 **返回值：**
 
@@ -444,7 +531,6 @@ plainArray.add(2, "sparrow");
 let result = plainArray.remove(2);
 ```
 
-
 ### removeAt
 
 removeAt(index: number): T
@@ -455,11 +541,13 @@ removeAt(index: number): T
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
+
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| index | number | 是 | 指定元素下标。需要小于等于int32_max即2147483647。 |
+| index | number | 是 | 指定元素下标。需要小于等于int32_max（即2147483647）。 |
 
 **返回值：**
 
@@ -485,6 +573,87 @@ plainArray.add(2, "sparrow");
 let result = plainArray.removeAt(1);
 ```
 
+### remove<sup>20+</sup>
+
+remove(key: number): T \| undefined
+
+删除指定key所对应的键值对。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| key | number | 是 | 指定key。需要小于等于int32_max（即2147483647）。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T \| undefined | 返回所删除的键值对中的value值，key不存在则返回undefined。 |
+
+  **错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of index is out of range. |
+
+**示例：**
+
+```ts
+let plainArray: PlainArray<string> = new PlainArray<string>();
+plainArray.add(1, "squirrel");
+plainArray.add(2, "sparrow");
+let result = plainArray.remove(2);
+```
+
+### removeAt<sup>20+</sup>
+
+removeAt(index: number): T \| undefined
+
+删除指定下标所对应的元素。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| index | number | 是 | 指定元素下标。需要小于等于int32_max（即2147483647）。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T \| undefined | 返回删除的元素，删除失败则返回undefined。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200001 | The value of index is out of range. |
+
+**示例：**
+
+```ts
+let plainArray: PlainArray<string> = new PlainArray<string>();
+plainArray.add(1, "squirrel");
+plainArray.add(2, "sparrow");
+let result = plainArray.removeAt(1);
+```
 
 ### removeRangeFrom
 
@@ -500,8 +669,8 @@ removeRangeFrom(index: number, size: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| index | number | 是 | 删除元素的起始下标。需要小于等于int32_max即2147483647。 |
-| size | number | 是 | 期望删除元素个数。需要小于等于int32_max即2147483647。 |
+| index | number | 是 | 删除元素的起始下标。需要小于等于int32_max（即2147483647）。 |
+| size | number | 是 | 期望删除元素个数。需要小于等于int32_max（即2147483647）。 |
 
 **返回值：**
 
@@ -522,7 +691,7 @@ removeRangeFrom(index: number, size: number): number
 **示例：**
 
 ```ts
-let plainArray: PlainArray<string> = new PlainArray();
+let plainArray: PlainArray<string> = new PlainArray<string>();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.removeRangeFrom(1, 3);
@@ -543,7 +712,7 @@ setValueAt(index: number, value: T): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| index | number | 是 | 指定替换数据下标。需要小于等于int32_max即2147483647。 |
+| index | number | 是 | 指定替换数据下标。需要小于等于int32_max（即2147483647）。 |
 | value | T | 是 | 替换键值对中的值。 |
 
 **错误码：**
@@ -559,7 +728,7 @@ setValueAt(index: number, value: T): void
 **示例：**
 
 ```ts
-let plainArray: PlainArray<string | number> = new PlainArray();
+let plainArray: PlainArray<string | number> = new PlainArray<string | number>();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 plainArray.setValueAt(1, 3546);
@@ -593,7 +762,7 @@ toString(): String
 **示例：**
 
 ```ts
-let plainArray: PlainArray<string> = new PlainArray();
+let plainArray: PlainArray<string> = new PlainArray<string>();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 let result = plainArray.toString();
@@ -621,7 +790,7 @@ clear(): void
 **示例：**
 
 ```ts
-let plainArray: PlainArray<string> = new PlainArray();
+let plainArray: PlainArray<string> = new PlainArray<string>();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 plainArray.clear();
@@ -637,6 +806,8 @@ forEach(callbackFn: (value: T, index?: number, PlainArray?: PlainArray&lt;T&gt;)
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **参数：**
 
@@ -664,7 +835,7 @@ callbackfn的参数说明：
 **示例：**
 
 ```ts
-let plainArray: PlainArray<string> = new PlainArray();
+let plainArray: PlainArray<string> = new PlainArray<string>();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 plainArray.forEach((value: string, index?: number) => {
@@ -673,7 +844,7 @@ plainArray.forEach((value: string, index?: number) => {
 ```
 ```ts
 // 不建议在forEach中使用add、remove、removeAt方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
-let plainArray: PlainArray<string> = new PlainArray();
+let plainArray: PlainArray<string> = new PlainArray<string>();
 for(let i = 0;i < 10;i++) {
   plainArray.add(i,"123");
 }
@@ -681,6 +852,38 @@ for(let i = 0;i < 10;i++) {
 for(let i = 0;i < 10;i++) {
   plainArray.remove(i);
 }
+```
+
+### forEach<sup>20+</sup>
+
+forEach(callbackFn: PlainArrayForEachCb\<T\>): void
+
+通过回调函数遍历实例对象上的元素以及元素对应的下标值。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| callbackFn | [PlainArrayForEachCb\<T\>](#plainarrayforeachcbt20) | 是 | 回调函数。 |
+
+**示例：**
+
+```ts
+import { PlainArrayForEachCb } from '@ohos.util.PlainArray';
+
+let plainArray: PlainArray<string> = new PlainArray<string>();
+plainArray.add(1, "squirrel");
+plainArray.add(2, "sparrow");
+let plainArrayCb: PlainArrayForEachCb<string> = (value: string, key: number, PlainArray: PlainArray<string>) => {
+  console.info("value: " + value, " key: " + key);
+}
+plainArray.forEach(plainArrayCb);
 ```
 
 ### [Symbol.iterator]
@@ -692,6 +895,8 @@ for(let i = 0;i < 10;i++) {
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.1。
 
 **返回值：**
 
@@ -710,7 +915,7 @@ for(let i = 0;i < 10;i++) {
 **示例：**
 
 ```ts
-let plainArray: PlainArray<string> = new PlainArray();
+let plainArray: PlainArray<string> = new PlainArray<string>();
 plainArray.add(1, "squirrel");
 plainArray.add(2, "sparrow");
 
@@ -724,7 +929,7 @@ while(!temp.done) {
 ```
 ```ts
 // 不建议在Symbol.iterator中使用add、remove、removeAt方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
-let plainArray: PlainArray<string> = new PlainArray();
+let plainArray: PlainArray<string> = new PlainArray<string>();
 for(let i = 0;i < 10;i++) {
   plainArray.add(i,"123");
 }
@@ -733,3 +938,57 @@ for(let i = 0;i < 10;i++) {
   plainArray.remove(i);
 }
 ```
+
+### \$_iterator<sup>20+</sup>
+
+\$_iterator\(): IterableIterator&lt;[number, T]&gt;
+
+返回一个包含key-value键值对的迭代器对象，其中key是number类型。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| IterableIterator&lt;[number, T]&gt; | 返回一个迭代器。 |
+
+**示例：**
+
+```ts
+let plainArray: PlainArray<string> = new PlainArray<string>();
+plainArray.add(1, "squirrel");
+plainArray.add(2, "sparrow");
+
+let iter = plainArray.$_iterator();
+let temp: IteratorResult<[number, string]> = iter.next();
+while(!temp.done) {
+  console.info("key:" + temp.value![0]);
+  console.info("value:" + temp.value![1]);
+  temp = iter.next();
+}
+```
+
+### PlainArrayForEachCb\<T\><sup>20+</sup>
+
+type PlainArrayForEachCb\<T\> = (value: T, key: number, PlainArray: PlainArray\<T\>) => void
+
+PlainArray中forEach方法的回调函数。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**ArkTS版本：** 该接口仅适用于ArkTS1.2。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| value | T | 是 | 当前遍历到元素的值。 |
+| key | number | 是 | 当前遍历到元素的键。 |
+| PlainArray | [PlainArray&lt;T&gt;](#plainarray)| 是 | 当前调用[forEach](#foreach20)方法的实例对象。 |
