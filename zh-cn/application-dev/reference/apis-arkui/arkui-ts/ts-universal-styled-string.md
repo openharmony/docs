@@ -573,10 +573,10 @@ TextShadowStyle | GestureStyle | ImageAttachment | ParagraphStyle | LineHeightSt
 | ----------- | ---------------------------------------- | ---- | ---- | --------------------------------------------------------------------------------------------------------------------------------- |
 | fontColor   | [ResourceColor](ts-types.md#resourcecolor)  | 是   | 是   | 获取属性字符串的文本颜色。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                               |
 | fontFamily  | string                                   | 是   | 是   | 获取属性字符串的文本字体。<br/>默认返回undefined。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                       |
-| fontSize    | number                                   | 是   | 是   | 获取属性字符串的文本字体大小。<br/>单位：[fp](ts-pixel-units.md#像素单位) <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| fontSize    | number                                   | 是   | 是   | 获取属性字符串的文本字体大小。<br/>单位：[fp](ts-pixel-units.md) <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | fontWeight  | number                                   | 是   | 是   | 获取属性字符串的文本字体粗细。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                           |
 | fontStyle   | [FontStyle](ts-appendix-enums.md#fontstyle) | 是   | 是   | 获取属性字符串的文本字体样式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                           |
-| strokeWidth<sup>20+</sup> | number                                   | 是   | 是   | 获取属性字符串的文本描边宽度。<br/>默认返回0，单位为[vp](ts-pixel-units.md#像素单位)。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。                                           |
+| strokeWidth<sup>20+</sup> | number                                   | 是   | 是   | 获取属性字符串的文本描边宽度。<br/>默认返回0，单位为[vp](ts-pixel-units.md)。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。                                           |
 | strokeColor<sup>20+</sup> | [ResourceColor](ts-types.md#resourcecolor)  | 是   | 是   | 获取属性字符串的文本描边颜色。<br/>默认返回字体颜色。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。                                           |
 | superscript<sup>20+</sup> | [SuperscriptStyle](ts-text-common.md#superscriptstyle20枚举说明)  | 是   | 是   | 获取属性字符串的文本上下角标。<br/>默认值：SuperscriptStyle.NORMAL。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。                                           |
 
@@ -604,7 +604,7 @@ constructor(value?: TextStyleInterface)
 | ----------- | ------------------------------------------------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | fontColor   | [ResourceColor](ts-types.md#resourcecolor)                       | 否   | 字体颜色。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                  |
 | fontFamily  | [ResourceStr](ts-types.md#resourcestr)                           | 否   | 文本字体。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                  |
-| fontSize    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)    | 否   | 字体大小。如果LengthMetrics的unit值是percent，当前设置不生效，处理为16fp。<br/>单位：[fp](ts-pixel-units.md#像素单位) <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                        |
+| fontSize    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)    | 否   | 字体大小。如果LengthMetrics的unit值是percent，当前设置不生效，处理为16fp。<br/>单位：[fp](ts-pixel-units.md) <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                        |
 | fontWeight  | number\| [FontWeight](ts-appendix-enums.md#fontweight) \| string | 否   | 字体粗细。<br/>number类型取值[100,&nbsp;900]，取值间隔为100，默认为400，取值越大，字体越粗。string类型仅支持number类型取值的字符串形式，例如"400"，以及"bold"、"bolder"、"lighter"、"regular"、"medium"，分别对应FontWeight中相应的枚举值。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | fontStyle   | [FontStyle](ts-appendix-enums.md#fontstyle)                      | 否   | 字体样式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                  |
 | strokeWidth<sup>20+</sup> | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)    | 否   | 文本描边宽度。如果LengthMetrics的unit值是percent，当前设置不生效，处理为0。<br/>设置值小于0时为实心字，大于0时为空心字。<br/>默认值为0。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。                                                                                                                                                                      |
@@ -733,7 +733,7 @@ constructor(value: DecorationStyleInterface, options?: DecorationOptions)
 
 | 名称           | 类型              | 只读   | 可选   | 说明     |
 | ------------ |---------------------| ---- | ---- | ------ |
-| baselineOffset  | number |  是  |  否 | 获取属性字符串的文本基线偏移量。<br/>单位：[vp](ts-pixel-units.md#像素单位) |
+| baselineOffset  | number |  是  |  否 | 获取属性字符串的文本基线偏移量。<br/>单位：[vp](ts-pixel-units.md) |
 
 ### constructor
 
@@ -765,7 +765,7 @@ constructor(value: LengthMetrics)
 
 | 名称           | 类型              | 只读   | 可选   | 说明     |
 | ------------ |---------------------| ---- | ---- | ------ |
-| letterSpacing  | number |  是  |  否  | 获取属性字符串的文本字符间距。<br/>单位：[vp](ts-pixel-units.md#像素单位) |
+| letterSpacing  | number |  是  |  否  | 获取属性字符串的文本字符间距。<br/>单位：[vp](ts-pixel-units.md) |
 
 ### constructor
 
@@ -797,7 +797,7 @@ constructor(value: LengthMetrics)
 
 | 名称           | 类型              | 只读   | 可选   | 说明     |
 | ------------ |---------------------| ---- | ---- | ------ |
-| lineHeight  | number |  是  |  否  | 获取属性字符串的文本行高。<br/>单位：[vp](ts-pixel-units.md#像素单位) |
+| lineHeight  | number |  是  |  否  | 获取属性字符串的文本行高。<br/>单位：[vp](ts-pixel-units.md) |
 
 ### constructor
 
@@ -951,9 +951,9 @@ type ColorFilterType = ColorFilter | DrawingColorFilter
 
 | 名称  | 类型                              | 必填 | 说明   |
 | ------- | --------------------------------- | ---- | --------------------------------- |
-| margin | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [Margin](ts-types.md#margin) | 否   | 设置图片外边距。<br/>默认值：0<br/>单位：[vp](ts-pixel-units.md#像素单位) |
-| padding | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [Padding](ts-types.md#padding) | 否   | 设置图片内边距。<br/>默认值：0<br/>单位：[vp](ts-pixel-units.md#像素单位) |
-| borderRadius | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [BorderRadiuses](ts-types.md#borderradiuses9) | 否   | 设置圆角。<br/>默认值：0<br/>单位：[vp](ts-pixel-units.md#像素单位) |
+| margin | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [Margin](ts-types.md#margin) | 否   | 设置图片外边距。<br/>默认值：0<br/>单位：[vp](ts-pixel-units.md) |
+| padding | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [Padding](ts-types.md#padding) | 否   | 设置图片内边距。<br/>默认值：0<br/>单位：[vp](ts-pixel-units.md) |
+| borderRadius | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [BorderRadiuses](ts-types.md#borderradiuses9) | 否   | 设置圆角。<br/>默认值：0<br/>单位：[vp](ts-pixel-units.md) |
 
 ## ResourceImageAttachmentOptions<sup>15+</sup>
 
@@ -1038,7 +1038,7 @@ invalidate(): void
 
 | 名称  | 类型                              | 必填 | 说明   |
 | ------- | --------------------------------- | ---- | --------------------------------- |
-| fontSize | number |  是  | 设置文本字体大小。<br/>单位：[fp](ts-pixel-units.md#像素单位) |
+| fontSize | number |  是  | 设置文本字体大小。<br/>单位：[fp](ts-pixel-units.md) |
 
 ## CustomSpanMetrics对象说明
 
@@ -1048,8 +1048,8 @@ invalidate(): void
 
 | 名称  | 类型                              | 必填 | 说明   |
 | ------- | --------------------------------- | ---- | --------------------------------- |
-| width | number |  是  | 自定义绘制Span的宽。<br/>单位：[vp](ts-pixel-units.md#像素单位) |
-| height | number |  否  | 自定义绘制Span的高。<br/>单位：[vp](ts-pixel-units.md#像素单位) |
+| width | number |  是  | 自定义绘制Span的宽。<br/>单位：[vp](ts-pixel-units.md) |
+| height | number |  否  | 自定义绘制Span的高。<br/>单位：[vp](ts-pixel-units.md) |
 
 ## CustomSpanDrawInfo对象说明
 
@@ -1059,10 +1059,10 @@ invalidate(): void
 
 | 名称  | 类型                              | 必填 | 说明   |
 | ------- | --------------------------------- | ---- | --------------------------------- |
-| x | number |  是  | 自定义绘制Span相对于挂载组件的偏移。<br/>单位：[px](ts-pixel-units.md#像素单位) |
-| lineTop | number |  是  | 自定义绘制Span相对于Text组件的上边距。<br/>单位：[px](ts-pixel-units.md#像素单位) |
-| lineBottom | number |  是  | 自定义绘制Span相对于Text组件的下边距。<br/>单位：[px](ts-pixel-units.md#像素单位) |
-| baseline | number |  是  | 自定义绘制Span的所在行的基线偏移量。<br/>单位：[px](ts-pixel-units.md#像素单位) |
+| x | number |  是  | 自定义绘制Span相对于挂载组件的偏移。<br/>单位：[px](ts-pixel-units.md) |
+| lineTop | number |  是  | 自定义绘制Span相对于Text组件的上边距。<br/>单位：[px](ts-pixel-units.md) |
+| lineBottom | number |  是  | 自定义绘制Span相对于Text组件的下边距。<br/>单位：[px](ts-pixel-units.md) |
+| baseline | number |  是  | 自定义绘制Span的所在行的基线偏移量。<br/>单位：[px](ts-pixel-units.md) |
 
 ## ParagraphStyle
 
