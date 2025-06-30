@@ -124,9 +124,10 @@ class ConsumerTest {
 
 function Main(): void {
   let consumer: ConsumerTest = new ConsumerTest();
-  let producer1: Producer = new Producer();
-  for (let i = 0; i < 0; i++) {
-    // 模拟启动多线程执行生产任务
+  let producer: Producer = new Producer();
+  let threadNum: number = 10;
+  for (let i = 0; i < threadNum; i++) {
+    // 如下伪代码模拟启动多线程执行生产任务
     // let thread = new Thread();
     // thread.run(producer.run());
     // consumer.run();
