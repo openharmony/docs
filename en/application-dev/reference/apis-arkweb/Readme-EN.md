@@ -3,7 +3,11 @@
 - ArkTS API<!--arkweb-arkts-->
   - [@ohos.web.webview (Webview)](js-apis-webview.md)
     - [Class (WebviewController)](js-apis-webview-WebviewController.md)
+    - [Class (GeolocationPermissions)](js-apis-webview-GeolocationPermissions.md)
+    - [Class (WebCookieManager)](js-apis-webview-WebCookieManager.md)
+    - [Class (WebDataBase)](js-apis-webview-WebDataBase.md)
     - [Class (WebMessageExt)](js-apis-webview-WebMessageExt.md)
+    - [Class (WebStorage)](js-apis-webview-WebStorage.md)
     - [Interface (BackForwardList)](js-apis-webview-BackForwardList.md)
     - [Interface (WebMessagePort)](js-apis-webview-WebMessagePort.md)
     - [Interfaces (Others)] (js-apis-webview-i.md)
