@@ -11454,6 +11454,16 @@ static disableSystemServiceMenuItems(disable: boolean): void
 > 涉及文本选择菜单的组件有 [Text](./arkui-ts/ts-basic-components-text.md)、[TextArea](./arkui-ts/ts-basic-components-textarea.md)、[TextInput](./arkui-ts/ts-basic-components-textinput.md)、[Search](./arkui-ts/ts-basic-components-search.md)、[RichEditor](./arkui-ts/ts-basic-components-richeditor.md)、[Web](../apis-arkweb/arkts-basic-components-web.md)。
 >
 > 系统服务菜单项指除[TextMenuItemId](./arkui-ts/ts-text-common.md#textmenuitemid12)中的复制、剪切、全选、粘贴以外的菜单项。
+>
+> 当disableSystemServiceMenuItems与disableMenuItems同时设置时，优先生效先设置的disableSystemServiceMenuItems。
+>
+> 使用该接口时，全局生效，多次调用以最后一次为准。
+>
+> 可以通过以下三种方式恢复禁用菜单：
+>
+> - 仅设置disableSystemServiceMenuItems(true)禁用菜单时，设置false即可恢复禁用；
+> - 仅设置disableMenuItems禁用菜单时，设置为空数组即可恢复禁用；
+> - 当disableSystemServiceMenuItems与disableMenuItems同时使用时，则前者设置为false，后者设置为空数组，即可恢复禁用。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -11525,6 +11535,16 @@ static disableMenuItems(items: Array\<TextMenuItemId>): void
 > 涉及文本选择菜单的组件有 [Text](./arkui-ts/ts-basic-components-text.md)、[TextArea](./arkui-ts/ts-basic-components-textarea.md)、[TextInput](./arkui-ts/ts-basic-components-textinput.md)、[Search](./arkui-ts/ts-basic-components-search.md)、[RichEditor](./arkui-ts/ts-basic-components-richeditor.md)、[Web](../apis-arkweb/arkts-basic-components-web.md)。
 >
 > 系统服务菜单项指除[TextMenuItemId](./arkui-ts/ts-text-common.md#textmenuitemid12)中的复制、剪切、全选、粘贴以外的菜单项。
+>
+> 当disableSystemServiceMenuItems与disableMenuItems同时设置时，优先生效先设置的disableSystemServiceMenuItems。
+>
+> 使用该接口时，全局生效，多次调用以最后一次为准。
+>
+> 可以通过以下三种方式恢复禁用菜单：
+>
+> - 仅设置disableSystemServiceMenuItems(true)禁用菜单时，设置false即可恢复禁用；
+> - 仅设置disableMenuItems禁用菜单时，设置为空数组即可恢复禁用；
+> - 当disableSystemServiceMenuItems与disableMenuItems同时使用时，则前者设置为false，后者设置为空数组，即可恢复禁用。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -11534,7 +11554,7 @@ static disableMenuItems(items: Array\<TextMenuItemId>): void
 
 | 参数名      | 类型         | 必填   | 说明   |
 | -------- | ---------- | ---- | ---- |
-| items | Array<[TextMenuItemId](./arkui-ts/ts-text-common.md#textmenuitemid12)> | 是    | 禁用菜单项的列表。<br />默认值: [] |
+| items | Array<[TextMenuItemId](./arkui-ts/ts-text-common.md#textmenuitemid12)> | 是    | 禁用菜单项的列表。<br />默认值: []<br />默认不禁用任何菜单。 |
 
 **示例：**
 
