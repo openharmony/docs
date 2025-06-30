@@ -11,7 +11,7 @@ Provides the C APIs of the network connection module for network management.
 ## Summary
 
 
-### File
+### Files
 
 | Name| Description| 
 | -------- | -------- |
