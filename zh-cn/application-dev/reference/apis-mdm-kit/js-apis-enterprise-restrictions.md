@@ -382,7 +382,7 @@ setUserRestriction(admin: Want, settingsItem: string, restricted: boolean): void
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                   |
-| settingsItem  | string                                                  | 是   | 设置项名称。<br/>- setApn：apn设置项。 |
+| settingsItem  | string                                                  | 是   | 设置项名称。<br/>- setApn：APN设置项，当前仅支持手机、平板、2in1设备使用。<br/>- powerLongPress：长按电源键设置项，当前仅支持手机、平板、2in1设备使用。 |
 | restricted | boolean                                                 | 是   | 是否限制更改。true表示限制更改，false表示允许更改。                       |
 
 **错误码**：
