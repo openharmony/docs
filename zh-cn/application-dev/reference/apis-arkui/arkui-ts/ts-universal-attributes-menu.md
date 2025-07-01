@@ -934,3 +934,49 @@ struct Index {
 ```
 
 ![menuMask](figures/menuMask.jpg)
+
+### 示例17（bindMenu设置下拉菜单外描边样式）
+
+该示例为bindMenu通过配置outlineWidth和outlineColor属性设置下拉菜单外描边样式。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  @Builder
+  MyMenu() {
+    Menu() {
+      MenuItem({ content: "菜单选项" })
+      MenuItem({ content: "菜单选项" })
+      MenuItem({ content: "菜单选项" })
+    }
+  }
+
+  build() {
+    Column({ space: 50 }) {
+      Column() {
+        Column() {
+          Text('click for Menu')
+            .width(200)
+            .height(100)
+            .textAlign(TextAlign.Center)
+            .margin(100)
+            .fontSize(30)
+            .bindMenu(this.MyMenu,
+              {
+                outlineWidth: '5vp',
+                outlineColor: Color.Blue
+              })
+        }
+      }
+      .width('100%')
+      .height('100%')
+      .backgroundColor('#F0F2F5')
+    }
+  }
+}
+
+```
+
+![menu-outline](figures/menuOutline.png)
