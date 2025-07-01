@@ -52,7 +52,7 @@ export struct Crash {
 @Component
 struct Index {
   @State message: string = 'Hello World';
-  private uicontext = this.getUIContext();
+  private uiContext = this.getUIContext();
 
   build() {
     RelativeContainer() {
@@ -65,9 +65,9 @@ struct Index {
           middle: { anchor: '__container__', align: HorizontalAlign.Center }
         })
         .onClick(() => {
-          let contentNode = new ComponentContent(this.uicontext, wrapBuilder(buildCreativeLoadingDialog), () => {
+          let contentNode = new ComponentContent(this.uiContext, wrapBuilder(buildCreativeLoadingDialog), () => {
           });
-          this.uicontext.getPromptAction().openCustomDialog(contentNode);
+          this.uiContext.getPromptAction().openCustomDialog(contentNode);
         })
     }
     .height('100%')
@@ -282,7 +282,7 @@ export struct Crash {
 @Component
 struct Index {
   @State message: string = 'Hello World';
-  private uicontext = this.getUIContext();
+  private uiContext = this.getUIContext();
 
   build() {
     RelativeContainer() {
@@ -296,9 +296,9 @@ struct Index {
         })
         .onClick(() => {
           // ComponentContent底层是buildNode，buildNode不支持传入@Reusable注解的自定义组件。
-          let contentNode = new ComponentContent(this.uicontext, wrapBuilder(buildCreativeLoadingDialog), () => {
+          let contentNode = new ComponentContent(this.uiContext, wrapBuilder(buildCreativeLoadingDialog), () => {
           });
-          this.uicontext.getPromptAction().openCustomDialog(contentNode);
+          this.uiContext.getPromptAction().openCustomDialog(contentNode);
         })
     }
     .height('100%')
