@@ -11,6 +11,8 @@
 
 **相关模块：**[AVCapability](_a_v_capability.md)
 
+**相关示例：**[AVCodec](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/AVCodec)
+
 
 ## 汇总
 
