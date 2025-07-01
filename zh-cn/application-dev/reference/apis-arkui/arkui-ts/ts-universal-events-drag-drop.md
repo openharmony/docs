@@ -213,7 +213,7 @@ onDragSpringLoading(callback: Callback\<SpringLoadingContext\> | null, configura
 
 | 参数名        | 类型                                      | 必填 | 说明                                           |
 | :------------ | ----------------------------------------- | ---- | ---------------------------------------------- |
-| callback          | Callback\<[SpringLoadingContext](../js-apis-arkui-dragController.md#springloadingcontext20)\> \| null    | 是   | 悬停检测回调函数，为null时取消监听。 |
+| callback          | Callback\<[SpringLoadingContext](../js-apis-arkui-dragController.md#springloadingcontext20)\> \| null    | 是   | 悬停检测回调函数，为null时禁用悬停检测。 |
 | configuration | [DragSpringLoadingConfiguration](../js-apis-arkui-dragController.md#dragspringloadingconfiguration20) | 否   | 悬停检测配置信息，为undefined时取[DragSpringLoadingConfiguration](../js-apis-arkui-dragController.md#dragspringloadingconfiguration20)默认值。  |
 
 ## DragItemInfo说明
