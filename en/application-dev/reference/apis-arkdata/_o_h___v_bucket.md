@@ -9,6 +9,7 @@ Defines the types of the key and value in a KV pair.
 
 **Related module**: [RDB](_r_d_b.md)
 
+**Header file**: [oh_values_bucket.h](oh__values__bucket_8h.md)
 
 ## Summary
 

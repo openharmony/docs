@@ -28,4 +28,4 @@ Provides type definitions related to data values.
 
 | Name| Description| 
 | -------- | -------- |
-| [Rdb_ConflictResolution](_r_d_b.md#rdb_conflictresolution-1) {<br>RDB_CONFLICT_NONE = 1, RDB_CONFLICT_ROLLBACK, RDB_CONFLICT_ABORT, RDB_CONFLICT_FAIL,<br>RDB_CONFLICT_IGNORE, RDB_CONFLICT_REPLACE<br>} | Enumerates the conflict resolution policies. | 
+| [Rdb_ConflictResolution](_r_d_b.md#rdb_conflictresolution-1) {<br/>RDB_CONFLICT_NONE = 1, RDB_CONFLICT_ROLLBACK, RDB_CONFLICT_ABORT, RDB_CONFLICT_FAIL,<br/>RDB_CONFLICT_IGNORE, RDB_CONFLICT_REPLACE<br/>} | Enumerates the conflict resolution policies. | 

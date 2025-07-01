@@ -23,13 +23,15 @@ import { DataShareResultSet } from '@kit.ArkData';
 You can use [query](js-apis-data-dataShare-sys.md#query) to obtain a **DataShareResultSet** object.
 
 ```ts
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { DataShareResultSet, dataShare, dataSharePredicates } from '@kit.ArkData';
-import { BusinessError } from '@kit.BasicServicesKit'
-import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
 let dataShareHelper: dataShare.DataShareHelper | undefined = undefined;
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
-let context = getContext(UIAbility);
+    let context = this.context;
 dataShare.createDataShareHelper(context, uri, (err:BusinessError, data:dataShare.DataShareHelper) => {
   if (err != undefined) {
     console.error("createDataShareHelper fail, error message : " + err);
@@ -51,6 +53,8 @@ if (dataShareHelper != undefined) {
     console.error("query fail, error message : " + err);
   });
 }
+  };
+};
 ```
 
 ## DataShareResultSet

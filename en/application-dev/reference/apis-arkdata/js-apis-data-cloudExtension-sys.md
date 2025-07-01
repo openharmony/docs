@@ -50,13 +50,13 @@ Represents the cloud asset information.
 
 ## CloudAssets
 
-Represents an array of [CloudAssets](#cloudasset).
+Represents an array of [CloudAsset](#cloudasset).
 
 **System capability**: SystemCapability.DistributedDataManager.CloudSync.Server
 
 | Type                            | Description                                     |
 | -------------------------------- | ----------------------------------------- |
-| Array<[CloudAsset](#cloudasset)> | Array of [CloudAssets](#cloudasset).|
+| Array<[CloudAsset](#cloudasset)> | Array of [CloudAsset](#cloudasset).|
 
 ## ServiceInfo
 
@@ -2013,4 +2013,4 @@ export default class MyServiceExtension extends ServiceExtensionAbility {
   }
 }
 ```
-<!--no_check-->
+

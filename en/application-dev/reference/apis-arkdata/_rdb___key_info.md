@@ -9,6 +9,7 @@ Defines a struct for the primary key or row number of the row that changes.
 
 **Related module**: [RDB](_r_d_b.md)
 
+**Header file**: [relational_store.h](relational__store_8h.md)
 
 ## Summary
 

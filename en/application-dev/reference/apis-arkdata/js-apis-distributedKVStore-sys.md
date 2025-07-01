@@ -74,7 +74,7 @@ try {
   let bucket1: ValuesBucket = {key:"name", value: "LiSi"};
   let bucket2: ValuesBucket = {key:"age", value: 20};
   let bucket3: ValuesBucket = {key:"deposits", value: 12.34};
-  let people: Array<ValuesBucket> = new Array(bucket1, bucket2, bucket3)
+  let people: Array<ValuesBucket> = new Array(bucket1, bucket2, bucket3);
   kvStore.putBatch(people, (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
@@ -139,7 +139,7 @@ try {
   let bucket1: ValuesBucket = {key:"name", value: "LiSi"};
   let bucket2: ValuesBucket = {key:"age", value: 20};
   let bucket3: ValuesBucket = {key:"deposits", value: 12.34};
-  let people: Array<ValuesBucket> = new Array(bucket1, bucket2, bucket3)
+  let people: Array<ValuesBucket> = new Array(bucket1, bucket2, bucket3);
   kvStore.putBatch(people).then(() => {
     console.info(`Succeeded in putting patch`);
   }).catch((err: BusinessError) => {

@@ -49,10 +49,10 @@ import { BusinessError } from '@ohos.base';
 const STORE_CONFIG: data_rdb.StoreConfig = { name: "RdbTest.db"}
 data_rdb.getRdbStore(this.context, STORE_CONFIG, 1, (err, rdbStore) => {
   if (err) {
-    console.info("Failed to get RdbStore, err: " + err)
+    console.info("Get RdbStore failed, err: " + err)
     return
   }
-  console.log("Got RdbStore successfully.")
+  console.log("Get RdbStore successfully.")
 })
 ```
 
@@ -68,10 +68,10 @@ class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage){
     data_rdb.getRdbStore(this.context, STORE_CONFIG, 1, (err: BusinessError, rdbStore: data_rdb.RdbStore) => {
       if (err) {
-        console.info("Failed to get RdbStore, err: " + err)
+        console.info("Get RdbStore failed, err: " + err)
         return
       }
-      console.log("Got RdbStore successfully.")
+      console.log("Get RdbStore successfully.")
     })
   }
 }
@@ -109,9 +109,9 @@ import featureAbility from '@ohos.ability.featureAbility';
 const STORE_CONFIG: data_rdb.StoreConfig = { name: "RdbTest.db"}
 let promise = data_rdb.getRdbStore(this.context, STORE_CONFIG, 1);
 promise.then(async (rdbStore) => {
-  console.log("Got RdbStore successfully.")
+  console.log("Get RdbStore successfully.")
 }).catch((err: BusinessError) => {
-  console.log("Failed to get RdbStore, err: " + err)
+  console.log("Get RdbStore failed, err: " + err)
 })
 ```
 
@@ -132,9 +132,9 @@ class EntryAbility extends UIAbility {
 // Call getRdbStore.
 let promise = data_rdb.getRdbStore(this.context, STORE_CONFIG, 1);
 promise.then(async (rdbStore: data_rdb.RdbStore) => {
-  console.log("Got RdbStore successfully.")
+  console.log("Get RdbStore successfully.")
 }).catch((err: BusinessError) => {
-  console.log("Failed to get RdbStore, err: " + err)
+  console.log("Get RdbStore failed, err: " + err)
 })
 ```
 
@@ -163,10 +163,10 @@ import featureAbility from '@ohos.ability.featureAbility';
 
 data_rdb.deleteRdbStore(this.context, "RdbTest.db", (err) => {
   if (err) {
-    console.info("Failed to delete RdbStore, err: " + err)
+    console.info("Delete RdbStore failed, err: " + err)
     return
   }
-  console.log("Deleted RdbStore successfully.")
+  console.log("Delete RdbStore successfully.")
 })
 ```
 
@@ -185,10 +185,10 @@ class EntryAbility extends UIAbility {
 // Call deleteRdbStore.
 data_rdb.deleteRdbStore(this.context, "RdbTest.db", (err) => {
   if (err) {
-    console.info("Failed to delete RdbStore, err: " + err)
+    console.info("Delete RdbStore failed, err: " + err)
     return
   }
-  console.log("Deleted RdbStore successfully.")
+  console.log("Delete RdbStore successfully.")
 })
 ```
 
@@ -222,9 +222,9 @@ import featureAbility from '@ohos.ability.featureAbility';
 
 let promise = data_rdb.deleteRdbStore(this.context, "RdbTest.db")
 promise.then(() => {
-  console.log("Deleted RdbStore successfully.")
+  console.log("Delete RdbStore successfully.")
 }).catch((err: BusinessError) => {
-  console.info("Failed to delete RdbStore, err: " + err)
+  console.info("Delete RdbStore failed, err: " + err)
 })
 ```
 
@@ -244,9 +244,9 @@ class EntryAbility extends UIAbility {
 // Call deleteRdbStore.
 let promise = data_rdb.deleteRdbStore(this.context, "RdbTest.db")
 promise.then(()=>{
-  console.log("Deleted RdbStore successfully.")
+  console.log("Delete RdbStore successfully.")
 }).catch((err: BusinessError) => {
-  console.info("Failed to delete RdbStore, err: " + err)
+  console.info("Delete RdbStore failed, err: " + err)
 })
 ```
 
@@ -1218,10 +1218,10 @@ const valueBucket: ValuesBucket = {
 
 rdbStore.insert("EMPLOYEE", valueBucket, (status: number, rowId: number) => {
   if (status) {
-    console.log("Failed to insert data");
+    console.log("Insert is failed");
     return;
   }
-  console.log("Inserted data successfully, rowId = " + rowId);
+  console.log("Insert is successful, rowId = " + rowId);
 })
 ```
 
@@ -1268,9 +1268,9 @@ const valueBucket: ValuesBucket = {
 
 let promise: void = rdbStore.insert("EMPLOYEE", valueBucket)
 promise.then((rowId: BusinessError) => {
-  console.log("Inserted data successfully, rowId = " + rowId);
+  console.log("Insert is successful, rowId = " + rowId);
 }).catch((status: number) => {
-  console.log("Failed to insert data");
+  console.log("Insert is failed");
 })
 ```
 
@@ -1450,7 +1450,7 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.equalTo("NAME", "Lisa")
 rdbStore.update(valueBucket, predicates, (err: BusinessError, rows: number) => {
   if (err) {
-    console.info("Failed to update data, err: " + err)
+    console.info("Updated failed, err: " + err)
     return
   }
   console.log("Updated row count: " + rows)
@@ -1504,7 +1504,7 @@ let promise: void = rdbStore.update(valueBucket, predicates)
 promise.then(async (rows: number) => {
   console.log("Updated row count: " + rows)
 }).catch((err: BusinessError) => {
-  console.info("Failed to update data, err: " + err)
+  console.info("Updated failed, err: " + err)
 })
 ```
 
@@ -1530,10 +1530,10 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.equalTo("NAME", "Lisa")
 rdbStore.delete(predicates, (err: BusinessError, rows: number) => {
   if (err) {
-    console.info("Failed to delete data, err: " + err)
+    console.info("Delete failed, err: " + err)
     return
   }
-  console.log("Deleted rows: " + rows)
+  console.log("Delete rows: " + rows)
 })
 ```
 
@@ -1564,9 +1564,9 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.equalTo("NAME", "Lisa")
 let promise: void = rdbStore.delete(predicates)
 promise.then((rows: number) => {
-  console.log("Deleted rows: " + rows)
+  console.log("Delete rows: " + rows)
 }).catch((err: BusinessError) => {
-  console.info("Failed to delete data, err: " + err)
+  console.info("Delete failed, err: " + err)
 })
 ```
 
@@ -1593,7 +1593,7 @@ let predicates = new data_rdb.RdbPredicates("EMPLOYEE")
 predicates.equalTo("NAME", "Rose")
 rdbStore.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], (err: BusinessError, resultSet: void) => {
   if (err) {
-    console.info("Failed to query data, err: " + err)
+    console.info("Query failed, err: " + err)
     return
   }
   console.log("ResultSet column names: " + resultSet.columnNames)
@@ -1632,7 +1632,7 @@ promise.then((resultSet: void) => {
   console.log("ResultSet column names: " + resultSet.columnNames)
   console.log("ResultSet column count: " + resultSet.columnCount)
 }).catch((err: BusinessError) => {
-  console.info("Failed to query data, err: " + err)
+  console.info("Query failed, err: " + err)
 })
 ```
 
@@ -1657,7 +1657,7 @@ Queries data using the specified SQL statement. This API uses an asynchronous ca
 ```ts
 rdbStore.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = ?", ['sanguo'], (err: BusinessError, resultSet: void) => {
   if (err) {
-    console.info("Failed to query data, err: " + err)
+    console.info("Query failed, err: " + err)
     return
   }
   console.log("ResultSet column names: " + resultSet.columnNames)
@@ -1694,7 +1694,7 @@ promise.then((resultSet: void) => {
   console.log("ResultSet column names: " + resultSet.columnNames)
   console.log("ResultSet column count: " + resultSet.columnCount)
 }).catch((err: BusinessError) => {
-  console.info("Failed to query data, err: " + err)
+  console.info("Query failed, err: " + err)
 })
 ```
 
@@ -1720,7 +1720,7 @@ Executes an SQL statement that contains specified arguments but returns no value
 const SQL_DELETE_TABLE = "DELETE FROM test WHERE name = ?"
 rdbStore.executeSql(SQL_DELETE_TABLE, ['zhangsan'], (err: BusinessError) => {
   if (err) {
-    console.info("Failed to execute SQL, err: " + err)
+    console.info("ExecuteSql failed, err: " + err)
     return
   }
   console.info('Delete table done.')
@@ -1756,7 +1756,7 @@ let promise = rdbStore.executeSql(SQL_DELETE_TABLE)
 promise.then(() => {
   console.info('Delete table done.')
 }).catch((err: BusinessError) => {
-  console.info("Failed to execute SQL, err: " + err)
+  console.info("ExecuteSql failed, err: " + err)
 })
 ```
 
@@ -1898,7 +1898,7 @@ Sets distributed tables. This API uses an asynchronous callback to return the re
 ```ts
 rdbStore.setDistributedTables(["EMPLOYEE"], (err: BusinessError) => {
   if (err) {
-    console.info('Failed to set distributed tables, err: ' + err)
+    console.info('SetDistributedTables failed, err: ' + err)
     return
   }
   console.info('Set distributed tables successfully.')
@@ -1934,7 +1934,7 @@ let promise: void = rdbStore.setDistributedTables(["EMPLOYEE"])
 promise.then(() => {
   console.info("Set distributed tables successfully.")
 }).catch((err: BusinessError) => {
-  console.info("Failed to set distributed tables, err: " + err)
+  console.info("SetDistributedTables failed, err: " + err)
 })
 ```
 
@@ -1979,10 +1979,10 @@ deviceManager.createDeviceManager("com.example.appdatamgrverify", (err: Business
 
 rdbStore.obtainDistributedTableName(deviceId, "EMPLOYEE", (err: BusinessError, tableName: String) {
   if (err) {
-    console.info('Failed to obtain DistributedTableName, err: ' + err)
+    console.info('ObtainDistributedTableName failed, err: ' + err)
     return
   }
-  console.info('Obtained distributed table name successfully, tableName=.' + tableName)
+  console.info('ObtainDistributedTableName successfully, tableName=.' + tableName)
 })
 ```
 
@@ -2032,9 +2032,9 @@ deviceManager.createDeviceManager("com.example.appdatamgrverify", (err: Business
 
 let promise: void = rdbStore.obtainDistributedTableName(deviceId, "EMPLOYEE")
 promise.then((tableName: String) => {
-  console.info('Obtained distributed table name successfully, tableName= ' + tableName)
+  console.info('ObtainDistributedTableName successfully, tableName= ' + tableName)
 }).catch((err: BusinessError) => {
-  console.info('Failed to obtain DistributedTableName, err: ' + err)
+  console.info('ObtainDistributedTableName failed, err: ' + err)
 })
 ```
 
@@ -2172,7 +2172,7 @@ try {
     }
   })
 } catch (err) {
-  console.log('Failed to register observer')
+  console.log('Register observer failed')
 }
 ```
 
@@ -2204,6 +2204,6 @@ try {
     }
   })
 } catch (err) {
-  console.log('Failed to unregister observer')
+  console.log('Unregister observer failed')
 }
 ```

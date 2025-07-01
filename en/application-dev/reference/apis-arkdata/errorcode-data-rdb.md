@@ -51,7 +51,7 @@ Check the RDB store path.
 
 **Error Message**
 
-Database corrupted.
+Failed to open the database because it is corrupted.
 
 **Description**
 
@@ -69,7 +69,7 @@ If data loss is acceptable, delete the RDB store and create a new one. Otherwise
 
 **Error Message**
 
-Row out of bounds.
+ResultSet is empty or pointer index is out of bounds.
 
 **Description**
 
@@ -87,7 +87,7 @@ Check whether the result set is empty or whether the specified row number is out
 
 **Error Message**
 
-Column out of bounds.
+Resultset is empty or column index is out of bounds.
 
 **Description**
 
@@ -110,7 +110,7 @@ The column value is null, or the column data type is incompatible with the API c
 
 **Error Message**
 
-Already closed.
+The RdbStore or ResultSet is already closed.
 
 **Description**
 
@@ -165,7 +165,7 @@ Stop the attach operation or change the RDB store alias.
 
 **Error Message**
 
-Config changed.
+StoreConfig is changed.
 
 **Description**
 
@@ -178,6 +178,7 @@ Key configuration, such as **area** and **securityLevel**, of the RDB store is c
 **Solution**
 
 Restore the original configuration if required. Otherwise, delete the old RDB store, use the new configuration to create a new RDB store, and import the data to the new RDB store.
+Make sure the user has sufficient permissions to read and write to the database files by using **chmod** to change the read/write permissions of the database files.
 
 ## 14800018 No Match
 
@@ -238,7 +239,7 @@ The root key is lost, the application does not have the permission to read the k
 
 **Error Message**
 
-SQLite: Generic error.
+SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist.
 
 **Description**
 

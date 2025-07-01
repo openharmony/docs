@@ -48,6 +48,7 @@ Provides APIs for managing data in a relational database (RDB) store. The APIs n
 
 | Name| Description|
 | -------- | -------- |
+| typedef enum [Rdb_Tokenizer](_r_d_b.md#rdb_tokenizer) [Rdb_Tokenizer](_r_d_b.md#rdb_tokenizer) | Defines an enum for database tokenizer types. |
 | [OH_Rdb_SecurityLevel](_r_d_b.md#oh_rdb_securitylevel) | Defines an enum for RDB store security levels.|
 | [Rdb_SecurityArea](_r_d_b.md#rdb_securityarea) | Defines an enum for database directory encryption levels.|
 | typedef struct [OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2) [OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2) | Defines a struct for the RDB store configuration. Different from [OH_Rdb_Config](_o_h___rdb___config.md), this struct does not expose its member variables externally. Methods are used to configure the properties of this struct. It supports vector stores.|
@@ -77,6 +78,7 @@ Provides APIs for managing data in a relational database (RDB) store. The APIs n
 
 | Name| Description|
 | -------- | -------- |
+| [Rdb_Tokenizer](_r_d_b.md#rdb_tokenizer-1) { RDB_NONE_TOKENIZER = 1, RDB_ICU_TOKENIZER = 2, RDB_CUSTOM_TOKENIZER = 3 } | Enumerates the database tokenizer types. |
 | [OH_Rdb_SecurityLevel](_r_d_b.md#oh_rdb_securitylevel-1) { S1 = 1, S2, S3, S4} | Enumerates the RDB store security levels.|
 | [Rdb_SecurityArea](_r_d_b.md#rdb_securityarea-1) { RDB_SECURITY_AREA_EL1 = 1, RDB_SECURITY_AREA_EL2, RDB_SECURITY_AREA_EL3, RDB_SECURITY_AREA_EL4 } | Enumerates the database directory encryption levels.|
 | [Rdb_DBType](_r_d_b.md#rdb_dbtype-1) { RDB_SQLITE = 1, RDB_CAYLEY = 2, DBTYPE_BUTT = 64 } | Enumerates the database kernel types.|
@@ -115,8 +117,8 @@ Provides APIs for managing data in a relational database (RDB) store. The APIs n
 | int [OH_Rdb_BeginTransWithTrxId](_r_d_b.md#oh_rdb_begintranswithtrxid) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, int64_t \*trxId) | Begins a transaction. This API returns a transaction ID. This API supports vector stores.|
 | int [OH_Rdb_RollBackByTrxId](_r_d_b.md#oh_rdb_rollbackbytrxid) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, int64_t trxId) | Rolls back the executed SQL statements based on the specified transaction ID. This API supports vector stores.|
 | int [OH_Rdb_CommitByTrxId](_r_d_b.md#oh_rdb_commitbytrxid) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, int64_t trxId) | Commits the executed SQL statements based on the specified transaction ID. This API supports vector stores.|
-| [OH_Rdb_CreateValueObject](_r_d_b.md#oh_rdb_createvalueobject) (void) | Creates an [OH_VObject](_o_h___v_object.md) instance.|
-| [OH_Rdb_CreateValuesBucket](_r_d_b.md#oh_rdb_createvaluesbucket) (void) | Creates an [OH_VBucket](_o_h___v_bucket.md) instance.|
+| [OH_Rdb_CreateValueObject](_r_d_b.md#oh_rdb_createvalueobject) () | Creates an [OH_VObject](_o_h___v_object.md) instance.|
+| [OH_Rdb_CreateValuesBucket](_r_d_b.md#oh_rdb_createvaluesbucket) () | Creates an [OH_VBucket](_o_h___v_bucket.md) instance.|
 | [OH_Rdb_CreatePredicates](_r_d_b.md#oh_rdb_createpredicates) (const char \*table) | Creates an [OH_Predicates](_o_h___predicates.md) instance.|
 | [OH_Rdb_GetOrOpen](_r_d_b.md#oh_rdb_getoropen) (const [OH_Rdb_Config](_o_h___rdb___config.md) \*config, int \*errCode) | Obtains an [OH_Rdb_Store](_o_h___rdb___store.md) instance for RDB store operations.|
 | [OH_Rdb_CloseStore](_r_d_b.md#oh_rdb_closestore) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store) | Destroys an [OH_Rdb_Store](_o_h___rdb___store.md) object and reclaims the memory occupied by the object.|

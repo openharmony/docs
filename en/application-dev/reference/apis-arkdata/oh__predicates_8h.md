@@ -28,8 +28,8 @@ Defines the predicates for RDB stores.
 
 | Name| Description|
 | -------- | -------- |
-| [OH_OrderType](_r_d_b.md#oh_ordertype) | Enumerates the sorting types.|
-| [OH_Predicates](_r_d_b.md#oh_predicates) | Indicates a **predicates** object. |
+| [OH_OrderType](_r_d_b.md#oh_ordertype) | Defines an enum for the sorting types.|
+| [OH_Predicates](_r_d_b.md#oh_predicates) | Defines a **predicates** object. |
 
 
 ### Enums

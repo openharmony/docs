@@ -6,6 +6,12 @@ The **sendableRelationalStore** module provides APIs for obtaining **ValuesBucke
 > 
 > The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
+## When to Use
+
+When performing multithreaded computations with [taskpool](../../arkts-utils/taskpool-introduction.md), the **ValuesBucket**, **Asset**, and **Assets** data storage containers of the RDB store cannot be directly used for cross-thread data passing due to data type restrictions on cross-thread transfers.
+
+This module provides type conversion utility functions to facilitate conversion between standard data storage containers and cross-thread compatible data storage containers for cross-thread data passing.
+
 ## Modules to Import
 
 ```ts
@@ -50,7 +56,7 @@ const asset1: sendableRelationalStore.NonSendableAsset = {
   path: '//path/example',
   createTime: 'createTime1',
   modifyTime: 'modifyTime1',
-  size: 'size1',
+  size: 'size1'
 };
 const asset2: sendableRelationalStore.NonSendableAsset = {
   name: 'hangman',
@@ -58,8 +64,8 @@ const asset2: sendableRelationalStore.NonSendableAsset = {
   path: '//path/example',
   createTime: 'createTime1',
   modifyTime: 'modifyTime1',
-  size: 'size1',
-}
+  size: 'size1'
+};
 const u8 = new Uint8Array([1, 2, 3]);
 const valuesBucket: sendableRelationalStore.NonSendableBucket = {
   age: 18,
@@ -69,7 +75,7 @@ const valuesBucket: sendableRelationalStore.NonSendableBucket = {
   data1: asset1,
   blobType: u8,
   bigValue: BigInt("15822401018187971961171"),
-  data2: [asset1, asset2],
+  data2: [asset1, asset2]
 };
 
 const sendableValuesBucket = sendableRelationalStore.toSendableValuesBucket(valuesBucket);
@@ -113,7 +119,7 @@ const asset1: sendableRelationalStore.NonSendableAsset = {
   path: '//path/example',
   createTime: 'createTime1',
   modifyTime: 'modifyTime1',
-  size: 'size1',
+  size: 'size1'
 };
 const asset2: sendableRelationalStore.NonSendableAsset = {
   name: 'hangman',
@@ -121,8 +127,8 @@ const asset2: sendableRelationalStore.NonSendableAsset = {
   path: '//path/example',
   createTime: 'createTime1',
   modifyTime: 'modifyTime1',
-  size: 'size1',
-}
+  size: 'size1'
+};
 const u8 = new Uint8Array([1, 2, 3]);
 
 const sendableValuesBucket = sendableRelationalStore.toSendableValuesBucket({
@@ -133,7 +139,7 @@ const sendableValuesBucket = sendableRelationalStore.toSendableValuesBucket({
   data1: asset1,
   blobType: u8,
   bigValue: BigInt("15822401018187971961171"),
-  data2: [asset1, asset2],
+  data2: [asset1, asset2]
 });
 const nonSendableBucket = sendableRelationalStore.fromSendableValuesBucket(sendableValuesBucket);
 ```
@@ -174,7 +180,7 @@ const asset1: sendableRelationalStore.NonSendableAsset = {
   path: '//path/example',
   createTime: 'createTime1',
   modifyTime: 'modifyTime1',
-  size: 'size1',
+  size: 'size1'
 };
 const sendableAsset = sendableRelationalStore.toSendableAsset(asset1);
 ```
@@ -216,7 +222,7 @@ const asset1: sendableRelationalStore.NonSendableAsset = {
   path: '//path/example',
   createTime: 'createTime1',
   modifyTime: 'modifyTime1',
-  size: 'size1',
+  size: 'size1'
 };
 const sendableAsset = sendableRelationalStore.toSendableAsset(asset1);
 const normalAsset = sendableRelationalStore.fromSendableAsset(sendableAsset);
@@ -306,3 +312,105 @@ Represent the asset (such as a document, image, or video) that cannot be passed 
 | Type                                                              | Description                          |
 | ------------------------------------------------------------------ | ------------------------------ |
 | [relationalStore.Asset](./js-apis-data-relationalStore.md#asset10) | Asset that cannot be passed across threads. |
+
+## Example of Cross-Thread Data Passing
+
+When invoking TaskPool for data insertion, the main thread calls the **toSendableValuesBucket** method to convert data into a cross-thread transferable type, which is then passed to TaskPool for processing.
+
+When invoking TaskPool for data query operations, call the **getSendableRow** method of **ResultSet** to obtain cross-thread transferable data rows, which are then returned to the main thread. In the main thread, invoke the **fromSendableValuesBucket** method to convert these rows into the standard **ValuesBucket** format for subsequent processing.
+
+```ts
+// Index.ets
+import { relationalStore, sendableRelationalStore } from '@kit.ArkData';
+import { taskpool } from '@kit.ArkTS';
+
+@Concurrent
+async function insert(context: Context, dataItem: sendableRelationalStore.ValuesBucket) {
+  const CONFIG: relationalStore.StoreConfig = {
+    name: "Store.db",
+    securityLevel: relationalStore.SecurityLevel.S3,
+  };
+
+  let store = await relationalStore.getRdbStore(context, CONFIG);
+  console.info(`Get store successfully!`);
+
+  const CREATE_TABLE_SQL = "CREATE TABLE IF NOT EXISTS test (" +
+    "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+    "name TEXT NOT NULL, " +
+    "age INTEGER, " +
+    "salary REAL, " +
+    "blobType BLOB)";
+  await store.executeSql(CREATE_TABLE_SQL);
+  console.info(`Create table test successfully!`);
+
+  // Insert data.
+  const rowId = await store.insertSync("test", dataItem);
+  await store.close();
+  return rowId;
+}
+
+@Concurrent
+async function queryByName(context: Context, name: string) {
+  const CONFIG: relationalStore.StoreConfig = {
+    name: "Store.db",
+    securityLevel: relationalStore.SecurityLevel.S3,
+  };
+
+  let store = await relationalStore.getRdbStore(context, CONFIG);
+  console.info(`Get store successfully!`);
+
+  const predicates = new relationalStore.RdbPredicates("test");
+  predicates.equalTo("name", name);
+
+  const resultSet = await store.query(predicates);
+  if (resultSet.rowCount > 0 && resultSet.goToFirstRow()) {
+    // Obtain the cross-thread transferable ValuesBucket to return the query result.
+    return resultSet.getSendableRow();
+  }
+  return null;
+}
+
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+
+  build() {
+    RelativeContainer() {
+      Text(this.message)
+        .id('HelloWorld')
+        .fontSize(50)
+        .fontWeight(FontWeight.Bold)
+        .alignRules({
+          center: { anchor: '__container__', align: VerticalAlign.Center },
+          middle: { anchor: '__container__', align: HorizontalAlign.Center }
+        })
+        .onClick(async () => {
+          let context: Context = this.getUIContext().getHostContext() as Context;
+
+          const item: relationalStore.ValuesBucket = {
+            name: "zhangsan",
+            age: 20,
+            salary: 5000
+          }
+          // Call toSendableValuesBucket to convert the data type for cross-thread passing.
+          const sendableItem = sendableRelationalStore.toSendableValuesBucket(item);
+          const insertRowId = await taskpool.execute(insert, context, sendableItem) as number;
+          console.info(`Insert data success, row id is: ${insertRowId}`);
+
+          const rowData = await taskpool.execute(queryByName, context, "zhangsan");
+          if (rowData) {
+            const row =
+              sendableRelationalStore.fromSendableValuesBucket(rowData as sendableRelationalStore.ValuesBucket);
+            console.info(`Query success, name is ${row['name']}, age is ${row['age']}.`);
+          } else {
+            console.error(`Query failed.`)
+          }
+        })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```

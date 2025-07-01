@@ -59,7 +59,7 @@ try {
             console.log("Failed to create KVManager: "  + JSON.stringify(err));
             return;
         }
-        console.log("Created KVManager successfully");
+        console.log("Succeeded in creating KVManager");
         kvManager = manager;
     });
 } catch (e) {
@@ -99,7 +99,7 @@ try {
     }
   }
   distributedData.createKVManager(kvManagerConfig).then((manager) => {
-    console.log("Created KVManager successfully");
+    console.log("Succeeded in creating KVManager");
     kvManager = manager;
   }).catch((err) => {
     console.error("Failed to create KVManager: " + JSON.stringify(err));
@@ -439,7 +439,7 @@ try {
 
 getAllKVStoreId(appId: string, callback: AsyncCallback&lt;string[]&gt;): void
 
-Obtains the IDs of all KV stores that are created by [getKVStore()](#getkvstore) and have not been deleted by [deleteKVStore()](#deletekvstore8). This API uses an asynchronous callback to return the result.
+Obtains the IDs of all KV stores that are created by the [getKVStore](#getkvstore) method and have not been deleted by the [deleteKVStore](#deletekvstore8) method. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -469,7 +469,7 @@ try {
 
 getAllKVStoreId(appId: string): Promise&lt;string[]&gt;
 
-Obtains the IDs of all KV stores that are created by [getKVStore()](#getkvstore) and have not been deleted by [deleteKVStore()](#deletekvstore8). This API uses a promise to return the result.
+Obtains the IDs of all KV stores that are created by the [getKVStore](#getkvstore) method and have not been deleted by the [deleteKVStore](#deletekvstore8) method. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2014,7 +2014,7 @@ Creates a **Query** object with the device ID as the key prefix.
 > **NOTE**
 >
 > The value of **deviceId** can be obtained by <!--RP1-->[deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). <!--RP1End-->The APIs of the **deviceManager** module are system interfaces and available only to system applications.
-> For details about how to obtain **deviceId**, see [sync()](#sync).
+> For details about how to obtain **deviceId**, see [sync](#sync).
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2296,7 +2296,6 @@ Unsubscribes from data changes.
 | -------- | --------------------------------------------------------- | ---- | -------------------------------------------------------- |
 | event    | string                                                    | Yes  | Event type. The value is **dataChange**, which indicates data changes.|
 | listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | No  | Callback to unregister. If this parameter is not specified, all callbacks for data changes will be unregistered.|
-
 
 
 **Example**
@@ -3670,7 +3669,7 @@ Deletes data of a device. This API uses an asynchronous callback to return the r
 > **NOTE**
 >
 > The value of **deviceId** can be obtained by <!--RP1-->[deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). <!--RP1End-->The APIs of the **deviceManager** module are system interfaces and available only to system applications.
-> For details about how to obtain **deviceId**, see [sync()](#sync).
+> For details about how to obtain **deviceId**, see [sync](#sync).
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -3716,7 +3715,7 @@ Deletes data of a device. This API uses a promise to return the result.
 > **NOTE**
 >
 > The value of **deviceId** can be obtained by <!--RP1-->[deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). <!--RP1End-->The APIs of the **deviceManager** module are system interfaces and available only to system applications.
-> For details about how to obtain **deviceId**, see [sync()](#sync).
+> For details about how to obtain **deviceId**, see [sync](#sync).
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -4098,7 +4097,7 @@ Obtains a string value that matches the specified device ID and key. This API us
 > **NOTE**
 >
 > The value of **deviceId** can be obtained by <!--RP1-->[deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). <!--RP1End-->The APIs of the **deviceManager** module are system interfaces and available only to system applications.
-> For details about how to obtain **deviceId**, see [sync()](#sync).
+> For details about how to obtain **deviceId**, see [sync](#sync).
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -4137,7 +4136,7 @@ Obtains a string value that matches the specified device ID and key. This API us
 > **NOTE**
 >
 > The value of **deviceId** can be obtained by <!--RP1-->[deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). <!--RP1End-->The APIs of the **deviceManager** module are system interfaces and available only to system applications.
-> For details about how to obtain **deviceId**, see [sync()](#sync).
+> For details about how to obtain **deviceId**, see [sync](#sync).
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -4185,7 +4184,7 @@ Obtains all KV pairs that match the specified device ID and key prefix. This API
 > **NOTE**
 >
 > The value of **deviceId** can be obtained by <!--RP1-->[deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). <!--RP1End-->The APIs of the **deviceManager** module are system interfaces and available only to system applications.
-> For details about how to obtain **deviceId**, see [sync()](#sync).
+> For details about how to obtain **deviceId**, see [sync](#sync).
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -4237,7 +4236,7 @@ Obtains all KV pairs that match the specified device ID and key prefix. This API
 > **NOTE**
 >
 > The value of **deviceId** can be obtained by <!--RP1-->[deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). <!--RP1End-->The APIs of the **deviceManager** module are system interfaces and available only to system applications.
-> For details about how to obtain **deviceId**, see [sync()](#sync).
+> For details about how to obtain **deviceId**, see [sync](#sync).
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -4410,7 +4409,7 @@ Obtains the KV pairs that match the specified device ID and **Query** object. Th
 > **NOTE**
 >
 > The value of **deviceId** can be obtained by <!--RP1-->[deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). <!--RP1End-->The APIs of the **deviceManager** module are system interfaces and available only to system applications.
-> For details about how to obtain **deviceId**, see [sync()](#sync).
+> For details about how to obtain **deviceId**, see [sync](#sync).
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -4467,7 +4466,7 @@ Obtains the KV pairs that match the specified device ID and **Query** object. Th
 > **NOTE**
 >
 > The value of **deviceId** can be obtained by <!--RP1-->[deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). <!--RP1End-->The APIs of the **deviceManager** module are system interfaces and available only to system applications.
-> For details about how to obtain **deviceId**, see [sync()](#sync).
+> For details about how to obtain **deviceId**, see [sync](#sync).
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -4531,7 +4530,7 @@ Obtains a **KvStoreResultSet** object that matches the specified device ID and k
 > **NOTE**
 >
 > The value of **deviceId** can be obtained by <!--RP1-->[deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). <!--RP1End-->The APIs of the **deviceManager** module are system interfaces and available only to system applications.
-> For details about how to obtain **deviceId**, see [sync()](#sync).
+> For details about how to obtain **deviceId**, see [sync](#sync).
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -4570,7 +4569,7 @@ Obtains a **KvStoreResultSet** object that matches the specified device ID and k
 > **NOTE**
 >
 > The value of **deviceId** can be obtained by <!--RP1-->[deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). <!--RP1End-->The APIs of the **deviceManager** module are system interfaces and available only to system applications.
-> For details about how to obtain **deviceId**, see [sync()](#sync).
+> For details about how to obtain **deviceId**, see [sync](#sync).
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -4734,7 +4733,7 @@ Obtains a **KvStoreResultSet** object that matches the specified device ID and *
 > **NOTE**
 >
 > The value of **deviceId** can be obtained by <!--RP1-->[deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). <!--RP1End-->The APIs of the **deviceManager** module are system interfaces and available only to system applications.
-> For details about how to obtain **deviceId**, see [sync()](#sync).
+> For details about how to obtain **deviceId**, see [sync](#sync).
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -4790,7 +4789,7 @@ Obtains a **KvStoreResultSet** object that matches the specified device ID and *
 > **NOTE**
 >
 > The value of **deviceId** can be obtained by <!--RP1-->[deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). <!--RP1End-->The APIs of the **deviceManager** module are system interfaces and available only to system applications.
-> For details about how to obtain **deviceId**, see [sync()](#sync).
+> For details about how to obtain **deviceId**, see [sync](#sync).
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -5036,7 +5035,7 @@ Obtains the number of results that match the specified device ID and **Query** o
 > **NOTE**
 >
 > The value of **deviceId** can be obtained by <!--RP1-->[deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). <!--RP1End-->The APIs of the **deviceManager** module are system interfaces and available only to system applications.
-> For details about how to obtain **deviceId**, see [sync()](#sync).
+> For details about how to obtain **deviceId**, see [sync](#sync).
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -5087,7 +5086,7 @@ Obtains the number of results that match the specified device ID and **Query** o
 > **NOTE**
 >
 > The value of **deviceId** can be obtained by <!--RP1-->[deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). <!--RP1End-->The APIs of the **deviceManager** module are system interfaces and available only to system applications.
-> For details about how to obtain **deviceId**, see [sync()](#sync).
+> For details about how to obtain **deviceId**, see [sync](#sync).
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -5147,7 +5146,7 @@ Deletes data of the specified device from this KV store. This API uses an asynch
 > **NOTE**
 >
 > The value of **deviceId** can be obtained by <!--RP1-->[deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). <!--RP1End-->The APIs of the **deviceManager** module are system interfaces and available only to system applications.
-> For details about how to obtain **deviceId**, see [sync()](#sync).
+> For details about how to obtain **deviceId**, see [sync](#sync).
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -5193,7 +5192,7 @@ Deletes data of the specified device from this KV store. This API uses a promise
 > **NOTE**
 >
 > The value of **deviceId** can be obtained by <!--RP1-->[deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync). <!--RP1End-->The APIs of the **deviceManager** module are system interfaces and available only to system applications.
-> For details about how to obtain **deviceId**, see [sync()](#sync).
+> For details about how to obtain **deviceId**, see [sync](#sync).
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 

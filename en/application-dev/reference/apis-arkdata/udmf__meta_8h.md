@@ -99,9 +99,9 @@ Declares the uniform data types.
 | [UDMF_META_DISK_IMAGE](_u_d_m_f.md#udmf_meta_disk_image)   "general.disk-image" | Generic type of any file that can be mounted as a volume.<br>This type belongs to **ARCHIVE**.| 
 | [UDMF_META_TAR_ARCHIVE](_u_d_m_f.md#udmf_meta_tar_archive)   "general.tar-archive" | TAR.<br>This type belongs to ARCHIVE.| 
 | [UDMF_META_ZIP_ARCHIVE](_u_d_m_f.md#udmf_meta_zip_archive)   "general.zip-archive" | ZIP.<br>This type belongs to **ARCHIVE**.| 
-| [UDMF_META_JAVA_ARCHIVE](_u_d_m_f.md#udmf_meta_java_archive)   "com.sun.java-archive" | JAR (Java archive).<br>This type belongs to **ARCHIVE** and **EXECUTABLE**.| 
-| [UDMF_META_GNU_TAR_ARCHIVE](_u_d_m_f.md#udmf_meta_gnu_tar_archive)   "org.gnu.gnu-tar-archive" | GUN archive.<br>This type belongs to **ARCHIVE**.| 
-| [UDMF_META_GNU_ZIP_ARCHIVE](_u_d_m_f.md#udmf_meta_gnu_zip_archive)   "org.gnu.gnu-zip-archive" | GZIP archive.<br>This type belongs to **ARCHIVE**.| 
+| [UDMF_META_JAVA_ARCHIVE](_u_d_m_f.md#udmf_meta_java_archive)   "com.sun.java-archive" | Java.<br>This type belongs to **ARCHIVE** and **EXECUTABLE**.| 
+| [UDMF_META_GNU_TAR_ARCHIVE](_u_d_m_f.md#udmf_meta_gnu_tar_archive)   "org.gnu.gnu-tar-archive" | GNU.<br>This type belongs to **ARCHIVE**.| 
+| [UDMF_META_GNU_ZIP_ARCHIVE](_u_d_m_f.md#udmf_meta_gnu_zip_archive)   "org.gnu.gnu-zip-archive" | GZIP.<br>This type belongs to **ARCHIVE**.| 
 | [UDMF_META_GNU_ZIP_TAR_ARCHIVE](_u_d_m_f.md#udmf_meta_gnu_zip_tar_archive)   "org.gnu.gnu-zip-tar-archive" | GZIP TAR.<br>This type belongs to **ARCHIVE**.| 
 | [UDMF_META_CALENDAR](_u_d_m_f.md#udmf_meta_calendar)   "general.calendar" | Generic calendar type.<br>This type belongs to **OBJECT**.| 
 | [UDMF_META_CONTACT](_u_d_m_f.md#udmf_meta_contact)   "general.contact" | Generic contact type.<br>This type belongs to **OBJECT**.| 
@@ -159,4 +159,4 @@ Declares the uniform data types.
 | [UDMF_META_OPENHARMONY_STYLED_STRING](_u_d_m_f.md#udmf_meta_openharmony_styled_string)   "openharmony.styled-string" | Style string type defined for the system.<br>This type belongs to **COMPOSITE_OBJECT**.| 
 | [UDMF_META_OPENHARMONY_WANT](_u_d_m_f.md#udmf_meta_openharmony_want)   "openharmony.want" | Want defined for the system.<br>This type belongs to **OBJECT**.| 
 | [UDMF_META_GENERAL_FILE_URI](_u_d_m_f.md#udmf_meta_general_file_uri)&nbsp;&nbsp;&nbsp;"general.file-uri" | File address type.<br>This type belongs to **TEXT**.<br>This parameter is available since API version 13.|
-| [UDMF_METE_GENERAL_CONTENT_FORM](_u_d_m_f.md#udmf_mete_general_content_form)   "general.content-form" | Content widget type.<br>This type belongs to **OBJECT**.|  
+| [UDMF_METE_GENERAL_CONTENT_FORM](_u_d_m_f.md#udmf_mete_general_content_form)   "general.content-form" | Content card type.<br>This type belongs to **OBJECT**.|  
