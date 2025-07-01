@@ -51,7 +51,11 @@
       - [使用Node-API接口从异步线程向ArkTS线程投递指定优先级和入队方式的的任务](use-call-threadsafe-function-with-priority.md)
       - [使用Node-API接口产生的异常日志/崩溃分析](use-napi-about-crash.md)
       - [使用Node-API调用返回值为promise的ArkTS方法](use-napi-method-promise.md)
-    - [Node-API常见问题](use-napi-faqs.md)
+    - Node-API常见问题汇总<!--napi-questions-->
+      - [Node-API常见问题](use-napi-faqs.md)
+      - [稳定性相关问题汇总](napi-faq-about-stability.md)
+      - [内存泄漏相关问题汇总](napi-faq-about-memory-leak.md)
+      - [常见基本功能问题汇总](napi-faq-about-common-basic.md)
   - 使用JSVM-API实现JS与C/C++语言交互<!--jsvm-->
     - [JSVM-API简介](jsvm-introduction.md)
     - [JSVM-API支持的数据类型和接口](jsvm-data-types-interfaces.md)
