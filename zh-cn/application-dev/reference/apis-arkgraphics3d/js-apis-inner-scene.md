@@ -705,7 +705,7 @@ static load(uri?: ResourceStr): Promise\<Scene>
 **返回值：**
 | 类型 | 说明 |
 | ---- | ---- |
-| Promise\<[Scene](#scene)> | Promise对象，返回场景对象。|
+| Promise\<[Scene](#scene-1)> | Promise对象，返回场景对象。|
 
 **示例：**
 ```ts
