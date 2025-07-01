@@ -371,7 +371,7 @@ try {
 
 setUserRestriction(admin: Want, settingsItem: string, restricted: boolean): void
 
-设置用户针对指定配置项的更改策略。
+设置策略，针对用户行为做限制。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_USER_RESTRICTION
 
