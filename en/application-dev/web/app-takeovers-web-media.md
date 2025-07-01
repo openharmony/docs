@@ -47,7 +47,7 @@ When web media playback takeover is enabled, the playback architecture of the Ar
 
 ### Enabling Web Media Playback Takeover
 
-You need to use the [enableNativeMediaPlayer](../reference/apis-arkweb/ts-basic-components-web.md#enablenativemediaplayer12) API to enable the function of taking over web page media playback.
+You need to use the [enableNativeMediaPlayer](../reference/apis-arkweb/ts-basic-components-web-attributes.md#enablenativemediaplayer12) API to enable the function of taking over web page media playback.
 
   ```ts
   // xxx.ets
@@ -69,7 +69,7 @@ You need to use the [enableNativeMediaPlayer](../reference/apis-arkweb/ts-basic-
 
 ### Creating a Native Media Player
 
-Once web media playback takeover is enabled, the ArkWeb kernel triggers the callback registered by [onCreateNativeMediaPlayer](../reference/apis-arkweb/js-apis-webview.md#oncreatenativemediaplayer12) each time a media file needs to be played on the web page.
+Once web media playback takeover is enabled, the ArkWeb kernel triggers the callback registered by [onCreateNativeMediaPlayer](../reference/apis-arkweb/js-apis-webview-WebviewController.md#oncreatenativemediaplayer12) each time a media file needs to be played on the web page.
 
 You need to register a callback for creating a native media player by invoking **onCreateNativeMediaPlayer**.
 
@@ -306,7 +306,7 @@ To facilitate the control over native media player by the ArkWeb kernel, you nee
 
 The ArkWeb kernel need to update the status information (such as the video width and height, playback time, and cache time) of the native player to the web page. Therefore, you need to notify the ArkWeb kernel of the status information of the native player.
 
-Through the [onCreateNativeMediaPlayer](../reference/apis-arkweb/js-apis-webview.md#oncreatenativemediaplayer12) API, the Ark Web kernel passes a [NativeMediaPlayerHandler](../reference/apis-arkweb/js-apis-webview.md#nativemediaplayerhandler12) object to the application. You need to use this object to notify the ArkWeb kernel of the latest status information of the native media player.
+Through the [onCreateNativeMediaPlayer](../reference/apis-arkweb/js-apis-webview-WebviewController.md#oncreatenativemediaplayer12) API, the Ark Web kernel passes a [NativeMediaPlayerHandler](../reference/apis-arkweb/js-apis-webview.md#nativemediaplayerhandler12) object to the application. You need to use this object to notify the ArkWeb kernel of the latest status information of the native media player.
 
   ```ts
   // xxx.ets

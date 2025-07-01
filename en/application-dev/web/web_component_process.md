@@ -40,9 +40,9 @@ ArkWeb is a multi-process model, which consists of the application process, Web 
 
   Responsible for interaction with GPU and RenderService, such as rasterization and composition for display. Improves the stability and security of the application process.
 
-1. You can use [setRenderProcessMode](../reference/apis-arkweb/js-apis-webview.md#setrenderprocessmode12) to set the rendering process mode to single-process or multi-process.
+1. You can use [setRenderProcessMode](../reference/apis-arkweb/js-apis-webview-WebviewController.md#setrenderprocessmode12) to set the rendering process mode to single-process or multi-process.
 
-   By default, a mobile device uses single-process rendering, and a 2-in-1 device uses multi-process rendering. You can call [getRenderProcessMode](../reference/apis-arkweb/js-apis-webview.md#getrenderprocessmode12) to obtain the current rendering process mode. The value **0** means the single-process rendering, and the value **1** means the multi-process rendering. If the obtained value is not included in the enumerated values of [RenderProcessMode](../reference/apis-arkweb/js-apis-webview.md#renderprocessmode12), the multi-process rendering mode is used by default.
+   By default, a mobile device uses single-process rendering, and a 2-in-1 device uses multi-process rendering. You can call [getRenderProcessMode](../reference/apis-arkweb/js-apis-webview-WebviewController.md#getrenderprocessmode12) to obtain the current rendering process mode. The value **0** means the single-process rendering, and the value **1** means the multi-process rendering. If the obtained value is not included in the enumerated values of [RenderProcessMode](../reference/apis-arkweb/js-apis-webview-e.md#renderprocessmode12), the multi-process rendering mode is used by default.
 
    ```ts
    // xxx.ets
@@ -75,7 +75,7 @@ ArkWeb is a multi-process model, which consists of the application process, Web 
    }
    ```
 
-2. You can use [terminateRenderProcess](../reference/apis-arkweb/js-apis-webview.md#terminaterenderprocess12) to stop the rendering process. If a rendering process is not started or has been destroyed, this operation does not have any impact. However, destroying a rendering process affects all other instances associated with it.
+2. You can use [terminateRenderProcess](../reference/apis-arkweb/js-apis-webview-WebviewController.md#terminaterenderprocess12) to stop the rendering process. If a rendering process is not started or has been destroyed, this operation does not have any impact. However, destroying a rendering process affects all other instances associated with it.
 
    ```ts
    // xxx.ets
@@ -100,7 +100,7 @@ ArkWeb is a multi-process model, which consists of the application process, Web 
    }
    ```
 
-3. You can use [onRenderExited](../reference/apis-arkweb/ts-basic-components-web.md#onrenderexited9) to listen for the exit event of the rendering process to obtain the specific exit cause (such as OOM, crash, or normal exit). Multiple **Web** components may share the same rendering process. Therefore, each time the rendering process exits, each affected **Web** component triggers a corresponding callback.
+3. You can use [onRenderExited](../reference/apis-arkweb/ts-basic-components-web-events.md#onrenderexited9) to listen for the exit event of the rendering process to obtain the specific exit cause (such as OOM, crash, or normal exit). Multiple **Web** components may share the same rendering process. Therefore, each time the rendering process exits, each affected **Web** component triggers a corresponding callback.
 
    ```ts
    // xxx.ets
@@ -124,7 +124,7 @@ ArkWeb is a multi-process model, which consists of the application process, Web 
    }
    ```
 
-4. You can use [onRenderProcessNotResponding](../reference/apis-arkweb/ts-basic-components-web.md#onrenderprocessnotresponding12) and [onRenderProcessResponding](../reference/apis-arkweb/ts-basic-components-web.md#onrenderprocessresponding12) to listen for the unresponsive state of a rendering process.
+4. You can use [onRenderProcessNotResponding](../reference/apis-arkweb/ts-basic-components-web-events.md#onrenderprocessnotresponding12) and [onRenderProcessResponding](../reference/apis-arkweb/ts-basic-components-web-events.md#onrenderprocessresponding12) to listen for the unresponsive state of a rendering process.
 
    When a **Web** component cannot process an input event or fails to navigate to a new URL within the expected time, the system determines that the web page process does not respond and triggers the **onRenderProcessNotResponding** callback. When a web page process does not respond for a long time, this callback may be triggered repeatedly until the process is restored to the normal running state. In this case, the **onRenderProcessResponding** callback is triggered.
 

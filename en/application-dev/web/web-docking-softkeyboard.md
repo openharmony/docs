@@ -143,7 +143,7 @@ In this case, the **Web** component is re-arranged with ArkUI, as shown in Figur
 
 ![arkui-keyboardavoid](figures/arkui-keyboardavoid.png)
 
-2. When the keyboard avoidance mode of **UIContext** is **Offset**, the application can set the keyboard avoidance mode of the **Web** component through the [WebKeyboardAvoidMode()](../reference/apis-arkweb/ts-basic-components-web.md#webkeyboardavoidmode12) API of the **Web** component. This API is at a higher priority than **virtualKeyboard.overlayContens** on the W3C side and accepts the following values:
+2. When the keyboard avoidance mode of **UIContext** is **Offset**, the application can set the keyboard avoidance mode of the **Web** component through the [WebKeyboardAvoidMode()](../reference/apis-arkweb/ts-basic-components-web-e.md#webkeyboardavoidmode12) API of the **Web** component. This API is at a higher priority than **virtualKeyboard.overlayContens** on the W3C side and accepts the following values:
 
 - **RESIZE_VISUAL**: Only the size of the visual viewport is adjusted, and the size of the layout viewport is not adjusted.
 - **RESIZE_CONTENT**: The size of both the visual viewport and the layout viewport is adjusted.
@@ -194,7 +194,7 @@ The following are overlapping scenarios with other **Web** component behaviors.
 
 ## Blocking System Soft Keyboard and Custom Soft Keyboard
 
-The application can invoke [onInterceptKeyboardAttach](../reference/apis-arkweb/ts-basic-components-web.md#oninterceptkeyboardattach12) to block the system soft keyboard. On a web page, when an editable element such as the **input** tag is about to trigger the display of the soft keyboard, [onInterceptKeyboardAttach](../reference/apis-arkweb/ts-basic-components-web.md#oninterceptkeyboardattach12) is called. This allows you to manage the soft keyboard and use any of the following options:
+The application can invoke [onInterceptKeyboardAttach](../reference/apis-arkweb/ts-basic-components-web-events.md#oninterceptkeyboardattach12) to block the system soft keyboard. On a web page, when an editable element such as the **input** tag is about to trigger the display of the soft keyboard, [onInterceptKeyboardAttach](../reference/apis-arkweb/ts-basic-components-web-events.md#oninterceptkeyboardattach12) is called. This allows you to manage the soft keyboard and use any of the following options:
 
 - The system soft keyboard with default settings
 - The system soft keyboard with a custom **Enter** key

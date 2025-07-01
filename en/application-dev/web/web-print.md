@@ -94,7 +94,7 @@ You can use the frontend CSS styles, for example, **@media print**, to control t
   ```
 
 ## Initiating a Print Task Through the Application API
-On the application side, call [createWebPrintDocumentAdapter](../reference/apis-arkweb/js-apis-webview.md#createwebprintdocumentadapter11) to create a print adapter and pass the adapter to the **print** API to initiate printing.
+On the application side, call [createWebPrintDocumentAdapter](../reference/apis-arkweb/js-apis-webview-WebviewController.md#createwebprintdocumentadapter11) to create a print adapter and pass the adapter to the **print** API to initiate printing.
 
 ```ts
 // xxx.ets

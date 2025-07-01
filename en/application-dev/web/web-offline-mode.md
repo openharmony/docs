@@ -313,7 +313,7 @@ To pre-render a web page, create an offline **Web** component in advance and act
 >
 > 1. For a web page to be pre-rendered successfully, identify the resources to be loaded beforehand.
 > 2. In this solution, the invisible **Web** component in the background is activated, which converts it to the **active** state. Due to this activation, avoid pre-rendering pages that automatically play audio or video, as this could inadvertently lead to unintended media playback. Check and manage the behavior of the page on the application side.
-> 3. In the background, the pre-rendered web page is continuously rendered. To prevent overheating and power consumption, you are advised to stop the rendering process immediately after the pre-rendering is complete. The following example shows how to use [onFirstMeaningfulPaint](../reference/apis-arkweb/ts-basic-components-web.md#onfirstmeaningfulpaint12) to determine the time for stopping pre-rendering. This API can be used in HTTP and HTTPS online web pages.
+> 3. In the background, the pre-rendered web page is continuously rendered. To prevent overheating and power consumption, you are advised to stop the rendering process immediately after the pre-rendering is complete. The following example shows how to use [onFirstMeaningfulPaint](../reference/apis-arkweb/ts-basic-components-web-events.md#onfirstmeaningfulpaint12) to determine the time for stopping pre-rendering. This API can be used in HTTP and HTTPS online web pages.
 
 ```ts
 // Carrier ability

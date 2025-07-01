@@ -4,7 +4,7 @@ The **Web** component provides the focus management functionality for you to eff
 
 - Application scenarios of common APIs for controlling the focus of the **Web** component and ArkUI component:
 
-  1. Use **requestFocus** to request the focus for a **Web** component: When an application has multiple components, you can use [requestFocus](../reference/apis-arkweb/js-apis-webview.md#requestfocus) of the **Web** component to move the focus to the **Web** component.
+  1. Use **requestFocus** to request the focus for a **Web** component: When an application has multiple components, you can use [requestFocus](../reference/apis-arkweb/js-apis-webview-WebviewController.md#requestfocus) of the **Web** component to move the focus to the **Web** component.
   2. Change the **Web** component style based on the focus state: The component listens for focus event to modify the component style, such as the border and background color. This provides visual and interactive feedback.
 
 - Application scenarios of common APIs for controlling the focus of the HTML5 element in the **Web** component:
@@ -54,7 +54,7 @@ Currently, passive focus traversal occurs in the following scenarios:
 
 - Invisible **Web** components: In scenarios such as application foreground and background switchover, page switchover, and navigation, a focused **Web** component will lose focus and be focused again.
 
-- Web page loading: When the **Web** component loads a web page through **src**, **loadUrl**, and **loadData**, the focus is obtained by default. However, if the **Web** component is not focusable, the focus fails to be obtained. The common causes are as follows: The parent component cannot be focused during the animation. The **Web** component or its parent component is set to be not focusable on the application side. The application can call [requestFocus](../reference/apis-arkweb/js-apis-webview.md#requestfocus) to obtain the focus again. When the focus is obtained successfully, the **onFocus** and **w3c focus** events on the application side are reported.
+- Web page loading: When the **Web** component loads a web page through **src**, **loadUrl**, and **loadData**, the focus is obtained by default. However, if the **Web** component is not focusable, the focus fails to be obtained. The common causes are as follows: The parent component cannot be focused during the animation. The **Web** component or its parent component is set to be not focusable on the application side. The application can call [requestFocus](../reference/apis-arkweb/js-apis-webview-WebviewController.md#requestfocus) to obtain the focus again. When the focus is obtained successfully, the **onFocus** and **w3c focus** events on the application side are reported.
 
 - **autofocus**: Elements with the **autofocus** style are focused by default after web pages are loaded. If the element supports text input, the cursor blinks in the text box, but the soft keyboard is not displayed.
 
@@ -64,7 +64,7 @@ Currently, passive focus traversal occurs in the following scenarios:
 
 - [onFocus](../reference/apis-arkui/arkui-ts/ts-universal-focus-event.md#onfocus): common focus obtaining callback API on the application side. When a component bound to this API is focused, the callback responses.
 - [onBlur](../reference/apis-arkui/arkui-ts/ts-universal-focus-event.md#onblur): common defocus callback API on the application side. When a component bound to this API loses focus, the callback responses.
-- [requestFocus](../reference/apis-arkweb/js-apis-webview.md#requestfocus): an API for requesting focus on the application side.
+- [requestFocus](../reference/apis-arkweb/js-apis-webview-WebviewController.md#requestfocus): an API for requesting focus on the application side.
 
 **Example**
 1. requestFocus can be used to move the focus to the **Web** component.

@@ -90,7 +90,7 @@ HTML file to be downloaded:
 
 ## Initiating a Download Task
 
-Call [startDownload()](../reference/apis-arkweb/js-apis-webview.md#startdownload11) to initiate a download task.
+Call [startDownload()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#startdownload11) to initiate a download task.
 For a download initiated by it, the **Web** component works out the referrer based on the currently displayed URL and its own default referrer policy.
 
   In the following example, clicking **setDownloadDelegate** registers a listener class with the **Web** component, and clicking **startDownload** initiates a download task.

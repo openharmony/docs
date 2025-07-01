@@ -1,17 +1,17 @@
 # Opening Pages in a New Window
 
 
-The **Web** component provides the capability of opening pages in a new window. You can call [multiWindowAccess()](../reference/apis-arkweb/ts-basic-components-web.md#multiwindowaccess9) to specify whether to allow a web page to be opened in a new window. When a new window is opened in the **Web** component, the application will receive a window opening event through [onWindowNew()](../reference/apis-arkweb/ts-basic-components-web.md#onwindownew9). You need to add the code for processing the window opening request in the event callback.
+The **Web** component provides the capability of opening pages in a new window. You can call [multiWindowAccess()](../reference/apis-arkweb/ts-basic-components-web-attributes.md#multiwindowaccess9) to specify whether to allow a web page to be opened in a new window. When a new window is opened in the **Web** component, the application will receive a window opening event through **onWindowNew()**. You need to add the code for processing the window opening request in the event callback.
 
 
 > **NOTE**
 >
-> - If [allowWindowOpenMethod()](../reference/apis-arkweb/ts-basic-components-web.md#allowwindowopenmethod10) is set to **true**, you can open a new window in the frontend page by invoking its JavaScript functions.
+> - If [allowWindowOpenMethod()](../reference/apis-arkweb/ts-basic-components-web-attributes.md#allowwindowopenmethod10) is set to **true**, you can open a new window in the frontend page by invoking its JavaScript functions.
 >
-> - If you do not create a new window in [onWindowNew()](../reference/apis-arkweb/ts-basic-components-web.md#onwindownew9), set the parameter of [ControllerHandler.setWebController()](../reference/apis-arkweb/ts-basic-components-web.md#setwebcontroller9) to **null**.
+> - If you do not create a new window in **onWindowNew()**, set the parameter of [ControllerHandler.setWebController()](../reference/apis-arkweb/ts-basic-components-web.md#setwebcontroller9) to **null**.
 
 
-In the following example, when a user clicks the **Open Page in New Window** button, the application receives a window opening event in the [onWindowNew()](../reference/apis-arkweb/ts-basic-components-web.md#onwindownew9) callback.
+In the following example, when a user clicks the **Open Page in New Window** button, the application receives a window opening event in the **onWindowNew()** callback.
 
 
 - Application code:

@@ -1,7 +1,7 @@
 # Managing Location Permissions
 
 
-The **Web** component provides the location permission management capability. You can use [onGeolocationShow()](../reference/apis-arkweb/ts-basic-components-web.md#ongeolocationshow) to manage the location permission specific to a website. Based on the API response, the **Web** component determines whether to grant the location permission to the frontend page.
+The **Web** component provides the location permission management capability. You can use [onGeolocationShow()](../reference/apis-arkweb/ts-basic-components-web-events.md#ongeolocationshow) to manage the location permission specific to a website. Based on the API response, the **Web** component determines whether to grant the location permission to the frontend page.
 
 - To obtain the device geolocation, add location-related permissions to the **module.json5** file. For details, see [Declaring Permissions](../security/AccessToken/declare-permissions.md).
 
