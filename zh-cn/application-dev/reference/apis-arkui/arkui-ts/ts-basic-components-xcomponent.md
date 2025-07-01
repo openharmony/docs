@@ -92,11 +92,11 @@ XComponent(value: {id: string, type: string, libraryname?: string, controller?: 
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 只读 | 必填 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| type | [XComponentType](ts-appendix-enums.md#xcomponenttype10)         | 否 | 是   | 用于指定XComponent组件类型。 |
-| controller | [XComponentController](#xcomponentcontroller) | 否 | 是 | 给组件绑定一个控制器，通过控制器调用组件方法，仅类型为SURFACE或TEXTURE时有效。 |
-| imageAIOptions | [ImageAIOptions](ts-image-common.md#imageaioptions) | 否 | 否 | 给组件设置一个AI分析选项，通过此项可配置分析类型或绑定一个分析控制器。 |
+| type | [XComponentType](ts-appendix-enums.md#xcomponenttype10)         | 否 | 否   | 用于指定XComponent组件类型。 |
+| controller | [XComponentController](#xcomponentcontroller) | 否 | 否 | 给组件绑定一个控制器，通过控制器调用组件方法，仅类型为SURFACE或TEXTURE时有效。 |
+| imageAIOptions | [ImageAIOptions](ts-image-common.md#imageaioptions) | 否 | 是 | 给组件设置一个AI分析选项，通过此项可配置分析类型或绑定一个分析控制器。 |
 
 ## NativeXComponentParameters<sup>19+</sup>
 
@@ -106,10 +106,10 @@ XComponent(value: {id: string, type: string, libraryname?: string, controller?: 
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型 | 只读 | 必填 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| type | [XComponentType](ts-appendix-enums.md#xcomponenttype10)         | 否 | 是   | 用于指定XComponent组件类型。 |
-| imageAIOptions | [ImageAIOptions](ts-image-common.md#imageaioptions) | 否 | 否 | 给组件设置一个AI分析选项，通过此项可配置分析类型或绑定一个分析控制器。 |
+| type | [XComponentType](ts-appendix-enums.md#xcomponenttype10)         | 否 | 否   | 用于指定XComponent组件类型。 |
+| imageAIOptions | [ImageAIOptions](ts-image-common.md#imageaioptions) | 否 | 是 | 给组件设置一个AI分析选项，通过此项可配置分析类型或绑定一个分析控制器。 |
 
 ## 属性
 除支持通用属性外，还支持以下属性：
@@ -582,9 +582,9 @@ unlockCanvasAndPost(canvas: DrawingCanvas): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称          | 类型   | 只读 | 必填 | 说明                                                         |
+| 名称          | 类型   | 只读 | 可选 | 说明                                                         |
 | ------------- | ------ | ------ | ---- | ------------------------------------------------------------ |
-| lock       | boolean | 否 | 否   | Surface在屏幕旋转时是否锁定方向，未设置时默认取值为false，即不锁定方向。<br/>true：锁定方向；false：不锁定方向。 |
+| lock       | boolean | 否 | 是   | Surface在屏幕旋转时是否锁定方向，未设置时默认取值为false，即不锁定方向。<br/>true：锁定方向；false：不锁定方向。 |
 
 ## SurfaceRect<sup>12+</sup>对象说明
 
@@ -594,12 +594,12 @@ unlockCanvasAndPost(canvas: DrawingCanvas): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称          | 类型   | 只读 | 必填 | 说明                                                         |
+| 名称          | 类型   | 只读 | 可选 | 说明                                                         |
 | ------------- | ------ | ------ | ---- | ------------------------------------------------------------ |
-| offsetX       | number | 否   | 否   | Surface显示区域相对于XComponent组件左上角的x轴坐标，单位：px。 |
-| offsetY       | number | 否   | 否   | Surface显示区域相对于XComponent组件左上角的y轴坐标，单位：px。 |
-| surfaceWidth  | number | 否   | 是   | Surface显示区域的宽度，单位：px。                            |
-| surfaceHeight | number | 否   | 是   | Surface显示区域的高度，单位：px。                            |
+| offsetX       | number | 否   | 是   | Surface显示区域相对于XComponent组件左上角的x轴坐标，单位：px。 |
+| offsetY       | number | 否   | 是   | Surface显示区域相对于XComponent组件左上角的y轴坐标，单位：px。 |
+| surfaceWidth  | number | 否   | 否   | Surface显示区域的宽度，单位：px。                            |
+| surfaceHeight | number | 否   | 否   | Surface显示区域的高度，单位：px。                            |
 
 > **说明：**
 >
