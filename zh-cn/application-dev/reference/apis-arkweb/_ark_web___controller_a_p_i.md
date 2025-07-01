@@ -158,7 +158,7 @@ void(* ArkWeb_ControllerAPI::registerAsyncJavaScriptProxyEx) (const char *webTag
 
 注入JavaScript对象到window对象中，并在window对象中调用该对象的异步方法。
 
-**起始版本：** 14
+**起始版本：** 18
 
 **参数:**
 
