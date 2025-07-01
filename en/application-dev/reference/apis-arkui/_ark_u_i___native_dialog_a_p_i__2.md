@@ -20,9 +20,9 @@ Provides the custom dialog box APIs (version 2) for the native side.
 | -------- | -------- |
 | [ArkUI_NativeDialogAPI_1](_ark_u_i___native_dialog_a_p_i__1.md#arkui_nativedialogapi_1) nativeDialogAPI1 | A set of the custom dialog box APIs on the native side. | 
 | int32_t(\* [setKeyboardAvoidDistance](#setkeyboardavoiddistance) )([ArkUI_NativeDialogHandle](_ark_u_i___native_module.md#arkui_nativedialoghandle) handle, float distance, [ArkUI_LengthMetricUnit](_ark_u_i___native_module.md#arkui_lengthmetricunit) unit) | Distance between the dialog box and the keyboard after keyboard avoidance is applied. | 
-| int32_t(\* [setLevelMode](#setlevelmode) )([ArkUI_NativeDialogHandle](_ark_u_i___native_module.md#arkui_nativedialoghandle) handle, [ArkUI_LevelMode](_ark_u_i___native_module.md#arkui_levelmode) levelMode) | Sets the display level of the dialog box. | 
-| int32_t(\* [setLevelUniqueId](#setleveluniqueid) )([ArkUI_NativeDialogHandle](_ark_u_i___native_module.md#arkui_nativedialoghandle) handle, int32_t uniqueId) | Sets the ID of the node under the dialog box's display level. | 
-| int32_t(\* [setImmersiveMode](#setimmersivemode) )([ArkUI_NativeDialogHandle](_ark_u_i___native_module.md#arkui_nativedialoghandle) handle, [ArkUI_ImmersiveMode](_ark_u_i___native_module.md#arkui_immersivemode) immersiveMode) | Sets the display area of the embedded dialog box overlay. | 
+| int32_t(\* [setLevelMode](#setlevelmode) )([ArkUI_NativeDialogHandle](_ark_u_i___native_module.md#arkui_nativedialoghandle) handle, [ArkUI_LevelMode](_ark_u_i___native_module.md#arkui_levelmode) levelMode) | Display level of the dialog box. | 
+| int32_t(\* [setLevelUniqueId](#setleveluniqueid) )([ArkUI_NativeDialogHandle](_ark_u_i___native_module.md#arkui_nativedialoghandle) handle, int32_t uniqueId) | ID of the node under the dialog box's display level. | 
+| int32_t(\* [setImmersiveMode](#setimmersivemode) )([ArkUI_NativeDialogHandle](_ark_u_i___native_module.md#arkui_nativedialoghandle) handle, [ArkUI_ImmersiveMode](_ark_u_i___native_module.md#arkui_immersivemode) immersiveMode) | Display area of the embedded dialog box overlay. | 
 
 
 
