@@ -28,7 +28,7 @@ onAppStateChanged(appStateData: AppStateData): void
 **参数**：
 
 | 参数名  | 类型 | 必填 | 说明   |
-| ------ | ---- | ---- | ---- -|
+| ------ | ---- | ---- | ----- |
 | appStateData   | [AppStateData](js-apis-inner-application-appStateData.md)   | 是  | 应用状态信息。 |
 
 **示例：**

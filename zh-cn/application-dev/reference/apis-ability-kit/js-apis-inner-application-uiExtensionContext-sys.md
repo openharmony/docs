@@ -74,9 +74,9 @@ export default class UIExtension extends UIExtensionAbility {
       abilityName: 'EntryAbility',
       moduleName: 'entry'
     }).then((data) => {
-      console.log('=======>startAbilityForResultAsCaller data Promise ======>' + JSON.stringify(data));
+      console.log(`StartAbilityForResultAsCaller success, data: ${JSON.stringify(data)}.`);
     }).catch((error: BusinessError) => {
-      console.log('=======>startAbilityForResultAsCaller error.code Promise ======>' + error.code);
+      console.error(`StartAbilityForResultAsCaller failed, err code: ${error.code}, err msg: ${error.message}.`);
     });
   }
 }
