@@ -650,12 +650,7 @@ import { common } from '@kit.AbilityKit';
 
 // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
 const context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-settings.registerKeyObserver(context, settings.display.SCREEN_BRIGHTNESS_STATUS, settings.domainName.DEVICE_SHARED, (err, val) => {
-  if (err) {
-    console.error(`Failed to get the setting. ${err.message} `);
-    return;
-  }
-  console.log(`callback:value -> ${JSON.stringify(val)}`)
+settings.registerKeyObserver(context, settings.display.SCREEN_BRIGHTNESS_STATUS, settings.domainName.DEVICE_SHARED, () => {
   let value:string = settings.getValueSync(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '10');
   console.log(`Promise:value -> ${value}`);
 });
