@@ -91,7 +91,7 @@ performanceMonitor.end("LAUNCHER_APP_LAUNCH_FROM_ICON");
 
 ## performanceMonitor.recordInputEventTime<sup>12+</sup>
 
-recordInputEventTime(type: ActionType, sourceType: sourceType, time: number): void
+recordInputEventTime(type: ActionType, sourceType: SourceType, time: number): void
 
 记录动效场景开始前，用户输入触发事件类型与时间。
 
