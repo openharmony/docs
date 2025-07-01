@@ -69,7 +69,7 @@ function destroy() : void {
 ```
 
 ## Shader
-着色器，继承自[SceneResource](#sceneresource)。
+着色器，继承自[SceneResource](#sceneresource-1)。
 
 ### 属性
 
@@ -89,7 +89,7 @@ function destroy() : void {
 | SHADER | 1 | 材质由着色器定义。 |
 
 ## Material
-材质类型，继承自[SceneResource](#sceneresource)。
+材质类型，继承自[SceneResource](#sceneresource-1)。
 ### 属性
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
@@ -121,7 +121,7 @@ function destroy() : void {
 | aabb | [Aabb](js-apis-inner-scene-types.md#aabb) | 是 | 否 | 轴对齐边界盒。 |
 
 ## Mesh
-网格类型，继承自[SceneResource](#sceneresource)。
+网格类型，继承自[SceneResource](#sceneresource-1)。
 ### 属性
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
@@ -133,12 +133,12 @@ function destroy() : void {
 | materialOverride | [Material](#material) | 否 | 是 | 材质，默认为空。 |
 
 ## MeshResource<sup>18+</sup>
-网格资源，继承自[SceneResource](#sceneresource)。
+网格资源，继承自[SceneResource](#sceneresource-1)。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
 ## Animation
-动画类型，继承自[SceneResource](#sceneresource)。
+动画类型，继承自[SceneResource](#sceneresource-1)。
 ### 属性
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
@@ -375,7 +375,7 @@ function finish() : void {
 | BACKGROUND_EQUIRECTANGULAR | 3 | 等距矩形背景。 |
 
 ## Environment
-环境类型，继承自[SceneResource](#sceneresource)。
+环境类型，继承自[SceneResource](#sceneresource-1)。
 ### 属性
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
@@ -391,7 +391,7 @@ function finish() : void {
 | irradianceCoefficients | [Vec3](js-apis-inner-scene-types.md#vec3)[] | 否 | 是 | 辐射系数，默认为undefined。 |
 
 ## Image
-图片类型，继承自[SceneResource](#sceneresource)。
+图片类型，继承自[SceneResource](#sceneresource-1)。
 ### 属性
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
