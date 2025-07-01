@@ -116,14 +116,6 @@ TreeSet的构造函数，支持通过比较函数对元素进行升序或降序�
 | -------- | -------- | -------- | -------- |
 | comparator | [TreeSetComparator\<T\>](#treesetcomparatort20) | 否 | 用户自定义的比较函数，可通过比较关系对元素进行排序。默认值为hole（一个空白占位符），表示不提供比较函数。|
 
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 10200012 | The TreeSet's constructor cannot be directly invoked. |
-
 **示例：**
 
 ```ts
@@ -901,32 +893,6 @@ entries(): IterableIterator<[T, T]>
 | 10200011 | The entries method cannot be bound. |
 
 **示例：**
-
-以下示例代码适用于ArkTS1.1。
-
-```ts
-let treeSet : TreeSet<string> = new TreeSet<string>();
-treeSet.add("squirrel");
-treeSet.add("sparrow");
-let it = treeSet.entries();
-let t: IteratorResult<Object[]> = it.next();
-while(!t.done) {
-  console.log("TreeSet: " + t.value);
-  t = it.next()
-}
-```
-```ts
-// 不建议在entries中使用set、remove方法，会导致死循环等不可预知的风险，可使用for循环来进行插入和删除。
-let treeSet : TreeSet<string> = new TreeSet<string>();
-for(let i = 0; i < 10; i++) {
-  treeSet.add("sparrow" + i);
-}
-for(let i = 0; i < 10; i++) {
-  treeSet.remove("sparrow" + i);
-}
-```
-
-以下示例代码适用于ArkTS1.2。
 
 ```ts
 let treeSet : TreeSet<string> = new TreeSet<string>();
