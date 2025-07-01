@@ -202,10 +202,13 @@
                 break;
             }
         }
-
+        if (videoProfile == nullptr) {
+            OH_LOG_ERROR(LOG_APP, "Get videoProfile failed.");
+            return;
+        }
         // 创建VideoOutput对象。
         ret = OH_CameraManager_CreateVideoOutput(cameraManager, videoProfile, videoSurfaceId, &videoOutput);
-        if (videoProfile == nullptr || videoOutput == nullptr || ret != CAMERA_OK) {
+        if (videoOutput == nullptr || ret != CAMERA_OK) {
             OH_LOG_ERROR(LOG_APP, "OH_CameraManager_CreateVideoOutput failed.");
             return;
         }
