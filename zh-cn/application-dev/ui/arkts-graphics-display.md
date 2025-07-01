@@ -154,110 +154,50 @@ Image支持加载存档图、多媒体像素图和可绘制描述符三种类型
 
 PixelMap是图片解码后的像素图，具体用法请参考[图片开发指导](../media/image/image-overview.md)。以下示例将加载的网络图片返回的数据解码成PixelMap格式，再显示在Image组件上。
 
-1. 创建PixelMap状态变量。
-
-   ```ts
-   @State image: PixelMap | undefined = undefined;
-   ```
-
-2. 引用多媒体。
-
-   (1) 引用网络权限与媒体库权限。
 
    ```ts
    import { http } from '@kit.NetworkKit';
    import { image } from '@kit.ImageKit';
    import { BusinessError } from '@kit.BasicServicesKit';
-   ```
-
-   (2) 填写网络图片地址。
-
-   ```ts
-   let OutData: http.HttpResponse
-   http.createHttp().request("https://www.example.com/xxx.png",
-     (error: BusinessError, data: http.HttpResponse) => {
-       if (error) {
-         console.error(`http request failed with. Code: ${error.code}, message: ${error.message}`);
-       } else {
-         OutData = data
-       }
+   
+   @Entry
+   @Component
+   struct HttpExample {
+     outData: http.HttpResponse | undefined = undefined;
+     code: http.ResponseCode | number | undefined = undefined;
+     @State image: PixelMap | undefined = undefined; //创建PixelMap状态变量。
+   
+     aboutToAppear(): void {
+       http.createHttp().request('https://www.example.com/xxx.png', //请填写一个具体的网络图片地址。
+         (error: BusinessError, data: http.HttpResponse) => {
+           if (error) {
+             console.error('hello http request failed with. Code: ${error.code}, message: ${error.message}');
+             return;
+           }
+           this.outData = data;
+           //将网络地址成功返回的数据，编码转码成pixelMap的图片格式。
+           if (http.ResponseCode.OK === this.outData.responseCode) {
+             let imageData: ArrayBuffer = this.outData.result as ArrayBuffer;
+             let imageSource: image.ImageSource = image.createImageSource(imageData);
+             let options: image.DecodingOptions = {
+               'desiredPixelFormat': image.PixelMapFormat.RGBA_8888,
+             };
+             imageSource.createPixelMap(options).then((pixelMap: PixelMap) => {
+               this.image = pixelMap;
+             });
+           }
+         })
      }
-   )
-   ```
-
-3. 将网络地址成功返回的数据，编码转码成pixelMap的图片格式。   
-
-   ```ts
-   let code: http.ResponseCode | number = OutData.responseCode;
-   if (http.ResponseCode.OK === code) {
-     let imageData: ArrayBuffer = OutData.result as ArrayBuffer;
-     let imageSource: image.ImageSource = image.createImageSource(imageData);
-
-     class tmp {
-       height: number = 100;
-       width: number = 100;
-     }
-
-     let options: Record<string, number | boolean | tmp> = {
-       'alphaType': 0, // 透明度
-       'editable': false, // 是否可编辑
-       'pixelFormat': 3, // 像素格式
-       'scaleMode': 1, // 缩略值
-       'size': { height: 100, width: 100 }
-     } // 创建图片大小
-
-     class imagetmp {
-       image: PixelMap | undefined = undefined;
-       set(val: PixelMap) {
-         this.image = val;
-       }
-     }
-
-     imageSource.createPixelMap(options).then((pixelMap: PixelMap) => {
-       let im = new imagetmp();
-       im.set(pixelMap);
-     })
-   }
-   ```
-
-4. 显示图片。
-
-   ```ts
-   class htp{
-     httpRequest: Function | undefined = undefined;
-     set(){
-       if(this.httpRequest){
-         this.httpRequest();
+   
+     build() {
+       Column() {
+         //显示图片
+         Image(this.image)
+           .height(100)
+           .width(100)
        }
      }
    }
-   Button("获取网络图片")
-     .onClick(() => {
-       let sethtp = new htp();
-       sethtp.set();
-     })
-   Image(this.image).height(100).width(100)
-   ```
-
-   同时，也可以传入pixelMap创建[PixelMapDrawableDescriptor](../reference/apis-arkui/js-apis-arkui-drawableDescriptor.md#pixelmapdrawabledescriptor12)对象，用来显示图片。
-
-   ```ts
-   import { DrawableDescriptor, PixelMapDrawableDescriptor } from '@kit.ArkUI';
-   class htp{
-     httpRequest: Function | undefined = undefined;
-     set(){
-       if(this.httpRequest){
-         this.httpRequest();
-       }
-     }
-   }
-   Button("获取网络图片")
-     .onClick(() => {
-       let sethtp = new htp();
-       sethtp.set();
-       this.drawablePixelMap = new PixelMapDrawableDescriptor(this.image);
-     })
-   Image(this.drawablePixelMap).height(100).width(100)
    ```
 
 ### 可绘制描述符
