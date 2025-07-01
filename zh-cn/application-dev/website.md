@@ -1907,7 +1907,11 @@
           - [使用Node-API接口创建、切换和销毁上下文环境](napi/use-napi-about-context.md)
           - [使用Node-API接口产生的异常日志/崩溃分析](napi/use-napi-about-crash.md)
           - [使用Node-API调用返回值为promise的ArkTS方法](napi/use-napi-method-promise.md)
-        - [Node-API常见问题](napi/use-napi-faqs.md)
+        - Node-API常见问题汇总<!--napi-questions-->
+          - [Node-API常见问题](napi/use-napi-faqs.md)
+          - [稳定性相关问题汇总](napi/napi-faq-about-stability.md)
+          - [内存泄漏相关问题汇总](napi/napi-faq-about-memory-leak.md)
+          - [常见基本功能问题汇总](napi/napi-faq-about-common-basic.md)
       - 使用JSVM-API实现JS与C/C++语言交互<!--jsvm-->
         - [JSVM-API简介](napi/jsvm-introduction.md)
         - [JSVM-API支持的数据类型和接口](napi/jsvm-data-types-interfaces.md)
