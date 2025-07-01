@@ -73,7 +73,7 @@ divider(value: ColumnSplitDividerStyle | null)
 
 >  **说明：**
 >
-> 与[RowSplit](ts-container-rowsplit.md#rowsplit)相同，ColumnSplit的分割线可调整上下两侧子组件的高度，子组件的高度调整范围受其最大最小高度限制。
+> 与[RowSplit](ts-container-rowsplit.md)相同，ColumnSplit的分割线可调整上下两侧子组件的高度，子组件的高度调整范围受其最大最小高度限制。
 >
 > 支持[clip](ts-universal-attributes-sharp-clipping.md#clip12)、[margin](ts-universal-attributes-size.md#margin)等通用属性，未设置clip属性时，其默认值为true。
 
