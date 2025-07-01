@@ -9,6 +9,8 @@ Defines the returned data, including a status code and related description.
 
 **Related module**: [HuksTypeApi](_huks_type_api.md)
 
+**Header file**: [native_huks_type.h](native__huks__type_8h.md)
+
 
 ## Summary
 
