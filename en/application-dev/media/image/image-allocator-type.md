@@ -9,9 +9,10 @@ When the PixelMap is large and uses regular memory, the RenderService main threa
 ## Memory Types
 
 The memory types for the PixelMap are as follows:
-- DMA_ALLOC: ION memory. IPC latency is relatively low, and texture upload is not required.
+
+- DMA_ALLOC: DMA memory. IPC latency is relatively low, and texture upload is not required.
 - SHARE_MEMORY: shared memory. IPC latency is minimal, but texture upload is required.
- 
+
 Given that the current memory allocation strategy of the decoding API cannot meet the requirements in certain scenarios, the system provides [createPixelMapUsingAllocator](../../reference/apis-image-kit/js-apis-image.md#createpixelmapusingallocator15), allowing you to customize the memory allocation type for decoding. For details about the API definition and usage example, see [Image Decoding API](../../reference/apis-image-kit/js-apis-image.md#imagesource).
 
 ### Differences Between DMA_ALLOC and SHARE_MEMORY
@@ -83,16 +84,15 @@ When memory is allocated using DMA_ALLOC, the stride must meet the hardware alig
 
 - The stride value must be an integer multiple of the number of bytes required by the hardware platform.
 - If the stride calculated using the above formula does not meet the alignment requirements, the system automatically pads the data.
-The stride value can be obtained by calling [PixelMap::GetImageInfo()](../../reference/apis-image-kit/js-apis-image.md#getimageinfo-1).
+The stride value can be obtained by calling [getImageInfo()](../../reference/apis-image-kit/js-apis-image.md#getimageinfo-1).
 
-1. Call [GetImageInfo()](../../reference/apis-image-kit/js-apis-image.md#getimageinfo-1) to obtain an **ImageInfo** object.
-2. Access the stride value (**info.stride**) from the **ImageInfo** object.
+1. Call [getImageInfo()](../../reference/apis-image-kit/js-apis-image.md#getimageinfo-1) to obtain an ImageInfo object.
+2. Access the stride value (**info.stride**) from the ImageInfo object.
 
 ```ts
 import image from '@ohos.multimedia.image';
 
-async CreatePixelMapUsingAllocator() {
-  const context = getContext();
+async CreatePixelMapUsingAllocator(context : Context) {
   const resourceMgr = context.resourceManager;
   const rawFile = await resourceMgr.getRawFileContent("test.jpg");  // Test image.
   let imageSource: image.ImageSource | null = await image.createImageSource(rawFile.buffer as ArrayBuffer);
@@ -100,7 +100,7 @@ async CreatePixelMapUsingAllocator() {
   let pixelmap = await imageSource.createPixelMapUsingAllocator(options, image.AllocatorType.AUTO);
   let info = await pixelmap.getImageInfo();
   // The stride of the PixelMap allocated by using DMA_ALLOC is different from that of the PixelMap allocated by using SHARE_MEMORY.
-  console.log("stride = " + info.stride);
+  console.info("stride = " + info.stride);
   let region: image.Region = { x: 0, y: 0, size: {height: 100, width:35} };
   if (pixelmap != undefined) {
     await pixelmap.crop(region);

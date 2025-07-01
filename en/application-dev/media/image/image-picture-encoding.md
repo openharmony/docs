@@ -4,11 +4,11 @@ Image encoding refers to the process of encoding a picture into an image in diff
 
 ## How to Develop
 
-Read [Image API Reference](../../reference/apis-image-kit/js-apis-image.md#imagepacker) for APIs related to image encoding.
+Read the [API reference](../../reference/apis-image-kit/js-apis-image.md#imagepacker) for APIs related to image encoding.
 
 ### Encoding Images into File Streams
 
-1. Create an **ImagePacker** object.
+1. Create an ImagePacker object.
 
    ```ts
    // Import the required module.
@@ -35,7 +35,7 @@ Read [Image API Reference](../../reference/apis-image-kit/js-apis-image.md#image
       };
       ```
 
-3. Encode the image and save the encoded image.
+3. Encode the image and save the encoded image. Before encoding, you need to obtain a Picture object through decoding. For details, see [Using ImageSource to Decode Pictures](./image-picture-decoding.md).
 
    ```ts
    import { BusinessError } from '@kit.BasicServicesKit';
@@ -50,8 +50,11 @@ Read [Image API Reference](../../reference/apis-image-kit/js-apis-image.md#image
 
 During encoding, you can pass in a file path so that the encoded memory data is directly written to the file.
 
-   ```ts
-  const context : Context = getContext(this);
+  ```ts
+  import { common } from '@kit.AbilityKit';
+
+  // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+  const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   const path : string = context.cacheDir + "/picture.jpg";
   let file = fileIo.openSync(path, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
   imagePackerApi.packToFile(picture, file.fd, packOpts).then(() => {
@@ -59,4 +62,4 @@ During encoding, you can pass in a file path so that the encoded memory data is 
   }).catch((error : BusinessError) => {
     console.error('Failed to pack the image. And the error is: ' + error);
   })
-   ```
+  ```

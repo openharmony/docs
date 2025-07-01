@@ -41,7 +41,7 @@ Add the following dynamic link libraries based on the image type: **libpixelmap.
 
 ### Making a Filter Effective
 
-1. Create an **ImageEffect** instance.
+1. Create an ImageEffect instance.
 
     ```c++
     // Create an ImageEffect instance, with the alias set to ImageEdit.
@@ -102,9 +102,10 @@ Add the following dynamic link libraries based on the image type: **libpixelmap.
     CHECK_AND_RETURN_LOG(errorCode == ImageEffect_ErrorCode::EFFECT_SUCCESS, "OH_ImageEffect_SetOutputUri fail!");
     ```
 
+
     **Scenario 4: Set the OHNativeWindow input type.**
 
-    The following uses camera preview as an example to describe the scenario. The surface ID provided by the **XComponent** for camera preview streams can be converted into an **OHNativeWindow** instance at the native C++ layer.
+    The following uses camera preview as an example to describe the scenario. The surface ID provided by the **XComponent** for camera preview streams can be converted into an OHNativeWindow instance at the native C++ layer.
     For details about how to use the **XComponent**, see [XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md).
     For details about how to use the native window module, see [OHNativeWindow](../../reference/apis-arkgraphics2d/_native_window.md).
     For details about how to use the camera, see [Camera Preview (C/C++)](../camera/native-camera-preview.md).
@@ -185,7 +186,7 @@ Add the following dynamic link libraries based on the image type: **libpixelmap.
     CHECK_AND_RETURN_LOG(errorCode == ImageEffect_ErrorCode::EFFECT_SUCCESS, "OH_ImageEffect_Save fail!");
     ```
 
-7. Destroy the **ImageEffect** instance.
+7. Destroy the ImageEffect instance.
 
     ```c++
     // Release the ImageEffect instance.

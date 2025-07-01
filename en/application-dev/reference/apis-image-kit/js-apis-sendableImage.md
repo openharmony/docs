@@ -1,6 +1,6 @@
 # @ohos.multimedia.sendableImage (Image Processing Based on Sendable Objects)
 
-The **sendableImage** module provides APIs for image processing based on sendable objects. You can use the APIs to create a **PixelMap** object with specified properties or read pixels of an image (or even in a region of an image).
+The module provides APIs for image processing based on sendable objects. You can use the APIs to create a PixelMap object with specified properties or read pixels of an image (or even in a region of an image).
 
 > **NOTE**
 >
@@ -16,7 +16,7 @@ import { sendableImage } from '@kit.ImageKit';
 
 createPixelMap(colors: ArrayBuffer, options: image.InitializationOptions): Promise\<PixelMap>
 
-Creates a **PixelMap** object with the default BGRA_8888 format and specified pixel properties. This API uses a promise to return the result.
+Creates a PixelMap object with the default BGRA_8888 format and specified pixel properties. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -31,7 +31,7 @@ Creates a **PixelMap** object with the default BGRA_8888 format and specified pi
 
 | Type                            | Description                                                                   |
 | -------------------------------- | ----------------------------------------------------------------------- |
-| Promise\<[PixelMap](#pixelmap)> | Promise used to return the **PixelMap** object.<br>If the size of the created PixelMap exceeds that of the original image, the PixelMap size of the original image is returned.|
+| Promise\<[PixelMap](#pixelmap)> | Promise used to return the PixelMap object.<br>If the size of the created PixelMap exceeds that of the original image, the PixelMap size of the original image is returned.|
 
 **Example**
 
@@ -54,7 +54,7 @@ async function Demo() {
 
 createPixelMapFromParcel(sequence: rpc.MessageSequence): PixelMap
 
-Creates a **PixelMap** object from a **MessageSequence** object.
+Creates a PixelMap object from a MessageSequence object.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -62,13 +62,13 @@ Creates a **PixelMap** object from a **MessageSequence** object.
 
 | Name                | Type                                                 | Mandatory| Description                                    |
 | ---------------------- | ----------------------------------------------------- | ---- | ---------------------------------------- |
-| sequence               | [rpc.MessageSequence](../apis-ipc-kit/js-apis-rpc.md#messagesequence9) | Yes  | **MessageSequence** object that stores the **PixelMap** information.     |
+| sequence               | [rpc.MessageSequence](../apis-ipc-kit/js-apis-rpc.md#messagesequence9) | Yes  | MessageSequence object that stores the PixelMap information.     |
 
 **Return value**
 
 | Type                            | Description                 |
 | -------------------------------- | --------------------- |
-| [PixelMap](#pixelmap) | Returns a **PixelMap** object if the operation is successful; throws an error otherwise.|
+| [PixelMap](#pixelmap) | PixelMap object. If the operation fails, an error is thrown.|
 
 **Error codes**
 
@@ -150,7 +150,7 @@ async function Demo() {
 
 createPixelMapFromSurface(surfaceId: string, region: image.Region): Promise\<PixelMap>
 
-Creates a **PixelMap** object from a surface ID.
+Creates a PixelMap object from a surface ID.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -164,7 +164,7 @@ Creates a **PixelMap** object from a surface ID.
 **Return value**
 | Type                            | Description                 |
 | -------------------------------- | --------------------- |
-| Promise\<[PixelMap](#pixelmap)> | Returns a **PixelMap** object if the operation is successful; throws an error otherwise.|
+| Promise\<[PixelMap](#pixelmap)> | PixelMap object. If the operation fails, an error is thrown.|
 
 **Error codes**
 
@@ -196,7 +196,7 @@ async function Demo(surfaceId: string) {
 
 createPixelMapSync(colors: ArrayBuffer, options: image.InitializationOptions): PixelMap
 
-Creates a **PixelMap** object with the specified pixel properties. This API returns the result synchronously.
+Creates a PixelMap object with the specified pixel properties. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -210,7 +210,7 @@ Creates a **PixelMap** object with the specified pixel properties. This API retu
 **Return value**
 | Type                            | Description                 |
 | -------------------------------- | --------------------- |
-| [PixelMap](#pixelmap) | Returns a **PixelMap** object if the operation is successful; throws an error otherwise.|
+| [PixelMap](#pixelmap) | PixelMap object. If the operation fails, an error is thrown.|
 
 **Error codes**
 
@@ -238,7 +238,7 @@ async function Demo() {
 
 convertFromPixelMap(pixelMap: image.PixelMap): PixelMap
 
-Creates a **PixelMap** object under **sendableImage** from a **PixelMap** object under **image**. This API returns the result synchronously. The APIs of the **PixelMap** object under **image** cannot be called anymore.
+Creates a PixelMap object under **sendableImage** from a PixelMap object under **image**. This API returns the result synchronously. The APIs of the PixelMap object under **image** cannot be called anymore.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -246,12 +246,12 @@ Creates a **PixelMap** object under **sendableImage** from a **PixelMap** object
 
 | Name | Type                                            | Mandatory| Description                                                            |
 | ------- | ------------------------------------------------ | ---- | ---------------------------------------------------------------- |
-| pixelMap | [image.PixelMap](js-apis-image.md#pixelmap7) | Yes  | **PixelMap** object under **image**.|
+| pixelMap | [image.PixelMap](js-apis-image.md#pixelmap7) | Yes  | PixelMap object under image.|
 
 **Return value**
 | Type                            | Description                 |
 | -------------------------------- | --------------------- |
-| [PixelMap](#pixelmap) | Returns a **PixelMap** object, which is sendable, if the operation is successful; throws an error otherwise.|
+| [PixelMap](#pixelmap) | PixelMap object, which is sendable. If the operation fails, an error is thrown.|
 
 **Error codes**
 
@@ -281,7 +281,7 @@ async function Demo() {
 
 convertToPixelMap(pixelMap: PixelMap): image.PixelMap
 
-Creates a **PixelMap** object under **image** from a **PixelMap** object under **sendableImage**. This API returns the result synchronously. The APIs of the **PixelMap** object under **sendableImage** cannot be called anymore.
+Creates a PixelMap object under **image** from a PixelMap object under **sendableImage**. This API returns the result synchronously. The APIs of the PixelMap object under **sendableImage** cannot be called anymore.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -294,7 +294,7 @@ Creates a **PixelMap** object under **image** from a **PixelMap** object under *
 **Return value**
 | Type                            | Description                 |
 | -------------------------------- | --------------------- |
-| [PixelMap](js-apis-image.md#pixelmap7) | Returns a **PixelMap** object, which is not sendable, if the operation is successful; throws an error otherwise.|
+| [PixelMap](js-apis-image.md#pixelmap7) | PixelMap object, which is not sendable. If the operation fails, an error is thrown.|
 
 **Error codes**
 
@@ -322,13 +322,13 @@ async function Demo() {
 
 ## PixelMap
 
-Provides APIs to read or write image data and obtain image information. Before calling any API in **PixelMap**, you must use [createPixelMap](#sendableimagecreatepixelmap) to create a **PixelMap** object. Currently, the maximum size of a serialized PixelMap is 128 MB. A larger size will cause a display failure. The size is calculated as follows: Width * Height * Number of bytes occupied by each pixel.
+Provides APIs to read or write image data and obtain image information. Before calling any API in PixelMap, you must use [createPixelMap](#sendableimagecreatepixelmap) to create a PixelMap object. Currently, the maximum size of a serialized PixelMap is 128 MB. A larger size will cause a display failure. The size is calculated as follows: Width * Height * Number of bytes occupied by each pixel.
 
-The **PixelMap** object under **sendableImage** supports the **sendable** attribute and sharing of the worker thread. The [Convert](#sendableimageconverttopixelmap) API can be used to convert a **PixelMap** object in **sendableImage** to a **PixelMap** object in **image**, and vise versa. After the conversion, the APIs of the original object cannot be called. Otherwise, error 501 is reported. When processing a **PixelMap** object across threads, you need to consider the multithreaded problem.
+The PixelMap object under **sendableImage** supports the **sendable** attribute and sharing of the worker thread. The [Convert](#sendableimageconverttopixelmap) API can be used to convert a PixelMap object in **sendableImage** to a PixelMap object in **image**, and vise versa. After the conversion, the APIs of the original object cannot be called. Otherwise, error 501 is reported. When processing a PixelMap object across threads, you need to consider the multithreaded problem.
 
-Before calling any API in **PixelMap**, you must use [sendableImage.createPixelMap](#sendableimagecreatepixelmap) to create a **PixelMap** object.
+Before calling any API in PixelMap, you must use [sendableImage.createPixelMap](#sendableimagecreatepixelmap) to create a PixelMap object.
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -605,7 +605,7 @@ async function Demo() {
 
 writeBufferToPixels(src: ArrayBuffer): Promise\<void>
 
-Reads image data in an ArrayBuffer and writes the data to a **PixelMap** object. This API uses a promise to return the result.
+Reads image data in an ArrayBuffer and writes the data to a PixelMap object. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -648,7 +648,7 @@ async function Demo() {
 
 writeBufferToPixelsSync(src: ArrayBuffer): void
 
-Reads image data in an ArrayBuffer and writes the data to a **PixelMap** object. This API returns the result synchronously.
+Reads image data in an ArrayBuffer and writes the data to a PixelMap object. This API returns the result synchronously.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -905,7 +905,7 @@ async function Demo() {
 
 createAlphaPixelmap(): Promise\<PixelMap>
 
-Creates a **PixelMap** object that contains only the alpha channel information. This object can be used for the shadow effect. This API uses a promise to return the result.
+Creates a PixelMap object that contains only the alpha channel information. This object can be used for the shadow effect. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -915,7 +915,7 @@ Creates a **PixelMap** object that contains only the alpha channel information. 
 
 | Type                            | Description                       |
 | -------------------------------- | --------------------------- |
-| Promise\<[PixelMap](#pixelmap)> | Promise used to return the **PixelMap** object.|
+| Promise\<[PixelMap](#pixelmap)> | Promise used to return the PixelMap object.|
 
 **Example**
 
@@ -937,7 +937,7 @@ async function Demo() {
 
 createAlphaPixelmapSync(): PixelMap
 
-Creates a **PixelMap** object that contains only the alpha channel information. This object can be used for the shadow effect. This API returns the result synchronously.
+Creates a PixelMap object that contains only the alpha channel information. This object can be used for the shadow effect. This API returns the result synchronously.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -947,7 +947,7 @@ Creates a **PixelMap** object that contains only the alpha channel information. 
 
 | Type                            | Description                 |
 | -------------------------------- | --------------------- |
-| [PixelMap](#pixelmap) | Returns a **PixelMap** object if the operation is successful; throws an error otherwise.|
+| [PixelMap](#pixelmap) | PixelMap object. If the operation fails, an error is thrown.|
 
 **Error codes**
 
@@ -962,8 +962,9 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { sendableImage } from '@kit.ImageKit';
 
-async function Demo() {
+async function Demo(pixelMap : sendableImage.PixelMap) {
     let resPixelMap : sendableImage.PixelMap = pixelMap.createAlphaPixelmapSync();
     return resPixelMap;
 }
@@ -983,8 +984,8 @@ Scales this image based on a given width and height. This API uses a promise to 
 
 | Name| Type  | Mandatory| Description                           |
 | ------ | ------ | ---- | ------------------------------- |
-| x      | number | Yes  | Scaling multiple of the width.|
-| y      | number | Yes  | Scaling multiple of the height.|
+| x      | number | Yes  | Scale factor of the width.|
+| y      | number | Yes  | Scale factor of the height.|
 
 **Return value**
 
@@ -1025,8 +1026,8 @@ Scales this image based on a given width and height. This API returns the result
 
 | Name| Type  | Mandatory| Description                           |
 | ------ | ------ | ---- | ------------------------------- |
-| x      | number | Yes  | Scaling multiple of the width.|
-| y      | number | Yes  | Scaling multiple of the height.|
+| x      | number | Yes  | Scale factor of the width.|
+| y      | number | Yes  | Scale factor of the height.|
 
 **Error codes**
 
@@ -1065,8 +1066,8 @@ Translates this image based on given coordinates. This API uses a promise to ret
 
 | Name| Type  | Mandatory| Description       |
 | ------ | ------ | ---- | ----------- |
-| x      | number | Yes  | X coordinate to translate, in px.|
-| y      | number | Yes  | Y coordinate to translate, in px.|
+| x      | number | Yes  | X coordinate, in px.|
+| y      | number | Yes  | Y coordinate, in px.|
 
 **Return value**
 
@@ -1106,8 +1107,8 @@ Translates this image based on given coordinates. This API returns the result sy
 
 | Name  | Type                | Mandatory| Description                           |
 | -------- | -------------------- | ---- | ------------------------------- |
-| x        | number               | Yes  | Scaling multiple of the width.|
-| y        | number               | Yes  | Scaling multiple of the height.|
+| x        | number               | Yes  | Scale factor of the width.|
+| y        | number               | Yes  | Scale factor of the height.|
 
 **Error codes**
 
@@ -1494,7 +1495,7 @@ async function Demo(pixelMap : sendableImage.PixelMap) {
 
 marshalling(sequence: rpc.MessageSequence): void
 
-Marshals this **PixelMap** object and writes it to a **MessageSequence** object.
+Marshals this PixelMap object and writes it to a MessageSequence object.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -1502,7 +1503,7 @@ Marshals this **PixelMap** object and writes it to a **MessageSequence** object.
 
 | Name                | Type                                                 | Mandatory| Description                                    |
 | ---------------------- | ------------------------------------------------------ | ---- | ---------------------------------------- |
-| sequence               | [rpc.MessageSequence](../apis-ipc-kit/js-apis-rpc.md#messagesequence9)  | Yes  | **MessageSequence** object.                |
+| sequence               | [rpc.MessageSequence](../apis-ipc-kit/js-apis-rpc.md#messagesequence9)  | Yes  | MessageSequence object.                |
 
 **Error codes**
 
@@ -1574,8 +1575,8 @@ async function Demo() {
 
 unmarshalling(sequence: rpc.MessageSequence): Promise\<PixelMap>
 
-Unmarshals a **MessageSequence** object to obtain a **PixelMap** object.
-To create a **PixelMap** object in synchronous mode, use [createPixelMapFromParcel](#sendableimagecreatepixelmapfromparcel).
+Unmarshals a MessageSequence object to obtain a PixelMap object.
+To create a PixelMap object in synchronous mode, use [createPixelMapFromParcel](#sendableimagecreatepixelmapfromparcel).
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -1583,7 +1584,7 @@ To create a **PixelMap** object in synchronous mode, use [createPixelMapFromParc
 
 | Name                | Type                                                 | Mandatory| Description                                    |
 | ---------------------- | ----------------------------------------------------- | ---- | ---------------------------------------- |
-| sequence               | [rpc.MessageSequence](../apis-ipc-kit/js-apis-rpc.md#messagesequence9) | Yes  | **MessageSequence** object that stores the **PixelMap** information.     |
+| sequence               | [rpc.MessageSequence](../apis-ipc-kit/js-apis-rpc.md#messagesequence9) | Yes  | MessageSequence object that stores the PixelMap information.     |
 
 **Return value**
 
@@ -1663,7 +1664,7 @@ async function Demo() {
 
 release():Promise\<void>
 
-Releases this **PixelMap** object. This API uses a promise to return the result.
+Releases this PixelMap object. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1702,7 +1703,7 @@ It inherits from [lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable)
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
-| Name  | Type  | Read Only| Optional| Description          |
+| Name  | Type  | Read-Only| Optional| Description          |
 | ------ | ------ | ---- | ---- | -------------- |
 | height | number | No  | No  | Height of the output image, in px.|
 | width  | number | No  | No  | Width of the output image, in px.|
@@ -1718,7 +1719,7 @@ It inherits from [lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable)
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
-| Name| Type         | Read Only| Optional| Description        |
+| Name| Type         | Read-Only| Optional| Description        |
 | ---- | ------------- | ---- | ---- | ------------ |
 | size | [Size](#size) | No  | No  | Region size.  |
 | x    | number        | No  | No  | X coordinate, in px.|
@@ -1728,7 +1729,7 @@ It inherits from [lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable)
 
 createImageSource(uri: string): ImageSource
 
-Creates an **ImageSource** instance based on a given URI.
+Creates an ImageSource instance based on a given URI.
 
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
@@ -1745,11 +1746,13 @@ Creates an **ImageSource** instance based on a given URI.
 
 | Type                       | Description                                        |
 | --------------------------- | -------------------------------------------- |
-| [ImageSource](#imagesource) | Returns the **ImageSource** instance if the operation is successful; returns **undefined** otherwise.|
+| [ImageSource](#imagesource) | ImageSource instance. If the operation fails, undefined is returned.|
 
 **Example**
 
 ```ts
+import { common } from '@kit.AbilityKit';
+
 // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
 let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 const path: string = context.cacheDir + "/test.jpg";
@@ -1760,7 +1763,7 @@ const sendableImageSourceApi: sendableImage.ImageSource = sendableImage.createIm
 
 createImageSource(fd: number): ImageSource
 
-Creates an **ImageSource** instance based on a given file descriptor.
+Creates an ImageSource instance based on a given file descriptor.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1776,11 +1779,12 @@ Creates an **ImageSource** instance based on a given file descriptor.
 
 | Type                       | Description                                        |
 | --------------------------- | -------------------------------------------- |
-| [ImageSource](#imagesource) | Returns the **ImageSource** instance if the operation is successful; returns **undefined** otherwise.|
+| [ImageSource](#imagesource) | ImageSource instance. If the operation fails, undefined is returned.|
 
 **Example**
 
 ```ts
+import { common } from '@kit.AbilityKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
 
 // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
@@ -1794,7 +1798,7 @@ const sendableImageSourceApi: sendableImage.ImageSource = sendableImage.createIm
 
 createImageSource(buf: ArrayBuffer): ImageSource
 
-Creates an **ImageSource** instance based on buffers.
+Creates an ImageSource instance based on buffers.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -1812,7 +1816,7 @@ Creates an **ImageSource** instance based on buffers.
 
 | Type                       | Description                                        |
 | --------------------------- | -------------------------------------------- |
-| [ImageSource](#imagesource) | Returns the **ImageSource** instance if the operation is successful; returns **undefined** otherwise.|
+| [ImageSource](#imagesource) | ImageSource instance. If the operation fails, undefined is returned.|
 
 
 **Example**
@@ -1826,7 +1830,7 @@ const sendableImageSourceApi: sendableImage.ImageSource = sendableImage.createIm
 
 createImageReceiver(size: image.Size, format: image.ImageFormat, capacity: number): ImageReceiver
 
-Creates an **ImageReceiver** instance based on the specified image size, format, and capacity.
+Creates an ImageReceiver instance based on the specified image size, format, and capacity.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageReceiver
 
@@ -1842,7 +1846,7 @@ Creates an **ImageReceiver** instance based on the specified image size, format,
 
 | Type                            | Description                                   |
 | -------------------------------- | --------------------------------------- |
-| [ImageReceiver](#imagereceiver) | Returns an **ImageReceiver** instance if the operation is successful.|
+| [ImageReceiver](#imagereceiver) | ImageReceiver instance.|
 
 **Error codes**
 
@@ -1866,14 +1870,14 @@ let receiver: sendableImage.ImageReceiver = sendableImage.createImageReceiver(si
 
 ## ImageSource
 
-Provides APIs to obtain image information. Before calling any API in **ImageSource**, you must use [createImageSource](#sendableimagecreateimagesource) to create an **ImageSource** instance.
+Provides APIs to obtain image information. Before calling any API in ImageSource, you must use [createImageSource](#sendableimagecreateimagesource) to create an ImageSource instance.
 
 
 ### createPixelMap
 
 createPixelMap(options?: image.DecodingOptions): Promise\<PixelMap>
 
-Creates a **PixelMap** object based on image decoding parameters. This API uses a promise to return the result.
+Creates a PixelMap object based on decoding options. This API uses a promise to return the result.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 12.
 
@@ -1885,17 +1889,18 @@ Creates a **PixelMap** object based on image decoding parameters. This API uses 
 
 | Name | Type                                | Mandatory| Description      |
 | ------- | ------------------------------------ | ---- | ---------- |
-| options | [image.DecodingOptions](./js-apis-image.md#decodingoptions7) | No  | Image decoding parameters.|
+| options | [image.DecodingOptions](./js-apis-image.md#decodingoptions7) | No  | Decoding options.|
 
 **Return value**
 
 | Type                            | Description                 |
 | -------------------------------- | --------------------- |
-| Promise\<[PixelMap]> | Promise used to return the **PixelMap** object.|
+| Promise\<[PixelMap]> | Promise used to return the PixelMap object.|
 
 **Example**
 
 ```ts
+import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
@@ -1913,9 +1918,7 @@ sendableImageSourceApi.createPixelMap().then((pixelMap: sendableImage.PixelMap) 
 
 release(): Promise\<void>
 
-Releases this **ImageSource** instance. This API uses a promise to return the result.
-
-The thread that runs **release** is insecure.
+Releases this ImageSource instance. This API uses a promise to return the result. The thread that runs **release** is insecure.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -1928,6 +1931,7 @@ The thread that runs **release** is insecure.
 **Example**
 
 ```ts
+import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
@@ -1943,18 +1947,16 @@ sendableImageSourceApi.release().then(() => {
 
 ## Image
 
-Provides APIs for basic image operations, including obtaining image information and reading and writing image data. An **Image** instance is returned when [readNextImage](#readnextimage) and [readLatestImage](#readlatestimage) are called.
+Provides APIs for basic image operations, including obtaining image information and reading and writing image data. An Image instance is returned when [readNextImage](#readnextimage) and [readLatestImage](#readlatestimage) are called. This class inherits from [lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable).
 
-This class inherits from [lang.ISendable](../../arkts-utils/arkts-sendable.md#isendable).
-
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
-| Name    | Type              | Read Only| Optional| Description                                              |
+| Name    | Type              | Read-Only| Optional| Description                                              |
 | -------- | ------------------ | ---- | ---- | -------------------------------------------------- |
 | clipRect | [Region](#region) | No  | No  | Image area to be cropped.                                |
-| size     | [Size](#size)      | Yes  | No  | Image size. If the **image** object stores the camera preview stream data (YUV image data), the width and height in **size** obtained correspond to those of the YUV image. If the **image** object stores the camera photo stream data (JPEG image data, which is already encoded), the width in **size** obtained is the JPEG data size, and the height is 1. The type of data stored in the **image** object depends on whether the application passes the surface ID in the receiver to a **previewOutput** or **captureOutput** object of the camera. For details about the best practices of camera preview and photo capture, see [Dual-Channel Preview (ArkTS)](../../media/camera/camera-dual-channel-preview.md) and [Photo Capture Sample (ArkTS)](../../media/camera/camera-shooting-case.md).                                        |
+| size     | [Size](#size)      | Yes  | No  | Image size. If the image object stores the camera preview stream data (YUV image data), the width and height in **size** obtained correspond to those of the YUV image. If the image object stores the camera photo stream data (JPEG image data, which is already encoded), the width in **size** obtained is the JPEG data size, and the height is 1. The type of data stored in the image object depends on whether the application passes the surface ID in the receiver to a previewOutput or captureOutput object of the camera. For details about the best practices of camera preview and photo capture, see [Dual-Channel Preview (ArkTS)](../../media/camera/camera-dual-channel-preview.md) and [Photo Capture Sample (ArkTS)](../../media/camera/camera-shooting-case.md).                                        |
 | format   | number             | Yes  | No  | Image format. For details, see [OH_NativeBuffer_Format](../apis-arkgraphics2d/_o_h___native_buffer.md#oh_nativebuffer_format).|
 | timestamp<sup>12+</sup> | number         | Yes     | No  | Image timestamp. Timestamps, measured in nanoseconds, are usually monotonically increasing. The specific meaning and baseline of these timestamps are determined by the image producer, which is the camera in the camera preview and photo scenarios. As a result, images from different producers may carry timestamps with distinct meanings and baselines, making direct comparison between them infeasible. To obtain the generation time of a photo, you can use [getImageProperty](js-apis-image.md#getimageproperty11) to read the related EXIF information.|
 
@@ -1962,9 +1964,7 @@ This class inherits from [lang.ISendable](../../arkts-utils/arkts-sendable.md#is
 
 getComponent(componentType: image.ComponentType): Promise\<image.Component>
 
-Obtains the component buffer from the **Image** instance based on the color component type. This API uses a promise to return the result.
-
-The thread that runs **getComponent** is insecure.
+Obtains the component buffer from the Image instance based on the color component type. This API uses a promise to return the result. The thread that runs **getComponent** is insecure.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -2005,7 +2005,7 @@ async function Demo() {
 
 release(): Promise\<void>
 
-Releases this **Image** instance. This API uses a promise to return the result.
+Releases this Image instance. This API uses a promise to return the result.
 
 The corresponding resources must be released before another image arrives. The thread that runs **release** is insecure.
 
@@ -2041,15 +2041,15 @@ async function Demo() {
 
 ## ImageReceiver
 
-You can use the **ImageReceiver** class to obtain the surface ID of a component, read the latest image or the next image, and release **ImageReceiver** instances.
+You can use the **ImageReceiver** class to obtain the surface ID of a component, read the latest image or the next image, and release ImageReceiver instances.
 
-Before calling any APIs in **ImageReceiver**, you must create an **ImageReceiver** instance.
+Before calling any APIs in ImageReceiver, you must create an ImageReceiver instance.
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.Multimedia.Image.ImageReceiver
 
-| Name    | Type                        | Read Only| Optional| Description              |
+| Name    | Type                        | Read-Only| Optional| Description              |
 | -------- | ---------------------------- | ---- | ---- | ------------------ |
 | size     | [image.Size](./js-apis-image.md#size)                | Yes  | No  | Image size.        |
 | capacity | number                       | Yes  | No  | Maximum number of images that can be accessed at the same time.|
@@ -2091,7 +2091,7 @@ receiver.getReceivingSurfaceId().then((id: string) => {
 
 readLatestImage(): Promise\<Image>
 
-Reads the latest image from the **ImageReceiver** instance. This API uses a promise to return the result.
+Reads the latest image from the ImageReceiver instance. This API uses a promise to return the result.
 
 This API can be called to receive data only after the [on](#on) callback is triggered. When the [Image](#image) object returned by this API is no longer needed, call [release](#release-2) to release the object. New data can be received only after the release.
 
@@ -2125,7 +2125,7 @@ receiver.readLatestImage().then((img: image.Image) => {
 
 readNextImage(): Promise\<Image>
 
-Reads the next image from the **ImageReceiver** instance. This API uses a promise to return the result.
+Reads the next image from the ImageReceiver instance. This API uses a promise to return the result.
 
 This API can be called to receive data only after the [on](#on) callback is triggered. When the [Image](#image) object returned by this API is no longer needed, call [release](#release-2) to release the object. New data can be received only after the release.
 
@@ -2190,9 +2190,7 @@ receiver.on('imageArrival', () => {
 
 release(): Promise\<void>
 
-Releases this **ImageReceiver** instance. This API uses a promise to return the result.
-
-The thread that runs **release** is insecure.
+Releases this ImageReceiver instance. This API uses a promise to return the result. The thread that runs **release** is insecure.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageReceiver
 

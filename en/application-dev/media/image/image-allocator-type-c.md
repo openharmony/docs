@@ -10,7 +10,7 @@ When the PixelMap is large and uses regular memory, the RenderService main threa
 
 The memory types for the PixelMap are as follows:
 
-- DMA_ALLOC: ION memory. IPC latency is relatively low, and texture upload is not required.
+- DMA_ALLOC: DMA memory. IPC latency is relatively low, and texture upload is not required.
 - SHARE_MEMORY: shared memory. IPC latency is minimal, but texture upload is required.
 
 Given that the current memory allocation strategy of the decoding API cannot meet the requirements in certain scenarios, the system provides [OH_ImageSourceNative_CreatePixelmapUsingAllocator](../../reference/apis-image-kit/_image___native_module.md#oh_imagesourcenative_createpixelmapusingallocator), allowing you to customize the memory allocation type for decoding.
@@ -86,10 +86,10 @@ When memory is allocated using DMA_ALLOC, the stride must meet the hardware alig
 - If the stride calculated using the above formula does not meet the alignment requirements, the system automatically pads the data.
   The stride value can be obtained by calling [OH_PixelmapNative_GetImageInfo](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapnative_getimageinfo).
 
-1. Call [OH_PixelmapNative_GetImageInfo](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapnative_getimageinfo) to obtain an **OH_Pixelmap_ImageInfo** object.
+1. Call [OH_PixelmapNative_GetImageInfo](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapnative_getimageinfo) to obtain an OH_Pixelmap_ImageInfo object.
 2. Call [OH_PixelmapImageInfo_GetRowStride](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapimageinfo_getrowstride) to obtain the stride value.
 
-The sample code for obtaining and operating the stride by the C APIs is as follows:
+The sample code for obtaining and operating the stride by the C APIs is as follows: 
 
 ```C++
 struct PixelmapInfo {

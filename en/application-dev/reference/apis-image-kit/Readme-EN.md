@@ -3,6 +3,7 @@
 - ArkTS APIs<!--image-arkts-->
   - [@ohos.multimedia.image (Image Processing)](js-apis-image.md)
   - [@ohos.multimedia.sendableImage (Image Processing Based on Sendable Objects)](js-apis-sendableImage.md)
+  - [@ohos.multimedia.videoProcessingEngine (Video Processing Engine)](js-apis-videoProcessingEngine.md) 
   <!--Del-->
   - [@ohos.multimedia.image (Image Processing) (System API)](js-apis-image-sys.md)
   <!--DelEnd-->
@@ -67,3 +68,4 @@
     - [ImageProcessing_ColorSpaceInfo](_image_processing___color_space_info.md)
 - Error Codes<!--image-arkts-errcode-->
   - [Image Error Codes](errorcode-image.md)
+  - [Video Processing Engine Error Codes](errorcode-videoprocessingengine.md)
