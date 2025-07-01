@@ -219,7 +219,7 @@
 | [ArkUI_SwiperArrow](#arkui_swiperarrow) { ARKUI_SWIPER_ARROW_HIDE = 0, ARKUI_SWIPER_ARROW_SHOW, ARKUI_SWIPER_ARROW_SHOW_ON_HOVER } | Swiper导航点箭头枚举值。  | 
 | [ArkUI_SwiperNestedScrollMode](#arkui_swipernestedscrollmode) { ARKUI_SWIPER_NESTED_SRCOLL_SELF_ONLY = 0, ARKUI_SWIPER_NESTED_SRCOLL_SELF_FIRST } | Swiper组件和父组件的嵌套滚动模式。  | 
 | [ArkUI_PageFlipMode](#arkui_pageflipmode) { ARKUI_PAGE_FLIP_MODE_CONTINUOUS = 0, ARKUI_PAGE_FLIP_MODE_SINGLE } | Swiper组件鼠标滚轮翻页模式。  | 
-| [ArkUI_SwiperAnimationMode](#arkui_swiperanimationmode) { ARKUI_SWIPER_NO_ANIMATION = 0, ARKUI_SWIPER_DEFAULT_ANIMATION } | Swiper组件跳转到目标index的动画模式。  | 
+| [ArkUI_SwiperAnimationMode](#arkui_swiperanimationmode) { ARKUI_SWIPER_NO_ANIMATION = 0, ARKUI_SWIPER_DEFAULT_ANIMATION, ARKUI_SWIPER_FAST_ANIMATION } | Swiper组件跳转到目标index的动画模式。  | 
 | [ArkUI_AccessibilityMode](#arkui_accessibilitymode) { ARKUI_ACCESSIBILITY_MODE_AUTO = 0, ARKUI_ACCESSIBILITY_MODE_ENABLED, ARKUI_ACCESSIBILITY_MODE_DISABLED, ARKUI_ACCESSIBILITY_MODE_DISABLED_FOR_DESCENDANTS } | 定义无障碍辅助服务模式。  | 
 | [ArkUI_TextCopyOptions](#arkui_textcopyoptions) { ARKUI_TEXT_COPY_OPTIONS_NONE = 0, ARKUI_TEXT_COPY_OPTIONS_IN_APP, ARKUI_TEXT_COPY_OPTIONS_LOCAL_DEVICE, ARKUI_TEXT_COPY_OPTIONS_CROSS_DEVICE } | 定义组件支持设置文本是否可复制粘贴。  | 
 | [ArkUI_TextHeightAdaptivePolicy](#arkui_textheightadaptivepolicy) { ARKUI_TEXT_HEIGHT_ADAPTIVE_POLICY_MAX_LINES_FIRST = 0, ARKUI_TEXT_HEIGHT_ADAPTIVE_POLICY_MIN_FONT_SIZE_FIRST, ARKUI_TEXT_HEIGHT_ADAPTIVE_POLICY_LAYOUT_CONSTRAINT_FIRST } | 定义文本自适应高度的方式。  | 
