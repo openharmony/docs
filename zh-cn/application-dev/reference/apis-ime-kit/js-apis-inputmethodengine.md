@@ -1820,7 +1820,7 @@ startMoving(): void
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------- |
 | 801 | capability not supported. |
-| 12800002 | input method engine error. |
+| 12800002 | input method engine error. Possible causes: 1.input method panel not created. 2.the input method application does not subscribe to related events. |
 | 12800013 | window manager service error. |
 | 12800017 | invalid panel type or panel flag. |
 

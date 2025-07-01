@@ -1151,7 +1151,7 @@ discardTypingText(): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800003 | input method client error. |
+| 12800003 | input method client error. Possible causes: 1.the edit box is not focused. 2.no edit box is bound to current input method application. |
 | 12800009 | input method client detached. |
 | 12800015 | the other side does not accept the request. |
 
