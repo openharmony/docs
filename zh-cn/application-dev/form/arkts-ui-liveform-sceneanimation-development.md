@@ -20,6 +20,7 @@
 ### 卡片激活态UI开发
 
 1. 创建互动卡片
+
     通过[LiveFormExtensionAbility](../reference/apis-form-kit/js-apis-app-form-LiveFormExtensionAbility.md)创建互动卡片，创建时加载互动卡片页面。
     ```ts
     // entry/src/main/ets/myliveformextensionability/MyLiveFormExtensionAbility.ets
@@ -144,6 +145,7 @@
     ```
 
 3. 互动卡片LiveFormExtensionAbility配置
+
     在[module.json5配置文件extensionAbilities标签](../quick-start/module-configuration-file.md#extensionabilities标签)下配置LiveFormExtensionAbility。
     ```ts
     // entry/src/main/module.json5
@@ -174,8 +176,8 @@
 ### 卡片非激活态UI开发
 
 1. 非激活态卡片页面实现
-    非激活态卡片页面开发同普通卡片开发流程完全一致，在widgetCard.ets中完成。widgetCard.ets文件在卡片创建时自动生成，卡片创建流程可以参考[创建ArkTS卡片](arkts-ui-widget-creation.md)。在非激活态卡片页面实现点击卡片时，请求卡片动效。
 
+    非激活态卡片页面开发同普通卡片开发流程完全一致，在widgetCard.ets中完成。widgetCard.ets文件在卡片创建时自动生成，卡片创建流程可以参考[创建ArkTS卡片](arkts-ui-widget-creation.md)。在非激活态卡片页面实现点击卡片时，请求卡片动效。
     ```ts
     // entry/src/main/ets/widget/pages/WidgetCard.ets
     @Entry
