@@ -31,11 +31,11 @@ To use the preceding APIs, you need to declare the corresponding sensor permissi
     ]
 ```
 
-When the **Web** component is connected to a motion or orientation sensor, configure [onPermissionRequest](../reference/apis-arkweb/ts-basic-components-web.md#onpermissionrequest9) to receive permission request notifications.
+When the **Web** component is connected to a motion or orientation sensor, configure [onPermissionRequest](../reference/apis-arkweb/ts-basic-components-web-events.md#onpermissionrequest9) to receive permission request notifications.
 
 ## How to Develop
 
-1. In the application code, configure [onPermissionRequest](../reference/apis-arkweb/ts-basic-components-web.md#onpermissionrequest9) for the **Web** component and use the [getAccessibleResource](../reference/apis-arkweb/ts-basic-components-web.md#getaccessibleresource9) API of [PermissionRequest](../reference/apis-arkweb/ts-basic-components-web.md#permissionrequest9) to obtain the resource type of the request permission. When the resource type is **TYPE_SENSOR**, the sensor is authorized.
+1. In the application code, configure [onPermissionRequest](../reference/apis-arkweb/ts-basic-components-web-events.md#onpermissionrequest9) for the **Web** component and use the [getAccessibleResource](../reference/apis-arkweb/ts-basic-components-web.md#getaccessibleresource9) API of [PermissionRequest](../reference/apis-arkweb/ts-basic-components-web.md#permissionrequest9) to obtain the resource type of the request permission. When the resource type is **TYPE_SENSOR**, the sensor is authorized.
 
    ```ts
    import { webview } from '@kit.ArkWeb';

@@ -3,7 +3,7 @@
 
 ## History Navigation
 
-When a user clicks a web page link on the frontend page, the **Web** component automatically opens and loads the target website by default. When the current page is assigned a new loading link, the address of the accessed web page is automatically recorded. You can call [forward()](../reference/apis-arkweb/js-apis-webview.md#forward) or [backward()](../reference/apis-arkweb/js-apis-webview.md#backward) to browse the previous or next history record.
+When a user clicks a web page link on the frontend page, the **Web** component automatically opens and loads the target website by default. When the current page is assigned a new loading link, the address of the accessed web page is automatically recorded. You can call [forward()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#forward) or [backward()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#backward) to browse the previous or next history record.
 
 If you need to obtain online resources when loading a page, declare the network access permission in the **module.json5** file. For details, see [Declaring Permissions](../security/AccessToken/declare-permissions.md).
 
@@ -41,12 +41,12 @@ struct WebComponent {
 ```
 
 
-If a previous record exists, [accessBackward()](../reference/apis-arkweb/js-apis-webview.md#accessbackward) will return **true**. Similarly, you can call [accessForward()](../reference/apis-arkweb/js-apis-webview.md#accessforward) to check whether a next record exists. If you skip the check, [forward()](../reference/apis-arkweb/js-apis-webview.md#forward) and [backward()](../reference/apis-arkweb/js-apis-webview.md#backward) will not trigger any action if the user has navigated to the end of history records.
+If a previous record exists, [accessBackward()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#accessbackward) will return **true**. Similarly, you can call [accessForward()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#accessforward) to check whether a next record exists. If you skip the check, [forward()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#forward) and [backward()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#backward) will not trigger any action if the user has navigated to the end of history records.
 
 
 ## Page Redirection
 
-The **Web** component provides the [onLoadIntercept()](../reference/apis-arkweb/ts-basic-components-web.md#onloadintercept10) API to redirect you from one page to another.
+The **Web** component provides the [onLoadIntercept()](../reference/apis-arkweb/ts-basic-components-web-events.md#onloadintercept10) API to redirect you from one page to another.
 
 In the following example, the frontend page **route.html** is loaded on to the application home page **Index.ets**, and the user is redirected to the application page **ProfilePage.ets** when clicking the link on the **route.html** page.
 

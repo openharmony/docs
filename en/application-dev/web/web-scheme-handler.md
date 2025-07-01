@@ -8,7 +8,7 @@ Set **ArkWeb_SchemeHandler** for a specified **Web** component or ServiceWorker.
 
 When a request starts, **ArkWeb_OnRequestStart** is called. When a request ends, **ArkWeb_OnRequestStop** is called.
 
-To intercept the first request sent by a **Web** component, you can use [initializeWebEngine](../reference/apis-arkweb/js-apis-webview.md#initializewebengine) to initialize the **Web** component in advance and set an interceptor.
+To intercept the first request sent by a **Web** component, you can use [initializeWebEngine](../reference/apis-arkweb/js-apis-webview-WebviewController.md#initializewebengine) to initialize the **Web** component in advance and set an interceptor.
 
   ```c++
     // Create an ArkWeb_SchemeHandler object.
@@ -56,7 +56,7 @@ To intercept the request of a custom scheme, you need to register the custom sch
   ```
 
 The scheme needs to be registered before the **Web** component is initialized, and the network interceptor needs to be set after the **Web** component is initialized. Therefore, you are advised to call the C++ API in **onCreate()** of **EntryAbility** to register the scheme.
-After the scheme is registered, use [initializeWebEngine](../reference/apis-arkweb/js-apis-webview.md#initializewebengine) to initialize the **Web** component, and then set the network interceptor.
+After the scheme is registered, use [initializeWebEngine](../reference/apis-arkweb/js-apis-webview-WebviewController.md#initializewebengine) to initialize the **Web** component, and then set the network interceptor.
 
   ```ts
     export default class EntryAbility extends UIAbility {

@@ -180,7 +180,7 @@ struct Index {
 
 ### Using the Web Component to Implement Application Redirection
 
-To implement application redirection from a **Web** component in Deep Linking mode, process the defined event in the [onLoadIntercept](../reference/apis-arkweb/ts-basic-components-web.md#onloadintercept10) callback.
+To implement application redirection from a **Web** component in Deep Linking mode, process the defined event in the [onLoadIntercept](../reference/apis-arkweb/ts-basic-components-web-events.md#onloadintercept10) callback.
 
 The sample code is as follows:
 

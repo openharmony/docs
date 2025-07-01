@@ -75,16 +75,16 @@ Currently, only mobile phones and tablets are supported.
  Other CSS attributes, such as **rotate** and **shew** in the **transform** attribute, may not meet the expectation.
 
 **Lifecycle Management**:
-The [onNativeEmbedLifecycleChange()](../reference/apis-arkweb/ts-basic-components-web.md#onnativeembedlifecyclechange11) callback is triggered when the lifecycle of the **Embed** tag changes.
+The [onNativeEmbedLifecycleChange()](../reference/apis-arkweb/ts-basic-components-web-events.md#onnativeembedlifecyclechange11) callback is triggered when the lifecycle of the **Embed** tag changes.
 
 - Creation, destruction, and position width and height change are supported. The visibility status change is not supported.
 
 - Web pages containing same-layer components support back-forward cache.
 
 **Distributing and Processing the Input Events**:
-- The **DOWN**, **UP**, **MOVE**, and **CANCEL** touch events are supported. The [onnativeembedgestureevent11](../reference/apis-arkweb/ts-basic-components-web.md#onnativeembedgestureevent11) can be configured. By default, the touch event is consumed on the application side.
+- The **DOWN**, **UP**, **MOVE**, and **CANCEL** touch events are supported. The [onnativeembedgestureevent11](../reference/apis-arkweb/ts-basic-components-web-events.md#onnativeembedgestureevent11) can be configured. By default, the touch event is consumed on the application side.
 
-- The application page containing same-layer components cannot be scaled, and the scaling APIs such as [initialScale](../reference/apis-arkweb/ts-basic-components-web.md#initialscale9), [zoom](../reference/apis-arkweb/js-apis-webview.md#zoom), [zoomIn](../reference/apis-arkweb/js-apis-webview.md#zoomin) and [zoomOut](../reference/apis-arkweb/js-apis-webview.md#zoomout) are not supported.
+- The application page containing same-layer components cannot be scaled, and the scaling APIs such as [initialScale](../reference/apis-arkweb/ts-basic-components-web-attributes.md#initialscale9), [zoom](../reference/apis-arkweb/js-apis-webview-WebviewController.md#zoom), [zoomIn](../reference/apis-arkweb/js-apis-webview-WebviewController.md#zoomin) and [zoomOut](../reference/apis-arkweb/js-apis-webview-WebviewController.md#zoomout) are not supported.
 
 - Mouse, keyboard, and touchpad events are not supported.
 
@@ -94,7 +94,7 @@ The [onNativeEmbedLifecycleChange()](../reference/apis-arkweb/ts-basic-component
 
 - Due to GPU restrictions, the maximum height and texture size of a same-layer tag are 8000 px.
 
-- When same-layer rendering is enabled, web pages opened by the **Web** component do not support [RenderMode](../reference/apis-arkweb/ts-basic-components-web.md#rendermode12).
+- When same-layer rendering is enabled, web pages opened by the **Web** component do not support [RenderMode](../reference/apis-arkweb/ts-basic-components-web-e.md#rendermode12).
 
 - When the non-full-screen mode is changed to the full-screen mode, the **Video** component is exported through non-texture mode and the video playback status remains unchanged. When the non-full-screen mode is restored, the **Video** component is exported through texture mode and the video playback status remains unchanged.
 
@@ -311,9 +311,9 @@ On web pages, you can render the native ArkUI **TextInput** components at the sa
    }
    ```
 
-5. Call [onNativeEmbedLifecycleChange](../reference/apis-arkweb/ts-basic-components-web.md#onnativeembedlifecyclechange11) to listen for the lifecycle changes of the same-layer rendering tags.
+5. Call [onNativeEmbedLifecycleChange](../reference/apis-arkweb/ts-basic-components-web-events.md#onnativeembedlifecyclechange11) to listen for the lifecycle changes of the same-layer rendering tags.
 
-   After this function is enabled, the ArkWeb kernel triggers the callback registered by [onNativeEmbedLifecycleChange](../reference/apis-arkweb/ts-basic-components-web.md#onnativeembedlifecyclechange11) each time a same-layer rendering tag is used on a web page.
+   After this function is enabled, the ArkWeb kernel triggers the callback registered by [onNativeEmbedLifecycleChange](../reference/apis-arkweb/ts-basic-components-web-events.md#onnativeembedlifecyclechange11) each time a same-layer rendering tag is used on a web page.
 
     
 
@@ -386,9 +386,9 @@ On web pages, you can render the native ArkUI **TextInput** components at the sa
     }
     ```
 
-6. Call [onNativeEmbedGestureEvent](../reference/apis-arkweb/ts-basic-components-web.md#onnativeembedgestureevent11) to listen for gesture events that are rendered at the same layer.
+6. Call [onNativeEmbedGestureEvent](../reference/apis-arkweb/ts-basic-components-web-events.md#onnativeembedgestureevent11) to listen for gesture events that are rendered at the same layer.
 
-   When gesture events are listened, the ArkWeb kernel triggers the callback registered by [onNativeEmbedGestureEvent](../reference/apis-arkweb/ts-basic-components-web.md#onnativeembedgestureevent11) each time a touch operation is performed in the same-layer rendering region.
+   When gesture events are listened, the ArkWeb kernel triggers the callback registered by [onNativeEmbedGestureEvent](../reference/apis-arkweb/ts-basic-components-web-events.md#onnativeembedgestureevent11) each time a touch operation is performed in the same-layer rendering region.
 
     
 
@@ -671,7 +671,6 @@ Code on the application side:
 
 ## Drawing the XComponent+AVPlayer and Button Components
 
-You can enable or disable same-layer rendering through [enableNativeEmbedMode()](../reference/apis-arkweb/ts-basic-components-web.md#enablenativeembedmode11). To use same-layer rendering, the **\<embed>** element must be explicitly used in the HTML file, and the **type** attribute of the element must start with **native/**. The background of the elements corresponding to the tags at the same layer is transparent.
 
 - Example of using same-layer rendering on the application side:
 

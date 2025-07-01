@@ -10,8 +10,8 @@ This mode is applicable to the scenario where the **Web** component needs to be 
 ## Specifications and Constraints
 
 1. Set the [rendering mode](web-render-mode.md) to synchronous to avoid exceptions (white screen and layout errors) caused by the component size exceeding the limit.
-2. Disable the [overscroll mode](../reference/apis-arkweb/ts-basic-components-web.md#overscrollmode11). When the overscroll mode is enabled and a user slides to the edge of a web page, the web page is displayed with a spring animation, which conflicts with the rebound effect of the **Scroll** component, affecting user experience.
-3. Set the attribute of [keyboard avoidance mode](../reference/apis-arkweb/ts-basic-components-web.md#keyboardavoidmode12) to **RESIZE_CONTENT** to disable this mode.
+2. Disable the [overscroll mode](../reference/apis-arkweb/ts-basic-components-web-attributes.md#overscrollmode11). When the overscroll mode is enabled and a user slides to the edge of a web page, the web page is displayed with a spring animation, which conflicts with the rebound effect of the **Scroll** component, affecting user experience.
+3. Set the attribute of [keyboard avoidance mode](../reference/apis-arkweb/ts-basic-components-web-attributes.md#keyboardavoidmode12) to **RESIZE_CONTENT** to disable this mode.
 4. Do not support page zooming.
 5. Do not support using the **height** attribute of the **Web** component to change the component height.
 6. Support only component height fitting in the page content, but not width fitting.

@@ -1,7 +1,7 @@
 # Customizing Page Request Responses
 
 
-The **Web** component supports customization of the response to intercepted page requests. You can call [onInterceptRequest()](../reference/apis-arkweb/ts-basic-components-web.md#oninterceptrequest9) to customize web page responses, file resource responses, and more.  
+The **Web** component supports customization of the response to intercepted page requests. You can call [onInterceptRequest()](../reference/apis-arkweb/ts-basic-components-web-events.md#oninterceptrequest9) to customize web page responses, file resource responses, and more.  
 
 
 When a resource loading request is initiated on a web page, the application layer will receive the request. The application layer then constructs a local resource response and sends it to the web kernel. On receiving the response, the web kernel parses the response and loads page resources accordingly.

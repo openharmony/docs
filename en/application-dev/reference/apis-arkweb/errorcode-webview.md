@@ -16,7 +16,7 @@ This error code is reported when the **WebviewController** object is not associa
 
 **Solution**
 
-Use [onControllerAttached()](ts-basic-components-web.md#oncontrollerattached10) to check whether the **WebViewController** object is associated with the **Web** component.
+Use [onControllerAttached()](./ts-basic-components-web-events.md#oncontrollerattached10) to check whether the **WebViewController** object is associated with the **Web** component.
 
 
 ## 17100002 Invalid URL

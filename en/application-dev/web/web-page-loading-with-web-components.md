@@ -16,7 +16,7 @@ If you need to load online resources, declare the network access permission in t
 
 ## Loading Network Pages
 
-You can specify the default network page to be loaded when creating a **Web** component. After the default network page is loaded, call [loadUrl()](../reference/apis-arkweb/js-apis-webview.md#loadurl) if you want to change the network page displayed by the **Web** component. The value of the first parameter **src** of the **Web** component cannot be dynamically changed through a state variable (for example, @State). To change the value, call [loadUrl()](../reference/apis-arkweb/js-apis-webview.md#loadurl).
+You can specify the default network page to be loaded when creating a **Web** component. After the default network page is loaded, call [loadUrl()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#loadurl) if you want to change the network page displayed by the **Web** component. The value of the first parameter **src** of the **Web** component cannot be dynamically changed through a state variable (for example, @State). To change the value, call [loadUrl()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#loadurl).
 
 
 In the following example, after the **www.\example.com** page is loaded by the **Web** component, **loadUrl** is called to change the displayed page to **www\.example1.com**.
@@ -56,7 +56,7 @@ struct WebComponent {
 
 The following example shows how to load a local page file.
 
-Local page files are stored in the application's **rawfile** directory. You can specify the local page to be loaded by default when creating a **Web** component. After page loading is complete, you can call [loadUrl()](../reference/apis-arkweb/js-apis-webview.md#loadurl) to change the displayed page of the **Web** component.
+Local page files are stored in the application's **rawfile** directory. You can specify the local page to be loaded by default when creating a **Web** component. After page loading is complete, you can call [loadUrl()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#loadurl) to change the displayed page of the **Web** component.
 
 To reference a local CSS file when loading a local HTML file, perform the following steps:
 
@@ -129,7 +129,7 @@ To reference a local CSS file when loading a local HTML file, perform the follow
 
 Example of loading local page files in the sandbox:
 
-1. To obtain the sandbox path through the constructed singleton object **GlobalContext**, you need to enable [fileAccess](../reference/apis-arkweb/ts-basic-components-web.md#fileaccess) in the application.
+1. To obtain the sandbox path through the constructed singleton object **GlobalContext**, you need to enable [fileAccess](../reference/apis-arkweb/ts-basic-components-web-attributes.md#fileaccess) in the application.
 
    ```ts
    // GlobalContext.ets
@@ -211,7 +211,7 @@ Example of loading local page files in the sandbox:
 
 ## Loading HTML Rich Text Data
 
-The **Web** component provides the [loadData()](../reference/apis-arkweb/js-apis-webview.md#loaddata) API for you to load HTML rich text data. If you need to display only some page fragments, you can use this feature to quickly load the page. To load a large number of HTML files, set **baseUrl** to data.
+The **Web** component provides the [loadData()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#loaddata) API for you to load HTML rich text data. If you need to display only some page fragments, you can use this feature to quickly load the page. To load a large number of HTML files, set **baseUrl** to data.
 
 ```ts
 // xxx.ets

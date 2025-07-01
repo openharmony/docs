@@ -14,9 +14,6 @@ Displays a **Web** component as a graphics surface node independently in asynchr
 
 Displays a **Web** component as a canvas node with the system component in synchronous rendering mode. This mode renders longer **Web** component content but consumes more performance resources.
 
-> **NOTE**
->
-> For details about the enumerated values, see [RenderMode](../reference/apis-arkweb/ts-basic-components-web.md#rendermode12).
 
 ## Specifications and Constraints
 

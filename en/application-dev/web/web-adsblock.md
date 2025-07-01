@@ -19,11 +19,11 @@ For example, if you configure a blocking rule **||abc.com/js/123.js** to block w
 
 ## Constraints
 
-- In the [WebviewController](../reference/apis-arkweb/js-apis-webview.md#webviewcontroller) class, add [enableAdsBlock()](../reference/apis-arkweb/js-apis-webview.md#enableadsblock12) to support the enabling and disabling of the web instance-level feature.
+- In the [WebviewController](../reference/apis-arkweb/js-apis-webview-WebviewController.md) class, add [enableAdsBlock()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#enableadsblock12) to support the enabling and disabling of the web instance-level feature.
 
 - Add the [AdsBlockManager](../reference/apis-arkweb/js-apis-webview.md#adsblockmanager12) global singleton class to provide the capabilities of customizing ads blocking configurations and controlling website-level features.
 
-- The web instance provides [onAdsBlocked()](../reference/apis-arkweb/ts-basic-components-web.md#onadsblocked12) callback to notify the upper-layer application of the interception information.
+- The web instance provides [onAdsBlocked()](../reference/apis-arkweb/ts-basic-components-web-attributes.md#onadsblocked12) callback to notify the upper-layer application of the interception information.
 
 - Only one custom configuration can be set by the [setAdsBlockRules()](../reference/apis-arkweb/js-apis-webview.md#setadsblockrules12) API of [AdsBlockManager](../reference/apis-arkweb/js-apis-webview.md#adsblockmanager12). The configuration is persistent and does not need to be reconfigured during cold start of the application. This prevents the compilation and parsing of the ads blocking rule from being triggered again.
 
@@ -40,7 +40,7 @@ For example, if you configure a blocking rule **||abc.com/js/123.js** to block w
 ## Application Scenarios
 
 ### Enabling Ads Blocking
-You can use [setAdsBlockRules()](../reference/apis-arkweb/js-apis-webview.md#setadsblockrules12) provided by **AdsBlockManager** to set blocking rules in EasyList and use [enableAdsBlock()](../reference/apis-arkweb/js-apis-webview.md#enableadsblock12) of the **Web** component to enable the ads blocking.
+You can use [setAdsBlockRules()](../reference/apis-arkweb/js-apis-webview.md#setadsblockrules12) provided by **AdsBlockManager** to set blocking rules in EasyList and use [enableAdsBlock()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#enableadsblock12) of the **Web** component to enable the ads blocking.
 
 The following example shows how to select the EasyList rule file using the file picker and how to enable the ads blocking in an application.
 
@@ -209,10 +209,10 @@ struct WebComponent {
 ```
 
 Note that the **DisallowedList** and **AllowedList** of the **AdsBlockManager** are not persisted. Therefore, the lists are reset to empty when the application is restarted.
-If the ads blocking function of the **Web** component is not enabled through [enableAdsBlock()](../reference/apis-arkweb/js-apis-webview.md#enableadsblock12), the preceding APIs do not take effect in the Web component.
+If the ads blocking function of the **Web** component is not enabled through [enableAdsBlock()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#enableadsblock12), the preceding APIs do not take effect in the Web component.
 
 ### Collecting Ads Blocking Information
-When ads blocking is enabled on the **Web** component, if any ad is blocked on the accessed web page, the [onAdsBlocked()](../reference/apis-arkweb/ts-basic-components-web.md#onadsblocked12) callback of the **Web** component notifies the application. You can collect blocking information and statistics as needed.
+When ads blocking is enabled on the **Web** component, if any ad is blocked on the accessed web page, the [onAdsBlocked()](../reference/apis-arkweb/ts-basic-components-web-attributes.md#onadsblocked12) callback of the **Web** component notifies the application. You can collect blocking information and statistics as needed.
 
 ```ts
 // xxx.ets

@@ -5,14 +5,14 @@ You can use the **Web** component to register application code with frontend pag
 
 Two methods are available for registering the application code:<br>
 
-- Call [javaScriptProxy()](../reference/apis-arkweb/ts-basic-components-web.md#javascriptproxy) during **Web** component initialization.
-- Call [registerJavaScriptProxy()](../reference/apis-arkweb/js-apis-webview.md#registerjavascriptproxy) after **Web** component initialization. This API must be used together with [deleteJavaScriptRegister](../reference/apis-arkweb/js-apis-webview.md#deletejavascriptregister) to prevent memory leak.
+- Call [javaScriptProxy()](../reference/apis-arkweb/ts-basic-components-web-attributes.md#javascriptproxy) during **Web** component initialization.
+- Call [registerJavaScriptProxy()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#registerjavascriptproxy) after **Web** component initialization. This API must be used together with [deleteJavaScriptRegister](../reference/apis-arkweb/js-apis-webview-WebviewController.md#deletejavascriptregister) to prevent memory leak.
 
 
 The following example registers the **test()** function with the frontend page. This way, the **test()** function can be triggered and run on the frontend page.
 
 
-- Sample code for using [javaScriptProxy()](../reference/apis-arkweb/ts-basic-components-web.md#javascriptproxy):
+- Sample code for using [javaScriptProxy()](../reference/apis-arkweb/ts-basic-components-web-attributes.md#javascriptproxy):
 
   ```ts
   // xxx.ets
@@ -67,7 +67,7 @@ The following example registers the **test()** function with the frontend page. 
   ```
 
 
-- Sample code for using [registerJavaScriptProxy()](../reference/apis-arkweb/js-apis-webview.md#registerjavascriptproxy):
+- Sample code for using [registerJavaScriptProxy()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#registerjavascriptproxy):
 
   ```ts
   // xxx.ets
@@ -136,7 +136,7 @@ The following example registers the **test()** function with the frontend page. 
 
   > **NOTE**
   >
-  > - If you use [registerJavaScriptProxy()](../reference/apis-arkweb/js-apis-webview.md#registerjavascriptproxy) to register a function, call [refresh()](../reference/apis-arkweb/js-apis-webview.md#refresh) for the function to take effect.
+  > - If you use [registerJavaScriptProxy()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#registerjavascriptproxy) to register a function, call [refresh()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#refresh) for the function to take effect.
 
 - The optional parameter permission is a JSON string. The following is an example:
   ```json

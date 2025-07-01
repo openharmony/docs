@@ -1,6 +1,6 @@
 # Previewing PDF Files
 
-The **Web** component provides the capability of previewing PDF files on web pages. The [src](../reference/apis-arkweb/ts-basic-components-web.md#web) parameter of the **Web** component and the [loadUrl()](../reference/apis-arkweb/js-apis-webview.md#loadurl) API can be used to transfer and load PDF files on the application side. Based on the source of PDF files, there are three common scenarios: loading online PDF files, loading local PDF files, and loading in-application resource PDF files.
+The **Web** component provides the capability of previewing PDF files on web pages. The [src](../reference/apis-arkweb/ts-basic-components-web.md#web) parameter of the **Web** component and the [loadUrl()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#loadurl) API can be used to transfer and load PDF files on the application side. Based on the source of PDF files, there are three common scenarios: loading online PDF files, loading local PDF files, and loading in-application resource PDF files.
 
 When previewing and loading an online PDF file, declare the network access permission in the **module.json5** file. For details, see [Declaring Permissions](../security/AccessToken/declare-permissions.md).
 
@@ -40,13 +40,13 @@ struct WebComponent {
 }
 ```
 
-In the preceding example, whether the side navigation bar is expanded on the PDF preview page is recorded based on user operations using **window.localStorage**. Therefore, you need to enable the DOM Storage API using [domStorageAccess](../reference/apis-arkweb/ts-basic-components-web.md#domstorageaccess).
+In the preceding example, whether the side navigation bar is expanded on the PDF preview page is recorded based on user operations using **window.localStorage**. Therefore, you need to enable the DOM Storage API using [domStorageAccess](../reference/apis-arkweb/ts-basic-components-web-attributes.md#domstorageaccess).
 
   ```
   Web().domStorageAccess(true)
   ```
 
-Specify the PDF file to be loaded by default when the **Web** component is created. When the default PDF file is loaded, if you want to change the PDF file displayed on the **Web** component, you can call the [loadUrl()](../reference/apis-arkweb/js-apis-webview.md#loadurl) API to load the specified PDF file. The address of the first parameter variable *src* of [Web](../reference/apis-arkweb/ts-basic-components-web.md#web) component cannot be dynamically changed through a state variable (for example, *@State*). To change the address, reload the variable using [loadUrl()](../reference/apis-arkweb/js-apis-webview.md#loadurl).
+Specify the PDF file to be loaded by default when the **Web** component is created. When the default PDF file is loaded, if you want to change the PDF file displayed on the **Web** component, you can call the [loadUrl()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#loadurl) API to load the specified PDF file. The address of the first parameter variable *src* of [Web](../reference/apis-arkweb/ts-basic-components-web.md#web) component cannot be dynamically changed through a state variable (for example, *@State*). To change the address, reload the variable using [loadUrl()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#loadurl).
 
 There are three scenarios for loading and previewing PDF files:
 - To preview and load an online PDF file:
@@ -58,7 +58,7 @@ There are three scenarios for loading and previewing PDF files:
   })
     .domStorageAccess(true)
   ```
-- To preview and load PDF files in the application sandbox, you need to configure the [fileAccess](../reference/apis-arkweb/ts-basic-components-web.md#fileaccess) permission of the file system in the application:
+- To preview and load PDF files in the application sandbox, you need to configure the [fileAccess](../reference/apis-arkweb/ts-basic-components-web-attributes.md#fileaccess) permission of the file system in the application:
 
   ```ts
   Web({ 

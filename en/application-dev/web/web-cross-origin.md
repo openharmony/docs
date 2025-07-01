@@ -12,9 +12,9 @@ Access to script at 'xxx' from origin 'xxx' has been blocked by CORS policy: Cro
 
 - Method 1
 
-  For the **Web** component to load local resources across origins, use HTTP or HTTPS, instead of file or resource, as the protocol. The domain name of the URL to use should be one that you customize for individuals or organizations. Make sure it does not conflict with any existing domain name in the real world. You also need to use the [onInterceptRequest](../reference/apis-arkweb/ts-basic-components-web.md#oninterceptrequest9) API of the **Web** component to intercept and replace local resources.
+  For the **Web** component to load local resources across origins, use HTTP or HTTPS, instead of file or resource, as the protocol. The domain name of the URL to use should be one that you customize for individuals or organizations. Make sure it does not conflict with any existing domain name in the real world. You also need to use the [onInterceptRequest](../reference/apis-arkweb/ts-basic-components-web-events.md#oninterceptrequest9) API of the **Web** component to intercept and replace local resources.
 
-  In the following example, the **index.html** and **js/script.js** files are stored in the **rawfile** folder of the project directory. If the resource protocol is used to access **index.html**, loading **js/script.js** will fail due to cross-origin blocking. To resolve this issue, the HTTPS protocol is used instead, as in **https:\//www\.example.com/**, and the [onInterceptRequest](../reference/apis-arkweb/ts-basic-components-web.md#oninterceptrequest9) API is used to replace resources. In this way, **js/script.js** can be successfully loaded.
+  In the following example, the **index.html** and **js/script.js** files are stored in the **rawfile** folder of the project directory. If the resource protocol is used to access **index.html**, loading **js/script.js** will fail due to cross-origin blocking. To resolve this issue, the HTTPS protocol is used instead, as in **https:\//www\.example.com/**, and the **onInterceptRequest** API is used to replace resources. In this way, **js/script.js** can be successfully loaded.
 
   ```ts
   // main/ets/pages/Index.ets
@@ -100,7 +100,7 @@ Access to script at 'xxx' from origin 'xxx' has been blocked by CORS policy: Cro
 
 - Method 2
 
-  Use [setPathAllowingUniversalAccess](../reference/apis-arkweb/js-apis-webview.md#setpathallowinguniversalaccess12) to set a path list for cross-origin access to local files using the file protocol. Note that only the resources in the path list can be accessed by the file protocol when this method is used. In this case, the behavior of [fileAccess](../reference/apis-arkweb/ts-basic-components-web.md#fileaccess) is overwritten. The paths in the list must be any of the following directories:
+  Use [setPathAllowingUniversalAccess](../reference/apis-arkweb/js-apis-webview-WebviewController.md#setpathallowinguniversalaccess12) to set a path list for cross-origin access to local files using the file protocol. Note that only the resources in the path list can be accessed by the file protocol when this method is used. In this case, the behavior of [fileAccess](../reference/apis-arkweb/ts-basic-components-web-attributes.md#fileaccess) is overwritten. The paths in the list must be any of the following directories:
 
   1. The application file directory and its subdirectories, which can be obtained through [Context.filesDir](../reference/apis-ability-kit/js-apis-inner-application-context.md#context), such as:
 
@@ -112,7 +112,7 @@ Access to script at 'xxx' from origin 'xxx' has been blocked by CORS policy: Cro
   * /data/storage/el1/bundle/entry/resource/resfile
   * /data/storage/el1/bundle/entry/resource/resfile/example
 
-  If a path is not any of the preceding paths, an error code 401 is reported and the path list fails to be set. When the path list is empty, the accessible files for the file protocol are subject to the behavior of [fileAccess](../reference/apis-arkweb/ts-basic-components-web.md#fileaccess). The following is an example:
+  If a path is not any of the preceding paths, an error code 401 is reported and the path list fails to be set. When the path list is empty, the accessible files for the file protocol are subject to the behavior of [fileAccess](../reference/apis-arkweb/ts-basic-components-web-attributes.md#fileaccess). The following is an example:
 
   ```ts
   // main/ets/pages/Index.ets

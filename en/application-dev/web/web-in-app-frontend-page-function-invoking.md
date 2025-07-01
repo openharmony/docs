@@ -1,8 +1,8 @@
 # Invoking Frontend Page Functions on the Application
 
-You can call [runJavaScript()](../reference/apis-arkweb/js-apis-webview.md#runjavascript) and [runJavaScriptExt()](../reference/apis-arkweb/js-apis-webview.md#runjavascriptext10) on an application to call JavaScript functions of frontend pages.
+You can call [runJavaScript()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#runjavascript) and [runJavaScriptExt()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#runjavascriptext10) on an application to call JavaScript functions of frontend pages.
 
-The parameter types of [runJavaScript()](../reference/apis-arkweb/js-apis-webview.md#runjavascript) and [runJavaScriptExt()](../reference/apis-arkweb/js-apis-webview.md#runjavascriptext10) are different. In [runJavaScriptExt()](../reference/apis-arkweb/js-apis-webview.md#runjavascriptext10), the input parameter type can be **string** or **ArrayBuffer** (JavaScript script data obtained from files), and the execution result can be obtained through **AsyncCallback**.
+The parameter types of [runJavaScript()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#runjavascript) and [runJavaScriptExt()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#runjavascriptext10) are different. In [runJavaScriptExt()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#runjavascriptext10), the input parameter type can be **string** or **ArrayBuffer** (JavaScript script data obtained from files), and the execution result can be obtained through **AsyncCallback**.
 
 In the following example, when a user clicks the **runJavaScript** button on the application, the **htmlTest()** API of the frontend page will be triggered.
 

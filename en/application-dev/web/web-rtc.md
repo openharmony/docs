@@ -1,6 +1,6 @@
 # Holding a Video Conference with WebRTC
 
-The **Web** component can start a camera and microphone by calling the W3C Standards-compliant API **navigator.mediaDevices.getUserMedia()** in JavaScript, and receive the permission request notification through [onPermissionRequest](../reference/apis-arkweb/ts-basic-components-web.md#onpermissionrequest9). To call these APIs, you need to declare the audio permissions in the **module.json5** file.
+The **Web** component can start a camera and microphone by calling the W3C Standards-compliant API **navigator.mediaDevices.getUserMedia()** in JavaScript, and receive the permission request notification through [onPermissionRequest](../reference/apis-arkweb/ts-basic-components-web-events.md#onpermissionrequest9). To call these APIs, you need to declare the audio permissions in the **module.json5** file.
 
 - For details about how to add audio permissions, see [Declaring Permissions](../security/AccessToken/declare-permissions.md).
 

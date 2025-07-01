@@ -7,9 +7,9 @@ A cookie is a segment of data sent from the server to the client to uniquely ide
 
 When the **SameSite** attribute of a cookie is not specified, the default value is **SameSite=Lax**. The cookie is sent only when the user navigates to the source site of the cookie and is not sent in cross-site requests.
 
-The **Web** component provides the [WebCookieManager](../reference/apis-arkweb/js-apis-webview.md#webcookiemanager) class for you to manage cookie information, which is stored in the **/proc/{pid}/root/data/storage/el2/base/cache/web/Cookiesd** file in the application sandbox path.
+The **Web** component provides the [WebCookieManager](../reference/apis-arkweb/js-apis-webview-WebCookieManager.md) class for you to manage cookie information, which is stored in the **/proc/{pid}/root/data/storage/el2/base/cache/web/Cookiesd** file in the application sandbox path.
 
-The following uses [configCookieSync()](../reference/apis-arkweb/js-apis-webview.md#configcookiesync11) as an example to describe how to set a cookie's value to **value=test** for **www\.example.com**. For details about functions and usage of other APIs, see [WebCookieManager()](../reference/apis-arkweb/js-apis-webview.md#webcookiemanager).
+The following uses [configCookieSync()](../reference/apis-arkweb/js-apis-webview-WebCookieManager.md#configcookiesync11) as an example to describe how to set a cookie's value to **value=test** for **www\.example.com**. For details about functions and usage of other APIs, see [WebCookieManager()](../reference/apis-arkweb/js-apis-webview-WebCookieManager.md).
 
 
 ```ts
@@ -46,7 +46,7 @@ Network resource requests are relatively time-consuming during website access. Y
 
 ### Cache
 
-Use [cacheMode()](../reference/apis-arkweb/ts-basic-components-web.md#cachemode) to configure the cache mode for page resources. Four cache modes are supported:
+Use [cacheMode()](../reference/apis-arkweb/ts-basic-components-web-attributes.md#cachemode) to configure the cache mode for page resources. Four cache modes are supported:
 
 - **Default**: Page resources in a cache that has not expired are preferentially used. If the cache does not exist, page resources are obtained from the network.
 
@@ -81,7 +81,7 @@ struct WebComponent {
 ```
 
 
-  To obtain up-to-date resources, you can use [removeCache()](../reference/apis-arkweb/js-apis-webview.md#removecache) to clear cached resources. The sample code is as follows:
+  To obtain up-to-date resources, you can use [removeCache()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#removecache) to clear cached resources. The sample code is as follows:
 
 ```ts
 // xxx.ets
@@ -115,7 +115,7 @@ struct WebComponent {
 
 ### Dom Storage
 
-Dom Storage falls into Session Storage and Local Storage. Wherein, Session Storage applies to the temporary data, and its data storage and release follow the session lifecycle; Local Storage applies to the persistent data, which is flushed to the application directory. In both storage modes, data is stored in a form of key-value pair, and is usually used when a page that needs to be stored on the client is accessed. You can use [domStorageAccess()](../reference/apis-arkweb/ts-basic-components-web.md#domstorageaccess) to enable Dom Storage. The following is the sample code:
+Dom Storage falls into Session Storage and Local Storage. Wherein, Session Storage applies to the temporary data, and its data storage and release follow the session lifecycle; Local Storage applies to the persistent data, which is flushed to the application directory. In both storage modes, data is stored in a form of key-value pair, and is usually used when a page that needs to be stored on the client is accessed. You can use [domStorageAccess()](../reference/apis-arkweb/ts-basic-components-web-attributes.md#domstorageaccess) to enable Dom Storage. The following is the sample code:
 
 
 

@@ -52,7 +52,7 @@ const htmlBlob = await clipboardItems[0].getType('text/html');
 
 > **NOTE**
 >
-> To access the clipboard content through the **read()** and **readText()** methods of the asynchronous API, you need to [request the permission to access the pasteboard](../basic-services/pasteboard/get-pastedata-permission-guidelines.md#): **ohos.permission.READ_PASTEBOARD**.
+> To access the clipboard content through the **read()** and **readText()** methods of the asynchronous API, you need to [request the permission to access the pasteboard](../basic-services/pasteboard/get-pastedata-permission-guidelines.md): **ohos.permission.READ_PASTEBOARD**.
 
 ```ts
 // xxx.ets
