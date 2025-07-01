@@ -10,10 +10,10 @@ When the PixelMap is large and uses regular memory, the RenderService main threa
 
 The memory types for the PixelMap are as follows:
 
-- DMA_ALLOC: ION memory. IPC latency is relatively low, and texture upload is not required.
+- DMA_ALLOC: DMA memory. IPC latency is relatively low, and texture upload is not required.
 - SHARE_MEMORY: shared memory. IPC latency is minimal, but texture upload is required.
 
-Given that the current memory allocation strategy of the decoding API cannot meet the requirements in certain scenarios, the system provides [OH_ImageSourceNative_CreatePixelmapUsingAllocator](../../reference/apis-image-kit/_image___native_module.md#oh_imagesourcenative_createpixelmapusingallocator), allowing you to customize the memory allocation type for decoding.
+Given that the current memory allocation strategy of the decoding API cannot meet the requirements in certain scenarios, the system provides [OH_ImageSourceNative_CreatePixelmapUsingAllocator](../../reference/apis-image-kit/capi-image-source-native-h.md#oh_imagesourcenative_createpixelmapusingallocator), allowing you to customize the memory allocation type for decoding.
 
 ### Differences Between DMA_ALLOC and SHARE_MEMORY
 
@@ -43,14 +43,14 @@ Given that the current memory allocation strategy of the decoding API cannot mee
 
 ## Default Memory Allocation Method
 
-When [OH_ImageSourceNative_CreatePixelmap](../../reference/apis-image-kit/_image___native_module.md#oh_imagesourcenative_createpixelmap) is called for decoding, different memory allocation types are used in different scenarios.
+When [OH_ImageSourceNative_CreatePixelmap](../../reference/apis-image-kit/capi-image-source-native-h.md#oh_imagesourcenative_createpixelmap) is called for decoding, different memory allocation types are used in different scenarios.
 
 DMA_ALLOC is used in the following scenarios:
 
 - Decoding HDR images.
 - Decoding HEIF images.
-- Decoding JPEG images, when the original image's width and height are both between 1024 and 8192, [desiredPixelFormat](../../reference/apis-image-kit/_image___native_module.md#oh_decodingoptions) is RGBA_8888 or NV21, and the hardware is not busy (concurrency is 3).
-- Decoding images in other formats. The value of [desiredSize](../../reference/apis-image-kit/_image___native_module.md#oh_decodingoptions) must be greater than or equal to 512 * 512 (consider the original image size if **desiredSize** is not set), and the width must be a multiple of 64.
+- Decoding JPEG images, when the original image's width and height are both between 1024 and 8192, [desiredPixelFormat](../../reference/apis-image-kit/capi-image-nativemodule-oh-decodingoptions.md) is RGBA_8888 or NV21, and the hardware is not busy (concurrency is 3).
+- Decoding images in other formats. The value of [desiredSize](../../reference/apis-image-kit/capi-image-nativemodule-oh-decodingoptions.md) must be greater than or equal to 512 * 512 (consider the original image size if **desiredSize** is not set), and the width must be a multiple of 64.
 
 In all other cases, SHARE_MEMORY is used.
 
@@ -58,7 +58,7 @@ In all other cases, SHARE_MEMORY is used.
 
 By default, the system selects the optimal memory allocation method for performance. In specific scenarios, applications can use a specified memory allocation method.
 
-When you call [OH_ImageSourceNative_CreatePixelmapUsingAllocator](../../reference/apis-image-kit/_image___native_module.md#oh_imagesourcenative_createpixelmapusingallocator) for decoding, the system automatically selects hardware or software decoding based on the [decoding options](../../reference/apis-image-kit/_image___native_module.md#oh_decodingoptions) and [memory application type](../../reference/apis-image-kit/_image___native_module.md#image_allocator_type).
+When you call [OH_ImageSourceNative_CreatePixelmapUsingAllocator](../../reference/apis-image-kit/capi-image-source-native-h.md#oh_imagesourcenative_createpixelmapusingallocator) for decoding, the system automatically selects hardware or software decoding based on the [decoding options](../../reference/apis-image-kit/capi-image-nativemodule-oh-decodingoptions.md) and [memory application type](../../reference/apis-image-kit/capi-image-source-native-h.md#image_allocator_type).
 
 When creating a PixelMap, the system determines whether to use DMA_ALLOC or SHARE_MEMORY based on the user-specified allocator type.
 
@@ -70,7 +70,7 @@ The current image decoding feature has the following restrictions on memory allo
 - Hardware decoding supports only DMA_ALLOC.
 - SVG image decoding supports only SHARE_MEMORY.
 
-When [OH_ImageSourceNative_CreatePixelmapUsingAllocator](../../reference/apis-image-kit/_image___native_module.md#oh_imagesourcenative_createpixelmapusingallocator) is used for decoding, if the specified memory allocation mode does not match the image format or decoding method, an exception indicating a memory allocation failure is thrown.
+When [OH_ImageSourceNative_CreatePixelmapUsingAllocator](../../reference/apis-image-kit/capi-image-source-native-h.md#oh_imagesourcenative_createpixelmapusingallocator) is used for decoding, if the specified memory allocation mode does not match the image format or decoding method, an exception indicating a memory allocation failure is thrown.
 
 If the allocation type is set to AUTO, the system determines whether to use DMA_ALLOC or SHARE_MEMORY based on the decoding and rendering time.
 
@@ -84,14 +84,23 @@ When memory is allocated using DMA_ALLOC, the stride must meet the hardware alig
 
 - The stride value must be an integer multiple of the number of bytes required by the hardware platform.
 - If the stride calculated using the above formula does not meet the alignment requirements, the system automatically pads the data.
-  The stride value can be obtained by calling [OH_PixelmapNative_GetImageInfo](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapnative_getimageinfo).
+  The stride value can be obtained by calling [OH_PixelmapNative_GetImageInfo](../../reference/apis-image-kit/capi-pixelmap-native-h.md#oh_pixelmapnative_getimageinfo).
 
-1. Call [OH_PixelmapNative_GetImageInfo](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapnative_getimageinfo) to obtain an **OH_Pixelmap_ImageInfo** object.
-2. Call [OH_PixelmapImageInfo_GetRowStride](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapimageinfo_getrowstride) to obtain the stride value.
+1. Call [OH_PixelmapNative_GetImageInfo](../../reference/apis-image-kit/capi-pixelmap-native-h.md#oh_pixelmapnative_getimageinfo) to obtain an OH_Pixelmap_ImageInfo object.
+2. Call [OH_PixelmapImageInfo_GetRowStride](../../reference/apis-image-kit/capi-pixelmap-native-h.md#oh_pixelmapimageinfo_getrowstride) to obtain the stride value.
 
-The sample code for obtaining and operating the stride by the C APIs is as follows:
+The sample code for obtaining and operating the stride by the C APIs is as follows: Open the **src/main/cpp/CMakeLists.txt** file of the native project, add **libimage_packer.so** and **libhilog_ndk.z.so** (on which the log APIs depend) to the **target_link_libraries** dependency.
+
+```txt
+target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_source.so libimage_packer.so libpixelmap.so)
+```
 
 ```C++
+#include <cstring>
+#include <multimedia/image_framework/image/image_common.h>
+#include <multimedia/image_framework/image/pixelmap_native.h>
+#include <multimedia/image_framework/image/image_source_native.h>
+
 struct PixelmapInfo {
     uint32_t width = 0;
     uint32_t height = 0;
@@ -117,6 +126,38 @@ static void GetPixelmapAddrInfo(OH_PixelmapNative *pixelmap, PixelmapInfo *info)
     OH_PixelmapNative_GetByteCount(pixelmap, &info->byteCount);
     OH_PixelmapNative_GetAllocationByteCount(pixelmap, &info->allocationByteCount);
     return;
+}
+
+int32_t GetPixelFormatBytes(int32_t pixelFormat) {
+    switch (pixelFormat) {
+        case 2: // PIXEL_FORMAT_RGB_565
+            return 2;
+        case 3: // PIXEL_FORMAT_RGBA_8888
+        case 4: // PIXEL_FORMAT_BGRA_8888
+            return 4;
+        case 5: // PIXEL_FORMAT_RGB_888
+            return 3;
+        case 6: // PIXEL_FORMAT_ALPHA_8
+            return 1;
+        case 7: // PIXEL_FORMAT_RGBA_F16
+            return 8; // 16-bit floating-point number per channel, four channels: 4 * 2 bytes = 8 bytes
+        case 8: // PIXEL_FORMAT_NV21
+        case 9: // PIXEL_FORMAT_NV12'
+            // NV21 and NV12 are YUV 4:2:0 semi-planar formats:
+            // - The Y component occupies width × height bytes (1 byte per pixel).
+            // - The UV components are interleaved (UV or VU) and occupy width × height / 2 bytes.
+            // - Total bytes = width × height × 1.5
+            // The return type of the function is int32_t, and the function cannot return a decimal number. Therefore, 2 is returned after rounding up.
+            // Although the actual average number of bytes per pixel is 1.5, returning 2 ensures secure memory allocation and avoids overflows. The trade-off is that you need to handle the stride carefully.
+            return 2; // Semi-planar YUV, use 2 as approximate per-byte-per-pixel
+        case 10: // PIXEL_FORMAT_RGBA_1010102
+            return 4;
+        case 11: // PIXEL_FORMAT_YCBCR_P010
+        case 12: // PIXEL_FORMAT_YCRCB_P010
+            return 2; // 10-bit YUV format, usually aligned to 16 bits (2 bytes)
+        default: // PIXEL_FORMAT_UNKNOWN or unsupported
+            return 0;
+    }
 }
 
 OH_PixelmapNative* TestStrideWithAllocatorType() {
