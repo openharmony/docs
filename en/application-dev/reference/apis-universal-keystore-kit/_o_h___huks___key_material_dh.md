@@ -8,7 +8,7 @@ Defines the structure of a DH key.
 **Since:**
 9
 
-**Related module:** [HuksTypeApi](_huks_type_api.md)
+**Related module**: [HuksTypeApi](_huks_type_api.md)
 
 **Header file**: [native_huks_type.h](native__huks__type_8h.md)
 
