@@ -650,8 +650,6 @@
 | 名称     | 描述                                       |
 | -------- | ------------------------------------------ |
 | SYSTEM   | 系统默认非安全区域，包括状态栏、导航栏。   |
-| KEYBOARD<sup>20+</sup> | 软键盘区域。                               |
-| ALL<sup>20+</sup>   | 同时包含SYSTEM和KEYBOARD区域。 |
 
 ## LayoutSafeAreaEdge<sup>12+</sup>
 
