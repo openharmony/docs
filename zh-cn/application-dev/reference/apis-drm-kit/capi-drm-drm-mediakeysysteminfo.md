@@ -2,7 +2,7 @@
 
 ## 概述
 
-用于播放器从媒体源获取媒体密钥系统信息。
+加密媒体内容的DRM信息。
 
 **起始版本：** 11
 
@@ -17,6 +17,6 @@
 | 名称 | 描述 |
 | -- | -- |
 | uint32_t psshCount | PSSH计数。 |
-| DRM_PsshInfo psshInfo[MAX_PSSH_INFO_COUNT] | PSSH信息。 |
+| [DRM_PsshInfo](capi-drm-drm-psshinfo.md) psshInfo[MAX_PSSH_INFO_COUNT] | PSSH信息。 |
 
 

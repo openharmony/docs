@@ -16,12 +16,12 @@
 
 | 名称 | 描述 |
 | -- | -- |
-| DRM_MediaKeyType type | 密钥类型。 |
+| [DRM_MediaKeyType](capi-native-drm-common-h.md#drm_mediakeytype) type | 密钥类型。 |
 | int32_t initDataLen | 初始数据长度。 |
 | uint8_t initData[MAX_INIT_DATA_LEN] | base64解码后格式为PSSH的初始数据。 |
 | char mimeType[MAX_MIMETYPE_LEN] | 媒体上下文的mime类型。 |
 | uint32_t optionsCount | 选项数据计数。 |
-| char optionName[MAX_MEDIA_KEY_REQUEST_OPTION_COUNT][MAX_MEDIA_KEY_REQUEST_OPTION_NAME_LEN] | 选项将应用程序集命名到drm框架。 |
-| char optionData[MAX_MEDIA_KEY_REQUEST_OPTION_COUNT][MAX_MEDIA_KEY_REQUEST_OPTION_DATA_LEN] | 选项数据应用程序设置到drm框架。 |
+| char optionName[MAX_MEDIA_KEY_REQUEST_OPTION_COUNT][MAX_MEDIA_KEY_REQUEST_OPTION_NAME_LEN] | 选项名称集合。 |
+| char optionData[MAX_MEDIA_KEY_REQUEST_OPTION_COUNT][MAX_MEDIA_KEY_REQUEST_OPTION_DATA_LEN] | 选项数据集合。 |
 
 

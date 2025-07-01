@@ -2,7 +2,7 @@
 
 ## 概述
 
-uuid的PSSH信息。
+DRM内容保护系统专用头（Protection System Specific Header）信息。
 
 **起始版本：** 11
 
@@ -16,8 +16,8 @@ uuid的PSSH信息。
 
 | 名称 | 描述 |
 | -- | -- |
-| uint8_t uuid[DRM_UUID_LEN] | UUID。 |
+| uint8_t uuid[DRM_UUID_LEN] | UUID的PSSH信息。 |
 | int32_t dataLen | PSSH数据长度。 |
-| uint8_t data[MAX_PSSH_DATA_LEN] | uint8_t PSSH数据。 |
+| uint8_t data[MAX_PSSH_DATA_LEN] | PSSH数据。 |
 
 

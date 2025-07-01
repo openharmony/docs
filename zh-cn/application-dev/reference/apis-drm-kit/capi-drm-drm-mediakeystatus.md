@@ -2,7 +2,7 @@
 
 ## 概述
 
-Media key status like pocily etc.
+媒体密钥状态。
 
 **起始版本：** 11
 

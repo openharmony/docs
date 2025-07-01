@@ -16,7 +16,7 @@ MediaKeySession_Callback结构体，用于监听密钥过期、密钥更改等�
 
 | 名称 | 描述 |
 | -- | -- |
-| OH_MediaKeySession_EventCallback eventCallback | 正常事件回调，如密钥过期等。 |
-| OH_MediaKeySession_KeyChangeCallback keyChangeCallback | 密钥更改事件的密钥更改回调。 |
+| [MediaKeySession_EventCallback](capi-native-mediakeysession-h.md#mediakeysession_eventcallback) eventCallback | 正常事件回调，如密钥过期等。 |
+| [MediaKeySession_KeyChangeCallback](capi-native-mediakeysession-h.md#mediakeysession_keychangecallback) keyChangeCallback | 密钥更改事件的密钥更改回调。 |
 
 

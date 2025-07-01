@@ -25,29 +25,57 @@
 | [DRM_Statistics](capi-drm-drm-statistics.md) | DRM_Statistics | MediaKeySystem的度量信息。 |
 | [DRM_OfflineMediakeyIdArray](capi-drm-drm-offlinemediakeyidarray.md) | DRM_OfflineMediakeyIdArray | 离线媒体密钥ID数组。 |
 | [DRM_KeysInfo](capi-drm-drm-keysinfo.md) | DRM_KeysInfo | 媒体密钥信息。 |
-| [DRM_MediaKeyStatus](capi-drm-drm-mediakeystatus.md) | DRM_MediaKeyStatus | Media key status like pocily etc. |
-| [DRM_PsshInfo](capi-drm-drm-psshinfo.md) | DRM_PsshInfo | uuid的PSSH信息。 |
-| [DRM_MediaKeySystemInfo](capi-drm-drm-mediakeysysteminfo.md) | DRM_MediaKeySystemInfo | 用于播放器从媒体源获取媒体密钥系统信息。 |
-| [DRM_MediaKeySystemDescription](capi-drm-drm-mediakeysystemdescription.md) | DRM_MediaKeySystemDescription | DRM插件的名称和UUID。 |
-| [MediaKeySystem](capi-drm-mediakeysystem.md) | MediaKeySystem | 媒体密钥系统结构。 |
-| [MediaKeySession](capi-drm-mediakeysession.md) | MediaKeySession | 媒体密钥会话结构。 |
+| [DRM_MediaKeyStatus](capi-drm-drm-mediakeystatus.md) | DRM_MediaKeyStatus | 媒体密钥状态。 |
+| [DRM_PsshInfo](capi-drm-drm-psshinfo.md) | DRM_PsshInfo | DRM内容保护系统专用头（Protection System Specific Header）信息。 |
+| [DRM_MediaKeySystemInfo](capi-drm-drm-mediakeysysteminfo.md) | DRM_MediaKeySystemInfo | 加密媒体内容的DRM信息。 |
+| [DRM_MediaKeySystemDescription](capi-drm-drm-mediakeysystemdescription.md) | DRM_MediaKeySystemDescription | DRM解决方案名称及其UUID的列表。|
+| [MediaKeySystem](capi-drm-mediakeysystem.md) | MediaKeySystem | MediaKeySystem结构。 |
+| [MediaKeySession](capi-drm-mediakeysession.md) | MediaKeySession | MediaKeySession结构。  |
 
 ### 枚举
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
 | [DRM_EventType](#drm_eventtype) | DRM_EventType | 监听事件类型。 |
-| [DRM_ContentProtectionLevel](#drm_contentprotectionlevel) | DRM_ContentProtectionLevel | 内容保护级别类型。 |
-| [DRM_MediaKeyType](#drm_mediakeytype) | DRM_MediaKeyType | 许可证类型。 |
-| [DRM_MediaKeyRequestType](#drm_mediakeyrequesttype) | DRM_MediaKeyRequestType | 许可证请求类型。 |
-| [DRM_OfflineMediaKeyStatus](#drm_offlinemediakeystatus) | DRM_OfflineMediaKeyStatus | 离线许可证状态。 |
-| [DRM_CertificateStatus](#drm_certificatestatus) | DRM_CertificateStatus | 设备证书状态类型。 |
+| [DRM_ContentProtectionLevel](#drm_contentprotectionlevel) | DRM_ContentProtectionLevel | 内容保护级别。 |
+| [DRM_MediaKeyType](#drm_mediakeytype) | DRM_MediaKeyType | 媒体密钥类型。 |
+| [DRM_MediaKeyRequestType](#drm_mediakeyrequesttype) | DRM_MediaKeyRequestType | 媒体密钥请求类型。 |
+| [DRM_OfflineMediaKeyStatus](#drm_offlinemediakeystatus) | DRM_OfflineMediaKeyStatus | 离线媒体密钥状态。 |
+| [DRM_CertificateStatus](#drm_certificatestatus) | DRM_CertificateStatus | 设备DRM证书状态。 |
 
 ### 函数
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
 | [typedef void (\*DRM_MediaKeySystemInfoCallback)(DRM_MediaKeySystemInfo *mediaKeySystemInfo)](#drm_mediakeysysteminfocallback) | DRM_MediaKeySystemInfoCallback | 应用为从媒体源获取DRM信息而设置的回调。 |
+
+### 宏定义
+
+| 名称 | 描述 |
+| -- | -- |
+| MAX_MEDIA_KEY_REQUEST_OPTION_COUNT 16 | 媒体密钥请求可选数据的最大数量。<br>**起始版本：** 11 |
+| MAX_MEDIA_KEY_REQUEST_OPTION_NAME_LEN 64 | 媒体密钥请求可选数据名称的最大长度。<br>**起始版本：** 11 |
+| MAX_MEDIA_KEY_REQUEST_OPTION_DATA_LEN 128 | 媒体密钥请求可选数据的最大长度。<br>**起始版本：** 11 |
+| MAX_INIT_DATA_LEN 2048 | 媒体密钥请求初始化数据的最大长度。<br>**起始版本：** 11 |
+| MAX_MIMETYPE_LEN 64 | 媒体mimetype的最大长度。<br>**起始版本：** 11 |
+| MAX_MEDIA_KEY_REQUEST_DATA_LEN 8192 | 媒体密钥请求数据的最大长度。<br>**起始版本：** 11 |
+| MAX_DEFAULT_URL_LEN 2048 | URL最大长度。<br>**起始版本：** 11 |
+| MAX_STATISTICS_COUNT 10 | 度量记录的最大数量。<br>**起始版本：** 11 |
+| MAX_STATISTICS_NAME_LEN 64 | 度量记录名称的最大长度。<br>**起始版本：** 11 |
+| MAX_STATISTICS_BUFFER_LEN 256 | 度量记录缓冲区的最大长度。<br>**起始版本：** 11 |
+| MAX_OFFLINE_MEDIA_KEY_ID_COUNT 512 | 离线媒体密钥标识的最大数量。<br>**起始版本：** 11 |
+| MAX_OFFLINE_MEDIA_KEY_ID_LEN 64 | 离线媒体密钥标识的最大长度。<br>**起始版本：** 11 |
+| MAX_KEY_INFO_COUNT 64 | 密钥信息的最大数量。<br>**起始版本：** 11 |
+| MAX_KEY_ID_LEN 16 | 密钥标识的最大长度。<br>**起始版本：** 11 |
+| MAX_KEY_STATUS_VALUE_LEN 128 | 密钥状态值的最大长度。<br>**起始版本：** 11 |
+| MAX_MEDIA_KEY_STATUS_COUNT 64 | 媒体密钥状态的最大数量。<br>**起始版本：** 11 |
+| MAX_MEDIA_KEY_STATUS_NAME_LEN 64 | 媒体密钥状态名称的最大长度。<br>**起始版本：** 11 |
+| MAX_MEDIA_KEY_STATUS_VALUE_LEN 256 | 媒体密钥状态值的最大长度。<br>**起始版本：** 11 |
+| DRM_UUID_LEN 16 | DRM解决方案的UUID长度。<br>**起始版本：** 11 |
+| MAX_PSSH_DATA_LEN 2048 | PSSH（Protected System Specific Header）信息的最大长度。<br>**起始版本：** 11 |
+| MAX_PSSH_INFO_COUNT 8 | PSSH（Protected System Specific Header）信息的最大数量。<br>**起始版本：** 11 |
+| MAX_MEDIA_KEY_SYSTEM_NAME_LEN 128 | MediaKeySystem名称的最大长度。<br>**起始版本：** 12 |
+| MAX_MEDIA_KEY_SYSTEM_NUM 8 | MediaKeySystem的最大数量。<br>**起始版本：** 12 |
 
 ## 枚举类型说明
 
@@ -69,7 +97,7 @@ enum DRM_EventType
 | EVENT_PROVISION_REQUIRED = 201 | 设备证书请求事件。 |
 | EVENT_KEY_REQUIRED = 202 | 密钥请求事件。 |
 | EVENT_KEY_EXPIRED = 203 | 密钥过期事件。 |
-| EVENT_VENDOR_DEFINED = 204 | 第三方定义事件。 |
+| EVENT_VENDOR_DEFINED = 204 | DRM解决方案自定义事件。 |
 | EVENT_EXPIRATION_UPDATE = 206 | 密钥过期更新事件。 |
 
 ### DRM_ContentProtectionLevel
@@ -80,7 +108,7 @@ enum DRM_ContentProtectionLevel
 
 **描述**
 
-内容保护级别类型。
+内容保护级别。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -102,7 +130,7 @@ enum DRM_MediaKeyType
 
 **描述**
 
-许可证类型。
+媒体密钥类型。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -121,7 +149,7 @@ enum DRM_MediaKeyRequestType
 
 **描述**
 
-许可证请求类型。
+媒体密钥请求类型。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -144,7 +172,7 @@ enum DRM_OfflineMediaKeyStatus
 
 **描述**
 
-离线许可证状态。
+离线媒体密钥状态。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -164,7 +192,7 @@ enum DRM_CertificateStatus
 
 **描述**
 
-设备证书状态类型。
+设备DRM证书状态。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -172,11 +200,11 @@ enum DRM_CertificateStatus
 
 | 枚举项 | 描述 |
 | -- | -- |
-| CERT_STATUS_PROVISIONED = 0 | 设备已安装设备证书。 |
-| CERT_STATUS_NOT_PROVISIONED | 设备未安装设备证书。 |
-| CERT_STATUS_EXPIRED | 设备证书过期。 |
-| CERT_STATUS_INVALID | 无效设备证书。 |
-| CERT_STATUS_UNAVAILABLE | 设备证书不可用。 |
+| CERT_STATUS_PROVISIONED = 0 | 设备已安装设备DRM证书。 |
+| CERT_STATUS_NOT_PROVISIONED | 设备未安装设备DRM证书或证书状态异常。 |
+| CERT_STATUS_EXPIRED | 设备DRM证书过期。 |
+| CERT_STATUS_INVALID | 设备DRM证书无效。 |
+| CERT_STATUS_UNAVAILABLE | 设备DRM证书不可用。 |
 
 
 ## 函数说明
