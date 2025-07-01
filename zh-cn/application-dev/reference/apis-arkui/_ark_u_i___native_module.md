@@ -8405,7 +8405,7 @@ int32_t OH_ArkUI_NodeUtils_GetNodeUniqueId(ArkUI_NodeHandle node, int32_t* uniqu
 | 名称 | 描述 |
 | -------- | -------- |
 | node | ArkUI节点指针。 |
-| uniqueId | 目标节点的uniqueId，默认为-1。 |
+| uniqueId | 目标节点的uniqueId。组件标识ID只读，且进程内唯一，若该节点存在，返回该节点的Uniqueld值；否则返回-1。 |
 
 **返回：**
 
