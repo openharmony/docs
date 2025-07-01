@@ -10,6 +10,21 @@
 3. 在DevEco Studio菜单栏，依次选择"构建 -> 构建APP(s)"。<br/>
 4. 在DevEco Studio底部"构建"窗口，搜索"app_packing_tool.jar"，确认打包参数中文件的路径。<br/>
 
+打包工具会对module.json文件属性进行合法性校验。module.json文件是编译构建产物，其属性值在编译构建时自动生成，与配置文件中配置项对应关系如下。
+
+**表1** module.json与配置文件属性的对照表
+
+| module.json属性          | [module.json5](../quick-start/module-configuration-file.md#配置文件标签)配置项         | [app.json5](../quick-start/app-configuration-file.md#配置文件标签)配置项            | [工程级build-profile.json5](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-hvigor-build-profile-app)配置项  |
+| ------------------------ | ------------------------ | -------------------------- | --------------------------       |
+| bundleName               | -                        | bundleName                 | -                                |
+| bundleType               | -                        | bundleType                 | -                                |
+| versionCode              | -                        | versionCode                | -                                |
+| debug                    | -                        | debug                      | -                                |
+| module/name              | module/name              | -                          | -                                |
+| minCompatibleVersionCode | -                        | minCompatibleVersionCode   | -                                |
+| minAPIVersion            | -                        | minAPIVersion              | compatibleSdkVersion             |
+| targetAPIVersion         | -                        | targetAPIVersion           | targetSdkVersion/compileSdkVersion  <br/>说明：targetSdkVersion存在时，targetAPIVersion由targetSdkVersion决定；<br/>否则，targetAPIVersion由compileSdkVersion决定。               |
+
 ## 约束与限制
 
 打包工具需要运行在Java8及其以上环境。
@@ -33,7 +48,7 @@
     java -jar app_packing_tool.jar --mode hap --json-path <path> [--maple-so-path <path>] [--profile-path <path>] [--maple-so-dir <path>] [--dex-path <path>] [--lib-path <path>] [--resources-path <path>] [--index-path <path>] --out-path <path> [--force true] [--compress-level 5]
     ```
 
-**表1** HAP打包指令参数说明
+**表2** HAP打包指令参数说明
 
 | 指令             | 是否必选项 | 选项          | 描述                                                         | 备注            |
 | ---------------- | ---------- | ------------- | ------------------------------------------------------------ | --------------- |
@@ -68,7 +83,7 @@ HSP包实现了多个HAP对文件的共享，开发者可以使用打包工具�
 java -jar app_packing_tool.jar --mode hsp --json-path <path> [--resources-path <path>] [--ets-path <path>] [--index-path <path>] [--pack-info-path <path>] [--lib-path <path>] --out-path <path> [--force true] [--compress-level 5] [--pkg-context-path <path>]
 ```
 
-**表2** HSP打包指令参数说明
+**表3** HSP打包指令参数说明
 
 | 指令             | 是否必选项 | 选项          | 描述                                                         |
 | ---------------- | ---------- | ------------- | ------------------------------------------------------------ |
@@ -92,14 +107,15 @@ java -jar app_packing_tool.jar --mode hsp --json-path <path> [--resources-path <
 开发者可以使用打包工具的jar包对应用进行打包，通过传入打包选项、文件路径，生成所需的App包。App包用于上架应用市场。
 
 **App打包时合法性校验：**
-- 在打包生成App包时，需要保证被打包的每个HAP和HSP在pack.info/module.json文件中配置的bundleName、bundleType、versionCode、debug相同，moduleName唯一。
-- 所有HAP的minCompatibleVersionCode、targetAPIVersion、minAPIVersion保持一致，且分别不低于所有HSP对应字段的最大值。
+- 在打包生成App包时，需要保证被打包的每个HAP/HSP的module.json文件中的bundleName、bundleType、versionCode、debug保持相同，每个HAP/HSP的module.json文件中module下面的name字段均不相同。
+- 所有HAP的module.json文件中的minCompatibleVersionCode、targetAPIVersion、minAPIVersion保持一致，且分别不低于所有HSP对应字段的最大值。
 
 >**说明：**
 >
 > - 从API version 12开始，App打包不再对versionName校验。
 > - 在API version 16之前，App打包时要求所有HAP/HSP的minCompatibleVersionCode、targetAPIVersion一致。
 > - 在API version 20之前，App打包时要求所有HAP/HSP的minAPIVersion一致。
+> - module.json文件为DevEco Studio编译构建产物，其中的字段与配置文件的对应关系，请参考[表1 module.json与配置文件属性的对照表](packing-tool.md)。
 
 **打包App时的压缩规则：** 打包App时，对release模式的HAP、HSP包会进行压缩，对debug模式的HAP、HSP包不会压缩。
 
@@ -109,7 +125,7 @@ java -jar app_packing_tool.jar --mode hsp --json-path <path> [--resources-path <
 java -jar app_packing_tool.jar --mode app [--hap-path <path>] [--hsp-path <path>] --out-path <path> [--signature-path <path>] [--certificate-path <path>] --pack-info-path <path> [--pack-res-path <path>] [--force true] [--encrypt-path <path>] [--pac-json-path <path>]
 ```
 
-**表3** App打包指令参数说明
+**表4** App打包指令参数说明
 
 | 指令                 | 是否必选项 | 选项          | 描述                                                           |
 |--------------------|-------|-------------|--------------------------------------------------------------|
@@ -132,14 +148,15 @@ java -jar app_packing_tool.jar --mode app [--hap-path <path>] [--hsp-path <path>
 多工程打包适用于多个团队开发同一个应用，但不方便共享代码的情况。开发者通过传入已经打好的HAP、HSP和App包，将多个包打成一个最终的App包，并上架应用市场。
 
 **多工程打包合法性校验：**
-- 在打包生成App包时，需要保证被打包的每个HAP和HSP在pack.info/module.json文件中配置的bundleName、bundleType、versionCode、debug相同，moduleName唯一。
-- 所有HAP的minCompatibleVersionCode、targetAPIVersion、minAPIVersion保持一致，且分别不低于所有HSP对应字段的最大值。
+- 在打包生成App包时，需要保证被打包的每个HAP/HSP的module.json文件中的bundleName、bundleType、versionCode、debug保持相同，每个HAP/HSP的module.json文件中module下面的name字段均不相同。
+- 所有HAP的module.json文件中的minCompatibleVersionCode、targetAPIVersion、minAPIVersion保持一致，且分别不低于所有HSP对应字段的最大值。
 
 >**说明：**
 >
 > - 从API version 12开始，多工程打包不再对versionName校验。
 > - 在API version 16之前，App打包时要求所有HAP/HSP的minCompatibleVersionCode、targetAPIVersion一致。
 > - 在API version 20之前，App打包时要求所有HAP/HSP的minAPIVersion一致。
+> - module.json文件为DevEco Studio编译构建产物，其中的字段与配置文件的对应关系，请参考[表1 module.json与配置文件属性的对照表](packing-tool.md)。
 
 示例：
 
@@ -147,7 +164,7 @@ java -jar app_packing_tool.jar --mode app [--hap-path <path>] [--hsp-path <path>
 java -jar app_packing_tool.jar --mode multiApp [--hap-list <path>] [--hsp-list <path>] [--app-list <path>] --out-path <option> [--force true] [--encrypt-path <path>] [--pac-json-path <path>]
 ```
 
-**表4** 多工程打包指令参数说明
+**表5** 多工程打包指令参数说明
 
 | 指令         | 是否必选项 | 选项        | 描述                                                        |
 |------------|-------|-----------|----------------------------------------------------------------|
@@ -172,7 +189,7 @@ HQF包适用于应用存在一些问题，需要紧急修复的场景。开发�
 java -jar app_packing_tool.jar --mode hqf --json-path <path> [--lib-path <path>] [--ets-path <path>] [--resources-path <path>] --out-path <path> [--force true]
 ```
 
-**表5** HQF打包指令参数说明
+**表6** HQF打包指令参数说明
 
 | 指令          | 是否必选项 | 选项          | 描述                                 |
 |-------------|-------|-------------|------------------------------------|
@@ -194,7 +211,7 @@ APPQF包由一个或多个HQF文件组成。这些HQF包在应用市场会从APP
 java -jar app_packing_tool.jar --mode appqf --hqf-list <path> --out-path <path> [--force true]
 ```
 
-**表6** APPQF打包指令参数说明
+**表7** APPQF打包指令参数说明
 
 | 指令         | 是否必选项 | 选项          | 描述                                 |
 |------------|-------|-------------|------------------------------------|
@@ -212,7 +229,7 @@ java -jar app_packing_tool.jar --mode appqf --hqf-list <path> --out-path <path> 
 java -jar app_packing_tool.jar --mode versionNormalize --input-list 1.hap,2.hsp --version-code 1000001 --version-name 1.0.1 --out-path out\
 ```
 
-**表7** versionNormalize指令参数说明
+**表8** versionNormalize指令参数说明
 
 | 指令             | 是否必选项 | 选项               | 描述                                                                |
 |----------------|-------|------------------|-------------------------------------------------------------------|
@@ -231,7 +248,7 @@ java -jar app_packing_tool.jar --mode versionNormalize --input-list 1.hap,2.hsp 
 java -jar app_packing_tool.jar --mode packageNormalize --hsp-list 1.hsp,2.hsp --bundle-name com.example.myapplication --version-code 1000001 --out-path out\
 ```
 
-**表8**  参数含义及规范
+**表9**  参数含义及规范
 
 | 指令             | 是否必选项 | 选项            | 描述                                                  |
 |----------------|-------|---------------|-----------------------------------------------------|
@@ -256,7 +273,7 @@ apiReleaseType/bundleTypes/installationFree/deliveryWithInstall参数，并在�
 java -jar app_packing_tool.jar --mode generalNormalize --input-list 1.hsp,2.hsp --bundle-name com.example.myapplication --version-code 1000001 --version-name 1.0.1 --min-compatible-version-code 14 --min-api-version 14 --target-api-version 14 --api-release-type Release1 --bundle-type app --installation-free false --delivery-with-install true --device-types default,tablet --out-path out\
 ```
 
-**表11**  参数含义及规范
+**表10**  参数含义及规范
 
 | 指令                          | 是否必选项 | 选项                                               | 描述                                                         |
 | ----------------------------- | ---------- | -------------------------------------------------- | ------------------------------------------------------------ |
@@ -285,7 +302,7 @@ java -jar app_packing_tool.jar --mode generalNormalize --input-list 1.hsp,2.hsp 
 java -jar app_packing_tool.jar --mode res --entrycard-path <path> --pack-info-path <path> --out-path <path> [--force true]
 ```
 
-**表9** 参数含义及规范
+**表11** 参数含义及规范
 
 | 指令               | 是否必选项 | 选项            | 描述                                 |
 |------------------|-------|---------------|------------------------------------|
@@ -300,13 +317,14 @@ java -jar app_packing_tool.jar --mode res --entrycard-path <path> --pack-info-pa
 开发者可以使用打包工具的jar包对应用进行打包，通过传入打包选项、HAP、HSP包文件目录路径，生成所需的App包。App包用于上架应用市场。
 
 **App打包时合法性校验：**
-- 在打包生成App包时，需要保证被打包的每个HAP和HSP在pack.info/module.json文件中配置的bundleName、bundleType、versionCode、debug相同，moduleName唯一。
-- 所有HAP的minCompatibleVersionCode、targetAPIVersion、minAPIVersion保持一致，且分别不低于所有HSP对应字段的最大值。
+- 在打包生成App包时，需要保证被打包的每个HAP/HSP的module.json文件中的bundleName、bundleType、versionCode、debug保持相同，每个HAP/HSP的module.json文件中module下面的name字段均不相同。
+- 所有HAP的module.json文件中的minCompatibleVersionCode、targetAPIVersion、minAPIVersion保持一致，且分别不低于所有HSP对应字段的最大值。
 
 >**说明：**
 >
 > - 在API version 16之前，App打包时要求所有HAP/HSP的minCompatibleVersionCode、targetAPIVersion一致。
 > - 在API version 20之前，App打包时要求所有HAP/HSP的minAPIVersion一致。
+> - module.json文件为DevEco Studio编译构建产物，其中的字段与配置文件的对应关系，请参考[表1 module.json与配置文件属性的对照表](packing-tool.md)。
 
 **打包App时的压缩规则：** 打包App时，对release模式的HAP、HSP包会进行压缩，对debug模式的HAP、HSP包不会压缩。
 
@@ -316,7 +334,7 @@ java -jar app_packing_tool.jar --mode res --entrycard-path <path> --pack-info-pa
 java -jar app_packing_tool.jar --mode fastApp [--hap-path <path>] [--hsp-path <path>] --out-path <path> [--signature-path <path>] [--certificate-path <path>] --pack-info-path <path> [--pack-res-path <path>] [--force true] [--encrypt-path <path>] [--pac-json-path <path>]
 ```
 
-**表10** 参数含义及规范
+**表12** 参数含义及规范
 
 | 指令                 | 是否必选项 | 选项         | 描述                                                     |
 |--------------------|-------|------------|----------------------------------------------------|
