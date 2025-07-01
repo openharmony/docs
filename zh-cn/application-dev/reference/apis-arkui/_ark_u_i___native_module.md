@@ -15220,7 +15220,7 @@ int32_t OH_ArkUI_RegisterSystemColorModeChangeEvent (ArkUI_NodeHandle node, void
 ```
 **描述：**
 
-注册系统深浅色变更事件。同一组件仅能注册一个系统深浅变更回调。
+注册系统深浅色变更事件。同一组件仅能注册一个系统深浅变更回调。示例请参考：[监听组件事件](../../ui/ndk-listen-to-component-events.md)。
 
 **起始版本：** 12
 
