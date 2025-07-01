@@ -584,6 +584,32 @@ Instantiates the **ColorMetrics** class using colors in RGB or RGBA format.
 | ------------- | ---------------- |
 | [ColorMetrics](#colormetrics12) | Instance of the **ColorMetrics** class.|
 
+### colorWithSpace<sup>20+</sup>
+
+static colorWithSpace(colorSpace: ColorSpace, red: number, green: number, blue: number, alpha?: number): ColorMetrics
+
+Creates a **ColorMetrics** instance using specified [ColorSpace](./arkui-ts/ts-appendix-enums.md) and RGBA values. Only certain attributes support color configuration in the display-p3 color space.
+
+**Atomic service API**: This API can be used in atomic services since API version 20.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type         | Mandatory| Description        |
+| ------ | ------------- | ---- | ------------ |
+| colorSpace   | [ColorSpace](./arkui-ts/ts-appendix-enums.md) | Yes  | Color space used to specify the color. To use **ColorSpace.DISPLAY_P3**, the corresponding window must be set to wide color gamut mode using [setWindowColorSpace](./js-apis-window.md#setwindowcolorspace9-1).|
+| red   | number | Yes  | Red component of the color. The value is a floating point number ranging from 0 to 1.|
+| green | number | Yes  | Green component of the color. The value is a floating point number ranging from 0 to 1.|
+| blue  | number | Yes  | Blue component of the color. The value is a floating point number ranging from 0 to 1.|
+| alpha | number | No  | Alpha component of the color. The value is a floating point number ranging from 0.0 to 1.0. The default value is **1.0** (fully opaque).|
+
+**Return value**
+
+| Type         | Description            |
+| ------------- | ---------------- |
+| [ColorMetrics](#colormetrics12) | Instance of the **ColorMetrics** class.|
+
 ### resourceColor<sup>12+</sup>
 
 static resourceColor(color: ResourceColor): ColorMetrics
@@ -738,7 +764,7 @@ function getBlendColor(baseColor: ResourceColor): ColorMetrics {
     // Error codes 401 and 180003 of the ArkUI subsystem may be returned.
     sourceColor = ColorMetrics.resourceColor(baseColor).blendColor(ColorMetrics.resourceColor("#19000000"));
   } catch (error) {
-    console.log("getBlendColor failed, code = " + (error as BusinessError).code + ", message = " +
+    console.error("getBlendColor failed, code = " + (error as BusinessError).code + ", message = " +
     (error as BusinessError).message);
     sourceColor = ColorMetrics.resourceColor("#19000000");
   }
@@ -855,7 +881,7 @@ Describes the command for drawing a path.
 
 | Name                                                        | Type  | Readable| Writable| Description                                                        |
 | ------------------------------------------------------------ | ------ | ---- | ---- | ------------------------------------------------------------ |
-| [commands](./arkui-ts/ts-drawing-components-path.md#commands-1) | string | Yes  | Yes  | Commands for drawing a path. For details about how to convert the pixel unit, see [Pixel Unit Conversion](./arkui-ts/ts-pixel-units.md#pixel-unit-conversion).<br>Unit: px|
+| [commands](./arkui-ts/ts-drawing-components-path.md#commands) | string | Yes  | Yes  | Commands for drawing a path. For details about how to convert the pixel unit, see [Pixel Unit Conversion](./arkui-ts/ts-pixel-units.md#pixel-unit-conversion).<br>Unit: px|
 
 ## ShapeMask<sup>12+</sup>
 
