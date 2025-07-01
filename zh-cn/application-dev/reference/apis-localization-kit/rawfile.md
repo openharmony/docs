@@ -33,7 +33,7 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | typedef struct [RawDir](#rawdir) [RawDir](#rawdir) | 提供对rawfile目录的访问。 | 
-| typedef struct [RawFile](#rawfile) [RawFile](#rawfile) | 提供对rawfile的访问功能。 | 
+| typedef struct [RawFile](#rawfile-1) [RawFile](#rawfile-1) | 提供对rawfile的访问功能。 | 
 | typedef struct [RawFile64](#rawfile64) [RawFile64](#rawfile64) | 提供对较大rawfile的访问功能。 | 
 | typedef struct [NativeResourceManager](#nativeresourcemanager) [NativeResourceManager](#nativeresourcemanager) | 代表native侧的ResourceManager。 | 
 
@@ -45,13 +45,13 @@
 | const char \* [OH_ResourceManager_GetRawFileName](#oh_resourcemanager_getrawfilename) ([RawDir](#rawdir) \*rawDir, int index) | 通过索引获取rawfile文件名称。 | 
 | int [OH_ResourceManager_GetRawFileCount](#oh_resourcemanager_getrawfilecount) ([RawDir](#rawdir) \*rawDir) | 获取[RawDir](#rawdir)中的rawfile数量。 | 
 | void [OH_ResourceManager_CloseRawDir](#oh_resourcemanager_closerawdir) ([RawDir](#rawdir) \*rawDir) | 关闭已打开的[RawDir](#rawdir)并释放所有相关联资源。 | 
-| int [OH_ResourceManager_ReadRawFile](#oh_resourcemanager_readrawfile) (const [RawFile](#rawfile) \*rawFile, void \*buf, size_t length) | 读取rawfile内容，从当前位置读取指定长度的数据。 | 
-| int [OH_ResourceManager_SeekRawFile](#oh_resourcemanager_seekrawfile) (const [RawFile](#rawfile) \*rawFile, long offset, int whence) | 基于指定的偏移量，在rawfile文件内搜索读写数据的位置。 | 
-| long [OH_ResourceManager_GetRawFileSize](#oh_resourcemanager_getrawfilesize) ([RawFile](#rawfile) \*rawFile) | 获取rawfile长度，单位为long。 | 
-| long [OH_ResourceManager_GetRawFileRemainingLength](#oh_resourcemanager_getrawfileremaininglength) (const [RawFile](#rawfile) \*rawFile) | 获取rawfile的剩余长度，单位为long。 | 
-| void [OH_ResourceManager_CloseRawFile](#oh_resourcemanager_closerawfile) ([RawFile](#rawfile) \*rawFile) | 关闭已打开的[RawFile](#rawfile) 以及释放所有相关联的资源。 | 
-| long [OH_ResourceManager_GetRawFileOffset](#oh_resourcemanager_getrawfileoffset) (const [RawFile](#rawfile) \*rawFile) | 获取rawfile当前的偏移量，单位为long。 | 
-| bool [OH_ResourceManager_GetRawFileDescriptor](#oh_resourcemanager_getrawfiledescriptor) (const [RawFile](#rawfile) \*rawFile, [RawFileDescriptor](_raw_file_descriptor.md) &amp;descriptor) | 基于偏移量(单位为long)和文件长度(单位为long)打开rawfile，并获取rawfile文件描述符。 | 
+| int [OH_ResourceManager_ReadRawFile](#oh_resourcemanager_readrawfile) (const [RawFile](#rawfile-1) \*rawFile, void \*buf, size_t length) | 读取rawfile内容，从当前位置读取指定长度的数据。 | 
+| int [OH_ResourceManager_SeekRawFile](#oh_resourcemanager_seekrawfile) (const [RawFile](#rawfile-1) \*rawFile, long offset, int whence) | 基于指定的偏移量，在rawfile文件内搜索读写数据的位置。 | 
+| long [OH_ResourceManager_GetRawFileSize](#oh_resourcemanager_getrawfilesize) ([RawFile](#rawfile-1) \*rawFile) | 获取rawfile长度，单位为long。 | 
+| long [OH_ResourceManager_GetRawFileRemainingLength](#oh_resourcemanager_getrawfileremaininglength) (const [RawFile](#rawfile-1) \*rawFile) | 获取rawfile的剩余长度，单位为long。 | 
+| void [OH_ResourceManager_CloseRawFile](#oh_resourcemanager_closerawfile) ([RawFile](#rawfile-1) \*rawFile) | 关闭已打开的[RawFile](#rawfile-1) 以及释放所有相关联的资源。 | 
+| long [OH_ResourceManager_GetRawFileOffset](#oh_resourcemanager_getrawfileoffset) (const [RawFile](#rawfile-1) \*rawFile) | 获取rawfile当前的偏移量，单位为long。 | 
+| bool [OH_ResourceManager_GetRawFileDescriptor](#oh_resourcemanager_getrawfiledescriptor) (const [RawFile](#rawfile-1) \*rawFile, [RawFileDescriptor](_raw_file_descriptor.md) &amp;descriptor) | 基于偏移量(单位为long)和文件长度(单位为long)打开rawfile，并获取rawfile文件描述符。 | 
 | bool [OH_ResourceManager_ReleaseRawFileDescriptor](#oh_resourcemanager_releaserawfiledescriptor) (const [RawFileDescriptor](_raw_file_descriptor.md) &amp;descriptor) | 关闭rawfile文件描述符。 | 
 | bool [OH_ResourceManager_ReleaseRawFileDescriptorData](rawfile.md#oh_resourcemanager_releaserawfiledescriptordata) (const [RawFileDescriptor](_raw_file_descriptor.md) \*descriptor) | 关闭rawfile文件描述符。 |
 | int64_t [OH_ResourceManager_ReadRawFile64](#oh_resourcemanager_readrawfile64) (const [RawFile64](#rawfile64) \*rawFile, void \*buf, int64_t length) | 读取较大的rawfile文件内容，从当前位置读取指定长度的数据。 | 
@@ -65,7 +65,7 @@
 | [NativeResourceManager](#nativeresourcemanager) \* [OH_ResourceManager_InitNativeResourceManager](#oh_resourcemanager_initnativeresourcemanager) (napi_env env, napi_value jsResMgr) | 基于JavaScipt侧的ResourceManager获取native侧的ResourceManager，用来完成rawfile相关功能。 | 
 | void [OH_ResourceManager_ReleaseNativeResourceManager](#oh_resourcemanager_releasenativeresourcemanager) ([NativeResourceManager](#nativeresourcemanager) \*resMgr) | 释放native侧ResourceManager。 | 
 | [RawDir](#rawdir) \* [OH_ResourceManager_OpenRawDir](#oh_resourcemanager_openrawdir) (const [NativeResourceManager](#nativeresourcemanager) \*mgr, const char \*dirName) | 打开rawfile目录，打开后可以遍历对应目录下的rawfile文件。 | 
-| [RawFile](#rawfile) \* [OH_ResourceManager_OpenRawFile](#oh_resourcemanager_openrawfile) (const [NativeResourceManager](#nativeresourcemanager) \*mgr, const char \*fileName) | 打开rawfile文件，打开后可以读取它的数据。 | 
+| [RawFile](#rawfile-1) \* [OH_ResourceManager_OpenRawFile](#oh_resourcemanager_openrawfile) (const [NativeResourceManager](#nativeresourcemanager) \*mgr, const char \*fileName) | 打开rawfile文件，打开后可以读取它的数据。 | 
 | [RawFile64](#rawfile64) \* [OH_ResourceManager_OpenRawFile64](#oh_resourcemanager_openrawfile64) (const [NativeResourceManager](#nativeresourcemanager) \*mgr, const char \*fileName) | 打开较大的rawfile文件，打开后可以读取它的数据。 | 
 | bool [OH_ResourceManager_IsRawDir](#oh_resourcemanager_israwdir) (const [NativeResourceManager](#nativeresourcemanager) \*mgr, const char \*path) | 判断路径是否是rawfile下的目录。 | 
 
@@ -161,7 +161,7 @@ void OH_ResourceManager_CloseRawFile (RawFile * rawFile)
 
 **描述**
 
-关闭已打开的[RawFile](#rawfile) 以及释放所有相关联的资源。
+关闭已打开的[RawFile](#rawfile-1) 以及释放所有相关联的资源。
 
 **起始版本：** 8
 
@@ -169,7 +169,7 @@ void OH_ResourceManager_CloseRawFile (RawFile * rawFile)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| rawFile | 表示指向[RawFile](#rawfile)的指针。 | 
+| rawFile | 表示指向[RawFile](#rawfile-1)的指针。 | 
 
 **参见：**
 
@@ -246,7 +246,7 @@ bool OH_ResourceManager_GetRawFileDescriptor (const RawFile * rawFile, RawFileDe
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| rawFile | 表示指向[RawFile](#rawfile)的指针。 | 
+| rawFile | 表示指向[RawFile](#rawfile-1)的指针。 | 
 | descriptor | 显示rawfile文件描述符，以及在HAP包中的起始位置和长度。 | 
 
 **返回：**
@@ -328,7 +328,7 @@ rawfile当前的偏移量。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| rawFile | 表示指向[RawFile](#rawfile)的指针。 | 
+| rawFile | 表示指向[RawFile](#rawfile-1)的指针。 | 
 
 **返回：**
 
@@ -374,7 +374,7 @@ long OH_ResourceManager_GetRawFileRemainingLength (const RawFile * rawFile)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| rawFile | 表示指向[RawFile](#rawfile)的指针。 | 
+| rawFile | 表示指向[RawFile](#rawfile-1)的指针。 | 
 
 **返回：**
 
@@ -420,7 +420,7 @@ long OH_ResourceManager_GetRawFileSize (RawFile * rawFile)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| rawFile | 表示指向[RawFile](#rawfile)的指针。 | 
+| rawFile | 表示指向[RawFile](#rawfile-1)的指针。 | 
 
 **返回：**
 
@@ -549,7 +549,7 @@ RawFile* OH_ResourceManager_OpenRawFile (const NativeResourceManager * mgr, cons
 
 **返回：**
 
-返回[RawFile](#rawfile)指针。当使用完此指针，调用[OH_ResourceManager_CloseRawFile](#oh_resourcemanager_closerawfile)释放。如果失败或者mgr和fileName为空时返回空指针。
+返回[RawFile](#rawfile-1)指针。当使用完此指针，调用[OH_ResourceManager_CloseRawFile](#oh_resourcemanager_closerawfile)释放。如果失败或者mgr和fileName为空时返回空指针。
 
 **参见：**
 
@@ -604,7 +604,7 @@ int OH_ResourceManager_ReadRawFile (const RawFile * rawFile, void * buf, size_t 
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| rawFile | 表示指向[RawFile](#rawfile)的指针。 | 
+| rawFile | 表示指向[RawFile](#rawfile-1)的指针。 | 
 | buf | 用于接收读取数据的缓冲区指针。 | 
 | length | 读取数据的字节长度。 | 
 
@@ -746,7 +746,7 @@ int OH_ResourceManager_SeekRawFile (const RawFile * rawFile, long offset, int wh
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| rawFile | 表示指向[RawFile](#rawfile)的指针。 | 
+| rawFile | 表示指向[RawFile](#rawfile-1)的指针。 | 
 | offset | 表示指定的偏移量。 | 
 | whence | 读写位置，有以下场景:<br/>0: 读写位置为文件起始位置加上offset。<br/>1: 读写位置为当前位置加上offset。<br/>2: 读写位置为文件末尾加上offset。 | 
 
