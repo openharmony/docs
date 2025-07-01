@@ -167,7 +167,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
 
 4. 调用OH_AudioCodec_Configure设置编码器。
 
-   设置必选项：采样率，码率，以及声道数，声道类型、位深。
+   设置必选项：采样率，码率，以及声道数，声道布局、位深。
 
    可选项：最大输入长度。
 
@@ -192,7 +192,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     constexpr uint64_t DEFAULT_BITRATE = 32000;
     // 配置音频声道数（必须）。
     constexpr uint32_t DEFAULT_CHANNEL_COUNT = 2;
-    // 配置音频声道类型（必须）。
+    // 配置音频声道布局（必须）。
     constexpr OH_AudioChannelLayout CHANNEL_LAYOUT = OH_AudioChannelLayout::CH_LAYOUT_STEREO;
     // 配置音频位深（必须）。
     constexpr OH_BitsPerSample SAMPLE_FORMAT = OH_BitsPerSample::SAMPLE_S16LE;
@@ -225,7 +225,8 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     constexpr uint64_t DEFAULT_BITRATE = 261000;
     // 配置音频声道数（必须）。
     constexpr uint32_t DEFAULT_CHANNEL_COUNT = 2;
-    // 配置音频声道类型（必须） 值为CH_LAYOUT_MONO、CH_LAYOUT_STEREO、CH_LAYOUT_SURROUND、CH_LAYOUT_QUAD、CH_LAYOUT_5POINT0、CH_LAYOUT_5POINT1、CH_LAYOUT_6POINT1或CH_LAYOUT_7POINT1其中一项。
+    // 配置音频声道布局（必须）。
+    // 值为CH_LAYOUT_MONO、CH_LAYOUT_STEREO、CH_LAYOUT_SURROUND、CH_LAYOUT_QUAD、CH_LAYOUT_5POINT0、CH_LAYOUT_5POINT1、CH_LAYOUT_6POINT1或CH_LAYOUT_7POINT1其中一项。
     constexpr OH_AudioChannelLayout CHANNEL_LAYOUT = OH_AudioChannelLayout::CH_LAYOUT_STEREO;
     // 配置音频位深（必须） flac只有SAMPLE_S16LE和SAMPLE_S32LE。
     constexpr OH_BitsPerSample SAMPLE_FORMAT = OH_BitsPerSample::SAMPLE_S32LE;
