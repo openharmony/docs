@@ -29,7 +29,7 @@
 | ---------------------------- | ------- | ------------ | ---- | ---------------------------------------- |
 | object-fit                   | string  | cover        | 否    | 设置图片的缩放类型，不支持svg格式。可选值类型说明请见object-fit类型说明。 |
 | match-text-direction         | boolean | false        | 否    | 图片是否跟随文字方向，不支持svg格式。<br/>默认值：false，表示图片不跟随文字方向。                  |
-| fit-original-size            | boolean | false        | 否    | [image](js-components-basic-image.md#image)组件在未设置宽高的情况下是否适应图源尺寸，该属性为true时object-fit属性不生效，svg类型图源不支持该属性。<br/>默认值：false，表示[image](js-components-basic-image.md#image)组件在未设置宽高的情况下不适应图源尺寸。 |
+| fit-original-size            | boolean | false        | 否    | [image](js-components-basic-image.md)组件在未设置宽高的情况下是否适应图源尺寸，该属性为true时object-fit属性不生效，svg类型图源不支持该属性。<br/>默认值：false，表示[image](js-components-basic-image.md)组件在未设置宽高的情况下不适应图源尺寸。 |
 | object-position<sup>7+</sup> | string  | 0px&nbsp;0px | 否    | 设置图片在组件内展示的位置。<br/>设置类型有两种：<br/>1.&nbsp;像素，单位px，示例&nbsp;15px&nbsp;15px&nbsp;代表X轴或者Y轴移动的位置。<br/>2.&nbsp;字符，可选值：<br/>-&nbsp;left&nbsp;图片显示在组件左侧。<br/>-&nbsp;top&nbsp;图片显示在组件顶部位置。<br/>-&nbsp;right&nbsp;图片显示在组件右侧位置。<br/>-&nbsp;bottom 图片显示在组件底部位置。 |
 
 **表1** object-fit 类型说明
