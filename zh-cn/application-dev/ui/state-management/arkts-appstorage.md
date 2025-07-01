@@ -523,7 +523,7 @@ export struct TapImage {
 
 ```ts
 @Component
-struct StorLink {
+struct StorageLinkComponent {
   @StorageLink("LinkA") LinkA: number | null = null;
   @StorageLink("LinkB") LinkB: number | undefined = undefined;
 
@@ -543,7 +543,7 @@ struct StorLink {
 }
 
 @Component
-struct StorProp {
+struct StoragePropComponent {
   @StorageProp("PropA") PropA: number | null = null;
   @StorageProp("PropB") PropB: number | undefined = undefined;
 
@@ -567,8 +567,8 @@ struct Index {
   build() {
     Row() {
       Column() {
-        StorLink()
-        StorProp()
+        StorageLinkComponent()
+        StoragePropComponent()
       }
       .width('100%')
     }
