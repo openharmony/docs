@@ -2834,7 +2834,7 @@ raiseMainWindowAboveTarget(windowId: number): Promise&lt;void&gt;
 
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
-| windowId | number                    | 是   | 目标子窗口的id，通过[getWindowProperties](arkts-apis-window-Window.md#getwindowproperties9)接口获取到[properties](arkts-apis-window-i.md#windowproperties)后，再通过properties.id获取。 |
+| windowId | number                    | 是   | 目标主窗口的id，该参数为整数，通过[getWindowProperties](arkts-apis-window-Window.md#getwindowproperties9)接口获取到[properties](arkts-apis-window-i.md#windowproperties)后，再通过properties.id获取。 |
 
 **返回值：**
 
