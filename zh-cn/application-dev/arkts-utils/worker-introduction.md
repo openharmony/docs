@@ -1,6 +1,6 @@
 # Worker简介
 
-Worker的主要作用是为应用程序提供一个多线程的运行环境，满足应用程序在执行过程中与宿主线程分离，在后台线程中运行脚本进行耗时操作，避免计算密集型或高延迟的任务阻塞宿主线程。具体接口信息及使用方法详情请见[Worker](../reference/apis-arkts/js-apis-worker.md)。
+Worker的主要作用是为应用程序提供一个多线程的运行环境，实现应用程序执行过程与宿主线程分离。通过在后台线程运行脚本处理耗时操作，避免计算密集型或高延迟任务阻塞宿主线程。具体接口信息及使用方法详情请见[Worker](../reference/apis-arkts/js-apis-worker.md)。
 
 
 ## Worker运作机制
@@ -14,16 +14,16 @@ Worker的主要作用是为应用程序提供一个多线程的运行环境，�
 
 ## Worker注意事项
 
-- 创建Worker时，提供手动和自动两种创建方式，推荐使用自动创建方式。手动创建Worker线程目录及文件时，需同步进行相关配置，具体要求请参阅[创建Worker的注意事项](#创建worker的注意事项)。
-- 使用Worker能力时，构造函数中传入的Worker线程文件的路径在不同版本有不同的规则，详情请参见[文件路径注意事项](#文件路径注意事项)。
+- 创建Worker有手动和自动两种方式，推荐使用自动创建方式。手动创建Worker线程目录及文件时，需同步进行相关配置，具体要求请参阅[创建Worker的注意事项](#创建worker的注意事项)。
+- 使用Worker时，构造函数中传入的Worker线程文件路径在不同版本有不同的规则，详情请参见[文件路径注意事项](#文件路径注意事项)。
 - Worker创建后需要手动管理生命周期。同时运行的Worker子线程数量最多为64个，并且与[napi_create_ark_runtime](../reference/native-lib/napi.md#napi_create_ark_runtime)创建的runtime总数不超过80。详情请参见[生命周期注意事项](#生命周期注意事项)。
 - 不同线程中上下文对象是不同的，因此Worker线程只能使用线程安全的库，例如UI相关的非线程安全库不能在Worker子线程中使用。
 - 单次序列化传输的数据量大小限制为16MB。
-- 使用Worker模块时，API version 18及之后的版本建议在宿主线程中注册onAllErrors回调，以捕获Worker线程生命周期内的各种异常。API version 18之前的版本应注册onerror回调。如果未注册onAllErrors或onerror回调，当Worker线程出现异常时会发生jscrash问题。需要注意的是，onerror接口仅能捕获onmessage回调中的同步异常，捕获异常后，Worker线程将进入销毁流程，无法继续使用。详情请参见[onAllErrors接口与onerror接口之间的行为差异](#onallerrors接口与onerror接口之间的行为差异)。
+- 使用Worker模块时，API version 18及之后的版本建议在宿主线程中注册onAllErrors回调，以捕获Worker线程生命周期内的各种异常。API version 18之前的版本应注册onerror回调。如果未注册onAllErrors或onerror回调，当Worker线程出现异常时会发生jscrash问题。注意，onerror接口仅能捕获onmessage回调中的同步异常，捕获异常后，Worker线程将进入销毁流程，无法继续使用。详情请参见[onAllErrors接口与onerror接口之间的行为差异](#onallerrors接口与onerror接口之间的行为差异)。
 - 不支持跨HAP使用Worker线程文件。
 - 引用HAR/HSP中的worker前，需要先配置对HAR/HSP的依赖，详见[引用共享包](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-har-import)。
 - 不支持在Worker工作线程中使用[AppStorage](../ui/state-management/arkts-appstorage.md)。
-- 从API version 18开始，Worker线程优先级可以在构造函数的参数[WorkerOptions](../reference/apis-arkts/js-apis-worker.md#workeroptions)中进行指定。
+- 从API version 18开始，可以在构造函数的参数[WorkerOptions](../reference/apis-arkts/js-apis-worker.md#workeroptions)中指定Worker线程的优先级。
 - 在Worker文件中禁止使用export语法导出任何内容，否则会导致jscrash问题。
 
 
@@ -63,7 +63,7 @@ Worker线程文件需要放在"{moduleName}/src/main/ets/"目录层级之下，�
 
 ### 文件路径注意事项
 
-  当使用Worker模块具体功能时，均需先构造Worker实例对象，其构造函数与API版本相关，且构造函数需要传入Worker线程文件的路径（scriptURL）。
+  使用Worker模块的具体功能时，需先构造Worker实例对象。构造函数与API版本相关，且需传入Worker线程文件的路径（scriptURL）。
 
 ```ts
 // 导入模块
@@ -83,9 +83,9 @@ const worker2: worker.Worker = new worker.Worker('entry/ets/workers/worker.ets')
 - scriptURL的组成包含{moduleName}/ets和相对路径relativePath。
 - relativePath是Worker线程文件相对于"{moduleName}/src/main/ets/"目录的相对路径。
 
-1） 加载Ability中Worker线程文件场景
+1） 加载Ability中的Worker线程文件：
 
-加载Ability中的worker线程文件，加载路径规则：{moduleName}/ets/{relativePath}。
+加载Ability中的worker线程文件。路径规则：{moduleName}/ets/{relativePath}。
 
 ```ts
 import { worker } from '@kit.ArkTS';
@@ -97,9 +97,9 @@ const workerStage1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/wor
 const workerStage2: worker.ThreadWorker = new worker.ThreadWorker('testworkers/ets/ThreadFile/workers/worker.ets');
 ```
 
-2） 加载[HSP](../quick-start/in-app-hsp.md)中Worker线程文件场景
+2） 加载[HSP](../quick-start/in-app-hsp.md)中Worker线程文件
 
-加载HSP中worker线程文件，加载路径规则：{moduleName}/ets/{relativePath}。
+加载HSP中的worker线程文件。路径规则：{moduleName}/ets/{relativePath}。
 
 ```ts
 import { worker } from '@kit.ArkTS';
@@ -108,13 +108,13 @@ import { worker } from '@kit.ArkTS';
 const workerStage3: worker.ThreadWorker = new worker.ThreadWorker('hsp/ets/workers/worker.ets');
 ```
 
-3） 加载[HAR](../quick-start/har-package.md)中Worker线程文件场景
+3） 加载[HAR](../quick-start/har-package.md)中Worker线程文件
 
 加载HAR中worker线程文件存在以下两种情况：
 
 - @标识路径加载形式：所有种类的模块加载本地HAR中的Worker线程文件，加载路径规则：@{moduleName}/ets/{relativePath}。
 
-- 相对路径加载形式：本地HAR加载该包内的Worker线程文件，加载路径规则：创建Worker对象所在文件与Worker线程文件的相对路径。
+- 相对路径加载形式：本地HAR加载该包内的Worker线程文件，路径规则为：创建Worker对象所在文件与Worker线程文件的相对路径。
 
 >**说明：**
 >
@@ -156,25 +156,25 @@ const workerFA3: worker.ThreadWorker = new worker.ThreadWorker('ThreadFile/worke
 
 ### 生命周期注意事项
 
-- Worker的创建和销毁会消耗较多的系统资源，建议开发者合理管理已创建的Worker并重复使用。Worker空闲时仍会占用资源，因此当不需要Worker时，可以调用[terminate()](../reference/apis-arkts/js-apis-worker.md#terminate9)接口或[close()](../reference/apis-arkts/js-apis-worker.md#close9)方法主动销毁Worker。若Worker处于已销毁或正在销毁等非运行状态时，调用其功能接口，会抛出相应的错误。
+- Worker的创建和销毁会消耗较多的系统资源，建议开发者合理管理并重复使用已创建的Worker。Worker空闲时仍会占用资源，当不需要Worker时，可以调用[terminate()](../reference/apis-arkts/js-apis-worker.md#terminate9)接口或[close()](../reference/apis-arkts/js-apis-worker.md#close9)方法主动销毁Worker。若Worker处于已销毁或正在销毁等非运行状态时，调用其功能接口，会抛出相应的错误。
 
 
-- Worker的数量由内存管理策略决定，设定的内存阈值为1.5GB和设备物理内存的60%中的较小者。在内存允许的情况下，系统最多可以同时运行64个Worker。如果尝试创建的Worker数量超出这一上限，系统将抛出错误：“Worker initialization failure, the number of workers exceeds the maximum.”。实际运行的Worker数量会根据当前内存使用情况实时调整。当所有Worker和主线程的累积内存占用超过设定的阈值时，系统将触发内存溢出（OOM）错误，导致应用程序崩溃。
+- Worker的数量由内存管理策略决定，设定的内存阈值为1.5GB和设备物理内存的60%中的较小值。在内存允许的情况下，系统最多可以同时运行64个Worker。尝试创建的Worker数量超出上限时，系统将抛出错误：“Worker initialization failure, the number of workers exceeds the maximum.”。实际运行的Worker数量会根据当前内存使用情况实时调整。当所有Worker和主线程的累积内存占用超过设定的阈值时，系统将触发内存溢出（OOM）错误，导致应用程序崩溃。
 
 
 ### onAllErrors接口与onerror接口之间的行为差异
 
 1. 异常捕获范围
 
-    onAllErrors接口可以捕获Worker线程的onmessage回调、timer回调以及文件执行等流程产生的全局异常。
+    onAllErrors接口可以捕获Worker线程的onmessage回调、timer回调以及文件执行等流程中产生的全局异常。
 
     onerror接口仅能捕获Worker线程的onmessage回调中同步方法产生的异常，无法捕获多线程回调和模块化相关异常。
 
 2. 异常捕获后的线程状态
 
-    onAllErrors接口捕获异常后，Worker线程仍然存活并可以继续使用。这使得开发者可以在捕获异常后继续执行其他操作，而不必担心线程被终止。
+    onAllErrors接口捕获异常后，Worker线程仍然存活并可以继续使用。这使开发者可以在捕获异常后执行其他操作，无需担心线程终止。
 
-    onerror接口一旦捕获到异常，Worker线程会进入销毁流程，无法继续使用。这意味着在onerror触发后，Worker线程将被终止，后续操作将无法进行。
+    onerror接口捕获异常后，Worker线程会进入销毁流程，无法继续使用。这意味着在onerror触发后，Worker线程将被终止，后续操作将无法进行。
 
 3. 适用场景
 
@@ -189,7 +189,7 @@ const workerFA3: worker.ThreadWorker = new worker.ThreadWorker('ThreadFile/worke
 
 1. DevEco Studio支持一键生成Worker，在对应的{moduleName}目录下任意位置，单击鼠标右键 &gt; New &gt; Worker，即可自动生成Worker的模板文件及配置信息。本文以创建“worker”为例。
 
-   此外，支持手动创建Worker文件，具体方式和注意事项请参阅[创建Worker的注意事项](#创建worker的注意事项)。
+   支持手动创建Worker文件，具体方式和注意事项请参阅[创建Worker的注意事项](#创建worker的注意事项)。
 
 2. 导入Worker模块。
 
@@ -198,7 +198,7 @@ const workerFA3: worker.ThreadWorker = new worker.ThreadWorker('ThreadFile/worke
     import { ErrorEvent, MessageEvents, worker } from '@kit.ArkTS'
     ```
 
-3. 在宿主线程中通过调用ThreadWorker的[constructor()](../reference/apis-arkts/js-apis-worker.md#constructor9)方法创建Worker对象，并注册回调函数。
+3. 在宿主线程中，通过调用ThreadWorker的[constructor()](../reference/apis-arkts/js-apis-worker.md#constructor9)方法创建Worker对象，并注册回调函数。
 
       ```ts
       // Index.ets
@@ -221,13 +221,13 @@ const workerFA3: worker.ThreadWorker = new worker.ThreadWorker('ThreadFile/worke
                 // 创建Worker对象
                 let workerInstance = new worker.ThreadWorker('entry/ets/workers/worker.ets');
 
-                // 注册onmessage回调，当宿主线程接收到来自其创建的Worker通过workerPort.postMessage接口发送的消息时被调用，在宿主线程执行
+                // 注册onmessage回调，捕获宿主线程接收到来自其创建的Worker通过workerPort.postMessage接口发送的消息。该回调在宿主线程执行
                 workerInstance.onmessage = (e: MessageEvents) => {
                   let data: string = e.data;
                   console.info('workerInstance onmessage is: ', data);
                 }
 
-                // 注册onAllErrors回调，可以捕获Worker线程的onmessage回调、timer回调以及文件执行等流程产生的全局异常，在宿主线程执行
+                // 注册onAllErrors回调，捕获Worker线程的onmessage回调、timer回调以及文件执行等流程产生的全局异常。该回调在宿主线程执行
                 workerInstance.onAllErrors = (err: ErrorEvent) => {
                   console.error('workerInstance onAllErrors message is: ' + err.message);
                 }
@@ -239,7 +239,7 @@ const workerFA3: worker.ThreadWorker = new worker.ThreadWorker('ThreadFile/worke
 
                 // 注册onexit回调，当Worker销毁时被调用，在宿主线程执行
                 workerInstance.onexit = (e: number) => {
-                  // 如果Worker正常退出，code为0；如果异常退出，code为1
+                  // Worker正常退出时，code为0；异常退出时，code为1
                   console.info('workerInstance onexit code is: ', e);
                 }
 
@@ -276,7 +276,7 @@ const workerFA3: worker.ThreadWorker = new worker.ThreadWorker('ThreadFile/worke
         console.error('workerPort onmessageerror');
       }
 
-      // 注册onerror回调，当Worker在执行过程中发生异常被调用，在Worker线程执行
+      // 注册onerror回调，捕获Worker在执行过程中发生的异常，在Worker线程执行
       workerPort.onerror = (err: ErrorEvent) => {
         console.error('workerPort onerror err is: ', err.message);
       }
@@ -286,9 +286,9 @@ const workerFA3: worker.ThreadWorker = new worker.ThreadWorker('ThreadFile/worke
 
 ## 跨har包加载Worker
 
-1. 创建har详情参考[开发静态共享包](../quick-start/har-package.md)。
+1. 创建HAR详情参考[开发静态共享包](../quick-start/har-package.md)。
 
-2. 在har中创建Worker线程文件相关内容。
+2. 在HAR中创建Worker线程文件相关内容。
 
    ```ts
    // worker.ets
@@ -299,7 +299,7 @@ const workerFA3: worker.ThreadWorker = new worker.ThreadWorker('ThreadFile/worke
    ```
    <!-- @[create_har_worker](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/har/src/main/ets/workers/worker.ets) -->
 
-3. 在entry模块的oh-package.json5文件中配置har包的依赖。
+3. 在entry模块的oh-package.json5文件中配置HAR包的依赖。
 
    ```ts
    // 在entry模块配置har包的依赖
@@ -317,7 +317,7 @@ const workerFA3: worker.ThreadWorker = new worker.ThreadWorker('ThreadFile/worke
    ```
    <!-- @[config_har_dependency](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/entry/oh-package.json5) -->
 
-4. 在entry模块中加载har包中的Worker线程文件。
+4. 在entry模块中加载HAR包中的Worker线程文件。
 
    ```ts
    // Index.ets
@@ -356,7 +356,7 @@ const workerFA3: worker.ThreadWorker = new worker.ThreadWorker('ThreadFile/worke
 
 
 ## 多级Worker生命周期管理
-支持创建多级Worker，即父Worker可以创建子Worker，形成层级线程关系。由于Worker线程的生命周期由开发者自行管理，因此需要正确管理多级Worker的生命周期。如果销毁父Worker时未能终止其子Worker的运行，可能会导致不可预期的结果。因此需确保子Worker的生命周期在父Worker生命周期范围内，销毁父Worker前，先销毁所有子Worker。
+支持创建多级Worker，即父Worker可以创建子Worker，形成层级线程关系。由于Worker线程的生命周期由开发者管理，因此需要正确管理多级Worker的生命周期。当销毁父Worker时未能终止其子Worker的运行，可能会导致不可预期的结果。所以需要确保子Worker的生命周期在父Worker生命周期范围内，销毁父Worker前，先销毁所有子Worker，以避免不可预期的结果。
 
 
 ### 推荐使用示例
@@ -439,7 +439,7 @@ workerPort.onmessage = (e: MessageEvents) => {
 
 ### 不推荐使用示例
 
-不建议在父Worker销毁后，子Worker仍向父Worker发送消息。
+不建议在父Worker销毁后，子Worker继续向父Worker发送消息。
 
 ```ts
 // main thread
@@ -513,7 +513,7 @@ workerPort.onmessage = (e: MessageEvents) => {
 ```
 <!-- @[not_recommended_example](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/WorkerIntroduction/entry/src/main/ets/notrecommendedoneworker/childworker.ets) -->
 
-不建议在父Worker发起销毁操作的执行阶段创建子Worker。在创建子Worker线程之前，需确保父Worker线程始终处于存活状态，不建议在不确定父Worker是否发起销毁操作的情况下创建子Worker。
+不建议在父Worker发起销毁操作的执行阶段创建子Worker。在创建子Worker线程之前，需确保父Worker线程始终处于存活状态，建议在确定父Worker未发起销毁操作的情况下创建子Worker。
 
 ```ts
 // main thread
