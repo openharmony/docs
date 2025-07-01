@@ -10,7 +10,7 @@
 
 setOnClick(callback: Callback\<ClickEvent> | undefined): void
 
-设置[点击事件](./ts-universal-events-click.md#点击事件)的回调。
+设置[点击事件](./ts-universal-events-click.md)的回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -26,7 +26,7 @@ setOnClick(callback: Callback\<ClickEvent> | undefined): void
 
 setOnTouch(callback: Callback\<TouchEvent> | undefined): void
 
-设置[触摸事件](./ts-universal-events-touch.md#触摸事件)的回调。
+设置[触摸事件](./ts-universal-events-touch.md)的回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -76,7 +76,7 @@ setOnDisappear(callback: Callback\<void> | undefined): void
 
 setOnKeyEvent(callback: Callback\<KeyEvent> | undefined): void
 
-设置[按键事件](./ts-universal-events-key.md#按键事件)的回调。
+设置[按键事件](./ts-universal-events-key.md)的回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
