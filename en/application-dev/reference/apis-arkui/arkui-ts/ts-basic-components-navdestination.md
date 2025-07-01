@@ -160,9 +160,31 @@ Sets the icon of the back button on the title bar.
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
 | value  | [ResourceStr](ts-types.md#resourcestr) \| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) \| [SymbolGlyphModifier<sup>12+</sup>](ts-universal-attributes-attribute-modifier.md)  | Yes  | Icon of the back button on the title bar.|
 
+### backButtonIcon<sup>18+</sup>
+
+backButtonIcon(icon: ResourceStr | PixelMap | SymbolGlyphModifier, accessibilityText?: ResourceStr)
+
+> **NOTE**
+>
+> The following are not allowed: modify the icon size through the **fontSize** attribute of the **SymbolGlyphModifier** object, change the animation effects through the **effectStrategy** attribute, or change the type of animation effects through the **symbolEffect** attribute.
+
+
+Sets the icon and accessibility text for the back button on the title bar.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                        | Mandatory| Description              |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| icon  | [ResourceStr](ts-types.md#resourcestr) \| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) \| [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)  | Yes  | Icon of the back button on the title bar.|
+| accessibilityText | [ResourceStr](ts-types.md#resourcestr) | No| Accessibility text for the back button.<br>Default value: **back** when the system language is English.|
+
 ### menus<sup>12+</sup>
 
-menus(value: Array&lt;NavigationMenuItem&gt; | CustomBuilder)
+menus(items: Array&lt;NavigationMenuItem&gt; | CustomBuilder, options?: NavigationMenuOptions)
 
 > **NOTE**
 >
@@ -179,7 +201,8 @@ Sets the menu items in the upper right corner of the page. If this attribute is 
 
 | Name| Type                                                        | Mandatory| Description              |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| value  | Array<[NavigationMenuItem](ts-basic-components-navigation.md#navigationmenuitem)&gt; \| [CustomBuilder](ts-types.md#custombuilder8) | Yes  | Menu items in the upper right corner of the page.|
+| items  | Array<[NavigationMenuItem](ts-basic-components-navigation.md#navigationmenuitem)&gt; \| [CustomBuilder](ts-types.md#custombuilder8) | Yes  | Menu items in the upper right corner of the page.|
+| options<sup>18+</sup> | [NavigationMenuOptions](ts-basic-components-navigation.md#navigationmenuoptions18) | No  | Optional settings for menu items in the upper right corner of the page.|
 
 ### ignoreLayoutSafeArea<sup>12+</sup>
 
@@ -262,7 +285,7 @@ Sets whether the **NavDestination** component is recoverable. If set to recovera
 ### bindToScrollable<sup>14+</sup>
 bindToScrollable(scrollers: Array&lt;Scroller&gt;)
 
-Binds the **NavDestination** component with a scrollable container, which can be a [List](./ts-container-list.md), [Scroll](./ts-container-scroll.md), [Grid](./ts-container-grid.md), or [WaterFlow](./ts-container-waterflow.md) component. This way, scrolling in the scrollable container triggers the display and hide animations of the title bar and toolbar of all **NavDestination** components that are bound to it �C scrolling up triggers the hide animation, and scrolling down triggers the show animation. A single **NavDestination** component can be bound to multiple scrollable containers, and a single scrollable container can be bound to multiple **NavDestination** components. For details, see [Example 1](#example-1-linking-the-title-bar-and-toolbar-with-scrollable-components).
+Binds the **NavDestination** component with a scrollable container, which can be a [List](./ts-container-list.md), [Scroll](./ts-container-scroll.md), [Grid](./ts-container-grid.md), or [WaterFlow](./ts-container-waterflow.md) component. This way, scrolling in the scrollable container triggers the display and hide animations of the title bar and toolbar of all **NavDestination** components that are bound to it – scrolling up triggers the hide animation, and scrolling down triggers the show animation. A single **NavDestination** component can be bound to multiple scrollable containers, and a single scrollable container can be bound to multiple **NavDestination** components. For details, see [Example 1](#example-1-linking-the-title-bar-and-toolbar-with-scrollable-components).
 
 > **NOTE**
 >
@@ -282,7 +305,7 @@ Binds the **NavDestination** component with a scrollable container, which can be
 ### bindToNestedScrollable<sup>14+</sup>
 bindToNestedScrollable(scrollInfos: Array&lt;NestedScrollInfo&gt;)
 
-Binds the **NavDestination** component with a nested scrollable container, which can be a [List](./ts-container-list.md), [Scroll](./ts-container-scroll.md), [Grid](./ts-container-grid.md), or [WaterFlow](./ts-container-waterflow.md) component. This way, scrolling in the scrollable container triggers the display and hide animations of the title bar and toolbar of all **NavDestination** components that are bound to it �C scrolling up triggers the hide animation, and scrolling down triggers the show animation. A single **NavDestination** component can be bound to multiple nested scrollable containers, and a single nested scrollable container can be bound to multiple **NavDestination** components. For details, see [Example 1](#example-1-linking-the-title-bar-and-toolbar-with-scrollable-components).
+Binds the **NavDestination** component with a nested scrollable container, which can be a [List](./ts-container-list.md), [Scroll](./ts-container-scroll.md), [Grid](./ts-container-grid.md), or [WaterFlow](./ts-container-waterflow.md) component. This way, scrolling in the scrollable container triggers the display and hide animations of the title bar and toolbar of all **NavDestination** components that are bound to it – scrolling up triggers the hide animation, and scrolling down triggers the show animation. A single **NavDestination** component can be bound to multiple nested scrollable containers, and a single nested scrollable container can be bound to multiple **NavDestination** components. For details, see [Example 1](#example-1-linking-the-title-bar-and-toolbar-with-scrollable-components).
 
 > **NOTE**
 >
@@ -334,6 +357,84 @@ Sets a custom transition animation for the **NavDestination** component.
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | delegate  | [NavDestinationTransitionDelegate](#navdestinationtransitiondelegate15) | Yes  | Delegate function for custom animations of the **NavDestination** component.|
+
+### preferredOrientation<sup>18+</sup>
+
+preferredOrientation(orientation: Optional&lt;Orientation&gt;)
+
+Sets the display orientation for the **NavDestination** component. After the transition to the NavDestination, the system also switches the application's main window to the specified display orientation.
+
+> **NOTE**
+>
+> This attribute is effective only if the following conditions are all met:
+> 1. The **NavDestination** component belongs to the application's main window page, and the main window is a full-screen window.
+> 2. The size of the **Navigation** container to which the **NavDestination** component belongs occupies the entire application page.
+> 3. The type of **NavDestination** is [STANDARD](#navdestinationmode11).
+>
+> The actual effect of setting the display orientation depends on the specific device support. For details, see [setPreferredOrientation](../js-apis-window.md#setpreferredorientation9-1).
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                                                        |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| orientation  | [Optional](ts-universal-attributes-custom-property.md#optional12)&lt;[Orientation](../js-apis-window.md#orientation9)&gt; | Yes  | Display orientation to set.|
+
+### enableStatusBar<sup>18+</sup>
+
+enableStatusBar(enabled: Optional&lt;boolean&gt;, animated?: boolean)
+
+Sets whether to show or hide the system status bar when entering this **NavDestination** component.
+
+> **NOTE**
+>
+> This attribute is effective only if the following conditions are all met:
+> 1. The **NavDestination** component belongs to the application's main window page, and the main window is a full-screen window.
+> 2. The size of the **Navigation** container to which the **NavDestination** component belongs occupies the entire application page.
+> 3. The size of the **NavDestination** component occupies the entire **Navigation** container.
+> 4. The type of **NavDestination** is [STANDARD](#navdestinationmode11).
+>
+> The actual effect of setting the system status bar depends on the specific device support. For details, see [setSpecificSystemBarEnabled](../js-apis-window.md#setspecificsystembarenabled11).
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                                                        |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| enabled  | [Optional](ts-universal-attributes-custom-property.md#optional12)&lt;boolean&gt; | Yes  | Whether to show or hide the system status bar when entering the current **NavDestination** component.|
+| animated  | boolean | No  | Whether to use an animation to show or hide the system status bar.<br>Default value: **false**|
+
+### enableNavigationIndicator<sup>18+</sup>
+
+enableNavigationIndicator(enabled: Optional&lt;boolean&gt;)
+
+Sets whether to show or hide the system navigation bar when entering this **NavDestination** component.
+
+> **NOTE**
+>
+> This attribute is effective only if the following conditions are all met:
+> 1. The **NavDestination** component belongs to the application's main window page, and the main window is a full-screen window.
+> 2. The size of the **Navigation** container to which the **NavDestination** component belongs occupies the entire application page.
+> 3. The size of the **NavDestination** component occupies the entire **Navigation** container.
+> 4. The type of **NavDestination** is [STANDARD](#navdestinationmode11).
+>
+> The actual effect of setting the system navigation bar depends on the specific device support. For details, see [setSpecificSystemBarEnabled](../js-apis-window.md#setspecificsystembarenabled11).
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                                                        |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| enabled  | [Optional](ts-universal-attributes-custom-property.md#optional12)&lt;boolean&gt; | Yes  | Whether to show or hide the system navigation bar when entering the current **NavDestination** component.|
 
 ## NavDestinationMode<sup>11+</sup>
 
@@ -472,13 +573,13 @@ Triggered when the **NavDestination** component returns.
 | ------ | ------ | ---- | ---------------- |
 |callback | [Optional](./ts-universal-attributes-custom-property.md)\<[Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<ESObject\>\>| Yes| Callback for page returning, with the parameter being the **result** parameter passed to the **pop** API. If this parameter is not passed, the input is **undefined**.|
 
-### onActive<sup>18+</sup>
+### onActive<sup>17+</sup>
 
 onActive(callback: Optional\<Callback\<NavDestinationActiveReason\>\>)
 
 Triggered when the **NavDestination** component becomes active (on top of the stack and operable, with no special components blocking it).
 
-**Atomic service API**: This API can be used in atomic services since API version 18.
+**Atomic service API**: This API can be used in atomic services since API version 17.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -487,13 +588,13 @@ Triggered when the **NavDestination** component becomes active (on top of the st
 | ------ | ------ | ---- | ---------------- |
 |callback | [Optional](./ts-universal-attributes-custom-property.md#optional12)\<[Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<[NavDestinationActiveReason](#navdestinationactivereason18)\>\>| Yes| Reason why the **NavDestination** component switches from inactive to active.|
 
-### onInactive<sup>18+</sup>
+### onInactive<sup>17+</sup>
 
 onInactive(callback:  Optional\<Callback\<NavDestinationActiveReason\>\>)
 
 Triggered when **NavDestination** component becomes inactive (not on top of the stack and inoperable, or on top but blocked by special components).
 
-**Atomic service API**: This API can be used in atomic services since API version 18.
+**Atomic service API**: This API can be used in atomic services since API version 17.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -501,6 +602,25 @@ Triggered when **NavDestination** component becomes inactive (not on top of the 
 | Name| Type| Mandatory| Description|
 | ------ | ------ | ---- | ---------------- |
 |callback | [Optional](./ts-universal-attributes-custom-property.md#optional12)\<[Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<[NavDestinationActiveReason](#navdestinationactivereason18)\>\>| Yes| Reason why the **NavDestination** component switches from active to inactive.|
+
+### onNewParam<sup>19+</sup>
+
+onNewParam(callback:  Optional\<Callback\<ESObject\>\>)
+
+Triggered when a **NavDestination** page that already exists in the stack is moved to the top using [launchMode.MOVE_TO_TOP_SINGLETON](./ts-basic-components-navigation.md#launchmode12) or [launchMode.POP_TO_SINGLETON](./ts-basic-components-navigation.md#launchmode12).
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+| Name| Type| Mandatory| Description|
+| ------ | ------ | ---- | ---------------- |
+|callback | [Optional](./ts-universal-attributes-custom-property.md#optional12)\<[Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<ESObject\>\>| Yes| Callback triggered by **onNewParam**, with the parameter being the data passed to the target page during navigation.|
+
+> **NOTE**
+>
+> This callback is not triggered by [replacePath](./ts-basic-components-navigation.md#replacepath11) or [replaceDestination](./ts-basic-components-navigation.md#replacedestination18).
 
 ## NavDestinationCommonTitle
 
@@ -628,7 +748,7 @@ Defines the delegate function for custom transition animations of the **NavDesti
 
 | Type     | Description       |
 |---------|-----------|
-| Array<[NavDestinationTransition](#navdestinationtransition15)> \| undefined | Array of custom animations for the **NavDestination** page. If **undefined** is returned, the system default animation is used.|
+| Array<[NavDestinationTransition](#navdestinationtransition15)> \| undefined | Array of custom animations for the **NavDestination** page. If **undefined** is returned, the default system animation is used.|
 
 ## Example
 
@@ -750,9 +870,9 @@ struct Index {
   @Builder
   MyPageMap(name: string) {
     if (name === 'myPageOne') {
-      MyPageOne()
+      MyPageOne();
     } else {
-      MyPageTwo()
+      MyPageTwo();
     }
   }
 
@@ -760,10 +880,10 @@ struct Index {
     Navigation(this.stack) {
       Column() {
         Button('push PageOne').onClick(() => {
-          this.stack.pushPath({ name: 'myPageOne' })
+          this.stack.pushPath({ name: 'myPageOne' });
         })
         Button('push PageTwo').onClick(() => {
-          this.stack.pushPath({ name: 'myPageTwo' })
+          this.stack.pushPath({ name: 'myPageTwo' });
         })
       }.height('40%').justifyContent(FlexAlign.SpaceAround)
     }.width('100%')
@@ -783,17 +903,17 @@ The following example demonstrates how to set a custom transition animation for 
 @Entry
 @Component
 struct NavDestinationCustomTransition {
-  stack: NavPathStack = new NavPathStack()
+  stack: NavPathStack = new NavPathStack();
 
   @Builder
   pageMap(name: string) {
     if (name) {
-      NavDest()
+      NavDest();
     }
   }
 
   aboutToAppear(): void {
-    this.stack.pushPath({name: 'dest0'})
+    this.stack.pushPath({name: 'dest0'});
   }
 
   build() {
@@ -811,9 +931,9 @@ declare type voidFunc = () => void;
 
 @Component
 struct NavDest {
-  @State name: string = 'NA'
-  @State destWidth: string = '100%'
-  stack: NavPathStack = new NavPathStack()
+  @State name: string = 'NA';
+  @State destWidth: string = '100%';
+  stack: NavPathStack = new NavPathStack();
   @State y: string = '0';
 
   build() {
@@ -824,7 +944,7 @@ struct NavDest {
           .height(40)
           .margin(20)
           .onClick(() => {
-            this.stack.pushPath({ name: this.name == 'PageOne' ? "PageTwo" : "PageOne" })
+            this.stack.pushPath({ name: this.name == 'PageOne' ? "PageTwo" : "PageOne" });
           })
       }
       .size({ width: '100%', height: '100%' })
@@ -859,7 +979,7 @@ struct NavDest {
               console.log('[NavDestinationTransition]', 'transitionOne, push & !isEnter');
               this.y = '0';
             }
-            transitionOneDuration = 450
+            transitionOneDuration = 450;
           }
         } else if (op === NavigationOperation.POP) {
           if (isEnter) {
@@ -922,20 +1042,20 @@ struct NavDestinationSystemTransition {
   @Builder
   pageMap(name: string) {
     if (name === 'Fade') {
-      Fade()
+      Fade();
     } else if (name === 'Explode') {
-      Explode()
+      Explode();
     } else if (name === 'SlideRight') {
-      SlideRight()
+      SlideRight();
     } else if (name === 'SlideBottom') {
-      SlideBottom()
+      SlideBottom();
     } else {
-      Dest()
+      Dest();
     }
   }
 
   aboutToAppear(): void {
-    this.stack.pushPath({name: 'Dest'})
+    this.stack.pushPath({name: 'Dest'});
   }
 
   build() {
@@ -955,11 +1075,11 @@ struct Dest {
 
   build() {
     NavDestination() {
-      HomeBody()
+      HomeBody();
     }
     .title('Navigation System Animation')
     .onReady((context) => {
-      this.name = context.pathInfo.name
+      this.name = context.pathInfo.name;
     })
     .systemTransition(this.homePageTransitionType)
   }
@@ -978,7 +1098,7 @@ struct Fade {
     }
     .title(this.name)
     .onReady((context) => {
-      this.name = context.pathInfo.name
+      this.name = context.pathInfo.name;
     })
     .systemTransition(NavigationSystemTransitionType.FADE)
   }
@@ -997,7 +1117,7 @@ struct Explode {
     }
     .title(this.name)
     .onReady((context) => {
-      this.name = context.pathInfo.name
+      this.name = context.pathInfo.name;
     })
     .systemTransition(NavigationSystemTransitionType.EXPLODE)
   }
@@ -1016,7 +1136,7 @@ struct SlideRight {
     }
     .title(this.name)
     .onReady((context) => {
-      this.name = context.pathInfo.name
+      this.name = context.pathInfo.name;
     })
     .systemTransition(NavigationSystemTransitionType.SLIDE_RIGHT)
   }
@@ -1035,7 +1155,7 @@ struct SlideBottom {
     }
     .title(this.name)
     .onReady((context) => {
-      this.name = context.pathInfo.name
+      this.name = context.pathInfo.name;
     })
     .systemTransition(NavigationSystemTransitionType.SLIDE_BOTTOM)
   }
@@ -1043,14 +1163,14 @@ struct SlideBottom {
 
 @Component
 struct DestBody {
-  name: string = 'NA'
+  name: string = 'NA';
 
-  columnTextSize: number = 22
-  columnTextFontWeight: FontWeight = FontWeight.Bolder
-  columnWidth: string = '65%'
-  columnPadding: number = 22
-  columnMargin: number = 10
-  columnBorderRadius: number = 10
+  columnTextSize: number = 22;
+  columnTextFontWeight: FontWeight = FontWeight.Bolder;
+  columnWidth: string = '65%';
+  columnPadding: number = 22;
+  columnMargin: number = 10;
+  columnBorderRadius: number = 10;
 
   build() {
     Column() {
@@ -1077,13 +1197,13 @@ struct HomeBody {
   @Consume stack: NavPathStack;
   @Consume homePageTransitionType: NavigationSystemTransitionType;
 
-  columnTextSize: number = 22
-  columnTextFontWeight: FontWeight = FontWeight.Bolder
-  columnWidth: string = '85%'
-  columnPadding: number = 22
-  columnMargin: number = 10
-  columnBorderRadius: number = 10
-  columnShadow: ShadowStyle = ShadowStyle.OUTER_DEFAULT_MD
+  columnTextSize: number = 22;
+  columnTextFontWeight: FontWeight = FontWeight.Bolder;
+  columnWidth: string = '85%';
+  columnPadding: number = 22;
+  columnMargin: number = 10;
+  columnBorderRadius: number = 10;
+  columnShadow: ShadowStyle = ShadowStyle.OUTER_DEFAULT_MD;
 
   build() {
     Column() {
@@ -1101,8 +1221,8 @@ struct HomeBody {
       .borderRadius(this.columnBorderRadius)
       .shadow(this.columnShadow)
       .onClick(() => {
-        this.homePageTransitionType = NavigationSystemTransitionType.FADE
-        this.stack.pushPath({name: 'Fade'})
+        this.homePageTransitionType = NavigationSystemTransitionType.FADE;
+        this.stack.pushPath({name: 'Fade'});
       })
 
       Column() {
@@ -1116,8 +1236,8 @@ struct HomeBody {
       .borderRadius(this.columnBorderRadius)
       .shadow(this.columnShadow)
       .onClick(() => {
-        this.homePageTransitionType = NavigationSystemTransitionType.EXPLODE
-        this.stack.pushPath({name: 'Explode'})
+        this.homePageTransitionType = NavigationSystemTransitionType.EXPLODE;
+        this.stack.pushPath({name: 'Explode'});
       })
 
       Column() {
@@ -1131,8 +1251,8 @@ struct HomeBody {
       .borderRadius(this.columnBorderRadius)
       .shadow(this.columnShadow)
       .onClick(() => {
-        this.homePageTransitionType = NavigationSystemTransitionType.SLIDE_RIGHT
-        this.stack.pushPath({name: 'SlideRight'})
+        this.homePageTransitionType = NavigationSystemTransitionType.SLIDE_RIGHT;
+        this.stack.pushPath({name: 'SlideRight'});
       })
 
       Column() {
@@ -1146,8 +1266,8 @@ struct HomeBody {
       .borderRadius(this.columnBorderRadius)
       .shadow(this.columnShadow)
       .onClick(() => {
-        this.homePageTransitionType = NavigationSystemTransitionType.SLIDE_BOTTOM
-        this.stack.pushPath({name: 'SlideBottom'})
+        this.homePageTransitionType = NavigationSystemTransitionType.SLIDE_BOTTOM;
+        this.stack.pushPath({name: 'SlideBottom'});
       })
     }
   }
@@ -1157,5 +1277,89 @@ struct HomeBody {
 ![navdestination_explode](figures/navdestination_explode_transition.gif)
 ![navdestination_slide_bottom](figures/navdestination_slide_bottom_transition.gif)
 ![navdestination_slide_right](figures/navdestination_slide_right_transition.gif)
+
+### Example 4: Configuring Display Orientation and Status Bar and Navigation Bar Visibility
+
+This example demonstrates how to configure each **NavDestination** component with specific display orientations and control the visibility of the status bar and navigation bar.
+
+```ts
+import { window } from '@kit.ArkUI';
+
+@Component
+struct PortraitPage {
+  private stack: NavPathStack | undefined = undefined;
+  build() {
+    NavDestination() {
+      Stack({alignContent: Alignment.Center}) {
+        Button('push LANDSCAPE page').onClick(() => {
+          this.stack?.pushPath({name: 'landscape'});
+        })
+      }.width('100%').height('100%')
+    }
+    .width('100%').height('100%')
+    .title('PortraitPage')
+    .preferredOrientation(window.Orientation.PORTRAIT) // Portrait orientation.
+    .enableStatusBar (true) // Show the status bar.
+    .enableNavigationIndicator(true) // Show the navigation bar.
+    .backgroundColor('#ffbaece9')
+    .onReady((ctx: NavDestinationContext) => {
+      this.stack = ctx.pathStack;
+    })
+  }
+}
+
+@Component
+struct LandscapePage {
+  private stack: NavPathStack | undefined = undefined;
+  build() {
+    NavDestination() {
+      Stack({alignContent: Alignment.Center}) {
+        Button('push PORTRAIT page').onClick(() => {
+          this.stack?.pushPath({name: 'portrait'});
+        })
+      }.width('100%').height('100%')
+    }
+    .width('100%').height('100%')
+    .title('LandscapePage')
+    .preferredOrientation(window.Orientation.LANDSCAPE) // Landscape orientation.
+    .enableStatusBar(false) // Hide the status bar.
+    .enableNavigationIndicator(false) // Hide the navigation bar.
+    .backgroundColor('#ffecb8b8')
+    .ignoreLayoutSafeArea([LayoutSafeAreaType.SYSTEM], [LayoutSafeAreaEdge.TOP, LayoutSafeAreaEdge.BOTTOM])
+    .onReady((ctx: NavDestinationContext) => {
+      this.stack = ctx.pathStack;
+    })
+  }
+}
+
+@Entry
+@Component
+struct ExamplePage {
+  private stack: NavPathStack = new NavPathStack();
+
+  aboutToAppear(): void {
+    this.stack.pushPath({name: "portrait"});
+  }
+
+  @Builder
+  MyPageMap(name: string) {
+    if (name === 'portrait') {
+      PortraitPage();
+    } else {
+      LandscapePage();
+    }
+  }
+
+  build() {
+    Navigation(this.stack) {
+    }
+    .width('100%')
+    .height('100%')
+    .hideNavBar(true)
+    .navDestination(this.MyPageMap)
+  }
+}
+```
+![navdestination_orientation](figures/navdestination_orientation.gif)
 
 For more usage of the **NavDestination** component, see [Example in Navigation](ts-basic-components-navigation.md#example).

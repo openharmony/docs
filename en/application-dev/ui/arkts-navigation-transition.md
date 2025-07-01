@@ -18,12 +18,12 @@ To create a navigation page:
 
 3. Add an **onClick** method to the component inside the **List**, and use the **pushPathByName** method of the **NavPathStack** within it. This allows the component to transition from the current page to the page corresponding to the input parameter **name** in the routing table upon click.
 ```ts
-//PageOne.ets
+//Index.ets
 @Entry
 @Component
 struct NavigationDemo {
   @Provide('pathInfos') pathInfos: NavPathStack = new NavPathStack();
-  private listArray: Array<string> = ['WLAN', 'Bluetooth', 'Personal Hotpot', 'Connect & Share'];
+  private listArray: Array<string> = ['WLAN', 'Bluetooth', 'Personal Hotspot', 'Connect & Share'];
 
   build() {
     Column() {
@@ -111,7 +111,7 @@ Create navigation subpage 1 as follows:
 
 @Builder
 export function MyCommonPageBuilder(name: string, param: string) {
-  MyCommonPage({ name: name, value: param })
+  MyCommonPage({ name: name, value: param });
 }
 
 @Component
@@ -172,8 +172,8 @@ Create navigation subpage 2 as follows:
 ```ts
 //PageTwo.ets
 @Builder
-export function MySharePageBuilder(name: string, param: string) {
-  MySharePage({ name: name })
+export function MySharePageBuilder(name: string) {
+  MySharePage({ name: name });
 }
 
 @Component
@@ -230,7 +230,7 @@ export struct MySharePage {
             }
             .width('100%')
             .onClick(() => {
-              this.pathInfos.pushPathByName(`${item}`, 'Parameters')
+              this.pathInfos.pushPathByName(`${item}`, 'Parameters');
             })
           }, (item: string): string => item)
         }
@@ -268,7 +268,7 @@ To create route navigation:
       "buildFunction" : "MyCommonPageBuilder"
     },
     {
-      "name" : "Personal Hotpot",
+      "name" : "Personal Hotspot",
       "pageSourceFile"  : "src/main/ets/pages/PageOne.ets",
       "buildFunction" : "MyCommonPageBuilder"
     },
