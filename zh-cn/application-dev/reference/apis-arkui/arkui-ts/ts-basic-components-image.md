@@ -644,11 +644,11 @@ svg类型图源不支持该属性。
 
 | 名称     | 值    | 说明                    |
 | ------ | -------------------------- | -------------------------- |
-| AUTO | 0 | 读取图片携带的EXIF元数据作为显示方向，支持旋转和镜像。 |
+| AUTO | 0 | 读取图片携带的EXIF元数据作为显示方向，支持旋转和镜像。<br/>![imageRotateOrientation_0](figures/imageRotateOrientation_0.png) |
 | UP | 1 | 默认按照当前图片的像素数据进行显示，不做任何处理。 |
-| RIGHT | 2 | 将当前图片顺时针旋转90度后显示。 |
-| DOWN | 3 | 将当前图片顺时针旋转180度后显示。 |
-| LEFT | 4 | 将当前图片顺时针旋转270度后显示。 |
+| RIGHT | 2 | 将当前图片顺时针旋转90度后显示。<br/>![imageRotateOrientation_2](figures/imageRotateOrientation_2.png) |
+| DOWN | 3 | 将当前图片顺时针旋转180度后显示。<br/>![imageRotateOrientation_3](figures/imageRotateOrientation_3.png) |
+| LEFT | 4 | 将当前图片顺时针旋转270度后显示。<br/>![imageRotateOrientation_4](figures/imageRotateOrientation_4.png) |
 
 ## ImageSourceSize<sup>18+</sup>对象说明
 
