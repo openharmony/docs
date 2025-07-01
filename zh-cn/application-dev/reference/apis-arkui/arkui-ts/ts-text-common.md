@@ -1071,7 +1071,7 @@ TextArea组件在文本超长时显示效果。默认值为CLIP，按最大行�
 
 ## NumericTextTransition<sup>20+</sup>
 
-数字翻牌动效，不支持渐变色，只支持正整数，与其它文字混排时数字翻牌不生效。
+数字翻牌动效，不支持渐变色和Text跑马灯模式，只支持正整数，与其它文字混排时数字翻牌不生效。
 
 NumericTextTransition继承自[ContentTransition](#contenttransition20)。
 
