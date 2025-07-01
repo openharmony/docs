@@ -4,6 +4,14 @@
 
 The APIs provided by **DataSharePredicates** correspond to the filter criteria of the database. Before using the APIs, you need to have basic database knowledge.
 
+Use scenarios:
+
+- **DataSharePredicates** is used as a fetch option in Media Library Kit. For details, see [FetchOptions](../apis-media-library-kit/js-apis-photoAccessHelper.md#fetchoptions). In this scenario, you do not need to bother with the database types.
+
+<!--Del-->
+- It is also used as a search criteria to call the APIs of [RDB Store](js-apis-data-relationalStore-sys.md) and [Distributed KV Store](js-apis-distributedKVStore-sys.md). In this scenario, you can use the predicates according to the type of database used.
+<!--DelEnd-->
+
 > **NOTE**
 >
 > - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -35,8 +43,8 @@ Currently, only the relational database (RDB) and key-value database (KVDB, sche
 
 | Name| Type                                               | Mandatory| Description                  |
 | ------ | --------------------------------------------------- | ---- | ---------------------- |
-| field  | string                                              | Yes  | Column name in the database table.    |
-| value  | [ValueType](js-apis-data-valuesBucket.md#valuetype) | Yes  | Value to match.|
+| field  | string                                              | Yes  | Column name in the database table.</br>If **field** is **undefined** or **null**, this **DataSharePredicates** object becomes invalid.    |
+| value  | [ValueType](js-apis-data-valuesBucket.md#valuetype) | Yes  | Value to match.</br>If **value** is **undefined** or **null**, this **DataSharePredicates** object becomes invalid.|
 
 **Return value**
 
@@ -47,8 +55,8 @@ Currently, only the relational database (RDB) and key-value database (KVDB, sche
 **Example**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.equalTo("NAME", "Rose")
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.equalTo("NAME", "Rose");
 ```
 
 
@@ -71,10 +79,10 @@ Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** o
 **Example**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
+let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "lisi")
     .and()
-    .equalTo("SALARY", 200.5)
+    .equalTo("SALARY", 200.5);
 ```
 
 ### orderByAsc<sup>10+</sup>
@@ -91,7 +99,7 @@ Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** o
 
 | Name| Type  | Mandatory| Description              |
 | ------ | ------ | ---- | ------------------ |
-| field  | string | Yes  | Column name in the database table.|
+| field  | string | Yes  | Column name in the database table.</br>If **field** is **undefined** or **null**, this **DataSharePredicates** object becomes invalid.|
 
 **Return value**
 
@@ -102,8 +110,8 @@ Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** o
 **Example**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.orderByAsc("AGE")
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.orderByAsc("AGE");
 ```
 
 ### orderByDesc<sup>10+</sup>
@@ -120,7 +128,7 @@ Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** o
 
 | Name| Type  | Mandatory| Description              |
 | ------ | ------ | ---- | ------------------ |
-| field  | string | Yes  | Column name in the database table.|
+| field  | string | Yes  | Column name in the database table.</br>If **field** is **undefined** or **null**, this **DataSharePredicates** object becomes invalid. |
 
 **Return value**
 
@@ -131,8 +139,8 @@ Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** o
 **Example**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.orderByDesc("AGE")
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.orderByDesc("AGE");
 ```
 
 ### limit<sup>10+</sup>
@@ -161,8 +169,8 @@ Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** o
 **Example**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.equalTo("NAME", "Rose").limit(10, 3)
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.equalTo("NAME", "Rose").limit(10, 3);
 ```
 
 ### in<sup>10+</sup>
@@ -179,7 +187,7 @@ Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** o
 
 | Name | Type            | Mandatory| Description                                   |
 | ------- | ---------------- | ---- | --------------------------------------- |
-| field   | string           | Yes| Column name in the database table.                     |
+| field   | string           | Yes| Column name in the database table.</br>If **field** is **undefined** or **null**, this **DataSharePredicates** object becomes invalid.                     |
 | value | Array&lt;[ValueType](js-apis-data-valuesBucket.md#valuetype)&gt; | Yes  | Array of the values to match.|
 
 **Return value**
@@ -191,6 +199,6 @@ Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** o
 **Example**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.in("AGE", [18, 20])
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.in("AGE", [18, 20]);
 ```

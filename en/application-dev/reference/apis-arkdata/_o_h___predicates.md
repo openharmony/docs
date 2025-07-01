@@ -9,6 +9,7 @@ Defines the predicates for RDB stores.
 
 **Related module**: [RDB](_r_d_b.md)
 
+**Header file**: [oh_predicates.h](oh__predicates_8h.md)
 
 ## Summary
 

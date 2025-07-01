@@ -141,8 +141,8 @@ Enumerates the uniform data types. Some data types are related. For example, the
 | ISO<sup>12+</sup>                        | 'general.iso'                  | ISO image (optical disk image) format.<br>This type belongs to **DISK_IMAGE**. |
 | TAR_ARCHIVE<sup>11+</sup>                        | 'general.tar-archive'                  | TAR.<br>This type belongs to ARCHIVE.          |
 | ZIP_ARCHIVE<sup>11+</sup>                       | 'general.zip-archive'                 | ZIP.<br>This type belongs to **ARCHIVE**.          |
-| JAVA_ARCHIVE<sup>11+</sup>             | 'com.sun.java-archive'               | JAR (Java archive).<br>This type belongs to **ARCHIVE** and **EXECUTABLE**.         |
-| GNU_TAR_ARCHIVE<sup>11+</sup>         | 'org.gnu.gnu-tar-archive'           | GUN archive.<br>This type belongs to **ARCHIVE**.          |
+| JAVA_ARCHIVE<sup>11+</sup>             | 'com.sun.java-archive'               | Java archive.<br>This type belongs to **ARCHIVE** and **EXECUTABLE**.         |
+| GNU_TAR_ARCHIVE<sup>11+</sup>         | 'org.gnu.gnu-tar-archive'           | GNU archive.<br>This type belongs to **ARCHIVE**.          |
 | GNU_ZIP_ARCHIVE<sup>11+</sup>        | 'org.gnu.gnu-zip-archive'          | GZIP archive.<br>This type belongs to **ARCHIVE**.         |
 | GNU_ZIP_TAR_ARCHIVE<sup>11+</sup>                         | 'org.gnu.gnu-zip-tar-archive'                   | GZIP TAR.<br>This type belongs to **ARCHIVE**.      |
 | OPENXML<sup>12+</sup>                         | 'org.openxmlformats.openxml'                    |   OpenXML base type.<br>This type belongs to **ARCHIVE**.      |

@@ -8,7 +8,7 @@
 
 **Error Message**
 
-Upper limit exceeded.
+Over max  limits.
 
 **Description**
 
@@ -28,7 +28,7 @@ The number of subscriptions or the number of opened result sets has reached the 
 
 **Error Message**
 
-The options configuration changes when the API is called to obtain a KV store.
+Open existed database with changed options.
 
 **Description**
 
@@ -68,7 +68,7 @@ The target KV store is corrupted.
 
 **Error Message**
 
-Data not found.
+Not found.
 
 **Description**
 

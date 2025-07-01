@@ -1130,10 +1130,10 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## StorageType<sup>16+</sup>
+## StorageType<sup>18+</sup>
 Enumerates the storage types of preferences.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1149,14 +1149,14 @@ Enumerates the storage types of preferences.
 >   - Data cannot be directly migrated between the **Preferences** instances that use different storage types. To migrate data between them, you need to read the data to be migrated and then write the data.
 >   - If you need to change the storage directory of preferences, you cannot move or overwrite files. Instead, you need to read the data and then write the data.
 
-## preferences.isStorageTypeSupported<sup>16+</sup>
+## preferences.isStorageTypeSupported<sup>18+</sup>
 isStorageTypeSupported(type: StorageType): boolean
 
 Checks whether the specified storage type is supported. This API returns the result synchronously.
 
 If the storage type is supported, **true** is returned. Otherwise, **false** is returned.
 
-**Atomic service API**: This API can be used in atomic services since API version 16.
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1164,7 +1164,7 @@ If the storage type is supported, **true** is returned. Otherwise, **false** is 
 
 | Name | Type                 | Mandatory| Description                                                        |
 | ------- | --------------------- | ---- | ------------------------------------------------------------ |
-| type | [StorageType](#storagetype16)               | Yes  | Storage type to check.|
+| type | [StorageType](#storagetype18)               | Yes  | Storage type to check.|
 
 **Return value**
 
@@ -1185,11 +1185,11 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 let xmlType = preferences.StorageType.XML;
-let clkvType = preferences.StorageType.CLKV;
+let gskvType = preferences.StorageType.GSKV;
 let isXmlSupported = preferences.isStorageTypeSupported(xmlType);
-let isClkvSupported = preferences.isStorageTypeSupported(clkvType);
+let isGskvSupported = preferences.isStorageTypeSupported(gskvType);
 console.info("Is xml supported in current platform: " + isXmlSupported);
-console.info("Is clkv supported in current platform: " + isClkvSupported);
+console.info("Is gskv supported in current platform: " + isGskvSupported);
 ```
 
 ## Options<sup>10+</sup> 
@@ -1202,7 +1202,7 @@ Represents the configuration of a **Preferences** instance.
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
 | name        | string | Yes  | Name of the **Preferences** instance. It must be longer than 0 bytes and less than or equal to 255 bytes, and cannot contain or end with slashes (/).<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>                                   |
 | dataGroupId | string\|null\|undefined | No  | Application group ID. <!--RP1-->Currently, this parameter is not supported.<!--RP1End--><br>This parameter is optional. A **Preferences** instance will be created in the sandbox path corresponding to the specified **dataGroupId**. If this parameter is not specified, the **Preferences** instance is created in the sandbox directory of the application.<br> **Model restriction**: This attribute can be used only in the stage model.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>|
-| storageType<sup>16+</sup> | [StorageType](#storagetype16)\|null\|undefined | No | Storage mode to be used by the **Preferences** instance. This parameter is optional. If this parameter is left blank, the XML storage type is used by default. After the storage type is set for a **Preferences** instance, it cannot be changed.<br>**Atomic service API**: This API can be used in atomic services since API version 16.<br>|
+| storageType<sup>18+</sup> | [StorageType](#storagetype18)\|null\|undefined | No | Storage mode to be used by the **Preferences** instance. This parameter is optional. If this parameter is left blank, the XML storage type is used by default. After the storage type is set for a **Preferences** instance, it cannot be changed.<br>**Atomic service API**: This API can be used in atomic services since API version 18.<br>|
 
 
 ## Preferences
@@ -1249,7 +1249,7 @@ dataPreferences.get('startup', 'default', (err: BusinessError, val: preferences.
     console.error("Failed to get value of 'startup'. code =" + err.code + ", message =" + err.message);
     return;
   }
-  console.info("Obtained the value of 'startup' successfully. val: " + val);
+  console.info("Succeeded in getting value of 'startup'. val£º " + val);
 })
 ```
 
@@ -1292,7 +1292,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let promise = dataPreferences.get('startup', 'default');
 promise.then((data: preferences.ValueType) => {
-  console.info("Got the value of 'startup'. Data: " + data);
+  console.info("Succeeded in getting value of 'startup'. Data: " + data);
 }).catch((err: BusinessError) => {
   console.error("Failed to get value of 'startup'. code =" + err.code + ", message =" + err.message);
 })
@@ -1514,7 +1514,7 @@ dataPreferences.put('startup', 'auto', (err: BusinessError) => {
     console.error("Failed to put value of 'startup'. code =" + err.code + ", message =" + err.message);
     return;
   }
-  console.info("Successfully put the value of 'startup'.");
+  console.info("Succeeded in putting value of 'startup'.");
 })
 ```
 
@@ -1564,7 +1564,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let promise = dataPreferences.put('startup', 'auto');
 promise.then(() => {
-  console.info("Successfully put the value of 'startup'.");
+  console.info("Succeeded in putting value of 'startup'.");
 }).catch((err: BusinessError) => {
   console.error("Failed to put value of 'startup'. code =" + err.code + ", message =" + err.message);
 })
@@ -1649,7 +1649,7 @@ dataPreferences.has('startup', (err: BusinessError, val: boolean) => {
   if (val) {
     console.info("The key 'startup' is contained.");
   } else {
-    console.info("The key 'startup' is not contained.");
+    console.info("The key 'startup' dose not contain.");
   }
 })
 ```
@@ -1696,7 +1696,7 @@ promise.then((val: boolean) => {
   if (val) {
     console.info("The key 'startup' is contained.");
   } else {
-    console.info("The key 'startup' is not contained.");
+    console.info("The key 'startup' dose not contain.");
   }
 }).catch((err: BusinessError) => {
   console.error("Failed to check the key 'startup'. code =" + err.code + ", message =" + err.message);
@@ -1742,7 +1742,7 @@ let isExist: boolean = dataPreferences.hasSync('startup');
 if (isExist) {
   console.info("The key 'startup' is contained.");
 } else {
-  console.info("The key 'startup' is not contained.");
+  console.info("The key 'startup' dose not contain.");
 }
 ```
 
@@ -1783,7 +1783,7 @@ dataPreferences.delete('startup', (err: BusinessError) => {
     console.error("Failed to delete the key 'startup'. code =" + err.code + ", message =" + err.message);
     return;
   }
-  console.info("Deleted the key 'startup'.");
+  console.info("Succeeded in deleting the key 'startup'.");
 })
 ```
 
@@ -1826,7 +1826,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let promise = dataPreferences.delete('startup');
 promise.then(() => {
-  console.info("Deleted the key 'startup'.");
+  console.info("Succeeded in deleting the key 'startup'.");
 }).catch((err: BusinessError) => {
   console.error("Failed to delete the key 'startup'. code =" + err.code +", message =" + err.message);
 })
@@ -1874,6 +1874,8 @@ Flushes the data in this **Preferences** instance to the persistent file. This A
   > **NOTE**
   >
   > If no data is modified or the modified data is the same as the cached data, the persistent file will not be updated.
+  >
+  > This API is exclusively applicable to the XML storage and does not require invocation in the GSKV storage. When GSKV mode is selected, data operations via preferences are flushed to disk in real-time. For details about the preferences storage types, see [Storage Types](../../database/data-persistence-by-preferences.md#storage-types)¡£
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1904,7 +1906,7 @@ dataPreferences.flush((err: BusinessError) => {
     console.error("Failed to flush. code =" + err.code + ", message =" + err.message);
     return;
   }
-  console.info("Successfully flushed data.");
+  console.info("Succeeded in flushing.");
 })
 ```
 
@@ -1918,6 +1920,8 @@ Flushes the data in this **Preferences** instance to the persistent file. This A
   > **NOTE**
   >
   > If no data is modified or the modified data is the same as the cached data, the persistent file will not be updated.
+  >
+  > This API is exclusively applicable to the XML storage and does not require invocation in the GSKV storage. When GSKV mode is selected, data operations via preferences are flushed to disk in real-time. For details about the preferences storage types, see [Storage Types](../../database/data-persistence-by-preferences.md#storage-types)¡£
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1944,7 +1948,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let promise = dataPreferences.flush();
 promise.then(() => {
-  console.info("Successfully flushed data.");
+  console.info("Succeeded in flushing.");
 }).catch((err: BusinessError) => {
   console.error("Failed to flush. code =" + err.code + ", message =" + err.message);
 })
@@ -2013,7 +2017,7 @@ dataPreferences.clear((err: BusinessError) =>{
     console.error("Failed to clear. code =" + err.code + ", message =" + err.message);
     return;
   }
-  console.info("Successfully cleared data.");
+  console.info("Succeeded in clearing.");
 })
 ```
 
@@ -2049,7 +2053,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let promise = dataPreferences.clear();
 promise.then(() => {
-  console.info("Successfully cleared data.");
+  console.info("Succeeded in clearing.");
 }).catch((err: BusinessError) => {
   console.error("Failed to clear. code =" + err.code + ", message =" + err.message);
 })
@@ -2118,7 +2122,7 @@ dataPreferences.flush((err: BusinessError) => {
     console.error("Failed to flush. Cause: " + err);
     return;
   }
-  console.info("Successfully flushed data.");
+  console.info("Succeeded in flushing.");
 })
 ```
 
@@ -2172,7 +2176,7 @@ dataPreferences.flush((err: BusinessError) => {
     console.error("Failed to flush. Cause: " + err);
     return;
   }
-  console.info("Successfully flushed data.");
+  console.info("Succeeded in flushing.");
 })
 ```
 
@@ -2214,11 +2218,11 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let observer = (data: Record<string, preferences.ValueType>) => {
   for (const keyValue of Object.entries(data)) {
-    console.info(`observer : ${keyValue}`)
+    console.info(`observer : ${keyValue}`);
   }
-  console.info("The observer called.")
+  console.info("The observer called.");
 }
-let keys = ['name', 'age']
+let keys = ['name', 'age'];
 dataPreferences.on('dataChange', keys, observer);
 dataPreferences.putSync('name', 'xiaohong');
 dataPreferences.putSync('weight', 125);
@@ -2227,7 +2231,7 @@ dataPreferences.flush((err: BusinessError) => {
     console.error("Failed to flush. Cause: " + err);
     return;
   }
-  console.info("Successfully flushed data.");
+  console.info("Succeeded in flushing.");
 })
 ```
 
@@ -2272,7 +2276,7 @@ dataPreferences.flush((err: BusinessError) => {
     console.error("Failed to flush. Cause: " + err);
     return;
   }
-  console.info("Successfully flushed data.");
+  console.info("Succeeded in flushing.");
 })
 dataPreferences.off('change', observer);
 ```
@@ -2320,7 +2324,7 @@ dataPreferences.flush((err: BusinessError) => {
     console.error("Failed to flush. Cause: " + err);
     return;
   }
-  console.info("Successfully flushed data.");
+  console.info("Succeeded in flushing.");
 })
 dataPreferences.off('multiProcessChange', observer);
 ```
@@ -2358,11 +2362,11 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let observer = (data: Record<string, preferences.ValueType>) => {
   for (const keyValue of Object.entries(data)) {
-    console.info(`observer : ${keyValue}`)
+    console.info(`observer : ${keyValue}`);
   }
-  console.info("The observer called.")
+  console.info("The observer called.");
 }
-let keys = ['name', 'age']
+let keys = ['name', 'age'];
 dataPreferences.on('dataChange', keys, observer);
 dataPreferences.putSync('name', 'xiaohong');
 dataPreferences.putSync('weight', 125);
@@ -2371,7 +2375,7 @@ dataPreferences.flush((err: BusinessError) => {
     console.error("Failed to flush. Cause: " + err);
     return;
   }
-  console.info("Successfully flushed data.");
+  console.info("Succeeded in flushing.");
 })
 dataPreferences.off('dataChange', keys, observer);
 ```

@@ -9,6 +9,7 @@ Defines a struct for the device-cloud sync statistics of a database table.
 
 **Related module**: [RDB](_r_d_b.md)
 
+**Header file**: [relational_store.h](relational__store_8h.md)
 
 ## Summary
 

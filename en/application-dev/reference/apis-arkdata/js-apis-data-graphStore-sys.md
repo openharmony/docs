@@ -76,7 +76,7 @@ class EntryAbility extends UIAbility {
 
     graphStore.getStore(this.context, STORE_CONFIG).then(async (gdb: graphStore.GraphStore) => {
       store = gdb;
-      console.info('Get GraphStore successfully.')
+      console.info('Get GraphStore successfully.');
     }).catch((err: BusinessError) => {
       console.error(`Get GraphStore failed, code is ${err.code}, message is ${err.message}`);
     })
@@ -133,7 +133,7 @@ const STORE_CONFIG: graphStore.StoreConfig = {
 };
 
 class EntryAbility extends UIAbility {
-  onWindowStageCreate(windowStage: window.WindowStage){
+  onWindowStageDestroy() {
     graphStore.deleteStore(this.context, STORE_CONFIG).then(()=>{
       store = null;
       console.info('Delete GraphStore successfully.');
@@ -302,7 +302,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const QUERY_PATH_GQL = "MATCH path=(a:Person {name : \'name_1\'})-[]->{2, 2}(b:Person {name : \'name_3\'}) RETURN path;"
+const QUERY_PATH_GQL = "MATCH path=(a:Person {name : \'name_1\'})-[]->{2, 2}(b:Person {name : \'name_3\'}) RETURN path;";
 if(transaction != undefined) {
   (transaction as graphStore.Transaction).read(QUERY_PATH_GQL).then((result: graphStore.Result) => {
     console.info('Read successfully');
@@ -367,7 +367,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const INSERT_GQL = "INSERT (:Person {name: 'name_1', age: 11});"
+const INSERT_GQL = "INSERT (:Person {name: 'name_1', age: 11});";
 if(transaction != undefined) {
   (transaction as graphStore.Transaction).write(INSERT_GQL).then(() => {
     console.info('Write successfully');
@@ -513,7 +513,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const QUERY_PATH_GQL = "MATCH path=(a:Person {name : \'name_1\'})-[]->{2, 2}(b:Person {name : \'name_3\'}) RETURN path;"
+const QUERY_PATH_GQL = "MATCH path=(a:Person {name : \'name_1\'})-[]->{2, 2}(b:Person {name : \'name_3\'}) RETURN path;";
 if(store != null) {
   (store as graphStore.GraphStore).read(QUERY_PATH_GQL).then((result: graphStore.Result) => {
     console.info('Read successfully');
@@ -623,7 +623,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let transaction: graphStore.Transaction | undefined = undefined;
 
-if(store != undefined) {
+if(store != null) {
   (store as graphStore.GraphStore).createTransaction().then((trans: graphStore.Transaction) => {
     transaction = trans;
     console.info('createTransaction successfully');

@@ -181,8 +181,6 @@ Compatible mode: In this mode, the value check is successful as long as the valu
 
 ### constructor
 
-constructor()
-
 A constructor used to create a **Schema** instance.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
@@ -332,11 +330,11 @@ let kvManager: distributedKVStore.KVManager;
 
 export default class EntryAbility extends UIAbility {
   onCreate() {
-    console.info("MyAbilityStage onCreate")
-    let context = this.context
+    console.info("MyAbilityStage onCreate");
+    let context = this.context;
     const kvManagerConfig: distributedKVStore.KVManagerConfig = {
       context: context,
-      bundleName: 'com.example.datamanagertest',
+      bundleName: 'com.example.datamanagertest'
     }
     try {
       kvManager = distributedKVStore.createKVManager(kvManagerConfig);
@@ -362,10 +360,10 @@ import { featureAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let kvManager: distributedKVStore.KVManager;
-let context = featureAbility.getContext()
+let context = featureAbility.getContext();
 const kvManagerConfig: distributedKVStore.KVManagerConfig = {
   context: context,
-  bundleName: 'com.example.datamanagertest',
+  bundleName: 'com.example.datamanagertest'
 }
 try {
   kvManager = distributedKVStore.createKVManager(kvManagerConfig);
@@ -428,7 +426,7 @@ try {
     backup: false,
     autoSync: false,
     kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
-    securityLevel: distributedKVStore.SecurityLevel.S3,
+    securityLevel: distributedKVStore.SecurityLevel.S3
   };
   kvManager.getKVStore('storeId', options, (err: BusinessError, store: distributedKVStore.SingleKVStore) => {
     if (err) {
@@ -497,7 +495,7 @@ try {
     backup: false,
     autoSync: false,
     kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
-    securityLevel: distributedKVStore.SecurityLevel.S3,
+    securityLevel: distributedKVStore.SecurityLevel.S3
   };
   kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options).then((store: distributedKVStore.SingleKVStore) => {
     console.info("Succeeded in getting KVStore");
@@ -548,7 +546,7 @@ const options: distributedKVStore.Options = {
   autoSync: false,
   kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
   schema: undefined,
-  securityLevel: distributedKVStore.SecurityLevel.S3,
+  securityLevel: distributedKVStore.SecurityLevel.S3
 }
 try {
   kvManager.getKVStore('storeId', options, async (err: BusinessError, store: distributedKVStore.SingleKVStore | null) => {
@@ -617,7 +615,7 @@ const options: distributedKVStore.Options = {
   autoSync: false,
   kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
   schema: undefined,
-  securityLevel: distributedKVStore.SecurityLevel.S3,
+  securityLevel: distributedKVStore.SecurityLevel.S3
 }
 try {
   kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options).then(async (store: distributedKVStore.SingleKVStore | null) => {
@@ -678,7 +676,7 @@ const options: distributedKVStore.Options = {
   autoSync: false,
   kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
   schema: undefined,
-  securityLevel: distributedKVStore.SecurityLevel.S3,
+  securityLevel: distributedKVStore.SecurityLevel.S3
 }
 try {
   kvManager.getKVStore('store', options, async (err: BusinessError, store: distributedKVStore.SingleKVStore | null) => {
@@ -748,7 +746,7 @@ const options: distributedKVStore.Options = {
   autoSync: false,
   kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
   schema: undefined,
-  securityLevel: distributedKVStore.SecurityLevel.S3,
+  securityLevel: distributedKVStore.SecurityLevel.S3
 }
 try {
   kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options).then(async (store: distributedKVStore.SingleKVStore | null) => {

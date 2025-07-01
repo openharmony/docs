@@ -58,9 +58,9 @@ class SourceObject {
     isVis: boolean
 
     constructor(name: string, age: number, isVis: boolean) {
-        this.name = name
-        this.age = age
-        this.isVis = isVis
+        this.name = name;
+        this.age = age;
+        this.isVis = isVis;
     }
 }
 
@@ -83,9 +83,9 @@ class SourceObject {
     isVis: boolean
 
     constructor(name: string, age: number, isVis: boolean) {
-        this.name = name
-        this.age = age
-        this.isVis = isVis
+        this.name = name;
+        this.age = age;
+        this.isVis = isVis;
     }
 }
 
@@ -276,13 +276,13 @@ Sets a session ID. This API uses a promise to return the result. For the devices
 g_object.setSessionId(distributedDataObject.genSessionId()).then (()=>{
     console.info("join session.");
     }).catch((error: BusinessError)=>{
-        console.info("error:" + error.code + error.message);
+        console.error("error:" + error.code + error.message);
 });
 // Exit the distributed network.
 g_object.setSessionId().then (()=>{
     console.info("leave all session.");
     }).catch((error: BusinessError)=>{
-        console.info("error:" + error.code + error.message);
+        console.error("error:" + error.code + error.message);
 });
 ```
 

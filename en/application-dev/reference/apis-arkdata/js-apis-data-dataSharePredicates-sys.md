@@ -4,6 +4,10 @@ You can use **DataSharePredicates** to specify conditions for [updating](js-apis
 
 The APIs provided by **DataSharePredicates** correspond to the filter criteria of the database. Before using the APIs, you need to have basic database knowledge.
 
+Use scenarios:
+
+- **DataSharePredicates** is used as a search criteria to call the APIs of [RDB Store](js-apis-data-relationalStore-sys.md) and [Distributed KV Store](js-apis-distributedKVStore-sys.md). In this scenario, you can use the predicates according to the type of database used.
+
 > **NOTE**
 >
 > - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -51,8 +55,8 @@ Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** o
 **Example**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.notEqualTo("NAME", "Rose")
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.notEqualTo("NAME", "Rose");
 ```
 
 ### beginWrap
@@ -76,13 +80,13 @@ Currently, only the RDB supports this **DataSharePredicates** object.
 **Example**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
+let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "lisi")
     .beginWrap()
     .equalTo("AGE", 18)
     .or()
     .equalTo("SALARY", 200.5)
-    .endWrap()
+    .endWrap();
 ```
 
 ### endWrap
@@ -106,13 +110,13 @@ Currently, only the RDB supports this **DataSharePredicates** object.
 **Example**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
+let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "lisi")
     .beginWrap()
     .equalTo("AGE", 18)
     .or()
     .equalTo("SALARY", 200.5)
-    .endWrap()
+    .endWrap();
 ```
 
 ### or
@@ -139,7 +143,7 @@ Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** o
 let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.equalTo("NAME", "lisi")
     .or()
-    .equalTo("NAME", "Rose")
+    .equalTo("NAME", "Rose");
 ```
 
 ### contains
@@ -170,8 +174,8 @@ Currently, only the RDB supports this **DataSharePredicates** object.
 **Example**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.contains("NAME", "os")
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.contains("NAME", "os");
 ```
 
 ### beginsWith
@@ -202,8 +206,8 @@ Currently, only the RDB supports this **DataSharePredicates** object.
 **Example**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.beginsWith("NAME", "os")
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.beginsWith("NAME", "os");
 ```
 
 ### endsWith
@@ -234,8 +238,8 @@ Currently, only the RDB supports this **DataSharePredicates** object.
 **Example**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.endsWith("NAME", "os")
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.endsWith("NAME", "os");
 ```
 
 ### isNull
@@ -265,8 +269,8 @@ Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** o
 **Example**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.isNull("NAME")
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.isNull("NAME");
 ```
 
 ### isNotNull
@@ -296,8 +300,8 @@ Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** o
 **Example**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.isNotNull("NAME")
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.isNotNull("NAME");
 ```
 
 ### like
@@ -328,8 +332,8 @@ Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** o
 **Example**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.like("NAME", "%os%")
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.like("NAME", "%os%");
 ```
 
 ### unlike
@@ -360,8 +364,8 @@ Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** o
 **Example**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.unlike("NAME", "%os%")
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.unlike("NAME", "%os%");
 ```
 
 ### glob
@@ -392,8 +396,8 @@ Currently, only the RDB supports this **DataSharePredicates** object.
 **Example**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.glob("NAME", "?h*g")
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.glob("NAME", "?h*g");
 ```
 
 ### between
@@ -425,8 +429,8 @@ Currently, only the RDB supports this **DataSharePredicates** object.
 **Example**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.between("AGE", 10, 50)
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.between("AGE", 10, 50);
 ```
 
 ### notBetween
@@ -458,8 +462,8 @@ Currently, only the RDB supports this **DataSharePredicates** object.
 **Example**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.notBetween("AGE", 10, 50)
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.notBetween("AGE", 10, 50);
 ```
 
 ### greaterThan
@@ -490,8 +494,8 @@ Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** o
 **Example**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.greaterThan("AGE", 10)
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.greaterThan("AGE", 10);
 ```
 
 ### lessThan
@@ -522,8 +526,8 @@ Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** o
 **Example**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.lessThan("AGE", 50)
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.lessThan("AGE", 50);
 ```
 
 ### greaterThanOrEqualTo
@@ -554,8 +558,8 @@ Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** o
 **Example**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.greaterThanOrEqualTo("AGE", 10)
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.greaterThanOrEqualTo("AGE", 10);
 ```
 
 ### lessThanOrEqualTo
@@ -586,8 +590,8 @@ Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** o
 **Example**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.lessThanOrEqualTo("AGE", 50)
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.lessThanOrEqualTo("AGE", 50);
 ```
 
 ### distinct
@@ -611,8 +615,8 @@ Currently, only the RDB supports this **DataSharePredicates** object.
 **Example**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.equalTo("NAME", "Rose").distinct()
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.equalTo("NAME", "Rose").distinct();
 ```
 
 ### groupBy
@@ -642,8 +646,8 @@ Currently, only the RDB supports this **DataSharePredicates** object.
 **Example**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.groupBy(["AGE", "NAME"])
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.groupBy(["AGE", "NAME"]);
 ```
 
 ### indexedBy
@@ -673,8 +677,8 @@ Currently, only the RDB supports this **DataSharePredicates** object.
 **Example**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.indexedBy("SALARY_INDEX")
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.indexedBy("SALARY_INDEX");
 ```
 
 ### notIn
@@ -705,8 +709,8 @@ Currently, only the RDB and KVDB (schema) support this **DataSharePredicates** o
 **Example**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.notIn("NAME", ["Lisa", "Rose"])
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.notIn("NAME", ["Lisa", "Rose"]);
 ```
 
 ### prefixKey
@@ -736,8 +740,8 @@ Currently, only the KVDB supports this **DataSharePredicates** object.
 **Example**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.prefixKey("NAME")
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.prefixKey("NAME");
 ```
 
 ### inKeys
@@ -767,6 +771,6 @@ Currently, only the KVDB supports this **DataSharePredicates** object.
 **Example**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.inKeys(["Lisa", "Rose"])
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.inKeys(["Lisa", "Rose"]);
 ```
