@@ -176,7 +176,7 @@ try {
     connection.pairDevice('11:22:33:44:55:66').then(() => {
         console.info('pairDevice');
     }, (error: BusinessError) => {
-        console.info('pairDevice: errCode:' + error.code + ',errMessage' + error.message);
+        console.error('pairDevice: errCode:' + error.code + ',errMessage' + error.message);
     })
 
 } catch (err) {
@@ -745,7 +745,7 @@ try {
     connection.setDevicePinCode('11:22:33:44:55:66', '12345').then(() => {
         console.info('setDevicePinCode');
     }, (error: BusinessError) => {
-        console.info('setDevicePinCode: errCode:' + error.code + ',errMessage' + error.message);
+        console.error('setDevicePinCode: errCode:' + error.code + ',errMessage' + error.message);
     })
 
 } catch (err) {
