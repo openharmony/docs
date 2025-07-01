@@ -1402,3 +1402,53 @@ struct Index {
 ```
 
 ![dividerStyleMode](figures/SelectdividerStyleMode.png)
+
+## 示例9（设置Select下拉菜单外描边样式）
+
+该示例通过配置menuOutline的width和color属性设置下拉菜单外描边样式。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct SelectExample {
+  @State text: string = "TTTTT";
+  @State index: number = -1;
+  @State arrowPosition: ArrowPosition = ArrowPosition.END;
+
+  build() {
+    Column() {
+      Select([{ value: 'aaa' },
+        { value: 'bbb' },
+        { value: 'ccc' },
+        { value: 'ddd' }])
+        .selected(this.index)
+        .value(this.text)
+        .font({ size: 16, weight: 500 })
+        .fontColor('#182431')
+        .selectedOptionFont({ size: 16, weight: 400 })
+        .optionFont({ size: 16, weight: 400 })
+        .arrowPosition(this.arrowPosition)
+        .menuAlign(MenuAlignType.START, { dx: 0, dy: 0 })
+        .optionWidth(200)
+        .optionHeight(300)
+        .menuOutline({
+          width: '5vp',
+          color: Color.Blue
+        })
+        .onSelect((index: number, text?: string | undefined) => {
+          console.info('Select:' + index);
+          this.index = index;
+          if (text) {
+            this.text = text;
+          }
+        })
+    }
+    .width('100%')
+    .height('100%')
+    .backgroundColor('#F0F2F5')
+  }
+}
+```
+
+![select-menu-outline](figures/selectMenuOutline.png)
