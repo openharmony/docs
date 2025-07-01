@@ -200,7 +200,7 @@ DASH流媒体资源包含多路不同分辨率、码率、采样率、编码格�
 @Component
 struct Index {
   private avPlayer: media.AVPlayer | null = null;
-  private context: common.UIAbilityContext | undefined = undefined;
+  private context: Context | undefined = undefined;
   public videoTrackIndex: number = 0;
   public bitrate: number = 0;
   ...
@@ -514,7 +514,7 @@ struct Index {
     this.surfaceW = this.windowWidth * SURFACE_W;
     this.surfaceH = this.surfaceW / SURFACE_H;
     this.isPaused = true;
-    this.context = getContext(this) as common.UIAbilityContext;
+    this.context = this.getUIContext().getHostContext()!;
   }
 
   aboutToDisappear() {

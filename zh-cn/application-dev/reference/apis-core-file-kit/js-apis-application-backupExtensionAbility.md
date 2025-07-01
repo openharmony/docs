@@ -360,3 +360,57 @@ onProcess(): string
     return "ok";
   }
   ```
+
+### onRelease<sup>20+</sup>
+
+onRelease(scenario: number): Promise&lt;void&gt;
+
+备份恢复框架安全退出接口。应用备份或恢复完成时回调，应用可实现备份恢复完成后的一些特殊处理，例如清理备份或恢复产生的临时文件。使用Promise异步回调。<br>
+onRelease具有超时机制，应用若在5秒内未完成onRelease操作，将触发备份恢复结束时的应用进程退出流程。
+
+**系统能力**：SystemCapability.FileManagement.StorageService.Backup
+
+**参数：**
+
+| 参数名        | 类型                            | 必填 | 说明                           |
+| ------------- | ------------------------------- | ---- | ------------------------------ |
+| scenario | number | 是   | 表示处于备份或恢复场景。<br>scenario = 1表示当前为备份场景。<br>scenario = 2表示当前为恢复场景。|
+
+**返回值：**
+
+| 类型                   | 说明    |
+| --------------------- | :---- |
+| Promise&lt;void&gt; | Promise对象，无返回结果。|
+
+**示例：**
+
+```ts
+// 以清理文件为例
+import { BackupExtensionAbility, fileIo } from '@kit.CoreFileKit';
+
+const SCENARIO_BACKUP: number = 1;
+const SCENARIO_RESTORE: number = 2;
+// 需要清理的临时目录
+let filePath: string = '/data/storage/el2/base/.temp/';
+
+class BackupExt extends BackupExtensionAbility {
+  async onRelease(scenario: number): Promise<void> {
+    try {
+      if (scenario == SCENARIO_BACKUP) {
+        // 备份场景，应用自行实现处理，以清理备份产生的临时文件为例
+        console.info(`onRelease begin`);
+        await fileIo.rmdir(filePath);
+        console.info(`onRelease end, rmdir succeed`);
+      }
+      if (scenario == SCENARIO_RESTORE) {
+        // 恢复场景，应用自行实现处理，以清理恢复产生的临时文件为例
+        console.info(`onRelease begin`);
+        await fileIo.rmdir(filePath);
+        console.info(`onRelease end, rmdir succeed`);
+      }
+    } catch (error) {
+      console.error(`onRelease failed with error. Code: ${error.code}, message: ${error.message}`);
+    }
+  }
+}
+```

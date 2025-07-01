@@ -7,6 +7,12 @@
 
 获取音频或视频元数据的demo可参考：[获取音视频元数据开发指导](../../media/media/avmetadataextractor.md)。
 
+## 导入模块
+
+```ts
+import { media } from '@kit.MediaKit';
+```
+
 ## 属性
 
 **系统能力：** SystemCapability.Multimedia.Media.AVMetadataExtractor
@@ -100,7 +106,7 @@ fetchAlbumCover(callback: AsyncCallback\<image.PixelMap>): void
 
 | 参数名   | 类型                                         | 必填 | 说明                                |
 | -------- | -------------------------------------------- | ---- | ----------------------------------- |
-| callback | AsyncCallback\<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)>    | 是   | 回调函数。异步返回专辑封面。 |
+| callback | AsyncCallback\<[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)>    | 是   | 回调函数。异步返回专辑封面。 |
 
 **错误码：**
 
@@ -140,7 +146,7 @@ fetchAlbumCover(): Promise\<image.PixelMap>
 
 | 类型           | 说明                                     |
 | -------------- | ---------------------------------------- |
-| Promise\<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)> |  Promise对象。异步返回专辑封面。 |
+| Promise\<[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)> |  Promise对象。异步返回专辑封面。 |
 
 **错误码：**
 

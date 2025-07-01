@@ -45,7 +45,7 @@ OH_Drawing_Image* OH_Drawing_ImageCreate(void)
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_Image](capi-oh-drawing-image.md)* | 函数返回一个指针，指针指向创建的图片对象[OH_Drawing_Image](capi-oh-drawing-image.md)。 |
+| [OH_Drawing_Image](capi-drawing-oh-drawing-image.md)* | 函数返回一个指针，指针指向创建的图片对象[OH_Drawing_Image](capi-drawing-oh-drawing-image.md)。 |
 
 ### OH_Drawing_ImageDestroy()
 
@@ -66,7 +66,7 @@ void OH_Drawing_ImageDestroy(OH_Drawing_Image* image)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Image](capi-oh-drawing-image.md)* image | 指向图片对象[OH_Drawing_Image](capi-oh-drawing-image.md)的指针。 |
+| [OH_Drawing_Image](capi-drawing-oh-drawing-image.md)* image | 指向图片对象[OH_Drawing_Image](capi-drawing-oh-drawing-image.md)的指针。 |
 
 ### OH_Drawing_ImageBuildFromBitmap()
 
@@ -87,8 +87,8 @@ bool OH_Drawing_ImageBuildFromBitmap(OH_Drawing_Image* image, OH_Drawing_Bitmap*
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Image](capi-oh-drawing-image.md)* image | 指向图片对象[OH_Drawing_Image](capi-oh-drawing-image.md)的指针。 |
-| [OH_Drawing_Bitmap](capi-oh-drawing-bitmap.md)* bitmap | 指向位图对象[OH_Drawing_Bitmap](capi-oh-drawing-bitmap.md)的指针。 |
+| [OH_Drawing_Image](capi-drawing-oh-drawing-image.md)* image | 指向图片对象[OH_Drawing_Image](capi-drawing-oh-drawing-image.md)的指针。 |
+| [OH_Drawing_Bitmap](capi-drawing-oh-drawing-bitmap.md)* bitmap | 指向位图对象[OH_Drawing_Bitmap](capi-drawing-oh-drawing-bitmap.md)的指针。 |
 
 **返回：**
 
@@ -115,7 +115,7 @@ int32_t OH_Drawing_ImageGetWidth(OH_Drawing_Image* image)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Image](capi-oh-drawing-image.md)* image | 指向图片对象[OH_Drawing_Image](capi-oh-drawing-image.md)的指针。 |
+| [OH_Drawing_Image](capi-drawing-oh-drawing-image.md)* image | 指向图片对象[OH_Drawing_Image](capi-drawing-oh-drawing-image.md)的指针。 |
 
 **返回：**
 
@@ -142,7 +142,7 @@ int32_t OH_Drawing_ImageGetHeight(OH_Drawing_Image* image)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Image](capi-oh-drawing-image.md)* image | 指向图片对象[OH_Drawing_Image](capi-oh-drawing-image.md)的指针。 |
+| [OH_Drawing_Image](capi-drawing-oh-drawing-image.md)* image | 指向图片对象[OH_Drawing_Image](capi-drawing-oh-drawing-image.md)的指针。 |
 
 **返回：**
 
@@ -169,7 +169,7 @@ void OH_Drawing_ImageGetImageInfo(OH_Drawing_Image* image, OH_Drawing_Image_Info
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_Image](capi-oh-drawing-image.md)* image | 指向图片对象[OH_Drawing_Image](capi-oh-drawing-image.md)的指针。 |
-| [OH_Drawing_Image_Info](capi-oh-drawing-image-info.md)* imageInfo | 指向图片信息对象[OH_Drawing_Image_Info](capi-oh-drawing-image-info.md)的指针，开发者可调用[OH_Drawing_Image_Info](capi-oh-drawing-image-info.md)创建。 |
+| [OH_Drawing_Image](capi-drawing-oh-drawing-image.md)* image | 指向图片对象[OH_Drawing_Image](capi-drawing-oh-drawing-image.md)的指针。 |
+| [OH_Drawing_Image_Info](capi-drawing-oh-drawing-image-info.md)* imageInfo | 指向图片信息对象[OH_Drawing_Image_Info](capi-drawing-oh-drawing-image-info.md)的指针，开发者可调用[OH_Drawing_Image_Info](capi-drawing-oh-drawing-image-info.md)创建。 |
 
 

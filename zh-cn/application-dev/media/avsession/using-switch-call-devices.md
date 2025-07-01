@@ -1,14 +1,14 @@
 # 使用通话设备切换组件
 
-## 基本概念
+## 切换通话输出设备
 
 系统不再提供音频输出设备切换的API，如果需要应用内切换音频输出设备，请实现AVCastPicker组件，相关参数可参考[@ohos.multimedia.avCastPicker](../../reference/apis-avsession-kit/ohos-multimedia-avcastpicker.md) 和 [@ohos.multimedia.avCastPickerParam](../../reference/apis-avsession-kit/js-apis-avCastPickerParam.md)。
 
-本文将主要介绍AVCastPicker组件接入，实现通话设备切换。
+本文将主要介绍AVCastPicker组件接入，实现通话输出设备切换功能。
 
-当前系统支持两种组件样式的显示方式：默认样式显示和自定义样式显示。如果应用选择显示默认样式，当设备切换时，系统将根据当前选择的设备显示系统默认的组件样式；如果应用选择显示自定义样式，那么需要应用根据设备的变化刷新自己定义的样式。
-
-## 开发步骤
+当前系统支持两种组件样式的显示方式：默认样式显示和自定义样式显示。
+- 如果应用选择显示默认样式，当设备切换时，系统将根据当前选择的设备显示系统默认的组件样式。
+- 如果应用选择显示自定义样式，那么需要应用根据设备的变化刷新自己定义的样式。
 
 ### 默认样式实现
 
@@ -186,5 +186,89 @@
    }
    ```
 
-<!--RP1-->
-<!--RP1End-->
+## 切换通话输入设备（仅在PC/2in设备可用）
+
+系统不再提供音频输入设备切换的API，如果需要在应用内切换音频输入设备，并实现AVInputCastPicker组件，相关参数可参考[@ohos.multimedia.avInputCastPicker](../../reference/apis-avsession-kit/ohos-multimedia-avinputcastpicker.md) 和 [@ohos.multimedia.avCastPickerParam](../../reference/apis-avsession-kit/js-apis-avCastPickerParam.md)。
+
+本文将主要介绍AVInputCastPicker组件接入，实现通话输入设备切换功能。
+
+当前系统支持两种组件样式的显示方式：默认样式显示和自定义样式显示。
+- 如果应用选择显示默认样式，当设备切换时，系统将根据当前选择的设备显示系统默认的组件样式。
+- 如果应用选择显示自定义样式，那么需要应用根据设备的变化刷新自己定义的样式。
+
+### 默认实现方式
+
+1. 在需要切换设备的通话界面创建AVInputCastPicker组件。
+
+   ```ts
+   import { AVCastPickerState, AVInputCastPicker } from '@kit.AVSessionKit';
+
+   // 设备列表显示状态变化回调（可选）。
+   private onStateChange(state: AVCastPickerState) {
+     if (state == AVCastPickerState.STATE_APPEARING) {
+       console.info('The picker starts showing.');
+     } else if (state == AVCastPickerState.STATE_DISAPPEARING) {
+       console.info('The picker finishes presenting.');
+     }
+   }
+
+   // 创建组件，并设置大小。
+   build() {
+     Row() {
+       Column() {
+         AVInputCastPicker(
+         {
+           onStateChange: this.onStateChange
+         }
+         ).size({ height:45, width:45 })
+       }
+     }
+   }
+   ```
+
+2. 实现通话功能，请参考[AudioKit开发音频通话功能](../audio/audio-call-development.md)。
+
+### 自定义实现方式
+
+自定义样式通过设置[AVInputCastPicker](../../reference/apis-avsession-kit/ohos-multimedia-avinputcastpicker.md#avinputcastpicker)中的参数customPicker实现。
+
+1. 创建自定义AVInputCastPicker，需要新增自定义参数。
+
+   ```ts
+   import { AVCastPickerState, AVInputCastPicker } from '@kit.AVSessionKit';
+
+   @State pickerImage: ResourceStr = $r('app.media.earpiece'); // 自定义资源。
+
+   // 设备列表显示状态变化回调（可选）。
+   private onStateChange(state: AVCastPickerState) {
+     if (state == AVCastPickerState.STATE_APPEARING) {
+       console.info('The picker starts showing.');
+     } else if (state == AVCastPickerState.STATE_DISAPPEARING) {
+       console.info('The picker finishes presenting.');
+     }
+   }
+
+   build() {
+     Row() {
+       Column() {
+         AVInputCastPicker(
+           {
+             customPicker: (): void => this.ImageBuilder(), // 新增自定义参数。
+             onStateChange: this.onStateChange
+           }
+         ).size({ height: 45, width:45 })
+       }
+     }
+   }
+
+   // 自定义内容。
+   @Builder
+   ImageBuilder(): void {
+     Image(this.pickerImage)
+       .size({ width: '100%', height: '100%' })
+       .backgroundColor('#00000000')
+       .fillColor(Color.Black)
+   }
+   ```
+
+2. 实现通话功能，请参考[AudioKit开发音频通话功能](../audio/audio-call-development.md)。

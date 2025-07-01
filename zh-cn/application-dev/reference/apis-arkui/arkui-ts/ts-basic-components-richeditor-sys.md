@@ -19,7 +19,7 @@
 | 名称     | 类型     | 必填   | 说明                                    |
 | ------ | ------ | ---- | ------------------------------------- |
 | dragBackgroundColor<sup>18+</sup> | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12) | 否    | 添加builder单独拖拽时的背板背景颜色。不配置或者异常值时，颜色按系统默认配置。  |
-| isDragShadowNeeded<sup>18+</sup> | boolean | 否    | 添加builder单独拖拽时是否需要投影。不配置或者异常值时，默认需要投影。 |
+| isDragShadowNeeded<sup>18+</sup> | boolean | 否    | 添加builder单独拖拽时是否需要投影。不配置或者异常值时，默认需要投影。true表示需要投影，false表示不需要投影。<br/>默认值： true |
 
 ## RichEditorGesture<sup>11+</sup>
 
@@ -41,7 +41,7 @@
 
 | 名称 | 类型 | 必填 | 说明 |
 | --- | --- | --- | --- |
-| changeReason<sup>20+</sup> | [TextChangeReason](ts-text-common.md#textchangereason20) | 是 | 组件内容变化的原因。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| changeReason<sup>20+</sup> | [TextChangeReason](ts-text-common.md#textchangereason20) | 否 | 组件内容变化的原因。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## 示例
 

@@ -203,6 +203,35 @@ struct CustomDialogExample {
   customDialogController.open()
   ```
 
+## 使用控制器获取弹出框的状态
+
+在自定义弹出框场景中，可以通过控制器调用getState接口获取弹出框状态。
+
+> **说明：**
+> 
+> 详细变量定义请参考[完整示例](#完整示例)。
+
+初始化一个自定义弹出框内容区，内部包含一个Text组件和一个按钮，该按钮通过调用getState获取当前弹出框状态。
+
+  ```ts
+  @Builder customDialogComponent(dialogController: promptAction.DialogController) {
+    Column({ space: 5 }) {
+      Text(this.message)
+        .fontSize(30)
+      if (dialogController !== undefined) {
+        Button('点我查询弹窗状态')
+          .onClick(() => {
+            console.info('state:' + this.dialogController.getState())
+          })
+      }
+    }
+    .height(200)
+    .padding(5)
+    .justifyContent(FlexAlign.SpaceBetween)
+    .backgroundColor('#FFF0F0F0')
+  }
+  ```
+
 ## 完整示例
 通过外部传递的弹出框控制器和自定义组件自带的弹出框控制器，在自定义弹出框内容区域内实现关闭功能。
   ```ts

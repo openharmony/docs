@@ -108,7 +108,7 @@ class B implements I {};  // I是sendable interface，B不能实现，编译报�
 
 ### 必须是Sendable支持的数据类型
 
-Sendable数据不能持有非Sendable数据，因此Sendable类或接口的成员变量必须是Sendable支持的数据类型。
+Sendable数据不能持有非Sendable数据，因此Sendable类或接口的成员变量必须是[Sendable支持的数据类型](arkts-sendable.md#sendable支持的数据类型)。
 
 **正例：**
 
@@ -120,7 +120,7 @@ class A {
   a: number = 0;
 }
 ```
-<!-- @[counter_example](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/RulesAndRestrictions/variablesupport/src/main/ets/pages/Index.ets) -->
+<!-- @[counter_example](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/RulesAndRestrictions/variablesupport/src/main/ets/pages/Index.ets) -->
 
 **反例：**
 
@@ -148,7 +148,7 @@ class A {
   a: number = 0;
 }
 ```
-<!-- @[counter_example](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/RulesAndRestrictions/variablenotsupported/src/main/ets/pages/Index.ets) -->
+<!-- @[counter_example](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/RulesAndRestrictions/variablenotsupported/src/main/ets/pages/Index.ets) -->
 
 **反例：**
 
@@ -212,7 +212,7 @@ try {
   console.error(`taskpool execute: Code: ${e.code}, message: ${e.message}`);
 }
 ```
-<!-- @[counter_example](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/RulesAndRestrictions/templatetype/src/main/ets/pages/Index.ets) -->
+<!-- @[counter_example](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/RulesAndRestrictions/templatetype/src/main/ets/pages/Index.ets) -->
 
 **反例：**
 
@@ -267,7 +267,7 @@ class C {
   }
 }
 ```
-<!-- @[counter_example](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/RulesAndRestrictions/notallowedInside/src/main/ets/pages/Index.ets) -->
+<!-- @[counter_example](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/RulesAndRestrictions/notallowedInside/src/main/ets/pages/Index.ets) -->
 
 **反例：**
 
@@ -372,7 +372,7 @@ import { collections } from '@kit.ArkTS';
 
 let arr1: collections.Array<number> = new collections.Array<number>(1, 2, 3); // 是Sendable类型
 ```
-<!-- @[counter_example](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/RulesAndRestrictions/objectliterals/src/main/ets/pages/Index.ets) -->
+<!-- @[counter_example](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/RulesAndRestrictions/objectliterals/src/main/ets/pages/Index.ets) -->
 
 **反例：**
 
@@ -404,7 +404,7 @@ class SendableA {
 
 let a1: A = new SendableA() as A;
 ```
-<!-- @[counter_example](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/RulesAndRestrictions/typecannot/src/main/ets/pages/Index.ets) -->
+<!-- @[counter_example](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/ConcurrentThreadCommunication/InterThreadCommunicationObjects/SendableObject/RulesAndRestrictions/typecannot/src/main/ets/pages/Index.ets) -->
 
 **反例：**
 

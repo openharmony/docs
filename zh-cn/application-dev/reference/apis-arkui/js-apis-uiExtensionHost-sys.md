@@ -321,7 +321,7 @@ createSubWindowWithOptions(name: string, subWindowOptions: window.SubWindowOptio
 | 参数名 | 类型   | 必填 | 说明           |
 | ------ | ------ | ---- | -------------- |
 | name   | string | 是   | 子窗口的名字。 |
-| subWindowOptions | [window.SubWindowOptions](arkts-apis-window-i.md#subwindowoptions) | 是 | 子窗口参数。 |
+| subWindowOptions | [window.SubWindowOptions](arkts-apis-window-i.md#subwindowoptions11) | 是 | 子窗口参数。 |
 
 **返回值：**
 
@@ -338,7 +338,6 @@ createSubWindowWithOptions(name: string, subWindowOptions: window.SubWindowOptio
 | 401 | Parameter error. Possible causes: <br/> 1. Mandatory parameters are left unspecified.<br/> 2. Incorrect parameters types.<br/> 3. Parameter verification failed. |
 | 801 | Capability not supported on this device. |
 | 1300002 | This window state is abnormal. |
-| 1300005 | This window proxy is abnormal. |
 
 **示例：**
 

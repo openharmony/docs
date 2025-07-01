@@ -50,7 +50,7 @@ In addition to the [universal styles](js-components-common-styles.md), the follo
 >  **NOTE**
 > - Height and width styles are not supported. The width of each item is the same as that of its container. The height of each item is the difference between the container height and the bottom button height.
 > 
-> - The **posit** style is not supported.
+> - The **position** style is not supported.
 
 
 ## Events

@@ -178,8 +178,6 @@ import { display } from '@kit.ArkUI';
 
 显示设备的屏幕形状枚举。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 | 名称 | 值 | 说明 |
@@ -200,6 +198,28 @@ import { display } from '@kit.ArkUI';
 | height    | number   | 否   | 否   | 指定虚拟屏幕的高度，单位为px，该参数应为正整数。 |
 | density   | number   | 否   | 否   | 指定虚拟屏幕的密度，单位为px，该参数为浮点数。 |
 | surfaceId | string   | 否   | 否   | 指定虚拟屏幕的surfaceId，用户可自行定义。        |
+
+## Position<sup>20+</sup>
+
+坐标位置。全局坐标系时，以主屏左上角为原点。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+| 名称      | 类型 | 只读 | 可选 | 说明                       |
+| --------- | -------- | ---- | ---- |--------------------------|
+| x     | number   | 否   | 否   | 相对原点的横坐标，单位为px，该参数应为32位有符号整数。 |
+| y     | number   | 否   | 否   | 相对原点的纵坐标，单位为px，该参数应为32位有符号整数。 |
+
+## RelativePosition<sup>20+</sup>
+
+坐标位置。全局坐标系时，以主屏左上角为原点。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+| 名称      | 类型 | 只读 | 可选 | 说明                       |
+| --------- | -------- | ---- | ---- |--------------------------|
+| displayId | number   | 否   | 否   | 相对坐标相对的屏幕ID，64位无符号整数，-1表示无效Id。 |
+| position  | [Position](#position20) | 否   | 否   | 相对于displayId的坐标值。 |
 
 ## display.getDisplayByIdSync<sup>12+</sup>
 
@@ -321,8 +341,11 @@ getDefaultDisplaySync(): Display
 import { display } from '@kit.ArkUI';
 
 let displayClass: display.Display | null = null;
-
-displayClass = display.getDefaultDisplaySync();
+try {
+  displayClass = display.getDefaultDisplaySync();
+} catch (exception) {
+  console.error(`Failed to get default display. Code: ${exception.code}, message: ${exception.message}`);
+}
 ```
 
 ## display.getPrimaryDisplaySync<sup>14+</sup>
@@ -1340,6 +1363,106 @@ display.makeUnique(screenId).then(() => {
 });
 ```
 
+## display.convertRelativeToGlobalCoordinate<sup>20+</sup>
+
+convertRelativeToGlobalCoordinate(relativePosition: RelativePosition): Position
+
+将相对坐标系转换成全局坐标系。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名    | 类型   | 必填 | 说明          |
+| --------- | ------ | ---- | ------------- |
+| relativePosition  | [RelativePosition](#relativeposition20) | 是 | 需要转化为全局坐标的相对坐标。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| [Position](#position20) | 返回相对于主屏左上角的全局坐标。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 801     | Capability not supported. |
+| 1400003 | This display manager service works abnormally. |
+| 1400004 | Parameter error. Possible cause: 1. Invalid parameter range. |
+
+**示例：**
+
+```ts
+import { display } from '@kit.ArkUI';
+
+let relativePosition: display.RelativePosition = {
+  displayId: 0,
+  position: {
+    x: 100,
+    y: 200
+  }
+};
+
+try {
+  let position: display.Position = display.convertRelativeToGlobalCoordinate(relativePosition);
+  console.info(`The global coordinate is ${position.x}, ${position.y}`)
+} catch (exception) {
+  console.error(`Failed to convert the relative coordinate to the global coordinate. Code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+## display.convertGlobalToRelativeCoordinate<sup>20+</sup>
+
+convertGlobalToRelativeCoordinate(position: Position, displayId?: number): RelativePosition
+
+将全局坐标系转换成相对于入参diplayId的坐标系，若不传入displayId，则默认转换成全局坐标所在屏幕的相对坐标系。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名    | 类型   | 必填 | 说明          |
+| --------- | ------ | ---- | ------------- |
+| position  | [Position](#position20) | 是 | 需要转化为相对坐标的全局坐标。 |
+| displayId | number | 否 | 相对坐标系相对的屏幕的ID，传递该参数表示以指定屏幕左上角为原点转换相对坐标，不指定则不传参。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| [RelativePosition](#relativeposition20) | 返回对应屏幕的相对坐标。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 801     | Capability not supported. |
+| 1400003 | This display manager service works abnormally. |
+| 1400004 | Parameter error. Possible cause: 1. Invalid parameter range. |
+
+**示例：**
+
+```ts
+import { display } from '@kit.ArkUI';
+
+let position: display.Position = {
+    x: 100,
+    y: 200
+};
+
+try {
+  let relPos: display.RelativePosition = display.convertGlobalToRelativeCoordinate(position, 0);
+  console.info(`The relative coordinate is ${relPos.displayId}, ${relPos.position.x}, ${relPos.position.y}`)
+} catch (exception) {
+  console.error(`Failed to convert the global coordinate to the relative coordinate. Code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
 ## Display
 屏幕实例。描述display对象的属性和方法。
 
@@ -1369,10 +1492,11 @@ display.makeUnique(screenId).then(() => {
 | hdrFormats<sup>11+</sup> | Array<[hdrCapability.HDRFormat](../apis-arkgraphics2d/js-apis-hdrCapability.md)> | 是 | 否 | 显示设备支持的所有HDR格式。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                               |
 | availableWidth<sup>12+</sup> | number | 是 | 否 | 2in1设备上屏幕的可用区域宽度，单位为px，该参数为大于0的整数。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                    |
 | availableHeight<sup>12+</sup> | number | 是 | 否 | 2in1设备上屏幕的可用区域高度，单位为px，该参数为大于0的整数。<br/>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                    |
-| screenShape<sup>18+</sup> | [ScreenShape](#screenshape18) | 是 | 是 | 显示设备的屏幕形状，默认值为RECTANGLE。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 
+| screenShape<sup>18+</sup> | [ScreenShape](#screenshape18) | 是 | 是 | 显示设备的屏幕形状，默认值为RECTANGLE。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 | sourceMode<sup>19+</sup> | [DisplaySourceMode](#displaysourcemode19) | 是 | 是 | 屏幕显示内容的显示模式枚举。<br/>**系统能力：** SystemCapability.Window.SessionManager <br>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。                                                                                    |
 | x<sup>19+</sup> | number | 是 | 是 | 屏幕左上角相对于原点的x轴坐标，原点为主屏左上角，单位为px，该参数为整数。仅DisplaySourceMode为MAIN和EXTEND时返回。<br/>**系统能力：** SystemCapability.Window.SessionManager<br>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。                                                                                    |
 | y<sup>19+</sup> | number | 是 | 是 | 屏幕左上角相对于原点的y轴坐标，原点为主屏左上角，单位为px，该参数为整数。仅DisplaySourceMode为MAIN和EXTEND时返回。<br/>**系统能力：** SystemCapability.Window.SessionManager<br>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。                                                                                    |
+| supportedRefreshRates<sup>20+</sup> | Array&lt;number&gt; | 是 | 是 | 显示设备支持的所有刷新率，从小到大排序。刷新率值为正整数，单位为Hz。默认为空。<br/>**系统能力：** SystemCapability.Window.SessionManager<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。                                                  |
 
 
 ### getCutoutInfo<sup>9+</sup>

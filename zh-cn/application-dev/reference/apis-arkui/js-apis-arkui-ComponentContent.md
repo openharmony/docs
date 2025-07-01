@@ -202,7 +202,7 @@ struct Index {
 
 reuse(param?: Object): void
 
-传递reuse事件到ComponentContent中的自定义组件。
+触发ComponentContent中的自定义组件的复用。组件复用请参见[@Reusable装饰器：组件复用](../../ui/state-management/arkts-reusable.md)。关于ComponentContent的解绑场景请参见[解除实体节点引用关系](../../ui/arkts-user-defined-arktsNode-builderNode.md#解除实体节点引用关系)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -218,7 +218,8 @@ reuse(param?: Object): void
 
 recycle(): void
 
-传递recycle事件到ComponentContent中的自定义组件。
+- 触发ComponentContent中自定义组件的回收。自定义组件的回收是组件复用机制中的环节，具体信息请参见[@Reusable装饰器：组件复用](../../ui/state-management/arkts-reusable.md)。
+- ComponentContent通过reuse和recycle完成其内外自定义组件之间的复用事件传递，具体使用场景请参见[节点复用能力](../../ui/arkts-user-defined-arktsNode-builderNode.md#节点复用能力)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -400,11 +401,15 @@ struct Index {
 
 dispose(): void
 
-立即释放当前ComponentContent，即ComponentContent对象与后端实体节点解除引用关系。
+立即释放当前ComponentContent对象对[基本概念：实体节点](../../ui/arkts-user-defined-node.md#基本概念)的引用关系。关于ComponentContent的解绑场景请参见[解除实体节点引用关系](../../ui/arkts-user-defined-arktsNode-builderNode.md#解除实体节点引用关系)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+> **说明：**
+>
+> 当ComponentContent对象调用dispose之后，会与后端实体节点解除引用关系。若前端对象ComponentContent无法释放，容易导致内存泄漏。建议在不再需要操作该ComponentContent对象时，开发者主动调用dispose释放后端节点，以减少引用关系的复杂性，降低内存泄漏的风险。
 
 **示例：** 
 
@@ -484,7 +489,7 @@ updateConfiguration(): void
 
 **示例：**
 ```ts
-import { NodeController, FrameNode, ComponentContent } from '@kit.ArkUI';
+import { NodeController, FrameNode, ComponentContent, UIContext, FrameCallback } from '@kit.ArkUI';
 import { AbilityConstant, Configuration, EnvironmentCallback, ConfigurationConstant } from '@kit.AbilityKit';
 
 @Builder
@@ -523,6 +528,12 @@ class MyNodeController extends NodeController {
   }
 }
 
+class MyFrameCallback extends FrameCallback {
+  onFrame() {
+    updateColorMode();
+  }
+}
+
 function updateColorMode() {
   componentContentMap.forEach((value, index) => {
     value.updateConfiguration();
@@ -541,7 +552,7 @@ struct FrameNodeTypeTest {
       },
       onConfigurationUpdated: (config: Configuration): void => {
         console.log('onConfigurationUpdated ' + JSON.stringify(config));
-        updateColorMode();
+        this.getUIContext()?.postFrameCallback(new MyFrameCallback());
       }
     }
     // 注册监听回调
@@ -595,113 +606,275 @@ isDisposed(): boolean
 **示例：**
 
 ```ts
-import {
-  RenderNode,
-  FrameNode,
-  NodeController,
-  BuilderNode,
-  ComponentContent,
-  PromptAction,
-  NodeAdapter,
-  typeNode
-} from "@kit.ArkUI";
+import { BusinessError } from '@kit.BasicServicesKit';
+import { ComponentContent } from '@kit.ArkUI';
+
+class Params {
+  text: string = "";
+  constructor(text: string) {
+    this.text = text;
+  }
+}
 
 @Builder
-function buildText() {
-  Text("IsDisposed")
-    .textAlign(TextAlign.Center)
-    .width('100%')
-    .height('100%')
-    .fontSize(30)
+function buildText(params: Params) {
+  Column() {
+    Text(params.text)
+      .fontSize(50)
+      .fontWeight(FontWeight.Bold)
+      .margin({ bottom: 36 })
+  }.backgroundColor('#FFF0F0F0')
 }
 
-class MyNodeAdapter extends NodeAdapter {
-}
-
-class MyNodeController extends NodeController {
-  private rootNode: FrameNode | null = null;
-  private builderNode: BuilderNode<[]> | null = null;
-  private renderNode: RenderNode | null = null;
-  private frameNode: FrameNode | null = null;
-  nodeAdapter: MyNodeAdapter | null = null;
-
-  makeNode(uiContext: UIContext): FrameNode | null {
-    this.rootNode = new FrameNode(uiContext);
-    this.builderNode = new BuilderNode(uiContext, { selfIdealSize: { width: 200, height: 100 } });
-    this.builderNode.build(new WrappedBuilder(buildText));
-
-    const rootRenderNode = this.rootNode!.getRenderNode();
-    if (rootRenderNode !== null) {
-      rootRenderNode.size = { width: 200, height: 200 };
-      rootRenderNode.backgroundColor = 0xffd5d5d5;
-      rootRenderNode.appendChild(this.builderNode!.getFrameNode()!.getRenderNode());
-      this.renderNode = new RenderNode();
-      rootRenderNode.appendChild(this.renderNode);
-      this.frameNode = new FrameNode(uiContext);
-      this.rootNode.appendChild(this.frameNode);
-
-
-      let listNode = typeNode.createNode(uiContext, "List");
-      listNode.initialize({ space: 3 });
-      this.rootNode.appendChild(listNode);
-      this.nodeAdapter = new MyNodeAdapter();
-      NodeAdapter.attachNodeAdapter(this.nodeAdapter, listNode);
-    }
-
-    return this.rootNode;
-  }
-
-  disposeTest() {
-    if (this.frameNode !== null && this.nodeAdapter !== null && this.builderNode !== null && this.renderNode !== null) {
-      console.log(`jerry before BuilderNode dispose: isDisposed=`, this.builderNode.isDisposed());
-      this.builderNode.dispose();
-      console.log(`jerry after BuilderNode dispose: isDisposed=`, this.builderNode.isDisposed());
-      console.log(`jerry before FrameNode dispose: isDisposed=`, this.frameNode.isDisposed());
-      this.frameNode.dispose();
-      console.log(`jerry after FrameNode dispose: isDisposed=`, this.frameNode.isDisposed());
-      console.log(`jerry before RenderNode dispose: isDisposed=`, this.renderNode.isDisposed());
-      this.renderNode.dispose();
-      console.log(`jerry after RenderNode dispose: isDisposed=`, this.renderNode.isDisposed());
-      console.log(`jerry before NodeAdapter dispose: isDisposed=`, this.nodeAdapter.isDisposed());
-      this.nodeAdapter.dispose();
-      console.log(`jerry after NodeAdapter dispose: isDisposed=`, this.nodeAdapter.isDisposed());
-    }
-  }
-}
 @Entry
 @Component
 struct Index {
-  private myNodeController: MyNodeController = new MyNodeController();
-  private promptAction: PromptAction | null = null;
-  private contentNode: ComponentContent<[]> | null = null;
+  @State message: string = "hello";
+  @State beforeDispose: string = ''
+  @State afterDispose: string = ''
 
   build() {
-    Column({ space: 4 }) {
-      NodeContainer(this.myNodeController)
-      Button('OpenDialog')
-        .onClick(() => {
-          let uiContext = this.getUIContext();
-          this.promptAction = uiContext.getPromptAction();
-          this.contentNode = new ComponentContent(uiContext, wrapBuilder(buildText));
-          this.promptAction.openCustomDialog(this.contentNode);
-        })
-        .width(120)
-        .height(40)
-      Button('DisposeTest')
-        .onClick(() => {
-          this.myNodeController.disposeTest();
-          this.promptAction?.closeCustomDialog(this.contentNode);
-          console.log(`jerry before ComponentContent dispose: isDisposed=`, this.contentNode?.isDisposed());
-          this.contentNode?.dispose();
-          console.log(`jerry after ComponentContent dispose: isDisposed=`, this.contentNode?.isDisposed());
-        })
-        .width(120)
-        .height(40)
+    Row() {
+      Column() {
+        Button("click me")
+          .onClick(() => {
+            let uiContext = this.getUIContext();
+            let promptAction = uiContext.getPromptAction();
+            let contentNode = new ComponentContent(uiContext, wrapBuilder(buildText), new Params(this.message));
+            promptAction.openCustomDialog(contentNode);
+
+            setTimeout(() => {
+              promptAction.closeCustomDialog(contentNode)
+                .then(() => {
+                  console.info('customDialog closed.');
+                  if (contentNode !== null) {
+                    this.beforeDispose = contentNode.isDisposed() ? 'before dispose componentContent isDisposed is true' : 'before dispose componentContent isDisposed is false';
+                    contentNode.dispose();   //释放contentNode
+                    this.afterDispose = contentNode.isDisposed() ? 'after dispose componentContent isDisposed is true' : 'after dispose componentContent isDisposed is false';
+                  }
+                }).catch((error: BusinessError) => {
+                let message = (error as BusinessError).message;
+                let code = (error as BusinessError).code;
+                console.error(`closeCustomDialog args error code is ${code}, message is ${message}`);
+              })
+            }, 1000);     //1秒后自动关闭
+          })
+        Text(this.beforeDispose)
+          .fontSize(25)
+          .margin({ top: 10, bottom: 10 })
+        Text(this.afterDispose)
+          .fontSize(25)
+      }
+      .width('100%')
+      .height('100%')
     }
-    .width('100%')
     .height('100%')
   }
 }
 ```
 
-![](figures/isDisposed.gif)
+![](figures/component_content_isDisposed.gif)
+
+### inheritFreezeOptions<sup>20+</sup>
+
+inheritFreezeOptions(enabled: boolean): void
+
+查询当前ComponentContent对象是否设置为继承父组件中自定义组件的冻结策略。如果设置继承状态为false，则ComponentContent对象的冻结策略为false。在这种情况下，节点在不活跃状态下不会被冻结。
+
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                                     |
+| ------ | ------ | ---- | ------------------------------------------------------------------------ |
+| enabled  | boolean | 是  | ComponentContent对象是否设置为继承父组件中自定义组件的冻结策略。true为继承父组件中自定义组件的冻结策略，false为不继承父组件中自定义组件的冻结策略。 |
+
+**示例：**
+
+```ts
+
+import { ComponentContent, FrameNode, NodeController } from '@kit.ArkUI';
+
+class Params {
+  count: number = 0;
+
+  constructor(count: number) {
+    this.count = count;
+  }
+}
+
+@Builder // builder组件
+function buildText(params: Params) {
+
+  Column() {
+    TextBuilder({ message: params.count })
+  }
+}
+
+class TextNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+  private contentNode: ComponentContent<Params> | null = null;
+  private count: number = 0;
+
+  makeNode(context: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(context);
+    this.contentNode = new ComponentContent(context, wrapBuilder(buildText), new Params(this.count)); // 通过buildText创建ComponentContent
+    this.contentNode.inheritFreezeOptions(true); // 设置ComponentContent的冻结继承状态为True
+    if (this.rootNode !== null) {
+      this.rootNode.addComponentContent(this.contentNode); // 将ComponentContent上树
+    }
+    return this.rootNode;
+  }
+
+  update(): void {
+    if (this.contentNode !== null) {
+      this.count += 1;
+      this.contentNode.update(new Params(this.count)); // 更新ComponentContent中的数据，可以触发Log
+    }
+  }
+}
+
+const textNodeController: TextNodeController = new TextNodeController();
+
+@Entry
+@Component
+struct MyNavigationTestStack {
+  @Provide('pageInfo') pageInfo: NavPathStack = new NavPathStack();
+  @State message: number = 0;
+  @State logNumber: number = 0;
+
+  @Builder
+  PageMap(name: string) {
+    if (name === 'pageOne') {
+      pageOneStack({ message: this.message, logNumber: this.logNumber })
+    } else if (name === 'pageTwo') {
+      pageTwoStack({ message: this.message, logNumber: this.logNumber })
+    }
+  }
+
+  build() {
+    Column() {
+      Button('update ComponentContent') // 点击更新ComponentContent
+        .onClick(() => {
+          textNodeController.update();
+        })
+      Navigation(this.pageInfo) {
+        Column() {
+          Button('Next Page', { stateEffect: true, type: ButtonType.Capsule })
+            .width('80%')
+            .height(40)
+            .margin(20)
+            .onClick(() => {
+              this.pageInfo.pushPath({ name: 'pageOne' }); // 将name指定的NavDestination页面信息入栈
+            })
+        }
+      }.title('NavIndex')
+      .navDestination(this.PageMap)
+      .mode(NavigationMode.Stack)
+    }
+  }
+}
+
+@Component
+struct pageOneStack { // 页面一
+  @Consume('pageInfo') pageInfo: NavPathStack;
+  @State index: number = 1;
+  @Link message: number;
+  @Link logNumber: number;
+
+  build() {
+    NavDestination() {
+      Column() {
+        NavigationContentMsgStack({ message: this.message, index: this.index, logNumber: this.logNumber })
+        Button('Next Page', { stateEffect: true, type: ButtonType.Capsule }) // 切换至页面二
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.pageInfo.pushPathByName('pageTwo', null);
+          })
+        Button('Back Page', { stateEffect: true, type: ButtonType.Capsule }) // 返回主页面
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.pageInfo.pop();
+          })
+      }.width('100%').height('100%')
+    }.title('pageOne')
+    .onBackPressed(() => {
+      this.pageInfo.pop();
+      return true;
+    })
+  }
+}
+
+@Component
+struct pageTwoStack { // 页面二
+  @Consume('pageInfo') pageInfo: NavPathStack;
+  @State index: number = 2;
+  @Link message: number;
+  @Link logNumber: number;
+
+  build() {
+    NavDestination() {
+      Column() {
+        NavigationContentMsgStack({ message: this.message, index: this.index, logNumber: this.logNumber })
+        Text('BuilderNode处于冻结')
+          .fontWeight(FontWeight.Bold)
+          .margin({ top: 48, bottom: 48 })
+        Button('Back Page', { stateEffect: true, type: ButtonType.Capsule }) // 返回至页面一
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.pageInfo.pop();
+          })
+      }.width('100%').height('100%')
+    }.title('pageTwo')
+    .onBackPressed(() => {
+      this.pageInfo.pop();
+      return true;
+    })
+  }
+}
+
+@Component({ freezeWhenInactive: true }) // 设置冻结策略为不活跃冻结
+struct NavigationContentMsgStack {
+  @Link message: number;
+  @Link index: number;
+  @Link logNumber: number;
+
+  build() {
+    Column() {
+      if (this.index === 1) {
+        NodeContainer(textNodeController)
+      }
+    }
+  }
+}
+
+@Component({ freezeWhenInactive: true }) // 设置冻结策略为不活跃冻结
+struct TextBuilder {
+  @Prop @Watch("info") message: number = 0;
+
+  info() {
+    console.info(`freeze-test TextBuilder message callback ${this.message}`); // 根据message内容变化来打印日志来判断是否冻结
+  }
+
+  build() {
+    Row() {
+      Column() {
+        Text(`文本更新次数： ${this.message}`)
+          .fontWeight(FontWeight.Bold)
+          .margin({ top: 48, bottom: 48 })
+      }
+    }
+  }
+}
+```
+
+![](figures/component_content_inheritFreezeOptions.gif)

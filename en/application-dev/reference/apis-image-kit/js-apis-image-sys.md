@@ -1,12 +1,12 @@
 # @ohos.multimedia.image (Image Processing) (System API)
 
-The **Image** module provides APIs for image processing. You can use the APIs to create a **PixelMap** object with specified properties or read image pixel data (even in an area).
+The module provides APIs for image processing. You can use the APIs to create a PixelMap object with specified properties or read image pixel data (even in an area).
 
 > **NOTE**
 >
 > - The initial APIs of this module are supported since API version 12. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> - This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.multimedia.image (Image Processing)](js-apis-image.md).
+> - This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.multimedia.image (Image Processing)](arkts-apis-image.md).
 
 ## Modules to Import
 
@@ -22,12 +22,11 @@ Describes the image decoding options.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
-| Name              | Type                              | Readable| Writable| Description            |
-| ------------------ | ---------------------------------- | ---- | ---- | ---------------- |
-| resolutionQuality         | number                             | Yes  | Yes  | Image quality.|
+| Name              | Type             | Read-Only| Optional| Description            |
+| ----------------- | ----------------- | ---- | ---- | ---------------- |
+| resolutionQuality | [ResolutionQuality](#resolutionquality12) | No  | Yes  | Image quality.|
 
-
-## ResolutionQuality <sup>12+</sup>
+## ResolutionQuality<sup>12+</sup>
 
 Enumerates the image quality levels.
 

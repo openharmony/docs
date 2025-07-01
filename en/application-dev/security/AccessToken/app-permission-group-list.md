@@ -158,7 +158,7 @@
 
 - To read or write images or videos in the media library:
 
-  - (Recommended) Use [Picker](../../media/medialibrary/photoAccessHelper-photoviewpicker.md) to read images and videos in the media library, and use [SaveButton](../../media/medialibrary/photoAccessHelper-savebutton.md#using-savebutton) to save images and videos in the media library. This solution is recommended because the application does not need any permission.
+  - (Recommended) Use [Picker](../../media/medialibrary/photoAccessHelper-photoviewpicker.md) to read images and videos in the media library, and use [SaveButton](../../media/medialibrary/photoAccessHelper-savebutton.md) to save images and videos in the media library. This solution is recommended because the application does not need any permission.
   - Request the restricted permission [ohos.permission.READ_IMAGEVIDEO](restricted-permissions.md#ohospermissionread_imagevideo) or [ohos.permission.WRITE_IMAGEVIDEO](restricted-permissions.md#ohospermissionwrite_imagevideo).
 
 - To read audio clips in the media library:

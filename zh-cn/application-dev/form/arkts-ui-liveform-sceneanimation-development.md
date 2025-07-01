@@ -57,30 +57,44 @@ export default class MyLiveFormExtensionAbility extends LiveFormExtensionAbility
 
 ```ts
 // entry/src/main/ets/myliveformextensionability/pages/MyLiveFormPage.ets
-import { UIExtensionContentSession } from '@kit.AbilityKit';
 import { formInfo, formProvider } from '@kit.FormKit';
 import { Constants } from '../../common/Constants';
 
 const ANIMATION_RECT_SIZE: number = 100;
 const END_SCALE: number = 1.5;
 const END_TRANSLATE: number = -300;
-let storageForMyLiveFormPage = LocalStorage.getShared();
 
-@Entry(storageForMyLiveFormPage)
+@Entry
 @Component
 struct MyLiveFormPage {
   @State columnScale: number = 1.0;
   @State columnTranslate: number = 0.0;
 
-  private session: UIExtensionContentSession | undefined =
-    storageForMyLiveFormPage?.get<UIExtensionContentSession>('session');
-  private formId: string | undefined = storageForMyLiveFormPage?.get<string>('formId');
-  private formRect: formInfo.Rect | undefined = storageForMyLiveFormPage?.get<formInfo.Rect>('formRect');
-  private formBorderRadius: number | undefined = storageForMyLiveFormPage?.get<number>('borderRadius');
+  private uiContext: UIContext | undefined = undefined;
+  private storageForMyLiveFormPage: LocalStorage | undefined = undefined;
+  private formId: string | undefined = undefined;
+  private formRect: formInfo.Rect | undefined = undefined;
+  private formBorderRadius: number | undefined = undefined;
+
+  aboutToAppear(): void {
+    this.uiContext = this.getUIContext();
+    if (!this.uiContext) {
+      console.warn("no uiContext");
+      return;
+    }
+    this.initParams();
+  }
+
+  private initParams(): void {
+    this.storageForMyLiveFormPage = this.uiContext?.getSharedLocalStorage();
+    this.formId = this.storageForMyLiveFormPage?.get<string>('formId');
+    this.formRect = this.storageForMyLiveFormPage?.get<formInfo.Rect>('formRect');
+    this.formBorderRadius = this.storageForMyLiveFormPage?.get<number>('borderRadius');
+  }
 
   // 执行动效
   private runAnimation(): void {
-    animateTo({
+    this.uiContext?.animateTo({
       duration: Constants.OVERFLOW_DURATION,
       curve: Curve.Ease
     }, () => {
@@ -118,6 +132,10 @@ struct MyLiveFormPage {
       Button('强制取消动效')
         .backgroundColor(Color.Grey)
         .onClick(() => {
+          if (!this.formId) {
+            console.log('MyLiveFormPage formId is empty, cancel overflow failed');
+            return;
+          }
           console.log('MyLiveFormPage cancel overflow animation');
           formProvider.cancelOverflow(this.formId);
         })
@@ -139,20 +157,30 @@ struct MyLiveFormPage {
       {
         "name": "MyLiveFormExtensionAbility",
         "srcEntry": "./ets/myliveformextensionability/MyLiveFormExtensionAbility.ets",
-        "description": "$string:MyLiveFormExtensionAbility_desc",
-        "label": "$string:MyLiveFormExtensionAbility_label",
+        "description": "MyLiveFormExtensionAbility",
         "type": "liveForm"
       }
     ]
     ...
 ```
 
+同时在 main_pages.json 文件中声明互动卡片页面。
+
+```ts
+// entry/src/main/resources/base/profile/main_pages.json
+{
+  "src": [
+    "pages/Index",
+    "myliveformextensionability/pages/MyLiveFormPage"
+  ]
+}
+```
 
 ### 卡片非激活态UI开发
 
 1. 非激活态卡片页面实现
 
-非激活态卡片页面开发同普通卡片开发流程完全一致，在widgetCard.ets中完成。在非激活态卡片页面实现，点击卡片时，请求卡片动效。
+非激活态卡片页面开发同普通卡片开发流程完全一致，在widgetCard.ets中完成。widgetCard.ets文件在卡片创建时自动生成，卡片创建流程可以参考[创建ArkTS卡片](arkts-ui-widget-creation.md)。在非激活态卡片页面实现点击卡片时，请求卡片动效。
 
 ```ts
 // entry/src/main/ets/widget/pages/WidgetCard.ets
@@ -256,8 +284,8 @@ export default class EntryFormAbility extends FormExtensionAbility {
   private saveFormSize(formId: string, wantParams: Record<string, Object>) {
     let width = 0;
     let height = 0;
-    width = wantParams[formInfo.FormParam.FORM_WIDTH_VP_KEY] as number;
-    height = wantParams[formInfo.FormParam.FORM_HEIGHT_VP_KEY] as number;
+    width = wantParams['ohos.extra.param.key.form_width_vp'] as number;
+    height = wantParams['ohos.extra.param.key.form_height_vp'] as number;
     console.log(`onUpdateForm, formId: ${formId}, size:[${width}, ${height}]`);
     let promise: Promise<preferences.Preferences> = preferences.getPreferences(this.context, DB_NAME);
 

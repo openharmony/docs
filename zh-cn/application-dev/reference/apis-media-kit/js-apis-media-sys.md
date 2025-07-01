@@ -420,7 +420,7 @@ setWatermark(watermark: image.PixelMap, config: WatermarkConfig): Promise\<void>
 
 | 参数名   | 类型                  | 必填 | 说明                         |
 | -------- | -------------------- | ---- | --------------------------- |
-| watermark | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)      | 是   | 图像PixelMap数据。<br>当前支持规格:<br>-当前仅支持pixelformat为RGBA8888。<br>-原图像为8K时->水印图像限制范围3072x288,原图像为4K时->水印图像限制范围1536x144。 |
+| watermark | [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)      | 是   | 图像PixelMap数据。<br>当前支持规格:<br>-当前仅支持pixelformat为RGBA8888。<br>-原图像为8K时->水印图像限制范围3072x288,原图像为4K时->水印图像限制范围1536x144。 |
 | config    | [WatermarkConfig](#watermarkconfig13)   | 是   | 水印的相关配置参数。 |
 
 **返回值：**
@@ -459,7 +459,7 @@ setMetadata(metadata: Record\<string, string\>): void
 
 给AVRecorder的录制文件中设置自定义meta数据。
 
-只有当[prepare()](arkts-apis-media-AVRecorder.md#prepare9-1)事件成功触发后，并在调用[stop()](arkts-apis-media-AVRecorder.md#stop9-)方法之前，才能调用setMetadata方法。
+只有当[prepare()](arkts-apis-media-AVRecorder.md#prepare9-1)事件成功触发后，并在调用[stop()](arkts-apis-media-AVRecorder.md#stop9)方法之前，才能调用setMetadata方法。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 

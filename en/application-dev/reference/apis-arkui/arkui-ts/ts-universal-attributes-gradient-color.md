@@ -56,7 +56,7 @@ Defines the linear gradient parameters.
 
 | Name                                      | Type                                                        | Mandatory| Description                                                        |
 | ------------------------------------------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| angle                                      | number \| string                                   | No  | Start angle of the linear gradient. A positive value indicates a clockwise rotation from the origin, (0, 0). The default value is **180**. If the angle is specified with a string, only the deg, grad, rad, and trun types are supported.|
+| angle                                      | number \| string                                   | No  | Start angle of the linear gradient. A positive value indicates a clockwise rotation from the origin, (0, 0). The default value is **180**. If the angle is specified with a string, only the deg, grad, rad, and turn types are supported.|
 | direction                                  | [GradientDirection](ts-appendix-enums.md#gradientdirection)  | No  | Direction of the linear gradient. It does not take effect when **angle** is set. <br>Default value: **GradientDirection.Bottom**.|
 | [colors](#radialgradientoptions18) | Array[[ResourceColor](ts-types.md#resourcecolor), number] | Yes  | Array of color stops, each of which consists of a color and its stop position. Invalid colors are automatically skipped.|
 | repeating                                  | boolean                                                      | No  | Whether the colors are repeated. Default value: **false**.                       |
@@ -233,7 +233,7 @@ struct ColorGradientExample {
           colors: [[0xff0000, 0.0], [0x0000ff, 0.3], [0xffff00, 1.0]]
         })
       
-      Text('sweepGradient Reapeat').fontSize(12).width('90%').fontColor(0xCCCCCC)
+      Text('sweepGradient Repeat').fontSize(12).width('90%').fontColor(0xCCCCCC)
       Row()
         .width(100)
         .height(100)

@@ -26,10 +26,10 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
-| 名称         | 类型    | 可读 | 可写 | 说明                 |
+| 名称         | 类型    | 只读 | 可选 | 说明                 |
 | ------------ | ---------- | ---- | ---- | -------------------- |
-| credentialDigest       | number | 是   |  否 | 注册的凭据摘要，在凭据增加时随机生成。|
-| credentialCount        | number | 是   |  否 | 注册的凭据数量。       |
+| credentialDigest       | number | 否   |  否 | 注册的凭据摘要，在凭据增加时随机生成。|
+| credentialCount        | number | 否   |  否 | 注册的凭据数量。       |
 
 ## ReuseMode<sup>12+</sup>
 

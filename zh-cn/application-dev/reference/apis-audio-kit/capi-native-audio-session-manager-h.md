@@ -22,9 +22,9 @@
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [OH_AudioSession_Strategy](capi-oh-audiosession-strategy.md) | OH_AudioSession_Strategy | 音频会话策略。 |
-| [OH_AudioSession_DeactivatedEvent](capi-oh-audiosession-deactivatedevent.md) | OH_AudioSession_DeactivatedEvent | 音频会话已停用事件。 |
-| [OH_AudioSessionManager](capi-oh-audiosessionmanager.md) | OH_AudioSessionManager | 声明音频会话管理器。<br>用于管理音频会话相关功能。 |
+| [OH_AudioSession_Strategy](capi-ohaudio-oh-audiosession-strategy.md) | OH_AudioSession_Strategy | 音频会话策略。 |
+| [OH_AudioSession_DeactivatedEvent](capi-ohaudio-oh-audiosession-deactivatedevent.md) | OH_AudioSession_DeactivatedEvent | 音频会话已停用事件。 |
+| [OH_AudioSessionManager](capi-ohaudio-oh-audiosessionmanager.md) | OH_AudioSessionManager | 声明音频会话管理器。<br>用于管理音频会话相关功能。 |
 
 ### 枚举
 
@@ -102,7 +102,7 @@ typedef int32_t (*OH_AudioSession_DeactivatedCallback)(OH_AudioSession_Deactivat
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AudioSession_DeactivatedEvent](capi-oh-audiosession-deactivatedevent.md) event | 指向OH_AudioSession_Deactivated_Event音频会话已停用事件。 |
+| [OH_AudioSession_DeactivatedEvent](capi-ohaudio-oh-audiosession-deactivatedevent.md) event | 指向OH_AudioSession_Deactivated_Event音频会话已停用事件。 |
 
 ### OH_AudioManager_GetAudioSessionManager()
 
@@ -122,7 +122,7 @@ OH_AudioCommon_Result OH_AudioManager_GetAudioSessionManager(OH_AudioSessionMana
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AudioSessionManager](capi-oh-audiosessionmanager.md) **audioSessionManager | 指向OH_AudioSessionManager音频会话管理器实例。 |
+| [OH_AudioSessionManager](capi-ohaudio-oh-audiosessionmanager.md) **audioSessionManager | 指向OH_AudioSessionManager音频会话管理器实例。 |
 
 **返回：**
 
@@ -147,8 +147,8 @@ OH_AudioCommon_Result OH_AudioSessionManager_ActivateAudioSession(OH_AudioSessio
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AudioSessionManager](capi-oh-audiosessionmanager.md) *audioSessionManager | 指向[OH_AudioManager_GetAudioSessionManager](#oh_audiomanager_getaudiosessionmanager)创建的音频会话管理实例。 |
-| const [OH_AudioSession_Strategy](capi-oh-audiosession-strategy.md) *strategy | 指向[OH_AudioSession_Strategy](capi-oh-audiosession-strategy.md)，用于设置音频会话策略。                                                                                                                           |
+| [OH_AudioSessionManager](capi-ohaudio-oh-audiosessionmanager.md) *audioSessionManager | 指向[OH_AudioManager_GetAudioSessionManager](#oh_audiomanager_getaudiosessionmanager)创建的音频会话管理实例。 |
+| const [OH_AudioSession_Strategy](capi-ohaudio-oh-audiosession-strategy.md) *strategy | 指向[OH_AudioSession_Strategy](capi-ohaudio-oh-audiosession-strategy.md)，用于设置音频会话策略。                                                                                                                           |
 
 **返回：**
 
@@ -173,7 +173,7 @@ OH_AudioCommon_Result OH_AudioSessionManager_DeactivateAudioSession(OH_AudioSess
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AudioSessionManager](capi-oh-audiosessionmanager.md) *audioSessionManager | 指向[OH_AudioManager_GetAudioSessionManager](#oh_audiomanager_getaudiosessionmanager)创建的音频会话管理实例。 |
+| [OH_AudioSessionManager](capi-ohaudio-oh-audiosessionmanager.md) *audioSessionManager | 指向[OH_AudioManager_GetAudioSessionManager](#oh_audiomanager_getaudiosessionmanager)创建的音频会话管理实例。 |
 
 **返回：**
 
@@ -198,7 +198,7 @@ bool OH_AudioSessionManager_IsAudioSessionActivated(OH_AudioSessionManager *audi
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AudioSessionManager](capi-oh-audiosessionmanager.md) *audioSessionManager | 指向[OH_AudioManager_GetAudioSessionManager](#oh_audiomanager_getaudiosessionmanager)创建的音频会话管理实例。 |
+| [OH_AudioSessionManager](capi-ohaudio-oh-audiosessionmanager.md) *audioSessionManager | 指向[OH_AudioManager_GetAudioSessionManager](#oh_audiomanager_getaudiosessionmanager)创建的音频会话管理实例。 |
 
 **返回：**
 
@@ -222,7 +222,7 @@ OH_AudioCommon_Result OH_AudioSessionManager_RegisterSessionDeactivatedCallback(
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AudioSessionManager](capi-oh-audiosessionmanager.md) *audioSessionManager | 指向[OH_AudioManager_GetAudioSessionManager](#oh_audiomanager_getaudiosessionmanager)创建的音频会话管理实例。 |
+| [OH_AudioSessionManager](capi-ohaudio-oh-audiosessionmanager.md) *audioSessionManager | 指向[OH_AudioManager_GetAudioSessionManager](#oh_audiomanager_getaudiosessionmanager)创建的音频会话管理实例。 |
 | [OH_AudioSession_DeactivatedCallback](#oh_audiosession_deactivatedcallback) callback | 指向OH_AudioSessionDeactivatedCallback，用于接收音频会话已停用事件。 |
 
 **返回：**
@@ -248,7 +248,7 @@ OH_AudioCommon_Result OH_AudioSessionManager_UnregisterSessionDeactivatedCallbac
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AudioSessionManager](capi-oh-audiosessionmanager.md) *audioSessionManager | 指向[OH_AudioManager_GetAudioSessionManager](#oh_audiomanager_getaudiosessionmanager)创建的音频会话管理实例。 |
+| [OH_AudioSessionManager](capi-ohaudio-oh-audiosessionmanager.md) *audioSessionManager | 指向[OH_AudioManager_GetAudioSessionManager](#oh_audiomanager_getaudiosessionmanager)创建的音频会话管理实例。 |
 | [OH_AudioSession_DeactivatedCallback](#oh_audiosession_deactivatedcallback) callback | 指向OH_AudioSessionDeactivatedCallback，用于接收音频会话已停用事件。 |
 
 **返回：**

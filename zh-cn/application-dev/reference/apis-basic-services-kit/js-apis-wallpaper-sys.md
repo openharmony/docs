@@ -573,7 +573,7 @@ setImage(source: string | image.PixelMap, wallpaperType: WallpaperType, callback
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| source | string \| [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是 | JPEG或PNG文件的Uri路径，或者PNG格式文件的位图。 |
+| source | string \| [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 是 | JPEG或PNG文件的Uri路径，或者PNG格式文件的位图。 |
 | wallpaperType | [WallpaperType](js-apis-wallpaper.md#wallpapertype7) | 是 | 壁纸类型。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，设置壁纸成功，error为undefined，否则返回error信息。 |
 
@@ -640,7 +640,7 @@ setImage(source: string | image.PixelMap, wallpaperType: WallpaperType): Promise
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| source | string \| [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是 | JPEG或PNG文件的Uri路径，或者PNG格式文件的位图。 |
+| source | string \| [image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md) | 是 | JPEG或PNG文件的Uri路径，或者PNG格式文件的位图。 |
 | wallpaperType | [WallpaperType](js-apis-wallpaper.md#wallpapertype7) | 是 | 壁纸类型。 |
 
 **返回值：**
@@ -709,7 +709,7 @@ getImage(wallpaperType: WallpaperType, callback: AsyncCallback&lt;image.PixelMap
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | wallpaperType | [WallpaperType](js-apis-wallpaper.md#wallpapertype7) | 是 | 壁纸类型。 |
-| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 是 | 回调函数，调用成功则返回壁纸图片的像素图对象，调用失败则返回error信息。 |
+| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | 是 | 回调函数，调用成功则返回壁纸图片的像素图对象，调用失败则返回error信息。 |
 
 **错误码：**
 
@@ -758,7 +758,7 @@ getImage(wallpaperType: WallpaperType): Promise&lt;image.PixelMap&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 调用成功则返回壁纸图片的像素图对象，调用失败则返回error信息。 |
+| Promise&lt;[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | 调用成功则返回壁纸图片的像素图对象，调用失败则返回error信息。 |
 
 **错误码：**
 
@@ -806,7 +806,7 @@ getWallpaperByState(wallpaperType:WallpaperType, foldState:FoldState, rotateStat
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 调用成功则返回壁纸图片的像素图对象，调用失败则返回error信息。 |
+| Promise&lt;[image.PixelMap](../apis-image-kit/arkts-apis-image-PixelMap.md)&gt; | 调用成功则返回壁纸图片的像素图对象，调用失败则返回error信息。 |
 
 **错误码：**
 

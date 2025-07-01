@@ -39,9 +39,9 @@ struct WebComponent {
               console.log("download update speed: " + webDownloadItem.getCurrentSpeed())
             })
             this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download failed guid: " + webDownloadItem.getGuid());
+              console.error("download failed guid: " + webDownloadItem.getGuid());
               // 下载任务失败的错误码。
-              console.log("download failed last error code: " + webDownloadItem.getLastErrorCode());
+              console.error("download failed last error code: " + webDownloadItem.getLastErrorCode());
             })
             this.delegate.onDownloadFinish((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
@@ -117,7 +117,7 @@ struct WebComponent {
               console.log("download update guid: " + webDownloadItem.getGuid());
             })
             this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download failed guid: " + webDownloadItem.getGuid());
+              console.error("download failed guid: " + webDownloadItem.getGuid());
             })
             this.delegate.onDownloadFinish((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
@@ -177,9 +177,9 @@ struct WebComponent {
               console.log("download update speed: " + webDownloadItem.getCurrentSpeed())
             })
             this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download failed guid: " + webDownloadItem.getGuid());
+              console.error("download failed guid: " + webDownloadItem.getGuid());
               // 下载任务失败的错误码。
-              console.log("download failed last error code: " + webDownloadItem.getLastErrorCode());
+              console.error("download failed last error code: " + webDownloadItem.getLastErrorCode());
             })
             this.delegate.onDownloadFinish((webDownloadItem: webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
@@ -269,7 +269,7 @@ struct WebComponent {
               this.download = webDownloadItem;
             })
             this.delegate.onDownloadFailed((webDownloadItem: webview.WebDownloadItem) => {
-              console.log("download failed guid: " + webDownloadItem.getGuid());
+              console.error("download failed guid: " + webDownloadItem.getGuid());
               // 序列化失败的下载任务到一个字节数组。
               this.failedData = webDownloadItem.serialize();
             })

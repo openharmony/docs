@@ -270,7 +270,7 @@ Service timeout.
 
 **错误信息**
 
-Redirection to a third-party application is not allowed in API version 11 or later.
+Redirection to a third-party application is not allowed in API version greater than 11.
 
 **错误描述**
 
@@ -380,6 +380,7 @@ Installation-free timed out.
 
 免安装超时，请稍后重试。
 
+<!--Del-->
 ## 16000058 指定的URI flag无效
 
 **错误信息**
@@ -433,6 +434,7 @@ A sandbox application cannot grant URI permission.
 **处理步骤**
 
 确认为非沙箱应用。
+<!--DelEnd-->
 
 ## 16000061 不支持的操作
 
@@ -668,9 +670,7 @@ The app clone index is invalid.
 **可能原因**
 
 1.调用startAbility时，使用ohos.extra.param.key.appCloneIndex携带的appCloneIndex是一个无效值，则返回该错误码。
-<!--Del-->
-2.调用isAppRunning是，入参appCloneIndex是一个无效值，则返回该错误码。
-<!--DelEnd-->
+2.调用isAppRunning时，入参appCloneIndex是一个无效值，则返回该错误码。
 
 **处理步骤**
 
@@ -809,6 +809,7 @@ Creating a new instance is not supported.
 
 删除参数[CREATE_APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#params)。
 
+<!--Del-->
 ## 16000081 获取目标应用信息失败
 
 **错误信息**
@@ -817,7 +818,7 @@ Failed to obtain the target application information.
 
 **错误描述**
 
-调用<!--Del-->[<!--DelEnd-->URI授权相关接口<!--Del-->](js-apis-uripermissionmanager-sys.md)<!--DelEnd-->时，无法根据应用包名和分身索引获取到目标应用的相关信息。
+调用[URI授权相关接口](js-apis-uripermissionmanager-sys.md)时，无法根据应用包名和分身索引获取到目标应用的相关信息。
 
 **可能原因**
 
@@ -830,6 +831,7 @@ Failed to obtain the target application information.
 1. 检查目标应用是否已经安装。
 2. 检查分身应用索引是否在允许范围内。
 3. 检查目标应用是否创建了该索引对应的分身应用。
+<!--DelEnd-->
 
 ## 16000084 只允许DelegatorAbility单次调用
 
@@ -905,6 +907,87 @@ The caller is not an atomic service.
 
 当前应用不支持调用该接口。
 
+<!--Del-->
+## 16000091 根据key获取文件URI数据失败
+
+**错误信息**
+
+Failed to get the file URI from the key.
+
+**错误描述**
+
+根据key获取文件URI失败。
+
+**可能原因**
+
+1. key为空。
+2. key不属于当前调用方。
+3. key不属于特定业务的数据通路。
+4. key对应UDMF中写入的数据不全为文件URI。
+
+**处理步骤**
+
+1. 确保key是由调用方创建的。
+2. 确保key属于特定业务的数据通路。参考[UDMF数据通路](../apis-arkdata/js-apis-data-unifiedDataChannel.md#intention)。
+3. 确保创建key时在UDMF中写入的数据都为文件URI。
+
+## 16000092 无权限授权URI
+
+**错误信息**
+
+No permission to authorize the URI.
+
+**错误描述**
+
+无权限授权URI。
+
+**可能原因**
+
+创建key时写入的URI存在无权限授权的URI。
+
+**处理步骤**
+
+确保创建key时写入的URI均为有权限授权的URI。
+
+## 16000093 调用方的token ID无效
+
+**错误信息**
+
+The caller token ID is invalid.
+
+**错误描述**
+
+调用方的token ID无效。
+
+**可能原因**
+
+系统未找到callerTokenId对应的应用。
+
+**处理步骤**
+
+检查callerTokenId对应的应用是否安装。
+
+## 16000094 目标应用的token ID无效
+
+**错误信息**
+
+The target token ID is invalid.
+
+**错误描述**
+
+目标应用的token ID无效。
+
+**可能原因**
+
+1. 系统未找到targetTokenId对应的应用。
+2. targetTokenId与callerTokenId是同一应用。
+
+**处理步骤**
+
+1. 确保传入的targetTokenId对应的应用已安装。
+2. 确保callerTokenId与targetTokenId不是同一应用。
+<!--DelEnd-->
+
 ## 16000100 监听Ability生命周期变化的AbilityMonitor方法执行失败
 
 **错误信息**
@@ -948,6 +1031,78 @@ The caller is not an atomic service.
 **处理步骤**
 
 检查是否成功创建了AbilityDelegatorRegistry实例。
+
+## 16000110 当前应用不在Kiosk模式的列表内
+
+**错误信息**
+
+Current application is not in kiosk app list, can not exit kiosk mode.
+
+**错误描述**
+
+当前应用不在EDM配置的支持Kiosk模式的应用列表内，尝试进入或退出Kiosk模式时，将返回错误码。
+
+**可能原因**
+
+应用不在EDM配置的支持Kiosk模式的应用列表内。
+
+**处理步骤**
+
+检查应用是否在EDM配置的支持Kiosk模式的应用列表内。
+
+## 16000111 已经有应用进入了Kiosk模式
+
+**错误信息**
+
+System is already in kiosk mode, can not enter again.
+
+**错误描述**
+
+当前系统已有应用进入Kiosk模式，调用方尝试进入时将返回错误码。
+
+**可能原因**
+
+已经有应用进入Kiosk模式。
+
+**处理步骤**
+
+检查系统内是否存在应用已经进入Kiosk模式。
+
+## 16000112 当前系统没有应用进入Kiosk模式
+
+**错误信息**
+
+Current application is not in kiosk mode, can not exit.
+
+**错误描述**
+
+如果系统中没有应用进入Kiosk模式，尝试退出Kiosk模式时将返回错误码。
+
+**可能原因**
+
+当前系统没有应用进入Kiosk模式。
+
+**处理步骤**
+
+检查当前系统是否有应用进入Kiosk模式。
+
+## 16000113 当前Ability不在前台
+
+**错误信息**
+
+Current ability is not in foreground.
+
+**错误描述**
+
+当Ability未处于前台状态时，尝试执行需在前台进行的操作将返回错误码。
+
+**可能原因**
+
+当前Ability没有处于前台。
+
+**处理步骤**
+
+检查当前Ability是否处于前台状态。
 
 ## 16000151 无效wantAgent对象
 
@@ -1101,6 +1256,7 @@ The method has not been registered.
 
 请检查是否未注册该方法。
 
+<!--Del-->
 ## 16200006 没有权限设置常驻进程使能状态
 
 **错误信息**
@@ -1154,6 +1310,7 @@ The specified mission listener does not exist.
 **处理步骤**
 
 确认操作的任务监听器是否存在。
+<!--DelEnd-->
 
 ## 16300003 目标应用程序不是自身应用程序
 
@@ -1173,6 +1330,7 @@ The target application is not the current application.
 
 确认被拉起的应用程序是否为自身应用程序。
 
+<!--Del-->
 ## 18500001 指定的包名无效
 
 **错误信息**
@@ -1245,6 +1403,7 @@ The application has an ongoing quick fix task.
 **处理步骤**
 
 等待快速修复任务处理完成。
+<!--DelEnd-->
 
 ## 16300004 指定的observer不存在
 
@@ -1264,6 +1423,7 @@ The observer does not exist.
 
 请检查是否有重复注销监听器。
 
+<!--Del-->
 ## 16300005 指定的包信息不存在
 
 **错误信息**
@@ -1335,6 +1495,7 @@ The target application is not attached to the status bar.
 **处理步骤**
 
 检查应用是否绑定状态栏。
+<!--DelEnd-->
 
 ## 29600001 图片编辑内部错误
 
@@ -1392,6 +1553,7 @@ Image too big.
 1. 尝试将图片编辑后大小控制在50M以内。
 2. 对图片大小进行校验。
 
+<!--Del-->
 ## 16300007 指定的原子化服务的下载安装任务信息不存在
 
 **错误信息**
@@ -1409,6 +1571,7 @@ The target free-installation task does not exist.
 **处理步骤**
 
 检查传入的bundleName、moduleName、abilityName或startTime参数是否正确。
+<!--DelEnd-->
 
 ## 28800001 启动任务或其依赖项不存在
 
@@ -1500,4 +1663,112 @@ The input bundleName is not a system HSP.
 **处理步骤**
 
 检查bundleName是否正确。
+
+## 16000202 仅支持为appService类型的ExtensionAbility设置保活
+
+**错误信息**
+
+Invalid main element type.
+
+**错误描述**
+
+如果设置保活的对象不是appService类型的ExtensionAbility，方法将返回该错误码。
+
+**可能原因**
+
+应用中entry类型的HAP的module.json5配置文件中的mainElement字段不是appService类型的ExtensionAbility。
+
+**处理步骤**
+
+修改应用中entry类型的HAP的module.json5配置文件的mainElement字段为appService类型的ExtensionAbility。
+
+## 16000203 无法更改AppServiceExtensionAbility保活状态
+
+**错误信息**
+
+Cannot change the keep-alive status.
+
+**错误描述**
+
+无法更改AppServiceExtensionAbility保活状态时，方法返回该错误码。
+
+**可能原因**
+
+AppServiceExtensionAbility的保活策略由MDM设置为用户不可取消，或者由其他用户设置为保活。
+
+**处理步骤**
+
+MDM取消设置保活，或设置保活策略为用户可取消；在设置保活的用户下取消AppServiceExtensionAbility的保活。
+
+## 16000204 指定的应用未安装在userId为1的用户下
+
+**错误信息**
+
+The target bundle is not in u1.
+
+**错误描述**
+
+当指定的应用未安装在userId为1的用户下时，方法返回该错误码。
+
+**可能原因**
+
+指定的应用未安装在userId为1的用户下。
+
+**处理步骤**
+
+将指定的应用安装在userId为1的用户下。
 <!--DelEnd-->
+
+## 16000115 当前进程未运行isolationProcess字段设为true的组件
+
+**错误信息**
+
+The current process is not running a component configured with "isolationProcess" and cannot be set as a candidate master process.
+
+**错误描述**
+
+当前进程未运行配置了"isolationProcess"的组件，不支持设置为备选主控进程。
+
+**可能原因**
+
+当前进程没有运行配置了isolationProcess字段的组件，不支持声明为主控进程。
+
+**处理步骤**
+
+不支持处理，当前进程未运行isolationProcess字段设为true的组件，无法将其设置为备选主控进程。
+
+## 16000116 当前进程已经是主控进程
+
+**错误信息**
+
+The current process is already a master process and does not support cancellation.
+
+**错误描述**
+
+当前进程已经是主控进程，不支持取消备选主控进程。
+
+**可能原因**
+
+当前进程已经是主控进程，不支持取消备选主控进程。
+
+**处理步骤**
+
+不支持处理，当前进程已经是主控进程的情况下，不支持取消。
+
+## 16000117 当前进程非备选主控进程
+
+**错误信息**
+
+The current process is not a candidate master process and does not support cancellation.
+
+**错误描述**
+
+当前进程不是备选主控进程，不支持取消。
+
+**可能原因**
+
+当前进程不是备选主控进程，不支持取消。
+
+**处理步骤**
+
+不支持处理，当前进程不是备选主控进程，不支持取消。

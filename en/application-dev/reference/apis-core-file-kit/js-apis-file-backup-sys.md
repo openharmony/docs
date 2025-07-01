@@ -1594,6 +1594,105 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   sessionBackup.appendBundles(backupBundles);
   ```
 
+### cleanBundleTempDir<sup>20+</sup>
+
+cleanBundleTempDir(bundleName: string): Promise&lt;boolean&gt;
+
+Cleans up temporary application directories (backup and restore directories under the **./backup** directory) after the backup task is complete. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.BACKUP
+
+**System capability**: SystemCapability.FileManagement.StorageService.Backup
+
+**Parameters**
+
+| Name         | Type    | Mandatory| Description                      |
+| --------------- | -------- | ---- | -------------------------- |
+| bundleName | string | Yes  | Bundle name of the application whose temporary directories need to be cleaned up.|
+
+**Return value**
+
+| Type               | Description                   |
+| ------------------- | ----------------------- |
+| Promise&lt;boolean&gt; | Promise that returns results. The value **true** means the data is cleaned up; the value **false** means the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                                                      |
+| -------- | ---------------------------------------------------------------------------------------------- |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.              |
+| 202      | Permission verification failed, application which is not a system application uses system API. |
+
+**Example**
+
+  ```ts
+  import { fileIo, backup} from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  async function cleanBundleTempDir(bundleName: string) {
+    try {
+      let res = await sessionBackup.cleanBundleTempDir(bundleName);
+      if (res) {
+        console.info(`cleanBundleTempDir succeeded.`);
+      } else {
+        console.info(`cleanBundleTempDir fail.`);
+      }
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error(`cleanBundleTempDir failed. Code: ${err.code}, message: ${err.message}`);
+    }
+  }
+
+  let generalCallbacks: backup.GeneralCallbacks = { // Define general callbacks to be used in the backup or restore process.
+    // Callback when the file is sent successfully.
+    onFileReady: (err: BusinessError, file: backup.File) => {
+      if (err) {
+        console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info(`onFileReady succeeded.`);
+      fileIo.closeSync(file.fd);
+    },
+    // Callback when the application backup or restore starts.
+    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
+      if (err) {
+        console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info(`onBundleBegin succeeded.`);
+    },
+    // Callback when the application backup or restore is complete. cleanBundleTempDir is called for cleanup.
+    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
+      if (err) {
+        console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      cleanBundleTempDir(bundleName);
+    },
+    onAllBundlesEnd: (err: BusinessError) => {
+      if (err) {
+        console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info(`onAllBundlesEnd success`);
+    },
+    onBackupServiceDied: () => {
+      console.info(`service died`);
+    },
+    onResultReport: (bundleName: string, result: string) => {
+      console.info(`onResultReport success, bundleName: ${bundleName}, result: ${result}`);
+    },
+    onProcess: (bundleName: string, process: string) => {
+      console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
+    }
+  };
+  let sessionBackup = new backup.SessionBackup(generalCallbacks); // Create a backup process.
+  ```
+
 ## SessionRestore
 
 Provides an object to support the application restore process. Before using the APIs of this class, you need to create a **SessionRestore** instance.
@@ -2684,6 +2783,105 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   sessionRestore.appendBundles(fileData.fd, backupBundles);
   ```
 
+### cleanBundleTempDir<sup>20+</sup>
+
+cleanBundleTempDir(bundleName: string): Promise&lt;boolean&gt;
+
+Cleans up temporary application directories (backup and restore directories under the **./backup** directory) after the restore task is complete. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.BACKUP
+
+**System capability**: SystemCapability.FileManagement.StorageService.Backup
+
+**Parameters**
+
+| Name         | Type    | Mandatory| Description                      |
+| --------------- | -------- | ---- | -------------------------- |
+| bundleName | string | Yes  | Bundle name of the application whose temporary directories need to be cleaned up.|
+
+**Return value**
+
+| Type               | Description                   |
+| ------------------- | ----------------------- |
+| Promise&lt;boolean&gt; | Promise that returns results. The value **true** means the data is cleaned up; the value **false** means the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                                                      |
+| -------- | ---------------------------------------------------------------------------------------------- |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.              |
+| 202      | Permission verification failed, application which is not a system application uses system API. |
+
+**Example**
+
+  ```ts
+  import { fileIo, backup} from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  async function cleanBundleTempDir(bundleName: string) {
+    try {
+      let res = await sessionRestore.cleanBundleTempDir(bundleName);
+      if (res) {
+        console.info(`cleanBundleTempDir succeeded.`);
+      } else {
+        console.info(`cleanBundleTempDir fail.`);
+      }
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error(`cleanBundleTempDir failed. Code: ${err.code}, message: ${err.message}`);
+    }
+  }
+
+  let generalCallbacks: backup.GeneralCallbacks = { // Define general callbacks to be used in the backup or restore process.
+    // Callback when the file is sent successfully.
+    onFileReady: (err: BusinessError, file: backup.File) => {
+      if (err) {
+        console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info(`onFileReady succeeded.`);
+      fileIo.closeSync(file.fd);
+    },
+    // Callback when the application backup or restore starts.
+    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
+      if (err) {
+        console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info(`onBundleBegin succeeded.`);
+    },
+    // Callback when the application backup or restore is complete. cleanBundleTempDir is called for cleanup.
+    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
+      if (err) {
+        console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      cleanBundleTempDir(bundleName);
+    },
+    onAllBundlesEnd: (err: BusinessError) => {
+      if (err) {
+        console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info(`onAllBundlesEnd success`);
+    },
+    onBackupServiceDied: () => {
+      console.info(`service died`);
+    },
+    onResultReport: (bundleName: string, result: string) => {
+      console.info(`onResultReport success, bundleName: ${bundleName}, result: ${result}`);
+    },
+    onProcess: (bundleName: string, process: string) => {
+      console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
+    }
+  };
+  let sessionRestore = new backup.SessionRestore(generalCallbacks); // Create a restore process.
+  ```
+
 ## IncrementalBackupSession<sup>12+</sup>
 
 An object used to implement the incremental backup of applications. Before using the APIs of this class, you need to create an **IncrementalBackupSession** instance.
@@ -3478,4 +3676,103 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   backupBundles.push(bundleData);
   incrementalBackupSession.appendBundles(backupBundles);
 
+  ```
+
+### cleanBundleTempDir<sup>20+</sup>
+
+cleanBundleTempDir(bundleName: string): Promise&lt;boolean&gt;
+
+Cleans up temporary application directories (backup and restore directories under the **./backup** directory) after the incremental backup task is complete. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.BACKUP
+
+**System capability**: SystemCapability.FileManagement.StorageService.Backup
+
+**Parameters**
+
+| Name         | Type    | Mandatory| Description                      |
+| --------------- | -------- | ---- | -------------------------- |
+| bundleName | string | Yes  | Bundle name of the application whose temporary directories need to be cleaned up.|
+
+**Return value**
+
+| Type               | Description                   |
+| ------------------- | ----------------------- |
+| Promise&lt;boolean&gt; | Promise that returns results. The value **true** means the data is cleaned up; the value **false** means the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                                                      |
+| -------- | ---------------------------------------------------------------------------------------------- |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.              |
+| 202      | Permission verification failed, application which is not a system application uses system API. |
+
+**Example**
+
+  ```ts
+  import { fileIo, backup} from '@kit.CoreFileKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  async function cleanBundleTempDir(bundleName: string) {
+    try {
+      let res = await incrementalBackupSession.cleanBundleTempDir(bundleName);
+      if (res) {
+        console.info(`cleanBundleTempDir succeeded.`);
+      } else {
+        console.info(`cleanBundleTempDir fail.`);
+      }
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error(`cleanBundleTempDir failed. Code: ${err.code}, message: ${err.message}`);
+    }
+  }
+
+  let generalCallbacks: backup.GeneralCallbacks = { // Define general callbacks to be used in the backup or restore process.
+    // Callback when the file is sent successfully.
+    onFileReady: (err: BusinessError, file: backup.File) => {
+      if (err) {
+        console.error(`onFileReady failed. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info(`onFileReady succeeded.`);
+      fileIo.closeSync(file.fd);
+    },
+    // Callback when the application backup or restore starts.
+    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
+      if (err) {
+        console.error(`onBundleBegin failed. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info(`onBundleBegin succeeded.`);
+    },
+    // Callback when the application backup or restore is complete. cleanBundleTempDir is called for cleanup.
+    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
+      if (err) {
+        console.error(`onBundleEnd failed. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      cleanBundleTempDir(bundleName);
+    },
+    onAllBundlesEnd: (err: BusinessError) => {
+      if (err) {
+        console.error(`onAllBundlesEnd failed. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info(`onAllBundlesEnd success`);
+    },
+    onBackupServiceDied: () => {
+      console.info(`service died`);
+    },
+    onResultReport: (bundleName: string, result: string) => {
+      console.info(`onResultReport success, bundleName: ${bundleName}, result: ${result}`);
+    },
+    onProcess: (bundleName: string, process: string) => {
+      console.info(`onProcess success, bundleName: ${bundleName}, process: ${process}`);
+    }
+  };
+  let incrementalBackupSession = new backup.IncrementalBackupSession(generalCallbacks); // Create a session for an incremental backup.
   ```

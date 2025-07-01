@@ -916,8 +916,8 @@ start(config: WebSocketServerConfig): Promise\<boolean\>
 | -------   | ------------------------------------------ |
 | 201       | Permission denied.                         |
 | 2302002   | Websocket certificate file does not exist. |
-| 2302004   | Cant't listen on the given NIC.            |
-| 2302005   | Cant't listen on the given Port.           |
+| 2302004   | Can't listen on the given NIC.            |
+| 2302005   | Can't listen on the given Port.           |
 | 2302999   | Websocket other unknown error.             |
 
 **示例：**
@@ -1321,7 +1321,7 @@ localServer.off('messageReceive');
 
 ### on('close')<sup>19+</sup>
 
-on(type: 'close', callback: Callback\<ClientConnectionCloseCallback\>): void
+on(type: 'close', callback: ClientConnectionCloseCallback): void
 
 订阅WebSocketServer的关闭事件，使用callback方式作为异步方法。
 
@@ -1332,7 +1332,7 @@ on(type: 'close', callback: Callback\<ClientConnectionCloseCallback\>): void
 | 参数名  | 类型                    | 必填 | 说明                                                     |
 | -------- | ----------------------------------------------- | ---- | ----------------------------------- |
 | type     | string                                          | 是  | 事件回调类型，支持的事件为'close'，当onclose()调用完成，连接关闭成功。 |
-| callback | Callback\<[ClientConnectionCloseCallback](#clientconnectionclosecallback19)\> | 是  | 回调函数。<br>close：close错误码；reason：错误码说明。 |
+| callback | [ClientConnectionCloseCallback](#clientconnectionclosecallback19) | 是  | 回调函数。<br>close：close错误码；reason：错误码说明。 |
 
 **示例：**
 
@@ -1348,7 +1348,7 @@ localServer.on('close', (clientConnection: webSocket.WebSocketConnection, closeR
 
 ### off('close')<sup>19+</sup>
 
-off(type: 'close', callback?: Callback\<ClientConnectionCloseCallback\>): void
+off(type: 'close', callback?: ClientConnectionCloseCallback): void
 
 取消订阅WebSocketServer的关闭事件，使用callback方式作为异步方法。
 
@@ -1363,7 +1363,7 @@ off(type: 'close', callback?: Callback\<ClientConnectionCloseCallback\>): void
 | 参数名  | 类型                    | 必填 | 说明                                                     |
 | -------- | ----------------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                          | 是  | 事件回调类型，支持的事件为'close'，当offclose()调用完成，取消订阅连接关闭事件成功。 |
-| callback | Callback\<[ClientConnectionCloseCallback](#clientconnectionclosecallback19)\> | 否  | 回调函数。<br>close：close错误码；reason：错误码说明。 |
+| callback | [ClientConnectionCloseCallback](#clientconnectionclosecallback19) | 否  | 回调函数。<br>close：close错误码；reason：错误码说明。 |
 
 **示例：**
 
@@ -1529,7 +1529,7 @@ type HttpProxy = connection.HttpProxy
 
 网络全局代理配置信息。
 
-**系统能力**：SystemCapability.Communication.NetStack
+**系统能力**：SystemCapability.Communication.NetManager.Core
 
 |       类型       |            说明             |
 | ---------------- | --------------------------- |

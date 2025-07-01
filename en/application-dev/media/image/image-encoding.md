@@ -4,11 +4,11 @@ Image encoding refers to the process of encoding a PixelMap into an image in dif
 
 ## How to Develop
 
-Read [Image API Reference](../../reference/apis-image-kit/js-apis-image.md#imagepacker) for APIs related to image encoding.
+Read the [API reference](../../reference/apis-image-kit/arkts-apis-image-ImagePacker.md) for APIs related to image encoding.
 
 ### Encoding Images into File Streams
 
-1. Create an **ImagePacker** object.
+1. Create an ImagePacker object.
 
    ```ts
    // Import the required module.
@@ -34,7 +34,18 @@ Read [Image API Reference](../../reference/apis-image-kit/js-apis-image.md#image
       packOpts.desiredDynamicRange = image.PackingDynamicRange.AUTO;
       ```
 
-3. [Create a PixelMap object or an ImageSource object](image-decoding.md).
+3. Create a PixelMap object or an ImageSource object.
+   ```ts
+   import { common } from '@kit.AbilityKit';
+
+   // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+   // 'test.jpg' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
+   const path: string = context.filesDir + "/test.jpg";
+   const imageSource: image.ImageSource = image.createImageSource(path);
+   let decodingOptions : image.DecodingOptions = { editable: true, desiredPixelFormat: image.PixelMapFormat.RGBA_8888 };
+   let pixelmap = imageSource.createPixelMapSync(decodingOptions);
+   ```
 
 4. Encode the image and save the encoded image.
 
@@ -69,7 +80,6 @@ During encoding, you can pass in a file path so that the encoded memory data is 
    ```ts
    import { BusinessError } from '@kit.BasicServicesKit';
    import { fileIo as fs } from '@kit.CoreFileKit';
-   const context : Context = getContext(this);
    const path : string = context.cacheDir + "/pixel_map.jpg";
    let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
    imagePackerApi.packToFile(pixelMap, file.fd, packOpts).then(() => {
@@ -86,7 +96,6 @@ During encoding, you can pass in a file path so that the encoded memory data is 
    ```ts
    import { BusinessError } from '@kit.BasicServicesKit';
    import { fileIo as fs } from '@kit.CoreFileKit';
-   const context : Context = getContext(this);
    const filePath : string = context.cacheDir + "/image_source.jpg";
    let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
    imagePackerApi.packToFile(imageSource, file.fd, packOpts).then(() => {

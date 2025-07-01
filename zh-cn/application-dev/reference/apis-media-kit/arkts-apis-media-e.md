@@ -196,7 +196,7 @@ Codec MIME类型枚举。
 | ----------------------------| ---- | ------------------------------------------------ |
 | VIDEO_SCALE_TYPE_FIT        | 0    | 默认比例类型，视频拉伸至与窗口等大。                |
 | VIDEO_SCALE_TYPE_FIT_CROP   | 1    | 保持视频宽高比缩放至最短边填满窗口，长边超出窗口部分被裁剪。     |
-| VIDEO_SCALE_TYPE_FIT_ASPECT<sup>20+</sup> | 2    | 保持视频宽高比缩放至长边填满窗口，短边居中对齐，未填满部分留黑。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。  |
+| VIDEO_SCALE_TYPE_SCALED_ASPECT<sup>20+</sup> | 2    | 保持视频宽高比缩放至长边填满窗口，短边居中对齐，未填满部分留黑。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。  |
 
 ## AudioSourceType<sup>9+</sup>
 

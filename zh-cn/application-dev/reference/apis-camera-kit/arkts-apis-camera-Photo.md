@@ -6,6 +6,12 @@
 
 全质量图对象。
 
+## 导入模块
+
+```ts
+import { camera } from '@kit.CameraKit';
+```
+
 ## 属性
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
@@ -14,7 +20,7 @@
 
 | 名称   | 类型                            |     必填     | 说明       |
 | ------ | ----------------------------- | -------------- | ---------- |
-| main<sup>11+</sup> | [image.Image](../apis-image-kit/js-apis-image.md#image9) |        是       | 全质量图Image。 |
+| main<sup>11+</sup> | [image.Image](../apis-image-kit/arkts-apis-image-Image.md) |        是       | 全质量图Image。 |
 
 ## release<sup>11+</sup>
 

@@ -12,7 +12,7 @@ ArkGraphics 2D（方舟2D图形服务 ）主要提供图形绘制与显示相关
 
 - 提供高动态显示的相关能力，具体可见[@ohos.graphics.hdrCapability (HDR能力)](../reference/apis-arkgraphics2d/js-apis-hdrCapability.md)。
 
-- 提供自绘制的相关能力，开发者可根据需要，自定义绘制实现UI效果，可自定义绘制基础形状、文本、图片等。具体可见[@ohos.graphics.drawing (绘制模块)](../reference/apis-arkgraphics2d/js-apis-graphics-drawing.md)。
+- 提供自绘制的相关能力，开发者可根据需要，自定义绘制实现UI效果，可自定义绘制基础形状、文本、图片等。具体可见[@ohos.graphics.drawing (绘制模块)](../reference/apis-arkgraphics2d/arkts-apis-graphics-drawing.md)。
 
 - 提供图形绘制与显示相关的Native能力，包括[NativeWindow](../reference/apis-arkgraphics2d/capi-nativewindow.md)、[NativeBuffer](../reference/apis-arkgraphics2d/capi-oh-nativebuffer.md)、[NativeImage](../reference/apis-arkgraphics2d/capi-oh-nativeimage.md)、[NativeVsync](../reference/apis-arkgraphics2d/capi-nativevsync.md)、[Drawing](../reference/apis-arkgraphics2d/capi-drawing.md)等模块。
 

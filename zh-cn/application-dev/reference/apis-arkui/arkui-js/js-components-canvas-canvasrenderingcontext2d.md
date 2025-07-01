@@ -1560,7 +1560,7 @@ drawImage(image: Image | PixelMap, sx: number, sy: number, sWidth: number, sHeig
 
 | 参数      | 类型                             | 描述                                       |
 | ------- | ------------------------------ | ---------------------------------------- |
-| image   | Image \| PixelMap<sup>9+</sup> | 图片资源，请参考[Image对象](js-components-canvas-image.md) 或[PixelMap对象](../../apis-image-kit/js-apis-image.md#pixelmap7)。 |
+| image   | Image \| PixelMap<sup>9+</sup> | 图片资源，请参考[Image对象](js-components-canvas-image.md) 或[PixelMap对象](../../apis-image-kit/arkts-apis-image-PixelMap.md)。 |
 | sx      | number                         | 裁切源图像时距离源图像左上角的x坐标值。                     |
 | sy      | number                         | 裁切源图像时距离源图像左上角的y坐标值。                     |
 | sWidth  | number                         | 裁切源图像时需要裁切的宽度。                           |
@@ -1892,7 +1892,7 @@ getPixelMap(sx: number, sy: number, sw: number, sh: number): PixelMap
 
 | 类型                                       | 说明                     |
 | ---------------------------------------- | ---------------------- |
-| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | 返回包含指定区域像素的PixelMap对象。 |
+| [PixelMap](../../apis-image-kit/arkts-apis-image-PixelMap.md) | 返回包含指定区域像素的PixelMap对象。 |
 
 **示例：** 
 

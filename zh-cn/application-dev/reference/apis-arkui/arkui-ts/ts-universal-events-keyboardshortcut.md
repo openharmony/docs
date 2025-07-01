@@ -36,7 +36,7 @@ keyboardShortcut(value: string | FunctionKey, keys: Array\<ModifierKey>, action?
 
 ## 快捷键使用注意事项
 
-快捷键是对系统按键的响应，优先于普通的按键事件`OnKeyEvent`，按键事件触发的逻辑详见[按键事件数据流](../../../ui/arkts-common-events-device-input-event.md#按键事件数据流)。
+快捷键是对系统按键的响应，优先于普通的按键事件`OnKeyEvent`，按键事件触发的逻辑详见[按键事件数据流](../../../ui/arkts-interaction-development-guide-keyboard.md#按键事件数据流)。
 
 | 场景                                       | 快捷键处理逻辑                            | 例子                                       |
 | ---------------------------------------- | ---------------------------------- | ---------------------------------------- |
@@ -68,7 +68,7 @@ keyboardShortcut(value: string | FunctionKey, keys: Array\<ModifierKey>, action?
 
 已存在如下系统响应的按键事件，具体规格如下表。
 
-表中的按键事件与自定义按键事件的触发有优先级关系，高优先级的事件会拦截低优先级事件，焦点事件响应优先级详见[按键事件数据流](../../../ui/arkts-common-events-device-input-event.md#按键事件数据流)。
+表中的按键事件与自定义按键事件的触发有优先级关系，高优先级的事件会拦截低优先级事件，焦点事件响应优先级详见[按键事件数据流](../../../ui/arkts-interaction-development-guide-keyboard.md#按键事件数据流)。
 
 | 快捷键 | 获焦组件 | 用途 | 事件处理类别 |
 | ----- | ---- | ---- | ---- |

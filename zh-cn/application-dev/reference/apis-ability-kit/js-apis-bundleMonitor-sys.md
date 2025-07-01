@@ -24,6 +24,7 @@ import bundleMonitor from '@ohos.bundle.bundleMonitor';
 | ---------- | ------ | ---- | ---- | -------------------------- |
 | bundleName | string | 是   | 否   | 应用状态发生变化的应用Bundle名称。 |
 | userId     | number | 是   | 否   | 应用状态发生变化的用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取。   |
+| appIndex<sup>12+</sup>   | number | 是   | 否   |  应用状态发生变化的应用分身索引。  |
 
 ## BundleChangedEvent
 

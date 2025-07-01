@@ -1,10 +1,10 @@
 # 使用ImageSource完成图片解码
 
-将所支持格式的图片文件解码成[PixelMap](../../reference/apis-image-kit/js-apis-image.md#pixelmap7)，以便在应用或系统中显示或处理图片。当前支持的图片文件格式包括JPEG、PNG、GIF、WebP、BMP、SVG、ICO、DNG、HEIF。不同硬件设备的支持情况可能不同 。
+将所支持格式的图片文件解码成[PixelMap](../../reference/apis-image-kit/arkts-apis-image-PixelMap.md)，以便在应用或系统中显示或处理图片。当前支持的图片文件格式包括JPEG、PNG、GIF、WebP、BMP、SVG、ICO、DNG、HEIF。不同硬件设备的支持情况可能不同 。
 
 ## 开发步骤
 
-图片解码相关API的详细介绍请参见：[图片解码接口说明](../../reference/apis-image-kit/js-apis-image.md#imagesource)。
+图片解码相关API的详细介绍请参见：[图片解码接口说明](../../reference/apis-image-kit/arkts-apis-image-ImageSource.md)。
 
 1. 全局导入Image模块。
 
@@ -149,11 +149,15 @@
 
 5. 释放pixelMap和imageSource。
 
-   需确认pixelMap和imageSource异步方法已经执行完成，不再使用该变量后可按需手动调用下面方法释放。
+   确认pixelMap和imageSource的异步方法已经执行完成，不再使用该变量后，可按需手动调用下面方法释放。
    ```ts
    pixelMap.release();
    imageSource.release();
    ```
+
+   > **补充说明：**
+   > 1. 释放imageSource的合适时机：createPixelMap执行完成，成功获取pixelMap后，如果确定不再使用imageSource的其他方法，可以手动释放imageSource。由于解码得到的pixelMap是一个独立的实例，imageSource的释放不会导致pixelMap不可用。
+   > 2. 释放pixelMap的合适时机：如果使用系统的[Image组件](../../reference/apis-arkui/arkui-ts/ts-basic-components-image.md)进行图片显示，无需手动释放，Image组件会自动管理传递给它的pixelMap；如果应用自行处理pixelMap，则推荐在页面切换、应用退后台等场景下手动释放老页面pixelMap；在内存资源紧张的场景，推荐释放除当前页面外其他不可见页面的PixelMap。
 
 ## 相关实例
 

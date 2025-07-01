@@ -3,6 +3,7 @@
 The advertising module provides APIs for requesting and displaying ads.
 
 > **NOTE**
+>
 > - The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -222,7 +223,7 @@ Injects an ad JavaScript object to the **Web** component. (This API is available
 
 | Name    | Type                                                                                        | Mandatory| Description                  |
 |------------|----------------------------------------------------------------------------------------------|-----|----------------------|
-| controller | web_webview.[WebviewController](../apis-arkweb/js-apis-webview.md#webviewcontroller)         | Yes  | Controller of the **Web** component.        |
+| controller | web_webview.[WebviewController](../apis-arkweb/arkts-apis-webview-WebviewController.md)         | Yes  | Controller of the **Web** component.        |
 | context    | common.[UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) | Yes  | UIAbility context.|
 
 **Error codes**
@@ -284,7 +285,7 @@ Injects an ad JavaScript object to the **Web** component. (This API is available
 
 | Name     | Type                                                                                        | Mandatory| Description                                       |
 |-------------|----------------------------------------------------------------------------------------------|-----|-------------------------------------------|
-| controller  | web_webview.[WebviewController](../apis-arkweb/js-apis-webview.md#webviewcontroller)         | Yes  | Controller of the **Web** component.                             |
+| controller  | web_webview.[WebviewController](../apis-arkweb/arkts-apis-webview-WebviewController.md)         | Yes  | Controller of the **Web** component.                             |
 | context     | common.[UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) | Yes  | UIAbility context.                     |
 | needRefresh | boolean                                                                                      | Yes  | Whether a page needs to be refreshed. (The value **true** means that a page needs to be refreshed; the value **false** means the opposite.)|
 
@@ -347,7 +348,7 @@ Deletes the ad JavaScript object injected through **registerWebAdInterface**. (T
 
 | Name     | Type                                                                                | Mandatory| Description                                       |
 |-------------|--------------------------------------------------------------------------------------|-----|-------------------------------------------|
-| controller  | web_webview.[WebviewController](../apis-arkweb/js-apis-webview.md#webviewcontroller) | Yes  | Controller of the **Web** component.                             |
+| controller  | web_webview.[WebviewController](../apis-arkweb/arkts-apis-webview-WebviewController.md) | Yes  | Controller of the **Web** component.                             |
 | needRefresh | boolean                                                                              | Yes  | Whether a page needs to be refreshed. (The value **true** means that a page needs to be refreshed; the value **false** means the opposite.)|
 
 **Error codes**
@@ -762,7 +763,7 @@ Defines the ad request parameters.
 
 | Name           | Type                                    | Read-Only| Optional| Description                                                                                                                         |
 |-----------------|------------------------------------------|-----|-----|-----------------------------------------------------------------------------------------------------------------------------|
-| adId            | string                                   | No  | No  | Ad ID<br>- This parameter is optional for **getAdRequestBody**.                                                                          |
+| adId            | string                                   | No  | No  | Ad ID.<br>- This parameter is optional for **getAdRequestBody**.                                                                          |
 | adType          | number                                   | No  | Yes  | Type of the requested ad.<br>- **1**: splash ad.<br>- **3**: native ad.<br>- **7**: rewarded ad.<br>- **8**: banner ad.<br>- **12**: interstitial ad.<br>- **60**: roll ad.|
 | adCount         | number                                   | No  | Yes  | Number of ads requested.                                                                                                              |
 | adWidth         | number                                   | No  | Yes  | Expected creative width of ads requested, in vp.                                                                                             |
@@ -800,3 +801,5 @@ Defines the requested ad content.
 | Type                                                        | Description                  |
 |--------------------------------------------------------------|----------------------|
 | [_Advertisement](js-apis-inner-advertising-advertisement.md) | Advertisement object.|
+
+ <!--no_check--> 

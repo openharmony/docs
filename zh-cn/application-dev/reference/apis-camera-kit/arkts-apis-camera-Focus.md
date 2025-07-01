@@ -8,6 +8,12 @@ Focus extends [FocusQuery](arkts-apis-camera-FocusQuery.md)
 
 对焦类，对设备对焦操作。
 
+## 导入模块
+
+```ts
+import { camera } from '@kit.CameraKit';
+```
+
 ## setFocusMode<sup>11+</sup>
 
 setFocusMode(afMode: FocusMode): void

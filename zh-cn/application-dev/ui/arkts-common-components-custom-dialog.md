@@ -9,6 +9,17 @@ CustomDialog是自定义弹出框，可用于广告、中奖、警告、软件�
 
 当isModal为true时，弹出框为模态弹窗，且弹窗周围的蒙层区不支持透传。isModal为false时，弹出框为非模态弹窗，且弹窗周围的蒙层区可以透传。因此如果需要同时允许弹出框的交互和弹出框外页面的交互行为，需要将弹出框设置为非模态。
 
+## 生命周期
+
+从API version 19开始，自定义弹出框提供了生命周期函数用于通知用户该弹出框的生命周期。生命周期的触发时序依次为：onWillAppear -> onDidAppear -> onWillDisappear -> onDidDisappear。
+
+| 名称            |类型| 说明                       |
+| ----------------- | ------ | ---------------------------- |
+| onWillAppear    | Callback&lt;void&gt; | 弹出框显示动效前的事件回调。 |
+| onDidAppear    | Callback&lt;void&gt;  | 弹出框弹出后的事件回调。    |
+| onWillDisappear | Callback&lt;void&gt; | 弹出框退出动效前的事件回调。 |
+| onDidDisappear | Callback&lt;void&gt;  | 弹出框消失后的事件回调。    |
+
 ## 创建自定义弹出框
 
 1. 使用\@CustomDialog装饰器装饰自定义弹出框，可在此装饰器内自定义弹出框内容。CustomDialogController需在@Component内定义。
@@ -548,7 +559,7 @@ struct InterceptCustomDialog {
       }
     }),
     onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
-      console.log('dialog onWillDismiss reason: ' + dismissDialogAction.reason);
+      console.info('dialog onWillDismiss reason: ' + dismissDialogAction.reason);
       // 1、PRESS_BACK    点击三键back、侧滑（左滑/右滑）、键盘ESC。
       // 2、TOUCH_OUTSIDE    点击遮障层时
       // 3、CLOSE_BUTTON    点击关闭按钮
@@ -585,6 +596,127 @@ struct InterceptCustomDialog {
 ```
 
 ![onWillDismiss_dialog](figures/onWillDismiss_dialog.gif)
+
+## 设置弹出框避让软键盘的距离
+
+为显示弹出框的独立性，弹出框弹出时会与周边进行避让，包括状态栏、导航条以及键盘等留有间距。故当软键盘弹出时，默认情况下，弹出框会自动避开软键盘，并与之保持16vp的距离。开发者可以利用[CustomDialogControllerOptions](../reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md#customdialogcontrolleroptions对象说明)中的keyboardAvoidMode和keyboardAvoidDistance这两个配置项，来设置弹出框在软键盘弹出时的行为，包括是否需要避开软键盘以及与软键盘之间的距离。
+设置软键盘间距时，需要将keyboardAvoidMode值设为KeyboardAvoidMode.DEFAULT。
+
+```ts
+// xxx.ets
+import { LengthMetrics } from '@kit.ArkUI'
+
+@CustomDialog
+struct CustomDialogExample {
+  controller?: CustomDialogController;
+  build() {
+    Column() {
+      Column() {
+        Text('keyboardAvoidDistance: 0vp')
+          .fontSize(20)
+          .margin({ bottom: 36 })
+        TextInput({ placeholder: '' })
+      }.backgroundColor('#FFF0F0F0')
+    }
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  dialogController: CustomDialogController | null = new CustomDialogController({
+    builder: CustomDialogExample({
+    }),
+    autoCancel: true,
+    gridCount: 4,
+    showInSubWindow: true,
+    isModal: true,
+    customStyle: false,
+    cornerRadius: 30,
+    alignment:DialogAlignment.Bottom,
+    keyboardAvoidMode: KeyboardAvoidMode.DEFAULT, // 软键盘弹出时，弹出框自动避让
+    keyboardAvoidDistance: LengthMetrics.vp(0) // 软键盘弹出时与弹出框的距离为0vp
+  })
+
+  build() {
+    Row() {
+      Row({ space: 20 }) {
+        Text('打开弹窗')
+          .fontSize(30)
+          .onClick(() => {
+            if (this.dialogController != null) {
+              this.dialogController.open();
+            }
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+ ![UIContextPromptAction](figures/UIContextPromptActionCustomDialog.gif)
+
+## 获取弹出框的状态
+
+在业务模块中，页面上可能会同时出现多个弹出框。为避免重复打开相同的弹出框，建议在显示弹出框前，先通过控制器检查其当前状态。如果弹出框已处于显示状态，则不应再次打开。
+从API version 20开始，新增了getState接口，用于获取弹出框的当前状态。具体的弹出框状态信息，请参见[CommonState](../reference/apis-arkui/js-apis-promptAction.md#commonstate20枚举说明)枚举的详细说明。
+
+以下示例通过getDialogController和CustomDialogController两种方法，实现了获取弹出框当前状态的功能。
+
+```ts
+// xxx.ets
+@CustomDialog
+struct CustomDialogExample {
+  controller?: CustomDialogController
+
+  build() {
+    Column() {
+      Button('点我查询弹窗状态:通过自定义组件自带controller')
+        .onClick(() => {
+          if (this.getDialogController() != undefined) {
+            console.info('state:' + this.getDialogController().getState())
+          } else {
+            console.info('state: no exist')
+          }
+        }).margin(20)
+      Button('点我查询弹窗状态:通过CustomDialogController ')
+        .onClick(() => {
+          console.info('state:' + this.controller?.getState())
+        }).margin(20)
+      Button('点我关闭弹窗')
+        .onClick(() => {
+          if (this.getDialogController() != undefined) {
+            this.getDialogController().close()
+          }
+        }).margin(20)
+      
+    }
+  }
+}
+
+@Entry
+@Component
+struct CustomDialogUser {
+  dialogController: CustomDialogController | null = new CustomDialogController({
+    builder: CustomDialogExample({
+    }),
+    autoCancel: false
+  })
+
+  build() {
+    Column() {
+      Button('click me')
+        .onClick(() => {
+          if (this.dialogController != null) {
+            this.dialogController.open()
+          }
+        })
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
 
 ## 相关实例
 

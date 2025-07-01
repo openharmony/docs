@@ -5,6 +5,8 @@
 >  **说明：**
 >
 >  从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+>  当组件同时绑定双击和单击手势且双击手势先绑定时，单击手势会有300ms的延时。
 
 
 ## 接口
@@ -37,6 +39,10 @@ TapGesture(value?: TapGestureParameters)
 | isFingerCountLimited<sup>15+</sup> | boolean | 否 | 是否检查触摸屏幕的手指数量。如果触摸手指的数量不等于设置的触发点击的手指数（即上述fingers参数），那么该手势识别失败。<br>在多击事件中（上述count参数大于1），需要每一次点击的手指数都等于设置的触发点击的手指数，否则该手势识别失败。<br>true：检查触摸屏幕的手指数量。<br>false：不检查触摸屏幕的手指数量。<br>默认值：false|
 
 ## 事件
+
+>  **说明：**
+>
+>  在[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)的fingerList元素中，手指索引编号与位置相对应，即fingerList[index]的id为index。对于先按下但未参与当前手势触发的手指，fingerList中对应的位置为空。建议优先使用fingerInfos。
 
 | 名称 | 功能描述 |
 | -------- | -------- |

@@ -577,13 +577,13 @@ A deadlock may occur when the mutex of the standard library is used in the FFRT 
     }
     ```
 
-## Using FFRT in DevEco IDE
+## Using FFRT in DevEco Studio
 
 ### Using FFRT C API
 
 Native Development Kit (NDK) is a toolset provided by the system. It offers native APIs that allow you to implement key application functions using C or C++ code.
 
-The FFRT C APIs have been integrated into the NDK. You can directly use the corresponding API in DevEco IDE.
+The FFRT C APIs have been integrated into the NDK. You can directly use the corresponding API in DevEco Studio.
 
 ```c
 #include "ffrt/task.h"

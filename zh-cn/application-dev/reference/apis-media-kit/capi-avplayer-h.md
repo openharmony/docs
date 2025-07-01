@@ -14,21 +14,23 @@
 
 **相关模块：** [AVPlayer](capi-avplayer.md)
 
+**相关示例：** [AVPlayerNDKVideo](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Media/AVPlayer/AVPlayerNDK)
+
 ## 汇总
 
 ### 结构体
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
-| [MediaKeySession](capi-mediakeysession.md) | MediaKeySession | MediaKeySession类型。 |
-| [DRM_MediaKeySystemInfo](capi-drm-mediakeysysteminfo.md) | DRM_MediaKeySystemInfo | DRM_MediaKeySystemInfo类型。 |
+| [MediaKeySession](capi-avplayer-mediakeysession.md) | MediaKeySession | MediaKeySession类型。 |
+| [DRM_MediaKeySystemInfo](capi-avplayer-drm-mediakeysysteminfo.md) | DRM_MediaKeySystemInfo | DRM_MediaKeySystemInfo类型。 |
 
 ### 函数
 
 | 名称 | typedef关键字 | 描述 |
 | -- | -- | -- |
 | [typedef void (\*Player_MediaKeySystemInfoCallback)(OH_AVPlayer \*player, DRM_MediaKeySystemInfo* mediaKeySystemInfo)](#player_mediakeysysteminfocallback) | Player_MediaKeySystemInfoCallback | 播放器DRM信息更新时调用。 |
-| [OH_AVPlayer *OH_AVPlayer_Create(void)](#oh_avplayer_create) | - | 创建播放器。<br>推荐单个应用创建的音视频播放器实例（即音频、视频、音视频三类相加）不超过16个。<br>可创建的音视频播放器实例数量依赖于设备芯片的支持情况，如芯片支持创建的数量少于上述情况，请以芯片规格为准。如RK3568推荐单个应用创建6个以内的音视频播放器实例。 |
+| [OH_AVPlayer *OH_AVPlayer_Create(void)](#oh_avplayer_create) | - | 创建播放器。<br>推荐单个应用创建的音视频播放器实例（即音频、视频、音视频三类相加）不超过16个。<!--Del--><br>可创建的音视频播放器实例数量依赖于设备芯片的支持情况，如芯片支持创建的数量少于上述情况，请以芯片规格为准。如RK3568推荐单个应用创建6个以内的音视频播放器实例。<!--DelEnd--> |
 | [OH_AVErrCode OH_AVPlayer_SetURLSource(OH_AVPlayer *player, const char *url)](#oh_avplayer_seturlsource) | - | 设置播放器的播放源。对应的源可以是http url。 |
 | [OH_AVErrCode OH_AVPlayer_SetFDSource(OH_AVPlayer *player, int32_t fd, int64_t offset, int64_t size)](#oh_avplayer_setfdsource) | - | 设置播放器的媒体文件描述符来源。 |
 | [OH_AVErrCode OH_AVPlayer_Prepare(OH_AVPlayer *player)](#oh_avplayer_prepare) | - | 准备播放环境，异步缓存媒体数据。<br>此函数必须在SetSource之后调用。 |
@@ -86,8 +88,8 @@ typedef void (*Player_MediaKeySystemInfoCallback)(OH_AVPlayer *player, DRM_Media
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVPlayer](capi-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
-| [DRM_MediaKeySystemInfo](capi-drm-mediakeysysteminfo.md)* mediaKeySystemInfo | DRM信息。 |
+| [OH_AVPlayer](capi-avplayer-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
+| [DRM_MediaKeySystemInfo](capi-avplayer-drm-mediakeysysteminfo.md)* mediaKeySystemInfo | DRM信息。 |
 
 ### OH_AVPlayer_Create()
 
@@ -109,7 +111,7 @@ OH_AVPlayer *OH_AVPlayer_Create(void)
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_AVPlayer](capi-oh-avplayer.md) | 如果创建成功返回指向OH_AVPlayer实例的指针，否则返回空指针。<br> 可能的失败原因：<br> 1.PlayerFactory::CreatePlayer执行失败。<br> 2.new PlayerObject执行失败。 |
+| [OH_AVPlayer](capi-avplayer-oh-avplayer.md) | 如果创建成功返回指向OH_AVPlayer实例的指针，否则返回空指针。<br> 可能的失败原因：<br> 1.PlayerFactory::CreatePlayer执行失败。<br> 2.new PlayerObject执行失败。 |
 
 ### OH_AVPlayer_SetURLSource()
 
@@ -130,7 +132,7 @@ OH_AVErrCode OH_AVPlayer_SetURLSource(OH_AVPlayer *player, const char *url)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVPlayer](capi-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
+| [OH_AVPlayer](capi-avplayer-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
 | const char *url | 播放源。 |
 
 **返回：**
@@ -158,7 +160,7 @@ OH_AVErrCode OH_AVPlayer_SetFDSource(OH_AVPlayer *player, int32_t fd, int64_t of
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVPlayer](capi-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
+| [OH_AVPlayer](capi-avplayer-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
 | int32_t fd | 媒体源的文件描述符。 |
 | int64_t offset | 媒体源在文件描述符中的偏移量。 |
 | int64_t size | 表示媒体源的大小。 |
@@ -188,7 +190,7 @@ OH_AVErrCode OH_AVPlayer_Prepare(OH_AVPlayer *player)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVPlayer](capi-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
+| [OH_AVPlayer](capi-avplayer-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
 
 **返回：**
 
@@ -215,7 +217,7 @@ OH_AVErrCode OH_AVPlayer_Play(OH_AVPlayer *player)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVPlayer](capi-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
+| [OH_AVPlayer](capi-avplayer-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
 
 **返回：**
 
@@ -242,7 +244,7 @@ OH_AVErrCode OH_AVPlayer_Pause(OH_AVPlayer *player)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVPlayer](capi-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
+| [OH_AVPlayer](capi-avplayer-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
 
 **返回：**
 
@@ -269,7 +271,7 @@ OH_AVErrCode OH_AVPlayer_Stop(OH_AVPlayer *player)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVPlayer](capi-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
+| [OH_AVPlayer](capi-avplayer-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
 
 **返回：**
 
@@ -296,7 +298,7 @@ OH_AVErrCode OH_AVPlayer_Reset(OH_AVPlayer *player)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVPlayer](capi-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
+| [OH_AVPlayer](capi-avplayer-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
 
 **返回：**
 
@@ -323,7 +325,7 @@ OH_AVErrCode OH_AVPlayer_Release(OH_AVPlayer *player)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVPlayer](capi-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
+| [OH_AVPlayer](capi-avplayer-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
 
 **返回：**
 
@@ -350,7 +352,7 @@ OH_AVErrCode OH_AVPlayer_ReleaseSync(OH_AVPlayer *player)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVPlayer](capi-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
+| [OH_AVPlayer](capi-avplayer-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
 
 **返回：**
 
@@ -377,7 +379,7 @@ OH_AVErrCode OH_AVPlayer_SetVolume(OH_AVPlayer *player, float leftVolume, float 
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVPlayer](capi-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
+| [OH_AVPlayer](capi-avplayer-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
 | float leftVolume | 要设置的左声道目标音量。 |
 | float rightVolume | 要设置的右声道目标音量。 |
 
@@ -406,7 +408,7 @@ OH_AVErrCode OH_AVPlayer_Seek(OH_AVPlayer *player, int32_t mSeconds, AVPlayerSee
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVPlayer](capi-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
+| [OH_AVPlayer](capi-avplayer-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
 | int32_t mSeconds | 播放目标位置，精确到毫秒。 |
 | [AVPlayerSeekMode](capi-avplayer-base-h.md#avplayerseekmode) mode | 播放器的跳转模式。 |
 
@@ -435,7 +437,7 @@ OH_AVErrCode OH_AVPlayer_GetCurrentTime(OH_AVPlayer *player, int32_t *currentTim
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVPlayer](capi-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
+| [OH_AVPlayer](capi-avplayer-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
 | int32_t *currentTime | 播放位置。 |
 
 **返回：**
@@ -463,7 +465,7 @@ OH_AVErrCode OH_AVPlayer_GetVideoWidth(OH_AVPlayer *player, int32_t *videoWidth)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVPlayer](capi-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
+| [OH_AVPlayer](capi-avplayer-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
 | int32_t *videoWidth | 视频宽度。 |
 
 **返回：**
@@ -491,7 +493,7 @@ OH_AVErrCode OH_AVPlayer_GetVideoHeight(OH_AVPlayer *player, int32_t *videoHeigh
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVPlayer](capi-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
+| [OH_AVPlayer](capi-avplayer-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
 | int32_t *videoHeight | 视频高度。 |
 
 **返回：**
@@ -519,7 +521,7 @@ OH_AVErrCode OH_AVPlayer_SetPlaybackSpeed(OH_AVPlayer *player, AVPlaybackSpeed s
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVPlayer](capi-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
+| [OH_AVPlayer](capi-avplayer-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
 | [AVPlaybackSpeed](capi-avplayer-base-h.md#avplaybackspeed) speed | 速率模式。 |
 
 **返回：**
@@ -547,7 +549,7 @@ OH_AVErrCode OH_AVPlayer_SetPlaybackRate(OH_AVPlayer *player, float rate)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVPlayer](capi-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
+| [OH_AVPlayer](capi-avplayer-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
 | float rate | 播放速率，有效范围是0.125~4。 |
 
 **返回：**
@@ -575,7 +577,7 @@ OH_AVErrCode OH_AVPlayer_GetPlaybackSpeed(OH_AVPlayer *player, AVPlaybackSpeed *
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVPlayer](capi-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
+| [OH_AVPlayer](capi-avplayer-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
 | [AVPlaybackSpeed](capi-avplayer-base-h.md#avplaybackspeed) *speed | 速率模式。 |
 
 **返回：**
@@ -603,7 +605,7 @@ OH_AVErrCode OH_AVPlayer_SetAudioRendererInfo(OH_AVPlayer *player, OH_AudioStrea
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVPlayer](capi-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
+| [OH_AVPlayer](capi-avplayer-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
 | [OH_AudioStream_Usage](../apis-audio-kit/capi-native-audiostream-base-h.md#oh_audiostream_usage) streamUsage | player音频流设置的类型。 |
 
 **返回：**
@@ -631,7 +633,7 @@ OH_AVErrCode OH_AVPlayer_SetVolumeMode(OH_AVPlayer *player, OH_AudioStream_Volum
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVPlayer](capi-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
+| [OH_AVPlayer](capi-avplayer-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
 | [OH_AudioStream_VolumeMode](../apis-audio-kit/capi-native-audiostream-base-h.md) volumeMode | 指定音频流音量模式。 |
 
 **返回：**
@@ -659,7 +661,7 @@ OH_AVErrCode OH_AVPlayer_SetAudioInterruptMode(OH_AVPlayer *player, OH_AudioInte
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVPlayer](capi-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
+| [OH_AVPlayer](capi-avplayer-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
 | [OH_AudioInterrupt_Mode](../apis-audio-kit/capi-native-audiostream-base-h.md#oh_audiointerrupt_mode) interruptMode | player音频流使用的打断模式。 |
 
 **返回：**
@@ -687,7 +689,7 @@ OH_AVErrCode OH_AVPlayer_SetAudioEffectMode(OH_AVPlayer *player, OH_AudioStream_
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVPlayer](capi-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
+| [OH_AVPlayer](capi-avplayer-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
 | [OH_AudioStream_AudioEffectMode](../apis-audio-kit/capi-native-audiostream-base-h.md#oh_audiostream_audioeffectmode) effectMode | player音频流使用的音效模式。 |
 
 **返回：**
@@ -715,7 +717,7 @@ OH_AVErrCode OH_AVPlayer_SelectBitRate(OH_AVPlayer *player, uint32_t bitRate)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVPlayer](capi-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
+| [OH_AVPlayer](capi-avplayer-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
 | uint32_t bitRate | 码率，单位为bps。 |
 
 **返回：**
@@ -743,7 +745,7 @@ OH_AVErrCode OH_AVPlayer_SetVideoSurface(OH_AVPlayer *player, OHNativeWindow *wi
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVPlayer](capi-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
+| [OH_AVPlayer](capi-avplayer-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
 | OHNativeWindow *window | 指向OHNativeWindow实例的指针。 |
 
 **返回：**
@@ -771,7 +773,7 @@ OH_AVErrCode OH_AVPlayer_GetDuration(OH_AVPlayer *player, int32_t *duration)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVPlayer](capi-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
+| [OH_AVPlayer](capi-avplayer-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
 | int32_t *duration | 媒体文件的总时长。 |
 
 **返回：**
@@ -799,7 +801,7 @@ OH_AVErrCode OH_AVPlayer_GetState(OH_AVPlayer *player, AVPlayerState *state)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVPlayer](capi-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
+| [OH_AVPlayer](capi-avplayer-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
 | [AVPlayerState](capi-avplayer-base-h.md#avplayerstate) *state | 当前播放状态。 |
 
 **返回：**
@@ -827,7 +829,7 @@ bool OH_AVPlayer_IsPlaying(OH_AVPlayer *player)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVPlayer](capi-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
+| [OH_AVPlayer](capi-avplayer-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
 
 **返回：**
 
@@ -854,7 +856,7 @@ bool OH_AVPlayer_IsLooping(OH_AVPlayer *player)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVPlayer](capi-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
+| [OH_AVPlayer](capi-avplayer-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
 
 **返回：**
 
@@ -881,7 +883,7 @@ OH_AVErrCode OH_AVPlayer_SetLooping(OH_AVPlayer *player, bool loop)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVPlayer](capi-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
+| [OH_AVPlayer](capi-avplayer-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
 | bool loop | 循环播放开关。 |
 
 **返回：**
@@ -911,8 +913,8 @@ OH_AVErrCode OH_AVPlayer_SetPlayerCallback(OH_AVPlayer *player, AVPlayerCallback
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVPlayer](capi-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
-| [AVPlayerCallback](capi-avplayercallback.md) callback | 回调对象指针。 |
+| [OH_AVPlayer](capi-avplayer-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
+| [AVPlayerCallback](capi-avplayer-avplayercallback.md) callback | 回调对象指针。 |
 
 **返回：**
 
@@ -941,7 +943,7 @@ OH_AVErrCode OH_AVPlayer_SelectTrack(OH_AVPlayer *player, int32_t index)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVPlayer](capi-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
+| [OH_AVPlayer](capi-avplayer-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
 | int32_t index | 索引。 |
 
 **返回：**
@@ -971,7 +973,7 @@ OH_AVErrCode OH_AVPlayer_DeselectTrack(OH_AVPlayer *player, int32_t index)
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVPlayer](capi-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
+| [OH_AVPlayer](capi-avplayer-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
 | int32_t index | 索引。 |
 
 **返回：**
@@ -1001,7 +1003,7 @@ OH_AVErrCode OH_AVPlayer_GetCurrentTrack(OH_AVPlayer *player, int32_t trackType,
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVPlayer](capi-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
+| [OH_AVPlayer](capi-avplayer-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
 | int32_t trackType | 媒体类型。0：音频，1：视频。 |
 | int32_t *index | 索引。 |
 
@@ -1030,7 +1032,7 @@ OH_AVErrCode OH_AVPlayer_SetMediaKeySystemInfoCallback(OH_AVPlayer *player,Playe
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVPlayer](capi-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
+| [OH_AVPlayer](capi-avplayer-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
 | [Player_MediaKeySystemInfoCallback](#player_mediakeysysteminfocallback) callback | 对象指针。 |
 
 **返回：**
@@ -1058,8 +1060,8 @@ OH_AVErrCode OH_AVPlayer_GetMediaKeySystemInfo(OH_AVPlayer *player, DRM_MediaKey
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVPlayer](capi-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
-| [DRM_MediaKeySystemInfo](capi-drm-mediakeysysteminfo.md) *mediaKeySystemInfo | 媒体密钥系统信息。 |
+| [OH_AVPlayer](capi-avplayer-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
+| [DRM_MediaKeySystemInfo](capi-avplayer-drm-mediakeysysteminfo.md) *mediaKeySystemInfo | 媒体密钥系统信息。 |
 
 **返回：**
 
@@ -1086,8 +1088,8 @@ OH_AVErrCode OH_AVPlayer_SetDecryptionConfig(OH_AVPlayer *player, MediaKeySessio
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVPlayer](capi-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
-| [MediaKeySession](capi-mediakeysession.md) *mediaKeySession | 具有解密功能的媒体密钥会话实例。 |
+| [OH_AVPlayer](capi-avplayer-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
+| [MediaKeySession](capi-avplayer-mediakeysession.md) *mediaKeySession | 具有解密功能的媒体密钥会话实例。 |
 | bool secureVideoPath | 是否需要安全解码器。 |
 
 **返回：**
@@ -1115,7 +1117,7 @@ OH_AVErrCode OH_AVPlayer_SetOnInfoCallback(OH_AVPlayer *player, OH_AVPlayerOnInf
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVPlayer](capi-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
+| [OH_AVPlayer](capi-avplayer-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
 | [OH_AVPlayerOnInfoCallback](capi-avplayer-base-h.md#oh_avplayeroninfocallback) callback | 执行回调监听函数的指针，空指针表示取消设置播放器消息回调监听。 |
 | void *userData | 指向应用调用者设置的实例的指针。 |
 
@@ -1144,7 +1146,7 @@ OH_AVErrCode OH_AVPlayer_SetOnErrorCallback(OH_AVPlayer *player, OH_AVPlayerOnEr
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_AVPlayer](capi-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
+| [OH_AVPlayer](capi-avplayer-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
 | [OH_AVPlayerOnErrorCallback](capi-avplayer-base-h.md#oh_avplayeronerrorcallback) callback | 执行回调监听函数的指针，空指针表示取消设置播放器错误回调监听。 |
 | void *userData | 指向应用调用者设置的实例的指针。 |
 

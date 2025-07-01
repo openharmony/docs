@@ -72,7 +72,7 @@
 | OH_UsbSerial_FlushInput(UsbSerial_Device *dev) | 刷新输入缓冲区，缓冲区中的数据会被立刻清空。 |
 | OH_UsbSerial_FlushOutput(UsbSerial_Device *dev) | 刷新输出缓冲区，缓冲区中的数据会被立刻清空。 |
 
-详细的接口说明请参考[USB Serial DDK](../../reference/apis-driverdevelopment-kit/_serial_ddk.md)。
+详细的接口说明请参考[USB Serial DDK](../../reference/apis-driverdevelopment-kit/capi-serialddk.md)。
 
 ### 开发步骤
 

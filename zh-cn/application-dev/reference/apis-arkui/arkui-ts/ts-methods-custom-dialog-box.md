@@ -16,6 +16,8 @@ constructor(value: CustomDialogControllerOptions)
 > **说明：**
 >
 > 自定义弹窗的所有参数，不支持动态刷新。
+>
+> 在CustomDialogController作为全局变量以实现全局自定义弹窗的场景下，若对controller重新赋值，则无法通过其关闭之前的弹窗。建议在重新赋值前先关闭弹窗。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -29,6 +31,8 @@ constructor(value: CustomDialogControllerOptions)
 
 ## CustomDialogControllerOptions对象说明
 
+自定义弹窗的样式。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称                           | 类型                                     | 必填   | 说明                                     |
@@ -38,7 +42,7 @@ constructor(value: CustomDialogControllerOptions)
 | autoCancel                    | boolean                                  | 否    | 是否允许点击遮障层退出，true表示关闭弹窗。false表示不关闭弹窗。<br>默认值：true<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | alignment                     | [DialogAlignment](ts-methods-alert-dialog-box.md#dialogalignment枚举说明) | 否    | 弹窗在竖直方向上的对齐方式。<br>默认值：DialogAlignment.Default<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | offset                        | [Offset](ts-types.md#offset)             | 否    | 弹窗相对alignment所在位置的偏移量。<br/>默认值：{ dx: 0, dy: 0 }<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| customStyle                   | boolean                                  | 否    | 弹窗容器样式是否自定义。值为true表示弹窗容器样式不能自定义，值为false表示弹窗样式可以自定义。<br>设置false时（默认值）：<br/>1、圆角为32vp。<br/>2、未设置弹窗宽度高度：弹窗容器的宽度根据栅格系统自适应。高度自适应自定义的内容节点。<br/>3、设置弹窗宽度高度：弹窗容器的宽度不超过默认样式下的最大宽度（自定义节点设置100%的宽度），弹窗容器的高度不超过默认样式下的最大高度（自定义节点设置100%的高度）。<br/>设置为true：<br/>1、圆角为0，弹窗背景色为透明色。<br/>2、不支持设置弹窗宽度、高度、边框宽度、边框样式、边框颜色以及阴影宽度。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| customStyle                   | boolean                                  | 否    | 弹窗容器样式是否自定义。值为true表示弹窗容器样式不能自定义，值为false表示弹窗样式可以自定义。<br>设置false时（默认值）：<br/>1.圆角为32vp。<br/>2.未设置弹窗宽度高度：弹窗容器的宽度根据栅格系统自适应。高度自适应自定义的内容节点。<br/>3.设置弹窗宽度高度：弹窗容器的宽度不超过默认样式下的最大宽度（自定义节点设置100%的宽度），弹窗容器的高度不超过默认样式下的最大高度（自定义节点设置100%的高度）。<br/>4.受安全区域的影响，弹窗显示区域将排除安全区域。<br/>设置为true：<br/>1.圆角为0，弹窗背景色为透明色。<br/>2.不支持设置弹窗宽度、高度、边框宽度、边框样式、边框颜色以及阴影宽度。<br/>3.弹窗显示区域为屏幕。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | gridCount<sup>8+</sup>        | number                                   | 否    | 弹窗宽度占[栅格宽度](../../../ui/arkts-layout-development-grid-layout.md)的个数。<br>默认为按照窗口大小自适应，异常值按默认值处理，最大栅格数为系统最大栅格数。<br/>取值范围：大于等于0的整数。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | maskColor<sup>10+</sup>       | [ResourceColor](ts-types.md#resourcecolor) | 否    | 自定义蒙层颜色。<br>默认值：0x33000000<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。              |
 | maskRect<sup>10+</sup>        | [Rectangle](ts-methods-alert-dialog-box.md#rectangle8类型说明) | 否     | 弹窗遮蔽层区域，在遮蔽层区域内的事件不透传，在遮蔽层区域外的事件透传。<br/>默认值：{ x: 0, y: 0, width: '100%', height: '100%' } <br/>**说明：**<br/>showInSubWindow为true时，maskRect不生效。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
@@ -92,14 +96,18 @@ Dialog关闭的信息。
 
 ### 属性
 
-| 名称    | 类型                                                         | 可读 | 可写 | 说明                                                         |
+| 名称    | 类型                                                         | 只读 | 可选 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
 | dismiss | Callback&lt;void&gt;                                         | 否   | 否   | Dialog关闭回调函数。开发者需要退出时调用，不需要退出时无需调用。 |
 | reason  | [DismissReason](../js-apis-promptAction.md#dismissreason12枚举说明) | 否   | 否   | Dialog无法关闭原因。根据开发者需要选择不同操作下，Dialog是否需要关闭。 |
 
 ## CustomDialogController
 
+自定义弹窗的控制器。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### 导入对象
 
@@ -168,7 +176,7 @@ getState(): PromptActionCommonState
 
 ## PromptActionCommonState<sup>20+</sup>
 
-type PromptActionCommonState = CommonState
+type PromptActionCommonState = promptAction.CommonState
 
 自定义弹窗的状态。
 
@@ -178,7 +186,7 @@ type PromptActionCommonState = CommonState
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [CommonState](../js-apis-promptAction.md#commonstate20枚举说明) | 返回对应的弹窗状态。 |
+| [promptAction.CommonState](../js-apis-promptAction.md#commonstate20枚举说明) | 返回对应的弹窗状态。 |
 
 ## 示例
 
@@ -216,7 +224,7 @@ struct CustomDialogExample {
     alignment: DialogAlignment.Bottom,
     onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
       console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
-      console.log("dialog onWillDismiss");
+      console.info("dialog onWillDismiss");
       if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
         dismissDialogAction.dismiss();
       }
@@ -285,7 +293,7 @@ struct CustomDialogUser {
     autoCancel: true,
     onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
       console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
-      console.log("dialog onWillDismiss");
+      console.info("dialog onWillDismiss");
       if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
         dismissDialogAction.dismiss();
       }
@@ -371,7 +379,7 @@ struct CustomDialogUser {
     autoCancel: true,
     onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
       console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
-      console.log("dialog onWillDismiss");
+      console.info("dialog onWillDismiss");
       if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
         dismissDialogAction.dismiss();
       }
@@ -458,7 +466,7 @@ struct CustomDialogUser {
     autoCancel: true,
     onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
       console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
-      console.log("dialog onWillDismiss")
+      console.info("dialog onWillDismiss")
       if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
         dismissDialogAction.dismiss();
       }
@@ -566,7 +574,7 @@ struct CustomDialogUser {
     autoCancel: true,
     onWillDismiss: (dismissDialogAction: DismissDialogAction)=> {
       console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
-      console.log("dialog onWillDismiss");
+      console.info("dialog onWillDismiss");
       if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
         dismissDialogAction.dismiss();
       }
@@ -1008,3 +1016,183 @@ struct CustomDialogUser {
 }
 ```
 ![zh-cn_image_custom](figures/dialog_keyboard_distance.gif)
+
+### 示例9（弹窗生命周期）
+
+该示例展示了弹窗生命周期的相关接口的使用方法。
+
+```ts
+// xxx.ets
+@CustomDialog
+struct CustomDialogExample1 {
+  controller?: CustomDialogController
+  cancel: () => void = () => {
+  }
+  confirm: () => void = () => {
+  }
+  build() {
+    Column() {
+      Text('允许访问相机？')
+        .fontSize(30)
+        .height(100)
+      Button('点我关闭弹窗')
+        .onClick(() => {
+          if (this.controller != undefined) {
+            this.controller.close();
+          }
+        })
+        .margin(20)
+    }
+  }
+}
+
+@Entry
+@Component
+struct Example3 {
+  @State log: string = 'Log information:';
+  dialogController: CustomDialogController | null = new CustomDialogController({
+    builder: CustomDialogExample1({
+      cancel: ()=> { this.onCancel(); },
+      confirm: ()=> { this.onAccept(); }
+    }),
+    cancel: this.existApp,
+    autoCancel: true,
+    alignment: DialogAlignment.Bottom,
+    onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
+      console.info("reason=" + JSON.stringify(dismissDialogAction.reason));
+      console.info("dialog onWillDismiss");
+      if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
+        dismissDialogAction.dismiss();
+      }
+      if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
+        dismissDialogAction.dismiss();
+      }
+    },
+    onDidAppear: () => {
+      this.log += '# onDidAppear';
+      console.info("CustomDialog,is onDidAppear!");
+    },
+    onDidDisappear: () => {
+      this.log += '# onDidDisappear';
+      console.info("CustomDialog,is onDidDisappear!");
+    },
+    onWillAppear: () => {
+      this.log = 'Log information:onWillAppear';
+      console.info("CustomDialog,is onWillAppear!");
+    },
+    onWillDisappear: () => {
+      this.log += '# onWillDisappear';
+      console.info("CustomDialog,is onWillDisappear!");
+    },
+    offset: { dx: 0, dy: -20 },
+    customStyle: false,
+  })
+  onCancel() {
+    console.info('CustomDialog Callback when the first button is clicked');
+  }
+
+  onAccept() {
+    console.info('CustomDialog Callback when the second button is clicked');
+  }
+
+  existApp() {
+    console.info('CustomDialog Click the callback in the blank area');
+  }
+  build() {
+    Column({ space: 5 }) {
+      Button('CustomDialog')
+        .onClick(() => {
+          this.dialogController?.open();
+        })
+      Text(this.log).fontSize(30).margin({ top: 200 })
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
+
+![zh-cn_image_custom_lifecycle](figures/zh-cn_image_custom_lifecycle.gif)
+
+### 示例10（不同customStyle下的弹窗示例）
+
+该示例是在对齐方式为DialogAlignment.Bottom时，展示customStyle不同值下，弹窗内容与安全区域的效果。
+
+```ts
+@CustomDialog
+@Component
+struct CustomStyleDialogExample {
+  controller?: CustomDialogController;
+  cancel: () => void = () => {
+  }
+  confirm: () => void = () => {
+  }
+
+  build() {
+    Column().borderRadius(10).width(110).height(110).backgroundColor("#2787d9")
+  }
+}
+
+@Entry
+@Component
+struct CustomDialogUser {
+  @State customStyle: boolean = false;
+  dialogController: CustomDialogController | null = null;
+
+  // 在自定义组件即将析构销毁时将dialogController置空
+  aboutToDisappear() {
+    this.dialogController = null; // 将dialogController置空
+  }
+
+  onCancel() {
+    console.info('Callback when the first button is clicked');
+  }
+
+  onAccept() {
+    console.info('Callback when the second button is clicked');
+  }
+
+  exitApp() {
+    console.info('Click the callback in the blank area');
+  }
+
+  build() {
+    Column() {
+      Button("change  customStyle:" + this.customStyle).onClick(() => {
+        this.customStyle = !this.customStyle;
+      })
+      Button("show dialog").onClick(() => {
+        if (this.dialogController != null) {
+          this.dialogController.close();
+        }
+        this.dialogController = new CustomDialogController({
+          builder: CustomStyleDialogExample({
+            cancel: () => {
+              this.onCancel();
+            },
+            confirm: () => {
+              this.onAccept();
+            },
+          }),
+          cancel: this.exitApp,
+          autoCancel: true,
+          showInSubWindow: false,
+          onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
+            if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
+              dismissDialogAction.dismiss();
+            }
+            if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
+              dismissDialogAction.dismiss();
+            }
+          },
+          alignment: DialogAlignment.Bottom,
+          customStyle: this.customStyle,
+          cornerRadius: 10,
+          openAnimation: { duration: 0, tempo: 0 },
+          closeAnimation: { duration: 0, tempo: 0 }
+        })
+        this.dialogController.open();
+      }).margin({ top: 5 })
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
+![zh-cn_image_custom](figures/customstyle_dialog_demo.gif)

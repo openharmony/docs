@@ -680,7 +680,7 @@ setDisposedRules(disposedRuleConfigurations: Array\<DisposedRuleConfiguration\>)
 
 | 参数名                     | 类型                                                         | 必填 | 说明                                                         |
 | -------------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| disposedRuleConfigurations | Array<[DisposedRuleConfiguration](#disposedruleconfiguration20)> | 是   | 表示批量设置拦截规则的配置，包括待拦截应用的appId、分身应用索引及拦截规则。每次设置拦截规则的数组的最大数量为1000。<br/>**说明：**<br/>1.如果数组中存在appId和appIndex相同的DisposedRuleConfiguration时，后面的DisposedRuleConfiguration会覆盖前面的。<br/>2.如果应用已设置过拦截规则,重新为该应用设置拦截规则,会覆盖之前的。appld和applndex一致则表示同一应用。 |
+| disposedRuleConfigurations | Array<[DisposedRuleConfiguration](#disposedruleconfiguration20)> | 是   | 表示批量设置拦截规则的配置，包括待拦截应用的appId、分身应用索引及拦截规则。每次设置拦截规则的数组的最大数量为1000。<br/>**说明：**<br/>1.如果数组中存在appId和appIndex相同的DisposedRuleConfiguration时，后面的DisposedRuleConfiguration会覆盖前面的。<br/>2.如果应用已设置过拦截规则，重新为该应用设置拦截规则，会覆盖之前的。appld和applndex一致则表示同一应用。 |
 
 **错误码：**
 
@@ -922,14 +922,14 @@ try {
 
  **系统接口：** 此接口为系统接口。
 
-| 名称      | 类型           | 可读 | 可写 | 说明                        |
+| 名称      | 类型           | 只读 | 可选 | 说明                        |
 | --------- | -------------- | ---- | ---- | --------------------------- |
-| want | [Want](js-apis-app-ability-want.md)     | 是   | 是   | 指定应用被拦截时，跳转到的页面。 |
-| componentType | [ComponentType](#componenttype11)  | 是   | 是   | 拦截时将提升的能力的类型。 |
-| disposedType | [DisposedType](#disposedrule11) | 是 | 是 | 对应用的拦截规则。 |
-| controlType | [ControlType](#controltype11) | 是 | 是 | 拦截指定应用程序的不同策略。 |
-| elementList | Array\<[ElementName](js-apis-bundleManager-elementName.md)> | 是 | 是 | 拦截指定应用程序能力的列表。 |
-| priority | number | 是 | 是 | 拦截规则的优先级。 |
+| want | [Want](js-apis-app-ability-want.md)     | 否   | 否   | 指定应用被拦截时，跳转到的页面。 |
+| componentType | [ComponentType](#componenttype11)  | 否   | 否   | 拦截时将提升的能力的类型。 |
+| disposedType | [DisposedType](#disposedrule11) | 否   | 否 | 对应用的拦截规则。 |
+| controlType | [ControlType](#controltype11) | 否   | 否 | 拦截指定应用程序的不同策略。 |
+| elementList | Array\<[ElementName](js-apis-bundleManager-elementName.md)> | 否   | 否 | 拦截指定应用程序能力的列表。 |
+| priority | number | 否   | 否 | 拦截规则的优先级。 |
 
 ### ComponentType<sup>11+</sup>
 
@@ -979,11 +979,11 @@ try {
 
  **系统接口：** 此接口为系统接口。
 
-| 名称      | 类型           | 可读 | 可写 | 说明                        |
+| 名称      | 类型           | 只读 | 可选 | 说明                        |
 | --------- | -------------- | ---- | ---- | --------------------------- |
-| want | [Want](js-apis-app-ability-want.md)     | 是   | 是   | 指定应用被拦截时，跳转到的页面。 |
-| UninstallComponentType | [UninstallComponentType](#uninstallcomponenttype15)  | 是   | 是   | 拦截时将拉起能力的类型。 |
-| priority | number | 是 | 是 | 拦截规则的优先级。 |
+| want | [Want](js-apis-app-ability-want.md)     | 否   | 否   | 指定应用被拦截时，跳转到的页面。 |
+| UninstallComponentType | [UninstallComponentType](#uninstallcomponenttype15)  | 否   | 否   | 拦截时将拉起能力的类型。 |
+| priority | number | 否 | 否 | 拦截规则的优先级。 |
 
 ### UninstallComponentType<sup>15+</sup>
 
@@ -1007,6 +1007,6 @@ try {
 
 | 名称         | 类型                            | 只读 | 可选 | 说明                                                         |
 | ------------ | ------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| appId        | string                          | 否   | 否   | 要被设置拦截规则应用的appId或appIdentifier。appld和appldentifier可以标识同一个应用,因此针对同一应用如果用appldentifier设置拦截规则,可以覆盖之前采用appld设置的,反之同理。<br/>**说明：**<br/>appId是应用的唯一标识，由应用Bundle名称和签名信息决定，获取方法参见[获取应用的appId](https://gitee.com/openharmony/docs/blob/0a11b273485103fe78df3910fa607c2359ff5b2c/zh-cn/application-dev/reference/apis-ability-kit/js-apis-appControl-sys.md#获取应用的appid和appidentifier)。<br/>appIdentifier也是应用的唯一标识，是AppGallery Connect创建应用时分配的[APP ID](https://developer.huawei.com/consumer/cn/doc/app/agc-help-createharmonyapp-0000001945392297)，为云端统一分配的随机字符串。该ID在应用全生命周期中不会发生变化，包括版本升级、证书变更、开发者公私钥变更、应用转移等。获取方法参见[获取应用的appidentifier](https://gitee.com/openharmony/docs/blob/0a11b273485103fe78df3910fa607c2359ff5b2c/zh-cn/application-dev/reference/apis-ability-kit/js-apis-appControl-sys.md#获取应用的appid和appidentifier)。 |
+| appId        | string                          | 否   | 否   | 要被设置拦截规则应用的appId或appIdentifier。appld和appldentifier可以标识同一个应用，因此针对同一应用如果用appldentifier设置拦截规则，可以覆盖之前采用appld设置的，反之同理。<br/>**说明：**<br/>appId是应用的唯一标识，由应用Bundle名称和签名信息决定，获取方法参见[获取应用的appId](https://gitee.com/openharmony/docs/blob/0a11b273485103fe78df3910fa607c2359ff5b2c/zh-cn/application-dev/reference/apis-ability-kit/js-apis-appControl-sys.md#获取应用的appid和appidentifier)。<br/>appIdentifier也是应用的唯一标识，是AppGallery Connect创建应用时分配的[APP ID](https://developer.huawei.com/consumer/cn/doc/app/agc-help-createharmonyapp-0000001945392297)，为云端统一分配的随机字符串。该ID在应用全生命周期中不会发生变化，包括版本升级、证书变更、开发者公私钥变更、应用转移等。获取方法参见[获取应用的appidentifier](https://gitee.com/openharmony/docs/blob/0a11b273485103fe78df3910fa607c2359ff5b2c/zh-cn/application-dev/reference/apis-ability-kit/js-apis-appControl-sys.md#获取应用的appid和appidentifier)。 |
 | appIndex     | number                          | 否   | 否   | 表示分身应用的索引，默认值为0。<br/> appIndex为0时，表示设置主应用的拦截规则。appIndex大于0时，表示设置指定分身应用的拦截规则。 |
 | disposedRule | [DisposedRule](#disposedrule11) | 否   | 否   | 表示对应用的拦截规则，包括拦截时将拉起能力的类型等。         |

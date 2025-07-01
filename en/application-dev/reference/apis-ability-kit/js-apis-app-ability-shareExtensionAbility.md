@@ -156,7 +156,7 @@ To manually create a ShareExtensionAbility in the DevEco Studio project, perform
         }
       }
       onForeground() {
-        console.info(TAG, `ononForeground`);
+        console.info(TAG, `onForeground`);
       }
       onBackground() {
         console.info(TAG, `onBackground`);

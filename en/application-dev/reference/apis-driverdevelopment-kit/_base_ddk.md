@@ -14,7 +14,7 @@ Provides APIs for creating, mapping, unmapping, and destroying an **Ashmem** obj
 ## Summary
 
 
-### File
+### Files
 
 | Name| Description| 
 | -------- | -------- |

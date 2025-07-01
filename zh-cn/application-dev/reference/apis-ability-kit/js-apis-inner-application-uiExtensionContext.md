@@ -54,7 +54,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
-| 16000018 | Redirection to a third-party application is not allowed in API version 11 or later. |
+| 16000018 | Redirection to a third-party application is not allowed in API version greater than 11. |
 | 16000019 | No matching ability is found. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
@@ -143,7 +143,7 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
-| 16000018 | Redirection to a third-party application is not allowed in API version 11 or later. |
+| 16000018 | Redirection to a third-party application is not allowed in API version greater than 11. |
 | 16000019 | No matching ability is found. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
@@ -242,7 +242,7 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
-| 16000018 | Redirection to a third-party application is not allowed in API version 11 or later. |
+| 16000018 | Redirection to a third-party application is not allowed in API version greater than 11. |
 | 16000019 | No matching ability is found. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
@@ -337,7 +337,7 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
-| 16000018 | Redirection to a third-party application is not allowed in API version 11 or later. |
+| 16000018 | Redirection to a third-party application is not allowed in API version greater than 11. |
 | 16000019 | No matching ability is found. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
@@ -428,7 +428,7 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
-| 16000018 | Redirection to a third-party application is not allowed in API version 11 or later. |
+| 16000018 | Redirection to a third-party application is not allowed in API version greater than 11. |
 | 16000019 | No matching ability is found. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
@@ -531,7 +531,7 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
-| 16000018 | Redirection to a third-party application is not allowed in API version 11 or later. |
+| 16000018 | Redirection to a third-party application is not allowed in API version greater than 11. |
 | 16000019 | No matching ability is found. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |

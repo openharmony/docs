@@ -1,7 +1,7 @@
 # 视频播放 (Video)
 
 
-Video组件用于播放视频文件并控制其播放状态，常用于为短视频和应用内部视频的列表页面。当视频完整出现时会自动播放，用户点击视频区域则会暂停播放，同时显示播放进度条，通过拖动播放进度条指定视频播放到具体位置。具体用法请参考[Video](../reference/apis-arkui/arkui-ts/ts-media-components-video.md)。
+Video组件用于播放视频文件并控制其播放状态，常用于短视频和应用内部视频的列表页面。当视频完整出现时会自动播放，用户点击视频区域则会暂停播放，同时显示播放进度条，通过拖动播放进度条指定视频播放到具体位置。具体用法请参考[Video](../reference/apis-arkui/arkui-ts/ts-media-components-video.md)。
 
 
 ## 创建视频组件
@@ -70,7 +70,7 @@ Video组件支持加载本地视频和网络视频。视频的数据源具体请
 
 ### 加载沙箱路径视频
 
-支持file://路径前缀的字符串，用于读取应用沙箱路径内的资源，需要保证应用沙箱目录路径下的文件存在并且有可读权限。
+支持file://路径前缀的字符串，用于读取应用沙箱路径内的资源，需要确保应用沙箱目录路径下的文件存在并且有可读权限。
 
 ```ts
 // xxx.ets
@@ -93,7 +93,7 @@ export struct VideoPlayer {
 
 ### 加载网络视频
 
-加载网络视频时，需要申请权限ohos.permission.INTERNET，具体申请方式请参考[声明权限](../security/AccessToken/declare-permissions.md)。此时，Video的src属性为网络视频的链接。
+加载网络视频时，需要申请ohos.permission.INTERNET权限，具体申请方式请参考[声明权限](../security/AccessToken/declare-permissions.md)。此时，Video的src属性为网络视频的链接。
 
 
 ```ts
@@ -146,7 +146,7 @@ export struct VideoPlayer {
 
 ## 事件调用
 
-  Video组件回调事件主要为播放开始、暂停结束、播放失败、播放停止、视频准备和操作进度条等事件，除此之外，Video组件也支持通用事件的调用，如点击、触摸等事件的调用。详细事件请参考[事件说明](../reference/apis-arkui/arkui-ts/ts-media-components-video.md#事件)。
+  Video组件回调事件主要包括播放开始、暂停结束、播放失败、播放停止、视频准备和操作进度条等事件，除此之外，Video组件也支持通用事件的调用，如点击、触摸等事件的调用。详细事件请参考[事件说明](../reference/apis-arkui/arkui-ts/ts-media-components-video.md#事件)。
 
 ```ts
 // xxx.ets
@@ -217,7 +217,7 @@ Video控制器主要用于控制视频的状态，包括播放、暂停、停止
 
 - 自定义控制器
 
-  使用自定义的控制器，先将默认控制器关闭掉，之后可以使用button以及slider等组件进行自定义的控制与显示，适合自定义较强的场景下使用。
+  使用自定义的控制器，先关闭默认控制器，然后使用button以及slider等组件进行自定义的控制与显示，适合自定义较强的场景下使用。
 
   ```ts
   // xxx.ets
