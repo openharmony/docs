@@ -6,11 +6,11 @@ FileIO模块提供了部分文件基础操作能力，其他能力请参考[libc
 
 ## 基本概念
 
-**结果集**：满足使用场景正确的 uri。
+**结果集**：满足使用场景正确的URI。
 
 ## 约束限制
 
-进行文件操作之前，必须保证传入正确有效的uri或path。
+进行文件操作之前，必须保证传入正确有效的URI或path。
 
 ## 接口说明
 
@@ -42,20 +42,20 @@ target_link_libraries(sample PUBLIC libohfileio.so)
 
 调用OH_FileIO_GetFileLocation接口获取文件存储位置。示例代码如下所示：
 ```c
-    void GetFileLocationExample() {
-        char *uri = "file://com.example.demo/data/storage/el2/base/files/test.txt";
-        FileIO_FileLocation location;
-        FileManagement_ErrCode ret = OH_FileIO_GetFileLocation(uri, strlen(uri), &location);
-        if (ret == 0) {
-            if (location == FileIO_FileLocation::LOCAL) {
-                printf("This file is on local.");
-            } else if (location == FileIO_FileLocation::CLOUD) {
-                printf("This file is on cloud.");
-            } else if (location == FileIO_FileLocation::LOCAL_AND_CLOUD) {
-                printf("This file is both on local and cloud.");
-            }
-        } else {
-            printf("GetFileLocation failed, error code is %d", ret);
+void GetFileLocationExample() {
+    char *uri = "file://com.example.demo/data/storage/el2/base/files/test.txt";
+    FileIO_FileLocation location;
+    FileManagement_ErrCode ret = OH_FileIO_GetFileLocation(uri, strlen(uri), &location);
+    if (ret == 0) {
+        if (location == FileIO_FileLocation::LOCAL) {
+            printf("This file is on local.");
+        } else if (location == FileIO_FileLocation::CLOUD) {
+            printf("This file is on cloud.");
+        } else if (location == FileIO_FileLocation::LOCAL_AND_CLOUD) {
+            printf("This file is both on local and cloud.");
         }
+    } else {
+        printf("GetFileLocation failed, error code is %d", ret);
     }
-   ```
+}
+```
