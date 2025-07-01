@@ -80,6 +80,13 @@
       - [使用JSVM-API接口进行生命周期相关开发](use-jsvm-life-cycle.md)
       - [使用JSVM-API进行内存管理](use-jsvm-memory-management.md)
       - [使用JSVM-API判断给定的两个JS value是否严格相等](use-jsvm-strict-equals.md)
+      - [使用JSVM-API进行异常的定制化处理](use-jsvm-trigger-exceptions.md)
+      - [使用JSVM-API感知JSVM引擎生命周期管理](use-jsvm-trigger-gc.md)
+      - [使用JSVM-API接口进行 private 属性相关开发](use-jsvm-about-private.md)
+      - [使用JSVM-API接口提供Latin1/UTF16格式字符串相关开发](use-jsvm-about-external-string.md)
+      - [使用JSVM-API接口进行Proxy相关开发](use-jsvm-about-proxy.md)
+      - [使用JSVM-API接口进行well-known symbols相关开发](use-jsvm-about-well-known-symbols.md)
+      - [使用JSVM-API接口进行装箱类型判断相关开发](use-jsvm-about-wrapper-object.md)
       - [使用JSVM-API接口创建基本数据类型](use-jsvm-basic-data-types.md)
     - JSVM-API典型使用场景指导<!--jsvm-scenarios-->
       - [JSVM-API调试&定位](jsvm-debugger-cpuprofiler-heapsnapshot.md)
