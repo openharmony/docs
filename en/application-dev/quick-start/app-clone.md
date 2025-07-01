@@ -17,9 +17,7 @@ The input method application cannot create an application clone.
 
 ## How to Develop
 
-1.  
-
-    Configure the [multiAppMode](app-configuration-file.md#multiappmode) field in the **AppScope/application.json5** configuration file in the project. The code snippet is as follows:
+1. Configure the [multiAppMode](app-configuration-file.md#multiappmode) field in the **AppScope/application.json5** configuration file in the project. The code snippet is as follows:
     ```json
     {
       "app": {
@@ -30,8 +28,6 @@ The input method application cannot create an application clone.
       }
     }
     ```
-
-
 
 2. Create an application clone.
 
