@@ -188,7 +188,7 @@ Configure permissions for the **module.json5** file.
 }
 ```
 
-
+![clipboard_api](./figures/web-clipboard_api.gif)
 
 ## Using the W3C Clipboard Event API
 
@@ -272,7 +272,7 @@ Loaded HTML:
 </html>
 ```
 
-
+![clipboard_event](./figures/web-clipboard_event.gif)
 
 ## Setting Copy Options
 
