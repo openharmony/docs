@@ -92,80 +92,78 @@ export default function abilityTest() {
  <br>To write a UI test script to complete the corresponding test activities, simply add the invoking of the UiTest API to a unit test script. <!--RP1-->For details about the available APIs, see [@ohos.UiTest](..reference/apis-test-kit/js-apis-uitest.md).<!--RP1End--><br>In this example, the UI test script is written based on the preceding unit test script. It implements the click operation on the started application page and checks whether the page changes as expected.
 
 1. Write the demo code in the **index.ets**file.
+    ```ts
+    @Entry
+    @Component
+    struct Index {
+      @State message: string = 'Hello World'
 
-  ```ts
-  @Entry
-  @Component
-  struct Index {
-    @State message: string = 'Hello World'
-
-    build() {
-      Row() {
-        Column() {
-          Text(this.message)
-            .fontSize(50)
-            .fontWeight(FontWeight.Bold)
-          Text("Next")
-            .fontSize(50)
-            .margin({top:20})
-            .fontWeight(FontWeight.Bold)
-          Text("after click")
-            .fontSize(50)
-            .margin({top:20})
-            .fontWeight(FontWeight.Bold)
+      build() {
+        Row() {
+          Column() {
+            Text(this.message)
+              .fontSize(50)
+              .fontWeight(FontWeight.Bold)
+            Text("Next")
+              .fontSize(50)
+              .margin({top:20})
+              .fontWeight(FontWeight.Bold)
+            Text("after click")
+              .fontSize(50)
+              .margin({top:20})
+              .fontWeight(FontWeight.Bold)
+          }
+          .width('100%')
         }
-        .width('100%')
+        .height('100%')
       }
-      .height('100%')
     }
-  }
-  ```
+    ```
 
 2. Write test code in the .test.ets file under **ohosTest** > **ets** > **test**.
+    ```ts
+    import { describe, it, expect } from '@ohos/hypium';
+    // Import the test dependencies.
+    import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
+    import { UIAbility, Want } from '@kit.AbilityKit';
 
-  ```ts
-  import { describe, it, expect } from '@ohos/hypium';
-  // Import the test dependencies.
-  import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
-  import { UIAbility, Want } from '@kit.AbilityKit';
-
-  const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
-  const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
-  function sleep(time: number) {
-    return new Promise<void>((resolve: Function) => setTimeout(resolve, time));
-  }
-  export default function abilityTest() {
-    describe('ActsAbilityTest', () => {
-       it('testUiExample',0, async (done: Function) => {
-          console.info("uitest: TestUiExample begin");
-          //start tested ability
-          const want: Want = {
-             bundleName: bundleName,
-             abilityName: 'EntryAbility'
-          }
-          await delegator.startAbility(want);
-          await sleep(1000);
-          // Check the top display ability.
-          const ability: UIAbility = await delegator.getCurrentTopAbility();
-          console.info("get top ability");
-          expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
-          // UI test code
-          // Initialize the driver.
-          const driver = Driver.create();
-          await driver.delayMs(1000);
-          // Find the button on text 'Next'.
-          const button = await driver.findComponent(ON.text('Next'));
-          // Click the button.
-          await button.click();
-          await driver.delayMs(1000);
-          // Check text.
-          await driver.assertComponentExist(ON.text('after click'));
-          await driver.pressBack();
-          done();
-       })
-    })
-  }
-  ```
+    const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
+    const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
+    function sleep(time: number) {
+      return new Promise<void>((resolve: Function) => setTimeout(resolve, time));
+    }
+    export default function abilityTest() {
+      describe('ActsAbilityTest', () => {
+        it('testUiExample',0, async (done: Function) => {
+            console.info("uitest: TestUiExample begin");
+            //start tested ability
+            const want: Want = {
+              bundleName: bundleName,
+              abilityName: 'EntryAbility'
+            }
+            await delegator.startAbility(want);
+            await sleep(1000);
+            // Check the top display ability.
+            const ability: UIAbility = await delegator.getCurrentTopAbility();
+            console.info("get top ability");
+            expect(ability.context.abilityInfo.name).assertEqual('EntryAbility');
+            // UI test code
+            // Initialize the driver.
+            const driver = Driver.create();
+            await driver.delayMs(1000);
+            // Find the button on text 'Next'.
+            const button = await driver.findComponent(ON.text('Next'));
+            // Click the button.
+            await button.click();
+            await driver.delayMs(1000);
+            // Check text.
+            await driver.assertComponentExist(ON.text('after click'));
+            await driver.pressBack();
+            done();
+        })
+      })
+    }
+    ```
 
 ### Running the Test Script
 
