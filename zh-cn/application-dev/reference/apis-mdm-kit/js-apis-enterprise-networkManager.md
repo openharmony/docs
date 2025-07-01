@@ -954,7 +954,7 @@ deleteApn(admin: Want, apnId: string): void
 | 参数名 | 类型                                                    | 必填 | 说明           |
 | ------ | ------------------------------------------------------- | ---- | -------------- |
 | admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
-| apnId  | string | 是   | 需要删除的APN ID。 |
+| apnId  | string | 是   | 需要删除的APN ID。可以通过[queryApn](#networkmanagerqueryapn20+)查询获得。 |
 
 **错误码**：
 
