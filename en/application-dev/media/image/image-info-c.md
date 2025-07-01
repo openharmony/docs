@@ -47,7 +47,7 @@ static void ImageNativeCTest()
     imgSize.width = IMAGE_WIDTH;
     imgSize.height = IMAGE_HEIGHT;
 
-    // Set the size attribute of OH_ImageReceiverOptions.
+    // Set the size property in OH_ImageReceiverOptions. This property is a mandatory input parameter and does not actually take effect. Image properties are determined by the producer, for example, the camera.
     errCode = OH_ImageReceiverOptions_SetSize(options, imgSize);
     if (errCode != IMAGE_SUCCESS) {
         OH_LOG_ERROR(LOG_APP, "ImageReceiverNativeCTest set image receiver options size failed, errCode: %{public}d.", errCode);
@@ -55,7 +55,7 @@ static void ImageNativeCTest()
         return;
     }
 
-    // Set the capacity attribute of OH_ImageReceiverOptions.
+    // Set the capacity property of OH_ImageReceiverOptions.
     errCode = OH_ImageReceiverOptions_SetCapacity(options, IMAGE_CAPACITY);
     if (errCode != IMAGE_SUCCESS) {
         OH_LOG_ERROR(LOG_APP, "ImageReceiverNativeCTest set image receiver options capacity failed, errCode: %{public}d.", errCode);
@@ -81,7 +81,8 @@ static void ImageNativeCTest()
         return;
     }
 
-    // Read the size attribute of OH_ImageNative.
+    // Read the size property in OH_ImageNative. This property does not actually take effect. Image properties are determined by the producer, for example, the camera.
+    Image_Size imgSizeRead;
     errCode = OH_ImageNative_GetImageSize(image, &imgSizeRead);
     if (errCode != IMAGE_SUCCESS) {
         OH_LOG_ERROR(LOG_APP, "ImageReceiverNativeCTest get image size failed, errCode: %{public}d.", errCode);

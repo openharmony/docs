@@ -1,6 +1,10 @@
 # Using Image_NativeModule to Receive Images
 
-You can use the **ImageReceiver** class to obtain the surface ID of a component, read the latest image or the next image, and release **ImageReceiver** instances. For details about the sample code of camera preview implemented with the use of the camera API, see [Secondary Processing of Preview Streams (C/C++)](../camera/native-camera-preview-imageReceiver.md).
+You can use the **ImageReceiver** class to obtain the surface ID of a component, read the latest image or the next image, and release ImageReceiver instances. For details about the sample code of camera preview implemented with the use of the camera API, see [Secondary Processing of Preview Streams (C/C++)](../camera/native-camera-preview-imageReceiver.md).
+
+> **NOTE**
+>
+> The ImageReceiver merely serves as the recipient and consumer of images. The properties set in ImageReceiver, such as size and format, do not actually take effect. Image properties need to be configured on the sending side (the producer), such as when setting up the preview profiles for a [preview stream (C/C++)](../camera/native-camera-preview.md).
 
 ## How to Develop
 
@@ -75,7 +79,7 @@ static void ImageReceiverNativeCTest()
     imgSize.width = IMAGE_WIDTH;
     imgSize.height = IMAGE_HEIGHT;
 
-    // Set the size attribute of OH_ImageReceiverOptions.
+    // Set the size property in OH_ImageReceiverOptions. This property is a mandatory input parameter and does not actually take effect. Image properties are determined by the producer, for example, the camera.
     errCode = OH_ImageReceiverOptions_SetSize(options, imgSize);
     if (errCode != IMAGE_SUCCESS) {
         OH_LOG_ERROR(LOG_APP, "ImageReceiverNativeCTest set image receiver options size failed, errCode: %{public}d.", errCode);
@@ -83,7 +87,7 @@ static void ImageReceiverNativeCTest()
         return;
     }
 
-    // Set the capacity attribute of OH_ImageReceiverOptions.
+    // Set the capacity property of OH_ImageReceiverOptions.
     errCode = OH_ImageReceiverOptions_SetCapacity(options, IMAGE_CAPACITY);
     if (errCode != IMAGE_SUCCESS) {
         OH_LOG_ERROR(LOG_APP, "ImageReceiverNativeCTest set image receiver options capacity failed, errCode: %{public}d.", errCode);
@@ -91,7 +95,7 @@ static void ImageReceiverNativeCTest()
         return;
     }
 
-    // Read the size attribute of OH_ImageReceiverOptions.
+    // Read the size property in OH_ImageReceiverOptions. This property does not actually take effect. Image properties are determined by the producer, for example, the camera.
     Image_Size imgSizeRead;
     errCode = OH_ImageReceiverOptions_GetSize(options, &imgSizeRead);
     if (errCode != IMAGE_SUCCESS) {
@@ -100,7 +104,7 @@ static void ImageReceiverNativeCTest()
         return;
     }
 
-    // Check whether the size read is the same as the size set.
+    // Check whether the size read is the preset value. The size read does not take effect actually. The image width and height are determined by the producer, for example, the camera.
     if (imgSizeRead.width != IMAGE_WIDTH || imgSizeRead.height != IMAGE_HEIGHT) {
         OH_LOG_ERROR(LOG_APP, "ImageReceiverNativeCTest get image receiver options size failed, width: %{public}d, height: %{public}d.", imgSizeRead.width, imgSizeRead.height);
         OH_ImageReceiverOptions_Release(options);
@@ -180,7 +184,7 @@ static void ImageReceiverNativeCTest()
 }
 
 // Release ImageReceiverNative resources at a proper time.
-static void ImaggReceiverRelease()
+static void ImageReceiverRelease()
 {
     // Unregister the callback event registered by calling OH_ImageReceiverNative_On.
     errCode = OH_ImageReceiverNative_Off(receiver);
@@ -194,5 +198,4 @@ static void ImaggReceiverRelease()
         OH_LOG_ERROR(LOG_APP, "ImageReceiverNativeCTest release image receiver failed, errCode: %{public}d.", errCode);
     }
 }
-
 ```

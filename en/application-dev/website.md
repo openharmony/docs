@@ -1553,6 +1553,8 @@
         - Image Receiving<!--image-receiving-c-->
           - [Using Image_NativeModule to Receive Images](media/image/image-receiver-c.md)
           - [Using Image_NativeModule to Process Image Information](media/image/image-info-c.md)
+      - FAQs About Image Kit<!--image-faqs-->
+        - [Handling HEIF Images](media/image/image-faqs/heif-adapter-faq.md)
       - Not Recommended<!--imagekit-not-recommended-->
         - Image Development (Dependent on JS Objects) (C/C++)<!--image-native-js-objects-->
           - [Image Decoding](media/image/image-decoding-native.md)
