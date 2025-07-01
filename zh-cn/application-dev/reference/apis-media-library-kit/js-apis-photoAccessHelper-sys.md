@@ -1635,11 +1635,11 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 }
 ```
 
-### GetIndexConstructProgress
+### GetIndexConstructProgress<sup>12+</sup>
 
 GetIndexConstructProgress(): Promise&lt;string&gt;
 
-获取索引构建进度，使用Promise方式返回结果。
+获取索引构建进度。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -1652,11 +1652,11 @@ GetIndexConstructProgress(): Promise&lt;string&gt;
 
 | 类型                        | 说明           |
 | --------------------------- | -------------- |
-| Promise&lt;string&gt; | Promise对象，返回一个json格式的字符串。表示已经完成智慧分析的图片的数量，图片总数；已经完成智慧分析的视频的数量，视频总数。 |
+| Promise&lt;string&gt; | Promise对象，返回一个json格式的字符串。表示已完成智慧分析的图片数量、总数和已经完成智慧分析的视频数量、总数。 |
 
 **错误码：**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
 
 
 | 错误码ID | 错误信息 |
@@ -1681,20 +1681,11 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 
   try {
     console.info('getIndexConstructProgress test start');
-    let photoType: photoAccessHelper.PhotoType = photoAccessHelper.PhotoType.IMAGE;
-    let extension: string = 'jpg';
-    let options: photoAccessHelper.CreateOptions = {
-        title: 'testPhoto'；
-    }
-
-    let uri: string = await phAccessHelper.createAsset(photoType, extension, options);
-    console.info('getAssets' + uri);
-
     let result: string = await phAccessHelper.getIndexConstructProgress();
     console.info('getIndexProgress:' + result);
 
     let jsonObj: indexProgress = JSON.parse(result);
-    // ...使用获取到的索引构建进度数据
+    // ...使用获取到的索引构建进度数据。
   } catch (err) {
     console.error(`getIndexConstructProgress failed, error: ${err.code}, ${err.message}`);
   }
@@ -1705,7 +1696,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 
 GetDataAnalysisProgress(analysisType: AnalysisType): Promise&lt;string&gt;
 
-获取资产的分析进度，使用Promise方式返回结果。
+获取资产的分析进度。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -1727,7 +1718,7 @@ GetDataAnalysisProgress(analysisType: AnalysisType): Promise&lt;string&gt;
 
 **错误码：**
 
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1745,7 +1736,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   try {
     console.info('GetDataAnalysisProgress test start');
 
-    let result: string = await phAccessHelper.GetDataAnalysisProgress(AnalysisType.ANALYSIS_HIGHLIGHT);
+    let result: string = await phAccessHelper.GetDataAnalysisProgress(photoAccessHelper.AnalysisType.ANALYSIS_FACE);
     console.info('GetDataAnalysisProgress:' + result);
 
   } catch (err) {
