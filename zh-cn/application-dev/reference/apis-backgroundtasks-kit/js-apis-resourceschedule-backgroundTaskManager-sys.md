@@ -166,14 +166,14 @@ try {
 
 **系统API**: 此接口为系统接口。
 
-| 名称             | 类型     | 必填   | 说明                                       |
-| --------------- | ------ | ---- | ---------------------------------------- |
-| resourceTypes   | number  | 是    | 申请的资源类型。                               |
-| isApply         | boolean | 是    | 申请或释放资源。<br>- true表示申请资源。<br>- false表示释放部分资源。 |
-| timeOut         | number  | 是    | 资源使用时间，单位为毫秒。                |
-| isPersist       | boolean | 否    | 是否永久持有资源，默认为false。<br>- true表示永久持有。<br>- false表示有限时间内持有。|
-| isProcess       | boolean | 否    | 进程或应用申请，默认为false。<br>- true表示进程申请。<br>- false表示应用申请。         |
-| reason          | string  | 是    | 申请资源原因。                |
+| 名称             | 类型     | 只读   | 可选   | 说明                                       |
+| --------------- | ------ | ---- | ---- | ---------------------------------------- |
+| resourceTypes   | number  | 否    | 否    | 申请的资源类型。                               |
+| isApply         | boolean | 否    | 否    | 申请或释放资源。<br>- true表示申请资源。<br>- false表示释放部分资源。 |
+| timeOut         | number  | 否    | 否    | 资源使用时间，单位为毫秒。                |
+| isPersist       | boolean | 否    | 是    | 是否永久持有资源，默认为false。<br>- true表示永久持有。<br>- false表示有限时间内持有。|
+| isProcess       | boolean | 否    | 是    | 进程或应用申请，默认为false。<br>- true表示进程申请。<br>- false表示应用申请。         |
+| reason          | string  | 否    | 否    | 申请资源原因。                |
 
 ## ResourceType
 
