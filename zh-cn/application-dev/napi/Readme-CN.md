@@ -88,7 +88,7 @@
       - [使用JSVM-API进行异常的定制化处理](use-jsvm-trigger-exceptions.md)
       - [使用JSVM-API感知JSVM引擎生命周期管理](use-jsvm-trigger-gc.md)
       - [使用JSVM-API接口进行 private 属性相关开发](use-jsvm-about-private.md)
-      - [使用JSVM-API接创建 external string](use-jsvm-about-external-string.md)
+      - [使用JSVM-API接口提供Latin1/UTF16格式字符串相关开发](use-jsvm-about-external-string.md)
       - [使用JSVM-API接口进行Proxy相关开发](use-jsvm-about-proxy.md)
       - [使用JSVM-API接口进行well-known symbols相关开发](use-jsvm-about-well-known-symbols.md)
       - [使用JSVM-API接口进行装箱类型判断相关开发](use-jsvm-about-wrapper-object.md)
