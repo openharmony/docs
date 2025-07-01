@@ -571,7 +571,7 @@ struct TimePickerExample {
 @Component
 struct TimePickerExample {
   @State isLoop: boolean = true;
-  private selectedTime: Date = new Date('2022-07-22T12:00:00');
+  @State selectedTime: Date = new Date('2022-07-22T12:00:00');
 
   build() {
     Column() {
