@@ -1952,3 +1952,921 @@ let x: number = initialize();
 
 console.log('x = ' + x);
 ```
+
+## Record增加运行时类型
+
+**规则：**`arkts-record-add-runtime-type`
+
+**级别：error**
+
+ArkTS1.2中对象字面量会生成类的实例。
+
+**ArkTS1.1**
+
+```typescript
+let a: Record<string, number> = { 'v': 123 };  // Record是编译时类型，运行时仍是动态对象
+a.v;  // 需要使用[]方式访问
+```
+
+**ArkTS1.2**
+
+```typescript
+let a: Record<string, number> = { 'v': 123 };  // Record是编译时类型，运行时仍是动态对象
+console.info(a instanceof Record) // true
+a['v'];  
+```
+
+## as具有运行时语义
+
+**规则：**`arkts-no-ts-like-as`
+
+**级别：error**
+
+ArkTS1.1中的`as`只在编译时提供类型信息，如果类型断言失败，报错时机取决于后续的代码操作。
+
+ArkTS1.2中的`as`会在运行时进行类型检查和可能的类型转换，如果类型断言失败，会立即抛出错误。
+
+**ArkTS1.1**
+
+```typescript
+// ArkTS1.1
+interface I {}
+class A implements I {
+  m: number = 0;
+}
+
+class B implements I {
+  n: string = 'a';
+}
+
+let a: A = new A();
+let i: I = a;
+let t: B = i as B; // ArkTS1.1：正常编译运行，ArkTS1.2:运行时异常
+t.n.toString();     // ArkTS1.1：运行时崩溃
+```
+
+**ArkTS1.2**
+
+```typescript
+// ArkTS1.2
+interface I {}
+class A implements I {
+  m: number = 0;
+}
+
+class B implements I {
+  n: string = 'a';
+}
+
+let a: A = new A();
+let i: I = a;
+if (i instanceof B) {
+  let t: B = i as B;  // ArkTS1.2：运行时正常
+  t.n.toString();     // ArkTS1.2：运行时正常
+}
+```
+
+## catch语句中是error类型
+
+**规则：**`arkts-no-ts-like-catch-type`
+
+**级别：error**
+
+在ArkTS1.1上catch语句中的e是any类型。因此，编译器不会对catch语句中的异常进行编译时类型检查。当ArkTS1.1上限制throw时，只能抛出Error类型。
+
+在ArkTS1.2的静态模式中，类型必须明确，同时需考虑与ArkTS1.1的兼容性。对于catch(e)的语法，默认e为Error类型。
+
+**ArkTS1.1**
+
+```typescript
+try {
+  throw new Error();
+} catch(e) {  // e是any类型
+  e.message; // ArkTS1.1编译通过，运行正常
+  e.prop;     // ArkTS1.1编译通过，输出undefined
+}
+```
+
+**ArkTS1.2**
+
+```typescript
+try {
+  throw new Error();
+} catch(e:Error) {  // e是Error类型
+  e.message;   // ArkTS1.2编译通过，运行正常
+  e.prop;      // ArkTS1.2编译错误，需要将e转换成需要处理的异常类型，例如：(e as SomeError).prop
+}
+```
+
+## 不支持逻辑赋值运算
+
+**规则：**`arkts-unsupport-operator`
+
+**级别：error**
+
+1. 当前暂不支持&&=, ||=, ??=逻辑赋值运算符，通过迁移工具提示开发者修改源码，不提供自动修复能力。
+
+**ArkTS1.1**
+
+```typescript
+let a = 1;
+a &&= 2;    // 结果: 2，ArkTS1.2暂不支持
+a ||= 3;   // 结果: 2，ArkTS1.2暂不支持
+a ??= 4;  // 结果: 2，ArkTS1.2暂不支持
+```
+
+**ArkTS1.2**
+
+```typescript
+let a = 1;
+a = a && 2;   // 结果: 2
+a = a || 3;   // 结果: 2
+a = a ?? 4;   // 结果: 2
+```
+
+## 非十进制bigint字面量
+
+**规则：**`arkts-only-support-decimal-bigint-literal`
+
+**级别：error**
+
+ 当前暂不支持非十进制bigint字面量，通过迁移工具提示开发者修改源码，不提供自动修复能力。
+
+**ArkTS1.1**
+
+```typescript
+let a1: bigint = 0xBAD3n;  // 十六进制字面量，ArkTS1.2暂不支持
+let a2: bigint = 0o777n;   // 八进制字面量，ArkTS1.2暂不支持
+let a3: bigint = 0b101n;  // 二进制字面量，ArkTS1.2暂不支持
+```
+
+**ArkTS1.2**
+
+```typescript
+let a1: bigint = BigInt(0xBAD3);
+let a2: bigint = BigInt(0o777);
+let a3: bigint = BigInt(0b101);
+```
+
+## 数值类型和bigint类型的比较
+
+**规则：**`arkts-numeric-bigint-compare`
+
+**级别：error**
+
+ 当前暂不支持数值类型和bigint类型的比较，迁移工具将提示开发者修改源码，不提供自动修复能力。
+
+**ArkTS1.1**
+
+```typescript
+let n1: number = 123;
+let n2: bigint = 456n;
+
+n1 <= n2;   // 编译通过
+n1 == n2;   // 编译失败
+n1 >= n2;   // 编译通过
+```
+
+**ArkTS1.2**
+
+```typescript
+let n1: number = 123;
+let n2: bigint = 456n;
+
+BigInt(n1) <= n2;
+BigInt(n1) == n2;
+BigInt(n1) >= n2;
+```
+
+## new Number/Boolean/String不再是"object"类型
+
+**规则：**`arkts-primitive-type-normalization`
+
+**级别：error**
+
+1. 在ArkTS1.2中primitive type和boxed type是相同的类型，这样可以提高语言一致性和性能。
+   比较Number/Boolean/String时比较的是值而不是对象。
+
+2. 在ArkTS1.1上，boxed类型通过new创建。在获取其类型、比较boxed类型对象时会产生意外行为，这是因为对象比较时是通过引用进行比较，而不是值。通常直接使用primitive 
+   type性能更高效，内存占用更少（相比之下对象会占用更多内存）。
+
+**ArkTS1.1**
+
+```typescript
+typeof new Number(1) // 结果: "object"
+new Number(1) == new Number(1);  //结果: false
+if (new Boolean(false)) {} // 在if语句中new Boolean(false)为true
+```
+
+**ArkTS1.2**
+
+```typescript
+typeof new Number(1)// 结果: "number"
+new Number(1) == new Number(1);  //结果: true
+if (new Boolean(false)) {}      // 在if语句中new Boolean(false)为false
+```
+
+## enum的元素不能作为类型
+
+**规则：**`arkts-no-enum-prop-as-type`
+
+**级别：error**
+
+ArkTS1.1上的枚举是编译时概念，在运行时仍是普通对象。ArkTS1.2遵循静态类型，需要在运行时为enum提供类型。因此，ArkTS1.2上枚举的每个元素是枚举类的实例（在运行时才确定），无法成为编译时的静态类型信息。这与ArkTS1.2整体类型设计上不支持实例类型相违背。
+
+**ArkTS1.1**
+
+```typescript
+enum A { E = 'A' }
+function foo(a: A.E) {}
+```
+
+**ArkTS1.2**
+
+```typescript
+enum A { E = 'A' }
+function foo(a: 'A') {}
+
+// ...
+enum A { E = 'A' }
+function foo(a: A) {}
+```
+
+## 不支持debugger 
+
+**规则：**`arkts-no-debugger`
+
+**级别：error**
+
+1. 静态类型语言具备编译时检查和强类型约束，调试通常由IDE完成，已具备较强大的调试机制。
+
+2. debugger会侵入式修改源码。
+
+3. debugger语句会被优化，造成行为不一致。
+
+**ArkTS1.1**
+
+```typescript
+// ArkTS1.1 
+// ...
+debugger;
+// ...
+```
+
+**ArkTS1.2**
+
+```typescript
+// ArkTS1.2   移除debugger语句
+// ...
+```
+
+## 不支持空数组/稀疏数组 
+
+**规则：**`arkts-no-sparse-array`
+
+**级别：error**
+
+1. ArkTS1.2遵循静态类型，空数组需要能根据上下文推导出数组元素的类型，否则会有编译错误。
+
+2. ArkTS1.2的数组是连续存储的，空位（如 [1, , , 2]）会浪费内存。‌
+
+3. ArkTS1.2遵循空值安全，无法使用默认undefined表示空缺。
+
+**ArkTS1.1**
+
+```typescript
+let a = []; // ArkTS1.2，编译错误，需要从上下文中推导数组类型
+let b = [1, , , 2]; // 不支持数组中的空位
+b[1];  // undefined 
+```
+
+**ArkTS1.2**
+
+```typescript
+let a: number[] = [];  // 支持，ArkTS1.2上可以从上下文推导出类型
+let b = [1, undefined, undefined, 2];
+```
+
+## 智能类型差异
+
+**规则：**`arkts-no-ts-like-smart-type`
+
+**级别：error**
+
+在ArkTS1.1中，由于对象不是线程间共享的，编译器在做类型推导和分析时无需考虑并发场景。
+
+在ArkTS1.2中，由于对象是多线程共享的，编译器在做类型推导和分析时需要考虑并发场景下变量类型/值的变化。
+
+**智能转换：** 编译器会在某些场景下（如instanceof、null检查、上下文推导等）识别出对象的具体类型，自动将变量转换为相应类型，而无需手动转换。
+
+**ArkTS1.1**
+
+```typescript
+class AA {
+  public static instance?: number;
+  getInstance(): number {
+    if (!AA.instance) {
+      return 0;
+    }
+    return AA.instance;       // ArkTS1.2编译错误，返回值和返回类型不匹配
+  }
+}
+```
+
+**ArkTS1.2**
+
+```typescript
+class AA {
+  public static instance?: number;
+  getInstance(): number {
+    let a = AA.instance       // ArkTS1.2上，需要通过局部变量做智能转换
+    if (!a) {
+      return 0;
+    }
+    return a;
+  }
+}
+```
+
+## 数组/元组类型在继承关系中遵循不变性原则
+
+**规则：**`arkts-array-type-immutable`
+
+**级别：error**
+
+ArkTS1.2上数组在继承关系中遵循不变性原则，可以通过编译时检查保证类型安全，将潜在的运行时错误提前到编译期，避免运行时失败，从而提高执行性能。
+
+**ArkTS1.1**
+
+```typescript
+class A {
+  a: number = 0;
+}
+
+class B {
+  b: number = 0;
+}
+
+// ArkTS1.1 
+let arr1: A[] = [new A()];
+let arr2: (A | B)[] = arr1;      // ArkTS1.2编译错误
+```
+
+**ArkTS1.2**
+
+```typescript
+class A {
+  a: number = 0;
+}
+
+class B {
+  b: number = 0;
+}
+
+// ArkTS1.2 
+let arr1: [ A | B ] = [new A()];
+let arr2: [ A | B ] = arr1;       // 需要相同类型的元组
+```
+
+## 默认参数必须放在必选参数之后
+
+**规则：**`arkts-default-args-behind-required-args`
+
+**级别：error**
+
+默认参数放在必选参数之前没有意义，ArkTS1.1上调用该接口时仍须传递每个默认参数。
+
+**ArkTS1.1**
+
+```typescript
+function add(left: number = 0, right: number) { 
+  return left + right;
+}
+```
+
+**ArkTS1.2**
+
+```typescript
+function add(left: number, right: number) {
+  return left + right;
+}
+```
+
+## class的懒加载
+
+**规则：**`arkts-class-lazy-import`
+
+**级别：error**
+
+ArkTS1.2的类在使用时进行加载或初始化，以提升启动性能，减少内存占用。
+
+**ArkTS1.1**
+
+```typescript
+class C {
+  static {
+    console.info('init');  // ArkTS1.2上不会立即执行
+  }
+}
+```
+
+**ArkTS1.2**
+
+```typescript
+// ArkTS1.2  如果依赖没有被使用的class执行逻辑，那么将该段逻辑移出class
+class C {
+  static {}
+}
+console.info('init');
+```
+
+## 方法继承/实现参数遵循逆变原则，返回类型遵循协变原则
+
+**规则：**`arkts-method-inherit-rule`
+
+**级别：error**
+
+ArkTS1.2子类方法覆写父类方法，参数类型须遵循逆变原则，可以通过编译时检查保证类型安全，将潜在的运行时错误提前到编译期，避免运行时失败，无需运行时检查，从而提高执行性能。
+
+**逆变/协变：** 用来描述类型转换后的继承关系，如果A、B表示类型，f()表示类型转换，≤表示继承关系（A≤B表示A是由B派生出来的子类），则有：
+
+- f()为逆变时，当A≤B时有f(B)≤f(A)成立。
+
+- f()为协变时，当A≤B时有f(A)≤f(B)成立。
+
+**ArkTS1.1**
+
+```typescript
+// ArkTS1.1  
+class A {
+  a: number = 0;
+}
+class B {
+  b: number = 0;
+}
+
+class Base {
+  foo(obj: A | B): void {}
+}
+class Derived extends Base {
+  override foo(obj: A): void {      // 可以覆写父类方法，ArkTS1.2编译错误
+    console.info(obj.a.toString());
+  }
+}
+```
+
+**ArkTS1.2**
+
+```typescript
+// ArkTS1.2
+class A {
+  a: number = 0;
+}
+class B {
+  b: number = 0;
+}
+
+class Base {
+  foo(obj: A | B): void {}
+}
+class Derived extends Base {
+  override foo(obj: A | B): void {
+    if (obj instanceof A) {
+      console.info(obj.a.toString());
+    }
+  }
+}
+```
+
+## Enum不可以通过索引访问成员
+
+**规则：**`arkts-enum-no-props-by-index`
+
+**级别：error**
+
+1. ArkTS1.1上已对索引访问元素的语法做了限制，ArkTS1.2对枚举场景增强约束。具体内容请参考[不支持通过索引访问字段](typescript-to-arkts-migration-guide.md#不支持通过索引访问字段)。
+
+2. ArkTS1.1上枚举是动态对象，ArkTS1.2是静态类型，枚举具有运行时类型。为获得更高的性能，对[]访问做了限制。
+
+**ArkTS1.1**
+
+```typescript
+enum TEST {
+  A,
+  B,
+  C
+}
+
+TEST['A'];       // ArkTS1.2上不支持这种语法
+TEST[0];    // ArkTS1.2上不支持这种语法
+```
+
+**ArkTS1.2**
+
+```typescript
+enum TEST {
+  A,
+  B,
+  C
+}
+
+TEST.A;          // 使用.操作符或者enum的值
+TEST.A.getName();  // 使用enum对应的方法获取enum的key
+```
+
+## 对象没有constructor
+
+**规则：**`arkts-obj-no-constructor`
+
+**级别：error**
+
+ArkTS1.2支持天然共享的能力，运行时需要确定类型信息。实现上不再基于原型的语言，而是基于class的语言。
+
+**ArkTS1.1**
+
+```typescript
+class A {}
+let a = new A().constructor;   // ArkTS1.2上编译错误
+```
+
+**ArkTS1.2**
+
+```typescript
+class A {}
+let a = new A();
+let cls = Type.of(a); 
+```
+
+## 子类有参构造函数需要显式定义，且必须调用父类的构造函数
+
+**规则：**`arkts-subclass-must-call-super-constructor-with-args`
+
+**级别：error**
+
+1. ArkTS1.1在运行时没有对函数调用的检查，同时利用arguments机制获取所有参数（ArkTS1.2上不支持这个特性）并传入父类构造函数。ArkTS1.2对函数参数的个数和类型会进行编译时检查，确保程序的安全和正确性，因此ArkTS1.2上不支持这种写法。
+
+2. ArkTS1.2支持方法重载，构造函数可能有多个实现体，在ArkTS1.2上支持这个特性会造成子类继承父类时的二义性。
+
+**ArkTS1.1**
+
+```typescript
+class A {
+  constructor(a: number) {}
+}
+class B extends A {}                // ArkTS1.2上编译报错
+let b = new B(123);
+```
+
+**ArkTS1.2**
+
+```typescript
+class A {
+  constructor(a: number) {}
+}
+class B extends A {
+  constructor(a: number) {
+    super(a)
+  }
+}
+let b = new B(123);
+```
+
+## 不支持可选元组类型
+
+**规则：**`arkts-no-optional-tuple`
+
+**级别：error**
+
+ArkTS1.2不支持可选元组类型。通过编译时检查保证类型安全，将潜在的运行时错误提前到编译期，避免运行时失败，从而提高执行性能。
+
+**ArkTS1.1**
+
+```typescript
+let t: [number] = [1];
+let t1: [number, boolean?] = t;   // ArkTS1.2编译错误
+```
+
+**ArkTS1.2**
+
+```typescript
+let t: [number] = [1];
+let t1: [number, boolean] | [number] = t;
+```
+
+## 不支持超大数字字面量
+
+**规则：**`arkts-no-big-numeric-literal`
+
+**级别：error**
+
+1. ArkTS1.2支持更多数值类型细化，可以获得更好的性能。超出int/long/double范围的数字字面量会有编译错误。
+
+2. 支持隐式转换会造成额外的性能损耗。
+
+3. 浮点数据的隐式转换可能带来精度的损失，违反开发者预期。清晰的数值边界可以提升代码准确性和可读性。
+
+**ArkTS1.1**
+
+```typescript
+let s = 1000000000000000000000000000000000000; // ArkTS1.1会转换成浮点形式数据，ArkTS1.2编译错误
+let t = 1E+309;                               // ArkTS1.1会转换为Infinity，ArkTS1.2编译错误
+```
+
+**ArkTS1.2**
+
+```typescript
+let s = 1000000000000000000000000000000000000.0; // ok，浮点形式数据
+let t = Infinity;                                // ok，值为Infinity
+```
+
+## class/interface的变量名称需要是合法标识符
+
+**规则：**`arkts-identifier-as-prop-names`
+
+**级别：error**
+
+1. ArkTS1.1上已经进行约束，ArkTS1.2对边界场景增强约束。详细内容请参考[对象的属性名必须是合法的标识符](typescript-to-arkts-migration-guide.md#对象的属性名必须是合法的标识符)。
+
+2. 静态类型中对属性的访问是静态的，可以获得更好的执行性能。
+
+3. 使用字符串作为属性名称可能带来二义性。
+
+**ArkTS1.1**
+
+```typescript
+class A {
+  's' = 1;
+}
+```
+
+**ArkTS1.2**
+
+```typescript
+class A {
+  s = 1;
+}
+```
+
+## 子类不可以声明和父类的方法同名的lamada类型的属性
+
+**规则：**`arkts-no-subclass-lamada-prop-name-same-as-superclass-method`
+
+**级别：error**
+
+不同于ArkTS1.1上的动态对象（属性和方法一致），ArkTS1.2上的属性与方法有本质区别。属性用以保存类实例的状态，是可变的。方法定义类对象的行为或功能，被类的所有实例所共有，不能被改变。
+
+同时，ArkTS1.1和ArkTS1.2不支持属性和实例方法同名。因此在ArkTS1.2上，类的继承关系中不能将同名属性和方法相互覆写。
+
+**ArkTS1.1**
+
+```typescript
+class A {
+  foo() {
+    console.info('A');
+  }
+}
+
+class B extends A {
+  foo: () => void = () => {
+    console.info('B');
+  }
+}
+```
+
+**ArkTS1.2**
+
+```typescript
+class A {
+  foo() {
+    console.info('A');
+  }
+}
+
+class B extends A {
+  foo() {
+    console.info('B');
+  }
+}
+```
+
+## 子类不能在static context中调用super
+
+**规则：**`arkts-no-super-call-in-static-context`
+
+**级别：error**
+
+1. ArkTS1.2不再基于原型实现继承。没有原型/构造函数的概念，无法实现动态替换原型，因此无需通过super动态访问父类。
+
+2. super定义在子类的静态上下文中，容易混淆super的指向，与在实例方法中super指向父类实例相冲突，造成开发者的混用。使用类名的方式访问静态成员更清晰、可维护，易于开发者理解。
+
+**ArkTS1.1**
+
+```typescript
+class A {
+  static foo() {
+    return 123;
+  }
+}
+
+class B extends A {
+  static foo() {
+    return super.foo() + 456;
+  }
+}
+```
+
+**ArkTS1.2**
+
+```typescript
+class A {
+  static foo() {
+    return 123;
+  }
+}
+
+class B extends A {
+  static foo() {
+    return A.foo() + 456;
+  }
+}
+```
+
+## 类继承含属性的接口时，需要实现属性的get/set方法
+
+**规则：**`arkts-class-implement-interface-prop-getter-setter`
+
+**级别：error**
+
+ArkTS1.2遵循严格的类型检查，可以通过编译时检查保证类型安全，将潜在的运行时错误提前到编译期，避免运行时失败，从而提高执行性能。
+
+**ArkTS1.1**
+
+```typescript
+interface I {
+  v: number
+}
+
+class A implements I {
+  get v(): number {
+    return 1;
+  }
+}
+```
+
+**ArkTS1.2**
+
+```typescript
+interface I {
+  readonly v: number
+}
+
+class A implements I {
+  get v(): number {
+    return 1;
+  }
+}
+```
+
+## 不能将超出枚举范围的值赋值给枚举类型的变量
+
+**规则：**`arkts-out-of-enum-index`
+
+**级别：error**
+
+ArkTS1.2上枚举类型是类型安全的，编译器会进行严格检查，避免应用中的非预期行为或错误。同时，枚举的值是编译时确定的，如果在运行时赋值超出范围的值，会对开发者造成困惑，降低易用性（TS在新版本上也增强了枚举场景的编译检查）。
+
+**ArkTS1.1**
+
+```typescript
+enum T {
+  A = 0,
+  B = 1,
+  C = 2
+}
+
+let num: number = 123;
+
+let t1: T = 0;
+let t2: T = -1;
+let t3: T = num;
+```
+
+**ArkTS1.2**
+
+运行时赋值枚举类型在ArkTS1.2上没有直接的替代写法。如果想超出枚举范围赋值，建议使用类/容器等其他数据结构实现。
+
+## 不支持不定长的元组类型
+
+**规则：**`arkts-no-unfixed-len-tuple`
+
+**级别：error**
+
+ArkTS1.2上不支持可变元组，可以通过编译时检查保证类型安全，将潜在的运行时错误提前到编译期，避免运行时失败，从而提高执行性能。
+
+**ArkTS1.1**
+
+```typescript
+const s: [string, ...boolean[]]=['', true];
+```
+
+**ArkTS1.2**
+
+```typescript
+const s: (string | boolean)[] =['', true];
+```
+
+## 类实例不支持关系表达式
+
+**规则：**`arkts-no-class-instance-relational-expression`
+
+**级别：error**
+
+1. ArkTS1.2中遵循类型安全，为避免隐式转化行为，关系表达式的操作符必须是数值类型、字符串类型、布尔类型、枚举类型。同时，支持隐式转化可能引发非预期的异常。
+
+2. 对象的比较缺乏默认语义，为了语言的一致性和明确性，不支持不同对象的比较。
+
+**ArkTS1.1**
+
+```typescript
+class A {
+  valueOf () {
+    return 3;
+  }
+}
+
+class B {
+  valueOf () {
+    return 4;
+  }
+}
+
+let a = new A();
+let b = new B();
+console.info('a<b:', a < b);
+```
+
+**ArkTS1.2**
+
+```typescript
+class A {
+  valueOf () {
+    return 3;
+  }
+}
+
+class B {
+  valueOf () {
+    return 4;
+  }
+}
+
+let a = new A();
+let b = new B();
+console.info(a.valueOf() < b.valueOf());
+```
+
+## instanceof的目标类型不能是函数
+
+**规则：**`arkts-no-instanceof-func`
+
+**级别：error**
+
+ArkTS1.2上不再基于原型实现继承，没有原型/构造函数的概念，不能通过任意函数创建对象。因此instanceof的目标类型不能是函数。
+
+**ArkTS1.1**
+
+```typescript
+function foo() {}
+function bar(obj: Object) {
+  console.info('obj instanceof foo :' ,obj instanceof foo);
+}
+```
+
+**ArkTS1.2**
+```typescript
+function bar(obj: Object) {
+console.info('obj instanceof foo :', obj instanceof string);
+}
+```
+
+## 静态加载包内模块某一文件时ohmurl路径变更
+
+**规则：**`arkts-ohmurl-path-change`
+
+**级别：error**
+
+ArkTS1.2中在静态加载包内模块某一文件时ohmurl路径必须写全，不可省略路径中的"src/main"。
+
+**ArkTS1.1**
+
+```typescript
+// library/ets/components/Index.ets
+import { MainPage } from 'library/ets/components/MainPage'
+```
+
+**ArkTS1.2**
+
+```typescript
+// library/ets/components/Index.ets
+import { MainPage } from 'library/src/main/ets/components/MainPage'
+```
