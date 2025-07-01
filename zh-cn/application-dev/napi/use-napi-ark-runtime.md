@@ -131,7 +131,7 @@
    ```ts
    // ObjectUtils.ets
    export function Logger() {
-       console.log("print log");
+       console.info("print log");
    }
 
    // ArkTS侧调用接口
